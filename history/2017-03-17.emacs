@@ -68,6 +68,10 @@
 (require 'compile)
 (ido-mode t)
 
+;; Setup my find-files
+(define-key global-map "\ef" 'find-file)
+(define-key global-map "\eF" 'find-file-other-window)
+
 ;; Setup my key binding
 (global-set-key (read-kbd-macro "\eb")  'ido-switch-buffer)
 (global-set-key (read-kbd-macro "\eB")  'ido-switch-buffer-other-window)
@@ -375,16 +379,11 @@
     (casey-find-corresponding-file)
     (other-window -1))
 
-  (define-key c++-mode-map [f8] 'casey-find-corresponding-file)
-  (define-key c++-mode-map [M-f8] 'casey-find-corresponding-file-other-window)
+  (define-key c++-mode-map [f12] 'casey-find-corresponding-file)
+  (define-key c++-mode-map [M-f12] 'casey-find-corresponding-file-other-window)
 
-  (define-key c-mode-map [f8] 'casey-find-corresponding-file)
-  (define-key c-mode-map [M-f8] 'casey-find-corresponding-file-other-window)
-
-  ;; If just want to open the same file, not the
-  ;; corresponding file.
-  (define-key c++-mode-map [f7] 'jcs-find-file-other-window)
-  (define-key c-mode-map [f7] 'jcs-find-file-other-window)
+  (define-key c-mode-map [f12] 'casey-find-corresponding-file)
+  (define-key c-mode-map [M-f12] 'casey-find-corresponding-file-other-window)
 
   ;; Alternate bindings for F-keyless setups (ie MacOS X terminal)
   (define-key c++-mode-map "\ec" 'casey-find-corresponding-file)
@@ -602,7 +601,7 @@
 (define-key global-map "\es" 'save-buffer)
 
 ;; Compilation
-(setq compilation-context-lines t)
+(setq compilation-context-lines 0)
 (setq compilation-error-regexp-alist
       (cons '("^\\([0-9]+>\\)?\\(\\(?:[a-zA-Z]:\\)?[^:(\t\n]+\\)(\\([0-9]+\\)) : \\(?:fatal error\\|warnin\\(g\\)\\) C[0-9]+:" 2 3 nil (4))
             compilation-error-regexp-alist))
@@ -641,6 +640,7 @@
   (interactive)
   (if (find-project-directory) (compile casey-makescript))
   (other-window 1))
+(define-key global-map (kbd "C-S-B") 'make-without-asking) ;; default "\em"
 
 ;; Commands
 (set-variable 'grep-command "grep -irHn ")
@@ -653,12 +653,6 @@
 
 ;; Clock
 (display-time)
-
-;; Absolutely no backup file.
-(setq make-backup-files nil)
-
-;; Auto reload buffer if the file changes.
-(global-auto-revert-mode)
 
 ;; Startup windowing
 (setq next-line-add-newlines nil)
@@ -683,7 +677,7 @@
  '(imenu-auto-rescan-maxout 500000)
  '(jdee-jdk-registry
    (quote
-    (("1.8.0_111" . "C:/Program Files/Java/jdk1.8.0_111"))))
+    (("1.8.0_77" . "C:\\Program Files\\Java\\jdk1.8.0_11"))))
  '(kept-new-versions 5)
  '(kept-old-versions 5)
  '(make-backup-file-name-function (quote ignore))
@@ -829,8 +823,6 @@ Return a list of installed packages or nil for every skipped package."
                           'gitignore-mode
                           'gitlab
                           'google-c-style
-                          'helm
-                          'helm-gtags
                           'rainbow-mode
                           'lua-mode
                           'multiple-cursors
@@ -853,47 +845,107 @@ Return a list of installed packages or nil for every skipped package."
 ;; activate installed packages
 (package-initialize)
 
-;;================================================
-;; Find file in project plugin
-;; SOURCE(jenchieh): https://github.com/technomancy/find-file-in-project
-;;================================================
-(load-file "~/.emacs.d/elisp/find-file-in-project.el")
-
-(autoload 'find-file-in-project "find-file-in-project" nil t)
-(autoload 'find-file-in-project-by-selected "find-file-in-project" nil t)
-(autoload 'find-directory-in-project-by-selected "find-file-in-project" nil t)
-(autoload 'ffip-show-diff "find-file-in-project" nil t)
-(autoload 'ffip-save-ivy-last "find-file-in-project" nil t)
-(autoload 'ffip-ivy-resume "find-file-in-project" nil t)
-
-;; You prefer ido-mode?
-;;(setq ffip-prefer-ido-mode t)
-
 ;;========================================
 ;;      JENCHIEH FILE LOADING
 ;;----------------------------------
 (load-file "~/.emacs.d/elisp/jcs-mode.el")
 (load-file "~/.emacs.d/elisp/jcs-file-info-format.el")
 (load-file "~/.emacs.d/elisp/jcs-function.el")
-(load-file "~/.emacs.d/elisp/jcs-global-key.el")
-(load-file "~/.emacs.d/elisp/jcs-helm.el")
+
+
+;;========================================
+;;      JENCHIEH KEY GLOBAL KEY
+;;----------------------------------
+
+;; unbind the key
+(global-unset-key "\C-k")
+
+;; bind the key
+(global-set-key "\C-cd" 'duplicate-line)
+;;(global-set-key (kbd "C-d") 'kill-whole-line)   ;; Emacs default version
+(define-key global-map (kbd "C-d") 'jcs-kill-whole-line)    ;; delete the line without copying!!
+(define-key global-map "\C-x\C-x" 'kill-region)
+(define-key global-map "\C-c\C-c" 'kill-ring-save)
+(global-set-key "\C-v" 'yank)
+(global-set-key "\C-s" 'jcs-save-buffer)
+(global-set-key "\C-f" 'isearch-forward)
+(global-set-key "\C-a" 'mark-whole-buffer)
+(global-set-key "\C-z" 'undo)
+(global-set-key (kbd "C-/") 'comment-region)
+(global-set-key (kbd "C-?") 'uncomment-region)
+(global-set-key "\C-k\C-c" 'comment-region)
+(global-set-key "\C-k\C-u" 'uncomment-region)
+(global-set-key "\C-p" 'package-list-packages)
+(global-set-key "\e=" 'text-scale-increase)
+(global-set-key "\e-" 'text-scale-decrease)
+(global-set-key (kbd "C-<backspace>") 'my-backward-delete-word)
+(global-set-key "\C-t" 'transient-mark-mode)
+(define-key global-map [home] 'back-to-indentation-or-beginning)
+
+(global-set-key "\em" 'describe-mode)
+(global-set-key "\C-cd" 'jcs-toggle-shell-window) ; shell command
+
+(global-set-key "\C-xn" 'jcs-new-window)
+(global-set-key "\C-xd" 'delete-frame)  ; delete the external window
+
+(global-set-key "\e`" 'jcs-mode-toggle)
+
+(global-set-key (kbd "M-<f12>") 'jcs-find-file-other-window)
+
+(define-key global-map (kbd "S-<home>") 'jcs-smart-select-home)
+(define-key global-map (kbd "S-<end>") 'jcs-smart-select-end)
+(global-set-key (kbd "<up>") 'jcs-smart-indent-up)
+(global-set-key (kbd "<down>") 'jcs-smart-indent-down)
+(define-key global-map [M-up] 'scroll-down-one-line)
+(define-key global-map [M-down] 'scroll-up-one-line)
+
+(define-key global-map "\e]" 'run-without-asking)        ;; ALT-]
+(global-set-key (kbd "C-<f5>") 'run-without-asking)
+
+(global-set-key "\er" 'revert-buffer-no-confirm)
+
+(define-key global-map "\ew" 'jcs-other-window-next)
+(define-key global-map "\eq" 'jcs-other-window-prev)
+
+;; switch line-ending key
+(global-set-key "\C-x\C-e" 'set-buffer-file-coding-system)
+
+;; Upper/Down case key binding.
+(define-key global-map "\eu" 'upcase-word)
+(define-key global-map "\ed" 'downcase-word)
+
+;; format file.
+(global-set-key "\C-k\C-f" 'indent-region)
+(global-set-key "\C-k\C-d" 'jcs-format-document)
+(define-key global-map "\C-xa" 'align)
+(define-key global-map "\C-x\C-a" 'jcs-align-document)
+
+;; org-mode
+(define-key global-map "\C-xo" 'org-mode)
+
+;; ace window
+(require 'ace-window)
+(define-key global-map "\ee" 'ace-window)
+
+(require 'zencoding-mode)
+(define-key global-map "\C-xz" 'zencoding-mode)
 
 
 ;;------------------------------
 ;; ENABLE / DISABLE THE MODE
 ;;------------------------------
-;;===========================
+;;=============
 ;; Compile lanauge!
-;;===========================
+;;=============
 ;;(require 'c-mode)                       ;; C/C++
 ;;(require 'c++-mode)
 (define-key global-map "\C-cc" 'jcs-toggle-cc-mode)
 (require 'jdee)                         ;; Java
 (global-set-key "\C-cj" 'jdee-mode)
 
-;;===========================
+;;=============
 ;; Scripting/Interpreter
-;;===========================
+;;=============
 (require 'php-mode)                     ;; PHP
 (global-set-key "\C-xp" 'php-mode)
 (require 'web-mode)                     ;; html, css, js
@@ -901,9 +953,9 @@ Return a list of installed packages or nil for every skipped package."
 (require 'js2-mode)                     ;; js
 (global-set-key "\C-xj" 'js2-mode)
 
-;;===========================
+;;=============
 ;; Cross Language support
-;;===========================
+;;=============
 (require 'rainbow-mode)
 (global-set-key "\C-xr" 'rainbow-mode)
 (require 'blank-mode)
@@ -980,7 +1032,7 @@ Return a list of installed packages or nil for every skipped package."
 (setq neo-smart-open t)
 
 
-;;(global-set-key [f8] 'neotree-toggle)
+(global-set-key [f8] 'neotree-toggle)
 (global-set-key (kbd "C-M-l") 'neotree-toggle)
 
 ;;==========================
@@ -1167,20 +1219,20 @@ Return a list of installed packages or nil for every skipped package."
     (setq BaseFileName (file-name-sans-extension (file-name-nondirectory buffer-file-name)))
     (setq BaseFileNameWithExtension (file-name-nondirectory buffer-file-name))
 
-    (insert ":: ========================================================================\n")
-    (insert ":: $File: ")
+    (insert "REM ========================================================================\n")
+    (insert "REM $File: ")
     (insert BaseFileNameWithExtension)
     (insert " $\n")
-    (insert ":: $Date: ")
+    (insert "REM $Date: ")
     (jcs-timestamp)
     (insert " $\n")
-    (insert ":: $Revision: $\n")
-    (insert ":: $Creator: Jen-Chieh Shen $\n")
-    (insert ":: $Notice: See LICENSE.txt for modification and distribution information \n")
-    (insert "::                    Copyright (c) ")
+    (insert "REM $Revision: $\n")
+    (insert "REM $Creator: Jen-Chieh Shen $\n")
+    (insert "REM $Notice: See LICENSE.txt for modification and distribution information \n")
+    (insert "REM                    Copyright (c) ")
     (jcs-year-only)
     (insert " by Shen, Jen-Chieh $\n")
-    (insert ":: ========================================================================\n")
+    (insert "REM ========================================================================\n")
     (insert "\n\n")
     )
 
@@ -1340,9 +1392,10 @@ Return a list of installed packages or nil for every skipped package."
 
   (define-key java-mode-map (kbd "*") 'jcs-c-comment-pair)
 
-  ;; switch frame.
-  (define-key java-mode-map "\ew" 'jcs-other-window-next)
-  (define-key java-mode-map "\eq" 'jcs-other-window-prev)
+  ;; jcs Build and Run
+  (define-key java-mode-map (kbd "C-S-B") 'make-without-asking)
+  (define-key java-mode-map [f5] 'run-without-asking)
+
   )
 
 (add-hook 'jdee-mode-hook 'jcs-big-fun-java-hook)
@@ -1888,9 +1941,6 @@ Return a list of installed packages or nil for every skipped package."
 ;;                  so it won't cover the setting i want...
 (add-to-list 'auto-mode-alist '("\\.c?\\'" . c-mode))
 
-
-;;; Override all the mode's key bindings.
-(load-file "~/.emacs.d/elisp/jcs-global-key.el")
 
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of .emacs file

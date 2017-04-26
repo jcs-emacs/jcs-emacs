@@ -48,7 +48,7 @@
 ;;---------------------------------------------
 ;; @param frame: frame we just created.
 ;;---------------------------------------------
-(defun jcs-aftermake-frame-functions-hook(frame)
+(defun jcs-aftermake-frame-functions-hook (frame)
   "Resetting the new frame just created."
   (interactive)
 
@@ -63,14 +63,12 @@
 ;;-- Source --
 ;;      Deletion: http://ergoemacs.org/emacs/emacs_kill-ring.html
 ;;---------------------------------------------
-(defun my-delete-line()
-  "Delete text from current position to end of line char.
-This command does not push text to `kill-ring'."
+(defun jcs-kill-whole-line ()
+  "Deletes a line, but does not put it in the kill-ring. (kinda)"
   (interactive)
-  (delete-region
-   (point)
-   (progn (end-of-line 1) (point)))
-  (delete-char 1))
+  (move-beginning-of-line 1)
+  (kill-line 1)
+  (setq kill-ring (cdr kill-ring)))
 
 ;;---------------------------------------------
 ;;
@@ -200,12 +198,10 @@ This command does not push text to `kill-ring'."
 ;; JenChieh Save Buffer
 ;;-------------------------
 
-;;---------------------------------------------
-;; Save buffer / Utabify the document / Delete
-;; all trailing whitespaces.
-;;---------------------------------------------
+;; autoload
 (defun jcs-save-buffer ()
-  "Save the buffer after untabifying it. JenChieh"
+  "Save buffer / Utabify the document / Delete all trailing
+whitespaces."
   (interactive)
   (delete-trailing-whitespace-except-current-line)
   (save-excursion
@@ -214,15 +210,11 @@ This command does not push text to `kill-ring'."
       (untabify (point-min) (point-max))))
   (save-buffer))
 
-;;---------------------------------------------
-;; Save buffer / Tabify the document / Delete
-;; all trailing whitespaces.
-;;
-;; NOTE(JenChieh): Makefile does not support
-;; space, so we must convert spaces to tab.
-;;---------------------------------------------
+;; autoload
 (defun jcs-tabify-save-buffer ()
-  "Save the buffer after tabifying it. JenChieh"
+  " Save buffer / Tabify the document / Delete all trailing
+whitespaces. NOTE(JenChieh): Makefile does not support space,
+so we must convert spaces to tab."
   (interactive)
   (delete-trailing-whitespace-except-current-line)
   (save-excursion
@@ -231,13 +223,9 @@ This command does not push text to `kill-ring'."
       (tabify (point-min) (point-max))))
   (save-buffer))
 
-
-;;---------------------------------------------
-;; This will allow us open the same file
-;; in another window!
-;;---------------------------------------------
+;; autoload
 (defun jcs-find-file-other-window ()
-  "Find the file that corresponds to this one. JenChieh"
+  "This will allow us open the same file in another window."
   (interactive)
   (if (buffer-file-name)
       (progn
@@ -245,6 +233,34 @@ This command does not push text to `kill-ring'."
         (jcs-other-window-prev)
         )
     )
+  )
+
+;; autoload
+(defun jcs-smart-find-file-in-project-in-another-window ()
+  "This will open the file in another window using 'find-file-
+project.el' plugin."
+  (interactive)
+
+  (if (ignore-errors (find-file-in-project t))
+      (progn
+        ;; Reach here mean success using 'find-file-in-
+        ;; project.el' plugin.
+        )
+    (ido-find-file-other-window))
+  )
+
+;;;###autoload
+(defun jcs-smart-find-file-in-project ()
+  "This will open the file in current window using 'find-
+file-project.el' plugin."
+  (interactive)
+
+  (if (ignore-errors (find-file-in-project))
+      (progn
+        ;; Reach here mean success using 'find-file-in-
+        ;; project.el' plugin.
+        )
+    (ido-find-file))
   )
 
 
@@ -327,21 +343,42 @@ This command does not push text to `kill-ring'."
   (insert (format-time-string "%Y-%m-%d")))
 
 ;;---------------------------------------------
+;; Insert year only.
+;;---------------------------------------------
+(defun jcs-year-only ()
+  (interactive)
+  (insert (format-time-string "%Y")))
+
+;;---------------------------------------------
 ;; Make the time base on the format provided.
 ;;---------------------------------------------
 (defun jcs-time()
   (interactive)
   (insert (format-time-string "%H:%M:%S")))
 
+;;===================================
+;;      Toggle C/C++ mode
+;;---------------------------
+
+;;---------------------------------------------
+;; Toggle between c and c++ mode.
+;;---------------------------------------------
+(defun jcs-toggle-cc-mode ()
+  "Toggle c/c++ mode."
+  (interactive)
+
+  (if (equal major-mode 'c-mode)
+      (progn
+        (c++-mode))
+    (progn
+      (c-mode)))
+  )
 
 ;;===================================
 ;;      Toggle Shell window
 ;;---------------------------
 
-;;---------------------------------------------
-;; Main function call toggling the shell
-;; window.
-;;---------------------------------------------
+;;;###autoload
 (defun jcs-toggle-shell-window ()
   "Toggle Shell Command prompt."
   (interactive)
@@ -374,6 +411,8 @@ This command does not push text to `kill-ring'."
 ;;---------------------------------------------
 ;; Hide the shell window.
 ;;---------------------------------------------
+
+;;;###autoload
 (defun jcs-hide-shell-window ()
   "Kill process prompt."
   (interactive)
@@ -394,9 +433,7 @@ This command does not push text to `kill-ring'."
 ;;      JCS Format File
 ;;----------------------------------
 
-;;---------------------------------------------
-;; Re-format the whole document.
-;;---------------------------------------------
+;;;###autoload
 (defun jcs-format-document ()
   "Format current document."
   (interactive)
@@ -405,25 +442,30 @@ This command does not push text to `kill-ring'."
   (indent-region (point-min) (point-max))
   )
 
+;;;###autoload
+(defun jcs-align-document ()
+  "Align current document."
+  (interactive)
 
-;;---------------------------------------------
-;; SOURCE(jenchieh):
-;; 1) http://emacs.stackexchange.com/questions/169/how-do-i-reload-a-file-in-a-buffer
-;; 2) http://www.emacswiki.org/emacs-en/download/misc-cmds.el
-;;---------------------------------------------
+  ;; align the whole doc.
+  (align (point-min) (point-max))
+  )
+
+;;;###autoload
 (defun revert-buffer-no-confirm ()
-  "Revert buffer without confirmation."
+  "Revert buffer without confirmation.
+
+SOURCE(jenchieh):
+1) http://emacs.stackexchange.com/questions/169/how-do-i-reload-a-file-in-a-buffer
+2) http://www.emacswiki.org/emacs-en/download/misc-cmds.el"
   (interactive)
   (revert-buffer :ignore-auto :noconfirm))
 
-;;---------------------------------------------
-;; Cycle through window and frame. (next
-;; window/frame)
-;;
-;; SOURCE: http://emacs.stackexchange.com/questions/628/cycle-between-windows-in-all-frames
-;;---------------------------------------------
+;;;###autoload
 (defun jcs-other-window-next()
-  ""
+  "Cycle through window and frame. (next window/frame)
+
+SOURCE: http://emacs.stackexchange.com/questions/628/cycle-between-windows-in-all-frames"
   (interactive)
 
   ;; find nexr window and jump to that window.
@@ -431,17 +473,252 @@ This command does not push text to `kill-ring'."
   (select-frame-set-input-focus (selected-frame))
   )
 
-;;---------------------------------------------
-;; Cycle through window and frame.(previous
-;; window/frame)
-;;---------------------------------------------
+;;;###autoload
 (defun jcs-other-window-prev()
-  ""
+  "Cycle through window and frame.(previous window/frame)"
   (interactive)
 
   ;; find previous window and jump to that window.
   (other-window -1 t)
   (select-frame-set-input-focus (selected-frame))
+  )
+
+;;;###autoload
+(defun scroll-up-one-line()
+  "Scroll the text up one line."
+  (interactive)
+  (scroll-up 1))
+
+;;;###autoload
+(defun scroll-down-one-line()
+  "Scroll the text down one line."
+  (interactive)
+  (scroll-down 1))
+
+;;;###autoload
+(defun jcs-smart-context-line-break ()
+  "Comment block."
+  (interactive)
+
+  ;; check if inside the comment block.
+  (if (nth 4 (syntax-ppss))
+      (progn
+
+        (if (looking-back "/\\*\\s-*.*")
+            (progn
+
+              ;; ----------------------------------------
+              ;; Old version
+              ;; --------------------------
+              ;; (insert "\n* ")
+              ;; (indent-for-tab-command)
+
+              ;; (insert "\n*/")
+              ;; (indent-for-tab-command)
+
+              ;; ;; back one line up
+              ;; (previous-line 1)
+              ;; ----------------------------------------
+
+
+              ;; ----------------------------------------
+              ;; New version
+              ;; --------------------------
+              (if (looking-back "/* ")
+                  (progn
+                    (backward-char)
+                    (insert "*")
+                    (insert "\n* ")
+                    (indent-for-tab-command)
+
+                    (insert "\n")
+                    (indent-for-tab-command)
+
+                    ;; back one line up
+                    (previous-line 1)
+
+                    ;; goto the end of line
+                    (end-of-line)
+                    )
+                (progn
+                  (insert "\n* ")
+                  (indent-for-tab-command)
+
+                  (insert "\n")
+                  (indent-for-tab-command)
+
+                  ;; back one line up
+                  (previous-line 1)
+
+                  ;; goto the end of line
+                  (end-of-line)
+                  )
+                )
+              ;; ----------------------------------------
+              )
+          (progn
+            (insert "\n")
+
+            (if (nth 4 (syntax-ppss))
+                (progn
+                  (insert "* ")
+                  (indent-for-tab-command)
+                  )
+              )
+            )
+          )
+        )
+    ;; else insert new line
+    (progn
+      (newline-and-indent)
+      ))
+  )
+
+;;;###autoload
+(defun jcs-c-comment-pair ()
+  "Auto pair c style comment block"
+  (interactive)
+
+  (insert "*")
+
+  (if (nth 4 (syntax-ppss))
+
+      (if (looking-back "/*")
+          (progn
+            (insert "  */")
+
+            ;; backward char until the center
+            ;; /* _ */   <- fall here.
+            (backward-char)
+            (backward-char)
+            (backward-char)
+            )
+        )
+    )
+  )
+
+;;;###autoload
+(defun jcs-top-level ()
+  "Teminate the current command. - Canceling Action."
+  (interactive)
+
+  ;; white
+  (jcs-command-mode)
+
+  (top-level)
+  )
+
+;;----------------------------------------------
+;; JayCeS Helm
+;;----------------------------------------------
+
+;;;###autoload
+(defun jcs-helm-before-initialize-hook ()
+  "Do the helm mx and change theme"
+  (interactive)
+
+  ;; green
+  (jcs-insert-mode)
+  )
+
+;;;###autoload
+(defun jcs-helm-gtags-to-def-dec ()
+  "Goto the declaration / definition depends on the cursor position."
+  (interactive)
+
+  ;; Update TAG file. Default is update only current file, You
+  ;; can update all files with C-u prefix.
+  (helm-gtags-update-tags)
+
+  ;; goto definition or declaration.
+  (helm-gtags-find-tag-from-here)
+  )
+
+;;;###autoload
+(defun jcs-helm-gtags-to-def-dec-other-window ()
+  "Goto the declaration / definition depends on the cursor position,
+in other window."
+  (interactive)
+
+  ;; Update TAG file. Default is update only current file, You
+  ;; can update all files with C-u prefix.
+  (helm-gtags-update-tags)
+
+  ;; NOTE(jenchieh): this will make it jump to next window.
+  ;; Is stupid, but work.
+  (ignore-errors (helm-gtags-find-tag-other-window nil))
+
+  ;; goto definition or declaration.
+  (helm-gtags-find-tag-from-here)
+  )
+
+;;;###autoload
+(defun jcs-helm-find-files ()
+  "Find the file with Helm"
+  (interactive)
+
+  (put 'jcs-helm-execute-persistent-action 'state nil)
+
+  (helm-find-files nil)
+  )
+
+;;;###autoload
+(defun jcs-helm-find-files-other-window ()
+  "Find the file with Helm and open another window."
+  (interactive)
+
+  ;; set the flag, so when next time run 'jcs-helm-execute-
+  ;; persistent-action', he will know what to do instead of
+  ;; normal 'helm-execute-persistent-action' action.
+  (put 'jcs-helm-execute-persistent-action 'state t)
+
+  (helm-find-files nil)
+  )
+
+;;;###autoload
+(defun jcs-helm-execute-persistent-action ()
+  "Rewrap 'helm-execute-presistent-action' function to my
+own preferences."
+  (interactive)
+
+  (if (get 'jcs-helm-execute-persistent-action 'state)
+      (progn
+        ;; switch the buffer to another window
+        (helm-ff-run-switch-other-window)
+        (put 'jcs-helm-execute-persistent-action 'state nil)
+        )
+    ;; NOTE(jenchieh): no longer needed.
+    ;;(helm-execute-persistent-action)
+    )
+  )
+
+;;;###autoload
+(defun toggle-comment-on-line ()
+  "comment or uncomment current line.
+SOURCE: http://stackoverflow.com/questions/9688748/emacs-comment-uncomment-current-line"
+  (interactive)
+  (comment-or-uncomment-region (line-beginning-position) (line-end-position)))
+
+;;;###autoload
+(defun jcs-comment-uncomment-region-or-line ()
+  "Comment line or region, if there are region select then just
+comment region. Otherwise comment line."
+  (interactive)
+
+  ;; check if there are region select
+  (if (and mark-active
+           (/= (point) (mark)))
+      (progn
+        (if (nth 4 (syntax-ppss))
+            (progn
+              (uncomment-region (region-beginning) (region-end))
+              )
+          (comment-region (region-beginning) (region-end))
+          )
+        )
+    ;; else we just comment on single line.
+    (toggle-comment-on-line)
+    )
   )
 
 ;;------------------------------------------------------------------------------------------------------
