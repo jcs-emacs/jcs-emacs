@@ -1,0 +1,253 @@
+==================================================================
+USEFUL KEYBINDINGS
+-----------------------------------------------------------
+C-u C-x =    what-cursor-position with a prefix arguments 
+             shows more information.
+             URL: http://stackoverflow.com/questions/1242352/get-font-face-under-cursor-in-emacs
+
+==================================================================
+QUICK REFERENCE GUIDE FOR CASEY'S .EMACS KEYBINDINGS
+-----------------------------------------------------------
+
+TAB          Cycles through completions for a word.
+
+ALT-B        Switch to buffer in the current window.
+ALT-SHIFT-B  Switch to buffer in the other window.
+
+ALT-F        Load file in the current window.
+ALT-SHIFT-F  Load file in the other window.
+
+ALT-S        Save the file in the current window.
+ALT-M        Looks for and executes a build.bat.
+ALT-R        Revert buffer.
+
+ALT-W        Switch to the other window. (Next)
+ALT-Q        Switch to the other window. (Prev)
+ALT-E        Aced window. (more advanced of the switch window functionality)
+
+ALT-C        Toggles between H file and CPP file in current window.
+ALT-SHIFT-C  Toggles between H file and CPP file in other window.
+
+ALT-K        Kills a buffer (ask to save it first if it's modified).
+
+CTRL-arrows  Move cursor by larger increments (word, whitespace)
+
+CTRL-SPACE   Sets the mark.
+CTRL-TAB     Reindent block.
+CTRL-Q       Copies the block.
+CTRL-F       Pastes the block.
+CTRL-W       Cuts the block.
+ALT-SHIFT-;  Pops back to the previous mark.
+
+ALT-U        Undo
+
+ALT-J        Jump to a function by name.
+
+CTRL-S       Start incremental search.
+  CTRL-S     Moves to next occurrence.
+  CTRL-R     Moves to previous occurrence.
+
+ALT-O        Query replace.
+ALT-L        Replace inside block.
+
+ALT-[        Begin recording keyboard macro.
+ALT-]        End recording keyboard macro.
+ALT-'        Replay keyboard macro.
+
+ALT-.        Reflow a comment.
+
+ALT-N        Go to the next error after a compile.
+ALT-SHIFT-N  Go to the previous error after a compile.
+
+ALT-G        Goto line number.
+
+==================================================================
+QUICK REFERENCE GUIDE FOR JEN-CHIEH'S .EMACS KEYBINDINGS
+-----------------------------------------------------------
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+* Some Notes:                   *
+*     C-S : Control + Shift     *
+*     C-M : Control + Alt       *
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+CTRL-c d        duplicate the line to the next line.
+CTRL-d			Kill the whole line.
+CTRL-c ;        Rename the whole variable with the same name.
+
+CTRL-x h        mark whole buffer (Select All)
+CTRL-a  		mark whole buffer (Select All)
+
+ALT-]           Run the program (run.linux/run.bat/run.mac)
+C-<f5>          Run the program (run.linux/run.bat/run.mac)
+
+C-S-b           Build the program (build.linux/build.bat/build.mac)
+
+CTRL-u anykey   insert 4 of that key
+ALT-I           insert 4 spaces
+CTRL-m          jump to next line and indent if needed (depend on next line)
+
+ALT-BACKSPACE   kill a word
+
+C-c C-c         copy
+C-x C-x         cut
+C-v             paste
+C-z             undo
+
+C-f				search forward
+C-s				save
+
+C-/				comment-region
+C-?             uncomment-region
+
+C-p             package-list-packages
+ALT-=           text-scale-increase
+ALT--           text-scale-decrease
+
+C-k C-f         format select region
+C-k C-d         format current document
+
+ALT-U           uppercase-word, if region do region
+ALT-D           downcase-word, if region do region
+
+C-x-a           align all variables in the region.
+
+ALT-m           open buffer menu.
+ALT-M           open buffer menu in other window.
+
+ALT-r       reload the file withou asking
+
+====================================================
+	Neo Tree Mode
+------------------------------------------------
+C-M-l           toggle neo tree
+
+====================================================
+    Folding Key binding
+------------------------------------------------
+C-M-o           collpase all
+C-M-p           expand all function
+
+====================================================
+    Shell Key binding
+------------------------------------------------
+C-c d           toggle shell window
+
+====================================================
+    Dual Display/Monitor
+------------------------------------------------
+C-xn            開啟另一個視窗.
+
+====================================================
+    Customize Theme時, 
+------------------------------------------------
+M-x customize-theme
+把.emacs file 貼上去!
+
+====================================================
+    下載Package時, 
+------------------------------------------------
+M-x package-list-packages
+
+i 選擇想要安裝的packages
+    -> package-menu-mark-install
+d 選擇想要刪除的package
+    -> package-menu-mark-delete
+x 安裝packages(Execute packages)
+    -> package-menu-execute
+
+====================================================
+    C/C++ Mode
+------------------------------------------------
+ALT-C        	Toggles between H file and CPP file in current window.
+f12				the same as above
+
+ALT-SHIFT-C  	Toggles between H file and CPP file in other window.
+ALT-f12			the same as above
+
+f8              switch between header file and source file.
+f7              open the same file on other window.
+
+====================================================
+    Shell
+------------------------------------------------
+C-up            Previous command.
+C-down          Next command.
+
+====================================================
+    Zencoding Mode
+------------------------------------------------
+C-return        tab zencoding.
+
+====================================================
+    Switch Mode
+------------------------------------------------
+C-cc            toggle between c and c++ mode
+C-cj			enable/disable jdee-mode
+C-xw            enable/disable web-mode
+C-xp            enable/disable php-mode
+C-xj            enable/disable js2-mode
+C-xb			enable/disable blank-mode
+
+C-x`            toggle between "command mode" and "insert mode"
+C-xz            enable/disable zencoding-mode
+
+C-xo            org mode
+C-xg            gitignore mode/normal text mode
+
+====================================================
+    Cross Language Mode
+------------------------------------------------
+f12             goto declaration/definition on same window.
+S-f12           goto declaration/definition on other window.
+
+f8              open the same file on other window. Attention: in 
+                c/c++ mode this will replace as corresponding file, 
+                and original of this key will be f7.
+
+C-B             Run the build script. (.bat, .linux, .macosx, etc.)
+f5              Run the run script. (.bat, .linux, .macosx, etc.)
+
+====================================================
+    Switch Line-Endings 時...
+------------------------------------------------
+C-xC-e 接著打入 dos / mac / unix
+
+    url裡面有詳細的表格和介紹! (http://ergoemacs.org/emacs/emacs_line_ending_char.html)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

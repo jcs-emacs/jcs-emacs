@@ -166,6 +166,7 @@
 (make-face 'font-lock-idea-face)
 (make-face 'font-lock-obsolete-face)
 (make-face 'font-lock-deprecated-face)
+(make-face 'font-lock-tag-face)
 
 (mapc (lambda (mode)
         (font-lock-add-keywords
@@ -183,6 +184,7 @@
            ("\\<\\(IDEA\\)" 1 'font-lock-idea-face t)
            ("\\<\\(OBSOLETE\\)" 1 'font-lock-obsolete-face t)
            ("\\<\\(DEPRECATED\\)" 1 'font-lock-deprecated-face t)
+           ("\\<\\(TAG\\)" 1 'font-lock-tag-face t)
            )))
       fixme-modes)
 
@@ -200,6 +202,7 @@
 (modify-face 'font-lock-idea-face "green yellow" nil nil t nil t nil nil)
 (modify-face 'font-lock-obsolete-face "DarkOrange3" nil nil t nil t nil nil)
 (modify-face 'font-lock-deprecated-face "DarkOrange3" nil nil t nil t nil nil)
+(modify-face 'font-lock-tag-face "Dark Green" nil nil t nil t nil nil)
 
 ;; Accepted file extensions and their appropriate modes
 (setq auto-mode-alist
@@ -976,7 +979,7 @@ Return a list of installed packages or nil for every skipped package."
 ;; Neo Tree
 ;;-------------
 (require 'neotree)
-(setq neo-window-position)              ;; set window to the right
+(setq neo-window-position t)              ;; set window to the right
 (setq neo-smart-open t)
 
 
@@ -1550,13 +1553,12 @@ Return a list of installed packages or nil for every skipped package."
   (define-key web-mode-map "\C-c\C-c" 'kill-ring-save)
 
   ;; comment block
-  (define-key php-mode-map (kbd "RET") 'jcs-smart-context-line-break)
-
-  (define-key php-mode-map (kbd "*") 'jcs-c-comment-pair)
+  (define-key web-mode-map (kbd "RET") 'jcs-smart-context-line-break)
+  (define-key web-mode-map (kbd "*") 'jcs-c-comment-pair)
   )
-(add-hook 'web-mode-hook  'jcs-web-mode-hook)
 (add-hook 'web-mode-hook 'zencoding-mode)
 (add-hook 'web-mode-hook 'emmet-mode)
+(add-hook 'web-mode-hook  'jcs-web-mode-hook)
 
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
@@ -1645,7 +1647,7 @@ Return a list of installed packages or nil for every skipped package."
 
 ;;=====================
 ;; ac-html
-(defun setup-ac-for-haml ()
+(defun setup-ac-for-html ()
   ;; Require ac-haml since we are setup haml auto completion
   (require 'ac-haml)
   ;; Require default data provider if you want to use
@@ -1661,7 +1663,7 @@ Return a list of installed packages or nil for every skipped package."
                      ac-source-haml-attrv))
   ;; Enable auto complete mode
   (auto-complete-mode))
-(add-hook 'haml-mode-hook 'setup-ac-for-haml)
+(add-hook 'haml-mode-hook 'setup-ac-for-html)
 
 ;; ac-php
 (add-hook 'php-mode-hook '(lambda ()
@@ -1707,6 +1709,7 @@ Return a list of installed packages or nil for every skipped package."
   ;; jcs web key binding
   (define-key css-mode-map (kbd "C-d") 'jcs-kill-whole-line)
   (define-key css-mode-map "\C-c\C-c" 'kill-ring-save)
+  (define-key skewer-css-mode-map "\C-c\C-c" 'kill-ring-save)
 
   ;; comment block
   (define-key css-mode-map (kbd "RET") 'jcs-smart-context-line-break)
@@ -1721,6 +1724,19 @@ Return a list of installed packages or nil for every skipped package."
 
 ;;============================
 ;; JavaScript editing
+
+(require 'ac-js2)
+(setq ac-js2-evaluate-calls t)
+(add-hook 'js2-mode-hook 'ac-js2-mode)
+
+(require 'js2-refactor)
+(add-hook 'js2-mode-hook #'js2-refactor-mode)
+(js2r-add-keybindings-with-prefix "C-c C-m")
+
+(require 'skewer-mode)
+(add-hook 'js2-mode-hook 'skewer-mode)
+(add-hook 'css-mode-hook 'skewer-css-mode)
+(add-hook 'html-mode-hook 'skewer-html-mode)
 
 (require 'js2-mode)
 ;; self define javascript mode here!
@@ -1739,8 +1755,6 @@ Return a list of installed packages or nil for every skipped package."
     (setq BaseFileName (file-name-sans-extension (file-name-nondirectory buffer-file-name)))
     (setq BaseFileNameWithExtension (file-name-nondirectory buffer-file-name))
 
-    ;; start designing the header.
-
     ;; insert the file info header.
     (jcs-global-file-info)
 
@@ -1751,12 +1765,12 @@ Return a list of installed packages or nil for every skipped package."
 
   (cond ((file-exists-p buffer-file-name) t)
         ((string-match "[.]js" buffer-file-name) (jcs-javascript-format))
-        ((string-match "[.]json" buffer-file-name) (jcs-javascript-format))
         )
 
-  ;; jcs java key binding
+  ;; jcs javascript key binding
   (define-key js2-mode-map (kbd "C-d") 'jcs-kill-whole-line)
   (define-key js2-mode-map "\C-c\C-c" 'kill-ring-save)
+  (define-key ac-js2-mode-map "\C-c\C-c" 'kill-ring-save)
 
   ;; comment block
   (define-key js2-mode-map (kbd "RET") 'jcs-smart-context-line-break)
@@ -1765,20 +1779,48 @@ Return a list of installed packages or nil for every skipped package."
 (add-hook 'js2-mode-hook 'jcs-javascript-mode-hook)
 
 (add-to-list 'auto-mode-alist '("\\.js?\\'" . js2-mode))
-(add-to-list 'auto-mode-alist '("\\.json?\\'" . js2-mode))
 
-(require 'ac-js2)
-(setq ac-js2-evaluate-calls t)
-(add-hook 'js2-mode-hook 'ac-js2-mode)
 
-(require 'js2-refactor)
-(add-hook 'js2-mode-hook #'js2-refactor-mode)
-(js2r-add-keybindings-with-prefix "C-c C-m")
 
-(require 'skewer-mode)
-(add-hook 'js2-mode-hook 'skewer-mode)
-(add-hook 'css-mode-hook 'skewer-css-mode)
-(add-hook 'html-mode-hook 'skewer-html-mode)
+;;============================
+;; JSON editing
+
+
+(require 'json-mode)
+;; self define javascript mode here!
+(defun jcs-json-mode-hook ()
+
+  (setq js2-basic-offset 2)
+  (setq js2-bounce-indent-p t)
+
+  (make-local-variable 'js-indent-level)
+  (setq js-indent-level 2)
+
+  ;; enable the stuff you want for JavaScript here
+  (electric-pair-mode 1)
+
+  (defun jcs-json-format()
+    (interactive)
+
+    ;; empty, cause json should only take data.
+    ;; Comment will be treat as a data too...
+    )
+
+  (cond ((file-exists-p buffer-file-name) t)
+        ((string-match "[.]json" buffer-file-name) (jcs-json-format))
+        )
+
+  ;; jcs javascript key binding
+  (define-key json-mode-map (kbd "C-d") 'jcs-kill-whole-line)
+  (define-key json-mode-map "\C-c\C-c" 'kill-ring-save)
+
+  ;; comment block
+  (define-key json-mode-map (kbd "RET") 'jcs-smart-context-line-break)
+  (define-key json-mode-map (kbd "*") 'jcs-c-comment-pair)
+  )
+(add-hook 'json-mode-hook 'jcs-json-mode-hook)
+
+(add-to-list 'auto-mode-alist '("\\.json?\\'" . json-mode))
 
 
 ;;------------------------------------------------------------------------------------------------------

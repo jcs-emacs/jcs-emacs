@@ -363,6 +363,7 @@ file-project.el' plugin."
 ;;---------------------------------------------
 ;; Toggle between c and c++ mode.
 ;;---------------------------------------------
+;;;###autoload
 (defun jcs-toggle-cc-mode ()
   "Toggle c/c++ mode."
   (interactive)
@@ -377,6 +378,7 @@ file-project.el' plugin."
 ;;===================================
 ;;      Toggle Shell window
 ;;---------------------------
+;; TAG: shell, terminal
 
 ;;;###autoload
 (defun jcs-toggle-shell-window ()
@@ -405,6 +407,9 @@ file-project.el' plugin."
     (split-window-below)
     (switch-to-buffer-other-window "*shell*")
     (shell)
+
+    ;; active truncate line as default for shell window.
+    (toggle-truncate-lines)
     )
   )
 
@@ -500,63 +505,48 @@ SOURCE: http://emacs.stackexchange.com/questions/628/cycle-between-windows-in-al
   "Comment block."
   (interactive)
 
+  ;; start position
+  (setq last (point))
+
+
+  ;; record down the beginning of the line position.
+  (beginning-of-line)
+  (setq point-beginning-of-line (point))
+
+  ;; record down the end of the line position.
+  (end-of-line)
+  (setq point-end-of-line (point))
+
+  ;; back to original position
+  (goto-char last)
+
   ;; check if inside the comment block.
   (if (nth 4 (syntax-ppss))
       (progn
 
-        (if (looking-back "/\\*\\s-*.*")
+        (setq last (point))
+
+        ;; check the '/*' and '*/' on the same line?
+        (if (and (search-backward "/*" point-beginning-of-line t)
+                 (search-forward "*/" point-end-of-line t))
             (progn
+              (goto-char last)
 
-              ;; ----------------------------------------
-              ;; Old version
-              ;; --------------------------
-              ;; (insert "\n* ")
-              ;; (indent-for-tab-command)
+              (insert "\n* ")
+              (indent-for-tab-command)
 
-              ;; (insert "\n*/")
-              ;; (indent-for-tab-command)
+              (insert "\n")
+              (indent-for-tab-command)
 
-              ;; ;; back one line up
-              ;; (previous-line 1)
-              ;; ----------------------------------------
+              ;; back one line up
+              (previous-line 1)
 
-
-              ;; ----------------------------------------
-              ;; New version
-              ;; --------------------------
-              (if (looking-back "/* ")
-                  (progn
-                    (backward-char)
-                    (insert "*")
-                    (insert "\n* ")
-                    (indent-for-tab-command)
-
-                    (insert "\n")
-                    (indent-for-tab-command)
-
-                    ;; back one line up
-                    (previous-line 1)
-
-                    ;; goto the end of line
-                    (end-of-line)
-                    )
-                (progn
-                  (insert "\n* ")
-                  (indent-for-tab-command)
-
-                  (insert "\n")
-                  (indent-for-tab-command)
-
-                  ;; back one line up
-                  (previous-line 1)
-
-                  ;; goto the end of line
-                  (end-of-line)
-                  )
-                )
-              ;; ----------------------------------------
+              ;; goto the end of line
+              (end-of-line)
               )
           (progn
+            (goto-char last)
+
             (insert "\n")
 
             (if (nth 4 (syntax-ppss))
@@ -566,7 +556,7 @@ SOURCE: http://emacs.stackexchange.com/questions/628/cycle-between-windows-in-al
                   )
               )
             )
-          )
+          ) ;; end (if (looking-back "/* "))
         )
     ;; else insert new line
     (progn
@@ -579,22 +569,59 @@ SOURCE: http://emacs.stackexchange.com/questions/628/cycle-between-windows-in-al
   "Auto pair c style comment block"
   (interactive)
 
-  (insert "*")
+  (let (next-line-is-commented)
 
-  (if (nth 4 (syntax-ppss))
+    (setq before-insert-point (point))
 
-      (if (looking-back "/*")
-          (progn
-            (insert "  */")
+    ;; Prevent the line is the end of document.
+    (ignore-errors (next-line 1))
 
-            ;; backward char until the center
-            ;; /* _ */   <- fall here.
-            (backward-char)
-            (backward-char)
-            (backward-char)
-            )
-        )
-    )
+    (if (nth 4 (syntax-ppss))
+        ;; record down next line is comment.
+        (setq next-line-is-commented t)
+      )
+
+    (goto-char before-insert-point)
+
+    (insert "*")
+
+    ;; record down the cursor  position after insert '*' character.
+    (setq last (point))
+
+    ;; record down the beginning of the line position.
+    (beginning-of-line)
+    (setq point-beginning-of-line (point))
+
+    ;; record down the end of the line position.
+    (end-of-line)
+    (setq point-end-of-line (point))
+
+    ;; back to original position
+    (goto-char last)
+
+    ;; check insude the comment block?
+    (if (nth 4 (syntax-ppss))
+
+        (if (search-backward "/*" point-beginning-of-line t)
+            (progn
+              (if (not (search-forward "*/" point-end-of-line t))
+                  (progn
+                    (if (null next-line-is-commented)
+                        (progn
+                          ;; NOTE: next line is not a commented
+                          ;; line we add the end comment block.
+                          (goto-char last)
+                          (insert "*/")
+                          )
+                      )
+                    )
+                )
+              )
+          ) ;; end (if (search-forward ...))
+      )
+
+    (goto-char last)
+    ) ;; end let(next-line-is-commeneted)
   )
 
 ;;;###autoload
@@ -716,10 +743,77 @@ comment region. Otherwise comment line."
           (comment-region (region-beginning) (region-end))
           )
         )
-    ;; else we just comment on single line.
+    ;; else we just comment one single line.
     (toggle-comment-on-line)
     )
   )
+
+;;;###autoload
+(defun jcs-comment-region-or-line ()
+  "If no region selected then just comment the line."
+  (interactive)
+
+  ;; check if there are region select
+  (if (and mark-active
+           (/= (point) (mark)))
+      (progn
+        (if (nth 4 (syntax-ppss))
+            (progn
+              ;; do not uncomment.
+              )
+          (comment-region (region-beginning) (region-end))
+          )
+        )
+    ;; else we just comment one single line.
+    (comment-region (line-beginning-position) (line-end-position))
+    )
+  )
+
+;;;###autoload
+(defun jcs-uncomment-region-or-line ()
+  "If no region selected then just comment the line."
+  (interactive)
+
+  ;; check if there are region select
+  (if (and mark-active
+           (/= (point) (mark)))
+      (progn
+        (if (nth 4 (syntax-ppss))
+            (progn
+              (uncomment-region (region-beginning) (region-end))
+              )
+          ;; do not comment.
+          )
+        )
+    ;; else we just comment one single line.
+    (uncomment-region (line-beginning-position) (line-end-position))
+    )
+  )
+
+;;----------------------------------------------
+;; Transparent Toggle
+;; -----------------------------------
+;; TAG: transparent, opacity, mode.
+;;----------------------------------------------
+(set-frame-parameter (selected-frame) 'alpha '(100 . 100))
+(add-to-list 'default-frame-alist '(alpha . (100 . 100)))
+
+;;;###autoload
+(defun jcs-toggle-transparency ()
+  "Make the frame transparent.
+SOURCE: https://www.emacswiki.org/emacs/TransparentEmacs"
+  (interactive)
+
+  (let ((alpha (frame-parameter nil 'alpha)))
+    (set-frame-parameter
+     nil 'alpha
+     (if (eql (cond ((numberp alpha) alpha)
+                    ((numberp (cdr alpha)) (cdr alpha))
+                    ;; Also handle undocumented (<active> <inactive>) form.
+                    ((numberp (cadr alpha)) (cadr alpha)))
+              100)
+         '(80 . 50) '(100 . 100)))))
+
 
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-function.el file

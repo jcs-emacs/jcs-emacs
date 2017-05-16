@@ -66,12 +66,14 @@
 (global-set-key "\C-xn" 'jcs-new-window)
 (global-set-key "\C-xd" 'delete-frame)  ; delete the external window
 
-(global-set-key "\e`" 'jcs-mode-toggle)
+;;; Mode toggle
+;;(global-set-key "\e`" 'jcs-mode-toggle)
+(global-set-key "\e`" 'jcs-toggle-transparency)
 
 ;;; Comment/Uncomment
 (global-set-key (kbd "C-/") 'jcs-comment-uncomment-region-or-line)
-(global-set-key "\C-k\C-c" 'comment-region)
-(global-set-key "\C-k\C-u" 'uncomment-region)
+(global-set-key "\C-k\C-c" 'jcs-comment-region-or-line)
+(global-set-key "\C-k\C-u" 'jcs-uncomment-region-or-line)
 
 ;;; canceling action.
 (global-set-key "\C-g" 'jcs-top-level)
@@ -88,8 +90,13 @@
 
 (global-set-key "\er" 'revert-buffer-no-confirm)
 
+;;; Switch between window
 (define-key global-map "\ew" 'jcs-other-window-next)
 (define-key global-map "\eq" 'jcs-other-window-prev)
+
+;;; Buffer Menu
+(define-key global-map "\em" 'buffer-menu)
+(define-key global-map "\eM" 'buffer-menu-other-window)
 
 ;;; Run
 (define-key global-map "\e]" 'run-without-asking)        ;; ALT-]

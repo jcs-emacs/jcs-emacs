@@ -35,9 +35,10 @@
 ;;---------------------------------------------
 ;; Trigger between command and inset mode
 ;;---------------------------------------------
+
+;;;###autoload
 (defun jcs-mode-toggle()
   "Toggle command/insert mode."
-
   (interactive)
 
   (if (get 'jcs-mode-toggle 'state)
@@ -54,6 +55,8 @@
 ;;---------------------------------------------
 ;; Command Mode
 ;;---------------------------------------------
+
+;;;###autoload
 (defun jcs-command-mode()
   "In command mode. - JenChieh"
   (interactive)
@@ -98,6 +101,8 @@
 ;;---------------------------------------------
 ;; Insert Mode
 ;;---------------------------------------------
+
+;;;###autoload
 (defun jcs-insert-mode()
   "In insert mode. - JenChieh"
   (interactive)
