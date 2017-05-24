@@ -88,6 +88,13 @@ CTRL-m          jump to next line and indent if needed (depend on next line)
 
 ALT-BACKSPACE   kill a word
 
+ALT-k           Maybe kill the buffer? Check if the file in open 
+                in other window. If there are buffer still exist, 
+                do not kill the buffer. Just switch to the previous 
+                buffer in the current frame. Otherwise just kill 
+                the buffer.
+ALT-K           Kill the current file. (kill-this-buffer)
+
 C-c C-c         copy
 C-x C-x         cut
 C-v             paste
@@ -114,38 +121,45 @@ C-x-a           align all variables in the region.
 ALT-m           open buffer menu.
 ALT-M           open buffer menu in other window.
 
-ALT-r       reload the file withou asking
+ALT-r           reload the file withou asking.
 
-====================================================
-	Neo Tree Mode
-------------------------------------------------
+C-xr            rename current file.
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+* Neo Tree Mode
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 C-M-l           toggle neo tree
 
-====================================================
-    Folding Key binding
-------------------------------------------------
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+* Minimap
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+C-cm            enable/disable minimap
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+* Folding Key binding
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 C-M-o           collpase all
 C-M-p           expand all function
 
-====================================================
-    Shell Key binding
-------------------------------------------------
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+* Shell Key binding
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 C-c d           toggle shell window
 
-====================================================
-    Dual Display/Monitor
-------------------------------------------------
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+* Dual Display/Monitor
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 C-xn            開啟另一個視窗.
 
-====================================================
-    Customize Theme時, 
-------------------------------------------------
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+* Customize Theme時, 
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 M-x customize-theme
 把.emacs file 貼上去!
 
-====================================================
-    下載Package時, 
-------------------------------------------------
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+* 下載Package時, 
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 M-x package-list-packages
 
 i 選擇想要安裝的packages
@@ -155,9 +169,9 @@ d 選擇想要刪除的package
 x 安裝packages(Execute packages)
     -> package-menu-execute
 
-====================================================
-    C/C++ Mode
-------------------------------------------------
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+* C/C++ Mode
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 ALT-C        	Toggles between H file and CPP file in current window.
 f12				the same as above
 
@@ -167,26 +181,27 @@ ALT-f12			the same as above
 f8              switch between header file and source file.
 f7              open the same file on other window.
 
-====================================================
-    Shell
-------------------------------------------------
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+* Shell
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 C-up            Previous command.
 C-down          Next command.
 
-====================================================
-    Zencoding Mode
-------------------------------------------------
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+* Zencoding Mode
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 C-return        tab zencoding.
 
-====================================================
-    Switch Mode
-------------------------------------------------
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+* Switch Mode
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 C-cc            toggle between c and c++ mode
 C-cj			enable/disable jdee-mode
 C-xw            enable/disable web-mode
 C-xp            enable/disable php-mode
 C-xj            enable/disable js2-mode
 C-xb			enable/disable blank-mode
+C-cr            enable/disable raindbow-mode.
 
 C-x`            toggle between "command mode" and "insert mode"
 C-xz            enable/disable zencoding-mode
@@ -194,9 +209,9 @@ C-xz            enable/disable zencoding-mode
 C-xo            org mode
 C-xg            gitignore mode/normal text mode
 
-====================================================
-    Cross Language Mode
-------------------------------------------------
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+* Cross Language Mode
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 f12             goto declaration/definition on same window.
 S-f12           goto declaration/definition on other window.
 
@@ -207,17 +222,21 @@ f8              open the same file on other window. Attention: in
 C-B             Run the build script. (.bat, .linux, .macosx, etc.)
 f5              Run the run script. (.bat, .linux, .macosx, etc.)
 
-====================================================
-    Switch Line-Endings 時...
-------------------------------------------------
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+* Switch Line-Endings 時...
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 C-xC-e 接著打入 dos / mac / unix
 
     url裡面有詳細的表格和介紹! (http://ergoemacs.org/emacs/emacs_line_ending_char.html)
 
-
-
-
-
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+* Email
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+C-xm            begin composing mail (compose-mail).
+C-c C-s         In the mail buffer, send the message (message
+                -send).
+C-c C-c         In the mail buffer, send the message and bury 
+                the buffer (message-send-and-exit).
 
 
 

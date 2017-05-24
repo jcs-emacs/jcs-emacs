@@ -143,10 +143,11 @@
                     css-mode
                     emacs-lisp-mode
                     emmet-mode
-                    jdee
+                    jdee-mode
                     js2-mode
                     lua-mode
                     nasm-mode
+                    org-mode
                     php-mode
                     python-mode
                     sh-mode
@@ -167,6 +168,9 @@
 (make-face 'font-lock-obsolete-face)
 (make-face 'font-lock-deprecated-face)
 (make-face 'font-lock-tag-face)
+(make-face 'font-lock-topic-face)
+(make-face 'font-lock-url-face)
+(make-face 'font-lock-see-face)
 
 (mapc (lambda (mode)
         (font-lock-add-keywords
@@ -178,13 +182,16 @@
            ("\\<\\(OPTIMIZE\\)" 1 'font-lock-optimize-face t)
            ("\\<\\(NOTE\\)" 1 'font-lock-note-face t)
            ("\\<\\(DESCRIPTION\\)" 1 'font-lock-description-face t)
+           ("\\<\\(TAG\\)" 1 'font-lock-tag-face t)
            ("\\<\\(DEBUGGING\\)" 1 'font-lock-debugging-face t)
            ("\\<\\(TEMPORARY\\)" 1 'font-lock-temporary-face t)
            ("\\<\\(SOURCE\\)" 1 'font-lock-source-face t)
+           ("\\<\\(URL\\)" 1 'font-lock-url-face t)
            ("\\<\\(IDEA\\)" 1 'font-lock-idea-face t)
            ("\\<\\(OBSOLETE\\)" 1 'font-lock-obsolete-face t)
            ("\\<\\(DEPRECATED\\)" 1 'font-lock-deprecated-face t)
-           ("\\<\\(TAG\\)" 1 'font-lock-tag-face t)
+           ("\\<\\(TOPIC\\)" 1 'font-lock-topic-face t)
+           ("\\<\\(SEE\\)" 1 'font-lock-see-face t)
            )))
       fixme-modes)
 
@@ -196,13 +203,18 @@
 (modify-face 'font-lock-optimize-face "Yellow" nil nil t nil t nil nil)
 (modify-face 'font-lock-note-face "Dark Green" nil nil t nil t nil nil)
 (modify-face 'font-lock-description-face "Dark Green" nil nil t nil t nil nil)
+(modify-face 'font-lock-tag-face "Dark Green" nil nil t nil t nil nil)
 (modify-face 'font-lock-debugging-face "Turquoise" nil nil t nil t nil nil)
 (modify-face 'font-lock-temporary-face "Turquoise" nil nil t nil t nil nil)
 (modify-face 'font-lock-source-face "PaleTurquoise2" nil nil t nil t nil nil)
+(modify-face 'font-lock-url-face "PaleTurquoise2" nil nil t nil t nil nil)
 (modify-face 'font-lock-idea-face "green yellow" nil nil t nil t nil nil)
 (modify-face 'font-lock-obsolete-face "DarkOrange3" nil nil t nil t nil nil)
 (modify-face 'font-lock-deprecated-face "DarkOrange3" nil nil t nil t nil nil)
-(modify-face 'font-lock-tag-face "Dark Green" nil nil t nil t nil nil)
+(modify-face 'font-lock-topic-face "Slate Blue" nil nil t nil t nil nil)
+(modify-face 'font-lock-see-face "Slate Blue" nil nil t nil t nil nil)
+
+
 
 ;; Accepted file extensions and their appropriate modes
 (setq auto-mode-alist
@@ -682,6 +694,9 @@
  '(delete-auto-save-files nil)
  '(delete-old-versions (quote other))
  '(flymake-google-cpplint-command "C:/jcs_ide_packages/jcs_win7_packages/cpplint/cpplint.exe")
+ '(helm-gtags-auto-update t)
+ '(helm-gtags-ignore-case t)
+ '(helm-gtags-path-style (quote relative))
  '(imenu-auto-rescan t)
  '(imenu-auto-rescan-maxout 500000)
  '(jdee-jdk-registry
@@ -694,6 +709,10 @@
  '(mouse-wheel-follow-mouse nil)
  '(mouse-wheel-progressive-speed nil)
  '(mouse-wheel-scroll-amount (quote (15)))
+ '(package-selected-packages
+   (quote
+    (sublimity zencoding-mode web-mode tree-mode rainbow-mode python-mode py-autopep8 php-auto-yasnippets omnisharp neotree nasm-mode multi-web-mode lua-mode json-mode js2-refactor jdee java-imports impatient-mode iedit helm-gtags google-c-style gitlab gitignore-mode github-notifier gitconfig-mode flymake-google-cpplint flymake-cursor elpy ein cpputils-cmake cmake-project cmake-ide cmake-font-lock blank-mode better-defaults batch-mode auto-package-update auto-install auto-complete-c-headers actionscript-mode ace-window ac-php ac-js2 ac-html ac-emmet)))
+ '(send-mail-function (quote mailclient-send-it))
  '(version-control nil))
 
 (define-key global-map "\t" 'dabbrev-expand)
@@ -773,6 +792,11 @@
 ;; -- Font Size: The value is in 1/10pt, so 100 will give you 10pt, etc.
 (set-face-attribute 'default nil :height 160)
 
+;; SOURCE(jenchieh): https://stackoverflow.com/questions/3669511/the-function-to-show-current-files-full-path-in-mini-buffer
+(setq frame-title-format
+      (list (format "%s %%S: %%j " (system-name))
+            '(buffer-file-name "%f" (dired-directory dired-directory "%b"))))
+
 
 ;;------------------------------------------------------------------------------------------------------
 ;;;
@@ -834,19 +858,20 @@ Return a list of installed packages or nil for every skipped package."
                           'google-c-style
                           'helm
                           'helm-gtags
-                          'rainbow-mode
-                          'lua-mode
-                          'multiple-cursors
-                          'nasm-mode
-                          'php-auto-yasnippets
-                          'py-autopep8
-                          'python-mode
                           'jdee
                           'js2-mode
                           'js2-refactor
                           'json-mode
                           'java-imports
+                          'lua-mode
+                          'multiple-cursors
+                          'nasm-mode
                           'neotree
+                          'php-auto-yasnippets
+                          'py-autopep8
+                          'python-mode
+                          'rainbow-mode
+                          'sublimity
                           'impatient-mode
                           'web-mode
                           'yasnippet
@@ -872,1057 +897,100 @@ Return a list of installed packages or nil for every skipped package."
 ;; You prefer ido-mode?
 ;;(setq ffip-prefer-ido-mode t)
 
+
+;;===============
+;; Sublimity
+;;-------------
+;; URL(jenchieh): https://github.com/zk-phi/sublimity
+(require 'sublimity)
+(require 'sublimity-scroll)
+
+;; default on or off?
+;; NOTE(jenchieh): This also trigger the animate scrolling too.
+(sublimity-mode 1)
+
+;; Scroll Speed.
+(setq sublimity-scroll-weight 2  ;; [Default : 2]
+      sublimity-scroll-drift-length 2)  ;; [Default : 2]
+
+(require 'sublimity-map) ;; experimental
+(require 'sublimity-attractive)
+
+(setq sublimity-map-size 0)  ;; [Default : 10]
+(setq sublimity-map-fraction 0.3)  ;; [Default : 0.3]
+(setq sublimity-map-text-scale -7)  ;; [Default: -7]
+
+;; NOTE(jenchieh): When a positive integer is set, buffer
+;; width is truncated to this value and drawn centered. To
+;; cancel this feature, set this value nil.
+(setq sublimity-attractive-centering-width nil)  ;; [Default : 110]
+
+;; NOTE(jenchieh): With the setting above, minimap is displayed
+;; after 5 seconds of idle time. When sublimity-map-set-delay
+;; is called with nil, then minimap is shown with no delay. This
+;; defers from setting delay to 0, especially when used with
+;; sublimity-scroll, in the sense that minimap looks not deleted
+;; at all but gets worse performance.
+
+;; ATTENTION(jenchieh): Set it to very hight so it will never
+;; reach the timer error.
+(sublimity-map-set-delay 40000000)
+
+;; NOTE(jenchieh): sublimity-map-setup-hook will run when
+;; minimap is created.
+(add-hook 'sublimity-map-setup-hook
+          (lambda ()
+            (setq buffer-face-mode-face '(:family "Monospace"))
+            (buffer-face-mode)))
+
+;; NOTE(jenchieh): Following functions are available to hide
+;; some UI parts.
+;;(sublimity-attractive-hide-bars)
+;;(sublimity-attractive-hide-vertical-border)
+;;(sublimity-attractive-hide-fringes)
+;;(sublimity-attractive-hide-modelines)
+
+;;===============
+;; Uniquify
+;;-------------
+;; meaningful names for buffers with the same name
+;; from prelude
+;; SOURCE(jenchieh): http://pragmaticemacs.com/emacs/uniquify-your-buffer-names/
+;; URL: https://github.com/bbatsov/prelude
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'forward)
+(setq uniquify-separator "/")
+(setq uniquify-after-kill-buffer-p t)    ; rename after killing uniquified
+(setq uniquify-ignore-buffers-re "^\\*") ; don't muck with special buffers
+
+
 ;;========================================
 ;;      JENCHIEH FILE LOADING
 ;;----------------------------------
-(load-file "~/.emacs.d/elisp/jcs-mode.el")
-(load-file "~/.emacs.d/elisp/jcs-file-info-format.el")
-(load-file "~/.emacs.d/elisp/jcs-function.el")
-(load-file "~/.emacs.d/elisp/jcs-global-key.el")
-(load-file "~/.emacs.d/elisp/jcs-helm.el")
-
-
-;;------------------------------
-;; ENABLE / DISABLE THE MODE
-;;------------------------------
-;;===========================
-;; Compile lanauge!
-;;===========================
-;;(require 'c-mode)                       ;; C/C++
-;;(require 'c++-mode)
-(define-key global-map "\C-cc" 'jcs-toggle-cc-mode)
-(require 'jdee)                         ;; Java
-(global-set-key "\C-cj" 'jdee-mode)
-
-;;===========================
-;; Scripting/Interpreter
-;;===========================
-(require 'php-mode)                     ;; PHP
-(global-set-key "\C-xp" 'php-mode)
-(require 'web-mode)                     ;; html, css, js
-(global-set-key "\C-xw" 'web-mode)
-(require 'js2-mode)                     ;; js
-(global-set-key "\C-xj" 'js2-mode)
-
-;;===========================
-;; Cross Language support
-;;===========================
-(require 'rainbow-mode)
-(global-set-key "\C-xr" 'rainbow-mode)
-(require 'blank-mode)
-(global-set-key "\C-xb" 'blank-mode)
-
-;;------------------------------------------------------------------------------------------------------
-;;; View Mode
-;;------------------------------------------------------------------------------------------------------
-
-(defun jcs-view-mode-hook()
-  "In view mode, read only file."
-  (interactive)
-
-  ;; unset all the key
-  (define-key view-mode-map "a" nil)
-  (define-key view-mode-map "b" nil)
-  (define-key view-mode-map "c" nil)
-  (define-key view-mode-map "d" nil)
-  (define-key view-mode-map "e" nil)
-  (define-key view-mode-map "f" nil)
-  (define-key view-mode-map "g" nil)
-  (define-key view-mode-map "h" nil)
-  (define-key view-mode-map "i" nil)
-  (define-key view-mode-map "j" nil)
-  (define-key view-mode-map "k" nil)
-  (define-key view-mode-map "l" nil)
-  (define-key view-mode-map "m" nil)
-  (define-key view-mode-map "n" nil)
-  (define-key view-mode-map "o" nil)
-  (define-key view-mode-map "p" nil)
-  (define-key view-mode-map "q" nil)
-  (define-key view-mode-map "r" nil)
-  (define-key view-mode-map "s" nil)
-  (define-key view-mode-map "t" nil)
-  (define-key view-mode-map "u" nil)
-  (define-key view-mode-map "v" nil)
-  (define-key view-mode-map "w" nil)
-  (define-key view-mode-map "x" nil)
-  (define-key view-mode-map "y" nil)
-  (define-key view-mode-map "z" nil)
-  (define-key view-mode-map "," nil)
-  (define-key view-mode-map "\\" nil)
-  (define-key view-mode-map "." nil)
-  (define-key view-mode-map "," nil)
-  (define-key view-mode-map "/" nil)
-  (define-key view-mode-map "'" nil)
-  (define-key view-mode-map " " nil)
-  (define-key view-mode-map [tab] nil)
-  (define-key view-mode-map (kbd "RET") nil)
-  (define-key view-mode-map [space] nil)
-
-  ;; just save buffer, don't care about the tab or spaces.
-  (define-key view-mode-map "\C-s" 'save-buffer)
-  )
-(add-hook 'view-mode-hook 'jcs-view-mode-hook)
-
-
-;;------------------------------------------------------------------------------------------------------
-;; Text Related mode
-;;------------------------------------------------------------------------------------------------------
-
-;;===============
-;; Blank Mode
-;;-------------
-(require 'blank-mode)
-(autoload 'blank-mode           "blank-mode" "Toggle blank visualization."        t)
-(autoload 'blank-toggle-options "blank-mode" "Toggle local `blank-mode' options." t)
-
-;;===============
-;; Neo Tree
-;;-------------
-(require 'neotree)
-(setq neo-window-position t)              ;; set window to the right
-(setq neo-smart-open t)
-
-
-;;(global-set-key [f8] 'neotree-toggle)
-(global-set-key (kbd "C-M-l") 'neotree-toggle)
-
-;;==========================
-;;   Folding Settings
-;;------------------------
-(outline-minor-mode t)      ; turn on the folding
-(global-set-key (kbd "C-M-o") 'hide-other)
-(global-set-key (kbd "C-M-p") 'show-all)
-
-;;====================================
-;; normal text mode
-;;---------------------------
-(require 'gitignore-mode)
-(defun jcs-gitignore-mode-hook ()
-  ;;
-  (electric-pair-mode nil)
-
-
-  (defun jcs-text-related-format ()
-    "Format the given file as a text related. - JenChieh Text file."
-
-    (jcs-manage-file-info)
-    )
-
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]txt" buffer-file-name) (jcs-text-related-format))
-        ((string-match "[.]gitignore" buffer-file-name) (jcs-text-related-format))
-        ((string-match "[.]gitattributes" buffer-file-name) (jcs-text-related-format))
-        )
-
-  ;; jcs gitignore key binding
-  (define-key gitignore-mode-map (kbd "<up>") 'previous-line)
-  (define-key gitignore-mode-map (kbd "<down>") 'next-line)
-  (define-key gitignore-mode-map (kbd "C-d") 'jcs-kill-whole-line)
-  (define-key gitignore-mode-map "\C-c\C-c" 'kill-ring-save)
-  (define-key gitignore-mode-map (kbd "<up>") 'previous-line)
-  (define-key gitignore-mode-map (kbd "<down>") 'next-line)
-  )
-(add-hook 'gitignore-mode-hook 'jcs-gitignore-mode-hook)
-
-;; git file types
-(add-to-list 'auto-mode-alist '("\\.gitignore?\\'" . gitignore-mode))
-(add-to-list 'auto-mode-alist '("\\.gitattributes?\\'" . gitignore-mode))
-
-;; temporary mode for all Text related!
-(add-to-list 'auto-mode-alist '("\\.bin?\\'" . gitignore-mode))
-(add-to-list 'auto-mode-alist '("\\.md?\\'" . gitignore-mode))
-(add-to-list 'auto-mode-alist '("\\.jcs?\\'" . gitignore-mode))
-
-;; temporary ALGOL
-(add-to-list 'auto-mode-alist '("\\.alg?\\'" . gitignore-mode))
-
-;; key-binding for normal text mode.
-(define-key global-map "\C-xg" 'gitignore-mode)
-
-
-;;====================================
-;; Org mode.
-;;---------------------------
-(defun jcs-org-mode()
-
-  (defun jcs-org-mode-format()
-    "Fromat the given file as a text file related. - JenChieh Text file."
-
-    (jcs-manage-file-info)
-    )
-
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]txt" buffer-file-name) (jcs-org-mode-format))
-        )
-
-  ;; jcs org mode key binding
-  (define-key org-mode-map (kbd "C-d") 'jcs-kill-whole-line)
-  (define-key org-mode-map "\C-c\C-c" 'kill-ring-save)
-  )
-(add-hook 'org-mode-hook 'jcs-org-mode)
-
-;; set the defualt text mode to org mode.
-(add-to-list 'auto-mode-alist '("\\.txt?\\'" . org-mode))
-
-;;------------------------------------------------------------------------------------------------------
-;; Makefile Mode.
-
-(require 'cmake-mode)
-(defun jcs-cmake-mode-hook ()
-  ;;
-  (electric-pair-mode nil)
-
-
-  (defun jcs-makefile-format ()
-    "Format the given file as a makefile. - JenChieh Makefile"
-    (jcs-manage-file-info)
-    (jcs-makefile-format-info)
-
-    (beginning-of-buffer)
-    )
-
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]makefile" buffer-file-name) (jcs-makefile-format))
-        ((string-match "[Mm]akefile" buffer-file-name) (jcs-makefile-format))
-        ((string-match "[.]mak" buffer-file-name) (jcs-makefile-format))
-        )
-
-  (defun jcs-cmake-format ()
-    "Format the given file as a CMakeLists. - JenChieh CMake"
-    (jcs-manage-file-info)
-    (jcs-cmake-format-info)
-
-    (beginning-of-buffer)
-    )
-
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "CMakeLists.txt" buffer-file-name) (jcs-cmake-format))
-        )
-
-
-  ;; jcs makefile key binding
-  (define-key cmake-mode-map (kbd "<up>") 'previous-line)
-  (define-key cmake-mode-map (kbd "<down>") 'next-line)
-  (define-key cmake-mode-map (kbd "C-d") 'jcs-kill-whole-line)
-  (define-key cmake-mode-map "\C-c\C-c" 'kill-ring-save)
-
-  ;; tabify save key
-  (define-key cmake-mode-map "\C-s" 'jcs-tabify-save-buffer)
-  )
-(add-hook 'cmake-mode-hook 'jcs-cmake-mode-hook)
-
-;; temporary makefile
-(add-to-list 'auto-mode-alist '("\\.mak?\\'" . cmake-mode))
-(add-to-list 'auto-mode-alist '("\\.makfile?\\'" . cmake-mode))
-(add-to-list 'auto-mode-alist '("\\(/\\|\\`\\)[Mm]akefile" . cmake-mode))
-(add-to-list 'auto-mode-alist '("\\(/\\|\\`\\)CMakeLists.txt" . cmake-mode))
-
-;;------------------------------------------------------------------------------------------------------
-;;; Assembly mode
-
-(require 'nasm-mode)
-(defun jcs-nasm-mode-hook()
-  ;;
-  (electric-pair-mode nil)
-
-  ;; Abbrevation expansion
-  (abbrev-mode 1)
-
-  (defun jcs-asm-format ()
-    "Format the given file as a asm code. - JenChieh Assembly Language"
-    (interactive)
-
-    (jcs-asm-file-format)
-
-    )
-
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]asm" buffer-file-name) (jcs-asm-format))
-        ((string-match "[.]inc" buffer-file-name) (jcs-asm-format))
-        )
-
-  ;; jcs key binding
-  (define-key nasm-mode-map (kbd "C-d") 'jcs-kill-whole-line)
-  (define-key nasm-mode-map "\C-c\C-c" 'kill-ring-save)
-  (define-key nasm-mode-map (kbd "<up>") 'previous-line)
-  (define-key nasm-mode-map (kbd "<down>") 'next-line)
-  )
-(add-hook 'nasm-mode-hook 'jcs-nasm-mode-hook)
-(add-to-list 'auto-mode-alist '("\\.asm?\\'" . nasm-mode))
-(add-to-list 'auto-mode-alist '("\\.inc?\\'" . nasm-mode))
-
-;;------------------------------------------------------------------------------------------------------
-;;; Batch mode
-
-(require 'batch-mode)
-(defun jcs-batch-mode-hook ()
-  ;;
-  (electric-pair-mode nil)
-
-  ;; Abbrevation expansion
-  (abbrev-mode 1)
-
-  (defun jcs-batch-script-format ()
-
-    "Format the given file as a class. - JenChieh Batch Script"
-
-    ;; macro
-    (setq BaseFileName (file-name-sans-extension (file-name-nondirectory buffer-file-name)))
-    (setq BaseFileNameWithExtension (file-name-nondirectory buffer-file-name))
-
-    (insert ":: ========================================================================\n")
-    (insert ":: $File: ")
-    (insert BaseFileNameWithExtension)
-    (insert " $\n")
-    (insert ":: $Date: ")
-    (jcs-timestamp)
-    (insert " $\n")
-    (insert ":: $Revision: $\n")
-    (insert ":: $Creator: Jen-Chieh Shen $\n")
-    (insert ":: $Notice: See LICENSE.txt for modification and distribution information \n")
-    (insert "::                    Copyright (c) ")
-    (jcs-year-only)
-    (insert " by Shen, Jen-Chieh $\n")
-    (insert ":: ========================================================================\n")
-    (insert "\n\n")
-    )
-
-
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]bat" buffer-file-name) (jcs-batch-script-format))
-        )
-
-  ;; jcs key binding
-  (define-key batch-mode-map (kbd "C-d") 'jcs-kill-whole-line)
-  (define-key batch-mode-map "\C-c\C-c" 'kill-ring-save)
-  )
-(add-hook 'batch-mode-hook 'jcs-batch-mode-hook)
-
-(add-to-list 'auto-mode-alist '("\\.bat?\\'" . batch-mode))
-
-;;------------------------------------------------------------------------------------------------------
-;; Shell Script mode
-
-(require 'sh-script)
-(defun jcs-sh-script-hook()
-
-  ;; Abbrevation expansion
-  (abbrev-mode 1)
-
-  (defun jcs-sh-script-format ()
-
-    "Format the given file as a shell script. - JenChieh Shell Script"
-
-    (jcs-manage-file-info)
-    )
-
-
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]sh" buffer-file-name) (jcs-sh-script-format))
-        )
-
-  ;; jcs key binding
-  (define-key sh-mode-map (kbd "C-d") 'jcs-kill-whole-line)
-  (define-key sh-mode-map "\C-c\C-c" 'kill-ring-save)
-  )
-(add-hook 'sh-mode-hook 'jcs-sh-script-hook)
-
-(add-to-list 'auto-mode-alist '("\\.sh?\\'" . sh-mode))
-
-;;------------------------------------------------------------------------------------------------------
-;;; C/C++ JCS_Mode
-
-;; start auto-complete with emacs
-(require 'auto-complete)
-
-;; do default config for auto-complete
-(require 'auto-complete-config)
-(ac-config-default)
-
-;; start yasnippet with emacs
-(require 'yasnippet)
-(yas-global-mode 1)
-
-;; define a function which initializes auto-complete-c-headers and gets called for c/c++ hooks
-(defun jcs-ac-c-header-init()
-  (require 'auto-complete-c-headers)
-  (add-to-list 'ac-sources 'ac-source-c-headers)
-  ;; here we adjust the c library we want to use,
-  ;; current i am using MinGW because is cross os.
-  (add-to-list 'achead:include-directories '"C:/MinGW/include")
-  )
-;; now lets' call this function from c/c++ hooks
-(add-hook 'c++-mode-hook 'jcs-ac-c-header-init)
-(add-hook 'c-mode-hook 'jcs-ac-c-header-init)
-
-;; Fix "iedit" bug for OSX
-(define-key global-map (kbd "C-c ;") 'iedit-mode)
-
-;; start flymake-google-cpplint-load
-;; let's define a function for flymake initilization
-(defun jcs-flymake-google-init()
-  (require 'flymake-google-cpplint)
-  (custom-set-variables
-   '(flymake-google-cpplint-command "C:/jcs_ide_packages/jcs_win7_packages/cpplint/cpplint.exe"))
-  (flymake-google-cpplint-load)
-  )
-(add-hook 'c-mode-hook 'jcs-flymake-google-init)
-(add-hook 'c++-mode-hook 'jcs-flymake-google-init)
-
-;; start google-c-style with emacs
-(require 'google-c-style)
-(add-hook 'c-mode-common-hook 'google-set-c-style)
-(add-hook 'c-mode-common-hook 'google-make-newline-indent)
-
-
-;;------------------------------------------------------------------------------------------------------
-;; JayCeS mode.
-
-;;(require 'jayces-mode)
-(defun jcs-jayces-mode-hook ()
-
-  ;; Abbrevation expansion
-  (abbrev-mode 1)
-
-  (defun jcs-jayces-class-format ()
-
-    "Format the given file as a class. - JenChieh JayCeS class"
-
-    )
-
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]jcs" buffer-file-name) (jcs-jayces-class-format))
-        ((string-match "[.]jayces" buffer-file-name) (jcs-jayces-class-format))
-        )
-
-  )
-;;(add-hook 'jayces-mode-hook 'jcs-jayces-mode-hook)
-
-;;(add-to-list 'auto-mode-alist '("\\.jcs?\\'" . jayces-mode))
-;;(add-to-list 'auto-mode-alist '("\\.jayces?\\'" . jayces-mode))
-
-;;------------------------------------------------------------------------------------------------------
-;; JCS Java Environment Settings
-
-;;====================================
-;;      jdee mode
-;;---------------------------
-
-(require 'jdee)
-(defun jcs-big-fun-java-hook ()
-
-  ;; Abbrevation expansion
-  (abbrev-mode 1)
-
-  (defun jcs-java-class-format ()
-
-    "Format the given file as a class. - JenChieh Java class"
-
-    (jcs-global-file-info)
-
-    (setq BaseFileName (file-name-sans-extension (file-name-nondirectory buffer-file-name)))
-
-    (insert "\n\n")
-    (insert "public class ")
-    (push-mark)
-    (insert BaseFileName)
-    (pop-mark)
-    (insert " {\n\n}\n\n")
-    )
-
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]java" buffer-file-name) (jcs-java-class-format))
-        )
-
-  ;; jcs java key binding
-  (define-key java-mode-map (kbd "C-d") 'jcs-kill-whole-line)
-  (define-key java-mode-map "\C-c\C-c" 'kill-ring-save)
-
-  ;; comment block
-  (define-key java-mode-map (kbd "RET") 'jcs-smart-context-line-break)
-
-  (define-key java-mode-map (kbd "*") 'jcs-c-comment-pair)
-
-  ;; switch frame.
-  (define-key java-mode-map "\ew" 'jcs-other-window-next)
-  (define-key java-mode-map "\eq" 'jcs-other-window-prev)
-  )
-
-(add-hook 'jdee-mode-hook 'jcs-big-fun-java-hook)
-
-(add-to-list 'auto-mode-alist '("\\.java?\\'" . jdee-mode))
-
-;; (autoload 'jde-mode "~/.enacs.d/elpha/jdee-20160304.536/jdee.el" "JDE mode" t)
-;; (setq auto-mode-alist
-;;       (append '(("\\.java\\'" . jde-mode)) auto-mode-alist))
-
-;;====================================
-;;      Java Imports
-;;---------------------------
-(require 'java-imports)
-;; whatever you want to bind it to
-(define-key java-mode-map (kbd "M-I") 'java-imports-add-import-dwim)
-
-;; See customization below for where to put java imports
-(setq java-imports-find-block-function 'java-imports-find-place-sorted-block)
-
-(add-hook 'java-mode-hook 'java-imports-scan-file)
-
-
-;;------------------------------------------------------------------------------------------------------
-;; JCS ActionScript 3.0 Environment setting
-(require 'actionscript-mode)
-(defun jcs-action-script-mode-hook ()
-  ;;
-
-  ;; jcs java key binding
-  (define-key actionscript-mode-map (kbd "C-d") 'jcs-kill-whole-line)
-  (define-key actionscript-mode-map "\C-c\C-c" 'kill-ring-save)
-  )
-
-(add-hook 'actionscript-mode-hook 'jcs-action-script-mode-hook)
-
-
-;;------------------------------------------------------------------------------------------------------
-;; JCS Python environment setting
-
-;;====================================
-;;      Python-Mode
-;;---------------------------
-
-(require 'python-mode)
-(defun jcs-python-mode-hook ()
-  ;; enable the stuff you want for Python here
-  (electric-pair-mode nil)
-
-  ;; Abbrevation expansion
-  (abbrev-mode 1)
-
-  (defun jcs-python-class-format ()
-
-    "Format the given file as a class. - JenChieh Python class"
-
-    (jcs-manage-file-info)
-
-    ;; define macro
-    (setq BaseFileName (file-name-sans-extension (file-name-nondirectory buffer-file-name)))
-    (setq BaseFileNameWithExtension (file-name-nondirectory buffer-file-name))
-    (insert "\n")
-
-    (insert "class ")
-    (insert BaseFileName)
-    (insert "(object):\n\n")
-
-    (insert "    \"\"\"TODO(jenchieh): Class Description here...\"\"\"")
-    (insert "\n\n")
-
-    (insert "    # --------------------------------------------\n")
-    (insert "    # Public Variables\n")
-    (insert "    # --------------------------------------------\n\n")
-
-    (insert "    # --------------------------------------------\n")
-    (insert "    # Private Variables\n")
-    (insert "    # --------------------------------------------\n\n")
-
-    (insert "    # --------------------------------------------\n")
-    (insert "    # Protected Variables\n")
-    (insert "    # --------------------------------------------\n\n")
-
-    (insert "    # --------------------------------------------\n")
-    (insert "    # Constructor\n")
-    (insert "    # --------------------------------------------\n")
-    (insert "    def __init__(self):\n")
-    (insert "        \"\"\"Constructor.\"\"\"\n\n")
-    (insert "    # --------------------------------------------\n")
-    (insert "    # Public Methods\n")
-    (insert "    # --------------------------------------------\n\n")
-
-    (insert "    # --------------------------------------------\n")
-    (insert "    # Protected Methods\n")
-    (insert "    # --------------------------------------------\n\n")
-
-    (insert "    # --------------------------------------------\n")
-    (insert "    # Private Methods\n")
-    (insert "    # --------------------------------------------\n\n")
-
-    (insert "    # --------------------------------------------\n")
-    (insert "    # setter / getter\n")
-    (insert "    # --------------------------------------------\n\n")
-
-    ;; Move to beginning of the buffer.
-    (beginning-of-buffer)
-    )
-
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]py" buffer-file-name) (jcs-python-class-format))
-        )
-
-  ;; jcs java key binding
-  (define-key python-mode-map (kbd "C-d") 'jcs-kill-whole-line)
-  (define-key python-mode-map "\C-c\C-c" 'kill-ring-save)
-  (define-key python-mode-map [C-backspace] 'backward-kill-word)
-
-  (define-key python-map [M-up] 'previous-blank-line)
-  (define-key python-map [M-down] 'next-blank-line)
-
-  (define-key python-mode-map (kbd "<up>") 'previous-line)
-  (define-key python-mode-map (kbd "<down>") 'next-line)
-  )
-(add-hook 'python-mode-hook 'jcs-python-mode-hook)
-
-(add-to-list 'auto-mode-alist '("\\.py?\\'" . python-mode))
-
-(require 'elpy)
-;;(elpy-enable)
-
-(require 'ein)
-;;(elpy-use-ipython)
-
-;; enable autopep8 formatting on save
-(require 'py-autopep8)
-;;(add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
-
-
-;;------------------------------------------------------------------------------------------------------
-;; JCS_WebDevelopment Mode
-
-;; Note for "Impatient Mode" (real time editing)
-;; Step 1: M-x httpd-start        (Open the port default: 8080)
-;; Step 2: M-x impatient-mode     (Enabled Impatient Mode)
-
-;; ======================
-;; web-mode.el
-;; homepage - http://web-mode.org/
-
-;; Load path
-
-;; list of  extensions that will take effect of this mode
-(require 'web-mode)
-(defun jcs-web-mode-hook ()
-  "Hooks for Web mode."
-  (setq web-mode-markup-indent-offset 2)
-
-  ;; Abbrevation expansion
-  (abbrev-mode 1)
-
-  (defun jcs-html-format ()
-    "Format the give file. - JenChieh HTML file"
-    (interactive)
-
-    ;; macro
-    (setq BaseFileName (file-name-sans-extension (file-name-nondirectory buffer-file-name)))
-
-    ;; insert tag header
-    (jcs-tag-file-info)
-
-    ;; insert HTML common format
-    (insert "<!DOCTYPE html>\n")
-    (insert "<html>\n")
-    (insert "<head>\n")
-    (insert "<title>")
-    (push-mark)
-    (insert BaseFileName)
-    (pop-mark)
-    (insert "</title>\n")
-    (insert "<meta charset=\"UTF-8\">\n\n")
-    (insert "</head>\n")
-    (insert "<body>\n\n\n")
-    (insert "</body>\n")
-    (insert "</html>\n")
-    )
-
-  (defun jcs-php-format ()
-    "Format the give file. - JenChieh PHP file"
-    (interactive)
-
-    ;; insert tag header
-    (jcs-tag-file-info)
-
-    ;; insert PHP common format
-    (insert "<?php\n\n")
-    (insert "?>\n")
-    )
-
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]html" buffer-file-name) (jcs-html-format))
-        ((string-match "[.]php" buffer-file-name) (jcs-php-format))
-        )
-
-  ;; jcs web key binding
-  (define-key web-mode-map (kbd "C-d") 'jcs-kill-whole-line)
-  (define-key web-mode-map "\C-c\C-c" 'kill-ring-save)
-
-  ;; comment block
-  (define-key web-mode-map (kbd "RET") 'jcs-smart-context-line-break)
-  (define-key web-mode-map (kbd "*") 'jcs-c-comment-pair)
-  )
-(add-hook 'web-mode-hook 'zencoding-mode)
-(add-hook 'web-mode-hook 'emmet-mode)
-(add-hook 'web-mode-hook  'jcs-web-mode-hook)
-
-(add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.php?\\'" . web-mode))       ;; Add .php to the list
-
-;; Associate an engine
-(setq web-mode-engines-alist
-      '(("php"    . "\\.phtml\\'")
-        ("blade"  . "\\.blade\\."))
-      )
-
-;; Associate a content type
-(add-to-list 'auto-mode-alist '("\\.api\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("/some/react/path/.*\\.js[x]?\\'" . web-mode))
-
-(setq web-mode-content-types-alist
-      '(("json" . "/some/path/.*\\.api\\'")
-        ("xml"  . "/other/path/.*\\.api\\'")
-        ("jsx"  . "/some/react/path/.*\\.js[x]?\\'")))
-
-
-;;=======================
-
-;; Indentation
-(setq web-mode-markup-indent-offset 2)
-(setq web-mode-css-indent-offset 2)
-(setq web-mode-code-indent-offset 2)
-
-(add-to-list 'web-mode-indentation-params '("lineup-args" . nil))
-(add-to-list 'web-mode-indentation-params '("lineup-calls" . nil))
-(add-to-list 'web-mode-indentation-params '("lineup-concats" . nil))
-(add-to-list 'web-mode-indentation-params '("lineup-ternary" . nil))
-
-;; Left padding
-(setq web-mode-style-padding 1)
-(setq web-mode-script-padding 1)
-(setq web-mode-block-padding 0)
-
-;; Comments
-;;(setq web-mode-comment-style 2)
-
-;; Syntax Highlighting
-(set-face-attribute 'web-mode-doctype-face nil :foreground "Pink3")
-
-;; Shortcuts
-(define-key web-mode-map (kbd "C-n") 'web-mode-tag-match)
-
-;; Snippets
-(setq web-mode-extra-snippets
-      '(("erb" . (("toto" . ("<% toto | %>\n\n<% end %>"))))
-        ("php" . (("dowhile" . ("<?php do { ?>\n\n<?php } while (|); ?>"))
-                  ("debug" . ("<?php error_log(__LINE__); ?>"))))
-        ))
-
-;; Auto-pairs
-(setq web-mode-extra-auto-pairs
-      '(("erb"  . (("beg" "end")))
-        ("php"  . (("beg" "end")
-                   ("beg" "end")))
-        ))
-
-;; Enable / disable features
-(setq web-mode-enable-auto-pairing t)
-(setq web-mode-enable-css-colorization t)
-(setq web-mode-enable-block-face t)
-(setq web-mode-enable-part-face t)
-(setq web-mode-enable-comment-keywords t)
-(setq web-mode-enable-heredoc-fontification t)
-
-;; Keywords / Constants
-;;(setq web-mode-extra-constants '(("php" . ("CONS1" "CONS2")))
-
-;; Current eletemt / column highlight
-(setq web-mode-enable-current-element-highlight t)
-
-;; Context-aware auto-completion
-(setq web-mode-ac-sources-alist
-      '(("css" . (ac-source-css-property))
-        ("html" . (ac-source-words-in-buffer ac-source-abbrev))))
-
-;;=====================
-;; ac-html
-(defun setup-ac-for-html ()
-  ;; Require ac-haml since we are setup haml auto completion
-  (require 'ac-haml)
-  ;; Require default data provider if you want to use
-  (require 'ac-html-default-data-provider)
-  ;; Enable data providers,
-  ;; currently only default data provider available
-  (ac-html-enable-data-provider 'ac-html-default-data-provider)
-  ;; Let ac-haml do some setup
-  (ac-haml-setup)
-  ;; Set your ac-source
-  (setq ac-sources '(ac-source-haml-tag
-                     ac-source-haml-attr
-                     ac-source-haml-attrv))
-  ;; Enable auto complete mode
-  (auto-complete-mode))
-(add-hook 'haml-mode-hook 'setup-ac-for-html)
-
-;; ac-php
-(add-hook 'php-mode-hook '(lambda ()
-                            (auto-complete-mode t)
-                            (require 'ac-php)
-                            (setq ac-sources  '(ac-source-php ) )
-                            (yas-global-mode 1)
-
-                            (define-key php-mode-map  (kbd "C-]") 'ac-php-find-symbol-at-point)   ;goto define
-                            (define-key php-mode-map  (kbd "C-t") 'ac-php-location-stack-back   ) ;go back
-
-                            ;; jcs java key binding
-                            (define-key php-mode-map (kbd "C-d") 'jcs-kill-whole-line)
-                            (define-key php-mode-map "\C-c\C-c" 'kill-ring-save)
-                            ))
-
-
-;;============================
-;; CSS editing
-
-(require 'emmet-mode)
-(require 'rainbow-mode)
-
-
-;; Source: -> CSS Mode: https://www.emacswiki.org/emacs/css-mode.el
-;;         -> Xah CSS Mode: http://ergoemacs.org/emacs/xah-css-mode.html
-(load-file "~/.emacs.d/elisp/css-mode.el")
-(require 'css-mode)
-(defun jcs-css-mode-hook ()
-
-  (defun jcs-css-format()
-    "Format the give file. - JenChieh CSS file"
-    (interactive)
-
-    (jcs-global-file-info)
-    (insert "\n\n")
-    )
-
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]css" buffer-file-name) (jcs-css-format))
-        )
-
-  ;; jcs web key binding
-  (define-key css-mode-map (kbd "C-d") 'jcs-kill-whole-line)
-  (define-key css-mode-map "\C-c\C-c" 'kill-ring-save)
-  (define-key skewer-css-mode-map "\C-c\C-c" 'kill-ring-save)
-
-  ;; comment block
-  (define-key css-mode-map (kbd "RET") 'jcs-smart-context-line-break)
-
-  (define-key css-mode-map (kbd "*") 'jcs-c-comment-pair)
-  )
-(add-hook 'css-mode-hook  'jcs-css-mode-hook)
-(add-hook 'css-mode-hook 'emmet-mode)
-
-(add-to-list 'auto-mode-alist '("\\.css?\\'" . css-mode))
-
-
-;;============================
-;; JavaScript editing
-
-(require 'ac-js2)
-(setq ac-js2-evaluate-calls t)
-(add-hook 'js2-mode-hook 'ac-js2-mode)
-
-(require 'js2-refactor)
-(add-hook 'js2-mode-hook #'js2-refactor-mode)
-(js2r-add-keybindings-with-prefix "C-c C-m")
-
-(require 'skewer-mode)
-(add-hook 'js2-mode-hook 'skewer-mode)
-(add-hook 'css-mode-hook 'skewer-css-mode)
-(add-hook 'html-mode-hook 'skewer-html-mode)
-
-(require 'js2-mode)
-;; self define javascript mode here!
-(defun jcs-javascript-mode-hook ()
-
-  (setq js2-basic-offset 2)
-  (setq js2-bounce-indent-p t)
-
-  ;; enable the stuff you want for JavaScript here
-  (electric-pair-mode 1)
-
-  (defun jcs-javascript-format()
-    (interactive)
-
-    ;; define macro
-    (setq BaseFileName (file-name-sans-extension (file-name-nondirectory buffer-file-name)))
-    (setq BaseFileNameWithExtension (file-name-nondirectory buffer-file-name))
-
-    ;; insert the file info header.
-    (jcs-global-file-info)
-
-    ;; do JavaScript specific thing here...
-    (insert "\n\n") ;; currently nothing.
-
-    )
-
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]js" buffer-file-name) (jcs-javascript-format))
-        )
-
-  ;; jcs javascript key binding
-  (define-key js2-mode-map (kbd "C-d") 'jcs-kill-whole-line)
-  (define-key js2-mode-map "\C-c\C-c" 'kill-ring-save)
-  (define-key ac-js2-mode-map "\C-c\C-c" 'kill-ring-save)
-
-  ;; comment block
-  (define-key js2-mode-map (kbd "RET") 'jcs-smart-context-line-break)
-  (define-key js2-mode-map (kbd "*") 'jcs-c-comment-pair)
-  )
-(add-hook 'js2-mode-hook 'jcs-javascript-mode-hook)
-
-(add-to-list 'auto-mode-alist '("\\.js?\\'" . js2-mode))
-
-
-
-;;============================
-;; JSON editing
-
-
-(require 'json-mode)
-;; self define javascript mode here!
-(defun jcs-json-mode-hook ()
-
-  (setq js2-basic-offset 2)
-  (setq js2-bounce-indent-p t)
-
-  (make-local-variable 'js-indent-level)
-  (setq js-indent-level 2)
-
-  ;; enable the stuff you want for JavaScript here
-  (electric-pair-mode 1)
-
-  (defun jcs-json-format()
-    (interactive)
-
-    ;; empty, cause json should only take data.
-    ;; Comment will be treat as a data too...
-    )
-
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]json" buffer-file-name) (jcs-json-format))
-        )
-
-  ;; jcs javascript key binding
-  (define-key json-mode-map (kbd "C-d") 'jcs-kill-whole-line)
-  (define-key json-mode-map "\C-c\C-c" 'kill-ring-save)
-
-  ;; comment block
-  (define-key json-mode-map (kbd "RET") 'jcs-smart-context-line-break)
-  (define-key json-mode-map (kbd "*") 'jcs-c-comment-pair)
-  )
-(add-hook 'json-mode-hook 'jcs-json-mode-hook)
-
-(add-to-list 'auto-mode-alist '("\\.json?\\'" . json-mode))
-
-
-;;------------------------------------------------------------------------------------------------------
-;; JCS Lua environment setting
-
-(require 'lua-mode)
-(defun jcs-lua-mode-hook ()
-  ;; Abbrevation expansion
-  (abbrev-mode 1)
-
-  ;; enable the stuff you want for Lua here
-  (electric-pair-mode 1)
-
-  (defun jcs-lua-script-format ()
-
-    "Format the given file as a class. - JenChieh Lua Script"
-
-    (interactive)
-
-    ;; macro
-    (setq BaseFileName (file-name-sans-extension (file-name-nondirectory buffer-file-name)))
-    (setq BaseFileNameWithExtension (file-name-nondirectory buffer-file-name))
-
-    (insert "-- ========================================================================\n")
-    (insert "-- $File: ")
-    (insert BaseFileNameWithExtension)
-    (insert " $\n")
-    (insert "-- $Date: ")
-    (jcs-timestamp)
-    (insert " $\n")
-    (insert "-- $Revision: $\n")
-    (insert "-- $Creator: Jen-Chieh Shen $\n")
-    (insert "-- $Notice: See LICENSE.txt for modification and distribution information $ \n")
-    (insert "--                   Copyright (c) 2016 by Shen, Jen-Chieh $\n")
-    (insert "-- ========================================================================\n")
-    (insert "\n\n")
-    )
-
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]lua" buffer-file-name) (jcs-lua-script-format))
-        ((string-match "[.]luac" buffer-file-name) (jcs-lua-script-format))
-        )
-
-  ;; jcs Lua key binding
-  (define-key lua-mode-map (kbd "C-d") 'jcs-kill-whole-line)
-  (define-key lua-mode-map "\C-c\C-c" 'kill-ring-save)
-
-  )
-(add-hook 'lua-mode-hook 'jcs-lua-mode-hook)
-
-(add-to-list 'auto-mode-alist '("\\.lua?\\'" . lua-mode))
-(add-to-list 'auto-mode-alist '("\\.luac?\\'" . lua-mode))
-
-
-;;------------------------------------------------------------------------------------------------------
-;; JCS C#(CSharp) environment setting
-
-
-;;====================================
-;;      CSharp-Mode
-;;---------------------------
-
-(require 'csharp-mode)
-(defun jcs-csharp-mode-hook ()
-
-  ;; Abbrevation expansion
-  (abbrev-mode 1)
-
-  ;; enable the stuff you want for C# here
-  (electric-pair-mode 1)
-
-  (defun jcs-csharp-class-format ()
-
-    "Format the given file as a class. - JenChieh C# class"
-
-    (jcs-global-file-info)
-
-    (setq BaseFileName (file-name-sans-extension (file-name-nondirectory buffer-file-name)))
-
-    (insert "\n\n")
-    (insert "public class ")
-    (push-mark)
-    (insert BaseFileName)
-    (pop-mark)
-    (insert " {\n\n}\n\n")
-    )
-
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]cs" buffer-file-name) (jcs-csharp-class-format))
-        )
-
-  ;; jcs C# key binding
-  (define-key csharp-mode-map (kbd "C-d") 'jcs-kill-whole-line)
-  (define-key csharp-mode-map "\C-c\C-c" 'kill-ring-save)
-
-  ;; comment block
-  (define-key csharp-mode-map (kbd "RET") 'jcs-smart-context-line-break)
-  (define-key csharp-mode-map (kbd "*") 'jcs-c-comment-pair)
-  )
-(add-hook 'csharp-mode-hook 'jcs-csharp-mode-hook)
-
-(add-to-list 'auto-mode-alist '("\\.cs?\\'" . csharp-mode))
+(load-file "~/.emacs.d/elisp/jcs-ex/jcs-mode.el")
+(load-file "~/.emacs.d/elisp/jcs-ex/jcs-file-info-format.el")
+(load-file "~/.emacs.d/elisp/jcs-ex/jcs-function.el")
+(load-file "~/.emacs.d/elisp/jcs-ex/jcs-global-key.el")
+(load-file "~/.emacs.d/elisp/jcs-ex/jcs-helm.el")
+
+;;; jcs-all-mode
+(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-elisp-mode.el")
+(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-txt-mode.el")
+(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-cmake-mode.el")
+(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-nasm-mode.el")
+(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-batch-mode.el")
+(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-sh-mode.el")
+(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-cc-mode.el")
+(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-jayces-mode.el")
+(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-java-mode.el")
+(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-actionscript-mode.el")
+(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-python-mode.el")
+(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-web-mode.el")
+(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-js-mode.el")
+(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-json-mode.el")
+(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-lua-mode.el")
+(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-cs-mode.el")
+(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-message-mode.el")
 
 ;; NOTE(JenChieh): .cs add-to-list action above will
 ;;                  override the .c file c-mode add-to-list
@@ -1930,9 +998,8 @@ Return a list of installed packages or nil for every skipped package."
 ;;                  so it won't cover the setting i want...
 (add-to-list 'auto-mode-alist '("\\.c?\\'" . c-mode))
 
-
 ;;; Override all the mode's key bindings.
-(load-file "~/.emacs.d/elisp/jcs-global-key.el")
+(load-file "~/.emacs.d/elisp/jcs-ex/jcs-global-key.el")
 
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of .emacs file

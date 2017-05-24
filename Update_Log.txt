@@ -1,0 +1,12 @@
+﻿# ========================================================================
+# $File: Update_Log.txt $
+# $Creator: Jen-Chieh Shen <jcs090218@gmail.com> $
+# $Date: 2017-05-21 $
+# $Notice: See LICENSE.txt for modification and distribution information 
+#                   Copyright (c) 2017 by Shen, Jen-Chieh $
+# ========================================================================
+
+
+2017-05-21
+* Add increment/decrement transparency frame. (jcs-emacs-init)
+* Update Log file build. (jcs-emacs-init)
