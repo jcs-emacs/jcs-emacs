@@ -7,6 +7,9 @@
 # ========================================================================
 
 
+2017-05-25
+* Add xml mode. (jcs-emacs-init)
+
 2017-05-23
 * Add Sublimity to emacs file. (jcs-emacs-init)
 * Add Minimap and Animate scrolling. (jcs-emacs-init)

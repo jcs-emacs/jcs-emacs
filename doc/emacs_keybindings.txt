@@ -178,7 +178,8 @@ f12				the same as above
 ALT-SHIFT-C  	Toggles between H file and CPP file in other window.
 ALT-f12			the same as above
 
-f8              switch between header file and source file.
+f8              switch between header/source file on same window.
+S-f8            switch between header/source file on other window.
 f7              open the same file on other window.
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -202,6 +203,7 @@ C-xp            enable/disable php-mode
 C-xj            enable/disable js2-mode
 C-xb			enable/disable blank-mode
 C-cr            enable/disable raindbow-mode.
+C-ca            enable/disable sublimity-mode.
 
 C-x`            toggle between "command mode" and "insert mode"
 C-xz            enable/disable zencoding-mode

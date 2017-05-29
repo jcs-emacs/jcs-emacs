@@ -391,10 +391,10 @@
     (other-window -1))
 
   (define-key c++-mode-map [f8] 'casey-find-corresponding-file)
-  (define-key c++-mode-map [M-f8] 'casey-find-corresponding-file-other-window)
+  (define-key c++-mode-map [S-f8] 'casey-find-corresponding-file-other-window)
 
   (define-key c-mode-map [f8] 'casey-find-corresponding-file)
-  (define-key c-mode-map [M-f8] 'casey-find-corresponding-file-other-window)
+  (define-key c-mode-map [S-f8] 'casey-find-corresponding-file-other-window)
 
   ;; If just want to open the same file, not the
   ;; corresponding file.
@@ -711,7 +711,7 @@
  '(mouse-wheel-scroll-amount (quote (15)))
  '(package-selected-packages
    (quote
-    (sublimity zencoding-mode web-mode tree-mode rainbow-mode python-mode py-autopep8 php-auto-yasnippets omnisharp neotree nasm-mode multi-web-mode lua-mode json-mode js2-refactor jdee java-imports impatient-mode iedit helm-gtags google-c-style gitlab gitignore-mode github-notifier gitconfig-mode flymake-google-cpplint flymake-cursor elpy ein cpputils-cmake cmake-project cmake-ide cmake-font-lock blank-mode better-defaults batch-mode auto-package-update auto-install auto-complete-c-headers actionscript-mode ace-window ac-php ac-js2 ac-html ac-emmet)))
+    (sublimity zencoding-mode tree-mode rainbow-mode py-autopep8 multi-web-mode jdee java-imports impatient-mode iedit helm-gtags google-c-style gitlab gitignore-mode github-notifier gitconfig-mode flymake-google-cpplint flymake-cursor elpy ein cpputils-cmake cmake-project cmake-ide cmake-font-lock blank-mode better-defaults batch-mode auto-package-update auto-install auto-complete-c-headers actionscript-mode ace-window ac-php ac-js2 ac-html ac-emmet)))
  '(send-mail-function (quote mailclient-send-it))
  '(version-control nil))
 
@@ -991,6 +991,7 @@ Return a list of installed packages or nil for every skipped package."
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-lua-mode.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-cs-mode.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-message-mode.el")
+(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-xml-mode.el")
 
 ;; NOTE(JenChieh): .cs add-to-list action above will
 ;;                  override the .c file c-mode add-to-list
@@ -1003,3 +1004,9 @@ Return a list of installed packages or nil for every skipped package."
 
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of .emacs file
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

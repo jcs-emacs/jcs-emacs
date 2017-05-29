@@ -812,7 +812,10 @@ SOURCE: https://www.emacswiki.org/emacs/TransparentEmacs"
                     ;; Also handle undocumented (<active> <inactive>) form.
                     ((numberp (cadr alpha)) (cadr alpha)))
               100)
-         '(80 . 50) '(100 . 100)))))
+         ;; NOTE(jenchieh): Second parameter is transparency
+         ;; when not focus.
+         ;; (when focus, when not focus)
+         '(80 . 80) '(100 . 100)))))
 
 
 (setf jcs-frame-transparency 10)
