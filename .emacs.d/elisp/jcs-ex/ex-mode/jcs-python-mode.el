@@ -39,8 +39,10 @@
   ;; Abbrevation expansion
   (abbrev-mode 1)
 
-  (defun jcs-python-class-format ()
+  ;; highlight URL and clickable.
+  (goto-address-mode 1)
 
+  (defun jcs-python-class-format ()
     "Format the given file as a class. - JenChieh Python class"
 
     (jcs-manage-file-info)
@@ -48,7 +50,6 @@
     ;; define macro
     (setq BaseFileName (file-name-sans-extension (file-name-nondirectory buffer-file-name)))
     (setq BaseFileNameWithExtension (file-name-nondirectory buffer-file-name))
-    (insert "\n")
 
     (insert "class ")
     (insert BaseFileName)
@@ -57,38 +58,35 @@
     (insert "    \"\"\"TODO(jenchieh): Class Description here...\"\"\"")
     (insert "\n\n")
 
-    (insert "    # --------------------------------------------\n")
-    (insert "    # Public Variables\n")
-    (insert "    # --------------------------------------------\n\n")
+    (insert "    #*********************************************#\n")
+    (insert "    #*             Public Variables              *#\n")
+    (insert "    #*********************************************#\n\n")
 
-    (insert "    # --------------------------------------------\n")
-    (insert "    # Private Variables\n")
-    (insert "    # --------------------------------------------\n\n")
+    (insert "    #*********************************************#\n")
+    (insert "    #              Private Variables             *#\n")
+    (insert "    #*********************************************#\n\n")
 
-    (insert "    # --------------------------------------------\n")
-    (insert "    # Protected Variables\n")
-    (insert "    # --------------------------------------------\n\n")
+    (insert "    #*********************************************#\n")
+    (insert "    #              Protected Variables           *#\n")
+    (insert "    #*********************************************#\n\n")
 
-    (insert "    # --------------------------------------------\n")
-    (insert "    # Constructor\n")
-    (insert "    # --------------------------------------------\n")
+    (insert "    #*********************************************#\n")
+    (insert "    #                Constructor                 *#\n")
+    (insert "    #*********************************************#\n")
     (insert "    def __init__(self):\n")
     (insert "        \"\"\"Constructor.\"\"\"\n\n")
-    (insert "    # --------------------------------------------\n")
-    (insert "    # Public Methods\n")
-    (insert "    # --------------------------------------------\n\n")
 
-    (insert "    # --------------------------------------------\n")
-    (insert "    # Protected Methods\n")
-    (insert "    # --------------------------------------------\n\n")
+    (insert "    #====================\n")
+    (insert "    # Public Methods\n\n")
 
-    (insert "    # --------------------------------------------\n")
-    (insert "    # Private Methods\n")
-    (insert "    # --------------------------------------------\n\n")
+    (insert "    #====================\n")
+    (insert "    # Protected Methods\n\n")
 
-    (insert "    # --------------------------------------------\n")
-    (insert "    # setter / getter\n")
-    (insert "    # --------------------------------------------\n\n")
+    (insert "    #====================\n")
+    (insert "    # Private Methods\n\n")
+
+    (insert "    #====================\n")
+    (insert "    # setter / getter\n\n")
 
     ;; Move to beginning of the buffer.
     (beginning-of-buffer)
@@ -101,13 +99,19 @@
   ;; jcs java key binding
   (define-key python-mode-map (kbd "C-d") 'jcs-kill-whole-line)
   (define-key python-mode-map "\C-c\C-c" 'kill-ring-save)
-  (define-key python-mode-map [C-backspace] 'backward-kill-word)
+  (define-key python-mode-map [C-backspace] 'jcs-backward-delete-word)
 
-  (define-key python-map [M-up] 'previous-blank-line)
-  (define-key python-map [M-down] 'next-blank-line)
+  (define-key python-mode-map [M-up] 'previous-blank-line)
+  (define-key python-mode-map [M-down] 'next-blank-line)
 
-  (define-key python-mode-map (kbd "<up>") 'previous-line)
-  (define-key python-mode-map (kbd "<down>") 'next-line)
+  (define-key python-mode-map "\C-k\C-f" 'jcs-py-indent-region)
+  (define-key python-mode-map "\C-k\C-d" 'jcs-py-format-document)
+  (define-key python-mode-map (kbd "C-S-f") 'jcs-py-format-region-or-document)
+
+  ;; Edit
+  (define-key python-mode-map (kbd "<up>") 'jcs-py-indent-up)
+  (define-key python-mode-map (kbd "<down>") 'jcs-py-indent-down)
+  (define-key python-mode-map (kbd "SPC") 'jcs-py-space)
   )
 (add-hook 'python-mode-hook 'jcs-python-mode-hook)
 

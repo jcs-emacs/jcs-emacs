@@ -41,6 +41,9 @@
   ;; enable the stuff you want for XML here
   (electric-pair-mode 1)
 
+  ;; highlight URL and clickable.
+  (goto-address-mode 1)
+
   (defun jcs-xml-format ()
     "Format the given file as a XML file. - JenChieh XML file."
 

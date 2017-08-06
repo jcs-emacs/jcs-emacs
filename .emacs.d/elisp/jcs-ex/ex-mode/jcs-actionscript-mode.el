@@ -35,6 +35,9 @@
 (defun jcs-action-script-mode-hook ()
   ;;
 
+  ;; highlight URL and clickable.
+  (goto-address-mode 1)
+
   ;; jcs java key binding
   (define-key actionscript-mode-map (kbd "C-d") 'jcs-kill-whole-line)
   (define-key actionscript-mode-map "\C-c\C-c" 'kill-ring-save)

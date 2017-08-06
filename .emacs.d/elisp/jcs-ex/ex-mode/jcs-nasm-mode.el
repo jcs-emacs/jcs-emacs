@@ -39,6 +39,9 @@
   ;; Abbrevation expansion
   (abbrev-mode 1)
 
+  ;; highlight URL and clickable.
+  (goto-address-mode 1)
+
   (defun jcs-asm-format ()
     "Format the given file as a asm code. - JenChieh Assembly Language"
     (interactive)

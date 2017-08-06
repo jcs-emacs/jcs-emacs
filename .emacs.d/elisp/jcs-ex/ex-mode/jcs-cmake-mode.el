@@ -36,6 +36,8 @@
   ;;
   (electric-pair-mode nil)
 
+  ;; highlight URL and clickable.
+  (goto-address-mode 1)
 
   (defun jcs-makefile-format ()
     "Format the given file as a makefile. - JenChieh Makefile"

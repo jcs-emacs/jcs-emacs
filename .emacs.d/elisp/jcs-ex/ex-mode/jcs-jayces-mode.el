@@ -31,16 +31,22 @@
 ;; JenChieh JayCeS mode.
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-;;(require 'jayces-mode)
+;; load the mode first.
+(load-file "~/.emacs.d/elisp/jayces-mode.el")
+
+(require 'jayces-mode)
 (defun jcs-jayces-mode-hook ()
 
   ;; Abbrevation expansion
   (abbrev-mode 1)
 
+  ;; highlight URL and clickable.
+  (goto-address-mode 1)
+
   (defun jcs-jayces-class-format ()
-
-    "Format the given file as a class. - JenChieh JayCeS class"
-
+    "Format the given file. - JenChieh JayCeS files"
+    
+    (jcs-global-file-info)
     )
 
   (cond ((file-exists-p buffer-file-name) t)
@@ -49,10 +55,10 @@
         )
 
   )
-;;(add-hook 'jayces-mode-hook 'jcs-jayces-mode-hook)
+(add-hook 'jayces-mode-hook 'jcs-jayces-mode-hook)
 
-;;(add-to-list 'auto-mode-alist '("\\.jcs?\\'" . jayces-mode))
-;;(add-to-list 'auto-mode-alist '("\\.jayces?\\'" . jayces-mode))
+(add-to-list 'auto-mode-alist '("\\.jcs?\\'" . jayces-mode))
+(add-to-list 'auto-mode-alist '("\\.jayces?\\'" . jayces-mode))
 
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-jayces-mode.el file

@@ -48,11 +48,17 @@
 ;; self define javascript mode here!
 (defun jcs-javascript-mode-hook ()
 
+  ;; enable impatient mode for real time editing.
+  (impatient-mode t)
+
   (setq js2-basic-offset 2)
   (setq js2-bounce-indent-p t)
 
   ;; enable the stuff you want for JavaScript here
   (electric-pair-mode 1)
+
+  ;; highlight URL and clickable.
+  (goto-address-mode 1)
 
   (defun jcs-javascript-format()
     (interactive)

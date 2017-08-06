@@ -34,11 +34,16 @@
 (require 'csharp-mode)
 (defun jcs-csharp-mode-hook ()
 
+  (preproc-font-lock-mode t)
+
   ;; Abbrevation expansion
   (abbrev-mode 1)
 
   ;; enable the stuff you want for C# here
   (electric-pair-mode 1)
+
+  ;; highlight URL and clickable.
+  (goto-address-mode 1)
 
   (defun jcs-csharp-class-format ()
     "Format the given file as a class. - JenChieh C# class"

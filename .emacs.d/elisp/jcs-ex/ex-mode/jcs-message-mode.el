@@ -37,6 +37,9 @@
 
   (electric-pair-mode nil)
 
+  ;; highlight URL and clickable.
+  (goto-address-mode 1)
+
   (define-key message-mode-map (kbd "<up>") 'previous-line)
   (define-key message-mode-map (kbd "<down>") 'next-line)
   )

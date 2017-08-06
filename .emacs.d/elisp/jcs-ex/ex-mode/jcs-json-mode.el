@@ -44,6 +44,9 @@
   ;; enable the stuff you want for JavaScript here
   (electric-pair-mode 1)
 
+  ;; highlight URL and clickable.
+  (goto-address-mode 1)
+
   (defun jcs-json-format()
     (interactive)
 

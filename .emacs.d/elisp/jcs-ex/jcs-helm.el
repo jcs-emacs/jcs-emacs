@@ -38,21 +38,21 @@
 
 (helm-mode 1)
 (helm-autoresize-mode 1)
+
+;;; Helm Key bindings
+(require 'helm-config)
+(define-key global-map (kbd "M-x") 'helm-M-x)
+(define-key global-map (kbd "M-y") 'helm-show-kill-ring)
 ;;(setq helm-ff-auto-update-initial-value nil)    ; 禁止自動補全
 
-;;;
-;; Helm Key bindings
-;;
-(global-set-key (kbd "M-x") 'helm-M-x)
-(global-set-key (kbd "M-y") 'helm-show-kill-ring)
-
-(global-set-key [f12] 'jcs-helm-gtags-to-def-dec)
-(global-set-key [S-f12] 'jcs-helm-gtags-to-def-dec-other-window)
+(define-key global-map [f12] 'jcs-helm-gtags-to-def-dec)
+(define-key global-map [S-f12] 'jcs-helm-gtags-to-def-dec-other-window)
 
 ;;;
 ;; Helm minibuffer key bindings
 ;;
 (define-key helm-find-files-map (kbd "<return>") 'helm-execute-persistent-action)
+
 
 ;;;
 ;; Helm search configuration.
@@ -80,9 +80,7 @@
            (stringp (helm-get-selection))
            (not (file-directory-p (helm-get-selection))))
       (progn
-
         (jcs-helm-execute-persistent-action)
-
         (helm-maybe-exit-minibuffer)
         )
     (apply orig-fun args)
@@ -112,6 +110,35 @@
                (inhibit-same-window . t)
                (window-height . 0.4)))
 
+;;;
+;; `helm-find-files-hook'
+;;
+(setq jcs-helm-find-files-active nil)
+
+;;;###autoload
+(defun jcs-helm-find-files-hook ()
+  "Hook after `helm-find-files' initialized."
+  (interactive)
+
+  ;; SEE(jenchieh): `jcs-global-key.el' file,
+  ;; and `minibuffer-setup-hook'.
+  (setq jcs-helm-find-files-active t)
+  )
+(add-hook 'helm-find-files-after-init-hook 'jcs-helm-find-files-hook)
+
+;;;
+;; `helm-colors'
+;;
+;; NOTE(jenchieh): make key insert 'HEX' and 'Name'
+;;
+(defvar helm-color-map
+  (let ((map (make-sparse-keymap)))
+    (set-keymap-parent map helm-map)
+    (define-key map (kbd "RET") 'helm-color-run-insert-name)
+    (define-key map (kbd "C-c N") 'helm-color-run-kill-name)
+    (define-key map (kbd "M-RET") 'helm-color-run-insert-rgb)
+    (define-key map (kbd "C-c R") 'helm-color-run-kill-rgb)
+    map))
 
 ;;;
 ;; Customize Helm Themes
@@ -132,9 +159,14 @@
 (require 'helm-gtags)
 
 ;; Enable helm-gtags-mode
+(add-hook 'asm-mode-hook 'helm-gtags-mode)
 (add-hook 'c-mode-hook 'helm-gtags-mode)
 (add-hook 'c++-mode-hook 'helm-gtags-mode)
-(add-hook 'asm-mode-hook 'helm-gtags-mode)
+(add-hook 'java-mode-hook 'helm-gtags-mode)
+(add-hook 'jayces-mode-hook 'helm-gtags-mode)
+(add-hook 'js2-mode-hook 'helm-gtags-mode)
+(add-hook 'lua-mode-hook 'helm-gtags-mode)
+(add-hook 'nasm-mode-hook 'helm-gtags-mode)
 
 ;; customize 'helm-gtags' plugin
 (custom-set-variables

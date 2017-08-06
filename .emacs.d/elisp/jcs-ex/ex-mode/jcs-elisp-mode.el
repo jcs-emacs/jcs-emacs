@@ -41,6 +41,9 @@
   ;; enable the stuff you want for C# here
   (electric-pair-mode 1)
 
+  ;; highlight URL and clickable.
+  (goto-address-mode 1)
+
   (defun jcs-emacs-lisp-format ()
     "Format the given file as a Emacs Lisp file. - JenChieh emacs lisp file."
     (jcs-asm-file-info)

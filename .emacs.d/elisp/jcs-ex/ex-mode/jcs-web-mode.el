@@ -33,9 +33,55 @@
 ;; include HTML,CSS,PHP,JavaScript,JSON.
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+;;============================
+;; Real time editing mark down (impatient-mode)
+
 ;; Note for "Impatient Mode" (real time editing)
 ;; Step 1: M-x httpd-start        (Open the port default: 8080)
 ;; Step 2: M-x impatient-mode     (Enabled Impatient Mode)
+
+(require 'impatient-mode)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(auto-save-default nil)
+ '(auto-save-interval 0)
+ '(auto-save-list-file-prefix nil)
+ '(auto-save-timeout 0)
+ '(auto-show-mode t t)
+ '(delete-auto-save-files nil)
+ '(delete-old-versions (quote other))
+ '(flymake-google-cpplint-command "C:/jcs_ide_packages/jcs_win7_packages/cpplint/cpplint.exe")
+ '(helm-gtags-auto-update t)
+ '(helm-gtags-ignore-case t)
+ '(helm-gtags-path-style (quote relative))
+ '(httpd-port 8877)
+ '(imenu-auto-rescan t)
+ '(imenu-auto-rescan-maxout 500000)
+ '(jdee-jdk-registry
+   (quote
+    (("1.8.0_111" . "C:/Program Files/Java/jdk1.8.0_111"))))
+ '(kept-new-versions 5)
+ '(kept-old-versions 5)
+ '(make-backup-file-name-function (quote ignore))
+ '(make-backup-files nil)
+ '(mouse-wheel-follow-mouse nil)
+ '(mouse-wheel-progressive-speed nil)
+ '(mouse-wheel-scroll-amount (quote (15)))
+ '(package-selected-packages
+   (quote
+    (preproc-font-lock sublimity tree-mode rainbow-mode py-autopep8 multi-web-mode jdee java-imports impatient-mode iedit helm-gtags google-c-style gitlab gitignore-mode github-notifier gitconfig-mode flymake-google-cpplint flymake-cursor elpy ein cpputils-cmake cmake-project cmake-ide cmake-font-lock blank-mode better-defaults batch-mode auto-package-update auto-install auto-complete-c-headers actionscript-mode ace-window ac-php ac-js2 ac-html ac-emmet)))
+ '(send-mail-function (quote mailclient-send-it))
+ '(version-control nil))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
 
 ;; ======================
 ;; web-mode.el
@@ -47,10 +93,17 @@
 (require 'web-mode)
 (defun jcs-web-mode-hook ()
   "Hooks for Web mode."
+
+  ;; enable impatient mode for real time editing.
+  (impatient-mode t)
+
   (setq web-mode-markup-indent-offset 2)
 
   ;; Abbrevation expansion
   (abbrev-mode 1)
+
+  ;; highlight URL and clickable.
+  (goto-address-mode 1)
 
   (defun jcs-html-format ()
     "Format the give file. - JenChieh HTML file"
@@ -76,6 +129,9 @@
     (insert "<body>\n\n\n")
     (insert "</body>\n")
     (insert "</html>\n")
+
+    ;; format the document once
+    (jcs-format-document)
     )
 
   (defun jcs-php-format ()
@@ -96,14 +152,20 @@
         )
 
   ;; jcs web key binding
-  (define-key web-mode-map (kbd "C-d") 'jcs-kill-whole-line)
-  (define-key web-mode-map "\C-c\C-c" 'kill-ring-save)
+  (define-key web-mode-map (kbd "C-d") 'jcs-web-kill-whole-line)
+  (define-key web-mode-map "\C-c\C-c" 'jcs-web-kill-ring-save)
+  (define-key web-mode-map "\C-v" 'jcs-web-yank)
+
+  (define-key web-mode-map "\C-k\C-f" 'jcs-web-indent-region)
+  (define-key web-mode-map "\C-k\C-d" 'jcs-web-format-document)
+  (define-key web-mode-map (kbd "C-S-f") 'jcs-web-format-region-or-document)
+
+  (define-key web-mode-map "\C-s" 'jcs-web-save-buffer)
 
   ;; comment block
   (define-key web-mode-map (kbd "RET") 'jcs-smart-context-line-break)
   (define-key web-mode-map (kbd "*") 'jcs-c-comment-pair)
   )
-(add-hook 'web-mode-hook 'zencoding-mode)
 (add-hook 'web-mode-hook 'emmet-mode)
 (add-hook 'web-mode-hook  'jcs-web-mode-hook)
 
@@ -219,9 +281,12 @@
                             (setq ac-sources '(ac-source-php))
                             (yas-global-mode 1)
 
+                            ;; highlight URL and clickable.
+                            (goto-address-mode 1)
+
                             (define-key php-mode-map (kbd "C-]") 'ac-php-find-symbol-at-point)   ; goto define
                             (define-key php-mode-map (kbd "C-t") 'ac-php-location-stack-back)    ; go back
-                            
+
                             ;; jcs PHP key binding
                             (define-key php-mode-map (kbd "C-d") 'jcs-kill-whole-line)
                             (define-key php-mode-map "\C-c\C-c" 'kill-ring-save)
@@ -234,6 +299,8 @@
 (require 'emmet-mode)
 (require 'rainbow-mode)
 
+;; css indent spaces.
+(setq css-indent-offset 2)
 
 ;; Source: -> CSS Mode: https://www.emacswiki.org/emacs/css-mode.el
 ;;         -> Xah CSS Mode: http://ergoemacs.org/emacs/xah-css-mode.html
@@ -241,9 +308,22 @@
 (require 'css-mode)
 (defun jcs-css-mode-hook ()
 
+  ;; enable impatient mode for real time editing.
+  (impatient-mode t)
+
+  ;; highlight URL and clickable.
+  (goto-address-mode 1)
+
+  (setq-local comment-start "/*")
+  (setq-local comment-start-skip "/\\*+[ \t]*")
+  (setq-local comment-end "*/")
+  (setq-local comment-end-skip "[ \t]*\\*+/")
+
   (defun jcs-css-format()
     "Format the give file. - JenChieh CSS file"
     (interactive)
+
+    (insert "@charset \"UTF-8\";\n")
 
     (jcs-global-file-info)
     (insert "\n\n")
@@ -267,6 +347,7 @@
 (add-hook 'css-mode-hook 'emmet-mode)
 
 (add-to-list 'auto-mode-alist '("\\.css?\\'" . css-mode))
+
 
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-web-mode.el file

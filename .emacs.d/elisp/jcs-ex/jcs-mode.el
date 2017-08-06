@@ -37,20 +37,56 @@
 ;;---------------------------------------------
 
 ;;;###autoload
-(defun jcs-mode-toggle()
+(defun jcs-insert-command-mode-toggle()
   "Toggle command/insert mode."
   (interactive)
 
-  (if (get 'jcs-mode-toggle 'state)
+  (if (get 'jcs-insert-command-mode-toggle 'state)
       (progn
         ;; command mode
         (jcs-command-mode)
-        (put 'jcs-mode-toggle 'state nil))
+        (put 'jcs-insert-command-mode-toggle 'state nil))
     (progn
       ;; insert mode
       (jcs-insert-mode)
-      (put 'jcs-mode-toggle 'state t)))
+      (put 'jcs-insert-command-mode-toggle 'state t)))
   )
+
+;;;###autoload
+(defun jcs-depend-cross-mode-toggle()
+  "Toggle depend/cross mode."
+  (interactive)
+
+  ;; NOTE(jenchieh): can only active when the minibuffer is
+  ;; not active.
+  (if (eq jcs-minibuffer-active nil)
+      (progn
+
+        (if (get 'jcs-local-online-mode-toggle 'state)
+            (progn
+              ;; depend mode
+              (jcs-depend-mode)
+              (put 'jcs-local-online-mode-toggle 'state nil))
+          (progn
+            ;; cross mode
+            (jcs-cross-mode)
+            (put 'jcs-local-online-mode-toggle 'state t)))
+        )))
+
+;;;###autoload
+(defun jcs-reload-active-mode ()
+  "Reload the active mode. Note this is opposite logic to the
+toggle mode function."
+  (interactive)
+
+  (if (eq jcs-minibuffer-active nil)
+      (if (get 'jcs-depend-cross-mode-toggle 'state)
+          (progn
+            ;; if state is true keep on cross mode.
+            (jcs-cross-mode))
+        (progn
+          ;; vice versa, keep on depend mode.
+          (jcs-depend-mode)))))
 
 ;;---------------------------------------------
 ;; Command Mode
@@ -62,7 +98,7 @@
   (interactive)
 
   ;; set trigger
-  (put 'jcs-mode-toggle 'state nil)
+  (put 'jcs-insert-command-mode-toggle 'state nil)
 
   ;; switch to view mode
   ;;(view-mode-enable)
@@ -70,19 +106,7 @@
   ;; -----------------------------------------
   ;; Customize Theme
   ;; -----------------------------------------
-
-  (set-foreground-color "#D2D2D2")
-  (set-background-color "#161616")
-
-  (set-cursor-color "#40FF40")
-  (set-face-background 'hl-line "midnight blue")
-
-  ;; set mode line
-  (set-face-background 'mode-line "#BFBFBF")
-  (set-face-background 'modeline-inactive "#4D4D4D")
-  ;; set the vertical border
-  (set-face-background 'vertical-border "#D2D2D2")
-  (set-face-foreground 'vertical-border (face-background 'vertical-border))
+  (jcs-gray-theme)
 
   ;; -----------------------------------------
   ;; Unset insert mode key
@@ -108,7 +132,7 @@
   (interactive)
 
   ;; set trigger
-  (put 'jcs-mode-toggle 'state t)
+  (put 'jcs-insert-command-mode-toggle 'state t)
 
   ;; disable to view mode
   ;;(view-mode-disable)
@@ -116,18 +140,7 @@
   ;; -----------------------------------------
   ;; Customize Theme
   ;; -----------------------------------------
-  (set-foreground-color "#D2D2D2")
-  (set-background-color "#161616")
-
-  (set-cursor-color "#40FF40")
-  (set-face-background 'hl-line "midnight blue")
-
-  ;; set mode line
-  (set-face-background 'mode-line "#467E7D")
-  (set-face-background 'mode-line-inactive "#294645")
-  ;; set the vertical border
-  (set-face-background 'vertical-border "#467E7D")
-  (set-face-foreground 'vertical-border (face-background 'vertical-border))
+  (jcs-dark-green-theme)
 
   ;; -----------------------------------------
   ;; Unset command mode key
@@ -197,6 +210,85 @@
   )
 (add-hook 'view-mode-hook 'jcs-view-mode-hook)
 
+
+;;------------------------------------------------------------------------------------------------------
+;;; Local Mode & Online Mode
+;;------------------------------------------------------------------------------------------------------
+;;;###autoload
+(defun jcs-depend-mode ()
+  "This mode depend on my own machine. More feature and more
+control of the editor."
+  (interactive)
+
+  ;; set toggle trigger
+  (put 'jcs-depend-cross-mode-toggle 'state nil)
+
+  ;; -----------------------------------------
+  ;; Customize Theme
+  ;; -----------------------------------------
+  (jcs-gray-theme)
+
+  ;; -----------------------------------------
+  ;; Unset 'depend' mode key
+  ;;
+  ;; NOTE(jenchieh): unset key should be
+  ;; before of set keys
+  ;; -----------------------------------------
+  (global-unset-key "\C-f")
+  (global-unset-key "\C-r")
+
+  ;; -----------------------------------------
+  ;; Set 'depend' mode key
+  ;; -----------------------------------------
+
+  ;; search
+  (define-key global-map "\C-f" 'helm-do-ag-this-file)
+  (define-key global-map "\C-x\C-f" 'helm-do-ag-project-root)
+
+  ;; replace
+  (define-key global-map "\C-rr" 'iedit-mode)
+  (define-key global-map "\C-rp" 'jcs-ag-project-regexp)
+  )
+
+;;;###autoload
+(defun jcs-cross-mode ()
+  "This mode run anywhere will work, usually less powerful then
+'jcs-depend-mode'."
+  (interactive)
+
+  ;; set toggle trigger
+  (put 'jcs-depend-cross-mode-toggle 'state t)
+
+  ;; -----------------------------------------
+  ;; Customize Theme
+  ;; -----------------------------------------
+  (jcs-dark-green-theme)
+
+  ;; -----------------------------------------
+  ;; Unset 'cross' mode key
+  ;;
+  ;; NOTE(jenchieh): unset key should be
+  ;; before of set keys
+  ;; -----------------------------------------
+  (global-unset-key "\C-f")
+  (global-unset-key "\C-r")
+
+  ;; -----------------------------------------
+  ;; Set 'cross' mode key
+  ;; -----------------------------------------
+
+  ;; search
+  (define-key global-map "\C-f" 'isearch-forward)
+  (global-unset-key "\C-x\C-f")
+
+  ;; replace
+  (define-key global-map "\C-rr" 'iedit-mode)
+  (global-unset-key "\C-rp")
+  )
+
+;; NOTE(jayces): Since I often use my own machine, set the online
+;; mode as the default.
+(call-interactively 'jcs-depend-mode)
 
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-mode.el file

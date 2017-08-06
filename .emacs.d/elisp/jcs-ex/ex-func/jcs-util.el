@@ -1,0 +1,224 @@
+;; This is the start of jcs-util.el file
+;;------------------------------------------------------------------------------------------------------
+
+;; jcs-util.el             -*- Emacs-Lisp -*-
+
+;; Mode for editing JayCeS code
+
+;; Created:    <Fri Oct 21 13:51:49 EST 2016>
+;; Time-stamp: <2016-10-21 10:21:39>
+;; Author:     Jen-Chieh Shen <jcs090218@gmail.com>
+;; Version:    0.1
+;; Keywords:   JayCeS, languages, os, operating system
+
+;; Copyright (C) 2016 Jen-Chieh Shen
+
+;; jcs-function is free software: you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation, either version 3 of the License, or
+;; (at your option) any later version.
+
+;; jcs-function is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+
+;; You should have received a copy of the GNU General Public License
+;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+
+;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+;; All utilities put here.
+;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+
+;;---------------------------------------------
+;; Make the time stamp base on the format
+;; provided.
+;;
+;; Source:
+;; -> https://www.emacswiki.org/emacs/InsertingTodaysDate
+;;---------------------------------------------
+(defun jcs-timestamp ()
+  (interactive)
+  (insert (format-time-string "%Y-%m-%d %H:%M:%S")))
+
+;;---------------------------------------------
+;; Make the data base on the format provided.
+;;---------------------------------------------
+(defun jcs-date()
+  (interactive)
+  (insert (format-time-string "%Y-%m-%d")))
+
+;;---------------------------------------------
+;; Insert year only.
+;;---------------------------------------------
+(defun jcs-year-only ()
+  (interactive)
+  (insert (format-time-string "%Y")))
+
+;;---------------------------------------------
+;; Make the time base on the format provided.
+;;---------------------------------------------
+(defun jcs-time()
+  (interactive)
+  (insert (format-time-string "%H:%M:%S")))
+
+;;---------------------------------------------
+;; Character
+;;---------------------------------------------
+
+;; TOPIC: Check if a character (not string) is lowercase,
+;; uppercase, alphanumeric?
+;; SOURCE: https://stackoverflow.com/questions/27798296/check-if-a-character-not-string-is-lowercase-uppercase-alphanumeric
+(defun wordp (c) (= ?w (char-syntax c)))
+(defun lowercasep (c) (and (wordp c) (= c (downcase c))))
+(defun uppercasep (c) (and (wordp c) (= c (upcase c))))
+(defun whitespacep (c) (= 32 (char-syntax c)))
+
+(defun current-whitespacep ()
+  (setq current-char (char-before))
+  (setq current-char-string (string current-char))
+  (setq current-char-char (string-to-char current-char-string))
+  (whitespacep current-char-char))
+
+(defun current-char-equal-p (c)
+  "Check the current character equal to 'c'."
+  (setq current-char (char-before))
+  (setq current-char-string (string current-char))
+  (string= current-char-string c))
+
+(defun jcs-get-current-char-byte ()
+  "Get the current character as the 'byte'."
+  (setq current-char (char-before))
+  (setq current-char-string (string current-char))
+  (setq current-char-char (string-to-char current-char-string))
+  (current-char-char))
+
+(defun jcs-get-current-char-string ()
+  "Get the current character as the 'string'."
+  (setq current-char (char-before))
+  (setq current-char-string (string current-char))
+  (current-char-string))
+
+
+;;---------------------------------------------
+;; Word
+;;---------------------------------------------
+(defun get-word-at-point ()
+  "Get word at current cursor position."
+  (interactive)
+  (thing-at-point 'word))
+
+;;---------------------------------------------
+;; Line
+;;---------------------------------------------
+
+;;;###autoload
+(defun current-line-empty-p ()
+  "Current line empty, but accept spaces in there. (not absolute)"
+  (save-excursion
+    (beginning-of-line)
+    (looking-at "[[:space:]]*$")))
+
+;;;###autoload
+(defun current-line-totally-empty-p ()
+  "Current line empty with no spaces in there. (absolute)"
+  (and (is-beginning-of-line-p)
+       (is-end-of-line-p)))
+
+;;;###autoload
+(defun is-end-of-line-p ()
+  "Is at the end of line?"
+  (save-excursion
+    (setq currentPoint (point))
+
+    (end-of-line)
+    (setq endLinePoint (point))
+    )
+
+  ;; return value.
+  (= endLinePoint currentPoint)
+  )
+
+;;;###autoload
+(defun is-beginning-of-line-p ()
+  "Is at the beginning of line?"
+  (save-excursion
+    (setq currentPoint (point))
+    (beginning-of-line)
+    (setq beginLinePoint (point)))
+
+  ;; return value.
+  (= beginLinePoint currentPoint))
+
+;;;###autoload
+(defun is-current-line (line)
+  "Is current line number this line?"
+  (= (string-to-number (format-mode-line "%l")) line))
+
+;;;###autoload
+(defun is-at-start-of-line-p ()
+  "Cursor is at the first character of this line?"
+  (save-excursion
+    (setq currentPoint (point))
+    (back-to-indentation)
+    (setq firstCharPoint (point)))
+
+  (= firstCharPoint currentPoint))
+
+;;;###autoload
+(defun is-met-first-char-at-line-p ()
+  "Check current cursor point is after the first character at
+the current line."
+
+  (setq isInfrontOfFirstChar t)
+
+  (save-excursion
+    (setq pointToCheck (point))
+    (beginning-of-line)
+
+    (if (not (current-line-totally-empty-p))
+        (forward-char 1))
+
+    (while (<= (point) pointToCheck)
+      (if (not (current-whitespacep))
+          (setq isInfrontOfFirstChar nil))
+      (forward-char 1))
+    )
+
+  (eq isInfrontOfFirstChar t))
+
+
+;;---------------------------------------------
+;; Move between button.
+;;---------------------------------------------
+;;URL: https://www.gnu.org/software/emacs/manual/html_node/emacs/Moving-Point.html
+
+;;;###autoload
+(defun top-most-line ()
+  "Move to top of the buffer."
+  (interactive)
+  ;; NOTE: 0 : top-most-line, -1 : bottom-most-line
+  (move-to-window-line-top-bottom 0)
+  )
+
+;;;###autoload
+(defun bottom-most-line()
+  "Move to bottom of the buffer."
+  (interactive)
+  ;; NOTE: 0 : top-most-line, -1 : bottom-most-line
+  (move-to-window-line-top-bottom -1)
+  )
+
+;;---------------------------------------------
+;; Region
+;;---------------------------------------------
+
+;;;###autoload
+(defun is-region-selected-p ()
+  "Is region active?"
+  (use-region-p))
+
+;;------------------------------------------------------------------------------------------------------
+;; This is the end of jcs-util.el file

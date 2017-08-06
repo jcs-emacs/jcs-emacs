@@ -37,6 +37,9 @@
   ;; Abbrevation expansion
   (abbrev-mode 1)
 
+  ;; highlight URL and clickable.
+  (goto-address-mode 1)
+
   (defun jcs-sh-script-format ()
 
     "Format the given file as a shell script. - JenChieh Shell Script"

@@ -39,6 +39,9 @@
   ;; Abbrevation expansion
   (abbrev-mode 1)
 
+  ;; highlight URL and clickable.
+  (goto-address-mode 1)
+
   (defun jcs-batch-script-format ()
 
     "Format the given file as a class. - JenChieh Batch Script"

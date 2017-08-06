@@ -39,6 +39,8 @@
   ;;
   (electric-pair-mode nil)
 
+  ;; highlight URL and clickable.
+  (goto-address-mode 1)
 
   (defun jcs-text-related-format ()
     "Format the given file as a text related. - JenChieh Text file."
@@ -69,7 +71,6 @@
 ;; temporary mode for all Text related!
 (add-to-list 'auto-mode-alist '("\\.bin?\\'" . gitignore-mode))
 (add-to-list 'auto-mode-alist '("\\.md?\\'" . gitignore-mode))
-(add-to-list 'auto-mode-alist '("\\.jcs?\\'" . gitignore-mode))
 
 ;; temporary ALGOL
 (add-to-list 'auto-mode-alist '("\\.alg?\\'" . gitignore-mode))
@@ -96,6 +97,7 @@
   ;; jcs org mode key binding
   (define-key org-mode-map (kbd "C-d") 'jcs-kill-whole-line)
   (define-key org-mode-map "\C-c\C-c" 'kill-ring-save)
+  (define-key org-mode-map "\C-a" 'mark-whole-buffer)
   )
 (add-hook 'org-mode-hook 'jcs-org-mode)
 

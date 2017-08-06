@@ -1,9 +1,9 @@
 License information
 
  *******************************************************************
- *                  jcs-emacs-init Version 4.0.5
+ *                  jcs-emacs-init Version 4.1.2
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
- *              Copyright (c) 2016 by Jen-Chieh Shen
+ *              Copyright (c) 2015 by Jen-Chieh Shen
  *******************************************************************
 
 =======
