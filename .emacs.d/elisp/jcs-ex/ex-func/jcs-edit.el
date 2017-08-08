@@ -711,6 +711,16 @@ to the point."
 the point."
   (interactive)
 
+  (save-excursion
+    ;; Get the first 'Beginning of buffer's Point'.
+    (beginning-of-buffer)
+    (setq beginningBufferPoint (point)))
+
+  ;; If the point is at the first character, we will get the error.
+  ;; So move forward a character then check.
+  (if (= beginningBufferPoint (point))
+      (forward-char 1))
+
   (setq current-char (char-before))
   (setq current-char-string (string current-char))
   (setq current-char-char (string-to-char current-char-string))
@@ -725,8 +735,7 @@ the point."
 
         ;; check the first character mission complete.
         (setq check-first-char t)
-        )
-    )
+        ))
 
   (setq current-char (char-before))
   (setq current-char-string (string current-char))

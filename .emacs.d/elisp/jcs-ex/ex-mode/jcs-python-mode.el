@@ -112,6 +112,7 @@
   (define-key python-mode-map (kbd "<up>") 'jcs-py-indent-up)
   (define-key python-mode-map (kbd "<down>") 'jcs-py-indent-down)
   (define-key python-mode-map (kbd "SPC") 'jcs-py-space)
+  (define-key python-mode-map (kbd "<backspace>") 'jcs-py-backspace)
   )
 (add-hook 'python-mode-hook 'jcs-python-mode-hook)
 

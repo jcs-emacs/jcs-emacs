@@ -212,13 +212,42 @@ the current line."
   )
 
 ;;---------------------------------------------
+;; Mark
+;;---------------------------------------------
+
+;;;###autoload
+(defun is-mark-active ()
+  "Is mark active?
+
+@return { boolean } : true, is active. false, is not active.
+"
+  (and mark-active
+       (= (point) (mark))))
+
+;;---------------------------------------------
 ;; Region
 ;;---------------------------------------------
 
 ;;;###autoload
 (defun is-region-selected-p ()
-  "Is region active?"
+  "Is region active? But if `region-start' and `region-end' is at
+the same point this would not trigger. Which normally that mark
+is active but does not move at all.
+
+@return { boolean } : true, there is region selected. false, no
+region selected.
+"
   (use-region-p))
+
+;;;###autoload
+(defun is-mark-active-or-region-selected-p ()
+  "Complete check if the region and the mark is active.
+
+@return { boolean } : true, either region selected or mark is
+active. false, there is no region selected and mark is not active.
+"
+  (or (is-region-selected-p)
+      (is-mark-active)))
 
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-util.el file

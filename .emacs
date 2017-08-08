@@ -58,6 +58,7 @@ Return a list of installed packages or nil for every skipped package."
                           'ac-emmet
                           'ace-window
                           'ag
+                          'apache-mode
                           'auto-complete
                           'auto-complete-c-headers
                           'auto-install
@@ -65,6 +66,7 @@ Return a list of installed packages or nil for every skipped package."
                           'batch-mode
                           'better-defaults
                           'blank-mode
+                          'company
                           'cmake-font-lock
                           'cmake-ide
                           'cmake-mode
@@ -88,7 +90,11 @@ Return a list of installed packages or nil for every skipped package."
                           'github-notifier
                           'gitignore-mode
                           'gitlab
+                          'go-mode
                           'google-c-style
+                          'google-maps
+                          'google-this
+                          'google-translate
                           'helm
                           'helm-ag
                           'helm-gtags
@@ -98,6 +104,7 @@ Return a list of installed packages or nil for every skipped package."
                           'json-mode
                           'java-imports
                           'lua-mode
+                          'meghanada
                           'multiple-cursors
                           'nasm-mode
                           'neotree

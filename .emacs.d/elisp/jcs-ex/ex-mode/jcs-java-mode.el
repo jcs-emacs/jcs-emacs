@@ -31,8 +31,22 @@
 ;; JenChieh Java mode.
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+
+;;; Java Imports
+(require 'java-imports)
+;; See customization below for where to put java imports
+(setq
+ java-imports-find-block-function
+ 'java-imports-find-place-sorted-block)
+
+(add-hook 'jdee-mode-hook 'java-imports-scan-file)
+
+;;; Minor mode for Java Development
+;; SOURCE: https://github.com/mopemope/meghanada-emacs
+(require 'meghanada)
+
 (require 'jdee)
-(defun jcs-big-fun-java-hook ()
+(defun jcs-java-mode-hook ()
 
   ;; Abbrevation expansion
   (abbrev-mode 1)
@@ -40,8 +54,11 @@
   ;; highlight URL and clickable.
   (goto-address-mode 1)
 
-  (defun jcs-java-class-format ()
+  ;;; `meghanada' Configuration
+  (meghanada-mode t)
 
+
+  (defun jcs-java-class-format ()
     "Format the given file as a class. - JenChieh Java class"
 
     (jcs-global-file-info)
@@ -71,28 +88,21 @@
 
   ;; switch frame.
   (define-key java-mode-map "\ew" 'jcs-other-window-next)
-  (define-key java-mode-map "\eq" 'jcs-other-window-prev)
+  (define-key java-mode-map (kbd "M-q") 'jcs-other-window-prev)
+
+  ;; `java-imports'
+  (define-key java-mode-map (kbd "C-S-o") 'java-imports-add-import-dwim)
   )
+(add-hook 'java-mode-hook 'jcs-java-mode-hook)
+(add-to-list 'auto-mode-alist '("\\.java?\\'" . java-mode))
 
-(add-hook 'jdee-mode-hook 'jcs-big-fun-java-hook)
+;;(add-hook 'jdee-mode-hook 'jcs-java-mode-hook)
+;;(add-to-list 'auto-mode-alist '("\\.java?\\'" . jdee-mode))
 
-(add-to-list 'auto-mode-alist '("\\.java?\\'" . jdee-mode))
-
-;; (autoload 'jde-mode "~/.enacs.d/elpha/jdee-20160304.536/jdee.el" "JDE mode" t)
+;;(autoload 'jde-mode "~/.emacs.d/elpha/jdee-20160304.536/jdee.el" "JDE mode" t)
 ;; (setq auto-mode-alist
 ;;       (append '(("\\.java\\'" . jde-mode)) auto-mode-alist))
 
-;;====================================
-;;      Java Imports
-;;---------------------------
-(require 'java-imports)
-;; whatever you want to bind it to
-(define-key java-mode-map (kbd "M-I") 'java-imports-add-import-dwim)
-
-;; See customization below for where to put java imports
-(setq java-imports-find-block-function 'java-imports-find-place-sorted-block)
-
-(add-hook 'java-mode-hook 'java-imports-scan-file)
 
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-java-mode.el file

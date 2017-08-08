@@ -34,6 +34,8 @@
 ;;; TOPIC: Navigating Parentheses
 ;;; SOURCE: https://www.emacswiki.org/emacs/NavigatingParentheses
 
+;; Record down the current searching character.
+(setq jcs-current-search-char "")
 
 (setq jcs-search-trigger-forward-char 0)
 (setq jcs-search-trigger-backward-char 0)
@@ -42,6 +44,15 @@
 (defun jcs-move-to-forward-a-char (ch)
   "Move forward to a character."
   (interactive "P")
+
+  ;; If the last current is not the same as current character
+  ;; reset the 'search wrapper' flag.
+  (if (not (string= jcs-current-search-char ch))
+      (progn
+        (setq jcs-search-trigger-forward-char 0)
+        (setq jcs-current-search-char ch)
+        ))
+
   (setq point-before-do-anything (point))
 
   (if (looking-at ch) (forward-char 1))
@@ -80,6 +91,15 @@
 (defun jcs-move-to-backward-a-char (ch)
   "Move backward to a character."
   (interactive "P")
+
+  ;; If the last current is not the same as current character
+  ;; reset the 'search wrapper' flag.
+  (if (not (string= jcs-current-search-char ch))
+      (progn
+        (setq jcs-search-trigger-backward-char 0)
+        (setq jcs-current-search-char ch)
+        ))
+
   (setq point-before-do-anything (point))
 
   ;; so lets just search back part of the parenthesis
@@ -125,6 +145,7 @@
 (defun jcs-move-forward-open-close-epair (openChar closeChar)
   "Move forward to a open/close parenthesis."
   (interactive "P")
+
   ;; starting point
   (setq point-before-do-anything (point))
 

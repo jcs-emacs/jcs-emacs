@@ -55,6 +55,9 @@
   ;; jcs key binding
   (define-key sh-mode-map (kbd "C-d") 'jcs-kill-whole-line)
   (define-key sh-mode-map "\C-c\C-c" 'kill-ring-save)
+
+  (define-key sh-mode-map (kbd "<up>") 'previous-line)
+  (define-key sh-mode-map (kbd "<down>") 'next-line)
   )
 (add-hook 'sh-mode-hook 'jcs-sh-script-hook)
 

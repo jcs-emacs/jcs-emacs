@@ -167,6 +167,7 @@
                     css-mode
                     emacs-lisp-mode
                     emmet-mode
+                    go-mode
                     jdee-mode
                     js2-mode
                     lua-mode

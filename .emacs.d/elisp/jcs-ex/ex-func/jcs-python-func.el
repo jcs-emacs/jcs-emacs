@@ -121,7 +121,7 @@ line instead of indent the whole file at once."
 
 
   ;; Do nothing if is trying to highlight anything.
-  (if (not (is-region-selected-p))
+  (if (not (is-mark-active-or-region-selected-p))
       ;; if not the comment line.
       (if (not (eq isCommentLine t))
           (progn
@@ -161,7 +161,7 @@ line instead of indent the whole file at once."
           )))
 
   ;; Do nothing if is trying to highlight anything.
-  (if (not (is-region-selected-p))
+  (if (not (is-mark-active-or-region-selected-p))
       ;; if not the comment line.
       (if (not (eq isCommentLine t))
           (progn
@@ -191,6 +191,22 @@ the space."
     (insert " ")))
 
 ;;;###autoload
+(defun jcs-py-backspace ()
+  "Backspace key for `python-mode'. If the current cursor position
+is infront of the first character in the line we delete fource
+spaces instead of `py-electric-backspace'."
+  (interactive)
+
+  (if (is-met-first-char-at-line-p)
+      (progn
+        ;; delete four spaces
+        (backward-delete-char 1)
+        (backward-delete-char 1)
+        (backward-delete-char 1)
+        (backward-delete-char 1))
+    (py-electric-backspace)))
+
+;;;###autoload
 (defun jcs-py-check-first-char-of-line-is-keyword-p ()
   "Check the first character of the current line the keyword line.
 SEE(jenchieh): keyword is listed below in
@@ -218,9 +234,12 @@ vector list."
   (interactive)
 
   (setq jcs-python-keyword-list
-        ["def"
-         "staticmethod"
+        ["class"
          "classmethod"
+         "def"
+         "from"
+         "import"
+         "staticmethod"
          ])
 
   (setq index 0)
