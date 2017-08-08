@@ -7,10 +7,27 @@
 # ========================================================================
 
 
+2017-08-08
+* Fix move forward capital char bug. (jcs-emacs-init)
+* Update `jcs-java-mode'. (jcs-emacs-init)
+* Intall package `meghanada'. (jcs-emacs-init)
+
+2017-08-07
+* Install package `google-translate'. (jcs-emacs-init)
+* Install package `google-maps'. (jcs-emacs-init)
+* Install package `go-mode'. (jcs-emacs-init)
+* Install package `google-this'. (jcs-emacs-init)
+
+2017-08-06
+* Implements `python-mode' compatible with whitespace, so I do 
+not necessary use tab for programming python. (jcs-emacs-init)
+* Update some of the `jcs-shell-mode-hook' key bindings. (jcs-
+ emacs-init)
+
 2017-08-05
 * Remove package `dashboard', seems like the package no longer
  working. (jcs-emacs-init)
- * Change the theme color abit. (jcs-emacs-init)
+* Change the theme color abit. (jcs-emacs-init)
 
 2017-08-04
 * Install package `dashboard'. (jcs-emacs-init)
