@@ -7,6 +7,13 @@
 # ========================================================================
 
 
+2017-09-12
+* Add generated code for jcs-cc-mode specific for constructor
+ and destructor. (jcs-emacs-init)
+
+2017-08-17
+* Add jcs-sass-mode for sass language. (jcs-emacs-init)
+
 2017-08-11
 * jcs python mode module test failed, fixed bugs to the better
  jcs python mode. (jcs-emacs-init)
