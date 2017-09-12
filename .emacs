@@ -113,6 +113,8 @@ Return a list of installed packages or nil for every skipped package."
                           'py-autopep8
                           'python-mode
                           'rainbow-mode
+                          'ssass-mode
+                          'scss-mode
                           'sublimity
                           'undo-tree
                           'impatient-mode
@@ -165,6 +167,8 @@ Return a list of installed packages or nil for every skipped package."
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-xml-mode.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-txt-mode.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-shader-mode.el")
+(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-sass-mode.el")
+(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-scss-mode.el")
 
 ;;; Do stuff after initialize.
 (load-file "~/.emacs.d/elisp/jcs-ex/jcs-after-init.el")

@@ -55,23 +55,26 @@
   (goto-address-mode 1)
 
   ;;; `meghanada' Configuration
-  (meghanada-mode t)
+  ;;(meghanada-mode t)
 
 
   (defun jcs-java-class-format ()
     "Format the given file as a class. - JenChieh Java class"
 
-    (jcs-global-file-info)
+    (if (is-current-file-empty-p)
+        (progn
+          (jcs-global-file-info)
 
-    (setq BaseFileName (file-name-sans-extension (file-name-nondirectory buffer-file-name)))
+          (setq BaseFileName (file-name-sans-extension (file-name-nondirectory buffer-file-name)))
 
-    (insert "\n\n")
-    (insert "public class ")
-    (push-mark)
-    (insert BaseFileName)
-    (pop-mark)
-    (insert " {\n\n}\n\n")
-    )
+          (insert "\n\n")
+          (insert "public class ")
+          (push-mark)
+          (insert BaseFileName)
+          (pop-mark)
+          (insert " {\n\n}\n\n")
+          )
+      ))
 
   (cond ((file-exists-p buffer-file-name) t)
         ((string-match "[.]java" buffer-file-name) (jcs-java-class-format))

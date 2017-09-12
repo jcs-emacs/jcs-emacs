@@ -7,6 +7,11 @@
 # ========================================================================
 
 
+2017-08-11
+* jcs python mode module test failed, fixed bugs to the better
+ jcs python mode. (jcs-emacs-init)
+* add 'use strict' while create the js file. (jcs-emacs-init)
+
 2017-08-08
 * Fix move forward capital char bug. (jcs-emacs-init)
 * Update `jcs-java-mode'. (jcs-emacs-init)

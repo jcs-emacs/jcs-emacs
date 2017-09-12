@@ -103,40 +103,15 @@ line instead of indent the whole file at once."
   "Move to previous line and indent for `python-mode'."
   (interactive)
 
-  (setq isCommentLine nil)
-
-  (save-excursion
-    (previous-line 1)
-
-    ;; if not the empty line
-    (if (not (current-line-totally-empty-p))
-        (progn
-          (back-to-indentation)
-          (forward-char 1)
-          ;; check if current line comment!
-          (if (or (current-char-equal-p "#")
-                  (jcs-py-check-first-char-of-line-is-keyword-p))
-              (setq isCommentLine t))
-          )))
-
-
-  ;; Do nothing if is trying to highlight anything.
-  (if (not (is-mark-active-or-region-selected-p))
-      ;; if not the comment line.
-      (if (not (eq isCommentLine t))
-          (progn
-            (save-excursion
-              (previous-line 1)
-              ;; NOTE(jenchieh): this will break the
-              ;; region select.
-              (py-indent-line-outmost)))))
-
   (previous-line 1)
 
-  ;; Is at the front of the first character, we automatically
-  ;; move to the first character.
-  (if (is-met-first-char-at-line-p)
-      (back-to-indentation))
+  (if (current-line-empty-p)
+      (progn
+        (if (not (is-mark-active-or-region-selected-p))
+            (py-indent-line-outmost)))
+    (progn
+      (if (is-met-first-char-at-line-p)
+          (back-to-indentation))))
   )
 
 ;;;###autoload
@@ -144,39 +119,15 @@ line instead of indent the whole file at once."
   "Move to next line and indent for `python-mode'."
   (interactive)
 
-  (setq isCommentLine nil)
-
-  (save-excursion
-    (next-line 1)
-
-    ;; if not the empty line
-    (if (not (current-line-totally-empty-p))
-        (progn
-          (back-to-indentation)
-          (forward-char 1)
-          ;; check if current line comment!
-          (if (or (current-char-equal-p "#")
-                  (jcs-py-check-first-char-of-line-is-keyword-p))
-              (setq isCommentLine t))
-          )))
-
-  ;; Do nothing if is trying to highlight anything.
-  (if (not (is-mark-active-or-region-selected-p))
-      ;; if not the comment line.
-      (if (not (eq isCommentLine t))
-          (progn
-            (save-excursion
-              (next-line 1)
-              ;; NOTE(jenchieh): this will break the
-              ;; region select.
-              (py-indent-line-outmost)))))
-
   (next-line 1)
 
-  ;; Is at the front of the first character, we automatically
-  ;; move to the first character.
-  (if (is-met-first-char-at-line-p)
-      (back-to-indentation))
+  (if (current-line-empty-p)
+      (progn
+        (if (not (is-mark-active-or-region-selected-p))
+            (py-indent-line-outmost)))
+    (progn
+      (if (is-met-first-char-at-line-p)
+          (back-to-indentation))))
   )
 
 ;;;###autoload
@@ -186,8 +137,11 @@ infront of the first character we indent the line instead of insert
 the space."
   (interactive)
 
-  (if (is-met-first-char-at-line-p)
-      (py-indent-line-outmost)
+  (if (or (is-met-first-char-at-line-p)
+          (is-beginning-of-line-p))
+      (progn
+        ;; insert 4 spaces.
+        (insert "    "))
     (insert " ")))
 
 ;;;###autoload
@@ -199,11 +153,22 @@ spaces instead of `py-electric-backspace'."
 
   (if (is-met-first-char-at-line-p)
       (progn
-        ;; delete four spaces
-        (backward-delete-char 1)
-        (backward-delete-char 1)
-        (backward-delete-char 1)
-        (backward-delete-char 1))
+        (if (use-region-p)
+            (progn
+              (delete-region (region-beginning) (region-end)))
+          (progn
+            (if (not (is-beginning-of-line-p))
+                (progn
+                  ;; delete four spaces
+                  (backward-delete-char 1)
+                  (backward-delete-char 1)
+                  (backward-delete-char 1)
+                  (backward-delete-char 1))
+              (progn
+                (backward-delete-char 1)
+                ))
+            )
+          ))
     (py-electric-backspace)))
 
 ;;;###autoload

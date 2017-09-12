@@ -53,7 +53,7 @@
   ;; check if inside the comment block.
   (if (and (nth 4 (syntax-ppss)))
       (progn
-        
+
         (setq last (point))
 
         ;; check the '/*' and '*/' on the same line?
@@ -172,16 +172,25 @@ comment region. Otherwise comment line."
   (if (and mark-active
            (/= (point) (mark)))
       (progn
+
+        (setq before-comment-point (point))
+
+        (if (is-met-first-char-at-line-p)
+            (progn
+              (safe-forward-char)
+              (safe-forward-char)
+              (safe-forward-char)))
+
         (if (nth 4 (syntax-ppss))
             (progn
-              (uncomment-region (region-beginning) (region-end))
-              )
-          (comment-region (region-beginning) (region-end))
-          )
-        )
-    ;; else we just comment one single line.
-    (toggle-comment-on-line)
-    )
+              (goto-char before-comment-point)
+              (uncomment-region (region-beginning) (region-end)))
+          (progn
+            (goto-char before-comment-point)
+            (comment-region (region-beginning) (region-end)))))
+    (progn
+      ;; else we just comment one single line.
+      (toggle-comment-on-line)))
   )
 
 ;;;###autoload

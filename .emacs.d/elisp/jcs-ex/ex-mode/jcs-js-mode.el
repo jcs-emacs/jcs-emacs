@@ -71,8 +71,9 @@
     (jcs-global-file-info)
 
     ;; do JavaScript specific thing here...
-    (insert "\n\n") ;; currently nothing.
-
+    (insert "\n")
+    (insert "\"use strict\";")
+    (insert "\n\n")
     )
 
   (cond ((file-exists-p buffer-file-name) t)

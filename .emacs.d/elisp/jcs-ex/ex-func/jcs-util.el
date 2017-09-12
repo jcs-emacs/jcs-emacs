@@ -132,14 +132,18 @@
   "Is at the end of line?"
   (save-excursion
     (setq currentPoint (point))
-
     (end-of-line)
-    (setq endLinePoint (point))
-    )
+    (setq endLinePoint (point)))
+  (= endLinePoint currentPoint))
 
-  ;; return value.
-  (= endLinePoint currentPoint)
-  )
+;;;###autoload
+(defun is-end-of-buffer-p ()
+  "Is at the end of buffer?"
+  (save-excursion
+    (setq currentPoint (point))
+    (end-of-buffer)
+    (setq endBufferPoint (point)))
+  (= endBufferPoint currentPoint))
 
 ;;;###autoload
 (defun is-beginning-of-line-p ()
@@ -148,9 +152,22 @@
     (setq currentPoint (point))
     (beginning-of-line)
     (setq beginLinePoint (point)))
-
-  ;; return value.
   (= beginLinePoint currentPoint))
+
+;;;###autoload
+(defun is-beginning-of-buffer-p ()
+  "Is at the beginning of buffer?"
+  (save-excursion
+    (setq currentPoint (point))
+    (beginning-of-buffer)
+    (setq beginBufferPoint (point)))
+  (= beginBufferPoint currentPoint))
+
+(defun is-current-file-empty-p ()
+  "Check if the file a empty file."
+  (and (is-beginning-of-buffer-p)
+       (is-end-of-buffer-p))
+  )
 
 ;;;###autoload
 (defun is-current-line (line)
@@ -170,8 +187,11 @@
 ;;;###autoload
 (defun is-met-first-char-at-line-p ()
   "Check current cursor point is after the first character at
-the current line."
+the current line.
 
+@return { boolean } : true, infront of first character. false,
+vice versa.
+"
   (setq isInfrontOfFirstChar t)
 
   (save-excursion
@@ -189,6 +209,19 @@ the current line."
 
   (eq isInfrontOfFirstChar t))
 
+;;;###autoload
+(defun safe-forward-char ()
+  "Forward a char if not the end of the line."
+  (if (not (is-beginning-of-line-p))
+      (forward-char 1))
+  )
+
+;;;###autoload
+(defun safe-backward-char ()
+  "Backward a char if not the beginning of the line."
+  (if (not (is-end-of-line-p))
+      (backward-char 1))
+  )
 
 ;;---------------------------------------------
 ;; Move between button.

@@ -94,6 +94,19 @@ This command does not push text to `kill-ring'."
   (next-line 1)
   (yank))
 
+;;;###autoload
+(defun jcs-previous-line ()
+  "Calling `previous-line' does not execute. Just use this without
+remember Emacs Lisp function."
+  (interactive)
+  (previous-line 1))
+
+;;;###autoload
+(defun jcs-next-line ()
+  "Calling `next-line' does not execute. Just use this without
+remember Emacs Lisp function."
+  (interactive)
+  (next-line 1))
 
 ;;---------------------------------------------
 ;; After moving UP one line, do identation.
