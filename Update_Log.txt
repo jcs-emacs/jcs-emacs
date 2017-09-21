@@ -9,6 +9,7 @@
 
 2017-09-21
 * Add adaptive-wrap package for HTML editing. (jcs-emacs-init)
+* Re-enable visual-line-mode when save in web-mode. (jcs-emacs-init)
 
 2017-09-12
 * Add generated code for jcs-cc-mode specific for constructor
