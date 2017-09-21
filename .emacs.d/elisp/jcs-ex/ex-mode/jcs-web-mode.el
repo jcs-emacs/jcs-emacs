@@ -34,6 +34,21 @@
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 ;;============================
+;; Truncate Lines
+;;URL(jenchieh): https://emacs.stackexchange.com/questions/14589/correct-indentation-for-wrapped-lines
+
+(require 'adaptive-wrap)
+
+(with-eval-after-load 'adaptive-wrap
+  (setq-default adaptive-wrap-extra-indent 0))
+
+(add-hook 'visual-line-mode-hook
+          (lambda ()
+            (adaptive-wrap-prefix-mode +1)
+            (diminish 'visual-line-mode)))
+
+
+;;============================
 ;; Real time editing mark down (impatient-mode)
 
 ;; Note for "Impatient Mode" (real time editing)
@@ -87,8 +102,6 @@
 ;; web-mode.el
 ;; homepage - http://web-mode.org/
 
-;; Load path
-
 ;; list of  extensions that will take effect of this mode
 (require 'web-mode)
 (defun jcs-web-mode-hook ()
@@ -104,6 +117,12 @@
 
   ;; highlight URL and clickable.
   (goto-address-mode 1)
+
+  ;; enable truncate lines.
+  (toggle-truncate-lines)
+
+  ;; align truncate lines use.
+  (visual-line-mode t)
 
   (defun jcs-html-format ()
     "Format the give file. - JenChieh HTML file"
