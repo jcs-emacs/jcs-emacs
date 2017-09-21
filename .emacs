@@ -57,6 +57,7 @@ Return a list of installed packages or nil for every skipped package."
                           'ac-js2
                           'ac-emmet
                           'ace-window
+                          'adaptive-wrap
                           'ag
                           'apache-mode
                           'auto-complete
