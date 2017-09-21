@@ -175,6 +175,7 @@ line instead of indent the whole file at once."
   "Save buffer in `web-mode'."
   (interactive)
   (jcs-web-format-document)
+  (visual-line-mode t)
   (jcs-save-buffer)
   )
 
