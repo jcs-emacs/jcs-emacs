@@ -7,6 +7,11 @@
 # ========================================================================
 
 
+2017-09-25
+* Fix file naming for some file in ex-mode directory. (jcs-emacs-init)
+* add `jcs-sql-mode.el' to ex-mode directory, meanwhile my emacs
+ confi support editing SQL file. (jcs-emacs-init)
+
 2017-09-21
 * Add adaptive-wrap package for HTML editing. (jcs-emacs-init)
 * Re-enable visual-line-mode when save in web-mode. (jcs-emacs-init)
