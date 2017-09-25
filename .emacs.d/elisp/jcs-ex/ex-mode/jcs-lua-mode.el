@@ -13,12 +13,12 @@
 
 ;; Copyright (C) 2017 Jen-Chieh Shen
 
-;; jcs-function is free software: you can redistribute it and/or modify
+;; jcs-lua-mode is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
 ;; the Free Software Foundation, either version 3 of the License, or
 ;; (at your option) any later version.
 
-;; jcs-function is distributed in the hope that it will be useful,
+;; jcs-lua-mode is distributed in the hope that it will be useful,
 ;; but WITHOUT ANY WARRANTY; without even the implied warranty of
 ;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 ;; GNU General Public License for more details.
@@ -43,9 +43,7 @@
   (goto-address-mode 1)
 
   (defun jcs-lua-script-format ()
-
     "Format the given file as a class. - JenChieh Lua Script"
-
     (interactive)
 
     ;; macro

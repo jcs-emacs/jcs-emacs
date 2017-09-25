@@ -1,7 +1,7 @@
-;; This is the start of jcs-oython-func.el file
+;; This is the start of jcs-python-func.el file
 ;;------------------------------------------------------------------------------------------------------
 
-;; jcs-oython-func.el             -*- Emacs-Lisp -*-
+;; jcs-python-func.el             -*- Emacs-Lisp -*-
 
 ;; Mode for editing JayCeS code
 
@@ -218,4 +218,4 @@ vector list."
   (eq isKeyword t))
 
 ;;------------------------------------------------------------------------------------------------------
-;; This is the end of jcs-oython-func.el file
+;; This is the end of jcs-python-func.el file

@@ -127,6 +127,23 @@ remember Emacs Lisp function."
     (previous-line 1))
   )
 
+;;;###autoload
+(defun jcs-smart-indent-up-by-mode ()
+  ""
+  (interactive)
+  (if (and (not mark-active)
+           (buffer-file-name)
+           ;;(nth 4 (syntax-ppss))    ;; check if whole line in comment
+           )
+      (progn
+        (previous-line 1)
+        (indent-according-to-mode)
+        )
+    ;; else
+    (previous-line 1))
+  )
+
+
 ;;---------------------------------------------
 ;; After moving DOWN one line, do identation.
 ;;---------------------------------------------
@@ -146,7 +163,21 @@ remember Emacs Lisp function."
     (next-line 1))
   )
 
-;; jcs smart select
+;;;###autoload
+(defun jcs-smart-indent-down-by-mode ()
+  ""
+  (interactive)
+  (if (and (not mark-active)
+           (buffer-file-name)
+           ;;(nth 4 (syntax-ppss))    ;; check if whole line in comment
+           )
+      (progn
+        (next-line 1)
+        (indent-according-to-mode)
+        )
+    ;; else
+    (next-line 1))
+  )
 
 ;;---------------------------------------------
 ;; Set it goto the beginning of the buffer from

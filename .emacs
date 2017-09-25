@@ -117,6 +117,7 @@ Return a list of installed packages or nil for every skipped package."
                           'ssass-mode
                           'scss-mode
                           'sublimity
+                          'sql-indent
                           'undo-tree
                           'impatient-mode
                           'web-mode
@@ -170,6 +171,7 @@ Return a list of installed packages or nil for every skipped package."
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-shader-mode.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-sass-mode.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-scss-mode.el")
+(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-sql-mode.el")
 
 ;;; Do stuff after initialize.
 (load-file "~/.emacs.d/elisp/jcs-ex/jcs-after-init.el")

@@ -13,12 +13,12 @@
 
 ;; Copyright (C) 2017 Jen-Chieh Shen
 
-;; jcs-function is free software: you can redistribute it and/or modify
+;; jcs-python-mode is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
 ;; the Free Software Foundation, either version 3 of the License, or
 ;; (at your option) any later version.
 
-;; jcs-function is distributed in the hope that it will be useful,
+;; jcs-python-mode is distributed in the hope that it will be useful,
 ;; but WITHOUT ANY WARRANTY; without even the implied warranty of
 ;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 ;; GNU General Public License for more details.
@@ -96,7 +96,7 @@
         ((string-match "[.]py" buffer-file-name) (jcs-python-class-format))
         )
 
-  ;; jcs java key binding
+  ;; jcs python key binding
   (define-key python-mode-map (kbd "C-d") 'jcs-kill-whole-line)
   (define-key python-mode-map "\C-c\C-c" 'kill-ring-save)
   (define-key python-mode-map [C-backspace] 'jcs-backward-delete-word)
