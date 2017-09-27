@@ -97,11 +97,11 @@ wrap by another function..."
 
   (if (and (not (current-whitespacep))
            (not (current-char-equal-p "$"))
-           (not (jcs-current-char-capital)))
+           (not (jcs-current-char-uppercasep)))
       (jcs-web-backward-delete-word-capital)
     )
 
-  (if (and (jcs-current-char-capital)
+  (if (and (jcs-current-char-uppercasep)
            (not (current-char-equal-p "$")))
       (backward-delete-char 1))
   )
