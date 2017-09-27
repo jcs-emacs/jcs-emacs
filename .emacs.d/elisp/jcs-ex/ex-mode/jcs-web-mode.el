@@ -184,6 +184,10 @@
   ;; comment block
   (define-key web-mode-map (kbd "RET") 'jcs-smart-context-line-break)
   (define-key web-mode-map (kbd "*") 'jcs-c-comment-pair)
+
+  ;; PHP
+  (define-key web-mode-map [C-backspace] 'jcs-web-backward-delete-word)
+  (define-key web-mode-map "\377" 'jcs-web-backward-delete-word-capital)
   )
 (add-hook 'web-mode-hook 'emmet-mode)
 (add-hook 'web-mode-hook  'jcs-web-mode-hook)
