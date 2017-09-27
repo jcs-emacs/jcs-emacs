@@ -7,6 +7,10 @@
 # ========================================================================
 
 
+2017-09-27
+* Add `jcs-backward-delete-word' and `jcs-backward-delete-word-capital'
+ for PHP variable naming convention. (jcs-emacs-init)
+
 2017-09-25
 * Fix file naming for some file in ex-mode directory. (jcs-emacs-init)
 * add `jcs-sql-mode.el' to ex-mode directory, meanwhile my emacs
