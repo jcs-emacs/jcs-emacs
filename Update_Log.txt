@@ -10,6 +10,8 @@
 2017-09-27
 * Add `jcs-backward-delete-word' and `jcs-backward-delete-word-capital'
  for PHP variable naming convention. (jcs-emacs-init)
+* Add current uppercase letter and lowercase letter check in
+ 'jcs-util' file. (jcs-emacs-init)
 
 2017-09-25
 * Fix file naming for some file in ex-mode directory. (jcs-emacs-init)
