@@ -75,6 +75,37 @@ wrap by another function..."
   (yank)
   )
 
+;;;###autoload
+(defun jcs-web-backward-delete-word ()
+  "Web backward delete the word, fit PHP variable naming."
+  (interactive)
+
+  (backward-delete-char 1)
+
+  (if (and (not (current-whitespacep))
+           (not (current-char-equal-p "$")))
+      (jcs-web-backward-delete-word)
+    )
+  )
+
+;;;###autoload
+(defun jcs-web-backward-delete-word-capital ()
+  "Web backward delete word capital, fit PHP variable naming."
+  (interactive)
+
+  (backward-delete-char 1)
+
+  (if (and (not (current-whitespacep))
+           (not (current-char-equal-p "$"))
+           (not (jcs-current-char-capital)))
+      (jcs-web-backward-delete-word-capital)
+    )
+
+  (if (and (jcs-current-char-capital)
+           (not (current-char-equal-p "$")))
+      (backward-delete-char 1))
+  )
+
 ;;========================================
 ;;      JCS Format File
 ;;----------------------------------
