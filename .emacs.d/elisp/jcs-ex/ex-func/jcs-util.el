@@ -80,7 +80,16 @@
 (defun uppercasep (c) (and (wordp c) (= c (upcase c))))
 (defun whitespacep (c) (= 32 (char-syntax c)))
 
+(defun jcs-current-char-capital()
+  "Check if current character a capital character?"
+  (setq current-char (char-before))
+  (setq current-char-string (string current-char))
+  (setq current-char-char (string-to-char current-char-string))
+  (uppercasep current-char-char)
+  )
+
 (defun current-whitespacep ()
+  "Check if current character a whitespace character?"
   (setq current-char (char-before))
   (setq current-char-string (string current-char))
   (setq current-char-char (string-to-char current-char-string))
