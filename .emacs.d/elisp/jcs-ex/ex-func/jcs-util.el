@@ -13,12 +13,12 @@
 
 ;; Copyright (C) 2016 Jen-Chieh Shen
 
-;; jcs-function is free software: you can redistribute it and/or modify
+;; jcs-util is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
 ;; the Free Software Foundation, either version 3 of the License, or
 ;; (at your option) any later version.
 
-;; jcs-function is distributed in the hope that it will be useful,
+;; jcs-util is distributed in the hope that it will be useful,
 ;; but WITHOUT ANY WARRANTY; without even the implied warranty of
 ;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 ;; GNU General Public License for more details.
@@ -81,7 +81,7 @@
 (defun whitespacep (c) (= 32 (char-syntax c)))
 
 (defun jcs-current-char-uppercasep()
-  "Check if current character a capital character?"
+  "Check if current character a uppercase character?"
   (setq current-char (char-before))
   (setq current-char-string (string current-char))
   (setq current-char-char (string-to-char current-char-string))
@@ -90,7 +90,7 @@
 
 (defun jcs-current-char-lowercasep ()
   "Check if current character a lowercase character?"
-  (not (jcs-current-char-capital))
+  (not (jcs-current-char-uppercasep))
   )
 
 (defun current-whitespacep ()
