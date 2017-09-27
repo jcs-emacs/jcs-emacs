@@ -61,9 +61,8 @@
     (setq BaseFileNameWithExtension (file-name-nondirectory buffer-file-name))
 
     (insert "/*\n")
-    (insert "\n")
 
-    (insert " Service Data Transfer")
+    (insert " Service Platform Data Transfer\n")
     (insert "\n")
 
     (insert " Source Server         : $server_name$\n")
