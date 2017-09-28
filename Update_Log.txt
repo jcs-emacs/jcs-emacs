@@ -8,6 +8,10 @@
 
 
 2017-09-28
+* Add check current character a proper character not a sign or 
+ something else. (jcs-emacs-init)
+* Fix Web mode backward delete word and backward delete word
+ capital. (jcs-emacs-init)
 * Add timestamp version 3 to jcs-util file. (jcs-emacs-init)
 * Change init format for SQL file. (jcs-emacs-init)
 
