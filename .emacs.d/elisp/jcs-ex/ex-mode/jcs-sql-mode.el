@@ -62,23 +62,23 @@
 
     (insert "/*\n")
 
-    (insert " Service Platform Data Transfer\n")
+    (insert "Service Platform Data Transfer\n")
     (insert "\n")
 
-    (insert " Source Server         : $server_name$\n")
-    (insert " Source Server Type    : $server_type$\n")
-    (insert " Source Server Version : $server_version$\n")
-    (insert " Source Host           : $hostname$\n")
-    (insert " Source Schema         : $schema$\n")
+    (insert "Source Server         : $server_name$\n")
+    (insert "Source Server Type    : $server_type$\n")
+    (insert "Source Server Version : $server_version$\n")
+    (insert "Source Host           : $hostname$\n")
+    (insert "Source Schema         : $schema$\n")
     (insert "\n")
 
-    (insert " Target Server Type    : $server_type$\n")
-    (insert " Target Server Version : $server_version$\n")
-    (insert " File Encoding         : $file_encoding$\n")
+    (insert "Target Server Type    : $server_type$\n")
+    (insert "Target Server Version : $server_version$\n")
+    (insert "File Encoding         : $file_encoding$\n")
     (insert "\n")
 
-    (insert " Date: ")
-    (jcs-timestamp-ver2)
+    (insert "Date: ")
+    (jcs-timestamp-ver3)
     (insert "\n")
 
     (insert "*/\n")
