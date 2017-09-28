@@ -47,6 +47,10 @@
   (interactive)
   (insert (format-time-string "%Y/%m/%d %H:%M:%S")))
 
+(defun jcs-timestamp-ver3 ()
+  (interactive)
+  (insert (format-time-string "%Y-%m-%d %H:%M:%S")))
+
 ;;---------------------------------------------
 ;; Make the data base on the format provided.
 ;;---------------------------------------------
