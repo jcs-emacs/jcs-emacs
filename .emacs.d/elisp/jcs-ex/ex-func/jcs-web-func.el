@@ -83,7 +83,8 @@ wrap by another function..."
   (backward-delete-char 1)
 
   (if (and (not (current-whitespacep))
-           (not (current-char-equal-p "$")))
+           (not (current-char-equal-p "$"))
+           (jcs-current-char-a-wordp))
       (jcs-web-backward-delete-word)
     )
   )
@@ -97,7 +98,8 @@ wrap by another function..."
 
   (if (and (not (current-whitespacep))
            (not (current-char-equal-p "$"))
-           (not (jcs-current-char-uppercasep)))
+           (not (jcs-current-char-uppercasep))
+           (jcs-current-char-a-wordp))
       (jcs-web-backward-delete-word-capital)
     )
 
