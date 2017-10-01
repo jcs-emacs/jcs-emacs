@@ -7,6 +7,9 @@
 # ========================================================================
 
 
+2017-10-01
+* Include header format file once bug fixed. (jcs-emacs-init)
+
 2017-09-28
 * Add check current character a proper character not a sign or 
  something else. (jcs-emacs-init)
