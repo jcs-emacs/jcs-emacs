@@ -128,41 +128,47 @@
     "Format the give file. - JenChieh HTML file"
     (interactive)
 
-    ;; macro
-    (setq BaseFileName (file-name-sans-extension (file-name-nondirectory buffer-file-name)))
+    (if (is-current-file-empty-p)
+        (progn
+          ;; macro
+          (setq BaseFileName (file-name-sans-extension (file-name-nondirectory buffer-file-name)))
 
-    ;; insert tag header
-    (jcs-tag-file-info)
+          ;; insert tag header
+          (jcs-tag-file-info)
 
-    ;; insert HTML common format
-    (insert "<!DOCTYPE html>\n")
-    (insert "<html>\n")
-    (insert "<head>\n")
-    (insert "<title>")
-    (push-mark)
-    (insert BaseFileName)
-    (pop-mark)
-    (insert "</title>\n")
-    (insert "<meta charset=\"UTF-8\">\n\n")
-    (insert "</head>\n")
-    (insert "<body>\n\n\n")
-    (insert "</body>\n")
-    (insert "</html>\n")
+          ;; insert HTML common format
+          (insert "<!DOCTYPE html>\n")
+          (insert "<html>\n")
+          (insert "<head>\n")
+          (insert "<title>")
+          (push-mark)
+          (insert BaseFileName)
+          (pop-mark)
+          (insert "</title>\n")
+          (insert "<meta charset=\"UTF-8\">\n\n")
+          (insert "</head>\n")
+          (insert "<body>\n\n\n")
+          (insert "</body>\n")
+          (insert "</html>\n")
 
-    ;; format the document once
-    (jcs-format-document)
+          ;; format the document once
+          (jcs-format-document)
+          ))
     )
 
   (defun jcs-php-format ()
     "Format the give file. - JenChieh PHP file"
     (interactive)
 
-    ;; insert tag header
-    (jcs-tag-file-info)
+    (if (is-current-file-empty-p)
+        (progn
+          ;; insert tag header
+          (jcs-tag-file-info)
 
-    ;; insert PHP common format
-    (insert "<?php\n\n")
-    (insert "?>\n")
+          ;; insert PHP common format
+          (insert "<?php\n\n")
+          (insert "?>\n")
+          ))
     )
 
   (cond ((file-exists-p buffer-file-name) t)
@@ -346,10 +352,13 @@
     "Format the give file. - JenChieh CSS file"
     (interactive)
 
-    (insert "@charset \"UTF-8\";\n")
+    (if (is-current-file-empty-p)
+        (progn
+          (insert "@charset \"UTF-8\";\n")
 
-    (jcs-global-file-info)
-    (insert "\n\n")
+          (jcs-global-file-info)
+          (insert "\n\n")
+          ))
     )
 
   (cond ((file-exists-p buffer-file-name) t)

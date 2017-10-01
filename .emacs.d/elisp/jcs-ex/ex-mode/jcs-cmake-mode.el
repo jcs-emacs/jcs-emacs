@@ -41,10 +41,15 @@
 
   (defun jcs-makefile-format ()
     "Format the given file as a makefile. - JenChieh Makefile"
-    (jcs-manage-file-info)
-    (jcs-makefile-format-info)
 
-    (beginning-of-buffer)
+    (if (is-current-file-empty-p)
+        (progn
+
+          (jcs-manage-file-info)
+          (jcs-makefile-format-info)
+
+          (beginning-of-buffer)
+          ))
     )
 
   (cond ((file-exists-p buffer-file-name) t)

@@ -45,51 +45,55 @@
   (defun jcs-python-class-format ()
     "Format the given file as a class. - JenChieh Python class"
 
-    (jcs-manage-file-info)
 
-    ;; define macro
-    (setq BaseFileName (file-name-sans-extension (file-name-nondirectory buffer-file-name)))
-    (setq BaseFileNameWithExtension (file-name-nondirectory buffer-file-name))
+    (if (is-current-file-empty-p)
+        (progn
+          (jcs-manage-file-info)
 
-    (insert "class ")
-    (insert BaseFileName)
-    (insert "(object):\n\n")
+          ;; define macro
+          (setq BaseFileName (file-name-sans-extension (file-name-nondirectory buffer-file-name)))
+          (setq BaseFileNameWithExtension (file-name-nondirectory buffer-file-name))
 
-    (insert "    \"\"\"TODO(jenchieh): Class Description here...\"\"\"")
-    (insert "\n\n")
+          (insert "class ")
+          (insert BaseFileName)
+          (insert "(object):\n\n")
 
-    (insert "    #*********************************************#\n")
-    (insert "    #*             Public Variables              *#\n")
-    (insert "    #*********************************************#\n\n")
+          (insert "    \"\"\"TODO(jenchieh): Class Description here...\"\"\"")
+          (insert "\n\n")
 
-    (insert "    #*********************************************#\n")
-    (insert "    #              Private Variables             *#\n")
-    (insert "    #*********************************************#\n\n")
+          (insert "    #*********************************************#\n")
+          (insert "    #*             Public Variables              *#\n")
+          (insert "    #*********************************************#\n\n")
 
-    (insert "    #*********************************************#\n")
-    (insert "    #              Protected Variables           *#\n")
-    (insert "    #*********************************************#\n\n")
+          (insert "    #*********************************************#\n")
+          (insert "    #              Private Variables             *#\n")
+          (insert "    #*********************************************#\n\n")
 
-    (insert "    #*********************************************#\n")
-    (insert "    #                Constructor                 *#\n")
-    (insert "    #*********************************************#\n")
-    (insert "    def __init__(self):\n")
-    (insert "        \"\"\"Constructor.\"\"\"\n\n")
+          (insert "    #*********************************************#\n")
+          (insert "    #              Protected Variables           *#\n")
+          (insert "    #*********************************************#\n\n")
 
-    (insert "    #====================\n")
-    (insert "    # Public Methods\n\n")
+          (insert "    #*********************************************#\n")
+          (insert "    #                Constructor                 *#\n")
+          (insert "    #*********************************************#\n")
+          (insert "    def __init__(self):\n")
+          (insert "        \"\"\"Constructor.\"\"\"\n\n")
 
-    (insert "    #====================\n")
-    (insert "    # Protected Methods\n\n")
+          (insert "    #====================\n")
+          (insert "    # Public Methods\n\n")
 
-    (insert "    #====================\n")
-    (insert "    # Private Methods\n\n")
+          (insert "    #====================\n")
+          (insert "    # Protected Methods\n\n")
 
-    (insert "    #====================\n")
-    (insert "    # setter / getter\n\n")
+          (insert "    #====================\n")
+          (insert "    # Private Methods\n\n")
 
-    ;; Move to beginning of the buffer.
-    (beginning-of-buffer)
+          (insert "    #====================\n")
+          (insert "    # setter / getter\n\n")
+
+          ;; Move to beginning of the buffer.
+          (beginning-of-buffer)
+          ))
     )
 
   (cond ((file-exists-p buffer-file-name) t)

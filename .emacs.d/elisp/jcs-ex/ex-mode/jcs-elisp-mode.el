@@ -46,7 +46,11 @@
 
   (defun jcs-emacs-lisp-format ()
     "Format the given file as a Emacs Lisp file. - JenChieh emacs lisp file."
-    (jcs-asm-file-info)
+    
+    (if (is-current-file-empty-p)
+        (progn
+          (jcs-asm-file-info)
+          ))
     )
 
   ;; (cond ((file-exists-p buffer-file-name) t)

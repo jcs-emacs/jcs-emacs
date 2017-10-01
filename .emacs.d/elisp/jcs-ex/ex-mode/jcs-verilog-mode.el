@@ -48,16 +48,19 @@
   ;; highlight URL and clickable.
   (goto-address-mode 1)
 
-  (defun jcs-lua-script-format ()
-
+  (defun jcs-verilog-script-format ()
     "Format the given file as a class. - JenChieh Lua Script"
-
     (interactive)
+
+    (if (is-current-file-empty-p)
+        (progn
+          ;; Design format header here...
+          ))
     )
 
 
   (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]v" buffer-file-name) (jcs-lua-script-format))
+        ((string-match "[.]v" buffer-file-name) (jcs-verilog-script-format))
         )
 
 

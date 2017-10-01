@@ -41,10 +41,12 @@
   (goto-address-mode 1)
 
   (defun jcs-sh-script-format ()
-
     "Format the given file as a shell script. - JenChieh Shell Script"
-
-    (jcs-manage-file-info)
+    
+    (if (is-current-file-empty-p)
+        (progn
+          (jcs-manage-file-info)
+          ))
     )
 
 

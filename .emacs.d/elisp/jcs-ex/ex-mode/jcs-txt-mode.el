@@ -87,7 +87,10 @@
   (defun jcs-org-mode-format()
     "Fromat the given file as a text file related. - JenChieh Text file."
 
-    (jcs-manage-file-info)
+    (if (is-current-file-empty-p)
+        (progn
+          (jcs-manage-file-info)
+          ))
     )
 
   (cond ((file-exists-p buffer-file-name) t)

@@ -63,17 +63,20 @@
   (defun jcs-javascript-format()
     (interactive)
 
-    ;; define macro
-    (setq BaseFileName (file-name-sans-extension (file-name-nondirectory buffer-file-name)))
-    (setq BaseFileNameWithExtension (file-name-nondirectory buffer-file-name))
+    (if (is-current-file-empty-p)
+        (progn
+          ;; define macro
+          (setq BaseFileName (file-name-sans-extension (file-name-nondirectory buffer-file-name)))
+          (setq BaseFileNameWithExtension (file-name-nondirectory buffer-file-name))
 
-    ;; insert the file info header.
-    (jcs-global-file-info)
+          ;; insert the file info header.
+          (jcs-global-file-info)
 
-    ;; do JavaScript specific thing here...
-    (insert "\n")
-    (insert "\"use strict\";")
-    (insert "\n\n")
+          ;; do JavaScript specific thing here...
+          (insert "\n")
+          (insert "\"use strict\";")
+          (insert "\n\n")
+          ))
     )
 
   (cond ((file-exists-p buffer-file-name) t)

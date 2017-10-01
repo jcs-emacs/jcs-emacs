@@ -46,7 +46,10 @@
   (defun jcs-jayces-class-format ()
     "Format the given file. - JenChieh JayCeS files"
 
-    (jcs-global-file-info)
+    (if (is-current-file-empty-p)
+        (progn
+          (jcs-global-file-info)
+          ))
     )
 
   (cond ((file-exists-p buffer-file-name) t)

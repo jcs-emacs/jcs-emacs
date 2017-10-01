@@ -47,8 +47,11 @@
   (defun jcs-xml-format ()
     "Format the given file as a XML file. - JenChieh XML file."
 
-    (insert "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>")
-    (insert "\n")
+    (if (is-current-file-empty-p)
+        (progn
+          (insert "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>")
+          (insert "\n")
+          ))
     )
 
   (cond ((file-exists-p buffer-file-name) t)

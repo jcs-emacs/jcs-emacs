@@ -43,28 +43,31 @@
   (goto-address-mode 1)
 
   (defun jcs-batch-script-format ()
-
     "Format the given file as a class. - JenChieh Batch Script"
+    
+    (if (is-current-file-empty-p)
+        (progn
 
-    ;; macro
-    (setq BaseFileName (file-name-sans-extension (file-name-nondirectory buffer-file-name)))
-    (setq BaseFileNameWithExtension (file-name-nondirectory buffer-file-name))
+          ;; macro
+          (setq BaseFileName (file-name-sans-extension (file-name-nondirectory buffer-file-name)))
+          (setq BaseFileNameWithExtension (file-name-nondirectory buffer-file-name))
 
-    (insert ":: ========================================================================\n")
-    (insert ":: $File: ")
-    (insert BaseFileNameWithExtension)
-    (insert " $\n")
-    (insert ":: $Date: ")
-    (jcs-timestamp)
-    (insert " $\n")
-    (insert ":: $Revision: $\n")
-    (insert ":: $Creator: Jen-Chieh Shen $\n")
-    (insert ":: $Notice: See LICENSE.txt for modification and distribution information \n")
-    (insert "::                    Copyright (c) ")
-    (jcs-year-only)
-    (insert " by Shen, Jen-Chieh $\n")
-    (insert ":: ========================================================================\n")
-    (insert "\n\n")
+          (insert ":: ========================================================================\n")
+          (insert ":: $File: ")
+          (insert BaseFileNameWithExtension)
+          (insert " $\n")
+          (insert ":: $Date: ")
+          (jcs-timestamp)
+          (insert " $\n")
+          (insert ":: $Revision: $\n")
+          (insert ":: $Creator: Jen-Chieh Shen $\n")
+          (insert ":: $Notice: See LICENSE.txt for modification and distribution information \n")
+          (insert "::                    Copyright (c) ")
+          (jcs-year-only)
+          (insert " by Shen, Jen-Chieh $\n")
+          (insert ":: ========================================================================\n")
+          (insert "\n\n")
+          ))
     )
 
 

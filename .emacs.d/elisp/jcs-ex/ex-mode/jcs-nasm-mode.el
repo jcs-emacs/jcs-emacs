@@ -46,8 +46,10 @@
     "Format the given file as a asm code. - JenChieh Assembly Language"
     (interactive)
 
-    (jcs-asm-file-format)
-
+    (if (is-current-file-empty-p)
+        (progn
+          (jcs-asm-file-format)
+          ))
     )
 
   (cond ((file-exists-p buffer-file-name) t)

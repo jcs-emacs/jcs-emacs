@@ -44,8 +44,12 @@
 
   (defun jcs-sass-file-format ()
     "Format the given file as a class. - JenChieh SASS class"
-    (jcs-global-file-info)
-    (insert "\n\n")
+
+    (if (is-current-file-empty-p)
+        (progn
+          (jcs-global-file-info)
+          (insert "\n\n")
+          ))
     )
 
   (cond ((file-exists-p buffer-file-name) t)

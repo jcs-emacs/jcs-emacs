@@ -48,10 +48,14 @@
   (goto-address-mode 1)
 
   (defun jcs-json-format()
+    "Format for json file."
     (interactive)
 
-    ;; empty, cause json should only take data.
-    ;; Comment will be treat as a data too...
+    (if (is-current-file-empty-p)
+        (progn
+          ;; empty, cause json should only take data.
+          ;; Comment will be treat as a data too...
+          ))
     )
 
   (cond ((file-exists-p buffer-file-name) t)
