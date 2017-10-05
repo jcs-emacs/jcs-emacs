@@ -231,7 +231,7 @@ remember Emacs Lisp function."
   )
 
 ;; NOTE(jenchieh): regexp to align with. [Default: = ]
-(setq align-regexp-str "\\(\\s-*\\) = ")
+(setq jcs-align-regexp-string "\\(\\s-*\\) = ")
 
 ;;;###autoload
 (defun jcs-align-region ()
@@ -239,7 +239,7 @@ remember Emacs Lisp function."
   (interactive)
 
   (align (region-beginning) (region-end))
-  (align-regexp (region-beginning) (region-end) align-regexp-str 1 1)
+  (align-regexp (region-beginning) (region-end) jcs-align-regexp-string 1 1)
   )
 
 ;;;###autoload
@@ -249,7 +249,7 @@ remember Emacs Lisp function."
 
   ;; align the whole doc.
   (align (point-min) (point-max))
-  (align-regexp (point-min) (point-max) align-regexp-str 1 1)
+  (align-regexp (point-min) (point-max) jcs-align-regexp-string 1 1)
   )
 
 ;;;###autoload
