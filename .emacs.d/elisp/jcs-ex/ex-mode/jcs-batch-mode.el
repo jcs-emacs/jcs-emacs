@@ -1,4 +1,4 @@
-;; This is the start of jcs-function.el file
+;; This is the start of jcs-batch-mode.el file
 ;;------------------------------------------------------------------------------------------------------
 
 ;; jcs-batch-mode.el             -*- Emacs-Lisp -*-
@@ -44,7 +44,7 @@
 
   (defun jcs-batch-script-format ()
     "Format the given file as a class. - JenChieh Batch Script"
-    
+
     (if (is-current-file-empty-p)
         (progn
 
