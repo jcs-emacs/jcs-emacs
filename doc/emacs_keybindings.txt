@@ -114,7 +114,8 @@ C-S-f           format the region if region select else format the document.
 ALT-U           uppercase-word, if region do region
 ALT-D           downcase-word, if region do region
 
-C-x-a           align all variables in the region.
+C-x-a           align all variables in the region if region selected, 
+                else align full document insteead.
 
 ALT-m           open buffer menu.
 ALT-M           open buffer menu in other window.
