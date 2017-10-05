@@ -1,4 +1,4 @@
-;; This is the start of jcs-function.el file
+;; This is the start of jcs-sql-mode.el file
 ;;------------------------------------------------------------------------------------------------------
 
 ;; jcs-sql-mode.el             -*- Emacs-Lisp -*-

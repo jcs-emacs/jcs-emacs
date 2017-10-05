@@ -1,4 +1,4 @@
-;; This is the start of jcs-function.el file
+;; This is the start of jcs-python-mode.el file
 ;;------------------------------------------------------------------------------------------------------
 
 ;; jcs-python-mode.el             -*- Emacs-Lisp -*-

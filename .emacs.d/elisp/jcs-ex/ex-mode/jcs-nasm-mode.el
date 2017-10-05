@@ -1,4 +1,4 @@
-;; This is the start of jcs-function.el file
+;; This is the start of jcs-nasm-mode.el file
 ;;------------------------------------------------------------------------------------------------------
 
 ;; jcs-nasm-mode.el             -*- Emacs-Lisp -*-

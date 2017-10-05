@@ -1,4 +1,4 @@
-;; This is the start of jcs-function.el file
+;; This is the start of jcs-web-mode.el file
 ;;------------------------------------------------------------------------------------------------------
 
 ;; jcs-web-mode.el             -*- Emacs-Lisp -*-

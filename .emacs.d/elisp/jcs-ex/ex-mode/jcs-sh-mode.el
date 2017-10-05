@@ -1,4 +1,4 @@
-;; This is the start of jcs-function.el file
+;; This is the start of jcs-sh-mode.el file
 ;;------------------------------------------------------------------------------------------------------
 
 ;; jcs-sh-mode.el             -*- Emacs-Lisp -*-
@@ -42,7 +42,7 @@
 
   (defun jcs-sh-script-format ()
     "Format the given file as a shell script. - JenChieh Shell Script"
-    
+
     (if (is-current-file-empty-p)
         (progn
           (jcs-manage-file-info)

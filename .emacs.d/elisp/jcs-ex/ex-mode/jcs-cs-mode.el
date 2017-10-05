@@ -1,4 +1,4 @@
-;; This is the start of jcs-function.el file
+;; This is the start of jcs-cs-mode.el file
 ;;------------------------------------------------------------------------------------------------------
 
 ;; jcs-cs-mode.el             -*- Emacs-Lisp -*-
@@ -62,7 +62,7 @@
           (insert " {\n\n}\n\n")
           ))
     )
-  
+
   (cond ((file-exists-p buffer-file-name) t)
         ((string-match "[.]cs" buffer-file-name) (jcs-csharp-class-format))
         )

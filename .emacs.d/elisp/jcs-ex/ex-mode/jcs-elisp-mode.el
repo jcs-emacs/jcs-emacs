@@ -1,4 +1,4 @@
-;; This is the start of jcs-function.el file
+;; This is the start of jcs-elisp-mode.el file
 ;;------------------------------------------------------------------------------------------------------
 
 ;; jcs-elisp-mode.el             -*- Emacs-Lisp -*-
@@ -46,7 +46,7 @@
 
   (defun jcs-emacs-lisp-format ()
     "Format the given file as a Emacs Lisp file. - JenChieh emacs lisp file."
-    
+
     (if (is-current-file-empty-p)
         (progn
           (jcs-asm-file-info)

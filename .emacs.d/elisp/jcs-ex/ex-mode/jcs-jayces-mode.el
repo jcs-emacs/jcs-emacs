@@ -1,4 +1,4 @@
-;; This is the start of jcs-function.el file
+;; This is the start of jcs-jayces-mode.el file
 ;;------------------------------------------------------------------------------------------------------
 
 ;; jcs-jayces-mode.el             -*- Emacs-Lisp -*-
