@@ -230,6 +230,17 @@ remember Emacs Lisp function."
     )
   )
 
+(setq equal-sign-regexp-serach "\\(\\s-*\\)=    ")
+
+;;;###autoload
+(defun jcs-align-region ()
+  "Align current selected region."
+  (interactive)
+  
+  (align (region-beginning) (region-end))
+  (align-regexp (region-beginning) (region-end) (equal-sign-regexp-serach) 1 1)
+  )
+
 ;;;###autoload
 (defun jcs-align-document ()
   "Align current document."
@@ -237,6 +248,18 @@ remember Emacs Lisp function."
 
   ;; align the whole doc.
   (align (point-min) (point-max))
+  (align-regexp (point-min) (point-max) (equal-sign-regexp-serach) 1 1)
+  )
+
+;;;###autoload
+(defun jcs-align-region-or-document ()
+  "Either align the region or document depend on if there is
+region selected?"
+  (interactive)
+
+  (if (is-region-selected-p)
+      (jcs-align-region)
+    (jcs-align-document))
   )
 
 ;;;###autoload
