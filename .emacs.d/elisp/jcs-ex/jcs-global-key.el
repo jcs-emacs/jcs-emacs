@@ -145,8 +145,7 @@
 (define-key global-map "\C-k\C-f" 'indent-region)
 (define-key global-map "\C-k\C-d" 'jcs-format-document)
 (define-key global-map (kbd "C-S-f") 'jcs-format-region-or-document)
-(define-key global-map "\C-xa" 'align)
-(define-key global-map "\C-x\C-a" 'jcs-align-document)
+(define-key global-map "\C-xa" 'jcs-align-region-or-document)
 
 ;;; org-mode
 (define-key global-map "\C-xo" 'org-mode)
