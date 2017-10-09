@@ -7,6 +7,11 @@
 # ========================================================================
 
 
+2017-10-09
+* Correct filename info. (jcs-emacs-init)
+* php paste will occur web-mode get interrupt, bug fixed by renable 
+ it again. (jcs-emacs-init)
+
 2017-10-05
 * Add jcs-go-mode for GO programming language. (jcs-emacs-init)
 * Fix and Add jcs-align-region-or-document function for align
