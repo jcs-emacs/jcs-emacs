@@ -1,7 +1,7 @@
-;; This is the start of jcs-shell.el file
+;; This is the start of jcs-window.el file
 ;;------------------------------------------------------------------------------------------------------
 
-;; jcs-shell.el             -*- Emacs-Lisp -*-
+;; jcs-window.el             -*- Emacs-Lisp -*-
 
 ;; Mode for editing JayCeS code
 

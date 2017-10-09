@@ -1,4 +1,4 @@
-;; This is the start of jcs-function.el file
+;; This is the start of jcs-after-init.el file
 ;;------------------------------------------------------------------------------------------------------
 
 ;; jcs-after-init.el             -*- Emacs-Lisp -*-

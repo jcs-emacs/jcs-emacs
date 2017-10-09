@@ -1,7 +1,7 @@
-;; This is the start of jcs-util.el file
+;; This is the start of jcs-minimap.el file
 ;;------------------------------------------------------------------------------------------------------
 
-;; jcs-util.el             -*- Emacs-Lisp -*-
+;; jcs-minimap.el             -*- Emacs-Lisp -*-
 
 ;; Mode for editing JayCeS code
 
@@ -53,4 +53,4 @@
 
 
 ;;------------------------------------------------------------------------------------------------------
-;; This is the end of jcs-util.el file
+;; This is the end of jcs-minimap.el file

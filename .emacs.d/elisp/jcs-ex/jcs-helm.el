@@ -1,4 +1,4 @@
-;; This is the start of jcs-file-info-format.el file
+;; This is the start of jcs-helm.el file
 ;;------------------------------------------------------------------------------------------------------
 
 ;; jcs-heml.el             -*- Emacs-Lisp -*-
@@ -176,4 +176,4 @@
 
 
 ;;------------------------------------------------------------------------------------------------------
-;; This is the end of jcs-file-info-format.el file
+;; This is the end of jcs-helm.el file
