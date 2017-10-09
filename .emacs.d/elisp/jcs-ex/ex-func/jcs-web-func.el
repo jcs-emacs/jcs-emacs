@@ -73,6 +73,10 @@ wrap by another function..."
 
   ;; then paste it.
   (yank)
+
+  ;; NOTE(jenchieh): Unknown reason that web-mode will
+  ;; get disable...
+  (web-mode)
   )
 
 ;;;###autoload
