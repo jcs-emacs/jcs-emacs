@@ -165,11 +165,12 @@
 
     (if (is-current-file-empty-p)
         (progn
-          ;; insert tag header
-          (jcs-tag-file-info)
-
           ;; insert PHP common format
-          (insert "<?php\n\n")
+          (insert "<?php\n")
+
+          (jcs-global-file-info)
+          (insert "\n\n")
+
           (insert "?>\n")
           ))
     )
