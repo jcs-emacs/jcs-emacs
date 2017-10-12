@@ -7,6 +7,10 @@
 # ========================================================================
 
 
+2017-10-12
+* Add jcs-vim-mode only for editing VimScript. (jcs-emacs-init)
+* Correct year file format in lua mode and vim mode. (jcs-emacs-init)
+
 2017-10-09
 * Correct filename info. (jcs-emacs-init)
 * php paste will occur web-mode get interrupt, bug fixed by renable 
