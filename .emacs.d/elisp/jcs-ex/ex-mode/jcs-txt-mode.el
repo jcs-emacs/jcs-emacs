@@ -59,6 +59,8 @@
   (define-key gitignore-mode-map (kbd "<down>") 'next-line)
   (define-key gitignore-mode-map (kbd "C-d") 'jcs-kill-whole-line)
   (define-key gitignore-mode-map "\C-c\C-c" 'kill-ring-save)
+  (define-key gitignore-mode-map (kbd "<up>") 'previous-line)
+  (define-key gitignore-mode-map (kbd "<down>") 'next-line)
   )
 (add-hook 'gitignore-mode-hook 'jcs-gitignore-mode-hook)
 
@@ -96,9 +98,6 @@
         )
 
   ;; jcs org mode key binding
-  (define-key org-mode-map (kbd "<up>") 'previous-line)
-  (define-key org-mode-map (kbd "<down>") 'next-line)
-
   (define-key org-mode-map (kbd "C-d") 'jcs-kill-whole-line)
   (define-key org-mode-map "\C-c\C-c" 'kill-ring-save)
   (define-key org-mode-map "\C-a" 'mark-whole-buffer)
