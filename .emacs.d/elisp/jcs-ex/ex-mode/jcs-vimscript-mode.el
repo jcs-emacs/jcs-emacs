@@ -32,7 +32,7 @@
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 
-(defun jcs-vimscript-mode-hook ()
+(defun jcs-vim-mode-hook ()
   ;; Abbrevation expansion
   (abbrev-mode 1)
 
@@ -43,7 +43,7 @@
   (goto-address-mode 1)
 
 
-  (defun jcs-vimscript-format ()
+  (defun jcs-vim-script-format ()
     "Format the given file as a class. - JenChieh Lua Script"
     (interactive)
 
@@ -72,21 +72,16 @@
     )
 
   (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "_vimrc" buffer-file-name) (jcs-vimscript-format))
-        ((string-match "[.]vim" buffer-file-name) (jcs-vimscript-format))
+        ((string-match "[.]vim" buffer-file-name) (jcs-vim-script-format))
         )
 
   ;; jcs org mode key binding
-  (define-key org-mode-map (kbd "<up>") 'previous-line)
-  (define-key org-mode-map (kbd "<down>") 'next-line)
-
   (define-key org-mode-map (kbd "C-d") 'jcs-kill-whole-line)
   (define-key org-mode-map "\C-c\C-c" 'kill-ring-save)
   (define-key org-mode-map "\C-a" 'mark-whole-buffer)
   )
-(add-hook 'org-mode-hook 'jcs-vimscript-mode-hook)
+(add-hook 'org-mode-hook 'jcs-vim-mode-hook)
 
-(add-to-list 'auto-mode-alist '("\\(/\\|\\`\\)_vimrc" . org-mode))
 (add-to-list 'auto-mode-alist '("\\.vim?\\'" . org-mode))
 
 ;;------------------------------------------------------------------------------------------------------
