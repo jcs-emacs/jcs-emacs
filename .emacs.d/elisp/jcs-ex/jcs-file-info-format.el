@@ -31,12 +31,24 @@
 ;;      JENCHIEH KEY GLOBAL INFO
 ;;----------------------------------
 
-;;---------------------------------------------
-;; Full File info design here...
-;; general comment style.
-;;---------------------------------------------
-(defun jcs-global-file-info ()
+(setq jcs-creator-name "Jen-Chieh Shen")
+(setq jcs-copyright-name "Shen, Jen-Chieh")
 
+(defun jcs-insert-creator-name ()
+  "Insert the creator name."
+  (interactive)
+  (insert jcs-creator-name)
+  )
+
+(defun jcs-insert-copyright-name ()
+  "Insert the copyright name."
+  (interactive)
+  (insert jcs-copyright-name)
+  )
+
+
+(defun jcs-insert-filename-section ()
+  "Insert 'File' section."
   (interactive)
 
   ;; macro
@@ -45,19 +57,85 @@
   ;; file name with extension
   (setq BaseFileNameWithExtension (file-name-nondirectory buffer-file-name))
 
-  (insert "/**\n")
-  (insert " * $File: ")
+  (insert "$File: ")
   (insert BaseFileNameWithExtension)
-  (insert " $\n")
-  (insert " * $Date: ")
+  )
+
+(defun jcs-insert-creation-date-section ()
+  "Insert 'Creation Date' section."
+  (interactive)
+
+  (insert "$Date: ")
   (jcs-timestamp)
-  (insert " $\n")
-  (insert " * $Revision: $\n")
-  (insert " * $Creator: Jen-Chieh Shen $\n")
-  (insert " * $Notice: See LICENSE.txt for modification and distribution information \n")
-  (insert " *                   Copyright (c) ")
+  )
+
+(defun jcs-insert-revision-section ()
+  "Insert 'Revision' section."
+  (interactive)
+
+  (insert "$Revision: ")
+
+  ;; TODO(jenchieh): insert revision design here...
+
+  ;; NOTE(jenchieh): Because now the design is empty we just
+  ;; delete the a whitespace before, so make the file look
+  ;; consistent.
+  (backward-delete-char 1)
+  )
+
+
+(defun jcs-insert-creator-section ()
+  "Insert 'Creator' section."
+  (interactive)
+
+  (insert "$Creator: ")
+  (jcs-insert-creator-name)
+  )
+
+(defun jcs-insert-notice-section-line1 ()
+  "Insert 'Notice' section line 1."
+  (interactive)
+
+  (insert "$Notice: See LICENSE.txt for modification and distribution information")
+  )
+
+(defun jcs-insert-notice-section-line2 ()
+  "Insert 'Notice' section line 2."
+  (interactive)
+
+  (insert "                  Copyright (c) ")
   (jcs-year-only)
-  (insert " by Shen, Jen-Chieh $\n")
+  (insert " by ")
+  (jcs-insert-copyright-name)
+  )
+
+;;---------------------------------------------
+;; Full File info design here...
+;; general comment style.
+;;---------------------------------------------
+(defun jcs-global-file-info ()
+  ""
+  (interactive)
+
+  (insert "/**\n")
+  (insert " * ")
+  (jcs-insert-filename-section)
+  (insert " $\n")
+  (insert " * ")
+  (jcs-insert-creation-date-section)
+  (insert " $\n")
+  (insert " * ")
+  (jcs-insert-revision-section)
+  (insert " $\n")
+  (insert " * ")
+  (jcs-insert-creator-section)
+  (insert " $\n")
+  (insert " * ")
+  (jcs-insert-notice-section-line1)
+  (insert " \n")
+  (insert " * ")
+  (jcs-insert-notice-section-line2)
+  (insert " $\n")
   (insert " */\n")
   )
 
@@ -65,26 +143,28 @@
 ;; Tag file comment style
 ;;---------------------------------------------
 (defun jcs-tag-file-info ()
-
+  ""
   (interactive)
 
-  ;; macro
-  (setq BaseFileName (file-name-sans-extension (file-name-nondirectory buffer-file-name)))
-  (setq BaseFileNameWithExtension (file-name-nondirectory buffer-file-name))
-
   (insert "<!--\n")
-  (insert "   - $File: ")
-  (insert BaseFileNameWithExtension)
+  (insert "   - ")
+  (jcs-insert-filename-section)
   (insert " $\n")
-  (insert "   - $Date: ")
-  (jcs-timestamp)
+  (insert "   - ")
+  (jcs-insert-creation-date-section)
   (insert " $\n")
-  (insert "   - $Revision: $\n")
-  (insert "   - $Creator: Jen-Chieh Shen $\n")
-  (insert "   - $Notice: See LICENSE.txt for modification and distribution information \n")
-  (insert "   -                   Copyright (c) ")
-  (jcs-year-only)
-  (insert " by Shen, Jen-Chieh $\n")
+  (insert "   - ")
+  (jcs-insert-revision-section)
+  (insert " $\n")
+  (insert "   - ")
+  (jcs-insert-creator-section)
+  (insert " $\n")
+  (insert "   - ")
+  (jcs-insert-notice-section-line1)
+  (insert " \n")
+  (insert "   - ")
+  (jcs-insert-notice-section-line2)
+  (insert " $\n")
   (insert "   -->\n")
   (insert "\n\n")
   )
@@ -93,26 +173,29 @@
 ;; Manage file comment style
 ;;---------------------------------------------
 (defun jcs-manage-file-info ()
-
+  "Any managing file format. Text file, batch file, shell
+script, etc."
   (interactive)
 
-  ;; macro
-  (setq BaseFileName (file-name-sans-extension (file-name-nondirectory buffer-file-name)))
-  (setq BaseFileNameWithExtension (file-name-nondirectory buffer-file-name))
-
   (insert "# ========================================================================\n")
-  (insert "# $File: ")
-  (insert BaseFileNameWithExtension)
+  (insert "# ")
+  (jcs-insert-filename-section)
   (insert " $\n")
-  (insert "# $Date: ")
-  (jcs-timestamp)
+  (insert "# ")
+  (jcs-insert-creation-date-section)
   (insert " $\n")
-  (insert "# $Revision: $\n")
-  (insert "# $Creator: Jen-Chieh Shen $\n")
-  (insert "# $Notice: See LICENSE.txt for modification and distribution information \n")
-  (insert "#                   Copyright (c) ")
-  (jcs-year-only)
-  (insert " by Shen, Jen-Chieh $\n")
+  (insert "# ")
+  (jcs-insert-revision-section)
+  (insert " $\n")
+  (insert "# ")
+  (jcs-insert-creator-section)
+  (insert " $\n")
+  (insert "# ")
+  (jcs-insert-notice-section-line1)
+  (insert " \n")
+  (insert "# ")
+  (jcs-insert-notice-section-line2)
+  (insert " $\n")
   (insert "# ========================================================================\n")
   (insert "\n\n")
   )
@@ -121,25 +204,28 @@
 ;; Asm file comment style
 ;;---------------------------------------------
 (defun jcs-asm-file-format ()
+  "Specific header format for Assembly Language/lisp/elisp, etc."
   (interactive)
 
-  ;; macro
-  (setq BaseFileName (file-name-sans-extension (file-name-nondirectory buffer-file-name)))
-  (setq BaseFileNameWithExtension (file-name-nondirectory buffer-file-name))
-
   (insert ";; ========================================================================\n")
-  (insert ";; $File: ")
-  (insert BaseFileNameWithExtension)
+  (insert ";; ")
+  (jcs-insert-filename-section)
   (insert " $\n")
-  (insert ";; $Date: ")
-  (jcs-timestamp)
+  (insert ";; ")
+  (jcs-insert-creation-date-section)
   (insert " $\n")
-  (insert ";; $Revision: $\n")
-  (insert ";; $Creator: Jen-Chieh Shen $\n")
-  (insert ";; $Notice: See LICENSE.txt for modification and distribution information \n")
-  (insert ";;                   Copyright (c) ")
-  (jcs-year-only)
-  (insert " by Shen, Jen-Chieh $\n")
+  (insert ";; ")
+  (jcs-insert-revision-section)
+  (insert " $\n")
+  (insert ";; ")
+  (jcs-insert-creator-section)
+  (insert " $\n")
+  (insert ";; ")
+  (jcs-insert-notice-section-line1)
+  (insert " \n")
+  (insert ";; ")
+  (jcs-insert-notice-section-line2)
+  (insert " $\n")
   (insert ";; ========================================================================\n")
   (insert "\n\n")
   )
@@ -149,7 +235,7 @@
 ;; Specialize the makefile format more specific.
 ;;---------------------------------------------
 (defun jcs-makefile-format-info ()
-
+  "File header format specific for makefile."
   (interactive)
 
   (insert "#----------------------------------------------\n")
@@ -236,7 +322,7 @@
 ;; Specialize the CMakeLists to more specific.
 ;;---------------------------------------------
 (defun jcs-cmake-format-info ()
-
+  "CMake file format info."
   (interactive)
 
   (insert "CMAKE_MINIMUM_REQUIRED(VERSION 3.0)\n\n")
@@ -254,6 +340,67 @@
   (insert "# subdir settings\n")
   (insert "ADD_SUBDIRECTORY(libssrc)\n")
   )
+
+;;---------------------------------------------
+;; Lua file header format.
+;;---------------------------------------------
+(defun jcs-lua-file-format-info ()
+  "Lua file header format."
+  (interactive)
+
+  (insert "-- ========================================================================\n")
+  (insert "-- ")
+  (jcs-insert-filename-section)
+  (insert " $\n")
+  (insert "-- ")
+  (jcs-insert-creation-date-section)
+  (insert " $\n")
+  (insert "-- ")
+  (jcs-insert-revision-section)
+  (insert " $\n")
+  (insert "-- ")
+  (jcs-insert-creator-section)
+  (insert " $\n")
+  (insert "-- ")
+  (jcs-insert-notice-section-line1)
+  (insert " \n")
+  (insert "-- ")
+  (jcs-insert-notice-section-line2)
+  (insert " $\n")
+  (insert "-- ========================================================================\n")
+  (insert "\n\n")
+  )
+
+;;---------------------------------------------
+;; Batch file header format.
+;;---------------------------------------------
+(defun jcs-batch-file-format-info ()
+  ""
+  (interactive)
+
+  (insert ":: ========================================================================\n")
+  (insert ":: ")
+  (jcs-insert-filename-section)
+  (insert " $\n")
+  (insert ":: ")
+  (jcs-insert-creation-date-section)
+  (insert " $\n")
+  (insert ":: ")
+  (jcs-insert-revision-section)
+  (insert " $\n")
+  (insert ":: ")
+  (jcs-insert-creator-section)
+  (insert " $\n")
+  (insert ":: ")
+  (jcs-insert-notice-section-line1)
+  (insert " \n")
+  (insert ":: ")
+  (jcs-insert-notice-section-line2)
+  (insert " $\n")
+  (insert ":: ========================================================================\n")
+  (insert "\n\n")
+  )
+
 
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-file-info-format.el file
