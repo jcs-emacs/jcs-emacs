@@ -7,6 +7,10 @@
 # ========================================================================
 
 
+2017-10-16
+* Make sure comment it well on indentation with scripting language
+ in web-mode. (jcs-emacs-init)
+
 2017-10-12
 * Add jcs-vim-mode only for editing VimScript. (jcs-emacs-init)
 * Correct year file format in lua mode and vim mode. (jcs-emacs-init)
