@@ -228,11 +228,20 @@
         ("jsx"  . "/some/react/path/.*\\.js[x]?\\'")))
 
 
-;;=======================
+;;;=======================
 
-;; Indentation
+;;; Indentation
+;; NOTE: HTML element offset indentation
 (setq web-mode-markup-indent-offset 2)
+;; NOTE: CSS offset indentation
 (setq web-mode-css-indent-offset 2)
+;; NOTE: Script/code offset indentation (for JavaScript,
+;;                                           Java,
+;;                                           PHP,
+;;                                           Ruby,
+;;                                           Go,
+;;                                           VBScript,
+;;                                           Python, etc.)
 (setq web-mode-code-indent-offset 2)
 
 (add-to-list 'web-mode-indentation-params '("lineup-args" . nil))
