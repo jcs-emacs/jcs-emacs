@@ -74,6 +74,8 @@
   ;; comment block
   (define-key csharp-mode-map (kbd "RET") 'jcs-smart-context-line-break)
   (define-key csharp-mode-map (kbd "*") 'jcs-c-comment-pair)
+
+  (define-key csharp-mode-map "\eq" 'jcs-other-window-prev)
   )
 (add-hook 'csharp-mode-hook 'jcs-csharp-mode-hook)
 
