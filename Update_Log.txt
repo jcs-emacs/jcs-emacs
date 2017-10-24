@@ -7,6 +7,9 @@
 # ========================================================================
 
 
+2017-10-24
+* Fixed cs mode switch window previous key bindings. (jcs-emacs-init)
+
 2017-10-16
 * Make sure comment it well on indentation with scripting language
  in web-mode. (jcs-emacs-init)
