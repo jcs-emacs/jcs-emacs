@@ -7,6 +7,11 @@
 # ========================================================================
 
 
+2017-10-26
+* Add cobol-mode for editing COBOL file. (jcs-emacs-init)
+* Add jcs-cbl-mode for my customization. (jcs-emacs-init)
+* Add COBOL header in header format info file. (jcs-emacs-init)
+
 2017-10-24
 * Fixed cs mode switch window previous key bindings. (jcs-emacs-init)
 
