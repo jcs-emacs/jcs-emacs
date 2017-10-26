@@ -375,7 +375,7 @@ script, etc."
 ;; Batch file header format.
 ;;---------------------------------------------
 (defun jcs-batch-file-format-info ()
-  ""
+  "Header format for batch file."
   (interactive)
 
   (insert ":: ========================================================================\n")
@@ -401,6 +401,31 @@ script, etc."
   (insert "\n\n")
   )
 
+(defun jcs-cobol-file-format-info ()
+  "Header format for COBOL."
+
+  (insert "*> ========================================================================\n")
+  (insert "*> ")
+  (jcs-insert-filename-section)
+  (insert " $\n")
+  (insert "*> ")
+  (jcs-insert-creation-date-section)
+  (insert " $\n")
+  (insert "*> ")
+  (jcs-insert-revision-section)
+  (insert " $\n")
+  (insert "*> ")
+  (jcs-insert-creator-section)
+  (insert " $\n")
+  (insert "*> ")
+  (jcs-insert-notice-section-line1)
+  (insert " \n")
+  (insert "*> ")
+  (jcs-insert-notice-section-line2)
+  (insert " $\n")
+  (insert "*> ========================================================================\n")
+  (insert "\n\n")
+  )
 
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-file-info-format.el file
