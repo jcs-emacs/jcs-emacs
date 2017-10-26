@@ -67,6 +67,7 @@ Return a list of installed packages or nil for every skipped package."
                           'batch-mode
                           'better-defaults
                           'blank-mode
+                          'cobol-mode
                           'company
                           'cmake-font-lock
                           'cmake-ide
@@ -174,6 +175,7 @@ Return a list of installed packages or nil for every skipped package."
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-sql-mode.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-go-mode.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-vimscript-mode.el")
+(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-cbl-mode.el")
 
 ;;; Do stuff after initialize.
 (load-file "~/.emacs.d/elisp/jcs-ex/jcs-after-init.el")
