@@ -82,11 +82,15 @@
   )
 (add-hook 'cmake-mode-hook 'jcs-cmake-mode-hook)
 
+(add-to-list 'auto-mode-alist '("\\(/\\|\\`\\)CMakeLists.txt" . cmake-mode))
+
 ;; temporary makefile
 (add-to-list 'auto-mode-alist '("\\.mak?\\'" . cmake-mode))
 (add-to-list 'auto-mode-alist '("\\.makfile?\\'" . cmake-mode))
 (add-to-list 'auto-mode-alist '("\\(/\\|\\`\\)[Mm]akefile" . cmake-mode))
-(add-to-list 'auto-mode-alist '("\\(/\\|\\`\\)CMakeLists.txt" . cmake-mode))
+
+;; For autotools, autoconf, automake.
+(add-to-list 'auto-mode-alist '("\\.ac?\\'" . cmake-mode))
 
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-cmake-mode.el file
