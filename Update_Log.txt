@@ -7,6 +7,9 @@
 # ========================================================================
 
 
+2017-10-28
+* More detail and completion to cmake file format info. (jcs-emacs-init)
+
 2017-10-27
 * Add .ac extension to cmake mode for autotool, autoconf, automake 
  family. (jcs-emacs-init)
