@@ -49,6 +49,28 @@
     (if (is-current-file-empty-p)
         (progn
           (jcs-cobol-file-format-info)
+
+          (insert "       IDENTIFICATION DIVISION.\n")
+          (insert "       PROGRAM-ID. PROGRAM-NAME.\n")
+          (insert "       AUTHOR. JEN-CHIEH SHEN.\n\n")
+
+          (insert "       ENVIRONMENT DIVISION.\n")
+          (insert "       CONFIGURATION SECTION.\n")
+          (insert "       SOURCE-COMPUTER.\n")
+          (insert "       OBJECT-COMPUTER.\n\n")
+
+          (insert "       INPUT-OUTPUT SECTION.\n")
+          (insert "       FILE-CONTROL.\n\n")
+
+          (insert "       WORKING-STORAGE SECTION.\n\n")
+
+          (insert "       PROCEDURE DIVISION.\n\n")
+
+          (insert "       0100-PROCESS-RECORDS.\n\n")
+
+          (insert "           STOP RUN.\n\n")
+
+          (insert "       END PROGRAM PROGRAM-NAME.\n")
           ))
     )
 
@@ -60,8 +82,8 @@
   (define-key cobol-mode-map (kbd "C-d") 'jcs-kill-whole-line)
   (define-key cobol-mode-map "\C-c\C-c" 'kill-ring-save)
 
-  (define-key cobol-mode-map (kbd "<up>") 'jcs-previous-line)
-  (define-key cobol-mode-map (kbd "<down>") 'jcs-next-line)
+  (define-key cobol-mode-map (kbd "<up>") 'jcs-py-indent-up)
+  (define-key cobol-mode-map (kbd "<down>") 'jcs-py-indent-down)
   )
 (add-hook 'cobol-mode-hook 'jcs-cobol-mode-hook)
 
