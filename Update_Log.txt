@@ -9,6 +9,7 @@
 
 2017-10-29
 * Change COBOL header format. (jcs-emacs-init)
+* Add initialize format for COBOL file. (jcs-emacs-init)
 
 2017-10-28
 * More detail and completion to cmake file format info. (jcs-emacs-init)
