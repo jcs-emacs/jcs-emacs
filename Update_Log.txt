@@ -9,6 +9,7 @@
 
 2017-10-30
 * COBOL header format fixed data division missing. (jcs-emacs-init)
+* Makefile initial format changes. (jcs-emacs-init)
 
 2017-10-29
 * Change COBOL header format. (jcs-emacs-init)
