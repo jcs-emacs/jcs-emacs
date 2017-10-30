@@ -312,20 +312,32 @@ script, etc."
   (insert "GDEP   := $(patsubst %.c,$(DEPDIR)/%.d,$(patsubst %.cpp,$(DEPDIR)/%.d, $(GSRC)))\n")
   (insert "ASMDEP := $(patsubst %.asm,$(DEPDIR)/%.d,$(ASMSRC))\n")
 
-  (insert "\n\n.PHONY : build compile clean realclean\n\n")
+  (insert "\n\n.PHONY : build buildcomplete buildnolink buildsimple compile clean realclean\n\n")
 
   (insert "build : \n")
-  (insert "    $(CC) $(GSRC) \\n")
-  (insert "    $(INCLUDE_FLAGS) $(INCLUDE_PATHS) \\n")
-  (insert "    $(LD_FLAGS) $(STATIC_LIB_PATHS) \\n")
-  (insert "    $(OUTPUT_FLAGS) $(ROOT_DIR)/build/$(BUILD_NAME)")
+  (insert "    echo \"No build command yet... \" \n\n")
+
+  (insert "buildcomplete : \n")
+  (insert "    $(CC) $(GSRC) \\\n")
+  (insert "    $(INCLUDE_FLAGS) $(INCLUDE_PATH) \\\n")
+  (insert "    $(LD_FLAGS) $(STATIC_LIB_PATH) \\\n")
+  (insert "    $(OUTPUT_FLAGS) $(ROOT_DIR)/build/$(BUILD_NAME)\n\n")
+
+  (insert "buildnolink : \n")
+  (insert "    $(CC) $(GSRC) \\\n")
+  (insert "    $(INCLUDE_FLAGS) $(INCLUDE_PATH) \\\n")
+  (insert "    $(OUTPUT_FLAGS) $(ROOT_DIR)/build/$(BUILD_NAME)\n\n")
+
+  (insert "buildsimple : \n")
+  (insert "    $(CC) $(GSRC) \\\n")
+  (insert "    $(OUTPUT_FLAGS) $(ROOT_DIR)/build/$(BUILD_NAME)\n\n")
 
   (insert "\n# compile all the source file to object file.\n")
   (insert "compile : $(OBJS) $(AOBJS) $(SOOBJS)\n")
 
   (insert "\n# Clean the project.\n")
   (insert "clean :\n")
-  (insert "    rm -f %(OBJS) $(LOBJS)\n")
+  (insert "    rm -f $(OBJS) $(LOBJS)\n\n")
 
   (insert "realclean :\n")
   (insert "    rm -f $(OBJS) $(LOBJS) $(KASMOBJS) $(LASMOBJS) $(ALIB) $(SOLIB)\n")
