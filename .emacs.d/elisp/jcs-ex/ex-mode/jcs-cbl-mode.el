@@ -50,8 +50,15 @@
         (progn
           (jcs-cobol-file-format-info)
 
+          ;; define macro
+          (setq BaseFileName (file-name-sans-extension (file-name-nondirectory buffer-file-name)))
+
+          (setq UpcaseBaseFileName (upcase BaseFileName))
+
           (insert "       IDENTIFICATION DIVISION.\n")
-          (insert "       PROGRAM-ID. PROGRAM-NAME.\n")
+          (insert "       PROGRAM-ID. ")
+          (insert UpcaseBaseFileName)
+          (insert ".\n")
           (insert "       AUTHOR. JEN-CHIEH SHEN.\n\n")
 
           (insert "       ENVIRONMENT DIVISION.\n")
@@ -62,6 +69,9 @@
           (insert "       INPUT-OUTPUT SECTION.\n")
           (insert "       FILE-CONTROL.\n\n")
 
+          (insert "       DATA DIVISION.\n")
+          (insert "       FILE SECTION.\n\n")
+
           (insert "       WORKING-STORAGE SECTION.\n\n")
 
           (insert "       PROCEDURE DIVISION.\n\n")
@@ -70,7 +80,9 @@
 
           (insert "           STOP RUN.\n\n")
 
-          (insert "       END PROGRAM PROGRAM-NAME.\n")
+          (insert "       END PROGRAM ")
+          (insert UpcaseBaseFileName)
+          (insert ".\n")
           ))
     )
 
