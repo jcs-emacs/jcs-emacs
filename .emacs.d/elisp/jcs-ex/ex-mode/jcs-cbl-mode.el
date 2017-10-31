@@ -33,14 +33,17 @@
 
 (require 'cobol-mode)
 (defun jcs-cobol-mode-hook ()
+  ;; enable the stuff you want for COBOL here
+  (electric-pair-mode nil)
+
   ;; Abbrevation expansion
   (abbrev-mode 1)
 
-  ;; enable the stuff you want for Lua here
-  (electric-pair-mode 1)
-
   ;; highlight URL and clickable.
   (goto-address-mode 1)
+
+  ;; turn on auto complete.
+  (auto-complete-mode t)
 
   (defun jcs-cobol-format ()
     "Format the given file to COBOL. - JenChieh COBOL."
