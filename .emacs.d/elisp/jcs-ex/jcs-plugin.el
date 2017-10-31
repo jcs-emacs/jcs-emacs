@@ -184,5 +184,9 @@
 (diminish 'skewer-mode)
 (diminish 'yasnippet)
 
+(require 'auto-complete)
+(ac-config-default)
+(global-auto-complete-mode t)
+
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-plugin.el file
