@@ -7,6 +7,12 @@
 # ========================================================================
 
 
+2017-10-31
+* Enable auto-complete package for global as default. (jcs-emacs-init)
+* Fixed COBOL mode auto-complete not showing issue. (jcs-emacs-init)
+* Fixed JavaScript mode auto-complete ac-timer and ac-update bugs by
+ disable the ac-js2 minor mode. (jcs-emacs-init)
+
 2017-10-30
 * COBOL header format fixed data division missing. (jcs-emacs-init)
 * Makefile initial format changes. (jcs-emacs-init)
