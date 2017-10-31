@@ -33,7 +33,7 @@
 
 (require 'ac-js2)
 (setq ac-js2-evaluate-calls t)
-(add-hook 'js2-mode-hook 'ac-js2-mode)
+;;(add-hook 'js2-mode-hook 'ac-js2-mode)
 
 (require 'js2-refactor)
 (add-hook 'js2-mode-hook #'js2-refactor-mode)
@@ -59,6 +59,9 @@
 
   ;; highlight URL and clickable.
   (goto-address-mode 1)
+
+  ;; turn on auto complete.
+  (auto-complete-mode t)
 
   (defun jcs-javascript-format()
     (interactive)
