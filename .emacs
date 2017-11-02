@@ -106,6 +106,7 @@ Return a list of installed packages or nil for every skipped package."
                           'json-mode
                           'java-imports
                           'lua-mode
+                          'magit
                           'meghanada
                           'multiple-cursors
                           'nasm-mode
@@ -121,6 +122,7 @@ Return a list of installed packages or nil for every skipped package."
                           'sublimity
                           'sql-indent
                           'undo-tree
+                          'vimrc-mode
                           'impatient-mode
                           'web-mode
                           'wgrep-ag
