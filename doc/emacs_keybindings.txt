@@ -141,6 +141,12 @@ C-hh            Toggle window split between horizontal and
 ALT-p           Open list of processes. (`list-processes')
 
 C-x g           Open magit interface.
+
+M-up          Move current line up.
+M-down        Move current line down.
+
+C-M-up          Scroll window up one line without moving cursor.
+C-M-down        Scroll window down one line without moving cursor.
                 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * Neo Tree Mode
