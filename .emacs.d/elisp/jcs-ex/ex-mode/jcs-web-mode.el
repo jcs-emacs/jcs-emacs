@@ -129,8 +129,7 @@
 
   (require 'ac-php)
   (setq ac-sources '(ac-source-php))
-  (yas-global-mode 1)
-
+  
 
   (defun jcs-html-format ()
     "Format the give file. - JenChieh HTML file"
