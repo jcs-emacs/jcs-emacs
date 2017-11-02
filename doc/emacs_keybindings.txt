@@ -139,6 +139,8 @@ C-hh            Toggle window split between horizontal and
                 vertcial.
 				
 ALT-p           Open list of processes. (`list-processes')
+
+C-x g           Open magit interface.
                 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * Neo Tree Mode
