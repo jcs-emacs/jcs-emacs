@@ -127,6 +127,11 @@
   ;; align truncate lines use.
   (visual-line-mode t)
 
+  (require 'ac-php)
+  (setq ac-sources '(ac-source-php))
+  (yas-global-mode 1)
+
+
   (defun jcs-html-format ()
     "Format the give file. - JenChieh HTML file"
     (interactive)
@@ -292,9 +297,14 @@
 (setq web-mode-enable-current-element-highlight t)
 
 ;; Context-aware auto-completion
+;; (setq web-mode-ac-sources-alist
+;;       '(("css" . (ac-source-css-property))
+;;         ("html" . (ac-source-words-in-buffer ac-source-abbrev))))
 (setq web-mode-ac-sources-alist
-      '(("css" . (ac-source-css-property))
-        ("html" . (ac-source-words-in-buffer ac-source-abbrev))))
+      '(("html" . (ac-source-words-in-buffer ac-source-abbrev))
+        ("css" . (ac-source-css-property))
+        ("php" . (ac-source-php ac-source-words-in-buffer ac-source-abbrev))
+        ))
 
 ;;=====================
 ;; ac-html
