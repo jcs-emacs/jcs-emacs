@@ -13,6 +13,9 @@
 * Add vimrc-mode package. (jcs-emacs-init)
 * Add magit package. (jcs-emacs-init)
 * Add global key bindings for magit. (jcs-emacs-init)
+* Add move current line up/down functionalities. (jcs-emacs-init)
+* Add move current line up/down global key bindings. (jcs-emacs-init)
+* Update key bindings note. (jcs-emacs-init)
 
 2017-10-31
 * Enable auto-complete package for global as default. (jcs-emacs-init)
