@@ -842,5 +842,30 @@ the point."
   (setq found-first-char nil)
   )
 
+
+;;----------------------------------------------
+;; Move Current Line Up or Down
+;;
+;; SOURCE(jenchieh): http://emacsredux.com/blog/2013/04/02/move-current-line-up-or-down/
+;;----------------------------------------------
+
+;;;###autoload
+(defun jcs-move-line-up ()
+  "Move up the current line."
+  (interactive)
+  (transpose-lines 1)
+  (forward-line -2)
+  (indent-according-to-mode))
+
+;;;###autoload
+(defun jcs-move-line-down ()
+  "Move down the current line."
+  (interactive)
+  (forward-line 1)
+  (transpose-lines 1)
+  (forward-line -1)
+  (indent-according-to-mode))
+
+
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-edit.el file
