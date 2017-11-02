@@ -165,6 +165,10 @@
 ;;(define-key global-map [f8] 'neotree-toggle)
 (define-key global-map (kbd "C-M-l") 'neotree-toggle)
 
+;; Interface in Emacs using Git.
+(require 'magit)
+(define-key global-map (kbd "C-x g") 'magit-status)
+
 ;;; Folding Settings
 (outline-minor-mode t)      ; turn on the folding
 (define-key global-map (kbd "C-M-o") 'hide-other)
