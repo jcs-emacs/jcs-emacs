@@ -98,7 +98,7 @@
 (define-key global-map "\C-k\C-c" 'jcs-comment-region-or-line)
 (define-key global-map "\C-k\C-u" 'jcs-uncomment-region-or-line)
 
-;;; canceling action.
+;;; Canceling Action.
 ;;(define-key global-map "\C-g" 'jcs-top-level)
 (define-key global-map (kbd "<escape>") 'jcs-top-level)
 
@@ -109,8 +109,8 @@
 (define-key global-map (kbd "S-<end>") 'jcs-smart-select-end)
 (define-key global-map (kbd "<up>") 'jcs-smart-indent-up)
 (define-key global-map (kbd "<down>") 'jcs-smart-indent-down)
-(define-key global-map [M-up] 'scroll-down-one-line)
-(define-key global-map [M-down] 'scroll-up-one-line)
+(define-key global-map [C-M-up] 'scroll-down-one-line)
+(define-key global-map [C-M-down] 'scroll-up-one-line)
 
 (define-key global-map "\er" 'revert-buffer-no-confirm)
 
@@ -179,6 +179,10 @@
 
 ;;; Animate Scrolling
 (define-key global-map "\C-ca" 'jcs-toggle-sublimity-mode)
+
+;;; Move Current Line Up or Down
+(define-key global-map [M-up] 'jcs-move-line-up)
+(define-key global-map [M-down] 'jcs-move-line-down)
 
 ;;;
 ;; minibuffer
