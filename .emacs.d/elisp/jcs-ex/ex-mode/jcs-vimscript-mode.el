@@ -32,6 +32,7 @@
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 
+(require 'vimrc-mode)
 (defun jcs-vim-mode-hook ()
   ;; Abbrevation expansion
   (abbrev-mode 1)
@@ -73,16 +74,22 @@
 
   (cond ((file-exists-p buffer-file-name) t)
         ((string-match "[.]vim" buffer-file-name) (jcs-vim-script-format))
+        ((string-match "[.]vimrc" buffer-file-name) (jcs-vim-script-format))
+        ((string-match "_vimrc" buffer-file-name) (jcs-vim-script-format))
         )
 
-  ;; jcs org mode key binding
-  (define-key org-mode-map (kbd "C-d") 'jcs-kill-whole-line)
-  (define-key org-mode-map "\C-c\C-c" 'kill-ring-save)
-  (define-key org-mode-map "\C-a" 'mark-whole-buffer)
-  )
-(add-hook 'org-mode-hook 'jcs-vim-mode-hook)
+  ;; jcs vim mode key binding
+  (define-key vimrc-mode-map (kbd "C-d") 'jcs-kill-whole-line)
+  (define-key vimrc-mode-map "\C-c\C-c" 'kill-ring-save)
+  (define-key vimrc-mode-map "\C-a" 'mark-whole-buffer)
 
-(add-to-list 'auto-mode-alist '("\\.vim?\\'" . org-mode))
+  (define-key vimrc-mode-map (kbd "<up>") 'jcs-previous-line)
+  (define-key vimrc-mode-map (kbd "<down>") 'jcs-next-line)
+  )
+(add-hook 'vimrc-mode-hook 'jcs-vim-mode-hook)
+
+(add-to-list 'auto-mode-alist '("\\.vim\\(rc\\)?\\'" . vimrc-mode))
+(add-to-list 'auto-mode-alist '("\\(/\\|\\`\\)_vimrc" . vimrc-mode))
 
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-vimscript-mode.el file
