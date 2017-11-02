@@ -7,6 +7,10 @@
 # ========================================================================
 
 
+2017-11-02
+* Enable auto-complete package for web-mode's minor mode when
+ editing PHP file. (jcs-emacs-init)
+
 2017-10-31
 * Enable auto-complete package for global as default. (jcs-emacs-init)
 * Fixed COBOL mode auto-complete not showing issue. (jcs-emacs-init)
