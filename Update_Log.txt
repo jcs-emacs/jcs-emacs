@@ -10,6 +10,9 @@
 2017-11-02
 * Enable auto-complete package for web-mode's minor mode when
  editing PHP file. (jcs-emacs-init)
+* Add vimrc-mode package. (jcs-emacs-init)
+* Add magit package. (jcs-emacs-init)
+* Add global key bindings for magit. (jcs-emacs-init)
 
 2017-10-31
 * Enable auto-complete package for global as default. (jcs-emacs-init)
