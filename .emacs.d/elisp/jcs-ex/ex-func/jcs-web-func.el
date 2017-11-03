@@ -216,6 +216,14 @@ line instead of indent the whole file at once."
   (jcs-save-buffer)
   )
 
+;;;###autoload
+(defun jcs-css-save-buffer ()
+  "Save buffer in `css-mode'."
+  (interactive)
+  (jcs-css-sort-attributes-document)
+  (jcs-save-buffer)
+  )
+
 ;;---------------------------------------------
 ;; Impatient Mode
 ;;---------------------------------------------
@@ -236,6 +244,36 @@ line instead of indent the whole file at once."
   (message "Close real time editing with port: %d" httpd-port)
   (call-interactively 'httpd-stop))
 
+
+;;---------------------------------------------
+;; CSS
+;;---------------------------------------------
+
+;;;###autoload
+(defun jcs-css-sort-attributes ()
+  "Sort the CSS attributes for open and close curly parenthesis."
+  (interactive)
+
+  (save-excursion
+    (css-sort-attributes (point-min) (point-max)))
+  )
+
+;;;###autoload
+(defun jcs-css-sort-attributes-document ()
+  "Sort all attributes for whole document."
+  (interactive)
+
+  (save-excursion
+    (beginning-of-buffer)
+
+    (while (search-forward "}")
+      (jcs-move-forward-close-curlyParen)
+
+      ;; sort CSS attributes once.
+      (css-sort-attributes (point-min) (point-max))
+      )
+    )
+  )
 
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-web-func.el file
