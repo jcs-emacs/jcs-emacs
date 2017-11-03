@@ -7,6 +7,13 @@
 # ========================================================================
 
 
+2017-11-03
+* Add css-sort package. (jcs-emacs-init)
+* Add css sort key bindings to css and scss mode. (jcs-emacs-init)
+* Add css save function as default css-mode and scss-mode default
+ save buffer functionality. Now save CSS and SCSS file with sort
+ attribute before saving it. (jcs-emacs-init)
+
 2017-11-02
 * Enable auto-complete package for web-mode's minor mode when
  editing PHP file. (jcs-emacs-init)
