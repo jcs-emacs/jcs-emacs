@@ -129,7 +129,7 @@
 
   (require 'ac-php)
   (setq ac-sources '(ac-source-php))
-  
+
 
   (defun jcs-html-format ()
     "Format the give file. - JenChieh HTML file"
@@ -193,6 +193,7 @@
   (define-key web-mode-map "\C-k\C-d" 'jcs-web-format-document)
   (define-key web-mode-map (kbd "C-S-f") 'jcs-web-format-region-or-document)
 
+  ;; Save
   (define-key web-mode-map "\C-s" 'jcs-web-save-buffer)
 
   ;; comment block
@@ -356,6 +357,9 @@
 ;; Source: -> CSS Mode: https://www.emacswiki.org/emacs/css-mode.el
 ;;         -> Xah CSS Mode: http://ergoemacs.org/emacs/xah-css-mode.html
 (load-file "~/.emacs.d/elisp/css-mode.el")
+(load-file "~/.emacs.d/elisp/css-sort.el")
+
+(require 'css-sort)
 (require 'css-mode)
 (defun jcs-css-mode-hook ()
 
@@ -392,10 +396,16 @@
   (define-key css-mode-map "\C-c\C-c" 'kill-ring-save)
   (define-key skewer-css-mode-map "\C-c\C-c" 'kill-ring-save)
 
+  ;; Save
+  (define-key css-mode-map "\C-s" 'jcs-css-save-buffer)
+
   ;; comment block
   (define-key css-mode-map (kbd "RET") 'jcs-smart-context-line-break)
-
   (define-key css-mode-map (kbd "*") 'jcs-c-comment-pair)
+
+  ;; sort attribute in order => `css-sort' package.
+  (define-key css-mode-map "\C-ks" 'jcs-css-sort-attributes)
+  (define-key css-mode-map "\C-kd" 'jcs-css-sort-attributes-document)
   )
 (add-hook 'css-mode-hook  'jcs-css-mode-hook)
 (add-hook 'css-mode-hook 'emmet-mode)
