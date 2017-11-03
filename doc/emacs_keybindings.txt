@@ -147,6 +147,12 @@ M-down        Move current line down.
 
 C-M-up          Scroll window up one line without moving cursor.
 C-M-down        Scroll window down one line without moving cursor.
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+* CSS sort
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+C-k s           Sort the CSS attributes between open/close parenthesis.
+C-k d           Sort the CSS attribute for the whole file.
                 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * Neo Tree Mode
