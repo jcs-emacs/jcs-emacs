@@ -36,20 +36,17 @@
 
 (defun jcs-insert-creator-name ()
   "Insert the creator name."
-  (interactive)
   (insert jcs-creator-name)
   )
 
 (defun jcs-insert-copyright-name ()
   "Insert the copyright name."
-  (interactive)
   (insert jcs-copyright-name)
   )
 
 
 (defun jcs-insert-filename-section ()
   "Insert 'File' section."
-  (interactive)
 
   ;; macro
   ;; file name
@@ -63,7 +60,6 @@
 
 (defun jcs-insert-creation-date-section ()
   "Insert 'Creation Date' section."
-  (interactive)
 
   (insert "$Date: ")
   (jcs-timestamp)
@@ -71,7 +67,6 @@
 
 (defun jcs-insert-revision-section ()
   "Insert 'Revision' section."
-  (interactive)
 
   (insert "$Revision: ")
 
@@ -94,14 +89,12 @@
 
 (defun jcs-insert-notice-section-line1 ()
   "Insert 'Notice' section line 1."
-  (interactive)
 
   (insert "$Notice: See LICENSE.txt for modification and distribution information")
   )
 
 (defun jcs-insert-notice-section-line2 ()
   "Insert 'Notice' section line 2."
-  (interactive)
 
   (insert "                  Copyright (c) ")
   (jcs-year-only)
@@ -115,7 +108,6 @@
 ;;---------------------------------------------
 (defun jcs-global-file-info ()
   ""
-  (interactive)
 
   (insert "/**\n")
   (insert " * ")
@@ -144,7 +136,6 @@
 ;;---------------------------------------------
 (defun jcs-tag-file-info ()
   ""
-  (interactive)
 
   (insert "<!--\n")
   (insert "   - ")
@@ -175,7 +166,6 @@
 (defun jcs-manage-file-info ()
   "Any managing file format. Text file, batch file, shell
 script, etc."
-  (interactive)
 
   (insert "# ========================================================================\n")
   (insert "# ")
@@ -205,7 +195,6 @@ script, etc."
 ;;---------------------------------------------
 (defun jcs-asm-file-format ()
   "Specific header format for Assembly Language/lisp/elisp, etc."
-  (interactive)
 
   (insert ";; ========================================================================\n")
   (insert ";; ")
@@ -236,7 +225,6 @@ script, etc."
 ;;---------------------------------------------
 (defun jcs-makefile-format-info ()
   "File header format specific for makefile."
-  (interactive)
 
   (insert "#----------------------------------------------\n")
   (insert "# JayCeS project directories preference.\n")
@@ -364,7 +352,6 @@ script, etc."
 ;;---------------------------------------------
 (defun jcs-cmake-format-info ()
   "CMake file format info."
-  (interactive)
 
   (insert "CMAKE_MINIMUM_REQUIRED(VERSION 3.0)\n\n")
 
@@ -387,7 +374,6 @@ script, etc."
 ;;---------------------------------------------
 (defun jcs-lua-file-format-info ()
   "Lua file header format."
-  (interactive)
 
   (insert "-- ========================================================================\n")
   (insert "-- ")
@@ -417,7 +403,6 @@ script, etc."
 ;;---------------------------------------------
 (defun jcs-batch-file-format-info ()
   "Header format for batch file."
-  (interactive)
 
   (insert ":: ========================================================================\n")
   (insert ":: ")
@@ -442,6 +427,9 @@ script, etc."
   (insert "\n\n")
   )
 
+;;---------------------------------------------
+;; COBOL file header format.
+;;---------------------------------------------
 (defun jcs-cobol-file-format-info ()
   "Header format for COBOL."
 
