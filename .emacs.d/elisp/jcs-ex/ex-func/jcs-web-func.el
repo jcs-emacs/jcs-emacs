@@ -254,8 +254,16 @@ line instead of indent the whole file at once."
   "Sort the CSS attributes for open and close curly parenthesis."
   (interactive)
 
+  ;; record down the starting line.
+  (setq startLineNum (string-to-number (format-mode-line "%l")))
+
   (save-excursion
-    (css-sort-attributes (point-min) (point-max)))
+    (ignore-errors
+      (css-sort-attributes (point-min) (point-max))))
+
+  ;; make sure go back to the starting line.
+  (goto-line startLineNum)
+  (end-of-line)
   )
 
 ;;;###autoload
@@ -263,16 +271,24 @@ line instead of indent the whole file at once."
   "Sort all attributes for whole document."
   (interactive)
 
+  ;; record down the starting line.
+  (setq startLineNum (string-to-number (format-mode-line "%l")))
+
   (save-excursion
-    (beginning-of-buffer)
+    (ignore-errors
+      (beginning-of-buffer)
 
-    (while (search-forward "}")
-      (jcs-move-forward-close-curlyParen)
+      (while (search-forward "}")
+        (jcs-move-forward-close-curlyParen)
 
-      ;; sort CSS attributes once.
-      (css-sort-attributes (point-min) (point-max))
-      )
-    )
+        ;; sort CSS attributes once.
+        (css-sort-attributes (point-min) (point-max))
+        )
+      ))
+
+  ;; make sure go back to the starting line.
+  (goto-line startLineNum)
+  (end-of-line)
   )
 
 ;;------------------------------------------------------------------------------------------------------
