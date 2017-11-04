@@ -7,6 +7,10 @@
 # ========================================================================
 
 
+2017-11-05
+* Make hide shell command proper UX. (jcs-emacs-init)
+* Add jump-to-window function to jcs-nav. (jcs-emacs-init)
+
 2017-11-04
 * Fixed plugin bugs css-sort cursor moves after sort occurs, preferences
  issue make. (jcs-emacs-init)
