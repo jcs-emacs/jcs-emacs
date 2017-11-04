@@ -497,7 +497,7 @@
 (set-default-coding-systems 'utf-8)
 
 ;; jcs editor setting
-(global-linum-mode)                          ;; Global Line Number
+(global-linum-mode t)                        ;; Global Line Number
 (setq-default indent-tabs-mode nil)          ;; Disable inset tabs, insert space only
 (setq-default tab-width 4)
 (setq tab-width 4)
