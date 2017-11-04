@@ -69,10 +69,23 @@
 ;; Hide the shell window.
 ;;---------------------------------------------
 
+(defun jcs-test-inter()
+  (interactive)
+  (message "work")
+  ;;(message "%s" (current-buffer))
+  (message "%s" (string (selected-window)))
+
+  (select-window "*JDEE bsh*")
+  )
+
+
 ;;;###autoload
 (defun jcs-hide-shell-window ()
   "Kill process prompt."
   (interactive)
+
+  ;; goto this window.
+  (jcs-jump-to-window "*shell*")
 
   ;; kill the process before closing the frame.
   (if (get-buffer-process "*shell*")
