@@ -428,6 +428,22 @@
   (jcs-move-to-backward-a-char "}")
   )
 
+;;;
+;; URL(jenchieh): https://www.emacswiki.org/emacs/WindowNavigation
+;; Author: ChrisDone
+;;
+(defun jcs-jump-to-window (buffer-name)
+  (interactive "bEnter buffer to jump to: ")
+  (let ((visible-buffers (mapcar '(lambda (window) (buffer-name (window-buffer window))) (window-list)))
+    window-of-buffer)
+    (if (not (member buffer-name visible-buffers))
+    (error "'%s' does not have visible window" buffer-name)
+      (setq window-of-buffer
+        (delq nil (mapcar '(lambda (window)
+                             (if (equal buffer-name (buffer-name (window-buffer window)))
+                      window nil)) (window-list))))
+      (select-window (car window-of-buffer)))))
+
 
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-nav.el file
