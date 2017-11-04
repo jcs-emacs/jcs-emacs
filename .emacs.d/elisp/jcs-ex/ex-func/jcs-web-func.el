@@ -220,7 +220,7 @@ line instead of indent the whole file at once."
 (defun jcs-css-save-buffer ()
   "Save buffer in `css-mode'."
   (interactive)
-  (jcs-css-sort-attributes-document)
+  ;;(jcs-css-sort-attributes-document)
   (jcs-save-buffer)
   )
 
