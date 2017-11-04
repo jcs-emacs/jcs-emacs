@@ -51,6 +51,7 @@
 ;;---------------------------------------------
 ;; Show the shell window.
 ;;---------------------------------------------
+
 (defun jcs-show-shell-window()
   "Shell Command prompt."
   (interactive)
@@ -69,17 +70,6 @@
 ;; Hide the shell window.
 ;;---------------------------------------------
 
-(defun jcs-test-inter()
-  (interactive)
-  (message "work")
-  ;;(message "%s" (current-buffer))
-  (message "%s" (string (selected-window)))
-
-  (select-window "*JDEE bsh*")
-  )
-
-
-;;;###autoload
 (defun jcs-hide-shell-window ()
   "Kill process prompt."
   (interactive)
