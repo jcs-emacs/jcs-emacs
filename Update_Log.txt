@@ -7,6 +7,10 @@
 # ========================================================================
 
 
+2017-11-04
+* Fixed plugin bugs css-sort cursor moves after sort occurs, preferences
+ issue make. (jcs-emacs-init)
+
 2017-11-03
 * Add css-sort package. (jcs-emacs-init)
 * Add css sort key bindings to css and scss mode. (jcs-emacs-init)
