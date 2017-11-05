@@ -7,6 +7,10 @@
 # ========================================================================
 
 
+2017-11-06
+* Update key bindings note and add category Util for handy key
+ bindings in emacs. (jcs-emacs-init)
+
 2017-11-05
 * Make hide shell command proper UX. (jcs-emacs-init)
 * Add jump-to-window function to jcs-nav. (jcs-emacs-init)
