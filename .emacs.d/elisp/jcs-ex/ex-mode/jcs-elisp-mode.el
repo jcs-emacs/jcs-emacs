@@ -49,13 +49,18 @@
 
     (if (is-current-file-empty-p)
         (progn
-          (jcs-asm-file-info)
+          (jcs-asm-file-format)
           ))
     )
 
-  ;; (cond ((file-exists-p buffer-file-name) t)
-  ;;       ((string-match "[.]el" buffer-file-name) (jcs-emacs-lisp-format))
-  ;;       )
+  ;; NOTE(jenchieh): while loading this will get loading emacs
+  ;; error, so simple add the `ignore-errors' function can avoid
+  ;; this. Furthermore this will stil work after the first load.
+  (ignore-errors
+    (cond ((file-exists-p buffer-file-name) t)
+          ((string-match "[.]el" buffer-file-name) (jcs-emacs-lisp-format))
+          )
+    )
   )
 (add-hook 'emacs-lisp-mode-hook 'jcs-emacs-lisp-mode-hook)
 
