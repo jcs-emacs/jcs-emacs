@@ -12,6 +12,8 @@
  bindings in emacs. (jcs-emacs-init)
 * Add emacs_commands file for record important commands for future
  usage and note. (jcs-emacs-init)
+* Add header for emacs lisp mode. (jcs-emacs-init)
+* Revaluate the css-sort function with local variable. (jcs-emacs-init)
 
 2017-11-05
 * Make hide shell command proper UX. (jcs-emacs-init)
