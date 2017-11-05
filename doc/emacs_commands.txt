@@ -1,0 +1,29 @@
+# ========================================================================
+# $File: emacs_commands.txt $
+# $Date: 2017-11-06 05:39:00 $
+# $Revision: $
+# $Creator: Jen-Chieh Shen $
+# $Notice: See LICENSE.txt for modification and distribution information
+#                   Copyright (c) 2017 by Shen, Jen-Chieh $
+# ========================================================================
+
+
+|-------------------+-------------------------------------------------|
+| Commands          | Description                                     |
+|-------------------+-------------------------------------------------|
+| eval-last-sexp    | Evaluate the Emacs Lisp expression before point |
+|                   | and print the value inthe echo area.            |
+| eval-defun        | Evaluate the defun containing or after point,   |
+|                   | and print the value in the echo area.           |
+| eval-region       | Evaluate all the Emacs Lisp expressions in the  |
+|                   | region.                                         |
+| eval-buffer       | Evaluate all the Emacs Lisp expressions in the  |
+|                   | buffer.                                         |
+|-------------------+-------------------------------------------------|
+| describe-bindings | Describe all key bindings in current buffer.    |
+| describe-mode     | Describe major and all minor mode in current    |
+|                   | buffer.                                         |
+| describe-variable | Describe variable current cursor on.            |
+| describe-function | Describe function current curosr on.            |
+| describe-face     | Describe the face current cursor on.            |
+|-------------------+-------------------------------------------------|
