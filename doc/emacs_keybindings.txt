@@ -130,23 +130,31 @@ ALT-BACKSPACE   Kill until next capital letter appears.
 
 C-x C-v         Reload '.emacs' file in a proper way.
 
-C-wo            Start httpd server for real time editing markdown
+C-w o           Start httpd server for real time editing markdown
                 using `impatient-mode'.
-C-wp            Close httpd server for real time editing markdown
+C-w p           Close httpd server for real time editing markdown
                 using `impatient-mode'.
 
-C-hh            Toggle window split between horizontal and 
+C-h h           Toggle window split between horizontal and 
                 vertcial.
 				
 ALT-p           Open list of processes. (`list-processes')
 
 C-x g           Open magit interface.
 
-M-up          Move current line up.
-M-down        Move current line down.
+M-up            Move current line up.
+M-down          Move current line down.
 
 C-M-up          Scroll window up one line without moving cursor.
 C-M-down        Scroll window down one line without moving cursor.
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+* Util
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+C-h f           Describe function.
+C-h m           Describe mode.
+C-h v           Describe variable.
+C-h b           Describe bindings.
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * CSS sort
