@@ -14,6 +14,9 @@
  usage and note. (jcs-emacs-init)
 * Add header for emacs lisp mode. (jcs-emacs-init)
 * Revaluate the css-sort function with local variable. (jcs-emacs-init)
+* Make backup 2017-11-06. (jcs-emacs-init)
+* Add save-window-excursion with css sort, make sure no moving
+ point and scroll. (jcs-emacs-init)
 
 2017-11-05
 * Make hide shell command proper UX. (jcs-emacs-init)
