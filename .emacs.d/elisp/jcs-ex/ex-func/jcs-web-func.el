@@ -258,9 +258,10 @@ line instead of indent the whole file at once."
   (let ((startLineNum (string-to-number (format-mode-line "%l"))))
 
     (save-excursion
-      (ignore-errors
-        (css-sort-attributes (point-min) (point-max))))
-    
+      (save-window-excursion
+        (ignore-errors
+          (css-sort-attributes (point-min) (point-max)))))
+
     ;; make sure go back to the starting line.
     (goto-line startLineNum)
     (end-of-line))
@@ -275,14 +276,15 @@ line instead of indent the whole file at once."
   (let ((startLineNum (string-to-number (format-mode-line "%l"))))
 
     (save-excursion
-      (ignore-errors
-        (beginning-of-buffer)
+      (save-window-excursion
+        (ignore-errors
+          (beginning-of-buffer)
 
-        (while (search-forward "}")
-          (jcs-move-forward-close-curlyParen)
-          ;; sort CSS attributes once.
-          (css-sort-attributes (point-min) (point-max)))
-        ))
+          (while (search-forward "}")
+            (jcs-move-forward-close-curlyParen)
+            ;; sort CSS attributes once.
+            (css-sort-attributes (point-min) (point-max)))
+          )))
 
     ;; make sure go back to the starting line.
     (goto-line startLineNum)
