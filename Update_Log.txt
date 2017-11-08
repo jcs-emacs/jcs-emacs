@@ -7,6 +7,9 @@
 # ========================================================================
 
 
+2017-11-08
+* Remove thought was impatient mode settings. (jcs-emacs-init)
+
 2017-11-06
 * Update key bindings note and add category Util for handy key
  bindings in emacs. (jcs-emacs-init)
