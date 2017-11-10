@@ -43,7 +43,10 @@
 
   ;; NOTE(jenchieh): Unknown reason that web-mode will
   ;; get disable...
-  (web-mode)
+  ;;(web-mode)
+
+  ;; NOTE(jenchieh): Get back highlighting.
+  ;;(font-lock-flush)
   )
 
 ;;;###autoload
@@ -54,7 +57,10 @@
 
   ;; NOTE(jenchieh): Unknown reason that web-mode will
   ;; get disable...
-  (web-mode)
+  ;;(web-mode)
+
+  ;; NOTE(jenchieh): Get back highlighting.
+  ;;(font-lock-flush)
   )
 
 ;;;###autoload
@@ -76,7 +82,10 @@ wrap by another function..."
 
   ;; NOTE(jenchieh): Unknown reason that web-mode will
   ;; get disable...
-  (web-mode)
+  ;;(web-mode)
+
+  ;; NOTE(jenchieh): Get back highlighting.
+  ;;(font-lock-flush)
   )
 
 ;;;###autoload
