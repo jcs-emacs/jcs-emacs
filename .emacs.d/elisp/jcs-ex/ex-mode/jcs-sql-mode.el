@@ -52,6 +52,9 @@
   ;; highlight URL and clickable.
   (goto-address-mode 1)
 
+  ;; turn on auto complete.
+  (auto-complete-mode t)
+
   (defun jcs-sql-format ()
     "File format for editing SQL file."
     (interactive)
