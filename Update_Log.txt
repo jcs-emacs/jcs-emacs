@@ -10,6 +10,9 @@
 2017-11-10
 * Remove some of the web-mode functionalities, seems like the
  original `web-mode' package had improved. (jcs-emacs-init)
+* Make backup. (jcs-emacs-init)
+* Revert 'web-mode' functionalities because I was wrong with the
+ bug fixed from original package. (jcs-emacs-init)
 
 2017-11-08
 * Remove thought was impatient mode settings. (jcs-emacs-init)
