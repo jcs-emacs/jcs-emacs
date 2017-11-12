@@ -7,6 +7,10 @@
 # ========================================================================
 
 
+2017-11-12
+* Add `xwidgete' package. (jcs-emacs-init)
+* Add `pdf-tools' package. (jcs-emacs-init)
+
 2017-11-10
 * Remove some of the web-mode functionalities, seems like the
  original `web-mode' package had improved. (jcs-emacs-init)
