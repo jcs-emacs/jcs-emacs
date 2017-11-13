@@ -7,6 +7,9 @@
 # ========================================================================
 
 
+2017-11-13
+* Update `web-mode' package with prefix indentation bug fixed. (jcs-emacs-init)
+
 2017-11-12
 * Add `xwidgete' package. (jcs-emacs-init)
 * Add `pdf-tools' package. (jcs-emacs-init)
