@@ -521,6 +521,9 @@
 ;;(setq fancy-splash-image t)
 ;;(setq fancy-splash-image-file "~/.emacs.d/splash_screen.png")
 
+;;; Resolve performance issue moving around Unicode Text.
+(setq inhibit-compacting-font-caches t)
+
 
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-env.el file
