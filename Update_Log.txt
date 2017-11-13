@@ -10,6 +10,9 @@
 2017-11-13
 * Update `web-mode' package with prefix indentation bug fixed. (jcs-emacs-init)
  -> #939: https://github.com/fxbois/web-mode/issues/939
+* Resolve performance issue while moving the cursor around the 
+ unicode text by adding '(setq inhibit-compacting-font-caches t)'
+ at `jcs-env.el' file. (jcs-emacs-init)
 
 2017-11-12
 * Add `xwidgete' package. (jcs-emacs-init)
