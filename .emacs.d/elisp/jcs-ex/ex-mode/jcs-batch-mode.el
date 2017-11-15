@@ -42,6 +42,9 @@
   ;; highlight URL and clickable.
   (goto-address-mode 1)
 
+  ;; turn on auto complete.
+  (auto-complete-mode t)
+
   (defun jcs-batch-script-format ()
     "Format the given file as a class. - JenChieh Batch Script"
 
