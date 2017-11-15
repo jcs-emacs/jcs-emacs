@@ -157,6 +157,12 @@ C-h v           Describe variable.
 C-h b           Describe bindings.
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+* auto-highlight-symbol
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+M-right         Goto next symbol.
+M-left          Goto previous symbol.
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * CSS sort
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 C-k s           Sort the CSS attributes between open/close parenthesis.
