@@ -44,7 +44,7 @@
  '(mouse-wheel-scroll-amount (quote (15)))
  '(package-selected-packages
    (quote
-    (xwidgete pdf-tools preproc-font-lock sublimity tree-mode rainbow-mode py-autopep8 multi-web-mode jdee java-imports impatient-mode iedit helm-gtags google-c-style gitlab gitignore-mode github-notifier gitconfig-mode flymake-google-cpplint flymake-cursor elpy ein cpputils-cmake cmake-project cmake-ide cmake-font-lock blank-mode better-defaults batch-mode auto-package-update auto-install auto-complete-c-headers actionscript-mode ace-window ac-php ac-js2 ac-html ac-emmet)))
+    (auto-highlight-symbol xwidgete pdf-tools preproc-font-lock sublimity tree-mode rainbow-mode py-autopep8 multi-web-mode jdee java-imports impatient-mode iedit helm-gtags google-c-style gitlab gitignore-mode github-notifier gitconfig-mode flymake-google-cpplint flymake-cursor elpy ein cpputils-cmake cmake-project cmake-ide cmake-font-lock blank-mode better-defaults batch-mode auto-package-update auto-install auto-complete-c-headers actionscript-mode ace-window ac-php ac-js2 ac-html ac-emmet)))
  '(send-mail-function (quote mailclient-send-it))
  '(version-control nil))
 (custom-set-faces
@@ -108,6 +108,7 @@ Return a list of installed packages or nil for every skipped package."
                           'apache-mode
                           'auto-complete
                           'auto-complete-c-headers
+                          'auto-highlight-symbol
                           'auto-install
                           'auto-package-update
                           'batch-mode
