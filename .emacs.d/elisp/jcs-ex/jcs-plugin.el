@@ -189,5 +189,31 @@
 (ac-config-default)
 (global-auto-complete-mode t)
 
+(require 'auto-highlight-symbol)
+(global-auto-highlight-symbol-mode t)
+
+;; Current highlight. (Cursor point currently on.)
+(set-face-attribute 'ahs-plugin-defalt-face nil
+                    :foreground nil
+                    :background "#123E70"
+                    :box '(:line-width -1 :color "#525D68" :style pressed-button)
+                    :underline nil)
+
+;; Other highlight. (Same words in the buffer)
+(set-face-attribute 'ahs-face nil
+                    :foreground nil
+                    :background "#113D6F"
+                    :box '(:line-width -1 :color "#525D68" :style pressed-button)
+                    :underline nil)
+
+(set-face-attribute 'ahs-definition-face nil
+                    :foreground nil
+                    :background "#113D6F"
+                    :box '(:line-width -1 :color "#525D68" :style pressed-button)
+                    :underline nil)
+
+;; Number of seconds to wait before highlighting symbol.
+(custom-set-variables '(ahs-idle-interval 0.3))
+
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-plugin.el file
