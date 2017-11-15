@@ -7,6 +7,10 @@
 # ========================================================================
 
 
+2017-11-15
+* Add `auto-highlight-symbol' package. (jcs-emacs-init)
+* Customize package `auto-highlight-sybmol'. (jcs-emacs-init)
+
 2017-11-13
 * Update `web-mode' package with prefix indentation bug fixed. (jcs-emacs-init)
  -> #939: https://github.com/fxbois/web-mode/issues/939
