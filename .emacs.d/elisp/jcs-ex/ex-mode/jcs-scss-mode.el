@@ -39,6 +39,9 @@
   ;; highlight URL and clickable.
   (goto-address-mode 1)
 
+  ;; Auto highlight the same word.
+  (auto-highlight-symbol-mode t)
+
   ;;; `meghanada' Configuration
   (meghanada-mode t)
 
@@ -62,7 +65,7 @@
 
   ;; Save
   (define-key css-mode-map "\C-s" 'jcs-css-save-buffer)
-  
+
   ;; comment block
   (define-key scss-mode-map (kbd "RET") 'jcs-smart-context-line-break)
   (define-key scss-mode-map (kbd "*") 'jcs-c-comment-pair)

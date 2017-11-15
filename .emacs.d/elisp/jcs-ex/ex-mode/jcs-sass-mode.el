@@ -39,6 +39,9 @@
   ;; highlight URL and clickable.
   (goto-address-mode 1)
 
+  ;; Auto highlight the same word.
+  (auto-highlight-symbol-mode t)
+
   ;;; `meghanada' Configuration
   (meghanada-mode t)
 

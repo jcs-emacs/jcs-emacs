@@ -44,6 +44,9 @@
   ;; highlight URL and clickable.
   (goto-address-mode 1)
 
+  ;; Auto highlight the same word.
+  (auto-highlight-symbol-mode t)
+
   (defun jcs-emacs-lisp-format ()
     "Format the given file as a Emacs Lisp file. - JenChieh emacs lisp file."
 

@@ -84,6 +84,9 @@
   ;; enable truncate lines.
   (toggle-truncate-lines)
 
+  ;; Auto highlight the same word.
+  (auto-highlight-symbol-mode t)
+
   ;; align truncate lines use.
   (visual-line-mode t)
 

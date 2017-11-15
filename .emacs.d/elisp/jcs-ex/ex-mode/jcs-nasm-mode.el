@@ -42,6 +42,9 @@
   ;; highlight URL and clickable.
   (goto-address-mode 1)
 
+  ;; Auto highlight the same word.
+  (auto-highlight-symbol-mode t)
+
   (defun jcs-asm-format ()
     "Format the given file as a asm code. - JenChieh Assembly Language"
     (interactive)
