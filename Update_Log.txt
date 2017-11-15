@@ -10,6 +10,8 @@
 2017-11-15
 * Add `auto-highlight-symbol' package. (jcs-emacs-init)
 * Customize package `auto-highlight-sybmol'. (jcs-emacs-init)
+* Fixed auto-highlight-symbol package face settings for my own
+ use. (jcs-emacs-init)
 
 2017-11-13
 * Update `web-mode' package with prefix indentation bug fixed. (jcs-emacs-init)
