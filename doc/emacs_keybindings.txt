@@ -192,7 +192,7 @@ C-c d           toggle shell window
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * Dual Display/Monitor
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-C-xn            開啟另一個視窗.
+C-x n           開啟另一個視窗.
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * Customize Theme時,
@@ -239,20 +239,20 @@ C-return        tab emmet.
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * Switch Mode
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-C-cc            toggle between c and c++ mode.
-C-cj            enable/disable jdee-mode.
-C-xw            enable/disable web-mode.
-C-xp            enable/disable php-mode.
-C-xj            enable/disable js2-mode.
-C-xb            enable/disable blank-mode.
-C-cr            enable/disable raindbow-mode.
-C-ca            enable/disable sublimity-mode.
+C-c c           toggle between c and c++ mode.
+C-c j           enable/disable jdee-mode.
+C-x w           enable/disable web-mode.
+C-x p           enable/disable php-mode.
+C-x j           enable/disable js2-mode.
+C-x b           enable/disable blank-mode.
+C-c r           enable/disable raindbow-mode.
+C-c a           enable/disable sublimity-mode.
 
-C-x`            toggle between "command mode" and "insert mode".
+C-x `           toggle between "command mode" and "insert mode".
 C-`             toggle between "depend mode" and "cross mode".
 
-C-xo            org mode
-C-xg            gitignore mode/normal text mode.
+C-x o           org mode
+C-x g           gitignore mode/normal text mode.
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * Cross Language Mode
@@ -270,14 +270,14 @@ f5              Run the run script. (.bat, .linux, .macosx, etc.)
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * Switch Line-Endings 時...
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-C-xC-e 接著打入 dos / mac / unix
+C-x C-e    =>   接著打入 dos / mac / unix
 
     url裡面有詳細的表格和介紹! (http://ergoemacs.org/emacs/emacs_line_ending_char.html)
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * Email
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-C-xm            begin composing mail (compose-mail).
+C-x m           begin composing mail (compose-mail).
 C-c C-s         In the mail buffer, send the message (message
                 -send).
 C-c C-c         In the mail buffer, send the message and bury
