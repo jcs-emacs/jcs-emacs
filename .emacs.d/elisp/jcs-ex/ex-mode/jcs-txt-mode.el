@@ -42,6 +42,9 @@
   ;; highlight URL and clickable.
   (goto-address-mode 1)
 
+  ;; turn on auto complete.
+  (auto-complete-mode t)
+
   ;; Auto highlight the same word.
   (auto-highlight-symbol-mode t)
 
@@ -86,6 +89,12 @@
 ;; Org mode.
 ;;---------------------------
 (defun jcs-org-mode()
+
+  ;; turn on auto complete.
+  (auto-complete-mode t)
+
+  ;; Auto highlight the same word.
+  (auto-highlight-symbol-mode t)
 
   (defun jcs-org-mode-format()
     "Fromat the given file as a text file related. - JenChieh Text file."

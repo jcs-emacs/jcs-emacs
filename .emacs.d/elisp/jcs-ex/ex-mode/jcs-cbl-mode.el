@@ -45,6 +45,9 @@
   ;; turn on auto complete.
   (auto-complete-mode t)
 
+  ;; Auto highlight the same word.
+  (auto-highlight-symbol-mode t)
+
   (defun jcs-cobol-format ()
     "Format the given file to COBOL. - JenChieh COBOL."
     (interactive)
