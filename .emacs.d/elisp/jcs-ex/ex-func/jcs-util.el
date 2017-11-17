@@ -102,8 +102,7 @@
 
 (defun jcs-current-char-lowercasep ()
   "Check if current character a lowercase character?"
-  (not (jcs-current-char-uppercasep))
-  )
+  (not (jcs-current-char-uppercasep)))
 
 (defun current-whitespacep ()
   "Check if current character a whitespace character?"
@@ -113,10 +112,9 @@
   (whitespacep current-char-char))
 
 (defun current-char-equal-p (c)
-  "Check the current character equal to 'c'."
-  (setq current-char (char-before))
-  (setq current-char-string (string current-char))
-  (string= current-char-string c))
+  "Check the current character equal to 'C'."
+  (let ((current-char-string (string (char-before))))
+    (string= current-char-string c)))
 
 (defun jcs-get-current-char-byte ()
   "Get the current character as the 'byte'."
@@ -130,7 +128,6 @@
   (setq current-char (char-before))
   (setq current-char-string (string current-char))
   (current-char-string))
-
 
 ;;---------------------------------------------
 ;; Word
@@ -311,6 +308,14 @@ active. false, there is no region selected and mark is not active.
 "
   (or (is-region-selected-p)
       (is-mark-active)))
+
+;;---------------------------------------------
+;; Comment
+;;---------------------------------------------
+
+(defun is-inside-comment-block-p ()
+  "Check if current cursor point inside the comment block."
+  (nth 4 (syntax-ppss)))
 
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-util.el file
