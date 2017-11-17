@@ -26,6 +26,7 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+;;; Code:
 
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 ;; All utilities put here.
@@ -40,36 +41,36 @@
 ;; -> https://www.emacswiki.org/emacs/InsertingTodaysDate
 ;;---------------------------------------------
 (defun jcs-timestamp ()
-  (interactive)
+  "Insert timestamp."
   (insert (format-time-string "%Y-%m-%d %H:%M:%S")))
 
 (defun jcs-timestamp-ver2 ()
-  (interactive)
+  "Insert timestamp."
   (insert (format-time-string "%Y/%m/%d %H:%M:%S")))
 
 (defun jcs-timestamp-ver3 ()
-  (interactive)
+  "Insert timestamp."
   (insert (format-time-string "%Y-%m-%d %H:%M:%S")))
 
 ;;---------------------------------------------
 ;; Make the data base on the format provided.
 ;;---------------------------------------------
 (defun jcs-date()
-  (interactive)
+  "Inset date."
   (insert (format-time-string "%Y-%m-%d")))
 
 ;;---------------------------------------------
 ;; Insert year only.
 ;;---------------------------------------------
 (defun jcs-year-only ()
-  (interactive)
+  "Insert Year."
   (insert (format-time-string "%Y")))
 
 ;;---------------------------------------------
 ;; Make the time base on the format provided.
 ;;---------------------------------------------
 (defun jcs-time()
-  (interactive)
+  "Insert time."
   (insert (format-time-string "%H:%M:%S")))
 
 ;;---------------------------------------------
