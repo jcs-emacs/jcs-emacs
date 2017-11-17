@@ -216,5 +216,9 @@
 ;; Number of seconds to wait before highlighting symbol.
 (custom-set-variables '(ahs-idle-interval 0.3))
 
+(require 'flycheck)
+;;(global-flycheck-mode t)  ;; Enable global `flycheck'?
+
+
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-plugin.el file
