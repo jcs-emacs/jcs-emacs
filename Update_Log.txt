@@ -7,6 +7,10 @@
 # ========================================================================
 
 
+2017-11-17
+* Add package `package-build' to list. (jcs-emacs-init)
+* Add package `package-lint' to list. (jcs-emacs-init)
+
 2017-11-15
 * Add `auto-highlight-symbol' package. (jcs-emacs-init)
 * Customize package `auto-highlight-sybmol'. (jcs-emacs-init)
