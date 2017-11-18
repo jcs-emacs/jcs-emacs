@@ -6,7 +6,7 @@ tweaked since 2015, and it might be a good starting point for other
 Emacs users, especially for those who like to program all kind of 
 programmers. This configuration had tested on Linux and Windows 
 system, the testament on macOS is still planning in the future. 
-<br/><br/>
+<br/>
 
 Emacs itself comes with support for many programming languages. These
 config files improve and extended support for the following:
@@ -27,9 +27,9 @@ config files improve and extended support for the following:
 * SQL
 * Vim script
 * XML
-<br/><br/>
+<br/>
 
 ## Supported Emacs versions ##
 The config should run on Emacs 24.3 or higher, but still, recommand 
 to always run on the latest Emacs version available to you
-<br/><br/>
+<br/>
