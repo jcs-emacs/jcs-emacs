@@ -7,6 +7,10 @@
 # ========================================================================
 
 
+2017-11-18
+* First draft readme. (jcs-emacs-init)
+* Change nasm key bindings indent up and down. (jcs-emacs-init)
+
 2017-11-17
 * Add package `package-build' to list. (jcs-emacs-init)
 * Add package `package-lint' to list. (jcs-emacs-init)
