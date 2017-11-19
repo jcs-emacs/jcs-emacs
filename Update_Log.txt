@@ -7,6 +7,13 @@
 # ========================================================================
 
 
+2017-11-19
+* Change emacs cc-mode comment face. (jcs-emacs-init)
+* Add `auto-highlight-symbol' package to diminish list. (jcs-emacs-init)
+* Add `flycheck' package to diminish list. (jcs-emacs-init)
+* Add `flymake' package to diminish list. (jcs-emacs-init)
+* Add `helm' package to diminish list. (jcs-emacs-init)
+
 2017-11-18
 * First draft readme. (jcs-emacs-init)
 * Change nasm key bindings indent up and down. (jcs-emacs-init)
