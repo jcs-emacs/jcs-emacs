@@ -131,6 +131,7 @@ Return a list of installed packages or nil for every skipped package."
                           'elpy
                           'emmet-mode
                           'exec-path-from-shell
+                          'flycheck
                           'flymake-cursor
                           'flymake-easy
                           'flymake-google-cpplint
