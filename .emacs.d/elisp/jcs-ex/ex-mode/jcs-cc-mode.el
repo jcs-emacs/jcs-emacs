@@ -109,6 +109,14 @@
   ;; Auto highlight the same word.
   (auto-highlight-symbol-mode t)
 
+  ;; Enable flycheck.
+  (flycheck-mode t)
+
+  ;; Turn on line numbers
+  ;;(linum-mode)
+  ;; or Turn on globale line numbers
+  (global-linum-mode)
+
   ;; Set my style for the current buffer
   (c-add-style "BigFun" jcs-big-fun-c-style t)
 
@@ -267,6 +275,11 @@
     (casey-find-corresponding-file)
     (other-window -1))
 
+  ;; Set Faces.
+  ;; URL(jenchieh): http://ergoemacs.org/emacs/elisp_define_face.html
+  (setq-local font-lock-comment-face '(jdee-font-lock-javadoc-face))
+  
+  ;; jcs C/C++ key binding
   (define-key c++-mode-map [f8] 'casey-find-corresponding-file)
   (define-key c++-mode-map [S-f8] 'casey-find-corresponding-file-other-window)
 
@@ -338,13 +351,9 @@
   (add-to-list 'compilation-error-regexp-alist-alist '(casey-devenv
                                                        "*\\([0-9]+>\\)?\\(\\(?:[a-zA-Z]:\\)?[^:(\t\n]+\\)(\\([0-9]+\\)) : \\(?:see declaration\\|\\(?:warnin\\(g\\)\\|[a-z ]+\\) C[0-9]+:\\)"
                                                        2 3 nil (4)))
-
-  ;; Turn on line numbers
-  ;;(linum-mode)
-  ;; or Turn on globale line numbers
-  (global-linum-mode)
   )
 (add-hook 'c-mode-common-hook 'jcs-big-fun-c-hook)
+
 
 ;; start auto-complete with emacs
 (require 'auto-complete)

@@ -70,6 +70,10 @@
         ((string-match "[.]cs" buffer-file-name) (jcs-csharp-class-format))
         )
 
+  ;; Set Faces.
+  ;; URL(jenchieh): http://ergoemacs.org/emacs/elisp_define_face.html
+  (setq-local font-lock-comment-face '(jdee-font-lock-javadoc-face))
+
   ;; jcs C# key binding
   (define-key csharp-mode-map (kbd "C-d") 'jcs-kill-whole-line)
   (define-key csharp-mode-map "\C-c\C-c" 'kill-ring-save)
