@@ -167,28 +167,13 @@
 ;; utf-8.
 (setq powerline-default-separator 'wave)
 
-;;; Diminish
-;; NOTE(jenchieh): Do not show theses modes in the mode line.
-(require 'diminish)
-(diminish 'abbrev-mode)
-(diminish 'auto-complete-mode)
-(diminish 'company-mode)
-(diminish 'flycheck-mode)
-(diminish 'flymake-mode)
-(diminish 'helm-mode)
-(diminish 'helm-gtags-mode)
-(diminish 'impatient-mode)
-(diminish 'js2-refactor-mode)
-(diminish 'js2r)
-(diminish 'outline-mode)
-(diminish 'skewer-mode)
-(diminish 'yasnippet)
-
+;;; Auto Complete
 (require 'auto-complete)
 (require 'auto-complete-config)
 (ac-config-default)
 (global-auto-complete-mode t)
 
+;;; Auto Highlight symbol
 (require 'auto-highlight-symbol)
 (global-auto-highlight-symbol-mode t)
 
@@ -202,23 +187,51 @@
 ;; Current highlight. (Cursor point currently on.)
 (set-face-attribute 'ahs-plugin-defalt-face nil
                     :box '(:line-width -1 :color "#525D68" :style pressed-button)
-                    :underline nil)
+                    ;;:underline nil
+                    )
 
 ;; Other highlight. (Same words in the buffer)
 (set-face-attribute 'ahs-face nil
                     :box '(:line-width -1 :color "#525D68" :style pressed-button)
-                    :underline nil)
+                    ;;:underline nil
+                    )
 
 (set-face-attribute 'ahs-definition-face nil
                     :box '(:line-width -1 :color "#525D68" :style pressed-button)
-                    :underline nil)
+                    ;;:underline nil
+                    )
 
 ;; Number of seconds to wait before highlighting symbol.
 (custom-set-variables '(ahs-idle-interval 0.3))
 
+;;; Flycheck
 (require 'flycheck)
 ;;(global-flycheck-mode t)  ;; Enable global `flycheck'?
 
+;;; Flymake
+(require 'flymake)
+
+;;; Helm
+(require 'helm)
+
+
+;;; Diminish
+;; NOTE(jenchieh): Do not show theses modes in the mode line.
+(require 'diminish)
+(diminish 'abbrev-mode)
+(diminish 'auto-complete-mode)
+(diminish 'company-mode)
+(diminish 'flycheck-mode)
+(diminish 'flymake-mode)
+(diminish 'helm-mode)
+(diminish 'helm-gtags-mode)
+(diminish 'impatient-mode)
+(diminish 'js2-refactor-mode)
+(diminish 'js2r)
+(diminish 'outline-minor-mode)
+(diminish 'skewer-mode)
+(diminish 'yas-minor-mode)
+(diminish 'auto-highlight-symbol-mode)
 
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-plugin.el file
