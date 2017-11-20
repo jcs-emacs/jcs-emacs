@@ -215,6 +215,8 @@ Return a list of installed packages or nil for every skipped package."
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-batch-mode.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-sh-mode.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-cc-mode.el")
+(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-c-mode.el")
+(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-c++-mode.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-jayces-mode.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-java-mode.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-actionscript-mode.el")
