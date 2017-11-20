@@ -107,7 +107,7 @@
 ;; general comment style.
 ;;---------------------------------------------
 (defun jcs-global-file-info ()
-  ""
+  "Useing '/*' '*/' for commenting programming languages."
 
   (insert "/**\n")
   (insert " * ")
@@ -425,6 +425,145 @@ script, etc."
   (insert " $\n")
   (insert ":: ========================================================================\n")
   (insert "\n\n")
+  )
+
+;;---------------------------------------------
+;; C Header file format.
+;;---------------------------------------------
+(defun jcs-c-header-file-format-info ()
+  "Header for C header file."
+  (jcs-global-file-info)
+  )
+
+;;---------------------------------------------
+;; C Source file format.
+;;---------------------------------------------
+(defun jcs-c-source-file-format-info ()
+  "Header for C source file."
+  (jcs-global-file-info)
+  )
+
+;;---------------------------------------------
+;; C++ Header file format.
+;;---------------------------------------------
+(defun jcs-c++-header-file-format-info ()
+  "Header for C++ header file."
+
+  (setq BaseFileName (file-name-sans-extension (file-name-nondirectory buffer-file-name)))
+  (setq BaseFileNameWithExtension (file-name-nondirectory buffer-file-name))
+
+  (insert "#ifndef __")
+  (push-mark)
+  (insert BaseFileName)
+  (upcase-region (mark) (point))
+  (pop-mark)
+  (insert "_H__\n")
+  (jcs-global-file-info)
+  (insert "#define __")
+  (push-mark)
+  (insert BaseFileName)
+  (upcase-region (mark) (point))
+  (pop-mark)
+  (insert "_H__")
+  (insert "\n\n\n")
+
+  ;; >>>> Method 1 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+  ;; Just add the template no matter what.
+  ;;(jcs-c++-default-header-template)
+  ;; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+  ;; OR
+  ;; >>>> Method 2 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+  ;; Ask to add c++ template.
+  (call-interactively 'jcs-ask-cpp-default-header)
+  ;; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+  (insert "#endif /* __")
+  (push-mark)
+  (insert BaseFileName)
+  (upcase-region (mark) (point))
+  (pop-mark)
+  (insert "_H__ */\n")
+  )
+
+;;---------------------------------------------
+;; C++ Source file format.
+;;---------------------------------------------
+(defun jcs-c++-source-file-format-info ()
+  "Header for C++ source file."
+  (jcs-global-file-info)
+
+  ;; >>>> Method 1 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+  ;; Just add the template no matter what.
+  ;;(jcs-c++-default-source-template)
+  ;; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+  ;; OR
+  ;; >>>> Method 2 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+  ;; Ask to add c++ template.
+  (call-interactively 'jcs-ask-cpp-default-source)
+  ;; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+  )
+
+;;---------------------------------------------
+;; C++ Default Header and Source Template.
+;;---------------------------------------------
+(defun jcs-c++-default-header-template ()
+  "C++ Default Header Constrcutor and Destructor."
+  (setq BaseFileName (file-name-sans-extension (file-name-nondirectory buffer-file-name)))
+  (setq BaseFileNameWithExtension (file-name-nondirectory buffer-file-name))
+
+
+  ;; insert class
+  (insert "/**\n")
+  (insert " * @class ")
+  (insert BaseFileName)
+  (insert "\n")
+  (insert " * @brief Class description...\n")
+  (insert " */\n")
+  (insert "class ")
+  (insert BaseFileName)
+  (insert "\n{\n")
+  (insert "private:\n\n")
+  (insert "public:\n")
+
+  ;; constructor & destructor.
+  (insert BaseFileName)
+  (insert "();\n")
+  (insert "~")
+  (insert BaseFileName)
+  (insert "();\n\n\n")
+
+  (insert "    /* operator */\n\n")
+  (insert "    /* setter */\n\n")
+  (insert "    /* getter */\n")
+
+  (insert "\n};")
+  (insert "\n\n"))
+
+(defun jcs-c++-default-source-template ()
+  "C++ Default Source Constrcutor and Destructor."
+  (setq BaseFileName (file-name-sans-extension (file-name-nondirectory buffer-file-name)))
+  (setq BaseFileNameWithExtension (file-name-nondirectory buffer-file-name))
+
+  (insert "\n")
+  (insert "#include \"")
+  (insert BaseFileName)
+  (insert ".h\"\n\n\n")
+
+  ;; insert constructor
+  (insert BaseFileName)
+  (insert "::")
+  (insert BaseFileName)
+  (insert "()\n")
+  (insert "{\n\n")
+  (insert "}\n\n")
+
+  ;; insert destructor
+  (insert BaseFileName)
+  (insert "::~")
+  (insert BaseFileName)
+  (insert "()\n")
+  (insert "{\n\n")
+  (insert "}\n")
   )
 
 ;;---------------------------------------------
