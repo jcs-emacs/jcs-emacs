@@ -157,11 +157,11 @@
 (global-unset-key [mouse-2])
 
 ;; Bright-red TODOs
-(setq fixme-modes '(ac-php
-                    actionscript-mode
+(setq fixme-modes '(actionscript-mode
                     batch-mode
                     c++-mode
                     c-mode
+                    cobol-mode
                     cmake-mode
                     csharp-mode
                     css-mode
