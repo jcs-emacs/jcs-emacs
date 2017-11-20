@@ -28,7 +28,7 @@
 
 
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-;; JenChieh C/C++ mode.
+;; JenChieh C/C++ Common mode.
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 ;; Accepted file extensions and their appropriate modes
@@ -54,7 +54,7 @@
          ) auto-mode-alist))
 
 ;; C++ indentation style
-(defconst jcs-big-fun-c-style
+(defconst jcs-big-fun-cc-style
   '((c-electric-pound-behavior   . nil)
     (c-tab-always-indent         . t)
     (c-comment-only-line-offset  . 0)
@@ -97,11 +97,11 @@
                                     (brace-list-intro      .  4)))
     ;; NOTE(jenchieh): no more echo.
     (c-echo-syntactic-information-p . nil))
-  "Casey's Big Fun C++ Style")
+  "Casey's Big Fun C/C++ Style")
 
 
-;; C/C++ mode handling
-(defun jcs-big-fun-c-hook ()
+(defun jcs-cc-mode-hook ()
+  "C/C++ mode handling"
 
   ;; highlight URL and clickable.
   (goto-address-mode 1)
@@ -118,7 +118,7 @@
   (global-linum-mode)
 
   ;; Set my style for the current buffer
-  (c-add-style "BigFun" jcs-big-fun-c-style t)
+  (c-add-style "BigFun" jcs-big-fun-cc-style t)
 
   ;; 4-space tabs
   (setq tab-width 4
@@ -142,229 +142,9 @@
   ;; Abbrevation expansion
   (abbrev-mode 1)
 
-  (defun jcs-header-format ()
-    "Format the given file as a header file."
-
-    (interactive)
-
-    (if (is-current-file-empty-p)
-        (progn
-          (setq BaseFileName (file-name-sans-extension (file-name-nondirectory buffer-file-name)))
-          (setq BaseFileNameWithExtension (file-name-nondirectory buffer-file-name))
-
-          (insert "#ifndef __")
-          (push-mark)
-          (insert BaseFileName)
-          (upcase-region (mark) (point))
-          (pop-mark)
-          (insert "_H__\n")
-          (jcs-global-file-info)
-          (insert "#define __")
-          (push-mark)
-          (insert BaseFileName)
-          (upcase-region (mark) (point))
-          (pop-mark)
-          (insert "_H__")
-          (insert "\n\n\n")
-
-          ;; insert class
-          (insert "/**\n")
-          (insert " * @class ")
-          (insert BaseFileName)
-          (insert "\n")
-          (insert " * @brief Class description...\n")
-          (insert " */\n")
-          (insert "class ")
-          (insert BaseFileName)
-          (insert "\n{\n")
-          (insert "private:\n\n")
-          (insert "public:\n")
-
-          ;; constructor & destructor.
-          (insert BaseFileName)
-          (insert "();\n")
-          (insert "~")
-          (insert BaseFileName)
-          (insert "();\n\n\n")
-
-          (insert "    /* operator */\n\n")
-          (insert "    /* setter */\n\n")
-          (insert "    /* getter */\n")
-
-          (insert "\n};")
-          (insert "\n\n")
-
-          (insert "#endif /* __")
-          (push-mark)
-          (insert BaseFileName)
-          (upcase-region (mark) (point))
-          (pop-mark)
-          (insert "_H__ */\n")
-
-          ;; format the document once
-          (jcs-format-document)
-          ))
-    )
-
-  (defun jcs-source-format ()
-    "Format the given file as a source file."
-    (interactive)
-
-    (if (is-current-file-empty-p)
-        (progn
-          (jcs-global-file-info)
-
-          ;; macro
-          (setq BaseFileName (file-name-sans-extension (file-name-nondirectory buffer-file-name)))
-          (setq BaseFileNameWithExtension (file-name-nondirectory buffer-file-name))
-
-          (insert "\n")
-          (insert "#include \"")
-          (insert BaseFileName)
-          (insert ".h\"\n\n\n")
-
-          ;; insert constructor
-          (insert BaseFileName)
-          (insert "::")
-          (insert BaseFileName)
-          (insert "()\n")
-          (insert "{\n\n")
-          (insert "}\n\n")
-
-          ;; insert destructor
-          (insert BaseFileName)
-          (insert "::~")
-          (insert BaseFileName)
-          (insert "()\n")
-          (insert "{\n\n")
-          (insert "}\n")
-          ))
-    )
-
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]hin" buffer-file-name) (jcs-source-format))
-        ((string-match "[.]cin" buffer-file-name) (jcs-source-format))
-        ((string-match "[.]h" buffer-file-name) (jcs-header-format))
-        ((string-match "[.]hpp" buffer-file-name) (jcs-header-format))
-        ((string-match "[.]c" buffer-file-name) (jcs-source-format))
-        ((string-match "[.]cpp" buffer-file-name) (jcs-source-format)))
-
-  (defun casey-find-corresponding-file ()
-    "Find the file that corresponds to this one."
-    (interactive)
-    (setq CorrespondingFileName nil)
-    (setq BaseFileName (file-name-sans-extension buffer-file-name))
-    (if (string-match "\\.c" buffer-file-name)
-        (setq CorrespondingFileName (concat BaseFileName ".h")))
-    (if (string-match "\\.h" buffer-file-name)
-        (if (file-exists-p (concat BaseFileName ".c")) (setq CorrespondingFileName (concat BaseFileName ".c"))
-          (setq CorrespondingFileName (concat BaseFileName ".cpp"))))
-    (if (string-match "\\.hin" buffer-file-name)
-        (setq CorrespondingFileName (concat BaseFileName ".cin")))
-    (if (string-match "\\.cin" buffer-file-name)
-        (setq CorrespondingFileName (concat BaseFileName ".hin")))
-    (if (string-match "\\.cpp" buffer-file-name)
-        (setq CorrespondingFileName (concat BaseFileName ".h")))
-    (if CorrespondingFileName (find-file CorrespondingFileName)
-      (error "Unable to find a corresponding file")))
-
-  (defun casey-find-corresponding-file-other-window ()
-    "Find the file that corresponds to this one."
-    (interactive)
-    (find-file-other-window buffer-file-name)
-    (casey-find-corresponding-file)
-    (other-window -1))
-
-  ;; Set Faces.
-  ;; URL(jenchieh): http://ergoemacs.org/emacs/elisp_define_face.html
-  (setq-local font-lock-comment-face '(jdee-font-lock-javadoc-face))
-  
-  ;; jcs C/C++ key binding
-  (define-key c++-mode-map [f8] 'casey-find-corresponding-file)
-  (define-key c++-mode-map [S-f8] 'casey-find-corresponding-file-other-window)
-
-  (define-key c-mode-map [f8] 'casey-find-corresponding-file)
-  (define-key c-mode-map [S-f8] 'casey-find-corresponding-file-other-window)
-
-  ;; If just want to open the same file, not the
-  ;; corresponding file.
-  (define-key c++-mode-map [f7] 'jcs-find-file-other-window)
-  (define-key c-mode-map [f7] 'jcs-find-file-other-window)
-
-  ;; Alternate bindings for F-keyless setups (ie MacOS X terminal)
-  (define-key c++-mode-map "\ec" 'casey-find-corresponding-file)
-  (define-key c++-mode-map "\eC" 'casey-find-corresponding-file-other-window)
-
-  (define-key c-mode-map "\ec" 'casey-find-corresponding-file)
-  (define-key c-mode-map "\eC" 'casey-find-corresponding-file-other-window)
-
-  (define-key c++-mode-map "\es" 'casey-save-buffer)
-  (define-key c-mode-map "\es" 'casey-save-buffer)
-
-  (define-key c++-mode-map "\t" 'dabbrev-expand)
-  (define-key c++-mode-map [S-tab] 'indent-for-tab-command)
-  (define-key c++-mode-map "\C-y" 'indent-for-tab-command)
-  (define-key c++-mode-map [C-tab] 'indent-region)
-  (define-key c++-mode-map "  " 'indent-region)
-  ;;(define-key c++-mode-map [tab] '(lambda () (interactive) (insert "    ")))
-
-  (define-key c-mode-map "\t" 'dabbrev-expand)
-  (define-key c-mode-map [S-tab] 'indent-for-tab-command)
-  (define-key c-mode-map "\C-y" 'indent-for-tab-command)
-  (define-key c-mode-map [C-tab] 'indent-region)
-  (define-key c-mode-map "  " 'indent-region)
-  ;;(define-key c-mode-map [tab] '(lambda () (interactive) (insert "    ")))
-
-  (define-key c++-mode-map "\ej" 'imenu)
-  (define-key c-mode-map "\ej" 'imenu)
-
-  (define-key c++-mode-map "\e." 'c-fill-paragraph)
-  (define-key c-mode-map "\e." 'c-fill-paragraph)
-
-  (define-key c++-mode-map "\e/" 'c-mark-function)
-  (define-key c-mode-map "\e/" 'c-mark-function)
-
-  (define-key c++-mode-map "\eq" 'jcs-other-window-prev)
-  (define-key c++-mode-map "\ea" 'yank)
-  (define-key c++-mode-map "\ez" 'kill-region)
-
-  (define-key c-mode-map "\eq" 'jcs-other-window-prev)
-  (define-key c-mode-map "\ea" 'yank)
-  (define-key c-mode-map "\ez" 'kill-region)
-
-  ;; jcs-added
-  (define-key c++-mode-map (kbd "C-d") 'jcs-kill-whole-line)
-  (define-key c++-mode-map "\C-c\C-c" 'kill-ring-save)
-
-  (define-key c-mode-map (kbd "C-d") 'jcs-kill-whole-line)
-  (define-key c-mode-map "\C-c\C-c" 'kill-ring-save)
-
-  ;; Comment Block.
-  (define-key c-mode-map (kbd "RET") 'jcs-smart-context-line-break)
-  (define-key c++-mode-map (kbd "RET") 'jcs-smart-context-line-break)
-
-  (define-key c-mode-map (kbd "*") 'jcs-c-comment-pair)
-  (define-key c++-mode-map (kbd "*") 'jcs-c-comment-pair)
-
-  ;; devenv.com error parsing
-  (add-to-list 'compilation-error-regexp-alist 'casey-devenv)
-  (add-to-list 'compilation-error-regexp-alist-alist '(casey-devenv
-                                                       "*\\([0-9]+>\\)?\\(\\(?:[a-zA-Z]:\\)?[^:(\t\n]+\\)(\\([0-9]+\\)) : \\(?:see declaration\\|\\(?:warnin\\(g\\)\\|[a-z ]+\\) C[0-9]+:\\)"
-                                                       2 3 nil (4)))
   )
-(add-hook 'c-mode-common-hook 'jcs-big-fun-c-hook)
+(add-hook 'c-mode-common-hook 'jcs-cc-mode-hook)
 
-
-;; start auto-complete with emacs
-(require 'auto-complete)
-
-;; do default config for auto-complete
-(require 'auto-complete-config)
-(ac-config-default)
-
-;; start yasnippet with emacs
-(require 'yasnippet)
-(yas-global-mode 1)
 
 ;; define a function which initializes auto-complete-c-headers and gets called for c/c++ hooks
 (defun jcs-ac-c-header-init()
