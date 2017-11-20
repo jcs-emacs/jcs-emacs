@@ -7,6 +7,11 @@
 # ========================================================================
 
 
+2017-11-20
+* split c and c++ mode into two file and leave cc with c and c++ 
+ common. (jcs-emacs-init)
+* Make backup -> 2017-11-20. (jcs-emacs-init)
+
 2017-11-19
 * Change emacs cc-mode comment face. (jcs-emacs-init)
 * Add `auto-highlight-symbol' package to diminish list. (jcs-emacs-init)
