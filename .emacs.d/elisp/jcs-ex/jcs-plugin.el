@@ -177,6 +177,10 @@
 (require 'auto-highlight-symbol)
 (global-auto-highlight-symbol-mode t)
 
+;;; Yasnippet
+(require 'yasnippet)
+(yas-global-mode 1)
+
 ;; Current highlight. (Cursor point currently on.)
 (custom-set-faces
  '(ahs-plugin-defalt-face ((t (:foreground nil :background "#123E70"))))
