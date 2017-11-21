@@ -124,7 +124,8 @@ ALT-r           reload the file withou asking.
 
 C-xr            rename current file.
 
-ALT-left/right  Jump to next/previous capital letter.
+C-M-right       Jump to next capital letter.
+C-M-left        Jump to previous capital letter.
 
 ALT-BACKSPACE   Kill until next capital letter appears.
 
