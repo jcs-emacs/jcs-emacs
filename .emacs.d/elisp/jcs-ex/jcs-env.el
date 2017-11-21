@@ -158,6 +158,7 @@
 ;; Bright-red TODOs
 (setq fixme-modes '(actionscript-mode
                     batch-mode
+                    cc-mode
                     c-mode
                     c++-mode
                     cobol-mode
