@@ -11,6 +11,9 @@
 * Update key bindings note with 'auto-highlight-symbols' package. (jcs-emacs-init)
 * Update global key, so it does not conflict with 'auto-highlight-
  symbols' package. (jcs-emacs-init)
+* Add jcs-oop-func file for Object Oriented Programming languages
+ highlighting. (jcs-emacs-init)
+* Move diminish to after load setting file. (jcs-emacs-init)
 
 2017-11-20
 * split c and c++ mode into two file and leave cc with c and c++ 
