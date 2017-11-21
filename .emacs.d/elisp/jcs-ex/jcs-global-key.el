@@ -54,9 +54,9 @@
 (define-key global-map [home] 'back-to-indentation-or-beginning)
 
 (define-key global-map (kbd "C-<backspace>") 'jcs-backward-delete-word)
-(define-key global-map "\377" 'jcs-backward-kill-word-capital)
-(define-key global-map (kbd "M-<left>") 'jcs-backward-capital-char)
-(define-key global-map (kbd "M-<right>") 'jcs-forward-capital-char)
+(define-key global-map (kbd "C-M-<backspace>") 'jcs-backward-kill-word-capital)
+(define-key global-map (kbd "C-M-<left>") 'jcs-backward-capital-char)
+(define-key global-map (kbd "C-M-<right>") 'jcs-forward-capital-char)
 
 ;;(define-key global-map "\em" 'describe-mode)
 
