@@ -55,5 +55,25 @@
 (add-hook 'focus-in-hook 'jcs-focus-in-hook)
 (add-hook 'focus-out-hook 'jcs-focus-out-hook)
 
+
+;;; Diminish
+;; NOTE(jenchieh): Do not show theses modes in the mode line.
+(require 'diminish)
+(diminish 'abbrev-mode)
+(diminish 'auto-complete-mode)
+(diminish 'company-mode)
+(diminish 'flycheck-mode)
+(diminish 'flymake-mode)
+(diminish 'helm-mode)
+(diminish 'helm-gtags-mode)
+(diminish 'impatient-mode)
+(diminish 'js2-refactor-mode)
+(diminish 'js2r)
+(diminish 'outline-minor-mode)
+(diminish 'skewer-mode)
+(diminish 'yas-minor-mode)
+(diminish 'auto-highlight-symbol-mode)
+
+
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-after-init.el file
