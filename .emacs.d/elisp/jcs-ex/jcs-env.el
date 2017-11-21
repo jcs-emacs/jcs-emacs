@@ -108,7 +108,6 @@
 
 ;; Setup my compilation mode
 (defun jcs-big-fun-compilation-hook ()
-
   (interactive)
 
   ;; make it look like the terminal,
@@ -159,8 +158,8 @@
 ;; Bright-red TODOs
 (setq fixme-modes '(actionscript-mode
                     batch-mode
-                    c++-mode
                     c-mode
+                    c++-mode
                     cobol-mode
                     cmake-mode
                     csharp-mode
@@ -289,16 +288,14 @@
 (defun previous-blank-line ()
   "Moves to the previous line containing nothing but whitespace."
   (interactive)
-  (search-backward-regexp "^[ \t]*\n")
-  )
+  (search-backward-regexp "^[ \t]*\n"))
 
 (defun next-blank-line ()
   "Moves to the next line containing nothing but whitespace."
   (interactive)
   (forward-line)
   (search-forward-regexp "^[ \t]*\n")
-  (forward-line -1)
-  )
+  (forward-line -1))
 
 (define-key global-map [C-right] 'forward-word)
 (define-key global-map [C-left] 'backward-word)
