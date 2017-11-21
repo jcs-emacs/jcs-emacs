@@ -293,6 +293,7 @@ own preferences."
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-nav.el")
 
 ;;; For Specific Mode
+(load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-oop-func.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-cc-func.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-web-func.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-python-func.el")
