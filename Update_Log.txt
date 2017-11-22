@@ -9,6 +9,7 @@
 
 2017-11-22
 * Enable column highlighting in web-mode. (jcs-emacs-init)
+* Fixed web-mode with correct PHP key bindings. (jcs-emacs-init)
 
 2017-11-21
 * Update key bindings note with 'auto-highlight-symbols' package. (jcs-emacs-init)
