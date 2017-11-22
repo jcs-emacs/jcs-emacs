@@ -163,6 +163,9 @@
   (define-key web-mode-map (kbd "RET") 'jcs-smart-context-line-break)
   (define-key web-mode-map (kbd "*") 'jcs-c-comment-pair)
 
+  ;; Shortcuts
+  (define-key web-mode-map (kbd "C-n") 'web-mode-tag-match)
+
   ;; PHP
   (define-key web-mode-map [C-backspace] 'jcs-web-backward-delete-word)
   (define-key web-mode-map "\377" 'jcs-web-backward-delete-word-capital)
@@ -227,9 +230,8 @@
 
 ;; Syntax Highlighting
 (set-face-attribute 'web-mode-doctype-face nil :foreground "Pink3")
-
-;; Shortcuts
-(define-key web-mode-map (kbd "C-n") 'web-mode-tag-match)
+(set-face-attribute 'web-mode-block-comment-face nil :foreground "olive drab")
+(set-face-attribute 'web-mode-comment-face nil :foreground "olive drab")
 
 ;; Snippets
 (setq web-mode-extra-snippets
@@ -254,15 +256,15 @@
 (setq web-mode-enable-heredoc-fontification t)
 
 ;; Keywords / Constants
-;;(setq web-mode-extra-constants '(("php" . ("CONS1" "CONS2")))
+;;(setq web-mode-extra-constants '(("php" . ("CONS1" "CONS2"))))
 
-;; Current eletemt / column highlight
+;; Highlight current HTML element
 (setq web-mode-enable-current-element-highlight t)
 
+;; You can also highlight the current column with
+(setq web-mode-enable-current-column-highlight t)
+
 ;; Context-aware auto-completion
-;; (setq web-mode-ac-sources-alist
-;;       '(("css" . (ac-source-css-property))
-;;         ("html" . (ac-source-words-in-buffer ac-source-abbrev))))
 (setq web-mode-ac-sources-alist
       '(("html" . (ac-source-words-in-buffer ac-source-abbrev))
         ("css" . (ac-source-css-property))
