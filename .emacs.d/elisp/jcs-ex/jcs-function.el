@@ -297,6 +297,7 @@ own preferences."
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-cc-func.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-web-func.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-python-func.el")
+(load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-re-builder-func.el")
 
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-function.el file
