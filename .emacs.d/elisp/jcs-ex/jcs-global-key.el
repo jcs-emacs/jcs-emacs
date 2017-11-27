@@ -241,9 +241,15 @@
 ;;; Helm
 ;; More key binding in `jcs-helm.elq'
 
-;;; RE-Builder
-(require 're-builder)
-(define-key global-map (kbd "C-r e") 're-builder)
+
+(defun jcs-global-key-rebind ()
+  "Some key are not allow to bind, the solution here is just re-bind
+the key everytime the mode changes."
+
+  ;; re-builder
+  (define-key global-map "\C-re" 're-builder)
+  )
+
 
 ;;------------------------------
 ;; ENABLE / DISABLE THE MODE
