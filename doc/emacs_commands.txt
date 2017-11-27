@@ -27,5 +27,6 @@
 | describe-function | Describe function current curosr on.             |
 | describe-face     | Describe the face current cursor on.             |
 |-------------------+--------------------------------------------------|
-| re-builder        | Open RE-Builder Mode in current buffer/document. |
+| re-builder        | Open RE-Builder Mode in current buffer/document, |
+|                   | for testing regular expression string.           |
 |-------------------+--------------------------------------------------|
