@@ -103,8 +103,8 @@
 (defun jcs-cc-mode-hook ()
   "C/C++ mode handling"
 
-  ;; highlight URL and clickable.
-  (goto-address-mode 1)
+  ;; Abbrevation expansion
+  (abbrev-mode 1)
 
   ;; Auto highlight the same word.
   (auto-highlight-symbol-mode t)
@@ -116,6 +116,9 @@
   ;;(linum-mode)
   ;; or Turn on globale line numbers
   (global-linum-mode)
+
+  ;; highlight URL and clickable.
+  (goto-address-mode 1)
 
   ;; Set my style for the current buffer
   (c-add-style "BigFun" jcs-big-fun-cc-style t)
@@ -138,13 +141,8 @@
   (setq dabbrev-case-replace t)
   (setq dabbrev-case-fold-search t)
   (setq dabbrev-upcase-means-case-search t)
-
-  ;; Abbrevation expansion
-  (abbrev-mode 1)
-
   )
 (add-hook 'c-mode-common-hook 'jcs-cc-mode-hook)
-
 
 ;; define a function which initializes auto-complete-c-headers and gets called for c/c++ hooks
 (defun jcs-ac-c-header-init()
