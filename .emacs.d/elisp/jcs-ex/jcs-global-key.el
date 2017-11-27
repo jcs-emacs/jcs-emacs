@@ -241,6 +241,9 @@
 ;;; Helm
 ;; More key binding in `jcs-helm.elq'
 
+;;; RE-Builder
+(require 're-builder)
+(define-key global-map (kbd "C-r e") 're-builder)
 
 ;;------------------------------
 ;; ENABLE / DISABLE THE MODE
