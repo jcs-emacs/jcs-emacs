@@ -37,14 +37,28 @@
                                   c++-mode
                                   csharp-mode
                                   ;;jdee-mode  ;; Java has their own doc highlighting.
+                                  jayces-mode
                                   js2-mode
                                   lua-mode
+                                  nasm-mode
                                   php-mode
                                   web-mode))
 
-(make-face 'jcs-oop-tag-face)
-(make-face 'jcs-oop-type-face)
-(make-face 'jcs-oop-value-face)
+(defface jcs-oop-tag-face
+  '((t (:foreground "#38EFCA")))
+  "Highlight OOP tag.")
+(defvar jcs-oop-tag-face 'jcs-oop-tag-face)
+
+(defface jcs-oop-type-face
+  '((t (:foreground "SteelBlue")))
+  "Highlight OOP type.")
+(defvar jcs-oop-type-face 'jcs-oop-type-face)
+
+(defface jcs-oop-value-face
+  '((t (:foreground "PeachPuff3")))
+  "Highlight OOP value.")
+(defvar jcs-oop-value-face 'jcs-oop-value-face)
+
 
 ;; STUDY(jenchieh): https://stackoverflow.com/questions/5073930/how-to-color-at-symbol-in-emacs
 (mapc (lambda (mode)
@@ -63,10 +77,6 @@
            ("}.\\([a-zA-Z0-9_]*\\).[-\|:]" 1 'jcs-oop-value-face t)
            )))
       jcs-oop-highlight-modes)
-
-(modify-face 'jcs-oop-tag-face "#38EFCA" nil nil nil nil nil nil nil)
-(modify-face 'jcs-oop-type-face "SteelBlue" nil nil nil nil nil nil nil)
-(modify-face 'jcs-oop-value-face "PeachPuff3" nil nil nil nil nil nil nil)
 
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-oop-func.el file
