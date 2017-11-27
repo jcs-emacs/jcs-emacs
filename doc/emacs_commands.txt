@@ -8,22 +8,24 @@
 # ========================================================================
 
 
-|-------------------+-------------------------------------------------|
-| Commands          | Description                                     |
-|-------------------+-------------------------------------------------|
-| eval-last-sexp    | Evaluate the Emacs Lisp expression before point |
-|                   | and print the value inthe echo area.            |
-| eval-defun        | Evaluate the defun containing or after point,   |
-|                   | and print the value in the echo area.           |
-| eval-region       | Evaluate all the Emacs Lisp expressions in the  |
-|                   | region.                                         |
-| eval-buffer       | Evaluate all the Emacs Lisp expressions in the  |
-|                   | buffer.                                         |
-|-------------------+-------------------------------------------------|
-| describe-bindings | Describe all key bindings in current buffer.    |
-| describe-mode     | Describe major and all minor mode in current    |
-|                   | buffer.                                         |
-| describe-variable | Describe variable current cursor on.            |
-| describe-function | Describe function current curosr on.            |
-| describe-face     | Describe the face current cursor on.            |
-|-------------------+-------------------------------------------------|
+|-------------------+--------------------------------------------------|
+| Commands          | Description                                      |
+|-------------------+--------------------------------------------------|
+| eval-last-sexp    | Evaluate the Emacs Lisp expression before point  |
+|                   | and print the value inthe echo area.             |
+| eval-defun        | Evaluate the defun containing or after point,    |
+|                   | and print the value in the echo area.            |
+| eval-region       | Evaluate all the Emacs Lisp expressions in the   |
+|                   | region.                                          |
+| eval-buffer       | Evaluate all the Emacs Lisp expressions in the   |
+|                   | buffer.                                          |
+|-------------------+--------------------------------------------------|
+| describe-bindings | Describe all key bindings in current buffer.     |
+| describe-mode     | Describe major and all minor mode in current     |
+|                   | buffer.                                          |
+| describe-variable | Describe variable current cursor on.             |
+| describe-function | Describe function current curosr on.             |
+| describe-face     | Describe the face current cursor on.             |
+|-------------------+--------------------------------------------------|
+| re-builder        | Open RE-Builder Mode in current buffer/document. |
+|-------------------+--------------------------------------------------|
