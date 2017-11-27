@@ -7,6 +7,9 @@
 # ========================================================================
 
 
+2017-11-28
+* Make defface instead of make face function in oop-func file. (jcs-emacs-init)
+
 2017-11-27
 * Add `visual-regexp' package. (jcs-emacs-init)
 * Add jsdoc type highlighting functions. (jcs-emacs-init)
