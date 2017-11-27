@@ -53,7 +53,6 @@
   ;; check if inside the comment block.
   (if (and (nth 4 (syntax-ppss)))
       (progn
-
         (setq last (point))
 
         ;; check the '/*' and '*/' on the same line?
@@ -76,15 +75,13 @@
               )
           (progn
             (goto-char last)
-
             (insert "\n")
 
             (if (nth 4 (syntax-ppss))
                 (progn
-                  (insert "* ")
-                  (indent-for-tab-command)
-                  )
-              )
+                  (insert "* ")))
+            
+            (indent-for-tab-command)
             )
           ) ;; end (if (looking-back "/* "))
         )
