@@ -31,29 +31,42 @@
 ;; Functions for Object Oriented Programming languages.
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+(defvar jcs-oop-highlight-modes '(actionscript-mode
+                                  cc-mode
+                                  c-mode
+                                  c++-mode
+                                  csharp-mode
+                                  ;;jdee-mode  ;; Java has their own doc highlighting.
+                                  js2-mode
+                                  lua-mode
+                                  php-mode
+                                  web-mode))
 
-(setq oop-highlight-modes '(actionscript-mode
-                            cc-mode
-                            c-mode
-                            c++-mode
-                            csharp-mode
-                            ;;jdee-mode  ;; Java has their own doc highlighting.
-                            js2-mode
-                            lua-mode
-                            php-mode
-                            web-mode))
-
-(make-face 'font-lock-oop-face)
+(make-face 'jcs-oop-tag-face)
+(make-face 'jcs-oop-type-face)
+(make-face 'jcs-oop-value-face)
 
 ;; STUDY(jenchieh): https://stackoverflow.com/questions/5073930/how-to-color-at-symbol-in-emacs
 (mapc (lambda (mode)
         (font-lock-add-keywords
          mode
-         '(("\\(?:^\\|\\s-\\)\\(@[a-zA-Z0-9_]*\\)" 1 'font-lock-oop-face t)
+         '(("\\(?:^\\|\\s-\\)\\(@[a-zA-Z0-9_]*\\)" 1 'jcs-oop-tag-face t)
+           ;; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+           ;; OPTION(jenchieh): Highlight curly bracket.
+           ("[`*].*\\(?:^\\|\\s-\\)\\({.[a-zA-Z0-9_]*.}\\)" 1 'jcs-oop-type-face t)
+           ;; >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+           ;; OR(jenchieh):
+           ;; >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+           ;; OPTION(jenchieh): Don't highlight curly bracket.
+           ;;("[`*].*\\(?:^\\|\\s-\\){.\\({.[a-zA-Z0-9_]*\\.})" 1 'jcs-oop-type-face t)
+           ;; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+           ("}.\\([a-zA-Z0-9_]*\\).[-\|:]" 1 'jcs-oop-value-face t)
            )))
-      oop-highlight-modes)
+      jcs-oop-highlight-modes)
 
-(modify-face 'font-lock-oop-face "#38EFCA" nil nil nil nil nil nil nil)
+(modify-face 'jcs-oop-tag-face "#38EFCA" nil nil nil nil nil nil nil)
+(modify-face 'jcs-oop-type-face "SteelBlue" nil nil nil nil nil nil nil)
+(modify-face 'jcs-oop-value-face "PeachPuff3" nil nil nil nil nil nil nil)
 
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-oop-func.el file
