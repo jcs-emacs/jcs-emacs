@@ -47,6 +47,7 @@
 
   ;; NOTE(jenchieh): Get back highlighting.
   ;;(font-lock-flush)
+  ;;(font-lock-fontify-buffer)
   )
 
 ;;;###autoload
@@ -58,9 +59,10 @@
   ;; NOTE(jenchieh): Unknown reason that web-mode will
   ;; get disable...
   (web-mode)
-
+  
   ;; NOTE(jenchieh): Get back highlighting.
   ;;(font-lock-flush)
+  ;;(font-lock-fontify-buffer)
   )
 
 ;;;###autoload
@@ -86,6 +88,7 @@ wrap by another function..."
 
   ;; NOTE(jenchieh): Get back highlighting.
   ;;(font-lock-flush)
+  ;;(font-lock-fontify-buffer)
   )
 
 ;;;###autoload
