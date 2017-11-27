@@ -196,6 +196,8 @@
 (make-face 'font-lock-topic-face)
 (make-face 'font-lock-url-face)
 (make-face 'font-lock-see-face)
+(make-face 'font-lock-option-face)
+(make-face 'font-lock-or-face)
 
 (mapc (lambda (mode)
         (font-lock-add-keywords
@@ -217,6 +219,9 @@
            ("\\<\\(DEPRECATED\\)" 1 'font-lock-deprecated-face t)
            ("\\<\\(TOPIC\\)" 1 'font-lock-topic-face t)
            ("\\<\\(SEE\\)" 1 'font-lock-see-face t)
+
+           ("\\<\\(OPTION\\)" 1 'font-lock-option-face t)
+           ("\\<\\(OR\\)" 1 'font-lock-or-face t)
            )))
       fixme-modes)
 
@@ -239,6 +244,8 @@
 (modify-face 'font-lock-topic-face "slate blue" nil nil t nil t nil nil)
 (modify-face 'font-lock-see-face "slate blue" nil nil t nil t nil nil)
 
+(modify-face 'font-lock-option-face "dark green" nil nil t nil t nil nil)
+(modify-face 'font-lock-or-face "green yellow" nil nil t nil t nil nil)
 
 (defun casey-replace-string (FromString ToString)
   "Replace a string without moving point."
@@ -522,6 +529,8 @@
 ;;; Resolve performance issue moving around Unicode Text.
 (setq inhibit-compacting-font-caches t)
 
+;; Enable address mode.
+(goto-address-mode t)
 
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-env.el file
