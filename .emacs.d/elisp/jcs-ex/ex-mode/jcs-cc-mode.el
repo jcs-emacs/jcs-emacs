@@ -112,20 +112,11 @@
   ;; Enable flycheck.
   (flycheck-mode t)
 
-  ;; Turn on line numbers
-  ;;(linum-mode)
-  ;; or Turn on globale line numbers
-  (global-linum-mode)
-
   ;; highlight URL and clickable.
   (goto-address-mode 1)
 
   ;; Set my style for the current buffer
   (c-add-style "BigFun" jcs-big-fun-cc-style t)
-
-  ;; 4-space tabs
-  (setq tab-width 4
-        indent-tabs-mode nil)
 
   ;; Additional style stuff
   (c-set-offset 'member-init-intro '++)
