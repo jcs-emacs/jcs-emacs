@@ -218,6 +218,8 @@
 ;;; Helm
 (require 'helm)
 
+;;; Visual RegExp
+(require 'visual-regexp)
 
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-plugin.el file
