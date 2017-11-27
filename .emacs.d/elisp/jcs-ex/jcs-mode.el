@@ -32,6 +32,9 @@
 ;; JenChieh mode defines.
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+;; Need global key defined first.
+(load-file "~/.emacs.d/elisp/jcs-ex/jcs-global-key.el")
+
 ;;---------------------------------------------
 ;; Trigger between command and inset mode
 ;;---------------------------------------------
@@ -248,6 +251,8 @@ control of the editor."
   ;; replace
   (define-key global-map "\C-rr" 'iedit-mode)
   (define-key global-map "\C-rp" 'jcs-ag-project-regexp)
+
+  (jcs-global-key-rebind)
   )
 
 ;;;###autoload
@@ -284,6 +289,8 @@ control of the editor."
   ;; replace
   (define-key global-map "\C-rr" 'iedit-mode)
   (global-unset-key "\C-rp")
+
+  (jcs-global-key-rebind)
   )
 
 ;; NOTE(jayces): Since I often use my own machine, set the online
