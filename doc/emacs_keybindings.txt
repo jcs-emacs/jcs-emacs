@@ -299,3 +299,9 @@ ALT-'           Search backward next '. (single quotation mark)
 
 ALT-Shift-;     Search forward next ". (double quotation mark)
 ALT-Shift-'     Search backward next ". (double quotation mark)
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+* Regular Expression
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+C-r e           Open RE-Builder mode window. (Use to test regular 
+                expression string)
