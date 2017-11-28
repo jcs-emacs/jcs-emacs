@@ -11,6 +11,7 @@
 * Make defface instead of make face function in oop-func file. (jcs-emacs-init)
 * Fixed oop face regular expression highlighting issues. (jcs-emacs-init)
 * Fixed comment line break indentation issue. (jcs-emacs-init)
+* Update regular expression in oop/jsdoc for type, value and tag. (jcs-emacs-init)
 
 2017-11-27
 * Add `visual-regexp' package. (jcs-emacs-init)
