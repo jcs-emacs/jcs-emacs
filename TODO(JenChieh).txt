@@ -10,3 +10,4 @@
 //-- General --//
 * Refactor code, and get rid of unused interactive function.
 * Python oop comment document style.
+* Make `default' font face recognize so the comment document can work.
