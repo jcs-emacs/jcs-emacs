@@ -70,6 +70,9 @@
               ;; back one line up
               (previous-line 1)
 
+              ;; Insert comment string here..
+              (jcs-insert-comment-string)
+
               ;; goto the end of line
               (end-of-line)
               )
@@ -80,7 +83,7 @@
             (if (nth 4 (syntax-ppss))
                 (progn
                   (insert "* ")))
-            
+
             (indent-for-tab-command)
             )
           ) ;; end (if (looking-back "/* "))
@@ -151,6 +154,16 @@
   (goto-char last)
   )
 
+(defun jcs-insert-comment-string ()
+  "Insert comment document string."
+  (save-excursion
+    ;; Goto the function line before insert doc string.
+    (jcs-next-line)
+    (jcs-next-line)
+
+    ;; insert comment doc comment string.
+    (jcs-insert-comment-style-by-current-line)
+    ))
 
 ;;;###autoload
 (defun toggle-comment-on-line ()
