@@ -7,6 +7,13 @@
 # ========================================================================
 
 
+2017-11-29
+* Make comment with auto add oop doc comment style. (jcs-emacs-init)
+* Add cs comment doc functionality. (jcs-emacs-init)
+* Add comment style doc and java-mode match with own doc 
+ highlighting. (jcs-emacs-init)
+* Force underscore a character. (jcs-emacs-init)
+
 2017-11-28
 * Make defface instead of make face function in oop-func file. (jcs-emacs-init)
 * Fixed oop face regular expression highlighting issues. (jcs-emacs-init)
