@@ -66,6 +66,11 @@
   ;; turn on auto complete.
   (auto-complete-mode t)
 
+  ;; TOPIC(jenchieh): Treat underscore as word.
+  ;; URL(jenchieh): https://emacs.stackexchange.com/questions/9583/how-to-treat-underscore-as-part-of-the-word
+  (modify-syntax-entry ?_ "w")
+  
+
   (defun jcs-javascript-format()
     (interactive)
 

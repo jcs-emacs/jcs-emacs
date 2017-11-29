@@ -48,6 +48,11 @@
   ;; Auto highlight the same word.
   (auto-highlight-symbol-mode t)
 
+  ;; TOPIC(jenchieh): Treat underscore as word.
+  ;; URL(jenchieh): https://emacs.stackexchange.com/questions/9583/how-to-treat-underscore-as-part-of-the-word
+  (modify-syntax-entry ?_ "w")
+  
+
   (defun jcs-csharp-class-format ()
     "Format the given file as a class. - JenChieh C# class"
 
@@ -81,6 +86,8 @@
   ;; comment block
   (define-key csharp-mode-map (kbd "RET") 'jcs-smart-context-line-break)
   (define-key csharp-mode-map (kbd "*") 'jcs-c-comment-pair)
+
+  (define-key csharp-mode-map (kbd "/") 'jcs-vs-csharp-maybe-insert-codedoc)
 
   (define-key csharp-mode-map "\eq" 'jcs-other-window-prev)
   )

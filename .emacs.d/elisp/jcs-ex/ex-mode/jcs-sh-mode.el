@@ -43,6 +43,11 @@
   ;; Auto highlight the same word.
   (auto-highlight-symbol-mode t)
 
+  ;; TOPIC(jenchieh): Treat underscore as word.
+  ;; URL(jenchieh): https://emacs.stackexchange.com/questions/9583/how-to-treat-underscore-as-part-of-the-word
+  (modify-syntax-entry ?_ "w")
+
+
   (defun jcs-sh-script-format ()
     "Format the given file as a shell script. - JenChieh Shell Script"
 

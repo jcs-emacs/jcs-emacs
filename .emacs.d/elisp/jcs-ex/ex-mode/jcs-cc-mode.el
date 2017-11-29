@@ -132,6 +132,10 @@
   (setq dabbrev-case-replace t)
   (setq dabbrev-case-fold-search t)
   (setq dabbrev-upcase-means-case-search t)
+
+  ;; TOPIC(jenchieh): Treat underscore as word.
+  ;; URL(jenchieh): https://emacs.stackexchange.com/questions/9583/how-to-treat-underscore-as-part-of-the-word
+  (modify-syntax-entry ?_ "w")
   )
 (add-hook 'c-mode-common-hook 'jcs-cc-mode-hook)
 
@@ -162,6 +166,11 @@
 (require 'google-c-style)
 (add-hook 'c-mode-common-hook 'google-set-c-style)
 (add-hook 'c-mode-common-hook 'google-make-newline-indent)
+
+;; Faces
+(set-face-attribute 'preproc-font-lock-preprocessor-background nil
+                    :background nil)
+
 
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-cc-mode.el file

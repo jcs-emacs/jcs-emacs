@@ -45,6 +45,10 @@
   ;; Auto highlight the same word.
   (auto-highlight-symbol-mode t)
 
+  ;; TOPIC(jenchieh): Treat underscore as word.
+  ;; URL(jenchieh): https://emacs.stackexchange.com/questions/9583/how-to-treat-underscore-as-part-of-the-word
+  (modify-syntax-entry ?_ "w")
+
   (defun jcs-lua-script-format ()
     "Format the given file as a class. - JenChieh Lua Script"
     (interactive)
@@ -64,6 +68,8 @@
   (define-key lua-mode-map (kbd "C-d") 'jcs-kill-whole-line)
   (define-key lua-mode-map "\C-c\C-c" 'kill-ring-save)
 
+  ;; Comment
+  (define-key lua-mode-map (kbd "-") 'jcs-lua-maybe-insert-codedoc)
   )
 (add-hook 'lua-mode-hook 'jcs-lua-mode-hook)
 

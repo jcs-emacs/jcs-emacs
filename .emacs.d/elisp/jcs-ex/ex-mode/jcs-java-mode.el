@@ -60,6 +60,10 @@
   ;;; `meghanada' Configuration
   ;;(meghanada-mode t)
 
+  ;; TOPIC(jenchieh): Treat underscore as word.
+  ;; URL(jenchieh): https://emacs.stackexchange.com/questions/9583/how-to-treat-underscore-as-part-of-the-word
+  (modify-syntax-entry ?_ "w")
+
 
   (defun jcs-java-class-format ()
     "Format the given file as a class. - JenChieh Java class"
@@ -83,13 +87,16 @@
         ((string-match "[.]java" buffer-file-name) (jcs-java-class-format))
         )
 
+  ;; Set Faces.
+  ;; URL(jenchieh): http://ergoemacs.org/emacs/elisp_define_face.html
+  (setq-local font-lock-comment-face '(jdee-font-lock-javadoc-face))
+  
   ;; jcs java key binding
   (define-key java-mode-map (kbd "C-d") 'jcs-kill-whole-line)
   (define-key java-mode-map "\C-c\C-c" 'kill-ring-save)
 
   ;; comment block
   (define-key java-mode-map (kbd "RET") 'jcs-smart-context-line-break)
-
   (define-key java-mode-map (kbd "*") 'jcs-c-comment-pair)
 
   ;; switch frame.
