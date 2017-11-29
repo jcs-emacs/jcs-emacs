@@ -318,5 +318,47 @@ active. false, there is no region selected and mark is not active.
   "Check if current cursor point inside the comment block."
   (nth 4 (syntax-ppss)))
 
+;;---------------------------------------------
+;; Face
+;;---------------------------------------------
+
+(defun jcs-what-face ()
+  "Print out what face is current cursor on."
+  (interactive)
+  (let ((face (jcs-get-current-point-face)))
+    (if face (message "Face: %s" face) (message "No face at %d" pos)))
+  )
+
+(defun jcs-get-current-point-face ()
+  "Get current point's type face as string."
+  (interactive)
+  (let ((face (or (get-char-property (point) 'read-face-name)
+                  (get-char-property (point) 'face))))
+    face))
+
+;;---------------------------------------------
+;; List
+;;---------------------------------------------
+
+(defun jcs-is-in-list-string (list str)
+  "Check if a string in the string list."
+  (let ((in-list nil))
+    (dolist (tmp-str list)
+      (if (string= tmp-str str)
+          (setq in-list t)))
+    in-list))
+
+
+;;---------------------------------------------
+;; Mode
+;;---------------------------------------------
+
+(defun jcs-is-current-major-mode-p (str)
+  "Check if this major mode. (str)"
+  (string= major-mode str))
+
+(defun jcs-is-minor-mode-enabled-p (mode-obj)
+  (bound-and-true-p mode-obj))
+
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-util.el file
