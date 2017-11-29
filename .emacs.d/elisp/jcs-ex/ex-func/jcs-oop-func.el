@@ -84,23 +84,80 @@
 
 ;; DESCRIPTION(jenchieh): Change this variable for customize
 ;; delimiter in OOP doc.
-(defvar jcs-oop-doc-delimiter-char " : "
-  "Default OOP delimiter character.")
+(defvar jcs-java-doc-after-value-type-char " : "
+  "Character after value type been inserted in Java Mode.")
+(defvar jcs-cc-doc-after-value-type-char " : "
+  "Character after value type been inserted in C/C++ Mode.")
+(defvar jcs-js-doc-after-value-type-char " : "
+  "Character after value type been inserted in JavaScript Mode.")
+(defvar jcs-lua-doc-after-value-type-char " : "
+  "Character after value type been inserted in Lua Mode.")
+(defvar jcs-py-doc-after-value-type-char " : "
+  "Character after value type been inserted in Python Mode.")
 
-(defvar jcs-java-doc-show-curly-type nil
+;;; Show typename.
+(defvar jcs-java-doc-show-typename nil
   "Show the typename betweeen the open curly bracket and close curly bracket in Java mode.")
-
-(defvar jcs-cc-doc-show-curly-type t
+(defvar jcs-cc-doc-show-typename t
   "Show the typename betweeen the open curly bracket and close curly bracket in C/C++ mode.")
-
-(defvar jcs-js-doc-show-curly-type t
+(defvar jcs-js-doc-show-typename t
   "Show the typename betweeen the open curly bracket and close curly bracket in JavaScript mode.")
-
-(defvar jcs-lua-doc-show-curly-type t
+(defvar jcs-lua-doc-show-typename t
   "Show the typename betweeen the open curly bracket and close curly bracket in Lua mode.")
-
-(defvar jcs-py-doc-show-curly-type t
+(defvar jcs-py-doc-show-typename t
   "Show the typename betweeen the open curly bracket and close curly bracket in Python mode.")
+
+;;; Tag strings
+(defvar jcs-java-param-string "param "
+  "Parameter string in Java mode.")
+(defvar jcs-java-return-string "return "
+  "Returns string in Java mode.")
+
+(defvar jcs-cc-param-string "param "
+  "Parameter string in C/C++ mode.")
+(defvar jcs-cc-return-string "return "
+  "Returns string in C/C++ mode.")
+
+(defvar jcs-js-param-string "param "
+  "Parameter string in JavaScript mode.")
+(defvar jcs-js-return-string "returns "
+  "Returns string in JavaScript mode.")
+
+(defvar jcs-lua-param-string "param "
+  "Parameter string in Lua mode.")
+(defvar jcs-lua-return-string "return "
+  "Returns string in Lua mode.")
+
+(defvar jcs-py-param-string "param "
+  "Parameter string in Pyhon mode.")
+(defvar jcs-py-return-string "return "
+  "Returns string in Python mode.")
+
+;;; Brackets
+(defvar jcs-java-open-type-char "{ "
+  "Character before the typename in Java mode.")
+(defvar jcs-java-close-type-char " } "
+  "Character after the typename in Java mode.")
+
+(defvar jcs-cc-open-type-char "{ "
+  "Character before the typename in C/C++ mode.")
+(defvar jcs-cc-close-type-char " } "
+  "Character after the typename in C/C++ mode.")
+
+(defvar jcs-js-open-type-char "{ "
+  "Character before the typename in JavaScript mode.")
+(defvar jcs-js-close-type-char " } "
+  "Character after the typename in JavaScript mode.")
+
+(defvar jcs-lua-open-type-char "{ "
+  "Character before the typename in Lua mode.")
+(defvar jcs-lua-close-type-char " } "
+  "Character after the typename in Lua mode.")
+
+(defvar jcs-py-open-type-char "{ "
+  "Character before the typename in Python mode.")
+(defvar jcs-py-close-type-char " } "
+  "Character after the typename in Python mode.")
 
 
 (defun jcs-insert-comment-style-by-current-line ()
@@ -114,7 +171,19 @@ the input line."
         (param-type-strings '())  ;; param type string list.
         (param-variable-strings '())  ;; param name string list.
         (there-is-return nil)
-        (return-type-string ""))
+        (return-type-string "")
+
+        (was-flycheck-on nil)
+        (was-flymake-on nil))
+    (if (jcs-is-minor-mode-enabled-p flycheck-mode)
+        (setq was-flycheck-on t))
+
+    (if (jcs-is-minor-mode-enabled-p flymake-mode)
+        (setq was-flymake-on t))
+
+    (flycheck-mode 0)
+    (flymake-mode 0)
+
     (save-excursion
       (if (not (current-line-empty-p))
           (progn
@@ -133,7 +202,7 @@ the input line."
                 (setq word-index (1+ word-index))
 
                 ;; Make sure only process current/one line.
-                (if (< (point) end-line-point)
+                (if (<= (point) end-line-point)
                     (progn
                       (let ((current-point-face(jcs-get-current-point-face) ))
 
@@ -160,6 +229,7 @@ the input line."
                             (progn
                               ;; Just store it.
                               (setq datatype-name (thing-at-point 'word))
+                              (message "%s" datatype-name)
 
                               (if (not (equal meet-function-name t))
                                   (progn
@@ -178,7 +248,8 @@ the input line."
 
                         ;; NOTE(jenchieh): Store all the variables name.
                         (if (or (string= current-point-face "font-lock-variable-name-face")
-                                (string= current-point-face 'js2-function-param))
+                                (string= current-point-face 'js2-function-param)
+                                (string= current-point-face "default"))
                             (progn
                               (add-to-list 'param-variable-strings (thing-at-point 'word))
                               ))
@@ -186,6 +257,13 @@ the input line."
 
 
               ))))
+
+    ;; Enable it back on if it was on.
+    (if (equal was-flycheck-on t)
+        (flycheck-mode t))
+    (if (equal was-flymake-on t)
+        (flymake-mode t))
+
     ;; Insert document comment string.
     (jcs-insert-doc-comment-string meet-function-name
                                    keyword-strings
@@ -229,6 +307,13 @@ the input line."
                 ;; the same length.
                 (param-len (length param-variable-strings))
                 (param-index (1- (length param-variable-strings))))
+
+
+            ;; NOTE(jenchieh): `add-to-list' will push the element
+            ;; at the front queue. `setq' and `append' will push
+            ;; element from the back, so we need to reverse it
+            ;; in order to match the order.
+            (setq param-type-strings (reverse param-type-strings))
 
             (if (jcs-is-current-major-mode-p "csharp-mode")
                 (progn
@@ -282,13 +367,16 @@ the input line."
                   ;; Process param tag.
                   (while (>= param-index 0)
                     (insert "\n")  ;; start from newline.
-                    (insert "* @param ")
-                    (if (not (equal jcs-cc-doc-show-curly-type nil))
+                    (insert "* @")
+                    (insert jcs-cc-param-string)
+                    (if (not (equal jcs-cc-doc-show-typename nil))
                         (progn
-                          (jcs-insert-jsdoc-type (nth param-index param-type-strings))
+                          (jcs-insert-jsdoc-type (nth param-index param-type-strings)
+                                                 jcs-cc-open-type-char
+                                                 jcs-cc-close-type-char)
                           ))
                     (insert (nth param-index param-variable-strings))
-                    (insert jcs-oop-doc-delimiter-char)
+                    (insert jcs-cc-doc-after-value-type-char)
                     (insert "Param desc here..")
 
                     ;; indent once.
@@ -304,11 +392,16 @@ the input line."
                         (if (not(string= return-type-string "void"))
                             (progn
                               (insert "\n")
-                              (insert "* @returns ")
-                              (if (not (equal jcs-cc-doc-show-curly-type nil))
-                                  (jcs-insert-jsdoc-type return-type-string)
-                                (backward-delete-char 1))
-                              (insert jcs-oop-doc-delimiter-char)
+                              (insert "* @")
+                              (insert jcs-cc-return-string)
+                              (if (not (equal jcs-cc-doc-show-typename nil))
+                                  (jcs-insert-jsdoc-type return-type-string
+                                                         jcs-cc-open-type-char
+                                                         jcs-cc-close-type-char))
+                              (backward-delete-char 1)
+                              (if (not (equal jcs-cc-doc-show-typename nil))
+                                  (insert jcs-cc-doc-after-value-type-char)
+                                (insert " "))
                               (insert "Returns description here..")
                               (indent-for-tab-command)))
                         ))
@@ -325,13 +418,16 @@ the input line."
                   ;; Process param tag.
                   (while (>= param-index 0)
                     (insert "\n")  ;; start from newline.
-                    (insert "* @param ")
-                    (if (not (equal jcs-java-doc-show-curly-type nil))
+                    (insert "* @")
+                    (insert jcs-java-param-string)
+                    (if (not (equal jcs-java-doc-show-typename nil))
                         (progn
-                          (jcs-insert-jsdoc-type (nth param-index param-type-strings))
+                          (jcs-insert-jsdoc-type (nth param-index param-type-strings)
+                                                 jcs-cc-open-type-char
+                                                 jcs-cc-close-type-char)
                           ))
                     (insert (nth param-index param-variable-strings))
-                    (insert jcs-oop-doc-delimiter-char)
+                    (insert jcs-java-doc-after-value-type-char)
                     (insert "Param desc here..")
 
                     ;; indent once.
@@ -347,11 +443,16 @@ the input line."
                         (if (not(string= return-type-string "void"))
                             (progn
                               (insert "\n")
-                              (insert "* @returns ")
-                              (if (not (equal jcs-java-doc-show-curly-type nil))
-                                    (jcs-insert-jsdoc-type return-type-string)
-                                (backward-delete-char 1))
-                              (insert jcs-oop-doc-delimiter-char)
+                              (insert "* @")
+                              (insert jcs-java-return-string)
+                              (if (not (equal jcs-java-doc-show-typename nil))
+                                  (jcs-insert-jsdoc-type return-type-string
+                                                         jcs-cc-open-type-char
+                                                         jcs-cc-close-type-char))
+                              (backward-delete-char 1)
+                              (if (not (equal jcs-java-doc-show-typename nil))
+                                  (insert jcs-java-doc-after-value-type-char)
+                                (insert " "))
                               (insert "Returns description here..")
                               (indent-for-tab-command)))
                         ))
@@ -367,13 +468,16 @@ the input line."
                   ;; Process param tag.
                   (while (>= param-index 0)
                     (insert "\n")  ;; start from newline.
-                    (insert "* @param ")
-                    (if (not (equal jcs-js-doc-show-curly-type nil))
+                    (insert "* @")
+                    (insert jcs-js-param-string)
+                    (if (not (equal jcs-js-doc-show-typename nil))
                         (progn
-                          (jcs-insert-jsdoc-type "typename")
+                          (jcs-insert-jsdoc-type "typename"
+                                                 jcs-js-open-type-char
+                                                 jcs-js-close-type-char)
                           ))
                     (insert (nth param-index param-variable-strings))
-                    (insert jcs-oop-doc-delimiter-char)
+                    (insert jcs-js-doc-after-value-type-char)
                     (insert "Param desc here..")
 
                     ;; indent once.
@@ -389,11 +493,16 @@ the input line."
                         (if (not(string= return-type-string "void"))
                             (progn
                               (insert "\n")
-                              (insert "* @returns ")
-                              (if (not (equal jcs-js-doc-show-curly-type nil))
-                                  (jcs-insert-jsdoc-type return-type-string)
-                                (backward-delete-char 1))
-                              (insert jcs-oop-doc-delimiter-char)
+                              (insert "* @")
+                              (insert jcs-js-return-string)
+                              (if (not (equal jcs-js-doc-show-typename nil))
+                                  (jcs-insert-jsdoc-type return-type-string
+                                                         jcs-js-open-type-char
+                                                         jcs-js-close-type-char))
+                              (backward-delete-char 1)
+                              (if (not (equal jcs-js-doc-show-typename nil))
+                                  (insert jcs-js-doc-after-value-type-char)
+                                (insert " "))
                               (insert "Returns description here..")
                               (indent-for-tab-command)))
                         ))
@@ -409,12 +518,15 @@ the input line."
                   ;; Process param tag.
                   (while (>= param-index 0)
                     (insert "\n")  ;; start from newline.
-                    (insert "-- @param ")
-                    (if (not (equal jcs-lua-doc-show-curly-type nil))
+                    (insert "-- @")
+                    (insert jcs-lua-param-string)
+                    (if (not (equal jcs-lua-doc-show-typename nil))
                         (progn
-                          (jcs-insert-jsdoc-type (nth param-index param-variable-strings))
+                          (jcs-insert-jsdoc-type (nth param-index param-variable-strings)
+                                                 jcs-lua-open-type-char
+                                                 jcs-lua-close-type-char)
                           ))
-                    (insert jcs-oop-doc-delimiter-char)
+                    (insert jcs-lua-doc-after-value-type-char)
                     (insert "Param desc here..")
 
                     ;; indent once.
@@ -430,11 +542,16 @@ the input line."
                         (if (not(string= return-type-string "void"))
                             (progn
                               (insert "\n")
-                              (insert "-- @returns ")
-                              (if (not (equal jcs-lua-doc-show-curly-type nil))
-                                  (jcs-insert-jsdoc-type return-type-string)
-                                (backward-delete-char 1))
-                              (insert jcs-oop-doc-delimiter-char)
+                              (insert "-- @")
+                              (insert jcs-lua-return-string)
+                              (if (not (equal jcs-lua-doc-show-typename nil))
+                                  (jcs-insert-jsdoc-type return-type-string
+                                                         jcs-lua-open-type-char
+                                                         jcs-lua-close-type-char))
+                              (backward-delete-char 1)
+                              (if (not (equal jcs-lua-doc-show-typename nil))
+                                  (insert jcs-lua-doc-after-value-type-char)
+                                (insert " "))
                               (insert "Returns description here..")
                               (indent-for-tab-command)))
                         ))
@@ -569,12 +686,13 @@ the input line."
               ))
         ))))
 
-(defun jcs-insert-jsdoc-type (type-name)
+(defun jcs-insert-jsdoc-type (type-name open-char close-char)
   "Insert the curly bracket part. { type-name }"
   (interactive)
-  (insert "{ ")
+
+  (insert open-char)
   (insert type-name)
-  (insert " } ")
+  (insert close-char)
   )
 
 ;;------------------------------------------------------------------------------------------------------
