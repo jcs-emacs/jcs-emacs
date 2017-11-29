@@ -31,6 +31,7 @@
 ;; Functions for C/C++ common.
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+;;; Code:
 
 (defun jcs-ask-cpp-default-header (bool)
   (interactive
