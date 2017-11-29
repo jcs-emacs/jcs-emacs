@@ -295,8 +295,10 @@ own preferences."
 ;;; For Specific Mode
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-oop-func.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-cc-func.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-web-func.el")
+(load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-cs-func.el")
+(load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-lua-func.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-python-func.el")
+(load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-web-func.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-re-builder-func.el")
 
 ;;------------------------------------------------------------------------------------------------------
