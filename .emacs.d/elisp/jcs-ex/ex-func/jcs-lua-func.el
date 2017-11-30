@@ -34,8 +34,9 @@
 ;;; Code:
 
 (defun jcs-lua-maybe-insert-codedoc ()
-  "Insert comment like Visual Studio comment style.
-URL(jenchieh): https://github.com/josteink/csharp-mode/issues/123"
+  "Insert common Lua document/comment string.
+
+URL(jenchieh): http://lua-users.org/wiki/LuaStyleGuide"
   (interactive)
 
   (insert "-")
@@ -65,12 +66,16 @@ URL(jenchieh): https://github.com/josteink/csharp-mode/issues/123"
     (if (and (equal active-comment t)
              (equal next-line-not-empty t))
         (progn
-          (insert "---------------------------------------------\n")
+          (insert "-------------------------------------------------------------\n")
           (insert "-- \n")
-          (insert "------------------------------------------------")
+          (insert "----------------------------------------------------------------\n")
+          (insert "----------------------------------------------------------------")
 
           (jcs-smart-indent-up)
           (jcs-smart-indent-down)
+          (jcs-smart-indent-down)
+          (jcs-smart-indent-up)
+          (jcs-smart-indent-up)
           (jcs-smart-indent-up)
           (end-of-line)
 
@@ -78,6 +83,7 @@ URL(jenchieh): https://github.com/josteink/csharp-mode/issues/123"
           ;; ex: param, returns, etc.
           (save-excursion
             ;; Goto the function line before insert doc string.
+            (jcs-next-line)
             (jcs-next-line)
             (jcs-next-line)
 
