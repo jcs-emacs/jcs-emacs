@@ -9,6 +9,8 @@
 
 2017-11-30
 * Add tag string and bracket sign for oop doc customization. (jcs-emacs-init)
+* Make sure curly bracket and bracket can be replace with each 
+ other in regexp, so it compatible with js doc comment style. (jcs-emacs-init)
 
 2017-11-29
 * Make comment with auto add oop doc comment style. (jcs-emacs-init)
