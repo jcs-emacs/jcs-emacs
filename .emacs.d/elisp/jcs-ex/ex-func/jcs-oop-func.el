@@ -31,6 +31,8 @@
 ;; Functions for Object Oriented Programming languages.
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+;;; Code:
+
 (defvar jcs-oop-highlight-modes '(actionscript-mode
                                   cc-mode
                                   c-mode
@@ -44,7 +46,8 @@
                                   nasm-mode
                                   php-mode
                                   python-mode
-                                  web-mode))
+                                  web-mode)
+  "Modes to add OOP document comment style.")
 
 (defface jcs-oop-tag-face
   '((t (:foreground "#38EFCA")))
@@ -82,8 +85,14 @@
       jcs-oop-highlight-modes)
 
 
-;; DESCRIPTION(jenchieh): Change this variable for customize
-;; delimiter in OOP doc.
+;;; Doc string
+(defvar jcs-py-doc-string-version 0
+  "Document string version.
+
+0 : Description after ''' opening docstring..
+1 : Line breack description after ''' opening docstring.")
+
+;;; Doc string character after value type font.
 (defvar jcs-java-doc-after-value-type-char " : "
   "Character after value type been inserted in Java Mode.")
 (defvar jcs-cc-doc-after-value-type-char " : "
@@ -229,7 +238,6 @@ the input line."
                             (progn
                               ;; Just store it.
                               (setq datatype-name (thing-at-point 'word))
-                              (message "%s" datatype-name)
 
                               (if (not (equal meet-function-name t))
                                   (progn
@@ -522,10 +530,11 @@ the input line."
                     (insert jcs-lua-param-string)
                     (if (not (equal jcs-lua-doc-show-typename nil))
                         (progn
-                          (jcs-insert-jsdoc-type (nth param-index param-variable-strings)
+                          (jcs-insert-jsdoc-type "typename"
                                                  jcs-lua-open-type-char
                                                  jcs-lua-close-type-char)
                           ))
+                    (insert (nth param-index param-variable-strings))
                     (insert jcs-lua-doc-after-value-type-char)
                     (insert "Param desc here..")
 
@@ -561,10 +570,58 @@ the input line."
                 (progn
                   ;; go back to comment line.
                   (jcs-next-line)
-                  (jcs-next-line)
+                  (if (= jcs-py-doc-string-version 1)
+                      (progn
+                        ;; OPTION(jenchieh): docstring option..
+                        (jcs-next-line)))
                   (end-of-line)
 
-                  ;; TODO(jenchieh): implement into python mode.
+                  ;; Line breack between description and tags.
+                  (if (>= param-index 0)
+                      (insert "\n"))
+
+                  (while (>= param-index 0)
+                    (if (not (string= "self" (nth param-index param-variable-strings)))
+                        (progn
+                          (insert "\n")  ;; start from newline.
+                          (insert "@")
+                          (insert jcs-py-param-string)
+                          (if (not (equal jcs-py-doc-show-typename nil))
+                              (progn
+                                (jcs-insert-jsdoc-type "typename"
+                                                       jcs-py-open-type-char
+                                                       jcs-py-close-type-char)
+                                ))
+                          (insert (nth param-index param-variable-strings))
+                          (insert jcs-py-doc-after-value-type-char)
+                          (insert "Param desc here..")
+
+                          ;; indent once.
+                          (indent-for-tab-command)
+                          ))
+
+                    ;; add up counter.
+                    (setq param-index (1- param-index)))
+
+                  ;; Lastly, process returns tag.
+                  (if (equal there-is-return t)
+                      (progn
+                        (if (not(string= return-type-string "void"))
+                            (progn
+                              (insert "\n")
+                              (insert "@")
+                              (insert jcs-py-return-string)
+                              (if (not (equal jcs-py-doc-show-typename nil))
+                                  (jcs-insert-jsdoc-type return-type-string
+                                                         jcs-py-open-type-char
+                                                         jcs-py-close-type-char))
+                              (backward-delete-char 1)
+                              (if (not (equal jcs-py-doc-show-typename nil))
+                                  (insert jcs-py-doc-after-value-type-char)
+                                (insert " "))
+                              (insert "Returns description here..")
+                              (indent-for-tab-command)))
+                        ))
                   ))
             ))
       ;; NOTE(jenchieh): Design object comment document string.
@@ -687,13 +744,31 @@ the input line."
         ))))
 
 (defun jcs-insert-jsdoc-type (type-name open-char close-char)
-  "Insert the curly bracket part. { type-name }"
-  (interactive)
+  "Insert the curly bracket part.
 
+@param TYPE-NAME : type name string.
+@param OPEN-CHAR : opening character.
+@param CLOSE-CHAR : closing character."
+  (interactive)
   (insert open-char)
   (insert type-name)
-  (insert close-char)
-  )
+  (insert close-char))
+
+
+(defvar jcs-oop-font-lock-missing-modes '(c-mode
+                                          js2-mode
+                                          lua-mode
+                                          php-mode
+                                          python-mode)
+  "Modes to fixed variable font lock missing face.")
+
+(mapc (lambda (mode)
+        (font-lock-add-keywords
+         mode
+         '(("\\([a-zA-Z_$0-9[]*.\\)[,\|)]" 1 'font-lock-variable-name-face t)
+           )))
+      jcs-oop-font-lock-missing-modes)
+
 
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-oop-func.el file
