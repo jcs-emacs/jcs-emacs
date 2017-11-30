@@ -90,7 +90,7 @@
   ;; Set Faces.
   ;; URL(jenchieh): http://ergoemacs.org/emacs/elisp_define_face.html
   (setq-local font-lock-comment-face '(jdee-font-lock-javadoc-face))
-  
+
   ;; jcs java key binding
   (define-key java-mode-map (kbd "C-d") 'jcs-kill-whole-line)
   (define-key java-mode-map "\C-c\C-c" 'kill-ring-save)
@@ -115,6 +115,20 @@
 ;;(autoload 'jde-mode "~/.emacs.d/elpha/jdee-20160304.536/jdee.el" "JDE mode" t)
 ;; (setq auto-mode-alist
 ;;       (append '(("\\.java\\'" . jde-mode)) auto-mode-alist))
+
+
+(provide 'jdee-font-lock)
+(if (> emacs-major-version 23)
+    (defconst c-doc-face-name 'font-lock-doc-face)
+  ;; starting with 24, cc-fonts clobbers this because of some change of order
+  ;; of loading
+  (eval-after-load
+      "cc-fonts"
+    '(defconst c-doc-face-name 'font-lock-doc-face)))
+
+
+(set-face-attribute 'jdee-font-lock-number-face nil
+                    :foreground "olive drab")
 
 
 ;;------------------------------------------------------------------------------------------------------
