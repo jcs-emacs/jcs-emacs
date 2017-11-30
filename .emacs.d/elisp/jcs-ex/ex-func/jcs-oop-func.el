@@ -72,15 +72,15 @@
          '(("\\(?:^\\|\\s-\\)\\(@[a-zA-Z0-9_]*\\)" 1 'jcs-oop-tag-face t)
            ;; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
            ;; OPTION(jenchieh): Highlight curly bracket.
-           ("@[a-zA-Z0-9_].*\\(?:^\\|\\s-\\)\\([\\[\|{].*.[\]\|}]\\)" 1 'jcs-oop-type-face t)
+           ("@[a-zA-Z0-9_].*\\(?:^\\|\\s-\\)\\([\\[{].*.[\]}]\\)" 1 'jcs-oop-type-face t)
            ;; >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
            ;; OR(jenchieh):
            ;; >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
            ;; OPTION(jenchieh): Don't highlight curly bracket.
-           ;;("@[a-zA-Z0-9_].*\\(?:^\\|\\s-\\)[\\[\|{]\\(.*.\\)[\]\|}]" 1 'jcs-oop-type-face t)
+           ;;("@[a-zA-Z0-9_].*\\(?:^\\|\\s-\\)[\\[{]\\(.*.\\)[]}]" 1 'jcs-oop-type-face t)
            ;; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-           ("@[a-zA-Z0-9_].*[\]\|}].\\([a-zA-Z0-9_]*\\).[-\|:]" 1 'jcs-oop-value-face t)
-           ("@[a-zA-Z0-9_]*.\\([a-zA-Z0-9_]*\\).*[{\|:\|-]" 1 'jcs-oop-value-face t)
+           ("@[a-zA-Z0-9_].*[\]\|}].\\([a-zA-Z0-9_]*\\).[:-]" 1 'jcs-oop-value-face t)
+           ("@[a-zA-Z0-9_]*.\\([a-zA-Z0-9_]*\\).*[{:-]" 1 'jcs-oop-value-face t)
            )))
       jcs-oop-highlight-modes)
 
@@ -756,7 +756,6 @@ the input line."
 
 
 (defvar jcs-oop-font-lock-missing-modes '(c-mode
-                                          js2-mode
                                           lua-mode
                                           php-mode
                                           python-mode)
@@ -765,7 +764,9 @@ the input line."
 (mapc (lambda (mode)
         (font-lock-add-keywords
          mode
-         '(("\\([a-zA-Z_$0-9[]*.\\)[,\|)]" 1 'font-lock-variable-name-face t)
+         '(("(,*[a-zA-Z0-9_]*.\\([a-zA-Z_$0-9[]*.\\)[,)]" 1 'font-lock-variable-name-face t)
+           (",.\\([a-zA-Z_$0-9[]*.\\)[,]" 1 'font-lock-variable-name-face t)
+           ("\\([a-zA-Z_$0-9[]*.\\)[)]" 1 'font-lock-variable-name-face t)
            )))
       jcs-oop-font-lock-missing-modes)
 
