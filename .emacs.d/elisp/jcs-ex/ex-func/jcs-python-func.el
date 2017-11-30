@@ -31,6 +31,8 @@
 ;; When editing the Python file.
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+;;; Code:
+
 ;;;###autoload
 (defun jcs-py-indent-region ()
   "Indent region for `python-mode'"
@@ -216,6 +218,73 @@ vector list."
     (setq index (1+ index)))
 
   (eq isKeyword t))
+
+
+(defun jcs-py-maybe-insert-codedoc ()
+  "Insert common Python document/comment string.
+
+-- Officual
+URL(jenchieh): https://www.python.org/dev/peps/pep-0008/
+-- Google
+URL(jenchieh): https://google.github.io/styleguide/pyguide.html
+-- Hitchhiker's
+URL(jenchieh): http://docs.python-guide.org/en/latest/writing/style/"
+  (interactive)
+
+  (insert "\"")
+
+
+  (let ((active-comment nil)
+        (previous-line-not-empty nil))
+    (save-excursion
+      (backward-char 1)
+      (if (current-char-equal-p "\"")
+          (progn
+            (backward-char 1)
+            (if (current-char-equal-p "\"")
+                (progn
+                  (backward-char 1)
+                  (if (not (current-char-equal-p "\""))
+                      (setq active-comment t)
+                    ))
+              )))
+
+      ;; check if previous line empty.
+      (jcs-previous-line)
+      (if (not (current-line-empty-p))
+          (setq previous-line-not-empty t))
+      )
+
+    (if (and (equal active-comment t)
+             (equal previous-line-not-empty t))
+        (progn
+          (if (= jcs-py-doc-string-version 1)
+              (progn
+                ;; OPTION(jenchieh): docstring option..
+                (insert "\n")))
+          (insert "Description here..\n")
+          (insert "\"\"\"")
+
+          (jcs-smart-indent-up)
+          (jcs-smart-indent-down)
+          (jcs-smart-indent-up)
+          (end-of-line)
+
+          ;; Check other comment type.
+          ;; ex: param, returns, etc.
+          (save-excursion
+            ;; Goto the function line before insert doc string.
+            (jcs-previous-line)
+            (if (= jcs-py-doc-string-version 1)
+                (progn
+                  ;; OPTION(jenchieh): docstring option..
+                  (jcs-previous-line)))
+
+            ;; insert comment doc comment string.
+            (jcs-insert-comment-style-by-current-line)
+            )
+          ))
+    ))
 
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-python-func.el file
