@@ -109,7 +109,6 @@
   ;; URL(jenchieh): http://ergoemacs.org/emacs/elisp_define_face.html
   (setq-local font-lock-comment-face '(jdee-font-lock-javadoc-face))
 
-
   ;; jcs C key binding
   (define-key c-mode-map [f8] 'casey-find-corresponding-file)
   (define-key c-mode-map [S-f8] 'casey-find-corresponding-file-other-window)
