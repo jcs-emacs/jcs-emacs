@@ -48,11 +48,9 @@
 (define-key global-map "\C-s" 'jcs-save-buffer)
 
 (define-key global-map "\C-p" 'package-list-packages)
-(define-key global-map "\e=" 'text-scale-increase)
-(define-key global-map "\e-" 'text-scale-decrease)
+
 (define-key global-map "\C-t" 'transient-mark-mode)
 (define-key global-map [home] 'back-to-indentation-or-beginning)
-
 (define-key global-map (kbd "C-<backspace>") 'jcs-backward-delete-word)
 (define-key global-map (kbd "C-M-<backspace>") 'jcs-backward-kill-word-capital)
 (define-key global-map (kbd "C-M-<left>") 'jcs-backward-capital-char)
@@ -69,6 +67,11 @@
 (define-key global-map "\C-a" 'mark-whole-buffer)
 (define-key global-map "\C-z" 'undo)
 ;;(define-key global-map "\C-y" 'redo)
+
+;;; Text Scale.
+(define-key global-map "\e=" 'text-scale-increase)
+(define-key global-map "\e-" 'text-scale-decrease)
+(define-key auto-highlight-symbol-mode-map "\e-" 'text-scale-decrease)
 
 ;;; Search Word (SEE: `jcs-mode-el' will have detail mode config.)ee
 ;;(define-key global-map "\C-f" 'helm-do-ag-this-file)
