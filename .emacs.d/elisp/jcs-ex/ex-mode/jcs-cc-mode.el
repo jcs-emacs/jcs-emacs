@@ -148,8 +148,8 @@
   (add-to-list 'achead:include-directories '"C:/MinGW/include")
   )
 ;; now lets' call this function from c/c++ hooks
-(add-hook 'c++-mode-hook 'jcs-ac-c-header-init)
 (add-hook 'c-mode-hook 'jcs-ac-c-header-init)
+(add-hook 'c++-mode-hook 'jcs-ac-c-header-init)
 
 ;; start flymake-google-cpplint-load
 ;; let's define a function for flymake initilization
