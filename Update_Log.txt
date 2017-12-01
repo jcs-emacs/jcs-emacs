@@ -7,6 +7,11 @@
 # ========================================================================
 
 
+2017-12-01
+* Change copyright character. (jcs-emacs-init)
+* Change regexp for strict type langauge in oop-func file for correct 
+ variable font face. (jcs-emacs-init)
+
 2017-11-30
 * Add tag string and bracket sign for oop doc customization. (jcs-emacs-init)
 * Make sure curly bracket and bracket can be replace with each 
