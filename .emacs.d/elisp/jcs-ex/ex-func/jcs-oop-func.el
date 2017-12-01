@@ -106,15 +106,15 @@
 
 ;;; Show typename.
 (defvar jcs-java-doc-show-typename nil
-  "Show the typename betweeen the open curly bracket and close curly bracket in Java mode.")
+  "Show the typename betweeen the open charachter and close charachter in Java mode.")
 (defvar jcs-cc-doc-show-typename t
-  "Show the typename betweeen the open curly bracket and close curly bracket in C/C++ mode.")
+  "Show the typename betweeen the open charachter and close charachter in C/C++ mode.")
 (defvar jcs-js-doc-show-typename t
-  "Show the typename betweeen the open curly bracket and close curly bracket in JavaScript mode.")
+  "Show the typename betweeen the open charachter and close charachter in JavaScript mode.")
 (defvar jcs-lua-doc-show-typename t
-  "Show the typename betweeen the open curly bracket and close curly bracket in Lua mode.")
+  "Show the typename betweeen the open charachter and close charachter in Lua mode.")
 (defvar jcs-py-doc-show-typename t
-  "Show the typename betweeen the open curly bracket and close curly bracket in Python mode.")
+  "Show the typename betweeen the open charachter and close charachter in Python mode.")
 
 ;;; Tag strings
 (defvar jcs-java-param-string "param "
@@ -755,8 +755,20 @@ the input line."
   (insert close-char))
 
 
-(defvar jcs-oop-font-lock-missing-modes '(c-mode
-                                          lua-mode
+(defvar jcs-oop-font-lock-missing-strict-modes '(c-mode)
+  "Modes to fixed variable font lock missing face.")
+
+(mapc (lambda (mode)
+        (font-lock-add-keywords
+         mode
+         '(("(\\([a-zA-Z_$0-9[]*.\\)*[,]" 1 'font-lock-variable-name-face t)
+           (",.\\([a-zA-Z_$0-9[]*.\\)*[,]" 1 'font-lock-variable-name-face t)
+           ("[(,].\\([a-zA-Z_$0-9[]*.\\)*[)]" 1 'font-lock-variable-name-face t)
+           )))
+      jcs-oop-font-lock-missing-strict-modes)
+
+
+(defvar jcs-oop-font-lock-missing-modes '(lua-mode
                                           php-mode
                                           python-mode)
   "Modes to fixed variable font lock missing face.")
