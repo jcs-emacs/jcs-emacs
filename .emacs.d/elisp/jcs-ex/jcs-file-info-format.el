@@ -96,7 +96,7 @@
 (defun jcs-insert-notice-section-line2 ()
   "Insert 'Notice' section line 2."
 
-  (insert "                  Copyright (c) ")
+  (insert "                  Copyright © ")
   (jcs-year-only)
   (insert " by ")
   (jcs-insert-copyright-name)
