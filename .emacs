@@ -213,6 +213,7 @@ Return a list of installed packages or nil for every skipped package."
 
 ;;; jcs-all-mode
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-elisp-mode.el")
+(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-cs-mode.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-cmake-mode.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-nasm-mode.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-batch-mode.el")
@@ -228,7 +229,6 @@ Return a list of installed packages or nil for every skipped package."
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-js-mode.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-json-mode.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-lua-mode.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-cs-mode.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-message-mode.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-xml-mode.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-txt-mode.el")
