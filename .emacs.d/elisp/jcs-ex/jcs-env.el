@@ -448,7 +448,7 @@
 (setq make-backup-files nil)
 
 ;; Auto reload buffer if the file changes.
-(global-auto-revert-mode)
+(global-auto-revert-mode t)
 
 ;; Startup windowing
 (setq next-line-add-newlines nil)
