@@ -31,12 +31,6 @@
 ;; Do stuff after initialize.
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-;; NOTE(JenChieh): .cs add-to-list action above will
-;;                  override the .c file c-mode add-to-list
-;;                  action, so i have to override it agian
-;;                  so it won't cover the setting i want...
-(add-to-list 'auto-mode-alist '("\\.c?\\'" . c-mode))
-
 ;;; Override all the mode's key bindings.
 (load-file "~/.emacs.d/elisp/jcs-ex/jcs-global-key.el")
 
