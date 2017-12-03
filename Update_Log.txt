@@ -7,6 +7,10 @@
 # ========================================================================
 
 
+2017-12-03
+* Make after confirm adding header or not, change into corresponding
+ c-mode or c++-mode. (jcs-emacs-init)
+
 2017-12-01
 * Change copyright character. (jcs-emacs-init)
 * Change regexp for strict type langauge in oop-func file for correct 
