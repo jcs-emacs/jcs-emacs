@@ -156,6 +156,9 @@
   )
 (add-hook 'c-mode-hook 'jcs-c-mode-hook)
 
+;;(add-to-list 'auto-mode-alist '("\\.h?\\'" . c-mode))
+;;(add-to-list 'auto-mode-alist '("\\.c?\\'" . c-mode))
+
 
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-c-mode.el file

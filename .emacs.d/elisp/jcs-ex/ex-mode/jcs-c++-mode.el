@@ -140,6 +140,16 @@
   )
 (add-hook 'c++-mode-hook 'jcs-c++-mode-hook)
 
+(add-to-list 'auto-mode-alist '("\\.cpp?\\'" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.hpp?\\'" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.hin?\\'" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.cin?\\'" . c++-mode))
+
+;; NOTE(jenchieh): `c-mode' does not do well, just use `c++-mode'
+;; instead for now.
+(add-to-list 'auto-mode-alist '("\\.h?\\'" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.c?\\'" . c++-mode))
+
 
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-c++-mode.el file
