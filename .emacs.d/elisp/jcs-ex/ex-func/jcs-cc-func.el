@@ -39,7 +39,9 @@
 
   (if bool
       (progn
-        (jcs-c++-default-header-template))))
+        (c++-mode)
+        (jcs-c++-default-header-template))
+    (c-mode)))
 
 (defun jcs-ask-cpp-default-source (bool)
   (interactive
@@ -47,7 +49,9 @@
 
   (if bool
       (progn
-        (jcs-c++-default-source-template))))
+        (c++-mode)
+        (jcs-c++-default-source-template))
+    (c-mode)))
 
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-cc-func.el file
