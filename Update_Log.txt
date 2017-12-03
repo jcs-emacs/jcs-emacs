@@ -12,6 +12,8 @@
  c-mode or c++-mode. (jcs-emacs-init)
 * Add `togetherly' package. (jcs-emacs-init)
 * Add `floobits' package. (jcs-emacs-init)
+* Move cs to top in order to override the bug from csharp-mode. (jcs-emacs-init)
+* Add list of ext for c and c++ mode. (jcs-emacs-init)
 
 2017-12-01
 * Change copyright character. (jcs-emacs-init)
