@@ -296,6 +296,7 @@ own preferences."
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-oop-func.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-cc-func.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-cs-func.el")
+(load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-cmake-func.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-lua-func.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-python-func.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-web-func.el")
