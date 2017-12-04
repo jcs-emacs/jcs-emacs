@@ -7,6 +7,12 @@
 # ========================================================================
 
 
+2017-12-04
+* Add css highlighting. (jcs-emacs-init)
+* Add makefile templates. (jcs-emacs-init)
+* Add cmake/mke file ask template functionalities. (jcs-emacs-init)
+* load txt mode for later since delete org mode as default mode. (jcs-emacs-init)
+
 2017-12-03
 * Make after confirm adding header or not, change into corresponding
  c-mode or c++-mode. (jcs-emacs-init)
