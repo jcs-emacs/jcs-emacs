@@ -358,6 +358,10 @@
         ((string-match "[.]css" buffer-file-name) (jcs-css-format))
         )
 
+  ;; Set Faces.
+  (setq-local font-lock-comment-face '(jdee-font-lock-javadoc-face))
+  (jcs-init-css-faces)
+
   ;; jcs web key binding
   (define-key css-mode-map (kbd "C-d") 'jcs-kill-whole-line)
   (define-key css-mode-map "\C-c\C-c" 'kill-ring-save)
@@ -377,7 +381,7 @@
 (add-hook 'css-mode-hook  'jcs-css-mode-hook)
 (add-hook 'css-mode-hook 'emmet-mode)
 
-(add-to-list 'auto-mode-alist '("\\.css?\\'" . css-mode))
+(add-to-list 'auto-mode-alist '("\\.css'?" . css-mode))
 
 
 ;;------------------------------------------------------------------------------------------------------
