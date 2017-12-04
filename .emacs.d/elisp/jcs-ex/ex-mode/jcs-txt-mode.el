@@ -118,6 +118,9 @@
 
 ;; set the defualt text mode to org mode.
 (add-to-list 'auto-mode-alist '("\\.txt?\\'" . org-mode))
+(add-to-list 'auto-mode-alist '("\\(/\\|\\`\\)README" . org-mode))
+(add-to-list 'auto-mode-alist '("\\(/\\|\\`\\)LICENSE" . org-mode))
+
 
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-txt-mode.el file
