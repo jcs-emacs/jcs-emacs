@@ -59,7 +59,7 @@
   ;; NOTE(jenchieh): Unknown reason that web-mode will
   ;; get disable...
   (web-mode)
-  
+
   ;; NOTE(jenchieh): Get back highlighting.
   ;;(font-lock-flush)
   ;;(font-lock-fontify-buffer)
@@ -276,8 +276,7 @@ line instead of indent the whole file at once."
 
     ;; make sure go back to the starting line.
     (goto-line startLineNum)
-    (end-of-line))
-  )
+    (end-of-line)))
 
 ;;;###autoload
 (defun jcs-css-sort-attributes-document ()
@@ -300,8 +299,29 @@ line instead of indent the whole file at once."
 
     ;; make sure go back to the starting line.
     (goto-line startLineNum)
-    (end-of-line))
-  )
+    (end-of-line)))
+
+(defun jcs-init-css-faces ()
+  "CSS Faces Highlighting."
+
+  (defface jcs-css-value-face
+    '((t (:foreground "#D2D2D2")))
+    "Highlight CSS value.")
+  (defvar jcs-css-value-face 'jcs-css-value-face)
+
+  (defvar jcs-css-value-modes '(css-mode)
+    "Modes for editing CSS file.")
+  (mapc (lambda (mode)
+          (font-lock-add-keywords
+           mode
+           '((":\\(.*\\);" 1 'jcs-css-value-face t)
+             )))
+        jcs-css-value-modes)
+
+  ;; Other faces.
+  (setq-local font-lock-function-name-face '(:foreground "#17A0FB"))
+  (setq-local font-lock-variable-name-face '(:foreground "#38EFCA")))
+
 
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-web-func.el file
