@@ -7,6 +7,10 @@
 # ========================================================================
 
 
+2017-12-05
+* Fixed makefile format. static to .a, dynamic to .so, $< to $^ 
+ sign. (jcs-emacs-init)
+
 2017-12-04
 * Add css highlighting. (jcs-emacs-init)
 * Add makefile templates. (jcs-emacs-init)
