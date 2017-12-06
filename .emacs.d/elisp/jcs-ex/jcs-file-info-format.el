@@ -298,9 +298,9 @@ script, etc."
 
   (insert "\n### Library File ###\n")
   (insert "# static link library\n")
-  (insert "ALIB  = default_static_lib_name.a\n")
+  (insert "ALIB  = a_lib_name.a\n")
   (insert "# dynamic link library\n")
-  (insert "SOLIB = default_shared_lib_name.so\n")
+  (insert "SOLIB = so_lib_name.so\n")
 
   (insert "\n### Source Path ###\n")
   (insert "MAIN_PATH       = $(ROOT_DIR)/test\n")
@@ -458,9 +458,9 @@ script, etc."
 
   (insert "\n### Library File ###\n")
   (insert "# static link library\n")
-  (insert "ALIB  = default_static_lib_name.a\n")
+  (insert "ALIB  = a_lib_name.a\n")
   (insert "# dynamic link library\n")
-  (insert "SOLIB = default_shared_lib_name.so\n")
+  (insert "SOLIB = so_lib_name.so\n")
 
   (insert "\n### Source Path ###\n")
   (insert "MAIN_PATH       = $(ROOT_DIR)/test\n")
