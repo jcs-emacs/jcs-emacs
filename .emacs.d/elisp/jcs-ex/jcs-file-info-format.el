@@ -308,14 +308,13 @@ script, etc."
 
   (insert "\n### Include Path ###\n")
   (insert "INCLUDE_PATH   = $(ROOT_DIR)/include\n")
-  (insert "INCLUDE_PATHS  = $(wildcard $(INCLUDE_PATH)/*)\n")
 
   (insert "\n### Library path ###\n")
   (insert "A_LIB_PATH  = $(ROOT_DIR)/lib/alib\n")
-  (insert "A_LIB_PATHS = $(wildcard $(A_LIB_PATH)/*)\n\n")
+  (insert "A_LIBS = $(wildcard $(A_LIB_PATH)/*)\n\n")
 
   (insert "SO_LIB_PATH  := $(ROOT_DIR)/lib/solib\n")
-  (insert "SO_LIB_PATHS := $(wildcard $(SO_LIB_PATH)/*)\n")
+  (insert "SO_LIBS := $(wildcard $(SO_LIB_PATH)/*)\n")
 
   (insert "\n### All Source ###\n")
   (insert "# main source\n")
@@ -356,6 +355,8 @@ script, etc."
   (insert "build : \n")
   (insert "    $(CC) $(GSRC) $(MAINSRC) \\\n")
   (insert "    $(INCLUDE_FLAGS) $(INCLUDE_PATH) \\\n")
+  (insert "    $(A_LIBS) \\\n")
+  (insert "    $(SO_LIBS) \\\n")
   (insert "    $(LD_FLAGS) $(A_LIB_PATH) \\\n")
   (insert "    $(OUTPUT_FLAGS) $(BIN_DIR)/$(BIN_NAME)\n\n")
 
@@ -468,14 +469,13 @@ script, etc."
 
   (insert "\n### Include Path ###\n")
   (insert "INCLUDE_PATH   = $(ROOT_DIR)/include\n")
-  (insert "INCLUDE_PATHS  = $(wildcard $(INCLUDE_PATH)/*)\n")
 
   (insert "\n### Library path ###\n")
   (insert "A_LIB_PATH  = $(ROOT_DIR)/lib/alib\n")
-  (insert "A_LIB_PATHS = $(wildcard $(A_LIB_PATH)/*)\n\n")
+  (insert "A_LIBS = $(wildcard $(A_LIB_PATH)/*)\n\n")
 
   (insert "SO_LIB_PATH  := $(ROOT_DIR)/lib/solib\n")
-  (insert "SO_LIB_PATHS := $(wildcard $(SO_LIB_PATH)/*)\n")
+  (insert "SO_LIBS := $(wildcard $(SO_LIB_PATH)/*)\n")
 
   (insert "\n### All Source ###\n")
   (insert "# main source\n")
@@ -515,6 +515,8 @@ script, etc."
 
   (insert "build : \n")
   (insert "    $(CC) $(GSRC) $(MAINSRC) \\\n")
+  (insert "    $(A_LIBS) \\\n")
+  (insert "    $(SO_LIBS) \\\n")
   (insert "    $(INCLUDE_FLAGS) $(INCLUDE_PATH) \\\n")
   (insert "    $(LD_FLAGS) $(A_LIB_PATH) \\\n")
   (insert "    $(OUTPUT_FLAGS) $(BIN_DIR)/$(BIN_NAME)\n\n")
