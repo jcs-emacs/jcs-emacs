@@ -55,10 +55,14 @@
       (progn
         (setq last (point))
 
+        (setq start-of-global-comment-doc nil)
+
         ;; check the '/*' and '*/' on the same line?
         (if (and (search-backward "/*" point-beginning-of-line t)
                  (search-forward "*/" point-end-of-line t))
             (progn
+              (setq start-of-global-comment-doc t)
+
               (goto-char last)
 
               (insert "\n* ")
@@ -71,28 +75,50 @@
               (previous-line 1)
 
               ;; Insert comment string here..
-              (jcs-insert-comment-string)
+              (if (or (jcs-is-current-major-mode-p "c-mode")
+                      (jcs-is-current-major-mode-p "c++-mode")
+                      (jcs-is-current-major-mode-p "java-mode")
+                      ;;(jcs-is-current-major-mode-p "csharp-mode")
+                      (jcs-is-current-major-mode-p "js2-mode"))
+                  (jcs-insert-comment-string))
 
               ;; goto the end of line
               (end-of-line)
               )
           (progn
             (goto-char last)
+
             (insert "\n")
+            (when (is-inside-comment-block-p)
+              (insert "* "))
 
-            (if (nth 4 (syntax-ppss))
-                (progn
-                  (insert "* ")))
+            (indent-for-tab-command)))
 
-            (indent-for-tab-command)
-            )
-          ) ;; end (if (looking-back "/* "))
+        (when (equal start-of-global-comment-doc nil)
+          (let ((is-global-comment-doc nil))
+            (save-excursion
+              (jcs-goto-start-of-the-comment)
+              (forward-char 1)
+              (when (current-char-equal-p "*")
+                (setq is-global-comment-doc t)))
+
+            (when (equal is-global-comment-doc nil)
+              (call-interactively 'jcs-backward-kill-line)
+
+              (cond ((jcs-is-current-major-mode-p "csharp-mode")
+                     (progn
+                       (insert "/// ")
+                       ))
+                    ((jcs-is-current-major-mode-p "lua-mode")
+                     (progn
+                       (insert "-- "))))
+              (indent-for-tab-command)
+              )))
         )
     ;; else insert new line
     (progn
-      (newline-and-indent)
-      ))
-  )
+      (newline-and-indent))
+    ))
 
 
 ;;;###autoload
