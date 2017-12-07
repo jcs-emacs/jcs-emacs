@@ -222,7 +222,7 @@
 
            ("\\<\\(OPTION\\)" 1 'font-lock-option-face t)
            ("\\<\\(OR\\)" 1 'font-lock-or-face t)
-           )))
+           )'end))
       fixme-modes)
 
 ;; List of color: https://alexschroeder.ch/geocities/kensanata/colors.html

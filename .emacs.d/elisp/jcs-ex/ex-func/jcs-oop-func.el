@@ -81,7 +81,7 @@
            ;; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
            ("@[a-zA-Z0-9_].*[\]\|}].\\([a-zA-Z0-9_]*\\).[:-]" 1 'jcs-oop-value-face t)
            ("@[a-zA-Z0-9_]*.\\([a-zA-Z0-9_]*\\).*[{:-]" 1 'jcs-oop-value-face t)
-           )))
+           )'end))
       jcs-oop-highlight-modes)
 
 
@@ -764,7 +764,7 @@ the input line."
          '(("(\\([a-zA-Z_$0-9[]*.\\)*[,]" 1 'font-lock-variable-name-face t)
            (",.\\([a-zA-Z_$0-9[]*.\\)*[,]" 1 'font-lock-variable-name-face t)
            ("[(,].\\([a-zA-Z_$0-9[]*.\\)*[)]" 1 'font-lock-variable-name-face t)
-           )))
+           )'end))
       jcs-oop-font-lock-missing-strict-modes)
 
 
@@ -779,7 +779,7 @@ the input line."
          '(("(,*[a-zA-Z0-9_]*.\\([a-zA-Z_$0-9[]*.\\)[,)]" 1 'font-lock-variable-name-face t)
            (",.\\([a-zA-Z_$0-9[]*.\\)[,]" 1 'font-lock-variable-name-face t)
            ("\\([a-zA-Z_$0-9[]*.\\)[)]" 1 'font-lock-variable-name-face t)
-           )))
+           )'end))
       jcs-oop-font-lock-missing-modes)
 
 
