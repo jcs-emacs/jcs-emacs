@@ -38,10 +38,16 @@
 ;;---------------------------------------------
 ;;;###autoload
 (defun jcs-kill-whole-line ()
-  "Deletes a line, but does not put it in the kill-ring. (kinda)"
+  "Deletes a line, but does not put it in the `kill-ring'."
   (interactive)
   (move-beginning-of-line 1)
   (kill-line 1)
+  (setq kill-ring (cdr kill-ring)))
+
+(defun jcs-backward-kill-line (arg)
+  "Kill ARG lines backward, but does not put it in the `kill-ring'."
+  (interactive "p")
+  (kill-line (- 1 arg))
   (setq kill-ring (cdr kill-ring)))
 
 ;;---------------------------------------------
