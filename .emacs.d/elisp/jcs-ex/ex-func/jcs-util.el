@@ -316,7 +316,22 @@ active. false, there is no region selected and mark is not active.
 
 (defun is-inside-comment-block-p ()
   "Check if current cursor point inside the comment block."
+  (interactive)
   (nth 4 (syntax-ppss)))
+
+(defun jcs-goto-start-of-the-comment ()
+  "Go to the start of the comment."
+  (interactive)
+  (when (is-inside-comment-block-p)
+    (backward-char 1)
+    (jcs-goto-start-of-the-comment)))
+
+(defun jcs-goto-end-of-the-comment ()
+  "Go to the end of the comment."
+  (interactive)
+  (when (is-inside-comment-block-p)
+    (backward-char -1)
+    (jcs-goto-end-of-the-comment)))
 
 ;;---------------------------------------------
 ;; Face
