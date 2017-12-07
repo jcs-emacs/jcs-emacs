@@ -9,6 +9,8 @@
 
 2017-12-07
 * Makefile format work with static lib and dynamic lib. (jcs-emacs-init)
+* End with keyword with non nil keyword at third param, 
+ fix font lock not working issue. (jcs-emacs-init)
 
 2017-12-06
 * Properly name default static and dynamic lib default build name. (jcs-emacs-init)
