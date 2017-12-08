@@ -7,6 +7,9 @@
 # ========================================================================
 
 
+2017-12-08
+* Add web-mode and php-mode doc string. (jcs-emacs-init)
+
 2017-12-07
 * Makefile format work with static lib and dynamic lib. (jcs-emacs-init)
 * End with keyword with non nil keyword at third param, 
