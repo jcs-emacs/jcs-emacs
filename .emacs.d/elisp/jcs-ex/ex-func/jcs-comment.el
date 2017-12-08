@@ -79,7 +79,9 @@
                       (jcs-is-current-major-mode-p "c++-mode")
                       (jcs-is-current-major-mode-p "java-mode")
                       ;;(jcs-is-current-major-mode-p "csharp-mode")
-                      (jcs-is-current-major-mode-p "js2-mode"))
+                      (jcs-is-current-major-mode-p "js2-mode")
+                      (jcs-is-current-major-mode-p "php-mode")
+                      (jcs-is-current-major-mode-p "web-mode"))
                   (jcs-insert-comment-string))
 
               ;; goto the end of line
@@ -135,8 +137,7 @@
 
     (if (nth 4 (syntax-ppss))
         ;; record down next line is comment.
-        (setq next-line-is-commented t)
-      )
+        (setq next-line-is-commented t))
 
     (goto-char before-insert-point)
 
@@ -167,18 +168,11 @@
                       ;; line we add the end comment block.
                       (goto-char last)
                       (insert "*/")
-                      )
-                  )
-                )
-            )
-          )
-      ) ;; end (if (search-forward ...))
-    )
+                      )))))))
 
   ;; go back before searching.
   ;; because searching will mess up the cursor point.
-  (goto-char last)
-  )
+  (goto-char last))
 
 (defun jcs-insert-comment-string ()
   "Insert comment document string."
@@ -188,8 +182,7 @@
     (jcs-next-line)
 
     ;; insert comment doc comment string.
-    (jcs-insert-comment-style-by-current-line)
-    ))
+    (jcs-insert-comment-style-by-current-line)))
 
 ;;;###autoload
 (defun toggle-comment-on-line ()
@@ -226,8 +219,7 @@ comment region. Otherwise comment line."
             (comment-region (region-beginning) (region-end)))))
     (progn
       ;; else we just comment one single line.
-      (toggle-comment-on-line)))
-  )
+      (toggle-comment-on-line))))
 
 ;;;###autoload
 (defun jcs-comment-region-or-line ()
@@ -242,13 +234,9 @@ comment region. Otherwise comment line."
             (progn
               ;; do not uncomment.
               )
-          (comment-region (region-beginning) (region-end))
-          )
-        )
+          (comment-region (region-beginning) (region-end))))
     ;; else we just comment one single line.
-    (comment-region (line-beginning-position) (line-end-position))
-    )
-  )
+    (comment-region (line-beginning-position) (line-end-position))))
 
 ;;;###autoload
 (defun jcs-uncomment-region-or-line ()
@@ -263,8 +251,7 @@ comment region. Otherwise comment line."
         )
     ;; else we just comment one single line.
     (uncomment-region (line-beginning-position) (line-end-position))
-    )
-  )
+    ))
 
 
 ;;------------------------------------------------------------------------------------------------------
