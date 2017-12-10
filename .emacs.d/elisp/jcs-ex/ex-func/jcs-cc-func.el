@@ -33,6 +33,17 @@
 
 ;;; Code:
 
+;;;###autoload
+(defun jcs-toggle-cc-mode ()
+  "Toggle c/c++ mode."
+  (interactive)
+
+  (if (equal major-mode 'c-mode)
+      (progn
+        (c++-mode))
+    (progn
+      (c-mode))))
+
 (defun jcs-ask-cpp-default-header (bool)
   (interactive
    (list (y-or-n-p "Do you want to add C++ default class template? ")))
