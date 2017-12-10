@@ -255,8 +255,18 @@ own preferences."
   "Filter the *Packages* buffer by status."
   (interactive
    (list (completing-read
-          "Status: " '(" " "available" "built-in" "dependency" "incompat" "installed" "new" "obsolete"))))
-  (package-menu-filter (concat "status:" status)))
+          "Status: " '(".."
+                       "available"
+                       "built-in"
+                       "dependency"
+                       "incompat"
+                       "installed"
+                       "new"
+                       "obsolete"))))
+
+  (if (string= status "..")
+      (package-list-packages)
+    (package-menu-filter (concat "status:" status))))
 
 (define-key package-menu-mode-map "s" #'package-menu-filter-by-status)
 
