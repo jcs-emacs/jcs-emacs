@@ -9,6 +9,7 @@
 
 2017-12-10
 * Add package filter. (jcs-emacs-init)
+* Add 'all' option for package filter. (jcs-emacs-init)
 
 2017-12-08
 * Add web-mode and php-mode doc string. (jcs-emacs-init)
