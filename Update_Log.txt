@@ -7,6 +7,10 @@
 # ========================================================================
 
 
+2017-12-11
+* Refactor using 'when' instead of 'if' statement. (jcs-emacs-init)
+* Change class comment type in Python mode. (jcs-emacs-init)
+
 2017-12-10
 * Add package filter. (jcs-emacs-init)
 * Add 'all' option for package filter. (jcs-emacs-init)
