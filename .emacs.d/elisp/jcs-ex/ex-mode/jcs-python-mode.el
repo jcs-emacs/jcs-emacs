@@ -65,8 +65,8 @@
           (insert BaseFileName)
           (insert "(object):\n\n")
 
-          (insert "    \"\"\"TODO(jenchieh): Class Description here...\"\"\"")
-          (insert "\n\n")
+          (insert "    \"\"\"TODO(jenchieh): Class Description here...\n")
+          (insert "    \"\"\"\n\n")
 
           (insert "    #*********************************************#\n")
           (insert "    #*             Public Variables              *#\n")
