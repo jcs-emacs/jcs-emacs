@@ -208,79 +208,74 @@ the input line."
     (flymake-mode 0)
 
     (save-excursion
-      (if (not (current-line-empty-p))
-          (progn
-            (end-of-line)
+      (when (not (current-line-empty-p))
+        (end-of-line)
 
-            (let ((end-line-point (1- (point)))
-                  (word-index 0))
+        (let ((end-line-point (1- (point)))
+              (word-index 0))
 
-              (beginning-of-line)
+          (beginning-of-line)
 
-              (while (< (point) end-line-point)
-                (if (not (= word-index 0))
-                    (forward-word))
-                (forward-word)
-                (backward-char 1)
-                (setq word-index (1+ word-index))
+          (while (< (point) end-line-point)
+            (if (not (= word-index 0))
+                (forward-word))
+            (forward-word)
+            (backward-char 1)
+            (setq word-index (1+ word-index))
 
-                ;; Make sure only process current/one line.
-                (if (<= (point) end-line-point)
+            ;; Make sure only process current/one line.
+            (when (<= (point) end-line-point)
+              (let ((current-point-face(jcs-get-current-point-face) ))
+
+                ;; NOTE(jenchieh): If there is multiple faces at
+                ;; a point, it will return a list instead of
+                ;; string. Just get the first element which is
+                ;; usually the foreground face.
+                (if (listp current-point-face)
+                    (setq current-point-face (nth 0 current-point-face)))
+
+                ;; NOTE(jenchieh): Store all the keyword name.
+                (if (or (string= current-point-face "font-lock-keyword-face")
+                        (string= current-point-face "font-lock-preprocessor-face"))
+                    (add-to-list 'keyword-strings (thing-at-point 'word)))
+
+                ;; NOTE(jenchieh): Check if meet the function name.
+                (if (or (string= current-point-face "font-lock-function-name-face")
+                        (string= current-point-face "web-mode-function-name-face"))
                     (progn
-                      (let ((current-point-face(jcs-get-current-point-face) ))
+                      (setq function-name-string (thing-at-point 'word))
+                      (setq meet-function-name t)))
 
-                        ;; NOTE(jenchieh): If there is multiple faces at
-                        ;; a point, it will return a list instead of
-                        ;; string. Just get the first element which is
-                        ;; usually the foreground face.
-                        (if (listp current-point-face)
-                            (setq current-point-face (nth 0 current-point-face)))
+                ;; NOTE(jenchieh): Store all the type name. (include return type name)
+                (when (string= current-point-face "font-lock-type-face")
+                  ;; Just store it.
+                  (setq datatype-name (thing-at-point 'word))
 
-                        ;; NOTE(jenchieh): Store all the keyword name.
-                        (if (or (string= current-point-face "font-lock-keyword-face")
-                                (string= current-point-face "font-lock-preprocessor-face"))
-                            (add-to-list 'keyword-strings (thing-at-point 'word)))
+                  (if (not (equal meet-function-name t))
+                      (progn
+                        (setq return-type-string (thing-at-point 'word))
+                        (setq there-is-return t))
+                    (progn
+                      ;; NOTE(jenchieh): Since Lisp's default list data structure
+                      ;; dose not support duplicate item in the list. Update the
+                      ;; list by setting it to the brand new temporary list, which
+                      ;; make muliple item list doable.
+                      (let ((type-string (thing-at-point 'word))
+                            (temp-list '()))
+                        (add-to-list 'temp-list type-string)
+                        (setq param-type-strings (append param-type-strings temp-list))))
+                    ))
 
-                        ;; NOTE(jenchieh): Check if meet the function name.
-                        (if (or (string= current-point-face "font-lock-function-name-face")
-                                (string= current-point-face "web-mode-function-name-face"))
-                            (progn
-                              (setq function-name-string (thing-at-point 'word))
-                              (setq meet-function-name t)))
-
-                        ;; NOTE(jenchieh): Store all the type name. (include return type name)
-                        (if (string= current-point-face "font-lock-type-face")
-                            (progn
-                              ;; Just store it.
-                              (setq datatype-name (thing-at-point 'word))
-
-                              (if (not (equal meet-function-name t))
-                                  (progn
-                                    (setq return-type-string (thing-at-point 'word))
-                                    (setq there-is-return t))
-                                (progn
-                                  ;; NOTE(jenchieh): Since Lisp's default list data structure
-                                  ;; dose not support duplicate item in the list. Update the
-                                  ;; list by setting it to the brand new temporary list, which
-                                  ;; make muliple item list doable.
-                                  (let ((type-string (thing-at-point 'word))
-                                        (temp-list '()))
-                                    (add-to-list 'temp-list type-string)
-                                    (setq param-type-strings (append param-type-strings temp-list))))
-                                )))
-
-                        ;; NOTE(jenchieh): Store all the variables name.
-                        (if (or (string= current-point-face "font-lock-variable-name-face")
-                                (string= current-point-face 'js2-function-param)
-                                (string= current-point-face "web-mode-variable-name-face")
-                                (string= current-point-face "default"))
-                            (progn
-                              (add-to-list 'param-variable-strings (thing-at-point 'word))
-                              ))
-                        ))))
-
-
-              ))))
+                ;; NOTE(jenchieh): Store all the variables name.
+                (if (or (string= current-point-face "font-lock-variable-name-face")
+                        (string= current-point-face 'js2-function-param)
+                        (string= current-point-face "web-mode-variable-name-face")
+                        (string= current-point-face "default"))
+                    (progn
+                      (add-to-list 'param-variable-strings (thing-at-point 'word))
+                      ))
+                )))
+          )))
 
     ;; Insert document comment string.
     (jcs-insert-doc-comment-string meet-function-name
@@ -405,120 +400,116 @@ the input line."
       ;; NOTE(jenchieh): Design object comment document string.
       (progn
 
-        (if (jcs-is-current-major-mode-p "csharp-mode")
-            (progn
-              (cond ((jcs-is-in-list-string keyword-strings "class")
-                     (progn
-                       ;; STUDY(jenchieh): Don't think that C#
-                       ;; doc need one..
-                       ))
-                    ((jcs-is-in-list-string keyword-strings "struct")
-                     (progn
-                       ;; STUDY(jenchieh): Don't think that C#
-                       ;; doc need one..
-                       ))
-                    ((or (jcs-is-in-list-string keyword-strings "define")
-                         (jcs-is-in-list-string keyword-strings "#define"))
-                     (progn
-                       ;; STUDY(jenchieh): Don't think that C#
-                       ;; doc need one..
-                       )))
-              ))
+        (when (jcs-is-current-major-mode-p "csharp-mode")
+          (cond ((jcs-is-in-list-string keyword-strings "class")
+                 (progn
+                   ;; STUDY(jenchieh): Don't think that C#
+                   ;; doc need one..
+                   ))
+                ((jcs-is-in-list-string keyword-strings "struct")
+                 (progn
+                   ;; STUDY(jenchieh): Don't think that C#
+                   ;; doc need one..
+                   ))
+                ((or (jcs-is-in-list-string keyword-strings "define")
+                     (jcs-is-in-list-string keyword-strings "#define"))
+                 (progn
+                   ;; STUDY(jenchieh): Don't think that C#
+                   ;; doc need one..
+                   ))))
 
-        (if (or (jcs-is-current-major-mode-p "c++-mode")
-                (jcs-is-current-major-mode-p "c-mode"))
-            (progn
-              (cond ((jcs-is-in-list-string keyword-strings "class")
-                     (progn
-                       ;; go back to comment line.
-                       (jcs-previous-line)
-                       (jcs-previous-line)
-                       (end-of-line)
+        (when (or (jcs-is-current-major-mode-p "c++-mode")
+                  (jcs-is-current-major-mode-p "c-mode"))
+          (cond ((jcs-is-in-list-string keyword-strings "class")
+                 (progn
+                   ;; go back to comment line.
+                   (jcs-previous-line)
+                   (jcs-previous-line)
+                   (end-of-line)
 
-                       ;; Process class tag.
-                       (insert "@class ")
-                       (insert datatype-name)
-                       (indent-for-tab-command)
+                   ;; Process class tag.
+                   (insert "@class ")
+                   (insert datatype-name)
+                   (indent-for-tab-command)
 
-                       ;; Process brief tag.
-                       (insert "\n")
-                       (insert "* @brief Class description here..")
-                       (indent-for-tab-command)
-                       ))
-                    ((jcs-is-in-list-string keyword-strings "struct")
-                     (progn
-                       ;; go back to comment line.
-                       (jcs-previous-line)
-                       (jcs-previous-line)
-                       (end-of-line)
+                   ;; Process brief tag.
+                   (insert "\n")
+                   (insert "* @brief Class description here..")
+                   (indent-for-tab-command)
+                   ))
+                ((jcs-is-in-list-string keyword-strings "struct")
+                 (progn
+                   ;; go back to comment line.
+                   (jcs-previous-line)
+                   (jcs-previous-line)
+                   (end-of-line)
 
-                       ;; Process class tag.
-                       (insert "@struct ")
-                       (insert datatype-name)
-                       (indent-for-tab-command)
+                   ;; Process class tag.
+                   (insert "@struct ")
+                   (insert datatype-name)
+                   (indent-for-tab-command)
 
-                       ;; Process brief tag.
-                       (insert "\n")
-                       (insert "* @brief Struct description here..")
-                       (indent-for-tab-command)
-                       ))
-                    ((or (jcs-is-in-list-string keyword-strings "define")
-                         (jcs-is-in-list-string keyword-strings "#define"))
-                     (progn
-                       ;; go back to comment line.
-                       (jcs-previous-line)
-                       (jcs-previous-line)
-                       (end-of-line)
+                   ;; Process brief tag.
+                   (insert "\n")
+                   (insert "* @brief Struct description here..")
+                   (indent-for-tab-command)
+                   ))
+                ((or (jcs-is-in-list-string keyword-strings "define")
+                     (jcs-is-in-list-string keyword-strings "#define"))
+                 (progn
+                   ;; go back to comment line.
+                   (jcs-previous-line)
+                   (jcs-previous-line)
+                   (end-of-line)
 
-                       ;; Process class tag.
-                       (insert "@def ")
-                       (insert (nth 0 param-variable-strings))
-                       (indent-for-tab-command)
+                   ;; Process class tag.
+                   (insert "@def ")
+                   (insert (nth 0 param-variable-strings))
+                   (indent-for-tab-command)
 
-                       ;; Process brief tag.
-                       (insert "\n")
-                       (insert "* @brief Define description here..")
-                       (indent-for-tab-command)
-                       ))
-                    )
-              ))
+                   ;; Process brief tag.
+                   (insert "\n")
+                   (insert "* @brief Define description here..")
+                   (indent-for-tab-command)
+                   ))
+                ))
 
-        (if (or (jcs-is-current-major-mode-p "java-mode")
-                (jcs-is-current-major-mode-p "jdee-mode"))
-            (progn
-              (cond ((jcs-is-in-list-string keyword-strings "class")
-                     (progn
-                       ;; STUDY(jenchieh): Don't think that java
-                       ;; doc need one..
-                       ))
-                    ((jcs-is-in-list-string keyword-strings "interface")
-                     (progn
-                       ;; STUDY(jenchieh): Don't think that java
-                       ;; doc need one..
-                       )))
-              ))
+        (when (or (jcs-is-current-major-mode-p "java-mode")
+                  (jcs-is-current-major-mode-p "jdee-mode"))
+          (cond ((jcs-is-in-list-string keyword-strings "class")
+                 (progn
+                   ;; STUDY(jenchieh): Don't think that java
+                   ;; doc need one..
+                   ))
+                ((jcs-is-in-list-string keyword-strings "interface")
+                 (progn
+                   ;; STUDY(jenchieh): Don't think that java
+                   ;; doc need one..
+                   ))))
 
-        (if (or (jcs-is-current-major-mode-p "js2-mode"))
-            (progn
-              (cond ((jcs-is-in-list-string keyword-strings "class")
-                     (progn
-                       ;; STUDY(jenchieh): Don't know if javascript
-                       ;; need one..
-                       )))
-              ))
+        (when (or (jcs-is-current-major-mode-p "js2-mode"))
+          (cond ((jcs-is-in-list-string keyword-strings "class")
+                 (progn
+                   ;; STUDY(jenchieh): Don't know if javascript
+                   ;; need one..
+                   ))))
 
-        (if (or (jcs-is-current-major-mode-p "lua-mode"))
-            (progn
-              ;; NOTE(jenchieh): I don't think Lua have any keywords...
-              ))
+        (when (or (jcs-is-current-major-mode-p "lua-mode"))
+          ;; NOTE(jenchieh): I don't think Lua have any keywords...
+          )
 
-        (if (or (jcs-is-current-major-mode-p "python-mode"))
-            (progn
-              (cond ((jcs-is-in-list-string keyword-strings "class")
-                     (progn
-                       ;; TODO(jenchieh): implement into python mode.
-                       )))
-              ))
+        (when (or (jcs-is-current-major-mode-p "python-mode"))
+          (cond ((jcs-is-in-list-string keyword-strings "class")
+                 (progn
+                   ;; TODO(jenchieh): implement into python mode.
+                   ))))
+
+        (when (or (jcs-is-current-major-mode-p "php-mode")
+                  (jcs-is-current-major-mode-p "web-mode"))
+          (cond ((jcs-is-in-list-string keyword-strings "class")
+                 (progn
+                   ;; TODO(jenchieh): implement into PHP mode.
+                   ))))
         ))))
 
 
@@ -561,13 +552,11 @@ the input line."
       (setq param-index (1- param-index)))
 
     ;; Lastly, process returns tag.
-    (if (equal there-is-return t)
-        (progn
-          (if (not(string= return-type-string "void"))
-              (progn
-                (insert "\n")
-                (insert "/// <returns></returns>")
-                (indent-for-tab-command)))))))
+    (when (equal there-is-return t)
+      (when (not(string= return-type-string "void"))
+        (insert "\n")
+        (insert "/// <returns></returns>")
+        (indent-for-tab-command)))))
 
 
 (defun jcs-cc-mode-doc-string (meet-function-name
@@ -645,7 +634,6 @@ the input line."
                   (insert " "))
                 (insert "Returns description here..")
                 (indent-for-tab-command)))))))
-
 
 (defun jcs-java-mode-doc-string (meet-function-name
                                  keyword-strings
@@ -742,12 +730,10 @@ the input line."
       (insert "\n")  ;; start from newline.
       (insert "* @")
       (insert jcs-js-param-string)
-      (if (not (equal jcs-js-doc-show-typename nil))
-          (progn
-            (jcs-insert-jsdoc-type "typename"
-                                   jcs-js-open-type-char
-                                   jcs-js-close-type-char)
-            ))
+      (when (not (equal jcs-js-doc-show-typename nil))
+        (jcs-insert-jsdoc-type "typename"
+                               jcs-js-open-type-char
+                               jcs-js-close-type-char))
       (insert (nth param-index param-variable-strings))
       (insert jcs-js-doc-after-value-type-char)
       (insert "Param desc here..")
@@ -764,10 +750,10 @@ the input line."
         (insert "\n")
         (insert "* @")
         (insert jcs-js-return-string)
-        (if (not (equal jcs-js-doc-show-typename nil))
-            (jcs-insert-jsdoc-type return-type-string
-                                   jcs-js-open-type-char
-                                   jcs-js-close-type-char))
+        (when (not (equal jcs-js-doc-show-typename nil))
+          (jcs-insert-jsdoc-type return-type-string
+                                 jcs-js-open-type-char
+                                 jcs-js-close-type-char))
         (backward-delete-char 1)
         (if (not (equal jcs-js-doc-show-typename nil))
             (insert jcs-js-doc-after-value-type-char)
@@ -826,10 +812,10 @@ the input line."
         (insert "\n")
         (insert "-- @")
         (insert jcs-lua-return-string)
-        (if (not (equal jcs-lua-doc-show-typename nil))
-            (jcs-insert-jsdoc-type return-type-string
-                                   jcs-lua-open-type-char
-                                   jcs-lua-close-type-char))
+        (when (not (equal jcs-lua-doc-show-typename nil))
+          (jcs-insert-jsdoc-type return-type-string
+                                 jcs-lua-open-type-char
+                                 jcs-lua-close-type-char))
         (backward-delete-char 1)
         (if (not (equal jcs-lua-doc-show-typename nil))
             (insert jcs-lua-doc-after-value-type-char)
@@ -871,23 +857,20 @@ the input line."
         (insert "\n"))
 
     (while (>= param-index 0)
-      (if (not (string= "self" (nth param-index param-variable-strings)))
-          (progn
-            (insert "\n")  ;; start from newline.
-            (insert "@")
-            (insert jcs-py-param-string)
-            (if (not (equal jcs-py-doc-show-typename nil))
-                (progn
-                  (jcs-insert-jsdoc-type "typename"
-                                         jcs-py-open-type-char
-                                         jcs-py-close-type-char)
-                  ))
-            (insert (nth param-index param-variable-strings))
-            (insert jcs-py-doc-after-value-type-char)
-            (insert "Param desc here..")
+      (when (not (string= "self" (nth param-index param-variable-strings)))
+        (insert "\n")  ;; start from newline.
+        (insert "@")
+        (insert jcs-py-param-string)
+        (when (not (equal jcs-py-doc-show-typename nil))
+          (jcs-insert-jsdoc-type "typename"
+                                 jcs-py-open-type-char
+                                 jcs-py-close-type-char))
+        (insert (nth param-index param-variable-strings))
+        (insert jcs-py-doc-after-value-type-char)
+        (insert "Param desc here..")
 
-            ;; indent once.
-            (indent-for-tab-command)))
+        ;; indent once.
+        (indent-for-tab-command))
 
       ;; add up counter.
       (setq param-index (1- param-index)))
@@ -898,10 +881,10 @@ the input line."
         (insert "\n")
         (insert "@")
         (insert jcs-py-return-string)
-        (if (not (equal jcs-py-doc-show-typename nil))
-            (jcs-insert-jsdoc-type return-type-string
-                                   jcs-py-open-type-char
-                                   jcs-py-close-type-char))
+        (when (not (equal jcs-py-doc-show-typename nil))
+          (jcs-insert-jsdoc-type return-type-string
+                                 jcs-py-open-type-char
+                                 jcs-py-close-type-char))
         (backward-delete-char 1)
         (if (not (equal jcs-py-doc-show-typename nil))
             (insert jcs-py-doc-after-value-type-char)
