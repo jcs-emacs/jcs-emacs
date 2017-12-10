@@ -31,21 +31,6 @@
 ;; JenChieh self function defines.
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-;;---------------------------------------------
-;; Toggle between c and c++ mode.
-;;---------------------------------------------
-;;;###autoload
-(defun jcs-toggle-cc-mode ()
-  "Toggle c/c++ mode."
-  (interactive)
-
-  (if (equal major-mode 'c-mode)
-      (progn
-        (c++-mode))
-    (progn
-      (c-mode)))
-  )
-
 ;;;###autoload
 (defun jcs-is-buffer-open-in-two-or-more-window ()
   "Check if one buffer/file open in two window at a time."
@@ -53,58 +38,48 @@
 
   (ignore-errors
     (setq BaseFileNameWithExtension (file-name-nondirectory buffer-file-name))
-    (setq current-file-buffer (get-buffer BaseFileNameWithExtension))
-    )
+    (setq current-file-buffer (get-buffer BaseFileNameWithExtension)))
 
-
-  (let (
-        (displayed-frame-count 0)
-        )
+  (let ((displayed-frame-count 0))
     (dolist (buf  (buffer-in-window-list))
       (ignore-errors
         (if (eq buf current-file-buffer)
             ;; increment plus 1
             (setq displayed-frame-count (+ displayed-frame-count 1))
-          )
-        )
-      )
+          )))
 
     ;; return this statement.
     (>= displayed-frame-count 2)
-    )
-  )
+    ))
 
 ;;;###autoload
 (defun jcs-reload-emacs-once ()
   "Reload emacs file one turn."
   (interactive)
 
-  (setq frame-displayed-in-two-window 0)
+  (let ((frame-displayed-in-two-window 0))
+    (when (jcs-is-buffer-open-in-two-or-more-window)
+      (setq frame-displayed-in-two-window 1))
 
-  (if (jcs-is-buffer-open-in-two-or-more-window)
-      (setq frame-displayed-in-two-window 1)
-    )
+    (ignore-errors (delete-window))
+    (ignore-errors (delete-window))
+    (ignore-errors (delete-window))
+    (ignore-errors (delete-window))
+    (ignore-errors (delete-window))
+    (ignore-errors (delete-window))
+    (ignore-errors (delete-window))
+    (ignore-errors (delete-window))
+    (ignore-errors (delete-window))
+    (ignore-errors (delete-window))
+    (ignore-errors (delete-window))
+    (ignore-errors (delete-window))
 
-  (ignore-errors (delete-window))
-  (ignore-errors (delete-window))
-  (ignore-errors (delete-window))
-  (ignore-errors (delete-window))
-  (ignore-errors (delete-window))
-  (ignore-errors (delete-window))
-  (ignore-errors (delete-window))
-  (ignore-errors (delete-window))
-  (ignore-errors (delete-window))
-  (ignore-errors (delete-window))
-  (ignore-errors (delete-window))
-  (ignore-errors (delete-window))
+    (load-file "~/.emacs")
 
-  (load-file "~/.emacs")
-
-  ;; TODO(jayces): Bug if multiple window displayed.
-  (if (= frame-displayed-in-two-window 0)
-      (switch-to-previous-buffer)
-    )
-  )
+    ;; TODO(jayces): Bug if multiple window displayed.
+    (when (= frame-displayed-in-two-window 0)
+      (switch-to-previous-buffer))
+    ))
 
 ;;;###autoload
 (defun jcs-reload-emacs ()
@@ -273,9 +248,17 @@ own preferences."
         )
     ;; NOTE(jenchieh): no longer needed.
     ;;(helm-execute-persistent-action)
-    )
-  )
+    ))
 
+;; NOTE(jenchieh): Only in Emacs 25.1+
+(defun package-menu-filter-by-status (status)
+  "Filter the *Packages* buffer by status."
+  (interactive
+   (list (completing-read
+          "Status: " '(" " "available" "built-in" "dependency" "incompat" "installed" "new" "obsolete"))))
+  (package-menu-filter (concat "status:" status)))
+
+(define-key package-menu-mode-map "s" #'package-menu-filter-by-status)
 
 
 ;;; Utilities
