@@ -10,6 +10,8 @@
 2017-12-11
 * Refactor using 'when' instead of 'if' statement. (jcs-emacs-init)
 * Change class comment type in Python mode. (jcs-emacs-init)
+* Add clean a lib and so lib command to 'realclean' command. (jcs-emacs-init)
+* Place casey's global key bindings to jcs global key binding file. (jcs-emacs-init)
 
 2017-12-10
 * Add package filter. (jcs-emacs-init)
