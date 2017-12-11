@@ -368,7 +368,7 @@ script, etc."
   (insert "    rm -f $(MAINOBJ) $(OBJS) $(LOBJS)\n\n")
 
   (insert "realclean :\n")
-  (insert "    rm -f $(MAINOBJ) $(OBJS) $(LOBJS) $(KASMOBJS) $(LASMOBJS) $(ALIB) $(SOLIB)\n")
+  (insert "    rm -f $(MAINOBJ) $(OBJS) $(LOBJS) $(KASMOBJS) $(LASMOBJS) $(ALIB_DIR)/$(ALIB) $(SOLIB_DIR)/$(SOLIB)\n")
 
   (insert "\n# include dependencies.\n")
   (insert "-include $(GDEP)\n")
@@ -529,7 +529,7 @@ script, etc."
   (insert "    rm -f $(MAINOBJ) $(OBJS) $(LOBJS)\n\n")
 
   (insert "realclean :\n")
-  (insert "    rm -f $(MAINOBJ) $(OBJS) $(LOBJS) $(KASMOBJS) $(LASMOBJS) $(ALIB) $(SOLIB)\n")
+  (insert "    rm -f $(MAINOBJ) $(OBJS) $(LOBJS) $(KASMOBJS) $(LASMOBJS) $(ALIB_DIR)/$(ALIB) $(SOLIB_DIR)/$(SOLIB)\n")
 
   (insert "\n# include dependencies.\n")
   (insert "-include $(GDEP)\n")
