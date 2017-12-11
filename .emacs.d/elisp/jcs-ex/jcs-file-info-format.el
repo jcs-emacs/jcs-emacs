@@ -354,6 +354,7 @@ script, etc."
 
   (insert "build : \n")
   (insert "    $(CC) $(GSRC) $(MAINSRC) \\\n")
+  (insert "    $(C_FLAGS) \\\n")
   (insert "    $(INCLUDE_FLAGS) $(INCLUDE_PATH) \\\n")
   (insert "    $(A_LIBS) \\\n")
   (insert "    $(SO_LIBS) \\\n")
@@ -385,7 +386,7 @@ script, etc."
   (insert "\n# generate shared link library.\n")
   (insert "$(SOLIB) : $(SOOBJS)\n")
   (insert "    $(CC) $(SOR_FLAGS) \\\n")
-  (insert "    $(OUTPUT_FLAGS) $(SOLIB_DIR)/$@ $^\n")
+  (insert "    $(OUTPUT_FLAGS) $(SOLIB_DIR)/$@ $^ $(C_FLAGS)\n")
   )
 
 (defun jcs-makefile-lib-template ()
@@ -515,9 +516,10 @@ script, etc."
 
   (insert "build : \n")
   (insert "    $(CC) $(GSRC) $(MAINSRC) \\\n")
+  (insert "    $(C_FLAGS) \\\n")
+  (insert "    $(INCLUDE_FLAGS) $(INCLUDE_PATH) \\\n")
   (insert "    $(A_LIBS) \\\n")
   (insert "    $(SO_LIBS) \\\n")
-  (insert "    $(INCLUDE_FLAGS) $(INCLUDE_PATH) \\\n")
   (insert "    $(LD_FLAGS) $(A_LIB_PATH) \\\n")
   (insert "    $(OUTPUT_FLAGS) $(BIN_DIR)/$(BIN_NAME)\n\n")
 
@@ -546,7 +548,7 @@ script, etc."
   (insert "\n# generate shared link library.\n")
   (insert "$(SOLIB) : $(SOOBJS)\n")
   (insert "    $(CC) $(SOR_FLAGS) \\\n")
-  (insert "    $(OUTPUT_FLAGS) $(SOLIB_DIR)/$@ $^\n")
+  (insert "    $(OUTPUT_FLAGS) $(SOLIB_DIR)/$@ $^ $(C_FLAGS)\n")
   )
 
 ;;---------------------------------------------
