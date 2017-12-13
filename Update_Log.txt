@@ -7,6 +7,11 @@
 # ========================================================================
 
 
+2017-12-13
+* Add oop init set face function. (jcs-emacs-init)
+* Add local face modefication like visual studio type style. (jcs-emacs-init)
+* Customize cmake division comment. (jcs-emacs-init)
+
 2017-12-11
 * Refactor using 'when' instead of 'if' statement. (jcs-emacs-init)
 * Change class comment type in Python mode. (jcs-emacs-init)
