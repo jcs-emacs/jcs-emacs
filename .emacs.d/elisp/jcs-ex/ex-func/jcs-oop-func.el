@@ -60,7 +60,7 @@
 (defvar jcs-oop-type-face 'jcs-oop-type-face)
 
 (defface jcs-oop-value-face
-  '((t (:foreground "PeachPuff3")))
+  '((t (:foreground "LightCoral")))
   "Highlight OOP value.")
 (defvar jcs-oop-value-face 'jcs-oop-value-face)
 
