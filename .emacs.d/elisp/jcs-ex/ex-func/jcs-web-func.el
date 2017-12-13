@@ -322,6 +322,18 @@ line instead of indent the whole file at once."
   (setq-local font-lock-function-name-face '(:foreground "#17A0FB"))
   (setq-local font-lock-variable-name-face '(:foreground "#38EFCA")))
 
+(defun jcs-init-web-faces ()
+  "Web mode Faces Highlihgting."
+
+  (defface jcs-web-mode-html-attr-value-face
+    '((t (:foreground "olive drab")))
+    "Highlight HTML value.")
+  (defvar jcs-web-mode-html-attr-value-face 'jcs-web-mode-html-attr-value-face)
+
+  (face-remap-add-relative 'web-mode-block-string-face '(jcs-font-lock-string-face))
+  (face-remap-add-relative 'web-mode-html-attr-value-face '(jcs-web-mode-html-attr-value-face))
+  )
+
 
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-web-func.el file
