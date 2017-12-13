@@ -50,7 +50,7 @@
   ;; TOPIC(jenchieh): Treat underscore as word.
   ;; URL(jenchieh): https://emacs.stackexchange.com/questions/9583/how-to-treat-underscore-as-part-of-the-word
   (modify-syntax-entry ?_ "w")
-  
+
 
   (defun jcs-emacs-lisp-format ()
     "Format the given file as a Emacs Lisp file. - JenChieh emacs lisp file."
@@ -69,6 +69,10 @@
           ((string-match "[.]el" buffer-file-name) (jcs-emacs-lisp-format))
           )
     )
+
+  ;; Set Faces.
+  (face-remap-add-relative 'font-lock-comment-face '(jcs-font-lock-comment-face))
+  (face-remap-add-relative 'font-lock-string-face '(jcs-font-lock-string-face))
   )
 (add-hook 'emacs-lisp-mode-hook 'jcs-emacs-lisp-mode-hook)
 

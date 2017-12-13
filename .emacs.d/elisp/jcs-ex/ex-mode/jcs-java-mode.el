@@ -88,8 +88,9 @@
         )
 
   ;; Set Faces.
-  ;; URL(jenchieh): http://ergoemacs.org/emacs/elisp_define_face.html
-  (setq-local font-lock-comment-face '(jdee-font-lock-javadoc-face))
+  (face-remap-add-relative 'font-lock-comment-face '(jcs-font-lock-comment-face))
+  (face-remap-add-relative 'font-lock-doc-face '(jcs-font-lock-comment-face))
+  (face-remap-add-relative 'font-lock-string-face '(jcs-font-lock-string-face))
 
   ;; jcs java key binding
   (define-key java-mode-map (kbd "C-d") 'jcs-kill-whole-line)

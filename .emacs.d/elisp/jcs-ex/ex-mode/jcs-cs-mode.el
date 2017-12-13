@@ -51,7 +51,7 @@
   ;; TOPIC(jenchieh): Treat underscore as word.
   ;; URL(jenchieh): https://emacs.stackexchange.com/questions/9583/how-to-treat-underscore-as-part-of-the-word
   (modify-syntax-entry ?_ "w")
-  
+
 
   (defun jcs-csharp-class-format ()
     "Format the given file as a class. - JenChieh C# class"
@@ -76,8 +76,8 @@
         )
 
   ;; Set Faces.
-  ;; URL(jenchieh): http://ergoemacs.org/emacs/elisp_define_face.html
-  (setq-local font-lock-comment-face '(jdee-font-lock-javadoc-face))
+  (face-remap-add-relative 'font-lock-comment-face '(jcs-font-lock-comment-face))
+  (face-remap-add-relative 'font-lock-string-face '(jcs-font-lock-string-face))
 
   ;; jcs C# key binding
   (define-key csharp-mode-map (kbd "C-d") 'jcs-kill-whole-line)

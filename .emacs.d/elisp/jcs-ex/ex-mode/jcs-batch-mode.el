@@ -31,7 +31,7 @@
 ;; JenChieh Batch mode.
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-(require 'batch-mode)
+(require 'bat-mode)
 (defun jcs-batch-mode-hook ()
   ;;
   (electric-pair-mode nil)
@@ -56,21 +56,25 @@
     (if (is-current-file-empty-p)
         (progn
           (jcs-batch-file-format-info)
-          ))
-    )
-
+          )))
 
   (cond ((file-exists-p buffer-file-name) t)
         ((string-match "[.]bat" buffer-file-name) (jcs-batch-script-format))
         )
 
-  ;; jcs key binding
-  (define-key batch-mode-map (kbd "C-d") 'jcs-kill-whole-line)
-  (define-key batch-mode-map "\C-c\C-c" 'kill-ring-save)
-  )
-(add-hook 'batch-mode-hook 'jcs-batch-mode-hook)
+  ;; Set Faces.
+  (face-remap-add-relative 'font-lock-comment-face '(jcs-font-lock-comment-face))
 
-(add-to-list 'auto-mode-alist '("\\.bat?\\'" . batch-mode))
+  ;; jcs key binding
+  (define-key bat-mode-map (kbd "C-d") 'jcs-kill-whole-line)
+  (define-key bat-mode-map "\C-c\C-c" 'kill-ring-save)
+
+  (define-key bat-mode-map (kbd "<up>") 'jcs-previous-line)
+  (define-key bat-mode-map (kbd "<down>") 'jcs-next-line)
+  )
+(add-hook 'bat-mode-hook 'jcs-batch-mode-hook)
+
+(add-to-list 'auto-mode-alist '("\\.bat?\\'" . bat-mode))
 
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-batch-mode.el file

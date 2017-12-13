@@ -64,6 +64,10 @@
         ((string-match "[.]luac" buffer-file-name) (jcs-lua-script-format))
         )
 
+  ;; Set Faces.
+  (face-remap-add-relative 'font-lock-comment-face '(jcs-font-lock-comment-face))
+  (face-remap-add-relative 'font-lock-string-face '(jcs-font-lock-string-face))
+
   ;; jcs Lua key binding
   (define-key lua-mode-map (kbd "C-d") 'jcs-kill-whole-line)
   (define-key lua-mode-map "\C-c\C-c" 'kill-ring-save)

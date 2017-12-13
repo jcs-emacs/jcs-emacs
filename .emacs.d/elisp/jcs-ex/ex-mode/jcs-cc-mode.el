@@ -136,6 +136,13 @@
   ;; TOPIC(jenchieh): Treat underscore as word.
   ;; URL(jenchieh): https://emacs.stackexchange.com/questions/9583/how-to-treat-underscore-as-part-of-the-word
   (modify-syntax-entry ?_ "w")
+
+
+  ;; Set Faces.
+  ;; URL(jenchieh): http://ergoemacs.org/emacs/elisp_define_face.html
+  (face-remap-add-relative 'font-lock-comment-face '(jcs-font-lock-comment-face))
+  (face-remap-add-relative 'font-lock-string-face '(jcs-font-lock-string-face))
+  (face-remap-add-relative 'font-lock-preprocessor-face '(jcs-font-lock-preprocessor-face))
   )
 (add-hook 'c-mode-common-hook 'jcs-cc-mode-hook)
 

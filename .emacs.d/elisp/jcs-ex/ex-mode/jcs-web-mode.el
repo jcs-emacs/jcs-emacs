@@ -147,6 +147,10 @@
         ((string-match "[.]php" buffer-file-name) (jcs-php-format))
         )
 
+  ;; Set Faces.
+  (face-remap-add-relative 'font-lock-comment-face '(jcs-font-lock-comment-face))
+  (jcs-init-web-faces)
+
   ;; jcs web key binding
   (define-key web-mode-map (kbd "C-d") 'jcs-web-kill-whole-line)
   (define-key web-mode-map "\C-c\C-c" 'jcs-web-kill-ring-save)

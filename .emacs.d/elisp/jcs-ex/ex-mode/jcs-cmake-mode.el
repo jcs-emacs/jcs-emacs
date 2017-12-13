@@ -76,6 +76,9 @@
         ((string-match "CMakeLists.txt" buffer-file-name) (jcs-cmake-format))
         )
 
+  ;; Set Faces.
+  (face-remap-add-relative 'font-lock-comment-face '(jcs-font-lock-comment-face))
+  (face-remap-add-relative 'font-lock-string-face '(jcs-font-lock-string-face))
 
   ;; jcs makefile key binding
   (define-key cmake-mode-map (kbd "<up>") 'previous-line)

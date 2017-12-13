@@ -46,7 +46,7 @@
 
 (require 'js2-mode)
 ;; self define javascript mode here!
-(defun jcs-javascript-mode-hook ()
+(defun jcs-js-mode-hook ()
 
   ;; enable impatient mode for real time editing.
   (impatient-mode t)
@@ -69,7 +69,7 @@
   ;; TOPIC(jenchieh): Treat underscore as word.
   ;; URL(jenchieh): https://emacs.stackexchange.com/questions/9583/how-to-treat-underscore-as-part-of-the-word
   (modify-syntax-entry ?_ "w")
-  
+
 
   (defun jcs-javascript-format()
     (interactive)
@@ -94,6 +94,11 @@
         ((string-match "[.]js" buffer-file-name) (jcs-javascript-format))
         )
 
+  ;; Set Faces.
+  (face-remap-add-relative 'font-lock-comment-face '(jcs-font-lock-comment-face))
+  (face-remap-add-relative 'font-lock-doc-face '(jcs-font-lock-comment-face))
+  (face-remap-add-relative 'font-lock-string-face '(jcs-font-lock-string-face))
+
   ;; jcs javascript key binding
   (define-key js2-mode-map (kbd "C-d") 'jcs-kill-whole-line)
   (define-key js2-mode-map "\C-c\C-c" 'kill-ring-save)
@@ -103,9 +108,10 @@
   (define-key js2-mode-map (kbd "RET") 'jcs-smart-context-line-break)
   (define-key js2-mode-map (kbd "*") 'jcs-c-comment-pair)
   )
-(add-hook 'js2-mode-hook 'jcs-javascript-mode-hook)
+(add-hook 'js2-mode-hook 'jcs-js-mode-hook)
 
 (add-to-list 'auto-mode-alist '("\\.js?\\'" . js2-mode))
+
 
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-js-mode.el file

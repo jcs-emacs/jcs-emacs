@@ -96,7 +96,11 @@
         ((string-match "[.]cbl" buffer-file-name) (jcs-cobol-format))
         )
 
-  ;; jcs Lua key binding
+  ;; Set Faces.
+  (face-remap-add-relative 'font-lock-comment-face '(jcs-font-lock-comment-face))
+  (face-remap-add-relative 'font-lock-string-face '(jcs-font-lock-string-face))
+
+  ;; jcs COBOL key binding
   (define-key cobol-mode-map (kbd "C-d") 'jcs-kill-whole-line)
   (define-key cobol-mode-map "\C-c\C-c" 'kill-ring-save)
 

@@ -62,6 +62,9 @@
         ((string-match "[.]sh" buffer-file-name) (jcs-sh-script-format))
         )
 
+  ;; Set Faces.
+  (face-remap-add-relative 'font-lock-comment-face '(jcs-font-lock-comment-face))
+
   ;; jcs key binding
   (define-key sh-mode-map (kbd "C-d") 'jcs-kill-whole-line)
   (define-key sh-mode-map "\C-c\C-c" 'kill-ring-save)
