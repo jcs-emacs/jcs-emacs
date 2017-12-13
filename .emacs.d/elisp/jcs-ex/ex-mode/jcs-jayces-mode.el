@@ -49,7 +49,7 @@
   ;; TOPIC(jenchieh): Treat underscore as word.
   ;; URL(jenchieh): https://emacs.stackexchange.com/questions/9583/how-to-treat-underscore-as-part-of-the-word
   (modify-syntax-entry ?_ "w")
-  
+
 
   (defun jcs-jayces-class-format ()
     "Format the given file. - JenChieh JayCeS files"
@@ -65,6 +65,8 @@
         ((string-match "[.]jayces" buffer-file-name) (jcs-jayces-class-format))
         )
 
+  ;; Set Faces.
+  (jcs-oop-init-set-face)
   )
 (add-hook 'jayces-mode-hook 'jcs-jayces-mode-hook)
 

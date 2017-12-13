@@ -148,7 +148,7 @@
         )
 
   ;; Set Faces.
-  (face-remap-add-relative 'font-lock-comment-face '(jcs-font-lock-comment-face))
+  (jcs-oop-init-set-face)
   (jcs-init-web-faces)
 
   ;; jcs web key binding
@@ -363,7 +363,7 @@
         )
 
   ;; Set Faces.
-  (setq-local font-lock-comment-face '(jdee-font-lock-javadoc-face))
+  (jcs-oop-init-set-face)
   (jcs-init-css-faces)
 
   ;; jcs web key binding

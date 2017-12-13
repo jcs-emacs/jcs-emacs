@@ -63,7 +63,7 @@
         )
 
   ;; Set Faces.
-  (face-remap-add-relative 'font-lock-comment-face '(jcs-font-lock-comment-face))
+  (jcs-oop-init-set-face)
 
   ;; jcs key binding
   (define-key sh-mode-map (kbd "C-d") 'jcs-kill-whole-line)

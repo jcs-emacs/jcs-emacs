@@ -65,6 +65,9 @@
         ((string-match "[.]as" buffer-file-name) (jcs-actionsript-class-format))
         )
 
+  ;; Set Faces.
+  (jcs-oop-init-set-face)
+
   ;; jcs java key binding
   (define-key actionscript-mode-map (kbd "C-d") 'jcs-kill-whole-line)
   (define-key actionscript-mode-map "\C-c\C-c" 'kill-ring-save)

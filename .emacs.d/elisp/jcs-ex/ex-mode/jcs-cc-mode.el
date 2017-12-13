@@ -139,10 +139,7 @@
 
 
   ;; Set Faces.
-  ;; URL(jenchieh): http://ergoemacs.org/emacs/elisp_define_face.html
-  (face-remap-add-relative 'font-lock-comment-face '(jcs-font-lock-comment-face))
-  (face-remap-add-relative 'font-lock-string-face '(jcs-font-lock-string-face))
-  (face-remap-add-relative 'font-lock-preprocessor-face '(jcs-font-lock-preprocessor-face))
+  (jcs-oop-init-set-face)
   )
 (add-hook 'c-mode-common-hook 'jcs-cc-mode-hook)
 
