@@ -123,31 +123,22 @@ remember Emacs Lisp function."
   (interactive)
   (if (and (not mark-active)
            (buffer-file-name)
-           ;;(nth 4 (syntax-ppss))    ;; check if whole line in comment
            )
       (progn
         (previous-line 1)
-        (indent-for-tab-command)
-        )
-    ;; else
-    (previous-line 1))
-  )
+        (indent-for-tab-command))
+    (previous-line 1)))
 
 ;;;###autoload
 (defun jcs-smart-indent-up-by-mode ()
   ""
   (interactive)
   (if (and (not mark-active)
-           (buffer-file-name)
-           ;;(nth 4 (syntax-ppss))    ;; check if whole line in comment
-           )
+           (buffer-file-name))
       (progn
         (previous-line 1)
-        (indent-according-to-mode)
-        )
-    ;; else
-    (previous-line 1))
-  )
+        (indent-according-to-mode))
+    (previous-line 1)))
 
 
 ;;---------------------------------------------
@@ -158,56 +149,38 @@ remember Emacs Lisp function."
   ""
   (interactive)
   (if (and (not mark-active)
-           (buffer-file-name)
-           ;;(nth 4 (syntax-ppss))    ;; check if whole line in comment
-           )
+           (buffer-file-name))
       (progn
         (next-line 1)
-        (indent-for-tab-command)
-        )
-    ;; else
-    (next-line 1))
-  )
+        (indent-for-tab-command))
+    (next-line 1)))
 
 ;;;###autoload
 (defun jcs-smart-indent-down-by-mode ()
   ""
   (interactive)
   (if (and (not mark-active)
-           (buffer-file-name)
-           ;;(nth 4 (syntax-ppss))    ;; check if whole line in comment
-           )
+           (buffer-file-name))
       (progn
         (next-line 1)
-        (indent-according-to-mode)
-        )
-    ;; else
-    (next-line 1))
-  )
+        (indent-according-to-mode))
+    (next-line 1)))
 
-;;---------------------------------------------
-;; Set it goto the beginning of the buffer from
-;; the current frame, so it do not goto the
-;; beginning of the line.
-;;---------------------------------------------
 ;;;###autoload
 (defun jcs-smart-select-home ()
+  "Set it goto the beginning of the buffer from the current frame,
+so it do not goto the beginning of the line."
   (interactive)
   (if (not mark-active)
       (push-mark nil nil 1))
-  (back-to-indentation-or-beginning)
-  )
+  (back-to-indentation-or-beginning))
 
-;;---------------------------------------------
-;;
-;;---------------------------------------------
 ;;;###autoload
 (defun jcs-smart-select-end ()
   (interactive)
   (if (not mark-active)
       (push-mark nil nil 1))
-  (end-of-line)
-  )
+  (end-of-line))
 
 
 ;;========================================
@@ -218,10 +191,8 @@ remember Emacs Lisp function."
 (defun jcs-format-document ()
   "Format current document."
   (interactive)
-
   ;; indent the whole doc.
-  (indent-region (point-min) (point-max))
-  )
+  (indent-region (point-min) (point-max)))
 
 ;;;###autoload
 (defun jcs-format-region-or-document ()
@@ -232,9 +203,7 @@ remember Emacs Lisp function."
       (progn
         (call-interactively 'indent-region))
     (progn
-      (call-interactively 'jcs-format-document))
-    )
-  )
+      (call-interactively 'jcs-format-document))))
 
 ;; NOTE(jenchieh): regexp to align with. [Default: = ]
 (setq jcs-align-regexp-string "\\(\\s-*\\) = ")
@@ -245,8 +214,7 @@ remember Emacs Lisp function."
   (interactive)
 
   (align (region-beginning) (region-end))
-  (align-regexp (region-beginning) (region-end) jcs-align-regexp-string 1 1)
-  )
+  (align-regexp (region-beginning) (region-end) jcs-align-regexp-string 1 1))
 
 ;;;###autoload
 (defun jcs-align-document ()
@@ -255,19 +223,16 @@ remember Emacs Lisp function."
 
   ;; align the whole doc.
   (align (point-min) (point-max))
-  (align-regexp (point-min) (point-max) jcs-align-regexp-string 1 1)
-  )
+  (align-regexp (point-min) (point-max) jcs-align-regexp-string 1 1))
 
 ;;;###autoload
 (defun jcs-align-region-or-document ()
   "Either align the region or document depend on if there is
 region selected?"
   (interactive)
-
   (if (is-region-selected-p)
       (jcs-align-region)
-    (jcs-align-document))
-  )
+    (jcs-align-document)))
 
 ;;;###autoload
 (defun revert-buffer-no-confirm ()
@@ -298,8 +263,7 @@ SOURCE: http://emacs.stackexchange.com/questions/628/cycle-between-windows-in-al
 
   ;; find previous window and jump to that window.
   (other-window -1 t)
-  (select-frame-set-input-focus (selected-frame))
-  )
+  (select-frame-set-input-focus (selected-frame)))
 
 ;;;###autoload
 (defun scroll-up-one-line()
