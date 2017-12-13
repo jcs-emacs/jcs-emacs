@@ -79,7 +79,7 @@
            ;; OPTION(jenchieh): Don't highlight curly bracket.
            ;;("@[a-zA-Z0-9_].*\\(?:^\\|\\s-\\)[\\[{]\\(.*.\\)[]}]" 1 'jcs-oop-type-face t)
            ;; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-           ("@[a-zA-Z0-9_].*[\]\|}].\\([a-zA-Z0-9_]*\\).[:-]" 1 'jcs-oop-value-face t)
+           ("@[a-zA-Z0-9_].*[\]\|}].\\([a-zA-Z0-9_$]*\\).[:-]" 1 'jcs-oop-value-face t)
            ("@[a-zA-Z0-9_]*.\\([a-zA-Z0-9_]*\\).*[{:-]" 1 'jcs-oop-value-face t)
            )'end))
       jcs-oop-highlight-modes)
@@ -997,6 +997,14 @@ the input line."
            ("\\([a-zA-Z_$0-9[]*.\\)[)]" 1 'font-lock-variable-name-face t)
            )'end))
       jcs-oop-font-lock-missing-modes)
+
+
+(defun jcs-oop-init-set-face ()
+  "Set OOP hightlight faces."
+  (face-remap-add-relative 'font-lock-comment-face '(jcs-font-lock-comment-face))
+  (face-remap-add-relative 'font-lock-doc-face '(jcs-font-lock-comment-face))
+  (face-remap-add-relative 'font-lock-string-face '(jcs-font-lock-string-face))
+  (face-remap-add-relative 'font-lock-preprocessor-face '(jcs-font-lock-preprocessor-face)))
 
 
 ;;------------------------------------------------------------------------------------------------------
