@@ -45,54 +45,46 @@ URL(jenchieh): http://lua-users.org/wiki/LuaStyleGuide"
         (next-line-not-empty nil))
     (save-excursion
       (backward-char 1)
-      (if (current-char-equal-p "-")
-          (progn
-            (backward-char 1)
-            (if (current-char-equal-p "-")
-                (progn
-                  (backward-char 1)
-                  (if (not (current-char-equal-p "-"))
-                      (setq active-comment t)
-                      ))
-              )))
+      (when (current-char-equal-p "-")
+        (backward-char 1)
+        (when (current-char-equal-p "-")
+          (backward-char 1)
+          (when (not (current-char-equal-p "-"))
+            (setq active-comment t))))
 
       ;; check if next line empty.
       (jcs-next-line)
-      (if (not (current-line-empty-p))
-          (setq next-line-not-empty t))
-      )
+      (when (not (current-line-empty-p))
+        (setq next-line-not-empty t)))
 
 
-    (if (and (equal active-comment t)
-             (equal next-line-not-empty t))
-        (progn
-          (insert "-------------------------------------------------------------\n")
-          (insert "-- \n")
-          (insert "----------------------------------------------------------------\n")
-          (insert "----------------------------------------------------------------")
+    (when (and (equal active-comment t)
+               (equal next-line-not-empty t))
+      (insert "-------------------------------------------------------------\n")
+      (insert "-- \n")
+      (insert "----------------------------------------------------------------\n")
+      (insert "----------------------------------------------------------------")
 
-          (jcs-smart-indent-up)
-          (jcs-smart-indent-down)
-          (jcs-smart-indent-down)
-          (jcs-smart-indent-up)
-          (jcs-smart-indent-up)
-          (jcs-smart-indent-up)
-          (end-of-line)
+      (jcs-smart-indent-up)
+      (jcs-smart-indent-down)
+      (jcs-smart-indent-down)
+      (jcs-smart-indent-up)
+      (jcs-smart-indent-up)
+      (jcs-smart-indent-up)
+      (end-of-line)
 
-          ;; Check other comment type.
-          ;; ex: param, returns, etc.
-          (save-excursion
-            ;; Goto the function line before insert doc string.
-            (jcs-next-line)
-            (jcs-next-line)
-            (jcs-next-line)
+      ;; Check other comment type.
+      ;; ex: param, returns, etc.
+      (save-excursion
+        ;; Goto the function line before insert doc string.
+        (jcs-next-line)
+        (jcs-next-line)
+        (jcs-next-line)
 
-            ;; insert comment doc comment string.
-            (jcs-insert-comment-style-by-current-line)
-            )
-          ))
-
-    ))
+        ;; insert comment doc comment string.
+        (jcs-insert-comment-style-by-current-line)
+        ))
+q    ))
 
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-lua-func.el file
