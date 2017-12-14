@@ -270,7 +270,7 @@ the input line."
                 (if (or (string= current-point-face "font-lock-variable-name-face")
                         (string= current-point-face 'js2-function-param)
                         (string= current-point-face "web-mode-variable-name-face")
-                        (string= current-point-face "default"))
+                        (string= current-point-face "jcs-preproc-variable-name-face"))
                     (progn
                       (add-to-list 'param-variable-strings (thing-at-point 'word))
                       ))
