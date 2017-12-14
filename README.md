@@ -16,6 +16,7 @@ config files improve and extended support for the following:
 * C++
 * C#
 * COBOL
+* Elisp
 * Java
 * JavaScript
 * Lua
