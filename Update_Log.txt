@@ -10,6 +10,7 @@
 2017-12-14
 * Add 'jcs-preproc-fun.el' file. (jcs-emacs-init)
 * Make compatible define docstring with preproc face type. (jcs-emacs-init)
+* Refactor using when instead of if statement. (jcs-emacs-init)
 
 2017-12-13
 * Add oop init set face function. (jcs-emacs-init)
