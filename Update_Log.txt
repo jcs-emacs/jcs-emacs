@@ -7,6 +7,11 @@
 # ========================================================================
 
 
+2017-12-16
+* Add emacs keybindings note with open update log and todo list. (jcs-emacs-init)
+* Move move empty line up and down to nav file. (jcs-emacs-init)
+* Add open update log and open todo list functionalities. (jcs-emacs-inti))
+
 2017-12-14
 * Add 'jcs-preproc-fun.el' file. (jcs-emacs-init)
 * Make compatible define docstring with preproc face type. (jcs-emacs-init)
