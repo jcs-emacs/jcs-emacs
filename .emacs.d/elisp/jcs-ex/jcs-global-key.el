@@ -132,14 +132,11 @@
 
 (define-key global-map "\C-p" 'package-list-packages)
 
-(define-key global-map "\C-t" 'transient-mark-mode)
 (define-key global-map [home] 'back-to-indentation-or-beginning)
 (define-key global-map (kbd "C-<backspace>") 'jcs-backward-delete-word)
 (define-key global-map (kbd "C-M-<backspace>") 'jcs-backward-kill-word-capital)
 (define-key global-map (kbd "C-M-<left>") 'jcs-backward-capital-char)
 (define-key global-map (kbd "C-M-<right>") 'jcs-forward-capital-char)
-
-;;(define-key global-map "\em" 'describe-mode)
 
 (define-key global-map (kbd "C-<return>") 'goto-address-at-point)
 
@@ -219,6 +216,12 @@
 
 ;;; Build
 (define-key global-map (kbd "C-B") 'make-without-asking)
+
+;;; Open TODO file.
+(define-key global-map "\C-t" 'open-todo-without-asking)
+
+;;; Open Log file.
+(define-key global-map "\C-u" 'open-update-log-without-asking)
 
 ;;; switch line-ending key
 (define-key global-map "\C-x\C-e" 'set-buffer-file-coding-system)
