@@ -253,8 +253,7 @@ SOURCE: http://emacs.stackexchange.com/questions/628/cycle-between-windows-in-al
 
   ;; find nexr window and jump to that window.
   (other-window 1 t)
-  (select-frame-set-input-focus (selected-frame))
-  )
+  (select-frame-set-input-focus (selected-frame)))
 
 ;;;###autoload
 (defun jcs-other-window-prev()
@@ -301,7 +300,7 @@ SOURCE: http://emacs.stackexchange.com/questions/628/cycle-between-windows-in-al
 ;; JenChieh Save Buffer
 ;;-------------------------
 
-;; autoload
+;;;###autoload
 (defun jcs-save-buffer ()
   "Save buffer / Utabify the document / Delete all trailing
 whitespaces."
@@ -313,7 +312,7 @@ whitespaces."
       (untabify (point-min) (point-max))))
   (save-buffer))
 
-;; autoload
+;;;###autoload
 (defun jcs-tabify-save-buffer ()
   " Save buffer / Tabify the document / Delete all trailing
 whitespaces. NOTE(JenChieh): Makefile does not support space,
@@ -326,7 +325,7 @@ so we must convert spaces to tab."
       (tabify (point-min) (point-max))))
   (save-buffer))
 
-;; autoload
+;;;###autoload
 (defun jcs-find-file-other-window ()
   "This will allow us open the same file in another window."
   (interactive)
@@ -334,11 +333,9 @@ so we must convert spaces to tab."
       (progn
         (find-file-other-window buffer-file-name)
         (jcs-other-window-prev)
-        )
-    )
-  )
+        )))
 
-;; autoload
+;;;###autoload
 (defun jcs-smart-find-file-in-project-in-another-window ()
   "This will open the file in another window using 'find-file-
 project.el' plugin."
@@ -349,8 +346,7 @@ project.el' plugin."
         ;; Reach here mean success using 'find-file-in-
         ;; project.el' plugin.
         )
-    (ido-find-file-other-window))
-  )
+    (ido-find-file-other-window)))
 
 ;;;###autoload
 (defun jcs-smart-find-file-in-project ()
@@ -363,8 +359,7 @@ file-project.el' plugin."
         ;; Reach here mean success using 'find-file-in-
         ;; project.el' plugin.
         )
-    (ido-find-file))
-  )
+    (ido-find-file)))
 
 
 ;;================================================
@@ -372,56 +367,61 @@ file-project.el' plugin."
 ;; Setup the run file key and function.
 ;;----------------------------------------
 
-;;---------------------------------------------
-;; Find the run file base on the operating
-;; system u r on.
-;;---------------------------------------------
 (defun find-project-directory-recursive-run ()
   "Recursively search for a makefile."
   (interactive)
-  (if (file-exists-p jenchieh-runscript) t
+  (if (file-exists-p jcs-runscript) t
     (cd "../")
     (find-project-directory-recursive-run)))
 
-;;---------------------------------------------
-;; Find the directory in order.
-;;---------------------------------------------
 (defun find-project-directory-run ()
   "Find the project directory."
   (interactive)
   (setq find-project-from-directory default-directory)
   (switch-to-buffer-other-window "*compilation*")
-  (if compilation-directory-locked (cd last-compilation-directory)
+  (if compilation-directory-locked
+      (cd last-compilation-directory)
     (cd find-project-from-directory)
     (find-project-directory-recursive-run)
     (setq last-compilation-directory default-directory)))
 
-;;---------------------------------------------
-;; Main function call by running the program.
-;;---------------------------------------------
 (defun run-without-asking()
   "Run the current build program. - JenChieh"
   (interactive)
-  (if (find-project-directory-run) (compile jenchieh-runscript))
-  (other-window 1))
+  (if (find-project-directory-run)
+      (compile jcs-runscript)))
 
+;;================================================
+;; * Open TODO file *
+;;----------------------------------------
+(defun open-todo-without-asking()
+  "Open the TODO list from this project. - JenChieh"
+  (interactive)
+  (ffip-find-files jcs-todo-file t))
+
+;;================================================
+;; * Open LOG file *
+;;----------------------------------------
+(defun open-update-log-without-asking()
+  "Open the Update Log from this project. - JenChieh"
+  (interactive)
+  (ffip-find-files jcs-update-log-file t))
 
 ;;---------------------------------------------
-;; Source:
-;; -> https://www.emacswiki.org/emacs/BackToIndentationOrBeginning
+;; Source: https://www.emacswiki.org/emacs/BackToIndentationOrBeginning
 ;;---------------------------------------------
 (defun back-to-indentation-or-beginning ()
   "Toggle between first character and beginning of line."
   (interactive)
   (if (= (point) (progn (back-to-indentation) (point)))
       (beginning-of-line)))
-;;---------------------------------------------
-;; If you rather it go to beginning-of-line
-;; first and to indentation on the next hit use
-;; this version instead.
-;;---------------------------------------------
+
 (defun beginning-of-line-or-indentation ()
-  "move to beginning of line, or indentation"
+  "move to beginning of line, or indentation
+
+If you rather it go to beginning-of-line
+first and to indentation on the next hit use
+this version instead."
   (interactive)
   (if (bolp)
       (beginning-of-line)
