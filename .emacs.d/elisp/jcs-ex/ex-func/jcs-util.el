@@ -261,16 +261,14 @@ vice versa.
   "Move to top of the buffer."
   (interactive)
   ;; NOTE: 0 : top-most-line, -1 : bottom-most-line
-  (move-to-window-line-top-bottom 0)
-  )
+  (move-to-window-line-top-bottom 0))
 
 ;;;###autoload
 (defun bottom-most-line()
   "Move to bottom of the buffer."
   (interactive)
   ;; NOTE: 0 : top-most-line, -1 : bottom-most-line
-  (move-to-window-line-top-bottom -1)
-  )
+  (move-to-window-line-top-bottom -1))
 
 ;;---------------------------------------------
 ;; Mark
@@ -362,7 +360,6 @@ active. false, there is no region selected and mark is not active.
       (if (string= tmp-str str)
           (setq in-list t)))
     in-list))
-
 
 ;;---------------------------------------------
 ;; Mode
