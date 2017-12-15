@@ -54,9 +54,14 @@
 (setq enable-local-variables nil)
 (setq casey-font "outline-DejaVu Sans Mono")
 
+;; TODO file.
+(setq jcs-todo-file "TODO(jenchieh)")
+;; Log file.
+(setq jcs-update-log-file "Update_Log")
+
 (when casey-win32
   (setq casey-makescript "build.bat")
-  (setq jenchieh-runscript "run.bat")
+  (setq jcs-runscript "run.bat")
   (setq casey-font "outline-Liberation Mono"))
 
 (when casey-aquamacs
@@ -73,11 +78,11 @@
   (scroll-bar-mode nil)
   (setq mac-pass-command-to-system nil)
   (setq casey-makescript "./build.macosx")
-  (setq jenchieh-runscript "./run.macosx"))
+  (setq jcs-runscript "./run.macosx"))
 
 (when casey-linux
   (setq casey-makescript "./build.linux")
-  (setq jenchieh-runscript "./run.linux")
+  (setq jcs-runscript "./run.linux")
   (display-battery-mode 1))
 
 ;; Turn off the toolbar
@@ -273,19 +278,6 @@
   (interactive)
   (when casey-aquamacs (aquamacs-toggle-full-frame))
   (when casey-win32 (w32-send-sys-command 61488)))
-
-;; Navigation
-(defun previous-blank-line ()
-  "Moves to the previous line containing nothing but whitespace."
-  (interactive)
-  (search-backward-regexp "^[ \t]*\n"))
-
-(defun next-blank-line ()
-  "Moves to the next line containing nothing but whitespace."
-  (interactive)
-  (forward-line)
-  (search-forward-regexp "^[ \t]*\n")
-  (forward-line -1))
 
 ;; ALT-alternatives
 ;; (defadvice set-mark-command (after no-bloody-t-m-m activate)
