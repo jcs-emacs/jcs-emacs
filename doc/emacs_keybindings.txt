@@ -265,8 +265,11 @@ f8              open the same file on other window. Attention: in
                 c/c++ mode this will replace as corresponding file,
                 and original of this key will be f7.
 
-C-B             Run the build script. (.bat, .linux, .macosx, etc.)
+C-S-B           Run the build script. (.bat, .linux, .macosx, etc.)
 f5              Run the run script. (.bat, .linux, .macosx, etc.)
+
+C-t             Open todo list file in project.
+C-u             Open update log file in project.
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * Switch Line-Endings 時...
