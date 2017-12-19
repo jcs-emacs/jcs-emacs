@@ -7,6 +7,9 @@
 # ========================================================================
 
 
+2017-12-19
+* Add '@' symbol for normal bash commands. (jcs-emacs-init)
+
 2017-12-16
 * Add emacs keybindings note with open update log and todo list. (jcs-emacs-init)
 * Move move empty line up and down to nav file. (jcs-emacs-init)
