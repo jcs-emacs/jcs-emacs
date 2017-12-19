@@ -383,7 +383,7 @@ script, etc."
   (insert "\n\n.PHONY : build compile clean realclean test\n\n")
 
   (insert "test : \n")
-  (insert "    echo \"Test command...\"\n\n")
+  (insert "    @echo \"Test command...\"\n\n")
 
   (insert "build : \n")
   (insert "    $(CC) $(GSRC) $(MAINSRC) \\\n")
@@ -578,7 +578,7 @@ script, etc."
   (insert "\n\n.PHONY : build compile clean realclean test\n\n")
 
   (insert "test : \n")
-  (insert "    echo \"Test command...\"\n\n")
+  (insert "    @echo \"Test command...\"\n\n")
 
   (insert "build : \n")
   (insert "    $(CC) $(GSRC) $(MAINSRC) \\\n")
