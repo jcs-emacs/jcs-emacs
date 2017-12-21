@@ -7,6 +7,10 @@
 # ========================================================================
 
 
+2017-12-21
+* Add assembly language commands and flags for makefile file 
+ formant. (jcs-emacs-init)
+
 2017-12-19
 * Add '@' symbol for normal bash commands. (jcs-emacs-init)
 
