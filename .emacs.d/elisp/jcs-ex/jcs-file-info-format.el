@@ -293,7 +293,8 @@ script, etc."
   (insert "#                      Flags\n")
   (insert "# ----------------------------------------------- #\n")
   (insert "# assemble flags\n")
-  (insert "ASM_FLAGS     = \n")
+  (insert "ASM_FLAGS     = -f elf\n")
+  (insert "ASM_B_FLAGS   = -m32\n")
   (insert "# disassemble flags\n")
   (insert "DASM_FLAGS    = -D\n")
   (insert "# compile flags\n")
@@ -380,12 +381,14 @@ script, etc."
   (insert "ASMDEP := $(patsubst %.asm,$(DEPDIR)/%.d,$(ASMSRC))\n")
 
 
-  (insert "\n\n.PHONY : build compile clean realclean test\n\n")
+  (insert "\n\n.PHONY : nop build buildc buildasm compile clean realclean\n\n")
 
-  (insert "test : \n")
-  (insert "    @echo \"Test command...\"\n\n")
+  (insert "nop : \n")
+  (insert "    @echo \"Default Test command...\"\n\n")
 
-  (insert "build : \n")
+  (insert "build : buildc buildasm\n\n")
+
+  (insert "buildc : \n")
   (insert "    $(CC) $(GSRC) $(MAINSRC) \\\n")
   (insert "    $(C_FLAGS) \\\n")
   (insert "    $(INCLUDE_FLAGS) $(INCLUDE_PATH) \\\n")
@@ -394,15 +397,18 @@ script, etc."
   (insert "    $(LD_FLAGS) $(A_LIB_PATH) \\\n")
   (insert "    $(OUTPUT_FLAGS) $(BIN_DIR)/$(BIN_NAME)\n\n")
 
+  (insert "buildasm : \n")
+  (insert "    $(CC) $(ASM_B_FLAGS) $(OUTPUT_FLAGS) $(BIN_DIR)/$(BIN_NAME) $(ASMOBJS)\n\n")
+
   (insert "\n# compile all the source file to object file.\n")
-  (insert "compile : $(MAINOBJ) $(OBJS) $(AOBJS) $(SOOBJS)\n")
+  (insert "compile : $(MAINOBJ) $(ASMOBJS) $(OBJS) $(AOBJS) $(SOOBJS)\n")
 
   (insert "\n# Clean the project.\n")
   (insert "clean :\n")
-  (insert "    rm -f $(MAINOBJ) $(OBJS) $(LOBJS)\n\n")
+  (insert "    rm -f $(MAINOBJ) $(ASMOBJS) $(OBJS) $(LOBJS)\n\n")
 
   (insert "realclean :\n")
-  (insert "    rm -f $(MAINOBJ) $(OBJS) $(LOBJS) $(KASMOBJS) $(LASMOBJS) $(ALIB_DIR)/$(ALIB) $(SOLIB_DIR)/$(SOLIB)\n")
+  (insert "    rm -f $(MAINOBJ) $(ASMOBJS) $(OBJS) $(LOBJS) $(KASMOBJS) $(LASMOBJS) $(ALIB_DIR)/$(ALIB) $(SOLIB_DIR)/$(SOLIB)\n")
 
   (insert "\n# include dependencies.\n")
   (insert "-include $(GDEP)\n")
@@ -411,6 +417,10 @@ script, etc."
   (insert "\n# example of compile the program main file.\n")
   (insert "program_main.o : program_main.c\n")
   (insert "    $(CC) $(C_FLAGS) $(OUTPUT_FLAGS) $@ $<\n")
+
+  (insert "\n# compile assembly file to object file.\n")
+  (insert "$(ASMOBJS) : $(ASMSRC)\n")
+  (insert "    $(ASM) $(ASM_FLAGS) $(OUTPUT_FLAGS) $@ $<\n")
 
   (insert "\n# generate static link library.\n")
   (insert "$(ALIB) : $(AOBJS)\n")
@@ -488,7 +498,8 @@ script, etc."
   (insert "#                      Flags\n")
   (insert "# ----------------------------------------------- #\n")
   (insert "# assemble flags\n")
-  (insert "ASM_FLAGS     = \n")
+  (insert "ASM_FLAGS     = -f elf\n")
+  (insert "ASM_B_FLAGS   = -m32\n")
   (insert "# disassemble flags\n")
   (insert "DASM_FLAGS    = -D\n")
   (insert "# compile flags\n")
@@ -575,12 +586,14 @@ script, etc."
   (insert "ASMDEP := $(patsubst %.asm,$(DEPDIR)/%.d,$(ASMSRC))\n")
 
 
-  (insert "\n\n.PHONY : build compile clean realclean test\n\n")
+  (insert "\n\n.PHONY : nop build buildc buildasm compile clean realclean\n\n")
 
-  (insert "test : \n")
-  (insert "    @echo \"Test command...\"\n\n")
+  (insert "nop : \n")
+  (insert "    @echo \"Default Test command...\"\n\n")
 
-  (insert "build : \n")
+  (insert "build : buildc buildasm\n\n")
+
+  (insert "buildc : \n")
   (insert "    $(CC) $(GSRC) $(MAINSRC) \\\n")
   (insert "    $(C_FLAGS) \\\n")
   (insert "    $(INCLUDE_FLAGS) $(INCLUDE_PATH) \\\n")
@@ -589,15 +602,18 @@ script, etc."
   (insert "    $(LD_FLAGS) $(A_LIB_PATH) \\\n")
   (insert "    $(OUTPUT_FLAGS) $(BIN_DIR)/$(BIN_NAME)\n\n")
 
+  (insert "buildasm : \n")
+  (insert "    $(CC) $(ASM_B_FLAGS) $(OUTPUT_FLAGS) $(BIN_DIR)/$(BIN_NAME) $(ASMOBJS)\n\n")
+
   (insert "\n# compile all the source file to object file.\n")
-  (insert "compile : $(MAINOBJ) $(OBJS) $(AOBJS) $(SOOBJS)\n")
+  (insert "compile : $(MAINOBJ) $(ASMOBJS) $(OBJS) $(AOBJS) $(SOOBJS)\n")
 
   (insert "\n# Clean the project.\n")
   (insert "clean :\n")
-  (insert "    rm -f $(MAINOBJ) $(OBJS) $(LOBJS)\n\n")
+  (insert "    rm -f $(MAINOBJ) $(ASMOBJS) $(OBJS) $(LOBJS)\n\n")
 
   (insert "realclean :\n")
-  (insert "    rm -f $(MAINOBJ) $(OBJS) $(LOBJS) $(KASMOBJS) $(LASMOBJS) $(ALIB_DIR)/$(ALIB) $(SOLIB_DIR)/$(SOLIB)\n")
+  (insert "    rm -f $(MAINOBJ) $(ASMOBJS) $(OBJS) $(LOBJS) $(KASMOBJS) $(LASMOBJS) $(ALIB_DIR)/$(ALIB) $(SOLIB_DIR)/$(SOLIB)\n")
 
   (insert "\n# include dependencies.\n")
   (insert "-include $(GDEP)\n")
@@ -606,6 +622,10 @@ script, etc."
   (insert "\n# example of compile the program main file.\n")
   (insert "program_main.o : program_main.c\n")
   (insert "    $(CC) $(C_FLAGS) $(OUTPUT_FLAGS) $@ $<\n")
+
+  (insert "\n# compile assembly file to object file.\n")
+  (insert "$(ASMOBJS) : $(ASMSRC)\n")
+  (insert "    $(ASM) $(ASM_FLAGS) $(OUTPUT_FLAGS) $@ $<\n")
 
   (insert "\n# generate static link library.\n")
   (insert "$(ALIB) : $(AOBJS)\n")
