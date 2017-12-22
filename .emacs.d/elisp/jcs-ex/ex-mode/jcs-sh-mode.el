@@ -60,6 +60,8 @@
 
   (cond ((file-exists-p buffer-file-name) t)
         ((string-match "[.]sh" buffer-file-name) (jcs-sh-script-format))
+        ((string-match "[.]linux" buffer-file-name) (jcs-sh-script-format))
+        ((string-match "[.]macosx" buffer-file-name) (jcs-sh-script-format))
         )
 
   ;; Set Faces.
