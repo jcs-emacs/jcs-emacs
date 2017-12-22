@@ -7,6 +7,9 @@
 # ========================================================================
 
 
+2017-12-22
+* Add enum doc string for c and c++ mode. (jcs-emacs-init)
+
 2017-12-21
 * Add assembly language commands and flags for makefile file 
  formant. (jcs-emacs-init)
