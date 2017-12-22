@@ -472,6 +472,23 @@ the input line."
                    (insert "* @brief Define description here..")
                    (indent-for-tab-command)
                    ))
+                ((jcs-is-in-list-string keyword-strings "enum")
+                 (progn
+                   ;; go back to comment line.
+                   (jcs-previous-line)
+                   (jcs-previous-line)
+                   (end-of-line)
+
+                   ;; Process class tag.
+                   (insert "@enum ")
+                   (insert datatype-name)
+                   (indent-for-tab-command)
+
+                   ;; Process brief tag.
+                   (insert "\n")
+                   (insert "* @brief Enum description here..")
+                   (indent-for-tab-command)
+                   ))
                 ))
 
         (when (or (jcs-is-current-major-mode-p "java-mode")
