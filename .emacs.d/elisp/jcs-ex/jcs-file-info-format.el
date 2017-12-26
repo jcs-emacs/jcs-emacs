@@ -219,13 +219,20 @@ script, etc."
   (insert "\n\n")
   )
 
-
 ;;---------------------------------------------
 ;; Specialize the makefile format more specific.
 ;;---------------------------------------------
 (defun jcs-makefile-format-info ()
   "File header format specific for makefile."
   (call-interactively 'jcs-ask-makefile-app-template))
+
+(defun jcs-insert-makefile-util ()
+  "Insert Makefile util function."
+  (insert "# ----------------------------------------------- #\n")
+  (insert "#                      Functions\n")
+  (insert "# ----------------------------------------------- #\n")
+  (insert "rwildcard = $(foreach d,$(wildcard $(addsuffix *,$(1))),$(call rwildcard,$(d)/,$(2)) $(filter $(subst *,%,$(2)),$(d)))\n")
+  )
 
 (defun jcs-makefile-app-template ()
   "Default makefile template for normal application."
@@ -250,6 +257,9 @@ script, etc."
   (insert "# ├── src\n")
   (insert "# └── test\n")
   (insert "# ----------------------------------------------- #\n")
+
+  (insert "\n")
+  (jcs-insert-makefile-util)
 
   (insert "\n")
   (insert "# ----------------------------------------------- #\n")
@@ -323,39 +333,41 @@ script, etc."
   (insert "# ----------------------------------------------- #\n")
   (insert "#                  Source Path\n")
   (insert "# ----------------------------------------------- #\n")
-  (insert "MAIN_PATH       = $(ROOT_DIR)/test\n")
-  (insert "SOURCE_PATH     = $(ROOT_DIR)/src\n")
+  (insert "MAIN_PATH    = $(ROOT_DIR)/test\n")
+  (insert "SOURCE_PATH  = $(ROOT_DIR)/src\n")
 
   (insert "\n")
   (insert "# ----------------------------------------------- #\n")
   (insert "#                  Include Path\n")
   (insert "# ----------------------------------------------- #\n")
-  (insert "INCLUDE_PATH   = $(ROOT_DIR)/include\n")
+  (insert "INCLUDE_PATH = $(ROOT_DIR)/include\n")
 
   (insert "\n")
   (insert "# ----------------------------------------------- #\n")
   (insert "#                  Library path\n")
   (insert "# ----------------------------------------------- #\n")
-  (insert "A_LIB_PATH  = $(ROOT_DIR)/lib/alib\n")
-  (insert "A_LIBS = $(wildcard $(A_LIB_PATH)/*)\n\n")
+  (insert "A_LIB_PATH  := $(ROOT_DIR)/lib/alib\n")
+  (insert "A_LIBS      := $(wildcard $(A_LIB_PATH)/*)\n\n")
 
-  (insert "SO_LIB_PATH  := $(ROOT_DIR)/lib/solib\n")
-  (insert "SO_LIBS := $(wildcard $(SO_LIB_PATH)/*)\n")
+  (insert "SO_LIB_PATH := $(ROOT_DIR)/lib/solib\n")
+  (insert "SO_LIBS     := $(wildcard $(SO_LIB_PATH)/*)\n")
 
   (insert "\n")
   (insert "# ----------------------------------------------- #\n")
   (insert "#                   All Source\n")
   (insert "# ----------------------------------------------- #\n")
   (insert "# main source\n")
-  (insert "MAINSRC := $(sort $(wildcard $(MAIN_PATH)/*.asm $(MAIN_PATH)/*.c $(MAIN_PATH)/*.cpp))\n")
+  (insert "MAINSRC := $(sort $(call rwildcard, $(MAIN_PATH)/, *.asm *.c *.cpp))\n")
   (insert "# asm source\n")
-  (insert "ASMSRC  := $(sort $(wildcard $(SOURCE_PATH)/*.asm))\n")
+  (insert "ASMSRC  := $(sort $(call rwildcard, $(SOURCE_PATH)/, *.asm *.inc))\n")
   (insert "# c/c++ source\n")
-  (insert "GSRC    := $(sort $(wildcard $(SOURCE_PATH)/*.c $(SOURCE_PATH)/*.cpp))\n")
+  (insert "GSRC    := $(sort $(call rwildcard, $(SOURCE_PATH)/, *.c *.cpp))\n")
   (insert "# static link library source\n")
-  (insert "ASRC    := $(sort $(wildcard $(SOURCE_PATH)/*.c $(SOURCE_PATH)/*.cpp $(A_LIB_PATH)/*.c $(A_LIB_PATH)/*.cpp))\n")
+  (insert "ASRC    := $(sort $(call rwildcard, $(SOURCE_PATH)/, *.c *.cpp)) \\\n")
+  (insert "           $(sort $(call rwildcard, $(A_LIB_PATH)/, *.c *.cpp))\n")
   (insert "# shared link library source\n")
-  (insert "SOSRC   := $(sort $(wildcard $(SOURCE_PATH)/*.c $(SOURCE_PATH)/*.cpp $(SO_LIB_PATH)/*.c $(SO_LIB_PATH)/*.cpp))\n")
+  (insert "SOSRC   := $(sort $(call rwildcard, $(SOURCE_PATH), *.c *.cpp)) \\\n")
+  (insert "           $(sort $(call rwildcard, $(SO_LIB_PATH)/, *.c *.cpp))\n")
 
   (insert "\n")
   (insert "# ----------------------------------------------- #\n")
@@ -364,7 +376,7 @@ script, etc."
   (insert "# main object file\n")
   (insert "MAINOBJ := $(sort $(patsubst %.c,%.o, $(patsubst %.cpp,%.o, $(MAINSRC))))\n")
   (insert "# asm object files\n")
-  (insert "ASMOBJS := $(sort $(subst .asm,.o,$(ASMSRC)))\n")
+  (insert "ASMOBJS := $(sort $(patsubst %.asm,%.o, $(patsubst %.inc,%.o, $(ASMSRC))))\n")
   (insert "# list of object files\n")
   (insert "OBJS    := $(sort $(patsubst %.c,%.o, $(patsubst %.cpp,%.o, $(GSRC))))\n")
   (insert "# .a object files\n")
@@ -435,7 +447,8 @@ script, etc."
 (defun jcs-makefile-lib-template ()
   "Library makefile template for static library or shared library."
 
-  (insert "### Library Makefile Template ###\n")
+
+  (insert "### Application Makefile Template ###\n")
 
   (insert "\n")
   (insert "# ----------------------------------------------- #\n")
@@ -455,6 +468,9 @@ script, etc."
   (insert "# ├── src\n")
   (insert "# └── test\n")
   (insert "# ----------------------------------------------- #\n")
+
+  (insert "\n")
+  (jcs-insert-makefile-util)
 
   (insert "\n")
   (insert "# ----------------------------------------------- #\n")
@@ -528,39 +544,41 @@ script, etc."
   (insert "# ----------------------------------------------- #\n")
   (insert "#                  Source Path\n")
   (insert "# ----------------------------------------------- #\n")
-  (insert "MAIN_PATH       = $(ROOT_DIR)/test\n")
-  (insert "SOURCE_PATH     = $(ROOT_DIR)/src\n")
+  (insert "MAIN_PATH    = $(ROOT_DIR)/test\n")
+  (insert "SOURCE_PATH  = $(ROOT_DIR)/src\n")
 
   (insert "\n")
   (insert "# ----------------------------------------------- #\n")
   (insert "#                  Include Path\n")
   (insert "# ----------------------------------------------- #\n")
-  (insert "INCLUDE_PATH   = $(ROOT_DIR)/include\n")
+  (insert "INCLUDE_PATH = $(ROOT_DIR)/include\n")
 
   (insert "\n")
   (insert "# ----------------------------------------------- #\n")
   (insert "#                  Library path\n")
   (insert "# ----------------------------------------------- #\n")
-  (insert "A_LIB_PATH  = $(ROOT_DIR)/lib/alib\n")
-  (insert "A_LIBS = $(wildcard $(A_LIB_PATH)/*)\n\n")
+  (insert "A_LIB_PATH  := $(ROOT_DIR)/lib/alib\n")
+  (insert "A_LIBS      := $(wildcard $(A_LIB_PATH)/*)\n\n")
 
-  (insert "SO_LIB_PATH  := $(ROOT_DIR)/lib/solib\n")
-  (insert "SO_LIBS := $(wildcard $(SO_LIB_PATH)/*)\n")
+  (insert "SO_LIB_PATH := $(ROOT_DIR)/lib/solib\n")
+  (insert "SO_LIBS     := $(wildcard $(SO_LIB_PATH)/*)\n")
 
   (insert "\n")
   (insert "# ----------------------------------------------- #\n")
   (insert "#                   All Source\n")
   (insert "# ----------------------------------------------- #\n")
   (insert "# main source\n")
-  (insert "MAINSRC := $(sort $(wildcard $(MAIN_PATH)/*.asm $(MAIN_PATH)/*.c $(MAIN_PATH)/*.cpp))\n")
+  (insert "MAINSRC := $(sort $(call rwildcard, $(MAIN_PATH)/, *.asm *.c *.cpp))\n")
   (insert "# asm source\n")
-  (insert "ASMSRC  := $(sort $(wildcard $(SOURCE_PATH)/*.asm))\n")
+  (insert "ASMSRC  := $(sort $(call rwildcard, $(SOURCE_PATH)/, *.asm *.inc))\n")
   (insert "# c/c++ source\n")
-  (insert "GSRC    := $(sort $(wildcard $(SOURCE_PATH)/*.c $(SOURCE_PATH)/*.cpp))\n")
+  (insert "GSRC    := $(sort $(call rwildcard, $(SOURCE_PATH)/, *.c *.cpp))\n")
   (insert "# static link library source\n")
-  (insert "ASRC    := $(sort $(wildcard $(SOURCE_PATH)/*.c $(SOURCE_PATH)/*.cpp $(A_LIB_PATH)/*.c $(A_LIB_PATH)/*.cpp))\n")
+  (insert "ASRC    := $(sort $(call rwildcard, $(SOURCE_PATH)/, *.c *.cpp)) \\\n")
+  (insert "           $(sort $(call rwildcard, $(A_LIB_PATH)/, *.c *.cpp))\n")
   (insert "# shared link library source\n")
-  (insert "SOSRC   := $(sort $(wildcard $(SOURCE_PATH)/*.c $(SOURCE_PATH)/*.cpp $(SO_LIB_PATH)/*.c $(SO_LIB_PATH)/*.cpp))\n")
+  (insert "SOSRC   := $(sort $(call rwildcard, $(SOURCE_PATH), *.c *.cpp)) \\\n")
+  (insert "           $(sort $(call rwildcard, $(SO_LIB_PATH)/, *.c *.cpp))\n")
 
   (insert "\n")
   (insert "# ----------------------------------------------- #\n")
@@ -569,7 +587,7 @@ script, etc."
   (insert "# main object file\n")
   (insert "MAINOBJ := $(sort $(patsubst %.c,%.o, $(patsubst %.cpp,%.o, $(MAINSRC))))\n")
   (insert "# asm object files\n")
-  (insert "ASMOBJS := $(sort $(subst .asm,.o,$(ASMSRC)))\n")
+  (insert "ASMOBJS := $(sort $(patsubst %.asm,%.o, $(patsubst %.inc,%.o, $(ASMSRC))))\n")
   (insert "# list of object files\n")
   (insert "OBJS    := $(sort $(patsubst %.c,%.o, $(patsubst %.cpp,%.o, $(GSRC))))\n")
   (insert "# .a object files\n")
