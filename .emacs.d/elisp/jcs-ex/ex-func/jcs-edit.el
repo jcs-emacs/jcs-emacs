@@ -592,9 +592,7 @@ SOURCE(jenchieh): https://emacs.stackexchange.com/questions/2888/kill-buffer-whe
           (progn
             (backward-delete-char 1)
             (jcs-backward-kill-word-capital)
-            ))
-
-        )
+            )))
     (progn
       (if (not (wordp current-char-char))
           (progn
@@ -610,10 +608,7 @@ SOURCE(jenchieh): https://emacs.stackexchange.com/questions/2888/kill-buffer-whe
             (progn
               (backward-delete-char 1)
               (jcs-backward-kill-word-capital)))
-          )
-        )
-      )
-    )
+          ))))
 
   ;; reset triggers
   (setq first-char-is-char nil)
@@ -732,10 +727,7 @@ to the point."
             (progn
               (backward-char 1)
               (jcs-backward-capital-char)))
-          )
-        )
-      )
-    )
+          ))))
 
   ;; reset triggers
   (setq first-char-is-char nil)
@@ -812,6 +804,15 @@ the point."
   (setq found-first-char nil)
   )
 
+(defun jcs-search-forward-at-point ()
+  "Search the word at point forward."
+  (interactive)
+  (isearch-forward-symbol-at-point))
+
+(defun jcs-search-backword-at-point ()
+  "Search the word at point backward."
+  (interactive)
+  (isearch-forward-symbol-at-point))
 
 ;;----------------------------------------------
 ;; Move Current Line Up or Down
