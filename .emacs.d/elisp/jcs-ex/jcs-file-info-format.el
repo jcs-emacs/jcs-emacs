@@ -273,6 +273,12 @@ script, etc."
   (insert "BIN_NAME = bin_name\n")
 
   (insert "\n")
+  (insert "# floppy disk image name\n")
+  (insert "FD = floppy-disk.img\n")
+  (insert "# hard disk image name\n")
+  (insert "HD = hard-disk.img\n")
+
+  (insert "\n")
   (insert "# ----------------------------------------------- #\n")
   (insert "#                    Directories\n")
   (insert "# ----------------------------------------------- #\n")
@@ -357,7 +363,7 @@ script, etc."
   (insert "#                   All Source\n")
   (insert "# ----------------------------------------------- #\n")
   (insert "# main source\n")
-  (insert "MAINSRC := $(sort $(call rwildcard, $(MAIN_PATH)/, *.asm *.c *.cpp))\n")
+  (insert "MAINSRC := $(sort $(call rwildcard, $(MAIN_PATH)/, *.asm *.c *.cpp *.S))\n")
   (insert "# asm source\n")
   (insert "ASMSRC  := $(sort $(call rwildcard, $(SOURCE_PATH)/, *.asm *.S))\n")
   (insert "# c/c++ source\n")
@@ -374,7 +380,10 @@ script, etc."
   (insert "#                      objs\n")
   (insert "# ----------------------------------------------- #\n")
   (insert "# main object file\n")
-  (insert "MAINOBJ := $(sort $(patsubst %.c,%.o, $(patsubst %.cpp,%.o, $(MAINSRC))))\n")
+  (insert "MAINOBJ := $(sort $(patsubst %.c,%.o,   \\\n")
+  (insert "                  $(patsubst %.cpp,%.o, \\\n")
+  (insert "                  $(patsubst %.asm,%.o, \\\n")
+  (insert "                  $(patsubst %.S,%.o, $(MAINSRC))))))\n")
   (insert "# asm object files\n")
   (insert "ASMOBJS := $(sort $(patsubst %.asm,%.o, $(patsubst %.S,%.o, $(ASMSRC))))\n")
   (insert "# list of object files\n")
@@ -393,7 +402,11 @@ script, etc."
   (insert "ASMDEP := $(patsubst %.asm,$(DEPDIR)/%.d,$(ASMSRC))\n")
 
 
-  (insert "\n\n.PHONY : nop build buildc buildasm compile clean realclean\n\n")
+  (insert "\n\n")
+  (insert ".PHONY : nop build buildc buildasm compile\n")
+  (insert ".PHONY : clean realclean\n")
+  (insert ".PHONY : mount buildimg\n")
+  (insert "\n")
 
   (insert "nop : \n")
   (insert "    @echo \"Default Test command...\"\n\n")
@@ -411,6 +424,13 @@ script, etc."
 
   (insert "buildasm : \n")
   (insert "    $(CC) $(ASM_B_FLAGS) $(OUTPUT_FLAGS) $(BIN_DIR)/$(BIN_NAME) $(ASMOBJS)\n\n")
+
+  (insert "buildimg :\n")
+  (insert "    @echo \"Build image command here..\"\n\n")
+
+  (insert "mount :\n")
+  (insert "    @echo \"Mount command here..\"\n\n")
+
 
   (insert "\n# compile all the source file to object file.\n")
   (insert "compile : $(MAINOBJ) $(ASMOBJS) $(OBJS) $(AOBJS) $(SOOBJS)\n")
@@ -484,6 +504,10 @@ script, etc."
   (insert "BIN_NAME = bin_name\n")
 
   (insert "\n")
+  (insert "FD = floppy-disk.img\n")
+  (insert "HD = hard-disk.img\n")
+
+  (insert "\n")
   (insert "# ----------------------------------------------- #\n")
   (insert "#                    Directories\n")
   (insert "# ----------------------------------------------- #\n")
@@ -568,7 +592,7 @@ script, etc."
   (insert "#                   All Source\n")
   (insert "# ----------------------------------------------- #\n")
   (insert "# main source\n")
-  (insert "MAINSRC := $(sort $(call rwildcard, $(MAIN_PATH)/, *.asm *.c *.cpp))\n")
+  (insert "MAINSRC := $(sort $(call rwildcard, $(MAIN_PATH)/, *.asm *.c *.cpp *.S))\n")
   (insert "# asm source\n")
   (insert "ASMSRC  := $(sort $(call rwildcard, $(SOURCE_PATH)/, *.asm *.S))\n")
   (insert "# c/c++ source\n")
@@ -585,7 +609,10 @@ script, etc."
   (insert "#                      objs\n")
   (insert "# ----------------------------------------------- #\n")
   (insert "# main object file\n")
-  (insert "MAINOBJ := $(sort $(patsubst %.c,%.o, $(patsubst %.cpp,%.o, $(MAINSRC))))\n")
+  (insert "MAINOBJ := $(sort $(patsubst %.c,%.o,   \\\n")
+  (insert "                  $(patsubst %.cpp,%.o, \\\n")
+  (insert "                  $(patsubst %.asm,%.o, \\\n")
+  (insert "                  $(patsubst %.S,%.o, $(MAINSRC))))))\n")
   (insert "# asm object files\n")
   (insert "ASMOBJS := $(sort $(patsubst %.asm,%.o, $(patsubst %.S,%.o, $(ASMSRC))))\n")
   (insert "# list of object files\n")
@@ -603,8 +630,11 @@ script, etc."
   (insert "GDEP   := $(patsubst %.c,$(DEPDIR)/%.d,$(patsubst %.cpp,$(DEPDIR)/%.d, $(GSRC)))\n")
   (insert "ASMDEP := $(patsubst %.asm,$(DEPDIR)/%.d,$(ASMSRC))\n")
 
-
-  (insert "\n\n.PHONY : nop build buildc buildasm compile clean realclean\n\n")
+  (insert "\n\n")
+  (insert ".PHONY : nop build buildc buildasm compile\n")
+  (insert ".PHONY : clean realclean\n")
+  (insert ".PHONY : mount buildimg\n")
+  (insert "\n")
 
   (insert "nop : \n")
   (insert "    @echo \"Default Test command...\"\n\n")
@@ -622,6 +652,13 @@ script, etc."
 
   (insert "buildasm : \n")
   (insert "    $(CC) $(ASM_B_FLAGS) $(OUTPUT_FLAGS) $(BIN_DIR)/$(BIN_NAME) $(ASMOBJS)\n\n")
+
+  (insert "buildimg :\n")
+  (insert "    @echo \"Build image command here..\"\n\n")
+
+  (insert "mount :\n")
+  (insert "    @echo \"Mount command here..\"\n\n")
+
 
   (insert "\n# compile all the source file to object file.\n")
   (insert "compile : $(MAINOBJ) $(ASMOBJS) $(OBJS) $(AOBJS) $(SOOBJS)\n")
