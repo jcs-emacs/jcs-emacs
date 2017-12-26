@@ -155,8 +155,16 @@
 
 ;;; Search Word (SEE: `jcs-mode-el' will have detail mode config.)ee
 ;;(define-key global-map "\C-f" 'helm-do-ag-this-file)
-;;(define-key global-map "\C-f" 'isearch-forward)
+;;(define-key global-map "\C-f" 'isearch-forward)  ;; NOTE(jenchieh): 'local' vs 'cross-platform' mode.
 (define-key global-map "\C-r\C-f" 'isearch-backward-regexp)
+
+(define-key global-map (kbd "M-S-<right>") 'jcs-search-forward-at-point)
+(define-key global-map (kbd "M-S-<left>") 'jcs-search-backword-at-point)
+(define-key isearch-mode-map (kbd "M-S-<right>") 'isearch-repeat-forward)
+(define-key isearch-mode-map (kbd "M-S-<left>") 'isearch-repeat-backward)
+
+(define-key auto-highlight-symbol-mode-map (kbd "M-S-<right>") 'jcs-search-forward-at-point)
+(define-key auto-highlight-symbol-mode-map (kbd "M-S-<left>") 'jcs-search-backword-at-point)
 
 ;;; Mode toggle
 ;;(define-key global-map "\e`" 'jcs-insert-command-mode-toggle)
