@@ -147,7 +147,7 @@
 
 ;; Bright-red TODOs
 (setq fixme-modes '(actionscript-mode
-                    batch-mode
+                    bat-mode
                     cc-mode
                     c-mode
                     c++-mode
@@ -192,26 +192,26 @@
 (mapc (lambda (mode)
         (font-lock-add-keywords
          mode
-         '(("\\<\\(TODO\\)" 1 'font-lock-fixme-face t)
-           ("\\<\\(ATTENTION\\)" 1 'font-lock-fixme-face t)
-           ("\\<\\(STUDY\\)" 1 'font-lock-study-face t)
-           ("\\<\\(IMPORTANT\\)" 1 'font-lock-important-face t)
-           ("\\<\\(OPTIMIZE\\)" 1 'font-lock-optimize-face t)
-           ("\\<\\(NOTE\\)" 1 'font-lock-note-face t)
-           ("\\<\\(DESCRIPTION\\)" 1 'font-lock-description-face t)
-           ("\\<\\(TAG\\)" 1 'font-lock-tag-face t)
-           ("\\<\\(DEBUGGING\\)" 1 'font-lock-debugging-face t)
-           ("\\<\\(TEMPORARY\\)" 1 'font-lock-temporary-face t)
-           ("\\<\\(SOURCE\\)" 1 'font-lock-source-face t)
-           ("\\<\\(URL\\)" 1 'font-lock-url-face t)
-           ("\\<\\(IDEA\\)" 1 'font-lock-idea-face t)
-           ("\\<\\(OBSOLETE\\)" 1 'font-lock-obsolete-face t)
-           ("\\<\\(DEPRECATED\\)" 1 'font-lock-deprecated-face t)
-           ("\\<\\(TOPIC\\)" 1 'font-lock-topic-face t)
-           ("\\<\\(SEE\\)" 1 'font-lock-see-face t)
+         '(("\\<\\(TODO\\)\\>" 1 'font-lock-fixme-face t)
+           ("\\<\\(ATTENTION\\)\\>" 1 'font-lock-fixme-face t)
+           ("\\<\\(STUDY\\)\\>" 1 'font-lock-study-face t)
+           ("\\<\\(IMPORTANT\\)\\>" 1 'font-lock-important-face t)
+           ("\\<\\(OPTIMIZE\\)\\>" 1 'font-lock-optimize-face t)
+           ("\\<\\(NOTE\\)\\>" 1 'font-lock-note-face t)
+           ("\\<\\(DESCRIPTION\\)\\>" 1 'font-lock-description-face t)
+           ("\\<\\(TAG\\)\\>" 1 'font-lock-tag-face t)
+           ("\\<\\(DEBUGGING\\)\\>" 1 'font-lock-debugging-face t)
+           ("\\<\\(TEMPORARY\\)\\>" 1 'font-lock-temporary-face t)
+           ("\\<\\(SOURCE\\)\\>" 1 'font-lock-source-face t)
+           ("\\<\\(URL\\)\\>" 1 'font-lock-url-face t)
+           ("\\<\\(IDEA\\)\\>" 1 'font-lock-idea-face t)
+           ("\\<\\(OBSOLETE\\)\\>" 1 'font-lock-obsolete-face t)
+           ("\\<\\(DEPRECATED\\)\\>" 1 'font-lock-deprecated-face t)
+           ("\\<\\(TOPIC\\)\\>" 1 'font-lock-topic-face t)
+           ("\\<\\(SEE\\)\\>" 1 'font-lock-see-face t)
 
-           ("\\<\\(OPTION\\)" 1 'font-lock-option-face t)
-           ("\\<\\(OR\\)" 1 'font-lock-or-face t)
+           ("\\<\\(OPTION\\)\\>" 1 'font-lock-option-face t)
+           ("\\<\\(OR\\)\\>" 1 'font-lock-or-face t)
            )'end))
       fixme-modes)
 
