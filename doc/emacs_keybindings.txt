@@ -303,6 +303,9 @@ ALT-'           Search backward next '. (single quotation mark)
 ALT-Shift-;     Search forward next ". (double quotation mark)
 ALT-Shift-'     Search backward next ". (double quotation mark)
 
+M-S-<right>     Search forward at point.
+M-S-<left>      Search backward at point.
+
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * Regular Expression
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
