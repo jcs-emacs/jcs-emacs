@@ -38,7 +38,7 @@
   ;; Abbrevation expansion
   (abbrev-mode 1)
 
-  ;; enable the stuff you want for C# here
+  ;; enable the stuff you want for Emacs Lisp here
   (electric-pair-mode 1)
 
   ;; highlight URL and clickable.
