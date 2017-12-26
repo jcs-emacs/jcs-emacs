@@ -9,8 +9,6 @@
 
 2017-12-26
 * Add isearch at point forward and backward functionalities. (jcs-emacs-init)
-* Add comment compatible for preproc face. (jcs-emacs-init)
-* Cancel highlighting if comment. (jcs-emacs-init)
 
 2017-12-22
 * Add enum doc string for c and c++ mode. (jcs-emacs-init)
