@@ -13,6 +13,7 @@
 * Change CMake bindings work like Python mode key bindings or 
  functionalities. (jcs-emacs-init)
 * Add 'functions' for makefile info. (jcs-emacs-init)
+* Make compatible with .S file extension. (jcs-emacs-init)
 
 2017-12-22
 * Add enum doc string for c and c++ mode. (jcs-emacs-init)
