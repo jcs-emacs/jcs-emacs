@@ -51,12 +51,12 @@
 (mapc (lambda (mode)
         (font-lock-add-keywords
          mode
-         '(("[#%]define[a-z0-9_$]*.\\([a-zA-Z0-9_$]*\\)" 1 'jcs-preproc-variable-name-face t)
-           ("[#%]ifdef[a-z0-9_$]*.\\([a-zA-Z0-9_$]*\\)" 1 'jcs-preproc-variable-name-face t)
-           ("[#%]ifndef[a-z0-9_$]*.\\([a-zA-Z0-9_$]*\\)" 1 'jcs-preproc-variable-name-face t)
-           ("[#%]elif[a-z0-9_$]*.\\([a-zA-Z0-9_$]*\\)" 1 'jcs-preproc-variable-name-face t)
-           ("[#%]if defined[a-z0-9_$]*.\\([a-zA-Z0-9_$]*\\)" 1 'jcs-preproc-variable-name-face t)
-           ("[#%]if !defined[a-z0-9_$]*.\\([a-zA-Z0-9_$]*\\)" 1 'jcs-preproc-variable-name-face t)
+         '(("[^/;][#%]define[a-z0-9_$]*.\\([a-zA-Z0-9_$]*\\)" 1 'jcs-preproc-variable-name-face t)
+           ("[^/;][#%]ifdef[a-z0-9_$]*.\\([a-zA-Z0-9_$]*\\)" 1 'jcs-preproc-variable-name-face t)
+           ("[^/;][#%]ifndef[a-z0-9_$]*.\\([a-zA-Z0-9_$]*\\)" 1 'jcs-preproc-variable-name-face t)
+           ("[^/;][#%]elif[a-z0-9_$]*.\\([a-zA-Z0-9_$]*\\)" 1 'jcs-preproc-variable-name-face t)
+           ("[^/;][#%]if defined[a-z0-9_$]*.\\([a-zA-Z0-9_$]*\\)" 1 'jcs-preproc-variable-name-face t)
+           ("[^/;][#%]if !defined[a-z0-9_$]*.\\([a-zA-Z0-9_$]*\\)" 1 'jcs-preproc-variable-name-face t)
            )'end))
       jcs-preproc-highlight-modes)
 
