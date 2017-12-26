@@ -61,5 +61,11 @@
       ))
   )
 
+(defun jcs-makefile-newline ()
+  "Newline"
+  (interactive)
+  (insert "\n")
+  (py-indent-line-outmost))
+
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-cmake-func.el file
