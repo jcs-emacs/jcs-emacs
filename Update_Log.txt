@@ -7,6 +7,9 @@
 # ========================================================================
 
 
+2017-12-26
+* Add isearch at point forward and backward functionalities. (jcs-emacs-init)
+
 2017-12-22
 * Add enum doc string for c and c++ mode. (jcs-emacs-init)
 * Add linux and macosx build env and header file list. (jcs-emacs-init)
