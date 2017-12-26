@@ -261,7 +261,6 @@
         (setq jcs-search-trigger-backward-open-close-char 1)
         )
     )
-
   )
 
 ;;;------------------------------------------------
@@ -271,43 +270,37 @@
 (defun jcs-move-forward-open-close-paren ()
   "Move forward to a open/close parenthesis."
   (interactive)
-  (jcs-move-forward-open-close-epair "(" ")")
-  )
+  (jcs-move-forward-open-close-epair "(" ")"))
 
 ;;;###autoload
 (defun jcs-move-backward-open-close-paren ()
   "Move backward to a open/close parenthesis."
   (interactive)
-  (jcs-move-backward-open-close-epair "(" ")")
-  )
+  (jcs-move-backward-open-close-epair "(" ")"))
 
 ;;;###autoload
 (defun jcs-move-forward-open-close-sqrParen ()
   "Move forward to a open/close sqr parenthesis."
   (interactive)
-  (jcs-move-forward-open-close-epair "[[]" "]")
-  )
+  (jcs-move-forward-open-close-epair "[[]" "]"))
 
 ;;;###autoload
 (defun jcs-move-backward-open-close-sqrParen ()
   "Move backward to a open/close sqr parenthesis."
   (interactive)
-  (jcs-move-backward-open-close-epair "[[]" "]")
-  )
+  (jcs-move-backward-open-close-epair "[[]" "]"))
 
 ;;;###autoload
 (defun jcs-move-forward-open-close-curlyParen ()
   "Move forward to a open/close curly parenthesis."
   (interactive)
-  (jcs-move-forward-open-close-epair "{" "}")
-  )
+  (jcs-move-forward-open-close-epair "{" "}"))
 
 ;;;###autoload
 (defun jcs-move-backward-open-close-curlyParen ()
   "Move backward to a open/close curly parenthesis."
   (interactive)
-  (jcs-move-backward-open-close-epair "{" "}")
-  )
+  (jcs-move-backward-open-close-epair "{" "}"))
 
 ;;;------------------------------------------------
 ;;; Single Quotation Mark
@@ -316,15 +309,13 @@
 (defun jcs-move-forward-single-quot ()
   "Move forward to a single quotation mark."
   (interactive)
-  (jcs-move-to-forward-a-char "'")
-  )
+  (jcs-move-to-forward-a-char "'"))
 
 ;;;###autoload
 (defun jcs-move-backward-single-quot ()
   "Move forward to a double quotation mark."
   (interactive)
-  (jcs-move-to-backward-a-char "'")
-  )
+  (jcs-move-to-backward-a-char "'"))
 
 ;;;------------------------------------------------
 ;;; Double Quotation Mark
@@ -333,15 +324,13 @@
 (defun jcs-move-forward-double-quot ()
   "Move forward to a double quotation mark."
   (interactive)
-  (jcs-move-to-forward-a-char "\"")
-  )
+  (jcs-move-to-forward-a-char "\""))
 
 ;;;###autoload
 (defun jcs-move-backward-double-quot ()
   "Move forward to a double quotation mark."
   (interactive)
-  (jcs-move-to-backward-a-char "\"")
-  )
+  (jcs-move-to-backward-a-char "\""))
 
 ;;;------------------------------------------------
 ;;; Open Parenthesis
@@ -350,15 +339,13 @@
 (defun jcs-move-forward-open-paren ()
   "Move forward to a open parenthesis."
   (interactive)
-  (jcs-move-to-forward-a-char "(")
-  )
+  (jcs-move-to-forward-a-char "("))
 
 ;;;###autoload
 (defun jcs-move-backward-open-paren ()
   "Move forward to a open parenthesis."
   (interactive)
-  (jcs-move-to-backward-a-char "(")
-  )
+  (jcs-move-to-backward-a-char "("))
 
 ;;;------------------------------------------------
 ;;; Close Parenthesis
@@ -367,15 +354,13 @@
 (defun jcs-move-forward-close-paren ()
   "Move forward to a close parenthesis."
   (interactive)
-  (jcs-move-to-forward-a-char ")")
-  )
+  (jcs-move-to-forward-a-char ")"))
 
 ;;;###autoload
 (defun jcs-move-backward-close-paren ()
   "Move forward to a close parenthesis."
   (interactive)
-  (jcs-move-to-backward-a-char ")")
-  )
+  (jcs-move-to-backward-a-char ")"))
 
 ;;;------------------------------------------------
 ;;; Open Sqr Parenthesis
@@ -384,15 +369,13 @@
 (defun jcs-move-forward-open-sqrParen ()
   "Move forward to a open sqr parenthesis."
   (interactive)
-  (jcs-move-to-forward-a-char "[[]")
-  )
+  (jcs-move-to-forward-a-char "[[]"))
 
 ;;;###autoload
 (defun jcs-move-backward-open-sqrParen ()
   "Move forward to a open sqr parenthesis."
   (interactive)
-  (jcs-move-to-backward-a-char "[[]")
-  )
+  (jcs-move-to-backward-a-char "[[]"))
 
 ;;;------------------------------------------------
 ;;; Close Sqr Parenthesis
@@ -401,15 +384,13 @@
 (defun jcs-move-forward-close-sqrParen ()
   "Move forward to a close sqr parenthesis."
   (interactive)
-  (jcs-move-to-forward-a-char "]")
-  )
+  (jcs-move-to-forward-a-char "]"))
 
 ;;;###autoload
 (defun jcs-move-backward-close-sqrParen ()
   "Move forward to a close sqr parenthesis."
   (interactive)
-  (jcs-move-to-backward-a-char "]")
-  )
+  (jcs-move-to-backward-a-char "]"))
 
 ;;;------------------------------------------------
 ;;; Open Curly Parenthesis
@@ -418,15 +399,13 @@
 (defun jcs-move-forward-open-curlyParen ()
   "Move forward to a open curly parenthesis."
   (interactive)
-  (jcs-move-to-forward-a-char "{")
-  )
+  (jcs-move-to-forward-a-char "{"))
 
 ;;;###autoload
 (defun jcs-move-backward-open-curlyParen ()
   "Move forward to a open curly parenthesis."
   (interactive)
-  (jcs-move-to-backward-a-char "{")
-  )
+  (jcs-move-to-backward-a-char "{"))
 
 ;;;------------------------------------------------
 ;;; Close Curly Parenthesis
@@ -435,15 +414,13 @@
 (defun jcs-move-forward-close-curlyParen ()
   "Move forward to a close curly parenthesis."
   (interactive)
-  (jcs-move-to-forward-a-char "}")
-  )
+  (jcs-move-to-forward-a-char "}"))
 
 ;;;###autoload
 (defun jcs-move-backward-close-curlyParen ()
   "Move forward to a close curly parenthesis."
   (interactive)
-  (jcs-move-to-backward-a-char "}")
-  )
+  (jcs-move-to-backward-a-char "}"))
 
 ;;;
 ;; URL(jenchieh): https://www.emacswiki.org/emacs/WindowNavigation
