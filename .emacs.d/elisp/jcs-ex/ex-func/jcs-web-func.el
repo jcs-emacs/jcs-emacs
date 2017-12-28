@@ -185,6 +185,7 @@ once to the whole document. For `web-mode'."
   ;; of all the windows on the frame, except for the value of
   ;; point in the current buffer.
   ;;
+  ;; TOPIC: What does “buffer's restrictions” mean in save-restriction?
   ;; SOURCE: https://stackoverflow.com/questions/11596010/what-does-buffers-restrictions-mean-in-save-restriction
   ;;
   (save-excursion
