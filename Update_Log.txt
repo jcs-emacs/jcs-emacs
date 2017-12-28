@@ -8,6 +8,11 @@
 
 
 2017-12-26
+* Make percise to shell toggle function. (jcs-emacs-init)
+* Add find file hook. (jcs-emacs-init)
+* Add buffer menu functions. (jcs-emacs-init)
+
+2017-12-26
 * Add isearch at point forward and backward functionalities. (jcs-emacs-init)
 * Enable auto complete mode in nasm mode as default. (jcs-emacs-init)
 * Change CMake bindings work like Python mode key bindings or 
