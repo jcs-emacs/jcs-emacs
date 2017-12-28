@@ -56,15 +56,13 @@
   "Shell Command prompt."
   (interactive)
 
-  (when (= (length (window-list)) 2)
+  (when (not (get-buffer-process "*shell*"))
     (split-window-below)
     (switch-to-buffer-other-window "*shell*")
     (shell)
 
     ;; active truncate line as default for shell window.
-    (toggle-truncate-lines)
-    )
-  )
+    (toggle-truncate-lines)))
 
 ;;---------------------------------------------
 ;; Hide the shell window.
@@ -78,16 +76,12 @@
   (jcs-jump-to-window "*shell*")
 
   ;; kill the process before closing the frame.
-  (if (get-buffer-process "*shell*")
-      (progn
-        (kill-process)
-        (erase-buffer)
-        )
-    )
+  (when (get-buffer-process "*shell*")
+    (kill-process)
+    (erase-buffer))
 
   ;; kill the frame.
-  (delete-window)
-  )
+  (delete-window))
 
 
 ;;------------------------------------------------------------------------------------------------------
