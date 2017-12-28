@@ -487,7 +487,6 @@ visible"
            buffers)
           ))
 
-
 ;;;###autoload
 (defun not-visible-buffers (buffers)
   "given a list of buffers, return buffers which are not currently
@@ -510,6 +509,109 @@ SOURCE(jenchieh): http://stackoverflow.com/questions/12186713/show-all-open-buff
        (push (window-buffer window) buffers)) t t)
     buffers))
 
+(defun jcs-in-window-list (buf)
+  "Check if buffer open in window list.
+
+buf : buffer name. (string)
+
+True: return name.
+False: return nil."
+  (get-buffer-window-list buf))
+
+;;----------------------------------------------
+;; Kill Buffer
+;;----------------------------------------------
+
+(defun jcs-kill-this-buffer ()
+  "Kill this buffer."
+  (interactive)
+
+  (kill-this-buffer)
+
+  ;;;
+  ;; `save-current-buffer' Record which buffer is current; execute
+  ;; BODY; make that buffer current.
+  ;;
+  ;; `save-excursion' Save point, mark, and current buffer;
+  ;; execute BODY; restore those things.
+  ;;
+  ;; `save-match-data' Execute the BODY forms, restoring the global
+  ;; value of the match data.
+  ;;
+  ;; `save-restriction' Execute BODY, saving and restoring current
+  ;; buffer's restrictions.
+  ;;
+  ;; `save-selected-window' Execute BODY, then select the
+  ;; previously selected window.
+  ;;
+  ;; `save-window-excursion' Execute BODY, then restore previous
+  ;; window configuration.
+  ;;
+  ;; TOPIC: save-excursion doesn't restore the currently visible buffer?
+  ;; SOURCE: https://emacs.stackexchange.com/questions/24133/save-excursion-doesnt-restore-the-currently-visible-buffer
+  ;;
+  (save-selected-window
+    (ignore-errors
+      (jcs-jump-to-window "*Buffer List*"))
+      (when (jcs-is-current-major-mode-p "Buffer-menu-mode")
+        (jcs-buffer-menu)))
+
+  ;; If still in the buffer menu, try switch to the
+  ;; previous buffer
+  (when (jcs-is-current-major-mode-p "Buffer-menu-mode")
+    (switch-to-previous-buffer))
+  )
+
+(defun jcs-buffer-menu ()
+  "Open Buffer Menu."
+  (interactive)
+
+  ;; NOTE(jenchieh): even you reopen the `buffer-menu'
+  ;; this will not sort.
+  (buffer-menu)
+
+  ;; Sort it?
+  ;;(jcs-buffer-menu-sort)
+  )
+
+;; TOPIC(jenchieh): BufferMenuPlus
+;; URL(jenchieh): https://www.emacswiki.org/emacs/BufferMenuPlus
+;; Sorted by (1) visit, (2) buffer, (3) size, (4) time, (5) mode, (6) file. More
+(defun jcs-buffer-menu-sort-by-visit ()
+  "Sort the Buffer Menu List by visit."
+  (interactive)
+  (Buffer-menu-sort 1)
+  (beginning-of-buffer))
+
+(defun jcs-buffer-menu-sort-by-buffer ()
+  "Sort the Buffer Menu List by buffer."
+  (interactive)
+  (Buffer-menu-sort 2)
+  (beginning-of-buffer))
+
+(defun jcs-buffer-menu-sort-by-size ()
+  "Sort the Buffer Menu List by size."
+  (interactive)
+  (Buffer-menu-sort 3)
+  (beginning-of-buffer))
+
+(defun jcs-buffer-menu-sort-by-time ()
+  "Sort the Buffer Menu List by time."
+  (interactive)
+  (Buffer-menu-sort 4)
+  (beginning-of-buffer))
+
+(defun jcs-buffer-menu-sort-by-mode ()
+  "Sort the Buffer Menu List by mode."
+  (interactive)
+  (Buffer-menu-sort 5)
+  (beginning-of-buffer))
+
+(defun jcs-buffer-menu-sort-by-file ()
+  "Sort the Buffer Menu List by file name."
+  (interactive)
+  (Buffer-menu-sort 6)
+  (beginning-of-buffer))
 
 ;;;###autoload
 (defun jcs-maybe-kill-this-buffer ()
@@ -528,24 +630,23 @@ SOURCE(jenchieh): https://emacs.stackexchange.com/questions/2888/kill-buffer-whe
   ;; NOTE(jenchieh): new line in common lisp.
   ;;(terpri)
 
-  (let (
-        (displayed-frame-count 0)
-        )
-    (dolist (buf  (buffer-in-window-list))
+  (let ((displayed-frame-count 0))
+    (dolist (buf (buffer-in-window-list))
       (ignore-errors
         (if (eq buf current-file-buffer)
             ;; increment plus 1
             (setq displayed-frame-count (+ displayed-frame-count 1))
-          )
-        )
-      )
+          )))
 
-    (if (>= displayed-frame-count 2)
+    (if (or (>= displayed-frame-count 2)
+            ;; NOTE(jenchieh): If you don't want `*Buffer-List*'
+            ;; window open in at least two window and get killed
+            ;; at the same time. Enable the line under.
+            ;;(jcs-is-current-major-mode-p "Buffer-menu-mode")
+            )
         (switch-to-previous-buffer)
-      (kill-this-buffer)
-      )
-    )
-  )
+      (jcs-kill-this-buffer))
+    ))
 
 ;;----------------------------------------------
 ;; Search/Kill word capital.
