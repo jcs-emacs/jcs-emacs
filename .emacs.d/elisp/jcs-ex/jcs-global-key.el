@@ -103,7 +103,6 @@
 
 ;; Buffers
 (define-key global-map "\er" 'revert-buffer)
-(define-key global-map "\ek" 'kill-this-buffer)
 (define-key global-map "\es" 'save-buffer)
 
 (define-key global-map "\t" 'dabbrev-expand)
@@ -215,7 +214,7 @@
 (define-key global-map "\eq" 'jcs-other-window-prev)
 
 ;;; Buffer Menu
-(define-key global-map "\em" 'buffer-menu)
+(define-key global-map "\em" 'jcs-buffer-menu)
 (define-key global-map "\eM" 'buffer-menu-other-window)
 
 ;;; Run
@@ -249,7 +248,7 @@
 
 ;;; File editing
 (define-key global-map "\ek" 'jcs-maybe-kill-this-buffer)
-(define-key global-map "\eK" 'kill-this-buffer)
+(define-key global-map "\eK" 'jcs-kill-this-buffer)
 
 ;;; Process
 (define-key global-map "\ep" 'list-processes)
@@ -280,6 +279,14 @@
 ;;; Move Current Line Up or Down
 (define-key global-map [M-up] 'jcs-move-line-up)
 (define-key global-map [M-down] 'jcs-move-line-down)
+
+;;; Buffer List
+(define-key Buffer-menu-mode-map "1" 'jcs-buffer-menu-sort-by-visit)
+(define-key Buffer-menu-mode-map "2" 'jcs-buffer-menu-sort-by-buffer)
+(define-key Buffer-menu-mode-map "3" 'jcs-buffer-menu-sort-by-size)
+(define-key Buffer-menu-mode-map "4" 'jcs-buffer-menu-sort-by-time)
+(define-key Buffer-menu-mode-map "5" 'jcs-buffer-menu-sort-by-mode)
+(define-key Buffer-menu-mode-map "6" 'jcs-buffer-menu-sort-by-file)
 
 ;;;
 ;; minibuffer
