@@ -7,7 +7,10 @@
 # ========================================================================
 
 
-2017-12-26
+2017-12-29
+* Refactor jcs-edit file to jcs-buffer-menu file. (jcs-emacs-init)
+
+2017-12-28
 * Make percise to shell toggle function. (jcs-emacs-init)
 * Add find file hook. (jcs-emacs-init)
 * Add buffer menu functions. (jcs-emacs-init)
