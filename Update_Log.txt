@@ -14,6 +14,7 @@
 * Make percise to shell toggle function. (jcs-emacs-init)
 * Add find file hook. (jcs-emacs-init)
 * Add buffer menu functions. (jcs-emacs-init)
+* Make history/backup. (jcs-emacs-init)
 
 2017-12-26
 * Add isearch at point forward and backward functionalities. (jcs-emacs-init)
