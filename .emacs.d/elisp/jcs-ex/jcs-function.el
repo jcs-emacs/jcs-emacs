@@ -279,6 +279,7 @@ own preferences."
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-minimap.el")
 
 ;;; Editing
+(load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-buffer-menu.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-edit.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-comment.el")
 
