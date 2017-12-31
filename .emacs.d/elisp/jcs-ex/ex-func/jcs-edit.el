@@ -44,6 +44,7 @@
   (kill-line 1)
   (setq kill-ring (cdr kill-ring)))
 
+;;;###autoload
 (defun jcs-backward-kill-line (arg)
   "Kill ARG lines backward, but does not put it in the `kill-ring'."
   (interactive "p")
@@ -88,6 +89,16 @@ This command does not push text to `kill-ring'."
   (if (use-region-p)
       (delete-region (region-beginning) (region-end))
     (jcs-delete-word (- arg))))
+
+;;;###autoload
+(defun jcs-forward-delete-word (arg)
+  "Delete characters forward until encountering the beginning of a word.
+With argument, do this that many times.
+This command does not push text to `kill-ring'."
+  (interactive "p")
+  (if (use-region-p)
+      (delete-region (region-beginning) (region-end))
+    (jcs-delete-word (+ arg))))
 
 ;;;###autoload
 (defun duplicate-line ()
@@ -295,6 +306,28 @@ SOURCE: http://emacs.stackexchange.com/questions/628/cycle-between-windows-in-al
           (narrow-to-region (1+ end) (point-max))
           (delete-trailing-whitespace))))))
 
+;;----------------------------------------------
+;; Move Current Line Up or Down
+;;
+;; SOURCE(jenchieh): http://emacsredux.com/blog/2013/04/02/move-current-line-up-or-down/
+;;----------------------------------------------
+
+;;;###autoload
+(defun jcs-move-line-up ()
+  "Move up the current line."
+  (interactive)
+  (transpose-lines 1)
+  (forward-line -2)
+  (indent-according-to-mode))
+
+;;;###autoload
+(defun jcs-move-line-down ()
+  "Move down the current line."
+  (interactive)
+  (forward-line 1)
+  (transpose-lines 1)
+  (forward-line -1)
+  (indent-according-to-mode))
 
 ;;=================================
 ;; JenChieh Save Buffer
@@ -553,8 +586,8 @@ False: return nil."
   (save-selected-window
     (ignore-errors
       (jcs-jump-to-window "*Buffer List*"))
-      (when (jcs-is-current-major-mode-p "Buffer-menu-mode")
-        (jcs-buffer-menu)))
+    (when (jcs-is-current-major-mode-p "Buffer-menu-mode")
+      (jcs-buffer-menu)))
 
   ;; If still in the buffer menu, try switch to the
   ;; previous buffer
@@ -615,24 +648,17 @@ SOURCE(jenchieh): https://emacs.stackexchange.com/questions/2888/kill-buffer-whe
   "Backward delete the word unitl the word is capital."
   (interactive)
 
-  (setq current-char (char-before))
-  (setq current-char-string (string current-char))
-  (setq current-char-char (string-to-char current-char-string))
+  (when (eq check-first-char nil)
+    ;; check the first character a character
+    (when (wordp (jcs-get-current-char-byte))
+      (setq first-char-is-char t))
 
-  (if (eq check-first-char nil)
-      (progn
-        ;; check the first character a character
-        (if (wordp current-char-char)
-            (setq first-char-is-char t))
-
-        ;; check the first character mission complete.
-        (setq check-first-char t)
-        )
-    )
+    ;; check the first character mission complete.
+    (setq check-first-char t))
 
   ;; found the first character!
-  (if (wordp current-char-char)
-      (setq found-first-char t))
+  (when (wordp (jcs-get-current-char-byte))
+    (setq found-first-char t))
 
   (if (eq found-first-char nil)
       (progn
@@ -644,13 +670,13 @@ SOURCE(jenchieh): https://emacs.stackexchange.com/questions/2888/kill-buffer-whe
             (jcs-backward-kill-word-capital)
             )))
     (progn
-      (if (not (wordp current-char-char))
+      (if (not (wordp (jcs-get-current-char-byte)))
           (progn
             ;; NOTE: Here is end of the recursive
             ;; function loop...
             )
         (progn
-          (if (uppercasep current-char-char)
+          (if (uppercasep (jcs-get-current-char-byte))
               (progn
                 ;; NOTE: Here is end of the recursive
                 ;; function loop...
@@ -671,54 +697,49 @@ SOURCE(jenchieh): https://emacs.stackexchange.com/questions/2888/kill-buffer-whe
   "Forward delete the word unitl the word is capital."
   (interactive)
 
-  (setq current-char (char-before))
-  (setq current-char-string (string current-char))
-  (setq current-char-char (string-to-char current-char-string))
+  (when (eq check-first-char nil)
+    (backward-delete-char -1)
+    ;; check the first character a character
+    (when (wordp (jcs-get-current-char-byte))
+      (setq first-char-is-char t))
 
-  (if (eq check-first-char nil)
-      (progn
-        ;; check the first character a character
-        (if (wordp current-char-char)
-            (progn
-              (forward-char 1)
-              (setq first-char-is-char t)))
+    ;; check the first character mission complete.
+    (setq check-first-char t))
 
-        ;; check the first character mission complete.
-        (setq check-first-char t)
-        )
-    )
-
-  (setq current-char (char-before))
-  (setq current-char-string (string current-char))
-  (setq current-char-char (string-to-char current-char-string))
+  (forward-char 1)
 
   ;; found the first character!
-  (if (wordp current-char-char)
-      (setq found-first-char t))
+  (when (wordp (jcs-get-current-char-byte))
+    (setq found-first-char t))
 
   (if (eq found-first-char nil)
       (progn
-        (delete-forward-char 1)
-        (jcs-forward-kill-word-capital)
-        )
-
+        (if (eq first-char-is-char t)
+            (progn
+              (backward-delete-char 1))
+          (progn
+            (backward-delete-char 1)
+            (jcs-forward-kill-word-capital)
+            )))
     (progn
-      (if (not (wordp current-char-char))
+      (if (or (not (wordp (jcs-get-current-char-byte)))
+              (is-end-of-line-p))
           (progn
             ;; NOTE: Here is end of the recursive
             ;; function loop...
-            (delete-backward-char 1)
+            (backward-delete-char 1)
             )
         (progn
-          (if (uppercasep current-char-char)
+          (if (uppercasep (jcs-get-current-char-byte))
               (progn
                 ;; NOTE: Here is end of the recursive
                 ;; function loop...
+                (forward-char -1)
                 )
             (progn
-              (delete-forward-char 1)
-              (jcs-forward-kill-word-capital)
-              ))))))
+              (backward-delete-char 1)
+              (jcs-forward-kill-word-capital)))
+          ))))
 
   ;; reset triggers
   (setq first-char-is-char nil)
@@ -732,24 +753,17 @@ SOURCE(jenchieh): https://emacs.stackexchange.com/questions/2888/kill-buffer-whe
 to the point."
   (interactive)
 
-  (setq current-char (char-before))
-  (setq current-char-string (string current-char))
-  (setq current-char-char (string-to-char current-char-string))
+  (when (eq check-first-char nil)
+    ;; check the first character a character
+    (when (wordp (jcs-get-current-char-byte))
+      (setq first-char-is-char t))
 
-  (if (eq check-first-char nil)
-      (progn
-        ;; check the first character a character
-        (if (wordp current-char-char)
-            (setq first-char-is-char t))
-
-        ;; check the first character mission complete.
-        (setq check-first-char t)
-        )
-    )
+    ;; check the first character mission complete.
+    (setq check-first-char t))
 
   ;; found the first character!
-  (if (wordp current-char-char)
-      (setq found-first-char t))
+  (when (wordp (jcs-get-current-char-byte))
+    (setq found-first-char t))
 
   (if (eq found-first-char nil)
       (progn
@@ -759,17 +773,15 @@ to the point."
           (progn
             (backward-char 1)
             (jcs-backward-capital-char)
-            ))
-
-        )
+            )))
     (progn
-      (if (not (wordp current-char-char))
+      (if (not (wordp (jcs-get-current-char-byte)))
           (progn
             ;; NOTE: Here is end of the recursive
             ;; function loop...
             )
         (progn
-          (if (uppercasep current-char-char)
+          (if (uppercasep (jcs-get-current-char-byte))
               (progn
                 ;; NOTE: Here is end of the recursive
                 ;; function loop...
@@ -798,32 +810,21 @@ the point."
 
   ;; If the point is at the first character, we will get the error.
   ;; So move forward a character then check.
-  (if (= beginningBufferPoint (point))
-      (forward-char 1))
+  (when (= beginningBufferPoint (point))
+    (forward-char 1))
 
-  (setq current-char (char-before))
-  (setq current-char-string (string current-char))
-  (setq current-char-char (string-to-char current-char-string))
+  (when (eq check-first-char nil)
+    ;; check the first character a character
+    (when (wordp (jcs-get-current-char-byte))
+      (forward-char 1)
+      (setq first-char-is-char t))
 
-  (if (eq check-first-char nil)
-      (progn
-        ;; check the first character a character
-        (if (wordp current-char-char)
-            (progn
-              (forward-char 1)
-              (setq first-char-is-char t)))
-
-        ;; check the first character mission complete.
-        (setq check-first-char t)
-        ))
-
-  (setq current-char (char-before))
-  (setq current-char-string (string current-char))
-  (setq current-char-char (string-to-char current-char-string))
+    ;; check the first character mission complete.
+    (setq check-first-char t))
 
   ;; found the first character!
-  (if (wordp current-char-char)
-      (setq found-first-char t))
+  (when (wordp (jcs-get-current-char-byte))
+    (setq found-first-char t))
 
   (if (eq found-first-char nil)
       (progn
@@ -831,14 +832,14 @@ the point."
         (jcs-forward-capital-char))
 
     (progn
-      (if (not (wordp current-char-char))
+      (if (not (wordp (jcs-get-current-char-byte)))
           (progn
             ;; NOTE: Here is end of the recursive
             ;; function loop...
             (backward-char 1)
             )
         (progn
-          (if (uppercasep current-char-char)
+          (if (uppercasep (jcs-get-current-char-byte))
               (progn
                 ;; NOTE: Here is end of the recursive
                 ;; function loop...
@@ -854,38 +855,45 @@ the point."
   (setq found-first-char nil)
   )
 
-(defun jcs-search-forward-at-point ()
-  "Search the word at point forward."
-  (interactive)
-  (isearch-forward-symbol-at-point))
-
-(defun jcs-search-backword-at-point ()
-  "Search the word at point backward."
-  (interactive)
-  (isearch-forward-symbol-at-point))
-
 ;;----------------------------------------------
-;; Move Current Line Up or Down
-;;
-;; SOURCE(jenchieh): http://emacsredux.com/blog/2013/04/02/move-current-line-up-or-down/
+;; Delete Repeatedly
 ;;----------------------------------------------
 
 ;;;###autoload
-(defun jcs-move-line-up ()
-  "Move up the current line."
+(defun jcs-delete-backward-current-char-repeat ()
+  "Delete the current character repeatedly, util it meet the \
+character is not the same as current char.  (Backward)"
   (interactive)
-  (transpose-lines 1)
-  (forward-line -2)
-  (indent-according-to-mode))
+  (let ((temp-cur-char (jcs-get-current-char-string)))
+    (jcs-delete-char-repeat temp-cur-char t)))
 
 ;;;###autoload
-(defun jcs-move-line-down ()
-  "Move down the current line."
+(defun jcs-delete-forward-current-char-repeat ()
+  "Delete the current character repeatedly, util it meet the \
+character is not the same as current char.  (Forward)"
   (interactive)
-  (forward-line 1)
-  (transpose-lines 1)
-  (forward-line -1)
-  (indent-according-to-mode))
+  (let ((temp-cur-char (jcs-get-current-char-string)))
+    (jcs-delete-char-repeat temp-cur-char nil)))
+
+;;;###autoload
+(defun jcs-delete-char-repeat (char reverse)
+  "Kill the character repeatedly forward.
+CHAR : character to check to delete.
+REVERSE : t forward, nil backward."
+  (let ((do-kill-char nil))
+    (save-excursion
+      (if (equal reverse t)
+          (backward-char)
+        (forward-char))
+
+      (when (current-char-equal-p char)
+        (setq do-kill-char t)))
+
+    (when (equal do-kill-char t)
+      (if (equal reverse t)
+          (delete-char -1)
+        (delete-char 1))
+      (jcs-delete-char-repeat char reverse))))
 
 
 ;;------------------------------------------------------------------------------------------------------
