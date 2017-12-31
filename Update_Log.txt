@@ -12,6 +12,7 @@
 * Add python like space keybindings to nasm mode. (jcs-emacs-init)
 * Modefied key bindings compatible with search, captial navigation 
  and kill navigation. (jcs-emacs-init)
+* Add nasm func file for nasm mode functionalities. (jcs-emacs-init)
 
 2017-12-29
 * Refactor jcs-edit file to jcs-buffer-menu file. (jcs-emacs-init)
