@@ -131,26 +131,24 @@
 
 (define-key global-map "\C-p" 'package-list-packages)
 
-(define-key global-map [home] 'back-to-indentation-or-beginning)
-(define-key global-map (kbd "C-<backspace>") 'jcs-backward-delete-word)
-(define-key global-map (kbd "C-M-<backspace>") 'jcs-backward-kill-word-capital)
-(define-key global-map (kbd "C-M-<left>") 'jcs-backward-capital-char)
-(define-key global-map (kbd "C-M-<right>") 'jcs-forward-capital-char)
-
 (define-key global-map (kbd "C-<return>") 'goto-address-at-point)
 
-;;; Admin
-(define-key global-map "\C-x\C-v" 'jcs-reload-emacs)
+;;; Kill Word
+(define-key global-map (kbd "C-<backspace>") 'jcs-backward-delete-word)
+(define-key global-map (kbd "C-S-<backspace>") 'jcs-forward-delete-word)
+(define-key global-map (kbd "M-<backspace>") 'jcs-backward-kill-word-capital)
+(define-key global-map (kbd "M-S-<backspace>") 'jcs-forward-kill-word-capital)
 
-;;; Undo and Redo
-(define-key global-map "\C-a" 'mark-whole-buffer)
-(define-key global-map "\C-z" 'undo)
-;;(define-key global-map "\C-y" 'redo)
+(define-key global-map (kbd "C-r DEL") 'jcs-delete-backward-current-char-repeat)
+(define-key global-map (kbd "C-r S-<backspace>") 'jcs-delete-forward-current-char-repeat)
 
-;;; Text Scale.
-(define-key global-map "\e=" 'text-scale-increase)
-(define-key global-map "\e-" 'text-scale-decrease)
-(define-key auto-highlight-symbol-mode-map "\e-" 'text-scale-decrease)
+;;; Navigate Word
+(define-key global-map [home] 'back-to-indentation-or-beginning)
+
+(define-key global-map (kbd "M-<left>") 'jcs-backward-capital-char)
+(define-key global-map (kbd "M-<right>") 'jcs-forward-capital-char)
+(define-key auto-highlight-symbol-mode-map (kbd "M-<left>") 'nil)
+(define-key auto-highlight-symbol-mode-map (kbd "M-<right>") 'nil)
 
 ;;; Search Word (SEE: `jcs-mode-el' will have detail mode config.)ee
 ;;(define-key global-map "\C-f" 'helm-do-ag-this-file)
@@ -164,6 +162,19 @@
 
 (define-key auto-highlight-symbol-mode-map (kbd "M-S-<right>") 'jcs-search-forward-at-point)
 (define-key auto-highlight-symbol-mode-map (kbd "M-S-<left>") 'jcs-search-backword-at-point)
+
+;;; Admin
+(define-key global-map "\C-x\C-v" 'jcs-reload-emacs)
+
+;;; Undo and Redo
+(define-key global-map "\C-a" 'mark-whole-buffer)
+(define-key global-map "\C-z" 'undo)
+;;(define-key global-map "\C-y" 'redo)
+
+;;; Text Scale.
+(define-key global-map "\e=" 'text-scale-increase)
+(define-key global-map "\e-" 'text-scale-decrease)
+(define-key auto-highlight-symbol-mode-map "\e-" 'text-scale-decrease)
 
 ;;; Mode toggle
 ;;(define-key global-map "\e`" 'jcs-insert-command-mode-toggle)
