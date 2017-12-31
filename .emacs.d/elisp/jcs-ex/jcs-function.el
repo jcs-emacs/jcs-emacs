@@ -293,6 +293,7 @@ own preferences."
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-cs-func.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-cmake-func.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-lua-func.el")
+(load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-nasm-func.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-python-func.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-web-func.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-re-builder-func.el")
