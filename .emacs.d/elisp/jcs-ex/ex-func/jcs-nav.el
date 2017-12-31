@@ -439,5 +439,20 @@
       (select-window (car window-of-buffer)))))
 
 
+;;----------------------------------------------
+;; Search
+;;----------------------------------------------
+
+(defun jcs-search-forward-at-point ()
+  "Search the word at point forward."
+  (interactive)
+  (isearch-forward-symbol-at-point))
+
+(defun jcs-search-backword-at-point ()
+  "Search the word at point backward."
+  (interactive)
+  (isearch-forward-symbol-at-point))
+
+
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-nav.el file
