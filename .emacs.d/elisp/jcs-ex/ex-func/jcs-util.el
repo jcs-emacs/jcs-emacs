@@ -240,22 +240,21 @@ the current line.
 @return { boolean } : true, infront of first character. false,
 vice versa.
 "
-  (setq isInfrontOfFirstChar t)
+  (let ((isInfrontOfFirstChar t))
+    (save-excursion
+      (ignore-errors
+        (setq pointToCheck (point))
+        (beginning-of-line)
 
-  (save-excursion
-    (setq pointToCheck (point))
-    (beginning-of-line)
+        (when (not (current-line-totally-empty-p))
+          (forward-char 1))
 
-    (if (not (current-line-totally-empty-p))
-        (forward-char 1))
+        (while (<= (point) pointToCheck)
+          (if (not (current-whitespacep))
+              (setq isInfrontOfFirstChar nil))
+          (forward-char 1))))
 
-    (while (<= (point) pointToCheck)
-      (if (not (current-whitespacep))
-          (setq isInfrontOfFirstChar nil))
-      (forward-char 1))
-    )
-
-  (eq isInfrontOfFirstChar t))
+    (eq isInfrontOfFirstChar t)))
 
 ;;;###autoload
 (defun safe-forward-char ()
