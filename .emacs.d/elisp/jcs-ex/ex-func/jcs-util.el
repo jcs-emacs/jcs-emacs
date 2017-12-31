@@ -87,19 +87,23 @@
 
 (defun jcs-current-char-a-wordp ()
   "Check if current character a usual letter."
-  (setq current-char (char-before))
-  (setq current-char-string (string current-char))
-  (setq current-char-char (string-to-char current-char-string))
-  (wordp current-char-char)
-  )
+  (let ((current-char nil)
+        (current-char-string nil)
+        (current-char-char nil))
+    (setq current-char (char-before))
+    (setq current-char-string (string current-char))
+    (setq current-char-char (string-to-char current-char-string))
+    (wordp current-char-char)))
 
 (defun jcs-current-char-uppercasep()
   "Check if current character a uppercase character?"
-  (setq current-char (char-before))
-  (setq current-char-string (string current-char))
-  (setq current-char-char (string-to-char current-char-string))
-  (uppercasep current-char-char)
-  )
+  (let ((current-char nil)
+        (current-char-string nil)
+        (current-char-char nil))
+    (setq current-char (char-before))
+    (setq current-char-string (string current-char))
+    (setq current-char-char (string-to-char current-char-string))
+    (uppercasep current-char-char)))
 
 (defun jcs-current-char-lowercasep ()
   "Check if current character a lowercase character?"
@@ -107,10 +111,13 @@
 
 (defun current-whitespacep ()
   "Check if current character a whitespace character?"
-  (setq current-char (char-before))
-  (setq current-char-string (string current-char))
-  (setq current-char-char (string-to-char current-char-string))
-  (whitespacep current-char-char))
+  (let ((current-char nil)
+        (current-char-string nil)
+        (current-char-char nil))
+    (setq current-char (char-before))
+    (setq current-char-string (string current-char))
+    (setq current-char-char (string-to-char current-char-string))
+    (whitespacep current-char-char)))
 
 (defun current-char-equal-p (c)
   "Check the current character equal to 'C'."
@@ -119,16 +126,21 @@
 
 (defun jcs-get-current-char-byte ()
   "Get the current character as the 'byte'."
-  (setq current-char (char-before))
-  (setq current-char-string (string current-char))
-  (setq current-char-char (string-to-char current-char-string))
-  (current-char-char))
+  (let ((current-char nil)
+        (current-char-string nil)
+        (current-char-char nil))
+    (setq current-char (char-before))
+    (setq current-char-string (string current-char))
+    (setq current-char-char (string-to-char current-char-string))
+    current-char-char))
 
 (defun jcs-get-current-char-string ()
   "Get the current character as the 'string'."
-  (setq current-char (char-before))
-  (setq current-char-string (string current-char))
-  (current-char-string))
+  (let ((current-char nil)
+        (current-char-string nil))
+    (setq current-char (char-before))
+    (setq current-char-string (string current-char))
+    current-char-string))
 
 ;;---------------------------------------------
 ;; Word
@@ -144,14 +156,14 @@
 
 ;;;###autoload
 (defun current-line-empty-p ()
-  "Current line empty, but accept spaces in there. (not absolute)"
+  "Current line empty, but accept spaces in there.  (not absolute)."
   (save-excursion
     (beginning-of-line)
     (looking-at "[[:space:]]*$")))
 
 ;;;###autoload
 (defun current-line-totally-empty-p ()
-  "Current line empty with no spaces in there. (absolute)"
+  "Current line empty with no spaces in there.  (absolute)."
   (and (is-beginning-of-line-p)
        (is-end-of-line-p)))
 
@@ -159,47 +171,55 @@
 (defun is-end-of-line-p ()
   "Is at the end of line?"
   (save-excursion
-    (setq currentPoint (point))
-    (end-of-line)
-    (setq endLinePoint (point)))
-  (= endLinePoint currentPoint))
+    (let ((currentPoint nil)
+          (endLinePoint nil))
+      (setq currentPoint (point))
+      (end-of-line)
+      (setq endLinePoint (point))
+      (= endLinePoint currentPoint))))
 
 ;;;###autoload
 (defun is-end-of-buffer-p ()
   "Is at the end of buffer?"
   (save-excursion
-    (setq currentPoint (point))
-    (end-of-buffer)
-    (setq endBufferPoint (point)))
-  (= endBufferPoint currentPoint))
+    (let ((currentPoint nil)
+          (endBufferPoint nil))
+      (setq currentPoint (point))
+      (goto-char (point-max))
+      (setq endBufferPoint (point))
+      (= endBufferPoint currentPoint))))
 
 ;;;###autoload
 (defun is-beginning-of-line-p ()
   "Is at the beginning of line?"
   (save-excursion
-    (setq currentPoint (point))
-    (beginning-of-line)
-    (setq beginLinePoint (point)))
-  (= beginLinePoint currentPoint))
+    (let ((currentPoint nil)
+          (beginLinePoint nil))
+      (setq currentPoint (point))
+      (beginning-of-line)
+      (setq beginLinePoint (point))
+      (= beginLinePoint currentPoint))))
 
 ;;;###autoload
 (defun is-beginning-of-buffer-p ()
   "Is at the beginning of buffer?"
   (save-excursion
-    (setq currentPoint (point))
-    (beginning-of-buffer)
-    (setq beginBufferPoint (point)))
-  (= beginBufferPoint currentPoint))
+    (let ((currentPoint nil)
+          (beginBufferPoint nil))
+      (setq currentPoint (point))
+      (goto-char (point-min))
+      (setq beginBufferPoint (point))
+      (= beginBufferPoint currentPoint))))
 
 (defun is-current-file-empty-p ()
   "Check if the file a empty file."
   (and (is-beginning-of-buffer-p)
-       (is-end-of-buffer-p))
-  )
+       (is-end-of-buffer-p)))
 
 ;;;###autoload
 (defun is-current-line (line)
-  "Is current line number this line?"
+  "Is current line number this line?
+LINE : number to check if current line this line?"
   (= (string-to-number (format-mode-line "%l")) line))
 
 ;;;###autoload
