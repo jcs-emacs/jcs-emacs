@@ -18,48 +18,44 @@ ESC             Exit minibuffer and go to the top level.
 
 TAB             Cycles through completions for a word.
 
-ALT-B           Switch to buffer in the current window.
-ALT-SHIFT-B     Switch to buffer in the other window.
+M-B             Switch to buffer in the current window.
+M-S-B           Switch to buffer in the other window.
 
-ALT-F           Load file in the current window.
-ALT-SHIFT-F     Load file in the other window.
+M-F             Load file in the current window.
+M-S-F           Load file in the other window.
 
-ALT-S           Save the file in the current window.
-ALT-M           Looks for and executes a build.bat.
-ALT-R           Revert buffer.
+M-s             Save the file in the current window.
+M-m             Looks for and executes a build.bat.
 
-ALT-W           Switch to the other window. (Next)
-ALT-Q           Switch to the other window. (Prev)
-ALT-E           Aced window. (more advanced of the switch window functionality)
+M-w             Switch to the other window. (Next)
+M-q             Switch to the other window. (Prev)
+M-e             Aced window. (more advanced of the switch window functionality)
 
-ALT-C           Toggles between H file and CPP file in current window.
-ALT-SHIFT-C     Toggles between H file and CPP file in other window.
-
-ALT-K           Kills a buffer (ask to save it first if it's modified).
+M-K             Kills a buffer (ask to save it first if it's modified).
 
 C-arrows        Move cursor by larger increments (word, whitespace)
 
 C-SPACE         Sets the mark.
 C-TAB           Reindent block.
-C-Q             Copies the block.
-C-F             Pastes the block.
-C-W             Cuts the block.
-ALT-SHIFT-;     Pops back to the previous mark.
+C-q             Copies the block.
+C-f             Pastes the block.
+C-w             Cuts the block.
+M-S-;           Pops back to the previous mark.
 
-ALT-U           Undo
+M-u             Undo
 
-ALT-J           Jump to a function by name.
+M-j             Jump to a function by name.
 
 C-S             Start incremental search.
 C-S             Moves to next occurrence.
 C-R             Moves to previous occurrence.
 
-ALT-.           Reflow a comment.
+M-.             Reflow a comment.
 
-ALT-N           Go to the next error after a compile.
-ALT-SHIFT-N     Go to the previous error after a compile.
+M-b             Go to the next error after a compile.
+M-S-n           Go to the previous error after a compile.
 
-ALT-G           Goto line number.
+M-g             Goto line number.
 
 C-c d           duplicate the line to the next line.
 C-d             Kill the whole line.
@@ -75,15 +71,15 @@ C-<f5>          Run the program (run.linux/run.bat/run.mac)
 C-S-b           Build the program (build.linux/build.bat/build.mac)
 
 C-u anykey      insert 4 of that key
-ALT-I           insert 4 spaces
+M-i             insert 4 spaces
 C-m             jump to next line and indent if needed (depend on next line)
 
-ALT-k           Maybe kill the buffer? Check if the file in open
+M-k             Maybe kill the buffer? Check if the file in open
                 in other window. If there are buffer still exist,
                 do not kill the buffer. Just switch to the previous
                 buffer in the current frame. Otherwise just kill
                 the buffer.
-ALT-K           Kill the current file. (kill-this-buffer)
+M-K             Kill the current file, not maybe. (kill-this-buffer)
 
 C-c C-c         copy
 C-x C-x         cut
@@ -95,8 +91,8 @@ C-x C-f         Search pattern in project root.
 
 C-rr            Rename the whole text with the same name.
 C-rp            Replace pattern in project root.
-  C-xC-s          Save the all the buffer that changes in the 
-                  `ag' replace Menu.            
+C-xC-s          Save the all the buffer that changes in the 
+                `ag' replace Menu.            
 
 C-s             Save
 
@@ -104,30 +100,38 @@ C-/             comment-region
 C-?             uncomment-region
 
 C-p             package-list-packages
-ALT-=           text-scale-increase
-ALT--           text-scale-decrease
+M-=             text-scale-increase
+M--             text-scale-decrease
 
 C-k C-f         format select region
 C-k C-d         format current document
 C-S-f           format the region if region select else format the document.
 
-ALT-U           uppercase-word, if region do region
-ALT-D           downcase-word, if region do region
+M-U             uppercase-word, if region do region
+M-D             downcase-word, if region do region
 
 C-x-a           align all variables in the region if region selected, 
                 else align full document insteead.
 
-ALT-m           open buffer menu.
-ALT-M           open buffer menu in other window.
+M-m             open buffer menu.
+M-M             open buffer menu in other window.
 
-ALT-r           reload the file withou asking.
+M-r             reload the file withou asking.
 
 C-xr            rename current file.
 
-C-M-right       Jump to next capital letter.
-C-M-left        Jump to previous capital letter.
+M-right         Jump to next capital letter.
+M-left          Jump to previous capital letter.
 
-ALT-BACKSPACE   Kill until next capital letter appears.
+M-backspace     Kill until next capital letter appears, backward.
+M-S-backspace   Kill util next capital letter appears, forward.
+
+C-r DEL         Delete the same character at current cursor's 
+                position backward repeatedly util it meet different 
+                character.
+C-r S-DEL       Delete the same character at current cursor's 
+                position forward repeatedly util it meet different 
+                character.
 
 C-x C-v         Reload '.emacs' file in a proper way.
 
@@ -141,13 +145,16 @@ C-h h           Toggle window split between horizontal and
 				
 ALT-p           Open list of processes. (`list-processes')
 
-C-x g           Open magit interface.
-
 M-up            Move current line up.
 M-down          Move current line down.
 
 C-M-up          Scroll window up one line without moving cursor.
 C-M-down        Scroll window down one line without moving cursor.
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+* Magit
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+C-x g           Open magit interface.
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * Util
@@ -216,11 +223,11 @@ x 安裝packages(Execute packages)
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * C/C++ Mode
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-ALT-C           Toggles between H file and CPP file in current window.
+M-C             Toggles between H file and CPP file in current window.
 f12             the same as above
 
-ALT-SHIFT-C     Toggles between H file and CPP file in other window.
-ALT-f12         the same as above
+M-S-C           Toggles between H file and CPP file in other window.
+M-f12           the same as above
 
 f8              switch between header/source file on same window.
 S-f8            switch between header/source file on other window.
@@ -286,7 +293,7 @@ C-c C-s         In the mail buffer, send the message (message
                 -send).
 C-c C-c         In the mail buffer, send the message and bury
                 the buffer (message-send-and-exit).
-                
+         
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * Navigate File
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -303,8 +310,8 @@ ALT-'           Search backward next '. (single quotation mark)
 ALT-Shift-;     Search forward next ". (double quotation mark)
 ALT-Shift-'     Search backward next ". (double quotation mark)
 
-M-S-<right>     Search forward at point.
-M-S-<left>      Search backward at point.
+M-S-<right>     Search forward at current point.
+M-S-<left>      Search backward at current point.
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * Regular Expression
