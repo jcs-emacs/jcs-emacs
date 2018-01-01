@@ -79,6 +79,7 @@
 
   ;; Edit
   (define-key nasm-mode-map (kbd "SPC") 'jcs-py-space)
+  (define-key nasm-mode-map (kbd "<backspace>") 'jcs-py-backspace)
   )
 (add-hook 'nasm-mode-hook 'jcs-nasm-mode-hook)
 (add-to-list 'auto-mode-alist '("\\.asm?\\'" . nasm-mode))
