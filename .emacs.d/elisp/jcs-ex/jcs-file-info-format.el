@@ -383,9 +383,12 @@ script, etc."
   (insert "MAINOBJ := $(sort $(patsubst %.c,%.o,   \\\n")
   (insert "                  $(patsubst %.cpp,%.o, \\\n")
   (insert "                  $(patsubst %.asm,%.o, \\\n")
-  (insert "                  $(patsubst %.S,%.o, $(MAINSRC))))))\n")
+  (insert "                  $(patsubst %.S,%.o, \\\n")
+  (insert "                  $(patsubst %.s,%.o, $(MAINSRC)))))))\n")
   (insert "# asm object files\n")
-  (insert "ASMOBJS := $(sort $(patsubst %.asm,%.o, $(patsubst %.S,%.o, $(ASMSRC))))\n")
+  (insert "ASMOBJS := $(sort $(patsubst %.asm,%.o, \\\n")
+  (insert "                  $(patsubst %.S,%.o, \\\n")
+  (insert "                  $(patsubst %.s,%.o, $(ASMSRC)))))\n")
   (insert "# list of object files\n")
   (insert "OBJS    := $(sort $(patsubst %.c,%.o, $(patsubst %.cpp,%.o, $(GSRC))))\n")
   (insert "# .a object files\n")
@@ -403,7 +406,8 @@ script, etc."
 
 
   (insert "\n\n")
-  (insert ".PHONY : nop build buildc buildasm compile\n")
+  (insert ".PHONY : nop all compile link\n")
+  (insert ".PHONY : build buildc buildasm disasm\n")
   (insert ".PHONY : clean realclean\n")
   (insert ".PHONY : mount buildimg\n")
   (insert "\n")
@@ -411,29 +415,36 @@ script, etc."
   (insert "nop : \n")
   (insert "    @echo \"Default Test command...\"\n\n")
 
+  (insert "all : \n")
+  (insert "    @echo \"Default all command...\"\n\n")
+
   (insert "build : buildc buildasm\n\n")
 
   (insert "buildc : \n")
-  (insert "    $(CC) $(GSRC) $(MAINSRC) \\\n")
-  (insert "    $(C_FLAGS) \\\n")
-  (insert "    $(INCLUDE_FLAGS) $(INCLUDE_PATH) \\\n")
-  (insert "    $(A_LIBS) \\\n")
-  (insert "    $(SO_LIBS) \\\n")
-  (insert "    $(LD_FLAGS) $(A_LIB_PATH) \\\n")
+  (insert "    $(CC) $(GSRC) $(MAINSRC)              \\\n")
+  (insert "    $(C_FLAGS)                            \\\n")
+  (insert "    $(INCLUDE_FLAGS) $(INCLUDE_PATH)      \\\n")
+  (insert "    $(A_LIBS)                             \\\n")
+  (insert "    $(SO_LIBS)                            \\\n")
+  (insert "    $(LD_FLAGS) $(A_LIB_PATH)             \\\n")
   (insert "    $(OUTPUT_FLAGS) $(BIN_DIR)/$(BIN_NAME)\n\n")
-
-  (insert "buildasm : \n")
-  (insert "    $(CC) $(ASM_B_FLAGS) $(OUTPUT_FLAGS) $(BIN_DIR)/$(BIN_NAME) $(ASMOBJS)\n\n")
-
-  (insert "buildimg :\n")
-  (insert "    @echo \"Build image command here..\"\n\n")
-
-  (insert "mount :\n")
-  (insert "    @echo \"Mount command here..\"\n\n")
 
 
   (insert "\n# compile all the source file to object file.\n")
   (insert "compile : $(MAINOBJ) $(ASMOBJS) $(OBJS) $(AOBJS) $(SOOBJS)\n")
+
+  (insert "buildasm : \n")
+  (insert "    $(CC) $(ASM_B_FLAGS) $(OUTPUT_FLAGS) $(BIN_DIR)/$(BIN_NAME) $(ASMOBJS)\n\n")
+
+  (insert "disasm : \n")
+  (insert "    @echo \"Disassembly command here..\"\n\n")
+
+  (insert "buildimg : \n")
+  (insert "    @echo \"Build image command here..\"\n\n")
+
+  (insert "mount : \n")
+  (insert "    @echo \"Mount command here..\"\n\n")
+
 
   (insert "\n# Clean the project.\n")
   (insert "clean :\n")
@@ -452,7 +463,18 @@ script, etc."
 
   (insert "\n# compile assembly file to object file.\n")
   (insert "$(ASMOBJS) : $(ASMSRC)\n")
-  (insert "    $(ASM) $(ASM_FLAGS) $(OUTPUT_FLAGS) $@ $<\n")
+  (insert "### .asm File\n")
+  (insert "    if [ -f $(patsubst %.o,%.asm, $@) ]; then \\\n")
+  (insert "        $(ASM) $(ASM_FLAGS) $(OUTPUT_FLAGS) $@ $(patsubst %.o,%.asm, $@) ; \\\n")
+  (insert "    fi;\n")
+  (insert "### .S File\n")
+  (insert "    if [ -f $(patsubst %.o,%.S, $@) ]; then \\\n")
+  (insert "        $(ASM) $(ASM_FLAGS) $(OUTPUT_FLAGS) $@ $(patsubst %.o,%.S, $@) ; \\\n")
+  (insert "    fi;\n")
+  (insert "### .s File\n")
+  (insert "    if [ -f $(patsubst %.o,%.s, $@) ]; then \\\n")
+  (insert "        $(ASM) $(ASM_FLAGS) $(OUTPUT_FLAGS) $@ $(patsubst %.o,%.s, $@) ; \\\n")
+  (insert "    fi;\n")
 
   (insert "\n# generate static link library.\n")
   (insert "$(ALIB) : $(AOBJS)\n")
@@ -612,9 +634,12 @@ script, etc."
   (insert "MAINOBJ := $(sort $(patsubst %.c,%.o,   \\\n")
   (insert "                  $(patsubst %.cpp,%.o, \\\n")
   (insert "                  $(patsubst %.asm,%.o, \\\n")
-  (insert "                  $(patsubst %.S,%.o, $(MAINSRC))))))\n")
+  (insert "                  $(patsubst %.S,%.o,   \\\n")
+  (insert "                  $(patsubst %.s,%.o, $(MAINSRC)))))))\n")
   (insert "# asm object files\n")
-  (insert "ASMOBJS := $(sort $(patsubst %.asm,%.o, $(patsubst %.S,%.o, $(ASMSRC))))\n")
+  (insert "ASMOBJS := $(sort $(patsubst %.asm,%.o, \\\n")
+  (insert "                  $(patsubst %.S,%.o,   \\\n")
+  (insert "                  $(patsubst %.s,%.o, $(ASMSRC)))))\n")
   (insert "# list of object files\n")
   (insert "OBJS    := $(sort $(patsubst %.c,%.o, $(patsubst %.cpp,%.o, $(GSRC))))\n")
   (insert "# .a object files\n")
@@ -631,7 +656,8 @@ script, etc."
   (insert "ASMDEP := $(patsubst %.asm,$(DEPDIR)/%.d,$(ASMSRC))\n")
 
   (insert "\n\n")
-  (insert ".PHONY : nop build buildc buildasm compile\n")
+  (insert ".PHONY : nop all compile link\n")
+  (insert ".PHONY : build buildc buildasm disasm\n")
   (insert ".PHONY : clean realclean\n")
   (insert ".PHONY : mount buildimg\n")
   (insert "\n")
@@ -639,29 +665,35 @@ script, etc."
   (insert "nop : \n")
   (insert "    @echo \"Default Test command...\"\n\n")
 
+  (insert "all : \n")
+  (insert "    @echo \"Default all command...\"\n\n")
+
   (insert "build : buildc buildasm\n\n")
 
   (insert "buildc : \n")
-  (insert "    $(CC) $(GSRC) $(MAINSRC) \\\n")
-  (insert "    $(C_FLAGS) \\\n")
-  (insert "    $(INCLUDE_FLAGS) $(INCLUDE_PATH) \\\n")
-  (insert "    $(A_LIBS) \\\n")
-  (insert "    $(SO_LIBS) \\\n")
-  (insert "    $(LD_FLAGS) $(A_LIB_PATH) \\\n")
+  (insert "    $(CC) $(GSRC) $(MAINSRC)              \\\n")
+  (insert "    $(C_FLAGS)                            \\\n")
+  (insert "    $(INCLUDE_FLAGS) $(INCLUDE_PATH)      \\\n")
+  (insert "    $(A_LIBS)                             \\\n")
+  (insert "    $(SO_LIBS)                            \\\n")
+  (insert "    $(LD_FLAGS) $(A_LIB_PATH)             \\\n")
   (insert "    $(OUTPUT_FLAGS) $(BIN_DIR)/$(BIN_NAME)\n\n")
+
+  (insert "\n# compile all the source file to object file.\n")
+  (insert "compile : $(MAINOBJ) $(ASMOBJS) $(OBJS) $(AOBJS) $(SOOBJS)\n")
 
   (insert "buildasm : \n")
   (insert "    $(CC) $(ASM_B_FLAGS) $(OUTPUT_FLAGS) $(BIN_DIR)/$(BIN_NAME) $(ASMOBJS)\n\n")
 
-  (insert "buildimg :\n")
+  (insert "disasm : \n")
+  (insert "    @echo \"Disassembly command here..\"\n\n")
+
+  (insert "buildimg : \n")
   (insert "    @echo \"Build image command here..\"\n\n")
 
-  (insert "mount :\n")
+  (insert "mount : \n")
   (insert "    @echo \"Mount command here..\"\n\n")
 
-
-  (insert "\n# compile all the source file to object file.\n")
-  (insert "compile : $(MAINOBJ) $(ASMOBJS) $(OBJS) $(AOBJS) $(SOOBJS)\n")
 
   (insert "\n# Clean the project.\n")
   (insert "clean :\n")
@@ -680,7 +712,18 @@ script, etc."
 
   (insert "\n# compile assembly file to object file.\n")
   (insert "$(ASMOBJS) : $(ASMSRC)\n")
-  (insert "    $(ASM) $(ASM_FLAGS) $(OUTPUT_FLAGS) $@ $<\n")
+  (insert "### .asm File\n")
+  (insert "    if [ -f $(patsubst %.o,%.asm, $@) ]; then \\\n")
+  (insert "        $(ASM) $(ASM_FLAGS) $(OUTPUT_FLAGS) $@ $(patsubst %.o,%.asm, $@) ; \\\n")
+  (insert "    fi;\n")
+  (insert "### .S File\n")
+  (insert "    if [ -f $(patsubst %.o,%.S, $@) ]; then \\\n")
+  (insert "        $(ASM) $(ASM_FLAGS) $(OUTPUT_FLAGS) $@ $(patsubst %.o,%.S, $@) ; \\\n")
+  (insert "    fi;\n")
+  (insert "### .s File\n")
+  (insert "    if [ -f $(patsubst %.o,%.s, $@) ]; then \\\n")
+  (insert "        $(ASM) $(ASM_FLAGS) $(OUTPUT_FLAGS) $@ $(patsubst %.o,%.s, $@) ; \\\n")
+  (insert "    fi;\n")
 
   (insert "\n# generate static link library.\n")
   (insert "$(ALIB) : $(AOBJS)\n")
