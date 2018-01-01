@@ -40,9 +40,13 @@
 (defun jcs-kill-whole-line ()
   "Deletes a line, but does not put it in the `kill-ring'."
   (interactive)
-  (move-beginning-of-line 1)
-  (kill-line 1)
-  (setq kill-ring (cdr kill-ring)))
+  (if (use-region-p)
+      (delete-region (region-beginning) (region-end))
+    (progn
+      (move-beginning-of-line 1)
+      (kill-line 1)
+      (setq kill-ring (cdr kill-ring))
+      )))
 
 ;;;###autoload
 (defun jcs-backward-kill-line (arg)
