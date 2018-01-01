@@ -159,7 +159,9 @@ spaces instead of `py-electric-backspace'."
             (progn
               (delete-region (region-beginning) (region-end)))
           (progn
-            (if (not (is-beginning-of-line-p))
+            (if (and (not (is-beginning-of-line-p))
+                     ;; Make sure is not a tab.
+                     (current-char-equal-p " "))
                 (progn
                   ;; delete four spaces
                   (backward-delete-char 1)
@@ -167,10 +169,7 @@ spaces instead of `py-electric-backspace'."
                   (backward-delete-char 1)
                   (backward-delete-char 1))
               (progn
-                (backward-delete-char 1)
-                ))
-            )
-          ))
+                (backward-delete-char 1))))))
     (py-electric-backspace)))
 
 ;;;###autoload
