@@ -7,6 +7,12 @@
 # ========================================================================
 
 
+2018-01-01
+* Make sure delete region before delete line for kill whole 
+ line command. (jcs-emacs-init)
+* Complete .asm .s .S support assembly makefile template. (jcs-emacs-init)
+* Space check for compatibility py backspace command to tab. (jcs-emacs-init)
+
 2017-12-31
 * Refactor util with flycheck checker. (jcs-emacs-init)
 * Add python like space keybindings to nasm mode. (jcs-emacs-init)
