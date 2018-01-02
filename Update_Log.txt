@@ -7,8 +7,12 @@
 # ========================================================================
 
 
+2018-01-03
+* Get notice about Ctrl-r key bindings will be rebind everytime, 
+ fix backspace key bindings issue. (jcs-emacs-init)
+
 2018-01-02
-* change jcs-delete-forward/backward-current-char-repeat's key 
+* Change jcs-delete-forward/backward-current-char-repeat's key 
  bindings, to avoid bind key with backspace. (jcs-emacs-init)
 
 2018-01-01
