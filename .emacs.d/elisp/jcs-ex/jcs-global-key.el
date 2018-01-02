@@ -139,9 +139,6 @@
 (define-key global-map (kbd "M-<backspace>") 'jcs-backward-kill-word-capital)
 (define-key global-map (kbd "M-S-<backspace>") 'jcs-forward-kill-word-capital)
 
-(define-key global-map (kbd "C-r d") 'jcs-delete-backward-current-char-repeat)
-(define-key global-map (kbd "C-r D") 'jcs-delete-forward-current-char-repeat)
-
 ;;; Navigate Word
 (define-key global-map [home] 'back-to-indentation-or-beginning)
 
@@ -218,7 +215,7 @@
 ;;; iedit (SEE: `jcs-mode-el' will have detail mode config.)
 ;; Fix "iedit" bug for OSX
 (define-key global-map (kbd "C-c ;") 'iedit-mode)
-(define-key global-map (kbd "C-r C-r") 'iedit-mode)
+
 
 ;;; Switch between window
 (define-key global-map "\ew" 'jcs-other-window-next)
@@ -317,9 +314,7 @@
                   ;; NOTE(jenchieh): This will prevent missing the
                   ;; slash at the end of the search file path.
                   (insert "/")
-                  )
-              )
-            ))
+                  ))))
 
 (add-hook 'minibuffer-exit-hook
           (lambda ()
@@ -361,10 +356,16 @@
   "Some key are not allow to bind, the solution here is just re-bind
 the key everytime the mode changes."
 
+  ;; Replace
+  (define-key global-map (kbd "C-r C-r") 'iedit-mode)
+
+  ;; Kill Buffer
+  (define-key global-map (kbd "C-r DEL") 'jcs-backward-delete-current-char-repeat)
+  (define-key global-map (kbd "C-r S-<backspace>") 'jcs-forward-delete-current-char-repeat)
+
   ;; re-builder
   (define-key global-map "\C-re" 're-builder)
   )
-
 
 ;;------------------------------
 ;; ENABLE / DISABLE THE MODE
