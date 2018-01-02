@@ -7,6 +7,10 @@
 # ========================================================================
 
 
+2018-01-02
+* change jcs-delete-forward/backward-current-char-repeat's key 
+ bindings, to avoid bind key with backspace. (jcs-emacs-init)
+
 2018-01-01
 * Make sure delete region before delete line for kill whole 
  line command. (jcs-emacs-init)
