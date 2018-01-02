@@ -248,8 +248,7 @@ control of the editor."
   (define-key global-map "\C-f" 'helm-do-ag-this-file)
   (define-key global-map "\C-x\C-f" 'helm-do-ag-project-root)
 
-  ;; replace
-  (define-key global-map "\C-rr" 'iedit-mode)
+  ;; Search
   (define-key global-map "\C-rp" 'jcs-ag-project-regexp)
 
   (jcs-global-key-rebind)
@@ -286,8 +285,7 @@ control of the editor."
   (define-key global-map "\C-f" 'isearch-forward)
   (global-unset-key "\C-x\C-f")
 
-  ;; replace
-  (define-key global-map "\C-rr" 'iedit-mode)
+  ;; Search
   (global-unset-key "\C-rp")
 
   (jcs-global-key-rebind)
