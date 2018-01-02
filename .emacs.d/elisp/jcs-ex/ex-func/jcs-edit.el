@@ -864,7 +864,7 @@ the point."
 ;;----------------------------------------------
 
 ;;;###autoload
-(defun jcs-delete-backward-current-char-repeat ()
+(defun jcs-backward-delete-current-char-repeat ()
   "Delete the current character repeatedly, util it meet the \
 character is not the same as current char.  (Backward)"
   (interactive)
@@ -872,7 +872,7 @@ character is not the same as current char.  (Backward)"
     (jcs-delete-char-repeat temp-cur-char t)))
 
 ;;;###autoload
-(defun jcs-delete-forward-current-char-repeat ()
+(defun jcs-forward-delete-current-char-repeat ()
   "Delete the current character repeatedly, util it meet the \
 character is not the same as current char.  (Forward)"
   (interactive)
