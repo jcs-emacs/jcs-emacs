@@ -139,8 +139,8 @@
 (define-key global-map (kbd "M-<backspace>") 'jcs-backward-kill-word-capital)
 (define-key global-map (kbd "M-S-<backspace>") 'jcs-forward-kill-word-capital)
 
-(define-key global-map (kbd "C-r DEL") 'jcs-delete-backward-current-char-repeat)
-(define-key global-map (kbd "C-r S-<backspace>") 'jcs-delete-forward-current-char-repeat)
+(define-key global-map (kbd "C-r d") 'jcs-delete-backward-current-char-repeat)
+(define-key global-map (kbd "C-r D") 'jcs-delete-forward-current-char-repeat)
 
 ;;; Navigate Word
 (define-key global-map [home] 'back-to-indentation-or-beginning)
