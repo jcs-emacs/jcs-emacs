@@ -126,10 +126,10 @@ M-left          Jump to previous capital letter.
 M-backspace     Kill until next capital letter appears, backward.
 M-S-backspace   Kill util next capital letter appears, forward.
 
-C-r d           Delete the same character at current cursor's 
+C-r backspace   Delete the same character at current cursor's 
                 position backward repeatedly util it meet different 
                 character.
-C-r D           Delete the same character at current cursor's 
+C-r S-backspace Delete the same character at current cursor's 
                 position forward repeatedly util it meet different 
                 character.
 
