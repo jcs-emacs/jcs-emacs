@@ -10,6 +10,8 @@
 2018-01-03
 * Get notice about Ctrl-r key bindings will be rebind everytime, 
  fix backspace key bindings issue. (jcs-emacs-init)
+* Add default link command to both application/library makefile 
+ templates. (jcs-emacs-init)
 
 2018-01-02
 * Change jcs-delete-forward/backward-current-char-repeat's key 
