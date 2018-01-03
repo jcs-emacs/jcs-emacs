@@ -309,8 +309,8 @@ script, etc."
   (insert "#                      Flags\n")
   (insert "# ----------------------------------------------- #\n")
   (insert "# assemble flags\n")
-  (insert "ASM_FLAGS     = -f elf\n")
   (insert "ASM_B_FLAGS   = -m32\n")
+  (insert "ASM_FLAGS     = -f elf\n")
   (insert "# disassemble flags\n")
   (insert "DASM_FLAGS    = -D\n")
   (insert "# compile flags\n")
@@ -413,10 +413,17 @@ script, etc."
   (insert "\n")
 
   (insert "nop : \n")
-  (insert "    @echo \"Default Test command...\"\n\n")
+  (insert "    @echo \"Default Test command..\"\n\n")
 
   (insert "all : \n")
-  (insert "    @echo \"Default all command...\"\n\n")
+  (insert "    @echo \"Default all command..\"\n\n")
+
+  (insert "# compile all the source file to object file.\n")
+  (insert "compile : $(MAINOBJ) $(ASMOBJS) $(OBJS) $(AOBJS) $(SOOBJS)\n\n")
+
+  (insert "# link\n")
+  (insert "link : \n")
+  (insert "    @echo \"Default link command..\"\n\n")
 
   (insert "build : buildc buildasm\n\n")
 
@@ -428,10 +435,6 @@ script, etc."
   (insert "    $(SO_LIBS)                            \\\n")
   (insert "    $(LD_FLAGS) $(A_LIB_PATH)             \\\n")
   (insert "    $(OUTPUT_FLAGS) $(BIN_DIR)/$(BIN_NAME)\n\n")
-
-
-  (insert "\n# compile all the source file to object file.\n")
-  (insert "compile : $(MAINOBJ) $(ASMOBJS) $(OBJS) $(AOBJS) $(SOOBJS)\n")
 
   (insert "buildasm : \n")
   (insert "    $(CC) $(ASM_B_FLAGS) $(OUTPUT_FLAGS) $(BIN_DIR)/$(BIN_NAME) $(ASMOBJS)\n\n")
@@ -474,6 +477,17 @@ script, etc."
   (insert "### .s File\n")
   (insert "    if [ -f $(patsubst %.o,%.s, $@) ]; then \\\n")
   (insert "        $(ASM) $(ASM_FLAGS) $(OUTPUT_FLAGS) $@ $(patsubst %.o,%.s, $@) ; \\\n")
+  (insert "    fi;\n")
+
+  (insert "\n# compile c type source file to object file.\n")
+  (insert "$(OBJS) : $(GSRC)\n")
+  (insert "### .c files\n")
+  (insert "    if [ -f $(patsubst %.o,%.c, $@) ]; then \\\n")
+  (insert "        $(CC) $(C_FLAGS) $(OUTPUT_FLAGS) $@ $(patsubst %.o,%.c, $@) ; \\\n")
+  (insert "    fi;\n")
+  (insert "### .cpp files\n")
+  (insert "    if [ -f $(patsubst %.o,%.cpp, $@) ]; then \\\n")
+  (insert "        $(CC) $(C_FLAGS) $(OUTPUT_FLAGS) $@ $(patsubst %.o,%.cpp, $@) ; \\\n")
   (insert "    fi;\n")
 
   (insert "\n# generate static link library.\n")
@@ -526,7 +540,9 @@ script, etc."
   (insert "BIN_NAME = bin_name\n")
 
   (insert "\n")
+  (insert "# floppy disk image name\n")
   (insert "FD = floppy-disk.img\n")
+  (insert "# hard disk image name\n")
   (insert "HD = hard-disk.img\n")
 
   (insert "\n")
@@ -560,8 +576,8 @@ script, etc."
   (insert "#                      Flags\n")
   (insert "# ----------------------------------------------- #\n")
   (insert "# assemble flags\n")
-  (insert "ASM_FLAGS     = -f elf\n")
   (insert "ASM_B_FLAGS   = -m32\n")
+  (insert "ASM_FLAGS     = -f elf\n")
   (insert "# disassemble flags\n")
   (insert "DASM_FLAGS    = -D\n")
   (insert "# compile flags\n")
@@ -663,10 +679,17 @@ script, etc."
   (insert "\n")
 
   (insert "nop : \n")
-  (insert "    @echo \"Default Test command...\"\n\n")
+  (insert "    @echo \"Default Test command..\"\n\n")
 
   (insert "all : \n")
-  (insert "    @echo \"Default all command...\"\n\n")
+  (insert "    @echo \"Default all command..\"\n\n")
+
+  (insert "# compile all the source file to object file.\n")
+  (insert "compile : $(MAINOBJ) $(ASMOBJS) $(OBJS) $(AOBJS) $(SOOBJS)\n\n")
+
+  (insert "# link\n")
+  (insert "link : \n")
+  (insert "    @echo \"Default link command..\"\n\n")
 
   (insert "build : buildc buildasm\n\n")
 
@@ -678,9 +701,6 @@ script, etc."
   (insert "    $(SO_LIBS)                            \\\n")
   (insert "    $(LD_FLAGS) $(A_LIB_PATH)             \\\n")
   (insert "    $(OUTPUT_FLAGS) $(BIN_DIR)/$(BIN_NAME)\n\n")
-
-  (insert "\n# compile all the source file to object file.\n")
-  (insert "compile : $(MAINOBJ) $(ASMOBJS) $(OBJS) $(AOBJS) $(SOOBJS)\n")
 
   (insert "buildasm : \n")
   (insert "    $(CC) $(ASM_B_FLAGS) $(OUTPUT_FLAGS) $(BIN_DIR)/$(BIN_NAME) $(ASMOBJS)\n\n")
@@ -723,6 +743,17 @@ script, etc."
   (insert "### .s File\n")
   (insert "    if [ -f $(patsubst %.o,%.s, $@) ]; then \\\n")
   (insert "        $(ASM) $(ASM_FLAGS) $(OUTPUT_FLAGS) $@ $(patsubst %.o,%.s, $@) ; \\\n")
+  (insert "    fi;\n")
+
+  (insert "\n# compile c type source file to object file.\n")
+  (insert "$(OBJS) : $(GSRC)\n")
+  (insert "### .c files\n")
+  (insert "    if [ -f $(patsubst %.o,%.c, $@) ]; then \\\n")
+  (insert "        $(CC) $(C_FLAGS) $(OUTPUT_FLAGS) $@ $(patsubst %.o,%.c, $@) ; \\\n")
+  (insert "    fi;\n")
+  (insert "### .cpp files\n")
+  (insert "    if [ -f $(patsubst %.o,%.cpp, $@) ]; then \\\n")
+  (insert "        $(CC) $(C_FLAGS) $(OUTPUT_FLAGS) $@ $(patsubst %.o,%.cpp, $@) ; \\\n")
   (insert "    fi;\n")
 
   (insert "\n# generate static link library.\n")
