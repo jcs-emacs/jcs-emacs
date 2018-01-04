@@ -132,6 +132,13 @@ line instead of indent the whole file at once."
           (back-to-indentation))))
   )
 
+
+;;;###autoload
+(defun jcs-py-real-space ()
+  "Just insert a space!"
+  (interactive)
+  (insert " "))
+
 ;;;###autoload
 (defun jcs-py-space ()
   "Space key for `python-mode'. If the current cursor position is
@@ -147,6 +154,12 @@ the space."
     (insert " ")))
 
 ;;;###autoload
+(defun jcs-py-real-backspace ()
+  "Just delete a char."
+  (interactive)
+  (backward-delete-char 1))
+
+;;;###autoload
 (defun jcs-py-backspace ()
   "Backspace key for `python-mode'. If the current cursor position
 is infront of the first character in the line we delete fource
@@ -159,18 +172,27 @@ spaces instead of `py-electric-backspace'."
             (progn
               (delete-region (region-beginning) (region-end)))
           (progn
-            (if (and (not (is-beginning-of-line-p))
-                     ;; Make sure is not a tab.
-                     (current-char-equal-p " "))
+            (if (jcs-py-check-backward-delete-space)
                 (progn
                   ;; delete four spaces
-                  (backward-delete-char 1)
-                  (backward-delete-char 1)
-                  (backward-delete-char 1)
-                  (backward-delete-char 1))
+                  (jcs-py-safe-backward-delete-char)
+                  (jcs-py-safe-backward-delete-char)
+                  (jcs-py-safe-backward-delete-char)
+                  (jcs-py-safe-backward-delete-char))
               (progn
                 (backward-delete-char 1))))))
     (py-electric-backspace)))
+
+;;;###autoload
+(defun jcs-py-safe-backward-delete-char ()
+  (when (jcs-py-check-backward-delete-space)
+    (backward-delete-char 1)))
+
+;;;###autoload
+(defun jcs-py-check-backward-delete-space ()
+  (and (not (is-beginning-of-line-p))
+       ;; Make sure is not a tab.
+       (current-char-equal-p " ")))
 
 ;;;###autoload
 (defun jcs-py-check-first-char-of-line-is-keyword-p ()
