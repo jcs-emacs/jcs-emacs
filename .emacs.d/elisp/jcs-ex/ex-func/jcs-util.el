@@ -73,6 +73,91 @@
   "Insert time."
   (insert (format-time-string "%H:%M:%S")))
 
+
+;;---------------------------------------------
+;; Tab / Space
+;;---------------------------------------------
+
+(defun jcs-is-good-space-to-convert-to-tab-p ()
+  "Check if current point a good space to convert for tab.
+Generally you will have to check it four times."
+  (and (not (is-beginning-of-line-p))
+       (current-char-equal-p " ")))
+
+(defun jcs-convert-space-to-tab (is-forward)
+  "Convert space to tab if current point is space.
+IS-FORWARD : forward check convert instead of backward."
+
+  (save-excursion
+    (let ((good-to-convert nil))
+      (save-excursion
+        (when (jcs-is-good-space-to-convert-to-tab-p)
+          (if (equal is-forward t)
+              (forward-char 1)
+            (backward-char 1))
+          (when (jcs-is-good-space-to-convert-to-tab-p)
+            (if (equal is-forward t)
+                (forward-char 1)
+              (backward-char 1))
+            (when (jcs-is-good-space-to-convert-to-tab-p)
+              (if (equal is-forward t)
+                  (forward-char 1)
+                (backward-char 1))
+              (when (jcs-is-good-space-to-convert-to-tab-p)
+                (setq good-to-convert t))))))
+
+      (when (equal good-to-convert t)
+        (if (equal is-forward t)
+            (progn
+              (backward-delete-char -1)
+              (backward-delete-char -1)
+              (backward-delete-char -1)
+              (backward-delete-char -1)
+              (insert "\t"))
+          (progn
+            (backward-delete-char 1)
+            (backward-delete-char 1)
+            (backward-delete-char 1)
+            (backward-delete-char 1)
+            (insert "\t")))))))
+
+;;;###autoload
+(defun jcs-backward-convert-space-to-tab ()
+  "Convert space to tab backward at point."
+  (interactive)
+  (jcs-convert-space-to-tab nil))
+
+;;;###autoload
+(defun jcs-forward-convert-space-to-tab ()
+  "Convert space to tab forward at point."
+  (interactive)
+  (jcs-convert-space-to-tab t))
+
+(defun jcs-convert-tab-to-space (is-forward)
+  "Convert tab to space if current point is tab.
+IS-FORWARD : forward conversion instead of backward conversion."
+  (save-excursion
+    (when (current-char-equal-p "\t")
+      (if (equal is-forward t)
+          (progn
+            (backward-delete-char -1)
+            (insert "    "))
+        (progn
+          (backward-delete-char 1)
+          (insert "    "))))))
+
+;;;###autoload
+(defun jcs-backward-convert-tab-to-space ()
+  "Convert tab to space backward at point."
+  (interactive)
+  (jcs-convert-tab-to-space nil))
+
+;;;###autoload
+(defun jcs-forward-convert-tab-to-space ()
+  "Convert tab to space forward at point."
+  (interactive)
+  (jcs-convert-tab-to-space t))
+
 ;;---------------------------------------------
 ;; Character
 ;;---------------------------------------------
@@ -308,9 +393,8 @@ vice versa.
 
 ;;;###autoload
 (defun is-region-selected-p ()
-  "Is region active? But if `region-start' and `region-end' is at
-the same point this would not trigger. Which normally that mark
-is active but does not move at all.
+  "Is region active? But if `region-start' and `region-end' is at the same point this would not trigger.
+Which normally that mark is active but does not move at all.
 
 @return { boolean } : true, there is region selected. false, no
 region selected.
@@ -373,7 +457,9 @@ active. false, there is no region selected and mark is not active.
 ;;---------------------------------------------
 
 (defun jcs-is-in-list-string (list str)
-  "Check if a string in the string list."
+  "Check if a string in the string list.
+LIST : list of strings.
+STR : string to check if is inside the list of strings above."
   (let ((in-list nil))
     (dolist (tmp-str list)
       (if (string= tmp-str str)
@@ -385,10 +471,13 @@ active. false, there is no region selected and mark is not active.
 ;;---------------------------------------------
 
 (defun jcs-is-current-major-mode-p (str)
-  "Check if this major mode. (str)"
+  "Check if this major mode.
+STR : major mode name."
   (string= major-mode str))
 
 (defun jcs-is-minor-mode-enabled-p (mode-obj)
+  "Check if this minor enabled in current buffer/file.
+MODE-OBJ : mode object memory."
   (bound-and-true-p mode-obj))
 
 ;;------------------------------------------------------------------------------------------------------
