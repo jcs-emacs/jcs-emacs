@@ -92,7 +92,9 @@
 
   ;; Edit
   (define-key cmake-mode-map (kbd "SPC") 'jcs-py-space)
+  (define-key cmake-mode-map (kbd "S-SPC") 'jcs-py-real-space)
   (define-key cmake-mode-map (kbd "<backspace>") 'jcs-py-backspace)
+  (define-key cmake-mode-map (kbd "S-<backspace>") 'jcs-py-real-backspace)
   )
 (add-hook 'cmake-mode-hook 'jcs-cmake-mode-hook)
 
