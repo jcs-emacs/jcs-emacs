@@ -9,6 +9,9 @@
 
 2018-01-04
 * Ignore all tabs and spaces after preproc keywords. (jcs-emacs-init)
+* Add logging/debug functionalities. (jcs-emacs-init)
+* Add convert tab to space and space to tab functionalities. (jcs-emacs-init)
+* Add real backspace and real space functionalities. (jcs-emacs-init)
 
 2018-01-03
 * Get notice about Ctrl-r key bindings will be rebind everytime, 
