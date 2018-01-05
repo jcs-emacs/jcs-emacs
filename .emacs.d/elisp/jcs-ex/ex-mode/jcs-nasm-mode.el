@@ -77,6 +77,10 @@
   (define-key nasm-mode-map (kbd "<up>") 'jcs-py-indent-up)
   (define-key nasm-mode-map (kbd "<down>") 'jcs-py-indent-down)
 
+  ;; Comment
+  (define-key nasm-mode-map (kbd "RET") 'jcs-nasm-return-key)
+  (define-key nasm-mode-map (kbd ";") 'jcs-nasm-comment-key)
+
   ;; Edit
   (define-key nasm-mode-map (kbd "SPC") 'jcs-py-space)
   (define-key nasm-mode-map (kbd "S-SPC") 'jcs-py-real-space)

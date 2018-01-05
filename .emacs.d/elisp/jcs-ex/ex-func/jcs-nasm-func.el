@@ -68,5 +68,47 @@
 
     (equal do-indent t)))
 
+;;;###autoload
+(defun jcs-nasm-return-key ()
+  "Return key for `nasm-mode'."
+  (interactive)
+
+  (let ((continue-comment nil))
+    (save-excursion
+      (back-to-indentation-or-beginning)
+      (when (is-beginning-of-line-p)
+        (back-to-indentation-or-beginning))
+
+      (forward-char 1)
+      (when (current-char-equal-p ";")
+        (forward-char 1)
+        (when (current-char-equal-p ";")
+          (setq continue-comment t))))
+
+    (newline-and-indent)
+
+    (when (equal continue-comment t)
+      (insert ";; ")
+      (save-excursion
+        (indent-line-to 0)))))
+
+;;;###autoload
+(defun jcs-nasm-comment-key ()
+  "Comment key for `nasm-mode'."
+  (interactive)
+  (insert ";")
+  (let ((should-indent nil))
+    (save-excursion
+      (backward-char 1)
+      (when (current-char-equal-p ";")
+        (backward-char 1)
+        (when (is-met-first-char-at-line-p)
+          (setq should-indent t)
+          ;; Indent it to the very left/beginning of line.
+          (indent-line-to 0))))
+
+    (when (equal should-indent t)
+      (insert " "))))
+
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-nasm-func.el file
