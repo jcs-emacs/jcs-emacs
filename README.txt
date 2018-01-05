@@ -14,8 +14,9 @@
 This is Jen-Chieh Shen's emacs configuration, continually used and 
 tweaked since 2015, and it might be a good starting point for other 
 Emacs users, especially for those who like to program all kind of 
-programmers. This configuration had tested on Linux and Windows 
-system, the testament on macOS is still planning in the future. 
+programming languages' programmer. This configuration had tested 
+on Linux and Windows system, the testament on macOS is still 
+planning in the future. 
 
 Emacs itself comes with support for many programming languages. These
 config files improve and extended support for the following:
