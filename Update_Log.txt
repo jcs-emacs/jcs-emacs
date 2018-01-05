@@ -7,6 +7,9 @@
 # ========================================================================
 
 
+2018-01-05
+* Add nasm return and comment key. (jcs-emacs-init)
+
 2018-01-04
 * Ignore all tabs and spaces after preproc keywords. (jcs-emacs-init)
 * Add logging/debug functionalities. (jcs-emacs-init)
