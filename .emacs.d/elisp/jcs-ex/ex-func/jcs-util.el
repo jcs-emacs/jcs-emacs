@@ -240,6 +240,14 @@ IS-FORWARD : forward conversion instead of backward conversion."
 ;;---------------------------------------------
 
 ;;;###autoload
+(defun jcs-goto-first-char-in-line ()
+  "Goto beginning of line but ignore 'empty characters'(spaces/tab)."
+  (interactive)
+  (back-to-indentation-or-beginning)
+  (when (is-beginning-of-line-p)
+    (back-to-indentation-or-beginning)))
+
+;;;###autoload
 (defun current-line-empty-p ()
   "Current line empty, but accept spaces in there.  (not absolute)."
   (save-excursion
