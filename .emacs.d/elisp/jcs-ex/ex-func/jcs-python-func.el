@@ -83,8 +83,7 @@ once to the whole document. For `python-mode'."
       (setq startLineNum (string-to-number (format-mode-line "%l")))
 
       (while (and (<= (string-to-number (format-mode-line "%l")) endLineNum))
-        (jcs-py-indent-down)
-        )
+        (jcs-py-indent-down))
       )))
 
 ;;;###autoload
