@@ -345,15 +345,13 @@ vice versa.
 (defun safe-forward-char ()
   "Forward a char if not the end of the line."
   (if (not (is-beginning-of-line-p))
-      (forward-char 1))
-  )
+      (forward-char 1)))
 
 ;;;###autoload
 (defun safe-backward-char ()
   "Backward a char if not the beginning of the line."
   (if (not (is-end-of-line-p))
-      (backward-char 1))
-  )
+      (backward-char 1)))
 
 ;;---------------------------------------------
 ;; Move between button.
