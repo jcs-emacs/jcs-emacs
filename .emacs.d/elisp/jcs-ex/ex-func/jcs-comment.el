@@ -31,6 +31,26 @@
 ;; Comment
 ;;----------------------------------------------
 
+(defun jcs-do-doc-string ()
+  "Check if should insert the doc string by checking only \
+comment character on the same line."
+
+  (let ((do-doc-string t))
+    (jcs-goto-first-char-in-line)
+
+    (while (not (is-end-of-line-p))
+      (forward-char 1)
+      (when (and (not (current-char-equal-p " "))
+                 (not (current-char-equal-p "\t"))
+                 (not (current-char-equal-p "*"))
+                 (not (current-char-equal-p "/")))
+        ;; return false.
+        (setq do-doc-string nil)
+        (equal do-doc-string t)))
+
+    ;; return true.
+    (equal do-doc-string t)))
+
 ;;;###autoload
 (defun jcs-smart-context-line-break ()
   "Comment block."
@@ -59,7 +79,8 @@
 
         ;; check the '/*' and '*/' on the same line?
         (if (and (search-backward "/*" point-beginning-of-line t)
-                 (search-forward "*/" point-end-of-line t))
+                 (search-forward "*/" point-end-of-line t)
+                 (jcs-do-doc-string))
             (progn
               (setq start-of-global-comment-doc t)
 

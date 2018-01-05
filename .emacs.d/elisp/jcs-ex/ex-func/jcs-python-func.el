@@ -240,6 +240,25 @@ vector list."
   (eq isKeyword t))
 
 
+(defun jcs-py-do-doc-string ()
+  "Check if should insert the doc string by checking only \
+comment character on the same line."
+
+  (let ((do-doc-string t))
+    (jcs-goto-first-char-in-line)
+
+    (while (not (is-end-of-line-p))
+      (forward-char 1)
+      (when (and (not (current-char-equal-p " "))
+                 (not (current-char-equal-p "\t"))
+                 (not (current-char-equal-p "\"")))
+        ;; return false.
+        (setq do-doc-string nil)
+        (equal do-doc-string t)))
+
+    ;; return true.
+    (equal do-doc-string t)))
+
 (defun jcs-py-maybe-insert-codedoc ()
   "Insert common Python document/comment string.
 
@@ -253,21 +272,17 @@ URL(jenchieh): http://docs.python-guide.org/en/latest/writing/style/"
 
   (insert "\"")
 
-
   (let ((active-comment nil)
         (previous-line-not-empty nil))
     (save-excursion
       (backward-char 1)
-      (if (current-char-equal-p "\"")
-          (progn
-            (backward-char 1)
-            (if (current-char-equal-p "\"")
-                (progn
-                  (backward-char 1)
-                  (if (not (current-char-equal-p "\""))
-                      (setq active-comment t)
-                    ))
-              )))
+      (when (current-char-equal-p "\"")
+        (backward-char 1)
+        (when (current-char-equal-p "\"")
+          (backward-char 1)
+          (when (not (current-char-equal-p "\""))
+            (when (jcs-py-do-doc-string)
+              (setq active-comment t)))))
 
       ;; check if previous line empty.
       (jcs-previous-line)

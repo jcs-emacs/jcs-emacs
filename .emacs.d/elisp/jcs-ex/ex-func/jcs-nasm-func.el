@@ -75,9 +75,7 @@
 
   (let ((continue-comment nil))
     (save-excursion
-      (back-to-indentation-or-beginning)
-      (when (is-beginning-of-line-p)
-        (back-to-indentation-or-beginning))
+      (jcs-goto-first-char-in-line)
 
       (forward-char 1)
       (when (current-char-equal-p ";")

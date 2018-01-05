@@ -33,6 +33,25 @@
 
 ;;; Code:
 
+(defun jcs-vs-csharp-do-doc-string ()
+  "Check if should insert the doc string by checking only \
+comment character on the same line."
+
+  (let ((do-doc-string t))
+    (jcs-goto-first-char-in-line)
+
+    (while (not (is-end-of-line-p))
+      (forward-char 1)
+      (when (and (not (current-char-equal-p " "))
+                 (not (current-char-equal-p "\t"))
+                 (not (current-char-equal-p "/")))
+        ;; return false.
+        (setq do-doc-string nil)
+        (equal do-doc-string t)))
+
+    ;; return true.
+    (equal do-doc-string t)))
+
 (defun jcs-vs-csharp-maybe-insert-codedoc ()
   "Insert comment like Visual Studio comment style.
 
@@ -50,7 +69,8 @@ URL(jenchieh): https://github.com/josteink/csharp-mode/issues/123"
         (when (current-char-equal-p "/")
           (backward-char 1)
           (when (not (current-char-equal-p "/"))
-            (setq active-comment t))))
+            (when (jcs-vs-csharp-do-doc-string)
+              (setq active-comment t)))))
 
       ;; check if next line empty.
       (jcs-next-line)
