@@ -12,6 +12,8 @@
 * Add current word equal functionality. (jcs-emacs-init)
 * Add move forward/backward to word functionalities. (jcs-emacs-init)
 * Add support python multi-lines coding style. (jcs-emacs-init)
+* Refactor env file for better readability, majorly use defacce 
+ instead of make-face. (jcs-emacs-init)
 
 2018-01-05
 * Add nasm return and comment key. (jcs-emacs-init)
