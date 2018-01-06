@@ -15,6 +15,7 @@
 * Refactor env file for better readability, majorly use defacce 
  instead of make-face. (jcs-emacs-init)
 * Apply option comment doc-string option choice to the function. (jcs-emacs-init)
+* Add ` between ' special key word highlighting. (jcs-emacs-init)
 
 2018-01-05
 * Add nasm return and comment key. (jcs-emacs-init)
