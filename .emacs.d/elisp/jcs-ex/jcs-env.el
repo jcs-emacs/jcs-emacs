@@ -295,7 +295,7 @@
            ("\\<\\(OPTION\\)\\>" 1 'jcs-font-lock-option-face t)
            ("\\<\\(OR\\)\\>" 1 'jcs-font-lock-or-face t)
 
-           ("`\\([a-zA-Z0-9_ $]*\\)'" 'jcs-font-lock-key-highlight-face)
+           ;;("`\\([a-zA-Z0-9_ $]*\\)'" 'jcs-font-lock-key-highlight-face)
            )'end))
       jcs-fixme-modes)
 
