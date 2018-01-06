@@ -209,14 +209,26 @@ the input line."
 
     (save-excursion
       (when (not (current-line-empty-p))
-        (end-of-line)
-
-        (let ((end-line-point (1- (point)))
+        (let ((end-function-point nil)
               (word-index 0))
+
+          (save-excursion
+            ;; NOTE(jenchieh): Find closing parenthesis instead
+            ;; of search for a line will make this support
+            ;; multi-line doc-string.
+            ;;
+            ;; Goto beginning of line to prevent if we miss
+            ;; any closing parenthesis before the point.
+            (beginning-of-line)
+            ;; Move to next closing parenthesis.
+            (jcs-move-forward-close-paren)
+            ;; After moved to the closing parenthesis, record
+            ;; down the point's position.
+            (setq end-function-point (1- (point))))
 
           (beginning-of-line)
 
-          (while (< (point) end-line-point)
+          (while (< (point) end-function-point)
             (if (not (= word-index 0))
                 (forward-word))
             (forward-word)
@@ -224,7 +236,7 @@ the input line."
             (setq word-index (1+ word-index))
 
             ;; Make sure only process current/one line.
-            (when (<= (point) end-line-point)
+            (when (<= (point) end-function-point)
               (let ((current-point-face(jcs-get-current-point-face) ))
 
                 ;; NOTE(jenchieh): If there is multiple faces at
@@ -371,13 +383,13 @@ the input line."
                                     param-variable-strings)
 
             (jcs-lua-mode-doc-string meet-function-name
-                                    keyword-strings
-                                    datatype-name
-                                    function-name-string
-                                    there-is-return
-                                    return-type-string
-                                    param-type-strings
-                                    param-variable-strings)
+                                     keyword-strings
+                                     datatype-name
+                                     function-name-string
+                                     there-is-return
+                                     return-type-string
+                                     param-type-strings
+                                     param-variable-strings)
 
             (jcs-py-mode-doc-string meet-function-name
                                     keyword-strings
