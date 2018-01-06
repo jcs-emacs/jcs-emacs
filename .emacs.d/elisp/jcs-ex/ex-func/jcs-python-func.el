@@ -286,40 +286,32 @@ URL(jenchieh): http://docs.python-guide.org/en/latest/writing/style/"
 
       ;; check if previous line empty.
       (jcs-previous-line)
-      (if (not (current-line-empty-p))
-          (setq previous-line-not-empty t))
-      )
+      (when (not (current-line-empty-p))
+        (setq previous-line-not-empty t)))
 
-    (if (and (equal active-comment t)
-             (equal previous-line-not-empty t))
-        (progn
-          (if (= jcs-py-doc-string-version 1)
-              (progn
-                ;; OPTION(jenchieh): docstring option..
-                (insert "\n")))
-          (insert "Description here..\n")
-          (insert "\"\"\"")
+    (when (and (equal active-comment t)
+               (equal previous-line-not-empty t))
+      (when (= jcs-py-doc-string-version 1)
+        ;; OPTION(jenchieh): docstring option..
+        (insert "\n"))
+      (insert "Description here..\n")
+      (insert "\"\"\"")
 
-          (jcs-smart-indent-up)
-          (jcs-smart-indent-down)
-          (jcs-smart-indent-up)
-          (end-of-line)
+      (jcs-smart-indent-up)
+      (jcs-smart-indent-down)
+      (jcs-smart-indent-up)
+      (end-of-line)
 
-          ;; Check other comment type.
-          ;; ex: param, returns, etc.
-          (save-excursion
-            ;; Goto the function line before insert doc string.
-            (jcs-previous-line)
-            (if (= jcs-py-doc-string-version 1)
-                (progn
-                  ;; OPTION(jenchieh): docstring option..
-                  (jcs-previous-line)))
+      ;; Check other comment type.
+      ;; ex: param, returns, etc.
+      (save-excursion
+        ;; Move to `def' keyword in order to search all
+        ;; the necessary info before inserting doc string.
+        (jcs-move-to-backward-a-word "def")
 
-            ;; insert comment doc comment string.
-            (jcs-insert-comment-style-by-current-line)
-            )
-          ))
-    ))
+        ;; insert comment doc comment string.
+        (jcs-insert-comment-style-by-current-line)
+        ))))
 
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-python-func.el file
