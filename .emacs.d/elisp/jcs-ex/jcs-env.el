@@ -145,101 +145,165 @@
   (newline-and-indent)
   (end-of-buffer))
 
-;; Bright-red TODOs
-(setq fixme-modes '(actionscript-mode
-                    bat-mode
-                    cc-mode
-                    c-mode
-                    c++-mode
-                    cobol-mode
-                    cmake-mode
-                    csharp-mode
-                    css-mode
-                    emacs-lisp-mode
-                    emmet-mode
-                    go-mode
-                    jdee-mode
-                    js2-mode
-                    lua-mode
-                    nasm-mode
-                    org-mode
-                    php-mode
-                    python-mode
-                    sh-mode
-                    web-mode
-                    ))
 
-(make-face 'font-lock-fixme-face)
-(make-face 'font-lock-attention-face)
-(make-face 'font-lock-study-face)
-(make-face 'font-lock-important-face)
-(make-face 'font-lock-note-face)
-(make-face 'font-lock-debugging-face)
-(make-face 'font-lock-source-face)
-(make-face 'font-lock-temporary-face)
-(make-face 'font-lock-optimize-face)
-(make-face 'font-lock-description-face)
-(make-face 'font-lock-idea-face)
-(make-face 'font-lock-obsolete-face)
-(make-face 'font-lock-deprecated-face)
-(make-face 'font-lock-tag-face)
-(make-face 'font-lock-topic-face)
-(make-face 'font-lock-url-face)
-(make-face 'font-lock-see-face)
-(make-face 'font-lock-option-face)
-(make-face 'font-lock-or-face)
+;; Bright-red TODOs
+(defvar jcs-fixme-modes '(actionscript-mode
+                          bat-mode
+                          cc-mode
+                          c-mode
+                          c++-mode
+                          cobol-mode
+                          cmake-mode
+                          csharp-mode
+                          css-mode
+                          emacs-lisp-mode
+                          emmet-mode
+                          go-mode
+                          jdee-mode
+                          js2-mode
+                          lua-mode
+                          nasm-mode
+                          org-mode
+                          php-mode
+                          python-mode
+                          sh-mode
+                          web-mode
+                          ))
+
+;; List of color: https://alexschroeder.ch/geocities/kensanata/colors.html
+(defface jcs-font-lock-fixme-face
+  '((t (:foreground "red" :underline t :weight bold)))
+  "Highlight word 'TODO'.")
+(defvar jcs-font-lock-fixme-face 'jcs-font-lock-fixme-face)
+
+(defface jcs-font-lock-attention-face
+  '((t (:foreground "red" :underline t :weight bold)))
+  "Highlight word 'ATTENTION'.")
+(defvar jcs-font-lock-attention-face 'jcs-font-lock-attention-face)
+
+(defface jcs-font-lock-study-face
+  '((t (:foreground "yellow" :underline t :weight bold)))
+  "Highlight word 'STUDY'.")
+(defvar jcs-font-lock-study-face 'jcs-font-lock-study-face)
+
+(defface jcs-font-lock-important-face
+  '((t (:foreground "yellow" :underline t :weight bold)))
+  "Highlight word 'IMPORTANT'.")
+(defvar jcs-font-lock-important-face 'jcs-font-lock-important-face)
+
+(defface jcs-font-lock-optimize-face
+  '((t (:foreground "yellow" :underline t :weight bold)))
+  "Highlight word 'OPTIMIZE'.")
+(defvar jcs-font-lock-optimize-face 'jcs-font-lock-optimize-face)
+
+(defface jcs-font-lock-note-face
+  '((t (:foreground "dark green" :underline t :weight bold)))
+  "Highlight word 'NOTE'.")
+(defvar jcs-font-lock-note-face 'jcs-font-lock-note-face)
+
+(defface jcs-font-lock-description-face
+  '((t (:foreground "dark green" :underline t :weight bold)))
+  "Highlight word 'DESCRIPTION'.")
+(defvar jcs-font-lock-description-face 'jcs-font-lock-description-face)
+
+(defface jcs-font-lock-tag-face
+  '((t (:foreground "dark green" :underline t :weight bold)))
+  "Highlight word 'TAG'.")
+(defvar jcs-font-lock-tag-face 'jcs-font-lock-tag-face)
+
+(defface jcs-font-lock-debugging-face
+  '((t (:foreground "turquoise" :underline t :weight bold)))
+  "Highlight word 'DEBUGGING'.")
+(defvar jcs-font-lock-debugging-face 'jcs-font-lock-debugging-face)
+
+(defface jcs-font-lock-temporary-face
+  '((t (:foreground "turquoise" :underline t :weight bold)))
+  "Highlight word 'TEMPORARY'.")
+(defvar jcs-font-lock-temporary-face 'jcs-font-lock-temporary-face)
+
+(defface jcs-font-lock-source-face
+  '((t (:foreground "PaleTurquoise2" :underline t :weight bold)))
+  "Highlight word 'SOURCE'.")
+(defvar jcs-font-lock-source-face 'jcs-font-lock-source-face)
+
+(defface jcs-font-lock-url-face
+  '((t (:foreground "PaleTurquoise2" :underline t :weight bold)))
+  "Highlight word 'URL'.")
+(defvar jcs-font-lock-url-face 'jcs-font-lock-url-face)
+
+(defface jcs-font-lock-idea-face
+  '((t (:foreground "green yellow" :underline t :weight bold)))
+  "Highlight word 'IDEA'.")
+(defvar jcs-font-lock-idea-face 'jcs-font-lock-idea-face)
+
+(defface jcs-font-lock-obsolete-face
+  '((t (:foreground "DarkOrange3" :underline t :weight bold)))
+  "Highlight word 'OBSOLETE'.")
+(defvar jcs-font-lock-obsolete-face 'jcs-font-lock-obsolete-face)
+
+(defface jcs-font-lock-deprecated-face
+  '((t (:foreground "DarkOrange3" :underline t :weight bold)))
+  "Highlight word 'DEPRECATED'.")
+(defvar jcs-font-lock-deprecated-face 'jcs-font-lock-deprecated-face)
+
+(defface jcs-font-lock-topic-face
+  '((t (:foreground "slate blue" :underline t :weight bold)))
+  "Highlight word 'TOPIC'.")
+(defvar jcs-font-lock-topic-face 'jcs-font-lock-topic-face)
+
+(defface jcs-font-lock-see-face
+  '((t (:foreground "slate blue" :underline t :weight bold)))
+  "Highlight word 'SEE'.")
+(defvar jcs-font-lock-see-face 'jcs-font-lock-see-face)
+
+(defface jcs-font-lock-option-face
+  '((t (:foreground "dark green" :underline t :weight bold)))
+  "Highlight word 'OPTION'.")
+(defvar jcs-font-lock-option-face 'jcs-font-lock-option-face)
+
+(defface jcs-font-lock-or-face
+  '((t (:foreground "green yellow" :underline t :weight bold)))
+  "Highlight word 'OR'.")
+(defvar jcs-font-lock-or-face 'jcs-font-lock-or-face)
+
+(defface jcs-font-lock-key-highlight-face
+  '((t (:foreground "#38EFCA")))
+  "Highlight word between ` and ' word.")
+(defvar jcs-font-lock-key-highlight-face 'jcs-font-lock-key-highlight-face)
 
 (mapc (lambda (mode)
         (font-lock-add-keywords
          mode
-         '(("\\<\\(TODO\\)\\>" 1 'font-lock-fixme-face t)
-           ("\\<\\(ATTENTION\\)\\>" 1 'font-lock-fixme-face t)
-           ("\\<\\(STUDY\\)\\>" 1 'font-lock-study-face t)
-           ("\\<\\(IMPORTANT\\)\\>" 1 'font-lock-important-face t)
-           ("\\<\\(OPTIMIZE\\)\\>" 1 'font-lock-optimize-face t)
-           ("\\<\\(NOTE\\)\\>" 1 'font-lock-note-face t)
-           ("\\<\\(DESCRIPTION\\)\\>" 1 'font-lock-description-face t)
-           ("\\<\\(TAG\\)\\>" 1 'font-lock-tag-face t)
-           ("\\<\\(DEBUGGING\\)\\>" 1 'font-lock-debugging-face t)
-           ("\\<\\(TEMPORARY\\)\\>" 1 'font-lock-temporary-face t)
-           ("\\<\\(SOURCE\\)\\>" 1 'font-lock-source-face t)
-           ("\\<\\(URL\\)\\>" 1 'font-lock-url-face t)
-           ("\\<\\(IDEA\\)\\>" 1 'font-lock-idea-face t)
-           ("\\<\\(OBSOLETE\\)\\>" 1 'font-lock-obsolete-face t)
-           ("\\<\\(DEPRECATED\\)\\>" 1 'font-lock-deprecated-face t)
-           ("\\<\\(TOPIC\\)\\>" 1 'font-lock-topic-face t)
-           ("\\<\\(SEE\\)\\>" 1 'font-lock-see-face t)
+         '(("\\<\\(TODO\\)\\>" 1 'jcs-font-lock-fixme-face t)
+           ("\\<\\(ATTENTION\\)\\>" 1 'jcs-font-lock-attention-face t)
+           ("\\<\\(STUDY\\)\\>" 1 'jcs-font-lock-study-face t)
+           ("\\<\\(IMPORTANT\\)\\>" 1 'jcs-font-lock-important-face t)
+           ("\\<\\(OPTIMIZE\\)\\>" 1 'jcs-font-lock-optimize-face t)
+           ("\\<\\(NOTE\\)\\>" 1 'jcs-font-lock-note-face t)
+           ("\\<\\(DESCRIPTION\\)\\>" 1 'jcs-font-lock-description-face t)
+           ("\\<\\(TAG\\)\\>" 1 'jcs-font-lock-tag-face t)
+           ("\\<\\(DEBUGGING\\)\\>" 1 'jcs-font-lock-debugging-face t)
+           ("\\<\\(TEMPORARY\\)\\>" 1 'jcs-font-lock-temporary-face t)
+           ("\\<\\(SOURCE\\)\\>" 1 'jcs-font-lock-source-face t)
+           ("\\<\\(URL\\)\\>" 1 'jcs-font-lock-url-face t)
+           ("\\<\\(IDEA\\)\\>" 1 'jcs-font-lock-idea-face t)
+           ("\\<\\(OBSOLETE\\)\\>" 1 'jcs-font-lock-obsolete-face t)
+           ("\\<\\(DEPRECATED\\)\\>" 1 'jcs-font-lock-deprecated-face t)
+           ("\\<\\(TOPIC\\)\\>" 1 'jcs-font-lock-topic-face t)
+           ("\\<\\(SEE\\)\\>" 1 'jcs-font-lock-see-face t)
 
-           ("\\<\\(OPTION\\)\\>" 1 'font-lock-option-face t)
-           ("\\<\\(OR\\)\\>" 1 'font-lock-or-face t)
+           ("\\<\\(OPTION\\)\\>" 1 'jcs-font-lock-option-face t)
+           ("\\<\\(OR\\)\\>" 1 'jcs-font-lock-or-face t)
+
+           ("`\\([a-zA-Z0-9_ $]*\\)'" 'jcs-font-lock-key-highlight-face)
            )'end))
-      fixme-modes)
-
-;; List of color: https://alexschroeder.ch/geocities/kensanata/colors.html
-(modify-face 'font-lock-fixme-face "red" nil nil t nil t nil nil)
-(modify-face 'font-lock-attention-face "red" nil nil t nil t nil nil)
-(modify-face 'font-lock-study-face "yellow" nil nil t nil t nil nil)
-(modify-face 'font-lock-important-face "yellow" nil nil t nil t nil nil)
-(modify-face 'font-lock-optimize-face "yellow" nil nil t nil t nil nil)
-(modify-face 'font-lock-note-face "dark green" nil nil t nil t nil nil)
-(modify-face 'font-lock-description-face "dark green" nil nil t nil t nil nil)
-(modify-face 'font-lock-tag-face "dark green" nil nil t nil t nil nil)
-(modify-face 'font-lock-debugging-face "turquoise" nil nil t nil t nil nil)
-(modify-face 'font-lock-temporary-face "turquoise" nil nil t nil t nil nil)
-(modify-face 'font-lock-source-face "PaleTurquoise2" nil nil t nil t nil nil)
-(modify-face 'font-lock-url-face "PaleTurquoise2" nil nil t nil t nil nil)
-(modify-face 'font-lock-idea-face "green yellow" nil nil t nil t nil nil)
-(modify-face 'font-lock-obsolete-face "DarkOrange3" nil nil t nil t nil nil)
-(modify-face 'font-lock-deprecated-face "DarkOrange3" nil nil t nil t nil nil)
-(modify-face 'font-lock-topic-face "slate blue" nil nil t nil t nil nil)
-(modify-face 'font-lock-see-face "slate blue" nil nil t nil t nil nil)
-
-(modify-face 'font-lock-option-face "dark green" nil nil t nil t nil nil)
-(modify-face 'font-lock-or-face "green yellow" nil nil t nil t nil nil)
+      jcs-fixme-modes)
 
 
 (defun casey-replace-string (FromString ToString)
-  "Replace a string without moving point."
+  "Replace a string without moving point.
+FROMSTRING : String will be replaced.
+TOSTRING : String will replaced."
   (interactive "sReplace: \nsReplace: %s  With: ")
   (save-excursion
     (replace-string FromString ToString)))
@@ -255,7 +319,7 @@
 
 ;; TXT mode handling
 (defun casey-big-fun-text-hook ()
-  ;; 4-space tabs
+  "4-space tabs."
   (setq tab-width 4
         indent-tabs-mode nil)
 
@@ -269,12 +333,12 @@
 
 ;; Window Commands
 (defun w32-restore-frame ()
-  "Restore a minimized frame"
+  "Restore a minimized frame."
   (interactive)
   (w32-send-sys-command 61728))
 
 (defun maximize-frame ()
-  "Maximize the current frame"
+  "Maximize the current frame."
   (interactive)
   (when casey-aquamacs (aquamacs-toggle-full-frame))
   (when casey-win32 (w32-send-sys-command 61488)))
@@ -295,11 +359,13 @@
   (copy-region-as-kill (mark) (point)))
 
 (defun casey-replace-in-region (old-word new-word)
-  "Perform a replace-string in the current region."
+  "Perform a `replace-string' in the current region.
+OLD-WORD : old word will be replaced.
+NEW-WORD : new word ready to be insert."
   (interactive "sReplace: \nsReplace: %s  With: ")
   (save-excursion (save-restriction
                     (narrow-to-region (mark) (point))
-                    (beginning-of-buffer)
+                    (goto-char (point-min))
                     (replace-string old-word new-word)
                     )))
 
@@ -317,13 +383,13 @@
     (find-project-directory-recursive-run)))
 
 (defun lock-compilation-directory ()
-  "The compilation process should NOT hunt for a makefile"
+  "The compilation process should NOT hunt for a makefile."
   (interactive)
   (setq compilation-directory-locked t)
   (message "Compilation directory is locked."))
 
 (defun unlock-compilation-directory ()
-  "The compilation process SHOULD hunt for a makefile"
+  "The compilation process SHOULD hunt for a makefile."
   (interactive)
   (setq compilation-directory-locked nil)
   (message "Compilation directory is roaming."))
@@ -386,6 +452,7 @@
 (set-face-attribute 'font-lock-variable-name-face nil :foreground "#D2D2D2")            ;; declare name
 
 (defun post-load-stuff ()
+  "Post load stuff."
   (interactive)
   (menu-bar-mode -1)
   (maximize-frame)
