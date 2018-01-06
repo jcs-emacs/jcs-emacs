@@ -89,8 +89,8 @@
 (defvar jcs-py-doc-string-version 0
   "Document string version.
 
-0 : Description after ''' opening docstring..
-1 : Line breack description after ''' opening docstring.")
+0 : Description after \"\"\" opening docstring..
+1 : Line breack description \"\"\" opening docstring.")
 
 ;;; Doc string character after value type font.
 (defvar jcs-java-doc-after-value-type-char " : "
@@ -874,7 +874,10 @@ the input line."
 "
   (when (or (jcs-is-current-major-mode-p "python-mode"))
     ;; go back to comment line.
-    (jcs-next-line)
+    (jcs-move-to-forward-a-char "\"")
+    (jcs-move-to-forward-a-char "\"")
+    (jcs-move-to-forward-a-char "\"")
+
     (if (= jcs-py-doc-string-version 1)
         (progn
           ;; OPTION(jenchieh): docstring option..
