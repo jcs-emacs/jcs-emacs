@@ -9,6 +9,9 @@
 
 2018-01-06
 * Make oop doc string support multiple line coding style. (jcs-emacs-init)
+* Add current word equal functionality. (jcs-emacs-init)
+* Add move forward/backward to word functionalities. (jcs-emacs-init)
+* Add support python multi-lines coding style. (jcs-emacs-init)
 
 2018-01-05
 * Add nasm return and comment key. (jcs-emacs-init)
