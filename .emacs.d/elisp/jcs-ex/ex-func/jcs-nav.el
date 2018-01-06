@@ -59,16 +59,15 @@
 
 ;;;###autoload
 (defun jcs-move-to-forward-a-char (ch)
-  "Move forward to a character."
+  "Move forward to a character.
+CH : character we target to move toward."
   (interactive "P")
 
   ;; If the last current is not the same as current character
   ;; reset the 'search wrapper' flag.
-  (if (not (string= jcs-current-search-char ch))
-      (progn
-        (setq jcs-search-trigger-forward-char 0)
-        (setq jcs-current-search-char ch)
-        ))
+  (when (not (string= jcs-current-search-char ch))
+    (setq jcs-search-trigger-forward-char 0)
+    (setq jcs-current-search-char ch))
 
   (setq point-before-do-anything (point))
 
@@ -83,39 +82,30 @@
   ;; go back to search result.
   (goto-char point-after-look)
 
-  (if (= jcs-search-trigger-forward-char 1)
-      (progn
-        (beginning-of-buffer)
-        (setq jcs-search-trigger-forward-char 0)
-        (jcs-move-to-forward-a-char ch)
-        )
-    )
+  (when (= jcs-search-trigger-forward-char 1)
+    (beginning-of-buffer)
+    (setq jcs-search-trigger-forward-char 0)
+    (jcs-move-to-forward-a-char ch))
 
-  (if (= point-after-look point-end-of-buffer)
-      (progn
-        (goto-char point-before-do-anything)
-        (message "%s"
-                 (propertize (concat "Failing overwrap jcs-move-to-forward-a-char: "  ch)
-                             'face
-                             '(:foreground "cyan")))
-        (setq jcs-search-trigger-forward-char 1)
-        )
-    )
-
-  )
+  (when (= point-after-look point-end-of-buffer)
+    (goto-char point-before-do-anything)
+    (message "%s"
+             (propertize (concat "Failing overwrap jcs-move-to-forward-a-char: "  ch)
+                         'face
+                         '(:foreground "cyan")))
+    (setq jcs-search-trigger-forward-char 1)))
 
 ;;;###autoload
 (defun jcs-move-to-backward-a-char (ch)
-  "Move backward to a character."
+  "Move backward to a character.
+CH : character we target to move toward."
   (interactive "P")
 
   ;; If the last current is not the same as current character
   ;; reset the 'search wrapper' flag.
-  (if (not (string= jcs-current-search-char ch))
-      (progn
-        (setq jcs-search-trigger-backward-char 0)
-        (setq jcs-current-search-char ch)
-        ))
+  (when (not (string= jcs-current-search-char ch))
+    (setq jcs-search-trigger-backward-char 0)
+    (setq jcs-current-search-char ch))
 
   (setq point-before-do-anything (point))
 
@@ -131,26 +121,34 @@
   ;; go back to search result.
   (goto-char point-after-look)
 
+  (when (= jcs-search-trigger-backward-char 1)
+    (end-of-buffer)
+    (setq jcs-search-trigger-backward-char 0)
+    (jcs-move-to-backward-a-char ch))
 
-  (if (= jcs-search-trigger-backward-char 1)
-      (progn
-        (end-of-buffer)
-        (setq jcs-search-trigger-backward-char 0)
-        (jcs-move-to-backward-a-char ch)
-        )
-    )
+  (when (= point-after-look point-beginning-of-buffer)
+    (goto-char point-before-do-anything)
+    (message "%s"
+             (propertize (concat "Failing overwrap jcs-move-to-backward-a-char: " ch)
+                         'face
+                         '(:foreground "cyan")))
+    (setq jcs-search-trigger-backward-char 1)))
 
-  (if (= point-after-look point-beginning-of-buffer)
-      (progn
-        (goto-char point-before-do-anything)
-        (message "%s"
-                 (propertize (concat "Failing overwrap jcs-move-to-backward-a-char: " ch)
-                             'face
-                             '(:foreground "cyan")))
-        (setq jcs-search-trigger-backward-char 1)
-        )
-    )
-  )
+(defun jcs-move-to-forward-a-word (word)
+  "Move forward to a word.
+WORD : word we target to move toward."
+  (interactive "P")
+  (forward-word 1)
+  (while (not (current-word-equal-p word))
+    (forward-word 1)))
+
+(defun jcs-move-to-backward-a-word (word)
+  "Move backward to a word.
+WORD : word we target to move toward."
+  (interactive "P")
+  (backward-word 1)
+  (while (not (current-word-equal-p word))
+    (backward-word 1)))
 
 ;;;------------------------------------------------
 ;;; Move toggle Open and Close all kind of char.
