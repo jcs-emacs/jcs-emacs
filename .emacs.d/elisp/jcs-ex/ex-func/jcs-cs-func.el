@@ -97,7 +97,7 @@ URL(jenchieh): https://github.com/josteink/csharp-mode/issues/123"
         (jcs-next-line)
 
         ;; insert comment doc comment string.
-        (jcs-insert-comment-style-by-current-line)
+        (jcs-insert-comment-style-by-current-line 2)
         ))
     ))
 

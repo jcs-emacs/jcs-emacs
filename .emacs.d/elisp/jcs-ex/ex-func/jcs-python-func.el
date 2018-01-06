@@ -310,7 +310,7 @@ URL(jenchieh): http://docs.python-guide.org/en/latest/writing/style/"
         (jcs-move-to-backward-a-word "def")
 
         ;; insert comment doc comment string.
-        (jcs-insert-comment-style-by-current-line)
+        (jcs-insert-comment-style-by-current-line 1)
         ))))
 
 ;;------------------------------------------------------------------------------------------------------
