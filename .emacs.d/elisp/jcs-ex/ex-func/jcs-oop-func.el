@@ -183,10 +183,16 @@
   "Character after the typename in PHP mode.")
 
 
-(defun jcs-insert-comment-style-by-current-line ()
-  "Read the current line and insert by reading the need from
-the input line."
+(defun jcs-insert-comment-style-by-current-line (search-option)
+  "Read the current line and insert by reading the need from \
+the input line.
+
+SEARCH-OPTION :
+0) search only current line.
+1) search witch closing parenthesis.
+2) search with opening culry parenthesis."
   (interactive)
+
   (let ((keyword-strings '())
         (datatype-name "")
         (meet-function-name nil)
@@ -213,6 +219,7 @@ the input line."
               (word-index 0))
 
           (save-excursion
+            (save-window-excursion
             ;; NOTE(jenchieh): Find closing parenthesis instead
             ;; of search for a line will make this support
             ;; multi-line doc-string.
@@ -220,11 +227,27 @@ the input line."
             ;; Goto beginning of line to prevent if we miss
             ;; any closing parenthesis before the point.
             (beginning-of-line)
-            ;; Move to next closing parenthesis.
-            (jcs-move-forward-close-paren)
+
+            ;; Move to next targeting end function character.
+            (cond ((eq search-option 0)
+                   (progn
+                     ;; Only the current line.
+                     (end-of-line)
+                     ))
+                  ((eq search-option 1)
+                   (progn
+                     ;; Closing Parenthesis
+                     (jcs-move-forward-close-paren)
+                     ))
+                  ((eq search-option 2)
+                   (progn
+                     ;; Opening Curly Parenthesis
+                     (jcs-move-forward-open-curlyParen)
+                     )))
+
             ;; After moved to the closing parenthesis, record
             ;; down the point's position.
-            (setq end-function-point (1- (point))))
+            (setq end-function-point (1- (point)))))
 
           (beginning-of-line)
 
