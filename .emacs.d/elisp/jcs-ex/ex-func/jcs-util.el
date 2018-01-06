@@ -235,6 +235,10 @@ IS-FORWARD : forward conversion instead of backward conversion."
   (interactive)
   (thing-at-point 'word))
 
+(defun current-word-equal-p (str)
+  "Check the current word equal to 'STR'."
+  (string= (thing-at-point 'word) str))
+
 ;;---------------------------------------------
 ;; Line
 ;;---------------------------------------------
