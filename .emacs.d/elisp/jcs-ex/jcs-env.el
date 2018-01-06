@@ -274,7 +274,8 @@
 (mapc (lambda (mode)
         (font-lock-add-keywords
          mode
-         '(("\\<\\(TODO\\)\\>" 1 'jcs-font-lock-fixme-face t)
+         '(;; NOTE(jenchieh): Coding Use keywords.
+           ("\\<\\(TODO\\)\\>" 1 'jcs-font-lock-fixme-face t)
            ("\\<\\(ATTENTION\\)\\>" 1 'jcs-font-lock-attention-face t)
            ("\\<\\(STUDY\\)\\>" 1 'jcs-font-lock-study-face t)
            ("\\<\\(IMPORTANT\\)\\>" 1 'jcs-font-lock-important-face t)
@@ -292,10 +293,12 @@
            ("\\<\\(TOPIC\\)\\>" 1 'jcs-font-lock-topic-face t)
            ("\\<\\(SEE\\)\\>" 1 'jcs-font-lock-see-face t)
 
+           ;; NOTE(jenchieh): Alternative keywords.
            ("\\<\\(OPTION\\)\\>" 1 'jcs-font-lock-option-face t)
            ("\\<\\(OR\\)\\>" 1 'jcs-font-lock-or-face t)
 
-           ;;("`\\([a-zA-Z0-9_ $]*\\)'" 'jcs-font-lock-key-highlight-face)
+           ;; NOTE(jenchieh): Special keywords.
+           ("`\\([a-zA-Z0-9_ $-]*\\)'" 1 'jcs-font-lock-key-highlight-face t)
            )'end))
       jcs-fixme-modes)
 
