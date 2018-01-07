@@ -69,7 +69,7 @@
     (equal do-indent t)))
 
 ;;;###autoload
-(defun jcs-nasm-return-key ()
+(defun jcs-nasm-return ()
   "Return key for `nasm-mode'."
   (interactive)
 
@@ -91,10 +91,14 @@
         (indent-line-to 0)))))
 
 ;;;###autoload
-(defun jcs-nasm-comment-key ()
+(defun jcs-nasm-comment ()
   "Comment key for `nasm-mode'."
   (interactive)
-  (insert ";")
+
+  ;; Call normal nasm comment function before do our
+  ;; own nasm comment.
+  (call-interactively 'nasm-comment)
+
   (let ((should-indent nil))
     (save-excursion
       (backward-char 1)
