@@ -191,6 +191,8 @@ URL: https://emacs.stackexchange.com/questions/212/is-there-a-way-to-use-query-r
 
   ;; goto definition or declaration.
   (helm-gtags-find-tag-from-here)
+
+  (jcs-reload-active-mode)
   )
 
 ;;;###autoload
@@ -209,6 +211,8 @@ in other window."
 
   ;; goto definition or declaration.
   (helm-gtags-find-tag-from-here)
+
+  (jcs-reload-active-mode)
   )
 
 ;;;###autoload
