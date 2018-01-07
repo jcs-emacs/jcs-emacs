@@ -285,11 +285,9 @@ own preferences."
 (defun jcs-special-key-electric ()
   "Insert ` and ' at a time."
   (interactive)
-
   (insert "`")
-  (when (is-inside-comment-block-p)
-    (insert "'")
-    (backward-char 1)))
+  (insert "'")
+  (backward-char 1))
 
 
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
