@@ -17,6 +17,7 @@
  mini-buffer. (jcs-emacs-init)
 * Use default nasm comment function before do our own functionalities
  in `jcs-nasm-comment' function. (jcs-emacs-init)
+* Fixed python and lua mode regexp problem for doc-string indentifier. (jcs-emacs-init)
 
 2018-01-06
 * Make oop doc string support multiple line coding style. (jcs-emacs-init)
