@@ -167,7 +167,7 @@ URL: https://emacs.stackexchange.com/questions/212/is-there-a-way-to-use-query-r
   )
 
 ;;----------------------------------------------
-;; JayCeS Helm
+;; Helm
 ;;----------------------------------------------
 
 ;;;###autoload
@@ -250,6 +250,10 @@ own preferences."
     ;;(helm-execute-persistent-action)
     ))
 
+
+;;----------------------------------------------
+;; Package
+;;----------------------------------------------
 ;; NOTE(jenchieh): Only in Emacs 25.1+
 (defun package-menu-filter-by-status (status)
   "Filter the *Packages* buffer by status."
@@ -270,6 +274,23 @@ own preferences."
 
 (define-key package-menu-mode-map "s" #'package-menu-filter-by-status)
 
+;;----------------------------------------------
+;; `' electriic key.
+;;----------------------------------------------
+
+(defun jcs-special-key-electric ()
+  "Insert ` and ' at a time."
+  (interactive)
+
+  (insert "`")
+  (when (is-inside-comment-block-p)
+    (insert "'")
+    (backward-char 1)))
+
+
+;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+;; Load files.
+;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 ;;; Utilities
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-util.el")
