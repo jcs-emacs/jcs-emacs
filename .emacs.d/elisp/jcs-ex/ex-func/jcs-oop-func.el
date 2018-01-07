@@ -196,6 +196,30 @@
   "Character after the typename in PHP mode.")
 
 
+(defun jcs-move-cursor-by-search-option (search-option)
+  "Move to next targeting end function character.
+SEARCH-OPTION :
+0) search only current line.
+1) search witch closing parenthesis.
+2) search with opening culry parenthesis."
+
+  (ignore-errors
+    (cond ((eq search-option 0)
+           (progn
+             ;; Only the current line.
+             (end-of-line)
+             ))
+          ((eq search-option 1)
+           (progn
+             ;; Closing Parenthesis
+             (jcs-move-forward-close-paren t)  ; No prompt.
+             ))
+          ((eq search-option 2)
+           (progn
+             ;; Opening Curly Parenthesis
+             (jcs-move-forward-open-curlyParen t)  ; No prompt.
+             )))))
+
 (defun jcs-insert-comment-style-by-current-line (search-option)
   "Read the current line and insert by reading the need from \
 the input line.
@@ -233,34 +257,32 @@ SEARCH-OPTION :
 
           (save-excursion
             (save-window-excursion
-            ;; NOTE(jenchieh): Find closing parenthesis instead
-            ;; of search for a line will make this support
-            ;; multi-line doc-string.
-            ;;
-            ;; Goto beginning of line to prevent if we miss
-            ;; any closing parenthesis before the point.
-            (beginning-of-line)
+              ;; NOTE(jenchieh): Find closing parenthesis instead
+              ;; of search for a line will make this support
+              ;; multi-line doc-string.
+              ;;
+              ;; Goto beginning of line to prevent if we miss
+              ;; any closing parenthesis before the point.
+              (beginning-of-line)
 
-            ;; Move to next targeting end function character.
-            (cond ((eq search-option 0)
-                   (progn
-                     ;; Only the current line.
-                     (end-of-line)
-                     ))
-                  ((eq search-option 1)
-                   (progn
-                     ;; Closing Parenthesis
-                     (jcs-move-forward-close-paren)
-                     ))
-                  ((eq search-option 2)
-                   (progn
-                     ;; Opening Curly Parenthesis
-                     (jcs-move-forward-open-curlyParen)
-                     )))
+              (let ((tmp-current-point (point)))
+                ;; Move to next targeting end function character.
+                (jcs-move-cursor-by-search-option search-option)
 
-            ;; After moved to the closing parenthesis, record
-            ;; down the point's position.
-            (setq end-function-point (1- (point)))))
+                ;; Check if we did move the point?
+                ;; If the recorded point is the same as
+                ;; the current point, which mean the cursor
+                ;; did not move at all.
+                ;;
+                ;; If that is the case, use the default one which
+                ;; is the `end-of-line' function.
+                (when (= tmp-current-point (point))
+                  ;; Use the default one. (Pass in zero)
+                  (jcs-move-cursor-by-search-option 0)))
+
+              ;; After moved to the closing parenthesis, record
+              ;; down the point's position.
+              (setq end-function-point (1- (point)))))
 
           (beginning-of-line)
 
