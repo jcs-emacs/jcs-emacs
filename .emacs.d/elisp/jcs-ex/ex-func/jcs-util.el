@@ -322,22 +322,24 @@ LINE : number to check if current line this line?"
 ;;;###autoload
 (defun is-at-start-of-line-p ()
   "Cursor is at the first character of this line?"
-  (save-excursion
-    (setq currentPoint (point))
-    (back-to-indentation)
-    (setq firstCharPoint (point)))
+  (let ((currentPoint nil)
+        (firstCharPoint nil))
+    (save-excursion
+      (setq currentPoint (point))
+      (back-to-indentation)
+      (setq firstCharPoint (point)))
 
-  (= firstCharPoint currentPoint))
+    (= firstCharPoint currentPoint)))
 
 ;;;###autoload
 (defun is-met-first-char-at-line-p ()
-  "Check current cursor point is after the first character at
+  "Check current cursor point is after the first character at \
 the current line.
 
-@return { boolean } : true, infront of first character. false,
-vice versa.
-"
-  (let ((isInfrontOfFirstChar t))
+@return { boolean } : true, infront of first character.
+false, vice versa."
+  (let ((isInfrontOfFirstChar t)
+        (pointToCheck nil))
     (save-excursion
       (ignore-errors
         (setq pointToCheck (point))
@@ -352,6 +354,27 @@ vice versa.
           (forward-char 1))))
 
     (eq isInfrontOfFirstChar t)))
+
+(defun jcs-empty-line-between-point (minPoint maxPoint)
+  "Check if there is empty line between two point.
+MINPOINT : smaller position.
+MAXPOINT : larger position."
+  (save-excursion
+    (let ((there-is-empty-line nil))
+      (when (>= minPoint maxPoint)
+        (jcs-warning "Min point cannot be larger than max point..")
+        ;; Return false.
+        (equal there-is-empty-line t))
+
+      (goto-char minPoint)
+      (while (< (point) maxPoint)
+        (when (current-line-empty-p)
+          ;; Return true.
+          (setq there-is-empty-line t)
+          (equal there-is-empty-line t))
+        (jcs-next-line))
+      ;; Return false.
+      (equal there-is-empty-line t))))
 
 ;;;###autoload
 (defun safe-forward-char ()
