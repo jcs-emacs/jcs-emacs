@@ -58,7 +58,7 @@
 (setq jcs-search-trigger-backward-char 0)
 
 ;;;###autoload
-(defun jcs-move-to-forward-a-char (ch)
+(defun jcs-move-to-forward-a-char-recursive (ch)
   "Move forward to a character.
 CH : character we target to move toward."
   (interactive "P")
@@ -85,7 +85,7 @@ CH : character we target to move toward."
   (when (= jcs-search-trigger-forward-char 1)
     (beginning-of-buffer)
     (setq jcs-search-trigger-forward-char 0)
-    (jcs-move-to-forward-a-char ch))
+    (jcs-move-to-forward-a-char-recursive ch))
 
   (when (= point-after-look point-end-of-buffer)
     (goto-char point-before-do-anything)
@@ -96,7 +96,7 @@ CH : character we target to move toward."
     (setq jcs-search-trigger-forward-char 1)))
 
 ;;;###autoload
-(defun jcs-move-to-backward-a-char (ch)
+(defun jcs-move-to-backward-a-char-recursive (ch)
   "Move backward to a character.
 CH : character we target to move toward."
   (interactive "P")
@@ -124,7 +124,7 @@ CH : character we target to move toward."
   (when (= jcs-search-trigger-backward-char 1)
     (end-of-buffer)
     (setq jcs-search-trigger-backward-char 0)
-    (jcs-move-to-backward-a-char ch))
+    (jcs-move-to-backward-a-char-recursive ch))
 
   (when (= point-after-look point-beginning-of-buffer)
     (goto-char point-before-do-anything)
@@ -135,37 +135,59 @@ CH : character we target to move toward."
     (setq jcs-search-trigger-backward-char 1)))
 
 
-(defun jcs-move-to-forward-a-char-no-prompt (ch)
+(defun jcs-move-to-forward-a-char (ch)
   "Move forward to a character.
 CH : character we target to move toward."
   (interactive "P")
-  (forward-char 1)
-  (while (not (current-char-equal-p ch))
-    (forward-char 1)))
+  (ignore-errors
+    (forward-char 1)
+    (while (not (current-char-equal-p ch))
+      (forward-char 1))))
 
-(defun jcs-move-to-backward-a-char-no-prompt (ch)
+(defun jcs-move-to-backward-a-char (ch)
   "Move forward to a character.
 CH : character we target to move toward."
   (interactive "P")
-  (backward-char 1)
-  (while (not (current-char-equal-p ch))
-    (backward-char 1)))
+  (ignore-errors
+    (backward-char 1)
+    (while (not (current-char-equal-p ch))
+      (backward-char 1))))
+
+(defun jcs-move-to-forward-a-char-do-recursive (ch &optional no-rec)
+  "Move forward to a character and recusrive?
+CH : character we target to move toward.
+as NO-REC : recursive? (Default: do recusrive method)"
+  (interactive "P")
+  (if (equal no-rec t)
+      (jcs-move-to-forward-a-char ch)
+    (jcs-move-to-forward-a-char-recursive ch)))
+
+(defun jcs-move-to-backward-a-char-do-recursive (ch &optional no-rec)
+  "Move forward to a character and recusrive?
+CH : character we target to move toward.
+as NO-REC : recursive? (Default: do recusrive method)"
+  (interactive "P")
+  (if (equal no-rec t)
+      (jcs-move-to-backward-a-char ch)
+    (jcs-move-to-backward-a-char-recursive ch)))
 
 (defun jcs-move-to-forward-a-word (word)
   "Move forward to a word.
 WORD : word we target to move toward."
   (interactive "P")
-  (forward-word 1)
-  (while (not (current-word-equal-p word))
-    (forward-word 1)))
+  (ignore-errors
+    (forward-word 1)
+    (while (not (current-word-equal-p word))
+      (forward-word 1))))
 
 (defun jcs-move-to-backward-a-word (word)
   "Move backward to a word.
 WORD : word we target to move toward."
   (interactive "P")
-  (backward-word 1)
-  (while (not (current-word-equal-p word))
-    (backward-word 1)))
+  (ignore-errors
+    (backward-word 1)
+    (while (not (current-word-equal-p word))
+      (backward-word 1))))
 
 ;;;------------------------------------------------
 ;;; Move toggle Open and Close all kind of char.
@@ -321,217 +343,137 @@ WORD : word we target to move toward."
 ;;; Single Quotation Mark
 
 ;;;###autoload
-(defun jcs-move-forward-single-quot (&optional no-prompt)
+(defun jcs-move-forward-single-quot (&optional no-rec)
   "Move forward to a single quotation mark.
-as NO-PROMPT : no prompt? (Default: prompt)
-
-nil = prompt failed search, then recursive move again.  (Default)
-t = don't prompt, no error handling, no recursive move again."
+as NO-REC : recursive? (Default: do recusrive method)"
   (interactive)
-  (if (equal no-prompt t)
-      (jcs-move-to-forward-a-char-no-prompt "'")
-    (jcs-move-to-forward-a-char "'")))
+  (jcs-move-to-forward-a-char-do-recursive "'" no-rec))
 
 ;;;###autoload
-(defun jcs-move-backward-single-quot (&optional no-prompt)
+(defun jcs-move-backward-single-quot (&optional no-rec)
   "Move forward to a double quotation mark.
-as NO-PROMPT : no prompt? (Default: prompt)
-
-nil = prompt failed search, then recursive move again.  (Default)
-t = don't prompt, no error handling, no recursive move again."
+as NO-REC : recursive? (Default: do recusrive method)"
   (interactive)
-  (if (equal no-prompt t)
-      (jcs-move-to-backward-a-char-no-prompt "'")
-    (jcs-move-to-backward-a-char "'")))
+  (jcs-move-to-backward-a-char-do-recursive "'" no-rec))
 
 ;;;------------------------------------------------
 ;;; Double Quotation Mark
 
 ;;;###autoload
-(defun jcs-move-forward-double-quot (&optional no-prompt)
+(defun jcs-move-forward-double-quot (&optional no-rec)
   "Move forward to a double quotation mark.
-as NO-PROMPT : no prompt? (Default: prompt)
-
-nil = prompt failed search, then recursive move again.  (Default)
-t = don't prompt, no error handling, no recursive move again."
+as NO-REC : recursive? (Default: do recusrive method)"
   (interactive)
-  (if (equal no-prompt t)
-      (jcs-move-to-forward-a-char-no-prompt "\"")
-    (jcs-move-to-forward-a-char "\"")))
+  (jcs-move-to-forward-a-char-do-recursive "\"" no-rec))
 
 ;;;###autoload
-(defun jcs-move-backward-double-quot (&optional no-prompt)
+(defun jcs-move-backward-double-quot (&optional no-rec)
   "Move forward to a double quotation mark.
-as NO-PROMPT : no prompt? (Default: prompt)
-
-nil = prompt failed search, then recursive move again.  (Default)
-t = don't prompt, no error handling, no recursive move again."
+as NO-REC : recursive? (Default: do recusrive method)"
   (interactive)
-  (if (equal no-prompt t)
-      (jcs-move-to-backward-a-char-no-prompt "\"")
-    (jcs-move-to-backward-a-char "\"")))
+  (jcs-move-to-backward-a-char-do-recursive "\"" no-rec))
 
 ;;;------------------------------------------------
 ;;; Open Parenthesis
 
 ;;;###autoload
-(defun jcs-move-forward-open-paren (&optional no-prompt)
+(defun jcs-move-forward-open-paren (&optional no-rec)
   "Move forward to a open parenthesis.
-as NO-PROMPT : no prompt? (Default: prompt)
-
-nil = prompt failed search, then recursive move again.  (Default)
-t = don't prompt, no error handling, no recursive move again."
+as NO-REC : recursive? (Default: do recusrive method)"
   (interactive)
-  (if (equal no-prompt t)
-      (jcs-move-to-forward-a-char-no-prompt "(")
-    (jcs-move-to-forward-a-char "(")))
+  (jcs-move-to-forward-a-char-do-recursive "(" no-rec))
 
 ;;;###autoload
-(defun jcs-move-backward-open-paren (&optional no-prompt)
+(defun jcs-move-backward-open-paren (&optional no-rec)
   "Move forward to a open parenthesis.
-as NO-PROMPT : no prompt? (Default: prompt)
-
-nil = prompt failed search, then recursive move again.  (Default)
-t = don't prompt, no error handling, no recursive move again."
+as NO-REC : recursive? (Default: do recusrive method)"
   (interactive)
-  (if (equal no-prompt t)
-      (jcs-move-to-backward-a-char-no-prompt "(")
-    (jcs-move-to-backward-a-char "(")))
+  (jcs-move-to-backward-a-char-do-recursive "(" no-rec))
 
 ;;;------------------------------------------------
 ;;; Close Parenthesis
 
 ;;;###autoload
-(defun jcs-move-forward-close-paren (&optional no-prompt)
+(defun jcs-move-forward-close-paren (&optional no-rec)
   "Move forward to a close parenthesis.
-as NO-PROMPT : no prompt? (Default: prompt)
-
-nil = prompt failed search, then recursive move again.  (Default)
-t = don't prompt, no error handling, no recursive move again."
+as NO-REC : recursive? (Default: do recusrive method)"
   (interactive)
-  (if (equal no-prompt t)
-      (jcs-move-to-forward-a-char-no-prompt ")")
-    (jcs-move-to-forward-a-char ")")))
+  (jcs-move-to-forward-a-char-do-recursive ")" no-rec))
 
 ;;;###autoload
-(defun jcs-move-backward-close-paren (&optional no-prompt)
+(defun jcs-move-backward-close-paren (&optional no-rec)
   "Move forward to a close parenthesis.
-as NO-PROMPT : no prompt? (Default: prompt)
-
-nil = prompt failed search, then recursive move again.  (Default)
-t = don't prompt, no error handling, no recursive move again."
+as NO-REC : recursive? (Default: do recusrive method)"
   (interactive)
-  (if (equal no-prompt t)
-      (jcs-move-to-backward-a-char-no-prompt ")")
-    (jcs-move-to-backward-a-char ")")))
+  (jcs-move-to-backward-a-char-do-recursive ")" no-rec))
 
 ;;;------------------------------------------------
 ;;; Open Sqr Parenthesis
 
 ;;;###autoload
-(defun jcs-move-forward-open-sqrParen (&optional no-prompt)
+(defun jcs-move-forward-open-sqrParen (&optional no-rec)
   "Move forward to a open sqr parenthesis.
-as NO-PROMPT : no prompt? (Default: prompt)
-
-nil = prompt failed search, then recursive move again.  (Default)
-t = don't prompt, no error handling, no recursive move again."
+as NO-REC : recursive? (Default: do recusrive method)"
   (interactive)
-  (if (equal no-prompt t)
-      (jcs-move-to-forward-a-char-no-prompt "[[]")
-    (jcs-move-to-forward-a-char "[[]")))
+  (jcs-move-to-forward-a-char-do-recursive "[[]" no-rec))
 
 ;;;###autoload
-(defun jcs-move-backward-open-sqrParen (&optional no-prompt)
+(defun jcs-move-backward-open-sqrParen (&optional no-rec)
   "Move forward to a open sqr parenthesis.
-as NO-PROMPT : no prompt? (Default: prompt)
-
-nil = prompt failed search, then recursive move again.  (Default)
-t = don't prompt, no error handling, no recursive move again."
+as NO-REC : recursive? (Default: do recusrive method)"
   (interactive)
-  (if (equal no-prompt t)
-      (jcs-move-to-backward-a-char-no-prompt "[[]")
-    (jcs-move-to-backward-a-char "[[]")))
+  (jcs-move-to-backward-a-char-do-recursive "[[]" no-rec))
 
 ;;;------------------------------------------------
 ;;; Close Sqr Parenthesis
 
 ;;;###autoload
-(defun jcs-move-forward-close-sqrParen (&optional no-prompt)
+(defun jcs-move-forward-close-sqrParen (&optional no-rec)
   "Move forward to a close sqr parenthesis.
-as NO-PROMPT : no prompt? (Default: prompt)
-
-nil = prompt failed search, then recursive move again.  (Default)
-t = don't prompt, no error handling, no recursive move again."
+as NO-REC : recursive? (Default: do recusrive method)"
   (interactive)
-  (if (equal no-prompt t)
-      (jcs-move-to-forward-a-char-no-prompt "]")
-    (jcs-move-to-forward-a-char "]")))
+  (jcs-move-to-forward-a-char-do-recursive "]" no-rec))
 
 ;;;###autoload
-(defun jcs-move-backward-close-sqrParen (&optional no-prompt)
+(defun jcs-move-backward-close-sqrParen (&optional no-rec)
   "Move forward to a close sqr parenthesis.
-as NO-PROMPT : no prompt?
-
-nil = prompt failing search, then recursive move again.  (Default)
-t = don't prompt, then no error handling."
+as NO-REC : recursive? (Default: do recusrive method)"
   (interactive)
-  (if (equal no-prompt t)
-      (jcs-move-to-backward-a-char-no-prompt "]")
-    (jcs-move-to-backward-a-char "]")))
+  (jcs-move-to-backward-a-char-do-recursive "]" no-rec))
 
 ;;;------------------------------------------------
 ;;; Open Curly Parenthesis
 
 ;;;###autoload
-(defun jcs-move-forward-open-curlyParen (&optional no-prompt)
+(defun jcs-move-forward-open-curlyParen (&optional no-rec)
   "Move forward to a open curly parenthesis.
-as NO-PROMPT : no prompt? (Default: prompt)
-
-nil = prompt failed search, then recursive move again.  (Default)
-t = don't prompt, no error handling, no recursive move again."
+as NO-REC : recursive? (Default: do recusrive method)"
   (interactive)
-  (if (equal no-prompt t)
-      (jcs-move-to-forward-a-char-no-prompt "{")
-    (jcs-move-to-forward-a-char "{")))
+  (jcs-move-to-forward-a-char-do-recursive "{" no-rec))
 
 ;;;###autoload
-(defun jcs-move-backward-open-curlyParen (&optional no-prompt)
+(defun jcs-move-backward-open-curlyParen (&optional no-rec)
   "Move forward to a open curly parenthesis.
-as NO-PROMPT : no prompt? (Default: prompt)
-
-nil = prompt failed search, then recursive move again.  (Default)
-t = don't prompt, no error handling, no recursive move again."
+as NO-REC : recursive? (Default: do recusrive method)"
   (interactive)
-  (if (equal no-prompt t)
-      (jcs-move-to-backward-a-char-no-prompt "{")
-    (jcs-move-to-backward-a-char "{")))
+  (jcs-move-to-backward-a-char-do-recursive "{" no-rec))
 
 ;;;------------------------------------------------
 ;;; Close Curly Parenthesis
 
 ;;;###autoload
-(defun jcs-move-forward-close-curlyParen (&optional no-prompt)
+(defun jcs-move-forward-close-curlyParen (&optional no-rec)
   "Move forward to a close curly parenthesis.
-as NO-PROMPT : no prompt? (Default: prompt)
-
-nil = prompt failed search, then recursive move again.  (Default)
-t = don't prompt, no error handling, no recursive move again."
+as NO-REC : recursive? (Default: do recusrive method)"
   (interactive)
-  (if (equal no-prompt t)
-      (jcs-move-to-forward-a-char-no-prompt "}")
-    (jcs-move-to-forward-a-char "}")))
+  (jcs-move-to-forward-a-char-do-recursive "}" no-rec))
 
 ;;;###autoload
-(defun jcs-move-backward-close-curlyParen (&optional no-prompt)
+(defun jcs-move-backward-close-curlyParen (&optional no-rec)
   "Move forward to a close curly parenthesis.
-as NO-PROMPT : no prompt? (Default: prompt)
-
-nil = prompt failed search, then recursive move again.  (Default)
-t = don't prompt, no error handling, no recursive move again."
+as NO-REC : recursive? (Default: do recusrive method)"
   (interactive)
-  (if (equal no-prompt t)
-      (jcs-move-to-backward-a-char-no-prompt "}")
-    (jcs-move-to-backward-a-char "}")))
+  (jcs-move-to-backward-a-char-do-recursive "}" no-rec))
 
 
 ;;----------------------------------------------
