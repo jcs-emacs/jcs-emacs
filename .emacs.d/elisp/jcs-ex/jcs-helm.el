@@ -81,11 +81,8 @@
            (not (file-directory-p (helm-get-selection))))
       (progn
         (jcs-helm-execute-persistent-action)
-        (helm-maybe-exit-minibuffer)
-        )
-    (apply orig-fun args)
-    )
-  )
+        (helm-maybe-exit-minibuffer))
+    (apply orig-fun args)))
 (advice-add 'helm-execute-persistent-action :around #'fu/helm-find-files-navigate-forward)
 
 ;;;###autoload
