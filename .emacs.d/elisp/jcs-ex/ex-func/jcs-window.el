@@ -35,8 +35,7 @@
   (interactive)
 
   ;; open a new frame
-  (make-frame-command)
-  )
+  (make-frame-command))
 
 ;;---------------------------------------------
 ;; Create a new frame and
@@ -50,8 +49,7 @@
   (select-frame frame)
 
   ;; split the winodw after create the new window
-  (split-window-horizontally)
-  )
+  (split-window-horizontally))
 (add-hook 'after-make-frame-functions 'jcs-aftermake-frame-functions-hook)
 
 
