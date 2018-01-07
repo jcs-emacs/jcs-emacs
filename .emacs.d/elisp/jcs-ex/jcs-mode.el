@@ -78,7 +78,7 @@
 
 ;;;###autoload
 (defun jcs-reload-active-mode ()
-  "Reload the active mode. Note this is opposite logic to the
+  "Reload the active mode.  Note this is opposite logic to the \
 toggle mode function."
   (interactive)
 
@@ -219,7 +219,7 @@ toggle mode function."
 ;;------------------------------------------------------------------------------------------------------
 ;;;###autoload
 (defun jcs-depend-mode ()
-  "This mode depend on my own machine. More feature and more
+  "This mode depend on my own machine. More feature and more \
 control of the editor."
   (interactive)
 
@@ -256,7 +256,7 @@ control of the editor."
 
 ;;;###autoload
 (defun jcs-cross-mode ()
-  "This mode run anywhere will work, usually less powerful then
+  "This mode run anywhere will work, usually less powerful then \
 'jcs-depend-mode'."
   (interactive)
 
