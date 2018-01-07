@@ -212,12 +212,14 @@ SEARCH-OPTION :
           ((eq search-option 1)
            (progn
              ;; Closing Parenthesis
-             (jcs-move-forward-close-paren t)  ; No prompt.
+             ;; NOTE(jenchieh): No recursive/No prompt.
+             (jcs-move-forward-close-paren t)
              ))
           ((eq search-option 2)
            (progn
              ;; Opening Curly Parenthesis
-             (jcs-move-forward-open-curlyParen t)  ; No prompt.
+             ;; NOTE(jenchieh): No recursive/No prompt.
+             (jcs-move-forward-open-curlyParen t)
              )))))
 
 (defun jcs-insert-comment-style-by-current-line (search-option)
@@ -276,7 +278,10 @@ SEARCH-OPTION :
                 ;;
                 ;; If that is the case, use the default one which
                 ;; is the `end-of-line' function.
-                (when (= tmp-current-point (point))
+                (when (or (= tmp-current-point (point))
+                          (jcs-empty-line-between-point tmp-current-point (point)))
+                  ;; back to where we were.
+                  (goto-char tmp-current-point)
                   ;; Use the default one. (Pass in zero)
                   (jcs-move-cursor-by-search-option 0)))
 
@@ -932,9 +937,9 @@ SEARCH-OPTION :
 "
   (when (or (jcs-is-current-major-mode-p "python-mode"))
     ;; go back to comment line.
-    (jcs-move-to-forward-a-char "\"")
-    (jcs-move-to-forward-a-char "\"")
-    (jcs-move-to-forward-a-char "\"")
+    (jcs-move-to-forward-a-char-recursive "\"")
+    (jcs-move-to-forward-a-char-recursive "\"")
+    (jcs-move-to-forward-a-char-recursive "\"")
 
     (if (= jcs-py-doc-string-version 1)
         (progn
@@ -1082,9 +1087,9 @@ SEARCH-OPTION :
 (mapc (lambda (mode)
         (font-lock-add-keywords
          mode
-         '(("(,*[a-zA-Z0-9_]*.\\([a-zA-Z_$0-9[]*.\\)[,)]" 1 'font-lock-variable-name-face t)
-           (",.\\([a-zA-Z_$0-9[]*.\\)[,]" 1 'font-lock-variable-name-face t)
-           ("\\([a-zA-Z_$0-9[]*.\\)[)]" 1 'font-lock-variable-name-face t)
+         '(("(,*\\([a-zA-Z_$0-9[ ]*\\)[,)]" 1 'font-lock-variable-name-face t)
+           (",\\([a-zA-Z_$0-9[, ]*\\)," 1 'font-lock-variable-name-face t)
+           ("\\([a-zA-Z_$0-9[ ]*\\)[)]" 1 'font-lock-variable-name-face t)
            )'end))
       jcs-oop-font-lock-missing-modes)
 
