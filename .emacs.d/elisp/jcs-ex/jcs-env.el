@@ -298,7 +298,7 @@
            ("\\<\\(OR\\)\\>" 1 'jcs-font-lock-or-face t)
 
            ;; NOTE(jenchieh): Special keywords.
-           ("`\\([a-zA-Z0-9_ $-]*\\)'" 1 'jcs-font-lock-key-highlight-face t)
+           ("`\\([a-zA-Z0-9_ $-.!]*\\)'" 1 'jcs-font-lock-key-highlight-face t)
            )'end))
       jcs-fixme-modes)
 
