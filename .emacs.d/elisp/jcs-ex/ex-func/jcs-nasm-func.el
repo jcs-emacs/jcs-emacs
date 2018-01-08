@@ -75,13 +75,14 @@
 
   (let ((continue-comment nil))
     (save-excursion
-      (jcs-goto-first-char-in-line)
+      (ignore-errors
+        (jcs-goto-first-char-in-line)
 
-      (forward-char 1)
-      (when (current-char-equal-p ";")
         (forward-char 1)
         (when (current-char-equal-p ";")
-          (setq continue-comment t))))
+          (forward-char 1)
+          (when (current-char-equal-p ";")
+            (setq continue-comment t)))))
 
     (newline-and-indent)
 
