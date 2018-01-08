@@ -220,34 +220,63 @@ so it do not goto the beginning of the line."
     (progn
       (call-interactively 'jcs-format-document))))
 
-;; NOTE(jenchieh): regexp to align with. [Default: = ]
-(setq jcs-align-regexp-string "\\(\\s-*\\) = ")
-
 ;;;###autoload
-(defun jcs-align-region ()
-  "Align current selected region."
+(defun jcs-align-region (regexp)
+  "Align current selected region.
+REGEXP : reqular expression use to align."
   (interactive)
 
   (align (region-beginning) (region-end))
-  (align-regexp (region-beginning) (region-end) jcs-align-regexp-string 1 1))
+  (align-regexp (region-beginning) (region-end) regexp 1 1))
 
 ;;;###autoload
-(defun jcs-align-document ()
-  "Align current document."
+(defun jcs-align-document (regexp)
+  "Align current document.
+REGEXP : reqular expression use to align."
   (interactive)
 
   ;; align the whole doc.
   (align (point-min) (point-max))
-  (align-regexp (point-min) (point-max) jcs-align-regexp-string 1 1))
+  (align-regexp (point-min) (point-max) regexp 1 1))
 
 ;;;###autoload
 (defun jcs-align-region-or-document ()
-  "Either align the region or document depend on if there is
+  "Either align the region or document depend on if there is \
 region selected?"
   (interactive)
+
+  ;; NOTE(jenchieh): this is the most common one.
+  ;; Compatible to all programming languages use equal sign to
+  ;; assign value.
+  (let ((align-regexp-string "\\(\\s-*\\) [=] "))
+
+    (cond ((or (jcs-is-current-major-mode-p "nasm-mode"))
+           (progn
+             (setq align-regexp-string "\\(\\s-*\\)equ ")
+             ))
+          ((or (jcs-is-current-major-mode-p "go-mode"))
+           (progn
+             (setq align-regexp-string "\\(\\s-*\\) := ")
+             ))
+          )
+
+    (if (is-region-selected-p)
+        (jcs-align-region align-regexp-string)
+      (jcs-align-document align-regexp-string))))
+
+;;;###autoload
+(defun jcs-align-repeat (regexp)
+  "Repeat alignment with respect to the given regular expression.
+REGEXP : reqular expression use to align."
+  (interactive "r\nsAlign regexp: ")
+
   (if (is-region-selected-p)
-      (jcs-align-region)
-    (jcs-align-document)))
+      (progn
+        (align-regexp (region-beginning) (region-end)
+                      (concat "\\(\\s-*\\)" regexp) 1 1 t))
+    (progn
+      (align-regexp (point-min) (point-max)
+                    (concat "\\(\\s-*\\)" regexp) 1 1 t))))
 
 ;;;###autoload
 (defun revert-buffer-no-confirm ()
