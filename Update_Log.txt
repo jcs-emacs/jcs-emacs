@@ -9,6 +9,9 @@
 
 2018-01-08
 * Fixed nasm comment key forward and spacing issue. (jcs-emacs-init)
+* Fixed nasm return key at the end of buffer can not make new 
+ line issue. (jcs-emacs-init)
+* Align repeat functionality implemented. (jcs-emacs-init)
 
 2018-01-07
 * Add `!' and `.' to special keyword regexp. (jcs-emacs-init)
