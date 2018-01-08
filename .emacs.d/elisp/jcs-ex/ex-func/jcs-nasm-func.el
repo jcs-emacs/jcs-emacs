@@ -109,7 +109,17 @@
           ;; Indent it to the very left/beginning of line.
           (indent-line-to 0))))
 
-    (when (equal should-indent t)
+    (save-excursion
+      ;; If search backward failed, try forward.
+      (when (equal should-indent nil)
+        (forward-char 1)
+        (when (current-char-equal-p ";")
+          (setq should-indent t)
+          ;; Indent it to the very left/beginning of line.
+          (indent-line-to 0))))
+
+    (when (and (equal should-indent t)
+               (is-end-of-line-p))
       (insert " "))))
 
 ;;------------------------------------------------------------------------------------------------------
