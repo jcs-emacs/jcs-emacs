@@ -232,6 +232,8 @@ REGEXP : reqular expression use to align."
 ;;;###autoload
 (defun jcs-align-document (regexp)
   "Align current document.
+URL(jenchieh): https://www.emacswiki.org/emacs/AlignCommands
+
 REGEXP : reqular expression use to align."
   (interactive)
 
