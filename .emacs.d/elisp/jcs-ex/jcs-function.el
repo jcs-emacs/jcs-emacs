@@ -185,12 +185,13 @@ URL: https://emacs.stackexchange.com/questions/212/is-there-a-way-to-use-query-r
   "Goto the declaration / definition depends on the cursor position."
   (interactive)
 
-  ;; Update TAG file. Default is update only current file, You
-  ;; can update all files with C-u prefix.
-  (helm-gtags-update-tags)
+  (ignore-errors
+    ;; Update TAG file. Default is update only current file, You
+    ;; can update all files with C-u prefix.
+    (helm-gtags-update-tags)
 
-  ;; goto definition or declaration.
-  (helm-gtags-find-tag-from-here)
+    ;; goto definition or declaration.
+    (helm-gtags-find-tag-from-here))
 
   (jcs-reload-active-mode)
   )
@@ -201,16 +202,17 @@ URL: https://emacs.stackexchange.com/questions/212/is-there-a-way-to-use-query-r
 in other window."
   (interactive)
 
-  ;; Update TAG file. Default is update only current file, You
-  ;; can update all files with C-u prefix.
-  (helm-gtags-update-tags)
+  (ignore-errors
+    ;; Update TAG file. Default is update only current file, You
+    ;; can update all files with C-u prefix.
+    (helm-gtags-update-tags)
 
-  ;; NOTE(jenchieh): this will make it jump to next window.
-  ;; Is stupid, but work.
-  (ignore-errors (helm-gtags-find-tag-other-window nil))
+    ;; NOTE(jenchieh): this will make it jump to next window.
+    ;; Is stupid, but work.
+    (ignore-errors (helm-gtags-find-tag-other-window nil))
 
-  ;; goto definition or declaration.
-  (helm-gtags-find-tag-from-here)
+    ;; goto definition or declaration.
+    (helm-gtags-find-tag-from-here))
 
   (jcs-reload-active-mode)
   )
