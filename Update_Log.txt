@@ -7,6 +7,10 @@
 # ========================================================================
 
 
+2018-01-13
+* Add ignore-errors for helm find gtags in order to restore previous
+ cross/local mode. (jcs-emacs-init)
+
 2018-01-08
 * Fixed nasm comment key forward and spacing issue. (jcs-emacs-init)
 * Fixed nasm return key at the end of buffer can not make new 
