@@ -7,6 +7,10 @@
 # ========================================================================
 
 
+2018-01-15
+* Deactive mark to unselect current region if align region not 
+ active. (jcs-emacs-init)
+
 2018-01-13
 * Add ignore-errors for helm find gtags in order to restore previous
  cross/local mode. (jcs-emacs-init)
