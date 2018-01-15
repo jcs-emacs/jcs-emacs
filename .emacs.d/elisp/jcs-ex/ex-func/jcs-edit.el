@@ -227,7 +227,9 @@ REGEXP : reqular expression use to align."
   (interactive)
 
   (align (region-beginning) (region-end))
-  (align-regexp (region-beginning) (region-end) regexp 1 1))
+  (align-regexp (region-beginning) (region-end) regexp 1 1)
+  ;; Deactive region no matter what.
+  (deactivate-mark))
 
 ;;;###autoload
 (defun jcs-align-document (regexp)
