@@ -156,9 +156,9 @@ comment character on the same line."
     ;; Prevent the line is the end of document.
     (ignore-errors (next-line 1))
 
-    (if (nth 4 (syntax-ppss))
-        ;; record down next line is comment.
-        (setq next-line-is-commented t))
+    (when (nth 4 (syntax-ppss))
+      ;; record down next line is comment.
+      (setq next-line-is-commented t))
 
     (goto-char before-insert-point)
 
@@ -179,17 +179,14 @@ comment character on the same line."
     (goto-char last)
 
     ;; check inside the comment block?
-    (if (search-backward "/*" point-beginning-of-line t)
-        (progn
-          (if (not (search-forward "*/" point-end-of-line t))
-              (progn
-                (if (null next-line-is-commented)
-                    (progn
-                      ;; NOTE: next line is not a commented
-                      ;; line we add the end comment block.
-                      (goto-char last)
-                      (insert "*/")
-                      )))))))
+    (when (search-backward "/*" point-beginning-of-line t)
+      (when (not (search-forward "*/" point-end-of-line t))
+        (when (null next-line-is-commented)
+          ;; NOTE: next line is not a commented
+          ;; line we add the end comment block.
+          (goto-char last)
+          (insert "*/")
+          ))))
 
   ;; go back before searching.
   ;; because searching will mess up the cursor point.
