@@ -110,6 +110,8 @@
         )
 
   ;; jcs org mode key binding
+  (define-key org-mode-map (kbd "<up>") 'previous-line)
+  (define-key org-mode-map (kbd "<down>") 'next-line)
   (define-key org-mode-map (kbd "C-d") 'jcs-kill-whole-line)
   (define-key org-mode-map "\C-c\C-c" 'kill-ring-save)
   (define-key org-mode-map "\C-a" 'mark-whole-buffer)
