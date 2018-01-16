@@ -27,6 +27,8 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
+;;; Code:
+
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 ;; JenChieh Text mode.
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -36,7 +38,8 @@
 ;;---------------------------
 (require 'gitignore-mode)
 (defun jcs-gitignore-mode-hook ()
-  ;;
+  "JayCeS Gitignore mode."
+
   (electric-pair-mode nil)
 
   ;; highlight URL and clickable.
@@ -88,7 +91,13 @@
 ;;====================================
 ;; Org mode.
 ;;---------------------------
+(require 'org)
+
+;; No fold when open `org' file.
+(setq org-startup-folded nil)
+
 (defun jcs-org-mode()
+  "JayCeS org mode."
 
   ;; turn on auto complete.
   (auto-complete-mode t)
