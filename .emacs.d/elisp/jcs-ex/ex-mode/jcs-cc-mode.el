@@ -137,7 +137,6 @@
   ;; URL(jenchieh): https://emacs.stackexchange.com/questions/9583/how-to-treat-underscore-as-part-of-the-word
   (modify-syntax-entry ?_ "w")
 
-
   ;; Set Faces.
   (jcs-oop-init-set-face)
   )
