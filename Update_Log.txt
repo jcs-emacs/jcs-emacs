@@ -7,6 +7,9 @@
 # ========================================================================
 
 
+2018-01-16
+* Set default org mode no fold. (jcs-emacs-init)
+
 2018-01-15
 * Deactive mark to unselect current region if align region not 
  active. (jcs-emacs-init)
