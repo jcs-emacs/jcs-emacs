@@ -221,13 +221,25 @@ so it do not goto the beginning of the line."
       (call-interactively 'jcs-format-document))))
 
 ;;;###autoload
+(defun jcs-align-region-by-points (regexp pnt-min pnt-max)
+  "Align current selected region.
+
+REGEXP : reqular expression use to align.
+PNT-MIN: point min.
+PNT-MAX: point max."
+  (interactive)
+
+  (align pnt-min pnt-max)
+  (align-regexp pnt-min pnt-max regexp 1 1))
+
+;;;###autoload
 (defun jcs-align-region (regexp)
   "Align current selected region.
+
 REGEXP : reqular expression use to align."
   (interactive)
 
-  (align (region-beginning) (region-end))
-  (align-regexp (region-beginning) (region-end) regexp 1 1)
+  (jcs-align-region-by-points regexp (region-beginning) (region-end))
   ;; Deactive region no matter what.
   (deactivate-mark))
 
@@ -240,8 +252,7 @@ REGEXP : reqular expression use to align."
   (interactive)
 
   ;; align the whole doc.
-  (align (point-min) (point-max))
-  (align-regexp (point-min) (point-max) regexp 1 1))
+  (jcs-align-region-by-points regexp (point-min) (point-max)))
 
 ;;;###autoload
 (defun jcs-align-region-or-document ()
@@ -249,24 +260,71 @@ REGEXP : reqular expression use to align."
 region selected?"
   (interactive)
 
-  ;; NOTE(jenchieh): this is the most common one.
-  ;; Compatible to all programming languages use equal sign to
-  ;; assign value.
-  (let ((align-regexp-string "\\(\\s-*\\) [=] "))
+  (save-excursion
+    (let (;; NOTE(jenchieh): this is the most common one.
+          ;; Compatible to all programming languages use equal
+          ;; sign to assign value.
+          (align-regexp-string-code "\\(\\s-*\\) [=] ")
+          ;; NOTE(jenchihe): Default support `//' and `/**/'
+          ;; comment symbols.
+          (align-regexp-string-comment "\\(\\s-*\\) /[/*]")
+          (pnt-min nil)
+          (pnt-max nil))
 
-    (cond ((or (jcs-is-current-major-mode-p "nasm-mode"))
-           (progn
-             (setq align-regexp-string "\\(\\s-*\\)equ ")
-             ))
-          ((or (jcs-is-current-major-mode-p "go-mode"))
-           (progn
-             (setq align-regexp-string "\\(\\s-*\\) := ")
-             ))
-          )
+      ;; Code RegExp String
+      (cond ((or (jcs-is-current-major-mode-p "nasm-mode"))
+             (progn
+               (setq align-regexp-string-code "\\(\\s-*\\)equ ")
+               ))
+            ((or (jcs-is-current-major-mode-p "go-mode"))
+             (progn
+               (setq align-regexp-string-code "\\(\\s-*\\) := ")
+               ))
+            )
 
-    (if (is-region-selected-p)
-        (jcs-align-region align-regexp-string)
-      (jcs-align-document align-regexp-string))))
+      ;; Comment RegExp String
+      (cond ((or (jcs-is-current-major-mode-p "nasm-mode"))
+             (progn
+               (setq align-regexp-string-comment "\\(\\s-*\\)               [;]")
+               ))
+            )
+
+      (if (is-region-selected-p)
+          ;; NOTE(jenchieh): Align region only.
+          (progn
+            ;; First get region info.
+            (setq pnt-min (region-beginning))
+            (setq pnt-max (region-end))
+
+            ;; Swapn region here.
+            (when (< (point) pnt-max)
+              (push-mark-command nil)
+              (goto-char pnt-max)
+
+              ;; Update region info.
+              (setq pnt-min (region-beginning))
+              (setq pnt-max (region-end)))
+
+            ;; Align code segment.
+            (jcs-align-region align-regexp-string-code)
+
+            (when (> (point) pnt-min)
+              (setq pnt-max (point))))
+        ;; NOTE(jenchieh): Align whole document.
+        (progn
+          (jcs-align-document align-regexp-string-code)
+
+          ;; NOTE(jenchieh): These assigns does nothing for now.
+          ;; Just in case we dont apply weird value, assign
+          ;; default document info.
+          (setq pnt-min (point-min))
+          (setq pnt-max (point-max))))
+
+      ;; Align comment segment.
+      (jcs-align-region-by-points align-regexp-string-comment
+                                  pnt-min
+                                  pnt-max)
+      )))
 
 ;;;###autoload
 (defun jcs-align-repeat (regexp)
@@ -324,12 +382,10 @@ SOURCE: http://emacs.stackexchange.com/questions/628/cycle-between-windows-in-al
   (interactive)
   (scroll-down 1))
 
-
-;;---------------------------------------------
-;; Delete the trailing whitespace for whole doc-
-;; ument execpt the current line.
-;;---------------------------------------------
+;;;###autoload
 (defun delete-trailing-whitespace-except-current-line ()
+  "Delete the trailing whitespace for whole document execpt \
+the current line."
   (interactive)
   (let ((begin (line-beginning-position))
         (end (line-end-position)))
