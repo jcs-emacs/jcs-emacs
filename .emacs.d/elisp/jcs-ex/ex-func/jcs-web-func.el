@@ -27,6 +27,8 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
+;;; Code:
+
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 ;; When editing the HTML related file.
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -152,69 +154,77 @@ wrap by another function..."
     (previous-line 1)
 
     (while (and (<= (string-to-number (format-mode-line "%l")) endLineNum))
-      (jcs-smart-indent-down)
+      (jcs-web-smart-indent-down)
       (end-of-line))
 
     (goto-line endLineNum2)
     (next-line 1)
 
     (while (and (>= (string-to-number (format-mode-line "%l")) startLineNum2))
-      (jcs-smart-indent-up)
+      (jcs-web-smart-indent-up)
       (end-of-line))
     )
   )
 
 ;;;###autoload
 (defun jcs-web-format-document ()
-  "Indent the whoe document line by line instead of indent it
-once to the whole document. For `web-mode'."
+  "Indent the whoe document line by line instead of indent it \
+once to the whole document.  For `web-mode'."
   (interactive)
 
-  ;;;
-  ;; `save-current-buffer' saves the current buffer, so that
-  ;; you can switch to another buffer without having to remember to switch back.
-  ;;
-  ;; `save-excursion' saves the current buffer and its current
-  ;; point and mark too, so you can move point without having
-  ;; to remember to restore it.
-  ;;
-  ;; `save-restriction' saves the restriction so that you can
-  ;; narrow or widen it without having to remember to restore it.
-  ;;
-  ;; `save-window-excursion' saves the complete configuration
-  ;; of all the windows on the frame, except for the value of
-  ;; point in the current buffer.
-  ;;
-  ;; TOPIC: What does “buffer's restrictions” mean in save-restriction?
-  ;; SOURCE: https://stackoverflow.com/questions/11596010/what-does-buffers-restrictions-mean-in-save-restriction
-  ;;
   (save-excursion
     (save-window-excursion
-      (end-of-buffer)
-      (setq endPos (point))
+      (let ((endPos nil))
 
-      (beginning-of-buffer)
+        (goto-char (point-max))
+        (setq endPos (point))
 
-      (while (and (< (point) endPos))
-        (jcs-smart-indent-down)
-        (end-of-line)
-        )
-      )))
+        (goto-char (point-min))
+
+        (while (and (< (point) endPos))
+          (jcs-web-smart-indent-down)
+          (end-of-line))))))
 
 ;;;###autoload
 (defun jcs-web-format-region-or-document ()
-  "Format the document if there are no region apply. For
-`web-mode' we specificlly indent through the file line by
-line instead of indent the whole file at once."
+  "Format the document if there are no region apply.
+For `web-mode' we specificlly indent through the file
+line by line instead of indent the whole file at once."
   (interactive)
 
   (if (use-region-p)
       (progn
         (call-interactively 'jcs-web-indent-region))
     (progn
-      (call-interactively 'jcs-web-format-document))
-    ))
+      (call-interactively 'jcs-web-format-document))))
 
+;;---------------------------------------------
+;; Indentation
+;;---------------------------------------------
+
+;;;###autoload
+(defun jcs-web-smart-indent-up ()
+  "Web version of smart indent up."
+  (interactive)
+  (if (and (not mark-active)
+           (buffer-file-name))
+      (progn
+        (previous-line 1)
+        (jcs-delete-space-infront-of-line)
+        (indent-for-tab-command))
+    (previous-line 1)))
+
+;;;###autoload
+(defun jcs-web-smart-indent-down ()
+  "Web version of smart indent down."
+  (interactive)
+  (if (and (not mark-active)
+           (buffer-file-name))
+      (progn
+        (next-line 1)
+        (jcs-delete-space-infront-of-line)
+        (indent-for-tab-command))
+    (next-line 1)))
 
 ;;---------------------------------------------
 ;; Save
