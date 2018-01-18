@@ -158,6 +158,24 @@ IS-FORWARD : forward conversion instead of backward conversion."
   (interactive)
   (jcs-convert-tab-to-space t))
 
+;;;###autoload
+(defun jcs-delete-space-infront-of-line ()
+  "Delete tab/spaces before the first character in line."
+  (interactive)
+  (save-excursion
+    (ignore-errors
+      (jcs-goto-first-char-in-line)
+      (push-mark-command nil)
+      (beginning-of-line)
+      (jcs-delete-region)
+      (deactivate-mark))))
+
+;;;###autoload
+(defun jcs-delete-region ()
+  "Delete region by default value."
+  (interactive)
+  (delete-region (region-beginning) (region-end)))
+
 ;;---------------------------------------------
 ;; Character
 ;;---------------------------------------------
