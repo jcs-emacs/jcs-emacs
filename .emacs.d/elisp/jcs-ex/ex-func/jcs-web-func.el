@@ -163,8 +163,7 @@ wrap by another function..."
     (while (and (>= (string-to-number (format-mode-line "%l")) startLineNum2))
       (jcs-web-smart-indent-up)
       (end-of-line))
-    )
-  )
+    ))
 
 ;;;###autoload
 (defun jcs-web-format-document ()
@@ -175,7 +174,6 @@ once to the whole document.  For `web-mode'."
   (save-excursion
     (save-window-excursion
       (let ((endPos nil))
-
         (goto-char (point-max))
         (setq endPos (point))
 
@@ -204,7 +202,7 @@ line by line instead of indent the whole file at once."
 
 ;;;###autoload
 (defun jcs-web-smart-indent-up ()
-  "Web version of smart indent up."
+  "Smart indent up for `web-mdoe'."
   (interactive)
   (if (and (not mark-active)
            (buffer-file-name))
@@ -216,7 +214,7 @@ line by line instead of indent the whole file at once."
 
 ;;;###autoload
 (defun jcs-web-smart-indent-down ()
-  "Web version of smart indent down."
+  "Smart indent down for `web-mdoe'."
   (interactive)
   (if (and (not mark-active)
            (buffer-file-name))
@@ -225,6 +223,18 @@ line by line instead of indent the whole file at once."
         (jcs-delete-space-infront-of-line)
         (indent-for-tab-command))
     (next-line 1)))
+
+;;;###autoload
+(defun jcs-web-return ()
+  "Return key for `web-mode'."
+  (interactive)
+
+  ;; Call defulat function first.
+  (jcs-smart-context-line-break)
+
+  (save-excursion
+    ;; Fix curly bracket not indent correctly.
+    (jcs-web-smart-indent-down)))
 
 ;;---------------------------------------------
 ;; Save
@@ -236,16 +246,14 @@ line by line instead of indent the whole file at once."
   (interactive)
   (jcs-web-format-document)
   (visual-line-mode t)
-  (jcs-save-buffer)
-  )
+  (jcs-save-buffer))
 
 ;;;###autoload
 (defun jcs-css-save-buffer ()
   "Save buffer in `css-mode'."
   (interactive)
   (jcs-css-sort-attributes-document)
-  (jcs-save-buffer)
-  )
+  (jcs-save-buffer))
 
 ;;---------------------------------------------
 ;; Impatient Mode
@@ -305,8 +313,7 @@ line by line instead of indent the whole file at once."
           (while (search-forward "}")
             (jcs-move-forward-close-curlyParen)
             ;; sort CSS attributes once.
-            (css-sort-attributes (point-min) (point-max)))
-          )))
+            (css-sort-attributes (point-min) (point-max))))))
 
     ;; make sure go back to the starting line.
     (goto-line startLineNum)
