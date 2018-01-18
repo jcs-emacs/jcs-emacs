@@ -117,15 +117,15 @@ This command does not push text to `kill-ring'."
 
 ;;;###autoload
 (defun jcs-previous-line ()
-  "Calling `previous-line' does not execute. Just use this without
-remember Emacs Lisp function."
+  "Calling `previous-line' does not execute.
+Just use this without remember Emacs Lisp function."
   (interactive)
   (previous-line 1))
 
 ;;;###autoload
 (defun jcs-next-line ()
-  "Calling `next-line' does not execute. Just use this without
-remember Emacs Lisp function."
+  "Calling `next-line' does not execute.
+Just use this without remember Emacs Lisp function."
   (interactive)
   (next-line 1))
 
@@ -134,11 +134,11 @@ remember Emacs Lisp function."
 ;;---------------------------------------------
 ;;;###autoload
 (defun jcs-smart-indent-up ()
-  ""
+  "Indent line after move up one line.
+This function uses `indent-for-tab-command'."
   (interactive)
   (if (and (not mark-active)
-           (buffer-file-name)
-           )
+           (buffer-file-name))
       (progn
         (previous-line 1)
         (indent-for-tab-command))
@@ -146,7 +146,8 @@ remember Emacs Lisp function."
 
 ;;;###autoload
 (defun jcs-smart-indent-up-by-mode ()
-  ""
+  "Indent line after move up one line.
+Use `indent-according-to-mode' instead `indent-for-tab-command'."
   (interactive)
   (if (and (not mark-active)
            (buffer-file-name))
@@ -161,7 +162,8 @@ remember Emacs Lisp function."
 ;;---------------------------------------------
 ;;;###autoload
 (defun jcs-smart-indent-down ()
-  ""
+  "Indent line after move down one line.
+This function uses `indent-for-tab-command'."
   (interactive)
   (if (and (not mark-active)
            (buffer-file-name))
@@ -172,7 +174,8 @@ remember Emacs Lisp function."
 
 ;;;###autoload
 (defun jcs-smart-indent-down-by-mode ()
-  ""
+  "Indent line after move down one line.
+Use `indent-according-to-mode' instead `indent-for-tab-command'."
   (interactive)
   (if (and (not mark-active)
            (buffer-file-name))
@@ -183,8 +186,8 @@ remember Emacs Lisp function."
 
 ;;;###autoload
 (defun jcs-smart-select-home ()
-  "Set it goto the beginning of the buffer from the current frame,
-so it do not goto the beginning of the line."
+  "Set it goto the beginning of the buffer from the current \
+frame, so it do not goto the beginning of the line."
   (interactive)
   (if (not mark-active)
       (push-mark nil nil 1))
@@ -192,6 +195,7 @@ so it do not goto the beginning of the line."
 
 ;;;###autoload
 (defun jcs-smart-select-end ()
+  "TODO(jecnhieh): comment this..."
   (interactive)
   (if (not mark-active)
       (push-mark nil nil 1))
@@ -654,28 +658,6 @@ False: return nil."
 
   (kill-this-buffer)
 
-  ;;;
-  ;; `save-current-buffer' Record which buffer is current; execute
-  ;; BODY; make that buffer current.
-  ;;
-  ;; `save-excursion' Save point, mark, and current buffer;
-  ;; execute BODY; restore those things.
-  ;;
-  ;; `save-match-data' Execute the BODY forms, restoring the global
-  ;; value of the match data.
-  ;;
-  ;; `save-restriction' Execute BODY, saving and restoring current
-  ;; buffer's restrictions.
-  ;;
-  ;; `save-selected-window' Execute BODY, then select the
-  ;; previously selected window.
-  ;;
-  ;; `save-window-excursion' Execute BODY, then restore previous
-  ;; window configuration.
-  ;;
-  ;; TOPIC: save-excursion doesn't restore the currently visible buffer?
-  ;; SOURCE: https://emacs.stackexchange.com/questions/24133/save-excursion-doesnt-restore-the-currently-visible-buffer
-  ;;
   (save-selected-window
     (ignore-errors
       (jcs-jump-to-window "*Buffer List*"))
