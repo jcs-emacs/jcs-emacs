@@ -1,0 +1,32 @@
+# ========================================================================
+# $File: emacs_save_info.txt $
+# $Date: 2018-01-18 13:47:24 $
+# $Revision: $
+# $Creator: Jen-Chieh Shen $
+# $Notice: See LICENSE.txt for modification and distribution information
+#                   Copyright © 2018 by Shen, Jen-Chieh $
+# ========================================================================
+
+
+  ;;;
+  ;; `save-current-buffer' Record which buffer is current; execute
+  ;; BODY; make that buffer current.
+  ;;
+  ;; `save-excursion' Save point, mark, and current buffer;
+  ;; execute BODY; restore those things.
+  ;;
+  ;; `save-match-data' Execute the BODY forms, restoring the global
+  ;; value of the match data.
+  ;;
+  ;; `save-restriction' Execute BODY, saving and restoring current
+  ;; buffer's restrictions.
+  ;;
+  ;; `save-selected-window' Execute BODY, then select the
+  ;; previously selected window.
+  ;;
+  ;; `save-window-excursion' Execute BODY, then restore previous
+  ;; window configuration.
+  ;;
+  ;; TOPIC: save-excursion doesn't restore the currently visible buffer?
+  ;; SOURCE: https://emacs.stackexchange.com/questions/24133/save-excursion-doesnt-restore-the-currently-visible-buffer
+  ;;
