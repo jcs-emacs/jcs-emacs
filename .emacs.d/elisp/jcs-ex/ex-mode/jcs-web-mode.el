@@ -160,6 +160,10 @@
   (define-key web-mode-map "\C-k\C-d" 'jcs-web-format-document)
   (define-key web-mode-map (kbd "C-S-f") 'jcs-web-format-region-or-document)
 
+  ;; Edit
+  (define-key web-mode-map (kbd "<up>") 'jcs-web-smart-indent-up)
+  (define-key web-mode-map (kbd "<down>") 'jcs-web-smart-indent-down)
+
   ;; Save
   (define-key web-mode-map "\C-s" 'jcs-web-save-buffer)
 
