@@ -7,6 +7,12 @@
 # ========================================================================
 
 
+2018-01-24
+* Make align function repeat as default. (jcs-emacs-init)
+* Remove special key `' key bindings because we use built-int 
+ electric pair system instead. (jcs-emacs-init)
+* Add txt func file for editing jayces own use text file. (jcs-emacs-init)
+
 2018-01-18
 * Add delete space infront of line functionalities. (jcs-emacs-init)
 * Add smart indent up/down for web-mode. (jcs-emacs-init)
