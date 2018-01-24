@@ -280,17 +280,6 @@ own preferences."
 
 (define-key package-menu-mode-map "s" #'package-menu-filter-by-status)
 
-;;----------------------------------------------
-;; `' electriic key.
-;;----------------------------------------------
-
-(defun jcs-special-key-electric ()
-  "Insert ` and ' at a time."
-  (interactive)
-  (insert "`")
-  (insert "'")
-  (backward-char 1))
-
 
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 ;; Load files.
@@ -312,6 +301,7 @@ own preferences."
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-nav.el")
 
 ;;; For Specific Mode
+(load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-txt-func.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-preproc-func.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-oop-func.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-cc-func.el")
