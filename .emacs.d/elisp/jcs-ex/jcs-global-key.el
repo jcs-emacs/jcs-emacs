@@ -113,9 +113,6 @@
 ;;(define-key global-map "      " 'indent-region)
 
 
-;;; Single Key
-(define-key global-map "`" 'jcs-special-key-electric)
-
 ;;; Bind the Key
 ;;(define-key global-map "\ef" 'ido-find-file)
 ;;(define-key global-map "\eF" 'ido-find-file-other-window)
