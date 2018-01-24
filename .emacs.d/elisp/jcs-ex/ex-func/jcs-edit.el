@@ -234,7 +234,7 @@ PNT-MAX: point max."
   (interactive)
 
   (align pnt-min pnt-max)
-  (align-regexp pnt-min pnt-max regexp 1 1))
+  (align-regexp pnt-min pnt-max regexp 1 1 t))
 
 ;;;###autoload
 (defun jcs-align-region (regexp)
@@ -268,7 +268,7 @@ region selected?"
     (let (;; NOTE(jenchieh): this is the most common one.
           ;; Compatible to all programming languages use equal
           ;; sign to assign value.
-          (align-regexp-string-code "\\(\\s-*\\) [=] ")
+          (align-regexp-string-code "\\(\\s-*\\)[=]")
           ;; NOTE(jenchihe): Default support `//' and `/**/'
           ;; comment symbols.
           (align-regexp-string-comment "\\(\\s-*\\) /[/*]")
