@@ -86,14 +86,14 @@
            ;;
            ;; @param { TypeName } `ValueTag' : value tag description..
            ;;
-           ("@[a-zA-Z0-9_].*[\]\|}]\\([a-zA-Z0-9_$ ]*\\)[:-]" 1 'jcs-oop-value-face t)
+           ("@[a-zA-Z0-9_].*[\]\|}]\\([a-zA-Z0-9_$ .]*\\)[:-]" 1 'jcs-oop-value-face t)
            ;;
            ;; NOTE(jenchieh):
            ;; Doc String Style:
            ;;
            ;; @param `ValueTag' : value tag description..
            ;;
-           ("@[a-zA-Z0-9_]*\\([a-zA-Z0-9_ ]*\\)[{:-]" 1 'jcs-oop-value-face t)
+           ("@[a-zA-Z0-9_]*\\([a-zA-Z0-9_ .]*\\)[{:-]" 1 'jcs-oop-value-face t)
            )'end))
       jcs-oop-highlight-modes)
 
