@@ -7,6 +7,11 @@
 # ========================================================================
 
 
+2018-01-28
+* Add `.' for oop value's regexp. (jcs-emacs-init)
+* Make special key's regexp compatible without space. (jcs-emacs-init)
+* Update project version to 4.5.6. (jcs-emacs-init)
+
 2018-01-24
 * Make align function repeat as default. (jcs-emacs-init)
 * Remove special key `' key bindings because we use built-int 
