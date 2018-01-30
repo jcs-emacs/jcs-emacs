@@ -1,17 +1,7 @@
-;; ========================================================================
-;; $File: jcs-log.el $
-;; $Date: 2018-01-04 17:16:25 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2018 by Shen, Jen-Chieh $
-;; ========================================================================
-
-
-;; This is the start of jcs-util.el file
+;; This is the start of jcs-log.el file
 ;;------------------------------------------------------------------------------------------------------
 
-;; jcs-util.el             -*- Emacs-Lisp -*-
+;; jcs-log.el             -*- Emacs-Lisp -*-
 
 ;; Mode for editing JayCeS code
 
@@ -23,12 +13,12 @@
 
 ;; Copyright (C) 2018 Jen-Chieh Shen
 
-;; jcs-util is free software: you can redistribute it and/or modify
+;; jcs-log is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
 ;; the Free Software Foundation, either version 3 of the License, or
 ;; (at your option) any later version.
 
-;; jcs-util is distributed in the hope that it will be useful,
+;; jcs-log is distributed in the hope that it will be useful,
 ;; but WITHOUT ANY WARRANTY; without even the implied warranty of
 ;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 ;; GNU General Public License for more details.
@@ -116,5 +106,14 @@ ARGS : arguments."
         ;;(insert "\n")
         ))))
 
+
+(defun jcs-log-list (list)
+  "Log out a list.
+LIST: list to log out."
+  (let ((count 0))
+    (dolist (tmp-str list)
+      (jcs-log "Index %s -> %s" count tmp-str)
+      (setq count (1+ count)))))
+
 ;;------------------------------------------------------------------------------------------------------
-;; This is the end of jcs-util.el file
+;; This is the end of jcs-log.el file
