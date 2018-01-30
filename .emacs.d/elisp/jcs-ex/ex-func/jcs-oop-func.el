@@ -387,11 +387,11 @@ SEARCH-OPTION :
 @param THERE-IS-RETURN        : There is return in this function?
 @param RETURN-TYPE-STRING     : String of the return type.
 @param PARAM-TYPE-STRINGS     : Param type strings list.
-@param PARAM-VARIABLE-STRINGS : Param name strings list.
-"
+@param PARAM-VARIABLE-STRINGS : Param name strings list."
   (interactive)
 
   (save-excursion
+
     ;; Only add doc when there is function in current
     ;; checking line.
     (if (equal meet-function-name t)
@@ -401,7 +401,6 @@ SEARCH-OPTION :
                 ;; the same length.
                 (param-len (length param-variable-strings))
                 (param-index (1- (length param-variable-strings))))
-
 
             ;; NOTE(jenchieh): `add-to-list' will push the element
             ;; at the front queue. `setq' and `append' will push
@@ -473,6 +472,7 @@ SEARCH-OPTION :
                                      param-variable-strings)
             ))
       ;; NOTE(jenchieh): Design object comment document string.
+      ;; For instance, macro define, struct, class, etc.
       (progn
 
         (when (jcs-is-current-major-mode-p "csharp-mode")
@@ -537,7 +537,15 @@ SEARCH-OPTION :
                    (jcs-previous-line)
                    (end-of-line)
 
-                   ;; Process class tag.
+                   ;; NOTE(jenchieh): `add-to-list' will push the element
+                   ;; at the front queue. `setq' and `append' will push
+                   ;; element from the back, so we need to reverse it
+                   ;; in order to match the order.
+                   ;;
+                   ;; Reverse once.
+                   (setq param-variable-strings (reverse param-variable-strings))
+
+                   ;; Process define tag.
                    (insert "@def ")
                    (insert (nth 0 param-variable-strings))
                    (indent-for-tab-command)
@@ -554,7 +562,7 @@ SEARCH-OPTION :
                    (jcs-previous-line)
                    (end-of-line)
 
-                   ;; Process class tag.
+                   ;; Process enumerator tag.
                    (insert "@enum ")
                    (insert datatype-name)
                    (indent-for-tab-command)
