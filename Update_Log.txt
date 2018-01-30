@@ -11,6 +11,8 @@
 * Add jcs-log-list functionaly for debug usage. (jcs-emacs-init)
 * Fixed c/c++ mode define oop doc string array list reverse order
  issue with built-in lisp's `revers' function. (jcs-emacs-init)
+* Fixed comment closing c style comment block and organize elisp 
+ for better usage. (jcs-emacs-init)
 
 2018-01-28
 * Add `.' for oop value's regexp. (jcs-emacs-init)
