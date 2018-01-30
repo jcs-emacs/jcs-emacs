@@ -146,51 +146,44 @@ comment character on the same line."
 
 ;;;###autoload
 (defun jcs-c-comment-pair ()
-  "Auto pair c style comment block"
+  "Auto pair c style comment block."
   (interactive)
 
-  (let (next-line-is-commented)
+  (let ((insert-pair nil))
 
-    (setq before-insert-point (point))
-
-    ;; Prevent the line is the end of document.
-    (ignore-errors (next-line 1))
-
-    (when (nth 4 (syntax-ppss))
-      ;; record down next line is comment.
-      (setq next-line-is-commented t))
-
-    (goto-char before-insert-point)
+    (save-excursion
+      (ignore-errors
+        (when (current-char-equal-p "/")
+          (setq insert-pair t))))
 
     (insert "*")
 
-    ;; record down the cursor  position after insert '*' character.
-    (setq last (point))
+    (save-excursion
+      (when (and
+             ;; Check insert pair string?
+             (equal insert-pair t)
+             ;; Check new comment block?
+             (equal (jcs-check-new-block-of-comment) t))
+        (insert "*/")))))
 
-    ;; record down the beginning of the line position.
-    (beginning-of-line)
-    (setq point-beginning-of-line (point))
+(defun jcs-check-new-block-of-comment ()
+  "If there is one closing comment string without opening comment \
+string, do not insert closing comment string.  Check this situation."
 
-    ;; record down the end of the line position.
-    (end-of-line)
-    (setq point-end-of-line (point))
+  (let ((check-point (point))
+          (new-comment-block t))
+    (save-excursion
 
-    ;; back to original position
-    (goto-char last)
+      (jcs-move-to-forward-a-char "/")
+      (backward-char 1)
+      (when (current-char-equal-p "*")
+        (jcs-goto-start-of-the-comment)
 
-    ;; check inside the comment block?
-    (when (search-backward "/*" point-beginning-of-line t)
-      (when (not (search-forward "*/" point-end-of-line t))
-        (when (null next-line-is-commented)
-          ;; NOTE: next line is not a commented
-          ;; line we add the end comment block.
-          (goto-char last)
-          (insert "*/")
-          ))))
-
-  ;; go back before searching.
-  ;; because searching will mess up the cursor point.
-  (goto-char last))
+        ;; No opening comment string by using
+        ;; `jcs-goto-start-of-the-comment' function.
+        (if (>= check-point (point))
+            (setq new-comment-block nil))))
+    new-comment-block))
 
 (defun jcs-insert-comment-string ()
   "Insert comment document string."
