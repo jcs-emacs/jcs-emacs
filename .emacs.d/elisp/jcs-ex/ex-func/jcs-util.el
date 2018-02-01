@@ -171,10 +171,13 @@ IS-FORWARD : forward conversion instead of backward conversion."
       (deactivate-mark))))
 
 ;;;###autoload
-(defun jcs-delete-region ()
-  "Delete region by default value."
+(defun jcs-insert-spaces-by-tab-width ()
+  "Insert spaces depends on tab width configuration."
   (interactive)
-  (delete-region (region-beginning) (region-end)))
+  (let ((tmp-count 0))
+    (while (< tmp-count tab-width)
+      (insert " ")
+      (setq tmp-count (1+ tmp-count)))))
 
 ;;---------------------------------------------
 ;; Character
@@ -461,6 +464,12 @@ active. false, there is no region selected and mark is not active.
 "
   (or (is-region-selected-p)
       (is-mark-active)))
+
+;;;###autoload
+(defun jcs-delete-region ()
+  "Delete region by default value."
+  (interactive)
+  (delete-region (region-beginning) (region-end)))
 
 ;;---------------------------------------------
 ;; Comment
