@@ -257,6 +257,7 @@
 ;;; File editing
 (define-key global-map "\ek" 'jcs-maybe-kill-this-buffer)
 (define-key global-map "\eK" 'jcs-kill-this-buffer)
+(define-key global-map [tab] 'jcs-tab-key)
 
 ;;; Process
 (define-key global-map "\ep" 'list-processes)
