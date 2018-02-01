@@ -26,16 +26,36 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+;;; Code:
+
 
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 ;; When editing the file.
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+;;----------------------------------------------
+;; Tab
+;;----------------------------------------------
+
+;;;###autoload
+(defun jcs-tab-key ()
+  "TAB key for JayCeS usage."
+  (interactive)
+  (if (or (current-char-equal-p " ")
+          (current-char-equal-p "\t")
+          (is-beginning-of-line-p)
+          (is-end-of-line-p))
+      (progn
+        (jcs-insert-spaces-by-tab-width))
+    (progn
+      ;; NOTE(jenchieh): Default tab function put here..
+      (call-interactively 'dabbrev-expand))))
 
 ;;---------------------------------------------
 ;;-- Source --
 ;;      Deletion: http://ergoemacs.org/emacs/emacs_kill-ring.html
 ;;---------------------------------------------
+
 ;;;###autoload
 (defun jcs-kill-whole-line ()
   "Deletes a line, but does not put it in the `kill-ring'."
@@ -45,8 +65,7 @@
     (progn
       (move-beginning-of-line 1)
       (kill-line 1)
-      (setq kill-ring (cdr kill-ring))
-      )))
+      (setq kill-ring (cdr kill-ring)))))
 
 ;;;###autoload
 (defun jcs-backward-kill-line (arg)
@@ -55,9 +74,6 @@
   (kill-line (- 1 arg))
   (setq kill-ring (cdr kill-ring)))
 
-;;---------------------------------------------
-;;
-;;---------------------------------------------
 ;;;###autoload
 (defun jcs-delete-word (arg)
   "Delete characters forward until encountering the end of a word.
@@ -70,9 +86,6 @@ This command does not push text to `kill-ring'."
      (forward-word arg)
      (point))))
 
-;;---------------------------------------------
-;;
-;;---------------------------------------------
 ;;;###autoload
 (defun jcs-delete-line-backward ()
   "Delete text between the beginning of the line to the cursor position.
@@ -114,20 +127,6 @@ This command does not push text to `kill-ring'."
   (open-line 1)
   (next-line 1)
   (yank))
-
-;;;###autoload
-(defun jcs-previous-line ()
-  "Calling `previous-line' does not execute.
-Just use this without remember Emacs Lisp function."
-  (interactive)
-  (previous-line 1))
-
-;;;###autoload
-(defun jcs-next-line ()
-  "Calling `next-line' does not execute.
-Just use this without remember Emacs Lisp function."
-  (interactive)
-  (next-line 1))
 
 ;;---------------------------------------------
 ;; After moving UP one line, do identation.

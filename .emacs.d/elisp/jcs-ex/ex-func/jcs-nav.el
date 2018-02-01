@@ -26,6 +26,27 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+;;; Code:
+
+
+;;----------------------------------------------
+;; Move Between Line (Wrapper)
+;;----------------------------------------------
+
+;;;###autoload
+(defun jcs-previous-line ()
+  "Calling `previous-line' does not execute.
+Just use this without remember Emacs Lisp function."
+  (interactive)
+  (previous-line 1))
+
+;;;###autoload
+(defun jcs-next-line ()
+  "Calling `next-line' does not execute.
+Just use this without remember Emacs Lisp function."
+  (interactive)
+  (next-line 1))
+
 
 ;;----------------------------------------------
 ;; Navigating Blank Line
@@ -33,12 +54,12 @@
 
 ;; Navigation
 (defun previous-blank-line ()
-  "Moves to the previous line containing nothing but whitespace."
+  "Move to the previous line containing nothing but whitespace."
   (interactive)
   (search-backward-regexp "^[ \t]*\n"))
 
 (defun next-blank-line ()
-  "Moves to the next line containing nothing but whitespace."
+  "Move to the next line containing nothing but whitespace."
   (interactive)
   (forward-line)
   (search-forward-regexp "^[ \t]*\n")
