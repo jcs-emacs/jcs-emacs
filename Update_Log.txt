@@ -7,6 +7,12 @@
 # ========================================================================
 
 
+2018-02-01
+* Add `jcs-tab-key' function for global tab key command and key 
+ bindings. (jcs-emacs-init)
+* Insert spaces by tab width function implemented and located in
+ util module. (jcs-emacs-init)
+
 2018-01-31
 * Add jcs-log-list functionaly for debug usage. (jcs-emacs-init)
 * Fixed c/c++ mode define oop doc string array list reverse order
