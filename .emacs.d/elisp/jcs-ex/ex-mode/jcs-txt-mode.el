@@ -138,7 +138,7 @@
 (add-to-list 'auto-mode-alist '("\\.txt?\\'" . org-mode))
 (add-to-list 'auto-mode-alist '("\\(/\\|\\`\\)README" . org-mode))
 (add-to-list 'auto-mode-alist '("\\(/\\|\\`\\)LICENSE" . org-mode))
-
+(add-to-list 'auto-mode-alist '("\\(/\\|\\`\\)bochsrc" . org-mode))
 
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-txt-mode.el file
