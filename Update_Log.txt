@@ -7,6 +7,10 @@
 # ========================================================================
 
 
+2018-02-02
+* Add org table navigation key bindgs to org mode. (jcs-emacs-init)
+* Add org table navigation functionalities. (jcs-emacs-init)
+
 2018-02-01
 * Add `jcs-tab-key' function for global tab key command and key 
  bindings. (jcs-emacs-init)
