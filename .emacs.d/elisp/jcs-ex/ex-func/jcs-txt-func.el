@@ -51,7 +51,7 @@
 (mapc (lambda (mode)
         (font-lock-add-keywords
          mode
-         '(("\\(#[a-z-A-Z0-9~!@#$%^&*()_+=|\'/\\]*\\)" 1 'font-lock-comment-face)
+         '(("\\(#[[:blank:][:graph:]]*\\)" 1 'font-lock-comment-face)
            )'end))
       jcs-org-font-lock-comment-face-modes)
 
