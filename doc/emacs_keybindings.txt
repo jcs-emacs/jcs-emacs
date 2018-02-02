@@ -313,6 +313,12 @@ ALT-Shift-'     Search backward next ". (double quotation mark)
 M-S-<right>     Search forward at current point.
 M-S-<left>      Search backward at current point.
 
+-- Org Mode --
+S-<up>          Move cursor up one row table.
+S-<down>        Move cursor down one row table.
+S-<right>       Move cursor right one column table.
+S-<left>        Move cursor left one row column table.
+
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * Regular Expression
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
