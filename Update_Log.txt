@@ -10,6 +10,10 @@
 2018-02-02
 * Add org table navigation key bindgs to org mode. (jcs-emacs-init)
 * Add org table navigation functionalities. (jcs-emacs-init)
+* Use blank and graph regexp instead of guessing all needed 
+ characters for comment highlighting in org-mode. (jcs-emacs-init)
+* Add `bochsrc' as default extension in org-mode, meaning use 
+ org-mode when editing bochsrc file. (jcs-emacs-init)
 
 2018-02-01
 * Add `jcs-tab-key' function for global tab key command and key 
