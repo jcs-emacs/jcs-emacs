@@ -33,7 +33,7 @@
 
 (require 'actionscript-mode)
 (defun jcs-actionscript-mode-hook ()
-  ;;
+  "JayCeS AS mode."
 
   ;; highlight URL and clickable.
   (goto-address-mode 1)
@@ -44,7 +44,7 @@
 
 
   (defun jcs-actionsript-class-format ()
-    "Format the given file as a class. - JenChieh C# class"
+    "Format the given file as a class. - JenChieh AS class"
 
     (if (is-current-file-empty-p)
         (progn
