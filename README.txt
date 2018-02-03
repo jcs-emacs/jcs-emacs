@@ -34,6 +34,7 @@ config files improve and extended support for the following:
 * HTML/CSS
 * PHP
 * Python
+* Scala
 * Shell
 * SQL
 * Vim script
