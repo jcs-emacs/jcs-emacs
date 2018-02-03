@@ -106,23 +106,7 @@
           ;; insert tag header
           (jcs-tag-file-info)
 
-          ;; insert HTML common format
-          (insert "<!DOCTYPE html>\n")
-          (insert "<html>\n")
-          (insert "<head>\n")
-          (insert "<title>")
-          (push-mark)
-          (insert BaseFileName)
-          (pop-mark)
-          (insert "</title>\n")
-          (insert "<meta charset=\"UTF-8\">\n\n")
-          (insert "</head>\n")
-          (insert "<body>\n\n\n")
-          (insert "</body>\n")
-          (insert "</html>\n")
-
-          ;; format the document once
-          (jcs-format-document)
+          (jcs-html-file-format-info)
           ))
     )
 
