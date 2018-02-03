@@ -1,0 +1,249 @@
+
+
+### Library Makefile Template ###
+
+# ----------------------------------------------- #
+#	 JayCeS project directories preference.
+# ----------------------------------------------- #
+# .
+# ├── build
+# │   ├── alib
+# │   └── bin
+# │   └── solib
+# ├── data
+# ├── doc
+# ├── lib
+# │   ├── alib
+# │   └── solib
+# ├── misc
+# ├── src
+# └── test
+# ----------------------------------------------- #
+
+# ----------------------------------------------- #
+#					   Functions
+# ----------------------------------------------- #
+rwildcard = $(foreach d,$(wildcard $(addsuffix *,$(1))),$(call rwildcard,$(d)/,$(2)) $(filter $(subst *,%,$(2)),$(d)))
+
+# ----------------------------------------------- #
+#					   General
+# ----------------------------------------------- #
+# version number
+VER		   = 1.0.1
+ROOT_DIR   = .
+# Enter the name of the build file. could either be a dynamic
+# link, executable, etc.
+BIN_NAME = bin_name
+
+# floppy disk image name
+FD = floppy-disk.img
+# hard disk image name
+HD = hard-disk.img
+
+# ----------------------------------------------- #
+#					 Directories
+# ----------------------------------------------- #
+# Build executable directory.
+BIN_DIR = $(ROOT_DIR)/build/bin
+# Build library directory.
+ALIB_DIR = $(ROOT_DIR)/build/alib
+# Build library directory.
+SOLIB_DIR = $(ROOT_DIR)/build/solib
+
+# ----------------------------------------------- #
+#					   Commands
+# ----------------------------------------------- #
+# assembler type
+ASM	 = nasm
+# disassembler commands
+DASM = ndisasm
+# compiler type
+CC	 = gcc
+# linker commands
+LD	 = ld
+# compile lib file commands
+AR	 = ar
+
+# ----------------------------------------------- #
+#					   Flags
+# ----------------------------------------------- #
+# assemble flags
+ASM_B_FLAGS	  = -m32
+ASM_FLAGS	  = -f elf
+# disassemble flags
+DASM_FLAGS	  = -D
+# compile flags
+C_FLAGS		  = -Wall
+# linker flags
+LD_FLAGS	  = -L
+# include flags
+INCLUDE_FLAGS = -I
+# static link flags
+AR_FLAGS	  = rcs
+# dynamic link flags
+SOR_FLAGS	  = -shared
+# output flags
+OUTPUT_FLAGS  = -o
+
+# ----------------------------------------------- #
+#					Library File
+# ----------------------------------------------- #
+# static link library
+ALIB  = a_lib_name.a
+# dynamic link library
+SOLIB = so_lib_name.so
+
+# ----------------------------------------------- #
+#				   Source Path
+# ----------------------------------------------- #
+MAIN_PATH	 = $(ROOT_DIR)/test
+SOURCE_PATH	 = $(ROOT_DIR)/src
+
+# ----------------------------------------------- #
+#				   Include Path
+# ----------------------------------------------- #
+INCLUDE_PATH = $(ROOT_DIR)/include
+
+# ----------------------------------------------- #
+#				   Library path
+# ----------------------------------------------- #
+A_LIB_PATH	:= $(ROOT_DIR)/lib/alib
+A_LIBS		:= $(wildcard $(A_LIB_PATH)/*)
+
+SO_LIB_PATH := $(ROOT_DIR)/lib/solib
+SO_LIBS		:= $(wildcard $(SO_LIB_PATH)/*)
+
+# ----------------------------------------------- #
+#					All Source
+# ----------------------------------------------- #
+# main source
+MAINSRC := $(sort $(call rwildcard, $(MAIN_PATH)/, *.asm *.c *.cpp *.S))
+# asm source
+ASMSRC	:= $(sort $(call rwildcard, $(SOURCE_PATH)/, *.asm *.S))
+# c/c++ source
+GSRC	:= $(sort $(call rwildcard, $(SOURCE_PATH)/, *.c *.cpp))
+# static link library source
+ASRC	:= $(sort $(call rwildcard, $(SOURCE_PATH)/, *.c *.cpp)) \
+		   $(sort $(call rwildcard, $(A_LIB_PATH)/, *.c *.cpp))
+# shared link library source
+SOSRC	:= $(sort $(call rwildcard, $(SOURCE_PATH)/, *.c *.cpp)) \
+		   $(sort $(call rwildcard, $(SO_LIB_PATH)/, *.c *.cpp))
+
+# ----------------------------------------------- #
+#					   objs
+# ----------------------------------------------- #
+# main object file
+MAINOBJ := $(sort $(patsubst %.c,%.o,	\
+				  $(patsubst %.cpp,%.o, \
+				  $(patsubst %.asm,%.o, \
+				  $(patsubst %.S,%.o,	\
+				  $(patsubst %.s,%.o, $(MAINSRC)))))))
+# asm object files
+ASMOBJS := $(sort $(patsubst %.asm,%.o, \
+				  $(patsubst %.S,%.o,	\
+				  $(patsubst %.s,%.o, $(ASMSRC)))))
+# list of object files
+OBJS	:= $(sort $(patsubst %.c,%.o, $(patsubst %.cpp,%.o, $(GSRC))))
+# .a object files
+AOBJS	:= $(sort $(patsubst %.c,%.o, $(patsubst %.cpp,%.o, $(ASRC))))
+# .so object files
+SOOBJS	:= $(sort $(patsubst %.c,%.o, $(patsubst %.cpp,%.o, $(SOSRC))))
+
+# ----------------------------------------------- #
+#					Dependencies
+# ----------------------------------------------- #
+DEPDIR := $(ROOT_DIR)/mkdepGDEP	  := $(patsubst %.c,$(DEPDIR)/%.d,$(patsubst %.cpp,$(DEPDIR)/%.d, $(GSRC)))
+ASMDEP := $(patsubst %.asm,$(DEPDIR)/%.d,$(ASMSRC))
+
+
+.PHONY : nop all compile link
+.PHONY : build buildc buildasm disasm
+.PHONY : clean realclean
+.PHONY : mount buildimg
+
+nop :
+	@echo "Default Test command.."
+
+all :
+	@echo "Default all command.."
+
+# compile all the source file to object file.
+compile : $(MAINOBJ) $(ASMOBJS) $(OBJS) $(AOBJS) $(SOOBJS)
+
+# link
+link :
+	@echo "Default link command.."
+
+build : buildc buildasm
+
+buildc :
+	$(CC) $(GSRC) $(MAINSRC)			  \
+	$(C_FLAGS)							  \
+	$(INCLUDE_FLAGS) $(INCLUDE_PATH)	  \
+	$(A_LIBS)							  \
+	$(SO_LIBS)							  \
+	$(LD_FLAGS) $(A_LIB_PATH)			  \
+	$(OUTPUT_FLAGS) $(BIN_DIR)/$(BIN_NAME)
+
+buildasm :
+	$(CC) $(ASM_B_FLAGS) $(OUTPUT_FLAGS) $(BIN_DIR)/$(BIN_NAME) $(ASMOBJS)
+
+disasm :
+	@echo "Disassembly command here.."
+
+buildimg :
+	@echo "Build image command here.."
+
+mount :
+	@echo "Mount command here.."
+
+
+# Clean the project.
+clean :
+	rm -f $(MAINOBJ) $(ASMOBJS) $(OBJS) $(LOBJS)
+
+realclean :
+	rm -f $(MAINOBJ) $(ASMOBJS) $(OBJS) $(LOBJS) $(KASMOBJS) $(LASMOBJS) $(ALIB_DIR)/$(ALIB) $(SOLIB_DIR)/$(SOLIB)
+
+# include dependencies.
+-include $(GDEP)
+-include $(ASMDEP)
+
+# example of compile the program main file.
+program_main.o : program_main.c
+	$(CC) $(C_FLAGS) $(OUTPUT_FLAGS) $@ $<
+
+# compile assembly file to object file.
+$(ASMOBJS) : $(ASMSRC)
+### .asm File
+	if [ -f $(patsubst %.o,%.asm, $@) ]; then \
+		$(ASM) $(ASM_FLAGS) $(OUTPUT_FLAGS) $@ $(patsubst %.o,%.asm, $@) ; \
+	fi;
+### .S File
+	if [ -f $(patsubst %.o,%.S, $@) ]; then \
+		$(ASM) $(ASM_FLAGS) $(OUTPUT_FLAGS) $@ $(patsubst %.o,%.S, $@) ; \
+	fi;
+### .s File
+	if [ -f $(patsubst %.o,%.s, $@) ]; then \
+		$(ASM) $(ASM_FLAGS) $(OUTPUT_FLAGS) $@ $(patsubst %.o,%.s, $@) ; \
+	fi;
+
+# compile c type source file to object file.
+$(OBJS) : $(GSRC)
+### .c files
+	if [ -f $(patsubst %.o,%.c, $@) ]; then \
+		$(CC) $(C_FLAGS) $(OUTPUT_FLAGS) $@ $(patsubst %.o,%.c, $@) ; \
+	fi;
+### .cpp files
+	if [ -f $(patsubst %.o,%.cpp, $@) ]; then \
+		$(CC) $(C_FLAGS) $(OUTPUT_FLAGS) $@ $(patsubst %.o,%.cpp, $@) ; \
+	fi;
+
+# generate static link library.
+$(ALIB) : $(AOBJS)
+	$(AR) $(AR_FLAGS) $(ALIB_DIR)/$@ $^
+
+# generate shared link library.
+$(SOLIB) : $(SOOBJS)
+	$(CC) $(SOR_FLAGS) \
+	$(OUTPUT_FLAGS) $(SOLIB_DIR)/$@ $^ $(C_FLAGS)

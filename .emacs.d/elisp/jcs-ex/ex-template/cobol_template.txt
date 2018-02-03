@@ -1,0 +1,34 @@
+       *> ========================================================================
+       *> $File: #FILE_NAME# $
+       *> $Date: #TIME_STAMP# $
+       *> $Revision: $
+       *> $Creator: #CREATOR_NAME# $
+       *> $Notice: See LICENSE.txt for modification and distribution information
+       *>                   Copyright © #TIME_YEAR# by #COPYRIGHT_INFO# $
+       *> ========================================================================
+
+       
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. #U_FILE_NAME#.
+       AUTHOR. #U_CREATOR_NAME#.
+
+       ENVIRONMENT DIVISION.
+       CONFIGURATION SECTION.
+       SOURCE-COMPUTER.
+       OBJECT-COMPUTER.
+
+       INPUT-OUTPUT SECTION.
+       FILE-CONTROL.
+
+       DATA DIVISION.
+       FILE SECTION.
+
+       WORKING-STORAGE SECTION.
+
+       PROCEDURE DIVISION.
+
+       0100-PROCESS-RECORDS.
+
+           STOP RUN.
+
+       END PROGRAM #U_FILE_NAME#.

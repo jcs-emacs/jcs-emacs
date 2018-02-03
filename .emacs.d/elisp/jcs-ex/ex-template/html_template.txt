@@ -1,0 +1,14 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>#FILE_NAME_NO_EXT#</title>
+    <meta charset="UTF-8">
+
+  </head>
+  <body>
+
+
+  </body>
+</html>
