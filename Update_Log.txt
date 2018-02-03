@@ -17,6 +17,7 @@
 * Add ini file for keyword variables in template. (jcs-emacs-init)
 * Add make file tempate for python and java, identify those in cc 
  too. (jcs-emacs-init)
+* Update version to 4.6.0. (jcs-emacs-init)
 
 2018-02-02
 * Add org table navigation key bindgs to org mode. (jcs-emacs-init)
