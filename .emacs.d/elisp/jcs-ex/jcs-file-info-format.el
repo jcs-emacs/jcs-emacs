@@ -26,81 +26,94 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+;;; Code:
 
 ;;========================================
 ;;      JENCHIEH KEY GLOBAL INFO
 ;;----------------------------------
 
-(setq jcs-creator-name "Jen-Chieh Shen")
-(setq jcs-copyright-name "Shen, Jen-Chieh")
+(defun jcs-parse-ini (filePath)
+  "Parse a .ini file.
+FILEPATH : .ini file to parse."
 
-(defun jcs-insert-creator-name ()
-  "Insert the creator name."
-  (insert jcs-creator-name)
-  )
+  (let ((tmp-ini (get-string-from-file filePath))
+        (tmp-ini-list '())
+        (tmp-pair-list nil)
+        (tmp-keyword "")
+        (tmp-value "")
+        (count 0))
+    (setq tmp-ini (split-string tmp-ini "\n"))
 
-(defun jcs-insert-copyright-name ()
-  "Insert the copyright name."
-  (insert jcs-copyright-name)
-  )
+    (dolist (tmp-line tmp-ini)
+      ;; check not comment.
+      (when (not (string-match-p "#" tmp-line))
+        ;; Split it.
+        (setq tmp-pair-list (split-string tmp-line "="))
 
+        ;; Assign to temporary variables.
+        (setq tmp-keyword (nth 0 tmp-pair-list))
+        (setq tmp-value (nth 1 tmp-pair-list))
 
-(defun jcs-insert-filename-section ()
-  "Insert 'File' section."
+        ;; Check empty value.
+        (when (and (not (string= tmp-keyword ""))
+                   (not (equal tmp-value nil)))
+          (add-to-list 'tmp-ini-list tmp-keyword)
+          (add-to-list 'tmp-ini-list tmp-value)))
+      (setq count (1+ count)))
 
-  ;; macro
-  ;; file name
-  (setq BaseFileName (file-name-sans-extension (file-name-nondirectory buffer-file-name)))
-  ;; file name with extension
-  (setq BaseFileNameWithExtension (file-name-nondirectory buffer-file-name))
+    ;; Reverse list once.
+    (setq tmp-ini-list (reverse tmp-ini-list))
 
-  (insert "$File: ")
-  (insert BaseFileNameWithExtension)
-  )
+    ;; return list.
+    tmp-ini-list))
 
-(defun jcs-insert-creation-date-section ()
-  "Insert 'Creation Date' section."
+(defun jcs-swap-keyword-template (template-str)
+  "Swap all keyword in template to proper information.
+TEMPLATE-STR : template string data."
+  (let ((tmp-ini-list '())
+        (tmp-keyword "")
+        (tmp-value "")
+        (tmp-index 0))
 
-  (insert "$Date: ")
-  (jcs-timestamp)
-  )
+    ;; parse and get the list of keyword and value.
+    (setq tmp-ini-list (jcs-parse-ini "~/.emacs.d/elisp/jcs-ex/ex-template/template_config.properties"))
 
-(defun jcs-insert-revision-section ()
-  "Insert 'Revision' section."
+    (while (< tmp-index (length tmp-ini-list))
 
-  (insert "$Revision: ")
+      (setq tmp-keyword (nth tmp-index tmp-ini-list))
+      (setq tmp-value (nth (1+ tmp-index) tmp-ini-list))
 
-  ;; TODO(jenchieh): insert revision design here...
+      ;; Add `#' infront and behind the keyword.
+      ;; For instance, `CREATOR' -> `#CREATOR#'.
+      (setq tmp-keyword (concat "#" tmp-keyword))
+      (setq tmp-keyword (concat tmp-keyword "#"))
 
-  ;; NOTE(jenchieh): Because now the design is empty we just
-  ;; delete the a whitespace before, so make the file look
-  ;; consistent.
-  (backward-delete-char 1)
-  )
+      ;; Check if the value is a function?
+      (if (string-match-p "(" tmp-value)
+          (progn
+            ;; Remove `(' and `)', if is a function.
+            (setq tmp-value (s-replace "(" "" tmp-value))
+            (setq tmp-value (s-replace ")" "" tmp-value))
+            ;; Call the `tmp-value' with a function.
+            (setq template-str (s-replace tmp-keyword
+                                          (funcall (intern tmp-value))
+                                          template-str)))
+        (progn
+          ;; Replace it normally with a string.
+          (setq template-str (s-replace tmp-keyword
+                                        tmp-value
+                                        template-str))))
+      (setq tmp-index (+ tmp-index 2))))
 
+  ;; return itself.
+  template-str)
 
-(defun jcs-insert-creator-section ()
-  "Insert 'Creator' section."
-  (interactive)
-
-  (insert "$Creator: ")
-  (jcs-insert-creator-name)
-  )
-
-(defun jcs-insert-notice-section-line1 ()
-  "Insert 'Notice' section line 1."
-
-  (insert "$Notice: See LICENSE.txt for modification and distribution information")
-  )
-
-(defun jcs-insert-notice-section-line2 ()
-  "Insert 'Notice' section line 2."
-
-  (insert "                  Copyright © ")
-  (jcs-year-only)
-  (insert " by ")
-  (jcs-insert-copyright-name)
-  )
+(defun jcs-insert-template-by-file-path (filePath)
+  "Swap all keywords then insert it to current buffer.
+FILEPATH : file path to insert and swap keyword."
+  (let ((template-str (get-string-from-file filePath)))
+    (setq template-str (jcs-swap-keyword-template template-str))
+    (insert template-str)))
 
 ;;---------------------------------------------
 ;; Full File info design here...
@@ -108,759 +121,80 @@
 ;;---------------------------------------------
 (defun jcs-global-file-info ()
   "Useing '/*' '*/' for commenting programming languages."
-
-  (insert "/**\n")
-  (insert " * ")
-  (jcs-insert-filename-section)
-  (insert " $\n")
-  (insert " * ")
-  (jcs-insert-creation-date-section)
-  (insert " $\n")
-  (insert " * ")
-  (jcs-insert-revision-section)
-  (insert " $\n")
-  (insert " * ")
-  (jcs-insert-creator-section)
-  (insert " $\n")
-  (insert " * ")
-  (jcs-insert-notice-section-line1)
-  (insert " \n")
-  (insert " * ")
-  (jcs-insert-notice-section-line2)
-  (insert " $\n")
-  (insert " */\n")
-  )
+  (jcs-insert-template-by-file-path "~/.emacs.d/elisp/jcs-ex/ex-template/header/global_template.txt"))
 
 ;;---------------------------------------------
 ;; Tag file comment style
 ;;---------------------------------------------
 (defun jcs-tag-file-info ()
-  ""
-
-  (insert "<!--\n")
-  (insert "   - ")
-  (jcs-insert-filename-section)
-  (insert " $\n")
-  (insert "   - ")
-  (jcs-insert-creation-date-section)
-  (insert " $\n")
-  (insert "   - ")
-  (jcs-insert-revision-section)
-  (insert " $\n")
-  (insert "   - ")
-  (jcs-insert-creator-section)
-  (insert " $\n")
-  (insert "   - ")
-  (jcs-insert-notice-section-line1)
-  (insert " \n")
-  (insert "   - ")
-  (jcs-insert-notice-section-line2)
-  (insert " $\n")
-  (insert "   -->\n")
-  (insert "\n\n")
-  )
+  "Tag file header info for tag language."
+  (jcs-insert-template-by-file-path "~/.emacs.d/elisp/jcs-ex/ex-template/header/tag_template.txt"))
 
 ;;---------------------------------------------
 ;; Manage file comment style
 ;;---------------------------------------------
 (defun jcs-manage-file-info ()
-  "Any managing file format. Text file, batch file, shell
-script, etc."
-
-  (insert "# ========================================================================\n")
-  (insert "# ")
-  (jcs-insert-filename-section)
-  (insert " $\n")
-  (insert "# ")
-  (jcs-insert-creation-date-section)
-  (insert " $\n")
-  (insert "# ")
-  (jcs-insert-revision-section)
-  (insert " $\n")
-  (insert "# ")
-  (jcs-insert-creator-section)
-  (insert " $\n")
-  (insert "# ")
-  (jcs-insert-notice-section-line1)
-  (insert " \n")
-  (insert "# ")
-  (jcs-insert-notice-section-line2)
-  (insert " $\n")
-  (insert "# ========================================================================\n")
-  (insert "\n\n")
-  )
+  "Any managing file format.
+Text file, batch file, shell script, etc."
+  (jcs-insert-template-by-file-path "~/.emacs.d/elisp/jcs-ex/ex-template/header/manage_template.txt"))
 
 ;;---------------------------------------------
 ;; Asm file comment style
 ;;---------------------------------------------
 (defun jcs-asm-file-format ()
   "Specific header format for Assembly Language/lisp/elisp, etc."
-
-  (insert ";; ========================================================================\n")
-  (insert ";; ")
-  (jcs-insert-filename-section)
-  (insert " $\n")
-  (insert ";; ")
-  (jcs-insert-creation-date-section)
-  (insert " $\n")
-  (insert ";; ")
-  (jcs-insert-revision-section)
-  (insert " $\n")
-  (insert ";; ")
-  (jcs-insert-creator-section)
-  (insert " $\n")
-  (insert ";; ")
-  (jcs-insert-notice-section-line1)
-  (insert " \n")
-  (insert ";; ")
-  (jcs-insert-notice-section-line2)
-  (insert " $\n")
-  (insert ";; ========================================================================\n")
-  (insert "\n\n")
-  )
+  (jcs-insert-template-by-file-path "~/.emacs.d/elisp/jcs-ex/ex-template/asm_template.txt"))
 
 ;;---------------------------------------------
 ;; Specialize the makefile format more specific.
 ;;---------------------------------------------
 (defun jcs-makefile-format-info ()
-  "File header format specific for makefile."
-  (call-interactively 'jcs-ask-makefile-app-template))
+  "File header format specific for makefile depends \
+on language selected."
+  (call-interactively 'jcs-ask-makefile-language))
 
-(defun jcs-insert-makefile-util ()
-  "Insert Makefile util function."
-  (insert "# ----------------------------------------------- #\n")
-  (insert "#                      Functions\n")
-  (insert "# ----------------------------------------------- #\n")
-  (insert "rwildcard = $(foreach d,$(wildcard $(addsuffix *,$(1))),$(call rwildcard,$(d)/,$(2)) $(filter $(subst *,%,$(2)),$(d)))\n")
-  )
-
-(defun jcs-makefile-app-template ()
+(defun jcs-makefile-cc-app-template ()
   "Default makefile template for normal application."
+  (jcs-insert-template-by-file-path "~/.emacs.d/elisp/jcs-ex/ex-template/makefile_cc_app.txt"))
 
-  (insert "### Application Makefile Template ###\n")
-
-  (insert "\n")
-  (insert "# ----------------------------------------------- #\n")
-  (insert "#    JayCeS project directories preference.\n")
-  (insert "# ----------------------------------------------- #\n")
-  (insert "# .\n")
-  (insert "# ├── build\n")
-  (insert "# │   ├── alib\n")
-  (insert "# │   └── bin\n")
-  (insert "# │   └── solib\n")
-  (insert "# ├── data\n")
-  (insert "# ├── doc\n")
-  (insert "# ├── lib\n")
-  (insert "# │   ├── alib\n")
-  (insert "# │   └── solib\n")
-  (insert "# ├── misc\n")
-  (insert "# ├── src\n")
-  (insert "# └── test\n")
-  (insert "# ----------------------------------------------- #\n")
-
-  (insert "\n")
-  (jcs-insert-makefile-util)
-
-  (insert "\n")
-  (insert "# ----------------------------------------------- #\n")
-  (insert "#                      General\n")
-  (insert "# ----------------------------------------------- #\n")
-  (insert "# version number\n")
-  (insert "VER        = 1.0.1\n")
-  (insert "ROOT_DIR   = .\n")
-  (insert "# Enter the name of the build file. could either be a dynamic\n")
-  (insert "# link, executable, etc.\n")
-  (insert "BIN_NAME = bin_name\n")
-
-  (insert "\n")
-  (insert "# floppy disk image name\n")
-  (insert "FD = floppy-disk.img\n")
-  (insert "# hard disk image name\n")
-  (insert "HD = hard-disk.img\n")
-
-  (insert "\n")
-  (insert "# ----------------------------------------------- #\n")
-  (insert "#                    Directories\n")
-  (insert "# ----------------------------------------------- #\n")
-  (insert "# Build executable directory.\n")
-  (insert "BIN_DIR = $(ROOT_DIR)/build/bin\n")
-  (insert "# Build library directory.\n")
-  (insert "ALIB_DIR = $(ROOT_DIR)/build/alib\n")
-  (insert "# Build library directory.\n")
-  (insert "SOLIB_DIR = $(ROOT_DIR)/build/solib\n")
-
-  (insert "\n")
-  (insert "# ----------------------------------------------- #\n")
-  (insert "#                      Commands\n")
-  (insert "# ----------------------------------------------- #\n")
-  (insert "# assembler type\n")
-  (insert "ASM  = nasm\n")
-  (insert "# disassembler commands\n")
-  (insert "DASM = ndisasm\n")
-  (insert "# compiler type\n")
-  (insert "CC   = gcc\n")
-  (insert "# linker commands\n")
-  (insert "LD   = ld\n")
-  (insert "# compile lib file commands\n")
-  (insert "AR   = ar\n")
-
-  (insert "\n")
-  (insert "# ----------------------------------------------- #\n")
-  (insert "#                      Flags\n")
-  (insert "# ----------------------------------------------- #\n")
-  (insert "# assemble flags\n")
-  (insert "ASM_B_FLAGS   = -m32\n")
-  (insert "ASM_FLAGS     = -f elf\n")
-  (insert "# disassemble flags\n")
-  (insert "DASM_FLAGS    = -D\n")
-  (insert "# compile flags\n")
-  (insert "C_FLAGS       = -Wall\n")
-  (insert "# linker flags\n")
-  (insert "LD_FLAGS      = -L\n")
-  (insert "# include flags\n")
-  (insert "INCLUDE_FLAGS = -I\n")
-  (insert "# static link flags\n")
-  (insert "AR_FLAGS      = rcs\n")
-  (insert "# dynamic link flags\n")
-  (insert "SOR_FLAGS     = -shared\n")
-  (insert "# output flags\n")
-  (insert "OUTPUT_FLAGS  = -o\n")
-
-  (insert "\n")
-  (insert "# ----------------------------------------------- #\n")
-  (insert "#                   Library File\n")
-  (insert "# ----------------------------------------------- #\n")
-  (insert "# static link library\n")
-  (insert "ALIB  = a_lib_name.a\n")
-  (insert "# dynamic link library\n")
-  (insert "SOLIB = so_lib_name.so\n")
-
-  (insert "\n")
-  (insert "# ----------------------------------------------- #\n")
-  (insert "#                  Source Path\n")
-  (insert "# ----------------------------------------------- #\n")
-  (insert "MAIN_PATH    = $(ROOT_DIR)/test\n")
-  (insert "SOURCE_PATH  = $(ROOT_DIR)/src\n")
-
-  (insert "\n")
-  (insert "# ----------------------------------------------- #\n")
-  (insert "#                  Include Path\n")
-  (insert "# ----------------------------------------------- #\n")
-  (insert "INCLUDE_PATH = $(ROOT_DIR)/include\n")
-
-  (insert "\n")
-  (insert "# ----------------------------------------------- #\n")
-  (insert "#                  Library path\n")
-  (insert "# ----------------------------------------------- #\n")
-  (insert "A_LIB_PATH  := $(ROOT_DIR)/lib/alib\n")
-  (insert "A_LIBS      := $(wildcard $(A_LIB_PATH)/*)\n\n")
-
-  (insert "SO_LIB_PATH := $(ROOT_DIR)/lib/solib\n")
-  (insert "SO_LIBS     := $(wildcard $(SO_LIB_PATH)/*)\n")
-
-  (insert "\n")
-  (insert "# ----------------------------------------------- #\n")
-  (insert "#                   All Source\n")
-  (insert "# ----------------------------------------------- #\n")
-  (insert "# main source\n")
-  (insert "MAINSRC := $(sort $(call rwildcard, $(MAIN_PATH)/, *.asm *.c *.cpp *.S))\n")
-  (insert "# asm source\n")
-  (insert "ASMSRC  := $(sort $(call rwildcard, $(SOURCE_PATH)/, *.asm *.S))\n")
-  (insert "# c/c++ source\n")
-  (insert "GSRC    := $(sort $(call rwildcard, $(SOURCE_PATH)/, *.c *.cpp))\n")
-  (insert "# static link library source\n")
-  (insert "ASRC    := $(sort $(call rwildcard, $(SOURCE_PATH)/, *.c *.cpp)) \\\n")
-  (insert "           $(sort $(call rwildcard, $(A_LIB_PATH)/, *.c *.cpp))\n")
-  (insert "# shared link library source\n")
-  (insert "SOSRC   := $(sort $(call rwildcard, $(SOURCE_PATH)/, *.c *.cpp)) \\\n")
-  (insert "           $(sort $(call rwildcard, $(SO_LIB_PATH)/, *.c *.cpp))\n")
-
-  (insert "\n")
-  (insert "# ----------------------------------------------- #\n")
-  (insert "#                      objs\n")
-  (insert "# ----------------------------------------------- #\n")
-  (insert "# main object file\n")
-  (insert "MAINOBJ := $(sort $(patsubst %.c,%.o,   \\\n")
-  (insert "                  $(patsubst %.cpp,%.o, \\\n")
-  (insert "                  $(patsubst %.asm,%.o, \\\n")
-  (insert "                  $(patsubst %.S,%.o, \\\n")
-  (insert "                  $(patsubst %.s,%.o, $(MAINSRC)))))))\n")
-  (insert "# asm object files\n")
-  (insert "ASMOBJS := $(sort $(patsubst %.asm,%.o, \\\n")
-  (insert "                  $(patsubst %.S,%.o, \\\n")
-  (insert "                  $(patsubst %.s,%.o, $(ASMSRC)))))\n")
-  (insert "# list of object files\n")
-  (insert "OBJS    := $(sort $(patsubst %.c,%.o, $(patsubst %.cpp,%.o, $(GSRC))))\n")
-  (insert "# .a object files\n")
-  (insert "AOBJS   := $(sort $(patsubst %.c,%.o, $(patsubst %.cpp,%.o, $(ASRC))))\n")
-  (insert "# .so object files\n")
-  (insert "SOOBJS  := $(sort $(patsubst %.c,%.o, $(patsubst %.cpp,%.o, $(SOSRC))))\n")
-
-  (insert "\n")
-  (insert "# ----------------------------------------------- #\n")
-  (insert "#                   Dependencies\n")
-  (insert "# ----------------------------------------------- #\n")
-  (insert "DEPDIR := $(ROOT_DIR)/mkdep")
-  (insert "GDEP   := $(patsubst %.c,$(DEPDIR)/%.d,$(patsubst %.cpp,$(DEPDIR)/%.d, $(GSRC)))\n")
-  (insert "ASMDEP := $(patsubst %.asm,$(DEPDIR)/%.d,$(ASMSRC))\n")
-
-
-  (insert "\n\n")
-  (insert ".PHONY : nop all compile link\n")
-  (insert ".PHONY : build buildc buildasm disasm\n")
-  (insert ".PHONY : clean realclean\n")
-  (insert ".PHONY : mount buildimg\n")
-  (insert "\n")
-
-  (insert "nop : \n")
-  (insert "    @echo \"Default Test command..\"\n\n")
-
-  (insert "all : \n")
-  (insert "    @echo \"Default all command..\"\n\n")
-
-  (insert "# compile all the source file to object file.\n")
-  (insert "compile : $(MAINOBJ) $(ASMOBJS) $(OBJS) $(AOBJS) $(SOOBJS)\n\n")
-
-  (insert "# link\n")
-  (insert "link : \n")
-  (insert "    @echo \"Default link command..\"\n\n")
-
-  (insert "build : buildc buildasm\n\n")
-
-  (insert "buildc : \n")
-  (insert "    $(CC) $(GSRC) $(MAINSRC)              \\\n")
-  (insert "    $(C_FLAGS)                            \\\n")
-  (insert "    $(INCLUDE_FLAGS) $(INCLUDE_PATH)      \\\n")
-  (insert "    $(A_LIBS)                             \\\n")
-  (insert "    $(SO_LIBS)                            \\\n")
-  (insert "    $(LD_FLAGS) $(A_LIB_PATH)             \\\n")
-  (insert "    $(OUTPUT_FLAGS) $(BIN_DIR)/$(BIN_NAME)\n\n")
-
-  (insert "buildasm : \n")
-  (insert "    $(CC) $(ASM_B_FLAGS) $(OUTPUT_FLAGS) $(BIN_DIR)/$(BIN_NAME) $(ASMOBJS)\n\n")
-
-  (insert "disasm : \n")
-  (insert "    @echo \"Disassembly command here..\"\n\n")
-
-  (insert "buildimg : \n")
-  (insert "    @echo \"Build image command here..\"\n\n")
-
-  (insert "mount : \n")
-  (insert "    @echo \"Mount command here..\"\n\n")
-
-
-  (insert "\n# Clean the project.\n")
-  (insert "clean :\n")
-  (insert "    rm -f $(MAINOBJ) $(ASMOBJS) $(OBJS) $(LOBJS)\n\n")
-
-  (insert "realclean :\n")
-  (insert "    rm -f $(MAINOBJ) $(ASMOBJS) $(OBJS) $(LOBJS) $(KASMOBJS) $(LASMOBJS) $(ALIB_DIR)/$(ALIB) $(SOLIB_DIR)/$(SOLIB)\n")
-
-  (insert "\n# include dependencies.\n")
-  (insert "-include $(GDEP)\n")
-  (insert "-include $(ASMDEP)\n")
-
-  (insert "\n# example of compile the program main file.\n")
-  (insert "program_main.o : program_main.c\n")
-  (insert "    $(CC) $(C_FLAGS) $(OUTPUT_FLAGS) $@ $<\n")
-
-  (insert "\n# compile assembly file to object file.\n")
-  (insert "$(ASMOBJS) : $(ASMSRC)\n")
-  (insert "### .asm File\n")
-  (insert "    if [ -f $(patsubst %.o,%.asm, $@) ]; then \\\n")
-  (insert "        $(ASM) $(ASM_FLAGS) $(OUTPUT_FLAGS) $@ $(patsubst %.o,%.asm, $@) ; \\\n")
-  (insert "    fi;\n")
-  (insert "### .S File\n")
-  (insert "    if [ -f $(patsubst %.o,%.S, $@) ]; then \\\n")
-  (insert "        $(ASM) $(ASM_FLAGS) $(OUTPUT_FLAGS) $@ $(patsubst %.o,%.S, $@) ; \\\n")
-  (insert "    fi;\n")
-  (insert "### .s File\n")
-  (insert "    if [ -f $(patsubst %.o,%.s, $@) ]; then \\\n")
-  (insert "        $(ASM) $(ASM_FLAGS) $(OUTPUT_FLAGS) $@ $(patsubst %.o,%.s, $@) ; \\\n")
-  (insert "    fi;\n")
-
-  (insert "\n# compile c type source file to object file.\n")
-  (insert "$(OBJS) : $(GSRC)\n")
-  (insert "### .c files\n")
-  (insert "    if [ -f $(patsubst %.o,%.c, $@) ]; then \\\n")
-  (insert "        $(CC) $(C_FLAGS) $(OUTPUT_FLAGS) $@ $(patsubst %.o,%.c, $@) ; \\\n")
-  (insert "    fi;\n")
-  (insert "### .cpp files\n")
-  (insert "    if [ -f $(patsubst %.o,%.cpp, $@) ]; then \\\n")
-  (insert "        $(CC) $(C_FLAGS) $(OUTPUT_FLAGS) $@ $(patsubst %.o,%.cpp, $@) ; \\\n")
-  (insert "    fi;\n")
-
-  (insert "\n# generate static link library.\n")
-  (insert "$(ALIB) : $(AOBJS)\n")
-  (insert "    $(AR) $(AR_FLAGS) $(ALIB_DIR)/$@ $^\n")
-
-  (insert "\n# generate shared link library.\n")
-  (insert "$(SOLIB) : $(SOOBJS)\n")
-  (insert "    $(CC) $(SOR_FLAGS) \\\n")
-  (insert "    $(OUTPUT_FLAGS) $(SOLIB_DIR)/$@ $^ $(C_FLAGS)\n")
-  )
-
-(defun jcs-makefile-lib-template ()
+(defun jcs-makefile-cc-lib-template ()
   "Library makefile template for static library or shared library."
-
-
-  (insert "### Library Makefile Template ###\n")
-
-  (insert "\n")
-  (insert "# ----------------------------------------------- #\n")
-  (insert "#    JayCeS project directories preference.\n")
-  (insert "# ----------------------------------------------- #\n")
-  (insert "# .\n")
-  (insert "# ├── build\n")
-  (insert "# │   ├── alib\n")
-  (insert "# │   └── bin\n")
-  (insert "# │   └── solib\n")
-  (insert "# ├── data\n")
-  (insert "# ├── doc\n")
-  (insert "# ├── lib\n")
-  (insert "# │   ├── alib\n")
-  (insert "# │   └── solib\n")
-  (insert "# ├── misc\n")
-  (insert "# ├── src\n")
-  (insert "# └── test\n")
-  (insert "# ----------------------------------------------- #\n")
-
-  (insert "\n")
-  (jcs-insert-makefile-util)
-
-  (insert "\n")
-  (insert "# ----------------------------------------------- #\n")
-  (insert "#                      General\n")
-  (insert "# ----------------------------------------------- #\n")
-  (insert "# version number\n")
-  (insert "VER        = 1.0.1\n")
-  (insert "ROOT_DIR   = .\n")
-  (insert "# Enter the name of the build file. could either be a dynamic\n")
-  (insert "# link, executable, etc.\n")
-  (insert "BIN_NAME = bin_name\n")
-
-  (insert "\n")
-  (insert "# floppy disk image name\n")
-  (insert "FD = floppy-disk.img\n")
-  (insert "# hard disk image name\n")
-  (insert "HD = hard-disk.img\n")
-
-  (insert "\n")
-  (insert "# ----------------------------------------------- #\n")
-  (insert "#                    Directories\n")
-  (insert "# ----------------------------------------------- #\n")
-  (insert "# Build executable directory.\n")
-  (insert "BIN_DIR = $(ROOT_DIR)/build/bin\n")
-  (insert "# Build library directory.\n")
-  (insert "ALIB_DIR = $(ROOT_DIR)/build/alib\n")
-  (insert "# Build library directory.\n")
-  (insert "SOLIB_DIR = $(ROOT_DIR)/build/solib\n")
-
-  (insert "\n")
-  (insert "# ----------------------------------------------- #\n")
-  (insert "#                      Commands\n")
-  (insert "# ----------------------------------------------- #\n")
-  (insert "# assembler type\n")
-  (insert "ASM  = nasm\n")
-  (insert "# disassembler commands\n")
-  (insert "DASM = ndisasm\n")
-  (insert "# compiler type\n")
-  (insert "CC   = gcc\n")
-  (insert "# linker commands\n")
-  (insert "LD   = ld\n")
-  (insert "# compile lib file commands\n")
-  (insert "AR   = ar\n")
-
-  (insert "\n")
-  (insert "# ----------------------------------------------- #\n")
-  (insert "#                      Flags\n")
-  (insert "# ----------------------------------------------- #\n")
-  (insert "# assemble flags\n")
-  (insert "ASM_B_FLAGS   = -m32\n")
-  (insert "ASM_FLAGS     = -f elf\n")
-  (insert "# disassemble flags\n")
-  (insert "DASM_FLAGS    = -D\n")
-  (insert "# compile flags\n")
-  (insert "C_FLAGS       = -Wall\n")
-  (insert "# linker flags\n")
-  (insert "LD_FLAGS      = -L\n")
-  (insert "# include flags\n")
-  (insert "INCLUDE_FLAGS = -I\n")
-  (insert "# static link flags\n")
-  (insert "AR_FLAGS      = rcs\n")
-  (insert "# dynamic link flags\n")
-  (insert "SOR_FLAGS     = -shared\n")
-  (insert "# output flags\n")
-  (insert "OUTPUT_FLAGS  = -o\n")
-
-  (insert "\n")
-  (insert "# ----------------------------------------------- #\n")
-  (insert "#                   Library File\n")
-  (insert "# ----------------------------------------------- #\n")
-  (insert "# static link library\n")
-  (insert "ALIB  = a_lib_name.a\n")
-  (insert "# dynamic link library\n")
-  (insert "SOLIB = so_lib_name.so\n")
-
-  (insert "\n")
-  (insert "# ----------------------------------------------- #\n")
-  (insert "#                  Source Path\n")
-  (insert "# ----------------------------------------------- #\n")
-  (insert "MAIN_PATH    = $(ROOT_DIR)/test\n")
-  (insert "SOURCE_PATH  = $(ROOT_DIR)/src\n")
-
-  (insert "\n")
-  (insert "# ----------------------------------------------- #\n")
-  (insert "#                  Include Path\n")
-  (insert "# ----------------------------------------------- #\n")
-  (insert "INCLUDE_PATH = $(ROOT_DIR)/include\n")
-
-  (insert "\n")
-  (insert "# ----------------------------------------------- #\n")
-  (insert "#                  Library path\n")
-  (insert "# ----------------------------------------------- #\n")
-  (insert "A_LIB_PATH  := $(ROOT_DIR)/lib/alib\n")
-  (insert "A_LIBS      := $(wildcard $(A_LIB_PATH)/*)\n\n")
-
-  (insert "SO_LIB_PATH := $(ROOT_DIR)/lib/solib\n")
-  (insert "SO_LIBS     := $(wildcard $(SO_LIB_PATH)/*)\n")
-
-  (insert "\n")
-  (insert "# ----------------------------------------------- #\n")
-  (insert "#                   All Source\n")
-  (insert "# ----------------------------------------------- #\n")
-  (insert "# main source\n")
-  (insert "MAINSRC := $(sort $(call rwildcard, $(MAIN_PATH)/, *.asm *.c *.cpp *.S))\n")
-  (insert "# asm source\n")
-  (insert "ASMSRC  := $(sort $(call rwildcard, $(SOURCE_PATH)/, *.asm *.S))\n")
-  (insert "# c/c++ source\n")
-  (insert "GSRC    := $(sort $(call rwildcard, $(SOURCE_PATH)/, *.c *.cpp))\n")
-  (insert "# static link library source\n")
-  (insert "ASRC    := $(sort $(call rwildcard, $(SOURCE_PATH)/, *.c *.cpp)) \\\n")
-  (insert "           $(sort $(call rwildcard, $(A_LIB_PATH)/, *.c *.cpp))\n")
-  (insert "# shared link library source\n")
-  (insert "SOSRC   := $(sort $(call rwildcard, $(SOURCE_PATH)/, *.c *.cpp)) \\\n")
-  (insert "           $(sort $(call rwildcard, $(SO_LIB_PATH)/, *.c *.cpp))\n")
-
-  (insert "\n")
-  (insert "# ----------------------------------------------- #\n")
-  (insert "#                      objs\n")
-  (insert "# ----------------------------------------------- #\n")
-  (insert "# main object file\n")
-  (insert "MAINOBJ := $(sort $(patsubst %.c,%.o,   \\\n")
-  (insert "                  $(patsubst %.cpp,%.o, \\\n")
-  (insert "                  $(patsubst %.asm,%.o, \\\n")
-  (insert "                  $(patsubst %.S,%.o,   \\\n")
-  (insert "                  $(patsubst %.s,%.o, $(MAINSRC)))))))\n")
-  (insert "# asm object files\n")
-  (insert "ASMOBJS := $(sort $(patsubst %.asm,%.o, \\\n")
-  (insert "                  $(patsubst %.S,%.o,   \\\n")
-  (insert "                  $(patsubst %.s,%.o, $(ASMSRC)))))\n")
-  (insert "# list of object files\n")
-  (insert "OBJS    := $(sort $(patsubst %.c,%.o, $(patsubst %.cpp,%.o, $(GSRC))))\n")
-  (insert "# .a object files\n")
-  (insert "AOBJS   := $(sort $(patsubst %.c,%.o, $(patsubst %.cpp,%.o, $(ASRC))))\n")
-  (insert "# .so object files\n")
-  (insert "SOOBJS  := $(sort $(patsubst %.c,%.o, $(patsubst %.cpp,%.o, $(SOSRC))))\n")
-
-  (insert "\n")
-  (insert "# ----------------------------------------------- #\n")
-  (insert "#                   Dependencies\n")
-  (insert "# ----------------------------------------------- #\n")
-  (insert "DEPDIR := $(ROOT_DIR)/mkdep")
-  (insert "GDEP   := $(patsubst %.c,$(DEPDIR)/%.d,$(patsubst %.cpp,$(DEPDIR)/%.d, $(GSRC)))\n")
-  (insert "ASMDEP := $(patsubst %.asm,$(DEPDIR)/%.d,$(ASMSRC))\n")
-
-  (insert "\n\n")
-  (insert ".PHONY : nop all compile link\n")
-  (insert ".PHONY : build buildc buildasm disasm\n")
-  (insert ".PHONY : clean realclean\n")
-  (insert ".PHONY : mount buildimg\n")
-  (insert "\n")
-
-  (insert "nop : \n")
-  (insert "    @echo \"Default Test command..\"\n\n")
-
-  (insert "all : \n")
-  (insert "    @echo \"Default all command..\"\n\n")
-
-  (insert "# compile all the source file to object file.\n")
-  (insert "compile : $(MAINOBJ) $(ASMOBJS) $(OBJS) $(AOBJS) $(SOOBJS)\n\n")
-
-  (insert "# link\n")
-  (insert "link : \n")
-  (insert "    @echo \"Default link command..\"\n\n")
-
-  (insert "build : buildc buildasm\n\n")
-
-  (insert "buildc : \n")
-  (insert "    $(CC) $(GSRC) $(MAINSRC)              \\\n")
-  (insert "    $(C_FLAGS)                            \\\n")
-  (insert "    $(INCLUDE_FLAGS) $(INCLUDE_PATH)      \\\n")
-  (insert "    $(A_LIBS)                             \\\n")
-  (insert "    $(SO_LIBS)                            \\\n")
-  (insert "    $(LD_FLAGS) $(A_LIB_PATH)             \\\n")
-  (insert "    $(OUTPUT_FLAGS) $(BIN_DIR)/$(BIN_NAME)\n\n")
-
-  (insert "buildasm : \n")
-  (insert "    $(CC) $(ASM_B_FLAGS) $(OUTPUT_FLAGS) $(BIN_DIR)/$(BIN_NAME) $(ASMOBJS)\n\n")
-
-  (insert "disasm : \n")
-  (insert "    @echo \"Disassembly command here..\"\n\n")
-
-  (insert "buildimg : \n")
-  (insert "    @echo \"Build image command here..\"\n\n")
-
-  (insert "mount : \n")
-  (insert "    @echo \"Mount command here..\"\n\n")
-
-
-  (insert "\n# Clean the project.\n")
-  (insert "clean :\n")
-  (insert "    rm -f $(MAINOBJ) $(ASMOBJS) $(OBJS) $(LOBJS)\n\n")
-
-  (insert "realclean :\n")
-  (insert "    rm -f $(MAINOBJ) $(ASMOBJS) $(OBJS) $(LOBJS) $(KASMOBJS) $(LASMOBJS) $(ALIB_DIR)/$(ALIB) $(SOLIB_DIR)/$(SOLIB)\n")
-
-  (insert "\n# include dependencies.\n")
-  (insert "-include $(GDEP)\n")
-  (insert "-include $(ASMDEP)\n")
-
-  (insert "\n# example of compile the program main file.\n")
-  (insert "program_main.o : program_main.c\n")
-  (insert "    $(CC) $(C_FLAGS) $(OUTPUT_FLAGS) $@ $<\n")
-
-  (insert "\n# compile assembly file to object file.\n")
-  (insert "$(ASMOBJS) : $(ASMSRC)\n")
-  (insert "### .asm File\n")
-  (insert "    if [ -f $(patsubst %.o,%.asm, $@) ]; then \\\n")
-  (insert "        $(ASM) $(ASM_FLAGS) $(OUTPUT_FLAGS) $@ $(patsubst %.o,%.asm, $@) ; \\\n")
-  (insert "    fi;\n")
-  (insert "### .S File\n")
-  (insert "    if [ -f $(patsubst %.o,%.S, $@) ]; then \\\n")
-  (insert "        $(ASM) $(ASM_FLAGS) $(OUTPUT_FLAGS) $@ $(patsubst %.o,%.S, $@) ; \\\n")
-  (insert "    fi;\n")
-  (insert "### .s File\n")
-  (insert "    if [ -f $(patsubst %.o,%.s, $@) ]; then \\\n")
-  (insert "        $(ASM) $(ASM_FLAGS) $(OUTPUT_FLAGS) $@ $(patsubst %.o,%.s, $@) ; \\\n")
-  (insert "    fi;\n")
-
-  (insert "\n# compile c type source file to object file.\n")
-  (insert "$(OBJS) : $(GSRC)\n")
-  (insert "### .c files\n")
-  (insert "    if [ -f $(patsubst %.o,%.c, $@) ]; then \\\n")
-  (insert "        $(CC) $(C_FLAGS) $(OUTPUT_FLAGS) $@ $(patsubst %.o,%.c, $@) ; \\\n")
-  (insert "    fi;\n")
-  (insert "### .cpp files\n")
-  (insert "    if [ -f $(patsubst %.o,%.cpp, $@) ]; then \\\n")
-  (insert "        $(CC) $(C_FLAGS) $(OUTPUT_FLAGS) $@ $(patsubst %.o,%.cpp, $@) ; \\\n")
-  (insert "    fi;\n")
-
-  (insert "\n# generate static link library.\n")
-  (insert "$(ALIB) : $(AOBJS)\n")
-  (insert "    $(AR) $(AR_FLAGS) $(ALIB_DIR)/$@ $^\n")
-
-  (insert "\n# generate shared link library.\n")
-  (insert "$(SOLIB) : $(SOOBJS)\n")
-  (insert "    $(CC) $(SOR_FLAGS) \\\n")
-  (insert "    $(OUTPUT_FLAGS) $(SOLIB_DIR)/$@ $^ $(C_FLAGS)\n")
-  )
+  (jcs-insert-template-by-file-path "~/.emacs.d/elisp/jcs-ex/ex-template/makefile_cc_lib.txt"))
 
 ;;---------------------------------------------
 ;; Specialize the CMakeLists to more specific.
 ;;---------------------------------------------
 (defun jcs-cmake-format-info ()
   "CMake file format info."
-
-  (insert "CMAKE_MINIMUM_REQUIRED(VERSION 3.0)\n\n")
-
-  (insert "# project settings\n")
-  (insert "SET(VERSION_MAJOR \"1\")\n")
-  (insert "SET(VERSION_MINOR \"0\")\n")
-  (insert "SET(VERSION_PATCH \"0\")\n")
-  (insert "SET(VERSION \"${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}\")\n\n")
-
-  (insert "# environment settings\n")
-  (insert "ADD_DEFINITIONS(-DUNICODE)\n")
-  (insert "ADD_DEFINITIONS(-D_UNICODE)\n\n")
-
-  (insert "# subdir settings\n")
-  (insert "ADD_SUBDIRECTORY(libssrc)\n")
-  )
+  (jcs-insert-template-by-file-path "~/.emacs.d/elisp/jcs-ex/ex-template/cmake_template.txt"))
 
 ;;---------------------------------------------
 ;; Lua file header format.
 ;;---------------------------------------------
 (defun jcs-lua-file-format-info ()
   "Lua file header format."
-
-  (insert "-- ========================================================================\n")
-  (insert "-- ")
-  (jcs-insert-filename-section)
-  (insert " $\n")
-  (insert "-- ")
-  (jcs-insert-creation-date-section)
-  (insert " $\n")
-  (insert "-- ")
-  (jcs-insert-revision-section)
-  (insert " $\n")
-  (insert "-- ")
-  (jcs-insert-creator-section)
-  (insert " $\n")
-  (insert "-- ")
-  (jcs-insert-notice-section-line1)
-  (insert " \n")
-  (insert "-- ")
-  (jcs-insert-notice-section-line2)
-  (insert " $\n")
-  (insert "-- ========================================================================\n")
-  (insert "\n\n")
-  )
+  (jcs-insert-template-by-file-path "~/.emacs.d/elisp/jcs-ex/ex-template/lua_template.txt"))
 
 ;;---------------------------------------------
 ;; Batch file header format.
 ;;---------------------------------------------
 (defun jcs-batch-file-format-info ()
   "Header format for batch file."
-
-  (insert ":: ========================================================================\n")
-  (insert ":: ")
-  (jcs-insert-filename-section)
-  (insert " $\n")
-  (insert ":: ")
-  (jcs-insert-creation-date-section)
-  (insert " $\n")
-  (insert ":: ")
-  (jcs-insert-revision-section)
-  (insert " $\n")
-  (insert ":: ")
-  (jcs-insert-creator-section)
-  (insert " $\n")
-  (insert ":: ")
-  (jcs-insert-notice-section-line1)
-  (insert " \n")
-  (insert ":: ")
-  (jcs-insert-notice-section-line2)
-  (insert " $\n")
-  (insert ":: ========================================================================\n")
-  (insert "\n\n")
-  )
+  (jcs-insert-template-by-file-path "~/.emacs.d/elisp/jcs-ex/ex-template/batch_template.txt"))
 
 ;;---------------------------------------------
 ;; C Header file format.
 ;;---------------------------------------------
 (defun jcs-c-header-file-format-info ()
   "Header for C header file."
-  (jcs-global-file-info)
-  )
+  (jcs-global-file-info))
 
 ;;---------------------------------------------
 ;; C Source file format.
 ;;---------------------------------------------
 (defun jcs-c-source-file-format-info ()
   "Header for C source file."
-  (jcs-global-file-info)
-  )
+  (jcs-global-file-info))
 
 ;;---------------------------------------------
 ;; C++ Header file format.
@@ -868,19 +202,16 @@ script, etc."
 (defun jcs-c++-header-file-format-info ()
   "Header for C++ header file."
 
-  (setq BaseFileName (file-name-sans-extension (file-name-nondirectory buffer-file-name)))
-  (setq BaseFileNameWithExtension (file-name-nondirectory buffer-file-name))
-
   (insert "#ifndef __")
   (push-mark)
-  (insert BaseFileName)
+  (insert (jcs-get-file-name))
   (upcase-region (mark) (point))
   (pop-mark)
   (insert "_H__\n")
   (jcs-global-file-info)
   (insert "#define __")
   (push-mark)
-  (insert BaseFileName)
+  (insert (jcs-get-file-name))
   (upcase-region (mark) (point))
   (pop-mark)
   (insert "_H__")
@@ -898,7 +229,7 @@ script, etc."
 
   (insert "#endif /* __")
   (push-mark)
-  (insert BaseFileName)
+  (insert (jcs-get-file-name))
   (upcase-region (mark) (point))
   (pop-mark)
   (insert "_H__ */\n")
@@ -927,28 +258,25 @@ script, etc."
 ;;---------------------------------------------
 (defun jcs-c++-default-header-template ()
   "C++ Default Header Constrcutor and Destructor."
-  (setq BaseFileName (file-name-sans-extension (file-name-nondirectory buffer-file-name)))
-  (setq BaseFileNameWithExtension (file-name-nondirectory buffer-file-name))
-
 
   ;; insert class
   (insert "/**\n")
   (insert " * @class ")
-  (insert BaseFileName)
+  (insert (jcs-get-file-name))
   (insert "\n")
   (insert " * @brief Class description...\n")
   (insert " */\n")
   (insert "class ")
-  (insert BaseFileName)
+  (insert (jcs-get-file-name))
   (insert "\n{\n")
   (insert "private:\n\n")
   (insert "public:\n")
 
   ;; constructor & destructor.
-  (insert BaseFileName)
+  (insert (jcs-get-file-name))
   (insert "();\n")
   (insert "~")
-  (insert BaseFileName)
+  (insert (jcs-get-file-name))
   (insert "();\n\n\n")
 
   (insert "    /* operator */\n\n")
@@ -960,26 +288,24 @@ script, etc."
 
 (defun jcs-c++-default-source-template ()
   "C++ Default Source Constrcutor and Destructor."
-  (setq BaseFileName (file-name-sans-extension (file-name-nondirectory buffer-file-name)))
-  (setq BaseFileNameWithExtension (file-name-nondirectory buffer-file-name))
 
   (insert "\n")
   (insert "#include \"")
-  (insert BaseFileName)
+  (insert (jcs-get-file-name))
   (insert ".h\"\n\n\n")
 
   ;; insert constructor
-  (insert BaseFileName)
+  (insert (jcs-get-file-name))
   (insert "::")
-  (insert BaseFileName)
+  (insert (jcs-get-file-name))
   (insert "()\n")
   (insert "{\n\n")
   (insert "}\n\n")
 
   ;; insert destructor
-  (insert BaseFileName)
+  (insert (jcs-get-file-name))
   (insert "::~")
-  (insert BaseFileName)
+  (insert (jcs-get-file-name))
   (insert "()\n")
   (insert "{\n\n")
   (insert "}\n")
@@ -990,29 +316,14 @@ script, etc."
 ;;---------------------------------------------
 (defun jcs-cobol-file-format-info ()
   "Header format for COBOL."
+  (jcs-insert-template-by-file-path "~/.emacs.d/elisp/jcs-ex/ex-template/cobol_template.txt"))
 
-  (insert "       *> ========================================================================\n")
-  (insert "       *> ")
-  (jcs-insert-filename-section)
-  (insert " $\n")
-  (insert "       *> ")
-  (jcs-insert-creation-date-section)
-  (insert " $\n")
-  (insert "       *> ")
-  (jcs-insert-revision-section)
-  (insert " $\n")
-  (insert "       *> ")
-  (jcs-insert-creator-section)
-  (insert " $\n")
-  (insert "       *> ")
-  (jcs-insert-notice-section-line1)
-  (insert " \n")
-  (insert "       *> ")
-  (jcs-insert-notice-section-line2)
-  (insert " $\n")
-  (insert "       *> ========================================================================\n")
-  (insert "\n\n")
-  )
+;;---------------------------------------------
+;; HTML file header format.
+;;---------------------------------------------
+(defun jcs-html-file-format-info ()
+  "Header format for COBOL."
+  (jcs-insert-template-by-file-path "~/.emacs.d/elisp/jcs-ex/ex-template/html_template.txt"))
 
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-file-info-format.el file
