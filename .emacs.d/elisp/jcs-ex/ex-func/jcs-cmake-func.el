@@ -67,18 +67,18 @@ LAN : temporary variable store user langauge input."
            ))
         ((string= lan "Java")
          (progn
-
+           (call-interactively 'jcs-ask-makefile-java-template)
            ))
         ((string= lan "Python")
          (progn
-
+           (call-interactively 'jcs-ask-makefile-python-template)
            ))
         )
   )
 
 ;;;###autoload
 (defun jcs-ask-makefile-cc-template (type)
-  "
+  "Ask makefile template type in Assembly, C, C++.
 TYPE: type of makefile for Assembly and C/C++."
   (interactive
    (list (completing-read
@@ -96,12 +96,54 @@ TYPE: type of makefile for Assembly and C/C++."
         ((string= type "Library")
          (progn
            (jcs-makefile-cc-lib-template)))
-        (t
-         (progn
+        ))
 
+
+;;;###autoload
+(defun jcs-ask-makefile-java-template (type)
+  "Ask makefile template type in Java.
+TYPE: type of makefile for Java."
+  (interactive
+   (list (completing-read
+          "Type of makefile: " '(".."
+                                 "Application"
+                                 "Library"))))
+
+  (cond ((string= type "..")
+         (progn
+           (call-interactively 'jcs-ask-makefile-language)
            ))
-        )
-  )
+        ((string= type "Application")
+         (progn
+           (jcs-makefile-java-app-template)))
+        ((string= type "Library")
+         (progn
+           (jcs-makefile-java-lib-template)))
+        ))
+
+
+;;;###autoload
+(defun jcs-ask-makefile-python-template (type)
+  "Ask makefile template type in Python.
+TYPE: type of makefile for Python."
+  (interactive
+   (list (completing-read
+          "Type of makefile: " '(".."
+                                 "Application"
+                                 "Library"))))
+
+  (cond ((string= type "..")
+         (progn
+           (call-interactively 'jcs-ask-makefile-language)
+           ))
+        ((string= type "Application")
+         (progn
+           (jcs-makefile-python-app-template)))
+        ((string= type "Library")
+         (progn
+           (jcs-makefile-python-lib-template)))
+        ))
+
 
 
 ;;;###autoload
