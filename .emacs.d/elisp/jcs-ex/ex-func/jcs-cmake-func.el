@@ -34,33 +34,77 @@
 ;;; Code:
 
 
-(defun jcs-ask-makefile-app-template (bool)
+(defun jcs-ask-makefile-language (lan)
+  "Ask makefile what major language is this makefile going to use.
+Then specialize makefile to that target language.
+
+LAN : temporary variable store user langauge input."
+
   (interactive
-   (list (y-or-n-p "Add makefile application template?  ")))
+   (list (completing-read
+          "Major language for this Makfile: " '("Default (empty)"
+                                                "Assembly"
+                                                "C"
+                                                "C++"
+                                                "Java"
+                                                "Python"))))
 
-  (if bool
-      (progn
-        ;; Insert app template.
-        (jcs-makefile-app-template))
-    (progn
-      ;; Else we ask to add lib template.
-      (call-interactively 'jcs-ask-makefile-lib-template))
-    ))
+  (cond ((string= lan "Default (empty)")
+         (progn
+           ;; Empty..
+           ))
+        ((string= lan "Assembly")
+         (progn
+           (call-interactively 'jcs-ask-makefile-cc-template)
+           ))
+        ((string= lan "C")
+         (progn
+           (call-interactively 'jcs-ask-makefile-cc-template)
+           ))
+        ((string= lan "C++")
+         (progn
+           (call-interactively 'jcs-ask-makefile-cc-template)
+           ))
+        ((string= lan "Java")
+         (progn
 
-(defun jcs-ask-makefile-lib-template (bool)
-  (interactive
-   (list (y-or-n-p "Add makefile library template?  ")))
+           ))
+        ((string= lan "Python")
+         (progn
 
-  (if bool
-      (progn
-        ;; Insert lib template.
-        (jcs-makefile-lib-template)
+           ))
         )
-    (progn
-      ;; TODO(jenchieh): Else we ask to add another type?
-      ))
   )
 
+;;;###autoload
+(defun jcs-ask-makefile-cc-template (type)
+  "
+TYPE: type of makefile for Assembly and C/C++."
+  (interactive
+   (list (completing-read
+          "Type of makefile: " '(".."
+                                 "Application"
+                                 "Library"))))
+
+  (cond ((string= type "..")
+         (progn
+           (call-interactively 'jcs-ask-makefile-language)
+           ))
+        ((string= type "Application")
+         (progn
+           (jcs-makefile-cc-app-template)))
+        ((string= type "Library")
+         (progn
+           (jcs-makefile-cc-lib-template)))
+        (t
+         (progn
+
+           ))
+        )
+  )
+
+
+;;;###autoload
 (defun jcs-makefile-newline ()
   "Newline"
   (interactive)
