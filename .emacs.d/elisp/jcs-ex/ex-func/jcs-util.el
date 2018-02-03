@@ -40,38 +40,40 @@
 ;; Source:
 ;; -> https://www.emacswiki.org/emacs/InsertingTodaysDate
 ;;---------------------------------------------
-(defun jcs-timestamp ()
-  "Insert timestamp."
-  (insert (format-time-string "%Y-%m-%d %H:%M:%S")))
 
-(defun jcs-timestamp-ver2 ()
-  "Insert timestamp."
-  (insert (format-time-string "%Y/%m/%d %H:%M:%S")))
+(defun jcs-get-timestamp-ver1 ()
+  "Get timestamp version 1."
+  (format-time-string "%Y-%m-%d %H:%M:%S"))
 
-(defun jcs-timestamp-ver3 ()
-  "Insert timestamp."
-  (insert (format-time-string "%Y-%m-%d %H:%M:%S")))
+(defun jcs-get-timestamp-ver2 ()
+  "Get timestamp version 2."
+  (format-time-string "%Y/%m/%d %H:%M:%S"))
+
+(defun jcs-get-timestamp-ver3 ()
+  "Get timestamp version 3."
+  (format-time-string "%Y-%m-%d %H:%M:%S"))
 
 ;;---------------------------------------------
 ;; Make the data base on the format provided.
 ;;---------------------------------------------
-(defun jcs-date()
-  "Inset date."
-  (insert (format-time-string "%Y-%m-%d")))
+
+(defun jcs-get-date()
+  "Get date buffer in string type.."
+  (format-time-string "%Y-%m-%d"))
 
 ;;---------------------------------------------
 ;; Insert year only.
 ;;---------------------------------------------
-(defun jcs-year-only ()
-  "Insert Year."
-  (insert (format-time-string "%Y")))
+(defun jcs-get-year-only ()
+  "Get Year buffer in string type."
+  (format-time-string "%Y"))
 
 ;;---------------------------------------------
 ;; Make the time base on the format provided.
 ;;---------------------------------------------
-(defun jcs-time()
-  "Insert time."
-  (insert (format-time-string "%H:%M:%S")))
+(defun jcs-get-time()
+  "Get time buffer in string type."
+  (format-time-string "%H:%M:%S"))
 
 
 ;;---------------------------------------------
@@ -539,6 +541,48 @@ STR : major mode name."
   "Check if this minor enabled in current buffer/file.
 MODE-OBJ : mode object memory."
   (bound-and-true-p mode-obj))
+
+;;---------------------------------------------
+;; I/O
+;;---------------------------------------------
+
+(defun get-string-from-file (filePath)
+  "Return filePath's file content.
+TOPIC(jenchieh): Elisp: Read File Content as String or List of Lines
+URL(jenchieh): http://ergoemacs.org/emacs/elisp_read_file_content.html"
+  (with-temp-buffer
+    (insert-file-contents filePath)
+    (buffer-string)))
+
+;;---------------------------------------------
+;; File
+;;---------------------------------------------
+
+(defun jcs-get-file-name ()
+  "Get current file name."
+  (file-name-nondirectory buffer-file-name))
+
+(defun jcs-get-file-name-uppercase ()
+  "Get current file name uppercase."
+  (upcase (file-name-nondirectory buffer-file-name)))
+
+(defun jcs-get-file-name-without-extension ()
+  "Get current file name without extension."
+  (file-name-sans-extension (file-name-nondirectory buffer-file-name)))
+
+(defun jcs-get-file-name-without-extension-uppercase ()
+  "Get current file name without extension."
+  (upcase (file-name-sans-extension (file-name-nondirectory buffer-file-name))))
+
+;;---------------------------------------------
+;; String
+;;---------------------------------------------
+
+(defun jcs-remove-string-by-substring (str substr)
+  "Remove a certain string by a substring.
+STR : string to want to be remove by SUBSTR.
+SUBSTR : string you want to remove from STR."
+  (s-replace substr "" str))
 
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-util.el file
