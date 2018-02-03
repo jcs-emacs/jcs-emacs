@@ -7,6 +7,9 @@
 # ========================================================================
 
 
+2018-02-03
+* Add scala mode for scale file editing. (jcs-emacs-init)
+
 2018-02-02
 * Add org table navigation key bindgs to org mode. (jcs-emacs-init)
 * Add org table navigation functionalities. (jcs-emacs-init)
