@@ -1,0 +1,3 @@
+
+
+### Library Makefile Template (Python) ###

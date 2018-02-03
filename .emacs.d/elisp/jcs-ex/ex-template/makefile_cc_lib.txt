@@ -1,6 +1,6 @@
 
 
-### Library Makefile Template ###
+### Library Makefile Template (CC) ###
 
 # ----------------------------------------------- #
 #	 JayCeS project directories preference.

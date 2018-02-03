@@ -1,6 +1,6 @@
 
 
-### Application Makefile Template ###
+### Application Makefile Template (CC) ###
 
 # ----------------------------------------------- #
 #	 JayCeS project directories preference.
