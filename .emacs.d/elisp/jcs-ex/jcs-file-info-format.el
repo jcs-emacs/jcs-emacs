@@ -32,41 +32,6 @@
 ;;      JENCHIEH KEY GLOBAL INFO
 ;;----------------------------------
 
-(defun jcs-parse-ini (filePath)
-  "Parse a .ini file.
-FILEPATH : .ini file to parse."
-
-  (let ((tmp-ini (get-string-from-file filePath))
-        (tmp-ini-list '())
-        (tmp-pair-list nil)
-        (tmp-keyword "")
-        (tmp-value "")
-        (count 0))
-    (setq tmp-ini (split-string tmp-ini "\n"))
-
-    (dolist (tmp-line tmp-ini)
-      ;; check not comment.
-      (when (not (string-match-p "#" tmp-line))
-        ;; Split it.
-        (setq tmp-pair-list (split-string tmp-line "="))
-
-        ;; Assign to temporary variables.
-        (setq tmp-keyword (nth 0 tmp-pair-list))
-        (setq tmp-value (nth 1 tmp-pair-list))
-
-        ;; Check empty value.
-        (when (and (not (string= tmp-keyword ""))
-                   (not (equal tmp-value nil)))
-          (add-to-list 'tmp-ini-list tmp-keyword)
-          (add-to-list 'tmp-ini-list tmp-value)))
-      (setq count (1+ count)))
-
-    ;; Reverse list once.
-    (setq tmp-ini-list (reverse tmp-ini-list))
-
-    ;; return list.
-    tmp-ini-list))
-
 (defun jcs-swap-keyword-template (template-str)
   "Swap all keyword in template to proper information.
 TEMPLATE-STR : template string data."
@@ -311,19 +276,30 @@ on language selected."
   (insert "}\n")
   )
 
-;;---------------------------------------------
-;; COBOL file header format.
-;;---------------------------------------------
 (defun jcs-cobol-file-format-info ()
-  "Header format for COBOL."
+  "Template for COBOL."
   (jcs-insert-template-by-file-path "~/.emacs.d/elisp/jcs-ex/ex-template/cobol_template.txt"))
 
-;;---------------------------------------------
-;; HTML file header format.
-;;---------------------------------------------
 (defun jcs-html-file-format-info ()
-  "Header format for COBOL."
+  "Template for HTML."
   (jcs-insert-template-by-file-path "~/.emacs.d/elisp/jcs-ex/ex-template/html_template.txt"))
+
+(defun jcs-makefile-java-app-template ()
+  "Template for makefile Java application."
+  (jcs-insert-template-by-file-path "~/.emacs.d/elisp/jcs-ex/ex-template/makefile_java_app.txt"))
+
+(defun jcs-makefile-java-lib-template ()
+  "Template for makefile Java library."
+  (jcs-insert-template-by-file-path "~/.emacs.d/elisp/jcs-ex/ex-template/makefile_java_lib.txt"))
+
+(defun jcs-makefile-python-app-template ()
+  "Template for makefile Python application."
+  (jcs-insert-template-by-file-path "~/.emacs.d/elisp/jcs-ex/ex-template/makefile_python_app.txt"))
+
+(defun jcs-makefile-python-lib-template ()
+  "Template for makefile Python library."
+  (jcs-insert-template-by-file-path "~/.emacs.d/elisp/jcs-ex/ex-template/makefile_python_lib.txt"))
+
 
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-file-info-format.el file
