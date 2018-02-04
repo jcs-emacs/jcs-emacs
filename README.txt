@@ -20,6 +20,7 @@ planning in the future.
 
 Emacs itself comes with support for many programming languages. These
 config files improve and extended support for the following:
+* Assembly Language
 * Action Script 3.0
 * Batchfile
 * C
@@ -27,11 +28,13 @@ config files improve and extended support for the following:
 * C#
 * COBOL
 * Elisp
+* Go
 * Java
 * JavaScript
 * Lua
 * Makefile
 * HTML/CSS
+* Perl
 * PHP
 * Python
 * Scala
