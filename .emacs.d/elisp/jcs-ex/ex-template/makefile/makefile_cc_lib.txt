@@ -1,4 +1,4 @@
-
+#MANAGE_FILE_INFO#
 
 ### Library Makefile Template (CC) ###
 

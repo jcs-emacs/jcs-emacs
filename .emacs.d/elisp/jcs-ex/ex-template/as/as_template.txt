@@ -1,0 +1,6 @@
+#GLOBAL_FILE_INFO#
+
+
+public class #FILE_NAME_NO_EXT# {
+
+}

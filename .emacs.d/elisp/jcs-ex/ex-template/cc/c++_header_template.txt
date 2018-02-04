@@ -1,0 +1,27 @@
+#ifndef __#U_FILE_NAME_NO_EXT#_H__
+#GLOBAL_FILE_INFO#
+#define __#U_FILE_NAME_NO_EXT#_H__
+
+
+/**
+ * @class #FILE_NAME_NO_EXT#
+ * @brief Class description...
+ */
+class #FILE_NAME_NO_EXT#
+{
+private:
+
+public:
+    #FILE_NAME_NO_EXT#();
+    ~#FILE_NAME_NO_EXT#();
+
+
+    /* operator */
+
+    /* setter */
+
+    /* getter */
+
+};
+
+#endif /* __#U_FILE_NAME_NO_EXT#_H__ */
