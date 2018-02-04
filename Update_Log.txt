@@ -7,6 +7,13 @@
 # ========================================================================
 
 
+2018-02-04
+* Make all modes compatible with template hot reloading system. (jcs-emacs-init)
+* Add `jcs-perl-mode.el' file for Perl script editing. (jcs-emacs-init)
+* Add after init hook for preload template for half hot reloading. (jcs-emacs-init)
+* Add first version of all supported language. (jcs-emacs-init)
+* Add missing language to language support list. (jcs-emacs-init)
+
 2018-02-03
 * Add scala mode for scale file editing. (jcs-emacs-init)
 * Remove coding template insertion, add template 3rd hot reloading 
