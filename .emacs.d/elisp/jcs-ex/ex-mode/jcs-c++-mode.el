@@ -31,34 +31,18 @@
 ;; JenChieh C++ mode.
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+
 (defun jcs-c++-mode-hook ()
   "C++ mode handling"
 
-  (defun jcs-c++-header-format ()
-    "Format the given file as a C++ header file."
-    (if (is-current-file-empty-p)
-        (progn
-          (jcs-c++-header-file-format-info)
-
-          ;; format the document once
-          (jcs-format-document)
-          )))
-
-  (defun jcs-c++-source-format ()
-    "Format the given file as a C++ source file."
-    (if (is-current-file-empty-p)
-        (progn
-          (jcs-c++-source-file-format-info)
-          )))
-
   (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]h" buffer-file-name) (jcs-c++-header-format))
-        ((string-match "[.]hpp" buffer-file-name) (jcs-c++-header-format))
         ((string-match "[.]hin" buffer-file-name) (jcs-c++-header-format))
+        ((string-match "[.]hpp" buffer-file-name) (jcs-c++-header-format))
+        ((string-match "[.]h" buffer-file-name) (jcs-c++-header-format))
 
-        ((string-match "[.]c" buffer-file-name) (jcs-c++-source-format))
-        ((string-match "[.]cpp" buffer-file-name) (jcs-c++-source-format))
         ((string-match "[.]cin" buffer-file-name) (jcs-c++-source-format))
+        ((string-match "[.]cpp" buffer-file-name) (jcs-c++-source-format))
+        ((string-match "[.]c" buffer-file-name) (jcs-c-source-format))
         )
 
   (defun casey-find-corresponding-file ()

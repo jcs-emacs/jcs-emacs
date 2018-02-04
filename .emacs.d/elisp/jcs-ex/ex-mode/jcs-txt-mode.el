@@ -53,9 +53,8 @@
 
   (defun jcs-text-related-format ()
     "Format the given file as a text related. - JenChieh Text file."
-
-    (jcs-manage-file-info)
-    )
+    (when (is-current-file-empty-p)
+      (jcs-manage-file-info)))
 
   (cond ((file-exists-p buffer-file-name) t)
         ((string-match "[.]txt" buffer-file-name) (jcs-text-related-format))
@@ -107,12 +106,8 @@
 
   (defun jcs-org-mode-format()
     "Fromat the given file as a text file related. - JenChieh Text file."
-
-    (if (is-current-file-empty-p)
-        (progn
-          (jcs-manage-file-info)
-          ))
-    )
+    (when (is-current-file-empty-p)
+      (jcs-insert-txt-template)))
 
   (cond ((file-exists-p buffer-file-name) t)
         ((string-match "[.]txt" buffer-file-name) (jcs-org-mode-format))
@@ -136,6 +131,8 @@
 
 ;; set the defualt text mode to org mode.
 (add-to-list 'auto-mode-alist '("\\.txt?\\'" . org-mode))
+(add-to-list 'auto-mode-alist '("\\.ini?\\'" . org-mode))
+(add-to-list 'auto-mode-alist '("\\.properties?\\'" . org-mode))
 (add-to-list 'auto-mode-alist '("\\(/\\|\\`\\)README" . org-mode))
 (add-to-list 'auto-mode-alist '("\\(/\\|\\`\\)LICENSE" . org-mode))
 (add-to-list 'auto-mode-alist '("\\(/\\|\\`\\)bochsrc" . org-mode))

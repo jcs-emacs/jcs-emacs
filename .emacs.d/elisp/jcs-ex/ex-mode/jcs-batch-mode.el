@@ -52,11 +52,8 @@
 
   (defun jcs-batch-script-format ()
     "Format the given file as a class. - JenChieh Batch Script"
-
-    (if (is-current-file-empty-p)
-        (progn
-          (jcs-batch-file-format-info)
-          )))
+    (when (is-current-file-empty-p)
+      (jcs-insert-batch-template)))
 
   (cond ((file-exists-p buffer-file-name) t)
         ((string-match "[.]bat" buffer-file-name) (jcs-batch-script-format))

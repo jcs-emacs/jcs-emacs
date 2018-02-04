@@ -72,77 +72,8 @@
 
   (defun jcs-shader-format ()
     "Format the given file as a shader script. - JenChieh Unity CG Shader."
-    (interactive)
-
-    (if (is-current-file-empty-p)
-        (progn
-          (jcs-global-file-info)
-
-          (insert "\n\n")
-
-          (insert "Shader \"\"\n")
-          (insert "{\n")
-
-          (insert "Properties\n")
-          (insert "{\n")
-          (insert "_MainTex (\"Texture\", 2D) = \"white\" {}\n")
-          (insert "}\n")
-
-          (insert "SubShader\n")
-          (insert "{\n")
-
-          (insert "Tags { \"\"=\"\" }\n")
-
-          (insert "Pass\n")
-          (insert "{\n")
-          (insert "CGPROGRAM\n\n")
-          (insert "#pragma vertex vert\n")
-          (insert "#pragma fragment frag\n")
-          (insert "#include \"UnityCG.cginc\"\n\n")
-
-          (insert "struct appdata\n")
-          (insert "{\n");
-          (insert "float4 vertex : POSITION;\n")
-          (insert "float2 uv : TEXCOORD0;\n");
-          (insert "};\n\n")
-
-          (insert "struct v2f\n")
-          (insert "{\n")
-          (insert "float4 vertex : SV_POSITION;\n")
-          (insert "float2 uv : TEXCOORD0;\n")
-          (insert "};\n\n")
-
-          (insert "float4 _MainTex_ST;\n\n")
-
-          (insert "v2f vert(appdata v)\n")
-          (insert "{\n")
-          (insert "v2f o;\n")
-          (insert "o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);\n")
-          (insert "o.uv = TRANSFORM_TEX(v.uv, _MainTex);\n")
-          (insert "return o;\n")
-          (insert "}\n\n")
-
-          (insert "sampler2D _MainTex;\n\n")
-
-          (insert "fixed4 frag (v2f i) : SV_Target\n")
-          (insert "{\n")
-          (insert "half4 c = tex2D (_MainTex, i.uv);\n")
-          (insert "return c;\n")
-          (insert "}\n\n")
-
-          (insert "ENDCG\n")
-          (insert "}\n")
-
-          (insert "}\n")
-          (insert "}\n")
-
-          ;; format the document once.
-          (jcs-format-document)
-
-          ;; Move to beginning of the buffer.
-          (beginning-of-buffer)
-          ))
-    )
+    (when (is-current-file-empty-p)
+      (jcs-insert-shader-template)))
 
   (cond ((file-exists-p buffer-file-name) t)
         ((string-match "[.]shader" buffer-file-name) (jcs-shader-format))

@@ -49,31 +49,8 @@
 
   (defun jcs-vim-script-format ()
     "Format the given file as a class. - JenChieh Lua Script"
-    (interactive)
-
-    (if (is-current-file-empty-p)
-        (progn
-          ;; macro
-          (setq BaseFileName (file-name-sans-extension (file-name-nondirectory buffer-file-name)))
-          (setq BaseFileNameWithExtension (file-name-nondirectory buffer-file-name))
-
-          (insert "\"\" ========================================================================\n")
-          (insert "\"\" $File: ")
-          (insert BaseFileNameWithExtension)
-          (insert " $\n")
-          (insert "\"\" $Date: ")
-          (jcs-timestamp)
-          (insert " $\n")
-          (insert "\"\" $Revision: $\n")
-          (insert "\"\" $Creator: Jen-Chieh Shen $\n")
-          (insert "\"\" $Notice: See LICENSE.txt for modification and distribution information $ \n")
-          (insert "\"\"                   Copyright (c) ")
-          (jcs-year-only)
-          (insert " by Shen, Jen-Chieh $\n")
-          (insert "\"\" ========================================================================\n")
-          (insert "\n\n")
-          ))
-    )
+    (when (is-current-file-empty-p)
+      (jcs-insert-vimscript-template)))
 
   (cond ((file-exists-p buffer-file-name) t)
         ((string-match "[.]vim" buffer-file-name) (jcs-vim-script-format))

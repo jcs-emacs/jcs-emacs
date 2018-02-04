@@ -50,13 +50,8 @@
 
   (defun jcs-sh-script-format ()
     "Format the given file as a shell script. - JenChieh Shell Script"
-
-    (if (is-current-file-empty-p)
-        (progn
-          (jcs-manage-file-info)
-          ))
-    )
-
+    (when (is-current-file-empty-p)
+      (jcs-insert-sh-template)))
 
   (cond ((file-exists-p buffer-file-name) t)
         ((string-match "[.]sh" buffer-file-name) (jcs-sh-script-format))

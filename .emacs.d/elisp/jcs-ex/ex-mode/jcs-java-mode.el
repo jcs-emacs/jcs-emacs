@@ -67,21 +67,8 @@
 
   (defun jcs-java-class-format ()
     "Format the given file as a class. - JenChieh Java class"
-
-    (if (is-current-file-empty-p)
-        (progn
-          (jcs-global-file-info)
-
-          (setq BaseFileName (file-name-sans-extension (file-name-nondirectory buffer-file-name)))
-
-          (insert "\n\n")
-          (insert "public class ")
-          (push-mark)
-          (insert BaseFileName)
-          (pop-mark)
-          (insert " {\n\n}\n\n")
-          )
-      ))
+    (when (is-current-file-empty-p)
+      (jcs-insert-java-template)))
 
   (cond ((file-exists-p buffer-file-name) t)
         ((string-match "[.]java" buffer-file-name) (jcs-java-class-format))

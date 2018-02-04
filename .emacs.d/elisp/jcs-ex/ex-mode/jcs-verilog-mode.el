@@ -55,14 +55,9 @@
 
   (defun jcs-verilog-script-format ()
     "Format the given file as a class. - JenChieh Lua Script"
-    (interactive)
-
-    (if (is-current-file-empty-p)
-        (progn
-          ;; Design format header here...
-          ))
-    )
-
+    (when (is-current-file-empty-p)
+      ;; Design format header here...
+      ))
 
   (cond ((file-exists-p buffer-file-name) t)
         ((string-match "[.]v" buffer-file-name) (jcs-verilog-script-format))

@@ -60,39 +60,8 @@
 
   (defun jcs-sql-format ()
     "File format for editing SQL file."
-    (interactive)
-
-    (if (is-current-file-empty-p)
-        (progn
-          ;; macro
-          (setq BaseFileName (file-name-sans-extension (file-name-nondirectory buffer-file-name)))
-          (setq BaseFileNameWithExtension (file-name-nondirectory buffer-file-name))
-
-          (insert "/*\n")
-
-          (insert "Service Platform Data Transfer\n")
-          (insert "\n")
-
-          (insert "Source Server         : $server_name$\n")
-          (insert "Source Server Type    : $server_type$\n")
-          (insert "Source Server Version : $server_version$\n")
-          (insert "Source Host           : $hostname$\n")
-          (insert "Source Schema         : $schema$\n")
-          (insert "\n")
-
-          (insert "Target Server Type    : $server_type$\n")
-          (insert "Target Server Version : $server_version$\n")
-          (insert "File Encoding         : $file_encoding$\n")
-          (insert "\n")
-
-          (insert "Date: ")
-          (jcs-timestamp-ver3)
-          (insert "\n")
-
-          (insert "*/\n")
-          (insert "\n\n")
-          ))
-    )
+    (when (is-current-file-empty-p)
+      (jcs-insert-sql-template)))
 
   (cond ((file-exists-p buffer-file-name) t)
         ((string-match "[.]sql" buffer-file-name) (jcs-sql-format))

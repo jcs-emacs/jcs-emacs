@@ -45,21 +45,8 @@
 
   (defun jcs-actionsript-class-format ()
     "Format the given file as a class. - JenChieh AS class"
-
-    (if (is-current-file-empty-p)
-        (progn
-          (jcs-global-file-info)
-
-          (setq BaseFileName (file-name-sans-extension (file-name-nondirectory buffer-file-name)))
-
-          (insert "\n\n")
-          (insert "public class ")
-          (push-mark)
-          (insert BaseFileName)
-          (pop-mark)
-          (insert " {\n\n}\n\n")
-          ))
-    )
+    (when (is-current-file-empty-p)
+      (jcs-insert-actionscript-template)))
 
   (cond ((file-exists-p buffer-file-name) t)
         ((string-match "[.]as" buffer-file-name) (jcs-actionsript-class-format))

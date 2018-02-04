@@ -50,13 +50,8 @@
 
   (defun jcs-cobol-format ()
     "Format the given file to COBOL. - JenChieh COBOL."
-    (interactive)
-
-    (if (is-current-file-empty-p)
-        (progn
-          (jcs-cobol-file-format-info)
-          ))
-    )
+    (when (is-current-file-empty-p)
+      (jcs-insert-cobol-template)))
 
   (cond ((file-exists-p buffer-file-name) t)
         ((string-match "[.]cbl" buffer-file-name) (jcs-cobol-format))

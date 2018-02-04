@@ -72,23 +72,9 @@
 
 
   (defun jcs-javascript-format()
-    (interactive)
-
-    (if (is-current-file-empty-p)
-        (progn
-          ;; define macro
-          (setq BaseFileName (file-name-sans-extension (file-name-nondirectory buffer-file-name)))
-          (setq BaseFileNameWithExtension (file-name-nondirectory buffer-file-name))
-
-          ;; insert the file info header.
-          (jcs-global-file-info)
-
-          ;; do JavaScript specific thing here...
-          (insert "\n")
-          (insert "\"use strict\";")
-          (insert "\n\n")
-          ))
-    )
+    "JavaScript template format."
+    (when (is-current-file-empty-p)
+      (jcs-insert-js-template)))
 
   (cond ((file-exists-p buffer-file-name) t)
         ((string-match "[.]js" buffer-file-name) (jcs-javascript-format))

@@ -50,16 +50,13 @@
   ;; Auto highlight the same word.
   (auto-highlight-symbol-mode t)
 
+
   (defun jcs-json-format()
     "Format for json file."
-    (interactive)
-
-    (if (is-current-file-empty-p)
-        (progn
-          ;; empty, cause json should only take data.
-          ;; Comment will be treat as a data too...
-          ))
-    )
+    (when (is-current-file-empty-p)
+      ;; empty, cause json should only take data.
+      ;; Comment will be treat as a data too...
+      ))
 
   (cond ((file-exists-p buffer-file-name) t)
         ((string-match "[.]json" buffer-file-name) (jcs-json-format))

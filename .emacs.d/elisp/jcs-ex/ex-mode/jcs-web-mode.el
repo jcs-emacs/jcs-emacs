@@ -96,35 +96,13 @@
 
   (defun jcs-html-format ()
     "Format the give file. - JenChieh HTML file"
-    (interactive)
-
-    (if (is-current-file-empty-p)
-        (progn
-          ;; macro
-          (setq BaseFileName (file-name-sans-extension (file-name-nondirectory buffer-file-name)))
-
-          ;; insert tag header
-          (jcs-tag-file-info)
-
-          (jcs-html-file-format-info)
-          ))
-    )
+    (when (is-current-file-empty-p)
+      (jcs-insert-html-template)))
 
   (defun jcs-php-format ()
     "Format the give file. - JenChieh PHP file"
-    (interactive)
-
-    (if (is-current-file-empty-p)
-        (progn
-          ;; insert PHP common format
-          (insert "<?php\n")
-
-          (jcs-global-file-info)
-          (insert "\n\n")
-
-          (insert "?>\n")
-          ))
-    )
+    (when (is-current-file-empty-p)
+      (jcs-insert-php-template)))
 
   (cond ((file-exists-p buffer-file-name) t)
         ((string-match "[.]html" buffer-file-name) (jcs-html-format))
@@ -336,16 +314,8 @@
 
   (defun jcs-css-format()
     "Format the give file. - JenChieh CSS file"
-    (interactive)
-
-    (if (is-current-file-empty-p)
-        (progn
-          (insert "@charset \"UTF-8\";\n")
-
-          (jcs-global-file-info)
-          (insert "\n\n")
-          ))
-    )
+    (when (is-current-file-empty-p)
+      (jcs-insert-css-template)))
 
   (cond ((file-exists-p buffer-file-name) t)
         ((string-match "[.]css" buffer-file-name) (jcs-css-format))

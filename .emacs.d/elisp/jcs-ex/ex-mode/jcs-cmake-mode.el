@@ -48,15 +48,9 @@
   (defun jcs-makefile-format ()
     "Format the given file as a makefile. - JenChieh Makefile"
 
-    (if (is-current-file-empty-p)
-        (progn
-
-          (jcs-manage-file-info)
-          (jcs-makefile-format-info)
-
-          (beginning-of-buffer)
-          ))
-    )
+    (when (is-current-file-empty-p)
+      (jcs-makefile-format-info)
+      (goto-char (point-min))))
 
   (cond ((file-exists-p buffer-file-name) t)
         ((string-match "[.]makefile" buffer-file-name) (jcs-makefile-format))
@@ -66,11 +60,8 @@
 
   (defun jcs-cmake-format ()
     "Format the given file as a CMakeLists. - JenChieh CMake"
-    (jcs-manage-file-info)
-    (jcs-cmake-format-info)
-
-    (beginning-of-buffer)
-    )
+    (when (is-current-file-empty-p)
+      (jcs-insert-cmake-template)))
 
   (cond ((file-exists-p buffer-file-name) t)
         ((string-match "CMakeLists.txt" buffer-file-name) (jcs-cmake-format))

@@ -53,12 +53,8 @@
 
   (defun jcs-jayces-class-format ()
     "Format the given file. - JenChieh JayCeS files"
-
-    (if (is-current-file-empty-p)
-        (progn
-          (jcs-global-file-info)
-          ))
-    )
+    (when (is-current-file-empty-p)
+      (jcs-insert-jayces-template)))
 
   (cond ((file-exists-p buffer-file-name) t)
         ((string-match "[.]jcs" buffer-file-name) (jcs-jayces-class-format))

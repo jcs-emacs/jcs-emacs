@@ -32,8 +32,7 @@
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 (defun jcs-emacs-lisp-mode-hook ()
-
-  (interactive)
+  "JayCeS Emacs Lisp hook."
 
   ;; Abbrevation expansion
   (abbrev-mode 1)
@@ -54,12 +53,8 @@
 
   (defun jcs-emacs-lisp-format ()
     "Format the given file as a Emacs Lisp file. - JenChieh emacs lisp file."
-
-    (if (is-current-file-empty-p)
-        (progn
-          (jcs-asm-file-format)
-          ))
-    )
+    (when (is-current-file-empty-p)
+      (jcs-insert-elisp-template)))
 
   ;; NOTE(jenchieh): while loading this will get loading emacs
   ;; error, so simple add the `ignore-errors' function can avoid

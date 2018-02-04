@@ -47,18 +47,8 @@
 
   (defun jcs-go-script-format ()
     "Format the given file as a class. - JenChieh GO Script"
-    (interactive)
-
-    (if (is-current-file-empty-p)
-        (progn
-          ;; macro
-          (setq BaseFileName (file-name-sans-extension (file-name-nondirectory buffer-file-name)))
-          (setq BaseFileNameWithExtension (file-name-nondirectory buffer-file-name))
-
-          (jcs-global-file-info)
-          (insert "\n\n")
-          ))
-    )
+    (when (is-current-file-empty-p)
+      (jcs-insert-go-template)))
 
   (cond ((file-exists-p buffer-file-name) t)
         ((string-match "[.]go" buffer-file-name) (jcs-go-script-format))

@@ -51,13 +51,8 @@
 
   (defun jcs-lua-script-format ()
     "Format the given file as a class. - JenChieh Lua Script"
-    (interactive)
-
-    (if (is-current-file-empty-p)
-        (progn
-          (jcs-lua-file-format-info)
-          ))
-    )
+    (when (is-current-file-empty-p)
+      (jcs-insert-lua-template)))
 
   (cond ((file-exists-p buffer-file-name) t)
         ((string-match "[.]lua" buffer-file-name) (jcs-lua-script-format))
