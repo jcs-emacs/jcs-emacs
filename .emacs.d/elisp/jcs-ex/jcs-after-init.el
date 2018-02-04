@@ -64,6 +64,12 @@
   )
 (add-hook 'find-file-hook 'jcs-find-file-hook)
 
+(defun jcs-after-init-hook ()
+  "Hook run after initialize."
+  (jcs-reload-file-info)
+  )
+(add-hook 'after-init-hook 'jcs-after-init-hook)
+
 ;;; Diminish
 ;; NOTE(jenchieh): Do not show theses modes in the mode line.
 (require 'diminish)
