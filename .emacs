@@ -207,10 +207,10 @@ Return a list of installed packages or nil for every skipped package."
 (load-file "~/.emacs.d/elisp/jcs-ex/jcs-before-init.el")
 
 ;;; Utilities
+(load-file "~/.emacs.d/elisp/jcs-ex/jcs-function.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/jcs-log.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/jcs-mode.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/jcs-file-info-format.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/jcs-function.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/jcs-helm.el")
 
 ;;; jcs-all-mode
@@ -243,6 +243,7 @@ Return a list of installed packages or nil for every skipped package."
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-txt-mode.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-cmake-mode.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-scala-mode.el")
+(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-perl-mode.el")
 
 ;;; Do stuff after initialize.
 (load-file "~/.emacs.d/elisp/jcs-ex/jcs-after-init.el")
