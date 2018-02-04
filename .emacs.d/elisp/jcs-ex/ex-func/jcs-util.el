@@ -601,6 +601,10 @@ FILEPATH : .ini file to parse."
   "Get current file name uppercase."
   (upcase (file-name-nondirectory buffer-file-name)))
 
+(defun jcs-get-file-name-lowercase ()
+  "Get current file name uppercase."
+  (downcase (file-name-nondirectory buffer-file-name)))
+
 (defun jcs-get-file-name-without-extension ()
   "Get current file name without extension."
   (file-name-sans-extension (file-name-nondirectory buffer-file-name)))
@@ -608,6 +612,10 @@ FILEPATH : .ini file to parse."
 (defun jcs-get-file-name-without-extension-uppercase ()
   "Get current file name without extension."
   (upcase (file-name-sans-extension (file-name-nondirectory buffer-file-name))))
+
+(defun jcs-get-file-name-without-extension-lowercase ()
+  "Get current file name without extension."
+  (downcase (file-name-sans-extension (file-name-nondirectory buffer-file-name))))
 
 ;;---------------------------------------------
 ;; String

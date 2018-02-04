@@ -92,10 +92,10 @@ TYPE: type of makefile for Assembly and C/C++."
            ))
         ((string= type "Application")
          (progn
-           (jcs-makefile-cc-app-template)))
+           (jcs-insert-makefile-cc-app-template)))
         ((string= type "Library")
          (progn
-           (jcs-makefile-cc-lib-template)))
+           (jcs-insert-makefile-cc-lib-template)))
         ))
 
 
@@ -115,10 +115,10 @@ TYPE: type of makefile for Java."
            ))
         ((string= type "Application")
          (progn
-           (jcs-makefile-java-app-template)))
+           (jcs-insert-makefile-java-app-template)))
         ((string= type "Library")
          (progn
-           (jcs-makefile-java-lib-template)))
+           (jcs-insert-makefile-java-lib-template)))
         ))
 
 
@@ -138,10 +138,10 @@ TYPE: type of makefile for Python."
            ))
         ((string= type "Application")
          (progn
-           (jcs-makefile-python-app-template)))
+           (jcs-insert-makefile-python-app-template)))
         ((string= type "Library")
          (progn
-           (jcs-makefile-python-lib-template)))
+           (jcs-insert-makefile-python-lib-template)))
         ))
 
 
