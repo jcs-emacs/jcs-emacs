@@ -7,6 +7,9 @@
 # ========================================================================
 
 
+2018-02-05
+* Clean check all templates and remove template function's keywrods. (jcs-emacs-init)
+
 2018-02-04
 * Make all modes compatible with template hot reloading system. (jcs-emacs-init)
 * Add `jcs-perl-mode.el' file for Perl script editing. (jcs-emacs-init)
