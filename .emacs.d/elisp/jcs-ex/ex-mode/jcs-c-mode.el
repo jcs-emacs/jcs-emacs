@@ -115,6 +115,9 @@
   (define-key c-mode-map (kbd "RET") 'jcs-smart-context-line-break)
   (define-key c-mode-map (kbd "*") 'jcs-c-comment-pair)
 
+  ;; Comement
+  (define-key c-mode-map (kbd "C-c s") 'jcs-toggle-c-comment-style)
+
   ;; devenv.com error parsing
   (add-to-list 'compilation-error-regexp-alist 'casey-devenv)
   (add-to-list 'compilation-error-regexp-alist-alist '(casey-devenv
@@ -124,7 +127,7 @@
 (add-hook 'c-mode-hook 'jcs-c-mode-hook)
 
 ;;(add-to-list 'auto-mode-alist '("\\.h?\\'" . c-mode))
-;;(add-to-list 'auto-mode-alist '("\\.c?\\'" . c-mode))
+(add-to-list 'auto-mode-alist '("\\.c?\\'" . c-mode))
 
 
 ;;------------------------------------------------------------------------------------------------------
