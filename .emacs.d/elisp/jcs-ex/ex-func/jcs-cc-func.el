@@ -44,25 +44,22 @@
     (progn
       (c-mode))))
 
-(defun jcs-ask-cpp-default-header (bool)
-  (interactive
-   (list (y-or-n-p "Do you want to add C++ default class template? ")))
+;;;###autoload
+(defun jcs-toggle-c-comment-style ()
+  "Toggle comment style between /* */ and //."
+  (interactive)
 
-  (if bool
+  (when (or (jcs-is-current-major-mode-p "c-mode")
+            (jcs-is-current-major-mode-p "c++-mode"))
+    (if (string= comment-start "// ")
+        (progn
+          (setq comment-start "/*"
+                      comment-start-skip "/\\*+[ \t]*"
+                      comment-end "*/"
+                      comment-end-skip "[ \t]*\\*+/"))
       (progn
-        (c++-mode)
-        (jcs-c++-default-header-template))
-    (c-mode)))
-
-(defun jcs-ask-cpp-default-source (bool)
-  (interactive
-   (list (y-or-n-p "Do you want to add C++ default class template? ")))
-
-  (if bool
-      (progn
-        (c++-mode)
-        (jcs-c++-default-source-template))
-    (c-mode)))
+        (setq comment-start "// "
+                    comment-end "")))))
 
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-cc-func.el file
