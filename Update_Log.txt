@@ -7,6 +7,10 @@
 # ========================================================================
 
 
+2018-02-10
+* Make compatbile with c regexp missing fixed. (jcs-emacs-init)
+* Cancel using c++ for .c file, back to c-mode. (jcs-emacs-init)
+
 2018-02-05
 * Clean check all templates and remove template function's keywrods. (jcs-emacs-init)
 
