@@ -233,6 +233,8 @@ f8              switch between header/source file on same window.
 S-f8            switch between header/source file on other window.
 f7              open the same file on other window.
 
+C-c s           Toggle c comment style between /* */ and //.
+
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * Shell
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
