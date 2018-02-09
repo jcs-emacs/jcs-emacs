@@ -196,6 +196,20 @@
   "Character after the typename in PHP mode.")
 
 
+(defvar jcs-class-desc-string "Class description here.."
+  "Class description string.")
+(defvar jcs-struct-desc-string "Struct description here.."
+  "Struct description string.")
+(defvar jcs-define-desc-string "Define description here.."
+  "Define description string.")
+(defvar jcs-enum-desc-string "Enum description here.."
+  "Enum description string.")
+(defvar jcs-param-desc-string "Param desc here.."
+  "Param description string.")
+(defvar jcs-return-desc-string "Returns description here.."
+  "Return description string.")
+
+
 (defun jcs-move-cursor-by-search-option (search-option)
   "Move to next targeting end function character.
 SEARCH-OPTION :
@@ -509,7 +523,8 @@ SEARCH-OPTION :
 
                    ;; Process brief tag.
                    (insert "\n")
-                   (insert "* @brief Class description here..")
+                   (insert "* @brief ")
+                   (insert jcs-class-desc-string)
                    (indent-for-tab-command)
                    ))
                 ((jcs-is-in-list-string keyword-strings "struct")
@@ -526,7 +541,8 @@ SEARCH-OPTION :
 
                    ;; Process brief tag.
                    (insert "\n")
-                   (insert "* @brief Struct description here..")
+                   (insert "* @brief ")
+                   (insert jcs-struct-desc-string)
                    (indent-for-tab-command)
                    ))
                 ((or (jcs-is-in-list-string keyword-strings "define")
@@ -552,7 +568,8 @@ SEARCH-OPTION :
 
                    ;; Process brief tag.
                    (insert "\n")
-                   (insert "* @brief Define description here..")
+                   (insert "* @brief ")
+                   (insert jcs-define-desc-string)
                    (indent-for-tab-command)
                    ))
                 ((jcs-is-in-list-string keyword-strings "enum")
@@ -569,7 +586,8 @@ SEARCH-OPTION :
 
                    ;; Process brief tag.
                    (insert "\n")
-                   (insert "* @brief Enum description here..")
+                   (insert "* @brief ")
+                   (insert jcs-enum-desc-string)
                    (indent-for-tab-command)
                    ))
                 ))
@@ -708,7 +726,7 @@ SEARCH-OPTION :
                                jcs-cc-close-type-char))
       (insert (nth param-index param-variable-strings))
       (insert jcs-cc-doc-after-value-type-char)
-      (insert "Param desc here..")
+      (insert jcs-param-desc-string)
 
       ;; indent once.
       (indent-for-tab-command)
@@ -732,7 +750,7 @@ SEARCH-OPTION :
                 (if (not (equal jcs-cc-doc-show-typename nil))
                     (insert jcs-cc-doc-after-value-type-char)
                   (insert " "))
-                (insert "Returns description here..")
+                (insert jcs-return-desc-string)
                 (indent-for-tab-command)))))))
 
 (defun jcs-java-mode-doc-string (meet-function-name
@@ -749,8 +767,8 @@ SEARCH-OPTION :
 @param KEYWORD-STRINGS        : Keyword strings list.
 @param DATATYPE-NAME          : Data type name, store keyword for
                                struct/class related.
-@param FUNCTION-NAME-STRING   : Function name.
 @param THERE-IS-RETURN        : There is return in this function?
+@param FUNCTION-NAME-STRING   : Function name.
 @param RETURN-TYPE-STRING     : String of the return type.
 @param PARAM-TYPE-STRINGS     : Param type strings list.
 @param PARAM-VARIABLE-STRINGS : Param name strings list.
@@ -774,7 +792,7 @@ SEARCH-OPTION :
                                jcs-cc-close-type-char))
       (insert (nth param-index param-variable-strings))
       (insert jcs-java-doc-after-value-type-char)
-      (insert "Param desc here..")
+      (insert jcs-param-desc-string)
 
       ;; indent once.
       (indent-for-tab-command)
@@ -796,7 +814,7 @@ SEARCH-OPTION :
         (if (not (equal jcs-java-doc-show-typename nil))
             (insert jcs-java-doc-after-value-type-char)
           (insert " "))
-        (insert "Returns description here..")
+        (insert jcs-return-desc-string)
         (indent-for-tab-command)))))
 
 (defun jcs-js-mode-doc-string (meet-function-name
@@ -836,7 +854,7 @@ SEARCH-OPTION :
                                jcs-js-close-type-char))
       (insert (nth param-index param-variable-strings))
       (insert jcs-js-doc-after-value-type-char)
-      (insert "Param desc here..")
+      (insert jcs-param-desc-string)
 
       ;; indent once.
       (indent-for-tab-command)
@@ -858,7 +876,7 @@ SEARCH-OPTION :
         (if (not (equal jcs-js-doc-show-typename nil))
             (insert jcs-js-doc-after-value-type-char)
           (insert " "))
-        (insert "Returns description here..")
+        (insert jcs-return-desc-string)
         (indent-for-tab-command)))))
 
 (defun jcs-lua-mode-doc-string (meet-function-name
@@ -898,7 +916,7 @@ SEARCH-OPTION :
                                jcs-lua-close-type-char))
       (insert (nth param-index param-variable-strings))
       (insert jcs-lua-doc-after-value-type-char)
-      (insert "Param desc here..")
+      (insert jcs-param-desc-string)
 
       ;; indent once.
       (indent-for-tab-command)
@@ -920,7 +938,7 @@ SEARCH-OPTION :
         (if (not (equal jcs-lua-doc-show-typename nil))
             (insert jcs-lua-doc-after-value-type-char)
           (insert " "))
-        (insert "Returns description here..")
+        (insert jcs-return-desc-string)
         (indent-for-tab-command)))))
 
 (defun jcs-py-mode-doc-string (meet-function-name
@@ -970,7 +988,7 @@ SEARCH-OPTION :
                                  jcs-py-close-type-char))
         (insert (nth param-index param-variable-strings))
         (insert jcs-py-doc-after-value-type-char)
-        (insert "Param desc here..")
+        (insert jcs-param-desc-string)
 
         ;; indent once.
         (indent-for-tab-command))
@@ -992,7 +1010,7 @@ SEARCH-OPTION :
         (if (not (equal jcs-py-doc-show-typename nil))
             (insert jcs-py-doc-after-value-type-char)
           (insert " "))
-        (insert "Returns description here..")
+        (insert jcs-return-desc-string)
         (indent-for-tab-command)))))
 
 
@@ -1036,7 +1054,7 @@ SEARCH-OPTION :
             ))
       (insert (nth param-index param-variable-strings))
       (insert jcs-php-doc-after-value-type-char)
-      (insert "Param desc here..")
+      (insert jcs-param-desc-string)
 
       ;; indent once.
       (indent-for-tab-command)
@@ -1058,7 +1076,7 @@ SEARCH-OPTION :
         (if (not (equal jcs-php-doc-show-typename nil))
             (insert jcs-php-doc-after-value-type-char)
           (insert " "))
-        (insert "Returns description here..")
+        (insert jcs-return-desc-string)
         (indent-for-tab-command)))))
 
 
@@ -1074,19 +1092,27 @@ SEARCH-OPTION :
   (insert close-char))
 
 
+;;-----------------------------------------------------------
+;;-----------------------------------------------------------
 (defvar jcs-oop-font-lock-missing-strict-modes '(c-mode)
   "Modes to fixed variable font lock missing face.")
 
 (mapc (lambda (mode)
         (font-lock-add-keywords
          mode
-         '(("(\\([a-zA-Z_$0-9[]*.\\)*[,]" 1 'font-lock-variable-name-face t)
-           (",.\\([a-zA-Z_$0-9[]*.\\)*[,]" 1 'font-lock-variable-name-face t)
-           ("[(,].\\([a-zA-Z_$0-9[]*.\\)*[)]" 1 'font-lock-variable-name-face t)
+         '(("([ ]*[[:graph:]]* \\([[:graph:]]*\\)[ ]*," 1 'font-lock-variable-name-face t)
+           ("([ ]*[[:graph:]]* [[:graph:]]* \\([[:graph:]]*\\)[ ]*," 1 'font-lock-variable-name-face t)
+           ;; Require for two word variables.
+           ;; For instance, `const'.
+           (",[ ]*[[:graph:]]* \\([[:graph:]]*\\)[ ]*," 1 'font-lock-variable-name-face t)
+           (",[ ]*[[:graph:]]* [[:graph:]]* \\([[:graph:]]*\\)[ ]*," 1 'font-lock-variable-name-face t)
+           ;; For line break parameter declaration.
+           ("^[ ]* [[:graph:]]* [[:graph:]]* \\([[:graph:]]*\\)[ ]*[,)]" 1 'font-lock-variable-name-face t)
            )'end))
       jcs-oop-font-lock-missing-strict-modes)
 
-
+;;-----------------------------------------------------------
+;;-----------------------------------------------------------
 (defvar jcs-oop-font-lock-missing-modes '(lua-mode
                                           php-mode
                                           python-mode)
@@ -1098,9 +1124,13 @@ SEARCH-OPTION :
          '(("(,*\\([a-zA-Z_$0-9[ ]*\\)[,)]" 1 'font-lock-variable-name-face t)
            (",\\([a-zA-Z_$0-9[, ]*\\)," 1 'font-lock-variable-name-face t)
            ("\\([a-zA-Z_$0-9[ ]*\\)[)]" 1 'font-lock-variable-name-face t)
+           ;; For line break parameter declaration.
+           ("^[ ]* \\([a-zA-Z_$0-9[,]*\\)[ ]*[,)]" 1 'font-lock-variable-name-face t)
            )'end))
       jcs-oop-font-lock-missing-modes)
 
+;;-----------------------------------------------------------
+;;-----------------------------------------------------------
 
 (defun jcs-oop-init-set-face ()
   "Set OOP hightlight faces."
