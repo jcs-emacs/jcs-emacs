@@ -96,14 +96,14 @@ comment character on the same line."
               (previous-line 1)
 
               ;; Insert comment string here..
-              (if (or (jcs-is-current-major-mode-p "c-mode")
-                      (jcs-is-current-major-mode-p "c++-mode")
-                      (jcs-is-current-major-mode-p "java-mode")
-                      ;;(jcs-is-current-major-mode-p "csharp-mode")
-                      (jcs-is-current-major-mode-p "js2-mode")
-                      (jcs-is-current-major-mode-p "php-mode")
-                      (jcs-is-current-major-mode-p "web-mode"))
-                  (jcs-insert-comment-string))
+              (when (or (jcs-is-current-major-mode-p "c-mode")
+                        (jcs-is-current-major-mode-p "c++-mode")
+                        (jcs-is-current-major-mode-p "java-mode")
+                        ;;(jcs-is-current-major-mode-p "csharp-mode")
+                        (jcs-is-current-major-mode-p "js2-mode")
+                        (jcs-is-current-major-mode-p "php-mode")
+                        (jcs-is-current-major-mode-p "web-mode"))
+                (jcs-insert-comment-string))
 
               ;; goto the end of line
               (end-of-line)
