@@ -52,8 +52,7 @@
     (progn
       ;; insert mode
       (jcs-insert-mode)
-      (put 'jcs-insert-command-mode-toggle 'state t)))
-  )
+      (put 'jcs-insert-command-mode-toggle 'state t))))
 
 ;;;###autoload
 (defun jcs-depend-cross-mode-toggle()
@@ -73,8 +72,7 @@
           (progn
             ;; cross mode
             (jcs-cross-mode)
-            (put 'jcs-local-online-mode-toggle 'state t)))
-        )))
+            (put 'jcs-local-online-mode-toggle 'state t))))))
 
 ;;;###autoload
 (defun jcs-reload-active-mode ()
