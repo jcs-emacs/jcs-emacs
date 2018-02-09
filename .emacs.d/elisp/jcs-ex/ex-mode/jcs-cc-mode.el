@@ -126,7 +126,7 @@
 ;;-----------------------------------------------------------
 
 (defun jcs-cc-mode-hook ()
-  "C/C++ mode handling"
+  "C/C++ mode hook."
 
   ;; Abbrevation expansion
   (abbrev-mode 1)
