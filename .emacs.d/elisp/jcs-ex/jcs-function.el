@@ -49,8 +49,7 @@
           )))
 
     ;; return this statement.
-    (>= displayed-frame-count 2)
-    ))
+    (>= displayed-frame-count 2)))
 
 ;;;###autoload
 (defun jcs-reload-emacs-once ()
@@ -78,8 +77,7 @@
 
     ;; TODO(jayces): Bug if multiple window displayed.
     (when (= frame-displayed-in-two-window 0)
-      (switch-to-previous-buffer))
-    ))
+      (switch-to-previous-buffer))))
 
 ;;;###autoload
 (defun jcs-reload-emacs ()
@@ -90,14 +88,12 @@
   ;; Load twice will fixed the toggle issue.
 
   (jcs-reload-emacs-once)
-  (jcs-reload-emacs-once)
-  )
+  (jcs-reload-emacs-once))
 
 ;;;###autoload
 (defun jcs-top-level ()
   "Teminate the current command. - Canceling Action."
   (interactive)
-
   (top-level))
 
 ;;;
@@ -141,9 +137,7 @@ i.e. change right window to bottom, or change bottom window to right."
   (interactive)
 
   (call-interactively 'sublimity-mode)
-  (global-linum-mode 1)
-  )
-
+  (global-linum-mode 1))
 
 ;;----------------------------------------------
 ;; wgrep
@@ -163,8 +157,7 @@ URL: https://emacs.stackexchange.com/questions/212/is-there-a-way-to-use-query-r
   (other-window 1)
 
   ;; make result menu editable.
-  (call-interactively 'wgrep-change-to-wgrep-mode)
-  )
+  (call-interactively 'wgrep-change-to-wgrep-mode))
 
 ;;----------------------------------------------
 ;; Helm
@@ -177,8 +170,7 @@ URL: https://emacs.stackexchange.com/questions/212/is-there-a-way-to-use-query-r
 
   ;; NOTE(jenchieh): Change theme so we know which mode
   ;; we are in visually.
-  (jcs-dark-blue-theme)
-  )
+  (jcs-dark-blue-theme))
 
 ;;;###autoload
 (defun jcs-helm-gtags-to-def-dec ()
@@ -193,8 +185,7 @@ URL: https://emacs.stackexchange.com/questions/212/is-there-a-way-to-use-query-r
     ;; goto definition or declaration.
     (helm-gtags-find-tag-from-here))
 
-  (jcs-reload-active-mode)
-  )
+  (jcs-reload-active-mode))
 
 ;;;###autoload
 (defun jcs-helm-gtags-to-def-dec-other-window ()
@@ -214,8 +205,7 @@ in other window."
     ;; goto definition or declaration.
     (helm-gtags-find-tag-from-here))
 
-  (jcs-reload-active-mode)
-  )
+  (jcs-reload-active-mode))
 
 ;;;###autoload
 (defun jcs-helm-find-files ()
@@ -224,8 +214,7 @@ in other window."
 
   (put 'jcs-helm-execute-persistent-action 'state nil)
 
-  (helm-find-files nil)
-  )
+  (helm-find-files nil))
 
 ;;;###autoload
 (defun jcs-helm-find-files-other-window ()
@@ -237,8 +226,7 @@ in other window."
   ;; normal 'helm-execute-persistent-action' action.
   (put 'jcs-helm-execute-persistent-action 'state t)
 
-  (helm-find-files nil)
-  )
+  (helm-find-files nil))
 
 ;;;###autoload
 (defun jcs-helm-execute-persistent-action ()
