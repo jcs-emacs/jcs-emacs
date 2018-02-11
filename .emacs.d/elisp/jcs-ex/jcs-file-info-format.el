@@ -73,6 +73,7 @@ TEMPLATE-STR : template string data."
             (setq template-str (s-replace tmp-keyword
                                           tmp-value
                                           template-str)))))
+      ;; Add 2 to skip keyword and value at the same time.
       (setq tmp-index (+ tmp-index 2))))
 
   ;; return itself.
