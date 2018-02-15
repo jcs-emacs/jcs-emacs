@@ -1100,14 +1100,14 @@ SEARCH-OPTION :
 (mapc (lambda (mode)
         (font-lock-add-keywords
          mode
-         '(("([ ]*[[:graph:]]* \\([[:graph:]]*\\)[ ]*," 1 'font-lock-variable-name-face t)
-           ("([ ]*[[:graph:]]* [[:graph:]]* \\([[:graph:]]*\\)[ ]*," 1 'font-lock-variable-name-face t)
+         '(("([ ]*[a-zA-Z_$0-9[&* ]* \\([a-zA-Z_$0-9[&* ]*\\)[ ]*," 1 'font-lock-variable-name-face t)
+           ("([ ]*[a-zA-Z_$0-9[&* ]* [a-zA-Z_$0-9[&* ]* \\([a-zA-Z_$0-9[&* ]*\\)[ ]*," 1 'font-lock-variable-name-face t)
            ;; Require for two word variables.
            ;; For instance, `const'.
-           (",[ ]*[[:graph:]]* \\([[:graph:]]*\\)[ ]*," 1 'font-lock-variable-name-face t)
-           (",[ ]*[[:graph:]]* [[:graph:]]* \\([[:graph:]]*\\)[ ]*," 1 'font-lock-variable-name-face t)
+           (",[ ]*[a-zA-Z_$0-9[&* ]* \\([a-zA-Z_$0-9[&* ]*\\)[ ]*," 1 'font-lock-variable-name-face t)
+           (",[ ]*[a-zA-Z_$0-9[&* ]* [a-zA-Z_$0-9[&* ]* \\([a-zA-Z_$0-9[&* ]*\\)[ ]*," 1 'font-lock-variable-name-face t)
            ;; For line break parameter declaration.
-           ("^[ ]* [[:graph:]]* [[:graph:]]* \\([[:graph:]]*\\)[ ]*[,)]" 1 'font-lock-variable-name-face t)
+           ("^[ ] [a-zA-Z_$0-9[&* ]* [a-zA-Z_$0-9[&* ]* \\([a-zA-Z_$0-9[&* ]*\\)[ ]*[,)]" 1 'font-lock-variable-name-face t)
            )'end))
       jcs-oop-font-lock-missing-strict-modes)
 
