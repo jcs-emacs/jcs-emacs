@@ -7,6 +7,11 @@
 # ========================================================================
 
 
+2018-02-15
+* Add BASIC template. (jcs-emacs-init)
+* Add BASIC mode. (jcs-emacs-init)
+* Fixed :graph: regexp to limited version -> a-zA-Z0-9. (jcs-emacs-init)
+
 2018-02-12
 * Old manage file info function call fixed to current version. (jcs-emacs-init)
 
