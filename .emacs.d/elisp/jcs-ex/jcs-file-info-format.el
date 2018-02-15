@@ -108,6 +108,9 @@ FILEPATH : file path to insert and swap keyword."
 (defvar jcs-preload-semi-file-info nil
   "Preload the semi file info template.")
 
+(defvar jcs-preload-single-quote-file-info nil
+  "Preload the single quote file info template.")
+
 (defvar jcs-preload-double-quote-file-info nil
   "Preload the double quote file info template.")
 
@@ -128,6 +131,7 @@ in order to take effect.  Half hot reloading process."
   (setq jcs-preload-tag-file-info (get-string-from-file "~/.emacs.d/elisp/jcs-ex/ex-template/header/tag_template.txt"))
   (setq jcs-preload-manage-file-info (get-string-from-file "~/.emacs.d/elisp/jcs-ex/ex-template/header/manage_template.txt"))
   (setq jcs-preload-semi-file-info (get-string-from-file "~/.emacs.d/elisp/jcs-ex/ex-template/header/semi_template.txt"))
+  (setq jcs-preload-single-quote-file-info (get-string-from-file "~/.emacs.d/elisp/jcs-ex/ex-template/header/singlequote_template.txt"))
   (setq jcs-preload-double-quote-file-info (get-string-from-file "~/.emacs.d/elisp/jcs-ex/ex-template/header/doublequote_template.txt"))
   (setq jcs-preload-double-colon-file-info (get-string-from-file "~/.emacs.d/elisp/jcs-ex/ex-template/header/doublecolon_template.txt"))
   (setq jcs-preload-double-dash-file-info (get-string-from-file "~/.emacs.d/elisp/jcs-ex/ex-template/header/doubledash_template.txt")))
@@ -147,6 +151,10 @@ in order to take effect.  Half hot reloading process."
 (defun jcs-get-semi-file-info ()
   "Return the preloaded semi file info template."
   (jcs-swap-keyword-template jcs-preload-semi-file-info))
+
+(defun jcs-get-single-quote-file-info ()
+  "Return the preloaded single quote file info template."
+  (jcs-swap-keyword-template jcs-preload-single-quote-file-info))
 
 (defun jcs-get-double-quote-file-info ()
   "Return the preloaded double quote file info template."
@@ -181,12 +189,16 @@ Text file, batch file, shell script, etc."
   "Specific header format for Assembly Language/lisp/elisp, etc."
   (jcs-insert-template-by-file-path "~/.emacs.d/elisp/jcs-ex/ex-template/header/semi_template.txt"))
 
+(defun jcs-insert-single-quote-file-info ()
+  "Specific header format for single qoute."
+  (jcs-insert-template-by-file-path "~/.emacs.d/elisp/jcs-ex/ex-template/header/singlequote_template.txt"))
+
 (defun jcs-insert-double-quote-file-info ()
-  "Specific header format for Vim script."
+  "Specific header format for double quote."
   (jcs-insert-template-by-file-path "~/.emacs.d/elisp/jcs-ex/ex-template/header/doublequote_template.txt"))
 
 (defun jcs-insert-double-colon-file-info ()
-  "Specific header format for Vim script."
+  "Specific header format for double semi-colon."
   (jcs-insert-template-by-file-path "~/.emacs.d/elisp/jcs-ex/ex-template/header/doublecolon_template.txt"))
 
 
@@ -203,6 +215,11 @@ Text file, batch file, shell script, etc."
 (defun jcs-insert-actionscript-template ()
   "Template for ActionScript."
   (jcs-insert-template-by-file-path "~/.emacs.d/elisp/jcs-ex/ex-template/as/as_template.txt"))
+
+;;; BASIC
+(defun jcs-insert-basic-template ()
+  "Header format for BASIC file."
+  (jcs-insert-template-by-file-path "~/.emacs.d/elisp/jcs-ex/ex-template/basic/basic_template.txt"))
 
 ;;; Batch
 (defun jcs-insert-batch-template ()
