@@ -13,6 +13,7 @@ Emacs itself comes with support for many programming languages. These
 config files improve and extended support for the following:
 * Assembly Language
 * Action Script 3.0
+* BASIC
 * Batchfile
 * C
 * C++
