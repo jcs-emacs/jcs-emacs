@@ -10,6 +10,7 @@
 2018-02-24
 * Add spaces and tabs regexp for editing preprocessor type programming 
  langauges. (jcs-emacs-init)
+* Add tabs to all spaces regexp. (jcs-emacs-init)
 
 2018-02-15
 * Add BASIC template. (jcs-emacs-init)
