@@ -216,6 +216,8 @@
 ;; Fix "iedit" bug for OSX
 (define-key global-map (kbd "C-c ;") 'iedit-mode)
 
+;;; Font
+(define-key global-map (kbd "C-c f") 'jcs-change-font)
 
 ;;; Switch between window
 (define-key global-map "\ew" 'jcs-other-window-next)
