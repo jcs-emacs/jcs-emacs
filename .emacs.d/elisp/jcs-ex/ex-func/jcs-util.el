@@ -515,6 +515,39 @@ active. false, there is no region selected and mark is not active.
     face))
 
 ;;---------------------------------------------
+;; Font
+;;---------------------------------------------
+
+;;;###autoload
+(defun jcs-list-font-list ()
+  "List out all the fonts available."
+  (interactive)
+  (dolist (tmp-font (font-family-list))
+    (message "%s" tmp-font)))
+
+;;;###autoload
+(defun jcs-change-font (inFont)
+  "Choose a font and change that to the current font."
+  (interactive
+   (list (completing-read
+          "Fonts: " (font-family-list))))
+
+  ;; Change the font and keep the size.
+  (if (font-existsp inFont)
+      (progn
+        (set-frame-font inFont t))
+    (progn
+      (jcs-error "Font you chose does not exists in current system, Please select other font."))))
+
+(defun font-existsp (font)
+  "Check if font exists?
+FONT : font to check."
+  (if (string-equal (describe-font font)
+                    "No matching font being used")
+      nil
+    t))
+
+;;---------------------------------------------
 ;; List
 ;;---------------------------------------------
 
