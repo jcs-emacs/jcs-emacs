@@ -86,14 +86,14 @@
            ;;
            ;; @param { TypeName } `ValueTag' : value tag description..
            ;;
-           ("@[a-zA-Z0-9_].*[\]\|}]\\([a-zA-Z0-9_$ .]*\\)[:-]" 1 'jcs-oop-value-face t)
+           ("@[a-zA-Z0-9_].*[\]\|}]\\([a-zA-Z0-9_$ \t.]*\\)[:-]" 1 'jcs-oop-value-face t)
            ;;
            ;; NOTE(jenchieh):
            ;; Doc String Style:
            ;;
            ;; @param `ValueTag' : value tag description..
            ;;
-           ("@[a-zA-Z0-9_]*\\([a-zA-Z0-9_ .]*\\)[{:-]" 1 'jcs-oop-value-face t)
+           ("@[a-zA-Z0-9_]*\\([a-zA-Z0-9_ \t.]*\\)[{:-]" 1 'jcs-oop-value-face t)
            )'end))
       jcs-oop-highlight-modes)
 
@@ -1100,14 +1100,14 @@ SEARCH-OPTION :
 (mapc (lambda (mode)
         (font-lock-add-keywords
          mode
-         '(("([ ]*[a-zA-Z_$0-9[&* ]* \\([a-zA-Z_$0-9[&* ]*\\)[ ]*," 1 'font-lock-variable-name-face t)
-           ("([ ]*[a-zA-Z_$0-9[&* ]* [a-zA-Z_$0-9[&* ]* \\([a-zA-Z_$0-9[&* ]*\\)[ ]*," 1 'font-lock-variable-name-face t)
+         '(("([ \t]*[a-zA-Z_$0-9[&* \t]* \\([a-zA-Z_$0-9[&* \t]*\\)[ \t]*," 1 'font-lock-variable-name-face t)
+           ("([ \t]*[a-zA-Z_$0-9[&* \t]* [a-zA-Z_$0-9[&* \t]* \\([a-zA-Z_$0-9[&* \t]*\\)[ \t]*," 1 'font-lock-variable-name-face t)
            ;; Require for two word variables.
            ;; For instance, `const'.
-           (",[ ]*[a-zA-Z_$0-9[&* ]* \\([a-zA-Z_$0-9[&* ]*\\)[ ]*," 1 'font-lock-variable-name-face t)
-           (",[ ]*[a-zA-Z_$0-9[&* ]* [a-zA-Z_$0-9[&* ]* \\([a-zA-Z_$0-9[&* ]*\\)[ ]*," 1 'font-lock-variable-name-face t)
+           (",[ \t]*[a-zA-Z_$0-9[&* \t]* \\([a-zA-Z_$0-9[&* \t]*\\)[ \t]*," 1 'font-lock-variable-name-face t)
+           (",[ \t]*[a-zA-Z_$0-9[&* \t]* [a-zA-Z_$0-9[&* \t]* \\([a-zA-Z_$0-9[&* \t]*\\)[ \t]*," 1 'font-lock-variable-name-face t)
            ;; For line break parameter declaration.
-           ("^[ ] [a-zA-Z_$0-9[&* ]* [a-zA-Z_$0-9[&* ]* \\([a-zA-Z_$0-9[&* ]*\\)[ ]*[,)]" 1 'font-lock-variable-name-face t)
+           ("^[ \t] [a-zA-Z_$0-9[&* \t]* [a-zA-Z_$0-9[&* \t]* \\([a-zA-Z_$0-9[&* \t]*\\)[ \t]*[,)]" 1 'font-lock-variable-name-face t)
            )'end))
       jcs-oop-font-lock-missing-strict-modes)
 
@@ -1121,11 +1121,11 @@ SEARCH-OPTION :
 (mapc (lambda (mode)
         (font-lock-add-keywords
          mode
-         '(("(,*\\([a-zA-Z_$0-9[ ]*\\)[,)]" 1 'font-lock-variable-name-face t)
-           (",\\([a-zA-Z_$0-9[, ]*\\)," 1 'font-lock-variable-name-face t)
-           ("\\([a-zA-Z_$0-9[ ]*\\)[)]" 1 'font-lock-variable-name-face t)
+         '(("(,*\\([a-zA-Z_$0-9[ \t]*\\)[,)]" 1 'font-lock-variable-name-face t)
+           (",\\([a-zA-Z_$0-9[, \t]*\\)," 1 'font-lock-variable-name-face t)
+           ("\\([a-zA-Z_$0-9[ \t]*\\)[)]" 1 'font-lock-variable-name-face t)
            ;; For line break parameter declaration.
-           ("^[ ]* \\([a-zA-Z_$0-9[,]*\\)[ ]*[,)]" 1 'font-lock-variable-name-face t)
+           ("^[ \t]* \\([a-zA-Z_$0-9[,]*\\)[ \t]*[,)]" 1 'font-lock-variable-name-face t)
            )'end))
       jcs-oop-font-lock-missing-modes)
 
