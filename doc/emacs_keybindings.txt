@@ -151,6 +151,8 @@ M-down          Move current line down.
 C-M-up          Scroll window up one line without moving cursor.
 C-M-down        Scroll window down one line without moving cursor.
 
+C-c f           Change font style.
+
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * Magit
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
