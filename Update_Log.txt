@@ -11,6 +11,8 @@
 * Add spaces and tabs regexp for editing preprocessor type programming 
  langauges. (jcs-emacs-init)
 * Add tabs to all spaces regexp. (jcs-emacs-init)
+* Add change font functionalities and section. (jcs-emacs-init)
+* Add change font key binding and update key bindings note/doc. (jcs-emacs-init)
 
 2018-02-15
 * Add BASIC template. (jcs-emacs-init)
