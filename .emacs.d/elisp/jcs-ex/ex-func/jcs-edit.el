@@ -430,7 +430,7 @@ the current line."
 ;;-------------------------
 
 ;;;###autoload
-(defun jcs-save-buffer ()
+(defun jcs-untabify-save-buffer ()
   "Save buffer / Utabify the document / Delete all trailing
 whitespaces."
   (interactive)
