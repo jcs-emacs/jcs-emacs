@@ -46,10 +46,6 @@ M-u             Undo
 
 M-j             Jump to a function by name.
 
-C-S             Start incremental search.
-C-S             Moves to next occurrence.
-C-R             Moves to previous occurrence.
-
 M-.             Reflow a comment.
 
 M-b             Go to the next error after a compile.
@@ -86,7 +82,9 @@ C-x C-x         cut
 C-v             paste
 C-z             undo
 
-C-f             Search forward / Search pattern
+C-f             Search forward / Search pattern (Start increament search)
+                  => C-s  Moves to next occurrence.
+                  => C-r  Moves to previous occurrence.
 C-x C-f         Search pattern in project root.
 
 C-rr            Rename the whole text with the same name.
@@ -94,7 +92,8 @@ C-rp            Replace pattern in project root.
 C-xC-s          Save the all the buffer that changes in the 
                 `ag' replace Menu.            
 
-C-s             Save
+C-s             Untabify the document then save the file.
+C-S             Tabify the document then save the file.
 
 C-/             comment-region
 C-?             uncomment-region
