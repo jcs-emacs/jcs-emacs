@@ -7,6 +7,10 @@
 # ========================================================================
 
 
+2018-03-05
+* Rename save buffer to proper naming with tabify and untabify. (jcs-emacs-init)
+* Add save tabify to global keymap. (jcs-emacs-init)
+
 2018-02-24
 * Add spaces and tabs regexp for editing preprocessor type programming 
  langauges. (jcs-emacs-init)
