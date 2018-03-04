@@ -127,7 +127,8 @@
 (define-key global-map "\C-x\C-x" 'kill-region)
 (define-key global-map "\C-c\C-c" 'kill-ring-save)
 (define-key global-map "\C-v" 'yank)
-(define-key global-map "\C-s" 'jcs-save-buffer)
+(define-key global-map "\C-s" 'jcs-untabify-save-buffer)
+(define-key global-map (kbd "C-S-s") 'jcs-tabify-save-buffer)
 
 (define-key global-map "\C-p" 'package-list-packages)
 
