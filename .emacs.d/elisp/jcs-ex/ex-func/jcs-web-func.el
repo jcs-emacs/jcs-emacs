@@ -246,14 +246,14 @@ line by line instead of indent the whole file at once."
   (interactive)
   (jcs-web-format-document)
   (visual-line-mode t)
-  (jcs-save-buffer))
+  (jcs-untabify-save-buffer))
 
 ;;;###autoload
 (defun jcs-css-save-buffer ()
   "Save buffer in `css-mode'."
   (interactive)
   (jcs-css-sort-attributes-document)
-  (jcs-save-buffer))
+  (jcs-untabify-save-buffer))
 
 ;;---------------------------------------------
 ;; Impatient Mode
