@@ -45,7 +45,7 @@
  '(mouse-wheel-scroll-amount (quote (15)))
  '(package-selected-packages
    (quote
-    (basic-mode scala-mode floobits togetherly visual-regexp package-build package-lint auto-highlight-symbol xwidgete pdf-tools preproc-font-lock sublimity tree-mode rainbow-mode py-autopep8 multi-web-mode jdee java-imports impatient-mode iedit helm-gtags google-c-style gitlab gitignore-mode github-notifier gitconfig-mode flymake-google-cpplint flymake-cursor elpy ein cpputils-cmake cmake-project cmake-ide cmake-font-lock blank-mode better-defaults auto-package-update auto-install auto-complete-c-headers actionscript-mode ace-window ac-php ac-js2 ac-html ac-emmet)))
+    (processing-mode basic-mode scala-mode floobits togetherly visual-regexp package-build package-lint auto-highlight-symbol xwidgete pdf-tools preproc-font-lock sublimity tree-mode rainbow-mode py-autopep8 multi-web-mode jdee java-imports impatient-mode iedit helm-gtags google-c-style gitlab gitignore-mode github-notifier gitconfig-mode flymake-google-cpplint flymake-cursor elpy ein cpputils-cmake cmake-project cmake-ide cmake-font-lock blank-mode better-defaults auto-package-update auto-install auto-complete-c-headers actionscript-mode ace-window ac-php ac-js2 ac-html ac-emmet)))
  '(send-mail-function (quote mailclient-send-it))
  '(version-control nil))
 (custom-set-faces
@@ -168,6 +168,7 @@ Return a list of installed packages or nil for every skipped package."
                           'pdf-tools
                           'php-auto-yasnippets
                           'powerline
+                          'processing-mode
                           'py-autopep8
                           'python-mode
                           'rainbow-mode
@@ -246,6 +247,7 @@ Return a list of installed packages or nil for every skipped package."
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-scala-mode.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-perl-mode.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-basic-mode.el")
+(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-processing-mode.el")
 
 ;;; Do stuff after initialize.
 (load-file "~/.emacs.d/elisp/jcs-ex/jcs-after-init.el")
