@@ -7,6 +7,10 @@
 # ========================================================================
 
 
+2018-03-18
+* Add processing mode config, starting support processing. (jcs-emacs-init)
+* Add processing template file. (jcs-emacs-init)
+
 2018-03-05
 * Rename save buffer to proper naming with tabify and untabify. (jcs-emacs-init)
 * Add save tabify to global keymap. (jcs-emacs-init)
