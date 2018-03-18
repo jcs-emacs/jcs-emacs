@@ -338,6 +338,11 @@ on language selected."
   "Template for PHP."
   (jcs-insert-template-by-file-path "~/.emacs.d/elisp/jcs-ex/ex-template/web/php_template.txt"))
 
+;;; Processing
+(defun jcs-insert-processing-template ()
+  "Header for Processing file."
+  (jcs-insert-template-by-file-path "~/.emacs.d/elisp/jcs-ex/ex-template/processing/processing_template.txt"))
+
 ;;; Python
 (defun jcs-insert-python-template ()
   "Header for Python header file."
