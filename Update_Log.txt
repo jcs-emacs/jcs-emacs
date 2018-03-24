@@ -7,6 +7,10 @@
 # ========================================================================
 
 
+2018-03-24
+* Add doc string properties file. (jcs-emacs-init)
+* Apply hot reloading to doc string properties customization. (jcs-emacs-init)
+
 2018-03-18
 * Add processing mode config, starting support processing. (jcs-emacs-init)
 * Add processing template file. (jcs-emacs-init)
