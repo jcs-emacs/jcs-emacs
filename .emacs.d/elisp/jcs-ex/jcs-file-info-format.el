@@ -33,6 +33,9 @@
 ;;      JENCHIEH KEY GLOBAL INFO
 ;;----------------------------------
 
+(defvar jcs-template-config-filepath "~/.emacs.d/elisp/jcs-ex/ex-template/template_config.properties"
+  "File path to template config properties.")
+
 (defun jcs-swap-keyword-template (template-str)
   "Swap all keyword in template to proper information.
 TEMPLATE-STR : template string data."
@@ -42,7 +45,7 @@ TEMPLATE-STR : template string data."
         (tmp-index 0))
 
     ;; parse and get the list of keyword and value.
-    (setq tmp-ini-list (jcs-parse-ini "~/.emacs.d/elisp/jcs-ex/ex-template/template_config.properties"))
+    (setq tmp-ini-list (jcs-parse-ini jcs-template-config-filepath))
 
     (while (< tmp-index (length tmp-ini-list))
 
