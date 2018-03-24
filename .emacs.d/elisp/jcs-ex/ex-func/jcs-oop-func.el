@@ -106,21 +106,21 @@
 1 : Line breack description \"\"\" opening docstring.")
 
 ;;; Doc string character after value type font.
-(defvar jcs-java-doc-after-value-type-char " : "
+(defvar jcs-java-doc-after-value-type-char ""
   "Character after value type been inserted in Java Mode.")
-(defvar jcs-cc-doc-after-value-type-char " : "
+(defvar jcs-cc-doc-after-value-type-char ""
   "Character after value type been inserted in C/C++ Mode.")
-(defvar jcs-js-doc-after-value-type-char " : "
+(defvar jcs-js-doc-after-value-type-char ""
   "Character after value type been inserted in JavaScript Mode.")
-(defvar jcs-lua-doc-after-value-type-char " : "
+(defvar jcs-lua-doc-after-value-type-char ""
   "Character after value type been inserted in Lua Mode.")
-(defvar jcs-py-doc-after-value-type-char " : "
+(defvar jcs-py-doc-after-value-type-char ""
   "Character after value type been inserted in Python Mode.")
-(defvar jcs-php-doc-after-value-type-char " : "
+(defvar jcs-php-doc-after-value-type-char ""
   "Character after value type been inserted in PHP Mode.")
 
 ;;; Show typename.
-(defvar jcs-java-doc-show-typename nil
+(defvar jcs-java-doc-show-typename t
   "Show the typename betweeen the open charachter and close charachter in Java mode.")
 (defvar jcs-cc-doc-show-typename t
   "Show the typename betweeen the open charachter and close charachter in C/C++ mode.")
@@ -134,80 +134,149 @@
   "Show the typename betweeen the open charachter and close charachter in PHP mode.")
 
 ;;; Tag strings
-(defvar jcs-java-param-string "param "
+(defvar jcs-java-param-string ""
   "Parameter string in Java mode.")
-(defvar jcs-java-return-string "return "
+(defvar jcs-java-return-string ""
   "Returns string in Java mode.")
 
-(defvar jcs-cc-param-string "param "
+(defvar jcs-cc-param-string ""
   "Parameter string in C/C++ mode.")
-(defvar jcs-cc-return-string "return "
+(defvar jcs-cc-return-string ""
   "Returns string in C/C++ mode.")
 
-(defvar jcs-js-param-string "param "
+(defvar jcs-js-param-string ""
   "Parameter string in JavaScript mode.")
-(defvar jcs-js-return-string "returns "
+(defvar jcs-js-return-string ""
   "Returns string in JavaScript mode.")
 
-(defvar jcs-lua-param-string "param "
+(defvar jcs-lua-param-string ""
   "Parameter string in Lua mode.")
-(defvar jcs-lua-return-string "return "
+(defvar jcs-lua-return-string ""
   "Returns string in Lua mode.")
 
-(defvar jcs-py-param-string "param "
+(defvar jcs-py-param-string ""
   "Parameter string in Pyhon mode.")
-(defvar jcs-py-return-string "return "
+(defvar jcs-py-return-string ""
   "Returns string in Python mode.")
 
-(defvar jcs-php-param-string "param "
+(defvar jcs-php-param-string ""
   "Parameter string in PHP mode.")
-(defvar jcs-php-return-string "return "
+(defvar jcs-php-return-string ""
   "Returns string in PHP mode.")
 
 ;;; Brackets
-(defvar jcs-java-open-type-char "{ "
+(defvar jcs-java-open-type-char ""
   "Character before the typename in Java mode.")
-(defvar jcs-java-close-type-char " } "
+(defvar jcs-java-close-type-char ""
   "Character after the typename in Java mode.")
 
-(defvar jcs-cc-open-type-char "{ "
+(defvar jcs-cc-open-type-char ""
   "Character before the typename in C/C++ mode.")
-(defvar jcs-cc-close-type-char " } "
+(defvar jcs-cc-close-type-char ""
   "Character after the typename in C/C++ mode.")
 
-(defvar jcs-js-open-type-char "{ "
+(defvar jcs-js-open-type-char ""
   "Character before the typename in JavaScript mode.")
-(defvar jcs-js-close-type-char " } "
+(defvar jcs-js-close-type-char ""
   "Character after the typename in JavaScript mode.")
 
-(defvar jcs-lua-open-type-char "{ "
+(defvar jcs-lua-open-type-char ""
   "Character before the typename in Lua mode.")
-(defvar jcs-lua-close-type-char " } "
+(defvar jcs-lua-close-type-char ""
   "Character after the typename in Lua mode.")
 
-(defvar jcs-py-open-type-char "{ "
+(defvar jcs-py-open-type-char ""
   "Character before the typename in Python mode.")
-(defvar jcs-py-close-type-char " } "
+(defvar jcs-py-close-type-char ""
   "Character after the typename in Python mode.")
 
-(defvar jcs-php-open-type-char "{ "
+(defvar jcs-php-open-type-char ""
   "Character before the typename in PHP mode.")
-(defvar jcs-php-close-type-char " } "
+(defvar jcs-php-close-type-char ""
   "Character after the typename in PHP mode.")
 
 
-(defvar jcs-class-desc-string "Class description here.."
+(defvar jcs-class-desc-string ""
   "Class description string.")
-(defvar jcs-struct-desc-string "Struct description here.."
+(defvar jcs-struct-desc-string ""
   "Struct description string.")
-(defvar jcs-define-desc-string "Define description here.."
+(defvar jcs-define-desc-string ""
   "Define description string.")
-(defvar jcs-enum-desc-string "Enum description here.."
+(defvar jcs-enum-desc-string ""
   "Enum description string.")
-(defvar jcs-param-desc-string "Param desc here.."
+(defvar jcs-param-desc-string ""
   "Param description string.")
-(defvar jcs-return-desc-string "Returns description here.."
+(defvar jcs-return-desc-string ""
   "Return description string.")
+
+(defvar jcs-docstring-config-filepath "~/.emacs.d/elisp/jcs-ex/ex-docstring/docstring_config.properties"
+  "Doc-string properties file.")
+
+(defun jcs-reload-docstring-info ()
+  "Reload the doc-string info once."
+  (interactive)
+
+  (let ((tmp-ini-list '()))
+
+    ;; Read the doc-string configuration file.
+    (setq tmp-ini-list (jcs-parse-ini jcs-docstring-config-filepath))
+
+    ;; descriptions
+    (setq jcs-class-desc-string (jcs-get-properties tmp-ini-list "CLASS_DESC_STRING"))
+    (setq jcs-struct-desc-string (jcs-get-properties tmp-ini-list "STRUCT_DESC_STRING"))
+    (setq jcs-define-desc-string (jcs-get-properties tmp-ini-list "DEFINE_DESC_STRING"))
+    (setq jcs-enum-desc-string (jcs-get-properties tmp-ini-list "ENUM_DESC_STRING"))
+    (setq jcs-param-desc-string (jcs-get-properties tmp-ini-list "PARAM_DESC_STRING"))
+    (setq jcs-return-desc-string (jcs-get-properties tmp-ini-list "RETURN_DESC_STRING"))
+
+    ;; show type name
+    (setq jcs-java-doc-show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "JAVA_DOC_SHOW_TYPENAME")))
+    (setq jcs-cc-doc-show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "CC_DOC_SHOW_TYPENAME")))
+    (setq jcs-js-doc-show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "JS_DOC_SHOW_TYPENAME")))
+    (setq jcs-lua-doc-show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "LUA_DOC_SHOW_TYPENAME")))
+    (setq jcs-py-doc-show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "PY_DOC_SHOW_TYPENAME")))
+    (setq jcs-php-doc-show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "PHP_DOC_SHOW_TYPENAME")))
+
+    ;; After value type character.
+    (setq jcs-java-doc-after-value-type-char (jcs-get-properties tmp-ini-list "JAVA_AFTER_VALUE_TYPE"))
+    (setq jcs-cc-doc-after-value-type-char (jcs-get-properties tmp-ini-list "CC_AFTER_VALUE_TYPE"))
+    (setq jcs-js-doc-after-value-type-char (jcs-get-properties tmp-ini-list "JS_AFTER_VALUE_TYPE"))
+    (setq jcs-lua-doc-after-value-type-char (jcs-get-properties tmp-ini-list "LUA_AFTER_VALUE_TYPE"))
+    (setq jcs-py-doc-after-value-type-char (jcs-get-properties tmp-ini-list "PY_AFTER_VALUE_TYPE"))
+    (setq jcs-php-doc-after-value-type-char (jcs-get-properties tmp-ini-list "PHP_AFTER_VALUE_TYPE"))
+
+    ;; param string
+    (setq jcs-java-param-string (jcs-get-properties tmp-ini-list "JAVA_PARAM_STRING"))
+    (setq jcs-cc-param-string (jcs-get-properties tmp-ini-list "CC_PARAM_STRING"))
+    (setq jcs-js-param-string (jcs-get-properties tmp-ini-list "JS_PARAM_STRING"))
+    (setq jcs-lua-param-string (jcs-get-properties tmp-ini-list "LUA_PARAM_STRING"))
+    (setq jcs-py-param-string (jcs-get-properties tmp-ini-list "PY_PARAM_STRING"))
+    (setq jcs-php-param-string (jcs-get-properties tmp-ini-list "PHP_PARAM_STRING"))
+
+    ;; return string
+    (setq jcs-java-return-string (jcs-get-properties tmp-ini-list "JAVA_RETURN_STRING"))
+    (setq jcs-cc-return-string (jcs-get-properties tmp-ini-list "CC_RETURN_STRING"))
+    (setq jcs-js-return-string (jcs-get-properties tmp-ini-list "JS_RETURN_STRING"))
+    (setq jcs-lua-return-string (jcs-get-properties tmp-ini-list "LUA_RETURN_STRING"))
+    (setq jcs-py-return-string (jcs-get-properties tmp-ini-list "PY_RETURN_STRING"))
+    (setq jcs-php-return-string (jcs-get-properties tmp-ini-list "PHP_RETURN_STRING"))
+
+    ;; open type character.
+    (setq jcs-java-open-type-char (jcs-get-properties tmp-ini-list "JAVA_OPEN_TYPE_CHAR"))
+    (setq jcs-cc-open-type-char (jcs-get-properties tmp-ini-list "CC_OPEN_TYPE_CHAR"))
+    (setq jcs-js-open-type-char (jcs-get-properties tmp-ini-list "JS_OPEN_TYPE_CHAR"))
+    (setq jcs-lua-open-type-char (jcs-get-properties tmp-ini-list "LUA_OPEN_TYPE_CHAR"))
+    (setq jcs-py-open-type-char (jcs-get-properties tmp-ini-list "PY_OPEN_TYPE_CHAR"))
+    (setq jcs-php-open-type-char (jcs-get-properties tmp-ini-list "PHP_OPEN_TYPE_CHAR"))
+
+    ;; close type character.
+    (setq jcs-java-close-type-char (jcs-get-properties tmp-ini-list "JAVA_CLOSE_TYPE_CHAR"))
+    (setq jcs-cc-close-type-char (jcs-get-properties tmp-ini-list "CC_CLOSE_TYPE_CHAR"))
+    (setq jcs-js-close-type-char (jcs-get-properties tmp-ini-list "JS_CLOSE_TYPE_CHAR"))
+    (setq jcs-lua-close-type-char (jcs-get-properties tmp-ini-list "LUA_CLOSE_TYPE_CHAR"))
+    (setq jcs-py-close-type-char (jcs-get-properties tmp-ini-list "PY_CLOSE_TYPE_CHAR"))
+    (setq jcs-php-close-type-char (jcs-get-properties tmp-ini-list "PHP_CLOSE_TYPE_CHAR"))
+    ))
 
 
 (defun jcs-move-cursor-by-search-option (search-option)
@@ -788,8 +857,8 @@ SEARCH-OPTION :
       (insert jcs-java-param-string)
       (when (not (equal jcs-java-doc-show-typename nil))
         (jcs-insert-jsdoc-type (nth param-index param-type-strings)
-                               jcs-cc-open-type-char
-                               jcs-cc-close-type-char))
+                               jcs-java-open-type-char
+                               jcs-java-close-type-char))
       (insert (nth param-index param-variable-strings))
       (insert jcs-java-doc-after-value-type-char)
       (insert jcs-param-desc-string)
@@ -808,8 +877,8 @@ SEARCH-OPTION :
         (insert jcs-java-return-string)
         (when (not (equal jcs-java-doc-show-typename nil))
           (jcs-insert-jsdoc-type return-type-string
-                                 jcs-cc-open-type-char
-                                 jcs-cc-close-type-char))
+                                 jcs-java-open-type-char
+                                 jcs-java-close-type-char))
         (backward-delete-char 1)
         (if (not (equal jcs-java-doc-show-typename nil))
             (insert jcs-java-doc-after-value-type-char)
