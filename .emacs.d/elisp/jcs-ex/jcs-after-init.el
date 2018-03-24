@@ -67,6 +67,7 @@
 (defun jcs-after-init-hook ()
   "Hook run after initialize."
   (jcs-reload-file-info)
+  (jcs-reload-docstring-info)
   )
 (add-hook 'after-init-hook 'jcs-after-init-hook)
 
