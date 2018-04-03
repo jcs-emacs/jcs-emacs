@@ -221,5 +221,32 @@
 ;;; Visual RegExp
 (require 'visual-regexp)
 
+;;; Which Key
+(require 'which-key)
+(which-key-mode)
+
+;; Provide following type: `minibuffer', `side-window', `frame'.
+(setq which-key-popup-type 'side-window)
+
+;; location of which-key window. valid values: top, bottom, left, right,
+;; or a list of any of the two. If it's a list, which-key will always try
+;; the first location first. It will go to the second location if there is
+;; not enough room to display any keys in the first location
+(setq which-key-side-window-location 'bottom)
+
+;; max width of which-key window, when displayed at left or right.
+;; valid values: number of columns (integer), or percentage out of current
+;; frame's width (float larger than 0 and smaller than 1)
+(setq which-key-side-window-max-width 0.33)
+
+;; max height of which-key window, when displayed at top or bottom.
+;; valid values: number of lines (integer), or percentage out of current
+;; frame's height (float larger than 0 and smaller than 1)
+(setq which-key-side-window-max-height 0.25)
+
+;; Set the time delay (in seconds) for the which-key popup to appear. A value of
+;; zero might cause issues so a non-zero value is recommended.
+(setq which-key-idle-delay 1.0)
+
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-plugin.el file
