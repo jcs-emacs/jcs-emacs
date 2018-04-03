@@ -7,6 +7,10 @@
 # ========================================================================
 
 
+2018-04-04
+* Add `which-key' package to pre-install list. (jcs-emacs-init)
+* Add `which-key' config. (jcs-emacs-init)
+
 2018-03-24
 * Add doc string properties file. (jcs-emacs-init)
 * Apply hot reloading to doc string properties customization. (jcs-emacs-init)
