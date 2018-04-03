@@ -10,6 +10,7 @@
 2018-04-04
 * Add `which-key' package to pre-install list. (jcs-emacs-init)
 * Add `which-key' config. (jcs-emacs-init)
+* Update project version to 4.7.1. (jcs-emacs-init)
 
 2018-03-24
 * Add doc string properties file. (jcs-emacs-init)
