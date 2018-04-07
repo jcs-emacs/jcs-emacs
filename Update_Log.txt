@@ -7,6 +7,11 @@
 # ========================================================================
 
 
+2018-04-07
+* Fixed c++ mode namespace font lock face and compatible with c mode. (jcs-emacs-init)
+* Add java package declaration functionality. (jcs-emacs-init)
+* Add empty line between two lines of code functionalities. (jcs-emacs-init)
+
 2018-04-04
 * Add `which-key' package to pre-install list. (jcs-emacs-init)
 * Add `which-key' config. (jcs-emacs-init)
