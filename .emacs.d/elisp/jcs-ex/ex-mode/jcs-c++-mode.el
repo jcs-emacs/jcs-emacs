@@ -128,5 +128,24 @@
 (add-to-list 'auto-mode-alist '("\\.cin?\\'" . c++-mode))
 
 
+(defface jcs-c++-namespace-face
+  '((t (:foreground "#38EFCA")))
+  "Font face for namespace.")
+(defvar jcs-c++-namespace-face 'jcs-c++-namespace-face)
+
+;; Just in case, apply to `c-mode' too.
+(defvar jcs-c++-font-lock-namespace '(cc-mode
+                                      c-mode
+                                      c++-mode)
+  "Font lock for namespace.")
+
+(mapc (lambda (mode)
+        (font-lock-add-keywords
+         mode
+         '(("::\\([a-zA-Z0-9_]*\\)" 1 'jcs-c++-namespace-face t)
+           )'end))
+      jcs-c++-font-lock-namespace)
+
+
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-c++-mode.el file
