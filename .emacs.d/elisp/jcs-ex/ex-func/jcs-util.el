@@ -75,6 +75,36 @@
   "Get time buffer in string type."
   (format-time-string "%H:%M:%S"))
 
+;;---------------------------------------------
+;; Organize Code.
+;;---------------------------------------------
+
+(defun jcs-keep-n-line-between (n-line)
+  "Keep n line between the two line of code.  (Guarantee)
+N-LINE : line between the two line of code"
+  (save-excursion
+    (let ((index 0))
+      (while (< index n-line)
+        (jcs-keep-one-line-between)
+        ;; increament one.
+        (setq index (1+ index))))))
+
+;;;###autoload
+(defun jcs-keep-one-line-between ()
+  "Keep one line between the two line of code.
+If you want to keep more than one line use
+`jcs-keep-n-line-between' instead."
+  (interactive)
+  (if (current-line-empty-p)
+      (progn
+        (jcs-next-line)
+
+        ;; Kill empty line until there is one line.
+        (while (current-line-empty-p)
+          (jcs-kill-whole-line)))
+    (progn
+      ;; Make sure have one empty line between.
+      (insert "\n"))))
 
 ;;---------------------------------------------
 ;; Tab / Space
@@ -268,7 +298,7 @@ IS-FORWARD : forward conversion instead of backward conversion."
 
 ;;;###autoload
 (defun jcs-goto-first-char-in-line ()
-  "Goto beginning of line but ignore 'empty characters'(spaces/tab)."
+  "Goto beginning of line but ignore 'empty characters'(spaces/tabs)."
   (interactive)
   (back-to-indentation-or-beginning)
   (when (is-beginning-of-line-p)
@@ -276,14 +306,14 @@ IS-FORWARD : forward conversion instead of backward conversion."
 
 ;;;###autoload
 (defun current-line-empty-p ()
-  "Current line empty, but accept spaces in there.  (not absolute)."
+  "Current line empty, but accept spaces/tabs in there.  (not absolute)."
   (save-excursion
     (beginning-of-line)
-    (looking-at "[[:space:]]*$")))
+    (looking-at "[[:space:]\t]*$")))
 
 ;;;###autoload
 (defun current-line-totally-empty-p ()
-  "Current line empty with no spaces in there.  (absolute)."
+  "Current line empty with no spaces/tabs in there.  (absolute)."
   (and (is-beginning-of-line-p)
        (is-end-of-line-p)))
 
@@ -437,9 +467,7 @@ MAXPOINT : larger position."
 ;;;###autoload
 (defun is-mark-active ()
   "Is mark active?
-
-@return { boolean } : true, is active. false, is not active.
-"
+@return { boolean } : true, is active. false, is not active."
   (and mark-active
        (= (point) (mark))))
 
@@ -686,6 +714,13 @@ STR : string to want to be remove by SUBSTR.
 SUBSTR : string you want to remove from STR."
   (s-replace substr "" str))
 
+(defun jcs-replace-string (rp-tar rp-str str)
+  "Replace a string from another string.
+STR : main string to change.
+RP-TAR : target string we want to remove from STR.
+RP-STR : replace string will be set into STR."
+  (s-replace rp-tar rp-str str))
+
 (defun jcs-parse-bool (in-str)
   "Parse string to boolean type value.
 IN-STR : input string to check if is a `true' value."
@@ -696,6 +731,13 @@ IN-STR : input string to check if is a `true' value."
       (setq tmp-bool t))
     ;; return result.
     tmp-bool))
+
+(defun jcs-contain-string (in-sub-str in-str)
+  "Check if a string is a substring of another string.
+Return true if contain, else return false.
+IN-SUB-STR : substring to see if contain in the IN-STR.
+IN-STR : string to check by the IN-SUB-STR."
+  (string-match-p (regexp-quote in-sub-str) in-str))
 
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-util.el file
