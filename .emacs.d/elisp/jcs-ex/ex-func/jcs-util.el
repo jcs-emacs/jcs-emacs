@@ -705,6 +705,64 @@ IN-KEY : key to search for value."
   (downcase (file-name-sans-extension (file-name-nondirectory buffer-file-name))))
 
 ;;---------------------------------------------
+;; Directory
+;;---------------------------------------------
+
+(defvar jcs-vc-list '(".git" ".svn")
+  "Version Control list.")
+
+(defun jcs-get-current-dir ()
+  "Return the string of current directory."
+  default-directory)
+
+(defun jcs-file-directory-exists-p (filePath)
+  "Return `True' if the directory/file exists.
+Return `False' if the directory/file not exists.
+
+FILEPATH : directory/file path.
+
+NOTE(jenchieh): Weird this only works for directory not for
+the file."
+  (equal (file-directory-p filePath) t))
+
+(defun jcs-is-vc-dir-p (dirPath)
+  "Return `True' is version control diectory.
+Return `False' not a version control directory.
+DIRPATH : directory path."
+
+  (let ((tmp-is-vc-dir nil))
+    (dolist (tmp-vc-type jcs-vc-list)
+      (let ((tmp-check-dir (concat dirPath "/" tmp-vc-type)))
+        (when (jcs-file-directory-exists-p tmp-check-dir)
+          (setq tmp-is-vc-dir t))))
+    ;; Return retult.
+    (equal tmp-is-vc-dir t)))
+
+(defun jcs-up-one-dir-string (dirPath)
+  "Go up one directory and return it directory string.
+DIRPATH : directory path."
+  ;; NOTE(jenchieh): no safety check..
+
+  ;; Remove the last directory in the path.
+  (string-match "\\(.*\\)/" dirPath)
+  (match-string 1 dirPath))
+
+(defun jcs-vc-root-dir ()
+  "Return version control root directory."
+  (let ((tmp-current-dir (jcs-get-current-dir))
+        (tmp-result-dir ""))
+    (while (jcs-contain-string "/" tmp-current-dir)
+      (when (jcs-is-vc-dir-p tmp-current-dir)
+        ;; Return the result, which is the version control path
+        ;; or failed to find the version control path.
+        (setq tmp-result-dir tmp-current-dir))
+      ;; go up one directory.
+      (setq tmp-current-dir (jcs-up-one-dir-string tmp-current-dir)))
+    ;; NOTE(jenchieh): if you do not like `/' at the end remove
+    ;; concat slash function.
+    (concat tmp-result-dir "/")))
+
+;;---------------------------------------------
 ;; String
 ;;---------------------------------------------
 
