@@ -7,6 +7,9 @@
 # ========================================================================
 
 
+2018-04-16
+* Add search version control directory and it related functionalities. (jcs-emacs-init)
+
 2018-04-07
 * Fixed c++ mode namespace font lock face and compatible with c mode. (jcs-emacs-init)
 * Add java package declaration functionality. (jcs-emacs-init)
