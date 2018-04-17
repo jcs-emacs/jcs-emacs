@@ -64,31 +64,35 @@
             (jcs-remove-string-by-substring tmp-insert-package-path-string
                                             (jcs-get-file-name)))
 
-      ;; Replace all `/' to `.'.
-      (setq tmp-insert-package-path-string (jcs-replace-string
-                                            "/"
-                                            "."
-                                            tmp-insert-package-path-string))
+      ;; NOTE(jenchieh): If the string is less than two.
+      ;; Meaning the file is directly under `default package'/`src'
+      ;; directory.
+      (when (<= 2 (length tmp-insert-package-path-string))
+        ;; Replace all `/' to `.'.
+        (setq tmp-insert-package-path-string (jcs-replace-string
+                                              "/"
+                                              "."
+                                              tmp-insert-package-path-string))
 
-      ;; Remove the first and last character -> `.'.
-      (setq tmp-insert-package-path-string
-            (subseq tmp-insert-package-path-string
-                    ;; Starting position, in order to remove the
-                    ;; first character we start the string from
-                    ;; index 1 instead of 0.
-                    1
-                    ;; End position, simply just minus one from
-                    ;; length.
-                    (1- (length tmp-insert-package-path-string))))
+        ;; Remove the first and last character -> `.'.
+        (setq tmp-insert-package-path-string
+              (subseq tmp-insert-package-path-string
+                      ;; Starting position, in order to remove the
+                      ;; first character we start the string from
+                      ;; index 1 instead of 0.
+                      1
+                      ;; End position, simply just minus one from
+                      ;; length.
+                      (1- (length tmp-insert-package-path-string))))
 
-      ;; Add a `;' semi-colon at the end of the ready insert string.
-      (setq tmp-insert-package-path-string
-            (concatenate 'string tmp-insert-package-path-string ";"))
+        ;; Add a `;' semi-colon at the end of the ready insert string.
+        (setq tmp-insert-package-path-string
+              (concatenate 'string tmp-insert-package-path-string ";"))
 
-      ;; Insert the final package string.
-      (insert "package ")
-      (insert tmp-insert-package-path-string)
-      (insert "\n"))))
+        ;; Insert the final package string.
+        (insert "package ")
+        (insert tmp-insert-package-path-string)
+        (insert "\n")))))
 
 ;;;###autoload
 (defun jcs-java-insert-package-src ()
