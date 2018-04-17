@@ -743,8 +743,6 @@ DIRPATH : directory path."
 (defun jcs-up-one-dir-string (dirPath)
   "Go up one directory and return it directory string.
 DIRPATH : directory path."
-  ;; NOTE(jenchieh): no safety check..
-
   ;; Remove the last directory in the path.
   (string-match "\\(.*\\)/" dirPath)
   (match-string 1 dirPath))
