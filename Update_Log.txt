@@ -7,6 +7,11 @@
 # ========================================================================
 
 
+2018-04-17
+* Check default directory for java packaging path including 
+ functionalities. (jcs-emacs-init)
+* Fixed comment file path match flycheck standard. (jcs-emacs-init)
+
 2018-04-16
 * Add search version control directory and it related functionalities. (jcs-emacs-init)
 
