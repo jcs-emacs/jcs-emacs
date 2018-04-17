@@ -610,7 +610,9 @@ MODE-OBJ : mode object memory."
 (defun get-string-from-file (filePath)
   "Return filePath's file content.
 TOPIC(jenchieh): Elisp: Read File Content as String or List of Lines
-URL(jenchieh): http://ergoemacs.org/emacs/elisp_read_file_content.html"
+URL(jenchieh): http://ergoemacs.org/emacs/elisp_read_file_content.html
+
+FILEPATH : file path."
   (with-temp-buffer
     (insert-file-contents filePath)
     (buffer-string)))
