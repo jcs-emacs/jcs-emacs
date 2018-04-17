@@ -7,6 +7,9 @@
 # ========================================================================
 
 
+2018-04-18
+* Add some functionalities for modefiying list object. (jcs-emacs-init)
+
 2018-04-17
 * Check default directory for java packaging path including 
  functionalities. (jcs-emacs-init)
