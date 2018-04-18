@@ -541,11 +541,6 @@ active. false, there is no region selected and mark is not active.
                   (get-char-property (point) 'face))))
     face))
 
-(defun jcs-current-point-face-p (faceName)
-  "Is the current face name same as pass in string?
-FACENAME : face name in string."
-  (string= (jcs-get-current-point-face) faceName))
-
 ;;---------------------------------------------
 ;; Font
 ;;---------------------------------------------
@@ -592,33 +587,6 @@ STR : string to check if is inside the list of strings above."
       (if (string= tmp-str str)
           (setq in-list t)))
     in-list))
-
-(defun jcs-strip-duplicates (list)
-  "Remove duplicate value from list.
-(list \"foo\" \"bar\" nil \"moo\" \"bar\" \"moo\" nil \"affe\")
-=> (list \"foo\" \"bar\" \"moo\" \"affe\").
-
-URL(jenchieh): https://stackoverflow.com/questions/3815467/stripping-duplicate-elements-in-a-list-of-strings-in-elisp
-
-LIST : list you want to remove duplicates."
-  (let ((new-list nil))
-    (while list
-      (when (and (car list) (not (member (car list) new-list)))
-        (setq new-list (cons (car list) new-list)))
-      (setq list (cdr list)))
-    (nreverse new-list)))
-
-(defun jcs-flatten (l)
-  "Flatten the multiple dimensional array to one dimensonal array.
-'(1 2 3 4 (5 6 7 8)) => '(1 2 3 4 5 6 7 8).
-
-URL(jenchieh): https://stackoverflow.com/questions/2680864/how-to-remove-nested-parentheses-in-lisp
-
-L : list."
-  (cond ((null l) nil)
-        ((atom l) (list l))
-        (t (loop for a in l appending (organize-imports-java-flatten a)))))
-
 
 ;;---------------------------------------------
 ;; Mode
@@ -741,7 +709,11 @@ IN-KEY : key to search for value."
 ;; Directory
 ;;---------------------------------------------
 
-(defvar jcs-vc-list '(".git" ".svn")
+(defvar jcs-vc-list '(".bzr"
+                      ".cvs"
+                      ".git"
+                      ".hg"
+                      ".svn")
   "Version Control list.")
 
 (defun jcs-get-current-dir ()
