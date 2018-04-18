@@ -383,7 +383,7 @@ SEARCH-OPTION :
 
             ;; Make sure only process current/one line.
             (when (<= (point) end-function-point)
-              (let ((current-point-face (jcs-get-current-point-face)))
+              (let ((current-point-face(jcs-get-current-point-face) ))
 
                 ;; NOTE(jenchieh): If there is multiple faces at
                 ;; a point, it will return a list instead of
