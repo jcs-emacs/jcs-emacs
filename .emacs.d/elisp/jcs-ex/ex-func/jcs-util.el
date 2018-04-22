@@ -223,6 +223,19 @@ IS-FORWARD : forward conversion instead of backward conversion."
 (defun uppercasep (c) (and (wordp c) (= c (upcase c))))
 (defun whitespacep (c) (= 32 (char-syntax c)))
 
+(defun jcs-is-digit-string (c)
+  "Check if C is a digit."
+  (or (string= c "0")
+      (string= c "1")
+      (string= c "2")
+      (string= c "3")
+      (string= c "4")
+      (string= c "5")
+      (string= c "6")
+      (string= c "7")
+      (string= c "8")
+      (string= c "9")))
+
 (defun jcs-current-char-a-wordp ()
   "Check if current character a usual letter."
   (let ((current-char nil)
@@ -799,6 +812,22 @@ Return true if contain, else return false.
 IN-SUB-STR : substring to see if contain in the IN-STR.
 IN-STR : string to check by the IN-SUB-STR."
   (string-match-p (regexp-quote in-sub-str) in-str))
+
+(defun jcs-string-has-no-lowercase (string)
+  "Return true iff STRING has no lowercase
+SOURCE(jenchieh): https://stackoverflow.com/questions/2129840/check-if-a-string-is-all-caps-in-emacs-lisp"
+  (equal (upcase string) string))
+
+(defun jcs-is-contain-list-string (inList inStr)
+  "Check if a string contain in any string in the string list.
+INLIST : list of string use to check if INSTR in contain one of
+the string.
+INSTR : string using to check if is contain one of the INLIST."
+  (let ((tmp-found nil))
+    (dolist (tmpStr inList)
+      (when (jcs-contain-string tmpStr inStr)
+        (setq tmp-found t)))
+    (equal tmp-found t)))
 
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-util.el file
