@@ -112,6 +112,15 @@
 
     (jcs-keep-one-line-between)))
 
+
+;;
+;; TEMPORARY(jenchieh): Hopefully melpa will let me push
+;; my package `organize-imports-java' to their package system.
+;; Then we can remove load file/manually install package system.
+;;
+(load-file "~/.emacs.d/elisp/organize-imports-java-20180422.001/organize-imports-java.el")
+(require 'organize-imports-java)
+
 ;;;###autoload
 (defun jcs-java-organize-imports ()
   "Organize all the import package.
@@ -120,8 +129,24 @@ Including adding or removing the package path."
   ;; first organize package declaration.
   (jcs-java-insert-package-src)
 
-  ;; TODO(jenchieh): Organize the imports..
-  )
+  ;; Organize all the imports.
+  (organize-imports-java-do-imports))
+
+;;-----------------------------------------------------------
+;;-----------------------------------------------------------
+
+(defvar jcs-java-font-lock-type-face-missing-modes '(java-mode
+                                                     jdee-mode)
+  "Modes to fixed variable font lock missing face for Java.")
+
+(mapc (lambda (mode)
+        (let ((case-fold-search t))
+          (font-lock-add-keywords
+           mode
+           '(("^[ ]*\\([A-Z][a-zA-Z0-9_-]*\\)[a-zA-Z0-9._-]*\\.[a-zA-Z0-9_-]*[(]" 1 'font-lock-type-face t)
+             ("\\([A-Z][a-zA-Z0-9._-]*\\)\\.[a-zA-Z0-9_-]*[),:]" 1 'font-lock-type-face t)
+             )'end)))
+      jcs-java-font-lock-type-face-missing-modes)
 
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-java-func.el file
