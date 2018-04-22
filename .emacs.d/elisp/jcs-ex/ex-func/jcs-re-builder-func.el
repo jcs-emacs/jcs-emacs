@@ -34,14 +34,31 @@
 (defun jcs-reb-maybe-kill-this-buffer ()
   "Kill this buffer in `re-builder' mode."
   (interactive)
-  
+
   ;; maybe kill this buffer.
   (jcs-maybe-kill-this-buffer)
 
   ;; then delete this window.
-  (delete-window)
-  )
+  (delete-window))
 
+;;;###autoload
+(defun jcs-re-builder (type)
+  "Rewrap `re-builder' function.
+TYPE : enable/disable case sensitive?"
+  (interactive
+   (list (completing-read
+          "Enable case sensitive?" '("Case Sensitive"
+                                     "Case Insensitive"))))
+
+  (if (string= type "Case Sensitive")
+      (setq case-fold-search nil)
+    (setq case-fold-search t))  ;; This is default.
+
+  ;; Start `RE-Builder' mode.
+  (re-builder)
+
+  ;; Set back to default.
+  (setq case-fold-search t))
 
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-re-builder-func.el file
