@@ -162,6 +162,10 @@ Return a list of installed packages or nil for every skipped package."
                           'multiple-cursors
                           'nasm-mode
                           'neotree
+                          ;; TEMPORARY(jenchieh): Hopefully melpa will let me push
+                          ;; my package `organize-imports-java' to their package system.
+                          ;; Then we can add this line under directly.
+                          ;;'organize-imports-java
                           'package-build
                           'package-lint
                           'pdf-tools
