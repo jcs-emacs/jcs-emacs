@@ -7,6 +7,10 @@
 # ========================================================================
 
 
+2018-04-22
+* Temporary install `organize-imports-java' package manully, ready for 
+ melpa to publish it. (jcs-emacs-init)
+
 2018-04-18
 * Add some functionalities for modefiying list object. (jcs-emacs-init)
 * Reformat some parameters in order to match flycheck standard. (jcs-emacs-init)
