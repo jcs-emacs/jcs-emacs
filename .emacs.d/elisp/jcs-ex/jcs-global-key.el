@@ -368,7 +368,7 @@ the key everytime the mode changes."
   (define-key global-map (kbd "C-r S-<backspace>") 'jcs-forward-delete-current-char-repeat)
 
   ;; re-builder
-  (define-key global-map "\C-re" 're-builder)
+  (define-key global-map "\C-re" 'jcs-re-builder)
   )
 
 ;;------------------------------
