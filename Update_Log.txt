@@ -7,6 +7,10 @@
 # ========================================================================
 
 
+2018-04-26
+* Install organize-imports-java' package manully. (jcs-emacs-init)
+* Add plugin organize-imports-java' solve Java imports functionaltity. (jcs-emacs-init)
+
 2018-04-22
 * Temporary install `organize-imports-java' package manully, ready for 
  melpa to publish it. (jcs-emacs-init)
