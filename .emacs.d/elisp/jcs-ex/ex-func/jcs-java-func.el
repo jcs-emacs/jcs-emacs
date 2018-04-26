@@ -121,6 +121,10 @@
 (load-file "~/.emacs.d/elisp/organize-imports-java-20180422.001/organize-imports-java.el")
 (require 'organize-imports-java)
 
+;; NOTE(jenchieh): Set the source control list to the
+;; same as mine source control list.
+(setq organize-imports-java-vc-list jcs-vc-list)
+
 ;;;###autoload
 (defun jcs-java-organize-imports ()
   "Organize all the import package.
