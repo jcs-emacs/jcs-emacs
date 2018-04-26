@@ -9,4 +9,3 @@
 
 //-- General --//
 * Refactor code, and get rid of unused interactive function.
-* Java imports functionalities. (painful..)
