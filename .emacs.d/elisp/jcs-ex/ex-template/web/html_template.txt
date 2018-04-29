@@ -3,13 +3,13 @@
 
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>#FILE_NAME_NO_EXT#</title>
-    <meta charset="UTF-8">
+<head>
+  <title>#FILE_NAME_NO_EXT#</title>
+  <meta charset="UTF-8">
 
-  </head>
-  <body>
+</head>
+<body>
 
 
-  </body>
+</body>
 </html>
