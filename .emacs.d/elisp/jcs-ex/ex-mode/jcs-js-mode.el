@@ -41,7 +41,7 @@
 
 (require 'skewer-mode)
 (add-hook 'js2-mode-hook 'skewer-mode)
-(add-hook 'css-mode-hook 'skewer-css-mode)
+(add-hook 'xah-css-mode-hook 'skewer-css-mode)
 (add-hook 'html-mode-hook 'skewer-html-mode)
 
 (require 'js2-mode)
