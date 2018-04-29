@@ -7,6 +7,12 @@
 # ========================================================================
 
 
+2018-04-29
+* Change indentation and change mode to from if statement to cond 
+ statement. (jcs-emacs-init)
+* Add toggle web mode offsetless elements. (jcs-emacs-init)
+* Set web mode offsetless element variable. (jcs-emacs-init)
+
 2018-04-26
 * Install organize-imports-java' package manully. (jcs-emacs-init)
 * Add plugin organize-imports-java' solve Java imports functionaltity. (jcs-emacs-init)
