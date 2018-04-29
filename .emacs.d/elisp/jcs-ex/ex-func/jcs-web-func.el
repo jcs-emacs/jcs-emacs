@@ -252,7 +252,8 @@ line by line instead of indent the whole file at once."
 (defun jcs-css-save-buffer ()
   "Save buffer in `css-mode'."
   (interactive)
-  (jcs-css-sort-attributes-document)
+  ;; TODO(jenchieh): just disable the sorting method for now.
+  ;;(jcs-css-sort-attributes-document)
   (jcs-untabify-save-buffer))
 
 ;;---------------------------------------------
