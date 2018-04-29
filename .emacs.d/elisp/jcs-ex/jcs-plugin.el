@@ -31,11 +31,11 @@
 ;;================================================
 
 
-;;================================================
-;; Find file in project plugin
-;; SOURCE(jenchieh): https://github.com/technomancy/find-file-in-project
-;;================================================
-(load-file "~/.emacs.d/elisp/find-file-in-project.el")
+;;===========================
+;; Find file in project
+;;----------------------
+
+(require 'find-file-in-project)
 
 (autoload 'find-file-in-project "find-file-in-project" nil t)
 (autoload 'find-file-in-project-by-selected "find-file-in-project" nil t)
@@ -48,9 +48,9 @@
 ;;(setq ffip-prefer-ido-mode t)
 
 
-;;===============
+;;===========================
 ;; Sublimity
-;;-------------
+;;----------------------
 ;; URL(jenchieh): https://github.com/zk-phi/sublimity
 (require 'sublimity)
 (require 'sublimity-scroll)

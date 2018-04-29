@@ -31,7 +31,6 @@
 ;; JenChieh Verilog mode.
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-(load-file "~/.emacs.d/elisp/verilog-mode.el")
 
 (require 'verilog-mode)
 (defun jcs-verilog-mode-hook ()

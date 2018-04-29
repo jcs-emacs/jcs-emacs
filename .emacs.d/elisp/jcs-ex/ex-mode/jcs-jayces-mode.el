@@ -31,8 +31,6 @@
 ;; JenChieh JayCeS mode.
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-;; load the mode first.
-(load-file "~/.emacs.d/elisp/jayces-mode.el")
 
 (require 'jayces-mode)
 (defun jcs-jayces-mode-hook ()
