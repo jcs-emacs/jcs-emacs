@@ -13,6 +13,9 @@
 * Add toggle web mode offsetless elements. (jcs-emacs-init)
 * Set web mode offsetless element variable. (jcs-emacs-init)
 * Key bindings comment detail update. (jcs-emacs-init)
+* Change `html' template's head and body tag to the same level as html
+ tag. (jcs-emacs-init)
+* Add default ASP .NET's extension to web-mode. (jcs-emacs-init)
 
 2018-04-26
 * Install organize-imports-java' package manully. (jcs-emacs-init)
