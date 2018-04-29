@@ -131,6 +131,7 @@ This command does not push text to `kill-ring'."
 ;;---------------------------------------------
 ;; After moving UP one line, do identation.
 ;;---------------------------------------------
+
 ;;;###autoload
 (defun jcs-smart-indent-up ()
   "Indent line after move up one line.
