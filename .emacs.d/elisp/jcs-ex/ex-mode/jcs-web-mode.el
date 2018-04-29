@@ -198,7 +198,19 @@
 (setq web-mode-script-padding 2)
 (setq web-mode-block-padding 0)
 
-;; Comments
+;;; Offsetless Elements
+;; NOTE(jenchieh): Do not make these lists to one list.
+;; They are totally different list.
+;; NOTE(jenchieh): This variable is from `web-mode' itself.
+(setq web-mode-offsetless-elements '("html"))
+
+;; NOTE(jenchieh): Do not make these lists to one list.
+;; They are totally different list.
+(defvar jcs-web-mode-offsetless-elements-toggle '("html")
+  "List of HTML elements you want to be toggable to the
+`wen-mode-offsetless-elements' list in Web mode.")
+
+;;; Comments
 ;;(setq web-mode-comment-style 2)
 
 ;; Syntax Highlighting
@@ -206,21 +218,21 @@
 (set-face-attribute 'web-mode-block-comment-face nil :foreground "olive drab")
 (set-face-attribute 'web-mode-comment-face nil :foreground "olive drab")
 
-;; Snippets
+;;; Snippets
 (setq web-mode-extra-snippets
       '(("erb" . (("toto" . ("<% toto | %>\n\n<% end %>"))))
         ("php" . (("dowhile" . ("<?php do { ?>\n\n<?php } while (|); ?>"))
                   ("debug" . ("<?php error_log(__LINE__); ?>"))))
         ))
 
-;; Auto-pairs
+;;; Auto-pairs
 (setq web-mode-extra-auto-pairs
       '(("erb"  . (("beg" "end")))
         ("php"  . (("beg" "end")
                    ("beg" "end")))
         ))
 
-;; Enable / disable features
+;;; Enable / disable features
 (setq web-mode-enable-auto-pairing t)
 (setq web-mode-enable-css-colorization t)
 (setq web-mode-enable-block-face t)
@@ -228,7 +240,7 @@
 (setq web-mode-enable-comment-keywords t)
 (setq web-mode-enable-heredoc-fontification t)
 
-;; Keywords / Constants
+;;; Keywords / Constants
 ;;(setq web-mode-extra-constants '(("php" . ("CONS1" "CONS2"))))
 
 ;; Highlight current HTML element
