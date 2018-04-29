@@ -37,12 +37,8 @@
 (defun jcs-toggle-cc-mode ()
   "Toggle c/c++ mode."
   (interactive)
-
-  (if (equal major-mode 'c-mode)
-      (progn
-        (c++-mode))
-    (progn
-      (c-mode))))
+  (cond ((equal major-mode 'c-mode) (progn (c++-mode)))
+        ((equal major-mode 'c++-mode) (progn (c-mode)))))
 
 ;;;###autoload
 (defun jcs-toggle-c-comment-style ()
@@ -54,12 +50,12 @@
     (if (string= comment-start "// ")
         (progn
           (setq comment-start "/*"
-                      comment-start-skip "/\\*+[ \t]*"
-                      comment-end "*/"
-                      comment-end-skip "[ \t]*\\*+/"))
+                comment-start-skip "/\\*+[ \t]*"
+                comment-end "*/"
+                comment-end-skip "[ \t]*\\*+/"))
       (progn
         (setq comment-start "// "
-                    comment-end "")))))
+              comment-end "")))))
 
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-cc-func.el file
