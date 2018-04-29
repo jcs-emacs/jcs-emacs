@@ -106,6 +106,8 @@
 
   (cond ((file-exists-p buffer-file-name) t)
         ((string-match "[.]html" buffer-file-name) (jcs-html-format))
+        ((string-match "[.]asp" buffer-file-name) (jcs-html-format))
+        ((string-match "[.]as[cp]x" buffer-file-name) (jcs-html-format))
         ((string-match "[.]php" buffer-file-name) (jcs-php-format))
         )
 
@@ -149,12 +151,16 @@
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.php?\\'" . web-mode))       ;; Add .php to the list
+
+;; ASP .NET
+(add-to-list 'auto-mode-alist '("\\.asp\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.[Mm]aster\\'" . web-mode))
 
 ;; Associate an engine
 (setq web-mode-engines-alist
