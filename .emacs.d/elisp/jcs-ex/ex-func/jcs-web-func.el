@@ -349,9 +349,24 @@ line by line instead of indent the whole file at once."
   (defvar jcs-web-mode-html-attr-value-face 'jcs-web-mode-html-attr-value-face)
 
   (face-remap-add-relative 'web-mode-block-string-face '(jcs-font-lock-string-face))
-  (face-remap-add-relative 'web-mode-html-attr-value-face '(jcs-web-mode-html-attr-value-face))
-  )
+  (face-remap-add-relative 'web-mode-html-attr-value-face '(jcs-web-mode-html-attr-value-face)))
 
+;;-----------------------------------------------------------
+;;-----------------------------------------------------------
+
+;;;###autoload
+(defun jcs-toggle-web-mode-offsetless-elements ()
+  "Toggle between indent with html tag or not to."
+  (interactive)
+  (if (get 'jcs-toggle-web-mode-offsetless-elements 'state)
+      (progn
+        (dolist (tmp-element jcs-web-mode-offsetless-elements-toggle)
+          (push tmp-element web-mode-offsetless-elements))
+        (put 'jcs-toggle-web-mode-offsetless-elements 'state nil))
+    (progn
+      (dolist (tmp-element jcs-web-mode-offsetless-elements-toggle)
+        (setq web-mode-offsetless-elements (remove tmp-element web-mode-offsetless-elements)))
+      (put 'jcs-toggle-web-mode-offsetless-elements 'state t))))
 
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of jcs-web-func.el file
