@@ -150,15 +150,14 @@
 
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.php?\\'" . web-mode))       ;; Add .php to the list
+(add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
 
 ;; ASP .NET
-(add-to-list 'auto-mode-alist '("\\.asp\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.[Mm]aster\\'" . web-mode))
 
@@ -310,10 +309,11 @@
 ;; css indent spaces.
 (setq css-indent-offset 2)
 
-;; Source: -> CSS Mode: https://www.emacswiki.org/emacs/css-mode.el
-;;         -> Xah CSS Mode: http://ergoemacs.org/emacs/xah-css-mode.html
+
+;; TODO(jenchieh): No idea why, but this could not put it at
+;; the .emacs file's Manually install section.
+;; CSS Mode: https://www.emacswiki.org/emacs/css-mode.el
 (load-file "~/.emacs.d/elisp/css-mode.el")
-(load-file "~/.emacs.d/elisp/css-sort.el")
 
 (require 'css-sort)
 (require 'css-mode)
