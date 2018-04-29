@@ -250,7 +250,8 @@ C-return        tab emmet.
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * Switch Mode
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-C-c c           toggle between c and c++ mode.
+C-c c           Toggle between c and c++ mode if you are 
+                either in c or c++ mode.
 C-c j           enable/disable jdee-mode.
 C-x w           enable/disable web-mode.
 C-x p           enable/disable php-mode.
