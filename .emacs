@@ -131,6 +131,7 @@ Return a list of installed packages or nil for every skipped package."
                           'elpy
                           'emmet-mode
                           'exec-path-from-shell
+                          'find-file-in-project
                           'floobits
                           'flycheck
                           'flymake-cursor
@@ -196,6 +197,21 @@ Return a list of installed packages or nil for every skipped package."
 
 ;; activate installed packages
 (package-initialize)
+
+;;========================================
+;;         Manually Install
+;;----------------------------------
+
+(load-file "~/.emacs.d/elisp/css-sort.el")
+(load-file "~/.emacs.d/elisp/verilog-mode.el")
+(load-file "~/.emacs.d/elisp/jayces-mode.el")
+
+;;
+;; TEMPORARY(jenchieh): Hopefully melpa will let me push
+;; my package `organize-imports-java' to their package system.
+;; Then we can remove load file/manually install package system.
+;;
+(load-file "~/.emacs.d/elisp/organize-imports-java-20180422.001/organize-imports-java.el")
 
 ;;========================================
 ;;      JENCHIEH FILE LOADING
