@@ -320,21 +320,46 @@ line by line instead of indent the whole file at once."
     (goto-line startLineNum)
     (end-of-line)))
 
+;;-----------------------------------------------------------
+;;-----------------------------------------------------------
+
 (defun jcs-init-css-faces ()
   "CSS Faces Highlighting."
 
+  ;; ==================
+  ;;    Type Face
+  ;; -----------------
+  (defface jcs-css-type-face
+    '((t (:foreground "#38EFCA")))
+    "Highlight CSS value.")
+  (defvar jcs-css-type-face 'jcs-css-type-face)
+
+  (defvar jcs-css-type-modes '(css-mode)
+    "CSS mode we want to add it to highlight the type face.")
+
+  (mapc (lambda (mode)
+          (font-lock-add-keywords
+           mode
+           '(("^[ \t]*\\([a-z0-9_-]*\\)[ \t]*:" 1 'jcs-css-type-face t)
+             )'end))
+        jcs-css-type-modes)
+
+  ;; ==================
+  ;;    Value Face
+  ;; -----------------
   (defface jcs-css-value-face
     '((t (:foreground "#D2D2D2")))
     "Highlight CSS value.")
   (defvar jcs-css-value-face 'jcs-css-value-face)
 
   (defvar jcs-css-value-modes '(css-mode)
-    "Modes for editing CSS file.")
+    "CSS mode we want to add it to highlight the value face.")
+
   (mapc (lambda (mode)
           (font-lock-add-keywords
            mode
-           '((":\\(.*\\);" 1 'jcs-css-value-face t)
-             )))
+           '(("[ \t]*:[ \t]*\\(.*\\)[ \t]*;" 1 'jcs-css-value-face t)
+             )'end))
         jcs-css-value-modes)
 
   ;; Other faces.
