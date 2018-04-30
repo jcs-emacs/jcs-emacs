@@ -211,7 +211,7 @@ Return a list of installed packages or nil for every skipped package."
 ;; my package `organize-imports-java' to their package system.
 ;; Then we can remove load file/manually install package system.
 ;;
-(load-file "~/.emacs.d/elisp/organize-imports-java-20180422.001/organize-imports-java.el")
+(load-file "~/.emacs.d/elisp/organize-imports-java-20180501.001/organize-imports-java.el")
 
 ;;========================================
 ;;      JENCHIEH FILE LOADING
