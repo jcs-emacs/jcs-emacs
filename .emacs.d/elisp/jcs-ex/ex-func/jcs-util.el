@@ -520,9 +520,9 @@ active. false, there is no region selected and mark is not active.
 
 (defun is-inside-comment-block-p ()
   "Check if current cursor point inside the comment block."
-  (interactive)
   (nth 4 (syntax-ppss)))
 
+;;;###autoload
 (defun jcs-goto-start-of-the-comment ()
   "Go to the start of the comment."
   (interactive)
@@ -530,6 +530,7 @@ active. false, there is no region selected and mark is not active.
     (backward-char 1)
     (jcs-goto-start-of-the-comment)))
 
+;;;###autoload
 (defun jcs-goto-end-of-the-comment ()
   "Go to the end of the comment."
   (interactive)
@@ -541,12 +542,14 @@ active. false, there is no region selected and mark is not active.
 ;; Face
 ;;---------------------------------------------
 
+;;;###autoload
 (defun jcs-what-face ()
   "Print out what face is current cursor on."
   (interactive)
   (let ((face (jcs-get-current-point-face)))
     (if face (message "Face: %s" face) (message "No face at %d" pos))))
 
+;;;###autoload
 (defun jcs-get-current-point-face ()
   "Get current point's type face as string."
   (interactive)
