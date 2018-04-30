@@ -497,6 +497,7 @@ file-project.el' plugin."
 ;; Setup the run file key and function.
 ;;----------------------------------------
 
+;;;###autoload
 (defun find-project-directory-recursive-run ()
   "Recursively search for a makefile."
   (interactive)
@@ -504,6 +505,7 @@ file-project.el' plugin."
     (cd "../")
     (find-project-directory-recursive-run)))
 
+;;;###autoload
 (defun find-project-directory-run ()
   "Find the project directory."
   (interactive)
@@ -515,6 +517,7 @@ file-project.el' plugin."
     (find-project-directory-recursive-run)
     (setq last-compilation-directory default-directory)))
 
+;;;###autoload
 (defun run-without-asking()
   "Run the current build program. - JenChieh"
   (interactive)
@@ -524,6 +527,8 @@ file-project.el' plugin."
 ;;================================================
 ;; * Open TODO file *
 ;;----------------------------------------
+
+;;;###autoload
 (defun open-todo-without-asking()
   "Open the TODO list from this project. - JenChieh"
   (interactive)
@@ -532,6 +537,8 @@ file-project.el' plugin."
 ;;================================================
 ;; * Open LOG file *
 ;;----------------------------------------
+
+;;;###autoload
 (defun open-update-log-without-asking()
   "Open the Update Log from this project. - JenChieh"
   (interactive)
@@ -540,12 +547,15 @@ file-project.el' plugin."
 ;;---------------------------------------------
 ;; Source: https://www.emacswiki.org/emacs/BackToIndentationOrBeginning
 ;;---------------------------------------------
+
+;;;###autoload
 (defun back-to-indentation-or-beginning ()
   "Toggle between first character and beginning of line."
   (interactive)
   (if (= (point) (progn (back-to-indentation) (point)))
       (beginning-of-line)))
 
+;;;###autoload
 (defun beginning-of-line-or-indentation ()
   "move to beginning of line, or indentation
 
@@ -557,6 +567,7 @@ this version instead."
       (beginning-of-line)
     (back-to-indentation)))
 
+;;;###autoload
 (defun jcs-back-to-indentation ()
   "back to identation by checking first character in the line."
   (interactive)
@@ -652,6 +663,7 @@ False: return nil."
 ;; Kill Buffer
 ;;----------------------------------------------
 
+;;;###autoload
 (defun jcs-kill-this-buffer ()
   "Kill this buffer."
   (interactive)
@@ -667,8 +679,7 @@ False: return nil."
   ;; If still in the buffer menu, try switch to the
   ;; previous buffer
   (when (jcs-is-current-major-mode-p "Buffer-menu-mode")
-    (switch-to-previous-buffer))
-  )
+    (switch-to-previous-buffer)))
 
 ;;;###autoload
 (defun jcs-maybe-kill-this-buffer ()
@@ -681,8 +692,7 @@ SOURCE(jenchieh): https://emacs.stackexchange.com/questions/2888/kill-buffer-whe
 
   (ignore-errors
     (setq BaseFileNameWithExtension (file-name-nondirectory buffer-file-name))
-    (setq current-file-buffer (get-buffer BaseFileNameWithExtension))
-    )
+    (setq current-file-buffer (get-buffer BaseFileNameWithExtension)))
 
   ;; NOTE(jenchieh): new line in common lisp.
   ;;(terpri)
@@ -692,9 +702,7 @@ SOURCE(jenchieh): https://emacs.stackexchange.com/questions/2888/kill-buffer-whe
       (ignore-errors
         (if (eq buf current-file-buffer)
             ;; increment plus 1
-            (setq displayed-frame-count (+ displayed-frame-count 1))
-          )))
-
+            (setq displayed-frame-count (+ displayed-frame-count 1)))))
     (if (or (>= displayed-frame-count 2)
             ;; NOTE(jenchieh): If you don't want `*Buffer-List*'
             ;; window open in at least two window and get killed
@@ -702,48 +710,46 @@ SOURCE(jenchieh): https://emacs.stackexchange.com/questions/2888/kill-buffer-whe
             ;;(jcs-is-current-major-mode-p "Buffer-menu-mode")
             )
         (switch-to-previous-buffer)
-      (jcs-kill-this-buffer))
-    ))
+      (jcs-kill-this-buffer))))
 
 ;;----------------------------------------------
 ;; Search/Kill word capital.
 ;;----------------------------------------------
 
-;; check the first character a character.
-(setq first-char-is-char nil)
+(defvar jcs-first-char-is-char nil
+  "Check the first character a character.")
 
-;; boolean to check the first character
-(setq check-first-char nil)
+(defvar jcs-check-first-char nil
+  "Boolean to check the first character")
 
-;; found the first character in search?
-(setq found-first-char nil)
+(defvar jcs-found-first-char nil
+  "Found the first character in search?")
 
 ;;;###autoload
 (defun jcs-backward-kill-word-capital ()
   "Backward delete the word unitl the word is capital."
   (interactive)
 
-  (when (eq check-first-char nil)
+  (when (eq jcs-check-first-char nil)
     ;; check the first character a character
     (when (wordp (jcs-get-current-char-byte))
-      (setq first-char-is-char t))
+      (setq jcs-first-char-is-char t))
 
     ;; check the first character mission complete.
-    (setq check-first-char t))
+    (setq jcs-check-first-char t))
 
   ;; found the first character!
   (when (wordp (jcs-get-current-char-byte))
-    (setq found-first-char t))
+    (setq jcs-found-first-char t))
 
-  (if (eq found-first-char nil)
+  (if (eq jcs-found-first-char nil)
       (progn
-        (if (eq first-char-is-char t)
+        (if (eq jcs-first-char-is-char t)
             (progn
               (backward-delete-char 1))
           (progn
             (backward-delete-char 1)
-            (jcs-backward-kill-word-capital)
-            )))
+            (jcs-backward-kill-word-capital))))
     (progn
       (if (not (wordp (jcs-get-current-char-byte)))
           (progn
@@ -758,69 +764,62 @@ SOURCE(jenchieh): https://emacs.stackexchange.com/questions/2888/kill-buffer-whe
                 (backward-delete-char 1))
             (progn
               (backward-delete-char 1)
-              (jcs-backward-kill-word-capital)))
-          ))))
+              (jcs-backward-kill-word-capital)))))))
 
   ;; reset triggers
-  (setq first-char-is-char nil)
-  (setq check-first-char nil)
-  (setq found-first-char nil)
-  )
+  (setq jcs-first-char-is-char nil)
+  (setq jcs-check-first-char nil)
+  (setq jcs-found-first-char nil))
 
 ;;;###autoload
 (defun jcs-forward-kill-word-capital ()
   "Forward delete the word unitl the word is capital."
   (interactive)
 
-  (when (eq check-first-char nil)
+  (when (eq jcs-check-first-char nil)
     (backward-delete-char -1)
     ;; check the first character a character
     (when (wordp (jcs-get-current-char-byte))
-      (setq first-char-is-char t))
+      (setq jcs-first-char-is-char t))
 
     ;; check the first character mission complete.
-    (setq check-first-char t))
+    (setq jcs-check-first-char t))
 
   (forward-char 1)
 
   ;; found the first character!
   (when (wordp (jcs-get-current-char-byte))
-    (setq found-first-char t))
+    (setq jcs-found-first-char t))
 
-  (if (eq found-first-char nil)
+  (if (eq jcs-found-first-char nil)
       (progn
-        (if (eq first-char-is-char t)
+        (if (eq jcs-first-char-is-char t)
             (progn
               (backward-delete-char 1))
           (progn
             (backward-delete-char 1)
-            (jcs-forward-kill-word-capital)
-            )))
+            (jcs-forward-kill-word-capital))))
     (progn
       (if (or (not (wordp (jcs-get-current-char-byte)))
               (is-end-of-line-p))
           (progn
             ;; NOTE: Here is end of the recursive
             ;; function loop...
-            (backward-delete-char 1)
-            )
+            (backward-delete-char 1))
         (progn
           (if (uppercasep (jcs-get-current-char-byte))
               (progn
                 ;; NOTE: Here is end of the recursive
                 ;; function loop...
-                (forward-char -1)
-                )
+                (forward-char -1))
             (progn
               (backward-delete-char 1)
-              (jcs-forward-kill-word-capital)))
-          ))))
+              (jcs-forward-kill-word-capital)))))))
 
   ;; reset triggers
-  (setq first-char-is-char nil)
-  (setq check-first-char nil)
-  (setq found-first-char nil)
-  )
+  (setq jcs-first-char-is-char nil)
+  (setq jcs-check-first-char nil)
+  (setq jcs-found-first-char nil))
 
 ;;;###autoload
 (defun jcs-backward-capital-char ()
@@ -828,27 +827,26 @@ SOURCE(jenchieh): https://emacs.stackexchange.com/questions/2888/kill-buffer-whe
 to the point."
   (interactive)
 
-  (when (eq check-first-char nil)
+  (when (eq jcs-check-first-char nil)
     ;; check the first character a character
     (when (wordp (jcs-get-current-char-byte))
-      (setq first-char-is-char t))
+      (setq jcs-first-char-is-char t))
 
     ;; check the first character mission complete.
-    (setq check-first-char t))
+    (setq jcs-check-first-char t))
 
   ;; found the first character!
   (when (wordp (jcs-get-current-char-byte))
-    (setq found-first-char t))
+    (setq jcs-found-first-char t))
 
-  (if (eq found-first-char nil)
+  (if (eq jcs-found-first-char nil)
       (progn
-        (if (eq first-char-is-char t)
+        (if (eq jcs-first-char-is-char t)
             (progn
               (backward-char 1))
           (progn
             (backward-char 1)
-            (jcs-backward-capital-char)
-            )))
+            (jcs-backward-capital-char))))
     (progn
       (if (not (wordp (jcs-get-current-char-byte)))
           (progn
@@ -863,14 +861,12 @@ to the point."
                 (backward-char 1))
             (progn
               (backward-char 1)
-              (jcs-backward-capital-char)))
-          ))))
+              (jcs-backward-capital-char)))))))
 
   ;; reset triggers
-  (setq first-char-is-char nil)
-  (setq check-first-char nil)
-  (setq found-first-char nil)
-  )
+  (setq jcs-first-char-is-char nil)
+  (setq jcs-check-first-char nil)
+  (setq jcs-found-first-char nil))
 
 ;;;###autoload
 (defun jcs-forward-capital-char ()
@@ -888,20 +884,20 @@ the point."
   (when (= beginningBufferPoint (point))
     (forward-char 1))
 
-  (when (eq check-first-char nil)
+  (when (eq jcs-check-first-char nil)
     ;; check the first character a character
     (when (wordp (jcs-get-current-char-byte))
       (forward-char 1)
-      (setq first-char-is-char t))
+      (setq jcs-first-char-is-char t))
 
     ;; check the first character mission complete.
-    (setq check-first-char t))
+    (setq jcs-check-first-char t))
 
   ;; found the first character!
   (when (wordp (jcs-get-current-char-byte))
-    (setq found-first-char t))
+    (setq jcs-found-first-char t))
 
-  (if (eq found-first-char nil)
+  (if (eq jcs-found-first-char nil)
       (progn
         (forward-char 1)
         (jcs-forward-capital-char))
@@ -911,8 +907,7 @@ the point."
           (progn
             ;; NOTE: Here is end of the recursive
             ;; function loop...
-            (backward-char 1)
-            )
+            (backward-char 1))
         (progn
           (if (uppercasep (jcs-get-current-char-byte))
               (progn
@@ -921,14 +916,12 @@ the point."
                 )
             (progn
               (forward-char 1)
-              (jcs-forward-capital-char)
-              ))))))
+              (jcs-forward-capital-char)))))))
 
   ;; reset triggers
-  (setq first-char-is-char nil)
-  (setq check-first-char nil)
-  (setq found-first-char nil)
-  )
+  (setq jcs-first-char-is-char nil)
+  (setq jcs-check-first-char nil)
+  (setq jcs-found-first-char nil))
 
 ;;----------------------------------------------
 ;; Delete Repeatedly
