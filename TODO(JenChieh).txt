@@ -10,4 +10,3 @@
 //-- General --//
 * Refactor code, and get rid of unused interactive function.
 * CSS sort attribute issue.
-* Check function error on search switch to local mode.
