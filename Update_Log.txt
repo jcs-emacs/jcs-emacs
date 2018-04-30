@@ -12,7 +12,10 @@
  switch to cross mode manually anymore. It will just switch to cross 
  mode automatically. The implementation can be found in 
  `jcs-helm-do-ag-this-file' function. (jcs-emacs-init)
-
+* Fixed some autoload/interactive functions. (jcs-emacs-init)
+* Fixed failed search on move to next/previous blank line functions. (jcs-emacs-init)
+*  Fixed CSS type face highlighting. (jcs-emacs-init)
+ 
 2018-04-29
 * Change indentation and change mode to from if statement to cond 
  statement. (jcs-emacs-init)
