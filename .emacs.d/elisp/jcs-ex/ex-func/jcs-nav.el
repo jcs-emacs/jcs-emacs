@@ -52,18 +52,21 @@ Just use this without remember Emacs Lisp function."
 ;; Navigating Blank Line
 ;;----------------------------------------------
 
-;; Navigation
+;;;###autoload
 (defun previous-blank-line ()
   "Move to the previous line containing nothing but whitespace."
   (interactive)
-  (search-backward-regexp "^[ \t]*\n"))
+  (unless (ignore-errors (or (search-backward-regexp "^[ \t]*\n") t))
+    (goto-char (point-min))))
 
+;;;###autoload
 (defun next-blank-line ()
   "Move to the next line containing nothing but whitespace."
   (interactive)
   (forward-line)
-  (search-forward-regexp "^[ \t]*\n")
-  (forward-line -1))
+  (if (ignore-errors (or (search-forward-regexp "^[ \t]*\n") t))
+      (forward-line -1)
+    (goto-char (point-max))))
 
 ;;----------------------------------------------
 ;; Navigating Parentheses
