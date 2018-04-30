@@ -36,7 +36,7 @@
 (load-file "~/.emacs.d/elisp/jcs-ex/jcs-global-key.el")
 
 ;;---------------------------------------------
-;; Trigger between command and inset mode
+;; Trigger between command and insert mode
 ;;---------------------------------------------
 
 ;;;###autoload
@@ -64,15 +64,15 @@
   (if (eq jcs-minibuffer-active nil)
       (progn
 
-        (if (get 'jcs-local-online-mode-toggle 'state)
+        (if (get 'jcs-depend-cross-mode-toggle 'state)
             (progn
               ;; depend mode
               (jcs-depend-mode)
-              (put 'jcs-local-online-mode-toggle 'state nil))
+              (put 'jcs-depend-cross-mode-toggle 'state nil))
           (progn
             ;; cross mode
             (jcs-cross-mode)
-            (put 'jcs-local-online-mode-toggle 'state t))))))
+            (put 'jcs-depend-cross-mode-toggle 'state t))))))
 
 ;;;###autoload
 (defun jcs-reload-active-mode ()
@@ -88,6 +88,23 @@ toggle mode function."
         (progn
           ;; vice versa, keep on depend mode.
           (jcs-depend-mode)))))
+
+
+(defvar jcs-prompt-message-sleep-delay-time 0.4  ;; in seconds
+  "Delay for a time for prompting out the message, so the user
+can see the error/operation message.")
+
+;;;###autoload
+(defun jcs-helm-do-ag-this-file ()
+  "Handle error for `helm-do-ag-this-file' command by switching
+to the `jcs-cross-mode' in order to use cross mode search instead
+of machine depenedent plugins/packages which is the `jcs-depend-mode'."
+  (interactive)
+  (unless (ignore-errors (or (helm-do-ag-this-file) t))
+    (jcs-cross-mode)
+    (message "Error: This buffer is not visited file. Switch to cross mode search..")
+    (sleep-for jcs-prompt-message-sleep-delay-time)
+    (call-interactively 'isearch-forward)))
 
 ;;---------------------------------------------
 ;; Command Mode
@@ -243,7 +260,7 @@ control of the editor."
   ;; -----------------------------------------
 
   ;; search
-  (define-key global-map "\C-f" 'helm-do-ag-this-file)
+  (define-key global-map "\C-f" 'jcs-helm-do-ag-this-file)
   (define-key global-map "\C-x\C-f" 'helm-do-ag-project-root)
 
   ;; Search
