@@ -169,7 +169,7 @@ CH : character we target to move toward."
       (forward-char 1))))
 
 (defun jcs-move-to-backward-a-char (ch)
-  "Move forward to a character.
+  "Move backward to a character.
 CH : character we target to move toward."
   (interactive "P")
   (ignore-errors
@@ -187,7 +187,7 @@ as NO-REC : recursive? (Default: do recusrive method)"
     (jcs-move-to-forward-a-char-recursive ch)))
 
 (defun jcs-move-to-backward-a-char-do-recursive (ch &optional no-rec)
-  "Move forward to a character and recusrive?
+  "Move backward to a character and recusrive?
 CH : character we target to move toward.
 as NO-REC : recursive? (Default: do recusrive method)"
   (interactive "P")
