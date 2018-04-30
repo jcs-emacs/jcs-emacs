@@ -7,6 +7,12 @@
 # ========================================================================
 
 
+2018-04-30
+* Add error handling for `helm-do-ag-this-file' command. No need to 
+ switch to cross mode manually anymore. It will just switch to cross 
+ mode automatically. The implementation can be found in 
+ `jcs-helm-do-ag-this-file' function. (jcs-emacs-init)
+
 2018-04-29
 * Change indentation and change mode to from if statement to cond 
  statement. (jcs-emacs-init)
