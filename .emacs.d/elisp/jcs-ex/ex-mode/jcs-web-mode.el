@@ -309,14 +309,19 @@
 ;; css indent spaces.
 (setq css-indent-offset 2)
 
+(require 'com-css-sort)
+;; NOTE(jenchieh): Set the source control list to the
+;; same as mine source control list.
+(setq com-css-sort-vc-list jcs-vc-list)
+
 
 ;; TODO(jenchieh): No idea why, but this could not put it at
 ;; the .emacs file's Manually install section.
 ;; CSS Mode: https://www.emacswiki.org/emacs/css-mode.el
 (load-file "~/.emacs.d/elisp/css-mode.el")
 
-(require 'css-sort)
 (require 'css-mode)
+
 (defun jcs-css-mode-hook ()
 
   ;; enable impatient mode for real time editing.
@@ -355,9 +360,9 @@
   (define-key css-mode-map (kbd "RET") 'jcs-smart-context-line-break)
   (define-key css-mode-map (kbd "*") 'jcs-c-comment-pair)
 
-  ;; sort attribute in order => `css-sort' package.
-  (define-key css-mode-map "\C-ks" 'jcs-css-sort-attributes)
-  (define-key css-mode-map "\C-kd" 'jcs-css-sort-attributes-document)
+  ;; sort attribute in order => `com-css-sort' package.
+  (define-key css-mode-map "\C-ks" 'com-css-sort-attributes-block)
+  (define-key css-mode-map "\C-kd" 'com-css-sort-attributes-document)
   )
 (add-hook 'css-mode-hook  'jcs-css-mode-hook)
 (add-hook 'css-mode-hook 'emmet-mode)
