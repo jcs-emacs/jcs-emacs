@@ -118,6 +118,10 @@ Return a list of installed packages or nil for every skipped package."
                           'better-defaults
                           'blank-mode
                           'cobol-mode
+                          ;; TEMPORARY(jenchieh): Hopefully melpa will let me push
+                          ;; my package `com-css-sort' to their package system.
+                          ;; Then we can add this line under directly.
+                          ;;'com-css-sort
                           'company
                           'cmake-font-lock
                           'cmake-ide
@@ -202,9 +206,15 @@ Return a list of installed packages or nil for every skipped package."
 ;;         Manually Install
 ;;----------------------------------
 
-(load-file "~/.emacs.d/elisp/css-sort.el")
 (load-file "~/.emacs.d/elisp/verilog-mode.el")
 (load-file "~/.emacs.d/elisp/jayces-mode.el")
+
+;;
+;; TEMPORARY(jenchieh): Hopefully melpa will let me push
+;; my package `com-css-sort' to their package system.
+;; Then we can remove load file/manually install package system.
+;;
+(load-file "~/.emacs.d/elisp/com-css-sort-20180501.001/com-css-sort.el")
 
 ;;
 ;; TEMPORARY(jenchieh): Hopefully melpa will let me push
