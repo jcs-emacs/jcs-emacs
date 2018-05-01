@@ -9,6 +9,7 @@
 
 2018-05-01
 * Update `organize-imports-java' package manually. (jcs-emacs-init)
+* Install com-css-sort package manually.　(jcs-emacs-init)
 
 2018-04-30
 * Add error handling for `helm-do-ag-this-file' command. No need to 
