@@ -74,12 +74,11 @@ wrap by another function..."
   (interactive)
 
   ;; if region, delete the region first.
-  (if (use-region-p)
-      ;; NOTE(jayces): `kill-region' will copy the word.
-      ;; Use `delete-region' instead, this will not copy
-      ;; the word.
-      (delete-region (region-beginning) (region-end))
-    )
+  (when (use-region-p)
+    ;; NOTE(jayces): `kill-region' will copy the word.
+    ;; Use `delete-region' instead, this will not copy
+    ;; the word.
+    (delete-region (region-beginning) (region-end)))
 
   ;; then paste it.
   (yank)
@@ -100,12 +99,10 @@ wrap by another function..."
 
   (backward-delete-char 1)
 
-  (if (and (not (current-whitespacep))
-           (not (current-char-equal-p "$"))
-           (jcs-current-char-a-wordp))
-      (jcs-web-backward-delete-word)
-    )
-  )
+  (when (and (not (current-whitespacep))
+             (not (current-char-equal-p "$"))
+             (jcs-current-char-a-wordp))
+    (jcs-web-backward-delete-word)))
 
 ;;;###autoload
 (defun jcs-web-backward-delete-word-capital ()
@@ -114,17 +111,15 @@ wrap by another function..."
 
   (backward-delete-char 1)
 
-  (if (and (not (current-whitespacep))
-           (not (current-char-equal-p "$"))
-           (not (jcs-current-char-uppercasep))
-           (jcs-current-char-a-wordp))
-      (jcs-web-backward-delete-word-capital)
-    )
+  (when (and (not (current-whitespacep))
+             (not (current-char-equal-p "$"))
+             (not (jcs-current-char-uppercasep))
+             (jcs-current-char-a-wordp))
+    (jcs-web-backward-delete-word-capital))
 
-  (if (and (jcs-current-char-uppercasep)
-           (not (current-char-equal-p "$")))
-      (backward-delete-char 1))
-  )
+  (when (and (jcs-current-char-uppercasep)
+             (not (current-char-equal-p "$")))
+    (backward-delete-char 1)))
 
 ;;========================================
 ;;      JCS Format File
@@ -162,8 +157,7 @@ wrap by another function..."
 
     (while (and (>= (string-to-number (format-mode-line "%l")) startLineNum2))
       (jcs-web-smart-indent-up)
-      (end-of-line))
-    ))
+      (end-of-line))))
 
 ;;;###autoload
 (defun jcs-web-format-document ()
@@ -252,8 +246,7 @@ line by line instead of indent the whole file at once."
 (defun jcs-css-save-buffer ()
   "Save buffer in `css-mode'."
   (interactive)
-  ;; TODO(jenchieh): just disable the sorting method for now.
-  ;;(jcs-css-sort-attributes-document)
+  (com-css-sort-attributes-document)
   (jcs-untabify-save-buffer))
 
 ;;---------------------------------------------
@@ -280,48 +273,6 @@ line by line instead of indent the whole file at once."
 ;;---------------------------------------------
 ;; CSS
 ;;---------------------------------------------
-
-;;;###autoload
-(defun jcs-css-sort-attributes ()
-  "Sort the CSS attributes for open and close curly parenthesis."
-  (interactive)
-
-  ;; record down the starting line.
-  (let ((startLineNum (string-to-number (format-mode-line "%l"))))
-
-    (save-excursion
-      (save-window-excursion
-        (ignore-errors
-          (css-sort-attributes (point-min) (point-max)))))
-
-    ;; make sure go back to the starting line.
-    (goto-line startLineNum)
-    (end-of-line)))
-
-;;;###autoload
-(defun jcs-css-sort-attributes-document ()
-  "Sort all attributes for whole document."
-  (interactive)
-
-  ;; record down the starting line.
-  (let ((startLineNum (string-to-number (format-mode-line "%l"))))
-
-    (save-excursion
-      (save-window-excursion
-        (ignore-errors
-          (beginning-of-buffer)
-
-          (while (search-forward "}")
-            (jcs-move-forward-close-curlyParen)
-            ;; sort CSS attributes once.
-            (css-sort-attributes (point-min) (point-max))))))
-
-    ;; make sure go back to the starting line.
-    (goto-line startLineNum)
-    (end-of-line)))
-
-;;-----------------------------------------------------------
-;;-----------------------------------------------------------
 
 (defun jcs-init-css-faces ()
   "CSS Faces Highlighting."
