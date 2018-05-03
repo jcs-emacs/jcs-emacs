@@ -383,26 +383,25 @@ SEARCH-OPTION :
 
             ;; Make sure only process current/one line.
             (when (<= (point) end-function-point)
-              (let ((current-point-face(jcs-get-current-point-face) ))
+              (let ((current-point-face (jcs-get-current-point-face) ))
 
                 ;; NOTE(jenchieh): If there is multiple faces at
                 ;; a point, it will return a list instead of
                 ;; string. Just get the first element which is
                 ;; usually the foreground face.
-                (if (listp current-point-face)
-                    (setq current-point-face (nth 0 current-point-face)))
+                (when (listp current-point-face)
+                  (setq current-point-face (nth 0 current-point-face)))
 
                 ;; NOTE(jenchieh): Store all the keyword name.
-                (if (or (string= current-point-face "font-lock-keyword-face")
-                        (string= current-point-face "font-lock-preprocessor-face"))
-                    (add-to-list 'keyword-strings (thing-at-point 'word)))
+                (when (or (string= current-point-face "font-lock-keyword-face")
+                          (string= current-point-face "font-lock-preprocessor-face"))
+                  (add-to-list 'keyword-strings (thing-at-point 'word)))
 
                 ;; NOTE(jenchieh): Check if meet the function name.
-                (if (or (string= current-point-face "font-lock-function-name-face")
-                        (string= current-point-face "web-mode-function-name-face"))
-                    (progn
-                      (setq function-name-string (thing-at-point 'word))
-                      (setq meet-function-name t)))
+                (when (or (string= current-point-face "font-lock-function-name-face")
+                          (string= current-point-face "web-mode-function-name-face"))
+                  (setq function-name-string (thing-at-point 'word))
+                  (setq meet-function-name t))
 
                 ;; NOTE(jenchieh): Store all the type name. (include return type name)
                 (when (string= current-point-face "font-lock-type-face")
@@ -425,13 +424,11 @@ SEARCH-OPTION :
                     ))
 
                 ;; NOTE(jenchieh): Store all the variables name.
-                (if (or (string= current-point-face "font-lock-variable-name-face")
-                        (string= current-point-face 'js2-function-param)
-                        (string= current-point-face "web-mode-variable-name-face")
-                        (string= current-point-face "jcs-preproc-variable-name-face"))
-                    (progn
-                      (add-to-list 'param-variable-strings (thing-at-point 'word))
-                      ))
+                (when (or (string= current-point-face "font-lock-variable-name-face")
+                          (string= current-point-face 'js2-function-param)
+                          (string= current-point-face "web-mode-variable-name-face")
+                          (string= current-point-face "jcs-preproc-variable-name-face"))
+                  (add-to-list 'param-variable-strings (thing-at-point 'word)))
                 )))
           )))
 
