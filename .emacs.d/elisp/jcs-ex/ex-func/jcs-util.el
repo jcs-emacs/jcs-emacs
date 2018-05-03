@@ -334,52 +334,59 @@ IS-FORWARD : forward conversion instead of backward conversion."
 (defun is-end-of-line-p ()
   "Is at the end of line?"
   (save-excursion
-    (let ((currentPoint nil)
-          (endLinePoint nil))
-      (setq currentPoint (point))
+    (let ((current-point nil)
+          (end-line-point nil))
+      (setq current-point (point))
       (end-of-line)
-      (setq endLinePoint (point))
-      (= endLinePoint currentPoint))))
+      (setq end-line-point (point))
+      (= end-line-point current-point))))
 
 ;;;###autoload
 (defun is-end-of-buffer-p ()
   "Is at the end of buffer?"
   (save-excursion
-    (let ((currentPoint nil)
-          (endBufferPoint nil))
-      (setq currentPoint (point))
+    (let ((current-point nil)
+          (end-buffer-point nil))
+      (setq current-point (point))
       (goto-char (point-max))
-      (setq endBufferPoint (point))
-      (= endBufferPoint currentPoint))))
+      (setq end-buffer-point (point))
+      (= end-buffer-point current-point))))
 
 ;;;###autoload
 (defun is-beginning-of-line-p ()
   "Is at the beginning of line?"
   (save-excursion
-    (let ((currentPoint nil)
-          (beginLinePoint nil))
-      (setq currentPoint (point))
+    (let ((current-point nil)
+          (begin-line-point nil))
+      (setq current-point (point))
       (beginning-of-line)
-      (setq beginLinePoint (point))
-      (= beginLinePoint currentPoint))))
+      (setq begin-line-point (point))
+      (= begin-line-point current-point))))
 
 ;;;###autoload
 (defun is-beginning-of-buffer-p ()
   "Is at the beginning of buffer?"
   (save-excursion
-    (let ((currentPoint nil)
-          (beginBufferPoint nil))
-      (setq currentPoint (point))
+    (let ((current-point nil)
+          (begin-buffer-point nil))
+      (setq current-point (point))
       (goto-char (point-min))
-      (setq beginBufferPoint (point))
-      (= beginBufferPoint currentPoint))))
+      (setq begin-buffer-point (point))
+      (= begin-buffer-point current-point))))
 
 (defun is-current-file-empty-p ()
   "Check if the file a empty file."
   (and (is-beginning-of-buffer-p)
        (is-end-of-buffer-p)))
 
-;;;###autoload
+(defun jcs-get-current-line-integer ()
+  "Get the current line as integer."
+  (string-to-number (jcs-get-current-line-string)))
+
+(defun jcs-get-current-line-string ()
+  "Get the current line as string."
+  (format-mode-line "%l"))
+
 (defun is-current-line (line)
   "Is current line number this line?
 LINE : number to check if current line this line?"
@@ -388,14 +395,14 @@ LINE : number to check if current line this line?"
 ;;;###autoload
 (defun is-at-start-of-line-p ()
   "Cursor is at the first character of this line?"
-  (let ((currentPoint nil)
+  (let ((current-point nil)
         (firstCharPoint nil))
     (save-excursion
-      (setq currentPoint (point))
+      (setq current-point (point))
       (back-to-indentation)
       (setq firstCharPoint (point)))
 
-    (= firstCharPoint currentPoint)))
+    (= firstCharPoint current-point)))
 
 ;;;###autoload
 (defun is-met-first-char-at-line-p ()
@@ -556,6 +563,23 @@ active. false, there is no region selected and mark is not active.
   (let ((face (or (get-char-property (point) 'read-face-name)
                   (get-char-property (point) 'face))))
     face))
+
+(defun jcs-is-current-point-face (in-face)
+  "Check if current face the same face as IN-FACE.
+Returns, True if is the same as pass in face name string.
+False, is not the same as pass in face name string.
+IN-FACE : input face name as string."
+  (let ((current-point-face (jcs-get-current-point-face)))
+
+    ;; NOTE(jenchieh): If there is multiple faces at
+    ;; a point, it will return a list instead of
+    ;; string. Just get the first element which is
+    ;; usually the foreground face.
+    (when (listp current-point-face)
+      (setq current-point-face (nth 0 current-point-face)))
+
+    ;; Return result.
+    (string= in-face current-point-face)))
 
 ;;---------------------------------------------
 ;; Font
