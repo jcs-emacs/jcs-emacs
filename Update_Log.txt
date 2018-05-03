@@ -7,6 +7,12 @@
 # ========================================================================
 
 
+2018-05-03
+* Implement auto truncate lines functionalties. (jcs-emacs-init)
+* Enable auto truncate lines functions in web mode as default 
+ functionalities. (jcs-emacs-init)
+* Add get current line number functionalities. (jcs-emacs-init)
+
 2018-05-01
 * Update `organize-imports-java' package manually. (jcs-emacs-init)
 * Install com-css-sort package manually.　(jcs-emacs-init)
