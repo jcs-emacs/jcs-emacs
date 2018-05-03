@@ -244,6 +244,21 @@ own preferences."
     ;;(helm-execute-persistent-action)
     ))
 
+;;---------------------------------------------
+;; Truncate Lines
+;;---------------------------------------------
+
+;;;###autoload
+(defun jcs-enable-truncate-lines ()
+  "Enable truncate lines."
+  (interactive)
+  (setq truncate-lines t))
+
+;;;###autoload
+(defun jcs-disable-truncate-lines ()
+  "Disable truncate lines."
+  (interactive)
+  (setq truncate-lines nil))
 
 ;;----------------------------------------------
 ;; Package
