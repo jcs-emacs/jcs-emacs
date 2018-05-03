@@ -81,14 +81,14 @@
   ;; highlight URL and clickable.
   (goto-address-mode 1)
 
-  ;; enable truncate lines.
-  (toggle-truncate-lines)
-
   ;; Auto highlight the same word.
   (auto-highlight-symbol-mode t)
 
   ;; align truncate lines use.
   (visual-line-mode t)
+
+  ;; Enable auto truncate line.
+  (jcs-web-enable-auto-trancate-lines)
 
   (require 'ac-php)
   (setq ac-sources '(ac-source-php))
@@ -127,6 +127,8 @@
   ;; Edit
   (define-key web-mode-map (kbd "<up>") 'jcs-web-smart-indent-up)
   (define-key web-mode-map (kbd "<down>") 'jcs-web-smart-indent-down)
+  (define-key web-mode-map (kbd "<right>") 'jcs-web-right)
+  (define-key web-mode-map (kbd "<left>") 'jcs-web-left)
   (define-key web-mode-map (kbd "<return>") 'jcs-web-return)
 
   ;; Save
