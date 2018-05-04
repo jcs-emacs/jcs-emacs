@@ -45,11 +45,21 @@
   "Enable/Disable the truncate lines mode depends on the face \
 cursor currently on."
   (interactive)
-  (when (not (current-line-empty-p))
-    ;; STUDY(jenchieh): nil means default, I guess.
-    (if (jcs-is-current-point-face "nil")
-        (jcs-disable-truncate-lines)
-      (jcs-enable-truncate-lines))))
+  (save-excursion
+    (when (not (current-line-empty-p))
+      ;; NOTE(jenchieh): When cursor is at the end of
+      ;; line, the face will always be `default' face.
+      ;; Which mean this will always be mis-detected,
+      ;; we fixed this by just backward a character.
+      ;;
+      ;; Forward a char if is at the end of line.
+      (when (is-end-of-line-p)
+        (forward-char -1))
+
+      ;; STUDY(jenchieh): nil means `default' face, I guess.
+      (if (jcs-is-current-point-face "nil")
+          (jcs-disable-truncate-lines)
+        (jcs-enable-truncate-lines)))))
 
 ;;;###autoload
 (defun jcs-web-enable-auto-trancate-lines ()
