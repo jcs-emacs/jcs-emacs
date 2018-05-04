@@ -9,6 +9,7 @@
 
 2018-05-04
 * Check end of line trigger enable/disable auto truncate lines effect. (jcs-emacs-init)
+* Remove unuse readme file -> README.txt. (jcs-emacs-init)
 
 2018-05-03
 * Implement auto truncate lines functionalties. (jcs-emacs-init)
