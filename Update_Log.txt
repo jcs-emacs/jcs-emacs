@@ -7,6 +7,11 @@
 # ========================================================================
 
 
+2018-05-05
+* Add check current char string match functionality. (jcs-emacs-init)
+* Auto truncate lines in web mode, add `default' face check twice. Make 
+ default check on the first character. (jcs-emacs-init)
+
 2018-05-04
 * Check end of line trigger enable/disable auto truncate lines effect. (jcs-emacs-init)
 * Remove unuse readme file -> README.txt. (jcs-emacs-init)
