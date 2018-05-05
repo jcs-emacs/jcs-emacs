@@ -275,6 +275,11 @@ IS-FORWARD : forward conversion instead of backward conversion."
   (let ((current-char-string (string (char-before))))
     (string= current-char-string c)))
 
+(defun current-char-string-match-p (c)
+  "Check the current character string match to 'C'."
+  (let ((current-char-string (string (char-before))))
+    (string-match current-char-string c)))
+
 (defun jcs-get-current-char-byte ()
   "Get the current character as the 'byte'."
   (let ((current-char nil)
