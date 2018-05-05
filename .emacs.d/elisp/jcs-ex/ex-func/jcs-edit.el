@@ -66,11 +66,7 @@
       (progn
         (let (;; Record down the column before
               ;; killing the whole line.
-              (before-column-num nil))
-          (save-excursion
-            (with-no-warnings
-              (next-line 1))
-            (setq before-column-num (current-column)))
+              (before-column-num (current-column)))
 
           ;; Do kill the whole line!
           (move-beginning-of-line 1)
