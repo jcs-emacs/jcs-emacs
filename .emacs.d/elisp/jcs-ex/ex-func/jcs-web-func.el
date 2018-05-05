@@ -34,6 +34,11 @@
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 
+(defun jcs-web-mode ()
+  "Rewrap of switching mode to `web-mode'."
+  (web-mode)
+  (jcs-web-keep-auto-truncate-lines))
+
 ;;-----------------------------------------------------------
 ;; Truncate lines depends on the Face.
 ;;-----------------------------------------------------------
@@ -90,6 +95,15 @@ cursor currently on."
       (jcs-web-disable-auto-trancate-lines)
     (jcs-web-enable-auto-trancate-lines)))
 
+;;;###autoload
+(defun jcs-web-keep-auto-truncate-lines ()
+  "Keep the same trigger for auto truncate mode.
+Is the opposite of `jcs-web-toggle-auto-truncate-lines'."
+  (interactive)
+  (if (equal jcs-web-auto-truncate-lines t)
+      (jcs-web-enable-auto-trancate-lines)
+    (jcs-web-disable-auto-trancate-lines)))
+
 ;;---------------------------------------------
 ;; Deletion
 ;;---------------------------------------------
@@ -102,7 +116,7 @@ cursor currently on."
 
   ;; NOTE(jenchieh): Unknown reason that web-mode will
   ;; get disable...
-  (web-mode)
+  ;;(jcs-web-mode)
 
   ;; NOTE(jenchieh): Get back highlighting.
   ;;(font-lock-flush)
@@ -117,7 +131,7 @@ cursor currently on."
 
   ;; NOTE(jenchieh): Unknown reason that web-mode will
   ;; get disable...
-  (web-mode)
+  (jcs-web-mode)
 
   ;; NOTE(jenchieh): Get back highlighting.
   ;;(font-lock-flush)
@@ -143,7 +157,7 @@ another function..."
 
   ;; NOTE(jenchieh): Unknown reason that web-mode will
   ;; get disable...
-  (web-mode)
+  (jcs-web-mode)
 
   ;; NOTE(jenchieh): Get back highlighting.
   ;;(font-lock-flush)
@@ -314,8 +328,11 @@ line by line instead of indent the whole file at once."
   (jcs-smart-context-line-break)
 
   (save-excursion
-    ;; Fix curly bracket not indent correctly.
-    (jcs-web-smart-indent-down)))
+    (let ((;; NOTE(jenchieh): Disable auto truncate lines effect
+           ;; before save.
+           (jcs-web-auto-truncate-lines nil)))
+      ;; Fix curly bracket not indent correctly.
+      (jcs-web-smart-indent-down))))
 
 ;;---------------------------------------------
 ;; Save
