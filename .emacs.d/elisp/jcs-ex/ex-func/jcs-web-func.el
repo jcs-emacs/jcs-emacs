@@ -53,8 +53,15 @@ cursor currently on."
       ;; we fixed this by just backward a character.
       ;;
       ;; Forward a char if is at the end of line.
-      (when (is-end-of-line-p)
-        (forward-char -1))
+      (when (or
+             ;; If is `default' face, do this as well
+             ;; for just in case some other face did
+             ;; get apply.
+             (jcs-is-current-point-face "nil")
+             ;; If current charact is either space or tab.
+             (current-char-string-match-p "[ \t]"))
+        (jcs-goto-first-char-in-line)
+        (forward-char 1))
 
       ;; STUDY(jenchieh): nil means `default' face, I guess.
       (if (jcs-is-current-point-face "nil")
