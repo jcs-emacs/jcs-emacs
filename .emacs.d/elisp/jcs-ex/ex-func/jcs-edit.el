@@ -60,12 +60,25 @@
 (defun jcs-kill-whole-line ()
   "Deletes a line, but does not put it in the `kill-ring'."
   (interactive)
-  (if (use-region-p)
-      (delete-region (region-beginning) (region-end))
-    (progn
-      (move-beginning-of-line 1)
-      (kill-line 1)
-      (setq kill-ring (cdr kill-ring)))))
+  (let ((kill-ring))
+    (if (use-region-p)
+        (delete-region (region-beginning) (region-end))
+      (progn
+        (let (;; Record down the column before
+              ;; killing the whole line.
+              (before-column-num nil))
+          (save-excursion
+            (with-no-warnings
+              (next-line 1))
+            (setq before-column-num (current-column)))
+
+          ;; Do kill the whole line!
+          (move-beginning-of-line 1)
+          (kill-line 1)
+
+          ;; Goto the same column as before we do the killing
+          ;; the whole line operations above.
+          (move-to-column before-column-num))))))
 
 ;;;###autoload
 (defun jcs-backward-kill-line (arg)
