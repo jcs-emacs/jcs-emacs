@@ -7,6 +7,9 @@
 # ========================================================================
 
 
+2018-05-07
+* Add remove trailing whitespace current line functionality. (jcs-emacs-init)
+
 2018-05-05
 * Add check current char string match functionality. (jcs-emacs-init)
 * Auto truncate lines in web mode, add `default' face check twice. Make 
