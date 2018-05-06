@@ -116,7 +116,7 @@ Is the opposite of `jcs-web-toggle-auto-truncate-lines'."
 
   ;; NOTE(jenchieh): Unknown reason that web-mode will
   ;; get disable...
-  ;;(jcs-web-mode)
+  (jcs-web-mode)
 
   ;; NOTE(jenchieh): Get back highlighting.
   ;;(font-lock-flush)
