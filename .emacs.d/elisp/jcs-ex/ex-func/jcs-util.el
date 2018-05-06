@@ -110,6 +110,23 @@ If you want to keep more than one line use
 ;; Tab / Space
 ;;---------------------------------------------
 
+;;;###autoload
+(defun jcs-delete-trailing-whitspace-current-line ()
+  "Delete the trailing whitespace exist in current line."
+  (interactive)
+  (save-excursion
+    (save-restriction
+      (let ((begin-of-line-point nil)
+            (end-of-line-point nil))
+        ;; Get beginning of line poinrt and end of line point.
+        (beginning-of-line)
+        (setq begin-of-line-point (point))
+        (end-of-line)
+        (setq end-of-line-point (point))
+
+        (narrow-to-region begin-of-line-point end-of-line-point)
+        (delete-trailing-whitespace)))))
+
 (defun jcs-is-good-space-to-convert-to-tab-p ()
   "Check if current point a good space to convert for tab.
 Generally you will have to check it four times."
