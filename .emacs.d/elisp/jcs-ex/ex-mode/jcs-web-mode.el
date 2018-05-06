@@ -161,7 +161,9 @@
 
 ;; ASP .NET
 (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.cshtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.[Mm]aster\\'" . web-mode))
+
 
 ;; Associate an engine
 (setq web-mode-engines-alist
