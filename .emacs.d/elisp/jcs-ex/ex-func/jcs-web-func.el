@@ -13,11 +13,19 @@
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 ;;----------------------------------------------
-;; Comment Face
+;; Web Comment Face
 ;;----------------------------------------------
 
+(defface jcs-web-mode-block-comment-face
+  '((t (:foreground "olive drab" :background "#000000")))
+  "Web mode block comment face with dark background."
+  :group 'basic-faces)
+(defvar jcs-font-lock-comment-face 'jcs-font-lock-comment-face)
+
+
 (defvar jcs-web-type-comment-missing-modes '(web-mode)
-  "Modes that does not apply comment")
+  "Modes that does not apply comment in ASP.NET.")
+
 
 (mapc (lambda (mode)
         (font-lock-add-keywords
@@ -25,9 +33,11 @@
          '(;; For nomral HTML comment.
            ("\\(<\\!--[[:ascii:]]*-->\\)" 1 'jcs-font-lock-comment-face t)
            ;; For multi-lines comment.
-           ("\\(/\\*[a-zA-Z0-9 \n\t.<>?,*'`@\"=-_(){}:;&^%$#!~]*\\*/\\)" 1 'jcs-font-lock-comment-face t)
+           ;; TODO(jenchieh): Only inside the curly bracket.
+           ("\\(/\\*[a-zA-Z0-9 \n\t.<>?,*'`@\"=-_(){}:;&^%$#!~]*\\*/\\)" 1 'jcs-web-mode-block-comment-face t)
            ;; For one line comment.
-           ("\\(/\\*[a-zA-Z0-9 \t.<>?,*'`/@\"=-_(){}:;&^%$#!~]*\\*/\\)" 1 'jcs-font-lock-comment-face t)
+           ;; TODO(jenchieh): Only inside the curly bracket.
+           ("\\(/\\*[a-zA-Z0-9 \t.<>?,*'`/@\"=-_(){}:;&^%$#!~]*\\*/\\)" 1 'jcs-web-mode-block-comment-face t)
            )'end))
       jcs-web-type-comment-missing-modes)
 
@@ -331,8 +341,8 @@ line by line instead of indent the whole file at once."
         (line-between-pair nil))
     (save-excursion
       (ignore-errors
-        (when (and (search-forward "<" (jcs-point-end-of-line))
-                   (search-backward ">" (jcs-point-beginning-of-line)))
+        (when (and (jcs-first-backward-char-p ">")
+                   (jcs-first-forward-char-p "<"))
           (setq line-between-pair t))))
 
     ;; Call defulat line break function first.
