@@ -9,6 +9,9 @@
 
 2018-05-07
 * Add remove trailing whitespace current line functionality. (jcs-emacs-init)
+* Change all files header to classic JayCeS header. (jcs-emacs-init)
+* Set default major mode to org-mode. (jcs-emacs-init)
+* Add comment regexp for web-mode, compatible with ASP.NET project. (jcs-emacs-init)
 
 2018-05-05
 * Add check current char string match functionality. (jcs-emacs-init)
