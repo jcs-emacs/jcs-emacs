@@ -1,35 +1,16 @@
-;; This is the start of jcs-plugin.el file
-;;------------------------------------------------------------------------------------------------------
+;; ========================================================================
+;; $File: jcs-plugin.el $
+;; $Date: 2017-05-29 10:21:39 $
+;; $Revision: $
+;; $Creator: Jen-Chieh Shen $
+;; $Notice: See LICENSE.txt for modification and distribution information
+;;                   Copyright © 2017 by Shen, Jen-Chieh $
+;; ========================================================================
 
-;; jcs-plugin.el             -*- Emacs-Lisp -*-
-
-;; Mode for editing JayCeS code
-
-;; Created:    <Fri Oct 21 13:51:49 EST 2016>
-;; Time-stamp: <2017-05-29 10:21:39>
-;; Author:     Jen-Chieh Shen <jcs090218@gmail.com>
-;; Version:    0.1
-;; Keywords:   JayCeS, languages, os, operating system
-
-;; Copyright (C) 2017 Jen-Chieh Shen
-
-;; jcs-plugin is free software: you can redistribute it and/or modify
-;; it under the terms of the GNU General Public License as published by
-;; the Free Software Foundation, either version 3 of the License, or
-;; (at your option) any later version.
-
-;; jcs-plugin is distributed in the hope that it will be useful,
-;; but WITHOUT ANY WARRANTY; without even the implied warranty of
-;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-;; GNU General Public License for more details.
-
-;; You should have received a copy of the GNU General Public License
-;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;================================================
 ;; JayCeS Environment Settings.
 ;;================================================
-
 
 ;;===========================
 ;; Find file in project
@@ -247,6 +228,3 @@
 ;; Set the time delay (in seconds) for the which-key popup to appear. A value of
 ;; zero might cause issues so a non-zero value is recommended.
 (setq which-key-idle-delay 1.0)
-
-;;------------------------------------------------------------------------------------------------------
-;; This is the end of jcs-plugin.el file

@@ -1,30 +1,11 @@
-;; This is the start of jcs-comment.el file
-;;------------------------------------------------------------------------------------------------------
-
-;; jcs-comment.el             -*- Emacs-Lisp -*-
-
-;; Mode for editing JayCeS code
-
-;; Created:    <Fri Oct 21 13:51:49 EST 2017>
-;; Time-stamp: <2017-05-31 10:21:39>
-;; Author:     Jen-Chieh Shen <jcs090218@gmail.com>
-;; Version:    0.1
-;; Keywords:   JayCeS, languages, os, operating system
-
-;; Copyright (C) 2017 Jen-Chieh Shen
-
-;; jcs-comment is free software: you can redistribute it and/or modify
-;; it under the terms of the GNU General Public License as published by
-;; the Free Software Foundation, either version 3 of the License, or
-;; (at your option) any later version.
-
-;; jcs-comment is distributed in the hope that it will be useful,
-;; but WITHOUT ANY WARRANTY; without even the implied warranty of
-;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-;; GNU General Public License for more details.
-
-;; You should have received a copy of the GNU General Public License
-;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;; ========================================================================
+;; $File: jcs-comment.el $
+;; $Date: 2017-05-31 10:21:39 $
+;; $Revision: $
+;; $Creator: Jen-Chieh Shen $
+;; $Notice: See LICENSE.txt for modification and distribution information
+;;                   Copyright © 2017 by Shen, Jen-Chieh $
+;; ========================================================================
 
 
 ;;----------------------------------------------
@@ -263,7 +244,3 @@ comment region. Otherwise comment line."
     ;; else we just comment one single line.
     (uncomment-region (line-beginning-position) (line-end-position))
     ))
-
-
-;;------------------------------------------------------------------------------------------------------
-;; This is the end of jcs-comment.el file

@@ -1,37 +1,16 @@
-;; This is the start of jcs-java-func.el file
-;;------------------------------------------------------------------------------------------------------
-
-;; jcs-java-func.el             -*- Emacs-Lisp -*-
-
-;; Mode for editing JayCeS code
-
-;; Created:    <Sat Apr 07 15:09:05 EST 2018>
-;; Time-stamp: <2018-04-07 15:09:05>
-;; Author:     Jen-Chieh Shen <jcs090218@gmail.com>
-;; Version:    0.1
-;; Keywords:   JayCeS, languages, os, operating system
-
-;; Copyright (C) 2018 Jen-Chieh Shen
-
-;; jcs-java-func is free software: you can redistribute it and/or modify
-;; it under the terms of the GNU General Public License as published by
-;; the Free Software Foundation, either version 3 of the License, or
-;; (at your option) any later version.
-
-;; jcs-java-func is distributed in the hope that it will be useful,
-;; but WITHOUT ANY WARRANTY; without even the implied warranty of
-;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-;; GNU General Public License for more details.
-
-;; You should have received a copy of the GNU General Public License
-;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;; ========================================================================
+;; $File: jcs-java-func.el $
+;; $Date: 2018-04-07 15:09:05 $
+;; $Revision: $
+;; $Creator: Jen-Chieh Shen $
+;; $Notice: See LICENSE.txt for modification and distribution information
+;;                   Copyright © 2018 by Shen, Jen-Chieh $
+;; ========================================================================
 
 
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 ;; When editing the Java related file.
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-
-;;; Code:
 
 (defvar jcs-java-source-dir-name "src"
   "Java source directory name.")
@@ -145,6 +124,3 @@ Including adding or removing the package path."
              ("\\([A-Z][a-zA-Z0-9._-]*\\)\\.[a-zA-Z0-9_-]*[),:]" 1 'font-lock-type-face t)
              )'end)))
       jcs-java-font-lock-type-face-missing-modes)
-
-;;------------------------------------------------------------------------------------------------------
-;; This is the end of jcs-java-func.el file

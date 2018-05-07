@@ -1,32 +1,12 @@
-;; This is the start of jcs-util.el file
-;;------------------------------------------------------------------------------------------------------
+;; ========================================================================
+;; $File: jcs-util.el $
+;; $Date: 2016-10-21 10:21:39 $
+;; $Revision: $
+;; $Creator: Jen-Chieh Shen $
+;; $Notice: See LICENSE.txt for modification and distribution information
+;;                   Copyright © 2016 by Shen, Jen-Chieh $
+;; ========================================================================
 
-;; jcs-util.el             -*- Emacs-Lisp -*-
-
-;; Mode for editing JayCeS code
-
-;; Created:    <Fri Oct 21 13:51:49 EST 2016>
-;; Time-stamp: <2016-10-21 10:21:39>
-;; Author:     Jen-Chieh Shen <jcs090218@gmail.com>
-;; Version:    0.1
-;; Keywords:   JayCeS, languages, os, operating system
-
-;; Copyright (C) 2016 Jen-Chieh Shen
-
-;; jcs-util is free software: you can redistribute it and/or modify
-;; it under the terms of the GNU General Public License as published by
-;; the Free Software Foundation, either version 3 of the License, or
-;; (at your option) any later version.
-
-;; jcs-util is distributed in the hope that it will be useful,
-;; but WITHOUT ANY WARRANTY; without even the implied warranty of
-;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-;; GNU General Public License for more details.
-
-;; You should have received a copy of the GNU General Public License
-;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-;;; Code:
 
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 ;; All utilities put here.
@@ -395,6 +375,18 @@ IS-FORWARD : forward conversion instead of backward conversion."
       (goto-char (point-min))
       (setq begin-buffer-point (point))
       (= begin-buffer-point current-point))))
+
+(defun jcs-point-beginning-of-line ()
+  "Get the point at the beginning of line."
+  (save-excursion
+    (beginning-of-line)
+    (point)))
+
+(defun jcs-point-end-of-line ()
+  "Get the point at the end of line."
+  (save-excursion
+    (end-of-line)
+    (point)))
 
 (defun is-current-file-empty-p ()
   "Check if the file a empty file."
@@ -877,6 +869,3 @@ INSTR : string using to check if is contain one of the INLIST."
       (when (jcs-contain-string tmpStr inStr)
         (setq tmp-found t)))
     (equal tmp-found t)))
-
-;;------------------------------------------------------------------------------------------------------
-;; This is the end of jcs-util.el file

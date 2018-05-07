@@ -1,30 +1,11 @@
-;; This is the start of jcs-oop-func.el file
-;;------------------------------------------------------------------------------------------------------
-
-;; jcs-oop-func.el             -*- Emacs-Lisp -*-
-
-;; Mode for editing JayCeS code
-
-;; Created:    <Tue Nov 21 13:51:49 EST 2017>
-;; Time-stamp: <2017-11-21 10:21:39>
-;; Author:     Jen-Chieh Shen <jcs090218@gmail.com>
-;; Version:    0.1
-;; Keywords:   JayCeS, languages, os, operating system
-
-;; Copyright (C) 2017 Jen-Chieh Shen
-
-;; jcs-oop-func is free software: you can redistribute it and/or modify
-;; it under the terms of the GNU General Public License as published by
-;; the Free Software Foundation, either version 3 of the License, or
-;; (at your option) any later version.
-
-;; jcs-oop-func is distributed in the hope that it will be useful,
-;; but WITHOUT ANY WARRANTY; without even the implied warranty of
-;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-;; GNU General Public License for more details.
-
-;; You should have received a copy of the GNU General Public License
-;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;; ========================================================================
+;; $File: jcs-oop-func.el $
+;; $Date: 2017-11-21 10:21:39 $
+;; $Revision: $
+;; $Creator: Jen-Chieh Shen $
+;; $Notice: See LICENSE.txt for modification and distribution information
+;;                   Copyright © 2017 by Shen, Jen-Chieh $
+;; ========================================================================
 
 
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -1204,7 +1185,3 @@ SEARCH-OPTION :
   (face-remap-add-relative 'font-lock-doc-face '(jcs-font-lock-comment-face))
   (face-remap-add-relative 'font-lock-string-face '(jcs-font-lock-string-face))
   (face-remap-add-relative 'font-lock-preprocessor-face '(jcs-font-lock-preprocessor-face)))
-
-
-;;------------------------------------------------------------------------------------------------------
-;; This is the end of jcs-oop-func.el file
