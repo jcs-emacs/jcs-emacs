@@ -186,7 +186,7 @@
 ;; Left padding
 (setq web-mode-style-padding 2)   ;; For `<style>' tag
 (setq web-mode-script-padding 2)  ;; For `<script>' tag
-(setq web-mode-block-padding 4)   ;; For `php', `ruby', `java', `python', `asp', etc.
+(setq web-mode-block-padding 0)   ;; For `php', `ruby', `java', `python', `asp', etc.
 
 ;;; Offsetless Elements
 ;; NOTE(jenchieh): Do not make these lists to one list.
