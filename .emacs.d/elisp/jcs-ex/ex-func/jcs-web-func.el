@@ -1,38 +1,38 @@
-;; This is the start of jcs-web-func.el file
-;;------------------------------------------------------------------------------------------------------
+;; ========================================================================
+;; $File: jcs-web-func.el $
+;; $Date: 2017-07-21 10:21:39 $
+;; $Revision: $
+;; $Creator: Jen-Chieh Shen $
+;; $Notice: See LICENSE.txt for modification and distribution information
+;;                   Copyright © 2017 by Shen, Jen-Chieh $
+;; ========================================================================
 
-;; jcs-web-func.el             -*- Emacs-Lisp -*-
-
-;; Mode for editing JayCeS code
-
-;; Created:    <Wed Jun 21 13:51:49 EST 2017>
-;; Time-stamp: <2017-07-21 10:21:39>
-;; Author:     Jen-Chieh Shen <jcs090218@gmail.com>
-;; Version:    0.1
-;; Keywords:   JayCeS, languages, os, operating system
-
-;; Copyright (C) 2017 Jen-Chieh Shen
-
-;; jcs-web-func is free software: you can redistribute it and/or modify
-;; it under the terms of the GNU General Public License as published by
-;; the Free Software Foundation, either version 3 of the License, or
-;; (at your option) any later version.
-
-;; jcs-web-func is distributed in the hope that it will be useful,
-;; but WITHOUT ANY WARRANTY; without even the implied warranty of
-;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-;; GNU General Public License for more details.
-
-;; You should have received a copy of the GNU General Public License
-;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-
-;;; Code:
 
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 ;; When editing the HTML related file.
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+;;----------------------------------------------
+;; Comment Face
+;;----------------------------------------------
+
+(defvar jcs-web-type-comment-missing-modes '(web-mode)
+  "Modes that does not apply comment")
+
+(mapc (lambda (mode)
+        (font-lock-add-keywords
+         mode
+         '(;; For nomral HTML comment.
+           ("\\(<\\!--[[:ascii:]]*-->\\)" 1 'jcs-font-lock-comment-face t)
+           ;; For multi-lines comment.
+           ("\\(/\\*[a-zA-Z0-9 \n\t.<>?,*'`@\"=-_(){}:;&^%$#!~]*\\*/\\)" 1 'jcs-font-lock-comment-face t)
+           ;; For one line comment.
+           ("\\(/\\*[a-zA-Z0-9 \t.<>?,*'`/@\"=-_(){}:;&^%$#!~]*\\*/\\)" 1 'jcs-font-lock-comment-face t)
+           )'end))
+      jcs-web-type-comment-missing-modes)
+
+;;-----------------------------------------------------------
+;;-----------------------------------------------------------
 
 (defun jcs-web-mode ()
   "Rewrap of switching mode to `web-mode'."
@@ -324,15 +324,27 @@ line by line instead of indent the whole file at once."
   "Return key for `web-mode'."
   (interactive)
 
-  ;; Call defulat function first.
-  (jcs-smart-context-line-break)
+  (let (;; NOTE(jenchieh): Disable auto truncate lines effect
+        ;; before save.
+        (jcs-web-auto-truncate-lines nil)
+        ;; NOTE(jenchieh): check if need a line between a pair.
+        (line-between-pair nil))
+    (save-excursion
+      (ignore-errors
+        (when (and (search-forward "<" (jcs-point-end-of-line))
+                   (search-backward ">" (jcs-point-beginning-of-line)))
+          (setq line-between-pair t))))
 
-  (save-excursion
-    (let ((;; NOTE(jenchieh): Disable auto truncate lines effect
-           ;; before save.
-           (jcs-web-auto-truncate-lines nil)))
+    ;; Call defulat line break function first.
+    (jcs-smart-context-line-break)
+
+    ;; Check if need a line between a pair tag.
+    (when (equal line-between-pair t)
       ;; Fix curly bracket not indent correctly.
-      (jcs-web-smart-indent-down))))
+      (jcs-smart-context-line-break)
+      (jcs-web-smart-indent-down)
+      (jcs-web-smart-indent-up)
+      (jcs-web-smart-indent-up))))
 
 ;;---------------------------------------------
 ;; Save
@@ -467,6 +479,3 @@ line by line instead of indent the whole file at once."
       (dolist (tmp-element jcs-web-mode-offsetless-elements-toggle)
         (setq web-mode-offsetless-elements (remove tmp-element web-mode-offsetless-elements)))
       (put 'jcs-toggle-web-mode-offsetless-elements 'state t))))
-
-;;------------------------------------------------------------------------------------------------------
-;; This is the end of jcs-web-func.el file
