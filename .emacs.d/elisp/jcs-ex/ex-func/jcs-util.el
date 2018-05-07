@@ -295,6 +295,23 @@ IS-FORWARD : forward conversion instead of backward conversion."
     (setq current-char-string (string current-char))
     current-char-string))
 
+(defun jcs-first-backward-char-p (c)
+  "Check the first character left/backward is C."
+  (save-excursion
+    (while (or (current-char-equal-p " ")
+               (current-char-equal-p "\t"))
+      (forward-char -1))
+    (string= (jcs-get-current-char-string) c)))
+
+(defun jcs-first-forward-char-p (c)
+  "Check the first character on the right/forward is C."
+  (save-excursion
+    (forward-char 1)
+    (while (or (current-char-equal-p " ")
+               (current-char-equal-p "\t"))
+      (forward-char 1))
+    (string= (jcs-get-current-char-string) c)))
+
 ;;---------------------------------------------
 ;; Word
 ;;---------------------------------------------
