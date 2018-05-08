@@ -33,22 +33,35 @@
 ;; Show the shell window.
 ;;---------------------------------------------
 
+;;;###autoload
 (defun jcs-show-shell-window()
   "Shell Command prompt."
   (interactive)
 
   (when (not (get-buffer-process "*shell*"))
     (split-window-below)
-    (switch-to-buffer-other-window "*shell*")
+
+    ;; TODO(jenchieh): I have no idea why the first time would
+    ;; not work. So I have to error handle it and do it again
+    ;; to just in if something weird happen to Emacs itself.
+    ;;
+    ;; NOTE(jenchieh): Call it multiple time to just in case
+    ;; the shell process will run.
+    (unless (or (ignore-errors (switch-to-buffer-other-window "*shell*")))
+      (unless (or (ignore-errors (switch-to-buffer-other-window "*shell*")))
+        (unless (or (ignore-errors (switch-to-buffer-other-window "*shell*")))
+          (switch-to-buffer-other-window "*shell*"))))
+
     (shell)
 
     ;; active truncate line as default for shell window.
-    (toggle-truncate-lines)))
+    (jcs-enable-truncate-lines)))
 
 ;;---------------------------------------------
 ;; Hide the shell window.
 ;;---------------------------------------------
 
+;;;###autoload
 (defun jcs-hide-shell-window ()
   "Kill process prompt."
   (interactive)
