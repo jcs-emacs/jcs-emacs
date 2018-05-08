@@ -182,7 +182,11 @@
 ;;(define-key global-map "\C-g" 'jcs-top-level)
 (define-key global-map (kbd "<escape>") 'jcs-top-level)
 
-;; Open same file in other window.
+;;; Open same file in other window.
+(define-key global-map (kbd "<f7>") 'jcs-find-file-other-window)
+;; NOTE(jenchieh): If there are corresponding file, then
+;; key <f8> should be replace by find corresponding file
+;; interactive function call.
 (define-key global-map (kbd "<f8>") 'jcs-find-file-other-window)
 
 (define-key global-map (kbd "S-<home>") 'jcs-smart-select-home)
