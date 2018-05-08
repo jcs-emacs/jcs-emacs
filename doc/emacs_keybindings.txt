@@ -272,9 +272,9 @@ C-x g           gitignore mode/normal text mode.
 f12             goto declaration/definition on same window.
 S-f12           goto declaration/definition on other window.
 
-f8              open the same file on other window. Attention: in
-                c/c++ mode this will replace as corresponding file,
-                and original of this key will be f7.
+f7              open the same file on other window.
+f8              If there is corresponding file then open that. Otherwise 
+                the functionality is the same as f7 above.
 
 C-S-B           Run the build script. (.bat, .linux, .macosx, etc.)
 f5              Run the run script. (.bat, .linux, .macosx, etc.)
