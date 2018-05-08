@@ -11,6 +11,7 @@
 * Add first character forward/backward check functionalaities. (jcs-emacs-init)
 * Use first character forward/backward check instead of string-match to 
  the end of line and beginning of line. (jcs-emacs-init)
+* Fixed shell note prompt the first time issue with error handling. (jcs-emacs-init) 
 
 2018-05-07
 * Add remove trailing whitespace current line functionality. (jcs-emacs-init)
