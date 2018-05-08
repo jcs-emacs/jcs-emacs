@@ -24,7 +24,7 @@
 
 
 (defvar jcs-web-type-comment-missing-modes '(web-mode)
-  "Modes that does not apply comment in ASP.NET.")
+  "Modes that does not apply comment in ASP.NET (Razor v3) Syntax.")
 
 
 (mapc (lambda (mode)
@@ -472,7 +472,6 @@ line by line instead of indent the whole file at once."
   (face-remap-add-relative 'web-mode-block-string-face '(jcs-font-lock-string-face))
   (face-remap-add-relative 'web-mode-html-attr-value-face '(jcs-web-mode-html-attr-value-face)))
 
-
 ;;-----------------------------------------------------------
 ;;-----------------------------------------------------------
 
@@ -489,3 +488,21 @@ line by line instead of indent the whole file at once."
       (dolist (tmp-element jcs-web-mode-offsetless-elements-toggle)
         (setq web-mode-offsetless-elements (remove tmp-element web-mode-offsetless-elements)))
       (put 'jcs-toggle-web-mode-offsetless-elements 'state t))))
+
+;;-----------------------------------------------------------
+;;-----------------------------------------------------------
+
+(defun jcs-web-corresponding-file ()
+  "Find the corresponding file for WEB related file."
+  (let ((corresponding-file-name "")
+        (tmp-base-file-name (file-name-sans-extension buffer-file-name)))
+    (cond ((string-match "\\.aspx.cs" buffer-file-name)
+           (progn
+             (setq corresponding-file-name tmp-base-file-name)))
+          ((string-match "\\.aspx" buffer-file-name)
+           (progn
+             (setq corresponding-file-name (concat tmp-base-file-name ".aspx.cs"))))
+          )
+
+    ;; Return file name.
+    corresponding-file-name))
