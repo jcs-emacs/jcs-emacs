@@ -52,7 +52,7 @@ comment character on the same line."
   (goto-char last)
 
   ;; check if inside the comment block.
-  (if (and (nth 4 (syntax-ppss)))
+  (if (is-inside-comment-block-p)
       (progn
         (setq last (point))
 
@@ -80,6 +80,9 @@ comment character on the same line."
               (when (or (jcs-is-current-major-mode-p "c-mode")
                         (jcs-is-current-major-mode-p "c++-mode")
                         (jcs-is-current-major-mode-p "java-mode")
+                        ;; TODO(jenchieh): If we decide to use
+                        ;; c-type docstirng. Then we need to
+                        ;; uncomment the line below.
                         ;;(jcs-is-current-major-mode-p "csharp-mode")
                         (jcs-is-current-major-mode-p "js2-mode")
                         (jcs-is-current-major-mode-p "php-mode")
