@@ -116,7 +116,6 @@
   (define-key web-mode-map "\C-s" 'jcs-web-save-buffer)
 
   ;; comment block
-  (define-key web-mode-map (kbd "RET") 'jcs-smart-context-line-break)
   (define-key web-mode-map (kbd "*") 'jcs-c-comment-pair)
 
   ;; Shortcuts
