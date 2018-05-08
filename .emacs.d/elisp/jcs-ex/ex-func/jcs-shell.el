@@ -52,10 +52,11 @@
         (unless (or (ignore-errors (switch-to-buffer-other-window "*shell*")))
           (switch-to-buffer-other-window "*shell*"))))
 
+    ;; Run shell process.
     (shell)
 
     ;; active truncate line as default for shell window.
-    (jcs-enable-truncate-lines)))
+    (jcs-disable-truncate-lines)))
 
 ;;---------------------------------------------
 ;; Hide the shell window.
