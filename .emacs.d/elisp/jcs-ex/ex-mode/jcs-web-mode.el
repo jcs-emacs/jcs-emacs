@@ -105,6 +105,9 @@
   (define-key web-mode-map "\C-k\C-d" 'jcs-web-format-document)
   (define-key web-mode-map (kbd "C-S-f") 'jcs-web-format-region-or-document)
 
+  (define-key web-mode-map [f8] 'jcs-find-corresponding-file)
+  (define-key web-mode-map [S-f8] 'jcs-find-corresponding-file-other-window)
+
   ;; Edit
   (define-key web-mode-map (kbd "<up>") 'jcs-web-smart-indent-up)
   (define-key web-mode-map (kbd "<down>") 'jcs-web-smart-indent-down)

@@ -26,48 +26,21 @@
         ((string-match "[.]c" buffer-file-name) (jcs-c-source-format))
         )
 
-  (defun casey-find-corresponding-file ()
-    "Find the file that corresponds to this one."
-    (interactive)
-    (let ((CorrespondingFileName nil)
-          (BaseFileName (file-name-sans-extension buffer-file-name)))
-      (if (string-match "\\.c" buffer-file-name)
-          (setq CorrespondingFileName (concat BaseFileName ".h")))
-      (if (string-match "\\.h" buffer-file-name)
-          (if (file-exists-p (concat BaseFileName ".c")) (setq CorrespondingFileName (concat BaseFileName ".c"))
-            (setq CorrespondingFileName (concat BaseFileName ".c"))))
-      (if (string-match "\\.hin" buffer-file-name)
-          (setq CorrespondingFileName (concat BaseFileName ".cin")))
-      (if (string-match "\\.cin" buffer-file-name)
-          (setq CorrespondingFileName (concat BaseFileName ".hin")))
-      (if (string-match "\\.cpp" buffer-file-name)
-          (setq CorrespondingFileName (concat BaseFileName ".h")))
-      (if CorrespondingFileName (find-file CorrespondingFileName)
-        (error "Unable to find a corresponding file"))))
-
-  (defun casey-find-corresponding-file-other-window ()
-    "Find the file that corresponds to this one."
-    (interactive)
-    (find-file-other-window buffer-file-name)
-    (casey-find-corresponding-file)
-    (other-window -1))
-
-
   ;; Set Faces.
   ;; URL(jenchieh): http://ergoemacs.org/emacs/elisp_define_face.html
   (setq-local font-lock-comment-face '(jdee-font-lock-javadoc-face))
 
   ;; jcs C key binding
-  (define-key c-mode-map [f8] 'casey-find-corresponding-file)
-  (define-key c-mode-map [S-f8] 'casey-find-corresponding-file-other-window)
+  (define-key c-mode-map [f8] 'jcs-find-corresponding-file)
+  (define-key c-mode-map [S-f8] 'jcs-find-corresponding-file-other-window)
 
   ;; If just want to open the same file, not the
   ;; corresponding file.
   (define-key c-mode-map [f7] 'jcs-find-file-other-window)
 
   ;; Alternate bindings for F-keyless setups (ie MacOS X terminal)
-  (define-key c-mode-map "\ec" 'casey-find-corresponding-file)
-  (define-key c-mode-map "\eC" 'casey-find-corresponding-file-other-window)
+  (define-key c-mode-map "\ec" 'jcs-find-corresponding-file)
+  (define-key c-mode-map "\eC" 'jcs-find-corresponding-file-other-window)
 
   (define-key c-mode-map "\es" 'casey-save-buffer)
 

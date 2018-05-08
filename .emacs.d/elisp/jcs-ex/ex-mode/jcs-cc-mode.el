@@ -115,9 +115,6 @@
   ;; Auto highlight the same word.
   (auto-highlight-symbol-mode t)
 
-  ;; Enable flycheck.
-  (flycheck-mode t)
-
   ;; highlight URL and clickable.
   (goto-address-mode 1)
 
@@ -129,10 +126,6 @@
 
   ;; No hungry backspace
   (c-toggle-auto-hungry-state -1)
-
-  ;; Newline indents, semi-colon doesn't
-  (define-key c++-mode-map "\C-m" 'newline-and-indent)
-  (setq c-hanging-semi&comma-criteria '((lambda () 'stop)))
 
   ;; Handle super-tabbify (TAB completes, shift-TAB actually tabs)
   (setq dabbrev-case-replace t)

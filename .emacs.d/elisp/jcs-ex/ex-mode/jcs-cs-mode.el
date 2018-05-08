@@ -53,6 +53,9 @@
   (define-key csharp-mode-map (kbd "C-d") 'jcs-kill-whole-line)
   (define-key csharp-mode-map "\C-c\C-c" 'kill-ring-save)
 
+  (define-key csharp-mode-map [f8] 'jcs-find-corresponding-file)
+  (define-key csharp-mode-map [S-f8] 'jcs-find-corresponding-file-other-window)
+
   ;; comment block
   (define-key csharp-mode-map (kbd "RET") 'jcs-smart-context-line-break)
   (define-key csharp-mode-map (kbd "*") 'jcs-c-comment-pair)
