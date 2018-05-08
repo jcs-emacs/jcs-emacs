@@ -17,10 +17,10 @@
 ;;----------------------------------------------
 
 (defface jcs-web-mode-block-comment-face
-  '((t (:foreground "olive drab" :background "#000000")))
+  '((t (:inherit 'jcs-font-lock-comment-face :background "#000000")))
   "Web mode block comment face with dark background."
-  :group 'basic-faces)
-(defvar jcs-font-lock-comment-face 'jcs-font-lock-comment-face)
+  :group 'jcs-web-faces)
+(defvar jcs-web-mode-block-comment-face 'jcs-web-mode-block-comment-face)
 
 
 (defvar jcs-web-type-comment-missing-modes '(web-mode)
