@@ -10,6 +10,7 @@
 2018-05-09
 * Set default f7 key bindings to find file other window. (jcs-emacs-init)
 * Organize corresponding functions in c/c++ mode to function file. (jcs-emacs-init)
+* Manually install update `organize-imports-java' package. (jcs-emacs-init)
 
 2018-05-08
 * Add first character forward/backward check functionalaities. (jcs-emacs-init)
