@@ -112,20 +112,49 @@ comment character on the same line."
             (when (equal is-global-comment-doc nil)
               (call-interactively 'jcs-backward-kill-line)
 
-              (cond ((jcs-is-current-major-mode-p "csharp-mode")
-                     (progn
-                       (insert "/// ")
-                       ))
-                    ((jcs-is-current-major-mode-p "lua-mode")
-                     (progn
-                       (insert "-- "))))
-              (indent-for-tab-command)
-              )))
-        )
+              (let (;; Check if the next line is the doc string
+                    ;; comment line.
+                    (is-next-line-doc-string-comment-line nil))
+
+                (cond (;;; NOTE(jenchieh): CSharp-Mode
+                       (jcs-is-current-major-mode-p "csharp-mode")
+                       (progn
+
+                         ;; NOTE(jenchieh): Find out if last
+                         ;; line is docstring not a normal comment.
+                         ;;
+                         ;;   ///  <- docstring line.
+                         ;;   //   <- normal comment line.
+                         (save-excursion
+                           (jcs-previous-line)
+                           (jcs-goto-first-char-in-line)
+
+                           (forward-char 1)
+                           (when (current-char-equal-p "/")
+                             (forward-char 1)
+                             (when (current-char-equal-p "/")
+                               (forward-char 1)
+                               (when (current-char-equal-p "/")
+                                 ;; Three `/' in a row, we confirm
+                                 ;; last line is a doc-string
+                                 ;; comment line.
+                                 (setq is-next-line-doc-string-comment-line t)))))
+
+                         ;; Is doc-string comment line. Insert
+                         ;; doc-string comment.
+                         (when (equal is-next-line-doc-string-comment-line t)
+                           (insert "/// "))))
+                      (;;; NOTE(jenchieh): Lua-Mode
+                       (jcs-is-current-major-mode-p "lua-mode")
+                       (progn
+                         ;; Just insert for Lua.
+                         ;; Lua does not have issue like CSharp.
+                         (insert "-- "))))
+                (indent-for-tab-command)
+                )))))
     ;; else insert new line
     (progn
-      (newline-and-indent))
-    ))
+      (newline-and-indent))))
 
 
 ;;;###autoload
