@@ -12,8 +12,6 @@
 ;; When editing the C# related file.
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-;;; Code:
-
 (defun jcs-vs-csharp-do-doc-string ()
   "Check if should insert the doc string by checking only \
 comment character on the same line."
