@@ -7,6 +7,9 @@
 # ========================================================================
 
 
+2018-05-10
+* Fixed csarp distinguish between docstring and normal comment line. (jcs-emacs-init)
+
 2018-05-09
 * Set default f7 key bindings to find file other window. (jcs-emacs-init)
 * Organize corresponding functions in c/c++ mode to function file. (jcs-emacs-init)
