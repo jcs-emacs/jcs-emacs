@@ -279,6 +279,9 @@ Return a list of installed packages or nil for every skipped package."
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-basic-mode.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-processing-mode.el")
 
+;; Add hook to all Emacs' events.
+(load-file "~/.emacs.d/elisp/jcs-ex/jcs-hook.el")
+
 ;;; Do stuff after initialize.
 (load-file "~/.emacs.d/elisp/jcs-ex/jcs-after-init.el")
 
