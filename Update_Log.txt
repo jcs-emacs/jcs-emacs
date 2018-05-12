@@ -7,6 +7,10 @@
 # ========================================================================
 
 
+2018-05-12
+* Complete all naming convention to `jcs'. (jcs-emacs-init)
+* Make on history => 2018-05-11. (jcs-emacs-init)
+
 2018-05-10
 * Fixed csharp distinguish between docstring and normal comment line. (jcs-emacs-init)
 
