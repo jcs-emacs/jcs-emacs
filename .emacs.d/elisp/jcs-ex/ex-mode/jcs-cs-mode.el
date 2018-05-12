@@ -39,7 +39,7 @@
 
   (defun jcs-csharp-class-format ()
     "Format the given file as a class. - JenChieh C# class"
-    (when (is-current-file-empty-p)
+    (when (jcs-is-current-file-empty-p)
       (jcs-insert-cs-template)))
 
   (cond ((file-exists-p buffer-file-name) t)
@@ -55,6 +55,9 @@
 
   (define-key csharp-mode-map [f8] 'jcs-find-corresponding-file)
   (define-key csharp-mode-map [S-f8] 'jcs-find-corresponding-file-other-window)
+
+  (define-key csharp-mode-map (kbd "<up>") 'jcs-csharp-smart-indent-up)
+  (define-key csharp-mode-map (kbd "<down>") 'jcs-csharp-smart-indent-down)
 
   ;; comment block
   (define-key csharp-mode-map (kbd "RET") 'jcs-smart-context-line-break)
