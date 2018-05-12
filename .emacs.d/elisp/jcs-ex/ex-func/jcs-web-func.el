@@ -313,6 +313,7 @@ line by line instead of indent the whole file at once."
   (when (equal jcs-web-auto-truncate-lines t)
     (jcs-web-truncate-lines-by-face)))
 
+;;;###autoload
 (defun jcs-web-right ()
   "Arrow right key for Web mode."
   (interactive)
@@ -321,6 +322,7 @@ line by line instead of indent the whole file at once."
   (when (equal jcs-web-auto-truncate-lines t)
     (jcs-web-truncate-lines-by-face)))
 
+;;;###autoload
 (defun jcs-web-left ()
   "Arrow left key for Web mode."
   (interactive)
