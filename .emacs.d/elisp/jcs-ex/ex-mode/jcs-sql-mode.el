@@ -41,7 +41,7 @@
 
   (defun jcs-sql-format ()
     "File format for editing SQL file."
-    (when (is-current-file-empty-p)
+    (when (jcs-is-current-file-empty-p)
       (jcs-insert-sql-template)))
 
   (cond ((file-exists-p buffer-file-name) t)
