@@ -19,12 +19,12 @@ comment character on the same line."
   (let ((do-doc-string t))
     (jcs-goto-first-char-in-line)
 
-    (while (not (is-end-of-line-p))
+    (while (not (jcs-is-end-of-line-p))
       (forward-char 1)
-      (when (and (not (current-char-equal-p " "))
-                 (not (current-char-equal-p "\t"))
-                 (not (current-char-equal-p "*"))
-                 (not (current-char-equal-p "/")))
+      (when (and (not (jcs-current-char-equal-p " "))
+                 (not (jcs-current-char-equal-p "\t"))
+                 (not (jcs-current-char-equal-p "*"))
+                 (not (jcs-current-char-equal-p "/")))
         ;; return false.
         (setq do-doc-string nil)
         (equal do-doc-string t)))
@@ -52,7 +52,7 @@ comment character on the same line."
   (goto-char last)
 
   ;; check if inside the comment block.
-  (if (is-inside-comment-block-p)
+  (if (jcs-is-inside-comment-block-p)
       (progn
         (setq last (point))
 
@@ -90,13 +90,12 @@ comment character on the same line."
                 (jcs-insert-comment-string))
 
               ;; goto the end of line
-              (end-of-line)
-              )
+              (end-of-line))
           (progn
             (goto-char last)
 
             (insert "\n")
-            (when (is-inside-comment-block-p)
+            (when (jcs-is-inside-comment-block-p)
               (insert "* "))
 
             (indent-for-tab-command)))
@@ -106,7 +105,7 @@ comment character on the same line."
             (save-excursion
               (jcs-goto-start-of-the-comment)
               (forward-char 1)
-              (when (current-char-equal-p "*")
+              (when (jcs-current-char-equal-p "*")
                 (setq is-global-comment-doc t)))
 
             (when (equal is-global-comment-doc nil)
@@ -114,30 +113,46 @@ comment character on the same line."
 
               (let (;; Check if the next line is the doc string
                     ;; comment line.
-                    (is-next-line-doc-string-comment-line nil))
+                    (is-next-line-doc-string-comment-line nil)
+                    ;; When we break a line and there are still
+                    ;; some content on the right.
+                    (line-have-content-on-right nil))
 
                 (cond (;;; NOTE(jenchieh): CSharp-Mode
                        (jcs-is-current-major-mode-p "csharp-mode")
                        (progn
+                         (save-excursion
+                           (when (not (jcs-current-line-comment-p))
+                             (setq line-have-content-on-right t)))
 
-                         ;; NOTE(jenchieh): Find out if last
-                         ;; line is docstring not a normal comment.
-                         ;;
-                         ;;   ///  <- docstring line.
-                         ;;   //   <- normal comment line.
                          (save-excursion
                            (jcs-previous-line)
-                           (jcs-goto-first-char-in-line)
 
-                           (forward-char 1)
-                           (when (current-char-equal-p "/")
-                             (forward-char 1)
-                             (when (current-char-equal-p "/")
-                               (forward-char 1)
-                               (when (current-char-equal-p "/")
-                                 ;; Three `/' in a row, we confirm
-                                 ;; last line is a doc-string
-                                 ;; comment line.
+                           (if (not (jcs-vs-csharp-only-vs-comment-prefix-this-line-p))
+                               (setq is-next-line-doc-string-comment-line t)
+                             (progn
+                               (when (jcs-is-true line-have-content-on-right)
+                                 (setq is-next-line-doc-string-comment-line t)))))
+
+                         ;; If we still not sure to insert docstring comment
+                         ;; line yet. Then we need to do deeper check.
+                         (when (jcs-is-false is-next-line-doc-string-comment-line)
+                           (let ((prev-line-vs-prefix nil)
+                                 (next-line-vs-prefix nil))
+                             (save-excursion
+                               (jcs-previous-line)
+                               (when (jcs-vs-csharp-comment-prefix-p)
+                                 (setq prev-line-vs-prefix t)))
+
+                             ;; Only when previous have prefix.
+                             (when (jcs-is-true prev-line-vs-prefix)
+                               (save-excursion
+                                 (jcs-next-line)
+                                 (when (jcs-vs-csharp-comment-prefix-p)
+                                   (setq next-line-vs-prefix t)))
+
+                               (when (and (jcs-is-true prev-line-vs-prefix)
+                                          (jcs-is-true next-line-vs-prefix))
                                  (setq is-next-line-doc-string-comment-line t)))))
 
                          ;; Is doc-string comment line. Insert
@@ -166,7 +181,7 @@ comment character on the same line."
 
     (save-excursion
       (ignore-errors
-        (when (current-char-equal-p "/")
+        (when (jcs-current-char-equal-p "/")
           (setq insert-pair t))))
 
     (insert "*")
@@ -189,7 +204,7 @@ string, do not insert closing comment string.  Check this situation."
 
       (jcs-move-to-forward-a-char "/")
       (backward-char 1)
-      (when (current-char-equal-p "*")
+      (when (jcs-current-char-equal-p "*")
         (jcs-goto-start-of-the-comment)
 
         ;; No opening comment string by using
@@ -228,11 +243,11 @@ comment region. Otherwise comment line."
 
         (setq before-comment-point (point))
 
-        (if (is-met-first-char-at-line-p)
+        (if (jcs-is-met-first-char-at-line-p)
             (progn
-              (safe-forward-char)
-              (safe-forward-char)
-              (safe-forward-char)))
+              (jcs-safe-forward-char)
+              (jcs-safe-forward-char)
+              (jcs-safe-forward-char)))
 
         (if (nth 4 (syntax-ppss))
             (progn
