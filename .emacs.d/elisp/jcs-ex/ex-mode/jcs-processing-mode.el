@@ -45,7 +45,7 @@
 
   (defun jcs-processing-script-format ()
     "Format the given file as a class. - JenChieh Processing Script"
-    (when (is-current-file-empty-p)
+    (when (jcs-is-current-file-empty-p)
       (jcs-insert-processing-template)))
 
   (cond ((file-exists-p buffer-file-name) t)

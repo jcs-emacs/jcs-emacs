@@ -36,7 +36,7 @@
 
   (defun jcs-asm-format ()
     "Format the given file as a asm code. - JenChieh Assembly Language"
-    (when (is-current-file-empty-p)
+    (when (jcs-is-current-file-empty-p)
       (jcs-insert-asm-template)))
 
   (cond ((file-exists-p buffer-file-name) t)

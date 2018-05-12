@@ -82,7 +82,7 @@
     (goto-char (point-min))
 
     ;; Check if the first word package.
-    (when (current-word-equal-p "package")
+    (when (jcs-current-word-equal-p "package")
       ;; kill the old package source declaration.
       (jcs-kill-whole-line))
 

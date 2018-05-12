@@ -29,7 +29,7 @@
   (defun jcs-makefile-format ()
     "Format the given file as a makefile. - JenChieh Makefile"
 
-    (when (is-current-file-empty-p)
+    (when (jcs-is-current-file-empty-p)
       (jcs-makefile-format-info)
       (goto-char (point-min))))
 
@@ -41,7 +41,7 @@
 
   (defun jcs-cmake-format ()
     "Format the given file as a CMakeLists. - JenChieh CMake"
-    (when (is-current-file-empty-p)
+    (when (jcs-is-current-file-empty-p)
       (jcs-insert-cmake-template)))
 
   (cond ((file-exists-p buffer-file-name) t)

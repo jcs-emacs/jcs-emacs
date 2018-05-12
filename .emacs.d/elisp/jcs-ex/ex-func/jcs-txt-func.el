@@ -51,8 +51,8 @@
       (beginning-of-line)
 
       (while (< (point) tmp-end-of-line-point)
-        (when (or (current-char-equal-p "-")
-                  (current-char-equal-p "+"))
+        (when (or (jcs-current-char-equal-p "-")
+                  (jcs-current-char-equal-p "+"))
           (setq tmp-ret-val t))
         (forward-char 1))
 
@@ -63,7 +63,7 @@
   "Check if is a good row to move the cursor up or down.
 @return t : good row.
         nil : bad row."
-  (and (not (current-line-empty-p))
+  (and (not (jcs-current-line-empty-p))
        (not (equal (jcs-is-row-a-dividers) t))))
 
 (defun jcs-count-current-column ()
@@ -81,7 +81,7 @@
         (beginning-of-line)
 
         (while (< (point) tmp-end-of-line-point)
-          (when (current-char-equal-p "|")
+          (when (jcs-current-char-equal-p "|")
             ;; increament 1
             (setq tmp-column-count (1+ tmp-column-count)))
           (forward-char 1)))

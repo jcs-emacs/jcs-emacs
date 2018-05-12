@@ -317,7 +317,7 @@ SEARCH-OPTION :
     (flymake-mode 0)
 
     (save-excursion
-      (when (not (current-line-empty-p))
+      (when (not (jcs-current-line-empty-p))
         (let ((end-function-point nil)
               (word-index 0))
 

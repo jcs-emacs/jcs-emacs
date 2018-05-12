@@ -38,7 +38,7 @@
 
   (defun jcs-java-class-format ()
     "Format the given file as a class. - JenChieh Java class"
-    (when (is-current-file-empty-p)
+    (when (jcs-is-current-file-empty-p)
       ;; insert the package declaration.
       (jcs-java-insert-package-from-src)
 

@@ -38,12 +38,12 @@
     (save-excursion
       ;; Goto the first character of current line.
       (back-to-indentation-or-beginning)
-      (when (is-beginning-of-line-p)
+      (when (jcs-is-beginning-of-line-p)
         (back-to-indentation-or-beginning))
       (forward-char 1)
 
       ;; Check rule here..
-      (when (current-char-equal-p ".")
+      (when (jcs-current-char-equal-p ".")
         (setq do-indent t)))
 
     (equal do-indent t)))
@@ -59,9 +59,9 @@
         (jcs-goto-first-char-in-line)
 
         (forward-char 1)
-        (when (current-char-equal-p ";")
+        (when (jcs-current-char-equal-p ";")
           (forward-char 1)
-          (when (current-char-equal-p ";")
+          (when (jcs-current-char-equal-p ";")
             (setq continue-comment t)))))
 
     (newline-and-indent)
@@ -83,9 +83,9 @@
   (let ((should-indent nil))
     (save-excursion
       (backward-char 1)
-      (when (current-char-equal-p ";")
+      (when (jcs-current-char-equal-p ";")
         (backward-char 1)
-        (when (is-met-first-char-at-line-p)
+        (when (jcs-is-met-first-char-at-line-p)
           (setq should-indent t)
           ;; Indent it to the very left/beginning of line.
           (indent-line-to 0))))
@@ -94,11 +94,11 @@
       ;; If search backward failed, try forward.
       (when (equal should-indent nil)
         (forward-char 1)
-        (when (current-char-equal-p ";")
+        (when (jcs-current-char-equal-p ";")
           (setq should-indent t)
           ;; Indent it to the very left/beginning of line.
           (indent-line-to 0))))
 
     (when (and (equal should-indent t)
-               (is-end-of-line-p))
+               (jcs-is-end-of-line-p))
       (insert " "))))

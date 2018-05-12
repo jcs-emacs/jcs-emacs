@@ -87,12 +87,12 @@ line instead of indent the whole file at once."
 
   (previous-line 1)
 
-  (if (current-line-empty-p)
+  (if (jcs-current-line-empty-p)
       (progn
-        (if (not (is-mark-active-or-region-selected-p))
+        (if (not (jcs-is-mark-active-or-region-selected-p))
             (py-indent-line-outmost)))
     (progn
-      (if (is-met-first-char-at-line-p)
+      (if (jcs-is-met-first-char-at-line-p)
           (back-to-indentation))))
   )
 
@@ -103,12 +103,12 @@ line instead of indent the whole file at once."
 
   (next-line 1)
 
-  (if (current-line-empty-p)
+  (if (jcs-current-line-empty-p)
       (progn
-        (if (not (is-mark-active-or-region-selected-p))
+        (if (not (jcs-is-mark-active-or-region-selected-p))
             (py-indent-line-outmost)))
     (progn
-      (if (is-met-first-char-at-line-p)
+      (if (jcs-is-met-first-char-at-line-p)
           (back-to-indentation))))
   )
 
@@ -126,8 +126,8 @@ infront of the first character we indent the line instead of insert
 the space."
   (interactive)
 
-  (if (or (is-met-first-char-at-line-p)
-          (is-beginning-of-line-p))
+  (if (or (jcs-is-met-first-char-at-line-p)
+          (jcs-is-beginning-of-line-p))
       (progn
         ;; insert 4 spaces.
         (insert "    "))
@@ -146,7 +146,7 @@ is infront of the first character in the line we delete fource
 spaces instead of `py-electric-backspace'."
   (interactive)
 
-  (if (is-met-first-char-at-line-p)
+  (if (jcs-is-met-first-char-at-line-p)
       (progn
         (if (use-region-p)
             (progn
@@ -170,9 +170,9 @@ spaces instead of `py-electric-backspace'."
 
 ;;;###autoload
 (defun jcs-py-check-backward-delete-space ()
-  (and (not (is-beginning-of-line-p))
+  (and (not (jcs-is-beginning-of-line-p))
        ;; Make sure is not a tab.
-       (current-char-equal-p " ")))
+       (jcs-current-char-equal-p " ")))
 
 ;;;###autoload
 (defun jcs-py-check-first-char-of-line-is-keyword-p ()
@@ -186,10 +186,10 @@ SEE(jenchieh): keyword is listed below in
     (back-to-indentation)
     (forward-char 1)
 
-    (if (current-char-equal-p "@")
+    (if (jcs-current-char-equal-p "@")
         (forward-char 1))
 
-    (if (jcs-py-is-python-keyword (get-word-at-point))
+    (if (jcs-py-is-python-keyword (jcs-get-word-at-point))
         (setq isKeyword t))
     )
 
@@ -228,11 +228,11 @@ comment character on the same line."
   (let ((do-doc-string t))
     (jcs-goto-first-char-in-line)
 
-    (while (not (is-end-of-line-p))
+    (while (not (jcs-is-end-of-line-p))
       (forward-char 1)
-      (when (and (not (current-char-equal-p " "))
-                 (not (current-char-equal-p "\t"))
-                 (not (current-char-equal-p "\"")))
+      (when (and (not (jcs-current-char-equal-p " "))
+                 (not (jcs-current-char-equal-p "\t"))
+                 (not (jcs-current-char-equal-p "\"")))
         ;; return false.
         (setq do-doc-string nil)
         (equal do-doc-string t)))
@@ -257,17 +257,17 @@ URL(jenchieh): http://docs.python-guide.org/en/latest/writing/style/"
         (previous-line-not-empty nil))
     (save-excursion
       (backward-char 1)
-      (when (current-char-equal-p "\"")
+      (when (jcs-current-char-equal-p "\"")
         (backward-char 1)
-        (when (current-char-equal-p "\"")
+        (when (jcs-current-char-equal-p "\"")
           (backward-char 1)
-          (when (not (current-char-equal-p "\""))
+          (when (not (jcs-current-char-equal-p "\""))
             (when (jcs-py-do-doc-string)
               (setq active-comment t)))))
 
       ;; check if previous line empty.
       (jcs-previous-line)
-      (when (not (current-line-empty-p))
+      (when (not (jcs-current-line-empty-p))
         (setq previous-line-not-empty t)))
 
     (when (and (equal active-comment t)

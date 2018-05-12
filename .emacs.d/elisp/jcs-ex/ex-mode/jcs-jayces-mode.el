@@ -32,7 +32,7 @@
 
   (defun jcs-jayces-class-format ()
     "Format the given file. - JenChieh JayCeS files"
-    (when (is-current-file-empty-p)
+    (when (jcs-is-current-file-empty-p)
       (jcs-insert-jayces-template)))
 
   (cond ((file-exists-p buffer-file-name) t)

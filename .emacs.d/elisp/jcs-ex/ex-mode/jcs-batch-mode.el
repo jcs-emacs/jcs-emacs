@@ -33,7 +33,7 @@
 
   (defun jcs-batch-script-format ()
     "Format the given file as a class. - JenChieh Batch Script"
-    (when (is-current-file-empty-p)
+    (when (jcs-is-current-file-empty-p)
       (jcs-insert-batch-template)))
 
   (cond ((file-exists-p buffer-file-name) t)

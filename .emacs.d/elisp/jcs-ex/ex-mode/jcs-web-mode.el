@@ -77,12 +77,12 @@
 
   (defun jcs-html-format ()
     "Format the give file. - JenChieh HTML file"
-    (when (is-current-file-empty-p)
+    (when (jcs-is-current-file-empty-p)
       (jcs-insert-html-template)))
 
   (defun jcs-php-format ()
     "Format the give file. - JenChieh PHP file"
-    (when (is-current-file-empty-p)
+    (when (jcs-is-current-file-empty-p)
       (jcs-insert-php-template)))
 
   (cond ((file-exists-p buffer-file-name) t)
@@ -324,7 +324,7 @@
 
   (defun jcs-css-format()
     "Format the give file. - JenChieh CSS file"
-    (when (is-current-file-empty-p)
+    (when (jcs-is-current-file-empty-p)
       (jcs-insert-css-template)))
 
   (cond ((file-exists-p buffer-file-name) t)

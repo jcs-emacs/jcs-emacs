@@ -21,11 +21,11 @@ comment character on the same line."
   (let ((do-doc-string t))
     (jcs-goto-first-char-in-line)
 
-    (while (not (is-end-of-line-p))
+    (while (not (jcs-is-end-of-line-p))
       (forward-char 1)
-      (when (and (not (current-char-equal-p " "))
-                 (not (current-char-equal-p "\t"))
-                 (not (current-char-equal-p "-")))
+      (when (and (not (jcs-current-char-equal-p " "))
+                 (not (jcs-current-char-equal-p "\t"))
+                 (not (jcs-current-char-equal-p "-")))
         ;; return false.
         (setq do-doc-string nil)
         (equal do-doc-string t)))
@@ -46,17 +46,17 @@ URL(jenchieh): http://lua-users.org/wiki/LuaStyleGuide"
         (next-line-not-empty nil))
     (save-excursion
       (backward-char 1)
-      (when (current-char-equal-p "-")
+      (when (jcs-current-char-equal-p "-")
         (backward-char 1)
-        (when (current-char-equal-p "-")
+        (when (jcs-current-char-equal-p "-")
           (backward-char 1)
-          (when (not (current-char-equal-p "-"))
+          (when (not (jcs-current-char-equal-p "-"))
             (when (jcs-lua-do-doc-string)
               (setq active-comment t)))))
 
       ;; check if next line empty.
       (jcs-next-line)
-      (when (not (current-line-empty-p))
+      (when (not (jcs-current-line-empty-p))
         (setq next-line-not-empty t)))
 
 

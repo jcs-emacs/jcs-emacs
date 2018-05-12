@@ -28,7 +28,7 @@
 
   (defun jcs-scss-file-format ()
     "Format the given file as a class. - JenChieh SCSS class"
-    (when (is-current-file-empty-p)
+    (when (jcs-is-current-file-empty-p)
       (jcs-insert-scss-template)))
 
   (cond ((file-exists-p buffer-file-name) t)

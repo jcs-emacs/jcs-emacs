@@ -28,7 +28,7 @@
 
   (defun jcs-go-script-format ()
     "Format the given file as a class. - JenChieh GO Script"
-    (when (is-current-file-empty-p)
+    (when (jcs-is-current-file-empty-p)
       (jcs-insert-go-template)))
 
   (cond ((file-exists-p buffer-file-name) t)

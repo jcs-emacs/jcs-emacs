@@ -32,7 +32,7 @@
 
   (defun jcs-text-related-format ()
     "Format the given file as a text related. - JenChieh Text file."
-    (when (is-current-file-empty-p)
+    (when (jcs-is-current-file-empty-p)
       (jcs-insert-txt-template)))
 
   (cond ((file-exists-p buffer-file-name) t)
@@ -85,7 +85,7 @@
 
   (defun jcs-org-mode-format()
     "Fromat the given file as a text file related. - JenChieh Text file."
-    (when (is-current-file-empty-p)
+    (when (jcs-is-current-file-empty-p)
       (jcs-insert-txt-template)))
 
   (cond ((file-exists-p buffer-file-name) t)

@@ -20,10 +20,10 @@
 (defun jcs-tab-key ()
   "TAB key for JayCeS usage."
   (interactive)
-  (if (or (current-char-equal-p " ")
-          (current-char-equal-p "\t")
-          (is-beginning-of-line-p)
-          (is-end-of-line-p))
+  (if (or (jcs-current-char-equal-p " ")
+          (jcs-current-char-equal-p "\t")
+          (jcs-is-beginning-of-line-p)
+          (jcs-is-end-of-line-p))
       (progn
         (jcs-insert-spaces-by-tab-width))
     (progn
@@ -281,7 +281,7 @@ region selected?"
                ))
             )
 
-      (if (is-region-selected-p)
+      (if (jcs-is-region-selected-p)
           ;; NOTE(jenchieh): Align region only.
           (progn
             ;; First get region info.
@@ -324,7 +324,7 @@ region selected?"
 REGEXP : reqular expression use to align."
   (interactive "r\nsAlign regexp: ")
 
-  (if (is-region-selected-p)
+  (if (jcs-is-region-selected-p)
       (progn
         (align-regexp (region-beginning) (region-end)
                       (concat "\\(\\s-*\\)" regexp) 1 1 t))
@@ -561,10 +561,10 @@ this version instead."
   (interactive)
   (beginning-of-line)
 
-  (if (not (current-line-totally-empty-p))
+  (if (not (jcs-current-line-totally-empty-p))
       (forward-char 1))
 
-  (while (current-whitespacep)
+  (while (jcs-current-whitespacep)
     (forward-char 1))
 
   (backward-char 1))
@@ -789,7 +789,7 @@ SOURCE(jenchieh): https://emacs.stackexchange.com/questions/2888/kill-buffer-whe
             (jcs-forward-kill-word-capital))))
     (progn
       (if (or (not (wordp (jcs-get-current-char-byte)))
-              (is-end-of-line-p))
+              (jcs-is-end-of-line-p))
           (progn
             ;; NOTE: Here is end of the recursive
             ;; function loop...
@@ -942,7 +942,7 @@ REVERSE : t forward, nil backward."
           (backward-char)
         (forward-char))
 
-      (when (current-char-equal-p char)
+      (when (jcs-current-char-equal-p char)
         (setq do-kill-char t)))
 
     (when (equal do-kill-char t)

@@ -32,7 +32,7 @@
 
   (defun jcs-perl-script-format ()
     "Format the given file as a shell script. - JenChieh Shell Script"
-    (when (is-current-file-empty-p)
+    (when (jcs-is-current-file-empty-p)
       (jcs-insert-perl-template)))
 
   (cond ((file-exists-p buffer-file-name) t)

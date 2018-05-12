@@ -54,7 +54,7 @@
 
   (defun jcs-javascript-format()
     "JavaScript template format."
-    (when (is-current-file-empty-p)
+    (when (jcs-is-current-file-empty-p)
       (jcs-insert-js-template)))
 
   (cond ((file-exists-p buffer-file-name) t)

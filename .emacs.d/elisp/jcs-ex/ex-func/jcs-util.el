@@ -12,6 +12,50 @@
 ;; All utilities put here.
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+;;---------------------------------------------
+;; Boolean
+;;---------------------------------------------
+
+(defun jcs-is-true (b-val)
+  "Check if current value 't' or 'nil'.
+Returns True or False value.
+B-VAL : boolean value, either 't' or 'nil'."
+  (equal b-val t))
+
+(defun jcs-is-false (b-val)
+  "Check if current value 't' or 'nil'.
+Returns True or False value.
+B-VAL : boolean value, either 't' or 'nil'."
+  (equal b-val nil))
+
+;;---------------------------------------------
+;; Buffer
+;;---------------------------------------------
+
+;;;###autoload
+(defun jcs-revert-all-file-buffers ()
+  "Refresh all open file buffers without confirmation.
+Buffers in modified (not yet saved) state in Emacs will not be reverted.
+They will be reverted though if they were modified outside Emacs.
+Buffers visiting files which do not exist any more or are no longer readable
+will be killed.
+SOURCE(jenchieh): https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-ignore-errors"
+  (interactive)
+  (dolist (buf (buffer-list))
+    (let ((filename (buffer-file-name buf)))
+      ;; Revert only buffers containing files, which are not modified;
+      ;; do not try to revert non-file buffers like *Messages*.
+      (when (and filename
+                 (not (buffer-modified-p buf)))
+        (if (file-readable-p filename)
+            ;; If the file exists and is readable, revert the buffer.
+            (with-current-buffer buf
+              (revert-buffer :ignore-auto :noconfirm :preserve-modes))
+          ;; Otherwise, kill the buffer.
+          (let (kill-buffer-query-functions) ; No query done when killing buffer
+            (kill-buffer buf)
+            (message "Killed non-existing/unreadable file buffer: %s" filename))))))
+  (message "Finished reverting buffers containing unmodified files."))
 
 ;;---------------------------------------------
 ;; Make the time stamp base on the format
@@ -75,12 +119,12 @@ N-LINE : line between the two line of code"
 If you want to keep more than one line use
 `jcs-keep-n-line-between' instead."
   (interactive)
-  (if (current-line-empty-p)
+  (if (jcs-current-line-empty-p)
       (progn
         (jcs-next-line)
 
         ;; Kill empty line until there is one line.
-        (while (current-line-empty-p)
+        (while (jcs-current-line-empty-p)
           (jcs-kill-whole-line)))
     (progn
       ;; Make sure have one empty line between.
@@ -110,8 +154,8 @@ If you want to keep more than one line use
 (defun jcs-is-good-space-to-convert-to-tab-p ()
   "Check if current point a good space to convert for tab.
 Generally you will have to check it four times."
-  (and (not (is-beginning-of-line-p))
-       (current-char-equal-p " ")))
+  (and (not (jcs-is-beginning-of-line-p))
+       (jcs-current-char-equal-p " ")))
 
 (defun jcs-convert-space-to-tab (is-forward)
   "Convert space to tab if current point is space.
@@ -166,7 +210,7 @@ IS-FORWARD : forward check convert instead of backward."
   "Convert tab to space if current point is tab.
 IS-FORWARD : forward conversion instead of backward conversion."
   (save-excursion
-    (when (current-char-equal-p "\t")
+    (when (jcs-current-char-equal-p "\t")
       (if (equal is-forward t)
           (progn
             (backward-delete-char -1)
@@ -222,16 +266,7 @@ IS-FORWARD : forward conversion instead of backward conversion."
 
 (defun jcs-is-digit-string (c)
   "Check if C is a digit."
-  (or (string= c "0")
-      (string= c "1")
-      (string= c "2")
-      (string= c "3")
-      (string= c "4")
-      (string= c "5")
-      (string= c "6")
-      (string= c "7")
-      (string= c "8")
-      (string= c "9")))
+  (string-match-p "\^[0-9]'" c))
 
 (defun jcs-current-char-a-wordp ()
   "Check if current character a usual letter."
@@ -257,7 +292,7 @@ IS-FORWARD : forward conversion instead of backward conversion."
   "Check if current character a lowercase character?"
   (not (jcs-current-char-uppercasep)))
 
-(defun current-whitespacep ()
+(defun jcs-current-whitespacep ()
   "Check if current character a whitespace character?"
   (let ((current-char nil)
         (current-char-string nil)
@@ -267,12 +302,12 @@ IS-FORWARD : forward conversion instead of backward conversion."
     (setq current-char-char (string-to-char current-char-string))
     (whitespacep current-char-char)))
 
-(defun current-char-equal-p (c)
+(defun jcs-current-char-equal-p (c)
   "Check the current character equal to 'C'."
   (let ((current-char-string (string (char-before))))
     (string= current-char-string c)))
 
-(defun current-char-string-match-p (c)
+(defun jcs-current-char-string-match-p (c)
   "Check the current character string match to 'C'."
   (let ((current-char-string (string (char-before))))
     (string-match current-char-string c)))
@@ -295,32 +330,93 @@ IS-FORWARD : forward conversion instead of backward conversion."
     (setq current-char-string (string current-char))
     current-char-string))
 
+;;;###autoload
+(defun jcs-goto-next-backward-char (&optional bnd-pt)
+  "Goto the next backward character (not include space/tab).
+BND-PT : limit point."
+  (interactive)
+  (let ((real-lmt-pt (point-min)))
+    ;; If no limit point, default as `point-min'.
+    (unless (equal bnd-pt nil)
+      (setq real-lmt-pt bnd-pt))
+
+    (forward-char -1)
+    (while (and (>= (point) real-lmt-pt)
+                (or (jcs-current-char-equal-p " ")
+                    (jcs-current-char-equal-p "\t")
+                    (jcs-is-beginning-of-line-p)))
+      (forward-char -1))))
+
+;;;###autoload
+(defun jcs-goto-next-forward-char (&optional bnd-pt)
+  "Goto the next forward character (not include space/tab).
+BND-PT : boundary point."
+  (interactive)
+  (let ((real-lmt-pt (point-max)))
+
+    ;; If no limit point, default as `point-max'.
+    (unless (equal bnd-pt nil)
+      (setq real-lmt-pt bnd-pt))
+
+    (forward-char 1)
+    (while (and (<= (point) real-lmt-pt)
+                (or (jcs-current-char-equal-p " ")
+                    (jcs-current-char-equal-p "\t")
+                    (jcs-is-beginning-of-line-p)))
+      (forward-char 1))))
+
 (defun jcs-first-backward-char-p (c)
   "Check the first character left/backward is C."
   (save-excursion
-    (while (or (current-char-equal-p " ")
-               (current-char-equal-p "\t"))
-      (forward-char -1))
+    ;; NOTE(jenchiech): First fowrad a char and ready to
+    ;; be check for next backward character.
+    (forward-char 1)
+    (jcs-goto-next-backward-char (jcs-get-beginning-of-line-point))
     (string= (jcs-get-current-char-string) c)))
 
 (defun jcs-first-forward-char-p (c)
   "Check the first character on the right/forward is C."
   (save-excursion
-    (forward-char 1)
-    (while (or (current-char-equal-p " ")
-               (current-char-equal-p "\t"))
-      (forward-char 1))
+    (jcs-goto-next-forward-char (jcs-get-end-of-line-point))
     (string= (jcs-get-current-char-string) c)))
+
+(defun jcs-is-there-char-backward-point-p (pt)
+  "Check if there is at least one character backward until \
+the point.
+PT : point."
+  (save-excursion
+    (jcs-goto-next-backward-char pt)
+    (>= (point) pt)))
+
+(defun jcs-is-there-char-forward-point-p (pt)
+  "Check if there is at least one character forward until \
+the point.
+PT : point."
+  (save-excursion
+    (jcs-goto-next-forward-char pt)
+    (<= (point) pt)))
+
+(defun jcs-is-there-char-backward-util-beginning-of-line-p ()
+  "Check if there are at least a character on the left until \
+the beginning of the line."
+  (interactive)
+  (jcs-is-there-char-backward-point-p (jcs-get-beginning-of-line-point)))
+
+(defun jcs-is-there-char-forward-until-end-of-line-p ()
+  "Check if there are at least a character on the right until \
+the end of the line."
+  (interactive)
+  (jcs-is-there-char-forward-point-p (jcs-get-end-of-line-point)))
 
 ;;---------------------------------------------
 ;; Word
 ;;---------------------------------------------
-(defun get-word-at-point ()
+(defun jcs-get-word-at-point ()
   "Get word at current cursor position."
   (interactive)
   (thing-at-point 'word))
 
-(defun current-word-equal-p (str)
+(defun jcs-current-word-equal-p (str)
   "Check the current word equal to 'STR'."
   (string= (thing-at-point 'word) str))
 
@@ -333,82 +429,72 @@ IS-FORWARD : forward conversion instead of backward conversion."
   "Goto beginning of line but ignore 'empty characters'(spaces/tabs)."
   (interactive)
   (back-to-indentation-or-beginning)
-  (when (is-beginning-of-line-p)
+  (when (jcs-is-beginning-of-line-p)
     (back-to-indentation-or-beginning)))
 
-;;;###autoload
-(defun current-line-empty-p ()
+(defun jcs-current-line-empty-p ()
   "Current line empty, but accept spaces/tabs in there.  (not absolute)."
   (save-excursion
     (beginning-of-line)
     (looking-at "[[:space:]\t]*$")))
 
-;;;###autoload
-(defun current-line-totally-empty-p ()
+(defun jcs-current-line-totally-empty-p ()
   "Current line empty with no spaces/tabs in there.  (absolute)."
-  (and (is-beginning-of-line-p)
-       (is-end-of-line-p)))
+  (and (jcs-is-beginning-of-line-p)
+       (jcs-is-end-of-line-p)))
 
-;;;###autoload
-(defun is-end-of-line-p ()
-  "Is at the end of line?"
+(defun jcs-current-line-comment-p ()
+  "Check if current line only comment."
   (save-excursion
-    (let ((current-point nil)
-          (end-line-point nil))
-      (setq current-point (point))
+    (let ((is-comment-line nil))
       (end-of-line)
-      (setq end-line-point (point))
-      (= end-line-point current-point))))
+      (when (or (jcs-is-inside-comment-block-p)
+                (jcs-current-line-empty-p))
+        (setq is-comment-line t))
+      (jcs-is-true is-comment-line))))
 
-;;;###autoload
-(defun is-end-of-buffer-p ()
-  "Is at the end of buffer?"
+(defun jcs-get-beginning-of-line-point (&optional ln)
+  "Return point at beginning of current line.
+LN : line number."
   (save-excursion
-    (let ((current-point nil)
-          (end-buffer-point nil))
-      (setq current-point (point))
-      (goto-char (point-max))
-      (setq end-buffer-point (point))
-      (= end-buffer-point current-point))))
-
-;;;###autoload
-(defun is-beginning-of-line-p ()
-  "Is at the beginning of line?"
-  (save-excursion
-    (let ((current-point nil)
-          (begin-line-point nil))
-      (setq current-point (point))
-      (beginning-of-line)
-      (setq begin-line-point (point))
-      (= begin-line-point current-point))))
-
-;;;###autoload
-(defun is-beginning-of-buffer-p ()
-  "Is at the beginning of buffer?"
-  (save-excursion
-    (let ((current-point nil)
-          (begin-buffer-point nil))
-      (setq current-point (point))
-      (goto-char (point-min))
-      (setq begin-buffer-point (point))
-      (= begin-buffer-point current-point))))
-
-(defun jcs-point-beginning-of-line ()
-  "Get the point at the beginning of line."
-  (save-excursion
+    (unless (equal ln nil)
+      (goto-line ln))
     (beginning-of-line)
     (point)))
 
-(defun jcs-point-end-of-line ()
-  "Get the point at the end of line."
+(defun jcs-get-end-of-line-point (&optional ln)
+  "Return point at end of current line.
+LN : line number."
   (save-excursion
+    (unless (equal ln nil)
+      (goto-line ln))
     (end-of-line)
     (point)))
 
-(defun is-current-file-empty-p ()
+;;;###autoload
+(defun jcs-is-end-of-line-p ()
+  "Is at the end of line?"
+  (= (point) (jcs-get-end-of-line-point)))
+
+;;;###autoload
+(defun jcs-is-end-of-buffer-p ()
+  "Is at the end of buffer?"
+  (= (point) (point-max)))
+
+;;;###autoload
+(defun jcs-is-beginning-of-line-p ()
+  "Is at the beginning of line?"
+  (= (point) (jcs-get-beginning-of-line-point)))
+
+;;;###autoload
+(defun jcs-is-beginning-of-buffer-p ()
+  "Is at the beginning of buffer?"
+  (= (point) (point-min)))
+
+(defun jcs-is-current-file-empty-p ()
   "Check if the file a empty file."
-  (and (is-beginning-of-buffer-p)
-       (is-end-of-buffer-p)))
+  (and (jcs-is-beginning-of-buffer-p)
+       (jcs-is-end-of-buffer-p)))
 
 (defun jcs-get-current-line-integer ()
   "Get the current line as integer."
@@ -418,13 +504,13 @@ IS-FORWARD : forward conversion instead of backward conversion."
   "Get the current line as string."
   (format-mode-line "%l"))
 
-(defun is-current-line (line)
+(defun jcs-is-current-line (line)
   "Is current line number this line?
 LINE : number to check if current line this line?"
   (= (string-to-number (format-mode-line "%l")) line))
 
 ;;;###autoload
-(defun is-at-start-of-line-p ()
+(defun jcs-is-at-start-of-line-p ()
   "Cursor is at the first character of this line?"
   (let ((current-point nil)
         (firstCharPoint nil))
@@ -436,43 +522,43 @@ LINE : number to check if current line this line?"
     (= firstCharPoint current-point)))
 
 ;;;###autoload
-(defun is-met-first-char-at-line-p ()
+(defun jcs-is-met-first-char-at-line-p ()
   "Check current cursor point is after the first character at \
 the current line.
 
 @return { boolean } : true, infront of first character.
 false, vice versa."
-  (let ((isInfrontOfFirstChar t)
-        (pointToCheck nil))
+  (let ((is-infront-of-first-char t)
+        (point-to-check nil))
     (save-excursion
       (ignore-errors
-        (setq pointToCheck (point))
+        (setq point-to-check (point))
         (beginning-of-line)
 
-        (when (not (current-line-totally-empty-p))
+        (when (not (jcs-current-line-totally-empty-p))
           (forward-char 1))
 
-        (while (<= (point) pointToCheck)
+        (while (<= (point) point-to-check)
           (if (not (current-whitespacep))
-              (setq isInfrontOfFirstChar nil))
+              (setq is-infront-of-first-char nil))
           (forward-char 1))))
 
-    (eq isInfrontOfFirstChar t)))
+    (eq is-infront-of-first-char t)))
 
-(defun jcs-empty-line-between-point (minPoint maxPoint)
+(defun jcs-empty-line-between-point (min-pt max-pt)
   "Check if there is empty line between two point.
-MINPOINT : smaller position.
-MAXPOINT : larger position."
+MIN-PT : smaller position.
+MAX-PT : larger position."
   (save-excursion
     (let ((there-is-empty-line nil))
-      (when (>= minPoint maxPoint)
+      (when (>= min-pt max-pt)
         (jcs-warning "Min point cannot be larger than max point..")
         ;; Return false.
         (equal there-is-empty-line t))
 
-      (goto-char minPoint)
-      (while (< (point) maxPoint)
-        (when (current-line-empty-p)
+      (goto-char min-pt)
+      (while (< (point) max-pt)
+        (when (jcs-current-line-empty-p)
           ;; Return true.
           (setq there-is-empty-line t)
           (equal there-is-empty-line t))
@@ -481,15 +567,15 @@ MAXPOINT : larger position."
       (equal there-is-empty-line t))))
 
 ;;;###autoload
-(defun safe-forward-char ()
+(defun jcs-safe-forward-char ()
   "Forward a char if not the end of the line."
-  (if (not (is-beginning-of-line-p))
+  (if (not (jcs-is-beginning-of-line-p))
       (forward-char 1)))
 
 ;;;###autoload
-(defun safe-backward-char ()
+(defun jcs-safe-backward-char ()
   "Backward a char if not the beginning of the line."
-  (if (not (is-end-of-line-p))
+  (if (not (jcs-is-end-of-line-p))
       (backward-char 1)))
 
 ;;---------------------------------------------
@@ -498,14 +584,14 @@ MAXPOINT : larger position."
 ;;URL: https://www.gnu.org/software/emacs/manual/html_node/emacs/Moving-Point.html
 
 ;;;###autoload
-(defun top-most-line ()
+(defun jcs-top-most-line ()
   "Move to top of the buffer."
   (interactive)
   ;; NOTE: 0 : top-most-line, -1 : bottom-most-line
   (move-to-window-line-top-bottom 0))
 
 ;;;###autoload
-(defun bottom-most-line()
+(defun jcs-bottom-most-line()
   "Move to bottom of the buffer."
   (interactive)
   ;; NOTE: 0 : top-most-line, -1 : bottom-most-line
@@ -516,7 +602,7 @@ MAXPOINT : larger position."
 ;;---------------------------------------------
 
 ;;;###autoload
-(defun is-mark-active ()
+(defun jcs-is-mark-active ()
   "Is mark active?
 @return { boolean } : true, is active. false, is not active."
   (and mark-active
@@ -527,7 +613,7 @@ MAXPOINT : larger position."
 ;;---------------------------------------------
 
 ;;;###autoload
-(defun is-region-selected-p ()
+(defun jcs-is-region-selected-p ()
   "Is region active? But if `region-start' and `region-end' is at the same point this would not trigger.
 Which normally that mark is active but does not move at all.
 
@@ -537,14 +623,14 @@ region selected.
   (use-region-p))
 
 ;;;###autoload
-(defun is-mark-active-or-region-selected-p ()
+(defun jcs-is-mark-active-or-region-selected-p ()
   "Complete check if the region and the mark is active.
 
 @return { boolean } : true, either region selected or mark is
 active. false, there is no region selected and mark is not active.
 "
-  (or (is-region-selected-p)
-      (is-mark-active)))
+  (or (jcs-is-region-selected-p)
+      (jcs-is-mark-active)))
 
 ;;;###autoload
 (defun jcs-delete-region ()
@@ -556,7 +642,7 @@ active. false, there is no region selected and mark is not active.
 ;; Comment
 ;;---------------------------------------------
 
-(defun is-inside-comment-block-p ()
+(defun jcs-is-inside-comment-block-p ()
   "Check if current cursor point inside the comment block."
   (nth 4 (syntax-ppss)))
 
@@ -564,7 +650,7 @@ active. false, there is no region selected and mark is not active.
 (defun jcs-goto-start-of-the-comment ()
   "Go to the start of the comment."
   (interactive)
-  (when (is-inside-comment-block-p)
+  (when (jcs-is-inside-comment-block-p)
     (backward-char 1)
     (jcs-goto-start-of-the-comment)))
 
@@ -572,7 +658,7 @@ active. false, there is no region selected and mark is not active.
 (defun jcs-goto-end-of-the-comment ()
   "Go to the end of the comment."
   (interactive)
-  (when (is-inside-comment-block-p)
+  (when (jcs-is-inside-comment-block-p)
     (backward-char -1)
     (jcs-goto-end-of-the-comment)))
 
@@ -631,13 +717,13 @@ IN-FACE : input face name as string."
           "Fonts: " (font-family-list))))
 
   ;; Change the font and keep the size.
-  (if (font-existsp inFont)
+  (if (jcs-font-existsp inFont)
       (progn
         (set-frame-font inFont t))
     (progn
       (jcs-error "Font you chose does not exists in current system, Please select other font."))))
 
-(defun font-existsp (font)
+(defun jcs-font-existsp (font)
   "Check if font exists?
 FONT : font to check."
   (if (string-equal (describe-font font)
@@ -677,7 +763,7 @@ MODE-OBJ : mode object memory."
 ;; I/O
 ;;---------------------------------------------
 
-(defun get-string-from-file (filePath)
+(defun jcs-get-string-from-file (filePath)
   "Return filePath's file content.
 TOPIC(jenchieh): Elisp: Read File Content as String or List of Lines
 URL(jenchieh): http://ergoemacs.org/emacs/elisp_read_file_content.html
@@ -691,7 +777,7 @@ FILEPATH : file path."
   "Parse a .ini file.
 FILEPATH : .ini file to parse."
 
-  (let ((tmp-ini (get-string-from-file filePath))
+  (let ((tmp-ini (jcs-get-string-from-file filePath))
         (tmp-ini-list '())
         (tmp-pair-list nil)
         (tmp-keyword "")

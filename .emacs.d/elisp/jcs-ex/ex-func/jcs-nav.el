@@ -144,7 +144,7 @@ CH : character we target to move toward."
   (interactive "P")
   (ignore-errors
     (forward-char 1)
-    (while (not (current-char-equal-p ch))
+    (while (not (jcs-current-char-equal-p ch))
       (forward-char 1))))
 
 (defun jcs-move-to-backward-a-char (ch)
@@ -153,7 +153,7 @@ CH : character we target to move toward."
   (interactive "P")
   (ignore-errors
     (backward-char 1)
-    (while (not (current-char-equal-p ch))
+    (while (not (jcs-current-char-equal-p ch))
       (backward-char 1))))
 
 (defun jcs-move-to-forward-a-char-do-recursive (ch &optional no-rec)
@@ -180,7 +180,7 @@ WORD : word we target to move toward."
   (interactive "P")
   (ignore-errors
     (forward-word 1)
-    (while (not (current-word-equal-p word))
+    (while (not (jcs-current-word-equal-p word))
       (forward-word 1))))
 
 (defun jcs-move-to-backward-a-word (word)
@@ -189,7 +189,7 @@ WORD : word we target to move toward."
   (interactive "P")
   (ignore-errors
     (backward-word 1)
-    (while (not (current-word-equal-p word))
+    (while (not (jcs-current-word-equal-p word))
       (backward-word 1))))
 
 ;;;------------------------------------------------

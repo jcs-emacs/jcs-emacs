@@ -33,7 +33,7 @@
 
   (defun jcs-python-class-format ()
     "Format the given file as a class. - JenChieh Python class"
-    (when (is-current-file-empty-p)
+    (when (jcs-is-current-file-empty-p)
       (jcs-insert-python-template)))
 
   (cond ((file-exists-p buffer-file-name) t)

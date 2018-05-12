@@ -64,12 +64,12 @@ TEMPLATE-STR : template string data."
 (defun jcs-get-template-by-file-path (filePath)
   "Replace keyword and return modefieded template string.
 FILEPATH : template file."
-  (jcs-get-template-by-file-path (get-string-from-file filePath)))
+  (jcs-get-template-by-file-path (jcs-get-string-from-file filePath)))
 
 (defun jcs-insert-template-by-file-path (filePath)
   "Swap all keywords then insert it to current buffer.
 FILEPATH : file path to insert and swap keyword."
-  (let ((template-str (get-string-from-file filePath)))
+  (let ((template-str (jcs-get-string-from-file filePath)))
     (setq template-str (jcs-swap-keyword-template template-str))
     (insert template-str)))
 
@@ -109,14 +109,14 @@ FILEPATH : file path to insert and swap keyword."
 If the template configuration file has change, this must be call
 in order to take effect.  Half hot reloading process."
   (interactive)
-  (setq jcs-preload-global-file-info (get-string-from-file "~/.emacs.d/elisp/jcs-ex/ex-template/header/global_template.txt"))
-  (setq jcs-preload-tag-file-info (get-string-from-file "~/.emacs.d/elisp/jcs-ex/ex-template/header/tag_template.txt"))
-  (setq jcs-preload-manage-file-info (get-string-from-file "~/.emacs.d/elisp/jcs-ex/ex-template/header/manage_template.txt"))
-  (setq jcs-preload-semi-file-info (get-string-from-file "~/.emacs.d/elisp/jcs-ex/ex-template/header/semi_template.txt"))
-  (setq jcs-preload-single-quote-file-info (get-string-from-file "~/.emacs.d/elisp/jcs-ex/ex-template/header/singlequote_template.txt"))
-  (setq jcs-preload-double-quote-file-info (get-string-from-file "~/.emacs.d/elisp/jcs-ex/ex-template/header/doublequote_template.txt"))
-  (setq jcs-preload-double-colon-file-info (get-string-from-file "~/.emacs.d/elisp/jcs-ex/ex-template/header/doublecolon_template.txt"))
-  (setq jcs-preload-double-dash-file-info (get-string-from-file "~/.emacs.d/elisp/jcs-ex/ex-template/header/doubledash_template.txt")))
+  (setq jcs-preload-global-file-info (jcs-get-string-from-file "~/.emacs.d/elisp/jcs-ex/ex-template/header/global_template.txt"))
+  (setq jcs-preload-tag-file-info (jcs-get-string-from-file "~/.emacs.d/elisp/jcs-ex/ex-template/header/tag_template.txt"))
+  (setq jcs-preload-manage-file-info (jcs-get-string-from-file "~/.emacs.d/elisp/jcs-ex/ex-template/header/manage_template.txt"))
+  (setq jcs-preload-semi-file-info (jcs-get-string-from-file "~/.emacs.d/elisp/jcs-ex/ex-template/header/semi_template.txt"))
+  (setq jcs-preload-single-quote-file-info (jcs-get-string-from-file "~/.emacs.d/elisp/jcs-ex/ex-template/header/singlequote_template.txt"))
+  (setq jcs-preload-double-quote-file-info (jcs-get-string-from-file "~/.emacs.d/elisp/jcs-ex/ex-template/header/doublequote_template.txt"))
+  (setq jcs-preload-double-colon-file-info (jcs-get-string-from-file "~/.emacs.d/elisp/jcs-ex/ex-template/header/doublecolon_template.txt"))
+  (setq jcs-preload-double-dash-file-info (jcs-get-string-from-file "~/.emacs.d/elisp/jcs-ex/ex-template/header/doubledash_template.txt")))
 
 (defun jcs-get-global-file-info()
   "Return the preloaded global file info template."

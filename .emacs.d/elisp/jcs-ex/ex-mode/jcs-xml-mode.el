@@ -30,7 +30,7 @@
 
   (defun jcs-xml-format ()
     "Format the given file as a XML file. - JenChieh XML file."
-    (when (is-current-file-empty-p)
+    (when (jcs-is-current-file-empty-p)
       (jcs-insert-xml-template)))
 
   (cond ((file-exists-p buffer-file-name) t)

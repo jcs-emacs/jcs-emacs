@@ -61,7 +61,7 @@
 cursor currently on."
   (interactive)
   (save-excursion
-    (when (not (current-line-empty-p))
+    (when (not (jcs-current-line-empty-p))
       ;; NOTE(jenchieh): When cursor is at the end of
       ;; line, the face will always be `default' face.
       ;; Which mean this will always be mis-detected,
@@ -74,7 +74,7 @@ cursor currently on."
              ;; get apply.
              (jcs-is-current-point-face "nil")
              ;; If current charact is either space or tab.
-             (current-char-string-match-p "[ \t]"))
+             (jcs-current-char-string-match-p "[ \t]"))
         (jcs-goto-first-char-in-line)
         (forward-char 1))
 
@@ -181,8 +181,8 @@ another function..."
 
   (backward-delete-char 1)
 
-  (when (and (not (current-whitespacep))
-             (not (current-char-equal-p "$"))
+  (when (and (not (jcs-current-whitespacep))
+             (not (jcs-current-char-equal-p "$"))
              (jcs-current-char-a-wordp))
     (jcs-web-backward-delete-word)))
 
@@ -193,14 +193,14 @@ another function..."
 
   (backward-delete-char 1)
 
-  (when (and (not (current-whitespacep))
-             (not (current-char-equal-p "$"))
+  (when (and (not (jcs-current-whitespacep))
+             (not (jcs-current-char-equal-p "$"))
              (not (jcs-current-char-uppercasep))
              (jcs-current-char-a-wordp))
     (jcs-web-backward-delete-word-capital))
 
   (when (and (jcs-current-char-uppercasep)
-             (not (current-char-equal-p "$")))
+             (not (jcs-current-char-equal-p "$")))
     (backward-delete-char 1)))
 
 ;;========================================
@@ -372,7 +372,7 @@ line by line instead of indent the whole file at once."
         (tmp-was-beginning-of-line nil))
     ;; Record down if was beginning of line before formatting
     ;; whole document.
-    (when (is-beginning-of-line-p)
+    (when (jcs-is-beginning-of-line-p)
       (setq tmp-was-beginning-of-line t))
 
     ;; NOTE(jenchieh): Do the formatting.

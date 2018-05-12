@@ -31,7 +31,7 @@
 
   (defun jcs-sh-script-format ()
     "Format the given file as a shell script. - JenChieh Shell Script"
-    (when (is-current-file-empty-p)
+    (when (jcs-is-current-file-empty-p)
       (jcs-insert-sh-template)))
 
   (cond ((file-exists-p buffer-file-name) t)

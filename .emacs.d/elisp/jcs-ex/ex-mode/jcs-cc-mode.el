@@ -85,22 +85,22 @@
 
 (defun jcs-c-header-format ()
   "Format the given file as a C header file."
-  (when (is-current-file-empty-p)
+  (when (jcs-is-current-file-empty-p)
     (jcs-insert-c-header-template)))
 
 (defun jcs-c-source-format ()
   "Format the given file as a C source file."
-  (when (is-current-file-empty-p)
+  (when (jcs-is-current-file-empty-p)
     (jcs-insert-c-source-template)))
 
 (defun jcs-c++-header-format ()
   "Format the given file as a C++ header file."
-  (when (is-current-file-empty-p)
+  (when (jcs-is-current-file-empty-p)
     (jcs-insert-c++-header-template)))
 
 (defun jcs-c++-source-format ()
   "Format the given file as a C++ source file."
-  (when (is-current-file-empty-p)
+  (when (jcs-is-current-file-empty-p)
     (jcs-insert-c++-source-template)))
 
 ;;-----------------------------------------------------------

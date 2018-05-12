@@ -34,7 +34,7 @@
 
   (defun jcs-emacs-lisp-format ()
     "Format the given file as a Emacs Lisp file. - JenChieh emacs lisp file."
-    (when (is-current-file-empty-p)
+    (when (jcs-is-current-file-empty-p)
       (jcs-insert-elisp-template)))
 
   ;; NOTE(jenchieh): while loading this will get loading emacs

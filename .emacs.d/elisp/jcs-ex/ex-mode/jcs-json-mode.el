@@ -34,7 +34,7 @@
 
   (defun jcs-json-format()
     "Format for json file."
-    (when (is-current-file-empty-p)
+    (when (jcs-is-current-file-empty-p)
       ;; empty, cause json should only take data.
       ;; Comment will be treat as a data too...
       ))
