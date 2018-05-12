@@ -15,35 +15,9 @@
 ;;; Override all the mode's key bindings.
 (load-file "~/.emacs.d/elisp/jcs-ex/jcs-global-key.el")
 
-;;
-;; All hook listed.
-;; URL(jenchieh): https://www.gnu.org/software/emacs/manual/html_node/elisp/Standard-Hooks.html
-;;
 
-;;;###autoload
-(defun jcs-focus-in-hook ()
-  "When window is focus."
-  )
-
-;;;###autoload
-(defun jcs-focus-out-hook ()
-  "When window is not focus."
-  )
-
-(add-hook 'focus-in-hook 'jcs-focus-in-hook)
-(add-hook 'focus-out-hook 'jcs-focus-out-hook)
-
-;;;###autoload
-(defun jcs-find-file-hook ()
-  "When temporary buffer shown."
-
-  (save-selected-window
-    (ignore-errors
-      (jcs-jump-to-window "*Buffer List*"))
-    (when (jcs-is-current-major-mode-p "Buffer-menu-mode")
-      (jcs-buffer-menu)))
-  )
-(add-hook 'find-file-hook 'jcs-find-file-hook)
+;;-----------------------------------------------------------
+;;-----------------------------------------------------------
 
 (defun jcs-after-init-hook ()
   "Hook run after initialize."
