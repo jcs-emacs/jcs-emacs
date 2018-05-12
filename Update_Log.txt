@@ -15,6 +15,7 @@
 * Add header smart indent down and up for csharp mode in `jcs-cs-func.el' 
  file. (jcs-emacs-init)
 * Split file into `jcs-hook.el' file from `jcs-after-init.el' file. (jcs-emacs-init)
+* Update project version to 4.8.1. (jcs-emacs-init)
 
 2018-05-10
 * Fixed csharp distinguish between docstring and normal comment line. (jcs-emacs-init)
