@@ -54,8 +54,10 @@ SOURCE(jenchieh): https://emacs.stackexchange.com/questions/24459/revert-all-ope
           ;; Otherwise, kill the buffer.
           (let (kill-buffer-query-functions) ; No query done when killing buffer
             (kill-buffer buf)
-            (message "Killed non-existing/unreadable file buffer: %s" filename))))))
-  (message "Finished reverting buffers containing unmodified files."))
+            ;;(message "Killed non-existing/unreadable file buffer: %s" filename)
+            )))))
+  ;;(message "Finished reverting buffers containing unmodified files.")
+  )
 
 ;;---------------------------------------------
 ;; Make the time stamp base on the format
@@ -667,36 +669,33 @@ active. false, there is no region selected and mark is not active.
 ;;---------------------------------------------
 
 ;;;###autoload
-(defun jcs-what-face ()
-  "Print out what face is current cursor on."
-  (interactive)
-  (let ((face (jcs-get-current-point-face)))
-    (if face (message "Face: %s" face) (message "No face at %d" pos))))
-
-;;;###autoload
 (defun jcs-get-current-point-face ()
   "Get current point's type face as string."
   (interactive)
   (let ((face (or (get-char-property (point) 'read-face-name)
                   (get-char-property (point) 'face))))
-    face))
+    (if (listp face)
+        ;; NOTE(jenchieh): If there is multiple faces at
+        ;; a point, it will return a list instead of
+        ;; string. Just get the first element which is
+        ;; usually the foreground face.
+        (nth 0 face)
+      ;; Else we just return the face.
+      face)))
+
+;;;###autoload
+(defun jcs-what-face ()
+  "Print out what face is current cursor on."
+  (interactive)
+  (message "Current face: %s" (jcs-get-current-point-face)))
 
 (defun jcs-is-current-point-face (in-face)
   "Check if current face the same face as IN-FACE.
 Returns, True if is the same as pass in face name string.
 False, is not the same as pass in face name string.
 IN-FACE : input face name as string."
-  (let ((current-point-face (jcs-get-current-point-face)))
-
-    ;; NOTE(jenchieh): If there is multiple faces at
-    ;; a point, it will return a list instead of
-    ;; string. Just get the first element which is
-    ;; usually the foreground face.
-    (when (listp current-point-face)
-      (setq current-point-face (nth 0 current-point-face)))
-
-    ;; Return result.
-    (string= in-face current-point-face)))
+  ;; Return result.
+  (string= in-face (jcs-get-current-point-face)))
 
 ;;---------------------------------------------
 ;; Font
