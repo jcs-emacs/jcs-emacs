@@ -228,3 +228,6 @@
 ;; Set the time delay (in seconds) for the which-key popup to appear. A value of
 ;; zero might cause issues so a non-zero value is recommended.
 (setq which-key-idle-delay 1.0)
+
+(require 'undo-tree)
+(global-undo-tree-mode t)  ;; Enable `undo-tree' as default.
