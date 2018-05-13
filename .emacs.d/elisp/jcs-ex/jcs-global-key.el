@@ -147,8 +147,8 @@
 
 ;;; Undo and Redo
 (define-key global-map "\C-a" 'mark-whole-buffer)
-(define-key global-map "\C-z" 'undo)
-;;(define-key global-map "\C-y" 'redo)
+(define-key global-map "\C-z" 'jcs-undo)
+(define-key global-map "\C-y" 'jcs-redo)
 
 ;;; Text Scale.
 (define-key global-map "\e=" 'text-scale-increase)
@@ -157,7 +157,7 @@
 
 ;;; Mode toggle
 ;;(define-key global-map "\e`" 'jcs-insert-command-mode-toggle)
-(define-key global-map "\C-cd" 'jcs-toggle-shell-window) ; shell command
+(define-key global-map "\C-cd" 'jcs-toggle-shell-window)  ; shell command
 (define-key global-map (kbd "C-`") 'jcs-depend-cross-mode-toggle)
 
 ;;; Window
