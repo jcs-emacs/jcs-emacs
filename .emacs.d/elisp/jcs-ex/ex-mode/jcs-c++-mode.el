@@ -68,6 +68,10 @@
   ;; Comement
   (define-key c++-mode-map (kbd "C-c s") 'jcs-toggle-c-comment-style)
 
+  ;; Undo/Redo
+  (define-key c++-mode-map "\C-z" 'jcs-undo)
+  (define-key c++-mode-map "\C-y" 'jcs-redo)
+
   ;; devenv.com error parsing
   (add-to-list 'compilation-error-regexp-alist 'casey-devenv)
   (add-to-list 'compilation-error-regexp-alist-alist '(casey-devenv
