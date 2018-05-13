@@ -7,6 +7,11 @@
 # ========================================================================
 
 
+2018-05-14
+* Add shell backspace functionality. (jcs-emacs-init)
+* Add undo/redo key bindings with `undo-tree'. (jcs-emacs-init)
+* Add `jcs-shell-mode.el' file for shell mode managing. (jcs-emacs-init)
+
 2018-05-12
 * Complete all naming convention to `jcs'. (jcs-emacs-init)
 * Make on history => 2018-05-11. (jcs-emacs-init)
