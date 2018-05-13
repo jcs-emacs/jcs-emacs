@@ -80,7 +80,8 @@ M-K             Kill the current file, not maybe. (kill-this-buffer)
 C-c C-c         copy
 C-x C-x         cut
 C-v             paste
-C-z             undo
+C-z             undo (undo-tree-undo)
+C-y             redo (undo-tree-redo)
 
 C-f             Search forward / Search pattern (Start increament search)
                   => C-s  Moves to next occurrence.
