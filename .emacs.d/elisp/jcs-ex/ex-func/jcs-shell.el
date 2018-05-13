@@ -8,11 +8,6 @@
 ;; ========================================================================
 
 
-;;===================================
-;;      Toggle Shell window
-;;---------------------------
-;; TAG: shell, terminal
-
 ;;;###autoload
 (defun jcs-toggle-shell-window ()
   "Toggle Shell Command prompt."
@@ -26,12 +21,7 @@
         (put 'jcs-toggle-shell-window 'state nil))
     (progn
       (jcs-show-shell-window)
-      (put 'jcs-toggle-shell-window 'state t)))
-  )
-
-;;---------------------------------------------
-;; Show the shell window.
-;;---------------------------------------------
+      (put 'jcs-toggle-shell-window 'state t))))
 
 ;;;###autoload
 (defun jcs-show-shell-window()
@@ -58,10 +48,6 @@
     ;; active truncate line as default for shell window.
     (jcs-disable-truncate-lines)))
 
-;;---------------------------------------------
-;; Hide the shell window.
-;;---------------------------------------------
-
 ;;;###autoload
 (defun jcs-hide-shell-window ()
   "Kill process prompt."
@@ -77,3 +63,21 @@
 
   ;; kill the frame.
   (delete-window))
+
+;;-----------------------------------------------------------
+;;-----------------------------------------------------------
+
+;;;###autoload
+(defun jcs-shell-backspace ()
+  "Backspace key in shell mode."
+  (interactive)
+  (let ((is-shell-text nil))
+    ;; First get the current font.
+    (save-excursion
+      (forward-char -1)
+      (setq is-shell-text (jcs-is-current-point-face "comint-highlight-prompt")))
+
+    ;; Decide weather delete the character or not.
+    (when (and (not is-shell-text)
+               (not (jcs-is-beginning-of-line-p)))
+      (backward-delete-char 1))))
