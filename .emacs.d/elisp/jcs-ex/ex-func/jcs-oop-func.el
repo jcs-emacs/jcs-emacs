@@ -366,13 +366,6 @@ SEARCH-OPTION :
             (when (<= (point) end-function-point)
               (let ((current-point-face (jcs-get-current-point-face) ))
 
-                ;; NOTE(jenchieh): If there is multiple faces at
-                ;; a point, it will return a list instead of
-                ;; string. Just get the first element which is
-                ;; usually the foreground face.
-                (when (listp current-point-face)
-                  (setq current-point-face (nth 0 current-point-face)))
-
                 ;; NOTE(jenchieh): Store all the keyword name.
                 (when (or (string= current-point-face "font-lock-keyword-face")
                           (string= current-point-face "font-lock-preprocessor-face"))
