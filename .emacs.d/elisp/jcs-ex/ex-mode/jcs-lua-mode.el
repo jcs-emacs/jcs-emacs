@@ -14,7 +14,7 @@
 
 (require 'lua-mode)
 (defun jcs-lua-mode-hook ()
-  "Lau mode hoo."
+  "Lau mode hook."
 
   ;; Abbrevation expansion
   (abbrev-mode 1)
