@@ -13,6 +13,30 @@
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 ;;----------------------------------------------
+;; Undo/Redo
+;;----------------------------------------------
+
+(require 'undo-tree)
+
+;;;###autoload
+(defun jcs-undo ()
+  "Undo key."
+  (interactive)
+  (undo-tree-undo)
+  (save-selected-window
+    (undo-tree-visualize)
+    (global-linum-mode t)))
+
+;;;###autoload
+(defun jcs-redo ()
+  "Undo key."
+  (interactive)
+  (undo-tree-redo)
+  (save-selected-window
+    (undo-tree-visualize)
+    (global-linum-mode t)))
+
+;;----------------------------------------------
 ;; Tab
 ;;----------------------------------------------
 
