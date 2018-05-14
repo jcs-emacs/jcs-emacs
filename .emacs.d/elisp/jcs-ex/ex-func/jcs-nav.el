@@ -478,39 +478,17 @@ as NO-REC : recursive? (Default: do recusrive method)"
   (interactive)
   (jcs-move-to-backward-a-char-do-recursive "}" no-rec))
 
-
-;;----------------------------------------------
-;; Navigate Windows
-;;----------------------------------------------
-
-;;;
-;; URL(jenchieh): https://www.emacswiki.org/emacs/WindowNavigation
-;; Author: ChrisDone
-;;
-(defun jcs-jump-to-window (buffer-name)
-  "Jump to window.
-BUFFER-NAME : buffer name."
-  (interactive "bEnter buffer to jump to: ")
-  (let ((visible-buffers (mapcar '(lambda (window) (buffer-name (window-buffer window))) (window-list)))
-        window-of-buffer)
-    (if (not (member buffer-name visible-buffers))
-        (error "'%s' does not have visible window" buffer-name)
-      (setq window-of-buffer
-            (delq nil (mapcar '(lambda (window)
-                                 (if (equal buffer-name (buffer-name (window-buffer window)))
-                                     window nil)) (window-list))))
-      (select-window (car window-of-buffer)))))
-
-
 ;;----------------------------------------------
 ;; Navigate Search
 ;;----------------------------------------------
 
+;;;###autoload
 (defun jcs-search-forward-at-point ()
   "Search the word at point forward."
   (interactive)
   (isearch-forward-symbol-at-point))
 
+;;;###autoload
 (defun jcs-search-backword-at-point ()
   "Search the word at point backward."
   (interactive)
