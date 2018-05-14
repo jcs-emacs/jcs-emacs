@@ -18,23 +18,114 @@
 
 (require 'undo-tree)
 
+;;
+;; NOTE(jenchieh): This is compatible with other
+;; text editor or IDE. Most IDE/text editor have this
+;; undo/redo system as default.
+;;
+(defvar jcs-use-undo-tree-key nil
+  "Using the undo tree key in stead of normal Emacs's undo key.
+This variable must be use with `jcs-undo' and `jcs-redo' functions.")
+
+(defvar jcs-undo-tree-auto-show-diff t
+  "Show the difference code when undo tree minor mode is active.")
+
+;;-----------------------------------------------------------
+;;-----------------------------------------------------------
+
+;;;###autoload
+(defun jcs-toggle-undo-tree-auto-show-diff ()
+  (interactive)
+  (if jcs-undo-tree-auto-show-diff
+      (jcs-disable-undo-tree-auto-show-diff)
+    (jcs-enable-undo-tree-auto-show-diff)))
+
+;;;###autoload
+(defun jcs-enable-undo-tree-auto-show-diff ()
+  "Enable undo tree auto show diff effect."
+  (interactive)
+  (setq jcs-undo-tree-auto-show-diff t)
+  (message "Enable undo tree auto show diff."))
+
+;;;###autoload
+(defun jcs-disable-undo-tree-auto-show-diff ()
+  "Disable undo tree auto show diff effect."
+  (interactive)
+  (setq jcs-undo-tree-auto-show-diff nil)
+  (message "Disable undo tree auto show diff."))
+
+;;-----------------------------------------------------------
+;;-----------------------------------------------------------
+
+;;;###autoload
+(defun jcs-toggle-undo-tree-key()
+  "Toggle `jcs-use-undo-tree-key' boolean."
+  (interactive)
+  (if (jcs-is-true jcs-use-undo-tree-key)
+      (jcs-disable-undo-tree-key)
+    (jcs-enable-undo-tree-key)))
+
+;;;###autoload
+(defun jcs-enable-undo-tree-key ()
+  "Enable undo tree key.
+This will replace usual Emacs' undo key."
+  (interactive)
+  (setq jcs-use-undo-tree-key t)
+  (message "Enable undo tree key."))
+
+;;;###autoload
+(defun jcs-disable-undo-tree-key ()
+  "Disable undo tree key.
+This will no longer overwrite usual Emacs' undo key."
+  (interactive)
+  (setq jcs-use-undo-tree-key nil)
+  (message "Disable undo tree key."))
+
+;;-----------------------------------------------------------
+;;-----------------------------------------------------------
+
 ;;;###autoload
 (defun jcs-undo ()
   "Undo key."
   (interactive)
-  (undo-tree-undo)
-  (save-selected-window
-    (undo-tree-visualize)
-    (global-linum-mode t)))
+  (if (jcs-is-true jcs-use-undo-tree-key)
+      (progn
+        (undo-tree-undo)
+        (save-selected-window
+          (undo-tree-visualize)
+          ;; STUDY(jenchieh): weird that they use word
+          ;; toggle, instead of just set it.
+          ;;
+          ;; Why not?
+          ;;   => `undo-tree-visualizer-show-diff'
+          ;; or
+          ;;   => `undo-tree-visualizer-hide-diff'
+          (when jcs-undo-tree-auto-show-diff
+            (undo-tree-visualizer-toggle-diff))
+          (global-linum-mode t)))
+    (call-interactively 'undo)))
 
 ;;;###autoload
 (defun jcs-redo ()
   "Undo key."
   (interactive)
-  (undo-tree-redo)
-  (save-selected-window
-    (undo-tree-visualize)
-    (global-linum-mode t)))
+  (if (jcs-is-true jcs-use-undo-tree-key)
+      (progn
+        (undo-tree-redo)
+        (save-selected-window
+          (undo-tree-visualize)
+          ;; STUDY(jenchieh): weird that they use word
+          ;; toggle, instead of just set it.
+          ;;
+          ;; Why not?
+          ;;   => `undo-tree-visualizer-show-diff'
+          ;; or
+          ;;   => `undo-tree-visualizer-hide-diff'
+          (when jcs-undo-tree-auto-show-diff
+            (undo-tree-visualizer-toggle-diff))
+          (global-linum-mode t)))
+    ;; In Emacs, undo/redo is the same thing.
+    (call-interactively 'undo)))
 
 ;;----------------------------------------------
 ;; Tab
