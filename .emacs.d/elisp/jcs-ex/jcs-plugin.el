@@ -229,5 +229,6 @@
 ;; zero might cause issues so a non-zero value is recommended.
 (setq which-key-idle-delay 1.0)
 
+;;; Undo Tree
 (require 'undo-tree)
 (global-undo-tree-mode t)  ;; Enable `undo-tree' as default.
