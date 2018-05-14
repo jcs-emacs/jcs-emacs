@@ -41,18 +41,16 @@
 
   ;; NOTE(jenchieh): can only active when the minibuffer is
   ;; not active.
-  (if (eq jcs-minibuffer-active nil)
+  (when (eq jcs-minibuffer-active nil)
+    (if (get 'jcs-depend-cross-mode-toggle 'state)
+        (progn
+          ;; depend mode
+          (jcs-depend-mode)
+          (put 'jcs-depend-cross-mode-toggle 'state nil))
       (progn
-
-        (if (get 'jcs-depend-cross-mode-toggle 'state)
-            (progn
-              ;; depend mode
-              (jcs-depend-mode)
-              (put 'jcs-depend-cross-mode-toggle 'state nil))
-          (progn
-            ;; cross mode
-            (jcs-cross-mode)
-            (put 'jcs-depend-cross-mode-toggle 'state t))))))
+        ;; cross mode
+        (jcs-cross-mode)
+        (put 'jcs-depend-cross-mode-toggle 'state t)))))
 
 ;;;###autoload
 (defun jcs-reload-active-mode ()
@@ -60,14 +58,16 @@
 toggle mode function."
   (interactive)
 
-  (if (eq jcs-minibuffer-active nil)
-      (if (get 'jcs-depend-cross-mode-toggle 'state)
-          (progn
-            ;; if state is true keep on cross mode.
-            (jcs-cross-mode))
+  ;; NOTE(jenchieh): can only active when the minibuffer is
+  ;; not active.
+  (when (eq jcs-minibuffer-active nil)
+    (if (get 'jcs-depend-cross-mode-toggle 'state)
         (progn
-          ;; vice versa, keep on depend mode.
-          (jcs-depend-mode)))))
+          ;; if state is true keep on cross mode.
+          (jcs-cross-mode))
+      (progn
+        ;; vice versa, keep on depend mode.
+        (jcs-depend-mode)))))
 
 
 (defvar jcs-prompt-message-sleep-delay-time 0.4  ;; in seconds
@@ -80,11 +80,14 @@ can see the error/operation message.")
 to the `jcs-cross-mode' in order to use cross mode search instead
 of machine depenedent plugins/packages which is the `jcs-depend-mode'."
   (interactive)
-  (unless (ignore-errors (or (helm-do-ag-this-file) t))
-    (jcs-cross-mode)
-    (message "Error: This buffer is not visited file. Switch to cross mode search..")
-    (sleep-for jcs-prompt-message-sleep-delay-time)
-    (call-interactively 'isearch-forward)))
+  ;; NOTE(jenchieh): can only active when the minibuffer is
+  ;; not active.
+  (when (eq jcs-minibuffer-active nil)
+    (unless (ignore-errors (or (helm-do-ag-this-file) t))
+      (jcs-cross-mode)
+      (message "Error: This buffer is not visited file. Switch to cross mode search..")
+      (sleep-for jcs-prompt-message-sleep-delay-time)
+      (call-interactively 'isearch-forward))))
 
 ;;---------------------------------------------
 ;; Command Mode
