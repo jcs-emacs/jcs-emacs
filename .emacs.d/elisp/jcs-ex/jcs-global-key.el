@@ -340,6 +340,9 @@
 ;;; Helm
 ;; More key binding in `jcs-helm.elq'
 
+;;; Undo Tree
+(define-key undo-tree-visualizer-mode-map (kbd "RET") 'undo-tree-visualizer-quit)
+
 
 (defun jcs-global-key-rebind ()
   "Some key are not allow to bind, the solution here is just re-bind
