@@ -7,6 +7,9 @@
 # ========================================================================
 
 
+2018-05-15
+* Add toggle undo tree related functions. (jcs-emacs-init)
+
 2018-05-14
 * Add shell backspace functionality. (jcs-emacs-init)
 * Add undo/redo key bindings with `undo-tree'. (jcs-emacs-init)
