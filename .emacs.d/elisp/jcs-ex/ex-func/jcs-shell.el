@@ -37,10 +37,7 @@
     ;;
     ;; NOTE(jenchieh): Call it multiple time to just in case
     ;; the shell process will run.
-    (unless (or (ignore-errors (switch-to-buffer-other-window "*shell*")))
-      (unless (or (ignore-errors (switch-to-buffer-other-window "*shell*")))
-        (unless (or (ignore-errors (switch-to-buffer-other-window "*shell*")))
-          (switch-to-buffer-other-window "*shell*"))))
+    (jcs-ensure-switch-to-buffer-other-window "*shell*")
 
     ;; Run shell process.
     (shell)
