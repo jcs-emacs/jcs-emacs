@@ -11,6 +11,7 @@
 ;;;###autoload
 (defun package-upgrade-all ()
   "Upgrade all packages automatically without showing *Packages* buffer."
+  ;; SOURCE(jenchieh): https://emacs.stackexchange.com/questions/16398/noninteractively-upgrade-all-packages
   (interactive)
   (package-refresh-contents)
   (let (upgrades)
@@ -40,6 +41,7 @@
       (message "All packages are up to date"))))
 
 ;; NOTE(jenchieh): Only in Emacs 25.1+
+;;;###autoload
 (defun package-menu-filter-by-status (status)
   "Filter the *Packages* buffer by status."
   (interactive
@@ -56,5 +58,3 @@
   (if (string= status "..")
       (package-list-packages)
     (package-menu-filter (concat "status:" status))))
-
-(define-key package-menu-mode-map "s" #'package-menu-filter-by-status)
