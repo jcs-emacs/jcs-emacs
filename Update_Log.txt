@@ -7,6 +7,10 @@
 # ========================================================================
 
 
+2018-05-16
+* Add undo tree keymap comment or uncomment overwirte. (jcs-emacs-init)
+* Add save excursion for revert all buffer. (jcs-emacs-init)
+
 2018-05-15
 * Add toggle undo tree related functions. (jcs-emacs-init)
 * Add package upgrade all function. (jcs-emacs-init)
