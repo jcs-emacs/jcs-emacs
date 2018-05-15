@@ -23,11 +23,11 @@
 ;; text editor or IDE. Most IDE/text editor have this
 ;; undo/redo system as default.
 ;;
-(defvar jcs-use-undo-tree-key nil
+(defvar jcs-use-undo-tree-key t
   "Using the undo tree key in stead of normal Emacs's undo key.
 This variable must be use with `jcs-undo' and `jcs-redo' functions.")
 
-(defvar jcs-undo-tree-auto-show-diff t
+(defvar jcs-undo-tree-auto-show-diff nil
   "Show the difference code when undo tree minor mode is active.")
 
 ;;-----------------------------------------------------------
