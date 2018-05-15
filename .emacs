@@ -45,7 +45,7 @@
  '(mouse-wheel-scroll-amount (quote (15)))
  '(package-selected-packages
    (quote
-    (which-key processing-mode basic-mode scala-mode floobits togetherly visual-regexp package-build package-lint auto-highlight-symbol xwidgete pdf-tools preproc-font-lock sublimity tree-mode rainbow-mode py-autopep8 multi-web-mode jdee impatient-mode iedit helm-gtags google-c-style gitlab gitignore-mode github-notifier gitconfig-mode flymake-google-cpplint flymake-cursor elpy ein cpputils-cmake cmake-project cmake-ide cmake-font-lock blank-mode better-defaults auto-package-update auto-install auto-complete-c-headers actionscript-mode ace-window ac-php ac-js2 ac-html ac-emmet)))
+    (with-editor magit-popup yasnippet xcscope websocket web-mode ssass-mode skewer-mode simple-httpd shader-mode pyvenv python-mode powerline php-mode nasm-mode multiple-cursors memoize meghanada magit lua-mode js2-refactor js2-mode ivy htmlize highlight-indentation highlight helm-core helm go-mode gitattributes-mode git-timemachine git-link git-commit flycheck f exec-path-from-shell epl dash csharp-mode company cmake-mode avy async ag adaptive-wrap ac-php-core which-key processing-mode basic-mode scala-mode floobits togetherly visual-regexp package-build package-lint auto-highlight-symbol xwidgete pdf-tools preproc-font-lock sublimity tree-mode rainbow-mode py-autopep8 multi-web-mode jdee impatient-mode iedit helm-gtags google-c-style gitlab gitignore-mode github-notifier gitconfig-mode flymake-google-cpplint flymake-cursor elpy ein cpputils-cmake cmake-project cmake-ide cmake-font-lock blank-mode better-defaults auto-package-update auto-install auto-complete-c-headers actionscript-mode ace-window ac-php ac-js2 ac-html ac-emmet)))
  '(send-mail-function (quote mailclient-send-it))
  '(version-control nil))
 (custom-set-faces
@@ -240,7 +240,9 @@ Return a list of installed packages or nil for every skipped package."
 
 ;;; Utilities
 (load-file "~/.emacs.d/elisp/jcs-ex/jcs-log.el")
+(load-file "~/.emacs.d/elisp/jcs-ex/jcs-package.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/jcs-function.el")
+(load-file "~/.emacs.d/elisp/jcs-ex/jcs-corresponding-file.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/jcs-mode.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/jcs-file-info-format.el")
 (load-file "~/.emacs.d/elisp/jcs-ex/jcs-helm.el")
