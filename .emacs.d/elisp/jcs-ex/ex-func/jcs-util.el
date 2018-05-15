@@ -373,7 +373,7 @@ BND-PT : boundary point."
     ;; NOTE(jenchiech): First fowrad a char and ready to
     ;; be check for next backward character.
     (forward-char 1)
-    (jcs-goto-next-backward-char (jcs-get-beginning-of-line-point))
+    (jcs-goto-next-backward-char (1+ (jcs-get-beginning-of-line-point)))
     (string= (jcs-get-current-char-string) c)))
 
 (defun jcs-first-forward-char-p (c)
