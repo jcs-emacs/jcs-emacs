@@ -340,18 +340,34 @@ line by line instead of indent the whole file at once."
         ;; before save.
         (jcs-web-auto-truncate-lines nil)
         ;; NOTE(jenchieh): check if need a line between a pair.
-        (line-between-pair nil))
+        (line-between-pair nil)
+        ;; NOTE(jenchieh): column before and after column.
+        (line-before-column -1)
+        (line-after-column -1))
     (save-excursion
       (ignore-errors
         (when (and (jcs-first-backward-char-p ">")
                    (jcs-first-forward-char-p "<"))
           (setq line-between-pair t))))
 
+    ;; Get column before we do line break.
+    (save-excursion
+      (jcs-goto-first-char-in-line)
+      (setq line-before-column (current-column)))
+
     ;; Call defulat line break function first.
     (jcs-smart-context-line-break)
 
-    ;; Check if need a line between a pair tag.
-    (when (equal line-between-pair t)
+    ;; Get column after line break and indent correctly.
+    (save-excursion
+      (jcs-goto-first-char-in-line)
+      (setq line-after-column (current-column)))
+
+    (when (and
+           ;; Check if need a line between a pair tag.
+           line-between-pair
+           ;; Check if they tag are the same level.
+           (= line-before-column line-after-column))
       ;; Fix curly bracket not indent correctly.
       (jcs-smart-context-line-break)
       (jcs-web-smart-indent-down)
@@ -490,21 +506,3 @@ line by line instead of indent the whole file at once."
       (dolist (tmp-element jcs-web-mode-offsetless-elements-toggle)
         (setq web-mode-offsetless-elements (remove tmp-element web-mode-offsetless-elements)))
       (put 'jcs-toggle-web-mode-offsetless-elements 'state t))))
-
-;;-----------------------------------------------------------
-;;-----------------------------------------------------------
-
-(defun jcs-web-corresponding-file ()
-  "Find the corresponding file for WEB related file."
-  (let ((corresponding-file-name "")
-        (tmp-base-file-name (file-name-sans-extension buffer-file-name)))
-    (cond ((string-match "\\.aspx.cs" buffer-file-name)
-           (progn
-             (setq corresponding-file-name tmp-base-file-name)))
-          ((string-match "\\.aspx" buffer-file-name)
-           (progn
-             (setq corresponding-file-name (concat tmp-base-file-name ".aspx.cs"))))
-          )
-
-    ;; Return file name.
-    corresponding-file-name))

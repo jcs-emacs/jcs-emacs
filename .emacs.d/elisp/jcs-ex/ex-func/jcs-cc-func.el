@@ -12,37 +12,6 @@
 ;; Functions for C/C++ common.
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-(defun jcs-cc-corresponding-file ()
-  "Find the corresponding file for C/C++ file."
-  (let ((corresponding-file-name "")
-        (tmp-base-file-name (file-name-sans-extension buffer-file-name)))
-    (cond ((string-match "\\.hin" buffer-file-name)
-           (progn
-             (setq corresponding-file-name (concat tmp-base-file-name ".cin"))))
-          ((string-match "\\.hpp" buffer-file-name)
-           (progn
-             (setq corresponding-file-name (concat tmp-base-file-name ".cpp"))))
-          ((string-match "\\.h" buffer-file-name)
-           (progn
-             (if (file-exists-p (concat tmp-base-file-name ".c"))
-                 (setq corresponding-file-name (concat tmp-base-file-name ".c"))
-               (setq corresponding-file-name (concat tmp-base-file-name ".cpp")))))
-          ((string-match "\\.cin" buffer-file-name)
-           (progn
-             (setq corresponding-file-name (concat tmp-base-file-name ".hin"))))
-          ((string-match "\\.cpp" buffer-file-name)
-           (progn
-             (setq corresponding-file-name (concat tmp-base-file-name ".h"))))
-          ((string-match "\\.c" buffer-file-name)
-           (progn
-             (setq corresponding-file-name (concat tmp-base-file-name ".h"))))
-          )
-    ;; Return file name.
-    corresponding-file-name))
-
-;;-----------------------------------------------------------
-;;-----------------------------------------------------------
-
 ;;;###autoload
 (defun jcs-toggle-cc-mode ()
   "Toggle c/c++ mode."

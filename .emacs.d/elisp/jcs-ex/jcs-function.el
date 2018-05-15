@@ -13,44 +13,6 @@
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 ;;----------------------------------------------
-;; Corresponding File
-;;----------------------------------------------
-
-;;;###autoload
-(defun jcs-find-corresponding-file ()
-  "Find the file that corresponds to this one."
-  (interactive)
-  (let ((corresponding-file-name ""))
-    ;;;
-    ;; NOTE(jenchieh): Add your corresponding file here.
-    ;;;
-
-    ;; NOTE(jenchieh): Find C/C++ corresponding file.
-    (when (or (jcs-is-current-major-mode-p "c++-mode")
-              (jcs-is-current-major-mode-p "c-mode"))
-      (setq corresponding-file-name (jcs-cc-corresponding-file)))
-
-    ;; NOTE(jenchieh): Find WEB corresponding file.
-    (when (or
-           ;; For ASP.NET -> [file-name].aspx.cs
-           (jcs-is-current-major-mode-p "csharp-mode")
-           ;; For ASP.NET -> [file-name].aspx
-           (jcs-is-current-major-mode-p "web-mode"))
-      (setq corresponding-file-name (jcs-web-corresponding-file)))
-
-    ;; Error check before return it value.
-    (if corresponding-file-name (find-file corresponding-file-name)
-      (error "Unable to find a corresponding file.."))))
-
-;;;###autoload
-(defun jcs-find-corresponding-file-other-window ()
-  "Find the file that corresponds to this one."
-  (interactive)
-  (find-file-other-window buffer-file-name)
-  (jcs-find-corresponding-file)
-  (other-window -1))
-
-;;----------------------------------------------
 ;; Buffer
 ;;----------------------------------------------
 
@@ -283,30 +245,6 @@ own preferences."
   "Disable truncate lines."
   (interactive)
   (setq truncate-lines nil))
-
-;;----------------------------------------------
-;; Package
-;;----------------------------------------------
-;; NOTE(jenchieh): Only in Emacs 25.1+
-(defun package-menu-filter-by-status (status)
-  "Filter the *Packages* buffer by status."
-  (interactive
-   (list (completing-read
-          "Status: " '(".."
-                       "available"
-                       "built-in"
-                       "dependency"
-                       "incompat"
-                       "installed"
-                       "new"
-                       "obsolete"))))
-
-  (if (string= status "..")
-      (package-list-packages)
-    (package-menu-filter (concat "status:" status))))
-
-(define-key package-menu-mode-map "s" #'package-menu-filter-by-status)
-
 
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 ;; Load files.
