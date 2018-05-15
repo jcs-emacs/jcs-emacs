@@ -9,6 +9,8 @@
 
 2018-05-15
 * Add toggle undo tree related functions. (jcs-emacs-init)
+* Add package upgrade all function. (jcs-emacs-init)
+* Make one history => 2018-05-15, upgrade all package to the newest version. (jcs-emacs-init)
 
 2018-05-14
 * Add shell backspace functionality. (jcs-emacs-init)
@@ -17,7 +19,7 @@
 
 2018-05-12
 * Complete all naming convention to `jcs'. (jcs-emacs-init)
-* Make on history => 2018-05-11. (jcs-emacs-init)
+* Make one history => 2018-05-11. (jcs-emacs-init)
 * Make comment methods exactly the same as Visual Studio IDE in csharp 
  mode. (jcs-emacs-init)
 * Add header smart indent down and up for csharp mode in `jcs-cs-func.el' 
