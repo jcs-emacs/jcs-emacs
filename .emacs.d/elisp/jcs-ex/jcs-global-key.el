@@ -147,10 +147,17 @@
 ;;; Admin
 (define-key global-map "\C-x\C-v" 'jcs-reload-emacs)
 
-;;; Undo and Redo
+;;; Undo/Redo
 (define-key global-map "\C-a" 'mark-whole-buffer)
 (define-key global-map "\C-z" 'jcs-undo)
 (define-key global-map "\C-y" 'jcs-redo)
+
+;;; Undo Tree
+(define-key undo-tree-visualizer-mode-map (kbd "RET") 'undo-tree-visualizer-quit)
+;; STUDY(jenchieh): `undo-tree''s minor mode will overwrite
+;; the global key map's key bindings. What we need to do
+;; is to remap this again...
+(define-key undo-tree-map (kbd "C-/") 'jcs-comment-uncomment-region-or-line)
 
 ;;; Text Scale.
 (define-key global-map "\e=" 'text-scale-increase)
@@ -341,9 +348,6 @@
 
 ;;; Helm
 ;; More key binding in `jcs-helm.elq'
-
-;;; Undo Tree
-(define-key undo-tree-visualizer-mode-map (kbd "RET") 'undo-tree-visualizer-quit)
 
 
 (defun jcs-global-key-rebind ()
