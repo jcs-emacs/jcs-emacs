@@ -111,7 +111,9 @@
 (define-key global-map "\C-s" 'jcs-untabify-save-buffer)
 (define-key global-map (kbd "C-S-s") 'jcs-tabify-save-buffer)
 
+;;; Package
 (define-key global-map "\C-p" 'package-list-packages)
+(define-key package-menu-mode-map "s" #'package-menu-filter-by-status)
 
 (define-key global-map (kbd "C-<return>") 'goto-address-at-point)
 
