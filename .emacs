@@ -290,3 +290,4 @@ Return a list of installed packages or nil for every skipped package."
 
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of .emacs file
+(put 'erase-buffer 'disabled nil)
