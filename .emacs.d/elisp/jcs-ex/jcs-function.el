@@ -38,42 +38,13 @@
 
 ;;;###autoload
 (defun jcs-reload-emacs-once ()
-  "Reload emacs file one turn."
+  "Reload emacs file once."
   (interactive)
-
-  (let ((frame-displayed-in-two-window 0))
-    (when (jcs-is-buffer-open-in-two-or-more-window)
-      (setq frame-displayed-in-two-window 1))
-
-    (ignore-errors (delete-window))
-    (ignore-errors (delete-window))
-    (ignore-errors (delete-window))
-    (ignore-errors (delete-window))
-    (ignore-errors (delete-window))
-    (ignore-errors (delete-window))
-    (ignore-errors (delete-window))
-    (ignore-errors (delete-window))
-    (ignore-errors (delete-window))
-    (ignore-errors (delete-window))
-    (ignore-errors (delete-window))
-    (ignore-errors (delete-window))
-
-    (load-file "~/.emacs")
-
-    ;; TODO(jayces): Bug if multiple window displayed.
-    (when (= frame-displayed-in-two-window 0)
-      (switch-to-previous-buffer))))
-
-;;;###autoload
-(defun jcs-reload-emacs ()
-  "Reload '.emacs' file properly fixed toggle issue."
-  (interactive)
-
-  ;; NOTE(jayces): kill window will fixed horizontal split issue.
-  ;; Load twice will fixed the toggle issue.
-
-  (jcs-reload-emacs-once)
-  (jcs-reload-emacs-once))
+  (save-match-data
+    (save-window-excursion
+      (save-selected-window
+        (save-restriction
+          (load-file "~/.emacs"))))))
 
 ;;;###autoload
 (defun jcs-top-level ()
