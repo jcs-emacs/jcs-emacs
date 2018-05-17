@@ -7,6 +7,14 @@
 # ========================================================================
 
 
+2018-05-17
+* Add deletetion series of functionalities and key bindgins. (jcs-emacs-init)
+* Add start/last line of buffer boolean check functionalities for future
+ utility use. (jcs-emacs-init)
+* Improve reload emacs functionality. (jcs-emacs-init)
+* Better default with shell mode control, more like the normal/general/
+ common terminal prompt. (jcs-emacs-init)
+
 2018-05-16
 * Add undo tree keymap comment or uncomment overwirte. (jcs-emacs-init)
 * Add save excursion for revert all buffer. (jcs-emacs-init)
