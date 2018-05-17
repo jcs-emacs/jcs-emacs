@@ -232,8 +232,3 @@
 ;;; Undo Tree
 (require 'undo-tree)
 (global-undo-tree-mode t)  ;; Enable `undo-tree' as default.
-
-;;; Show paren mode.
-;; NOTE(jenchieh): turn on highlight matching brackets
-;; when cursor is on one
-(show-paren-mode t)

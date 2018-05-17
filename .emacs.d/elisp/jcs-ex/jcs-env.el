@@ -491,3 +491,8 @@ NEW-WORD : new word ready to be insert."
 
 ;; Set default major mode to `org-mode'.
 (setq-default major-mode 'org-mode)
+
+;;; Show paren mode.
+;; NOTE(jenchieh): turn on highlight matching brackets
+;; when cursor is on one
+(show-paren-mode t)
