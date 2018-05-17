@@ -54,11 +54,13 @@ Just use this without remember Emacs Lisp function."
 ;;; TOPIC: Navigating Parentheses
 ;;; SOURCE: https://www.emacswiki.org/emacs/NavigatingParentheses
 
-;; Record down the current searching character.
-(setq jcs-current-search-char "")
+(defvar jcs-current-search-char ""
+  "Record down the current searching character.")
 
-(setq jcs-search-trigger-forward-char 0)
-(setq jcs-search-trigger-backward-char 0)
+(defvar jcs-search-trigger-forward-char 0
+  "Trigger search forward.")
+(defvar jcs-search-trigger-backward-char 0
+  "Trigger search backward.")
 
 ;;;###autoload
 (defun jcs-move-to-forward-a-char-recursive (ch)
