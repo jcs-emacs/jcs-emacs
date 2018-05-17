@@ -581,6 +581,33 @@ MAX-PT : larger position."
   (if (not (jcs-is-end-of-line-p))
       (backward-char 1)))
 
+
+(defun jcs-start-line-in-buffer ()
+  "Is current line the start line in buffer."
+  (let ((buffer-start-line-num nil)
+        ;; Get the current line number in the shell buffer.
+        (current-line-num (jcs-get-current-line-integer)))
+    ;; Get the last line number in the current shell buffer.
+    (save-excursion
+      (goto-char (point-min))
+      (setq buffer-start-line-num (jcs-get-current-line-integer)))
+
+    ;; Return it.
+    (= current-line-num buffer-start-line-num)))
+
+(defun jcs-last-line-in-buffer ()
+  "Is current line the last line in buffer."
+  (let ((buffer-last-line-num nil)
+        ;; Get the current line number in the shell buffer.
+        (current-line-num (jcs-get-current-line-integer)))
+    ;; Get the last line number in the current shell buffer.
+    (save-excursion
+      (goto-char (point-max))
+      (setq buffer-last-line-num (jcs-get-current-line-integer)))
+
+    ;; Return it.
+    (= current-line-num buffer-last-line-num)))
+
 ;;---------------------------------------------
 ;; Move between button.
 ;;---------------------------------------------
