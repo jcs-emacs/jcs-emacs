@@ -145,7 +145,7 @@
 (define-key auto-highlight-symbol-mode-map (kbd "M-S-<left>") 'jcs-search-backword-at-point)
 
 ;;; Admin
-(define-key global-map "\C-x\C-v" 'jcs-reload-emacs)
+(define-key global-map "\C-x\C-v" 'jcs-reload-emacs-once)
 
 ;;; Undo/Redo
 (define-key global-map "\C-a" 'mark-whole-buffer)
