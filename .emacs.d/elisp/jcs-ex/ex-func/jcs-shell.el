@@ -61,20 +61,115 @@
   ;; kill the frame.
   (delete-window))
 
+
+;;;###autoload
+(defun jcs-shell-clear-command ()
+  "Clear buffer and make new command prompt."
+  (interactive)
+  (erase-buffer)
+  (comint-send-input))
+
+;;;###autoload
+(defun jcs-shell-return ()
+  "Shell mode's return key."
+  (interactive)
+  ;; Goto the end of the command line.
+  (goto-char (point-max))
+
+  ;; STUDY(jenchieh): This actually does not
+  ;; goes to the beginning of line. It actually
+  ;; goto the start of the command prompt. Which
+  ;; mean we do not have to code ourselves to the
+  ;; start of command line.
+  ;;
+  ;; >>> Image: <<<
+  ;;                             ┌─ It will jump to this point.
+  ;; ┌─ In general, will goto    │
+  ;; │ this point.               │
+  ;; ▼                           ▼
+  ;; `c:\to\some\example\dir\path>'
+  (beginning-of-line)
+
+  (let ((command-start-point nil)
+        (command-string ""))
+    (setq command-start-point (point))
+
+    ;; Get the string start from command to end of command.
+    (setq command-string (buffer-substring command-start-point (point-max)))
+
+    ;; Execute the command.
+    (cond ((string= command-string "exit")
+           (progn
+             ;; Here toggle, actually close the terminal itself.
+             (jcs-toggle-shell-window)))
+          ((or (string= command-string "clear")
+               (string= command-string "cls"))
+           (progn
+             ;; Clear the terminal once.
+             (jcs-shell-clear-command)))
+          ;; Else just send the command to terminal.
+          (t
+           (progn
+             ;; Call default return key.
+             (comint-send-input))))))
+
 ;;-----------------------------------------------------------
 ;;-----------------------------------------------------------
+
+(defvar jcs-shell-highlight-face-name "comint-highlight-prompt"
+  "Face name in shell mode that we do not want to delete.")
+
+(defun jcs-shell-is-can-kill-buffer ()
+  "Return t if can kill buffer in shell mode."
+  (and (jcs-last-line-in-buffer)
+       (not (jcs-is-beginning-of-line-p))
+       (not (jcs-is-current-point-face jcs-shell-highlight-face-name))))
 
 ;;;###autoload
 (defun jcs-shell-backspace ()
   "Backspace key in shell mode."
   (interactive)
-  (let ((is-shell-text nil))
-    ;; First get the current font.
-    (save-excursion
-      (forward-char -1)
-      (setq is-shell-text (jcs-is-current-point-face "comint-highlight-prompt")))
+  ;; Only the last line of buffer can do deletion.
+  (when (jcs-shell-is-can-kill-buffer)
+    (backward-delete-char 1)))
 
-    ;; Decide weather delete the character or not.
-    (when (and (not is-shell-text)
-               (not (jcs-is-beginning-of-line-p)))
-      (backward-delete-char 1))))
+;;;###autoload
+(defun jcs-shell-kill-whole-line ()
+  "Kill whole line in shell mode."
+  (interactive)
+  ;; Directly jump to the end of the buffer.
+  (goto-char (point-max))
+  ;; Delete eveything from current command line.
+  (while (and (not (jcs-is-current-point-face jcs-shell-highlight-face-name))
+              (not (jcs-is-beginning-of-line-p)))
+    (backward-delete-char 1)))
+
+
+;;;###autoload
+(defun jcs-shell-backward-delete-word ()
+  "Shell mode's version of backward delete word."
+  (interactive)
+  (when (jcs-shell-is-can-kill-buffer)
+    (call-interactively 'jcs-backward-delete-word)))
+
+;;;###autoload
+(defun jcs-shell-forward-delete-word ()
+  "Shell mode's version of forward delete word."
+  (interactive)
+  (when (jcs-shell-is-can-kill-buffer)
+    (call-interactively 'jcs-forward-delete-word)))
+
+
+;;;###autoload
+(defun jcs-shell-backward-kill-word-capital ()
+  "Shell mode's version of forward delete word."
+  (interactive)
+  (when (jcs-shell-is-can-kill-buffer)
+    (call-interactively 'jcs-backward-kill-word-capital)))
+
+;;;###autoload
+(defun jcs-shell-forward-kill-word-capital ()
+  "Shell mode's version of forward delete word."
+  (interactive)
+  (when (jcs-shell-is-can-kill-buffer)
+    (call-interactively 'jcs-forward-kill-word-capital)))
