@@ -16,15 +16,11 @@
 (load-file "~/.emacs.d/elisp/jcs-ex/jcs-global-key.el")
 
 
-;;-----------------------------------------------------------
-;;-----------------------------------------------------------
+;; Call once the depends mode as default.
+;; NOTE(jayces): Since I often use my own machine, set the online
+;; mode as the default.
+(call-interactively 'jcs-depend-mode)
 
-(defun jcs-after-init-hook ()
-  "Hook run after initialize."
-  (jcs-reload-file-info)
-  (jcs-reload-docstring-info)
-  )
-(add-hook 'after-init-hook 'jcs-after-init-hook)
 
 ;;; Diminish
 ;; NOTE(jenchieh): Do not show theses modes in the mode line.
