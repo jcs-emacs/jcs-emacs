@@ -211,7 +211,7 @@ M-x customize-theme
 把.emacs file 貼上去!
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-* 下載Package時,
+* Package Mode時,
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 M-x package-list-packages
 
@@ -221,6 +221,10 @@ d 選擇想要刪除的package
     -> package-menu-mark-delete
 x 安裝packages(Execute packages)
     -> package-menu-execute
+s 列出特定分類的packages.
+    -> package-menu-filter-by-status
+u 升級所有packages
+    -> package-upgrade-all
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * C/C++ Mode
