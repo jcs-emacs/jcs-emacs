@@ -39,6 +39,8 @@
     ;; the shell process will run.
     (jcs-ensure-switch-to-buffer-other-window "*shell*")
 
+    (erase-buffer)
+
     ;; Run shell process.
     (shell)
 
