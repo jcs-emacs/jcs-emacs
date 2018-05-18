@@ -11,6 +11,7 @@
 * Bind upgrade package to package mode. (jcs-emacs-init)
 * Fixed depends mode not active before we enter at least once of 
  the minibuffer. (jcs-emacs-init)
+* Add completion key binding to shell-mode. (jcs-emacs-init)
 
 2018-05-17
 * Add deletetion series of functionalities and key bindgins. (jcs-emacs-init)
