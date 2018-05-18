@@ -288,7 +288,3 @@ control of the editor."
 
   (jcs-global-key-rebind)
   )
-
-;; NOTE(jayces): Since I often use my own machine, set the online
-;; mode as the default.
-(call-interactively 'jcs-depend-mode)
