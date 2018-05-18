@@ -114,6 +114,7 @@
 ;;; Package
 (define-key global-map "\C-p" 'package-list-packages)
 (define-key package-menu-mode-map "s" #'package-menu-filter-by-status)
+(define-key package-menu-mode-map "u" #'package-upgrade-all)
 
 (define-key global-map (kbd "C-<return>") 'goto-address-at-point)
 
