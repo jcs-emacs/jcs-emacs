@@ -211,3 +211,15 @@
 
   (when (jcs-last-line-in-buffer)
     (goto-char (point-max))))
+
+;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+;; Completion
+;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+;;;###autoload
+(defun jcs-company-manual-begin ()
+  "Completion for the shell command."
+  (interactive)
+  (goto-char (point-max))
+  ;; Call default completion function.
+  (call-interactively #'company-manual-begin))
