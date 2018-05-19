@@ -99,6 +99,7 @@
   ;; jcs web key binding
   (define-key web-mode-map (kbd "C-d") 'jcs-web-kill-whole-line)
   (define-key web-mode-map "\C-c\C-c" 'jcs-web-kill-ring-save)
+  (define-key emmet-mode-keymap "\C-c\C-c" 'jcs-web-kill-ring-save)
   (define-key web-mode-map "\C-v" 'jcs-web-yank)
 
   (define-key web-mode-map "\C-k\C-f" 'jcs-web-indent-region)
@@ -296,11 +297,6 @@
 ;; css indent spaces.
 (setq css-indent-offset 2)
 
-(require 'com-css-sort)
-;; NOTE(jenchieh): Set the source control list to the
-;; same as mine source control list.
-(setq com-css-sort-vc-list jcs-vc-list)
-
 
 ;; TODO(jenchieh): No idea why, but this could not put it at
 ;; the .emacs file's Manually install section.
@@ -308,6 +304,7 @@
 (load-file "~/.emacs.d/elisp/css-mode.el")
 
 (require 'css-mode)
+(require 'com-css-sort)
 
 (defun jcs-css-mode-hook ()
 
