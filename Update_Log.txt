@@ -7,6 +7,10 @@
 # ========================================================================
 
 
+2018-05-19
+* Remove sorting CSS attributes before save, I think is never been useful. (jcs-emacs-init)
+* Manually update packages 'com-css-sort' and 'organize-imports-java'. (jcs-emacs-init)
+
 2018-05-18
 * Bind upgrade package to package mode. (jcs-emacs-init)
 * Fixed depends mode not active before we enter at least once of 
