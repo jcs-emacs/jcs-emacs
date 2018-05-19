@@ -8,6 +8,10 @@
 ;; ========================================================================
 
 
+;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+;; Toggle Shell Mode
+;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
 ;;;###autoload
 (defun jcs-toggle-shell-window ()
   "Toggle Shell Command prompt."
@@ -63,6 +67,9 @@
   ;; kill the frame.
   (delete-window))
 
+;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+;; Shell Commands
+;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 ;;;###autoload
 (defun jcs-shell-clear-command ()
@@ -115,14 +122,15 @@
              ;; Call default return key.
              (comint-send-input))))))
 
-;;-----------------------------------------------------------
-;;-----------------------------------------------------------
+;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+;; Deletion
+;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 (defvar jcs-shell-highlight-face-name "comint-highlight-prompt"
   "Face name in shell mode that we do not want to delete.")
 
-(defun jcs-shell-is-can-kill-buffer ()
-  "Return t if can kill buffer in shell mode."
+(defun jcs-shell-is-current-on-command ()
+  "Return non-nil if current on command line."
   (and (jcs-last-line-in-buffer)
        (not (jcs-is-beginning-of-line-p))
        (not (jcs-is-current-point-face jcs-shell-highlight-face-name))))
@@ -132,7 +140,7 @@
   "Backspace key in shell mode."
   (interactive)
   ;; Only the last line of buffer can do deletion.
-  (when (jcs-shell-is-can-kill-buffer)
+  (when (jcs-shell-is-current-on-command)
     (backward-delete-char 1)))
 
 ;;;###autoload
@@ -151,14 +159,14 @@
 (defun jcs-shell-backward-delete-word ()
   "Shell mode's version of backward delete word."
   (interactive)
-  (when (jcs-shell-is-can-kill-buffer)
+  (when (jcs-shell-is-current-on-command)
     (call-interactively 'jcs-backward-delete-word)))
 
 ;;;###autoload
 (defun jcs-shell-forward-delete-word ()
   "Shell mode's version of forward delete word."
   (interactive)
-  (when (jcs-shell-is-can-kill-buffer)
+  (when (jcs-shell-is-current-on-command)
     (call-interactively 'jcs-forward-delete-word)))
 
 
@@ -166,12 +174,40 @@
 (defun jcs-shell-backward-kill-word-capital ()
   "Shell mode's version of forward delete word."
   (interactive)
-  (when (jcs-shell-is-can-kill-buffer)
+  (when (jcs-shell-is-current-on-command)
     (call-interactively 'jcs-backward-kill-word-capital)))
 
 ;;;###autoload
 (defun jcs-shell-forward-kill-word-capital ()
   "Shell mode's version of forward delete word."
   (interactive)
-  (when (jcs-shell-is-can-kill-buffer)
+  (when (jcs-shell-is-current-on-command)
     (call-interactively 'jcs-forward-kill-word-capital)))
+
+;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+;; Navigation
+;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+;;;###autoload
+(defun jcs-shell-up-key ()
+  "Shell mode up key."
+  (interactive)
+  (if (or (jcs-shell-is-current-on-command)
+          (jcs-is-end-of-buffer-p))
+      (comint-previous-input 1)
+    (jcs-previous-line))
+
+  (when (jcs-last-line-in-buffer)
+    (goto-char (point-max))))
+
+;;;###autoload
+(defun jcs-shell-down-key ()
+  "Shell mode down key."
+  (interactive)
+  (if (or (jcs-shell-is-current-on-command)
+          (jcs-is-end-of-buffer-p))
+      (comint-next-input 1)
+    (jcs-next-line))
+
+  (when (jcs-last-line-in-buffer)
+    (goto-char (point-max))))
