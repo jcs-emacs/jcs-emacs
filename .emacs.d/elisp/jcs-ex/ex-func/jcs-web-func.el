@@ -408,7 +408,9 @@ line by line instead of indent the whole file at once."
 (defun jcs-css-save-buffer ()
   "Save buffer in `css-mode'."
   (interactive)
-  (com-css-sort-attributes-document)
+  ;; NOTE(jenchieh): after using this, I think is better
+  ;; if I bind this function/command to another key.
+  ;;(com-css-sort-attributes-document)
   (jcs-untabify-save-buffer))
 
 ;;---------------------------------------------
