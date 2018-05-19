@@ -13,8 +13,8 @@
 ;;================================================
 
 ;; Setup my key binding
-(global-set-key (read-kbd-macro "\eb")  'ido-switch-buffer)
-(global-set-key (read-kbd-macro "\eB")  'ido-switch-buffer-other-window)
+(global-set-key (read-kbd-macro "\eb") 'ido-switch-buffer)
+(global-set-key (read-kbd-macro "\eB") 'ido-switch-buffer-other-window)
 
 ;; no screwing with my middle mouse button
 (global-unset-key [mouse-2])
