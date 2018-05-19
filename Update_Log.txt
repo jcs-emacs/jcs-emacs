@@ -14,6 +14,7 @@
 * Remap shell-mode key bindings for trying simulate the real shell action. (jcs-emacs-init)
 * Add shell command completion functionality/function and map it in the 
  shell-mode. (jcs-emacs-init)
+* Fixed css-mode comment font face does not work with dash. (jcs-emacs-init)
 
 2018-05-18
 * Bind upgrade package to package mode. (jcs-emacs-init)
