@@ -94,10 +94,6 @@
 
 (require 'organize-imports-java)
 
-;; NOTE(jenchieh): Set the source control list to the
-;; same as mine source control list.
-(setq organize-imports-java-vc-list jcs-vc-list)
-
 ;;;###autoload
 (defun jcs-java-organize-imports ()
   "Organize all the import package.
