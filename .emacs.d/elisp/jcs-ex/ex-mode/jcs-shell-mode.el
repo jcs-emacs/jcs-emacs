@@ -14,7 +14,7 @@
   "Shell mode hook."
 
   ;; Completion
-  (define-key shell-mode-map [tab] #'company-manual-begin)
+  (define-key shell-mode-map [tab] #'jcs-company-manual-begin)
 
   ;; Command Input
   (define-key shell-mode-map (kbd "RET") #'jcs-shell-return)
