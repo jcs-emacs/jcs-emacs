@@ -34,10 +34,10 @@
            ("\\(<\\!--[[:ascii:]]*-->\\)" 1 'jcs-font-lock-comment-face t)
            ;; For multi-lines comment.
            ;; TODO(jenchieh): Only inside the curly bracket.
-           ("\\(/\\*[a-zA-Z0-9 \n\t.<>?,*'`@\"=-_(){}:;&^%$#!~]*\\*/\\)" 1 'jcs-web-mode-block-comment-face t)
+           ("\\(/\\*[a-zA-Z0-9 \n\t-.<>?,*'`@\"=_(){}:;&^%$#!~]*\\*/\\)" 1 'jcs-web-mode-block-comment-face t)
            ;; For one line comment.
            ;; TODO(jenchieh): Only inside the curly bracket.
-           ("\\(/\\*[a-zA-Z0-9 \t.<>?,*'`/@\"=-_(){}:;&^%$#!~]*\\*/\\)" 1 'jcs-web-mode-block-comment-face t)
+           ("\\(/\\*[a-zA-Z0-9 \t-.<>?,*'`/@\"=_(){}:;&^%$#!~]*\\*/\\)" 1 'jcs-web-mode-block-comment-face t)
            )'end))
       jcs-web-type-comment-missing-modes)
 
@@ -474,6 +474,8 @@ line by line instead of indent the whole file at once."
           (font-lock-add-keywords
            mode
            '(("[ \t]*:[ \t]*\\(.*\\)[ \t]*;" 1 'jcs-css-value-face t)
+             ;; Comment overwrite value face.
+             ("\\(/\\*[a-zA-Z0-9 \n\t-.<>?,*'`@\"=_(){}:;&^%$#!~]*\\*/\\)" 1 'jcs-font-lock-comment-face t)
              )'end))
         jcs-css-value-modes)
 
