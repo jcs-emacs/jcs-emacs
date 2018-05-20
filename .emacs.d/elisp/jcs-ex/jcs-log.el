@@ -40,9 +40,11 @@ ARGS : arguments."
 
 (defun jcs-do-after-log-action ()
   "Action do after doing log."
-  (unless (string= (buffer-name) "*Messages*")
-    (switch-to-buffer-other-window "*Messages*"))
-  (goto-char (point-max)))
+  (save-selected-window
+    (unless (string= (buffer-name) "*Messages*")
+      (jcs-ensure-switch-to-buffer-other-window "*Messages*"))
+    (when (string= (buffer-name) "*Messages*")
+      (goto-char (point-max)))))
 
 (defun jcs-log (format &rest args)
   "Log a log message.
