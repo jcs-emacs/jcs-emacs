@@ -27,6 +27,8 @@
   "Using the undo tree key in stead of normal Emacs's undo key.
 This variable must be use with `jcs-undo' and `jcs-redo' functions.")
 
+;; NOTE(jenchieh): Active this will cause huge amount of
+;; performance, consider this before active.
 (defvar jcs-undo-tree-auto-show-diff nil
   "Show the difference code when undo tree minor mode is active.")
 
@@ -88,44 +90,61 @@ This will no longer overwrite usual Emacs' undo key."
 (defun jcs-undo ()
   "Undo key."
   (interactive)
-  (if (jcs-is-true jcs-use-undo-tree-key)
+  (if jcs-use-undo-tree-key
       (progn
-        (undo-tree-undo)
         (save-selected-window
-          (undo-tree-visualize)
-          ;; STUDY(jenchieh): weird that they use word
-          ;; toggle, instead of just set it.
-          ;;
-          ;; Why not?
-          ;;   => `undo-tree-visualizer-show-diff'
-          ;; or
-          ;;   => `undo-tree-visualizer-hide-diff'
-          (when jcs-undo-tree-auto-show-diff
-            (undo-tree-visualizer-toggle-diff))
-          (global-linum-mode t)))
+          (if (or (ignore-errors (jcs-jump-to-buffer "*undo-tree*")))
+              ;; We do found `*undo-tree*' buffer shown in
+              ;; one of the window.
+              (progn
+                (undo-tree-visualize-undo))
+            ;; Error occurs
+            (progn
+              (undo-tree-undo)
+              (save-selected-window
+                (undo-tree-visualize)
+                ;; STUDY(jenchieh): weird that they use word
+                ;; toggle, instead of just set it.
+                ;;
+                ;; Why not?
+                ;;   => `undo-tree-visualizer-show-diff'
+                ;; or
+                ;;   => `undo-tree-visualizer-hide-diff'
+                (when jcs-undo-tree-auto-show-diff
+                  (undo-tree-visualizer-toggle-diff))
+                (global-linum-mode t))))))
     (call-interactively 'undo)))
 
 ;;;###autoload
 (defun jcs-redo ()
   "Undo key."
   (interactive)
-  (if (jcs-is-true jcs-use-undo-tree-key)
+  (if jcs-use-undo-tree-key
       (progn
-        (undo-tree-redo)
         (save-selected-window
-          (undo-tree-visualize)
-          ;; STUDY(jenchieh): weird that they use word
-          ;; toggle, instead of just set it.
-          ;;
-          ;; Why not?
-          ;;   => `undo-tree-visualizer-show-diff'
-          ;; or
-          ;;   => `undo-tree-visualizer-hide-diff'
-          (when jcs-undo-tree-auto-show-diff
-            (undo-tree-visualizer-toggle-diff))
-          (global-linum-mode t)))
+          (if (or (ignore-errors (jcs-jump-to-buffer "*undo-tree*")))
+              ;; We do found `*undo-tree*' buffer shown in
+              ;; one of the window.
+              (progn
+                (undo-tree-visualize-redo))
+            ;; Error occurs
+            (progn
+
+              (undo-tree-redo)
+              (save-selected-window
+                (undo-tree-visualize)
+                ;; STUDY(jenchieh): weird that they use word
+                ;; toggle, instead of just set it.
+                ;;
+                ;; Why not?
+                ;;   => `undo-tree-visualizer-show-diff'
+                ;; or
+                ;;   => `undo-tree-visualizer-hide-diff'
+                (when jcs-undo-tree-auto-show-diff
+                  (undo-tree-visualizer-toggle-diff))
+                (global-linum-mode t))))))
     ;; In Emacs, undo/redo is the same thing.
-    (call-interactively 'undo)))
+    (call-interactively 'redo)))
 
 ;;----------------------------------------------
 ;; Tab
