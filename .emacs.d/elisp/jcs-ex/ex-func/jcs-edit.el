@@ -562,7 +562,13 @@ whitespaces."
     (save-restriction
       (widen)
       (untabify (point-min) (point-max))))
-  (save-buffer))
+  (save-buffer)
+
+  ;; NOTE(jenchieh): Is we found `*undo-tree*' buffer, we
+  ;; try to close it.
+  (save-selected-window
+    (when (or (ignore-errors (jcs-jump-to-buffer "*undo-tree*")))
+      (jcs-maybe-kill-this-buffer))))
 
 ;;;###autoload
 (defun jcs-tabify-save-buffer ()
@@ -575,17 +581,21 @@ so we must convert spaces to tab."
     (save-restriction
       (widen)
       (tabify (point-min) (point-max))))
-  (save-buffer))
+  (save-buffer)
+
+  ;; NOTE(jenchieh): Is we found `*undo-tree*' buffer, we
+  ;; try to close it.
+  (save-selected-window
+    (when (or (ignore-errors (jcs-jump-to-buffer "*undo-tree*")))
+      (jcs-maybe-kill-this-buffer))))
 
 ;;;###autoload
 (defun jcs-find-file-other-window ()
   "This will allow us open the same file in another window."
   (interactive)
-  (if (buffer-file-name)
-      (progn
-        (find-file-other-window buffer-file-name)
-        (jcs-other-window-prev)
-        )))
+  (when (buffer-file-name)
+    (find-file-other-window buffer-file-name)
+    (jcs-other-window-prev)))
 
 ;;;###autoload
 (defun jcs-smart-find-file-in-project-in-another-window ()
