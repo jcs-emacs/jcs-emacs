@@ -733,8 +733,7 @@ IN-FACE : input face name as string."
 (defun jcs-list-font-list ()
   "List out all the fonts available."
   (interactive)
-  (dolist (tmp-font (font-family-list))
-    (message "%s" tmp-font)))
+  (jcs-log-list (font-family-list)))
 
 ;;;###autoload
 (defun jcs-change-font (inFont)
@@ -762,15 +761,11 @@ FONT : font to check."
 ;; List
 ;;---------------------------------------------
 
-(defun jcs-is-in-list-string (list str)
+(defun jcs-is-in-list-string (in-list str)
   "Check if a string in the string list.
-LIST : list of strings.
+IN-LIST : list of strings.
 STR : string to check if is inside the list of strings above."
-  (let ((in-list nil))
-    (dolist (tmp-str list)
-      (if (string= tmp-str str)
-          (setq in-list t)))
-    in-list))
+  (cl-some #'(lambda (lb-sub-str) (string-match lb-sub-str str)) in-list))
 
 ;;---------------------------------------------
 ;; Mode
@@ -989,13 +984,9 @@ IN-STR : string to check by the IN-SUB-STR."
 SOURCE(jenchieh): https://stackoverflow.com/questions/2129840/check-if-a-string-is-all-caps-in-emacs-lisp"
   (equal (upcase string) string))
 
-(defun jcs-is-contain-list-string (inList inStr)
+(defun jcs-is-contain-list-string (in-list in-str)
   "Check if a string contain in any string in the string list.
-INLIST : list of string use to check if INSTR in contain one of
+IN-LIST : list of string use to check if IN-STR in contain one of
 the string.
-INSTR : string using to check if is contain one of the INLIST."
-  (let ((tmp-found nil))
-    (dolist (tmpStr inList)
-      (when (jcs-contain-string tmpStr inStr)
-        (setq tmp-found t)))
-    (equal tmp-found t)))
+IN-STR : string using to check if is contain one of the IN-LIST."
+  (cl-some #'(lambda (lb-sub-str) (string-match-p (regexp-quote lb-sub-str) in-str)) in-list))
