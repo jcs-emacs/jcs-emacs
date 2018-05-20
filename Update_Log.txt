@@ -7,6 +7,10 @@
 # ========================================================================
 
 
+2018-05-20
+* Use cl-lib instead of my own ugly method implementation. (jcs-emacs-init)
+* Jump to *Messages* window after do the logging/message. (jcs-emacs-init)
+
 2018-05-19
 * Remove sorting CSS attributes before save, I think is never been useful. (jcs-emacs-init)
 * Manually update packages 'com-css-sort' and 'organize-imports-java'. (jcs-emacs-init)
