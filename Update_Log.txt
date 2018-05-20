@@ -19,6 +19,7 @@
  having two slashes, does not detect the Visual Studio's type of prefix 
  comment symbol pretty well. (jcs-emacs-init)
 * Add `all-the-icons' package to preinstall package list. (jcs-emacs-init)
+* Close *undo-tree* buffer when save. (jcs-emacs-init)
 
 2018-05-19
 * Remove sorting CSS attributes before save, I think is never been useful. (jcs-emacs-init)
