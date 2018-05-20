@@ -24,7 +24,7 @@
           (forward-char 1)
           (when (jcs-current-char-equal-p "/")
             (setq is-comment-vs-prefix t))))
-      (equal is-comment-vs-prefix t))))
+      is-comment-vs-prefix)))
 
 (defun jcs-vs-csharp-only-vs-comment-prefix-this-line-p ()
   "Check if there is only comment in this line."
@@ -37,7 +37,7 @@
         (forward-char 1)
         (when (not (jcs-is-there-char-forward-until-end-of-line-p))
           (setq only-comment-this-line t)))
-      (equal only-comment-this-line t))))
+      only-comment-this-line)))
 
 (defun jcs-vs-csharp-do-doc-string ()
   "Check if should insert the doc string by checking only \
