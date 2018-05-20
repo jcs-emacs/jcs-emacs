@@ -9,3 +9,4 @@
 
 //-- General --//
 * Refactor code, and get rid of unused interactive function.
+* Load .ttf file cross-platform so we can see the same font in every OS.
