@@ -10,6 +10,15 @@
 2018-05-20
 * Use cl-lib instead of my own ugly method implementation. (jcs-emacs-init)
 * Jump to *Messages* window after do the logging/message. (jcs-emacs-init)
+* Use undo tree with the better performance without opening/closing the 
+ undo-tree-visualizer mode all the time. (jcs-emacs-init)
+* Add jump to buffer functionality (jcs-emacs-init)
+* Goto *Messages* buffer and end of buffer when do jcs type of logging
+ functions. (jcs-emacs-init)
+* Fixed Visual Studio's C# type of commenting method. Weird action when 
+ having two slashes, does not detect the Visual Studio's type of prefix 
+ comment symbol pretty well. (jcs-emacs-init)
+* Add `all-the-icons' package to preinstall package list. (jcs-emacs-init)
 
 2018-05-19
 * Remove sorting CSS attributes before save, I think is never been useful. (jcs-emacs-init)
