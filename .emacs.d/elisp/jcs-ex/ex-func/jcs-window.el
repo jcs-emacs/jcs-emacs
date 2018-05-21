@@ -49,7 +49,7 @@ Because sometime first time switching the buffer would not success."
 ;; URL(jenchieh): https://www.emacswiki.org/emacs/WindowNavigation
 ;; Author: ChrisDone
 ;;
-(defun jcs-jump-to-window (buffer-name)
+(defun jcs-jump-shown-to-window (buffer-name)
   "Jump to window if the window is currently shown in the window.
 BUFFER-NAME : buffer name."
   (interactive "bEnter buffer to jump to: ")
@@ -63,11 +63,11 @@ BUFFER-NAME : buffer name."
                                      window nil)) (window-list))))
       (select-window (car window-of-buffer)))))
 
-(defun jcs-jump-to-buffer (in-buffer-name)
+(defun jcs-jump-shown-to-buffer (in-buffer-name)
   "Jump to the buffer if the buffer current shown in the window.
 If there is two window shown the same buffer/file, then it will
 choose the one which is close to the next buffer. I think this
-is the better version compare to `jcs-jump-to-window' function."
+is the better version compare to `jcs-jump-shown-to-window' function."
   (interactive "bEnter buffer to jump to: ")
   (let ((win-len (length (window-list)))
         (index 0)
