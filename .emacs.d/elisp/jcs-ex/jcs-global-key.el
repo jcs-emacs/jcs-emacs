@@ -132,7 +132,7 @@
 (define-key auto-highlight-symbol-mode-map (kbd "M-<left>") 'nil)
 (define-key auto-highlight-symbol-mode-map (kbd "M-<right>") 'nil)
 
-;;; Search Word (SEE: `jcs-mode-el' will have detail mode config.)ee
+;;; Search Word (SEE: `jcs-mode-el' will have detail mode config.)
 ;;(define-key global-map "\C-f" 'helm-do-ag-this-file)
 ;;(define-key global-map "\C-f" 'isearch-forward)  ;; NOTE(jenchieh): 'local' vs 'cross-platform' mode.
 (define-key global-map "\C-r\C-f" 'isearch-backward-regexp)
