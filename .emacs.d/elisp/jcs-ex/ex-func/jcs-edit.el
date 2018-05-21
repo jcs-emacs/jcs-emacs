@@ -63,7 +63,7 @@ This variable must be use with `jcs-undo' and `jcs-redo' functions.")
 (defun jcs-toggle-undo-tree-key()
   "Toggle `jcs-use-undo-tree-key' boolean."
   (interactive)
-  (if (jcs-is-true jcs-use-undo-tree-key)
+  (if jcs-use-undo-tree-key
       (jcs-disable-undo-tree-key)
     (jcs-enable-undo-tree-key)))
 
@@ -93,7 +93,7 @@ This will no longer overwrite usual Emacs' undo key."
   (if jcs-use-undo-tree-key
       (progn
         (save-selected-window
-          (if (or (ignore-errors (jcs-jump-to-buffer "*undo-tree*")))
+          (if (or (ignore-errors (jcs-jump-shown-to-buffer "*undo-tree*")))
               ;; We do found `*undo-tree*' buffer shown in
               ;; one of the window.
               (progn
@@ -122,7 +122,7 @@ This will no longer overwrite usual Emacs' undo key."
   (if jcs-use-undo-tree-key
       (progn
         (save-selected-window
-          (if (or (ignore-errors (jcs-jump-to-buffer "*undo-tree*")))
+          (if (or (ignore-errors (jcs-jump-shown-to-buffer "*undo-tree*")))
               ;; We do found `*undo-tree*' buffer shown in
               ;; one of the window.
               (progn
@@ -567,7 +567,7 @@ whitespaces."
   ;; NOTE(jenchieh): Is we found `*undo-tree*' buffer, we
   ;; try to close it.
   (save-selected-window
-    (when (or (ignore-errors (jcs-jump-to-buffer "*undo-tree*")))
+    (when (or (ignore-errors (jcs-jump-shown-to-buffer "*undo-tree*")))
       (jcs-maybe-kill-this-buffer))))
 
 ;;;###autoload
@@ -586,7 +586,7 @@ so we must convert spaces to tab."
   ;; NOTE(jenchieh): Is we found `*undo-tree*' buffer, we
   ;; try to close it.
   (save-selected-window
-    (when (or (ignore-errors (jcs-jump-to-buffer "*undo-tree*")))
+    (when (or (ignore-errors (jcs-jump-shown-to-buffer "*undo-tree*")))
       (jcs-maybe-kill-this-buffer))))
 
 ;;;###autoload
@@ -804,7 +804,7 @@ False: return nil."
 
   (save-selected-window
     (ignore-errors
-      (jcs-jump-to-window "*Buffer List*"))
+      (jcs-jump-shown-to-window "*Buffer List*"))
     (when (jcs-is-current-major-mode-p "Buffer-menu-mode")
       (jcs-buffer-menu)))
 
