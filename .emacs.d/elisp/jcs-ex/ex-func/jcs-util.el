@@ -13,22 +13,6 @@
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 ;;---------------------------------------------
-;; Boolean
-;;---------------------------------------------
-
-(defun jcs-is-true (b-val)
-  "Check if current value 't' or 'nil'.
-Returns True or False value.
-B-VAL : boolean value, either 't' or 'nil'."
-  (equal b-val t))
-
-(defun jcs-is-false (b-val)
-  "Check if current value 't' or 'nil'.
-Returns True or False value.
-B-VAL : boolean value, either 't' or 'nil'."
-  (equal b-val nil))
-
-;;---------------------------------------------
 ;; Buffer
 ;;---------------------------------------------
 
@@ -460,7 +444,7 @@ the end of the line."
       (when (or (jcs-is-inside-comment-block-p)
                 (jcs-current-line-empty-p))
         (setq is-comment-line t))
-      (jcs-is-true is-comment-line))))
+      is-comment-line)))
 
 (defun jcs-get-beginning-of-line-point (&optional ln)
   "Return point at beginning of current line.
@@ -906,14 +890,11 @@ IN-KEY : key to search for value."
   default-directory)
 
 (defun jcs-file-directory-exists-p (filePath)
-  "Return `True' if the directory/file exists.
-Return `False' if the directory/file not exists.
-
-FILEPATH : directory/file path.
-
-NOTE(jenchieh): Weird this only works for directory not for
-the file."
-  (equal (file-directory-p filePath) t))
+  "Return non-nil if the directory/file exists.
+Return nil if the directory/file not exists.
+FILEPATH : directory/file path."
+  (or (file-directory-p filePath)
+      (file-exists-p filePath)))
 
 (defun jcs-is-vc-dir-p (dirPath)
   "Return `True' is version control diectory.
@@ -926,7 +907,7 @@ DIRPATH : directory path."
         (when (jcs-file-directory-exists-p tmp-check-dir)
           (setq tmp-is-vc-dir t))))
     ;; Return retult.
-    (equal tmp-is-vc-dir t)))
+    tmp-is-vc-dir))
 
 (defun jcs-up-one-dir-string (dirPath)
   "Go up one directory and return it directory string.
@@ -949,6 +930,42 @@ DIRPATH : directory path."
     ;; NOTE(jenchieh): if you do not like `/' at the end remove
     ;; concat slash function.
     (concat tmp-result-dir "/")))
+
+(defun jcs-project-current ()
+  "Return the current project's root directory.
+Is almost the same as `jcs-vc-root-dir'."
+  (cdr (project-current)))
+
+(defun jcs-get-file-name-or-last-dir-fromt-path (in-path &optional ignore-errors-t)
+  "Get the either the file name or last directory from the IN-PATH.
+IN-PATH : input path.
+IGNORE-ERRORS-T : ignore errors for this function?"
+  (if (and (not (jcs-file-directory-exists-p in-path))
+           (not ignore-errors-t))
+      (error "Directory/File you trying get does not exists.")
+    (progn
+      (let ((result-dir-or-file nil)
+            (split-dir-file-list '())
+            (split-dir-file-list-len 0))
+
+        (cond ((string-match-p "/" in-path)
+               (progn
+                 (setq split-dir-file-list (split-string in-path "/"))))
+              ((string-match-p "\\" in-path)
+               (progn
+                 (setq split-dir-file-list (split-string in-path "\\"))))
+              ((string-match-p "\\\\" in-path)
+               (progn
+                 (setq split-dir-file-list (split-string in-path "\\\\")))))
+
+        ;; Get the last element/item in the list.
+        (setq split-dir-file-list-len (1- (length split-dir-file-list)))
+
+        ;; Result is alwasy the last item in the list.
+        (setq result-dir-or-file (nth split-dir-file-list-len split-dir-file-list))
+
+        ;; Return result.
+        result-dir-or-file))))
 
 ;;---------------------------------------------
 ;; String
@@ -978,17 +995,17 @@ IN-STR : input string to check if is a `true' value."
     ;; return result.
     tmp-bool))
 
+(defun jcs-string-has-no-lowercase (string)
+  "Return true iff STRING has no lowercase
+SOURCE(jenchieh): https://stackoverflow.com/questions/2129840/check-if-a-string-is-all-caps-in-emacs-lisp"
+  (equal (upcase string) string))
+
 (defun jcs-contain-string (in-sub-str in-str)
   "Check if a string is a substring of another string.
 Return true if contain, else return false.
 IN-SUB-STR : substring to see if contain in the IN-STR.
 IN-STR : string to check by the IN-SUB-STR."
   (string-match-p (regexp-quote in-sub-str) in-str))
-
-(defun jcs-string-has-no-lowercase (string)
-  "Return true iff STRING has no lowercase
-SOURCE(jenchieh): https://stackoverflow.com/questions/2129840/check-if-a-string-is-all-caps-in-emacs-lisp"
-  (equal (upcase string) string))
 
 (defun jcs-is-contain-list-string (in-list in-str)
   "Check if a string contain in any string in the string list.
