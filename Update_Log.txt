@@ -7,6 +7,12 @@
 # ========================================================================
 
 
+2018-05-21
+* Add first version of fonts. (jcs-emacs-init)
+* Make shown prefex for better function readability for certain function.
+ Like `jcs-jump-to-shown-buffer' instead just `jcs-jump-to-buffer.' (jcs-emacs-init)
+* New manage file, jcs-font.el file. (jcs-emacs-init)
+ 
 2018-05-20
 * Use cl-lib instead of my own ugly method implementation. (jcs-emacs-init)
 * Jump to *Messages* window after do the logging/message. (jcs-emacs-init)
