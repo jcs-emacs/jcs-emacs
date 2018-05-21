@@ -286,6 +286,9 @@ Return a list of installed packages or nil for every skipped package."
 ;; Add hook to all Emacs' events.
 (load-file "~/.emacs.d/elisp/jcs-ex/jcs-hook.el")
 
+;; Set default font.
+(load-file "~/.emacs.d/elisp/jcs-ex/jcs-font.el")
+
 ;;; Do stuff after initialize.
 (load-file "~/.emacs.d/elisp/jcs-ex/jcs-after-init.el")
 
