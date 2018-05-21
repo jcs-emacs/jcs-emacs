@@ -42,7 +42,7 @@
 
   (save-selected-window
     (ignore-errors
-      (jcs-jump-to-window "*Buffer List*"))
+      (jcs-jump-shown-to-window "*Buffer List*"))
     (when (jcs-is-current-major-mode-p "Buffer-menu-mode")
       (jcs-buffer-menu)))
   )
