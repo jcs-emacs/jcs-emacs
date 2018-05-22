@@ -189,6 +189,10 @@ Return a list of installed packages or nil for every skipped package."
                           'sql-indent
                           'togetherly
                           'undo-tree
+                          ;; TEMPORARY(jenchieh): Hopefully melpa will let me push
+                          ;; my package `use-ttf' to their package system.
+                          ;; Then we can add this line under directly.
+                          ;;'use-ttf
                           'vimrc-mode
                           'visual-regexp
                           'impatient-mode
@@ -223,6 +227,13 @@ Return a list of installed packages or nil for every skipped package."
 ;; Then we can remove load file/manually install package system.
 ;;
 (load-file "~/.emacs.d/elisp/organize-imports-java-20180519.001/organize-imports-java.el")
+
+;;
+;; TEMPORARY(jenchieh): Hopefully melpa will let me push
+;; my package `use-ttf' to their package system.
+;; Then we can remove load file/manually install package system.
+;;
+(load-file "~/.emacs.d/elisp/use-ttf-20180522.001/use-ttf.el")
 
 ;;========================================
 ;;      JENCHIEH FILE LOADING
