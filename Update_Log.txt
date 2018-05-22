@@ -12,6 +12,8 @@
 * Make shown prefex for better function readability for certain function.
  Like `jcs-jump-to-shown-buffer' instead just `jcs-jump-to-buffer.' (jcs-emacs-init)
 * New manage file, jcs-font.el file. (jcs-emacs-init)
+* Split `jcs-font.el' module to individual package => `use-ttf'. (jcs-emacs-init)
+* Manually install package => `use-ttf'. (jcs-emacs-init)
  
 2018-05-20
 * Use cl-lib instead of my own ugly method implementation. (jcs-emacs-init)
