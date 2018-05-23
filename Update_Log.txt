@@ -7,6 +7,9 @@
 # ========================================================================
 
 
+2018-05-23
+* Update 'use-ttf' package manually to 20180523. (jcs-emacs-init)
+
 2018-05-22
 * Add first version of fonts. (jcs-emacs-init)
 * Make shown prefex for better function readability for certain function.
