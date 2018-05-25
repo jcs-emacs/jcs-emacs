@@ -12,7 +12,7 @@
 * Trasnfer data from `.emacs.d' to `.emacs.jcs'. (jcs-emacs-init)
 * Make one history => 2018-05-25. (jcs-emacs-init)
 * Future history for first version of .emacs.jcs directory tree 
-view/template. (jcs-emacs-init)
+ view/template. (jcs-emacs-init)
 
 2018-05-23
 * Update 'use-ttf' package manually to 20180523. (jcs-emacs-init)
