@@ -233,75 +233,75 @@ Return a list of installed packages or nil for every skipped package."
 ;; my package `use-ttf' to their package system.
 ;; Then we can remove load file/manually install package system.
 ;;
-(load-file "~/.emacs.d/elisp/use-ttf-20180523.001/use-ttf.el")
+(load-file "~/.emacs.d/elisp/use-ttf-20180525.001/use-ttf.el")
 
 ;;========================================
 ;;      JENCHIEH FILE LOADING
 ;;----------------------------------
 
 ;;; Environment.
-(load-file "~/.emacs.d/elisp/jcs-ex/jcs-face.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/jcs-env.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/jcs-plugin.el")
+(load-file "~/.emacs.jcs/jcs-face.el")
+(load-file "~/.emacs.jcs/jcs-env.el")
+(load-file "~/.emacs.jcs/jcs-plugin.el")
 
 ;;; Customization
-(load-file "~/.emacs.d/elisp/jcs-ex/jcs-theme.el")
+(load-file "~/.emacs.jcs/jcs-theme.el")
 
 ;;; Initialize
-(load-file "~/.emacs.d/elisp/jcs-ex/jcs-before-init.el")
+(load-file "~/.emacs.jcs/jcs-before-init.el")
 
 ;;; Utilities
-(load-file "~/.emacs.d/elisp/jcs-ex/jcs-log.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/jcs-package.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/jcs-function.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/jcs-corresponding-file.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/jcs-mode.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/jcs-file-info-format.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/jcs-helm.el")
+(load-file "~/.emacs.jcs/jcs-log.el")
+(load-file "~/.emacs.jcs/jcs-package.el")
+(load-file "~/.emacs.jcs/jcs-function.el")
+(load-file "~/.emacs.jcs/jcs-corresponding-file.el")
+(load-file "~/.emacs.jcs/jcs-mode.el")
+(load-file "~/.emacs.jcs/jcs-file-info-format.el")
+(load-file "~/.emacs.jcs/jcs-helm.el")
 
 ;;; jcs-all-mode
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-elisp-mode.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-cs-mode.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-nasm-mode.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-batch-mode.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-sh-mode.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-cc-mode.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-c-mode.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-c++-mode.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-jayces-mode.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-java-mode.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-actionscript-mode.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-python-mode.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-web-mode.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-js-mode.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-json-mode.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-lua-mode.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-message-mode.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-xml-mode.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-shader-mode.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-sass-mode.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-scss-mode.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-sql-mode.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-go-mode.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-vimscript-mode.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-cbl-mode.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-re-builder-mode.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-txt-mode.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-cmake-mode.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-scala-mode.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-perl-mode.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-basic-mode.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-processing-mode.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-mode/jcs-shell-mode.el")
+(load-file "~/.emacs.jcs/mode/jcs-elisp-mode.el")
+(load-file "~/.emacs.jcs/mode/jcs-cs-mode.el")
+(load-file "~/.emacs.jcs/mode/jcs-nasm-mode.el")
+(load-file "~/.emacs.jcs/mode/jcs-batch-mode.el")
+(load-file "~/.emacs.jcs/mode/jcs-sh-mode.el")
+(load-file "~/.emacs.jcs/mode/jcs-cc-mode.el")
+(load-file "~/.emacs.jcs/mode/jcs-c-mode.el")
+(load-file "~/.emacs.jcs/mode/jcs-c++-mode.el")
+(load-file "~/.emacs.jcs/mode/jcs-jayces-mode.el")
+(load-file "~/.emacs.jcs/mode/jcs-java-mode.el")
+(load-file "~/.emacs.jcs/mode/jcs-actionscript-mode.el")
+(load-file "~/.emacs.jcs/mode/jcs-python-mode.el")
+(load-file "~/.emacs.jcs/mode/jcs-web-mode.el")
+(load-file "~/.emacs.jcs/mode/jcs-js-mode.el")
+(load-file "~/.emacs.jcs/mode/jcs-json-mode.el")
+(load-file "~/.emacs.jcs/mode/jcs-lua-mode.el")
+(load-file "~/.emacs.jcs/mode/jcs-message-mode.el")
+(load-file "~/.emacs.jcs/mode/jcs-xml-mode.el")
+(load-file "~/.emacs.jcs/mode/jcs-shader-mode.el")
+(load-file "~/.emacs.jcs/mode/jcs-sass-mode.el")
+(load-file "~/.emacs.jcs/mode/jcs-scss-mode.el")
+(load-file "~/.emacs.jcs/mode/jcs-sql-mode.el")
+(load-file "~/.emacs.jcs/mode/jcs-go-mode.el")
+(load-file "~/.emacs.jcs/mode/jcs-vimscript-mode.el")
+(load-file "~/.emacs.jcs/mode/jcs-cbl-mode.el")
+(load-file "~/.emacs.jcs/mode/jcs-re-builder-mode.el")
+(load-file "~/.emacs.jcs/mode/jcs-txt-mode.el")
+(load-file "~/.emacs.jcs/mode/jcs-cmake-mode.el")
+(load-file "~/.emacs.jcs/mode/jcs-scala-mode.el")
+(load-file "~/.emacs.jcs/mode/jcs-perl-mode.el")
+(load-file "~/.emacs.jcs/mode/jcs-basic-mode.el")
+(load-file "~/.emacs.jcs/mode/jcs-processing-mode.el")
+(load-file "~/.emacs.jcs/mode/jcs-shell-mode.el")
 
 ;; Add hook to all Emacs' events.
-(load-file "~/.emacs.d/elisp/jcs-ex/jcs-hook.el")
+(load-file "~/.emacs.jcs/jcs-hook.el")
 
 ;; Set default font.
-(load-file "~/.emacs.d/elisp/jcs-ex/jcs-font.el")
+(load-file "~/.emacs.jcs/jcs-font.el")
 
 ;;; Do stuff after initialize.
-(load-file "~/.emacs.d/elisp/jcs-ex/jcs-after-init.el")
+(load-file "~/.emacs.jcs/jcs-after-init.el")
 
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of .emacs file

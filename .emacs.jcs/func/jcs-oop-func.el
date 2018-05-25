@@ -190,7 +190,7 @@
 (defvar jcs-return-desc-string ""
   "Return description string.")
 
-(defvar jcs-docstring-config-filepath "~/.emacs.d/elisp/jcs-ex/ex-docstring/docstring_config.properties"
+(defvar jcs-docstring-config-filepath "~/.emacs.jcs/docstring/docstring_config.properties"
   "Doc-string properties file.")
 
 (defun jcs-reload-docstring-info ()

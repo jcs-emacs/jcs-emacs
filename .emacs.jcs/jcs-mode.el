@@ -13,7 +13,7 @@
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 ;; Need global key defined first.
-(load-file "~/.emacs.d/elisp/jcs-ex/jcs-global-key.el")
+(load-file "~/.emacs.jcs/jcs-global-key.el")
 
 ;;---------------------------------------------
 ;; Trigger between command and insert mode

@@ -19,9 +19,25 @@
 
 
 ;; Determine the underlying operating system
-(setq casey-aquamacs (featurep 'aquamacs))
-(setq casey-linux (featurep 'x))
-(setq casey-win32 (not (or casey-aquamacs casey-linux)))
+(defvar jcs-win32 nil
+  "Is Microsoft Windows?")
+(defvar jcs-aquamacs nil
+  "Is Mac OS X?")
+(defvar jcs-linux nil
+  "Is Linux?")
+
+;; Get OS type
+(cond
+ ((string-equal system-type "windows-nt") ; Microsoft Windows
+  (progn
+    (setq jcs-win32 t)))
+ ((string-equal system-type "darwin") ; Mac OS X
+  (progn
+    (setq jcs-aquamacs t)))
+ ((string-equal system-type "gnu/linux") ; linux
+  (progn
+    (setq jcs-linux t))))
+
 
 (setq casey-todo-file "C:/TODO_JenChieh/code/todo.txt")
 (setq casey-log-file "C:/TODO_JenChieh/code/log.txt")
@@ -40,15 +56,15 @@
 ;; Log file.
 (setq jcs-update-log-file "Update_Log")
 
-(when casey-win32
+(when jcs-win32
   (setq casey-makescript "build.bat")
   (setq jcs-runscript "run.bat")
   (setq casey-font "outline-Liberation Mono"))
 
-(when casey-aquamacs
+(when jcs-aquamacs
   (cua-mode 0)
-  (osx-key-mode 0)
-  (tabar-mode 0)
+  ;;(osx-key-mode 0)
+  ;;(tabar-mode 0)
   (setq mac-command-modifier 'meta)
   (setq x-select-enable-clipboard t)
   (setq aquamacs-save-options-on-quit 0)
@@ -61,7 +77,7 @@
   (setq casey-makescript "./build.macosx")
   (setq jcs-runscript "./run.macosx"))
 
-(when casey-linux
+(when jcs-linux
   (setq casey-makescript "./build.linux")
   (setq jcs-runscript "./run.linux")
   (display-battery-mode 1))
@@ -316,17 +332,8 @@ TOSTRING : String will replaced."
   )
 (add-hook 'text-mode-hook 'casey-big-fun-text-hook)
 
-;; Window Commands
-(defun w32-restore-frame ()
-  "Restore a minimized frame."
-  (interactive)
-  (w32-send-sys-command 61728))
-
-(defun maximize-frame ()
-  "Maximize the current frame."
-  (interactive)
-  (when casey-aquamacs (aquamacs-toggle-full-frame))
-  (when casey-win32 (w32-send-sys-command 61488)))
+;; Maximize my Emacs frame on start-up
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 ;; ALT-alternatives
 ;; (defadvice set-mark-command (after no-bloody-t-m-m activate)
@@ -397,7 +404,7 @@ NEW-WORD : new word ready to be insert."
 
 ;; Commands
 (set-variable 'grep-command "grep -irHn ")
-(when casey-win32
+(when jcs-win32
   (setq grep-use-null-device t)
   (set-variable 'grep-command "findstr -s -n -i -l "))
 
@@ -440,7 +447,6 @@ NEW-WORD : new word ready to be insert."
   "Post load stuff."
   (interactive)
   (menu-bar-mode -1)
-  (maximize-frame)
   (set-foreground-color "#D2D2D2")           ;; text color
   (set-background-color "#161616")              ;; background color
   (set-cursor-color "#40FF40")                  ;; cursor color

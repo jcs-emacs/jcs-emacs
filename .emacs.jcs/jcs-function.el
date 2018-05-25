@@ -222,30 +222,30 @@ own preferences."
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 ;;; Utilities
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-util.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-window.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-shell.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-trans-window.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-minimap.el")
+(load-file "~/.emacs.jcs/func/jcs-util.el")
+(load-file "~/.emacs.jcs/func/jcs-window.el")
+(load-file "~/.emacs.jcs/func/jcs-shell.el")
+(load-file "~/.emacs.jcs/func/jcs-trans-window.el")
+(load-file "~/.emacs.jcs/func/jcs-minimap.el")
 
 ;;; Editing
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-buffer-menu.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-edit.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-comment.el")
+(load-file "~/.emacs.jcs/func/jcs-buffer-menu.el")
+(load-file "~/.emacs.jcs/func/jcs-edit.el")
+(load-file "~/.emacs.jcs/func/jcs-comment.el")
 
 ;;; Navigation
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-nav.el")
+(load-file "~/.emacs.jcs/func/jcs-nav.el")
 
 ;;; For Specific Mode
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-txt-func.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-preproc-func.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-oop-func.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-cc-func.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-cs-func.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-cmake-func.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-java-func.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-lua-func.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-nasm-func.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-python-func.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-web-func.el")
-(load-file "~/.emacs.d/elisp/jcs-ex/ex-func/jcs-re-builder-func.el")
+(load-file "~/.emacs.jcs/func/jcs-txt-func.el")
+(load-file "~/.emacs.jcs/func/jcs-preproc-func.el")
+(load-file "~/.emacs.jcs/func/jcs-oop-func.el")
+(load-file "~/.emacs.jcs/func/jcs-cc-func.el")
+(load-file "~/.emacs.jcs/func/jcs-cs-func.el")
+(load-file "~/.emacs.jcs/func/jcs-cmake-func.el")
+(load-file "~/.emacs.jcs/func/jcs-java-func.el")
+(load-file "~/.emacs.jcs/func/jcs-lua-func.el")
+(load-file "~/.emacs.jcs/func/jcs-nasm-func.el")
+(load-file "~/.emacs.jcs/func/jcs-python-func.el")
+(load-file "~/.emacs.jcs/func/jcs-web-func.el")
+(load-file "~/.emacs.jcs/func/jcs-re-builder-func.el")

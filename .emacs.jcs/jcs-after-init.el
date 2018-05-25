@@ -13,7 +13,7 @@
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 ;;; Override all the mode's key bindings.
-(load-file "~/.emacs.d/elisp/jcs-ex/jcs-global-key.el")
+(load-file "~/.emacs.jcs/jcs-global-key.el")
 
 
 ;; Call once the depends mode as default.
