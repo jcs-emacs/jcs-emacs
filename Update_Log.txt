@@ -7,6 +7,11 @@
 # ========================================================================
 
 
+2018-05-25
+* Update 'use-ttf' package manually to 20180525. (jcs-emacs-init)
+* Trasnfer data from `.emacs.d' to `.emacs.jcs'. (jcs-emacs-init)
+* Make one history => 2018-05-25. (jcs-emacs-init)
+
 2018-05-23
 * Update 'use-ttf' package manually to 20180523. (jcs-emacs-init)
 
