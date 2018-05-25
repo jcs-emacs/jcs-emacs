@@ -5,7 +5,7 @@ This is Jen-Chieh Shen's emacs configuration, continually used and
 tweaked since 2015, and it might be a good starting point for other 
 Emacs users, especially for those who like to program all kind of 
 programming languages' programmer. This configuration had tested 
-on Linux, Windows and MacOS system. 
+on Linux, MacOS and Windows system. 
 <br/>
 
 Emacs itself comes with support for many programming languages. These
