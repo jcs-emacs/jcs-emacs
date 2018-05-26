@@ -233,7 +233,7 @@ Return a list of installed packages or nil for every skipped package."
 ;; my package `use-ttf' to their package system.
 ;; Then we can remove load file/manually install package system.
 ;;
-(load-file "~/.emacs.d/elisp/use-ttf-20180525.001/use-ttf.el")
+(load-file "~/.emacs.d/elisp/use-ttf-20180526.001/use-ttf.el")
 
 ;;========================================
 ;;      JENCHIEH FILE LOADING
