@@ -7,6 +7,9 @@
 # ========================================================================
 
 
+2018-05-26
+* Manually update 'use-ttf' package to 20180526. (jcs-emacs-init)
+
 2018-05-25
 * Update 'use-ttf' package manually to 20180525. (jcs-emacs-init)
 * Trasnfer data from `.emacs.d' to `.emacs.jcs'. (jcs-emacs-init)
