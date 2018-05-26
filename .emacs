@@ -45,7 +45,7 @@
  '(mouse-wheel-scroll-amount (quote (15)))
  '(package-selected-packages
    (quote
-    (all-the-icons neotree with-editor magit-popup yasnippet xcscope websocket web-mode ssass-mode skewer-mode simple-httpd shader-mode pyvenv python-mode powerline php-mode nasm-mode multiple-cursors memoize meghanada magit lua-mode js2-refactor js2-mode ivy htmlize highlight-indentation highlight helm-core helm go-mode gitattributes-mode git-timemachine git-link git-commit flycheck f exec-path-from-shell epl dash csharp-mode company cmake-mode avy async ag adaptive-wrap ac-php-core which-key processing-mode basic-mode scala-mode floobits togetherly visual-regexp package-build package-lint auto-highlight-symbol xwidgete pdf-tools preproc-font-lock sublimity tree-mode rainbow-mode py-autopep8 multi-web-mode jdee impatient-mode iedit helm-gtags google-c-style gitlab gitignore-mode github-notifier gitconfig-mode flymake-google-cpplint flymake-cursor elpy ein cpputils-cmake cmake-project cmake-ide cmake-font-lock blank-mode better-defaults auto-package-update auto-install auto-complete-c-headers actionscript-mode ace-window ac-php ac-js2 ac-html ac-emmet)))
+    (organize-imports-java find-file-in-project all-the-icons neotree with-editor magit-popup yasnippet xcscope websocket web-mode ssass-mode skewer-mode simple-httpd shader-mode pyvenv python-mode powerline php-mode nasm-mode multiple-cursors memoize meghanada magit lua-mode js2-refactor js2-mode ivy htmlize highlight-indentation highlight helm-core helm go-mode gitattributes-mode git-timemachine git-link git-commit flycheck f exec-path-from-shell epl dash csharp-mode company cmake-mode avy async ag adaptive-wrap ac-php-core which-key processing-mode basic-mode scala-mode floobits togetherly visual-regexp package-build package-lint auto-highlight-symbol xwidgete pdf-tools preproc-font-lock sublimity tree-mode rainbow-mode py-autopep8 multi-web-mode jdee impatient-mode iedit helm-gtags google-c-style gitlab gitignore-mode github-notifier gitconfig-mode flymake-google-cpplint flymake-cursor elpy ein cpputils-cmake cmake-project cmake-ide cmake-font-lock blank-mode better-defaults auto-package-update auto-install auto-complete-c-headers actionscript-mode ace-window ac-php ac-js2 ac-html ac-emmet)))
  '(send-mail-function (quote mailclient-send-it))
  '(version-control nil))
 (custom-set-faces
@@ -168,10 +168,7 @@ Return a list of installed packages or nil for every skipped package."
                           'multiple-cursors
                           'nasm-mode
                           'neotree
-                          ;; TEMPORARY(jenchieh): Hopefully melpa will let me push
-                          ;; my package `organize-imports-java' to their package system.
-                          ;; Then we can add this line under directly.
-                          ;;'organize-imports-java
+                          'organize-imports-java
                           'package-build
                           'package-lint
                           'pdf-tools
@@ -220,13 +217,6 @@ Return a list of installed packages or nil for every skipped package."
 ;; Then we can remove load file/manually install package system.
 ;;
 (load-file "~/.emacs.d/elisp/com-css-sort-20180519.001/com-css-sort.el")
-
-;;
-;; TEMPORARY(jenchieh): Hopefully melpa will let me push
-;; my package `organize-imports-java' to their package system.
-;; Then we can remove load file/manually install package system.
-;;
-(load-file "~/.emacs.d/elisp/organize-imports-java-20180519.001/organize-imports-java.el")
 
 ;;
 ;; TEMPORARY(jenchieh): Hopefully melpa will let me push
