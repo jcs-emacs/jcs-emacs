@@ -83,6 +83,7 @@
 (define-key global-map "\e'" 'call-last-kbd-macro)
 
 ;; Buffers
+(define-key global-map "\C-a" 'mark-whole-buffer)
 (define-key global-map "\er" 'revert-buffer)
 (define-key global-map "\es" 'save-buffer)
 
@@ -149,7 +150,6 @@
 (define-key global-map "\C-x\C-v" 'jcs-reload-emacs-once)
 
 ;;; Undo/Redo
-(define-key global-map "\C-a" 'mark-whole-buffer)
 (define-key global-map "\C-z" 'jcs-undo)
 (define-key global-map "\C-y" 'jcs-redo)
 
