@@ -7,6 +7,10 @@
 # ========================================================================
 
 
+2018-05-28
+* Add redo key to 'org-mode'. (jcs-emacs-init)
+* Wrong according key bindings, place it by categories. (jcs-emacs-init)
+
 2018-05-26
 * Manually update 'use-ttf' package to 20180526. (jcs-emacs-init)
 * Package 'organize-imports-java' is on melpa, no longer need to 
