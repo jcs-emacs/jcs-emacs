@@ -101,6 +101,9 @@
   (define-key org-mode-map [tab] 'jcs-tab-key)
   (define-key org-mode-map [C-tab] 'org-cycle)
 
+  (define-key org-mode-map "\C-y" 'jcs-redo)
+
+  ;; `org-nav'
   (define-key org-mode-map (kbd "S-<up>") 'jcs-org-table-up)
   (define-key org-mode-map (kbd "S-<down>") 'jcs-org-table-down)
   (define-key org-mode-map (kbd "S-<left>") 'jcs-org-table-left)
