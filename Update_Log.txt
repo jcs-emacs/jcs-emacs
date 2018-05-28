@@ -13,6 +13,8 @@
 * Add triple char style comment prefix check functionalities. (jcs-emacs-init)
 * Fixed Lua comment active docstring error. (jcs-emacs-init)
 * Fixed Visual CSharp comment active docstring error. (jcs-emacs-init)
+* Add prefix message and value delimiter arguments for `jcs-log-list' 
+ function. (jcs-emacs-init)
 
 2018-05-26
 * Manually update 'use-ttf' package to 20180526. (jcs-emacs-init)
