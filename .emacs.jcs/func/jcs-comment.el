@@ -12,6 +12,37 @@
 ;; Comment
 ;;----------------------------------------------
 
+(defun jcs-triple-char-comment-prefix-p (in-char)
+  "Check if current line is a triple IN-CHAR style comment prefix.
+For instance, `///', `---', etc.  Those are all triple char style comment prefix.
+IN-CHAR : input triple char."
+  (save-excursion
+    (let ((is-comment-prefix nil))
+      (jcs-goto-first-char-in-line)
+      (forward-char 1)
+      (when (jcs-current-char-equal-p in-char)
+        (forward-char 1)
+        (when (jcs-current-char-equal-p in-char)
+          (forward-char 1)
+          (when (jcs-current-char-equal-p in-char)
+            (setq is-comment-prefix t))))
+      is-comment-prefix)))
+
+(defun jcs-tripple-char-comment-prefix-at-current-point-p (in-char)
+  "Check if the current point is triple IN-CHAR style comment prefix.
+For instance, `///', `---', etc.  Those are all triple char style comment prefix.
+IN-CHAR : input triple char."
+  (save-excursion
+    (let ((is-comment-prefix-at-point nil))
+      (when (jcs-current-char-equal-p in-char)
+        (backward-char 1)
+        (when (jcs-current-char-equal-p in-char)
+          (backward-char 1)
+          (when (jcs-current-char-equal-p in-char)
+            (setq is-comment-prefix-at-point t))))
+      is-comment-prefix-at-point)))
+
+
 (defun jcs-do-doc-string ()
   "Check if should insert the doc string by checking only \
 comment character on the same line."
