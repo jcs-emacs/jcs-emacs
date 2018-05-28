@@ -10,6 +10,9 @@
 2018-05-28
 * Add redo key to 'org-mode'. (jcs-emacs-init)
 * Wrong according key bindings, place it by categories. (jcs-emacs-init)
+* Add triple char style comment prefix check functionalities. (jcs-emacs-init)
+* Fixed Lua comment active docstring error. (jcs-emacs-init)
+* Fixed Visual CSharp comment active docstring error. (jcs-emacs-init)
 
 2018-05-26
 * Manually update 'use-ttf' package to 20180526. (jcs-emacs-init)
