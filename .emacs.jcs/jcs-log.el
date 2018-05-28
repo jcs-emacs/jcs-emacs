@@ -97,10 +97,27 @@ ARGS : arguments."
           (insert (apply 'format format args))))))
   (jcs-message "\n$=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=$\n"))
 
-(defun jcs-log-list (list)
+
+(defun jcs-log-list (list &optional in-prefix-msg in-val-del)
   "Log out a list.
-LIST: list to log out."
-  (let ((count 0))
+LIST: list to log out.
+IN-PREFIX-MSG : prefix message.
+IN-VAL-DEL : value delimiter."
+  (let ((count 0)
+        (prefix-msg in-prefix-msg)
+        (val-del in-val-del))
+    ;; Set defult prefix message.
+    (unless in-prefix-msg
+      (setq prefix-msg "Index "))
+
+    ;; Set default delimiter.
+    (unless in-val-del
+      (setq val-del " => "))
+
     (dolist (tmp-str list)
-      (jcs-log "Index %s -> %s" count tmp-str)
+      (jcs-log "%s%s%s%s"
+               prefix-msg  ;; Prefix Message
+               count       ;; Index/Count
+               val-del     ;; Index and Value Delimiter
+               tmp-str)    ;; Value in current index
       (setq count (1+ count)))))
