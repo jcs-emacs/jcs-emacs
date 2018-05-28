@@ -14,20 +14,15 @@
 
 (defun jcs-vs-csharp-comment-prefix-p ()
   "Check if current line is a Visual Studio's style comment prefix."
-  (save-excursion
-    (let ((is-comment-vs-prefix nil))
-      (jcs-goto-first-char-in-line)
-      (forward-char 1)
-      (when (jcs-current-char-equal-p "/")
-        (forward-char 1)
-        (when (jcs-current-char-equal-p "/")
-          (forward-char 1)
-          (when (jcs-current-char-equal-p "/")
-            (setq is-comment-vs-prefix t))))
-      is-comment-vs-prefix)))
+  (jcs-triple-char-comment-prefix-p "/"))
+
+(defun jcs-vs-csharp-comment-prefix-at-current-point-p ()
+  "Check if the current point is Visaul Studio's style comment prefix."
+  (jcs-tripple-char-comment-prefix-at-current-point-p "/"))
 
 (defun jcs-vs-csharp-only-vs-comment-prefix-this-line-p ()
-  "Check if there is only comment in this line."
+  "Check if there is only comment in this line and is Visaul Studio \
+comment prefix only."
   (save-excursion
     (let ((only-comment-this-line nil))
       (when (jcs-vs-csharp-comment-prefix-p)
@@ -69,14 +64,12 @@ URL(jenchieh): https://github.com/josteink/csharp-mode/issues/123"
   (let ((active-comment nil)
         (next-line-not-empty nil))
     (save-excursion
-      (backward-char 1)
-      (when (jcs-current-char-equal-p "/")
-        (backward-char 1)
-        (when (jcs-current-char-equal-p "/")
-          (backward-char 1)
-          (when (not (jcs-current-char-equal-p "/"))
-            (when (jcs-vs-csharp-do-doc-string)
-              (setq active-comment t)))))
+      (when (and
+             ;; Line can only have vs comment prefix.
+             (jcs-vs-csharp-only-vs-comment-prefix-this-line-p)
+             ;; Current point match vs comment prefix.
+             (jcs-vs-csharp-comment-prefix-at-current-point-p))
+        (setq active-comment t))
 
       ;; check if next line empty.
       (jcs-next-line)
