@@ -464,22 +464,18 @@ LN : line number."
     (end-of-line)
     (point)))
 
-;;;###autoload
 (defun jcs-is-end-of-line-p ()
   "Is at the end of line?"
   (= (point) (jcs-get-end-of-line-point)))
 
-;;;###autoload
 (defun jcs-is-end-of-buffer-p ()
   "Is at the end of buffer?"
   (= (point) (point-max)))
 
-;;;###autoload
 (defun jcs-is-beginning-of-line-p ()
   "Is at the beginning of line?"
   (= (point) (jcs-get-beginning-of-line-point)))
 
-;;;###autoload
 (defun jcs-is-beginning-of-buffer-p ()
   "Is at the beginning of buffer?"
   (= (point) (point-min)))
@@ -502,7 +498,6 @@ LN : line number."
 LINE : number to check if current line this line?"
   (= (string-to-number (format-mode-line "%l")) line))
 
-;;;###autoload
 (defun jcs-is-at-start-of-line-p ()
   "Cursor is at the first character of this line?"
   (let ((current-point nil)
@@ -514,7 +509,6 @@ LINE : number to check if current line this line?"
 
     (= firstCharPoint current-point)))
 
-;;;###autoload
 (defun jcs-is-met-first-char-at-line-p ()
   "Check current cursor point is after the first character at \
 the current line.
@@ -621,7 +615,6 @@ MAX-PT : larger position."
 ;; Mark
 ;;---------------------------------------------
 
-;;;###autoload
 (defun jcs-is-mark-active ()
   "Is mark active?
 @return { boolean } : true, is active. false, is not active."
@@ -632,7 +625,6 @@ MAX-PT : larger position."
 ;; Region
 ;;---------------------------------------------
 
-;;;###autoload
 (defun jcs-is-region-selected-p ()
   "Is region active? But if `region-start' and `region-end' is at the same point this would not trigger.
 Which normally that mark is active but does not move at all.
@@ -642,7 +634,6 @@ region selected.
 "
   (use-region-p))
 
-;;;###autoload
 (defun jcs-is-mark-active-or-region-selected-p ()
   "Complete check if the region and the mark is active.
 
