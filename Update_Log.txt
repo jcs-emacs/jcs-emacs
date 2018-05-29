@@ -7,6 +7,11 @@
 # ========================================================================
 
 
+2018-05-29
+* Manually install 'line-reminder' package => 20180529. (jcs-emacs-init)
+* Remove none needed autoload prefix function from jcs-util file. (jcs-emacs-init)
+* Set global line reminder mode enable as default. (jcs-emacs-init)
+
 2018-05-28
 * Add redo key to 'org-mode'. (jcs-emacs-init)
 * Wrong according key bindings, place it by categories. (jcs-emacs-init)
