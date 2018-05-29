@@ -162,6 +162,10 @@ Return a list of installed packages or nil for every skipped package."
                           'js2-mode
                           'js2-refactor
                           'json-mode
+                          ;; TEMPORARY(jenchieh): Hopefully melpa will let me push
+                          ;; my package `line-reminder' to their package system.
+                          ;; Then we can add this line under directly.
+                          ;;'line-reminder
                           'lua-mode
                           'magit
                           'meghanada
@@ -217,6 +221,13 @@ Return a list of installed packages or nil for every skipped package."
 ;; Then we can remove load file/manually install package system.
 ;;
 (load-file "~/.emacs.d/elisp/com-css-sort-20180519.001/com-css-sort.el")
+
+;;
+;; TEMPORARY(jenchieh): Hopefully melpa will let me push
+;; my package `line-reminder' to their package system.
+;; Then we can remove load file/manually install package system.
+;;
+(load-file "~/.emacs.d/elisp/line-reminder-20180529.001/line-reminder.el")
 
 ;;
 ;; TEMPORARY(jenchieh): Hopefully melpa will let me push
