@@ -7,6 +7,9 @@
 # ========================================================================
 
 
+2018-05-31
+* Upgrade package 'line-reminder' package manually => 20180531. (jcs-emacs-init)
+
 2018-05-29
 * Manually install 'line-reminder' package => 20180529. (jcs-emacs-init)
 * Remove none needed autoload prefix function from jcs-util file. (jcs-emacs-init)
