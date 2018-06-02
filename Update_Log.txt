@@ -7,6 +7,11 @@
 # ========================================================================
 
 
+2018-06-02
+* Remove manually isntall 'com-css-sort' package, use melpa package 
+ manager instead. (jcs-emacs-init)
+* Diminish line-reminder pacakge. (jcs-emacs-init)
+
 2018-06-01
 * Upgrade package 'line-reminder' package manually => 20180601. (jcs-emacs-init)
 
