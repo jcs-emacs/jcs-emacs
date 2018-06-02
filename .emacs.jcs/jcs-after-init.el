@@ -37,6 +37,7 @@
 (diminish 'impatient-mode)
 (diminish 'js2-refactor-mode)
 (diminish 'js2r)
+(diminish 'line-reminder-mode)
 (diminish 'outline-minor-mode)
 (diminish 'skewer-mode)
 (diminish 'which-key-mode)
