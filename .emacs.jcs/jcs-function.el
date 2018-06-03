@@ -52,15 +52,16 @@
   (interactive)
   (top-level))
 
-;;;
-;; TOPIC: Toggle Window Split
-;; URL: https://www.emacswiki.org/emacs/ToggleWindowSplit
 ;;;###autoload
 (defun jcs-toggle-window-split ()
   "Switch window split from horizontally to vertically, or vice versa.
 
 i.e. change right window to bottom, or change bottom window to right."
   (interactive)
+
+  ;; TOPIC: Toggle Window Split
+  ;; URL: https://www.emacswiki.org/emacs/ToggleWindowSplit
+
   (require 'windmove)
   (let ((done))
     (dolist (dirs '((right . down) (down . right)))
@@ -101,11 +102,9 @@ i.e. change right window to bottom, or change bottom window to right."
 
 ;;;###autoload
 (defun jcs-ag-project-regexp ()
-  "Use `wgrep' to replace the word in the entire project.
-
-TOPIC: Is there a way to use query-replace from grep/ack/ag output modes?
-URL: https://emacs.stackexchange.com/questions/212/is-there-a-way-to-use-query-replace-from-grep-ack-ag-output-modes
-"
+  "Use `wgrep' to replace the word in the entire project."
+  ;; TOPIC: Is there a way to use query-replace from grep/ack/ag output modes?
+  ;; URL: https://emacs.stackexchange.com/questions/212/is-there-a-way-to-use-query-replace-from-grep-ack-ag-output-modes
   (interactive)
 
   ;; open search result menu.
@@ -216,6 +215,28 @@ own preferences."
   "Disable truncate lines."
   (interactive)
   (setq truncate-lines nil))
+
+;;---------------------------------------------
+;; Return
+;;---------------------------------------------
+
+;;;###autoload
+(defun jcs-return-key ()
+  "JayCeS default return key."
+  (interactive)
+  ;;;
+  ;; Priority
+  ;;
+  ;; ATTENTION(jenchieh): all the function in the priority
+  ;; function list must all have error handling. Or else this
+  ;; the priority chain will break.
+  ;;
+  ;; 1. `custom-abbrev-complete-word'
+  ;; 2. `goto-address-at-point'
+  ;;
+  (unless (or (ignore-errors (call-interactively #'custom-abbrev-complete-word)))
+    (call-interactively #'goto-address-at-point)))
+
 
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 ;; Load files.
