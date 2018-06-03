@@ -221,7 +221,7 @@ own preferences."
 ;;---------------------------------------------
 
 ;;;###autoload
-(defun jcs-return-key ()
+(defun jcs-ctrl-return-key ()
   "JayCeS default return key."
   (interactive)
   ;;;
