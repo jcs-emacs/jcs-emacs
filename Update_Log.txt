@@ -13,6 +13,7 @@
 * Implement `jcs-ctrl-return-key' functionality for JayCeS default 
  control return key. It uses priority function list to handle each 
  requirement. (jcs-emacs-init)
+* Update keybindings doc describe ctrl-return key. (jcs-emacs-init)
 
 2018-06-02
 * Remove manually isntall 'com-css-sort' package, use melpa package 
