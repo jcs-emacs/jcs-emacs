@@ -217,7 +217,7 @@ Return a list of installed packages or nil for every skipped package."
 ;; my package `line-reminder' to their package system.
 ;; Then we can remove load file/manually install package system.
 ;;
-(load-file "~/.emacs.d/elisp/line-reminder-20180602.001/line-reminder.el")
+(load-file "~/.emacs.d/elisp/line-reminder-20180603.001/line-reminder.el")
 
 ;;
 ;; TEMPORARY(jenchieh): Hopefully melpa will let me push
