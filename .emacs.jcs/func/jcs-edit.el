@@ -757,8 +757,7 @@ visible"
           (mapcar
            '(lambda (buf)
               (if (get-buffer-window-list buf) buf))
-           buffers)
-          ))
+           buffers)))
 
 ;;;###autoload
 (defun not-visible-buffers (buffers)
@@ -768,8 +767,7 @@ visible"
           (mapcar
            '(lambda (buf)
               (unless (get-buffer-window-list buf) buf))
-           buffers)
-          ))
+           buffers)))
 
 ;;;###autoload
 (defun buffer-in-window-list ()
@@ -816,18 +814,13 @@ False: return nil."
 ;;;###autoload
 (defun jcs-maybe-kill-this-buffer ()
   "Kill the buffer if this file is the only file. Otherwise just
-switch to the previous buffer.
-
-SOURCE(jenchieh): https://emacs.stackexchange.com/questions/2888/kill-buffer-when-frame-is-deleted/2915#2915
-"
+switch to the previous buffer."
   (interactive)
+  ;; SOURCE(jenchieh): https://emacs.stackexchange.com/questions/2888/kill-buffer-when-frame-is-deleted/2915#2915
 
   (ignore-errors
     (setq BaseFileNameWithExtension (file-name-nondirectory buffer-file-name))
     (setq current-file-buffer (get-buffer BaseFileNameWithExtension)))
-
-  ;; NOTE(jenchieh): new line in common lisp.
-  ;;(terpri)
 
   (let ((displayed-frame-count 0))
     (dolist (buf (buffer-in-window-list))
