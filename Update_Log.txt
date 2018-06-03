@@ -10,8 +10,9 @@
 2018-06-03
 * Upgrade package 'line-reminder' package manually => 20180603. (jcs-emacs-init)
 * Manually install package 'custom-abbrev'. (jcs-emacs-init)
-* Implement `jcs-ctrl-return-key' functionality for JayCeS default return key. 
- It uses priority function list to handle each requirement. (jcs-emacs-init)
+* Implement `jcs-ctrl-return-key' functionality for JayCeS default 
+ control return key. It uses priority function list to handle each 
+ requirement. (jcs-emacs-init)
 
 2018-06-02
 * Remove manually isntall 'com-css-sort' package, use melpa package 
