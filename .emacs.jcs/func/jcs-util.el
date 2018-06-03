@@ -776,6 +776,18 @@ FILEPATH : file path."
     (insert-file-contents filePath)
     (buffer-string)))
 
+(defun jcs-project-write-file (in-filename in-content)
+  "Write to a file in the project root.
+IN-FILENAME : path to write, is relative path to project root.
+IN-CONTENT : content/buffer to write to the IN-FILENAME."
+  (write-region in-content  ;; Start
+                nil  ;; End
+                ;; File name (concatenate full path)
+                (concat (cdr (project-current))
+                        in-filename)  ;; Cache filename.
+                ;; Overwrite?
+                t))
+
 (defun jcs-parse-ini (filePath)
   "Parse a .ini file.
 FILEPATH : .ini file to parse."
