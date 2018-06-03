@@ -118,15 +118,19 @@ Return a list of installed packages or nil for every skipped package."
                           'basic-mode
                           'better-defaults
                           'blank-mode
-                          'cobol-mode
-                          'com-css-sort
-                          'company
                           'cmake-font-lock
                           'cmake-ide
                           'cmake-mode
                           'cmake-project
+                          'cobol-mode
+                          'com-css-sort
+                          'company
                           'cpputils-cmake
                           'csharp-mode
+                          ;; TEMPORARY(jenchieh): Hopefully melpa will let me push
+                          ;; my package `custom-abbrev' to their package system.
+                          ;; Then we can add this line under directly.
+                          ;;'custom-abbrev
                           'dash
                           'diminish
                           'ein
@@ -211,6 +215,13 @@ Return a list of installed packages or nil for every skipped package."
 
 (load-file "~/.emacs.d/elisp/verilog-mode.el")
 (load-file "~/.emacs.d/elisp/jayces-mode.el")
+
+;;
+;; TEMPORARY(jenchieh): Hopefully melpa will let me push
+;; my package `custom-abbrev' to their package system.
+;; Then we can remove load file/manually install package system.
+;;
+(load-file "~/.emacs.d/elisp/custom-abbrev-20180603.001/custom-abbrev.el")
 
 ;;
 ;; TEMPORARY(jenchieh): Hopefully melpa will let me push
