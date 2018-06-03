@@ -113,12 +113,12 @@
 (define-key global-map (kbd "C-S-s") 'jcs-tabify-save-buffer)
 
 ;;; Package
-(define-key global-map "\C-p" 'package-list-packages)
+(define-key global-map "\C-p" #'package-list-packages)
 (define-key package-menu-mode-map "s" #'package-menu-filter-by-status)
 (define-key package-menu-mode-map "u" #'package-upgrade-all)
 
 ;;; Return
-(define-key global-map (kbd "C-<return>") 'jcs-return-key)
+(define-key global-map (kbd "C-<return>") #'jcs-ctrl-return-key)
 
 ;;; Kill Word
 (define-key global-map (kbd "C-<backspace>") 'jcs-backward-delete-word)
