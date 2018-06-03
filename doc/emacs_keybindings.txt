@@ -153,6 +153,14 @@ C-M-down        Scroll window down one line without moving cursor.
 
 C-c f           Change font style.
 
+C-return        Binds to `jcs-ctrl-return-key'. If follows the list 
+                of function error handling. If something wrong with 
+                the order down function, the next function will be 
+                call to replace the previous function. The priority 
+                function list is list below: 
+                  (1) goto-address-at-point
+                  (2) custom-abbrev-complete-word
+
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * Magit
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
