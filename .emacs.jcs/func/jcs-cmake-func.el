@@ -12,9 +12,6 @@
 ;; Functions for CMake and Makefile.
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-;;; Code:
-
-
 (defun jcs-ask-makefile-language (lan)
   "Ask makefile what major language is this makefile going to use.
 Then specialize makefile to that target language.
