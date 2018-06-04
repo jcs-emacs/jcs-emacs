@@ -38,8 +38,6 @@
   (define-key c++-mode-map "\ec" 'jcs-find-corresponding-file)
   (define-key c++-mode-map "\eC" 'jcs-find-corresponding-file-other-window)
 
-  (define-key c++-mode-map "\es" 'casey-save-buffer)
-
   (define-key c++-mode-map "\t" 'dabbrev-expand)
   (define-key c++-mode-map [S-tab] 'indent-for-tab-command)
   (define-key c++-mode-map "\C-y" 'indent-for-tab-command)
