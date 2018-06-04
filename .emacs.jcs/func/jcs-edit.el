@@ -623,59 +623,6 @@ file-project.el' plugin."
         )
     (ido-find-file)))
 
-
-;;================================================
-;; * Run Program *
-;; Setup the run file key and function.
-;;----------------------------------------
-
-;;;###autoload
-(defun find-project-directory-recursive-run ()
-  "Recursively search for a makefile."
-  (interactive)
-  (if (file-exists-p jcs-runscript) t
-    (cd "../")
-    (find-project-directory-recursive-run)))
-
-;;;###autoload
-(defun find-project-directory-run ()
-  "Find the project directory."
-  (interactive)
-  (setq find-project-from-directory default-directory)
-  (switch-to-buffer-other-window "*compilation*")
-  (if compilation-directory-locked
-      (cd last-compilation-directory)
-    (cd find-project-from-directory)
-    (find-project-directory-recursive-run)
-    (setq last-compilation-directory default-directory)))
-
-;;;###autoload
-(defun run-without-asking()
-  "Run the current build program. - JenChieh"
-  (interactive)
-  (if (find-project-directory-run)
-      (compile jcs-runscript)))
-
-;;================================================
-;; * Open TODO file *
-;;----------------------------------------
-
-;;;###autoload
-(defun open-todo-without-asking()
-  "Open the TODO list from this project. - JenChieh"
-  (interactive)
-  (ffip-find-files jcs-todo-file t))
-
-;;================================================
-;; * Open LOG file *
-;;----------------------------------------
-
-;;;###autoload
-(defun open-update-log-without-asking()
-  "Open the Update Log from this project. - JenChieh"
-  (interactive)
-  (ffip-find-files jcs-update-log-file t))
-
 ;;---------------------------------------------
 ;; Source: https://www.emacswiki.org/emacs/BackToIndentationOrBeginning
 ;;---------------------------------------------
