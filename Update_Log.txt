@@ -7,6 +7,11 @@
 # ========================================================================
 
 
+2018-06-04
+* Create 'jcs-dev.el' file for development related functions file put 
+ here. (jcs-emacs-init)
+* Remake open-todo, open-update-log, makescript/runscript without asking. (jcs-emacs-init)
+
 2018-06-03
 * Upgrade package 'line-reminder' package manually => 20180603. (jcs-emacs-init)
 * Manually install package 'custom-abbrev'. (jcs-emacs-init)
