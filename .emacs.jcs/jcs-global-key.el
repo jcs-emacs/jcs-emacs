@@ -22,8 +22,6 @@
 (define-key global-map "\et" 'load-todo)
 (define-key global-map "\eT" 'load-log)
 
-(define-key global-map [f8] 'casey-replace-string)
-
 (define-key global-map "\ep" 'quick-calc)
 
 (define-key global-map [C-right] 'forward-word)
@@ -68,11 +66,7 @@
 (define-key global-map "\e^" 'captilize-word)
 (define-key global-map "\e." 'fill-paragraph)
 
-
-(define-key global-map "\el" 'casey-replace-in-region)
-
 (define-key global-map "\eo" 'query-replace)
-(define-key global-map "\eO" 'casey-replace-string)
 
 ;; \377 is alt-backspace
 (define-key global-map "\377" 'backward-kill-word)
@@ -225,17 +219,17 @@
 (define-key global-map "\eM" 'buffer-menu-other-window)
 
 ;;; Run
-(define-key global-map "\e]" 'run-without-asking)        ;; ALT-]
-(define-key global-map (kbd "<f5>") 'run-without-asking)
+(define-key global-map "\e]" #'jcs-run-without-asking)        ;; ALT-]
+(define-key global-map (kbd "<f5>") #'jcs-run-without-asking)
 
 ;;; Build
-(define-key global-map (kbd "C-B") 'make-without-asking)
+(define-key global-map (kbd "C-B") #'jcs-make-without-asking)
 
 ;;; Open TODO file.
-(define-key global-map "\C-t" 'open-todo-without-asking)
+(define-key global-map "\C-t" #'jcs-open-project-todo-file)
 
 ;;; Open Log file.
-(define-key global-map "\C-u" 'open-update-log-without-asking)
+(define-key global-map "\C-u" #'jcs-open-project-update-log-file)
 
 ;;; switch line-ending key
 (define-key global-map "\C-x\C-e" 'set-buffer-file-coding-system)
