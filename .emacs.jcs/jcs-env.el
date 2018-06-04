@@ -39,27 +39,33 @@
     (setq jcs-linux t))))
 
 
-(setq casey-todo-file "C:/TODO_JenChieh/code/todo.txt")
-(setq casey-log-file "C:/TODO_JenChieh/code/log.txt")
+(defvar jcs-daily-todo-file "C:/TODO_JenChieh/code/todo.txt"
+  "Open the daily todo file.")
+(defvar jcs-log-file "C:/TODO_JenChieh/code/log.txt"
+  "Log file???")
 
 (global-hl-line-mode 1)
 (set-face-background 'hl-line "midnight blue")
 
 
-(setq compilation-directory-locked nil)
 (scroll-bar-mode -1)
 (setq enable-local-variables nil)
-(setq casey-font "outline-DejaVu Sans Mono")
 
 ;; TODO file.
-(setq jcs-todo-file "TODO(jenchieh)")
+(defvar jcs-project-todo-file "TODO"
+  "Project TODO file.")
 ;; Log file.
-(setq jcs-update-log-file "Update_Log")
+(defvar jcs-project-update-log-file "Update_Log"
+  "Project Update Log file.")
+
+(defvar jcs-makescript ""
+  "Make script file name depends on the current OS.")
+(defvar jcs-runscript ""
+  "Run script file name depends on the current OS.")
 
 (when jcs-win32
-  (setq casey-makescript "build.bat")
-  (setq jcs-runscript "run.bat")
-  (setq casey-font "outline-Liberation Mono"))
+  (setq jcs-makescript "build.bat")
+  (setq jcs-runscript "run.bat"))
 
 (when jcs-aquamacs
   (cua-mode 0)
@@ -74,11 +80,11 @@
   (setq mac-command-key-is-meta t)
   (scroll-bar-mode nil)
   (setq mac-pass-command-to-system nil)
-  (setq casey-makescript "./build.macosx")
+  (setq jcs-makescript "./build.macosx")
   (setq jcs-runscript "./run.macosx"))
 
 (when jcs-linux
-  (setq casey-makescript "./build.linux")
+  (setq jcs-makescript "./build.linux")
   (setq jcs-runscript "./run.linux")
   (display-battery-mode 1))
 
@@ -119,16 +125,19 @@
 (add-hook 'compilation-mode-hook 'jcs-big-fun-compilation-hook)
 
 (defun load-todo ()
+  "Load todo file."
   (interactive)
-  (find-file casey-todo-file))
+  (find-file jcs-daily-todo-file))
 
 (defun insert-timeofday ()
+  "Insert time of day."
   (interactive "*")
   (insert (format-time-string "---------------- %a, %d %b %y: %I:%M%p")))
 
 (defun load-log ()
+  "Load the log file."
   (interactive)
-  (find-file casey-log-file)
+  (find-file jcs-log-file)
   (if (boundp 'longlines-mode) ()
     (longlines-mode 1)
     (longlines-show-hard-newlines))
@@ -301,37 +310,6 @@
       jcs-fixme-modes)
 
 
-(defun casey-replace-string (FromString ToString)
-  "Replace a string without moving point.
-FROMSTRING : String will be replaced.
-TOSTRING : String will replaced."
-  (interactive "sReplace: \nsReplace: %s  With: ")
-  (save-excursion
-    (replace-string FromString ToString)))
-
-(defun casey-save-buffer ()
-  "Save the buffer after untabifying it."
-  (interactive)
-  (save-excursion
-    (save-restriction
-      (widen)
-      (untabify (point-min) (point-max))))
-  (save-buffer))
-
-;; TXT mode handling
-(defun casey-big-fun-text-hook ()
-  "4-space tabs."
-  (setq tab-width 4
-        indent-tabs-mode nil)
-
-  ;; Newline indents, semi-colon doesn't
-  (define-key text-mode-map "\C-m" 'newline-and-indent)
-
-  ;; Prevent overriding of alt-s
-  (define-key text-mode-map "\es" 'casey-save-buffer)
-  )
-(add-hook 'text-mode-hook 'casey-big-fun-text-hook)
-
 ;; Maximize my Emacs frame on start-up
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
@@ -344,63 +322,12 @@ TOSTRING : String will replaced."
 ;;   "Prevent mouse commands activating bloody `transient-mark-mode'."
 ;;   (if transient-mark-mode (setq transient-mark-mode nil)))
 
-(defun append-as-kill ()
-  "Performs copy-region-as-kill as an append."
-  (interactive)
-  (append-next-kill)
-  (copy-region-as-kill (mark) (point)))
-
-(defun casey-replace-in-region (old-word new-word)
-  "Perform a `replace-string' in the current region.
-OLD-WORD : old word will be replaced.
-NEW-WORD : new word ready to be insert."
-  (interactive "sReplace: \nsReplace: %s  With: ")
-  (save-excursion (save-restriction
-                    (narrow-to-region (mark) (point))
-                    (goto-char (point-min))
-                    (replace-string old-word new-word)
-                    )))
 
 ;; Compilation
 (setq compilation-context-lines t)
 (setq compilation-error-regexp-alist
       (cons '("^\\([0-9]+>\\)?\\(\\(?:[a-zA-Z]:\\)?[^:(\t\n]+\\)(\\([0-9]+\\)) : \\(?:fatal error\\|warnin\\(g\\)\\) C[0-9]+:" 2 3 nil (4))
             compilation-error-regexp-alist))
-
-(defun find-project-directory-recursive-run ()
-  "Recursively search for a makefile."
-  (interactive)
-  (if (file-exists-p casey-makescript) t
-    (cd "../")
-    (find-project-directory-recursive-run)))
-
-(defun lock-compilation-directory ()
-  "The compilation process should NOT hunt for a makefile."
-  (interactive)
-  (setq compilation-directory-locked t)
-  (message "Compilation directory is locked."))
-
-(defun unlock-compilation-directory ()
-  "The compilation process SHOULD hunt for a makefile."
-  (interactive)
-  (setq compilation-directory-locked nil)
-  (message "Compilation directory is roaming."))
-
-(defun find-project-directory ()
-  "Find the project directory."
-  (interactive)
-  (setq find-project-from-directory default-directory)
-  (switch-to-buffer-other-window "*compilation*")
-  (if compilation-directory-locked (cd last-compilation-directory)
-    (cd find-project-from-directory)
-    (find-project-directory-recursive-run)
-    (setq last-compilation-directory default-directory)))
-
-(defun make-without-asking ()
-  "Make the current build."
-  (interactive)
-  (if (find-project-directory) (compile casey-makescript))
-  (other-window 1))
 
 ;; Commands
 (set-variable 'grep-command "grep -irHn ")
@@ -425,11 +352,6 @@ NEW-WORD : new word ready to be insert."
 (setq-default truncate-lines t)
 (setq truncate-partial-width-windows nil)
 (split-window-horizontally)
-
-(defun casey-never-split-a-window
-    "Never, ever split a window.  Why would anyone EVER want you to do that??"
-  nil)
-(setq split-window-preferred-function 'casey-never-split-a-window)
 
 ;;(add-to-list 'default-frame-alist '(font . "Liberation Mono-14.0"))         ;; default [11.5]
 ;;(set-face-attribute 'default t :font "Liberation Mono-11.5")                ;; default [11.5]
