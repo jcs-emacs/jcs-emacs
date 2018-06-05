@@ -920,7 +920,8 @@ DIRPATH : directory path."
   (match-string 1 dirPath))
 
 (defun jcs-vc-root-dir ()
-  "Return version control root directory."
+  "Return version control root directory.
+If not found, will return empty string."
   (let ((tmp-current-dir (jcs-get-current-dir))
         (tmp-result-dir ""))
     (while (jcs-contain-string "/" tmp-current-dir)
@@ -930,9 +931,12 @@ DIRPATH : directory path."
         (setq tmp-result-dir tmp-current-dir))
       ;; go up one directory.
       (setq tmp-current-dir (jcs-up-one-dir-string tmp-current-dir)))
-    ;; NOTE(jenchieh): if you do not like `/' at the end remove
-    ;; concat slash function.
-    (concat tmp-result-dir "/")))
+
+    (if (string= tmp-result-dir "")
+        ""  ;; Not found, return empty string.
+      ;; NOTE(jenchieh): if you do not like `/' at the end remove
+      ;; concat slash function.
+      (concat tmp-result-dir "/"))))
 
 (defun jcs-project-current ()
   "Return the current project's root directory.
