@@ -7,6 +7,15 @@
 # ========================================================================
 
 
+2018-06-05
+* Remove casey text mode hook. (jcs-emacs-init)
+* Error handling decision on not finding the version control root 
+ directory. (jcs-emacs-init)
+* Add find file in project and current directory, also a design decision. 
+ Plus add the `jcs-find-file-in-project-and-current-dir' and 
+ `jcs-select-find-file-current-dir' functions. Fixed the bug 
+ for `jcs-select-find-file-in-project' function. (jcs-emacs-init)
+
 2018-06-04
 * Create 'jcs-dev.el' file for development related functions file put 
  here. (jcs-emacs-init)
