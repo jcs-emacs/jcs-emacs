@@ -7,6 +7,9 @@
 # ========================================================================
 
 
+2018-06-09
+* Manually upgrade pacakge 'use-ttf' to version 20180609. (jcs-emacs-init)
+
 2018-06-05
 * Remove casey text mode hook. (jcs-emacs-init)
 * Error handling decision on not finding the version control root 
