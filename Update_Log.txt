@@ -7,6 +7,12 @@
 # ========================================================================
 
 
+2018-06-10
+* Fixed error handle still going url after custom expansion with key 
+ bindings 'ctrl + return'. (jcs-emacs-init)
+* Rename function from duplicate-line to jcs-duplicate-line for 
+ consistency. (jcs-emacs-init)
+
 2018-06-09
 * Manually upgrade pacakge 'use-ttf' to version 20180609. (jcs-emacs-init)
 
