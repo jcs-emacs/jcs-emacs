@@ -97,7 +97,7 @@
 ;;(define-key global-map "\C-xf" 'jcs-smart-find-file-in-project)
 ;;(define-key global-map "\C-xF" 'jcs-smart-find-file-in-project-in-another-window)
 
-(define-key global-map "\C-cd" 'duplicate-line)
+(define-key global-map "\C-cd" 'jcs-duplicate-line)
 ;;(define-key global-map (kbd "C-d") 'kill-whole-line)   ;; Emacs default version
 (define-key global-map (kbd "C-d") 'jcs-kill-whole-line)    ;; delete the line without copying!!
 (define-key global-map "\C-x\C-x" 'kill-region)

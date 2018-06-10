@@ -239,8 +239,15 @@ This command does not push text to `kill-ring'."
       (delete-region (region-beginning) (region-end))
     (jcs-delete-word (+ arg))))
 
+(defun jcs-kill-thing-at-point (thing)
+  "Kill the `thing-at-point' for the specified kind of THING."
+  (let ((bounds (bounds-of-thing-at-point thing)))
+    (if bounds
+        (kill-region (car bounds) (cdr bounds))
+      (error "No %s at point" thing))))
+
 ;;;###autoload
-(defun duplicate-line ()
+(defun jcs-duplicate-line ()
   "Duplicate the line"
   (interactive)
   (move-beginning-of-line 1)
