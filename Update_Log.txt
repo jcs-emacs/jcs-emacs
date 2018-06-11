@@ -7,6 +7,10 @@
 # ========================================================================
 
 
+2018-06-11
+* Add is default face functionality to utility module. (jcs-emacs-init)
+* Update emacs version record to Emacs 26.1. (jcs-emacs-init)
+
 2018-06-10
 * Fixed error handle still going url after custom expansion with key 
  bindings 'ctrl + return'. (jcs-emacs-init)
