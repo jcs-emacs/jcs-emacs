@@ -17,15 +17,19 @@
   "Gray Theme."
   (interactive)
 
-  (set-foreground-color "#D2D2D2")
-  (set-background-color "#161616")
+  (let ((theme-foreground-color "#D2D2D2")
+        (theme-background-color "#161616"))
+    (unless (string= (face-foreground 'default) theme-foreground-color)
+      (set-foreground-color theme-foreground-color))
+    (unless (string= (face-background 'default) theme-background-color)
+      (set-background-color theme-background-color)))
 
   (set-cursor-color "#40FF40")
   (set-face-background 'hl-line "midnight blue")
 
   ;; set mode line
   (set-face-background 'mode-line "#BFBFBF")
-  (set-face-background 'modeline-inactive "#4D4D4D")
+  (set-face-background 'mode-line-inactive "#4D4D4D")
   ;; set the vertical border
   (set-face-background 'vertical-border "#D2D2D2")
   (set-face-foreground 'vertical-border (face-background 'vertical-border))
@@ -52,8 +56,12 @@
   "Dark Green Theme."
   (interactive)
 
-  (set-foreground-color "#D2D2D2")
-  (set-background-color "#161616")
+  (let ((theme-foreground-color "#D2D2D2")
+        (theme-background-color "#161616"))
+    (unless (string= (face-foreground 'default) theme-foreground-color)
+      (set-foreground-color theme-foreground-color))
+    (unless (string= (face-background 'default) theme-background-color)
+      (set-background-color theme-background-color)))
 
   (set-cursor-color "#40FF40")
   (set-face-background 'hl-line "midnight blue")
@@ -88,8 +96,12 @@
   "Dark Blue Theme."
   (interactive)
 
-  (set-foreground-color "#D2D2D2")
-  (set-background-color "#161616")
+  (let ((theme-foreground-color "#D2D2D2")
+        (theme-background-color "#161616"))
+    (unless (string= (face-foreground 'default) theme-foreground-color)
+      (set-foreground-color theme-foreground-color))
+    (unless (string= (face-background 'default) theme-background-color)
+      (set-background-color theme-background-color)))
 
   (set-cursor-color "#40FF40")
   (set-face-background 'hl-line "midnight blue")
@@ -100,7 +112,7 @@
 
   ;; set 'mode line'
   (set-face-background 'mode-line "#246aaf")
-  (set-face-background 'modeline-inactive "#0e2944")
+  (set-face-background 'mode-line-inactive "#0e2944")
 
   ;; NOTE: `powerline' font faces.
   (set-face-foreground 'powerline-active1 "#CCCCCC")
@@ -124,15 +136,19 @@
   "Dark Orange Theme."
   (interactive)
 
-  (set-foreground-color "#D2D2D2")
-  (set-background-color "#161616")
+  (let ((theme-foreground-color "#D2D2D2")
+        (theme-background-color "#161616"))
+    (unless (string= (face-foreground 'default) theme-foreground-color)
+      (set-foreground-color theme-foreground-color))
+    (unless (string= (face-background 'default) theme-background-color)
+      (set-background-color theme-background-color)))
 
   (set-cursor-color "#40FF40")
   (set-face-background 'hl-line "midnight blue")
 
   ;; set mode line
   (set-face-background 'mode-line "#FF6C32")
-  (set-face-background 'modeline-inactive "#682B12")
+  (set-face-background 'mode-line-inactive "#682B12")
   ;; set the vertical border
   (set-face-background 'vertical-border "#FF6C32")
   (set-face-foreground 'vertical-border (face-background 'vertical-border))
@@ -146,15 +162,19 @@
   "Dark Orange Theme."
   (interactive)
 
-  (set-foreground-color "#D2D2D2")
-  (set-background-color "#161616")
+  (let ((theme-foreground-color "#D2D2D2")
+        (theme-background-color "#161616"))
+    (unless (string= (face-foreground 'default) theme-foreground-color)
+      (set-foreground-color theme-foreground-color))
+    (unless (string= (face-background 'default) theme-background-color)
+      (set-background-color theme-background-color)))
 
   (set-cursor-color "#40FF40")
   (set-face-background 'hl-line "midnight blue")
 
   ;; set mode line
   (set-face-background 'mode-line "#7aeeef")
-  (set-face-background 'modeline-inactive "#448b8c")
+  (set-face-background 'mode-line-inactive "#448b8c")
   ;; set the vertical border
   (set-face-background 'vertical-border "#87fdff")
   (set-face-foreground 'vertical-border (face-background 'vertical-border))
