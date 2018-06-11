@@ -45,7 +45,7 @@
  '(mouse-wheel-scroll-amount (quote (15)))
  '(package-selected-packages
    (quote
-    (ghub com-css-sort organize-imports-java neotree find-file-in-project all-the-icons with-editor magit-popup yasnippet xcscope websocket web-mode ssass-mode skewer-mode simple-httpd shader-mode pyvenv python-mode powerline php-mode nasm-mode multiple-cursors memoize meghanada magit lua-mode js2-refactor js2-mode ivy htmlize highlight-indentation highlight helm-core helm go-mode gitattributes-mode git-timemachine git-link git-commit flycheck f exec-path-from-shell epl dash csharp-mode company cmake-mode avy async ag adaptive-wrap ac-php-core which-key processing-mode basic-mode scala-mode floobits togetherly visual-regexp package-build package-lint auto-highlight-symbol xwidgete pdf-tools preproc-font-lock sublimity tree-mode rainbow-mode py-autopep8 multi-web-mode jdee impatient-mode iedit helm-gtags google-c-style gitlab gitignore-mode github-notifier gitconfig-mode flymake-google-cpplint flymake-cursor elpy ein cpputils-cmake cmake-project cmake-ide cmake-font-lock blank-mode better-defaults auto-package-update auto-install auto-complete-c-headers actionscript-mode ace-window ac-php ac-js2 ac-html ac-emmet)))
+    (csharp-mode ghub com-css-sort organize-imports-java neotree find-file-in-project all-the-icons with-editor magit-popup yasnippet xcscope websocket web-mode ssass-mode skewer-mode simple-httpd shader-mode pyvenv python-mode powerline php-mode nasm-mode multiple-cursors memoize meghanada magit lua-mode js2-refactor js2-mode ivy htmlize highlight-indentation highlight helm-core helm go-mode gitattributes-mode git-timemachine git-link git-commit flycheck f exec-path-from-shell epl dash company cmake-mode avy async ag adaptive-wrap ac-php-core which-key processing-mode basic-mode scala-mode floobits togetherly visual-regexp package-build package-lint auto-highlight-symbol xwidgete pdf-tools preproc-font-lock sublimity tree-mode rainbow-mode py-autopep8 multi-web-mode jdee impatient-mode iedit helm-gtags google-c-style gitlab gitignore-mode github-notifier gitconfig-mode flymake-google-cpplint flymake-cursor elpy ein cpputils-cmake cmake-project cmake-ide cmake-font-lock blank-mode better-defaults auto-package-update auto-complete-c-headers actionscript-mode ace-window ac-php ac-js2 ac-html ac-emmet)))
  '(send-mail-function (quote mailclient-send-it))
  '(version-control nil))
 (custom-set-faces
@@ -100,12 +100,12 @@ Return a list of installed packages or nil for every skipped package."
     (package-refresh-contents))
 
 ;; How to use?
-(ensure-package-installed 'actionscript-mode  ;; for text related mode
-                          'ac-php             ;; auto complete php
+(ensure-package-installed 'ac-emmet
                           'ac-html            ;; auto complete html
                           'ac-js2
-                          'ac-emmet
+                          'ac-php             ;; auto complete php
                           'ace-window
+                          'actionscript-mode
                           'adaptive-wrap
                           'ag
                           'all-the-icons
@@ -113,7 +113,6 @@ Return a list of installed packages or nil for every skipped package."
                           'auto-complete
                           'auto-complete-c-headers
                           'auto-highlight-symbol
-                          'auto-install
                           'auto-package-update
                           'basic-mode
                           'better-defaults
@@ -262,7 +261,7 @@ Return a list of installed packages or nil for every skipped package."
 (load-file "~/.emacs.jcs/jcs-file-info-format.el")
 (load-file "~/.emacs.jcs/jcs-helm.el")
 
-;;; jcs-all-mode
+;;; Modes
 (load-file "~/.emacs.jcs/mode/jcs-elisp-mode.el")
 (load-file "~/.emacs.jcs/mode/jcs-cs-mode.el")
 (load-file "~/.emacs.jcs/mode/jcs-nasm-mode.el")
