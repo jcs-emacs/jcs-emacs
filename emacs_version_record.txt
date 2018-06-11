@@ -12,4 +12,5 @@ DESCRIPTION(jenchieh): These record down the .emacs file to
 which specific version of Emacs program.
 
 emacs-24.5 - 2016-03-15 ~ 2017-05-15
-emacs-25.2 - 2017-05-15 ~ current
+emacs-25.2 - 2017-05-15 ~ 2018-06-11
+emacs-26.1 - 2018-06-11 ~ current
