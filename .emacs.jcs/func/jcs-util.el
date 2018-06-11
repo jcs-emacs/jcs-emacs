@@ -681,30 +681,34 @@ active. false, there is no region selected and mark is not active.
 (defun jcs-get-current-point-face ()
   "Get current point's type face as string."
   (interactive)
-  (let ((face (or (get-char-property (point) 'read-face-name)
+  (let ((face (or (get-char-property (point) 'font-lock-face)
+                  (get-char-property (point) 'read-face-name)
                   (get-char-property (point) 'face))))
+    ;; NOTE(jenchieh): this could either be a `string' or a `list'.
     (if (listp face)
-        ;; NOTE(jenchieh): If there is multiple faces at
-        ;; a point, it will return a list instead of
-        ;; string. Just get the first element which is
-        ;; usually the foreground face.
         (nth 0 face)
-      ;; Else we just return the face.
       face)))
 
 ;;;###autoload
 (defun jcs-what-face ()
   "Print out what face is current cursor on."
   (interactive)
-  (message "Current face: %s" (jcs-get-current-point-face)))
+  (message "Current face: %s" current-faces))
 
 (defun jcs-is-current-point-face (in-face)
   "Check if current face the same face as IN-FACE.
 Returns, True if is the same as pass in face name string.
 False, is not the same as pass in face name string.
 IN-FACE : input face name as string."
-  ;; Return result.
   (string= in-face (jcs-get-current-point-face)))
+
+(defun jcs-is-default-face-p ()
+  "Return non-nil, if is default face.
+Return nil, if not default face."
+  (or
+   ;; STUDY(jenchieh): nil means `default' face, I guess.
+   (jcs-is-current-point-face "nil")
+   (jcs-is-current-point-face "hl-line")))
 
 ;;---------------------------------------------
 ;; Font
@@ -717,16 +721,17 @@ IN-FACE : input face name as string."
   (jcs-log-list (font-family-list)))
 
 ;;;###autoload
-(defun jcs-change-font (inFont)
-  "Choose a font and change that to the current font."
+(defun jcs-change-font (in-font)
+  "Choose a font and change that to the current font.
+IN-FONT : input font name."
   (interactive
    (list (completing-read
           "Fonts: " (font-family-list))))
 
   ;; Change the font and keep the size.
-  (if (jcs-font-existsp inFont)
+  (if (jcs-font-existsp in-font)
       (progn
-        (set-frame-font inFont t))
+        (set-frame-font in-font t))
     (progn
       (jcs-error "Font you chose does not exists in current system, Please select other font."))))
 
