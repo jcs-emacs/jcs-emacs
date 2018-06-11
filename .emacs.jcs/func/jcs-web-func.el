@@ -69,17 +69,13 @@ cursor currently on."
       ;;
       ;; Forward a char if is at the end of line.
       (when (or
-             ;; If is `default' face, do this as well
-             ;; for just in case some other face did
-             ;; get apply.
-             (jcs-is-current-point-face "nil")
+             (jcs-is-default-face-p)
              ;; If current charact is either space or tab.
              (jcs-current-char-string-match-p "[ \t]"))
         (jcs-goto-first-char-in-line)
         (forward-char 1))
 
-      ;; STUDY(jenchieh): nil means `default' face, I guess.
-      (if (jcs-is-current-point-face "nil")
+      (if (jcs-is-default-face-p)
           (jcs-disable-truncate-lines)
         (jcs-enable-truncate-lines)))))
 
@@ -101,7 +97,7 @@ cursor currently on."
 (defun jcs-web-toggle-auto-truncate-lines ()
   "Toggle `jcs-web-auto-truncate-lines' variables."
   (interactive)
-  (if (equal jcs-web-auto-truncate-lines t)
+  (if jcs-web-auto-truncate-lines
       (jcs-web-disable-auto-trancate-lines)
     (jcs-web-enable-auto-trancate-lines)))
 
@@ -110,7 +106,7 @@ cursor currently on."
   "Keep the same trigger for auto truncate mode.
 Is the opposite of `jcs-web-toggle-auto-truncate-lines'."
   (interactive)
-  (if (equal jcs-web-auto-truncate-lines t)
+  (if jcs-web-auto-truncate-lines
       (jcs-web-enable-auto-trancate-lines)
     (jcs-web-disable-auto-trancate-lines)))
 
@@ -294,7 +290,7 @@ line by line instead of indent the whole file at once."
     (previous-line 1))
 
   ;; Check if do truncate lines?
-  (when (equal jcs-web-auto-truncate-lines t)
+  (when jcs-web-auto-truncate-lines
     (jcs-web-truncate-lines-by-face)))
 
 ;;;###autoload
@@ -310,7 +306,7 @@ line by line instead of indent the whole file at once."
     (next-line 1))
 
   ;; Check if do truncate lines?
-  (when (equal jcs-web-auto-truncate-lines t)
+  (when jcs-web-auto-truncate-lines
     (jcs-web-truncate-lines-by-face)))
 
 ;;;###autoload
@@ -319,7 +315,7 @@ line by line instead of indent the whole file at once."
   (interactive)
   (right-char 1)
   ;; Check if do truncate lines?
-  (when (equal jcs-web-auto-truncate-lines t)
+  (when jcs-web-auto-truncate-lines
     (jcs-web-truncate-lines-by-face)))
 
 ;;;###autoload
@@ -328,7 +324,7 @@ line by line instead of indent the whole file at once."
   (interactive)
   (left-char 1)
   ;; Check if do truncate lines?
-  (when (equal jcs-web-auto-truncate-lines t)
+  (when jcs-web-auto-truncate-lines
     (jcs-web-truncate-lines-by-face)))
 
 ;;;###autoload
