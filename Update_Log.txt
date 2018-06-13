@@ -7,6 +7,9 @@
 # ========================================================================
 
 
+2018-06-13
+* Revert back to error handling with custom-abbrev expansion key. (jcs-emacs-init)
+
 2018-06-11
 * Add is default face functionality to utility module. (jcs-emacs-init)
 * Update emacs version record to Emacs 26.1. (jcs-emacs-init)
