@@ -224,24 +224,18 @@ own preferences."
 (defun jcs-ctrl-return-key ()
   "JayCeS default return key."
   (interactive)
-  (let ((did-backward-char nil))
-
-    ;; NOTE(jenchieh): make sure our curosr point will be on the url link.
-    (when (and (jcs-is-end-of-line-p)
-               (not (jcs-is-beginning-of-line-p)))
-      (backward-char 1)
-      (setq did-backward-char t))
-
-    ;; Check if the cursor point is on the url link.
-    (if (jcs-is-current-point-face "link")
-        (progn
-          (goto-address-at-point)
-          (when did-backward-char
-            (forward-char 1)))
-      (progn
-        (when did-backward-char
-          (forward-char 1))
-        (custom-abbrev-complete-word)))))
+  ;;;
+  ;; Priority
+  ;;
+  ;; ATTENTION(jenchieh): all the function in the priority
+  ;; function list must all have error handling. Or else this
+  ;; the priority chain will break.
+  ;;
+  ;; 1. `custom-abbrev-complete-word'
+  ;; 2. `goto-address-at-point'
+  ;;
+  (unless (or (ignore-errors (call-interactively #'custom-abbrev-complete-word)))
+    (call-interactively #'goto-address-at-point)))
 
 
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
