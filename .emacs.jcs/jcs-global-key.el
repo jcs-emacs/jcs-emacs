@@ -339,26 +339,29 @@
 
 ;;; Web mode
 (require 'impatient-mode)
-(define-key global-map "\C-wo" 'jcs-httpd-start)
-(define-key global-map "\C-wp" 'jcs-httpd-stop)
+(define-key global-map "\C-wo" #'jcs-httpd-start)
+(define-key global-map "\C-wp" #'jcs-httpd-stop)
 
 ;;; Helm
-;; More key binding in `jcs-helm.elq'
+;; More key binding in `jcs-helm.el'
 
 
 (defun jcs-global-key-rebind ()
   "Some key are not allow to bind, the solution here is just re-bind
 the key everytime the mode changes."
 
+  ;; re-builder
+  (define-key global-map "\C-re" #'jcs-re-builder)
+
+  ;; Read-Only toggle.
+  (define-key global-map (kbd "C-r o") #'read-only-mode)
+
   ;; Replace
-  (define-key global-map (kbd "C-r C-r") 'iedit-mode)
+  (define-key global-map (kbd "C-r C-r") #'iedit-mode)
 
   ;; Kill Buffer
-  (define-key global-map (kbd "C-r DEL") 'jcs-backward-delete-current-char-repeat)
-  (define-key global-map (kbd "C-r S-<backspace>") 'jcs-forward-delete-current-char-repeat)
-
-  ;; re-builder
-  (define-key global-map "\C-re" 'jcs-re-builder)
+  (define-key global-map (kbd "C-r DEL") #'jcs-backward-delete-current-char-repeat)
+  (define-key global-map (kbd "C-r S-<backspace>") #'jcs-forward-delete-current-char-repeat)
   )
 
 ;;------------------------------
