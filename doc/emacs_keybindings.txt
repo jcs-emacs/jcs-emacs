@@ -161,6 +161,8 @@ C-return        Binds to `jcs-ctrl-return-key'. If follows the list
                   (1) goto-address-at-point
                   (2) custom-abbrev-complete-word
 
+C-r o           Read-Only mode toggle.
+
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * Magit
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
