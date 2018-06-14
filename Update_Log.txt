@@ -7,6 +7,10 @@
 # ========================================================================
 
 
+2018-06-14
+* Add toggle read-only mode key binding and make note to emacs 
+ key bindings doc. (jcs-emacs-init)
+
 2018-06-13
 * Revert back to error handling with custom-abbrev expansion key. (jcs-emacs-init)
 
