@@ -37,9 +37,9 @@
   (let ((do-indent nil))
     (save-excursion
       ;; Goto the first character of current line.
-      (back-to-indentation-or-beginning)
+      (jcs-back-to-indentation-or-beginning)
       (when (jcs-is-beginning-of-line-p)
-        (back-to-indentation-or-beginning))
+        (jcs-back-to-indentation-or-beginning))
       (forward-char 1)
 
       ;; Check rule here..

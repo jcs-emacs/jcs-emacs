@@ -320,7 +320,7 @@ frame, so it do not goto the beginning of the line."
   (interactive)
   (if (not mark-active)
       (push-mark nil nil 1))
-  (back-to-indentation-or-beginning))
+  (jcs-back-to-indentation-or-beginning))
 
 ;;;###autoload
 (defun jcs-smart-select-end ()
@@ -635,7 +635,7 @@ file-project.el' plugin."
 ;;---------------------------------------------
 
 ;;;###autoload
-(defun back-to-indentation-or-beginning ()
+(defun jcs-back-to-indentation-or-beginning ()
   "Toggle between first character and beginning of line."
   (interactive)
   (if (= (point) (progn (back-to-indentation) (point)))
