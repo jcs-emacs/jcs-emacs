@@ -104,16 +104,16 @@
 
 
 ;;; Blank Mode
-(require 'blank-mode)
-(autoload 'blank-mode "blank-mode" "Toggle blank visualization." t)
-(autoload 'blank-toggle-options "blank-mode" "Toggle local `blank-mode' options." t)
+(require 'whitespace)
+(autoload 'whitespace-mode "whitespace-mode" "Toggle whitespace visualization." t)
+(autoload 'whitespace-toggle-options "whitespace-mode" "Toggle local `whitespace-mode' options." t)
 ;; All the face can be find here.
 ;; URL: https://www.emacswiki.org/emacs/BlankMode
-(set-face-attribute 'blank-indentation
+(set-face-attribute 'whitespace-indentation
                     nil
                     :background "grey20"
                     :foreground "aquamarine3")
-(set-face-attribute 'blank-trailing
+(set-face-attribute 'whitespace-trailing
                     nil
                     :background "grey20"
                     :foreground "red")
