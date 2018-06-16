@@ -44,45 +44,18 @@
     (save-window-excursion
       (save-selected-window
         (save-restriction
-          (load-file "~/.emacs"))))))
+          (load-file "~/.emacs")))))
+
+  ;; Split window horizontally if full width.
+  (if (window-full-width-p)
+      (jcs-balance-split-window-horizontally)
+    (balance-windows)))
 
 ;;;###autoload
 (defun jcs-top-level ()
   "Teminate the current command. - Canceling Action."
   (interactive)
   (top-level))
-
-;;;###autoload
-(defun jcs-toggle-window-split ()
-  "Switch window split from horizontally to vertically, or vice versa.
-
-i.e. change right window to bottom, or change bottom window to right."
-  (interactive)
-
-  ;; TOPIC: Toggle Window Split
-  ;; URL: https://www.emacswiki.org/emacs/ToggleWindowSplit
-
-  (require 'windmove)
-  (let ((done))
-    (dolist (dirs '((right . down) (down . right)))
-      (unless done
-        (let* ((win (selected-window))
-               (nextdir (car dirs))
-               (neighbour-dir (cdr dirs))
-               (next-win (windmove-find-other-window nextdir win))
-               (neighbour1 (windmove-find-other-window neighbour-dir win))
-               (neighbour2 (if next-win (with-selected-window next-win
-                                          (windmove-find-other-window neighbour-dir next-win)))))
-          ;;(message "win: %s\nnext-win: %s\nneighbour1: %s\nneighbour2:%s" win next-win neighbour1 neighbour2)
-          (setq done (and (eq neighbour1 neighbour2)
-                          (not (eq (minibuffer-window) next-win))))
-          (if done
-              (let* ((other-buf (window-buffer next-win)))
-                (delete-window next-win)
-                (if (eq nextdir 'right)
-                    (split-window-vertically)
-                  (split-window-horizontally))
-                (set-window-buffer (windmove-find-other-window neighbour-dir) other-buf))))))))
 
 ;;----------------------------------------------
 ;; Sublimity Mode
@@ -93,7 +66,7 @@ i.e. change right window to bottom, or change bottom window to right."
   "Toggle sublimity mode and reactive `global-linum-mode'."
   (interactive)
 
-  (call-interactively 'sublimity-mode)
+  (call-interactively #'sublimity-mode)
   (global-linum-mode 1))
 
 ;;----------------------------------------------
@@ -108,12 +81,12 @@ i.e. change right window to bottom, or change bottom window to right."
   (interactive)
 
   ;; open search result menu.
-  (call-interactively 'ag-project-regexp)
+  (call-interactively #'ag-project-regexp)
 
   (other-window 1)
 
   ;; make result menu editable.
-  (call-interactively 'wgrep-change-to-wgrep-mode))
+  (call-interactively #'wgrep-change-to-wgrep-mode))
 
 ;;----------------------------------------------
 ;; Helm
