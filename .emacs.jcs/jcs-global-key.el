@@ -112,6 +112,7 @@
 (define-key global-map "\C-p" #'package-list-packages)
 (define-key package-menu-mode-map "s" #'package-menu-filter-by-status)
 (define-key package-menu-mode-map "u" #'package-upgrade-all)
+(define-key package-menu-mode-map (kbd "C-x r m") #'package-autoremove)
 
 ;;; Return
 (define-key global-map (kbd "C-<return>") #'jcs-ctrl-return-key)
@@ -394,5 +395,5 @@ the key everytime the mode changes."
 ;;===========================
 (require 'rainbow-mode)
 (define-key global-map "\C-cr" #'rainbow-mode)
-(require 'blank-mode)
-(define-key global-map "\C-xb" #'blank-mode)
+(require 'whitespace)
+(define-key global-map "\C-xb" #'whitespace-mode)
