@@ -68,6 +68,8 @@
 
 (define-key global-map "\eo" #'query-replace)
 
+(define-key global-map [insert] #'jcs-overwrite-mode)
+
 ;; \377 is alt-backspace
 (define-key global-map "\377" #'backward-kill-word)
 (define-key global-map [M-delete] #'kill-word)
@@ -166,7 +168,7 @@
 (define-key global-map (kbd "C-`") #'jcs-depend-cross-mode-toggle)
 
 ;;; Window
-(define-key global-map "\C-xn" #'jcs-new-window)
+(define-key global-map "\C-xn" #'jcs-new-frame)
 (define-key global-map "\C-xd" #'delete-frame)  ; delete the external window
 (define-key global-map "\C-hh" #'jcs-toggle-window-split-hv)
 (define-key global-map "\C-we" #'jcs-toggle-enlarge-window-selected)
