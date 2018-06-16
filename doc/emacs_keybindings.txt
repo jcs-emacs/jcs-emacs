@@ -142,6 +142,8 @@ C-w p           Close httpd server for real time editing markdown
 
 C-h h           Toggle window split between horizontal and 
                 vertcial.
+
+C-w e           Toggle enlarge current selected window.
 				
 ALT-p           Open list of processes. (`list-processes')
 
