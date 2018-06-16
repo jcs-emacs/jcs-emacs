@@ -474,7 +474,7 @@ LN : line number."
 
 (defun jcs-is-beginning-of-line-p ()
   "Is at the beginning of line?"
-  (= (point) (jcs-get-beginning-of-line-point)))
+  (= (current-column) 0))
 
 (defun jcs-is-beginning-of-buffer-p ()
   "Is at the beginning of buffer?"
@@ -630,8 +630,7 @@ MAX-PT : larger position."
 Which normally that mark is active but does not move at all.
 
 @return { boolean } : true, there is region selected. false, no
-region selected.
-"
+region selected."
   (use-region-p))
 
 (defun jcs-is-mark-active-or-region-selected-p ()
