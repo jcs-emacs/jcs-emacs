@@ -47,9 +47,21 @@
           (load-file "~/.emacs")))))
 
   ;; Split window horizontally if full width.
-  (if (window-full-width-p)
-      (jcs-balance-split-window-horizontally)
-    (balance-windows)))
+  (when (and (window-full-width-p)
+             (= (length (window-list)) 1))
+    (jcs-balance-split-window-horizontally))
+
+  ;; Restore to what ever state it was.
+  ;;
+  ;; NOTE(jenchieh): we need these two lines because we need it
+  ;; for solving after reloading Emacs, there are some space at
+  ;; the bottom. Which is weird and I have no idea why...
+  (toggle-frame-maximized)
+  (toggle-frame-maximized)
+
+  ;; When frame not maximize we make sure it maximized.
+  (unless (jcs-is-frame-maximize-p)
+    (toggle-frame-maximized)))
 
 ;;;###autoload
 (defun jcs-top-level ()
@@ -87,91 +99,6 @@
 
   ;; make result menu editable.
   (call-interactively #'wgrep-change-to-wgrep-mode))
-
-;;----------------------------------------------
-;; Helm
-;;----------------------------------------------
-
-;;;###autoload
-(defun jcs-helm-before-initialize-hook ()
-  "Do the helm mx and change theme"
-  (interactive)
-
-  ;; NOTE(jenchieh): Change theme so we know which mode
-  ;; we are in visually.
-  (jcs-dark-blue-theme))
-
-;;;###autoload
-(defun jcs-helm-gtags-to-def-dec ()
-  "Goto the declaration / definition depends on the cursor position."
-  (interactive)
-
-  (ignore-errors
-    ;; Update TAG file. Default is update only current file, You
-    ;; can update all files with C-u prefix.
-    (helm-gtags-update-tags)
-
-    ;; goto definition or declaration.
-    (helm-gtags-find-tag-from-here))
-
-  (jcs-reload-active-mode))
-
-;;;###autoload
-(defun jcs-helm-gtags-to-def-dec-other-window ()
-  "Goto the declaration / definition depends on the cursor position,
-in other window."
-  (interactive)
-
-  (ignore-errors
-    ;; Update TAG file. Default is update only current file, You
-    ;; can update all files with C-u prefix.
-    (helm-gtags-update-tags)
-
-    ;; NOTE(jenchieh): this will make it jump to next window.
-    ;; Is stupid, but work.
-    (ignore-errors (helm-gtags-find-tag-other-window nil))
-
-    ;; goto definition or declaration.
-    (helm-gtags-find-tag-from-here))
-
-  (jcs-reload-active-mode))
-
-;;;###autoload
-(defun jcs-helm-find-files ()
-  "Find the file with Helm"
-  (interactive)
-
-  (put 'jcs-helm-execute-persistent-action 'state nil)
-
-  (helm-find-files nil))
-
-;;;###autoload
-(defun jcs-helm-find-files-other-window ()
-  "Find the file with Helm and open another window."
-  (interactive)
-
-  ;; set the flag, so when next time run 'jcs-helm-execute-
-  ;; persistent-action', he will know what to do instead of
-  ;; normal 'helm-execute-persistent-action' action.
-  (put 'jcs-helm-execute-persistent-action 'state t)
-
-  (helm-find-files nil))
-
-;;;###autoload
-(defun jcs-helm-execute-persistent-action ()
-  "Rewrap 'helm-execute-presistent-action' function to my
-own preferences."
-  (interactive)
-
-  (if (get 'jcs-helm-execute-persistent-action 'state)
-      (progn
-        ;; switch the buffer to another window
-        (helm-ff-run-switch-other-window)
-        (put 'jcs-helm-execute-persistent-action 'state nil)
-        )
-    ;; NOTE(jenchieh): no longer needed.
-    ;;(helm-execute-persistent-action)
-    ))
 
 ;;---------------------------------------------
 ;; Truncate Lines
@@ -217,10 +144,12 @@ own preferences."
 
 ;;; Utilities
 (load-file "~/.emacs.jcs/func/jcs-util.el")
+(load-file "~/.emacs.jcs/func/jcs-frame.el")
 (load-file "~/.emacs.jcs/func/jcs-window.el")
 (load-file "~/.emacs.jcs/func/jcs-shell.el")
 (load-file "~/.emacs.jcs/func/jcs-trans-window.el")
 (load-file "~/.emacs.jcs/func/jcs-minimap.el")
+(load-file "~/.emacs.jcs/func/jcs-helm-func.el")
 
 ;;; Editing
 (load-file "~/.emacs.jcs/func/jcs-buffer-menu.el")
