@@ -31,7 +31,7 @@
         (font-lock-add-keywords
          mode
          '(;; For nomral HTML comment.
-           ("\\(<\\!--[[:ascii:]]*-->\\)" 1 'jcs-font-lock-comment-face t)
+           ("\\(<!--[a-zA-Z0-9 \n\t-.<>?,*'`@\"=_(){}:;&^%$#!~]*-->\\)" 1 'jcs-font-lock-comment-face t)
            ;; For multi-lines comment.
            ;; TODO(jenchieh): Only inside the curly bracket.
            ("\\(/\\*[a-zA-Z0-9 \n\t-.<>?,*'`@\"=_(){}:;&^%$#!~]*\\*/\\)" 1 'jcs-web-mode-block-comment-face t)
@@ -211,7 +211,9 @@ another function..."
     (let ((startLineNum -1)
           (startLineNum2 -1)
           (endLineNum -1)
-          (endLineNum2 -1))
+          (endLineNum2 -1)
+          ;; Turn off auto truncate when doing this command.
+          (jcs-web-auto-truncate-lines nil))
       (setq endLineNum (string-to-number (format-mode-line "%l")))
 
       (goto-char (region-beginning))
@@ -250,15 +252,21 @@ once to the whole document.  For `web-mode'."
   (interactive)
   (save-excursion
     (save-window-excursion
-      (let ((end-pos nil))
-        (goto-char (point-max))
-        (setq end-pos (point))
-
+      (let ((max-linum (line-number-at-pos (point-max)))
+            ;; Start with first line.
+            (current-linum (line-number-at-pos (point-min)))
+            ;; Turn off auto truncate when doing this command.
+            (jcs-web-auto-truncate-lines nil))
+        ;; Start with first line.
         (goto-char (point-min))
 
-        (while (< (point) end-pos)
+        ;; Don't forget to indent the first line too.
+        (jcs-web-smart-indent-down)
+        (jcs-web-smart-indent-up)
+
+        (while (< current-linum max-linum)
           (jcs-web-smart-indent-down)
-          (end-of-line))))))
+          (setq current-linum (line-number-at-pos (point))))))))
 
 ;;;###autoload
 (defun jcs-web-format-region-or-document ()
@@ -396,7 +404,7 @@ line by line instead of indent the whole file at once."
     (jcs-web-format-document)
 
     ;; Decide if we need to indent or not.
-    (when (not (equal tmp-was-beginning-of-line t))
+    (when (not tmp-was-beginning-of-line)
       (indent-for-tab-command))
     (jcs-untabify-save-buffer)))
 
