@@ -227,16 +227,18 @@ M-x customize-theme
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 M-x package-list-packages
 
-i 選擇想要安裝的packages
-    -> package-menu-mark-install
-d 選擇想要刪除的package
-    -> package-menu-mark-delete
-x 安裝packages(Execute packages)
-    -> package-menu-execute
-s 列出特定分類的packages.
-    -> package-menu-filter-by-status
-u 升級所有packages
-    -> package-upgrade-all
+i               選擇想要安裝的packages.
+                  -> package-menu-mark-install
+d               選擇想要刪除的package.
+                  -> package-menu-mark-delete
+x               安裝packages(Execute packages)
+                  -> package-menu-execute
+s               列出特定分類的packages.
+                  -> package-menu-filter-by-status
+u               升級所有packages.
+                  -> package-upgrade-all
+C-x r m         自動移除非相依性的packages.
+                  -> package-autoremove
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * C/C++ Mode
