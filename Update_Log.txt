@@ -15,6 +15,12 @@
 * Add set all local variable function. Pass in as symbol. (jcs-emacs-init)
 * Rename duplicate line function with prefex 'jcs-' infront. (jcs-emacs-init)
 * Add enlarge current selected window key binding doc. (jcs-emacs-init)
+* Add overwride mode rewrapper function functionality. (jcs-emacs-init)
+* Force maximize frame after reload Emacs and remove helm function module. (jcs-emacs-init)
+* Rename jcs-new-window to jcs-new-frame for better naming and 
+ understanding. (jcs-emacs-init)
+* Separate helm function to individual helm-func file. (jcs-emacs-init)
+* Add frame func file/module. (jcs-emacs-init)
 
 2018-06-14
 * Add toggle read-only mode key binding and make note to emacs 
