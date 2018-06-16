@@ -8,29 +8,6 @@
 ;; ========================================================================
 
 
-;;---------------------------------------------
-;; JenChieh Window Split Setting for Dual Monitor
-;;---------------------------------------------
-
-;;;###autoload
-(defun jcs-new-window()
-  "Setup dual monitor."
-  (interactive)
-
-  ;; open a new frame
-  (make-frame-command))
-
-;;;###autoload
-(defun jcs-aftermake-frame-functions-hook (frame)
-  "Resetting the new frame just created."
-  (interactive)
-
-  (select-frame frame)
-
-  ;; split the winodw after create the new window
-  (split-window-horizontally))
-(add-hook 'after-make-frame-functions 'jcs-aftermake-frame-functions-hook)
-
 ;;-----------------------------------------------------------
 ;;-----------------------------------------------------------
 
@@ -120,25 +97,24 @@ is the better version compare to `jcs-jump-shown-to-window' function."
 (defun jcs-toggle-enlarge-window-selected ()
   "Toggle between show the whole buffer and current window state."
   (interactive)
-  (let ((delta-win-size 1000))
-    (if (and jcs-is-enlarge-current-buffer
-             jcs-is-enlarge-buffer)
-        (progn
-          (balance-windows)
-          (setq jcs-is-enlarge-buffer nil))
+  (if (and jcs-is-enlarge-current-buffer
+           jcs-is-enlarge-buffer)
       (progn
-        (enlarge-window delta-win-size)               ;; Vertical enlarge
-        (enlarge-window-horizontally delta-win-size)  ;; Horizontal enlarge
+        (balance-windows)
+        (setq jcs-is-enlarge-buffer nil))
+    (progn
+      ;; Maximize the window
+      (maximize-window)
 
-        ;; Set all local enlarge to false.
-        (jcs-setq-all-local-buffer 'jcs-is-enlarge-current-buffer
-                                   nil)
+      ;; Set all local enlarge to false.
+      (jcs-setq-all-local-buffer 'jcs-is-enlarge-current-buffer
+                                 nil)
 
-        ;; Current buffer is enlarge.
-        (setq-local jcs-is-enlarge-current-buffer t)
+      ;; Current buffer is enlarge.
+      (setq-local jcs-is-enlarge-current-buffer t)
 
-        ;; One buffer in the frame is enlarge.
-        (setq jcs-is-enlarge-buffer t)))))
+      ;; One buffer in the frame is enlarge.
+      (setq jcs-is-enlarge-buffer t))))
 
 
 (require 'windmove)
