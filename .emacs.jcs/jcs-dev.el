@@ -12,6 +12,13 @@
 ;; Development related stuff put here..
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+(defun jcs-compile (in-op)
+  "Compile command rewrapper.
+IN-OP : inpuit operation script."
+  (compile in-op)
+  (global-linum-mode t))
+
+
 (defun jcs-select-find-file-current-dir (in-filename)
   "Find the file in the current directory.
 Return the absolute filepath.
@@ -52,6 +59,7 @@ IN-TITLE : title for `completing-read' function call."
                                    in-title target-files)))))
       target-filepath)))
 
+
 (defun jcs-find-file-in-project-and-current-dir (in-filename in-title)
   "First find the file from the whole project, if not found find it in the \
 current directory then.
@@ -86,7 +94,7 @@ We need a title to present which file to select."
     (setq makescript-path (jcs-find-file-in-project-and-current-dir target-script
                                                                     "Makescript: "))
     ;; Do the compile
-    (compile makescript-path)))
+    (jcs-compile makescript-path)))
 
 ;;;###autoload
 (defun jcs-run-without-asking ()
@@ -99,7 +107,7 @@ IN-FILE : selected file."
     (setq runscript-path (jcs-find-file-in-project-and-current-dir target-script
                                                                    "Runscript: "))
     ;; Do the compile
-    (compile runscript-path)))
+    (jcs-compile runscript-path)))
 
 ;;;###autoload
 (defun jcs-open-project-todo-file ()
