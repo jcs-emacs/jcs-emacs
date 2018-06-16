@@ -421,9 +421,9 @@ the end of the line."
 (defun jcs-goto-first-char-in-line ()
   "Goto beginning of line but ignore 'empty characters'(spaces/tabs)."
   (interactive)
-  (back-to-indentation-or-beginning)
+  (jcs-back-to-indentation-or-beginning)
   (when (jcs-is-beginning-of-line-p)
-    (back-to-indentation-or-beginning)))
+    (jcs-back-to-indentation-or-beginning)))
 
 (defun jcs-current-line-empty-p ()
   "Current line empty, but accept spaces/tabs in there.  (not absolute)."
@@ -1025,3 +1025,28 @@ IN-LIST : list of string use to check if IN-STR in contain one of
 the string.
 IN-STR : string using to check if is contain one of the IN-LIST."
   (cl-some #'(lambda (lb-sub-str) (string-match-p (regexp-quote lb-sub-str) in-str)) in-list))
+
+;;---------------------------------------------
+;; Variable
+;;---------------------------------------------
+
+(defun jcs-setq-all-local-buffer (in-var in-val)
+  "Set all the local buffer to some value.
+IN-VAR : input variable name.
+IN-VAL : input value to set to IN-VAR."
+  (save-window-excursion
+    (save-selected-window
+      (let ((win-len (length (window-list)))
+            (index 0))
+        (while (< index win-len)
+          (with-current-buffer (buffer-name)
+            ;; NOTE(jenchieh): this will actually set whatever the
+            ;; variable are. Either global or local variable will work.
+            ;;
+            ;; TOPIC: Variable references in lisp
+            ;; URL: https://stackoverflow.com/questions/1249991/variable-references-in-lisp
+            (set in-var (symbol-value in-val)))
+
+          ;; To next window.
+          (jcs-other-window-next)
+          (setq index (1+ index)))))))
