@@ -164,6 +164,29 @@ This will no longer overwrite usual Emacs' undo key."
       ;; NOTE(jenchieh): Default tab function put here..
       (call-interactively 'dabbrev-expand))))
 
+;;----------------------------------------------
+;; Overwrite (Insert toggle)
+;;----------------------------------------------
+
+;;;###autoload
+(defun jcs-overwrite-mode ()
+  "Wrap <insert> key with cursor changes."
+  (interactive)
+
+  ;; Toggle overwrite mode
+  (call-interactively #'overwrite-mode)
+
+  ;;;
+  ;; Cursor Type
+  ;;   -> box
+  ;;   -> hollow
+  ;;   -> bar
+  ;;   -> hbar
+
+  (if (jcs-is-minor-mode-enabled-p overwrite-mode)
+      (setq-local cursor-type 'hbar)
+    (setq-local cursor-type 'box)))
+
 ;;---------------------------------------------
 ;;-- Source --
 ;;      Deletion: http://ergoemacs.org/emacs/emacs_kill-ring.html
