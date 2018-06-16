@@ -197,6 +197,11 @@
   "Highlight word 'IMPORTANT'.")
 (defvar jcs-font-lock-important-face 'jcs-font-lock-important-face)
 
+(defface jcs-font-lock-caution-face
+  '((t (:foreground "yellow" :underline t :weight bold)))
+  "Highlight word 'CAUTION'.")
+(defvar jcs-font-lock-caution-face 'jcs-font-lock-caution-face)
+
 (defface jcs-font-lock-optimize-face
   '((t (:foreground "yellow" :underline t :weight bold)))
   "Highlight word 'OPTIMIZE'.")
@@ -285,12 +290,16 @@
              ("\\<\\(TODO\\)\\>" 1 'jcs-font-lock-fixme-face t)
              ("\\<\\(ATTENTION\\)\\>" 1 'jcs-font-lock-attention-face t)
              ("\\<\\(STUDY\\)\\>" 1 'jcs-font-lock-study-face t)
+             ("\\<\\(CAUTION\\)\\>" 1 'jcs-font-lock-caution-face t)
              ("\\<\\(IMPORTANT\\)\\>" 1 'jcs-font-lock-important-face t)
              ("\\<\\(OPTIMIZE\\)\\>" 1 'jcs-font-lock-optimize-face t)
              ("\\<\\(NOTE\\)\\>" 1 'jcs-font-lock-note-face t)
+             ("\\<\\(DESC\\)\\>" 1 'jcs-font-lock-description-face t)
              ("\\<\\(DESCRIPTION\\)\\>" 1 'jcs-font-lock-description-face t)
              ("\\<\\(TAG\\)\\>" 1 'jcs-font-lock-tag-face t)
+             ("\\<\\(DEBUG\\)\\>" 1 'jcs-font-lock-debugging-face t)
              ("\\<\\(DEBUGGING\\)\\>" 1 'jcs-font-lock-debugging-face t)
+             ("\\<\\(TEMP\\)\\>" 1 'jcs-font-lock-temporary-face t)
              ("\\<\\(TEMPORARY\\)\\>" 1 'jcs-font-lock-temporary-face t)
              ("\\<\\(SOURCE\\)\\>" 1 'jcs-font-lock-source-face t)
              ("\\<\\(URL\\)\\>" 1 'jcs-font-lock-url-face t)
