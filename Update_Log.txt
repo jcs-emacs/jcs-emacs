@@ -22,6 +22,12 @@
 * Separate helm function to individual helm-func file. (jcs-emacs-init)
 * Add frame func file/module. (jcs-emacs-init)
 * Make one history => 2018-06-16. (jcs-emacs-init)
+* Add package-autoremove key binding note to project doc. (jcs-emacs-init)
+* Replace 'blank-mode' pacakge to 'whitespace' package, is built-in now. (jcs-emacs-init)
+* Add certain more keyword to highlight for programming usage, check on 
+ `jcs-env.el' file. (jcs-emacs-init)
+* Add jcs-compile function rewrapper functionality. (jcs-emacs-init)
+* Remove 'blank-mode' from pre-install package list. (jcs-emacs-init)
 
 2018-06-14
 * Add toggle read-only mode key binding and make note to emacs 
