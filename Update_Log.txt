@@ -7,6 +7,15 @@
 # ========================================================================
 
 
+2018-06-16
+* Add # to all interactive function operative and add new 
+ key binding toggle enlarge window selected key. (jcs-emacs-init)
+* Add few balance window functions and enlarget current selected 
+ window function. (jcs-emacs-init)
+* Add set all local variable function. Pass in as symbol. (jcs-emacs-init)
+* Rename duplicate line function with prefex 'jcs-' infront. (jcs-emacs-init)
+* Add enlarge current selected window key binding doc. (jcs-emacs-init)
+
 2018-06-14
 * Add toggle read-only mode key binding and make note to emacs 
  key bindings doc. (jcs-emacs-init)
