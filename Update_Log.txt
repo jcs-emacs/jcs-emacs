@@ -28,6 +28,7 @@
  `jcs-env.el' file. (jcs-emacs-init)
 * Add jcs-compile function rewrapper functionality. (jcs-emacs-init)
 * Remove 'blank-mode' from pre-install package list. (jcs-emacs-init)
+* Update project version to 5.1.0. (jcs-emacs-init)
 
 2018-06-14
 * Add toggle read-only mode key binding and make note to emacs 
