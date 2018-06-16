@@ -21,6 +21,7 @@
  understanding. (jcs-emacs-init)
 * Separate helm function to individual helm-func file. (jcs-emacs-init)
 * Add frame func file/module. (jcs-emacs-init)
+* Make one history => 2018-06-16. (jcs-emacs-init)
 
 2018-06-14
 * Add toggle read-only mode key binding and make note to emacs 
