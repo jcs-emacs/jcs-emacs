@@ -118,7 +118,7 @@ M-M             open buffer menu in other window.
 
 M-r             reload the file withou asking.
 
-C-xr            rename current file.
+C-r e           rename current file.
 
 M-right         Jump to next capital letter.
 M-left          Jump to previous capital letter.
@@ -353,5 +353,5 @@ S-<left>        Move cursor left one row column table.
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * Regular Expression
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-C-r e           Open RE-Builder mode window. (Use to test regular 
+C-r b           Open RE-Builder mode window. (Use to test regular 
                 expression string)
