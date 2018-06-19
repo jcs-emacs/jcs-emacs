@@ -7,6 +7,11 @@
 # ========================================================================
 
 
+2018-06-20
+* Add haskell to support language list -> README.md. (jcs-emacs-init)
+* Add haskell mode .el file. (jcs-emacs-init)
+* Add Haskell template. (jcs-emacs-init)
+
 2018-06-19
 * Add math module for future math use. (jcs-emacs-init)
 * Remove trans window module to just window module. (jcs-emacs-init)
