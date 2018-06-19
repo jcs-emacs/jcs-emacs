@@ -148,3 +148,88 @@ i.e. change right window to bottom, or change bottom window to right."
                     (split-window-vertically)
                   (split-window-horizontally))
                 (set-window-buffer (windmove-find-other-window neighbour-dir) other-buf))))))))
+
+
+
+;;-----------------------------------------------------------
+;; Transparent
+;;-----------------------------------------------------------
+
+(set-frame-parameter (selected-frame) 'alpha '(100 . 100))
+(add-to-list 'default-frame-alist '(alpha . (100 . 100)))
+
+(defun jcs-set-transparency (alpha-level)
+  "Set the frame transparency."
+  ;; SOURCE: https://gist.github.com/benzap/89759928060f4578c063
+  (interactive "p")
+  (message (format "Alpha level passed in: %s" alpha-level))
+  (let ((alpha-level (if (< alpha-level 2)
+                         (read-number "Opacity percentage: " 85)
+                       alpha-level))
+        (myalpha (frame-parameter nil 'alpha)))
+    (set-frame-parameter nil 'alpha alpha-level))
+  (message (format "Alpha level is %d" (frame-parameter nil 'alpha))))
+
+;;;###autoload
+(defun jcs-toggle-transparency ()
+  "Make the frame transparent."
+  ;; SOURCE: https://www.emacswiki.org/emacs/TransparentEmacs
+  (interactive)
+
+  (let ((alpha (frame-parameter nil 'alpha)))
+    (set-frame-parameter
+     nil 'alpha
+     (if (eql (cond ((numberp alpha) alpha)
+                    ((numberp (cdr alpha)) (cdr alpha))
+                    ;; Also handle undocumented (<active> <inactive>) form.
+                    ((numberp (cadr alpha)) (cadr alpha)))
+              100)
+         ;; NOTE(jenchieh): Second parameter is transparency
+         ;; when not focus.
+         ;; (when focus, when not focus)
+         '(80 . 80) '(100 . 100)))))
+
+(defvar jcs-default-delta-transparency 5
+  "Delta increament/decreament transparency value.")
+
+;;;###autoload
+(defun jcs-increment-frame-transparent (&optional del-trans)
+  "Increment the frame transparency by 5 percent."
+  (interactive)
+
+  (let ((alpha (frame-parameter nil 'alpha)))
+    (setq current-transparency (cond ((numberp alpha) alpha)
+                                     ((numberp (cdr alpha)) (cdr alpha))
+                                     ;; Also handle undocumented (<active> <inactive>) form.
+                                     ((numberp (cadr alpha)) (cadr alpha))))
+
+    ;; Use default transparency value.
+    (unless del-trans
+      (setq del-trans jcs-default-delta-transparency))
+
+    (setq current-transparency (+ current-transparency del-trans))
+    (setq current-transparency (jcs-clamp-integer current-transparency 0 100))
+
+    ;; Apply the value to frame.
+    (jcs-set-transparency current-transparency)))
+
+;;;###autoload
+(defun jcs-decrement-frame-transparent (&optional del-trans)
+  "Decrement the frame transparency by 5 percent."
+  (interactive)
+
+  (let ((alpha (frame-parameter nil 'alpha)))
+    (setq current-transparency (cond ((numberp alpha) alpha)
+                                     ((numberp (cdr alpha)) (cdr alpha))
+                                     ;; Also handle undocumented (<active> <inactive>) form.
+                                     ((numberp (cadr alpha)) (cadr alpha))))
+
+    ;; Use default transparency value.
+    (unless del-trans
+      (setq del-trans jcs-default-delta-transparency))
+
+    (setq current-transparency (- current-transparency del-trans))
+    (setq current-transparency (jcs-clamp-integer current-transparency 0 100))
+
+    ;; Apply the value to frame.
+    (jcs-set-transparency current-transparency)))
