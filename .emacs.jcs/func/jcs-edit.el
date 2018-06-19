@@ -539,7 +539,7 @@ SOURCE: http://emacs.stackexchange.com/questions/628/cycle-between-windows-in-al
   (scroll-down 1))
 
 ;;;###autoload
-(defun delete-trailing-whitespace-except-current-line ()
+(defun jcs-delete-trailing-whitespace-except-current-line ()
   "Delete the trailing whitespace for whole document execpt \
 the current line."
   (interactive)
@@ -587,7 +587,7 @@ the current line."
   "Save buffer / Utabify the document / Delete all trailing
 whitespaces."
   (interactive)
-  (delete-trailing-whitespace-except-current-line)
+  (jcs-delete-trailing-whitespace-except-current-line)
   (save-excursion
     (save-restriction
       (widen)
@@ -606,7 +606,7 @@ whitespaces."
 whitespaces. NOTE(JenChieh): Makefile does not support space,
 so we must convert spaces to tab."
   (interactive)
-  (delete-trailing-whitespace-except-current-line)
+  (jcs-delete-trailing-whitespace-except-current-line)
   (save-excursion
     (save-restriction
       (widen)
