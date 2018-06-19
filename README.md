@@ -22,44 +22,31 @@ config files improve and extended support for the following:
   - C#
   - COBOL
   - CSS
-* D
 * E
   - Elisp
-* F
 * G
   - Go
 * H
   - HTML
-* I
 * J
   - Java
   - JavaScript
-* K
 * L
   - Lua
-* Index M
+* M
   - Makefile
-* N
-* O
 * P
   - Perl
   - PHP
   - Python
-* Q
-* R
 * S
   - Scala
   - Shell
   - SQL
-* T
-* U
 * V
   - Vim script
-* W
 * X
   - XML
-* Y
-* Z
 
 ## Supported Emacs versions ##
 The config should run on Emacs 24.3 or higher, but still, recommend 
