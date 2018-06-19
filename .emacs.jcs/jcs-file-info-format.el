@@ -241,6 +241,11 @@ Text file, batch file, shell script, etc."
   "Template for COBOL."
   (jcs-insert-template-by-file-path "~/.emacs.jcs/template/cobol/cobol_template.txt"))
 
+;;; CSS
+(defun jcs-insert-css-template ()
+  "Template for CSS."
+  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/web/css_template.txt"))
+
 ;;; Elisp
 (defun jcs-insert-elisp-template ()
   "Template for Elisp."
@@ -250,6 +255,16 @@ Text file, batch file, shell script, etc."
 (defun jcs-insert-go-template ()
   "Header for Go header file."
   (jcs-insert-template-by-file-path "~/.emacs.jcs/template/go/go_template.txt"))
+
+;;; Haskell
+(defun jcs-insert-haskell-template ()
+  "Template for Haskell."
+  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/haskell/haskell_template.txt"))
+
+;;; HTML
+(defun jcs-insert-html-template ()
+  "Template for HTML."
+  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/web/html_template.txt"))
 
 ;;; Java
 (defun jcs-insert-java-template ()
@@ -300,15 +315,6 @@ on language selected."
 (defun jcs-insert-makefile-python-lib-template ()
   "Template for makefile Python library."
   (jcs-insert-template-by-file-path "~/.emacs.jcs/template/makefile_python_lib.txt"))
-
-;;; HTML/CSS
-(defun jcs-insert-html-template ()
-  "Template for HTML."
-  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/web/html_template.txt"))
-
-(defun jcs-insert-css-template ()
-  "Template for CSS."
-  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/web/css_template.txt"))
 
 ;;; Perl
 (defun jcs-insert-perl-template ()
