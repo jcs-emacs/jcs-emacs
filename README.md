@@ -10,56 +10,56 @@ on Linux, MacOS and Windows system.
 
 Emacs itself comes with support for many programming languages. These
 config files improve and extended support for the following:
-* Index A
+* A
   - Assembly Language
   - Action Script 3.0
-* Index B
+* B
   - BASIC
   - Batchfile
-* Index C
+* C
   - C
   - C++
   - C#
   - COBOL
   - CSS
-* Index D
-* Index E
+* D
+* E
   - Elisp
-* Index F
-* Index G
+* F
+* G
   - Go
-* Index H
+* H
   - HTML
-* Index I
-* Index J
+* I
+* J
   - Java
   - JavaScript
-* Index K
-* Index L
+* K
+* L
   - Lua
 * Index M
   - Makefile
-* Index N
-* Index O
-* Index P
+* N
+* O
+* P
   - Perl
   - PHP
   - Python
-* Index Q
-* Index R
-* Index S
+* Q
+* R
+* S
   - Scala
   - Shell
   - SQL
-* Index T
-* Index U
-* Index V
+* T
+* U
+* V
   - Vim script
-* Index W
-* Index X
+* W
+* X
   - XML
-* Index Y
-* Index Z
+* Y
+* Z
 
 ## Supported Emacs versions ##
 The config should run on Emacs 24.3 or higher, but still, recommend 
