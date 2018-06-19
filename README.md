@@ -10,7 +10,6 @@ on Linux, MacOS and Windows system.
 
 Emacs itself comes with support for many programming languages. These
 config files improve and extended support for the following:
-#+BEGIN_QUOTE
 * Index A
   - Assembly Language
   - Action Script 3.0
@@ -61,7 +60,6 @@ config files improve and extended support for the following:
   - XML
 * Index Y
 * Index Z
-#+END_QUOTE
 
 ## Supported Emacs versions ##
 The config should run on Emacs 24.3 or higher, but still, recommend 
