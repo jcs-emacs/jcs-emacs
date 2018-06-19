@@ -46,6 +46,9 @@
   ;; jcs key binding
   (define-key sh-mode-map (kbd "C-d") 'jcs-kill-whole-line)
   (define-key sh-mode-map "\C-c\C-c" 'kill-ring-save)
+
+  ;; save buffer
+  (define-key sh-mode-map "\C-s" 'jcs-sh-untabify-save-buffer)
   )
 (add-hook 'sh-mode-hook 'jcs-sh-script-hook)
 
