@@ -175,7 +175,7 @@
 (define-key global-map "\C-we" #'jcs-toggle-enlarge-window-selected)
 
 ;;; Rename file
-(define-key global-map "\C-xr" #'jcs-rename-current-buffer-file)
+(define-key global-map "\C-re" #'jcs-rename-current-buffer-file)
 
 ;;; Transparent Window
 (define-key global-map "\e`" #'jcs-toggle-transparency)
@@ -357,7 +357,7 @@
 the key everytime the mode changes."
 
   ;; re-builder
-  (define-key global-map "\C-re" #'jcs-re-builder)
+  (define-key global-map "\C-rb" #'jcs-re-builder)
 
   ;; Read-Only toggle.
   (define-key global-map (kbd "C-r o") #'read-only-mode)
