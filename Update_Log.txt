@@ -18,6 +18,8 @@
 * Remove timestamp version 3 properties and it function. (jcs-emacs-init)
 * Update project version to 5.1.1. (jcs-emacs-init)
 * Re-arrange readme file to sort support languages by alphabetic order. (jcs-emacs-init)
+* Bind save buffer key with set file coding system functionality in 
+ `sh-mode'. (jcs-emacs-init)
 
 2018-06-16
 * Add # to all interactive function operative and add new 
