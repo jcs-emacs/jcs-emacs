@@ -13,6 +13,7 @@
 * Bind message buffer keymap with earse message buffer. (jcs-emacs-init)
 * Load math module and remove load trans window module. (jcs-emacs-init)
 * Simplify trans window module's code. (jcs-emacs-init)
+* Add print timestamps with multiple version function/functionality. (jcs-emacs-init)
 
 2018-06-16
 * Add # to all interactive function operative and add new 
