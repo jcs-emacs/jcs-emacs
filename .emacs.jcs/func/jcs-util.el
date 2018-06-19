@@ -78,19 +78,25 @@ SOURCE(jenchieh): https://emacs.stackexchange.com/questions/24459/revert-all-ope
   "Get date buffer in string type.."
   (format-time-string "%Y-%m-%d"))
 
-;;---------------------------------------------
-;; Insert year only.
-;;---------------------------------------------
 (defun jcs-get-year-only ()
   "Get Year buffer in string type."
   (format-time-string "%Y"))
 
-;;---------------------------------------------
-;; Make the time base on the format provided.
-;;---------------------------------------------
 (defun jcs-get-time()
   "Get time buffer in string type."
   (format-time-string "%H:%M:%S"))
+
+
+;;;###autoload
+(defun jcs-print-timestamps ()
+  "Print out all the timestamps."
+  (interactive)
+  (message "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
+  (message "=> Ver. %s" (jcs-get-timestamp-ver1))
+  (message "=> Ver. %s" (jcs-get-timestamp-ver2))
+  (message "=> Ver. %s" (jcs-get-timestamp-ver3))
+  (message "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
+  (jcs-do-after-log-action))
 
 ;;---------------------------------------------
 ;; Organize Code.
@@ -1049,3 +1055,20 @@ IN-VAL : input value to set to IN-VAR."
           ;; To next window.
           (jcs-other-window-next)
           (setq index (1+ index)))))))
+
+;;---------------------------------------------
+;; *Message*
+;;---------------------------------------------
+
+;;;###autoload
+(defun jcs-erase-message-buffer ()
+  "Erase the *Message* buffer."
+  (interactive)
+  ;; Kill it first.
+  (jcs-maybe-kill-this-buffer)
+
+  ;; Message one message to retrieve `*Message*' buffer
+  ;; prepare for next use. Or else it some operation
+  ;; might prompt some issue that needed `*Message*'
+  ;; buffer to be exists.
+  (message "Retrieve *Message* buffer.."))
