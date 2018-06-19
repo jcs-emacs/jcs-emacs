@@ -66,15 +66,11 @@ SOURCE(jenchieh): https://emacs.stackexchange.com/questions/24459/revert-all-ope
   "Get timestamp version 2."
   (format-time-string "%Y/%m/%d %H:%M:%S"))
 
-(defun jcs-get-timestamp-ver3 ()
-  "Get timestamp version 3."
-  (format-time-string "%Y-%m-%d %H:%M:%S"))
-
 ;;---------------------------------------------
 ;; Make the data base on the format provided.
 ;;---------------------------------------------
 
-(defun jcs-get-date()
+(defun jcs-get-date ()
   "Get date buffer in string type.."
   (format-time-string "%Y-%m-%d"))
 
@@ -82,7 +78,7 @@ SOURCE(jenchieh): https://emacs.stackexchange.com/questions/24459/revert-all-ope
   "Get Year buffer in string type."
   (format-time-string "%Y"))
 
-(defun jcs-get-time()
+(defun jcs-get-time ()
   "Get time buffer in string type."
   (format-time-string "%H:%M:%S"))
 
@@ -92,10 +88,10 @@ SOURCE(jenchieh): https://emacs.stackexchange.com/questions/24459/revert-all-ope
   "Print out all the timestamps."
   (interactive)
   (message "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
-  (message "=> Ver. %s" (jcs-get-timestamp-ver1))
-  (message "=> Ver. %s" (jcs-get-timestamp-ver2))
-  (message "=> Ver. %s" (jcs-get-timestamp-ver3))
+  (message "=> Ver. 1 %s" (jcs-get-timestamp-ver1))
+  (message "=> Ver. 2 %s" (jcs-get-timestamp-ver2))
   (message "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
+  (message "All version of timestamps printed.")
   (jcs-do-after-log-action))
 
 ;;---------------------------------------------
