@@ -143,11 +143,11 @@
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 ;;; Utilities
+(load-file "~/.emacs.jcs/func/jcs-math.el")
 (load-file "~/.emacs.jcs/func/jcs-util.el")
 (load-file "~/.emacs.jcs/func/jcs-frame.el")
 (load-file "~/.emacs.jcs/func/jcs-window.el")
 (load-file "~/.emacs.jcs/func/jcs-shell.el")
-(load-file "~/.emacs.jcs/func/jcs-trans-window.el")
 (load-file "~/.emacs.jcs/func/jcs-minimap.el")
 (load-file "~/.emacs.jcs/func/jcs-helm-func.el")
 
