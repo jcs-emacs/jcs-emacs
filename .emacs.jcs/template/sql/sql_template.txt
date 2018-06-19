@@ -11,5 +11,5 @@ Target Server Type    : $server_type$
 Target Server Version : $server_version$
 File Encoding         : $file_encoding$
 
-Date: #TIME_STAMP_VER3#
+Date: #TIME_STAMP_VER1#
 */
