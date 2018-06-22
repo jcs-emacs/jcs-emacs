@@ -12,6 +12,9 @@
  single line comment. (jcs-emacs-init)
 * Add java save functionalities/functions work with `organize-imports-java' 
  package, when first time save reload local source paths. (jcs-emacs-init)
+* Fixed get current point face name for Emcas version 26. (jcs-emacs-init)
+* Use util jcs- prefix check current face function instead of same code 
+ everywhere. (jcs-emacs-init)
 
 2018-06-20
 * Add haskell to support language list -> README.md. (jcs-emacs-init)
