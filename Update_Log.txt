@@ -7,6 +7,10 @@
 # ========================================================================
 
 
+2018-06-22
+* Add double dash comment font lock face for mode it uses '--' to do 
+ single line comment. (jcs-emacs-init)
+
 2018-06-20
 * Add haskell to support language list -> README.md. (jcs-emacs-init)
 * Add haskell mode .el file. (jcs-emacs-init)
