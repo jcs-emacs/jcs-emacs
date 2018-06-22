@@ -322,5 +322,4 @@ comment region. Otherwise comment line."
         (uncomment-region (region-beginning) (region-end))
         )
     ;; else we just comment one single line.
-    (uncomment-region (line-beginning-position) (line-end-position))
-    ))
+    (uncomment-region (line-beginning-position) (line-end-position))))
