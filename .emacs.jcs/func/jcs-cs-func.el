@@ -53,6 +53,7 @@ comment character on the same line."
     ;; return true.
     (equal do-doc-string t)))
 
+;;;###autoload
 (defun jcs-vs-csharp-maybe-insert-codedoc ()
   "Insert comment like Visual Studio comment style.
 

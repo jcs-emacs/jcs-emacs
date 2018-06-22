@@ -53,6 +53,7 @@ comment character on the same line."
     ;; return true.
     (equal do-doc-string t)))
 
+;;;###autoload
 (defun jcs-lua-maybe-insert-codedoc ()
   "Insert common Lua document/comment string.
 
