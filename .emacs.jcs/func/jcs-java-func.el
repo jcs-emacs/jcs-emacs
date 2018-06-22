@@ -105,6 +105,40 @@ Including adding or removing the package path."
   ;; Organize all the imports.
   (organize-imports-java-do-imports))
 
+
+(defsubst jcs-java-reload-local-source-paths-on-first-save ()
+  "Reload local source paths on the first save."
+  (when (jcs-file-directory-exists-p (buffer-file-name))
+    (organize-imports-java-reload-local-source-paths)))
+
+;;;###autoload
+(defun jcs-java-untabify-save-buffer ()
+  "Java untabify save."
+  (interactive)
+  (let ((first-save nil))
+    (unless (jcs-file-directory-exists-p (buffer-file-name))
+      (setq first-save t))
+
+    (ignore-errors
+      (jcs-untabify-save-buffer))
+
+    (when first-save
+      (organize-imports-java-reload-local-source-paths))))
+
+;;;###autoload
+(defun jcs-java-tabify-save-buffer ()
+  "Java tabify save."
+  (interactive)
+  (let ((first-save nil))
+    (unless (jcs-file-directory-exists-p (buffer-file-name))
+      (setq first-save t))
+
+    (ignore-errors
+      (jcs-tabify-save-buffer))
+
+    (when first-save
+      (organize-imports-java-reload-local-source-paths))))
+
 ;;-----------------------------------------------------------
 ;;-----------------------------------------------------------
 
