@@ -364,47 +364,42 @@ SEARCH-OPTION :
 
             ;; Make sure only process current/one line.
             (when (<= (point) end-function-point)
-              (let ((current-point-face (jcs-get-current-point-face) ))
+              ;; NOTE(jenchieh): Store all the keyword name.
+              (when (or (jcs-is-current-point-face "font-lock-keyword-face")
+                        (jcs-is-current-point-face "font-lock-preprocessor-face"))
+                (add-to-list 'keyword-strings (thing-at-point 'word)))
 
-                ;; NOTE(jenchieh): Store all the keyword name.
-                (when (or (string= current-point-face "font-lock-keyword-face")
-                          (string= current-point-face "font-lock-preprocessor-face"))
-                  (add-to-list 'keyword-strings (thing-at-point 'word)))
+              ;; NOTE(jenchieh): Check if meet the function name.
+              (when (or (jcs-is-current-point-face "font-lock-function-name-face")
+                        (jcs-is-current-point-face "web-mode-function-name-face"))
+                (setq function-name-string (thing-at-point 'word))
+                (setq meet-function-name t))
 
-                ;; NOTE(jenchieh): Check if meet the function name.
-                (when (or (string= current-point-face "font-lock-function-name-face")
-                          (string= current-point-face "web-mode-function-name-face"))
-                  (setq function-name-string (thing-at-point 'word))
-                  (setq meet-function-name t))
+              ;; NOTE(jenchieh): Store all the type name. (include return type name)
+              (when (jcs-is-current-point-face "font-lock-type-face")
+                ;; Just store it.
+                (setq datatype-name (thing-at-point 'word))
 
-                ;; NOTE(jenchieh): Store all the type name. (include return type name)
-                (when (string= current-point-face "font-lock-type-face")
-                  ;; Just store it.
-                  (setq datatype-name (thing-at-point 'word))
-
-                  (if (not (equal meet-function-name t))
-                      (progn
-                        (setq return-type-string (thing-at-point 'word))
-                        (setq there-is-return t))
+                (if (not (equal meet-function-name t))
                     (progn
-                      ;; NOTE(jenchieh): Since Lisp's default list data structure
-                      ;; dose not support duplicate item in the list. Update the
-                      ;; list by setting it to the brand new temporary list, which
-                      ;; make muliple item list doable.
-                      (let ((type-string (thing-at-point 'word))
-                            (temp-list '()))
-                        (add-to-list 'temp-list type-string)
-                        (setq param-type-strings (append param-type-strings temp-list))))
-                    ))
+                      (setq return-type-string (thing-at-point 'word))
+                      (setq there-is-return t))
+                  (progn
+                    ;; NOTE(jenchieh): Since Lisp's default list data structure
+                    ;; dose not support duplicate item in the list. Update the
+                    ;; list by setting it to the brand new temporary list, which
+                    ;; make muliple item list doable.
+                    (let ((type-string (thing-at-point 'word))
+                          (temp-list '()))
+                      (add-to-list 'temp-list type-string)
+                      (setq param-type-strings (append param-type-strings temp-list))))))
 
-                ;; NOTE(jenchieh): Store all the variables name.
-                (when (or (string= current-point-face "font-lock-variable-name-face")
-                          (string= current-point-face 'js2-function-param)
-                          (string= current-point-face "web-mode-variable-name-face")
-                          (string= current-point-face "jcs-preproc-variable-name-face"))
-                  (add-to-list 'param-variable-strings (thing-at-point 'word)))
-                )))
-          )))
+              ;; NOTE(jenchieh): Store all the variables name.
+              (when (or (jcs-is-current-point-face "font-lock-variable-name-face")
+                        (jcs-is-current-point-face 'js2-function-param)
+                        (jcs-is-current-point-face "web-mode-variable-name-face")
+                        (jcs-is-current-point-face "jcs-preproc-variable-name-face"))
+                (add-to-list 'param-variable-strings (thing-at-point 'word))))))))
 
     ;; Insert document comment string.
     (jcs-insert-doc-comment-string meet-function-name
@@ -420,8 +415,7 @@ SEARCH-OPTION :
     (when (equal was-flycheck-on t)
       (flycheck-mode t))
     (when (equal was-flymake-on t)
-      (flymake-mode t))
-    ))
+      (flymake-mode t))))
 
 (defun jcs-insert-doc-comment-string (meet-function-name
                                       keyword-strings
@@ -523,8 +517,7 @@ SEARCH-OPTION :
                                      there-is-return
                                      return-type-string
                                      param-type-strings
-                                     param-variable-strings)
-            ))
+                                     param-variable-strings)))
       ;; NOTE(jenchieh): Design object comment document string.
       ;; For instance, macro define, struct, class, etc.
       (progn
@@ -565,8 +558,7 @@ SEARCH-OPTION :
                    (insert "\n")
                    (insert "* @brief ")
                    (insert jcs-class-desc-string)
-                   (indent-for-tab-command)
-                   ))
+                   (indent-for-tab-command)))
                 ((jcs-is-in-list-string keyword-strings "struct")
                  (progn
                    ;; go back to comment line.
@@ -583,8 +575,7 @@ SEARCH-OPTION :
                    (insert "\n")
                    (insert "* @brief ")
                    (insert jcs-struct-desc-string)
-                   (indent-for-tab-command)
-                   ))
+                   (indent-for-tab-command)))
                 ((or (jcs-is-in-list-string keyword-strings "define")
                      (jcs-is-in-list-string keyword-strings "#define"))
                  (progn
@@ -610,8 +601,7 @@ SEARCH-OPTION :
                    (insert "\n")
                    (insert "* @brief ")
                    (insert jcs-define-desc-string)
-                   (indent-for-tab-command)
-                   ))
+                   (indent-for-tab-command)))
                 ((jcs-is-in-list-string keyword-strings "enum")
                  (progn
                    ;; go back to comment line.
@@ -628,9 +618,7 @@ SEARCH-OPTION :
                    (insert "\n")
                    (insert "* @brief ")
                    (insert jcs-enum-desc-string)
-                   (indent-for-tab-command)
-                   ))
-                ))
+                   (indent-for-tab-command)))))
 
         (when (or (jcs-is-current-major-mode-p "java-mode")
                   (jcs-is-current-major-mode-p "jdee-mode"))
@@ -1086,12 +1074,10 @@ SEARCH-OPTION :
       (insert "\n")  ;; start from newline.
       (insert "* @")
       (insert jcs-js-param-string)
-      (if (not (equal jcs-php-doc-show-typename nil))
-          (progn
-            (jcs-insert-jsdoc-type "typename"
-                                   jcs-php-open-type-char
-                                   jcs-php-close-type-char)
-            ))
+      (when (not (equal jcs-php-doc-show-typename nil))
+        (jcs-insert-jsdoc-type "typename"
+                               jcs-php-open-type-char
+                               jcs-php-close-type-char))
       (insert (nth param-index param-variable-strings))
       (insert jcs-php-doc-after-value-type-char)
       (insert jcs-param-desc-string)
