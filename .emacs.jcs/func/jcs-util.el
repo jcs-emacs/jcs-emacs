@@ -678,38 +678,55 @@ active. false, there is no region selected and mark is not active.
 ;; Face
 ;;---------------------------------------------
 
-;;;###autoload
+(defun jcs-flatten-list (l)
+  "Flatten the multiple dimensional array to one dimensonal array.
+'(1 2 3 4 (5 6 7 8)) => '(1 2 3 4 5 6 7 8).
+L : list we want to flaaten."
+  (cond ((null l) nil)
+        ((atom l) (list l))
+        (t (loop for a in l appending (jcs-flatten-list a)))))
+
+(defun jcs-get-faces (pos)
+  "Get the font faces at POS."
+  (jcs-flatten-list
+   (remq nil
+         (list
+          (get-char-property pos 'read-face-name)
+          (get-char-property pos 'face)
+          (plist-get (text-properties-at pos) 'face)))))
+
 (defun jcs-get-current-point-face ()
   "Get current point's type face as string."
-  (interactive)
-  (let ((face (or (get-char-property (point) 'font-lock-face)
-                  (get-char-property (point) 'read-face-name)
-                  (get-char-property (point) 'face))))
-    ;; NOTE(jenchieh): this could either be a `string' or a `list'.
-    (if (listp face)
-        (nth 0 face)
-      face)))
+  (jcs-get-faces (point)))
 
 ;;;###autoload
 (defun jcs-what-face ()
-  "Print out what face is current cursor on."
+  "Print out all the faces the current cursor on."
   (interactive)
-  (message "Current face: %s" current-faces))
+  (message "Current faces: %s" (jcs-get-current-point-face)))
 
 (defun jcs-is-current-point-face (in-face)
   "Check if current face the same face as IN-FACE.
 Returns, True if is the same as pass in face name string.
 False, is not the same as pass in face name string.
 IN-FACE : input face name as string."
-  (string= in-face (jcs-get-current-point-face)))
+  (let ((faces (jcs-get-current-point-face)))
+    (if (listp faces)
+        (if (equal (cl-position in-face faces :test 'string=) nil)
+            ;; If return nil, mean not found in the `faces' list.
+            nil
+          ;; If have position, meaning the face exists.
+          t)
+      (string= in-face faces))))
 
 (defun jcs-is-default-face-p ()
   "Return non-nil, if is default face.
 Return nil, if not default face."
-  (or
-   ;; STUDY(jenchieh): nil means `default' face, I guess.
-   (jcs-is-current-point-face "nil")
-   (jcs-is-current-point-face "hl-line")))
+  (and (= (length (jcs-get-current-point-face)) 1)
+       (or
+        ;; STUDY(jenchieh): nil means `default' face, I guess.
+        (jcs-is-current-point-face "nil")
+        (jcs-is-current-point-face "hl-line"))))
 
 ;;---------------------------------------------
 ;; Font
