@@ -15,6 +15,7 @@
 * Fixed get current point face name for Emcas version 26. (jcs-emacs-init)
 * Use util jcs- prefix check current face function instead of same code 
  everywhere. (jcs-emacs-init)
+* Add `null' and `void' face to modifier face. (jcs-emacs-init)
 
 2018-06-20
 * Add haskell to support language list -> README.md. (jcs-emacs-init)
