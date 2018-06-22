@@ -102,6 +102,4 @@ URL(jenchieh): http://lua-users.org/wiki/LuaStyleGuide"
         (jcs-next-line)
 
         ;; insert comment doc comment string.
-        (jcs-insert-comment-style-by-current-line 1)
-        ))
-    ))
+        (jcs-insert-comment-style-by-current-line 1)))))
