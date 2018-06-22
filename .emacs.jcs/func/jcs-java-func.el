@@ -142,9 +142,24 @@ Including adding or removing the package path."
 ;;-----------------------------------------------------------
 ;;-----------------------------------------------------------
 
-(defvar jcs-java-font-lock-type-face-missing-modes '(java-mode
-                                                     jdee-mode)
+
+(defface jcs-font-lock-null-face
+  '((t (:inherit jdee-font-lock-modifier-face)))
+  "JCS java null face."
+  :group 'basic-faces)
+(defvar jcs-font-lock-null-face 'jcs-font-lock-null-face)
+
+(defface jcs-font-lock-void-face
+  '((t (:inherit jdee-font-lock-modifier-face)))
+  "JCS java void face."
+  :group 'basic-faces)
+(defvar jcs-font-lock-void-face 'jcs-font-lock-void-face)
+
+
+(defvar jcs-java-font-lock-face-missing-modes '(java-mode
+                                                jdee-mode)
   "Modes to fixed variable font lock missing face for Java.")
+
 
 (mapc (lambda (mode)
         (let ((case-fold-search t))
@@ -152,5 +167,7 @@ Including adding or removing the package path."
            mode
            '(("^[ ]*\\([A-Z][a-zA-Z0-9_-]*\\)[a-zA-Z0-9._-]*\\.[a-zA-Z0-9_-]*[(]" 1 'font-lock-type-face t)
              ("\\([A-Z][a-zA-Z0-9._-]*\\)\\.[a-zA-Z0-9_-]*[),:]" 1 'font-lock-type-face t)
+             ("\\(null\\)" 1 'jcs-font-lock-null-face t)
+             ("\\(void\\)" 1 'jcs-font-lock-void-face t)
              )'end)))
-      jcs-java-font-lock-type-face-missing-modes)
+      jcs-java-font-lock-face-missing-modes)
