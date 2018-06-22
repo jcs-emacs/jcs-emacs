@@ -59,19 +59,21 @@
                            '((:foreground "#D2D2D2")))
 
   ;; jcs java key binding
-  (define-key java-mode-map (kbd "C-d") 'jcs-kill-whole-line)
-  (define-key java-mode-map "\C-c\C-c" 'kill-ring-save)
+  (define-key java-mode-map (kbd "C-d") #'jcs-kill-whole-line)
+  (define-key java-mode-map "\C-c\C-c" #'kill-ring-save)
+
+  (define-key java-mode-map (kbd "C-s") #'jcs-java-untabify-save-buffer)
 
   ;; comment block
-  (define-key java-mode-map (kbd "RET") 'jcs-smart-context-line-break)
-  (define-key java-mode-map (kbd "*") 'jcs-c-comment-pair)
+  (define-key java-mode-map (kbd "RET") #'jcs-smart-context-line-break)
+  (define-key java-mode-map (kbd "*") #'jcs-c-comment-pair)
 
   ;; switch frame.
-  (define-key java-mode-map "\ew" 'jcs-other-window-next)
-  (define-key java-mode-map (kbd "M-q") 'jcs-other-window-prev)
+  (define-key java-mode-map "\ew" #'jcs-other-window-next)
+  (define-key java-mode-map (kbd "M-q") #'jcs-other-window-prev)
 
   ;; imports/package declaration.
-  (define-key java-mode-map (kbd "C-S-o") 'jcs-java-organize-imports)
+  (define-key java-mode-map (kbd "C-S-o") #'jcs-java-organize-imports)
   )
 (add-hook 'java-mode-hook 'jcs-java-mode-hook)
 (add-to-list 'auto-mode-alist '("\\.java?\\'" . java-mode))
