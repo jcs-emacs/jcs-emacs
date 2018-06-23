@@ -45,7 +45,7 @@
  '(mouse-wheel-scroll-amount (quote (15)))
  '(package-selected-packages
    (quote
-    (organize-imports-java haskell-mode emmet-mode csharp-mode ghub com-css-sort neotree find-file-in-project all-the-icons with-editor magit-popup yasnippet xcscope websocket web-mode ssass-mode skewer-mode simple-httpd shader-mode pyvenv python-mode powerline php-mode nasm-mode multiple-cursors memoize meghanada magit lua-mode js2-refactor js2-mode ivy htmlize highlight-indentation highlight helm-core helm go-mode gitattributes-mode git-timemachine git-link git-commit flycheck f exec-path-from-shell epl dash company cmake-mode avy async ag adaptive-wrap ac-php-core which-key processing-mode basic-mode scala-mode floobits togetherly visual-regexp package-build package-lint auto-highlight-symbol xwidgete pdf-tools preproc-font-lock sublimity tree-mode rainbow-mode py-autopep8 multi-web-mode jdee impatient-mode iedit helm-gtags google-c-style gitlab gitignore-mode github-notifier gitconfig-mode flymake-google-cpplint flymake-cursor elpy ein cpputils-cmake cmake-project cmake-ide cmake-font-lock better-defaults auto-package-update auto-complete-c-headers actionscript-mode ace-window ac-php ac-js2 ac-html ac-emmet)))
+    (use-ttf organize-imports-java haskell-mode emmet-mode csharp-mode ghub com-css-sort neotree find-file-in-project all-the-icons with-editor magit-popup yasnippet xcscope websocket web-mode ssass-mode skewer-mode simple-httpd shader-mode pyvenv python-mode powerline php-mode nasm-mode multiple-cursors memoize meghanada magit lua-mode js2-refactor js2-mode ivy htmlize highlight-indentation highlight helm-core helm go-mode gitattributes-mode git-timemachine git-link git-commit flycheck f exec-path-from-shell epl dash company cmake-mode avy async ag adaptive-wrap ac-php-core which-key processing-mode basic-mode scala-mode floobits togetherly visual-regexp package-build package-lint auto-highlight-symbol xwidgete pdf-tools preproc-font-lock sublimity tree-mode rainbow-mode py-autopep8 multi-web-mode jdee impatient-mode iedit helm-gtags google-c-style gitlab gitignore-mode github-notifier gitconfig-mode flymake-google-cpplint flymake-cursor elpy ein cpputils-cmake cmake-project cmake-ide cmake-font-lock better-defaults auto-package-update auto-complete-c-headers actionscript-mode ace-window ac-php ac-js2 ac-html ac-emmet)))
  '(send-mail-function (quote mailclient-send-it))
  '(version-control nil))
 (custom-set-faces
@@ -190,10 +190,7 @@ Return a list of installed packages or nil for every skipped package."
                           'sql-indent
                           'togetherly
                           'undo-tree
-                          ;; TEMPORARY(jenchieh): Hopefully melpa will let me push
-                          ;; my package `use-ttf' to their package system.
-                          ;; Then we can add this line under directly.
-                          ;;'use-ttf
+                          'use-ttf
                           'vimrc-mode
                           'visual-regexp
                           'impatient-mode
@@ -228,13 +225,6 @@ Return a list of installed packages or nil for every skipped package."
 ;; Then we can remove load file/manually install package system.
 ;;
 (load-file "~/.emacs.d/elisp/line-reminder-20180603.001/line-reminder.el")
-
-;;
-;; TEMPORARY(jenchieh): Hopefully melpa will let me push
-;; my package `use-ttf' to their package system.
-;; Then we can remove load file/manually install package system.
-;;
-(load-file "~/.emacs.d/elisp/use-ttf-20180609.001/use-ttf.el")
 
 ;;========================================
 ;;      JENCHIEH FILE LOADING
