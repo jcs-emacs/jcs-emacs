@@ -7,6 +7,9 @@
 # ========================================================================
 
 
+2018-07-02
+* Change package name from 'custom-abbrev' to 'project-abbrev'. (jcs-emacs-init)
+
 2018-06-22
 * Add double dash comment font lock face for mode it uses '--' to do 
  single line comment. (jcs-emacs-init)
