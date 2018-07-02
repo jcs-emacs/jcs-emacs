@@ -125,10 +125,6 @@ Return a list of installed packages or nil for every skipped package."
                           'company
                           'cpputils-cmake
                           'csharp-mode
-                          ;; TEMPORARY(jenchieh): Hopefully melpa will let me push
-                          ;; my package `custom-abbrev' to their package system.
-                          ;; Then we can add this line under directly.
-                          ;;'custom-abbrev
                           'dash
                           'diminish
                           'ein
@@ -179,6 +175,10 @@ Return a list of installed packages or nil for every skipped package."
                           'php-auto-yasnippets
                           'powerline
                           'processing-mode
+                          ;; TEMPORARY(jenchieh): Hopefully melpa will let me push
+                          ;; my package `custom-abbrev' to their package system.
+                          ;; Then we can add this line under directly.
+                          ;;'project-abbrev
                           'py-autopep8
                           'python-mode
                           'rainbow-mode
@@ -214,10 +214,10 @@ Return a list of installed packages or nil for every skipped package."
 
 ;;
 ;; TEMPORARY(jenchieh): Hopefully melpa will let me push
-;; my package `custom-abbrev' to their package system.
+;; my package `project-abbrev' to their package system.
 ;; Then we can remove load file/manually install package system.
 ;;
-(load-file "~/.emacs.d/elisp/custom-abbrev-20180603.001/custom-abbrev.el")
+(load-file "~/.emacs.d/elisp/project-abbrev-20180702.001/project-abbrev.el")
 
 ;;
 ;; TEMPORARY(jenchieh): Hopefully melpa will let me push
