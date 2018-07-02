@@ -131,10 +131,10 @@
   ;; function list must all have error handling. Or else this
   ;; the priority chain will break.
   ;;
-  ;; 1. `custom-abbrev-complete-word'
+  ;; 1. `project-abbrev-complete-word'
   ;; 2. `goto-address-at-point'
   ;;
-  (unless (or (ignore-errors (call-interactively #'custom-abbrev-complete-word)))
+  (unless (or (ignore-errors (call-interactively #'project-abbrev-complete-word)))
     (call-interactively #'goto-address-at-point)))
 
 
