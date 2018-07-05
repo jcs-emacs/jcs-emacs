@@ -154,6 +154,10 @@ Return a list of installed packages or nil for every skipped package."
                           'helm
                           'helm-ag
                           'helm-gtags
+                          ;; TEMPORARY(jenchieh): Hopefully melpa will let me push
+                          ;; my package `jcs-ex-pkg' to their package system.
+                          ;; Then we can add this line under directly.
+                          ;;'jcs-ex-pkg
                           'jdee
                           'js2-mode
                           'js2-refactor
@@ -211,6 +215,13 @@ Return a list of installed packages or nil for every skipped package."
 
 (load-file "~/.emacs.d/elisp/verilog-mode.el")
 (load-file "~/.emacs.d/elisp/jayces-mode.el")
+
+;;
+;; TEMPORARY(jenchieh): Hopefully melpa will let me push
+;; my package `jcs-ex-pkg' to their package system.
+;; Then we can remove load file/manually install package system.
+;;
+(load-file "~/.emacs.d/elisp/jcs-ex-pkg-20180705.001/jcs-ex-pkg.el")
 
 ;;
 ;; TEMPORARY(jenchieh): Hopefully melpa will let me push
