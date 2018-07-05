@@ -9,6 +9,8 @@
 
 2018-07-05
 * Add jcs-ex-pkg example package, for future self package development. (jcs-emacs-init)
+* Remove manually install 'line-reminder' package, install it on 
+ melpa. The package 'line-reminder' is currently on melpa. (jcs-emacs-init)
 
 2018-07-02
 * Change package name from 'custom-abbrev' to 'project-abbrev'. (jcs-emacs-init)
