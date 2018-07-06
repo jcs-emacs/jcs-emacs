@@ -7,6 +7,10 @@
 # ========================================================================
 
 
+2018-07-06
+* Install new package 'project-abbrev', and remove manually install 
+ code for this package. (jcs-emacs-init)
+
 2018-07-05
 * Add jcs-ex-pkg example package, for future self package development. (jcs-emacs-init)
 * Remove manually install 'line-reminder' package, install it on 
