@@ -7,6 +7,9 @@
 # ========================================================================
 
 
+2018-07-20
+* Add 'use-package' package to pre-install package list. (jcs-emacs-init)
+
 2018-07-19
 * Add json-mode package to package dependency list. (jcs-emacs-init)
 
