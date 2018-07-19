@@ -7,6 +7,9 @@
 # ========================================================================
 
 
+2018-07-19
+* Add json-mode package to package dependency list. (jcs-emacs-init)
+
 2018-07-14
 * 'wgrep' package added back to install list, know idea why it 
  seems like get reject by Emacs. Anyway, is back on Emacs again. (jcs-emacs-init)
