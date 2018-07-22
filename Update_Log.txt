@@ -7,6 +7,9 @@
 # ========================================================================
 
 
+2018-07-23
+* Rearrange package dependencies package list. (jcs-emacs-init)
+
 2018-07-20
 * Add 'use-package' package to pre-install package list. (jcs-emacs-init)
 * Update license and prorject version to 5.1.3. (jcs-emacs-init)
