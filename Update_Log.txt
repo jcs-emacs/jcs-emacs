@@ -7,6 +7,9 @@
 # ========================================================================
 
 
+2018-07-27
+* Package dependecies list changes while update packages on melpa. (jcs-emacs-init)
+
 2018-07-23
 * Rearrange package dependencies package list. (jcs-emacs-init)
 
