@@ -263,7 +263,7 @@ Text file, batch file, shell script, etc."
 
 ;;; Haxe
 (defun jcs-insert-haxe-template ()
-  "Template for haxe."
+  "Template for Haxe."
   (jcs-insert-template-by-file-path "~/.emacs.jcs/template/haxe/haxe_template.txt"))
 
 ;;; HTML
