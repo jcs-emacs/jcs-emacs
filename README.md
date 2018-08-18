@@ -27,6 +27,7 @@ config files improve and extended support for the following:
   - Go
 * H
   - Haskell
+  - Haxe
   - HTML
 * J
   - Java
