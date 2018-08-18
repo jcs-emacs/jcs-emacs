@@ -261,6 +261,11 @@ Text file, batch file, shell script, etc."
   "Template for Haskell."
   (jcs-insert-template-by-file-path "~/.emacs.jcs/template/haskell/haskell_template.txt"))
 
+;;; Haxe
+(defun jcs-insert-haxe-template ()
+  "Template for haxe."
+  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/haxe/haxe_template.txt"))
+
 ;;; HTML
 (defun jcs-insert-html-template ()
   "Template for HTML."
