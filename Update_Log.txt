@@ -7,6 +7,10 @@
 # ========================================================================
 
 
+2018-08-27
+* Add quote symbol to specify the correct extension to the correct major
+ mode. (jcs-emacs-init)
+
 2018-08-18
 * Start support Haxe file, install major mode 'haxe-mode'. (jcs-emacs-init)
 * jcs-haxe-mode for own control of editing Haxe file. (jcs-emacs-init)
