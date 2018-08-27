@@ -46,4 +46,4 @@
   )
 (add-hook 'haxe-mode-hook 'jcs-haxe-mode-hook)
 
-(add-to-list 'auto-mode-alist '("\\.hx?\\'" . haxe-mode))
+(add-to-list 'auto-mode-alist '("\\.hx'?\\'" . haxe-mode))

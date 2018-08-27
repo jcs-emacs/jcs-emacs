@@ -38,4 +38,4 @@
   )
 (add-hook 'haskell-mode-hook 'jcs-haskell-mode-hook)
 
-(add-to-list 'auto-mode-alist '("\\.hs?\\'" . haskell-mode))
+(add-to-list 'auto-mode-alist '("\\.hs'?\\'" . haskell-mode))
