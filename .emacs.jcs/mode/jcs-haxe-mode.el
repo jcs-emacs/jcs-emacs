@@ -43,6 +43,10 @@
   ;; jcs Haxe key binding
   (define-key haxe-mode-map (kbd "C-d") 'jcs-kill-whole-line)
   (define-key haxe-mode-map "\C-c\C-c" 'kill-ring-save)
+
+  ;; switch frame.
+  (define-key haxe-mode-map "\ew" #'jcs-other-window-next)
+  (define-key haxe-mode-map (kbd "M-q") #'jcs-other-window-prev)
   )
 (add-hook 'haxe-mode-hook 'jcs-haxe-mode-hook)
 
