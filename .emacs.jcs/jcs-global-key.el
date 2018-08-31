@@ -56,6 +56,10 @@
 (define-key global-map "\eg" #'goto-line)
 (define-key global-map "\ej" #'imenu)
 
+;; Key
+(define-key global-map (kbd "{") #'jcs-vs-curly-bracket-key)
+(define-key global-map (kbd ";") #'jcs-vs-semicolon-key)
+
 ;; Editting
 (define-key global-map "" #'copy-region-as-kill)
 (define-key global-map "" #'yank)
