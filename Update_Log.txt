@@ -7,6 +7,10 @@
 # ========================================================================
 
 
+2018-09-01
+* VS like function implemented => jcs-vs-func.el file. (jcs-emacs-init)
+* Load vs like functions to each related mode. (jcs-emacs-init)
+
 2018-08-29
 * Fixed haxe-mode cannot switch frame issue. (jcs-emacs-init)
 
