@@ -155,6 +155,7 @@
 (load-file "~/.emacs.jcs/func/jcs-buffer-menu.el")
 (load-file "~/.emacs.jcs/func/jcs-edit.el")
 (load-file "~/.emacs.jcs/func/jcs-comment.el")
+(load-file "~/.emacs.jcs/func/jcs-vs-func.el")
 
 ;;; Navigation
 (load-file "~/.emacs.jcs/func/jcs-nav.el")
