@@ -12,8 +12,6 @@
 ;; Functions for Object Oriented Programming languages.
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-;;; Code:
-
 (defvar jcs-oop-highlight-modes '(actionscript-mode
                                   cc-mode
                                   c-mode
