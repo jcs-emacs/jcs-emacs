@@ -45,6 +45,8 @@
   ;; jcs key binding
   (define-key perl-mode-map (kbd "C-d") 'jcs-kill-whole-line)
   (define-key perl-mode-map "\C-c\C-c" 'kill-ring-save)
+
+  (define-key perl-mode-map (kbd "DEL") #'jcs-delete-backward-char)
   )
 (add-hook 'perl-mode-hook 'jcs-perl-mode-hook)
 

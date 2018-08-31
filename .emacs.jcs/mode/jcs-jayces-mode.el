@@ -15,6 +15,7 @@
 
 (require 'jayces-mode)
 (defun jcs-jayces-mode-hook ()
+  "JayCeS mode hook."
 
   ;; Abbrevation expansion
   (abbrev-mode 1)

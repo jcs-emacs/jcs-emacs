@@ -40,6 +40,8 @@
   (define-key actionscript-mode-map (kbd "C-d") 'jcs-kill-whole-line)
   (define-key actionscript-mode-map "\C-c\C-c" 'kill-ring-save)
 
+  (define-key actionscript-mode-map (kbd "DEL") #'jcs-delete-backward-char)
+
   ;; comment block
   (define-key actionscript-mode-map (kbd "RET") 'jcs-smart-context-line-break)
   (define-key actionscript-mode-map (kbd "*") 'jcs-c-comment-pair)

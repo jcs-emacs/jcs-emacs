@@ -13,6 +13,9 @@
 (defun jcs-shell-mode-hook ()
   "Shell mode hook."
 
+  ;; Key
+  (define-key shell-mode-map (kbd "DEL") #'jcs-delete-backward-char)
+
   ;; Completion
   (define-key shell-mode-map [tab] #'jcs-company-manual-begin)
 

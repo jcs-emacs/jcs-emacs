@@ -44,6 +44,8 @@
   (define-key haxe-mode-map (kbd "C-d") 'jcs-kill-whole-line)
   (define-key haxe-mode-map "\C-c\C-c" 'kill-ring-save)
 
+  (define-key haxe-mode-map (kbd "DEL") #'jcs-delete-backward-char)
+
   ;; switch frame.
   (define-key haxe-mode-map "\ew" #'jcs-other-window-next)
   (define-key haxe-mode-map (kbd "M-q") #'jcs-other-window-prev)

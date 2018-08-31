@@ -69,6 +69,8 @@
   (define-key js2-mode-map "\C-c\C-c" 'kill-ring-save)
   (define-key ac-js2-mode-map "\C-c\C-c" 'kill-ring-save)
 
+  (define-key js2-mode-map (kbd "DEL") #'jcs-delete-backward-char)
+
   ;; comment block
   (define-key js2-mode-map (kbd "RET") 'jcs-smart-context-line-break)
   (define-key js2-mode-map (kbd "*") 'jcs-c-comment-pair)

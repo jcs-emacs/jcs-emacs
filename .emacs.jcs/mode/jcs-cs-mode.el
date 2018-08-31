@@ -53,6 +53,10 @@
   (define-key csharp-mode-map (kbd "C-d") 'jcs-kill-whole-line)
   (define-key csharp-mode-map "\C-c\C-c" 'kill-ring-save)
 
+  (define-key csharp-mode-map (kbd "DEL") #'jcs-delete-backward-char)
+  (define-key csharp-mode-map (kbd "{") #'jcs-vs-curly-bracket-key)
+  (define-key csharp-mode-map (kbd ";") #'jcs-vs-semicolon-key)
+
   (define-key csharp-mode-map [f8] 'jcs-find-corresponding-file)
   (define-key csharp-mode-map [S-f8] 'jcs-find-corresponding-file-other-window)
 

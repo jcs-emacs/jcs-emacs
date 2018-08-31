@@ -55,9 +55,11 @@
   ;; Set Faces.
   (jcs-oop-init-set-face)
 
-  ;; jcs Lua key binding
+  ;; jcs processing key binding
   (define-key processing-mode-map (kbd "C-d") 'jcs-kill-whole-line)
   (define-key processing-mode-map "\C-c\C-c" 'kill-ring-save)
+
+  (define-key processing-mode-map (kbd "DEL") #'jcs-delete-backward-char)
 
   ;; Comment
   (define-key processing-mode-map (kbd "RET") 'jcs-smart-context-line-break)

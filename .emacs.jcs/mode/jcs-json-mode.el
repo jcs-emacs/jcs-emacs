@@ -47,6 +47,8 @@
   (define-key json-mode-map (kbd "C-d") 'jcs-kill-whole-line)
   (define-key json-mode-map "\C-c\C-c" 'kill-ring-save)
 
+  (define-key json-mode-map (kbd "DEL") #'jcs-delete-backward-char)
+
   ;; comment block
   (define-key json-mode-map (kbd "RET") 'jcs-smart-context-line-break)
   (define-key json-mode-map (kbd "*") 'jcs-c-comment-pair)
