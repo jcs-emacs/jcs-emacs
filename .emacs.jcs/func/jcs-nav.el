@@ -32,15 +32,15 @@ Just use this without remember Emacs Lisp function."
 ;;----------------------------------------------
 
 ;;;###autoload
-(defun previous-blank-line ()
-  "Move to the previous line containing nothing but whitespace."
+(defun jcs-previous-blank-line ()
+  "Move to the previous line containing nothing but whitespaces or tabs."
   (interactive)
   (unless (ignore-errors (or (search-backward-regexp "^[ \t]*\n") t))
     (goto-char (point-min))))
 
 ;;;###autoload
-(defun next-blank-line ()
-  "Move to the next line containing nothing but whitespace."
+(defun jcs-next-blank-line ()
+  "Move to the next line containing nothing but whitespaces or tabs."
   (interactive)
   (forward-line)
   (if (ignore-errors (or (search-forward-regexp "^[ \t]*\n") t))

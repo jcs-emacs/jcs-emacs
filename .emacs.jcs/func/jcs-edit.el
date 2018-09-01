@@ -220,6 +220,17 @@ This will no longer overwrite usual Emacs' undo key."
   (setq kill-ring (cdr kill-ring)))
 
 ;;;###autoload
+(defun jcs-delete-line-backward ()
+  "Delete text between the beginning of the line to the cursor position.
+This command does not push text to `kill-ring'."
+  (interactive)
+  (let (p1 p2)
+    (setq p1 (point))
+    (beginning-of-line 1)
+    (setq p2 (point))
+    (delete-region p1 p2)))
+
+;;;###autoload
 (defun jcs-delete-word (arg)
   "Delete characters forward until encountering the end of a word.
 With argument, do this that many times.
@@ -230,17 +241,6 @@ This command does not push text to `kill-ring'."
    (progn
      (forward-word arg)
      (point))))
-
-;;;###autoload
-(defun jcs-delete-line-backward ()
-  "Delete text between the beginning of the line to the cursor position.
-This command does not push text to `kill-ring'."
-  (interactive)
-  (let (p1 p2)
-    (setq p1 (point))
-    (beginning-of-line 1)
-    (setq p2 (point))
-    (delete-region p1 p2)))
 
 ;;;###autoload
 (defun jcs-backward-delete-word (arg)
