@@ -130,6 +130,10 @@
   (define-key web-mode-map (kbd "M-<backspace>") 'jcs-web-backward-delete-word-capital)
   (define-key emmet-mode-keymap (kbd "M-<left>") 'jcs-backward-capital-char)
   (define-key emmet-mode-keymap (kbd "M-<right>") 'jcs-forward-capital-char)
+
+  (define-key web-mode-map (kbd "DEL") #'jcs-delete-backward-char)
+  (define-key web-mode-map (kbd "{") #'jcs-vs-front-curly-bracket-key)
+  (define-key web-mode-map (kbd ";") #'jcs-vs-semicolon-key)
   )
 (add-hook 'web-mode-hook 'emmet-mode)
 (add-hook 'web-mode-hook  'jcs-web-mode-hook)

@@ -45,6 +45,8 @@
   (define-key haxe-mode-map "\C-c\C-c" 'kill-ring-save)
 
   (define-key haxe-mode-map (kbd "DEL") #'jcs-delete-backward-char)
+  (define-key haxe-mode-map (kbd "{") #'jcs-vs-front-curly-bracket-key)
+  (define-key haxe-mode-map (kbd ";") #'jcs-vs-semicolon-key)
 
   ;; switch frame.
   (define-key haxe-mode-map "\ew" #'jcs-other-window-next)

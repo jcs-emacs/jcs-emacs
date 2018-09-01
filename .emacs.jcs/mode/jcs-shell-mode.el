@@ -15,6 +15,8 @@
 
   ;; Key
   (define-key shell-mode-map (kbd "DEL") #'jcs-delete-backward-char)
+  (define-key shell-mode-map (kbd "{") #'jcs-vs-front-curly-bracket-key)
+  (define-key shell-mode-map (kbd ";") #'jcs-vs-semicolon-key)
 
   ;; Completion
   (define-key shell-mode-map [tab] #'jcs-company-manual-begin)
@@ -25,8 +27,8 @@
   ;; Navigation
   (define-key shell-mode-map (kbd "<up>") 'jcs-shell-up-key)
   (define-key shell-mode-map (kbd "<down>") 'jcs-shell-down-key)
-  (define-key shell-mode-map [C-up] #'previous-blank-line)
-  (define-key shell-mode-map [C-down] #'next-blank-line)
+  (define-key shell-mode-map [C-up] #'jcs-previous-blank-line)
+  (define-key shell-mode-map [C-down] #'jcs-next-blank-line)
 
   ;; Editing
   (define-key shell-mode-map "\C-c\C-c" #'kill-ring-save)

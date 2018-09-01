@@ -63,7 +63,7 @@
   (define-key c-mode-map "\C-c\C-c" 'kill-ring-save)
 
   (define-key c-mode-map (kbd "DEL") #'jcs-delete-backward-char)
-  (define-key c-mode-map (kbd "{") #'jcs-vs-curly-bracket-key)
+  (define-key c-mode-map (kbd "{") #'jcs-vs-front-curly-bracket-key)
   (define-key c-mode-map (kbd ";") #'jcs-vs-semicolon-key)
 
   ;; Comment Block.

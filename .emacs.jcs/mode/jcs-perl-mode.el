@@ -47,6 +47,8 @@
   (define-key perl-mode-map "\C-c\C-c" 'kill-ring-save)
 
   (define-key perl-mode-map (kbd "DEL") #'jcs-delete-backward-char)
+  (define-key perl-mode-map (kbd "{") #'jcs-vs-front-curly-bracket-key)
+  (define-key perl-mode-map (kbd ";") #'jcs-vs-semicolon-key)
   )
 (add-hook 'perl-mode-hook 'jcs-perl-mode-hook)
 

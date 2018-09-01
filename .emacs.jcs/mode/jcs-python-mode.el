@@ -48,8 +48,8 @@
   (define-key python-mode-map "\C-c\C-c" 'kill-ring-save)
   (define-key python-mode-map [C-backspace] 'jcs-backward-delete-word)
 
-  (define-key python-mode-map [M-up] 'previous-blank-line)
-  (define-key python-mode-map [M-down] 'next-blank-line)
+  (define-key python-mode-map [M-up] 'jcs-previous-blank-line)
+  (define-key python-mode-map [M-down] 'jcs-next-blank-line)
 
   (define-key python-mode-map "\C-k\C-f" 'jcs-py-indent-region)
   (define-key python-mode-map "\C-k\C-d" 'jcs-py-format-document)

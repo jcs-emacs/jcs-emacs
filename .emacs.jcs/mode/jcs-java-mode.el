@@ -65,6 +65,8 @@
   (define-key java-mode-map (kbd "C-s") #'jcs-java-untabify-save-buffer)
 
   (define-key java-mode-map (kbd "DEL") #'jcs-delete-backward-char)
+  (define-key java-mode-map (kbd "{") #'jcs-vs-front-curly-bracket-key)
+  (define-key java-mode-map (kbd ";") #'jcs-vs-semicolon-key)
 
   ;; comment block
   (define-key java-mode-map (kbd "RET") #'jcs-smart-context-line-break)
