@@ -678,14 +678,6 @@ active. false, there is no region selected and mark is not active.
 ;; Face
 ;;---------------------------------------------
 
-(defun jcs-flatten-list (l)
-  "Flatten the multiple dimensional array to one dimensonal array.
-'(1 2 3 4 (5 6 7 8)) => '(1 2 3 4 5 6 7 8).
-L : list we want to flaaten."
-  (cond ((null l) nil)
-        ((atom l) (list l))
-        (t (loop for a in l appending (jcs-flatten-list a)))))
-
 (defun jcs-get-faces (pos)
   "Get the font faces at POS."
   (jcs-flatten-list
@@ -764,6 +756,14 @@ FONT : font to check."
 ;;---------------------------------------------
 ;; List
 ;;---------------------------------------------
+
+(defun jcs-flatten-list (l)
+  "Flatten the multiple dimensional array to one dimensonal array.
+'(1 2 3 4 (5 6 7 8)) => '(1 2 3 4 5 6 7 8).
+L : list we want to flaaten."
+  (cond ((null l) nil)
+        ((atom l) (list l))
+        (t (loop for a in l appending (jcs-flatten-list a)))))
 
 (defun jcs-is-in-list-string (in-list str)
   "Check if a string in the string list.
