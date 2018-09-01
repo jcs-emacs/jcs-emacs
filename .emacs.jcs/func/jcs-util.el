@@ -360,20 +360,20 @@ BND-PT : boundary point."
                     (jcs-is-beginning-of-line-p)))
       (forward-char 1))))
 
-(defun jcs-first-backward-char-p (c)
-  "Check the first character left/backward is C."
+(defun jcs-first-backward-char-p (ch)
+  "Check the first character on the left/backward is CH or not."
   (save-excursion
     ;; NOTE(jenchiech): First fowrad a char and ready to
     ;; be check for next backward character.
     (forward-char 1)
     (jcs-goto-next-backward-char (1+ (jcs-get-beginning-of-line-point)))
-    (string= (jcs-get-current-char-string) c)))
+    (string= (jcs-get-current-char-string) ch)))
 
-(defun jcs-first-forward-char-p (c)
-  "Check the first character on the right/forward is C."
+(defun jcs-first-forward-char-p (ch)
+  "Check the first character on the right/forward is CH or not."
   (save-excursion
     (jcs-goto-next-forward-char (jcs-get-end-of-line-point))
-    (string= (jcs-get-current-char-string) c)))
+    (string= (jcs-get-current-char-string) ch)))
 
 (defun jcs-is-there-char-backward-point-p (pt)
   "Check if there is at least one character backward until \
