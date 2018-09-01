@@ -26,8 +26,8 @@
 
 (define-key global-map [C-right] #'forward-word)
 (define-key global-map [C-left] #'backward-word)
-(define-key global-map [C-up] #'previous-blank-line)
-(define-key global-map [C-down] #'next-blank-line)
+(define-key global-map [C-up] #'jcs-previous-blank-line)
+(define-key global-map [C-down] #'jcs-next-blank-line)
 (define-key global-map [end] #'end-of-line)
 (define-key global-map [pgup] #'forward-page)
 (define-key global-map [pgdown] #'backward-page)
@@ -38,8 +38,8 @@
 (define-key global-map "\eq" #'jcs-other-window-prev)
 (define-key global-map "\ea" #'yank)
 (define-key global-map "\ez" #'kill-region)
-(define-key global-map [M-up] #'previous-blank-line)
-(define-key global-map [M-down] #'next-blank-line)
+(define-key global-map [M-up] #'jcs-previous-blank-line)
+(define-key global-map [M-down] #'jcs-next-blank-line)
 (define-key global-map [M-right] #'forward-word)
 (define-key global-map [M-left] #'backward-word)
 
@@ -55,10 +55,6 @@
 
 (define-key global-map "\eg" #'goto-line)
 (define-key global-map "\ej" #'imenu)
-
-;; Key
-(define-key global-map (kbd "{") #'jcs-vs-curly-bracket-key)
-(define-key global-map (kbd ";") #'jcs-vs-semicolon-key)
 
 ;; Editting
 (define-key global-map "" #'copy-region-as-kill)
