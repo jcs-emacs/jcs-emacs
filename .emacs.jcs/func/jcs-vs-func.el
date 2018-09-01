@@ -12,18 +12,33 @@
 ;; IDE's action.
 
 ;;;###autoload
-(defun jcs-vs-curly-bracket-key ()
+(defun jcs-vs-front-curly-bracket-key ()
   "For programming language that need curly bracket."
   (interactive)
-  (insert "{ }")
-  (backward-char 1)
+  (if (or (jcs-is-current-point-face "font-lock-string-face")
+          (jcs-is-inside-comment-block-p))
+      (insert "{")
+    (progn
+      (cond ((and (jcs-first-forward-char-p "}")
+                  (not (jcs-first-backward-char-p "{")))
+             (progn
+               (insert "{")))
+            (t
+             (progn
+               ;; If right infront of the `{' front bracket, insert space
+               ;; to make it prettier.
+               (when (jcs-current-char-equal-p "{")
+                 (insert " "))
 
-  (save-excursion
-    (forward-char 2)
-    (when (and (not (jcs-is-beginning-of-line-p))
-               (jcs-current-char-equal-p "}"))
-      (backward-char 1)
-      (insert " "))))
+               (insert "{ }")
+               (backward-char 1)
+
+               (save-excursion
+                 (forward-char 2)
+                 (when (and (not (jcs-is-beginning-of-line-p))
+                            (jcs-current-char-equal-p "}"))
+                   (backward-char 1)
+                   (insert " ")))))))))
 
 ;;;###autoload
 (defun jcs-vs-semicolon-key ()
@@ -42,6 +57,16 @@
 (defun jcs-delete-backward-char ()
   "This isn't the VS like key action, is more likely to be users own preferences."
   (interactive)
+  (save-excursion
+    (when (jcs-current-char-equal-p "{")
+      (forward-char 1)
+      (when (and (not (jcs-is-beginning-of-line-p))
+                 (jcs-current-char-equal-p " "))
+        (forward-char 1)
+        (when (and (not (jcs-is-beginning-of-line-p))
+                   (jcs-current-char-equal-p "}"))
+          (backward-delete-char 1)))))
+
   (backward-delete-char 1)
 
   (save-excursion
