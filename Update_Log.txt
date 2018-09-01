@@ -10,6 +10,10 @@
 2018-09-01
 * VS like function implemented => jcs-vs-func.el file. (jcs-emacs-init)
 * Load vs like functions to each related mode. (jcs-emacs-init)
+* Remove vs like function key binding as global key, instead we declare 
+ it inside specific mode that needed to have vs like function key bindings 
+ in it. (jcs-emacs-init)
+* Rename next/previous blank line function with jcs prefix. (jcs-emacs-init)
 
 2018-08-29
 * Fixed haxe-mode cannot switch frame issue. (jcs-emacs-init)
