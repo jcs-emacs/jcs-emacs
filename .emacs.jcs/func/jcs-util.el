@@ -361,7 +361,25 @@ BND-PT : boundary point."
       (forward-char 1))))
 
 (defun jcs-first-backward-char-p (ch)
-  "Check the first character on the left/backward is CH or not."
+  "Check the first character on the left/backward is CH or not, limit to the \
+whole buffer."
+  (save-excursion
+    ;; NOTE(jenchiech): First fowrad a char and ready to
+    ;; be check for next backward character.
+    (forward-char 1)
+    (jcs-goto-next-backward-char)
+    (string= (jcs-get-current-char-string) ch)))
+
+(defun jcs-first-forward-char-p (ch)
+  "Check the first character on the right/forward is CH or not, limit to the \
+whole buffer."
+  (save-excursion
+    (jcs-goto-next-forward-char)
+    (string= (jcs-get-current-char-string) ch)))
+
+(defun jcs-first-backward-char-in-line-p (ch)
+  "Check the first character on the left/backward is CH or not, limit to the \
+current line."
   (save-excursion
     ;; NOTE(jenchiech): First fowrad a char and ready to
     ;; be check for next backward character.
@@ -369,8 +387,9 @@ BND-PT : boundary point."
     (jcs-goto-next-backward-char (1+ (jcs-get-beginning-of-line-point)))
     (string= (jcs-get-current-char-string) ch)))
 
-(defun jcs-first-forward-char-p (ch)
-  "Check the first character on the right/forward is CH or not."
+(defun jcs-first-forward-char-in-line-p (ch)
+  "Check the first character on the right/forward is CH or not, limit to the \
+current line."
   (save-excursion
     (jcs-goto-next-forward-char (jcs-get-end-of-line-point))
     (string= (jcs-get-current-char-string) ch)))
