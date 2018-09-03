@@ -7,6 +7,11 @@
 # ========================================================================
 
 
+2018-09-03
+* Rename function check first forward/backward character with in line 
+ post-fix. (jcs-emacs-init)
+* Add check fist forward/backward character to limit to the whole buffer. (jcs-emacs-init)
+
 2018-09-01
 * VS like function implemented => jcs-vs-func.el file. (jcs-emacs-init)
 * Load vs like functions to each related mode. (jcs-emacs-init)
