@@ -350,8 +350,8 @@ line by line instead of indent the whole file at once."
         (line-after-column -1))
     (save-excursion
       (ignore-errors
-        (when (and (jcs-first-backward-char-p ">")
-                   (jcs-first-forward-char-p "<"))
+        (when (and (jcs-first-backward-char-in-line-p ">")
+                   (jcs-first-forward-char-in-line-p "<"))
           (setq line-between-pair t))))
 
     ;; Get column before we do line break.

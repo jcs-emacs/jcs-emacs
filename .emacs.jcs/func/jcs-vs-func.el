@@ -19,8 +19,8 @@
           (jcs-is-inside-comment-block-p))
       (insert "{")
     (progn
-      (cond ((and (jcs-first-forward-char-p "}")
-                  (not (jcs-first-backward-char-p "{")))
+      (cond ((and (jcs-first-forward-char-in-line-p "}")
+                  (not (jcs-first-backward-char-in-line-p "{")))
              (progn
                (insert "{")))
             (t
