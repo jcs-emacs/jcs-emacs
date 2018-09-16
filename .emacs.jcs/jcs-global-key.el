@@ -338,6 +338,10 @@
 (define-key global-map "\e\"" (quote jcs-move-forward-double-quot))
 (define-key global-map "\e:" (quote jcs-move-backward-double-quot))
 
+;; Geater than sign and Less than sign
+(define-key global-map "\e>" (quote jcs-move-forward-greater-than-sign))
+(define-key global-map "\e<" (quote jcs-move-backward-less-than-sign))
+
 ;;; Web mode
 (require 'impatient-mode)
 (define-key global-map "\C-wo" #'jcs-httpd-start)
