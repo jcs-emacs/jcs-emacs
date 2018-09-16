@@ -341,6 +341,9 @@ ALT-'           Search backward next '. (single quotation mark)
 ALT-Shift-;     Search forward next ". (double quotation mark)
 ALT-Shift-'     Search backward next ". (double quotation mark)
 
+ALT->           Search forward next >. (Greater than sign)
+ALT-<           Search backward next <. (Less than sign)
+
 M-S-<right>     Search forward at current point.
 M-S-<left>      Search backward at current point.
 
