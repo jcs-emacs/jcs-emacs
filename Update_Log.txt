@@ -7,6 +7,10 @@
 # ========================================================================
 
 
+2018-09-16
+* Add search forward/backward colon/semicolon/greater and less than 
+ sign in jcs-nav.el module. (jcs-emacs-init)
+
 2018-09-03
 * Rename function check first forward/backward character with in line 
  post-fix. (jcs-emacs-init)
