@@ -7,6 +7,10 @@
 # ========================================================================
 
 
+2018-09-19
+* Add example package files for future package example and 
+ installation location standard. (jcs-emacs-init)
+
 2018-09-16
 * Add search forward/backward colon/semicolon/greater and less than 
  sign in jcs-nav.el module. (jcs-emacs-init)
