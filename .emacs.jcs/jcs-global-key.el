@@ -102,7 +102,7 @@
 (define-key global-map "\C-cd" #'jcs-duplicate-line)
 ;;(define-key global-map (kbd "C-d") #'kill-whole-line)   ;; Emacs default version
 (define-key global-map (kbd "C-d") #'jcs-kill-whole-line)    ;; delete the line without copying!!
-(define-key global-map "\C-x\C-x" #'kill-region)
+(define-key global-map "\C-x\C-x" #'jcs-vs-cut-key)
 (define-key global-map "\C-c\C-c" #'kill-ring-save)
 (define-key global-map "\C-v" #'yank)
 (define-key global-map "\C-s" #'jcs-untabify-save-buffer)
