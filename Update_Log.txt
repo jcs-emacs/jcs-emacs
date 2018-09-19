@@ -10,6 +10,8 @@
 2018-09-19
 * Add example package files for future package example and 
  installation location standard. (jcs-emacs-init)
+* Implemented VS like cut key in jcs-vs-func.el file. (jcs-emacs-init)
+* Bind the vs like cut key as default cuty key in global mode. (jcs-emacs-init)
 
 2018-09-16
 * Add search forward/backward colon/semicolon/greater and less than 
