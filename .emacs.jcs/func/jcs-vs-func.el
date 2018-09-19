@@ -79,3 +79,12 @@
                    (jcs-current-char-equal-p "}"))
           (backward-char 1)
           (backward-delete-char 1))))))
+
+;;;###autoload
+(defun jcs-vs-cut-key ()
+  "VS like cut key action.
+If nothing is selected, we cut the current line. Else we just delete the region."
+  (interactive)
+  (if (jcs-is-region-selected-p)
+      (call-interactively #'kill-region)
+    (kill-whole-line)))
