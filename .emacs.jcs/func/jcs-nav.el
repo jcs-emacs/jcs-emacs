@@ -68,37 +68,38 @@ Just use this without remember Emacs Lisp function."
 CH : character we target to move toward."
   (interactive "P")
 
-  ;; If the last current is not the same as current character
-  ;; reset the 'search wrapper' flag.
-  (when (not (string= jcs-current-search-char ch))
-    (setq jcs-search-trigger-forward-char 0)
-    (setq jcs-current-search-char ch))
+  (save-window-excursion
+    ;; If the last current is not the same as current character
+    ;; reset the 'search wrapper' flag.
+    (when (not (string= jcs-current-search-char ch))
+      (setq jcs-search-trigger-forward-char 0)
+      (setq jcs-current-search-char ch))
 
-  (setq point-before-do-anything (point))
+    (setq point-before-do-anything (point))
 
-  (if (looking-at ch) (forward-char 1))
-  (ignore-errors (while (not (looking-at ch)) (forward-char 1)))
+    (if (looking-at ch) (forward-char 1))
+    (ignore-errors (while (not (looking-at ch)) (forward-char 1)))
 
-  ;; record down point max and point after look
-  (setq point-after-look (point))
-  (end-of-buffer)
-  (setq point-end-of-buffer (point))
+    ;; record down point max and point after look
+    (setq point-after-look (point))
+    (end-of-buffer)
+    (setq point-end-of-buffer (point))
 
-  ;; go back to search result.
-  (goto-char point-after-look)
+    ;; go back to search result.
+    (goto-char point-after-look)
 
-  (when (= jcs-search-trigger-forward-char 1)
-    (beginning-of-buffer)
-    (setq jcs-search-trigger-forward-char 0)
-    (jcs-move-to-forward-a-char-recursive ch))
+    (when (= jcs-search-trigger-forward-char 1)
+      (beginning-of-buffer)
+      (setq jcs-search-trigger-forward-char 0)
+      (jcs-move-to-forward-a-char-recursive ch))
 
-  (when (= point-after-look point-end-of-buffer)
-    (goto-char point-before-do-anything)
-    (message "%s"
-             (propertize (concat "Failing overwrap jcs-move-to-forward-a-char: "  ch)
-                         'face
-                         '(:foreground "cyan")))
-    (setq jcs-search-trigger-forward-char 1)))
+    (when (= point-after-look point-end-of-buffer)
+      (goto-char point-before-do-anything)
+      (message "%s"
+               (propertize (concat "Failing overwrap jcs-move-to-forward-a-char: "  ch)
+                           'face
+                           '(:foreground "cyan")))
+      (setq jcs-search-trigger-forward-char 1))))
 
 ;;;###autoload
 (defun jcs-move-to-backward-a-char-recursive (ch)
@@ -106,38 +107,39 @@ CH : character we target to move toward."
 CH : character we target to move toward."
   (interactive "P")
 
-  ;; If the last current is not the same as current character
-  ;; reset the 'search wrapper' flag.
-  (when (not (string= jcs-current-search-char ch))
-    (setq jcs-search-trigger-backward-char 0)
-    (setq jcs-current-search-char ch))
+  (save-window-excursion
+    ;; If the last current is not the same as current character
+    ;; reset the 'search wrapper' flag.
+    (when (not (string= jcs-current-search-char ch))
+      (setq jcs-search-trigger-backward-char 0)
+      (setq jcs-current-search-char ch))
 
-  (setq point-before-do-anything (point))
+    (setq point-before-do-anything (point))
 
-  ;; so lets just search back part of the parenthesis
-  (if (looking-at ch) (forward-char -1))
-  (ignore-errors  (while (not (looking-at ch)) (backward-char 1)))
+    ;; so lets just search back part of the parenthesis
+    (if (looking-at ch) (forward-char -1))
+    (ignore-errors  (while (not (looking-at ch)) (backward-char 1)))
 
-  ;; record down point min and point after look
-  (setq point-after-look (point))
-  (beginning-of-buffer)
-  (setq point-beginning-of-buffer (point))
+    ;; record down point min and point after look
+    (setq point-after-look (point))
+    (beginning-of-buffer)
+    (setq point-beginning-of-buffer (point))
 
-  ;; go back to search result.
-  (goto-char point-after-look)
+    ;; go back to search result.
+    (goto-char point-after-look)
 
-  (when (= jcs-search-trigger-backward-char 1)
-    (end-of-buffer)
-    (setq jcs-search-trigger-backward-char 0)
-    (jcs-move-to-backward-a-char-recursive ch))
+    (when (= jcs-search-trigger-backward-char 1)
+      (end-of-buffer)
+      (setq jcs-search-trigger-backward-char 0)
+      (jcs-move-to-backward-a-char-recursive ch))
 
-  (when (= point-after-look point-beginning-of-buffer)
-    (goto-char point-before-do-anything)
-    (message "%s"
-             (propertize (concat "Failing overwrap jcs-move-to-backward-a-char: " ch)
-                         'face
-                         '(:foreground "cyan")))
-    (setq jcs-search-trigger-backward-char 1)))
+    (when (= point-after-look point-beginning-of-buffer)
+      (goto-char point-before-do-anything)
+      (message "%s"
+               (propertize (concat "Failing overwrap jcs-move-to-backward-a-char: " ch)
+                           'face
+                           '(:foreground "cyan")))
+      (setq jcs-search-trigger-backward-char 1))))
 
 
 (defun jcs-move-to-forward-a-char (ch)
