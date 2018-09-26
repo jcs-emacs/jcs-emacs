@@ -92,7 +92,7 @@ line instead of indent the whole file at once."
         (if (not (jcs-is-mark-active-or-region-selected-p))
             (py-indent-line-outmost)))
     (progn
-      (if (jcs-is-met-first-char-at-line-p)
+      (if (jcs-is-infront-first-char-at-line-p)
           (back-to-indentation))))
   )
 
@@ -108,7 +108,7 @@ line instead of indent the whole file at once."
         (if (not (jcs-is-mark-active-or-region-selected-p))
             (py-indent-line-outmost)))
     (progn
-      (if (jcs-is-met-first-char-at-line-p)
+      (if (jcs-is-infront-first-char-at-line-p)
           (back-to-indentation))))
   )
 
@@ -126,7 +126,7 @@ infront of the first character we indent the line instead of insert
 the space."
   (interactive)
 
-  (if (or (jcs-is-met-first-char-at-line-p)
+  (if (or (jcs-is-infront-first-char-at-line-p)
           (jcs-is-beginning-of-line-p))
       (progn
         ;; insert 4 spaces.
@@ -146,7 +146,7 @@ is infront of the first character in the line we delete fource
 spaces instead of `py-electric-backspace'."
   (interactive)
 
-  (if (jcs-is-met-first-char-at-line-p)
+  (if (jcs-is-infront-first-char-at-line-p)
       (progn
         (if (use-region-p)
             (progn
