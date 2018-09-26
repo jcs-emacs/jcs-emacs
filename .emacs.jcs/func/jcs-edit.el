@@ -685,7 +685,7 @@ this version instead."
   (if (not (jcs-current-line-totally-empty-p))
       (forward-char 1))
 
-  (while (jcs-current-whitespacep)
+  (while (jcs-current-whitespace-or-tab-p)
     (forward-char 1))
 
   (backward-char 1))

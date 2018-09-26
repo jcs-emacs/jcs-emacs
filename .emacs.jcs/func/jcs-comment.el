@@ -276,7 +276,7 @@ comment region. Otherwise comment line."
 
         (setq before-comment-point (point))
 
-        (if (jcs-is-met-first-char-at-line-p)
+        (if (jcs-is-infront-first-char-at-line-p)
             (progn
               (jcs-safe-forward-char)
               (jcs-safe-forward-char)
