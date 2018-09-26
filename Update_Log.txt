@@ -14,6 +14,9 @@
    => jcs-current-whitespace-or-tab-p
 * Implement jcs-text-scale-increase and jcs-text-scale-decrease 
  function in order to fix the `line-reminder' plugin issue. (jcs-emacs-init)
+* Fix everytime it search forward recursive, it will centerl the 
+ window issue. But does not happens in search backward recursive... 
+ Weird! => locate in jcs-nav.el file. (jcs-emacs-init)
 
 2018-09-19
 * Add example package files for future package example and 
