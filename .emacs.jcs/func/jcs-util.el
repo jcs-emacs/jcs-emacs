@@ -287,15 +287,18 @@ IS-FORWARD : forward conversion instead of backward conversion."
   "Check if current character a lowercase character?"
   (not (jcs-current-char-uppercasep)))
 
-(defun jcs-current-whitespacep ()
+(defun jcs-current-whitespace-p ()
   "Check if current character a whitespace character?"
-  (let ((current-char nil)
-        (current-char-string nil)
-        (current-char-char nil))
-    (setq current-char (char-before))
-    (setq current-char-string (string current-char))
-    (setq current-char-char (string-to-char current-char-string))
-    (whitespacep current-char-char)))
+  (jcs-current-char-equal-p " "))
+
+(defun jcs-current-tab-p ()
+  "Check if current character a tab character?"
+  (jcs-current-char-equal-p "\t"))
+
+(defun jcs-current-whitespace-or-tab-p ()
+  "Check if current character a whitespace or a tab character?"
+  (or (jcs-current-char-equal-p " ")
+      (jcs-current-char-equal-p "\t")))
 
 (defun jcs-current-char-equal-p (c)
   "Check the current character equal to 'C'."
@@ -530,7 +533,7 @@ LINE : number to check if current line this line?"
 
     (= firstCharPoint current-point)))
 
-(defun jcs-is-met-first-char-at-line-p ()
+(defun jcs-is-infront-first-char-at-line-p ()
   "Check current cursor point is after the first character at \
 the current line.
 
@@ -547,7 +550,7 @@ false, vice versa."
           (forward-char 1))
 
         (while (<= (point) point-to-check)
-          (if (not (current-whitespacep))
+          (if (not (jcs-current-whitespace-or-tab-p))
               (setq is-infront-of-first-char nil))
           (forward-char 1))))
 
