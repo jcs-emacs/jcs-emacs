@@ -17,6 +17,7 @@
 * Fix everytime it search forward recursive, it will centerl the 
  window issue. But does not happens in search backward recursive... 
  Weird! => locate in jcs-nav.el file. (jcs-emacs-init)
+* Update license and prorject version to 5.1.5. (jcs-emacs-init)
 
 2018-09-19
 * Add example package files for future package example and 
