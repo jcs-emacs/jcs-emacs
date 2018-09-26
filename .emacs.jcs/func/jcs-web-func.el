@@ -177,7 +177,7 @@ another function..."
 
   (backward-delete-char 1)
 
-  (when (and (not (jcs-current-whitespacep))
+  (when (and (not (jcs-current-whitespace-or-tab-p))
              (not (jcs-current-char-equal-p "$"))
              (jcs-current-char-a-wordp))
     (jcs-web-backward-delete-word)))
@@ -189,7 +189,7 @@ another function..."
 
   (backward-delete-char 1)
 
-  (when (and (not (jcs-current-whitespacep))
+  (when (and (not (jcs-current-whitespace-or-tab-p))
              (not (jcs-current-char-equal-p "$"))
              (not (jcs-current-char-uppercasep))
              (jcs-current-char-a-wordp))
