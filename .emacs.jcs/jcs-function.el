@@ -117,6 +117,30 @@
   (setq truncate-lines nil))
 
 ;;---------------------------------------------
+;; Text Scale
+;;---------------------------------------------
+
+;;;###autoload
+(defun jcs-text-scale-increase ()
+  "Scale the text up."
+  (interactive)
+  (call-interactively #'text-scale-increase)
+
+  ;; Renable `linum-mode'.
+  (call-interactively #'linum-mode)
+  (call-interactively #'linum-mode))
+
+;;;###autoload
+(defun jcs-text-scale-decrease ()
+  "Scale the text down."
+  (interactive)
+  (call-interactively #'text-scale-decrease)
+
+  ;; Renable `linum-mode'.
+  (call-interactively #'linum-mode)
+  (call-interactively #'linum-mode))
+
+;;---------------------------------------------
 ;; Return
 ;;---------------------------------------------
 
