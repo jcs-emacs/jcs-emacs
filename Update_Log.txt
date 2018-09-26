@@ -7,6 +7,14 @@
 # ========================================================================
 
 
+2018-09-26
+* Implement the following three util functions.. (jcs-emacs-init)
+   => jcs-current-whitespace-p
+   => jcs-current-tab-p
+   => jcs-current-whitespace-or-tab-p
+* Implement jcs-text-scale-increase and jcs-text-scale-decrease 
+ function in order to fix the `line-reminder' plugin issue. (jcs-emacs-init)
+
 2018-09-19
 * Add example package files for future package example and 
  installation location standard. (jcs-emacs-init)
