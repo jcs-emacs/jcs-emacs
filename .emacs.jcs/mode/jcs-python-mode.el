@@ -44,27 +44,27 @@
   (jcs-oop-init-set-face)
 
   ;; jcs python key binding
-  (define-key python-mode-map (kbd "C-d") 'jcs-kill-whole-line)
-  (define-key python-mode-map "\C-c\C-c" 'kill-ring-save)
-  (define-key python-mode-map [C-backspace] 'jcs-backward-delete-word)
+  (define-key python-mode-map (kbd "C-d") #'jcs-kill-whole-line)
+  (define-key python-mode-map "\C-c\C-c" #'kill-ring-save)
+  (define-key python-mode-map [C-backspace] #'jcs-backward-delete-word)
 
-  (define-key python-mode-map [M-up] 'jcs-previous-blank-line)
-  (define-key python-mode-map [M-down] 'jcs-next-blank-line)
+  (define-key python-mode-map [M-up] #'jcs-previous-blank-line)
+  (define-key python-mode-map [M-down] #'jcs-next-blank-line)
 
-  (define-key python-mode-map "\C-k\C-f" 'jcs-py-indent-region)
-  (define-key python-mode-map "\C-k\C-d" 'jcs-py-format-document)
-  (define-key python-mode-map (kbd "C-S-f") 'jcs-py-format-region-or-document)
+  (define-key python-mode-map "\C-k\C-f" #'jcs-py-indent-region)
+  (define-key python-mode-map "\C-k\C-d" #'jcs-py-format-document)
+  (define-key python-mode-map (kbd "C-S-f") #'jcs-py-format-region-or-document)
 
   ;; Edit
-  (define-key python-mode-map (kbd "<up>") 'jcs-py-indent-up)
-  (define-key python-mode-map (kbd "<down>") 'jcs-py-indent-down)
-  (define-key python-mode-map (kbd "SPC") 'jcs-py-space)
-  (define-key python-mode-map (kbd "S-SPC") 'jcs-py-real-space)
-  (define-key python-mode-map (kbd "<backspace>") 'jcs-py-backspace)
-  (define-key python-mode-map (kbd "S-<backspace>") 'jcs-py-real-backspace)
+  (define-key python-mode-map (kbd "<up>") #'jcs-py-indent-up)
+  (define-key python-mode-map (kbd "<down>") #'jcs-py-indent-down)
+  (define-key python-mode-map (kbd "SPC") #'jcs-py-space)
+  (define-key python-mode-map (kbd "S-SPC") #'jcs-py-real-space)
+  (define-key python-mode-map (kbd "<backspace>") #'jcs-py-backspace)
+  (define-key python-mode-map (kbd "S-<backspace>") #'jcs-py-real-backspace)
 
   ;; Comment
-  (define-key python-mode-map (kbd "\"") 'jcs-py-maybe-insert-codedoc)
+  (define-key python-mode-map (kbd "\"") #'jcs-py-maybe-insert-codedoc)
   )
 (add-hook 'python-mode-hook 'jcs-python-mode-hook)
 

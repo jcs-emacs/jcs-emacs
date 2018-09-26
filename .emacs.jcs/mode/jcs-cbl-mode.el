@@ -43,11 +43,11 @@
   (face-remap-add-relative 'font-lock-string-face '(jcs-font-lock-string-face))
 
   ;; jcs COBOL key binding
-  (define-key cobol-mode-map (kbd "C-d") 'jcs-kill-whole-line)
-  (define-key cobol-mode-map "\C-c\C-c" 'kill-ring-save)
+  (define-key cobol-mode-map (kbd "C-d") #'jcs-kill-whole-line)
+  (define-key cobol-mode-map "\C-c\C-c" #'kill-ring-save)
 
-  (define-key cobol-mode-map (kbd "<up>") 'jcs-py-indent-up)
-  (define-key cobol-mode-map (kbd "<down>") 'jcs-py-indent-down)
+  (define-key cobol-mode-map (kbd "<up>") #'jcs-py-indent-up)
+  (define-key cobol-mode-map (kbd "<down>") #'jcs-py-indent-down)
   )
 (add-hook 'cobol-mode-hook 'jcs-cobol-mode-hook)
 

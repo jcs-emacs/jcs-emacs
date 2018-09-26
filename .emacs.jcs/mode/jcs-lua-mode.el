@@ -42,14 +42,14 @@
   (jcs-oop-init-set-face)
 
   ;; jcs Lua key binding
-  (define-key lua-mode-map (kbd "C-d") 'jcs-kill-whole-line)
-  (define-key lua-mode-map "\C-c\C-c" 'kill-ring-save)
+  (define-key lua-mode-map (kbd "C-d") #'jcs-kill-whole-line)
+  (define-key lua-mode-map "\C-c\C-c" #'kill-ring-save)
 
   ;; Comment
-  (define-key lua-mode-map (kbd "-") 'jcs-lua-maybe-insert-codedoc)
+  (define-key lua-mode-map (kbd "-") #'jcs-lua-maybe-insert-codedoc)
 
   ;; comment block
-  (define-key lua-mode-map (kbd "RET") 'jcs-smart-context-line-break)
+  (define-key lua-mode-map (kbd "RET") #'jcs-smart-context-line-break)
   )
 (add-hook 'lua-mode-hook 'jcs-lua-mode-hook)
 

@@ -50,26 +50,26 @@
   (jcs-oop-init-set-face)
 
   ;; jcs C# key binding
-  (define-key csharp-mode-map (kbd "C-d") 'jcs-kill-whole-line)
-  (define-key csharp-mode-map "\C-c\C-c" 'kill-ring-save)
+  (define-key csharp-mode-map (kbd "C-d") #'jcs-kill-whole-line)
+  (define-key csharp-mode-map "\C-c\C-c" #'kill-ring-save)
 
   (define-key csharp-mode-map (kbd "DEL") #'jcs-delete-backward-char)
   (define-key csharp-mode-map (kbd "{") #'jcs-vs-front-curly-bracket-key)
   (define-key csharp-mode-map (kbd ";") #'jcs-vs-semicolon-key)
 
-  (define-key csharp-mode-map [f8] 'jcs-find-corresponding-file)
-  (define-key csharp-mode-map [S-f8] 'jcs-find-corresponding-file-other-window)
+  (define-key csharp-mode-map [f8] #'jcs-find-corresponding-file)
+  (define-key csharp-mode-map [S-f8] #'jcs-find-corresponding-file-other-window)
 
-  (define-key csharp-mode-map (kbd "<up>") 'jcs-csharp-smart-indent-up)
-  (define-key csharp-mode-map (kbd "<down>") 'jcs-csharp-smart-indent-down)
+  (define-key csharp-mode-map (kbd "<up>") #'jcs-csharp-smart-indent-up)
+  (define-key csharp-mode-map (kbd "<down>") #'jcs-csharp-smart-indent-down)
 
   ;; comment block
-  (define-key csharp-mode-map (kbd "RET") 'jcs-smart-context-line-break)
-  (define-key csharp-mode-map (kbd "*") 'jcs-c-comment-pair)
+  (define-key csharp-mode-map (kbd "RET") #'jcs-smart-context-line-break)
+  (define-key csharp-mode-map (kbd "*") #'jcs-c-comment-pair)
 
-  (define-key csharp-mode-map (kbd "/") 'jcs-vs-csharp-maybe-insert-codedoc)
+  (define-key csharp-mode-map (kbd "/") #'jcs-vs-csharp-maybe-insert-codedoc)
 
-  (define-key csharp-mode-map "\eq" 'jcs-other-window-prev)
+  (define-key csharp-mode-map "\eq" #'jcs-other-window-prev)
   )
 (add-hook 'csharp-mode-hook 'jcs-csharp-mode-hook)
 

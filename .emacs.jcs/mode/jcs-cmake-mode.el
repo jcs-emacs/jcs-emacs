@@ -52,21 +52,21 @@
   (jcs-oop-init-set-face)
 
   ;; jcs makefile key binding
-  (define-key cmake-mode-map (kbd "<up>") 'jcs-py-indent-up)
-  (define-key cmake-mode-map (kbd "<down>") 'jcs-py-indent-down)
-  (define-key cmake-mode-map (kbd "RET") 'jcs-makefile-newline)
+  (define-key cmake-mode-map (kbd "<up>") #'jcs-py-indent-up)
+  (define-key cmake-mode-map (kbd "<down>") #'jcs-py-indent-down)
+  (define-key cmake-mode-map (kbd "RET") #'jcs-makefile-newline)
 
-  (define-key cmake-mode-map (kbd "C-d") 'jcs-kill-whole-line)
-  (define-key cmake-mode-map "\C-c\C-c" 'kill-ring-save)
+  (define-key cmake-mode-map (kbd "C-d") #'jcs-kill-whole-line)
+  (define-key cmake-mode-map "\C-c\C-c" #'kill-ring-save)
 
   ;; tabify save key
-  (define-key cmake-mode-map "\C-s" 'jcs-tabify-save-buffer)
+  (define-key cmake-mode-map "\C-s" #'jcs-tabify-save-buffer)
 
   ;; Edit
-  (define-key cmake-mode-map (kbd "SPC") 'jcs-py-space)
-  (define-key cmake-mode-map (kbd "S-SPC") 'jcs-py-real-space)
-  (define-key cmake-mode-map (kbd "<backspace>") 'jcs-py-backspace)
-  (define-key cmake-mode-map (kbd "S-<backspace>") 'jcs-py-real-backspace)
+  (define-key cmake-mode-map (kbd "SPC") #'jcs-py-space)
+  (define-key cmake-mode-map (kbd "S-SPC") #'jcs-py-real-space)
+  (define-key cmake-mode-map (kbd "<backspace>") #'jcs-py-backspace)
+  (define-key cmake-mode-map (kbd "S-<backspace>") #'jcs-py-real-backspace)
   )
 (add-hook 'cmake-mode-hook 'jcs-cmake-mode-hook)
 

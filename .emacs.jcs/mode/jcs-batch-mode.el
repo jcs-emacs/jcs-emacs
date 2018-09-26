@@ -44,11 +44,11 @@
   (jcs-oop-init-set-face)
 
   ;; jcs key binding
-  (define-key bat-mode-map (kbd "C-d") 'jcs-kill-whole-line)
-  (define-key bat-mode-map "\C-c\C-c" 'kill-ring-save)
+  (define-key bat-mode-map (kbd "C-d") #'jcs-kill-whole-line)
+  (define-key bat-mode-map "\C-c\C-c" #'kill-ring-save)
 
-  (define-key bat-mode-map (kbd "<up>") 'jcs-previous-line)
-  (define-key bat-mode-map (kbd "<down>") 'jcs-next-line)
+  (define-key bat-mode-map (kbd "<up>") #'jcs-previous-line)
+  (define-key bat-mode-map (kbd "<down>") #'jcs-next-line)
   )
 (add-hook 'bat-mode-hook 'jcs-batch-mode-hook)
 

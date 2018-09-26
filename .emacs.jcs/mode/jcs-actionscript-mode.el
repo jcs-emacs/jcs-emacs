@@ -37,16 +37,16 @@
   (jcs-oop-init-set-face)
 
   ;; jcs java key binding
-  (define-key actionscript-mode-map (kbd "C-d") 'jcs-kill-whole-line)
-  (define-key actionscript-mode-map "\C-c\C-c" 'kill-ring-save)
+  (define-key actionscript-mode-map (kbd "C-d") #'jcs-kill-whole-line)
+  (define-key actionscript-mode-map "\C-c\C-c" #'kill-ring-save)
 
   (define-key actionscript-mode-map (kbd "DEL") #'jcs-delete-backward-char)
   (define-key actionscript-mode-map (kbd "{") #'jcs-vs-front-curly-bracket-key)
   (define-key actionscript-mode-map (kbd ";") #'jcs-vs-semicolon-key)
 
   ;; comment block
-  (define-key actionscript-mode-map (kbd "RET") 'jcs-smart-context-line-break)
-  (define-key actionscript-mode-map (kbd "*") 'jcs-c-comment-pair)
+  (define-key actionscript-mode-map (kbd "RET") #'jcs-smart-context-line-break)
+  (define-key actionscript-mode-map (kbd "*") #'jcs-c-comment-pair)
   )
 
 (add-hook 'actionscript-mode-hook 'jcs-actionscript-mode-hook)
