@@ -35,8 +35,8 @@
 
   ;; Scala key bindings
   ;; comment block
-  (define-key scala-mode-map (kbd "RET") 'jcs-smart-context-line-break)
-  (define-key scala-mode-map (kbd "*") 'jcs-c-comment-pair)
+  (define-key scala-mode-map (kbd "RET") #'jcs-smart-context-line-break)
+  (define-key scala-mode-map (kbd "*") #'jcs-c-comment-pair)
   )
 (add-hook 'scala-mode-hook 'jcs-scala-mode-hook)
 

@@ -43,8 +43,8 @@
   (jcs-oop-init-set-face)
 
   ;; jcs key binding
-  (define-key perl-mode-map (kbd "C-d") 'jcs-kill-whole-line)
-  (define-key perl-mode-map "\C-c\C-c" 'kill-ring-save)
+  (define-key perl-mode-map (kbd "C-d") #'jcs-kill-whole-line)
+  (define-key perl-mode-map "\C-c\C-c" #'kill-ring-save)
 
   (define-key perl-mode-map (kbd "DEL") #'jcs-delete-backward-char)
   (define-key perl-mode-map (kbd "{") #'jcs-vs-front-curly-bracket-key)

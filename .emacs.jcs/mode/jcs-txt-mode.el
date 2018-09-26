@@ -94,21 +94,21 @@
         )
 
   ;; jcs org mode key binding
-  (define-key org-mode-map (kbd "<up>") 'previous-line)
-  (define-key org-mode-map (kbd "<down>") 'next-line)
-  (define-key org-mode-map (kbd "C-d") 'jcs-kill-whole-line)
-  (define-key org-mode-map "\C-c\C-c" 'kill-ring-save)
-  (define-key org-mode-map "\C-a" 'mark-whole-buffer)
-  (define-key org-mode-map [tab] 'jcs-tab-key)
-  (define-key org-mode-map [C-tab] 'org-cycle)
+  (define-key org-mode-map (kbd "<up>") #'previous-line)
+  (define-key org-mode-map (kbd "<down>") #'next-line)
+  (define-key org-mode-map (kbd "C-d") #'jcs-kill-whole-line)
+  (define-key org-mode-map "\C-c\C-c" #'kill-ring-save)
+  (define-key org-mode-map "\C-a" #'mark-whole-buffer)
+  (define-key org-mode-map [tab] #'jcs-tab-key)
+  (define-key org-mode-map [C-tab] #'org-cycle)
 
-  (define-key org-mode-map "\C-y" 'jcs-redo)
+  (define-key org-mode-map "\C-y" #'jcs-redo)
 
   ;; `org-nav'
-  (define-key org-mode-map (kbd "S-<up>") 'jcs-org-table-up)
-  (define-key org-mode-map (kbd "S-<down>") 'jcs-org-table-down)
-  (define-key org-mode-map (kbd "S-<left>") 'jcs-org-table-left)
-  (define-key org-mode-map (kbd "S-<right>") 'jcs-org-table-right)
+  (define-key org-mode-map (kbd "S-<up>") #'jcs-org-table-up)
+  (define-key org-mode-map (kbd "S-<down>") #'jcs-org-table-down)
+  (define-key org-mode-map (kbd "S-<left>") #'jcs-org-table-left)
+  (define-key org-mode-map (kbd "S-<right>") #'jcs-org-table-right)
   )
 (add-hook 'org-mode-hook 'jcs-org-mode)
 

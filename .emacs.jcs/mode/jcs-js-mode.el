@@ -65,17 +65,17 @@
   (jcs-oop-init-set-face)
 
   ;; jcs javascript key binding
-  (define-key js2-mode-map (kbd "C-d") 'jcs-kill-whole-line)
-  (define-key js2-mode-map "\C-c\C-c" 'kill-ring-save)
-  (define-key ac-js2-mode-map "\C-c\C-c" 'kill-ring-save)
+  (define-key js2-mode-map (kbd "C-d") #'jcs-kill-whole-line)
+  (define-key js2-mode-map "\C-c\C-c" #'kill-ring-save)
+  (define-key ac-js2-mode-map "\C-c\C-c" #'kill-ring-save)
 
   (define-key js2-mode-map (kbd "DEL") #'jcs-delete-backward-char)
   (define-key js2-mode-map (kbd "{") #'jcs-vs-front-curly-bracket-key)
   (define-key js2-mode-map (kbd ";") #'jcs-vs-semicolon-key)
 
   ;; comment block
-  (define-key js2-mode-map (kbd "RET") 'jcs-smart-context-line-break)
-  (define-key js2-mode-map (kbd "*") 'jcs-c-comment-pair)
+  (define-key js2-mode-map (kbd "RET") #'jcs-smart-context-line-break)
+  (define-key js2-mode-map (kbd "*") #'jcs-c-comment-pair)
   )
 (add-hook 'js2-mode-hook 'jcs-js-mode-hook)
 

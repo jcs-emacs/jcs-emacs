@@ -36,19 +36,19 @@
         )
 
   ;; jcs SCSS key binding
-  (define-key scss-mode-map (kbd "C-d") 'jcs-kill-whole-line)
-  (define-key scss-mode-map "\C-c\C-c" 'kill-ring-save)
+  (define-key scss-mode-map (kbd "C-d") #'jcs-kill-whole-line)
+  (define-key scss-mode-map "\C-c\C-c" #'kill-ring-save)
 
   ;; Save
-  (define-key css-mode-map "\C-s" 'jcs-css-save-buffer)
+  (define-key css-mode-map "\C-s" #'jcs-css-save-buffer)
 
   ;; comment block
-  (define-key scss-mode-map (kbd "RET") 'jcs-smart-context-line-break)
-  (define-key scss-mode-map (kbd "*") 'jcs-c-comment-pair)
+  (define-key scss-mode-map (kbd "RET") #'jcs-smart-context-line-break)
+  (define-key scss-mode-map (kbd "*") #'jcs-c-comment-pair)
 
   ;; sort attribute in order => `css-sort' package.
-  (define-key scss-mode-map "\C-ks" 'jcs-css-sort-attributes)
-  (define-key scss-mode-map "\C-kd" 'jcs-css-sort-attributes-document)
+  (define-key scss-mode-map "\C-ks" #'jcs-css-sort-attributes)
+  (define-key scss-mode-map "\C-kd" #'jcs-css-sort-attributes-document)
   )
 (add-hook 'scss-mode-hook 'jcs-scss-mode-hook)
 (add-to-list 'auto-mode-alist '("\\.scss?\\'" . scss-mode))

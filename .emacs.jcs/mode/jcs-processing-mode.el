@@ -56,17 +56,14 @@
   (jcs-oop-init-set-face)
 
   ;; jcs processing key binding
-  (define-key processing-mode-map (kbd "C-d") 'jcs-kill-whole-line)
-  (define-key processing-mode-map "\C-c\C-c" 'kill-ring-save)
+  (define-key processing-mode-map (kbd "C-d") #'jcs-kill-whole-line)
+  (define-key processing-mode-map "\C-c\C-c" #'kill-ring-save)
 
   (define-key processing-mode-map (kbd "DEL") #'jcs-delete-backward-char)
 
   ;; Comment
-  (define-key processing-mode-map (kbd "RET") 'jcs-smart-context-line-break)
-  (define-key processing-mode-map (kbd "*") 'jcs-c-comment-pair)
-
-  ;; comment block
-  (define-key processing-mode-map (kbd "RET") 'jcs-smart-context-line-break)
+  (define-key processing-mode-map (kbd "RET") #'jcs-smart-context-line-break)
+  (define-key processing-mode-map (kbd "*") #'jcs-c-comment-pair)
   )
 (add-hook 'processing-mode-hook 'jcs-processing-mode-hook)
 

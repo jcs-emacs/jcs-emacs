@@ -25,8 +25,8 @@
   (define-key shell-mode-map (kbd "RET") #'jcs-shell-return)
 
   ;; Navigation
-  (define-key shell-mode-map (kbd "<up>") 'jcs-shell-up-key)
-  (define-key shell-mode-map (kbd "<down>") 'jcs-shell-down-key)
+  (define-key shell-mode-map (kbd "<up>") #'jcs-shell-up-key)
+  (define-key shell-mode-map (kbd "<down>") #'jcs-shell-down-key)
   (define-key shell-mode-map [C-up] #'jcs-previous-blank-line)
   (define-key shell-mode-map [C-down] #'jcs-next-blank-line)
 

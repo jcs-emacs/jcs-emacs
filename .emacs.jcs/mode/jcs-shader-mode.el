@@ -19,8 +19,8 @@
   (setq jcs-shader-mode-map (make-sparse-keymap))
 
   ;; comment block
-  (define-key jcs-shader-mode-map (kbd "RET") 'jcs-smart-context-line-break)
-  (define-key jcs-shader-mode-map (kbd "*") 'jcs-c-comment-pair)
+  (define-key jcs-shader-mode-map (kbd "RET") #'jcs-smart-context-line-break)
+  (define-key jcs-shader-mode-map (kbd "*") #'jcs-c-comment-pair)
   )
 
 ;;;

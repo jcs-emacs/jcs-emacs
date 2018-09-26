@@ -23,7 +23,7 @@
   ;; Auto highlight the same word.
   (auto-highlight-symbol-mode t)
 
-  (define-key message-mode-map (kbd "<up>") 'previous-line)
-  (define-key message-mode-map (kbd "<down>") 'next-line)
+  (define-key message-mode-map (kbd "<up>") #'previous-line)
+  (define-key message-mode-map (kbd "<down>") #'next-line)
   )
 (add-hook 'message-mode-hook 'jcs-message-mode-hook)

@@ -17,10 +17,10 @@
 (defun jcs-re-builder-mode-hook ()
   "Mode hook for `RE-Builder-mode'."
 
-  (define-key reb-mode-map (kbd "C-d") 'jcs-kill-whole-line)
-  (define-key reb-mode-map "\C-c\C-c" 'kill-ring-save)
+  (define-key reb-mode-map (kbd "C-d") #'jcs-kill-whole-line)
+  (define-key reb-mode-map "\C-c\C-c" #'kill-ring-save)
 
-  (define-key reb-mode-map "\ek" 'jcs-reb-maybe-kill-this-buffer)
+  (define-key reb-mode-map "\ek" #'jcs-reb-maybe-kill-this-buffer)
   )
 
 (add-hook 'reb-mode-hook 'jcs-re-builder-mode-hook)

@@ -97,39 +97,39 @@
   (jcs-init-web-faces)
 
   ;; jcs web key binding
-  (define-key web-mode-map (kbd "C-d") 'jcs-web-kill-whole-line)
-  (define-key web-mode-map "\C-c\C-c" 'jcs-web-kill-ring-save)
-  (define-key emmet-mode-keymap "\C-c\C-c" 'jcs-web-kill-ring-save)
-  (define-key web-mode-map "\C-v" 'jcs-web-yank)
+  (define-key web-mode-map (kbd "C-d") #'jcs-web-kill-whole-line)
+  (define-key web-mode-map "\C-c\C-c" #'jcs-web-kill-ring-save)
+  (define-key emmet-mode-keymap "\C-c\C-c" #'jcs-web-kill-ring-save)
+  (define-key web-mode-map "\C-v" #'jcs-web-yank)
 
-  (define-key web-mode-map "\C-k\C-f" 'jcs-web-indent-region)
-  (define-key web-mode-map "\C-k\C-d" 'jcs-web-format-document)
-  (define-key web-mode-map (kbd "C-S-f") 'jcs-web-format-region-or-document)
+  (define-key web-mode-map "\C-k\C-f" #'jcs-web-indent-region)
+  (define-key web-mode-map "\C-k\C-d" #'jcs-web-format-document)
+  (define-key web-mode-map (kbd "C-S-f") #'jcs-web-format-region-or-document)
 
-  (define-key web-mode-map [f8] 'jcs-find-corresponding-file)
-  (define-key web-mode-map [S-f8] 'jcs-find-corresponding-file-other-window)
+  (define-key web-mode-map [f8] #'jcs-find-corresponding-file)
+  (define-key web-mode-map [S-f8] #'jcs-find-corresponding-file-other-window)
 
   ;; Edit
-  (define-key web-mode-map (kbd "<up>") 'jcs-web-smart-indent-up)
-  (define-key web-mode-map (kbd "<down>") 'jcs-web-smart-indent-down)
-  (define-key web-mode-map (kbd "<right>") 'jcs-web-right)
-  (define-key web-mode-map (kbd "<left>") 'jcs-web-left)
-  (define-key web-mode-map (kbd "<return>") 'jcs-web-return)
+  (define-key web-mode-map (kbd "<up>") #'jcs-web-smart-indent-up)
+  (define-key web-mode-map (kbd "<down>") #'jcs-web-smart-indent-down)
+  (define-key web-mode-map (kbd "<right>") #'jcs-web-right)
+  (define-key web-mode-map (kbd "<left>") #'jcs-web-left)
+  (define-key web-mode-map (kbd "<return>") #'jcs-web-return)
 
   ;; Save
-  (define-key web-mode-map "\C-s" 'jcs-web-save-buffer)
+  (define-key web-mode-map "\C-s" #'jcs-web-save-buffer)
 
   ;; comment block
-  (define-key web-mode-map (kbd "*") 'jcs-c-comment-pair)
+  (define-key web-mode-map (kbd "*") #'jcs-c-comment-pair)
 
   ;; Shortcuts
-  (define-key web-mode-map (kbd "C-n") 'web-mode-tag-match)
+  (define-key web-mode-map (kbd "C-n") #'web-mode-tag-match)
 
   ;; PHP
-  (define-key web-mode-map [C-backspace] 'jcs-web-backward-delete-word)
-  (define-key web-mode-map (kbd "M-<backspace>") 'jcs-web-backward-delete-word-capital)
-  (define-key emmet-mode-keymap (kbd "M-<left>") 'jcs-backward-capital-char)
-  (define-key emmet-mode-keymap (kbd "M-<right>") 'jcs-forward-capital-char)
+  (define-key web-mode-map [C-backspace] #'jcs-web-backward-delete-word)
+  (define-key web-mode-map (kbd "M-<backspace>") #'jcs-web-backward-delete-word-capital)
+  (define-key emmet-mode-keymap (kbd "M-<left>") #'jcs-backward-capital-char)
+  (define-key emmet-mode-keymap (kbd "M-<right>") #'jcs-forward-capital-char)
 
   (define-key web-mode-map (kbd "DEL") #'jcs-delete-backward-char)
   (define-key web-mode-map (kbd "{") #'jcs-vs-front-curly-bracket-key)
@@ -283,12 +283,12 @@
                             ;; highlight URL and clickable.
                             (goto-address-mode 1)
 
-                            (define-key php-mode-map (kbd "C-]") 'ac-php-find-symbol-at-point)   ; goto define
-                            (define-key php-mode-map (kbd "C-t") 'ac-php-location-stack-back)    ; go back
+                            (define-key php-mode-map (kbd "C-]") #'ac-php-find-symbol-at-point)   ; goto define
+                            (define-key php-mode-map (kbd "C-t") #'ac-php-location-stack-back)    ; go back
 
                             ;; jcs PHP key binding
-                            (define-key php-mode-map (kbd "C-d") 'jcs-kill-whole-line)
-                            (define-key php-mode-map "\C-c\C-c" 'kill-ring-save)
+                            (define-key php-mode-map (kbd "C-d") #'jcs-kill-whole-line)
+                            (define-key php-mode-map "\C-c\C-c" #'kill-ring-save)
                             ))
 
 
@@ -337,20 +337,20 @@
   (jcs-init-css-faces)
 
   ;; jcs web key binding
-  (define-key css-mode-map (kbd "C-d") 'jcs-kill-whole-line)
-  (define-key css-mode-map "\C-c\C-c" 'kill-ring-save)
-  (define-key skewer-css-mode-map "\C-c\C-c" 'kill-ring-save)
+  (define-key css-mode-map (kbd "C-d") #'jcs-kill-whole-line)
+  (define-key css-mode-map "\C-c\C-c" #'kill-ring-save)
+  (define-key skewer-css-mode-map "\C-c\C-c" #'kill-ring-save)
 
   ;; Save
-  (define-key css-mode-map "\C-s" 'jcs-css-save-buffer)
+  (define-key css-mode-map "\C-s" #'jcs-css-save-buffer)
 
   ;; comment block
-  (define-key css-mode-map (kbd "RET") 'jcs-smart-context-line-break)
-  (define-key css-mode-map (kbd "*") 'jcs-c-comment-pair)
+  (define-key css-mode-map (kbd "RET") #'jcs-smart-context-line-break)
+  (define-key css-mode-map (kbd "*") #'jcs-c-comment-pair)
 
   ;; sort attribute in order => `com-css-sort' package.
-  (define-key css-mode-map "\C-ks" 'com-css-sort-attributes-block)
-  (define-key css-mode-map "\C-kd" 'com-css-sort-attributes-document)
+  (define-key css-mode-map "\C-ks" #'com-css-sort-attributes-block)
+  (define-key css-mode-map "\C-kd" #'com-css-sort-attributes-document)
   )
 (add-hook 'css-mode-hook  'jcs-css-mode-hook)
 (add-hook 'css-mode-hook 'emmet-mode)

@@ -40,12 +40,12 @@
         )
 
   ;; jcs vim mode key binding
-  (define-key vimrc-mode-map (kbd "C-d") 'jcs-kill-whole-line)
-  (define-key vimrc-mode-map "\C-c\C-c" 'kill-ring-save)
-  (define-key vimrc-mode-map "\C-a" 'mark-whole-buffer)
+  (define-key vimrc-mode-map (kbd "C-d") #'jcs-kill-whole-line)
+  (define-key vimrc-mode-map "\C-c\C-c" #'kill-ring-save)
+  (define-key vimrc-mode-map "\C-a" #'mark-whole-buffer)
 
-  (define-key vimrc-mode-map (kbd "<up>") 'jcs-previous-line)
-  (define-key vimrc-mode-map (kbd "<down>") 'jcs-next-line)
+  (define-key vimrc-mode-map (kbd "<up>") #'jcs-previous-line)
+  (define-key vimrc-mode-map (kbd "<down>") #'jcs-next-line)
   )
 (add-hook 'vimrc-mode-hook 'jcs-vim-mode-hook)
 
