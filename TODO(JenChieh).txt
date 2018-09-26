@@ -8,4 +8,3 @@
 
 
 //-- General --//
-* Refactor code, and get rid of unused interactive function.
