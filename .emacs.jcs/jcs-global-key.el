@@ -159,9 +159,9 @@
 (define-key undo-tree-map (kbd "C-/") #'jcs-comment-uncomment-region-or-line)
 
 ;;; Text Scale.
-(define-key global-map "\e=" #'text-scale-increase)
-(define-key global-map "\e-" #'text-scale-decrease)
-(define-key auto-highlight-symbol-mode-map "\e-" #'text-scale-decrease)
+(define-key global-map "\e=" #'jcs-text-scale-increase)
+(define-key global-map "\e-" #'jcs-text-scale-decrease)
+(define-key auto-highlight-symbol-mode-map "\e-" #'jcs-text-scale-decrease)
 
 ;;; Mode toggle
 ;;(define-key global-map "\e`" #'jcs-insert-command-mode-toggle)
