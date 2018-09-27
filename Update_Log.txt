@@ -7,6 +7,10 @@
 # ========================================================================
 
 
+2018-09-27
+* Change the `default-directory' variable when compiling a script 
+ to the directory the current script is currently at. (jcs-emacs-init)
+
 2018-09-26
 * Implement the following three util functions.. (jcs-emacs-init)
    => jcs-current-whitespace-p
