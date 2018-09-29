@@ -7,6 +7,11 @@
 # ========================================================================
 
 
+2018-09-29
+* Add more face to fixme mode list. (jcs-emacs-init)
+* Move face settings to jcs-face.el. (jcs-emacs-init)
+* Load fixedme face after all initialize, so we cover all the faces. (jcs-emacs-init)
+
 2018-09-27
 * Change the `default-directory' variable when compiling a script 
  to the directory the current script is currently at. (jcs-emacs-init)
