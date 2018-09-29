@@ -7,6 +7,149 @@
 ;;                   Copyright © 2017 by Shen, Jen-Chieh $
 ;; ========================================================================
 
+;;----------------------------------------------
+;; Fixme Faces
+;;----------------------------------------------
+
+;; Bright-red TODOs
+(defvar jcs-fixme-modes '(actionscript-mode
+                          bat-mode
+                          cc-mode
+                          c-mode
+                          c++-mode
+                          cobol-mode
+                          cmake-mode
+                          csharp-mode
+                          css-mode
+                          emacs-lisp-mode
+                          emmet-mode
+                          go-mode
+                          haskell-mode
+                          haxe-mode
+                          jdee-mode
+                          js2-mode
+                          lua-mode
+                          nasm-mode
+                          org-mode
+                          perl-mode
+                          php-mode
+                          python-mode
+                          scala-mode
+                          sh-mode
+                          vimrc-mode
+                          web-mode
+                          ))
+
+;; List of color: https://alexschroeder.ch/geocities/kensanata/colors.html
+(defface jcs-font-lock-fixme-face
+  '((t (:foreground "red" :underline t :weight bold)))
+  "Highlight word 'TODO'.")
+(defvar jcs-font-lock-fixme-face 'jcs-font-lock-fixme-face)
+
+(defface jcs-font-lock-attention-face
+  '((t (:foreground "red" :underline t :weight bold)))
+  "Highlight word 'ATTENTION'.")
+(defvar jcs-font-lock-attention-face 'jcs-font-lock-attention-face)
+
+(defface jcs-font-lock-study-face
+  '((t (:foreground "yellow" :underline t :weight bold)))
+  "Highlight word 'STUDY'.")
+(defvar jcs-font-lock-study-face 'jcs-font-lock-study-face)
+
+(defface jcs-font-lock-important-face
+  '((t (:foreground "yellow" :underline t :weight bold)))
+  "Highlight word 'IMPORTANT'.")
+(defvar jcs-font-lock-important-face 'jcs-font-lock-important-face)
+
+(defface jcs-font-lock-caution-face
+  '((t (:foreground "yellow" :underline t :weight bold)))
+  "Highlight word 'CAUTION'.")
+(defvar jcs-font-lock-caution-face 'jcs-font-lock-caution-face)
+
+(defface jcs-font-lock-optimize-face
+  '((t (:foreground "yellow" :underline t :weight bold)))
+  "Highlight word 'OPTIMIZE'.")
+(defvar jcs-font-lock-optimize-face 'jcs-font-lock-optimize-face)
+
+(defface jcs-font-lock-note-face
+  '((t (:foreground "dark green" :underline t :weight bold)))
+  "Highlight word 'NOTE'.")
+(defvar jcs-font-lock-note-face 'jcs-font-lock-note-face)
+
+(defface jcs-font-lock-description-face
+  '((t (:foreground "dark green" :underline t :weight bold)))
+  "Highlight word 'DESCRIPTION'.")
+(defvar jcs-font-lock-description-face 'jcs-font-lock-description-face)
+
+(defface jcs-font-lock-tag-face
+  '((t (:foreground "dark green" :underline t :weight bold)))
+  "Highlight word 'TAG'.")
+(defvar jcs-font-lock-tag-face 'jcs-font-lock-tag-face)
+
+(defface jcs-font-lock-debugging-face
+  '((t (:foreground "turquoise" :underline t :weight bold)))
+  "Highlight word 'DEBUGGING'.")
+(defvar jcs-font-lock-debugging-face 'jcs-font-lock-debugging-face)
+
+(defface jcs-font-lock-temporary-face
+  '((t (:foreground "turquoise" :underline t :weight bold)))
+  "Highlight word 'TEMPORARY'.")
+(defvar jcs-font-lock-temporary-face 'jcs-font-lock-temporary-face)
+
+(defface jcs-font-lock-source-face
+  '((t (:foreground "PaleTurquoise2" :underline t :weight bold)))
+  "Highlight word 'SOURCE'.")
+(defvar jcs-font-lock-source-face 'jcs-font-lock-source-face)
+
+(defface jcs-font-lock-url-face
+  '((t (:foreground "PaleTurquoise2" :underline t :weight bold)))
+  "Highlight word 'URL'.")
+(defvar jcs-font-lock-url-face 'jcs-font-lock-url-face)
+
+(defface jcs-font-lock-idea-face
+  '((t (:foreground "green yellow" :underline t :weight bold)))
+  "Highlight word 'IDEA'.")
+(defvar jcs-font-lock-idea-face 'jcs-font-lock-idea-face)
+
+(defface jcs-font-lock-obsolete-face
+  '((t (:foreground "DarkOrange3" :underline t :weight bold)))
+  "Highlight word 'OBSOLETE'.")
+(defvar jcs-font-lock-obsolete-face 'jcs-font-lock-obsolete-face)
+
+(defface jcs-font-lock-deprecated-face
+  '((t (:foreground "DarkOrange3" :underline t :weight bold)))
+  "Highlight word 'DEPRECATED'.")
+(defvar jcs-font-lock-deprecated-face 'jcs-font-lock-deprecated-face)
+
+(defface jcs-font-lock-topic-face
+  '((t (:foreground "slate blue" :underline t :weight bold)))
+  "Highlight word 'TOPIC'.")
+(defvar jcs-font-lock-topic-face 'jcs-font-lock-topic-face)
+
+(defface jcs-font-lock-see-face
+  '((t (:foreground "slate blue" :underline t :weight bold)))
+  "Highlight word 'SEE'.")
+(defvar jcs-font-lock-see-face 'jcs-font-lock-see-face)
+
+(defface jcs-font-lock-option-face
+  '((t (:foreground "dark green" :underline t :weight bold)))
+  "Highlight word 'OPTION'.")
+(defvar jcs-font-lock-option-face 'jcs-font-lock-option-face)
+
+(defface jcs-font-lock-or-face
+  '((t (:foreground "green yellow" :underline t :weight bold)))
+  "Highlight word 'OR'.")
+(defvar jcs-font-lock-or-face 'jcs-font-lock-or-face)
+
+(defface jcs-font-lock-key-highlight-face
+  '((t (:foreground "#38EFCA")))
+  "Highlight word between ` and ' word.")
+(defvar jcs-font-lock-key-highlight-face 'jcs-font-lock-key-highlight-face)
+
+
+;;----------------------------------------------
+;; Regular Faces
+;;----------------------------------------------
 
 (defface jcs-font-lock-comment-face
   '((t (:foreground "olive drab")))
