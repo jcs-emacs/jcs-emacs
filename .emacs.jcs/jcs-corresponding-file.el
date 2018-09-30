@@ -100,5 +100,9 @@
              (setq corresponding-file-name (concat tmp-base-file-name ".aspx.cs"))))
           )
 
+    ;; NOTE(jenchieh): If is ASP.NET, just open the current file itself.
+    (when (string= corresponding-file-name "")
+      (setq corresponding-file-name buffer-file-name))
+
     ;; Return file name.
     corresponding-file-name))
