@@ -26,7 +26,7 @@
     (setq current-file-buffer (get-buffer BaseFileNameWithExtension)))
 
   (let ((displayed-frame-count 0))
-    (dolist (buf  (buffer-in-window-list))
+    (dolist (buf  (jcs-buffer-in-window-list))
       (ignore-errors
         (if (eq buf current-file-buffer)
             ;; increment plus 1

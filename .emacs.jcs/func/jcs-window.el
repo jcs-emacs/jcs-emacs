@@ -30,9 +30,9 @@ Because sometime first time switching the buffer would not success."
   "Jump to window if the window is currently shown in the window.
 BUFFER-NAME : buffer name."
   (interactive "bEnter buffer to jump to: ")
-  (let ((visible-buffers (mapcar '(lambda (window) (buffer-name (window-buffer window))) (window-list)))
+  (let ((jcs-visible-buffers (mapcar '(lambda (window) (buffer-name (window-buffer window))) (window-list)))
         window-of-buffer)
-    (if (not (member buffer-name visible-buffers))
+    (if (not (member buffer-name jcs-visible-buffers))
         (error "'%s' does not have visible window" buffer-name)
       (setq window-of-buffer
             (delq nil (mapcar '(lambda (window)
