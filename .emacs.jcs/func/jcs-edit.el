@@ -665,7 +665,7 @@ file-project.el' plugin."
       (beginning-of-line)))
 
 ;;;###autoload
-(defun beginning-of-line-or-indentation ()
+(defun jcs-beginning-of-line-or-indentation ()
   "move to beginning of line, or indentation
 
 If you rather it go to beginning-of-line
@@ -720,14 +720,14 @@ this version instead."
 ;;----------------------------------------------
 
 ;;;###autoload
-(defun switch-to-previous-buffer ()
+(defun jcs-switch-to-previous-buffer ()
   "Switch to previously open buffer.
 Repeated invocations toggle between the two most recently open buffers."
   (interactive)
   (switch-to-buffer (other-buffer (current-buffer) 1)))
 
 ;;;###autoload
-(defun visible-buffers (buffers)
+(defun jcs-visible-buffers (buffers)
   "given a list of buffers, return buffers which are currently
 visible"
   (remove nil
@@ -737,7 +737,7 @@ visible"
            buffers)))
 
 ;;;###autoload
-(defun not-visible-buffers (buffers)
+(defun jcs-not-visible-buffers (buffers)
   "given a list of buffers, return buffers which are not currently
 visible"
   (remove nil
@@ -746,8 +746,7 @@ visible"
               (unless (get-buffer-window-list buf) buf))
            buffers)))
 
-;;;###autoload
-(defun buffer-in-window-list ()
+(defun jcs-buffer-in-window-list ()
   "TOPIC(jenchieh): Show all open buffers in Emacs
 SOURCE(jenchieh): http://stackoverflow.com/questions/12186713/show-all-open-buffers-in-emacs
 "
@@ -756,6 +755,33 @@ SOURCE(jenchieh): http://stackoverflow.com/questions/12186713/show-all-open-buff
      (lambda (window)
        (push (window-buffer window) buffers)) t t)
     buffers))
+
+(defun jcs-count-frames ()
+  "Total frame count."
+  (save-selected-window
+    (let ((first (frame-first-window))
+          (count 1))
+      (when (eq (get-buffer-window) first)
+        (call-interactively 'jcs-other-window-next))
+
+      (while (not (eq (get-buffer-window) first))
+        (call-interactively 'jcs-other-window-next)
+        (setq count (+ count 1)))
+      count)))
+
+(defun jcs-buffer-visible-list ()
+  "List of buffer that current visible in frame."
+  (save-selected-window
+    (let ((win-len (jcs-count-frames))
+          (index 0)
+          (buffers '()))
+      (while (> win-len index)
+        (push (buffer-name) buffers)
+
+        (call-interactively 'jcs-other-window-next)
+
+        (setq index (+ index 1)))
+      buffers)))
 
 (defun jcs-in-window-list (buf)
   "Check if buffer open in window list.
@@ -786,7 +812,7 @@ False: return nil."
   ;; If still in the buffer menu, try switch to the
   ;; previous buffer
   (when (jcs-is-current-major-mode-p "Buffer-menu-mode")
-    (switch-to-previous-buffer)))
+    (jcs-switch-to-previous-buffer)))
 
 ;;;###autoload
 (defun jcs-maybe-kill-this-buffer ()
@@ -794,24 +820,20 @@ False: return nil."
 switch to the previous buffer."
   (interactive)
   ;; SOURCE(jenchieh): https://emacs.stackexchange.com/questions/2888/kill-buffer-when-frame-is-deleted/2915#2915
-
-  (ignore-errors
-    (setq BaseFileNameWithExtension (file-name-nondirectory buffer-file-name))
-    (setq current-file-buffer (get-buffer BaseFileNameWithExtension)))
-
   (let ((displayed-frame-count 0))
-    (dolist (buf (buffer-in-window-list))
+    (dolist (buf (jcs-buffer-visible-list))
       (ignore-errors
-        (if (eq buf current-file-buffer)
-            ;; increment plus 1
-            (setq displayed-frame-count (+ displayed-frame-count 1)))))
+        (if (string= buf (buffer-name))
+            (progn
+              ;; increment plus 1
+              (setq displayed-frame-count (+ displayed-frame-count 1))))))
     (if (or (>= displayed-frame-count 2)
             ;; NOTE(jenchieh): If you don't want `*Buffer-List*'
             ;; window open in at least two window and get killed
             ;; at the same time. Enable the line under.
             ;;(jcs-is-current-major-mode-p "Buffer-menu-mode")
             )
-        (switch-to-previous-buffer)
+        (jcs-switch-to-previous-buffer)
       (jcs-kill-this-buffer))))
 
 ;;----------------------------------------------
