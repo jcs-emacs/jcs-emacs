@@ -7,6 +7,11 @@
 # ========================================================================
 
 
+2018-10-01
+* Add jcs-count-frames function for multiple window's frame count. (jcs-emacs-init)
+* Fixed maybe kill this buffer function with the same file name 
+ but different directory issue. (jcs-emacs-init)
+
 2018-09-29
 * Add more face to fixme mode list. (jcs-emacs-init)
 * Move face settings to jcs-face.el. (jcs-emacs-init)
