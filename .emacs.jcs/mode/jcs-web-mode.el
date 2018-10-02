@@ -125,6 +125,9 @@
   ;; Shortcuts
   (define-key web-mode-map (kbd "C-n") #'web-mode-tag-match)
 
+  ;; URL
+  (define-key emmet-mode-keymap (kbd "C-<return>") #'jcs-emmet-expand-line)
+
   ;; PHP
   (define-key web-mode-map [C-backspace] #'jcs-web-backward-delete-word)
   (define-key web-mode-map (kbd "M-<backspace>") #'jcs-web-backward-delete-word-capital)
