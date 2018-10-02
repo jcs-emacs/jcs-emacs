@@ -113,7 +113,7 @@ This will no longer overwrite usual Emacs' undo key."
                 (when jcs-undo-tree-auto-show-diff
                   (undo-tree-visualizer-toggle-diff))
                 (global-linum-mode t))))))
-    (call-interactively 'undo)))
+    (call-interactively #'undo)))
 
 ;;;###autoload
 (defun jcs-redo ()
@@ -144,7 +144,7 @@ This will no longer overwrite usual Emacs' undo key."
                   (undo-tree-visualizer-toggle-diff))
                 (global-linum-mode t))))))
     ;; In Emacs, undo/redo is the same thing.
-    (call-interactively 'redo)))
+    (call-interactively #'redo)))
 
 ;;----------------------------------------------
 ;; Tab
@@ -162,7 +162,7 @@ This will no longer overwrite usual Emacs' undo key."
         (jcs-insert-spaces-by-tab-width))
     (progn
       ;; NOTE(jenchieh): Default tab function put here..
-      (call-interactively 'dabbrev-expand))))
+      (call-interactively #'dabbrev-expand))))
 
 ;;----------------------------------------------
 ;; Overwrite (Insert toggle)
@@ -372,9 +372,9 @@ frame, so it do not goto the beginning of the line."
 
   (if (use-region-p)
       (progn
-        (call-interactively 'indent-region))
+        (call-interactively #'indent-region))
     (progn
-      (call-interactively 'jcs-format-document))))
+      (call-interactively #'jcs-format-document))))
 
 ;;;###autoload
 (defun jcs-align-region-by-points (regexp pnt-min pnt-max)
@@ -762,10 +762,10 @@ SOURCE(jenchieh): http://stackoverflow.com/questions/12186713/show-all-open-buff
     (let ((first (frame-first-window))
           (count 1))
       (when (eq (get-buffer-window) first)
-        (call-interactively 'jcs-other-window-next))
+        (call-interactively #'jcs-other-window-next))
 
       (while (not (eq (get-buffer-window) first))
-        (call-interactively 'jcs-other-window-next)
+        (call-interactively #'jcs-other-window-next)
         (setq count (+ count 1)))
       count)))
 
@@ -778,7 +778,7 @@ SOURCE(jenchieh): http://stackoverflow.com/questions/12186713/show-all-open-buff
       (while (> win-len index)
         (push (buffer-name) buffers)
 
-        (call-interactively 'jcs-other-window-next)
+        (call-interactively #'jcs-other-window-next)
 
         (setq index (+ index 1)))
       buffers)))
