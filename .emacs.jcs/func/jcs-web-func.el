@@ -514,3 +514,14 @@ line by line instead of indent the whole file at once."
       (dolist (tmp-element jcs-web-mode-offsetless-elements-toggle)
         (setq web-mode-offsetless-elements (remove tmp-element web-mode-offsetless-elements)))
       (put 'jcs-toggle-web-mode-offsetless-elements 'state t))))
+
+;;-----------------------------------------------------------
+;;-----------------------------------------------------------
+
+;;;###autoload
+(defun jcs-emmet-expand-line ()
+  "Wrapper to JayCeS's version of `emmet-expand-line' function."
+  (interactive)
+  (if (jcs-is-current-point-face "link")
+      (call-interactively #'goto-address-at-point)
+    (call-interactively #'emmet-expand-line)))
