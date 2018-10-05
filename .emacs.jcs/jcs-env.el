@@ -266,3 +266,7 @@
 ;; NOTE(jenchieh): turn on highlight matching brackets
 ;; when cursor is on one
 (show-paren-mode t)
+
+;;; Recent files
+(recentf-mode 1)
+(setq recentf-max-menu-items 25)
