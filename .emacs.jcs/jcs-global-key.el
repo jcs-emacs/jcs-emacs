@@ -232,6 +232,9 @@
 ;;; Open Log file.
 (define-key global-map "\C-u" #'jcs-open-project-update-log-file)
 
+;;; Recent Files
+(define-key global-map (kbd "C-r f") #'recentf-open-files)
+
 ;;; switch line-ending key
 (define-key global-map "\C-x\C-e" #'set-buffer-file-coding-system)
 
@@ -368,6 +371,9 @@ the key everytime the mode changes."
 
   ;; Replace
   (define-key global-map (kbd "C-r C-r") #'iedit-mode)
+
+  ;; Recent Files
+  (define-key global-map (kbd "C-r f") #'recentf-open-files)
 
   ;; Kill Buffer
   (define-key global-map (kbd "C-r DEL") #'jcs-backward-delete-current-char-repeat)
