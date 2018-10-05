@@ -61,7 +61,7 @@ C-r C-r         Rename the whole text with the same name.
 C-x h           mark whole buffer (Select All)
 C-a             mark whole buffer (Select All)
 
-ALT-]           Run the program (run.linux/run.bat/run.mac)
+M-]             Run the program (run.linux/run.bat/run.mac)
 C-<f5>          Run the program (run.linux/run.bat/run.mac)
 
 C-S-b           Build the program (build.linux/build.bat/build.mac)
@@ -145,7 +145,7 @@ C-h h           Toggle window split between horizontal and
 
 C-w e           Toggle enlarge current selected window.
 				
-ALT-p           Open list of processes. (`list-processes')
+M-p             Open list of processes. (`list-processes')
 
 M-up            Move current line up.
 M-down          Move current line down.
@@ -164,6 +164,8 @@ C-return        Binds to `jcs-ctrl-return-key'. If follows the list
                   (2) custom-abbrev-complete-word
 
 C-r o           Read-Only mode toggle.
+
+C-r f           Open recent files.
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * Magit
@@ -328,21 +330,21 @@ C-c C-c         In the mail buffer, send the message and bury
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * Navigate File
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-ALT-(           Search forward next open parenthesis.
-ALT-)           Search backward next close parenthesis.
-ALT-[           Search forward next open square parenthesis.
-ALT-]           Search backward next close square parenthesis.
-ALT-{           Search forward next open curly parenthesis.
-ALT-}           Search backward next close curly parenthesis.
+M-(             Search forward next open parenthesis.
+M-)             Search backward next close parenthesis.
+M-[             Search forward next open square parenthesis.
+M-]             Search backward next close square parenthesis.
+M-{             Search forward next open curly parenthesis.
+M-}             Search backward next close curly parenthesis.
 
-ALT-;           Search forward next '. (single quotation mark)
-ALT-'           Search backward next '. (single quotation mark)
+M-;             Search forward next '. (single quotation mark)
+M-'             Search backward next '. (single quotation mark)
 
-ALT-Shift-;     Search forward next ". (double quotation mark)
-ALT-Shift-'     Search backward next ". (double quotation mark)
+M-Shift-;       Search forward next ". (double quotation mark)
+M-Shift-'       Search backward next ". (double quotation mark)
 
-ALT->           Search forward next >. (Greater than sign)
-ALT-<           Search backward next <. (Less than sign)
+M->             Search forward next >. (Greater than sign)
+M-<             Search backward next <. (Less than sign)
 
 M-S-<right>     Search forward at current point.
 M-S-<left>      Search backward at current point.
