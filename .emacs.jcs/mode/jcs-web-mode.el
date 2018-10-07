@@ -114,7 +114,6 @@
   (define-key web-mode-map (kbd "<down>") #'jcs-web-smart-indent-down)
   (define-key web-mode-map (kbd "<right>") #'jcs-web-right)
   (define-key web-mode-map (kbd "<left>") #'jcs-web-left)
-  (define-key web-mode-map (kbd "<return>") #'jcs-web-return)
 
   ;; Save
   (define-key web-mode-map "\C-s" #'jcs-web-save-buffer)
