@@ -1,5 +1,5 @@
 # ========================================================================
-# $File: emacs_save_info_func.txt $
+# $File: save_info_func.txt $
 # $Date: 2018-01-18 13:47:24 $
 # $Revision: $
 # $Creator: Jen-Chieh Shen $
