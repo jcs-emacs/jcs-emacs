@@ -519,8 +519,9 @@ LN : line number."
 
 ;;;###autoload
 (defun jcs-print-current-line ()
+  "Print out the current line.  (For testing purpose)"
   (interactive)
-  (jcs-log "Current Line: %s" (jcs-get-current-line-string)))
+  (message "Current line: %s" (jcs-get-current-line-string)))
 
 (defun jcs-is-current-line (line)
   "Is current line number this line?
