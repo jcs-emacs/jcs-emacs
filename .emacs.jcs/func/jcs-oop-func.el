@@ -28,22 +28,6 @@
                                   web-mode)
   "Modes to add OOP document comment style.")
 
-(defface jcs-oop-tag-face
-  '((t (:foreground "#38EFCA")))
-  "Highlight OOP tag.")
-(defvar jcs-oop-tag-face 'jcs-oop-tag-face)
-
-(defface jcs-oop-type-face
-  '((t (:foreground "SteelBlue")))
-  "Highlight OOP type.")
-(defvar jcs-oop-type-face 'jcs-oop-type-face)
-
-(defface jcs-oop-value-face
-  '((t (:foreground "LightCoral")))
-  "Highlight OOP value.")
-(defvar jcs-oop-value-face 'jcs-oop-value-face)
-
-
 ;; STUDY(jenchieh): https://stackoverflow.com/questions/5073930/how-to-color-at-symbol-in-emacs
 (mapc (lambda (mode)
         (font-lock-add-keywords
