@@ -11,6 +11,9 @@
 * Improve enable/disable truncate lines mode. (jcs-emacs-init)
 * Remove web return key, seems like we no longer need this key 
  function anymore. (jcs-emacs-init)
+* Rename, remove emacs prefix to all doc. (jcs-emacs-init)
+* Add Emacs' syntax table document. (jcs-emacs-init)
+* Add Emacs' regular expression document. (jcs-emacs-init)
 
 2018-10-05
 * Add recentf-file mode environment settings => jcs-env.el. (jcs-emacs-init)
