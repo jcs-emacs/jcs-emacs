@@ -108,13 +108,15 @@
 (defun jcs-enable-truncate-lines ()
   "Enable truncate lines."
   (interactive)
-  (setq truncate-lines t))
+  (when (equal truncate-lines nil)
+    (toggle-truncate-lines)))
 
 ;;;###autoload
 (defun jcs-disable-truncate-lines ()
   "Disable truncate lines."
   (interactive)
-  (setq truncate-lines nil))
+  (when (equal truncate-lines t)
+    (toggle-truncate-lines)))
 
 ;;---------------------------------------------
 ;; Text Scale
