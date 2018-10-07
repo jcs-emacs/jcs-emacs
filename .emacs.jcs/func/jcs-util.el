@@ -477,7 +477,7 @@ LN : line number."
     (unless (equal ln nil)
       (goto-line ln))
     (beginning-of-line)
-    (point)))
+    (point)))
 
 (defun jcs-get-end-of-line-point (&optional ln)
   "Return point at end of current line.
@@ -516,6 +516,11 @@ LN : line number."
 (defun jcs-get-current-line-string ()
   "Get the current line as string."
   (format-mode-line "%l"))
+
+;;;###autoload
+(defun jcs-print-current-line ()
+  (interactive)
+  (jcs-log "Current Line: %s" (jcs-get-current-line-string)))
 
 (defun jcs-is-current-line (line)
   "Is current line number this line?
@@ -736,11 +741,10 @@ IN-FACE : input face name as string."
 (defun jcs-is-default-face-p ()
   "Return non-nil, if is default face.
 Return nil, if not default face."
-  (and (= (length (jcs-get-current-point-face)) 1)
-       (or
-        ;; STUDY(jenchieh): nil means `default' face, I guess.
-        (jcs-is-current-point-face "nil")
-        (jcs-is-current-point-face "hl-line"))))
+  (or (= (length (jcs-get-current-point-face)) 0)
+      (and
+       (= (length (jcs-get-current-point-face)) 1)
+       (jcs-is-current-point-face "hl-line"))))
 
 ;;---------------------------------------------
 ;; Font
