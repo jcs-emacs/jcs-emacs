@@ -16,13 +16,6 @@
 ;; Web Comment Face
 ;;----------------------------------------------
 
-(defface jcs-web-mode-block-comment-face
-  '((t (:inherit 'jcs-font-lock-comment-face :background "#000000")))
-  "Web mode block comment face with dark background."
-  :group 'jcs-web-faces)
-(defvar jcs-web-mode-block-comment-face 'jcs-web-mode-block-comment-face)
-
-
 (defvar jcs-web-type-comment-missing-modes '(web-mode)
   "Modes that does not apply comment in ASP.NET (Razor v3) Syntax.")
 
@@ -387,46 +380,56 @@ line by line instead of indent the whole file at once."
 ;; CSS
 ;;---------------------------------------------
 
+;;;###autoload
+(defun jcs-css-smart-indent-up ()
+  "CSS smart indent up."
+  (interactive)
+  (jcs-previous-line)
+  (save-excursion
+    (indent-for-tab-command))
+
+  (when (jcs-current-line-empty-p)
+    (end-of-line)))
+
+;;;###autoload
+(defun jcs-css-smart-indent-down ()
+  "CSS smart indent down."
+  (interactive)
+  (jcs-next-line)
+  (save-excursion
+    (indent-for-tab-command))
+
+  (when (jcs-current-line-empty-p)
+    (end-of-line)))
+
+;;;###autoload
+(defun jcs-css-return-key ()
+  "CSS return key."
+  (interactive)
+  (if (jcs-is-end-of-line-p)
+      (call-interactively #'jcs-smart-context-line-break)
+    (progn
+      (save-excursion
+        (newline-and-indent))
+      (forward-char 1))))
+
 (defun jcs-init-css-faces ()
   "CSS Faces Highlighting."
 
-  ;; ==================
-  ;;    Type Face
-  ;; -----------------
-  (defface jcs-css-type-face
-    '((t (:foreground "#38EFCA")))
-    "Highlight CSS value.")
-  (defvar jcs-css-type-face 'jcs-css-type-face)
-
-  (defvar jcs-css-type-modes '(css-mode)
-    "CSS mode we want to add it to highlight the type face.")
+  (defvar jcs-css-modes '(css-mode)
+    "CSS mode we want to add it to highlight the face.")
 
   (mapc (lambda (mode)
           (font-lock-add-keywords
            mode
            '(("^[ \t]*\\([a-z0-9_-]*\\)[ \t]*:" 1 'jcs-css-type-face t)
-             )'end))
-        jcs-css-type-modes)
-
-  ;; ==================
-  ;;    Value Face
-  ;; -----------------
-  (defface jcs-css-value-face
-    '((t (:foreground "#D2D2D2")))
-    "Highlight CSS value.")
-  (defvar jcs-css-value-face 'jcs-css-value-face)
-
-  (defvar jcs-css-value-modes '(css-mode)
-    "CSS mode we want to add it to highlight the value face.")
-
-  (mapc (lambda (mode)
-          (font-lock-add-keywords
-           mode
-           '(("[ \t]*:[ \t]*\\(.*\\)[ \t]*;" 1 'jcs-css-value-face t)
+             ("[ \t]*:[ \t]*\\(.*\\)[ \t]*;" 1 'jcs-css-value-face t)
              ;; Comment overwrite value face.
              ("\\(/\\*[a-zA-Z0-9 \n\t-.<>?,*'`@\"=_(){}:;&^%$#!~]*\\*/\\)" 1 'jcs-font-lock-comment-face t)
+             ("[#]\\([a-z-A-Z0-9]*\\)[a-zA-Z0-9 \t>+~:]*[\n{]" 1 'jcs-css-id-face)
+             ("[.]\\([a-z-A-Z0-9]*\\)[a-zA-Z0-9 \t>+~:]*[\n{]" 1 'jcs-css-class-face)
              )'end))
-        jcs-css-value-modes)
+        jcs-css-modes)
 
   ;; Other faces.
   (setq-local font-lock-function-name-face '(:foreground "#17A0FB"))
@@ -434,12 +437,6 @@ line by line instead of indent the whole file at once."
 
 (defun jcs-init-web-faces ()
   "Initialize Web mode Faces Highlihgting."
-
-  (defface jcs-web-mode-html-attr-value-face
-    '((t (:foreground "olive drab")))
-    "Highlight HTML value.")
-  (defvar jcs-web-mode-html-attr-value-face 'jcs-web-mode-html-attr-value-face)
-
   (face-remap-add-relative 'web-mode-block-string-face '(jcs-font-lock-string-face))
   (face-remap-add-relative 'web-mode-html-attr-value-face '(jcs-web-mode-html-attr-value-face)))
 
