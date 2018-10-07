@@ -193,3 +193,60 @@
            ("\\(--[a-zA-Z0-9\t -.<>?,*'`@\"=_(){}:;&^%$#!~©]*\\)" 1 'jcs-double-dash-comment-face t)
            )'end))
       jcs-double-dash-comment-missing-modes)
+
+
+;;----------------------------------------------
+;; Object Oriented Programming
+;;----------------------------------------------
+
+(defface jcs-oop-tag-face
+  '((t (:foreground "#38EFCA")))
+  "Highlight OOP tag.")
+(defvar jcs-oop-tag-face 'jcs-oop-tag-face)
+
+(defface jcs-oop-type-face
+  '((t (:foreground "SteelBlue")))
+  "Highlight OOP type.")
+(defvar jcs-oop-type-face 'jcs-oop-type-face)
+
+(defface jcs-oop-value-face
+  '((t (:foreground "LightCoral")))
+  "Highlight OOP value.")
+(defvar jcs-oop-value-face 'jcs-oop-value-face)
+
+
+;;----------------------------------------------
+;; Web
+;;----------------------------------------------
+
+(defface jcs-web-mode-block-comment-face
+  '((t (:inherit 'jcs-font-lock-comment-face :background "#000000")))
+  "Web mode block comment face with dark background."
+  :group 'jcs-web-faces)
+(defvar jcs-web-mode-block-comment-face 'jcs-web-mode-block-comment-face)
+
+(defface jcs-web-mode-html-attr-value-face
+  '((t (:foreground "olive drab")))
+  "Highlight HTML value.")
+(defvar jcs-web-mode-html-attr-value-face 'jcs-web-mode-html-attr-value-face)
+
+
+(defface jcs-css-type-face
+  '((t (:foreground "#38EFCA")))
+  "Highlight CSS value.")
+(defvar jcs-css-type-face 'jcs-css-type-face)
+
+(defface jcs-css-value-face
+  '((t (:foreground "#D2D2D2")))
+  "Highlight CSS value.")
+(defvar jcs-css-value-face 'jcs-css-value-face)
+
+(defface jcs-css-id-face
+  '((t (:foreground "#D68974")))
+  "Highlight CSS id.")
+(defvar jcs-css-id-face 'jcs-css-id-face)
+
+(defface jcs-css-class-face
+  '((t (:foreground "#FAD42D")))
+  "Highlight CSS class.")
+(defvar jcs-css-class-face 'jcs-css-class-face)
