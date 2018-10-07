@@ -61,21 +61,9 @@
 cursor currently on."
   (interactive)
   (save-excursion
-    (when (not (jcs-current-line-empty-p))
-      ;; NOTE(jenchieh): When cursor is at the end of
-      ;; line, the face will always be `default' face.
-      ;; Which mean this will always be mis-detected,
-      ;; we fixed this by just backward a character.
-      ;;
-      ;; Forward a char if is at the end of line.
-      (when (or
-             (jcs-is-default-face-p)
-             ;; If current charact is either space or tab.
-             (jcs-current-char-string-match-p "[ \t]"))
-        (jcs-goto-first-char-in-line)
-        (forward-char 1))
-
-      (if (jcs-is-default-face-p)
+    (when (not (jcs-current-char-string-match-p "[ \t]"))
+      (if (and (jcs-is-default-face-p)
+               (not (jcs-current-char-string-match-p "[\n><]")))
           (jcs-disable-truncate-lines)
         (jcs-enable-truncate-lines)))))
 
@@ -334,49 +322,6 @@ line by line instead of indent the whole file at once."
   ;; Check if do truncate lines?
   (when jcs-web-auto-truncate-lines
     (jcs-web-truncate-lines-by-face)))
-
-;;;###autoload
-(defun jcs-web-return ()
-  "Return key for `web-mode'."
-  (interactive)
-
-  (let (;; NOTE(jenchieh): Disable auto truncate lines effect
-        ;; before save.
-        (jcs-web-auto-truncate-lines nil)
-        ;; NOTE(jenchieh): check if need a line between a pair.
-        (line-between-pair nil)
-        ;; NOTE(jenchieh): column before and after column.
-        (line-before-column -1)
-        (line-after-column -1))
-    (save-excursion
-      (ignore-errors
-        (when (and (jcs-first-backward-char-in-line-p ">")
-                   (jcs-first-forward-char-in-line-p "<"))
-          (setq line-between-pair t))))
-
-    ;; Get column before we do line break.
-    (save-excursion
-      (jcs-goto-first-char-in-line)
-      (setq line-before-column (current-column)))
-
-    ;; Call defulat line break function first.
-    (jcs-smart-context-line-break)
-
-    ;; Get column after line break and indent correctly.
-    (save-excursion
-      (jcs-goto-first-char-in-line)
-      (setq line-after-column (current-column)))
-
-    (when (and
-           ;; Check if need a line between a pair tag.
-           line-between-pair
-           ;; Check if they tag are the same level.
-           (= line-before-column line-after-column))
-      ;; Fix curly bracket not indent correctly.
-      (jcs-smart-context-line-break)
-      (jcs-web-smart-indent-down)
-      (jcs-web-smart-indent-up)
-      (jcs-web-smart-indent-up))))
 
 ;;---------------------------------------------
 ;; Save
