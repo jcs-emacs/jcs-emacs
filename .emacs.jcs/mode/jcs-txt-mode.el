@@ -78,6 +78,9 @@
 (defun jcs-org-mode()
   "JayCeS org mode."
 
+  ;; highlight URL and clickable.
+  (goto-address-mode 1)
+
   ;; turn on auto complete.
   (auto-complete-mode t)
 
