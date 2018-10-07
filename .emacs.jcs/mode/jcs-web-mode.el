@@ -325,6 +325,10 @@
   (setq-local comment-end "*/")
   (setq-local comment-end-skip "[ \t]*\\*+/")
 
+  ;; Treat some character as whitespace character.
+  (modify-syntax-entry ?- "-")
+  (modify-syntax-entry ?. "-")
+
   (defun jcs-css-format()
     "Format the give file. - JenChieh CSS file"
     (when (jcs-is-current-file-empty-p)
@@ -343,11 +347,19 @@
   (define-key css-mode-map "\C-c\C-c" #'kill-ring-save)
   (define-key skewer-css-mode-map "\C-c\C-c" #'kill-ring-save)
 
+  (define-key css-mode-map (kbd "DEL") #'jcs-delete-backward-char)
+  (define-key css-mode-map (kbd "{") #'jcs-vs-front-curly-bracket-key)
+  (define-key css-mode-map (kbd ";") #'jcs-vs-semicolon-key)
+
+  ;; Edit
+  (define-key css-mode-map (kbd "<up>") #'jcs-css-smart-indent-up)
+  (define-key css-mode-map (kbd "<down>") #'jcs-css-smart-indent-down)
+
   ;; Save
   (define-key css-mode-map "\C-s" #'jcs-css-save-buffer)
 
   ;; comment block
-  (define-key css-mode-map (kbd "RET") #'jcs-smart-context-line-break)
+  (define-key css-mode-map (kbd "RET") #'jcs-css-return-key)
   (define-key css-mode-map (kbd "*") #'jcs-c-comment-pair)
 
   ;; sort attribute in order => `com-css-sort' package.
