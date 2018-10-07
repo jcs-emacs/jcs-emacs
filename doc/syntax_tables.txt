@@ -1,0 +1,32 @@
+# ========================================================================
+# $File: syntax_tables.txt $
+# $Date: 2018-10-07 19:41:11 $
+# $Revision: $
+# $Creator: Jen-Chieh Shen $
+# $Notice: See LICENSE.txt for modification and distribution information
+#                   Copyright © 2018 by Shen, Jen-Chieh $
+# ========================================================================
+
+
+# URL(jenchieh): https://www.emacswiki.org/emacs/EmacsSyntaxTable
+
+|-----------+--------------------------------------|
+| Character | Description                          |
+|-----------+--------------------------------------|
+| -         | whitespace character                 |
+| w         | word constituent                     |
+| _         | symbol constituent                   |
+| .         | punctuation character                |
+| (         | open delimiter character             |
+| )         | close delimiter character            |
+| "         | string quote character               |
+| \         | escape character                     |
+| /         | character quote character            |
+| $         | paired delimiter                     |
+| '         | expresssion prefix                   |
+| <         | comment starter                      |
+| >         | comment ender                        |
+| !         | generic comment delimiter            |
+| |         | generic string delimiter             |
+| @         | inherit from `standard-syntax-table' |
+|-----------+--------------------------------------|
