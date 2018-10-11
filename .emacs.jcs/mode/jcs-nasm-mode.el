@@ -64,5 +64,5 @@
   (define-key nasm-mode-map (kbd "S-<backspace>") #'jcs-py-real-backspace)
   )
 (add-hook 'nasm-mode-hook 'jcs-nasm-mode-hook)
-(add-to-list 'auto-mode-alist '("\\.asm?\\'" . nasm-mode))
-(add-to-list 'auto-mode-alist '("\\.inc?\\'" . nasm-mode))
+(add-to-list 'auto-mode-alist '("\\.asm'?\\'" . nasm-mode))
+(add-to-list 'auto-mode-alist '("\\.inc'?\\'" . nasm-mode))

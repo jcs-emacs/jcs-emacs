@@ -52,4 +52,4 @@
   )
 (add-hook 'perl-mode-hook 'jcs-perl-mode-hook)
 
-(add-to-list 'auto-mode-alist '("\\.pl?\\'" . perl-mode))
+(add-to-list 'auto-mode-alist '("\\.pl'?\\'" . perl-mode))

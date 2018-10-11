@@ -32,8 +32,7 @@
   ;;; `meghanada' Configuration
   ;;(meghanada-mode t)
 
-  ;; TOPIC(jenchieh): Treat underscore as word.
-  ;; URL(jenchieh): https://emacs.stackexchange.com/questions/9583/how-to-treat-underscore-as-part-of-the-word
+  ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
 
   (defun jcs-java-class-format ()
@@ -80,7 +79,7 @@
   (define-key java-mode-map (kbd "C-S-o") #'jcs-java-organize-imports)
   )
 (add-hook 'java-mode-hook 'jcs-java-mode-hook)
-(add-to-list 'auto-mode-alist '("\\.java?\\'" . java-mode))
+(add-to-list 'auto-mode-alist '("\\.java'?\\'" . java-mode))
 
 ;;(add-hook 'jdee-mode-hook 'jcs-java-mode-hook)
 ;;(add-to-list 'auto-mode-alist '("\\.java?\\'" . jdee-mode))

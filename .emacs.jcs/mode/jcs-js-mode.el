@@ -47,10 +47,8 @@
   ;; turn on auto complete.
   (auto-complete-mode t)
 
-  ;; TOPIC(jenchieh): Treat underscore as word.
-  ;; URL(jenchieh): https://emacs.stackexchange.com/questions/9583/how-to-treat-underscore-as-part-of-the-word
+  ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
-
 
   (defun jcs-javascript-format()
     "JavaScript template format."
@@ -79,4 +77,4 @@
   )
 (add-hook 'js2-mode-hook 'jcs-js-mode-hook)
 
-(add-to-list 'auto-mode-alist '("\\.js?\\'" . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.js'?\\'" . js2-mode))

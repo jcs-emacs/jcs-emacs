@@ -48,4 +48,4 @@
   (define-key ssass-mode-map (kbd "<down>") #'jcs-next-line)
   )
 (add-hook 'ssass-mode-hook 'jcs-sass-mode-hook)
-(add-to-list 'auto-mode-alist '("\\.sass?\\'" . ssass-mode))
+(add-to-list 'auto-mode-alist '("\\.sass'?\\'" . ssass-mode))

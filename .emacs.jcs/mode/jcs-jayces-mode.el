@@ -46,5 +46,5 @@
   )
 (add-hook 'jayces-mode-hook 'jcs-jayces-mode-hook)
 
-(add-to-list 'auto-mode-alist '("\\.jcs?\\'" . jayces-mode))
-(add-to-list 'auto-mode-alist '("\\.jayces?\\'" . jayces-mode))
+(add-to-list 'auto-mode-alist '("\\.jcs'?\\'" . jayces-mode))
+(add-to-list 'auto-mode-alist '("\\.jayces'?\\'" . jayces-mode))

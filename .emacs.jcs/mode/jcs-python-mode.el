@@ -68,7 +68,7 @@
   )
 (add-hook 'python-mode-hook 'jcs-python-mode-hook)
 
-(add-to-list 'auto-mode-alist '("\\.py?\\'" . python-mode))
+(add-to-list 'auto-mode-alist '("\\.py'?\\'" . python-mode))
 
 (require 'elpy)
 ;;(elpy-enable)
