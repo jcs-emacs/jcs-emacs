@@ -15,6 +15,7 @@
 * Add `javadoc-lookup' package and set the env settings/key bindings. (jcs-emacs-init)
 * Start support Clojure, ClojureScript and Clojure Source file, 
  install major mode 'clojure-mode'. (jcs-emacs-init)
+* Update license and prorject version to 5.1.7. (jcs-emacs-init)
 
 2018-10-07
 * Improve enable/disable truncate lines mode. (jcs-emacs-init)
