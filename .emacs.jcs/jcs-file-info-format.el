@@ -376,6 +376,11 @@ on language selected."
   "Header for Text header file."
   (jcs-insert-template-by-file-path "~/.emacs.jcs/template/txt/txt_template.txt"))
 
+;;; TypeScript
+(defun jcs-insert-typescript-template ()
+  "Header for TypeScript header file."
+  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/ts/ts_template.txt"))
+
 ;;; Vim script
 (defun jcs-insert-vimscript-template ()
   "Header for XML header file."
