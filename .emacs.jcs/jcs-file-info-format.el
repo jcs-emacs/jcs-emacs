@@ -231,6 +231,11 @@ Text file, batch file, shell script, etc."
   "Header for CS header file."
   (jcs-insert-template-by-file-path "~/.emacs.jcs/template/cs/cs_template.txt"))
 
+;;; Clojure
+(defun jcs-insert-clojure-template ()
+  "Header for Clojure header file."
+  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/clojure/clj_template.txt"))
+
 ;;; CMake
 (defun jcs-insert-cmake-template ()
   "CMake file format info."
