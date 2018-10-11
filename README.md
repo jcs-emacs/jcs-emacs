@@ -19,7 +19,7 @@ config files improve and extended support for the following:
   - C
   - C++
   - C#
-  - Clojure/Clojure Script/Clojure Source
+  - Clojure
   - COBOL
   - CSS
 * E
