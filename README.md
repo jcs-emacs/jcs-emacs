@@ -44,6 +44,8 @@ config files improve and extended support for the following:
   - Scala
   - Shell
   - SQL
+* T
+  - TypeScript
 * V
   - Vim script
 * X
