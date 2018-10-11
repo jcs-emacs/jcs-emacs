@@ -77,6 +77,10 @@
 
   ;; imports/package declaration.
   (define-key java-mode-map (kbd "C-S-o") #'jcs-java-organize-imports)
+
+  ;; javadoc
+  (define-key java-mode-map (kbd "<f2>") #'javadoc-lookup)
+  (define-key java-mode-map (kbd "S-<f2>") #'javadoc-lookup)
   )
 (add-hook 'java-mode-hook 'jcs-java-mode-hook)
 (add-to-list 'auto-mode-alist '("\\.java'?\\'" . java-mode))
@@ -89,7 +93,7 @@
 ;;       (append '(("\\.java\\'" . jde-mode)) auto-mode-alist))
 
 
-(provide 'jdee-font-lock)
+(require 'jdee-font-lock)
 (if (> emacs-major-version 23)
     (defconst c-doc-face-name 'font-lock-doc-face)
   ;; starting with 24, cc-fonts clobbers this because of some change of order
@@ -104,3 +108,7 @@
 
 (set-face-attribute 'jdee-font-lock-constant-face nil
                     :foreground "#D2D2D2")
+
+(require 'javadoc-lookup)
+;; Function used when performing a minibuffer read.
+(setq javadoc-lookup-completing-read-function #'completing-read)
