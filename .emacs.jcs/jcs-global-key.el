@@ -227,10 +227,10 @@
 (define-key global-map (kbd "C-B") #'jcs-make-without-asking)
 
 ;;; Open TODO file.
-(define-key global-map "\C-t" #'jcs-open-project-todo-file)
+(define-key global-map (kbd "C-x t") #'jcs-open-project-todo-file)
 
 ;;; Open Log file.
-(define-key global-map "\C-u" #'jcs-open-project-update-log-file)
+(define-key global-map (kbd "C-x u") #'jcs-open-project-update-log-file)
 
 ;;; Recent Files
 (define-key global-map (kbd "C-r f") #'recentf-open-files)
@@ -353,6 +353,11 @@
 ;;; Helm
 ;; More key binding in `jcs-helm.el'
 
+;;; Tabbar
+(define-key global-map (kbd "C-t") #'jcs-toggle-tabbar-mode)
+(define-key global-map [C-S-tab] #'tabbar-forward)
+(define-key global-map [C-tab] #'tabbar-backward)
+
 ;;; *Message*
 (define-key messages-buffer-mode-map "\ek" #'jcs-erase-message-buffer)
 
@@ -388,24 +393,24 @@ the key everytime the mode changes."
 ;;===========================
 ;;(require 'c-mode)                       ;; C/C++
 ;;(require 'c++-mode)
-(define-key global-map "\C-cc" #'jcs-toggle-cc-mode)
+(define-key global-map (kbd "C-c c") #'jcs-toggle-cc-mode)
 (require 'jdee)                         ;; Java
-(define-key global-map "\C-cj" #'jdee-mode)
+(define-key global-map (kbd "C-c j") #'jdee-mode)
 
 ;;===========================
 ;; Scripting/Interpreter
 ;;===========================
 (require 'php-mode)                     ;; PHP
-(define-key global-map "\C-xp" #'php-mode)
+(define-key global-map (kbd "C-x p") #'php-mode)
 (require 'web-mode)                     ;; html, css, js
-(define-key global-map "\C-xw" #'web-mode)
+(define-key global-map (kbd "C-x w") #'web-mode)
 (require 'js2-mode)                     ;; js
-(define-key global-map "\C-xj" #'js2-mode)
+(define-key global-map (kbd "C-x j") #'js2-mode)
 
 ;;===========================
 ;; Cross Language support
 ;;===========================
 (require 'rainbow-mode)
-(define-key global-map "\C-cr" #'rainbow-mode)
+(define-key global-map (kbd "C-c r") #'rainbow-mode)
 (require 'whitespace)
-(define-key global-map "\C-xb" #'whitespace-mode)
+(define-key global-map (kbd "C-x b") #'whitespace-mode)
