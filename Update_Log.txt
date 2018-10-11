@@ -7,6 +7,10 @@
 # ========================================================================
 
 
+2018-10-10
+* Start support TypeScript file, install major mode 'typescript-mode'. (jcs-emacs-init)
+* Add typescript header format template. (jcs-emacs-init)
+
 2018-10-07
 * Improve enable/disable truncate lines mode. (jcs-emacs-init)
 * Remove web return key, seems like we no longer need this key 
