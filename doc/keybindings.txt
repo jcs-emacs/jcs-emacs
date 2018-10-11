@@ -167,6 +167,8 @@ C-r o           Read-Only mode toggle.
 
 C-r f           Open recent files.
 
+C-t             Toggle `tabbar-mode'.
+
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * Magit
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -258,6 +260,12 @@ f7              open the same file on other window.
 C-c s           Toggle c comment style between /* */ and //.
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+* Java Mode
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+f2              Lookup javadoc in browser. (javadoc-lookup)
+S-f2            Lookup javadoc in browser. (javadoc-lookup)
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * Shell
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 C-up            Previous command.
@@ -304,10 +312,10 @@ f5              Run the run script in the project. If cannot find
                 the file in the project it will find the file in just 
                 the current directory instead. (.bat, .linux, .macosx, etc.)
 
-C-t             Open todo list file in the project. If cannot find 
+C-x t           Open todo list file in the project. If cannot find 
                 the file in the project it will find the file in just 
                 the current directory instead. [Default: other window]
-C-u             Open update log file in the project. If cannot find 
+C-x u           Open update log file in the project. If cannot find 
                 the file in the project it will find the file in just 
                 the current directory instead. [Default: other window]
 
