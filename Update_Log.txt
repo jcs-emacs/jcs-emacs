@@ -7,10 +7,12 @@
 # ========================================================================
 
 
-2018-10-10
+2018-10-11
 * Start support TypeScript file, install major mode 'typescript-mode'. (jcs-emacs-init)
 * Add typescript header format template. (jcs-emacs-init)
 * Make `jayces-mode' to package. (jcs-emacs-init)
+* Add `tabbar' package and set the env settings/key bindings. (jcs-emacs-init)
+* Add `javadoc-lookup' package and set the env settings/key bindings. (jcs-emacs-init)
 
 2018-10-07
 * Improve enable/disable truncate lines mode. (jcs-emacs-init)
