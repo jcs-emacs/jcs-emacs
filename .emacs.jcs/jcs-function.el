@@ -82,6 +82,21 @@
   (global-linum-mode 1))
 
 ;;----------------------------------------------
+;; Tabbar Mode
+;;----------------------------------------------
+
+;;;###autoload
+(defun jcs-toggle-tabbar-mode ()
+  "Toggle `tabbar-mode'."
+  (interactive)
+  (if (jcs-is-minor-mode-enabled-p tabbar-mode)
+      (tabbar-mode 0)
+    (tabbar-mode 1))
+
+  ;; Loop through all window so all windows take effect.
+  (jcs-buffer-visible-list))
+
+;;----------------------------------------------
 ;; wgrep
 ;;----------------------------------------------
 
