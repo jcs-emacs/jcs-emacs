@@ -1,0 +1,50 @@
+;; ========================================================================
+;; $File: jcs-clojure-mode.el $
+;; $Date: 2018-10-11 22:59:25 $
+;; $Revision: $
+;; $Creator: Jen-Chieh Shen $
+;; $Notice: See LICENSE.txt for modification and distribution information
+;;                   Copyright © 2018 by Shen, Jen-Chieh $
+;; ========================================================================
+
+
+(require 'clojure-mode)
+(defun jcs-clojure-mode-hook ()
+  "Clojure mode hook."
+
+  ;; Abbrevation expansion
+  (abbrev-mode 1)
+
+  ;; enable the stuff you want for Lua here
+  (electric-pair-mode 1)
+
+  ;; highlight URL and clickable.
+  (goto-address-mode 1)
+
+  ;; Auto highlight the same word.
+  (auto-highlight-symbol-mode t)
+
+  ;; Treat underscore as word.
+  (modify-syntax-entry ?_ "w")
+
+  (defun jcs-clojure-script-format ()
+    "Format the given file as a Clojure code."
+    (when (jcs-is-current-file-empty-p)
+      (jcs-insert-clojure-template)))
+
+  (cond ((file-exists-p buffer-file-name) t)
+        ((string-match "[.]clj" buffer-file-name) (jcs-clojure-script-format))
+        )
+
+  ;; Set Faces.
+  (jcs-oop-init-set-face)
+
+  ;; jcs Clojure key binding
+  (define-key clojure-mode-map (kbd "C-d") #'jcs-kill-whole-line)
+  (define-key clojure-mode-map "\C-c\C-c" #'kill-ring-save)
+  )
+(add-hook 'clojure-mode-hook 'jcs-clojure-mode-hook)
+
+(add-to-list 'auto-mode-alist '("\\.clj'?\\'" . clojure-mode))
+(add-to-list 'auto-mode-alist '("\\.cljs'?\\'" . clojurescript-mode))
+(add-to-list 'auto-mode-alist '("\\.cljc'?\\'" . clojurec-mode))
