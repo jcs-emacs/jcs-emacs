@@ -22,7 +22,7 @@
 
 
   (defun jcs-scala-class-format ()
-    "Format the given file as a class. - JenChieh Scala."
+    "Format the given file as a Scala file."
     (when (jcs-is-current-file-empty-p)
       (jcs-insert-scala-template)))
 

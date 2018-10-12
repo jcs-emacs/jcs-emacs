@@ -23,11 +23,8 @@
   ;; Auto highlight the same word.
   (auto-highlight-symbol-mode t)
 
-  ;;; `meghanada' Configuration
-  (meghanada-mode t)
-
   (defun jcs-scss-file-format ()
-    "Format the given file as a class. - JenChieh SCSS class"
+    "Format the given file as a SCSS file."
     (when (jcs-is-current-file-empty-p)
       (jcs-insert-scss-template)))
 

@@ -29,7 +29,7 @@
 
 
   (defun jcs-vim-script-format ()
-    "Format the given file as a class. - JenChieh Lua Script"
+    "Format the given file as a VimScript file."
     (when (jcs-is-current-file-empty-p)
       (jcs-insert-vimscript-template)))
 

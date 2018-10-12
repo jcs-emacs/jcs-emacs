@@ -28,7 +28,7 @@
   (modify-syntax-entry ?_ "w")
 
   (defun jcs-lua-script-format ()
-    "Format the given file as a class. - JenChieh Lua Script."
+    "Format the given file as a Lua script."
     (when (jcs-is-current-file-empty-p)
       (jcs-insert-lua-template)))
 

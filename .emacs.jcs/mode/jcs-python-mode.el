@@ -26,13 +26,11 @@
   ;; Auto highlight the same word.
   (auto-highlight-symbol-mode t)
 
-  ;; TOPIC(jenchieh): Treat underscore as word.
-  ;; URL(jenchieh): https://emacs.stackexchange.com/questions/9583/how-to-treat-underscore-as-part-of-the-word
+  ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
 
-
   (defun jcs-python-class-format ()
-    "Format the given file as a class. - JenChieh Python class"
+    "Format the given file as a Python file."
     (when (jcs-is-current-file-empty-p)
       (jcs-insert-python-template)))
 

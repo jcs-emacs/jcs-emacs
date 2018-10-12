@@ -27,13 +27,13 @@
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
 
-  (defun jcs-clojure-script-format ()
-    "Format the given file as a Clojure code."
+  (defun jcs-clojure-format ()
+    "Format the given file as a Clojure file."
     (when (jcs-is-current-file-empty-p)
       (jcs-insert-clojure-template)))
 
   (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]clj" buffer-file-name) (jcs-clojure-script-format))
+        ((string-match "[.]clj" buffer-file-name) (jcs-clojure-format))
         )
 
   ;; Set Faces.

@@ -37,13 +37,13 @@
   (modify-syntax-entry ?_ "w")
 
 
-  (defun jcs-csharp-class-format ()
-    "Format the given file as a class. - JenChieh C# class"
+  (defun jcs-csharp-format ()
+    "Format the given file as a C# file."
     (when (jcs-is-current-file-empty-p)
       (jcs-insert-cs-template)))
 
   (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]cs" buffer-file-name) (jcs-csharp-class-format))
+        ((string-match "[.]cs" buffer-file-name) (jcs-csharp-format))
         )
 
   ;; Set Faces.

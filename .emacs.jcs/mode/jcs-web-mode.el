@@ -76,12 +76,12 @@
 
 
   (defun jcs-html-format ()
-    "Format the give file. - JenChieh HTML file"
+    "Format the give file as a HTML file."
     (when (jcs-is-current-file-empty-p)
       (jcs-insert-html-template)))
 
   (defun jcs-php-format ()
-    "Format the give file. - JenChieh PHP file"
+    "Format the give file as a PHP file."
     (when (jcs-is-current-file-empty-p)
       (jcs-insert-php-template)))
 
@@ -330,7 +330,7 @@
   (modify-syntax-entry ?. "-")
 
   (defun jcs-css-format()
-    "Format the give file. - JenChieh CSS file"
+    "Format the given file as a CSS file."
     (when (jcs-is-current-file-empty-p)
       (jcs-insert-css-template)))
 

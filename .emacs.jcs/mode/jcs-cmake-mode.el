@@ -27,7 +27,7 @@
   (auto-highlight-symbol-mode t)
 
   (defun jcs-makefile-format ()
-    "Format the given file as a makefile. - JenChieh Makefile"
+    "Format the given file as a makefile file."
 
     (when (jcs-is-current-file-empty-p)
       (jcs-makefile-format-info)

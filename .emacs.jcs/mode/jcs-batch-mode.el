@@ -32,7 +32,7 @@
 
 
   (defun jcs-batch-script-format ()
-    "Format the given file as a class. - JenChieh Batch Script"
+    "Format the given file as a Batch file."
     (when (jcs-is-current-file-empty-p)
       (jcs-insert-batch-template)))
 

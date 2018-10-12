@@ -36,7 +36,7 @@
   (modify-syntax-entry ?_ "w")
 
   (defun jcs-java-class-format ()
-    "Format the given file as a class. - JenChieh Java class"
+    "Format the given file as a Java file."
     (when (jcs-is-current-file-empty-p)
       ;; insert the package declaration.
       (jcs-java-insert-package-from-src)

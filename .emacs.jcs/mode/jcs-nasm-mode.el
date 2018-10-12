@@ -35,7 +35,7 @@
 
 
   (defun jcs-asm-format ()
-    "Format the given file as a asm code. - JenChieh Assembly Language"
+    "Format the given file as a ASM code."
     (when (jcs-is-current-file-empty-p)
       (jcs-insert-asm-template)))
 

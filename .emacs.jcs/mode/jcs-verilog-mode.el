@@ -8,11 +8,6 @@
 ;; ========================================================================
 
 
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-;; JenChieh Verilog mode.
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-
-
 (require 'verilog-mode)
 (defun jcs-verilog-mode-hook ()
   "Verilog mode"
@@ -34,7 +29,7 @@
   (auto-highlight-symbol-mode t)
 
   (defun jcs-verilog-script-format ()
-    "Format the given file as a class. - JenChieh Lua Script"
+    "Format the given file as a Verilog file."
     (when (jcs-is-current-file-empty-p)
       ;; Design format header here...
       ))

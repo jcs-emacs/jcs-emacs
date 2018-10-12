@@ -52,7 +52,7 @@
 
 
   (defun jcs-shader-format ()
-    "Format the given file as a shader script. - JenChieh Unity CG Shader."
+    "Format the given file as a Unity CG Shader script."
     (when (jcs-is-current-file-empty-p)
       (jcs-insert-shader-template)))
 

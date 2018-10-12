@@ -28,7 +28,7 @@
   (modify-syntax-entry ?_ "w")
 
   (defun jcs-typescript-format ()
-    "Format the given file as a class. - JenChieh TypScript file."
+    "Format the given file as a TypScript file."
     (when (jcs-is-current-file-empty-p)
       (jcs-insert-typescript-template)))
 

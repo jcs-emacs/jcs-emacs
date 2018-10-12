@@ -30,7 +30,7 @@
   (auto-highlight-symbol-mode t)
 
   (defun jcs-cobol-format ()
-    "Format the given file to COBOL. - JenChieh COBOL."
+    "Format the given file as a COBOL file."
     (when (jcs-is-current-file-empty-p)
       (jcs-insert-cobol-template)))
 

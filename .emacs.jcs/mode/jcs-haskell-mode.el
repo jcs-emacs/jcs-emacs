@@ -26,7 +26,7 @@
 
 
   (defun jcs-haskell-script-format ()
-    "Format the given file as a class. - JenChieh Haskell Script"
+    "Format the given file as a Haskell file."
     (when (jcs-is-current-file-empty-p)
       (jcs-insert-haskell-template)))
 

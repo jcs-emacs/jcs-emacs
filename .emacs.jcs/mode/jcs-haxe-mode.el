@@ -29,7 +29,7 @@
   (modify-syntax-entry ?_ "w")
 
   (defun jcs-haxe-script-format ()
-    "Format the given file as a class. - JenChieh Haxe Script"
+    "Format the given file as a Haxe file"
     (when (jcs-is-current-file-empty-p)
       (jcs-insert-haxe-template)))
 

@@ -23,11 +23,8 @@
   ;; Auto highlight the same word.
   (auto-highlight-symbol-mode t)
 
-  ;;; `meghanada' Configuration
-  (meghanada-mode t)
-
   (defun jcs-sass-file-format ()
-    "Format the given file as a class. - JenChieh SASS class"
+    "Format the given file as a SASS file."
     (when (jcs-is-current-file-empty-p)
       (jcs-insert-sass-template)))
 

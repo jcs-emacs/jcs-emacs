@@ -31,7 +31,7 @@
   (modify-syntax-entry ?_ "w")
 
   (defun jcs-emacs-lisp-format ()
-    "Format the given file as a Emacs Lisp file. - JenChieh emacs lisp file."
+    "Format the given file as a Emacs Lisp file."
     (when (jcs-is-current-file-empty-p)
       (jcs-insert-elisp-template)))
 
