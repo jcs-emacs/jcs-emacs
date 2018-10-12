@@ -291,6 +291,11 @@ Text file, batch file, shell script, etc."
   "Header for JayCeS header file."
   (jcs-insert-template-by-file-path "~/.emacs.jcs/template/jayces/jayces_template.txt"))
 
+;;; Lisp
+(defun jcs-insert-lisp-template ()
+  "Lisp file header format."
+  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/lisp/lisp_template.txt"))
+
 ;;; Lua
 (defun jcs-insert-lua-template ()
   "Lua file header format."
