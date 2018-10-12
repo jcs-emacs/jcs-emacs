@@ -295,6 +295,7 @@ Return a list of installed packages or nil for every skipped package."
 (load-file "~/.emacs.jcs/mode/jcs-haxe-mode.el")
 (load-file "~/.emacs.jcs/mode/jcs-typescript-mode.el")
 (load-file "~/.emacs.jcs/mode/jcs-clojure-mode.el")
+(load-file "~/.emacs.jcs/mode/jcs-lisp-mode.el")
 
 ;; Add hook to all Emacs' events.
 (load-file "~/.emacs.jcs/jcs-hook.el")
