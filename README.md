@@ -31,9 +31,11 @@ config files improve and extended support for the following:
   - Haxe
   - HTML
 * J
+  - JSON
   - Java
   - JavaScript
 * L
+  - Lisp
   - Lua
 * M
   - Makefile
