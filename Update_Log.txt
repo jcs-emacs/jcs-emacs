@@ -7,6 +7,11 @@
 # ========================================================================
 
 
+2018-10-12
+* Add Lisp header template. (jcs-emacs-init)
+* Fixed weird insert header file format's function description in 
+ each mode file. (jcs-emacs-init)
+
 2018-10-11
 * Start support TypeScript file, install major mode 'typescript-mode'. (jcs-emacs-init)
 * Add typescript header format template. (jcs-emacs-init)
