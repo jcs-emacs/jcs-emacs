@@ -188,15 +188,15 @@ Text file, batch file, shell script, etc."
 ;; Other Template
 ;;---------------------------------------------
 
-;; Assembly Language
-(defun jcs-insert-asm-template ()
-  "Header for Assembly Language file."
-  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/asm/asm_template.txt"))
-
 ;;; ActionScript
 (defun jcs-insert-actionscript-template ()
   "Template for ActionScript."
-  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/as/as_template.txt"))
+  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/actionscript/actionscript_template.txt"))
+
+;; Assembly Language
+(defun jcs-insert-asm-template ()
+  "Header for Assembly Language file."
+  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/assembly/assembly_template.txt"))
 
 ;;; BASIC
 (defun jcs-insert-basic-template ()
@@ -229,7 +229,7 @@ Text file, batch file, shell script, etc."
 ;;; C#
 (defun jcs-insert-cs-template ()
   "Header for CS header file."
-  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/cs/cs_template.txt"))
+  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/csharp/csharp_template.txt"))
 
 ;;; Clojure
 (defun jcs-insert-clojure-template ()
@@ -284,7 +284,7 @@ Text file, batch file, shell script, etc."
 ;;; JavaScript
 (defun jcs-insert-js-template ()
   "Template for JavaScript."
-  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/js/js_template.txt"))
+  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/javascript/javascript_template.txt"))
 
 ;;; JayCeS
 (defun jcs-insert-jayces-template ()
@@ -389,7 +389,7 @@ on language selected."
 ;;; TypeScript
 (defun jcs-insert-typescript-template ()
   "Header for TypeScript header file."
-  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/ts/ts_template.txt"))
+  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/typescript/typescript_template.txt"))
 
 ;;; Vim script
 (defun jcs-insert-vimscript-template ()
