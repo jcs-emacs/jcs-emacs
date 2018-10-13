@@ -1136,13 +1136,3 @@ SEARCH-OPTION :
            ("^[ \t]* \\([a-zA-Z_$0-9[,]*\\)[ \t]*[,)]" 1 'font-lock-variable-name-face t)
            )'end))
       jcs-oop-font-lock-missing-modes)
-
-;;-----------------------------------------------------------
-;;-----------------------------------------------------------
-
-(defun jcs-oop-init-set-face ()
-  "Set OOP hightlight faces."
-  (face-remap-add-relative 'font-lock-comment-face '(jcs-font-lock-comment-face))
-  (face-remap-add-relative 'font-lock-doc-face '(jcs-font-lock-comment-face))
-  (face-remap-add-relative 'font-lock-string-face '(jcs-font-lock-string-face))
-  (face-remap-add-relative 'font-lock-preprocessor-face '(jcs-font-lock-preprocessor-face)))
