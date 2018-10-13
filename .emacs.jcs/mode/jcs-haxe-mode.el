@@ -38,7 +38,7 @@
         )
 
   ;; Set Faces.
-  (jcs-oop-init-set-face)
+  (jcs-init-set-face)
 
   ;; jcs Haxe key binding
   (define-key haxe-mode-map (kbd "C-d") #'jcs-kill-whole-line)

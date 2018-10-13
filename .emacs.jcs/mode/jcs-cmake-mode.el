@@ -49,7 +49,7 @@
         )
 
   ;; Set Faces.
-  (jcs-oop-init-set-face)
+  (jcs-init-set-face)
 
   ;; jcs makefile key binding
   (define-key cmake-mode-map (kbd "<up>") #'jcs-py-indent-up)

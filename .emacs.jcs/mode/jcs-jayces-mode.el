@@ -40,7 +40,7 @@
         )
 
   ;; Set Faces.
-  (jcs-oop-init-set-face)
+  (jcs-init-set-face)
   )
 (add-hook 'jayces-mode-hook 'jcs-jayces-mode-hook)
 

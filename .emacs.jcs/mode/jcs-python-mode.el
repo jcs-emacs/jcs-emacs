@@ -39,7 +39,7 @@
         )
 
   ;; Set Faces.
-  (jcs-oop-init-set-face)
+  (jcs-init-set-face)
 
   ;; jcs python key binding
   (define-key python-mode-map (kbd "C-d") #'jcs-kill-whole-line)

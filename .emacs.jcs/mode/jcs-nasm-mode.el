@@ -45,7 +45,7 @@
         )
 
   ;; Set Faces.
-  (jcs-oop-init-set-face)
+  (jcs-init-set-face)
 
   ;; jcs key binding
   (define-key nasm-mode-map (kbd "C-d") #'jcs-kill-whole-line)

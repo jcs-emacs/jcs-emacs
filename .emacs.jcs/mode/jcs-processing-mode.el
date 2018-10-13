@@ -52,7 +52,7 @@
         )
 
   ;; Set Faces.
-  (jcs-oop-init-set-face)
+  (jcs-init-set-face)
 
   ;; jcs processing key binding
   (define-key processing-mode-map (kbd "C-d") #'jcs-kill-whole-line)

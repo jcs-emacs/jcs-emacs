@@ -42,7 +42,7 @@
     )
 
   ;; Set Faces.
-  (jcs-oop-init-set-face)
+  (jcs-init-set-face)
   )
 (add-hook 'lisp-mode-hook 'jcs-lisp-mode-hook)
 

@@ -31,7 +31,7 @@
         )
 
   ;; Set Faces.
-  (jcs-oop-init-set-face)
+  (jcs-init-set-face)
 
   ;; Scala key bindings
   ;; comment block

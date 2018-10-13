@@ -137,7 +137,7 @@
   (modify-syntax-entry ?_ "w")
 
   ;; Set Faces.
-  (jcs-oop-init-set-face)
+  (jcs-init-set-face)
   )
 (add-hook 'c-mode-common-hook 'jcs-cc-mode-hook)
 

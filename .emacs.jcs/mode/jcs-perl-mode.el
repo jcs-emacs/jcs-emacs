@@ -40,7 +40,7 @@
         )
 
   ;; Set Faces.
-  (jcs-oop-init-set-face)
+  (jcs-init-set-face)
 
   ;; jcs key binding
   (define-key perl-mode-map (kbd "C-d") #'jcs-kill-whole-line)

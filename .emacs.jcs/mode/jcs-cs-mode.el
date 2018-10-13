@@ -47,7 +47,7 @@
         )
 
   ;; Set Faces.
-  (jcs-oop-init-set-face)
+  (jcs-init-set-face)
 
   ;; jcs C# key binding
   (define-key csharp-mode-map (kbd "C-d") #'jcs-kill-whole-line)

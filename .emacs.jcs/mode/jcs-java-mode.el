@@ -51,7 +51,7 @@
         )
 
   ;; Set Faces.
-  (jcs-oop-init-set-face)
+  (jcs-init-set-face)
 
   ;; NOTE(jenchieh): change the face locally to this mode.
   (face-remap-add-relative 'font-lock-constant-face

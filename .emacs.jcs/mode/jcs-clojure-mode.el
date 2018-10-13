@@ -37,7 +37,7 @@
         )
 
   ;; Set Faces.
-  (jcs-oop-init-set-face)
+  (jcs-init-set-face)
 
   ;; jcs Clojure key binding
   (define-key clojure-mode-map (kbd "C-d") #'jcs-kill-whole-line)

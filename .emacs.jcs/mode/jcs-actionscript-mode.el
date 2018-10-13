@@ -34,7 +34,7 @@
         )
 
   ;; Set Faces.
-  (jcs-oop-init-set-face)
+  (jcs-init-set-face)
 
   ;; jcs java key binding
   (define-key actionscript-mode-map (kbd "C-d") #'jcs-kill-whole-line)

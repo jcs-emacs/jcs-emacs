@@ -60,7 +60,7 @@
         )
 
   ;; Set Faces.
-  (jcs-oop-init-set-face)
+  (jcs-init-set-face)
 
   ;; jcs javascript key binding
   (define-key js2-mode-map (kbd "C-d") #'jcs-kill-whole-line)

@@ -39,6 +39,9 @@
         ((string-match "_vimrc" buffer-file-name) (jcs-vim-script-format))
         )
 
+  ;; Set Faces.
+  (jcs-init-set-face)
+
   ;; jcs vim mode key binding
   (define-key vimrc-mode-map (kbd "C-d") #'jcs-kill-whole-line)
   (define-key vimrc-mode-map "\C-c\C-c" #'kill-ring-save)
