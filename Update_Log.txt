@@ -7,6 +7,11 @@
 # ========================================================================
 
 
+2018-10-13
+* Fixed check current character occurs error issue at point of 
+ beginning of the buffer. (jcs-emacs-init)
+* Rename template to be more specific and precise on the naming. (jcs-emacs-init)
+
 2018-10-12
 * Add Lisp header template. (jcs-emacs-init)
 * Fixed weird insert header file format's function description in 
