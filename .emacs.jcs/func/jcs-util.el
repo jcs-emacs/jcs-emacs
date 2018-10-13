@@ -302,13 +302,19 @@ IS-FORWARD : forward conversion instead of backward conversion."
 
 (defun jcs-current-char-equal-p (c)
   "Check the current character equal to 'C'."
-  (let ((current-char-string (string (char-before))))
-    (string= current-char-string c)))
+  (if (jcs-is-beginning-of-buffer-p)
+      ;; No character at the beginning of the buffer, just return `nil'.
+      nil
+    (let ((current-char-string (string (char-before))))
+      (string= current-char-string c))))
 
 (defun jcs-current-char-string-match-p (c)
   "Check the current character string match to 'C'."
-  (let ((current-char-string (string (char-before))))
-    (string-match current-char-string c)))
+  (if (jcs-is-beginning-of-buffer-p)
+      ;; No character at the beginning of the buffer, just return `nil'.
+      nil
+    (let ((current-char-string (string (char-before))))
+      (string-match current-char-string c))))
 
 (defun jcs-get-current-char-byte ()
   "Get the current character as the 'byte'."
@@ -338,12 +344,14 @@ BND-PT : limit point."
     (unless (equal bnd-pt nil)
       (setq real-lmt-pt bnd-pt))
 
-    (forward-char -1)
-    (while (and (>= (point) real-lmt-pt)
-                (or (jcs-current-char-equal-p " ")
-                    (jcs-current-char-equal-p "\t")
-                    (jcs-is-beginning-of-line-p)))
-      (forward-char -1))))
+    (when (not (jcs-is-beginning-of-buffer-p))
+      (forward-char -1)
+
+      (while (and (>= (point) real-lmt-pt)
+                  (or (jcs-current-char-equal-p " ")
+                      (jcs-current-char-equal-p "\t")
+                      (jcs-is-beginning-of-line-p)))
+        (forward-char -1)))))
 
 ;;;###autoload
 (defun jcs-goto-next-forward-char (&optional bnd-pt)
@@ -356,12 +364,14 @@ BND-PT : boundary point."
     (unless (equal bnd-pt nil)
       (setq real-lmt-pt bnd-pt))
 
-    (forward-char 1)
-    (while (and (<= (point) real-lmt-pt)
-                (or (jcs-current-char-equal-p " ")
-                    (jcs-current-char-equal-p "\t")
-                    (jcs-is-beginning-of-line-p)))
-      (forward-char 1))))
+    (when (not (jcs-is-end-of-buffer-p))
+      (forward-char 1)
+
+      (while (and (<= (point) real-lmt-pt)
+                  (or (jcs-current-char-equal-p " ")
+                      (jcs-current-char-equal-p "\t")
+                      (jcs-is-beginning-of-line-p)))
+        (forward-char 1)))))
 
 (defun jcs-first-backward-char-p (ch)
   "Check the first character on the left/backward is CH or not, limit to the \
