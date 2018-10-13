@@ -7,6 +7,37 @@
 ;;                   Copyright © 2017 by Shen, Jen-Chieh $
 ;; ========================================================================
 
+
+;;----------------------------------------------
+;; Regular Faces
+;;----------------------------------------------
+
+(defface jcs-font-lock-comment-face
+  '((t (:foreground "olive drab")))
+  "JCS local comment face."
+  :group 'basic-faces)
+(defvar jcs-font-lock-comment-face 'jcs-font-lock-comment-face)
+
+(defface jcs-font-lock-string-face
+  '((t (:foreground "#D69D78")))
+  "JCS local string face."
+  :group 'basic-faces)
+(defvar jcs-font-lock-string-face 'jcs-font-lock-string-face)
+
+(defface jcs-font-lock-preprocessor-face
+  '((t (:foreground "#8D9B99")))
+  "JCS local preprocessor face."
+  :group 'basic-faces)
+(defvar jcs-font-lock-preprocessor-face 'jcs-font-lock-preprocessor-face)
+
+(defun jcs-init-set-face ()
+  "Set JayCeS's hightlight faces."
+  (face-remap-add-relative 'font-lock-comment-face '(jcs-font-lock-comment-face))
+  (face-remap-add-relative 'font-lock-doc-face '(jcs-font-lock-comment-face))
+  (face-remap-add-relative 'font-lock-string-face '(jcs-font-lock-string-face))
+  (face-remap-add-relative 'font-lock-preprocessor-face '(jcs-font-lock-preprocessor-face)))
+
+
 ;;----------------------------------------------
 ;; Fixme Faces
 ;;----------------------------------------------
@@ -145,29 +176,6 @@
   '((t (:foreground "#38EFCA")))
   "Highlight word between ` and ' word.")
 (defvar jcs-font-lock-key-highlight-face 'jcs-font-lock-key-highlight-face)
-
-
-;;----------------------------------------------
-;; Regular Faces
-;;----------------------------------------------
-
-(defface jcs-font-lock-comment-face
-  '((t (:foreground "olive drab")))
-  "JCS local comment face."
-  :group 'basic-faces)
-(defvar jcs-font-lock-comment-face 'jcs-font-lock-comment-face)
-
-(defface jcs-font-lock-string-face
-  '((t (:foreground "#D69D78")))
-  "JCS local string face."
-  :group 'basic-faces)
-(defvar jcs-font-lock-string-face 'jcs-font-lock-string-face)
-
-(defface jcs-font-lock-preprocessor-face
-  '((t (:foreground "#8D9B99")))
-  "JCS local preprocessor face."
-  :group 'basic-faces)
-(defvar jcs-font-lock-preprocessor-face 'jcs-font-lock-preprocessor-face)
 
 
 ;;----------------------------------------------
