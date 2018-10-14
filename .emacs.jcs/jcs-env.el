@@ -270,7 +270,3 @@
 ;;; Recent files
 (recentf-mode 1)
 (setq recentf-max-menu-items 25)
-
-;;; Tabbar
-(require 'tabbar)
-(tabbar-mode 0)  ;; Turn-off `tabbar-mode' as default.

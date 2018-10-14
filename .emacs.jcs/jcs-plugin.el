@@ -236,3 +236,7 @@
 ;;; Line Reminder
 (require 'line-reminder)
 (global-line-reminder-mode t)
+
+;;; Tabbar
+(require 'tabbar)
+(tabbar-mode 0)  ;; Turn-off `tabbar-mode' as default.
