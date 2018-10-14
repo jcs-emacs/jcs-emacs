@@ -391,9 +391,14 @@ on language selected."
   "Header for TypeScript header file."
   (jcs-insert-template-by-file-path "~/.emacs.jcs/template/typescript/typescript_template.txt"))
 
+;;; Verilog
+(defun jcs-insert-verilog-template ()
+  "Header for Verilog header file."
+  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/verilog/verilog_template.txt"))
+
 ;;; Vim script
 (defun jcs-insert-vimscript-template ()
-  "Header for XML header file."
+  "Header for Vimscript header file."
   (jcs-insert-template-by-file-path "~/.emacs.jcs/template/vimscript/vimscript_template.txt"))
 
 ;;; XML
