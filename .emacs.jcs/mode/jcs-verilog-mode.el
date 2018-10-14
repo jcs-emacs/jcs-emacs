@@ -10,7 +10,7 @@
 
 (require 'verilog-mode)
 (defun jcs-verilog-mode-hook ()
-  "Verilog mode"
+  "Verilog mode hook."
   (interactive)
 
   ;; Abbrevation expansion
@@ -31,15 +31,16 @@
   (defun jcs-verilog-script-format ()
     "Format the given file as a Verilog file."
     (when (jcs-is-current-file-empty-p)
-      ;; Design format header here...
-      ))
+      (jcs-insert-verilog-template)))
 
   (cond ((file-exists-p buffer-file-name) t)
         ((string-match "[.]v" buffer-file-name) (jcs-verilog-script-format))
         )
 
+  ;; Set Faces.
+  (jcs-init-set-face)
 
   )
 (add-hook 'verilog-mode-hook 'jcs-verilog-mode-hook)
 
-(add-to-list 'auto-mode-alist '("\\.v?\\'" . verilog-mode))
+(add-to-list 'auto-mode-alist '("\\.v'?\\'" . verilog-mode))
