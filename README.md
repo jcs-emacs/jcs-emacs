@@ -50,6 +50,7 @@ config files improve and extended support for the following:
 * T
   - TypeScript
 * V
+  - Verilog
   - Vim script
 * X
   - XML
