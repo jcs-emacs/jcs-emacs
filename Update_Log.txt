@@ -7,6 +7,10 @@
 # ========================================================================
 
 
+2018-10-15
+* Long-overdue support language `Verilog', starting from now on support 
+ this language. (jcs-emacs-init)
+
 2018-10-13
 * Fixed check current character occurs error issue at point of 
  beginning of the buffer. (jcs-emacs-init)
