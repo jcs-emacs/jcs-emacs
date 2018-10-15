@@ -58,9 +58,9 @@ Just use this without remember Emacs Lisp function."
   "Record down the current searching character.")
 
 (defvar jcs-search-trigger-forward-char 0
-  "Trigger search forward.")
+  "Trigger search forward character.")
 (defvar jcs-search-trigger-backward-char 0
-  "Trigger search backward.")
+  "Trigger search backward character.")
 
 ;;;###autoload
 (defun jcs-move-to-forward-a-char-recursive (ch)
@@ -69,37 +69,40 @@ CH : character we target to move toward."
   (interactive "P")
 
   (save-window-excursion
+    ;; No matter what reset the backward trigger b/c we are doing
+    ;; forward search now.
+    (setq jcs-search-trigger-backward-char 0)
+
     ;; If the last current is not the same as current character
     ;; reset the 'search wrapper' flag.
     (when (not (string= jcs-current-search-char ch))
       (setq jcs-search-trigger-forward-char 0)
       (setq jcs-current-search-char ch))
 
-    (setq point-before-do-anything (point))
+    (let ((point-before-do-anything (point)))
+      (when (looking-at ch)
+        (forward-char 1))
+      (ignore-errors (while (not (looking-at ch)) (forward-char 1)))
 
-    (if (looking-at ch) (forward-char 1))
-    (ignore-errors (while (not (looking-at ch)) (forward-char 1)))
+      ;; record down point max and point after look
+      (setq point-after-look (point))
+      (end-of-buffer)
+      (setq point-end-of-buffer (point))
 
-    ;; record down point max and point after look
-    (setq point-after-look (point))
-    (end-of-buffer)
-    (setq point-end-of-buffer (point))
+      ;; go back to search result.
+      (goto-char point-after-look)
 
-    ;; go back to search result.
-    (goto-char point-after-look)
+      (when (= jcs-search-trigger-forward-char 1)
+        (beginning-of-buffer)
+        (setq jcs-search-trigger-forward-char 0)
+        (jcs-move-to-forward-a-char-recursive ch))
 
-    (when (= jcs-search-trigger-forward-char 1)
-      (beginning-of-buffer)
-      (setq jcs-search-trigger-forward-char 0)
-      (jcs-move-to-forward-a-char-recursive ch))
-
-    (when (= point-after-look point-end-of-buffer)
-      (goto-char point-before-do-anything)
-      (message "%s"
-               (propertize (concat "Failing overwrap jcs-move-to-forward-a-char: "  ch)
-                           'face
-                           '(:foreground "cyan")))
-      (setq jcs-search-trigger-forward-char 1))))
+      (when (= point-after-look point-end-of-buffer)
+        (goto-char point-before-do-anything)
+        (setq jcs-search-trigger-forward-char 1)
+        (message "%s"
+                 (propertize (concat "Failing overwrap jcs-move-to-forward-a-char: "  ch)
+                             'face '(:foreground "cyan")))))))
 
 ;;;###autoload
 (defun jcs-move-to-backward-a-char-recursive (ch)
@@ -108,38 +111,42 @@ CH : character we target to move toward."
   (interactive "P")
 
   (save-window-excursion
+    ;; No matter what reset the forward trigger b/c we are doing
+    ;; backward search now.
+    (setq jcs-search-trigger-forward-char 0)
+
     ;; If the last current is not the same as current character
     ;; reset the 'search wrapper' flag.
     (when (not (string= jcs-current-search-char ch))
       (setq jcs-search-trigger-backward-char 0)
       (setq jcs-current-search-char ch))
 
-    (setq point-before-do-anything (point))
+    (let ((point-before-do-anything (point)))
 
-    ;; so lets just search back part of the parenthesis
-    (if (looking-at ch) (forward-char -1))
-    (ignore-errors  (while (not (looking-at ch)) (backward-char 1)))
+      ;; so lets just search back part of the parenthesis
+      (when (looking-at ch)
+        (forward-char -1))
+      (ignore-errors  (while (not (looking-at ch)) (backward-char 1)))
 
-    ;; record down point min and point after look
-    (setq point-after-look (point))
-    (beginning-of-buffer)
-    (setq point-beginning-of-buffer (point))
+      ;; record down point min and point after look
+      (setq point-after-look (point))
+      (beginning-of-buffer)
+      (setq point-beginning-of-buffer (point))
 
-    ;; go back to search result.
-    (goto-char point-after-look)
+      ;; go back to search result.
+      (goto-char point-after-look)
 
-    (when (= jcs-search-trigger-backward-char 1)
-      (end-of-buffer)
-      (setq jcs-search-trigger-backward-char 0)
-      (jcs-move-to-backward-a-char-recursive ch))
+      (when (= jcs-search-trigger-backward-char 1)
+        (end-of-buffer)
+        (setq jcs-search-trigger-backward-char 0)
+        (jcs-move-to-backward-a-char-recursive ch))
 
-    (when (= point-after-look point-beginning-of-buffer)
-      (goto-char point-before-do-anything)
-      (message "%s"
-               (propertize (concat "Failing overwrap jcs-move-to-backward-a-char: " ch)
-                           'face
-                           '(:foreground "cyan")))
-      (setq jcs-search-trigger-backward-char 1))))
+      (when (= point-after-look point-beginning-of-buffer)
+        (goto-char point-before-do-anything)
+        (setq jcs-search-trigger-backward-char 1)
+        (message "%s"
+                 (propertize (concat "Failing overwrap jcs-move-to-backward-a-char: " ch)
+                             'face '(:foreground "cyan")))))))
 
 
 (defun jcs-move-to-forward-a-char (ch)
@@ -199,113 +206,109 @@ WORD : word we target to move toward."
 ;;;------------------------------------------------
 ;;; Move toggle Open and Close all kind of char.
 
-(setq jcs-search-trigger-forward-open-close-char 0)
-(setq jcs-search-trigger-backward-open-close-char 0)
+(defvar jcs-search-trigger-forward-open-close-char 0
+  "Trigger search forward open and close character.")
+(defvar jcs-search-trigger-backward-open-close-char 0
+  "Trigger search backward open and close character.")
 
 ;;;###autoload
 (defun jcs-move-forward-open-close-epair (openChar closeChar)
   "Move forward to a open/close parenthesis."
   (interactive "P")
 
-  ;; starting point
-  (setq point-before-do-anything (point))
+  (save-window-excursion
+    ;; No matter what reset the forward trigger b/c we are doing
+    ;; backward search now.
+    (setq jcs-search-trigger-backward-open-close-char 0)
 
-  (if (looking-at openChar) (forward-char 1))
-  (ignore-errors (while (not (looking-at openChar)) (forward-char 1)))
-  (setq point-after-look-open-char (point))
+    (let ((point-before-do-anything (point)))
+      (when (looking-at openChar)
+        (forward-char 1))
+      (ignore-errors (while (not (looking-at openChar)) (forward-char 1)))
+      (setq point-after-look-open-char (point))
 
-  ;; back to where it start
-  (goto-char point-before-do-anything)
+      ;; back to where it start
+      (goto-char point-before-do-anything)
 
-  (if (looking-at closeChar) (forward-char 1))
-  (ignore-errors (while (not (looking-at closeChar)) (forward-char 1)))
-  (setq point-after-look-close-char (point))
+      (when (looking-at closeChar)
+        (forward-char 1))
+      (ignore-errors (while (not (looking-at closeChar)) (forward-char 1)))
+      (setq point-after-look-close-char (point))
 
-  ;; record down point max and point after look
-  (setq point-after-look (point))
-  (end-of-buffer)
-  (setq point-end-of-buffer (point))
+      ;; record down point max and point after look
+      (setq point-after-look (point))
+      (end-of-buffer)
+      (setq point-end-of-buffer (point))
 
-  ;; back to where it start
-  (goto-char point-before-do-anything)
+      ;; back to where it start
+      (goto-char point-before-do-anything)
 
-  (if (> point-after-look-open-char point-after-look-close-char)
-      (goto-char point-after-look-close-char)
-    (goto-char point-after-look-open-char)
-    )
+      (if (> point-after-look-open-char point-after-look-close-char)
+          (goto-char point-after-look-close-char)
+        (goto-char point-after-look-open-char))
 
-  (if (= jcs-search-trigger-forward-open-close-char 1)
-      (progn
+      (when (= jcs-search-trigger-forward-open-close-char 1)
         (beginning-of-buffer)
         (setq jcs-search-trigger-forward-open-close-char 0)
-        (jcs-move-forward-open-close-epair openChar closeChar)
-        )
-    )
+        (jcs-move-forward-open-close-epair openChar closeChar))
 
-  (if (and (= point-after-look-open-char point-end-of-buffer)
-           (= point-after-look-close-char point-end-of-buffer))
-      (progn
+      (when (and (= point-after-look-open-char point-end-of-buffer)
+                 (= point-after-look-close-char point-end-of-buffer))
         (goto-char point-before-do-anything)
+        (setq jcs-search-trigger-forward-open-close-char 1)
         (message "%s"
                  (propertize (concat "Failing overwrap jcs-move-forward-open-close-epair: '"  openChar "' and '" closeChar "'")
-                             'face
-                             '(:foreground "cyan")))
-        (setq jcs-search-trigger-forward-open-close-char 1)
-        )
-    )
-  )
+                             'face '(:foreground "cyan")))))))
 
 ;;;###autoload
 (defun jcs-move-backward-open-close-epair (openChar closeChar)
   "Move backward to a open/close parenthesis."
   (interactive "P")
 
-  (setq point-before-do-anything (point))
+  (save-window-excursion
+    ;; No matter what reset the forward trigger b/c we are doing
+    ;; backward search now.
+    (setq jcs-search-trigger-forward-open-close-char 0)
 
-  (if (looking-at openChar) (forward-char -1))
-  (ignore-errors  (while (not (looking-at openChar)) (backward-char 1)))
-  (setq point-after-look-open-char (point))
+    (let ((point-before-do-anything (point)))
 
-  ;; back to where it start
-  (goto-char point-before-do-anything)
+      (when (looking-at openChar)
+        (forward-char -1))
+      (ignore-errors  (while (not (looking-at openChar)) (backward-char 1)))
+      (setq point-after-look-open-char (point))
 
-  (if (looking-at closeChar) (forward-char -1))
-  (ignore-errors  (while (not (looking-at closeChar)) (backward-char 1)))
-  (setq point-after-look-close-char (point))
+      ;; back to where it start
+      (goto-char point-before-do-anything)
 
-  ;; record down point max and point after look
-  (setq point-after-look (point))
-  (beginning-of-buffer)
-  (setq point-beginning-of-buffer (point))
+      (when (looking-at closeChar)
+        (forward-char -1))
+      (ignore-errors  (while (not (looking-at closeChar)) (backward-char 1)))
+      (setq point-after-look-close-char (point))
 
-  ;; back to where it start
-  (goto-char point-before-do-anything)
+      ;; record down point max and point after look
+      (setq point-after-look (point))
+      (beginning-of-buffer)
+      (setq point-beginning-of-buffer (point))
 
-  (if (> point-after-look-open-char point-after-look-close-char)
-      (goto-char point-after-look-open-char)
-    (goto-char point-after-look-close-char)
-    )
+      ;; back to where it start
+      (goto-char point-before-do-anything)
 
-  (if (= jcs-search-trigger-backward-open-close-char 1)
-      (progn
+      (if (> point-after-look-open-char point-after-look-close-char)
+          (goto-char point-after-look-open-char)
+        (goto-char point-after-look-close-char))
+
+      (when (= jcs-search-trigger-backward-open-close-char 1)
         (end-of-buffer)
         (setq jcs-search-trigger-backward-open-close-char 0)
-        (jcs-move-backward-open-close-epair openChar closeChar)
-        )
-    )
+        (jcs-move-backward-open-close-epair openChar closeChar))
 
-  (if (and (= point-after-look-open-char point-beginning-of-buffer)
-           (= point-after-look-close-char point-beginning-of-buffer))
-      (progn
+      (when (and (= point-after-look-open-char point-beginning-of-buffer)
+                 (= point-after-look-close-char point-beginning-of-buffer))
         (goto-char point-before-do-anything)
+        (setq jcs-search-trigger-backward-open-close-char 1)
         (message "%s"
                  (propertize (concat "Failing overwrap jcs-move-forward-open-close-epair: '"  openChar "' and '" closeChar "'")
-                             'face
-                             '(:foreground "cyan")))
-        (setq jcs-search-trigger-backward-open-close-char 1)
-        )
-    )
-  )
+                             'face '(:foreground "cyan")))))))
 
 ;;;------------------------------------------------
 ;;; Move toggle Open and Close all kind of parenthesis.
@@ -324,13 +327,13 @@ WORD : word we target to move toward."
 
 ;;;###autoload
 (defun jcs-move-forward-open-close-sqrParen ()
-  "Move forward to a open/close sqr parenthesis."
+  "Move forward to a open/close square parenthesis."
   (interactive)
   (jcs-move-forward-open-close-epair "[[]" "]"))
 
 ;;;###autoload
 (defun jcs-move-backward-open-close-sqrParen ()
-  "Move backward to a open/close sqr parenthesis."
+  "Move backward to a open/close square parenthesis."
   (interactive)
   (jcs-move-backward-open-close-epair "[[]" "]"))
 
@@ -358,7 +361,7 @@ as NO-REC : recursive? (Default: do recusrive method)"
 
 ;;;###autoload
 (defun jcs-move-backward-single-quot (&optional no-rec)
-  "Move backward to a double quotation mark.
+  "Move backward to a single quotation mark.
 as NO-REC : recursive? (Default: do recusrive method)"
   (interactive)
   (jcs-move-to-backward-a-char-do-recursive "'" no-rec))
@@ -415,35 +418,35 @@ as NO-REC : recursive? (Default: do recusrive method)"
   (jcs-move-to-backward-a-char-do-recursive ")" no-rec))
 
 ;;;------------------------------------------------
-;;; Open Sqr Parenthesis
+;;; Open Square Parenthesis
 
 ;;;###autoload
 (defun jcs-move-forward-open-sqrParen (&optional no-rec)
-  "Move forward to a open sqr parenthesis.
+  "Move forward to a open square parenthesis.
 as NO-REC : recursive? (Default: do recusrive method)"
   (interactive)
   (jcs-move-to-forward-a-char-do-recursive "[[]" no-rec))
 
 ;;;###autoload
 (defun jcs-move-backward-open-sqrParen (&optional no-rec)
-  "Move backward to a open sqr parenthesis.
+  "Move backward to a open square parenthesis.
 as NO-REC : recursive? (Default: do recusrive method)"
   (interactive)
   (jcs-move-to-backward-a-char-do-recursive "[[]" no-rec))
 
 ;;;------------------------------------------------
-;;; Close Sqr Parenthesis
+;;; Close Square Parenthesis
 
 ;;;###autoload
 (defun jcs-move-forward-close-sqrParen (&optional no-rec)
-  "Move forward to a close sqr parenthesis.
+  "Move forward to a close square parenthesis.
 as NO-REC : recursive? (Default: do recusrive method)"
   (interactive)
   (jcs-move-to-forward-a-char-do-recursive "]" no-rec))
 
 ;;;###autoload
 (defun jcs-move-backward-close-sqrParen (&optional no-rec)
-  "Move backward to a close sqr parenthesis.
+  "Move backward to a close square parenthesis.
 as NO-REC : recursive? (Default: do recusrive method)"
   (interactive)
   (jcs-move-to-backward-a-char-do-recursive "]" no-rec))
@@ -491,7 +494,7 @@ as NO-REC : recursive? (Default: do recusrive method)"
 as NO-REC : recursive? (Default: do recusrive method)"
   (interactive)
   (jcs-move-to-forward-a-char-do-recursive ":" no-rec))
-
+
 ;;;###autoload
 (defun jcs-move-backward-colon (&optional no-rec)
   "Move backward to a colon.
@@ -549,6 +552,40 @@ as NO-REC : recursive? (Default: do recusrive method)"
 as NO-REC : recursive? (Default: do recusrive method)"
   (interactive)
   (jcs-move-to-backward-a-char-do-recursive "<" no-rec))
+
+;;;------------------------------------------------
+;;; Comma
+
+;;;###autoload
+(defun jcs-move-forward-comma (&optional no-rec)
+  "Move forward to a comma.
+as NO-REC : recursive? (Default: do recusrive method)"
+  (interactive)
+  (jcs-move-to-forward-a-char-do-recursive "," no-rec))
+
+;;;###autoload
+(defun jcs-move-backward-comma (&optional no-rec)
+  "Move backward to a comma.
+as NO-REC : recursive? (Default: do recusrive method)"
+  (interactive)
+  (jcs-move-to-backward-a-char-do-recursive "," no-rec))
+
+;;;------------------------------------------------
+;;; Period
+
+;;;###autoload
+(defun jcs-move-forward-period (&optional no-rec)
+  "Move forward to a period.
+as NO-REC : recursive? (Default: do recusrive method)"
+  (interactive)
+  (jcs-move-to-forward-a-char-do-recursive "[.]" no-rec))
+
+;;;###autoload
+(defun jcs-move-backward-period (&optional no-rec)
+  "Move backward to a period.
+as NO-REC : recursive? (Default: do recusrive method)"
+  (interactive)
+  (jcs-move-to-backward-a-char-do-recursive "[.]" no-rec))
 
 
 ;;----------------------------------------------
