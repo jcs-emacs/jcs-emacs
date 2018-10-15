@@ -247,9 +247,27 @@ IS-FORWARD : forward conversion instead of backward conversion."
       (insert " ")
       (setq tmp-count (1+ tmp-count)))))
 
+
+;;---------------------------------------------
+;; Point
+;;---------------------------------------------
+
+;;;###autoload
+(defun jcs-print-current-point ()
+  "Print out the current point."
+  (interactive)
+  (message "Current point: %s" (point)))
+
+
 ;;---------------------------------------------
 ;; Character
 ;;---------------------------------------------
+
+;;;###autoload
+(defun jcs-print-current-char ()
+  "Print out the current character."
+  (interactive)
+  (message "Current character: %s" (string (char-before))))
 
 ;; TOPIC: Check if a character (not string) is lowercase,
 ;; uppercase, alphanumeric?
