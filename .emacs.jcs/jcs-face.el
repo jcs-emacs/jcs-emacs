@@ -48,6 +48,7 @@
                           cc-mode
                           c-mode
                           c++-mode
+                          clojure-mode
                           cobol-mode
                           cmake-mode
                           csharp-mode
@@ -67,6 +68,7 @@
                           python-mode
                           scala-mode
                           sh-mode
+                          verilog-mode
                           vimrc-mode
                           web-mode
                           ))
