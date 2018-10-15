@@ -1086,3 +1086,213 @@ REVERSE : t forward, nil backward."
           (delete-char -1)
         (delete-char 1))
       (jcs-delete-char-repeat char reverse))))
+
+;;----------------------------------------------
+;; Delete inside a Character.
+;;----------------------------------------------
+
+(defun jcs-delete-between-char (start-char end-char)
+  "Delete everything between START-CHAR and the END-CHAR."
+
+  (let ((preserve-point (point))
+        (start-point nil)
+        (end-point nil))
+
+    (jcs-move-to-backward-a-char-do-recursive start-char nil)
+
+    ;; If failed search backward start character..
+    (if (= jcs-search-trigger-backward-char 1)
+        (progn
+          (goto-char preserve-point)
+          (error "Does not find beginning character : %s" start-char))
+      (progn
+        ;; Fixed column position.
+        (forward-char 1)))
+    (setq start-point (point))
+
+    (jcs-move-to-forward-a-char-do-recursive end-char nil)
+
+    ;; If failed search forward end character..
+    (when (= jcs-search-trigger-forward-char 1)
+      (goto-char preserve-point)
+      (error "Does not find end character : %s" end-char))
+    (setq end-point (point))
+
+    ;; Check if is inside the region.
+    (if (and (>= preserve-point start-point)
+             (<= preserve-point end-point))
+        (progn
+          ;; Delete the region.
+          (delete-region start-point end-point))
+      (progn
+        ;; Back to where you were.
+        (goto-char preserve-point)))))
+
+;;;###autoload
+(defun jcs-delete-inside-paren ()
+  "Delete everything inside open parenthesis and close parenthesis."
+  (interactive)
+  (jcs-delete-between-char "(" ")"))
+
+;;;###autoload
+(defun jcs-delete-inside-sqrParen ()
+  "Delete everything between open square parenthesis and close square parenthesis."
+  (interactive)
+  (jcs-delete-between-char "[[]" "]"))
+
+;;;###autoload
+(defun jcs-delete-inside-curlyParen ()
+  "Delete everything between open curly parenthesis and close curly parenthesis."
+  (interactive)
+  (jcs-delete-between-char "{" "}"))
+
+;;;###autoload
+(defun jcs-delete-inside-single-quot ()
+  "Delete everything between single quotation mark."
+  (interactive)
+  (jcs-delete-between-char "'" "'"))
+
+;;;###autoload
+(defun jcs-delete-inside-double-quot ()
+  "Delete everything between double quotation mark."
+  (interactive)
+  (jcs-delete-between-char "\"" "\""))
+
+;;;###autoload
+(defun jcs-delete-inside-greater-less-sign ()
+  "Delete everything between greater than sign and less than sign."
+  (interactive)
+  (jcs-delete-between-char "<" ">"))
+
+;;;###autoload
+(defun jcs-delete-inside-less-greater-sign ()
+  "Delete everything between less than sign and greater than sign."
+  (interactive)
+  (jcs-delete-between-char ">" "<"))
+
+;;;###autoload
+(defun jcs-delete-inside-back-quot ()
+  "Delete everything between back quote."
+  (interactive)
+  (jcs-delete-between-char "`" "`"))
+
+;;;###autoload
+(defun jcs-delete-inside-exclamation-mark ()
+  "Delete everything between exclamation mark."
+  (interactive)
+  (jcs-delete-between-char "!" "!"))
+
+;;;###autoload
+(defun jcs-delete-inside-at-sign ()
+  "Delete everything between at sign."
+  (interactive)
+  (jcs-delete-between-char "@" "@"))
+
+;;;###autoload
+(defun jcs-delete-inside-sharp-sign ()
+  "Delete everything between sharp sign."
+  (interactive)
+  (jcs-delete-between-char "#" "#"))
+
+;;;###autoload
+(defun jcs-delete-inside-dollar-sign ()
+  "Delete everything between dollar sign."
+  (interactive)
+  (jcs-delete-between-char "$" "$"))
+
+;;;###autoload
+(defun jcs-delete-inside-percent-sign ()
+  "Delete everything between percent sign."
+  (interactive)
+  (jcs-delete-between-char "%" "%"))
+
+;;;###autoload
+(defun jcs-delete-inside-caret ()
+  "Delete everything between caret."
+  (interactive)
+  (jcs-delete-between-char "^" "^"))
+
+;;;###autoload
+(defun jcs-delete-inside-and ()
+  "Delete everything between and."
+  (interactive)
+  (jcs-delete-between-char "&" "&"))
+
+;;;###autoload
+(defun jcs-delete-inside-asterisk ()
+  "Delete everything between asterisk."
+  (interactive)
+  (jcs-delete-between-char "*" "*"))
+
+;;;###autoload
+(defun jcs-delete-inside-dash ()
+  "Delete everything between dash."
+  (interactive)
+  (jcs-delete-between-char "-" "-"))
+
+;;;###autoload
+(defun jcs-delete-inside-underscore ()
+  "Delete everything between underscore."
+  (interactive)
+  (jcs-delete-between-char "_" "_"))
+
+;;;###autoload
+(defun jcs-delete-inside-equal ()
+  "Delete everything between equal."
+  (interactive)
+  (jcs-delete-between-char "=" "="))
+
+;;;###autoload
+(defun jcs-delete-inside-plus ()
+  "Delete everything between plus."
+  (interactive)
+  (jcs-delete-between-char "+" "+"))
+
+
+;;;###autoload
+(defun jcs-delete-inside-backslash ()
+  "Delete everything between backslash."
+  (interactive)
+  (jcs-delete-between-char "\\" "\\"))
+
+;;;###autoload
+(defun jcs-delete-inside-or ()
+  "Delete everything between or."
+  (interactive)
+  (jcs-delete-between-char "|" "|"))
+
+
+;;;###autoload
+(defun jcs-delete-inside-colon ()
+  "Delete everything between colon."
+  (interactive)
+  (jcs-delete-between-char ":" ":"))
+
+;;;###autoload
+(defun jcs-delete-inside-semicolon ()
+  "Delete everything between semicolon."
+  (interactive)
+  (jcs-delete-between-char ";" ";"))
+
+;;;###autoload
+(defun jcs-delete-inside-comma ()
+  "Delete everything between comma."
+  (interactive)
+  (jcs-delete-between-char "," ","))
+
+(defun jcs-delete-inside-period ()
+  "Delete everything between period."
+  (interactive)
+  (jcs-delete-between-char "." "."))
+
+;;;###autoload
+(defun jcs-delete-inside-slash ()
+  "Delete everything between slash."
+  (interactive)
+  (jcs-delete-between-char "/" "/"))
+
+;;;###autoload
+(defun jcs-delete-inside-question-mark ()
+  "Delete everything between question mark."
+  (interactive)
+  (jcs-delete-between-char "?" "?"))
