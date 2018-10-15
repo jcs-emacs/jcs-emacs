@@ -45,6 +45,7 @@
 ;; Bright-red TODOs
 (defvar jcs-fixme-modes '(actionscript-mode
                           bat-mode
+                          basic-mode
                           cc-mode
                           c-mode
                           c++-mode
@@ -54,12 +55,13 @@
                           csharp-mode
                           css-mode
                           emacs-lisp-mode
-                          emmet-mode
                           go-mode
                           haskell-mode
                           haxe-mode
+                          java-mode
                           jdee-mode
                           js2-mode
+                          lisp-mode
                           lua-mode
                           nasm-mode
                           org-mode
@@ -68,6 +70,8 @@
                           python-mode
                           scala-mode
                           sh-mode
+                          sql-mode
+                          typescript-mode
                           verilog-mode
                           vimrc-mode
                           web-mode
