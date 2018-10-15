@@ -1091,13 +1091,9 @@ REVERSE : t forward, nil backward."
 ;; Delete inside a Character.
 ;;----------------------------------------------
 
-(defun jcs-delete-between-char (start-char end-char)
-  "Delete everything between START-CHAR and the END-CHAR."
-
-  (let ((preserve-point (point))
-        (start-point nil)
-        (end-point nil))
-
+(defun jcs-find-start-char (start-char preserve-point)
+  "Find the starting character."
+  (let ((start-point nil))
     (jcs-move-to-backward-a-char-do-recursive start-char nil)
 
     ;; If failed search backward start character..
@@ -1110,6 +1106,12 @@ REVERSE : t forward, nil backward."
         (forward-char 1)))
     (setq start-point (point))
 
+    ;; Returns found point.
+    start-point))
+
+(defun jcs-find-end-char (end-char preserve-point)
+  "Find the ending character."
+  (let ((end-point nil))
     (jcs-move-to-forward-a-char-do-recursive end-char nil)
 
     ;; If failed search forward end character..
@@ -1117,6 +1119,77 @@ REVERSE : t forward, nil backward."
       (goto-char preserve-point)
       (error "Does not find end character : %s" end-char))
     (setq end-point (point))
+
+    ;; Returns found point.
+    end-point))
+
+(defun jcs-delete-between-char (start-char end-char)
+  "Delete everything between START-CHAR and the END-CHAR."
+
+  (let ((preserve-point (point))
+        (start-point nil)
+        (end-point nil))
+
+    ;; Get start bound.
+    (setq start-point (jcs-find-start-char start-char preserve-point))
+
+    ;; NOTE(jenchieh): Back to preserve point before we search.
+    (goto-char preserve-point)
+
+    ;; Get end bound.
+    (forward-char 1)
+    (if (jcs-current-char-equal-p end-char)
+        (progn
+          (backward-char 1)
+          (setq end-point (point)))
+      (setq end-point (jcs-find-end-char end-char preserve-point)))
+
+
+    ;; NOTE(jenchieh): Start to solve the nested character issue.
+    (goto-char preserve-point)
+    (let ((nested-count 0)
+          (break-search-nested nil))
+
+      (ignore-errors
+        ;; Solve backward nested.
+        (while (equal break-search-nested nil)
+          (goto-char start-point)
+
+          (let ((nested-counter 0))
+            (while (<= nested-counter nested-count)
+              (jcs-find-end-char end-char preserve-point)
+              (setq nested-counter (+ nested-counter 1))))
+
+          (if (not (= end-point (point)))
+              (progn
+                (setq nested-count (+ nested-count 1))
+                (goto-char start-point)
+                (backward-char 1)
+                (setq start-point (jcs-find-start-char start-char preserve-point)))
+            (setq break-search-nested t))))
+
+      ;; IMPORTANT(jenchieh): reset variables.
+      (goto-char preserve-point)
+      (setq nested-count 0)
+      (setq break-search-nested nil)
+
+      (ignore-errors
+        ;; Solve forward nested.
+        (while (equal break-search-nested nil)
+          (goto-char end-point)
+
+          (let ((nested-counter 0))
+            (while (<= nested-counter nested-count)
+              (jcs-find-start-char start-char preserve-point)
+              (setq nested-counter (+ nested-counter 1))))
+
+          (if (not (= start-point (point)))
+              (progn
+                (setq nested-count (+ nested-count 1))
+                (goto-char end-point)
+                (setq end-point (jcs-find-end-char end-char preserve-point)))
+            (setq break-search-nested t)))))
+
 
     ;; Check if is inside the region.
     (if (and (>= preserve-point start-point)
