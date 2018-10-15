@@ -335,21 +335,21 @@ C-c C-s         In the mail buffer, send the message (message
 C-c C-c         In the mail buffer, send the message and bury
                 the buffer (message-send-and-exit).
          
-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-* Navigate File
-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-M-(             Search forward next open parenthesis.
-M-)             Search backward next close parenthesis.
-M-[             Search forward next open square parenthesis.
-M-]             Search backward next close square parenthesis.
-M-{             Search forward next open curly parenthesis.
-M-}             Search backward next close curly parenthesis.
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+* Navigating General Programming Symbols
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+M-)             Search forward next close parenthesis.
+M-(             Search backward next open parenthesis.
+M-]             Search forward next close square parenthesis.
+M-[             Search backward next open square parenthesis.
+M-}             Search forward next close curly parenthesis.
+M-{             Search backward next open curly parenthesis.
 
-M-;             Search forward next '. (single quotation mark)
-M-'             Search backward next '. (single quotation mark)
+M-'             Search forward next '. (single quotation mark)
+M-;             Search backward next '. (single quotation mark)
 
-M-Shift-;       Search forward next ". (double quotation mark)
-M-Shift-'       Search backward next ". (double quotation mark)
+M-"             Search forward next ". (double quotation mark)
+M-:             Search backward next ". (double quotation mark)
 
 M->             Search forward next >. (Greater than sign)
 M-<             Search backward next <. (Less than sign)
@@ -357,11 +357,53 @@ M-<             Search backward next <. (Less than sign)
 M-S-<right>     Search forward at current point.
 M-S-<left>      Search backward at current point.
 
+M-.             Search forward next ,. (comma)
+M-,             Search backward next ,. (comma)
+C-M-.           Search forward next .. (period)
+C-M-,           Search backward next .. (period)
+
 -- Org Mode --
 S-<up>          Move cursor up one row table.
 S-<down>        Move cursor down one row table.
 S-<right>       Move cursor right one column table.
 S-<left>        Move cursor left one row column table.
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+* Changing/Deleting inside between Programming Symbols
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+C-c i [         Delete everything between [ and ].
+C-c i ]         Delete everything between [ and ].
+C-c i (         Delete everything between ( and ).
+C-c i )         Delete everything between ( and ).
+C-c i {         Delete everything between { and }.
+C-c i }         Delete everything between { and }.
+C-c i '         Delete everything between two '.
+C-c i "         Delete everything between two ".
+C-c i <         Delete everything between < and >.
+C-c i >         Delete everything between > and <.
+
+C-c i `         Delete everything between two `.
+C-c i @         Delete everything between two @.
+C-c i #         Delete everything between two #.
+C-c i $         Delete everything between two $.
+C-c i %         Delete everything between two %.
+C-c i ^         Delete everything between two ^.
+C-c i &         Delete everything between two &.
+C-c i *         Delete everything between two *.
+C-c i -         Delete everything between two -.
+C-c i _         Delete everything between two _.
+C-c i =         Delete everything between two =.
+C-c i +         Delete everything between two +.
+
+C-c i \         Delete everything between two \.
+C-c i |         Delete everything between two |.
+
+C-c i :         Delete everything between two :.
+C-c i ;         Delete everything between two ;.
+C-c i ,         Delete everything between two ,.
+C-c i .         Delete everything between two ..
+C-c i /         Delete everything between two /.
+C-c i ?         Delete everything between two ?.
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * Regular Expression
