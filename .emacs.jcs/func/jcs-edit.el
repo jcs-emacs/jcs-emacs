@@ -1093,7 +1093,8 @@ REVERSE : t forward, nil backward."
 
 (defun jcs-find-start-char (start-char preserve-point)
   "Find the starting character."
-  (let ((start-point nil))
+  (let ((inhibit-message t)
+        (start-point nil))
     (jcs-move-to-backward-a-char-do-recursive start-char nil)
 
     ;; If failed search backward start character..
@@ -1111,7 +1112,8 @@ REVERSE : t forward, nil backward."
 
 (defun jcs-find-end-char (end-char preserve-point)
   "Find the ending character."
-  (let ((end-point nil))
+  (let ((inhibit-message t)
+        (end-point nil))
     (jcs-move-to-forward-a-char-do-recursive end-char nil)
 
     ;; If failed search forward end character..
@@ -1122,6 +1124,38 @@ REVERSE : t forward, nil backward."
 
     ;; Returns found point.
     end-point))
+
+(defun jcs-pair-char-not-overlap-p (start-char end-char)
+  "Check if the two character overlap?
+
+Check this kind of circumstance, for instance..
+  <1> ` ) p ( ` illegal
+  <2> ` ( p ) ` legal
+  <3> ` ( p ( ` legal
+  <4> ` ) p ) ` legal"
+  (save-excursion
+    (ignore-errors
+      (let ((preserve-point (point))
+            (start-char-backward-point nil)
+            (end-char-backward-point nil)
+            (start-char-forward-point nil)
+            (end-char-forward-point nil))
+        (jcs-move-to-backward-a-char start-char)
+        (setq start-char-backward-point (point))
+        (goto-char preserve-point)
+        (jcs-move-to-backward-a-char end-char)
+        (setq end-char-backward-point (point))
+        (goto-char preserve-point)
+
+        (jcs-move-to-forward-a-char start-char)
+        (setq start-char-forward-point (point))
+        (goto-char preserve-point)
+        (jcs-move-to-forward-a-char end-char)
+        (setq end-char-forward-point (point))
+        (goto-char preserve-point)
+
+        (or (>= start-char-backward-point end-char-backward-point)
+            (>= start-char-forward-point end-char-forward-point))))))
 
 (defun jcs-delete-between-char (start-char end-char)
   "Delete everything between START-CHAR and the END-CHAR."
@@ -1142,18 +1176,20 @@ REVERSE : t forward, nil backward."
         (progn
           (backward-char 1)
           (setq end-point (point)))
-      (setq end-point (jcs-find-end-char end-char preserve-point)))
+      (progn
+        (backward-char 1)
+        (setq end-point (jcs-find-end-char end-char preserve-point))))
 
 
     ;; NOTE(jenchieh): Start to solve the nested character issue.
     (goto-char preserve-point)
     (let ((nested-count 0)
           (break-search-nested nil))
-
       (ignore-errors
         ;; Solve backward nested.
         (while (equal break-search-nested nil)
           (goto-char start-point)
+          (backward-char 1)
 
           (let ((nested-counter 0))
             (while (<= nested-counter nested-count)
@@ -1190,16 +1226,20 @@ REVERSE : t forward, nil backward."
                 (setq end-point (jcs-find-end-char end-char preserve-point)))
             (setq break-search-nested t)))))
 
+    ;; Go back to original position before do anything.
+    (goto-char preserve-point)
 
     ;; Check if is inside the region.
     (if (and (>= preserve-point start-point)
-             (<= preserve-point end-point))
+             (<= preserve-point end-point)
+             (jcs-pair-char-not-overlap-p start-char end-char))
         (progn
           ;; Delete the region.
           (delete-region start-point end-point))
       (progn
         ;; Back to where you were.
-        (goto-char preserve-point)))))
+        (goto-char preserve-point)
+        (error "You are not between %s and %s" start-char end-char)))))
 
 ;;;###autoload
 (defun jcs-delete-inside-paren ()
