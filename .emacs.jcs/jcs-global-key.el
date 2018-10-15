@@ -324,7 +324,9 @@
             (setq jcs-helm-find-files-active nil)
             ))
 
-;;; Navigating Parentheses
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Navigating General Programming Symbols
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; SOURCE: https://www.emacswiki.org/emacs/NavigatingParentheses
 (define-key global-map (kbd "M-)") (quote jcs-move-forward-close-paren))
 (define-key global-map (kbd "M-(") (quote jcs-move-backward-open-paren))
@@ -332,18 +334,55 @@
 (define-key global-map (kbd "M-[") (quote jcs-move-backward-open-sqrParen))
 (define-key global-map (kbd "M-}") (quote jcs-move-forward-close-curlyParen))
 (define-key global-map (kbd "M-{") (quote jcs-move-backward-open-curlyParen))
-
-;; Navigating Single Quotation Mark.
 (define-key global-map (kbd "M-'") (quote jcs-move-forward-single-quot))
 (define-key global-map (kbd "M-;") (quote jcs-move-backward-single-quot))
+(define-key global-map (kbd "M-\"") (quote jcs-move-forward-double-quot))
+(define-key global-map (kbd "M-:") (quote jcs-move-backward-double-quot))
+(define-key global-map (kbd "M->") (quote jcs-move-forward-greater-than-sign))
+(define-key global-map (kbd "M-<") (quote jcs-move-backward-less-than-sign))
 
-;; Navigating Double Quotation Mark.
-(define-key global-map "\e\"" (quote jcs-move-forward-double-quot))
-(define-key global-map "\e:" (quote jcs-move-backward-double-quot))
+(define-key global-map (kbd "M-.") (quote jcs-move-forward-comma))
+(define-key global-map (kbd "M-,") (quote jcs-move-backward-comma))
+(define-key global-map (kbd "C-M-.") (quote jcs-move-forward-period))
+(define-key global-map (kbd "C-M-,") (quote jcs-move-backward-period))
 
-;; Geater than sign and Less than sign
-(define-key global-map "\e>" (quote jcs-move-forward-greater-than-sign))
-(define-key global-map "\e<" (quote jcs-move-backward-less-than-sign))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Changing/Deleting inside between Programming Symbols
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(define-key global-map (kbd "C-c i [") #'jcs-delete-inside-sqrParen)
+(define-key global-map (kbd "C-c i ]") #'jcs-delete-inside-sqrParen)
+(define-key global-map (kbd "C-c i (") #'jcs-delete-inside-paren)
+(define-key global-map (kbd "C-c i )") #'jcs-delete-inside-paren)
+(define-key global-map (kbd "C-c i {") #'jcs-delete-inside-curlyParen)
+(define-key global-map (kbd "C-c i }") #'jcs-delete-inside-curlyParen)
+(define-key global-map (kbd "C-c i '") #'jcs-delete-inside-single-quot)
+(define-key global-map (kbd "C-c i \"") #'jcs-delete-inside-double-quot)
+(define-key global-map (kbd "C-c i <") #'jcs-delete-inside-greater-less-sign)
+(define-key global-map (kbd "C-c i >") #'jcs-delete-inside-less-greater-sign)
+
+(define-key global-map (kbd "C-c i `") #'jcs-delete-inside-back-quot)
+(define-key global-map (kbd "C-c i !") #'jcs-delete-inside-exclamation-mark)
+(define-key global-map (kbd "C-c i @") #'jcs-delete-inside-at-sign)
+(define-key global-map (kbd "C-c i #") #'jcs-delete-inside-sharp-sign)
+(define-key global-map (kbd "C-c i $") #'jcs-delete-inside-dollar-sign)
+(define-key global-map (kbd "C-c i %") #'jcs-delete-inside-percent-sign)
+(define-key global-map (kbd "C-c i ^") #'jcs-delete-inside-caret)
+(define-key global-map (kbd "C-c i &") #'jcs-delete-inside-and)
+(define-key global-map (kbd "C-c i *") #'jcs-delete-inside-asterisk)
+(define-key global-map (kbd "C-c i -") #'jcs-delete-inside-dash)
+(define-key global-map (kbd "C-c i _") #'jcs-delete-inside-underscore)
+(define-key global-map (kbd "C-c i =") #'jcs-delete-inside-equal)
+(define-key global-map (kbd "C-c i +") #'jcs-delete-inside-plus)
+
+(define-key global-map (kbd "C-c i \\") #'jcs-delete-inside-backslash)
+(define-key global-map (kbd "C-c i |") #'jcs-delete-inside-or)
+
+(define-key global-map (kbd "C-c i :") #'jcs-delete-inside-colon)
+(define-key global-map (kbd "C-c i ;") #'jcs-delete-inside-semicolon)
+(define-key global-map (kbd "C-c i ,") #'jcs-delete-inside-comma)
+(define-key global-map (kbd "C-c i .") #'jcs-delete-inside-period)
+(define-key global-map (kbd "C-c i /") #'jcs-delete-inside-slash)
+(define-key global-map (kbd "C-c i ?") #'jcs-delete-inside-question-mark)
 
 ;;; Web mode
 (require 'impatient-mode)
