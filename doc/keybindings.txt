@@ -383,6 +383,7 @@ C-c i <         Delete everything between < and >.
 C-c i >         Delete everything between > and <.
 
 C-c i `         Delete everything between two `.
+C-c i ~         Delete everything between two ~.
 C-c i @         Delete everything between two @.
 C-c i #         Delete everything between two #.
 C-c i $         Delete everything between two $.
