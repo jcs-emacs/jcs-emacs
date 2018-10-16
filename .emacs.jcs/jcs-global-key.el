@@ -361,6 +361,7 @@
 (define-key global-map (kbd "C-c i >") #'jcs-delete-inside-less-greater-sign)
 
 (define-key global-map (kbd "C-c i `") #'jcs-delete-inside-back-quot)
+(define-key global-map (kbd "C-c i ~") #'jcs-delete-inside-tilde)
 (define-key global-map (kbd "C-c i !") #'jcs-delete-inside-exclamation-mark)
 (define-key global-map (kbd "C-c i @") #'jcs-delete-inside-at-sign)
 (define-key global-map (kbd "C-c i #") #'jcs-delete-inside-sharp-sign)
