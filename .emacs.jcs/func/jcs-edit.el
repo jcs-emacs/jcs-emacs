@@ -1290,6 +1290,12 @@ Check this kind of circumstance, for instance..
   (jcs-delete-between-char "`" "`"))
 
 ;;;###autoload
+(defun jcs-delete-inside-tilde ()
+  "Delete everything between back quote."
+  (interactive)
+  (jcs-delete-between-char "~" "~"))
+
+;;;###autoload
 (defun jcs-delete-inside-exclamation-mark ()
   "Delete everything between exclamation mark."
   (interactive)
@@ -1311,7 +1317,7 @@ Check this kind of circumstance, for instance..
 (defun jcs-delete-inside-dollar-sign ()
   "Delete everything between dollar sign."
   (interactive)
-  (jcs-delete-between-char "$" "$"))
+  (jcs-delete-between-char "[$]" "[$]"))
 
 ;;;###autoload
 (defun jcs-delete-inside-percent-sign ()
@@ -1323,7 +1329,7 @@ Check this kind of circumstance, for instance..
 (defun jcs-delete-inside-caret ()
   "Delete everything between caret."
   (interactive)
-  (jcs-delete-between-char "^" "^"))
+  (jcs-delete-between-char "[|^]" "[|^]"))
 
 ;;;###autoload
 (defun jcs-delete-inside-and ()
@@ -1366,7 +1372,7 @@ Check this kind of circumstance, for instance..
 (defun jcs-delete-inside-backslash ()
   "Delete everything between backslash."
   (interactive)
-  (jcs-delete-between-char "\\" "\\"))
+  (jcs-delete-between-char "[\\]" "[\\]"))
 
 ;;;###autoload
 (defun jcs-delete-inside-or ()
@@ -1393,10 +1399,11 @@ Check this kind of circumstance, for instance..
   (interactive)
   (jcs-delete-between-char "," ","))
 
+;;;###autoload
 (defun jcs-delete-inside-period ()
   "Delete everything between period."
   (interactive)
-  (jcs-delete-between-char "." "."))
+  (jcs-delete-between-char "[.]" "[.]"))
 
 ;;;###autoload
 (defun jcs-delete-inside-slash ()
