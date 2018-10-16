@@ -263,9 +263,11 @@
 (require 'ace-window)
 (define-key global-map "\ee" #'ace-window)
 
-(require 'neotree)
-;;(define-key global-map [f8] 'neotree-toggle)
-(define-key global-map (kbd "C-M-l") #'neotree-toggle)
+;;; Speedbar
+(require 'sr-speedbar)
+(define-key global-map (kbd "C-M-l") #'jcs-sr-speedbar-toggle)
+(define-key speedbar-mode-map (kbd "<backspace>") #'speedbar-up-directory)
+(define-key speedbar-mode-map (kbd "<return>") #'jcs-speedbar-edit-line)
 
 ;; Interface in Emacs using Git.
 (require 'magit)
