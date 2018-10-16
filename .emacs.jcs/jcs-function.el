@@ -69,6 +69,92 @@
   (interactive)
   (top-level))
 
+
+;;----------------------------------------------
+;; Speedbar
+;;----------------------------------------------
+
+(defvar jcs-speedbar-opening-buffer-file-name nil
+  "Record down the current speedbar is opening which buffer.")
+
+;;;###autoload
+(defun jcs-speedbar-edit-line ()
+  "Customize `speedbar-edit-line' function."
+  (interactive)
+
+  (let ((is-opening-a-file t))
+    (save-excursion
+      (beginning-of-line)
+
+      ;; Weird character infront, ignore them by moving forward.
+      (forward-char 1)  ;; 0
+      (forward-char 1)  ;; :
+      (forward-char 1)  ;; < or [, < stand for directory and [ stand for file.
+
+      (when (jcs-current-char-equal-p "<")
+        (setq is-opening-a-file nil)))
+
+    ;; Call it normally.
+    (call-interactively #'speedbar-edit-line)
+
+    (call-interactively #'sr-speedbar-select-window)
+
+    ;; If is file..
+    (when (equal is-opening-a-file t)
+      ;; Back to previous select window.
+      (jcs-other-window-prev)
+
+      ;; Record the opening buffer/file down.
+      (setq jcs-speedbar-opening-buffer-file-name (buffer-file-name))
+
+      ;; Maybe kill it, because we are going to open it in originally
+      ;; selected window instead of the default window after close we
+      ;; the `speedbar' window.
+      (jcs-maybe-kill-this-buffer)
+
+      ;; Close the speedbar window.
+      (jcs-sr-speedbar-toggle))))
+
+(defvar jcs-sr-speedbar-window-all-on-right t
+  "Make speedbar open on the right of all window.")
+
+(defvar jcs-sr-speedbar-record-selected-window nil
+  "Record down the current selected window before toggle.")
+
+;;;###autoload
+(defun jcs-sr-speedbar-toggle ()
+  "Toggle the speedbar window."
+  (interactive)
+
+  (if (sr-speedbar-exist-p)
+      (progn
+        ;; Close it.
+        (call-interactively #'sr-speedbar-toggle)
+
+        ;; Go back to previous selected/editing window.
+        (select-window jcs-sr-speedbar-record-selected-window)
+
+        ;; Try to open a recorded opening file.
+        (unless (equal jcs-speedbar-opening-buffer-file-name nil)
+          (find-file jcs-speedbar-opening-buffer-file-name)))
+    (progn
+      (setq jcs-sr-speedbar-record-selected-window (selected-window))
+
+      (ignore-errors
+        ;; Goto very right/left of the window.
+        ;;
+        ;; Just set to something very high, so it will ensure we go to
+        ;; either the most right and the most left of the window.
+        ;; Here we set it to `100' as default.
+        (if (equal jcs-sr-speedbar-window-all-on-right t)
+            (windmove-right 100)
+          (windmove-left 100)))
+
+      ;; Open it.
+      (call-interactively #'sr-speedbar-toggle)
+
+      (call-interactively #'sr-speedbar-select-window))))
+
 ;;----------------------------------------------
 ;; Sublimity Mode
 ;;----------------------------------------------
