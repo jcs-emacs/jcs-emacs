@@ -45,7 +45,7 @@
  '(mouse-wheel-scroll-amount (quote (15)))
  '(package-selected-packages
    (quote
-    (clojure-mode undo-tree ein cobol-mode tabbar javadoc-lookup typescript-mode haxe-mode yasnippet xcscope wgrep-helm wgrep-ag wgrep websocket vimrc-mode tablist sql-indent skewer-mode simple-httpd scss-mode s request-deferred request popup pkg-info php-mode php-auto-yasnippets pcache multiple-cursors memoize levenshtein json-snatcher json-reformat htmlize highlight-indentation highlight helm-core helm-ag google-translate google-this google-maps git-messenger git-commit fringe-helper flymake-easy flycheck find-file-in-project f epl emmet-mode diminish deferred cmake-mode bind-key avy auto-complete async ace-window ac-php-core ac-emmet with-editor pyvenv magit-popup js2-mode ghub dash ivy helm company apache-mode xwidgete which-key web-mode visual-regexp use-ttf use-package tree-mode togetherly sublimity ssass-mode shader-mode scala-mode rainbow-mode python-mode py-autopep8 project-abbrev processing-mode preproc-font-lock powerline pdf-tools package-lint package-build organize-imports-java neotree nasm-mode multi-web-mode meghanada magit lua-mode line-reminder json-mode js2-refactor jdee impatient-mode iedit helm-gtags haskell-mode google-c-style go-mode gitlab gitignore-mode github-notifier gitconfig-mode gitattributes-mode git-timemachine git-link flymake-google-cpplint flymake-cursor floobits exec-path-from-shell elpy csharp-mode cpputils-cmake com-css-sort cmake-project cmake-ide cmake-font-lock better-defaults basic-mode auto-package-update auto-highlight-symbol auto-complete-c-headers all-the-icons ag adaptive-wrap actionscript-mode ac-php ac-js2 ac-html)))
+    (sr-speedbar neotree clojure-mode undo-tree ein cobol-mode tabbar javadoc-lookup typescript-mode haxe-mode yasnippet xcscope wgrep-helm wgrep-ag wgrep websocket vimrc-mode tablist sql-indent skewer-mode simple-httpd scss-mode s request-deferred request popup pkg-info php-mode php-auto-yasnippets pcache multiple-cursors memoize levenshtein json-snatcher json-reformat htmlize highlight-indentation highlight helm-core helm-ag google-translate google-this google-maps git-messenger git-commit fringe-helper flymake-easy flycheck find-file-in-project f epl emmet-mode diminish deferred cmake-mode bind-key avy auto-complete async ace-window ac-php-core ac-emmet with-editor pyvenv magit-popup js2-mode ghub dash ivy helm company apache-mode xwidgete which-key web-mode visual-regexp use-ttf use-package tree-mode togetherly sublimity ssass-mode shader-mode scala-mode rainbow-mode python-mode py-autopep8 project-abbrev processing-mode preproc-font-lock powerline pdf-tools package-lint package-build organize-imports-java nasm-mode multi-web-mode meghanada magit lua-mode line-reminder json-mode js2-refactor jdee impatient-mode iedit helm-gtags haskell-mode google-c-style go-mode gitlab gitignore-mode github-notifier gitconfig-mode gitattributes-mode git-timemachine git-link flymake-google-cpplint flymake-cursor floobits exec-path-from-shell elpy csharp-mode cpputils-cmake com-css-sort cmake-project cmake-ide cmake-font-lock better-defaults basic-mode auto-package-update auto-highlight-symbol auto-complete-c-headers all-the-icons ag adaptive-wrap actionscript-mode ac-php ac-js2 ac-html)))
  '(send-mail-function (quote mailclient-send-it))
  '(version-control nil))
 (custom-set-faces
@@ -174,7 +174,6 @@ Return a list of installed packages or nil for every skipped package."
                           'meghanada
                           'multiple-cursors
                           'nasm-mode
-                          'neotree
                           'organize-imports-java
                           'package-build
                           'package-lint
@@ -188,6 +187,7 @@ Return a list of installed packages or nil for every skipped package."
                           'rainbow-mode
                           'scala-mode
                           'shader-mode
+                          'sr-speedbar
                           'ssass-mode
                           'scss-mode
                           'sublimity
