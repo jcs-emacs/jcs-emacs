@@ -119,10 +119,12 @@
                     :foreground "red")
 
 
-;;; Neo Tree
-(require 'neotree)
-(setq neo-window-position t)              ;; set window to the right
-(setq neo-smart-open t)
+;;; Speedbar
+(require 'sr-speedbar)
+;;(setq sr-speedbar-auto-refresh nil)
+(setq speedbar-show-unknown-files t) ; show all files
+(setq speedbar-use-images nil) ; use text for buttons
+;;(setq sr-speedbar-right-side nil) ; put on left side
 
 ;;; Execute path from shell
 (require 'exec-path-from-shell)
