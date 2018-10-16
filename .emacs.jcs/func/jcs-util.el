@@ -830,6 +830,12 @@ STR : string to check if is inside the list of strings above."
 ;; Mode
 ;;---------------------------------------------
 
+;;;###autoload
+(defun jcs-print-current-major-mode ()
+  "Print out the current major mode."
+  (interactive)
+  (message "%s" major-mode))
+
 (defun jcs-is-current-major-mode-p (str)
   "Check if this major mode.
 STR : major mode name."
