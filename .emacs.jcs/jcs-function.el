@@ -101,16 +101,28 @@
 
     ;; If is file..
     (when (equal is-opening-a-file t)
-      ;; Back to previous select window.
-      (jcs-other-window-prev)
+      (let (;; Preserve the previous selected window.
+            (record-selected-window jcs-sr-speedbar-record-selected-window))
+        ;; Back to previous select window.
+        ;;
+        ;; NOTE(jenchieh): This will change the previous selected window value.
+        (jcs-other-window-prev)
 
-      ;; Record the opening buffer/file down.
-      (setq jcs-speedbar-opening-buffer-file-name (buffer-file-name))
+        ;; Record the opening buffer/file down.
+        (setq jcs-speedbar-opening-buffer-file-name (buffer-file-name))
 
-      ;; Maybe kill it, because we are going to open it in originally
-      ;; selected window instead of the default window after close we
-      ;; the `speedbar' window.
-      (jcs-maybe-kill-this-buffer)
+        ;; Maybe kill it, because we are going to open it in originally
+        ;; selected window instead of the default window after close we
+        ;; the `speedbar' window.
+        ;;
+        ;; NOTE(jenchieh): This seems like it will change the
+        ;; `jcs-sr-speedbar-record-selected-window', value by calling
+        ;; `jcs-other-window-next' or `jcs-other-window-prev' functions.
+        ;; So we also need to wrap this function inside the `let' operation.
+        (jcs-maybe-kill-this-buffer)
+
+        ;; Restore previous selected window.
+        (setq jcs-sr-speedbar-record-selected-window record-selected-window))
 
       ;; Close the speedbar window.
       (jcs-sr-speedbar-toggle))))
