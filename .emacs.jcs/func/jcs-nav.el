@@ -47,8 +47,66 @@ Just use this without remember Emacs Lisp function."
       (forward-line -1)
     (goto-char (point-max))))
 
+
 ;;----------------------------------------------
-;; Navigating Parentheses
+;; Small Navigate
+;;----------------------------------------------
+
+(defun jcs-move-to-forward-a-char (ch)
+  "Move forward to a character.
+CH : character we target to move toward."
+  (ignore-errors
+    (forward-char 1)
+    (while (not (jcs-current-char-equal-p ch))
+      (forward-char 1))))
+
+(defun jcs-move-to-backward-a-char (ch)
+  "Move backward to a character.
+CH : character we target to move toward."
+  (ignore-errors
+    (backward-char 1)
+    (while (not (jcs-current-char-equal-p ch))
+      (backward-char 1))))
+
+(defun jcs-move-to-forward-a-word (word)
+  "Move forward to a word.
+WORD : word we target to move toward."
+  (ignore-errors
+    (forward-word 1)
+    (while (not (jcs-current-word-equal-p word))
+      (forward-word 1))))
+
+(defun jcs-move-to-backward-a-word (word)
+  "Move backward to a word.
+WORD : word we target to move toward."
+  (ignore-errors
+    (backward-word 1)
+    (while (not (jcs-current-word-equal-p word))
+      (backward-word 1))))
+
+;; TODO(jenchieh): The naming logic here is very weird..
+;; Consider changing it.
+(defun jcs-move-to-forward-a-char-do-recursive (ch &optional no-rec)
+  "Move forward to a character and recusrive?
+CH : character we target to move toward.
+as NO-REC : recursive? (Default: do recusrive method)"
+  (if (equal no-rec t)
+      (jcs-move-to-forward-a-char ch)
+    (jcs-move-to-forward-a-char-recursive ch)))
+
+;; TODO(jenchieh): The naming logic here is very weird..
+;; Consider changing it.
+(defun jcs-move-to-backward-a-char-do-recursive (ch &optional no-rec)
+  "Move backward to a character and recusrive?
+CH : character we target to move toward.
+as NO-REC : recursive? (Default: do recusrive method)"
+  (if (equal no-rec t)
+      (jcs-move-to-backward-a-char ch)
+    (jcs-move-to-backward-a-char-recursive ch)))
+
+
+;;----------------------------------------------
+;; Navigating to a Character
 ;;----------------------------------------------
 
 ;;; TOPIC: Navigating Parentheses
@@ -62,11 +120,9 @@ Just use this without remember Emacs Lisp function."
 (defvar jcs-search-trigger-backward-char 0
   "Trigger search backward character.")
 
-;;;###autoload
 (defun jcs-move-to-forward-a-char-recursive (ch)
   "Move forward to a character.
 CH : character we target to move toward."
-  (interactive "P")
 
   (save-window-excursion
     ;; No matter what reset the backward trigger b/c we are doing
@@ -104,11 +160,9 @@ CH : character we target to move toward."
                  (propertize (concat "Failing overwrap jcs-move-to-forward-a-char: "  ch)
                              'face '(:foreground "cyan")))))))
 
-;;;###autoload
 (defun jcs-move-to-backward-a-char-recursive (ch)
   "Move backward to a character.
 CH : character we target to move toward."
-  (interactive "P")
 
   (save-window-excursion
     ;; No matter what reset the forward trigger b/c we are doing
@@ -149,60 +203,6 @@ CH : character we target to move toward."
                              'face '(:foreground "cyan")))))))
 
 
-(defun jcs-move-to-forward-a-char (ch)
-  "Move forward to a character.
-CH : character we target to move toward."
-  (interactive "P")
-  (ignore-errors
-    (forward-char 1)
-    (while (not (jcs-current-char-equal-p ch))
-      (forward-char 1))))
-
-(defun jcs-move-to-backward-a-char (ch)
-  "Move backward to a character.
-CH : character we target to move toward."
-  (interactive "P")
-  (ignore-errors
-    (backward-char 1)
-    (while (not (jcs-current-char-equal-p ch))
-      (backward-char 1))))
-
-(defun jcs-move-to-forward-a-char-do-recursive (ch &optional no-rec)
-  "Move forward to a character and recusrive?
-CH : character we target to move toward.
-as NO-REC : recursive? (Default: do recusrive method)"
-  (interactive "P")
-  (if (equal no-rec t)
-      (jcs-move-to-forward-a-char ch)
-    (jcs-move-to-forward-a-char-recursive ch)))
-
-(defun jcs-move-to-backward-a-char-do-recursive (ch &optional no-rec)
-  "Move backward to a character and recusrive?
-CH : character we target to move toward.
-as NO-REC : recursive? (Default: do recusrive method)"
-  (interactive "P")
-  (if (equal no-rec t)
-      (jcs-move-to-backward-a-char ch)
-    (jcs-move-to-backward-a-char-recursive ch)))
-
-(defun jcs-move-to-forward-a-word (word)
-  "Move forward to a word.
-WORD : word we target to move toward."
-  (interactive "P")
-  (ignore-errors
-    (forward-word 1)
-    (while (not (jcs-current-word-equal-p word))
-      (forward-word 1))))
-
-(defun jcs-move-to-backward-a-word (word)
-  "Move backward to a word.
-WORD : word we target to move toward."
-  (interactive "P")
-  (ignore-errors
-    (backward-word 1)
-    (while (not (jcs-current-word-equal-p word))
-      (backward-word 1))))
-
 ;;;------------------------------------------------
 ;;; Move toggle Open and Close all kind of char.
 
@@ -211,10 +211,8 @@ WORD : word we target to move toward."
 (defvar jcs-search-trigger-backward-open-close-char 0
   "Trigger search backward open and close character.")
 
-;;;###autoload
 (defun jcs-move-forward-open-close-epair (openChar closeChar)
   "Move forward to a open/close parenthesis."
-  (interactive "P")
 
   (save-window-excursion
     ;; No matter what reset the forward trigger b/c we are doing
@@ -260,10 +258,8 @@ WORD : word we target to move toward."
                  (propertize (concat "Failing overwrap jcs-move-forward-open-close-epair: '"  openChar "' and '" closeChar "'")
                              'face '(:foreground "cyan")))))))
 
-;;;###autoload
 (defun jcs-move-backward-open-close-epair (openChar closeChar)
   "Move backward to a open/close parenthesis."
-  (interactive "P")
 
   (save-window-excursion
     ;; No matter what reset the forward trigger b/c we are doing
