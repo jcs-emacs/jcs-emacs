@@ -512,19 +512,27 @@ SOURCE(jenchieh):
 
 SOURCE: http://emacs.stackexchange.com/questions/628/cycle-between-windows-in-all-frames"
   (interactive)
-
   ;; find nexr window and jump to that window.
   (other-window 1 t)
-  (select-frame-set-input-focus (selected-frame)))
+  (select-frame-set-input-focus (selected-frame))
+
+  ;; Update the selected window if speedbar is active.
+  (when (and (sr-speedbar-exist-p)
+             (not (jcs-is-current-major-mode-p "speedbar-mode")))
+    (setq jcs-sr-speedbar-record-selected-window (selected-window))))
 
 ;;;###autoload
 (defun jcs-other-window-prev()
   "Cycle through window and frame.(previous window/frame)"
   (interactive)
-
   ;; find previous window and jump to that window.
   (other-window -1 t)
-  (select-frame-set-input-focus (selected-frame)))
+  (select-frame-set-input-focus (selected-frame))
+
+  ;; Update the selected window if speedbar is active.
+  (when (and (sr-speedbar-exist-p)
+             (not (jcs-is-current-major-mode-p "speedbar-mode")))
+    (setq jcs-sr-speedbar-record-selected-window (selected-window))))
 
 ;;;###autoload
 (defun scroll-up-one-line()
