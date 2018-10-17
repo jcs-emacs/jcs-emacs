@@ -1100,6 +1100,7 @@ REVERSE : t forward, nil backward."
     ;; If failed search backward start character..
     (if (= jcs-search-trigger-backward-char 1)
         (progn
+          (setq jcs-search-trigger-backward-char 0)
           (goto-char preserve-point)
           (error "Does not find beginning character : %s" start-char))
       (progn
@@ -1118,6 +1119,7 @@ REVERSE : t forward, nil backward."
 
     ;; If failed search forward end character..
     (when (= jcs-search-trigger-forward-char 1)
+      (setq jcs-search-trigger-forward-char 0)
       (goto-char preserve-point)
       (error "Does not find end character : %s" end-char))
     (setq end-point (point))
@@ -1125,37 +1127,45 @@ REVERSE : t forward, nil backward."
     ;; Returns found point.
     end-point))
 
-(defun jcs-pair-char-not-overlap-p (start-char end-char)
-  "Check if the two character overlap?
-
-Check this kind of circumstance, for instance..
-  <1> ` ) p ( ` illegal
-  <2> ` ( p ) ` legal
-  <3> ` ( p ( ` legal
-  <4> ` ) p ) ` legal"
+(defun jcs-check-outside-nested-char-p (start-char end-char)
+  "Check if outside the nested START-CHAR and END-CHAR?"
   (save-excursion
     (ignore-errors
       (let ((preserve-point (point))
-            (start-char-backward-point nil)
-            (end-char-backward-point nil)
-            (start-char-forward-point nil)
-            (end-char-forward-point nil))
-        (jcs-move-to-backward-a-char start-char)
-        (setq start-char-backward-point (point))
-        (goto-char preserve-point)
-        (jcs-move-to-backward-a-char end-char)
-        (setq end-char-backward-point (point))
-        (goto-char preserve-point)
+            (nested-level 0)
+            ;; Is the same char or not?
+            (same-char (string= start-char end-char))
+            (same-char-start-flag nil))
 
-        (jcs-move-to-forward-a-char start-char)
-        (setq start-char-forward-point (point))
-        (goto-char preserve-point)
-        (jcs-move-to-forward-a-char end-char)
-        (setq end-char-forward-point (point))
-        (goto-char preserve-point)
+        ;; Beginning of the buffer.
+        (goto-char (point-min))
 
-        (or (>= start-char-backward-point end-char-backward-point)
-            (>= start-char-forward-point end-char-forward-point))))))
+        ;; We count the nested level from the beginning of the buffer.
+        (while (<= (point) preserve-point)
+          (if same-char
+              (progn
+                (when (jcs-current-char-equal-p start-char)
+                  (if same-char-start-flag
+                      (progn
+                        (setq nested-level (- nested-level 1))
+                        (setq same-char-start-flag nil))
+                    (progn
+                      (setq nested-level (+ nested-level 1))
+                      (setq same-char-start-flag t)))))
+            (progn
+              ;; If is the start char, we add up the nested level.
+              (when (jcs-current-char-equal-p start-char)
+                (setq nested-level (+ nested-level 1)))
+
+              ;; If is the end char, we minus the nested level.
+              (when (jcs-current-char-equal-p end-char)
+                (setq nested-level (- nested-level 1)))))
+
+          (forward-char 1))
+
+        ;; If nested level is lower than 0, meaning is not between
+        ;; the nested START-CHAR and END-CHAR.
+        (<= nested-level 0)))))
 
 (defun jcs-delete-between-char (start-char end-char)
   "Delete everything between START-CHAR and the END-CHAR."
@@ -1232,7 +1242,7 @@ Check this kind of circumstance, for instance..
     ;; Check if is inside the region.
     (if (and (>= preserve-point start-point)
              (<= preserve-point end-point)
-             (jcs-pair-char-not-overlap-p start-char end-char))
+             (not (jcs-check-outside-nested-char-p start-char end-char)))
         (progn
           ;; Delete the region.
           (delete-region start-point end-point))
