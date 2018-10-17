@@ -11,6 +11,7 @@
 * Completey remove neotree. (jcs-emacs-init)
 * Use `speedbar' and `sr-speedbar' instead of `neotree'. (jcs-emacs-init)
 * Implement `speedbar' and `sr-speedbar' customize functions. (jcs-emacs-init)
+* Implement `nhexl-mode' configurations. (jcs-emacs-init)
 
 2018-10-15
 * Long-overdue support language `Verilog', starting from now on support 
