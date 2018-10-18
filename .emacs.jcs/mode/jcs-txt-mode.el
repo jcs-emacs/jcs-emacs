@@ -56,10 +56,6 @@
 (add-to-list 'auto-mode-alist '("\\.gitignore?\\'" . gitignore-mode))
 (add-to-list 'auto-mode-alist '("\\.gitattributes?\\'" . gitignore-mode))
 
-;; temporary mode for all Text related!
-(add-to-list 'auto-mode-alist '("\\.bin?\\'" . gitignore-mode))
-(add-to-list 'auto-mode-alist '("\\.md?\\'" . gitignore-mode))
-
 ;; temporary ALGOL
 (add-to-list 'auto-mode-alist '("\\.alg?\\'" . gitignore-mode))
 
