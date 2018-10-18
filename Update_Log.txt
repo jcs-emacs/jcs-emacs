@@ -7,6 +7,10 @@
 # ========================================================================
 
 
+2018-10-18
+* Start support Markdown file, install major mode 'markdown-mode'. (jcs-emacs-init)
+* Add customize markdown mode configurations. (jcs-emacs-init)
+
 2018-10-17
 * Completey remove neotree. (jcs-emacs-init)
 * Use `speedbar' and `sr-speedbar' instead of `neotree'. (jcs-emacs-init)
