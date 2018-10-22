@@ -316,6 +316,20 @@ line by line instead of indent the whole file at once."
   (when jcs-web-auto-truncate-lines
     (jcs-web-truncate-lines-by-face)))
 
+;;;###autoload
+(defun jcs-web-return-key ()
+  "Return key for Web mode."
+  (interactive)
+  (if (and (jcs-first-forward-char-in-line-p "<")
+           (jcs-first-backward-char-in-line-p ">"))
+      (progn
+        (newline-and-indent)
+        (newline-and-indent)
+        (jcs-web-smart-indent-up))
+    (progn
+      (newline-and-indent))))
+
+
 ;;---------------------------------------------
 ;; Save
 ;;---------------------------------------------
@@ -411,7 +425,8 @@ line by line instead of indent the whole file at once."
     (progn
       (save-excursion
         (newline-and-indent))
-      (forward-char 1))))
+      (forward-char 1)
+      (indent-for-tab-command))))
 
 (defun jcs-init-css-faces ()
   "CSS Faces Highlighting."
