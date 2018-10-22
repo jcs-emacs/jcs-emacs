@@ -366,8 +366,7 @@ BND-PT : limit point."
       (forward-char -1)
 
       (while (and (>= (point) real-lmt-pt)
-                  (or (jcs-current-char-equal-p " ")
-                      (jcs-current-char-equal-p "\t")
+                  (or (jcs-current-whitespace-or-tab-p)
                       (jcs-is-beginning-of-line-p)))
         (forward-char -1)))))
 
@@ -386,8 +385,7 @@ BND-PT : boundary point."
       (forward-char 1)
 
       (while (and (<= (point) real-lmt-pt)
-                  (or (jcs-current-char-equal-p " ")
-                      (jcs-current-char-equal-p "\t")
+                  (or (jcs-current-whitespace-or-tab-p)
                       (jcs-is-beginning-of-line-p)))
         (forward-char 1)))))
 
