@@ -7,6 +7,10 @@
 # ========================================================================
 
 
+2018-10-22
+* Implement web return key functionalities. (jcs-emacs-init)
+* Increase readabilities for util module. (jcs-emacs-init)
+
 2018-10-18
 * Start support Markdown file, install major mode 'markdown-mode'. (jcs-emacs-init)
 * Add customize markdown mode configurations. (jcs-emacs-init)
