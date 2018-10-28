@@ -110,7 +110,7 @@ C-S-f           format the region if region select else format the document.
 M-U             uppercase-word, if region do region
 M-D             downcase-word, if region do region
 
-C-x-a           align all variables in the region if region selected, 
+C-x a           align all variables in the region if region selected, 
                 else align full document insteead.
 
 M-m             open buffer menu.
