@@ -1,4 +1,4 @@
-t;; ========================================================================
+;; ========================================================================
 ;; $File: jcs-face.el $
 ;; $Date: 2017-12-13 10:21:39 $
 ;; $Revision: $
@@ -30,7 +30,7 @@ t;; ========================================================================
   :group 'basic-faces)
 (defvar jcs-font-lock-preprocessor-face 'jcs-font-lock-preprocessor-face)
 
-;; Set JayCeS's hightlight faces.
+;; Apply JayCeS's hightlight faces.
 (setq font-lock-comment-face jcs-font-lock-comment-face)
 (setq font-lock-doc-face jcs-font-lock-comment-face)
 (setq font-lock-string-face jcs-font-lock-string-face)
@@ -74,6 +74,7 @@ t;; ========================================================================
                           verilog-mode
                           vimrc-mode
                           web-mode
+                          yaml-mode
                           ))
 
 ;; List of color: https://alexschroeder.ch/geocities/kensanata/colors.html
