@@ -7,6 +7,9 @@
 # ========================================================================
 
 
+2018-11-03
+* Start support YAML file, install major mode 'yaml-mode'. (jcs-emacs-init)
+
 2018-10-22
 * Implement web return key functionalities. (jcs-emacs-init)
 * Increase readabilities for util module. (jcs-emacs-init)
