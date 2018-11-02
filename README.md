@@ -54,6 +54,8 @@ config files improve and extended support for the following:
   - Vim script
 * X
   - XML
+* Y
+  - YAML
 
 ## Supported Emacs versions ##
 The config should run on Emacs 24.3 or higher, but still, recommend 
