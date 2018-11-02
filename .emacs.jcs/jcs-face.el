@@ -1,4 +1,4 @@
-;; ========================================================================
+t;; ========================================================================
 ;; $File: jcs-face.el $
 ;; $Date: 2017-12-13 10:21:39 $
 ;; $Revision: $
@@ -30,12 +30,11 @@
   :group 'basic-faces)
 (defvar jcs-font-lock-preprocessor-face 'jcs-font-lock-preprocessor-face)
 
-(defun jcs-init-set-face ()
-  "Set JayCeS's hightlight faces."
-  (face-remap-add-relative 'font-lock-comment-face '(jcs-font-lock-comment-face))
-  (face-remap-add-relative 'font-lock-doc-face '(jcs-font-lock-comment-face))
-  (face-remap-add-relative 'font-lock-string-face '(jcs-font-lock-string-face))
-  (face-remap-add-relative 'font-lock-preprocessor-face '(jcs-font-lock-preprocessor-face)))
+;; Set JayCeS's hightlight faces.
+(setq font-lock-comment-face jcs-font-lock-comment-face)
+(setq font-lock-doc-face jcs-font-lock-comment-face)
+(setq font-lock-string-face jcs-font-lock-string-face)
+(setq font-lock-preprocessor-face jcs-font-lock-preprocessor-face)
 
 
 ;;----------------------------------------------
