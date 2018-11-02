@@ -37,9 +37,6 @@
         ((string-match "[.]v" buffer-file-name) (jcs-verilog-script-format))
         )
 
-  ;; Set Faces.
-  (jcs-init-set-face)
-
   )
 (add-hook 'verilog-mode-hook 'jcs-verilog-mode-hook)
 

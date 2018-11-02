@@ -36,9 +36,6 @@
         ((string-match "[.]clj" buffer-file-name) (jcs-clojure-format))
         )
 
-  ;; Set Faces.
-  (jcs-init-set-face)
-
   ;; jcs Clojure key binding
   (define-key clojure-mode-map (kbd "C-d") #'jcs-kill-whole-line)
   (define-key clojure-mode-map "\C-c\C-c" #'kill-ring-save)

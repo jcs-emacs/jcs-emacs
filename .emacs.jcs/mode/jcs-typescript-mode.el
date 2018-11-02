@@ -39,9 +39,6 @@
         ((string-match "[.]ts" buffer-file-name) (jcs-typescript-format))
         )
 
-  ;; Set Faces.
-  (jcs-init-set-face)
-
   ;; jcs TypeScript key binding
   (define-key typescript-mode-map (kbd "C-d") #'jcs-kill-whole-line)
   (define-key typescript-mode-map "\C-c\C-c" #'kill-ring-save)

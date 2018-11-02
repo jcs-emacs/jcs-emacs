@@ -40,9 +40,6 @@
         ((string-match "[.]hx" buffer-file-name) (jcs-haxe-script-format))
         )
 
-  ;; Set Faces.
-  (jcs-init-set-face)
-
   ;; jcs Haxe key binding
   (define-key haxe-mode-map (kbd "C-d") #'jcs-kill-whole-line)
   (define-key haxe-mode-map "\C-c\C-c" #'kill-ring-save)

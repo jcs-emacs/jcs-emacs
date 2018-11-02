@@ -39,8 +39,6 @@
         ((string-match "[.]jayces" buffer-file-name) (jcs-jayces-class-format))
         )
 
-  ;; Set Faces.
-  (jcs-init-set-face)
   )
 (add-hook 'jayces-mode-hook 'jcs-jayces-mode-hook)
 

@@ -41,8 +41,6 @@
           )
     )
 
-  ;; Set Faces.
-  (jcs-init-set-face)
   )
 (add-hook 'lisp-mode-hook 'jcs-lisp-mode-hook)
 

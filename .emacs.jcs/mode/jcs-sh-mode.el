@@ -40,9 +40,6 @@
         ((string-match "[.]macosx" buffer-file-name) (jcs-sh-script-format))
         )
 
-  ;; Set Faces.
-  (jcs-init-set-face)
-
   ;; jcs key binding
   (define-key sh-mode-map (kbd "C-d") #'jcs-kill-whole-line)
   (define-key sh-mode-map "\C-c\C-c" #'kill-ring-save)

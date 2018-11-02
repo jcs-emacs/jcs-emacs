@@ -46,9 +46,6 @@
         ((string-match "[.]cs" buffer-file-name) (jcs-csharp-format))
         )
 
-  ;; Set Faces.
-  (jcs-init-set-face)
-
   ;; jcs C# key binding
   (define-key csharp-mode-map (kbd "C-d") #'jcs-kill-whole-line)
   (define-key csharp-mode-map "\C-c\C-c" #'kill-ring-save)

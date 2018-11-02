@@ -93,7 +93,6 @@
         )
 
   ;; Set Faces.
-  (jcs-init-set-face)
   (jcs-init-web-faces)
 
   ;; jcs web key binding
@@ -340,7 +339,6 @@
         )
 
   ;; Set Faces.
-  (jcs-init-set-face)
   (jcs-init-css-faces)
 
   ;; jcs web key binding

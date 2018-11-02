@@ -50,9 +50,6 @@
         ((string-match "[.]java" buffer-file-name) (jcs-java-class-format))
         )
 
-  ;; Set Faces.
-  (jcs-init-set-face)
-
   ;; NOTE(jenchieh): change the face locally to this mode.
   (face-remap-add-relative 'font-lock-constant-face
                            '((:foreground "#D2D2D2")))

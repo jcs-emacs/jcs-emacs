@@ -135,9 +135,6 @@
   ;; TOPIC(jenchieh): Treat underscore as word.
   ;; URL(jenchieh): https://emacs.stackexchange.com/questions/9583/how-to-treat-underscore-as-part-of-the-word
   (modify-syntax-entry ?_ "w")
-
-  ;; Set Faces.
-  (jcs-init-set-face)
   )
 (add-hook 'c-mode-common-hook 'jcs-cc-mode-hook)
 

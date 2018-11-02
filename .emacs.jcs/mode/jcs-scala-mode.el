@@ -30,9 +30,6 @@
         ((string-match "[.]scala" buffer-file-name) (jcs-scala-class-format))
         )
 
-  ;; Set Faces.
-  (jcs-init-set-face)
-
   ;; Scala key bindings
   ;; comment block
   (define-key scala-mode-map (kbd "RET") #'jcs-smart-context-line-break)

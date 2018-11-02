@@ -40,9 +40,6 @@
         ((string-match "[.]bat" buffer-file-name) (jcs-batch-script-format))
         )
 
-  ;; Set Faces.
-  (jcs-init-set-face)
-
   ;; jcs key binding
   (define-key bat-mode-map (kbd "C-d") #'jcs-kill-whole-line)
   (define-key bat-mode-map "\C-c\C-c" #'kill-ring-save)

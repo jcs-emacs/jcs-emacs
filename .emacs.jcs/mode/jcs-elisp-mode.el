@@ -44,8 +44,6 @@
           )
     )
 
-  ;; Set Faces.
-  (jcs-init-set-face)
   )
 (add-hook 'emacs-lisp-mode-hook 'jcs-emacs-lisp-mode-hook)
 

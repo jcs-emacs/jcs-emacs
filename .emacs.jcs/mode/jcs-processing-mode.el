@@ -51,9 +51,6 @@
         ((string-match "[.]pde" buffer-file-name) (jcs-processing-script-format))
         )
 
-  ;; Set Faces.
-  (jcs-init-set-face)
-
   ;; jcs processing key binding
   (define-key processing-mode-map (kbd "C-d") #'jcs-kill-whole-line)
   (define-key processing-mode-map "\C-c\C-c" #'kill-ring-save)

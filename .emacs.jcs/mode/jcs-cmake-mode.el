@@ -48,9 +48,6 @@
         ((string-match "CMakeLists.txt" buffer-file-name) (jcs-cmake-format))
         )
 
-  ;; Set Faces.
-  (jcs-init-set-face)
-
   ;; jcs makefile key binding
   (define-key cmake-mode-map (kbd "<up>") #'jcs-py-indent-up)
   (define-key cmake-mode-map (kbd "<down>") #'jcs-py-indent-down)

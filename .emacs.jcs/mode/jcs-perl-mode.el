@@ -39,9 +39,6 @@
         ((string-match "[.]pl" buffer-file-name) (jcs-perl-script-format))
         )
 
-  ;; Set Faces.
-  (jcs-init-set-face)
-
   ;; jcs key binding
   (define-key perl-mode-map (kbd "C-d") #'jcs-kill-whole-line)
   (define-key perl-mode-map "\C-c\C-c" #'kill-ring-save)
