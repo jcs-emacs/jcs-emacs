@@ -11,7 +11,7 @@
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 ;; JenChieh Web Development mode.
 ;;
-;; include HTML,CSS,PHP,JavaScript,JSON.
+;; Including HTML, CSS, PHP, JavaScript, JSON.
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 ;;============================
@@ -115,6 +115,10 @@
   (define-key web-mode-map (kbd "<left>") #'jcs-web-left)
   (define-key web-mode-map (kbd "RET") #'jcs-web-return-key)
 
+  (define-key web-mode-map (kbd "DEL") #'jcs-delete-backward-char)
+  (define-key web-mode-map (kbd "{") #'jcs-vs-front-curly-bracket-key)
+  (define-key web-mode-map (kbd ";") #'jcs-vs-semicolon-key)
+
   ;; Save
   (define-key web-mode-map "\C-s" #'jcs-web-save-buffer)
 
@@ -132,10 +136,6 @@
   (define-key web-mode-map (kbd "M-<backspace>") #'jcs-web-backward-delete-word-capital)
   (define-key emmet-mode-keymap (kbd "M-<left>") #'jcs-backward-capital-char)
   (define-key emmet-mode-keymap (kbd "M-<right>") #'jcs-forward-capital-char)
-
-  (define-key web-mode-map (kbd "DEL") #'jcs-delete-backward-char)
-  (define-key web-mode-map (kbd "{") #'jcs-vs-front-curly-bracket-key)
-  (define-key web-mode-map (kbd ";") #'jcs-vs-semicolon-key)
   )
 (add-hook 'web-mode-hook 'emmet-mode)
 (add-hook 'web-mode-hook  'jcs-web-mode-hook)
