@@ -7,6 +7,12 @@
 # ========================================================================
 
 
+2018-11-04
+* Fixed web-mode highlighting missing when apply ASP.NET Razor v3 comment 
+ highlighting rule. (jcs-emacs-init)
+* Add `jcs-post-command-hook' in `jcs-hook.el' in order to fix highlihging 
+ missing when editing file using web-mode. (jcs-emacs-init)
+
 2018-11-03
 * Start support YAML file, install major mode 'yaml-mode'. (jcs-emacs-init)
 
