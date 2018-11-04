@@ -230,13 +230,15 @@ IS-FORWARD : forward conversion instead of backward conversion."
 (defun jcs-delete-space-infront-of-line ()
   "Delete tab/spaces before the first character in line."
   (interactive)
-  (save-excursion
-    (ignore-errors
-      (jcs-goto-first-char-in-line)
-      (push-mark-command nil)
-      (beginning-of-line)
-      (jcs-delete-region)
-      (deactivate-mark))))
+  (let ((message-log-max nil)
+        (inhibit-message t))
+    (save-excursion
+      (ignore-errors
+        (jcs-goto-first-char-in-line)
+        (push-mark-command nil)
+        (beginning-of-line)
+        (jcs-delete-region)
+        (deactivate-mark)))))
 
 ;;;###autoload
 (defun jcs-insert-spaces-by-tab-width ()
@@ -805,6 +807,15 @@ FONT : font to check."
                     "No matching font being used")
       nil
     t))
+
+;;;###autoload
+(defun jcs-font-lock-fontify-buffer ()
+  "Refresh the syntax hightlight for whole buffer."
+  (interactive)
+  (let ((message-log-max nil)
+        (inhibit-message t))
+    ;; Refresh the syntax hightlight.
+    (call-interactively #'font-lock-fontify-buffer)))
 
 ;;---------------------------------------------
 ;; List
