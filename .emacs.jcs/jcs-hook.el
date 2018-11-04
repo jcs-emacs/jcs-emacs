@@ -36,10 +36,8 @@
 ;;-----------------------------------------------------------
 ;;-----------------------------------------------------------
 
-;;;###autoload
 (defun jcs-find-file-hook ()
   "When temporary buffer shown."
-
   (save-selected-window
     (ignore-errors
       (jcs-jump-shown-to-window "*Buffer List*"))
@@ -57,3 +55,14 @@
   (jcs-reload-docstring-info)
   )
 (add-hook 'after-init-hook 'jcs-after-init-hook)
+
+;;-----------------------------------------------------------
+;;-----------------------------------------------------------
+
+(defun jcs-post-command-hook ()
+  "Hook run after every command."
+  (when (jcs-is-current-major-mode-p "web-mode")
+    ;; Refresh the syntax highlighting.
+    (call-interactively #'jcs-font-lock-fontify-buffer))
+  )
+(add-hook 'post-command-hook 'jcs-post-command-hook)
