@@ -27,10 +27,8 @@
            ("\\(<!--[a-zA-Z0-9 \n\t-.<>?,*'`@\"=_(){}:;&^%$#!~]*-->\\)" 1 'jcs-font-lock-comment-face t)
            ;; For multi-lines comment.
            ;; TODO(jenchieh): Only inside the curly bracket.
-           ("\\(/\\*[a-zA-Z0-9 \n\t-.<>?,*'`@\"=_(){}:;&^%$#!~]*\\*/\\)" 1 'jcs-web-mode-block-comment-face t)
-           ;; For one line comment.
-           ;; TODO(jenchieh): Only inside the curly bracket.
-           ("\\(/\\*[a-zA-Z0-9 \t-.<>?,*'`/@\"=_(){}:;&^%$#!~]*\\*/\\)" 1 'jcs-web-mode-block-comment-face t)
+           ;; TODO(jenchieh): There is bug if `/' is inside the comment space.
+           ("\\(/\\*[^/]*\\*/\\)" 1 'jcs-web-mode-block-comment-face t)
            )'end))
       jcs-web-type-comment-missing-modes)
 
@@ -99,31 +97,13 @@ Is the opposite of `jcs-web-toggle-auto-truncate-lines'."
 (defun jcs-web-kill-whole-line ()
   "Kill whole line in web-mode."
   (interactive)
-  (jcs-kill-whole-line)
-
-  ;; NOTE(jenchieh): Unknown reason that web-mode will
-  ;; get disable...
-  ;;(jcs-web-mode)
-
-  ;; NOTE(jenchieh): Get back highlighting.
-  ;;(font-lock-flush)
-  ;;(font-lock-fontify-buffer)
-  )
+  (jcs-kill-whole-line))
 
 ;;;###autoload
 (defun jcs-web-kill-ring-save ()
   "Kill ring save in web-mode."
   (interactive)
-  (kill-ring-save (region-beginning) (region-end))
-
-  ;; NOTE(jenchieh): Unknown reason that web-mode will
-  ;; get disable...
-  ;;(jcs-web-mode)
-
-  ;; NOTE(jenchieh): Get back highlighting.
-  ;;(font-lock-flush)
-  ;;(font-lock-fontify-buffer)
-  )
+  (kill-ring-save (region-beginning) (region-end)))
 
 ;;;###autoload
 (defun jcs-web-yank ()
@@ -140,16 +120,7 @@ another function..."
     (delete-region (region-beginning) (region-end)))
 
   ;; then paste it.
-  (yank)
-
-  ;; NOTE(jenchieh): Unknown reason that web-mode will
-  ;; get disable...
-  ;;(jcs-web-mode)
-
-  ;; NOTE(jenchieh): Get back highlighting.
-  ;;(font-lock-flush)
-  ;;(font-lock-fontify-buffer)
-  )
+  (yank))
 
 ;;;###autoload
 (defun jcs-web-backward-delete-word ()
@@ -328,7 +299,6 @@ line by line instead of indent the whole file at once."
         (jcs-web-smart-indent-up))
     (progn
       (newline-and-indent))))
-
 
 ;;---------------------------------------------
 ;; Save
