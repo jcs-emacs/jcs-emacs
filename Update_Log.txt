@@ -7,6 +7,10 @@
 # ========================================================================
 
 
+2018-11-13
+* Start support Ruby file, customize the `ruby-mode' with jcs-ruby-mode.el 
+ file. (jcs-emacs-init)
+
 2018-11-04
 * Fixed web-mode highlighting missing when apply ASP.NET Razor v3 comment 
  highlighting rule. (jcs-emacs-init)
