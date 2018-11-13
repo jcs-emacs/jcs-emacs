@@ -351,6 +351,11 @@ on language selected."
   "Header for Python header file."
   (jcs-insert-template-by-file-path "~/.emacs.jcs/template/python/python_template.txt"))
 
+;;; Ruby
+(defun jcs-insert-ruby-template ()
+  "Header for Ruby header file."
+  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/ruby/ruby_template.txt"))
+
 ;;; SASS
 (defun jcs-insert-sass-template ()
   "Header for SASS header file."
