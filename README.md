@@ -43,6 +43,8 @@ config files improve and extended support for the following:
   - Perl
   - PHP
   - Python
+* R
+  - Ruby
 * S
   - Scala
   - Shell
