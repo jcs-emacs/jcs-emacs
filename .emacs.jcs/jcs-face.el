@@ -68,6 +68,7 @@
                           php-mode
                           python-mode
                           ruby-mode
+                          rust-mode
                           scala-mode
                           sh-mode
                           sql-mode
