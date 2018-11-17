@@ -188,6 +188,7 @@ Return a list of installed packages or nil for every skipped package."
                           'py-autopep8
                           'python-mode
                           'rainbow-mode
+                          'rust-mode
                           'scala-mode
                           'shader-mode
                           'sr-speedbar
