@@ -45,6 +45,7 @@ config files improve and extended support for the following:
   - Python
 * R
   - Ruby
+  - Rust
 * S
   - Scala
   - Shell
