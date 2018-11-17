@@ -302,6 +302,7 @@ Return a list of installed packages or nil for every skipped package."
 (load-file "~/.emacs.jcs/mode/jcs-verilog-mode.el")
 (load-file "~/.emacs.jcs/mode/jcs-markdown-mode.el")
 (load-file "~/.emacs.jcs/mode/jcs-ruby-mode.el")
+(load-file "~/.emacs.jcs/mode/jcs-rust-mode.el")
 
 ;; Add hook to all Emacs' events.
 (load-file "~/.emacs.jcs/jcs-hook.el")
