@@ -39,6 +39,8 @@ config files improve and extended support for the following:
   - Lua
 * M
   - Makefile
+* O
+  - Objective-C
 * P
   - Perl
   - PHP
