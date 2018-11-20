@@ -30,6 +30,10 @@
               (jcs-is-current-major-mode-p "c-mode"))
       (setq corresponding-file-name (jcs-cc-corresponding-file)))
 
+    ;; NOTE(jenchieh): Find Objective-C corresponding file.
+    (when (or (jcs-is-current-major-mode-p "objc-mode"))
+      (setq corresponding-file-name (jcs-objc-corresponding-file)))
+
     ;; NOTE(jenchieh): Find WEB corresponding file.
     (when (or
            ;; For ASP.NET -> [file-name].aspx.cs
@@ -39,7 +43,8 @@
       (setq corresponding-file-name (jcs-web-corresponding-file)))
 
     ;; Error check before return it value.
-    (if corresponding-file-name (find-file corresponding-file-name)
+    (if corresponding-file-name
+        (find-file corresponding-file-name)
       (error "Unable to find a corresponding file.."))))
 
 ;;;###autoload
@@ -80,6 +85,28 @@
            (progn
              (setq corresponding-file-name (concat tmp-base-file-name ".h"))))
           )
+    ;; Return file name.
+    corresponding-file-name))
+
+
+;;-----------------------------------------------------------
+;; Objective-C
+;;-----------------------------------------------------------
+
+(defun jcs-objc-corresponding-file ()
+  "Find the corresponding file for Objective-C related file."
+  (let ((corresponding-file-name "")
+        (tmp-base-file-name (file-name-sans-extension buffer-file-name)))
+    (cond ((string-match "\\.m" buffer-file-name)
+           (progn
+             (setq corresponding-file-name (concat tmp-base-file-name ".h"))))
+          )
+
+    ;; If Objective-C corresponding file not found, use C/C++ corresponding
+    ;; file instead.
+    (when (string= corresponding-file-name "")
+      (setq corresponding-file-name (jcs-cc-corresponding-file)))
+
     ;; Return file name.
     corresponding-file-name))
 
