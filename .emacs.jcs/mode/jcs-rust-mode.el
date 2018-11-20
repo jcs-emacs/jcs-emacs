@@ -27,13 +27,13 @@
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
 
-  (defun jcs-rust-script-format ()
-    "Format the given file as a Rust script."
+  (defun jcs-rust-format ()
+    "Format the given file as a Rust file."
     (when (jcs-is-current-file-empty-p)
       (jcs-insert-rust-template)))
 
   (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]rs" buffer-file-name) (jcs-rust-script-format))
+        ((string-match "[.]rs" buffer-file-name) (jcs-rust-format))
         )
   )
 (add-hook 'rust-mode-hook 'jcs-rust-mode-hook)

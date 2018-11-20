@@ -54,7 +54,7 @@
   (face-remap-add-relative 'font-lock-constant-face
                            '((:foreground "#D2D2D2")))
 
-  ;; jcs java key binding
+  ;; jcs Java key binding
   (define-key java-mode-map (kbd "C-d") #'jcs-kill-whole-line)
   (define-key java-mode-map "\C-c\C-c" #'kill-ring-save)
 
