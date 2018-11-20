@@ -103,8 +103,19 @@
   (when (jcs-is-current-file-empty-p)
     (jcs-insert-c++-source-template)))
 
+(defun jcs-objc-header-format ()
+  "Format the given file as a Objective-C header file."
+  (when (jcs-is-current-file-empty-p)
+    (jcs-insert-objc-header-template)))
+
+(defun jcs-objc-source-format ()
+  "Format the given file as a Objective-C source file."
+  (when (jcs-is-current-file-empty-p)
+    (jcs-insert-objc-source-template)))
+
 ;;-----------------------------------------------------------
 ;;-----------------------------------------------------------
+
 
 (defun jcs-cc-mode-hook ()
   "C/C++ mode hook."
