@@ -50,6 +50,7 @@ config files improve and extended support for the following:
   - Scala
   - Shell
   - SQL
+  - Swift
 * T
   - TypeScript
 * V
