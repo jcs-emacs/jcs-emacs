@@ -391,6 +391,11 @@ on language selected."
   "Header for SQL header file."
   (jcs-insert-template-by-file-path "~/.emacs.jcs/template/sql/sql_template.txt"))
 
+;;; Swift
+(defun jcs-insert-swift-template ()
+  "Header for Swift header file."
+  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/swift/swift_template.txt"))
+
 ;;; Text
 (defun jcs-insert-txt-template ()
   "Header for Text header file."
