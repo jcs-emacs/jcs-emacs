@@ -62,7 +62,9 @@
                           js2-mode
                           lisp-mode
                           lua-mode
+                          markdown-mode
                           nasm-mode
+                          objc-mode
                           org-mode
                           perl-mode
                           php-mode
@@ -72,6 +74,7 @@
                           scala-mode
                           sh-mode
                           sql-mode
+                          swift-mode
                           typescript-mode
                           verilog-mode
                           vimrc-mode
