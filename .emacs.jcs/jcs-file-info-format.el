@@ -331,6 +331,15 @@ on language selected."
   "Template for makefile Python library."
   (jcs-insert-template-by-file-path "~/.emacs.jcs/template/makefile_python_lib.txt"))
 
+;;; Objective-C
+(defun jcs-insert-objc-header-template ()
+  "Header for Objective-C header file."
+  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/cc/objc_header_template.txt"))
+
+(defun jcs-insert-objc-source-template ()
+  "Header for Objective-C source file."
+  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/cc/objc_source_template.txt"))
+
 ;;; Perl
 (defun jcs-insert-perl-template ()
   "Header for Perl header file."
