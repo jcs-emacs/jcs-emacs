@@ -7,6 +7,10 @@
 # ========================================================================
 
 
+2018-11-21
+* Start support Swift file, customize the `swift-mode' with jcs-swift-mode.el 
+ file. (jcs-emacs-init)
+
 2018-11-17
 * Start support Rust file, customize the `rust-mode' with jcs-rust-mode.el 
  file. (jcs-emacs-init)
