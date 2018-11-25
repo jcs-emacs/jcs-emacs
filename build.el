@@ -21,4 +21,4 @@
 
 
 ;; Start regular Emacs file.
-(load-file "./.emacs")
+;;(load-file "./.emacs")
