@@ -10,8 +10,8 @@ on Linux, MacOS and Windows system.
 Emacs itself comes with support for many programming languages. These
 config files improve and extended support for the following:
 * A
-  - Assembly Language
   - Action Script 3.0
+  - Assembly Language
 * B
   - BASIC
   - Batchfile
