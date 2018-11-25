@@ -10,7 +10,7 @@
 
 
 if [ -n "$TRAVIS" ]; then
-    # Make it look like this is ~/.emacs.d (needed for Emacs 24.5, at least)
+    # Make it look like this is ~/.emacs.d (needed for Emacs 26.1, at least)
     export HOME=$PWD/..
     ln -s emacs.d ../.emacs.d
 fi
