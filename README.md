@@ -1,5 +1,7 @@
 # jcs-emacs-init #
 
+[![Build Status](https://travis-ci.com/jcs090218/jcs-emacs-init.svg?branch=master)](https://travis-ci.com/jcs090218/jcs-emacs-init)
+
 This is Jen-Chieh Shen's emacs configuration, continually used and 
 tweaked since 2015, and it might be a good starting point for other 
 Emacs users, especially for those who like to program all kind of 
