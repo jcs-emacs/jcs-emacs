@@ -23,7 +23,7 @@
 ;; initialize package.el
 (package-initialize)
 
-(package-install 'ac-emmet)
+(require-package 'ac-emmet)
 
 
 ;;(load-file "./.emacs.jcs/jcs-package.el")
