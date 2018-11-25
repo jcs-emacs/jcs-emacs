@@ -429,3 +429,8 @@ on language selected."
 (defun jcs-insert-xml-template ()
   "Header for XML header file."
   (jcs-insert-template-by-file-path "~/.emacs.jcs/template/xml/xml_template.txt"))
+
+;;; YAML
+(defun jcs-insert-yaml-template ()
+  "Header for YAML header file."
+  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/yaml/yaml_template.txt"))
