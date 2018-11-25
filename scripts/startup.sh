@@ -8,6 +8,7 @@
 #                   Copyright © 2018 by Shen, Jen-Chieh $
 # ========================================================================
 
+
 if [ -n "$TRAVIS" ]; then
     # Make it look like this is ~/.emacs.d (needed for Emacs 24.3, at least)
     export HOME=$PWD/..
