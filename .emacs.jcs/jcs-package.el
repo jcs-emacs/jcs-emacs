@@ -8,6 +8,24 @@
 ;; ========================================================================
 
 
+;; ==================
+;; [IMPORTANT] This should be ontop of all require packages!!!
+
+;; start package.el with emacs
+(require 'package)
+
+;; add MELPA to repository list
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+
+;; To avoid initializing twice
+(setq package-enable-at-startup nil)
+
+;; initialize package.el
+(package-initialize)
+
+;;-----------------------------------------------------------
+;;-----------------------------------------------------------
+
 ;; Ensure all the package installed
 ;; SOURCE: http://stackoverflow.com/questions/10092322/how-to-automatically-install-emacs-packages-by-specifying-a-list-of-package-name
 (defun jcs-ensure-package-installed (packages &optional without-asking)

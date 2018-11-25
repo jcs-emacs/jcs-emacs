@@ -58,26 +58,12 @@
  '(ahs-plugin-defalt-face ((t (:foreground nil :background "#123E70")))))
 
 
-;; ==================
-;; [IMPORTANT] This should be ontop of all require packages!!!
-
-;; start package.el with emacs
-(require 'package)
-
-;; add MELPA to repository list
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-
-;; To avoid initializing twice
-(setq package-enable-at-startup nil)
-
-;; initialize package.el
-(package-initialize)
-
 ;;------------------------------------------------------------------------------------------------------
 ;;;
 ;; Auto install list of packages i want at the startup of emacs.
 ;;;
 
+;; Get the list of package dependencies.
 (load-file "~/.emacs.jcs/jcs-package.el")
 
 ;; make sure to have downloaded archive description.
