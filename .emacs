@@ -45,7 +45,7 @@
  '(mouse-wheel-scroll-amount (quote (15)))
  '(package-selected-packages
    (quote
-    (swift-mode rust-mode yaml-mode hydra markdown-mode markdown-preview-mode nhexl-mode sr-speedbar clojure-mode undo-tree ein cobol-mode tabbar javadoc-lookup typescript-mode haxe-mode yasnippet xcscope wgrep-helm wgrep-ag wgrep websocket vimrc-mode tablist sql-indent skewer-mode simple-httpd scss-mode s request-deferred request popup pkg-info php-mode php-auto-yasnippets pcache multiple-cursors memoize levenshtein json-snatcher json-reformat htmlize highlight-indentation highlight helm-core helm-ag google-translate google-this google-maps git-messenger git-commit fringe-helper flymake-easy flycheck find-file-in-project f epl emmet-mode diminish deferred cmake-mode bind-key avy auto-complete async ace-window ac-php-core ac-emmet with-editor pyvenv magit-popup js2-mode ghub dash ivy helm company apache-mode xwidgete which-key web-mode visual-regexp use-ttf use-package tree-mode togetherly sublimity ssass-mode shader-mode scala-mode rainbow-mode python-mode py-autopep8 project-abbrev processing-mode preproc-font-lock powerline pdf-tools package-lint package-build organize-imports-java nasm-mode multi-web-mode meghanada magit lua-mode line-reminder json-mode js2-refactor jdee impatient-mode iedit helm-gtags haskell-mode google-c-style go-mode gitlab gitignore-mode github-notifier gitconfig-mode gitattributes-mode git-timemachine git-link flymake-google-cpplint flymake-cursor floobits exec-path-from-shell elpy csharp-mode cpputils-cmake com-css-sort cmake-project cmake-ide cmake-font-lock better-defaults basic-mode auto-package-update auto-highlight-symbol auto-complete-c-headers all-the-icons ag adaptive-wrap actionscript-mode ac-php ac-js2 ac-html)))
+    (cobol-mode swift-mode rust-mode yaml-mode hydra markdown-mode markdown-preview-mode nhexl-mode sr-speedbar clojure-mode undo-tree ein tabbar javadoc-lookup typescript-mode haxe-mode yasnippet xcscope wgrep-helm wgrep-ag wgrep websocket vimrc-mode tablist sql-indent skewer-mode simple-httpd scss-mode s request-deferred request popup pkg-info php-mode php-auto-yasnippets pcache multiple-cursors memoize levenshtein json-snatcher json-reformat htmlize highlight-indentation highlight helm-core helm-ag google-translate google-this google-maps git-messenger git-commit fringe-helper flymake-easy flycheck find-file-in-project f epl emmet-mode diminish deferred cmake-mode bind-key avy auto-complete async ace-window ac-php-core ac-emmet with-editor pyvenv magit-popup js2-mode ghub dash ivy helm company apache-mode xwidgete which-key web-mode visual-regexp use-ttf use-package tree-mode togetherly sublimity ssass-mode shader-mode scala-mode rainbow-mode python-mode py-autopep8 project-abbrev processing-mode preproc-font-lock powerline pdf-tools package-lint package-build organize-imports-java nasm-mode multi-web-mode meghanada magit lua-mode line-reminder json-mode js2-refactor jdee impatient-mode iedit helm-gtags haskell-mode google-c-style go-mode gitlab gitignore-mode github-notifier gitconfig-mode gitattributes-mode git-timemachine git-link flymake-google-cpplint flymake-cursor floobits exec-path-from-shell elpy csharp-mode cpputils-cmake com-css-sort cmake-project cmake-ide cmake-font-lock better-defaults basic-mode auto-package-update auto-highlight-symbol auto-complete-c-headers all-the-icons ag adaptive-wrap actionscript-mode ac-php ac-js2 ac-html)))
  '(send-mail-function (quote mailclient-send-it))
  '(version-control nil))
 (custom-set-faces
@@ -78,140 +78,15 @@
 ;; Auto install list of packages i want at the startup of emacs.
 ;;;
 
-;; Ensure all the package installed
-;; Source -> http://stackoverflow.com/questions/10092322/how-to-automatically-install-emacs-packages-by-specifying-a-list-of-package-name
-(defun ensure-package-installed (&rest packages)
-  "Assure every package is installed, ask for installation if it’s not.
-
-Return a list of installed packages or nil for every skipped package."
-  (mapcar
-   (lambda (package)
-     ;; (package-installed-p 'evil)
-     (if (package-installed-p package)
-         nil
-       (if (y-or-n-p (format "Package %s is missing. Install it? " package))
-           (package-install package)
-         package)))
-   packages))
+(load-file "~/.emacs.jcs/jcs-package.el")
 
 ;; make sure to have downloaded archive description.
 ;; Or use package-archive-contents as suggested by Nicolas Dudebout
 (or (file-exists-p package-user-dir)
     (package-refresh-contents))
 
-;; How to use?
-(ensure-package-installed 'ac-emmet
-                          'ac-html            ;; auto complete html
-                          'ac-js2
-                          'ac-php             ;; auto complete php
-                          'ace-window
-                          'actionscript-mode
-                          'adaptive-wrap
-                          'ag
-                          'all-the-icons
-                          'apache-mode
-                          'auto-complete
-                          'auto-complete-c-headers
-                          'auto-highlight-symbol
-                          'auto-package-update
-                          'basic-mode
-                          'better-defaults
-                          'clojure-mode
-                          'cmake-font-lock
-                          'cmake-ide
-                          'cmake-mode
-                          'cmake-project
-                          'cobol-mode
-                          'com-css-sort
-                          'company
-                          'cpputils-cmake
-                          'csharp-mode
-                          'dash
-                          'diminish
-                          'ein
-                          'elpy
-                          'emmet-mode
-                          'exec-path-from-shell
-                          'find-file-in-project
-                          'floobits
-                          'flycheck
-                          'flymake-cursor
-                          'flymake-easy
-                          'flymake-google-cpplint
-                          'git-link
-                          'git-messenger
-                          'git-timemachine
-                          'gitattributes-mode
-                          'gitconfig-mode
-                          'github-notifier
-                          'gitignore-mode
-                          'gitlab
-                          'go-mode
-                          'google-c-style
-                          'google-maps
-                          'google-this
-                          'google-translate
-                          'haskell-mode
-                          'helm
-                          'helm-ag
-                          'helm-gtags
-                          'javadoc-lookup
-                          ;; TEMPORARY(jenchieh): Hopefully melpa will let me push
-                          ;; my package `jayces-mode' to their package system.
-                          ;; Then we can add this line under directly.
-                          ;;'jayces-mode
-                          ;; TEMPORARY(jenchieh): Hopefully melpa will let me push
-                          ;; my package `jcs-ex-pkg' to their package system.
-                          ;; Then we can add this line under directly.
-                          ;;'jcs-ex-pkg
-                          'jdee
-                          'js2-mode
-                          'js2-refactor
-                          'json-mode
-                          'line-reminder
-                          'lua-mode
-                          'magit
-                          'markdown-mode
-                          'markdown-preview-mode
-                          'meghanada
-                          'multiple-cursors
-                          'nasm-mode
-                          'nhexl-mode
-                          'organize-imports-java
-                          'package-build
-                          'package-lint
-                          'pdf-tools
-                          'php-auto-yasnippets
-                          'powerline
-                          'processing-mode
-                          'project-abbrev
-                          'py-autopep8
-                          'python-mode
-                          'rainbow-mode
-                          'rust-mode
-                          'scala-mode
-                          'shader-mode
-                          'sr-speedbar
-                          'ssass-mode
-                          'scss-mode
-                          'sublimity
-                          'sql-indent
-                          'tabbar
-                          'togetherly
-                          'typescript-mode
-                          'undo-tree
-                          'use-package
-                          'use-ttf
-                          'vimrc-mode
-                          'visual-regexp
-                          'impatient-mode
-                          'web-mode
-                          'which-key
-                          'wgrep-ag
-                          'wgrep-helm
-                          'xwidgete
-                          'yasnippet)
-
+;; Install all packages that this config needs.
+(jcs-ensure-package-installed jcs-package-install-list)
 
 ;; activate installed packages
 (package-initialize)
@@ -254,7 +129,6 @@ Return a list of installed packages or nil for every skipped package."
 
 ;;; Utilities
 (load-file "~/.emacs.jcs/jcs-log.el")
-(load-file "~/.emacs.jcs/jcs-package.el")
 (load-file "~/.emacs.jcs/jcs-function.el")
 (load-file "~/.emacs.jcs/jcs-corresponding-file.el")
 (load-file "~/.emacs.jcs/jcs-mode.el")
@@ -306,6 +180,7 @@ Return a list of installed packages or nil for every skipped package."
 (load-file "~/.emacs.jcs/mode/jcs-rust-mode.el")
 (load-file "~/.emacs.jcs/mode/jcs-swift-mode.el")
 (load-file "~/.emacs.jcs/mode/jcs-objc-mode.el")
+(load-file "~/.emacs.jcs/mode/jcs-yaml-mode.el")
 
 ;; Add hook to all Emacs' events.
 (load-file "~/.emacs.jcs/jcs-hook.el")
