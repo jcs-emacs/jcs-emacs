@@ -23,10 +23,8 @@
 ;; initialize package.el
 (package-initialize)
 
-(require-package 'ac-emmet)
 
-
-;;(load-file "./.emacs.jcs/jcs-package.el")
+(load-file "./.emacs.jcs/jcs-package.el")
 
 ;; Install all needed packages without asking.
 ;;(jcs-ensure-package-installed jcs-package-install-list t)
