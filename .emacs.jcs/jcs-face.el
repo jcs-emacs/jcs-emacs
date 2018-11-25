@@ -80,7 +80,8 @@
                           vimrc-mode
                           web-mode
                           yaml-mode
-                          ))
+                          )
+  "Modes that apply fixme request.")
 
 ;; List of color: https://alexschroeder.ch/geocities/kensanata/colors.html
 (defface jcs-font-lock-fixme-face
