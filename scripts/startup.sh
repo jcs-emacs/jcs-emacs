@@ -10,7 +10,7 @@
 
 
 if [ -n "$TRAVIS" ]; then
-    # Make it look like this is ~/.emacs.d (needed for Emacs 24.3, at least)
+    # Make it look like this is ~/.emacs.d (needed for Emacs 24.5, at least)
     export HOME=$PWD/..
     ln -s emacs.d ../.emacs.d
 fi
@@ -21,7 +21,7 @@ ${EMACS:=emacs} -nw --batch \
                 --eval '(let ((debug-on-error t)
                               (url-show-status nil)
                               (user-emacs-directory default-directory)
-                              (user-init-file (expand-file-name ".emacs"))
+                              (user-init-file (expand-file-name "build.el"))
                               (load-path (delq default-directory load-path)))
                            (load-file user-init-file)
                            (run-hooks (quote after-init-hook)))'
