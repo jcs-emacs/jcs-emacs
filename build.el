@@ -8,6 +8,22 @@
 ;; ========================================================================
 
 
+;; ==================
+;; [IMPORTANT] This should be ontop of all require packages!!!
+
+;; start package.el with emacs
+(require 'package)
+
+;; add MELPA to repository list
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+
+;; To avoid initializing twice
+(setq package-enable-at-startup nil)
+
+;; initialize package.el
+(package-initialize)
+
+
 (load-file "./.emacs.jcs/jcs-package.el")
 
 ;; Install all needed packages without asking.
