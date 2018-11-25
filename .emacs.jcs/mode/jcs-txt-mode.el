@@ -18,7 +18,7 @@
 
 (require 'gitignore-mode)
 (defun jcs-gitignore-mode-hook ()
-  "JayCeS Gitignore mode."
+  "Gitignore mode hook."
 
   (electric-pair-mode nil)
 
@@ -31,17 +31,6 @@
   ;; Auto highlight the same word.
   (auto-highlight-symbol-mode t)
 
-  (defun jcs-text-related-format ()
-    "Format the given file as a text related. - JenChieh Text file."
-    (when (jcs-is-current-file-empty-p)
-      (jcs-insert-txt-template)))
-
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]txt" buffer-file-name) (jcs-text-related-format))
-        ((string-match "[.]gitignore" buffer-file-name) (jcs-text-related-format))
-        ((string-match "[.]gitattributes" buffer-file-name) (jcs-text-related-format))
-        )
-
   ;; jcs gitignore key binding
   (define-key gitignore-mode-map (kbd "<up>") 'previous-line)
   (define-key gitignore-mode-map (kbd "<down>") 'next-line)
@@ -52,15 +41,42 @@
   )
 (add-hook 'gitignore-mode-hook 'jcs-gitignore-mode-hook)
 
-;; git file types
 (add-to-list 'auto-mode-alist '("\\.gitignore?\\'" . gitignore-mode))
-(add-to-list 'auto-mode-alist '("\\.gitattributes?\\'" . gitignore-mode))
 
 ;; temporary ALGOL
 (add-to-list 'auto-mode-alist '("\\.alg?\\'" . gitignore-mode))
 
-;; key-binding for normal text mode.
-(define-key global-map "\C-xg" 'gitignore-mode)
+
+;;====================================
+;; Gitignore
+;;---------------------------
+
+(require 'gitattributes-mode)
+(defun jcs-gitattributes-mode-hook ()
+  "Gitattributes mode hook."
+
+  (electric-pair-mode nil)
+
+  ;; highlight URL and clickable.
+  (goto-address-mode 1)
+
+  ;; turn on auto complete.
+  (auto-complete-mode t)
+
+  ;; Auto highlight the same word.
+  (auto-highlight-symbol-mode t)
+
+  ;; jcs gitignore key binding
+  (define-key gitattributes-mode-map (kbd "<up>") 'previous-line)
+  (define-key gitattributes-mode-map (kbd "<down>") 'next-line)
+  (define-key gitattributes-mode-map (kbd "C-d") 'jcs-kill-whole-line)
+  (define-key gitattributes-mode-map "\C-c\C-c" 'kill-ring-save)
+  (define-key gitattributes-mode-map (kbd "<up>") 'previous-line)
+  (define-key gitattributes-mode-map (kbd "<down>") 'next-line)
+  )
+(add-hook 'gitignore-mode-hook 'jcs-gitignore-mode-hook)
+
+(add-to-list 'auto-mode-alist '("\\.gitattributes?\\'" . gitattributes-mode))
 
 
 ;;====================================
