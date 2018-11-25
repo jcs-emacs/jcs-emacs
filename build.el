@@ -27,7 +27,7 @@
 (load-file "./.emacs.jcs/jcs-package.el")
 
 ;; Install all needed packages without asking.
-;;(jcs-ensure-package-installed jcs-package-install-list t)
+(jcs-ensure-package-installed jcs-package-install-list t)
 
 
 ;; Start regular Emacs file.
