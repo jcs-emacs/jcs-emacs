@@ -95,7 +95,13 @@
 (require 'cc-mode)
 (require 'ido)
 (require 'compile)
-(ido-mode t)
+;;;
+;; STUDY(jenchieh): After helm version 20181125.17147, must disable this.
+;;
+;; ISSUE(jenchieh): https://github.com/emacs-helm/helm/issues/2116
+;; Hope they will give us the explanation.
+;;
+;;(ido-mode t)
 
 (defun casey-ediff-setup-windows (buffer-A buffer-B buffer-C control-buffer)
   (ediff-setup-windows-plain buffer-A buffer-B buffer-C control-buffer))
