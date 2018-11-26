@@ -95,12 +95,9 @@
 (require 'cc-mode)
 (require 'ido)
 (require 'compile)
-;;;
-;; STUDY(jenchieh): After helm version 20181125.17147, must disable this.
-;;
-;; ISSUE(jenchieh): https://github.com/emacs-helm/helm/issues/2116
-;; Hope they will give us the explanation.
-;;
+;; NOTE(jenchieh): After helm version 20181125.17147, must disable this.
+;; INFO(jenchieh): https://github.com/emacs-helm/helm/issues/2116#issuecomment-441649358
+;;   => Ido is incompatible with Helm-mode.
 ;;(ido-mode t)
 
 (defun casey-ediff-setup-windows (buffer-A buffer-B buffer-C control-buffer)
