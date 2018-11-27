@@ -5,6 +5,7 @@ cache:
     - $HOME/.evm
 
 before_install:
+  - chmod a+x ./scripts/*.sh
   - (cd $HOME/.evm && git pull) || git clone https://github.com/rejeep/evm.git $HOME/.evm
   - export PATH=$HOME/.evm/bin:$PATH
   - evm config path /tmp
