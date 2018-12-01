@@ -7,6 +7,9 @@
 # ========================================================================
 
 
+2018-12-01
+* Bug fixed, make percise return key for web-mode => jcs-web-return-key. (jcs-emacs-init)
+
 2018-11-26
 * Add gitattribute custom mode hook. (jcs-emacs-init)
 
