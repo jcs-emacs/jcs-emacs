@@ -291,14 +291,18 @@ line by line instead of indent the whole file at once."
 (defun jcs-web-return-key ()
   "Return key for Web mode."
   (interactive)
-  (if (and (jcs-first-forward-char-in-line-p "<")
-           (jcs-first-backward-char-in-line-p ">"))
+  (let ((first-backward-word (jcs-first-backward-word))
+        (first-forward-word (jcs-first-forward-word)))
+    (if (and (jcs-first-forward-char-in-line-p "<")
+             (jcs-first-backward-char-in-line-p ">")
+             ;; NOTE(jenchieh): Only do it when in the correct scope.
+             (string= first-backward-word first-forward-word))
+        (progn
+          (newline-and-indent)
+          (newline-and-indent)
+          (jcs-web-smart-indent-up))
       (progn
-        (newline-and-indent)
-        (newline-and-indent)
-        (jcs-web-smart-indent-up))
-    (progn
-      (newline-and-indent))))
+        (newline-and-indent)))))
 
 ;;---------------------------------------------
 ;; Save
