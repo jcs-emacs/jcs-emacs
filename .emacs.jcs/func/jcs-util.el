@@ -456,6 +456,13 @@ the end of the line."
 ;;---------------------------------------------
 ;; Word
 ;;---------------------------------------------
+
+;;;###autoload
+(defun jcs-print-current-word ()
+  "Print out the current word."
+  (interactive)
+  (message "Current word: %s" (jcs-get-word-at-point)))
+
 (defun jcs-get-word-at-point ()
   "Get word at current cursor position."
   (interactive)
@@ -464,6 +471,52 @@ the end of the line."
 (defun jcs-current-word-equal-p (str)
   "Check the current word equal to 'STR'."
   (string= (thing-at-point 'word) str))
+
+;;;###autoload
+(defun jcs-goto-first-backward-word ()
+  "Goto the first backward word."
+  (interactive)
+  (unless (jcs-current-whitespace-or-tab-p)
+    (backward-word 1))
+  (backward-word 1))
+
+;;;###autoload
+(defun jcs-goto-first-forward-word ()
+  "Goto the first forward word."
+  (interactive)
+  (unless (jcs-current-whitespace-or-tab-p)
+    (forward-word 1))
+  (forward-word 1))
+
+(defun jcs-first-backward-word ()
+  "Find out the first backward word from the current cursor position."
+  (let ((word ""))
+    (save-excursion
+      (call-interactively #'jcs-goto-first-backward-word)
+      (setq word (jcs-get-word-at-point)))
+    word))
+
+(defun jcs-first-forward-word ()
+  "Find out the first backward word from the current cursor position."
+  (let ((word ""))
+    (save-excursion
+      (call-interactively #'jcs-goto-first-forward-word)
+      (setq word (jcs-get-word-at-point)))
+    word))
+
+(defun jcs-first-backward-word-p (w)
+  "Find out the first backward word from the current cursor position and \
+compare W.
+Returns non-nil, the word is the same.
+Returns nil, the word isn't the same."
+  (string= w (jcs-first-backward-word)))
+
+(defun jcs-first-forward-word-p (w)
+  "Find out the first forward word from the current cursor position and \
+compare W.
+Returns non-nil, the word is the same.
+Returns nil, the word isn't the same."
+  (string= w (jcs-first-forward-word)))
 
 ;;---------------------------------------------
 ;; Line
