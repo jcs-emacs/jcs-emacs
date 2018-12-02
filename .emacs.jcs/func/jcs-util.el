@@ -472,27 +472,11 @@ the end of the line."
   "Check the current word equal to 'STR'."
   (string= (thing-at-point 'word) str))
 
-;;;###autoload
-(defun jcs-goto-first-backward-word ()
-  "Goto the first backward word."
-  (interactive)
-  (unless (jcs-current-whitespace-or-tab-p)
-    (backward-word 1))
-  (backward-word 1))
-
-;;;###autoload
-(defun jcs-goto-first-forward-word ()
-  "Goto the first forward word."
-  (interactive)
-  (unless (jcs-current-whitespace-or-tab-p)
-    (forward-word 1))
-  (forward-word 1))
-
 (defun jcs-first-backward-word ()
   "Find out the first backward word from the current cursor position."
   (let ((word ""))
     (save-excursion
-      (call-interactively #'jcs-goto-first-backward-word)
+      (backward-word 1)
       (setq word (jcs-get-word-at-point)))
     word))
 
@@ -500,7 +484,7 @@ the end of the line."
   "Find out the first backward word from the current cursor position."
   (let ((word ""))
     (save-excursion
-      (call-interactively #'jcs-goto-first-forward-word)
+      (forward-word 1)
       (setq word (jcs-get-word-at-point)))
     word))
 
