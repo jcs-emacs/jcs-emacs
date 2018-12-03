@@ -7,6 +7,12 @@
 # ========================================================================
 
 
+2018-12-04
+* Fixed bug by adding percise check => jcs-maybe-kill-this-buffer function
+ in jcs-edit.el file. (jcs-emacs-init)
+* Implements check how many times the same buffer shown in different windows 
+ => jcs-buffer-showns function in jcs-window.el file. (jcs-emacs-init)
+
 2018-12-03
 * Mark version 5.1.9 and release one version. (jcs-emacs-init)
 
