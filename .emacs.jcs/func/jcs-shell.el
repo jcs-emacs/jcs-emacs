@@ -57,7 +57,7 @@
   (interactive)
 
   ;; goto this window.
-  (jcs-jump-shown-to-window "*shell*")
+  (jcs-jump-shown-to-buffer "*shell*")
 
   ;; kill the process before closing the frame.
   (when (get-buffer-process "*shell*")
