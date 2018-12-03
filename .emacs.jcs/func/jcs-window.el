@@ -22,31 +22,14 @@ Because sometime first time switching the buffer would not success."
 ;;-----------------------------------------------------------
 ;;-----------------------------------------------------------
 
-;;;
-;; URL(jenchieh): https://www.emacswiki.org/emacs/WindowNavigation
-;; Author: ChrisDone
-;;
-(defun jcs-jump-shown-to-window (buffer-name)
-  "Jump to window if the window is currently shown in the window.
-BUFFER-NAME : buffer name."
-  (interactive "bEnter buffer to jump to: ")
-  (let ((jcs-visible-buffers (mapcar '(lambda (window) (buffer-name (window-buffer window))) (window-list)))
-        window-of-buffer)
-    (if (not (member buffer-name jcs-visible-buffers))
-        (error "'%s' does not have visible window" buffer-name)
-      (setq window-of-buffer
-            (delq nil (mapcar '(lambda (window)
-                                 (if (equal buffer-name (buffer-name (window-buffer window)))
-                                     window nil)) (window-list))))
-      (select-window (car window-of-buffer)))))
-
+;;;###autoload
 (defun jcs-jump-shown-to-buffer (in-buffer-name)
   "Jump to the buffer if the buffer current shown in the window.
 If there is two window shown the same buffer/file, then it will
-choose the one which is close to the next buffer. I think this
-is the better version compare to `jcs-jump-shown-to-window' function."
+choose the one which is close to the next buffer.
+IN-BUFFER-NAME : taget buffer name to jump to."
   (interactive "bEnter buffer to jump to: ")
-  (let ((win-len (length (window-list)))
+  (let ((win-len (jcs-count-windows))
         (index 0)
         (found nil))
     (while (< index win-len)
@@ -54,7 +37,7 @@ is the better version compare to `jcs-jump-shown-to-window' function."
       ;; of `string=' because some buffer cannot be detected
       ;; in the buffer list. For instance, `*undo-tree*' is
       ;; buffer that cannot be detected for some reason.
-      (if (string-match-p in-buffer-name (buffer-name))
+      (if (string-match-p (buffer-name) in-buffer-name)
           (setq found t)
         (jcs-other-window-next))
       (setq index (1+ index)))
@@ -64,6 +47,79 @@ is the better version compare to `jcs-jump-shown-to-window' function."
       (error "'%s' does not shown in any window" in-buffer-name))
     ;; Nothing happend return the value.
     found))
+
+;;;###autoload
+(defun jcs-switch-to-previous-buffer ()
+  "Switch to previously open buffer.
+Repeated invocations toggle between the two most recently open buffers."
+  (interactive)
+  (switch-to-buffer (other-buffer (current-buffer) 1)))
+
+;;;###autoload
+(defun jcs-visible-buffers (buffers)
+  "given a list of buffers, return buffers which are currently
+visible"
+  (remove nil
+          (mapcar
+           '(lambda (buf)
+              (if (get-buffer-window-list buf) buf))
+           buffers)))
+
+;;;###autoload
+(defun jcs-not-visible-buffers (buffers)
+  "given a list of buffers, return buffers which are not currently
+visible"
+  (remove nil
+          (mapcar
+           '(lambda (buf)
+              (unless (get-buffer-window-list buf) buf))
+           buffers)))
+
+(defun jcs-buffer-in-window-list ()
+  "Get all the buffer in window list."
+  ;; TOPIC(jenchieh): Show all open buffers in Emacs
+  ;; SOURCE(jenchieh): http://stackoverflow.com/questions/12186713/show-all-open-buffers-in-emacs
+  (let (buffers)
+    (walk-windows
+     (lambda (window)
+       (push (window-buffer window) buffers)) t t)
+    buffers))
+
+(defun jcs-count-windows ()
+  "Total window count."
+  (save-selected-window
+    (let ((first (frame-first-window))
+          (count 1))
+      (when (eq (get-buffer-window) first)
+        (call-interactively #'jcs-other-window-next))
+
+      (while (not (eq (get-buffer-window) first))
+        (call-interactively #'jcs-other-window-next)
+        (setq count (+ count 1)))
+      count)))
+
+(defun jcs-buffer-visible-list ()
+  "List of buffer that current visible in frame."
+  (save-selected-window
+    (let ((win-len (jcs-count-windows))
+          (index 0)
+          (buffers '()))
+      (while (> win-len index)
+        (push (buffer-name) buffers)
+
+        (call-interactively #'jcs-other-window-next)
+
+        (setq index (+ index 1)))
+      buffers)))
+
+(defun jcs-in-window-list (buf)
+  "Check if buffer open in window list.
+
+buf : buffer name. (string)
+
+True: return name.
+False: return nil."
+  (get-buffer-window-list buf))
 
 ;;-----------------------------------------------------------
 ;; Deleting
@@ -148,7 +204,6 @@ i.e. change right window to bottom, or change bottom window to right."
                     (split-window-vertically)
                   (split-window-horizontally))
                 (set-window-buffer (windmove-find-other-window neighbour-dir) other-buf))))))))
-
 
 
 ;;-----------------------------------------------------------
