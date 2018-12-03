@@ -1,2 +1,6 @@
 # ignore extensions.
 *.lnk
+
+# ignore I use to not ignore.
+TODO(JenChieh).txt
+Update_Log.txt
