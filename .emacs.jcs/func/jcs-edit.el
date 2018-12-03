@@ -92,57 +92,40 @@ This will no longer overwrite usual Emacs' undo key."
   (interactive)
   (if jcs-use-undo-tree-key
       (progn
+        (undo-tree-undo)
         (save-selected-window
-          (if (or (ignore-errors (jcs-jump-shown-to-buffer "*undo-tree*")))
-              ;; We do found `*undo-tree*' buffer shown in
-              ;; one of the window.
-              (progn
-                (undo-tree-visualize-undo))
-            ;; Error occurs
-            (progn
-              (undo-tree-undo)
-              (save-selected-window
-                (undo-tree-visualize)
-                ;; STUDY(jenchieh): weird that they use word
-                ;; toggle, instead of just set it.
-                ;;
-                ;; Why not?
-                ;;   => `undo-tree-visualizer-show-diff'
-                ;; or
-                ;;   => `undo-tree-visualizer-hide-diff'
-                (when jcs-undo-tree-auto-show-diff
-                  (undo-tree-visualizer-toggle-diff))
-                (global-linum-mode t))))))
+          (undo-tree-visualize)
+          ;; STUDY(jenchieh): weird that they use word
+          ;; toggle, instead of just set it.
+          ;;
+          ;; Why not?
+          ;;   => `undo-tree-visualizer-show-diff'
+          ;; or
+          ;;   => `undo-tree-visualizer-hide-diff'
+          (when jcs-undo-tree-auto-show-diff
+            (undo-tree-visualizer-toggle-diff)))
+        (global-linum-mode t))
     (call-interactively #'undo)))
 
 ;;;###autoload
 (defun jcs-redo ()
-  "Undo key."
+  "Redo key."
   (interactive)
   (if jcs-use-undo-tree-key
       (progn
+        (undo-tree-redo)
         (save-selected-window
-          (if (or (ignore-errors (jcs-jump-shown-to-buffer "*undo-tree*")))
-              ;; We do found `*undo-tree*' buffer shown in
-              ;; one of the window.
-              (progn
-                (undo-tree-visualize-redo))
-            ;; Error occurs
-            (progn
-
-              (undo-tree-redo)
-              (save-selected-window
-                (undo-tree-visualize)
-                ;; STUDY(jenchieh): weird that they use word
-                ;; toggle, instead of just set it.
-                ;;
-                ;; Why not?
-                ;;   => `undo-tree-visualizer-show-diff'
-                ;; or
-                ;;   => `undo-tree-visualizer-hide-diff'
-                (when jcs-undo-tree-auto-show-diff
-                  (undo-tree-visualizer-toggle-diff))
-                (global-linum-mode t))))))
+          (undo-tree-visualize)
+          ;; STUDY(jenchieh): weird that they use word
+          ;; toggle, instead of just set it.
+          ;;
+          ;; Why not?
+          ;;   => `undo-tree-visualizer-show-diff'
+          ;; or
+          ;;   => `undo-tree-visualizer-hide-diff'
+          (when jcs-undo-tree-auto-show-diff
+            (undo-tree-visualizer-toggle-diff)))
+        (global-linum-mode t))
     ;; In Emacs, undo/redo is the same thing.
     (call-interactively #'redo)))
 
@@ -512,14 +495,14 @@ SOURCE(jenchieh):
 
 SOURCE: http://emacs.stackexchange.com/questions/628/cycle-between-windows-in-all-frames"
   (interactive)
-  ;; find nexr window and jump to that window.
+  ;; find next window and jump to that window.
   (other-window 1 t)
-  (select-frame-set-input-focus (selected-frame))
+  (select-frame-set-input-focus (selected-frame))
 
   ;; Update the selected window if speedbar is active.
   (when (and (sr-speedbar-exist-p)
-             (not (jcs-is-current-major-mode-p "speedbar-mode")))
-    (setq jcs-sr-speedbar-record-selected-window (selected-window))))
+             (not (jcs-is-current-major-mode-p "speedbar-mode")))
+             (setq jcs-sr-speedbar-record-selected-window (selected-window))))
 
 ;;;###autoload
 (defun jcs-other-window-prev()
@@ -604,9 +587,11 @@ whitespaces."
 
   ;; NOTE(jenchieh): Is we found `*undo-tree*' buffer, we
   ;; try to close it.
-  (save-selected-window
-    (when (or (ignore-errors (jcs-jump-shown-to-buffer "*undo-tree*")))
-      (jcs-maybe-kill-this-buffer))))
+  (let ((prev-frame (selected-frame)))
+    (save-selected-window
+      (when (or (ignore-errors (jcs-jump-shown-to-buffer "*undo-tree*")))
+        (jcs-maybe-kill-this-buffer)))
+    (select-frame-set-input-focus prev-frame)))
 
 ;;;###autoload
 (defun jcs-tabify-save-buffer ()
@@ -623,9 +608,11 @@ so we must convert spaces to tab."
 
   ;; NOTE(jenchieh): Is we found `*undo-tree*' buffer, we
   ;; try to close it.
-  (save-selected-window
-    (when (or (ignore-errors (jcs-jump-shown-to-buffer "*undo-tree*")))
-      (jcs-maybe-kill-this-buffer))))
+  (let ((prev-frame (selected-frame)))
+    (save-selected-window
+      (when (or (ignore-errors (jcs-jump-shown-to-buffer "*undo-tree*")))
+        (jcs-maybe-kill-this-buffer)))
+    (select-frame-set-input-focus prev-frame)))
 
 ;;;###autoload
 (defun jcs-find-file-other-window ()
@@ -640,7 +627,6 @@ so we must convert spaces to tab."
   "This will open the file in another window using 'find-file-
 project.el' plugin."
   (interactive)
-
   (if (ignore-errors (find-file-in-project t))
       (progn
         ;; Reach here mean success using 'find-file-in-
@@ -653,7 +639,6 @@ project.el' plugin."
   "This will open the file in current window using 'find-
 file-project.el' plugin."
   (interactive)
-
   (if (ignore-errors (find-file-in-project))
       (progn
         ;; Reach here mean success using 'find-file-in-
@@ -689,13 +674,10 @@ this version instead."
   "back to identation by checking first character in the line."
   (interactive)
   (beginning-of-line)
-
-  (if (not (jcs-current-line-totally-empty-p))
-      (forward-char 1))
-
+  (unless (jcs-current-line-totally-empty-p)
+    (forward-char 1))
   (while (jcs-current-whitespace-or-tab-p)
     (forward-char 1))
-
   (backward-char 1))
 
 
@@ -724,83 +706,6 @@ this version instead."
                    name (file-name-nondirectory new-name)))))))
 
 ;;----------------------------------------------
-;; Edit
-;;----------------------------------------------
-
-;;;###autoload
-(defun jcs-switch-to-previous-buffer ()
-  "Switch to previously open buffer.
-Repeated invocations toggle between the two most recently open buffers."
-  (interactive)
-  (switch-to-buffer (other-buffer (current-buffer) 1)))
-
-;;;###autoload
-(defun jcs-visible-buffers (buffers)
-  "given a list of buffers, return buffers which are currently
-visible"
-  (remove nil
-          (mapcar
-           '(lambda (buf)
-              (if (get-buffer-window-list buf) buf))
-           buffers)))
-
-;;;###autoload
-(defun jcs-not-visible-buffers (buffers)
-  "given a list of buffers, return buffers which are not currently
-visible"
-  (remove nil
-          (mapcar
-           '(lambda (buf)
-              (unless (get-buffer-window-list buf) buf))
-           buffers)))
-
-(defun jcs-buffer-in-window-list ()
-  "TOPIC(jenchieh): Show all open buffers in Emacs
-SOURCE(jenchieh): http://stackoverflow.com/questions/12186713/show-all-open-buffers-in-emacs
-"
-  (let (buffers)
-    (walk-windows
-     (lambda (window)
-       (push (window-buffer window) buffers)) t t)
-    buffers))
-
-(defun jcs-count-frames ()
-  "Total frame count."
-  (save-selected-window
-    (let ((first (frame-first-window))
-          (count 1))
-      (when (eq (get-buffer-window) first)
-        (call-interactively #'jcs-other-window-next))
-
-      (while (not (eq (get-buffer-window) first))
-        (call-interactively #'jcs-other-window-next)
-        (setq count (+ count 1)))
-      count)))
-
-(defun jcs-buffer-visible-list ()
-  "List of buffer that current visible in frame."
-  (save-selected-window
-    (let ((win-len (jcs-count-frames))
-          (index 0)
-          (buffers '()))
-      (while (> win-len index)
-        (push (buffer-name) buffers)
-
-        (call-interactively #'jcs-other-window-next)
-
-        (setq index (+ index 1)))
-      buffers)))
-
-(defun jcs-in-window-list (buf)
-  "Check if buffer open in window list.
-
-buf : buffer name. (string)
-
-True: return name.
-False: return nil."
-  (get-buffer-window-list buf))
-
-;;----------------------------------------------
 ;; Kill Buffer
 ;;----------------------------------------------
 
@@ -808,12 +713,10 @@ False: return nil."
 (defun jcs-kill-this-buffer ()
   "Kill this buffer."
   (interactive)
-
   (kill-this-buffer)
-
   (save-selected-window
     (ignore-errors
-      (jcs-jump-shown-to-window "*Buffer List*"))
+      (jcs-jump-shown-to-buffer "*Buffer List*"))
     (when (jcs-is-current-major-mode-p "Buffer-menu-mode")
       (jcs-buffer-menu)))
 
@@ -831,10 +734,9 @@ switch to the previous buffer."
   (let ((displayed-frame-count 0))
     (dolist (buf (jcs-buffer-visible-list))
       (ignore-errors
-        (if (string= buf (buffer-name))
-            (progn
-              ;; increment plus 1
-              (setq displayed-frame-count (+ displayed-frame-count 1))))))
+        (when (string= buf (buffer-name))
+          ;; increment plus 1
+          (setq displayed-frame-count (+ displayed-frame-count 1)))))
     (if (or (>= displayed-frame-count 2)
             ;; NOTE(jenchieh): If you don't want `*Buffer-List*'
             ;; window open in at least two window and get killed
@@ -1033,7 +935,6 @@ the point."
       (progn
         (forward-char 1)
         (jcs-forward-capital-char))
-
     (progn
       (if (not (wordp (jcs-get-current-char-byte)))
           (progn
@@ -1177,11 +1078,9 @@ REVERSE : t forward, nil backward."
 
 (defun jcs-delete-between-char (start-char end-char)
   "Delete everything between START-CHAR and the END-CHAR."
-
   (let ((preserve-point (point))
         (start-point nil)
         (end-point nil))
-
     ;; Get start bound.
     (setq start-point (jcs-find-start-char start-char preserve-point))
 
@@ -1197,7 +1096,6 @@ REVERSE : t forward, nil backward."
       (progn
         (backward-char 1)
         (setq end-point (jcs-find-end-char end-char preserve-point))))
-
 
     ;; NOTE(jenchieh): Start to solve the nested character issue.
     (goto-char preserve-point)
