@@ -730,21 +730,21 @@ this version instead."
   "Kill the buffer if this file is the only file. Otherwise just
 switch to the previous buffer."
   (interactive)
-  ;; SOURCE(jenchieh): https://emacs.stackexchange.com/questions/2888/kill-buffer-when-frame-is-deleted/2915#2915
-  (let ((displayed-frame-count 0))
-    (dolist (buf (jcs-buffer-visible-list))
-      (ignore-errors
-        (when (string= buf (buffer-name))
-          ;; increment plus 1
-          (setq displayed-frame-count (+ displayed-frame-count 1)))))
-    (if (or (>= displayed-frame-count 2)
-            ;; NOTE(jenchieh): If you don't want `*Buffer-List*'
-            ;; window open in at least two window and get killed
-            ;; at the same time. Enable the line under.
-            ;;(jcs-is-current-major-mode-p "Buffer-menu-mode")
-            )
-        (jcs-switch-to-previous-buffer)
-      (jcs-kill-this-buffer))))
+  (if (or (>= (jcs-buffer-showns (buffer-name)) 2)
+          ;; NOTE(jenchieh): If you don't want `*Buffer-List*'
+          ;; window open in at least two window and get killed
+          ;; at the same time. Enable the line under.
+          ;;(jcs-is-current-major-mode-p "Buffer-menu-mode")
+          )
+      (jcs-switch-to-previous-buffer)
+    (progn
+      (jcs-kill-this-buffer)
+      ;; NOTE(jenchieh): After kill the buffer, if the buffer
+      ;; appear in multiple windows then we do switch to
+      ;; previous buffer again. Hence, it will not show
+      ;; repeated buffer at the same time in different windows.
+      (when (>= (jcs-buffer-showns (buffer-name)) 2)
+        (jcs-switch-to-previous-buffer)))))
 
 ;;----------------------------------------------
 ;; Search/Kill word capital.
