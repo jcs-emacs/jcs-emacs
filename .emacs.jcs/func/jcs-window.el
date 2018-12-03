@@ -112,6 +112,17 @@ visible"
         (setq index (+ index 1)))
       buffers)))
 
+(defun jcs-buffer-showns (in-buf-name)
+  "Check if buffer showns how many times?
+IN-BUF-NAME : input buffer name you want to check.
+Returns the count of the buffer shown in the window.
+If nout found, returns 0."
+  (let ((displayed-frame-count 0))
+    (dolist (buf (jcs-buffer-visible-list))
+      (when (string= buf in-buf-name)
+        (setq displayed-frame-count (+ displayed-frame-count 1))))
+    displayed-frame-count))
+
 (defun jcs-in-window-list (buf)
   "Check if buffer open in window list.
 
