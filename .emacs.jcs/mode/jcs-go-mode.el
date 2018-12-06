@@ -31,9 +31,10 @@
     (when (jcs-is-current-file-empty-p)
       (jcs-insert-go-template)))
 
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]go" buffer-file-name) (jcs-go-script-format))
-        )
+  (when buffer-file-name
+    (cond ((file-exists-p buffer-file-name) t)
+          ((string-match "[.]go" buffer-file-name) (jcs-go-script-format))
+          ))
 
   ;; jcs Lua key binding
   (define-key go-mode-map (kbd "C-d") #'jcs-kill-whole-line)

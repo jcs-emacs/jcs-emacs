@@ -36,9 +36,10 @@
     (when (jcs-is-current-file-empty-p)
       (jcs-insert-batch-template)))
 
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]bat" buffer-file-name) (jcs-batch-script-format))
-        )
+  (when buffer-file-name
+    (cond ((file-exists-p buffer-file-name) t)
+          ((string-match "[.]bat" buffer-file-name) (jcs-batch-script-format))
+          ))
 
   ;; jcs key binding
   (define-key bat-mode-map (kbd "C-d") #'jcs-kill-whole-line)

@@ -46,9 +46,10 @@
 
       (jcs-insert-java-template)))
 
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]java" buffer-file-name) (jcs-java-class-format))
-        )
+  (when buffer-file-name
+    (cond ((file-exists-p buffer-file-name) t)
+          ((string-match "[.]java" buffer-file-name) (jcs-java-class-format))
+          ))
 
   ;; NOTE(jenchieh): change the face locally to this mode.
   (face-remap-add-relative 'font-lock-constant-face

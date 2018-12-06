@@ -34,10 +34,11 @@
     (when (jcs-is-current-file-empty-p)
       (jcs-insert-jayces-template)))
 
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]jcs" buffer-file-name) (jcs-jayces-class-format))
-        ((string-match "[.]jayces" buffer-file-name) (jcs-jayces-class-format))
-        )
+  (when buffer-file-name
+    (cond ((file-exists-p buffer-file-name) t)
+          ((string-match "[.]jcs" buffer-file-name) (jcs-jayces-class-format))
+          ((string-match "[.]jayces" buffer-file-name) (jcs-jayces-class-format))
+          ))
 
   )
 (add-hook 'jayces-mode-hook 'jcs-jayces-mode-hook)

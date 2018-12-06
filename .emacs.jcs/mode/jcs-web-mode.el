@@ -334,9 +334,10 @@
     (when (jcs-is-current-file-empty-p)
       (jcs-insert-css-template)))
 
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]css" buffer-file-name) (jcs-css-format))
-        )
+  (when buffer-file-name
+    (cond ((file-exists-p buffer-file-name) t)
+          ((string-match "[.]css" buffer-file-name) (jcs-css-format))
+          ))
 
   ;; Set Faces.
   (jcs-init-css-faces)

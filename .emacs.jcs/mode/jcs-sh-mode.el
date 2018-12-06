@@ -34,11 +34,12 @@
     (when (jcs-is-current-file-empty-p)
       (jcs-insert-sh-template)))
 
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]sh" buffer-file-name) (jcs-sh-script-format))
-        ((string-match "[.]linux" buffer-file-name) (jcs-sh-script-format))
-        ((string-match "[.]macosx" buffer-file-name) (jcs-sh-script-format))
-        )
+  (when buffer-file-name
+    (cond ((file-exists-p buffer-file-name) t)
+          ((string-match "[.]sh" buffer-file-name) (jcs-sh-script-format))
+          ((string-match "[.]linux" buffer-file-name) (jcs-sh-script-format))
+          ((string-match "[.]macosx" buffer-file-name) (jcs-sh-script-format))
+          ))
 
   ;; jcs key binding
   (define-key sh-mode-map (kbd "C-d") #'jcs-kill-whole-line)

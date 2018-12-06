@@ -32,9 +32,10 @@
     (when (jcs-is-current-file-empty-p)
       (jcs-insert-clojure-template)))
 
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]clj" buffer-file-name) (jcs-clojure-format))
-        )
+  (when buffer-file-name
+    (cond ((file-exists-p buffer-file-name) t)
+          ((string-match "[.]clj" buffer-file-name) (jcs-clojure-format))
+          ))
 
   ;; jcs Clojure key binding
   (define-key clojure-mode-map (kbd "C-d") #'jcs-kill-whole-line)

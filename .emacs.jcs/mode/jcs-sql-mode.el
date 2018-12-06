@@ -44,9 +44,10 @@
     (when (jcs-is-current-file-empty-p)
       (jcs-insert-sql-template)))
 
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]sql" buffer-file-name) (jcs-sql-format))
-        )
+  (when buffer-file-name
+    (cond ((file-exists-p buffer-file-name) t)
+          ((string-match "[.]sql" buffer-file-name) (jcs-sql-format))
+          ))
 
   ;; Edit
   (define-key sql-mode-map (kbd "<up>") #'jcs-smart-indent-up)

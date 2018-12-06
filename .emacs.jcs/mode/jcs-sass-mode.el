@@ -28,9 +28,10 @@
     (when (jcs-is-current-file-empty-p)
       (jcs-insert-sass-template)))
 
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]sass" buffer-file-name) (jcs-sass-file-format))
-        )
+  (when buffer-file-name
+    (cond ((file-exists-p buffer-file-name) t)
+          ((string-match "[.]sass" buffer-file-name) (jcs-sass-file-format))
+          ))
 
   ;; jcs SASS key binding
   (define-key ssass-mode-map (kbd "C-d") #'jcs-kill-whole-line)

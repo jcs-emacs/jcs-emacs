@@ -104,9 +104,10 @@
     (when (jcs-is-current-file-empty-p)
       (jcs-insert-txt-template)))
 
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]txt" buffer-file-name) (jcs-org-mode-format))
-        )
+  (when buffer-file-name
+    (cond ((file-exists-p buffer-file-name) t)
+          ((string-match "[.]txt" buffer-file-name) (jcs-org-mode-format))
+          ))
 
   ;; jcs org mode key binding
   (define-key org-mode-map (kbd "<up>") #'previous-line)

@@ -36,9 +36,11 @@
     (when (jcs-is-current-file-empty-p)
       (jcs-insert-xml-template)))
 
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]xml" buffer-file-name) (jcs-xml-format))
-        )
+  (when buffer-file-name
+    (cond ((file-exists-p buffer-file-name) t)
+          ((string-match "[.]xml" buffer-file-name) (jcs-xml-format))
+          ))
+
   )
 ;; NOTE(jenchieh): they ae using nxml-mode instead of xml-mode
 ;; which is really weird.

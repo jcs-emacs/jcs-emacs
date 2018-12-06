@@ -11,15 +11,16 @@
 (defun jcs-c++-mode-hook ()
   "C++ mode handling"
 
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]hin" buffer-file-name) (jcs-c++-header-format))
-        ((string-match "[.]hpp" buffer-file-name) (jcs-c++-header-format))
-        ((string-match "[.]h" buffer-file-name) (jcs-c++-header-format))
+  (when buffer-file-name
+    (cond ((file-exists-p buffer-file-name) t)
+          ((string-match "[.]hin" buffer-file-name) (jcs-c++-header-format))
+          ((string-match "[.]hpp" buffer-file-name) (jcs-c++-header-format))
+          ((string-match "[.]h" buffer-file-name) (jcs-c++-header-format))
 
-        ((string-match "[.]cin" buffer-file-name) (jcs-c++-source-format))
-        ((string-match "[.]cpp" buffer-file-name) (jcs-c++-source-format))
-        ((string-match "[.]c" buffer-file-name) (jcs-c-source-format))
-        )
+          ((string-match "[.]cin" buffer-file-name) (jcs-c++-source-format))
+          ((string-match "[.]cpp" buffer-file-name) (jcs-c++-source-format))
+          ((string-match "[.]c" buffer-file-name) (jcs-c-source-format))
+          ))
 
   ;; jcs C++ key binding
   (define-key c++-mode-map [f8] #'jcs-find-corresponding-file)

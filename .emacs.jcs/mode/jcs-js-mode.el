@@ -55,9 +55,10 @@
     (when (jcs-is-current-file-empty-p)
       (jcs-insert-js-template)))
 
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]js" buffer-file-name) (jcs-javascript-format))
-        )
+  (when buffer-file-name
+    (cond ((file-exists-p buffer-file-name) t)
+          ((string-match "[.]js" buffer-file-name) (jcs-javascript-format))
+          ))
 
   ;; jcs javascript key binding
   (define-key js2-mode-map (kbd "C-d") #'jcs-kill-whole-line)

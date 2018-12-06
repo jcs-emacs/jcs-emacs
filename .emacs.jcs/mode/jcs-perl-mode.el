@@ -35,9 +35,10 @@
     (when (jcs-is-current-file-empty-p)
       (jcs-insert-perl-template)))
 
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]pl" buffer-file-name) (jcs-perl-script-format))
-        )
+  (when buffer-file-name
+    (cond ((file-exists-p buffer-file-name) t)
+          ((string-match "[.]pl" buffer-file-name) (jcs-perl-script-format))
+          ))
 
   ;; jcs key binding
   (define-key perl-mode-map (kbd "C-d") #'jcs-kill-whole-line)

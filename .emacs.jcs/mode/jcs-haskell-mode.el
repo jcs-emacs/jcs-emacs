@@ -30,10 +30,10 @@
     (when (jcs-is-current-file-empty-p)
       (jcs-insert-haskell-template)))
 
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]hs" buffer-file-name) (jcs-haskell-script-format))
-        )
-
+  (when buffer-file-name
+    (cond ((file-exists-p buffer-file-name) t)
+          ((string-match "[.]hs" buffer-file-name) (jcs-haskell-script-format))
+          ))
 
   )
 (add-hook 'haskell-mode-hook 'jcs-haskell-mode-hook)

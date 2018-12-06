@@ -47,9 +47,10 @@
     (when (jcs-is-current-file-empty-p)
       (jcs-insert-processing-template)))
 
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]pde" buffer-file-name) (jcs-processing-script-format))
-        )
+  (when buffer-file-name
+    (cond ((file-exists-p buffer-file-name) t)
+          ((string-match "[.]pde" buffer-file-name) (jcs-processing-script-format))
+          ))
 
   ;; jcs processing key binding
   (define-key processing-mode-map (kbd "C-d") #'jcs-kill-whole-line)

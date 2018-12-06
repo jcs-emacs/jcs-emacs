@@ -42,9 +42,10 @@
     (when (jcs-is-current-file-empty-p)
       (jcs-insert-cs-template)))
 
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]cs" buffer-file-name) (jcs-csharp-format))
-        )
+  (when buffer-file-name
+    (cond ((file-exists-p buffer-file-name) t)
+          ((string-match "[.]cs" buffer-file-name) (jcs-csharp-format))
+          ))
 
   ;; jcs C# key binding
   (define-key csharp-mode-map (kbd "C-d") #'jcs-kill-whole-line)

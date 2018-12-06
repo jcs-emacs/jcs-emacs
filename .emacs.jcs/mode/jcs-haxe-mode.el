@@ -36,9 +36,10 @@
     (when (jcs-is-current-file-empty-p)
       (jcs-insert-haxe-template)))
 
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]hx" buffer-file-name) (jcs-haxe-script-format))
-        )
+  (when buffer-file-name
+    (cond ((file-exists-p buffer-file-name) t)
+          ((string-match "[.]hx" buffer-file-name) (jcs-haxe-script-format))
+          ))
 
   ;; jcs Haxe key binding
   (define-key haxe-mode-map (kbd "C-d") #'jcs-kill-whole-line)

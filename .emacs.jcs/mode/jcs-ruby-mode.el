@@ -31,9 +31,11 @@
     (when (jcs-is-current-file-empty-p)
       (jcs-insert-ruby-template)))
 
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]rb" buffer-file-name) (jcs-ruby-script-format))
-        )
+  (when buffer-file-name
+    (cond ((file-exists-p buffer-file-name) t)
+          ((string-match "[.]rb" buffer-file-name) (jcs-ruby-script-format))
+          ))
+
   )
 (add-hook 'ruby-mode-hook 'jcs-ruby-mode-hook)
 

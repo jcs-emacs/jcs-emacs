@@ -56,9 +56,10 @@
     (when (jcs-is-current-file-empty-p)
       (jcs-insert-shader-template)))
 
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]shader" buffer-file-name) (jcs-shader-format))
-        )
+  (when buffer-file-name
+    (cond ((file-exists-p buffer-file-name) t)
+          ((string-match "[.]shader" buffer-file-name) (jcs-shader-format))
+          ))
 
   ;; actually no need
   (use-local-map jcs-shader-mode-map)

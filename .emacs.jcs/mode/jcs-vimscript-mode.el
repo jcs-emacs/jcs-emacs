@@ -36,11 +36,12 @@
     (when (jcs-is-current-file-empty-p)
       (jcs-insert-vimscript-template)))
 
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]vim" buffer-file-name) (jcs-vim-script-format))
-        ((string-match "[.]vimrc" buffer-file-name) (jcs-vim-script-format))
-        ((string-match "_vimrc" buffer-file-name) (jcs-vim-script-format))
-        )
+  (when buffer-file-name
+    (cond ((file-exists-p buffer-file-name) t)
+          ((string-match "[.]vim" buffer-file-name) (jcs-vim-script-format))
+          ((string-match "[.]vimrc" buffer-file-name) (jcs-vim-script-format))
+          ((string-match "_vimrc" buffer-file-name) (jcs-vim-script-format))
+          ))
 
   ;; jcs vim mode key binding
   (define-key vimrc-mode-map (kbd "C-d") #'jcs-kill-whole-line)

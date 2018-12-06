@@ -39,9 +39,10 @@
       ;; Comment will be treat as a data too...
       ))
 
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]json" buffer-file-name) (jcs-json-format))
-        )
+  (when buffer-file-name
+    (cond ((file-exists-p buffer-file-name) t)
+          ((string-match "[.]json" buffer-file-name) (jcs-json-format))
+          ))
 
   ;; jcs javascript key binding
   (define-key json-mode-map (kbd "C-d") #'jcs-kill-whole-line)

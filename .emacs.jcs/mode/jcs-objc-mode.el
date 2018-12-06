@@ -11,16 +11,17 @@
 (defun jcs-objc-mode-hook ()
   "Objective-C mode hook."
 
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]hin" buffer-file-name) (jcs-objc-header-format))
-        ((string-match "[.]hpp" buffer-file-name) (jcs-objc-header-format))
-        ((string-match "[.]h" buffer-file-name) (jcs-objc-header-format))
+  (when buffer-file-name
+    (cond ((file-exists-p buffer-file-name) t)
+          ((string-match "[.]hin" buffer-file-name) (jcs-objc-header-format))
+          ((string-match "[.]hpp" buffer-file-name) (jcs-objc-header-format))
+          ((string-match "[.]h" buffer-file-name) (jcs-objc-header-format))
 
-        ((string-match "[.]cin" buffer-file-name) (jcs-objc-source-format))
-        ((string-match "[.]cpp" buffer-file-name) (jcs-objc-source-format))
-        ((string-match "[.]c" buffer-file-name) (jcs-objc-source-format))
-        ((string-match "[.]m" buffer-file-name) (jcs-objc-source-format))
-        )
+          ((string-match "[.]cin" buffer-file-name) (jcs-objc-source-format))
+          ((string-match "[.]cpp" buffer-file-name) (jcs-objc-source-format))
+          ((string-match "[.]c" buffer-file-name) (jcs-objc-source-format))
+          ((string-match "[.]m" buffer-file-name) (jcs-objc-source-format))
+          ))
 
   ;; jcs Objective-C key binding
   (define-key objc-mode-map [f8] #'jcs-find-corresponding-file)

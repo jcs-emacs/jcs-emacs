@@ -32,9 +32,11 @@
     (when (jcs-is-current-file-empty-p)
       (jcs-insert-rust-template)))
 
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]rs" buffer-file-name) (jcs-rust-format))
-        )
+  (when buffer-file-name
+    (cond ((file-exists-p buffer-file-name) t)
+          ((string-match "[.]rs" buffer-file-name) (jcs-rust-format))
+          ))
+
   )
 (add-hook 'rust-mode-hook 'jcs-rust-mode-hook)
 

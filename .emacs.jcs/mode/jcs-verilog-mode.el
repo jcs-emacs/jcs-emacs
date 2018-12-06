@@ -33,9 +33,10 @@
     (when (jcs-is-current-file-empty-p)
       (jcs-insert-verilog-template)))
 
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]v" buffer-file-name) (jcs-verilog-script-format))
-        )
+  (when buffer-file-name
+    (cond ((file-exists-p buffer-file-name) t)
+          ((string-match "[.]v" buffer-file-name) (jcs-verilog-script-format))
+          ))
 
   )
 (add-hook 'verilog-mode-hook 'jcs-verilog-mode-hook)

@@ -32,10 +32,11 @@
     (when (jcs-is-current-file-empty-p)
       (jcs-insert-lua-template)))
 
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]lua" buffer-file-name) (jcs-lua-script-format))
-        ((string-match "[.]luac" buffer-file-name) (jcs-lua-script-format))
-        )
+  (when buffer-file-name
+    (cond ((file-exists-p buffer-file-name) t)
+          ((string-match "[.]lua" buffer-file-name) (jcs-lua-script-format))
+          ((string-match "[.]luac" buffer-file-name) (jcs-lua-script-format))
+          ))
 
   ;; jcs Lua key binding
   (define-key lua-mode-map (kbd "C-d") #'jcs-kill-whole-line)

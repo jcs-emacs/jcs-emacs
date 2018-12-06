@@ -35,9 +35,10 @@
     (when (jcs-is-current-file-empty-p)
       (jcs-insert-typescript-template)))
 
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]ts" buffer-file-name) (jcs-typescript-format))
-        )
+  (when buffer-file-name
+    (cond ((file-exists-p buffer-file-name) t)
+          ((string-match "[.]ts" buffer-file-name) (jcs-typescript-format))
+          ))
 
   ;; jcs TypeScript key binding
   (define-key typescript-mode-map (kbd "C-d") #'jcs-kill-whole-line)

@@ -34,9 +34,10 @@
     (when (jcs-is-current-file-empty-p)
       (jcs-insert-python-template)))
 
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]py" buffer-file-name) (jcs-python-class-format))
-        )
+  (when buffer-file-name
+    (cond ((file-exists-p buffer-file-name) t)
+          ((string-match "[.]py" buffer-file-name) (jcs-python-class-format))
+          ))
 
   ;; jcs python key binding
   (define-key python-mode-map (kbd "C-d") #'jcs-kill-whole-line)

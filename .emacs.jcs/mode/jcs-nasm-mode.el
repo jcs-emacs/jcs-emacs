@@ -39,10 +39,11 @@
     (when (jcs-is-current-file-empty-p)
       (jcs-insert-asm-template)))
 
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]asm" buffer-file-name) (jcs-asm-format))
-        ((string-match "[.]inc" buffer-file-name) (jcs-asm-format))
-        )
+  (when buffer-file-name
+    (cond ((file-exists-p buffer-file-name) t)
+          ((string-match "[.]asm" buffer-file-name) (jcs-asm-format))
+          ((string-match "[.]inc" buffer-file-name) (jcs-asm-format))
+          ))
 
   ;; jcs key binding
   (define-key nasm-mode-map (kbd "C-d") #'jcs-kill-whole-line)

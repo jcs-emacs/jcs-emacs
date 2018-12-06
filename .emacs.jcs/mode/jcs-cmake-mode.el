@@ -44,9 +44,10 @@
     (when (jcs-is-current-file-empty-p)
       (jcs-insert-cmake-template)))
 
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "CMakeLists.txt" buffer-file-name) (jcs-cmake-format))
-        )
+  (when buffer-file-name
+    (cond ((file-exists-p buffer-file-name) t)
+          ((string-match "CMakeLists.txt" buffer-file-name) (jcs-cmake-format))
+          ))
 
   ;; jcs makefile key binding
   (define-key cmake-mode-map (kbd "<up>") #'jcs-py-indent-up)

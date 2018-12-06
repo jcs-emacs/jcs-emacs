@@ -33,9 +33,10 @@
     (when (jcs-is-current-file-empty-p)
       (jcs-insert-basic-template)))
 
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]bas" buffer-file-name) (jcs-basic-script-format))
-        )
+  (when buffer-file-name
+    (cond ((file-exists-p buffer-file-name) t)
+          ((string-match "[.]bas" buffer-file-name) (jcs-basic-script-format))
+          ))
 
   ;; BASIC key bindings
   (define-key basic-mode-map (kbd "C-d") #'jcs-kill-whole-line)

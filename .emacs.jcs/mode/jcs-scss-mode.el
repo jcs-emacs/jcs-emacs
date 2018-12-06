@@ -28,9 +28,10 @@
     (when (jcs-is-current-file-empty-p)
       (jcs-insert-scss-template)))
 
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]scss" buffer-file-name) (jcs-scss-file-format))
-        )
+  (when buffer-file-name
+    (cond ((file-exists-p buffer-file-name) t)
+          ((string-match "[.]scss" buffer-file-name) (jcs-scss-file-format))
+          ))
 
   ;; jcs SCSS key binding
   (define-key scss-mode-map (kbd "C-d") #'jcs-kill-whole-line)

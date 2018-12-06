@@ -26,9 +26,10 @@
     (when (jcs-is-current-file-empty-p)
       (jcs-insert-scala-template)))
 
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]scala" buffer-file-name) (jcs-scala-class-format))
-        )
+  (when buffer-file-name
+    (cond ((file-exists-p buffer-file-name) t)
+          ((string-match "[.]scala" buffer-file-name) (jcs-scala-class-format))
+          ))
 
   ;; Scala key bindings
   ;; comment block

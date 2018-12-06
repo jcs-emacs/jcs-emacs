@@ -34,9 +34,10 @@
     (when (jcs-is-current-file-empty-p)
       (jcs-insert-cobol-template)))
 
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]cbl" buffer-file-name) (jcs-cobol-format))
-        )
+  (when buffer-file-name
+    (cond ((file-exists-p buffer-file-name) t)
+          ((string-match "[.]cbl" buffer-file-name) (jcs-cobol-format))
+          ))
 
   ;; Set Faces.
   (face-remap-add-relative 'font-lock-comment-face '(jcs-font-lock-comment-face))

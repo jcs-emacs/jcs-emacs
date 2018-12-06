@@ -31,10 +31,11 @@
     (when (jcs-is-current-file-empty-p)
       (jcs-insert-yaml-template)))
 
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]yaml" buffer-file-name) (jcs-yaml-script-format))
-        ((string-match "[.]yml" buffer-file-name) (jcs-yaml-script-format))
-        )
+  (when buffer-file-name
+    (cond ((file-exists-p buffer-file-name) t)
+          ((string-match "[.]yaml" buffer-file-name) (jcs-yaml-script-format))
+          ((string-match "[.]yml" buffer-file-name) (jcs-yaml-script-format))
+          ))
 
   ;; jcs YAML key binding
   (define-key yaml-mode-map (kbd "C-d") #'jcs-kill-whole-line)

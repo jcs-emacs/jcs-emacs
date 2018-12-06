@@ -32,9 +32,10 @@
     (when (jcs-is-current-file-empty-p)
       (jcs-insert-swift-template)))
 
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]swift" buffer-file-name) (jcs-swift-format))
-        )
+  (when buffer-file-name
+    (cond ((file-exists-p buffer-file-name) t)
+          ((string-match "[.]swift" buffer-file-name) (jcs-swift-format))
+          ))
 
   ;; jcs Swift key binding
   (define-key swift-mode-map "\ek" #'jcs-maybe-kill-this-buffer)
