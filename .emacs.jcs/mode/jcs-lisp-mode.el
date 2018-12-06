@@ -32,14 +32,10 @@
     (when (jcs-is-current-file-empty-p)
       (jcs-insert-lisp-template)))
 
-  ;; NOTE(jenchieh): while loading this will get loading emacs
-  ;; error, so simple add the `ignore-errors' function can avoid
-  ;; this. Furthermore this will stil work after the first load.
-  (ignore-errors
+  (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)
           ((string-match "[.]lisp" buffer-file-name) (jcs-lisp-format))
-          )
-    )
+          ))
 
   )
 (add-hook 'lisp-mode-hook 'jcs-lisp-mode-hook)
