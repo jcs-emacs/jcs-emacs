@@ -61,6 +61,11 @@
 
 (defun jcs-post-command-hook ()
   "Hook run after every command."
+
+  ;; Show the last command event id?
+  (when jcs-show-last-command-event
+    (call-interactively #'jcs-print-last-command-event))
+
   (when (jcs-is-current-major-mode-p "web-mode")
     ;; Refresh the syntax highlighting.
     (call-interactively #'jcs-font-lock-fontify-buffer))
