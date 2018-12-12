@@ -1192,3 +1192,28 @@ IN-VAL : input value to set to IN-VAR."
   ;; might prompt some issue that needed `*Message*'
   ;; buffer to be exists.
   (message "Retrieve *Message* buffer.."))
+
+;;---------------------------------------------
+;; Key
+;;---------------------------------------------
+
+(defvar jcs-show-last-command-event nil
+  "Print out the `last-command-event' everytime post the command is hit.")
+
+;;;###autoload
+(defun jcs-print-last-command-event ()
+  "Print out the `last-command-event' id."
+  (interactive)
+  (message "Last command event: %s" last-command-event))
+
+;;;###autoload
+(defun jcs-enable-show-last-command-event ()
+  "Show the last command event post the command is hit."
+  (interactive)
+  (setq jcs-show-last-command-event t))
+
+;;;###autoload
+(defun jcs-disable-show-last-command-event ()
+  "Hide the last command event post the command is hit."
+  (interactive)
+  (setq jcs-show-last-command-event nil))
