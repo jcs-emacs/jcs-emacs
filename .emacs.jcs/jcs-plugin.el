@@ -242,3 +242,7 @@
 ;;; Tabbar
 (require 'tabbar)
 (tabbar-mode 0)  ;; Turn-off `tabbar-mode' as default.
+
+;;; Indent Info
+(require 'indent-info)
+(global-indent-info-mode +1)
