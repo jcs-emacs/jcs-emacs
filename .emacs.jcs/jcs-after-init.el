@@ -66,6 +66,7 @@
 (diminish 'abbrev-mode)
 (diminish 'auto-complete-mode)
 (diminish 'auto-highlight-symbol-mode)
+(diminish 'auto-rename-tag-mode)
 (diminish 'undo-tree-mode)
 (diminish 'company-mode)
 (diminish 'flycheck-mode)
