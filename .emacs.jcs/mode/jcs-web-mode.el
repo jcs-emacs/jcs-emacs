@@ -39,6 +39,12 @@
 (require 'impatient-mode)
 
 
+;;============================
+;;; Web Dev useful packages.
+(require 'auto-rename-tag)
+(require 'htmltagwrap)
+
+
 ;; ======================
 ;; web-mode.el
 ;; homepage - http://web-mode.org/
