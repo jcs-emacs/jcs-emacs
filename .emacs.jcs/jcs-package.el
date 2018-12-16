@@ -60,6 +60,7 @@ Return a list of installed packages or nil for every skipped package."
                                    auto-complete-c-headers
                                    auto-highlight-symbol
                                    auto-package-update
+                                   auto-rename-tag
                                    basic-mode
                                    better-defaults
                                    clojure-mode
