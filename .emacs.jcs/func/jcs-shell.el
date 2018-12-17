@@ -67,6 +67,15 @@
   ;; kill the frame.
   (delete-window))
 
+;;;###autoload
+(defun jcs-maybe-kill-shell ()
+  "Ask to make sure the user want to kill shell."
+  (interactive)
+  (if (get-buffer-process "*shell*")
+      (when (yes-or-no-p "Buffer \"*shell*\" has a running process; kill it? ")
+        (call-interactively #'jcs-toggle-shell-window))
+    (call-interactively #'jcs-maybe-kill-this-buffer)))
+
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 ;; Shell Commands
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
