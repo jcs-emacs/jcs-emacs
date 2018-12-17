@@ -18,7 +18,7 @@
   (define-key shell-mode-map (kbd "{") #'jcs-vs-front-curly-bracket-key)
   (define-key shell-mode-map (kbd ";") #'jcs-vs-semicolon-key)
 
-  (define-key shell-mode-map (kbd "M-k") #'jcs-toggle-shell-window)  ;; Close it.
+  (define-key shell-mode-map (kbd "M-k") #'jcs-maybe-kill-shell)  ;; Close it.
 
   ;; Completion
   (define-key shell-mode-map [tab] #'jcs-company-manual-begin)
