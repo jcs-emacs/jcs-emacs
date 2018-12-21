@@ -313,3 +313,4 @@
 (load-file "~/.emacs.jcs/func/jcs-sh-func.el")
 (load-file "~/.emacs.jcs/func/jcs-web-func.el")
 (load-file "~/.emacs.jcs/func/jcs-re-builder-func.el")
+(load-file "~/.emacs.jcs/func/jcs-yaml-func.el")
