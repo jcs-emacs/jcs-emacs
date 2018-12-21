@@ -163,6 +163,7 @@ Return a list of installed packages or nil for every skipped package."
                                    wgrep-ag
                                    wgrep-helm
                                    xwidgete
+                                   yaml-mode
                                    yasnippet)
   "List of packages this config needs.")
 
