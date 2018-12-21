@@ -41,6 +41,8 @@
   (define-key yaml-mode-map (kbd "C-d") #'jcs-kill-whole-line)
   (define-key yaml-mode-map "\C-c\C-c" #'kill-ring-save)
 
+  (define-key yaml-mode-map (kbd "<backspace>") #'jcs-yaml-electric-backspace)
+
   (define-key yaml-mode-map (kbd "<up>") #'jcs-py-indent-up)
   (define-key yaml-mode-map (kbd "<down>") #'jcs-py-indent-down)
   )
