@@ -338,21 +338,11 @@ IS-FORWARD : forward conversion instead of backward conversion."
 
 (defun jcs-get-current-char-byte ()
   "Get the current character as the 'byte'."
-  (let ((current-char nil)
-        (current-char-string nil)
-        (current-char-char nil))
-    (setq current-char (char-before))
-    (setq current-char-string (string current-char))
-    (setq current-char-char (string-to-char current-char-string))
-    current-char-char))
+  (string-to-char (jcs-get-current-char-string)))
 
 (defun jcs-get-current-char-string ()
   "Get the current character as the 'string'."
-  (let ((current-char nil)
-        (current-char-string nil))
-    (setq current-char (char-before))
-    (setq current-char-string (string current-char))
-    current-char-string))
+  (string (char-before)))
 
 ;;;###autoload
 (defun jcs-goto-next-backward-char (&optional bnd-pt)
