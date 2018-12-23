@@ -15,7 +15,7 @@
 (require 'python-mode)
 (defun jcs-python-mode-hook ()
   ;; enable the stuff you want for Python here
-  (electric-pair-mode nil)
+  (electric-pair-mode t)
 
   ;; Abbrevation expansion
   (abbrev-mode 1)
