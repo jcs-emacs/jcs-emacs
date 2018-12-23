@@ -1332,3 +1332,60 @@ REVERSE : t forward, nil backward."
   "Delete everything between question mark."
   (interactive)
   (jcs-delete-between-char "?" "?"))
+
+;;----------------------------------------------
+;; Electric Pair
+;;----------------------------------------------
+
+(defun jcs-get-open-pair-symbol (c)
+  "Get the open pairing symbol from C."
+  (let ((pair-char nil))
+    (cond ((jcs-current-char-equal-p "\"")
+           (progn
+             (setq pair-char "\"")))
+          ((jcs-current-char-equal-p "'")
+           (progn
+             (setq pair-char "'")))
+          ((jcs-current-char-equal-p ")")
+           (progn
+             (setq pair-char "(")))
+          ((jcs-current-char-equal-p "]")
+           (progn
+             (setq pair-char "[")))
+          ((jcs-current-char-equal-p "}")
+           (progn
+             (setq pair-char "{"))))
+    pair-char))
+
+(defun jcs-get-close-pair-symbol (c)
+  "Get the close pairing symbol from C."
+  (let ((pair-char nil))
+    (cond ((jcs-current-char-equal-p "\"")
+           (progn
+             (setq pair-char "\"")))
+          ((jcs-current-char-equal-p "'")
+           (progn
+             (setq pair-char "'")))
+          ((jcs-current-char-equal-p "(")
+           (progn
+             (setq pair-char ")")))
+          ((jcs-current-char-equal-p "[")
+           (progn
+             (setq pair-char "]")))
+          ((jcs-current-char-equal-p "{")
+           (progn
+             (setq pair-char "}"))))
+    pair-char))
+
+;;;###autoload
+(defun jcs-electric-backspace ()
+  "Electric backspace key."
+  (interactive)
+  (let ((close-pair-symbol (jcs-get-close-pair-symbol (jcs-get-current-char-string))))
+    (backward-delete-char 1)
+    (when (and close-pair-symbol
+               (not (jcs-is-end-of-buffer-p)))
+      (save-excursion
+        (forward-char 1)
+        (when (jcs-current-char-equal-p close-pair-symbol)
+          (backward-delete-char 1))))))
