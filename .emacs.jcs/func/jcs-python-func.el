@@ -161,7 +161,11 @@ spaces instead of `py-electric-backspace'."
                   (jcs-py-safe-backward-delete-char))
               (progn
                 (backward-delete-char 1))))))
-    (py-electric-backspace)))
+    (progn
+      ;; OPTION(jenchieh): Default is the `py' version.
+      ;;(py-electric-backspace)
+      ;; OPTION(jenchieh): `jcs' version.
+      (jcs-electric-backspace))))
 
 ;;;###autoload
 (defun jcs-py-safe-backward-delete-char ()
