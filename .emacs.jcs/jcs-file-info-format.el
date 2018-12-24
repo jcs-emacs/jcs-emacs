@@ -118,11 +118,11 @@ in order to take effect.  Half hot reloading process."
   (setq jcs-preload-double-colon-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/header/doublecolon_template.txt"))
   (setq jcs-preload-double-dash-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/header/doubledash_template.txt")))
 
-(defun jcs-get-global-file-info()
+(defun jcs-get-global-file-info ()
   "Return the preloaded global file info template."
   (jcs-swap-keyword-template jcs-preload-global-file-info))
 
-(defun jcs-get-tag-file-info()
+(defun jcs-get-tag-file-info ()
   "Return the preloaded tag file info template."
   (jcs-swap-keyword-template jcs-preload-tag-file-info))
 
