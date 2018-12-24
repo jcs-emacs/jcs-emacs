@@ -888,10 +888,9 @@ MODE-OBJ : mode object memory."
 
 (defun jcs-get-string-from-file (filePath)
   "Return filePath's file content.
-TOPIC(jenchieh): Elisp: Read File Content as String or List of Lines
-URL(jenchieh): http://ergoemacs.org/emacs/elisp_read_file_content.html
-
 FILEPATH : file path."
+  ;; TOPIC(jenchieh): Elisp: Read File Content as String or List of Lines
+  ;; URL(jenchieh): http://ergoemacs.org/emacs/elisp_read_file_content.html
   (with-temp-buffer
     (insert-file-contents filePath)
     (buffer-string)))
@@ -934,10 +933,10 @@ FILEPATH : .ini file to parse."
         (when (and (not (string= tmp-keyword ""))
                    (not (equal tmp-value nil)))
           (let ((tmp-list '()))
-            (add-to-list 'tmp-list tmp-keyword)
+            (push tmp-keyword tmp-list)
             (setq tmp-ini-list (append tmp-ini-list tmp-list)))
           (let ((tmp-list '()))
-            (add-to-list 'tmp-list tmp-value)
+            (push tmp-value tmp-list)
             (setq tmp-ini-list (append tmp-ini-list tmp-list)))))
       (setq count (1+ count)))
 
