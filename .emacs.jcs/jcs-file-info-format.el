@@ -61,11 +61,6 @@ TEMPLATE-STR : template string data."
   ;; return itself.
   template-str)
 
-(defun jcs-get-template-by-file-path (filePath)
-  "Replace keyword and return modefieded template string.
-FILEPATH : template file."
-  (jcs-get-template-by-file-path (jcs-get-string-from-file filePath)))
-
 (defun jcs-insert-template-by-file-path (filePath)
   "Swap all keywords then insert it to current buffer.
 FILEPATH : file path to insert and swap keyword."
