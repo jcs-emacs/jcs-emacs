@@ -104,6 +104,7 @@ Return a list of installed packages or nil for every skipped package."
                                    helm-gtags
                                    htmltagwrap
                                    indent-info
+                                   ini-mode
                                    javadoc-lookup
                                    ;;;
                                    ;; TEMPORARY(jenchieh): Hopefully melpa will let me push
