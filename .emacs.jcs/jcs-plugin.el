@@ -246,3 +246,7 @@
 ;;; Indent Info
 (require 'indent-info)
 (global-indent-info-mode +1)
+
+;;; Right Click Context
+(require 'right-click-context)
+(right-click-context-mode 1)
