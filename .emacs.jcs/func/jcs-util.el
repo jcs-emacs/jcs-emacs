@@ -17,10 +17,16 @@
 ;;---------------------------------------------
 
 ;;;###autoload
-(defun jcs-what-buffer ()
-  "Message out what current window's buffer."
+(defun jcs-print-current-buffer-name ()
+  "Message out what current window's buffer name."
   (interactive)
   (message "Current buffer name: %s" (buffer-name)))
+
+;;;###autoload
+(defun jcs-print-current-buffer-file-name ()
+  "Message out what current window's buffer file name."
+  (interactive)
+  (message "Current buffer file name: %s" (buffer-file-name)))
 
 ;;;###autoload
 (defun jcs-revert-all-file-buffers ()
