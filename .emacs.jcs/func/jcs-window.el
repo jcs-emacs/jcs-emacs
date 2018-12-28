@@ -49,11 +49,62 @@ IN-BUFFER-NAME : taget buffer name to jump to."
     found))
 
 ;;;###autoload
-(defun jcs-switch-to-previous-buffer ()
+(defun jcs-switch-to-previous-buffer (&optional cnt)
   "Switch to previously open buffer.
-Repeated invocations toggle between the two most recently open buffers."
+Repeated invocations toggle between the two most recently open buffers.
+CNT : Count for buffer to switch to."
   (interactive)
-  (switch-to-buffer (other-buffer (current-buffer) 1)))
+  (let (;; Default is 1.
+        (target-cnt 1))
+    (when cnt
+      (setq target-cnt cnt))
+    (switch-to-buffer (other-buffer (current-buffer) target-cnt))))
+
+;;;###autoload
+(defun jcs-switch-to-next-buffer-not-nil (&optional cnt)
+  "Switch to the previous buffer that are not nil.
+MAX-CNT : Maxinum count.
+CNT : Counter."
+  (interactive)
+  (let ((setting-max-count 10) ;; Constant Setting.
+        (current-cnt 1))
+    (when cnt
+      (setq current-cnt (+ cnt 1)))
+
+    (when (< current-cnt setting-max-count)
+      (call-interactively #'switch-to-next-buffer)
+      (unless (buffer-file-name)
+        (jcs-switch-to-next-buffer-not-nil current-cnt)))))
+
+;;;###autoload
+(defun jcs-switch-to-prev-buffer-not-nil (&optional cnt)
+  "Switch to the previous buffer that are not nil.
+MAX-CNT : Maxinum count.
+CNT : Counter."
+  (interactive)
+  (let ((setting-max-count 10) ;; Constant Setting.
+        (current-cnt 1))
+    (when cnt
+      (setq current-cnt (+ cnt 1)))
+
+    (when (< current-cnt setting-max-count)
+      (call-interactively #'switch-to-prev-buffer)
+      (unless (buffer-file-name)
+        (jcs-switch-to-prev-buffer-not-nil current-cnt)))))
+
+(defun jcs-not-nil-buffer-count ()
+  "Returns count of the not nil buffer."
+  (save-window-excursion
+    (let ((index 0)
+          (buf-len (length (buffer-list)))
+          (buf-list '()))
+      (while (< index buf-len)
+        (when (buffer-file-name)
+          (push (buffer-file-name) buf-list))
+        (call-interactively #'switch-to-next-buffer)
+        (setq index (+ index 1)))
+      (setq buf-list (remove-duplicates buf-list))
+      (length buf-list))))
 
 ;;;###autoload
 (defun jcs-visible-buffers (buffers)
