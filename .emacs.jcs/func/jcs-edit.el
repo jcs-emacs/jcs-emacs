@@ -731,32 +731,28 @@ this version instead."
 switch to the previous buffer.
 ECP-SAME : Exception for the same buffer."
   (interactive)
-  (let ((buffer-meaningful (buffer-file-name))
-        (do-prev-buffer nil))
-    (if (or (>= (jcs-buffer-showns (buffer-name)) 2)
-            ;; NOTE(jenchieh): If you don't want `*Buffer-List*'
-            ;; window open in at least two window and get killed
-            ;; at the same time. Enable the line under.
-            ;;(jcs-is-current-major-mode-p "Buffer-menu-mode")
-            )
-        (setq do-prev-buffer t)
-      (progn
-        (jcs-kill-this-buffer)
-        ;; NOTE(jenchieh): After kill the buffer, if the buffer
-        ;; appear in multiple windows then we do switch to
-        ;; previous buffer again. Hence, it will not show
-        ;; repeated buffer at the same time in different windows.
-        (when (not ecp-same)
-          (setq do-prev-buffer t))))
-
-    (when do-prev-buffer
-      ;; Check if current buffer meaningful.
-      (if (and buffer-meaningful
-               (< 1 (jcs-not-nil-buffer-count)))
-          (progn
+  (if (or (>= (jcs-buffer-showns (buffer-name)) 2)
+          ;; NOTE(jenchieh): If you don't want `*Buffer-List*'
+          ;; window open in at least two window and get killed
+          ;; at the same time. Enable the line under.
+          ;;(jcs-is-current-major-mode-p "Buffer-menu-mode")
+          )
+      (jcs-switch-to-previous-buffer)
+    (progn
+      (jcs-kill-this-buffer)
+      ;; NOTE(jenchieh): After kill the buffer, if the buffer
+      ;; appear in multiple windows then we do switch to
+      ;; previous buffer again. Hence, it will not show
+      ;; repeated buffer at the same time in different windows.
+      (when (and (>= (jcs-buffer-showns (buffer-name)) 2)
+                 ;; Check exception for the same buffer in multiple frames.
+                 (not ecp-same))
+        ;; Check if current buffer meaningful.
+        (if (and (buffer-file-name)
+                 ;; And there are more than 2 meaningful buffers opened.
+                 (<= 2 (jcs-not-nil-buffer-count)))
             ;; Ensure switch to some buffer that are meaningful.
-            (jcs-switch-to-next-buffer-not-nil))
-        (progn
+            (jcs-switch-to-prev-buffer-not-nil)
           (jcs-switch-to-previous-buffer))))))
 
 ;;----------------------------------------------
