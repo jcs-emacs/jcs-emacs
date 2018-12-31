@@ -745,15 +745,8 @@ ECP-SAME : Exception for the same buffer."
       ;; previous buffer again. Hence, it will not show
       ;; repeated buffer at the same time in different windows.
       (when (and (>= (jcs-buffer-showns (buffer-name)) 2)
-                 ;; Check exception for the same buffer in multiple frames.
                  (not ecp-same))
-        ;; Check if current buffer meaningful.
-        (if (and (buffer-file-name)
-                 ;; And there are more than 2 meaningful buffers opened.
-                 (<= 2 (jcs-not-nil-buffer-count)))
-            ;; Ensure switch to some buffer that are meaningful.
-            (jcs-switch-to-prev-buffer-not-nil)
-          (jcs-switch-to-previous-buffer))))))
+        (jcs-switch-to-previous-buffer)))))
 
 ;;----------------------------------------------
 ;; Search/Kill word capital.
