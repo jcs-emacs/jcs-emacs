@@ -78,6 +78,7 @@
 (diminish 'js2r)
 (diminish 'line-reminder-mode)
 (diminish 'outline-minor-mode)
+(diminish 'right-click-context-mode)
 (diminish 'skewer-mode)
 (diminish 'which-key-mode)
 (diminish 'yas-minor-mode)
