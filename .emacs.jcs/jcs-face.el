@@ -200,19 +200,23 @@
   :group 'comment-faces)
 (defvar jcs-double-dash-comment-face 'jcs-double-dash-comment-face)
 
-
 (defvar jcs-double-dash-comment-missing-modes '(haskell-mode
                                                 lua-mode)
   "Modes that does not apply comment with double dash style.")
 
 
-(mapc (lambda (mode)
-        (font-lock-add-keywords
-         mode
-         '(;; Only single line command.
-           ("\\(--[a-zA-Z0-9\t -.<>?,*'`@\"=_(){}:;&^%$#!~©]*\\)" 1 'jcs-double-dash-comment-face t)
-           )'end))
-      jcs-double-dash-comment-missing-modes)
+;;----------------------------------------------
+;; Sharp Comment Face
+;;----------------------------------------------
+
+(defface jcs-sharp-comment-face
+  '((t (:inherit jcs-font-lock-comment-face)))
+  "Comment face for sharp."
+  :group 'comment-faces)
+(defvar jcs-sharp-comment-face 'jcs-sharp-comment-face)
+
+(defvar jcs-sharp-comment-missing-modes '(python-mode)
+  "Modes that does not apply comment with sharp style.")
 
 
 ;;----------------------------------------------
@@ -270,3 +274,64 @@
   '((t (:foreground "#FAD42D")))
   "Highlight CSS class.")
 (defvar jcs-css-class-face 'jcs-css-class-face)
+
+
+;;----------------------------------------------
+;; Load face order.
+;;----------------------------------------------
+
+;; Double Dash, single line comment.
+(mapc (lambda (mode)
+        (font-lock-add-keywords
+         mode
+         '(;; Only single line command.
+           ("\\(--[a-zA-Z0-9\t -.<>?,*'`@\"=_(){}:;&^%$#!~©/]*\\)" 1 'jcs-double-dash-comment-face t)
+           )'end))
+      jcs-double-dash-comment-missing-modes)
+
+;; Sharp, single line comment.
+(mapc (lambda (mode)
+        (font-lock-add-keywords
+         mode
+         '(;; Only single line command.
+           ("\\(#[a-zA-Z0-9\t -.<>?,*'`@\"=_(){}:;&^%$#!~©/]*\\)" 1 'jcs-sharp-comment-face t)
+           )'end))
+      jcs-sharp-comment-missing-modes)
+
+;; Fixme faces,
+;; should always be the last.
+(mapc (lambda (mode)
+        (let ((case-fold-search t))
+          (font-lock-add-keywords
+           mode
+           '(;; NOTE(jenchieh): Coding Use keywords.
+             ("\\<\\(TODO\\)\\>" 1 'jcs-font-lock-fixme-face t)
+             ("\\<\\(ATTENTION\\)\\>" 1 'jcs-font-lock-attention-face t)
+             ("\\<\\(STUDY\\)\\>" 1 'jcs-font-lock-study-face t)
+             ("\\<\\(CAUTION\\)\\>" 1 'jcs-font-lock-caution-face t)
+             ("\\<\\(IMPORTANT\\)\\>" 1 'jcs-font-lock-important-face t)
+             ("\\<\\(OPTIMIZE\\)\\>" 1 'jcs-font-lock-optimize-face t)
+             ("\\<\\(NOTE\\)\\>" 1 'jcs-font-lock-note-face t)
+             ("\\<\\(DESC\\)\\>" 1 'jcs-font-lock-description-face t)
+             ("\\<\\(DESCRIPTION\\)\\>" 1 'jcs-font-lock-description-face t)
+             ("\\<\\(TAG\\)\\>" 1 'jcs-font-lock-tag-face t)
+             ("\\<\\(DEBUG\\)\\>" 1 'jcs-font-lock-debugging-face t)
+             ("\\<\\(DEBUGGING\\)\\>" 1 'jcs-font-lock-debugging-face t)
+             ("\\<\\(TEMP\\)\\>" 1 'jcs-font-lock-temporary-face t)
+             ("\\<\\(TEMPORARY\\)\\>" 1 'jcs-font-lock-temporary-face t)
+             ("\\<\\(SOURCE\\)\\>" 1 'jcs-font-lock-source-face t)
+             ("\\<\\(URL\\)\\>" 1 'jcs-font-lock-url-face t)
+             ("\\<\\(IDEA\\)\\>" 1 'jcs-font-lock-idea-face t)
+             ("\\<\\(OBSOLETE\\)\\>" 1 'jcs-font-lock-obsolete-face t)
+             ("\\<\\(DEPRECATED\\)\\>" 1 'jcs-font-lock-deprecated-face t)
+             ("\\<\\(TOPIC\\)\\>" 1 'jcs-font-lock-topic-face t)
+             ("\\<\\(SEE\\)\\>" 1 'jcs-font-lock-see-face t)
+
+             ;; NOTE(jenchieh): Alternative keywords.
+             ("\\<\\(OPTION\\)\\>" 1 'jcs-font-lock-option-face t)
+             ("\\<\\(OR\\)\\>" 1 'jcs-font-lock-or-face t)
+
+             ;; NOTE(jenchieh): Special keywords.
+             ("`\\([a-zA-Z0-9_$-.!]*\\)'" 1 'jcs-font-lock-key-highlight-face t)
+             )'end)))
+      jcs-fixme-modes)
