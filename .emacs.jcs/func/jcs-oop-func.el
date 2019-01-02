@@ -1129,10 +1129,10 @@ SEARCH-OPTION :
 (mapc (lambda (mode)
         (font-lock-add-keywords
          mode
-         '(("(,*\\([a-zA-Z_$0-9[ \t]*\\)[,)]" 1 'font-lock-variable-name-face t)
-           (",\\([a-zA-Z_$0-9[, \t]*\\)," 1 'font-lock-variable-name-face t)
-           ("\\([a-zA-Z_$0-9[ \t]*\\)[)]" 1 'font-lock-variable-name-face t)
+         '(("(,*\\([a-zA-Z_$0-9 \t]*\\)[,)]" 1 'font-lock-variable-name-face t)
+           (",\\([a-zA-Z_$0-9, \t]*\\)," 1 'font-lock-variable-name-face t)
+           ("\\([a-zA-Z_$0-9 \t]*\\)[)]" 1 'font-lock-variable-name-face t)
            ;; For line break parameter declaration.
-           ("^[ \t]* \\([a-zA-Z_$0-9[,]*\\)[ \t]*[,)]" 1 'font-lock-variable-name-face t)
+           ("^[ \t]* \\([a-zA-Z_$0-9,]*\\)[ \t]*[,)]" 1 'font-lock-variable-name-face t)
            )'end))
       jcs-oop-font-lock-missing-modes)
