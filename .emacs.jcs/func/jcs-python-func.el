@@ -323,3 +323,18 @@ URL(jenchieh): http://docs.python-guide.org/en/latest/writing/style/"
         ;; insert comment doc comment string.
         (jcs-insert-comment-style-by-current-line 1)
         ))))
+
+
+;;;###autoload
+(defun jcs-ask-python-template (type)
+  (interactive
+   (list (completing-read
+          "Type of the Python template: " '("Class"
+                                            "Plain"))))
+
+  (cond ((string= type "Class")
+         (progn
+           (jcs-insert-python-class-template)))
+        ((string= type "Plain")
+         (progn
+           (jcs-insert-python-template)))))
