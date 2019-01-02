@@ -321,8 +321,8 @@ Use `indent-according-to-mode' instead `indent-for-tab-command'."
 
 ;;;###autoload
 (defun jcs-smart-select-home ()
-  "Set it goto the beginning of the buffer from the current \
-frame, so it do not goto the beginning of the line."
+  "Set the curosr beginning of the line from the current \
+frame, so it does not goto the beginning of the line first."
   (interactive)
   (if (not mark-active)
       (push-mark nil nil 1))
@@ -330,7 +330,7 @@ frame, so it do not goto the beginning of the line."
 
 ;;;###autoload
 (defun jcs-smart-select-end ()
-  "TODO(jecnhieh): comment this..."
+  "Set the cursor to the  end of the line from the current frame."
   (interactive)
   (if (not mark-active)
       (push-mark nil nil 1))
