@@ -32,7 +32,7 @@
   (defun jcs-python-class-format ()
     "Format the given file as a Python file."
     (when (jcs-is-current-file-empty-p)
-      (jcs-insert-python-template)))
+      (call-interactively #'jcs-ask-python-template)))
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)
