@@ -352,8 +352,12 @@ on language selected."
 
 ;;; Python
 (defun jcs-insert-python-template ()
-  "Header for Python header file."
+  "Python template."
   (jcs-insert-template-by-file-path "~/.emacs.jcs/template/python/python_template.txt"))
+
+(defun jcs-insert-python-class-template ()
+  "Python class template."
+  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/python/python_class_template.txt"))
 
 ;;; Ruby
 (defun jcs-insert-ruby-template ()
