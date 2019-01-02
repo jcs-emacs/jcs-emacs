@@ -234,15 +234,13 @@ comment character on the same line."
 
     (while (not (jcs-is-end-of-line-p))
       (forward-char 1)
-      (when (and (not (jcs-current-char-equal-p " "))
-                 (not (jcs-current-char-equal-p "\t"))
+      (when (and (not (jcs-current-whitespace-or-tab-p))
                  (not (jcs-current-char-equal-p "\"")))
         ;; return false.
-        (setq do-doc-string nil)
-        (equal do-doc-string t)))
+        (setq do-doc-string nil)))
 
     ;; return true.
-    (equal do-doc-string t)))
+    do-doc-string))
 
 (defun jcs-py-maybe-insert-codedoc ()
   "Insert common Python document/comment string.
@@ -254,28 +252,56 @@ URL(jenchieh): https://google.github.io/styleguide/pyguide.html
 -- Hitchhiker's
 URL(jenchieh): http://docs.python-guide.org/en/latest/writing/style/"
   (interactive)
-
-  (insert "\"")
-
   (let ((active-comment nil)
-        (previous-line-not-empty nil))
+        (previous-line-not-empty nil)
+        ;; Flag, if second situation. Check below.
+        (between-dq nil))
+
+    (insert "\"")
+
     (save-excursion
-      (backward-char 1)
-      (when (jcs-current-char-equal-p "\"")
+      ;; OPTION(jenchieh): First situation.
+      ;; Check if two double-quote infront of this double-quote.
+      (save-excursion
         (backward-char 1)
         (when (jcs-current-char-equal-p "\"")
           (backward-char 1)
-          (when (not (jcs-current-char-equal-p "\""))
-            (when (jcs-py-do-doc-string)
-              (setq active-comment t)))))
+          (when (jcs-current-char-equal-p "\"")
+            (backward-char 1)
+            (unless (jcs-current-char-equal-p "\"")
+              (when (jcs-py-do-doc-string)
+                (setq active-comment t))))))
 
-      ;; check if previous line empty.
-      (jcs-previous-line)
-      (when (not (jcs-current-line-empty-p))
-        (setq previous-line-not-empty t)))
+      ;; OPTION(jenchieh): Second situation.
+      ;; Check if between the double-quote.
+      (save-excursion
+        (backward-char 1)
+        (when (jcs-current-char-equal-p "\"")
+          (backward-char 1)
+          (unless (jcs-current-char-equal-p "\"")
+            (forward-char 3)
+            (when (jcs-current-char-equal-p "\"")
+              (forward-char 1)
+              (unless (jcs-current-char-equal-p "\"")
+                (when (jcs-py-do-doc-string)
+                  (setq active-comment t)
+                  (setq between-dq t)))))))
 
-    (when (and (equal active-comment t)
-               (equal previous-line-not-empty t))
+      (when active-comment
+        ;; check if previous line empty.
+        (jcs-previous-line)
+        (when (not (jcs-current-line-empty-p))
+          (setq previous-line-not-empty t))))
+
+    (unless active-comment
+      (insert "\"")
+      (backward-char 1))
+
+    (when between-dq
+      (forward-char 1))
+
+    (when (and active-comment
+               previous-line-not-empty)
       (when (= jcs-py-doc-string-version 1)
         ;; OPTION(jenchieh): docstring option..
         (insert "\n"))
