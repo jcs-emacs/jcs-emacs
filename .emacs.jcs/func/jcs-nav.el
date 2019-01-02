@@ -57,7 +57,8 @@ Just use this without remember Emacs Lisp function."
 CH : character we target to move toward."
   (ignore-errors
     (forward-char 1)
-    (while (not (jcs-current-char-equal-p ch))
+    (while (and (not (jcs-current-char-equal-p ch))
+                (not (jcs-is-end-of-buffer-p)))
       (forward-char 1))))
 
 (defun jcs-move-to-backward-a-char (ch)
@@ -65,7 +66,8 @@ CH : character we target to move toward."
 CH : character we target to move toward."
   (ignore-errors
     (backward-char 1)
-    (while (not (jcs-current-char-equal-p ch))
+    (while (and (not (jcs-current-char-equal-p ch))
+                (not (jcs-is-beginning-of-buffer-p)))
       (backward-char 1))))
 
 (defun jcs-move-to-forward-a-word (word)
@@ -73,7 +75,8 @@ CH : character we target to move toward."
 WORD : word we target to move toward."
   (ignore-errors
     (forward-word 1)
-    (while (not (jcs-current-word-equal-p word))
+    (while (and (not (jcs-current-word-equal-p word))
+                (not (jcs-is-end-of-buffer-p)))
       (forward-word 1))))
 
 (defun jcs-move-to-backward-a-word (word)
@@ -81,7 +84,8 @@ WORD : word we target to move toward."
 WORD : word we target to move toward."
   (ignore-errors
     (backward-word 1)
-    (while (not (jcs-current-word-equal-p word))
+    (while (and (not (jcs-current-word-equal-p word))
+                (not (jcs-is-beginning-of-buffer-p)))
       (backward-word 1))))
 
 ;; TODO(jenchieh): The naming logic here is very weird..
