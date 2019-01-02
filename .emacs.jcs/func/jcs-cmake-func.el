@@ -33,24 +33,19 @@ LAN : temporary variable store user langauge input."
            ))
         ((string= lan "Assembly")
          (progn
-           (call-interactively 'jcs-ask-makefile-cc-template)
-           ))
+           (call-interactively 'jcs-ask-makefile-cc-template)))
         ((string= lan "C")
          (progn
-           (call-interactively 'jcs-ask-makefile-cc-template)
-           ))
+           (call-interactively 'jcs-ask-makefile-cc-template)))
         ((string= lan "C++")
          (progn
-           (call-interactively 'jcs-ask-makefile-cc-template)
-           ))
+           (call-interactively 'jcs-ask-makefile-cc-template)))
         ((string= lan "Java")
          (progn
-           (call-interactively 'jcs-ask-makefile-java-template)
-           ))
+           (call-interactively 'jcs-ask-makefile-java-template)))
         ((string= lan "Python")
          (progn
-           (call-interactively 'jcs-ask-makefile-python-template)
-           ))
+           (call-interactively 'jcs-ask-makefile-python-template)))
         )
   )
 
@@ -66,8 +61,7 @@ TYPE: type of makefile for Assembly and C/C++."
 
   (cond ((string= type "..")
          (progn
-           (call-interactively 'jcs-ask-makefile-language)
-           ))
+           (call-interactively 'jcs-ask-makefile-language)))
         ((string= type "Application")
          (progn
            (jcs-insert-makefile-cc-app-template)))
@@ -89,8 +83,7 @@ TYPE: type of makefile for Java."
 
   (cond ((string= type "..")
          (progn
-           (call-interactively 'jcs-ask-makefile-language)
-           ))
+           (call-interactively 'jcs-ask-makefile-language)))
         ((string= type "Application")
          (progn
            (jcs-insert-makefile-java-app-template)))
@@ -112,8 +105,7 @@ TYPE: type of makefile for Python."
 
   (cond ((string= type "..")
          (progn
-           (call-interactively 'jcs-ask-makefile-language)
-           ))
+           (call-interactively 'jcs-ask-makefile-language)))
         ((string= type "Application")
          (progn
            (jcs-insert-makefile-python-app-template)))
