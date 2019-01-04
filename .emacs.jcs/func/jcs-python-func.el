@@ -234,6 +234,7 @@ comment character on the same line."
 
     (while (not (jcs-is-end-of-line-p))
       (forward-char 1)
+
       (when (and (not (jcs-current-whitespace-or-tab-p))
                  (not (jcs-current-char-equal-p "\"")))
         ;; return false.
@@ -283,6 +284,7 @@ URL(jenchieh): http://docs.python-guide.org/en/latest/writing/style/"
             (when (jcs-current-char-equal-p "\"")
               (forward-char 1)
               (unless (jcs-current-char-equal-p "\"")
+                (backward-char 4)
                 (when (jcs-py-do-doc-string)
                   (setq active-comment t)
                   (setq between-dq t)))))))
