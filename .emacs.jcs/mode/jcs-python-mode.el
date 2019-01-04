@@ -59,6 +59,8 @@
   (define-key python-mode-map (kbd "<backspace>") #'jcs-py-backspace)
   (define-key python-mode-map (kbd "S-<backspace>") #'jcs-py-real-backspace)
 
+  (define-key python-mode-map (kbd "RET") #'jcs-py-return)
+
   ;; Comment
   (define-key python-mode-map (kbd "\"") #'jcs-py-maybe-insert-codedoc)
   )
