@@ -12,8 +12,6 @@
 ;; When editing the Python file.
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-;;; Code:
-
 ;;;###autoload
 (defun jcs-py-indent-region ()
   "Indent region for `python-mode'"
@@ -47,8 +45,7 @@
 
       (while (and (>= (string-to-number (format-mode-line "%l")) startLineNum2))
         (jcs-py-indent-up)
-        (end-of-line))
-      )))
+        (end-of-line)))))
 
 ;;;###autoload
 (defun jcs-py-format-document ()
@@ -64,8 +61,7 @@ once to the whole document. For `python-mode'."
       (setq startLineNum (string-to-number (format-mode-line "%l")))
 
       (while (and (<= (string-to-number (format-mode-line "%l")) endLineNum))
-        (jcs-py-indent-down))
-      )))
+        (jcs-py-indent-down)))))
 
 ;;;###autoload
 (defun jcs-py-format-region-or-document ()
@@ -74,44 +70,37 @@ once to the whole document. For `python-mode'."
 line instead of indent the whole file at once."
   (interactive)
   (if (use-region-p)
-      (progn
-        (call-interactively 'jcs-py-indent-region))
-    (progn
-      (call-interactively 'jcs-py-format-document))
-    ))
+      (call-interactively 'jcs-py-indent-region)
+    (call-interactively 'jcs-py-format-document)))
 
 ;;;###autoload
 (defun jcs-py-indent-up ()
   "Move to previous line and indent for `python-mode'."
   (interactive)
-
   (previous-line 1)
-
   (if (jcs-current-line-empty-p)
-      (progn
-        (if (not (jcs-is-mark-active-or-region-selected-p))
-            (py-indent-line-outmost)))
-    (progn
-      (if (jcs-is-infront-first-char-at-line-p)
-          (back-to-indentation))))
-  )
+      (when (not (jcs-is-mark-active-or-region-selected-p))
+        (py-indent-line-outmost))
+    (when (jcs-is-infront-first-char-at-line-p)
+      (back-to-indentation))))
 
 ;;;###autoload
 (defun jcs-py-indent-down ()
   "Move to next line and indent for `python-mode'."
   (interactive)
-
   (next-line 1)
-
   (if (jcs-current-line-empty-p)
-      (progn
-        (if (not (jcs-is-mark-active-or-region-selected-p))
-            (py-indent-line-outmost)))
-    (progn
-      (if (jcs-is-infront-first-char-at-line-p)
-          (back-to-indentation))))
-  )
+      (when (not (jcs-is-mark-active-or-region-selected-p))
+        (py-indent-line-outmost))
+    (when (jcs-is-infront-first-char-at-line-p)
+      (back-to-indentation))))
 
+;;;###autoload
+(defun jcs-py-return ()
+  "Return key for `python-mode'."
+  (interactive)
+  (call-interactively #'newline)
+  (py-indent-line-outmost))
 
 ;;;###autoload
 (defun jcs-py-real-space ()
@@ -180,49 +169,41 @@ spaces instead of `py-electric-backspace'."
 
 ;;;###autoload
 (defun jcs-py-check-first-char-of-line-is-keyword-p ()
-  "Check the first character of the current line the keyword line.
-SEE(jenchieh): keyword is listed below in
-`jcs-py-is-python-keyword' function."
+  "Check the first character of the current line the keyword line."
   (interactive)
-  (setq isKeyword nil)
-
-  (save-excursion
-    (back-to-indentation)
-    (forward-char 1)
-
-    (if (jcs-current-char-equal-p "@")
+  (let ((isKeyword nil))
+    (save-excursion
+      (back-to-indentation)
+      (forward-char 1)
+      (when (jcs-current-char-equal-p "@")
         (forward-char 1))
-
-    (if (jcs-py-is-python-keyword (jcs-get-word-at-point))
-        (setq isKeyword t))
-    )
-
-  (eq isKeyword t))
+      (when (jcs-py-is-python-keyword (jcs-get-word-at-point))
+        (setq isKeyword t)))
+    isKeyword))
 
 ;;;###autoload
 (defun jcs-py-is-python-keyword (inKeyword)
-  "Check if the current word is in the `jcs-python-keyword-list'.
+  "Check if the current word is in the `python-keyword-list'.
 vector list."
   (interactive)
+  (let ((isKeyword nil)
+        (index 0)
+        (python-keyword-list '()))
+    (setq python-keyword-list
+          ["class"
+           "classmethod"
+           "def"
+           "from"
+           "import"
+           "staticmethod"
+           ])
 
-  (setq jcs-python-keyword-list
-        ["class"
-         "classmethod"
-         "def"
-         "from"
-         "import"
-         "staticmethod"
-         ])
-
-  (setq index 0)
-  (setq isKeyword nil)
-
-  (while (< index (length jcs-python-keyword-list))
-    (if (string= inKeyword (elt jcs-python-keyword-list index))
+    (while (< index (length python-keyword-list))
+      (when (string= inKeyword (elt python-keyword-list index))
         (setq isKeyword t))
-    (setq index (1+ index)))
+      (setq index (1+ index)))
 
-  (eq isKeyword t))
+    isKeyword))
 
 
 (defun jcs-py-do-doc-string ()
@@ -323,8 +304,7 @@ URL(jenchieh): http://docs.python-guide.org/en/latest/writing/style/"
         (jcs-move-to-backward-a-word "def")
 
         ;; insert comment doc comment string.
-        (jcs-insert-comment-style-by-current-line 1)
-        ))))
+        (jcs-insert-comment-style-by-current-line 1)))))
 
 
 ;;;###autoload
