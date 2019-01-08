@@ -12,15 +12,16 @@
 ;; JenChieh RE-Builder functions.
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+;;;###autoload
 (defun jcs-reb-maybe-kill-this-buffer ()
   "Kill this buffer in `re-builder' mode."
   (interactive)
-
-  ;; maybe kill this buffer.
-  (jcs-maybe-kill-this-buffer)
-
-  ;; then delete this window.
-  (delete-window))
+  (let ((is-killed nil))
+    ;; maybe kill this buffer.
+    (setq is-killed (jcs-maybe-kill-this-buffer))
+    (when is-killed
+      ;; then delete this window.
+      (delete-window))))
 
 ;;;###autoload
 (defun jcs-re-builder (type)
