@@ -481,20 +481,18 @@ REGEXP : reqular expression use to align."
 
 ;;;###autoload
 (defun revert-buffer-no-confirm ()
-  "Revert buffer without confirmation.
-
-SOURCE(jenchieh):
-1) http://emacs.stackexchange.com/questions/169/how-do-i-reload-a-file-in-a-buffer
-2) http://www.emacswiki.org/emacs-en/download/misc-cmds.el"
+  "Revert buffer without confirmation."
+  ;; SOURCE(jenchieh):
+  ;; 1) http://emacs.stackexchange.com/questions/169/how-do-i-reload-a-file-in-a-buffer
+  ;; 2) http://www.emacswiki.org/emacs-en/download/misc-cmds.el
   (interactive)
   (revert-buffer :ignore-auto :noconfirm))
 
 ;;;###autoload
 (defun jcs-other-window-next()
-  "Cycle through window and frame. (next window/frame)
-
-SOURCE: http://emacs.stackexchange.com/questions/628/cycle-between-windows-in-all-frames"
+  "Cycle through window and frame. (next window/frame)"
   (interactive)
+  ;; SOURCE: http://emacs.stackexchange.com/questions/628/cycle-between-windows-in-all-frames
   ;; find next window and jump to that window.
   (other-window 1 t)
   (select-frame-set-input-focus (selected-frame))
@@ -731,22 +729,25 @@ this version instead."
 switch to the previous buffer.
 ECP-SAME : Exception for the same buffer."
   (interactive)
-  (if (or (>= (jcs-buffer-showns (buffer-name)) 2)
-          ;; NOTE(jenchieh): If you don't want `*Buffer-List*'
-          ;; window open in at least two window and get killed
-          ;; at the same time. Enable the line under.
-          ;;(jcs-is-current-major-mode-p "Buffer-menu-mode")
-          )
-      (jcs-switch-to-previous-buffer)
-    (progn
-      (jcs-kill-this-buffer)
-      ;; NOTE(jenchieh): After kill the buffer, if the buffer
-      ;; appear in multiple windows then we do switch to
-      ;; previous buffer again. Hence, it will not show
-      ;; repeated buffer at the same time in different windows.
-      (when (and (>= (jcs-buffer-showns (buffer-name)) 2)
-                 (not ecp-same))
-        (jcs-switch-to-previous-buffer)))))
+  (let ((is-killed nil))
+    (if (or (>= (jcs-buffer-showns (buffer-name)) 2)
+            ;; NOTE(jenchieh): If you don't want `*Buffer-List*'
+            ;; window open in at least two window and get killed
+            ;; at the same time. Enable the line under.
+            ;;(jcs-is-current-major-mode-p "Buffer-menu-mode")
+            )
+        (jcs-switch-to-previous-buffer)
+      (progn
+        (jcs-kill-this-buffer)
+        (setq is-killed t)
+        ;; NOTE(jenchieh): After kill the buffer, if the buffer
+        ;; appear in multiple windows then we do switch to
+        ;; previous buffer again. Hence, it will not show
+        ;; repeated buffer at the same time in different windows.
+        (when (and (>= (jcs-buffer-showns (buffer-name)) 2)
+                   (not ecp-same))
+          (jcs-switch-to-previous-buffer))))
+    is-killed))
 
 ;;----------------------------------------------
 ;; Search/Kill word capital.
