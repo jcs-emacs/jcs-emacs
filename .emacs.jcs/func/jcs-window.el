@@ -133,14 +133,18 @@ visible"
 (defun jcs-count-windows ()
   "Total window count."
   (save-selected-window
-    (let ((first (frame-first-window))
-          (count 1))
-      (when (eq (get-buffer-window) first)
-        (call-interactively #'jcs-other-window-next))
-
-      (while (not (eq (get-buffer-window) first))
-        (call-interactively #'jcs-other-window-next)
-        (setq count (+ count 1)))
+    (let ((count 0)
+          (frame-len (length (frame-list)))
+          (current-frame-count 0)
+          (frame-counter 0))
+      (while (< frame-counter frame-len)
+        (setq current-frame-count (count-windows))
+        (setq count (+ count current-frame-count))
+        (let ((index 0))
+          (while (< index current-frame-count)
+            (call-interactively #'jcs-other-window-next)
+            (setq index (+ index 1))))
+        (setq frame-counter (+ frame-counter 1)))
       count)))
 
 (defun jcs-buffer-visible-list ()
