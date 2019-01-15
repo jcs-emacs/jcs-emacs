@@ -348,7 +348,9 @@ IS-FORWARD : forward conversion instead of backward conversion."
 
 (defun jcs-get-current-char-string ()
   "Get the current character as the 'string'."
-  (string (char-before)))
+  (if (char-before)
+      (string (char-before))
+    ""))
 
 ;;;###autoload
 (defun jcs-goto-next-backward-char (&optional bnd-pt)
