@@ -19,9 +19,6 @@
 ;; no screwing with my middle mouse button
 (global-unset-key [mouse-2])
 
-(define-key global-map "\et" #'load-todo)
-(define-key global-map "\eT" #'load-log)
-
 (define-key global-map "\ep" #'quick-calc)
 
 (define-key global-map [C-right] #'forward-word)
