@@ -273,6 +273,7 @@ i.e. change right window to bottom, or change bottom window to right."
 (set-frame-parameter (selected-frame) 'alpha '(100 . 100))
 (add-to-list 'default-frame-alist '(alpha . (100 . 100)))
 
+;;;###autoload
 (defun jcs-set-transparency (alpha-level)
   "Set the frame transparency."
   ;; SOURCE: https://gist.github.com/benzap/89759928060f4578c063
