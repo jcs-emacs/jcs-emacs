@@ -127,33 +127,6 @@
 
 (add-hook 'compilation-mode-hook 'jcs-big-fun-compilation-hook)
 
-(defun load-todo ()
-  "Load todo file."
-  (interactive)
-  (find-file jcs-daily-todo-file))
-
-(defun insert-timeofday ()
-  "Insert time of day."
-  (interactive "*")
-  (insert (format-time-string "---------------- %a, %d %b %y: %I:%M%p")))
-
-(defun load-log ()
-  "Load the log file."
-  (interactive)
-  (find-file jcs-log-file)
-  (if (boundp 'longlines-mode) ()
-    (longlines-mode 1)
-    (longlines-show-hard-newlines))
-  (if (equal longlines-mode t) ()
-    (longlines-mode 1)
-    (longlines-show-hard-newlines))
-  (end-of-buffer)
-  (newline-and-indent)
-  (insert-timeofday)
-  (newline-and-indent)
-  (newline-and-indent)
-  (end-of-buffer))
-
 
 ;; Maximize my Emacs frame on start-up
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
