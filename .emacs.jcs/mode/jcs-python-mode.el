@@ -29,6 +29,7 @@
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
 
+  ;; NOTE(jenchieh): Default is set to 8 for some reason.
   (setq-local tab-width 4)
 
   (defun jcs-python-class-format ()
