@@ -225,15 +225,14 @@ comment character on the same line."
     do-doc-string))
 
 (defun jcs-py-maybe-insert-codedoc ()
-  "Insert common Python document/comment string.
-
--- Officual
-URL(jenchieh): https://www.python.org/dev/peps/pep-0008/
--- Google
-URL(jenchieh): https://google.github.io/styleguide/pyguide.html
--- Hitchhiker's
-URL(jenchieh): http://docs.python-guide.org/en/latest/writing/style/"
+  "Insert common Python document/comment string."
   (interactive)
+  ;; -- Officual
+  ;; URL(jenchieh): https://www.python.org/dev/peps/pep-0008/
+  ;; -- Google
+  ;; URL(jenchieh): https://google.github.io/styleguide/pyguide.html
+  ;; -- Hitchhiker's
+  ;; URL(jenchieh): http://docs.python-guide.org/en/latest/writing/style/
   (let ((active-comment nil)
         (previous-line-not-empty nil)
         ;; Flag, if second situation. Check below.
