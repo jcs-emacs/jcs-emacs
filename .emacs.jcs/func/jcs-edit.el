@@ -137,8 +137,7 @@ This will no longer overwrite usual Emacs' undo key."
 (defun jcs-tab-key ()
   "TAB key for JayCeS usage."
   (interactive)
-  (if (or (jcs-current-char-equal-p " ")
-          (jcs-current-char-equal-p "\t")
+  (if (or (jcs-current-whitespace-or-tab-p)
           (jcs-is-beginning-of-line-p)
           (jcs-is-end-of-line-p))
       (progn
