@@ -29,6 +29,8 @@
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
 
+  (setq-local tab-width 4)
+
   (defun jcs-python-class-format ()
     "Format the given file as a Python file."
     (when (jcs-is-current-file-empty-p)
@@ -58,6 +60,7 @@
   (define-key python-mode-map (kbd "S-SPC") #'jcs-py-real-space)
   (define-key python-mode-map (kbd "<backspace>") #'jcs-py-backspace)
   (define-key python-mode-map (kbd "S-<backspace>") #'jcs-py-real-backspace)
+  (define-key python-mode-map (kbd "TAB") #'jcs-tab-key)
 
   (define-key python-mode-map (kbd "RET") #'jcs-py-return)
 
