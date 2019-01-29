@@ -14,7 +14,7 @@
 
 ;;;###autoload
 (defun jcs-py-indent-region ()
-  "Indent region for `python-mode'"
+  "Indent region for `python-mode'."
   (interactive)
   (save-excursion
     (save-window-excursion
@@ -118,8 +118,7 @@ the space."
   (if (or (jcs-is-infront-first-char-at-line-p)
           (jcs-is-beginning-of-line-p))
       (progn
-        ;; insert 4 spaces.
-        (insert "    "))
+        (jcs-insert-spaces-by-tab-width))
     (insert " ")))
 
 ;;;###autoload
@@ -209,7 +208,6 @@ vector list."
 (defun jcs-py-do-doc-string ()
   "Check if should insert the doc string by checking only \
 comment character on the same line."
-
   (let ((do-doc-string t))
     (jcs-goto-first-char-in-line)
 
