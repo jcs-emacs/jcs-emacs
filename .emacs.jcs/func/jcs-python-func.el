@@ -12,25 +12,6 @@
 ;; When editing the Python file.
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-;;----------------------------------------------
-;; Python Docstring Face
-;;----------------------------------------------
-
-;; TODO(jenchieh): This face would not apply cuz this conflict to the
-;; oop missing modes.
-(defvar jcs-python-type-docstring-missing-modes '(python-mode)
-  "Highlight three double quotes in a row.")
-
-(mapc (lambda (mode)
-        (font-lock-add-keywords
-         mode
-         '(("\\(\"\"\"[^\"]*\"\"\"\\)" 1 'jcs-py-mode-docstring-face t)
-           )'end))
-      jcs-python-type-docstring-missing-modes)
-
-;;-----------------------------------------------------------
-;;-----------------------------------------------------------
-
 ;;;###autoload
 (defun jcs-py-indent-region ()
   "Indent region for `python-mode'."
