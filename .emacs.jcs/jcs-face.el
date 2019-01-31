@@ -240,6 +240,16 @@
 
 
 ;;----------------------------------------------
+;; Python
+;;----------------------------------------------
+
+(defface jcs-py-mode-doc-string-face
+  '((t (:foreground "olive drab")))
+  "Python mode docstring face.")
+(defvar jcs-py-mode-doc-string-face 'jcs-py-mode-doc-string-face)
+
+
+;;----------------------------------------------
 ;; Web
 ;;----------------------------------------------
 
