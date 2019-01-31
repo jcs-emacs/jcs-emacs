@@ -7,6 +7,16 @@
 ;;                   Copyright © 2017 by Shen, Jen-Chieh $
 ;; ========================================================================
 
+;; NOTE(jenchieh): Load it once!
+(font-lock-add-keywords
+ 'lua-mode
+ '(;;<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+   ;; NOTE(jenchieh): Fixed comment and string conflict.
+   ("[^\"]\\(--[^\"\r\n]*\\)[^\"]" 1 'jcs-font-lock-comment-face t)
+   ("[^\"]\\(\"[^\"]*\"\\)[^\"]" 1 'jcs-font-lock-string-face t)
+   ;;>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+   )'end)
+
 
 (require 'lua-mode)
 (defun jcs-lua-mode-hook ()
@@ -26,6 +36,7 @@
 
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
+
 
   (defun jcs-lua-script-format ()
     "Format the given file as a Lua script."

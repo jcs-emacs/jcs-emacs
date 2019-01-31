@@ -32,6 +32,20 @@
   ;; NOTE(jenchieh): Default is set to 8 for some reason.
   (setq-local tab-width 4)
 
+  (font-lock-add-keywords
+   nil
+   '(;; TODO(jenchieh): This face would not apply cuz this conflict to the
+     ;; oop missing modes.
+     ;;("\\(\"\"\"[^\"]*\"\"\"\\)" 1 'jcs-py-mode-docstring-face t)
+
+     ;;<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+     ;; NOTE(jenchieh): Fixed comment and string conflict.
+     ("[^\"]\\(#[^\"\r\n]*\\)[^\"]" 1 'jcs-font-lock-comment-face t)
+     ("[^\"]\\(\"[^\"]*\"\\)[^\"]" 1 'jcs-font-lock-string-face t)
+     ;;>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+     )'end)
+
+
   (defun jcs-python-class-format ()
     "Format the given file as a Python file."
     (when (jcs-is-current-file-empty-p)
