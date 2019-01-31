@@ -20,14 +20,12 @@
 ;;-----------------------------------------------------------
 ;;-----------------------------------------------------------
 
-;;;###autoload
 (defun jcs-focus-in-hook ()
   "When window is focus."
   (jcs-revert-all-file-buffers)
   )
 (add-hook 'focus-in-hook 'jcs-focus-in-hook)
 
-;;;###autoload
 (defun jcs-focus-out-hook ()
   "When window is not focus."
   )
