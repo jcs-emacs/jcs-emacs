@@ -302,7 +302,6 @@
 ;;; For Specific Mode
 (load-file "~/.emacs.jcs/func/jcs-txt-func.el")
 (load-file "~/.emacs.jcs/func/jcs-preproc-func.el")
-(load-file "~/.emacs.jcs/func/jcs-oop-func.el")
 (load-file "~/.emacs.jcs/func/jcs-cc-func.el")
 (load-file "~/.emacs.jcs/func/jcs-cs-func.el")
 (load-file "~/.emacs.jcs/func/jcs-cmake-func.el")
@@ -314,3 +313,4 @@
 (load-file "~/.emacs.jcs/func/jcs-web-func.el")
 (load-file "~/.emacs.jcs/func/jcs-re-builder-func.el")
 (load-file "~/.emacs.jcs/func/jcs-yaml-func.el")
+(load-file "~/.emacs.jcs/func/jcs-oop-func.el")
