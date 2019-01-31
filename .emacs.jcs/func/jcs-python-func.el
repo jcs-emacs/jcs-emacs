@@ -12,6 +12,24 @@
 ;; When editing the Python file.
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+;;----------------------------------------------
+;; Python Doc-String Face
+;;----------------------------------------------
+
+(defvar jcs-python-type-doc-string-missing-modes '(python-mode)
+  "Highlight three double quotes in a row.")
+
+
+(mapc (lambda (mode)
+        (font-lock-add-keywords
+         mode
+         '(("\\(\"\"\"[^\"]*\"\"\"\\)" 1 'jcs-font-lock-comment-face t)
+           )'end))
+      jcs-python-type-doc-string-missing-modes)
+
+;;-----------------------------------------------------------
+;;-----------------------------------------------------------
+
 ;;;###autoload
 (defun jcs-py-indent-region ()
   "Indent region for `python-mode'."
