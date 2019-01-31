@@ -12,8 +12,7 @@
 ;; Function in buffer menu mode. (*Buffer List*)
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-;;; Code:
-
+;;;###autoload
 (defun jcs-buffer-menu ()
   "Open Buffer Menu."
   (interactive)
