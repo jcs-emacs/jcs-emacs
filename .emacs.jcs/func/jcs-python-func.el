@@ -13,19 +13,20 @@
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 ;;----------------------------------------------
-;; Python Doc-String Face
+;; Python Docstring Face
 ;;----------------------------------------------
 
-(defvar jcs-python-type-doc-string-missing-modes '(python-mode)
+;; TODO(jenchieh): This face would not apply cuz this conflict to the
+;; oop missing modes.
+(defvar jcs-python-type-docstring-missing-modes '(python-mode)
   "Highlight three double quotes in a row.")
-
 
 (mapc (lambda (mode)
         (font-lock-add-keywords
          mode
-         '(("\\(\"\"\"[^\"]*\"\"\"\\)" 1 'jcs-py-mode-doc-string-face t)
+         '(("\\(\"\"\"[^\"]*\"\"\"\\)" 1 'jcs-py-mode-docstring-face t)
            )'end))
-      jcs-python-type-doc-string-missing-modes)
+      jcs-python-type-docstring-missing-modes)
 
 ;;-----------------------------------------------------------
 ;;-----------------------------------------------------------
