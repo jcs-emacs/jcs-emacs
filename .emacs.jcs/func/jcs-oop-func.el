@@ -1102,6 +1102,7 @@ SEARCH-OPTION :
 
 ;;-----------------------------------------------------------
 ;;-----------------------------------------------------------
+
 (defvar jcs-oop-font-lock-missing-strict-modes '(c-mode)
   "Modes to fixed variable font lock missing face.")
 
@@ -1121,6 +1122,7 @@ SEARCH-OPTION :
 
 ;;-----------------------------------------------------------
 ;;-----------------------------------------------------------
+
 (defvar jcs-oop-font-lock-missing-modes '(lua-mode
                                           php-mode
                                           python-mode)
