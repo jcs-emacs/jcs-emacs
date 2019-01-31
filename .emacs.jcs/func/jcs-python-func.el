@@ -23,7 +23,7 @@
 (mapc (lambda (mode)
         (font-lock-add-keywords
          mode
-         '(("\\(\"\"\"[^\"]*\"\"\"\\)" 1 'jcs-font-lock-comment-face t)
+         '(("\\(\"\"\"[^\"]*\"\"\"\\)" 1 'jcs-py-mode-doc-string-face t)
            )'end))
       jcs-python-type-doc-string-missing-modes)
 
