@@ -442,14 +442,26 @@ PT : point."
 (defun jcs-is-there-char-backward-util-beginning-of-line-p ()
   "Check if there are at least a character on the left until \
 the beginning of the line."
-  (interactive)
   (jcs-is-there-char-backward-point-p (jcs-get-beginning-of-line-point)))
 
 (defun jcs-is-there-char-forward-until-end-of-line-p ()
   "Check if there are at least a character on the right until \
 the end of the line."
-  (interactive)
   (jcs-is-there-char-forward-point-p (jcs-get-end-of-line-point)))
+
+;;---------------------------------------------
+;; Symbol
+;;---------------------------------------------
+
+;;;###autoload
+(defun jcs-print-current-symbol ()
+  "Print out the current symbol."
+  (interactive)
+  (message "Current word: %s" (jcs-get-symbol-at-point)))
+
+(defun jcs-get-symbol-at-point ()
+  "Get symbol at current cursor position."
+  (thing-at-point 'symbol))
 
 ;;---------------------------------------------
 ;; Word
@@ -463,7 +475,6 @@ the end of the line."
 
 (defun jcs-get-word-at-point ()
   "Get word at current cursor position."
-  (interactive)
   (thing-at-point 'word))
 
 (defun jcs-current-word-equal-p (str)
