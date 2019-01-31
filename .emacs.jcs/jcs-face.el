@@ -243,10 +243,10 @@
 ;; Python
 ;;----------------------------------------------
 
-(defface jcs-py-mode-doc-string-face
+(defface jcs-py-mode-docstring-face
   '((t (:foreground "olive drab")))
   "Python mode docstring face.")
-(defvar jcs-py-mode-doc-string-face 'jcs-py-mode-doc-string-face)
+(defvar jcs-py-mode-docstring-face 'jcs-py-mode-docstring-face)
 
 
 ;;----------------------------------------------
