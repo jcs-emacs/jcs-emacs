@@ -39,7 +39,7 @@ text editor, e.g. Atom, Sublime Text 2/3, VS Code, etc.
 
 ## Features ##
 
-* Abbreivation Definition - powered by 
+* *Abbreivation Definition* - powered by 
 [project-abbrev](https://github.com/jcs090218/project-abbrev).
 * Autocompletion - powered by 
 [auto-complete](https://github.com/auto-complete/auto-complete).
