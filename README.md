@@ -39,14 +39,57 @@ text editor, e.g. Atom, Sublime Text 2/3, VS Code, etc.
 
 ## Features ##
 
-* Autocompletion is powered by 
+* Autocompletion - powered by 
 [auto-complete](https://github.com/auto-complete/auto-complete).
-* Syntax Check is powered by 
+* Auto Highlight Symbol - powered by 
+[auto-highlight-symbol-mode](https://github.com/mhayashi1120/auto-highlight-symbol-mode).
+* Binary/Hex Editor - powered by 
+[nhexl-mode](https://github.com/emacsmirror/nhexl-mode).
+* Collaborative Editing - powered by 
+[togetherly](https://github.com/zk-phi/togetherly) and 
+[floobits](https://github.com/Floobits/floobits-emacs).
+* File Explorer - powered by 
+[sr-speedbar](http://cedet.sourceforge.net/speedbar.shtml).
+* File Header - powered by 
+[file-header](https://github.com/alternative-emacs-packages/file-header).
+* Font - powered by 
+[use-ttf](https://github.com/jcs090218/use-ttf).
+* Highlight Matched Pairs - powered by 
+[show-paren-mode](https://www.emacswiki.org/emacs/ShowParenMode).
+* Recet Files - powered by 
+[recentf](https://www.emacswiki.org/emacs/RecentFiles).
+* Regexp - powered by 
+[re-builfer](https://www.emacswiki.org/emacs/ReBuilder).
+* Line Annotation - powoered by 
+[line-reminder](https://github.com/jcs090218/line-reminder).
+* Line Number - powered by 
+[linum](https://www.emacswiki.org/emacs/LineNumbers).
+* Minimap - powered by 
+[sublimity](https://github.com/zk-phi/sublimity).
+* Mode Line - powered by 
+[powerline](https://github.com/milkypostman/powerline).
+* Multiple Cursor - powered by 
+[iedit](https://github.com/victorhge/iedit).
+* Navigation/Searcher - powered by 
+[ag](https://github.com/Wilfred/ag.el).
+* Package Archive - powered by 
+[melpa](http://melpa.org/),
+* Source Control Management - powered by 
+[magit](https://github.com/magit/magit).
+* Simplify Usage - powered by 
+[helm](https://github.com/emacs-helm/helm).
+* Syntax Check - powered by 
 [flycheck](http://www.flycheck.org/en/latest/).
+* Tab Bar - powered by 
+[tabber](https://github.com/dholm/tabbar).
+* Text Editing - powered by 
+[org-mode](https://orgmode.org/).
+* Undo/Redo - powered by 
+[undo-tree](https://www.emacswiki.org/emacs/UndoTree).
 
 
 ## Installation ##
-To install, clone this repo and copy the core files/directories 
+To install, clone this repo and copy the core `files`/`directories` 
 to the emacs config directory accordingly.
 ```sh
 # clone this repo
