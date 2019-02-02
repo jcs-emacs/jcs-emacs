@@ -3,68 +3,65 @@
 [![Build Status](https://travis-ci.com/jcs090218/jcs-emacs-init.svg?branch=master)](https://travis-ci.com/jcs090218/jcs-emacs-init)
 [![License](https://img.shields.io/badge/License-BSD%202--Clause-orange.svg)](https://opensource.org/licenses/BSD-2-Clause)
 
-This is Jen-Chieh Shen's emacs configuration, continually used and 
-tweaked since 2015, and it might be a good starting point for other 
-Emacs users, especially for those who like to program all kind of 
-programming languages' programmer. This configuration had tested 
-on Linux, MacOS and Windows system. 
+This is Jen-Chieh Shen's emacs configuration, repeatedly utilized 
+and modified since 2015, hopefully this could help someone who is 
+new or struggle with Emacs. This configuration should works on 
+most OSs, indicates Windows, Linux and MacOS.
 <br/>
 
-Emacs itself comes with support for many programming languages. These
-config files improve and extended support for the following:
-* A
-  - ActionScript 2.0/3.0
-  - Assembly Language
-* B
-  - BASIC
-  - Batchfile
-* C
-  - C
-  - C++
-  - C#
-  - Clojure
-  - COBOL
-  - CSS
-* E
-  - Elisp
-* G
-  - Go
-* H
-  - Haskell
-  - Haxe
-  - HTML
-* J
-  - JSON
-  - Java
-  - JavaScript
-* L
-  - Lisp
-  - Lua
-* M
-  - Makefile
-* O
-  - Objective-C
-* P
-  - Perl
-  - PHP
-  - Python
-* R
-  - Ruby
-  - Rust
-* S
-  - Scala
-  - Shell
-  - SQL
-  - Swift
-* T
-  - TypeScript
-* V
-  - Verilog
-  - Vim script
-* X
-  - XML
-* Y
-  - YAML
+Emacs itself supports multiple programming languages. I managed 
+all the programming languages I personally used. Indeed, I am 
+a penchant to numerous technologies, incorporate hardware, firmware 
+and software. Here is the list of programming languages I know 
+and it has extended from this config.
+
+* ActionScript 2.0 or 3.0 / Assembly Language
+* BASIC / Batchfile
+* C / C++ / C# / Clojure / COBOL / CSS
+* Elisp
+* Go
+* Haskell / Haxe / HTML
+* JSON / Java / JavaScript
+* Lisp / Lua
+* Makefile
+* Objective-C
+* Perl / PHP / Python
+* Ruby / Rust
+* Scala / Shell / SQL / Swift
+* TypeScript
+* Verilog / Vim script
+* XML
+* YAML
+
+This configuration polished and goes toward the to the modern 
+text editor, e.g. Atom, Sublime Text 2/3, VS Code, etc. 
+
+
+## Features ##
+
+* Autocompletion is powered by 
+[auto-complete](https://github.com/auto-complete/auto-complete).
+* Syntax Check is powered by 
+[flycheck](http://www.flycheck.org/en/latest/).
+
+
+## Installation ##
+To install, clone this repo and copy the core files/directories 
+to the emacs config directory accordingly.
+```sh
+# clone this repo
+git clone https://github.com/jcs090218/jcs-emacs-init.git
+
+# change current directory to project directory
+cd jcs-emacs-init
+
+# copy init file to home
+cp ./.emacs ~/
+
+# copy core directories to home
+cp -r ./.emacs.d ~/
+cp -r ./.emacs.jcs ~/
+```
 
 
 ## Supported Emacs versions ##
