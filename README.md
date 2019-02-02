@@ -39,6 +39,8 @@ text editor, e.g. Atom, Sublime Text 2/3, VS Code, etc.
 
 ## Features ##
 
+* Abbreivation Definition - powered by 
+[project-abbrev](https://github.com/jcs090218/project-abbrev).
 * Autocompletion - powered by 
 [auto-complete](https://github.com/auto-complete/auto-complete).
 * Auto Highlight Symbol - powered by 
@@ -48,6 +50,8 @@ text editor, e.g. Atom, Sublime Text 2/3, VS Code, etc.
 * Collaborative Editing - powered by 
 [togetherly](https://github.com/zk-phi/togetherly) and 
 [floobits](https://github.com/Floobits/floobits-emacs).
+* Context Menu - powered by 
+[right-click-context](https://github.com/zonuexe/right-click-context).
 * File Explorer - powered by 
 [sr-speedbar](http://cedet.sourceforge.net/speedbar.shtml).
 * File Header - powered by 
@@ -74,10 +78,15 @@ text editor, e.g. Atom, Sublime Text 2/3, VS Code, etc.
 [ag](https://github.com/Wilfred/ag.el).
 * Package Archive - powered by 
 [melpa](http://melpa.org/),
-* Source Control Management - powered by 
-[magit](https://github.com/magit/magit).
+* PDF Viewer - powered by 
+[pdf-tools](https://github.com/politza/pdf-tools).
+* Shell - powered by 
+[shell](https://www.emacswiki.org/emacs/ShellMode) and 
+[exec-path-from-shell](https://github.com/purcell/exec-path-from-shell).
 * Simplify Usage - powered by 
 [helm](https://github.com/emacs-helm/helm).
+* Source Control Management - powered by 
+[magit](https://github.com/magit/magit).
 * Syntax Check - powered by 
 [flycheck](http://www.flycheck.org/en/latest/).
 * Tab Bar - powered by 
