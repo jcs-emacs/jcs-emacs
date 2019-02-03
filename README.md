@@ -54,6 +54,9 @@ Code, etc.
 [floobits](https://github.com/Floobits/floobits-emacs).
 * *Context Menu* - powered by 
 [right-click-context](https://github.com/zonuexe/right-click-context).
+* *Docstring* - none, built-in to this configuration.
+* *Execute Commands* - powered by 
+[compile](https://www.emacswiki.org/emacs/CompilationMode).
 * *File Explorer* - powered by 
 [sr-speedbar](http://cedet.sourceforge.net/speedbar.shtml).
 * *File Header* - powered by 
