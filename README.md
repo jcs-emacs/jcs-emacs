@@ -34,8 +34,9 @@ and it has extended from this configuration.
 * YAML
 
 This configuration polished and goes toward to the modern 
-text editor. e.g. Atom, Brackets, Sublime Text 2/3, Visual 
-Studio Code, etc. 
+text editor, or even better, it goes beyond modern IDE. 
+e.g. Atom, Brackets, Sublime Text 2 or 3, Visual Studio 
+Code, etc. 
 
 
 ## Features ##
