@@ -95,7 +95,7 @@ Code, etc.
 [tabber](https://github.com/dholm/tabbar).
 * *Text Editing* - powered by 
 [org-mode](https://orgmode.org/).
-* *Theme* - none self customized but close to 
+* *Theme* - none, self customized but close to 
 [Visual Studio IDE](https://visualstudio.microsoft.com/)'s 
 dark theme.
 * *Undo/Redo* - powered by 
