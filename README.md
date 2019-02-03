@@ -13,7 +13,7 @@ Emacs itself supports multiple programming languages. I managed
 all the programming languages I personally used. Indeed, I am 
 a penchant to numerous technologies, incorporate hardware, firmware 
 and software. Here is the list of programming languages I know 
-and it has extended from this config.
+and it has extended from this configuration.
 
 * ActionScript 2.0 or 3.0 / Assembly Language
 * BASIC / Batchfile
@@ -33,8 +33,9 @@ and it has extended from this config.
 * XML
 * YAML
 
-This configuration polished and goes toward the to the modern 
-text editor, e.g. Atom, Sublime Text 2/3, VS Code, etc. 
+This configuration polished and goes toward to the modern 
+text editor. e.g. Atom, Brackets, Sublime Text 2/3, Visual 
+Studio Code, etc. 
 
 
 ## Features ##
