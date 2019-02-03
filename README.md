@@ -114,7 +114,7 @@ P.S.
 that being said the key bindings set are most likely compatible 
 to 
 [Visual Studio IDE](https://visualstudio.microsoft.com/). 
-* Except keys that bind to `C-x` and `C-c`, Emacs are hardly binds 
+* Except keys that bind to `C-x` and `C-c`, Emacs are deeply binds 
 to these two keys, and many packages also use these two keys 
 for there preset keys. As you may know these two keys are often 
 `cut` and `copy`, is awkward that I solved this by adding the 
