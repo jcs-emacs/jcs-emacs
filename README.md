@@ -95,8 +95,24 @@ Code, etc.
 [tabber](https://github.com/dholm/tabbar).
 * *Text Editing* - powered by 
 [org-mode](https://orgmode.org/).
+* *Theme* - none self customized but close to 
+[Visual Studio IDE](https://visualstudio.microsoft.com/)'s 
+dark theme.
 * *Undo/Redo* - powered by 
 [undo-tree](https://www.emacswiki.org/emacs/UndoTree).
+
+
+## Key Bindings ##
+This configuration have all modes bind to the same set of 
+key bindings. It benefits the developer would not need to change 
+their key bindings while after the mode swichted. The key bindings 
+set can be check in `./.emacs.jcs/jcs-global-key.el` file. 
+
+P.S. my work requires me to use 
+[Visual Studio IDE](https://visualstudio.microsoft.com/) 
+that being said the key bindings set are most likely compatible 
+to 
+[Visual Studio IDE](https://visualstudio.microsoft.com/). 
 
 
 ## Installation ##
@@ -121,4 +137,3 @@ cp -r ./.emacs.jcs ~/
 ## Supported Emacs versions ##
 The config should run on Emacs 24.3 or higher, but still, recommend 
 to always run on the latest Emacs version available on your machine.
-<br/>
