@@ -117,11 +117,11 @@ P.S.
 that being said the key bindings set are most likely compatible 
 to 
 [Visual Studio IDE](https://visualstudio.microsoft.com/). 
-* Except keys that bind to `C-x` and `C-c`, Emacs are deeply binds 
+* Excepts keys that bind to `C-x` and `C-c`, Emacs are deeply binds 
 to these two keys, and many packages also use these two keys 
 for there preset keys. As you may know these two keys are often 
 `cut` and `copy`, is awkward that I solved this by adding the 
-same key stroke once again, so the `cut` key is `C-x C-x` and 
+same key stroke once again, hence the `cut` key is `C-x C-x` and 
 the `copy` key is `C-c C-c`. 
 
 
