@@ -16,23 +16,23 @@ a penchant to numerous technologies, incorporate hardware, firmware
 and software. Here is the list of programming languages I know 
 and it has extended from this configuration.
 
-* *ActionScript 2.0 or 3.0* / *Assembly Language*
-* *BASIC* / *Batchfile*
-* *C* / *C++* / *C#* / *Clojure* / *COBOL* / *CSS*
-* *Elisp*
-* *Go*
-* *Haskell* / *Haxe* / *HTML*
-* *JSON* / *Java* / *JavaScript*
-* *Lisp* / *Lua*
-* *Makefile*
-* *Objective-C*
-* *Perl* / *PHP* / *Python*
-* *Ruby* / *Rust*
-* *Scala* / *Shell* / *SQL* / *Swift*
-* *TypeScript*
-* *Verilog* / *Vim script*
-* *XML*
-* *YAML*
+* ActionScript 2.0 or 3.0 / Assembly Language
+* BASIC / Batchfile
+* C / C++ / C# / Clojure / COBOL / CSS
+* Elisp
+* Go
+* Haskell / Haxe / HTML
+* JSON / Java / JavaScript
+* Lisp / Lua
+* Makefile
+* Objective-C
+* Perl / PHP / Python
+* Ruby / Rust
+* Scala / Shell / SQL / Swift
+* TypeScript
+* Verilog / Vim script
+* XML
+* YAML
 
 This configuration polished and goes toward to the modern 
 text editor, or even better, it goes beyond modern IDE. 
