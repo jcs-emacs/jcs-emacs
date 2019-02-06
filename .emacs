@@ -98,7 +98,7 @@
 ;; my package `jayces-mode' to their package system.
 ;; Then we can remove load file/manually install package system.
 ;;
-(load-file "~/.emacs.d/elisp/jayces-mode-20181011.001/jayces-mode.el")
+(load-file "~/.emacs.d/elisp/jayces-mode-20190205.001/jayces-mode.el")
 
 ;;========================================
 ;;      JENCHIEH FILE LOADING
