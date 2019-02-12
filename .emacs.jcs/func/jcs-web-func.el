@@ -247,11 +247,7 @@ line by line instead of indent the whole file at once."
         (previous-line 1)
         (jcs-delete-space-infront-of-line)
         (indent-for-tab-command))
-    (previous-line 1))
-
-  ;; Check if do truncate lines?
-  (when jcs-web-auto-truncate-lines
-    (jcs-web-truncate-lines-by-face)))
+    (previous-line 1)))
 
 ;;;###autoload
 (defun jcs-web-smart-indent-down ()
@@ -263,29 +259,7 @@ line by line instead of indent the whole file at once."
         (next-line 1)
         (jcs-delete-space-infront-of-line)
         (indent-for-tab-command))
-    (next-line 1))
-
-  ;; Check if do truncate lines?
-  (when jcs-web-auto-truncate-lines
-    (jcs-web-truncate-lines-by-face)))
-
-;;;###autoload
-(defun jcs-web-right ()
-  "Arrow right key for Web mode."
-  (interactive)
-  (right-char 1)
-  ;; Check if do truncate lines?
-  (when jcs-web-auto-truncate-lines
-    (jcs-web-truncate-lines-by-face)))
-
-;;;###autoload
-(defun jcs-web-left ()
-  "Arrow left key for Web mode."
-  (interactive)
-  (left-char 1)
-  ;; Check if do truncate lines?
-  (when jcs-web-auto-truncate-lines
-    (jcs-web-truncate-lines-by-face)))
+    (next-line 1)))
 
 ;;;###autoload
 (defun jcs-web-return-key ()
