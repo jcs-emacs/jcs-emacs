@@ -52,7 +52,9 @@
 cursor currently on."
   (interactive)
   (save-excursion
-    (when (not (jcs-current-char-string-match-p "[ \t]"))
+    (when (and (not (jcs-current-char-string-match-p "[ \t]"))
+               ;; NOTE(jenchieh): To avoid empty line navigation.
+               (not (jcs-is-beginning-of-line-p)))
       (if (and (jcs-is-default-face-p)
                (not (jcs-current-char-string-match-p "[\n><]")))
           (jcs-disable-truncate-lines)
