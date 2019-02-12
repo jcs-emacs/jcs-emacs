@@ -60,6 +60,9 @@
           ((string-match "[.]js" buffer-file-name) (jcs-javascript-format))
           ))
 
+  ;; Set Faces.
+  (jcs-init-set-face)
+
   ;; jcs javascript key binding
   (define-key js2-mode-map (kbd "C-d") #'jcs-kill-whole-line)
   (define-key js2-mode-map "\C-c\C-c" #'kill-ring-save)
