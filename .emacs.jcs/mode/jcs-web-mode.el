@@ -117,8 +117,6 @@
   ;; Edit
   (define-key web-mode-map (kbd "<up>") #'jcs-web-smart-indent-up)
   (define-key web-mode-map (kbd "<down>") #'jcs-web-smart-indent-down)
-  (define-key web-mode-map (kbd "<right>") #'jcs-web-right)
-  (define-key web-mode-map (kbd "<left>") #'jcs-web-left)
   (define-key web-mode-map (kbd "RET") #'jcs-web-return-key)
 
   (define-key web-mode-map (kbd "DEL") #'jcs-delete-backward-char)
