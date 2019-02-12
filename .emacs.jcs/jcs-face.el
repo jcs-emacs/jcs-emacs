@@ -30,6 +30,14 @@
   :group 'basic-faces)
 (defvar jcs-font-lock-preprocessor-face 'jcs-font-lock-preprocessor-face)
 
+(defun jcs-init-set-face ()
+  "Set JayCeS's hightlight faces.
+For those mode does not apply faces correctly!"
+  (face-remap-add-relative 'font-lock-comment-face '(jcs-font-lock-comment-face))
+  (face-remap-add-relative 'font-lock-doc-face '(jcs-font-lock-comment-face))
+  (face-remap-add-relative 'font-lock-string-face '(jcs-font-lock-string-face))
+  (face-remap-add-relative 'font-lock-preprocessor-face '(jcs-font-lock-preprocessor-face)))
+
 ;; Apply JayCeS's hightlight faces.
 (setq font-lock-comment-face jcs-font-lock-comment-face)
 (setq font-lock-doc-face jcs-font-lock-comment-face)
