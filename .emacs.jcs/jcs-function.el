@@ -221,14 +221,14 @@
 (defun jcs-enable-truncate-lines ()
   "Enable truncate lines."
   (interactive)
-  (when (equal truncate-lines nil)
+  (unless truncate-lines
     (toggle-truncate-lines)))
 
 ;;;###autoload
 (defun jcs-disable-truncate-lines ()
   "Disable truncate lines."
   (interactive)
-  (when (equal truncate-lines t)
+  (when truncate-lines
     (toggle-truncate-lines)))
 
 ;;---------------------------------------------
