@@ -28,6 +28,76 @@ Just use this without remember Emacs Lisp function."
 
 
 ;;----------------------------------------------
+;; Move in line.
+;;----------------------------------------------
+
+;;;###autoload
+(defun jcs-back-to-indentation-or-beginning ()
+  "Toggle between first character and beginning of line."
+  (interactive)
+  ;; SOURCE(jenchieh): https://www.emacswiki.org/emacs/BackToIndentationOrBeginning
+  (if (= (point) (progn (back-to-indentation) (point)))
+      (beginning-of-line)))
+
+;;;###autoload
+(defun jcs-beginning-of-line-or-indentation ()
+  "move to beginning of line, or indentation
+
+If you rather it go to beginning-of-line
+first and to indentation on the next hit use
+this version instead."
+  (interactive)
+  (if (bolp)
+      (beginning-of-line)
+    (back-to-indentation)))
+
+;;;###autoload
+(defun jcs-back-to-indentation ()
+  "back to identation by checking first character in the line."
+  (interactive)
+  (beginning-of-line)
+  (unless (jcs-current-line-totally-empty-p)
+    (forward-char 1))
+  (while (jcs-current-whitespace-or-tab-p)
+    (forward-char 1))
+  (backward-char 1))
+
+;;;###autoload
+(defun jcs-beginning-of-visual-line ()
+  "JayCeS beginning of visual line."
+  (interactive)
+  (let ((first-line-in-non-truncate-line nil)
+        (visual-line-column -1))
+    ;; First, record down the beginning of visual line point.
+    (save-excursion
+      (call-interactively #'beginning-of-visual-line)
+      (setq visual-line-column (current-column)))
+
+    ;; Check if is the first line of non-truncate line mode.
+    (when (= visual-line-column 0)
+      (setq first-line-in-non-truncate-line t))
+
+    (if first-line-in-non-truncate-line
+        (call-interactively #'jcs-back-to-indentation-or-beginning)
+      (call-interactively #'beginning-of-visual-line))))
+
+;;;###autoload
+(defun jcs-beginning-of-line ()
+  "JayCeS beginning of line."
+  (interactive)
+  (if (jcs-is-minor-mode-enabled-p truncate-lines)
+      (call-interactively #'jcs-back-to-indentation-or-beginning)
+    (call-interactively #'jcs-beginning-of-visual-line)))
+
+;;;###autoload
+(defun jcs-end-of-line ()
+  "JayCeS end of line."
+  (interactive)
+  (if (jcs-is-minor-mode-enabled-p truncate-lines)
+      (call-interactively #'end-of-line)
+    (call-interactively #'end-of-visual-line)))
+
+;;----------------------------------------------
 ;; Navigating Blank Line
 ;;----------------------------------------------
 
@@ -49,7 +119,7 @@ Just use this without remember Emacs Lisp function."
 
 
 ;;----------------------------------------------
-;; Small Navigate
+;; Small Navigation
 ;;----------------------------------------------
 
 (defun jcs-move-to-forward-a-char (ch)
