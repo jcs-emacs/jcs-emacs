@@ -643,51 +643,17 @@ file-project.el' plugin."
         )
     (ido-find-file)))
 
-;;---------------------------------------------
-;; Source: https://www.emacswiki.org/emacs/BackToIndentationOrBeginning
-;;---------------------------------------------
-
-;;;###autoload
-(defun jcs-back-to-indentation-or-beginning ()
-  "Toggle between first character and beginning of line."
-  (interactive)
-  (if (= (point) (progn (back-to-indentation) (point)))
-      (beginning-of-line)))
-
-;;;###autoload
-(defun jcs-beginning-of-line-or-indentation ()
-  "move to beginning of line, or indentation
-
-If you rather it go to beginning-of-line
-first and to indentation on the next hit use
-this version instead."
-  (interactive)
-  (if (bolp)
-      (beginning-of-line)
-    (back-to-indentation)))
-
-;;;###autoload
-(defun jcs-back-to-indentation ()
-  "back to identation by checking first character in the line."
-  (interactive)
-  (beginning-of-line)
-  (unless (jcs-current-line-totally-empty-p)
-    (forward-char 1))
-  (while (jcs-current-whitespace-or-tab-p)
-    (forward-char 1))
-  (backward-char 1))
-
 
 ;;----------------------------------------------
 ;; Rename file.
 ;;----------------------------------------------
 
-;; SOURCE(jenchieh): https://emacs.stackexchange.com/questions/2849/save-current-file-with-a-slightly-different-name
-;; URL: http://www.whattheemacsd.com/
 ;;;###autoload
 (defun jcs-rename-current-buffer-file ()
   "Renames current buffer and file it is visiting."
   (interactive)
+  ;; SOURCE(jenchieh): https://emacs.stackexchange.com/questions/2849/save-current-file-with-a-slightly-different-name
+  ;; URL(jenchieh): http://www.whattheemacsd.com/
   (let ((name (buffer-name))
         (filename (buffer-file-name)))
     (if (not (and filename (file-exists-p filename)))
