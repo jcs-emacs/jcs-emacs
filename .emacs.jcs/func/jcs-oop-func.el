@@ -292,11 +292,11 @@ SEARCH-OPTION :
 
         (was-flycheck-on nil)
         (was-flymake-on nil))
-    (if (jcs-is-minor-mode-enabled-p flycheck-mode)
-        (setq was-flycheck-on t))
+    (when (jcs-is-minor-mode-enabled-p flycheck-mode)
+      (setq was-flycheck-on t))
 
-    (if (jcs-is-minor-mode-enabled-p flymake-mode)
-        (setq was-flymake-on t))
+    (when (jcs-is-minor-mode-enabled-p flymake-mode)
+      (setq was-flymake-on t))
 
     (flycheck-mode 0)
     (flymake-mode 0)
@@ -397,9 +397,9 @@ SEARCH-OPTION :
                                    param-variable-strings)
 
     ;; Enable it back on if it was on.
-    (when (equal was-flycheck-on t)
+    (when was-flycheck-on
       (flycheck-mode t))
-    (when (equal was-flymake-on t)
+    (when was-flymake-on
       (flymake-mode t))))
 
 (defun jcs-insert-doc-comment-string (meet-function-name
