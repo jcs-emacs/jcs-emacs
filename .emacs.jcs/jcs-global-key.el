@@ -25,7 +25,6 @@
 (define-key global-map [C-left] #'backward-word)
 (define-key global-map [C-up] #'jcs-previous-blank-line)
 (define-key global-map [C-down] #'jcs-next-blank-line)
-(define-key global-map [end] #'end-of-line)
 (define-key global-map [pgup] #'forward-page)
 (define-key global-map [pgdown] #'backward-page)
 (define-key global-map [C-next] #'scroll-other-window)
@@ -120,8 +119,9 @@
 (define-key global-map (kbd "M-<backspace>") #'jcs-backward-kill-word-capital)
 (define-key global-map (kbd "M-S-<backspace>") #'jcs-forward-kill-word-capital)
 
-;;; Navigate Word
-(define-key global-map [home] #'jcs-back-to-indentation-or-beginning)
+;;; Navigation in Line
+(define-key global-map [home] #'jcs-beginning-of-line)
+(define-key global-map [end] #'jcs-end-of-line)
 
 (define-key global-map (kbd "M-<left>") #'jcs-backward-capital-char)
 (define-key global-map (kbd "M-<right>") #'jcs-forward-capital-char)
