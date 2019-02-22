@@ -69,7 +69,7 @@ Code, etc.
 * *Recet Files* - powered by 
 [recentf](https://www.emacswiki.org/emacs/RecentFiles).
 * *Regexp* - powered by 
-[re-builfer](https://www.emacswiki.org/emacs/ReBuilder).
+[re-builder](https://www.emacswiki.org/emacs/ReBuilder).
 * *Line Annotation* - powoered by 
 [line-reminder](https://github.com/jcs090218/line-reminder).
 * *Line Number* - powered by 
