@@ -79,7 +79,25 @@ this version instead."
 
     (if first-line-in-non-truncate-line
         (call-interactively #'jcs-back-to-indentation-or-beginning)
-      (call-interactively #'beginning-of-visual-line))))
+      (let ((before-pnt (point)))
+        (call-interactively #'beginning-of-visual-line)
+
+        ;; If before point is the same as the current point.
+        ;; We call regaulr `beginning-of-line' function.
+        (when (= before-pnt (point))
+          (call-interactively #'jcs-back-to-indentation-or-beginning))))))
+
+;;;###autoload
+(defun jcs-end-of-visual-line()
+  "JayCeS end of visual line."
+  (interactive)
+  (let ((before-pnt (point)))
+    (call-interactively #'end-of-visual-line)
+
+    ;; If before point is the same as the current point.
+    ;; We call regaulr `end-of-line' function.
+    (when (= before-pnt (point))
+      (call-interactively #'end-of-line))))
 
 ;;;###autoload
 (defun jcs-beginning-of-line ()
@@ -95,7 +113,7 @@ this version instead."
   (interactive)
   (if (jcs-is-minor-mode-enabled-p truncate-lines)
       (call-interactively #'end-of-line)
-    (call-interactively #'end-of-visual-line)))
+    (call-interactively #'jcs-end-of-visual-line)))
 
 ;;----------------------------------------------
 ;; Navigating Blank Line
