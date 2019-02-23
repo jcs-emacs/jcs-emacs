@@ -31,9 +31,7 @@
 (define-key global-map [C-prior] #'scroll-other-window-down)
 
 (define-key global-map "\e " #'set-mark-command)
-(define-key global-map "\eq" #'jcs-other-window-prev)
-(define-key global-map "\ea" #'yank)
-(define-key global-map "\ez" #'kill-region)
+(define-key global-map "\ez" #'toggle-truncate-lines)
 (define-key global-map [M-up] #'jcs-previous-blank-line)
 (define-key global-map [M-down] #'jcs-next-blank-line)
 (define-key global-map [M-right] #'forward-word)
