@@ -169,6 +169,8 @@ C-r f           Open recent files.
 
 C-t             Toggle `tabbar-mode'.
 
+M-z             Toggle `truncate-lines'.
+
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * Magit
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
