@@ -168,6 +168,7 @@
 (define-key global-map "\C-xd" #'delete-frame)  ; delete the external window
 (define-key global-map "\C-hh" #'jcs-toggle-window-split-hv)
 (define-key global-map "\C-we" #'jcs-toggle-enlarge-window-selected)
+(define-key global-map (kbd "C-\\") #'split-window-horizontally)
 
 ;;; Transparent Window
 (define-key global-map "\e`" #'jcs-toggle-transparency)
@@ -397,12 +398,12 @@
 (define-key global-map [C-S-tab] #'tabbar-forward)
 (define-key global-map [C-tab] #'tabbar-backward)
 
-;;; xHexl
+;;; nHexl
 (require 'nhexl-mode)
 (define-key nhexl-mode-map (kbd "<up>") #'previous-line)
 (define-key nhexl-mode-map (kbd "<down>") #'next-line)
-(define-key nhexl-mode-map (kbd "<right>") #'forward-char)  ;; Not working at all..
-(define-key nhexl-mode-map (kbd "<left>") #'backward-char)  ;; Not working at all..
+(define-key nhexl-mode-map (kbd "<right>") #'forward-char)
+(define-key nhexl-mode-map (kbd "<left>") #'backward-char)
 
 ;;; *Message*
 (define-key messages-buffer-mode-map "\ek" #'jcs-erase-message-buffer)
