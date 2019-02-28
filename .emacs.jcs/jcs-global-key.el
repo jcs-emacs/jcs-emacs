@@ -47,7 +47,7 @@
 (define-key global-map "\en" #'next-error)
 (define-key global-map "\eN" #'previous-error)   ;; 'ALT-SHIFT-n' = '\eN'
 
-(define-key global-map "\eg" #'goto-line)
+(define-key global-map "\eg" #'jcs-goto-line)
 (define-key global-map "\ej" #'imenu)
 
 ;; Editting
@@ -293,35 +293,6 @@
 (define-key Buffer-menu-mode-map "5" #'jcs-buffer-menu-sort-by-mode)
 (define-key Buffer-menu-mode-map "6" #'jcs-buffer-menu-sort-by-file)
 
-;;;
-;; minibuffer
-;;
-(setq jcs-minibuffer-active nil)
-(add-hook 'minibuffer-setup-hook
-          (lambda ()
-
-            ;; Active trigger flag.
-            (setq jcs-minibuffer-active t)
-
-            (if (and (not (looking-back "/"))
-                     ;; SEE(jenchieh): this trigger can be check
-                     ;; at `jcs-helm.el' file.
-                     (eq jcs-helm-find-files-active t))
-                (progn
-                  ;; NOTE(jenchieh): This will prevent missing the
-                  ;; slash at the end of the search file path.
-                  (insert "/")
-                  ))))
-
-(add-hook 'minibuffer-exit-hook
-          (lambda ()
-            ;; De-active trigger flag.
-            (setq jcs-minibuffer-active nil)
-
-            (jcs-reload-active-mode)
-            ;; NOTE: disable the file after we do close minibuffer.
-            (setq jcs-helm-find-files-active nil)
-            ))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Navigating General Programming Symbols
