@@ -63,10 +63,15 @@
   (unless (jcs-is-frame-maximize-p)
     (toggle-frame-maximized)))
 
+
+(defvar jcs-top-level-active nil
+  "Check if top level active.")
+
 ;;;###autoload
 (defun jcs-top-level ()
   "Teminate the current command. - Canceling Action."
   (interactive)
+  (setq jcs-top-level-active t)
   (top-level))
 
 
