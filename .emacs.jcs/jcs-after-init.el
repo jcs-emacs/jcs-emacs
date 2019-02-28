@@ -21,7 +21,7 @@
 ;; Call once the depends mode as default.
 ;; NOTE(jayces): Since I often use my own machine, set the online
 ;; mode as the default.
-(call-interactively 'jcs-depend-mode)
+(call-interactively #'jcs-depend-mode)
 
 
 ;;; Diminish
