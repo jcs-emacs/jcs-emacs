@@ -219,7 +219,7 @@
 (define-key global-map (kbd "<f5>") #'jcs-run-without-asking)
 
 ;;; Build
-(define-key global-map (kbd "C-B") #'jcs-make-without-asking)
+(define-key global-map (kbd "C-S-b") #'jcs-make-without-asking)
 
 ;;; Open TODO file.
 (define-key global-map (kbd "C-x t") #'jcs-open-project-todo-file)
@@ -260,7 +260,8 @@
 
 ;;; Speedbar
 (require 'sr-speedbar)
-(define-key global-map (kbd "C-M-l") #'jcs-sr-speedbar-toggle)
+(define-key global-map (kbd "C-b") #'jcs-sr-speedbar-toggle)    ;; Compatible to `VS Code'.
+(define-key global-map (kbd "C-M-l") #'jcs-sr-speedbar-toggle)  ;; Compatible to `Visual Studio'.
 (define-key speedbar-mode-map (kbd "<backspace>") #'speedbar-up-directory)
 (define-key speedbar-mode-map (kbd "<return>") #'jcs-speedbar-edit-line)
 
