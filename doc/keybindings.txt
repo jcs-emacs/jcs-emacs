@@ -171,6 +171,9 @@ C-t             Toggle `tabbar-mode'.
 
 M-z             Toggle `truncate-lines'.
 
+C-M-l           Toggle file explorer.
+C-b             Toggle file explorer.
+
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * Magit
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -195,11 +198,6 @@ M-left          Goto previous symbol.
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 C-k s           Sort the CSS attributes between open/close parenthesis.
 C-k d           Sort the CSS attribute for the whole file.
-                
-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-* Neo Tree Mode
-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-C-M-l           toggle neo tree
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * Minimap
