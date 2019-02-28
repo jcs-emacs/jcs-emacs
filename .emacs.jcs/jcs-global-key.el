@@ -260,8 +260,8 @@
 
 ;;; Speedbar
 (require 'sr-speedbar)
-(define-key global-map (kbd "C-b") #'jcs-sr-speedbar-toggle)    ;; Compatible to `VS Code'.
 (define-key global-map (kbd "C-M-l") #'jcs-sr-speedbar-toggle)  ;; Compatible to `Visual Studio'.
+(define-key global-map (kbd "C-b") #'jcs-sr-speedbar-toggle)    ;; Compatible to `VS Code'.
 (define-key speedbar-mode-map (kbd "<backspace>") #'speedbar-up-directory)
 (define-key speedbar-mode-map (kbd "<return>") #'jcs-speedbar-edit-line)
 
