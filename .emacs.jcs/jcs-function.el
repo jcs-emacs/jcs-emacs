@@ -71,8 +71,16 @@
 (defun jcs-top-level ()
   "Teminate the current command. - Canceling Action."
   (interactive)
+  ;; Set flag.
   (setq jcs-top-level-active t)
-  (top-level))
+
+  (top-level)
+
+  ;; NOTE(jenchieh): This will never be triggered,
+  ;; because top level terminate the command including
+  ;; this command itself. Turn off the flag see, `jcs-hook.el'
+  ;; file, in the `minibuffer-exit-hook'.
+  )
 
 
 ;;----------------------------------------------
