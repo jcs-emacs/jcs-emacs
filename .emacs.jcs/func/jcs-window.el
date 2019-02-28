@@ -241,7 +241,22 @@ False: return nil."
 
 i.e. change right window to bottom, or change bottom window to right."
   (interactive)
+  (save-selected-window
+    (let ((win-len (count-windows)))
+      (if (= win-len 2)
+          (progn
+            ;; TEMPORARY(jenchieh): this is the temporary fixed, current
+            ;; only works with 2 windows only.
+            (jcs-toggle-window-split-hv-internal)
+            (call-interactively #'jcs-other-window-next)
+            (jcs-toggle-window-split-hv-internal)
+            (call-interactively #'jcs-other-window-next))
+        (error "Cannot toggle vertical/horizontal editor layout with more than 2 window in current frame")))))
 
+(defun jcs-toggle-window-split-hv-internal ()
+  "Switch window split from horizontally to vertically, or vice versa.
+
+i.e. change right window to bottom, or change bottom window to right."
   ;; TOPIC: Toggle Window Split
   ;; URL: https://www.emacswiki.org/emacs/ToggleWindowSplit
   (let ((done))
