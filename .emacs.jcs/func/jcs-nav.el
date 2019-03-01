@@ -157,7 +157,7 @@ LINE-NUM : Target line number to navigate to."
 
 ;;;###autoload
 (defun jcs-goto-line-internal (line-num)
-  "JayCeS goto line.
+  "JayCeS goto line internal.
 LINE-NUM : Target line number to navigate to."
   (interactive "nGoto line: "))
 
@@ -169,7 +169,7 @@ LINE-NUM : Target line number to navigate to."
             (line-num -1))
         (setq line-num-str (jcs-get-word-at-point))
 
-        (jcs-jump-shown-to-buffer jcs-goto-line-prev-buffer)
+        (switch-to-buffer jcs-goto-line-prev-buffer)
 
         (if line-num-str
             (progn
@@ -182,8 +182,9 @@ LINE-NUM : Target line number to navigate to."
   "Do goto line.
 LINE-NUM : Target line number to navigate to."
   (save-selected-window
-    (jcs-jump-shown-to-buffer jcs-goto-line-prev-buffer)
-    (goto-line line-num)
+    (switch-to-buffer jcs-goto-line-prev-buffer)
+    (with-no-warnings
+      (goto-line line-num))
     (call-interactively #'recenter)))
 
 ;;----------------------------------------------
