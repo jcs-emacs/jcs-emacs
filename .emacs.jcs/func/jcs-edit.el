@@ -488,7 +488,7 @@ REGEXP : reqular expression use to align."
   (revert-buffer :ignore-auto :noconfirm))
 
 ;;;###autoload
-(defun jcs-other-window-next()
+(defun jcs-other-window-next ()
   "Cycle through window and frame. (next window/frame)"
   (interactive)
   ;; SOURCE: http://emacs.stackexchange.com/questions/628/cycle-between-windows-in-all-frames
@@ -502,7 +502,7 @@ REGEXP : reqular expression use to align."
              (setq jcs-sr-speedbar-record-selected-window (selected-window))))
 
 ;;;###autoload
-(defun jcs-other-window-prev()
+(defun jcs-other-window-prev ()
   "Cycle through window and frame.(previous window/frame)"
   (interactive)
   ;; find previous window and jump to that window.
@@ -515,13 +515,13 @@ REGEXP : reqular expression use to align."
     (setq jcs-sr-speedbar-record-selected-window (selected-window))))
 
 ;;;###autoload
-(defun scroll-up-one-line()
+(defun jcs-scroll-up-one-line ()
   "Scroll the text up one line."
   (interactive)
   (scroll-up 1))
 
 ;;;###autoload
-(defun scroll-down-one-line()
+(defun jcs-scroll-down-one-line ()
   "Scroll the text down one line."
   (interactive)
   (scroll-down 1))
