@@ -195,8 +195,8 @@
 (define-key global-map (kbd "S-<end>") #'jcs-smart-select-end)
 (define-key global-map (kbd "<up>") #'jcs-smart-indent-up)
 (define-key global-map (kbd "<down>") #'jcs-smart-indent-down)
-(define-key global-map [C-M-up] #'scroll-down-one-line)
-(define-key global-map [C-M-down] #'scroll-up-one-line)
+(define-key global-map [C-M-up] #'jcs-scroll-down-one-line)
+(define-key global-map [C-M-down] #'jcs-scroll-up-one-line)
 
 (define-key global-map "\er" #'revert-buffer-no-confirm)
 
