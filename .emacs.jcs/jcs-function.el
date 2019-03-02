@@ -76,7 +76,7 @@
 
   (top-level)
 
-  ;; NOTE(jenchieh): This will never be triggered,
+  ;; ATTENTION(jenchieh): This will never be triggered,
   ;; because top level terminate the command including
   ;; this command itself. Turn off the flag see, `jcs-hook.el'
   ;; file, in the `minibuffer-exit-hook'.
