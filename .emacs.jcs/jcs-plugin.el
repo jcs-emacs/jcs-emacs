@@ -250,3 +250,8 @@
 ;;; Right Click Context
 (require 'right-click-context)
 (right-click-context-mode 1)
+
+;;; Goto Line Preview
+(require 'goto-line-preview)
+(defvar jcs-goto-line-active nil
+  "Flag to check if goto line command active?")
