@@ -85,9 +85,6 @@
 (defvar jcs-minibuffer-active nil
   "Flag to check if current minibuffer active?")
 
-(defvar jcs-goto-line-active nil
-  "Flag to check if goto line command active?")
-
 (add-hook 'minibuffer-setup-hook
           (lambda ()
             ;; Active trigger flag.
@@ -101,6 +98,8 @@
               ;; slash at the end of the search file path.
               (insert "/"))
 
+            ;; NOTE(jenchieh): enable flag when `goto-line' command
+            ;; is active.
             (when (eq 'goto-line-preview-goto-line this-command)
               (setq jcs-goto-line-active t))
 
