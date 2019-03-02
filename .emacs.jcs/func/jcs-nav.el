@@ -115,6 +115,7 @@ this version instead."
       (call-interactively #'end-of-line)
     (call-interactively #'jcs-end-of-visual-line)))
 
+
 ;;----------------------------------------------
 ;; Navigating Blank Line
 ;;----------------------------------------------
@@ -135,57 +136,6 @@ this version instead."
       (forward-line -1)
     (goto-char (point-max))))
 
-
-(defvar jcs-goto-line-active nil
-  "Flag to check if goto line command active?")
-
-(defvar jcs-goto-line-prev-buffer nil
-  "Record down the previous buffer before we do `jcs-goto-line' command.")
-
-(defvar jcs-goto-line-prev-line-num nil
-  "Record down the previous line number before we do `jcs-goto-line' command.")
-
-;;;###autoload
-(defun jcs-goto-line ()
-  "JayCeS goto line.
-LINE-NUM : Target line number to navigate to."
-  (interactive)
-  (setq jcs-goto-line-active t)
-  (setq jcs-goto-line-prev-buffer (buffer-name))
-  (setq jcs-goto-line-prev-line-num (jcs-get-current-line-integer))
-  (call-interactively #'jcs-goto-line-internal))
-
-;;;###autoload
-(defun jcs-goto-line-internal (line-num)
-  "JayCeS goto line internal.
-LINE-NUM : Target line number to navigate to."
-  (interactive "nGoto line: "))
-
-(defun jcs-goto-line-preview ()
-  "Do the goto line preview action."
-  (save-selected-window
-    (when jcs-goto-line-prev-buffer
-      (let ((line-num-str "")
-            (line-num -1))
-        (setq line-num-str (jcs-get-word-at-point))
-
-        (switch-to-buffer jcs-goto-line-prev-buffer)
-
-        (if line-num-str
-            (progn
-              (setq line-num (string-to-number line-num-str))
-              (when (numberp line-num)
-                (jcs-goto-line-do line-num)))
-          (jcs-goto-line-do jcs-goto-line-prev-line-num))))))
-
-(defun jcs-goto-line-do (line-num)
-  "Do goto line.
-LINE-NUM : Target line number to navigate to."
-  (save-selected-window
-    (switch-to-buffer jcs-goto-line-prev-buffer)
-    (with-no-warnings
-      (goto-line line-num))
-    (call-interactively #'recenter)))
 
 ;;----------------------------------------------
 ;; Small Navigation
