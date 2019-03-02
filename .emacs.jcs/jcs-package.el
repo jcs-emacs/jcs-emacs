@@ -98,6 +98,7 @@ Return a list of installed packages or nil for every skipped package."
                                    google-maps
                                    google-this
                                    google-translate
+                                   goto-line-preview
                                    haskell-mode
                                    helm
                                    helm-ag
