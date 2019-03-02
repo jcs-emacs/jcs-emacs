@@ -47,7 +47,7 @@
 (define-key global-map "\en" #'next-error)
 (define-key global-map "\eN" #'previous-error)   ;; 'ALT-SHIFT-n' = '\eN'
 
-(define-key global-map "\eg" #'jcs-goto-line)
+(define-key global-map "\eg" #'goto-line-preview-goto-line)
 (define-key global-map "\ej" #'imenu)
 
 ;; Editting
