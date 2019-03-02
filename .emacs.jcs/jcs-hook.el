@@ -90,7 +90,6 @@
 
 (add-hook 'minibuffer-setup-hook
           (lambda ()
-
             ;; Active trigger flag.
             (setq jcs-minibuffer-active t)
 
@@ -104,6 +103,9 @@
 
             (when (eq 'goto-line-preview-goto-line this-command)
               (setq jcs-goto-line-active t))
+
+            ;; Register hook.
+            (add-hook 'post-command-hook #'jcs-minibuffer-post-command-hook nil t)
             ))
 
 (defun jcs-minibuffer-post-command-hook ()
@@ -113,7 +115,7 @@
 
 (add-hook 'minibuffer-exit-hook
           (lambda ()
-            ;; De-active trigger flag.
+            ;; Deactive trigger flag.
             (setq jcs-minibuffer-active nil)
 
             (jcs-reload-active-mode)
