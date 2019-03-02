@@ -85,6 +85,9 @@
 (defvar jcs-minibuffer-active nil
   "Flag to check if current minibuffer active?")
 
+(defvar jcs-goto-line-active nil
+  "Flag to check if goto line command active?")
+
 (add-hook 'minibuffer-setup-hook
           (lambda ()
 
@@ -99,14 +102,13 @@
               ;; slash at the end of the search file path.
               (insert "/"))
 
-            ;; Register hook.
-            (add-hook 'post-command-hook #'jcs-minibuffer-post-command-hook nil t)
+            (when (eq 'goto-line-preview-goto-line this-command)
+              (setq jcs-goto-line-active t))
             ))
 
 (defun jcs-minibuffer-post-command-hook ()
   "Minibuffer post command hook."
-  (when jcs-goto-line-active
-    (jcs-goto-line-preview))
+  ;; NOTE(jenchieh): reserve usage...
   )
 
 (add-hook 'minibuffer-exit-hook
@@ -120,10 +122,11 @@
 
             (when (and jcs-goto-line-active
                        jcs-top-level-active)
-              (jcs-goto-line-do jcs-goto-line-prev-line-num)
+              (goto-line-preview-do goto-line-preview-prev-line-num)
               (setq jcs-goto-line-active nil))
 
-            ;; NOTE(jenchieh): no matter what, cancel top level activation
+
+            ;; ATTENTION(jenchieh): no matter what, cancel top level activation
             ;; while minibuffer exit!
             (setq jcs-top-level-active nil)
             ))
