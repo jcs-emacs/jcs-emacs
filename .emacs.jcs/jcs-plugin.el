@@ -253,5 +253,3 @@
 
 ;;; Goto Line Preview
 (require 'goto-line-preview)
-(defvar jcs-goto-line-active nil
-  "Flag to check if goto line command active?")
