@@ -98,11 +98,6 @@
               ;; slash at the end of the search file path.
               (insert "/"))
 
-            ;; NOTE(jenchieh): enable flag when `goto-line' command
-            ;; is active.
-            (when (eq 'goto-line-preview-goto-line this-command)
-              (setq jcs-goto-line-active t))
-
             ;; Register hook.
             (add-hook 'post-command-hook #'jcs-minibuffer-post-command-hook nil t)
             ))
@@ -120,12 +115,6 @@
             (jcs-reload-active-mode)
             ;; NOTE: disable the file after we do close minibuffer.
             (setq jcs-helm-find-files-active nil)
-
-            (when (and jcs-goto-line-active
-                       jcs-top-level-active)
-              (goto-line-preview-do goto-line-preview-prev-line-num)
-              (setq jcs-goto-line-active nil))
-
 
             ;; ATTENTION(jenchieh): no matter what, cancel top level activation
             ;; while minibuffer exit!
