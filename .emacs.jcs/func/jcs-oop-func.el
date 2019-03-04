@@ -84,6 +84,8 @@
   "Character after value type been inserted in Python Mode.")
 (defvar jcs-php-doc-after-value-type-char ""
   "Character after value type been inserted in PHP Mode.")
+(defvar jcs-ts-doc-after-value-type-char ""
+  "Character after value type been inserted in TypeScript Mode.")
 
 ;;; Show typename.
 (defvar jcs-java-doc-show-typename t
@@ -98,6 +100,8 @@
   "Show the typename betweeen the open charachter and close charachter in Python mode.")
 (defvar jcs-php-doc-show-typename t
   "Show the typename betweeen the open charachter and close charachter in PHP mode.")
+(defvar jcs-ts-doc-show-typename t
+  "Show the typename betweeen the open charachter and close charachter in TypeScript mode.")
 
 ;;; Tag strings
 (defvar jcs-java-param-string ""
@@ -130,6 +134,12 @@
 (defvar jcs-php-return-string ""
   "Returns string in PHP mode.")
 
+(defvar jcs-ts-param-string ""
+  "Parameter string in TypeScript mode.")
+(defvar jcs-ts-return-string ""
+  "Returns string in TypeScript mode.")
+
+
 ;;; Brackets
 (defvar jcs-java-open-type-char ""
   "Character before the typename in Java mode.")
@@ -160,6 +170,11 @@
   "Character before the typename in PHP mode.")
 (defvar jcs-php-close-type-char ""
   "Character after the typename in PHP mode.")
+
+(defvar jcs-ts-open-type-char ""
+  "Character before the typename in TypeScript mode.")
+(defvar jcs-ts-close-type-char ""
+  "Character after the typename in TypeScript mode.")
 
 
 (defvar jcs-class-desc-string ""
@@ -202,6 +217,7 @@
     (setq jcs-lua-doc-show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "LUA_DOC_SHOW_TYPENAME")))
     (setq jcs-py-doc-show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "PY_DOC_SHOW_TYPENAME")))
     (setq jcs-php-doc-show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "PHP_DOC_SHOW_TYPENAME")))
+    (setq jcs-ts-doc-show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "TS_DOC_SHOW_TYPENAME")))
 
     ;; After value type character.
     (setq jcs-java-doc-after-value-type-char (jcs-get-properties tmp-ini-list "JAVA_AFTER_VALUE_TYPE"))
@@ -210,6 +226,7 @@
     (setq jcs-lua-doc-after-value-type-char (jcs-get-properties tmp-ini-list "LUA_AFTER_VALUE_TYPE"))
     (setq jcs-py-doc-after-value-type-char (jcs-get-properties tmp-ini-list "PY_AFTER_VALUE_TYPE"))
     (setq jcs-php-doc-after-value-type-char (jcs-get-properties tmp-ini-list "PHP_AFTER_VALUE_TYPE"))
+    (setq jcs-ts-doc-after-value-type-char (jcs-get-properties tmp-ini-list "TS_AFTER_VALUE_TYPE"))
 
     ;; param string
     (setq jcs-java-param-string (jcs-get-properties tmp-ini-list "JAVA_PARAM_STRING"))
@@ -218,6 +235,7 @@
     (setq jcs-lua-param-string (jcs-get-properties tmp-ini-list "LUA_PARAM_STRING"))
     (setq jcs-py-param-string (jcs-get-properties tmp-ini-list "PY_PARAM_STRING"))
     (setq jcs-php-param-string (jcs-get-properties tmp-ini-list "PHP_PARAM_STRING"))
+    (setq jcs-ts-param-string (jcs-get-properties tmp-ini-list "TS_PARAM_STRING"))
 
     ;; return string
     (setq jcs-java-return-string (jcs-get-properties tmp-ini-list "JAVA_RETURN_STRING"))
@@ -226,6 +244,7 @@
     (setq jcs-lua-return-string (jcs-get-properties tmp-ini-list "LUA_RETURN_STRING"))
     (setq jcs-py-return-string (jcs-get-properties tmp-ini-list "PY_RETURN_STRING"))
     (setq jcs-php-return-string (jcs-get-properties tmp-ini-list "PHP_RETURN_STRING"))
+    (setq jcs-ts-return-string (jcs-get-properties tmp-ini-list "TSs_RETURN_STRING"))
 
     ;; open type character.
     (setq jcs-java-open-type-char (jcs-get-properties tmp-ini-list "JAVA_OPEN_TYPE_CHAR"))
@@ -234,6 +253,7 @@
     (setq jcs-lua-open-type-char (jcs-get-properties tmp-ini-list "LUA_OPEN_TYPE_CHAR"))
     (setq jcs-py-open-type-char (jcs-get-properties tmp-ini-list "PY_OPEN_TYPE_CHAR"))
     (setq jcs-php-open-type-char (jcs-get-properties tmp-ini-list "PHP_OPEN_TYPE_CHAR"))
+    (setq jcs-ts-open-type-char (jcs-get-properties tmp-ini-list "TS_OPEN_TYPE_CHAR"))
 
     ;; close type character.
     (setq jcs-java-close-type-char (jcs-get-properties tmp-ini-list "JAVA_CLOSE_TYPE_CHAR"))
@@ -242,6 +262,7 @@
     (setq jcs-lua-close-type-char (jcs-get-properties tmp-ini-list "LUA_CLOSE_TYPE_CHAR"))
     (setq jcs-py-close-type-char (jcs-get-properties tmp-ini-list "PY_CLOSE_TYPE_CHAR"))
     (setq jcs-php-close-type-char (jcs-get-properties tmp-ini-list "PHP_CLOSE_TYPE_CHAR"))
+    (setq jcs-ts-close-type-char (jcs-get-properties tmp-ini-list "TS_CLOSE_TYPE_CHAR"))
     ))
 
 
@@ -427,7 +448,7 @@ SEARCH-OPTION :
 
     ;; Only add doc when there is function in current
     ;; checking line.
-    (if (equal meet-function-name t)
+    (if meet-function-name
         (progn
           (let (;; This could either use `param-type-strings' or
                 ;; `param-variable-strings' because they should have
@@ -502,7 +523,19 @@ SEARCH-OPTION :
                                      there-is-return
                                      return-type-string
                                      param-type-strings
-                                     param-variable-strings)))
+                                     param-variable-strings)
+
+            ;; TODO(jenchieh): This current will not work,
+            ;; see `jcs-comment.el' file -> `jcs-smart-context-line-break'
+            ;; function for more info.
+            (jcs-ts-mode-doc-string meet-function-name
+                                    keyword-strings
+                                    datatype-name
+                                    function-name-string
+                                    there-is-return
+                                    return-type-string
+                                    param-type-strings
+                                    param-variable-strings)))
       ;; NOTE(jenchieh): Design object comment document string.
       ;; For instance, macro define, struct, class, etc.
       (progn
@@ -641,6 +674,12 @@ SEARCH-OPTION :
                  (progn
                    ;; TODO(jenchieh): implement into PHP mode.
                    ))))
+
+        (when (or (jcs-is-current-major-mode-p "typescript-mode"))
+          (cond ((jcs-is-in-list-string keyword-strings "class")
+                 (progn
+                   ;; TODO(jenchieh): implement into TypeScript mode.
+                   ))))
         ))))
 
 
@@ -683,8 +722,8 @@ SEARCH-OPTION :
       (setq param-index (1- param-index)))
 
     ;; Lastly, process returns tag.
-    (when (equal there-is-return t)
-      (when (not(string= return-type-string "void"))
+    (when there-is-return
+      (unless (string= return-type-string "void")
         (insert "\n")
         (insert "/// <returns></returns>")
         (indent-for-tab-command)))))
@@ -733,7 +772,7 @@ SEARCH-OPTION :
       (insert "\n")  ;; start from newline.
       (insert "* @")
       (insert jcs-cc-param-string)
-      (when (not (equal jcs-cc-doc-show-typename nil))
+      (when jcs-cc-doc-show-typename
         (jcs-insert-jsdoc-type (nth param-index param-type-strings)
                                jcs-cc-open-type-char
                                jcs-cc-close-type-char))
@@ -748,19 +787,19 @@ SEARCH-OPTION :
       (setq param-index (1- param-index)))
 
     ;; Lastly, process returns tag.
-    (if (equal there-is-return t)
+    (if there-is-return
         (progn
-          (if (not(string= return-type-string "void"))
+          (if (not (string= return-type-string "void"))
               (progn
                 (insert "\n")
                 (insert "* @")
                 (insert jcs-cc-return-string)
-                (if (not (equal jcs-cc-doc-show-typename nil))
+                (if jcs-cc-doc-show-typename
                     (jcs-insert-jsdoc-type return-type-string
                                            jcs-cc-open-type-char
                                            jcs-cc-close-type-char))
                 (backward-delete-char 1)
-                (if (not (equal jcs-cc-doc-show-typename nil))
+                (if jcs-cc-doc-show-typename
                     (insert jcs-cc-doc-after-value-type-char)
                   (insert " "))
                 (insert jcs-return-desc-string)
@@ -799,7 +838,7 @@ SEARCH-OPTION :
       (insert "\n")  ;; start from newline.
       (insert "* @")
       (insert jcs-java-param-string)
-      (when (not (equal jcs-java-doc-show-typename nil))
+      (when jcs-java-doc-show-typename
         (jcs-insert-jsdoc-type (nth param-index param-type-strings)
                                jcs-java-open-type-char
                                jcs-java-close-type-char))
@@ -814,17 +853,17 @@ SEARCH-OPTION :
       (setq param-index (1- param-index)))
 
     ;; Lastly, process returns tag.
-    (when (equal there-is-return t)
-      (when (not(string= return-type-string "void"))
+    (when there-is-return
+      (unless (string= return-type-string "void")
         (insert "\n")
         (insert "* @")
         (insert jcs-java-return-string)
-        (when (not (equal jcs-java-doc-show-typename nil))
+        (when jcs-java-doc-show-typename
           (jcs-insert-jsdoc-type return-type-string
                                  jcs-java-open-type-char
                                  jcs-java-close-type-char))
         (backward-delete-char 1)
-        (if (not (equal jcs-java-doc-show-typename nil))
+        (if jcs-java-doc-show-typename
             (insert jcs-java-doc-after-value-type-char)
           (insert " "))
         (insert jcs-return-desc-string)
@@ -861,7 +900,7 @@ SEARCH-OPTION :
       (insert "\n")  ;; start from newline.
       (insert "* @")
       (insert jcs-js-param-string)
-      (when (not (equal jcs-js-doc-show-typename nil))
+      (when jcs-js-doc-show-typename
         (jcs-insert-jsdoc-type "typename"
                                jcs-js-open-type-char
                                jcs-js-close-type-char))
@@ -876,17 +915,17 @@ SEARCH-OPTION :
       (setq param-index (1- param-index)))
 
     ;; Lastly, process returns tag.
-    (when (equal there-is-return t)
-      (when (not(string= return-type-string "void"))
+    (when there-is-return
+      (unless (string= return-type-string "void")
         (insert "\n")
         (insert "* @")
         (insert jcs-js-return-string)
-        (when (not (equal jcs-js-doc-show-typename nil))
+        (when jcs-js-doc-show-typename
           (jcs-insert-jsdoc-type return-type-string
                                  jcs-js-open-type-char
                                  jcs-js-close-type-char))
         (backward-delete-char 1)
-        (if (not (equal jcs-js-doc-show-typename nil))
+        (if jcs-js-doc-show-typename
             (insert jcs-js-doc-after-value-type-char)
           (insert " "))
         (insert jcs-return-desc-string)
@@ -923,7 +962,7 @@ SEARCH-OPTION :
       (insert "\n")  ;; start from newline.
       (insert "-- @")
       (insert jcs-lua-param-string)
-      (when (not (equal jcs-lua-doc-show-typename nil))
+      (when jcs-lua-doc-show-typename
         (jcs-insert-jsdoc-type "typename"
                                jcs-lua-open-type-char
                                jcs-lua-close-type-char))
@@ -938,17 +977,17 @@ SEARCH-OPTION :
       (setq param-index (1- param-index)))
 
     ;; Lastly, process returns tag.
-    (when (equal there-is-return t)
-      (when (not(string= return-type-string "void"))
+    (when there-is-return
+      (unless (string= return-type-string "void")
         (insert "\n")
         (insert "-- @")
         (insert jcs-lua-return-string)
-        (when (not (equal jcs-lua-doc-show-typename nil))
+        (when jcs-lua-doc-show-typename
           (jcs-insert-jsdoc-type return-type-string
                                  jcs-lua-open-type-char
                                  jcs-lua-close-type-char))
         (backward-delete-char 1)
-        (if (not (equal jcs-lua-doc-show-typename nil))
+        (if jcs-lua-doc-show-typename
             (insert jcs-lua-doc-after-value-type-char)
           (insert " "))
         (insert jcs-return-desc-string)
@@ -980,10 +1019,9 @@ SEARCH-OPTION :
     (jcs-move-to-forward-a-char-recursive "\"")
     (jcs-move-to-forward-a-char-recursive "\"")
 
-    (if (= jcs-py-doc-string-version 1)
-        (progn
-          ;; OPTION(jenchieh): docstring option..
-          (jcs-next-line)))
+    (when (= jcs-py-doc-string-version 1)
+      ;; OPTION(jenchieh): docstring option..
+      (jcs-next-line))
     (end-of-line)
 
     ;; Line breack between description and tags.
@@ -995,7 +1033,7 @@ SEARCH-OPTION :
         (insert "\n")  ;; start from newline.
         (insert "@")
         (insert jcs-py-param-string)
-        (when (not (equal jcs-py-doc-show-typename nil))
+        (when jcs-py-doc-show-typename
           (jcs-insert-jsdoc-type "typename"
                                  jcs-py-open-type-char
                                  jcs-py-close-type-char))
@@ -1010,22 +1048,21 @@ SEARCH-OPTION :
       (setq param-index (1- param-index)))
 
     ;; Lastly, process returns tag.
-    (when (equal there-is-return t)
-      (when (not(string= return-type-string "void"))
+    (when there-is-return
+      (unless (string= return-type-string "void")
         (insert "\n")
         (insert "@")
         (insert jcs-py-return-string)
-        (when (not (equal jcs-py-doc-show-typename nil))
+        (when jcs-py-doc-show-typename
           (jcs-insert-jsdoc-type return-type-string
                                  jcs-py-open-type-char
                                  jcs-py-close-type-char))
         (backward-delete-char 1)
-        (if (not (equal jcs-py-doc-show-typename nil))
+        (if jcs-py-doc-show-typename
             (insert jcs-py-doc-after-value-type-char)
           (insert " "))
         (insert jcs-return-desc-string)
         (indent-for-tab-command)))))
-
 
 (defun jcs-php-mode-doc-string (meet-function-name
                                 keyword-strings
@@ -1058,8 +1095,8 @@ SEARCH-OPTION :
     (while (>= param-index 0)
       (insert "\n")  ;; start from newline.
       (insert "* @")
-      (insert jcs-js-param-string)
-      (when (not (equal jcs-php-doc-show-typename nil))
+      (insert jcs-php-param-string)
+      (when jcs-php-doc-show-typename
         (jcs-insert-jsdoc-type "typename"
                                jcs-php-open-type-char
                                jcs-php-close-type-char))
@@ -1074,18 +1111,80 @@ SEARCH-OPTION :
       (setq param-index (1- param-index)))
 
     ;; Lastly, process returns tag.
-    (when (equal there-is-return t)
-      (when (not(string= return-type-string "void"))
+    (when there-is-return
+      (unless (string= return-type-string "void")
         (insert "\n")
         (insert "* @")
         (insert jcs-php-return-string)
-        (if (not (equal jcs-php-doc-show-typename nil))
-            (jcs-insert-jsdoc-type return-type-string
-                                   jcs-php-open-type-char
-                                   jcs-php-close-type-char))
+        (when jcs-php-doc-show-typename
+          (jcs-insert-jsdoc-type return-type-string
+                                 jcs-php-open-type-char
+                                 jcs-php-close-type-char))
         (backward-delete-char 1)
-        (if (not (equal jcs-php-doc-show-typename nil))
+        (if jcs-php-doc-show-typename
             (insert jcs-php-doc-after-value-type-char)
+          (insert " "))
+        (insert jcs-return-desc-string)
+        (indent-for-tab-command)))))
+
+(defun jcs-ts-mode-doc-string (meet-function-name
+                               keyword-strings
+                               datatype-name
+                               function-name-string
+                               there-is-return
+                               return-type-string
+                               param-type-strings
+                               param-variable-strings)
+  "Insert `typescript-mode' doc string.
+
+@param MEET-FUNCTION-NAME     : Meet the function name?
+@param KEYWORD-STRINGS        : Keyword strings list.
+@param DATATYPE-NAME          : Data type name, store keyword for
+                               struct/class related.
+@param FUNCTION-NAME-STRING   : Function name.
+@param THERE-IS-RETURN        : There is return in this function?
+@param RETURN-TYPE-STRING     : String of the return type.
+@param PARAM-TYPE-STRINGS     : Param type strings list.
+@param PARAM-VARIABLE-STRINGS : Param name strings list.
+"
+  (when (or (jcs-is-current-major-mode-p "typescript-mode"))
+    ;; go back to comment line.
+    (jcs-previous-line)
+    (jcs-previous-line)
+    (end-of-line)
+
+    ;; Process param tag.
+    (while (>= param-index 0)
+      (insert "\n")  ;; start from newline.
+      (insert "* @")
+      (insert jcs-ts-param-string)
+      (when jcs-ts-doc-show-typename
+        (jcs-insert-jsdoc-type "typename"
+                               jcs-ts-open-type-char
+                               jcs-ts-close-type-char))
+      (insert (nth param-index param-variable-strings))
+      (insert jcs-ts-doc-after-value-type-char)
+      (insert jcs-param-desc-string)
+
+      ;; indent once.
+      (indent-for-tab-command)
+
+      ;; add up counter.
+      (setq param-index (1- param-index)))
+
+    ;; Lastly, process returns tag.
+    (when there-is-return
+      (unless (string= return-type-string "void")
+        (insert "\n")
+        (insert "* @")
+        (insert jcs-ts-return-string)
+        (when jcs-ts-doc-show-typename
+          (jcs-insert-jsdoc-type return-type-string
+                                 jcs-ts-open-type-char
+                                 jcs-ts-close-type-char))
+        (backward-delete-char 1)
+        (if jcs-ts-doc-show-typename
+            (insert jcs-js-doc-after-value-type-char)
           (insert " "))
         (insert jcs-return-desc-string)
         (indent-for-tab-command)))))
