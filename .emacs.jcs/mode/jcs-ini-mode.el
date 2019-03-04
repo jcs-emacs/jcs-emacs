@@ -35,4 +35,5 @@
   )
 (add-hook 'ini-mode-hook 'jcs-ini-mode-hook)
 
+(add-to-list 'auto-mode-alist '("\\.properties'?\\'" . ini-mode))
 (add-to-list 'auto-mode-alist '("\\.ini'?\\'" . ini-mode))
