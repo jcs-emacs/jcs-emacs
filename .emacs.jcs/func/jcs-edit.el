@@ -294,6 +294,7 @@ Use `indent-according-to-mode' instead `indent-for-tab-command'."
 ;;---------------------------------------------
 ;; After moving DOWN one line, do identation.
 ;;---------------------------------------------
+
 ;;;###autoload
 (defun jcs-smart-indent-down ()
   "Indent line after move down one line.
