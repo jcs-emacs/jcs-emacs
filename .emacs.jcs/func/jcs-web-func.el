@@ -278,7 +278,7 @@ line by line instead of indent the whole file at once."
           (newline-and-indent)
           (jcs-web-smart-indent-up))
       (progn
-        (newline-and-indent)))))
+        (call-interactively #'jcs-smart-context-line-break)))))
 
 ;;---------------------------------------------
 ;; Save
@@ -373,10 +373,10 @@ line by line instead of indent the whole file at once."
   (if (jcs-is-end-of-line-p)
       (call-interactively #'jcs-smart-context-line-break)
     (progn
-      (save-excursion
-        (newline-and-indent))
-      (forward-char 1)
-      (indent-for-tab-command))))
+      (newline-and-indent)
+      (jcs-beginning-of-line)
+      (when (jcs-current-line-empty-p)
+        (indent-for-tab-command)))))
 
 (defun jcs-init-css-faces ()
   "CSS Faces Highlighting."
