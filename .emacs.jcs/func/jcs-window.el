@@ -290,16 +290,17 @@ i.e. change right window to bottom, or change bottom window to right."
 
 ;;;###autoload
 (defun jcs-set-transparency (alpha-level)
-  "Set the frame transparency."
-  ;; SOURCE: https://gist.github.com/benzap/89759928060f4578c063
+  "Set the frame transparency.
+ALPHA-LEVEL : Target alpha level you want to set to the current frame."
   (interactive "p")
-  (message (format "Alpha level passed in: %s" alpha-level))
+  ;; SOURCE: https://gist.github.com/benzap/89759928060f4578c063
+  (message (format "Frame alpha level passed in: %s" alpha-level))
   (let ((alpha-level (if (< alpha-level 2)
                          (read-number "Opacity percentage: " 85)
                        alpha-level))
         (myalpha (frame-parameter nil 'alpha)))
     (set-frame-parameter nil 'alpha alpha-level))
-  (message (format "Alpha level is %d" (frame-parameter nil 'alpha))))
+  (message (format "Frame alpha level is %d" (frame-parameter nil 'alpha))))
 
 ;;;###autoload
 (defun jcs-toggle-transparency ()
@@ -327,7 +328,6 @@ i.e. change right window to bottom, or change bottom window to right."
 (defun jcs-increment-frame-transparent (&optional del-trans)
   "Increment the frame transparency by 5 percent."
   (interactive)
-
   (let ((alpha (frame-parameter nil 'alpha)))
     (setq current-transparency (cond ((numberp alpha) alpha)
                                      ((numberp (cdr alpha)) (cdr alpha))
@@ -339,7 +339,7 @@ i.e. change right window to bottom, or change bottom window to right."
       (setq del-trans jcs-default-delta-transparency))
 
     (setq current-transparency (+ current-transparency del-trans))
-    (setq current-transparency (jcs-clamp-integer current-transparency 0 100))
+    (setq current-transparency (jcs-clamp-integer current-transparency 5 100))
 
     ;; Apply the value to frame.
     (jcs-set-transparency current-transparency)))
@@ -348,7 +348,6 @@ i.e. change right window to bottom, or change bottom window to right."
 (defun jcs-decrement-frame-transparent (&optional del-trans)
   "Decrement the frame transparency by 5 percent."
   (interactive)
-
   (let ((alpha (frame-parameter nil 'alpha)))
     (setq current-transparency (cond ((numberp alpha) alpha)
                                      ((numberp (cdr alpha)) (cdr alpha))
@@ -360,7 +359,7 @@ i.e. change right window to bottom, or change bottom window to right."
       (setq del-trans jcs-default-delta-transparency))
 
     (setq current-transparency (- current-transparency del-trans))
-    (setq current-transparency (jcs-clamp-integer current-transparency 0 100))
+    (setq current-transparency (jcs-clamp-integer current-transparency 5 100))
 
     ;; Apply the value to frame.
     (jcs-set-transparency current-transparency)))
