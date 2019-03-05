@@ -9,7 +9,7 @@
 
 
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-;; Do stuff after initialize.
+;; Do stuff after initialization.
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 ;;; Override all the mode's key bindings.
@@ -33,6 +33,7 @@
 (diminish 'auto-rename-tag-mode)
 (diminish 'undo-tree-mode)
 (diminish 'company-mode)
+(diminish 'eldoc-mode)
 (diminish 'flycheck-mode)
 (diminish 'flymake-mode)
 (diminish 'helm-mode)
@@ -42,6 +43,7 @@
 (diminish 'js2r)
 (diminish 'line-reminder-mode)
 (diminish 'outline-minor-mode)
+(diminish 'overwrite-mode)
 (diminish 'right-click-context-mode)
 (diminish 'skewer-mode)
 (diminish 'which-key-mode)
