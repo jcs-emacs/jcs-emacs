@@ -175,7 +175,7 @@
 (define-key global-map (kbd "C-\\") #'split-window-horizontally)
 
 ;;; Transparent Window
-(define-key global-map "\e`" #'jcs-toggle-transparency)
+(define-key global-map "\e`" #'jcs-toggle-transparent-frame)
 (define-key global-map "\e=" #'jcs-increment-frame-transparent)
 (define-key global-map "\e-" #'jcs-decrement-frame-transparent)
 

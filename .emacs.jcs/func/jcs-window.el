@@ -303,11 +303,10 @@ ALPHA-LEVEL : Target alpha level you want to set to the current frame."
   (message (format "Frame alpha level is %d" (frame-parameter nil 'alpha))))
 
 ;;;###autoload
-(defun jcs-toggle-transparency ()
-  "Make the frame transparent."
-  ;; SOURCE: https://www.emacswiki.org/emacs/TransparentEmacs
+(defun jcs-toggle-transparent-frame ()
+  "Toggle frame's transparency between 80% and 100%."
   (interactive)
-
+  ;; SOURCE(jenchieh): https://www.emacswiki.org/emacs/TransparentEmacs
   (let ((alpha (frame-parameter nil 'alpha)))
     (set-frame-parameter
      nil 'alpha
