@@ -53,7 +53,6 @@ M-S-n           Go to the previous error after a compile.
 
 M-g             Goto line number.
 
-C-c d           duplicate the line to the next line.
 C-d             Kill the whole line.
 C-c ;           Rename the whole text with the same name.
 C-r C-r         Rename the whole text with the same name.
@@ -174,6 +173,8 @@ M-z             Toggle `truncate-lines'.
 C-M-l           Toggle file explorer.
 C-b             Toggle file explorer.
 
+C-k C-s         Describe bindings.
+
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * Magit
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -213,7 +214,7 @@ C-M-p           expand all function
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * Shell Key binding
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-C-c d           toggle shell window
+C-`             toggle shell window
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * Dual Display/Monitor
@@ -281,19 +282,14 @@ C-return        tab emmet.
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 C-c c           Toggle between c and c++ mode if you are 
                 either in c or c++ mode.
-C-c j           enable/disable jdee-mode.
-C-x w           enable/disable web-mode.
-C-x p           enable/disable php-mode.
-C-x j           enable/disable js2-mode.
-C-x b           enable/disable blank-mode.
-C-c r           enable/disable raindbow-mode.
-C-c a           enable/disable sublimity-mode.
+C-x b           Enable/disable whitespace-mode.
+C-c r           Enable/disable raindbow-mode.
+C-c a           Enable/disable sublimity-mode.
 
-C-x `           toggle between "command mode" and "insert mode".
-C-`             toggle between "depend mode" and "cross mode".
+C-x `           Toggle between "command mode" and "insert mode".
+C-c d           Toggle between "depend mode" and "cross mode".
 
-C-x o           org mode
-C-x g           gitignore mode/normal text mode.
+C-x o           Use org-mode.
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * Cross Language Mode
