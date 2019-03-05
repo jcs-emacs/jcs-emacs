@@ -50,6 +50,9 @@
 (define-key global-map "\eg" #'goto-line-preview)
 (define-key global-map "\ej" #'imenu)
 
+;; Show Key Settings
+(define-key global-map (kbd "C-k C-s") #'describe-bindings)
+
 ;; Editting
 (define-key global-map "" #'copy-region-as-kill)
 (define-key global-map "" #'yank)
@@ -160,12 +163,13 @@
 
 ;;; Mode toggle
 ;;(define-key global-map "\e`" #'jcs-insert-command-mode-toggle)
-(define-key global-map "\C-cd" #'jcs-toggle-shell-window)  ; shell command
-(define-key global-map (kbd "C-`") #'jcs-depend-cross-mode-toggle)
+(define-key global-map "\C-cd" #'jcs-depend-cross-mode-toggle)  ; shell command
+(define-key global-map (kbd "C-`") #'jcs-toggle-shell-window)
 
 ;;; Window
 (define-key global-map "\C-xn" #'jcs-new-frame)
-(define-key global-map "\C-xd" #'delete-frame)  ; delete the external window
+(define-key global-map "\C-xd" #'delete-frame)  ; delete the external frame.
+(define-key global-map "\C-xw" #'delete-window)  ; delete current window.
 (define-key global-map "\C-hh" #'jcs-toggle-window-split-hv)
 (define-key global-map "\C-we" #'jcs-toggle-enlarge-window-selected)
 (define-key global-map (kbd "C-\\") #'split-window-horizontally)
@@ -279,6 +283,8 @@
 (define-key global-map "\C-cm" #'jcs-toggle-minimap)
 
 ;;; Animate Scrolling
+(require 'sublimity)
+(require 'sublimity-scroll)
 (define-key global-map "\C-ca" #'jcs-toggle-sublimity-mode)
 
 ;;; Move Current Line Up or Down
@@ -379,6 +385,16 @@
 ;;; *Message*
 (define-key messages-buffer-mode-map "\ek" #'jcs-erase-message-buffer)
 
+(require 'cc-mode)
+(define-key global-map (kbd "C-c c") #'jcs-toggle-cc-mode)
+
+(require 'rainbow-mode)
+(define-key global-map (kbd "C-c r") #'rainbow-mode)
+
+(require 'whitespace)
+(define-key global-map (kbd "C-x b") #'whitespace-mode)
+
+
 (defun jcs-global-key-rebind ()
   "Some key are not allow to bind, the solution here is just re-bind
 the key everytime the mode changes."
@@ -402,33 +418,3 @@ the key everytime the mode changes."
   (define-key global-map (kbd "C-r DEL") #'jcs-backward-delete-current-char-repeat)
   (define-key global-map (kbd "C-r S-<backspace>") #'jcs-forward-delete-current-char-repeat)
   )
-
-;;------------------------------
-;; ENABLE / DISABLE THE MODE
-;;------------------------------
-;;===========================
-;; Compile lanauge!
-;;===========================
-;;(require 'c-mode)                       ;; C/C++
-;;(require 'c++-mode)
-(define-key global-map (kbd "C-c c") #'jcs-toggle-cc-mode)
-(require 'jdee)                         ;; Java
-(define-key global-map (kbd "C-c j") #'jdee-mode)
-
-;;===========================
-;; Scripting/Interpreter
-;;===========================
-(require 'php-mode)                     ;; PHP
-(define-key global-map (kbd "C-x p") #'php-mode)
-(require 'web-mode)                     ;; html, css, js
-(define-key global-map (kbd "C-x w") #'web-mode)
-(require 'js2-mode)                     ;; js
-(define-key global-map (kbd "C-x j") #'js2-mode)
-
-;;===========================
-;; Cross Language support
-;;===========================
-(require 'rainbow-mode)
-(define-key global-map (kbd "C-c r") #'rainbow-mode)
-(require 'whitespace)
-(define-key global-map (kbd "C-x b") #'whitespace-mode)
