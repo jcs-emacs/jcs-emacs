@@ -9,20 +9,40 @@
 
 
 (defun jcs-to-positive (in-val)
-  "To positive value.
+  "To positive the value.
 IN-VAL : Input value to set to positive."
   (when (and in-val
              (< in-val 0))
-    (setq in-val (- 0 in-val)))
+    (setq in-val (jcs-to-reverse in-val)))
   in-val)
 
 (defun jcs-to-negative (in-val)
-  "To negative value.
+  "To negative the value.
 IN-VAL : Input value to set to negative."
   (when (and in-val
              (> in-val 0))
-    (setq in-val (- 0 in-val)))
+    (setq in-val (jcs-to-reverse in-val)))
   in-val)
+
+(defun jcs-is-positive (in-val)
+  "Check if positive value.
+IN-VAL : Input value to check if positive."
+  (> in-val 0))
+
+(defun jcs-is-negative (in-val)
+  "Check if nagative value.
+IN-VAL : Input value to check if negative."
+  (< in-val 0))
+
+(defun jcs-to-reverse (in-val)
+  "To reverse the value.
+IN-VAL : Input value to reverse."
+  (- 0 in-val))
+
+(defun jcs-to-reciprocal (in-val)
+  "To reciprocal the value.
+IN-VAL : Input value to reciprocal."
+  (/ 1 in-val))
 
 (defun jcs-clamp-integer (in-val in-min in-max)
   "Make sure the value in the range.
