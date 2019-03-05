@@ -157,13 +157,13 @@
 (define-key undo-tree-map (kbd "C-/") #'jcs-comment-uncomment-region-or-line)
 
 ;;; Text Scale.
-(define-key global-map "\e=" #'jcs-text-scale-increase)
-(define-key global-map "\e-" #'jcs-text-scale-decrease)
+(define-key global-map (kbd "C-=") #'jcs-text-scale-increase)
+(define-key global-map (kbd "C--") #'jcs-text-scale-decrease)
 (define-key auto-highlight-symbol-mode-map "\e-" #'jcs-text-scale-decrease)
 
 ;;; Mode toggle
 ;;(define-key global-map "\e`" #'jcs-insert-command-mode-toggle)
-(define-key global-map "\C-cd" #'jcs-depend-cross-mode-toggle)  ; shell command
+(define-key global-map (kbd "C-~") #'jcs-depend-cross-mode-toggle)
 (define-key global-map (kbd "C-`") #'jcs-toggle-shell-window)
 
 ;;; Window
@@ -176,8 +176,8 @@
 
 ;;; Transparent Window
 (define-key global-map "\e`" #'jcs-toggle-transparency)
-(define-key global-map (kbd "C-=") #'jcs-increment-frame-transparent)
-(define-key global-map (kbd "C--") #'jcs-decrement-frame-transparent)
+(define-key global-map "\e=" #'jcs-increment-frame-transparent)
+(define-key global-map "\e-" #'jcs-decrement-frame-transparent)
 
 ;;; Comment/Uncomment
 (define-key global-map (kbd "C-/") #'jcs-comment-uncomment-region-or-line)
