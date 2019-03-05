@@ -324,19 +324,16 @@ ALPHA-LEVEL : Target alpha level you want to set to the current frame."
 (defvar jcs-default-delta-transparency 5
   "Delta increament/decreament transparency value.")
 
-;;;###autoload
-(defun jcs-increment-frame-transparent (&optional del-trans)
-  "Increment the frame transparency by 5 percent."
-  (interactive)
-  (let ((alpha (frame-parameter nil 'alpha)))
+(defun jcs-delta-frame-transparent (del-trans)
+  "Delta change the frame transparency by a certain percentage.
+DEL-TRANS : Delta transparency value."
+  (let ((alpha (frame-parameter nil 'alpha))
+        (current-transparency jcs-default-delta-transparency))
+
     (setq current-transparency (cond ((numberp alpha) alpha)
                                      ((numberp (cdr alpha)) (cdr alpha))
                                      ;; Also handle undocumented (<active> <inactive>) form.
                                      ((numberp (cadr alpha)) (cadr alpha))))
-
-    ;; Use default transparency value.
-    (unless del-trans
-      (setq del-trans jcs-default-delta-transparency))
 
     (setq current-transparency (+ current-transparency del-trans))
     (setq current-transparency (jcs-clamp-integer current-transparency 5 100))
@@ -345,21 +342,19 @@ ALPHA-LEVEL : Target alpha level you want to set to the current frame."
     (jcs-set-transparency current-transparency)))
 
 ;;;###autoload
-(defun jcs-decrement-frame-transparent (&optional del-trans)
-  "Decrement the frame transparency by 5 percent."
+(defun jcs-increment-frame-transparent (&optional del-trans)
+  "Increment the frame transparency by a certain percentage.
+DEL-TRANS : Delta transparency value."
   (interactive)
-  (let ((alpha (frame-parameter nil 'alpha)))
-    (setq current-transparency (cond ((numberp alpha) alpha)
-                                     ((numberp (cdr alpha)) (cdr alpha))
-                                     ;; Also handle undocumented (<active> <inactive>) form.
-                                     ((numberp (cadr alpha)) (cadr alpha))))
+  (unless del-trans
+    (setq del-trans (jcs-to-positive jcs-default-delta-transparency)))
+  (jcs-delta-frame-transparent del-trans))
 
-    ;; Use default transparency value.
-    (unless del-trans
-      (setq del-trans jcs-default-delta-transparency))
-
-    (setq current-transparency (- current-transparency del-trans))
-    (setq current-transparency (jcs-clamp-integer current-transparency 5 100))
-
-    ;; Apply the value to frame.
-    (jcs-set-transparency current-transparency)))
+;;;###autoload
+(defun jcs-decrement-frame-transparent (&optional del-trans)
+  "Decrement the frame transparency by a certain percentage.
+DEL-TRANS : Delta transparency value."
+  (interactive)
+  (unless del-trans
+    (setq del-trans (jcs-to-negative jcs-default-delta-transparency)))
+  (jcs-delta-frame-transparent del-trans))
