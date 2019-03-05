@@ -138,11 +138,6 @@ C-w o           Start httpd server for real time editing markdown
                 using `impatient-mode'.
 C-w p           Close httpd server for real time editing markdown
                 using `impatient-mode'.
-
-C-h h           Toggle window split between horizontal and 
-                vertcial.
-
-C-w e           Toggle enlarge current selected window.
 				
 M-p             Open list of processes. (`list-processes')
 
@@ -174,6 +169,25 @@ C-M-l           Toggle file explorer.
 C-b             Toggle file explorer.
 
 C-k C-s         Describe bindings.
+
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+* Window
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+C-x n           Create new frame.
+C-x d           Delete current frame.
+C-x w           Delete current window.
+C-h h           Toggle window split between horizontal and 
+                vertcial.
+C-w e           Toggle enlarge current selected window.
+C-\             Split window horizontally.
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+* Transparent Window
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+M-`             Toggle transparent frame.
+M-=             Increment frame transparent by 5 percent.
+M--             Decrement frame transparent by 5 percent.
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * Magit
@@ -287,7 +301,7 @@ C-c r           Enable/disable raindbow-mode.
 C-c a           Enable/disable sublimity-mode.
 
 C-x `           Toggle between "command mode" and "insert mode".
-C-c d           Toggle between "depend mode" and "cross mode".
+C-~             Toggle between "depend mode" and "cross mode".
 
 C-x o           Use org-mode.
 
