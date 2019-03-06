@@ -225,6 +225,9 @@
       (list (format "%s %%S: %%j " (system-name))
             '(buffer-file-name "%f" (dired-directory dired-directory "%b"))))
 
+;;; Screen
+;;(setq scroll-preserve-screen-position 'always)
+
 ;;; Splash Screen
 ;;(setq fancy-splash-image t)
 ;;(setq fancy-splash-image-file "~/.emacs.d/splash_screen.png")
