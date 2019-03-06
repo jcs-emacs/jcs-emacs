@@ -253,3 +253,9 @@
 
 ;;; Goto Line Preview
 (require 'goto-line-preview)
+(use-package goto-line-preview
+  :ensure t
+  :config
+  (defun jcs-advice-goto-line-after ()
+    (call-interactively #'recenter))
+  (advice-add 'goto-line-preview :after #'jcs-advice-goto-line-after))
