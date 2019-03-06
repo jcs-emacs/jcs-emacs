@@ -269,6 +269,7 @@
 (define-key global-map (kbd "C-b") #'jcs-sr-speedbar-toggle)    ;; Compatible to `VS Code'.
 (define-key speedbar-mode-map (kbd "<backspace>") #'speedbar-up-directory)
 (define-key speedbar-mode-map (kbd "<return>") #'jcs-speedbar-edit-line)
+(define-key speedbar-mode-map (kbd "<f2>") #'speedbar-item-rename)
 
 ;; Interface in Emacs using Git.
 (require 'magit)
@@ -394,6 +395,9 @@
 (require 'whitespace)
 (define-key global-map (kbd "C-x b") #'whitespace-mode)
 
+;; Rename file
+(define-key global-map (kbd "M-<f2>") #'jcs-rename-current-buffer-file)
+
 
 (defun jcs-global-key-rebind ()
   "Some key are not allow to bind, the solution here is just re-bind
@@ -404,9 +408,6 @@ the key everytime the mode changes."
 
   ;; Read-Only toggle.
   (define-key global-map (kbd "C-r o") #'read-only-mode)
-
-  ;; Rename file
-  (define-key global-map "\C-re" #'jcs-rename-current-buffer-file)
 
   ;; Replace
   (define-key global-map (kbd "C-r C-r") #'iedit-mode)
