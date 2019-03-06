@@ -94,7 +94,6 @@
 (defun jcs-speedbar-edit-line ()
   "Customize `speedbar-edit-line' function."
   (interactive)
-
   (let ((is-opening-a-file t))
     (save-excursion
       (beginning-of-line)
@@ -113,7 +112,7 @@
     (call-interactively #'sr-speedbar-select-window)
 
     ;; If is file..
-    (when (equal is-opening-a-file t)
+    (when is-opening-a-file
       (let (;; Preserve the previous selected window.
             (record-selected-window jcs-sr-speedbar-record-selected-window))
         ;; Back to previous select window.
@@ -150,7 +149,6 @@
 (defun jcs-sr-speedbar-toggle ()
   "Toggle the speedbar window."
   (interactive)
-
   (if (sr-speedbar-exist-p)
       (progn
         ;; Close it.
@@ -160,24 +158,39 @@
         (select-window jcs-sr-speedbar-record-selected-window)
 
         ;; Try to open a recorded opening file.
-        (unless (equal jcs-speedbar-opening-buffer-file-name nil)
+        (when jcs-speedbar-opening-buffer-file-name
           (find-file jcs-speedbar-opening-buffer-file-name)))
     (progn
-      (setq jcs-sr-speedbar-record-selected-window (selected-window))
-
       (ignore-errors
-        ;; Goto very right/left of the window.
-        ;;
-        ;; Just set to something very high, so it will ensure we go to
-        ;; either the most right and the most left of the window.
-        ;; Here we set it to `100' as default.
-        (if (equal jcs-sr-speedbar-window-all-on-right t)
-            (windmove-right 100)
-          (windmove-left 100)))
+        (call-interactively #'speedbar-refresh))
 
-      ;; Open it.
-      (call-interactively #'sr-speedbar-toggle)
+      (setq jcs-sr-speedbar-record-selected-window (selected-window))
+      (let ((starting-buffer (buffer-name))
+            (last-window-buffer nil))
+        ;; First toggle once.
+        (call-interactively #'sr-speedbar-toggle)
+        (call-interactively #'sr-speedbar-toggle)
 
+        (ignore-errors
+          ;; Goto very right/left of the window.
+          ;;
+          ;; Just set to something very high, so it will ensure we go to
+          ;; either the most right and the most left of the window.
+          ;; Here we set it to `100' as default.
+          (if jcs-sr-speedbar-window-all-on-right
+              (windmove-right 100)
+            (windmove-left 100)))
+
+        (setq last-window-buffer (buffer-name))
+        (switch-to-buffer starting-buffer)
+
+        ;; Open it.
+        (call-interactively #'sr-speedbar-toggle)
+
+        ;; Switch back to original buffer after speedbar is activated.
+        (switch-to-buffer last-window-buffer))
+
+      ;; Select the speedbar window.
       (call-interactively #'sr-speedbar-select-window))))
 
 ;;----------------------------------------------
@@ -188,7 +201,6 @@
 (defun jcs-toggle-sublimity-mode ()
   "Toggle sublimity mode and reactive `global-linum-mode'."
   (interactive)
-
   (call-interactively #'sublimity-mode)
   (global-linum-mode 1))
 
