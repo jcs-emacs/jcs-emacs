@@ -162,6 +162,9 @@
           (find-file jcs-speedbar-opening-buffer-file-name)))
     (progn
       (ignore-errors
+        ;; Refresh the speedbar everytime the speedbar
+        ;; is activated. This call make speedbar execute
+        ;; in the correct directory tree.
         (call-interactively #'speedbar-refresh))
 
       (setq jcs-sr-speedbar-record-selected-window (selected-window))
