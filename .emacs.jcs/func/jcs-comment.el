@@ -138,9 +138,11 @@ comment character on the same line."
             (progn
               (goto-char last)
 
-              (newline-and-indent)
+              (insert "\n")
               (when (jcs-is-inside-comment-block-p)
-                (insert "* "))))
+                (insert "* "))
+
+              (indent-for-tab-command)))
 
           (unless start-of-global-comment-doc
             (let ((is-global-comment-doc nil))
