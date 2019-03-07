@@ -161,18 +161,25 @@
         (when jcs-speedbar-opening-buffer-file-name
           (find-file jcs-speedbar-opening-buffer-file-name)))
     (progn
-      (ignore-errors
-        ;; Refresh the speedbar everytime the speedbar
-        ;; is activated. This call make speedbar execute
-        ;; in the correct directory tree.
-        (call-interactively #'speedbar-refresh))
-
       (setq jcs-sr-speedbar-record-selected-window (selected-window))
-      (let ((starting-buffer (buffer-name))
-            (last-window-buffer nil))
-        ;; First toggle once.
+
+      (let ((default-directory default-directory)
+            (pro-dir (cdr (project-current))))
+        ;; NOTE(jenchieh): Use current buffer directory as default.
+        (when (buffer-file-name)
+          (setq default-directory (f-dirname (buffer-file-name))))
+
+        ;; NOTE(jenchieh): If found project directory, use project directory.
+        (when pro-dir
+          (setq default-directory pro-dir))
+
+        ;; Esure speedbar is active.
         (call-interactively #'sr-speedbar-toggle)
         (call-interactively #'sr-speedbar-toggle)
+
+        ;; Refresh the speedbar object after the `default-directory'
+        ;; has been set.
+        (call-interactively #'speedbar-refresh)
 
         (ignore-errors
           ;; Goto very right/left of the window.
@@ -184,14 +191,8 @@
               (windmove-right 100)
             (windmove-left 100)))
 
-        (setq last-window-buffer (buffer-name))
-        (switch-to-buffer starting-buffer)
-
         ;; Open it.
-        (call-interactively #'sr-speedbar-toggle)
-
-        ;; Switch back to original buffer after speedbar is activated.
-        (switch-to-buffer last-window-buffer))
+        (call-interactively #'sr-speedbar-toggle))
 
       ;; Select the speedbar window.
       (call-interactively #'sr-speedbar-select-window))))
