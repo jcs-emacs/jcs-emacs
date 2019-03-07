@@ -75,6 +75,7 @@ Return a list of installed packages or nil for every skipped package."
                                    csharp-mode
                                    dash
                                    diminish
+                                   dimmer
                                    ein
                                    elpy
                                    emmet-mode
