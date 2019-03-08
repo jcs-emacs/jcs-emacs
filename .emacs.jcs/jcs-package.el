@@ -82,6 +82,7 @@ Return a list of installed packages or nil for every skipped package."
                                    exec-path-from-shell
                                    find-file-in-project
                                    floobits
+                                   focus
                                    flycheck
                                    flymake-cursor
                                    flymake-easy
