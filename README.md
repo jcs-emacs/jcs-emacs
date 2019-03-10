@@ -131,19 +131,19 @@ the `copy` key is `C-c C-c`.
 ## Installation ##
 To install, clone this repo and copy the core `files`/`directories` 
 to the emacs config directory accordingly.
-```sh
+```bash
 # clone this repo
-git clone https://github.com/jcs090218/jcs-emacs-init.git
+$ git clone https://github.com/jcs090218/jcs-emacs-init.git
 
 # change current directory to project directory
-cd jcs-emacs-init
+$ cd jcs-emacs-init
 
 # copy init file to home
-cp ./.emacs ~/
+$ cp ./.emacs ~/
 
 # copy core directories to home
-cp -r ./.emacs.d ~/
-cp -r ./.emacs.jcs ~/
+$ cp -r ./.emacs.d ~/
+$ cp -r ./.emacs.jcs ~/
 ```
 
 
