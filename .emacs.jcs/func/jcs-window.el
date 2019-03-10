@@ -283,6 +283,16 @@ i.e. change right window to bottom, or change bottom window to right."
 ;; Transparent
 ;;-----------------------------------------------------------
 
+(defvar jcs-current-frame-transparency 100
+  "Current active frame transparency.")
+
+(defvar jcs-record-toggle-frame-transparency 80
+  "Record toggle frame transparency.")
+
+(defvar jcs-default-delta-transparency 5
+  "Delta increament/decreament transparency value.")
+
+
 (set-frame-parameter (selected-frame) 'alpha '(100 . 100))
 (add-to-list 'default-frame-alist '(alpha . (100 . 100)))
 
@@ -298,28 +308,19 @@ ALPHA-LEVEL : Target alpha level you want to set to the current frame."
                        alpha-level))
         (myalpha (frame-parameter nil 'alpha)))
     (set-frame-parameter nil 'alpha alpha-level))
-  (message (format "Frame alpha level is %d" (frame-parameter nil 'alpha))))
+  (message (format "Frame alpha level is %d" (frame-parameter nil 'alpha)))
+  (setq jcs-current-frame-transparency alpha-level)
+  (unless (= alpha-level 100)
+    (setq jcs-record-toggle-frame-transparency alpha-level)))
 
 ;;;###autoload
 (defun jcs-toggle-transparent-frame ()
-  "Toggle frame's transparency between 80% and 100%."
+  "Toggle frame's transparency between `recorded'% and 100%."
   (interactive)
-  ;; SOURCE(jenchieh): https://www.emacswiki.org/emacs/TransparentEmacs
-  (let ((alpha (frame-parameter nil 'alpha)))
-    (set-frame-parameter
-     nil 'alpha
-     (if (eql (cond ((numberp alpha) alpha)
-                    ((numberp (cdr alpha)) (cdr alpha))
-                    ;; Also handle undocumented (<active> <inactive>) form.
-                    ((numberp (cadr alpha)) (cadr alpha)))
-              100)
-         ;; NOTE(jenchieh): Second parameter is transparency
-         ;; when not focus.
-         ;; (when focus, when not focus)
-         '(80 . 80) '(100 . 100)))))
+  (if (= jcs-current-frame-transparency 100)
+      (jcs-set-transparency jcs-record-toggle-frame-transparency)
+    (jcs-set-transparency 100)))
 
-(defvar jcs-default-delta-transparency 5
-  "Delta increament/decreament transparency value.")
 
 (defun jcs-delta-frame-transparent (del-trans)
   "Delta change the frame transparency by a certain percentage.
