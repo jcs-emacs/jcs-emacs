@@ -141,6 +141,7 @@ Return a list of installed packages or nil for every skipped package."
                                    py-autopep8
                                    python-mode
                                    rainbow-mode
+                                   restart-emacs
                                    right-click-context
                                    rust-mode
                                    scala-mode
