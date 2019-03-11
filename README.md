@@ -36,8 +36,9 @@ and it has extended from this configuration.
 
 This configuration polished and goes toward to the modern 
 text editor, or even better, it goes beyond modern IDE. 
-e.g. Atom, Brackets, Sublime Text 2 or 3, Visual Studio 
-Code, etc. 
+e.g. [Atom](https://atom.io/), [Brackets](http://brackets.io/), 
+[Sublime Text 2](https://www.sublimetext.com/2) or [3](https://www.sublimetext.com/), 
+[Visual Studio Code](https://code.visualstudio.com/), etc. 
 
 
 ## Features ##
