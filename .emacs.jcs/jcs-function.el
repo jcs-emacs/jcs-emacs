@@ -275,6 +275,20 @@
   (call-interactively #'linum-mode)
   (call-interactively #'linum-mode))
 
+
+;;---------------------------------------------
+;; Iedit
+;;---------------------------------------------
+
+;;;###autoload
+(defun jcs-iedit-mode ()
+  "Enable Iedit mode in the safe way."
+  (interactive)
+  (when (and (not (jcs-current-whitespace-or-tab-p))
+             (not (jcs-is-beginning-of-line-p)))
+    (call-interactively #'iedit-mode)))
+
+
 ;;---------------------------------------------
 ;; Return
 ;;---------------------------------------------
