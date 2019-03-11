@@ -98,7 +98,7 @@ this version instead."
 (defun jcs-beginning-of-line ()
   "JayCeS beginning of line."
   (interactive)
-  (if (jcs-is-minor-mode-enabled-p truncate-lines)
+  (if truncate-lines
       (call-interactively #'jcs-back-to-indentation-or-beginning)
     (call-interactively #'jcs-beginning-of-visual-line)))
 
@@ -106,7 +106,7 @@ this version instead."
 (defun jcs-end-of-line ()
   "JayCeS end of line."
   (interactive)
-  (if (jcs-is-minor-mode-enabled-p truncate-lines)
+  (if truncate-lines
       (call-interactively #'end-of-line)
     (call-interactively #'jcs-end-of-visual-line)))
 
