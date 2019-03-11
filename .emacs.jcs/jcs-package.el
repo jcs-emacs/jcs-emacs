@@ -92,9 +92,7 @@ Return a list of installed packages or nil for every skipped package."
                                    git-timemachine
                                    gitattributes-mode
                                    gitconfig-mode
-                                   github-notifier
                                    gitignore-mode
-                                   gitlab
                                    go-mode
                                    google-c-style
                                    google-maps
