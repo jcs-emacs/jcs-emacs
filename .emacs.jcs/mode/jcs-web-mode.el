@@ -31,6 +31,7 @@
 ;;============================
 ;;; Web Dev useful packages.
 (require 'auto-rename-tag)
+(require 'emmet-mode)
 (require 'htmltagwrap)
 
 
@@ -290,13 +291,6 @@
 ;;============================
 ;; CSS editing
 
-(require 'emmet-mode)
-(require 'rainbow-mode)
-
-;; css indent spaces.
-(setq css-indent-offset 2)
-
-
 ;; TODO(jenchieh): No idea why, but this could not put it at
 ;; the .emacs file's Manually install section.
 ;; CSS Mode: https://www.emacswiki.org/emacs/css-mode.el
@@ -304,8 +298,13 @@
 
 (require 'css-mode)
 (require 'com-css-sort)
+(require 'rainbow-mode)
+
+;; css indent spaces.
+(setq css-indent-offset 2)
 
 (defun jcs-css-mode-hook ()
+  "Hook for CSS mode."
 
   ;; enable impatient mode for real time editing.
   (impatient-mode t)
