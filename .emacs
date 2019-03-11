@@ -14,11 +14,11 @@
 (setq debug-on-error t)
 
 (defvar jcs-init-gc-cons-threshold (* 1024 1024 128)
-  "The `CG' threshold during starting up.")
+  "The `GC' threshold during starting up.")
 (defvar jcs-normal-gc-cons-threshold (* 1024 1024 20)
-  "The `CG' threshold during the normal task.")
+  "The `GC' threshold during the normal task.")
 
-;; NOTE(jenchieh): Raise the `CG' threshold when starting Emacs.
+;; NOTE(jenchieh): Raise the `GC' threshold when starting Emacs.
 (setq gc-cons-threshold jcs-init-gc-cons-threshold)
 
 ;;------------------------------------------------------------------------------------------------------

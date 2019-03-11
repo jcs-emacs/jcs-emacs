@@ -52,7 +52,7 @@
   (jcs-reload-file-info)
   (jcs-reload-docstring-info)
 
-  ;; NOTE(jenchieh): Lower the `CG' back to normal threshold.
+  ;; NOTE(jenchieh): Lower the `GC' back to normal threshold.
   (setq gc-cons-threshold jcs-normal-gc-cons-threshold)
   )
 (add-hook 'after-init-hook 'jcs-after-init-hook)
