@@ -68,6 +68,7 @@
  '(ahs-face ((t (:foreground nil :background "#113D6F"))))
  '(ahs-plugin-defalt-face ((t (:foreground nil :background "#123E70")))))
 
+(put 'erase-buffer 'disabled nil)
 
 ;;------------------------------------------------------------------------------------------------------
 ;;;
@@ -191,4 +192,3 @@
 
 ;;------------------------------------------------------------------------------------------------------
 ;; This is the end of .emacs file
-(put 'erase-buffer 'disabled nil)
