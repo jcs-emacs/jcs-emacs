@@ -1,16 +1,7 @@
-;; ========================================================================
-;; $File: jcs-global-key.el $
-;; $Date: 2017-03-17 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2017 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-global-key.el --- Global Key Definition.  -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
-
-;;================================================
-;; JayCeS Global Key
-;;================================================
 
 ;; Setup my key binding
 (global-set-key (read-kbd-macro "\eb") #'ido-switch-buffer)
@@ -419,3 +410,7 @@ the key everytime the mode changes."
   (define-key global-map (kbd "C-r DEL") #'jcs-backward-delete-current-char-repeat)
   (define-key global-map (kbd "C-r S-<backspace>") #'jcs-forward-delete-current-char-repeat)
   )
+
+
+(provide 'jcs-global-key)
+;;; jcs-global-key.el ends here
