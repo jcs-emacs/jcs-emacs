@@ -605,7 +605,7 @@ LINE : number to check if current line this line?"
     (= firstCharPoint current-point)))
 
 (defun jcs-is-infront-first-char-at-line-p ()
-  "Check current cursor point is after the first character at \
+  "Check current cursor point is before the first character at \
 the current line.
 
 @return { boolean } : true, infront of first character.
