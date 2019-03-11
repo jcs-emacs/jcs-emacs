@@ -104,7 +104,6 @@ Is the opposite of `jcs-web-toggle-auto-truncate-lines'."
 No idea why, yank function just need to get wrap by
 another function..."
   (interactive)
-
   ;; if region, delete the region first.
   (when (use-region-p)
     ;; NOTE(jayces): `kill-region' will copy the word.
@@ -119,9 +118,7 @@ another function..."
 (defun jcs-web-backward-delete-word ()
   "Web backward delete the word, fit PHP variable naming."
   (interactive)
-
   (backward-delete-char 1)
-
   (when (and (not (jcs-current-whitespace-or-tab-p))
              (not (jcs-current-char-equal-p "$"))
              (jcs-current-char-a-wordp))
@@ -131,9 +128,7 @@ another function..."
 (defun jcs-web-backward-delete-word-capital ()
   "Web backward delete word capital, fit PHP variable naming."
   (interactive)
-
   (backward-delete-char 1)
-
   (when (and (not (jcs-current-whitespace-or-tab-p))
              (not (jcs-current-char-equal-p "$"))
              (not (jcs-current-char-uppercasep))
