@@ -204,9 +204,9 @@
 
 (define-key global-map "\er" #'revert-buffer-no-confirm)
 
-;;; iedit (SEE: `jcs-mode-el' will have detail mode config.)
+;;; SEE(jenchieh): `jcs-mode-el' will have detail mode config.
 ;; Fix "iedit" bug for OSX
-(define-key global-map (kbd "C-c ;") #'iedit-mode)
+(define-key global-map (kbd "C-c ;") #'jcs-iedit-mode)
 
 ;;; Font
 (define-key global-map (kbd "C-c f") #'jcs-change-font)
@@ -370,7 +370,7 @@
 ;;; Helm
 ;; More key binding in `jcs-helm.el'
 
-;;; Tabbar
+;;; Tabbar
 (require 'tabbar)
 (define-key global-map (kbd "C-t") #'jcs-toggle-tabbar-mode)
 (define-key global-map [C-S-tab] #'tabbar-forward)
@@ -410,7 +410,7 @@ the key everytime the mode changes."
   (define-key global-map (kbd "C-r o") #'read-only-mode)
 
   ;; Replace
-  (define-key global-map (kbd "C-r C-r") #'iedit-mode)
+  (define-key global-map (kbd "C-r C-r") #'jcs-iedit-mode)
 
   ;; Recent Files
   (define-key global-map (kbd "C-r f") #'recentf-open-files)
