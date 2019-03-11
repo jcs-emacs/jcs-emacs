@@ -1,13 +1,17 @@
-;; This is the start of .emacs file
-;;------------------------------------------------------------------------------------------------------
+;;; .emacs --- Load the full configuration -*- lexical-binding: t -*-
+;;; Commentary:
 
-;; This is my super-poopy .emacs file.
+;; This file bootstraps the configuration, which is divided into
+;; a number of other files.
+;;
 ;; I barely know how to program LISP, and I know
 ;; even less about ELISP.  So take everything in
 ;; this file with a grain of salt!
 ;;
 ;; - Casey
 ;; - JenChieh (Modefied)
+
+;;; Code:
 
 
 ;; DEBUG(jenchieh): Debug mode?
@@ -196,5 +200,9 @@
 ;;; Do stuff after initialize.
 (require 'jcs-after-init)
 
-;;------------------------------------------------------------------------------------------------------
-;; This is the end of .emacs file
+
+;; Local Variables:
+;; coding: utf-8
+;; no-byte-compile: t
+;; End:
+;;; .emacs ends here
