@@ -1,16 +1,7 @@
-;; ========================================================================
-;; $File: jcs-preproc-func.el $
-;; $Date: 2017-12-14 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2017 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-preproc-func.el --- Preprocessor Languages related.  -*- lexical-binding: t -*-
+;;; Commentary: Functions for Preprocessor Languages.
+;;; Code:
 
-
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-;; Functions for Preprocessor Languages.
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 (defvar jcs-preproc-highlight-modes '(cc-mode
                                       c-mode
@@ -37,3 +28,7 @@
            ("[#%][ \t]*if !defined[a-z0-9_$]*[ \t]*\\([a-zA-Z0-9_$]*\\)" 1 'jcs-preproc-variable-name-face t)
            )'end))
       jcs-preproc-highlight-modes)
+
+
+(provide 'jcs-preproc-func)
+;;; jcs-preproc-func.el ends here

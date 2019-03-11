@@ -1,16 +1,7 @@
-;; ========================================================================
-;; $File: jcs-go-mode.el $
-;; $Date: 2017-10-21 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2017 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-go-mode.el --- GO mode. -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
-
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-;; JenChieh GO mode.
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 (require 'go-mode)
 (defun jcs-go-mode-hook ()
@@ -44,3 +35,7 @@
 (add-hook 'go-mode-hook 'jcs-go-mode-hook)
 
 (add-to-list 'auto-mode-alist '("\\.go?\\'" . go-mode))
+
+
+(provide 'jcs-go-mode)
+;;; jcs-go-mode.el ends here

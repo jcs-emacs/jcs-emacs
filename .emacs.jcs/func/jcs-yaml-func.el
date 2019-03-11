@@ -1,11 +1,6 @@
-;; ========================================================================
-;; $File: jcs-yaml-func.el $
-;; $Date: 2018-12-21 16:21:54 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2018 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-yaml-func.el --- Self defines function.  -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
 
 ;;;###autoload
@@ -15,3 +10,7 @@
   (if (use-region-p)
       (delete-region (region-beginning) (region-end))
     (call-interactively #'yaml-electric-backspace)))
+
+
+(provide 'jcs-yaml-func)
+;;; jcs-yaml-func.el ends here

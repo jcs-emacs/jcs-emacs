@@ -1,11 +1,6 @@
-;; ========================================================================
-;; $File: jcs-c++-mode.el $
-;; $Date: 2016-10-21 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2016 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-c++-mode.el --- C++ mode. -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
 
 (defun jcs-c++-mode-hook ()
@@ -94,3 +89,7 @@
          '(("::\\([a-zA-Z0-9_]*\\)" 1 'jcs-c++-namespace-face t)
            )'end))
       jcs-c++-font-lock-namespace)
+
+
+(provide 'jcs-c++-mode)
+;;; jcs-c++-mode.el ends here

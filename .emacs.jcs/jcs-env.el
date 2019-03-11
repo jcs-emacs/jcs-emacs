@@ -1,16 +1,7 @@
-;; ========================================================================
-;; $File: jcs-env.el $
-;; $Date: 2017-05-29 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2017 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-env.el --- Environment Settings.  -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
-
-;;================================================
-;; JayCeS Environment Settings.
-;;================================================
 
 ;; Stop Emacs from losing undo information by
 ;; setting very high limits for undo buffers
@@ -249,3 +240,7 @@
 ;;; Recent files
 (recentf-mode 1)
 (setq recentf-max-menu-items 25)
+
+
+(provide 'jcs-env)
+;;; jcs-env.el ends here

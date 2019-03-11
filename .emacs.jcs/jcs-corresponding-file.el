@@ -1,11 +1,6 @@
-;; ========================================================================
-;; $File: jcs-corresponding-file.el $
-;; $Date: 2018-05-15 16:06:18 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2018 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-corresponding-file.el --- Corresponding file handle.  -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
 
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -133,3 +128,7 @@
 
     ;; Return file name.
     corresponding-file-name))
+
+
+(provide 'jcs-corresponding-file)
+;;; jcs-corresponding-file.el ends here

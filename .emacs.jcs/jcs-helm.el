@@ -1,16 +1,7 @@
-;; ========================================================================
-;; $File: jcs-helm.el $
-;; $Date: 2017-03-17 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2017 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-helm.el --- Helm related.  -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
-
-;;================================================
-;; JayCeS Helm
-;;================================================
 
 ;; 相關教學:
 ;; * http://emacsist.com/10295
@@ -151,3 +142,7 @@
  '(helm-gtags-path-style 'relative)
  '(helm-gtags-ignore-case t)
  '(helm-gtags-auto-update t))
+
+
+(provide 'jcs-helm)
+;;; jcs-helm.el ends here

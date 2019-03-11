@@ -1,11 +1,6 @@
-;; ========================================================================
-;; $File: jcs-frame.el $
-;; $Date: 2018-06-16 12:08:18 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2018 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-frame.el --- Frame related.  -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
 
 ;;;###autoload
@@ -34,3 +29,7 @@
   "Return non-nil, if frame maximized.
 Return nil, if frame not maximized."
   (cdr (assoc 'fullscreen (frame-parameters))))
+
+
+(provide 'jcs-frame)
+;;; jcs-frame.el ends here

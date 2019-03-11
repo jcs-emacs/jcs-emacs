@@ -121,7 +121,6 @@ Return a list of installed packages or nil for every skipped package."
                                    ;; Then we can add this line under directly.
                                    ;;
                                    ;;jcs-ex-pkg
-                                   jdee
                                    js2-mode
                                    js2-refactor
                                    json-mode
@@ -130,7 +129,6 @@ Return a list of installed packages or nil for every skipped package."
                                    magit
                                    markdown-mode
                                    markdown-preview-mode
-                                   meghanada
                                    multiple-cursors
                                    nasm-mode
                                    nhexl-mode

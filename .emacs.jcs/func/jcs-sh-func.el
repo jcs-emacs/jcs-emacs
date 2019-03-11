@@ -1,11 +1,6 @@
-;; ========================================================================
-;; $File: jcs-sh-func.el $
-;; $Date: 2018-06-19 20:58:38 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2018 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-sh-func.el --- ShellScript related.  -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
 
 ;;;###autoload
@@ -21,3 +16,7 @@
   (interactive)
   (set-buffer-file-coding-system 'unix)
   (jcs-tabify-save-buffer))
+
+
+(provide 'jcs-sh-func)
+;;; jcs-sh-func.el ends here

@@ -1,11 +1,6 @@
-;; ========================================================================
-;; $File: jcs-face.el $
-;; $Date: 2017-12-13 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2017 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-face.el --- Face related.  -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
 
 ;;----------------------------------------------
@@ -66,7 +61,6 @@ For those mode does not apply faces correctly!"
                           haskell-mode
                           haxe-mode
                           java-mode
-                          jdee-mode
                           js2-mode
                           lisp-mode
                           lua-mode
@@ -310,3 +304,7 @@ For those mode does not apply faces correctly!"
              ("`\\([a-zA-Z0-9_$-.!]*\\)'" 1 'jcs-font-lock-key-highlight-face t)
              )'end)))
       jcs-fixme-modes)
+
+
+(provide 'jcs-face)
+;;; jcs-face.el ends here

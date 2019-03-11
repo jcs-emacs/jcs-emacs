@@ -1,11 +1,6 @@
-;; ========================================================================
-;; $File: jcs-message-mode.el $
-;; $Date: 2016-10-21 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2016 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-message-mode.el --- Message mode. -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
 
 (defun jcs-message-mode-hook ()
@@ -25,3 +20,7 @@
   (define-key message-mode-map (kbd "<down>") #'next-line)
   )
 (add-hook 'message-mode-hook 'jcs-message-mode-hook)
+
+
+(provide 'jcs-message-mode)
+;;; jcs-message-mode.el ends here

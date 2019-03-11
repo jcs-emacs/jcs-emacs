@@ -1,11 +1,6 @@
-;; ========================================================================
-;; $File: jcs-cc-func.el $
-;; $Date: 2016-10-21 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2016 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-window.el --- Window related.  -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
 
 ;;-----------------------------------------------------------
@@ -356,3 +351,7 @@ DEL-TRANS : Delta transparency value."
   (unless del-trans
     (setq del-trans (jcs-to-negative jcs-default-delta-transparency)))
   (jcs-delta-frame-transparent del-trans))
+
+
+(provide 'jcs-window)
+;;; jcs-window.el ends here

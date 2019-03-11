@@ -1,16 +1,7 @@
-;; ========================================================================
-;; $File: jcs-edit.el $
-;; $Date: 2016-10-21 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2016 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-edit.el --- When editing the file.  -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
-
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-;; When editing the file.
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 ;;----------------------------------------------
 ;; Undo/Redo
@@ -1358,3 +1349,7 @@ REVERSE : t forward, nil backward."
         (forward-char 1)
         (when (jcs-current-char-equal-p close-pair-symbol)
           (backward-delete-char 1))))))
+
+
+(provide 'jcs-edit)
+;;; jcs-edit.el ends here

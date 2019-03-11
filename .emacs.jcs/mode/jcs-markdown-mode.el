@@ -1,11 +1,6 @@
-;; ========================================================================
-;; $File: jcs-markdown-mode.el $
-;; $Date: 2018-10-18 19:38:00 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2018 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-markdown-mode.el --- Markdown mode. -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
 
 (require 'markdown-mode)
@@ -32,3 +27,7 @@
 (add-hook 'markdown-mode-hook 'jcs-markdown-mode-hook)
 
 (add-to-list 'auto-mode-alist '("\\.md'?\\'" . markdown-mode))
+
+
+(provide 'jcs-markdown-mode)
+;;; jcs-markdown-mode.el ends here

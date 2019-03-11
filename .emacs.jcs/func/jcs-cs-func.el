@@ -1,16 +1,7 @@
-;; ========================================================================
-;; $File: jcs-cs-func.el $
-;; $Date: 2017-11-28 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2017 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-cs-func.el --- C Sharp related.  -*- lexical-binding: t -*-
+;;; Commentary: When editing the C# related file.
+;;; Code:
 
-
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-;; When editing the C# related file.
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 (defun jcs-vs-csharp-comment-prefix-p ()
   "Check if current line is a Visual Studio's style comment prefix."
@@ -121,3 +112,7 @@ URL(jenchieh): https://github.com/josteink/csharp-mode/issues/123"
              (jcs-current-char-equal-p "/")
              (jcs-vs-csharp-only-vs-comment-prefix-this-line-p))
     (insert " ")))
+
+
+(provide 'jcs-cs-func)
+;;; jcs-cs-func.el ends here

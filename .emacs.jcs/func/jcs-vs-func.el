@@ -1,11 +1,6 @@
-;; ========================================================================
-;; $File: jcs-vs-func.el $
-;; $Date: 2018-08-31 22:46:41 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2018 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-vs-func.el --- Visual Studio function related.  -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
 
 ;; DESCRIPTION(jenchieh): For function that simulate the Visual Studio
@@ -88,3 +83,7 @@ If nothing is selected, we cut the current line. Else we just delete the region.
   (if (jcs-is-region-selected-p)
       (call-interactively #'kill-region)
     (kill-whole-line)))
+
+
+(provide 'jcs-vs-func)
+;;; jcs-vs-func.el ends here

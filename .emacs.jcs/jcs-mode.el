@@ -1,19 +1,7 @@
-;; ========================================================================
-;; $File: jcs-mode.el $
-;; $Date: 2016-10-21 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2017 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-mode.el --- Self mode defines.  -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
-
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-;; JenChieh mode defines.
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-
-;; Need global key defined first.
-(load-file "~/.emacs.jcs/jcs-global-key.el")
 
 ;;---------------------------------------------
 ;; Trigger between command and insert mode
@@ -249,7 +237,8 @@ control of the editor."
   ;; Search
   (define-key global-map "\C-rp" 'jcs-ag-project-regexp)
 
-  (jcs-global-key-rebind)
+  (when (functionp 'jcs-global-key-rebind)
+    (jcs-global-key-rebind))
   )
 
 ;;;###autoload
@@ -286,5 +275,10 @@ control of the editor."
   ;; Search
   (global-unset-key "\C-rp")
 
-  (jcs-global-key-rebind)
+  (when (functionp 'jcs-global-key-rebind)
+    (jcs-global-key-rebind))
   )
+
+
+(provide 'jcs-mode)
+;;; jcs-mode.el ends here

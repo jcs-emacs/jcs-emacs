@@ -1,11 +1,6 @@
-;; ========================================================================
-;; $File: jcs-nasm-func.el $
-;; $Date: 2017-12-31 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2017 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-nasm-func.el --- Assembly Language related.  -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
 
 ;; First load the mode to prevent overwrite after.
@@ -102,3 +97,7 @@
     (when (and (equal should-indent t)
                (jcs-is-end-of-line-p))
       (insert " "))))
+
+
+(provide 'jcs-nasm-func)
+;;; jcs-nasm-func.el ends here

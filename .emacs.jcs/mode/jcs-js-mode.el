@@ -1,16 +1,7 @@
-;; ========================================================================
-;; $File: jcs-js-mode.el $
-;; $Date: 2016-10-21 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2016 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-js-mode.el --- JavaScript mode. -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
-
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-;; JenChieh JavaScript mode.
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 (require 'ac-js2)
 (setq ac-js2-evaluate-calls t)
@@ -79,3 +70,7 @@
 (add-hook 'js2-mode-hook 'jcs-js-mode-hook)
 
 (add-to-list 'auto-mode-alist '("\\.js'?\\'" . js2-mode))
+
+
+(provide 'jcs-js-mode)
+;;; jcs-js-mode.el ends here

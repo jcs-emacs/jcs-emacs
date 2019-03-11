@@ -1,16 +1,7 @@
-;; ========================================================================
-;; $File: jcs-cc-func.el $
-;; $Date: 2017-11-20 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2017 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-cc-func.el --- C/C++ related.  -*- lexical-binding: t -*-
+;;; Commentary: Functions for C/C++ common.
+;;; Code:
 
-
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-;; Functions for C/C++ common.
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 ;;;###autoload
 (defun jcs-toggle-cc-mode ()
@@ -35,3 +26,7 @@
       (progn
         (setq comment-start "// "
               comment-end "")))))
+
+
+(provide 'jcs-cc-func)
+;;; jcs-cc-func.el ends here

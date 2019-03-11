@@ -1,16 +1,7 @@
-;; ========================================================================
-;; $File: jcs-hook.el $
-;; $Date: 2018-05-12 08:53:47 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2018 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-hook.el --- All the hook event do here.  -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
-
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-;; All the hook event do here..
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 ;;
 ;; All hook listed.
@@ -123,3 +114,7 @@
             ;; while minibuffer exit!
             (setq jcs-top-level-active nil)
             ))
+
+
+(provide 'jcs-hook)
+;;; jcs-hook.el ends here

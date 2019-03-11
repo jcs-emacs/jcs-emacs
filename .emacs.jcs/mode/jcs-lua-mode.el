@@ -1,11 +1,7 @@
-;; ========================================================================
-;; $File: jcs-lua-mode.el $
-;; $Date: 2017-10-21 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2017 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-lua-mode.el --- Lua mode. -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
+
 
 ;; NOTE(jenchieh): Load it once!
 (font-lock-add-keywords
@@ -63,3 +59,7 @@
 
 (add-to-list 'auto-mode-alist '("\\.lua'?\\'" . lua-mode))
 (add-to-list 'auto-mode-alist '("\\.luac'?\\'" . lua-mode))
+
+
+(provide 'jcs-lua-mode)
+;;; jcs-lua-mode.el ends here

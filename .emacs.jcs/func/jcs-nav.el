@@ -1,11 +1,6 @@
-;; ========================================================================
-;; $File: jcs-nav.el $
-;; $Date: 2017-05-31 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2017 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-nav.el --- Nagivation in file.  -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
 
 ;;----------------------------------------------
@@ -692,3 +687,7 @@ as NO-REC : recursive? (Default: do recusrive method)"
   "Search the word at point backward."
   (interactive)
   (isearch-forward-symbol-at-point))
+
+
+(provide 'jcs-nav)
+;;; jcs-nav.el ends here

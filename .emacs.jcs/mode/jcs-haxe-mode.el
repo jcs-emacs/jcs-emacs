@@ -1,11 +1,6 @@
-;; ========================================================================
-;; $File: jcs-haxe-mode.el $
-;; $Date: 2018-08-18 18:22:41 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2018 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-haxe-mode.el --- Haxe mode. -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
 
 (require 'haxe-mode)
@@ -56,3 +51,7 @@
 (add-hook 'haxe-mode-hook 'jcs-haxe-mode-hook)
 
 (add-to-list 'auto-mode-alist '("\\.hx'?\\'" . haxe-mode))
+
+
+(provide 'jcs-haxe-mode)
+;;; jcs-haxe-mode.el ends here

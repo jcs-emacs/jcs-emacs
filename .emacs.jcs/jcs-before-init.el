@@ -1,11 +1,6 @@
-;; ========================================================================
-;; $File: jcs-before-init.el $
-;; $Date: 2017-07-30 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2017 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-before-init.el --- Before initialization.  -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
 
 ;;================================================
@@ -20,3 +15,7 @@
 (global-unset-key "\C-f")
 (global-unset-key (kbd "C-r"))
 (global-unset-key (kbd "C-w"))
+
+
+(provide 'jcs-before-init)
+;;; jcs-before-init.el ends here

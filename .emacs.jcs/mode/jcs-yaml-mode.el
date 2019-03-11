@@ -1,11 +1,6 @@
-;; ========================================================================
-;; $File: jcs-yaml-mode.el $
-;; $Date: 2018-11-25 19:56:05 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2018 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-yaml-mode.el --- YAML mode. -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
 
 (defun jcs-yaml-mode-hook ()
@@ -50,3 +45,7 @@
 
 (add-to-list 'auto-mode-alist '("\\.yaml'?\\'" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.yml'?\\'" . yaml-mode))
+
+
+(provide 'jcs-yaml-mode)
+;;; jcs-yaml-mode.el ends here

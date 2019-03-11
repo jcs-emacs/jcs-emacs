@@ -1,16 +1,7 @@
-;; ========================================================================
-;; $File: jcs-json-mode.el $
-;; $Date: 2016-10-21 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2016 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-js-mode.el --- JSON mode. -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
-
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-;; JenChieh JSON mode.
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 (require 'json-mode)
 ;; self define javascript mode here!
@@ -59,3 +50,7 @@
 (add-hook 'json-mode-hook 'jcs-json-mode-hook)
 
 (add-to-list 'auto-mode-alist '("\\.json?\\'" . json-mode))
+
+
+(provide 'jcs-json-mode)
+;;; jcs-json-mode.el ends here

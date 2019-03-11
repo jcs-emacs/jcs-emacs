@@ -1,16 +1,7 @@
-;; ========================================================================
-;; $File: jcs-log.el $
-;; $Date: 2018-01-04 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2018 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-log.el --- Debug Utils.  -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
-
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-;; Some Debug util.
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 ;;
 ;; TOPIC(jenchieh): How to preserve color in *Messages* buffer?
@@ -121,3 +112,7 @@ IN-VAL-DEL : value delimiter."
                val-del     ;; Index and Value Delimiter
                tmp-str)    ;; Value in current index
       (setq count (1+ count)))))
+
+
+(provide 'jcs-log)
+;;; jcs-log.el ends here

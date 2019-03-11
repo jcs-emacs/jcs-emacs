@@ -1,20 +1,11 @@
-;; ========================================================================
-;; $File: jcs-batch-mode.el $
-;; $Date: 2017-07-21 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2017 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-batch-mode.el --- Batch Mode -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
-
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-;; JenChieh Batch mode.
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 (require 'bat-mode)
 (defun jcs-batch-mode-hook ()
-  ;;
+  "Batch mode hook."
   (electric-pair-mode nil)
 
   ;; Abbrevation expansion
@@ -51,3 +42,7 @@
 (add-hook 'bat-mode-hook 'jcs-batch-mode-hook)
 
 (add-to-list 'auto-mode-alist '("\\.bat?\\'" . bat-mode))
+
+
+(provide 'jcs-batch-mode)
+;;; jcs-batch-mode.el ends here

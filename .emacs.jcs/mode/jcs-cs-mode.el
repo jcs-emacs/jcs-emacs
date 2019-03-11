@@ -1,16 +1,7 @@
-;; ========================================================================
-;; $File: jcs-cs-mode.el $
-;; $Date: 2016-10-21 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2016 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-cs-mode.el --- C# Mode -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
-
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-;; JenChieh C# mode.
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 (require 'csharp-mode)
 (defun jcs-csharp-mode-hook ()
@@ -72,3 +63,7 @@
 (add-hook 'csharp-mode-hook 'jcs-csharp-mode-hook)
 
 (add-to-list 'auto-mode-alist '("\\.cs?\\'" . csharp-mode))
+
+
+(provide 'jcs-cs-mode)
+;;; jcs-cs-mode.el ends here

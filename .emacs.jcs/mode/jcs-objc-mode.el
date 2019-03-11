@@ -1,11 +1,6 @@
-;; ========================================================================
-;; $File: jcs-objc-mode.el $
-;; $Date: 2018-11-20 23:54:16 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2018 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-objc-mode.el --- Objective-C mode. -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
 
 (defun jcs-objc-mode-hook ()
@@ -73,3 +68,7 @@
 (add-hook 'objc-mode-hook 'jcs-objc-mode-hook)
 
 (add-to-list 'auto-mode-alist '("\\.m'?\\'" . objc-mode))
+
+
+(provide 'jcs-objc-mode)
+;;; jcs-objc-mode.el ends here

@@ -1,16 +1,7 @@
-;; ========================================================================
-;; $File: jcs-dev.el $
-;; $Date: 2018-06-04 20:02:35 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2018 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-dev.el --- Development related.  -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
-
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-;; Development related stuff put here..
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 (defun jcs-compile (in-op)
   "Compile command rewrapper.
@@ -150,3 +141,7 @@ IN-FILE : selected file."
                                                                                  "Update Log file: "))
     ;; Open the file. [Default other window]
     (find-file-other-window project-update-log-file-path)))
+
+
+(provide 'jcs-dev)
+;;; jcs-dev.el ends here

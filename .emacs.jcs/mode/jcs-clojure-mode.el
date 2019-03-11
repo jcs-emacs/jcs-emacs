@@ -1,11 +1,6 @@
-;; ========================================================================
-;; $File: jcs-clojure-mode.el $
-;; $Date: 2018-10-11 22:59:25 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2018 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-clojure-mode.el --- Clojure mode. -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
 
 (require 'clojure-mode)
@@ -46,3 +41,7 @@
 (add-to-list 'auto-mode-alist '("\\.clj'?\\'" . clojure-mode))
 (add-to-list 'auto-mode-alist '("\\.cljs'?\\'" . clojurescript-mode))
 (add-to-list 'auto-mode-alist '("\\.cljc'?\\'" . clojurec-mode))
+
+
+(provide 'jcs-clojure-mode)
+;;; jcs-clojure-mode.el ends here

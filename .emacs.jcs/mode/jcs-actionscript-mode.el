@@ -1,16 +1,7 @@
-;; ========================================================================
-;; $File: jcs-actionscript-mode.el $
-;; $Date: 2017-07-21 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2017 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-actionscript-mode.el --- ActionScript 3.0 mode. -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
-
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-;; JenChieh ActionScript 3.0 mode.
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 (require 'actionscript-mode)
 (defun jcs-actionscript-mode-hook ()
@@ -50,3 +41,7 @@
 (add-hook 'actionscript-mode-hook 'jcs-actionscript-mode-hook)
 
 (add-to-list 'auto-mode-alist '("\\.as?\\'" . actionscript-mode))
+
+
+(provide 'jcs-actionscript-mode)
+;;; jcs-actionscript-mode.el ends here

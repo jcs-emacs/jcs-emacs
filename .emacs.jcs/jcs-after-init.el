@@ -1,16 +1,7 @@
-;; ========================================================================
-;; $File: jcs-after-init.el $
-;; $Date: 2017-08-04 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2017 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-after-init.el --- Do stuff after initialization.  -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
-
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-;; Do stuff after initialization.
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 ;;; Override all the mode's key bindings.
 (load-file "~/.emacs.jcs/jcs-global-key.el")
@@ -48,3 +39,7 @@
 (diminish 'skewer-mode)
 (diminish 'which-key-mode)
 (diminish 'yas-minor-mode)
+
+
+(provide 'jcs-after-init)
+;;; jcs-after-init.el ends here

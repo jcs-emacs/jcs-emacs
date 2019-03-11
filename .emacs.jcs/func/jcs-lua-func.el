@@ -1,16 +1,7 @@
-;; ========================================================================
-;; $File: jcs-lua-func.el $
-;; $Date: 2017-11-29 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2017 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-lua-func.el --- Lua related.  -*- lexical-binding: t -*-
+;;; Commentary: When editing the Lua related file.
+;;; Code:
 
-
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-;; When editing the Lua related file.
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 (defun jcs-lua-comment-prefix-p ()
   "Check if current line is a Lua style comment prefix."
@@ -103,3 +94,7 @@ URL(jenchieh): http://lua-users.org/wiki/LuaStyleGuide"
 
         ;; insert comment doc comment string.
         (jcs-insert-comment-style-by-current-line 1)))))
+
+
+(provide 'jcs-lua-func)
+;;; jcs-lua-func.el ends here

@@ -1,17 +1,7 @@
-;; ========================================================================
-;; $File: jcs-scala-mode.el $
-;; $Date: 2018-02-03 12:59:49 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2018 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-scala-mode.el --- Scala mode. -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
-
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-;; Scala mode.
-;; URL(jenchieh): https://www.emacswiki.org/emacs/ScalaMode
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 (require 'scala-mode)
 (defun jcs-scala-mode-hook ()
@@ -39,3 +29,7 @@
 (add-hook 'scala-mode-hook 'jcs-scala-mode-hook)
 
 (add-to-list 'auto-mode-alist '("\\.scala'?\\'" . scala-mode))
+
+
+(provide 'jcs-scala-mode)
+;;; jcs-scala-mode.el ends here

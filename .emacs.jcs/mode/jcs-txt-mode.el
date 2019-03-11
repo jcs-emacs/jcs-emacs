@@ -1,16 +1,7 @@
-;; ========================================================================
-;; $File: jcs-txt-mode.el $
-;; $Date: 2016-10-21 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2016 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-txt-mode.el --- Text mode. -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
-
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-;; JenChieh Text mode.
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 ;;====================================
 ;; Gitignore
@@ -135,3 +126,7 @@
 (add-to-list 'auto-mode-alist '("\\(/\\|\\`\\)README" . org-mode))
 (add-to-list 'auto-mode-alist '("\\(/\\|\\`\\)LICENSE" . org-mode))
 (add-to-list 'auto-mode-alist '("\\(/\\|\\`\\)bochsrc" . org-mode))
+
+
+(provide 'jcs-txt-mode)
+;;; jcs-txt-mode.el ends here

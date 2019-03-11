@@ -1,16 +1,7 @@
-;; ========================================================================
-;; $File: jcs-sass-mode.el $
-;; $Date: 2017-10-21 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2017 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-sass-mode.el --- SASS mode. -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
-
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-;; JenChieh SASS mode.
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 (require 'ssass-mode)
 (defun jcs-sass-mode-hook ()
@@ -47,3 +38,7 @@
   )
 (add-hook 'ssass-mode-hook 'jcs-sass-mode-hook)
 (add-to-list 'auto-mode-alist '("\\.sass'?\\'" . ssass-mode))
+
+
+(provide 'jcs-sass-mode)
+;;; jcs-sass-mode.el ends here

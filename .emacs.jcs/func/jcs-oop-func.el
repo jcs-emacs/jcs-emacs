@@ -1,16 +1,7 @@
-;; ========================================================================
-;; $File: jcs-oop-func.el $
-;; $Date: 2017-11-21 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2017 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-oop-func.el --- OOP programming language related.
+;;; Commentary: Functions for Object Oriented Programming languages.
+;;; Code:
 
-
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-;; Functions for Object Oriented Programming languages.
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 (defvar jcs-oop-highlight-modes '(actionscript-mode
                                   cc-mode
@@ -18,7 +9,6 @@
                                   c++-mode
                                   csharp-mode
                                   java-mode
-                                  ;;jdee-mode  ;; Java has their own doc highlighting.
                                   jayces-mode
                                   js2-mode
                                   lua-mode
@@ -244,7 +234,7 @@
     (setq jcs-lua-return-string (jcs-get-properties tmp-ini-list "LUA_RETURN_STRING"))
     (setq jcs-py-return-string (jcs-get-properties tmp-ini-list "PY_RETURN_STRING"))
     (setq jcs-php-return-string (jcs-get-properties tmp-ini-list "PHP_RETURN_STRING"))
-    (setq jcs-ts-return-string (jcs-get-properties tmp-ini-list "TSs_RETURN_STRING"))
+    (setq jcs-ts-return-string (jcs-get-properties tmp-ini-list "TS_RETURN_STRING"))
 
     ;; open type character.
     (setq jcs-java-open-type-char (jcs-get-properties tmp-ini-list "JAVA_OPEN_TYPE_CHAR"))
@@ -1240,3 +1230,7 @@ SEARCH-OPTION :
            ("^[ \t]* \\([a-zA-Z_$0-9,]*\\)[ \t]*[,)]" 1 'font-lock-variable-name-face t)
            )'end))
       jcs-oop-font-lock-missing-modes)
+
+
+(provide 'jcs-oop-func)
+;;; jcs-oop-func.el ends here

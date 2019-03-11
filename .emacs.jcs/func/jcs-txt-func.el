@@ -1,16 +1,6 @@
-;; ========================================================================
-;; $File: jcs-txt-func.el $
-;; $Date: 2018-01-24 12:14:56 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2018 by Shen, Jen-Chieh $
-;; ========================================================================
-
-
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-;; JenChieh Text mode functionalities.
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+;;; jcs-txt-func.el --- Text mode functionalities.  -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
 
 ;;---------------------------------------------
@@ -121,3 +111,7 @@
   (interactive)
   ;; NOTE(jenchieh): use built-in.
   (org-cycle))
+
+
+(provide 'jcs-txt-func)
+;;; jcs-txt-func.el ends here

@@ -1,11 +1,6 @@
-;; ========================================================================
-;; $File: jcs-c-mode.el $
-;; $Date: 2016-10-21 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2016 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-c-mode.el --- C mode. -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
 
 (defun jcs-c-mode-hook ()
@@ -21,10 +16,6 @@
           ((string-match "[.]cpp" buffer-file-name) (jcs-c++-source-format))
           ((string-match "[.]c" buffer-file-name) (jcs-c-source-format))
           ))
-
-  ;; Set Faces.
-  ;; URL(jenchieh): http://ergoemacs.org/emacs/elisp_define_face.html
-  (setq-local font-lock-comment-face '(jdee-font-lock-javadoc-face))
 
   ;; jcs C key binding
   (define-key c-mode-map [f8] #'jcs-find-corresponding-file)
@@ -77,3 +68,7 @@
 
 ;;(add-to-list 'auto-mode-alist '("\\.h?\\'" . c-mode))
 (add-to-list 'auto-mode-alist '("\\.c?\\'" . c-mode))
+
+
+(provide 'jcs-c-mode)
+;;; jcs-c-mode.el ends here

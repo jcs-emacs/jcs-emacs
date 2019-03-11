@@ -1,16 +1,6 @@
-;; ========================================================================
-;; $File: jcs-minimap-func.el $
-;; $Date: 2016-10-21 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2016 by Shen, Jen-Chieh $
-;; ========================================================================
-
-
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-;; Minimap.
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+;;; jcs-minimap.el --- Minimap function related.  -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
 
 ;;;###autoload
@@ -31,3 +21,7 @@
       (sublimity-map-set-delay 0)
       (put 'jcs-toggle-minimap 'state t)))
   )
+
+
+(provide 'jcs-minimap)
+;;; jcs-minimap.el ends here

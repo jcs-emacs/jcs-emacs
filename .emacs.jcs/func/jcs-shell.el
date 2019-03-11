@@ -1,16 +1,7 @@
-;; ========================================================================
-;; $File: jcs-shell.el $
-;; $Date: 2016-10-21 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2016 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-shell.el --- Shell function.  -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
-
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-;; Toggle Shell Mode
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 ;;;###autoload
 (defun jcs-toggle-shell-window ()
@@ -232,3 +223,7 @@
   (goto-char (point-max))
   ;; Call default completion function.
   (call-interactively #'company-manual-begin))
+
+
+(provide 'jcs-shell)
+;;; jcs-shell.el ends here

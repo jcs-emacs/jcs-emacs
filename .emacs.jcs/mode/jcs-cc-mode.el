@@ -1,16 +1,7 @@
-;; ========================================================================
-;; $File: jcs-cc-mode.el $
-;; $Date: 2016-10-21 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2016 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-cc-mode.el --- C/C++ Common mode. -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
-
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-;; JenChieh C/C++ Common mode.
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 ;; Accepted file extensions and their appropriate modes
 (setq auto-mode-alist
@@ -180,3 +171,7 @@
 ;; Faces
 (set-face-attribute 'preproc-font-lock-preprocessor-background nil
                     :background nil)
+
+
+(provide 'jcs-cc-mode)
+;;; jcs-cc-mode.el ends here

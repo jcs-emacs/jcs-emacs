@@ -1,16 +1,7 @@
-;; ========================================================================
-;; $File: jcs-scss-mode.el $
-;; $Date: 2017-10-21 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2017 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-scss-mode.el --- SCSS mode. -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
-
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-;; JenChieh SCSS mode.
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 (require 'scss-mode)
 (defun jcs-scss-mode-hook ()
@@ -50,3 +41,7 @@
   )
 (add-hook 'scss-mode-hook 'jcs-scss-mode-hook)
 (add-to-list 'auto-mode-alist '("\\.scss?\\'" . scss-mode))
+
+
+(provide 'jcs-scss-mode)
+;;; jcs-scss-mode.el ends here

@@ -1,16 +1,7 @@
-;; ========================================================================
-;; $File: jcs-cmake-mode.el $
-;; $Date: 2016-10-21 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2016 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-cmake-mode.el --- CMake mode. -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
-
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-;; JenChieh CMake mode.
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 (require 'cmake-mode)
 (defun jcs-cmake-mode-hook ()
@@ -77,3 +68,7 @@
 
 ;; For autotools, autoconf, automake.
 (add-to-list 'auto-mode-alist '("\\.ac?\\'" . cmake-mode))
+
+
+(provide 'jcs-cmake-mode)
+;;; jcs-cmake-mode.el ends here

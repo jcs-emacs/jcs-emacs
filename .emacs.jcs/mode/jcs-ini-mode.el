@@ -1,11 +1,6 @@
-;; ========================================================================
-;; $File: jcs-ini-mode.el $
-;; $Date: 2018-12-24 16:23:41 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2018 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-ini-mode.el --- INI mode. -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
 
 (require 'ini-mode)
@@ -37,3 +32,7 @@
 
 (add-to-list 'auto-mode-alist '("\\.properties'?\\'" . ini-mode))
 (add-to-list 'auto-mode-alist '("\\.ini'?\\'" . ini-mode))
+
+
+(provide 'jcs-ini-mode)
+;;; jcs-ini-mode.el ends here

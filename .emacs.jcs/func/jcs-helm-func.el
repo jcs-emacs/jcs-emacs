@@ -1,11 +1,6 @@
-;; ========================================================================
-;; $File: jcs-helm-func.el $
-;; $Date: 2018-06-16 12:18:54 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2018 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-helm-func.el --- Helm function related.  -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
 
 ;;;###autoload
@@ -88,3 +83,7 @@ own preferences."
     ;; NOTE(jenchieh): no longer needed.
     ;;(helm-execute-persistent-action)
     ))
+
+
+(provide 'jcs-helm-func)
+;;; jcs-helm-func.el ends here

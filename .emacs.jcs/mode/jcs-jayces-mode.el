@@ -1,16 +1,6 @@
-;; ========================================================================
-;; $File: jcs-jayces-mode.el $
-;; $Date: 2016-10-21 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2016 by Shen, Jen-Chieh $
-;; ========================================================================
-
-
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-;; JenChieh JayCeS mode.
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+;;; jcs-jayces-mode.el --- JayCeS mode. -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
 
 (require 'jayces-mode)
@@ -45,3 +35,7 @@
 
 (add-to-list 'auto-mode-alist '("\\.jcs'?\\'" . jayces-mode))
 (add-to-list 'auto-mode-alist '("\\.jayces'?\\'" . jayces-mode))
+
+
+(provide 'jcs-jayces-mode)
+;;; jcs-jayces-mode.el ends here

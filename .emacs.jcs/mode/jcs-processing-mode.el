@@ -1,16 +1,6 @@
-;; ========================================================================
-;; $File: jcs-processing-mode.el $
-;; $Date: 2018-03-18 10:26:03 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2018 by Shen, Jen-Chieh $
-;; ========================================================================
-
-
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-;; JenChieh Processing mode.
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+;;; jcs-processing-mode.el --- Processing mode. -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
 (require 'processing-mode)
 
@@ -65,3 +55,7 @@
 (add-hook 'processing-mode-hook 'jcs-processing-mode-hook)
 
 (add-to-list 'auto-mode-alist '("\\.pde'?\\'" . processing-mode))
+
+
+(provide 'jcs-processing-mode)
+;;; jcs-processing-mode.el ends here

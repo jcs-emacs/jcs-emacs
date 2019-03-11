@@ -1,16 +1,7 @@
-;; ========================================================================
-;; $File: jcs-js-mode.el $
-;; $Date: 2017-10-21 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2017 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-nasm-mode.el --- Assembly Language Mode -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
-
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-;; JenChieh Assembly Language mode. (NASM)
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 (require 'nasm-mode)
 (defun jcs-nasm-mode-hook()
@@ -64,3 +55,7 @@
 (add-hook 'nasm-mode-hook 'jcs-nasm-mode-hook)
 (add-to-list 'auto-mode-alist '("\\.asm'?\\'" . nasm-mode))
 (add-to-list 'auto-mode-alist '("\\.inc'?\\'" . nasm-mode))
+
+
+(provide 'jcs-nasm-mode)
+;;; jcs-nasm-mode.el ends here

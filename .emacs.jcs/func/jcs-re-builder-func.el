@@ -1,16 +1,7 @@
-;; ========================================================================
-;; $File: jcs-re-builder.el $
-;; $Date: 2017-11-27 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2017 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-re-builder-func.el --- RE-Builder functions.  -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
-
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-;; JenChieh RE-Builder functions.
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 ;;;###autoload
 (defun jcs-reb-maybe-kill-this-buffer ()
@@ -41,3 +32,7 @@ TYPE : enable/disable case sensitive?"
 
   ;; Set back to default.
   (setq case-fold-search t))
+
+
+(provide 'jcs-re-builder-func)
+;;; jcs-re-builder-func.el ends here

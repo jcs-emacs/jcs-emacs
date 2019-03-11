@@ -1,16 +1,7 @@
-;; ========================================================================
-;; $File: jcs-cmake-func.el $
-;; $Date: 2017-12-04 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2017 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-cmake-func.el --- CMake related.  -*- lexical-binding: t -*-
+;;; Commentary: Functions for CMake and Makefile.
+;;; Code:
 
-
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-;; Functions for CMake and Makefile.
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 (defun jcs-ask-makefile-language (lan)
   "Ask makefile what major language is this makefile going to use.
@@ -121,3 +112,7 @@ TYPE: type of makefile for Python."
   (interactive)
   (insert "\n")
   (py-indent-line-outmost))
+
+
+(provide 'jcs-cmake-func)
+;;; jcs-cmake-func.el ends here

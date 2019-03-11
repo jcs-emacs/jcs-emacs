@@ -1,16 +1,7 @@
-;; ========================================================================
-;; $File: jcs-python-func.el $
-;; $Date: 2017-08-05 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2017 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-python-func.el --- Python related.  -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
-
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-;; When editing the Python file.
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 ;;;###autoload
 (defun jcs-py-indent-region ()
@@ -317,3 +308,7 @@ comment character on the same line."
         ((string= type "Plain")
          (progn
            (jcs-insert-python-template)))))
+
+
+(provide 'jcs-python-func)
+;;; jcs-python-func.el ends here

@@ -1,18 +1,7 @@
-;; ========================================================================
-;; $File: jcs-web-mode.el $
-;; $Date: 2016-10-21 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2016 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-web-mode.el --- Web Development mode. -*- lexical-binding: t -*-
+;;; Commentary: Including HTML, CSS, PHP, JavaScript, JSON.
+;;; Code:
 
-
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-;; JenChieh Web Development mode.
-;;
-;; Including HTML, CSS, PHP, JavaScript, JSON.
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 ;;============================
 ;; Truncate Lines
@@ -374,3 +363,7 @@
 (add-hook 'css-mode-hook 'emmet-mode)
 
 (add-to-list 'auto-mode-alist '("\\.css'?" . css-mode))
+
+
+(provide 'jcs-web-mode)
+;;; jcs-web-mode.el ends here

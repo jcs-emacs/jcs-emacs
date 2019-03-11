@@ -1,16 +1,7 @@
-;; ========================================================================
-;; $File: jcs-plugin.el $
-;; $Date: 2017-05-29 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2017 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-plugin.el --- Plugin Configurations.  -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
-
-;;================================================
-;; JayCeS Environment Settings
-;;================================================
 
 ;; This is only needed once, near the top of the file
 (eval-when-compile
@@ -293,3 +284,7 @@
   :config
   (dimmer-mode)
   (setq dimmer-fraction 0.2))
+
+
+(provide 'jcs-plugin)
+;;; jcs-plugin.el ends here

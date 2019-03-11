@@ -1,11 +1,6 @@
-;; ========================================================================
-;; $File: jcs-shell-mode.el $
-;; $Date: 2018-05-13 22:16:44 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2018 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-shell-mode.el --- Shell/Terminal mode. -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
 
 (require 'company)
@@ -47,3 +42,7 @@
   )
 (add-hook 'shell-mode-hook #'jcs-shell-mode-hook)
 (add-hook 'shell-mode-hook #'company-mode)
+
+
+(provide 'jcs-shell-mode)
+;;; jcs-shell-mode.el ends here

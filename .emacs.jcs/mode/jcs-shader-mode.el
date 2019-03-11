@@ -1,20 +1,13 @@
-;; ========================================================================
-;; $File: jcs-shader-mode.el $
-;; $Date: 2017-07-17 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2017 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-xml-mode.el --- Shader mode. -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
-
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-;; JenChieh Shader mode.
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 (require 'shader-mode)
 
-(defvar jcs-shader-mode-map nil "Keymap for `jcs-shader-mode'")
+(defvar jcs-shader-mode-map nil
+  "Keymap for `jcs-shader-mode'")
+
 (progn
   (setq jcs-shader-mode-map (make-sparse-keymap))
 
@@ -65,3 +58,7 @@
   (use-local-map jcs-shader-mode-map)
   )
 (add-to-list 'auto-mode-alist '("\\.shader?\\'" . jcs-shader-mode))
+
+
+(provide 'jcs-shader-mode)
+;;; jcs-shader-mode.el ends here

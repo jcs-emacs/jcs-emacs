@@ -1,16 +1,7 @@
-;; ========================================================================
-;; $File: jcs-basic-mode.el $
-;; $Date: 2018-02-15 15:38:16 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2018 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-basic-mode.el --- BASIC mode. -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
-
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-;; JenChieh BASIC mode.
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 (require 'basic-mode)
 (defun jcs-basic-mode-hook ()
@@ -45,3 +36,7 @@
 (add-hook 'basic-mode-hook 'jcs-basic-mode-hook)
 
 (add-to-list 'auto-mode-alist '("\\.bas\\'" . basic-mode))
+
+
+(provide 'jcs-basic-mode)
+;;; jcs-basic-mode.el ends here

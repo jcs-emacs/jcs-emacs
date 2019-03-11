@@ -1,16 +1,7 @@
-;; ========================================================================
-;; $File: jcs-util.el $
-;; $Date: 2016-10-21 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2016 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-util.el --- All utilities put here.  -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
-
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-;; All utilities put here.
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 ;;---------------------------------------------
 ;; Buffer
@@ -1225,3 +1216,7 @@ IN-VAL : input value to set to IN-VAR."
   "Hide the last command event post the command is hit."
   (interactive)
   (setq jcs-show-last-command-event nil))
+
+
+(provide 'jcs-util)
+;;; jcs-util.el ends here

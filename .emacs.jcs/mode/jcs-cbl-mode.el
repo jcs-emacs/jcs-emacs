@@ -1,19 +1,11 @@
-;; ========================================================================
-;; $File: jcs-cbl-mode.el $
-;; $Date: 2017-10-26 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2017 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-cbl-mode.el --- COBOL mode. -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
-
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-;; JenChieh COBOL mode.
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 (require 'cobol-mode)
 (defun jcs-cobol-mode-hook ()
+  "COBOL mode hook."
   ;; enable the stuff you want for COBOL here
   (electric-pair-mode nil)
 
@@ -53,3 +45,7 @@
 (add-hook 'cobol-mode-hook 'jcs-cobol-mode-hook)
 
 (add-to-list 'auto-mode-alist '("\\.cbl?\\'" . cobol-mode))
+
+
+(provide 'jcs-cbl-mode)
+;;; jcs-cbl-mode.el ends here

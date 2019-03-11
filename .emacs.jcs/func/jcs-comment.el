@@ -1,11 +1,6 @@
-;; ========================================================================
-;; $File: jcs-comment.el $
-;; $Date: 2017-05-31 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2017 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-comment.el --- Comment related.  -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
 
 ;;----------------------------------------------
@@ -331,3 +326,7 @@ Otherwise comment line."
         )
     ;; else we just comment one single line.
     (uncomment-region (line-beginning-position) (line-end-position))))
+
+
+(provide 'jcs-comment)
+;;; jcs-comment.el ends here

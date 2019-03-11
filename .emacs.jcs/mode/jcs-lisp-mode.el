@@ -1,16 +1,10 @@
-;; ========================================================================
-;; $File: jcs-lisp-mode.el $
-;; $Date: 2018-10-12 16:05:24 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2018 by Shen, Jen-Chieh $
-;; ========================================================================
-
+;;; jcs-lisp-mode.el --- Lisp mode. -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
 
 (defun jcs-lisp-mode-hook ()
-  "JayCeS Lisp hook."
+  "Lisp mode hook."
 
   ;; Abbrevation expansion
   (abbrev-mode 1)
@@ -41,3 +35,7 @@
 (add-hook 'lisp-mode-hook 'jcs-lisp-mode-hook)
 
 (add-to-list 'auto-mode-alist '("\\.lisp'?\\'" . lisp-mode))
+
+
+(provide 'jcs-lisp-mode)
+;;; jcs-lisp-mode.el ends here

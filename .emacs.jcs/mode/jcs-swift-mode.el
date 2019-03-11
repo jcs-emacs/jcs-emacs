@@ -1,11 +1,6 @@
-;; ========================================================================
-;; $File: jcs-swift-mode.el $
-;; $Date: 2018-11-20 23:19:22 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2018 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-swift-mode.el --- Swift mode. -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
 
 (require 'swift-mode)
@@ -43,3 +38,7 @@
 (add-hook 'swift-mode-hook 'jcs-swift-mode-hook)
 
 (add-to-list 'auto-mode-alist '("\\.swift'?\\'" . swift-mode))
+
+
+(provide 'jcs-swift-mode)
+;;; jcs-swift-mode.el ends here

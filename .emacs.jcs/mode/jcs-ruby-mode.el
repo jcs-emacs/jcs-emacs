@@ -1,11 +1,6 @@
-;; ========================================================================
-;; $File: jcs-ruby-mode.el $
-;; $Date: 2018-11-13 22:03:28 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2018 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-ruby-mode.el --- Ruby mode. -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
 
 (defun jcs-ruby-mode-hook ()
@@ -40,3 +35,7 @@
 (add-hook 'ruby-mode-hook 'jcs-ruby-mode-hook)
 
 (add-to-list 'auto-mode-alist '("\\.rb'?\\'" . ruby-mode))
+
+
+(provide 'jcs-ruby-mode)
+;;; jcs-ruby-mode.el ends here

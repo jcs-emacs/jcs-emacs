@@ -1,11 +1,6 @@
-;; ========================================================================
-;; $File: jcs-font.el $
-;; $Date: 2018-05-21 17:01:33 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2018 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-font.el --- Development related.  -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
 
 (require 'use-ttf)
@@ -24,3 +19,7 @@
 ;; Use the font by `use-ttf-default-ttf-font-name` variable. This will actually
 ;; set your Emacs to your target font.
 (call-interactively #'use-ttf-set-default-font)
+
+
+(provide 'jcs-font)
+;;; jcs-font.el ends here

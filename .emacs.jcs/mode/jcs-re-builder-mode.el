@@ -1,16 +1,7 @@
-;; ========================================================================
-;; $File: jcs-re-builder-mode.el $
-;; $Date: 2017-11-27 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2017 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-re-builder-mode.el --- RE-Builder mode. -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
-
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-;; JenChieh RE-Builder mode.
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 (require 're-builder)
 
@@ -24,3 +15,7 @@
   )
 
 (add-hook 'reb-mode-hook 'jcs-re-builder-mode-hook)
+
+
+(provide 'jcs-re-builder-mode)
+;;; jcs-re-builder-mode.el ends here

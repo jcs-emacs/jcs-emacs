@@ -1,16 +1,7 @@
-;; ========================================================================
-;; $File: jcs-sql-mode.el $
-;; $Date: 2017-09-25 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2017 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-sql-mode.el --- SQL mode. -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
-
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-;; JenChieh SQL mode.
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 (require 'sql-indent)
 ;; URL(jenchieh): https://www.emacswiki.org/emacs/SqlIndent
@@ -21,9 +12,10 @@
 ;; etc.
 (setq sql-indent-offset 1)
 
+
 (require 'sql)
 (defun jcs-sql-mode-hook()
-  "Add hooks to `sql-mode' hook."
+  "SQL mode hook."
   ;; Abbrevation expansion
   (abbrev-mode 1)
 
@@ -59,3 +51,7 @@
 (add-hook 'sql-mode-hook 'jcs-sql-mode-hook)
 
 (add-to-list 'auto-mode-alist '("\\.sql?\\'" . sql-mode))
+
+
+(provide 'jcs-sql-mode)
+;;; jcs-sql-mode.el ends here

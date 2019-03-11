@@ -1,20 +1,11 @@
-;; ========================================================================
-;; $File: jcs-sh-mode.el $
-;; $Date: 2016-10-21 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2016 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-sh-mode.el --- Shell Mode -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
-
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-;; JenChieh Shell mode.
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 (require 'sh-script)
 (defun jcs-sh-script-hook()
-
+  "Shell Script mode hook."
   ;; Abbrevation expansion
   (abbrev-mode 1)
 
@@ -53,3 +44,7 @@
 (add-to-list 'auto-mode-alist '("\\.sh?\\'" . sh-mode))
 (add-to-list 'auto-mode-alist '("\\.linux?\\'" . sh-mode))
 (add-to-list 'auto-mode-alist '("\\.macosx?\\'" . sh-mode))
+
+
+(provide 'jcs-sh-mode)
+;;; jcs-sh-mode.el ends here

@@ -1,11 +1,6 @@
-;; ========================================================================
-;; $File: jcs-haskell-mode.el $
-;; $Date: 2018-06-20 00:42:05 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2018 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-haskell-mode.el --- Haskell mode. -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
 
 (require 'haskell-mode)
@@ -39,3 +34,7 @@
 (add-hook 'haskell-mode-hook 'jcs-haskell-mode-hook)
 
 (add-to-list 'auto-mode-alist '("\\.hs'?\\'" . haskell-mode))
+
+
+(provide 'jcs-haskell-mode)
+;;; jcs-haskell-mode.el ends here

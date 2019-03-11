@@ -1,16 +1,7 @@
-;; ========================================================================
-;; $File: jcs-java-func.el $
-;; $Date: 2018-04-07 15:09:05 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2018 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-java-func.el --- Java related.  -*- lexical-binding: t -*-
+;;; Commentary: When editing the Java related file.
+;;; Code:
 
-
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-;; When editing the Java related file.
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 (defvar jcs-java-source-dir-name "src"
   "Java source directory name.")
@@ -171,3 +162,7 @@ Including adding or removing the package path."
              ("\\(void\\)" 1 'jcs-font-lock-void-face t)
              )'end)))
       jcs-java-font-lock-face-missing-modes)
+
+
+(provide 'jcs-java-func)
+;;; jcs-java-func.el ends here

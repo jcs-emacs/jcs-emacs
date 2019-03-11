@@ -1,16 +1,7 @@
-;; ========================================================================
-;; $File: jcs-web-func.el $
-;; $Date: 2017-07-21 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2017 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-web-func.el --- Web Development related.  -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
-
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-;; When editing the HTML related file.
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 ;;----------------------------------------------
 ;; Web Comment Face
@@ -432,3 +423,7 @@ line by line instead of indent the whole file at once."
   (if (jcs-is-current-point-face "link")
       (call-interactively #'goto-address-at-point)
     (call-interactively #'emmet-expand-line)))
+
+
+(provide 'jcs-web-func)
+;;; jcs-web-func.el ends here

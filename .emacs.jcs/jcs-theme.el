@@ -1,16 +1,7 @@
-;; ========================================================================
-;; $File: jcs-them.el $
-;; $Date: 2017-07-14 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2017 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-theme.el --- Theme.  -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
-
-;;================================================
-;; JayCeS Theme
-;;================================================
 
 ;;;###autoload
 (defun jcs-gray-theme ()
@@ -195,3 +186,7 @@
   ;; Update the `powerline' GUI.
   (powerline-reset)
   )
+
+
+(provide 'jcs-theme)
+;;; jcs-theme.el ends here

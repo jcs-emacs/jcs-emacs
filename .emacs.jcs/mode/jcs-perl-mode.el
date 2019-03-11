@@ -1,16 +1,7 @@
-;; ========================================================================
-;; $File: jcs-perl-mode.el $
-;; $Date: 2018-02-04 22:02:36 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2018 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-perl-mode.el --- Perl mode. -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
-
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-;; JenChieh Perl mode.
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 (require 'perl-mode)
 (defun jcs-perl-mode-hook ()
@@ -51,3 +42,7 @@
 (add-hook 'perl-mode-hook 'jcs-perl-mode-hook)
 
 (add-to-list 'auto-mode-alist '("\\.pl'?\\'" . perl-mode))
+
+
+(provide 'jcs-perl-mode)
+;;; jcs-perl-mode.el ends here

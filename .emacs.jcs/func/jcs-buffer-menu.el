@@ -1,16 +1,7 @@
-;; ========================================================================
-;; $File: jcs-buffer-menu.el $
-;; $Date: 2017-10-21 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2017 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-buffer-menu.el --- Function in buffer menu mode. (*Buffer List*).  -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
-
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-;; Function in buffer menu mode. (*Buffer List*)
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 ;;;###autoload
 (defun jcs-buffer-menu ()
@@ -63,3 +54,7 @@
   (interactive)
   (Buffer-menu-sort 6)
   (goto-char (point-min)))
+
+
+(provide 'jcs-buffer-menu)
+;;; jcs-buffer-menu.el ends here

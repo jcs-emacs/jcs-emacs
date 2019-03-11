@@ -1,11 +1,6 @@
-;; ========================================================================
-;; $File: jcs-typescript-mode.el $
-;; $Date: 2018-10-11 16:03:58 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2018 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-typescript-mode.el --- TypeScript mode. -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
 
 (require 'typescript-mode)
@@ -55,3 +50,7 @@
 (add-hook 'typescript-mode-hook 'jcs-typescript-mode-hook)
 
 (add-to-list 'auto-mode-alist '("\\.ts'?\\'" . typescript-mode))
+
+
+(provide 'jcs-typescript-mode)
+;;; jcs-typescript-mode.el ends here

@@ -1,16 +1,6 @@
-;; ========================================================================
-;; $File: jcs-elisp-mode.el $
-;; $Date: 2016-10-21 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2016 by Shen, Jen-Chieh $
-;; ========================================================================
-
-
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-;; JenChieh Emacs Lisp mode.
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+;;; jcs-elisp-mode.el --- Emacs Lisp Mode -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
 (defun jcs-emacs-lisp-mode-hook ()
   "JayCeS Emacs Lisp hook."
@@ -44,3 +34,7 @@
 (add-hook 'emacs-lisp-mode-hook 'jcs-emacs-lisp-mode-hook)
 
 (add-to-list 'auto-mode-alist '("\\.el'?\\'" . emacs-lisp-mode))
+
+
+(provide 'jcs-elisp-mode)
+;;; jcs-elisp-mode.el ends here

@@ -1,16 +1,7 @@
-;; ========================================================================
-;; $File: jcs-file-info-format.el $
-;; $Date: 2016-10-21 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2016 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-file-info-format.el --- File info format.  -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
-
-;;========================================
-;;      JENCHIEH KEY GLOBAL INFO
-;;----------------------------------
 
 (defvar jcs-template-config-filepath "~/.emacs.jcs/template/template_config.properties"
   "File path to template config properties.")
@@ -433,3 +424,7 @@ on language selected."
 (defun jcs-insert-yaml-template ()
   "Header for YAML header file."
   (jcs-insert-template-by-file-path "~/.emacs.jcs/template/yaml/yaml_template.txt"))
+
+
+(provide 'jcs-file-info-format)
+;;; jcs-file-info-format.el ends here

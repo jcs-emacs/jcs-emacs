@@ -1,24 +1,10 @@
-;; ========================================================================
-;; $File: jcs-java-mode.el $
-;; $Date: 2016-10-21 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2016 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-java-mode.el --- Java mode. -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
 
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-;; JenChieh Java mode.
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-
-
-;;; Minor mode for Java Development
-;; SOURCE: https://github.com/mopemope/meghanada-emacs
-(require 'meghanada)
-
-(require 'jdee)
 (defun jcs-java-mode-hook ()
+  "Java mode hook."
 
   ;; Abbrevation expansion
   (abbrev-mode 1)
@@ -28,9 +14,6 @@
 
   ;; Auto highlight the same word.
   (auto-highlight-symbol-mode t)
-
-  ;;; `meghanada' Configuration
-  ;;(meghanada-mode t)
 
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
@@ -83,30 +66,11 @@
 (add-hook 'java-mode-hook 'jcs-java-mode-hook)
 (add-to-list 'auto-mode-alist '("\\.java'?\\'" . java-mode))
 
-;;(add-hook 'jdee-mode-hook 'jcs-java-mode-hook)
-;;(add-to-list 'auto-mode-alist '("\\.java?\\'" . jdee-mode))
-
-;;(autoload 'jde-mode "~/.emacs.d/elpha/jdee-20160304.536/jdee.el" "JDE mode" t)
-;; (setq auto-mode-alist
-;;       (append '(("\\.java\\'" . jde-mode)) auto-mode-alist))
-
-
-(require 'jdee-font-lock)
-(if (> emacs-major-version 23)
-    (defconst c-doc-face-name 'font-lock-doc-face)
-  ;; starting with 24, cc-fonts clobbers this because of some change of order
-  ;; of loading
-  (eval-after-load
-      "cc-fonts"
-    '(defconst c-doc-face-name 'font-lock-doc-face)))
-
-
-(set-face-attribute 'jdee-font-lock-number-face nil
-                    :foreground "olive drab")
-
-(set-face-attribute 'jdee-font-lock-constant-face nil
-                    :foreground "#D2D2D2")
 
 (require 'javadoc-lookup)
 ;; Function used when performing a minibuffer read.
 (setq javadoc-lookup-completing-read-function #'completing-read)
+
+
+(provide 'jcs-java-mode)
+;;; jcs-java-mode.el ends here

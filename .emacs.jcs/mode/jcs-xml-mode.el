@@ -1,16 +1,7 @@
-;; ========================================================================
-;; $File: jcs-js-mode.el $
-;; $Date: 2016-10-21 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2016 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-xml-mode.el --- XML mode. -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
-
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-;; JenChieh XML mode.
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 (defun jcs-xml-mode-hook ()
 
@@ -48,3 +39,7 @@
 (add-hook 'nxml-mode-hook 'emmet-mode)
 
 (add-to-list 'auto-mode-alist '("\\.xml?\\'" . xml-mode))
+
+
+(provide 'jcs-xml-mode)
+;;; jcs-xml-mode.el ends here

@@ -1,11 +1,6 @@
-;; ========================================================================
-;; $File: jcs-verilog-mode.el $
-;; $Date: 2017-08-04 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2017 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-verilog-mode.el --- Verilog mode. -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
 
 (require 'verilog-mode)
@@ -42,3 +37,7 @@
 (add-hook 'verilog-mode-hook 'jcs-verilog-mode-hook)
 
 (add-to-list 'auto-mode-alist '("\\.v'?\\'" . verilog-mode))
+
+
+(provide 'jcs-verilog-mode)
+;;; jcs-verilog-mode.el ends here

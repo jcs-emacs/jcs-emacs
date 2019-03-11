@@ -1,16 +1,7 @@
-;; ========================================================================
-;; $File: jcs-function.el $
-;; $Date: 2016-10-21 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2016 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-function.el --- Self defines function.  -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
-
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-;; JenChieh self function defines.
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 ;;----------------------------------------------
 ;; Buffer
@@ -311,35 +302,39 @@
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 ;;; Utilities
-(load-file "~/.emacs.jcs/func/jcs-math.el")
-(load-file "~/.emacs.jcs/func/jcs-util.el")
-(load-file "~/.emacs.jcs/func/jcs-frame.el")
-(load-file "~/.emacs.jcs/func/jcs-window.el")
-(load-file "~/.emacs.jcs/func/jcs-shell.el")
-(load-file "~/.emacs.jcs/func/jcs-minimap.el")
-(load-file "~/.emacs.jcs/func/jcs-helm-func.el")
+(require 'jcs-math)
+(require 'jcs-util)
+(require 'jcs-frame)
+(require 'jcs-window)
+(require 'jcs-shell)
+(require 'jcs-minimap)
+(require 'jcs-helm-func)
 
 ;;; Editing
-(load-file "~/.emacs.jcs/func/jcs-buffer-menu.el")
-(load-file "~/.emacs.jcs/func/jcs-edit.el")
-(load-file "~/.emacs.jcs/func/jcs-comment.el")
-(load-file "~/.emacs.jcs/func/jcs-vs-func.el")
+(require 'jcs-buffer-menu)
+(require 'jcs-edit)
+(require 'jcs-comment)
+(require 'jcs-vs-func)
 
 ;;; Navigation
-(load-file "~/.emacs.jcs/func/jcs-nav.el")
+(require 'jcs-nav)
 
 ;;; For Specific Mode
-(load-file "~/.emacs.jcs/func/jcs-txt-func.el")
-(load-file "~/.emacs.jcs/func/jcs-preproc-func.el")
-(load-file "~/.emacs.jcs/func/jcs-cc-func.el")
-(load-file "~/.emacs.jcs/func/jcs-cs-func.el")
-(load-file "~/.emacs.jcs/func/jcs-cmake-func.el")
-(load-file "~/.emacs.jcs/func/jcs-java-func.el")
-(load-file "~/.emacs.jcs/func/jcs-lua-func.el")
-(load-file "~/.emacs.jcs/func/jcs-nasm-func.el")
-(load-file "~/.emacs.jcs/func/jcs-python-func.el")
-(load-file "~/.emacs.jcs/func/jcs-sh-func.el")
-(load-file "~/.emacs.jcs/func/jcs-web-func.el")
-(load-file "~/.emacs.jcs/func/jcs-re-builder-func.el")
-(load-file "~/.emacs.jcs/func/jcs-yaml-func.el")
-(load-file "~/.emacs.jcs/func/jcs-oop-func.el")
+(require 'jcs-txt-func)
+(require 'jcs-preproc-func)
+(require 'jcs-cc-func)
+(require 'jcs-cs-func)
+(require 'jcs-cmake-func)
+(require 'jcs-java-func)
+(require 'jcs-lua-func)
+(require 'jcs-nasm-func)
+(require 'jcs-python-func)
+(require 'jcs-sh-func)
+(require 'jcs-web-func)
+(require 'jcs-re-builder-func)
+(require 'jcs-yaml-func)
+(require 'jcs-oop-func)
+
+
+(provide 'jcs-function)
+;;; jcs-function.el ends here

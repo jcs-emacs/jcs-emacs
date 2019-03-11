@@ -1,11 +1,6 @@
-;; ========================================================================
-;; $File: jcs-rust-mode.el $
-;; $Date: 2018-11-17 20:23:17 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2018 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-rust-mode.el --- Rust mode. -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
 
 (require 'rust-mode)
@@ -41,3 +36,7 @@
 (add-hook 'rust-mode-hook 'jcs-rust-mode-hook)
 
 (add-to-list 'auto-mode-alist '("\\.rs'?\\'" . rust-mode))
+
+
+(provide 'jcs-rust-mode)
+;;; jcs-rust-mode.el ends here

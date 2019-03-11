@@ -1,16 +1,7 @@
-;; ========================================================================
-;; $File: jcs-python-mode.el $
-;; $Date: 2016-10-21 10:21:39 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2016 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-python-mode.el --- Python mode. -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
-
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-;; JenChieh Python mode.
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 (require 'python-mode)
 (defun jcs-python-mode-hook ()
@@ -95,3 +86,7 @@
 ;; enable autopep8 formatting on save
 (require 'py-autopep8)
 ;;(add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
+
+
+(provide 'jcs-python-mode)
+;;; jcs-python-mode.el ends here
