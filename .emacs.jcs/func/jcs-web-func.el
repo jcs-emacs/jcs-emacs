@@ -338,6 +338,9 @@ line by line instead of indent the whole file at once."
   (save-excursion
     (indent-for-tab-command))
 
+  (when (jcs-is-infront-first-char-at-line-p)
+    (jcs-goto-first-char-in-line))
+
   (when (jcs-current-line-empty-p)
     (end-of-line)))
 
@@ -348,6 +351,9 @@ line by line instead of indent the whole file at once."
   (jcs-next-line)
   (save-excursion
     (indent-for-tab-command))
+
+  (when (jcs-is-infront-first-char-at-line-p)
+    (jcs-goto-first-char-in-line))
 
   (when (jcs-current-line-empty-p)
     (end-of-line)))
