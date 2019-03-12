@@ -77,16 +77,6 @@
 
 (add-to-list 'auto-mode-alist '("\\.py'?\\'" . python-mode))
 
-(require 'elpy)
-;;(elpy-enable)
-
-(require 'ein)
-;;(elpy-use-ipython)
-
-;; enable autopep8 formatting on save
-(require 'py-autopep8)
-;;(add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
-
 
 (provide 'jcs-python-mode)
 ;;; jcs-python-mode.el ends here
