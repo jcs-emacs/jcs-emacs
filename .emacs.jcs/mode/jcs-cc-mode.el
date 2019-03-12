@@ -140,34 +140,6 @@
   )
 (add-hook 'c-mode-common-hook 'jcs-cc-mode-hook)
 
-;; define a function which initializes auto-complete-c-headers and gets called for c/c++ hooks
-(defun jcs-ac-c-header-init()
-  (require 'auto-complete-c-headers)
-  (add-to-list 'ac-sources 'ac-source-c-headers)
-  ;; here we adjust the c library we want to use,
-  ;; current i am using MinGW because is cross os.
-  (add-to-list 'achead:include-directories '"C:/MinGW/include")
-  )
-;; now lets' call this function from c/c++ hooks
-(add-hook 'c-mode-hook 'jcs-ac-c-header-init)
-(add-hook 'c++-mode-hook 'jcs-ac-c-header-init)
-
-;; start flymake-google-cpplint-load
-;; let's define a function for flymake initilization
-(defun jcs-flymake-google-init()
-  (require 'flymake-google-cpplint)
-  (custom-set-variables
-   '(flymake-google-cpplint-command "C:/jcs_ide_packages/jcs_win7_packages/cpplint/cpplint.exe"))
-  (flymake-google-cpplint-load)
-  )
-(add-hook 'c-mode-hook 'jcs-flymake-google-init)
-(add-hook 'c++-mode-hook 'jcs-flymake-google-init)
-
-;; start google-c-style with emacs
-(require 'google-c-style)
-(add-hook 'c-mode-common-hook 'google-set-c-style)
-(add-hook 'c-mode-common-hook 'google-make-newline-indent)
-
 ;; Faces
 (set-face-attribute 'preproc-font-lock-preprocessor-background nil
                     :background nil)
