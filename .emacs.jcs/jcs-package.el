@@ -63,6 +63,7 @@ Return a list of installed packages or nil for every skipped package."
                                    basic-mode
                                    better-defaults
                                    clojure-mode
+                                   cmake-font-lock
                                    cmake-ide
                                    cmake-mode
                                    cmake-project
