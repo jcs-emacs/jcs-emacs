@@ -57,14 +57,12 @@ Return a list of installed packages or nil for every skipped package."
                                    all-the-icons
                                    apache-mode
                                    auto-complete
-                                   auto-complete-c-headers
                                    auto-highlight-symbol
                                    auto-package-update
                                    auto-rename-tag
                                    basic-mode
                                    better-defaults
                                    clojure-mode
-                                   cmake-font-lock
                                    cmake-ide
                                    cmake-mode
                                    cmake-project
@@ -76,8 +74,6 @@ Return a list of installed packages or nil for every skipped package."
                                    dash
                                    diminish
                                    dimmer
-                                   ein
-                                   elpy
                                    emmet-mode
                                    exec-path-from-shell
                                    find-file-in-project
@@ -94,7 +90,6 @@ Return a list of installed packages or nil for every skipped package."
                                    gitconfig-mode
                                    gitignore-mode
                                    go-mode
-                                   google-c-style
                                    google-maps
                                    google-this
                                    google-translate
@@ -138,7 +133,6 @@ Return a list of installed packages or nil for every skipped package."
                                    powerline
                                    processing-mode
                                    project-abbrev
-                                   py-autopep8
                                    python-mode
                                    rainbow-mode
                                    restart-emacs
