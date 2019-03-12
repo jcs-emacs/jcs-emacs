@@ -74,6 +74,8 @@ Return a list of installed packages or nil for every skipped package."
                                    dash
                                    diminish
                                    dimmer
+                                   ein
+                                   elpy
                                    emmet-mode
                                    exec-path-from-shell
                                    find-file-in-project
@@ -133,6 +135,7 @@ Return a list of installed packages or nil for every skipped package."
                                    powerline
                                    processing-mode
                                    project-abbrev
+                                   py-autopep8
                                    python-mode
                                    rainbow-mode
                                    restart-emacs
