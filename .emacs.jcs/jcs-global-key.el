@@ -410,6 +410,7 @@ the key everytime the mode changes."
   (define-key global-map (kbd "C-r DEL") #'jcs-backward-delete-current-char-repeat)
   (define-key global-map (kbd "C-r S-<backspace>") #'jcs-forward-delete-current-char-repeat)
   )
+(jcs-global-key-rebind)
 
 
 (provide 'jcs-global-key)
