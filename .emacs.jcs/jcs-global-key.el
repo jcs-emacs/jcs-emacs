@@ -280,8 +280,9 @@
 (define-key global-map "\C-ca" #'jcs-toggle-sublimity-mode)
 
 ;;; Move Current Line Up or Down
-(define-key global-map [M-up] #'jcs-move-line-up)
-(define-key global-map [M-down] #'jcs-move-line-down)
+(require 'move-text)
+(define-key global-map [M-up] #'move-text-up)
+(define-key global-map [M-down] #'move-text-down)
 
 ;;; Buffer List
 (define-key Buffer-menu-mode-map "1" #'jcs-buffer-menu-sort-by-visit)
