@@ -125,6 +125,7 @@ Return a list of installed packages or nil for every skipped package."
                                    magit
                                    markdown-mode
                                    markdown-preview-mode
+                                   move-text
                                    multiple-cursors
                                    nasm-mode
                                    nhexl-mode
