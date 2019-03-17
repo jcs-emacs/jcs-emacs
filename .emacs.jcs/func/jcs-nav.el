@@ -672,22 +672,5 @@ as NO-REC : recursive? (Default: do recusrive method)"
   (jcs-move-to-backward-a-char-do-recursive "[.]" no-rec))
 
 
-;;----------------------------------------------
-;; Navigate Search
-;;----------------------------------------------
-
-;;;###autoload
-(defun jcs-search-forward-at-point ()
-  "Search the word at point forward."
-  (interactive)
-  (isearch-forward-symbol-at-point))
-
-;;;###autoload
-(defun jcs-search-backword-at-point ()
-  "Search the word at point backward."
-  (interactive)
-  (isearch-forward-symbol-at-point))
-
-
 (provide 'jcs-nav)
 ;;; jcs-nav.el ends here
