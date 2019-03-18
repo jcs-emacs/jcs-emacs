@@ -275,9 +275,9 @@
 (use-package goto-line-preview
   :ensure t
   :config
-  (defun jcs-advice-goto-line-after ()
+  (defun jcs-advice-goto-line-preview-after ()
     (call-interactively #'recenter))
-  (advice-add 'goto-line-preview :after #'jcs-advice-goto-line-after))
+  (advice-add 'goto-line-preview :after #'jcs-advice-goto-line-preview-after))
 
 ;;; Dimmer
 (use-package dimmer
