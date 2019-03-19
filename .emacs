@@ -18,8 +18,6 @@
 ;; Produce backtraces when errors occur.
 (setq debug-on-error t)
 
-(defvar jcs-reloading-emacs nil
-  "Reloading Emacs flag.")
 
 (defvar jcs-init-gc-cons-threshold (* 1024 1024 128)
   "The `GC' threshold during starting up.")
@@ -28,12 +26,6 @@
 
 ;; NOTE(jenchieh): Raise the `GC' threshold when starting Emacs.
 (setq gc-cons-threshold jcs-init-gc-cons-threshold)
-
-;; NOTE(jenchieh): Add load path.
-(unless jcs-reloading-emacs
-  (add-to-list 'load-path "~/.emacs.jcs/")
-  (add-to-list 'load-path "~/.emacs.jcs/func/")
-  (add-to-list 'load-path "~/.emacs.jcs/mode/"))
 
 
 ;;------------------------------------------------------------------------------------------------------
@@ -87,7 +79,7 @@
 
 ;;------------------------------------------------------------------------------------------------------
 ;;;
-;; Auto install list of packages i want at the startup of emacs.
+;; Auto install list of packages I want at the startup of Emacs.
 ;;;
 
 ;; Get the list of package dependencies.
@@ -124,165 +116,106 @@
 ;;
 (load-file "~/.emacs.d/elisp/jayces-mode-20190205.001/jayces-mode.el")
 
+;;
+;; TEMPORARY(jenchieh): Hopefully melpa will let me push
+;; my package `reload-emacs' to their package system.
+;; Then we can remove load file/manually install package system.
+;;
+(load-file "~/.emacs.d/elisp/reload-emacs-20190319.001/reload-emacs.el")
+
+
 ;;========================================
 ;;      JENCHIEH FILE LOADING
 ;;----------------------------------
 
-(if jcs-reloading-emacs
-    (progn
-      ;; Environment.
-      (load-file "~/.emacs.jcs/jcs-face.el")
-      (load-file "~/.emacs.jcs/jcs-dev.el")
-      (load-file "~/.emacs.jcs/jcs-env.el")
-      (load-file "~/.emacs.jcs/jcs-plugin.el")
+(require 'reload-emacs)
+(setq reload-emacs-load-path '("~/.emacs.jcs/"
+                               "~/.emacs.jcs/func/"
+                               "~/.emacs.jcs/mode/"))
 
-      ;; Customization
-      (load-file "~/.emacs.jcs/jcs-theme.el")
+;; NOTE(jenchieh): Add load path.
+(unless reload-emacs-reloading
+  (add-to-list 'load-path "~/.emacs.jcs/")
+  (add-to-list 'load-path "~/.emacs.jcs/func/")
+  (add-to-list 'load-path "~/.emacs.jcs/mode/"))
 
-      ;; Initialize
-      (load-file "~/.emacs.jcs/jcs-before-init.el")
 
-      ;; Utilities
-      (load-file "~/.emacs.jcs/jcs-log.el")
-      (load-file "~/.emacs.jcs/jcs-function.el")
-      (load-file "~/.emacs.jcs/jcs-corresponding-file.el")
-      (load-file "~/.emacs.jcs/jcs-mode.el")
-      (load-file "~/.emacs.jcs/jcs-file-info-format.el")
-      (load-file "~/.emacs.jcs/jcs-helm.el")
+;; Environment.
+(require 'jcs-face)
+(require 'jcs-dev)
+(require 'jcs-env)
+(require 'jcs-plugin)
 
-      ;; Modes
-      (load-file "~/.emacs.jcs/mode/jcs-elisp-mode.el")
-      (load-file "~/.emacs.jcs/mode/jcs-cs-mode.el")
-      (load-file "~/.emacs.jcs/mode/jcs-nasm-mode.el")
-      (load-file "~/.emacs.jcs/mode/jcs-batch-mode.el")
-      (load-file "~/.emacs.jcs/mode/jcs-sh-mode.el")
-      (load-file "~/.emacs.jcs/mode/jcs-cc-mode.el")
-      (load-file "~/.emacs.jcs/mode/jcs-c-mode.el")
-      (load-file "~/.emacs.jcs/mode/jcs-c++-mode.el")
-      (load-file "~/.emacs.jcs/mode/jcs-jayces-mode.el")
-      (load-file "~/.emacs.jcs/mode/jcs-java-mode.el")
-      (load-file "~/.emacs.jcs/mode/jcs-actionscript-mode.el")
-      (load-file "~/.emacs.jcs/mode/jcs-python-mode.el")
-      (load-file "~/.emacs.jcs/mode/jcs-web-mode.el")
-      (load-file "~/.emacs.jcs/mode/jcs-js-mode.el")
-      (load-file "~/.emacs.jcs/mode/jcs-json-mode.el")
-      (load-file "~/.emacs.jcs/mode/jcs-lua-mode.el")
-      (load-file "~/.emacs.jcs/mode/jcs-message-mode.el")
-      (load-file "~/.emacs.jcs/mode/jcs-xml-mode.el")
-      (load-file "~/.emacs.jcs/mode/jcs-shader-mode.el")
-      (load-file "~/.emacs.jcs/mode/jcs-sass-mode.el")
-      (load-file "~/.emacs.jcs/mode/jcs-scss-mode.el")
-      (load-file "~/.emacs.jcs/mode/jcs-sql-mode.el")
-      (load-file "~/.emacs.jcs/mode/jcs-go-mode.el")
-      (load-file "~/.emacs.jcs/mode/jcs-vimscript-mode.el")
-      (load-file "~/.emacs.jcs/mode/jcs-cbl-mode.el")
-      (load-file "~/.emacs.jcs/mode/jcs-re-builder-mode.el")
-      (load-file "~/.emacs.jcs/mode/jcs-txt-mode.el")
-      (load-file "~/.emacs.jcs/mode/jcs-cmake-mode.el")
-      (load-file "~/.emacs.jcs/mode/jcs-scala-mode.el")
-      (load-file "~/.emacs.jcs/mode/jcs-perl-mode.el")
-      (load-file "~/.emacs.jcs/mode/jcs-basic-mode.el")
-      (load-file "~/.emacs.jcs/mode/jcs-processing-mode.el")
-      (load-file "~/.emacs.jcs/mode/jcs-shell-mode.el")
-      (load-file "~/.emacs.jcs/mode/jcs-haskell-mode.el")
-      (load-file "~/.emacs.jcs/mode/jcs-haxe-mode.el")
-      (load-file "~/.emacs.jcs/mode/jcs-typescript-mode.el")
-      (load-file "~/.emacs.jcs/mode/jcs-clojure-mode.el")
-      (load-file "~/.emacs.jcs/mode/jcs-lisp-mode.el")
-      (load-file "~/.emacs.jcs/mode/jcs-verilog-mode.el")
-      (load-file "~/.emacs.jcs/mode/jcs-markdown-mode.el")
-      (load-file "~/.emacs.jcs/mode/jcs-ruby-mode.el")
-      (load-file "~/.emacs.jcs/mode/jcs-rust-mode.el")
-      (load-file "~/.emacs.jcs/mode/jcs-swift-mode.el")
-      (load-file "~/.emacs.jcs/mode/jcs-objc-mode.el")
-      (load-file "~/.emacs.jcs/mode/jcs-yaml-mode.el")
-      (load-file "~/.emacs.jcs/mode/jcs-ini-mode.el")
+;; Customization
+(require 'jcs-theme)
 
-      ;; Add hook to all Emacs' events.
-      (load-file "~/.emacs.jcs/jcs-hook.el")
+;; Initialize
+(require 'jcs-before-init)
 
-      ;; Set default font.
-      (load-file "~/.emacs.jcs/jcs-font.el")
+;; Utilities
+(require 'jcs-log)
+(require 'jcs-function)
+(require 'jcs-corresponding-file)
+(require 'jcs-mode)
+(require 'jcs-file-info-format)
+(require 'jcs-helm)
 
-      ;; Do stuff after initialize.
-      (load-file "~/.emacs.jcs/jcs-after-init.el"))
-  (progn
-    ;; Environment.
-    (require 'jcs-face)
-    (require 'jcs-dev)
-    (require 'jcs-env)
-    (require 'jcs-plugin)
+;; Modes
+(require 'jcs-elisp-mode)
+(require 'jcs-cs-mode)
+(require 'jcs-nasm-mode)
+(require 'jcs-batch-mode)
+(require 'jcs-sh-mode)
+(require 'jcs-cc-mode)
+(require 'jcs-c-mode)
+(require 'jcs-c++-mode)
+(require 'jcs-jayces-mode)
+(require 'jcs-java-mode)
+(require 'jcs-actionscript-mode)
+(require 'jcs-python-mode)
+(require 'jcs-web-mode)
+(require 'jcs-js-mode)
+(require 'jcs-json-mode)
+(require 'jcs-lua-mode)
+(require 'jcs-message-mode)
+(require 'jcs-xml-mode)
+(require 'jcs-shader-mode)
+(require 'jcs-sass-mode)
+(require 'jcs-scss-mode)
+(require 'jcs-sql-mode)
+(require 'jcs-go-mode)
+(require 'jcs-vimscript-mode)
+(require 'jcs-cbl-mode)
+(require 'jcs-re-builder-mode)
+(require 'jcs-txt-mode)
+(require 'jcs-cmake-mode)
+(require 'jcs-scala-mode)
+(require 'jcs-perl-mode)
+(require 'jcs-basic-mode)
+(require 'jcs-processing-mode)
+(require 'jcs-shell-mode)
+(require 'jcs-haskell-mode)
+(require 'jcs-haxe-mode)
+(require 'jcs-typescript-mode)
+(require 'jcs-clojure-mode)
+(require 'jcs-lisp-mode)
+(require 'jcs-verilog-mode)
+(require 'jcs-markdown-mode)
+(require 'jcs-ruby-mode)
+(require 'jcs-rust-mode)
+(require 'jcs-swift-mode)
+(require 'jcs-objc-mode)
+(require 'jcs-yaml-mode)
+(require 'jcs-ini-mode)
 
-    ;; Customization
-    (require 'jcs-theme)
+;; Add hook to all Emacs' events.
+(require 'jcs-hook)
 
-    ;; Initialize
-    (require 'jcs-before-init)
-
-    ;; Utilities
-    (require 'jcs-log)
-    (require 'jcs-function)
-    (require 'jcs-corresponding-file)
-    (require 'jcs-mode)
-    (require 'jcs-file-info-format)
-    (require 'jcs-helm)
-
-    ;; Modes
-    (require 'jcs-elisp-mode)
-    (require 'jcs-cs-mode)
-    (require 'jcs-nasm-mode)
-    (require 'jcs-batch-mode)
-    (require 'jcs-sh-mode)
-    (require 'jcs-cc-mode)
-    (require 'jcs-c-mode)
-    (require 'jcs-c++-mode)
-    (require 'jcs-jayces-mode)
-    (require 'jcs-java-mode)
-    (require 'jcs-actionscript-mode)
-    (require 'jcs-python-mode)
-    (require 'jcs-web-mode)
-    (require 'jcs-js-mode)
-    (require 'jcs-json-mode)
-    (require 'jcs-lua-mode)
-    (require 'jcs-message-mode)
-    (require 'jcs-xml-mode)
-    (require 'jcs-shader-mode)
-    (require 'jcs-sass-mode)
-    (require 'jcs-scss-mode)
-    (require 'jcs-sql-mode)
-    (require 'jcs-go-mode)
-    (require 'jcs-vimscript-mode)
-    (require 'jcs-cbl-mode)
-    (require 'jcs-re-builder-mode)
-    (require 'jcs-txt-mode)
-    (require 'jcs-cmake-mode)
-    (require 'jcs-scala-mode)
-    (require 'jcs-perl-mode)
-    (require 'jcs-basic-mode)
-    (require 'jcs-processing-mode)
-    (require 'jcs-shell-mode)
-    (require 'jcs-haskell-mode)
-    (require 'jcs-haxe-mode)
-    (require 'jcs-typescript-mode)
-    (require 'jcs-clojure-mode)
-    (require 'jcs-lisp-mode)
-    (require 'jcs-verilog-mode)
-    (require 'jcs-markdown-mode)
-    (require 'jcs-ruby-mode)
-    (require 'jcs-rust-mode)
-    (require 'jcs-swift-mode)
-    (require 'jcs-objc-mode)
-    (require 'jcs-yaml-mode)
-    (require 'jcs-ini-mode)
-
-    ;; Add hook to all Emacs' events.
-    (require 'jcs-hook)
-
-    ;; Set default font.
-    (require 'jcs-font)
+;; Set default font.
+(require 'jcs-font)
 
       ;;; Do stuff after initialize.
-    (require 'jcs-after-init)))
+(require 'jcs-after-init)
 
 
 ;; Local Variables:
