@@ -27,35 +27,6 @@
     ;; return this statement.
     (>= displayed-frame-count 2)))
 
-;;;###autoload
-(defun jcs-reload-emacs-once ()
-  "Reload emacs file once."
-  (interactive)
-  (save-match-data
-    (save-window-excursion
-      (save-selected-window
-        (save-restriction
-          ;; NOTE(jenchieh): Enable reload flag.
-          (let ((jcs-reloading-emacs t))
-            (load-file "~/.emacs"))))))
-
-  ;; Split window horizontally if full width.
-  (when (and (window-full-width-p)
-             (= (length (window-list)) 1))
-    (jcs-balance-split-window-horizontally))
-
-  ;; Restore to what ever state it was.
-  ;;
-  ;; NOTE(jenchieh): we need these two lines because we need it
-  ;; for solving after reloading Emacs, there are some space at
-  ;; the bottom. Which is weird and I have no idea why...
-  (toggle-frame-maximized)
-  (toggle-frame-maximized)
-
-  ;; When frame not maximize we make sure it maximized.
-  (unless (jcs-is-frame-maximize-p)
-    (toggle-frame-maximized)))
-
 
 (defvar jcs-top-level-active nil
   "Check if top level active.")
@@ -318,75 +289,39 @@
 ;; Load files.
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-(if jcs-reloading-emacs
-    (progn
-      ;; Utilities
-      (load-file "~/.emacs.jcs/func/jcs-math.el")
-      (load-file "~/.emacs.jcs/func/jcs-util.el")
-      (load-file "~/.emacs.jcs/func/jcs-frame.el")
-      (load-file "~/.emacs.jcs/func/jcs-window.el")
-      (load-file "~/.emacs.jcs/func/jcs-shell.el")
-      (load-file "~/.emacs.jcs/func/jcs-minimap.el")
-      (load-file "~/.emacs.jcs/func/jcs-helm-func.el")
+;; Utilities
+(require 'jcs-math)
+(require 'jcs-util)
+(require 'jcs-frame)
+(require 'jcs-window)
+(require 'jcs-shell)
+(require 'jcs-minimap)
+(require 'jcs-helm-func)
 
-      ;; Editing
-      (load-file "~/.emacs.jcs/func/jcs-buffer-menu.el")
-      (load-file "~/.emacs.jcs/func/jcs-edit.el")
-      (load-file "~/.emacs.jcs/func/jcs-comment.el")
-      (load-file "~/.emacs.jcs/func/jcs-vs-func.el")
+;; Editing
+(require 'jcs-buffer-menu)
+(require 'jcs-edit)
+(require 'jcs-comment)
+(require 'jcs-vs-func)
 
-      ;; Navigation
-      (load-file "~/.emacs.jcs/func/jcs-nav.el")
+;; Navigation
+(require 'jcs-nav)
 
-      ;; For Specific Mode
-      (load-file "~/.emacs.jcs/func/jcs-txt-func.el")
-      (load-file "~/.emacs.jcs/func/jcs-preproc-func.el")
-      (load-file "~/.emacs.jcs/func/jcs-cc-func.el")
-      (load-file "~/.emacs.jcs/func/jcs-cs-func.el")
-      (load-file "~/.emacs.jcs/func/jcs-cmake-func.el")
-      (load-file "~/.emacs.jcs/func/jcs-java-func.el")
-      (load-file "~/.emacs.jcs/func/jcs-lua-func.el")
-      (load-file "~/.emacs.jcs/func/jcs-nasm-func.el")
-      (load-file "~/.emacs.jcs/func/jcs-python-func.el")
-      (load-file "~/.emacs.jcs/func/jcs-sh-func.el")
-      (load-file "~/.emacs.jcs/func/jcs-web-func.el")
-      (load-file "~/.emacs.jcs/func/jcs-re-builder-func.el")
-      (load-file "~/.emacs.jcs/func/jcs-yaml-func.el")
-      (load-file "~/.emacs.jcs/func/jcs-oop-func.el"))
-  (progn
-    ;; Utilities
-    (require 'jcs-math)
-    (require 'jcs-util)
-    (require 'jcs-frame)
-    (require 'jcs-window)
-    (require 'jcs-shell)
-    (require 'jcs-minimap)
-    (require 'jcs-helm-func)
-
-    ;; Editing
-    (require 'jcs-buffer-menu)
-    (require 'jcs-edit)
-    (require 'jcs-comment)
-    (require 'jcs-vs-func)
-
-    ;; Navigation
-    (require 'jcs-nav)
-
-    ;; For Specific Mode
-    (require 'jcs-txt-func)
-    (require 'jcs-preproc-func)
-    (require 'jcs-cc-func)
-    (require 'jcs-cs-func)
-    (require 'jcs-cmake-func)
-    (require 'jcs-java-func)
-    (require 'jcs-lua-func)
-    (require 'jcs-nasm-func)
-    (require 'jcs-python-func)
-    (require 'jcs-sh-func)
-    (require 'jcs-web-func)
-    (require 'jcs-re-builder-func)
-    (require 'jcs-yaml-func)
-    (require 'jcs-oop-func)))
+;; For Specific Mode
+(require 'jcs-txt-func)
+(require 'jcs-preproc-func)
+(require 'jcs-cc-func)
+(require 'jcs-cs-func)
+(require 'jcs-cmake-func)
+(require 'jcs-java-func)
+(require 'jcs-lua-func)
+(require 'jcs-nasm-func)
+(require 'jcs-python-func)
+(require 'jcs-sh-func)
+(require 'jcs-web-func)
+(require 'jcs-re-builder-func)
+(require 'jcs-yaml-func)
+(require 'jcs-oop-func)
 
 
 (provide 'jcs-function)
