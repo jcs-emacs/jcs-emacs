@@ -132,7 +132,8 @@ C-r S-backspace Delete the same character at current cursor's
                 position forward repeatedly util it meet different 
                 character.
 
-C-x C-v         Reload '.emacs' file in a proper way.
+C-x C-v         Reload Emacs.
+C-x C-b         Restart Emacs.
 
 C-w o           Start httpd server for real time editing markdown
                 using `impatient-mode'.
