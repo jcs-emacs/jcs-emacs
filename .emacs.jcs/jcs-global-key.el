@@ -136,7 +136,10 @@
 (define-key auto-highlight-symbol-mode-map (kbd "M-S-<left>") #'isearch-forward-symbol-at-point)
 
 ;;; Admin
-(define-key global-map "\C-x\C-v" #'jcs-reload-emacs-once)
+(require 'reload-emacs)
+(define-key global-map "\C-x\C-v" #'reload-emacs)
+(require 'restart-emacs)
+(define-key global-map "\C-x\C-b" #'restart-emacs)
 
 ;;; Undo/Redo
 (define-key global-map "\C-z" #'jcs-undo)
