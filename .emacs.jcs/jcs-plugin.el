@@ -261,7 +261,6 @@
   (tabbar-mode 0)  )
 
 ;;; Indent Info
-(require 'indent-info)
 (use-package indent-info
   :config
   (global-indent-info-mode +1))
@@ -284,6 +283,28 @@
   :config
   (dimmer-mode)
   (setq dimmer-fraction 0.2))
+
+;; Reload Emacs
+(use-package reload-emacs
+  :config
+  (defun jcs-advice-reload-emacs-after ()
+    ;; Split window horizontally if full width.
+    (when (and (window-full-width-p)
+               (= (length (window-list)) 1))
+      (jcs-balance-split-window-horizontally))
+
+    ;; Restore to what ever state it was.
+    ;;
+    ;; NOTE(jenchieh): we need these two lines because we need it
+    ;; for solving after reloading Emacs, there are some space at
+    ;; the bottom. Which is weird and I have no idea why...
+    (toggle-frame-maximized)
+    (toggle-frame-maximized)
+
+    ;; When frame not maximize we make sure it maximized.
+    (unless (jcs-is-frame-maximize-p)
+      (toggle-frame-maximized)))
+  (advice-add 'reload-emacs :after #'jcs-advice-reload-emacs-after))
 
 
 (provide 'jcs-plugin)
