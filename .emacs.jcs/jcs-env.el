@@ -195,8 +195,20 @@
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
 
+;; Line Numbers
+(defvar jcs-line-number-ignore-buffers '("*helm")
+  "List of buffers that you do not want to show line numbers in it.")
+
+(unless reload-emacs-reloading
+  (when (version<= "26.0.50" emacs-version)
+    (require 'display-line-numbers)
+    ;;(global-display-line-numbers-mode t)
+    )
+
+  (require 'linum)
+  (global-linum-mode t))
+
 ;; jcs editor setting
-(global-linum-mode t)                        ;; Global Line Number
 (setq-default indent-tabs-mode nil)          ;; Disable inset tabs, insert space only
 (setq-default tab-width 4)
 (setq tab-width 4)
