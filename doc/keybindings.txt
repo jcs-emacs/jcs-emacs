@@ -74,7 +74,7 @@ M-k             Maybe kill the buffer? Check if the file in open
                 do not kill the buffer. Just switch to the previous
                 buffer in the current frame. Otherwise just kill
                 the buffer.
-M-K             Kill the current file, not maybe. (kill-this-buffer)
+M-S-k           Kill the current buffer and open it again.
 
 C-c C-c         copy
 C-x C-x         cut
