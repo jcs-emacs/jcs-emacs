@@ -94,8 +94,7 @@ This will no longer overwrite usual Emacs' undo key."
           ;; or
           ;;   => `undo-tree-visualizer-hide-diff'
           (when jcs-undo-tree-auto-show-diff
-            (undo-tree-visualizer-toggle-diff)))
-        (global-linum-mode t))
+            (undo-tree-visualizer-toggle-diff))))
     (call-interactively #'undo)))
 
 ;;;###autoload
@@ -115,8 +114,7 @@ This will no longer overwrite usual Emacs' undo key."
           ;; or
           ;;   => `undo-tree-visualizer-hide-diff'
           (when jcs-undo-tree-auto-show-diff
-            (undo-tree-visualizer-toggle-diff)))
-        (global-linum-mode t))
+            (undo-tree-visualizer-toggle-diff))))
     ;; In Emacs, undo/redo is the same thing.
     (call-interactively #'redo)))
 
@@ -156,7 +154,7 @@ This will no longer overwrite usual Emacs' undo key."
   ;;   -> bar
   ;;   -> hbar
 
-  (if (jcs-is-minor-mode-enabled-p overwrite-mode)
+  (if overwrite-mode
       (setq-local cursor-type 'hbar)
     (setq-local cursor-type 'box)))
 
@@ -668,17 +666,7 @@ file-project.el' plugin."
 (defun jcs-kill-this-buffer ()
   "Kill this buffer."
   (interactive)
-  (kill-this-buffer)
-  (save-selected-window
-    (ignore-errors
-      (jcs-jump-shown-to-buffer "*Buffer List*"))
-    (when (jcs-is-current-major-mode-p "Buffer-menu-mode")
-      (jcs-buffer-menu)))
-
-  ;; If still in the buffer menu, try switch to the
-  ;; previous buffer
-  (when (jcs-is-current-major-mode-p "Buffer-menu-mode")
-    (jcs-switch-to-previous-buffer)))
+  (kill-this-buffer))
 
 ;;;###autoload
 (defun jcs-maybe-kill-this-buffer (&optional ecp-same)
@@ -705,6 +693,15 @@ ECP-SAME : Exception for the same buffer."
                    (not ecp-same))
           (jcs-switch-to-previous-buffer))))
     is-killed))
+
+;;;###autoload
+(defun jcs-reopen-this-buffer ()
+  "Kill the current buffer and open it again."
+  (interactive)
+  (let ((buf-name (buffer-file-name)))
+    (when buf-name
+      (jcs-kill-this-buffer)
+      (find-file buf-name))))
 
 ;;----------------------------------------------
 ;; Search/Kill word capital.
