@@ -176,6 +176,18 @@ True: return name.
 False: return nil."
   (get-buffer-window-list buf))
 
+;;;###autoload
+(defun jcs-walk-through-all-windows-once (&optional fnc)
+  "Walk through all the windows once.
+FNC : Callback apply to each windows."
+  (interactive)
+  (save-selected-window
+    (let ((index 0))
+      (while (< index (jcs-count-windows))
+        (jcs-other-window-next)
+        (funcall fnc)
+        (setq index (+ index 1))))))
+
 ;;-----------------------------------------------------------
 ;; Deleting
 ;;-----------------------------------------------------------
