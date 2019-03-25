@@ -45,6 +45,12 @@
 
   ;; NOTE(jenchieh): Lower the `GC' back to normal threshold.
   (setq gc-cons-threshold jcs-normal-gc-cons-threshold)
+
+  (save-selected-window
+    ;; ATTENTION(jenchieh): First active the correct line number,
+    ;; because this would not works in `jcs-after-change-major-mode-hook'.
+    (switch-to-buffer "*Messages*")
+    (jcs-active-line-number-by-mode))
   )
 (add-hook 'after-init-hook 'jcs-after-init-hook)
 
@@ -71,6 +77,15 @@
   )
 (add-hook 'post-command-hook 'jcs-post-command-hook)
 
+;;-----------------------------------------------------------
+;;-----------------------------------------------------------
+
+(defun jcs-after-change-major-mode-hook ()
+  "Hook run after major mode changes."
+  (unless reload-emacs-reloading
+    (jcs-active-line-number-by-mode))
+  )
+(add-hook 'after-change-major-mode-hook 'jcs-after-change-major-mode-hook)
 
 ;;-----------------------------------------------------------
 ;; Minibuffer
