@@ -1183,14 +1183,27 @@ IN-VAL : input value to set to IN-VAR."
 (defun jcs-erase-message-buffer ()
   "Erase the *Message* buffer."
   (interactive)
-  ;; Kill it first.
-  (jcs-maybe-kill-this-buffer)
+  (let ((is-killed nil))
+    ;; Kill it first.
+    (setq is-killed (jcs-maybe-kill-this-buffer))
 
-  ;; Message one message to retrieve `*Message*' buffer
-  ;; prepare for next use. Or else it some operation
-  ;; might prompt some issue that needed `*Message*'
-  ;; buffer to be exists.
-  (message "Retrieve *Message* buffer.."))
+    ;; Message one message to retrieve `*Message*' buffer
+    ;; prepare for next use. Or else it some operation
+    ;; might prompt some issue that needed `*Message*'
+    ;; buffer to be exists.
+    (message "Retrieve *Message* buffer..")
+
+    (when is-killed
+      (save-selected-window
+        (ignore-errors
+          (jcs-jump-shown-to-buffer "*Buffer List*"))
+        (when (jcs-is-current-major-mode-p "Buffer-menu-mode")
+          (jcs-buffer-menu)))
+
+      ;; If still in the buffer menu, try switch to the
+      ;; previous buffer
+      (when (jcs-is-current-major-mode-p "Buffer-menu-mode")
+        (jcs-switch-to-previous-buffer)))))
 
 ;;---------------------------------------------
 ;; Key
