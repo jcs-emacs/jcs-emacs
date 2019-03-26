@@ -863,6 +863,7 @@ FONT : font to check."
     ;; Refresh the syntax hightlight.
     (call-interactively #'font-lock-fontify-buffer)))
 
+
 ;;---------------------------------------------
 ;; List
 ;;---------------------------------------------
@@ -875,11 +876,26 @@ L : list we want to flaaten."
         ((atom l) (list l))
         (t (loop for a in l appending (jcs-flatten-list a)))))
 
-(defun jcs-is-in-list-string (in-list str)
+(defun jcs-is-contain-list-string-regexp (in-list in-str)
   "Check if a string in the string list.
-IN-LIST : list of strings.
-STR : string to check if is inside the list of strings above."
-  (cl-some #'(lambda (lb-sub-str) (string-match lb-sub-str str)) in-list))
+IN-LIST : list of string.
+IN-STR : string to check if is inside the list of strings above."
+  (cl-some #'(lambda (lb-sub-str) (string-match lb-sub-str in-str)) in-list))
+
+(defun jcs-is-contain-list-string (in-list in-str)
+  "Check if a string contain in any string in the string list.
+IN-LIST : list of string use to check if IN-STR in contain one of
+the string.
+IN-STR : string using to check if is contain one of the IN-LIST."
+  (cl-some #'(lambda (lb-sub-str) (string-match-p (regexp-quote lb-sub-str) in-str)) in-list))
+
+(defun jcs-is-contain-list-integer (in-list in-int)
+  "Check if a integer contain in any integer in the integer list.
+IN-LIST : list of integer use to check if IN-INT in contain one of
+the string.
+IN-INT : integer using to check if is contain one of the IN-LIST."
+  (cl-some #'(lambda (lb-sub-int) (= lb-sub-int in-int)) in-list))
+
 
 ;;---------------------------------------------
 ;; Mode
@@ -1152,12 +1168,6 @@ IN-SUB-STR : substring to see if contain in the IN-STR.
 IN-STR : string to check by the IN-SUB-STR."
   (string-match-p (regexp-quote in-sub-str) in-str))
 
-(defun jcs-is-contain-list-string (in-list in-str)
-  "Check if a string contain in any string in the string list.
-IN-LIST : list of string use to check if IN-STR in contain one of
-the string.
-IN-STR : string using to check if is contain one of the IN-LIST."
-  (cl-some #'(lambda (lb-sub-str) (string-match-p (regexp-quote lb-sub-str) in-str)) in-list))
 
 ;;---------------------------------------------
 ;; Variable
