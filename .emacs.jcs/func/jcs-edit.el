@@ -570,15 +570,7 @@ whitespaces."
     (save-restriction
       (widen)
       (untabify (point-min) (point-max))))
-  (save-buffer)
-
-  ;; NOTE(jenchieh): Is we found `*undo-tree*' buffer, we
-  ;; try to close it.
-  (let ((prev-frame (selected-frame)))
-    (save-selected-window
-      (when (or (ignore-errors (jcs-jump-shown-to-buffer "*undo-tree*")))
-        (jcs-maybe-kill-this-buffer t)))
-    (select-frame-set-input-focus prev-frame)))
+  (save-buffer))
 
 ;;;###autoload
 (defun jcs-tabify-save-buffer ()
@@ -591,15 +583,7 @@ so we must convert spaces to tab."
     (save-restriction
       (widen)
       (tabify (point-min) (point-max))))
-  (save-buffer)
-
-  ;; NOTE(jenchieh): Is we found `*undo-tree*' buffer, we
-  ;; try to close it.
-  (let ((prev-frame (selected-frame)))
-    (save-selected-window
-      (when (or (ignore-errors (jcs-jump-shown-to-buffer "*undo-tree*")))
-        (jcs-maybe-kill-this-buffer t)))
-    (select-frame-set-input-focus prev-frame)))
+  (save-buffer))
 
 ;;;###autoload
 (defun jcs-find-file-other-window ()
