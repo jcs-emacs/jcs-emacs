@@ -107,7 +107,7 @@
 ;; my package `jcs-ex-pkg' to their package system.
 ;; Then we can remove load file/manually install package system.
 ;;
-(load-file "~/.emacs.d/elisp/jcs-ex-pkg-20180705.001/jcs-ex-pkg.el")
+(load-file "~/.emacs.d/elisp/jcs-ex-pkg-20190326.001/jcs-ex-pkg.el")
 
 ;;
 ;; TEMPORARY(jenchieh): Hopefully melpa will let me push
