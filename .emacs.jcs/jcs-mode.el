@@ -70,7 +70,7 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
   (interactive)
   ;; NOTE(jenchieh): can only active when the minibuffer is
   ;; not active.
-  (when (eq jcs-minibuffer-active nil)
+  (unless jcs-minibuffer-active
     (unless (ignore-errors (or (helm-do-ag-this-file) t))
       (jcs-cross-mode)
       (message "Error: This buffer is not visited file. Switch to cross mode search..")
@@ -145,7 +145,7 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
   )
 
 ;; Make command mode start at the beginning.
-(call-interactively 'jcs-command-mode)
+(call-interactively #'jcs-command-mode)
 
 
 ;;------------------------------------------------------------------------------------------------------
@@ -203,6 +203,7 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
 ;;------------------------------------------------------------------------------------------------------
 ;;; Local Mode & Online Mode
 ;;------------------------------------------------------------------------------------------------------
+
 ;;;###autoload
 (defun jcs-depend-mode ()
   "This mode depend on my own machine. More feature and more \
