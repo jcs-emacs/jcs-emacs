@@ -45,6 +45,16 @@
   :group 'reload-emacs
   :type 'list)
 
+(defcustom reload-emacs-before-hook nil
+  "Hooks run before `reload-emacs' is run."
+  :group 'reload-emacs
+  :type 'hook)
+
+(defcustom reload-emacs-after-hook nil
+  "Hooks run after `reload-emacs' is run."
+  :group 'reload-emacs
+  :type 'hook)
+
 (defvar reload-emacs-reloading nil
   "Flag to see if currently the Emacs is reloading.")
 
@@ -69,6 +79,7 @@ FILES : files to load."
 (defun reload-emacs ()
   "Reload all Emacs configurations without restarting Emacs."
   (interactive)
+  (run-hooks 'reload-emacs-before-hook)
   (save-match-data
     (save-window-excursion
       (save-selected-window
@@ -79,7 +90,8 @@ FILES : files to load."
                    (load-file "~/.init.el"))
                   ((file-exists-p "~/.emacs")
                    (load-file "~/.emacs")))
-            (reload-emacs-all-configs)))))))
+            (reload-emacs-all-configs))))))
+  (run-hooks 'reload-emacs-after-hook))
 
 
 (provide 'reload-emacs)
