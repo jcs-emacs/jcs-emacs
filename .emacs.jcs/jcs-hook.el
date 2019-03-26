@@ -87,6 +87,7 @@
   )
 (add-hook 'after-change-major-mode-hook 'jcs-after-change-major-mode-hook)
 
+
 ;;-----------------------------------------------------------
 ;; Minibuffer
 ;;-----------------------------------------------------------
