@@ -666,12 +666,8 @@ file-project.el' plugin."
         (ignore-errors
           (jcs-jump-shown-to-buffer "*Buffer List*"))
         (when (jcs-is-current-major-mode-p "Buffer-menu-mode")
-          (jcs-buffer-menu)))
-
-      ;; If still in the buffer menu, try switch to the
-      ;; previous buffer
-      (when (jcs-is-current-major-mode-p "Buffer-menu-mode")
-        (jcs-switch-to-previous-buffer)))))
+          ;; NOTE(jenchieh): Refresh buffer menu once.
+          (jcs-buffer-menu))))))
 
 ;;;###autoload
 (defun jcs-kill-this-buffer ()
@@ -683,6 +679,7 @@ file-project.el' plugin."
     (ignore-errors
       (jcs-jump-shown-to-buffer "*Buffer List*"))
     (when (jcs-is-current-major-mode-p "Buffer-menu-mode")
+      ;; NOTE(jenchieh): Refresh buffer menu once.
       (jcs-buffer-menu)))
 
   ;; If still in the buffer menu, try switch to the
