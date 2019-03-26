@@ -560,7 +560,7 @@ the current line."
 ;; Save Buffer
 ;;-------------------------
 
-(defun jcs-do-after-save ()
+(defun jcs-do-stuff-after-save ()
   "Do stuff after save command executed."
   ;; NOTE(jenchieh): Is we found `*undo-tree*' buffer, we
   ;; try to close it.
@@ -582,7 +582,7 @@ whitespaces."
       (widen)
       (untabify (point-min) (point-max))))
   (save-buffer)
-  (jcs-do-after-save))
+  (jcs-do-stuff-after-save))
 
 ;;;###autoload
 (defun jcs-tabify-save-buffer ()
@@ -596,7 +596,7 @@ so we must convert spaces to tab."
       (widen)
       (tabify (point-min) (point-max))))
   (save-buffer)
-  (jcs-do-after-save))
+  (jcs-do-stuff-after-save))
 
 ;;=================================
 ;; Find file
