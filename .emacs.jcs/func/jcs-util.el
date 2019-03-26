@@ -657,7 +657,6 @@ MAX-PT : larger position."
     (save-excursion
       (goto-char (point-min))
       (setq buffer-start-line-num (jcs-get-current-line-integer)))
-
     ;; Return it.
     (= current-line-num buffer-start-line-num)))
 
@@ -670,9 +669,32 @@ MAX-PT : larger position."
     (save-excursion
       (goto-char (point-max))
       (setq buffer-last-line-num (jcs-get-current-line-integer)))
-
     ;; Return it.
     (= current-line-num buffer-last-line-num)))
+
+(defun jcs-first-visible-pos-in-window ()
+  "First point in current visible window."
+  (let ((cp (point)))
+    (save-window-excursion
+      (save-excursion
+        (while (and (pos-visible-in-window-p cp)
+                    (not (jcs-is-beginning-of-buffer-p)))
+          (beginning-of-line)
+          (backward-char 1)
+          (setq cp (point)))))
+    (+ cp 1)))
+
+(defun jcs-first-visible-line-in-window ()
+  "First line number in current visible window."
+  (line-number-at-pos (jcs-first-visible-pos-in-window)))
+
+(defun jcs-make-first-visible-line-to (ln)
+  "Make the first visible line to target line.
+LN : target line to make first to."
+  (goto-line ln)
+  (recenter-top-bottom 'top)
+  (jcs-scroll-up-one-line))
+
 
 ;;---------------------------------------------
 ;; Move between button.
