@@ -88,22 +88,6 @@
 (add-hook 'after-change-major-mode-hook 'jcs-after-change-major-mode-hook)
 
 ;;-----------------------------------------------------------
-;;-----------------------------------------------------------
-
-(defun jcs-after-save-hook ()
-  "Do stuff after saved."
-  ;; NOTE(jenchieh): Is we found `*undo-tree*' buffer, we
-  ;; try to close it.
-  (let ((prev-frame (selected-frame)))
-    (save-selected-window
-      (when (or (ignore-errors (jcs-jump-shown-to-buffer "*undo-tree*")))
-        (jcs-maybe-kill-this-buffer t)))
-    (select-frame-set-input-focus prev-frame)
-    (jcs-update-line-number-each-window))
-  )
-(add-hook 'after-save-hook 'jcs-after-save-hook)
-
-;;-----------------------------------------------------------
 ;; Minibuffer
 ;;-----------------------------------------------------------
 
