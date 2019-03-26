@@ -363,7 +363,7 @@ SEARCH-OPTION :
               ;; NOTE(jenchieh): Store all the keyword name.
               (when (or (jcs-is-current-point-face "font-lock-keyword-face")
                         (jcs-is-current-point-face "font-lock-preprocessor-face"))
-                (add-to-list 'keyword-strings (thing-at-point 'word)))
+                (push (thing-at-point 'word) keyword-strings))
 
               ;; NOTE(jenchieh): Check if meet the function name.
               (when (or (jcs-is-current-point-face "font-lock-function-name-face")
@@ -387,7 +387,7 @@ SEARCH-OPTION :
                     ;; make muliple item list doable.
                     (let ((type-string (thing-at-point 'word))
                           (temp-list '()))
-                      (add-to-list 'temp-list type-string)
+                      (push type-string temp-list)
                       (setq param-type-strings (append param-type-strings temp-list))))))
 
               ;; NOTE(jenchieh): Store all the variables name.
@@ -395,7 +395,8 @@ SEARCH-OPTION :
                         (jcs-is-current-point-face 'js2-function-param)
                         (jcs-is-current-point-face "web-mode-variable-name-face")
                         (jcs-is-current-point-face "jcs-preproc-variable-name-face"))
-                (add-to-list 'param-variable-strings (thing-at-point 'word))))))))
+                (push (thing-at-point 'word) param-variable-strings)
+                ))))))
 
     ;; Insert document comment string.
     (jcs-insert-doc-comment-string meet-function-name
@@ -446,7 +447,7 @@ SEARCH-OPTION :
                 (param-len (length param-variable-strings))
                 (param-index (1- (length param-variable-strings))))
 
-            ;; NOTE(jenchieh): `add-to-list' will push the element
+            ;; NOTE(jenchieh): `push' will push the element
             ;; at the front queue. `setq' and `append' will push
             ;; element from the back, so we need to reverse it
             ;; in order to match the order.
@@ -592,7 +593,7 @@ SEARCH-OPTION :
                    (jcs-previous-line)
                    (end-of-line)
 
-                   ;; NOTE(jenchieh): `add-to-list' will push the element
+                   ;; NOTE(jenchieh): `push' will push the element
                    ;; at the front queue. `setq' and `append' will push
                    ;; element from the back, so we need to reverse it
                    ;; in order to match the order.
@@ -1138,6 +1139,8 @@ SEARCH-OPTION :
 @param PARAM-VARIABLE-STRINGS : Param name strings list.
 "
   (when (or (jcs-is-current-major-mode-p "typescript-mode"))
+    (jcs-log-list keyword-strings)
+    (message "mode!")
     ;; go back to comment line.
     (jcs-previous-line)
     (jcs-previous-line)
