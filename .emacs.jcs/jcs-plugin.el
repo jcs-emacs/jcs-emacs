@@ -307,5 +307,96 @@
   (advice-add 'reload-emacs :after #'jcs-advice-reload-emacs-after))
 
 
+(use-package helm-config
+  :config
+  ;; 相關教學:
+  ;; * http://emacsist.com/10295
+
+  (helm-mode 1)
+  (helm-autoresize-mode 1)
+
+  ;;; Helm Key bindings
+  (define-key global-map (kbd "M-x") 'helm-M-x)
+  (define-key global-map (kbd "M-y") 'helm-show-kill-ring)
+  ;;(setq helm-ff-auto-update-initial-value nil)    ; 禁止自動補全
+
+  (define-key global-map [f12] 'jcs-helm-gtags-to-def-dec)
+  (define-key global-map [S-f12] 'jcs-helm-gtags-to-def-dec-other-window)
+
+  ;; Helm minibuffer key bindings
+  (define-key helm-find-files-map (kbd "<return>") 'helm-execute-persistent-action)
+
+
+  ;; Helm search configuration.
+  (setq helm-split-window-in-side-p           t
+        helm-move-to-line-cycle-in-source     t
+        helm-ff-search-library-in-sexp        t
+        helm-M-x-fuzzy-match                  t   ; 模糊搜索
+        helm-buffers-fuzzy-matching           t
+        helm-locate-fuzzy-match               t
+        helm-recentf-fuzzy-match              t
+        helm-scroll-amount                    8
+        helm-ff-file-name-history-use-recentf t)
+
+
+  ;; NOTE(jenchieh): Make Helm window at the bottom WITHOUT
+  ;; using any extra package.
+  ;; SOURCE(jenchieh): https://www.reddit.com/r/emacs/comments/345vtl/make_helm_window_at_the_bottom_without_using_any/
+  (add-to-list 'display-buffer-alist
+               `(,(rx bos "*helm" (* not-newline) "*" eos)
+                 (display-buffer-in-side-window)
+                 (inhibit-same-window . t)
+                 (window-height . 0.4)))
+
+  ;;
+  ;; `helm-colors'
+  ;;
+  ;; NOTE(jenchieh): make key insert 'HEX' and 'Name'
+  ;;
+  (defvar helm-color-map
+    (let ((map (make-sparse-keymap)))
+      (set-keymap-parent map helm-map)
+      (define-key map (kbd "RET") 'helm-color-run-insert-name)
+      (define-key map (kbd "C-c N") 'helm-color-run-kill-name)
+      (define-key map (kbd "M-RET") 'helm-color-run-insert-rgb)
+      (define-key map (kbd "C-c R") 'helm-color-run-kill-rgb)
+      map))
+
+  ;;
+  ;; Customize Helm Themes
+  ;;
+
+  ;; Title
+  (set-face-attribute 'helm-source-header nil
+                      :background "#161616"
+                      :foreground "steel blue")
+  ;; Selection
+  (set-face-attribute 'helm-selection nil
+                      :background "midnight blue"
+                      :foreground "#40FF40"))
+
+;;;
+;; NOTE(jenchieh): You will need GNU GLOBAL executable in order
+;; to make the tag system work.
+;;
+(use-package helm-gtags
+  :config
+  ;; Enable helm-gtags-mode
+  (add-hook 'asm-mode-hook 'helm-gtags-mode)
+  (add-hook 'c-mode-hook 'helm-gtags-mode)
+  (add-hook 'c++-mode-hook 'helm-gtags-mode)
+  (add-hook 'java-mode-hook 'helm-gtags-mode)
+  (add-hook 'jayces-mode-hook 'helm-gtags-mode)
+  (add-hook 'js2-mode-hook 'helm-gtags-mode)
+  (add-hook 'lua-mode-hook 'helm-gtags-mode)
+  (add-hook 'nasm-mode-hook 'helm-gtags-mode)
+
+  ;; customize 'helm-gtags' plugin
+  (custom-set-variables
+   '(helm-gtags-path-style 'relative)
+   '(helm-gtags-ignore-case t)
+   '(helm-gtags-auto-update t)))
+
+
 (provide 'jcs-plugin)
 ;;; jcs-plugin.el ends here
