@@ -350,10 +350,10 @@ BND-PT : limit point."
   (interactive)
   (let ((real-lmt-pt (point-min)))
     ;; If no limit point, default as `point-min'.
-    (unless (equal bnd-pt nil)
+    (when bnd-pt
       (setq real-lmt-pt bnd-pt))
 
-    (when (not (jcs-is-beginning-of-buffer-p))
+    (unless (jcs-is-beginning-of-buffer-p)
       (forward-char -1)
 
       (while (and (>= (point) real-lmt-pt)
@@ -369,10 +369,10 @@ BND-PT : boundary point."
   (let ((real-lmt-pt (point-max)))
 
     ;; If no limit point, default as `point-max'.
-    (unless (equal bnd-pt nil)
+    (when bnd-pt
       (setq real-lmt-pt bnd-pt))
 
-    (when (not (jcs-is-end-of-buffer-p))
+    (unless (jcs-is-end-of-buffer-p)
       (forward-char 1)
 
       (while (and (<= (point) real-lmt-pt)
@@ -647,19 +647,6 @@ MAX-PT : larger position."
         (jcs-next-line))
       ;; Return false.
       (equal there-is-empty-line t))))
-
-;;;###autoload
-(defun jcs-safe-forward-char ()
-  "Forward a char if not the end of the line."
-  (if (not (jcs-is-beginning-of-line-p))
-      (forward-char 1)))
-
-;;;###autoload
-(defun jcs-safe-backward-char ()
-  "Backward a char if not the beginning of the line."
-  (if (not (jcs-is-end-of-line-p))
-      (backward-char 1)))
-
 
 (defun jcs-start-line-in-buffer ()
   "Is current line the start line in buffer."
