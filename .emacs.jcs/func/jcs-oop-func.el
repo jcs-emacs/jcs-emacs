@@ -532,18 +532,18 @@ SEARCH-OPTION :
       (progn
 
         (when (jcs-is-current-major-mode-p "csharp-mode")
-          (cond ((jcs-is-in-list-string keyword-strings "class")
+          (cond ((jcs-is-contain-list-string keyword-strings "class")
                  (progn
                    ;; STUDY(jenchieh): Don't think that C#
                    ;; doc need one..
                    ))
-                ((jcs-is-in-list-string keyword-strings "struct")
+                ((jcs-is-contain-list-string keyword-strings "struct")
                  (progn
                    ;; STUDY(jenchieh): Don't think that C#
                    ;; doc need one..
                    ))
-                ((or (jcs-is-in-list-string keyword-strings "define")
-                     (jcs-is-in-list-string keyword-strings "#define"))
+                ((or (jcs-is-contain-list-string keyword-strings "define")
+                     (jcs-is-contain-list-string keyword-strings "#define"))
                  (progn
                    ;; STUDY(jenchieh): Don't think that C#
                    ;; doc need one..
@@ -551,7 +551,7 @@ SEARCH-OPTION :
 
         (when (or (jcs-is-current-major-mode-p "c++-mode")
                   (jcs-is-current-major-mode-p "c-mode"))
-          (cond ((jcs-is-in-list-string keyword-strings "class")
+          (cond ((jcs-is-contain-list-string keyword-strings "class")
                  (progn
                    ;; go back to comment line.
                    (jcs-previous-line)
@@ -568,7 +568,7 @@ SEARCH-OPTION :
                    (insert "* @brief ")
                    (insert jcs-class-desc-string)
                    (indent-for-tab-command)))
-                ((jcs-is-in-list-string keyword-strings "struct")
+                ((jcs-is-contain-list-string keyword-strings "struct")
                  (progn
                    ;; go back to comment line.
                    (jcs-previous-line)
@@ -585,8 +585,8 @@ SEARCH-OPTION :
                    (insert "* @brief ")
                    (insert jcs-struct-desc-string)
                    (indent-for-tab-command)))
-                ((or (jcs-is-in-list-string keyword-strings "define")
-                     (jcs-is-in-list-string keyword-strings "#define"))
+                ((or (jcs-is-contain-list-string keyword-strings "define")
+                     (jcs-is-contain-list-string keyword-strings "#define"))
                  (progn
                    ;; go back to comment line.
                    (jcs-previous-line)
@@ -611,7 +611,7 @@ SEARCH-OPTION :
                    (insert "* @brief ")
                    (insert jcs-define-desc-string)
                    (indent-for-tab-command)))
-                ((jcs-is-in-list-string keyword-strings "enum")
+                ((jcs-is-contain-list-string keyword-strings "enum")
                  (progn
                    ;; go back to comment line.
                    (jcs-previous-line)
@@ -631,19 +631,19 @@ SEARCH-OPTION :
 
         (when (or (jcs-is-current-major-mode-p "java-mode")
                   (jcs-is-current-major-mode-p "jdee-mode"))
-          (cond ((jcs-is-in-list-string keyword-strings "class")
+          (cond ((jcs-is-contain-list-string keyword-strings "class")
                  (progn
                    ;; STUDY(jenchieh): Don't think that java
                    ;; doc need one..
                    ))
-                ((jcs-is-in-list-string keyword-strings "interface")
+                ((jcs-is-contain-list-string keyword-strings "interface")
                  (progn
                    ;; STUDY(jenchieh): Don't think that java
                    ;; doc need one..
                    ))))
 
         (when (or (jcs-is-current-major-mode-p "js2-mode"))
-          (cond ((jcs-is-in-list-string keyword-strings "class")
+          (cond ((jcs-is-contain-list-string keyword-strings "class")
                  (progn
                    ;; STUDY(jenchieh): Don't know if javascript
                    ;; need one..
@@ -654,20 +654,20 @@ SEARCH-OPTION :
           )
 
         (when (or (jcs-is-current-major-mode-p "python-mode"))
-          (cond ((jcs-is-in-list-string keyword-strings "class")
+          (cond ((jcs-is-contain-list-string keyword-strings "class")
                  (progn
                    ;; TODO(jenchieh): implement into python mode.
                    ))))
 
         (when (or (jcs-is-current-major-mode-p "php-mode")
                   (jcs-is-current-major-mode-p "web-mode"))
-          (cond ((jcs-is-in-list-string keyword-strings "class")
+          (cond ((jcs-is-contain-list-string keyword-strings "class")
                  (progn
                    ;; TODO(jenchieh): implement into PHP mode.
                    ))))
 
         (when (or (jcs-is-current-major-mode-p "typescript-mode"))
-          (cond ((jcs-is-in-list-string keyword-strings "class")
+          (cond ((jcs-is-contain-list-string keyword-strings "class")
                  (progn
                    ;; TODO(jenchieh): implement into TypeScript mode.
                    ))))
