@@ -2,7 +2,7 @@
 [![License](https://img.shields.io/badge/License-BSD%202--Clause-orange.svg)](https://opensource.org/licenses/BSD-2-Clause)
 
 
-# jcs-emacs-init #
+# jcs-emacs-init
 
 This is Jen-Chieh Shen's emacs configuration, repeatedly utilized 
 and modified since 2015, hopefully this could help someone who is 
@@ -41,7 +41,7 @@ e.g. [Atom](https://atom.io/), [Brackets](http://brackets.io/),
 [Visual Studio Code](https://code.visualstudio.com/), etc. 
 
 
-## Features ##
+## Features
 
 * *Abbreivation Definition* - powered by 
 [project-abbrev](https://github.com/jcs090218/project-abbrev).
@@ -111,7 +111,8 @@ dark theme.
 [undo-tree](https://www.emacswiki.org/emacs/UndoTree).
 
 
-## Key Bindings ##
+## Key Bindings
+
 This configuration have all modes bind to the same set of 
 key bindings. It benefits the developer would not need to change 
 their key bindings while after the mode swichted. The key bindings 
@@ -131,7 +132,8 @@ same key stroke once again, hence the `cut` key is `C-x C-x` and
 the `copy` key is `C-c C-c`. 
 
 
-## Installation ##
+## Installation
+
 To install, clone this repo and copy the core `files`/`directories` 
 to the emacs config directory accordingly.
 ```bash
@@ -150,6 +152,7 @@ $ cp -r ./.emacs.jcs ~/
 ```
 
 
-## Supported Emacs versions ##
+## Supported Emacs versions
+
 The config should run on Emacs 24.3 or higher, but still, recommend 
 to always run on the latest Emacs version available on your machine.
