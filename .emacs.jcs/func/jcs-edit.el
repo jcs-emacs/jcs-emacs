@@ -735,10 +735,12 @@ ECP-SAME : Exception for the same buffer."
   "Kill the current buffer and open it again."
   (interactive)
   (let ((buf-name (buffer-file-name))
+        (first-vis-ln (jcs-first-visible-line-in-window))
         (record-ln (line-number-at-pos)))
     (when buf-name
       (jcs-kill-this-buffer)
       (find-file buf-name)
+      (jcs-make-first-visible-line-to first-vis-ln)
       (goto-line record-ln))))
 
 ;;----------------------------------------------
