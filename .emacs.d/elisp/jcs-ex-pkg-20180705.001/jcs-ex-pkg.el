@@ -5,7 +5,7 @@
 
 ;; Author: Shen, Jen-Chieh <jcs090218@gmail.com>
 ;; Description: Example Package - JayCeS.
-;; Keyword: annotation linum reminder
+;; Keyword: code example
 ;; Version: 0.0.1
 ;; Package-Requires: ((emacs "24.4"))
 ;; URL: https://github.com/jcs090218/jcs-ex-pkg
