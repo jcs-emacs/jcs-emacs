@@ -734,10 +734,12 @@ ECP-SAME : Exception for the same buffer."
 (defun jcs-reopen-this-buffer ()
   "Kill the current buffer and open it again."
   (interactive)
-  (let ((buf-name (buffer-file-name)))
+  (let ((buf-name (buffer-file-name))
+        (record-ln (line-number-at-pos)))
     (when buf-name
       (jcs-kill-this-buffer)
-      (find-file buf-name))))
+      (find-file buf-name)
+      (goto-line record-ln))))
 
 ;;----------------------------------------------
 ;; Search/Kill word capital.
