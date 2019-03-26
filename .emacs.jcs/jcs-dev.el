@@ -25,7 +25,7 @@ IN-OP : inpuit operation script."
     (let ((default-directory script-dir))
       ;; Compile/Execute the target script.
       (compile in-op)
-      (global-linum-mode t))))
+      (jcs-update-line-number-each-window))))
 
 
 (defun jcs-select-find-file-current-dir (in-filename)
@@ -79,16 +79,16 @@ We need a title to present which file to select."
   (let ((filepath ""))
     (unless
         (or (ignore-errors
-              (setq filepath (jcs-select-find-file-in-project target-script
-                                                                 in-title))))
+              (setq filepath (jcs-select-find-file-in-project in-filename
+                                                              in-title))))
       (unless
           (or (ignore-errors
-                (setq filepath (jcs-select-find-file-current-dir target-script))))
+                (setq filepath (jcs-select-find-file-current-dir in-filename))))
         (error (format (concat "Cannot find '%s' file either in the project or current "
                                "directory, make sure the project directory exists or "
                                "the '%s' file exists in the current directory")
-                       target-script
-                       target-script))))
+                       in-filename
+                       in-filename))))
     ;; Return the path.
     filepath))
 
