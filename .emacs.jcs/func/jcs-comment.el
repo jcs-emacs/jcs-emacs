@@ -271,30 +271,23 @@ string, do not insert closing comment string.  Check this situation."
   "Comment line or region, if there are region select then just comment region.
 Otherwise comment line."
   (interactive)
-
   ;; check if there are region select
   (if (and mark-active
            (/= (point) (mark)))
       (progn
+        (let ((is-commented nil))
+          (save-excursion
+            (if (= (region-beginning) (point))
+                (jcs-goto-next-forward-char)
+              (jcs-goto-next-backward-char))
+            (end-of-line)
+            (setq is-commented (nth 4 (syntax-ppss))))
 
-        (setq before-comment-point (point))
-
-        (if (jcs-is-infront-first-char-at-line-p)
-            (progn
-              (jcs-safe-forward-char)
-              (jcs-safe-forward-char)
-              (jcs-safe-forward-char)))
-
-        (if (nth 4 (syntax-ppss))
-            (progn
-              (goto-char before-comment-point)
-              (uncomment-region (region-beginning) (region-end)))
-          (progn
-            (goto-char before-comment-point)
+          (if is-commented
+              (uncomment-region (region-beginning) (region-end))
             (comment-region (region-beginning) (region-end)))))
-    (progn
-      ;; else we just comment one single line.
-      (jcs-toggle-comment-on-line))))
+    ;; else we just comment one single line.
+    (jcs-toggle-comment-on-line)))
 
 ;;;###autoload
 (defun jcs-comment-region-or-line ()

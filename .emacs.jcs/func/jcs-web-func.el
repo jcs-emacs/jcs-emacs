@@ -253,18 +253,24 @@ line by line instead of indent the whole file at once."
 (defun jcs-web-return-key ()
   "Return key for Web mode."
   (interactive)
-  (let ((first-backward-word (jcs-first-backward-word))
-        (first-forward-word (jcs-first-forward-word)))
-    (if (and (jcs-first-forward-char-in-line-p "<")
-             (jcs-first-backward-char-in-line-p ">")
-             ;; NOTE(jenchieh): Only do it when in the correct scope.
-             (string= first-backward-word first-forward-word))
-        (progn
-          (newline-and-indent)
-          (newline-and-indent)
-          (jcs-web-smart-indent-up))
-      (progn
-        (call-interactively #'jcs-smart-context-line-break)))))
+  (let ((did-ret-key nil)
+        (close-tag-found nil))
+    (when (and (jcs-first-forward-char-in-line-p "<")
+               (jcs-first-backward-char-in-line-p ">"))
+      ;; Check closing tag.
+      (save-excursion
+        (jcs-move-to-forward-a-char "<")
+        (forward-char 1)
+        (setq close-tag-found (jcs-current-char-equal-p "/")))
+
+      (when close-tag-found
+        (newline-and-indent)
+        (newline-and-indent)
+        (jcs-web-smart-indent-up)
+        (setq did-ret-key t)))
+
+    (unless did-ret-key
+      (call-interactively #'jcs-smart-context-line-break))))
 
 ;;---------------------------------------------
 ;; Save
