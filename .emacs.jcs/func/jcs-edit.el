@@ -735,13 +735,32 @@ ECP-SAME : Exception for the same buffer."
   "Kill the current buffer and open it again."
   (interactive)
   (let ((buf-name (buffer-file-name))
-        (first-vis-ln (jcs-first-visible-line-in-window))
-        (record-ln (line-number-at-pos)))
+        (win-cnt-lst '())
+        (first-vs-ln-lst '())
+        (record-pt-lst '())
+        (win-cnt 0))
     (when buf-name
+      (jcs-walk-through-all-windows-once
+       (lambda ()
+         (when (string= (buffer-file-name) buf-name)
+           (push win-cnt win-cnt-lst)
+           (push (point) record-pt-lst)
+           (push (jcs-first-visible-line-in-window) first-vs-ln-lst))
+         (setq win-cnt (+ win-cnt 1))))
+
+      (setq record-pt-lst (reverse record-pt-lst))
+      (setq first-vs-ln-lst (reverse first-vs-ln-lst))
+
       (jcs-kill-this-buffer)
-      (find-file buf-name)
-      (jcs-make-first-visible-line-to first-vis-ln)
-      (goto-line record-ln))))
+
+      (setq win-cnt 0)
+      (jcs-walk-through-all-windows-once
+       (lambda ()
+         (when (jcs-is-contain-list-integer win-cnt-lst win-cnt)
+           (find-file buf-name)
+           (jcs-make-first-visible-line-to (nth win-cnt first-vs-ln-lst))
+           (goto-char (nth win-cnt record-pt-lst)))
+         (setq win-cnt (+ win-cnt 1)))))))
 
 ;;----------------------------------------------
 ;; Search/Kill word capital.
