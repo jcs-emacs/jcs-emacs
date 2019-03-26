@@ -2,7 +2,7 @@
 [![License](https://img.shields.io/badge/License-BSD%202--Clause-orange.svg)](https://opensource.org/licenses/BSD-2-Clause)
 
 
-# jcs-emacs-init
+# jcs-emacs-init #
 
 This is Jen-Chieh Shen's emacs configuration, repeatedly utilized 
 and modified since 2015, hopefully this could help someone who is 
