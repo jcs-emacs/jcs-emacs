@@ -417,7 +417,9 @@ the key everytime the mode changes."
   (define-key global-map (kbd "C-r DEL") #'jcs-backward-delete-current-char-repeat)
   (define-key global-map (kbd "C-r S-<backspace>") #'jcs-forward-delete-current-char-repeat)
   )
-(jcs-global-key-rebind)
+
+;; NOTE(jenchieh): Call depend mode once.
+(call-interactively #'jcs-depend-mode)
 
 
 (provide 'jcs-global-key)
