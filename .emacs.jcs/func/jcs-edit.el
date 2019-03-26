@@ -734,33 +734,45 @@ ECP-SAME : Exception for the same buffer."
 (defun jcs-reopen-this-buffer ()
   "Kill the current buffer and open it again."
   (interactive)
-  (let ((buf-name (buffer-file-name))
-        (win-cnt-lst '())
-        (first-vs-ln-lst '())
-        (record-pt-lst '())
-        (win-cnt 0))
-    (when buf-name
-      (jcs-walk-through-all-windows-once
-       (lambda ()
-         (when (string= (buffer-file-name) buf-name)
-           (push win-cnt win-cnt-lst)
-           (push (point) record-pt-lst)
-           (push (jcs-first-visible-line-in-window) first-vs-ln-lst))
-         (setq win-cnt (+ win-cnt 1))))
+  (save-selected-window
+    (let ((buf-name (buffer-file-name))
+          (win-cnt-lst '())
+          (first-vs-ln-lst '())
+          (record-pt-lst '())
+          (win-cnt 0)
+          (win-id-cnt 0))
+      (when buf-name
+        ;; Record down all the window information with the same
+        ;; buffer opened.
+        (jcs-walk-through-all-windows-once
+         (lambda ()
+           (when (string= (buffer-file-name) buf-name)
+             (push win-cnt win-cnt-lst)
+             (push (point) record-pt-lst)
+             (push (jcs-first-visible-line-in-window) first-vs-ln-lst))
+           (setq win-cnt (+ win-cnt 1))))
 
-      (setq record-pt-lst (reverse record-pt-lst))
-      (setq first-vs-ln-lst (reverse first-vs-ln-lst))
+        ;; Reverse the order to have the information order corresponding
+        ;; to the window order correctly.
+        (setq record-pt-lst (reverse record-pt-lst))
+        (setq first-vs-ln-lst (reverse first-vs-ln-lst))
 
-      (jcs-kill-this-buffer)
+        (jcs-kill-this-buffer)
 
-      (setq win-cnt 0)
-      (jcs-walk-through-all-windows-once
-       (lambda ()
-         (when (jcs-is-contain-list-integer win-cnt-lst win-cnt)
-           (find-file buf-name)
-           (jcs-make-first-visible-line-to (nth win-cnt first-vs-ln-lst))
-           (goto-char (nth win-cnt record-pt-lst)))
-         (setq win-cnt (+ win-cnt 1)))))))
+        (setq win-cnt 0)
+
+        ;; Restore the window information after, including
+        ;; opening the same buffer.
+        (jcs-walk-through-all-windows-once
+         (lambda ()
+           (when (jcs-is-contain-list-integer win-cnt-lst win-cnt)
+             (find-file buf-name)
+             (jcs-make-first-visible-line-to (nth win-id-cnt first-vs-ln-lst))
+             (goto-char (nth win-id-cnt record-pt-lst))
+             (setq win-id-cnt (+ win-id-cnt 1)))
+           (setq win-cnt (+ win-cnt 1))))
+
+        (message "Reopened buffer => '%s'" buf-name)))))
 
 ;;----------------------------------------------
 ;; Search/Kill word capital.
