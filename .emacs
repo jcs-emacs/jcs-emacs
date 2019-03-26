@@ -121,7 +121,7 @@
 ;; my package `reload-emacs' to their package system.
 ;; Then we can remove load file/manually install package system.
 ;;
-(load-file "~/.emacs.d/elisp/reload-emacs-20190319.001/reload-emacs.el")
+(load-file "~/.emacs.d/elisp/reload-emacs-20190326.001/reload-emacs.el")
 
 
 ;;========================================
