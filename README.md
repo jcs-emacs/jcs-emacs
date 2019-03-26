@@ -74,7 +74,9 @@ e.g. [Atom](https://atom.io/), [Brackets](http://brackets.io/),
 * *Line Annotation* - powoered by 
 [line-reminder](https://github.com/jcs090218/line-reminder).
 * *Line Number* - powered by 
-[linum](https://www.emacswiki.org/emacs/LineNumbers).
+[display-line-numbers](https://github.com/emacs-mirror/emacs/blob/master/lisp/display-line-numbers.el)
+and 
+[linum](https://github.com/emacs-mirror/emacs/blob/master/lisp/linum.el).
 * *Minimap* - powered by 
 [sublimity](https://github.com/zk-phi/sublimity).
 * *Mode Line* - powered by 
