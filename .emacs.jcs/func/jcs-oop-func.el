@@ -1217,7 +1217,8 @@ SEARCH-OPTION :
 
 (defvar jcs-oop-font-lock-missing-modes '(lua-mode
                                           php-mode
-                                          python-mode)
+                                          python-mode
+                                          typescript-mode)
   "Modes to fixed variable font lock missing face.")
 
 (mapc (lambda (mode)
@@ -1230,6 +1231,21 @@ SEARCH-OPTION :
            ("^[ \t]* \\([a-zA-Z_$0-9,]*\\)[ \t]*[,)]" 1 'font-lock-variable-name-face t)
            )'end))
       jcs-oop-font-lock-missing-modes)
+
+;;-----------------------------------------------------------
+;;-----------------------------------------------------------
+
+(defvar jcs-oop-font-lock-missing-modes-colon '(actionscript-mode
+                                                typescript-mode)
+  "Modes to fixed variable font lock missing face, language uses `colon'.")
+
+(mapc (lambda (mode)
+        (font-lock-add-keywords
+         mode
+         '(("(,*\\([a-zA-Z_$0-9 \t]*\\)[:,)]" 1 'font-lock-variable-name-face t)
+           (",\\([a-zA-Z_$0-9, \t]*\\):" 1 'font-lock-variable-name-face t)
+           )'end))
+      jcs-oop-font-lock-missing-modes-colon)
 
 
 (provide 'jcs-oop-func)
