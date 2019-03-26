@@ -677,10 +677,11 @@ MAX-PT : larger position."
   (let ((cp (point)))
     (save-window-excursion
       (save-excursion
-        (while (and (pos-visible-in-window-p cp)
-                    (not (jcs-is-beginning-of-buffer-p)))
+        (while (and (not (jcs-is-beginning-of-buffer-p))
+                    (pos-visible-in-window-p cp))
           (beginning-of-line)
-          (backward-char 1)
+          (unless (jcs-is-beginning-of-buffer-p)
+            (backward-char 1))
           (setq cp (point)))))
     (+ cp 1)))
 
@@ -693,7 +694,8 @@ MAX-PT : larger position."
 LN : target line to make first to."
   (goto-line ln)
   (recenter-top-bottom 'top)
-  (jcs-scroll-up-one-line))
+  (unless (<= ln 1)
+    (jcs-scroll-up-one-line)))
 
 
 ;;---------------------------------------------
