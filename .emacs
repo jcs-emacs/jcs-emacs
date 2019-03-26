@@ -158,7 +158,6 @@
 (require 'jcs-corresponding-file)
 (require 'jcs-mode)
 (require 'jcs-file-info-format)
-(require 'jcs-helm)
 
 ;; Modes
 (require 'jcs-elisp-mode)
@@ -214,7 +213,7 @@
 ;; Set default font.
 (require 'jcs-font)
 
-      ;;; Do stuff after initialize.
+;;; Do stuff after initialize.
 (require 'jcs-after-init)
 
 
