@@ -570,6 +570,7 @@ the current line."
         (jcs-maybe-kill-this-buffer t)))
     (select-frame-set-input-focus prev-frame)
     (jcs-update-line-number-each-window)))
+(advice-add 'save-buffer :after #'jcs-do-stuff-after-save)
 
 ;;;###autoload
 (defun jcs-untabify-save-buffer ()
@@ -581,8 +582,7 @@ whitespaces."
     (save-restriction
       (widen)
       (untabify (point-min) (point-max))))
-  (save-buffer)
-  (jcs-do-stuff-after-save))
+  (save-buffer))
 
 ;;;###autoload
 (defun jcs-tabify-save-buffer ()
@@ -595,8 +595,7 @@ so we must convert spaces to tab."
     (save-restriction
       (widen)
       (tabify (point-min) (point-max))))
-  (save-buffer)
-  (jcs-do-stuff-after-save))
+  (save-buffer))
 
 ;;=================================
 ;; Find file
