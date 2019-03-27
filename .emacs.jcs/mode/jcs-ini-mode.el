@@ -27,6 +27,8 @@
   (define-key ini-mode-map (kbd "<up>") #'previous-line)
   (define-key ini-mode-map (kbd "<down>") #'next-line)
 
+  (define-key ini-mode-map (kbd "C-s") #'save-buffer)
+
   )
 (add-hook 'ini-mode-hook 'jcs-ini-mode-hook)
 
