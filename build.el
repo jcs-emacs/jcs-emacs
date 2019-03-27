@@ -1,11 +1,6 @@
-;; ========================================================================
-;; $File: build.el $
-;; $Date: 2018-11-25 20:35:16 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2018 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; build.el --- Test the configuration.  -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
 
 ;; Get the list of package dependencies.
@@ -22,3 +17,7 @@
 
 ;; Start regular Emacs file.
 ;;(load-file "./.emacs")
+
+
+;;(provide 'build)
+;;; build.el ends here
