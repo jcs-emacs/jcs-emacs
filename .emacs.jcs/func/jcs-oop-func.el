@@ -3,6 +3,23 @@
 ;;; Code:
 
 
+(defun jcs-docstring-modes-p ()
+  "Check if current mode support docstring."
+  (or (jcs-is-current-major-mode-p "c-mode")
+      (jcs-is-current-major-mode-p "c++-mode")
+      (jcs-is-current-major-mode-p "java-mode")
+      ;; =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+      ;; TODO(jenchieh): If we decide to use
+      ;; c-type docstirng in `csharp-mode'. Then
+      ;; we need to uncomment the line below.
+      ;; =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+      ;;(jcs-is-current-major-mode-p "csharp-mode")
+      (jcs-is-current-major-mode-p "js2-mode")
+      (jcs-is-current-major-mode-p "php-mode")
+      (jcs-is-current-major-mode-p "typescript-mode")
+      (jcs-is-current-major-mode-p "web-mode")))
+
+
 (defvar jcs-oop-highlight-modes '(actionscript-mode
                                   cc-mode
                                   c-mode
@@ -1133,6 +1150,8 @@ SEARCH-OPTION :
 @param RETURN-TYPE-STRING     : String of the return type.
 @param PARAM-TYPE-STRINGS     : Param type strings list.
 @param PARAM-VARIABLE-STRINGS : Param name strings list."
+
+  (jcs-log-list keyword-strings)
 
   (when (or (jcs-is-current-major-mode-p "typescript-mode"))
     (let ((param-index (1- (length param-variable-strings))))

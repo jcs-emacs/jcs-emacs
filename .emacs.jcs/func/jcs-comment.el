@@ -106,19 +106,8 @@ comment character on the same line."
                 (jcs-previous-line)
 
                 ;; Insert comment string here..
-                (when (or (jcs-is-current-major-mode-p "c-mode")
-                          (jcs-is-current-major-mode-p "c++-mode")
-                          (jcs-is-current-major-mode-p "java-mode")
-                          ;; =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-                          ;; TODO(jenchieh): If we decide to use
-                          ;; c-type docstirng in `csharp-mode'. Then
-                          ;; we need to uncomment the line below.
-                          ;; =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-                          ;;(jcs-is-current-major-mode-p "csharp-mode")
-                          (jcs-is-current-major-mode-p "js2-mode")
-                          (jcs-is-current-major-mode-p "php-mode")
-                          (jcs-is-current-major-mode-p "typescript-mode")
-                          (jcs-is-current-major-mode-p "web-mode"))
+                (when (and (functionp 'jcs-docstring-modes-p)
+                           (jcs-docstring-modes-p))
                   (jcs-insert-comment-string))
 
                 ;; goto the end of line
