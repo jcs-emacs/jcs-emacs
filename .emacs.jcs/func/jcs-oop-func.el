@@ -309,7 +309,6 @@ SEARCH-OPTION :
 0) search only current line.
 1) search witch closing parenthesis.
 2) search with opening culry parenthesis."
-  (interactive)
 
   (let ((keyword-strings '())
         (datatype-name "")
@@ -1152,10 +1151,14 @@ SEARCH-OPTION :
 @param PARAM-VARIABLE-STRINGS : Param name strings list."
 
   (when (or (jcs-is-current-major-mode-p "typescript-mode"))
-
-    (jcs-log-list keyword-strings)
-
-    (let ((param-index (1- (length param-variable-strings))))
+    (let* ((param-len (length param-variable-strings))
+           (keyword-len (length keyword-strings))
+           (param-index (1- param-len))
+           ;; Ignore `public', `private' or `protected' keyword.
+           (keyword-index (- keyword-len 2))
+           (func-keyword (nth (1- keyword-len) keyword-strings))
+           (with-return-type nil)
+           (ret-keyword ""))
       ;; go back to comment line.
       (jcs-previous-line)
       (jcs-previous-line)
@@ -1164,13 +1167,19 @@ SEARCH-OPTION :
       (insert "@desc ")
       (indent-for-tab-command)
 
+      (when (= param-len (- keyword-len 2))
+        (setq ret-keyword (nth 0 keyword-strings))
+        ;; Check if return string `void' type.
+        (unless (string= ret-keyword "void")
+          (setq with-return-type t)))
+
       ;; Process param tag.
       (while (>= param-index 0)
         (insert "\n")  ;; start from newline.
         (insert "* @")
         (insert jcs-ts-param-string)
         (when jcs-ts-doc-show-typename
-          (jcs-insert-jsdoc-type (nth param-index keyword-strings)
+          (jcs-insert-jsdoc-type (nth keyword-index keyword-strings)
                                  jcs-ts-open-type-char
                                  jcs-ts-close-type-char))
         (insert (nth param-index param-variable-strings))
@@ -1181,24 +1190,26 @@ SEARCH-OPTION :
         (indent-for-tab-command)
 
         ;; add up counter.
-        (setq param-index (1- param-index)))
+        (setq param-index (1- param-index))
+        (setq keyword-index (1- keyword-index)))
+
+
 
       ;; Lastly, process returns tag.
-      (when there-is-return
-        (unless (string= return-type-string "void")
-          (insert "\n")
-          (insert "* @")
-          (insert jcs-ts-return-string)
-          (when jcs-ts-doc-show-typename
-            (jcs-insert-jsdoc-type return-type-string
-                                   jcs-ts-open-type-char
-                                   jcs-ts-close-type-char))
-          (backward-delete-char 1)
-          (if jcs-ts-doc-show-typename
-              (insert jcs-js-doc-after-value-type-char)
-            (insert " "))
-          (insert jcs-return-desc-string)
-          (indent-for-tab-command))))))
+      (when with-return-type
+        (insert "\n")
+        (insert "* @")
+        (insert jcs-ts-return-string)
+        (when jcs-ts-doc-show-typename
+          (jcs-insert-jsdoc-type ret-keyword
+                                 jcs-ts-open-type-char
+                                 jcs-ts-close-type-char))
+        (backward-delete-char 1)
+        (if jcs-ts-doc-show-typename
+            (insert jcs-js-doc-after-value-type-char)
+          (insert " "))
+        (insert jcs-return-desc-string)
+        (indent-for-tab-command)))))
 
 
 (defun jcs-insert-jsdoc-type (type-name open-char close-char)
