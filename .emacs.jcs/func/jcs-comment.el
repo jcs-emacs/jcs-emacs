@@ -111,20 +111,13 @@ comment character on the same line."
                           (jcs-is-current-major-mode-p "java-mode")
                           ;; =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
                           ;; TODO(jenchieh): If we decide to use
-                          ;; c-type docstirng. Then we need to
-                          ;; uncomment the line below.
+                          ;; c-type docstirng in `csharp-mode'. Then
+                          ;; we need to uncomment the line below.
                           ;; =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
                           ;;(jcs-is-current-major-mode-p "csharp-mode")
                           (jcs-is-current-major-mode-p "js2-mode")
                           (jcs-is-current-major-mode-p "php-mode")
-                          ;; =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-                          ;; TODO(jenchieh): `typescript-mode' itself
-                          ;; does not have each keyword identifier.
-                          ;; Meaning the programming language itself is
-                          ;; quite simple and docstring will be much harder
-                          ;; to implement.
-                          ;; =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-                          ;;(jcs-is-current-major-mode-p "typescript-mode")
+                          (jcs-is-current-major-mode-p "typescript-mode")
                           (jcs-is-current-major-mode-p "web-mode"))
                   (jcs-insert-comment-string))
 
