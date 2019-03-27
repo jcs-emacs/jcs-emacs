@@ -463,6 +463,7 @@ SEARCH-OPTION :
       ;; element from the back, so we need to reverse it
       ;; in order to match the order.
       (setq param-type-strings (reverse param-type-strings))
+      (setq keyword-strings (reverse keyword-strings))
 
       (jcs-csharp-mode-doc-string meet-function-name
                                   keyword-strings
@@ -1151,8 +1152,6 @@ SEARCH-OPTION :
 @param PARAM-TYPE-STRINGS     : Param type strings list.
 @param PARAM-VARIABLE-STRINGS : Param name strings list."
 
-  (jcs-log-list keyword-strings)
-
   (when (or (jcs-is-current-major-mode-p "typescript-mode"))
     (let ((param-index (1- (length param-variable-strings))))
       ;; go back to comment line.
@@ -1279,7 +1278,8 @@ SEARCH-OPTION :
 (mapc (lambda (mode)
         (font-lock-add-keywords
          mode
-         '(("public[ \t]*\\([a-zA-Z_$0-9]*\\)[ \t]*(" 1 'font-lock-function-name-face t)
+         '(("function[ \t]*\\([a-zA-Z_$0-9]*\\)[ \t]*(" 1 'font-lock-function-name-face t)
+           ("public[ \t]*\\([a-zA-Z_$0-9]*\\)[ \t]*(" 1 'font-lock-function-name-face t)
            ("private[ \t]*\\([a-zA-Z_$0-9]*\\)[ \t]*(" 1 'font-lock-function-name-face t)
            ("protected[ \t]*\\([a-zA-Z_$0-9]*\\)[ \t]*(" 1 'font-lock-function-name-face t)
            )'end))
