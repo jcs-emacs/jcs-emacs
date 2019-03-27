@@ -71,7 +71,7 @@ e.g. [Atom](https://atom.io/), [Brackets](http://brackets.io/),
 [recentf](https://www.emacswiki.org/emacs/RecentFiles).
 * *Regexp* - powered by 
 [re-builder](https://www.emacswiki.org/emacs/ReBuilder).
-* *Line Annotation* - powoered by 
+* *Line Annotation* - powered by 
 [line-reminder](https://github.com/jcs090218/line-reminder).
 * *Line Number* - powered by 
 [display-line-numbers](https://github.com/emacs-mirror/emacs/blob/master/lisp/display-line-numbers.el)
