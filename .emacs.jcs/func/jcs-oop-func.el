@@ -463,7 +463,6 @@ SEARCH-OPTION :
       ;; element from the back, so we need to reverse it
       ;; in order to match the order.
       (setq param-type-strings (reverse param-type-strings))
-      (setq keyword-strings (reverse keyword-strings))
 
       (jcs-csharp-mode-doc-string meet-function-name
                                   keyword-strings
@@ -1153,11 +1152,17 @@ SEARCH-OPTION :
 @param PARAM-VARIABLE-STRINGS : Param name strings list."
 
   (when (or (jcs-is-current-major-mode-p "typescript-mode"))
+
+    (jcs-log-list keyword-strings)
+
     (let ((param-index (1- (length param-variable-strings))))
       ;; go back to comment line.
       (jcs-previous-line)
       (jcs-previous-line)
       (end-of-line)
+
+      (insert "@desc ")
+      (indent-for-tab-command)
 
       ;; Process param tag.
       (while (>= param-index 0)
@@ -1165,7 +1170,7 @@ SEARCH-OPTION :
         (insert "* @")
         (insert jcs-ts-param-string)
         (when jcs-ts-doc-show-typename
-          (jcs-insert-jsdoc-type "typename"
+          (jcs-insert-jsdoc-type (nth param-index keyword-strings)
                                  jcs-ts-open-type-char
                                  jcs-ts-close-type-char))
         (insert (nth param-index param-variable-strings))
