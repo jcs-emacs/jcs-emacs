@@ -3,7 +3,7 @@
 
 
 # jcs-emacs-init
-
+> An Emacs configuration bundle.
 This is Jen-Chieh Shen's emacs configuration, repeatedly utilized 
 and modified since 2015, hopefully this could help someone who is 
 new or struggle with Emacs. This configuration should works on 
