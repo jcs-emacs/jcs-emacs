@@ -42,6 +42,15 @@ e.g. [Atom](https://atom.io/), [Brackets](http://brackets.io/),
 [Visual Studio Code](https://code.visualstudio.com/), etc. 
 
 
+## Startup Time
+
+The average startup time for this configuration is around 
+`15` to `25` seconds. You can use command `emacs-init-time` 
+to check the startup time on your machine. Not quite sure what 
+causes that much of performance, hopefully, I'm able to lower 
+the startup time down to `5` to `15` seconds.
+
+
 ## Features
 
 * *Abbreivation Definition* - powered by 
