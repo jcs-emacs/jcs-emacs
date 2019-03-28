@@ -1,11 +1,6 @@
-;; ========================================================================
-;; $File: jcs-package.el $
-;; $Date: 2018-05-15 16:37:28 $
-;; $Revision: $
-;; $Creator: Jen-Chieh Shen $
-;; $Notice: See LICENSE.txt for modification and distribution information
-;;                   Copyright © 2018 by Shen, Jen-Chieh $
-;; ========================================================================
+;;; jcs-package.el --- Package archive related.  -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
 
 ;; ==================
@@ -219,3 +214,7 @@ Return a list of installed packages or nil for every skipped package."
   (if (string= status "..")
       (package-list-packages)
     (package-menu-filter (concat "status:" status))))
+
+
+(provide 'jcs-package)
+;;; jcs-package.el ends here
