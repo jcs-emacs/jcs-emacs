@@ -206,18 +206,15 @@ comment character on the same line."
     (insert "*")
 
     (save-excursion
-      (when (and
-             ;; Check insert pair string?
-             (equal insert-pair t)
-             ;; Check new comment block?
-             (equal (jcs-check-new-block-of-comment) t))
+      (when (and insert-pair
+                 (jcs-check-new-block-of-comment))
         (insert "*/")))))
 
 (defun jcs-check-new-block-of-comment ()
   "If there is one closing comment string without opening comment \
 string, do not insert closing comment string.  Check this situation."
   (let ((check-point (point))
-          (new-comment-block t))
+        (new-comment-block t))
     (save-excursion
 
       (jcs-move-to-forward-a-char "/")
@@ -227,8 +224,8 @@ string, do not insert closing comment string.  Check this situation."
 
         ;; No opening comment string by using
         ;; `jcs-goto-start-of-the-comment' function.
-        (if (>= check-point (point))
-            (setq new-comment-block nil))))
+        (when (>= check-point (point))
+          (setq new-comment-block nil))))
     new-comment-block))
 
 (defun jcs-insert-comment-string ()
@@ -275,16 +272,11 @@ Otherwise comment line."
 (defun jcs-comment-region-or-line ()
   "If no region selected then just comment the line."
   (interactive)
-
   ;; check if there are region select
   (if (and mark-active
            (/= (point) (mark)))
-      (progn
-        (if (nth 4 (syntax-ppss))
-            (progn
-              ;; do not uncomment.
-              )
-          (comment-region (region-beginning) (region-end))))
+      (unless (nth 4 (syntax-ppss))
+        (comment-region (region-beginning) (region-end)))
     ;; else we just comment one single line.
     (comment-region (line-beginning-position) (line-end-position))))
 
@@ -292,13 +284,10 @@ Otherwise comment line."
 (defun jcs-uncomment-region-or-line ()
   "If no region selected then just comment the line."
   (interactive)
-
   ;; check if there are region select
   (if (and mark-active
            (/= (point) (mark)))
-      (progn
-        (uncomment-region (region-beginning) (region-end))
-        )
+      (uncomment-region (region-beginning) (region-end))
     ;; else we just comment one single line.
     (uncomment-region (line-beginning-position) (line-end-position))))
 
