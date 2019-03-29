@@ -49,7 +49,7 @@
       (insert " "))))
 
 ;;;###autoload
-(defun jcs-delete-backward-char ()
+(defun jcs-own-delete-backward-char ()
   "This isn't the VS like key action, is more likely to be users own preferences."
   (interactive)
   (save-excursion
