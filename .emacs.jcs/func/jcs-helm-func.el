@@ -50,7 +50,6 @@
 (defun jcs-helm-gtags-to-def-dec ()
   "Goto the declaration / definition depends on the cursor position."
   (interactive)
-
   (ignore-errors
     ;; Update TAG file. Default is update only current file, You
     ;; can update all files with C-u prefix.
@@ -58,7 +57,6 @@
 
     ;; goto definition or declaration.
     (helm-gtags-find-tag-from-here))
-
   (jcs-reload-active-mode))
 
 ;;;###autoload
@@ -85,16 +83,13 @@ in other window."
 (defun jcs-helm-find-files ()
   "Find the file with Helm"
   (interactive)
-
   (put 'jcs-helm-execute-persistent-action 'state nil)
-
   (helm-find-files nil))
 
 ;;;###autoload
 (defun jcs-helm-find-files-other-window ()
   "Find the file with Helm and open another window."
   (interactive)
-
   ;; set the flag, so when next time run 'jcs-helm-execute-
   ;; persistent-action', he will know what to do instead of
   ;; normal 'helm-execute-persistent-action' action.
@@ -107,7 +102,6 @@ in other window."
   "Rewrap 'helm-execute-presistent-action' function to my
 own preferences."
   (interactive)
-
   (if (get 'jcs-helm-execute-persistent-action 'state)
       (progn
         ;; switch the buffer to another window
