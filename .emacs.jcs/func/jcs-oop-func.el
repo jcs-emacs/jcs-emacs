@@ -560,7 +560,6 @@ SEARCH-OPTION :
                 (jcs-is-current-major-mode-p "c++-mode"))
         (cond ((jcs-is-contain-list-string-regexp keyword-strings "class")
                (progn
-                 (message "Hllo 2")
                  ;; go back to comment line.
                  (jcs-previous-line)
                  (jcs-previous-line)
