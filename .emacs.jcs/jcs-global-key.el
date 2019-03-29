@@ -106,7 +106,6 @@
 (define-key global-map (kbd "C-<return>") #'jcs-ctrl-return-key)
 
 ;;; Kill Word
-;;(define-key global-map (kbd "<backspace>") #'jcs-electric-backspace)
 (define-key global-map (kbd "C-<backspace>") #'jcs-backward-delete-word)
 (define-key global-map (kbd "C-S-<backspace>") #'jcs-forward-delete-word)
 (define-key global-map (kbd "M-<backspace>") #'jcs-backward-kill-word-capital)
