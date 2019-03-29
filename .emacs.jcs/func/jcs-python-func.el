@@ -105,11 +105,9 @@ line instead of indent the whole file at once."
 infront of the first character we indent the line instead of insert
 the space."
   (interactive)
-
   (if (or (jcs-is-infront-first-char-at-line-p)
           (jcs-is-beginning-of-line-p))
-      (progn
-        (jcs-insert-spaces-by-tab-width))
+      (jcs-insert-spaces-by-tab-width)
     (insert " ")))
 
 ;;;###autoload
@@ -124,76 +122,60 @@ the space."
 is infront of the first character in the line we delete fource
 spaces instead of `py-electric-backspace'."
   (interactive)
-
   (if (jcs-is-infront-first-char-at-line-p)
-      (progn
-        (if (use-region-p)
+      (if (use-region-p)
+          (delete-region (region-beginning) (region-end))
+        (if (jcs-py-check-backward-delete-space)
             (progn
-              (delete-region (region-beginning) (region-end)))
-          (progn
-            (if (jcs-py-check-backward-delete-space)
-                (progn
-                  ;; delete four spaces
-                  (jcs-py-safe-backward-delete-char)
-                  (jcs-py-safe-backward-delete-char)
-                  (jcs-py-safe-backward-delete-char)
-                  (jcs-py-safe-backward-delete-char))
-              (progn
-                (backward-delete-char 1))))))
-    (progn
-      ;; OPTION(jenchieh): Default is the `py' version.
-      ;;(py-electric-backspace)
-      ;; OPTION(jenchieh): `jcs' version.
-      (jcs-electric-backspace))))
+              ;; delete four spaces
+              (jcs-py-safe-backward-delete-char)
+              (jcs-py-safe-backward-delete-char)
+              (jcs-py-safe-backward-delete-char)
+              (jcs-py-safe-backward-delete-char))
+          (backward-delete-char 1)))
+    ;; OPTION(jenchieh): Default is the `py' version.
+    ;;(py-electric-backspace)
+    ;; OPTION(jenchieh): `jcs' version.
+    (jcs-electric-backspace)))
 
-;;;###autoload
+
 (defun jcs-py-safe-backward-delete-char ()
+  "Backward delete char safely in `python-mode'."
   (when (jcs-py-check-backward-delete-space)
     (backward-delete-char 1)))
 
-;;;###autoload
 (defun jcs-py-check-backward-delete-space ()
+  "Check able to backward delete the space."
   (and (not (jcs-is-beginning-of-line-p))
        ;; Make sure is not a tab.
        (jcs-current-char-equal-p " ")))
 
-;;;###autoload
+
 (defun jcs-py-check-first-char-of-line-is-keyword-p ()
   "Check the first character of the current line the keyword line."
-  (interactive)
-  (let ((isKeyword nil))
+  (let ((is-keyword nil))
     (save-excursion
       (back-to-indentation)
       (forward-char 1)
       (when (jcs-current-char-equal-p "@")
         (forward-char 1))
       (when (jcs-py-is-python-keyword (jcs-get-word-at-point))
-        (setq isKeyword t)))
-    isKeyword))
+        (setq is-keyword t)))
+    is-keyword))
 
-;;;###autoload
-(defun jcs-py-is-python-keyword (inKeyword)
+
+(defvar jcs-py-keywords '("class"
+                          "classmethod"
+                          "def"
+                          "from"
+                          "import"
+                          "staticmethod")
+  "List of `python' keyword.")
+
+(defun jcs-py-is-python-keyword (in-keyword)
   "Check if the current word is in the `python-keyword-list'.
 vector list."
-  (interactive)
-  (let ((isKeyword nil)
-        (index 0)
-        (python-keyword-list '()))
-    (setq python-keyword-list
-          ["class"
-           "classmethod"
-           "def"
-           "from"
-           "import"
-           "staticmethod"
-           ])
-
-    (while (< index (length python-keyword-list))
-      (when (string= inKeyword (elt python-keyword-list index))
-        (setq isKeyword t))
-      (setq index (1+ index)))
-
-    isKeyword))
+  (jcs-is-contain-list-string jcs-py-keywords in-keyword))
 
 
 (defun jcs-py-do-doc-string ()
