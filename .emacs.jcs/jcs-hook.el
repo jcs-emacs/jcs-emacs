@@ -64,7 +64,8 @@
   (when jcs-show-last-command-event
     (call-interactively #'jcs-print-last-command-event))
 
-  (when (or (jcs-is-current-major-mode-p "lua-mode")
+  (when (or (jcs-is-current-major-mode-p "cc-mode")
+            (jcs-is-current-major-mode-p "lua-mode")
             (jcs-is-current-major-mode-p "typescript-mode"))
     ;; Refresh the syntax highlighting.
     (call-interactively #'jcs-font-lock-fontify-buffer))
