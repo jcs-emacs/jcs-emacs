@@ -448,7 +448,7 @@ the end of the line."
 (defun jcs-print-current-symbol ()
   "Print out the current symbol."
   (interactive)
-  (message "Current word: %s" (jcs-get-symbol-at-point)))
+  (message "Current symbol: %s" (jcs-get-symbol-at-point)))
 
 (defun jcs-get-symbol-at-point ()
   "Get symbol at current cursor position."
