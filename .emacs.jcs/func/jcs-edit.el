@@ -1399,7 +1399,7 @@ CPC : close pair character."
   "Electric backspace key."
   (interactive)
   (let* ((cc (jcs-get-current-char-string))
-         (cpc (jcs-get-close-pair-char cc))))
+         (cpc (jcs-get-close-pair-char cc)))
     (backward-delete-char 1)
     (jcs-process-close-pair-char cpc)))
 
