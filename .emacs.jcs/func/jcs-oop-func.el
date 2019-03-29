@@ -322,7 +322,18 @@ SR-OP :
         (param-type-strings '())  ;; param type string list.
         (param-variable-strings '())  ;; param name string list.
         (there-is-return nil)
-        (return-type-string ""))
+        (return-type-string "")
+        (open-bc -1)
+        (close-bc -1)
+        (paren-string ""))
+
+    (save-excursion
+      (jcs-move-to-forward-a-char "(")
+      (setq open-bc (point))
+      (jcs-move-to-forward-a-char ")")
+      (backward-char 1)
+      (setq close-bc (point))
+      (setq paren-string (string-trim (buffer-substring open-bc close-bc))))
 
     (save-excursion
       (when (not (jcs-current-line-empty-p))
@@ -418,8 +429,8 @@ SR-OP :
                                    there-is-return
                                    return-type-string
                                    param-type-strings
-                                   param-variable-strings)
-    ))
+                                   param-variable-strings
+                                   paren-string)))
 
 (defun jcs-insert-doc-comment-string (meet-function-name
                                       keyword-strings
@@ -428,20 +439,22 @@ SR-OP :
                                       there-is-return
                                       return-type-string
                                       param-type-strings
-                                      param-variable-strings)
+                                      param-variable-strings
+                                      paren-string)
   "Insert document comment style.
 
-@param MEET-FUNCTION-NAME     : Meet the function name?
-@param KEYWORD-STRINGS        : Keyword strings list.
-@param DATATYPE-NAME          : Data type name, store keyword for
+MEET-FUNCTION-NAME     : Meet the function name?
+KEYWORD-STRINGS        : Keyword strings list.
+DATATYPE-NAME          : Data type name, store keyword for
                                struct/class related.
-@param FUNCTION-NAME-STRING   : Function name.
-@param THERE-IS-RETURN        : There is return in this function?
-@param RETURN-TYPE-STRING     : String of the return type.
-@param PARAM-TYPE-STRINGS     : Param type strings list.
-@param PARAM-VARIABLE-STRINGS : Param name strings list."
-  (save-excursion
+FUNCTION-NAME-STRING   : Function name.
+THERE-IS-RETURN        : There is return in this function?
+RETURN-TYPE-STRING     : String of the return type.
+PARAM-TYPE-STRINGS     : Param type strings list.
+PARAM-VARIABLE-STRINGS : Param name strings list.
+PAREN-STRING           : Param raw string."
 
+  (save-excursion
     ;; NOTE(jenchieh): Only add doc when there is function
     ;; in current checking line.
     (when meet-function-name
@@ -452,207 +465,66 @@ SR-OP :
       ;; in order to match the order.
       (setq param-variable-strings (reverse param-variable-strings))
 
-      (jcs-csharp-mode-doc-string meet-function-name
-                                  keyword-strings
-                                  datatype-name
-                                  function-name-string
-                                  there-is-return
-                                  return-type-string
-                                  param-type-strings
-                                  param-variable-strings)
+      (let ((mode-doc-string-func-name nil))
+        (cond ((or (jcs-is-current-major-mode-p "csharp-mode"))
+               (setq mode-doc-string-func-name 'jcs-csharp-mode-doc-string-func))
+              ((or (jcs-is-current-major-mode-p "c-mode")
+                   (jcs-is-current-major-mode-p "c++-mode"))
+               (setq mode-doc-string-func-name 'jcs-cc-mode-doc-string-func))
+              ((or (jcs-is-current-major-mode-p "java-mode")
+                   (jcs-is-current-major-mode-p "jdee-mode"))
+               (setq mode-doc-string-func-name 'jcs-java-mode-doc-string-func))
+              ((or (jcs-is-current-major-mode-p "js2-mode"))
+               (setq mode-doc-string-func-name 'jcs-js-mode-doc-string-func))
+              ((or (jcs-is-current-major-mode-p "lua-mode"))
+               (setq mode-doc-string-func-name 'jcs-lua-mode-doc-string-func))
+              ((or (jcs-is-current-major-mode-p "python-mode"))
+               (setq mode-doc-string-func-name 'jcs-py-mode-doc-string-func))
+              ((or (jcs-is-current-major-mode-p "php-mode")
+                   (jcs-is-current-major-mode-p "web-mode"))
+               (setq mode-doc-string-func-name 'jcs-php-mode-doc-string-func))
+              ((or (jcs-is-current-major-mode-p "typescript-mode"))
+               (setq mode-doc-string-func-name 'jcs-ts-mode-doc-string-func))
+              )
 
-      (jcs-cc-mode-doc-string meet-function-name
-                              keyword-strings
-                              datatype-name
-                              function-name-string
-                              there-is-return
-                              return-type-string
-                              param-type-strings
-                              param-variable-strings)
-
-      (jcs-java-mode-doc-string meet-function-name
-                                keyword-strings
-                                datatype-name
-                                function-name-string
-                                there-is-return
-                                return-type-string
-                                param-type-strings
-                                param-variable-strings)
-
-      (jcs-js-mode-doc-string meet-function-name
-                              keyword-strings
-                              datatype-name
-                              function-name-string
-                              there-is-return
-                              return-type-string
-                              param-type-strings
-                              param-variable-strings)
-
-      (jcs-lua-mode-doc-string meet-function-name
-                               keyword-strings
-                               datatype-name
-                               function-name-string
-                               there-is-return
-                               return-type-string
-                               param-type-strings
-                               param-variable-strings)
-
-      (jcs-py-mode-doc-string meet-function-name
-                              keyword-strings
-                              datatype-name
-                              function-name-string
-                              there-is-return
-                              return-type-string
-                              param-type-strings
-                              param-variable-strings)
-
-      (jcs-php-mode-doc-string meet-function-name
-                               keyword-strings
-                               datatype-name
-                               function-name-string
-                               there-is-return
-                               return-type-string
-                               param-type-strings
-                               param-variable-strings)
-
-      (jcs-ts-mode-doc-string meet-function-name
-                              keyword-strings
-                              datatype-name
-                              function-name-string
-                              there-is-return
-                              return-type-string
-                              param-type-strings
-                              param-variable-strings))
+        (funcall mode-doc-string-func-name
+                 meet-function-name
+                 keyword-strings
+                 datatype-name
+                 function-name-string
+                 there-is-return
+                 return-type-string
+                 param-type-strings
+                 param-variable-strings
+                 paren-string)))
 
     ;; NOTE(jenchieh): Only add doc when there is function
     ;; in current checking line.
     (unless meet-function-name
-      (when (jcs-is-current-major-mode-p "csharp-mode")
-        (cond ((jcs-is-contain-list-string keyword-strings "class")
-               (progn
-                 ;; STUDY(jenchieh): Don't think that C#
-                 ;; doc need one..
-                 ))
-              ((jcs-is-contain-list-string keyword-strings "struct")
-               (progn
-                 ;; STUDY(jenchieh): Don't think that C#
-                 ;; doc need one..
-                 ))
-              ((or (jcs-is-contain-list-string keyword-strings "define")
-                   (jcs-is-contain-list-string keyword-strings "#define"))
-               (progn
-                 ;; STUDY(jenchieh): Don't think that C#
-                 ;; doc need one..
-                 ))))
 
-      (when (or (jcs-is-current-major-mode-p "c-mode")
-                (jcs-is-current-major-mode-p "c++-mode"))
-        (cond ((jcs-is-contain-list-string-regexp keyword-strings "class")
-               (progn
-                 ;; go back to comment line.
-                 (jcs-previous-line)
-                 (jcs-previous-line)
-                 (end-of-line)
+      (let ((mode-doc-string-func-name-others nil))
+        (cond ((or (jcs-is-current-major-mode-p "csharp-mode"))
+               (setq mode-doc-string-func-name-others 'jcs-csharp-mode-doc-string-others))
+              ((or (jcs-is-current-major-mode-p "c-mode")
+                   (jcs-is-current-major-mode-p "c++-mode"))
+               (setq mode-doc-string-func-name-others 'jcs-cc-mode-doc-string-others))
+              ((or (jcs-is-current-major-mode-p "java-mode")
+                   (jcs-is-current-major-mode-p "jdee-mode"))
+               (setq mode-doc-string-func-name-others 'jcs-java-mode-doc-string-others))
+              ((or (jcs-is-current-major-mode-p "js2-mode"))
+               (setq mode-doc-string-func-name-others 'jcs-js-mode-doc-string-others))
+              ((or (jcs-is-current-major-mode-p "lua-mode"))
+               (setq mode-doc-string-func-name-others 'jcs-lua-mode-doc-string-others))
+              ((or (jcs-is-current-major-mode-p "python-mode"))
+               (setq mode-doc-string-func-name-others 'jcs-py-mode-doc-string-others))
+              ((or (jcs-is-current-major-mode-p "php-mode")
+                   (jcs-is-current-major-mode-p "web-mode"))
+               (setq mode-doc-string-func-name-others 'jcs-php-mode-doc-string-others))
+              ((or (jcs-is-current-major-mode-p "typescript-mode"))
+               (setq mode-doc-string-func-name-others 'jcs-ts-mode-doc-string-others))
+              )
 
-                 ;; Process class tag.
-                 (insert "@class ")
-                 (insert datatype-name)
-                 (indent-for-tab-command)
-
-                 ;; Process brief tag.
-                 (insert "\n")
-                 (insert "* @brief ")
-                 (insert jcs-class-desc-string)
-                 (indent-for-tab-command)))
-              ((jcs-is-contain-list-string keyword-strings "struct")
-               (progn
-                 ;; go back to comment line.
-                 (jcs-previous-line)
-                 (jcs-previous-line)
-                 (end-of-line)
-
-                 ;; Process class tag.
-                 (insert "@struct ")
-                 (insert datatype-name)
-                 (indent-for-tab-command)
-
-                 ;; Process brief tag.
-                 (insert "\n")
-                 (insert "* @brief ")
-                 (insert jcs-struct-desc-string)
-                 (indent-for-tab-command)))
-              ((or (jcs-is-contain-list-string keyword-strings "define")
-                   (jcs-is-contain-list-string keyword-strings "#define"))
-               (progn
-                 ;; go back to comment line.
-                 (jcs-previous-line)
-                 (jcs-previous-line)
-                 (end-of-line)
-
-                 ;; Process define tag.
-                 (insert "@def ")
-                 (insert (nth 0 param-variable-strings))
-                 (indent-for-tab-command)
-
-                 ;; Process brief tag.
-                 (insert "\n")
-                 (insert "* @brief ")
-                 (insert jcs-define-desc-string)
-                 (indent-for-tab-command)))
-              ((jcs-is-contain-list-string keyword-strings "enum")
-               (progn
-                 ;; go back to comment line.
-                 (jcs-previous-line)
-                 (jcs-previous-line)
-                 (end-of-line)
-
-                 ;; Process enumerator tag.
-                 (insert "@enum ")
-                 (insert datatype-name)
-                 (indent-for-tab-command)
-
-                 ;; Process brief tag.
-                 (insert "\n")
-                 (insert "* @brief ")
-                 (insert jcs-enum-desc-string)
-                 (indent-for-tab-command)))))
-
-      (when (or (jcs-is-current-major-mode-p "java-mode")
-                (jcs-is-current-major-mode-p "jdee-mode"))
-        (cond ((jcs-is-contain-list-string keyword-strings "class")
-               (progn
-                 ;; STUDY(jenchieh): Don't think that java
-                 ;; doc need one..
-                 ))
-              ((jcs-is-contain-list-string keyword-strings "interface")
-               (progn
-                 ;; STUDY(jenchieh): Don't think that java
-                 ;; doc need one..
-                 ))))
-
-      (when (or (jcs-is-current-major-mode-p "js2-mode"))
-        (cond ((jcs-is-contain-list-string keyword-strings "class")
-               (progn
-                 ;; STUDY(jenchieh): Don't know if javascript
-                 ;; need one..
-                 ))))
-
-      (when (or (jcs-is-current-major-mode-p "lua-mode"))
-        ;; NOTE(jenchieh): I don't think Lua have any keywords...
-        )
-
-      (when (or (jcs-is-current-major-mode-p "python-mode"))
-        (cond ((jcs-is-contain-list-string keyword-strings "class")
-               (progn
-                 ;; TODO(jenchieh): implement into python mode.
-                 ))))
-
-      (when (or (jcs-is-current-major-mode-p "php-mode")
-                (jcs-is-current-major-mode-p "web-mode"))
-        (cond ((jcs-is-contain-list-string keyword-strings "class")
-               (progn
-                 ;; TODO(jenchieh): implement into PHP mode.
-                 ))))
+        (funcall mode-doc-string-func-name-others))
 
       (when (or (jcs-is-current-major-mode-p "typescript-mode"))
         (cond ((jcs-is-contain-list-string keyword-strings "class")
@@ -662,15 +534,35 @@ SR-OP :
       )))
 
 
-(defun jcs-csharp-mode-doc-string (meet-function-name
-                                   keyword-strings
-                                   datatype-name
-                                   function-name-string
-                                   there-is-return
-                                   return-type-string
-                                   param-type-strings
-                                   param-variable-strings)
-  "Insert `csharp-mode' doc string.
+(defun jcs-csharp-mode-doc-string-others ()
+  "Insert `csharp-mode' other doc string."
+  (cond ((jcs-is-contain-list-string keyword-strings "class")
+         (progn
+           ;; STUDY(jenchieh): Don't think that C#
+           ;; doc need one..
+           ))
+        ((jcs-is-contain-list-string keyword-strings "struct")
+         (progn
+           ;; STUDY(jenchieh): Don't think that C#
+           ;; doc need one..
+           ))
+        ((or (jcs-is-contain-list-string keyword-strings "define")
+             (jcs-is-contain-list-string keyword-strings "#define"))
+         (progn
+           ;; STUDY(jenchieh): Don't think that C#
+           ;; doc need one..
+           ))))
+
+(defun jcs-csharp-mode-doc-string-func (meet-function-name
+                                        keyword-strings
+                                        datatype-name
+                                        function-name-string
+                                        there-is-return
+                                        return-type-string
+                                        param-type-strings
+                                        param-variable-strings
+                                        paren-string)
+  "Insert `csharp-mode' function doc string.
 
 MEET-FUNCTION-NAME     : Meet the function name?
 KEYWORD-STRINGS        : Keyword strings list.
@@ -680,7 +572,8 @@ FUNCTION-NAME-STRING   : Function name.
 THERE-IS-RETURN        : There is return in this function?
 RETURN-TYPE-STRING     : String of the return type.
 PARAM-TYPE-STRINGS     : Param type strings list.
-PARAM-VARIABLE-STRINGS : Param name strings list."
+PARAM-VARIABLE-STRINGS : Param name strings list.
+PAREN-STRING           : Param raw string."
 
   (when (or (jcs-is-current-major-mode-p "csharp-mode"))
     (let ((param-var-len (length param-variable-strings))
@@ -710,15 +603,88 @@ PARAM-VARIABLE-STRINGS : Param name strings list."
           (indent-for-tab-command))))))
 
 
-(defun jcs-cc-mode-doc-string (meet-function-name
-                               keyword-strings
-                               datatype-name
-                               function-name-string
-                               there-is-return
-                               return-type-string
-                               param-type-strings
-                               param-variable-strings)
-  "Insert `c-mode' or `c++-mode' doc string.
+(defun jcs-cc-mode-doc-string-others ()
+  "Insert `c-mode' or `c++-mode' other doc string."
+  (cond ((jcs-is-contain-list-string-regexp keyword-strings "class")
+         (progn
+           ;; go back to comment line.
+           (jcs-previous-line)
+           (jcs-previous-line)
+           (end-of-line)
+
+           ;; Process class tag.
+           (insert "@class ")
+           (insert datatype-name)
+           (indent-for-tab-command)
+
+           ;; Process brief tag.
+           (insert "\n")
+           (insert "* @brief ")
+           (insert jcs-class-desc-string)
+           (indent-for-tab-command)))
+        ((jcs-is-contain-list-string keyword-strings "struct")
+         (progn
+           ;; go back to comment line.
+           (jcs-previous-line)
+           (jcs-previous-line)
+           (end-of-line)
+
+           ;; Process class tag.
+           (insert "@struct ")
+           (insert datatype-name)
+           (indent-for-tab-command)
+
+           ;; Process brief tag.
+           (insert "\n")
+           (insert "* @brief ")
+           (insert jcs-struct-desc-string)
+           (indent-for-tab-command)))
+        ((or (jcs-is-contain-list-string keyword-strings "define")
+             (jcs-is-contain-list-string keyword-strings "#define"))
+         (progn
+           ;; go back to comment line.
+           (jcs-previous-line)
+           (jcs-previous-line)
+           (end-of-line)
+
+           ;; Process define tag.
+           (insert "@def ")
+           (insert (nth 0 param-variable-strings))
+           (indent-for-tab-command)
+
+           ;; Process brief tag.
+           (insert "\n")
+           (insert "* @brief ")
+           (insert jcs-define-desc-string)
+           (indent-for-tab-command)))
+        ((jcs-is-contain-list-string keyword-strings "enum")
+         (progn
+           ;; go back to comment line.
+           (jcs-previous-line)
+           (jcs-previous-line)
+           (end-of-line)
+
+           ;; Process enumerator tag.
+           (insert "@enum ")
+           (insert datatype-name)
+           (indent-for-tab-command)
+
+           ;; Process brief tag.
+           (insert "\n")
+           (insert "* @brief ")
+           (insert jcs-enum-desc-string)
+           (indent-for-tab-command)))))
+
+(defun jcs-cc-mode-doc-string-func (meet-function-name
+                                    keyword-strings
+                                    datatype-name
+                                    function-name-string
+                                    there-is-return
+                                    return-type-string
+                                    param-type-strings
+                                    param-variable-strings
+                                    paren-string)
+  "Insert `c-mode' or `c++-mode' function doc string.
 
 MEET-FUNCTION-NAME     : Meet the function name?
 KEYWORD-STRINGS        : Keyword strings list.
@@ -728,7 +694,8 @@ FUNCTION-NAME-STRING   : Function name.
 THERE-IS-RETURN        : There is return in this function?
 RETURN-TYPE-STRING     : String of the return type.
 PARAM-TYPE-STRINGS     : Param type strings list.
-PARAM-VARIABLE-STRINGS : Param name strings list."
+PARAM-VARIABLE-STRINGS : Param name strings list.
+PAREN-STRING           : Param raw string."
 
   (when (or (jcs-is-current-major-mode-p "c++-mode")
             (jcs-is-current-major-mode-p "c-mode"))
@@ -787,15 +754,30 @@ PARAM-VARIABLE-STRINGS : Param name strings list."
                   (insert jcs-return-desc-string)
                   (indent-for-tab-command))))))))
 
-(defun jcs-java-mode-doc-string (meet-function-name
-                                 keyword-strings
-                                 datatype-name
-                                 function-name-string
-                                 there-is-return
-                                 return-type-string
-                                 param-type-strings
-                                 param-variable-strings)
-  "Insert `java-mode' doc string.
+
+(defun jcs-java-mode-doc-string-others ()
+  "Insert `java-mode' other doc string."
+  (cond ((jcs-is-contain-list-string keyword-strings "class")
+         (progn
+           ;; STUDY(jenchieh): Don't think that java
+           ;; doc need one..
+           ))
+        ((jcs-is-contain-list-string keyword-strings "interface")
+         (progn
+           ;; STUDY(jenchieh): Don't think that java
+           ;; doc need one..
+           ))))
+
+(defun jcs-java-mode-doc-string-func (meet-function-name
+                                      keyword-strings
+                                      datatype-name
+                                      function-name-string
+                                      there-is-return
+                                      return-type-string
+                                      param-type-strings
+                                      param-variable-strings
+                                      paren-string)
+  "Insert `java-mode' function doc string.
 
 MEET-FUNCTION-NAME     : Meet the function name?
 KEYWORD-STRINGS        : Keyword strings list.
@@ -805,7 +787,8 @@ FUNCTION-NAME-STRING   : Function name.
 THERE-IS-RETURN        : There is return in this function?
 RETURN-TYPE-STRING     : String of the return type.
 PARAM-TYPE-STRINGS     : Param type strings list.
-PARAM-VARIABLE-STRINGS : Param name strings list."
+PARAM-VARIABLE-STRINGS : Param name strings list.
+PAREN-STRING           : Param raw string."
 
   (when (or (jcs-is-current-major-mode-p "java-mode")
             (jcs-is-current-major-mode-p "jdee-mode"))
@@ -852,15 +835,25 @@ PARAM-VARIABLE-STRINGS : Param name strings list."
           (insert jcs-return-desc-string)
           (indent-for-tab-command))))))
 
-(defun jcs-js-mode-doc-string (meet-function-name
-                               keyword-strings
-                               datatype-name
-                               function-name-string
-                               there-is-return
-                               return-type-string
-                               param-type-strings
-                               param-variable-strings)
-  "Insert `js2-mode' doc string.
+
+(defun jcs-js-mode-doc-string-others ()
+  "Insert `js2-mode' other doc string."
+  (cond ((jcs-is-contain-list-string keyword-strings "class")
+         (progn
+           ;; STUDY(jenchieh): Don't know if javascript
+           ;; need one..
+           ))))
+
+(defun jcs-js-mode-doc-string-func (meet-function-name
+                                    keyword-strings
+                                    datatype-name
+                                    function-name-string
+                                    there-is-return
+                                    return-type-string
+                                    param-type-strings
+                                    param-variable-strings
+                                    paren-string)
+  "Insert `js2-mode' function doc string.
 
 MEET-FUNCTION-NAME     : Meet the function name?
 KEYWORD-STRINGS        : Keyword strings list.
@@ -870,7 +863,8 @@ FUNCTION-NAME-STRING   : Function name.
 THERE-IS-RETURN        : There is return in this function?
 RETURN-TYPE-STRING     : String of the return type.
 PARAM-TYPE-STRINGS     : Param type strings list.
-PARAM-VARIABLE-STRINGS : Param name strings list."
+PARAM-VARIABLE-STRINGS : Param name strings list.
+PAREN-STRING           : Param raw string."
 
   (when (or (jcs-is-current-major-mode-p "js2-mode"))
     (let ((param-var-len (length param-variable-strings))
@@ -916,15 +910,22 @@ PARAM-VARIABLE-STRINGS : Param name strings list."
           (insert jcs-return-desc-string)
           (indent-for-tab-command))))))
 
-(defun jcs-lua-mode-doc-string (meet-function-name
-                                keyword-strings
-                                datatype-name
-                                function-name-string
-                                there-is-return
-                                return-type-string
-                                param-type-strings
-                                param-variable-strings)
-  "Insert `lua-mode' doc string.
+
+(defun jcs-lua-mode-doc-string-others ()
+  "Insert `lua-mode' other doc string."
+  ;; NOTE(jenchieh): I don't think Lua have any keywords...
+  )
+
+(defun jcs-lua-mode-doc-string-func (meet-function-name
+                                     keyword-strings
+                                     datatype-name
+                                     function-name-string
+                                     there-is-return
+                                     return-type-string
+                                     param-type-strings
+                                     param-variable-strings
+                                     paren-string)
+  "Insert `lua-mode' function doc string.
 
 MEET-FUNCTION-NAME     : Meet the function name?
 KEYWORD-STRINGS        : Keyword strings list.
@@ -934,7 +935,8 @@ FUNCTION-NAME-STRING   : Function name.
 THERE-IS-RETURN        : There is return in this function?
 RETURN-TYPE-STRING     : String of the return type.
 PARAM-TYPE-STRINGS     : Param type strings list.
-PARAM-VARIABLE-STRINGS : Param name strings list."
+PARAM-VARIABLE-STRINGS : Param name strings list.
+PAREN-STRING           : Param raw string."
 
   (when (or (jcs-is-current-major-mode-p "lua-mode"))
     (let ((param-var-len (length param-variable-strings))
@@ -980,15 +982,24 @@ PARAM-VARIABLE-STRINGS : Param name strings list."
           (insert jcs-return-desc-string)
           (indent-for-tab-command))))))
 
-(defun jcs-py-mode-doc-string (meet-function-name
-                               keyword-strings
-                               datatype-name
-                               function-name-string
-                               there-is-return
-                               return-type-string
-                               param-type-strings
-                               param-variable-strings)
-  "Insert `python-mode' doc string.
+
+(defun jcs-py-mode-doc-string-others ()
+  "Insert `python-mode' other doc string."
+  (cond ((jcs-is-contain-list-string keyword-strings "class")
+         (progn
+           ;; TODO(jenchieh): implement into python mode.
+           ))))
+
+(defun jcs-py-mode-doc-string-func (meet-function-name
+                                    keyword-strings
+                                    datatype-name
+                                    function-name-string
+                                    there-is-return
+                                    return-type-string
+                                    param-type-strings
+                                    param-variable-strings
+                                    paren-string)
+  "Insert `python-mode' function doc string.
 
 MEET-FUNCTION-NAME     : Meet the function name?
 KEYWORD-STRINGS        : Keyword strings list.
@@ -998,7 +1009,8 @@ FUNCTION-NAME-STRING   : Function name.
 THERE-IS-RETURN        : There is return in this function?
 RETURN-TYPE-STRING     : String of the return type.
 PARAM-TYPE-STRINGS     : Param type strings list.
-PARAM-VARIABLE-STRINGS : Param name strings list."
+PARAM-VARIABLE-STRINGS : Param name strings list.
+PAREN-STRING           : Param raw string."
 
   (when (or (jcs-is-current-major-mode-p "python-mode"))
     (let ((param-var-len (length param-variable-strings))
@@ -1053,15 +1065,24 @@ PARAM-VARIABLE-STRINGS : Param name strings list."
           (insert jcs-return-desc-string)
           (indent-for-tab-command))))))
 
-(defun jcs-php-mode-doc-string (meet-function-name
-                                keyword-strings
-                                datatype-name
-                                function-name-string
-                                there-is-return
-                                return-type-string
-                                param-type-strings
-                                param-variable-strings)
-  "Insert `php-mode' doc string.
+
+(defun jcs-php-mode-doc-string-others ()
+  "Insert `php-mode' other doc string."
+  (cond ((jcs-is-contain-list-string keyword-strings "class")
+         (progn
+           ;; TODO(jenchieh): implement into PHP mode.
+           ))))
+
+(defun jcs-php-mode-doc-string-func (meet-function-name
+                                     keyword-strings
+                                     datatype-name
+                                     function-name-string
+                                     there-is-return
+                                     return-type-string
+                                     param-type-strings
+                                     param-variable-strings
+                                     paren-string)
+  "Insert `php-mode' function doc string.
 
 MEET-FUNCTION-NAME     : Meet the function name?
 KEYWORD-STRINGS        : Keyword strings list.
@@ -1071,7 +1092,8 @@ FUNCTION-NAME-STRING   : Function name.
 THERE-IS-RETURN        : There is return in this function?
 RETURN-TYPE-STRING     : String of the return type.
 PARAM-TYPE-STRINGS     : Param type strings list.
-PARAM-VARIABLE-STRINGS : Param name strings list."
+PARAM-VARIABLE-STRINGS : Param name strings list.
+PAREN-STRING           : Param raw string."
 
   (when (or (jcs-is-current-major-mode-p "php-mode")
             (jcs-is-current-major-mode-p "web-mode"))
@@ -1118,15 +1140,24 @@ PARAM-VARIABLE-STRINGS : Param name strings list."
           (insert jcs-return-desc-string)
           (indent-for-tab-command))))))
 
-(defun jcs-ts-mode-doc-string (meet-function-name
-                               keyword-strings
-                               datatype-name
-                               function-name-string
-                               there-is-return
-                               return-type-string
-                               param-type-strings
-                               param-variable-strings)
-  "Insert `typescript-mode' doc string.
+
+(defun jcs-ts-mode-doc-string-others ()
+  "Insert `typescript-mode' other doc string."
+  (cond ((jcs-is-contain-list-string keyword-strings "class")
+         (progn
+           ;; TODO(jenchieh): implement into TypeScript mode.
+           ))))
+
+(defun jcs-ts-mode-doc-string-func (meet-function-name
+                                    keyword-strings
+                                    datatype-name
+                                    function-name-string
+                                    there-is-return
+                                    return-type-string
+                                    param-type-strings
+                                    param-variable-strings
+                                    paren-string)
+  "Insert `typescript-mode' function doc string.
 
 MEET-FUNCTION-NAME     : Meet the function name?
 KEYWORD-STRINGS        : Keyword strings list.
@@ -1136,7 +1167,8 @@ FUNCTION-NAME-STRING   : Function name.
 THERE-IS-RETURN        : There is return in this function?
 RETURN-TYPE-STRING     : String of the return type.
 PARAM-TYPE-STRINGS     : Param type strings list.
-PARAM-VARIABLE-STRINGS : Param name strings list."
+PARAM-VARIABLE-STRINGS : Param name strings list.
+PAREN-STRING           : Param raw string."
 
   (when (or (jcs-is-current-major-mode-p "typescript-mode"))
     (let* ((param-var-len (length param-variable-strings))
