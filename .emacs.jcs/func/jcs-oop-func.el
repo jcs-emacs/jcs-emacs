@@ -691,15 +691,15 @@ SEARCH-OPTION :
                                    param-variable-strings)
   "Insert `csharp-mode' doc string.
 
-@param MEET-FUNCTION-NAME     : Meet the function name?
-@param KEYWORD-STRINGS        : Keyword strings list.
-@param DATATYPE-NAME          : Data type name, store keyword for
+MEET-FUNCTION-NAME     : Meet the function name?
+KEYWORD-STRINGS        : Keyword strings list.
+DATATYPE-NAME          : Data type name, store keyword for
                                struct/class related.
-@param FUNCTION-NAME-STRING   : Function name.
-@param THERE-IS-RETURN        : There is return in this function?
-@param RETURN-TYPE-STRING     : String of the return type.
-@param PARAM-TYPE-STRINGS     : Param type strings list.
-@param PARAM-VARIABLE-STRINGS : Param name strings list."
+FUNCTION-NAME-STRING   : Function name.
+THERE-IS-RETURN        : There is return in this function?
+RETURN-TYPE-STRING     : String of the return type.
+PARAM-TYPE-STRINGS     : Param type strings list.
+PARAM-VARIABLE-STRINGS : Param name strings list."
 
   (when (or (jcs-is-current-major-mode-p "csharp-mode"))
     (let ((param-index (1- (length param-variable-strings))))
@@ -738,15 +738,15 @@ SEARCH-OPTION :
                                param-variable-strings)
   "Insert `c-mode' or `c++-mode' doc string.
 
-@param MEET-FUNCTION-NAME     : Meet the function name?
-@param KEYWORD-STRINGS        : Keyword strings list.
-@param DATATYPE-NAME          : Data type name, store keyword for
+MEET-FUNCTION-NAME     : Meet the function name?
+KEYWORD-STRINGS        : Keyword strings list.
+DATATYPE-NAME          : Data type name, store keyword for
                                struct/class related.
-@param FUNCTION-NAME-STRING   : Function name.
-@param THERE-IS-RETURN        : There is return in this function?
-@param RETURN-TYPE-STRING     : String of the return type.
-@param PARAM-TYPE-STRINGS     : Param type strings list.
-@param PARAM-VARIABLE-STRINGS : Param name strings list."
+FUNCTION-NAME-STRING   : Function name.
+THERE-IS-RETURN        : There is return in this function?
+RETURN-TYPE-STRING     : String of the return type.
+PARAM-TYPE-STRINGS     : Param type strings list.
+PARAM-VARIABLE-STRINGS : Param name strings list."
 
   (when (or (jcs-is-current-major-mode-p "c++-mode")
             (jcs-is-current-major-mode-p "c-mode"))
@@ -814,15 +814,15 @@ SEARCH-OPTION :
                                  param-variable-strings)
   "Insert `java-mode' doc string.
 
-@param MEET-FUNCTION-NAME     : Meet the function name?
-@param KEYWORD-STRINGS        : Keyword strings list.
-@param DATATYPE-NAME          : Data type name, store keyword for
+MEET-FUNCTION-NAME     : Meet the function name?
+KEYWORD-STRINGS        : Keyword strings list.
+DATATYPE-NAME          : Data type name, store keyword for
                                struct/class related.
-@param THERE-IS-RETURN        : There is return in this function?
-@param FUNCTION-NAME-STRING   : Function name.
-@param RETURN-TYPE-STRING     : String of the return type.
-@param PARAM-TYPE-STRINGS     : Param type strings list.
-@param PARAM-VARIABLE-STRINGS : Param name strings list."
+FUNCTION-NAME-STRING   : Function name.
+THERE-IS-RETURN        : There is return in this function?
+RETURN-TYPE-STRING     : String of the return type.
+PARAM-TYPE-STRINGS     : Param type strings list.
+PARAM-VARIABLE-STRINGS : Param name strings list."
 
   (when (or (jcs-is-current-major-mode-p "java-mode")
             (jcs-is-current-major-mode-p "jdee-mode"))
@@ -878,15 +878,15 @@ SEARCH-OPTION :
                                param-variable-strings)
   "Insert `js2-mode' doc string.
 
-@param MEET-FUNCTION-NAME     : Meet the function name?
-@param KEYWORD-STRINGS        : Keyword strings list.
-@param DATATYPE-NAME          : Data type name, store keyword for
+MEET-FUNCTION-NAME     : Meet the function name?
+KEYWORD-STRINGS        : Keyword strings list.
+DATATYPE-NAME          : Data type name, store keyword for
                                struct/class related.
-@param FUNCTION-NAME-STRING   : Function name.
-@param THERE-IS-RETURN        : There is return in this function?
-@param RETURN-TYPE-STRING     : String of the return type.
-@param PARAM-TYPE-STRINGS     : Param type strings list.
-@param PARAM-VARIABLE-STRINGS : Param name strings list."
+FUNCTION-NAME-STRING   : Function name.
+THERE-IS-RETURN        : There is return in this function?
+RETURN-TYPE-STRING     : String of the return type.
+PARAM-TYPE-STRINGS     : Param type strings list.
+PARAM-VARIABLE-STRINGS : Param name strings list."
 
   (when (or (jcs-is-current-major-mode-p "js2-mode"))
     (let ((param-index (1- (length param-variable-strings))))
@@ -941,15 +941,15 @@ SEARCH-OPTION :
                                 param-variable-strings)
   "Insert `lua-mode' doc string.
 
-@param MEET-FUNCTION-NAME     : Meet the function name?
-@param KEYWORD-STRINGS        : Keyword strings list.
-@param DATATYPE-NAME          : Data type name, store keyword for
+MEET-FUNCTION-NAME     : Meet the function name?
+KEYWORD-STRINGS        : Keyword strings list.
+DATATYPE-NAME          : Data type name, store keyword for
                                struct/class related.
-@param FUNCTION-NAME-STRING   : Function name.
-@param THERE-IS-RETURN        : There is return in this function?
-@param RETURN-TYPE-STRING     : String of the return type.
-@param PARAM-TYPE-STRINGS     : Param type strings list.
-@param PARAM-VARIABLE-STRINGS : Param name strings list."
+FUNCTION-NAME-STRING   : Function name.
+THERE-IS-RETURN        : There is return in this function?
+RETURN-TYPE-STRING     : String of the return type.
+PARAM-TYPE-STRINGS     : Param type strings list.
+PARAM-VARIABLE-STRINGS : Param name strings list."
 
   (when (or (jcs-is-current-major-mode-p "lua-mode"))
     (let ((param-index (1- (length param-variable-strings))))
@@ -1004,15 +1004,15 @@ SEARCH-OPTION :
                                param-variable-strings)
   "Insert `python-mode' doc string.
 
-@param MEET-FUNCTION-NAME     : Meet the function name?
-@param KEYWORD-STRINGS        : Keyword strings list.
-@param DATATYPE-NAME          : Data type name, store keyword for
+MEET-FUNCTION-NAME     : Meet the function name?
+KEYWORD-STRINGS        : Keyword strings list.
+DATATYPE-NAME          : Data type name, store keyword for
                                struct/class related.
-@param FUNCTION-NAME-STRING   : Function name.
-@param THERE-IS-RETURN        : There is return in this function?
-@param RETURN-TYPE-STRING     : String of the return type.
-@param PARAM-TYPE-STRINGS     : Param type strings list.
-@param PARAM-VARIABLE-STRINGS : Param name strings list."
+FUNCTION-NAME-STRING   : Function name.
+THERE-IS-RETURN        : There is return in this function?
+RETURN-TYPE-STRING     : String of the return type.
+PARAM-TYPE-STRINGS     : Param type strings list.
+PARAM-VARIABLE-STRINGS : Param name strings list."
 
   (when (or (jcs-is-current-major-mode-p "python-mode"))
     (let ((param-index (1- (length param-variable-strings))))
@@ -1076,15 +1076,15 @@ SEARCH-OPTION :
                                 param-variable-strings)
   "Insert `php-mode' doc string.
 
-@param MEET-FUNCTION-NAME     : Meet the function name?
-@param KEYWORD-STRINGS        : Keyword strings list.
-@param DATATYPE-NAME          : Data type name, store keyword for
+MEET-FUNCTION-NAME     : Meet the function name?
+KEYWORD-STRINGS        : Keyword strings list.
+DATATYPE-NAME          : Data type name, store keyword for
                                struct/class related.
-@param FUNCTION-NAME-STRING   : Function name.
-@param THERE-IS-RETURN        : There is return in this function?
-@param RETURN-TYPE-STRING     : String of the return type.
-@param PARAM-TYPE-STRINGS     : Param type strings list.
-@param PARAM-VARIABLE-STRINGS : Param name strings list."
+FUNCTION-NAME-STRING   : Function name.
+THERE-IS-RETURN        : There is return in this function?
+RETURN-TYPE-STRING     : String of the return type.
+PARAM-TYPE-STRINGS     : Param type strings list.
+PARAM-VARIABLE-STRINGS : Param name strings list."
 
   (when (or (jcs-is-current-major-mode-p "php-mode")
             (jcs-is-current-major-mode-p "web-mode"))
@@ -1140,15 +1140,15 @@ SEARCH-OPTION :
                                param-variable-strings)
   "Insert `typescript-mode' doc string.
 
-@param MEET-FUNCTION-NAME     : Meet the function name?
-@param KEYWORD-STRINGS        : Keyword strings list.
-@param DATATYPE-NAME          : Data type name, store keyword for
+MEET-FUNCTION-NAME     : Meet the function name?
+KEYWORD-STRINGS        : Keyword strings list.
+DATATYPE-NAME          : Data type name, store keyword for
                                struct/class related.
-@param FUNCTION-NAME-STRING   : Function name.
-@param THERE-IS-RETURN        : There is return in this function?
-@param RETURN-TYPE-STRING     : String of the return type.
-@param PARAM-TYPE-STRINGS     : Param type strings list.
-@param PARAM-VARIABLE-STRINGS : Param name strings list."
+FUNCTION-NAME-STRING   : Function name.
+THERE-IS-RETURN        : There is return in this function?
+RETURN-TYPE-STRING     : String of the return type.
+PARAM-TYPE-STRINGS     : Param type strings list.
+PARAM-VARIABLE-STRINGS : Param name strings list."
 
   (when (or (jcs-is-current-major-mode-p "typescript-mode"))
     (let* ((param-len (length param-variable-strings))
@@ -1215,10 +1215,9 @@ SEARCH-OPTION :
 (defun jcs-insert-jsdoc-type (type-name open-char close-char)
   "Insert the curly bracket part.
 
-@param TYPE-NAME : type name string.
-@param OPEN-CHAR : opening character.
-@param CLOSE-CHAR : closing character."
-  (interactive)
+TYPE-NAME : type name string.
+OPEN-CHAR : opening character.
+CLOSE-CHAR : closing character."
   (insert open-char)
   (insert type-name)
   (insert close-char))
