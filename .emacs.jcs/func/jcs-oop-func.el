@@ -1193,8 +1193,6 @@ PARAM-VARIABLE-STRINGS : Param name strings list."
         (setq param-index (1- param-index))
         (setq keyword-index (1- keyword-index)))
 
-
-
       ;; Lastly, process returns tag.
       (when with-return-type
         (insert "\n")
