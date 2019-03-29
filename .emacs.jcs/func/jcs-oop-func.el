@@ -1167,7 +1167,6 @@ PARAM-VARIABLE-STRINGS : Param name strings list."
 
       (unless (= param-var-len param-type-len)
         (setq ret-keyword (nth (1- param-type-len) param-type-strings))
-        (message "ret-keyword : %s" ret-keyword)
         ;; Check if return string `void' type.
         (unless (string= ret-keyword "void")
           (setq with-return-type t)))
