@@ -1247,6 +1247,19 @@ SEARCH-OPTION :
 ;;-----------------------------------------------------------
 ;;-----------------------------------------------------------
 
+(defvar jcs-oop-missing-type-face-modes '(c++-mode)
+  "Font lock for namespace.")
+
+(mapc (lambda (mode)
+        (font-lock-add-keywords
+         mode
+         '(("[a-zA-Z0-9_]*::\\([a-zA-Z0-9_]*\\)[ \t]" 1 'font-lock-type-face t)
+           )'end))
+      jcs-oop-missing-type-face-modes)
+
+;;-----------------------------------------------------------
+;;-----------------------------------------------------------
+
 (defvar jcs-oop-missing-font-lock-variable-name-modes '(lua-mode
                                                         php-mode
                                                         python-mode)
