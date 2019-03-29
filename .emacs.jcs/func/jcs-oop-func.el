@@ -461,7 +461,7 @@ SEARCH-OPTION :
       ;; at the front queue. `setq' and `append' will push
       ;; element from the back, so we need to reverse it
       ;; in order to match the order.
-      (setq param-type-strings (reverse param-type-strings))
+      (setq param-variable-strings (reverse param-variable-strings))
 
       (jcs-csharp-mode-doc-string meet-function-name
                                   keyword-strings
@@ -556,10 +556,11 @@ SEARCH-OPTION :
                  ;; doc need one..
                  ))))
 
-      (when (or (jcs-is-current-major-mode-p "c++-mode")
-                (jcs-is-current-major-mode-p "c-mode"))
-        (cond ((jcs-is-contain-list-string keyword-strings "class")
+      (when (or (jcs-is-current-major-mode-p "c-mode")
+                (jcs-is-current-major-mode-p "c++-mode"))
+        (cond ((jcs-is-contain-list-string-regexp keyword-strings "class")
                (progn
+                 (message "Hllo 2")
                  ;; go back to comment line.
                  (jcs-previous-line)
                  (jcs-previous-line)
@@ -599,14 +600,6 @@ SEARCH-OPTION :
                  (jcs-previous-line)
                  (jcs-previous-line)
                  (end-of-line)
-
-                 ;; NOTE(jenchieh): `push' will push the element
-                 ;; at the front queue. `setq' and `append' will push
-                 ;; element from the back, so we need to reverse it
-                 ;; in order to match the order.
-                 ;;
-                 ;; Reverse once.
-                 (setq param-variable-strings (reverse param-variable-strings))
 
                  ;; Process define tag.
                  (insert "@def ")
@@ -702,13 +695,14 @@ PARAM-TYPE-STRINGS     : Param type strings list.
 PARAM-VARIABLE-STRINGS : Param name strings list."
 
   (when (or (jcs-is-current-major-mode-p "csharp-mode"))
-    (let ((param-index (1- (length param-variable-strings))))
+    (let ((param-var-len (length param-variable-strings))
+          (param-index 0))
       ;; go back to comment line.
       (jcs-previous-line)
       (end-of-line)
 
       ;; First process param tag.
-      (while (>= param-index 0)
+      (while (< param-index param-var-len)
         (insert "\n")  ;; start from newline.
         (insert "/// <param name=\"")
         (insert (nth param-index param-variable-strings))
@@ -718,7 +712,7 @@ PARAM-VARIABLE-STRINGS : Param name strings list."
         (indent-for-tab-command)
 
         ;; add up counter.
-        (setq param-index (1- param-index)))
+        (setq param-index (1+ param-index)))
 
       ;; Lastly, process returns tag.
       (when there-is-return
@@ -750,7 +744,8 @@ PARAM-VARIABLE-STRINGS : Param name strings list."
 
   (when (or (jcs-is-current-major-mode-p "c++-mode")
             (jcs-is-current-major-mode-p "c-mode"))
-    (let ((param-index (1- (length param-variable-strings))))
+    (let ((param-var-len (length param-variable-strings))
+          (param-index 0))
       ;; go back to comment line.
       (jcs-previous-line)
       (jcs-previous-line)
@@ -767,7 +762,7 @@ PARAM-VARIABLE-STRINGS : Param name strings list."
       (indent-for-tab-command)
 
       ;; Process param tag.
-      (while (>= param-index 0)
+      (while (< param-index param-var-len)
         (insert "\n")  ;; start from newline.
         (insert "* @")
         (insert jcs-cc-param-string)
@@ -783,7 +778,7 @@ PARAM-VARIABLE-STRINGS : Param name strings list."
         (indent-for-tab-command)
 
         ;; add up counter.
-        (setq param-index (1- param-index)))
+        (setq param-index (1+ param-index)))
 
       ;; Lastly, process returns tag.
       (if there-is-return
@@ -826,14 +821,15 @@ PARAM-VARIABLE-STRINGS : Param name strings list."
 
   (when (or (jcs-is-current-major-mode-p "java-mode")
             (jcs-is-current-major-mode-p "jdee-mode"))
-    (let ((param-index (1- (length param-variable-strings))))
+    (let ((param-var-len (length param-variable-strings))
+          (param-index 0))
       ;; go back to comment line.
       (jcs-previous-line)
       (jcs-previous-line)
       (end-of-line)
 
       ;; Process param tag.
-      (while (>= param-index 0)
+      (while (< param-index param-var-len)
         (insert "\n")  ;; start from newline.
         (insert "* @")
         (insert jcs-java-param-string)
@@ -849,7 +845,7 @@ PARAM-VARIABLE-STRINGS : Param name strings list."
         (indent-for-tab-command)
 
         ;; add up counter.
-        (setq param-index (1- param-index)))
+        (setq param-index (1+ param-index)))
 
       ;; Lastly, process returns tag.
       (when there-is-return
@@ -889,14 +885,15 @@ PARAM-TYPE-STRINGS     : Param type strings list.
 PARAM-VARIABLE-STRINGS : Param name strings list."
 
   (when (or (jcs-is-current-major-mode-p "js2-mode"))
-    (let ((param-index (1- (length param-variable-strings))))
+    (let ((param-var-len (length param-variable-strings))
+          (param-index 0))
       ;; go back to comment line.
       (jcs-previous-line)
       (jcs-previous-line)
       (end-of-line)
 
       ;; Process param tag.
-      (while (>= param-index 0)
+      (while (< param-index param-var-len)
         (insert "\n")  ;; start from newline.
         (insert "* @")
         (insert jcs-js-param-string)
@@ -912,7 +909,7 @@ PARAM-VARIABLE-STRINGS : Param name strings list."
         (indent-for-tab-command)
 
         ;; add up counter.
-        (setq param-index (1- param-index)))
+        (setq param-index (1+ param-index)))
 
       ;; Lastly, process returns tag.
       (when there-is-return
@@ -952,14 +949,15 @@ PARAM-TYPE-STRINGS     : Param type strings list.
 PARAM-VARIABLE-STRINGS : Param name strings list."
 
   (when (or (jcs-is-current-major-mode-p "lua-mode"))
-    (let ((param-index (1- (length param-variable-strings))))
+    (let ((param-var-len (length param-variable-strings))
+          (param-index 0))
       ;; go back to comment line.
       (jcs-previous-line)
       (jcs-previous-line)
       (end-of-line)
 
       ;; Process param tag.
-      (while (>= param-index 0)
+      (while (< param-index param-var-len)
         (insert "\n")  ;; start from newline.
         (insert "-- @")
         (insert jcs-lua-param-string)
@@ -975,7 +973,7 @@ PARAM-VARIABLE-STRINGS : Param name strings list."
         (indent-for-tab-command)
 
         ;; add up counter.
-        (setq param-index (1- param-index)))
+        (setq param-index (1+ param-index)))
 
       ;; Lastly, process returns tag.
       (when there-is-return
@@ -1015,7 +1013,8 @@ PARAM-TYPE-STRINGS     : Param type strings list.
 PARAM-VARIABLE-STRINGS : Param name strings list."
 
   (when (or (jcs-is-current-major-mode-p "python-mode"))
-    (let ((param-index (1- (length param-variable-strings))))
+    (let ((param-var-len (length param-variable-strings))
+          (param-index 0))
       ;; go back to comment line.
       (jcs-move-to-forward-a-char-recursive "\"")
       (jcs-move-to-forward-a-char-recursive "\"")
@@ -1030,7 +1029,7 @@ PARAM-VARIABLE-STRINGS : Param name strings list."
       (if (>= param-index 0)
           (insert "\n"))
 
-      (while (>= param-index 0)
+      (while (< param-index param-var-len)
         (when (not (string= "self" (nth param-index param-variable-strings)))
           (insert "\n")  ;; start from newline.
           (insert "@")
@@ -1047,7 +1046,7 @@ PARAM-VARIABLE-STRINGS : Param name strings list."
           (indent-for-tab-command))
 
         ;; add up counter.
-        (setq param-index (1- param-index)))
+        (setq param-index (1+ param-index)))
 
       ;; Lastly, process returns tag.
       (when there-is-return
@@ -1088,14 +1087,15 @@ PARAM-VARIABLE-STRINGS : Param name strings list."
 
   (when (or (jcs-is-current-major-mode-p "php-mode")
             (jcs-is-current-major-mode-p "web-mode"))
-    (let ((param-index (1- (length param-variable-strings))))
+    (let ((param-var-len (length param-variable-strings))
+          (param-index 0))
       ;; go back to comment line.
       (jcs-previous-line)
       (jcs-previous-line)
       (end-of-line)
 
       ;; Process param tag.
-      (while (>= param-index 0)
+      (while (< param-index param-var-len)
         (insert "\n")  ;; start from newline.
         (insert "* @")
         (insert jcs-php-param-string)
@@ -1111,7 +1111,7 @@ PARAM-VARIABLE-STRINGS : Param name strings list."
         (indent-for-tab-command)
 
         ;; add up counter.
-        (setq param-index (1- param-index)))
+        (setq param-index (1+ param-index)))
 
       ;; Lastly, process returns tag.
       (when there-is-return
@@ -1151,11 +1151,10 @@ PARAM-TYPE-STRINGS     : Param type strings list.
 PARAM-VARIABLE-STRINGS : Param name strings list."
 
   (when (or (jcs-is-current-major-mode-p "typescript-mode"))
-    (let* ((param-len (length param-variable-strings))
+    (let* ((param-var-len (length param-variable-strings))
+           (param-type-len (length param-type-strings))
            (keyword-len (length keyword-strings))
-           (param-index (1- param-len))
-           ;; Ignore `public', `private' or `protected' keyword.
-           (keyword-index (- keyword-len 2))
+           (param-index 0)
            (func-keyword (nth (1- keyword-len) keyword-strings))
            (with-return-type nil)
            (ret-keyword ""))
@@ -1167,19 +1166,20 @@ PARAM-VARIABLE-STRINGS : Param name strings list."
       (insert "@desc ")
       (indent-for-tab-command)
 
-      (when (= param-len (- keyword-len 2))
-        (setq ret-keyword (nth 0 keyword-strings))
+      (unless (= param-var-len param-type-len)
+        (setq ret-keyword (nth (1- param-type-len) param-type-strings))
+        (message "ret-keyword : %s" ret-keyword)
         ;; Check if return string `void' type.
         (unless (string= ret-keyword "void")
           (setq with-return-type t)))
 
       ;; Process param tag.
-      (while (>= param-index 0)
+      (while (< param-index param-var-len)
         (insert "\n")  ;; start from newline.
         (insert "* @")
         (insert jcs-ts-param-string)
         (when jcs-ts-doc-show-typename
-          (jcs-insert-jsdoc-type (nth keyword-index keyword-strings)
+          (jcs-insert-jsdoc-type (nth param-index param-type-strings)
                                  jcs-ts-open-type-char
                                  jcs-ts-close-type-char))
         (insert (nth param-index param-variable-strings))
@@ -1190,8 +1190,7 @@ PARAM-VARIABLE-STRINGS : Param name strings list."
         (indent-for-tab-command)
 
         ;; add up counter.
-        (setq param-index (1- param-index))
-        (setq keyword-index (1- keyword-index)))
+        (setq param-index (1+ param-index)))
 
       ;; Lastly, process returns tag.
       (when with-return-type
