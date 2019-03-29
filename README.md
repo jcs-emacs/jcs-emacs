@@ -164,5 +164,5 @@ $ cp -r ./.emacs.jcs ~/
 
 ## Supported Emacs versions
 
-The config should run on Emacs 24.3 or higher, but still, recommend 
-to always run on the latest Emacs version available on your machine.
+The config should run on Emacs 24.3 or higher, but I will recommend 
+to always run on the latest Emacs version available on your machine. 
