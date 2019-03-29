@@ -275,37 +275,32 @@
     ))
 
 
-(defun jcs-move-cursor-by-search-option (search-option)
+(defun jcs-move-cursor-by-search-option (sr-op)
   "Move to next targeting end function character.
-SEARCH-OPTION :
+SR-OP :
 0) search only current line.
 1) search witch closing parenthesis.
 2) search with opening culry parenthesis."
 
   (ignore-errors
-    (cond ((eq search-option 0)
-           (progn
-             ;; Only the current line.
-             (end-of-line)
-             ))
-          ((eq search-option 1)
-           (progn
-             ;; Closing Parenthesis
-             ;; NOTE(jenchieh): No recursive/No prompt.
-             (jcs-move-forward-close-paren t)
-             ))
-          ((eq search-option 2)
-           (progn
-             ;; Opening Curly Parenthesis
-             ;; NOTE(jenchieh): No recursive/No prompt.
-             (jcs-move-forward-open-curlyParen t)
-             )))))
+    (cond ((eq sr-op 0)
+           ;; Only the current line.
+           (end-of-line))
+          ((eq sr-op 1)
+           ;; Closing Parenthesis
+           ;; NOTE(jenchieh): No recursive/No prompt.
+           (jcs-move-forward-close-paren t))
+          ((eq sr-op 2)
+           ;; Opening Curly Parenthesis
+           ;; NOTE(jenchieh): No recursive/No prompt.
+           (jcs-move-forward-open-curlyParen t)
+           ))))
 
-(defun jcs-insert-comment-style-by-current-line (search-option)
+(defun jcs-insert-comment-style-by-current-line (sr-op)
   "Read the current line and insert by reading the need from \
 the input line.
 
-SEARCH-OPTION :
+SR-OP :
 0) search only current line.
 1) search witch closing parenthesis.
 2) search with opening culry parenthesis."
@@ -347,7 +342,7 @@ SEARCH-OPTION :
 
               (let ((tmp-current-point (point)))
                 ;; Move to next targeting end function character.
-                (jcs-move-cursor-by-search-option search-option)
+                (jcs-move-cursor-by-search-option sr-op)
 
                 ;; Check if we did move the point?
                 ;; If the recorded point is the same as
@@ -370,9 +365,9 @@ SEARCH-OPTION :
           (beginning-of-line)
 
           (while (< (point) end-function-point)
-            (if (not (= word-index 0))
-                (forward-word))
-            (forward-word)
+            (unless (= word-index 0)
+              (forward-word 1))
+            (forward-word 1)
             (backward-char 1)
             (setq word-index (1+ word-index))
 
