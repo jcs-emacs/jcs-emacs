@@ -39,7 +39,7 @@
   (define-key typescript-mode-map (kbd "C-d") #'jcs-kill-whole-line)
   (define-key typescript-mode-map "\C-c\C-c" #'kill-ring-save)
 
-  (define-key typescript-mode-map (kbd "DEL") #'jcs-delete-backward-char)
+  (define-key typescript-mode-map (kbd "DEL") #'jcs-electric-backspace)
   (define-key typescript-mode-map (kbd "{") #'jcs-vs-front-curly-bracket-key)
   (define-key typescript-mode-map (kbd ";") #'jcs-vs-semicolon-key)
 

@@ -29,7 +29,7 @@
   (define-key actionscript-mode-map (kbd "C-d") #'jcs-kill-whole-line)
   (define-key actionscript-mode-map "\C-c\C-c" #'kill-ring-save)
 
-  (define-key actionscript-mode-map (kbd "DEL") #'jcs-delete-backward-char)
+  (define-key actionscript-mode-map (kbd "DEL") #'jcs-electric-backspace)
   (define-key actionscript-mode-map (kbd "{") #'jcs-vs-front-curly-bracket-key)
   (define-key actionscript-mode-map (kbd ";") #'jcs-vs-semicolon-key)
 

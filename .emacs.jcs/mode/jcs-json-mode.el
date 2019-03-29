@@ -39,7 +39,7 @@
   (define-key json-mode-map (kbd "C-d") #'jcs-kill-whole-line)
   (define-key json-mode-map "\C-c\C-c" #'kill-ring-save)
 
-  (define-key json-mode-map (kbd "DEL") #'jcs-delete-backward-char)
+  (define-key json-mode-map (kbd "DEL") #'jcs-electric-backspace)
   (define-key json-mode-map (kbd "{") #'jcs-vs-front-curly-bracket-key)
   (define-key json-mode-map (kbd ";") #'jcs-vs-semicolon-key)
 

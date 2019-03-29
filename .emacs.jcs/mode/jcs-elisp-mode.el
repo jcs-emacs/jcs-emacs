@@ -2,6 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
+
 (defun jcs-emacs-lisp-mode-hook ()
   "JayCeS Emacs Lisp hook."
 

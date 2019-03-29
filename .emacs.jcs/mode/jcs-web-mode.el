@@ -109,7 +109,7 @@
   (define-key web-mode-map (kbd "<down>") #'jcs-web-smart-indent-down)
   (define-key web-mode-map (kbd "RET") #'jcs-web-return-key)
 
-  (define-key web-mode-map (kbd "DEL") #'jcs-delete-backward-char)
+  (define-key web-mode-map (kbd "DEL") #'jcs-electric-backspace)
   (define-key web-mode-map (kbd "{") #'jcs-vs-front-curly-bracket-key)
   (define-key web-mode-map (kbd ";") #'jcs-vs-semicolon-key)
 
@@ -339,7 +339,7 @@
   (define-key css-mode-map "\C-c\C-c" #'kill-ring-save)
   (define-key skewer-css-mode-map "\C-c\C-c" #'kill-ring-save)
 
-  (define-key css-mode-map (kbd "DEL") #'jcs-delete-backward-char)
+  (define-key css-mode-map (kbd "DEL") #'jcs-electric-backspace)
   (define-key css-mode-map (kbd "{") #'jcs-vs-front-curly-bracket-key)
   (define-key css-mode-map (kbd ";") #'jcs-vs-semicolon-key)
 

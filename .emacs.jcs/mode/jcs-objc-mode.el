@@ -44,7 +44,7 @@
   (define-key objc-mode-map (kbd "C-d") #'jcs-kill-whole-line)
   (define-key objc-mode-map "\C-c\C-c" #'kill-ring-save)
 
-  (define-key objc-mode-map (kbd "DEL") #'jcs-delete-backward-char)
+  (define-key objc-mode-map (kbd "DEL") #'jcs-electric-backspace)
   (define-key objc-mode-map (kbd "{") #'jcs-vs-front-curly-bracket-key)
   (define-key objc-mode-map (kbd ";") #'jcs-vs-semicolon-key)
 
