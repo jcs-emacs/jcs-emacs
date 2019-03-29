@@ -1371,7 +1371,8 @@ REVERSE : t forward, nil backward."
           ((string= c "'") (setq pair-char "'"))
           ((string= c ")") (setq pair-char "("))
           ((string= c "]") (setq pair-char "["))
-          ((string= c "}") (setq pair-char "{")))
+          ((string= c "}") (setq pair-char "{"))
+          ((string= c "`") (setq pair-char "`")))
     pair-char))
 
 (defun jcs-get-close-pair-char (c)
@@ -1381,8 +1382,10 @@ REVERSE : t forward, nil backward."
           ((string= c "'") (setq pair-char "'"))
           ((string= c "(") (setq pair-char ")"))
           ((string= c "[") (setq pair-char "]"))
-          ((string= c "{") (setq pair-char "}")))
+          ((string= c "{") (setq pair-char "}"))
+          ((string= c "`") (setq pair-char "`")))
     pair-char))
+
 
 (defun jcs-process-close-pair-char (cpc)
   "Process the close pair character.
@@ -1394,14 +1397,33 @@ CPC : close pair character."
       (when (jcs-current-char-equal-p cpc)
         (backward-delete-char 1)))))
 
+(defun jcs-process-close-pair-char-seq (cc)
+  "Process close pair character sequence.
+CC : current character before character deletion occured."
+  (save-excursion
+    (cond (;; Seq => /**/
+           (string= cc "*")
+           (when (jcs-current-char-equal-p "/")
+             (save-excursion
+               (forward-char 1)
+               (when (jcs-current-char-equal-p "*")
+                 (forward-char 1)
+                 (when (jcs-current-char-equal-p "/")
+                   ;; Found sequence, delete them!
+                   (backward-delete-char 1)
+                   (backward-delete-char 1)
+                   (backward-delete-char 1))))))
+          )))
+
 ;;;###autoload
 (defun jcs-electric-backspace ()
   "Electric backspace key."
   (interactive)
   (let* ((cc (jcs-get-current-char-string))
          (cpc (jcs-get-close-pair-char cc)))
-    (backward-delete-char 1)
-    (jcs-process-close-pair-char cpc)))
+    (jcs-own-delete-backward-char)
+    (jcs-process-close-pair-char cpc)
+    (jcs-process-close-pair-char-seq cc)))
 
 
 (provide 'jcs-edit)
