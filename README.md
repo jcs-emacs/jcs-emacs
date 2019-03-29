@@ -145,7 +145,8 @@ the `copy` key is `C-c C-c`.
 ## Installation
 
 To install, clone this repo and copy the core `files`/`directories` 
-to the emacs config directory accordingly.
+to the emacs config directory accordingly. Make sure you backup 
+your own configuration before you installed.
 ```bash
 # clone this repo
 $ git clone https://github.com/jcs090218/jcs-emacs-init.git
