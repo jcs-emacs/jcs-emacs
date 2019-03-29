@@ -1,15 +1,5 @@
-#  ========================================================================
-#  $File: emacs_version_record.txt $
-#  $Date: 2017-05-15 22:46:46 $
-#  $Revision: $
-#  $Creator: Jen-Chieh Shen $
-#  $Notice: See LICENSE.txt for modification and distribution information
-#                    Copyright (c) 2017 by Shen, Jen-Chieh $
-#  ========================================================================
-
-
-DESCRIPTION(jenchieh): These record down the .emacs file to
-which specific version of Emacs program.
+These record down the .emacs file to which specific version 
+of Emacs program.
 
 emacs-24.5 - 2016-03-15 ~ 2017-05-15
 emacs-25.2 - 2017-05-15 ~ 2018-06-11
