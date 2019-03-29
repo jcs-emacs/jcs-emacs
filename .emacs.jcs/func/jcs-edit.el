@@ -1364,58 +1364,44 @@ REVERSE : t forward, nil backward."
 ;; Electric Pair
 ;;----------------------------------------------
 
-(defun jcs-get-open-pair-symbol (c)
-  "Get the open pairing symbol from C."
+(defun jcs-get-open-pair-char (c)
+  "Get the open pairing character from C."
   (let ((pair-char nil))
-    (cond ((jcs-current-char-equal-p "\"")
-           (progn
-             (setq pair-char "\"")))
-          ((jcs-current-char-equal-p "'")
-           (progn
-             (setq pair-char "'")))
-          ((jcs-current-char-equal-p ")")
-           (progn
-             (setq pair-char "(")))
-          ((jcs-current-char-equal-p "]")
-           (progn
-             (setq pair-char "[")))
-          ((jcs-current-char-equal-p "}")
-           (progn
-             (setq pair-char "{"))))
+    (cond ((string= c "\"") (setq pair-char "\""))
+          ((string= c "'") (setq pair-char "'"))
+          ((string= c ")") (setq pair-char "("))
+          ((string= c "]") (setq pair-char "["))
+          ((string= c "}") (setq pair-char "{")))
     pair-char))
 
-(defun jcs-get-close-pair-symbol (c)
-  "Get the close pairing symbol from C."
+(defun jcs-get-close-pair-char (c)
+  "Get the close pairing character from C."
   (let ((pair-char nil))
-    (cond ((jcs-current-char-equal-p "\"")
-           (progn
-             (setq pair-char "\"")))
-          ((jcs-current-char-equal-p "'")
-           (progn
-             (setq pair-char "'")))
-          ((jcs-current-char-equal-p "(")
-           (progn
-             (setq pair-char ")")))
-          ((jcs-current-char-equal-p "[")
-           (progn
-             (setq pair-char "]")))
-          ((jcs-current-char-equal-p "{")
-           (progn
-             (setq pair-char "}"))))
+    (cond ((string= c "\"") (setq pair-char "\""))
+          ((string= c "'") (setq pair-char "'"))
+          ((string= c "(") (setq pair-char ")"))
+          ((string= c "[") (setq pair-char "]"))
+          ((string= c "{") (setq pair-char "}")))
     pair-char))
+
+(defun jcs-process-close-pair-char (cpc)
+  "Process the close pair character.
+CPC : close pair character."
+  (when (and cpc
+             (not (jcs-is-end-of-buffer-p)))
+    (save-excursion
+      (forward-char 1)
+      (when (jcs-current-char-equal-p cpc)
+        (backward-delete-char 1)))))
 
 ;;;###autoload
 (defun jcs-electric-backspace ()
   "Electric backspace key."
   (interactive)
-  (let ((close-pair-symbol (jcs-get-close-pair-symbol (jcs-get-current-char-string))))
+  (let* ((cc (jcs-get-current-char-string))
+         (cpc (jcs-get-close-pair-char cc))))
     (backward-delete-char 1)
-    (when (and close-pair-symbol
-               (not (jcs-is-end-of-buffer-p)))
-      (save-excursion
-        (forward-char 1)
-        (when (jcs-current-char-equal-p close-pair-symbol)
-          (backward-delete-char 1))))))
+    (jcs-process-close-pair-char cpc)))
 
 
 (provide 'jcs-edit)
