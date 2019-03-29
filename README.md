@@ -169,4 +169,6 @@ to always run on the latest Emacs version available on your machine.
 The ultimate goal is to design to have each version of config can 
 run on their each according Emacs version base on the version what 
 I'm currently running on my present machine. For more details, you 
-can check the [emacs_version_record](https://github.com/jcs090218/jcs-emacs-init/blob/master/emacs_version_record.txt).
+can see the 
+[emacs_version_record](https://github.com/jcs090218/jcs-emacs-init/blob/master/emacs_version_record.txt)
+.
