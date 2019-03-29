@@ -312,18 +312,7 @@ SR-OP :
         (param-type-strings '())  ;; param type string list.
         (param-variable-strings '())  ;; param name string list.
         (there-is-return nil)
-        (return-type-string "")
-
-        (was-flycheck-on nil)
-        (was-flymake-on nil))
-    (when (jcs-is-minor-mode-enabled-p flycheck-mode)
-      (setq was-flycheck-on t))
-
-    (when (jcs-is-minor-mode-enabled-p flymake-mode)
-      (setq was-flymake-on t))
-
-    (flycheck-mode 0)
-    (flymake-mode 0)
+        (return-type-string ""))
 
     (save-excursion
       (when (not (jcs-current-line-empty-p))
@@ -408,8 +397,8 @@ SR-OP :
                         (jcs-is-current-point-face 'js2-function-param)
                         (jcs-is-current-point-face "web-mode-variable-name-face")
                         (jcs-is-current-point-face "jcs-preproc-variable-name-face"))
-                (push (thing-at-point 'word) param-variable-strings)
-                ))))))
+                (push (thing-at-point 'word) param-variable-strings))
+              )))))
 
     ;; Insert document comment string.
     (jcs-insert-doc-comment-string meet-function-name
@@ -420,12 +409,7 @@ SR-OP :
                                    return-type-string
                                    param-type-strings
                                    param-variable-strings)
-
-    ;; Enable it back on if it was on.
-    (when was-flycheck-on
-      (flycheck-mode t))
-    (when was-flymake-on
-      (flymake-mode t))))
+    ))
 
 (defun jcs-insert-doc-comment-string (meet-function-name
                                       keyword-strings
