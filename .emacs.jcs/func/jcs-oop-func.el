@@ -275,6 +275,16 @@
     ))
 
 
+(defun jcs-insert-jsdoc-type (type-name open-char close-char)
+  "Insert the curly bracket part.
+
+TYPE-NAME : type name string.
+OPEN-CHAR : opening character.
+CLOSE-CHAR : closing character."
+  (insert open-char)
+  (insert type-name)
+  (insert close-char))
+
 (defun jcs-move-cursor-by-search-option (sr-op)
   "Move to next targeting end function character.
 SR-OP :
@@ -1184,17 +1194,6 @@ PARAM-VARIABLE-STRINGS : Param name strings list."
           (insert " "))
         (insert jcs-return-desc-string)
         (indent-for-tab-command)))))
-
-
-(defun jcs-insert-jsdoc-type (type-name open-char close-char)
-  "Insert the curly bracket part.
-
-TYPE-NAME : type name string.
-OPEN-CHAR : opening character.
-CLOSE-CHAR : closing character."
-  (insert open-char)
-  (insert type-name)
-  (insert close-char))
 
 
 ;;-----------------------------------------------------------
