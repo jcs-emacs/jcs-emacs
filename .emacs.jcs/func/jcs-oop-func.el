@@ -1246,15 +1246,15 @@ CLOSE-CHAR : closing character."
 ;;-----------------------------------------------------------
 ;;-----------------------------------------------------------
 
-(defvar jcs-oop-missing-type-face-modes '(c++-mode)
-  "Font lock for namespace.")
+(defvar jcs-oop-missing-font-lock-type-face-modes '(c++-mode)
+  "Font lock for namespace in C++.")
 
 (mapc (lambda (mode)
         (font-lock-add-keywords
          mode
          '(("[a-zA-Z0-9_]*::\\([a-zA-Z0-9_]*\\)[ \t]" 1 'font-lock-type-face t)
            )'end))
-      jcs-oop-missing-type-face-modes)
+      jcs-oop-missing-font-lock-type-face-modes)
 
 ;;-----------------------------------------------------------
 ;;-----------------------------------------------------------
@@ -1312,6 +1312,23 @@ CLOSE-CHAR : closing character."
            ("protected[ \t]*\\([a-zA-Z_$0-9]*\\)[ \t]*(" 1 'font-lock-function-name-face t)
            )'end))
       jcs-oop-missing-font-lock-func-name-modes)
+
+;;-----------------------------------------------------------
+;;-----------------------------------------------------------
+
+(defvar jcs-oop-missing-font-lock-type-face-modes-colon '(actionscript-mode
+                                                          typescript-mode)
+  "Modes to fixed missing type face in programming language using `colon'.")
+
+(mapc (lambda (mode)
+        (font-lock-add-keywords
+         mode
+         '(("\\([a-zA-Z0-9_-]*\\)[.][a-zA-Z0-9_-]*[ \t\n]*[|=),{]" 1 'font-lock-type-face t)
+           ("[a-zA-Z0-9_-]*[.]\\([a-zA-Z0-9_-]*\\)[ \t\n]*[|=),{]" 1 'font-lock-type-face t)
+           ("[|: ][ \t\n]*\\([a-zA-Z0-9_-]*\\)[ \t\n]*[|{]" 1 'font-lock-type-face t)
+           ("[|:][ \t\n]*\\([a-zA-Z0-9_-]*\\)[ \t\n]*[,)]" 1 'font-lock-type-face t)
+           )'end))
+      jcs-oop-missing-font-lock-type-face-modes-colon)
 
 
 (provide 'jcs-oop-func)
