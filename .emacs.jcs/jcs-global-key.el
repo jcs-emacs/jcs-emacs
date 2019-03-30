@@ -71,7 +71,7 @@
 (define-key global-map "\er" #'revert-buffer)
 (define-key global-map "\es" #'save-buffer)
 
-(define-key global-map "\t" #'dabbrev-expand)
+;;(define-key global-map "\t" #'dabbrev-expand)
 (define-key global-map [S-tab] #'indent-for-tab-command)
 (define-key global-map [backtab] #'indent-for-tab-command)
 (define-key global-map "\C-y" #'indent-for-tab-command)
@@ -368,7 +368,7 @@
 ;;; Helm
 ;; More key binding in `jcs-helm.el'
 
-;;; Tabbar
+;;; Tabbar
 (require 'tabbar)
 (define-key global-map (kbd "C-t") #'jcs-toggle-tabbar-mode)
 (define-key global-map [C-S-tab] #'tabbar-forward)
