@@ -397,6 +397,13 @@
    '(helm-gtags-ignore-case t)
    '(helm-gtags-auto-update t)))
 
+(use-package yasnippet
+  :ensure t
+  :config
+  (use-package yasnippet-snippets
+    :ensure t)
+  (yas-reload-all))
+
 
 (provide 'jcs-plugin)
 ;;; jcs-plugin.el ends here
