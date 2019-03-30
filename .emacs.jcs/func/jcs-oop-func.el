@@ -82,10 +82,10 @@
 
 
 ;;; Doc string character after value type font.
-(defvar jcs-java-doc-after-value-type-char ""
-  "Character after value type been inserted in Java Mode.")
 (defvar jcs-cc-doc-after-value-type-char ""
   "Character after value type been inserted in C/C++ Mode.")
+(defvar jcs-java-doc-after-value-type-char ""
+  "Character after value type been inserted in Java Mode.")
 (defvar jcs-js-doc-after-value-type-char ""
   "Character after value type been inserted in JavaScript Mode.")
 (defvar jcs-lua-doc-after-value-type-char ""
@@ -116,77 +116,49 @@
 
 
 ;;; Tag strings
-(defvar jcs-cc-param-string ""
-  "Parameter string in C/C++ mode.")
-(defvar jcs-cc-return-string ""
-  "Returns string in C/C++ mode.")
+(defvar jcs-cc-param-string "" "Parameter string in C/C++ mode.")
+(defvar jcs-cc-return-string "" "Returns string in C/C++ mode.")
 
-(defvar jcs-java-param-string ""
-  "Parameter string in Java mode.")
-(defvar jcs-java-return-string ""
-  "Returns string in Java mode.")
+(defvar jcs-java-param-string "" "Parameter string in Java mode.")
+(defvar jcs-java-return-string "" "Returns string in Java mode.")
 
-(defvar jcs-js-param-string ""
-  "Parameter string in JavaScript mode.")
-(defvar jcs-js-return-string ""
-  "Returns string in JavaScript mode.")
+(defvar jcs-js-param-string "" "Parameter string in JavaScript mode.")
+(defvar jcs-js-return-string "" "Returns string in JavaScript mode.")
 
-(defvar jcs-lua-param-string ""
-  "Parameter string in Lua mode.")
-(defvar jcs-lua-return-string ""
-  "Returns string in Lua mode.")
+(defvar jcs-lua-param-string "" "Parameter string in Lua mode.")
+(defvar jcs-lua-return-string "" "Returns string in Lua mode.")
 
-(defvar jcs-py-param-string ""
-  "Parameter string in Pyhon mode.")
-(defvar jcs-py-return-string ""
-  "Returns string in Python mode.")
+(defvar jcs-py-param-string "" "Parameter string in Pyhon mode.")
+(defvar jcs-py-return-string "" "Returns string in Python mode.")
 
-(defvar jcs-php-param-string ""
-  "Parameter string in PHP mode.")
-(defvar jcs-php-return-string ""
-  "Returns string in PHP mode.")
+(defvar jcs-php-param-string "" "Parameter string in PHP mode.")
+(defvar jcs-php-return-string "" "Returns string in PHP mode.")
 
-(defvar jcs-ts-param-string ""
-  "Parameter string in TypeScript mode.")
-(defvar jcs-ts-return-string ""
-  "Returns string in TypeScript mode.")
+(defvar jcs-ts-param-string "" "Parameter string in TypeScript mode.")
+(defvar jcs-ts-return-string "" "Returns string in TypeScript mode.")
 
 
 ;;; Brackets
-(defvar jcs-cc-open-type-char ""
-  "Character before the typename in C/C++ mode.")
-(defvar jcs-cc-close-type-char ""
-  "Character after the typename in C/C++ mode.")
+(defvar jcs-cc-open-type-char "" "Character before the typename in C/C++ mode.")
+(defvar jcs-cc-close-type-char "" "Character after the typename in C/C++ mode.")
 
-(defvar jcs-java-open-type-char ""
-  "Character before the typename in Java mode.")
-(defvar jcs-java-close-type-char ""
-  "Character after the typename in Java mode.")
+(defvar jcs-java-open-type-char "" "Character before the typename in Java mode.")
+(defvar jcs-java-close-type-char "" "Character after the typename in Java mode.")
 
-(defvar jcs-js-open-type-char ""
-  "Character before the typename in JavaScript mode.")
-(defvar jcs-js-close-type-char ""
-  "Character after the typename in JavaScript mode.")
+(defvar jcs-js-open-type-char "" "Character before the typename in JavaScript mode.")
+(defvar jcs-js-close-type-char "" "Character after the typename in JavaScript mode.")
 
-(defvar jcs-lua-open-type-char ""
-  "Character before the typename in Lua mode.")
-(defvar jcs-lua-close-type-char ""
-  "Character after the typename in Lua mode.")
+(defvar jcs-lua-open-type-char "" "Character before the typename in Lua mode.")
+(defvar jcs-lua-close-type-char "" "Character after the typename in Lua mode.")
 
-(defvar jcs-py-open-type-char ""
-  "Character before the typename in Python mode.")
-(defvar jcs-py-close-type-char ""
-  "Character after the typename in Python mode.")
+(defvar jcs-py-open-type-char "" "Character before the typename in Python mode.")
+(defvar jcs-py-close-type-char "" "Character after the typename in Python mode.")
 
-(defvar jcs-php-open-type-char ""
-  "Character before the typename in PHP mode.")
-(defvar jcs-php-close-type-char ""
-  "Character after the typename in PHP mode.")
+(defvar jcs-php-open-type-char "" "Character before the typename in PHP mode.")
+(defvar jcs-php-close-type-char "" "Character after the typename in PHP mode.")
 
-(defvar jcs-ts-open-type-char ""
-  "Character before the typename in TypeScript mode.")
-(defvar jcs-ts-close-type-char ""
-  "Character after the typename in TypeScript mode.")
+(defvar jcs-ts-open-type-char "" "Character before the typename in TypeScript mode.")
+(defvar jcs-ts-close-type-char "" "Character after the typename in TypeScript mode.")
 
 
 (defvar jcs-class-desc-string ""
@@ -202,15 +174,17 @@
 (defvar jcs-return-desc-string ""
   "Return description string.")
 
+
 (defvar jcs-docstring-config-filepath "~/.emacs.jcs/docstring/docstring_config.properties"
   "Doc-string properties file.")
 
+
+;;;###autoload
 (defun jcs-reload-docstring-info ()
   "Reload the doc-string info once."
   (interactive)
 
   (let ((tmp-ini-list '()))
-
     ;; Read the doc-string configuration file.
     (setq tmp-ini-list (jcs-parse-ini jcs-docstring-config-filepath))
 
