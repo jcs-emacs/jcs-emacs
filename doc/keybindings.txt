@@ -16,7 +16,9 @@ QUICK REFERENCE GUIDE FOR JEN-CHIEH'S .EMACS KEYBINDINGS
 
 ESC             Exit minibuffer and go to the top level.
 
-TAB             Cycles through completions for a word.
+TAB             Cycles through completions for a word, if it 
+                fails insert spaces base on tab width. Mimic 
+                the normal text editor preset behavior.
 
 M-B             Switch to buffer in the current window.
 M-S-B           Switch to buffer in the other window.
@@ -155,8 +157,9 @@ C-return        Binds to `jcs-ctrl-return-key'. If follows the list
                 the order down function, the next function will be 
                 call to replace the previous function. The priority 
                 function list is list below: 
-                  (1) goto-address-at-point
-                  (2) custom-abbrev-complete-word
+                  (1) project-abbrev-complete-word
+                  (2) yas-expand
+                  (3) goto-address-at-point
 
 C-r o           Read-Only mode toggle.
 
