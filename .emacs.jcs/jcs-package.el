@@ -160,7 +160,8 @@ Return a list of installed packages or nil for every skipped package."
                                    wgrep-helm
                                    xwidgete
                                    yaml-mode
-                                   yasnippet)
+                                   yasnippet
+                                   yasnippet-snippets)
   "List of packages this config needs.")
 
 
