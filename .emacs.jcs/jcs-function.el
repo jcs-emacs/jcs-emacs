@@ -324,10 +324,12 @@ G : Active line number globally."
   ;; the priority chain will break.
   ;;
   ;; 1. `project-abbrev-complete-word'
-  ;; 2. `goto-address-at-point'
+  ;; 2. `yas-expand'
+  ;; 3. `goto-address-at-point'
   ;;
-  (unless (or (ignore-errors (call-interactively #'project-abbrev-complete-word)))
-    (call-interactively #'goto-address-at-point)))
+  (unless (ignore-errors (call-interactively #'project-abbrev-complete-word))
+    (unless (ignore-errors (call-interactively #'yas-expand))
+      (call-interactively #'goto-address-at-point))))
 
 
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
