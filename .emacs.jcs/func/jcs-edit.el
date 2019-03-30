@@ -584,8 +584,9 @@ the current line."
 ;; Save Buffer
 ;;-------------------------
 
-(defun jcs-do-stuff-after-save ()
-  "Do stuff after save command executed."
+(defun jcs-do-stuff-after-save (&optional arg)
+  "Do stuff after save command executed.
+ARG : Match with `save-buffer' command."
   ;; NOTE(jenchieh): Is we found `*undo-tree*' buffer, we
   ;; try to close it.
   (let ((prev-frame (selected-frame)))
