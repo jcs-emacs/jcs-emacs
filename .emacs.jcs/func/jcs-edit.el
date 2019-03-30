@@ -751,7 +751,20 @@ ECP-SAME : Exception for the same buffer."
         ;; repeated buffer at the same time in different windows.
         (when (and (>= (jcs-buffer-showns (buffer-name)) 2)
                    (not ecp-same))
-          (jcs-switch-to-previous-buffer))))
+          (jcs-switch-to-previous-buffer)
+
+          ;; If is something from default Emacs's buffer,
+          ;; switch back to previous buffer once again.
+          ;;
+          ;; This will solve if there is only one file opened,
+          ;; and switch to none sense buffer issue.
+          ;;
+          ;; None sense buffer or Emacs's default buffer is
+          ;;   -> *GNU Emacs*
+          ;;   -> *scratch*
+          ;;   , etc.
+          (unless (buffer-file-name)
+            (jcs-switch-to-previous-buffer)))))
     is-killed))
 
 ;;;###autoload
