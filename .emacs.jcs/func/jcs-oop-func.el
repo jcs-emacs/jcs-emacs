@@ -456,69 +456,61 @@ PAREN-STRING           : Param raw string."
 
   (save-excursion
     (let ((mode-doc-string-func-name nil))
-      ;; NOTE(jenchieh): Only add doc when there is function
-      ;; in current checking line.
+      ;; NOTE(jenchieh): `push' will push the element
+      ;; at the front queue. `setq' and `append' will push
+      ;; element from the back, so we need to reverse it
+      ;; in order to match the order.
+      (setq param-variable-strings (reverse param-variable-strings))
+
+      (cond ((or (jcs-is-current-major-mode-p "csharp-mode"))
+             (setq mode-doc-string-func-name (if meet-function-name
+                                                 'jcs-csharp-mode-doc-string-func
+                                               'jcs-csharp-mode-doc-string-others)))
+            ((or (jcs-is-current-major-mode-p "c-mode")
+                 (jcs-is-current-major-mode-p "c++-mode"))
+             (setq mode-doc-string-func-name (if meet-function-name
+                                                 'jcs-cc-mode-doc-string-func
+                                               'jcs-cc-mode-doc-string-others)))
+            ((or (jcs-is-current-major-mode-p "java-mode")
+                 (jcs-is-current-major-mode-p "jdee-mode"))
+             (setq mode-doc-string-func-name (if meet-function-name
+                                                 'jcs-java-mode-doc-string-func
+                                               'jcs-java-mode-doc-string-others)))
+            ((or (jcs-is-current-major-mode-p "js2-mode"))
+             (setq mode-doc-string-func-name (if meet-function-name
+                                                 'jcs-js-mode-doc-string-func
+                                               'jcs-js-mode-doc-string-others)))
+            ((or (jcs-is-current-major-mode-p "lua-mode"))
+             (setq mode-doc-string-func-name (if meet-function-name
+                                                 'jcs-lua-mode-doc-string-func
+                                               'jcs-lua-mode-doc-string-others)))
+            ((or (jcs-is-current-major-mode-p "python-mode"))
+             (setq mode-doc-string-func-name (if meet-function-name
+                                                 'jcs-py-mode-doc-string-func
+                                               'jcs-py-mode-doc-string-others)))
+            ((or (jcs-is-current-major-mode-p "php-mode")
+                 (jcs-is-current-major-mode-p "web-mode"))
+             (setq mode-doc-string-func-name (if meet-function-name
+                                                 'jcs-php-mode-doc-string-func
+                                               'jcs-php-mode-doc-string-others)))
+            ((or (jcs-is-current-major-mode-p "typescript-mode"))
+             (setq mode-doc-string-func-name (if meet-function-name
+                                                 'jcs-ts-mode-doc-string-func
+                                               'jcs-ts-mode-doc-string-others)))
+            )
+
       (if meet-function-name
-          (progn
-            ;; NOTE(jenchieh): `push' will push the element
-            ;; at the front queue. `setq' and `append' will push
-            ;; element from the back, so we need to reverse it
-            ;; in order to match the order.
-            (setq param-variable-strings (reverse param-variable-strings))
-
-            (cond ((or (jcs-is-current-major-mode-p "csharp-mode"))
-                   (setq mode-doc-string-func-name 'jcs-csharp-mode-doc-string-func))
-                  ((or (jcs-is-current-major-mode-p "c-mode")
-                       (jcs-is-current-major-mode-p "c++-mode"))
-                   (setq mode-doc-string-func-name 'jcs-cc-mode-doc-string-func))
-                  ((or (jcs-is-current-major-mode-p "java-mode")
-                       (jcs-is-current-major-mode-p "jdee-mode"))
-                   (setq mode-doc-string-func-name 'jcs-java-mode-doc-string-func))
-                  ((or (jcs-is-current-major-mode-p "js2-mode"))
-                   (setq mode-doc-string-func-name 'jcs-js-mode-doc-string-func))
-                  ((or (jcs-is-current-major-mode-p "lua-mode"))
-                   (setq mode-doc-string-func-name 'jcs-lua-mode-doc-string-func))
-                  ((or (jcs-is-current-major-mode-p "python-mode"))
-                   (setq mode-doc-string-func-name 'jcs-py-mode-doc-string-func))
-                  ((or (jcs-is-current-major-mode-p "php-mode")
-                       (jcs-is-current-major-mode-p "web-mode"))
-                   (setq mode-doc-string-func-name 'jcs-php-mode-doc-string-func))
-                  ((or (jcs-is-current-major-mode-p "typescript-mode"))
-                   (setq mode-doc-string-func-name 'jcs-ts-mode-doc-string-func))
-                  )
-
-            (funcall mode-doc-string-func-name
-                     meet-function-name
-                     keyword-strings
-                     datatype-name
-                     function-name-string
-                     there-is-return
-                     return-type-string
-                     param-type-strings
-                     param-variable-strings
-                     paren-string))
-        (progn
-          (cond ((or (jcs-is-current-major-mode-p "csharp-mode"))
-                 (setq mode-doc-string-func-name 'jcs-csharp-mode-doc-string-others))
-                ((or (jcs-is-current-major-mode-p "c-mode")
-                     (jcs-is-current-major-mode-p "c++-mode"))
-                 (setq mode-doc-string-func-name 'jcs-cc-mode-doc-string-others))
-                ((or (jcs-is-current-major-mode-p "java-mode")
-                     (jcs-is-current-major-mode-p "jdee-mode"))
-                 (setq mode-doc-string-func-name 'jcs-java-mode-doc-string-others))
-                ((or (jcs-is-current-major-mode-p "js2-mode"))
-                 (setq mode-doc-string-func-name 'jcs-js-mode-doc-string-others))
-                ((or (jcs-is-current-major-mode-p "lua-mode"))
-                 (setq mode-doc-string-func-name 'jcs-lua-mode-doc-string-others))
-                ((or (jcs-is-current-major-mode-p "python-mode"))
-                 (setq mode-doc-string-func-name 'jcs-py-mode-doc-string-others))
-                ((or (jcs-is-current-major-mode-p "php-mode")
-                     (jcs-is-current-major-mode-p "web-mode"))
-                 (setq mode-doc-string-func-name 'jcs-php-mode-doc-string-others))
-                ((or (jcs-is-current-major-mode-p "typescript-mode"))
-                 (setq mode-doc-string-func-name 'jcs-ts-mode-doc-string-others))
-                )
-          (funcall mode-doc-string-func-name))))))
+          (funcall mode-doc-string-func-name
+                   meet-function-name
+                   keyword-strings
+                   datatype-name
+                   function-name-string
+                   there-is-return
+                   return-type-string
+                   param-type-strings
+                   param-variable-strings
+                   paren-string)
+        (funcall mode-doc-string-func-name)))))
 
 
 
