@@ -106,6 +106,8 @@ and
 [exec-path-from-shell](https://github.com/purcell/exec-path-from-shell).
 * *Simplify Usage* - powered by 
 [helm](https://github.com/emacs-helm/helm).
+* *Snippet* - powered by 
+[yasnippet](https://github.com/joaotavora/yasnippet).
 * *Source Control Management* - powered by 
 [magit](https://github.com/magit/magit).
 * *Syntax Check* - powered by 
