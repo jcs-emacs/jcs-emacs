@@ -113,15 +113,15 @@
   "Show the typename betweeen the open charachter and close charachter in TypeScript mode.")
 
 ;;; Tag strings
-(defvar jcs-java-param-string ""
-  "Parameter string in Java mode.")
-(defvar jcs-java-return-string ""
-  "Returns string in Java mode.")
-
 (defvar jcs-cc-param-string ""
   "Parameter string in C/C++ mode.")
 (defvar jcs-cc-return-string ""
   "Returns string in C/C++ mode.")
+
+(defvar jcs-java-param-string ""
+  "Parameter string in Java mode.")
+(defvar jcs-java-return-string ""
+  "Returns string in Java mode.")
 
 (defvar jcs-js-param-string ""
   "Parameter string in JavaScript mode.")
@@ -150,15 +150,15 @@
 
 
 ;;; Brackets
-(defvar jcs-java-open-type-char ""
-  "Character before the typename in Java mode.")
-(defvar jcs-java-close-type-char ""
-  "Character after the typename in Java mode.")
-
 (defvar jcs-cc-open-type-char ""
   "Character before the typename in C/C++ mode.")
 (defvar jcs-cc-close-type-char ""
   "Character after the typename in C/C++ mode.")
+
+(defvar jcs-java-open-type-char ""
+  "Character before the typename in Java mode.")
+(defvar jcs-java-close-type-char ""
+  "Character after the typename in Java mode.")
 
 (defvar jcs-js-open-type-char ""
   "Character before the typename in JavaScript mode.")
@@ -457,15 +457,15 @@ PAREN-STRING           : Param raw string."
       ;; in order to match the order.
       (setq param-variable-strings (reverse param-variable-strings))
 
-      (cond ((or (jcs-is-current-major-mode-p "csharp-mode"))
-             (setq mode-doc-string-func-name (if meet-function-name
-                                                 'jcs-csharp-mode-doc-string-func
-                                               'jcs-csharp-mode-doc-string-others)))
-            ((or (jcs-is-current-major-mode-p "c-mode")
+      (cond ((or (jcs-is-current-major-mode-p "c-mode")
                  (jcs-is-current-major-mode-p "c++-mode"))
              (setq mode-doc-string-func-name (if meet-function-name
                                                  'jcs-cc-mode-doc-string-func
                                                'jcs-cc-mode-doc-string-others)))
+            ((or (jcs-is-current-major-mode-p "csharp-mode"))
+             (setq mode-doc-string-func-name (if meet-function-name
+                                                 'jcs-csharp-mode-doc-string-func
+                                               'jcs-csharp-mode-doc-string-others)))
             ((or (jcs-is-current-major-mode-p "java-mode")
                  (jcs-is-current-major-mode-p "jdee-mode"))
              (setq mode-doc-string-func-name (if meet-function-name
@@ -507,75 +507,6 @@ PAREN-STRING           : Param raw string."
                    search-string)
         (funcall mode-doc-string-func-name)))))
 
-
-
-(defun jcs-csharp-mode-doc-string-others ()
-  "Insert `csharp-mode' other doc string."
-  (cond ((jcs-is-contain-list-string keyword-strings "class")
-         (progn
-           ;; STUDY(jenchieh): Don't think that C#
-           ;; doc need one..
-           ))
-        ((jcs-is-contain-list-string keyword-strings "struct")
-         (progn
-           ;; STUDY(jenchieh): Don't think that C#
-           ;; doc need one..
-           ))
-        ((or (jcs-is-contain-list-string keyword-strings "define")
-             (jcs-is-contain-list-string keyword-strings "#define"))
-         (progn
-           ;; STUDY(jenchieh): Don't think that C#
-           ;; doc need one..
-           ))))
-
-(defun jcs-csharp-mode-doc-string-func (meet-function-name
-                                        keyword-strings
-                                        datatype-name
-                                        function-name-string
-                                        there-is-return
-                                        return-type-string
-                                        param-type-strings
-                                        param-variable-strings
-                                        search-string)
-  "Insert `csharp-mode' function doc string.
-
-MEET-FUNCTION-NAME     : Meet the function name?
-KEYWORD-STRINGS        : Keyword strings list.
-DATATYPE-NAME          : Data type name, store keyword for
-                               struct/class related.
-FUNCTION-NAME-STRING   : Function name.
-THERE-IS-RETURN        : There is return in this function?
-RETURN-TYPE-STRING     : String of the return type.
-PARAM-TYPE-STRINGS     : Param type strings list.
-PARAM-VARIABLE-STRINGS : Param name strings list.
-SEARCH-STRING          : Search raw string."
-
-  (when (or (jcs-is-current-major-mode-p "csharp-mode"))
-    (let ((param-var-len (length param-variable-strings))
-          (param-index 0))
-      ;; go back to comment line.
-      (jcs-previous-line)
-      (end-of-line)
-
-      ;; First process param tag.
-      (while (< param-index param-var-len)
-        (insert "\n")  ;; start from newline.
-        (insert "/// <param name=\"")
-        (insert (nth param-index param-variable-strings))
-        (insert "\"></param>")
-
-        ;; indent once.
-        (indent-for-tab-command)
-
-        ;; add up counter.
-        (setq param-index (1+ param-index)))
-
-      ;; Lastly, process returns tag.
-      (when there-is-return
-        (unless (string= return-type-string "void")
-          (insert "\n")
-          (insert "/// <returns></returns>")
-          (indent-for-tab-command))))))
 
 
 (defun jcs-cc-mode-doc-string-others ()
@@ -728,6 +659,75 @@ SEARCH-STRING          : Search raw string."
                     (insert " "))
                   (insert jcs-return-desc-string)
                   (indent-for-tab-command))))))))
+
+
+(defun jcs-csharp-mode-doc-string-others ()
+  "Insert `csharp-mode' other doc string."
+  (cond ((jcs-is-contain-list-string keyword-strings "class")
+         (progn
+           ;; STUDY(jenchieh): Don't think that C#
+           ;; doc need one..
+           ))
+        ((jcs-is-contain-list-string keyword-strings "struct")
+         (progn
+           ;; STUDY(jenchieh): Don't think that C#
+           ;; doc need one..
+           ))
+        ((or (jcs-is-contain-list-string keyword-strings "define")
+             (jcs-is-contain-list-string keyword-strings "#define"))
+         (progn
+           ;; STUDY(jenchieh): Don't think that C#
+           ;; doc need one..
+           ))))
+
+(defun jcs-csharp-mode-doc-string-func (meet-function-name
+                                        keyword-strings
+                                        datatype-name
+                                        function-name-string
+                                        there-is-return
+                                        return-type-string
+                                        param-type-strings
+                                        param-variable-strings
+                                        search-string)
+  "Insert `csharp-mode' function doc string.
+
+MEET-FUNCTION-NAME     : Meet the function name?
+KEYWORD-STRINGS        : Keyword strings list.
+DATATYPE-NAME          : Data type name, store keyword for
+                               struct/class related.
+FUNCTION-NAME-STRING   : Function name.
+THERE-IS-RETURN        : There is return in this function?
+RETURN-TYPE-STRING     : String of the return type.
+PARAM-TYPE-STRINGS     : Param type strings list.
+PARAM-VARIABLE-STRINGS : Param name strings list.
+SEARCH-STRING          : Search raw string."
+
+  (when (or (jcs-is-current-major-mode-p "csharp-mode"))
+    (let ((param-var-len (length param-variable-strings))
+          (param-index 0))
+      ;; go back to comment line.
+      (jcs-previous-line)
+      (end-of-line)
+
+      ;; First process param tag.
+      (while (< param-index param-var-len)
+        (insert "\n")  ;; start from newline.
+        (insert "/// <param name=\"")
+        (insert (nth param-index param-variable-strings))
+        (insert "\"></param>")
+
+        ;; indent once.
+        (indent-for-tab-command)
+
+        ;; add up counter.
+        (setq param-index (1+ param-index)))
+
+      ;; Lastly, process returns tag.
+      (when there-is-return
+        (unless (string= return-type-string "void")
+          (insert "\n")
+          (insert "/// <returns></returns>")
+          (indent-for-tab-command))))))
 
 
 (defun jcs-java-mode-doc-string-others ()
