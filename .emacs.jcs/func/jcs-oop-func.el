@@ -80,6 +80,7 @@
 0 : Description after \"\"\" opening docstring..
 1 : Line breack description \"\"\" opening docstring.")
 
+
 ;;; Doc string character after value type font.
 (defvar jcs-java-doc-after-value-type-char ""
   "Character after value type been inserted in Java Mode.")
@@ -96,21 +97,23 @@
 (defvar jcs-ts-doc-after-value-type-char ""
   "Character after value type been inserted in TypeScript Mode.")
 
+
 ;;; Show typename.
-(defvar jcs-java-doc-show-typename t
-  "Show the typename betweeen the open charachter and close charachter in Java mode.")
-(defvar jcs-cc-doc-show-typename t
+(defvar jcs-cc-doc-show-typename nil
   "Show the typename betweeen the open charachter and close charachter in C/C++ mode.")
-(defvar jcs-js-doc-show-typename t
+(defvar jcs-java-doc-show-typename nil
+  "Show the typename betweeen the open charachter and close charachter in Java mode.")
+(defvar jcs-js-doc-show-typename nil
   "Show the typename betweeen the open charachter and close charachter in JavaScript mode.")
-(defvar jcs-lua-doc-show-typename t
+(defvar jcs-lua-doc-show-typename nil
   "Show the typename betweeen the open charachter and close charachter in Lua mode.")
-(defvar jcs-py-doc-show-typename t
+(defvar jcs-py-doc-show-typename nil
   "Show the typename betweeen the open charachter and close charachter in Python mode.")
-(defvar jcs-php-doc-show-typename t
+(defvar jcs-php-doc-show-typename nil
   "Show the typename betweeen the open charachter and close charachter in PHP mode.")
-(defvar jcs-ts-doc-show-typename t
+(defvar jcs-ts-doc-show-typename nil
   "Show the typename betweeen the open charachter and close charachter in TypeScript mode.")
+
 
 ;;; Tag strings
 (defvar jcs-cc-param-string ""
