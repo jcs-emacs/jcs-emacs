@@ -323,17 +323,7 @@ SR-OP :
         (param-variable-strings '())  ;; param name string list.
         (there-is-return nil)
         (return-type-string "")
-        (open-bc -1)
-        (close-bc -1)
-        (paren-string ""))
-
-    (save-excursion
-      (jcs-move-to-forward-a-char "(")
-      (setq open-bc (point))
-      (jcs-move-to-forward-a-char ")")
-      (backward-char 1)
-      (setq close-bc (point))
-      (setq paren-string (string-trim (buffer-substring open-bc close-bc))))
+        (search-string ""))
 
     (save-excursion
       (when (not (jcs-current-line-empty-p))
@@ -373,6 +363,11 @@ SR-OP :
               (setq end-function-point (1- (point)))))
 
           (beginning-of-line)
+
+          ;; Get the search string after we found `end-function-point' and
+          ;; back to searching point.
+          (setq search-string (string-trim (buffer-substring (point) end-function-point)))
+
 
           (while (< (point) end-function-point)
             (unless (= word-index 0)
@@ -430,7 +425,7 @@ SR-OP :
                                    return-type-string
                                    param-type-strings
                                    param-variable-strings
-                                   paren-string)))
+                                   search-string)))
 
 (defun jcs-insert-doc-comment-string (meet-function-name
                                       keyword-strings
@@ -440,7 +435,7 @@ SR-OP :
                                       return-type-string
                                       param-type-strings
                                       param-variable-strings
-                                      paren-string)
+                                      search-string)
   "Insert document comment style.
 
 MEET-FUNCTION-NAME     : Meet the function name?
@@ -509,7 +504,7 @@ PAREN-STRING           : Param raw string."
                    return-type-string
                    param-type-strings
                    param-variable-strings
-                   paren-string)
+                   search-string)
         (funcall mode-doc-string-func-name)))))
 
 
@@ -541,7 +536,7 @@ PAREN-STRING           : Param raw string."
                                         return-type-string
                                         param-type-strings
                                         param-variable-strings
-                                        paren-string)
+                                        search-string)
   "Insert `csharp-mode' function doc string.
 
 MEET-FUNCTION-NAME     : Meet the function name?
@@ -553,7 +548,7 @@ THERE-IS-RETURN        : There is return in this function?
 RETURN-TYPE-STRING     : String of the return type.
 PARAM-TYPE-STRINGS     : Param type strings list.
 PARAM-VARIABLE-STRINGS : Param name strings list.
-PAREN-STRING           : Param raw string."
+SEARCH-STRING          : Search raw string."
 
   (when (or (jcs-is-current-major-mode-p "csharp-mode"))
     (let ((param-var-len (length param-variable-strings))
@@ -663,7 +658,7 @@ PAREN-STRING           : Param raw string."
                                     return-type-string
                                     param-type-strings
                                     param-variable-strings
-                                    paren-string)
+                                    search-string)
   "Insert `c-mode' or `c++-mode' function doc string.
 
 MEET-FUNCTION-NAME     : Meet the function name?
@@ -675,7 +670,7 @@ THERE-IS-RETURN        : There is return in this function?
 RETURN-TYPE-STRING     : String of the return type.
 PARAM-TYPE-STRINGS     : Param type strings list.
 PARAM-VARIABLE-STRINGS : Param name strings list.
-PAREN-STRING           : Param raw string."
+SEARCH-STRING          : Search raw string."
 
   (when (or (jcs-is-current-major-mode-p "c++-mode")
             (jcs-is-current-major-mode-p "c-mode"))
@@ -756,7 +751,7 @@ PAREN-STRING           : Param raw string."
                                       return-type-string
                                       param-type-strings
                                       param-variable-strings
-                                      paren-string)
+                                      search-string)
   "Insert `java-mode' function doc string.
 
 MEET-FUNCTION-NAME     : Meet the function name?
@@ -768,7 +763,7 @@ THERE-IS-RETURN        : There is return in this function?
 RETURN-TYPE-STRING     : String of the return type.
 PARAM-TYPE-STRINGS     : Param type strings list.
 PARAM-VARIABLE-STRINGS : Param name strings list.
-PAREN-STRING           : Param raw string."
+SEARCH-STRING          : Search raw string."
 
   (when (or (jcs-is-current-major-mode-p "java-mode")
             (jcs-is-current-major-mode-p "jdee-mode"))
@@ -832,7 +827,7 @@ PAREN-STRING           : Param raw string."
                                     return-type-string
                                     param-type-strings
                                     param-variable-strings
-                                    paren-string)
+                                    search-string)
   "Insert `js2-mode' function doc string.
 
 MEET-FUNCTION-NAME     : Meet the function name?
@@ -844,7 +839,7 @@ THERE-IS-RETURN        : There is return in this function?
 RETURN-TYPE-STRING     : String of the return type.
 PARAM-TYPE-STRINGS     : Param type strings list.
 PARAM-VARIABLE-STRINGS : Param name strings list.
-PAREN-STRING           : Param raw string."
+SEARCH-STRING          : Search raw string."
 
   (when (or (jcs-is-current-major-mode-p "js2-mode"))
     (let ((param-var-len (length param-variable-strings))
@@ -904,7 +899,7 @@ PAREN-STRING           : Param raw string."
                                      return-type-string
                                      param-type-strings
                                      param-variable-strings
-                                     paren-string)
+                                     search-string)
   "Insert `lua-mode' function doc string.
 
 MEET-FUNCTION-NAME     : Meet the function name?
@@ -916,7 +911,7 @@ THERE-IS-RETURN        : There is return in this function?
 RETURN-TYPE-STRING     : String of the return type.
 PARAM-TYPE-STRINGS     : Param type strings list.
 PARAM-VARIABLE-STRINGS : Param name strings list.
-PAREN-STRING           : Param raw string."
+SEARCH-STRING          : Search raw string."
 
   (when (or (jcs-is-current-major-mode-p "lua-mode"))
     (let ((param-var-len (length param-variable-strings))
@@ -978,7 +973,7 @@ PAREN-STRING           : Param raw string."
                                     return-type-string
                                     param-type-strings
                                     param-variable-strings
-                                    paren-string)
+                                    search-string)
   "Insert `python-mode' function doc string.
 
 MEET-FUNCTION-NAME     : Meet the function name?
@@ -990,7 +985,7 @@ THERE-IS-RETURN        : There is return in this function?
 RETURN-TYPE-STRING     : String of the return type.
 PARAM-TYPE-STRINGS     : Param type strings list.
 PARAM-VARIABLE-STRINGS : Param name strings list.
-PAREN-STRING           : Param raw string."
+SEARCH-STRING          : Search raw string."
 
   (when (or (jcs-is-current-major-mode-p "python-mode"))
     (let ((param-var-len (length param-variable-strings))
@@ -1061,7 +1056,7 @@ PAREN-STRING           : Param raw string."
                                      return-type-string
                                      param-type-strings
                                      param-variable-strings
-                                     paren-string)
+                                     search-string)
   "Insert `php-mode' function doc string.
 
 MEET-FUNCTION-NAME     : Meet the function name?
@@ -1073,7 +1068,7 @@ THERE-IS-RETURN        : There is return in this function?
 RETURN-TYPE-STRING     : String of the return type.
 PARAM-TYPE-STRINGS     : Param type strings list.
 PARAM-VARIABLE-STRINGS : Param name strings list.
-PAREN-STRING           : Param raw string."
+SEARCH-STRING          : Search raw string."
 
   (when (or (jcs-is-current-major-mode-p "php-mode")
             (jcs-is-current-major-mode-p "web-mode"))
@@ -1136,7 +1131,7 @@ PAREN-STRING           : Param raw string."
                                     return-type-string
                                     param-type-strings
                                     param-variable-strings
-                                    paren-string)
+                                    search-string)
   "Insert `typescript-mode' function doc string.
 
 MEET-FUNCTION-NAME     : Meet the function name?
@@ -1148,7 +1143,7 @@ THERE-IS-RETURN        : There is return in this function?
 RETURN-TYPE-STRING     : String of the return type.
 PARAM-TYPE-STRINGS     : Param type strings list.
 PARAM-VARIABLE-STRINGS : Param name strings list.
-PAREN-STRING           : Param raw string."
+SEARCH-STRING          : Search raw string."
 
   (when (or (jcs-is-current-major-mode-p "typescript-mode"))
     (let* ((param-var-len (length param-variable-strings))
