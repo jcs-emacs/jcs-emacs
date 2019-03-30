@@ -150,14 +150,8 @@ This will no longer overwrite usual Emacs' undo key."
 (defun jcs-tab-key ()
   "TAB key for JayCeS usage."
   (interactive)
-  (if (or (jcs-current-whitespace-or-tab-p)
-          (jcs-is-beginning-of-line-p)
-          (jcs-is-end-of-line-p))
-      (progn
-        (jcs-insert-spaces-by-tab-width))
-    (progn
-      ;; NOTE(jenchieh): Default tab function put here..
-      (call-interactively #'dabbrev-expand))))
+  (unless (ignore-errors (call-interactively #'dabbrev-expand))
+    (jcs-insert-spaces-by-tab-width)))
 
 ;;----------------------------------------------
 ;; Overwrite (Insert toggle)
