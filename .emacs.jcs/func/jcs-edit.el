@@ -77,28 +77,6 @@ This will no longer overwrite usual Emacs' undo key."
 ;;-----------------------------------------------------------
 ;;-----------------------------------------------------------
 
-(defun jcs-window-is-larger-in-height-p ()
-  "Get the window that are larget than other windows in vertical.
-If non-nil, current window's height is larger than neighbor windows.
-If nil, current window's height is smaller than neighbor windows."
-  (let ((is-larger nil)
-        (cur-win-h (window-height))
-        (next-win-h -1)
-        (prev-win-h -1))
-    (if (window-full-height-p)
-        (setq is-larger t)
-      (progn
-        (save-selected-window
-          (jcs-other-window-next)
-          (setq next-win-h (window-height)))
-        (save-selected-window
-          (jcs-other-window-prev)
-          (setq prev-win-h (window-height)))
-        (when (or (>= cur-win-h prev-win-h)
-                  (>= cur-win-h next-win-h))
-          (setq is-larger t))))
-    is-larger))
-
 (defun jcs-undo-tree-visualize (&optional cbf)
   "Call `undo-tree-visualize' only in window that is full height (next window).
 CBF : Current buffer file name."
