@@ -4,6 +4,7 @@
 
 
 ;;-----------------------------------------------------------
+;; Navigation
 ;;-----------------------------------------------------------
 
 (defun jcs-ensure-switch-to-buffer-other-window (win-name)
@@ -13,9 +14,6 @@ Because sometime first time switching the buffer would not success."
     (unless (or (ignore-errors (switch-to-buffer-other-window win-name)))
       (unless (or (ignore-errors (switch-to-buffer-other-window win-name)))
         (switch-to-buffer-other-window win-name)))))
-
-;;-----------------------------------------------------------
-;;-----------------------------------------------------------
 
 ;;;###autoload
 (defun jcs-jump-shown-to-buffer (in-buffer-name)
@@ -284,6 +282,33 @@ i.e. change right window to bottom, or change bottom window to right."
               (when window-switched
                 (other-window 1))))
         (error "Cannot toggle vertical/horizontal editor layout with more than 2 window in current frame")))))
+
+
+;;-----------------------------------------------------------
+;; Util
+;;-----------------------------------------------------------
+
+(defun jcs-window-is-larger-in-height-p ()
+  "Get the window that are larget than other windows in vertical.
+If non-nil, current window's height is larger than neighbor windows.
+If nil, current window's height is smaller than neighbor windows."
+  (let ((is-larger nil)
+        (cur-win-h (window-height))
+        (next-win-h -1)
+        (prev-win-h -1))
+    (if (window-full-height-p)
+        (setq is-larger t)
+      (progn
+        (save-selected-window
+          (jcs-other-window-next)
+          (setq next-win-h (window-height)))
+        (save-selected-window
+          (jcs-other-window-prev)
+          (setq prev-win-h (window-height)))
+        (when (or (>= cur-win-h prev-win-h)
+                  (>= cur-win-h next-win-h))
+          (setq is-larger t))))
+    is-larger))
 
 
 ;;-----------------------------------------------------------
