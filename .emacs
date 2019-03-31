@@ -73,7 +73,8 @@
  ;; If there is more than one, they won't work right.
  '(ahs-definition-face ((t (:foreground nil :background "#113D6F"))))
  '(ahs-face ((t (:foreground nil :background "#113D6F"))))
- '(ahs-plugin-defalt-face ((t (:foreground nil :background "#123E70")))))
+ '(ahs-plugin-defalt-face ((t (:foreground nil :background "#123E70"))))
+ '(css-selector ((t (:inherit font-lock-function-name-face :foreground "#17A0FB")))))
 
 (put 'erase-buffer 'disabled nil)
 
