@@ -523,16 +523,20 @@ REGEXP : reqular expression use to align."
     (setq jcs-sr-speedbar-record-selected-window (selected-window))))
 
 ;;;###autoload
-(defun jcs-scroll-up-one-line ()
-  "Scroll the text up one line."
+(defun jcs-scroll-up-one-line (&optional n)
+  "Scroll the text up one line.
+N : line to scroll."
   (interactive)
-  (scroll-up 1))
+  (let ((rel-n (if n n 1)))
+    (scroll-up rel-n)))
 
 ;;;###autoload
-(defun jcs-scroll-down-one-line ()
-  "Scroll the text down one line."
+(defun jcs-scroll-down-one-line (&optional n)
+  "Scroll the text down one line.
+N : line to scroll."
   (interactive)
-  (scroll-down 1))
+  (let ((rel-n (if n n 1)))
+    (scroll-down rel-n)))
 
 ;;;###autoload
 (defun jcs-delete-trailing-whitespace-except-current-line ()
