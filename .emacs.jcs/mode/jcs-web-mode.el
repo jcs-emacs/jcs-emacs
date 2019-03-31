@@ -291,11 +291,6 @@
 ;;============================
 ;; CSS editing
 
-;; TODO(jenchieh): No idea why, but this could not put it at
-;; the .emacs file's Manually install section.
-;; CSS Mode: https://www.emacswiki.org/emacs/css-mode.el
-(load-file "~/.emacs.d/elisp/css-mode.el")
-
 (require 'css-mode)
 (require 'com-css-sort)
 (require 'rainbow-mode)
@@ -358,7 +353,7 @@
   (define-key css-mode-map "\C-ks" #'com-css-sort-attributes-block)
   (define-key css-mode-map "\C-kd" #'com-css-sort-attributes-document)
   )
-(add-hook 'css-mode-hook  'jcs-css-mode-hook)
+(add-hook 'css-mode-hook 'jcs-css-mode-hook)
 (add-hook 'css-mode-hook 'emmet-mode)
 
 (add-to-list 'auto-mode-alist '("\\.css'?" . css-mode))
