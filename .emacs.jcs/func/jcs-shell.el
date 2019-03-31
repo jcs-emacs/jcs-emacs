@@ -131,7 +131,7 @@
 
 (defun jcs-shell-is-current-on-command ()
   "Return non-nil if current on command line."
-  (and (jcs-last-line-in-buffer)
+  (and (jcs-last-line-in-buffer-p)
        (not (jcs-is-beginning-of-line-p))
        (not (jcs-is-current-point-face jcs-shell-highlight-face-name))))
 
@@ -197,7 +197,7 @@
       (comint-previous-input 1)
     (jcs-previous-line))
 
-  (when (jcs-last-line-in-buffer)
+  (when (jcs-last-line-in-buffer-p)
     (goto-char (point-max))))
 
 ;;;###autoload
@@ -209,7 +209,7 @@
       (comint-next-input 1)
     (jcs-next-line))
 
-  (when (jcs-last-line-in-buffer)
+  (when (jcs-last-line-in-buffer-p)
     (goto-char (point-max))))
 
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
