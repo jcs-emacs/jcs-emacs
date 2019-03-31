@@ -258,6 +258,16 @@ For those mode does not apply faces correctly!"
   "Highlight CSS class.")
 (defvar jcs-css-class-face 'jcs-css-class-face)
 
+(defface jcs-css-event-face
+  '((t (:foreground "#B592EA")))
+  "Highlight CSS event.")
+(defvar jcs-css-event-face 'jcs-css-event-face)
+
+(defface jcs-css-number-face
+  '((t (:foreground "#B5CE89")))
+  "Highlight CSS number.")
+(defvar jcs-css-number-face 'jcs-css-number-face)
+
 
 ;;----------------------------------------------
 ;; Load face order.
