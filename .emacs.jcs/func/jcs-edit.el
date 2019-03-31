@@ -77,6 +77,29 @@ This will no longer overwrite usual Emacs' undo key."
 ;;-----------------------------------------------------------
 ;;-----------------------------------------------------------
 
+(defun jcs-undo-tree-visualize ()
+  "Call `undo-tree-visualize' only in window that is full height (next window)."
+  (let ((win-len (jcs-count-windows))
+        (win-index 0)
+        (found-valid nil))
+    (save-selected-window
+      (while (and (< win-index win-len)
+                  (not found-valid))
+        (jcs-other-window-next)
+        (when (window-full-height-p)
+          ;; NOTE(jenchieh): We need to go back two windows
+          ;; in order to make the undo-tree-visualize buffer
+          ;; to display in the next window.
+          (jcs-other-window-prev)
+          (jcs-other-window-prev)
+          (jcs-other-window-next)
+          (setq found-valid t))
+        (setq win-index (1+ win-index)))
+      (when found-valid
+        (undo-tree-visualize)))
+    (unless found-valid
+      (undo-tree-visualize))))
+
 ;;;###autoload
 (defun jcs-undo ()
   "Undo key."
@@ -97,7 +120,7 @@ This will no longer overwrite usual Emacs' undo key."
                 (undo-tree-visualize-undo)
               (progn
                 (undo-tree-undo)
-                (undo-tree-visualize)))
+                (jcs-undo-tree-visualize)))
             ;; STUDY(jenchieh): weird that they use word
             ;; toggle, instead of just set it.
             ;;
@@ -129,7 +152,7 @@ This will no longer overwrite usual Emacs' undo key."
                 (undo-tree-visualize-redo)
               (progn
                 (undo-tree-redo)
-                (undo-tree-visualize)))
+                (jcs-undo-tree-visualize)))
             ;; STUDY(jenchieh): weird that they use word
             ;; toggle, instead of just set it.
             ;;
@@ -587,11 +610,11 @@ the current line."
 ARG : Match with `save-buffer' command."
   ;; NOTE(jenchieh): Is we found `*undo-tree*' buffer, we
   ;; try to close it.
-  (let ((prev-frame (selected-frame)))
+  (let ((prev-win (selected-window)))
     (save-selected-window
-      (when (or (ignore-errors (jcs-jump-shown-to-buffer "*undo-tree*")))
+      (when (ignore-errors (jcs-jump-shown-to-buffer "*undo-tree*"))
         (jcs-maybe-kill-this-buffer t)))
-    (select-frame-set-input-focus prev-frame)
+    (select-window prev-win)
     (jcs-update-line-number-each-window)))
 (advice-add 'save-buffer :after #'jcs-do-stuff-after-save)
 
