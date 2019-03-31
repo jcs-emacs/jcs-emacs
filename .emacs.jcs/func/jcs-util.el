@@ -648,7 +648,7 @@ MAX-PT : larger position."
       ;; Return false.
       (equal there-is-empty-line t))))
 
-(defun jcs-start-line-in-buffer ()
+(defun jcs-start-line-in-buffer-p ()
   "Is current line the start line in buffer."
   (let ((buffer-start-line-num nil)
         ;; Get the current line number in the shell buffer.
@@ -660,7 +660,7 @@ MAX-PT : larger position."
     ;; Return it.
     (= current-line-num buffer-start-line-num)))
 
-(defun jcs-last-line-in-buffer ()
+(defun jcs-last-line-in-buffer-p ()
   "Is current line the last line in buffer."
   (let ((buffer-last-line-num nil)
         ;; Get the current line number in the shell buffer.
@@ -685,9 +685,26 @@ MAX-PT : larger position."
           (setq cp (point)))))
     (+ cp 1)))
 
+(defun jcs-last-visible-pos-in-window ()
+  "Last point in current visible window."
+  (let ((cp (point)))
+    (save-window-excursion
+      (save-excursion
+        (while (and (not (jcs-is-end-of-buffer-p))
+                    (pos-visible-in-window-p cp))
+          (end-of-line)
+          (unless (jcs-is-end-of-buffer-p)
+            (forward-char 1))
+          (setq cp (point)))))
+    (- cp 1)))
+
 (defun jcs-first-visible-line-in-window ()
   "First line number in current visible window."
   (line-number-at-pos (jcs-first-visible-pos-in-window)))
+
+(defun jcs-last-visible-line-in-window ()
+  "Last line number in current visible window."
+  (line-number-at-pos (jcs-last-visible-pos-in-window)))
 
 (defun jcs-make-first-visible-line-to (ln)
   "Make the first visible line to target line.
@@ -697,6 +714,13 @@ LN : target line to make first to."
   (unless (<= ln 1)
     (jcs-scroll-up-one-line)))
 
+(defun jcs-make-last-visible-line-to (ln)
+  "Make the last visible line to target line.
+LN : target line to make first to."
+  (jcs-make-first-visible-line-to ln)
+  (let ((sh-ln (- (jcs-last-visible-line-in-window)
+                  (jcs-first-visible-line-in-window))))
+    (jcs-scroll-down-one-line sh-ln)))
 
 ;;---------------------------------------------
 ;; Move between button.
