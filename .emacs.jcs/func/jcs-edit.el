@@ -77,16 +77,40 @@ This will no longer overwrite usual Emacs' undo key."
 ;;-----------------------------------------------------------
 ;;-----------------------------------------------------------
 
-(defun jcs-undo-tree-visualize ()
-  "Call `undo-tree-visualize' only in window that is full height (next window)."
+(defun jcs-window-is-larger-in-height-p ()
+  "Get the window that are larget than other windows in vertical.
+If non-nil, current window's height is larger than neighbor windows.
+If nil, current window's height is smaller than neighbor windows."
+  (let ((is-larger nil)
+        (cur-win-h (window-height))
+        (next-win-h -1)
+        (prev-win-h -1))
+    (if (window-full-height-p)
+        (setq is-larger t)
+      (progn
+        (save-selected-window
+          (jcs-other-window-next)
+          (setq next-win-h (window-height)))
+        (save-selected-window
+          (jcs-other-window-prev)
+          (setq prev-win-h (window-height)))
+        (when (or (>= cur-win-h prev-win-h)
+                  (>= cur-win-h next-win-h))
+          (setq is-larger t))))
+    is-larger))
+
+(defun jcs-undo-tree-visualize (&optional cbf)
+  "Call `undo-tree-visualize' only in window that is full height (next window).
+CBF : Current buffer file name."
   (let ((win-len (jcs-count-windows))
         (win-index 0)
-        (found-valid nil))
+        (found-valid nil)
+        (rel-cbf (if cbf cbf (buffer-name))))
     (save-selected-window
       (while (and (< win-index win-len)
                   (not found-valid))
         (jcs-other-window-next)
-        (when (window-full-height-p)
+        (when (jcs-window-is-larger-in-height-p)
           ;; NOTE(jenchieh): We need to go back two windows
           ;; in order to make the undo-tree-visualize buffer
           ;; to display in the next window.
@@ -96,7 +120,11 @@ This will no longer overwrite usual Emacs' undo key."
           (setq found-valid t))
         (setq win-index (1+ win-index)))
       (when found-valid
-        (undo-tree-visualize)))
+        (let ((bf-before-switched (buffer-name)))
+          (switch-to-buffer rel-cbf)
+          (save-selected-window
+            (undo-tree-visualize))
+          (switch-to-buffer bf-before-switched))))
     (unless found-valid
       (undo-tree-visualize))))
 
@@ -525,12 +553,12 @@ REGEXP : reqular expression use to align."
   ;; SOURCE: http://emacs.stackexchange.com/questions/628/cycle-between-windows-in-all-frames
   ;; find next window and jump to that window.
   (other-window 1 t)
-  (select-frame-set-input-focus (selected-frame))
+  (select-frame-set-input-focus (selected-frame))
 
   ;; Update the selected window if speedbar is active.
   (when (and (sr-speedbar-exist-p)
-             (not (jcs-is-current-major-mode-p "speedbar-mode")))
-             (setq jcs-sr-speedbar-record-selected-window (selected-window))))
+             (not (jcs-is-current-major-mode-p "speedbar-mode")))
+    (setq jcs-sr-speedbar-record-selected-window (selected-window))))
 
 ;;;###autoload
 (defun jcs-other-window-prev ()
@@ -610,12 +638,10 @@ the current line."
 ARG : Match with `save-buffer' command."
   ;; NOTE(jenchieh): Is we found `*undo-tree*' buffer, we
   ;; try to close it.
-  (let ((prev-win (selected-window)))
-    (save-selected-window
-      (when (ignore-errors (jcs-jump-shown-to-buffer "*undo-tree*"))
-        (jcs-maybe-kill-this-buffer t)))
-    (select-window prev-win)
-    (jcs-update-line-number-each-window)))
+  (save-selected-window
+    (when (ignore-errors (jcs-jump-shown-to-buffer "*undo-tree*"))
+      (jcs-maybe-kill-this-buffer t)))
+  (jcs-update-line-number-each-window))
 (advice-add 'save-buffer :after #'jcs-do-stuff-after-save)
 
 ;;;###autoload
