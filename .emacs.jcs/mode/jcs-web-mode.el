@@ -70,6 +70,11 @@
   (require 'ac-php)
   (setq ac-sources '(ac-source-php))
 
+  ;; Docstring Faces
+  (face-remap-add-relative 'jcs-oop-tag-face '(:inherit web-mode-block-face))
+  (face-remap-add-relative 'jcs-oop-type-face '(:inherit web-mode-block-face))
+  (face-remap-add-relative 'jcs-oop-value-face '(:inherit web-mode-block-face))
+
 
   (defun jcs-html-format ()
     "Format the give file as a HTML file."
