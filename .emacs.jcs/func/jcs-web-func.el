@@ -272,6 +272,19 @@ line by line instead of indent the whole file at once."
     (unless did-ret-key
       (call-interactively #'jcs-smart-context-line-break))))
 
+;;;###autoload
+(defun jcs-web-vs-front-curly-bracket-key ()
+  "Web mode front curly bracket key."
+  (interactive)
+  (if (or (jcs-is-current-point-face "web-mode-script-face")
+          (jcs-is-current-point-face "web-mode-block-face")
+          (jcs-is-current-point-face "web-mode-style-face"))
+      (call-interactively #'jcs-vs-front-curly-bracket-key)
+    (progn
+      (insert "{}")
+      (backward-char 1))))
+
+
 ;;---------------------------------------------
 ;; Save
 ;;---------------------------------------------
