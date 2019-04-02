@@ -32,6 +32,20 @@
 (advice-add 'helm-ff-delete-char-backward :around #'jcs-helm-find-files-navigate-back)
 
 
+;;;
+;; `helm-find-files-hook'
+;;
+(defvar jcs-helm-find-files-active nil
+  "Helm find file flag.")
+
+(defun jcs-helm-find-files-hook ()
+  "Hook after `helm-find-files' initialized."
+  ;; SEE(jenchieh): `jcs-global-key.el' file, and `minibuffer-setup-hook'.
+  (setq jcs-helm-find-files-active t)
+  )
+(add-hook 'helm-find-files-after-init-hook 'jcs-helm-find-files-hook)
+
+
 ;;;###autoload
 (defun jcs-helm-gtags-to-def-dec ()
   "Goto the declaration / definition depends on the cursor position."
