@@ -26,24 +26,10 @@
 (advice-add 'helm-execute-persistent-action :around #'jcs-helm-find-files-navigate-forward)
 
 (defun jcs-helm-find-files-navigate-back (orig-fun &rest args)
-  (if (looking-back "/")
+  (if (jcs-current-char-equal-p "/")
       (helm-find-files-up-one-level 1)
     (apply orig-fun args)))
 (advice-add 'helm-ff-delete-char-backward :around #'jcs-helm-find-files-navigate-back)
-
-
-;;;
-;; `helm-find-files-hook'
-;;
-(defvar jcs-helm-find-files-active nil
-  "Helm find file flag.")
-
-(defun jcs-helm-find-files-hook ()
-  "Hook after `helm-find-files' initialized."
-  ;; SEE(jenchieh): `jcs-global-key.el' file, and `minibuffer-setup-hook'.
-  (setq jcs-helm-find-files-active t)
-  )
-(add-hook 'helm-find-files-after-init-hook 'jcs-helm-find-files-hook)
 
 
 ;;;###autoload
