@@ -104,7 +104,9 @@
             (setq jcs-minibuffer-active t)
 
             (when (and (not (jcs-current-char-equal-p "/"))
-                       (string= (buffer-name) "*helm find files*"))
+                       ;; SEE(jenchieh): this trigger can be check
+                       ;; at `jcs-helm.el' file.
+                       jcs-helm-find-files-active)
               ;; NOTE(jenchieh): This will prevent missing the
               ;; slash at the end of the search file path.
               (insert "/"))
@@ -124,6 +126,8 @@
             (setq jcs-minibuffer-active nil)
 
             (jcs-reload-active-mode)
+            ;; NOTE: disable the file after we do close minibuffer.
+            (setq jcs-helm-find-files-active nil)
 
             ;; ATTENTION(jenchieh): no matter what, cancel top level activation
             ;; while minibuffer exit!
