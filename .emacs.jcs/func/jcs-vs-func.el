@@ -20,20 +20,24 @@
                (insert "{")))
             (t
              (progn
-               ;; If right infront of the `{' front bracket, insert space
-               ;; to make it prettier.
-               (when (jcs-current-char-equal-p "{")
-                 (insert " "))
+               (let ((pretty-it nil))
+                 (save-excursion
+                   ;; Check if right infront of the `{' open curly bracket.
+                   (unless (jcs-current-char-equal-p "{")
+                     (backward-char 1)
+                     (when (jcs-first-backward-char-in-line-p "{")
+                       (setq pretty-it t))))
 
-               (insert "{ }")
-               (backward-char 1)
+                 (insert "{ }")
+                 (backward-char 1)
 
-               (save-excursion
-                 (forward-char 2)
-                 (when (and (not (jcs-is-beginning-of-line-p))
-                            (jcs-current-char-equal-p "}"))
-                   (backward-char 1)
-                   (insert " ")))))))))
+                 (when pretty-it
+                   (save-excursion
+                     (forward-char 2)
+                     (when (and (not (jcs-is-beginning-of-line-p))
+                                (jcs-current-char-equal-p "}"))
+                       (backward-char 1)
+                       (insert " ")))))))))))
 
 ;;;###autoload
 (defun jcs-vs-semicolon-key ()
