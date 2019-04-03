@@ -194,6 +194,8 @@
   "Param description string.")
 (defvar jcs-return-desc-string ""
   "Return description string.")
+(defvar jcs-default-typename-string ""
+  "Return default type name string.")
 
 
 (defvar jcs-docstring-config-filepath "~/.emacs.jcs/docstring/docstring_config.properties"
@@ -216,6 +218,7 @@
     (setq jcs-enum-desc-string (jcs-get-properties tmp-ini-list "ENUM_DESC_STRING"))
     (setq jcs-param-desc-string (jcs-get-properties tmp-ini-list "PARAM_DESC_STRING"))
     (setq jcs-return-desc-string (jcs-get-properties tmp-ini-list "RETURN_DESC_STRING"))
+    (setq jcs-default-typename-string (jcs-get-properties tmp-ini-list "DEFAULT_TYPENAME_STRING"))
 
     ;; show type name
     (setq jcs-as-doc-show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "AS_DOC_SHOW_TYPENAME")))
@@ -332,7 +335,12 @@ SR-OP :
         (param-variable-strings '())  ;; param name string list.
         (there-is-return nil)
         (return-type-string "")
-        (search-string ""))
+        (search-string "")
+        (close-bracket-pt -1))
+
+    (save-excursion
+      (jcs-move-to-forward-a-char ")")
+      (setq close-bracket-pt (point)))
 
     (save-excursion
       (when (not (jcs-current-line-empty-p))
@@ -403,7 +411,8 @@ SR-OP :
                 ;; Just store it.
                 (setq datatype-name (thing-at-point 'word))
 
-                (if (not meet-function-name)
+                (if (or (not meet-function-name)
+                        (< close-bracket-pt (point)))
                     (progn
                       (setq return-type-string (thing-at-point 'word))
                       (setq there-is-return t))
@@ -512,7 +521,6 @@ PAREN-STRING           : Param raw string."
       (when mode-doc-string-func-name
         (if meet-function-name
             (funcall mode-doc-string-func-name
-                     meet-function-name
                      keyword-strings
                      datatype-name
                      function-name-string
@@ -533,8 +541,7 @@ PAREN-STRING           : Param raw string."
            )))
   )
 
-(defun jcs-as-mode-doc-string-func (meet-function-name
-                                    keyword-strings
+(defun jcs-as-mode-doc-string-func (keyword-strings
                                     datatype-name
                                     function-name-string
                                     there-is-return
@@ -544,7 +551,6 @@ PAREN-STRING           : Param raw string."
                                     search-string)
   "Insert `actionscript-mode' function doc string.
 
-MEET-FUNCTION-NAME     : Meet the function name?
 KEYWORD-STRINGS        : Keyword strings list.
 DATATYPE-NAME          : Data type name, store keyword for
                                struct/class related.
@@ -555,10 +561,49 @@ PARAM-TYPE-STRINGS     : Param type strings list.
 PARAM-VARIABLE-STRINGS : Param name strings list.
 SEARCH-STRING          : Search raw string."
 
+
   (let ((param-var-len (length param-variable-strings))
         (param-index 0))
-    ;; TODO(jenchieh): Implement this...
-    ))
+    ;; go back to comment line.
+    (jcs-previous-line)
+    (jcs-previous-line)
+    (end-of-line)
+
+    ;; Process param tag.
+    (while (< param-index param-var-len)
+      (insert "\n")  ;; start from newline.
+      (insert "* @")
+      (insert jcs-as-param-string)
+      (when jcs-as-doc-show-typename
+        (jcs-insert-jsdoc-type (nth param-index param-type-strings)
+                               jcs-as-open-type-char
+                               jcs-as-close-type-char))
+      (insert (nth param-index param-variable-strings))
+      (insert jcs-as-doc-after-value-type-char)
+      (insert jcs-param-desc-string)
+
+      ;; indent once.
+      (indent-for-tab-command)
+
+      ;; add up counter.
+      (setq param-index (1+ param-index)))
+
+    ;; Lastly, process returns tag.
+    (when there-is-return
+      (unless (string= return-type-string "void")
+        (insert "\n")
+        (insert "* @")
+        (insert jcs-as-return-string)
+        (when jcs-as-doc-show-typename
+          (jcs-insert-jsdoc-type return-type-string
+                                 jcs-as-open-type-char
+                                 jcs-as-close-type-char))
+        (backward-delete-char 1)
+        (if jcs-as-doc-show-typename
+            (insert jcs-as-doc-after-value-type-char)
+          (insert " "))
+        (insert jcs-return-desc-string)
+        (indent-for-tab-command)))))
 
 
 (defun jcs-cc-mode-doc-string-others ()
@@ -633,8 +678,7 @@ SEARCH-STRING          : Search raw string."
            (insert jcs-enum-desc-string)
            (indent-for-tab-command)))))
 
-(defun jcs-cc-mode-doc-string-func (meet-function-name
-                                    keyword-strings
+(defun jcs-cc-mode-doc-string-func (keyword-strings
                                     datatype-name
                                     function-name-string
                                     there-is-return
@@ -644,7 +688,6 @@ SEARCH-STRING          : Search raw string."
                                     search-string)
   "Insert `c-mode' or `c++-mode' function doc string.
 
-MEET-FUNCTION-NAME     : Meet the function name?
 KEYWORD-STRINGS        : Keyword strings list.
 DATATYPE-NAME          : Data type name, store keyword for
                                struct/class related.
@@ -730,8 +773,7 @@ SEARCH-STRING          : Search raw string."
            ;; doc need one..
            ))))
 
-(defun jcs-csharp-mode-doc-string-func (meet-function-name
-                                        keyword-strings
+(defun jcs-csharp-mode-doc-string-func (keyword-strings
                                         datatype-name
                                         function-name-string
                                         there-is-return
@@ -741,7 +783,6 @@ SEARCH-STRING          : Search raw string."
                                         search-string)
   "Insert `csharp-mode' function doc string.
 
-MEET-FUNCTION-NAME     : Meet the function name?
 KEYWORD-STRINGS        : Keyword strings list.
 DATATYPE-NAME          : Data type name, store keyword for
                                struct/class related.
@@ -792,8 +833,7 @@ SEARCH-STRING          : Search raw string."
            ;; doc need one..
            ))))
 
-(defun jcs-java-mode-doc-string-func (meet-function-name
-                                      keyword-strings
+(defun jcs-java-mode-doc-string-func (keyword-strings
                                       datatype-name
                                       function-name-string
                                       there-is-return
@@ -803,7 +843,6 @@ SEARCH-STRING          : Search raw string."
                                       search-string)
   "Insert `java-mode' function doc string.
 
-MEET-FUNCTION-NAME     : Meet the function name?
 KEYWORD-STRINGS        : Keyword strings list.
 DATATYPE-NAME          : Data type name, store keyword for
                                struct/class related.
@@ -866,8 +905,7 @@ SEARCH-STRING          : Search raw string."
            ;; need one..
            ))))
 
-(defun jcs-js-mode-doc-string-func (meet-function-name
-                                    keyword-strings
+(defun jcs-js-mode-doc-string-func (keyword-strings
                                     datatype-name
                                     function-name-string
                                     there-is-return
@@ -877,7 +915,6 @@ SEARCH-STRING          : Search raw string."
                                     search-string)
   "Insert `js2-mode' function doc string.
 
-MEET-FUNCTION-NAME     : Meet the function name?
 KEYWORD-STRINGS        : Keyword strings list.
 DATATYPE-NAME          : Data type name, store keyword for
                                struct/class related.
@@ -901,7 +938,7 @@ SEARCH-STRING          : Search raw string."
       (insert "* @")
       (insert jcs-js-param-string)
       (when jcs-js-doc-show-typename
-        (jcs-insert-jsdoc-type "typename"
+        (jcs-insert-jsdoc-type jcs-default-typename-string
                                jcs-js-open-type-char
                                jcs-js-close-type-char))
       (insert (nth param-index param-variable-strings))
@@ -937,8 +974,7 @@ SEARCH-STRING          : Search raw string."
   ;; NOTE(jenchieh): I don't think Lua have any keywords...
   )
 
-(defun jcs-lua-mode-doc-string-func (meet-function-name
-                                     keyword-strings
+(defun jcs-lua-mode-doc-string-func (keyword-strings
                                      datatype-name
                                      function-name-string
                                      there-is-return
@@ -948,7 +984,6 @@ SEARCH-STRING          : Search raw string."
                                      search-string)
   "Insert `lua-mode' function doc string.
 
-MEET-FUNCTION-NAME     : Meet the function name?
 KEYWORD-STRINGS        : Keyword strings list.
 DATATYPE-NAME          : Data type name, store keyword for
                                struct/class related.
@@ -972,7 +1007,7 @@ SEARCH-STRING          : Search raw string."
       (insert "-- @")
       (insert jcs-lua-param-string)
       (when jcs-lua-doc-show-typename
-        (jcs-insert-jsdoc-type "typename"
+        (jcs-insert-jsdoc-type jcs-default-typename-string
                                jcs-lua-open-type-char
                                jcs-lua-close-type-char))
       (insert (nth param-index param-variable-strings))
@@ -1010,8 +1045,7 @@ SEARCH-STRING          : Search raw string."
            ;; TODO(jenchieh): implement into python mode.
            ))))
 
-(defun jcs-py-mode-doc-string-func (meet-function-name
-                                    keyword-strings
+(defun jcs-py-mode-doc-string-func (keyword-strings
                                     datatype-name
                                     function-name-string
                                     there-is-return
@@ -1021,7 +1055,6 @@ SEARCH-STRING          : Search raw string."
                                     search-string)
   "Insert `python-mode' function doc string.
 
-MEET-FUNCTION-NAME     : Meet the function name?
 KEYWORD-STRINGS        : Keyword strings list.
 DATATYPE-NAME          : Data type name, store keyword for
                                struct/class related.
@@ -1054,7 +1087,7 @@ SEARCH-STRING          : Search raw string."
         (insert "@")
         (insert jcs-py-param-string)
         (when jcs-py-doc-show-typename
-          (jcs-insert-jsdoc-type "typename"
+          (jcs-insert-jsdoc-type jcs-default-typename-string
                                  jcs-py-open-type-char
                                  jcs-py-close-type-char))
         (insert (nth param-index param-variable-strings))
@@ -1092,8 +1125,7 @@ SEARCH-STRING          : Search raw string."
            ;; TODO(jenchieh): implement into PHP mode.
            ))))
 
-(defun jcs-php-mode-doc-string-func (meet-function-name
-                                     keyword-strings
+(defun jcs-php-mode-doc-string-func (keyword-strings
                                      datatype-name
                                      function-name-string
                                      there-is-return
@@ -1103,7 +1135,6 @@ SEARCH-STRING          : Search raw string."
                                      search-string)
   "Insert `php-mode' function doc string.
 
-MEET-FUNCTION-NAME     : Meet the function name?
 KEYWORD-STRINGS        : Keyword strings list.
 DATATYPE-NAME          : Data type name, store keyword for
                                struct/class related.
@@ -1127,7 +1158,7 @@ SEARCH-STRING          : Search raw string."
       (insert "* @")
       (insert jcs-php-param-string)
       (when jcs-php-doc-show-typename
-        (jcs-insert-jsdoc-type "typename"
+        (jcs-insert-jsdoc-type jcs-default-typename-string
                                jcs-php-open-type-char
                                jcs-php-close-type-char))
       (insert (nth param-index param-variable-strings))
@@ -1165,8 +1196,7 @@ SEARCH-STRING          : Search raw string."
            ;; TODO(jenchieh): implement into TypeScript mode.
            ))))
 
-(defun jcs-ts-mode-doc-string-func (meet-function-name
-                                    keyword-strings
+(defun jcs-ts-mode-doc-string-func (keyword-strings
                                     datatype-name
                                     function-name-string
                                     there-is-return
@@ -1176,7 +1206,6 @@ SEARCH-STRING          : Search raw string."
                                     search-string)
   "Insert `typescript-mode' function doc string.
 
-MEET-FUNCTION-NAME     : Meet the function name?
 KEYWORD-STRINGS        : Keyword strings list.
 DATATYPE-NAME          : Data type name, store keyword for
                                struct/class related.
@@ -1187,13 +1216,38 @@ PARAM-TYPE-STRINGS     : Param type strings list.
 PARAM-VARIABLE-STRINGS : Param name strings list.
 SEARCH-STRING          : Search raw string."
 
+  (let ((param-string "")
+        (param-lst '())
+        (param-type-str-lst '())
+        (param-var-str-lst '()))
+    (setq param-string (nth 1 (split-string search-string "(")))
+    (setq param-string (nth 0 (split-string param-string ")")))
+
+    (setq param-lst (split-string param-string ","))
+
+    (let ((param-split-str-lst '())
+          (param-var-str "")
+          (param-type-str ""))
+      (dolist (param-sec-string param-lst)
+        (setq param-split-str-lst (split-string param-sec-string ":"))
+        (setq param-var-str (string-trim (nth 0 param-split-str-lst)))
+        (if (= (length param-split-str-lst) 1)
+            ;; Set default type name string here.
+            (setq param-type-str jcs-default-typename-string)
+          (setq param-type-str (string-trim (nth 1 param-split-str-lst))))
+
+        (push param-var-str param-var-str-lst)
+        (push param-type-str param-type-str-lst)))
+
+    (setq param-type-strings (reverse param-type-str-lst))
+    (setq param-variable-strings (reverse param-var-str-lst)))
+
   (let* ((param-var-len (length param-variable-strings))
          (param-type-len (length param-type-strings))
          (keyword-len (length keyword-strings))
          (param-index 0)
-         (func-keyword (nth (1- keyword-len) keyword-strings))
-         (with-return-type nil)
-         (ret-keyword ""))
+         (func-keyword (nth (1- keyword-len) keyword-strings)))
+
     ;; go back to comment line.
     (jcs-previous-line)
     (jcs-previous-line)
@@ -1201,12 +1255,6 @@ SEARCH-STRING          : Search raw string."
 
     (insert "@desc ")
     (indent-for-tab-command)
-
-    (unless (= param-var-len param-type-len)
-      (setq ret-keyword (nth (1- param-type-len) param-type-strings))
-      ;; Check if return string `void' type.
-      (unless (string= ret-keyword "void")
-        (setq with-return-type t)))
 
     ;; Process param tag.
     (while (< param-index param-var-len)
@@ -1228,12 +1276,12 @@ SEARCH-STRING          : Search raw string."
       (setq param-index (1+ param-index)))
 
     ;; Lastly, process returns tag.
-    (when with-return-type
+    (when there-is-return
       (insert "\n")
       (insert "* @")
       (insert jcs-ts-return-string)
       (when jcs-ts-doc-show-typename
-        (jcs-insert-jsdoc-type ret-keyword
+        (jcs-insert-jsdoc-type return-type-string
                                jcs-ts-open-type-char
                                jcs-ts-close-type-char))
       (backward-delete-char 1)
