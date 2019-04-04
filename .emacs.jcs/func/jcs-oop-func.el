@@ -62,14 +62,14 @@
              ;;
              ;; @param { TypeName } `ValueTag' : value tag description..
              ;;
-             ("@[a-zA-Z0-9_].*[\]\|}]\\([a-zA-Z0-9_$ \t.]*\\)[:-]" 1 'jcs-oop-value-face t)
+             ("@[a-zA-Z0-9_].*[\]\|}][ \t\n]*\\([a-zA-Z0-9_$*&]*\\)[ \t\n]*[:-]" 1 'jcs-oop-value-face t)
              ;;
              ;; NOTE(jenchieh):
              ;; Doc String Style:
              ;;
              ;; @param `ValueTag' : value tag description..
              ;;
-             ("@[a-zA-Z0-9_]*\\([a-zA-Z0-9_ \t.]*\\)[{:-]" 1 'jcs-oop-value-face t)
+             ("@[a-zA-Z0-9_]*[ \t\n]*\\([a-zA-Z0-9_.*&]*\\)[ \t\n]*[{:-]" 1 'jcs-oop-value-face t)
              )'end))
         jcs-oop-highlight-modes))
 
@@ -380,6 +380,8 @@ SR-OP :
           ;; Get the search string after we found `end-function-point' and
           ;; back to searching point.
           (setq search-string (string-trim (buffer-substring (point) end-function-point)))
+          ;; Remove line break.
+          (setq search-string (s-replace "\n" " " search-string))
 
 
           (while (< (point) end-function-point)
@@ -692,6 +694,38 @@ RETURN-TYPE-STRING     : String of the return type.
 PARAM-TYPE-STRINGS     : Param type strings list.
 PARAM-VARIABLE-STRINGS : Param name strings list.
 SEARCH-STRING          : Search raw string."
+
+  ;; Get all the parameters.
+  (let ((param-string "")
+        (param-lst '())
+        (param-type-str-lst '())
+        (param-var-str-lst '()))
+    (setq param-string (nth 1 (split-string search-string "(")))
+    (setq param-string (nth 0 (split-string param-string ")")))
+
+    (setq param-lst (split-string param-string ","))
+
+    (let ((param-split-str-lst '())
+          (param-split-str-lst-len -1)
+          (param-var-str "")
+          (param-type-str ""))
+      (dolist (param-sec-string param-lst)
+        (setq param-sec-string (nth 0 (split-string param-sec-string "=")))
+        (setq param-split-str-lst (jcs-chop param-sec-string " "))
+        (setq param-split-str-lst-len (length param-split-str-lst))
+        ;; Variable name should always be that last element in the list.
+        (setq param-var-str (string-trim (nth (1- param-split-str-lst-len) param-split-str-lst)))
+        ;; Data type name should always be the second last element in the list.
+        (setq param-type-str (string-trim (nth (- param-split-str-lst-len 2) param-split-str-lst)))
+
+        (push param-var-str param-var-str-lst)
+        (push param-type-str param-type-str-lst)))
+
+    (setq param-type-strings (reverse param-type-str-lst))
+    (setq param-variable-strings (reverse param-var-str-lst)))
+
+  ;; Get the return data type.
+  (setq return-type-string (nth 0 (split-string search-string " ")))
 
   (let ((param-var-len (length param-variable-strings))
         (param-index 0))
@@ -1225,15 +1259,14 @@ SEARCH-STRING          : Search raw string."
           (param-var-str "")
           (param-type-str ""))
       (dolist (param-sec-string param-lst)
+        ;; First remove the possible default value.
+        (setq param-sec-string (nth 0 (split-string param-sec-string "=")))
         (setq param-split-str-lst (split-string param-sec-string ":"))
         (setq param-var-str (string-trim (nth 0 param-split-str-lst)))
         (if (= (length param-split-str-lst) 1)
             ;; Set default type name string here.
             (setq param-type-str jcs-default-typename-string)
-          (progn
-            (setq param-type-str (string-trim (nth 1 param-split-str-lst)))
-            ;; NOTE(jenchieh): Remove default assign.
-            (setq param-type-str (string-trim (nth 0 (split-string param-type-str "="))))))
+          (setq param-type-str (string-trim (nth 1 param-split-str-lst))))
 
         (push param-var-str param-var-str-lst)
         (push param-type-str param-type-str-lst)))
@@ -1241,7 +1274,7 @@ SEARCH-STRING          : Search raw string."
     (setq param-type-strings (reverse param-type-str-lst))
     (setq param-variable-strings (reverse param-var-str-lst)))
 
-  ;; Get all the return data type.
+  ;; Get all return data types.
   (setq return-type-string (nth 1 (split-string search-string ")")))
   (setq return-type-string (string-trim (nth 1 (split-string return-type-string ":"))))
 
