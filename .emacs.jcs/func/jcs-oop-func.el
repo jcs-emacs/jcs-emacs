@@ -82,6 +82,17 @@
 1 : Line breack description \"\"\" opening docstring.")
 
 
+;; All Languages
+(defvar jcs-class-desc-string "" "Class description string.")
+(defvar jcs-struct-desc-string "" "Struct description string.")
+(defvar jcs-define-desc-string "" "Define description string.")
+(defvar jcs-enum-desc-string "" "Enum description string.")
+(defvar jcs-param-desc-string "" "Param description string.")
+(defvar jcs-return-desc-string "" "Return description string.")
+
+(defvar jcs-default-typename-string "" "Return default type name string.")
+
+
 ;;; Doc string character after value type font.
 (defvar jcs-as-doc-after-value-type-char ""
   "Character after value type been inserted in ActionScript Mode.")
@@ -181,21 +192,6 @@
 (defvar jcs-ts-open-type-char "" "Character before the typename in TypeScript mode.")
 (defvar jcs-ts-close-type-char "" "Character after the typename in TypeScript mode.")
 
-
-(defvar jcs-class-desc-string ""
-  "Class description string.")
-(defvar jcs-struct-desc-string ""
-  "Struct description string.")
-(defvar jcs-define-desc-string ""
-  "Define description string.")
-(defvar jcs-enum-desc-string ""
-  "Enum description string.")
-(defvar jcs-param-desc-string ""
-  "Param description string.")
-(defvar jcs-return-desc-string ""
-  "Return description string.")
-(defvar jcs-default-typename-string ""
-  "Return default type name string.")
 
 
 (defvar jcs-docstring-config-filepath "~/.emacs.jcs/docstring/docstring_config.properties"
@@ -560,7 +556,6 @@ RETURN-TYPE-STRING     : String of the return type.
 PARAM-TYPE-STRINGS     : Param type strings list.
 PARAM-VARIABLE-STRINGS : Param name strings list.
 SEARCH-STRING          : Search raw string."
-
 
   (let ((param-var-len (length param-variable-strings))
         (param-index 0))
