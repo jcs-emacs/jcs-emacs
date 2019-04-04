@@ -380,7 +380,7 @@ SR-OP :
           ;; Get the search string after we found `end-function-point' and
           ;; back to searching point.
           (setq search-string (string-trim (buffer-substring (point) end-function-point)))
-          ;; Remove line break.
+          ;; Replace line breaks to space.
           (setq search-string (s-replace "\n" " " search-string))
 
 
