@@ -1230,7 +1230,10 @@ SEARCH-STRING          : Search raw string."
         (if (= (length param-split-str-lst) 1)
             ;; Set default type name string here.
             (setq param-type-str jcs-default-typename-string)
-          (setq param-type-str (string-trim (nth 1 param-split-str-lst))))
+          (progn
+            (setq param-type-str (string-trim (nth 1 param-split-str-lst)))
+            ;; NOTE(jenchieh): Remove default assign.
+            (setq param-type-str (string-trim (nth 0 (split-string param-type-str "="))))))
 
         (push param-var-str param-var-str-lst)
         (push param-type-str param-type-str-lst)))
@@ -1395,7 +1398,7 @@ SEARCH-STRING          : Search raw string."
          '(("[|:][ \t\n]*\\([a-zA-Z0-9_-]*\\)[.][a-zA-Z0-9_-]*[ \t\n]*[|=),{]" 1 'font-lock-type-face t)
            ("[|:][ \t\n]*[a-zA-Z0-9_-]*[.]\\([a-zA-Z0-9_-]*\\)[ \t\n]*[|=),{]" 1 'font-lock-type-face t)
            ("[|:][ \t\n]*\\([a-zA-Z0-9_-]*\\)[ \t\n]*[|{]" 1 'font-lock-type-face t)
-           ("[|:][ \t\n]*\\([a-zA-Z0-9_-]*\\)[ \t\n]*[,)]" 1 'font-lock-type-face t)
+           ("[|:][ \t\n]*\\([a-zA-Z0-9_-]*\\)[ \t\n]*[=),]" 1 'font-lock-type-face t)
            )'end))
       jcs-oop-missing-font-lock-type-face-modes-colon)
 
