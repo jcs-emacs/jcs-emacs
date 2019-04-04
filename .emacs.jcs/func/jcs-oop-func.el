@@ -1211,6 +1211,7 @@ PARAM-TYPE-STRINGS     : Param type strings list.
 PARAM-VARIABLE-STRINGS : Param name strings list.
 SEARCH-STRING          : Search raw string."
 
+  ;; Get all the parameters.
   (let ((param-string "")
         (param-lst '())
         (param-type-str-lst '())
@@ -1237,12 +1238,16 @@ SEARCH-STRING          : Search raw string."
     (setq param-type-strings (reverse param-type-str-lst))
     (setq param-variable-strings (reverse param-var-str-lst)))
 
+  ;; Get all the return data type.
+  (setq return-type-string (nth 1 (split-string search-string ")")))
+  (setq return-type-string (string-trim (nth 1 (split-string return-type-string ":"))))
+
+
   (let* ((param-var-len (length param-variable-strings))
          (param-type-len (length param-type-strings))
          (keyword-len (length keyword-strings))
          (param-index 0)
          (func-keyword (nth (1- keyword-len) keyword-strings)))
-
     ;; go back to comment line.
     (jcs-previous-line)
     (jcs-previous-line)
@@ -1387,9 +1392,9 @@ SEARCH-STRING          : Search raw string."
 (mapc (lambda (mode)
         (font-lock-add-keywords
          mode
-         '(("\\([a-zA-Z0-9_-]*\\)[.][a-zA-Z0-9_-]*[ \t\n]*[|=),{]" 1 'font-lock-type-face t)
-           ("[a-zA-Z0-9_-]*[.]\\([a-zA-Z0-9_-]*\\)[ \t\n]*[|=),{]" 1 'font-lock-type-face t)
-           ("[|: ][ \t\n]*\\([a-zA-Z0-9_-]*\\)[ \t\n]*[|{]" 1 'font-lock-type-face t)
+         '(("[|:][ \t\n]*\\([a-zA-Z0-9_-]*\\)[.][a-zA-Z0-9_-]*[ \t\n]*[|=),{]" 1 'font-lock-type-face t)
+           ("[|:][ \t\n]*[a-zA-Z0-9_-]*[.]\\([a-zA-Z0-9_-]*\\)[ \t\n]*[|=),{]" 1 'font-lock-type-face t)
+           ("[|:][ \t\n]*\\([a-zA-Z0-9_-]*\\)[ \t\n]*[|{]" 1 'font-lock-type-face t)
            ("[|:][ \t\n]*\\([a-zA-Z0-9_-]*\\)[ \t\n]*[,)]" 1 'font-lock-type-face t)
            )'end))
       jcs-oop-missing-font-lock-type-face-modes-colon)
