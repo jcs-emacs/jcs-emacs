@@ -902,6 +902,39 @@ L : list we want to flaaten."
         ((atom l) (list l))
         (t (loop for a in l appending (jcs-flatten-list a)))))
 
+(defun jcs-remove-nth-element (n lst)
+  "Remove nth element from the list.
+N : nth element you want to remove from the list.
+LST : List you want to modified."
+  (if (zerop n)
+      (cdr lst)
+    (let ((last (nthcdr (1- n) lst)))
+      (setcdr last (cddr last))
+      lst)))
+
+(defun jcs-chop (string separator)
+  "Split a string without consuming separators.
+STRING : string to chop.
+SEPARATOR : separator character."
+  ;; SOURCE(jenchieh): https://emacs.stackexchange.com/questions/5729/split-a-string-without-consuming-separators
+  (cl-loop with seplen = (length separator)
+           with len = (length string)
+           with start = 0
+           with next = seplen
+           for end = (or (cl-search separator string :start2 next) len)
+           for chunk = (substring string start end)
+           collect chunk
+           while (< end len)
+           do (setf start end next (+ seplen end))))
+
+(defun jcs-concat-string-list (lst-str)
+  "Convert list of string to one string.
+LST-STR : List of string."
+  (let ((full-str ""))
+    (dolist (s lst-str)
+      (setq full-str (concat full-str s)))
+    full-str))
+
 (defun jcs-is-contain-list-string-regexp (in-list in-str)
   "Check if a string in the string list.
 IN-LIST : list of string.
