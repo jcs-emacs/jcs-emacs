@@ -357,6 +357,9 @@
   ;; sort attribute in order => `com-css-sort' package.
   (define-key css-mode-map "\C-ks" #'com-css-sort-attributes-block)
   (define-key css-mode-map "\C-kd" #'com-css-sort-attributes-document)
+
+  ;; URL
+  (define-key emmet-mode-keymap (kbd "C-<return>") #'jcs-emmet-expand-line)
   )
 (add-hook 'css-mode-hook 'jcs-css-mode-hook)
 (add-hook 'css-mode-hook 'emmet-mode)
