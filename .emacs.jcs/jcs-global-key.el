@@ -381,8 +381,9 @@
 (define-key nhexl-mode-map (kbd "<right>") #'forward-char)
 (define-key nhexl-mode-map (kbd "<left>") #'backward-char)
 
-;;; *Message*
-(define-key messages-buffer-mode-map "\ek" #'jcs-erase-message-buffer)
+;;; *Messages*
+(define-key messages-buffer-mode-map "\ek" #'jcs-message-erase-buffer)
+(define-key messages-buffer-mode-map "\eK" #'jcs-message-erase-buffer-stay)
 
 (require 'cc-mode)
 (define-key global-map (kbd "C-c c") #'jcs-toggle-cc-mode)
