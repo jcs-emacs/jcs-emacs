@@ -221,7 +221,13 @@ C-k d           Sort the CSS attribute for the whole file.
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * Minimap
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-C-cm            enable/disable minimap
+C-c m           enable/disable minimap
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+* Messages
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+M-k             Erase *Messages* buffer.
+M-S-k           Erase *Messages* buffer without closing it.
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * Folding Key binding
@@ -283,6 +289,7 @@ C-c s           Toggle c comment style between /* */ and //.
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 f2              Lookup javadoc in browser. (javadoc-lookup)
 S-f2            Lookup javadoc in browser. (javadoc-lookup)
+C-S-o           Organize imports java paths.
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * Shell
@@ -293,7 +300,7 @@ C-down          Next command.
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * Emmet Mode
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-C-return        tab emmet.
+C-return        Expand abbrev.
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * Switch Mode
