@@ -149,7 +149,7 @@ visible"
       (while (> win-len index)
         (push (buffer-name) buffers)
 
-        (call-interactively #'jcs-other-window-next)
+        (jcs-other-window-next)
 
         (setq index (+ index 1)))
       buffers)))
