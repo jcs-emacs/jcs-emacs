@@ -344,6 +344,7 @@ G : Active line number globally."
 (require 'jcs-shell)
 (require 'jcs-minimap)
 (require 'jcs-helm-func)
+(require 'jcs-message-func)
 
 ;; Editing
 (require 'jcs-buffer-menu)
