@@ -730,9 +730,7 @@ file-project.el' plugin."
 
     (when is-killed
       (save-selected-window
-        (ignore-errors
-          (jcs-jump-shown-to-buffer "*Buffer List*"))
-        (when (jcs-is-current-major-mode-p "Buffer-menu-mode")
+        (when (ignore-errors (jcs-jump-shown-to-buffer "*Buffer List*"))
           ;; NOTE(jenchieh): Refresh buffer menu once.
           (jcs-buffer-menu))))))
 
@@ -743,16 +741,14 @@ file-project.el' plugin."
   (kill-this-buffer)
 
   (save-selected-window
-    (ignore-errors
-      (jcs-jump-shown-to-buffer "*Buffer List*"))
-    (when (jcs-is-current-major-mode-p "Buffer-menu-mode")
+    (when (ignore-errors (jcs-jump-shown-to-buffer "*Buffer List*"))
       ;; NOTE(jenchieh): Refresh buffer menu once.
       (jcs-buffer-menu)))
 
   ;; If still in the buffer menu, try switch to the
   ;; previous buffer
   (when (jcs-is-current-major-mode-p "Buffer-menu-mode")
-    (jcs-switch-to-previous-buffer)))
+    (previous-buffer)))
 
 ;;;###autoload
 (defun jcs-maybe-kill-this-buffer (&optional ecp-same)
@@ -771,6 +767,7 @@ ECP-SAME : Exception for the same buffer."
       (progn
         (jcs-kill-this-buffer)
         (setq is-killed t)
+
         ;; NOTE(jenchieh): After kill the buffer, if the buffer
         ;; appear in multiple windows then we do switch to
         ;; previous buffer again. Hence, it will not show
