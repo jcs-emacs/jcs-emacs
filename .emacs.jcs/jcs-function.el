@@ -4,36 +4,15 @@
 
 
 ;;----------------------------------------------
-;; Buffer
+;; Canceling
 ;;----------------------------------------------
-
-;;;###autoload
-(defun jcs-is-buffer-open-in-two-or-more-window ()
-  "Check if one buffer/file open in two window at a time."
-  (interactive)
-
-  (ignore-errors
-    (setq BaseFileNameWithExtension (file-name-nondirectory buffer-file-name))
-    (setq current-file-buffer (get-buffer BaseFileNameWithExtension)))
-
-  (let ((displayed-frame-count 0))
-    (dolist (buf  (jcs-buffer-in-window-list))
-      (ignore-errors
-        (if (eq buf current-file-buffer)
-            ;; increment plus 1
-            (setq displayed-frame-count (+ displayed-frame-count 1))
-          )))
-
-    ;; return this statement.
-    (>= displayed-frame-count 2)))
-
 
 (defvar jcs-top-level-active nil
   "Check if top level active.")
 
 ;;;###autoload
 (defun jcs-top-level ()
-  "Teminate the current command. - Canceling Action."
+  "Teminate the current command."
   (interactive)
   ;; Set flag.
   (setq jcs-top-level-active t)
@@ -194,9 +173,9 @@
 ;;;###autoload
 (defun jcs-ag-project-regexp ()
   "Use `wgrep' to replace the word in the entire project."
+  (interactive)
   ;; TOPIC: Is there a way to use query-replace from grep/ack/ag output modes?
   ;; URL: https://emacs.stackexchange.com/questions/212/is-there-a-way-to-use-query-replace-from-grep-ack-ag-output-modes
-  (interactive)
 
   ;; open search result menu.
   (call-interactively #'ag-project-regexp)
