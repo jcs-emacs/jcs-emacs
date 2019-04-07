@@ -101,8 +101,6 @@
 ;;         Manually Install
 ;;----------------------------------
 
-(load-file "~/.emacs.d/elisp/verilog-mode.el")
-
 ;;
 ;; TEMPORARY(jenchieh): Hopefully melpa will let me push
 ;; my package `jcs-ex-pkg' to their package system.
