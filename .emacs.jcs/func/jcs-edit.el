@@ -576,10 +576,10 @@ the current line."
   (let ((begin (line-beginning-position))
         (end (line-end-position)))
     (save-excursion
-      (when (< (point-min) begin)
-        (delete-trailing-whitespace (point-min) (1- begin)))
       (when (> (point-max) end)
-        (delete-trailing-whitespace (1+ end) (point-max))))))
+        (delete-trailing-whitespace (1+ end) (point-max)))
+      (when (< (point-min) begin)
+        (delete-trailing-whitespace (point-min) (1- begin))))))
 
 ;;----------------------------------------------
 ;; Move Current Line Up or Down
@@ -605,6 +605,32 @@ the current line."
   (indent-according-to-mode))
 
 ;;=================================
+;; Tabify / Unabify
+;;-------------------------
+
+;;;###autoload
+(defun jcs-untabify-buffer (&optional start end)
+  "Untabify the current buffer."
+  (interactive)
+  (save-excursion
+    (save-restriction
+      (let ((start-pt (if start start (point-min)))
+            (end-pt (if end end (point-max))))
+        (widen)
+        (untabify start-pt end-pt)))))
+
+;;;###autoload
+(defun jcs-tabify-buffer (&optional start end)
+  "Tabify the current buffer."
+  (interactive)
+  (save-excursion
+    (save-restriction
+      (let ((start-pt (if start start (point-min)))
+            (end-pt (if end end (point-max))))
+        (widen)
+        (tabify start-pt end-pt)))))
+
+;;=================================
 ;; Save Buffer
 ;;-------------------------
 
@@ -621,27 +647,18 @@ ARG : Match with `save-buffer' command."
 
 ;;;###autoload
 (defun jcs-untabify-save-buffer ()
-  "Save buffer / Utabify the document / Delete all trailing
-whitespaces."
+  "Untabify the file and save the buffer."
   (interactive)
   (jcs-delete-trailing-whitespace-except-current-line)
-  (save-excursion
-    (save-restriction
-      (widen)
-      (untabify (point-min) (point-max))))
+  (jcs-untabify-buffer)
   (save-buffer))
 
 ;;;###autoload
 (defun jcs-tabify-save-buffer ()
-  " Save buffer / Tabify the document / Delete all trailing
-whitespaces. NOTE(JenChieh): Makefile does not support space,
-so we must convert spaces to tab."
+  "Tabify the file and save the buffer."
   (interactive)
   (jcs-delete-trailing-whitespace-except-current-line)
-  (save-excursion
-    (save-restriction
-      (widen)
-      (tabify (point-min) (point-max))))
+  (jcs-tabify-buffer)
   (save-buffer))
 
 ;;=================================
