@@ -577,13 +577,9 @@ the current line."
         (end (line-end-position)))
     (save-excursion
       (when (< (point-min) begin)
-        (save-restriction
-          (narrow-to-region (point-min) (1- begin))
-          (delete-trailing-whitespace)))
+        (delete-trailing-whitespace (point-min) (1- begin)))
       (when (> (point-max) end)
-        (save-restriction
-          (narrow-to-region (1+ end) (point-max))
-          (delete-trailing-whitespace))))))
+        (delete-trailing-whitespace (1+ end) (point-max))))))
 
 ;;----------------------------------------------
 ;; Move Current Line Up or Down
