@@ -291,6 +291,7 @@
 (define-key global-map [M-down] #'move-text-down)
 
 ;;; Buffer List
+(define-key Buffer-menu-mode-map "\eK" #'jcs-buffer-menu)
 (define-key Buffer-menu-mode-map "1" #'jcs-buffer-menu-sort-by-visit)
 (define-key Buffer-menu-mode-map "2" #'jcs-buffer-menu-sort-by-buffer)
 (define-key Buffer-menu-mode-map "3" #'jcs-buffer-menu-sort-by-size)
