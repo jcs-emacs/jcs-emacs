@@ -73,6 +73,8 @@ the startup time down to `5` to `15` seconds.
 [sr-speedbar](http://cedet.sourceforge.net/speedbar.shtml).
 * *File Header* - powered by 
 [file-header](https://github.com/alternative-emacs-packages/file-header).
+* *Folding* - powered by 
+[origami](https://github.com/gregsexton/origami.el).
 * *Font* - powered by 
 [use-ttf](https://github.com/jcs090218/use-ttf).
 * *Highlight Matched Pairs* - powered by 
