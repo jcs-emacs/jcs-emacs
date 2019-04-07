@@ -404,6 +404,10 @@
     :ensure t)
   (yas-reload-all))
 
+(use-package origami
+  :config
+  (global-origami-mode t))
+
 
 (provide 'jcs-plugin)
 ;;; jcs-plugin.el ends here
