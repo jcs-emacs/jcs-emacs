@@ -398,8 +398,8 @@ line by line instead of indent the whole file at once."
              ("[ \t]*\\([.][a-zA-Z0-9_-]*\\)[ \t\n]*[(\[*:>+~,{]" 1 'jcs-css-class-face t)
              ("\\([:][a-zA-Z0-9>+~:_-]*\\)[ \t\n]*[,{]" 1 'jcs-css-event-face t)
              ;; Selector
-             ("^[ \t\n]*\\([a-z0-9_-]*\\)[ \t\n]*:" 1 'jcs-css-type-face t)
-             ("[ \t\n]*:[ \t\n]*\\(.*\\)[ \t\n]*;" 1 'jcs-css-value-face t)
+             ("[ \t\n]*\\([a-z0-9_-]*\\)[ \t\n]*:" 1 'jcs-css-type-face t)
+             ("[ \t\n]*:[ \t\n]*\\([a-zA-Z0-9 \n\t-.<>?,*'`@\"=_(){}:&^%$#!~]*\\)[ \t\n]*;" 1 'jcs-css-value-face t)
              ;; Number
              ("\\([+-]*[0-9px]*[.]*[0-9px]*\\)[ \t\n;,)]" 1 'jcs-css-number-face t)
              ;; For multi-lines comment.
