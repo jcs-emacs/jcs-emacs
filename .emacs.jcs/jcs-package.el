@@ -125,6 +125,7 @@ Return a list of installed packages or nil for every skipped package."
                                    nasm-mode
                                    nhexl-mode
                                    organize-imports-java
+                                   origami
                                    package-build
                                    package-lint
                                    pdf-tools
