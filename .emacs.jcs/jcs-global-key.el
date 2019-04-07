@@ -273,9 +273,9 @@
 (define-key global-map (kbd "C-x g") #'magit-status)
 
 ;;; Folding Settings
-(outline-minor-mode t)      ; turn on the folding
-(define-key global-map (kbd "C-M-o") #'hide-other)
-(define-key global-map (kbd "C-M-p") #'show-all)
+(require 'origami)
+(define-key global-map (kbd "C-M-o") #'origami-close-all-nodes)
+(define-key global-map (kbd "C-M-p") #'origami-open-all-nodes)
 
 ;;; Minimap
 (define-key global-map "\C-cm" #'jcs-toggle-minimap)
