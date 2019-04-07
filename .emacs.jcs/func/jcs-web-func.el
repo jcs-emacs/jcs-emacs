@@ -10,7 +10,6 @@
 (defvar jcs-web-type-comment-missing-modes '(web-mode)
   "Modes that does not apply comment in ASP.NET (Razor v3) Syntax.")
 
-
 (mapc (lambda (mode)
         (font-lock-add-keywords
          mode
@@ -22,14 +21,6 @@
            ("\\(/\\*[^/]*\\*/\\)" 1 'jcs-web-mode-block-comment-face t)
            )'end))
       jcs-web-type-comment-missing-modes)
-
-;;-----------------------------------------------------------
-;;-----------------------------------------------------------
-
-(defun jcs-web-mode ()
-  "Rewrap of switching mode to `web-mode'."
-  (web-mode)
-  (jcs-web-keep-auto-truncate-lines))
 
 ;;-----------------------------------------------------------
 ;; Truncate lines depends on the Face.
@@ -411,6 +402,10 @@ line by line instead of indent the whole file at once."
              ("[ \t\n]*:[ \t\n]*\\(.*\\)[ \t\n]*;" 1 'jcs-css-value-face t)
              ;; Number
              ("\\([+-]*[0-9px]*[.]*[0-9px]*\\)[ \t\n;,)]" 1 'jcs-css-number-face t)
+             ;; For multi-lines comment.
+             ;; TODO(jenchieh): Only inside the curly bracket.
+             ;; TODO(jenchieh): There is bug if `/' is inside the comment space.
+             ("\\(/\\*[^/]*\\*/\\)" 1 'jcs-font-lock-comment-face t)
              )'end))
         jcs-css-modes)
 
