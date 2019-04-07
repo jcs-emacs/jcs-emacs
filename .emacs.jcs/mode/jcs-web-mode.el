@@ -312,11 +312,6 @@
   ;; highlight URL and clickable.
   (goto-address-mode 1)
 
-  (setq-local comment-start "/*")
-  (setq-local comment-start-skip "/\\*+[ \t]*")
-  (setq-local comment-end "*/")
-  (setq-local comment-end-skip "[ \t]*\\*+/")
-
   ;; Treat some character as whitespace character.
   (modify-syntax-entry ?- "-")
   (modify-syntax-entry ?. "-")
