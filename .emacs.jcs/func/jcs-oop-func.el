@@ -712,7 +712,12 @@ SEARCH-STRING          : Search raw string."
       (dolist (param-sec-string param-lst)
         (setq param-sec-string (nth 0 (split-string param-sec-string "=")))
         (setq param-split-str-lst (jcs-chop param-sec-string " "))
+
+        (delete-dups param-split-str-lst)
+        (setq param-split-str-lst (remove " " param-split-str-lst))
+
         (setq param-split-str-lst-len (length param-split-str-lst))
+
         ;; Variable name should always be that last element in the list.
         (setq param-var-str (string-trim (nth (1- param-split-str-lst-len) param-split-str-lst)))
         ;; Data type name should always be the second last element in the list.
