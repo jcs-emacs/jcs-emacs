@@ -17,6 +17,11 @@
   (defvar jcs-ac-was-truncate-lines-mode-on nil
     "Was truncate lines mode on before entered `quick-help'?")
 
+  (defvar jcs-ac-show-menu-timer-filename nil
+    "Show menu idle timer for `ac-complete-filename'.")
+  (defvar jcs-ac-complete-filename-active nil
+    "Is current `jcs-ac-complete-filename' active?")
+
   (defun jcs-advice-ac-quick-help-before ()
     "Advice before execute `ac-quick-help' command."
     (when ac-quick-help-prefer-pos-tip
@@ -27,7 +32,7 @@
       (setq jcs-ac-was-ac-quick-help-showed t)))
   (advice-add 'ac-quick-help :before #'jcs-advice-ac-quick-help-before)
 
-  (defun jcs-advice-ac-abort-before ()
+  (defun jcs-advice-ac-remove-quick-help-before ()
     "Advice before execute `ac-abort' command."
     (when (and jcs-ac-was-ac-quick-help-showed
                ac-quick-help-prefer-pos-tip)
@@ -37,7 +42,8 @@
             (jcs-enable-truncate-lines)
           (jcs-disable-truncate-lines)))
       (setq jcs-ac-was-ac-quick-help-showed nil)))
-  (advice-add 'ac-remove-quick-help :before #'jcs-advice-ac-abort-before)
+  (advice-add 'ac-remove-quick-help :before #'jcs-advice-ac-remove-quick-help-before)
+
 
   (defun jcs-valid-ac-complete-filename-p ()
     "Check if we complete filename instead of normal auto complete."
@@ -50,12 +56,31 @@
             (setq valid-fn-ac t)))
         valid-fn-ac)))
 
+  ;;;###autoload
+  (defun jcs-ac-complete-filename ()
+    "Wrap `ac-complete-filename' command."
+    (interactive)
+    (unless jcs-ac-complete-filename-active
+      (setq jcs-ac-complete-filename-active t)
+      (call-interactively #'ac-complete-filename)))
+
   (defun jcs-ac-handle-post-command-around (orig-fun &rest args)
     "Advice around execute `ac-handle-post-command' hook."
     (if (jcs-valid-ac-complete-filename-p)
-        (ac-complete-filename)
+        (unless jcs-ac-show-menu-timer-filename
+          (setq jcs-ac-show-menu-timer-filename
+                (run-with-idle-timer ac-auto-show-menu
+                                     ac-auto-show-menu
+                                     'jcs-ac-complete-filename)))
       (apply orig-fun args)))
   (advice-add 'ac-handle-post-command :around #'jcs-ac-handle-post-command-around)
+
+  (defun jcs-ac-cleanup-before ()
+    "Advice before execute `ac-cleanup' hook."
+    (when ac-menu
+      (setq jcs-ac-complete-filename-active nil)
+      (setq jcs-ac-show-menu-timer-filename nil)))
+  (advice-add 'ac-cleanup :before #'jcs-ac-cleanup-before)
 
   (global-auto-complete-mode t))
 
