@@ -146,7 +146,7 @@
 (define-key global-map "\C-y" #'jcs-redo)
 
 ;;; Undo Tree
-(define-key undo-tree-visualizer-mode-map (kbd "RET") 'undo-tree-visualizer-quit)
+(define-key undo-tree-visualizer-mode-map (kbd "RET") #'undo-tree-visualizer-quit)
 ;; STUDY(jenchieh): `undo-tree''s minor mode will overwrite
 ;; the global key map's key bindings. What we need to do
 ;; is to remap this again...
