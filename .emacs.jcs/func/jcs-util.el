@@ -20,6 +20,20 @@
   (message "Current buffer file name: %s" (buffer-file-name)))
 
 ;;;###autoload
+(defun jcs-print-current-buffer-status ()
+  "Print current buffer related status."
+  (interactive)
+  (jcs-print-current-buffer-name)
+  (jcs-print-current-buffer-file-name))
+
+(defun jcs-buffer-name-or-buffer-file-name ()
+  "Sometimes `buffer-file-name' is nil, then return `buffer-name' instead.
+Else we just return `buffer-file-name' if available."
+  (if (buffer-file-name)
+      (buffer-file-name)
+    (buffer-name)))
+
+;;;###autoload
 (defun jcs-revert-all-file-buffers ()
   "Refresh all open file buffers without confirmation.
 Buffers in modified (not yet saved) state in Emacs will not be reverted.
