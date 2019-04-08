@@ -15,6 +15,7 @@
 ;; SOURCE(jenchieh): http://emacs.stackexchange.com/questions/3798/how-do-i-make-pressing-ret-in-helm-find-files-open-the-directory
 
 (defun jcs-helm-find-files-navigate-forward (orig-fun &rest args)
+  "Advice run around `helm-execute-persistent-action' command."
   (if (and (equal "Find Files" (assoc-default 'name (helm-get-current-source)))
            (equal args nil)
            (stringp (helm-get-selection))
@@ -26,6 +27,7 @@
 (advice-add 'helm-execute-persistent-action :around #'jcs-helm-find-files-navigate-forward)
 
 (defun jcs-helm-find-files-navigate-back (orig-fun &rest args)
+  "Advice run around `helm-ff-delete-char-backward' command."
   (if (jcs-current-char-equal-p "/")
       (helm-find-files-up-one-level 1)
     (apply orig-fun args)))
