@@ -1,4 +1,4 @@
-;;; jcs-cs-mode.el --- C# Mode -*- lexical-binding: t -*-
+;;; jcs-csharp-mode.el --- C# Mode -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -31,7 +31,7 @@
   (defun jcs-csharp-format ()
     "Format the given file as a C# file."
     (when (jcs-is-current-file-empty-p)
-      (jcs-insert-cs-template)))
+      (jcs-insert-csharp-template)))
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)
@@ -65,5 +65,5 @@
 (add-to-list 'auto-mode-alist '("\\.cs?\\'" . csharp-mode))
 
 
-(provide 'jcs-cs-mode)
-;;; jcs-cs-mode.el ends here
+(provide 'jcs-csharp-mode)
+;;; jcs-csharp-mode.el ends here

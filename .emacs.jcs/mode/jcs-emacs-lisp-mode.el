@@ -1,4 +1,4 @@
-;;; jcs-elisp-mode.el --- Emacs Lisp Mode -*- lexical-binding: t -*-
+;;; jcs-emacs-lisp-mode.el --- Emacs Lisp Mode -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -24,7 +24,7 @@
   (defun jcs-emacs-lisp-format ()
     "Format the given file as a Emacs Lisp file."
     (when (jcs-is-current-file-empty-p)
-      (jcs-insert-elisp-template)))
+      (jcs-insert-emacs-lisp-template)))
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)
@@ -37,5 +37,5 @@
 (add-to-list 'auto-mode-alist '("\\.el'?\\'" . emacs-lisp-mode))
 
 
-(provide 'jcs-elisp-mode)
-;;; jcs-elisp-mode.el ends here
+(provide 'jcs-emacs-lisp-mode)
+;;; jcs-emacs-lisp-mode.el ends here
