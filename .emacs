@@ -154,8 +154,8 @@
 (require 'jcs-file-info-format)
 
 ;; Modes
-(require 'jcs-elisp-mode)
-(require 'jcs-cs-mode)
+(require 'jcs-emacs-lisp-mode)
+(require 'jcs-csharp-mode)
 (require 'jcs-nasm-mode)
 (require 'jcs-batch-mode)
 (require 'jcs-sh-mode)
