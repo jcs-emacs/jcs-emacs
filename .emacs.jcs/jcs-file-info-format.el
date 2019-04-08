@@ -240,7 +240,7 @@ Text file, batch file, shell script, etc."
 ;;; Emacs Lisp
 (defun jcs-insert-emacs-lisp-template ()
   "Template for Elisp."
-  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/emacs-lisp/elisp_template.txt"))
+  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/emacs-lisp/emacs-lisp_template.txt"))
 
 ;;; Go
 (defun jcs-insert-go-template ()
