@@ -39,6 +39,24 @@
       (setq jcs-ac-was-ac-quick-help-showed nil)))
   (advice-add 'ac-remove-quick-help :before #'jcs-advice-ac-abort-before)
 
+  (defun jcs-valid-ac-complete-filename-p ()
+    "Check if we complete filename instead of normal auto complete."
+    (save-excursion
+      (let ((valid-fn-ac nil)
+            (cur-str ""))
+        (when (jcs-is-inside-string-p)
+          (setq cur-str (jcs-string-at-point))
+          (when (jcs-file-directory-exists-p cur-str)
+            (setq valid-fn-ac t)))
+        valid-fn-ac)))
+
+  (defun jcs-ac-handle-post-command-around (orig-fun &rest args)
+    "Advice around execute `ac-handle-post-command' hook."
+    (if (jcs-valid-ac-complete-filename-p)
+        (ac-complete-filename)
+      (apply orig-fun args)))
+  (advice-add 'ac-handle-post-command :around #'jcs-ac-handle-post-command-around)
+
   (global-auto-complete-mode t))
 
 ;;; Find file in project
