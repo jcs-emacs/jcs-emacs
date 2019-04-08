@@ -1,0 +1,42 @@
+# -*- mode: snippet -*-
+# name: jcs-melpa
+# key: jcs-melpa
+# --
+;;; `(jcs-get-file-name)` --- $1  -*- lexical-binding: t; -*-
+
+;; Copyright (C) `(jcs-get-year-only)`  Shen, Jen-Chieh
+;; Created date `(jcs-get-timestamp-ver1)`
+
+;; Author: Shen, Jen-Chieh <jcs090218@gmail.com>
+;; Description: $2
+;; Keyword: $3
+;; Version: 0.0.1
+;; Package-Requires: ((emacs "24.3"))
+;; URL: https://github.com/jcs090218/`(jcs-get-file-name-without-extension)`
+
+;; This file is NOT part of GNU Emacs.
+
+;; This program is free software; you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation, either version 3 of the License, or
+;; (at your option) any later version.
+
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+
+;; You should have received a copy of the GNU General Public License
+;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+;;; Commentary:
+;;
+;; $4
+;;
+
+;;; Code:
+
+$0
+
+(provide '`(jcs-get-file-name-without-extension)`)
+;;; `(jcs-get-file-name)` ends here
