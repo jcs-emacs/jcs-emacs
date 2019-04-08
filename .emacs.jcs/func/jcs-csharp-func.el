@@ -1,4 +1,4 @@
-;;; jcs-cs-func.el --- C Sharp related.  -*- lexical-binding: t -*-
+;;; jcs-csharp-func.el --- C Sharp related.  -*- lexical-binding: t -*-
 ;;; Commentary: When editing the C# related file.
 ;;; Code:
 
@@ -114,5 +114,5 @@ URL(jenchieh): https://github.com/josteink/csharp-mode/issues/123"
     (insert " ")))
 
 
-(provide 'jcs-cs-func)
-;;; jcs-cs-func.el ends here
+(provide 'jcs-csharp-func)
+;;; jcs-csharp-func.el ends here

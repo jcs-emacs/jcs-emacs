@@ -98,7 +98,7 @@
   "Character after value type been inserted in ActionScript Mode.")
 (defvar jcs-cc-doc-after-value-type-char ""
   "Character after value type been inserted in C/C++ Mode.")
-(defvar jcs-cs-doc-after-value-type-char ""
+(defvar jcs-csharp-doc-after-value-type-char ""
   "Character after value type been inserted in CSharp Mode.")
 (defvar jcs-java-doc-after-value-type-char ""
   "Character after value type been inserted in Java Mode.")
@@ -119,7 +119,7 @@
   "Show the typename betweeen the open charachter and close charachter in ActionScript mode.")
 (defvar jcs-cc-doc-show-typename nil
   "Show the typename betweeen the open charachter and close charachter in C/C++ mode.")
-(defvar jcs-cs-doc-show-typename nil
+(defvar jcs-csharp-doc-show-typename nil
   "Show the typename betweeen the open charachter and close charachter in CSharp mode.")
 (defvar jcs-java-doc-show-typename nil
   "Show the typename betweeen the open charachter and close charachter in Java mode.")
@@ -142,8 +142,8 @@
 (defvar jcs-cc-param-string "" "Parameter string in C/C++ mode.")
 (defvar jcs-cc-return-string "" "Returns string in C/C++ mode.")
 
-(defvar jcs-cs-param-string "" "Parameter string in CSharp mode.")
-(defvar jcs-cs-return-string "" "Returns string in CSharp mode.")
+(defvar jcs-csharp-param-string "" "Parameter string in CSharp mode.")
+(defvar jcs-csharp-return-string "" "Returns string in CSharp mode.")
 
 (defvar jcs-java-param-string "" "Parameter string in Java mode.")
 (defvar jcs-java-return-string "" "Returns string in Java mode.")
@@ -171,8 +171,8 @@
 (defvar jcs-cc-open-type-char "" "Character before the typename in C/C++ mode.")
 (defvar jcs-cc-close-type-char "" "Character after the typename in C/C++ mode.")
 
-(defvar jcs-cs-open-type-char "" "Character before the typename in CSharp mode.")
-(defvar jcs-cs-close-type-char "" "Character after the typename in CSharp mode.")
+(defvar jcs-csharp-open-type-char "" "Character before the typename in CSharp mode.")
+(defvar jcs-csharp-close-type-char "" "Character after the typename in CSharp mode.")
 
 (defvar jcs-java-open-type-char "" "Character before the typename in Java mode.")
 (defvar jcs-java-close-type-char "" "Character after the typename in Java mode.")
@@ -219,7 +219,7 @@
     ;; show type name
     (setq jcs-as-doc-show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "AS_DOC_SHOW_TYPENAME")))
     (setq jcs-cc-doc-show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "CC_DOC_SHOW_TYPENAME")))
-    (setq jcs-cs-doc-show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "CS_DOC_SHOW_TYPENAME")))
+    (setq jcs-csharp-doc-show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "CSHARP_DOC_SHOW_TYPENAME")))
     (setq jcs-java-doc-show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "JAVA_DOC_SHOW_TYPENAME")))
     (setq jcs-js-doc-show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "JS_DOC_SHOW_TYPENAME")))
     (setq jcs-lua-doc-show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "LUA_DOC_SHOW_TYPENAME")))
@@ -230,7 +230,7 @@
     ;; After value type character.
     (setq jcs-as-doc-after-value-type-char (jcs-get-properties tmp-ini-list "AS_AFTER_VALUE_TYPE"))
     (setq jcs-cc-doc-after-value-type-char (jcs-get-properties tmp-ini-list "CC_AFTER_VALUE_TYPE"))
-    (setq jcs-cs-doc-after-value-type-char (jcs-get-properties tmp-ini-list "CS_AFTER_VALUE_TYPE"))
+    (setq jcs-csharp-doc-after-value-type-char (jcs-get-properties tmp-ini-list "CSHARP_AFTER_VALUE_TYPE"))
     (setq jcs-java-doc-after-value-type-char (jcs-get-properties tmp-ini-list "JAVA_AFTER_VALUE_TYPE"))
     (setq jcs-js-doc-after-value-type-char (jcs-get-properties tmp-ini-list "JS_AFTER_VALUE_TYPE"))
     (setq jcs-lua-doc-after-value-type-char (jcs-get-properties tmp-ini-list "LUA_AFTER_VALUE_TYPE"))
@@ -241,7 +241,7 @@
     ;; param string
     (setq jcs-as-param-string (jcs-get-properties tmp-ini-list "AS_PARAM_STRING"))
     (setq jcs-cc-param-string (jcs-get-properties tmp-ini-list "CC_PARAM_STRING"))
-    (setq jcs-cs-param-string (jcs-get-properties tmp-ini-list "CS_PARAM_STRING"))
+    (setq jcs-csharp-param-string (jcs-get-properties tmp-ini-list "CSHARP_PARAM_STRING"))
     (setq jcs-java-param-string (jcs-get-properties tmp-ini-list "JAVA_PARAM_STRING"))
     (setq jcs-js-param-string (jcs-get-properties tmp-ini-list "JS_PARAM_STRING"))
     (setq jcs-lua-param-string (jcs-get-properties tmp-ini-list "LUA_PARAM_STRING"))
@@ -252,7 +252,7 @@
     ;; return string
     (setq jcs-as-return-string (jcs-get-properties tmp-ini-list "AS_RETURN_STRING"))
     (setq jcs-cc-return-string (jcs-get-properties tmp-ini-list "CC_RETURN_STRING"))
-    (setq jcs-cs-return-string (jcs-get-properties tmp-ini-list "CS_RETURN_STRING"))
+    (setq jcs-csharp-return-string (jcs-get-properties tmp-ini-list "CSHARP_RETURN_STRING"))
     (setq jcs-java-return-string (jcs-get-properties tmp-ini-list "JAVA_RETURN_STRING"))
     (setq jcs-js-return-string (jcs-get-properties tmp-ini-list "JS_RETURN_STRING"))
     (setq jcs-lua-return-string (jcs-get-properties tmp-ini-list "LUA_RETURN_STRING"))
@@ -263,7 +263,7 @@
     ;; open type character.
     (setq jcs-as-open-type-char (jcs-get-properties tmp-ini-list "AS_OPEN_TYPE_CHAR"))
     (setq jcs-cc-open-type-char (jcs-get-properties tmp-ini-list "CC_OPEN_TYPE_CHAR"))
-    (setq jcs-cs-open-type-char (jcs-get-properties tmp-ini-list "CS_OPEN_TYPE_CHAR"))
+    (setq jcs-csharp-open-type-char (jcs-get-properties tmp-ini-list "CSHARP_OPEN_TYPE_CHAR"))
     (setq jcs-java-open-type-char (jcs-get-properties tmp-ini-list "JAVA_OPEN_TYPE_CHAR"))
     (setq jcs-js-open-type-char (jcs-get-properties tmp-ini-list "JS_OPEN_TYPE_CHAR"))
     (setq jcs-lua-open-type-char (jcs-get-properties tmp-ini-list "LUA_OPEN_TYPE_CHAR"))
@@ -274,7 +274,7 @@
     ;; close type character.
     (setq jcs-as-close-type-char (jcs-get-properties tmp-ini-list "AS_CLOSE_TYPE_CHAR"))
     (setq jcs-cc-close-type-char (jcs-get-properties tmp-ini-list "CC_CLOSE_TYPE_CHAR"))
-    (setq jcs-cs-close-type-char (jcs-get-properties tmp-ini-list "CS_CLOSE_TYPE_CHAR"))
+    (setq jcs-csharp-close-type-char (jcs-get-properties tmp-ini-list "CSHARP_CLOSE_TYPE_CHAR"))
     (setq jcs-java-close-type-char (jcs-get-properties tmp-ini-list "JAVA_CLOSE_TYPE_CHAR"))
     (setq jcs-js-close-type-char (jcs-get-properties tmp-ini-list "JS_CLOSE_TYPE_CHAR"))
     (setq jcs-lua-close-type-char (jcs-get-properties tmp-ini-list "LUA_CLOSE_TYPE_CHAR"))
