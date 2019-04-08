@@ -238,6 +238,22 @@
      (jcs-active-line-number-by-mode))))
 
 ;;;###autoload
+(defun jcs-display-line-numbers-mode (&optional act)
+  "Safe enable/disable `display-line-numbers-mode'.
+If non-nil, safe active `display-line-numbers-mode'."
+  (interactive)
+  (when (version<= "26.0.50" emacs-version)
+    (display-line-numbers-mode act)))
+
+;;;###autoload
+(defun jcs-global-display-line-numbers-mode (&optional act)
+  "Safe enable/disable `global-display-line-numbers-mode'.
+If non-nil, safe active `global-display-line-numbers-mode'."
+  (interactive)
+  (when (version<= "26.0.50" emacs-version)
+    (global-display-line-numbers-mode act)))
+
+;;;###autoload
 (defun jcs-active-line-number-by-version (&optional act g)
   "Active line number by Emacs version.
 Basically decide between `linum-mode' and `display-line-numbers-mode'.
@@ -249,19 +265,29 @@ If nil, active by `linum-mode'.
 ACT : active or not active?
 G : Active line number globally."
   (interactive)
-  (let ((dln-ava nil))
-    (when (version<= "26.0.50" emacs-version)
-      (if g
-          (if act (global-display-line-numbers-mode 1) (global-display-line-numbers-mode -1))
-        (if act  (display-line-numbers-mode 1) (display-line-numbers-mode -1)))
-      ;; Flag confirm line number activated.
-      (setq dln-ava t))
-    ;; If `display-line-numbers-mode' is active, we have
-    ;; to deactive the `linum-mode'.
-    (if g
-        (if act (global-linum-mode -1) (global-linum-mode 1))
-      (if act (linum-mode -1) (linum-mode 1)))
-    dln-ava))
+  (unless act
+    (if act (setq act 1) (setq act -1)))
+  ;; Flag confirm line number activated.
+  (if (version<= "26.0.50" emacs-version)
+      (progn
+        (if g
+            (if (= act 1)
+                (progn
+                  (jcs-global-display-line-numbers-mode 1)
+                  (global-linum-mode -1))
+              (progn
+                (jcs-global-display-line-numbers-mode -1)
+                (global-linum-mode 1)))
+          (if (= act 1)
+              (progn
+                (jcs-display-line-numbers-mode 1)
+                (linum-mode -1))
+            (progn
+              (jcs-display-line-numbers-mode -1)
+              (linum-mode 1)))))
+    ;; If `display-line-numbers-mode' does not exists,
+    ;; ue `linum-mode' instead.
+    (linum-mode act)))
 
 ;;;###autoload
 (defun jcs-active-line-number-by-mode (&optional g)
@@ -271,7 +297,7 @@ G : Active line number globally."
   (when (and (not (minibufferp))
              (not (jcs-is-contain-list-string jcs-line-number-ignore-buffers (buffer-name))))
     (if (line-reminder-is-valid-line-reminder-situation)
-        (linum-mode 1)
+        (jcs-active-line-number-by-version -1 g)
       (jcs-active-line-number-by-version 1 g))))
 
 ;;---------------------------------------------
