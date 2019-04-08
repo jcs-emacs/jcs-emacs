@@ -867,10 +867,8 @@ IN-FONT : input font name."
 
   ;; Change the font and keep the size.
   (if (jcs-font-existsp in-font)
-      (progn
-        (set-frame-font in-font t))
-    (progn
-      (jcs-error "Font you chose does not exists in current system, Please select other font."))))
+      (set-frame-font in-font t)
+    (jcs-error "Font you chose does not exists in current system, Please select other font.")))
 
 (defun jcs-font-existsp (font)
   "Check if font exists?
@@ -964,7 +962,7 @@ IN-INT : integer using to check if is contain one of the IN-LIST."
 (defun jcs-print-current-major-mode ()
   "Print out the current major mode."
   (interactive)
-  (message "%s" major-mode))
+  (message "Current major mode: %s" major-mode))
 
 (defun jcs-is-current-major-mode-p (str)
   "Check if this major mode.
@@ -1190,6 +1188,51 @@ IGNORE-ERRORS-T : ignore errors for this function?"
 ;;---------------------------------------------
 ;; String
 ;;---------------------------------------------
+
+;;;###autoload
+(defun jcs-print-current-string ()
+  "Print out the current string at current point."
+  (interactive)
+  (message "Current string: %s" (jcs-string-at-point)))
+
+(defun jcs-is-inside-string-p ()
+  "Check if current cursor point inside the string."
+  (nth 3 (syntax-ppss)))
+
+;;;###autoload
+(defun jcs-goto-start-of-the-string ()
+  "Go to the start of the string."
+  (interactive)
+  (when (jcs-is-inside-string-p)
+    (backward-char 1)
+    (jcs-goto-start-of-the-string)))
+
+;;;###autoload
+(defun jcs-goto-end-of-the-string ()
+  "Go to the start of the string."
+  (interactive)
+  (when (jcs-is-inside-string-p)
+    (forward-char 1)
+    (jcs-goto-end-of-the-string)))
+
+(defun jcs-string-at-point (&optional pt)
+  "Get the string at point.
+Nil, not inside a string."
+  (save-excursion
+    (when pt
+      (goto-char pt))
+    (let ((ret-str nil)
+          (st-str -1)
+          (ed-str -1))
+      (save-excursion
+        (jcs-goto-start-of-the-string)
+        (setq st-str (point)))
+      (save-excursion
+        (jcs-goto-end-of-the-string)
+        (setq ed-str (point)))
+      (unless (= st-str ed-str)
+        (setq ret-str (buffer-substring-no-properties (1+ st-str) (1- ed-str))))
+      ret-str)))
 
 (defun jcs-remove-string-by-substring (str substr)
   "Remove a certain string by a substring.
