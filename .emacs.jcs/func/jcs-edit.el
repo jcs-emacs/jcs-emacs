@@ -719,33 +719,44 @@ file-project.el' plugin."
 ;; Kill Buffer
 ;;----------------------------------------------
 
+(defun jcs-advice-kill-this-buffer-around (orig-fun &rest args)
+  "Advice around execute `kill-this-buffer' command."
+  (let ((target-kill-buffer (jcs-buffer-name-or-buffer-file-name))
+        (undoing-buffer-name nil)
+        (jumped-to-utv nil))
+    (save-selected-window
+      (setq jumped-to-utv
+            (ignore-errors
+              (jcs-jump-shown-to-buffer undo-tree-visualizer-buffer-name)))
+      (when jumped-to-utv
+        (setq undoing-buffer-name (buffer-name undo-tree-visualizer-parent-buffer))))
+
+    (apply orig-fun args)
+
+    ;; If `undo-tree' visualizer exists, kill it too.
+    (when jumped-to-utv
+      (when (and undoing-buffer-name
+                 (string-match-p undoing-buffer-name target-kill-buffer))
+        (save-selected-window
+          (jcs-jump-shown-to-buffer undo-tree-visualizer-buffer-name)
+          (undo-tree-visualizer-quit))))))
+(advice-add 'kill-this-buffer :around #'jcs-advice-kill-this-buffer-around)
+
 ;;;###autoload
 (defun jcs-kill-this-buffer ()
   "Kill this buffer."
   (interactive)
-  (let ((target-kill-buffer (jcs-buffer-name-or-buffer-file-name)))
+  (kill-this-buffer)
 
-    (kill-this-buffer)
+  (save-selected-window
+    (when (ignore-errors (jcs-jump-shown-to-buffer "*Buffer List*"))
+      ;; NOTE(jenchieh): Refresh buffer menu once.
+      (jcs-buffer-menu)))
 
-    (save-selected-window
-      ;; If `undo-tree' visualizer exists, kill it too.
-      (when (ignore-errors (jcs-jump-shown-to-buffer undo-tree-visualizer-buffer-name))
-        (let ((undoing-buffer-name (buffer-name undo-tree-visualizer-parent-buffer)))
-          (message "undoing-buffer-name : %s" undoing-buffer-name)
-          (message "target-kill-buffer : %s" target-kill-buffer)
-          (when (and undoing-buffer-name
-                     (string-match-p undoing-buffer-name target-kill-buffer))
-            (undo-tree-visualizer-quit)))))
-
-    (save-selected-window
-      (when (ignore-errors (jcs-jump-shown-to-buffer "*Buffer List*"))
-        ;; NOTE(jenchieh): Refresh buffer menu once.
-        (jcs-buffer-menu)))
-
-    ;; If still in the buffer menu, try switch to the
-    ;; previous buffer
-    (when (jcs-is-current-major-mode-p "Buffer-menu-mode")
-      (previous-buffer))))
+  ;; If still in the buffer menu, try switch to the
+  ;; previous buffer
+  (when (jcs-is-current-major-mode-p "Buffer-menu-mode")
+    (previous-buffer)))
 
 ;;;###autoload
 (defun jcs-maybe-kill-this-buffer (&optional ecp-same)
