@@ -364,7 +364,7 @@ G : Active line number globally."
 (require 'jcs-txt-func)
 (require 'jcs-preproc-func)
 (require 'jcs-cc-func)
-(require 'jcs-cs-func)
+(require 'jcs-csharp-func)
 (require 'jcs-cmake-func)
 (require 'jcs-java-func)
 (require 'jcs-lua-func)
