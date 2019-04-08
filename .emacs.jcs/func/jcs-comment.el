@@ -216,7 +216,6 @@ string, do not insert closing comment string.  Check this situation."
   (let ((check-point (point))
         (new-comment-block t))
     (save-excursion
-
       (jcs-move-to-forward-a-char "/")
       (backward-char 1)
       (when (jcs-current-char-equal-p "*")
