@@ -108,6 +108,8 @@ and
 [exec-path-from-shell](https://github.com/purcell/exec-path-from-shell).
 * *Simplify Usage* - powered by 
 [helm](https://github.com/emacs-helm/helm).
+* *Smooth Scrolling* - powered by 
+[sublimity](https://github.com/zk-phi/sublimity).
 * *Snippet* - powered by 
 [yasnippet](https://github.com/joaotavora/yasnippet).
 * *Source Control Management* - powered by 
