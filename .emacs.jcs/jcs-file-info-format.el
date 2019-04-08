@@ -213,7 +213,7 @@ Text file, batch file, shell script, etc."
   (jcs-insert-template-by-file-path "~/.emacs.jcs/template/cc/c++_source_template.txt"))
 
 ;;; C#
-(defun jcs-insert-cs-template ()
+(defun jcs-insert-csharp-template ()
   "Header for CS header file."
   (jcs-insert-template-by-file-path "~/.emacs.jcs/template/csharp/csharp_template.txt"))
 
@@ -237,10 +237,10 @@ Text file, batch file, shell script, etc."
   "Template for CSS."
   (jcs-insert-template-by-file-path "~/.emacs.jcs/template/web/css_template.txt"))
 
-;;; Elisp
-(defun jcs-insert-elisp-template ()
+;;; Emacs Lisp
+(defun jcs-insert-emacs-lisp-template ()
   "Template for Elisp."
-  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/elisp/elisp_template.txt"))
+  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/emacs-lisp/elisp_template.txt"))
 
 ;;; Go
 (defun jcs-insert-go-template ()
