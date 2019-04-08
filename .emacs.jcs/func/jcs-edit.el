@@ -4,7 +4,7 @@
 
 
 ;;----------------------------------------------
-;; Undo/Redo
+;; Undo / Redo
 ;;----------------------------------------------
 
 (require 'undo-tree)
@@ -731,6 +731,15 @@ file-project.el' plugin."
 (defun jcs-kill-this-buffer ()
   "Kill this buffer."
   (interactive)
+  ;; If `undo-tree' visualizer exists, kill it too.
+  (save-selected-window
+    (let ((target-kill-buffer (jcs-buffer-name-or-buffer-file-name)))
+      (when (ignore-errors (jcs-jump-shown-to-buffer undo-tree-visualizer-buffer-name))
+        (message "undo-tree-visualizer-parent-buffer : %s" undo-tree-visualizer-parent-buffer)
+        (jcs-print-current-buffer-name)
+        (when (string-match-p undo-tree-visualizer-parent-buffer target-kill-buffer)
+          (undo-tree-visualizer-quit)))))
+
   (kill-this-buffer)
 
   (save-selected-window
