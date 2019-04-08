@@ -52,7 +52,9 @@
             (cur-str ""))
         (when (jcs-is-inside-string-p)
           (setq cur-str (jcs-string-at-point))
-          (when (jcs-file-directory-exists-p cur-str)
+          (when cur-str (setq cur-str (f-dirname cur-str)))
+          (when (and cur-str
+                     (jcs-file-directory-exists-p cur-str))
             (setq valid-fn-ac t)))
         valid-fn-ac)))
 
@@ -83,6 +85,7 @@
   (advice-add 'ac-cleanup :before #'jcs-ac-cleanup-before)
 
   (global-auto-complete-mode t))
+
 
 ;;; Find file in project
 (use-package find-file-in-project
