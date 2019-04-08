@@ -98,8 +98,10 @@
 (package-initialize)
 
 ;;========================================
-;;         Manually Install
+;;         Manually Installation
 ;;----------------------------------
+
+(load-file "~/.emacs.d/elisp/reload-emacs-20190326.001/reload-emacs.el")
 
 ;;
 ;; TEMPORARY(jenchieh): Hopefully melpa will let me push
@@ -114,13 +116,6 @@
 ;; Then we can remove load file/manually install package system.
 ;;
 (load-file "~/.emacs.d/elisp/jayces-mode-20190205.001/jayces-mode.el")
-
-;;
-;; TEMPORARY(jenchieh): Hopefully melpa will let me push
-;; my package `reload-emacs' to their package system.
-;; Then we can remove load file/manually install package system.
-;;
-(load-file "~/.emacs.d/elisp/reload-emacs-20190326.001/reload-emacs.el")
 
 
 ;;========================================
