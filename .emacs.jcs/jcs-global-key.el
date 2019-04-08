@@ -198,7 +198,7 @@
 (define-key global-map [C-M-up] #'jcs-scroll-down-one-line)
 (define-key global-map [C-M-down] #'jcs-scroll-up-one-line)
 
-(define-key global-map "\er" #'revert-buffer-no-confirm)
+(define-key global-map "\er" #'jcs-revert-buffer-no-confirm)
 
 ;;; SEE(jenchieh): `jcs-mode-el' will have detail mode config.
 ;; Fix "iedit" bug for OSX
