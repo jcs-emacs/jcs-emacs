@@ -8,6 +8,39 @@
   (require 'use-package))
 
 
+(use-package auto-complete
+  :ensure t
+  :config
+
+  (defvar jcs-ac-was-ac-quick-help-showed nil
+    "Was `ac-quick-help' showed?")
+  (defvar jcs-ac-was-truncate-lines-mode-on nil
+    "Was truncate lines mode on before entered `quick-help'?")
+
+  (defun jcs-advice-ac-quick-help-before ()
+    "Advice before execute `ac-quick-help' command."
+    (when ac-quick-help-prefer-pos-tip
+      (let ((message-log-max nil)
+            (inhibit-message t))
+        (setq jcs-ac-was-truncate-lines-mode-on truncate-lines)
+        (jcs-disable-truncate-lines))
+      (setq jcs-ac-was-ac-quick-help-showed t)))
+  (advice-add 'ac-quick-help :before #'jcs-advice-ac-quick-help-before)
+
+  (defun jcs-advice-ac-abort-before ()
+    "Advice before execute `ac-abort' command."
+    (when (and jcs-ac-was-ac-quick-help-showed
+               ac-quick-help-prefer-pos-tip)
+      (let ((message-log-max nil)
+            (inhibit-message t))
+        (if jcs-ac-was-truncate-lines-mode-on
+            (jcs-enable-truncate-lines)
+          (jcs-disable-truncate-lines)))
+      (setq jcs-ac-was-ac-quick-help-showed nil)))
+  (advice-add 'ac-remove-quick-help :before #'jcs-advice-ac-abort-before)
+
+  (global-auto-complete-mode t))
+
 ;;; Find file in project
 (use-package find-file-in-project
   :config
@@ -275,6 +308,7 @@
   :ensure t
   :config
   (defun jcs-advice-goto-line-preview-after ()
+    "Advice after execute `goto-line-preview' command."
     (call-interactively #'recenter))
   (advice-add 'goto-line-preview :after #'jcs-advice-goto-line-preview-after))
 
@@ -288,6 +322,7 @@
 (use-package reload-emacs
   :config
   (defun jcs-advice-reload-emacs-after ()
+    "Advice after execute `reload-emacs' command."
     ;; Split window horizontally if full width.
     (when (and (window-full-width-p)
                (= (length (window-list)) 1))
