@@ -389,12 +389,9 @@ frame, so it does not goto the beginning of the line first."
 (defun jcs-format-region-or-document ()
   "Format the document if there are no region apply."
   (interactive)
-
   (if (use-region-p)
-      (progn
-        (call-interactively #'indent-region))
-    (progn
-      (call-interactively #'jcs-format-document))))
+        (call-interactively #'indent-region)
+    (call-interactively #'jcs-format-document)))
 
 ;;;###autoload
 (defun jcs-align-region-by-points (regexp pnt-min pnt-max)
@@ -404,17 +401,14 @@ REGEXP : reqular expression use to align.
 PNT-MIN: point min.
 PNT-MAX: point max."
   (interactive)
-
   (align pnt-min pnt-max)
   (align-regexp pnt-min pnt-max regexp 1 1 t))
 
 ;;;###autoload
 (defun jcs-align-region (regexp)
   "Align current selected region.
-
 REGEXP : reqular expression use to align."
   (interactive)
-
   (jcs-align-region-by-points regexp (region-beginning) (region-end))
   ;; Deactive region no matter what.
   (deactivate-mark))
@@ -422,11 +416,10 @@ REGEXP : reqular expression use to align."
 ;;;###autoload
 (defun jcs-align-document (regexp)
   "Align current document.
-URL(jenchieh): https://www.emacswiki.org/emacs/AlignCommands
-
 REGEXP : reqular expression use to align."
-  (interactive)
 
+  (interactive)
+  ;; URL(jenchieh): https://www.emacswiki.org/emacs/AlignCommands
   ;; align the whole doc.
   (jcs-align-region-by-points regexp (point-min) (point-max)))
 
@@ -435,7 +428,6 @@ REGEXP : reqular expression use to align."
   "Either align the region or document depend on if there is \
 region selected?"
   (interactive)
-
   (save-excursion
     (let (;; NOTE(jenchieh): this is the most common one.
           ;; Compatible to all programming languages use equal
@@ -517,7 +509,7 @@ REGEXP : reqular expression use to align."
                     (concat "\\(\\s-*\\)" regexp) 1 1 t))))
 
 ;;;###autoload
-(defun revert-buffer-no-confirm ()
+(defun jcs-revert-buffer-no-confirm ()
   "Revert buffer without confirmation."
   ;; SOURCE(jenchieh):
   ;; 1) http://emacs.stackexchange.com/questions/169/how-do-i-reload-a-file-in-a-buffer
@@ -731,26 +723,29 @@ file-project.el' plugin."
 (defun jcs-kill-this-buffer ()
   "Kill this buffer."
   (interactive)
-  ;; If `undo-tree' visualizer exists, kill it too.
-  (save-selected-window
-    (let ((target-kill-buffer (jcs-buffer-name-or-buffer-file-name)))
+  (let ((target-kill-buffer (jcs-buffer-name-or-buffer-file-name)))
+
+    (kill-this-buffer)
+
+    (save-selected-window
+      ;; If `undo-tree' visualizer exists, kill it too.
       (when (ignore-errors (jcs-jump-shown-to-buffer undo-tree-visualizer-buffer-name))
-        (message "undo-tree-visualizer-parent-buffer : %s" undo-tree-visualizer-parent-buffer)
-        (jcs-print-current-buffer-name)
-        (when (string-match-p undo-tree-visualizer-parent-buffer target-kill-buffer)
-          (undo-tree-visualizer-quit)))))
+        (let ((undoing-buffer-name (buffer-name undo-tree-visualizer-parent-buffer)))
+          (message "undoing-buffer-name : %s" undoing-buffer-name)
+          (message "target-kill-buffer : %s" target-kill-buffer)
+          (when (and undoing-buffer-name
+                     (string-match-p undoing-buffer-name target-kill-buffer))
+            (undo-tree-visualizer-quit)))))
 
-  (kill-this-buffer)
+    (save-selected-window
+      (when (ignore-errors (jcs-jump-shown-to-buffer "*Buffer List*"))
+        ;; NOTE(jenchieh): Refresh buffer menu once.
+        (jcs-buffer-menu)))
 
-  (save-selected-window
-    (when (ignore-errors (jcs-jump-shown-to-buffer "*Buffer List*"))
-      ;; NOTE(jenchieh): Refresh buffer menu once.
-      (jcs-buffer-menu)))
-
-  ;; If still in the buffer menu, try switch to the
-  ;; previous buffer
-  (when (jcs-is-current-major-mode-p "Buffer-menu-mode")
-    (previous-buffer)))
+    ;; If still in the buffer menu, try switch to the
+    ;; previous buffer
+    (when (jcs-is-current-major-mode-p "Buffer-menu-mode")
+      (previous-buffer))))
 
 ;;;###autoload
 (defun jcs-maybe-kill-this-buffer (&optional ecp-same)
