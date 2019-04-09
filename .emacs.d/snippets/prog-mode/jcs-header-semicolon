@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
-# name: jcs-header-semi
-# key: jcs-header-semi
+# name: jcs-header-semicolon
+# key: jcs-header-semicolon
 # --
 ;; ========================================================================
 ;; $File: `(jcs-get-file-name)` $
