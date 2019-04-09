@@ -1,0 +1,19 @@
+# -*- mode: snippet -*-
+# name: jcs-header
+# key: jcs-header
+# --
+/*
+Service Platform Data Transfer
+
+Source Server         : $server_name$
+Source Server Type    : $server_type$
+Source Server Version : $server_version$
+Source Host           : $hostname$
+Source Schema         : $schema$
+
+Target Server Type    : $server_type$
+Target Server Version : $server_version$
+File Encoding         : $file_encoding$
+
+Date: `(jcs-get-timestamp-ver1)`
+*/
