@@ -1,4 +1,4 @@
-;;; jcs-txt-mode.el --- Text mode. -*- lexical-binding: t -*-
+;;; jcs-txt-mode.el --- Text related modes. -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -39,7 +39,7 @@
 
 
 ;;====================================
-;; Gitignore
+;; Gitattributes
 ;;---------------------------
 
 (require 'gitattributes-mode)
