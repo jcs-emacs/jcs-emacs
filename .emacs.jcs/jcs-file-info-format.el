@@ -52,12 +52,17 @@ TEMPLATE-STR : template string data."
   ;; return itself.
   template-str)
 
-(defun jcs-insert-template-by-file-path (filePath)
-  "Swap all keywords then insert it to current buffer.
+(defun jcs-get-template-by-file-path (filePath)
+  "Swap all keywords then return it.
 FILEPATH : file path to insert and swap keyword."
   (let ((template-str (jcs-get-string-from-file filePath)))
     (setq template-str (jcs-swap-keyword-template template-str))
-    (insert template-str)))
+    template-str))
+
+(defun jcs-insert-template-by-file-path (filePath)
+  "Swap all keywords then insert it to current buffer.
+FILEPATH : file path to insert and swap keyword."
+  (insert (jcs-get-template-by-file-path filePath)))
 
 
 ;;---------------------------------------------
@@ -95,79 +100,76 @@ FILEPATH : file path to insert and swap keyword."
 If the template configuration file has change, this must be call
 in order to take effect.  Half hot reloading process."
   (interactive)
-  (setq jcs-preload-global-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/header/global_template.txt"))
-  (setq jcs-preload-tag-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/header/tag_template.txt"))
-  (setq jcs-preload-manage-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/header/manage_template.txt"))
-  (setq jcs-preload-semi-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/header/semi_template.txt"))
-  (setq jcs-preload-single-quote-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/header/singlequote_template.txt"))
-  (setq jcs-preload-double-quote-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/header/doublequote_template.txt"))
   (setq jcs-preload-double-colon-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/header/doublecolon_template.txt"))
-  (setq jcs-preload-double-dash-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/header/doubledash_template.txt")))
-
-(defun jcs-get-global-file-info ()
-  "Return the preloaded global file info template."
-  (jcs-swap-keyword-template jcs-preload-global-file-info))
-
-(defun jcs-get-tag-file-info ()
-  "Return the preloaded tag file info template."
-  (jcs-swap-keyword-template jcs-preload-tag-file-info))
-
-(defun jcs-get-manage-file-info ()
-  "Return the preloaded manage file info template."
-  (jcs-swap-keyword-template jcs-preload-manage-file-info))
-
-(defun jcs-get-semi-file-info ()
-  "Return the preloaded semi file info template."
-  (jcs-swap-keyword-template jcs-preload-semi-file-info))
-
-(defun jcs-get-single-quote-file-info ()
-  "Return the preloaded single quote file info template."
-  (jcs-swap-keyword-template jcs-preload-single-quote-file-info))
-
-(defun jcs-get-double-quote-file-info ()
-  "Return the preloaded double quote file info template."
-  (jcs-swap-keyword-template jcs-preload-double-quote-file-info))
-
-(defun jcs-get-double-colon-file-info ()
-  "Return the preloaded double colon file info template."
-  (jcs-swap-keyword-template jcs-preload-double-colon-file-info))
-
-(defun jcs-get-double-dash-file-info ()
-  "Return the preloaded double dash file info template."
-  (jcs-swap-keyword-template jcs-preload-double-dash-file-info))
+  (setq jcs-preload-double-dash-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/header/doubledash_template.txt"))
+  (setq jcs-preload-double-quote-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/header/doublequote_template.txt"))
+  (setq jcs-preload-global-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/header/global_template.txt"))
+  (setq jcs-preload-manage-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/header/manage_template.txt"))
+  (setq jcs-preload-semi-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/header/semicolon_template.txt"))
+  (setq jcs-preload-single-quote-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/header/singlequote_template.txt"))
+  (setq jcs-preload-tag-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/header/tag_template.txt")))
 
 
 ;;---------------------------------------------
 ;; Header
 ;;---------------------------------------------
+
+(defun jcs-get-double-colon-file-info ()
+  "Return the preloaded double colon file info template."
+  (jcs-swap-keyword-template jcs-preload-double-colon-file-info))
+(defun jcs-insert-double-colon-file-info ()
+  "Specific header format for double semi-colon."
+  (insert (jcs-get-double-colon-file-info)))
+
+(defun jcs-get-double-dash-file-info ()
+  "Return the preloaded double dash file info template."
+  (jcs-swap-keyword-template jcs-preload-double-dash-file-info))
+(defun jcs-insert-double-dash-file-info ()
+  "Specific header format for double dash."
+  (insert (jcs-get-double-dash-file-info)))
+
+(defun jcs-get-double-quote-file-info ()
+  "Return the preloaded double quote file info template."
+  (jcs-swap-keyword-template jcs-preload-double-quote-file-info))
+(defun jcs-insert-double-quote-file-info ()
+  "Specific header format for double quote."
+  (insert (jcs-get-double-quote-file-info)))
+
+(defun jcs-get-global-file-info ()
+  "Return the preloaded global file info template."
+  (jcs-swap-keyword-template jcs-preload-global-file-info))
 (defun jcs-insert-global-file-info ()
   "Using '/*' '*/' for commenting programming languages."
-  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/header/global_template.txt"))
+  (insert (jcs-get-global-file-info)))
 
-(defun jcs-insert-tag-file-info ()
-  "Tag file header info for tag language."
-  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/header/tag_template.txt"))
-
+(defun jcs-get-manage-file-info ()
+  "Return the preloaded manage file info template."
+  (jcs-swap-keyword-template jcs-preload-manage-file-info))
 (defun jcs-insert-manage-file-info ()
   "Any managing file format.
 Text file, batch file, shell script, etc."
-  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/header/manage_template.txt"))
+  (insert (jcs-get-manage-file-info)))
 
-(defun jcs-insert-semi-file-info ()
+(defun jcs-get-semi-colon-file-info ()
+  "Return the preloaded semi file info template."
+  (jcs-swap-keyword-template jcs-preload-semi-file-info))
+(defun jcs-insert-semi-colon-file-info ()
   "Specific header format for Assembly Language/lisp/elisp, etc."
-  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/header/semi_template.txt"))
+  (insert (jcs-get-semi-colon-file-info)))
 
+(defun jcs-get-single-quote-file-info ()
+  "Return the preloaded single quote file info template."
+  (jcs-swap-keyword-template jcs-preload-single-quote-file-info))
 (defun jcs-insert-single-quote-file-info ()
   "Specific header format for single qoute."
-  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/header/singlequote_template.txt"))
+  (insert (jcs-get-single-quote-file-info)))
 
-(defun jcs-insert-double-quote-file-info ()
-  "Specific header format for double quote."
-  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/header/doublequote_template.txt"))
-
-(defun jcs-insert-double-colon-file-info ()
-  "Specific header format for double semi-colon."
-  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/header/doublecolon_template.txt"))
+(defun jcs-get-tag-file-info ()
+  "Return the preloaded tag file info template."
+  (jcs-swap-keyword-template jcs-preload-tag-file-info))
+(defun jcs-insert-tag-file-info ()
+  "Tag file header info for tag language."
+  (insert (jcs-get-tag-file-info)))
 
 
 ;;---------------------------------------------
@@ -426,5 +428,5 @@ on language selected."
   (jcs-insert-template-by-file-path "~/.emacs.jcs/template/yaml/yaml_template.txt"))
 
 
-(provide 'jcs-file-info-format)
+(provide 'jcs-file-info-format)
 ;;; jcs-file-info-format.el ends here
