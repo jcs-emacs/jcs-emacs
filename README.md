@@ -54,7 +54,7 @@ the startup time down to `5` to `15` seconds.
 ## Features
 
 * *Abbreivation Definition* - powered by 
-[project-abbrev](https://github.com/jcs090218/project-abbrev).
+[project-abbrev](https://github.com/elpa-host/project-abbrev).
 * *Auto Completion* - powered by 
 [company](https://github.com/company-mode/company-mode).
 * *Auto Highlight Symbol* - powered by 
@@ -72,11 +72,11 @@ the startup time down to `5` to `15` seconds.
 * *File Explorer* - powered by 
 [sr-speedbar](http://cedet.sourceforge.net/speedbar.shtml).
 * *File Header* - powered by 
-[file-header](https://github.com/alternative-emacs-packages/file-header).
+[file-header](https://github.com/alt-elpa/file-header).
 * *Folding* - powered by 
 [origami](https://github.com/gregsexton/origami.el).
 * *Font* - powered by 
-[use-ttf](https://github.com/jcs090218/use-ttf).
+[use-ttf](https://github.com/elpa-host/use-ttf).
 * *Highlight Matched Pairs* - powered by 
 [show-paren-mode](https://www.emacswiki.org/emacs/ShowParenMode).
 * *Recet Files* - powered by 
@@ -84,7 +84,7 @@ the startup time down to `5` to `15` seconds.
 * *Regexp* - powered by 
 [re-builder](https://www.emacswiki.org/emacs/ReBuilder).
 * *Line Annotation* - powered by 
-[line-reminder](https://github.com/jcs090218/line-reminder).
+[line-reminder](https://github.com/elpa-host/line-reminder).
 * *Line Number* - powered by 
 [display-line-numbers](https://github.com/emacs-mirror/emacs/blob/master/lisp/display-line-numbers.el)
 and 
