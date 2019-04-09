@@ -41,11 +41,7 @@ Return a list of installed packages or nil for every skipped package."
 
 
 ;; List of package you want to installed.
-(defvar jcs-package-install-list '(ac-emmet
-                                   ac-html            ;; auto complete html
-                                   ac-js2
-                                   ac-php             ;; auto complete php
-                                   ace-window
+(defvar jcs-package-install-list '(ace-window
                                    actionscript-mode
                                    adaptive-wrap
                                    ag
@@ -86,6 +82,7 @@ Return a list of installed packages or nil for every skipped package."
                                    gitattributes-mode
                                    gitconfig-mode
                                    gitignore-mode
+                                   glsl-mode
                                    go-mode
                                    google-maps
                                    google-this
