@@ -20,8 +20,8 @@ and it has extended from this configuration.
 * ActionScript 2.0 or 3.0 / Assembly Language
 * BASIC / Batchfile
 * C / C++ / C# / Clojure / COBOL / CSS
-* Elisp
-* Go
+* Emacs Lisp
+* GLSL / Go
 * Haskell / Haxe / HTML
 * JSON / Java / JavaScript
 * Lisp / Lua
