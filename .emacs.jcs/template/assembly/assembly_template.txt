@@ -1,4 +1,4 @@
-#SEMI_FILE_INFO#
+#D_SEMICOLON_FILE_INFO#
 
 
 ;; Input Functions (extern)
