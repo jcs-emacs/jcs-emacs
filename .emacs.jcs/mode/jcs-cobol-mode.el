@@ -1,4 +1,4 @@
-;;; jcs-cbl-mode.el --- COBOL mode. -*- lexical-binding: t -*-
+;;; jcs-cobol-mode.el --- COBOL mode. -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -47,5 +47,5 @@
 (add-to-list 'auto-mode-alist '("\\.cbl?\\'" . cobol-mode))
 
 
-(provide 'jcs-cbl-mode)
-;;; jcs-cbl-mode.el ends here
+(provide 'jcs-cobol-mode)
+;;; jcs-cobol-mode.el ends here

@@ -178,7 +178,7 @@
 (require 'jcs-sql-mode)
 (require 'jcs-go-mode)
 (require 'jcs-vimscript-mode)
-(require 'jcs-cbl-mode)
+(require 'jcs-cobol-mode)
 (require 'jcs-re-builder-mode)
 (require 'jcs-txt-mode)
 (require 'jcs-cmake-mode)
