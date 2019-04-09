@@ -69,29 +69,35 @@ FILEPATH : file path to insert and swap keyword."
 ;; Buffer String
 ;;---------------------------------------------
 
-(defvar jcs-preload-global-file-info nil
-  "Preload the global file info template.")
-
-(defvar jcs-preload-tag-file-info nil
-  "Preload the tag file info template.")
-
-(defvar jcs-preload-manage-file-info nil
-  "Preload the manage file info template.")
-
-(defvar jcs-preload-semi-file-info nil
-  "Preload the semi file info template.")
-
-(defvar jcs-preload-single-quote-file-info nil
-  "Preload the single quote file info template.")
-
-(defvar jcs-preload-double-quote-file-info nil
-  "Preload the double quote file info template.")
-
 (defvar jcs-preload-double-colon-file-info nil
   "Preload the double colon file info template.")
 
 (defvar jcs-preload-double-dash-file-info nil
   "Preload the double dash file info template.")
+
+(defvar jcs-preload-double-quote-file-info nil
+  "Preload the double quote file info template.")
+
+(defvar jcs-preload-double-semicolon-file-info nil
+  "Preload the double semicolon file info template.")
+
+(defvar jcs-preload-double-slash-file-info nil
+  "Preload the double slash file info template.")
+
+(defvar jcs-preload-global-file-info nil
+  "Preload the global file info template.")
+
+(defvar jcs-preload-sharp-file-info nil
+  "Preload the sharp file info template.")
+
+(defvar jcs-preload-semicolon-file-info nil
+  "Preload the semicolon file info template.")
+
+(defvar jcs-preload-single-quote-file-info nil
+  "Preload the single quote file info template.")
+
+(defvar jcs-preload-tag-file-info nil
+  "Preload the tag file info template.")
 
 
 ;;;###autoload
@@ -100,12 +106,14 @@ FILEPATH : file path to insert and swap keyword."
 If the template configuration file has change, this must be call
 in order to take effect.  Half hot reloading process."
   (interactive)
-  (setq jcs-preload-double-colon-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/header/doublecolon_template.txt"))
-  (setq jcs-preload-double-dash-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/header/doubledash_template.txt"))
-  (setq jcs-preload-double-quote-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/header/doublequote_template.txt"))
+  (setq jcs-preload-double-colon-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/header/d_colon_template.txt"))
+  (setq jcs-preload-double-dash-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/header/d_dash_template.txt"))
+  (setq jcs-preload-double-quote-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/header/d_quote_template.txt"))
+  (setq jcs-preload-double-semicolon-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/header/d_semicolon_template.txt"))
+  (setq jcs-preload-double-slash-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/header/d_slash_template.txt"))
   (setq jcs-preload-global-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/header/global_template.txt"))
-  (setq jcs-preload-manage-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/header/manage_template.txt"))
-  (setq jcs-preload-semi-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/header/semicolon_template.txt"))
+  (setq jcs-preload-semicolon-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/header/semicolon_template.txt"))
+  (setq jcs-preload-sharp-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/header/sharp_template.txt"))
   (setq jcs-preload-single-quote-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/header/singlequote_template.txt"))
   (setq jcs-preload-tag-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/header/tag_template.txt")))
 
@@ -135,6 +143,20 @@ in order to take effect.  Half hot reloading process."
   "Specific header format for double quote."
   (insert (jcs-get-double-quote-file-info)))
 
+(defun jcs-get-double-semicolon-file-info ()
+  "Return the preloaded double semicolon file info template."
+  (jcs-swap-keyword-template jcs-preload-double-semicolon-file-info))
+(defun jcs-insert-double-semicolon-file-info ()
+  "Specific header format for double semicolon."
+  (insert (jcs-get-double-semicolon-file-info)))
+
+(defun jcs-get-double-slash-file-info ()
+  "Return the preloaded double slash file info template."
+  (jcs-swap-keyword-template jcs-preload-double-slash-file-info))
+(defun jcs-insert-double-slash-file-info ()
+  "Specific header format for double slash."
+  (insert (jcs-get-double-slash-file-info)))
+
 (defun jcs-get-global-file-info ()
   "Return the preloaded global file info template."
   (jcs-swap-keyword-template jcs-preload-global-file-info))
@@ -142,20 +164,19 @@ in order to take effect.  Half hot reloading process."
   "Using '/*' '*/' for commenting programming languages."
   (insert (jcs-get-global-file-info)))
 
-(defun jcs-get-manage-file-info ()
-  "Return the preloaded manage file info template."
-  (jcs-swap-keyword-template jcs-preload-manage-file-info))
-(defun jcs-insert-manage-file-info ()
-  "Any managing file format.
-Text file, batch file, shell script, etc."
-  (insert (jcs-get-manage-file-info)))
+(defun jcs-get-semicolon-file-info ()
+  "Return the preloaded semicolon file info template."
+  (jcs-swap-keyword-template jcs-preload-semicolon-file-info))
+(defun jcs-insert-semicolon-file-info ()
+  "Specific header format for semicolon."
+  (insert (jcs-get-semicolon-file-info)))
 
-(defun jcs-get-semi-colon-file-info ()
-  "Return the preloaded semi file info template."
-  (jcs-swap-keyword-template jcs-preload-semi-file-info))
-(defun jcs-insert-semi-colon-file-info ()
-  "Specific header format for Assembly Language/lisp/elisp, etc."
-  (insert (jcs-get-semi-colon-file-info)))
+(defun jcs-get-sharp-file-info ()
+  "Return the preloaded sharp file info template."
+  (jcs-swap-keyword-template jcs-preload-sharp-file-info))
+(defun jcs-insert-sharp-file-info ()
+  "Specific header format for sharp."
+  (insert (jcs-get-sharp-file-info)))
 
 (defun jcs-get-single-quote-file-info ()
   "Return the preloaded single quote file info template."
@@ -243,6 +264,11 @@ Text file, batch file, shell script, etc."
 (defun jcs-insert-emacs-lisp-template ()
   "Template for Elisp."
   (jcs-insert-template-by-file-path "~/.emacs.jcs/template/emacs-lisp/emacs-lisp_template.txt"))
+
+;;; GLSL
+(defun jcs-insert-glsl-template ()
+  "Header for GLSL header file."
+  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/shader/glsl_template.txt"))
 
 ;;; Go
 (defun jcs-insert-go-template ()
