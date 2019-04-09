@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
-# name: jcs-header-doubledash
-# key: jcs-header-doubledash
+# name: jcs-header-d-dash
+# key: jcs-header--dash
 # --
 -- ========================================================================
 -- $File: `(jcs-get-file-name)` $

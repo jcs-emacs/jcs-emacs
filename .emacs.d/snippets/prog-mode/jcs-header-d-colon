@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
-# name: jcs-header-doublecolon
-# key: jcs-header-doublecolon
+# name: jcs-header-d-colon
+# key: jcs-header-d-colon
 # --
 :: ========================================================================
 :: $File: `(jcs-get-file-name)` $

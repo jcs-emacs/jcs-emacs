@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
-# name: jcs-header-doublequote
-# key: jcs-header-doublequote
+# name: jcs-header-d-quote
+# key: jcs-header-d-quote
 # --
 "" ========================================================================
 "" $File: `(jcs-get-file-name)` $
