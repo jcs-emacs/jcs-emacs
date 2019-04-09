@@ -51,7 +51,6 @@ Return a list of installed packages or nil for every skipped package."
                                    ag
                                    all-the-icons
                                    apache-mode
-                                   auto-complete
                                    auto-highlight-symbol
                                    auto-package-update
                                    auto-rename-tag
@@ -65,12 +64,12 @@ Return a list of installed packages or nil for every skipped package."
                                    cobol-mode
                                    com-css-sort
                                    company
+                                   company-quickhelp
                                    cpputils-cmake
                                    csharp-mode
                                    dash
                                    diminish
                                    dimmer
-                                   ein
                                    elpy
                                    emmet-mode
                                    exec-path-from-shell
