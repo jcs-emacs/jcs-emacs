@@ -5,17 +5,9 @@
 
 (defun jcs-lisp-mode-hook ()
   "Lisp mode hook."
-
-  ;; Abbrevation expansion
   (abbrev-mode 1)
-
-  ;; enable the stuff you want for Emacs Lisp here
   (electric-pair-mode 1)
-
-  ;; highlight URL and clickable.
   (goto-address-mode 1)
-
-  ;; Auto highlight the same word.
   (auto-highlight-symbol-mode t)
 
   ;; Treat underscore as word.

@@ -3,23 +3,12 @@
 ;;; Code:
 
 
+(require 'nxml-mode)
 (defun jcs-xml-mode-hook ()
-
-  (interactive)
-
-  ;; Abbrevation expansion
+  "XML mode hook."
   (abbrev-mode 1)
-
-  ;; enable the stuff you want for XML here
   (electric-pair-mode 1)
-
-  ;; highlight URL and clickable.
   (goto-address-mode 1)
-
-  ;; turn on auto complete.
-  (auto-complete-mode t)
-
-  ;; Auto highlight the same word.
   (auto-highlight-symbol-mode t)
 
   (defun jcs-xml-format ()
@@ -33,12 +22,12 @@
           ))
 
   )
-;; NOTE(jenchieh): they ae using nxml-mode instead of xml-mode
+;; STUDY(jenchieh): they ae using nxml-mode instead of xml-mode
 ;; which is really weird.
 (add-hook 'nxml-mode-hook 'jcs-xml-mode-hook)
 (add-hook 'nxml-mode-hook 'emmet-mode)
 
-(add-to-list 'auto-mode-alist '("\\.xml?\\'" . xml-mode))
+(add-to-list 'auto-mode-alist '("\\.xml?\\'" . nxml-mode))
 
 
 (provide 'jcs-xml-mode)

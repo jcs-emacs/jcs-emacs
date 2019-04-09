@@ -6,17 +6,9 @@
 (require 'swift-mode)
 (defun jcs-swift-mode-hook ()
   "Swift mode hook."
-
-  ;; Abbrevation expansion
   (abbrev-mode 1)
-
-  ;; enable the stuff you want for Lua here
   (electric-pair-mode 1)
-
-  ;; highlight URL and clickable.
   (goto-address-mode 1)
-
-  ;; Auto highlight the same word.
   (auto-highlight-symbol-mode t)
 
   ;; Treat underscore as word.
@@ -32,7 +24,7 @@
           ((string-match "[.]swift" buffer-file-name) (jcs-swift-format))
           ))
 
-  ;; jcs Swift key binding
+  ;; Normal
   (define-key swift-mode-map "\ek" #'jcs-maybe-kill-this-buffer)
   )
 (add-hook 'swift-mode-hook 'jcs-swift-mode-hook)

@@ -5,13 +5,9 @@
 
 (require 'scss-mode)
 (defun jcs-scss-mode-hook ()
-  ;; Abbrevation expansion
+  "SCSS mode hook."
   (abbrev-mode 1)
-
-  ;; highlight URL and clickable.
   (goto-address-mode 1)
-
-  ;; Auto highlight the same word.
   (auto-highlight-symbol-mode t)
 
   (defun jcs-scss-file-format ()
@@ -24,7 +20,7 @@
           ((string-match "[.]scss" buffer-file-name) (jcs-scss-file-format))
           ))
 
-  ;; jcs SCSS key binding
+  ;; Normal
   (define-key scss-mode-map (kbd "C-d") #'jcs-kill-whole-line)
   (define-key scss-mode-map "\C-c\C-c" #'kill-ring-save)
 

@@ -6,18 +6,11 @@
 (require 'markdown-mode)
 (defun jcs-markdown-mode-hook ()
   "Markdown mode hook."
-
-  ;; Abbrevation expansion
   (abbrev-mode 1)
-
-  ;; enable the stuff you want for Lua here
   (electric-pair-mode 1)
-
-  ;; highlight URL and clickable.
   (goto-address-mode 1)
 
-
-  ;; jcs Markdown key binding
+  ;; Normal
   (define-key markdown-mode-map (kbd "C-d") #'jcs-kill-whole-line)
   (define-key markdown-mode-map "\C-c\C-c" #'kill-ring-save)
 

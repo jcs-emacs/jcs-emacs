@@ -4,20 +4,11 @@
 
 
 (require 'nasm-mode)
-(defun jcs-nasm-mode-hook()
-  ;;
+(defun jcs-nasm-mode-hook ()
+  "NASM mode hook."
   (electric-pair-mode nil)
-
-  ;; Abbrevation expansion
   (abbrev-mode 1)
-
-  ;; highlight URL and clickable.
   (goto-address-mode 1)
-
-  ;; turn on auto complete.
-  (auto-complete-mode t)
-
-  ;; Auto highlight the same word.
   (auto-highlight-symbol-mode t)
 
   ;; TOPIC(jenchieh): Treat underscore as word.
@@ -36,7 +27,7 @@
           ((string-match "[.]inc" buffer-file-name) (jcs-asm-format))
           ))
 
-  ;; jcs key binding
+  ;; Normal
   (define-key nasm-mode-map (kbd "C-d") #'jcs-kill-whole-line)
   (define-key nasm-mode-map "\C-c\C-c" #'kill-ring-save)
   (define-key nasm-mode-map (kbd "<up>") #'jcs-py-indent-up)

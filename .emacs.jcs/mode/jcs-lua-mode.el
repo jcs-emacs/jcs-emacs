@@ -25,7 +25,6 @@
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
 
-
   (defun jcs-lua-script-format ()
     "Format the given file as a Lua script."
     (when (jcs-is-current-file-empty-p)
@@ -37,7 +36,7 @@
           ((string-match "[.]luac" buffer-file-name) (jcs-lua-script-format))
           ))
 
-  ;; jcs Lua key binding
+  ;; Normal
   (define-key lua-mode-map (kbd "C-d") #'jcs-kill-whole-line)
   (define-key lua-mode-map "\C-c\C-c" #'kill-ring-save)
 

@@ -5,6 +5,9 @@
 
 (defun jcs-objc-mode-hook ()
   "Objective-C mode hook."
+  (abbrev-mode 1)
+  (auto-highlight-symbol-mode t)
+  (goto-address-mode 1)
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)
@@ -18,7 +21,7 @@
           ((string-match "[.]m" buffer-file-name) (jcs-objc-source-format))
           ))
 
-  ;; jcs Objective-C key binding
+  ;; Normal
   (define-key objc-mode-map [f8] #'jcs-find-corresponding-file)
   (define-key objc-mode-map [S-f8] #'jcs-find-corresponding-file-other-window)
 

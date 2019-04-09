@@ -17,7 +17,7 @@
           ((string-match "[.]c" buffer-file-name) (jcs-c-source-format))
           ))
 
-  ;; jcs C++ key binding
+  ;; Normal
   (define-key c++-mode-map [f8] #'jcs-find-corresponding-file)
   (define-key c++-mode-map [S-f8] #'jcs-find-corresponding-file-other-window)
 

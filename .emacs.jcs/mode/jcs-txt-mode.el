@@ -10,19 +10,11 @@
 (require 'gitignore-mode)
 (defun jcs-gitignore-mode-hook ()
   "Gitignore mode hook."
-
   (electric-pair-mode nil)
-
-  ;; highlight URL and clickable.
   (goto-address-mode 1)
-
-  ;; turn on auto complete.
-  (auto-complete-mode t)
-
-  ;; Auto highlight the same word.
   (auto-highlight-symbol-mode t)
 
-  ;; jcs gitignore key binding
+  ;; Normal
   (define-key gitignore-mode-map (kbd "<up>") 'previous-line)
   (define-key gitignore-mode-map (kbd "<down>") 'next-line)
   (define-key gitignore-mode-map (kbd "C-d") 'jcs-kill-whole-line)
@@ -34,9 +26,6 @@
 
 (add-to-list 'auto-mode-alist '("\\.gitignore?\\'" . gitignore-mode))
 
-;; temporary ALGOL
-(add-to-list 'auto-mode-alist '("\\.alg?\\'" . gitignore-mode))
-
 
 ;;====================================
 ;; Gitattributes
@@ -45,19 +34,11 @@
 (require 'gitattributes-mode)
 (defun jcs-gitattributes-mode-hook ()
   "Gitattributes mode hook."
-
   (electric-pair-mode nil)
-
-  ;; highlight URL and clickable.
   (goto-address-mode 1)
-
-  ;; turn on auto complete.
-  (auto-complete-mode t)
-
-  ;; Auto highlight the same word.
   (auto-highlight-symbol-mode t)
 
-  ;; jcs gitignore key binding
+  ;; Normal
   (define-key gitattributes-mode-map (kbd "<up>") 'previous-line)
   (define-key gitattributes-mode-map (kbd "<down>") 'next-line)
   (define-key gitattributes-mode-map (kbd "C-d") 'jcs-kill-whole-line)
@@ -65,7 +46,7 @@
   (define-key gitattributes-mode-map (kbd "<up>") 'previous-line)
   (define-key gitattributes-mode-map (kbd "<down>") 'next-line)
   )
-(add-hook 'gitignore-mode-hook 'jcs-gitignore-mode-hook)
+(add-hook 'gitattributes-mode-hook 'jcs-gitattributes-mode-hook)
 
 (add-to-list 'auto-mode-alist '("\\.gitattributes?\\'" . gitattributes-mode))
 
@@ -78,16 +59,9 @@
 ;; No fold when open `org' file.
 (setq org-startup-folded nil)
 
-(defun jcs-org-mode()
-  "JayCeS org mode."
-
-  ;; highlight URL and clickable.
+(defun jcs-org-mode-hook ()
+  "Org mode hook."
   (goto-address-mode 1)
-
-  ;; turn on auto complete.
-  (auto-complete-mode t)
-
-  ;; Auto highlight the same word.
   (auto-highlight-symbol-mode t)
 
   (defun jcs-org-mode-format()
@@ -100,7 +74,7 @@
           ((string-match "[.]txt" buffer-file-name) (jcs-org-mode-format))
           ))
 
-  ;; jcs org mode key binding
+  ;; Normal
   (define-key org-mode-map (kbd "<up>") #'previous-line)
   (define-key org-mode-map (kbd "<down>") #'next-line)
   (define-key org-mode-map (kbd "C-d") #'jcs-kill-whole-line)
@@ -117,7 +91,7 @@
   (define-key org-mode-map (kbd "S-<left>") #'jcs-org-table-left)
   (define-key org-mode-map (kbd "S-<right>") #'jcs-org-table-right)
   )
-(add-hook 'org-mode-hook 'jcs-org-mode)
+(add-hook 'org-mode-hook 'jcs-org-mode-hook)
 
 ;; set the defualt text mode to org mode.
 (add-to-list 'auto-mode-alist '("\\.txt?\\'" . org-mode))

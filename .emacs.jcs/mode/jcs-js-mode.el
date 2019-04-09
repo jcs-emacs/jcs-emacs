@@ -3,39 +3,28 @@
 ;;; Code:
 
 
-(require 'ac-js2)
-(setq ac-js2-evaluate-calls t)
-;;(add-hook 'js2-mode-hook 'ac-js2-mode)
+(use-package js2-refactor
+  :config
+  (add-hook 'js2-mode-hook #'js2-refactor-mode)
+  (js2r-add-keybindings-with-prefix "C-c C-m"))
 
-(require 'js2-refactor)
-(add-hook 'js2-mode-hook #'js2-refactor-mode)
-(js2r-add-keybindings-with-prefix "C-c C-m")
+(use-package skewer-mode
+  :config
+  (add-hook 'js2-mode-hook 'skewer-mode)
+  (add-hook 'css-mode-hook 'skewer-css-mode)
+  (add-hook 'html-mode-hook 'skewer-html-mode))
 
-(require 'skewer-mode)
-(add-hook 'js2-mode-hook 'skewer-mode)
-(add-hook 'css-mode-hook 'skewer-css-mode)
-(add-hook 'html-mode-hook 'skewer-html-mode)
 
 (require 'js2-mode)
-;; self define javascript mode here!
 (defun jcs-js-mode-hook ()
-
-  ;; enable impatient mode for real time editing.
-  (impatient-mode t)
-
+  "JavaScript mode hook."
   (setq js2-basic-offset 2)
   (setq js2-bounce-indent-p t)
 
-  ;; enable the stuff you want for JavaScript here
+  (impatient-mode t)
   (electric-pair-mode 1)
-
-  ;; highlight URL and clickable.
   (goto-address-mode 1)
-
-  ;; Auto highlight the same word.
   (auto-highlight-symbol-mode t)
-
-  ;; turn on auto complete.
   (auto-complete-mode t)
 
   ;; Treat underscore as word.
@@ -54,7 +43,7 @@
   ;; Set Faces.
   (jcs-init-set-face)
 
-  ;; jcs javascript key binding
+  ;; Normal
   (define-key js2-mode-map (kbd "C-d") #'jcs-kill-whole-line)
   (define-key js2-mode-map "\C-c\C-c" #'kill-ring-save)
   (define-key ac-js2-mode-map "\C-c\C-c" #'kill-ring-save)

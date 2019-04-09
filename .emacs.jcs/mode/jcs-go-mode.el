@@ -5,16 +5,10 @@
 
 (require 'go-mode)
 (defun jcs-go-mode-hook ()
-  ;; Abbrevation expansion
+  "Go mode hook."
   (abbrev-mode 1)
-
-  ;; enable the stuff you want for Lua here
   (electric-pair-mode 1)
-
-  ;; highlight URL and clickable.
   (goto-address-mode 1)
-
-  ;; Auto highlight the same word.
   (auto-highlight-symbol-mode t)
 
   (defun jcs-go-script-format ()
@@ -27,10 +21,9 @@
           ((string-match "[.]go" buffer-file-name) (jcs-go-script-format))
           ))
 
-  ;; jcs Lua key binding
+  ;; Normal
   (define-key go-mode-map (kbd "C-d") #'jcs-kill-whole-line)
   (define-key go-mode-map "\C-c\C-c" #'kill-ring-save)
-
   )
 (add-hook 'go-mode-hook 'jcs-go-mode-hook)
 

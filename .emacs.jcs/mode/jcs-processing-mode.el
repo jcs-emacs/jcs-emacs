@@ -2,6 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
+
 (require 'processing-mode)
 
 ;;(setq processing-location "/path/to/processing-java")
@@ -16,17 +17,9 @@
 
 (defun jcs-processing-mode-hook ()
   "Hook for processing mode."
-
-  ;; Abbrevation expansion
   (abbrev-mode 1)
-
-  ;; enable the stuff you want for Lua here
   (electric-pair-mode 1)
-
-  ;; highlight URL and clickable.
   (goto-address-mode 1)
-
-  ;; Auto highlight the same word.
   (auto-highlight-symbol-mode t)
 
   ;; Treat underscore as word.
@@ -42,7 +35,7 @@
           ((string-match "[.]pde" buffer-file-name) (jcs-processing-script-format))
           ))
 
-  ;; jcs processing key binding
+  ;; Normal
   (define-key processing-mode-map (kbd "C-d") #'jcs-kill-whole-line)
   (define-key processing-mode-map "\C-c\C-c" #'kill-ring-save)
 

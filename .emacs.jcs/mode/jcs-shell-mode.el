@@ -3,12 +3,11 @@
 ;;; Code:
 
 
-(require 'company)
 (require 'shell)
 (defun jcs-shell-mode-hook ()
   "Shell mode hook."
 
-  ;; Key
+  ;; Normal
   (define-key shell-mode-map (kbd "DEL") #'jcs-electric-backspace)
   (define-key shell-mode-map (kbd "{") #'jcs-vs-front-curly-bracket-key)
   (define-key shell-mode-map (kbd ";") #'jcs-vs-semicolon-key)

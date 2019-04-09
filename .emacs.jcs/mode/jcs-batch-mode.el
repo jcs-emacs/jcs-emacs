@@ -7,15 +7,8 @@
 (defun jcs-batch-mode-hook ()
   "Batch mode hook."
   (electric-pair-mode nil)
-
-  ;; Abbrevation expansion
   (abbrev-mode 1)
-
-  ;; highlight URL and clickable.
   (goto-address-mode 1)
-
-  ;; turn on auto complete.
-  (auto-complete-mode t)
 
   ;; TOPIC(jenchieh): Treat underscore as word.
   ;; URL(jenchieh): https://emacs.stackexchange.com/questions/9583/how-to-treat-underscore-as-part-of-the-word
@@ -32,7 +25,7 @@
           ((string-match "[.]bat" buffer-file-name) (jcs-batch-script-format))
           ))
 
-  ;; jcs key binding
+  ;; Normal
   (define-key bat-mode-map (kbd "C-d") #'jcs-kill-whole-line)
   (define-key bat-mode-map "\C-c\C-c" #'kill-ring-save)
 

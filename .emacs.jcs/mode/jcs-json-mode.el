@@ -4,8 +4,8 @@
 
 
 (require 'json-mode)
-;; self define javascript mode here!
 (defun jcs-json-mode-hook ()
+  "JSON mode hook."
 
   (setq js2-basic-offset 2)
   (setq js2-bounce-indent-p t)
@@ -13,13 +13,8 @@
   (make-local-variable 'js-indent-level)
   (setq js-indent-level 2)
 
-  ;; enable the stuff you want for JavaScript here
   (electric-pair-mode 1)
-
-  ;; highlight URL and clickable.
   (goto-address-mode 1)
-
-  ;; Auto highlight the same word.
   (auto-highlight-symbol-mode t)
 
 
@@ -35,7 +30,7 @@
           ((string-match "[.]json" buffer-file-name) (jcs-json-format))
           ))
 
-  ;; jcs javascript key binding
+  ;; Normal
   (define-key json-mode-map (kbd "C-d") #'jcs-kill-whole-line)
   (define-key json-mode-map "\C-c\C-c" #'kill-ring-save)
 

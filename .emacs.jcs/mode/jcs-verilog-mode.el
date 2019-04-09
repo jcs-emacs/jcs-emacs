@@ -6,21 +6,9 @@
 (require 'verilog-mode)
 (defun jcs-verilog-mode-hook ()
   "Verilog mode hook."
-  (interactive)
-
-  ;; Abbrevation expansion
   (abbrev-mode 1)
-
-  ;; enable the stuff you want for Lua here
   (electric-pair-mode 1)
-
-  ;; highlight URL and clickable.
   (goto-address-mode 1)
-
-  ;; turn on auto complete.
-  (auto-complete-mode t)
-
-  ;; Auto highlight the same word.
   (auto-highlight-symbol-mode t)
 
   (defun jcs-verilog-script-format ()

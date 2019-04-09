@@ -107,17 +107,10 @@
 ;;-----------------------------------------------------------
 ;;-----------------------------------------------------------
 
-
 (defun jcs-cc-mode-hook ()
   "C/C++ mode hook."
-
-  ;; Abbrevation expansion
   (abbrev-mode 1)
-
-  ;; Auto highlight the same word.
   (auto-highlight-symbol-mode t)
-
-  ;; highlight URL and clickable.
   (goto-address-mode 1)
 
   ;; Set my style for the current buffer

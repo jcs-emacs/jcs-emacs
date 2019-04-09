@@ -20,11 +20,10 @@
 ;; TOPIC(jayces): Elisp: How to Create Keymap for Major Mode
 ;; URL(jayces): http://ergoemacs.org/emacs/elisp_create_major_mode_keymap.html
 (define-derived-mode jcs-shader-mode ()
-  ;; Abbrevation expansion
   (abbrev-mode 1)
-
-  ;; enable the stuff you want for Lua here
   (electric-pair-mode 1)
+  (goto-address-mode 1)
+  (auto-highlight-symbol-mode t)
 
   (shader-mode)
 
@@ -32,12 +31,6 @@
   (setq-local comment-start-skip "/\\*+[ \t]*")
   (setq-local comment-end "*/")
   (setq-local comment-end-skip "[ \t]*\\*+/")
-
-  ;; highlight URL and clickable.
-  (goto-address-mode 1)
-
-  ;; Auto highlight the same word.
-  (auto-highlight-symbol-mode t)
 
   ;; TOPIC(jenchieh): Treat underscore as word.
   ;; URL(jenchieh): https://emacs.stackexchange.com/questions/9583/how-to-treat-underscore-as-part-of-the-word
@@ -58,6 +51,43 @@
   (use-local-map jcs-shader-mode-map)
   )
 (add-to-list 'auto-mode-alist '("\\.shader?\\'" . jcs-shader-mode))
+
+
+
+(require 'glsl-mode)
+(defun jcs-glsl-mode-hook ()
+  "GLSL mode hook."
+  (abbrev-mode 1)
+  (electric-pair-mode 1)
+  (goto-address-mode 1)
+  (auto-highlight-symbol-mode t)
+
+  ;; Treat underscore as word.
+  (modify-syntax-entry ?_ "w")
+
+  (defun jcs-glsl-script-format ()
+    "Format the given file as a GLSL shader file."
+    (when (jcs-is-current-file-empty-p)
+      (jcs-insert-glsl-template)))
+
+  (when buffer-file-name
+    (cond ((file-exists-p buffer-file-name) t)
+          ((string-match "[.]frag" buffer-file-name) (jcs-glsl-script-format))
+          ((string-match "[.]geom" buffer-file-name) (jcs-glsl-script-format))
+          ((string-match "[.]glsl" buffer-file-name) (jcs-glsl-script-format))
+          ((string-match "[.]vert" buffer-file-name) (jcs-glsl-script-format))
+          ))
+
+  ;; Normal
+  (define-key glsl-mode-map (kbd "C-d") #'jcs-kill-whole-line)
+  (define-key glsl-mode-map "\C-c\C-c" #'kill-ring-save)
+  )
+(add-hook 'glsl-mode-hook 'jcs-glsl-mode-hook)
+
+(add-to-list 'auto-mode-alist '("\\.frag'?\\'" . glsl-mode))
+(add-to-list 'auto-mode-alist '("\\.geom'?\\'" . glsl-mode))
+(add-to-list 'auto-mode-alist '("\\.glsl'?\\'" . glsl-mode))
+(add-to-list 'auto-mode-alist '("\\.vert'?\\'" . glsl-mode))
 
 
 (provide 'jcs-shader-mode)

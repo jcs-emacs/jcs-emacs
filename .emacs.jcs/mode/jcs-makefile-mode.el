@@ -7,7 +7,6 @@
   "Makefile mode hook."
   (electric-pair-mode nil)
   (goto-address-mode 1)
-  (auto-complete-mode t)
   (auto-highlight-symbol-mode t)
 
   (defun jcs-makefile-format ()
@@ -23,7 +22,7 @@
         ((string-match "[.]mak" buffer-file-name) (jcs-makefile-format))
         )
 
-  ;; jcs makefile key binding
+  ;; Normal
   (define-key makefile-mode-map (kbd "<up>") #'jcs-py-indent-up)
   (define-key makefile-mode-map (kbd "<down>") #'jcs-py-indent-down)
   (define-key makefile-mode-map (kbd "RET") #'jcs-makefile-newline)

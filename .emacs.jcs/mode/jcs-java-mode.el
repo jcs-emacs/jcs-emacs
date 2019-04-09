@@ -5,14 +5,8 @@
 
 (defun jcs-java-mode-hook ()
   "Java mode hook."
-
-  ;; Abbrevation expansion
   (abbrev-mode 1)
-
-  ;; highlight URL and clickable.
   (goto-address-mode 1)
-
-  ;; Auto highlight the same word.
   (auto-highlight-symbol-mode t)
 
   ;; Treat underscore as word.
@@ -38,7 +32,7 @@
   (face-remap-add-relative 'font-lock-constant-face
                            '((:foreground "#D2D2D2")))
 
-  ;; jcs Java key binding
+  ;; Normal
   (define-key java-mode-map (kbd "C-d") #'jcs-kill-whole-line)
   (define-key java-mode-map "\C-c\C-c" #'kill-ring-save)
 
@@ -67,9 +61,10 @@
 (add-to-list 'auto-mode-alist '("\\.java'?\\'" . java-mode))
 
 
-(require 'javadoc-lookup)
-;; Function used when performing a minibuffer read.
-(setq javadoc-lookup-completing-read-function #'completing-read)
+(use-package javadoc-lookup
+  :config
+  ;; Function used when performing a minibuffer read.
+  (setq javadoc-lookup-completing-read-function #'completing-read))
 
 
 (provide 'jcs-java-mode)

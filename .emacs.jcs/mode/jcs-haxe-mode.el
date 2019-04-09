@@ -6,20 +6,9 @@
 (require 'haxe-mode)
 (defun jcs-haxe-mode-hook ()
   "Haxe mode hook."
-
-  ;; Abbrevation expansion
   (abbrev-mode 1)
-
-  ;; enable the stuff you want for Lua here
   (electric-pair-mode 1)
-
-  ;; highlight URL and clickable.
   (goto-address-mode 1)
-
-  ;; turn on auto complete.
-  (auto-complete-mode t)
-
-  ;; Auto highlight the same word.
   (auto-highlight-symbol-mode t)
 
   ;; TOPIC(jenchieh): Treat underscore as word.
@@ -36,7 +25,7 @@
           ((string-match "[.]hx" buffer-file-name) (jcs-haxe-script-format))
           ))
 
-  ;; jcs Haxe key binding
+  ;; Normal
   (define-key haxe-mode-map (kbd "C-d") #'jcs-kill-whole-line)
   (define-key haxe-mode-map "\C-c\C-c" #'kill-ring-save)
 

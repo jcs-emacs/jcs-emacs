@@ -5,9 +5,7 @@
 
 (require 'actionscript-mode)
 (defun jcs-actionscript-mode-hook ()
-  "JayCeS AS mode."
-
-  ;; highlight URL and clickable.
+  "ActionScript mode."
   (goto-address-mode 1)
 
   ;; TOPIC(jenchieh): Treat underscore as word.
@@ -25,7 +23,7 @@
           ((string-match "[.]as" buffer-file-name) (jcs-actionsript-class-format))
           ))
 
-  ;; jcs java key binding
+  ;; Normal
   (define-key actionscript-mode-map (kbd "C-d") #'jcs-kill-whole-line)
   (define-key actionscript-mode-map "\C-c\C-c" #'kill-ring-save)
 

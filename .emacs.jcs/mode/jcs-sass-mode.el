@@ -5,13 +5,9 @@
 
 (require 'ssass-mode)
 (defun jcs-sass-mode-hook ()
-  ;; Abbrevation expansion
+  "SASS mode hook."
   (abbrev-mode 1)
-
-  ;; highlight URL and clickable.
   (goto-address-mode 1)
-
-  ;; Auto highlight the same word.
   (auto-highlight-symbol-mode t)
 
   (defun jcs-sass-file-format ()
@@ -24,7 +20,7 @@
           ((string-match "[.]sass" buffer-file-name) (jcs-sass-file-format))
           ))
 
-  ;; jcs SASS key binding
+  ;; Normal
   (define-key ssass-mode-map (kbd "C-d") #'jcs-kill-whole-line)
   (define-key ssass-mode-map "\C-c\C-c" #'kill-ring-save)
 

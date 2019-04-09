@@ -6,17 +6,9 @@
 (require 'basic-mode)
 (defun jcs-basic-mode-hook ()
   "Hook for `basic-mode'."
-
-  ;; Abbrevation expansion
   (abbrev-mode 1)
-
-  ;; enable the stuff you want for Emacs Lisp here
   (electric-pair-mode 1)
-
-  ;; highlight URL and clickable.
   (goto-address-mode 1)
-
-  ;; Auto highlight the same word.
   (auto-highlight-symbol-mode t)
 
   (defun jcs-basic-script-format ()
@@ -29,7 +21,7 @@
           ((string-match "[.]bas" buffer-file-name) (jcs-basic-script-format))
           ))
 
-  ;; BASIC key bindings
+  ;; Normal
   (define-key basic-mode-map (kbd "C-d") #'jcs-kill-whole-line)
   (define-key basic-mode-map "\C-c\C-c" #'kill-ring-save)
   )

@@ -5,22 +5,11 @@
 
 (require 'csharp-mode)
 (defun jcs-csharp-mode-hook ()
-
+  "CSharp mode hoo."
   (preproc-font-lock-mode t)
-
-  ;; Abbrevation expansion
   (abbrev-mode 1)
-
-  ;; enable the stuff you want for C# here
   (electric-pair-mode 1)
-
-  ;; highlight URL and clickable.
   (goto-address-mode 1)
-
-  ;; turn on auto complete.
-  (auto-complete-mode t)
-
-  ;; Auto highlight the same word.
   (auto-highlight-symbol-mode t)
 
   ;; TOPIC(jenchieh): Treat underscore as word.
@@ -38,7 +27,7 @@
           ((string-match "[.]cs" buffer-file-name) (jcs-csharp-format))
           ))
 
-  ;; jcs C# key binding
+  ;; Normal
   (define-key csharp-mode-map (kbd "C-d") #'jcs-kill-whole-line)
   (define-key csharp-mode-map "\C-c\C-c" #'kill-ring-save)
 

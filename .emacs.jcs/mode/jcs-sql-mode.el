@@ -3,33 +3,24 @@
 ;;; Code:
 
 
-(require 'sql-indent)
-;; URL(jenchieh): https://www.emacswiki.org/emacs/SqlIndent
-;; 1 = 2 spaces,
-;; 2 = 4 spaces,
-;; 3 = 6 spaces,
-;; n = n * 2 spaces,
-;; etc.
-(setq sql-indent-offset 1)
+(use-package sql-indent
+  :config
+  ;; URL(jenchieh): https://www.emacswiki.org/emacs/SqlIndent
+  ;; 1 = 2 spaces,
+  ;; 2 = 4 spaces,
+  ;; 3 = 6 spaces,
+  ;; n = n * 2 spaces,
+  ;; etc.
+  (setq sql-indent-offset 1))
 
 
 (require 'sql)
 (defun jcs-sql-mode-hook()
   "SQL mode hook."
-  ;; Abbrevation expansion
   (abbrev-mode 1)
-
-  ;; enable the stuff you want for Lua here
   (electric-pair-mode 1)
-
-  ;; highlight URL and clickable.
   (goto-address-mode 1)
-
-  ;; Auto highlight the same word.
   (auto-highlight-symbol-mode t)
-
-  ;; turn on auto complete.
-  (auto-complete-mode t)
 
   (defun jcs-sql-format ()
     "File format for editing SQL file."
@@ -41,13 +32,12 @@
           ((string-match "[.]sql" buffer-file-name) (jcs-sql-format))
           ))
 
-  ;; Edit
+  ;; Normal
   (define-key sql-mode-map (kbd "<up>") #'jcs-smart-indent-up)
   (define-key sql-mode-map (kbd "<down>") #'jcs-smart-indent-down)
 
   (define-key sql-mode-map "\C-c\C-c" 'kill-ring-save)
   )
-
 (add-hook 'sql-mode-hook 'jcs-sql-mode-hook)
 
 (add-to-list 'auto-mode-alist '("\\.sql?\\'" . sql-mode))

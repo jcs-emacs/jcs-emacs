@@ -43,8 +43,6 @@
 (require 'web-mode)
 (defun jcs-web-mode-hook ()
   "Hooks for Web mode."
-
-  ;; enable impatient mode for real time editing.
   (impatient-mode t)
 
   (setq web-mode-markup-indent-offset 2)
@@ -52,23 +50,12 @@
   ;; 1 (default) for double quotes, 2 for single quotes
   (setq web-mode-auto-quote-style 1)
 
-  ;; Abbrevation expansion
   (abbrev-mode 1)
-
-  ;; highlight URL and clickable.
   (goto-address-mode 1)
-
-  ;; Auto highlight the same word.
   (auto-highlight-symbol-mode t)
-
-  ;; align truncate lines use.
   (visual-line-mode t)
 
-  ;; Enable auto truncate line.
   (jcs-web-enable-auto-trancate-lines)
-
-  (require 'ac-php)
-  (setq ac-sources '(ac-source-php))
 
   ;; Docstring Faces
   (face-remap-add-relative 'jcs-oop-tag-face '(:inherit web-mode-block-face))
@@ -96,7 +83,7 @@
   ;; Set Faces.
   (jcs-init-web-faces)
 
-  ;; jcs web key binding
+  ;; Normal
   (define-key web-mode-map (kbd "C-d") #'jcs-web-kill-whole-line)
   (define-key web-mode-map "\C-c\C-c" #'jcs-web-kill-ring-save)
   (define-key emmet-mode-keymap "\C-c\C-c" #'jcs-web-kill-ring-save)
@@ -247,51 +234,6 @@
 ;; You can also highlight the current column with
 (setq web-mode-enable-current-column-highlight t)
 
-;; Context-aware auto-completion
-(setq web-mode-ac-sources-alist
-      '(("html" . (ac-source-words-in-buffer ac-source-abbrev))
-        ("css" . (ac-source-css-property))
-        ("php" . (ac-source-php ac-source-words-in-buffer ac-source-abbrev))
-        ))
-
-;;=====================
-;; ac-html
-(defun setup-ac-for-html ()
-  ;; Require ac-haml since we are setup haml auto completion
-  (require 'ac-haml)
-  ;; Require default data provider if you want to use
-  (require 'ac-html-default-data-provider)
-  ;; Enable data providers,
-  ;; currently only default data provider available
-  (ac-html-enable-data-provider 'ac-html-default-data-provider)
-  ;; Let ac-haml do some setup
-  (ac-haml-setup)
-  ;; Set your ac-source
-  (setq ac-sources '(ac-source-haml-tag
-                     ac-source-haml-attr
-                     ac-source-haml-attrv))
-  ;; Enable auto complete mode
-  (auto-complete-mode))
-(add-hook 'haml-mode-hook 'setup-ac-for-html)
-
-;; ac-php
-(add-hook 'php-mode-hook '(lambda ()
-                            (auto-complete-mode t)
-                            (require 'ac-php)
-                            (setq ac-sources '(ac-source-php))
-                            (yas-global-mode 1)
-
-                            ;; highlight URL and clickable.
-                            (goto-address-mode 1)
-
-                            (define-key php-mode-map (kbd "C-]") #'ac-php-find-symbol-at-point)   ; goto define
-                            (define-key php-mode-map (kbd "C-t") #'ac-php-location-stack-back)    ; go back
-
-                            ;; jcs PHP key binding
-                            (define-key php-mode-map (kbd "C-d") #'jcs-kill-whole-line)
-                            (define-key php-mode-map "\C-c\C-c" #'kill-ring-save)
-                            ))
-
 
 ;;============================
 ;; CSS editing
@@ -305,11 +247,7 @@
 
 (defun jcs-css-mode-hook ()
   "Hook for CSS mode."
-
-  ;; enable impatient mode for real time editing.
   (impatient-mode t)
-
-  ;; highlight URL and clickable.
   (goto-address-mode 1)
 
   ;; Treat some character as whitespace character.
@@ -329,7 +267,7 @@
   ;; Set Faces.
   (jcs-init-css-faces)
 
-  ;; jcs web key binding
+  ;; Normal
   (define-key css-mode-map (kbd "C-d") #'jcs-kill-whole-line)
   (define-key css-mode-map "\C-c\C-c" #'kill-ring-save)
   (define-key skewer-css-mode-map "\C-c\C-c" #'kill-ring-save)
@@ -353,7 +291,6 @@
   (define-key css-mode-map "\C-ks" #'com-css-sort-attributes-block)
   (define-key css-mode-map "\C-kd" #'com-css-sort-attributes-document)
 
-  ;; URL
   (define-key emmet-mode-keymap (kbd "C-<return>") #'jcs-emmet-expand-line)
   )
 (add-hook 'css-mode-hook 'jcs-css-mode-hook)

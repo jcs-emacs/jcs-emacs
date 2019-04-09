@@ -6,20 +6,9 @@
 (require 'typescript-mode)
 (defun jcs-typescript-mode-hook ()
   "TypeScript mode hook."
-
-  ;; Abbrevation expansion
   (abbrev-mode 1)
-
-  ;; enable the stuff you want for Lua here
   (electric-pair-mode 1)
-
-  ;; highlight URL and clickable.
   (goto-address-mode 1)
-
-  ;; turn on auto complete.
-  (auto-complete-mode t)
-
-  ;; Auto highlight the same word.
   (auto-highlight-symbol-mode t)
 
   ;; Treat underscore as word.
@@ -35,7 +24,7 @@
           ((string-match "[.]ts" buffer-file-name) (jcs-typescript-format))
           ))
 
-  ;; jcs TypeScript key binding
+  ;; Normal
   (define-key typescript-mode-map (kbd "C-d") #'jcs-kill-whole-line)
   (define-key typescript-mode-map "\C-c\C-c" #'kill-ring-save)
 

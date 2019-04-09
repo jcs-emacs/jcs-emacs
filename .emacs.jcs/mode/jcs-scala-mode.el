@@ -6,10 +6,7 @@
 (require 'scala-mode)
 (defun jcs-scala-mode-hook ()
   "JayCeS Scala mode."
-
-  ;; highlight URL and clickable.
   (goto-address-mode 1)
-
 
   (defun jcs-scala-class-format ()
     "Format the given file as a Scala file."
@@ -21,7 +18,8 @@
           ((string-match "[.]scala" buffer-file-name) (jcs-scala-class-format))
           ))
 
-  ;; Scala key bindings
+  ;; Normal
+
   ;; comment block
   (define-key scala-mode-map (kbd "RET") #'jcs-smart-context-line-break)
   (define-key scala-mode-map (kbd "*") #'jcs-c-comment-pair)

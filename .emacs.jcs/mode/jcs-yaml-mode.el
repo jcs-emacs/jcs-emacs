@@ -3,19 +3,12 @@
 ;;; Code:
 
 
+(require 'yaml-mode)
 (defun jcs-yaml-mode-hook ()
   "YAML mode hook."
-
-  ;; Abbrevation expansion
   (abbrev-mode 1)
-
-  ;; enable the stuff you want for Lua here
   (electric-pair-mode 1)
-
-  ;; highlight URL and clickable.
   (goto-address-mode 1)
-
-  ;; Auto highlight the same word.
   (auto-highlight-symbol-mode t)
 
   ;; Treat underscore as word.
@@ -32,7 +25,7 @@
           ((string-match "[.]yml" buffer-file-name) (jcs-yaml-script-format))
           ))
 
-  ;; jcs YAML key binding
+  ;; Normal
   (define-key yaml-mode-map (kbd "C-d") #'jcs-kill-whole-line)
   (define-key yaml-mode-map "\C-c\C-c" #'kill-ring-save)
 

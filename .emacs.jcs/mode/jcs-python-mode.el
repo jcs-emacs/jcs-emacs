@@ -5,16 +5,10 @@
 
 (require 'python-mode)
 (defun jcs-python-mode-hook ()
-  ;; enable the stuff you want for Python here
+  "Python mode hook."
   (electric-pair-mode t)
-
-  ;; Abbrevation expansion
   (abbrev-mode 1)
-
-  ;; highlight URL and clickable.
   (goto-address-mode 1)
-
-  ;; Auto highlight the same word.
   (auto-highlight-symbol-mode t)
 
   ;; Treat underscore as word.
@@ -47,7 +41,7 @@
           ((string-match "[.]py" buffer-file-name) (jcs-python-class-format))
           ))
 
-  ;; jcs python key binding
+  ;; Normal
   (define-key python-mode-map (kbd "C-d") #'jcs-kill-whole-line)
   (define-key python-mode-map "\C-c\C-c" #'kill-ring-save)
   (define-key python-mode-map [C-backspace] #'jcs-backward-delete-word)

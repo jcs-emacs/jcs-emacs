@@ -6,19 +6,9 @@
 (require 'cobol-mode)
 (defun jcs-cobol-mode-hook ()
   "COBOL mode hook."
-  ;; enable the stuff you want for COBOL here
   (electric-pair-mode nil)
-
-  ;; Abbrevation expansion
   (abbrev-mode 1)
-
-  ;; highlight URL and clickable.
   (goto-address-mode 1)
-
-  ;; turn on auto complete.
-  (auto-complete-mode t)
-
-  ;; Auto highlight the same word.
   (auto-highlight-symbol-mode t)
 
   (defun jcs-cobol-format ()
@@ -35,7 +25,7 @@
   (face-remap-add-relative 'font-lock-comment-face '(jcs-font-lock-comment-face))
   (face-remap-add-relative 'font-lock-string-face '(jcs-font-lock-string-face))
 
-  ;; jcs COBOL key binding
+  ;; Normal
   (define-key cobol-mode-map (kbd "C-d") #'jcs-kill-whole-line)
   (define-key cobol-mode-map "\C-c\C-c" #'kill-ring-save)
 
