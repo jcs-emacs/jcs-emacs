@@ -25,7 +25,6 @@
   (electric-pair-mode 1)
   (goto-address-mode 1)
   (auto-highlight-symbol-mode t)
-  (auto-complete-mode t)
 
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
