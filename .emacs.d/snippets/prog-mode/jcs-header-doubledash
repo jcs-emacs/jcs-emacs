@@ -2,5 +2,12 @@
 # name: jcs-header-doubledash
 # key: jcs-header-doubledash
 # --
-`(jcs-get-double-dash-file-info)`
+-- ========================================================================
+-- $File: `(jcs-get-file-name)` $
+-- $Date: `(jcs-get-timestamp-ver1)` $
+-- $Revision: $
+-- $Creator: ${1:CREATOR_NAME} $
+-- $Notice: See LICENSE.txt for modification and distribution information
+--                   Copyright © `(jcs-get-year-only)` by ${2:COPYRIGHT_INFO} $
+-- ========================================================================
 $0
