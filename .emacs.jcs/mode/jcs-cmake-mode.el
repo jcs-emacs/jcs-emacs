@@ -5,30 +5,11 @@
 
 (require 'cmake-mode)
 (defun jcs-cmake-mode-hook ()
-  ;;
+  "CMake mode hook."
   (electric-pair-mode nil)
-
-  ;; highlight URL and clickable.
   (goto-address-mode 1)
-
-  ;; turn on auto complete.
   (auto-complete-mode t)
-
-  ;; Auto highlight the same word.
   (auto-highlight-symbol-mode t)
-
-  (defun jcs-makefile-format ()
-    "Format the given file as a makefile file."
-
-    (when (jcs-is-current-file-empty-p)
-      (jcs-makefile-format-info)
-      (goto-char (point-min))))
-
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]makefile" buffer-file-name) (jcs-makefile-format))
-        ((string-match "[Mm]akefile" buffer-file-name) (jcs-makefile-format))
-        ((string-match "[.]mak" buffer-file-name) (jcs-makefile-format))
-        )
 
   (defun jcs-cmake-format ()
     "Format the given file as a CMakeLists. - JenChieh CMake"
@@ -60,11 +41,6 @@
 (add-hook 'cmake-mode-hook 'jcs-cmake-mode-hook)
 
 (add-to-list 'auto-mode-alist '("\\(/\\|\\`\\)CMakeLists.txt" . cmake-mode))
-
-;; temporary makefile
-(add-to-list 'auto-mode-alist '("\\.mak?\\'" . cmake-mode))
-(add-to-list 'auto-mode-alist '("\\.makfile?\\'" . cmake-mode))
-(add-to-list 'auto-mode-alist '("\\(/\\|\\`\\)[Mm]akefile" . cmake-mode))
 
 ;; For autotools, autoconf, automake.
 (add-to-list 'auto-mode-alist '("\\.ac?\\'" . cmake-mode))
