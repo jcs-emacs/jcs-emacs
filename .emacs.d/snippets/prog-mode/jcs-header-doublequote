@@ -2,12 +2,5 @@
 # name: jcs-header-doublequote
 # key: jcs-header-doublequote
 # --
-"" ========================================================================
-"" $File: `(jcs-get-file-name)` $
-"" $Date: `(jcs-get-timestamp-ver1)` $
-"" $Revision: $
-"" $Creator: ${1:CREATOR_NAME} $
-"" $Notice: See LICENSE.txt for modification and distribution information $
-""                   Copyright © `(jcs-get-year-only)` by ${2:COPYRIGHT_INFO} $
-"" ========================================================================
+`(jcs-get-double-quote-file-info)`
 $0

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: jcs-header-semicolon
+# key: jcs-header-semicolon
+# --
+`(jcs-get-semi-colon-file-info)`
+$0
