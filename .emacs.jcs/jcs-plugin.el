@@ -8,87 +8,16 @@
   (require 'use-package))
 
 
-(use-package auto-complete
+(use-package company
   :ensure t
   :config
-
-  (defvar jcs-ac-was-ac-quick-help-showed nil
-    "Was `ac-quick-help' showed?")
-  (defvar jcs-ac-was-truncate-lines-mode-on nil
-    "Was truncate lines mode on before entered `quick-help'?")
-
-  (defvar jcs-ac-show-menu-timer-filename nil
-    "Show menu idle timer for `ac-complete-filename'.")
-  (defvar jcs-ac-complete-filename-active nil
-    "Is current `jcs-ac-complete-filename' active?")
+  (use-package company-quickhelp
+    :ensure t
+    :config
+    (company-quickhelp-mode t))
+  (global-company-mode t))
 
 
-  (defun jcs-advice-ac-quick-help-before ()
-    "Advice before execute `ac-quick-help' command."
-    (when ac-quick-help-prefer-pos-tip
-      (let ((message-log-max nil)
-            (inhibit-message t))
-        (setq jcs-ac-was-truncate-lines-mode-on truncate-lines)
-        (jcs-disable-truncate-lines))
-      (setq jcs-ac-was-ac-quick-help-showed t)))
-  (advice-add 'ac-quick-help :before #'jcs-advice-ac-quick-help-before)
-
-  (defun jcs-advice-ac-remove-quick-help-before ()
-    "Advice before execute `ac-abort' command."
-    (when (and jcs-ac-was-ac-quick-help-showed
-               ac-quick-help-prefer-pos-tip)
-      (let ((message-log-max nil)
-            (inhibit-message t))
-        (if jcs-ac-was-truncate-lines-mode-on
-            (jcs-enable-truncate-lines)
-          (jcs-disable-truncate-lines)))
-      (setq jcs-ac-was-ac-quick-help-showed nil)))
-  (advice-add 'ac-remove-quick-help :before #'jcs-advice-ac-remove-quick-help-before)
-
-
-  (defun jcs-valid-ac-complete-filename-p ()
-    "Check if we complete filename instead of normal auto complete."
-    (save-excursion
-      (let ((valid-fn-ac nil)
-            (cur-str ""))
-        (when (jcs-is-inside-string-p)
-          (setq cur-str (jcs-string-at-point))
-          (when cur-str (setq cur-str (f-dirname cur-str)))
-          (when (and cur-str
-                     (jcs-file-directory-exists-p cur-str))
-            (setq valid-fn-ac t)))
-        valid-fn-ac)))
-
-  ;;;###autoload
-  (defun jcs-ac-complete-filename ()
-    "Wrap `ac-complete-filename' command."
-    (interactive)
-    (unless jcs-ac-complete-filename-active
-      (setq jcs-ac-complete-filename-active t)
-      (call-interactively #'ac-complete-filename)))
-
-  (defun jcs-ac-handle-post-command-around (orig-fun &rest args)
-    "Advice around execute `ac-handle-post-command' hook."
-    (if (jcs-valid-ac-complete-filename-p)
-        (unless jcs-ac-show-menu-timer-filename
-          (setq jcs-ac-show-menu-timer-filename
-                (run-with-idle-timer ac-auto-show-menu
-                                     ac-auto-show-menu
-                                     'jcs-ac-complete-filename)))
-      (apply orig-fun args)))
-  (advice-add 'ac-handle-post-command :around #'jcs-ac-handle-post-command-around)
-
-  (defun jcs-ac-cleanup-before ()
-    "Advice before execute `ac-cleanup' hook."
-    (when ac-menu
-      (setq jcs-ac-complete-filename-active nil)
-      (setq jcs-ac-show-menu-timer-filename nil)))
-  (advice-add 'ac-cleanup :before #'jcs-ac-cleanup-before)
-
-  (global-auto-complete-mode t))
-
-
-;;; Find file in project
 (use-package find-file-in-project
   :config
   (autoload 'find-file-in-project "find-file-in-project" nil t)
@@ -103,16 +32,10 @@
   )
 
 
-;;===========================
-;; Sublimity
-;;----------------------
-
 (require 'sublimity-scroll)
 (require 'sublimity-map) ;; experimental
 (require 'sublimity-attractive)
 
-
-;; URL(jenchieh): https://github.com/zk-phi/sublimity
 (use-package sublimity
   :config
   ;; default on or off?
@@ -173,6 +96,7 @@
   (setq uniquify-ignore-buffers-re "^\\*") ; don't muck with special buffers
   )
 
+
 ;;; Preprocessor/Marcos highlight.
 (use-package preproc-font-lock
   :config
@@ -183,7 +107,7 @@
                       :background "#333333"
                       :inherit nil))
 
-;;; Whitespace Mode
+
 (use-package whitespace
   :config
   (autoload 'whitespace-mode "whitespace-mode" "Toggle whitespace visualization." t)
@@ -199,7 +123,7 @@
                       :background "grey20"
                       :foreground "red"))
 
-;;; Speedbar
+
 (use-package sr-speedbar
   :config
   ;;(setq sr-speedbar-auto-refresh nil)
@@ -209,18 +133,17 @@
   )
 
 
-;;; Execute path from shell
 (use-package exec-path-from-shell
   :config
   (when (memq window-system '(mac ns x))
     (exec-path-from-shell-initialize)))
 
-;;; wgrep
+
 (use-package wgrep
   :config
   (setq wgrep-auto-save-buffer t))
 
-;;; Powerline
+
 (use-package powerline
   :config
   (powerline-default-theme)
@@ -236,13 +159,7 @@
   ;; utf-8.
   (setq powerline-default-separator 'wave))
 
-;;; Auto Complete
-(require 'auto-complete)
-(require 'auto-complete-config)
-(ac-config-default)
-(global-auto-complete-mode t)
 
-;;; Auto Highlight symbol
 (use-package auto-highlight-symbol
   :config
   (global-auto-highlight-symbol-mode t)
@@ -274,12 +191,12 @@
   ;; Number of seconds to wait before highlighting symbol.
   (custom-set-variables '(ahs-idle-interval 0.3)))
 
-;;; Yasnippet
+
 (use-package yasnippet
   :config
   (yas-global-mode 1))
 
-;;; Flycheck
+
 (use-package flycheck
   :config
   ;; Enable global `flycheck'?
@@ -289,13 +206,10 @@
 ;;; Flymake
 (require 'flymake)
 
-;;; Helm
-(require 'helm)
-
 ;;; Visual RegExp
 (require 'visual-regexp)
 
-;;; Which Key
+
 (use-package which-key
   :config
   (which-key-mode)
@@ -323,18 +237,18 @@
   ;; zero might cause issues so a non-zero value is recommended.
   (setq which-key-idle-delay 1.0))
 
-;;; Undo Tree
+
 (use-package undo-tree
   :config
   ;; Enable `undo-tree' as default.
   (global-undo-tree-mode t))
 
-;;; Line Reminder
+
 (use-package line-reminder
   :config
   (global-line-reminder-mode t))
 
-;;; Tabbar
+
 (use-package tabbar
   :config
   ;; Turn-off `tabbar-mode' as default.
@@ -359,7 +273,7 @@
     (call-interactively #'recenter))
   (advice-add 'goto-line-preview :after #'jcs-advice-goto-line-preview-after))
 
-;;; Dimmer
+
 (use-package dimmer
   :config
   (dimmer-mode)
@@ -388,6 +302,8 @@
       (toggle-frame-maximized)))
   (advice-add 'reload-emacs :after #'jcs-advice-reload-emacs-after))
 
+
+(require 'helm)
 
 (use-package helm-config
   :config
@@ -479,12 +395,14 @@
    '(helm-gtags-ignore-case t)
    '(helm-gtags-auto-update t)))
 
+
 (use-package yasnippet
   :ensure t
   :config
   (use-package yasnippet-snippets
     :ensure t)
   (yas-reload-all))
+
 
 (use-package origami
   :config
