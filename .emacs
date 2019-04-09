@@ -182,6 +182,7 @@
 (require 'jcs-re-builder-mode)
 (require 'jcs-txt-mode)
 (require 'jcs-cmake-mode)
+(require 'jcs-makefile-mode)
 (require 'jcs-scala-mode)
 (require 'jcs-perl-mode)
 (require 'jcs-basic-mode)
