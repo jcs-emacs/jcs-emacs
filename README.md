@@ -56,7 +56,7 @@ the startup time down to `5` to `15` seconds.
 * *Abbreivation Definition* - powered by 
 [project-abbrev](https://github.com/jcs090218/project-abbrev).
 * *Auto Completion* - powered by 
-[auto-complete](https://github.com/auto-complete/auto-complete).
+[company](https://github.com/company-mode/company-mode).
 * *Auto Highlight Symbol* - powered by 
 [auto-highlight-symbol-mode](https://github.com/mhayashi1120/auto-highlight-symbol-mode).
 * *Binary/Hex Editor* - powered by 
