@@ -77,12 +77,11 @@
 
 (add-to-list 'auto-mode-alist '("\\.py'?\\'" . python-mode))
 
-(require 'elpy)
-;;(elpy-enable)
 
-;; enable autopep8 formatting on save
-(require 'py-autopep8)
-;;(add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
+(use-package elpy
+  :config
+  ;;(elpy-enable)
+  )
 
 
 (provide 'jcs-python-mode)
