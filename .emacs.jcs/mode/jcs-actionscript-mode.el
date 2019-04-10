@@ -5,7 +5,7 @@
 
 (require 'actionscript-mode)
 (defun jcs-actionscript-mode-hook ()
-  "ActionScript mode."
+  "ActionScript mode hook."
   (goto-address-mode 1)
 
   ;; TOPIC(jenchieh): Treat underscore as word.
