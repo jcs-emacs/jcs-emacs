@@ -190,7 +190,8 @@ Return a list of installed packages or nil for every skipped package."
               (let ((old-package (cadr (assq (package-desc-name package-desc)
                                              package-alist))))
                 (package-install package-desc)
-                (package-delete  old-package)))))
+                (package-delete  old-package))))
+          (message "Done upgrading all packages"))
       (message "All packages are up to date"))))
 
 ;; NOTE(jenchieh): Only in Emacs 25.1+
