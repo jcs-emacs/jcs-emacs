@@ -19,10 +19,11 @@ and it has extended from this configuration.
 
 * ActionScript 2.0 or 3.0 / Assembly Language
 * BASIC / Batchfile
-* C / C++ / C# / Clojure / COBOL / CSS
+* C / C++ / C# / Clojure / CMake / COBOL / CSS
 * Emacs Lisp
 * GLSL / Go
 * Haskell / Haxe / HTML
+* INI
 * JSON / Java / JavaScript
 * Lisp / Lua
 * Makefile
