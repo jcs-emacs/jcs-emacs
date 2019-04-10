@@ -242,6 +242,8 @@
   "Safe enable/disable `display-line-numbers-mode'.
 If non-nil, safe active `display-line-numbers-mode'."
   (interactive)
+  (unless act
+    (if act (setq act 1) (setq act -1)))
   (when (version<= "26.0.50" emacs-version)
     (display-line-numbers-mode act)))
 
@@ -250,6 +252,8 @@ If non-nil, safe active `display-line-numbers-mode'."
   "Safe enable/disable `global-display-line-numbers-mode'.
 If non-nil, safe active `global-display-line-numbers-mode'."
   (interactive)
+  (unless act
+    (if act (setq act 1) (setq act -1)))
   (when (version<= "26.0.50" emacs-version)
     (global-display-line-numbers-mode act)))
 
@@ -259,10 +263,8 @@ If non-nil, safe active `global-display-line-numbers-mode'."
 Basically decide between `linum-mode' and `display-line-numbers-mode'.
 If one is activated, the other one will be deactivated.
 
-If non-nil, active by `display-line-numbers-mode'.
-If nil, active by `linum-mode'.
-
-ACT : active or not active?
+ACT : 1 => `display-line-numbers-mode'
+     -1 => `linum-mode'.
 G : Active line number globally."
   (interactive)
   (unless act
