@@ -440,7 +440,7 @@ line by line instead of indent the whole file at once."
 
 ;;;###autoload
 (defun jcs-emmet-expand-line ()
-  "Wrapper to JayCeS's version of `emmet-expand-line' function."
+  "Wrapper of `emmet-expand-line' function."
   (interactive)
   (if (jcs-is-current-point-face "link")
       (call-interactively #'goto-address-at-point)
