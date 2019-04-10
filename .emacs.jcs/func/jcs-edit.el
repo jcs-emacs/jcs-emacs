@@ -178,7 +178,7 @@ CBF : Current buffer file name."
 
 ;;;###autoload
 (defun jcs-tab-key ()
-  "TAB key for JayCeS usage."
+  "Global TAB key."
   (interactive)
   (unless (ignore-errors (call-interactively #'dabbrev-expand))
     (jcs-insert-spaces-by-tab-width)))
