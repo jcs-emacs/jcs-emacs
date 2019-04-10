@@ -26,6 +26,27 @@
   )
 
 ;;----------------------------------------------
+;; Tips
+;;----------------------------------------------
+
+;;;###autoload
+(defun jcs-describe-thing-in-popup ()
+  "Show current symbol info."
+  (interactive)
+  (let* ((thing (symbol-at-point))
+         (help-xref-following t)
+         (description (with-temp-buffer
+                        (help-mode)
+                        (help-xref-interned thing)
+                        (buffer-string))))
+    (popup-tip description
+               :point (point)
+               :around t
+               :height 30
+               :scroll-bar t
+               :margin t)))
+
+;;----------------------------------------------
 ;; Speedbar
 ;;----------------------------------------------
 
