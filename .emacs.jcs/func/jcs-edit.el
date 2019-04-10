@@ -626,6 +626,14 @@ the current line."
 ;; Save Buffer
 ;;-------------------------
 
+(defun jcs-do-stuff-before-save (&optional arg)
+  "Do stuff before save command executed.
+ARG : Match with `save-buffer' command."
+  ;; NOTE(jenchieh): If company menu currently active,
+  ;; abort it.
+  (company-abort))
+(advice-add 'save-buffer :before #'jcs-do-stuff-before-save)
+
 (defun jcs-do-stuff-after-save (&optional arg)
   "Do stuff after save command executed.
 ARG : Match with `save-buffer' command."
@@ -840,7 +848,7 @@ ECP-SAME : Exception for the same buffer."
              (setq win-id-cnt (+ win-id-cnt 1)))
            (setq win-cnt (+ win-cnt 1))))
 
-        (message "Reopened buffer => '%s'" buf-name)))))
+        (message "Reopened file => '%s'" buf-name)))))
 
 ;;----------------------------------------------
 ;; Search/Kill word capital.
