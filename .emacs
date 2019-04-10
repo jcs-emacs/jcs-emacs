@@ -8,8 +8,7 @@
 ;; even less about ELISP.  So take everything in
 ;; this file with a grain of salt!
 ;;
-;; - Casey
-;; - JenChieh (Modified)
+;; - JenChieh
 
 ;;; Code:
 
