@@ -256,6 +256,9 @@
 ;;; Process
 (define-key global-map "\ep" #'list-processes)
 
+;;; Show Hover
+(define-key global-map (kbd "C-k C-i") #'jcs-describe-thing-in-popup)
+
 ;;; ace window
 (require 'ace-window)
 (define-key global-map "\ee" #'ace-window)
