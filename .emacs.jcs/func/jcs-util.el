@@ -39,9 +39,9 @@ Else we just return `buffer-file-name' if available."
 Buffers in modified (not yet saved) state in Emacs will not be reverted.
 They will be reverted though if they were modified outside Emacs.
 Buffers visiting files which do not exist any more or are no longer readable
-will be killed.
-SOURCE(jenchieh): https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-ignore-errors"
+will be killed."
   (interactive)
+  ;; SOURCE(jenchieh): https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-ignore-errors
   (save-excursion
     (dolist (buf (buffer-list))
       (let ((filename (buffer-file-name buf)))
