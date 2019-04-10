@@ -176,6 +176,8 @@ C-k C-s         Describe bindings.
 
 C-k C-i         Show hover.
 
+f6              Toggle `flycheck`.
+
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * Window
