@@ -98,8 +98,8 @@
 
 ;;; Package
 (define-key global-map "\C-p" #'package-list-packages)
-(define-key package-menu-mode-map "s" #'package-menu-filter-by-status)
-(define-key package-menu-mode-map "u" #'package-upgrade-all)
+(define-key package-menu-mode-map "s" #'jcs-package-menu-filter-by-status)
+(define-key package-menu-mode-map "u" #'jcs-package-upgrade-all)
 (define-key package-menu-mode-map (kbd "C-x r m") #'package-autoremove)
 
 ;;; Return
