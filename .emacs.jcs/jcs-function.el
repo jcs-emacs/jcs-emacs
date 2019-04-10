@@ -47,6 +47,32 @@
                :margin t)))
 
 ;;----------------------------------------------
+;; Syntax Check
+;;----------------------------------------------
+
+;;;###autoload
+(defun jcs-flycheck-mode ()
+  "Flycheck mode toggle."
+  (interactive)
+  (if (string= (buffer-name) flycheck-error-list-buffer)
+      (progn
+        (message "1 flycheck-error-list-source-buffer : %s" flycheck-error-list-source-buffer)
+        (when (ignore-errors (jcs-jump-shown-to-buffer flycheck-error-list-source-buffer))
+          (message "ok..")
+          (jcs-flycheck-mode)))
+    (call-interactively #'flycheck-mode)
+    (if flycheck-mode
+        (call-interactively #'flycheck-list-errors)
+      (save-selected-window
+        (when (ignore-errors (jcs-jump-shown-to-buffer flycheck-error-list-buffer))
+          (jcs-maybe-kill-this-buffer))))
+    ;; STUDY(jenchieh): For some reason, we
+    ;; need to walk through all windows once
+    ;; in order to display the `flycheck-list-errors'
+    ;; in other window.
+    (jcs-walk-through-all-windows-once)))
+
+;;----------------------------------------------
 ;; Speedbar
 ;;----------------------------------------------
 
