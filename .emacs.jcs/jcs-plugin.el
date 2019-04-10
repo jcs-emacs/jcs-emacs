@@ -59,8 +59,10 @@
 
 
 (use-package flycheck
+  :ensure t
   :config
   (use-package flycheck-popup-tip
+    :ensure t
     :config
     (flycheck-popup-tip-mode t))
   (global-flycheck-mode t))
