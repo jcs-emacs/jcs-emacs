@@ -32,6 +32,8 @@
     (setq company-idle-delay 0.2)
     ;;(setq company-tooltip-idle-delay 0.1)
 
+    (setq company-selection-wrap-around 'on)
+
     (custom-set-faces
      '(company-preview
        ((t (:foreground "dark gray" :underline t))))
