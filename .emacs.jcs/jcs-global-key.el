@@ -266,6 +266,10 @@
 (define-key company-active-map (kbd "TAB") #'company-complete-selection)
 (define-key company-active-map "\C-s" #'jcs-untabify-save-buffer)
 
+;;; Flycheck
+(require 'flycheck)
+(define-key global-map (kbd "<f6>") #'jcs-flycheck-mode)
+
 ;;; Speedbar
 (require 'sr-speedbar)
 (define-key global-map (kbd "C-M-l") #'jcs-sr-speedbar-toggle)  ;; Compatible to `Visual Studio'.
