@@ -168,10 +168,10 @@ If nout found, returns 0."
 (defun jcs-in-window-list (buf)
   "Check if buffer open in window list.
 
-buf : buffer name. (string)
+BUF : buffer name.
 
-True: return name.
-False: return nil."
+True : return name.
+False : return nil."
   (get-buffer-window-list buf))
 
 ;;;###autoload
@@ -183,7 +183,8 @@ FNC : Callback apply to each windows."
     (let ((index 0))
       (while (< index (jcs-count-windows))
         (jcs-other-window-next)
-        (funcall fnc)
+        (when fnc
+          (funcall fnc))
         (setq index (+ index 1))))))
 
 ;;-----------------------------------------------------------
