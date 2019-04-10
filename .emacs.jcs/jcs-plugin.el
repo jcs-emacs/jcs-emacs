@@ -58,6 +58,14 @@
   (global-company-mode t))
 
 
+(use-package flycheck
+  :config
+  (use-package flycheck-popup-tip
+    :config
+    (flycheck-popup-tip-mode t))
+  (global-flycheck-mode t))
+
+
 (use-package find-file-in-project
   :config
   (autoload 'find-file-in-project "find-file-in-project" nil t)
@@ -294,17 +302,17 @@
   ;; Turn-off `tabbar-mode' as default.
   (tabbar-mode 0)  )
 
-;;; Indent Info
+
 (use-package indent-info
   :config
   (global-indent-info-mode +1))
 
-;;; Right Click Context
+
 (use-package right-click-context
   :config
   (right-click-context-mode 1))
 
-;;; Goto Line Preview
+
 (use-package goto-line-preview
   :ensure t
   :config
@@ -319,7 +327,7 @@
   (dimmer-mode)
   (setq dimmer-fraction 0.2))
 
-;; Reload Emacs
+
 (use-package reload-emacs
   :config
   (defun jcs-advice-reload-emacs-after ()
