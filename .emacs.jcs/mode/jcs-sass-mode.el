@@ -1,11 +1,11 @@
-;;; jcs-sass-mode.el --- SASS mode. -*- lexical-binding: t -*-
+;;; jcs-sass-mode.el --- Sass mode. -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
 
 (require 'ssass-mode)
 (defun jcs-sass-mode-hook ()
-  "SASS mode hook."
+  "Sass mode hook."
   (abbrev-mode 1)
   (goto-address-mode 1)
   (auto-highlight-symbol-mode t)
