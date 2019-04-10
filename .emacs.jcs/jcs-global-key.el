@@ -35,9 +35,6 @@
 (define-key global-map [f10] #'previous-error)
 (define-key global-map [f11] #'next-error)
 
-(define-key global-map "\en" #'next-error)
-(define-key global-map "\eN" #'previous-error)   ;; 'ALT-SHIFT-n' = '\eN'
-
 (define-key global-map "\eg" #'goto-line-preview)
 (define-key global-map "\ej" #'imenu)
 
@@ -79,7 +76,7 @@
 ;;(define-key global-map "      " #'indent-region)
 
 
-;;; Bind the Key
+;;; File Files
 ;;(define-key global-map "\ef" #'ido-find-file)
 ;;(define-key global-map "\eF" #'ido-find-file-other-window)
 (define-key global-map "\ef" #'jcs-helm-find-files)
