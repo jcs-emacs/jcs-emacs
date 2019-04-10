@@ -9,7 +9,7 @@
 ;; this file with a grain of salt!
 ;;
 ;; - Casey
-;; - JenChieh (Modefied)
+;; - JenChieh (Modified)
 
 ;;; Code:
 
