@@ -15,16 +15,44 @@
     :ensure t
     :config
     (setq company-quickhelp-delay 0.3)
+
+    (setq company-quickhelp-color-background "#FFF08A")
+
     (company-quickhelp-mode t))
 
   ;; TOPIC(jenchieh): How add company-dabbrev to the Company completion popup?
   ;; URL(jenchieh): https://emacs.stackexchange.com/questions/15246/how-add-company-dabbrev-to-the-company-completion-popup
   (add-to-list 'company-backends '(company-capf :with company-dabbrev-code))
 
-  (setq company-minimum-prefix-length 2)
-  (setq company-idle-delay 0.25)
-  ;;(setq company-tooltip-idle-delay 0.1)
+  ;; TOPIC(jenchieh): Switching from AC
+  ;; URL(jenchieh): https://github.com/company-mode/company-mode/wiki/Switching-from-AC
+  (defun jcs-company-ac-setup ()
+    "Sets up `company-mode' to behave similarly to `auto-complete-mode'."
+    (setq company-minimum-prefix-length 2)
+    (setq company-idle-delay 0.2)
+    ;;(setq company-tooltip-idle-delay 0.1)
 
+    (custom-set-faces
+     '(company-preview
+       ((t (:foreground "dark gray" :underline t))))
+     '(company-preview-common
+       ((t (:inherit company-preview))))
+     '(company-tooltip
+       ((t (:background "light gray" :foreground "black"))))
+     '(company-tooltip-selection
+       ((t (:background "steel blue" :foreground "white"))))
+     '(company-tooltip-common
+       ((((type x)) (:inherit company-tooltip :weight bold))
+        (t (:inherit company-tooltip))))
+     '(company-tooltip-common-selection
+       ((((type x)) (:inherit company-tooltip-selection :weight bold))
+        (t (:inherit company-tooltip-selection))))
+     '(company-scrollbar-fg
+       ((t (:background "black"))))
+     '(company-scrollbar-bg
+       ((t (:background "dark gray"))))))
+
+  (jcs-company-ac-setup)
   (global-company-mode t))
 
 
