@@ -260,6 +260,11 @@
 (require 'ace-window)
 (define-key global-map "\ee" #'ace-window)
 
+;;; Company
+(require 'company)
+(define-key company-active-map [tab] #'company-complete-selection)
+(define-key company-active-map (kbd "TAB") #'company-complete-selection)
+
 ;;; Speedbar
 (require 'sr-speedbar)
 (define-key global-map (kbd "C-M-l") #'jcs-sr-speedbar-toggle)  ;; Compatible to `Visual Studio'.
