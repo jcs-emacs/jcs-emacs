@@ -92,7 +92,7 @@ C-x C-f         Search pattern in project root.
 C-rr            Rename the whole text with the same name.
 C-rp            Replace pattern in project root.
 C-xC-s          Save the all the buffer that changes in the 
-                `ag' replace Menu.            
+                `ag' replace Menu.
 
 C-s             Untabify the document then save the file.
 C-S             Tabify the document then save the file.
@@ -173,6 +173,8 @@ C-M-l           Toggle file explorer.
 C-b             Toggle file explorer.
 
 C-k C-s         Describe bindings.
+
+C-k C-i         Show hover.
 
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
