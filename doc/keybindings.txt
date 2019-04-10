@@ -263,9 +263,9 @@ d               選擇想要刪除的package.
 x               安裝packages(Execute packages)
                   -> package-menu-execute
 s               列出特定分類的packages.
-                  -> package-menu-filter-by-status
+                  -> jcs-package-menu-filter-by-status
 u               升級所有packages.
-                  -> package-upgrade-all
+                  -> jcs-package-upgrade-all
 C-x r m         自動移除非相依性的packages.
                   -> package-autoremove
 
