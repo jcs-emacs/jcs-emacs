@@ -29,7 +29,7 @@ and it has extended from this configuration.
 * Objective-C
 * Perl / PHP / Python
 * Ruby / Rust
-* Scala / Shell / SQL / Swift
+* Sass / Scala / SCSS / Shell / SQL / Swift
 * TypeScript
 * Verilog / Vim script
 * XML
