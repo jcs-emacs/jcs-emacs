@@ -14,12 +14,18 @@
   (use-package company-quickhelp
     :ensure t
     :config
+    (setq company-quickhelp-delay 0.3)
     (company-quickhelp-mode t))
-  (global-company-mode t)
 
   ;; TOPIC(jenchieh): How add company-dabbrev to the Company completion popup?
   ;; URL(jenchieh): https://emacs.stackexchange.com/questions/15246/how-add-company-dabbrev-to-the-company-completion-popup
-  (add-to-list 'company-backends '(company-capf :with company-dabbrev-code)))
+  (add-to-list 'company-backends '(company-capf :with company-dabbrev-code))
+
+  (setq company-minimum-prefix-length 2)
+  (setq company-idle-delay 0.25)
+  ;;(setq company-tooltip-idle-delay 0.1)
+
+  (global-company-mode t))
 
 
 (use-package find-file-in-project
