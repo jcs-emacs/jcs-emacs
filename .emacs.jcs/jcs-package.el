@@ -162,16 +162,16 @@ Return a list of installed packages or nil for every skipped package."
 
 
 ;;;###autoload
-(defun package-upgrade-all ()
+(defun jcs-package-upgrade-all ()
   "Upgrade all packages automatically without showing *Packages* buffer."
-  ;; SOURCE(jenchieh): https://emacs.stackexchange.com/questions/16398/noninteractively-upgrade-all-packages
   (interactive)
+  ;; SOURCE(jenchieh): https://emacs.stackexchange.com/questions/16398/noninteractively-upgrade-all-packages
   (package-refresh-contents)
   (let (upgrades)
     (cl-flet ((get-version (name where)
-                (let ((pkg (cadr (assq name where))))
-                  (when pkg
-                    (package-desc-version pkg)))))
+                           (let ((pkg (cadr (assq name where))))
+                             (when pkg
+                               (package-desc-version pkg)))))
       (dolist (package (mapcar #'car package-alist))
         (let ((in-archive (get-version package package-archive-contents)))
           (when (and in-archive
@@ -195,7 +195,7 @@ Return a list of installed packages or nil for every skipped package."
 
 ;; NOTE(jenchieh): Only in Emacs 25.1+
 ;;;###autoload
-(defun package-menu-filter-by-status (status)
+(defun jcs-package-menu-filter-by-status (status)
   "Filter the *Packages* buffer by status."
   (interactive
    (list (completing-read
