@@ -73,9 +73,7 @@ Return a list of installed packages or nil for every skipped package."
                                    floobits
                                    focus
                                    flycheck
-                                   flymake-cursor
-                                   flymake-easy
-                                   flymake-google-cpplint
+                                   flycheck-popup-tip
                                    git-link
                                    git-messenger
                                    git-timemachine
