@@ -1,4 +1,4 @@
-;;; jcs-emacs-lisp-mode.el --- Emacs Lisp Mode -*- lexical-binding: t -*-
+;;; jcs-elisp-mode.el --- Emacs Lisp Mode -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -27,5 +27,5 @@
 (add-hook 'emacs-lisp-mode-hook 'jcs-emacs-lisp-mode-hook)
 
 
-(provide 'jcs-emacs-lisp-mode)
-;;; jcs-emacs-lisp-mode.el ends here
+(provide 'jcs-elisp-mode)
+;;; jcs-elisp-mode.el ends here
