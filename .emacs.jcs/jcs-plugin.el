@@ -10,6 +10,7 @@
 
 (use-package company
   :ensure t
+  :defer t
   :config
   (use-package company-quickhelp
     :ensure t
@@ -59,8 +60,11 @@
 
 
 (use-package flycheck
+  :ensure t
+  :defer t
   :config
   (use-package flycheck-popup-tip
+    :ensure t
     :config
     ;;(flycheck-popup-tip-mode t)
     )
@@ -69,6 +73,8 @@
 
 
 (use-package find-file-in-project
+  :ensure t
+  :defer t
   :config
   (autoload 'find-file-in-project "find-file-in-project" nil t)
   (autoload 'find-file-in-project-by-selected "find-file-in-project" nil t)
@@ -82,12 +88,14 @@
   )
 
 
-(require 'sublimity-scroll)
-(require 'sublimity-map) ;; experimental
-(require 'sublimity-attractive)
-
 (use-package sublimity
+  :ensure t
+  :defer t
   :config
+  (require 'sublimity-scroll)
+  (require 'sublimity-map)
+  (require 'sublimity-attractive)
+
   ;; default on or off?
   ;; NOTE(jenchieh): This also trigger the animate scrolling too.
   (sublimity-mode 1)
@@ -133,22 +141,9 @@
   )
 
 
-;;; Uniquify
-;; NOTE: meaningful names for buffers with the same name from
-;; prelude.
-;; SOURCE(jenchieh): http://pragmaticemacs.com/emacs/uniquify-your-buffer-names/
-;; URL: https://github.com/bbatsov/prelude
-(use-package uniquify
-  :config
-  (setq uniquify-buffer-name-style 'forward)
-  (setq uniquify-separator "/")
-  (setq uniquify-after-kill-buffer-p t)    ; rename after killing uniquified
-  (setq uniquify-ignore-buffers-re "^\\*") ; don't muck with special buffers
-  )
-
-
 ;;; Preprocessor/Marcos highlight.
 (use-package preproc-font-lock
+  :ensure t
   :config
   (preproc-font-lock-global-mode t)
   (preproc-font-lock-mode t)
@@ -175,6 +170,7 @@
 
 
 (use-package sr-speedbar
+  :ensure t
   :config
   ;;(setq sr-speedbar-auto-refresh nil)
   (setq speedbar-show-unknown-files t) ; show all files
@@ -184,17 +180,20 @@
 
 
 (use-package exec-path-from-shell
+  :ensure t
   :config
   (when (memq window-system '(mac ns x))
     (exec-path-from-shell-initialize)))
 
 
 (use-package wgrep
+  :ensure t
   :config
   (setq wgrep-auto-save-buffer t))
 
 
 (use-package powerline
+  :ensure t
   :config
   (powerline-default-theme)
   ;;(powerline-center-theme)
@@ -211,6 +210,7 @@
 
 
 (use-package auto-highlight-symbol
+  :ensure t
   :config
   (global-auto-highlight-symbol-mode t)
 
@@ -242,11 +242,13 @@
   (custom-set-variables '(ahs-idle-interval 0.3)))
 
 
-;;; Visual RegExp
-(require 'visual-regexp)
+(use-package visual-regexp
+  :ensure t
+  :defer t)
 
 
 (use-package which-key
+  :ensure t
   :config
   (which-key-mode)
 
@@ -275,34 +277,44 @@
 
 
 (use-package undo-tree
+  :ensure t
+  :defer t
   :config
   ;; Enable `undo-tree' as default.
   (global-undo-tree-mode t))
 
 
 (use-package line-reminder
+  :ensure t
   :config
   (global-line-reminder-mode t))
 
 
 (use-package tabbar
+  :ensure t
+  :defer t
   :config
   ;; Turn-off `tabbar-mode' as default.
   (tabbar-mode 0)  )
 
 
 (use-package indent-info
+  :ensure t
+  :defer t
   :config
   (global-indent-info-mode +1))
 
 
 (use-package right-click-context
+  :ensure t
+  :defer t
   :config
   (right-click-context-mode 1))
 
 
 (use-package goto-line-preview
   :ensure t
+  :defer t
   :config
   (defun jcs-advice-goto-line-preview-after ()
     "Advice after execute `goto-line-preview' command."
@@ -311,6 +323,8 @@
 
 
 (use-package dimmer
+  :ensure t
+  :defer t
   :config
   (dimmer-mode)
   (setq dimmer-fraction 0.2))
@@ -339,27 +353,14 @@
   (advice-add 'reload-emacs :after #'jcs-advice-reload-emacs-after))
 
 
-(require 'helm)
-
-(use-package helm-config
+(use-package helm
+  :ensure t
   :config
   ;; 相關教學:
   ;; * http://emacsist.com/10295
 
   (helm-mode 1)
   (helm-autoresize-mode 1)
-
-  ;;; Helm Key bindings
-  (define-key global-map (kbd "M-x") 'helm-M-x)
-  (define-key global-map (kbd "M-y") 'helm-show-kill-ring)
-  ;;(setq helm-ff-auto-update-initial-value nil)    ; 禁止自動補全
-
-  (define-key global-map [f12] 'jcs-helm-gtags-to-def-dec)
-  (define-key global-map [S-f12] 'jcs-helm-gtags-to-def-dec-other-window)
-
-  ;; Helm minibuffer key bindings
-  (define-key helm-find-files-map (kbd "<return>") 'helm-execute-persistent-action)
-
 
   ;; Helm search configuration.
   (setq helm-split-window-in-side-p           t
@@ -382,11 +383,8 @@
                  (inhibit-same-window . t)
                  (window-height . 0.4)))
 
-  ;;
   ;; `helm-colors'
-  ;;
   ;; NOTE(jenchieh): make key insert 'HEX' and 'Name'
-  ;;
   (defvar helm-color-map
     (let ((map (make-sparse-keymap)))
       (set-keymap-parent map helm-map)
@@ -407,33 +405,36 @@
   ;; Selection
   (set-face-attribute 'helm-selection nil
                       :background "midnight blue"
-                      :foreground "#40FF40"))
+                      :foreground "#40FF40")
 
-;;;
-;; NOTE(jenchieh): You will need GNU GLOBAL executable in order
-;; to make the tag system work.
-;;
-(use-package helm-gtags
-  :config
-  ;; Enable helm-gtags-mode
-  (add-hook 'asm-mode-hook 'helm-gtags-mode)
-  (add-hook 'c-mode-hook 'helm-gtags-mode)
-  (add-hook 'c++-mode-hook 'helm-gtags-mode)
-  (add-hook 'java-mode-hook 'helm-gtags-mode)
-  (add-hook 'jayces-mode-hook 'helm-gtags-mode)
-  (add-hook 'js2-mode-hook 'helm-gtags-mode)
-  (add-hook 'lua-mode-hook 'helm-gtags-mode)
-  (add-hook 'nasm-mode-hook 'helm-gtags-mode)
+  ;;
+  ;; NOTE(jenchieh): You will need GNU GLOBAL executable in order
+  ;; to make the tag system work.
+  ;;
+  (use-package helm-gtags
+    :ensure t
+    :defer t
+    :config
+    ;; Enable helm-gtags-mode
+    (add-hook 'asm-mode-hook 'helm-gtags-mode)
+    (add-hook 'c-mode-hook 'helm-gtags-mode)
+    (add-hook 'c++-mode-hook 'helm-gtags-mode)
+    (add-hook 'java-mode-hook 'helm-gtags-mode)
+    (add-hook 'jayces-mode-hook 'helm-gtags-mode)
+    (add-hook 'js2-mode-hook 'helm-gtags-mode)
+    (add-hook 'lua-mode-hook 'helm-gtags-mode)
+    (add-hook 'nasm-mode-hook 'helm-gtags-mode)
 
-  ;; customize 'helm-gtags' plugin
-  (custom-set-variables
-   '(helm-gtags-path-style 'relative)
-   '(helm-gtags-ignore-case t)
-   '(helm-gtags-auto-update t)))
+    ;; customize 'helm-gtags' plugin
+    (custom-set-variables
+     '(helm-gtags-path-style 'relative)
+     '(helm-gtags-ignore-case t)
+     '(helm-gtags-auto-update t))))
 
 
 (use-package yasnippet
   :ensure t
+  :defer t
   :config
   (use-package yasnippet-snippets
     :ensure t)
@@ -442,11 +443,15 @@
 
 
 (use-package origami
+  :ensure t
+  :defer t
   :config
   (global-origami-mode t))
 
 
 (use-package skewer-mode
+  :ensure t
+  :defer t
   :config
   (add-hook 'js2-mode-hook 'skewer-mode)
   (add-hook 'css-mode-hook 'skewer-css-mode)
