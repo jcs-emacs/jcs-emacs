@@ -161,13 +161,9 @@
 (require 'jcs-file-info-format)
 (require 'jcs-mode)
 
-;; Add hook to all Emacs' events.
+;; Finalize
 (require 'jcs-hook)
-
-;; Set default font.
 (require 'jcs-font)
-
-;;; Do stuff after initialize.
 (require 'jcs-after-init)
 
 
