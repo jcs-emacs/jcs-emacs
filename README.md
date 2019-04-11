@@ -56,7 +56,7 @@ the startup time down to `5` to `15` seconds.
 * *N/A*
 
 
-## Powered
+## Powered by
 
 * *Abbreivation Definition* - powered by 
 [project-abbrev](https://github.com/elpa-host/project-abbrev).
