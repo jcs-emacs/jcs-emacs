@@ -258,7 +258,7 @@ in order to take effect.  Half hot reloading process."
 ;;; CSS
 (defun jcs-insert-css-template ()
   "Template for CSS."
-  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/web/css_template.txt"))
+  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/css/css_template.txt"))
 
 ;;; Emacs Lisp
 (defun jcs-insert-emacs-lisp-template ()
@@ -388,7 +388,7 @@ on language selected."
   "Header for Rust header file."
   (jcs-insert-template-by-file-path "~/.emacs.jcs/template/rust/rust_template.txt"))
 
-;;; SASS
+;;; Sass
 (defun jcs-insert-sass-template ()
   "Header for SASS header file."
   (jcs-insert-template-by-file-path "~/.emacs.jcs/template/sass/sass_template.txt"))
