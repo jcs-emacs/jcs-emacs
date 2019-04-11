@@ -4,7 +4,7 @@
 
 
 ;;; Override all the mode's key bindings.
-(load-file "~/.emacs.jcs/jcs-global-key.el")
+(load-file "~/.emacs.jcs/jcs-key.el")
 ;; Override all the mode's face.
 (load-file "~/.emacs.jcs/jcs-face.el")
 
