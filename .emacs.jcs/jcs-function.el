@@ -416,6 +416,7 @@ G : Active line number globally."
 (require 'jcs-nasm-func)
 (require 'jcs-python-func)
 (require 'jcs-sh-func)
+(require 'jcs-css-func)
 (require 'jcs-web-func)
 (require 'jcs-re-builder-func)
 (require 'jcs-yaml-func)
