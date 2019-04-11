@@ -56,6 +56,11 @@ around `5` to `15` seconds. Solved this issue by removing
 unnecessary `require` keyword load file and use `:defer` keyword 
 with `use-package` package to delay some packages load time.
 
+Here is a great article about 
+[Speeding Up Emacs](https://anuragpeshne.github.io/essays/emacsSpeed.html)
+ written by 
+[Anurag Peshne](https://github.com/anuragpeshne).
+
 
 ## Features
 * *N/A*
