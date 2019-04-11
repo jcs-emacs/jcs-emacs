@@ -10,12 +10,9 @@
 
 
 ;; Determine the underlying operating system
-(defvar jcs-win32 nil
-  "Is Microsoft Windows?")
-(defvar jcs-aquamacs nil
-  "Is Mac OS X?")
-(defvar jcs-linux nil
-  "Is Linux?")
+(defvar jcs-win32 nil "Is Microsoft Windows?")
+(defvar jcs-aquamacs nil "Is Mac OS X?")
+(defvar jcs-linux nil "Is Linux?")
 
 ;; Get OS type
 (cond
@@ -30,10 +27,19 @@
     (setq jcs-linux t))))
 
 
-(defvar jcs-daily-todo-file "C:/TODO_JenChieh/code/todo.txt"
-  "Open the daily todo file.")
-(defvar jcs-log-file "C:/TODO_JenChieh/code/log.txt"
-  "Log file???")
+(defvar jcs-daily-todo-file "" "Open the daily todo file.")
+(defvar jcs-log-file "" "Log file path, file location.")
+
+(cond (jcs-win32
+       (setq jcs-daily-todo-file "C:/TODO_JenChieh/code/todo.txt")
+       (setq jcs-log-file "C:/TODO_JenChieh/code/log.txt"))
+      (jcs-aquamacs
+       (setq jcs-daily-todo-file "/home/TODO_JenChieh/code/todo.txt")
+       (setq jcs-log-file "/home/TODO_JenChieh/code/log.txt"))
+      (jcs-linux
+       (setq jcs-daily-todo-file "/home/TODO_JenChieh/code/todo.txt")
+       (setq jcs-log-file "/home/TODO_JenChieh/code/log.txt")))
+
 
 (global-hl-line-mode 1)
 (set-face-background 'hl-line "midnight blue")
@@ -53,6 +59,7 @@
   "Make script file name depends on the current OS.")
 (defvar jcs-runscript ""
   "Run script file name depends on the current OS.")
+
 
 (when jcs-win32
   (setq jcs-makescript "build.bat")
@@ -83,13 +90,6 @@
 (tool-bar-mode 0)
 
 (load-library "view")
-(require 'cc-mode)
-(require 'ido)
-(require 'compile)
-;; NOTE(jenchieh): After helm version 20181125.17147, must disable this.
-;; INFO(jenchieh): https://github.com/emacs-helm/helm/issues/2116#issuecomment-441649358
-;;   => Ido is incompatible with Helm-mode.
-;;(ido-mode t)
 
 (defun casey-ediff-setup-windows (buffer-A buffer-B buffer-C control-buffer)
   (ediff-setup-windows-plain buffer-A buffer-B buffer-C control-buffer))
@@ -102,8 +102,6 @@
 
 ;; Setup my compilation mode
 (defun jcs-big-fun-compilation-hook ()
-  (interactive)
-
   ;; make it look like the terminal,
   ;; so it won't jump to the next line
   ;; automatically.
@@ -115,7 +113,6 @@
   (setq buffer-face-mode-face '(:height 120))  ;; default [:family "" :height 120]
   (buffer-face-mode)
   )
-
 (add-hook 'compilation-mode-hook 'jcs-big-fun-compilation-hook)
 
 
@@ -174,15 +171,14 @@
 (set-face-attribute 'font-lock-type-face nil :foreground "#38EFCA")           ;; class name
 (set-face-attribute 'font-lock-variable-name-face nil :foreground "#D2D2D2")  ;; declare name
 
-(defun post-load-stuff ()
+(defun jcs-post-load-stuff ()
   "Post load stuff."
-  (interactive)
   (menu-bar-mode -1)
-  (set-foreground-color "#D2D2D2")           ;; text color
+  (set-foreground-color "#D2D2D2")              ;; text color
   (set-background-color "#161616")              ;; background color
   (set-cursor-color "#40FF40")                  ;; cursor color
   )
-(add-hook 'window-setup-hook 'post-load-stuff t)
+(add-hook 'window-setup-hook 'jcs-post-load-stuff t)
 
 ;; Set default Theme Color.
 (add-to-list 'default-frame-alist '(foreground-color . "#D2D2D2"))
@@ -198,15 +194,6 @@
 ;; Line Numbers
 (defvar jcs-line-number-ignore-buffers '("*helm")
   "List of buffers that you do not want to show line numbers in it.")
-
-(unless reload-emacs-reloading
-  (when (version<= "26.0.50" emacs-version)
-    (require 'display-line-numbers)
-    ;;(global-display-line-numbers-mode t)
-    )
-
-  (require 'linum)
-  (global-linum-mode t))
 
 ;; jcs editor setting
 (setq-default indent-tabs-mode nil)          ;; Disable inset tabs, insert space only
