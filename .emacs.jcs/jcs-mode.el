@@ -312,7 +312,7 @@ control of the editor."
 (with-eval-after-load 'vimrc-mode (require 'jcs-vimscript-mode))
 (with-eval-after-load 'cobol-mode (require 'jcs-cobol-mode))
 (with-eval-after-load 'cmake-mode (require 'jcs-cmake-mode))
-(with-eval-after-load 'makefile-mode (require 'jcs-makefile-mode))
+(with-eval-after-load 'make-mode (require 'jcs-makefile-mode))
 (with-eval-after-load 'scala-mode (require 'jcs-scala-mode))
 (with-eval-after-load 'perl-mode (require 'jcs-perl-mode))
 (with-eval-after-load 'basic-mode (require 'jcs-basic-mode))
@@ -334,135 +334,139 @@ control of the editor."
 ;;;
 ;; Auto mode Management
 
-(add-to-list 'auto-mode-alist '("\\.as'?\\'" . actionscript-mode))
-(add-to-list 'auto-mode-alist '("\\.bas'\\'" . basic-mode))
-(add-to-list 'auto-mode-alist '("\\.bat'?\\'" . bat-mode))
+(defun jcs-add-auto-mode-alist (pr)
+  "Add mode to alist.
+PR : pair file `regexp' and file mode `symbol'."
+  (add-to-list 'auto-mode-alist pr))
 
-(add-to-list 'auto-mode-alist '("\\.hin'?\\'" . c++-mode))
-(add-to-list 'auto-mode-alist '("\\.cin'?\\'" . c++-mode))
-(add-to-list 'auto-mode-alist '("\\.cpp'?\\'" . c++-mode))
-(add-to-list 'auto-mode-alist '("\\.hpp'?\\'" . c++-mode))
+(jcs-add-auto-mode-alist '("\\.as'?\\'" . actionscript-mode))
+(jcs-add-auto-mode-alist '("\\.bas'\\'" . basic-mode))
+(jcs-add-auto-mode-alist '("\\.bat'?\\'" . bat-mode))
 
-;;(add-to-list 'auto-mode-alist '("\\.h'?\\'" . c-mode))
-(add-to-list 'auto-mode-alist '("\\.c'?\\'" . c-mode))
+(jcs-add-auto-mode-alist '("\\.hin'?\\'" . c++-mode))
+(jcs-add-auto-mode-alist '("\\.cin'?\\'" . c++-mode))
+(jcs-add-auto-mode-alist '("\\.cpp'?\\'" . c++-mode))
+(jcs-add-auto-mode-alist '("\\.hpp'?\\'" . c++-mode))
 
-(add-to-list 'auto-mode-alist '("\\.clj'?\\'" . clojure-mode))
-(add-to-list 'auto-mode-alist '("\\.cljs'?\\'" . clojurescript-mode))
-(add-to-list 'auto-mode-alist '("\\.cljc'?\\'" . clojurec-mode))
+;;(jcs-add-auto-mode-alist '("\\.h'?\\'" . c-mode))
+(jcs-add-auto-mode-alist '("\\.c'?\\'" . c-mode))
 
-(add-to-list 'auto-mode-alist '("\\(/\\|\\`\\)CMakeLists.txt" . cmake-mode))
+(jcs-add-auto-mode-alist '("\\.clj'?\\'" . clojure-mode))
+(jcs-add-auto-mode-alist '("\\.cljs'?\\'" . clojure-mode))
+(jcs-add-auto-mode-alist '("\\.cljc'?\\'" . clojure-mode))
+
+(jcs-add-auto-mode-alist '("\\(/\\|\\`\\)CMakeLists.txt" . cmake-mode))
 ;; For autotools, autoconf, automake.
-(add-to-list 'auto-mode-alist '("\\.ac'?\\'" . cmake-mode))
+(jcs-add-auto-mode-alist '("\\.ac'?\\'" . cmake-mode))
 
-(add-to-list 'auto-mode-alist '("\\.cbl'?\\'" . cobol-mode))
+(jcs-add-auto-mode-alist '("\\.cbl'?\\'" . cobol-mode))
 
-(add-to-list 'auto-mode-alist '("\\.cs'?\\'" . csharp-mode))
+(jcs-add-auto-mode-alist '("\\.cs'?\\'" . csharp-mode))
 
-(add-to-list 'auto-mode-alist '("\\.css'?" . css-mode))
+(jcs-add-auto-mode-alist '("\\.css'?" . css-mode))
 
-(add-to-list 'auto-mode-alist '("\\.el'?\\'" . emacs-lisp-mode))
+(jcs-add-auto-mode-alist '("\\.el'?\\'" . emacs-lisp-mode))
 
-(add-to-list 'auto-mode-alist '("\\.go'?\\'" . go-mode))
+(jcs-add-auto-mode-alist '("\\.go'?\\'" . go-mode))
 
-(add-to-list 'auto-mode-alist '("\\.hs'?\\'" . haskell-mode))
+(jcs-add-auto-mode-alist '("\\.hs'?\\'" . haskell-mode))
 
-(add-to-list 'auto-mode-alist '("\\.hx'?\\'" . haxe-mode))
+(require 'haxe-mode)
+(jcs-add-auto-mode-alist '("\\.hx'?\\'" . haxe-mode))
 
-(add-to-list 'auto-mode-alist '("\\.properties'?\\'" . ini-mode))
-(add-to-list 'auto-mode-alist '("\\.ini'?\\'" . ini-mode))
-(add-to-list 'auto-mode-alist '("\\.java'?\\'" . java-mode))
+(jcs-add-auto-mode-alist '("\\.properties'?\\'" . ini-mode))
+(jcs-add-auto-mode-alist '("\\.ini'?\\'" . ini-mode))
+(jcs-add-auto-mode-alist '("\\.java'?\\'" . java-mode))
 
-(add-to-list 'auto-mode-alist '("\\.jcs'?\\'" . jayces-mode))
-(add-to-list 'auto-mode-alist '("\\.jayces'?\\'" . jayces-mode))
+(jcs-add-auto-mode-alist '("\\.jcs'?\\'" . jayces-mode))
+(jcs-add-auto-mode-alist '("\\.jayces'?\\'" . jayces-mode))
 
-(add-to-list 'auto-mode-alist '("\\.json'?\\'" . json-mode))
+(jcs-add-auto-mode-alist '("\\.json'?\\'" . json-mode))
 
-(add-to-list 'auto-mode-alist '("\\.lisp'?\\'" . lisp-mode))
+(jcs-add-auto-mode-alist '("\\.lisp'?\\'" . lisp-mode))
 
-(add-to-list 'auto-mode-alist '("\\.lua'?\\'" . lua-mode))
-(add-to-list 'auto-mode-alist '("\\.luac'?\\'" . lua-mode))
+(jcs-add-auto-mode-alist '("\\.lua'?\\'" . lua-mode))
+(jcs-add-auto-mode-alist '("\\.luac'?\\'" . lua-mode))
 
-(add-to-list 'auto-mode-alist '("\\.mak?\\'" . makefile-mode))
-(add-to-list 'auto-mode-alist '("\\.makfile?\\'" . makefile-mode))
-(add-to-list 'auto-mode-alist '("\\(/\\|\\`\\)[Mm]akefile" . makefile-mode))
+(jcs-add-auto-mode-alist '("\\.mak'?\\'" . makefile-mode))
+(jcs-add-auto-mode-alist '("\\.makfile'?\\'" . makefile-mode))
+(jcs-add-auto-mode-alist '("\\(/\\|\\`\\)[Mm]akefile" . makefile-mode))
 
-(add-to-list 'auto-mode-alist '("\\.md'?\\'" . markdown-mode))
+(jcs-add-auto-mode-alist '("\\.md'?\\'" . markdown-mode))
 
-(add-to-list 'auto-mode-alist '("\\.asm'?\\'" . nasm-mode))
-(add-to-list 'auto-mode-alist '("\\.inc'?\\'" . nasm-mode))
+(jcs-add-auto-mode-alist '("\\.asm'?\\'" . nasm-mode))
+(jcs-add-auto-mode-alist '("\\.inc'?\\'" . nasm-mode))
 
-(add-to-list 'auto-mode-alist '("\\.m'?\\'" . objc-mode))
+(jcs-add-auto-mode-alist '("\\.m'?\\'" . objc-mode))
 
-(add-to-list 'auto-mode-alist '("\\.pl'?\\'" . perl-mode))
+(jcs-add-auto-mode-alist '("\\.pl'?\\'" . perl-mode))
 
-(add-to-list 'auto-mode-alist '("\\.pde'?\\'" . processing-mode))
+(jcs-add-auto-mode-alist '("\\.pde'?\\'" . processing-mode))
 
-(add-to-list 'auto-mode-alist '("\\.py'?\\'" . python-mode))
-(add-to-list 'auto-mode-alist '("\\.pyc'?\\'" . python-mode))
+(jcs-add-auto-mode-alist '("\\.py'?\\'" . python-mode))
+(jcs-add-auto-mode-alist '("\\.pyc'?\\'" . python-mode))
 
-(add-to-list 'auto-mode-alist '("\\.rb'?\\'" . ruby-mode))
+(jcs-add-auto-mode-alist '("\\.rb'?\\'" . ruby-mode))
 
-(add-to-list 'auto-mode-alist '("\\.rs'?\\'" . rust-mode))
+(jcs-add-auto-mode-alist '("\\.rs'?\\'" . rust-mode))
 
-(add-to-list 'auto-mode-alist '("\\.sass'?\\'" . ssass-mode))
+(jcs-add-auto-mode-alist '("\\.sass'?\\'" . ssass-mode))
 
-(add-to-list 'auto-mode-alist '("\\.scala'?\\'" . scala-mode))
+(jcs-add-auto-mode-alist '("\\.scala'?\\'" . scala-mode))
 
-(add-to-list 'auto-mode-alist '("\\.scss?\\'" . scss-mode))
+(jcs-add-auto-mode-alist '("\\.scss?\\'" . scss-mode))
 
-(add-to-list 'auto-mode-alist '("\\.sh'?\\'" . sh-mode))
-(add-to-list 'auto-mode-alist '("\\.linux'?\\'" . sh-mode))
-(add-to-list 'auto-mode-alist '("\\.macosx'?\\'" . sh-mode))
+(jcs-add-auto-mode-alist '("\\.sh'?\\'" . sh-mode))
+(jcs-add-auto-mode-alist '("\\.linux'?\\'" . sh-mode))
+(jcs-add-auto-mode-alist '("\\.macosx'?\\'" . sh-mode))
 
-(add-to-list 'auto-mode-alist '("\\.shader'?\\'" . shader-mode))
+(jcs-add-auto-mode-alist '("\\.shader'?\\'" . shader-mode))
 
-(add-to-list 'auto-mode-alist '("\\.frag'?\\'" . glsl-mode))
-(add-to-list 'auto-mode-alist '("\\.geom'?\\'" . glsl-mode))
-(add-to-list 'auto-mode-alist '("\\.glsl'?\\'" . glsl-mode))
-(add-to-list 'auto-mode-alist '("\\.vert'?\\'" . glsl-mode))
+(jcs-add-auto-mode-alist '("\\.frag'?\\'" . glsl-mode))
+(jcs-add-auto-mode-alist '("\\.geom'?\\'" . glsl-mode))
+(jcs-add-auto-mode-alist '("\\.glsl'?\\'" . glsl-mode))
+(jcs-add-auto-mode-alist '("\\.vert'?\\'" . glsl-mode))
 
-(add-to-list 'auto-mode-alist '("\\.sql'?\\'" . sql-mode))
+(jcs-add-auto-mode-alist '("\\.sql'?\\'" . sql-mode))
 
-(add-to-list 'auto-mode-alist '("\\.swift'?\\'" . swift-mode))
+(jcs-add-auto-mode-alist '("\\.swift'?\\'" . swift-mode))
 
-
-(add-to-list 'auto-mode-alist '("\\.gitignore'?\\'" . gitignore-mode))
-
-(add-to-list 'auto-mode-alist '("\\.gitattributes'?\\'" . gitattributes-mode))
+(jcs-add-auto-mode-alist '("\\.gitignore'?\\'" . gitignore-mode))
+(jcs-add-auto-mode-alist '("\\.gitattributes'?\\'" . gitattributes-mode))
 
 ;; set the defualt text mode to org mode.
-(add-to-list 'auto-mode-alist '("\\.org'?\\'" . org-mode))
-(add-to-list 'auto-mode-alist '("\\(/\\|\\`\\)README" . org-mode))
-(add-to-list 'auto-mode-alist '("\\(/\\|\\`\\)LICENSE" . org-mode))
-(add-to-list 'auto-mode-alist '("\\(/\\|\\`\\)bochsrc" . org-mode))
+(jcs-add-auto-mode-alist '("\\.org'?\\'" . org-mode))
+(jcs-add-auto-mode-alist '("\\(/\\|\\`\\)README" . org-mode))
+(jcs-add-auto-mode-alist '("\\(/\\|\\`\\)LICENSE" . org-mode))
+(jcs-add-auto-mode-alist '("\\(/\\|\\`\\)bochsrc" . org-mode))
 
-(add-to-list 'auto-mode-alist '("\\.ts'?\\'" . typescript-mode))
+(jcs-add-auto-mode-alist '("\\.ts'?\\'" . typescript-mode))
 
-(add-to-list 'auto-mode-alist '("\\.v'?\\'" . verilog-mode))
+(jcs-add-auto-mode-alist '("\\.v'?\\'" . verilog-mode))
 
-(add-to-list 'auto-mode-alist '("\\.vim\\(rc\\)'?\\'" . vimrc-mode))
-(add-to-list 'auto-mode-alist '("\\(/\\|\\`\\)_vimrc" . vimrc-mode))
+(jcs-add-auto-mode-alist '("\\.vim\\(rc\\)'?\\'" . vimrc-mode))
+(jcs-add-auto-mode-alist '("\\(/\\|\\`\\)_vimrc" . vimrc-mode))
 
-(add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.php?\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
+(jcs-add-auto-mode-alist '("\\.phtml\\'" . web-mode))
+(jcs-add-auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+(jcs-add-auto-mode-alist '("\\.erb\\'" . web-mode))
+(jcs-add-auto-mode-alist '("\\.mustache\\'" . web-mode))
+(jcs-add-auto-mode-alist '("\\.djhtml\\'" . web-mode))
+(jcs-add-auto-mode-alist '("\\.html?\\'" . web-mode))
+(jcs-add-auto-mode-alist '("\\.php?\\'" . web-mode))
+(jcs-add-auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
 
 ;; ASP .NET
-(add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.cshtml\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.[Mm]aster\\'" . web-mode))
+(jcs-add-auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+(jcs-add-auto-mode-alist '("\\.cshtml\\'" . web-mode))
+(jcs-add-auto-mode-alist '("\\.[Mm]aster\\'" . web-mode))
 
-(add-to-list 'auto-mode-alist '("\\.js'?\\'" . js2-mode))
+(jcs-add-auto-mode-alist '("\\.js'?\\'" . js2-mode))
 
-(add-to-list 'auto-mode-alist '("\\.xml'?\\'" . nxml-mode))
+(jcs-add-auto-mode-alist '("\\.xml'?\\'" . nxml-mode))
 
-(add-to-list 'auto-mode-alist '("\\.yaml'?\\'" . yaml-mode))
-(add-to-list 'auto-mode-alist '("\\.yml'?\\'" . yaml-mode))
+(jcs-add-auto-mode-alist '("\\.yaml'?\\'" . yaml-mode))
+(jcs-add-auto-mode-alist '("\\.yml'?\\'" . yaml-mode))
 
 
 (provide 'jcs-mode)
