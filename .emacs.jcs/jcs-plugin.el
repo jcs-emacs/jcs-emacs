@@ -242,20 +242,6 @@
   (custom-set-variables '(ahs-idle-interval 0.3)))
 
 
-(use-package yasnippet
-  :config
-  (yas-global-mode 1))
-
-
-(use-package flycheck
-  :config
-  ;; Enable global `flycheck'?
-  ;;(global-flycheck-mode t)
-  )
-
-;;; Flymake
-(require 'flymake)
-
 ;;; Visual RegExp
 (require 'visual-regexp)
 
@@ -451,7 +437,8 @@
   :config
   (use-package yasnippet-snippets
     :ensure t)
-  (yas-reload-all))
+  (yas-reload-all)
+  (yas-global-mode 1))
 
 
 (use-package origami
