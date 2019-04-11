@@ -133,9 +133,7 @@
 (define-key auto-highlight-symbol-mode-map (kbd "M-S-<left>") #'isearch-forward-symbol-at-point)
 
 ;;; Admin
-(require 'reload-emacs)
 (define-key global-map "\C-x\C-v" #'reload-emacs)
-(require 'restart-emacs)
 (define-key global-map "\C-x\C-b" #'restart-emacs)
 
 ;;; Undo/Redo
@@ -257,7 +255,6 @@
 (define-key global-map (kbd "C-k C-i") #'jcs-describe-thing-in-popup)
 
 ;;; ace window
-(require 'ace-window)
 (define-key global-map "\ee" #'ace-window)
 
 ;;; Company
@@ -267,7 +264,6 @@
 (define-key company-active-map "\C-s" #'jcs-untabify-save-buffer)
 
 ;;; Flycheck
-(require 'flycheck)
 (define-key global-map (kbd "<f6>") #'jcs-flycheck-mode)
 
 ;;; Speedbar
@@ -279,11 +275,9 @@
 (define-key speedbar-mode-map (kbd "<f2>") #'speedbar-item-rename)
 
 ;; Interface in Emacs using Git.
-(require 'magit)
 (define-key global-map (kbd "C-x g") #'magit-status)
 
 ;;; Folding Settings
-(require 'origami)
 (define-key global-map (kbd "C-M-o") #'origami-close-all-nodes)
 (define-key global-map (kbd "C-M-p") #'origami-open-all-nodes)
 
@@ -291,12 +285,9 @@
 (define-key global-map "\C-cm" #'jcs-toggle-minimap)
 
 ;;; Animate Scrolling
-(require 'sublimity)
-(require 'sublimity-scroll)
 (define-key global-map "\C-ca" #'jcs-toggle-sublimity-mode)
 
 ;;; Move Current Line Up or Down
-(require 'move-text)
 (define-key global-map [M-up] #'move-text-up)
 (define-key global-map [M-down] #'move-text-down)
 
@@ -372,15 +363,19 @@
 (define-key global-map (kbd "C-c i ?") #'jcs-delete-inside-question-mark)
 
 ;;; Web mode
-(require 'impatient-mode)
 (define-key global-map "\C-wo" #'jcs-httpd-start)
 (define-key global-map "\C-wp" #'jcs-httpd-stop)
 
 ;;; Helm
-;; More key binding in `jcs-helm.el'
+(define-key global-map (kbd "M-x") 'helm-M-x)
+(define-key global-map (kbd "M-y") 'helm-show-kill-ring)
+;;(setq helm-ff-auto-update-initial-value nil)    ; 禁止自動補全
+(define-key helm-find-files-map (kbd "<return>") 'helm-execute-persistent-action)
+
+(define-key global-map [f12] 'jcs-helm-gtags-to-def-dec)
+(define-key global-map [S-f12] 'jcs-helm-gtags-to-def-dec-other-window)
 
 ;;; Tabbar
-(require 'tabbar)
 (define-key global-map (kbd "C-t") #'jcs-toggle-tabbar-mode)
 (define-key global-map [C-S-tab] #'tabbar-forward)
 (define-key global-map [C-tab] #'tabbar-backward)
@@ -396,13 +391,10 @@
 (define-key messages-buffer-mode-map "\ek" #'jcs-message-erase-buffer)
 (define-key messages-buffer-mode-map "\eK" #'jcs-message-erase-buffer-stay)
 
-(require 'cc-mode)
 (define-key global-map (kbd "C-c c") #'jcs-toggle-cc-mode)
 
-(require 'rainbow-mode)
 (define-key global-map (kbd "C-c r") #'rainbow-mode)
 
-(require 'whitespace)
 (define-key global-map (kbd "C-x b") #'whitespace-mode)
 
 ;; Rename file
