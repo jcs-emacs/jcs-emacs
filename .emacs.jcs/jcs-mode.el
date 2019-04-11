@@ -26,7 +26,6 @@
 (defun jcs-depend-cross-mode-toggle()
   "Toggle depend/cross mode."
   (interactive)
-
   ;; NOTE(jenchieh): can only active when the minibuffer is
   ;; not active.
   (when (eq jcs-minibuffer-active nil)
@@ -45,17 +44,14 @@
   "Reload the active mode.  Note this is opposite logic to the \
 toggle mode function."
   (interactive)
-
   ;; NOTE(jenchieh): can only active when the minibuffer is
   ;; not active.
   (when (eq jcs-minibuffer-active nil)
     (if (get 'jcs-depend-cross-mode-toggle 'state)
-        (progn
-          ;; if state is true keep on cross mode.
-          (jcs-cross-mode))
-      (progn
-        ;; vice versa, keep on depend mode.
-        (jcs-depend-mode)))))
+        ;; if state is true keep on cross mode.
+        (jcs-cross-mode)
+      ;; vice versa, keep on depend mode.
+      (jcs-depend-mode))))
 
 
 (defvar jcs-prompt-message-sleep-delay-time 0.4  ;; in seconds
