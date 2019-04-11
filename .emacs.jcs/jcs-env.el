@@ -238,6 +238,17 @@
 ;;; Resolve performance issue moving around Unicode Text.
 (setq inhibit-compacting-font-caches t)
 
+;;; Uniquify
+;; NOTE: meaningful names for buffers with the same name from
+;; prelude.
+;; SOURCE(jenchieh): http://pragmaticemacs.com/emacs/uniquify-your-buffer-names/
+;; URL: https://github.com/bbatsov/prelude
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'forward)
+(setq uniquify-separator "/")
+(setq uniquify-after-kill-buffer-p t)    ; rename after killing uniquified
+(setq uniquify-ignore-buffers-re "^\\*") ; don't muck with special buffers
+
 ;; Enable address mode.
 (goto-address-mode t)
 
