@@ -8,12 +8,6 @@
   (add-hook 'js2-mode-hook #'js2-refactor-mode)
   (js2r-add-keybindings-with-prefix "C-c C-m"))
 
-(use-package skewer-mode
-  :config
-  (add-hook 'js2-mode-hook 'skewer-mode)
-  (add-hook 'css-mode-hook 'skewer-css-mode)
-  (add-hook 'html-mode-hook 'skewer-html-mode))
-
 
 (require 'js2-mode)
 (defun jcs-js-mode-hook ()
