@@ -40,8 +40,6 @@
   )
 (add-hook 'sql-mode-hook 'jcs-sql-mode-hook)
 
-(add-to-list 'auto-mode-alist '("\\.sql'?\\'" . sql-mode))
-
 
 (provide 'jcs-sql-mode)
 ;;; jcs-sql-mode.el ends here

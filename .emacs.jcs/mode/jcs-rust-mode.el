@@ -27,8 +27,6 @@
   )
 (add-hook 'rust-mode-hook 'jcs-rust-mode-hook)
 
-(add-to-list 'auto-mode-alist '("\\.rs'?\\'" . rust-mode))
-
 
 (provide 'jcs-rust-mode)
 ;;; jcs-rust-mode.el ends here

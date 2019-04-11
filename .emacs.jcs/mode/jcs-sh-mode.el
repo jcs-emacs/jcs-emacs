@@ -36,10 +36,6 @@
   )
 (add-hook 'sh-mode-hook 'jcs-sh-script-hook)
 
-(add-to-list 'auto-mode-alist '("\\.sh'?\\'" . sh-mode))
-(add-to-list 'auto-mode-alist '("\\.linux'?\\'" . sh-mode))
-(add-to-list 'auto-mode-alist '("\\.macosx'?\\'" . sh-mode))
-
 
 (provide 'jcs-sh-mode)
 ;;; jcs-sh-mode.el ends here

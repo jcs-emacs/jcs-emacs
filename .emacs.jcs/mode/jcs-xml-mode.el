@@ -21,13 +21,13 @@
           ((string-match "[.]xml" buffer-file-name) (jcs-xml-format))
           ))
 
+  ;; Normal
+  (define-key emmet-mode-keymap "\C-c\C-c" #'kill-ring-save)
   )
 ;; STUDY(jenchieh): they ae using nxml-mode instead of xml-mode
 ;; which is really weird.
 (add-hook 'nxml-mode-hook 'jcs-xml-mode-hook)
 (add-hook 'nxml-mode-hook 'emmet-mode)
-
-(add-to-list 'auto-mode-alist '("\\.xml'?\\'" . nxml-mode))
 
 
 (provide 'jcs-xml-mode)

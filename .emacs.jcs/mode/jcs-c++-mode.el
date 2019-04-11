@@ -66,11 +66,6 @@
   )
 (add-hook 'c++-mode-hook 'jcs-c++-mode-hook)
 
-(add-to-list 'auto-mode-alist '("\\.hin'?\\'" . c++-mode))
-(add-to-list 'auto-mode-alist '("\\.cin'?\\'" . c++-mode))
-(add-to-list 'auto-mode-alist '("\\.cpp'?\\'" . c++-mode))
-(add-to-list 'auto-mode-alist '("\\.hpp'?\\'" . c++-mode))
-
 
 (provide 'jcs-c++-mode)
 ;;; jcs-c++-mode.el ends here

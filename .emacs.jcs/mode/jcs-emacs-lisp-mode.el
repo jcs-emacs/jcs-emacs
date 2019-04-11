@@ -26,8 +26,6 @@
   )
 (add-hook 'emacs-lisp-mode-hook 'jcs-emacs-lisp-mode-hook)
 
-(add-to-list 'auto-mode-alist '("\\.el'?\\'" . emacs-lisp-mode))
-
 
 (provide 'jcs-emacs-lisp-mode)
 ;;; jcs-emacs-lisp-mode.el ends here

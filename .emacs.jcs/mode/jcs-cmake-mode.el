@@ -39,11 +39,6 @@
   )
 (add-hook 'cmake-mode-hook 'jcs-cmake-mode-hook)
 
-(add-to-list 'auto-mode-alist '("\\(/\\|\\`\\)CMakeLists.txt" . cmake-mode))
-
-;; For autotools, autoconf, automake.
-(add-to-list 'auto-mode-alist '("\\.ac'?\\'" . cmake-mode))
-
 
 (provide 'jcs-cmake-mode)
 ;;; jcs-cmake-mode.el ends here

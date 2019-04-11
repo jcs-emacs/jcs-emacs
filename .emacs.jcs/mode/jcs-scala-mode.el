@@ -5,8 +5,11 @@
 
 (require 'scala-mode)
 (defun jcs-scala-mode-hook ()
-  "JayCeS Scala mode."
+  "Scala mode hook."
+  (abbrev-mode 1)
+  (electric-pair-mode 1)
   (goto-address-mode 1)
+  (auto-highlight-symbol-mode t)
 
   (defun jcs-scala-class-format ()
     "Format the given file as a Scala file."
@@ -25,8 +28,6 @@
   (define-key scala-mode-map (kbd "*") #'jcs-c-comment-pair)
   )
 (add-hook 'scala-mode-hook 'jcs-scala-mode-hook)
-
-(add-to-list 'auto-mode-alist '("\\.scala'?\\'" . scala-mode))
 
 
 (provide 'jcs-scala-mode)

@@ -36,7 +36,6 @@
   (define-key scss-mode-map "\C-kd" #'jcs-css-sort-attributes-document)
   )
 (add-hook 'scss-mode-hook 'jcs-scss-mode-hook)
-(add-to-list 'auto-mode-alist '("\\.scss?\\'" . scss-mode))
 
 
 (provide 'jcs-scss-mode)

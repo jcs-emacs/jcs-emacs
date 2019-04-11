@@ -35,8 +35,6 @@
   )
 (add-hook 'perl-mode-hook 'jcs-perl-mode-hook)
 
-(add-to-list 'auto-mode-alist '("\\.pl'?\\'" . perl-mode))
-
 
 (provide 'jcs-perl-mode)
 ;;; jcs-perl-mode.el ends here

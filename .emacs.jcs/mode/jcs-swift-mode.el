@@ -29,8 +29,6 @@
   )
 (add-hook 'swift-mode-hook 'jcs-swift-mode-hook)
 
-(add-to-list 'auto-mode-alist '("\\.swift'?\\'" . swift-mode))
-
 
 (provide 'jcs-swift-mode)
 ;;; jcs-swift-mode.el ends here

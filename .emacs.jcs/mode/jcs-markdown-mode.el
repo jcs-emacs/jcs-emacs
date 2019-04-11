@@ -19,8 +19,6 @@
   )
 (add-hook 'markdown-mode-hook 'jcs-markdown-mode-hook)
 
-(add-to-list 'auto-mode-alist '("\\.md'?\\'" . markdown-mode))
-
 
 (provide 'jcs-markdown-mode)
 ;;; jcs-markdown-mode.el ends here

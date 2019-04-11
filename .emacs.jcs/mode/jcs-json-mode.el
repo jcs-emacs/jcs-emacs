@@ -44,8 +44,6 @@
   )
 (add-hook 'json-mode-hook 'jcs-json-mode-hook)
 
-(add-to-list 'auto-mode-alist '("\\.json'?\\'" . json-mode))
-
 
 (provide 'jcs-json-mode)
 ;;; jcs-json-mode.el ends here

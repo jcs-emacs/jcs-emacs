@@ -58,7 +58,6 @@
   (define-key java-mode-map (kbd "S-<f2>") #'javadoc-lookup)
   )
 (add-hook 'java-mode-hook 'jcs-java-mode-hook)
-(add-to-list 'auto-mode-alist '("\\.java'?\\'" . java-mode))
 
 
 (use-package javadoc-lookup

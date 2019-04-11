@@ -48,9 +48,6 @@
   )
 (add-hook 'lua-mode-hook 'jcs-lua-mode-hook)
 
-(add-to-list 'auto-mode-alist '("\\.lua'?\\'" . lua-mode))
-(add-to-list 'auto-mode-alist '("\\.luac'?\\'" . lua-mode))
-
 
 (provide 'jcs-lua-mode)
 ;;; jcs-lua-mode.el ends here

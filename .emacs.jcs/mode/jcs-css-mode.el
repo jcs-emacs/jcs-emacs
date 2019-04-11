@@ -64,8 +64,6 @@
 (add-hook 'css-mode-hook 'jcs-css-mode-hook)
 (add-hook 'css-mode-hook 'emmet-mode)
 
-(add-to-list 'auto-mode-alist '("\\.css'?" . css-mode))
-
 
 (provide 'jcs-css-mode)
 ;;; jcs-css-mode.el ends here

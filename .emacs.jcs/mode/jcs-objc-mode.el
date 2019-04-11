@@ -70,8 +70,6 @@
   )
 (add-hook 'objc-mode-hook 'jcs-objc-mode-hook)
 
-(add-to-list 'auto-mode-alist '("\\.m'?\\'" . objc-mode))
-
 
 (provide 'jcs-objc-mode)
 ;;; jcs-objc-mode.el ends here

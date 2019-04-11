@@ -3,10 +3,6 @@
 ;;; Code:
 
 
-;;====================================
-;; Gitignore
-;;---------------------------
-
 (require 'gitignore-mode)
 (defun jcs-gitignore-mode-hook ()
   "Gitignore mode hook."
@@ -24,12 +20,7 @@
   )
 (add-hook 'gitignore-mode-hook 'jcs-gitignore-mode-hook)
 
-(add-to-list 'auto-mode-alist '("\\.gitignore'?\\'" . gitignore-mode))
 
-
-;;====================================
-;; Gitattributes
-;;---------------------------
 
 (require 'gitattributes-mode)
 (defun jcs-gitattributes-mode-hook ()
@@ -48,14 +39,9 @@
   )
 (add-hook 'gitattributes-mode-hook 'jcs-gitattributes-mode-hook)
 
-(add-to-list 'auto-mode-alist '("\\.gitattributes'?\\'" . gitattributes-mode))
 
 
-;;====================================
-;; Org mode.
-;;---------------------------
 (require 'org)
-
 ;; No fold when open `org' file.
 (setq org-startup-folded nil)
 
@@ -92,12 +78,6 @@
   (define-key org-mode-map (kbd "S-<right>") #'jcs-org-table-right)
   )
 (add-hook 'org-mode-hook 'jcs-org-mode-hook)
-
-;; set the defualt text mode to org mode.
-(add-to-list 'auto-mode-alist '("\\.txt'?\\'" . org-mode))
-(add-to-list 'auto-mode-alist '("\\(/\\|\\`\\)README" . org-mode))
-(add-to-list 'auto-mode-alist '("\\(/\\|\\`\\)LICENSE" . org-mode))
-(add-to-list 'auto-mode-alist '("\\(/\\|\\`\\)bochsrc" . org-mode))
 
 
 (provide 'jcs-txt-mode)

@@ -38,8 +38,6 @@
   )
 (add-hook 'typescript-mode-hook 'jcs-typescript-mode-hook)
 
-(add-to-list 'auto-mode-alist '("\\.ts'?\\'" . typescript-mode))
-
 
 (provide 'jcs-typescript-mode)
 ;;; jcs-typescript-mode.el ends here

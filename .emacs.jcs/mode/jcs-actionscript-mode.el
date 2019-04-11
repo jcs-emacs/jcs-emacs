@@ -38,8 +38,6 @@
 
 (add-hook 'actionscript-mode-hook 'jcs-actionscript-mode-hook)
 
-(add-to-list 'auto-mode-alist '("\\.as'?\\'" . actionscript-mode))
-
 
 (provide 'jcs-actionscript-mode)
 ;;; jcs-actionscript-mode.el ends here

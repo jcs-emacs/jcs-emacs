@@ -34,8 +34,6 @@
   )
 (add-hook 'cobol-mode-hook 'jcs-cobol-mode-hook)
 
-(add-to-list 'auto-mode-alist '("\\.cbl'?\\'" . cobol-mode))
-
 
 (provide 'jcs-cobol-mode)
 ;;; jcs-cobol-mode.el ends here

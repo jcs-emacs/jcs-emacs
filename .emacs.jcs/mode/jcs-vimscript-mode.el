@@ -33,9 +33,6 @@
   )
 (add-hook 'vimrc-mode-hook 'jcs-vim-mode-hook)
 
-(add-to-list 'auto-mode-alist '("\\.vim\\(rc\\)'?\\'" . vimrc-mode))
-(add-to-list 'auto-mode-alist '("\\(/\\|\\`\\)_vimrc" . vimrc-mode))
-
 
 (provide 'jcs-vimscript-mode)
 ;;; jcs-vimscript-mode.el ends here

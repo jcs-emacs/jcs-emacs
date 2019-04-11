@@ -50,7 +50,6 @@
   ;; actually no need
   (use-local-map jcs-shader-mode-map)
   )
-(add-to-list 'auto-mode-alist '("\\.shader?\\'" . jcs-shader-mode))
 
 
 
@@ -83,11 +82,6 @@
   (define-key glsl-mode-map "\C-c\C-c" #'kill-ring-save)
   )
 (add-hook 'glsl-mode-hook 'jcs-glsl-mode-hook)
-
-(add-to-list 'auto-mode-alist '("\\.frag'?\\'" . glsl-mode))
-(add-to-list 'auto-mode-alist '("\\.geom'?\\'" . glsl-mode))
-(add-to-list 'auto-mode-alist '("\\.glsl'?\\'" . glsl-mode))
-(add-to-list 'auto-mode-alist '("\\.vert'?\\'" . glsl-mode))
 
 
 (provide 'jcs-shader-mode)

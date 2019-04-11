@@ -24,8 +24,6 @@
   )
 (add-hook 'verilog-mode-hook 'jcs-verilog-mode-hook)
 
-(add-to-list 'auto-mode-alist '("\\.v'?\\'" . verilog-mode))
-
 
 (provide 'jcs-verilog-mode)
 ;;; jcs-verilog-mode.el ends here

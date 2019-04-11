@@ -47,8 +47,6 @@
   )
 (add-hook 'processing-mode-hook 'jcs-processing-mode-hook)
 
-(add-to-list 'auto-mode-alist '("\\.pde'?\\'" . processing-mode))
-
 
 (provide 'jcs-processing-mode)
 ;;; jcs-processing-mode.el ends here

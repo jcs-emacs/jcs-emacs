@@ -36,9 +36,6 @@
   )
 (add-hook 'yaml-mode-hook 'jcs-yaml-mode-hook)
 
-(add-to-list 'auto-mode-alist '("\\.yaml'?\\'" . yaml-mode))
-(add-to-list 'auto-mode-alist '("\\.yml'?\\'" . yaml-mode))
-
 
 (provide 'jcs-yaml-mode)
 ;;; jcs-yaml-mode.el ends here

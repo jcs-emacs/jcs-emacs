@@ -34,8 +34,6 @@
   )
 (add-hook 'bat-mode-hook 'jcs-batch-mode-hook)
 
-(add-to-list 'auto-mode-alist '("\\.bat'?\\'" . bat-mode))
-
 
 (provide 'jcs-batch-mode)
 ;;; jcs-batch-mode.el ends here

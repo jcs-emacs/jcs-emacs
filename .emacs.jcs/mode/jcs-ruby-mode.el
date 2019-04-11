@@ -27,8 +27,6 @@
   )
 (add-hook 'ruby-mode-hook 'jcs-ruby-mode-hook)
 
-(add-to-list 'auto-mode-alist '("\\.rb'?\\'" . ruby-mode))
-
 
 (provide 'jcs-ruby-mode)
 ;;; jcs-ruby-mode.el ends here

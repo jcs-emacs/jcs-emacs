@@ -24,8 +24,6 @@
   )
 (add-hook 'haskell-mode-hook 'jcs-haskell-mode-hook)
 
-(add-to-list 'auto-mode-alist '("\\.hs'?\\'" . haskell-mode))
-
 
 (provide 'jcs-haskell-mode)
 ;;; jcs-haskell-mode.el ends here

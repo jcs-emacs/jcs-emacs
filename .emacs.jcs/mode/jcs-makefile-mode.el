@@ -41,11 +41,6 @@
   )
 (add-hook 'makefile-mode-hook 'jcs-makefile-mode-hook)
 
-;; temporary makefile
-(add-to-list 'auto-mode-alist '("\\.mak?\\'" . makefile-mode))
-(add-to-list 'auto-mode-alist '("\\.makfile?\\'" . makefile-mode))
-(add-to-list 'auto-mode-alist '("\\(/\\|\\`\\)[Mm]akefile" . makefile-mode))
-
 
 (provide 'jcs-makefile-mode)
 ;;; jcs-makefile-mode.el ends here

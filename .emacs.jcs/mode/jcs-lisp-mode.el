@@ -26,8 +26,6 @@
   )
 (add-hook 'lisp-mode-hook 'jcs-lisp-mode-hook)
 
-(add-to-list 'auto-mode-alist '("\\.lisp'?\\'" . lisp-mode))
-
 
 (provide 'jcs-lisp-mode)
 ;;; jcs-lisp-mode.el ends here
