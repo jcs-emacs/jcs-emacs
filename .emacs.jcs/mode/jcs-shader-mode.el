@@ -1,31 +1,15 @@
-;;; jcs-xml-mode.el --- Shader mode. -*- lexical-binding: t -*-
+;;; jcs-shader-mode.el --- Shader mode. -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
 
 (require 'shader-mode)
-
-(defvar jcs-shader-mode-map nil
-  "Keymap for `jcs-shader-mode'")
-
-(progn
-  (setq jcs-shader-mode-map (make-sparse-keymap))
-
-  ;; comment block
-  (define-key jcs-shader-mode-map (kbd "RET") #'jcs-smart-context-line-break)
-  (define-key jcs-shader-mode-map (kbd "*") #'jcs-c-comment-pair)
-  )
-
-;;;
-;; TOPIC(jayces): Elisp: How to Create Keymap for Major Mode
-;; URL(jayces): http://ergoemacs.org/emacs/elisp_create_major_mode_keymap.html
-(define-derived-mode jcs-shader-mode ()
+(defun jcs-shader-mode-hook ()
+  "Shader mode hook."
   (abbrev-mode 1)
   (electric-pair-mode 1)
   (goto-address-mode 1)
   (auto-highlight-symbol-mode t)
-
-  (shader-mode)
 
   (setq-local comment-start "/*")
   (setq-local comment-start-skip "/\\*+[ \t]*")
@@ -47,10 +31,8 @@
           ((string-match "[.]shader" buffer-file-name) (jcs-shader-format))
           ))
 
-  ;; actually no need
-  (use-local-map jcs-shader-mode-map)
   )
-
+(add-hook 'shader-mode-hook 'jcs-shader-mode-hook)
 
 
 (require 'glsl-mode)
