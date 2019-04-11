@@ -357,7 +357,7 @@ control of the editor."
 (add-to-list 'auto-mode-alist '("\\.linux'?\\'" . sh-mode))
 (add-to-list 'auto-mode-alist '("\\.macosx'?\\'" . sh-mode))
 
-(add-to-list 'auto-mode-alist '("\\.shader?\\'" . jcs-shader-mode))
+(add-to-list 'auto-mode-alist '("\\.shader?\\'" . shader-mode))
 
 (add-to-list 'auto-mode-alist '("\\.frag'?\\'" . glsl-mode))
 (add-to-list 'auto-mode-alist '("\\.geom'?\\'" . glsl-mode))
@@ -374,12 +374,10 @@ control of the editor."
 (add-to-list 'auto-mode-alist '("\\.gitattributes'?\\'" . gitattributes-mode))
 
 ;; set the defualt text mode to org mode.
-(add-to-list 'auto-mode-alist '("\\.txt'?\\'" . org-mode))
 (add-to-list 'auto-mode-alist '("\\.org'?\\'" . org-mode))
 (add-to-list 'auto-mode-alist '("\\(/\\|\\`\\)README" . org-mode))
 (add-to-list 'auto-mode-alist '("\\(/\\|\\`\\)LICENSE" . org-mode))
 (add-to-list 'auto-mode-alist '("\\(/\\|\\`\\)bochsrc" . org-mode))
-
 
 (add-to-list 'auto-mode-alist '("\\.ts'?\\'" . typescript-mode))
 
@@ -439,7 +437,7 @@ control of the editor."
 (with-eval-after-load 'shader-mode (require 'jcs-shader-mode))
 (with-eval-after-load 'ssass-mode (require 'jcs-sass-mode))
 (with-eval-after-load 'scss-mode (require 'jcs-scss-mode))
-(with-eval-after-load 'sql-mode (require 'jcs-sql-mode))
+(with-eval-after-load 'sql (require 'jcs-sql-mode))
 (with-eval-after-load 'go-mode (require 'jcs-go-mode))
 (with-eval-after-load 'vimrc-mode (require 'jcs-vimscript-mode))
 (with-eval-after-load 'cobol-mode (require 'jcs-cobol-mode))
