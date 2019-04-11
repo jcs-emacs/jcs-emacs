@@ -24,7 +24,7 @@
   )
 (add-hook 'gitignore-mode-hook 'jcs-gitignore-mode-hook)
 
-(add-to-list 'auto-mode-alist '("\\.gitignore?\\'" . gitignore-mode))
+(add-to-list 'auto-mode-alist '("\\.gitignore'?\\'" . gitignore-mode))
 
 
 ;;====================================
@@ -48,7 +48,7 @@
   )
 (add-hook 'gitattributes-mode-hook 'jcs-gitattributes-mode-hook)
 
-(add-to-list 'auto-mode-alist '("\\.gitattributes?\\'" . gitattributes-mode))
+(add-to-list 'auto-mode-alist '("\\.gitattributes'?\\'" . gitattributes-mode))
 
 
 ;;====================================
@@ -94,9 +94,7 @@
 (add-hook 'org-mode-hook 'jcs-org-mode-hook)
 
 ;; set the defualt text mode to org mode.
-(add-to-list 'auto-mode-alist '("\\.txt?\\'" . org-mode))
-(add-to-list 'auto-mode-alist '("\\.ini?\\'" . org-mode))
-(add-to-list 'auto-mode-alist '("\\.properties?\\'" . org-mode))
+(add-to-list 'auto-mode-alist '("\\.txt'?\\'" . org-mode))
 (add-to-list 'auto-mode-alist '("\\(/\\|\\`\\)README" . org-mode))
 (add-to-list 'auto-mode-alist '("\\(/\\|\\`\\)LICENSE" . org-mode))
 (add-to-list 'auto-mode-alist '("\\(/\\|\\`\\)bochsrc" . org-mode))

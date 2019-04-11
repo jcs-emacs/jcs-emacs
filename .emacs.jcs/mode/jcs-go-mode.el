@@ -27,7 +27,7 @@
   )
 (add-hook 'go-mode-hook 'jcs-go-mode-hook)
 
-(add-to-list 'auto-mode-alist '("\\.go?\\'" . go-mode))
+(add-to-list 'auto-mode-alist '("\\.go'?\\'" . go-mode))
 
 
 (provide 'jcs-go-mode)

@@ -51,7 +51,7 @@
   )
 (add-hook 'csharp-mode-hook 'jcs-csharp-mode-hook)
 
-(add-to-list 'auto-mode-alist '("\\.cs?\\'" . csharp-mode))
+(add-to-list 'auto-mode-alist '("\\.cs'?\\'" . csharp-mode))
 
 
 (provide 'jcs-csharp-mode)

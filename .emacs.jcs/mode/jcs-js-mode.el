@@ -56,8 +56,6 @@
   )
 (add-hook 'js2-mode-hook 'jcs-js-mode-hook)
 
-(add-to-list 'auto-mode-alist '("\\.js'?\\'" . js2-mode))
-
 
 (provide 'jcs-js-mode)
 ;;; jcs-js-mode.el ends here

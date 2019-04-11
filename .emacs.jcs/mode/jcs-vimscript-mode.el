@@ -11,7 +11,6 @@
   (goto-address-mode 1)
   (auto-highlight-symbol-mode t)
 
-
   (defun jcs-vim-script-format ()
     "Format the given file as a VimScript file."
     (when (jcs-is-current-file-empty-p)
@@ -34,7 +33,7 @@
   )
 (add-hook 'vimrc-mode-hook 'jcs-vim-mode-hook)
 
-(add-to-list 'auto-mode-alist '("\\.vim\\(rc\\)?\\'" . vimrc-mode))
+(add-to-list 'auto-mode-alist '("\\.vim\\(rc\\)'?\\'" . vimrc-mode))
 (add-to-list 'auto-mode-alist '("\\(/\\|\\`\\)_vimrc" . vimrc-mode))
 
 

@@ -27,7 +27,7 @@
 (add-hook 'nxml-mode-hook 'jcs-xml-mode-hook)
 (add-hook 'nxml-mode-hook 'emmet-mode)
 
-(add-to-list 'auto-mode-alist '("\\.xml?\\'" . nxml-mode))
+(add-to-list 'auto-mode-alist '("\\.xml'?\\'" . nxml-mode))
 
 
 (provide 'jcs-xml-mode)

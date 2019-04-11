@@ -27,7 +27,7 @@
   )
 (add-hook 'basic-mode-hook 'jcs-basic-mode-hook)
 
-(add-to-list 'auto-mode-alist '("\\.bas\\'" . basic-mode))
+(add-to-list 'auto-mode-alist '("\\.bas'\\'" . basic-mode))
 
 
 (provide 'jcs-basic-mode)

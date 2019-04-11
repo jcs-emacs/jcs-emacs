@@ -66,8 +66,8 @@
   )
 (add-hook 'c-mode-hook 'jcs-c-mode-hook)
 
-;;(add-to-list 'auto-mode-alist '("\\.h?\\'" . c-mode))
-(add-to-list 'auto-mode-alist '("\\.c?\\'" . c-mode))
+;;(add-to-list 'auto-mode-alist '("\\.h'?\\'" . c-mode))
+(add-to-list 'auto-mode-alist '("\\.c'?\\'" . c-mode))
 
 
 (provide 'jcs-c-mode)
