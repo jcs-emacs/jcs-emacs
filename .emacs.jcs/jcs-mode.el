@@ -373,8 +373,9 @@ PR : pair file `regexp' and file mode `symbol'."
 
 ;;; G
 (progn
-  (jcs-add-auto-mode-alist '("\\.gitignore'?\\'" . gitignore-mode))
   (jcs-add-auto-mode-alist '("\\.gitattributes'?\\'" . gitattributes-mode))
+  (jcs-add-auto-mode-alist '("\\.gitconfig'?\\'" . gitconfig-mode))
+  (jcs-add-auto-mode-alist '("\\.gitignore'?\\'" . gitignore-mode))
 
   (jcs-add-auto-mode-alist '("\\.frag'?\\'" . glsl-mode))
   (jcs-add-auto-mode-alist '("\\.geom'?\\'" . glsl-mode))
