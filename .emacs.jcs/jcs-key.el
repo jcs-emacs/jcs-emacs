@@ -1,4 +1,4 @@
-;;; jcs-global-key.el --- Global Key Definition.  -*- lexical-binding: t -*-
+;;; jcs-key.el --- Global Key Definition.  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -434,5 +434,5 @@ the key everytime the mode changes."
 (call-interactively #'jcs-depend-mode)
 
 
-(provide 'jcs-global-key)
-;;; jcs-global-key.el ends here
+(provide 'jcs-key)
+;;; jcs-key.el ends here
