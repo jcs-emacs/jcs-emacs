@@ -263,7 +263,7 @@ in order to take effect.  Half hot reloading process."
 ;;; Emacs Lisp
 (defun jcs-insert-emacs-lisp-template ()
   "Template for Elisp."
-  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/emacs-lisp/emacs-lisp_template.txt"))
+  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/elisp/elisp_template.txt"))
 
 ;;; GLSL
 (defun jcs-insert-glsl-template ()
