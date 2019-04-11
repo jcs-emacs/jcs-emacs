@@ -416,7 +416,7 @@ control of the editor."
 (require 'jcs-shell-mode)
 (require 'jcs-txt-mode)
 
-(with-eval-after-load 'elisp-mode (require 'jcs-emacs-lisp-mode))
+(with-eval-after-load 'elisp-mode (require 'jcs-elisp-mode))
 (with-eval-after-load 'csharp-mode (require 'jcs-csharp-mode))
 (with-eval-after-load 'nasm-mode (require 'jcs-nasm-mode))
 (with-eval-after-load 'bat-mode (require 'jcs-batch-mode))
