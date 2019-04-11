@@ -158,8 +158,10 @@
 (require 'jcs-log)
 (require 'jcs-function)
 (require 'jcs-corresponding-file)
-(require 'jcs-mode)
 (require 'jcs-file-info-format)
+(require 'jcs-mode)
+
+(autoload 'jcs-emacs-lisp-mode)
 
 ;; Modes
 (require 'jcs-emacs-lisp-mode)
