@@ -133,7 +133,7 @@ dark theme.
 This configuration have all modes bind to the same set of 
 key bindings. It benefits the developer would not need to change 
 their key bindings while after the mode swichted. The key bindings 
-set can be check in `./.emacs.jcs/jcs-global-key.el` file. 
+set can be check in `./.emacs.jcs/jcs-key.el` file. 
 
 P.S. 
 * My work requires me to use 
