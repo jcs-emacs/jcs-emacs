@@ -6,6 +6,7 @@
 (require 'css-mode)
 (require 'com-css-sort)
 (require 'rainbow-mode)
+(require 'skewer-css)
 
 ;; css indent spaces.
 (setq css-indent-offset 2)
@@ -35,6 +36,8 @@
   ;; Normal
   (define-key css-mode-map (kbd "C-d") #'jcs-kill-whole-line)
   (define-key css-mode-map "\C-c\C-c" #'kill-ring-save)
+  (define-key skewer-css-mode-map "\C-c\C-c" #'kill-ring-save)
+  (define-key emmet-mode-keymap "\C-c\C-c" #'kill-ring-save)
 
   (define-key css-mode-map (kbd "DEL") #'jcs-electric-backspace)
   (define-key css-mode-map (kbd "{") #'jcs-vs-front-curly-bracket-key)
@@ -55,6 +58,7 @@
   (define-key css-mode-map "\C-ks" #'com-css-sort-attributes-block)
   (define-key css-mode-map "\C-kd" #'com-css-sort-attributes-document)
 
+  ;; Eemmet
   (define-key emmet-mode-keymap (kbd "C-<return>") #'jcs-emmet-expand-line)
   )
 (add-hook 'css-mode-hook 'jcs-css-mode-hook)
