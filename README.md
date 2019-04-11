@@ -51,6 +51,11 @@ to check the startup time on your machine. Not quite sure what
 causes that much of performance, hopefully, I'm able to lower 
 the startup time down to `5` to `15` seconds.
 
+**Edit:** After version `5.3.2`, the average startup time is 
+around `5` to `15` seconds. Solved this issue by removing 
+unnecessary `require` keyword load file and use `:defer` keyword 
+with `use-package` package to delay some packages load time.
+
 
 ## Features
 * *N/A*
