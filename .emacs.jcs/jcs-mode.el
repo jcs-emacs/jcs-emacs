@@ -277,6 +277,63 @@ control of the editor."
   )
 
 
+
+;; Modes
+(require 'jcs-message-mode)
+(require 'jcs-re-builder-mode)
+(require 'jcs-shell-mode)
+(require 'jcs-txt-mode)
+
+(with-eval-after-load 'elisp-mode (require 'jcs-elisp-mode))
+(with-eval-after-load 'csharp-mode (require 'jcs-csharp-mode))
+(with-eval-after-load 'nasm-mode (require 'jcs-nasm-mode))
+(with-eval-after-load 'bat-mode (require 'jcs-batch-mode))
+(with-eval-after-load 'sh-script (require 'jcs-sh-mode))
+(with-eval-after-load 'cc-mode
+  (require 'jcs-cc-mode)
+  (require 'jcs-c-mode)
+  (require 'jcs-c++-mode)
+  (require 'jcs-java-mode)
+  (require 'jcs-objc-mode))
+(with-eval-after-load 'jayces-mode (require 'jcs-jayces-mode))
+(with-eval-after-load 'actionscript-mode (require 'jcs-actionscript-mode))
+(with-eval-after-load 'python-mode (require 'jcs-python-mode))
+(with-eval-after-load 'css-mode (require 'jcs-css-mode))
+(with-eval-after-load 'web-mode (require 'jcs-web-mode))
+(with-eval-after-load 'js2-mode (require 'jcs-js-mode))
+(with-eval-after-load 'json-mode (require 'jcs-json-mode))
+(with-eval-after-load 'lua-mode (require 'jcs-lua-mode))
+(with-eval-after-load 'nxml-mode (require 'jcs-xml-mode))
+(with-eval-after-load 'shader-mode (require 'jcs-shader-mode))
+(with-eval-after-load 'ssass-mode (require 'jcs-sass-mode))
+(with-eval-after-load 'scss-mode (require 'jcs-scss-mode))
+(with-eval-after-load 'sql (require 'jcs-sql-mode))
+(with-eval-after-load 'go-mode (require 'jcs-go-mode))
+(with-eval-after-load 'vimrc-mode (require 'jcs-vimscript-mode))
+(with-eval-after-load 'cobol-mode (require 'jcs-cobol-mode))
+(with-eval-after-load 'cmake-mode (require 'jcs-cmake-mode))
+(with-eval-after-load 'makefile-mode (require 'jcs-makefile-mode))
+(with-eval-after-load 'scala-mode (require 'jcs-scala-mode))
+(with-eval-after-load 'perl-mode (require 'jcs-perl-mode))
+(with-eval-after-load 'basic-mode (require 'jcs-basic-mode))
+(with-eval-after-load 'processing-mode (require 'jcs-processing-mode))
+(with-eval-after-load 'haskell-mode (require 'jcs-haskell-mode))
+(with-eval-after-load 'haxe-mode (require 'jcs-haxe-mode))
+(with-eval-after-load 'typescript-mode (require 'jcs-typescript-mode))
+(with-eval-after-load 'clojure-mode (require 'jcs-clojure-mode))
+(with-eval-after-load 'lisp-mode (require 'jcs-lisp-mode))
+(with-eval-after-load 'verilog-mode (require 'jcs-verilog-mode))
+(with-eval-after-load 'markdown-mode (require 'jcs-markdown-mode))
+(with-eval-after-load 'ruby-mode (require 'jcs-ruby-mode))
+(with-eval-after-load 'rust-mode (require 'jcs-rust-mode))
+(with-eval-after-load 'swift-mode (require 'jcs-swift-mode))
+(with-eval-after-load 'yaml-mode (require 'jcs-yaml-mode))
+(with-eval-after-load 'ini-mode (require 'jcs-ini-mode))
+
+
+;;;
+;; Auto mode Management
+
 (add-to-list 'auto-mode-alist '("\\.as'?\\'" . actionscript-mode))
 (add-to-list 'auto-mode-alist '("\\.bas'\\'" . basic-mode))
 (add-to-list 'auto-mode-alist '("\\.bat'?\\'" . bat-mode))
@@ -357,7 +414,7 @@ control of the editor."
 (add-to-list 'auto-mode-alist '("\\.linux'?\\'" . sh-mode))
 (add-to-list 'auto-mode-alist '("\\.macosx'?\\'" . sh-mode))
 
-(add-to-list 'auto-mode-alist '("\\.shader?\\'" . shader-mode))
+(add-to-list 'auto-mode-alist '("\\.shader'?\\'" . shader-mode))
 
 (add-to-list 'auto-mode-alist '("\\.frag'?\\'" . glsl-mode))
 (add-to-list 'auto-mode-alist '("\\.geom'?\\'" . glsl-mode))
@@ -392,7 +449,7 @@ control of the editor."
 (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.php?\\'" . web-mode))       ;; Add .php to the list
+(add-to-list 'auto-mode-alist '("\\.php?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
 
 ;; ASP .NET
@@ -406,59 +463,6 @@ control of the editor."
 
 (add-to-list 'auto-mode-alist '("\\.yaml'?\\'" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.yml'?\\'" . yaml-mode))
-
-
-;; Modes
-(require 'jcs-message-mode)
-(require 'jcs-re-builder-mode)
-(require 'jcs-shell-mode)
-(require 'jcs-txt-mode)
-
-(with-eval-after-load 'elisp-mode (require 'jcs-elisp-mode))
-(with-eval-after-load 'csharp-mode (require 'jcs-csharp-mode))
-(with-eval-after-load 'nasm-mode (require 'jcs-nasm-mode))
-(with-eval-after-load 'bat-mode (require 'jcs-batch-mode))
-(with-eval-after-load 'sh-script (require 'jcs-sh-mode))
-(with-eval-after-load 'cc-mode
-  (require 'jcs-cc-mode)
-  (require 'jcs-c-mode)
-  (require 'jcs-c++-mode)
-  (require 'jcs-java-mode)
-  (require 'jcs-objc-mode))
-(with-eval-after-load 'jayces-mode (require 'jcs-jayces-mode))
-(with-eval-after-load 'actionscript-mode (require 'jcs-actionscript-mode))
-(with-eval-after-load 'python-mode (require 'jcs-python-mode))
-(with-eval-after-load 'css-mode (require 'jcs-css-mode))
-(with-eval-after-load 'web-mode (require 'jcs-web-mode))
-(with-eval-after-load 'js2-mode (require 'jcs-js-mode))
-(with-eval-after-load 'json-mode (require 'jcs-json-mode))
-(with-eval-after-load 'lua-mode (require 'jcs-lua-mode))
-(with-eval-after-load 'nxml-mode (require 'jcs-xml-mode))
-(with-eval-after-load 'shader-mode (require 'jcs-shader-mode))
-(with-eval-after-load 'ssass-mode (require 'jcs-sass-mode))
-(with-eval-after-load 'scss-mode (require 'jcs-scss-mode))
-(with-eval-after-load 'sql (require 'jcs-sql-mode))
-(with-eval-after-load 'go-mode (require 'jcs-go-mode))
-(with-eval-after-load 'vimrc-mode (require 'jcs-vimscript-mode))
-(with-eval-after-load 'cobol-mode (require 'jcs-cobol-mode))
-(with-eval-after-load 'cmake-mode (require 'jcs-cmake-mode))
-(with-eval-after-load 'makefile-mode (require 'jcs-makefile-mode))
-(with-eval-after-load 'scala-mode (require 'jcs-scala-mode))
-(with-eval-after-load 'perl-mode (require 'jcs-perl-mode))
-(with-eval-after-load 'basic-mode (require 'jcs-basic-mode))
-(with-eval-after-load 'processing-mode (require 'jcs-processing-mode))
-(with-eval-after-load 'haskell-mode (require 'jcs-haskell-mode))
-(with-eval-after-load 'haxe-mode (require 'jcs-haxe-mode))
-(with-eval-after-load 'typescript-mode (require 'jcs-typescript-mode))
-(with-eval-after-load 'clojure-mode (require 'jcs-clojure-mode))
-(with-eval-after-load 'lisp-mode (require 'jcs-lisp-mode))
-(with-eval-after-load 'verilog-mode (require 'jcs-verilog-mode))
-(with-eval-after-load 'markdown-mode (require 'jcs-markdown-mode))
-(with-eval-after-load 'ruby-mode (require 'jcs-ruby-mode))
-(with-eval-after-load 'rust-mode (require 'jcs-rust-mode))
-(with-eval-after-load 'swift-mode (require 'jcs-swift-mode))
-(with-eval-after-load 'yaml-mode (require 'jcs-yaml-mode))
-(with-eval-after-load 'ini-mode (require 'jcs-ini-mode))
 
 
 (provide 'jcs-mode)
