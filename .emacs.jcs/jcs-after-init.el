@@ -37,7 +37,6 @@
   (diminish 'page-break-lines-mode)
   (diminish 'right-click-context-mode)
   (diminish 'skewer-mode)
-  (diminish 'skewer-css-mode)
   (diminish 'undo-tree-mode)
   (diminish 'which-key-mode)
   (diminish 'yas-minor-mode))
