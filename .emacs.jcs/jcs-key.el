@@ -94,9 +94,9 @@
 (define-key global-map (kbd "C-S-s") #'jcs-tabify-save-buffer)
 
 ;;; Package
-(define-key global-map "\C-p" #'package-list-packages)
-(define-key package-menu-mode-map "s" #'jcs-package-menu-filter-by-status)
-(define-key package-menu-mode-map "u" #'jcs-package-upgrade-all)
+(define-key global-map (kbd "C-p") #'package-list-packages)
+(define-key package-menu-mode-map (kbd "s") #'jcs-package-menu-filter-by-status)
+(define-key package-menu-mode-map (kbd "u") #'jcs-package-upgrade-all)
 (define-key package-menu-mode-map (kbd "C-x r m") #'package-autoremove)
 
 ;;; Return
@@ -268,6 +268,7 @@
 (require 'dashboard)
 (define-key dashboard-mode-map (kbd "<up>") #'jcs-previous-line)
 (define-key dashboard-mode-map (kbd "<down>") #'jcs-next-line)
+(define-key dashboard-mode-map (kbd "C-p") #'package-list-packages)
 
 ;;; Flycheck
 (require 'flycheck)
