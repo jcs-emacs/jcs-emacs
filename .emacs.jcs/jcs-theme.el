@@ -187,6 +187,15 @@
   (powerline-reset)
   )
 
+;;;###autoload
+(defun jcs-setup-default-theme ()
+  "Set default Theme Color."
+  (interactive)
+  (add-to-list 'default-frame-alist '(foreground-color . "#D2D2D2"))
+  (add-to-list 'default-frame-alist '(background-color . "#161616"))
+  (add-to-list 'default-frame-alist '(cursor-color . "#40FF40")))
+(jcs-setup-default-theme)
+
 
 (provide 'jcs-theme)
 ;;; jcs-theme.el ends here
