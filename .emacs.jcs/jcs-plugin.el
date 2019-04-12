@@ -328,7 +328,6 @@
 
 (use-package right-click-context
   :ensure t
-  :defer t
   :config
   (right-click-context-mode 1))
 
@@ -415,9 +414,7 @@
 
 (use-package undo-tree
   :ensure t
-  :defer t
   :config
-  ;; Enable `undo-tree' as default.
   (global-undo-tree-mode t))
 
 
