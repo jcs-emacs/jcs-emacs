@@ -159,25 +159,6 @@
 (setq truncate-partial-width-windows nil)
 (split-window-horizontally)
 
-;;(add-to-list 'default-frame-alist '(font . "Liberation Mono-14.0"))         ;; default [11.5]
-;;(set-face-attribute 'default t :font "Liberation Mono-11.5")                ;; default [11.5]
-;;(set-face-attribute 'font-lock-builtin-face nil :foreground "#DAB98F")
-(set-face-attribute 'font-lock-comment-face nil :foreground "gray50")
-(set-face-attribute 'font-lock-constant-face nil :foreground "#38EFCA")
-;;(set-face-attribute 'font-lock-doc-face nil :foreground "gray50")
-(set-face-attribute 'font-lock-function-name-face nil :foreground "#D2D2D2")  ;; function name
-(set-face-attribute 'font-lock-keyword-face nil :foreground "#17A0FB")        ;; data type
-(set-face-attribute 'font-lock-string-face nil :foreground "olive drab")
-(set-face-attribute 'font-lock-type-face nil :foreground "#38EFCA")           ;; class name
-(set-face-attribute 'font-lock-variable-name-face nil :foreground "#D2D2D2")  ;; declare name
-
-
-;; Set default Theme Color.
-(add-to-list 'default-frame-alist '(foreground-color . "#D2D2D2"))
-(add-to-list 'default-frame-alist '(background-color . "#161616"))
-(add-to-list 'default-frame-alist '(cursor-color . "#40FF40"))
-
-
 
 ;; Unicode Environment
 (set-language-environment "UTF-8")
