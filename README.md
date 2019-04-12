@@ -43,6 +43,10 @@ e.g. [Atom](https://atom.io/), [Brackets](http://brackets.io/),
 [Visual Studio Code](https://code.visualstudio.com/), etc. 
 
 
+## Philosophy
+N/A
+
+
 ## Startup Time
 
 The average startup time for this configuration is around 
@@ -60,10 +64,6 @@ with `use-package` package to delay some packages load time.
 [Speeding Up Emacs](https://anuragpeshne.github.io/essays/emacsSpeed.html)
  written by 
 [Anurag Peshne](https://github.com/anuragpeshne).*
-
-
-## Philosophy
-N/A
 
 
 ## Features
