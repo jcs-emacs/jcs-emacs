@@ -472,8 +472,12 @@
                           (bookmarks . 10)))
 
   (custom-set-faces
+   '(dashboard-banner-logo-title
+     ((t (:foreground "cyan1"))))
+   '(dashboard-heading
+     ((t (:foreground "#17A0FB"))))
    '(widget-button
-     ((t (:foreground "dark gray" :underline t)))))
+     ((t (:foreground "light steel blue")))))
 
   (dashboard-setup-startup-hook))
 
