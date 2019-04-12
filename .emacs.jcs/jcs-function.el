@@ -52,6 +52,14 @@
 ;; Syntax Check
 ;;----------------------------------------------
 
+(defun jcs-reactive-flycheck-after-revert ()
+  "Reactive `flycheck-mode' after file reverted."
+  (save-selected-window
+    (when (or flycheck-mode
+              (string= (buffer-name) flycheck-error-list-buffer))
+      (jcs-flycheck-mode)
+      (jcs-flycheck-mode))))
+
 ;;;###autoload
 (defun jcs-flycheck-mode ()
   "Flycheck mode toggle."
