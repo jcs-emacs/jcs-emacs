@@ -29,6 +29,8 @@
 ;; Tips
 ;;----------------------------------------------
 
+(require 'popup)
+
 ;;;###autoload
 (defun jcs-describe-thing-in-popup ()
   "Show current symbol info."
@@ -202,7 +204,7 @@
 (defun jcs-toggle-tabbar-mode ()
   "Toggle `tabbar-mode'."
   (interactive)
-  (if (jcs-is-minor-mode-enabled-p tabbar-mode)
+  (if tabbar-mode
       (tabbar-mode 0)
     (tabbar-mode 1))
 
