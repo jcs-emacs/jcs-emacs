@@ -104,9 +104,10 @@
 
 ;;; Kill Word
 (define-key global-map (kbd "C-<backspace>") #'jcs-backward-delete-word)
-(define-key global-map (kbd "C-S-<backspace>") #'jcs-forward-delete-word)
+(define-key global-map (kbd "C-<delete>") #'jcs-forward-delete-word)
+
 (define-key global-map (kbd "M-<backspace>") #'jcs-backward-kill-word-capital)
-(define-key global-map (kbd "M-S-<backspace>") #'jcs-forward-kill-word-capital)
+(define-key global-map (kbd "M-<delete>") #'jcs-forward-kill-word-capital)
 
 ;;; Navigation in Line
 (define-key global-map [home] #'jcs-beginning-of-line)
