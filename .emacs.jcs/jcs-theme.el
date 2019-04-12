@@ -187,6 +187,7 @@
   (powerline-reset)
   )
 
+
 ;;;###autoload
 (defun jcs-setup-default-theme ()
   "Set default Theme Color."
