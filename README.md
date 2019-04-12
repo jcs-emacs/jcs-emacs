@@ -64,10 +64,10 @@ with `use-package` package to delay some packages load time.
 
 ## Features
 
-* [*Mini-State*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/mini-state.md) - 
+* [*Mini-State*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/mini-state) - 
 Mini mode state use to visually see what backend is the 
 config currently running.
-* [*Visualize Undo/Redo*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/visualize-undo-redo.md) - 
+* [*Visualize Undo/Redo*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/visualize-undo-redo) - 
 Improved the user experience on undoing and redoing by 
 showing the `undo-tree-visualizer` at the second window.
 
