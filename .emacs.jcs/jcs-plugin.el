@@ -449,6 +449,10 @@
   (global-origami-mode t))
 
 
+(use-package impatient-mode
+  :ensure t)
+
+
 (use-package skewer-mode
   :ensure t
   :defer t
@@ -460,11 +464,17 @@
 
 (use-package dashboard
   :ensure t
+  :defer t
   :config
   (setq dashboard-banner-logo-title "Welcome to J-Emacs!")
   (setq dashboard-startup-banner "~/.emacs.jcs/banner/sink_white.png")
   (setq dashboard-items '((recents  . 10)
                           (bookmarks . 10)))
+
+  (custom-set-faces
+   '(widget-button
+     ((t (:foreground "dark gray" :underline t)))))
+
   (dashboard-setup-startup-hook))
 
 
