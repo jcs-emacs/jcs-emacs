@@ -744,10 +744,14 @@ file-project.el' plugin."
     ;; If `undo-tree' visualizer exists, kill it too.
     (when jumped-to-utv
       (when (and undoing-buffer-name
-                 (string-match-p undoing-buffer-name target-kill-buffer))
+                 (string-match-p undoing-buffer-name target-kill-buffer)
+                 ;; Only close `undo-tree' when buffer is killed.
+                 (not (string= target-kill-buffer (jcs-buffer-name-or-buffer-file-name))))
         (save-selected-window
           (jcs-jump-shown-to-buffer undo-tree-visualizer-buffer-name)
-          (undo-tree-visualizer-quit))))))
+          ;; NOTE(jenchieh): This prompt error, but does not matter.
+          ;; Just force to quite it!
+          (ignore-errors (undo-tree-visualizer-quit)))))))
 (advice-add 'kill-this-buffer :around #'jcs-advice-kill-this-buffer-around)
 
 ;;;###autoload
