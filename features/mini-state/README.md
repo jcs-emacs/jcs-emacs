@@ -30,4 +30,4 @@ to does job.
 
 <img src="./minibuffer-state.png" width="870" height="30"/>
 
-State represents you are in the minibuffer.
+State represents that you are in the minibuffer.
