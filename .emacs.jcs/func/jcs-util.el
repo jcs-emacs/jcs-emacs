@@ -834,7 +834,7 @@ active. false, there is no region selected and mark is not active.
   (jcs-get-faces (point)))
 
 ;;;###autoload
-(defun jcs-what-face ()
+(defun jcs-print-current-face ()
   "Print out all the faces the current cursor on."
   (interactive)
   (message "Current faces: %s" (jcs-get-current-point-face)))
