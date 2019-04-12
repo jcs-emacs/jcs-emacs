@@ -72,6 +72,7 @@ Return a list of installed packages or nil for every skipped package."
                                    cpputils-cmake
                                    csharp-mode
                                    dash
+                                   dashboard
                                    diminish
                                    dimmer
                                    elpy
