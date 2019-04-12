@@ -167,6 +167,19 @@ same key stroke once again, hence the `cut` key is `C-x C-x` and
 the `copy` key is `C-c C-c`. 
 
 
+## Themes
+The theme is to design close to 
+[Visual Studio](https://visualstudio.microsoft.com/vs/) 
+preset dark theme. I believed 
+[Microsoft](https://www.microsoft.com/zh-tw/) 
+have a great UI/UX team, since I don't have any experience 
+or work related to UI/UX, I would just like to have the 
+theme color as close to it as possible. Anyway, if you 
+want to customize the theme yourself, then check out the 
+`./.emacs.jcs/jcs-theme.el` file. All the theme related 
+variables can be found in that file.
+
+
 ## Installation
 
 To install, clone this repo and copy the core `files`/`directories` 
