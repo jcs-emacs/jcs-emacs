@@ -8,6 +8,12 @@
   (require 'use-package))
 
 
+(use-package beacon
+  :ensure t
+  :config
+  (beacon-mode 1))
+
+
 (use-package company
   :ensure t
   :defer t
