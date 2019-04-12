@@ -58,6 +58,7 @@ Return a list of installed packages or nil for every skipped package."
                                    auto-highlight-symbol
                                    auto-package-update
                                    auto-rename-tag
+                                   beacon
                                    basic-mode
                                    better-defaults
                                    clojure-mode
