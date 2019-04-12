@@ -131,9 +131,14 @@
 
 (defun jcs-shell-is-current-on-command ()
   "Return non-nil if current on command line."
-  (and (jcs-last-line-in-buffer-p)
-       (not (jcs-is-beginning-of-line-p))
-       (not (jcs-is-current-point-face jcs-shell-highlight-face-name))))
+  (let ((is-shell-prompt-char nil))
+    (save-excursion
+      (backward-char 1)
+      (setq is-shell-prompt-char
+            (jcs-is-current-point-face jcs-shell-highlight-face-name)))
+    (and (jcs-last-line-in-buffer-p)
+         (not (jcs-is-beginning-of-line-p))
+         (not is-shell-prompt-char))))
 
 ;;;###autoload
 (defun jcs-shell-backspace ()
@@ -196,7 +201,6 @@
           (jcs-is-end-of-buffer-p))
       (comint-previous-input 1)
     (jcs-previous-line))
-
   (when (jcs-last-line-in-buffer-p)
     (goto-char (point-max))))
 
@@ -208,7 +212,6 @@
           (jcs-is-end-of-buffer-p))
       (comint-next-input 1)
     (jcs-next-line))
-
   (when (jcs-last-line-in-buffer-p)
     (goto-char (point-max))))
 
