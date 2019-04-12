@@ -63,6 +63,7 @@ with `use-package` package to delay some packages load time.
 
 
 ## Features
+
 * [*Mini-State*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/mini-state.md) - 
 Mini mode state use to visually see what backend is the 
 config currently running.
