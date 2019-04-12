@@ -40,7 +40,6 @@
   (define-key shell-mode-map (kbd "<backspace>") #'jcs-shell-backspace)
   )
 (add-hook 'shell-mode-hook #'jcs-shell-mode-hook)
-(add-hook 'shell-mode-hook #'company-mode)
 
 
 (provide 'jcs-shell-mode)
