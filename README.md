@@ -9,7 +9,6 @@ This is Jen-Chieh Shen's emacs configuration, repeatedly utilized
 and modified since 2015, hopefully this could help someone who is 
 new or struggle with Emacs. This configuration should works on 
 most OSs, indicates Windows, Linux and MacOS.
-<br/>
 
 Emacs itself supports multiple programming languages. I managed 
 all the programming languages I personally used. Indeed, I am 
