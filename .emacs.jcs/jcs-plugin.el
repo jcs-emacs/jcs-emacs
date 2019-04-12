@@ -30,7 +30,7 @@
   (defun jcs-company-ac-setup ()
     "Sets up `company-mode' to behave similarly to `auto-complete-mode'."
     (setq company-minimum-prefix-length 2)
-    (setq company-idle-delay 0.2)
+    (setq company-idle-delay 0.1)
     ;;(setq company-tooltip-idle-delay 0.1)
 
     (setq company-selection-wrap-around 'on)
@@ -434,10 +434,10 @@
 
 (use-package yasnippet
   :ensure t
-  :defer t
   :config
   (use-package yasnippet-snippets
-    :ensure t)
+    :ensure t
+    :defer t)
   (yas-reload-all)
   (yas-global-mode 1))
 
@@ -456,6 +456,16 @@
   (add-hook 'js2-mode-hook 'skewer-mode)
   (add-hook 'css-mode-hook 'skewer-css-mode)
   (add-hook 'html-mode-hook 'skewer-html-mode))
+
+
+(use-package dashboard
+  :ensure t
+  :config
+  (setq dashboard-banner-logo-title "Welcome to J-Emacs!")
+  (setq dashboard-startup-banner "~/.emacs.jcs/banner/sink.svg")
+  (setq dashboard-items '((recents  . 10)
+                          (bookmarks . 10)))
+  (dashboard-setup-startup-hook))
 
 
 (provide 'jcs-plugin)
