@@ -3,6 +3,8 @@
 ;;; Code:
 
 
+(require 'pp)
+
 ;;---------------------------------------------
 ;; Buffer
 ;;---------------------------------------------
@@ -1106,13 +1108,6 @@ IN-KEY : key to search for value."
 ;; Directory
 ;;---------------------------------------------
 
-(defvar jcs-vc-list '(".bzr"
-                      ".cvs"
-                      ".git"
-                      ".hg"
-                      ".svn")
-  "Version Control list.")
-
 (defun jcs-get-current-dir ()
   "Return the string of current directory."
   default-directory)
@@ -1128,9 +1123,8 @@ FILEPATH : directory/file path."
   "Return `True' is version control diectory.
 Return `False' not a version control directory.
 DIRPATH : directory path."
-
   (let ((tmp-is-vc-dir nil))
-    (dolist (tmp-vc-type jcs-vc-list)
+    (dolist (tmp-vc-type grep-find-ignored-directories)
       (let ((tmp-check-dir (concat dirPath "/" tmp-vc-type)))
         (when (jcs-file-directory-exists-p tmp-check-dir)
           (setq tmp-is-vc-dir t))))
