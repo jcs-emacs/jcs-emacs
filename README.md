@@ -44,6 +44,7 @@ e.g. [Atom](https://atom.io/), [Brackets](http://brackets.io/),
 
 
 ## Philosophy
+
 N/A
 
 
