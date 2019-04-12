@@ -5,7 +5,6 @@
 
 (require 'use-ttf)
 
-
 ;; List of TTF fonts you want to use in the currnet OS.
 (setq use-ttf-default-ttf-fonts '(;; >> Classic Console <<
                                   "/.emacs.jcs/fonts/clacon.ttf"
