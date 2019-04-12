@@ -7,17 +7,41 @@
 ;; Regular Faces
 ;;----------------------------------------------
 
+(defface jcs-font-lock-builtin-face
+  '((t (:foreground "light steel blue")))
+  "JCS local builtin face."
+  :group 'basic-faces)
+(defvar jcs-font-lock-builtin-face 'jcs-font-lock-builtin-face)
+
 (defface jcs-font-lock-comment-face
   '((t (:foreground "olive drab")))
   "JCS local comment face."
   :group 'basic-faces)
 (defvar jcs-font-lock-comment-face 'jcs-font-lock-comment-face)
 
-(defface jcs-font-lock-string-face
-  '((t (:foreground "#D69D78")))
-  "JCS local string face."
+(defface jcs-font-lock-constant-face
+  '((t (:foreground "#38EFCA")))
+  "JCS local constant face."
   :group 'basic-faces)
-(defvar jcs-font-lock-string-face 'jcs-font-lock-string-face)
+(defvar jcs-font-lock-constant-face 'jcs-font-lock-constant-face)
+
+(defface jcs-font-lock-doc-face
+  '((t (:foreground "olive drab")))
+  "JCS local doc face."
+  :group 'basic-faces)
+(defvar jcs-font-lock-doc-face 'jcs-font-lock-doc-face)
+
+(defface jcs-font-lock-function-name-face
+  '((t (:foreground "#D2D2D2")))
+  "JCS local function name face."
+  :group 'basic-faces)
+(defvar jcs-font-lock-function-name-face 'jcs-font-lock-function-name-face)
+
+(defface jcs-font-lock-keyword-face
+  '((t (:foreground "#17A0FB")))
+  "JCS local keyword face."
+  :group 'basic-faces)
+(defvar jcs-font-lock-keyword-face 'jcs-font-lock-keyword-face)
 
 (defface jcs-font-lock-preprocessor-face
   '((t (:foreground "#8D9B99")))
@@ -25,19 +49,63 @@
   :group 'basic-faces)
 (defvar jcs-font-lock-preprocessor-face 'jcs-font-lock-preprocessor-face)
 
+(defface jcs-font-lock-string-face
+  '((t (:foreground "#D69D78")))
+  "JCS local string face."
+  :group 'basic-faces)
+(defvar jcs-font-lock-string-face 'jcs-font-lock-string-face)
+
+(defface jcs-font-lock-type-face
+  '((t (:foreground "#38EFCA")))
+  "JCS local type face."
+  :group 'basic-faces)
+(defvar jcs-font-lock-type-face 'jcs-font-lock-type-face)
+
+(defface jcs-font-lock-variable-name-face
+  '((t (:foreground "#D2D2D2")))
+  "JCS local variable name face."
+  :group 'basic-faces)
+(defvar jcs-font-lock-variable-name-face 'jcs-font-lock-variable-name-face)
+
+
+;;;###autoload
 (defun jcs-init-set-face ()
   "Set JayCeS's hightlight faces.
 For those mode does not apply faces correctly!"
+  (interactive)
+  (face-remap-add-relative 'font-lock-builtin-face '(jcs-font-lock-builtin-face))
   (face-remap-add-relative 'font-lock-comment-face '(jcs-font-lock-comment-face))
-  (face-remap-add-relative 'font-lock-doc-face '(jcs-font-lock-comment-face))
+  (face-remap-add-relative 'font-lock-constant-face '(jcs-font-lock-constant-face))
+  (face-remap-add-relative 'font-lock-doc-face '(jcs-font-lock-doc-face))
+  (face-remap-add-relative 'font-lock-function-name-face '(jcs-font-lock-function-name-face))
+  (face-remap-add-relative 'font-lock-keyword-face '(jcs-font-lock-keyword-face))
+  (face-remap-add-relative 'font-lock-preprocessor-face '(jcs-font-lock-preprocessor-face))
   (face-remap-add-relative 'font-lock-string-face '(jcs-font-lock-string-face))
-  (face-remap-add-relative 'font-lock-preprocessor-face '(jcs-font-lock-preprocessor-face)))
+  (face-remap-add-relative 'font-lock-type-face '(jcs-font-lock-type-face))
+  (face-remap-add-relative 'font-lock-variable-name-face '(jcs-font-lock-variable-name-face)))
+
+(set-face-attribute 'font-lock-builtin-face nil :foreground (face-foreground jcs-font-lock-builtin-face))
+(set-face-attribute 'font-lock-comment-face nil :foreground (face-foreground jcs-font-lock-comment-face))
+(set-face-attribute 'font-lock-constant-face nil :foreground (face-foreground jcs-font-lock-constant-face))
+(set-face-attribute 'font-lock-doc-face nil :foreground (face-foreground jcs-font-lock-doc-face))
+(set-face-attribute 'font-lock-function-name-face nil :foreground (face-foreground jcs-font-lock-function-name-face))
+(set-face-attribute 'font-lock-keyword-face nil :foreground (face-foreground jcs-font-lock-keyword-face))
+(set-face-attribute 'font-lock-preprocessor-face nil :foreground (face-foreground jcs-font-lock-preprocessor-face))
+(set-face-attribute 'font-lock-string-face nil :foreground (face-foreground jcs-font-lock-string-face))
+(set-face-attribute 'font-lock-type-face nil :foreground (face-foreground jcs-font-lock-type-face))
+(set-face-attribute 'font-lock-variable-name-face nil :foreground (face-foreground jcs-font-lock-variable-name-face))
 
 ;; Apply JayCeS's hightlight faces.
+(setq font-lock-builtin-face jcs-font-lock-builtin-face)
 (setq font-lock-comment-face jcs-font-lock-comment-face)
-(setq font-lock-doc-face jcs-font-lock-comment-face)
-(setq font-lock-string-face jcs-font-lock-string-face)
+(setq font-lock-constant-face jcs-font-lock-constant-face)
+(setq font-lock-doc-face jcs-font-lock-doc-face)
+(setq font-lock-function-name-face jcs-font-lock-function-name-face)
+(setq font-lock-keyword-face jcs-font-lock-keyword-face)
 (setq font-lock-preprocessor-face jcs-font-lock-preprocessor-face)
+(setq font-lock-string-face jcs-font-lock-string-face)
+(setq font-lock-type-face jcs-font-lock-type-face)
+(setq font-lock-variable-name-face jcs-font-lock-variable-name-face)
 
 
 ;;----------------------------------------------
