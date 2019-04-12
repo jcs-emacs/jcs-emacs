@@ -95,18 +95,6 @@ For those mode does not apply faces correctly!"
 (set-face-attribute 'font-lock-type-face nil :foreground (face-foreground jcs-font-lock-type-face))
 (set-face-attribute 'font-lock-variable-name-face nil :foreground (face-foreground jcs-font-lock-variable-name-face))
 
-;; Apply JayCeS's hightlight faces.
-(setq font-lock-builtin-face jcs-font-lock-builtin-face)
-(setq font-lock-comment-face jcs-font-lock-comment-face)
-(setq font-lock-constant-face jcs-font-lock-constant-face)
-(setq font-lock-doc-face jcs-font-lock-doc-face)
-(setq font-lock-function-name-face jcs-font-lock-function-name-face)
-(setq font-lock-keyword-face jcs-font-lock-keyword-face)
-(setq font-lock-preprocessor-face jcs-font-lock-preprocessor-face)
-(setq font-lock-string-face jcs-font-lock-string-face)
-(setq font-lock-type-face jcs-font-lock-type-face)
-(setq font-lock-variable-name-face jcs-font-lock-variable-name-face)
-
 
 ;;----------------------------------------------
 ;; Fixme Faces
