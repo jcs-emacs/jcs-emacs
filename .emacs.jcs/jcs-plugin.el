@@ -67,7 +67,6 @@
 
 (use-package flycheck
   :ensure t
-  :defer t
   :config
   (use-package flycheck-popup-tip
     :ensure t
