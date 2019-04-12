@@ -64,6 +64,8 @@ with `use-package` package to delay some packages load time.
 
 ## Features
 
+* [*Indent Move*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/indent-move) - 
+Automatically indent when cursor moves up and down.
 * [*Mini State*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/mini-state) - 
 Mini mode state use to visually see what backend is the 
 config currently running.
