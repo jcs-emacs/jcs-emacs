@@ -22,6 +22,7 @@
   (diminish 'abbrev-mode)
   (diminish 'auto-highlight-symbol-mode)
   (diminish 'auto-rename-tag-mode)
+  (diminish 'beacon-mode)
   (diminish 'company-mode)
   (diminish 'eldoc-mode)
   (diminish 'flycheck-mode)
