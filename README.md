@@ -64,9 +64,6 @@ with `use-package` package to delay some packages load time.
 
 ## Features
 
-* [*Mini-State*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/mini-state) - 
-Mini mode state use to visually see what backend is the 
-config currently running.
 * [*Simulate Shell*](https://github.com/jcs090218/jcs-emacs-init/tree/master/features/simulate-shell) - 
 Completely simulate shell behaviors, make better user 
 experience when using shell in Emacs.
@@ -177,6 +174,7 @@ the `copy` key is `C-c C-c`.
 
 
 ## Themes
+
 The theme was to design close to 
 [Visual Studio](https://visualstudio.microsoft.com/vs/) 
 preset dark theme. I believed 
@@ -191,6 +189,26 @@ variables can be found in that file.
 <p align="center">
   <img src="./screenshot/startup.png" width="920" height="540"/>
 </p>
+
+## Font
+
+Font uses `use-ttf` package to keep cross OS consistency. 
+The default font is `Ubuntu Mono` and loaded by using 
+`UbuntuMono-R.ttf` located under `./.emacs.jcs/fonts/` 
+folder. If you don't like the this font, you can add your 
+own `.ttf` file and add the path to 
+`use-ttf-default-ttf-fonts` list. Lastly, set the name 
+of the `.ttf` file to `use-ttf-default-ttf-font-name`
+variable.
+
+
+P.S.
+* See the file `./.emacs.jcs/jcs-font.el` to see how the 
+font is been set in this config.
+* For more details about the font settings in this 
+configuration, check out the 
+[use-ttf](https://github.com/elpa-host/use-ttf) 
+package.
 
 
 ## Installation
