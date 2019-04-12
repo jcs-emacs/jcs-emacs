@@ -64,6 +64,9 @@ with `use-package` package to delay some packages load time.
 
 ## Features
 
+* [*Mini State*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/mini-state) - 
+Mini mode state use to visually see what backend is the 
+config currently running.
 * [*Simulate Shell*](https://github.com/jcs090218/jcs-emacs-init/tree/master/features/simulate-shell) - 
 Completely simulate shell behaviors, make better user 
 experience when using shell in Emacs.
