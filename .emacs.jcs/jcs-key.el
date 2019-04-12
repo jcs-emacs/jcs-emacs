@@ -71,7 +71,7 @@
 ;;(define-key global-map "\t" #'dabbrev-expand)
 (define-key global-map [S-tab] #'indent-for-tab-command)
 (define-key global-map [backtab] #'indent-for-tab-command)
-(define-key global-map "\C-y" #'indent-for-tab-command)
+(define-key global-map (kbd "C-y") #'indent-for-tab-command)
 (define-key global-map [C-tab] #'indent-region)
 ;;(define-key global-map "      " #'indent-region)
 
@@ -79,18 +79,18 @@
 ;;; File Files
 ;;(define-key global-map "\ef" #'ido-find-file)
 ;;(define-key global-map "\eF" #'ido-find-file-other-window)
-(define-key global-map "\ef" #'jcs-helm-find-files)
-(define-key global-map "\eF" #'jcs-helm-find-files-other-window)
+(define-key global-map (kbd "M-f") #'jcs-helm-find-files)
+(define-key global-map (kbd "M-F") #'jcs-helm-find-files-other-window)
 ;;(define-key global-map "\C-xf" #'jcs-smart-find-file-in-project)
 ;;(define-key global-map "\C-xF" #'jcs-smart-find-file-in-project-in-another-window)
 
-(define-key global-map "\C-cd" #'jcs-duplicate-line)
+(define-key global-map (kbd "C-c d") #'jcs-duplicate-line)
 ;;(define-key global-map (kbd "C-d") #'kill-whole-line)   ;; Emacs default version
 (define-key global-map (kbd "C-d") #'jcs-kill-whole-line)    ;; delete the line without copying!!
-(define-key global-map "\C-x\C-x" #'jcs-vs-cut-key)
-(define-key global-map "\C-c\C-c" #'kill-ring-save)
-(define-key global-map "\C-v" #'yank)
-(define-key global-map "\C-s" #'jcs-untabify-save-buffer)
+(define-key global-map (kbd "C-x C-x") #'jcs-vs-cut-key)
+(define-key global-map (kbd "C-c C-c") #'kill-ring-save)
+(define-key global-map (kbd "C-v") #'yank)
+(define-key global-map (kbd "C-s") #'jcs-untabify-save-buffer)
 (define-key global-map (kbd "C-S-s") #'jcs-tabify-save-buffer)
 
 ;;; Package
@@ -243,26 +243,26 @@
 (define-key global-map "\C-xo" #'org-mode)
 
 ;;; File editing
-(define-key global-map "\ek" #'jcs-maybe-kill-this-buffer)
-(define-key global-map "\eK" #'jcs-reopen-this-buffer)
-;;(define-key global-map "\eK" #'jcs-kill-this-buffer)
+(define-key global-map (kbd "M-k") #'jcs-maybe-kill-this-buffer)
+(define-key global-map (kbd "M-K") #'jcs-reopen-this-buffer)
+;;(define-key global-map (kbd "M-k") #'jcs-kill-this-buffer)
 (define-key global-map [tab] #'jcs-tab-key)
 
 ;;; Process
-(define-key global-map "\ep" #'list-processes)
+(define-key global-map (kbd "M-p") #'list-processes)
 
 ;;; Show Hover
 (define-key global-map (kbd "C-k C-i") #'jcs-describe-thing-in-popup)
 
 
 ;;; Ace Window
-(define-key global-map "\ee" #'ace-window)
+(define-key global-map (kbd "M-e") #'ace-window)
 
 ;;; Company
 (require 'company)
 (define-key company-active-map [tab] #'company-complete-selection)
 (define-key company-active-map (kbd "TAB") #'company-complete-selection)
-(define-key company-active-map "\C-s" #'jcs-untabify-save-buffer)
+(define-key company-active-map (kbd "C-s") #'jcs-untabify-save-buffer)
 
 ;;; Dashboard
 (require 'dashboard)
@@ -270,7 +270,10 @@
 (define-key dashboard-mode-map (kbd "<down>") #'jcs-next-line)
 
 ;;; Flycheck
+(require 'flycheck)
 (define-key global-map (kbd "<f6>") #'jcs-flycheck-mode)
+(define-key flycheck-error-list-mode-map (kbd "M-k") #'jcs-flycheck-mode)
+(define-key flycheck-error-list-mode-map (kbd "M-K") #'flycheck-error-list-reset-filter)
 
 ;;; Folding Settings
 (define-key global-map (kbd "C-M-o") #'origami-close-all-nodes)
