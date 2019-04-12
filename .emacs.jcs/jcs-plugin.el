@@ -462,7 +462,7 @@
   :ensure t
   :config
   (setq dashboard-banner-logo-title "Welcome to J-Emacs!")
-  (setq dashboard-startup-banner "~/.emacs.jcs/banner/sink.svg")
+  (setq dashboard-startup-banner "~/.emacs.jcs/banner/sink_white.png")
   (setq dashboard-items '((recents  . 10)
                           (bookmarks . 10)))
   (dashboard-setup-startup-hook))
