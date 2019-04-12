@@ -62,6 +62,10 @@ with `use-package` package to delay some packages load time.
 [Anurag Peshne](https://github.com/anuragpeshne).*
 
 
+## Philosophy
+N/A
+
+
 ## Features
 
 * [*Indent Move*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/indent-move) - 
