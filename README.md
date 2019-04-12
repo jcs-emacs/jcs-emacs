@@ -131,6 +131,8 @@ and
 [yasnippet](https://github.com/joaotavora/yasnippet).
 * *Source Control Management* - powered by 
 [magit](https://github.com/magit/magit).
+* *Startup Screen* - powered by 
+[dashboard](https://github.com/emacs-dashboard/emacs-dashboard).
 * *Syntax Check* - powered by 
 [flycheck](http://www.flycheck.org/en/latest/).
 * *Tab Bar* - powered by 
