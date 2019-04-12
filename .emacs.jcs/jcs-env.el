@@ -171,14 +171,6 @@
 (set-face-attribute 'font-lock-type-face nil :foreground "#38EFCA")           ;; class name
 (set-face-attribute 'font-lock-variable-name-face nil :foreground "#D2D2D2")  ;; declare name
 
-(defun jcs-post-load-stuff ()
-  "Post load stuff."
-  (menu-bar-mode -1)
-  (set-foreground-color "#D2D2D2")              ;; text color
-  (set-background-color "#161616")              ;; background color
-  (set-cursor-color "#40FF40")                  ;; cursor color
-  )
-(add-hook 'window-setup-hook 'jcs-post-load-stuff t)
 
 ;; Set default Theme Color.
 (add-to-list 'default-frame-alist '(foreground-color . "#D2D2D2"))
@@ -250,6 +242,9 @@
 ;;; Recent files
 (recentf-mode 1)
 (setq recentf-max-menu-items 25)
+
+;;; Menu Bar
+(menu-bar-mode -1)
 
 
 (provide 'jcs-env)
