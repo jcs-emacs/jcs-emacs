@@ -124,8 +124,11 @@ M-<f2>          Rename current file.
 M-right         Jump to next capital letter.
 M-left          Jump to previous capital letter.
 
-M-backspace     Kill until next capital letter appears, backward.
-M-S-backspace   Kill util next capital letter appears, forward.
+C-backspace     Backward kill word.
+C-delete        Backward kill word.
+
+M-backspace     Backward kill until next capital letter appears.
+M-delete        Forward kill util next capital letter appears.
 
 C-r backspace   Delete the same character at current cursor's 
                 position backward repeatedly util it meet different 
