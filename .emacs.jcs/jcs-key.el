@@ -254,7 +254,8 @@
 ;;; Show Hover
 (define-key global-map (kbd "C-k C-i") #'jcs-describe-thing-in-popup)
 
-;;; ace window
+
+;;; Ace Window
 (define-key global-map "\ee" #'ace-window)
 
 ;;; Company
@@ -271,6 +272,16 @@
 ;;; Flycheck
 (define-key global-map (kbd "<f6>") #'jcs-flycheck-mode)
 
+;;; Folding Settings
+(define-key global-map (kbd "C-M-o") #'origami-close-all-nodes)
+(define-key global-map (kbd "C-M-p") #'origami-open-all-nodes)
+
+;;; Help
+(define-key help-mode-map (kbd "C-c C-c") #'kill-ring-save)
+
+;;; Smooth Scrolling
+(define-key global-map "\C-ca" #'jcs-toggle-sublimity-mode)
+
 ;;; Speedbar
 (require 'sr-speedbar)
 (define-key global-map (kbd "C-M-l") #'jcs-sr-speedbar-toggle)  ;; Compatible to `Visual Studio'.
@@ -282,15 +293,8 @@
 ;; Interface in Emacs using Git.
 (define-key global-map (kbd "C-x g") #'magit-status)
 
-;;; Folding Settings
-(define-key global-map (kbd "C-M-o") #'origami-close-all-nodes)
-(define-key global-map (kbd "C-M-p") #'origami-open-all-nodes)
-
 ;;; Minimap
 (define-key global-map "\C-cm" #'jcs-toggle-minimap)
-
-;;; Animate Scrolling
-(define-key global-map "\C-ca" #'jcs-toggle-sublimity-mode)
 
 ;;; Move Current Line Up or Down
 (define-key global-map [M-up] #'move-text-up)
