@@ -5,7 +5,9 @@ config currently running.
 
 ### Depend State
 
-<img src="./cross-state.png" width="870" height="30"/>
+<p align="center">
+  <img src="./cross-state.png" width="870" height="30"/>
+</p>
 
 State that allows you to use any external programs. 
 e.g. use 
@@ -16,7 +18,9 @@ you are currently on.
 
 ### Cross State
 
-<img src="./depend-state.png" width="870" height="30"/>
+<p align="center">
+  <img src="./depend-state.png" width="870" height="30"/>
+</p>
 
 State that uses universal solution from the DependState. Instead 
 of using 
@@ -28,6 +32,8 @@ to does job.
 
 ### Minibuffer State
 
-<img src="./minibuffer-state.png" width="870" height="30"/>
+<p align="center">
+  <img src="./minibuffer-state.png" width="870" height="30"/>
+</p>
 
 State represents that you are in the minibuffer.
