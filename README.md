@@ -74,6 +74,8 @@ with `use-package` package to delay some packages load time.
 [company](https://github.com/company-mode/company-mode).
 * *Auto Highlight Symbol* - powered by 
 [auto-highlight-symbol-mode](https://github.com/mhayashi1120/auto-highlight-symbol-mode).
+* *Banner* - powered by 
+[dashboard](https://github.com/emacs-dashboard/emacs-dashboard).
 * *Binary/Hex Editor* - powered by 
 [nhexl-mode](https://github.com/emacsmirror/nhexl-mode).
 * *Collaborative Editing* - powered by 
