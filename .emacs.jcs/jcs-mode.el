@@ -280,8 +280,8 @@ control of the editor."
 
 ;; Modes
 (require 'jcs-message-mode)
-(require 'jcs-re-builder-mode)
-(require 'jcs-shell-mode)
+(with-eval-after-load 're-builder (require 'jcs-re-builder-mode))
+(with-eval-after-load 'shell (require 'jcs-shell-mode))
 (require 'jcs-txt-mode)
 
 (with-eval-after-load 'actionscript-mode (require 'jcs-actionscript-mode))
