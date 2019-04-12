@@ -263,6 +263,11 @@
 (define-key company-active-map (kbd "TAB") #'company-complete-selection)
 (define-key company-active-map "\C-s" #'jcs-untabify-save-buffer)
 
+;;; Dashboard
+(require 'dashboard)
+(define-key dashboard-mode-map (kbd "<up>") #'jcs-previous-line)
+(define-key dashboard-mode-map (kbd "<down>") #'jcs-next-line)
+
 ;;; Flycheck
 (define-key global-map (kbd "<f6>") #'jcs-flycheck-mode)
 
