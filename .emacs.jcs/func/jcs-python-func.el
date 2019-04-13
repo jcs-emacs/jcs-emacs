@@ -3,6 +3,8 @@
 ;;; Code:
 
 
+(require 'python-mode)
+
 ;;;###autoload
 (defun jcs-py-indent-region ()
   "Indent region for `python-mode'."
