@@ -44,7 +44,17 @@ e.g. [Atom](https://atom.io/), [Brackets](http://brackets.io/),
 
 ## Philosophy
 
-N/A
+Like want I mentioned above, I have experienced with many 
+different kind of IDEs and text editors. But I always 
+couldn't find the best tool to use, espcially when I always 
+needed to make myself comfortable to the environment 
+everytime I jumped from one working field to another. 
+So instead of keep worrying and struggling with the tool 
+itself, I choosed Emacs and configured entire thing from 
+scratch. 
+
+There are few goals that I would want this config to 
+accomplish or solved!
 
 
 ## Startup Time
