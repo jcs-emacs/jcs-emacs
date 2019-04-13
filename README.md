@@ -79,7 +79,7 @@ config currently running.
 * [*Simulate Shell*](https://github.com/jcs090218/jcs-emacs-init/tree/master/features/simulate-shell) - 
 Completely simulate shell behaviors, make better user 
 experience when using shell in Emacs.
-* [*Tabify / Untabify Modes*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/tabify-untabify-modes) -
+* [*Tabify/Untabify Modes*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/tabify-untabify-modes) -
 Tabify or Untabify the file depends on the mode you 
 currently in.
 * [*Visualize Undo/Redo*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/visualize-undo-redo) - 
