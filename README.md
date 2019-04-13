@@ -44,7 +44,7 @@ e.g. [Atom](https://atom.io/), [Brackets](http://brackets.io/),
 
 ## Philosophy
 
-Like want I mentioned above, I have experienced with many 
+Like what I mentioned above, I have experienced with many 
 different kind of IDEs and text editors. But I always 
 couldn't find the best tool to use, espcially when I always 
 needed to make myself comfortable to the environment 
@@ -54,13 +54,17 @@ itself, I choosed Emacs and configured entire thing from
 scratch. 
 
 Here are a few goals that I would want this config to 
-accomplished or solved,
+accomplished or solved, 
 
 * Having the same set of key bindings across different 
 IDEs and text editors as many as possible.
 * Having the same font and theme across different OSs and 
 environments.
-* Improved user experiences in Emacs.
+* Automating trivial or redundant tasks.
+* Improve user experiences approach to modern text editor 
+or IDE.
+* Make compatible to most features work inside terminal 
+as well.
 
 
 ## Startup Time
