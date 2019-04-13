@@ -117,7 +117,7 @@ showing the `undo-tree-visualizer` at the second window.
 [re-builder](https://www.emacswiki.org/emacs/ReBuilder).
 * *Line Annotation* - powered by 
 [line-reminder](https://github.com/elpa-host/line-reminder).
-* *Line Number* - powered by 
+* *Line Numbers* - powered by 
 [display-line-numbers](https://github.com/emacs-mirror/emacs/blob/master/lisp/display-line-numbers.el)
 and 
 [linum](https://github.com/emacs-mirror/emacs/blob/master/lisp/linum.el).
