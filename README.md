@@ -68,6 +68,9 @@ with `use-package` package to delay some packages load time.
 
 ## Features
 
+* [*Auto Truncate Lines*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/auto-truncate-lines) - 
+Automatically enable/disable `truncate-lines-mode` depends 
+on certain situation. (`web-mode` only)
 * [*Indent Move*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/indent-move) - 
 Automatically indent when cursor moves up and down.
 * [*Mini State*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/mini-state) - 
@@ -76,6 +79,9 @@ config currently running.
 * [*Simulate Shell*](https://github.com/jcs090218/jcs-emacs-init/tree/master/features/simulate-shell) - 
 Completely simulate shell behaviors, make better user 
 experience when using shell in Emacs.
+* [*Tabify / Untabify Modes*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/tabify-untabify-modes) -
+Tabify or Untabify the file depends on the mode you 
+currently in.
 * [*Visualize Undo/Redo*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/visualize-undo-redo) - 
 Improved the user experience on undoing and redoing by 
 showing the `undo-tree-visualizer` at the second window.
