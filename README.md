@@ -215,9 +215,8 @@ P.S.
 * See the file `./.emacs.jcs/jcs-font.el` to see how the 
 font is been set in this config.
 * For more details about the font settings in this 
-configuration, check out the 
-[use-ttf](https://github.com/elpa-host/use-ttf) 
-package.
+configuration, check out the `use-ttf`package 
+[repo](https://github.com/elpa-host/use-ttf).
 
 
 ## Installation
