@@ -295,6 +295,7 @@ control of the editor."
 (with-eval-after-load 'clojure-mode (require 'jcs-clojure-mode))
 (with-eval-after-load 'cmake-mode (require 'jcs-cmake-mode))
 (with-eval-after-load 'cobol-mode (require 'jcs-cobol-mode))
+(with-eval-after-load 'conf-mode (require 'jcs-properties-mode))
 (with-eval-after-load 'csharp-mode (require 'jcs-csharp-mode))
 (with-eval-after-load 'css-mode (require 'jcs-css-mode))
 (with-eval-after-load 'elisp-mode (require 'jcs-elisp-mode))
@@ -368,6 +369,7 @@ PR : pair file `regexp' and file mode `symbol'."
   ;; NOTE(jenchieh): For autotools, autoconf, automake.
   (jcs-add-auto-mode-alist '("\\.ac'?\\'" . cmake-mode))
   (jcs-add-auto-mode-alist '("\\.cbl'?\\'" . cobol-mode))
+  (jcs-add-auto-mode-alist '("\\.properties'?\\'" . conf-javaprop-mode))
   (jcs-add-auto-mode-alist '("\\.cs'?\\'" . csharp-mode))
   (jcs-add-auto-mode-alist '("\\.css'?" . css-mode)))
 
@@ -398,7 +400,6 @@ PR : pair file `regexp' and file mode `symbol'."
 
 ;;; I
 (progn
-  (jcs-add-auto-mode-alist '("\\.properties'?\\'" . ini-mode))
   (jcs-add-auto-mode-alist '("\\.ini'?\\'" . ini-mode)))
 
 ;;; J
