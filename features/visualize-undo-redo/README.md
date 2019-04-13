@@ -3,7 +3,7 @@
 showing the `undo-tree-visualizer` at the second window.
 
 <p align="center">
-  <img src="./vis-undo-redo.gif" width="600" height="348"/>
+  <img src="./vis-undo-redo.gif" width="800" height="465"/>
 </p>
 
 By having the `undo-tree-visualizer` you can easily see 
