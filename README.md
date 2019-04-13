@@ -44,14 +44,14 @@ e.g. [Atom](https://atom.io/), [Brackets](http://brackets.io/),
 
 ## Philosophy
 
-Like what I mentioned above, I have experienced with many 
-different kind of IDEs and text editors. But I always 
-couldn't find the best tool to use, espcially when I always 
-needed to make myself comfortable to the environment 
-everytime I jumped from one working field to another. 
+Like what I mentioned above, I have experienced many 
+different kinds of IDEs and text editors. But I always 
+couldn't find the best tool to use, especially when I 
+always needed to make myself comfortable to the environment 
+every time I jumped from one working field to another. 
 So instead of keep worrying and struggling with the tool 
-itself, I choosed Emacs and configured entire thing from 
-scratch. 
+itself, I chose Emacs and configured the entire thing 
+from scratch.
 
 Here are a few goals that I would want this config to 
 accomplished or solved, 
