@@ -96,9 +96,14 @@ with `use-package` package to delay some packages load time.
 * [*Auto Truncate Lines*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/auto-truncate-lines) - 
 Automatically enable/disable `truncate-lines-mode` depends 
 on certain situation. (`web-mode` only)
+* [*Cycle Windows*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/cycle-windows) - 
+Fast keys cycle through windows quickly.
 * [*Docstring Completion*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/docstring-completion) - 
 Some standard docstring completion implementations built-in 
 to this configuration.
+* [*Fast Incremental Search*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/fast-incremental-search) - 
+Fast keys for incremental search forward/backward 
+to the cursor is currently pointing.
 * [*Indent Move*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/indent-move) - 
 Automatically indent when cursor moves up and down.
 * [*Mini State*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/mini-state) - 
