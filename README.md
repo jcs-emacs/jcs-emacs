@@ -106,6 +106,8 @@ Completely simulate shell behaviors, make better user
 experience when using shell in Emacs.
 * [*Tabify/Untabify Modes*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/tabify-untabify-modes) -
 Tabify or Untabify the file depends on the mode you 
+* [*Trim Trailing Whitespace*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/trim-trailing-whitespace) - 
+Remove trailing spaces and tabs automatically on save.
 currently in.
 * [*Visualize Undo/Redo*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/visualize-undo-redo) - 
 Improved the user experience on undoing and redoing by 
