@@ -27,7 +27,7 @@ and it has extended from this configuration.
 * Lisp / Lua
 * Makefile
 * Objective-C
-* Perl / PHP / Python
+* Perl / PHP / Properties / Python
 * Ruby / Rust
 * Sass / Scala / SCSS / Shell / SQL / Swift
 * TypeScript
