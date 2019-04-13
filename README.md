@@ -199,6 +199,7 @@ variables can be found in that file.
   <img src="./screenshot/startup.png" width="920" height="540"/>
 </p>
 
+
 ## Font
 
 Font uses `use-ttf` package to keep cross OS consistency. 
@@ -209,7 +210,6 @@ own `.ttf` file and add the path to
 `use-ttf-default-ttf-fonts` list. Lastly, set the name 
 of the `.ttf` file to `use-ttf-default-ttf-font-name`
 variable.
-
 
 P.S.
 * See the file `./.emacs.jcs/jcs-font.el` to see how the 
