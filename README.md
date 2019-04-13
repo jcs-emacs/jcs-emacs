@@ -53,13 +53,14 @@ So instead of keep worrying and struggling with the tool
 itself, I choosed Emacs and configured entire thing from 
 scratch. 
 
-There are few goals that I would want this config to 
-accomplish or solved!
+Here are a few goals that I would want this config to 
+accomplished or solved,
 
 * Having the same set of key bindings across different 
 IDEs and text editors as many as possible.
 * Having the same font and theme across different OSs and 
 environments.
+* Improved user experiences in Emacs.
 
 
 ## Startup Time
