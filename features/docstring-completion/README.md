@@ -2,26 +2,26 @@
 > Some standard docstring completion implementations 
 built-in to this configuration.
 
-## C/C++ document string
+## C/C++ Docstring
 <img src="./cc-doc-demo.gif"/>
 
-## C++ document string (Others)
+## C++ Docstring (Others)
 <img src="./cpp-doc-demo.gif"/>
 
-## C# document string (Visual Studio)
+## C# Docstring (Visual Studio)
 <img src="./csharp-vs-doc-demo.gif"/>
 
-## Java document string
+## Java Docstring
 <img src="./java-doc-demo.gif"/>
 
-## JavaScript document string
+## JavaScript Docstring
 <img src="./js-doc-demo.gif"/>
 
-## Lua document string
+## Lua Docstring
 <img src="./lua-doc-demo.gif"/>
 
-## PHP document string
+## PHP Docstring
 <img src="./php-doc-demo.gif"/>
 
-## Python document string
+## Python Docstring
 <img src="./python-doc-demo.gif"/>
