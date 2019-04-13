@@ -281,3 +281,5 @@ base on the version what I'm currently running on my present
 machine. For each version record, you can check the 
 [emacs_version_record](https://github.com/jcs090218/jcs-emacs-init/blob/master/emacs_version_record.txt)
 file at the root of the project directory.
+
+-Shen, Jen-Chieh
