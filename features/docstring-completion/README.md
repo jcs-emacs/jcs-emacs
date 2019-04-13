@@ -2,6 +2,9 @@
 > Some standard docstring completion implementations 
 built-in to this configuration.
 
+Here is the list of docstring demonstration to each 
+supported mode.
+
 ## C/C++ Docstring
 <img src="./cc-doc-demo.gif"/>
 
