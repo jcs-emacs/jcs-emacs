@@ -66,6 +66,11 @@ or IDE.
 * Make compatible to most features work inside terminal 
 as well.
 
+By having these implementations would make my life 
+easier and having a genuinely portable workspace, which 
+is great to have and I'm able to work on different 
+machine efficiently.
+
 
 ## Startup Time
 
