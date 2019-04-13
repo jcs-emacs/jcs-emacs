@@ -56,6 +56,11 @@ scratch.
 There are few goals that I would want this config to 
 accomplish or solved!
 
+* Having the same set of key bindings across different 
+IDEs and text editors as many as possible.
+* Having the same font and theme across different OSs and 
+environments.
+
 
 ## Startup Time
 
