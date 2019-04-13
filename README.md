@@ -96,11 +96,17 @@ with `use-package` package to delay some packages load time.
 * [*Auto Truncate Lines*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/auto-truncate-lines) - 
 Automatically enable/disable `truncate-lines-mode` depends 
 on certain situation. (`web-mode` only)
+* [*Docstring Completion*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/docstring-completion) - 
+Some standard docstring completion implementations built-in 
+to this configuration.
 * [*Indent Move*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/indent-move) - 
 Automatically indent when cursor moves up and down.
 * [*Mini State*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/mini-state) - 
 Mini mode state use to visually see what backend is the 
 config currently running.
+* [*Navigate Blank Line*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/navigate-blank-line) - 
+Use `C-<up>` and `C-<down>` to navigate previous and next 
+blank line.
 * [*Simulate Shell*](https://github.com/jcs090218/jcs-emacs-init/tree/master/features/simulate-shell) - 
 Completely simulate shell behaviors, make better user 
 experience when using shell in Emacs.
