@@ -227,6 +227,10 @@
 ;;; Menu Bar
 (menu-bar-mode -1)
 
+;;; Windmove
+(require 'windmove)
+(setq windmove-wrap-around t)
+
 
 (provide 'jcs-env)
 ;;; jcs-env.el ends here
