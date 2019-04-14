@@ -239,8 +239,6 @@ FNC : Callback apply to each windows."
       (setq jcs-is-enlarge-buffer t))))
 
 
-(require 'windmove)
-
 ;;;###autoload
 (defun jcs-toggle-window-split-hv ()
   "Switch window split from horizontally to vertically, or vice versa.
@@ -248,7 +246,8 @@ FNC : Callback apply to each windows."
 i.e. change right window to bottom, or change bottom window to right."
   (interactive)
   (save-selected-window
-    (let ((win-len (count-windows)))
+    (let ((win-len (count-windows))
+          (windmove-wrap-around nil))
       (if (= win-len 2)
           (progn
             (let ((other-win-buf nil)
@@ -310,6 +309,34 @@ If nil, current window's height is smaller than neighbor windows."
                   (>= cur-win-h next-win-h))
           (setq is-larger t))))
     is-larger))
+
+;;;###autoload
+(defun jcs-move-to-upmost-window ()
+  (interactive)
+  (let ((windmove-wrap-around nil))
+    (ignore-errors
+      (windmove-up jcs-windmove-max-move-count))))
+
+;;;###autoload
+(defun jcs-move-to-downmost-window ()
+  (interactive)
+  (let ((windmove-wrap-around nil))
+    (ignore-errors
+      (windmove-down jcs-windmove-max-move-count))))
+
+;;;###autoload
+(defun jcs-move-to-leftmost-window ()
+  (interactive)
+  (let ((windmove-wrap-around nil))
+    (ignore-errors
+      (windmove-left jcs-windmove-max-move-count))))
+
+;;;###autoload
+(defun jcs-move-to-rightmost-window ()
+  (interactive)
+  (let ((windmove-wrap-around nil))
+    (ignore-errors
+      (windmove-right jcs-windmove-max-move-count))))
 
 
 ;;-----------------------------------------------------------
@@ -389,6 +416,73 @@ DEL-TRANS : Delta transparency value."
   (unless del-trans
     (setq del-trans (jcs-to-negative jcs-default-delta-transparency)))
   (jcs-delta-frame-transparent del-trans))
+
+
+;;-----------------------------------------------------------
+;; Ace Window
+;;-----------------------------------------------------------
+
+;;;###autoload
+(defun jcs-ace-window-1 ()
+  (interactive)
+  (jcs-move-to-leftmost-window)
+  (jcs-move-to-upmost-window))
+
+;;;###autoload
+(defun jcs-ace-window-2 ()
+  (interactive)
+  (jcs-move-to-leftmost-window)
+  (jcs-move-to-upmost-window)
+  (jcs-other-window-next 1))
+
+;;;###autoload
+(defun jcs-ace-window-3 ()
+  (interactive)
+  (jcs-move-to-leftmost-window)
+  (jcs-move-to-upmost-window)
+  (jcs-other-window-next 2))
+
+;;;###autoload
+(defun jcs-ace-window-4 ()
+  (interactive)
+  (jcs-move-to-leftmost-window)
+  (jcs-move-to-upmost-window)
+  (jcs-other-window-next 3))
+
+;;;###autoload
+(defun jcs-ace-window-5 ()
+  (interactive)
+  (jcs-move-to-leftmost-window)
+  (jcs-move-to-upmost-window)
+  (jcs-other-window-next 4))
+
+;;;###autoload
+(defun jcs-ace-window-6 ()
+  (interactive)
+  (jcs-move-to-leftmost-window)
+  (jcs-move-to-upmost-window)
+  (jcs-other-window-next 5))
+
+;;;###autoload
+(defun jcs-ace-window-7 ()
+  (interactive)
+  (jcs-move-to-leftmost-window)
+  (jcs-move-to-upmost-window)
+  (jcs-other-window-next 6))
+
+;;;###autoload
+(defun jcs-ace-window-8 ()
+  (interactive)
+  (jcs-move-to-leftmost-window)
+  (jcs-move-to-upmost-window)
+  (jcs-other-window-next 7))
+
+;;;###autoload
+(defun jcs-ace-window-9 ()
+  (interactive)
+  (jcs-move-to-leftmost-window)
+  (jcs-move-to-upmost-window)
+  (jcs-other-window-next 8))
 
 
 (provide 'jcs-window)
