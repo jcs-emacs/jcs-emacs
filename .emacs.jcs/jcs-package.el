@@ -61,6 +61,7 @@ Return a list of installed packages or nil for every skipped package."
                                    beacon
                                    basic-mode
                                    better-defaults
+                                   buffer-move
                                    clojure-mode
                                    cmake-font-lock
                                    cmake-ide
