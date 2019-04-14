@@ -179,8 +179,8 @@
 
           ;; Goto very right/left of the window.
         (if jcs-sr-speedbar-window-all-on-right
-            (jcs-move-to-rightmost-window)
-          (jcs-move-to-leftmost-window))
+            (jcs-move-to-rightmost-window nil)
+          (jcs-move-to-leftmost-window nil))
 
         ;; Open it.
         (call-interactively #'sr-speedbar-toggle))
