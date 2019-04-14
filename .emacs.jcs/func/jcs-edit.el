@@ -529,9 +529,7 @@ REGEXP : reqular expression use to align."
   (select-frame-set-input-focus (selected-frame))
 
   ;; Update the selected window if speedbar is active.
-  (when (and (sr-speedbar-exist-p)
-             (not (jcs-is-current-major-mode-p "speedbar-mode")))
-    (setq jcs-sr-speedbar-record-selected-window (selected-window))))
+  (jcs-update-speedbar-record-after-select-new-window))
 
 ;;;###autoload
 (defun jcs-other-window-prev (&optional cnt)
@@ -545,9 +543,7 @@ REGEXP : reqular expression use to align."
   (select-frame-set-input-focus (selected-frame))
 
   ;; Update the selected window if speedbar is active.
-  (when (and (sr-speedbar-exist-p)
-             (not (jcs-is-current-major-mode-p "speedbar-mode")))
-    (setq jcs-sr-speedbar-record-selected-window (selected-window))))
+  (jcs-update-speedbar-record-after-select-new-window))
 
 ;;;###autoload
 (defun jcs-scroll-up-one-line (&optional n)
