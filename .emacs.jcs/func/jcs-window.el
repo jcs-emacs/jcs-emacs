@@ -3,6 +3,8 @@
 ;;; Code:
 
 
+(require 'ace-window)
+
 ;;-----------------------------------------------------------
 ;; Navigation
 ;;-----------------------------------------------------------
@@ -280,32 +282,48 @@ If nil, current window's height is smaller than neighbor windows."
     is-larger))
 
 ;;;###autoload
-(defun jcs-move-to-upmost-window ()
+(defun jcs-move-to-upmost-window (&optional not-all-frame)
+  "Move to the upmost window.
+NOT-ALL-FRAME : Default boundaries is all frame, limit to curent frame."
   (interactive)
-  (let ((windmove-wrap-around nil))
-    (ignore-errors
-      (windmove-up jcs-windmove-max-move-count))))
+  (if not-all-frame
+      (let ((windmove-wrap-around nil))
+        (ignore-errors
+          (windmove-up jcs-windmove-max-move-count)))
+    (jcs-ace-window-min)))
 
 ;;;###autoload
-(defun jcs-move-to-downmost-window ()
+(defun jcs-move-to-downmost-window (&optional not-all-frame)
+  "Move to the downmost window.
+NOT-ALL-FRAME : Default boundaries is all frame, limit to curent frame."
   (interactive)
-  (let ((windmove-wrap-around nil))
-    (ignore-errors
-      (windmove-down jcs-windmove-max-move-count))))
+  (if not-all-frame
+      (let ((windmove-wrap-around nil))
+        (ignore-errors
+          (windmove-down jcs-windmove-max-move-count)))
+    (jcs-ace-window-max)))
 
 ;;;###autoload
-(defun jcs-move-to-leftmost-window ()
+(defun jcs-move-to-leftmost-window (&optional not-all-frame)
+  "Move to the leftmost window.
+NOT-ALL-FRAME : Default boundaries is all frame, limit to curent frame."
   (interactive)
-  (let ((windmove-wrap-around nil))
-    (ignore-errors
-      (windmove-left jcs-windmove-max-move-count))))
+  (if not-all-frame
+      (let ((windmove-wrap-around nil))
+        (ignore-errors
+          (windmove-left jcs-windmove-max-move-count)))
+    (jcs-ace-window-min)))
 
 ;;;###autoload
-(defun jcs-move-to-rightmost-window ()
+(defun jcs-move-to-rightmost-window (&optional not-all-frame)
+  "Move to the rightmost window.
+NOT-ALL-FRAME : Default boundaries is all frame, limit to curent frame."
   (interactive)
-  (let ((windmove-wrap-around nil))
-    (ignore-errors
-      (windmove-right jcs-windmove-max-move-count))))
+  (if not-all-frame
+      (let ((windmove-wrap-around nil))
+        (ignore-errors
+          (windmove-right jcs-windmove-max-move-count)))
+    (jcs-ace-window-max)))
 
 
 ;;-----------------------------------------------------------
@@ -391,8 +409,6 @@ DEL-TRANS : Delta transparency value."
 ;; Ace Window
 ;;-----------------------------------------------------------
 
-(require 'ace-window)
-
 (defun jcs-ace-select-window (win-id)
   "Use `ace-window' to select the window by using window index.
 WIN-ID : Window index."
@@ -402,47 +418,68 @@ WIN-ID : Window index."
       (select-frame-set-input-focus (selected-frame)))))
 
 ;;;###autoload
-(defun jcs-ace-window-1 ()
+(defun jcs-ace-window-min ()
+  "Select window min."
   (interactive)
   (jcs-ace-select-window 0))
 
 ;;;###autoload
+(defun jcs-ace-window-max ()
+  "Select window max."
+  (interactive)
+  (jcs-ace-select-window (1- (length (aw-window-list)))))
+
+;;;###autoload
+(defun jcs-ace-window-1 ()
+  "Select window 1."
+  (interactive)
+  (jcs-ace-window-min))
+
+;;;###autoload
 (defun jcs-ace-window-2 ()
+  "Select window 2."
   (interactive)
   (jcs-ace-select-window 1))
 
 ;;;###autoload
 (defun jcs-ace-window-3 ()
+  "Select window 3."
   (interactive)
   (jcs-ace-select-window 2))
 
 ;;;###autoload
 (defun jcs-ace-window-4 ()
+  "Select window 4."
   (interactive)
   (jcs-ace-select-window 3))
 
 ;;;###autoload
 (defun jcs-ace-window-5 ()
+  "Select window 5."
   (interactive)
   (jcs-ace-select-window 4))
 
 ;;;###autoload
 (defun jcs-ace-window-6 ()
+  "Select window 6."
   (interactive)
   (jcs-ace-select-window 5))
 
 ;;;###autoload
 (defun jcs-ace-window-7 ()
+  "Select window 7."
   (interactive)
   (jcs-ace-select-window 6))
 
 ;;;###autoload
 (defun jcs-ace-window-8 ()
+  "Select window 8."
   (interactive)
   (jcs-ace-select-window 7))
 
 ;;;###autoload
 (defun jcs-ace-window-9 ()
+  "Select window 9."
   (interactive)
   (jcs-ace-select-window 8))
 
