@@ -68,13 +68,10 @@
 (define-key global-map "\er" #'revert-buffer)
 (define-key global-map "\es" #'save-buffer)
 
-;;(define-key global-map "\t" #'dabbrev-expand)
 (define-key global-map [S-tab] #'indent-for-tab-command)
 (define-key global-map [backtab] #'indent-for-tab-command)
 (define-key global-map (kbd "C-y") #'indent-for-tab-command)
 (define-key global-map [C-tab] #'indent-region)
-;;(define-key global-map "      " #'indent-region)
-
 
 ;;; File Files
 ;;(define-key global-map "\ef" #'ido-find-file)
@@ -93,7 +90,7 @@
 (define-key global-map (kbd "C-s") #'jcs-untabify-save-buffer)
 (define-key global-map (kbd "C-S-s") #'jcs-tabify-save-buffer)
 
-;;; Package
+;;; Packages
 (define-key global-map (kbd "C-p") #'package-list-packages)
 (define-key package-menu-mode-map (kbd "s") #'jcs-package-menu-filter-by-status)
 (define-key package-menu-mode-map (kbd "u") #'jcs-package-upgrade-all)
@@ -191,14 +188,15 @@
 (define-key global-map (kbd "S-<end>") #'jcs-smart-select-end)
 (define-key global-map (kbd "<up>") #'jcs-smart-indent-up)
 (define-key global-map (kbd "<down>") #'jcs-smart-indent-down)
-(define-key global-map [C-M-up] #'jcs-scroll-down-one-line)
-(define-key global-map [C-M-down] #'jcs-scroll-up-one-line)
 
+(define-key global-map (kbd "C-M-<up>") #'jcs-scroll-down-one-line)
+(define-key global-map (kbd "C-M-<down>") #'jcs-scroll-up-one-line)
+
+(define-key global-map (kbd "C-M-<left>") #'buf-move-left)
+(define-key global-map (kbd "C-M-<right>") #'buf-move-right)
+
+;;; Revert Buffer
 (define-key global-map "\er" #'jcs-revert-buffer-no-confirm)
-
-;;; SEE(jenchieh): `jcs-mode-el' will have detail mode config.
-;; Fix "iedit" bug for OSX
-(define-key global-map (kbd "C-c ;") #'jcs-iedit-mode)
 
 ;;; Font
 (define-key global-map (kbd "C-c f") #'jcs-change-font)
@@ -206,6 +204,12 @@
 ;;; Switch between window
 (define-key global-map "\ew" #'jcs-other-window-next)
 (define-key global-map "\eq" #'jcs-other-window-prev)
+
+;; TODO(jenchieh): No key bindings can implement this now.
+;; (define-key global-map (kbd "C-M-<up>") #'windmove-up)
+;; (define-key global-map (kbd "C-M-<down>") #'windmove-down)
+;; (define-key global-map (kbd "C-M-<left>") #'windmove-left)
+;; (define-key global-map (kbd "C-M-<right>") #'windmove-right)
 
 ;;; Buffer Menu
 (define-key global-map "\em" #'jcs-buffer-menu)
