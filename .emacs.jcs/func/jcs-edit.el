@@ -518,12 +518,14 @@ REGEXP : reqular expression use to align."
   (revert-buffer :ignore-auto :noconfirm))
 
 ;;;###autoload
-(defun jcs-other-window-next ()
+(defun jcs-other-window-next (&optional cnt)
   "Cycle through window and frame. (next window/frame)"
   (interactive)
-  ;; SOURCE: http://emacs.stackexchange.com/questions/628/cycle-between-windows-in-all-frames
+  (when (or (not cnt)
+            (not (numberp cnt)))
+    (setq cnt 1))
   ;; find next window and jump to that window.
-  (other-window 1 t)
+  (other-window cnt t)
   (select-frame-set-input-focus (selected-frame))
 
   ;; Update the selected window if speedbar is active.
@@ -532,11 +534,14 @@ REGEXP : reqular expression use to align."
     (setq jcs-sr-speedbar-record-selected-window (selected-window))))
 
 ;;;###autoload
-(defun jcs-other-window-prev ()
+(defun jcs-other-window-prev (&optional cnt)
   "Cycle through window and frame.(previous window/frame)"
   (interactive)
+  (when (or (not cnt)
+            (not (numberp cnt)))
+    (setq cnt -1))
   ;; find previous window and jump to that window.
-  (other-window -1 t)
+  (other-window cnt t)
   (select-frame-set-input-focus (selected-frame))
 
   ;; Update the selected window if speedbar is active.
