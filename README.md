@@ -99,6 +99,8 @@ on certain situation. (`web-mode` only)
 * [*Build Run*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/build-run) - 
 Implementation for executing script for building and running 
 the software.
+* [*Capital Word*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/capital-word) - 
+You can navigate/kill word by seeing capital letter.
 * [*Cycle Windows*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/cycle-windows) - 
 Fast keys cycle through windows quickly.
 * [*Docstring Completion*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/docstring-completion) - 
