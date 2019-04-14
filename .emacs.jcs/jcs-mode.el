@@ -300,9 +300,9 @@ control of the editor."
 (with-eval-after-load 'css-mode (require 'jcs-css-mode))
 (with-eval-after-load 'elisp-mode (require 'jcs-elisp-mode))
 (with-eval-after-load 'glsl-mode (require 'jcs-shader-mode))
-(with-eval-after-load 'gitattributes-mode (require 'jcs-txt-mode))
-(with-eval-after-load 'gitconfig-mode (require 'jcs-txt-mode))
-(with-eval-after-load 'gitignore-mode (require 'jcs-txt-mode))
+(with-eval-after-load 'gitattributes-mode (require 'jcs-git-mode))
+(with-eval-after-load 'gitconfig-mode (require 'jcs-git-mode))
+(with-eval-after-load 'gitignore-mode (require 'jcs-git-mode))
 (with-eval-after-load 'go-mode (require 'jcs-go-mode))
 (with-eval-after-load 'haskell-mode (require 'jcs-haskell-mode))
 (with-eval-after-load 'haxe-mode (require 'jcs-haxe-mode))
@@ -316,7 +316,7 @@ control of the editor."
 (with-eval-after-load 'markdown-mode (require 'jcs-markdown-mode))
 (with-eval-after-load 'nasm-mode (require 'jcs-nasm-mode))
 (with-eval-after-load 'nxml-mode (require 'jcs-xml-mode))
-(with-eval-after-load 'org (require 'jcs-txt-mode))
+(with-eval-after-load 'org (require 'jcs-org-mode))
 (with-eval-after-load 'perl-mode (require 'jcs-perl-mode))
 (with-eval-after-load 'processing-mode (require 'jcs-processing-mode))
 (with-eval-after-load 'python-mode (require 'jcs-python-mode))
@@ -329,6 +329,7 @@ control of the editor."
 (with-eval-after-load 'shader-mode (require 'jcs-shader-mode))
 (with-eval-after-load 'sql (require 'jcs-sql-mode))
 (with-eval-after-load 'swift-mode (require 'jcs-swift-mode))
+(with-eval-after-load 'text-mode (require 'jcs-text-mode))
 (with-eval-after-load 'typescript-mode (require 'jcs-typescript-mode))
 (with-eval-after-load 'verilog-mode (require 'jcs-verilog-mode))
 (with-eval-after-load 'vimrc-mode (require 'jcs-vimscript-mode))
@@ -462,6 +463,7 @@ PR : pair file `regexp' and file mode `symbol'."
 
 ;;; T
 (progn
+  (jcs-add-auto-mode-alist '("\\.txt'?\\'" . text-mode))
   (jcs-add-auto-mode-alist '("\\.ts'?\\'" . typescript-mode)))
 
 ;;; V
