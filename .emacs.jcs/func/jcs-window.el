@@ -93,26 +93,6 @@ CNT : Counter."
       (setq buf-list (remove-duplicates buf-list))
       (length buf-list))))
 
-;;;###autoload
-(defun jcs-visible-buffers (buffers)
-  "given a list of buffers, return buffers which are currently
-visible"
-  (remove nil
-          (mapcar
-           '(lambda (buf)
-              (if (get-buffer-window-list buf) buf))
-           buffers)))
-
-;;;###autoload
-(defun jcs-not-visible-buffers (buffers)
-  "given a list of buffers, return buffers which are not currently
-visible"
-  (remove nil
-          (mapcar
-           '(lambda (buf)
-              (unless (get-buffer-window-list buf) buf))
-           buffers)))
-
 (defun jcs-buffer-in-window-list ()
   "Get all the buffer in window list."
   ;; TOPIC(jenchieh): Show all open buffers in Emacs
@@ -148,9 +128,7 @@ visible"
           (buffers '()))
       (while (> win-len index)
         (push (buffer-name) buffers)
-
         (jcs-other-window-next)
-
         (setq index (+ index 1)))
       buffers)))
 
@@ -164,15 +142,6 @@ If nout found, returns 0."
       (when (string= buf in-buf-name)
         (setq displayed-frame-count (+ displayed-frame-count 1))))
     displayed-frame-count))
-
-(defun jcs-in-window-list (buf)
-  "Check if buffer open in window list.
-
-BUF : buffer name.
-
-True : return name.
-False : return nil."
-  (get-buffer-window-list buf))
 
 ;;;###autoload
 (defun jcs-walk-through-all-windows-once (&optional fnc)
@@ -422,67 +391,60 @@ DEL-TRANS : Delta transparency value."
 ;; Ace Window
 ;;-----------------------------------------------------------
 
+(require 'ace-window)
+
+(defun jcs-ace-select-window (win-id)
+  "Use `ace-window' to select the window by using window index.
+WIN-ID : Window index."
+  (let ((wnd (nth win-id (aw-window-list))))
+    (when wnd
+      (select-window wnd)
+      (select-frame-set-input-focus (selected-frame)))))
+
 ;;;###autoload
 (defun jcs-ace-window-1 ()
   (interactive)
-  (jcs-move-to-leftmost-window)
-  (jcs-move-to-upmost-window))
+  (jcs-ace-select-window 0))
 
 ;;;###autoload
 (defun jcs-ace-window-2 ()
   (interactive)
-  (jcs-move-to-leftmost-window)
-  (jcs-move-to-upmost-window)
-  (jcs-other-window-next 1))
+  (jcs-ace-select-window 1))
 
 ;;;###autoload
 (defun jcs-ace-window-3 ()
   (interactive)
-  (jcs-move-to-leftmost-window)
-  (jcs-move-to-upmost-window)
-  (jcs-other-window-next 2))
+  (jcs-ace-select-window 2))
 
 ;;;###autoload
 (defun jcs-ace-window-4 ()
   (interactive)
-  (jcs-move-to-leftmost-window)
-  (jcs-move-to-upmost-window)
-  (jcs-other-window-next 3))
+  (jcs-ace-select-window 3))
 
 ;;;###autoload
 (defun jcs-ace-window-5 ()
   (interactive)
-  (jcs-move-to-leftmost-window)
-  (jcs-move-to-upmost-window)
-  (jcs-other-window-next 4))
+  (jcs-ace-select-window 4))
 
 ;;;###autoload
 (defun jcs-ace-window-6 ()
   (interactive)
-  (jcs-move-to-leftmost-window)
-  (jcs-move-to-upmost-window)
-  (jcs-other-window-next 5))
+  (jcs-ace-select-window 5))
 
 ;;;###autoload
 (defun jcs-ace-window-7 ()
   (interactive)
-  (jcs-move-to-leftmost-window)
-  (jcs-move-to-upmost-window)
-  (jcs-other-window-next 6))
+  (jcs-ace-select-window 6))
 
 ;;;###autoload
 (defun jcs-ace-window-8 ()
   (interactive)
-  (jcs-move-to-leftmost-window)
-  (jcs-move-to-upmost-window)
-  (jcs-other-window-next 7))
+  (jcs-ace-select-window 7))
 
 ;;;###autoload
 (defun jcs-ace-window-9 ()
   (interactive)
-  (jcs-move-to-leftmost-window)
-  (jcs-move-to-upmost-window)
-  (jcs-other-window-next 8))
+  (jcs-ace-select-window 8))
 
 
 (provide 'jcs-window)
