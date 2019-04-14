@@ -1,4 +1,4 @@
-# Org Table Navigation
+# Navigate Table
 > Navigate `org-mode`'s table easier by using arrow keys.
 
 <p align="center">
