@@ -31,7 +31,17 @@ M-m             Looks for and executes a build.bat.
 
 M-w             Switch to the other window. (Next)
 M-q             Switch to the other window. (Prev)
+
 M-e             Aced window. (more advanced of the switch window functionality)
+M-1             Select window 1.
+M-2             Select window 2.
+M-3             Select window 3.
+M-4             Select window 4.
+M-5             Select window 5.
+M-6             Select window 6.
+M-7             Select window 7.
+M-8             Select window 8.
+M-9             Select window 9.
 
 M-K             Kills a buffer (ask to save it first if it's modified).
 
@@ -230,7 +240,7 @@ C-k d           Sort the CSS attribute for the whole file.
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * Minimap
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-C-c m           enable/disable minimap
+C-c m           Enable/Disable minimap.
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * Messages
@@ -241,13 +251,13 @@ M-S-k           Erase *Messages* buffer without closing it.
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * Folding Key binding
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-C-M-o           collpase all
-C-M-p           expand all function
+C-M-o           Collpase all folding.
+C-M-p           Expand all folding.
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * Shell Key binding
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-C-`             toggle shell window
+C-`             Toggle shell window.
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * Dual Display/Monitor
