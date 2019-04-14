@@ -518,30 +518,36 @@ REGEXP : reqular expression use to align."
   (revert-buffer :ignore-auto :noconfirm))
 
 ;;;###autoload
-(defun jcs-other-window-next (&optional cnt)
-  "Cycle through window and frame. (next window/frame)"
+(defun jcs-other-window-next (&optional cnt not-all-frame)
+  "Move to the next window.
+CNT : Move count.
+NOT-ALL-FRAME : Default boundaries is all frame, limit to curent frame."
   (interactive)
   (when (or (not cnt)
             (not (numberp cnt)))
     (setq cnt 1))
   ;; find next window and jump to that window.
-  (other-window cnt t)
+  (if not-all-frame
+      (other-window cnt nil)
+    (other-window cnt t))
   (select-frame-set-input-focus (selected-frame))
-
   ;; Update the selected window if speedbar is active.
   (jcs-update-speedbar-record-after-select-new-window))
 
 ;;;###autoload
-(defun jcs-other-window-prev (&optional cnt)
-  "Cycle through window and frame.(previous window/frame)"
+(defun jcs-other-window-prev (&optional cnt not-all-frame)
+  "Move to the previous window.
+CNT : Move count.
+NOT-ALL-FRAME : Default boundaries is all frame, limit to curent frame."
   (interactive)
   (when (or (not cnt)
             (not (numberp cnt)))
     (setq cnt -1))
   ;; find previous window and jump to that window.
-  (other-window cnt t)
+  (if not-all-frame
+      (other-window cnt nil)
+    (other-window cnt t))
   (select-frame-set-input-focus (selected-frame))
-
   ;; Update the selected window if speedbar is active.
   (jcs-update-speedbar-record-after-select-new-window))
 
