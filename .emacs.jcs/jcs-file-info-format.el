@@ -424,9 +424,9 @@ on language selected."
   (jcs-insert-template-by-file-path "~/.emacs.jcs/template/swift/swift_template.txt"))
 
 ;;; Text
-(defun jcs-insert-txt-template ()
+(defun jcs-insert-text-template ()
   "Header for Text header file."
-  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/txt/txt_template.txt"))
+  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/text/text_template.txt"))
 
 ;;; TypeScript
 (defun jcs-insert-typescript-template ()
