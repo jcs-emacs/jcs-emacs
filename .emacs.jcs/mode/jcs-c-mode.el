@@ -23,7 +23,7 @@
 
   ;; If just want to open the same file, not the
   ;; corresponding file.
-  (define-key c-mode-map [f7] #'jcs-find-file-other-window)
+  (define-key c-mode-map [f7] #'jcs-same-file-other-window)
 
   ;; Alternate bindings for F-keyless setups (ie MacOS X terminal)
   (define-key c-mode-map "\ec" #'jcs-find-corresponding-file)
