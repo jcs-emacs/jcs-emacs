@@ -117,14 +117,14 @@ config currently running.
 * [*Navigate Blank Line*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/navigate-blank-line) - 
 Use `C-<up>` and `C-<down>` to navigate previous and next 
 blank line.
+* [*Navigate Table*](https://github.com/jcs090218/jcs-emacs-init/tree/master/features/navigate-table) - 
+Navigate `org-mode`'s table easier by using arrow keys.
 * [*Simulate Shell*](https://github.com/jcs090218/jcs-emacs-init/tree/master/features/simulate-shell) - 
 Completely simulate shell behaviors, make better user 
 experience when using shell in Emacs.
 * [*Tabify/Untabify Modes*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/tabify-untabify-modes) -
 Tabify or Untabify the file depends on the mode you 
 currently in.
-* [*Table Navigation*](https://github.com/jcs090218/jcs-emacs-init/tree/master/features/table-nav) - 
-Navigate `org-mode`'s table easier by using arrow keys.
 * [*Trim Trailing Whitespace*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/trim-trailing-whitespace) - 
 Remove trailing spaces and tabs automatically on save.
 * [*Visualize Undo/Redo*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/visualize-undo-redo) - 
