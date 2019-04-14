@@ -666,12 +666,13 @@ ARG : Match with `save-buffer' command."
 ;;-------------------------
 
 ;;;###autoload
-(defun jcs-find-file-other-window ()
+(defun jcs-same-file-other-window ()
   "This will allow us open the same file in another window."
   (interactive)
-  (when (buffer-file-name)
-    (save-selected-window
-      (find-file-other-window buffer-file-name))))
+  (save-selected-window
+    (let ((buf-name (buffer-name)))
+      (other-window 1)
+      (switch-to-buffer buf-name))))
 
 ;;;###autoload
 (defun jcs-smart-find-file-in-project-in-another-window ()
