@@ -230,6 +230,8 @@
 ;;; Windmove
 (require 'windmove)
 (setq windmove-wrap-around t)
+(defvar jcs-windmove-max-move-count 25
+  "Possible maximum windows count.")
 
 
 (provide 'jcs-env)
