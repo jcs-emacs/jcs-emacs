@@ -47,6 +47,11 @@
   (beacon-mode 1))
 
 
+(use-package buffer-move
+  :ensure t
+  :defer t)
+
+
 (use-package company
   :ensure t
   :defer t
