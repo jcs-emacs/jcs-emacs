@@ -188,6 +188,12 @@
       ;; Select the speedbar window.
       (call-interactively #'sr-speedbar-select-window))))
 
+(defun jcs-update-speedbar-record-after-select-new-window ()
+  "Update speedbar by selecting new window."
+  (when (and (sr-speedbar-exist-p)
+             (not (jcs-is-current-major-mode-p "speedbar-mode")))
+    (setq jcs-sr-speedbar-record-selected-window (selected-window))))
+
 ;;----------------------------------------------
 ;; Sublimity Mode
 ;;----------------------------------------------
