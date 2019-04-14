@@ -670,8 +670,8 @@ ARG : Match with `save-buffer' command."
   "This will allow us open the same file in another window."
   (interactive)
   (when (buffer-file-name)
-    (find-file-other-window buffer-file-name)
-    (jcs-other-window-prev)))
+    (save-selected-window
+      (find-file-other-window buffer-file-name))))
 
 ;;;###autoload
 (defun jcs-smart-find-file-in-project-in-another-window ()
