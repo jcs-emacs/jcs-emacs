@@ -56,11 +56,10 @@ M-S-n           Go to the previous error after a compile.
 M-g             Goto line number.
 
 C-d             Kill the whole line.
-C-c ;           Rename the whole text with the same name.
+
 C-r C-r         Rename the whole text with the same name.
 
-C-x h           mark whole buffer (Select All)
-C-a             mark whole buffer (Select All)
+C-a             Mark whole buffer (Select All)
 
 M-]             Run the program (run.linux/run.bat/run.mac)
 C-<f5>          Run the program (run.linux/run.bat/run.mac)
@@ -152,6 +151,9 @@ M-down          Move current line down.
 
 C-M-up          Scroll window up one line without moving cursor.
 C-M-down        Scroll window down one line without moving cursor.
+
+C-M-left        Move buffer left.
+C-M-right       Move buffer right.
 
 C-c f           Change font style.
 
