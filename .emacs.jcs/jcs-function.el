@@ -177,15 +177,10 @@
         ;; has been set.
         (call-interactively #'speedbar-refresh)
 
-        (ignore-errors
           ;; Goto very right/left of the window.
-          ;;
-          ;; Just set to something very high, so it will ensure we go to
-          ;; either the most right and the most left of the window.
-          ;; Here we set it to `100' as default.
-          (if jcs-sr-speedbar-window-all-on-right
-              (windmove-right 100)
-            (windmove-left 100)))
+        (if jcs-sr-speedbar-window-all-on-right
+            (jcs-move-to-rightmost-window)
+          (jcs-move-to-leftmost-window))
 
         ;; Open it.
         (call-interactively #'sr-speedbar-toggle))
