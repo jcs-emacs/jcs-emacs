@@ -116,7 +116,6 @@ Return a list of installed packages or nil for every skipped package."
                                    ;;
                                    ;;jcs-ex-pkg
                                    js2-mode
-                                   js2-refactor
                                    json-mode
                                    line-reminder
                                    lua-mode
