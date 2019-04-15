@@ -260,10 +260,20 @@ in order to take effect.  Half hot reloading process."
   "Template for CSS."
   (jcs-insert-template-by-file-path "~/.emacs.jcs/template/css/css_template.txt"))
 
+;;; Elixir
+(defun jcs-insert-elixir-template ()
+  "Template for Elixir."
+  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/elixir/elixir_template.txt"))
+
 ;;; Emacs Lisp
 (defun jcs-insert-emacs-lisp-template ()
-  "Template for Elisp."
+  "Template for Emacs Lisp."
   (jcs-insert-template-by-file-path "~/.emacs.jcs/template/elisp/elisp_template.txt"))
+
+;;; Erlang
+(defun jcs-insert-erlang-template ()
+  "Template for Erlang Lisp."
+  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/erlang/erlang_template.txt"))
 
 ;;; GLSL
 (defun jcs-insert-glsl-template ()
