@@ -1,5 +1,5 @@
-;;; jcs-cmake-func.el --- CMake related.  -*- lexical-binding: t -*-
-;;; Commentary: Functions for CMake and Makefile.
+;;; jcs-makefile-func.el --- Makfile related.  -*- lexical-binding: t -*-
+;;; Commentary: Functions for Makefile.
 ;;; Code:
 
 
@@ -8,7 +8,6 @@
 Then specialize makefile to that target language.
 
 LAN : temporary variable store user langauge input."
-
   (interactive
    (list (completing-read
           "Major language for this Makfile: " '("Default (empty)"
@@ -23,22 +22,15 @@ LAN : temporary variable store user langauge input."
            ;; Empty..
            ))
         ((string= lan "Assembly")
-         (progn
-           (call-interactively 'jcs-ask-makefile-cc-template)))
+         (call-interactively 'jcs-ask-makefile-cc-template))
         ((string= lan "C")
-         (progn
-           (call-interactively 'jcs-ask-makefile-cc-template)))
+         (call-interactively 'jcs-ask-makefile-cc-template))
         ((string= lan "C++")
-         (progn
-           (call-interactively 'jcs-ask-makefile-cc-template)))
+         (call-interactively 'jcs-ask-makefile-cc-template))
         ((string= lan "Java")
-         (progn
-           (call-interactively 'jcs-ask-makefile-java-template)))
+         (call-interactively 'jcs-ask-makefile-java-template))
         ((string= lan "Python")
-         (progn
-           (call-interactively 'jcs-ask-makefile-python-template)))
-        )
-  )
+         (call-interactively 'jcs-ask-makefile-python-template))))
 
 ;;;###autoload
 (defun jcs-ask-makefile-cc-template (type)
@@ -51,15 +43,11 @@ TYPE: type of makefile for Assembly and C/C++."
                                  "Library"))))
 
   (cond ((string= type "..")
-         (progn
-           (call-interactively 'jcs-ask-makefile-language)))
+         (call-interactively 'jcs-ask-makefile-language))
         ((string= type "Application")
-         (progn
-           (jcs-insert-makefile-cc-app-template)))
+         (jcs-insert-makefile-cc-app-template))
         ((string= type "Library")
-         (progn
-           (jcs-insert-makefile-cc-lib-template)))
-        ))
+         (jcs-insert-makefile-cc-lib-template))))
 
 
 ;;;###autoload
@@ -73,15 +61,11 @@ TYPE: type of makefile for Java."
                                  "Library"))))
 
   (cond ((string= type "..")
-         (progn
-           (call-interactively 'jcs-ask-makefile-language)))
+         (call-interactively 'jcs-ask-makefile-language))
         ((string= type "Application")
-         (progn
-           (jcs-insert-makefile-java-app-template)))
+         (jcs-insert-makefile-java-app-template))
         ((string= type "Library")
-         (progn
-           (jcs-insert-makefile-java-lib-template)))
-        ))
+         (jcs-insert-makefile-java-lib-template))))
 
 
 ;;;###autoload
@@ -95,24 +79,20 @@ TYPE: type of makefile for Python."
                                  "Library"))))
 
   (cond ((string= type "..")
-         (progn
-           (call-interactively 'jcs-ask-makefile-language)))
+         (call-interactively 'jcs-ask-makefile-language))
         ((string= type "Application")
-         (progn
-           (jcs-insert-makefile-python-app-template)))
+         (jcs-insert-makefile-python-app-template))
         ((string= type "Library")
-         (progn
-           (jcs-insert-makefile-python-lib-template)))
-        ))
+         (jcs-insert-makefile-python-lib-template))))
 
 
 ;;;###autoload
 (defun jcs-makefile-newline ()
-  "Newline"
+  "Makefile newline."
   (interactive)
   (insert "\n")
   (py-indent-line-outmost))
 
 
-(provide 'jcs-cmake-func)
-;;; jcs-cmake-func.el ends here
+(provide 'jcs-makefile-func)
+;;; jcs-makefile-func.el ends here

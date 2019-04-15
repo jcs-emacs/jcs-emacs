@@ -28,7 +28,6 @@ comment prefix only."
 (defun jcs-vs-csharp-do-doc-string ()
   "Check if should insert the doc string by checking only \
 comment character on the same line."
-
   (let ((do-doc-string t))
     (jcs-goto-first-char-in-line)
 
@@ -46,13 +45,10 @@ comment character on the same line."
 
 ;;;###autoload
 (defun jcs-vs-csharp-maybe-insert-codedoc ()
-  "Insert comment like Visual Studio comment style.
-
-URL(jenchieh): https://github.com/josteink/csharp-mode/issues/123"
+  "Insert comment like Visual Studio comment style."
+  ;; URL(jenchieh): https://github.com/josteink/csharp-mode/issues/123
   (interactive)
-
   (insert "/")
-
   (let ((active-comment nil)
         (next-line-not-empty nil))
     (save-excursion
@@ -95,6 +91,7 @@ URL(jenchieh): https://github.com/josteink/csharp-mode/issues/123"
 
 ;;;###autoload
 (defun jcs-csharp-smart-indent-up ()
+  "CSharp mode smart indent up."
   (interactive)
   (jcs-smart-indent-up)
 
@@ -105,6 +102,7 @@ URL(jenchieh): https://github.com/josteink/csharp-mode/issues/123"
 
 ;;;###autoload
 (defun jcs-csharp-smart-indent-down ()
+  "CSharp mode smart indent down."
   (interactive)
   (jcs-smart-indent-down)
 

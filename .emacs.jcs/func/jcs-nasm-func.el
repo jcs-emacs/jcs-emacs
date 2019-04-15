@@ -6,6 +6,7 @@
 ;; First load the mode to prevent overwrite after.
 (require 'nasm-mode)
 
+;;;###autoload
 (defun nasm-indent-line ()
   "Indent current line as NASM assembly code."
   (interactive)
@@ -18,7 +19,7 @@
             ;;--------------------------------------------------
             ;; ATTENTION(jenchieh): Self copy this function from
             ;; source code. Add these rules for my own use.
-            (jcs-is-nasm-indent)
+            (jcs-is-nasm-indent-p)
             ;;--------------------------------------------------
             (looking-at nasm-label-regexp))
         (indent-line-to 0)
@@ -26,7 +27,7 @@
     (when (> (- (point-max) orig) (point))
       (goto-char (- (point-max) orig)))))
 
-(defun jcs-is-nasm-indent ()
+(defun jcs-is-nasm-indent-p ()
   "JayCeS's own indent nasm rules.
 @return boolean : true - do indent, false - vice versa."
   (let ((do-indent nil))
@@ -36,18 +37,15 @@
       (when (jcs-is-beginning-of-line-p)
         (jcs-back-to-indentation-or-beginning))
       (forward-char 1)
-
       ;; Check rule here..
       (when (jcs-current-char-equal-p ".")
         (setq do-indent t)))
-
-    (equal do-indent t)))
+    do-indent))
 
 ;;;###autoload
 (defun jcs-nasm-return ()
   "Return key for `nasm-mode'."
   (interactive)
-
   (let ((continue-comment nil))
     (save-excursion
       (ignore-errors
@@ -70,7 +68,6 @@
 (defun jcs-nasm-comment ()
   "Comment key for `nasm-mode'."
   (interactive)
-
   ;; Call normal nasm comment function before do our
   ;; own nasm comment.
   (call-interactively 'nasm-comment)

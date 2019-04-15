@@ -28,7 +28,6 @@
 (defun jcs-lua-do-doc-string ()
   "Check if should insert the doc string by checking only \
 comment character on the same line."
-
   (let ((do-doc-string t))
     (jcs-goto-first-char-in-line)
 
@@ -46,13 +45,10 @@ comment character on the same line."
 
 ;;;###autoload
 (defun jcs-lua-maybe-insert-codedoc ()
-  "Insert common Lua document/comment string.
-
-URL(jenchieh): http://lua-users.org/wiki/LuaStyleGuide"
+  "Insert common Lua document/comment string."
+  ;;URL(jenchieh): http://lua-users.org/wiki/LuaStyleGuide
   (interactive)
-
   (insert "-")
-
   (let ((active-comment nil)
         (next-line-not-empty nil))
     (save-excursion

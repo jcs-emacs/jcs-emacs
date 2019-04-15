@@ -1,14 +1,7 @@
-;;; jcs-txt-func.el --- Text mode functionalities.  -*- lexical-binding: t -*-
+;;; jcs-org-func.el --- Org mode functionalities.  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
-
-;;---------------------------------------------
-;; Electriic Pair
-;;---------------------------------------------
-
-;; `' electriic key.
-(add-to-list 'electric-pair-pairs '(?\` . ?\'))
 
 ;;---------------------------------------------
 ;; Highlighting
@@ -59,7 +52,6 @@
 (defun jcs-count-current-column ()
   "Count the current cursor in which column in the table.
 @return a integer which store current column number."
-
   (save-excursion
     (let ((tmp-column-count 0)
           (tmp-end-of-line-point nil))
@@ -113,5 +105,5 @@
   (org-cycle))
 
 
-(provide 'jcs-txt-func)
-;;; jcs-txt-func.el ends here
+(provide 'jcs-org-func)
+;;; jcs-org-func.el ends here

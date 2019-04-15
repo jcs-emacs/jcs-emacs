@@ -337,7 +337,7 @@ line by line instead of indent the whole file at once."
 
 ;;;###autoload
 (defun jcs-init-web-faces ()
-  "Initialize Web mode faces Highlihgting."
+  "Initialize Web mode faces highlihgting."
   (let ((web-type-comment-missing-modes '(web-mode)))
     (mapc (lambda (mode)
             (font-lock-add-keywords
