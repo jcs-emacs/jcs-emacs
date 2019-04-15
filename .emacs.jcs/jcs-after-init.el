@@ -36,6 +36,7 @@
   (diminish 'outline-minor-mode)
   (diminish 'overwrite-mode)
   (diminish 'page-break-lines-mode)
+  (diminish 'projectile-mode)
   (diminish 'right-click-context-mode)
   (diminish 'skewer-mode)
   (diminish 'undo-tree-mode)
