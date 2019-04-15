@@ -7,6 +7,29 @@
 
 
 ;;;###autoload
+(defun jcs-init-py-faces ()
+  "Initialize Python mode faces highlighting."
+  (let ((py-missing-modes '(python-mode)))
+    (mapc (lambda (mode)
+            (font-lock-add-keywords
+             mode
+             '(;; NOTE(jenchieh): `(require 'python)' actually solved the docstring
+               ;; highlighting issue.
+               ;; TODO(jenchieh): Maybe remove this?
+               ;;("\\(\"\"\"[^\"]*\"\"\"\\)" 1 'jcs-py-mode-docstring-face t)
+
+               ;;<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+               ;; NOTE(jenchieh): Fixed comment and string conflict.
+               ("[^\"]\\(#[^\"\r\n]*\\)[^\"]" 1 'jcs-font-lock-comment-face t)
+               ("[^\"]\\(\"[^\"]*\"\\)[^\"]" 1 'jcs-font-lock-string-face t)
+               ;;>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+               )'end))
+          py-missing-modes)))
+
+;;-----------------------------------------------------------
+;;-----------------------------------------------------------
+
+;;;###autoload
 (defun jcs-py-indent-region ()
   "Indent region for `python-mode'."
   (interactive)
