@@ -103,8 +103,6 @@ the software.
 You can navigate/kill word by seeing capital letter.
 * [*Curly Bracket Modes*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/curly-bracket-modes) - 
 Use curly bracket depends on different mode.
-* [*Cycle Windows*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/cycle-windows) - 
-Fast keys cycle through windows quickly.
 * [*Docstring Completion*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/docstring-completion) - 
 Some standard docstring completion implementations built-in 
 to this configuration.
@@ -124,6 +122,8 @@ Navigate `org-mode`'s table easier by using arrow keys.
 * [*Simulate Shell*](https://github.com/jcs090218/jcs-emacs-init/tree/master/features/simulate-shell) - 
 Completely simulate shell behaviors, make better user 
 experience when using shell in Emacs.
+* [*Switch Window*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/switch-window) - 
+Fast keys switch between windows quickly.
 * [*Tabify/Untabify Modes*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/tabify-untabify-modes) -
 Tabify or Untabify the file depends on the mode you 
 currently in.
