@@ -180,6 +180,8 @@ and
 [powerline](https://github.com/milkypostman/powerline).
 * *Multiple Cursor* - powered by 
 [iedit](https://github.com/victorhge/iedit).
+and 
+[multiple-cursors](https://github.com/magnars/multiple-cursors.el).
 * *Navigation/Searcher* - powered by 
 [ag](https://github.com/Wilfred/ag.el).
 * *Package Archive* - powered by 
