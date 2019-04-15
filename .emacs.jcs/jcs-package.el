@@ -77,7 +77,9 @@ Return a list of installed packages or nil for every skipped package."
                                    dashboard
                                    diminish
                                    dimmer
+                                   elixir-mode
                                    emmet-mode
+                                   erlang
                                    exec-path-from-shell
                                    floobits
                                    focus
