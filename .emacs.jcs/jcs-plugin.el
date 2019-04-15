@@ -138,30 +138,13 @@
     (exec-path-from-shell-initialize)))
 
 
-(use-package find-file-in-project
-  :ensure t
-  :defer t
-  :config
-  (autoload 'find-file-in-project "find-file-in-project" nil t)
-  (autoload 'find-file-in-project-by-selected "find-file-in-project" nil t)
-  (autoload 'find-directory-in-project-by-selected "find-file-in-project" nil t)
-  (autoload 'ffip-show-diff "find-file-in-project" nil t)
-  (autoload 'ffip-save-ivy-last "find-file-in-project" nil t)
-  (autoload 'ffip-ivy-resume "find-file-in-project" nil t)
-
-  ;; You prefer ido-mode?
-  ;;(setq ffip-prefer-ido-mode t)
-  )
-
-
 (use-package flycheck
   :ensure t
   :config
   (use-package flycheck-popup-tip
     :ensure t
     :config
-    ;;(flycheck-popup-tip-mode t)
-    )
+    (flycheck-popup-tip-mode t))
   ;;(global-flycheck-mode t)
   )
 
@@ -272,6 +255,11 @@
   (global-line-reminder-mode t))
 
 
+(use-package magit
+  :ensure t
+  :defer t)
+
+
 (use-package origami
   :ensure t
   :defer t
@@ -306,6 +294,16 @@
                       nil
                       :background "#333333"
                       :inherit nil))
+
+
+(use-package projectile
+  :ensure t
+  :config
+  (use-package helm-projectile
+    :ensure t
+    :config
+    (helm-projectile-on))
+  (projectile-mode t))
 
 
 (use-package reload-emacs
