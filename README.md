@@ -185,7 +185,7 @@ and
 * *Mode Line* - powered by 
 [powerline](https://github.com/milkypostman/powerline).
 * *Multiple Cursor* - powered by 
-[iedit](https://github.com/victorhge/iedit).
+[iedit](https://github.com/victorhge/iedit)
 and 
 [multiple-cursors](https://github.com/magnars/multiple-cursors.el).
 * *Navigation/Searcher* - powered by 
