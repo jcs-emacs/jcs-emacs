@@ -160,6 +160,8 @@ showing the `undo-tree-visualizer` at the second window.
 [origami](https://github.com/gregsexton/origami.el).
 * *Font* - powered by 
 [use-ttf](https://github.com/elpa-host/use-ttf).
+* *Goto Line* - powered by 
+[goto-line-preview](https://github.com/elpa-host/goto-line-preview).
 * *Highlight Matched Pairs* - powered by 
 [show-paren-mode](https://www.emacswiki.org/emacs/ShowParenMode).
 * *Recet Files* - powered by 
@@ -186,6 +188,8 @@ and
 [use-package](https://github.com/jwiegley/use-package).
 * *PDF Viewer* - powered by 
 [pdf-tools](https://github.com/politza/pdf-tools).
+* *Project Search* - powered by 
+[projectile](https://github.com/bbatsov/projectile).
 * *Shell* - powered by 
 [shell](https://www.emacswiki.org/emacs/ShellMode) and 
 [exec-path-from-shell](https://github.com/purcell/exec-path-from-shell).
