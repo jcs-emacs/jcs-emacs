@@ -1,5 +1,5 @@
-# Cycle Windows
-> Fast keys cycle through windows quickly.
+# Switch Window
+> Fast keys switch between windows quickly.
 
 There are few ways to switch between windows.
 
