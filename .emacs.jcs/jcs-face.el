@@ -269,6 +269,23 @@ For those mode does not apply faces correctly!"
 
 
 ;;----------------------------------------------
+;; Java
+;;----------------------------------------------
+
+(defface jcs-font-lock-null-face
+  '((t (:foreground "LightSteelBlue")))
+  "Java null face."
+  :group 'basic-faces)
+(defvar jcs-font-lock-null-face 'jcs-font-lock-null-face)
+
+(defface jcs-font-lock-void-face
+  '((t (:foreground "LightSteelBlue")))
+  "Java void face."
+  :group 'basic-faces)
+(defvar jcs-font-lock-void-face 'jcs-font-lock-void-face)
+
+
+;;----------------------------------------------
 ;; Python
 ;;----------------------------------------------
 
