@@ -41,6 +41,12 @@
   (custom-set-variables '(ahs-idle-interval 0.3)))
 
 
+(use-package auto-rename-tag
+  :ensure t
+  :defer t
+  :diminish auto-rename-tag-mode)
+
+
 (use-package beacon
   :ensure t
   :config
@@ -50,6 +56,11 @@
 (use-package buffer-move
   :ensure t
   :defer t)
+
+
+(use-package com-css-sort
+  :ensure t
+  :defer)
 
 
 (use-package company
@@ -110,7 +121,11 @@
   (setq dashboard-banner-logo-title "Welcome to J-Emacs!")
   (setq dashboard-startup-banner "~/.emacs.jcs/banner/sink_white.png")
   (setq dashboard-items '((recents  . 10)
-                          (bookmarks . 10)))
+                          (bookmarks . 10)
+                          (projects . 10)
+                          ;;(agenda . 10)
+                          ;;(registers . 10)
+                          ))
 
   (custom-set-faces
    '(dashboard-banner-logo-title
@@ -131,11 +146,21 @@
   (setq dimmer-fraction 0.2))
 
 
+(use-package emmet-mode
+  :ensure t
+  :defer t)
+
+
 (use-package exec-path-from-shell
   :ensure t
   :config
   (when (memq window-system '(mac ns x))
     (exec-path-from-shell-initialize)))
+
+
+(use-package floobits
+  :ensure t
+  :defer t)
 
 
 (use-package flycheck
@@ -147,6 +172,26 @@
     (flycheck-popup-tip-mode t))
   ;;(global-flycheck-mode t)
   )
+
+
+(use-package focus
+  :ensure t
+  :defer t)
+
+
+(use-package google-maps
+  :ensure t
+  :defer t)
+
+
+(use-package google-this
+  :ensure t
+  :defer t)
+
+
+(use-package google-translate
+  :ensure t
+  :defer t)
 
 
 (use-package goto-line-preview
@@ -238,6 +283,11 @@
      '(helm-gtags-auto-update t))))
 
 
+(use-package iedit
+  :ensure t
+  :defer t)
+
+
 (use-package indent-info
   :ensure t
   :defer t
@@ -260,8 +310,18 @@
   :defer t)
 
 
+(use-package move-text
+  :ensure t
+  :defer t)
+
+
 (use-package multiple-cursors
   :ensure t)
+
+
+(use-package organize-imports-java
+  :ensure t
+  :defer t)
 
 
 (use-package origami
@@ -309,6 +369,11 @@
   (projectile-mode t))
 
 
+(use-package rainbow-mode
+  :ensure t
+  :defer t)
+
+
 (use-package reload-emacs
   :config
   (defun jcs-advice-reload-emacs-after ()
@@ -336,15 +401,6 @@
   :ensure t
   :config
   (right-click-context-mode 1))
-
-
-(use-package skewer-mode
-  :ensure t
-  :defer t
-  :config
-  (add-hook 'js2-mode-hook 'skewer-mode)
-  (add-hook 'css-mode-hook 'skewer-css-mode)
-  (add-hook 'html-mode-hook 'skewer-html-mode))
 
 
 (use-package sr-speedbar
@@ -416,6 +472,11 @@
   :config
   ;; Turn-off `tabbar-mode' as default.
   (tabbar-mode 0))
+
+
+(use-package togetherly
+  :ensure t
+  :defer t)
 
 
 (use-package undo-tree
