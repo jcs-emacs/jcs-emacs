@@ -78,8 +78,8 @@
 ;;(define-key global-map "\eF" #'ido-find-file-other-window)
 (define-key global-map (kbd "M-f") #'jcs-helm-find-files)
 (define-key global-map (kbd "M-F") #'jcs-helm-find-files-other-window)
-;;(define-key global-map "\C-xf" #'jcs-smart-find-file-in-project)
-;;(define-key global-map "\C-xF" #'jcs-smart-find-file-in-project-in-another-window)
+;;(define-key global-map "\C-xf" #'projectile-find-file)
+;;(define-key global-map "\C-xF" #'projectile-find-file-other-window)
 
 (define-key global-map (kbd "C-c d") #'jcs-duplicate-line)
 ;;(define-key global-map (kbd "C-d") #'kill-whole-line)   ;; Emacs default version
