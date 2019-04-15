@@ -681,31 +681,6 @@ ARG : Match with `save-buffer' command."
       (other-window 1)
       (switch-to-buffer buf-name))))
 
-;;;###autoload
-(defun jcs-smart-find-file-in-project-in-another-window ()
-  "This will open the file in another window using 'find-file-
-project.el' plugin."
-  (interactive)
-  (if (ignore-errors (find-file-in-project t))
-      (progn
-        ;; Reach here mean success using 'find-file-in-
-        ;; project.el' plugin.
-        )
-    (ido-find-file-other-window)))
-
-;;;###autoload
-(defun jcs-smart-find-file-in-project ()
-  "This will open the file in current window using 'find-
-file-project.el' plugin."
-  (interactive)
-  (if (ignore-errors (find-file-in-project))
-      (progn
-        ;; Reach here mean success using 'find-file-in-
-        ;; project.el' plugin.
-        )
-    (ido-find-file)))
-
-
 ;;----------------------------------------------
 ;; Rename file.
 ;;----------------------------------------------
