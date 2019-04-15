@@ -132,7 +132,6 @@ Return a list of installed packages or nil for every skipped package."
                                    package-build
                                    package-lint
                                    pdf-tools
-                                   php-auto-yasnippets
                                    powerline
                                    processing-mode
                                    project-abbrev
