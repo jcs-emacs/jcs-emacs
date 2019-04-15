@@ -240,7 +240,7 @@ the `copy` key is `C-c C-c`.
 ## Themes
 
 The theme was to design close to 
-[Visual Studio](https://visualstudio.microsoft.com/vs/) 
+[Visual Studio IDE](https://visualstudio.microsoft.com/) 
 preset dark theme. I believed 
 [Microsoft](https://www.microsoft.com/zh-tw/) 
 has a great UI/UX team, since I don't have any experience 
