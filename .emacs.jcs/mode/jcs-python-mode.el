@@ -18,21 +18,6 @@
   ;; NOTE(jenchieh): Default is set to 8 for some reason.
   (setq-local tab-width 4)
 
-  (font-lock-add-keywords
-   nil
-   '(;; NOTE(jenchieh): `(require 'python)' actually solved the docstring
-     ;; highlighting issue.
-     ;; TODO(jenchieh): Maybe remove this?
-     ;;("\\(\"\"\"[^\"]*\"\"\"\\)" 1 'jcs-py-mode-docstring-face t)
-
-     ;;<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-     ;; NOTE(jenchieh): Fixed comment and string conflict.
-     ("[^\"]\\(#[^\"\r\n]*\\)[^\"]" 1 'jcs-font-lock-comment-face t)
-     ("[^\"]\\(\"[^\"]*\"\\)[^\"]" 1 'jcs-font-lock-string-face t)
-     ;;>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     )'end)
-
-
   (defun jcs-python-class-format ()
     "Format the given file as a Python file."
     (when (jcs-is-current-file-empty-p)
@@ -42,6 +27,9 @@
     (cond ((file-exists-p buffer-file-name) t)
           ((string-match "[.]py" buffer-file-name) (jcs-python-class-format))
           ))
+
+  ;; Set Faces.
+  (jcs-init-py-faces)
 
   ;; Normal
   (define-key python-mode-map (kbd "C-d") #'jcs-kill-whole-line)
