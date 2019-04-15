@@ -18,6 +18,7 @@
 ;;; Diminish
 ;; NOTE(jenchieh): Do not show theses modes in the mode line.
 (use-package diminish
+  :ensure t
   :config
   (diminish 'abbrev-mode)
   (diminish 'auto-highlight-symbol-mode)
@@ -30,7 +31,6 @@
   (diminish 'helm-mode)
   (diminish 'helm-gtags-mode)
   (diminish 'impatient-mode)
-  (diminish 'js2-refactor-mode)
   (diminish 'js2r)
   (diminish 'line-reminder-mode)
   (diminish 'outline-minor-mode)
@@ -38,7 +38,6 @@
   (diminish 'page-break-lines-mode)
   (diminish 'projectile-mode)
   (diminish 'right-click-context-mode)
-  (diminish 'skewer-mode)
   (diminish 'undo-tree-mode)
   (diminish 'which-key-mode)
   (diminish 'yas-minor-mode))
