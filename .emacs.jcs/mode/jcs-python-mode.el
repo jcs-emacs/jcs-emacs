@@ -70,11 +70,5 @@
 (add-hook 'python-mode-hook 'jcs-python-mode-hook)
 
 
-(use-package elpy
-  :config
-  ;;(elpy-enable)
-  )
-
-
 (provide 'jcs-python-mode)
 ;;; jcs-python-mode.el ends here
