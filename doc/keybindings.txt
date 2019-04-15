@@ -32,6 +32,11 @@ M-m             Looks for and executes a build.bat.
 M-w             Switch to the other window. (Next)
 M-q             Switch to the other window. (Prev)
 
+C-w up          Switch to up window.
+C-w down        Switch to down window.
+C-w right       Switch to right window.
+C-w left        Switch to left window.
+
 M-e             Aced window. (more advanced of the switch window functionality)
 M-1             Select window 1.
 M-2             Select window 2.
