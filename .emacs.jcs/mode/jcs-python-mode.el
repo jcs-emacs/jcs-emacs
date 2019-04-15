@@ -3,6 +3,7 @@
 ;;; Code:
 
 
+(require 'python)
 (require 'python-mode)
 (defun jcs-python-mode-hook ()
   "Python mode hook."
@@ -19,8 +20,9 @@
 
   (font-lock-add-keywords
    nil
-   '(;; TODO(jenchieh): This face would not apply cuz this conflict to the
-     ;; oop missing modes.
+   '(;; NOTE(jenchieh): `(require 'python)' actually solved the docstring
+     ;; highlighting issue.
+     ;; TODO(jenchieh): Maybe remove this?
      ;;("\\(\"\"\"[^\"]*\"\"\"\\)" 1 'jcs-py-mode-docstring-face t)
 
      ;;<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
