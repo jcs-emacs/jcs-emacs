@@ -53,20 +53,16 @@ Return a list of installed packages or nil for every skipped package."
                                    actionscript-mode
                                    adaptive-wrap
                                    ag
-                                   all-the-icons
                                    apache-mode
                                    auto-highlight-symbol
                                    auto-package-update
                                    auto-rename-tag
                                    beacon
                                    basic-mode
-                                   better-defaults
                                    buffer-move
                                    clojure-mode
                                    cmake-font-lock
-                                   cmake-ide
                                    cmake-mode
-                                   cmake-project
                                    cobol-mode
                                    com-css-sort
                                    company
@@ -85,9 +81,6 @@ Return a list of installed packages or nil for every skipped package."
                                    focus
                                    flycheck
                                    flycheck-popup-tip
-                                   git-link
-                                   git-messenger
-                                   git-timemachine
                                    gitattributes-mode
                                    gitconfig-mode
                                    gitignore-mode
@@ -124,7 +117,6 @@ Return a list of installed packages or nil for every skipped package."
                                    lua-mode
                                    magit
                                    markdown-mode
-                                   markdown-preview-mode
                                    move-text
                                    multiple-cursors
                                    nasm-mode
