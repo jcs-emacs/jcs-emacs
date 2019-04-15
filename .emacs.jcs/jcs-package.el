@@ -101,6 +101,7 @@ Return a list of installed packages or nil for every skipped package."
                                    helm
                                    helm-ag
                                    helm-gtags
+                                   helm-projectile
                                    htmltagwrap
                                    indent-info
                                    ini-mode
