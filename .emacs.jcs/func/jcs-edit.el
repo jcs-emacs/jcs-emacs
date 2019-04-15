@@ -1489,6 +1489,30 @@ CC : current character before character deletion occured."
     (jcs-process-close-pair-char cpc)
     (jcs-process-close-pair-char-seq cc)))
 
+;;----------------------------------------------
+;; Multiple Cursors
+;;----------------------------------------------
+
+;;;###autoload
+(defun jcs-mc/mark-previous-like-this ()
+  "Smart marking previous line."
+  (interactive)
+  (let ((before-unmark-cur-cnt (mc/num-cursors))
+        (unmark-do (ignore-errors (call-interactively #'mc/unmark-next-like-this))))
+    (unless unmark-do
+      (unless (> before-unmark-cur-cnt (mc/num-cursors))
+        (call-interactively #'mc/mark-previous-like-this)))))
+
+;;;###autoload
+(defun jcs-mc/mark-next-like-this ()
+  "Smart marking next line."
+  (interactive)
+  (let ((before-unmark-cur-cnt (mc/num-cursors))
+        (unmark-do (ignore-errors (call-interactively #'mc/unmark-previous-like-this))))
+    (unless unmark-do
+      (unless (> before-unmark-cur-cnt (mc/num-cursors))
+        (call-interactively #'mc/mark-next-like-this)))))
+
 
 (provide 'jcs-edit)
 ;;; jcs-edit.el ends here
