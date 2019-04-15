@@ -417,11 +417,11 @@ G : Active line number globally."
 (require 'jcs-nav)
 
 ;; For Specific Mode
-(require 'jcs-txt-func)
+(require 'jcs-org-func)
 (require 'jcs-preproc-func)
 (require 'jcs-cc-func)
 (require 'jcs-csharp-func)
-(require 'jcs-cmake-func)
+(require 'jcs-makefile-func)
 (require 'jcs-java-func)
 (require 'jcs-lua-func)
 (require 'jcs-nasm-func)
