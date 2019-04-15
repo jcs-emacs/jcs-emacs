@@ -3,25 +3,6 @@
 ;;; Code:
 
 
-;;----------------------------------------------
-;; Web Comment Face
-;;----------------------------------------------
-
-(defvar jcs-web-type-comment-missing-modes '(web-mode)
-  "Modes that does not apply comment in ASP.NET (Razor v3) Syntax.")
-
-(mapc (lambda (mode)
-        (font-lock-add-keywords
-         mode
-         '(;; For nomral HTML comment.
-           ("\\(<!--[a-zA-Z0-9 \n\t-.<>?,*'`@\"=_(){}:;&^%$#!~]*-->\\)" 1 'jcs-font-lock-comment-face t)
-           ;; For multi-lines comment.
-           ;; TODO(jenchieh): Only inside the curly bracket.
-           ;; TODO(jenchieh): There is bug if `/' is inside the comment space.
-           ("\\(/\\*[^/]*\\*/\\)" 1 'jcs-web-mode-block-comment-face t)
-           )'end))
-      jcs-web-type-comment-missing-modes)
-
 ;;-----------------------------------------------------------
 ;; Truncate lines depends on the Face.
 ;;-----------------------------------------------------------
@@ -350,6 +331,28 @@ line by line instead of indent the whole file at once."
   (if (jcs-is-current-point-face "link")
       (call-interactively #'goto-address-at-point)
     (call-interactively #'emmet-expand-line)))
+
+;;-----------------------------------------------------------
+;;-----------------------------------------------------------
+
+;;;###autoload
+(defun jcs-init-web-faces ()
+  "Initialize Web mode faces Highlihgting."
+  (let ((web-type-comment-missing-modes '(web-mode)))
+    (mapc (lambda (mode)
+            (font-lock-add-keywords
+             mode
+             '(;; For nomral HTML comment.
+               ("\\(<!--[a-zA-Z0-9 \n\t-.<>?,*'`@\"=_(){}:;&^%$#!~]*-->\\)" 1 'jcs-font-lock-comment-face t)
+               ;; For multi-lines comment.
+               ;; TODO(jenchieh): Only inside the curly bracket.
+               ;; TODO(jenchieh): There is bug if `/' is inside the comment space.
+               ("\\(/\\*[^/]*\\*/\\)" 1 'jcs-web-mode-block-comment-face t)
+               )'end))
+          web-type-comment-missing-modes))
+  ;; Other faces.
+  (face-remap-add-relative 'web-mode-block-string-face '(jcs-font-lock-string-face))
+  (face-remap-add-relative 'web-mode-html-attr-value-face '(jcs-web-mode-html-attr-value-face)))
 
 
 (provide 'jcs-web-func)
