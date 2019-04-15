@@ -78,8 +78,8 @@
 ;;(define-key global-map "\eF" #'ido-find-file-other-window)
 (define-key global-map (kbd "M-f") #'jcs-helm-find-files)
 (define-key global-map (kbd "M-F") #'jcs-helm-find-files-other-window)
-;;(define-key global-map "\C-xf" #'projectile-find-file)
-;;(define-key global-map "\C-xF" #'projectile-find-file-other-window)
+;;(define-key global-map "\C-xf" #'helm-projectile-find-file)
+;;(define-key global-map "\C-xF" #'helm-projectile-find-file-other-window)
 
 (define-key global-map (kbd "C-c d") #'jcs-duplicate-line)
 ;;(define-key global-map (kbd "C-d") #'kill-whole-line)   ;; Emacs default version
@@ -371,7 +371,7 @@
 (define-key global-map (kbd "C-c i `") #'jcs-delete-inside-back-quot)
 (define-key global-map (kbd "C-c i ~") #'jcs-delete-inside-tilde)
 (define-key global-map (kbd "C-c i !") #'jcs-delete-inside-exclamation-mark)
-(define-key global-map (kbd "C-c i @") #'jcs-delete-inside-at-sign)
+(define-key global-map (kbd "C-c i @") #'jcs-delete-inside-at-sign)
 (define-key global-map (kbd "C-c i #") #'jcs-delete-inside-sharp-sign)
 (define-key global-map (kbd "C-c i $") #'jcs-delete-inside-dollar-sign)
 (define-key global-map (kbd "C-c i %") #'jcs-delete-inside-percent-sign)
