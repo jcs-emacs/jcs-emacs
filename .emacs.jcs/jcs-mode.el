@@ -299,6 +299,8 @@ control of the editor."
 (with-eval-after-load 'csharp-mode (require 'jcs-csharp-mode))
 (with-eval-after-load 'css-mode (require 'jcs-css-mode))
 (with-eval-after-load 'elisp-mode (require 'jcs-elisp-mode))
+(with-eval-after-load 'elixir-mode (require 'jcs-elixir-mode))
+(with-eval-after-load 'erlang (require 'jcs-erlang-mode))
 (with-eval-after-load 'glsl-mode (require 'jcs-shader-mode))
 (with-eval-after-load 'gitattributes-mode (require 'jcs-git-mode))
 (with-eval-after-load 'gitconfig-mode (require 'jcs-git-mode))
@@ -376,7 +378,11 @@ PR : pair file `regexp' and file mode `symbol'."
 
 ;;; E
 (progn
-  (jcs-add-auto-mode-alist '("\\.el'?\\'" . emacs-lisp-mode)))
+  (jcs-add-auto-mode-alist '("\\.ex'?\\'" . elixir-mode))
+  (jcs-add-auto-mode-alist '("\\.exs'?\\'" . elixir-mode))
+  (jcs-add-auto-mode-alist '("\\.el'?\\'" . emacs-lisp-mode))
+  (jcs-add-auto-mode-alist '("\\.erl'?\\'" . erlang-mode))
+  (jcs-add-auto-mode-alist '("\\.hrl'?\\'" . erlang-mode)))
 
 ;;; G
 (progn
