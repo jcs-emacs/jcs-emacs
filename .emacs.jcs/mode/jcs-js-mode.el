@@ -3,12 +3,6 @@
 ;;; Code:
 
 
-(use-package js2-refactor
-  :config
-  (add-hook 'js2-mode-hook #'js2-refactor-mode)
-  (js2r-add-keybindings-with-prefix "C-c C-m"))
-
-
 (require 'js2-mode)
 (defun jcs-js-mode-hook ()
   "JavaScript mode hook."
