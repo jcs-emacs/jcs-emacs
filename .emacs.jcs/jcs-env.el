@@ -172,7 +172,10 @@
 (setq-default indent-tabs-mode nil)          ;; Disable inset tabs, insert space only
 (setq-default tab-width 4)
 (setq tab-width 4)
+
 (electric-pair-mode 1)                       ;; auto close bracket insertion. New in emacs 24
+(add-to-list 'electric-pair-pairs '(?\` . ?\'))
+
 (setq shift-select-mode t)
 (delete-selection-mode 1)                    ;; replace the hightlighted text!
 (electric-indent-mode 1)
