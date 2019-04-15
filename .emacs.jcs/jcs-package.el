@@ -77,10 +77,8 @@ Return a list of installed packages or nil for every skipped package."
                                    dashboard
                                    diminish
                                    dimmer
-                                   elpy
                                    emmet-mode
                                    exec-path-from-shell
-                                   find-file-in-project
                                    floobits
                                    focus
                                    flycheck
@@ -138,6 +136,7 @@ Return a list of installed packages or nil for every skipped package."
                                    powerline
                                    processing-mode
                                    project-abbrev
+                                   projectile
                                    python-mode
                                    rainbow-mode
                                    restart-emacs
