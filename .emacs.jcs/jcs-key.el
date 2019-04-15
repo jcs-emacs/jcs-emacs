@@ -297,6 +297,20 @@
 ;;; Help
 (define-key help-mode-map (kbd "C-c C-c") #'kill-ring-save)
 
+;; Magit
+(define-key global-map (kbd "C-x g") #'magit-status)
+
+;;; Minimap
+(define-key global-map "\C-cm" #'jcs-toggle-minimap)
+
+;;; Move Current Line Up or Down
+(define-key global-map [M-up] #'move-text-up)
+(define-key global-map [M-down] #'move-text-down)
+
+;;; Mutliple Cursors
+(define-key global-map (kbd "C-M-S-<up>") #'jcs-mc/mark-previous-like-this)
+(define-key global-map (kbd "C-M-S-<down>") #'jcs-mc/mark-next-like-this)
+
 ;;; Smooth Scrolling
 (define-key global-map "\C-ca" #'jcs-toggle-sublimity-mode)
 
@@ -307,16 +321,6 @@
 (define-key speedbar-mode-map (kbd "<backspace>") #'speedbar-up-directory)
 (define-key speedbar-mode-map (kbd "<return>") #'jcs-speedbar-edit-line)
 (define-key speedbar-mode-map (kbd "<f2>") #'speedbar-item-rename)
-
-;; Interface in Emacs using Git.
-(define-key global-map (kbd "C-x g") #'magit-status)
-
-;;; Minimap
-(define-key global-map "\C-cm" #'jcs-toggle-minimap)
-
-;;; Move Current Line Up or Down
-(define-key global-map [M-up] #'move-text-up)
-(define-key global-map [M-down] #'move-text-down)
 
 ;;; Buffer List
 (define-key Buffer-menu-mode-map "\eK" #'jcs-buffer-menu)
