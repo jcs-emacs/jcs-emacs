@@ -205,11 +205,11 @@
 (define-key global-map "\ew" #'jcs-other-window-next)
 (define-key global-map "\eq" #'jcs-other-window-prev)
 
-;; TODO(jenchieh): No key bindings can implement this now.
-;; (define-key global-map (kbd "C-M-<up>") #'windmove-up)
-;; (define-key global-map (kbd "C-M-<down>") #'windmove-down)
-;; (define-key global-map (kbd "C-M-<left>") #'windmove-left)
-;; (define-key global-map (kbd "C-M-<right>") #'windmove-right)
+;; NOTE(jenchieh): Make compatible to Vim.
+(define-key global-map (kbd "C-w <up>") #'windmove-up)
+(define-key global-map (kbd "C-w <down>") #'windmove-down)
+(define-key global-map (kbd "C-w <left>") #'windmove-left)
+(define-key global-map (kbd "C-w <right>") #'windmove-right)
 
 ;;; Buffer Menu
 (define-key global-map "\em" #'jcs-buffer-menu)
