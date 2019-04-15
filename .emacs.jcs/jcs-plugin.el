@@ -260,6 +260,10 @@
   :defer t)
 
 
+(use-package multiple-cursors
+  :ensure t)
+
+
 (use-package origami
   :ensure t
   :config
