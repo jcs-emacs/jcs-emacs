@@ -1,10 +1,9 @@
 # Capital Word
 > You can navigate/kill word by seeing capital letter.
 
-<p align="center">
-  <img src="./cw-nav.gif" width="600" height="98"/>
-</p>
 
-<p align="center">
-  <img src="./cw-kill.gif" width="584" height="100"/>
-</p>
+#### Navigate capital word instead of whole word.
+<img src="./cw-nav.gif" width="450" height="72"/>
+
+#### Kill word by seeing capital letter.
+<img src="./cw-kill.gif" width="438" height="75"/>
