@@ -3,5 +3,5 @@
 next blank line.
 
 <p align="center">
-  <img src="./navigate-blank-line.gif" width="600" height="651"/>
+  <img src="./navigate-blank-line.gif" width="450" height="486"/>
 </p>
