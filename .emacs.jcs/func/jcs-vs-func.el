@@ -14,30 +14,26 @@
           (jcs-is-inside-comment-block-p))
       (insert "{")
     (progn
-      (cond ((and (jcs-first-forward-char-in-line-p "}")
-                  (not (jcs-first-backward-char-in-line-p "{")))
-             (progn
-               (insert "{")))
-            (t
-             (progn
-               (let ((pretty-it nil))
-                 (save-excursion
-                   ;; Check if right infront of the `{' open curly bracket.
-                   (unless (jcs-current-char-equal-p "{")
-                     (backward-char 1)
-                     (when (jcs-first-backward-char-in-line-p "{")
-                       (setq pretty-it t))))
+      (let ((pretty-it nil)
+            (space-infront nil))
+        (unless (jcs-current-char-equal-p "{")
+          (setq pretty-it t)
+          (unless (jcs-current-whitespace-or-tab-p)
+            (setq space-infront t)))
 
-                 (insert "{ }")
-                 (backward-char 1)
+        (when space-infront
+          (insert " "))
 
-                 (when pretty-it
-                   (save-excursion
-                     (forward-char 2)
-                     (when (and (not (jcs-is-beginning-of-line-p))
-                                (jcs-current-char-equal-p "}"))
-                       (backward-char 1)
-                       (insert " ")))))))))))
+        (insert "{ }")
+        (backward-char 1)
+
+        (when pretty-it
+          (save-excursion
+            (forward-char 2)
+            (when (and (not (jcs-is-beginning-of-line-p))
+                       (jcs-current-char-equal-p "}"))
+              (backward-char 1)
+              (insert " "))))))))
 
 ;;;###autoload
 (defun jcs-vs-semicolon-key ()
