@@ -184,8 +184,6 @@
 ;; interactive function call.
 (define-key global-map (kbd "<f8>") #'jcs-same-file-other-window)
 
-(define-key global-map (kbd "S-<home>") #'jcs-smart-select-home)
-(define-key global-map (kbd "S-<end>") #'jcs-smart-select-end)
 (define-key global-map (kbd "<up>") #'jcs-smart-indent-up)
 (define-key global-map (kbd "<down>") #'jcs-smart-indent-down)
 
