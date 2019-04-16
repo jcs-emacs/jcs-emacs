@@ -29,25 +29,6 @@
 ;;-----------------------------------------------------------
 ;;-----------------------------------------------------------
 
-;; Ensure all the package installed
-;; SOURCE: http://stackoverflow.com/questions/10092322/how-to-automatically-install-emacs-packages-by-specifying-a-list-of-package-name
-(defun jcs-ensure-package-installed (packages &optional without-asking)
-  "Assure every package is installed, ask for installation if it’s not.
-
-Return a list of installed packages or nil for every skipped package."
-  (mapcar
-   (lambda (package)
-     ;; (package-installed-p 'evil)
-     (if (package-installed-p package)
-         nil
-       (if without-asking
-           (package-install package)
-         (if (y-or-n-p (format "Package %s is missing. Install it? " package))
-             (package-install package)
-           package))))
-   packages))
-
-
 ;; List of package you want to installed.
 (defvar jcs-package-install-list '(ace-window
                                    actionscript-mode
@@ -99,18 +80,6 @@ Return a list of installed packages or nil for every skipped package."
                                    indent-info
                                    ini-mode
                                    javadoc-lookup
-                                   ;;;
-                                   ;; TEMPORARY(jenchieh): Hopefully melpa will let me push
-                                   ;; my package `jayces-mode' to their package system.
-                                   ;; Then we can add this line under directly.
-                                   ;;
-                                   ;;jayces-mode
-                                   ;;;
-                                   ;; TEMPORARY(jenchieh): Hopefully melpa will let me push
-                                   ;; my package `jcs-ex-pkg' to their package system.
-                                   ;; Then we can add this line under directly.
-                                   ;;
-                                   ;;jcs-ex-pkg
                                    js2-mode
                                    json-mode
                                    line-reminder
@@ -160,6 +129,25 @@ Return a list of installed packages or nil for every skipped package."
                                    yasnippet
                                    yasnippet-snippets)
   "List of packages this config needs.")
+
+
+;; Ensure all the package installed
+;; SOURCE: http://stackoverflow.com/questions/10092322/how-to-automatically-install-emacs-packages-by-specifying-a-list-of-package-name
+(defun jcs-ensure-package-installed (packages &optional without-asking)
+  "Assure every package is installed, ask for installation if it’s not.
+
+Return a list of installed packages or nil for every skipped package."
+  (mapcar
+   (lambda (package)
+     ;; (package-installed-p 'evil)
+     (if (package-installed-p package)
+         nil
+       (if without-asking
+           (package-install package)
+         (if (y-or-n-p (format "Package %s is missing. Install it? " package))
+             (package-install package)
+           package))))
+   packages))
 
 
 ;;;###autoload
