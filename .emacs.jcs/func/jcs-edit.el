@@ -356,23 +356,6 @@ Use `indent-according-to-mode' instead `indent-for-tab-command'."
         (indent-according-to-mode))
     (next-line 1)))
 
-;;;###autoload
-(defun jcs-smart-select-home ()
-  "Set the curosr beginning of the line from the current \
-frame, so it does not goto the beginning of the line first."
-  (interactive)
-  (if (not mark-active)
-      (push-mark nil nil 1))
-  (jcs-back-to-indentation-or-beginning))
-
-;;;###autoload
-(defun jcs-smart-select-end ()
-  "Set the cursor to the  end of the line from the current frame."
-  (interactive)
-  (if (not mark-active)
-      (push-mark nil nil 1))
-  (end-of-line))
-
 
 ;;========================================
 ;;      JCS Format File
@@ -390,7 +373,7 @@ frame, so it does not goto the beginning of the line first."
   "Format the document if there are no region apply."
   (interactive)
   (if (use-region-p)
-        (call-interactively #'indent-region)
+      (call-interactively #'indent-region)
     (call-interactively #'jcs-format-document)))
 
 ;;;###autoload
@@ -417,7 +400,6 @@ REGEXP : reqular expression use to align."
 (defun jcs-align-document (regexp)
   "Align current document.
 REGEXP : reqular expression use to align."
-
   (interactive)
   ;; URL(jenchieh): https://www.emacswiki.org/emacs/AlignCommands
   ;; align the whole doc.
