@@ -65,8 +65,9 @@
   "Flycheck mode toggle."
   (interactive)
   (if (string= (buffer-name) flycheck-error-list-buffer)
-      (when (ignore-errors (jcs-jump-shown-to-buffer (buffer-name flycheck-error-list-source-buffer)))
-        (jcs-flycheck-mode))
+      (if (ignore-errors (jcs-jump-shown-to-buffer (buffer-name flycheck-error-list-source-buffer)))
+          (jcs-flycheck-mode)
+        (jcs-maybe-kill-this-buffer))
     (call-interactively #'flycheck-mode)
     (if flycheck-mode
         (call-interactively #'flycheck-list-errors)
