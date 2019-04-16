@@ -176,7 +176,8 @@
 (electric-pair-mode 1)                       ;; auto close bracket insertion. New in emacs 24
 (add-to-list 'electric-pair-pairs '(?\` . ?\'))
 
-(setq shift-select-mode t)
+(setq shift-select-mode nil)
+
 (delete-selection-mode 1)                    ;; replace the hightlighted text!
 (electric-indent-mode 1)
 
