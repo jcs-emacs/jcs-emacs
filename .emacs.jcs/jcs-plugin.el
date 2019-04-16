@@ -393,7 +393,14 @@
 
     ;; When frame not maximize we make sure it maximized.
     (unless (jcs-is-frame-maximize-p)
-      (toggle-frame-maximized)))
+      (toggle-frame-maximized))
+
+    ;; Refresh `dashboard' buffer if is on `dashboard' buffer.
+    (when (or (jcs-is-current-major-mode-p "dashboard-mode"))
+      (let ((prev-pt (point)))
+        (save-excursion
+          (dashboard-refresh-buffer))
+        (goto-char prev-pt))))
   (advice-add 'reload-emacs :after #'jcs-advice-reload-emacs-after))
 
 
