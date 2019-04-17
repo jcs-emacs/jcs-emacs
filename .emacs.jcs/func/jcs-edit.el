@@ -550,6 +550,19 @@ N : line to scroll."
     (scroll-down rel-n)))
 
 ;;;###autoload
+(defun jcs-remove-trailing-lines-end-buffer ()
+  "Delete trailing line at the end of the buffer, leave only one line."
+  (interactive)
+  (save-excursion
+    (let ((rec-point (point)))
+      (goto-char (point-max))
+      (previous-line 1)
+      (while (and (jcs-current-line-empty-p)
+                  (< rec-point (point)))
+        (jcs-kill-whole-line)
+        (previous-line 1)))))
+
+;;;###autoload
 (defun jcs-delete-trailing-whitespace-except-current-line ()
   "Delete the trailing whitespace for whole document execpt \
 the current line."
@@ -639,6 +652,7 @@ ARG : Match with `save-buffer' command."
   "Untabify the file and save the buffer."
   (interactive)
   (jcs-delete-trailing-whitespace-except-current-line)
+  (jcs-remove-trailing-lines-end-buffer)
   (jcs-untabify-buffer)
   (save-buffer))
 
@@ -647,6 +661,7 @@ ARG : Match with `save-buffer' command."
   "Tabify the file and save the buffer."
   (interactive)
   (jcs-delete-trailing-whitespace-except-current-line)
+  (jcs-remove-trailing-lines-end-buffer)
   (jcs-tabify-buffer)
   (save-buffer))
 
