@@ -70,8 +70,10 @@
                (select-start-pt (if (> guess-sst cur-pt)
                                     guess-sst
                                   shift-select-start-pt)))
-          ;; User moves the cursor when holding shift key.
-          (unless (= cur-pt select-start-pt)
+          (if (= cur-pt select-start-pt)
+              ;; Cursor does not moved.
+              (deactivate-mark)
+            ;; User moves the cursor when holding shift key.
             (set-mark select-start-pt)
             (goto-char cur-pt)
             (setq-local shift-select-active t))))
