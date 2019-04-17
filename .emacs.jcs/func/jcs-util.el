@@ -761,7 +761,7 @@ LN : target line to make first to."
 ;; Mark
 ;;---------------------------------------------
 
-(defun jcs-is-mark-active ()
+(defun jcs-is-mark-active-p ()
   "Is mark active?
 @return { boolean } : true, is active. false, is not active."
   (and mark-active
@@ -783,10 +783,9 @@ region selected."
   "Complete check if the region and the mark is active.
 
 @return { boolean } : true, either region selected or mark is
-active. false, there is no region selected and mark is not active.
-"
+active. false, there is no region selected and mark is not active."
   (or (jcs-is-region-selected-p)
-      (jcs-is-mark-active)))
+      (jcs-is-mark-active-p)))
 
 ;;;###autoload
 (defun jcs-delete-region ()
