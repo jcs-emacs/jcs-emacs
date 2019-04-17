@@ -45,35 +45,36 @@
 (defvar-local shift-select-active nil
   "Shift select active.")
 
-(defvar-local shift-select-shift-pressed nil
-  "Check if shift is pressed.")
+(defvar-local shift-select-total-pt -1
+  "Record down the total point.")
 
 
 (defun shift-select-pre-command-hook ()
   "Shift select pre command hook."
-  (setq-local shift-select-shift-pressed
-              (ignore-errors
-                (and (stringp (symbol-name last-command-event))
-                     (string-match-p "S-" (symbol-name last-command-event)))))
-  (when (or this-command-keys-shift-translated
-            shift-select-shift-pressed)
-    (setq-local shift-select-start-pt (point))))
+  (if this-command-keys-shift-translated
+      (progn
+        (setq-local shift-select-start-pt (point))
+        (setq-local shift-select-total-pt (point-max))
+        (activate-mark))
+    (when (and mark-active
+               shift-select-active)
+      (deactivate-mark))))
 
 (defun shift-select-post-command-hook ()
   "Shift select post command hook."
-  (if (or this-command-keys-shift-translated
-          shift-select-shift-pressed)
-      (let ((cur-pt (point)))
-        ;; User moves the cursor when holding shift key.
-        (unless (= cur-pt shift-select-start-pt)
-          (unless shift-select-active
-            (push-mark shift-select-start-pt)
+  (if this-command-keys-shift-translated
+      (unless shift-select-active
+        (let* ((cur-pt (point))
+               (delta-buf-changes (- (point-max) shift-select-total-pt))
+               (guess-sst (+ shift-select-start-pt delta-buf-changes))
+               (select-start-pt (if (> guess-sst cur-pt)
+                                    guess-sst
+                                  shift-select-start-pt)))
+          ;; User moves the cursor when holding shift key.
+          (unless (= cur-pt select-start-pt)
+            (set-mark select-start-pt)
             (goto-char cur-pt)
-            (setq-local mark-active t)
             (setq-local shift-select-active t))))
-    (when (and mark-active
-               shift-select-active)
-      (pop-mark))
     (setq-local shift-select-active nil)))
 
 
