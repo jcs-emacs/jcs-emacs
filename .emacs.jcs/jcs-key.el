@@ -2,13 +2,17 @@
 ;;; Commentary:
 ;;; Code:
 
+
+;;; Unset key binding
 (define-key auto-highlight-symbol-mode-map (kbd "M-S-<right>") nil)
 (define-key auto-highlight-symbol-mode-map (kbd "M-S-<left>") nil)
+(define-key auto-highlight-symbol-mode-map (kbd "M--") nil)
+(define-key auto-highlight-symbol-mode-map (kbd "M-<left>") 'nil)
+(define-key auto-highlight-symbol-mode-map (kbd "M-<right>") 'nil)
+(define-key isearch-mode-map (kbd "C-s") nil)
+(define-key isearch-mode-map (kbd "C-r") nil)
 
-;; Setup my key binding
-;; no screwing with my middle mouse button
-(global-unset-key [mouse-2])
-
+;;; Set key binding
 (define-key global-map [C-right] #'forward-word)
 (define-key global-map [C-left] #'backward-word)
 (define-key global-map [C-up] #'jcs-previous-blank-line)
@@ -17,6 +21,9 @@
 (define-key global-map [pgdown] #'backward-page)
 (define-key global-map [C-next] #'scroll-other-window)
 (define-key global-map [C-prior] #'scroll-other-window-down)
+
+;; no screwing with my middle mouse button
+(global-unset-key [mouse-2])
 
 (define-key global-map "\e " #'set-mark-command)
 (define-key global-map (kbd "M-z") #'toggle-truncate-lines)
@@ -105,8 +112,6 @@
 
 (define-key global-map (kbd "M-<left>") #'jcs-backward-capital-char)
 (define-key global-map (kbd "M-<right>") #'jcs-forward-capital-char)
-(define-key auto-highlight-symbol-mode-map (kbd "M-<left>") 'nil)
-(define-key auto-highlight-symbol-mode-map (kbd "M-<right>") 'nil)
 
 ;;; Search Word
 ;;(define-key global-map (kbd "C-f") #'helm-do-ag-this-file)
@@ -119,9 +124,6 @@
 
 (define-key isearch-mode-map (kbd "M-S-<right>") #'isearch-repeat-forward)
 (define-key isearch-mode-map (kbd "M-S-<left>") #'isearch-repeat-backward)
-
-(define-key isearch-mode-map (kbd "C-s") nil)
-(define-key isearch-mode-map (kbd "C-r") nil)
 
 ;;; Admin
 (define-key global-map "\C-x\C-v" #'reload-emacs)
@@ -141,7 +143,6 @@
 ;;; Text Scale.
 (define-key global-map (kbd "C-=") #'jcs-text-scale-increase)
 (define-key global-map (kbd "C--") #'jcs-text-scale-decrease)
-(define-key auto-highlight-symbol-mode-map (kbd "M--") nil)
 
 ;;; Mode toggle
 ;;(define-key global-map "\e`" #'jcs-insert-command-mode-toggle)
