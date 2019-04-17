@@ -519,6 +519,7 @@
 
 (use-package wgrep
   :ensure t
+  :defer t
   :config
   (setq wgrep-auto-save-buffer t))
 
@@ -556,6 +557,7 @@
 (use-package whitespace
   :ensure t
   :defer t
+  :diminish whitespace-mode
   :config
   (autoload 'whitespace-mode "whitespace-mode" "Toggle whitespace visualization." t)
   (autoload 'whitespace-toggle-options "whitespace-mode" "Toggle local `whitespace-mode' options." t)
