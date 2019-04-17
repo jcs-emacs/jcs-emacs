@@ -10,6 +10,7 @@
 
 (use-package auto-highlight-symbol
   :ensure t
+  :diminish auto-highlight-symbol-mode
   :config
   (global-auto-highlight-symbol-mode t)
 
@@ -49,6 +50,7 @@
 
 (use-package beacon
   :ensure t
+  :diminish beacon-mode
   :config
   (beacon-mode 1))
 
@@ -66,6 +68,7 @@
 (use-package company
   :ensure t
   :defer t
+  :diminish company-mode
   :config
   (use-package company-quickhelp
     :ensure t
@@ -165,6 +168,8 @@
 
 (use-package flycheck
   :ensure t
+  :defer t
+  :diminish flymake-mode
   :config
   (use-package flycheck-popup-tip
     :ensure t
@@ -206,6 +211,8 @@
 
 (use-package helm
   :ensure t
+  :defer t
+  :diminish helm-mode
   :config
   ;; 相關教學:
   ;; * http://emacsist.com/10295
@@ -265,6 +272,7 @@
   (use-package helm-gtags
     :ensure t
     :defer t
+    :diminish helm-gtags-mode
     :config
     ;; Enable helm-gtags-mode
     (add-hook 'asm-mode-hook 'helm-gtags-mode)
@@ -290,17 +298,19 @@
 
 (use-package indent-info
   :ensure t
-  :defer t
   :config
   (global-indent-info-mode +1))
 
 
 (use-package impatient-mode
-  :ensure t)
+  :ensure t
+  :defer t
+  :diminish impatient-mode)
 
 
 (use-package line-reminder
   :ensure t
+  :diminish line-reminder-mode
   :config
   (global-line-reminder-mode t))
 
@@ -361,6 +371,7 @@
 
 (use-package projectile
   :ensure t
+  :diminish projectile-mode
   :config
   (use-package helm-projectile
     :ensure t
@@ -406,12 +417,20 @@
 
 (use-package right-click-context
   :ensure t
+  :diminish right-click-context-mode
   :config
   (right-click-context-mode 1))
 
 
+(use-package shift-select
+  :diminish shift-select-minor-mode
+  :config
+  (global-shift-select-mode t))
+
+
 (use-package sr-speedbar
   :ensure t
+  :defer t
   :config
   ;;(setq sr-speedbar-auto-refresh nil)
   (setq speedbar-show-unknown-files t) ; show all files
@@ -488,6 +507,7 @@
 
 (use-package undo-tree
   :ensure t
+  :diminish undo-tree-mode
   :config
   (global-undo-tree-mode t))
 
@@ -505,6 +525,7 @@
 
 (use-package which-key
   :ensure t
+  :diminish which-key-mode
   :config
   (which-key-mode)
 
@@ -533,6 +554,8 @@
 
 
 (use-package whitespace
+  :ensure t
+  :defer t
   :config
   (autoload 'whitespace-mode "whitespace-mode" "Toggle whitespace visualization." t)
   (autoload 'whitespace-toggle-options "whitespace-mode" "Toggle local `whitespace-mode' options." t)
@@ -550,6 +573,7 @@
 
 (use-package yasnippet
   :ensure t
+  :diminish yas-minor-mode
   :config
   (use-package yasnippet-snippets
     :ensure t
