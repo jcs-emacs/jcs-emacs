@@ -1472,6 +1472,17 @@ CC : current character before character deletion occured."
     (jcs-process-close-pair-char-seq cc)))
 
 ;;----------------------------------------------
+;; Isearch
+;;----------------------------------------------
+
+;;;###autoload
+(defun jcs-isearch-backward-symbol-at-point ()
+  "Isearch backward symbol at point."
+  (interactive)
+  (isearch-forward-symbol-at-point)
+  (isearch-repeat-backward))
+
+;;----------------------------------------------
 ;; Multiple Cursors
 ;;----------------------------------------------
 
