@@ -21,26 +21,11 @@
   :ensure t
   :config
   (diminish 'abbrev-mode)
-  (diminish 'auto-highlight-symbol-mode)
-  (diminish 'auto-rename-tag-mode)
-  (diminish 'beacon-mode)
-  (diminish 'company-mode)
   (diminish 'eldoc-mode)
   (diminish 'flycheck-mode)
-  (diminish 'flymake-mode)
-  (diminish 'helm-mode)
-  (diminish 'helm-gtags-mode)
-  (diminish 'impatient-mode)
-  (diminish 'js2r)
-  (diminish 'line-reminder-mode)
   (diminish 'outline-minor-mode)
   (diminish 'overwrite-mode)
-  (diminish 'page-break-lines-mode)
-  (diminish 'projectile-mode)
-  (diminish 'right-click-context-mode)
-  (diminish 'undo-tree-mode)
-  (diminish 'which-key-mode)
-  (diminish 'yas-minor-mode))
+  (diminish 'page-break-lines-mode))
 
 
 (provide 'jcs-after-init)
