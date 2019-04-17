@@ -5,16 +5,16 @@
 # jcs-emacs-init
 > An Emacs configuration bundle.
 
-This is Jen-Chieh Shen's emacs configuration, repeatedly utilized 
-and modified since 2015, hopefully this could help someone who is 
-new or struggle with Emacs. This configuration should works on 
-most OSs, indicates Windows, Linux and MacOS.
+This is Jen-Chieh Shen's emacs configuration. Repeatedly utilized 
+and modified since 2015. Hopefully this will help someone who is 
+new or struggling with Emacs. This configuration should work on 
+Windows Linux and Mac.
 
 Emacs itself supports multiple programming languages. I managed 
-all the programming languages I personally used. Indeed, I am 
-a penchant to numerous technologies, incorporate hardware, firmware 
-and software. Here is the list of programming languages I know 
-and it has extended from this configuration.
+all the programming languages I personally used. I dabble in 
+numerous technologies, incorporate hardware, firmware and software. 
+Here is the list of programming languages I know and are extended 
+from this configuration.
 
 * ActionScript 2.0 or 3.0 / Assembly Language
 * BASIC / Batchfile
@@ -44,17 +44,17 @@ e.g. [Atom](https://atom.io/), [Brackets](http://brackets.io/),
 
 ## Philosophy
 
-Like what I mentioned above, I have experienced many 
-different kinds of IDEs and text editors. But I always 
-couldn't find the best tool to use, especially when I 
-always needed to make myself comfortable to the environment 
-every time I jumped from one working field to another. 
-So instead of keep worrying and struggling with the tool 
-itself, I chose Emacs and configured the entire thing 
-from scratch.
+I have experienced many different kinds of IDEs and text 
+editors. But I’ve had a hard time finding the best tool 
+to use. I’ve jumped from one working field to another 
+trying to find something that suits my needs. So instead 
+of struggling with the tool itself, I chose Emacs and 
+configured the entire thing from scratch, to suit my 
+needs. Here are a few goals that I want this config 
+to accomplished.
 
-Here are a few goals that I would want this config to 
-accomplished or solved, 
+Here are a few goals that I want this config to 
+accomplished.
 
 * Having the same set of key bindings across different 
 IDEs and text editors as many as possible.
@@ -66,10 +66,10 @@ or IDE.
 * Make compatible to most features work inside terminal 
 as well.
 
-By having these implementations would make my life 
-easier and having a genuinely portable workspace, which 
-is great to have and I'm able to work on different 
-machine efficiently.
+Having these implementations makes my life easier, and 
+having a genuinely portable workspace, which is great 
+because it lets me work on different machine efficiently, 
+without having to get used to an new IDE.
 
 
 ## Startup Time
