@@ -243,7 +243,7 @@
 (define-key global-map (kbd "C-S-f") #'jcs-format-region-or-document)
 (define-key global-map "\C-xa" #'jcs-align-region-or-document)
 
-;;; org-mode
+;;; Org
 (define-key global-map "\C-xo" #'org-mode)
 
 ;;; File editing
