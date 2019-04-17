@@ -254,6 +254,7 @@
 
 ;;; Ace Window
 (define-key global-map (kbd "M-e") #'ace-window)
+
 (define-key global-map (kbd "M-1") #'jcs-ace-window-1)
 (define-key global-map (kbd "M-2") #'jcs-ace-window-2)
 (define-key global-map (kbd "M-3") #'jcs-ace-window-3)
@@ -263,6 +264,16 @@
 (define-key global-map (kbd "M-7") #'jcs-ace-window-7)
 (define-key global-map (kbd "M-8") #'jcs-ace-window-8)
 (define-key global-map (kbd "M-9") #'jcs-ace-window-9)
+
+(define-key global-map (kbd "C-1") #'jcs-ace-window-1)
+(define-key global-map (kbd "C-2") #'jcs-ace-window-2)
+(define-key global-map (kbd "C-3") #'jcs-ace-window-3)
+(define-key global-map (kbd "C-4") #'jcs-ace-window-4)
+(define-key global-map (kbd "C-5") #'jcs-ace-window-5)
+(define-key global-map (kbd "C-6") #'jcs-ace-window-6)
+(define-key global-map (kbd "C-7") #'jcs-ace-window-7)
+(define-key global-map (kbd "C-8") #'jcs-ace-window-8)
+(define-key global-map (kbd "C-9") #'jcs-ace-window-9)
 
 ;;; Company
 (require 'company)
