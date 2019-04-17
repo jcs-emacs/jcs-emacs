@@ -2,15 +2,12 @@
 ;;; Commentary:
 ;;; Code:
 
+(define-key auto-highlight-symbol-mode-map (kbd "M-S-<right>") nil)
+(define-key auto-highlight-symbol-mode-map (kbd "M-S-<left>") nil)
 
 ;; Setup my key binding
-(global-set-key (read-kbd-macro "\eb") #'ido-switch-buffer)
-(global-set-key (read-kbd-macro "\eB") #'ido-switch-buffer-other-window)
-
 ;; no screwing with my middle mouse button
 (global-unset-key [mouse-2])
-
-(define-key global-map "\ep" #'quick-calc)
 
 (define-key global-map [C-right] #'forward-word)
 (define-key global-map [C-left] #'backward-word)
@@ -22,11 +19,7 @@
 (define-key global-map [C-prior] #'scroll-other-window-down)
 
 (define-key global-map "\e " #'set-mark-command)
-(define-key global-map "\ez" #'toggle-truncate-lines)
-(define-key global-map [M-up] #'jcs-previous-blank-line)
-(define-key global-map [M-down] #'jcs-next-blank-line)
-(define-key global-map [M-right] #'forward-word)
-(define-key global-map [M-left] #'backward-word)
+(define-key global-map (kbd "M-z") #'toggle-truncate-lines)
 
 (define-key global-map "\e:" #'View-back-to-mark)
 (define-key global-map "\e;" #'exchange-point-and-mark)
@@ -122,8 +115,7 @@
 
 (define-key global-map (kbd "M-S-<right>") #'isearch-forward-symbol-at-point)
 (define-key global-map (kbd "M-S-<left>") #'jcs-isearch-backward-symbol-at-point)
-(define-key auto-highlight-symbol-mode-map (kbd "M-S-<right>") #'isearch-forward-symbol-at-point)
-(define-key auto-highlight-symbol-mode-map (kbd "M-S-<left>") #'jcs-isearch-backward-symbol-at-point)
+
 
 (define-key isearch-mode-map (kbd "M-S-<right>") #'isearch-repeat-forward)
 (define-key isearch-mode-map (kbd "M-S-<left>") #'isearch-repeat-backward)
@@ -149,7 +141,7 @@
 ;;; Text Scale.
 (define-key global-map (kbd "C-=") #'jcs-text-scale-increase)
 (define-key global-map (kbd "C--") #'jcs-text-scale-decrease)
-(define-key auto-highlight-symbol-mode-map "\e-" #'jcs-text-scale-decrease)
+(define-key auto-highlight-symbol-mode-map (kbd "M--") nil)
 
 ;;; Mode toggle
 ;;(define-key global-map "\e`" #'jcs-insert-command-mode-toggle)
