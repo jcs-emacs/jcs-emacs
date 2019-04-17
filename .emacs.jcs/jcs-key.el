@@ -115,20 +115,21 @@
 (define-key auto-highlight-symbol-mode-map (kbd "M-<left>") 'nil)
 (define-key auto-highlight-symbol-mode-map (kbd "M-<right>") 'nil)
 
-;;; Search Word (SEE: `jcs-mode-el' will have detail mode config.)
-;;(define-key global-map "\C-f" #'helm-do-ag-this-file)
-;;(define-key global-map "\C-f" #'isearch-forward)  ;; NOTE(jenchieh): 'local' vs 'cross-platform' mode.
-(define-key global-map "\C-r\C-f" #'isearch-backward-regexp)
+;;; Search Word
+;;(define-key global-map (kbd "C-f") #'helm-do-ag-this-file)
+;;(define-key global-map (kbd "C-f") #'isearch-forward)  ;; NOTE(jenchieh): 'local' vs 'cross-platform' mode.
+(define-key global-map (kbd "C-r C-f") #'isearch-backward-regexp)
 
 (define-key global-map (kbd "M-S-<right>") #'isearch-forward-symbol-at-point)
-(define-key global-map (kbd "M-S-<left>") #'isearch-forward-symbol-at-point)
+(define-key global-map (kbd "M-S-<left>") #'jcs-isearch-backward-symbol-at-point)
+(define-key auto-highlight-symbol-mode-map (kbd "M-S-<right>") #'isearch-forward-symbol-at-point)
+(define-key auto-highlight-symbol-mode-map (kbd "M-S-<left>") #'jcs-isearch-backward-symbol-at-point)
+
 (define-key isearch-mode-map (kbd "M-S-<right>") #'isearch-repeat-forward)
 (define-key isearch-mode-map (kbd "M-S-<left>") #'isearch-repeat-backward)
+
 (define-key isearch-mode-map (kbd "C-s") nil)
 (define-key isearch-mode-map (kbd "C-r") nil)
-
-(define-key auto-highlight-symbol-mode-map (kbd "M-S-<right>") #'isearch-forward-symbol-at-point)
-(define-key auto-highlight-symbol-mode-map (kbd "M-S-<left>") #'isearch-forward-symbol-at-point)
 
 ;;; Admin
 (define-key global-map "\C-x\C-v" #'reload-emacs)
@@ -369,14 +370,14 @@
 (define-key global-map (kbd "C-c i `") #'jcs-delete-inside-back-quot)
 (define-key global-map (kbd "C-c i ~") #'jcs-delete-inside-tilde)
 (define-key global-map (kbd "C-c i !") #'jcs-delete-inside-exclamation-mark)
-(define-key global-map (kbd "C-c i @") #'jcs-delete-inside-at-sign)
+(define-key global-map (kbd "C-c i @") #'jcs-delete-inside-at-sign)
 (define-key global-map (kbd "C-c i #") #'jcs-delete-inside-sharp-sign)
 (define-key global-map (kbd "C-c i $") #'jcs-delete-inside-dollar-sign)
 (define-key global-map (kbd "C-c i %") #'jcs-delete-inside-percent-sign)
 (define-key global-map (kbd "C-c i ^") #'jcs-delete-inside-caret)
 (define-key global-map (kbd "C-c i &") #'jcs-delete-inside-and)
 (define-key global-map (kbd "C-c i *") #'jcs-delete-inside-asterisk)
-(define-key global-map (kbd "C-c i -") #'jcs-delete-inside-dash)
+(define-key global-map (kbd "C-c i -") #'jcs-delete-inside-dash)
 (define-key global-map (kbd "C-c i _") #'jcs-delete-inside-underscore)
 (define-key global-map (kbd "C-c i =") #'jcs-delete-inside-equal)
 (define-key global-map (kbd "C-c i +") #'jcs-delete-inside-plus)
