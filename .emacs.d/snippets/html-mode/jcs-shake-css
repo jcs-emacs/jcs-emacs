@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: jcs-shake-css
+# key: jcs-shake-css
+# --
+<link rel="stylesheet" type="text/css" href="https://csshake.surge.sh/csshake.min.css">$0
