@@ -218,18 +218,17 @@ CBF : Current buffer file name."
   (let ((kill-ring))
     (if (use-region-p)
         (delete-region (region-beginning) (region-end))
-      (progn
-        (let (;; Record down the column before
-              ;; killing the whole line.
-              (before-column-num (current-column)))
+      (let (;; Record down the column before
+            ;; killing the whole line.
+            (before-column-num (current-column)))
 
-          ;; Do kill the whole line!
-          (move-beginning-of-line 1)
-          (kill-line 1)
+        ;; Do kill the whole line!
+        (move-beginning-of-line 1)
+        (kill-line 1)
 
-          ;; Goto the same column as before we do the killing
-          ;; the whole line operations above.
-          (move-to-column before-column-num))))))
+        ;; Goto the same column as before we do the killing
+        ;; the whole line operations above.
+        (move-to-column before-column-num)))))
 
 ;;;###autoload
 (defun jcs-backward-kill-line (arg)
