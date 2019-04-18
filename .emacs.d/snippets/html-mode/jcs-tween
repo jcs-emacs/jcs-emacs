@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: jcs-tween
+# key: jcs-tween
+# --
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/16.3.5/Tween.min.js"></script>$0

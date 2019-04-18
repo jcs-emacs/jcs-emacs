@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: jcs-angular
+# key: jcs-angular
+# --
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular-animate.min.js"></script>$0

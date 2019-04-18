@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: jcs-p5
+# key: jcs-p5
+# --
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/p5.js"></script>$0
