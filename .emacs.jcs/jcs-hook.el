@@ -79,6 +79,14 @@
 
     ;; Refresh the syntax highlighting.
     (call-interactively #'jcs-font-lock-fontify-buffer))
+
+  (when jcs-marking-whole-buffer
+    (setq-local jcs-marking-whole-buffer-cmd-count
+                (1+ jcs-marking-whole-buffer-cmd-count))
+    (when (>= jcs-marking-whole-buffer-cmd-count 2)
+      (deactivate-mark)
+      (setq-local jcs-marking-whole-buffer-cmd-count 0)
+      (setq-local jcs-marking-whole-buffer nil)))
   )
 (add-hook 'post-command-hook 'jcs-post-command-hook)
 
