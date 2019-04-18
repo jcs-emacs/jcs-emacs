@@ -49,10 +49,17 @@
   "Record down the total point.")
 
 
+(defun shift-select-set-mark (pos)
+  "Set the mark and go back to original position.
+POS : mark starting position."
+  (save-excursion
+    (set-mark pos)))
+
+
 (defun shift-select-pre-command-hook ()
   "Shift select pre command hook."
   (if this-command-keys-shift-translated
-      (progn
+      (unless shift-select-active
         (setq-local shift-select-start-pt (point))
         (setq-local shift-select-total-pt (point-max))
         (activate-mark))
@@ -66,16 +73,14 @@
       (unless shift-select-active
         (let* ((cur-pt (point))
                (delta-buf-changes (- (point-max) shift-select-total-pt))
-               (guess-sst (+ shift-select-start-pt delta-buf-changes))
-               (select-start-pt (if (> guess-sst cur-pt)
-                                    guess-sst
-                                  shift-select-start-pt)))
-          (if (= cur-pt select-start-pt)
+               (select-start-pt (+ shift-select-start-pt delta-buf-changes)))
+          (when (> select-start-pt cur-pt)
+            (setq-local shift-select-start-pt select-start-pt))
+          (if (= cur-pt shift-select-start-pt)
               ;; Cursor does not moved.
               (deactivate-mark)
             ;; User moves the cursor when holding shift key.
-            (set-mark select-start-pt)
-            (goto-char cur-pt)
+            (shift-select-set-mark shift-select-start-pt)
             (setq-local shift-select-active t))))
     (setq-local shift-select-active nil)))
 
