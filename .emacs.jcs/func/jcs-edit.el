@@ -184,6 +184,24 @@ CBF : Current buffer file name."
     (jcs-insert-spaces-by-tab-width)))
 
 ;;----------------------------------------------
+;; Mark
+;;----------------------------------------------
+
+(defvar-local jcs-marking-whole-buffer nil
+  "Marking the whole buffer now?")
+
+(defvar-local jcs-marking-whole-buffer-cmd-count 0
+  "Count up the command used after marking whole buffer.")
+
+;;;###autoload
+(defun jcs-mark-whole-buffer ()
+  "Mark the whole buffer."
+  (interactive)
+  (mark-whole-buffer)
+  (setq-local jcs-marking-whole-buffer-cmd-count 0)
+  (setq-local jcs-marking-whole-buffer t))
+
+;;----------------------------------------------
 ;; Overwrite (Insert toggle)
 ;;----------------------------------------------
 
@@ -650,19 +668,21 @@ ARG : Match with `save-buffer' command."
 (defun jcs-untabify-save-buffer ()
   "Untabify the file and save the buffer."
   (interactive)
-  (jcs-delete-trailing-whitespace-except-current-line)
-  (jcs-remove-trailing-lines-end-buffer)
-  (jcs-untabify-buffer)
-  (save-buffer))
+  (let (deactivate-mark)
+    (jcs-delete-trailing-whitespace-except-current-line)
+    (jcs-remove-trailing-lines-end-buffer)
+    (jcs-untabify-buffer)
+    (save-buffer)))
 
 ;;;###autoload
 (defun jcs-tabify-save-buffer ()
   "Tabify the file and save the buffer."
   (interactive)
-  (jcs-delete-trailing-whitespace-except-current-line)
-  (jcs-remove-trailing-lines-end-buffer)
-  (jcs-tabify-buffer)
-  (save-buffer))
+  (let (deactivate-mark)
+    (jcs-delete-trailing-whitespace-except-current-line)
+    (jcs-remove-trailing-lines-end-buffer)
+    (jcs-tabify-buffer)
+    (save-buffer)))
 
 ;;=================================
 ;; Find file
