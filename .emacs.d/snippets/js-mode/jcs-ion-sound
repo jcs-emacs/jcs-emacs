@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: jcs-ion-sound
+# key: jcs-ion-sound
+# --
+ion.sound({
+  $0
+});

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: jcs-jquery
+# key: jcs-jquery
+# --
+(function ($) {
+  $0
+}(this.jQuery));
