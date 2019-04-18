@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name: jcs-vue
-# key: jcs-vue
+# name: jcs-vue-js
+# key: jcs-vue-js
 # --
 <script src="https://unpkg.com/vue"></script>$0

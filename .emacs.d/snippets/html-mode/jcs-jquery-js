@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
-# name: jcs-jquery
-# key: jcs-jquery
+# name: jcs-jquery-js
+# key: jcs-jquery-js
 # --
 <script
   src="https://code.jquery.com/jquery-3.4.0.slim.min.js"

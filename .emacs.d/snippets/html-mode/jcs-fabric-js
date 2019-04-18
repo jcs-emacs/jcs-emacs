@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name: jcs-fabric
-# key: jcs-fabric
+# name: jcs-fabric-js
+# key: jcs-fabric-js
 # --
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/2.7.0/fabric.min.js"></script>$0

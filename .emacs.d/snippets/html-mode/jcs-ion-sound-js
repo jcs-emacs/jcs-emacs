@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name: jcs-ion-sound
-# key: jcs-ion-sound
+# name: jcs-ion-sound-js
+# key: jcs-ion-sound-js
 # --
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-sound/3.0.7/js/ion.sound.min.js"></script>$0
