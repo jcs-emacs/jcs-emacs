@@ -438,10 +438,7 @@ PR : pair file `regexp' and file mode `symbol'."
 ;;; O
 (progn
   (jcs-add-auto-mode-alist '("\\.m'?\\'" . objc-mode))
-  (jcs-add-auto-mode-alist '("\\.org'?\\'" . org-mode))
-  (jcs-add-auto-mode-alist '("\\(/\\|\\`\\)README" . org-mode))
-  (jcs-add-auto-mode-alist '("\\(/\\|\\`\\)LICENSE" . org-mode))
-  (jcs-add-auto-mode-alist '("\\(/\\|\\`\\)bochsrc" . org-mode)))
+  (jcs-add-auto-mode-alist '("\\.org'?\\'" . org-mode)))
 
 ;;; P
 (progn
