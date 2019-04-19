@@ -6,41 +6,32 @@ Here is the list of docstring demonstration to each
 supported mode.
 
 
-## C/C++ Docstring
+## ActionScript
+<img src="./as-doc-demo.gif"/>
 
+## C/C++
 <img src="./cc-doc-demo.gif"/>
 
-
-## C++ Docstring (Others)
-
+## C++ (Others)
 <img src="./cpp-doc-demo.gif"/>
 
-
-## C# Docstring (Visual Studio)
-
+## C# (Visual Studio)
 <img src="./csharp-vs-doc-demo.gif"/>
 
-
-## Java Docstring
-
+## Java
 <img src="./java-doc-demo.gif"/>
 
-
-## JavaScript Docstring
-
+## JavaScript
 <img src="./js-doc-demo.gif"/>
 
-
-## Lua Docstring
-
+## Lua
 <img src="./lua-doc-demo.gif"/>
 
-
-## PHP Docstring
-
+## PHP
 <img src="./php-doc-demo.gif"/>
 
-
-## Python Docstring
-
+## Python
 <img src="./python-doc-demo.gif"/>
+
+## TypeScript
+<img src="./ts-doc-demo.gif"/>
