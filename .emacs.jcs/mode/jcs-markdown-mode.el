@@ -10,12 +10,15 @@
   (electric-pair-mode 1)
   (goto-address-mode 1)
 
+
   ;; Normal
   (define-key markdown-mode-map (kbd "C-d") #'jcs-kill-whole-line)
   (define-key markdown-mode-map "\C-c\C-c" #'kill-ring-save)
 
   (define-key markdown-mode-map (kbd "<up>") #'jcs-previous-line)
   (define-key markdown-mode-map (kbd "<down>") #'jcs-next-line)
+
+  (define-key markdown-mode-map (kbd "C-s") #'save-buffer)
   )
 (add-hook 'markdown-mode-hook 'jcs-markdown-mode-hook)
 
