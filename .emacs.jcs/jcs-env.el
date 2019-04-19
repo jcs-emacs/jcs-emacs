@@ -181,7 +181,7 @@
 
 ;; NOTE(jenchieh): This act weird, does not make it works
 ;; like other editor.
-(setq shift-select-mode t)
+(setq shift-select-mode nil)
 
 ;; highlight the select region
 (transient-mark-mode t)                    ;; default as nil
