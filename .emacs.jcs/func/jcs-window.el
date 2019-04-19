@@ -333,7 +333,7 @@ NOT-ALL-FRAME : Default boundaries is all frame, limit to curent frame."
 (defvar jcs-current-frame-transparency 100
   "Current active frame transparency.")
 
-(defvar jcs-record-toggle-frame-transparency 80
+(defvar jcs-record-toggle-frame-transparency 85
   "Record toggle frame transparency.")
 
 (defvar jcs-default-delta-transparency 5
@@ -344,17 +344,20 @@ NOT-ALL-FRAME : Default boundaries is all frame, limit to curent frame."
 (add-to-list 'default-frame-alist '(alpha . (100 . 100)))
 
 ;;;###autoload
-(defun jcs-set-transparency (alpha-level)
+(defun jcs-ask-set-transparency (alpha-level)
   "Set the frame transparency.
 ALPHA-LEVEL : Target alpha level you want to set to the current frame."
   (interactive "p")
   ;; SOURCE: https://gist.github.com/benzap/89759928060f4578c063
-  (message (format "Frame alpha level passed in: %s" alpha-level))
   (let ((alpha-level (if (< alpha-level 2)
-                         (read-number "Opacity percentage: " 85)
-                       alpha-level))
-        (myalpha (frame-parameter nil 'alpha)))
-    (set-frame-parameter nil 'alpha alpha-level))
+                         (read-number "Opacity percentage: " jcs-record-toggle-frame-transparency)
+                       alpha-level)))
+    (jcs-set-transparency alpha-level)))
+
+(defun jcs-set-transparency (alpha-level)
+  "Set the frame transparency.
+ALPHA-LEVEL : Target alpha level you want to set to the current frame."
+  (set-frame-parameter nil 'alpha alpha-level)
   (message (format "Frame alpha level is %d" (frame-parameter nil 'alpha)))
   (setq jcs-current-frame-transparency alpha-level)
   (unless (= alpha-level 100)
