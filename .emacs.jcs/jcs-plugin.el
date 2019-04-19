@@ -428,6 +428,15 @@
 (use-package shift-select
   :diminish shift-select-minor-mode
   :config
+  (defun jcs-advice-shift-select-pre-command-hook-after ()
+    "Advice after execute `shift-select-pre-command-hook'."
+    (unless this-command-keys-shift-translated
+      (let ((sym-lst '(jcs-smart-indent-up
+                       jcs-smart-indent-down)))
+        (when (jcs-is-contain-list-symbol sym-lst this-command)
+          (deactivate-mark))
+        )))
+  (advice-add 'shift-select-pre-command-hook :after #'jcs-advice-shift-select-pre-command-hook-after)
   (global-shift-select-mode t))
 
 
