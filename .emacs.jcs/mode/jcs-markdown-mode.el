@@ -10,6 +10,8 @@
   (electric-pair-mode 1)
   (goto-address-mode 1)
 
+  (jcs-make-electric-pair-pairs-local '((?\` . ?\`)))
+
 
   ;; Normal
   (define-key markdown-mode-map (kbd "C-d") #'jcs-kill-whole-line)

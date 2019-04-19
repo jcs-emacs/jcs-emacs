@@ -10,6 +10,8 @@
   (goto-address-mode 1)
   (auto-highlight-symbol-mode t)
 
+  (jcs-make-electric-pair-pairs-local '((?\` . ?\')))
+
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
 
