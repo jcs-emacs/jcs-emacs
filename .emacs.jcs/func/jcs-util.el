@@ -470,6 +470,14 @@ the end of the line."
   "Get symbol at current cursor position."
   (thing-at-point 'symbol))
 
+(defun jcs-is-contain-list-symbol (in-list in-symbol)
+  "Check if a string contain in any string in the string list.
+IN-LIST : list of string use to check if IN-SYMBOL in contain one of
+the symbol.
+IN-SYMBOL : symbol using to check if is contain one of the IN-LIST."
+  (cl-some #'(lambda (lb-sub-symbol) (equal lb-sub-symbol in-symbol)) in-list))
+
+
 ;;---------------------------------------------
 ;; Word
 ;;---------------------------------------------
