@@ -115,7 +115,6 @@
 (load-file "~/.emacs.d/elisp/jayces-mode-20190205.001/jayces-mode.el")
 (load-file "~/.emacs.d/elisp/jcs-ex-pkg-20190326.001/jcs-ex-pkg.el")
 (load-file "~/.emacs.d/elisp/reload-emacs-20190326.001/reload-emacs.el")
-(load-file "~/.emacs.d/elisp/shift-select-20190418.001/shift-select.el")
 
 ;;========================================
 ;;      JENCHIEH FILE LOADING
