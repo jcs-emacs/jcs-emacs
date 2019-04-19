@@ -53,19 +53,17 @@
   "Set the mark and go back to original position.
 POS : mark starting position."
   (save-excursion
-    (push-mark pos)))
+    (goto-char pos)
+    (call-interactively #'set-mark-command)))
 
 
 (defun shift-select-pre-command-hook ()
   "Shift select pre command hook."
-  (if this-command-keys-shift-translated
-      (unless shift-select-active
-        (setq-local shift-select-start-pt (point))
-        (setq-local shift-select-total-pt (point-max))
-        (activate-mark))
-    (when (and mark-active
-               shift-select-active)
-      (deactivate-mark))))
+  (when this-command-keys-shift-translated
+    (unless shift-select-active
+      (setq-local shift-select-start-pt (point))
+      (setq-local shift-select-total-pt (point-max))
+      (activate-mark))))
 
 (defun shift-select-post-command-hook ()
   "Shift select post command hook."
@@ -82,6 +80,9 @@ POS : mark starting position."
             ;; User moves the cursor when holding shift key.
             (shift-select-set-mark shift-select-start-pt)
             (setq-local shift-select-active t))))
+    (when (and mark-active
+               shift-select-active)
+      (deactivate-mark))
     (setq-local shift-select-active nil)))
 
 
