@@ -220,6 +220,9 @@
   (helm-mode 1)
   (helm-autoresize-mode 1)
 
+  ;; 禁止自動補全
+  ;;(setq helm-ff-auto-update-initial-value nil)
+
   ;; Helm search configuration.
   (setq helm-split-window-in-side-p           t
         helm-move-to-line-cycle-in-source     t
