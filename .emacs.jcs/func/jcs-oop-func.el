@@ -14,7 +14,7 @@
       ;; c-type docstirng in `csharp-mode'. Then
       ;; we need to uncomment the line below.
       ;; =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-      ;;(jcs-is-current-major-mode-p "csharp-mode")
+      (jcs-is-current-major-mode-p "csharp-mode")
       (jcs-is-current-major-mode-p "js2-mode")
       (jcs-is-current-major-mode-p "php-mode")
       (jcs-is-current-major-mode-p "typescript-mode")
@@ -828,30 +828,84 @@ PARAM-VARIABLE-STRINGS : Param name strings list.
 SEARCH-STRING          : Search raw string."
 
   (let ((param-var-len (length param-variable-strings))
-        (param-index 0))
+        (param-index 0)
+        (docstring-type -1))
     ;; go back to comment line.
     (jcs-previous-line)
     (end-of-line)
 
-    ;; First process param tag.
-    (while (< param-index param-var-len)
-      (insert "\n")  ;; start from newline.
-      (insert "/// <param name=\"")
-      (insert (nth param-index param-variable-strings))
-      (insert "\"></param>")
+    ;; Determine the docstring type.
+    (save-excursion
+      (backward-char 1)
+      (cond ((jcs-current-char-equal-p "*")
+             (setq docstring-type 1))
+            (t
+             (setq docstring-type 0))))
 
-      ;; indent once.
-      (indent-for-tab-command)
+    (cond
+     ((= docstring-type 0)
+      (progn
+        ;; First process param tag.
+        (while (< param-index param-var-len)
+          (insert "\n")  ;; start from newline.
+          (insert "/// <param name=\"")
+          (insert (nth param-index param-variable-strings))
+          (insert "\"></param>")
 
-      ;; add up counter.
-      (setq param-index (1+ param-index)))
+          ;; indent once.
+          (indent-for-tab-command)
 
-    ;; Lastly, process returns tag.
-    (when there-is-return
-      (unless (string= return-type-string "void")
-        (insert "\n")
-        (insert "/// <returns></returns>")
-        (indent-for-tab-command)))))
+          ;; add up counter.
+          (setq param-index (1+ param-index)))
+
+        ;; Lastly, process returns tag.
+        (when there-is-return
+          (unless (string= return-type-string "void")
+            (insert "\n")
+            (insert "/// <returns></returns>")
+            (indent-for-tab-command)))))
+     ((= docstring-type 1)
+      (progn
+        ;; NOTE(jenchieh): This type of docstring,
+        ;; comment line is one more line above!
+        (jcs-previous-line)
+        (end-of-line)
+
+        ;; Process param tag.
+        (while (< param-index param-var-len)
+          (insert "\n")  ;; start from newline.
+          (insert "* @")
+          (insert jcs-as-param-string)
+          (when jcs-as-doc-show-typename
+            (jcs-insert-jsdoc-type (nth param-index param-type-strings)
+                                   jcs-as-open-type-char
+                                   jcs-as-close-type-char))
+          (insert (nth param-index param-variable-strings))
+          (insert jcs-as-doc-after-value-type-char)
+          (insert jcs-param-desc-string)
+
+          ;; indent once.
+          (indent-for-tab-command)
+
+          ;; add up counter.
+          (setq param-index (1+ param-index)))
+
+        ;; Lastly, process returns tag.
+        (when there-is-return
+          (unless (string= return-type-string "void")
+            (insert "\n")
+            (insert "* @")
+            (insert jcs-as-return-string)
+            (when jcs-as-doc-show-typename
+              (jcs-insert-jsdoc-type return-type-string
+                                     jcs-as-open-type-char
+                                     jcs-as-close-type-char))
+            (backward-delete-char 1)
+            (if jcs-as-doc-show-typename
+                (insert jcs-as-doc-after-value-type-char)
+              (insert " "))
+            (insert jcs-return-desc-string)
+            (indent-for-tab-command))))))))
 
 
 (defun jcs-java-mode-doc-string-others ()
