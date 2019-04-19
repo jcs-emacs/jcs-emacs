@@ -425,6 +425,12 @@
   (right-click-context-mode 1))
 
 
+(use-package shift-select
+  :diminish shift-select-minor-mode
+  :config
+  (global-shift-select-mode t))
+
+
 (use-package sr-speedbar
   :ensure t
   :defer t
