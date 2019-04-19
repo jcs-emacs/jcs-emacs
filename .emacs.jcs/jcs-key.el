@@ -11,8 +11,10 @@
 (define-key auto-highlight-symbol-mode-map (kbd "M--") nil)
 (define-key auto-highlight-symbol-mode-map (kbd "M-<left>") 'nil)
 (define-key auto-highlight-symbol-mode-map (kbd "M-<right>") 'nil)
+
 (define-key isearch-mode-map (kbd "C-s") nil)
 (define-key isearch-mode-map (kbd "C-r") nil)
+
 
 ;;;---------------------------------------------
 ;;; Set key binding
@@ -29,8 +31,8 @@
 (define-key company-active-map (kbd "C-s") #'jcs-untabify-save-buffer)
 
 ;;; Buffer Menu
-(define-key global-map "\em" #'jcs-buffer-menu)
-(define-key global-map "\eM" #'buffer-menu-other-window)
+(define-key global-map (kbd "M-m") #'jcs-buffer-menu)
+(define-key global-map (kbd "M-M") #'buffer-menu-other-window)
 
 (define-key Buffer-menu-mode-map "\eK" #'jcs-buffer-menu)
 (define-key Buffer-menu-mode-map "1" #'jcs-buffer-menu-sort-by-visit)
@@ -336,11 +338,11 @@
   ;;(define-key global-map (kbd "C-f") #'isearch-forward)  ;; NOTE(jenchieh): 'local' vs 'cross-platform' mode.
   (define-key global-map (kbd "C-r C-f") #'isearch-backward-regexp)
 
-  (define-key global-map (kbd "M-S-<right>") #'isearch-forward-symbol-at-point)
-  (define-key global-map (kbd "M-S-<left>") #'jcs-isearch-backward-symbol-at-point)
+  (define-key global-map (kbd "M-S-<up>") #'jcs-isearch-backward-symbol-at-point)
+  (define-key global-map (kbd "M-S-<down>") #'isearch-forward-symbol-at-point)
 
-  (define-key isearch-mode-map (kbd "M-S-<right>") #'isearch-repeat-forward)
-  (define-key isearch-mode-map (kbd "M-S-<left>") #'isearch-repeat-backward))
+  (define-key isearch-mode-map (kbd "M-S-<up>") #'isearch-repeat-backward)
+  (define-key isearch-mode-map (kbd "M-S-<down>") #'isearch-repeat-forward))
 
 ;;; Show Hover
 (define-key global-map (kbd "C-k C-i") #'jcs-describe-thing-in-popup)
