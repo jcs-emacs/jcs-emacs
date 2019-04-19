@@ -399,11 +399,10 @@ PR : pair file `regexp' and file mode `symbol'."
 ;;; H
 (progn
   (jcs-add-auto-mode-alist '("\\.hs'?\\'" . haskell-mode))
-
-  ;; STUDY(jenchieh): haxe-mode is seems to be a void function,
-  ;; is weird we need this here.
-  (require 'haxe-mode)
-  (jcs-add-auto-mode-alist '("\\.hx'?\\'" . haxe-mode)))
+  ;; ATTENTION(jenchieh): Haxe-mode is no longer maintaining...
+  ;; Consider remove `haxe-mode' from this config.
+  (jcs-add-auto-mode-alist '("\\.hx'?\\'" . haxe-mode))
+  (jcs-add-auto-mode-alist '("\\.hxml'?\\'" . haxe-mode)))
 
 ;;; I
 (progn
