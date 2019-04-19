@@ -79,7 +79,8 @@ M-.             Reflow a comment.
 M-b             Go to the next error after a compile.
 M-S-n           Go to the previous error after a compile.
 
-M-g             Goto line number.
+M-g l           Goto line number.
+M-g c           Goto character position.
 
 C-d             Kill the whole line.
 
