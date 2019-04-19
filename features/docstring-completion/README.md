@@ -16,6 +16,7 @@ supported mode.
 <img src="./cpp-doc-demo.gif"/>
 
 ## C# (Visual Studio)
+<img src="./csharp-doc-demo.gif"/>
 <img src="./csharp-vs-doc-demo.gif"/>
 
 ## Java
