@@ -102,8 +102,8 @@ For those mode does not apply faces correctly!"
 
 ;; Bright-red TODOs
 (defvar jcs-fixme-modes '(actionscript-mode
-                          bat-mode
                           basic-mode
+                          bat-mode
                           cc-mode
                           c-mode
                           c++-mode
@@ -112,27 +112,39 @@ For those mode does not apply faces correctly!"
                           cmake-mode
                           csharp-mode
                           css-mode
+                          elixir-mode
                           emacs-lisp-mode
+                          erlang-mode
+                          glsl-mode
+                          gitattributes-mode
+                          gitconfig-mode
+                          gitignore-mode
                           go-mode
                           haskell-mode
                           haxe-mode
+                          ini-mode
                           java-mode
+                          jayces-mode
                           js2-mode
                           lisp-mode
                           lua-mode
+                          make-mode
                           markdown-mode
                           nasm-mode
                           objc-mode
                           org-mode
                           perl-mode
                           php-mode
+                          processing-mode
                           python-mode
                           ruby-mode
                           rust-mode
                           scala-mode
                           sh-mode
+                          shader-mode
                           sql-mode
                           swift-mode
+                          text-mode
                           typescript-mode
                           verilog-mode
                           vimrc-mode
