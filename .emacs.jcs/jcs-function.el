@@ -26,59 +26,150 @@
   )
 
 ;;----------------------------------------------
-;; Tips
+;; Electric Pair
 ;;----------------------------------------------
 
-(require 'popup)
+(defun jcs-make-electric-pair-pairs-local (lst-pr)
+  "Append a list of pair to local mode.
+LST-PR: List of pair."
+  (setq-local electric-pair-pairs (append electric-pair-pairs lst-pr))
+  (setq-local electric-pair-text-pairs electric-pair-pairs))
+
+;;---------------------------------------------
+;; Iedit
+;;---------------------------------------------
 
 ;;;###autoload
-(defun jcs-describe-thing-in-popup ()
-  "Show current symbol info."
+(defun jcs-iedit-mode ()
+  "Enable Iedit mode in the safe way."
   (interactive)
-  (let* ((thing (symbol-at-point))
-         (help-xref-following t)
-         (description (with-temp-buffer
-                        (help-mode)
-                        (help-xref-interned thing)
-                        (buffer-string))))
-    (popup-tip description
-               :point (point)
-               :around t
-               :height 30
-               :scroll-bar t
-               :margin t)))
+  (when (and (not (jcs-current-whitespace-or-tab-p))
+             (not (jcs-is-beginning-of-line-p)))
+    (call-interactively #'iedit-mode)))
 
-;;----------------------------------------------
-;; Syntax Check
-;;----------------------------------------------
-
-(defun jcs-reactive-flycheck-after-revert ()
-  "Reactive `flycheck-mode' after file reverted."
-  (save-selected-window
-    (when (or flycheck-mode
-              (string= (buffer-name) flycheck-error-list-buffer))
-      (jcs-flycheck-mode)
-      (jcs-flycheck-mode))))
+;;---------------------------------------------
+;; Line Numbers
+;;---------------------------------------------
 
 ;;;###autoload
-(defun jcs-flycheck-mode ()
-  "Flycheck mode toggle."
+(defun jcs-update-line-number-each-window ()
+  "Update each window's line number mode."
   (interactive)
-  (if (string= (buffer-name) flycheck-error-list-buffer)
-      (if (ignore-errors (jcs-jump-shown-to-buffer (buffer-name flycheck-error-list-source-buffer)))
-          (jcs-flycheck-mode)
-        (jcs-maybe-kill-this-buffer))
-    (call-interactively #'flycheck-mode)
-    (if flycheck-mode
-        (call-interactively #'flycheck-list-errors)
-      (save-selected-window
-        (when (ignore-errors (jcs-jump-shown-to-buffer flycheck-error-list-buffer))
-          (jcs-maybe-kill-this-buffer))))
-    ;; STUDY(jenchieh): For some reason, we
-    ;; need to walk through all windows once
-    ;; in order to display the `flycheck-list-errors'
-    ;; in other window.
-    (jcs-walk-through-all-windows-once)))
+  (jcs-walk-through-all-windows-once
+   (lambda ()
+     (jcs-active-line-number-by-mode))))
+
+;;;###autoload
+(defun jcs-display-line-numbers-mode (&optional act)
+  "Safe enable/disable `display-line-numbers-mode'.
+If non-nil, safe active `display-line-numbers-mode'."
+  (interactive)
+  (unless act
+    (if act (setq act 1) (setq act -1)))
+  (when (version<= "26.0.50" emacs-version)
+    (display-line-numbers-mode act)))
+
+;;;###autoload
+(defun jcs-global-display-line-numbers-mode (&optional act)
+  "Safe enable/disable `global-display-line-numbers-mode'.
+If non-nil, safe active `global-display-line-numbers-mode'."
+  (interactive)
+  (unless act
+    (if act (setq act 1) (setq act -1)))
+  (when (version<= "26.0.50" emacs-version)
+    (global-display-line-numbers-mode act)))
+
+;;;###autoload
+(defun jcs-active-line-number-by-version (&optional act g)
+  "Active line number by Emacs version.
+Basically decide between `linum-mode' and `display-line-numbers-mode'.
+If one is activated, the other one will be deactivated.
+
+ACT : 1 => `display-line-numbers-mode'
+     -1 => `linum-mode'.
+G : Active line number globally."
+  (interactive)
+  (unless act
+    (if act (setq act 1) (setq act -1)))
+  ;; Flag confirm line number activated.
+  (if (version<= "26.0.50" emacs-version)
+      (progn
+        (if g
+            (if (= act 1)
+                (progn
+                  (jcs-global-display-line-numbers-mode 1)
+                  (global-linum-mode -1))
+              (progn
+                (jcs-global-display-line-numbers-mode -1)
+                (global-linum-mode 1)))
+          (if (= act 1)
+              (progn
+                (jcs-display-line-numbers-mode 1)
+                (linum-mode -1))
+            (progn
+              (jcs-display-line-numbers-mode -1)
+              (linum-mode 1)))))
+    ;; If `display-line-numbers-mode' does not exists,
+    ;; ue `linum-mode' instead.
+    (linum-mode act)))
+
+;;;###autoload
+(defun jcs-active-line-number-by-mode (&optional g)
+  "Active line number by mode.
+G : Active line number globally."
+  (interactive)
+  (when (and (not (minibufferp))
+             (not (jcs-is-contain-list-string jcs-line-number-ignore-buffers (buffer-name))))
+    (if (line-reminder-is-valid-line-reminder-situation)
+        (jcs-active-line-number-by-version -1 g)
+      (jcs-active-line-number-by-version 1 g))))
+
+;;---------------------------------------------
+;; Return
+;;---------------------------------------------
+
+;;;###autoload
+(defun jcs-ctrl-return-key ()
+  "JayCeS default return key."
+  (interactive)
+  ;;;
+  ;; Priority
+  ;;
+  ;; ATTENTION(jenchieh): all the function in the priority
+  ;; function list must all have error handling. Or else this
+  ;; the priority chain will break.
+  ;;
+  ;; 1. `project-abbrev-complete-word'
+  ;; 2. `yas-expand'
+  ;; 3. `goto-address-at-point'
+  ;;
+  (unless (ignore-errors (call-interactively #'project-abbrev-complete-word))
+    (unless (ignore-errors (call-interactively #'yas-expand))
+      (call-interactively #'goto-address-at-point))))
+
+;;----------------------------------------------
+;; Shift Select
+;;----------------------------------------------
+
+;;;###autoload
+(defun jcs-toggle-shift-select-mode ()
+  "Toggle `shift-select-mode'."
+  (interactive)
+  (if shift-select-mode
+      (jcs-disable-shift-select-mode)
+    (jcs-enable-shift-select-mode)))
+
+;;;###autoload
+(defun jcs-enable-shift-select-mode ()
+  "Enable `shift-select-mode'."
+  (interactive)
+  (setq shift-select-mode t))
+
+;;;###autoload
+(defun jcs-disable-shift-select-mode ()
+  "Enable `shift-select-mode'."
+  (interactive)
+  (setq shift-select-mode nil))
 
 ;;----------------------------------------------
 ;; Speedbar
@@ -207,6 +298,38 @@
   (jcs-update-line-number-each-window))
 
 ;;----------------------------------------------
+;; Syntax Check
+;;----------------------------------------------
+
+(defun jcs-reactive-flycheck-after-revert ()
+  "Reactive `flycheck-mode' after file reverted."
+  (save-selected-window
+    (when (or flycheck-mode
+              (string= (buffer-name) flycheck-error-list-buffer))
+      (jcs-flycheck-mode)
+      (jcs-flycheck-mode))))
+
+;;;###autoload
+(defun jcs-flycheck-mode ()
+  "Flycheck mode toggle."
+  (interactive)
+  (if (string= (buffer-name) flycheck-error-list-buffer)
+      (if (ignore-errors (jcs-jump-shown-to-buffer (buffer-name flycheck-error-list-source-buffer)))
+          (jcs-flycheck-mode)
+        (jcs-maybe-kill-this-buffer))
+    (call-interactively #'flycheck-mode)
+    (if flycheck-mode
+        (call-interactively #'flycheck-list-errors)
+      (save-selected-window
+        (when (ignore-errors (jcs-jump-shown-to-buffer flycheck-error-list-buffer))
+          (jcs-maybe-kill-this-buffer))))
+    ;; STUDY(jenchieh): For some reason, we
+    ;; need to walk through all windows once
+    ;; in order to display the `flycheck-list-errors'
+    ;; in other window.
+    (jcs-walk-through-all-windows-once)))
+
+;;----------------------------------------------
 ;; Tabbar Mode
 ;;----------------------------------------------
 
@@ -217,28 +340,51 @@
   (if tabbar-mode
       (tabbar-mode 0)
     (tabbar-mode 1))
-
   ;; Loop through all window so all windows take effect.
   (jcs-buffer-visible-list))
 
 ;;----------------------------------------------
-;; wgrep
+;; Tips
 ;;----------------------------------------------
 
+(require 'popup)
+
 ;;;###autoload
-(defun jcs-ag-project-regexp ()
-  "Use `wgrep' to replace the word in the entire project."
+(defun jcs-describe-thing-in-popup ()
+  "Show current symbol info."
   (interactive)
-  ;; TOPIC: Is there a way to use query-replace from grep/ack/ag output modes?
-  ;; URL: https://emacs.stackexchange.com/questions/212/is-there-a-way-to-use-query-replace-from-grep-ack-ag-output-modes
+  (let* ((thing (symbol-at-point))
+         (help-xref-following t)
+         (description (with-temp-buffer
+                        (help-mode)
+                        (help-xref-interned thing)
+                        (buffer-string))))
+    (popup-tip description
+               :point (point)
+               :around t
+               :height 30
+               :scroll-bar t
+               :margin t)))
 
-  ;; open search result menu.
-  (call-interactively #'ag-project-regexp)
+;;---------------------------------------------
+;; Text Scale
+;;---------------------------------------------
 
-  (other-window 1)
+;;;###autoload
+(defun jcs-text-scale-increase ()
+  "Scale the text up."
+  (interactive)
+  (call-interactively #'text-scale-increase)
+  ;; Renable line number.
+  (jcs-active-line-number-by-mode))
 
-  ;; make result menu editable.
-  (call-interactively #'wgrep-change-to-wgrep-mode))
+;;;###autoload
+(defun jcs-text-scale-decrease ()
+  "Scale the text down."
+  (interactive)
+  (call-interactively #'text-scale-decrease)
+  ;; Renable line number.
+  (jcs-active-line-number-by-mode))
 
 ;;---------------------------------------------
 ;; Truncate Lines
@@ -258,140 +404,24 @@
   (when truncate-lines
     (toggle-truncate-lines)))
 
-;;---------------------------------------------
-;; Text Scale
-;;---------------------------------------------
+;;----------------------------------------------
+;; wgrep
+;;----------------------------------------------
 
 ;;;###autoload
-(defun jcs-text-scale-increase ()
-  "Scale the text up."
+(defun jcs-ag-project-regexp ()
+  "Use `wgrep' to replace the word in the entire project."
   (interactive)
-  (call-interactively #'text-scale-increase)
+  ;; TOPIC: Is there a way to use query-replace from grep/ack/ag output modes?
+  ;; URL: https://emacs.stackexchange.com/questions/212/is-there-a-way-to-use-query-replace-from-grep-ack-ag-output-modes
 
-  ;; Renable line number.
-  (jcs-active-line-number-by-mode))
+  ;; open search result menu.
+  (call-interactively #'ag-project-regexp)
 
-;;;###autoload
-(defun jcs-text-scale-decrease ()
-  "Scale the text down."
-  (interactive)
-  (call-interactively #'text-scale-decrease)
+  (other-window 1)
 
-  ;; Renable line number.
-  (jcs-active-line-number-by-mode))
-
-;;---------------------------------------------
-;; Line Numbers
-;;---------------------------------------------
-
-;;;###autoload
-(defun jcs-update-line-number-each-window ()
-  "Update each window's line number mode."
-  (interactive)
-  (jcs-walk-through-all-windows-once
-   (lambda ()
-     (jcs-active-line-number-by-mode))))
-
-;;;###autoload
-(defun jcs-display-line-numbers-mode (&optional act)
-  "Safe enable/disable `display-line-numbers-mode'.
-If non-nil, safe active `display-line-numbers-mode'."
-  (interactive)
-  (unless act
-    (if act (setq act 1) (setq act -1)))
-  (when (version<= "26.0.50" emacs-version)
-    (display-line-numbers-mode act)))
-
-;;;###autoload
-(defun jcs-global-display-line-numbers-mode (&optional act)
-  "Safe enable/disable `global-display-line-numbers-mode'.
-If non-nil, safe active `global-display-line-numbers-mode'."
-  (interactive)
-  (unless act
-    (if act (setq act 1) (setq act -1)))
-  (when (version<= "26.0.50" emacs-version)
-    (global-display-line-numbers-mode act)))
-
-;;;###autoload
-(defun jcs-active-line-number-by-version (&optional act g)
-  "Active line number by Emacs version.
-Basically decide between `linum-mode' and `display-line-numbers-mode'.
-If one is activated, the other one will be deactivated.
-
-ACT : 1 => `display-line-numbers-mode'
-     -1 => `linum-mode'.
-G : Active line number globally."
-  (interactive)
-  (unless act
-    (if act (setq act 1) (setq act -1)))
-  ;; Flag confirm line number activated.
-  (if (version<= "26.0.50" emacs-version)
-      (progn
-        (if g
-            (if (= act 1)
-                (progn
-                  (jcs-global-display-line-numbers-mode 1)
-                  (global-linum-mode -1))
-              (progn
-                (jcs-global-display-line-numbers-mode -1)
-                (global-linum-mode 1)))
-          (if (= act 1)
-              (progn
-                (jcs-display-line-numbers-mode 1)
-                (linum-mode -1))
-            (progn
-              (jcs-display-line-numbers-mode -1)
-              (linum-mode 1)))))
-    ;; If `display-line-numbers-mode' does not exists,
-    ;; ue `linum-mode' instead.
-    (linum-mode act)))
-
-;;;###autoload
-(defun jcs-active-line-number-by-mode (&optional g)
-  "Active line number by mode.
-G : Active line number globally."
-  (interactive)
-  (when (and (not (minibufferp))
-             (not (jcs-is-contain-list-string jcs-line-number-ignore-buffers (buffer-name))))
-    (if (line-reminder-is-valid-line-reminder-situation)
-        (jcs-active-line-number-by-version -1 g)
-      (jcs-active-line-number-by-version 1 g))))
-
-;;---------------------------------------------
-;; Iedit
-;;---------------------------------------------
-
-;;;###autoload
-(defun jcs-iedit-mode ()
-  "Enable Iedit mode in the safe way."
-  (interactive)
-  (when (and (not (jcs-current-whitespace-or-tab-p))
-             (not (jcs-is-beginning-of-line-p)))
-    (call-interactively #'iedit-mode)))
-
-
-;;---------------------------------------------
-;; Return
-;;---------------------------------------------
-
-;;;###autoload
-(defun jcs-ctrl-return-key ()
-  "JayCeS default return key."
-  (interactive)
-  ;;;
-  ;; Priority
-  ;;
-  ;; ATTENTION(jenchieh): all the function in the priority
-  ;; function list must all have error handling. Or else this
-  ;; the priority chain will break.
-  ;;
-  ;; 1. `project-abbrev-complete-word'
-  ;; 2. `yas-expand'
-  ;; 3. `goto-address-at-point'
-  ;;
-  (unless (ignore-errors (call-interactively #'project-abbrev-complete-word))
-    (unless (ignore-errors (call-interactively #'yas-expand))
-      (call-interactively #'goto-address-at-point))))
+  ;; make result menu editable.
+  (call-interactively #'wgrep-change-to-wgrep-mode))
 
 
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
