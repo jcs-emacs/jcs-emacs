@@ -13,6 +13,8 @@
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
 
+  (jcs-make-electric-pair-pairs-local '((?\` . ?\')))
+
   (defun jcs-lisp-format ()
     "Format the given file as a Lisp file."
     (when (jcs-is-current-file-empty-p)
