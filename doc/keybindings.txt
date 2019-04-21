@@ -20,11 +20,13 @@ TAB             Cycles through completions for a word, if it
                 fails insert spaces base on tab width. Mimic 
                 the normal text editor preset behavior.
 
-M-B             Switch to buffer in the current window.
-M-S-B           Switch to buffer in the other window.
+M-b             Switch to buffer in the current window.
+M-S-b           Switch to buffer in the other window.
 
-M-F             Load file in the current window.
-M-S-F           Load file in the other window.
+M-f             Find file in working directory to current window.
+M-F             Find file in working directory to other window.
+C-x M-f         Find file in project to current window.
+C-x M-F         Find file in project to other window.
 
 M-s             Save the file in the current window.
 M-m             Looks for and executes a build.bat.
@@ -110,10 +112,8 @@ C-v             paste
 C-z             undo (undo-tree-undo)
 C-y             redo (undo-tree-redo)
 
-C-f             Search forward / Search pattern (Start increament search)
-                  => C-s  Moves to next occurrence.
-                  => C-r  Moves to previous occurrence.
-C-x C-f         Search pattern in project root.
+C-f             Search word in file.
+C-x C-f         Search word in project.
 
 C-rr            Rename the whole text with the same name.
 C-rp            Replace pattern in project root.
