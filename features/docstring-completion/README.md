@@ -15,8 +15,10 @@ supported mode.
 ## C++ (Others)
 <img src="./cpp-doc-demo.gif"/>
 
-## C# (Visual Studio)
+## C#
 <img src="./csharp-doc-demo.gif"/>
+
+## C# Visual Studio
 <img src="./csharp-vs-doc-demo.gif"/>
 
 ## Java
