@@ -210,6 +210,12 @@ C-k C-i         Show hover.
 
 f6              Toggle `flycheck`.
 
+C-right         Forward a word.
+C-left          Backward a word.
+
+M-right         Forward capital word.
+M-left          Backward capital word.
+
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * Window
@@ -241,12 +247,6 @@ C-h f           Describe function.
 C-h m           Describe mode.
 C-h v           Describe variable.
 C-h b           Describe bindings.
-
-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-* auto-highlight-symbol
-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-M-right         Goto next symbol.
-M-left          Goto previous symbol.
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * CSS sort
@@ -411,8 +411,8 @@ M-:             Search backward next ". (double quotation mark)
 M->             Search forward next >. (Greater than sign)
 M-<             Search backward next <. (Less than sign)
 
-M-S-up          Search backward at current point.
-M-S-down        Search forward at current point.
+M-S-left        Search word backward at current point.
+M-S-right       Search word forward at current point.
 
 M-.             Search forward next ,. (comma)
 M-,             Search backward next ,. (comma)
