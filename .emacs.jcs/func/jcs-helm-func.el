@@ -114,6 +114,15 @@ own preferences."
     ;;(helm-execute-persistent-action)
     ))
 
+;;;###autoload
+(defun jcs-helm-projectile-find-file-other-window ()
+  "Find file in project to other window."
+  (interactive)
+  (let ((record-dd default-directory))
+    (jcs-other-window-next 1 t)
+    (setq default-directory record-dd)
+    (call-interactively #'helm-projectile-find-file)))
+
 
 (provide 'jcs-helm-func)
 ;;; jcs-helm-func.el ends here
