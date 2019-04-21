@@ -338,11 +338,11 @@
   ;; See `jcs-mode.el' file for the settings.
   (define-key global-map (kbd "C-r C-f") #'isearch-backward-regexp)
 
-  (define-key global-map (kbd "M-S-<up>") #'jcs-isearch-backward-symbol-at-point)
-  (define-key global-map (kbd "M-S-<down>") #'isearch-forward-symbol-at-point)
+  (define-key global-map (kbd "M-S-<left>") #'jcs-isearch-backward-symbol-at-point)
+  (define-key global-map (kbd "M-S-<right>") #'isearch-forward-symbol-at-point)
 
-  (define-key isearch-mode-map (kbd "M-S-<up>") #'isearch-repeat-backward)
-  (define-key isearch-mode-map (kbd "M-S-<down>") #'isearch-repeat-forward))
+  (define-key isearch-mode-map (kbd "M-S-<left>") #'isearch-repeat-backward)
+  (define-key isearch-mode-map (kbd "M-S-<right>") #'isearch-repeat-forward))
 
 ;;; Show Hover
 (define-key global-map (kbd "C-k C-i") #'jcs-describe-thing-in-popup)
