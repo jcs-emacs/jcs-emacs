@@ -79,6 +79,7 @@
                                    htmltagwrap
                                    indent-info
                                    ini-mode
+                                   isearch-project
                                    javadoc-lookup
                                    js2-mode
                                    json-mode
