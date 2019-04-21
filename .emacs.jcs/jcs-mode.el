@@ -267,7 +267,7 @@ control of the editor."
 
   ;; search
   (define-key global-map "\C-f" 'isearch-forward)
-  (global-unset-key "\C-x\C-f")
+  (define-key global-map "\C-x\C-f" 'isearch-project-forward)
 
   ;; Search
   (global-unset-key "\C-rp")
