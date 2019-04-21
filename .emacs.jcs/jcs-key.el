@@ -334,8 +334,8 @@
 
 ;;; Search Word
 (progn
-  ;;(define-key global-map (kbd "C-f") #'helm-do-ag-this-file)
-  ;;(define-key global-map (kbd "C-f") #'isearch-forward)  ;; NOTE(jenchieh): 'local' vs 'cross-platform' mode.
+  ;; NOTE(jenchieh): Basic search is bind to `jcs-cross-mode' and `jcs-depend-mode'.
+  ;; See `jcs-mode.el' file for the settings.
   (define-key global-map (kbd "C-r C-f") #'isearch-backward-regexp)
 
   (define-key global-map (kbd "M-S-<up>") #'jcs-isearch-backward-symbol-at-point)
