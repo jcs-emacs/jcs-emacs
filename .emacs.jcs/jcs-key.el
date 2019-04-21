@@ -195,7 +195,7 @@
 (define-key global-map (kbd "M-f") #'jcs-helm-find-files)
 (define-key global-map (kbd "M-F") #'jcs-helm-find-files-other-window)
 (define-key global-map (kbd "C-x M-f") #'helm-projectile-find-file)
-;;(define-key global-map (kbd "C-x M-F") #'helm-projectile-find-file-other-window)
+(define-key global-map (kbd "C-x M-F") #'jcs-helm-projectile-find-file-other-window)
 
 ;;; Folding Settings
 (define-key global-map (kbd "C-M-o") #'origami-close-all-nodes)
