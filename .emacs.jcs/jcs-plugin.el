@@ -299,16 +299,21 @@
   :defer t)
 
 
+(use-package impatient-mode
+  :ensure t
+  :defer t
+  :diminish impatient-mode)
+
+
 (use-package indent-info
   :ensure t
   :config
   (global-indent-info-mode +1))
 
 
-(use-package impatient-mode
+(use-package isearch-project
   :ensure t
-  :defer t
-  :diminish impatient-mode)
+  :defer t)
 
 
 (use-package line-reminder
