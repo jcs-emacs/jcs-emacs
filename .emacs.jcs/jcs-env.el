@@ -232,11 +232,24 @@
 ;;; Menu Bar
 (menu-bar-mode -1)
 
-;;; Windmove
-(require 'windmove)
-(setq windmove-wrap-around t)
+
+(use-package windmove
+  :defer t
+  :config
+  (setq windmove-wrap-around t))
+
 (defvar jcs-windmove-max-move-count 25
   "Possible maximum windows count.")
+
+
+(use-package isearch
+  :defer t
+  :config
+  (defun jcs-advice-isearch-forward-after (&optional regexp-p no-recursive-edit)
+    "Advice after execute `isearch-forward' command."
+    (when (use-region-p)
+      (isearch-yank-string (buffer-substring-no-properties (region-beginning) (region-end)))))
+  (advice-add 'isearch-forward :after #'jcs-advice-isearch-forward-after))
 
 
 (provide 'jcs-env)
