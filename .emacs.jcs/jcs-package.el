@@ -70,6 +70,7 @@
                                    google-maps
                                    google-this
                                    google-translate
+                                   goto-char-preview
                                    goto-line-preview
                                    haskell-mode
                                    helm
