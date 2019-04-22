@@ -448,9 +448,9 @@
     (unless this-command-keys-shift-translated
       (let ((sym-lst '(jcs-smart-indent-up
                        jcs-smart-indent-down)))
-        (when (jcs-is-contain-list-symbol sym-lst this-command)
-          (deactivate-mark))
-        )))
+        (when (and shift-select-active
+                   (jcs-is-contain-list-symbol sym-lst this-command))
+          (deactivate-mark)))))
   (advice-add 'shift-select-pre-command-hook :after #'jcs-advice-shift-select-pre-command-hook-after)
   (global-shift-select-mode t))
 
