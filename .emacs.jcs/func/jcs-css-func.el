@@ -71,7 +71,7 @@
                ("[ \t\n]*\\([a-z0-9_-]*\\)[ \t\n]*:" 1 'jcs-css-type-face t)
                ("[ \t\n]*:[ \t\n]*\\([a-zA-Z0-9 \n\t-.<>?,*'`@\"=_(){}:&^%$#!~]*\\)[ \t\n]*;" 1 'jcs-css-value-face t)
                ;; Number
-               ("\\([+-]*[0-9px]*[.]*[0-9px]*\\)[ \t\n;,)]" 1 'jcs-css-number-face t)
+               ("[ \t;,)]*\\([+-]*[0-9.]+[a-z%]*\\)[ \t\n;,)]" 1 'jcs-css-number-face t)
                ;; For multi-lines comment.
                ;; TODO(jenchieh): Only inside the curly bracket.
                ;; TODO(jenchieh): There is bug if `/' is inside the comment space.
