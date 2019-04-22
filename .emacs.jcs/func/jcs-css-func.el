@@ -39,11 +39,10 @@
   (interactive)
   (if (jcs-is-end-of-line-p)
       (call-interactively #'jcs-smart-context-line-break)
-    (progn
-      (newline-and-indent)
-      (jcs-beginning-of-line)
-      (when (jcs-current-line-empty-p)
-        (indent-for-tab-command)))))
+    (newline-and-indent)
+    (jcs-beginning-of-line)
+    (when (jcs-is-infront-first-char-at-line-p)
+      (indent-for-tab-command))))
 
 
 ;;;###autoload
