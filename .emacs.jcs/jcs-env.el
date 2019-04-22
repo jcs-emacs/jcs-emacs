@@ -245,13 +245,13 @@
 (use-package isearch
   :defer t
   :config
-  (defun jcs-advice-isearch-forward-after (&optional regexp-p no-recursive-edit)
-    "Advice after execute `isearch-forward' command."
+  (defun jcs-isearch-mode-hook ()
+    "Paste the current symbol when `isearch' enabled."
     (when (use-region-p)
       (deactivate-mark)
-      (isearch-yank-string (buffer-substring-no-properties (region-beginning) (region-end)))))
-  (advice-add 'isearch-forward :after #'jcs-advice-isearch-forward-after)
-  (advice-add 'isearch-forward-regexp :after #'jcs-advice-isearch-forward-after))
+      (ignore-errors
+        (isearch-yank-string (buffer-substring-no-properties (region-beginning) (region-end))))))
+  (add-hook 'isearch-mode-hook #'jcs-isearch-mode-hook))
 
 
 (provide 'jcs-env)
