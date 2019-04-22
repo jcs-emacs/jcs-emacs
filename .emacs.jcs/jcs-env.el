@@ -248,8 +248,10 @@
   (defun jcs-advice-isearch-forward-after (&optional regexp-p no-recursive-edit)
     "Advice after execute `isearch-forward' command."
     (when (use-region-p)
+      (deactivate-mark)
       (isearch-yank-string (buffer-substring-no-properties (region-beginning) (region-end)))))
-  (advice-add 'isearch-forward :after #'jcs-advice-isearch-forward-after))
+  (advice-add 'isearch-forward :after #'jcs-advice-isearch-forward-after)
+  (advice-add 'isearch-forward-regexp :after #'jcs-advice-isearch-forward-after))
 
 
 (provide 'jcs-env)
