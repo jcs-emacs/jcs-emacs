@@ -211,9 +211,8 @@
 (define-key global-map "\C-xa" #'jcs-align-region-or-document)
 
 ;;; Goto Thing
+(define-key global-map (kbd "M-g c") #'goto-char-preview)
 (define-key global-map (kbd "M-g l") #'goto-line-preview)
-;;(define-key global-map (kbd "M-g c") #'goto-char-preview)
-(define-key global-map (kbd "M-g c") #'goto-char)
 
 ;;; Helm
 (progn
