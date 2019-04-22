@@ -199,6 +199,16 @@
   :defer t)
 
 
+(use-package goto-char-preview
+  :ensure t
+  :defer t
+  :config
+  (defun jcs-advice-goto-char-preview-after ()
+    "Advice after execute `goto-char-preview' command."
+    (call-interactively #'recenter))
+  (advice-add 'goto-char-preview :after #'jcs-advice-goto-char-preview-after))
+
+
 (use-package goto-line-preview
   :ensure t
   :defer t
