@@ -92,7 +92,6 @@ C-S-b           Build the program (build.linux/build.bat/build.mac)
 
 C-u anykey      insert 4 of that key
 M-i             insert 4 spaces
-C-m             jump to next line and indent if needed (depend on next line)
 
 M-k             Maybe kill the buffer? Check if the file in open
                 in other window. If there are buffer still exist,
@@ -213,6 +212,8 @@ C-left          Backward a word.
 
 M-right         Forward capital word.
 M-left          Backward capital word.
+
+C-m             Show/Hide mode line.
 
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
