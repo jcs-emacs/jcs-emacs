@@ -77,7 +77,6 @@
   (set-face-foreground 'powerline-inactive2 "#222222")
   (set-face-background 'powerline-inactive2 "#294645")
 
-
   ;; Update the `powerline' GUI.
   (powerline-reset)
   )
@@ -195,6 +194,8 @@
   (add-to-list 'default-frame-alist '(foreground-color . "#D2D2D2"))
   (add-to-list 'default-frame-alist '(background-color . "#161616"))
   (add-to-list 'default-frame-alist '(cursor-color . "#40FF40")))
+
+;; Set default theme once.
 (jcs-setup-default-theme)
 
 
