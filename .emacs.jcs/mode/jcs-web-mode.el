@@ -43,7 +43,6 @@
 (require 'web-mode)
 (defun jcs-web-mode-hook ()
   "Hooks for Web mode."
-  (impatient-mode t)
 
   (setq web-mode-markup-indent-offset 2)
 
@@ -54,6 +53,10 @@
   (goto-address-mode 1)
   (auto-highlight-symbol-mode t)
   (visual-line-mode t)
+  (impatient-mode t)
+
+  ;; Enable truncates lines as default in `web-mode'.
+  (jcs-enable-truncate-lines)
 
   (jcs-web-enable-auto-truncate-lines)
 
