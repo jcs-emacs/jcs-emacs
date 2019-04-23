@@ -21,8 +21,8 @@
 ;;;---------------------------------------------
 
 ;;; Admin
-(define-key global-map "\C-x\C-v" #'reload-emacs)
-(define-key global-map "\C-x\C-b" #'restart-emacs)
+(define-key global-map (kbd "C-x C-v") #'reload-emacs)
+(define-key global-map (kbd "C-x C-b") #'restart-emacs)
 
 ;;; Auto Completion
 (require 'company)
@@ -227,8 +227,8 @@
 (define-key help-mode-map (kbd "C-c C-c") #'kill-ring-save)
 
 ;;; Impatient Mode
-(define-key global-map "\C-wo" #'jcs-httpd-start)
-(define-key global-map "\C-wp" #'jcs-httpd-stop)
+(define-key global-map (kbd "C-w o") #'jcs-httpd-start)
+(define-key global-map (kbd "C-w p") #'jcs-httpd-stop)
 
 ;;; Kill Word
 (define-key global-map (kbd "C-<backspace>") #'jcs-backward-delete-word)
@@ -238,7 +238,7 @@
 (define-key global-map (kbd "M-<delete>") #'jcs-forward-kill-word-capital)
 
 ;;; Line Endings
-(define-key global-map "\C-x\C-e" #'set-buffer-file-coding-system)
+(define-key global-map (kbd "C-x C-e") #'set-buffer-file-coding-system)
 
 ;;; Mark
 (define-key global-map "\e " #'set-mark-command)
