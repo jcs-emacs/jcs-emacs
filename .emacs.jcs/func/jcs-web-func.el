@@ -186,12 +186,9 @@ once to the whole document.  For `web-mode'."
 For `web-mode' we specificlly indent through the file
 line by line instead of indent the whole file at once."
   (interactive)
-
   (if (use-region-p)
-      (progn
-        (call-interactively 'jcs-web-indent-region))
-    (progn
-      (call-interactively 'jcs-web-format-document))))
+      (call-interactively 'jcs-web-indent-region)
+    (call-interactively 'jcs-web-format-document)))
 
 ;;---------------------------------------------
 ;; Indentation
