@@ -97,8 +97,11 @@
   (define-key web-mode-map [S-f8] #'jcs-find-corresponding-file-other-window)
 
   ;; Edit
-  (define-key web-mode-map (kbd "<up>") #'jcs-web-smart-indent-up)
-  (define-key web-mode-map (kbd "<down>") #'jcs-web-smart-indent-down)
+  ;;
+  ;; TODO(jenchieh): `web-mode' usually have the issue with indentation,
+  ;; see if these keys still needed.
+  ;;(define-key web-mode-map (kbd "<up>") #'jcs-web-smart-indent-up)
+  ;;(define-key web-mode-map (kbd "<down>") #'jcs-web-smart-indent-down)
   (define-key web-mode-map (kbd "RET") #'jcs-web-return-key)
 
   (define-key web-mode-map (kbd "DEL") #'jcs-electric-backspace)
@@ -106,7 +109,10 @@
   (define-key web-mode-map (kbd ";") #'jcs-vs-semicolon-key)
 
   ;; Save
-  (define-key web-mode-map "\C-s" #'jcs-web-save-buffer)
+  ;;
+  ;; TODO(jenchieh): `web-mode' usually have the issue with indentation,
+  ;; see if these keys still needed.
+  ;;(define-key web-mode-map "\C-s" #'jcs-web-save-buffer)
 
   ;; comment block
   (define-key web-mode-map (kbd "*") #'jcs-c-comment-pair)
