@@ -254,7 +254,10 @@
 ;;; Minimap
 (define-key global-map "\C-cm" #'jcs-toggle-minimap)
 
-;;; Mode toggle
+;;; Mode Line
+(define-key global-map (kbd "C-m") #'jcs-toggle-mode-line)
+
+;;; Mode Toggle
 (progn
   ;;(define-key global-map "\e`" #'jcs-insert-command-mode-toggle)
   (define-key global-map (kbd "C-~") #'jcs-depend-cross-mode-toggle)
