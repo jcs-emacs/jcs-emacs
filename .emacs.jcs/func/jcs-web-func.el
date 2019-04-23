@@ -13,13 +13,13 @@
 (defun jcs-web-truncate-lines-by-face ()
   "Enable/Disable the truncate lines mode depends on the face \
 cursor currently on."
-  (interactive)
   (save-excursion
-    (when (and (not (jcs-current-char-string-match-p "[ \t]"))
+    (when (and (not (jcs-current-char-string-match-p "[ \t\n]"))
                ;; NOTE(jenchieh): To avoid empty line navigation.
                (not (jcs-is-beginning-of-line-p)))
       (if (and (jcs-is-default-face-p)
-               (not (jcs-current-char-string-match-p "[\n><]")))
+               (not (jcs-current-char-string-match-p "[><]"))
+               (not (auto-rename-tag-inside-tag)))
           (jcs-disable-truncate-lines)
         (jcs-enable-truncate-lines)))))
 
