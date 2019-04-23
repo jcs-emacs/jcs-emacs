@@ -125,6 +125,44 @@ G : Active line number globally."
       (jcs-active-line-number-by-version 1 g))))
 
 ;;---------------------------------------------
+;; Mode Line
+;;---------------------------------------------
+
+(defvar jcs-mode-line-face-attr-height 1
+  "Record down `mode-line' the face attribute height.")
+
+(defvar jcs-mode-line-inactive-face-attr-height 1
+  "Record down `mode-line-inactive' the face attribute height.")
+
+(defvar jcs-record-mode-line-format nil
+  "Record down the mode line format.")
+
+;;;###autoload
+(defun jcs-toggle-mode-line ()
+  "Toggle mode line shown."
+  (interactive)
+  (if (stringp mode-line-format)
+      (setq-default mode-line-format jcs-record-mode-line-format)
+    (setq jcs-mode-line-face-attr-height (face-attribute 'mode-line :height))
+    (setq jcs-mode-line-inactive-face-attr-height (face-attribute 'mode-line-inactive :height))
+    (setq jcs-record-mode-line-format mode-line-format)
+    (setq-default mode-line-format ""))
+  (jcs-update-mode-line-face-by-mode-line-format))
+
+(defun jcs-update-mode-line-face-by-mode-line-format ()
+  "Update mode line face attributes by `mode-line-format'."
+  (if (stringp mode-line-format)
+      (progn
+        (set-face-attribute 'mode-line nil
+                            :height 0.2)
+        (set-face-attribute 'mode-line-inactive nil
+                            :height 0.2))
+    (set-face-attribute 'mode-line nil
+                        :height jcs-mode-line-face-attr-height)
+    (set-face-attribute 'mode-line-inactive nil
+                        :height jcs-mode-line-inactive-face-attr-height)))
+
+;;---------------------------------------------
 ;; Return
 ;;---------------------------------------------
 
