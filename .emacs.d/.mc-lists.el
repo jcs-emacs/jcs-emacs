@@ -3,6 +3,11 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        jcs-electric-backspace
+        jcs-forward-delete-word
+        jcs-forward-kill-word-capital
+        jcs-web-backward-delete-word
+        jcs-web-backward-delete-word-capital
         ))
 
 (setq mc/cmds-to-run-once
@@ -10,6 +15,7 @@
         ace-window
         end-of-buffer
         helm-M-x
+        jcs-end-of-line
         jcs-mc/mark-next-like-this
         jcs-mc/mark-previous-like-this
         jcs-next-blank-line
@@ -19,6 +25,7 @@
         jcs-smart-indent-down
         jcs-smart-indent-up
         jcs-toggle-sublimity-mode
+        jcs-untabify-save-buffer
         move-text-up
         reload-emacs
         ))
