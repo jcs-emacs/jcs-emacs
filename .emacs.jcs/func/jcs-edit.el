@@ -668,7 +668,8 @@ ARG : Match with `save-buffer' command."
 (defun jcs-untabify-save-buffer ()
   "Untabify the file and save the buffer."
   (interactive)
-  (let (deactivate-mark)
+  (let (deactivate-mark
+        truncate-lines)
     (jcs-delete-trailing-whitespace-except-current-line)
     (jcs-remove-trailing-lines-end-buffer)
     (jcs-untabify-buffer)
@@ -678,7 +679,8 @@ ARG : Match with `save-buffer' command."
 (defun jcs-tabify-save-buffer ()
   "Tabify the file and save the buffer."
   (interactive)
-  (let (deactivate-mark)
+  (let (deactivate-mark
+        truncate-lines)
     (jcs-delete-trailing-whitespace-except-current-line)
     (jcs-remove-trailing-lines-end-buffer)
     (jcs-tabify-buffer)
