@@ -24,14 +24,14 @@ cursor currently on."
         (jcs-enable-truncate-lines)))))
 
 ;;;###autoload
-(defun jcs-web-enable-auto-trancate-lines ()
+(defun jcs-web-enable-auto-truncate-lines ()
   "Enable auto trancate lines effect."
   (interactive)
   (setq jcs-web-auto-truncate-lines t)
   (message "Enable auto truncate lines."))
 
 ;;;###autoload
-(defun jcs-web-disable-auto-trancate-lines ()
+(defun jcs-web-disable-auto-truncate-lines ()
   "Disable auto trancate lines effect."
   (interactive)
   (setq jcs-web-auto-truncate-lines nil)
@@ -42,8 +42,8 @@ cursor currently on."
   "Toggle `jcs-web-auto-truncate-lines' variables."
   (interactive)
   (if jcs-web-auto-truncate-lines
-      (jcs-web-disable-auto-trancate-lines)
-    (jcs-web-enable-auto-trancate-lines)))
+      (jcs-web-disable-auto-truncate-lines)
+    (jcs-web-enable-auto-truncate-lines)))
 
 ;;;###autoload
 (defun jcs-web-keep-auto-truncate-lines ()
@@ -51,8 +51,8 @@ cursor currently on."
 Is the opposite of `jcs-web-toggle-auto-truncate-lines'."
   (interactive)
   (if jcs-web-auto-truncate-lines
-      (jcs-web-enable-auto-trancate-lines)
-    (jcs-web-disable-auto-trancate-lines)))
+      (jcs-web-enable-auto-truncate-lines)
+    (jcs-web-disable-auto-truncate-lines)))
 
 ;;---------------------------------------------
 ;; Deletion

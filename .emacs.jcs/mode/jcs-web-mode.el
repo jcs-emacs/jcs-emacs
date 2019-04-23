@@ -55,7 +55,7 @@
   (auto-highlight-symbol-mode t)
   (visual-line-mode t)
 
-  (jcs-web-enable-auto-trancate-lines)
+  (jcs-web-enable-auto-truncate-lines)
 
   ;; Docstring Faces
   (face-remap-add-relative 'jcs-oop-tag-face '(:inherit web-mode-block-face))
