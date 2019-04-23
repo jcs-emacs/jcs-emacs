@@ -347,7 +347,7 @@ IS-FORWARD : forward conversion instead of backward conversion."
       ;; No character at the beginning of the buffer, just return `nil'.
       nil
     (let ((current-char-string (string (char-before))))
-      (string-match-p current-char-string c))))
+      (string-match-p c current-char-string))))
 
 (defun jcs-get-current-char-byte ()
   "Get the current character as the 'byte'."
