@@ -17,7 +17,6 @@
 
   ;; Treat some character as whitespace character.
   (modify-syntax-entry ?- "-")
-  (modify-syntax-entry ?. "-")
 
   (defun jcs-css-format()
     "Format the given file as a CSS file."
