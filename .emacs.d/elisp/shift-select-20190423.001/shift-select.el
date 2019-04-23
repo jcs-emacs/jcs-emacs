@@ -49,11 +49,12 @@
   "Record down the total point.")
 
 
-(defun shift-select-set-mark (pos)
+(defun shift-select-set-mark (&optional pos)
   "Set the mark and go back to original position.
 POS : mark starting position."
   (save-excursion
-    (goto-char pos)
+    (when pos
+      (goto-char pos))
     (call-interactively #'set-mark-command)))
 
 
@@ -63,6 +64,9 @@ POS : mark starting position."
     (unless shift-select-active
       (setq-local shift-select-start-pt (point))
       (setq-local shift-select-total-pt (point-max))
+      ;; NOTE(jenchieh): Set mark here to prevent
+      ;; the `this-command' current uses mark to trigger things.
+      (shift-select-set-mark)
       (activate-mark))))
 
 (defun shift-select-post-command-hook ()
