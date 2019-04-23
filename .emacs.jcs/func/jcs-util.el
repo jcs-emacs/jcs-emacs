@@ -866,9 +866,8 @@ IN-FACE : input face name as string."
   "Return non-nil, if is default face.
 Return nil, if not default face."
   (or (= (length (jcs-get-current-point-face)) 0)
-      (and
-       (= (length (jcs-get-current-point-face)) 1)
-       (jcs-is-current-point-face "hl-line"))))
+      (and (= (length (jcs-get-current-point-face)) 1)
+           (jcs-is-current-point-face "hl-line"))))
 
 ;;---------------------------------------------
 ;; Font
