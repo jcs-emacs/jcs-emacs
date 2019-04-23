@@ -111,112 +111,9 @@ another function..."
              (not (jcs-current-char-equal-p "$")))
     (backward-delete-char 1)))
 
-;;========================================
-;;      JCS Format File
-;;----------------------------------
-
-;;;###autoload
-(defun jcs-web-indent-region ()
-  "Indent region for `web-mode'."
-  (interactive)
-  (save-excursion
-    (let ((startLineNum -1)
-          (startLineNum2 -1)
-          (endLineNum -1)
-          (endLineNum2 -1)
-          ;; Turn off auto truncate when doing this command.
-          (jcs-web-auto-truncate-lines nil))
-      (setq endLineNum (string-to-number (format-mode-line "%l")))
-
-      (goto-char (region-beginning))
-      (setq startLineNum (string-to-number (format-mode-line "%l")))
-
-      (exchange-point-and-mark)
-
-      (goto-char (region-end))
-      (setq endLineNum2 (string-to-number (format-mode-line "%l")))
-
-      (goto-char (region-beginning))
-      (setq startLineNum2 (string-to-number (format-mode-line "%l")))
-
-      (deactivate-mark)
-
-      (with-no-warnings
-        (goto-line startLineNum)
-        (previous-line 1))
-
-      (while (and (<= (string-to-number (format-mode-line "%l")) endLineNum))
-        (jcs-web-smart-indent-down)
-        (end-of-line))
-
-      (with-no-warnings
-        (goto-line endLineNum2)
-        (next-line 1))
-
-      (while (and (>= (string-to-number (format-mode-line "%l")) startLineNum2))
-        (jcs-web-smart-indent-up)
-        (end-of-line)))))
-
-;;;###autoload
-(defun jcs-web-format-document ()
-  "Indent the whoe document line by line instead of indent it \
-once to the whole document.  For `web-mode'."
-  (interactive)
-  (save-excursion
-    (save-window-excursion
-      (let ((max-linum (line-number-at-pos (point-max)))
-            ;; Start with first line.
-            (current-linum (line-number-at-pos (point-min)))
-            ;; Turn off auto truncate when doing this command.
-            (jcs-web-auto-truncate-lines nil))
-        ;; Start with first line.
-        (goto-char (point-min))
-
-        ;; Don't forget to indent the first line too.
-        (jcs-web-smart-indent-down)
-        (jcs-web-smart-indent-up)
-
-        (while (< current-linum max-linum)
-          (jcs-web-smart-indent-down)
-          (setq current-linum (line-number-at-pos (point))))))))
-
-;;;###autoload
-(defun jcs-web-format-region-or-document ()
-  "Format the document if there are no region apply.
-For `web-mode' we specificlly indent through the file
-line by line instead of indent the whole file at once."
-  (interactive)
-  (if (use-region-p)
-      (call-interactively 'jcs-web-indent-region)
-    (call-interactively 'jcs-web-format-document)))
-
 ;;---------------------------------------------
 ;; Indentation
 ;;---------------------------------------------
-
-;;;###autoload
-(defun jcs-web-smart-indent-up ()
-  "Smart indent up for `web-mdoe'."
-  (interactive)
-  (if (and (not mark-active)
-           (buffer-file-name))
-      (progn
-        (previous-line 1)
-        (jcs-delete-space-infront-of-line)
-        (indent-for-tab-command))
-    (previous-line 1)))
-
-;;;###autoload
-(defun jcs-web-smart-indent-down ()
-  "Smart indent down for `web-mdoe'."
-  (interactive)
-  (if (and (not mark-active)
-           (buffer-file-name))
-      (progn
-        (next-line 1)
-        (jcs-delete-space-infront-of-line)
-        (indent-for-tab-command))
-    (next-line 1)))
 
 ;;;###autoload
 (defun jcs-web-return-key ()
@@ -235,7 +132,7 @@ line by line instead of indent the whole file at once."
       (when close-tag-found
         (newline-and-indent)
         (newline-and-indent)
-        (jcs-web-smart-indent-up)
+        (jcs-smart-indent-up)
         (setq did-ret-key t)))
 
     (unless did-ret-key
@@ -249,36 +146,8 @@ line by line instead of indent the whole file at once."
           (jcs-is-current-point-face "web-mode-block-face")
           (jcs-is-current-point-face "web-mode-style-face"))
       (call-interactively #'jcs-vs-front-curly-bracket-key)
-    (progn
-      (insert "{}")
-      (backward-char 1))))
-
-
-;;;###autoload
-(defun jcs-web-save-buffer ()
-  "Save buffer in `web-mode'."
-  (interactive)
-  (let (;; NOTE(jenchieh): Disable auto truncate lines effect
-        ;; before save.
-        (jcs-web-auto-truncate-lines nil)
-        ;; Use to record down if the cursor was beginning of
-        ;; the line before we do the formatting document action.
-        (tmp-was-beginning-of-line nil))
-    ;; Record down if was beginning of line before formatting
-    ;; whole document.
-    (when (jcs-is-beginning-of-line-p)
-      (setq tmp-was-beginning-of-line t))
-
-    ;; NOTE(jenchieh): Do the formatting.
-    ;; This will mess up the indentation that is
-    ;; why we need to record down before we do the
-    ;; formatting document action.
-    (jcs-web-format-document)
-
-    ;; Decide if we need to indent or not.
-    (when (not tmp-was-beginning-of-line)
-      (indent-for-tab-command))
-    (jcs-untabify-save-buffer)))
+    (insert "{}")
+    (backward-char 1)))
 
 ;;---------------------------------------------
 ;; Impatient Mode
