@@ -1,2 +1,2 @@
 # Mode Line Toggle
-> Toggle `show` or `hide` the mode line.
+> Toggle to `show` or `hide` the mode line.
