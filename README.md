@@ -117,6 +117,8 @@ base on the file usage.
 * [*Mini State*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/mini-state) - 
 Mini mode state use to visually see what backend is the 
 config currently running.
+* [*Mode Line Toggle*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/mode-line-toggle) - 
+Toggle `show` or `hide` the mode line.
 * [*Navigate Blank Line*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/navigate-blank-line) - 
 Use `C-<up>` and `C-<down>` to navigate previous and next 
 blank line.
