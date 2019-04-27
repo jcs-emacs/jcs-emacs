@@ -57,7 +57,7 @@ LST-PR: List of pair."
   (interactive)
   (jcs-walk-through-all-windows-once
    (lambda ()
-     (jcs-active-line-number-by-mode))))
+     (jcs-active-line-numbers-by-mode))))
 
 ;;;###autoload
 (defun jcs-display-line-numbers-mode (&optional act)
@@ -80,14 +80,14 @@ If non-nil, safe active `global-display-line-numbers-mode'."
     (global-display-line-numbers-mode act)))
 
 ;;;###autoload
-(defun jcs-active-line-number-by-version (&optional act g)
+(defun jcs-active-line-numbers-by-version (&optional act g)
   "Active line number by Emacs version.
 Basically decide between `linum-mode' and `display-line-numbers-mode'.
 If one is activated, the other one will be deactivated.
 
 ACT : 1 => `display-line-numbers-mode'
      -1 => `linum-mode'.
-G : Active line number globally."
+G : Active line numbers globally."
   (interactive)
   (unless act
     (if act (setq act 1) (setq act -1)))
@@ -99,30 +99,40 @@ G : Active line number globally."
                 (progn
                   (jcs-global-display-line-numbers-mode 1)
                   (global-linum-mode -1))
-              (progn
-                (jcs-global-display-line-numbers-mode -1)
-                (global-linum-mode 1)))
+              (jcs-global-display-line-numbers-mode -1)
+              (global-linum-mode 1))
           (if (= act 1)
               (progn
                 (jcs-display-line-numbers-mode 1)
                 (linum-mode -1))
-            (progn
-              (jcs-display-line-numbers-mode -1)
-              (linum-mode 1)))))
+            (jcs-display-line-numbers-mode -1)
+            (linum-mode 1))))
     ;; If `display-line-numbers-mode' does not exists,
     ;; ue `linum-mode' instead.
     (linum-mode act)))
 
 ;;;###autoload
-(defun jcs-active-line-number-by-mode (&optional g)
+(defun jcs-active-line-numbers-by-mode (&optional g)
   "Active line number by mode.
-G : Active line number globally."
+G : Active line numbers globally."
   (interactive)
   (when (and (not (minibufferp))
              (not (jcs-is-contain-list-string jcs-line-number-ignore-buffers (buffer-name))))
     (if (line-reminder-is-valid-line-reminder-situation)
-        (jcs-active-line-number-by-version -1 g)
-      (jcs-active-line-number-by-version 1 g))))
+        (jcs-active-line-numbers-by-version -1 g)
+      (jcs-active-line-numbers-by-version 1 g))))
+
+;;;###autoload
+(defun jcs-deactive-line-numbers-modes (&optional g)
+  "Deactive all line numbers modes.
+G : Deactive line numbers globally."
+  (interactive)
+  (if g
+      (progn
+        (jcs-global-display-line-numbers-mode -1)
+        (global-linum-mode 1))
+    (jcs-display-line-numbers-mode -1)
+    (linum-mode -1)))
 
 ;;---------------------------------------------
 ;; Mode Line
@@ -414,7 +424,7 @@ G : Active line number globally."
   (interactive)
   (call-interactively #'text-scale-increase)
   ;; Renable line number.
-  (jcs-active-line-number-by-mode))
+  (jcs-active-line-numbers-by-mode))
 
 ;;;###autoload
 (defun jcs-text-scale-decrease ()
@@ -422,7 +432,7 @@ G : Active line number globally."
   (interactive)
   (call-interactively #'text-scale-decrease)
   ;; Renable line number.
-  (jcs-active-line-number-by-mode))
+  (jcs-active-line-numbers-by-mode))
 
 ;;---------------------------------------------
 ;; Truncate Lines
