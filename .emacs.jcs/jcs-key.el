@@ -255,7 +255,7 @@
 (define-key global-map "\C-cm" #'jcs-toggle-minimap)
 
 ;;; Mode Line
-(define-key global-map (kbd "C-x m o") #'jcs-toggle-mode-line)
+(define-key global-map (kbd "C-M-m") #'jcs-toggle-mode-line)
 
 ;;; Mode Toggle
 (progn
