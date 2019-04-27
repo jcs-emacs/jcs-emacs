@@ -510,11 +510,47 @@ REGEXP : reqular expression use to align."
 ;;;###autoload
 (defun jcs-revert-buffer-no-confirm ()
   "Revert buffer without confirmation."
-  ;; SOURCE(jenchieh):
-  ;; 1) http://emacs.stackexchange.com/questions/169/how-do-i-reload-a-file-in-a-buffer
-  ;; 2) http://www.emacswiki.org/emacs-en/download/misc-cmds.el
   (interactive)
-  (revert-buffer :ignore-auto :noconfirm))
+  ;; Record all the enabled mode that you want to
+  ;; remain enabled after revert the file.
+  (let ((was-flycheck flycheck-mode)
+        (was-readonly buffer-read-only))
+
+    (revert-buffer :ignore-auto :noconfirm :preserve-modes)
+
+    ;; Revert all the enabled mode.
+    (when was-flycheck
+      (flycheck-mode 1))
+    (when was-readonly
+      (read-only-mode 1))))
+
+;;;###autoload
+(defun jcs-revert-all-file-buffers ()
+  "Refresh all open file buffers without confirmation.
+Buffers in modified (not yet saved) state in Emacs will not be reverted.
+They will be reverted though if they were modified outside Emacs.
+Buffers visiting files which do not exist any more or are no longer readable
+will be killed."
+  (interactive)
+  ;; SOURCE(jenchieh): https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-ignore-errors
+  (save-excursion
+    (dolist (buf (buffer-list))
+      (let ((filename (buffer-file-name buf)))
+        ;; Revert only buffers containing files, which are not modified;
+        ;; do not try to revert non-file buffers like *Messages*.
+        (when (and filename
+                   (not (buffer-modified-p buf)))
+          (if (file-readable-p filename)
+              ;; If the file exists and is readable, revert the buffer.
+              (with-current-buffer buf
+                (jcs-revert-buffer-no-confirm))
+            ;; Otherwise, kill the buffer.
+            (let (kill-buffer-query-functions) ; No query done when killing buffer
+              (kill-buffer buf)
+              ;;(message "Killed non-existing/unreadable file buffer: %s" filename)
+              )))))
+    ;;(message "Finished reverting buffers containing unmodified files.")
+    ))
 
 ;;;###autoload
 (defun jcs-other-window-next (&optional cnt not-all-frame)
