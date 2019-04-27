@@ -213,7 +213,7 @@ C-left          Backward a word.
 M-right         Forward capital word.
 M-left          Backward capital word.
 
-C-x m o         Show/Hide mode line.
+C-M-m           Show/Hide mode line.
 
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
