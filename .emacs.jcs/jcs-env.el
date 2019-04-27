@@ -165,7 +165,10 @@
 (set-default-coding-systems 'utf-8)
 
 ;; Line Numbers
-(defvar jcs-line-number-ignore-buffers '("*helm")
+(defvar jcs-line-numbers-ignore-buffers '("*dashboard*"
+                                          "*GNU Emacs*"
+                                          "*helm"
+                                          "*Packages*")
   "List of buffers that you do not want to show line numbers in it.")
 
 ;; jcs editor setting
