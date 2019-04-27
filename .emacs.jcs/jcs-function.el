@@ -112,17 +112,6 @@ G : Active line numbers globally."
     (linum-mode act)))
 
 ;;;###autoload
-(defun jcs-active-line-numbers-by-mode (&optional g)
-  "Active line number by mode.
-G : Active line numbers globally."
-  (interactive)
-  (when (and (not (minibufferp))
-             (not (jcs-is-contain-list-string jcs-line-number-ignore-buffers (buffer-name))))
-    (if (line-reminder-is-valid-line-reminder-situation)
-        (jcs-active-line-numbers-by-version -1 g)
-      (jcs-active-line-numbers-by-version 1 g))))
-
-;;;###autoload
 (defun jcs-deactive-line-numbers-modes (&optional g)
   "Deactive all line numbers modes.
 G : Deactive line numbers globally."
@@ -133,6 +122,23 @@ G : Deactive line numbers globally."
         (global-linum-mode 1))
     (jcs-display-line-numbers-mode -1)
     (linum-mode -1)))
+
+;;;###autoload
+(defun jcs-active-line-numbers-by-mode (&optional g)
+  "Active line number by mode.
+G : Active line numbers globally."
+  (interactive)
+  (if (or (minibufferp)
+          (jcs-is-contain-list-string jcs-line-numbers-ignore-buffers (buffer-name)))
+      ;; Don't use line numbers at all.
+      (jcs-deactive-line-numbers-modes)
+    (if (line-reminder-is-valid-line-reminder-situation)
+        ;; Use `linum' as default.
+        (jcs-active-line-numbers-by-version -1 g)
+      ;; Active `display-line-numbers-mode', if Emacs version
+      ;; does not have `display-line-numbers-mode' use `linum'
+      ;; instead then.
+      (jcs-active-line-numbers-by-version 1 g))))
 
 ;;---------------------------------------------
 ;; Mode Line
