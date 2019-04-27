@@ -14,8 +14,6 @@
 (defun jcs-focus-in-hook ()
   "When window is focus."
   (jcs-revert-all-file-buffers)
-
-  (jcs-reactive-flycheck-after-revert)
   )
 (add-hook 'focus-in-hook 'jcs-focus-in-hook)
 
