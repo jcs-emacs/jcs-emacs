@@ -269,8 +269,7 @@
   (define-key global-map (kbd "C-`") #'jcs-toggle-shell-window))
 (progn
   (define-key global-map (kbd "C-c c") #'jcs-toggle-cc-mode)
-  (define-key global-map (kbd "C-c r") #'rainbow-mode)
-  (define-key global-map (kbd "C-x b") #'whitespace-mode))
+  (define-key global-map (kbd "C-c r") #'rainbow-mode))
 
 ;;; Mouse
 (global-unset-key [mouse-2])  ;; no screwing with my middle mouse button
@@ -444,6 +443,9 @@
 ;; the global key map's key bindings. What we need to do
 ;; is to remap this again...
 (define-key undo-tree-map (kbd "C-/") #'jcs-comment-uncomment-region-or-line)
+
+;;; Whitespace
+(define-key global-map (kbd "C-x b") #'whitespace-mode)
 
 
 ;;;---------------------------------------------
