@@ -11,8 +11,8 @@
 ;;; Needed packages.
 
 ;;; unbind the key
-(global-unset-key "\C-k")
-(global-unset-key "\C-f")
+(global-unset-key (kbd "C-k"))
+(global-unset-key (kbd "C-f"))
 (global-unset-key (kbd "C-r"))
 (global-unset-key (kbd "C-w"))
 
