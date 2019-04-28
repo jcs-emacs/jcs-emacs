@@ -136,7 +136,7 @@ currently in.
 Remove trailing spaces and tabs automatically on save.
 * [*Visualize Undo/Redo*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/visualize-undo-redo) - 
 Improved the user experience on undoing and redoing by 
-showing the `undo-tree-visualizer` at the second window.
+showing the `undo-tree-visualizer` at the other window.
 * [*VS Curly Bracket*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/vs-curly-bracket) - 
 Visual Studio IDE like curly bracket implementation.
 * [*VS Multiple Cursors*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/vs-multiple-cursors) - 
