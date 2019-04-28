@@ -15,6 +15,11 @@
 (define-key isearch-mode-map (kbd "C-s") nil)
 (define-key isearch-mode-map (kbd "C-r") nil)
 
+;; TODO(jenchieh): Implements isearch cursor for these two keys.
+;;(define-key isearch-mode-map (kbd "C-x C-x") #'jcs-vs-cut-key)
+;;(define-key isearch-mode-map (kbd "C-c C-c") #'kill-ring-save)
+(define-key isearch-mode-map (kbd "C-v") #'isearch-yank-pop)
+
 
 ;;;---------------------------------------------
 ;;; Set key binding
