@@ -227,6 +227,8 @@ and
 dark theme.
 * *Undo/Redo* - powered by 
 [undo-tree](https://www.emacswiki.org/emacs/UndoTree).
+* *Whitespace* - powered by 
+[whitespace](https://www.emacswiki.org/emacs/WhiteSpace)
 
 
 ## Key Bindings
