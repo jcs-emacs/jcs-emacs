@@ -154,7 +154,6 @@
 
 ;; Finalize
 (require 'jcs-hook)
-(require 'jcs-font)
 (require 'jcs-after-init)
 
 
