@@ -603,6 +603,7 @@
   :ensure t
   :defer t
   :diminish whitespace-mode
+  :diminish whitespace-newline-mode
   :config
   (autoload 'whitespace-mode "whitespace-mode" "Toggle whitespace visualization." t)
   (autoload 'whitespace-toggle-options "whitespace-mode" "Toggle local `whitespace-mode' options." t)
