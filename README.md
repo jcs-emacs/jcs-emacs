@@ -194,7 +194,9 @@ and
 and 
 [multiple-cursors](https://github.com/magnars/multiple-cursors.el).
 * *Navigation/Searcher* - powered by 
-[ag](https://github.com/Wilfred/ag.el).
+[ag](https://github.com/Wilfred/ag.el)
+and 
+[isearch-project](https://github.com/elpa-host/isearch-project).
 * *Package Archive* - powered by 
 [melpa](http://melpa.org/),
 * *Package Management* - powered by 
