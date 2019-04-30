@@ -222,6 +222,8 @@ and
 [flycheck](http://www.flycheck.org/en/latest/).
 * *Tab Bar* - powered by 
 [tabber](https://github.com/dholm/tabbar).
+* *Tags* - powered by 
+[gtags](https://www.gnu.org/software/global/).
 * *Text Editing* - powered by 
 [org-mode](https://orgmode.org/).
 * *Theme* - none, self customized but close to 
