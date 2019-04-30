@@ -340,9 +340,6 @@ NOT-ALL-FRAME : Default boundaries is all frame, limit to curent frame."
   "Delta increament/decreament transparency value.")
 
 
-(set-frame-parameter (selected-frame) 'alpha '(100 . 100))
-(add-to-list 'default-frame-alist '(alpha . (100 . 100)))
-
 ;;;###autoload
 (defun jcs-ask-set-transparency (alpha-level)
   "Set the frame transparency.

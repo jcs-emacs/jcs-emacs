@@ -190,6 +190,10 @@
 (setq truncate-partial-width-windows nil)
 (split-window-horizontally)
 
+;; Default frame transparency set here..
+(set-frame-parameter (selected-frame) 'alpha '(100 . 100))
+(add-to-list 'default-frame-alist '(alpha . (100 . 100)))
+
 ;;; Tab / Space
 (setq-default indent-tabs-mode nil)          ;; Disable inset tabs, insert space only
 (setq-default tab-width 4)
