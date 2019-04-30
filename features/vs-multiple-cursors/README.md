@@ -1,5 +1,5 @@
 # VS Multiple Cursors
-> VSCode like methods to `mark` and `unmark` cursor.
+> VSCode like methods to `mark` and `unmark` multiple cursor.
 
 | Emacs                        | VSCode                        |
 |:-----------------------------|:------------------------------|

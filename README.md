@@ -140,7 +140,7 @@ showing the `undo-tree-visualizer` at the other window.
 * [*VS Curly Bracket*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/vs-curly-bracket) - 
 Visual Studio IDE like curly bracket implementation.
 * [*VS Multiple Cursors*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/vs-multiple-cursors) - 
-VSCode like methods to `mark` and `unmark` cursor.
+VSCode like methods to `mark` and `unmark` multiple cursor.
 
 
 ## Powered by
