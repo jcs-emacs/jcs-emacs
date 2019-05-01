@@ -160,11 +160,11 @@
 (recentf-mode 1)
 (setq recentf-max-menu-items 25)
 
-;;; Screen
-;;(setq scroll-preserve-screen-position 'always)
-
 ;;; Scroll bar
 (scroll-bar-mode -1)
+
+;;; Scrolling
+;;(setq scroll-preserve-screen-position 'always)
 
 ;;; Shift Select
 ;; NOTE(jenchieh): This act weird, does not make it works
