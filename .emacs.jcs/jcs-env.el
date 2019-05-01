@@ -104,7 +104,7 @@
   (setq grep-use-null-device t)
   (set-variable 'grep-command "findstr -s -n -i -l "))
 
-;; Default Major Mode
+;;; Default Major Mode
 (setq-default major-mode 'org-mode)
 
 ;;; Ediff
@@ -146,7 +146,7 @@
 ;; Resolve performance issue moving around Unicode Text.
 (setq inhibit-compacting-font-caches t)
 
-;; Line Numbers
+;;; Line Numbers
 (defvar jcs-line-numbers-ignore-buffers '("*dashboard*"
                                           "*GNU Emacs*"
                                           "*helm"
@@ -163,7 +163,7 @@
 ;;; Screen
 ;;(setq scroll-preserve-screen-position 'always)
 
-;; Scroll bar
+;;; Scroll bar
 (scroll-bar-mode -1)
 
 ;;; Shift Select
