@@ -116,6 +116,7 @@
 (load-file "~/.emacs.d/elisp/jcs-ex-pkg-20190326.001/jcs-ex-pkg.el")
 (load-file "~/.emacs.d/elisp/reload-emacs-20190326.001/reload-emacs.el")
 (load-file "~/.emacs.d/elisp/shift-select-20190423.001/shift-select.el")
+(load-file "~/.emacs.d/elisp/show-eol-20190501.001/show-eol.el")
 
 ;;========================================
 ;;      JENCHIEH FILE LOADING
