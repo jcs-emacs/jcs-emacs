@@ -7,7 +7,7 @@
   "Do the helm mx and change theme"
   ;; NOTE(jenchieh): Change theme so we know which mode
   ;; we are in visually.
-  (jcs-dark-blue-theme))
+  (jcs-dark-blue-mode-line))
 (add-hook 'helm-before-initialize-hook 'jcs-helm-before-initialize-hook)
 
 
