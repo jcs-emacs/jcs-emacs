@@ -218,6 +218,10 @@ and
 [pdf-tools](https://github.com/politza/pdf-tools).
 * *Project Search* - powered by 
 [projectile](https://github.com/bbatsov/projectile).
+* *Reload Emacs* - powered by 
+[reload-emacs](https://github.com/alt-elpa/reload-emacs).
+* *Restart Emacs* - powered by 
+[restart-emacs](https://github.com/iqbalansari/restart-emacs).
 * *Shell* - powered by 
 [shell](https://www.emacswiki.org/emacs/ShellMode) and 
 [exec-path-from-shell](https://github.com/purcell/exec-path-from-shell).
