@@ -93,6 +93,8 @@ with `use-package` package to delay some packages load time.
 
 ## Features
 
+* [*Auto Install Package*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/auto-install-package) - 
+Automatically installs the package that this config relies on.
 * [*Auto Truncate Lines*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/auto-truncate-lines) - 
 Automatically enable/disable `truncate-lines-mode` depends 
 on certain situation. (`web-mode` only)
