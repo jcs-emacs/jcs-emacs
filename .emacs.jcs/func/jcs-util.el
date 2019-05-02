@@ -36,11 +36,57 @@ Else we just return `buffer-file-name' if available."
     (buffer-name)))
 
 ;;---------------------------------------------
-;; Make the time stamp base on the format
-;; provided.
-;;
-;; Source:
-;; -> https://www.emacswiki.org/emacs/InsertingTodaysDate
+;; Color
+;;---------------------------------------------
+
+(defun jcs-is-hex-code-p (hex-code)
+  "Check if the `hex-code' is valid HEX code.
+HEX-CODE : Color HEX code to check in string."
+  (or (string-match-p "#[0-9a-fA-F].." hex-code)
+      (string-match-p "#[0-9a-fA-F]....." hex-code)))
+
+(defun jcs-is-light-color (hex-code)
+  "Check if the `hex-code' light color.
+HEX-CODE : Color HEX code to check."
+  (let ((is-light nil)
+        (hex-lst '())
+        (hex-1 "") (hex-2 "") (hex-3 "")
+        ;; 136d = 88h
+        (light-central 136)
+        (s2n-base 16))
+    (when (symbolp hex-code)
+      ;; Convert symbol to string.
+      (setq hex-code (symbol-name hex-code)))
+    (if (not (jcs-is-hex-code-p hex-code))
+        (error "Hex code to check is invalid")
+      ;; Remove # from `hex-code'.
+      (setq hex-code (jcs-replace-string "#" "" hex-code))
+      (setq hex-lst (split-string hex-code ""))
+      (setq hex-lst (delete "" hex-lst))
+      (if (= (length hex-lst) 6)
+          (progn
+            (setq hex-1 (concat (nth 0 hex-lst) (nth 1 hex-lst)))
+            (setq hex-2 (concat (nth 2 hex-lst) (nth 3 hex-lst)))
+            (setq hex-3 (concat (nth 4 hex-lst) (nth 5 hex-lst))))
+        (setq hex-1 (nth 0 hex-lst))
+        (setq hex-2 (nth 1 hex-lst))
+        (setq hex-3 (nth 2 hex-lst)))
+      (setq hex-1 (string-to-number hex-1 s2n-base))
+      (setq hex-2 (string-to-number hex-2 s2n-base))
+      (setq hex-3 (string-to-number hex-3 s2n-base))
+      (when (or (> hex-1 light-central)
+                (> hex-2 light-central)
+                (> hex-3 light-central))
+        (setq is-light t)))
+    is-light))
+
+(defun jcs-is-dark-color (hex-code)
+  "Check if the `hex-code' light color.
+HEX-CODE : Color HEX code to check."
+  (not (jcs-is-light-color)))
+
+;;---------------------------------------------
+;; Time
 ;;---------------------------------------------
 
 (defun jcs-get-timestamp-ver1 ()
@@ -50,10 +96,6 @@ Else we just return `buffer-file-name' if available."
 (defun jcs-get-timestamp-ver2 ()
   "Get timestamp version 2."
   (format-time-string "%Y/%m/%d %H:%M:%S"))
-
-;;---------------------------------------------
-;; Make the data base on the format provided.
-;;---------------------------------------------
 
 (defun jcs-get-date ()
   "Get date buffer in string type.."
@@ -66,7 +108,6 @@ Else we just return `buffer-file-name' if available."
 (defun jcs-get-time ()
   "Get time buffer in string type."
   (format-time-string "%H:%M:%S"))
-
 
 ;;;###autoload
 (defun jcs-print-timestamps ()
@@ -461,7 +502,7 @@ IN-SYMBOL : symbol using to check if is contain one of the IN-LIST."
   (message "Current word: %s" (jcs-get-word-at-point)))
 
 (defun jcs-get-word-at-point ()
-  "Get word at current cursor position."
+  "Get word at current cursor position."
   (thing-at-point 'word))
 
 (defun jcs-current-word-equal-p (str)
