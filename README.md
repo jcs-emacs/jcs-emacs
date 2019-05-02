@@ -123,6 +123,9 @@ Mini mode state use to visually see what backend is the
 config currently running.
 * [*Mode Line Toggle*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/mode-line-toggle) - 
 Toggle to `show` or `hide` the mode line.
+* [*Modern Text Editor*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/modern-text-editor) - 
+Design to have the preset settings close to modern text 
+editors but faster.
 * [*Navigate Blank Line*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/navigate-blank-line) - 
 Use `C-<up>` and `C-<down>` to navigate previous and next 
 blank line.
