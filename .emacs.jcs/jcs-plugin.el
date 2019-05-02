@@ -122,7 +122,7 @@
   :defer t
   :config
   (setq dashboard-banner-logo-title "Welcome to J-Emacs!")
-  (setq dashboard-startup-banner "~/.emacs.jcs/banner/sink_white.png")
+  (jcs-reset-dashboard-banner)
   (setq dashboard-items '((recents  . 10)
                           (bookmarks . 10)
                           (projects . 10)
