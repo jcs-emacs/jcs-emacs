@@ -89,9 +89,9 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
   ;;(view-mode-enable)
 
   ;; -----------------------------------------
-  ;; Customize Theme
+  ;; Customize Mode Line
   ;; -----------------------------------------
-  (jcs-gray-theme)
+  (jcs-gray-mode-line)
 
   ;; -----------------------------------------
   ;; Unset insert mode key
@@ -123,9 +123,9 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
   ;;(view-mode-disable)
 
   ;; -----------------------------------------
-  ;; Customize Theme
+  ;; Customize Mode Line
   ;; -----------------------------------------
-  (jcs-dark-green-theme)
+  (jcs-dark-green-mode-line)
 
   ;; -----------------------------------------
   ;; Unset command mode key
@@ -210,9 +210,9 @@ control of the editor."
   (put 'jcs-depend-cross-mode-toggle 'state nil)
 
   ;; -----------------------------------------
-  ;; Customize Theme
+  ;; Customize Mode Line
   ;; -----------------------------------------
-  (jcs-gray-theme)
+  (jcs-gray-mode-line)
 
   ;; -----------------------------------------
   ;; Unset 'depend' mode key
@@ -248,9 +248,9 @@ control of the editor."
   (put 'jcs-depend-cross-mode-toggle 'state t)
 
   ;; -----------------------------------------
-  ;; Customize Theme
+  ;; Customize Mode Line
   ;; -----------------------------------------
-  (jcs-dark-green-theme)
+  (jcs-dark-green-mode-line)
 
   ;; -----------------------------------------
   ;; Unset 'cross' mode key
