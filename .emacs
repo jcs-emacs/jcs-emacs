@@ -134,26 +134,26 @@
   (add-to-list 'load-path "~/.emacs.jcs/mode/"))
 
 
-;; Environment.
+;;; Utilities
+(require 'jcs-log)
+(require 'jcs-function)
+
+;;; Environment
 (require 'jcs-face)
 (require 'jcs-dev)
 (require 'jcs-env)
+(require 'jcs-theme)
 (require 'jcs-plugin)
 
-;; Customization
-(require 'jcs-theme)
-
-;; Initialize
+;;; Initialize
 (require 'jcs-before-init)
 
-;; Utilities
-(require 'jcs-log)
-(require 'jcs-function)
+;;; Customize
 (require 'jcs-corresponding-file)
 (require 'jcs-file-info-format)
 (require 'jcs-mode)
 
-;; Finalize
+;;; Finalize
 (require 'jcs-hook)
 (require 'jcs-after-init)
 
