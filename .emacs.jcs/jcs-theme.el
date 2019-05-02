@@ -4,19 +4,9 @@
 
 
 ;;;###autoload
-(defun jcs-gray-theme ()
-  "Gray Theme."
+(defun jcs-gray-mode-line ()
+  "Gray mode line."
   (interactive)
-
-  (let ((theme-foreground-color "#D2D2D2")
-        (theme-background-color "#161616"))
-    (unless (string= (face-foreground 'default) theme-foreground-color)
-      (set-foreground-color theme-foreground-color))
-    (unless (string= (face-background 'default) theme-background-color)
-      (set-background-color theme-background-color)))
-
-  (set-cursor-color "#40FF40")
-  (set-face-background 'hl-line "midnight blue")
 
   ;; set mode line
   (set-face-background 'mode-line "#BFBFBF")
@@ -43,19 +33,9 @@
   )
 
 ;;;###autoload
-(defun jcs-dark-green-theme ()
-  "Dark Green Theme."
+(defun jcs-dark-green-mode-line ()
+  "Dark Green mode line."
   (interactive)
-
-  (let ((theme-foreground-color "#D2D2D2")
-        (theme-background-color "#161616"))
-    (unless (string= (face-foreground 'default) theme-foreground-color)
-      (set-foreground-color theme-foreground-color))
-    (unless (string= (face-background 'default) theme-background-color)
-      (set-background-color theme-background-color)))
-
-  (set-cursor-color "#40FF40")
-  (set-face-background 'hl-line "midnight blue")
 
   ;; set mode line
   (set-face-background 'mode-line "#467E7D")
@@ -82,16 +62,9 @@
   )
 
 ;;;###autoload
-(defun jcs-dark-blue-theme ()
-  "Dark Blue Theme."
+(defun jcs-dark-blue-mode-line ()
+  "Dark Blue mode line."
   (interactive)
-
-  (let ((theme-foreground-color "#D2D2D2")
-        (theme-background-color "#161616"))
-    (unless (string= (face-foreground 'default) theme-foreground-color)
-      (set-foreground-color theme-foreground-color))
-    (unless (string= (face-background 'default) theme-background-color)
-      (set-background-color theme-background-color)))
 
   (set-cursor-color "#40FF40")
   (set-face-background 'hl-line "midnight blue")
@@ -122,16 +95,9 @@
   )
 
 ;;;###autoload
-(defun jcs-dark-orange-theme ()
-  "Dark Orange Theme."
+(defun jcs-dark-orange-mode-line ()
+  "Dark Orange mode line."
   (interactive)
-
-  (let ((theme-foreground-color "#D2D2D2")
-        (theme-background-color "#161616"))
-    (unless (string= (face-foreground 'default) theme-foreground-color)
-      (set-foreground-color theme-foreground-color))
-    (unless (string= (face-background 'default) theme-background-color)
-      (set-background-color theme-background-color)))
 
   (set-cursor-color "#40FF40")
   (set-face-background 'hl-line "midnight blue")
@@ -148,16 +114,9 @@
   )
 
 ;;;###autoload
-(defun jcs-light-blue-theme ()
-  "Dark Orange Theme."
+(defun jcs-light-blue-mode-line ()
+  "Dark Orange mode line."
   (interactive)
-
-  (let ((theme-foreground-color "#D2D2D2")
-        (theme-background-color "#161616"))
-    (unless (string= (face-foreground 'default) theme-foreground-color)
-      (set-foreground-color theme-foreground-color))
-    (unless (string= (face-background 'default) theme-background-color)
-      (set-background-color theme-background-color)))
 
   (set-cursor-color "#40FF40")
   (set-face-background 'hl-line "midnight blue")
@@ -188,15 +147,46 @@
 
 
 ;;;###autoload
+(defun jcs-reset-dashboard-banner ()
+  "Reset dashboard banner."
+  (interactive)
+  (if (jcs-is-light-color (face-background 'default))
+      (setq dashboard-startup-banner "~/.emacs.jcs/banner/sink_black.png")
+    (setq dashboard-startup-banner "~/.emacs.jcs/banner/sink_white.png"))
+  (when (boundp 'dashboard-buffer-name)
+    (save-selected-window
+      (when (ignore-errors (jcs-jump-shown-to-buffer dashboard-buffer-name))
+        (dashboard-refresh-buffer)))))
+
+;;;###autoload
+(defun jcs-vs-light-theme ()
+  "Visual Studio IDE light theme."
+  (interactive)
+  (set-foreground-color "#000000")
+  (set-background-color "#FFFFFF")
+  (set-cursor-color "#40FF40")
+  (set-face-background 'hl-line "midnight blue")
+  (jcs-reset-dashboard-banner))
+
+;;;###autoload
+(defun jcs-vs-dark-theme ()
+  "Visual Studio IDE dark theme."
+  (interactive)
+  (set-foreground-color "#D2D2D2")
+  (set-background-color "#161616")
+  (set-cursor-color "#40FF40")
+  (set-face-background 'hl-line "midnight blue")
+  (jcs-reset-dashboard-banner))
+
+;;;###autoload
 (defun jcs-setup-default-theme ()
   "Set default Theme Color."
   (interactive)
-  (add-to-list 'default-frame-alist '(foreground-color . "#D2D2D2"))
-  (add-to-list 'default-frame-alist '(background-color . "#161616"))
-  (add-to-list 'default-frame-alist '(cursor-color . "#40FF40")))
+  (jcs-vs-dark-theme))
 
 ;; Set default theme once.
-(jcs-setup-default-theme)
+(unless reload-emacs-reloading
+  (jcs-setup-default-theme))
 
 
 (provide 'jcs-theme)
