@@ -168,6 +168,8 @@ VSCode like methods to `mark` and `unmark` multiple cursor.
 * *Context Menu* - powered by 
 [right-click-context](https://github.com/zonuexe/right-click-context).
 * *Docstring* - none, built-in to this configuration.
+* *End of Line* - powered by 
+[show-eol](https://github.com/jcs090218/show-eol).
 * *Execute Commands* - powered by 
 [compile](https://www.emacswiki.org/emacs/CompilationMode).
 * *File Explorer* - powered by 
