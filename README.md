@@ -103,6 +103,8 @@ Implementation for executing script for building and running
 the software.
 * [*Capital Word*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/capital-word) - 
 You can navigate/kill word by seeing capital letter.
+* [*Consistent Key Bindings*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/consistent-key-bindings) - 
+Has consistent key bindings across all modes.
 * [*Curly Bracket Modes*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/curly-bracket-modes) - 
 Use curly bracket depends on different mode.
 * [*Docstring Completion*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/docstring-completion) - 
