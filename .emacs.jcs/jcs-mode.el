@@ -54,10 +54,6 @@ toggle mode function."
       (jcs-depend-mode))))
 
 
-(defvar jcs-prompt-message-sleep-delay-time 0.4  ;; in seconds
-  "Delay for a time for prompting out the message, so the user
-can see the error/operation message.")
-
 ;;;###autoload
 (defun jcs-helm-do-ag-this-file ()
   "Handle error for `helm-do-ag-this-file' command by switching

@@ -156,6 +156,12 @@
 ;;; Menu Bar
 (menu-bar-mode -1)
 
+;;; Messages
+(defvar jcs-prompt-message-sleep-delay-time 0.4  ;; in seconds
+  "Delay for a time for prompting out the message, so the user
+can see the error/operation message.")
+
+
 ;;; Recent files
 (recentf-mode 1)
 (setq recentf-max-menu-items 25)
