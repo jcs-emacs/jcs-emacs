@@ -146,6 +146,11 @@
   )
 
 
+(defun jcs-reset-plugins-base-on-theme ()
+  "Reset certain plugins base on the theme."
+  (jcs-reset-beacon-color)
+  (jcs-reset-dashboard-banner))
+
 ;;;###autoload
 (defun jcs-vs-light-theme ()
   "Visual Studio IDE light theme."
@@ -154,7 +159,7 @@
   (set-background-color "#FFFFFF")
   (set-cursor-color "#40FF40")
   (set-face-background 'hl-line "midnight blue")
-  (jcs-reset-dashboard-banner))
+  (jcs-reset-plugins-base-on-theme))
 
 ;;;###autoload
 (defun jcs-vs-dark-theme ()
@@ -164,7 +169,7 @@
   (set-background-color "#161616")
   (set-cursor-color "#40FF40")
   (set-face-background 'hl-line "midnight blue")
-  (jcs-reset-dashboard-banner))
+  (jcs-reset-plugins-base-on-theme))
 
 ;;;###autoload
 (defun jcs-setup-default-theme ()
