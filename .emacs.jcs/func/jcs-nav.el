@@ -245,7 +245,7 @@ CH : character we target to move toward."
         (goto-char point-before-do-anything)
         (setq jcs-search-trigger-forward-char 1)
         (message "%s"
-                 (propertize (concat "Failing overwrap jcs-move-to-forward-a-char: "  ch)
+                 (propertize (concat "Failing overwrap jcs-move-to-forward-a-char: " ch)
                              'face '(:foreground "cyan")))))))
 
 (defun jcs-move-to-backward-a-char-recursive (ch)
@@ -343,7 +343,7 @@ CH : character we target to move toward."
         (goto-char point-before-do-anything)
         (setq jcs-search-trigger-forward-open-close-char 1)
         (message "%s"
-                 (propertize (concat "Failing overwrap jcs-move-forward-open-close-epair: '"  openChar "' and '" closeChar "'")
+                 (propertize (concat "Failing overwrap jcs-move-forward-open-close-epair: '" openChar "' and '" closeChar "'")
                              'face '(:foreground "cyan")))))))
 
 (defun jcs-move-backward-open-close-epair (openChar closeChar)
@@ -391,7 +391,7 @@ CH : character we target to move toward."
         (goto-char point-before-do-anything)
         (setq jcs-search-trigger-backward-open-close-char 1)
         (message "%s"
-                 (propertize (concat "Failing overwrap jcs-move-forward-open-close-epair: '"  openChar "' and '" closeChar "'")
+                 (propertize (concat "Failing overwrap jcs-move-forward-open-close-epair: '" openChar "' and '" closeChar "'")
                              'face '(:foreground "cyan")))))))
 
 ;;;------------------------------------------------
