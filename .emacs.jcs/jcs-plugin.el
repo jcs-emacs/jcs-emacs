@@ -52,7 +52,7 @@
   :ensure t
   :diminish beacon-mode
   :config
-  (jcs-reset-beacon-color)
+  (jcs-reset-beacon-color-by-theme)
   (beacon-mode 1))
 
 
@@ -123,7 +123,7 @@
   :defer t
   :config
   (setq dashboard-banner-logo-title "Welcome to J-Emacs!")
-  (jcs-reset-dashboard-banner)
+  (jcs-reset-dashboard-banner-by-theme)
   (setq dashboard-items '((recents  . 10)
                           (bookmarks . 10)
                           (projects . 10)
