@@ -148,8 +148,9 @@
 
 (defun jcs-reset-plugins-base-on-theme ()
   "Reset certain plugins base on the theme."
-  (jcs-reset-beacon-color)
-  (jcs-reset-dashboard-banner))
+  (jcs-reset-linum-color-by-theme)
+  (jcs-reset-beacon-color-by-theme)
+  (jcs-reset-dashboard-banner-by-theme))
 
 ;;;###autoload
 (defun jcs-vs-light-theme ()
