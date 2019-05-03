@@ -64,19 +64,13 @@
   (when jcs-show-last-command-event
     (call-interactively #'jcs-print-last-command-event))
 
-  (when (or (jcs-is-current-major-mode-p "c-mode")
-            (jcs-is-current-major-mode-p "c++-mode")
-            (jcs-is-current-major-mode-p "lua-mode")
-            (jcs-is-current-major-mode-p "typescript-mode"))
+  (when (jcs-is-font-lock-fontify-buffer-mode-p)
     ;; Refresh the syntax highlighting.
     (call-interactively #'jcs-font-lock-fontify-buffer))
 
   (when (jcs-is-current-major-mode-p "web-mode")
     (when jcs-web-auto-truncate-lines
-      (jcs-web-truncate-lines-by-face))
-
-    ;; Refresh the syntax highlighting.
-    (call-interactively #'jcs-font-lock-fontify-buffer))
+      (jcs-web-truncate-lines-by-face)))
 
   (when jcs-marking-whole-buffer
     (setq-local jcs-marking-whole-buffer-cmd-count
