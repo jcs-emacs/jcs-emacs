@@ -246,8 +246,7 @@ and
 * *Theme* - none, self customized but close to 
 [Visual Studio IDE](https://visualstudio.microsoft.com/)'s 
 dark theme.
-* *Todo* - powered by 
-built-in to this config, checkout file `./.emacs.jcs/jcs-face.el`.
+* *Todo* - none, built-in to this configuration.
 * *Undo/Redo* - powered by 
 [undo-tree](https://www.emacswiki.org/emacs/UndoTree).
 * *White Space* - powered by 
