@@ -386,8 +386,8 @@
 (define-key global-map (kbd "C--") #'jcs-text-scale-decrease)
 
 ;;; Todo
-;;(define-key hl-todo-mode-map (kbd "C-[") 'hl-todo-previous)
-;;(define-key hl-todo-mode-map (kbd "C-]") 'hl-todo-next)
+(define-key hl-todo-mode-map [C-f10] #'hl-todo-previous)
+(define-key hl-todo-mode-map [C-f11] #'hl-todo-next)
 
 ;;; Transparent Window
 (define-key global-map "\e`" #'jcs-toggle-transparent-frame)
