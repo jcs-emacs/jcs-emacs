@@ -147,16 +147,22 @@
 
 
 ;;;###autoload
+(defun jcs-update-dashboard-buffer ()
+  "Update dashboard buffer by killing it and start a new one."
+  (interactive)
+  (when (boundp 'dashboard-buffer-name)
+    (when (jcs-buffer-exists-p dashboard-buffer-name)
+      (kill-buffer dashboard-buffer-name))
+    (dashboard-insert-startupify-lists)))
+
+;;;###autoload
 (defun jcs-reset-dashboard-banner ()
   "Reset dashboard banner."
   (interactive)
   (if (jcs-is-light-color (face-background 'default))
       (setq dashboard-startup-banner "~/.emacs.jcs/banner/sink_black.png")
     (setq dashboard-startup-banner "~/.emacs.jcs/banner/sink_white.png"))
-  (when (boundp 'dashboard-buffer-name)
-    (save-selected-window
-      (when (ignore-errors (jcs-jump-shown-to-buffer dashboard-buffer-name))
-        (dashboard-refresh-buffer)))))
+  (jcs-update-dashboard-buffer))
 
 ;;;###autoload
 (defun jcs-vs-light-theme ()
