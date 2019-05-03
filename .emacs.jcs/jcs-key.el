@@ -351,6 +351,8 @@
 
   (define-key isearch-mode-map (kbd "C-,") #'isearch-repeat-backward)
   (define-key isearch-mode-map (kbd "C-.") #'isearch-repeat-forward)
+  (define-key isearch-mode-map (kbd "C-<") #'isearch-repeat-backward)
+  (define-key isearch-mode-map (kbd "C->") #'isearch-repeat-forward)
   )
 
 ;;; Show Hover
