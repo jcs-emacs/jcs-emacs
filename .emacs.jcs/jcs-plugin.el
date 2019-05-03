@@ -52,6 +52,7 @@
   :ensure t
   :diminish beacon-mode
   :config
+  (jcs-reset-beacon-color)
   (beacon-mode 1))
 
 
