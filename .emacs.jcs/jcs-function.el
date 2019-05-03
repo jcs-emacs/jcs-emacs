@@ -3,12 +3,14 @@
 ;;; Code:
 
 
+(require 'linum)
+
 ;;----------------------------------------------
 ;; Beacon
 ;;----------------------------------------------
 
 ;;;###autoload
-(defun jcs-reset-beacon-color ()
+(defun jcs-reset-beacon-color-by-theme ()
   "Reset beacon color base on the theme color."
   (interactive)
   (if (jcs-is-light-color (face-background 'default))
@@ -56,7 +58,7 @@
           (switch-to-buffer dashboard-buffer-name))))))
 
 ;;;###autoload
-(defun jcs-reset-dashboard-banner ()
+(defun jcs-reset-dashboard-banner-by-theme ()
   "Reset dashboard banner."
   (interactive)
   (if (jcs-is-light-color (face-background 'default))
@@ -90,6 +92,26 @@ LST-PR: List of pair."
 ;; Line Numbers
 ;;---------------------------------------------
 
+(defun jcs-display-line-numbers-mode-exists-p ()
+  "Return nil, `display-line-numbers-mode' does not exists in current Emacs version.
+Return non-nil, `display-line-numbers-mode' does exists in current Emacs version."
+  (version<= "26.0.50" emacs-version))
+
+;;;###autoload
+(defun jcs-reset-linum-color-by-theme ()
+  "Reset the line numbers color base on the theme."
+  (interactive)
+  (let ((ln-light-theme-color "#2B91AF")
+        (ln-dark-theme-color "#B3B3B3"))
+    (if (jcs-is-light-color (face-background 'default))
+        (progn
+          (when (jcs-display-line-numbers-mode-exists-p)
+            (set-face-foreground 'line-number ln-light-theme-color))
+          (set-face-foreground 'linum ln-light-theme-color))
+      (when (jcs-display-line-numbers-mode-exists-p)
+        (set-face-foreground 'line-number ln-dark-theme-color))
+      (set-face-foreground 'linum ln-dark-theme-color))))
+
 ;;;###autoload
 (defun jcs-update-line-number-each-window ()
   "Update each window's line number mode."
@@ -105,7 +127,7 @@ If non-nil, safe active `display-line-numbers-mode'."
   (interactive)
   (unless act
     (if act (setq act 1) (setq act -1)))
-  (when (version<= "26.0.50" emacs-version)
+  (when (jcs-display-line-numbers-mode-exists-p)
     (display-line-numbers-mode act)))
 
 ;;;###autoload
@@ -115,7 +137,7 @@ If non-nil, safe active `global-display-line-numbers-mode'."
   (interactive)
   (unless act
     (if act (setq act 1) (setq act -1)))
-  (when (version<= "26.0.50" emacs-version)
+  (when (jcs-display-line-numbers-mode-exists-p)
     (global-display-line-numbers-mode act)))
 
 ;;;###autoload
@@ -131,7 +153,7 @@ G : Active line numbers globally."
   (unless act
     (if act (setq act 1) (setq act -1)))
   ;; Flag confirm line number activated.
-  (if (version<= "26.0.50" emacs-version)
+  (if (jcs-display-line-numbers-mode-exists-p)
       (progn
         (if g
             (if (= act 1)
@@ -459,7 +481,7 @@ G : Active line numbers globally."
 (defun jcs-text-scale-increase ()
   "Scale the text up."
   (interactive)
-  (call-interactively #'text-scale-increase)
+  (call-interactively #'text-scale-increase)
   ;; Renable line number.
   (jcs-active-line-numbers-by-mode))
 
@@ -486,7 +508,7 @@ G : Active line numbers globally."
 (defun jcs-disable-truncate-lines ()
   "Disable truncate lines."
   (interactive)
-  (when truncate-lines
+  (when truncate-lines
     (toggle-truncate-lines)))
 
 ;;----------------------------------------------
