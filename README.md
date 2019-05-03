@@ -246,7 +246,8 @@ and
 * *Theme* - none, self customized but close to 
 [Visual Studio IDE](https://visualstudio.microsoft.com/)'s 
 dark theme.
-* *Todo* - none, built-in to this configuration.
+* *Todo* - powered by 
+[hl-todo](https://github.com/tarsius/hl-todo).
 * *Undo/Redo* - powered by 
 [undo-tree](https://www.emacswiki.org/emacs/UndoTree).
 * *White Space* - powered by 
