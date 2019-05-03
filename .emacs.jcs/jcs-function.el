@@ -477,21 +477,31 @@ G : Active line numbers globally."
 ;; Text Scale
 ;;---------------------------------------------
 
+(defun jcs-text-scale-delta (vec)
+  "Scale the text by passing `vec' value.
+VEC : Either position or negative number."
+  ;; NOTE(jenchieh): Known `text-scale-increase' and
+  ;; `text-scale-decrease' ruin the margin of the
+  ;; `linum-mode'. Disable it before ruining it, to
+  ;; avoid the bug.
+  (jcs-deactive-line-numbers-modes)
+  (if (jcs-is-positive vec)
+      (call-interactively #'text-scale-increase)
+    (call-interactively #'text-scale-decrease))
+  ;; Renable line number mode.
+  (jcs-active-line-numbers-by-mode))
+
 ;;;###autoload
 (defun jcs-text-scale-increase ()
   "Scale the text up."
   (interactive)
-  (call-interactively #'text-scale-increase)
-  ;; Renable line number.
-  (jcs-active-line-numbers-by-mode))
+  (jcs-text-scale-delta 1))
 
 ;;;###autoload
 (defun jcs-text-scale-decrease ()
   "Scale the text down."
   (interactive)
-  (call-interactively #'text-scale-decrease)
-  ;; Renable line number.
-  (jcs-active-line-numbers-by-mode))
+  (jcs-text-scale-delta -1))
 
 ;;---------------------------------------------
 ;; Truncate Lines
