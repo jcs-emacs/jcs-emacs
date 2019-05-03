@@ -344,11 +344,11 @@
   ;; See `jcs-mode.el' file for the settings.
   (define-key global-map (kbd "C-r C-f") #'isearch-backward-regexp)
 
-  (define-key global-map (kbd "M-S-<left>") #'jcs-isearch-backward-symbol-at-point)
-  (define-key global-map (kbd "M-S-<right>") #'isearch-forward-symbol-at-point)
+  (define-key global-map (kbd "C-<") #'jcs-isearch-backward-symbol-at-point)
+  (define-key global-map (kbd "C->") #'isearch-forward-symbol-at-point)
 
-  (define-key isearch-mode-map (kbd "M-S-<left>") #'isearch-repeat-backward)
-  (define-key isearch-mode-map (kbd "M-S-<right>") #'isearch-repeat-forward))
+  (define-key isearch-mode-map (kbd "C-<") #'isearch-repeat-backward)
+  (define-key isearch-mode-map (kbd "C->") #'isearch-repeat-forward))
 
 ;;; Show Hover
 (define-key global-map (kbd "C-k C-i") #'jcs-describe-thing-in-popup)
@@ -379,6 +379,10 @@
 ;;; Text Scale
 (define-key global-map (kbd "C-=") #'jcs-text-scale-increase)
 (define-key global-map (kbd "C--") #'jcs-text-scale-decrease)
+
+;;; Todo
+(define-key hl-todo-mode-map (kbd "C-,") 'hl-todo-previous)
+(define-key hl-todo-mode-map (kbd "C-.") 'hl-todo-next)
 
 ;;; Transparent Window
 (define-key global-map "\e`" #'jcs-toggle-transparent-frame)
