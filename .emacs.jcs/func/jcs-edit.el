@@ -1558,8 +1558,7 @@ CC : current character before character deletion occured."
 (defun jcs-isearch-project-backward-symbol-at-point ()
   "Isearch project backward symbol at point."
   (interactive)
-  (isearch-project-forward-symbol-at-point)
-  (isearch-repeat-backward))
+  (isearch-project-forward-symbol-at-point))
 
 ;;;###autoload
 (defun jcs-isearch-repeat-backward ()
@@ -1567,11 +1566,9 @@ CC : current character before character deletion occured."
   (interactive)
   (if (not (advice-member-p 'isearch-project-advice-isearch-repeat-after 'isearch-repeat))
       (isearch-repeat-backward)
-    (save-excursion
+    (save-mark-and-excursion
       (isearch-exit))
-    (jcs-isearch-backward-symbol-at-point)
-    (when (string-empty-p isearch-string)
-      (isearch-yank-string isearch-string))))
+    (jcs-isearch-backward-symbol-at-point)))
 
 ;;;###autoload
 (defun jcs-isearch-repeat-forward ()
@@ -1579,12 +1576,9 @@ CC : current character before character deletion occured."
   (interactive)
   (if (not (advice-member-p 'isearch-project-advice-isearch-repeat-after 'isearch-repeat))
       (isearch-repeat-forward)
-    (save-excursion
+    (save-mark-and-excursion
       (isearch-exit))
-    (isearch-forward-symbol-at-point)
-    (setq isearch-string "")
-    (when (string-empty-p isearch-string)
-      (isearch-yank-string isearch-string))))
+    (isearch-forward-symbol-at-point)))
 
 ;;;###autoload
 (defun jcs-isearch-project-repeat-backward ()
@@ -1592,11 +1586,9 @@ CC : current character before character deletion occured."
   (interactive)
   (if (advice-member-p 'isearch-project-advice-isearch-repeat-after 'isearch-repeat)
       (isearch-repeat-backward)
-    (save-excursion
+    (save-mark-and-excursion
       (isearch-exit))
-    (jcs-isearch-project-backward-symbol-at-point)
-    (when (string-empty-p isearch-string)
-      (isearch-yank-string isearch-string))))
+    (jcs-isearch-project-backward-symbol-at-point)))
 
 ;;;###autoload
 (defun jcs-isearch-project-repeat-forward ()
@@ -1604,10 +1596,9 @@ CC : current character before character deletion occured."
   (interactive)
   (if (advice-member-p 'isearch-project-advice-isearch-repeat-after 'isearch-repeat)
       (isearch-repeat-forward)
-    (save-excursion
+    (save-mark-and-excursion
       (isearch-exit))
-    (when (string-empty-p isearch-string)
-      (isearch-project-forward-symbol-at-point))))
+    (isearch-project-forward-symbol-at-point)))
 
 ;;----------------------------------------------
 ;; Multiple Cursors
