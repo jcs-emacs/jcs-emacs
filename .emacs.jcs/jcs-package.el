@@ -77,6 +77,7 @@
                                    helm-ag
                                    helm-gtags
                                    helm-projectile
+                                   hl-todo
                                    htmltagwrap
                                    indent-info
                                    ini-mode
