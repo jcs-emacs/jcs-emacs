@@ -68,6 +68,7 @@
     ;; Refresh the syntax highlighting.
     (call-interactively #'jcs-font-lock-fontify-buffer))
 
+  ;; TODO(jenchieh): Move this to `web-mode' only.
   (when (jcs-is-current-major-mode-p "web-mode")
     (when jcs-web-auto-truncate-lines
       (jcs-web-truncate-lines-by-face)))
