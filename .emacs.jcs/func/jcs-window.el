@@ -153,9 +153,9 @@ FNC : Callback apply to each windows."
   (save-selected-window
     (let ((index 0))
       (while (< index (jcs-count-windows))
-        (jcs-other-window-next)
         (when fnc
           (funcall fnc))
+        (jcs-other-window-next)
         (setq index (+ index 1))))))
 
 ;;-----------------------------------------------------------
@@ -196,7 +196,6 @@ FNC : Callback apply to each windows."
         (balance-windows)
         (setq jcs-is-enlarge-buffer nil))
     (progn
-      ;; Maximize the window
       (maximize-window)
 
       ;; Set all local enlarge to false.
@@ -403,6 +402,28 @@ DEL-TRANS : Delta transparency value."
   (unless del-trans
     (setq del-trans (jcs-to-negative jcs-default-delta-transparency)))
   (jcs-delta-frame-transparent del-trans))
+
+
+;;-----------------------------------------------------------
+;; Get Window
+;;-----------------------------------------------------------
+
+(defun jcs-get-window-id-by-buffer-name (buf-name)
+  "Return a list of window id if match the buffer name."
+  (save-selected-window
+    (let ((index 0)
+          (win-id-lst '()))
+      (jcs-ace-window-min)
+      (jcs-walk-through-all-windows-once
+       (lambda ()
+         (when (string= buf-name (jcs-buffer-name-or-buffer-file-name))
+           (push index win-id-lst))
+         (setq index (1+ index))))
+      win-id-lst)))
+
+(defun jcs-test ()
+  (interactive)
+  (jcs-log-list (jcs-get-window-id-by-buffer-name dashboard-buffer-name)))
 
 
 ;;-----------------------------------------------------------
