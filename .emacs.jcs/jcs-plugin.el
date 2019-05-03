@@ -304,6 +304,51 @@
      '(helm-gtags-auto-update t))))
 
 
+(use-package hl-todo
+  :ensure t
+  :init
+  (setq hl-todo-keyword-faces
+        '(("HOLD" . "#d0bf8f")
+          ("TODO" . "red")
+          ("NEXT" . "#dca3a3")
+          ("THEM" . "#dc8cc3")
+          ("PROG" . "#7cb8bb")
+          ("OKAY" . "#7cb8bb")
+          ("DONT" . "#5f7f5f")
+          ("FAIL" . "#8c5353")
+          ("DONE" . "#afd8af")
+          ("NOTE"   . "dark green")
+          ("KLUDGE" . "#d0bf8f")
+          ("HACK"   . "#d0bf8f")
+          ("TEMP"   . "turquoise")
+          ("FIXME"  . "red")
+          ("XXX+"   . "#cc9393")
+          ("\\?\\?\\?+" . "#cc9393")
+
+          ("ATTENTION" . "red")
+          ("STUDY" . "yellow")
+          ("IMPORTANT" . "yellow")
+          ("CAUTION" . "yellow")
+          ("OPTIMIZE" . "yellow")
+          ("DESCRIPTION" . "dark green")
+          ("TAG" . "dark green")
+          ("OPTION" . "dark green")
+          ("DEBUGGING" . "turquoise")
+          ("TEMPORARY" . "turquoise")
+          ("SOURCE" . "PaleTurquoise2")
+          ("URL" . "PaleTurquoise2")
+          ("IDEA" . "green yellow")
+          ("OR" . "green yellow")
+          ("OBSOLETE" . "DarkOrange3")
+          ("DEPRECATED" . "DarkOrange3")
+          ("TOPIC" . "slate blue")
+          ("SEE" . "slate blue")
+          )
+        )
+  :config
+  (global-hl-todo-mode 1))
+
+
 (use-package iedit
   :ensure t
   :defer t)
