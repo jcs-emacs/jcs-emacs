@@ -116,8 +116,8 @@ C-<             Search word backward at current point through
 C->             Search word forward at current point through 
                 whole project.
 
-[TODO] C-,             Goto previous highlight todo related symbol.
-[TODO] C-.             Goto next highlight todo related symbol.
+C-f10           Goto previous highlight todo related symbol.
+C-f11           Goto next highlight todo related symbol.
 
 C-rr            Rename the whole text with the same name.
 C-rp            Replace pattern in project root.
