@@ -1561,6 +1561,54 @@ CC : current character before character deletion occured."
   (isearch-project-forward-symbol-at-point)
   (isearch-repeat-backward))
 
+;;;###autoload
+(defun jcs-isearch-repeat-backward ()
+  "Isearch backward repeating."
+  (interactive)
+  (if (not (advice-member-p 'isearch-project-advice-isearch-repeat-after 'isearch-repeat))
+      (isearch-repeat-backward)
+    (save-excursion
+      (isearch-exit))
+    (jcs-isearch-backward-symbol-at-point)
+    (when (string-empty-p isearch-string)
+      (isearch-yank-string isearch-string))))
+
+;;;###autoload
+(defun jcs-isearch-repeat-forward ()
+  "Isearch forward repeating."
+  (interactive)
+  (if (not (advice-member-p 'isearch-project-advice-isearch-repeat-after 'isearch-repeat))
+      (isearch-repeat-forward)
+    (save-excursion
+      (isearch-exit))
+    (isearch-forward-symbol-at-point)
+    (setq isearch-string "")
+    (when (string-empty-p isearch-string)
+      (isearch-yank-string isearch-string))))
+
+;;;###autoload
+(defun jcs-isearch-project-repeat-backward ()
+  "Isearch project backward repeating."
+  (interactive)
+  (if (advice-member-p 'isearch-project-advice-isearch-repeat-after 'isearch-repeat)
+      (isearch-repeat-backward)
+    (save-excursion
+      (isearch-exit))
+    (jcs-isearch-project-backward-symbol-at-point)
+    (when (string-empty-p isearch-string)
+      (isearch-yank-string isearch-string))))
+
+;;;###autoload
+(defun jcs-isearch-project-repeat-forward ()
+  "Isearch project forward repeating."
+  (interactive)
+  (if (advice-member-p 'isearch-project-advice-isearch-repeat-after 'isearch-repeat)
+      (isearch-repeat-forward)
+    (save-excursion
+      (isearch-exit))
+    (when (string-empty-p isearch-string)
+      (isearch-project-forward-symbol-at-point))))
+
 ;;----------------------------------------------
 ;; Multiple Cursors
 ;;----------------------------------------------
