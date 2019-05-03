@@ -408,6 +408,16 @@ DEL-TRANS : Delta transparency value."
 ;; Get Window
 ;;-----------------------------------------------------------
 
+(defun jcs-current-window-id ()
+  "Return the current window id."
+  (save-selected-window
+    (let ((win-id 0))
+      (jcs-ace-window-min)
+      (jcs-walk-through-all-windows-once
+       (lambda ()
+         ;; TODO(jenchieh): ..
+         )))))
+
 (defun jcs-get-window-id-by-buffer-name (buf-name)
   "Return a list of window id if match the buffer name."
   (save-selected-window
