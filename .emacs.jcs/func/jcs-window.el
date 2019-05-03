@@ -419,11 +419,8 @@ DEL-TRANS : Delta transparency value."
          (when (string= buf-name (jcs-buffer-name-or-buffer-file-name))
            (push index win-id-lst))
          (setq index (1+ index))))
+      (setq win-id-lst (reverse win-id-lst))
       win-id-lst)))
-
-(defun jcs-test ()
-  (interactive)
-  (jcs-log-list (jcs-get-window-id-by-buffer-name dashboard-buffer-name)))
 
 
 ;;-----------------------------------------------------------
