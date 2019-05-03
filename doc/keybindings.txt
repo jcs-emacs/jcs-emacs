@@ -109,8 +109,11 @@ C-y             redo (undo-tree-redo)
 C-f             Search word in file.
 C-x C-f         Search word in project.
 
-M-S-left        Search word backward at current point.
-M-S-right       Search word forward at current point.
+C-<             Search word backward at current point.
+C->             Search word forward at current point.
+
+C-,             Goto previous highlight todo related symbol.
+C-.             Goto next highlight todo related symbol.
 
 C-rr            Rename the whole text with the same name.
 C-rp            Replace pattern in project root.
