@@ -35,6 +35,10 @@ Else we just return `buffer-file-name' if available."
       (buffer-file-name)
     (buffer-name)))
 
+(defun jcs-buffer-exists-p (buf-name)
+  "Check if the buffer exists."
+  (get-buffer buf-name))
+
 ;;---------------------------------------------
 ;; Color
 ;;---------------------------------------------
