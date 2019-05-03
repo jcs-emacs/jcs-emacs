@@ -26,6 +26,33 @@
   )
 
 ;;----------------------------------------------
+;; Dashboard
+;;----------------------------------------------
+
+;;;###autoload
+(defun jcs-update-dashboard-buffer ()
+  "Update dashboard buffer by killing it and start a new one."
+  (interactive)
+  (when (boundp 'dashboard-buffer-name)
+    (let ((db-id-lst (jcs-get-window-id-by-buffer-name dashboard-buffer-name)))
+      (when (jcs-buffer-exists-p dashboard-buffer-name)
+        (kill-buffer dashboard-buffer-name))
+      (dashboard-insert-startupify-lists)
+      (save-selected-window
+        (dolist (win-id db-id-lst)
+          (jcs-ace-select-window win-id)
+          (switch-to-buffer dashboard-buffer-name))))))
+
+;;;###autoload
+(defun jcs-reset-dashboard-banner ()
+  "Reset dashboard banner."
+  (interactive)
+  (if (jcs-is-light-color (face-background 'default))
+      (setq dashboard-startup-banner "~/.emacs.jcs/banner/sink_black.png")
+    (setq dashboard-startup-banner "~/.emacs.jcs/banner/sink_white.png"))
+  (jcs-update-dashboard-buffer))
+
+;;----------------------------------------------
 ;; Electric Pair
 ;;----------------------------------------------
 
