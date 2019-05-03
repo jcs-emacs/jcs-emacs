@@ -233,10 +233,9 @@ i.e. change right window to bottom, or change bottom window to right."
                     (when (window-in-direction 'right)
                       (windmove-right 1)
                       (setq window-switched t)))
-                (progn
-                  (when (window-in-direction 'below)
-                    (windmove-down 1)
-                    (setq window-switched t))))
+                (when (window-in-direction 'below)
+                  (windmove-down 1)
+                  (setq window-switched t)))
 
               (setq other-win-buf (buffer-name))
               (call-interactively #'delete-window)
@@ -411,18 +410,23 @@ DEL-TRANS : Delta transparency value."
 (defun jcs-current-window-id ()
   "Return the current window id."
   (save-selected-window
-    (let ((win-id 0))
+    (let ((win-id -1)
+          (cur-wind (selected-window))
+          (index 0))
       (jcs-ace-window-min)
       (jcs-walk-through-all-windows-once
        (lambda ()
-         ;; TODO(jenchieh): ..
-         )))))
+         (when (eq cur-wind (selected-window))
+           (setq win-id index))
+         (setq index (1+ index))))
+      win-id)))
 
 (defun jcs-get-window-id-by-buffer-name (buf-name)
-  "Return a list of window id if match the buffer name."
+  "Return a list of window id if match the buffer name.
+BUF-NAME : Buffer name to search with."
   (save-selected-window
-    (let ((index 0)
-          (win-id-lst '()))
+    (let ((win-id-lst '())
+          (index 0))
       (jcs-ace-window-min)
       (jcs-walk-through-all-windows-once
        (lambda ()
