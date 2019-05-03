@@ -913,6 +913,14 @@ FONT : font to check."
       nil
     t))
 
+(defun jcs-is-font-lock-fontify-buffer-mode-p ()
+  "List of mode that need to refresh highlighting in `jcs-post-command-hook'."
+  (or (jcs-is-current-major-mode-p "c-mode")
+      (jcs-is-current-major-mode-p "c++-mode")
+      (jcs-is-current-major-mode-p "lua-mode")
+      (jcs-is-current-major-mode-p "typescript-mode")
+      (jcs-is-current-major-mode-p "web-mode")))
+
 ;;;###autoload
 (defun jcs-font-lock-fontify-buffer ()
   "Refresh the syntax hightlight for whole buffer."
