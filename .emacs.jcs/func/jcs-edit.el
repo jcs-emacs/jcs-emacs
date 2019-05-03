@@ -1566,9 +1566,10 @@ CC : current character before character deletion occured."
   (interactive)
   (if (not (advice-member-p 'isearch-project-advice-isearch-repeat-after 'isearch-repeat))
       (isearch-repeat-backward)
+    (message "Exit 'isearch-project' cuz you are trying to use 'isearch'..")
+    (sleep-for jcs-prompt-message-sleep-delay-time)
     (save-mark-and-excursion
-      (isearch-exit))
-    (jcs-isearch-backward-symbol-at-point)))
+      (isearch-abort))))
 
 ;;;###autoload
 (defun jcs-isearch-repeat-forward ()
@@ -1576,9 +1577,10 @@ CC : current character before character deletion occured."
   (interactive)
   (if (not (advice-member-p 'isearch-project-advice-isearch-repeat-after 'isearch-repeat))
       (isearch-repeat-forward)
+    (message "Exit 'isearch-project' cuz you are trying to use 'isearch'..")
+    (sleep-for jcs-prompt-message-sleep-delay-time)
     (save-mark-and-excursion
-      (isearch-exit))
-    (isearch-forward-symbol-at-point)))
+      (isearch-abort))))
 
 ;;;###autoload
 (defun jcs-isearch-project-repeat-backward ()
@@ -1586,9 +1588,10 @@ CC : current character before character deletion occured."
   (interactive)
   (if (advice-member-p 'isearch-project-advice-isearch-repeat-after 'isearch-repeat)
       (isearch-repeat-backward)
+    (message "Exit 'isearch' cuz you are trying to use 'isearch-project'..")
+    (sleep-for jcs-prompt-message-sleep-delay-time)
     (save-mark-and-excursion
-      (isearch-exit))
-    (jcs-isearch-project-backward-symbol-at-point)))
+      (isearch-abort))))
 
 ;;;###autoload
 (defun jcs-isearch-project-repeat-forward ()
@@ -1596,9 +1599,10 @@ CC : current character before character deletion occured."
   (interactive)
   (if (advice-member-p 'isearch-project-advice-isearch-repeat-after 'isearch-repeat)
       (isearch-repeat-forward)
+    (message "Exit 'isearch' cuz you are trying to use 'isearch-project'..")
+    (sleep-for jcs-prompt-message-sleep-delay-time)
     (save-mark-and-excursion
-      (isearch-exit))
-    (isearch-project-forward-symbol-at-point)))
+      (isearch-abort))))
 
 ;;----------------------------------------------
 ;; Multiple Cursors
