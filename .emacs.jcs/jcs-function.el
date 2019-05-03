@@ -4,6 +4,18 @@
 
 
 ;;----------------------------------------------
+;; Beacon
+;;----------------------------------------------
+
+;;;###autoload
+(defun jcs-reset-beacon-color ()
+  "Reset beacon color base on the theme color."
+  (interactive)
+  (if (jcs-is-light-color (face-background 'default))
+      (setq beacon-color "yellow")
+    (setq beacon-color 0.5)))
+
+;;----------------------------------------------
 ;; Canceling
 ;;----------------------------------------------
 
