@@ -4,6 +4,7 @@
 
 
 (require 'linum)
+(require 'popup)
 
 ;;----------------------------------------------
 ;; Beacon
@@ -450,29 +451,6 @@ G : Active line numbers globally."
   ;; Loop through all window so all windows take effect.
   (jcs-buffer-visible-list))
 
-;;----------------------------------------------
-;; Tips
-;;----------------------------------------------
-
-(require 'popup)
-
-;;;###autoload
-(defun jcs-describe-thing-in-popup ()
-  "Show current symbol info."
-  (interactive)
-  (let* ((thing (symbol-at-point))
-         (help-xref-following t)
-         (description (with-temp-buffer
-                        (help-mode)
-                        (help-xref-interned thing)
-                        (buffer-string))))
-    (popup-tip description
-               :point (point)
-               :around t
-               :height 30
-               :scroll-bar t
-               :margin t)))
-
 ;;---------------------------------------------
 ;; Text Scale
 ;;---------------------------------------------
@@ -502,6 +480,79 @@ VEC : Either position or negative number."
   "Scale the text down."
   (interactive)
   (jcs-text-scale-delta -1))
+
+;;----------------------------------------------
+;; Tips
+;;----------------------------------------------
+
+;;;###autoload
+(defun jcs-describe-thing-in-popup ()
+  "Show current symbol info."
+  (interactive)
+  (let* ((thing (symbol-at-point))
+         (help-xref-following t)
+         (description (with-temp-buffer
+                        (help-mode)
+                        (help-xref-interned thing)
+                        (buffer-string))))
+    (popup-tip description
+               :point (point)
+               :around t
+               :height 30
+               :scroll-bar t
+               :margin t)))
+
+;;---------------------------------------------
+;; Todo
+;;---------------------------------------------
+
+(defvar jcs-hl-todo-not-found-prev nil
+  "See if found the previous `hl-todo' matches.")
+
+(defvar jcs-hl-todo-not-found-next nil
+  "See if found the next `hl-todo' matches.")
+
+;;;###autoload
+(defun jcs-hl-todo-previous (&optional no-prompt)
+  "Around `hl-todo-previous' command.
+NO-PROMPT : Don't prompt the overwrap message."
+  (interactive)
+  (setq jcs-hl-todo-not-found-next nil)
+  (if jcs-hl-todo-not-found-prev
+      (progn
+        (setq jcs-hl-todo-not-found-prev nil)
+        (goto-char (point-max))
+        (call-interactively #'hl-todo-previous))
+    (let ((before-pt (point)))
+      (ignore-errors (call-interactively #'hl-todo-previous))
+      (if (not (= (point) before-pt))
+          (setq jcs-hl-todo-not-found-prev nil)
+        (setq jcs-hl-todo-not-found-prev t)
+        (if no-prompt
+            (jcs-hl-todo-previous)
+          (message "%s" (propertize "user-error: No more matches :: overwrap"
+                                    'face '(:foreground "cyan"))))))))
+
+;;;###autoload
+(defun jcs-hl-todo-next (&optional no-prompt)
+  "Around `hl-todo-next' command.
+NO-PROMPT : Don't prompt the overwrap message."
+  (interactive)
+  (setq jcs-hl-todo-not-found-prev nil)
+  (if jcs-hl-todo-not-found-next
+      (progn
+        (setq jcs-hl-todo-not-found-next nil)
+        (goto-char (point-min))
+        (call-interactively #'hl-todo-next))
+    (let ((before-pt (point)))
+      (ignore-errors (call-interactively #'hl-todo-next))
+      (if (not (= (point) before-pt))
+          (setq jcs-hl-todo-not-found-next nil)
+        (setq jcs-hl-todo-not-found-next t)
+        (if no-prompt
+            (jcs-hl-todo-next)
+          (message "%s" (propertize "user-error: No more matches :: overwrap"
+                                    'face '(:foreground "cyan"))))))))
 
 ;;---------------------------------------------
 ;; Truncate Lines
