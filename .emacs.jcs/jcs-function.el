@@ -98,7 +98,7 @@ Return non-nil, `display-line-numbers-mode' does exists in current Emacs version
   (version<= "26.0.50" emacs-version))
 
 ;;;###autoload
-(defun jcs-reset-linum-color-by-theme ()
+(defun jcs-reset-line-number-color-by-theme ()
   "Reset the line numbers color base on the theme."
   (interactive)
   (let ((ln-light-theme-color "#2B91AF")
