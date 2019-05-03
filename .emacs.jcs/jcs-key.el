@@ -349,10 +349,10 @@
   (define-key global-map (kbd "C-<") #'jcs-isearch-project-backward-symbol-at-point)
   (define-key global-map (kbd "C->") #'isearch-project-forward-symbol-at-point)
 
-  (define-key isearch-mode-map (kbd "C-,") #'isearch-repeat-backward)
-  (define-key isearch-mode-map (kbd "C-.") #'isearch-repeat-forward)
-  (define-key isearch-mode-map (kbd "C-<") #'isearch-repeat-backward)
-  (define-key isearch-mode-map (kbd "C->") #'isearch-repeat-forward)
+  (define-key isearch-mode-map (kbd "C-,") #'jcs-isearch-repeat-backward)
+  (define-key isearch-mode-map (kbd "C-.") #'jcs-isearch-repeat-forward)
+  (define-key isearch-mode-map (kbd "C-<") #'jcs-isearch-project-repeat-backward)
+  (define-key isearch-mode-map (kbd "C->") #'jcs-isearch-project-repeat-forward)
   )
 
 ;;; Show Hover
