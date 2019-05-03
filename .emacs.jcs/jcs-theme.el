@@ -158,8 +158,8 @@
   (interactive)
   (set-foreground-color "#000000")
   (set-background-color "#FFFFFF")
-  (set-cursor-color "#40FF40")
-  (set-face-background 'hl-line "midnight blue")
+  (set-cursor-color "midnight blue")
+  (set-face-background 'hl-line "#40FF40")
   (jcs-reset-plugins-base-on-theme))
 
 ;;;###autoload
