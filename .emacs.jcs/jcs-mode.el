@@ -465,7 +465,7 @@ PR : pair file `regexp' and file mode `symbol'."
   (jcs-add-auto-mode-alist '("\\.sql'?\\'" . sql-mode))
   (jcs-add-auto-mode-alist '("\\.swift'?\\'" . swift-mode)))
 
-;;; T
+;;; T
 (progn
   (jcs-add-auto-mode-alist '("\\.ts'?\\'" . typescript-mode)))
 

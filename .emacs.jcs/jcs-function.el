@@ -45,7 +45,7 @@
 ;;----------------------------------------------
 
 ;;;###autoload
-(defun jcs-update-dashboard-buffer ()
+(defun jcs-refresh-dashboard-buffer ()
   "Update dashboard buffer by killing it and start a new one."
   (interactive)
   (when (boundp 'dashboard-buffer-name)
@@ -65,7 +65,7 @@
   (if (jcs-is-light-color (face-background 'default))
       (setq dashboard-startup-banner "~/.emacs.jcs/banner/sink_black.png")
     (setq dashboard-startup-banner "~/.emacs.jcs/banner/sink_white.png"))
-  (jcs-update-dashboard-buffer))
+  (jcs-refresh-dashboard-buffer))
 
 ;;----------------------------------------------
 ;; Electric Pair
