@@ -369,7 +369,6 @@
 (define-key dashboard-mode-map (kbd "<up>") #'jcs-previous-line)
 (define-key dashboard-mode-map (kbd "<down>") #'jcs-next-line)
 (define-key dashboard-mode-map (kbd "C-p") #'package-list-packages)
-(define-key dashboard-mode-map (kbd "g") #'jcs-refresh-dashboard-buffer)
 (define-key dashboard-mode-map (kbd "M-K") #'jcs-refresh-dashboard-buffer)
 
 ;;; Syntax Check
