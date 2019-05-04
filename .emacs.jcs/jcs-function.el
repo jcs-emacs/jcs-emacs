@@ -19,6 +19,20 @@
     (setq beacon-color 0.5)))
 
 ;;----------------------------------------------
+;; Calculator
+;;----------------------------------------------
+
+;;;###autoload
+(defun jcs-calc-eval-region ()
+  "Eval the arithmetic expression in the region and replace it with the result."
+  (interactive)
+  (if (not (use-region-p))
+      (message "Trying to use calc eval but with no region selected")
+    (let ((val (calc-eval (buffer-substring (region-beginning) (region-end)))))
+      (delete-region (region-beginning) (region-end))
+      (insert val))))
+
+;;----------------------------------------------
 ;; Canceling
 ;;----------------------------------------------
 
