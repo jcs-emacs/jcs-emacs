@@ -162,9 +162,16 @@
 can see the error/operation message.")
 
 
-;;; Recent files
+;;; Recent Files
 (recentf-mode 1)
 (setq recentf-max-menu-items 25)
+
+(defun jcs-advice-recentf-track-opened-file-after ()
+  "Advice after execute `recentf-track-opened-file' command."
+  ;; NOTE(jenchieh): Update dashboard after recent file
+  ;; list changes.
+  (jcs-refresh-dashboard-buffer))
+(advice-add 'recentf-track-opened-file :after #'jcs-advice-recentf-track-opened-file-after)
 
 ;;; Scroll bar
 (scroll-bar-mode -1)
