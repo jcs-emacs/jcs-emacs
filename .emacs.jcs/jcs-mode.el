@@ -402,6 +402,7 @@ PR : pair file `regexp' and file mode `symbol'."
   (jcs-add-auto-mode-alist '("\\.hs'?\\'" . haskell-mode))
   ;; ATTENTION(jenchieh): Haxe-mode is no longer maintaining...
   ;; Consider remove `haxe-mode' from this config.
+  (require 'haxe-mode)
   (jcs-add-auto-mode-alist '("\\.hx'?\\'" . haxe-mode))
   (jcs-add-auto-mode-alist '("\\.hxml'?\\'" . haxe-mode)))
 
@@ -464,7 +465,7 @@ PR : pair file `regexp' and file mode `symbol'."
   (jcs-add-auto-mode-alist '("\\.sql'?\\'" . sql-mode))
   (jcs-add-auto-mode-alist '("\\.swift'?\\'" . swift-mode)))
 
-;;; T
+;;; T
 (progn
   (jcs-add-auto-mode-alist '("\\.ts'?\\'" . typescript-mode)))
 
