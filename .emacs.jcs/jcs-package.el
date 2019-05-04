@@ -98,7 +98,6 @@
                                    package-build
                                    package-lint
                                    pdf-tools
-                                   php-mode
                                    powerline
                                    processing-mode
                                    project-abbrev
