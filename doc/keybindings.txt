@@ -222,6 +222,11 @@ M-left          Backward capital word.
 
 C-M-m           Show/Hide mode line.
 
+C-M-<           Decrease tab width by 2.
+C-M->           Increase tab width by 2.
+
+C-x =           Calcualte the region and replace with the result.
+
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * Window
