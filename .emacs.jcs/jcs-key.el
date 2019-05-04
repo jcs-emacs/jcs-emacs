@@ -64,14 +64,17 @@
 (define-key nhexl-mode-map (kbd "<right>") #'forward-char)
 (define-key nhexl-mode-map (kbd "<left>") #'backward-char)
 
+;;; Calculator
+(define-key global-map (kbd "C-x =") #'jcs-calc-eval-region)
+
 ;;; Canceling Action.
 ;;(define-key global-map "\C-g" #'jcs-top-level)
 (define-key global-map (kbd "<escape>") #'jcs-top-level)
 
 ;;; Comment/Uncomment
 (define-key global-map (kbd "C-/") #'jcs-comment-uncomment-region-or-line)
-(define-key global-map "\C-k\C-c" #'jcs-comment-region-or-line)
-(define-key global-map "\C-k\C-u" #'jcs-uncomment-region-or-line)
+(define-key global-map (kbd "C-k C-c") #'jcs-comment-region-or-line)
+(define-key global-map (kbd "C-k C-u") #'jcs-uncomment-region-or-line)
 
 ;;; Describe Thing
 (define-key global-map (kbd "C-k C-s") #'describe-bindings)
