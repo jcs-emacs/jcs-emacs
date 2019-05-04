@@ -14,6 +14,8 @@
 (defun jcs-focus-in-hook ()
   "When window is focus."
   (jcs-revert-all-file-buffers)
+
+  (jcs-refresh-dashboard-buffer)
   )
 (add-hook 'focus-in-hook 'jcs-focus-in-hook)
 
@@ -27,11 +29,8 @@
 
 (defun jcs-find-file-hook ()
   "When temporary buffer shown."
-  (save-selected-window
-    (ignore-errors
-      (jcs-jump-shown-to-buffer "*Buffer List*"))
-    (when (jcs-is-current-major-mode-p "Buffer-menu-mode")
-      (jcs-buffer-menu)))
+  (jcs-refresh-buffer-menu-buffer)
+  (jcs-active-line-numbers-by-mode)
   )
 (add-hook 'find-file-hook 'jcs-find-file-hook)
 
