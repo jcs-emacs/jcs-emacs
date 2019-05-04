@@ -797,10 +797,8 @@ ARG : Match with `save-buffer' command."
   (interactive)
   (kill-this-buffer)
 
-  (save-selected-window
-    (when (ignore-errors (jcs-jump-shown-to-buffer "*Buffer List*"))
-      ;; NOTE(jenchieh): Refresh buffer menu once.
-      (jcs-buffer-menu)))
+  ;; Refresh buffer menu once.
+  (jcs-refresh-buffer-menu-buffer)
 
   ;; If still in the buffer menu, try switch to the
   ;; previous buffer
