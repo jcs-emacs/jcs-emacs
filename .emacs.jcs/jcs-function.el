@@ -49,14 +49,23 @@
   "Update dashboard buffer by killing it and start a new one."
   (interactive)
   (when (boundp 'dashboard-buffer-name)
-    (let ((db-id-lst (jcs-get-window-id-by-buffer-name dashboard-buffer-name)))
+    (let ((db-id-lst (jcs-get-window-id-by-buffer-name dashboard-buffer-name))
+          (buf-pts '())
+          (index 0))
+      (save-selected-window
+        (dolist (win-id db-id-lst)
+          (jcs-ace-select-window win-id)
+          (push (point) buf-pts)))
+      (setq buf-pts (reverse buf-pts))
       (when (jcs-buffer-exists-p dashboard-buffer-name)
         (kill-buffer dashboard-buffer-name))
       (dashboard-insert-startupify-lists)
       (save-selected-window
         (dolist (win-id db-id-lst)
           (jcs-ace-select-window win-id)
-          (switch-to-buffer dashboard-buffer-name))))))
+          (switch-to-buffer dashboard-buffer-name)
+          (goto-char (nth index buf-pts))
+          (setq index (1+ index)))))))
 
 ;;;###autoload
 (defun jcs-reset-dashboard-banner-by-theme ()
