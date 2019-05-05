@@ -133,7 +133,7 @@ this version instead."
 
 
 ;;----------------------------------------------
-;; Small Navigation
+;; Character Navigation
 ;;----------------------------------------------
 
 (defun jcs-move-to-forward-a-char (ch)
@@ -191,6 +191,21 @@ as NO-REC : recursive? (Default: do recusrive method)"
   (if (equal no-rec t)
       (jcs-move-to-backward-a-char ch)
     (jcs-move-to-backward-a-char-recursive ch)))
+
+
+;;----------------------------------------------
+;; Symbol Navigation
+;;----------------------------------------------
+
+;;;###autoload
+(defun jcs-backward-symbol (arg)
+  (interactive "p")
+  (forward-symbol (- arg)))
+
+;;;###autoload
+(defun jcs-forward-symbol (arg)
+  (interactive "p")
+  (forward-symbol arg))
 
 
 ;;----------------------------------------------
