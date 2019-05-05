@@ -1556,6 +1556,7 @@ CC : current character before character deletion occured."
 (defun jcs-isearch-project-backward-symbol-at-point ()
   "Isearch project backward symbol at point."
   (interactive)
+  (forward-symbol -1)
   (isearch-project-forward-symbol-at-point))
 
 ;;;###autoload
