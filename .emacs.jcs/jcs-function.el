@@ -82,6 +82,13 @@
           (setq index (1+ index)))))))
 
 ;;;###autoload
+(defun jcs-maybe-kill-dashboard-buffer ()
+  "Kill the dashboard buffer then open the new one immediately."
+  (interactive)
+  (jcs-maybe-kill-this-buffer)
+  (jcs-refresh-dashboard-buffer))
+
+;;;###autoload
 (defun jcs-reset-dashboard-banner-by-theme ()
   "Reset dashboard banner."
   (interactive)
