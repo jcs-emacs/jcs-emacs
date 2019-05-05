@@ -53,7 +53,7 @@ configured the entire thing from scratch, to suit my
 needs. Here are a few goals that I want this config 
 to accomplished.
 
-Here are few goals that I want this config to 
+Here are a few goals that I want this config to be 
 accomplished.
 
 * Having the same set of key bindings across different 
