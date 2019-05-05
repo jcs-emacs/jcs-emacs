@@ -30,9 +30,6 @@
   (define-key shell-mode-map "\C-c\C-c" #'kill-ring-save)
   (define-key shell-mode-map "\C-x\C-x" #'kill-ring-save)
 
-  ;; Mode Line
-  (define-key shell-mode-map (kbd "C-m") #'jcs-toggle-mode-line)
-
   ;; Deletion
   (define-key shell-mode-map (kbd "C-<backspace>") #'jcs-shell-backward-delete-word)
   (define-key shell-mode-map (kbd "C-S-<backspace>") #'jcs-shell-forward-delete-word)
