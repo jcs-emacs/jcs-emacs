@@ -194,6 +194,11 @@ For those mode does not apply faces correctly!"
 ;; Load face order.
 ;;----------------------------------------------
 
+(jcs-init-css-faces)
+(jcs-init-lua-faces)
+(jcs-init-py-faces)
+(jcs-init-web-faces)
+
 ;; Load OOP faces.
 (when (fboundp 'jcs-oop-reload-faces)
   (call-interactively #'jcs-oop-reload-faces))
