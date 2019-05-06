@@ -201,7 +201,6 @@ another function..."
 ;;-----------------------------------------------------------
 ;;-----------------------------------------------------------
 
-;;;###autoload
 (defun jcs-init-web-faces ()
   "Initialize Web mode faces highlihgting."
   (let ((web-type-comment-missing-modes '(web-mode)))
