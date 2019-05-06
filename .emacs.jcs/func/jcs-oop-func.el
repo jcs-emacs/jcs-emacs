@@ -21,57 +21,54 @@
       (jcs-is-current-major-mode-p "web-mode")))
 
 
-(defvar jcs-oop-highlight-modes '(actionscript-mode
-                                  cc-mode
-                                  c-mode
-                                  c++-mode
-                                  csharp-mode
-                                  java-mode
-                                  jayces-mode
-                                  js2-mode
-                                  lua-mode
-                                  nasm-mode
-                                  php-mode
-                                  python-mode
-                                  ;;typescript-mode
-                                  web-mode)
-  "Modes to add OOP document comment style.")
-
-
 ;;;###autoload
 (defun jcs-oop-reload-faces ()
   "Reload the faces once."
   (interactive)
-  (mapc (lambda (mode)
-          (font-lock-add-keywords
-           mode
-           '(("\\(?:^\\|\\s-\\)\\(@[a-zA-Z0-9_-]*\\)" 1 'jcs-oop-tag-face t)
-             ;; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-             ;; OPTION(jenchieh): Highlight curly bracket.
-             ("@[a-zA-Z0-9_-]*\\(?:^\\|\\s-\\)\\([\\[{].*.[\]}]\\)" 1 'jcs-oop-type-face t)
-             ;; >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-             ;; OR(jenchieh):
-             ;; >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-             ;; OPTION(jenchieh): Don't highlight curly bracket.
-             ;;("@[a-zA-Z0-9_-]*\\(?:^\\|\\s-\\)[\\[{]\\(.*.\\)[]}]" 1 'jcs-oop-type-face t)
-             ;; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+  (let ((jcs-oop-highlight-modes '(actionscript-mode
+                                   cc-mode
+                                   c-mode
+                                   c++-mode
+                                   csharp-mode
+                                   java-mode
+                                   jayces-mode
+                                   js2-mode
+                                   lua-mode
+                                   nasm-mode
+                                   php-mode
+                                   python-mode
+                                   ;;typescript-mode
+                                   web-mode)))
+    (mapc (lambda (mode)
+            (font-lock-add-keywords
+             mode
+             '(("\\(?:^\\|\\s-\\)\\(@[a-zA-Z0-9_-]*\\)" 1 'jcs-oop-tag-face t)
+               ;; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+               ;; OPTION(jenchieh): Highlight curly bracket.
+               ("@[a-zA-Z0-9_-]*\\(?:^\\|\\s-\\)\\([\\[{].*.[\]}]\\)" 1 'jcs-oop-type-face t)
+               ;; >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+               ;; OR(jenchieh):
+               ;; >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+               ;; OPTION(jenchieh): Don't highlight curly bracket.
+               ;;("@[a-zA-Z0-9_-]*\\(?:^\\|\\s-\\)[\\[{]\\(.*.\\)[]}]" 1 'jcs-oop-type-face t)
+               ;; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-             ;;
-             ;; NOTE(jenchieh):
-             ;; Doc String Style:
-             ;;
-             ;; @param { TypeName } `ValueTag' : value tag description..
-             ;;
-             ("@[a-zA-Z0-9_].*[\]\|}][ \t\n]*\\([a-zA-Z0-9_$*&]*\\)[ \t\n]*[:-]" 1 'jcs-oop-value-face t)
-             ;;
-             ;; NOTE(jenchieh):
-             ;; Doc String Style:
-             ;;
-             ;; @param `ValueTag' : value tag description..
-             ;;
-             ("@[a-zA-Z0-9_]*[ \t\n]*\\([a-zA-Z0-9_.*&]*\\)[ \t\n]*[{:-]" 1 'jcs-oop-value-face t)
-             )'end))
-        jcs-oop-highlight-modes))
+               ;;
+               ;; NOTE(jenchieh):
+               ;; Doc String Style:
+               ;;
+               ;; @param { TypeName } `ValueTag' : value tag description..
+               ;;
+               ("@[a-zA-Z0-9_].*[\]\|}][ \t\n]*\\([a-zA-Z0-9_$*&]*\\)[ \t\n]*[:-]" 1 'jcs-oop-value-face t)
+               ;;
+               ;; NOTE(jenchieh):
+               ;; Doc String Style:
+               ;;
+               ;; @param `ValueTag' : value tag description..
+               ;;
+               ("@[a-zA-Z0-9_]*[ \t\n]*\\([a-zA-Z0-9_.*&]*\\)[ \t\n]*[{:-]" 1 'jcs-oop-value-face t)
+               )'end))
+          jcs-oop-highlight-modes)))
 
 
 ;;; Doc string
