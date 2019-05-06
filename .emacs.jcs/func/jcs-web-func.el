@@ -214,10 +214,7 @@ another function..."
                ;; TODO(jenchieh): There is bug if `/' is inside the comment space.
                ("\\(/\\*[^/]*\\*/\\)" 1 'jcs-web-mode-block-comment-face t)
                )'end))
-          web-type-comment-missing-modes))
-  ;; Other faces.
-  (face-remap-add-relative 'web-mode-block-string-face '(jcs-font-lock-string-face))
-  (face-remap-add-relative 'web-mode-html-attr-value-face '(jcs-web-mode-html-attr-value-face)))
+          web-type-comment-missing-modes)))
 
 
 (provide 'jcs-web-func)
