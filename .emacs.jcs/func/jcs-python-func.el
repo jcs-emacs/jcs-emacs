@@ -6,7 +6,6 @@
 (require 'python-mode)
 
 
-;;;###autoload
 (defun jcs-init-py-faces ()
   "Initialize Python mode faces highlighting."
   (let ((py-missing-modes '(python-mode)))
@@ -16,7 +15,7 @@
              '(;; NOTE(jenchieh): `(require 'python)' actually solved the docstring
                ;; highlighting issue.
                ;; TODO(jenchieh): Maybe remove this?
-               ;;("\\(\"\"\"[^\"]*\"\"\"\\)" 1 'jcs-py-mode-docstring-face t)
+               ("\\(\"\"\"[^\"]*\"\"\"\\)" 1 'jcs-py-mode-docstring-face t)
 
                ;;<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                ;; NOTE(jenchieh): Fixed comment and string conflict.
