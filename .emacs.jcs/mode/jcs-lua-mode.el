@@ -3,17 +3,6 @@
 ;;; Code:
 
 
-;; NOTE(jenchieh): Load it once!
-(font-lock-add-keywords
- 'lua-mode
- '(;;<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-   ;; NOTE(jenchieh): Fixed comment and string conflict.
-   ("[^\"]\\(--[^\"\r\n]*\\)[^\"]" 1 'jcs-font-lock-comment-face t)
-   ("[^\"]\\(\"[^\"]*\"\\)[^\"]" 1 'jcs-font-lock-string-face t)
-   ;;>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-   )'end)
-
-
 (require 'lua-mode)
 (defun jcs-lua-mode-hook ()
   "Lau mode hook."

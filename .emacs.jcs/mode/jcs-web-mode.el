@@ -86,9 +86,6 @@
         ((string-match "[.]php" buffer-file-name) (jcs-php-format))
         )
 
-  ;; Set Faces.
-  (jcs-init-web-faces)
-
   ;; Normal
   (define-key web-mode-map (kbd "C-d") #'jcs-web-kill-whole-line)
   (define-key web-mode-map "\C-c\C-c" #'jcs-web-kill-ring-save)
@@ -185,6 +182,7 @@
 (set-face-attribute 'web-mode-doctype-face nil :foreground "Pink3")
 (set-face-attribute 'web-mode-block-comment-face nil :foreground (face-foreground jcs-font-lock-comment-face))
 (set-face-attribute 'web-mode-comment-face nil :foreground (face-foreground jcs-font-lock-comment-face))
+(set-face-attribute 'web-mode-css-property-name-face nil :foreground (face-foreground jcs-css-type-face))
 
 ;;; Snippets
 (setq web-mode-extra-snippets

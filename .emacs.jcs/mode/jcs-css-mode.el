@@ -28,9 +28,6 @@
           ((string-match "[.]css" buffer-file-name) (jcs-css-format))
           ))
 
-  ;; Set Faces.
-  (jcs-init-css-faces)
-
   ;; Normal
   (define-key css-mode-map (kbd "C-d") #'jcs-kill-whole-line)
   (define-key css-mode-map "\C-c\C-c" #'kill-ring-save)

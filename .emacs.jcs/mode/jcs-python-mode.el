@@ -28,9 +28,6 @@
           ((string-match "[.]py" buffer-file-name) (jcs-python-class-format))
           ))
 
-  ;; Set Faces.
-  (jcs-init-py-faces)
-
   ;; Normal
   (define-key python-mode-map (kbd "C-d") #'jcs-kill-whole-line)
   (define-key python-mode-map "\C-c\C-c" #'kill-ring-save)
