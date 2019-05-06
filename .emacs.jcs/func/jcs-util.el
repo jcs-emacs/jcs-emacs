@@ -922,8 +922,7 @@ FONT : font to check."
   (or (jcs-is-current-major-mode-p "c-mode")
       (jcs-is-current-major-mode-p "c++-mode")
       (jcs-is-current-major-mode-p "lua-mode")
-      (jcs-is-current-major-mode-p "typescript-mode")
-      (jcs-is-current-major-mode-p "web-mode")))
+      (jcs-is-current-major-mode-p "typescript-mode")))
 
 ;;;###autoload
 (defun jcs-font-lock-fontify-buffer ()
