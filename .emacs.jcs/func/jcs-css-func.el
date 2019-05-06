@@ -54,7 +54,9 @@
   ;;(com-css-sort-attributes-document)
   (jcs-untabify-save-buffer))
 
-;;;###autoload
+;;-----------------------------------------------------------
+;;-----------------------------------------------------------
+
 (defun jcs-init-css-faces ()
   "CSS Faces Highlighting."
   (let ((tmp-css-modes '(css-mode)))
@@ -65,12 +67,15 @@
                ("\\(/\\*[a-zA-Z0-9 \n\t-.<>?,*'`@\"=_(){}:;&^%$#!~]*\\*/\\)" 1 'jcs-font-lock-comment-face t)
                ("[ \t]*\\([#][a-zA-Z0-9_-]*\\)[ \t\n]*[(\[*:>+~,{]" 1 'jcs-css-id-face t)
                ("[ \t]*\\([.][a-zA-Z0-9_-]*\\)[ \t\n]*[(\[*:>+~,{]" 1 'jcs-css-class-face t)
-               ("\\([:][a-zA-Z0-9>+~:_-]*\\)[ \t\n]*[,{]" 1 'jcs-css-event-face t)
+               ("\\([:][a-zA-Z0-9>+~:_-]+\\)[ \t\n]*[,{]" 1 'jcs-css-event-face t)
                ;; Selector
                ("[ \t\n]+\\([a-zA-Z0-9-.<>?,*'`@\"=_(){}:&^%$#!~]*\\)[ \t\n]*:" 1 'jcs-css-type-face t)
                ("[ \t\n]*:[ \t\n]*\\([a-zA-Z0-9 \n\t-.<>?,*'`@\"=_(){}:&^%$#!~]*\\)[ \t\n]*;" 1 'jcs-css-value-face t)
                ;; Number
                ("[ \t;,)]*\\([+-]*[0-9]*[.]*[0-9]+[a-z%]*\\)[ \t\n;,)]" 1 'jcs-css-number-face t)
+               ;; String
+               ("[^\']\\(\'[^\']*\'\\)[^\']" 1 'jcs-font-lock-string-face t)
+               ("[^\"]\\(\"[^\"]*\"\\)[^\"]" 1 'jcs-font-lock-string-face t)
                ;; For multi-lines comment.
                ;; TODO(jenchieh): Only inside the curly bracket.
                ;; TODO(jenchieh): There is bug if `/' is inside the comment space.
