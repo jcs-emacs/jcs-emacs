@@ -65,6 +65,9 @@
   (face-remap-add-relative 'jcs-oop-type-face '(:inherit web-mode-block-face))
   (face-remap-add-relative 'jcs-oop-value-face '(:inherit web-mode-block-face))
 
+  (jcs-make-electric-pair-pairs-local '((?\' . ?\')))
+  (jcs-make-electric-pair-pairs-local '((?\" . ?\")))
+
 
   (defun jcs-html-format ()
     "Format the give file as a HTML file."
@@ -180,8 +183,8 @@
 
 ;; Syntax Highlighting
 (set-face-attribute 'web-mode-doctype-face nil :foreground "Pink3")
-(set-face-attribute 'web-mode-block-comment-face nil :foreground "olive drab")
-(set-face-attribute 'web-mode-comment-face nil :foreground "olive drab")
+(set-face-attribute 'web-mode-block-comment-face nil :foreground (face-foreground jcs-font-lock-comment-face))
+(set-face-attribute 'web-mode-comment-face nil :foreground (face-foreground jcs-font-lock-comment-face))
 
 ;;; Snippets
 (setq web-mode-extra-snippets
