@@ -279,7 +279,7 @@ the `copy` key is `C-c C-c`.
 
 The theme was to design close to 
 [Visual Studio IDE](https://visualstudio.microsoft.com/) 
-preset dark theme. I believed 
+preset light/dark theme. I believed 
 [Microsoft](https://www.microsoft.com/zh-tw/) 
 has a great UI/UX team, since I don't have any experience 
 or work related to UI/UX, I would just like to have the 
