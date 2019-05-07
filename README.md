@@ -288,9 +288,9 @@ want to customize the theme yourself, then check out the
 `./.emacs.jcs/jcs-theme.el` file. All the theme related 
 variables can be found in that file.
 
-<p align="center">
-  <img src="./screenshot/startup.png" width="920" height="540"/>
-</p>
+| Light Theme                               | Dark Theme                               |
+|:------------------------------------------|:-----------------------------------------|
+|<img src="./screenshot/startup-light.png"/>|<img src="./screenshot/startup-dark.png"/>|
 
 
 ## Font
