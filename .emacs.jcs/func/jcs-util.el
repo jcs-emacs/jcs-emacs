@@ -921,7 +921,6 @@ FONT : font to check."
   "List of mode that need to refresh highlighting in `jcs-post-command-hook'."
   (or (jcs-is-current-major-mode-p "c-mode")
       (jcs-is-current-major-mode-p "c++-mode")
-      (jcs-is-current-major-mode-p "lua-mode")
       (jcs-is-current-major-mode-p "typescript-mode")))
 
 ;;;###autoload
