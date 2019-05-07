@@ -201,7 +201,7 @@ For those mode does not apply faces correctly!"
 
 ;; Load OOP faces.
 (when (fboundp 'jcs-oop-reload-faces)
-  (call-interactively #'jcs-oop-reload-faces))
+  (jcs-oop-reload-faces))
 
 
 (provide 'jcs-face)
