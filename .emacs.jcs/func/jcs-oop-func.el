@@ -21,24 +21,22 @@
       (jcs-is-current-major-mode-p "web-mode")))
 
 
-;;;###autoload
 (defun jcs-oop-reload-faces ()
   "Reload the faces once."
-  (interactive)
-  (let ((jcs-oop-highlight-modes '(actionscript-mode
-                                   cc-mode
-                                   c-mode
-                                   c++-mode
-                                   csharp-mode
-                                   java-mode
-                                   jayces-mode
-                                   js2-mode
-                                   lua-mode
-                                   nasm-mode
-                                   php-mode
-                                   python-mode
-                                   ;;typescript-mode
-                                   web-mode)))
+  (let ((oop-highlight-modes '(actionscript-mode
+                               cc-mode
+                               c-mode
+                               c++-mode
+                               csharp-mode
+                               java-mode
+                               jayces-mode
+                               js2-mode
+                               lua-mode
+                               nasm-mode
+                               php-mode
+                               python-mode
+                               ;;typescript-mode
+                               web-mode)))
     (mapc (lambda (mode)
             (font-lock-add-keywords
              mode
@@ -68,7 +66,7 @@
                ;;
                ("@[a-zA-Z0-9_]*[ \t\n]*\\([a-zA-Z0-9_.*&]*\\)[ \t\n]*[{:-]" 1 'jcs-oop-value-face t)
                )'end))
-          jcs-oop-highlight-modes)))
+          oop-highlight-modes)))
 
 
 ;;; Doc string
