@@ -11,47 +11,39 @@
 (defun jcs-insert-command-mode-toggle()
   "Toggle command/insert mode."
   (interactive)
-
   (if (get 'jcs-insert-command-mode-toggle 'state)
       (progn
         ;; command mode
         (jcs-command-mode)
         (put 'jcs-insert-command-mode-toggle 'state nil))
-    (progn
-      ;; insert mode
-      (jcs-insert-mode)
-      (put 'jcs-insert-command-mode-toggle 'state t))))
+    ;; insert mode
+    (jcs-insert-mode)
+    (put 'jcs-insert-command-mode-toggle 'state t)))
 
 ;;;###autoload
 (defun jcs-depend-cross-mode-toggle()
   "Toggle depend/cross mode."
   (interactive)
-  ;; NOTE(jenchieh): can only active when the minibuffer is
-  ;; not active.
-  (when (eq jcs-minibuffer-active nil)
+  (unless (minibufferp)
     (if (get 'jcs-depend-cross-mode-toggle 'state)
         (progn
           ;; depend mode
           (jcs-depend-mode)
           (put 'jcs-depend-cross-mode-toggle 'state nil))
-      (progn
-        ;; cross mode
-        (jcs-cross-mode)
-        (put 'jcs-depend-cross-mode-toggle 'state t)))))
+      ;; cross mode
+      (jcs-cross-mode)
+      (put 'jcs-depend-cross-mode-toggle 'state t))))
 
 ;;;###autoload
 (defun jcs-reload-active-mode ()
   "Reload the active mode.  Note this is opposite logic to the \
 toggle mode function."
   (interactive)
-  ;; NOTE(jenchieh): can only active when the minibuffer is
-  ;; not active.
-  (when (eq jcs-minibuffer-active nil)
-    (if (get 'jcs-depend-cross-mode-toggle 'state)
-        ;; if state is true keep on cross mode.
-        (jcs-cross-mode)
-      ;; vice versa, keep on depend mode.
-      (jcs-depend-mode))))
+  (if (get 'jcs-depend-cross-mode-toggle 'state)
+      ;; if state is true keep on cross mode.
+      (jcs-cross-mode)
+    ;; vice versa, keep on depend mode.
+    (jcs-depend-mode)))
 
 
 ;;;###autoload
@@ -60,9 +52,7 @@ toggle mode function."
 to the `jcs-cross-mode' in order to use cross mode search instead
 of machine depenedent plugins/packages which is the `jcs-depend-mode'."
   (interactive)
-  ;; NOTE(jenchieh): can only active when the minibuffer is
-  ;; not active.
-  (unless jcs-minibuffer-active
+  (unless (minibufferp)
     (unless (ignore-errors (or (helm-do-ag-this-file) t))
       (jcs-cross-mode)
       (message "Error: This buffer is not visited file. Switch to cross mode search..")
