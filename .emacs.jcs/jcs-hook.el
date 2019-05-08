@@ -97,44 +97,34 @@
 ;; Minibuffer
 ;;-----------------------------------------------------------
 
-(defvar jcs-minibuffer-active nil
-  "Flag to check if current minibuffer active?")
+(defun jcs-minibuffer-setup-hook ()
+  "Hook when minibuffer setup."
+  (when (and (not (jcs-current-char-equal-p "/"))
+             ;; SEE(jenchieh): this trigger can be check
+             ;; at `jcs-helm.el' file.
+             jcs-helm-find-files-active)
+    ;; NOTE(jenchieh): This will prevent missing the
+    ;; slash at the end of the search file path.
+    (insert "/"))
 
-(add-hook 'minibuffer-setup-hook
-          (lambda ()
-            ;; Active trigger flag.
-            (setq jcs-minibuffer-active t)
-
-            (when (and (not (jcs-current-char-equal-p "/"))
-                       ;; SEE(jenchieh): this trigger can be check
-                       ;; at `jcs-helm.el' file.
-                       jcs-helm-find-files-active)
-              ;; NOTE(jenchieh): This will prevent missing the
-              ;; slash at the end of the search file path.
-              (insert "/"))
-
-            ;; Register hook.
-            (add-hook 'post-command-hook #'jcs-minibuffer-post-command-hook nil t)
-            ))
+  ;; Register hook.
+  (add-hook 'post-command-hook #'jcs-minibuffer-post-command-hook nil t)
+  )
+(add-hook 'minibuffer-setup-hook 'jcs-minibuffer-setup-hook)
 
 (defun jcs-minibuffer-post-command-hook ()
   "Minibuffer post command hook."
   ;; NOTE(jenchieh): reserve usage...
   )
 
-(add-hook 'minibuffer-exit-hook
-          (lambda ()
-            ;; Deactive trigger flag.
-            (setq jcs-minibuffer-active nil)
+(defun jcs-minibuffer-exit-hook ()
+  "Hook when exit minibuffer."
+  ;; NOTE: disable the file after we do close minibuffer.
+  (setq jcs-helm-find-files-active nil)
 
-            (jcs-reload-active-mode)
-            ;; NOTE: disable the file after we do close minibuffer.
-            (setq jcs-helm-find-files-active nil)
-
-            ;; ATTENTION(jenchieh): no matter what, cancel top level activation
-            ;; while minibuffer exit!
-            (setq jcs-top-level-active nil)
-            ))
+  (jcs-reload-active-mode)
+  )
+(add-hook 'minibuffer-exit-hook 'jcs-minibuffer-exit-hook)
 
 
 (provide 'jcs-hook)
