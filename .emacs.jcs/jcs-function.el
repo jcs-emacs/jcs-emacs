@@ -36,23 +36,11 @@
 ;; Canceling
 ;;----------------------------------------------
 
-(defvar jcs-top-level-active nil
-  "Check if top level active.")
-
 ;;;###autoload
 (defun jcs-top-level ()
   "Teminate the current command."
   (interactive)
-  ;; Set flag.
-  (setq jcs-top-level-active t)
-
-  (top-level)
-
-  ;; ATTENTION(jenchieh): This will never be triggered,
-  ;; because top level terminate the command including
-  ;; this command itself. Turn off the flag see, `jcs-hook.el'
-  ;; file, in the `minibuffer-exit-hook'.
-  )
+  (top-level))
 
 ;;----------------------------------------------
 ;; Dashboard
