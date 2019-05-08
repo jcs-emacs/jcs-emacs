@@ -68,7 +68,7 @@
 (define-key global-map (kbd "C-x =") #'jcs-calc-eval-region)
 
 ;;; Canceling Action.
-;;(define-key global-map "\C-g" #'jcs-top-level)
+;;(define-key global-map (kbd "C-g") #'jcs-top-level)
 (define-key global-map (kbd "<escape>") #'jcs-top-level)
 
 ;;; Comment/Uncomment
