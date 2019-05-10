@@ -826,6 +826,12 @@ active. false, there is no region selected and mark is not active."
   "Check if current cursor point inside the comment block."
   (nth 4 (syntax-ppss)))
 
+(defun jcs-inside-comment-or-string-p ()
+  "Check if inside comment or stirng."
+  (or (nth 8 (syntax-ppss))
+      (jcs-is-current-point-face "jcs-font-lock-comment-face")
+      (jcs-is-current-point-face "jcs-font-lock-string-face")))
+
 ;;;###autoload
 (defun jcs-goto-start-of-the-comment ()
   "Go to the start of the comment."
