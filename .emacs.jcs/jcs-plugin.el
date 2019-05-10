@@ -350,9 +350,7 @@
 
   (defun hl-todo--inside-comment-or-string-p ()
     "Redefine `hl-todo--inside-comment-or-string-p', for accurate highlighting."
-    (or (nth 8 (syntax-ppss))
-        (jcs-is-current-point-face "jcs-font-lock-comment-face")
-        (jcs-is-current-point-face "jcs-font-lock-string-face")))
+    (jcs-inside-comment-or-string-p))
 
   (global-hl-todo-mode 1))
 
