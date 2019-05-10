@@ -10,37 +10,34 @@
 (defun jcs-vs-front-curly-bracket-key ()
   "For programming language that need curly bracket."
   (interactive)
-  (if (or (jcs-is-current-point-face "font-lock-string-face")
-          (jcs-is-inside-comment-block-p))
+  (if (jcs-inside-comment-or-string-p)
       (insert "{")
-    (progn
-      (let ((pretty-it nil)
-            (space-infront nil))
-        (unless (jcs-current-char-equal-p "{")
-          (setq pretty-it t)
-          (unless (jcs-current-whitespace-or-tab-p)
-            (setq space-infront t)))
+    (let ((pretty-it nil)
+          (space-infront nil))
+      (unless (jcs-current-char-equal-p "{")
+        (setq pretty-it t)
+        (unless (jcs-current-whitespace-or-tab-p)
+          (setq space-infront t)))
 
-        (when space-infront
-          (insert " "))
+      (when space-infront
+        (insert " "))
 
-        (insert "{ }")
-        (backward-char 1)
+      (insert "{ }")
+      (backward-char 1)
 
-        (when pretty-it
-          (save-excursion
-            (forward-char 2)
-            (when (and (not (jcs-is-beginning-of-line-p))
-                       (jcs-current-char-equal-p "}"))
-              (backward-char 1)
-              (insert " "))))))))
+      (when pretty-it
+        (save-excursion
+          (forward-char 2)
+          (when (and (not (jcs-is-beginning-of-line-p))
+                     (jcs-current-char-equal-p "}"))
+            (backward-char 1)
+            (insert " ")))))))
 
 ;;;###autoload
 (defun jcs-vs-semicolon-key ()
   "For programming language that use semicolon as the end operator sign."
   (interactive)
   (insert ";")
-
   (save-excursion
     (forward-char 1)
     (when (and (not (jcs-is-beginning-of-line-p))
