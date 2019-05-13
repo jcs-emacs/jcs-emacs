@@ -195,6 +195,7 @@ For those mode does not apply faces correctly!"
 ;;----------------------------------------------
 
 (jcs-init-css-faces)
+(jcs-init-java-faces)
 (jcs-init-lua-faces)
 (jcs-init-py-faces)
 (jcs-init-web-faces)
