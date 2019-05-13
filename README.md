@@ -19,7 +19,7 @@ from this configuration.
 * ActionScript 2.0 or 3.0 / Assembly Language
 * BASIC / Batchfile
 * C / C++ / C# / Clojure / CMake / COBOL / CSS
-* Dart
+* Dart / Delphi (Object Pascal)
 * Elixir / Emacs Lisp / Erlang
 * GLSL / Go
 * Haskell / Haxe / HTML
@@ -28,7 +28,7 @@ from this configuration.
 * Lisp / Lua
 * Makefile
 * Objective-C
-* Perl / PHP / Properties / Python
+* Pascal / Perl / PHP / Properties / Python
 * Ruby / Rust
 * Sass / Scala / SCSS / Shell script / SQL / Swift
 * TypeScript
