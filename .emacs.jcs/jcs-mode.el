@@ -305,7 +305,9 @@ control of the editor."
 (with-eval-after-load 'markdown-mode (require 'jcs-markdown-mode))
 (with-eval-after-load 'nasm-mode (require 'jcs-nasm-mode))
 (with-eval-after-load 'nxml-mode (require 'jcs-xml-mode))
+(with-eval-after-load 'opascal (require 'jcs-opascal-mode))
 (with-eval-after-load 'org (require 'jcs-org-mode))
+(with-eval-after-load 'pascal (require 'jcs-pascal-mode))
 (with-eval-after-load 'perl-mode (require 'jcs-perl-mode))
 (with-eval-after-load 'processing-mode (require 'jcs-processing-mode))
 (with-eval-after-load 'python-mode (require 'jcs-python-mode))
@@ -434,10 +436,13 @@ PR : pair file `regexp' and file mode `symbol'."
 ;;; O
 (progn
   (jcs-add-auto-mode-alist '("\\.m'?\\'" . objc-mode))
+  (jcs-add-auto-mode-alist '("\\.dpk'?\\'" . opascal-mode))
+  (jcs-add-auto-mode-alist '("\\.dpr'?\\'" . opascal-mode))
   (jcs-add-auto-mode-alist '("\\.org'?\\'" . org-mode)))
 
 ;;; P
 (progn
+  (jcs-add-auto-mode-alist '("\\.pas'?\\'" . pascal-mode))
   (jcs-add-auto-mode-alist '("\\.pl'?\\'" . perl-mode))
   (jcs-add-auto-mode-alist '("\\.pde'?\\'" . processing-mode))
   (jcs-add-auto-mode-alist '("\\.py'?\\'" . python-mode))
