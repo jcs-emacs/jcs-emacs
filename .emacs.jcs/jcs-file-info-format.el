@@ -360,6 +360,11 @@ on language selected."
   "Template for makefile Python library."
   (jcs-insert-template-by-file-path "~/.emacs.jcs/template/makefile_python_lib.txt"))
 
+;;; Object Pascal (Delphi)
+(defun jcs-insert-opascal-template ()
+  "Header for Object Pascal header file."
+  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/opascal/opascal_template.txt"))
+
 ;;; Objective-C
 (defun jcs-insert-objc-header-template ()
   "Header for Objective-C header file."
@@ -368,11 +373,6 @@ on language selected."
 (defun jcs-insert-objc-source-template ()
   "Header for Objective-C source file."
   (jcs-insert-template-by-file-path "~/.emacs.jcs/template/cc/objc_source_template.txt"))
-
-;;; Object Pascal
-(defun jcs-insert-opascal-template ()
-  "Header for Object Pascal header file."
-  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/opascal/opascal_template.txt"))
 
 ;;; Pascal
 (defun jcs-insert-pascal-template ()
