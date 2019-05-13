@@ -99,7 +99,8 @@ MK-STR : Mark string."
 ;;;###autoload
 (defun show-eol-update-eol-marks ()
   "Update the EOL mark once."
-  (show-eol-set-mark-with-string 'newline-mark (show-eol-get-eol-mark-by-system)))
+  (show-eol-set-mark-with-string 'newline-mark (show-eol-get-eol-mark-by-system))
+  (whitespace-newline-mode 1))
 
 (defun show-eol-after-save-hook ()
   "Show EOL after save hook."
