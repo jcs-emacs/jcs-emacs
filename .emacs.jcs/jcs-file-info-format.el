@@ -106,16 +106,16 @@ FILEPATH : file path to insert and swap keyword."
 If the template configuration file has change, this must be call
 in order to take effect.  Half hot reloading process."
   (interactive)
-  (setq jcs-preload-double-colon-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/header/d_colon_template.txt"))
-  (setq jcs-preload-double-dash-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/header/d_dash_template.txt"))
-  (setq jcs-preload-double-quote-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/header/d_quote_template.txt"))
-  (setq jcs-preload-double-semicolon-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/header/d_semicolon_template.txt"))
-  (setq jcs-preload-double-slash-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/header/d_slash_template.txt"))
-  (setq jcs-preload-global-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/header/global_template.txt"))
-  (setq jcs-preload-semicolon-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/header/semicolon_template.txt"))
-  (setq jcs-preload-sharp-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/header/sharp_template.txt"))
-  (setq jcs-preload-single-quote-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/header/singlequote_template.txt"))
-  (setq jcs-preload-tag-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/header/tag_template.txt")))
+  (setq jcs-preload-double-colon-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/d_colon_template.txt"))
+  (setq jcs-preload-double-dash-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/d_dash_template.txt"))
+  (setq jcs-preload-double-quote-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/d_quote_template.txt"))
+  (setq jcs-preload-double-semicolon-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/d_semicolon_template.txt"))
+  (setq jcs-preload-double-slash-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/d_slash_template.txt"))
+  (setq jcs-preload-global-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/global_template.txt"))
+  (setq jcs-preload-semicolon-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/semicolon_template.txt"))
+  (setq jcs-preload-sharp-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/sharp_template.txt"))
+  (setq jcs-preload-single-quote-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/singlequote_template.txt"))
+  (setq jcs-preload-tag-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/tag_template.txt")))
 
 
 ;;---------------------------------------------
@@ -368,6 +368,16 @@ on language selected."
 (defun jcs-insert-objc-source-template ()
   "Header for Objective-C source file."
   (jcs-insert-template-by-file-path "~/.emacs.jcs/template/cc/objc_source_template.txt"))
+
+;;; Object Pascal
+(defun jcs-insert-opascal-template ()
+  "Header for Object Pascal header file."
+  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/opascal/opascal_template.txt"))
+
+;;; Pascal
+(defun jcs-insert-pascal-template ()
+  "Header for Pascal header file."
+  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/pascal/pascal_template.txt"))
 
 ;;; Perl
 (defun jcs-insert-perl-template ()
