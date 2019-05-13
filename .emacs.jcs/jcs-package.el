@@ -50,6 +50,7 @@
                                    company-quickhelp
                                    cpputils-cmake
                                    csharp-mode
+                                   dart-mode
                                    dash
                                    dashboard
                                    diminish
