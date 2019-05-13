@@ -284,6 +284,7 @@ control of the editor."
 (with-eval-after-load 'conf-mode (require 'jcs-properties-mode))
 (with-eval-after-load 'csharp-mode (require 'jcs-csharp-mode))
 (with-eval-after-load 'css-mode (require 'jcs-css-mode))
+(with-eval-after-load 'dart-mode (require 'jcs-dart-mode))
 (with-eval-after-load 'elisp-mode (require 'jcs-elisp-mode))
 (with-eval-after-load 'elixir-mode (require 'jcs-elixir-mode))
 (with-eval-after-load 'erlang (require 'jcs-erlang-mode))
@@ -366,6 +367,10 @@ PR : pair file `regexp' and file mode `symbol'."
   (jcs-add-auto-mode-alist '("\\.properties'?\\'" . conf-javaprop-mode))
   (jcs-add-auto-mode-alist '("\\.cs'?\\'" . csharp-mode))
   (jcs-add-auto-mode-alist '("\\.css'?" . css-mode)))
+
+;;; D
+(progn
+  (jcs-add-auto-mode-alist '("\\.dart'?" . dart-mode)))
 
 ;;; E
 (progn
