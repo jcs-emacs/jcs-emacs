@@ -128,7 +128,6 @@ Including adding or removing the package path."
 ;;-----------------------------------------------------------
 ;;-----------------------------------------------------------
 
-;;;###autoload
 (defun jcs-init-java-faces ()
   "Initialize Java mode faces highlihgting."
   (let ((java-font-lock-face-missing-modes '(java-mode)))
