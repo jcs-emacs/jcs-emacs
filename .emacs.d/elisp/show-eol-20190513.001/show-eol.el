@@ -42,14 +42,6 @@
   :group 'tool
   :link '(url-link :tag "Repository" "https://github.com/jcs090218/show-eol"))
 
-
-(defvar show-eol-record-whitespace-display-mappings nil
-  "Record the `whitespace-display-mappings' variable from `whitespace'.")
-
-(defvar show-eol-record-whitespace-newline-attrs '()
-  "Record the `whitespace-newline' face attributes.")
-
-
 (defcustom show-eol-lf-mark "LF"
   "Mark symbol for LF."
   :type 'string
@@ -64,14 +56,6 @@
   "Mark symbol for CR."
   :type 'string
   :group 'show-eol)
-
-(defface show-eol-whitespace-newline
-  '((t :background "darkgray"
-       :foreground "#161616"))
-  "Face for EOL string."
-  :group 'show-eol)
-(defvar show-eol-whitespace-newline 'show-eol-whitespace-newline)
-
 
 (defun show-eol-get-eol-mark-by-system ()
   "Return the EOL mark string by system type."
@@ -115,38 +99,26 @@ MK-STR : Mark string."
 ;;;###autoload
 (defun show-eol-update-eol-marks ()
   "Update the EOL mark once."
-  (interactive)
-  (if show-eol-mode
-      (show-eol-set-mark-with-string 'newline-mark (show-eol-get-eol-mark-by-system))
-    (error "Cannot show EOL when show-eol-mode is not enabled")))
-
+  (show-eol-set-mark-with-string 'newline-mark (show-eol-get-eol-mark-by-system)))
 
 (defun show-eol-after-save-hook ()
   "Show EOL after save hook."
-  (show-eol-enable))
+  (show-eol-update-eol-marks))
 
 
 (defun show-eol-enable ()
   "Enable 'show-eol-select' in current buffer."
   (add-hook 'after-save-hook 'show-eol-after-save-hook nil t)
-
-  (setq show-eol-record-whitespace-newline-attrs (list (face-attribute 'whitespace-newline :background)
-                                                      (face-attribute 'whitespace-newline :foreground)))
-  (set-face-attribute 'whitespace-newline nil :background (face-attribute 'show-eol-whitespace-newline :background))
-  (set-face-attribute 'whitespace-newline nil :foreground (face-attribute 'show-eol-whitespace-newline :foreground))
-
-  (setq show-eol-record-whitespace-display-mappings (mapcar #'copy-sequence whitespace-display-mappings))
+  (face-remap-add-relative 'whitespace-newline :inverse-video t)
+  (setq-local whitespace-display-mappings (mapcar #'copy-sequence whitespace-display-mappings))
   (show-eol-update-eol-marks)
   (whitespace-newline-mode 1))
 
 (defun show-eol-disable ()
   "Disable 'show-eol-mode' in current buffer."
   (remove-hook 'after-save-hook 'show-eol-after-save-hook t)
-
-  (set-face-attribute 'whitespace-newline nil :background (nth 0 show-eol-record-whitespace-newline-attrs))
-  (set-face-attribute 'whitespace-newline nil :foreground (nth 1 show-eol-record-whitespace-newline-attrs))
-
-  (setq whitespace-display-mappings show-eol-record-whitespace-display-mappings)
+  (face-remap-add-relative 'whitespace-newline :inverse-video nil)
+  (kill-local-variable 'whitespace-display-mappings)
   (whitespace-newline-mode -1))
 
 
