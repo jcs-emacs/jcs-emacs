@@ -12,6 +12,8 @@
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
 
+  (face-remap-add-relative 'font-lock-constant-face '((:foreground "#D2D2D2")))
+
   (defun jcs-java-class-format ()
     "Format the given file as a Java file."
     (when (jcs-is-current-file-empty-p)
@@ -27,13 +29,6 @@
     (cond ((file-exists-p buffer-file-name) t)
           ((string-match "[.]java" buffer-file-name) (jcs-java-class-format))
           ))
-
-  ;; Set Faces.
-  (jcs-init-java-faces)
-
-  ;; NOTE(jenchieh): change the face locally to this mode.
-  (face-remap-add-relative 'font-lock-constant-face
-                           '((:foreground "#D2D2D2")))
 
   ;; Normal
   (define-key java-mode-map (kbd "C-d") #'jcs-kill-whole-line)
