@@ -260,6 +260,11 @@ in order to take effect.  Half hot reloading process."
   "Template for CSS."
   (jcs-insert-template-by-file-path "~/.emacs.jcs/template/css/css_template.txt"))
 
+;;; Dart
+(defun jcs-insert-dart-template ()
+  "Template for Dart."
+  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/dart/dart_template.txt"))
+
 ;;; Elixir
 (defun jcs-insert-elixir-template ()
   "Template for Elixir."
