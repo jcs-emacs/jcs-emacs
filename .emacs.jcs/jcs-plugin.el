@@ -420,9 +420,10 @@
 
   ;; NOTE(jenchieh):
   ;; The separator to use for the default theme.
-  ;; Valid Values: alternate, arrow, arrow-fade, bar, box, brace,
-  ;; butt, chamfer, contour, curve, rounded, roundstub, wave, zigzag,
-  ;; utf-8.
+  ;;
+  ;; Valid Values: alternate, arrow, arrow-fade, bar, box,
+  ;; brace, butt, chamfer, contour, curve, rounded, roundstub,
+  ;; wave, zigzag, utf-8.
   (setq powerline-default-separator 'wave))
 
 
@@ -655,6 +656,8 @@
   :defer t
   :diminish whitespace-mode
   :diminish whitespace-newline-mode
+  :diminish global-whitespace-mode
+  :diminish global-whitespace-newline-mode
   :config
   (autoload 'whitespace-mode "whitespace-mode" "Toggle whitespace visualization." t)
   (autoload 'whitespace-toggle-options "whitespace-mode" "Toggle local `whitespace-mode' options." t)
