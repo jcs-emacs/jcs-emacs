@@ -37,7 +37,6 @@ IN-CHAR : input triple char."
             (setq is-comment-prefix-at-point t))))
       is-comment-prefix-at-point)))
 
-
 (defun jcs-do-doc-string ()
   "Check if should insert the doc string by checking only \
 comment character on the same line."
@@ -112,14 +111,13 @@ comment character on the same line."
 
                 ;; goto the end of line
                 (end-of-line))
-            (progn
-              (goto-char last)
+            (goto-char last)
 
-              (insert "\n")
-              (when (jcs-is-inside-comment-block-p)
-                (insert "* "))
+            (insert "\n")
+            (when (jcs-is-inside-comment-block-p)
+              (insert "* "))
 
-              (indent-for-tab-command)))
+            (indent-for-tab-command))
 
           (unless start-of-global-comment-doc
             (let ((is-global-comment-doc nil))
@@ -137,8 +135,7 @@ comment character on the same line."
                       ;; some content on the right.
                       (line-have-content-on-right nil))
 
-                  (cond (;;; NOTE(jenchieh): CSharp-Mode
-                         (jcs-is-current-major-mode-p "csharp-mode")
+                  (cond ((jcs-is-current-major-mode-p "csharp-mode")
                          (progn
                            (save-excursion
                              (when (not (jcs-current-line-comment-p))
@@ -148,12 +145,10 @@ comment character on the same line."
                              (jcs-previous-line)
 
                              (if (not (jcs-vs-csharp-only-vs-comment-prefix-this-line-p))
-                                 (progn
-                                   (when (jcs-vs-csharp-comment-prefix-p)
-                                     (setq is-next-line-doc-string-comment-line t)))
-                               (progn
-                                 (when line-have-content-on-right
-                                   (setq is-next-line-doc-string-comment-line t)))))
+                                 (when (jcs-vs-csharp-comment-prefix-p)
+                                   (setq is-next-line-doc-string-comment-line t))
+                               (when line-have-content-on-right
+                                 (setq is-next-line-doc-string-comment-line t))))
 
                            ;; If we still not sure to insert docstring comment
                            ;; line yet. Then we need to do deeper check.
@@ -180,17 +175,13 @@ comment character on the same line."
                            ;; doc-string comment.
                            (when is-next-line-doc-string-comment-line
                              (insert "/// "))))
-                        (;;; NOTE(jenchieh): Lua-Mode
-                         (jcs-is-current-major-mode-p "lua-mode")
-                         (progn
-                           ;; Just insert for Lua.
-                           ;; Lua does not have issue like CSharp.
-                           (insert "-- "))))
-                  (indent-for-tab-command)
-                  )))))
+                        ((jcs-is-current-major-mode-p "lua-mode")
+                         ;; Just insert for Lua.
+                         ;; Lua does not have issue like CSharp.
+                         (insert "-- ")))
+                  (indent-for-tab-command))))))
       ;; else insert new line
-      (progn
-        (newline-and-indent)))))
+      (newline-and-indent))))
 
 
 ;;;###autoload
