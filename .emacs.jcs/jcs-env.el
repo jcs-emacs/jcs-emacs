@@ -150,6 +150,7 @@
 (defvar jcs-line-numbers-ignore-buffers '("*dashboard*"
                                           "*GNU Emacs*"
                                           "*helm"
+                                          "*Package-Lint*"
                                           "*Packages*")
   "List of buffers that you do not want to show line numbers in it.")
 
