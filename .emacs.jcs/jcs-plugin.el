@@ -677,7 +677,17 @@
     ;;:ensure t
     :defer t
     :config
-    (show-eol-set-mark-with-string 'newline-mark "¶")))
+    (show-eol-set-mark-with-string 'newline-mark "¶")
+
+    (defun jcs-advice-show-eol-enable-before ()
+      "Advice before execute `show-eol-enable' command."
+      (face-remap-add-relative 'whitespace-newline :inverse-video t))
+    (advice-add 'show-eol-enable :before #'jcs-advice-show-eol-enable-before)
+
+    (defun jcs-advice-show-eol-disable-before ()
+      "Advice before execute `show-eol-disable' command."
+      (face-remap-add-relative 'whitespace-newline :inverse-video nil))
+    (advice-add 'show-eol-disable :before #'jcs-advice-show-eol-disable-before)))
 
 
 (use-package yasnippet
