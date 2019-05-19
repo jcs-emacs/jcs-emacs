@@ -355,16 +355,14 @@ IS-FORWARD : forward conversion instead of backward conversion."
   (if (jcs-is-beginning-of-buffer-p)
       ;; No character at the beginning of the buffer, just return `nil'.
       nil
-    (let ((current-char-string (string (char-before))))
-      (string= current-char-string c))))
+    (string= (jcs-get-current-char-string) c)))
 
 (defun jcs-current-char-string-match-p (c)
   "Check the current character string match to 'C'."
   (if (jcs-is-beginning-of-buffer-p)
       ;; No character at the beginning of the buffer, just return `nil'.
       nil
-    (let ((current-char-string (string (char-before))))
-      (string-match-p c current-char-string))))
+    (string-match-p c (jcs-get-current-char-string))))
 
 (defun jcs-get-current-char-byte ()
   "Get the current character as the 'byte'."
@@ -649,8 +647,8 @@ LINE : number to check if current line this line?"
   "Check current cursor point is before the first character at \
 the current line.
 
-@return { boolean } : true, infront of first character.
-false, vice versa."
+Return non-nil, infront of first character.
+Return nil, vice versa."
   (let ((is-infront-of-first-char t)
         (point-to-check nil))
     (save-excursion
@@ -658,15 +656,30 @@ false, vice versa."
         (setq point-to-check (point))
         (beginning-of-line)
 
-        (when (not (jcs-current-line-totally-empty-p))
+        (unless (jcs-current-line-totally-empty-p)
           (forward-char 1))
 
         (while (<= (point) point-to-check)
-          (if (not (jcs-current-whitespace-or-tab-p))
-              (setq is-infront-of-first-char nil))
+          (unless (jcs-current-whitespace-or-tab-p)
+            (setq is-infront-of-first-char nil))
           (forward-char 1))))
 
-    (eq is-infront-of-first-char t)))
+    is-infront-of-first-char))
+
+(defun jcs-is-behind-last-char-at-line-p (&optional pt)
+  "Check current cursor point is after the last character at the current line.
+
+Return non-nil, behind the last character.
+Return nil, vice versa."
+  (save-excursion
+    (let ((is-behind t))
+      (when pt (goto-char pt))
+      (while (and is-behind
+                  (not (jcs-is-end-of-line-p)))
+        (forward-char 1)
+        (unless (jcs-current-whitespace-or-tab-p)
+          (setq is-behind nil)))
+      is-behind)))
 
 (defun jcs-empty-line-between-point (min-pt max-pt)
   "Check if there is empty line between two point.
@@ -684,10 +697,10 @@ MAX-PT : larger position."
         (when (jcs-current-line-empty-p)
           ;; Return true.
           (setq there-is-empty-line t)
-          (equal there-is-empty-line t))
+          there-is-empty-line)
         (jcs-next-line))
       ;; Return false.
-      (equal there-is-empty-line t))))
+      there-is-empty-line)))
 
 (defun jcs-start-line-in-buffer-p ()
   "Is current line the start line in buffer."
@@ -797,18 +810,18 @@ LN : target line to make first to."
 ;;---------------------------------------------
 
 (defun jcs-is-region-selected-p ()
-  "Is region active? But if `region-start' and `region-end' is at the same point this would not trigger.
-Which normally that mark is active but does not move at all.
+  "Is region active? But if `region-start' and `region-end' is at the same point \
+this would not trigger.  Which normally that mark is active but does not move at all.
 
-@return { boolean } : true, there is region selected. false, no
-region selected."
+Return non-nil, there is region selected.
+Return nil, no region selected."
   (use-region-p))
 
 (defun jcs-is-mark-active-or-region-selected-p ()
   "Complete check if the region and the mark is active.
 
-@return { boolean } : true, either region selected or mark is
-active. false, there is no region selected and mark is not active."
+Return non-nil, either region selected or mark is active.
+Return nil, there is no region selected and mark is not active."
   (or (jcs-is-region-selected-p)
       (jcs-is-mark-active-p)))
 
