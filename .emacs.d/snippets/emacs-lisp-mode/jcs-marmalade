@@ -1,0 +1,43 @@
+# -*- mode: snippet -*-
+# name: jcs-marmalade
+# key: jcs-marmalade
+# --
+;;; `(jcs-get-file-name)` --- $1  -*- lexical-binding: t; -*-
+
+;; This file is not part of Emacs
+
+;; Author: Shen, Jen-Chieh <jcs090218@gmail.com>
+;; Version: 0.0.1
+;; Keywords: $2
+;; Package-Version: 
+;; Maintainer: Shen, Jen-Chieh <jcs090218@gmail.com>
+;; Created: `(jcs-get-date-ver2)`
+;; Package-Requires: ((emacs "24.3"))
+;; Description: $3
+;; URL: https://github.com/jcs090218/`(jcs-get-file-name-without-extension)`
+;; Compatibility: Emacs24
+
+;; COPYRIGHT NOTICE
+;;
+;; This program is free software; you can redistribute it and/or modify it
+;; under the terms of the GNU General Public License as published by the Free
+;; Software Foundation; either version 2 of the License, or (at your option)
+;; any later version.
+;;
+;; This program is distributed in the hope that it will be useful, but
+;; WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+;; or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License
+;; for more details.
+;;
+
+;;; Commentary:
+;;
+;; $4
+;;
+
+;;; Code:
+
+$0
+
+(provide '`(jcs-get-file-name-without-extension)`)
+;;; `(jcs-get-file-name)` ends here
