@@ -110,6 +110,7 @@
                                    rust-mode
                                    scala-mode
                                    shader-mode
+                                   show-eol
                                    sr-speedbar
                                    ssass-mode
                                    scss-mode
