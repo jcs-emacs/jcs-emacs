@@ -643,28 +643,25 @@ LINE : number to check if current line this line?"
 
     (= firstCharPoint current-point)))
 
-(defun jcs-is-infront-first-char-at-line-p ()
+(defun jcs-is-infront-first-char-at-line-p (&optional pt)
   "Check current cursor point is before the first character at \
 the current line.
 
 Return non-nil, infront of first character.
 Return nil, vice versa."
-  (let ((is-infront-of-first-char t)
-        (point-to-check nil))
-    (save-excursion
-      (ignore-errors
-        (setq point-to-check (point))
-        (beginning-of-line)
-
-        (unless (jcs-current-line-totally-empty-p)
-          (forward-char 1))
-
-        (while (<= (point) point-to-check)
-          (unless (jcs-current-whitespace-or-tab-p)
-            (setq is-infront-of-first-char nil))
-          (forward-char 1))))
-
-    is-infront-of-first-char))
+  (save-excursion
+    (let ((is-infront t)
+          (point-to-check nil))
+      (when pt (goto-char pt))
+      (setq point-to-check (point))
+      (beginning-of-line)
+      (while (and is-infront
+                  (< (point) point-to-check)
+                  (not (jcs-is-end-of-line-p)))
+        (forward-char 1)
+        (unless (jcs-current-whitespace-or-tab-p)
+          (setq is-infront nil)))
+      is-infront)))
 
 (defun jcs-is-behind-last-char-at-line-p (&optional pt)
   "Check current cursor point is after the last character at the current line.
