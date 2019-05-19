@@ -673,8 +673,7 @@
                       :foreground "red")
 
   (use-package show-eol
-    ;; NOTE(jenchieh): Not on any `elpa' yet..
-    ;;:ensure t
+    :ensure t
     :defer t
     :config
     (show-eol-set-mark-with-string 'newline-mark "¶")
