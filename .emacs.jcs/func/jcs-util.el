@@ -101,9 +101,13 @@ HEX-CODE : Color HEX code to check."
   "Get timestamp version 2."
   (format-time-string "%Y/%m/%d %H:%M:%S"))
 
-(defun jcs-get-date ()
-  "Get date buffer in string type.."
+(defun jcs-get-date-ver1 ()
+  "Get date buffer in string type - version 1."
   (format-time-string "%Y-%m-%d"))
+
+(defun jcs-get-date-ver2 ()
+  "Get date buffer in string type - version 2."
+  (format-time-string "%Y/%m/%d"))
 
 (defun jcs-get-year-only ()
   "Get Year buffer in string type."
