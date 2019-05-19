@@ -919,29 +919,22 @@ ECP-SAME : Exception for the same buffer."
   (when (wordp (jcs-get-current-char-byte))
     (setq jcs-found-first-char t))
 
-  (if (eq jcs-found-first-char nil)
-      (progn
-        (if (eq jcs-first-char-is-char t)
-            (progn
-              (backward-delete-char 1))
-          (progn
-            (backward-delete-char 1)
-            (jcs-backward-kill-word-capital))))
-    (progn
-      (if (not (wordp (jcs-get-current-char-byte)))
-          (progn
-            ;; NOTE: Here is end of the recursive
-            ;; function loop...
-            )
+  (if (not jcs-found-first-char)
+      (if jcs-first-char-is-char
+          (backward-delete-char 1)
+        (backward-delete-char 1)
+        (jcs-backward-kill-word-capital))
+    (if (not (wordp (jcs-get-current-char-byte)))
         (progn
-          (if (uppercasep (jcs-get-current-char-byte))
-              (progn
-                ;; NOTE: Here is end of the recursive
-                ;; function loop...
-                (backward-delete-char 1))
-            (progn
-              (backward-delete-char 1)
-              (jcs-backward-kill-word-capital)))))))
+          ;; NOTE: Here is end of the recursive
+          ;; function loop...
+          )
+      (if (uppercasep (jcs-get-current-char-byte))
+          ;; NOTE: Here is end of the recursive
+          ;; function loop...
+          (backward-delete-char 1)
+        (backward-delete-char 1)
+        (jcs-backward-kill-word-capital))))
 
   ;; reset triggers
   (setq jcs-first-char-is-char nil)
@@ -968,30 +961,22 @@ ECP-SAME : Exception for the same buffer."
   (when (wordp (jcs-get-current-char-byte))
     (setq jcs-found-first-char t))
 
-  (if (eq jcs-found-first-char nil)
-      (progn
-        (if (eq jcs-first-char-is-char t)
-            (progn
-              (backward-delete-char 1))
-          (progn
-            (backward-delete-char 1)
-            (jcs-forward-kill-word-capital))))
-    (progn
-      (if (or (not (wordp (jcs-get-current-char-byte)))
-              (jcs-is-end-of-line-p))
-          (progn
-            ;; NOTE: Here is end of the recursive
-            ;; function loop...
-            (backward-delete-char 1))
-        (progn
-          (if (uppercasep (jcs-get-current-char-byte))
-              (progn
-                ;; NOTE: Here is end of the recursive
-                ;; function loop...
-                (forward-char -1))
-            (progn
-              (backward-delete-char 1)
-              (jcs-forward-kill-word-capital)))))))
+  (if (not jcs-found-first-char)
+      (if jcs-first-char-is-char
+          (backward-delete-char 1)
+        (backward-delete-char 1)
+        (jcs-forward-kill-word-capital))
+    (if (or (not (wordp (jcs-get-current-char-byte)))
+            (jcs-is-end-of-line-p))
+        ;; NOTE: Here is end of the recursive
+        ;; function loop...
+        (backward-delete-char 1)
+      (if (uppercasep (jcs-get-current-char-byte))
+          ;; NOTE: Here is end of the recursive
+          ;; function loop...
+          (forward-char -1)
+        (backward-delete-char 1)
+        (jcs-forward-kill-word-capital))))
 
   ;; reset triggers
   (setq jcs-first-char-is-char nil)
@@ -1016,29 +1001,22 @@ to the point."
   (when (wordp (jcs-get-current-char-byte))
     (setq jcs-found-first-char t))
 
-  (if (eq jcs-found-first-char nil)
-      (progn
-        (if (eq jcs-first-char-is-char t)
-            (progn
-              (backward-char 1))
-          (progn
-            (backward-char 1)
-            (jcs-backward-capital-char))))
-    (progn
-      (if (not (wordp (jcs-get-current-char-byte)))
-          (progn
-            ;; NOTE: Here is end of the recursive
-            ;; function loop...
-            )
+  (if (not jcs-found-first-char)
+      (if jcs-first-char-is-char
+          (backward-char 1)
+        (backward-char 1)
+        (jcs-backward-capital-char))
+    (if (not (wordp (jcs-get-current-char-byte)))
         (progn
-          (if (uppercasep (jcs-get-current-char-byte))
-              (progn
-                ;; NOTE: Here is end of the recursive
-                ;; function loop...
-                (backward-char 1))
-            (progn
-              (backward-char 1)
-              (jcs-backward-capital-char)))))))
+          ;; NOTE: Here is end of the recursive
+          ;; function loop...
+          )
+      (if (uppercasep (jcs-get-current-char-byte))
+          ;; NOTE: Here is end of the recursive
+          ;; function loop...
+          (backward-char 1)
+        (backward-char 1)
+        (jcs-backward-capital-char))))
 
   ;; reset triggers
   (setq jcs-first-char-is-char nil)
@@ -1074,25 +1052,21 @@ the point."
   (when (wordp (jcs-get-current-char-byte))
     (setq jcs-found-first-char t))
 
-  (if (eq jcs-found-first-char nil)
+  (if (not jcs-found-first-char)
       (progn
         (forward-char 1)
         (jcs-forward-capital-char))
-    (progn
-      (if (not (wordp (jcs-get-current-char-byte)))
+    (if (not (wordp (jcs-get-current-char-byte)))
+        ;; NOTE: Here is end of the recursive
+        ;; function loop...
+        (backward-char 1)
+      (if (uppercasep (jcs-get-current-char-byte))
           (progn
             ;; NOTE: Here is end of the recursive
             ;; function loop...
-            (backward-char 1))
-        (progn
-          (if (uppercasep (jcs-get-current-char-byte))
-              (progn
-                ;; NOTE: Here is end of the recursive
-                ;; function loop...
-                )
-            (progn
-              (forward-char 1)
-              (jcs-forward-capital-char)))))))
+            )
+        (forward-char 1)
+        (jcs-forward-capital-char))))
 
   ;; reset triggers
   (setq jcs-first-char-is-char nil)
@@ -1108,16 +1082,14 @@ the point."
   "Delete the current character repeatedly, util it meet the \
 character is not the same as current char.  (Backward)"
   (interactive)
-  (let ((temp-cur-char (jcs-get-current-char-string)))
-    (jcs-delete-char-repeat temp-cur-char t)))
+  (jcs-delete-char-repeat (jcs-get-current-char-string) t))
 
 ;;;###autoload
 (defun jcs-forward-delete-current-char-repeat ()
   "Delete the current character repeatedly, util it meet the \
 character is not the same as current char.  (Forward)"
   (interactive)
-  (let ((temp-cur-char (jcs-get-current-char-string)))
-    (jcs-delete-char-repeat temp-cur-char nil)))
+  (jcs-delete-char-repeat (jcs-get-current-char-string) nil))
 
 ;;;###autoload
 (defun jcs-delete-char-repeat (char reverse)
@@ -1155,9 +1127,9 @@ REVERSE : t forward, nil backward."
           (setq jcs-search-trigger-backward-char 0)
           (goto-char preserve-point)
           (error "Does not find beginning character : %s" start-char))
-      (progn
-        ;; Fixed column position.
-        (forward-char 1)))
+      ;; Fixed column position.
+      (forward-char 1))
+
     (setq start-point (point))
 
     ;; Returns found point.
@@ -1195,23 +1167,20 @@ REVERSE : t forward, nil backward."
         ;; We count the nested level from the beginning of the buffer.
         (while (<= (point) preserve-point)
           (if same-char
-              (progn
-                (when (jcs-current-char-equal-p start-char)
-                  (if same-char-start-flag
-                      (progn
-                        (setq nested-level (- nested-level 1))
-                        (setq same-char-start-flag nil))
-                    (progn
-                      (setq nested-level (+ nested-level 1))
-                      (setq same-char-start-flag t)))))
-            (progn
-              ;; If is the start char, we add up the nested level.
               (when (jcs-current-char-equal-p start-char)
-                (setq nested-level (+ nested-level 1)))
+                (if same-char-start-flag
+                    (progn
+                      (setq nested-level (- nested-level 1))
+                      (setq same-char-start-flag nil))
+                  (setq nested-level (+ nested-level 1))
+                  (setq same-char-start-flag t)))
+            ;; If is the start char, we add up the nested level.
+            (when (jcs-current-char-equal-p start-char)
+              (setq nested-level (+ nested-level 1)))
 
-              ;; If is the end char, we minus the nested level.
-              (when (jcs-current-char-equal-p end-char)
-                (setq nested-level (- nested-level 1)))))
+            ;; If is the end char, we minus the nested level.
+            (when (jcs-current-char-equal-p end-char)
+              (setq nested-level (- nested-level 1))))
 
           (forward-char 1))
 
@@ -1221,11 +1190,9 @@ REVERSE : t forward, nil backward."
 
 (defun jcs-delete-between-char (start-char end-char)
   "Delete everything between START-CHAR and the END-CHAR."
-  (let ((preserve-point (point))
-        (start-point nil)
-        (end-point nil))
-    ;; Get start bound.
-    (setq start-point (jcs-find-start-char start-char preserve-point))
+  (let* ((preserve-point (point))
+         (start-point (jcs-find-start-char start-char preserve-point))
+         (end-point nil))
 
     ;; NOTE(jenchieh): Back to preserve point before we search.
     (goto-char preserve-point)
@@ -1236,9 +1203,8 @@ REVERSE : t forward, nil backward."
         (progn
           (backward-char 1)
           (setq end-point (point)))
-      (progn
-        (backward-char 1)
-        (setq end-point (jcs-find-end-char end-char preserve-point))))
+      (backward-char 1)
+      (setq end-point (jcs-find-end-char end-char preserve-point)))
 
     ;; NOTE(jenchieh): Start to solve the nested character issue.
     (goto-char preserve-point)
@@ -1292,13 +1258,11 @@ REVERSE : t forward, nil backward."
     (if (and (>= preserve-point start-point)
              (<= preserve-point end-point)
              (not (jcs-check-outside-nested-char-p start-char end-char)))
-        (progn
-          ;; Delete the region.
-          (delete-region start-point end-point))
-      (progn
-        ;; Back to where you were.
-        (goto-char preserve-point)
-        (error "You are not between %s and %s" start-char end-char)))))
+        ;; Delete the region.
+        (delete-region start-point end-point)
+      ;; Back to where you were.
+      (goto-char preserve-point)
+      (error "You are not between %s and %s" start-char end-char))))
 
 ;;;###autoload
 (defun jcs-delete-inside-paren ()
