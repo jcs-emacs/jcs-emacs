@@ -802,7 +802,8 @@ LN : target line to make first to."
 
 (defun jcs-is-mark-active-p ()
   "Is mark active?
-@return { boolean } : true, is active. false, is not active."
+Return non-nil, is active.
+Return nil, is not active."
   (and mark-active
        (= (point) (mark))))
 
