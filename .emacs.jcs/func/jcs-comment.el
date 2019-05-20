@@ -228,16 +228,40 @@ string, do not insert closing comment string.  Check this situation."
     ;; insert comment doc comment string.
     (jcs-insert-comment-style-by-current-line 2)))
 
+(defun jcs-comment-or-uncomment-region (fn start end)
+  "Comment or uncomment region.
+FN : function name.
+START : start region.
+END : end region."
+  (let ((rb start)
+        (re end)
+        (rel (line-number-at-pos end)))
+    (save-excursion
+      (goto-char rb)
+      (while (and (<= (point) re)
+                  (not (jcs-is-end-of-buffer-p)))
+        (when (= (line-number-at-pos) rel)
+          (goto-char re))
+        (when (and (not (jcs-current-line-empty-p))
+                   (not (jcs-is-behind-last-char-at-line-p)))
+          (if (= (line-number-at-pos) rel)
+              (unless (jcs-is-infront-first-char-at-line-p)
+                (push (line-number-at-pos) line-reminder-change-lines))
+            (push (line-number-at-pos) line-reminder-change-lines)))
+        (next-line 1)
+        (beginning-of-line))))
+
+  (let ((line-reminder-change-lines)
+        (line-reminder-saved-lines))
+    (funcall fn start end)))
+
 ;;;###autoload
 (defun jcs-toggle-comment-on-line ()
   "Comment or uncomment current line."
   (interactive)
-  ;; SOURCE: http://stackoverflow.com/questions/9688748/emacs-comment-uncomment-current-line
-  (let ((line-reminder-change-lines)
-        (line-reminder-saved-lines))
-    (comment-or-uncomment-region (line-beginning-position) (line-end-position)))
-  (when (buffer-modified-p)
-    (push (line-number-at-pos) line-reminder-change-lines)))
+  (jcs-comment-or-uncomment-region 'comment-or-uncomment-region
+                                   (line-beginning-position)
+                                   (line-end-position)))
 
 ;;;###autoload
 (defun jcs-comment-uncomment-region-or-line ()
@@ -247,23 +271,9 @@ Otherwise comment line."
   ;; check if there are region select
   (if (and mark-active
            (/= (point) (mark)))
-      (let ((rb (region-beginning))
-            (re (region-end))
-            (rel (line-number-at-pos (region-end))))
-        (save-excursion
-          (goto-char rb)
-          (while (and (<= (point) re)
-                      (not (jcs-is-end-of-buffer-p)))
-            (when (= (line-number-at-pos) rel)
-              (goto-char re))
-            (when (and (not (jcs-current-line-empty-p))
-                       (not (jcs-is-behind-last-char-at-line-p)))
-              (if (= (line-number-at-pos) rel)
-                  (unless (jcs-is-infront-first-char-at-line-p)
-                    (jcs-toggle-comment-on-line))
-                (jcs-toggle-comment-on-line)))
-            (next-line 1)
-            (beginning-of-line))))
+      (jcs-comment-or-uncomment-region 'comment-or-uncomment-region
+                                       (region-beginning)
+                                       (region-end))
     ;; else we just comment one single line.
     (jcs-toggle-comment-on-line)))
 
@@ -271,21 +281,17 @@ Otherwise comment line."
 (defun jcs-comment-line ()
   "Comment the current line."
   (interactive)
-  (let ((line-reminder-change-lines)
-        (line-reminder-saved-lines))
-    (comment-region (line-beginning-position) (line-end-position)))
-  (when (buffer-modified-p)
-    (push (line-number-at-pos) line-reminder-change-lines)))
+  (jcs-comment-or-uncomment-region 'comment-region
+                                   (line-beginning-position)
+                                   (line-end-position)))
 
 ;;;###autoload
 (defun jcs-uncomment-line ()
   "Uncomment the current line."
   (interactive)
-  (let ((line-reminder-change-lines)
-        (line-reminder-saved-lines))
-    (uncomment-region (line-beginning-position) (line-end-position)))
-  (when (buffer-modified-p)
-    (push (line-number-at-pos) line-reminder-change-lines)))
+  (jcs-comment-or-uncomment-region 'uncomment-region
+                                   (line-beginning-position)
+                                   (line-end-position)))
 
 ;;;###autoload
 (defun jcs-comment-region-or-line ()
@@ -294,23 +300,9 @@ Otherwise comment line."
   ;; check if there are region select
   (if (and mark-active
            (/= (point) (mark)))
-      (let ((rb (region-beginning))
-            (re (region-end))
-            (rel (line-number-at-pos (region-end))))
-        (save-excursion
-          (goto-char rb)
-          (while (and (<= (point) re)
-                      (not (jcs-is-end-of-buffer-p)))
-            (when (= (line-number-at-pos) rel)
-              (goto-char re))
-            (when (and (not (jcs-current-line-empty-p))
-                       (not (jcs-is-behind-last-char-at-line-p)))
-              (if (= (line-number-at-pos) rel)
-                  (unless (jcs-is-infront-first-char-at-line-p)
-                    (jcs-comment-line))
-                (jcs-comment-line)))
-            (next-line 1)
-            (beginning-of-line))))
+      (jcs-comment-or-uncomment-region 'comment-region
+                                       (region-beginning)
+                                       (region-end))
     ;; else we just comment one single line.
     (jcs-comment-line)))
 
@@ -321,23 +313,9 @@ Otherwise comment line."
   ;; check if there are region select
   (if (and mark-active
            (/= (point) (mark)))
-      (let ((rb (region-beginning))
-            (re (region-end))
-            (rel (line-number-at-pos (region-end))))
-        (save-excursion
-          (goto-char rb)
-          (while (and (<= (point) re)
-                      (not (jcs-is-end-of-buffer-p)))
-            (when (= (line-number-at-pos) rel)
-              (goto-char re))
-            (when (and (not (jcs-current-line-empty-p))
-                       (not (jcs-is-behind-last-char-at-line-p)))
-              (if (= (line-number-at-pos) rel)
-                  (unless (jcs-is-infront-first-char-at-line-p)
-                    (jcs-uncomment-line))
-                (jcs-uncomment-line)))
-            (next-line 1)
-            (beginning-of-line))))
+      (jcs-comment-or-uncomment-region 'uncomment-region
+                                       (region-beginning)
+                                       (region-end))
     ;; else we just uncomment one single line.
     (jcs-uncomment-line)))
 
