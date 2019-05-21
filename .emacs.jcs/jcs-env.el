@@ -84,19 +84,15 @@
       (cons '("^\\([0-9]+>\\)?\\(\\(?:[a-zA-Z]:\\)?[^:(\t\n]+\\)(\\([0-9]+\\)) : \\(?:fatal error\\|warnin\\(g\\)\\) C[0-9]+:" 2 3 nil (4))
             compilation-error-regexp-alist))
 
-(defun jcs-big-fun-compilation-hook ()
-  ;; make it look like the terminal,
-  ;; so it won't jump to the next line
-  ;; automatically.
-  (make-local-variable 'truncate-lines)
-  (setq truncate-lines nil)
+(defun jcs-compilation-mode-hook ()
+  "Compilation mode hook."
+  (jcs-disable-truncate-lines)
 
-  ;; NOTE(JenChieh): Make specific font-size for this mode.
-  ;; Source: http://emacs.stackexchange.com/questions/3038/using-a-different-font-for-each-major-mode
-  (setq buffer-face-mode-face '(:height 120))  ;; default [:family "" :height 120]
+  ;; NOTE: Set smaller font.
+  (setq buffer-face-mode-face '(:height 120))
   (buffer-face-mode)
   )
-(add-hook 'compilation-mode-hook 'jcs-big-fun-compilation-hook)
+(add-hook 'compilation-mode-hook 'jcs-compilation-mode-hook)
 
 ;;; Commands
 (set-variable 'grep-command "grep -irHn ")
@@ -121,7 +117,7 @@
 (set-face-attribute 'default nil :height 160)
 
 ;;; Frame Title
-;; SOURCE(jenchieh): https://stackoverflow.com/questions/3669511/the-function-to-show-current-files-full-path-in-mini-buffer
+;; SOURCE: https://stackoverflow.com/questions/3669511/the-function-to-show-current-files-full-path-in-mini-buffer
 (setq frame-title-format
       (list (format "%s %%S: %%j " (system-name))
             '(buffer-file-name "%f" (dired-directory dired-directory "%b"))))
@@ -147,7 +143,8 @@
 (setq inhibit-compacting-font-caches t)
 
 ;;; Line Numbers
-(defvar jcs-line-numbers-ignore-buffers '("*dashboard*"
+(defvar jcs-line-numbers-ignore-buffers '("*compilation*"
+                                          "*dashboard*"
                                           "*GNU Emacs*"
                                           "*helm"
                                           "*Package-Lint*"
@@ -169,7 +166,7 @@ can see the error/operation message.")
 
 (defun jcs-advice-recentf-track-opened-file-after ()
   "Advice after execute `recentf-track-opened-file' command."
-  ;; NOTE(jenchieh): Update dashboard after recent file
+  ;; NOTE: Update dashboard after recent file
   ;; list changes.
   (jcs-refresh-dashboard-buffer))
 (advice-add 'recentf-track-opened-file :after #'jcs-advice-recentf-track-opened-file-after)
@@ -181,12 +178,12 @@ can see the error/operation message.")
 ;;(setq scroll-preserve-screen-position 'always)
 
 ;;; Shift Select
-;; NOTE(jenchieh): This act weird, does not make it works
+;; NOTE: This act weird, does not make it works
 ;; like other editor.
 (setq shift-select-mode nil)
 
 ;;; Show Paren
-;; NOTE(jenchieh): turn on highlight matching brackets
+;; NOTE: turn on highlight matching brackets
 ;; when cursor is on one
 (show-paren-mode t)
 
@@ -218,7 +215,7 @@ can see the error/operation message.")
 ;;; Uniquify
 ;; NOTE: meaningful names for buffers with the same name from
 ;; prelude.
-;; SOURCE(jenchieh): http://pragmaticemacs.com/emacs/uniquify-your-buffer-names/
+;; SOURCE: http://pragmaticemacs.com/emacs/uniquify-your-buffer-names/
 ;; URL: https://github.com/bbatsov/prelude
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
