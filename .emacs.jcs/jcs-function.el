@@ -577,7 +577,7 @@ NO-PROMPT : Don't prompt the overwrap message."
 (defun jcs-disable-truncate-lines ()
   "Disable truncate lines."
   (interactive)
-  (when truncate-lines
+  (when truncate-lines
     (toggle-truncate-lines)))
 
 ;;----------------------------------------------
