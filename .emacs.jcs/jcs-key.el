@@ -6,6 +6,11 @@
 ;;;---------------------------------------------
 ;;; Unset key binding
 ;;;---------------------------------------------
+(global-unset-key (kbd "C-k"))
+(global-unset-key (kbd "C-f"))
+(global-unset-key (kbd "C-r"))
+(global-unset-key (kbd "C-w"))
+
 (define-key auto-highlight-symbol-mode-map (kbd "M-S-<right>") nil)
 (define-key auto-highlight-symbol-mode-map (kbd "M-S-<left>") nil)
 (define-key auto-highlight-symbol-mode-map (kbd "M--") nil)
