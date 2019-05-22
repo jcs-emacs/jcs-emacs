@@ -39,6 +39,8 @@
 
 (defun jcs-after-init-hook ()
   "Hook run after initialize."
+  (jcs-depend-mode)
+
   (jcs-reload-file-info)
   (jcs-reload-docstring-info)
 
