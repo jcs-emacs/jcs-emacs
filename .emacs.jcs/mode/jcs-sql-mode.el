@@ -3,17 +3,6 @@
 ;;; Code:
 
 
-(use-package sql-indent
-  :config
-  ;; URL(jenchieh): https://www.emacswiki.org/emacs/SqlIndent
-  ;; 1 = 2 spaces,
-  ;; 2 = 4 spaces,
-  ;; 3 = 6 spaces,
-  ;; n = n * 2 spaces,
-  ;; etc.
-  (setq sql-indent-offset 1))
-
-
 (require 'sql)
 (defun jcs-sql-mode-hook()
   "SQL mode hook."

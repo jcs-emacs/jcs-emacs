@@ -5,12 +5,9 @@
 
 ;;============================
 ;; Truncate Lines
-;;URL(jenchieh): https://emacs.stackexchange.com/questions/14589/correct-indentation-for-wrapped-lines
+;;URL: https://emacs.stackexchange.com/questions/14589/correct-indentation-for-wrapped-lines
 
 (require 'adaptive-wrap)
-
-(with-eval-after-load 'adaptive-wrap
-  (setq-default adaptive-wrap-extra-indent 0))
 
 (add-hook 'visual-line-mode-hook
           (lambda ()
@@ -35,11 +32,6 @@
 (require 'htmltagwrap)
 
 
-;; ======================
-;; web-mode.el
-;; homepage - http://web-mode.org/
-
-;; list of  extensions that will take effect of this mode
 (require 'web-mode)
 (defun jcs-web-mode-hook ()
   "Hooks for Web mode."
