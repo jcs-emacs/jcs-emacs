@@ -7,12 +7,12 @@
 (defun jcs-toggle-minimap ()
   "Toggle minimap. (sublimity)"
   (interactive)
-  ;; NOTE(jenchieh): Only when `sublimity-mode' is on.
+  ;; NOTE: Only when `sublimity-mode' is on.
   (when sublimity-mode
     (if (get 'jcs-toggle-minimap 'state)
         (progn
           (setq sublimity-map-size 0)
-          ;; ATTENTION(jenchieh): Set it to very hight so it
+          ;; ATTENTION: Set it to very hight so it
           ;; will never reach the timer error.
           (sublimity-map-set-delay 40000000)
           (put 'jcs-toggle-minimap 'state nil))

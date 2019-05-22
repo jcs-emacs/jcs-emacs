@@ -20,7 +20,7 @@
     (when is-killed
       (save-selected-window
         (when (ignore-errors (jcs-jump-shown-to-buffer "*Buffer List*"))
-          ;; NOTE(jenchieh): Refresh buffer menu once.
+          ;; NOTE: Refresh buffer menu once.
           (jcs-buffer-menu))))))
 
 ;;;###autoload

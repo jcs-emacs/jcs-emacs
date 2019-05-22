@@ -21,7 +21,7 @@
       ;; get the length of the split string
       (setq tmp-split-dir-string-size (length tmp-split-dir-string))
 
-      ;; NOTE(jenchieh): Get the last part of the path.
+      ;; NOTE: Get the last part of the path.
       ;; If there are two `src' directory in the path.
       ;; We will just like to get the last part of the file path
       ;; and ignore whatever infront of them.
@@ -34,9 +34,8 @@
             (jcs-remove-string-by-substring tmp-insert-package-path-string
                                             (jcs-get-file-name)))
 
-      ;; NOTE(jenchieh): If the string is less than two.
-      ;; Meaning the file is directly under `default package'/`src'
-      ;; directory.
+      ;; NOTE: If the string is less than two. Meaning the
+      ;; file is directly under `default package'/`src' directory.
       (when (<= 2 (length tmp-insert-package-path-string))
         ;; Replace all `/' to `.'.
         (setq tmp-insert-package-path-string (jcs-replace-string

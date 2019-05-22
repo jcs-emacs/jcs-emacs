@@ -10,9 +10,9 @@
       (jcs-is-current-major-mode-p "c++-mode")
       (jcs-is-current-major-mode-p "java-mode")
       ;; =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-      ;; TODO(jenchieh): If we decide to use
-      ;; c-type docstirng in `csharp-mode'. Then
-      ;; we need to uncomment the line below.
+      ;; TODO: If we decide to use c-type docstirng
+      ;; in `csharp-mode'. Then we need to uncomment
+      ;; the line below.
       ;; =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
       (jcs-is-current-major-mode-p "csharp-mode")
       (jcs-is-current-major-mode-p "js2-mode")
@@ -42,24 +42,24 @@
              mode
              '(("\\(?:^\\|\\s-\\)\\(@[a-zA-Z0-9_-]*\\)" 1 'jcs-oop-tag-face t)
                ;; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-               ;; OPTION(jenchieh): Highlight curly bracket.
+               ;; OPTION: Highlight curly bracket.
                ("@[a-zA-Z0-9_-]*\\(?:^\\|\\s-\\)\\([\\[{].*.[\]}]\\)" 1 'jcs-oop-type-face t)
                ;; >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-               ;; OR(jenchieh):
+               ;; OR:
                ;; >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-               ;; OPTION(jenchieh): Don't highlight curly bracket.
+               ;; OPTION: Don't highlight curly bracket.
                ;;("@[a-zA-Z0-9_-]*\\(?:^\\|\\s-\\)[\\[{]\\(.*.\\)[]}]" 1 'jcs-oop-type-face t)
                ;; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
                ;;
-               ;; NOTE(jenchieh):
+               ;; NOTE:
                ;; Doc String Style:
                ;;
                ;; @param { TypeName } `ValueTag' : value tag description..
                ;;
                ("@[a-zA-Z0-9_].*[\]\|}][ \t\n]*\\([a-zA-Z0-9_$*&]*\\)[ \t\n]*[:-]" 1 'jcs-oop-value-face t)
                ;;
-               ;; NOTE(jenchieh):
+               ;; NOTE:
                ;; Doc String Style:
                ;;
                ;; @param `ValueTag' : value tag description..
@@ -301,11 +301,11 @@ SR-OP :
            (end-of-line))
           ((= sr-op 1)
            ;; Closing Parenthesis
-           ;; NOTE(jenchieh): No recursive/No prompt.
+           ;; NOTE: No recursive/No prompt.
            (jcs-move-forward-close-paren t))
           ((= sr-op 2)
            ;; Opening Curly Parenthesis
-           ;; NOTE(jenchieh): No recursive/No prompt.
+           ;; NOTE: No recursive/No prompt.
            (jcs-move-forward-open-curlyParen t)))))
 
 
@@ -340,7 +340,7 @@ SR-OP :
 
           (save-excursion
             (save-window-excursion
-              ;; NOTE(jenchieh): Find closing parenthesis instead
+              ;; NOTE: Find closing parenthesis instead
               ;; of search for a line will make this support
               ;; multi-line doc-string.
               ;;
@@ -388,18 +388,18 @@ SR-OP :
 
             ;; Make sure only process current/one line.
             (when (<= (point) end-function-point)
-              ;; NOTE(jenchieh): Store all the keyword name.
+              ;; NOTE: Store all the keyword name.
               (when (or (jcs-is-current-point-face "font-lock-keyword-face")
                         (jcs-is-current-point-face "font-lock-preprocessor-face"))
                 (push (thing-at-point 'word) keyword-strings))
 
-              ;; NOTE(jenchieh): Check if meet the function name.
+              ;; NOTE: Check if meet the function name.
               (when (or (jcs-is-current-point-face "font-lock-function-name-face")
                         (jcs-is-current-point-face "web-mode-function-name-face"))
                 (setq function-name-string (thing-at-point 'word))
                 (setq meet-function-name t))
 
-              ;; NOTE(jenchieh): Store all the type name. (include return type name)
+              ;; NOTE: Store all the type name. (include return type name)
               (when (jcs-is-current-point-face "font-lock-type-face")
                 ;; Just store it.
                 (setq datatype-name (thing-at-point 'word))
@@ -410,7 +410,7 @@ SR-OP :
                       (setq return-type-string (thing-at-point 'word))
                       (setq there-is-return t))
                   (progn
-                    ;; NOTE(jenchieh): Since Lisp's default list data structure
+                    ;; NOTE: Since Lisp's default list data structure
                     ;; dose not support duplicate item in the list. Update the
                     ;; list by setting it to the brand new temporary list, which
                     ;; make muliple item list doable.
@@ -419,7 +419,7 @@ SR-OP :
                       (push type-string temp-list)
                       (setq param-type-strings (append param-type-strings temp-list))))))
 
-              ;; NOTE(jenchieh): Store all the variables name.
+              ;; NOTE: Store all the variables name.
               (when (or (jcs-is-current-point-face "font-lock-variable-name-face")
                         (jcs-is-current-point-face 'js2-function-param)
                         (jcs-is-current-point-face "web-mode-variable-name-face")
@@ -462,10 +462,10 @@ PAREN-STRING           : Param raw string."
 
   (save-excursion
     (let ((mode-doc-string-func-name nil))
-      ;; NOTE(jenchieh): `push' will push the element
-      ;; at the front queue. `setq' and `append' will push
-      ;; element from the back, so we need to reverse it
-      ;; in order to match the order.
+      ;; NOTE: `push' will push the element at the front
+      ;; queue. `setq' and `append' will push element from
+      ;; the back, so we need to reverse it in order to match
+      ;; the order.
       (setq param-variable-strings (reverse param-variable-strings))
 
       (cond ((or (jcs-is-current-major-mode-p "actionscript-mode"))
@@ -509,7 +509,7 @@ PAREN-STRING           : Param raw string."
                                                'jcs-ts-mode-doc-string-others)))
             )
 
-      ;; NOTE(jenchieh): Ensure the `mode-doc-string-func-name'
+      ;; NOTE: Ensure the `mode-doc-string-func-name'
       ;; is assign to something valid to execute.
       (when mode-doc-string-func-name
         (if meet-function-name
@@ -530,7 +530,7 @@ PAREN-STRING           : Param raw string."
   "Insert `actionscript-mode' other doc string."
   (cond ((jcs-is-contain-list-string keyword-strings "class")
          (progn
-           ;; TODO(jenchieh): implement into ActionScript mode.
+           ;; TODO: implement into ActionScript mode.
            )))
   )
 
@@ -787,18 +787,18 @@ SEARCH-STRING          : Search raw string."
   "Insert `csharp-mode' other doc string."
   (cond ((jcs-is-contain-list-string keyword-strings "class")
          (progn
-           ;; STUDY(jenchieh): Don't think that C#
+           ;; STUDY: Don't think that C#
            ;; doc need one..
            ))
         ((jcs-is-contain-list-string keyword-strings "struct")
          (progn
-           ;; STUDY(jenchieh): Don't think that C#
+           ;; STUDY: Don't think that C#
            ;; doc need one..
            ))
         ((or (jcs-is-contain-list-string keyword-strings "define")
              (jcs-is-contain-list-string keyword-strings "#define"))
          (progn
-           ;; STUDY(jenchieh): Don't think that C#
+           ;; STUDY: Don't think that C#
            ;; doc need one..
            ))))
 
@@ -861,8 +861,8 @@ SEARCH-STRING          : Search raw string."
             (indent-for-tab-command)))))
      ((= docstring-type 1)
       (progn
-        ;; NOTE(jenchieh): This type of docstring,
-        ;; comment line is one more line above!
+        ;; NOTE: This type of docstring, comment
+        ;; line is one more line above!
         (jcs-previous-line)
         (end-of-line)
 
@@ -907,12 +907,12 @@ SEARCH-STRING          : Search raw string."
   "Insert `java-mode' other doc string."
   (cond ((jcs-is-contain-list-string keyword-strings "class")
          (progn
-           ;; STUDY(jenchieh): Don't think that java
+           ;; STUDY: Don't think that java
            ;; doc need one..
            ))
         ((jcs-is-contain-list-string keyword-strings "interface")
          (progn
-           ;; STUDY(jenchieh): Don't think that java
+           ;; STUDY: Don't think that java
            ;; doc need one..
            ))))
 
@@ -984,7 +984,7 @@ SEARCH-STRING          : Search raw string."
   "Insert `js2-mode' other doc string."
   (cond ((jcs-is-contain-list-string keyword-strings "class")
          (progn
-           ;; STUDY(jenchieh): Don't know if javascript
+           ;; STUDY: Don't know if javascript
            ;; need one..
            ))))
 
@@ -1054,7 +1054,7 @@ SEARCH-STRING          : Search raw string."
 
 (defun jcs-lua-mode-doc-string-others ()
   "Insert `lua-mode' other doc string."
-  ;; NOTE(jenchieh): I don't think Lua have any keywords...
+  ;; NOTE: I don't think Lua have any keywords...
   )
 
 (defun jcs-lua-mode-doc-string-func (keyword-strings
@@ -1125,7 +1125,7 @@ SEARCH-STRING          : Search raw string."
   "Insert `python-mode' other doc string."
   (cond ((jcs-is-contain-list-string keyword-strings "class")
          (progn
-           ;; TODO(jenchieh): implement into python mode.
+           ;; TODO: implement into python mode.
            ))))
 
 (defun jcs-py-mode-doc-string-func (keyword-strings
@@ -1156,7 +1156,7 @@ SEARCH-STRING          : Search raw string."
     (jcs-move-to-forward-a-char-recursive "\"")
 
     (when (= jcs-py-doc-string-version 1)
-      ;; OPTION(jenchieh): docstring option..
+      ;; OPTION: docstring option..
       (jcs-next-line))
     (end-of-line)
 
@@ -1205,7 +1205,7 @@ SEARCH-STRING          : Search raw string."
   "Insert `php-mode' other doc string."
   (cond ((jcs-is-contain-list-string keyword-strings "class")
          (progn
-           ;; TODO(jenchieh): implement into PHP mode.
+           ;; TODO: implement into PHP mode.
            ))))
 
 (defun jcs-php-mode-doc-string-func (keyword-strings
@@ -1276,7 +1276,7 @@ SEARCH-STRING          : Search raw string."
   "Insert `typescript-mode' other doc string."
   (cond ((jcs-is-contain-list-string keyword-strings "class")
          (progn
-           ;; TODO(jenchieh): implement into TypeScript mode.
+           ;; TODO: implement into TypeScript mode.
            ))))
 
 (defun jcs-ts-mode-doc-string-func (keyword-strings

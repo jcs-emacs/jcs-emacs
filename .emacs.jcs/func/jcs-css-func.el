@@ -49,8 +49,8 @@
 (defun jcs-css-save-buffer ()
   "Save buffer in `css-mode'."
   (interactive)
-  ;; NOTE(jenchieh): after using this, I think is better
-  ;; if I bind this function/command to another key.
+  ;; NOTE: after using this, I think is better if I
+  ;; bind this function/command to another key.
   ;;(com-css-sort-attributes-document)
   (jcs-untabify-save-buffer))
 
@@ -77,8 +77,8 @@
                ("[^\']\\(\'[^\']*\'\\)[^\']" 1 'jcs-font-lock-string-face t)
                ("[^\"]\\(\"[^\"]*\"\\)[^\"]" 1 'jcs-font-lock-string-face t)
                ;; For multi-lines comment.
-               ;; TODO(jenchieh): Only inside the curly bracket.
-               ;; TODO(jenchieh): There is bug if `/' is inside the comment space.
+               ;; TODO: Only inside the curly bracket.
+               ;; TODO: There is bug if `/' is inside the comment space.
                ("\\(/\\*[^/]*\\*/\\)" 1 'jcs-font-lock-comment-face t)
                )'end))
           tmp-css-modes)))

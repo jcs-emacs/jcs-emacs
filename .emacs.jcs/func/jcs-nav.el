@@ -30,7 +30,7 @@ Just use this without remember Emacs Lisp function."
 (defun jcs-back-to-indentation-or-beginning ()
   "Toggle between first character and beginning of line."
   (interactive)
-  ;; SOURCE(jenchieh): https://www.emacswiki.org/emacs/BackToIndentationOrBeginning
+  ;; SOURCE: https://www.emacswiki.org/emacs/BackToIndentationOrBeginning
   (if (= (point) (progn (back-to-indentation) (point)))
       (beginning-of-line)))
 
@@ -172,7 +172,7 @@ WORD : word we target to move toward."
                 (not (jcs-is-beginning-of-buffer-p)))
       (backward-word 1))))
 
-;; TODO(jenchieh): The naming logic here is very weird..
+;; TODO: The naming logic here is very weird..
 ;; Consider changing it.
 (defun jcs-move-to-forward-a-char-do-recursive (ch &optional no-rec)
   "Move forward to a character and recusrive?
@@ -182,7 +182,7 @@ as NO-REC : recursive? (Default: do recusrive method)"
       (jcs-move-to-forward-a-char ch)
     (jcs-move-to-forward-a-char-recursive ch)))
 
-;; TODO(jenchieh): The naming logic here is very weird..
+;; TODO: The naming logic here is very weird..
 ;; Consider changing it.
 (defun jcs-move-to-backward-a-char-do-recursive (ch &optional no-rec)
   "Move backward to a character and recusrive?

@@ -8,7 +8,7 @@
   (font-lock-add-keywords
    'lua-mode
    '(;;<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-     ;; NOTE(jenchieh): Fixed comment and string conflict.
+     ;; NOTE: Fixed comment and string conflict.
      ("\\(--[^\"\r\n]*\\)[^\"\r\n]" 1 'jcs-font-lock-comment-face t)
      ("[^\"]\\(\"[^\"]*\"\\)[^\"]" 1 'jcs-font-lock-string-face t)
      ;;>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -58,7 +58,7 @@ comment character on the same line."
 ;;;###autoload
 (defun jcs-lua-maybe-insert-codedoc ()
   "Insert common Lua document/comment string."
-  ;;URL(jenchieh): http://lua-users.org/wiki/LuaStyleGuide
+  ;;URL: http://lua-users.org/wiki/LuaStyleGuide
   (interactive)
   (insert "-")
   (let ((active-comment nil)

@@ -5,14 +5,14 @@
 
 (defun jcs-helm-before-initialize-hook ()
   "Do the helm mx and change theme"
-  ;; NOTE(jenchieh): Change theme so we know which mode
+  ;; NOTE: Change theme so we know which mode
   ;; we are in visually.
   (jcs-dark-blue-mode-line))
 (add-hook 'helm-before-initialize-hook 'jcs-helm-before-initialize-hook)
 
 
-;; TOPIC(jenchieh): How do I make pressing <RET> in helm-find-files open the directory?
-;; SOURCE(jenchieh): http://emacs.stackexchange.com/questions/3798/how-do-i-make-pressing-ret-in-helm-find-files-open-the-directory
+;; TOPIC: How do I make pressing <RET> in helm-find-files open the directory?
+;; SOURCE: http://emacs.stackexchange.com/questions/3798/how-do-i-make-pressing-ret-in-helm-find-files-open-the-directory
 
 (defun jcs-helm-find-files-navigate-forward (orig-fun &rest args)
   "Advice run around `helm-execute-persistent-action' command."
@@ -42,7 +42,7 @@
 
 (defun jcs-helm-find-files-hook ()
   "Hook after `helm-find-files' initialized."
-  ;; SEE(jenchieh): `jcs-key.el' file, and `minibuffer-setup-hook'.
+  ;; SEE: `jcs-key.el' file, and `minibuffer-setup-hook'.
   (setq jcs-helm-find-files-active t)
   )
 (add-hook 'helm-find-files-after-init-hook 'jcs-helm-find-files-hook)
@@ -72,7 +72,7 @@ in other window."
     ;; can update all files with C-u prefix.
     (helm-gtags-update-tags)
 
-    ;; NOTE(jenchieh): this will make it jump to next window.
+    ;; NOTE: this will make it jump to next window.
     ;; Is stupid, but work.
     (ignore-errors (helm-gtags-find-tag-other-window nil))
 
@@ -110,7 +110,7 @@ own preferences."
         (helm-ff-run-switch-other-window)
         (put 'jcs-helm-execute-persistent-action 'state nil)
         )
-    ;; NOTE(jenchieh): no longer needed.
+    ;; NOTE: no longer needed.
     ;;(helm-execute-persistent-action)
     ))
 

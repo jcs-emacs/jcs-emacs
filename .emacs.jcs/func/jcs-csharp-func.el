@@ -46,7 +46,7 @@ comment character on the same line."
 ;;;###autoload
 (defun jcs-vs-csharp-maybe-insert-codedoc ()
   "Insert comment like Visual Studio comment style."
-  ;; URL(jenchieh): https://github.com/josteink/csharp-mode/issues/123
+  ;; URL: https://github.com/josteink/csharp-mode/issues/123
   (interactive)
   (insert "/")
   (let ((active-comment nil)

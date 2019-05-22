@@ -8,7 +8,7 @@
   "Open Buffer Menu."
   (interactive)
 
-  ;; NOTE(jenchieh): even you reopen the `buffer-menu'
+  ;; NOTE: even you reopen the `buffer-menu'
   ;; this will not sort.
   (buffer-menu)
 
@@ -24,8 +24,8 @@
     (when (ignore-errors (jcs-jump-shown-to-buffer "*Buffer List*"))
       (jcs-buffer-menu))))
 
-;; TOPIC(jenchieh): BufferMenuPlus
-;; URL(jenchieh): https://www.emacswiki.org/emacs/BufferMenuPlus
+;; TOPIC: BufferMenuPlus
+;; URL: https://www.emacswiki.org/emacs/BufferMenuPlus
 ;; Sorted by (1) visit, (2) buffer, (3) size, (4) time, (5) mode, (6) file. More
 
 ;;;###autoload

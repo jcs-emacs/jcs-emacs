@@ -10,16 +10,16 @@
 (require 'undo-tree)
 
 ;;
-;; NOTE(jenchieh): This is compatible with other
-;; text editor or IDE. Most IDE/text editor have this
-;; undo/redo system as default.
+;; NOTE: This is compatible with other text editor
+;; or IDE. Most IDE/text editor have this undo/redo
+;; system as default.
 ;;
 (defvar jcs-use-undo-tree-key t
   "Using the undo tree key in stead of normal Emacs's undo key.
 This variable must be use with `jcs-undo' and `jcs-redo' functions.")
 
-;; NOTE(jenchieh): Active this will cause huge amount of
-;; performance, consider this before active.
+;; NOTE: Active this will cause huge amount of performance,
+;; consider this before active.
 (defvar jcs-undo-tree-auto-show-diff nil
   "Show the difference code when undo tree minor mode is active.")
 
@@ -89,9 +89,9 @@ CBF : Current buffer file name."
                   (not found-valid))
         (jcs-other-window-next)
         (when (jcs-window-is-larger-in-height-p)
-          ;; NOTE(jenchieh): We need to go back two windows
-          ;; in order to make the undo-tree-visualize buffer
-          ;; to display in the next window.
+          ;; NOTE: We need to go back two windows in
+          ;; order to make the undo-tree-visualize
+          ;; buffer to display in the next window.
           (jcs-other-window-prev)
           (jcs-other-window-prev)
           (jcs-other-window-next)
@@ -117,7 +117,7 @@ CBF : Current buffer file name."
           (let ((jumped-to-utv
                  (ignore-errors
                    (jcs-jump-shown-to-buffer undo-tree-visualizer-buffer-name))))
-            ;; NOTE(jenchieh): If we do jumped to the
+            ;; NOTE: If we do jumped to the
             ;; `undo-tree-visualizer-buffer-name' buffer,
             ;; then we use `undo-tree-visualize-undo' instead
             ;; of `undo-tree-undo'. Because directly called
@@ -128,7 +128,7 @@ CBF : Current buffer file name."
               (progn
                 (undo-tree-undo)
                 (jcs-undo-tree-visualize)))
-            ;; STUDY(jenchieh): weird that they use word
+            ;; STUDY: weird that they use word
             ;; toggle, instead of just set it.
             ;;
             ;; Why not?
@@ -149,7 +149,7 @@ CBF : Current buffer file name."
           (let ((jumped-to-utv
                  (ignore-errors
                    (jcs-jump-shown-to-buffer undo-tree-visualizer-buffer-name))))
-            ;; NOTE(jenchieh): If we do jumped to the
+            ;; NOTE: If we do jumped to the
             ;; `undo-tree-visualizer-buffer-name' buffer,
             ;; then we use `undo-tree-visualize-redo' instead
             ;; of `undo-tree-redo'. Because directly called
@@ -160,7 +160,7 @@ CBF : Current buffer file name."
               (progn
                 (undo-tree-redo)
                 (jcs-undo-tree-visualize)))
-            ;; STUDY(jenchieh): weird that they use word
+            ;; STUDY: weird that they use word
             ;; toggle, instead of just set it.
             ;;
             ;; Why not?
@@ -418,7 +418,7 @@ REGEXP : reqular expression use to align."
   "Align current document.
 REGEXP : reqular expression use to align."
   (interactive)
-  ;; URL(jenchieh): https://www.emacswiki.org/emacs/AlignCommands
+  ;; URL: https://www.emacswiki.org/emacs/AlignCommands
   ;; align the whole doc.
   (jcs-align-region-by-points regexp (point-min) (point-max)))
 
@@ -428,11 +428,11 @@ REGEXP : reqular expression use to align."
 region selected?"
   (interactive)
   (save-excursion
-    (let (;; NOTE(jenchieh): this is the most common one.
+    (let (;; NOTE: this is the most common one.
           ;; Compatible to all programming languages use equal
           ;; sign to assign value.
           (align-regexp-string-code "\\(\\s-*\\)[=]")
-          ;; NOTE(jenchihe): Default support `//' and `/**/'
+          ;; NOTE: Default support `//' and `/**/'
           ;; comment symbols.
           (align-regexp-string-comment "\\(\\s-*\\) /[/*]")
           (pnt-min nil)
@@ -457,7 +457,7 @@ region selected?"
             )
 
       (if (jcs-is-region-selected-p)
-          ;; NOTE(jenchieh): Align region only.
+          ;; NOTE: Align region only.
           (progn
             ;; First get region info.
             (setq pnt-min (region-beginning))
@@ -477,15 +477,14 @@ region selected?"
 
             (when (> (point) pnt-min)
               (setq pnt-max (point))))
-        ;; NOTE(jenchieh): Align whole document.
-        (progn
-          (jcs-align-document align-regexp-string-code)
+        ;; NOTE: Align whole document.
+        (jcs-align-document align-regexp-string-code)
 
-          ;; NOTE(jenchieh): These assigns does nothing for now.
-          ;; Just in case we dont apply weird value, assign
-          ;; default document info.
-          (setq pnt-min (point-min))
-          (setq pnt-max (point-max))))
+        ;; NOTE: These assigns does nothing for now.
+        ;; Just in case we dont apply weird value, assign
+        ;; default document info.
+        (setq pnt-min (point-min))
+        (setq pnt-max (point-max)))
 
       ;; Align comment segment.
       (jcs-align-region-by-points align-regexp-string-comment
@@ -532,7 +531,7 @@ They will be reverted though if they were modified outside Emacs.
 Buffers visiting files which do not exist any more or are no longer readable
 will be killed."
   (interactive)
-  ;; SOURCE(jenchieh): https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-ignore-errors
+  ;; SOURCE: https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-ignore-errors
   (save-excursion
     (dolist (buf (buffer-list))
       (let ((filename (buffer-file-name buf)))
@@ -630,8 +629,6 @@ the current line."
 
 ;;----------------------------------------------
 ;; Move Current Line Up or Down
-;;
-;; SOURCE(jenchieh): http://emacsredux.com/blog/2013/04/02/move-current-line-up-or-down/
 ;;----------------------------------------------
 
 ;;;###autoload
@@ -684,7 +681,7 @@ the current line."
 (defun jcs-do-stuff-before-save (&optional arg)
   "Do stuff before save command executed.
 ARG : Match with `save-buffer' command."
-  ;; NOTE(jenchieh): If company menu currently active,
+  ;; NOTE: If company menu currently active,
   ;; abort it.
   (company-abort))
 (advice-add 'save-buffer :before #'jcs-do-stuff-before-save)
@@ -692,7 +689,7 @@ ARG : Match with `save-buffer' command."
 (defun jcs-do-stuff-after-save (&optional arg)
   "Do stuff after save command executed.
 ARG : Match with `save-buffer' command."
-  ;; NOTE(jenchieh): Is we found `*undo-tree*' buffer, we
+  ;; NOTE: Is we found `*undo-tree*' buffer, we
   ;; try to close it.
   (save-selected-window
     (when (ignore-errors (jcs-jump-shown-to-buffer "*undo-tree*"))
@@ -743,8 +740,8 @@ ARG : Match with `save-buffer' command."
 (defun jcs-rename-current-buffer-file ()
   "Renames current buffer and file it is visiting."
   (interactive)
-  ;; SOURCE(jenchieh): https://emacs.stackexchange.com/questions/2849/save-current-file-with-a-slightly-different-name
-  ;; URL(jenchieh): http://www.whattheemacsd.com/
+  ;; SOURCE: https://emacs.stackexchange.com/questions/2849/save-current-file-with-a-slightly-different-name
+  ;; URL: http://www.whattheemacsd.com/
   (let ((name (buffer-name))
         (filename (buffer-file-name)))
     (if (not (and filename (file-exists-p filename)))
@@ -786,7 +783,7 @@ ARG : Match with `save-buffer' command."
                  (not (string= target-kill-buffer (jcs-buffer-name-or-buffer-file-name))))
         (save-selected-window
           (jcs-jump-shown-to-buffer undo-tree-visualizer-buffer-name)
-          ;; NOTE(jenchieh): This prompt error, but does not matter.
+          ;; NOTE: This prompt error, but does not matter.
           ;; Just force to quite it!
           (ignore-errors (undo-tree-visualizer-quit)))))))
 (advice-add 'kill-this-buffer :around #'jcs-advice-kill-this-buffer-around)
@@ -813,7 +810,7 @@ ECP-SAME : Exception for the same buffer."
   (interactive)
   (let ((is-killed nil))
     (if (or (>= (jcs-buffer-showns (buffer-name)) 2)
-            ;; NOTE(jenchieh): If you don't want `*Buffer-List*'
+            ;; NOTE: If you don't want `*Buffer-List*'
             ;; window open in at least two window and get killed
             ;; at the same time. Enable the line under.
             ;;(jcs-is-current-major-mode-p "Buffer-menu-mode")
@@ -823,7 +820,7 @@ ECP-SAME : Exception for the same buffer."
         (jcs-kill-this-buffer)
         (setq is-killed t)
 
-        ;; NOTE(jenchieh): After kill the buffer, if the buffer
+        ;; NOTE: After kill the buffer, if the buffer
         ;; appear in multiple windows then we do switch to
         ;; previous buffer again. Hence, it will not show
         ;; repeated buffer at the same time in different windows.
@@ -1194,7 +1191,7 @@ REVERSE : t forward, nil backward."
          (start-point (jcs-find-start-char start-char preserve-point))
          (end-point nil))
 
-    ;; NOTE(jenchieh): Back to preserve point before we search.
+    ;; NOTE: Back to preserve point before we search.
     (goto-char preserve-point)
 
     ;; Get end bound.
@@ -1206,7 +1203,7 @@ REVERSE : t forward, nil backward."
       (backward-char 1)
       (setq end-point (jcs-find-end-char end-char preserve-point)))
 
-    ;; NOTE(jenchieh): Start to solve the nested character issue.
+    ;; NOTE: Start to solve the nested character issue.
     (goto-char preserve-point)
     (let ((nested-count 0)
           (break-search-nested nil))
@@ -1229,7 +1226,7 @@ REVERSE : t forward, nil backward."
                 (setq start-point (jcs-find-start-char start-char preserve-point)))
             (setq break-search-nested t))))
 
-      ;; IMPORTANT(jenchieh): reset variables.
+      ;; IMPORTANT: reset variables.
       (goto-char preserve-point)
       (setq nested-count 0)
       (setq break-search-nested nil)
