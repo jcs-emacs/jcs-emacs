@@ -148,7 +148,8 @@
                                           "*GNU Emacs*"
                                           "*helm"
                                           "*Package-Lint*"
-                                          "*Packages*")
+                                          "*Packages*"
+                                          "*SPEEDBAR*")
   "List of buffers that you do not want to show line numbers in it.")
 
 ;;; Menu Bar
