@@ -36,7 +36,6 @@
                                    ag
                                    apache-mode
                                    auto-highlight-symbol
-                                   auto-package-update
                                    auto-rename-tag
                                    beacon
                                    basic-mode
@@ -129,7 +128,6 @@
                                    which-key
                                    wgrep-ag
                                    wgrep-helm
-                                   xwidgete
                                    yaml-mode
                                    yasnippet
                                    yasnippet-snippets)
