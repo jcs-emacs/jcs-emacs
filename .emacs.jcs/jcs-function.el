@@ -259,9 +259,9 @@ G : Active line numbers globally."
   ;;;
   ;; Priority
   ;;
-  ;; ATTENTION(jenchieh): all the function in the priority
-  ;; function list must all have error handling. Or else this
-  ;; the priority chain will break.
+  ;; ATTENTION: all the function in the priority function
+  ;; list must all have error handling. Or else this the
+  ;; priority chain will break.
   ;;
   ;; 1. `project-abbrev-complete-word'
   ;; 2. `yas-expand'
@@ -329,7 +329,7 @@ G : Active line numbers globally."
             (record-selected-window jcs-sr-speedbar-record-selected-window))
         ;; Back to previous select window.
         ;;
-        ;; NOTE(jenchieh): This will change the previous selected window value.
+        ;; NOTE: This will change the previous selected window value.
         (jcs-other-window-prev)
 
         ;; Record the opening buffer/file down.
@@ -339,7 +339,7 @@ G : Active line numbers globally."
         ;; selected window instead of the default window after close we
         ;; the `speedbar' window.
         ;;
-        ;; NOTE(jenchieh): This seems like it will change the
+        ;; NOTE: This seems like it will change the
         ;; `jcs-sr-speedbar-record-selected-window', value by calling
         ;; `jcs-other-window-next' or `jcs-other-window-prev' functions.
         ;; So we also need to wrap this function inside the `let' operation.
@@ -377,11 +377,11 @@ G : Active line numbers globally."
 
       (let ((default-directory default-directory)
             (pro-dir (cdr (project-current))))
-        ;; NOTE(jenchieh): Use current buffer directory as default.
+        ;; NOTE: Use current buffer directory as default.
         (when (buffer-file-name)
           (setq default-directory (f-dirname (buffer-file-name))))
 
-        ;; NOTE(jenchieh): If found project directory, use project directory.
+        ;; NOTE: If found project directory, use project directory.
         (when pro-dir
           (setq default-directory pro-dir))
 
@@ -439,10 +439,9 @@ G : Active line numbers globally."
       (save-selected-window
         (when (ignore-errors (jcs-jump-shown-to-buffer flycheck-error-list-buffer))
           (jcs-maybe-kill-this-buffer))))
-    ;; STUDY(jenchieh): For some reason, we
-    ;; need to walk through all windows once
-    ;; in order to display the `flycheck-list-errors'
-    ;; in other window.
+    ;; STUDY: For some reason, we need to walk
+    ;; through all windows once in order to display
+    ;; the `flycheck-list-errors' in other window.
     (jcs-walk-through-all-windows-once)))
 
 ;;----------------------------------------------
@@ -466,7 +465,7 @@ G : Active line numbers globally."
 (defun jcs-text-scale-delta (vec)
   "Scale the text by passing `vec' value.
 VEC : Either position or negative number."
-  ;; NOTE(jenchieh): Known `text-scale-increase' and
+  ;; NOTE: Known `text-scale-increase' and
   ;; `text-scale-decrease' ruin the margin of the
   ;; `linum-mode'. Disable it before ruining it, to
   ;; avoid the bug.
