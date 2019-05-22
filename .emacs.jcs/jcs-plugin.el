@@ -8,6 +8,23 @@
   (require 'use-package))
 
 
+(use-package adaptive-wrap
+  :ensure t
+  :defer t
+  :config
+  (setq-default adaptive-wrap-extra-indent 0))
+
+
+(use-package ag
+  :ensure t
+  :defer t)
+
+
+(use-package async
+  :ensure t
+  :defer t)
+
+
 (use-package auto-highlight-symbol
   :ensure t
   :diminish auto-highlight-symbol-mode
@@ -142,9 +159,19 @@
   (dashboard-setup-startup-hook))
 
 
+(use-package diminish
+  :ensure t
+  :config
+  (diminish 'abbrev-mode)
+  (diminish 'eldoc-mode)
+  (diminish 'outline-minor-mode)
+  (diminish 'overwrite-mode)
+  (use-package page-break-lines
+    :diminish page-break-lines-mode))
+
+
 (use-package dimmer
   :ensure t
-  :defer t
   :config
   (dimmer-mode)
   (setq dimmer-fraction 0.2))
@@ -170,7 +197,7 @@
 (use-package flycheck
   :ensure t
   :defer t
-  :diminish flymake-mode
+  :diminish flycheck-mode
   :config
   (use-package flycheck-popup-tip
     :ensure t
@@ -355,6 +382,11 @@
   (global-hl-todo-mode 1))
 
 
+(use-package htmltagwrap
+  :ensure t
+  :defer t)
+
+
 (use-package iedit
   :ensure t
   :defer t)
@@ -439,6 +471,11 @@
                       :inherit nil))
 
 
+(use-package project-abbrev
+  :ensure t
+  :defer t)
+
+
 (use-package projectile
   :ensure t
   :diminish projectile-mode
@@ -485,6 +522,11 @@
   (advice-add 'reload-emacs :after #'jcs-advice-reload-emacs-after))
 
 
+(use-package restart-emacs
+  :ensure t
+  :defer t)
+
+
 (use-package right-click-context
   :ensure t
   :diminish right-click-context-mode
@@ -505,6 +547,19 @@
           (deactivate-mark)))))
   (advice-add 'shift-select-pre-command-hook :after #'jcs-advice-shift-select-pre-command-hook-after)
   (global-shift-select-mode t))
+
+
+(use-package sql-indent
+  :ensure t
+  :defer t
+  :config
+  ;; URL(jenchieh): https://www.emacswiki.org/emacs/SqlIndent
+  ;; 1 = 2 spaces,
+  ;; 2 = 4 spaces,
+  ;; 3 = 6 spaces,
+  ;; n = n * 2 spaces,
+  ;; etc.
+  (setq sql-indent-offset 1))
 
 
 (use-package sr-speedbar
@@ -564,7 +619,7 @@
 
   ;; NOTE(jenchieh): Following functions are available to hide
   ;; some UI parts.
-  ;;(sublimity-attractive-hide-bars)
+  ;;(sublimity-attractive-hide-bars)
   ;;(sublimity-attractive-hide-vertical-border)
   ;;(sublimity-attractive-hide-fringes)
   ;;(sublimity-attractive-hide-modelines)
@@ -618,7 +673,15 @@
   :ensure t
   :defer t
   :config
-  (setq wgrep-auto-save-buffer t))
+  (setq wgrep-auto-save-buffer t)
+
+  (use-package wgrep-ag
+    :ensure t
+    :defer t)
+
+  (use-package wgrep-helm
+    :ensure t
+    :defer t))
 
 
 (use-package which-key
@@ -694,9 +757,7 @@
   :diminish yas-minor-mode
   :config
   (use-package yasnippet-snippets
-    :ensure t
-    :defer t)
-  (yas-reload-all)
+    :ensure t)
   (yas-global-mode 1))
 
 
