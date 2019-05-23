@@ -47,7 +47,6 @@
                                    com-css-sort
                                    company
                                    company-quickhelp
-                                   cpputils-cmake
                                    csharp-mode
                                    dart-mode
                                    dash
@@ -58,7 +57,6 @@
                                    emmet-mode
                                    erlang
                                    exec-path-from-shell
-                                   floobits
                                    focus
                                    flycheck
                                    flycheck-popup-tip
@@ -67,12 +65,12 @@
                                    gitignore-mode
                                    glsl-mode
                                    go-mode
-                                   google-maps
                                    google-this
                                    google-translate
                                    goto-char-preview
                                    goto-line-preview
                                    haskell-mode
+                                   haxe-mode
                                    helm
                                    helm-ag
                                    helm-gtags
@@ -122,7 +120,6 @@
                                    use-package
                                    use-ttf
                                    vimrc-mode
-                                   visual-regexp
                                    impatient-mode
                                    web-mode
                                    which-key
