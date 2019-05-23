@@ -88,21 +88,12 @@
   :defer t
   :diminish company-mode
   :config
-  (use-package company-quickhelp
-    :ensure t
-    :config
-    (setq company-quickhelp-delay 0.3)
-
-    (setq company-quickhelp-color-background "#FFF08A")
-
-    (company-quickhelp-mode t))
-
-  ;; TOPIC(jenchieh): How add company-dabbrev to the Company completion popup?
-  ;; URL(jenchieh): https://emacs.stackexchange.com/questions/15246/how-add-company-dabbrev-to-the-company-completion-popup
+  ;; TOPIC: How add company-dabbrev to the Company completion popup?
+  ;; URL: https://emacs.stackexchange.com/questions/15246/how-add-company-dabbrev-to-the-company-completion-popup
   (add-to-list 'company-backends '(company-capf :with company-dabbrev-code))
 
-  ;; TOPIC(jenchieh): Switching from AC
-  ;; URL(jenchieh): https://github.com/company-mode/company-mode/wiki/Switching-from-AC
+  ;; TOPIC: Switching from AC
+  ;; URL: https://github.com/company-mode/company-mode/wiki/Switching-from-AC
   (defun jcs-company-ac-setup ()
     "Sets up `company-mode' to behave similarly to `auto-complete-mode'."
     (setq company-minimum-prefix-length 2)
@@ -133,6 +124,14 @@
 
   (jcs-company-ac-setup)
   (global-company-mode t))
+
+
+(use-package company-quickhelp
+  :ensure t
+  :config
+  (setq company-quickhelp-delay 0.3)
+  (setq company-quickhelp-color-background "#FFF08A")
+  (company-quickhelp-mode t))
 
 
 (use-package dashboard
@@ -212,11 +211,6 @@
   :defer t)
 
 
-(use-package google-maps
-  :ensure t
-  :defer t)
-
-
 (use-package google-this
   :ensure t
   :defer t)
@@ -273,9 +267,9 @@
         helm-ff-file-name-history-use-recentf t)
 
 
-  ;; NOTE(jenchieh): Make Helm window at the bottom WITHOUT
+  ;; NOTE: Make Helm window at the bottom WITHOUT
   ;; using any extra package.
-  ;; SOURCE(jenchieh): https://www.reddit.com/r/emacs/comments/345vtl/make_helm_window_at_the_bottom_without_using_any/
+  ;; SOURCE: https://www.reddit.com/r/emacs/comments/345vtl/make_helm_window_at_the_bottom_without_using_any/
   (add-to-list 'display-buffer-alist
                `(,(rx bos "*helm" (* not-newline) "*" eos)
                  (display-buffer-in-side-window)
@@ -283,7 +277,7 @@
                  (window-height . 0.4)))
 
   ;; `helm-colors'
-  ;; NOTE(jenchieh): make key insert 'HEX' and 'Name'
+  ;; NOTE: make key insert 'HEX' and 'Name'
   (defvar helm-color-map
     (let ((map (make-sparse-keymap)))
       (set-keymap-parent map helm-map)
@@ -304,32 +298,31 @@
   ;; Selection
   (set-face-attribute 'helm-selection nil
                       :background "midnight blue"
-                      :foreground "#40FF40")
+                      :foreground "#40FF40"))
 
-  ;;
-  ;; NOTE(jenchieh): You will need GNU GLOBAL executable in order
-  ;; to make the tag system work.
-  ;;
-  (use-package helm-gtags
-    :ensure t
-    :defer t
-    :diminish helm-gtags-mode
-    :config
-    ;; Enable helm-gtags-mode
-    (add-hook 'asm-mode-hook 'helm-gtags-mode)
-    (add-hook 'c-mode-hook 'helm-gtags-mode)
-    (add-hook 'c++-mode-hook 'helm-gtags-mode)
-    (add-hook 'java-mode-hook 'helm-gtags-mode)
-    (add-hook 'jayces-mode-hook 'helm-gtags-mode)
-    (add-hook 'js2-mode-hook 'helm-gtags-mode)
-    (add-hook 'lua-mode-hook 'helm-gtags-mode)
-    (add-hook 'nasm-mode-hook 'helm-gtags-mode)
 
-    ;; customize 'helm-gtags' plugin
-    (custom-set-variables
-     '(helm-gtags-path-style 'relative)
-     '(helm-gtags-ignore-case t)
-     '(helm-gtags-auto-update t))))
+;; NOTE: You will need GNU GLOBAL executable in order
+;; to make the tag system work.
+(use-package helm-gtags
+  :ensure t
+  :defer t
+  :diminish helm-gtags-mode
+  :config
+  ;; Enable helm-gtags-mode
+  (add-hook 'asm-mode-hook 'helm-gtags-mode)
+  (add-hook 'c-mode-hook 'helm-gtags-mode)
+  (add-hook 'c++-mode-hook 'helm-gtags-mode)
+  (add-hook 'java-mode-hook 'helm-gtags-mode)
+  (add-hook 'jayces-mode-hook 'helm-gtags-mode)
+  (add-hook 'js2-mode-hook 'helm-gtags-mode)
+  (add-hook 'lua-mode-hook 'helm-gtags-mode)
+  (add-hook 'nasm-mode-hook 'helm-gtags-mode)
+
+  ;; customize 'helm-gtags' plugin
+  (custom-set-variables
+   '(helm-gtags-path-style 'relative)
+   '(helm-gtags-ignore-case t)
+   '(helm-gtags-auto-update t)))
 
 
 (use-package hl-todo
@@ -392,6 +385,16 @@
   :defer t)
 
 
+(use-package json-reformat
+  :ensure t
+  :defer t)
+
+
+(use-package json-snatcher
+  :ensure t
+  :defer t)
+
+
 (use-package impatient-mode
   :ensure t
   :defer t
@@ -441,6 +444,13 @@
   (global-origami-mode t))
 
 
+(use-package pdf-tools
+  :ensure t
+  :defer t
+  :config
+  (pdf-tools-install))
+
+
 (use-package powerline
   :ensure t
   :config
@@ -450,7 +460,7 @@
   ;;(powerline-vim-theme)
   ;;(powerline-nano-theme)
 
-  ;; NOTE(jenchieh):
+  ;; NOTE:
   ;; The separator to use for the default theme.
   ;;
   ;; Valid Values: alternate, arrow, arrow-fade, bar, box,
@@ -503,8 +513,8 @@
 
     ;; Restore to what ever state it was.
     ;;
-    ;; NOTE(jenchieh): we need these two lines because we need it
-    ;; for solving after reloading Emacs, there are some space at
+    ;; NOTE: we need these two lines because we need it for
+    ;; solving after reloading Emacs, there are some space at
     ;; the bottom. Which is weird and I have no idea why...
     (toggle-frame-maximized)
     (toggle-frame-maximized)
@@ -549,11 +559,28 @@
   (global-shift-select-mode t))
 
 
+(use-package show-eol
+  :ensure t
+  :defer t
+  :config
+  (show-eol-set-mark-with-string 'newline-mark "¶")
+
+  (defun jcs-advice-show-eol-enable-before ()
+    "Advice before execute `show-eol-enable' command."
+    (face-remap-add-relative 'whitespace-newline :inverse-video t))
+  (advice-add 'show-eol-enable :before #'jcs-advice-show-eol-enable-before)
+
+  (defun jcs-advice-show-eol-disable-before ()
+    "Advice before execute `show-eol-disable' command."
+    (face-remap-add-relative 'whitespace-newline :inverse-video nil))
+  (advice-add 'show-eol-disable :before #'jcs-advice-show-eol-disable-before))
+
+
 (use-package sql-indent
   :ensure t
   :defer t
   :config
-  ;; URL(jenchieh): https://www.emacswiki.org/emacs/SqlIndent
+  ;; URL: https://www.emacswiki.org/emacs/SqlIndent
   ;; 1 = 2 spaces,
   ;; 2 = 4 spaces,
   ;; 3 = 6 spaces,
@@ -582,7 +609,7 @@
   (require 'sublimity-attractive)
 
   ;; default on or off?
-  ;; NOTE(jenchieh): This also trigger the animate scrolling too.
+  ;; NOTE: This also trigger the animate scrolling too.
   (sublimity-mode 1)
 
   ;; Scroll Speed.
@@ -594,30 +621,30 @@
   (setq sublimity-map-fraction 0.3)  ;; [Default : 0.3]
   (setq sublimity-map-text-scale -7)  ;; [Default: -7]
 
-  ;; NOTE(jenchieh): When a positive integer is set, buffer
-  ;; width is truncated to this value and drawn centered. To
+  ;; NOTE: When a positive integer is set, buffer width
+  ;; is truncated to this value and drawn centered. To
   ;; cancel this feature, set this value nil.
   (setq sublimity-attractive-centering-width nil)  ;; [Default : 110]
 
-  ;; NOTE(jenchieh): With the setting above, minimap is displayed
-  ;; after 5 seconds of idle time. When sublimity-map-set-delay
-  ;; is called with nil, then minimap is shown with no delay. This
+  ;; NOTE: With the setting above, minimap is displayed after
+  ;; 5 seconds of idle time. When sublimity-map-set-delay is
+  ;; called with nil, then minimap is shown with no delay. This
   ;; defers from setting delay to 0, especially when used with
   ;; sublimity-scroll, in the sense that minimap looks not deleted
   ;; at all but gets worse performance.
 
-  ;; ATTENTION(jenchieh): Set it to very hight so it will never
+  ;; ATTENTION: Set it to very hight so it will never
   ;; reach the timer error.
   (sublimity-map-set-delay 40000000)
 
-  ;; NOTE(jenchieh): sublimity-map-setup-hook will run when
+  ;; NOTE: sublimity-map-setup-hook will run when
   ;; minimap is created.
   (add-hook 'sublimity-map-setup-hook
             (lambda ()
               (setq buffer-face-mode-face '(:family "Monospace"))
               (buffer-face-mode)))
 
-  ;; NOTE(jenchieh): Following functions are available to hide
+  ;; NOTE: Following functions are available to hide
   ;; some UI parts.
   ;;(sublimity-attractive-hide-bars)
   ;;(sublimity-attractive-hide-vertical-border)
@@ -664,24 +691,19 @@
   (use-ttf-set-default-font))
 
 
-(use-package visual-regexp
-  :ensure t
-  :defer t)
-
-
 (use-package wgrep
   :ensure t
   :defer t
   :config
-  (setq wgrep-auto-save-buffer t)
+  (setq wgrep-auto-save-buffer t))
 
-  (use-package wgrep-ag
-    :ensure t
-    :defer t)
+(use-package wgrep-ag
+  :ensure t
+  :defer t)
 
-  (use-package wgrep-helm
-    :ensure t
-    :defer t))
+(use-package wgrep-helm
+  :ensure t
+  :defer t)
 
 
 (use-package which-key
@@ -733,23 +755,7 @@
   (set-face-attribute 'whitespace-trailing
                       nil
                       :background "grey20"
-                      :foreground "red")
-
-  (use-package show-eol
-    :ensure t
-    :defer t
-    :config
-    (show-eol-set-mark-with-string 'newline-mark "¶")
-
-    (defun jcs-advice-show-eol-enable-before ()
-      "Advice before execute `show-eol-enable' command."
-      (face-remap-add-relative 'whitespace-newline :inverse-video t))
-    (advice-add 'show-eol-enable :before #'jcs-advice-show-eol-enable-before)
-
-    (defun jcs-advice-show-eol-disable-before ()
-      "Advice before execute `show-eol-disable' command."
-      (face-remap-add-relative 'whitespace-newline :inverse-video nil))
-    (advice-add 'show-eol-disable :before #'jcs-advice-show-eol-disable-before)))
+                      :foreground "red"))
 
 
 (use-package yasnippet
