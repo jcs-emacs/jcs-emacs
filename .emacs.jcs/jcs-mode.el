@@ -82,8 +82,7 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
   ;; -----------------------------------------
   ;; Unset insert mode key
   ;;
-  ;; NOTE(jenchieh): unset key should be
-  ;; before of set keys
+  ;; NOTE: unset key should be before of set keys
   ;; -----------------------------------------
 
   ;; -----------------------------------------
@@ -116,8 +115,7 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
   ;; -----------------------------------------
   ;; Unset command mode key
   ;;
-  ;; NOTE(jenchieh): unset key should be
-  ;; before of set keys
+  ;; NOTE: unset key should be before of set keys
   ;; -----------------------------------------
 
   ;; -----------------------------------------
@@ -203,8 +201,7 @@ control of the editor."
   ;; -----------------------------------------
   ;; Unset 'depend' mode key
   ;;
-  ;; NOTE(jenchieh): unset key should be
-  ;; before of set keys
+  ;; NOTE: unset key should be before of set keys
   ;; -----------------------------------------
   (global-unset-key "\C-f")
   (global-unset-key "\C-r")
@@ -241,8 +238,7 @@ control of the editor."
   ;; -----------------------------------------
   ;; Unset 'cross' mode key
   ;;
-  ;; NOTE(jenchieh): unset key should be
-  ;; before of set keys
+  ;; NOTE: unset key should be before of set keys
   ;; -----------------------------------------
   (global-unset-key "\C-f")
   (global-unset-key "\C-r")
@@ -338,8 +334,8 @@ PR : pair file `regexp' and file mode `symbol'."
 
 ;;; Text Mode (Override this)
 (progn
-  ;; NOTE(jenchieh): Use `org-mode' instead of
-  ;; `text-mode'. Normal `text-mode' suck.
+  ;; NOTE: Use `org-mode' instead of `text-mode'.
+  ;; Normal `text-mode' suck.
   (jcs-add-auto-mode-alist '("\\.txt'?\\'" . org-mode)))
 
 ;;; A
@@ -363,7 +359,7 @@ PR : pair file `regexp' and file mode `symbol'."
   (jcs-add-auto-mode-alist '("\\.cljs'?\\'" . clojure-mode))
   (jcs-add-auto-mode-alist '("\\.cljc'?\\'" . clojure-mode))
   (jcs-add-auto-mode-alist '("\\(/\\|\\`\\)CMakeLists.txt" . cmake-mode))
-  ;; NOTE(jenchieh): For autotools, autoconf, automake.
+  ;; NOTE: For autotools, autoconf, automake.
   (jcs-add-auto-mode-alist '("\\.ac'?\\'" . cmake-mode))
   (jcs-add-auto-mode-alist '("\\.cbl'?\\'" . cobol-mode))
   (jcs-add-auto-mode-alist '("\\.properties'?\\'" . conf-javaprop-mode))
@@ -397,7 +393,7 @@ PR : pair file `regexp' and file mode `symbol'."
 ;;; H
 (progn
   (jcs-add-auto-mode-alist '("\\.hs'?\\'" . haskell-mode))
-  ;; ATTENTION(jenchieh): Haxe-mode is no longer maintaining...
+  ;; ATTENTION: Haxe-mode is no longer maintaining...
   ;; Consider remove `haxe-mode' from this config.
   (require 'haxe-mode)
   (jcs-add-auto-mode-alist '("\\.hx'?\\'" . haxe-mode))
