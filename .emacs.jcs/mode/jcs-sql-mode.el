@@ -3,6 +3,8 @@
 ;;; Code:
 
 
+(require 'sql-indent)
+
 (require 'sql)
 (defun jcs-sql-mode-hook()
   "SQL mode hook."
