@@ -147,6 +147,7 @@
                                           "*dashboard*"
                                           "*GNU Emacs*"
                                           "*helm"
+                                          "*Help*"
                                           "*Package-Lint*"
                                           "*Packages*"
                                           "*SPEEDBAR*")
