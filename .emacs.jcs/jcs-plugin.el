@@ -198,12 +198,13 @@
   :defer t
   :diminish flycheck-mode
   :config
-  (use-package flycheck-popup-tip
+  ;;(global-flycheck-mode t)
+  )
+
+(use-package flycheck-popup-tip
     :ensure t
     :config
     (flycheck-popup-tip-mode t))
-  ;;(global-flycheck-mode t)
-  )
 
 
 (use-package focus
@@ -300,6 +301,9 @@
                       :background "midnight blue"
                       :foreground "#40FF40"))
 
+(use-package helm-ag
+  :ensure t
+  :defer t)
 
 ;; NOTE: You will need GNU GLOBAL executable in order
 ;; to make the tag system work.
@@ -385,16 +389,6 @@
   :defer t)
 
 
-(use-package json-reformat
-  :ensure t
-  :defer t)
-
-
-(use-package json-snatcher
-  :ensure t
-  :defer t)
-
-
 (use-package impatient-mode
   :ensure t
   :defer t
@@ -408,6 +402,21 @@
 
 
 (use-package isearch-project
+  :ensure t
+  :defer t)
+
+
+(use-package javadoc-lookup
+  :ensure t
+  :defer t)
+
+
+(use-package json-reformat
+  :ensure t
+  :defer t)
+
+
+(use-package json-snatcher
   :ensure t
   :defer t)
 
