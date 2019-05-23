@@ -62,7 +62,7 @@
  '(mouse-wheel-scroll-amount (quote (15)))
  '(package-selected-packages
    (quote
-    (show-eol dart-mode csharp-mode haxe-mode isearch-project async hl-todo page-break-lines goto-char-preview elixir-mode erlang multiple-cursors helm-projectile projectile buffer-move beacon dashboard flycheck-popup-tip glsl-mode company-quickhelp origami line-reminder polymode yasnippet-snippets dash git-commit move-text cmake-font-lock restart-emacs web-server indicators focus dimmer goto-line-preview transient magit with-editor right-click-context ini-mode htmltagwrap auto-rename-tag indent-info cobol-mode swift-mode rust-mode yaml-mode hydra markdown-mode nhexl-mode sr-speedbar clojure-mode undo-tree tabbar javadoc-lookup typescript-mode yasnippet xcscope wgrep-helm wgrep-ag wgrep websocket vimrc-mode tablist sql-indent simple-httpd scss-mode s request-deferred request popup pkg-info pcache json-snatcher json-reformat htmlize highlight-indentation highlight helm-core helm-ag google-translate google-this google-maps fringe-helper flycheck f epl emmet-mode diminish deferred cmake-mode bind-key avy ace-window js2-mode helm company apache-mode which-key web-mode use-ttf use-package tree-mode togetherly sublimity ssass-mode shader-mode scala-mode rainbow-mode python-mode project-abbrev processing-mode preproc-font-lock powerline pdf-tools package-lint package-build organize-imports-java nasm-mode lua-mode json-mode impatient-mode iedit helm-gtags haskell-mode go-mode gitignore-mode gitconfig-mode gitattributes-mode floobits exec-path-from-shell cpputils-cmake com-css-sort basic-mode auto-highlight-symbol ag adaptive-wrap actionscript-mode)))
+    (show-eol dart-mode csharp-mode haxe-mode isearch-project async hl-todo page-break-lines goto-char-preview elixir-mode erlang multiple-cursors helm-projectile projectile buffer-move beacon dashboard flycheck-popup-tip glsl-mode company-quickhelp origami line-reminder yasnippet-snippets dash git-commit move-text cmake-font-lock restart-emacs focus dimmer goto-line-preview transient magit with-editor right-click-context ini-mode htmltagwrap auto-rename-tag indent-info cobol-mode swift-mode rust-mode yaml-mode markdown-mode nhexl-mode sr-speedbar clojure-mode undo-tree tabbar javadoc-lookup typescript-mode yasnippet xcscope wgrep-helm wgrep-ag wgrep vimrc-mode tablist sql-indent simple-httpd scss-mode s popup pkg-info json-snatcher json-reformat htmlize helm-core helm-ag google-translate google-this flycheck f epl emmet-mode diminish cmake-mode bind-key avy ace-window js2-mode helm company apache-mode which-key web-mode use-ttf use-package tree-mode togetherly sublimity ssass-mode shader-mode scala-mode rainbow-mode python-mode project-abbrev processing-mode preproc-font-lock powerline pdf-tools package-lint package-build organize-imports-java nasm-mode lua-mode json-mode impatient-mode iedit helm-gtags haskell-mode go-mode gitignore-mode gitconfig-mode gitattributes-mode exec-path-from-shell com-css-sort basic-mode auto-highlight-symbol ag adaptive-wrap actionscript-mode)))
  '(paradox-github-token t)
  '(send-mail-function (quote mailclient-send-it))
  '(version-control nil))
@@ -112,10 +112,10 @@
 ;;         Manually Installation
 ;;----------------------------------
 
-(load-file "~/.emacs.d/elisp/jayces-mode-20190205.001/jayces-mode.el")
-(load-file "~/.emacs.d/elisp/jcs-ex-pkg-20190326.001/jcs-ex-pkg.el")
-(load-file "~/.emacs.d/elisp/reload-emacs-20190326.001/reload-emacs.el")
-(load-file "~/.emacs.d/elisp/shift-select-20190423.001/shift-select.el")
+(load-file "~/.emacs.d/elisp/jayces-mode-20190205.001/jayces-mode.elc")
+(load-file "~/.emacs.d/elisp/jcs-ex-pkg-20190326.001/jcs-ex-pkg.elc")
+(load-file "~/.emacs.d/elisp/reload-emacs-20190326.001/reload-emacs.elc")
+(load-file "~/.emacs.d/elisp/shift-select-20190423.001/shift-select.elc")
 
 ;;========================================
 ;;      JENCHIEH FILE LOADING
