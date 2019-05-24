@@ -4,7 +4,6 @@
 
 
 (require 'linum)
-(require 'popup)
 
 ;;----------------------------------------------
 ;; Beacon
@@ -501,13 +500,22 @@ VEC : Either position or negative number."
          (description (with-temp-buffer
                         (help-mode)
                         (help-xref-interned thing)
-                        (buffer-string))))
-    (popup-tip description
-               :point (point)
-               :around t
-               :height 30
-               :scroll-bar t
-               :margin t)))
+                        (buffer-string)))
+         (timeout 300)
+         (fg-bg `(,company-quickhelp-color-foreground
+                  . ,company-quickhelp-color-background)))
+    (if (display-graphic-p)
+        (pos-tip-show description
+                      fg-bg
+                      (point)
+                      nil
+                      timeout)
+      (popup-tip description
+                 :point (point)
+                 :around t
+                 :height 30
+                 :scroll-bar t
+                 :margin t))))
 
 ;;---------------------------------------------
 ;; Todo
