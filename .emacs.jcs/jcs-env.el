@@ -143,14 +143,19 @@
 (setq inhibit-compacting-font-caches t)
 
 ;;; Line Numbers
-(defvar jcs-line-numbers-ignore-buffers '("*compilation*"
+(defvar jcs-line-numbers-ignore-buffers '("*Checkdoc Help*"
+                                          "*Checkdoc Status*"
+                                          "*Compile-Log*"
+                                          "*compilation*"
                                           "*dashboard*"
                                           "*GNU Emacs*"
                                           "*helm"
                                           "*Help*"
+                                          "*Messages*"
                                           "*Package-Lint*"
                                           "*Packages*"
-                                          "*SPEEDBAR*")
+                                          "*SPEEDBAR*"
+                                          "*undo-tree*")
   "List of buffers that you do not want to show line numbers in it.")
 
 ;;; Menu Bar
