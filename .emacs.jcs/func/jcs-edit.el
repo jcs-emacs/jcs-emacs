@@ -317,16 +317,21 @@ This command does not push text to `kill-ring'."
   (yank))
 
 ;;---------------------------------------------
-;; After moving UP one line, do identation.
+;; Indent moving UP or DOWN.
 ;;---------------------------------------------
+
+(defun jcs-can-do-smart-indent-p ()
+  "Check smart indent conditions."
+  (and (not mark-active)
+       (jcs-buffer-name-or-buffer-file-name)
+       (not buffer-read-only)))
 
 ;;;###autoload
 (defun jcs-smart-indent-up ()
   "Indent line after move up one line.
 This function uses `indent-for-tab-command'."
   (interactive)
-  (if (and (not mark-active)
-           (buffer-file-name))
+  (if (jcs-can-do-smart-indent-p)
       (progn
         (previous-line 1)
         (indent-for-tab-command))
@@ -337,25 +342,18 @@ This function uses `indent-for-tab-command'."
   "Indent line after move up one line.
 Use `indent-according-to-mode' instead `indent-for-tab-command'."
   (interactive)
-  (if (and (not mark-active)
-           (buffer-file-name))
+  (if (jcs-can-do-smart-indent-p)
       (progn
         (previous-line 1)
         (indent-according-to-mode))
     (previous-line 1)))
-
-
-;;---------------------------------------------
-;; After moving DOWN one line, do identation.
-;;---------------------------------------------
 
 ;;;###autoload
 (defun jcs-smart-indent-down ()
   "Indent line after move down one line.
 This function uses `indent-for-tab-command'."
   (interactive)
-  (if (and (not mark-active)
-           (buffer-file-name))
+  (if (jcs-can-do-smart-indent-p)
       (progn
         (next-line 1)
         (indent-for-tab-command))
@@ -366,8 +364,7 @@ This function uses `indent-for-tab-command'."
   "Indent line after move down one line.
 Use `indent-according-to-mode' instead `indent-for-tab-command'."
   (interactive)
-  (if (and (not mark-active)
-           (buffer-file-name))
+  (if (jcs-can-do-smart-indent-p)
       (progn
         (next-line 1)
         (indent-according-to-mode))
@@ -382,7 +379,6 @@ Use `indent-according-to-mode' instead `indent-for-tab-command'."
 (defun jcs-format-document ()
   "Format current document."
   (interactive)
-  ;; indent the whole doc.
   (indent-region (point-min) (point-max)))
 
 ;;;###autoload
@@ -497,14 +493,11 @@ region selected?"
   "Repeat alignment with respect to the given regular expression.
 REGEXP : reqular expression use to align."
   (interactive "r\nsAlign regexp: ")
-
   (if (jcs-is-region-selected-p)
-      (progn
-        (align-regexp (region-beginning) (region-end)
-                      (concat "\\(\\s-*\\)" regexp) 1 1 t))
-    (progn
-      (align-regexp (point-min) (point-max)
-                    (concat "\\(\\s-*\\)" regexp) 1 1 t))))
+      (align-regexp (region-beginning) (region-end)
+                    (concat "\\(\\s-*\\)" regexp) 1 1 t)
+    (align-regexp (point-min) (point-max)
+                  (concat "\\(\\s-*\\)" regexp) 1 1 t)))
 
 ;;;###autoload
 (defun jcs-revert-buffer-no-confirm ()
