@@ -125,7 +125,6 @@
   (jcs-company-ac-setup)
   (global-company-mode t))
 
-
 (use-package company-quickhelp
   :ensure t
   :config
@@ -188,11 +187,6 @@
     (exec-path-from-shell-initialize)))
 
 
-(use-package floobits
-  :ensure t
-  :defer t)
-
-
 (use-package flycheck
   :ensure t
   :defer t
@@ -202,9 +196,10 @@
   )
 
 (use-package flycheck-popup-tip
-    :ensure t
-    :config
-    (flycheck-popup-tip-mode t))
+  :ensure t
+  :config
+  (with-eval-after-load 'flycheck
+    (flycheck-popup-tip-mode t)))
 
 
 (use-package focus
