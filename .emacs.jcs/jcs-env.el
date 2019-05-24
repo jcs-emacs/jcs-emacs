@@ -143,11 +143,13 @@
 (setq inhibit-compacting-font-caches t)
 
 ;;; Line Numbers
-(defvar jcs-line-numbers-ignore-buffers '("*Checkdoc Help*"
+(defvar jcs-line-numbers-ignore-buffers '("*Buffer List*"
+                                          "*Checkdoc Help*"
                                           "*Checkdoc Status*"
                                           "*Compile-Log*"
                                           "*compilation*"
                                           "*dashboard*"
+                                          "*Flycheck errors*"
                                           "*GNU Emacs*"
                                           "*helm"
                                           "*Help*"
