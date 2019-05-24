@@ -164,8 +164,7 @@ VSCode like methods to `mark` and `unmark` multiple cursor.
 * *Binary/Hex Editor* - powered by 
 [nhexl-mode](https://github.com/emacsmirror/nhexl-mode).
 * *Collaborative Editing* - powered by 
-[togetherly](https://github.com/zk-phi/togetherly) and 
-[floobits](https://github.com/Floobits/floobits-emacs).
+[togetherly](https://github.com/zk-phi/togetherly).
 * *Context Menu* - powered by 
 [right-click-context](https://github.com/zonuexe/right-click-context).
 * *Docstring* - none, built-in to this configuration.
