@@ -143,7 +143,8 @@
 (setq inhibit-compacting-font-caches t)
 
 ;;; Line Numbers
-(defvar jcs-line-numbers-ignore-buffers '("*Buffer List*"
+(defvar jcs-line-numbers-ignore-buffers '("*Backtrace*"
+                                          "*Buffer List*"
                                           "*Checkdoc Help*"
                                           "*Checkdoc Status*"
                                           "*Compile-Log*"
@@ -159,6 +160,9 @@
                                           "*SPEEDBAR*"
                                           "*undo-tree*")
   "List of buffers that you do not want to show line numbers in it.")
+
+(defvar jcs-line-numbers-ignore-modes '("dired-mode")
+  "List of modes that you do not want to show line numbers in it.")
 
 ;;; Menu Bar
 (menu-bar-mode -1)
