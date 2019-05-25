@@ -1028,12 +1028,12 @@ IN-INT : integer using to check if is contain one of the IN-LIST."
 (defun jcs-print-current-major-mode ()
   "Print out the current major mode."
   (interactive)
-  (message "Current major mode: %s" major-mode))
+  (message "Current major mode: %s" (symbol-name major-mode)))
 
 (defun jcs-is-current-major-mode-p (str)
   "Check if this major mode.
 STR : major mode name."
-  (string= major-mode str))
+  (string= (symbol-name major-mode) str))
 
 (defun jcs-is-minor-mode-enabled-p (mode-obj)
   "Check if this minor enabled in current buffer/file.
