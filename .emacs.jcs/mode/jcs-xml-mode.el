@@ -23,6 +23,9 @@
 
   ;; Normal
   (define-key emmet-mode-keymap "\C-c\C-c" #'kill-ring-save)
+
+  (define-key nxml-mode-map (kbd "<up>") #'jcs-smart-indent-up)
+  (define-key nxml-mode-map (kbd "<down>") #'jcs-smart-indent-down)
   )
 ;; STUDY(jenchieh): they ae using nxml-mode instead of xml-mode
 ;; which is really weird.
