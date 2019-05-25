@@ -198,7 +198,8 @@ G : Deactive line numbers globally."
 G : Active line numbers globally."
   (interactive)
   (if (or (minibufferp)
-          (jcs-is-contain-list-string jcs-line-numbers-ignore-buffers (buffer-name)))
+          (jcs-is-contain-list-string jcs-line-numbers-ignore-buffers (buffer-name))
+          (jcs-is-contain-list-string jcs-line-numbers-ignore-modes (symbol-name major-mode)))
       ;; Don't use line numbers at all.
       (jcs-deactive-line-numbers-modes)
     (if (line-reminder-is-valid-line-reminder-situation)
