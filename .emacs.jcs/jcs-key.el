@@ -337,6 +337,9 @@
 ;;; Revert Buffer
 (define-key global-map "\er" #'jcs-revert-buffer-no-confirm)
 
+;;; Right Click Context
+(define-key global-map [S-f10] #'right-click-context-menu)
+
 ;;; Script Executing
 (progn
   ;; Run
