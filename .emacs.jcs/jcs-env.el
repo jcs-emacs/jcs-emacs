@@ -153,7 +153,6 @@
                                           "*Flycheck errors*"
                                           "*GNU Emacs*"
                                           "*helm"
-                                          "*Help*"
                                           "*Messages*"
                                           "*Package-Lint*"
                                           "*Packages*"
@@ -161,7 +160,8 @@
                                           "*undo-tree*")
   "List of buffers that you do not want to show line numbers in it.")
 
-(defvar jcs-line-numbers-ignore-modes '("dired-mode")
+(defvar jcs-line-numbers-ignore-modes '("dired-mode"
+                                        "help-mode")
   "List of modes that you do not want to show line numbers in it.")
 
 ;;; Menu Bar
