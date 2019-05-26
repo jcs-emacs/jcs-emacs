@@ -227,6 +227,8 @@ C-M->           Increase tab width by 2.
 
 C-x =           Calcualte the region and replace with the result.
 
+S-f10           Right click context menu.
+
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * Window
