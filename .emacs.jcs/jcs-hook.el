@@ -29,7 +29,8 @@
 
 (defun jcs-find-file-hook ()
   "Find file hook."
-  (when (jcs-is-contain-list-string jcs-find-file-read-only-paths (buffer-file-name))
+  (when (and (not jcs-package-upgrading)
+             (jcs-is-contain-list-string jcs-find-file-read-only-paths (buffer-file-name)))
     (read-only-mode))
   (jcs-refresh-buffer-menu-buffer)
   (jcs-active-line-numbers-by-mode)
