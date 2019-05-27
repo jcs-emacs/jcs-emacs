@@ -84,7 +84,6 @@
                                    javadoc-lookup
                                    js2-mode
                                    json-mode
-                                   let-alist
                                    line-reminder
                                    lua-mode
                                    magit
@@ -97,7 +96,6 @@
                                    origami
                                    package-build
                                    package-lint
-                                   ;;pdf-tools
                                    powerline
                                    processing-mode
                                    project-abbrev
