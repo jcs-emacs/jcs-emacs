@@ -103,10 +103,6 @@
 ;;; Default Major Mode
 (setq-default major-mode 'org-mode)
 
-;;; Doc View
-(when jcs-win32
-  (setq doc-view-ghostscript-program (executable-find "gswin64c")))
-
 ;;; Ediff
 (defun jcs-ediff-setup-windows (buffer-A buffer-B buffer-C control-buffer)
   (ediff-setup-windows-plain buffer-A buffer-B buffer-C control-buffer))
