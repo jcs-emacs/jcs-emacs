@@ -448,13 +448,6 @@
   (global-origami-mode t))
 
 
-(use-package pdf-tools
-  :ensure t
-  :defer t
-  :config
-  (pdf-tools-install))
-
-
 (use-package popup
   :ensure t
   :defer t
