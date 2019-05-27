@@ -28,7 +28,9 @@
 ;;-----------------------------------------------------------
 
 (defun jcs-find-file-hook ()
-  "When temporary buffer shown."
+  "Find file hook."
+  (when (jcs-is-contain-list-string jcs-find-file-read-only-paths (buffer-file-name))
+    (read-only-mode))
   (jcs-refresh-buffer-menu-buffer)
   (jcs-active-line-numbers-by-mode)
   )
