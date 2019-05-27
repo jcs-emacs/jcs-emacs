@@ -104,13 +104,8 @@
 (setq-default major-mode 'org-mode)
 
 ;;; Doc View
-(cond (jcs-win32
-       (setq doc-view-ghostscript-program
-             "C:/jcs_environment_variables/PATH/emacs-plugin/gs/bin/gswin64c.exe"))
-      (jcs-aquamacs
-       )
-      (jcs-linux
-       ))
+(when jcs-win32
+  (setq doc-view-ghostscript-program (executable-find "gswin64c")))
 
 ;;; Ediff
 (defun jcs-ediff-setup-windows (buffer-A buffer-B buffer-C control-buffer)
