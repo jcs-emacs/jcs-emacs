@@ -191,8 +191,7 @@ can see the error/operation message.")
 
 ;;; Read Only
 (defvar jcs-find-file-read-only-paths '(".emacs.d/elisp/"
-                                        ".emacs.d/elpa/"
-                                        "lisp/")
+                                        ".emacs.d/elpa/")
   "When `find-file' under these paths, enable `read-only-mode' as default when opens it.")
 
 ;;; Scroll bar
