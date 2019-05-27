@@ -101,6 +101,9 @@ TE : Target event name"
       (let ((kn (nth 0 last-input-event)))
         (when (string-match-p te (symbol-name kn))
           (setq is-event t))))
+    (when (and (symbolp last-input-event)
+               (string= (symbol-name last-input-event) te))
+      (setq is-event t))
     is-event))
 
 ;;---------------------------------------------
@@ -493,13 +496,13 @@ the end of the line."
 ;; Symbol
 ;;---------------------------------------------
 
-;;;###autoload
+;;;###autoload
 (defun jcs-print-current-symbol ()
   "Print out the current symbol."
   (interactive)
   (message "Current symbol: %s" (jcs-get-symbol-at-point)))
 
-(defun jcs-get-symbol-at-point ()
+(defun jcs-get-symbol-at-point ()
   "Get symbol at current cursor position."
   (thing-at-point 'symbol))
 
