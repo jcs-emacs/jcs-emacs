@@ -172,7 +172,6 @@
   "Delay for a time for prompting out the message, so the user
 can see the error/operation message.")
 
-
 ;;; Recent Files
 (recentf-mode 1)
 (setq recentf-max-menu-items 25)
@@ -183,6 +182,11 @@ can see the error/operation message.")
   ;; list changes.
   (jcs-refresh-dashboard-buffer))
 (advice-add 'recentf-track-opened-file :after #'jcs-advice-recentf-track-opened-file-after)
+
+;;; Read Only
+(defvar jcs-find-file-read-only-paths '(".emacs.d/elisp/"
+                                        ".emacs.d/elpa/")
+  "When `find-file' under these paths, enable `read-only-mode' as default when opens it.")
 
 ;;; Scroll bar
 (scroll-bar-mode -1)
