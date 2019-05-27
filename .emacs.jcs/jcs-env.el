@@ -103,6 +103,15 @@
 ;;; Default Major Mode
 (setq-default major-mode 'org-mode)
 
+;;; Doc View
+(cond (jcs-win32
+       (setq doc-view-ghostscript-program
+             "C:/jcs_environment_variables/PATH/emacs-plugin/gs/bin/gswin64c.exe"))
+      (jcs-aquamacs
+       )
+      (jcs-linux
+       ))
+
 ;;; Ediff
 (defun jcs-ediff-setup-windows (buffer-A buffer-B buffer-C control-buffer)
   (ediff-setup-windows-plain buffer-A buffer-B buffer-C control-buffer))
@@ -161,7 +170,9 @@
   "List of buffers that you do not want to show line numbers in it.")
 
 (defvar jcs-line-numbers-ignore-modes '("dired-mode"
-                                        "help-mode")
+                                        "doc-view-mode"
+                                        "help-mode"
+                                        "image-mode")
   "List of modes that you do not want to show line numbers in it.")
 
 ;;; Menu Bar
@@ -185,7 +196,8 @@ can see the error/operation message.")
 
 ;;; Read Only
 (defvar jcs-find-file-read-only-paths '(".emacs.d/elisp/"
-                                        ".emacs.d/elpa/")
+                                        ".emacs.d/elpa/"
+                                        "lisp/")
   "When `find-file' under these paths, enable `read-only-mode' as default when opens it.")
 
 ;;; Scroll bar
