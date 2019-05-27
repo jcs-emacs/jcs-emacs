@@ -90,6 +90,20 @@ HEX-CODE : Color HEX code to check."
   (not (jcs-is-light-color)))
 
 ;;---------------------------------------------
+;; Event
+;;---------------------------------------------
+
+(defun jcs-last-input-event-p (te)
+  "Check if `last-input-event' a target event.
+TE : Target event name"
+  (let ((is-event nil))
+    (when (listp last-input-event)
+      (let ((kn (nth 0 last-input-event)))
+        (when (string-match-p te (symbol-name kn))
+          (setq is-event t))))
+    is-event))
+
+;;---------------------------------------------
 ;; Time
 ;;---------------------------------------------
 
