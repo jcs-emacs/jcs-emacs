@@ -190,8 +190,7 @@ can see the error/operation message.")
 (advice-add 'recentf-track-opened-file :after #'jcs-advice-recentf-track-opened-file-after)
 
 ;;; Read Only
-(defvar jcs-find-file-read-only-paths '(".emacs.d/elisp/"
-                                        ".emacs.d/elpa/")
+(defvar jcs-find-file-read-only-paths '("")
   "When `find-file' under these paths, enable `read-only-mode' as default when opens it.")
 
 ;;; Scroll bar
