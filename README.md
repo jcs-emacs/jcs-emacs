@@ -215,7 +215,9 @@ and
 * *Package Management* - powered by 
 [use-package](https://github.com/jwiegley/use-package).
 * *PDF Viewer* - powered by 
-[pdf-tools](https://github.com/politza/pdf-tools).
+[doc-view-mode](https://www.emacswiki.org/emacs/DocViewMode)
+and 
+[ghostscript](https://www.ghostscript.com/index.html).
 * *Project Search* - powered by 
 [projectile](https://github.com/bbatsov/projectile).
 * *Reload Emacs* - powered by 
