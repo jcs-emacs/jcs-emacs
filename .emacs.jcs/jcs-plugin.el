@@ -455,6 +455,37 @@
   (pdf-tools-install))
 
 
+(use-package popup
+  :ensure t
+  :defer t
+  :config
+  (defvar jcs-popup-mouse-events-flag nil
+    "Check if `popup-menu-item-of-mouse-event' is called.")
+  (defvar jcs-popup-selected-item-flag nil
+    "Check if `popup-selected-item' is called.")
+
+  (defun jcs-popup-clicked-on-menu-p ()
+    "Check if the user actually clicked on the `popup' object."
+    (and jcs-popup-mouse-events-flag
+         (not jcs-popup-selected-item-flag)))
+
+  (defun jcs-advice-popup-menu-item-of-mouse-event-after (event)
+    "Advice after execute `popup-menu-item-of-mouse-event' command."
+    (setq jcs-popup-mouse-events-flag t)
+    (setq jcs-popup-selected-item-flag nil))
+  (advice-add 'popup-menu-item-of-mouse-event :after #'jcs-advice-popup-menu-item-of-mouse-event-after)
+
+  (defun jcs-advice-popup-selected-item-after (popup)
+    "Advice after execute `popup-selected-item' command."
+    (setq jcs-popup-selected-item-flag t)
+    (when (ignore-errors (symbol-name last-input-event))
+      (let ((select-input-lst '("return"
+                                "kp-enter")))
+        (when (jcs-is-contain-list-string select-input-lst (symbol-name last-input-event))
+          (setq jcs-popup-selected-item-flag nil)))))
+  (advice-add 'popup-selected-item :after #'jcs-advice-popup-selected-item-after))
+
+
 (use-package powerline
   :ensure t
   :config
@@ -545,6 +576,26 @@
   :ensure t
   :diminish right-click-context-mode
   :config
+  ;;;###autoload
+  (defun jcs-popup-right-click-context-click-menu ()
+    (interactive)
+    (when (memq this-command '(right-click-context-click-menu))
+      (popup-delete (nth (1- (length popup-instances)) popup-instances))
+      (call-interactively #'right-click-context-click-menu)))
+
+  (define-key popup-menu-keymap [mouse-3] #'jcs-popup-right-click-context-click-menu)
+
+  ;;;###autoload
+  (defun right-click-context-menu ()
+    "Open Right Click Context menu."
+    (interactive)
+    (let ((value (popup-cascade-menu (right-click-context--build-menu-for-popup-el (right-click-context--menu-tree) nil))))
+      (when (and (jcs-popup-clicked-on-menu-p)
+                 value)
+        (if (symbolp value)
+            (call-interactively value t)
+          (eval value)))))
+
   (right-click-context-mode 1))
 
 
