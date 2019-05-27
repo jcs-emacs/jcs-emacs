@@ -33,8 +33,7 @@
              (not jcs-package-upgrading)
              (jcs-is-contain-list-string jcs-find-file-read-only-paths
                                          (buffer-file-name)))
-    ;;(read-only-mode)
-    )
+    (read-only-mode))
   (jcs-refresh-buffer-menu-buffer)
   (jcs-active-line-numbers-by-mode)
   )
