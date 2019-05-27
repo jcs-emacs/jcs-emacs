@@ -73,6 +73,7 @@
                                    haxe-mode
                                    helm
                                    helm-ag
+                                   helm-core
                                    helm-gtags
                                    helm-projectile
                                    hl-todo
