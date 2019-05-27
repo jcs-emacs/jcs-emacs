@@ -29,8 +29,10 @@
 
 (defun jcs-find-file-hook ()
   "Find file hook."
-  (when (and (not jcs-package-upgrading)
-             (jcs-is-contain-list-string jcs-find-file-read-only-paths (buffer-file-name)))
+  (when (and (not reload-emacs-reloading)
+             (not jcs-package-upgrading)
+             (jcs-is-contain-list-string jcs-find-file-read-only-paths
+                                         (buffer-file-name)))
     (read-only-mode))
   (jcs-refresh-buffer-menu-buffer)
   (jcs-active-line-numbers-by-mode)
@@ -66,11 +68,11 @@
 
   ;; Show the last command event id?
   (when jcs-show-last-command-event
-    (call-interactively #'jcs-print-last-command-event))
+    (jcs-print-last-command-event))
 
   (when (jcs-is-font-lock-fontify-buffer-mode-p)
     ;; Refresh the syntax highlighting.
-    (call-interactively #'jcs-font-lock-fontify-buffer))
+    (jcs-font-lock-fontify-buffer))
 
   ;; TODO(jenchieh): Move this to `web-mode' only.
   (when (jcs-is-current-major-mode-p "web-mode")
