@@ -131,15 +131,15 @@
   "List of packages this config needs.")
 
 
-;; Ensure all the package installed
-;; SOURCE: http://stackoverflow.com/questions/10092322/how-to-automatically-install-emacs-packages-by-specifying-a-list-of-package-name
+(defvar jcs-package-upgrading nil
+  "Is currently upgrading the package.")
+
 (defun jcs-ensure-package-installed (packages &optional without-asking)
   "Assure every package is installed, ask for installation if it’s not.
-
 Return a list of installed packages or nil for every skipped package."
+  (setq jcs-package-upgrading t)
   (mapcar
    (lambda (package)
-     ;; (package-installed-p 'evil)
      (if (package-installed-p package)
          nil
        (if without-asking
@@ -147,14 +147,14 @@ Return a list of installed packages or nil for every skipped package."
          (if (y-or-n-p (format "Package %s is missing. Install it? " package))
              (package-install package)
            package))))
-   packages))
-
+   packages)
+  (setq jcs-package-upgrading nil))
 
 ;;;###autoload
 (defun jcs-package-upgrade-all ()
   "Upgrade all packages automatically without showing *Packages* buffer."
   (interactive)
-  ;; SOURCE(jenchieh): https://emacs.stackexchange.com/questions/16398/noninteractively-upgrade-all-packages
+  (setq jcs-package-upgrading t)
   (package-refresh-contents)
   (let (upgrades)
     (cl-flet ((get-version (name where)
@@ -181,9 +181,10 @@ Return a list of installed packages or nil for every skipped package."
                 (package-install package-desc)
                 (package-delete  old-package))))
           (message "Done upgrading all packages"))
-      (message "All packages are up to date"))))
+      (message "All packages are up to date")))
+  (setq jcs-package-upgrading nil))
 
-;; NOTE(jenchieh): Only in Emacs 25.1+
+
 ;;;###autoload
 (defun jcs-package-menu-filter-by-status (status)
   "Filter the *Packages* buffer by status."
