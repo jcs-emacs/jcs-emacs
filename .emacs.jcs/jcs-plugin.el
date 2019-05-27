@@ -578,6 +578,7 @@
   :config
   ;;;###autoload
   (defun jcs-popup-right-click-context-click-menu ()
+    "Open a new right click context menu at the new mouse position."
     (interactive)
     (when (memq this-command '(right-click-context-click-menu))
       (popup-delete (nth (1- (length popup-instances)) popup-instances))
