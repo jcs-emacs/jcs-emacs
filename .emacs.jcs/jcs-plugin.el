@@ -576,29 +576,12 @@
   :ensure t
   :diminish right-click-context-mode
   :config
-  (progn
-    ;; TODO: Check if this patch merged.
-    ;; URL: https://github.com/zonuexe/right-click-context/pull/8
-    ;;;###autoload
-    (defun jcs-popup-right-click-context-click-menu ()
-      "Open a new right click context menu at the new mouse position."
-      (interactive)
-      (when (memq this-command '(right-click-context-click-menu))
-        (popup-delete (nth (1- (length popup-instances)) popup-instances))
-        (call-interactively #'right-click-context-click-menu)))
-    )
-
   ;;;###autoload
   (defun right-click-context-menu ()
     "Open Right Click Context menu."
     (interactive)
     (let ((popup-menu-keymap (copy-sequence popup-menu-keymap)))
-      (progn
-        ;; TODO: Check if this patch merged.
-        ;; URL: https://github.com/zonuexe/right-click-context/pull/8
-        (define-key popup-menu-keymap [mouse-3] #'jcs-popup-right-click-context-click-menu)
-        ;;(define-key popup-menu-keymap [mouse-3] #'right-click-context--click-menu-popup)
-        )
+      (define-key popup-menu-keymap [mouse-3] #'right-click-context--click-menu-popup)
       (let ((value (popup-cascade-menu (right-click-context--build-menu-for-popup-el (right-click-context--menu-tree) nil))))
         (when (and (jcs-popup-clicked-on-menu-p)
                    value)
