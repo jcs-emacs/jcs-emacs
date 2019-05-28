@@ -323,6 +323,11 @@
    '(helm-gtags-ignore-case t)
    '(helm-gtags-auto-update t)))
 
+(use-package helm-projectile
+    :ensure t
+    :config
+    (helm-projectile-on))
+
 
 (use-package hl-todo
   :ensure t
@@ -525,10 +530,6 @@
   :ensure t
   :diminish projectile-mode
   :config
-  (use-package helm-projectile
-    :ensure t
-    :config
-    (helm-projectile-on))
   (projectile-mode t))
 
 
