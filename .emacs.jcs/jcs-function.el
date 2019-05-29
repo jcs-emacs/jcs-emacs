@@ -3,6 +3,7 @@
 ;;; Code:
 
 
+(require 'helm)
 (require 'linum)
 
 ;;----------------------------------------------
@@ -83,6 +84,21 @@
 LST-PR: List of pair."
   (setq-local electric-pair-pairs (append electric-pair-pairs lst-pr))
   (setq-local electric-pair-text-pairs electric-pair-pairs))
+
+;;---------------------------------------------
+;; Helm
+;;---------------------------------------------
+
+;;;###autoload
+(defun jcs-reset-helm-theme-by-theme ()
+  "Set the theme by theme color."
+  (interactive)
+  (set-face-attribute 'helm-source-header nil
+                      :background (face-background 'default)
+                      :foreground "steel blue")
+  (set-face-attribute 'helm-selection nil
+                      :background (face-background 'hl-line)
+                      :foreground (face-background 'cursor)))
 
 ;;---------------------------------------------
 ;; Iedit
@@ -596,9 +612,6 @@ NO-PROMPT : Don't prompt the overwrap message."
 (defun jcs-ag-project-regexp ()
   "Use `wgrep' to replace the word in the entire project."
   (interactive)
-  ;; TOPIC: Is there a way to use query-replace from grep/ack/ag output modes?
-  ;; URL: https://emacs.stackexchange.com/questions/212/is-there-a-way-to-use-query-replace-from-grep-ack-ag-output-modes
-
   ;; open search result menu.
   (call-interactively #'ag-project-regexp)
 
