@@ -15,7 +15,7 @@
   (set-face-background 'vertical-border "#D2D2D2")
   (set-face-foreground 'vertical-border (face-background 'vertical-border))
 
-  ;; NOTE: `powerline' font faces.
+  ;; `powerline' font faces.
   (set-face-foreground 'powerline-active1 "#CCCCCC")
   (set-face-background 'powerline-active1 "#1C1C1C")
 
@@ -28,9 +28,7 @@
   (set-face-foreground 'powerline-inactive2 "#CCCCCC")
   (set-face-background 'powerline-inactive2 "#333333")
 
-  ;; Update the `powerline' GUI.
-  (powerline-reset)
-  )
+  (powerline-reset))
 
 ;;;###autoload
 (defun jcs-dark-green-mode-line ()
@@ -44,30 +42,25 @@
   (set-face-background 'vertical-border "#467E7D")
   (set-face-foreground 'vertical-border (face-background 'vertical-border))
 
-  ;; NOTE: `powerline' font faces.
+  ;; `powerline' font faces.
   (set-face-foreground 'powerline-active1 "#CCCCCC")
-  (set-face-background 'powerline-active1 "#223938")
+  (set-face-background 'powerline-active1 "#1C2E2D")
 
-  (set-face-foreground 'powerline-active2 "#222222")
+  (set-face-foreground 'powerline-active2 "#CCCCCC")
   (set-face-background 'powerline-active2 "#294645")
 
   (set-face-foreground 'powerline-inactive1 "#CCCCCC")
-  (set-face-background 'powerline-inactive1 "#223938")
+  (set-face-background 'powerline-inactive1 "#1C2E2D")
 
-  (set-face-foreground 'powerline-inactive2 "#222222")
+  (set-face-foreground 'powerline-inactive2 "#CCCCCC")
   (set-face-background 'powerline-inactive2 "#294645")
 
-  ;; Update the `powerline' GUI.
-  (powerline-reset)
-  )
+  (powerline-reset))
 
 ;;;###autoload
 (defun jcs-dark-blue-mode-line ()
   "Dark Blue mode line."
   (interactive)
-
-  (set-cursor-color "#40FF40")
-  (set-face-background 'hl-line "midnight blue")
 
   ;; set the 'vertical border'
   (set-face-background 'vertical-border "#246aaf")
@@ -77,7 +70,7 @@
   (set-face-background 'mode-line "#246aaf")
   (set-face-background 'mode-line-inactive "#0e2944")
 
-  ;; NOTE: `powerline' font faces.
+  ;; `powerline' font faces.
   (set-face-foreground 'powerline-active1 "#CCCCCC")
   (set-face-background 'powerline-active1 "#091A2B")
 
@@ -90,17 +83,12 @@
   (set-face-foreground 'powerline-inactive2 "#CCCCCC")
   (set-face-background 'powerline-inactive2 "#0e2944")
 
-  ;; Update the `powerline' GUI.
-  (powerline-reset)
-  )
+  (powerline-reset))
 
 ;;;###autoload
 (defun jcs-dark-orange-mode-line ()
   "Dark Orange mode line."
   (interactive)
-
-  (set-cursor-color "#40FF40")
-  (set-face-background 'hl-line "midnight blue")
 
   ;; set mode line
   (set-face-background 'mode-line "#FF6C32")
@@ -109,17 +97,12 @@
   (set-face-background 'vertical-border "#FF6C32")
   (set-face-foreground 'vertical-border (face-background 'vertical-border))
 
-  ;; Update the `powerline' GUI.
-  (powerline-reset)
-  )
+  (powerline-reset))
 
 ;;;###autoload
 (defun jcs-light-blue-mode-line ()
   "Dark Orange mode line."
   (interactive)
-
-  (set-cursor-color "#40FF40")
-  (set-face-background 'hl-line "midnight blue")
 
   ;; set mode line
   (set-face-background 'mode-line "#7aeeef")
@@ -141,16 +124,15 @@
   (set-face-foreground 'powerline-inactive2 "#222222")
   (set-face-background 'powerline-inactive2 "#448b8c")
 
-  ;; Update the `powerline' GUI.
-  (powerline-reset)
-  )
+  (powerline-reset))
 
 
 (defun jcs-reset-plugins-base-on-theme ()
   "Reset certain plugins base on the theme."
   (jcs-reset-line-number-color-by-theme)
   (jcs-reset-beacon-color-by-theme)
-  (jcs-reset-dashboard-banner-by-theme))
+  (jcs-reset-dashboard-banner-by-theme)
+  (jcs-reset-helm-theme-by-theme))
 
 ;;;###autoload
 (defun jcs-vs-light-theme ()
