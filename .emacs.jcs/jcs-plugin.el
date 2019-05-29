@@ -281,20 +281,7 @@
       (define-key map (kbd "C-c N") 'helm-color-run-kill-name)
       (define-key map (kbd "M-RET") 'helm-color-run-insert-rgb)
       (define-key map (kbd "C-c R") 'helm-color-run-kill-rgb)
-      map))
-
-  ;;
-  ;; Customize Helm Themes
-  ;;
-
-  ;; Title
-  (set-face-attribute 'helm-source-header nil
-                      :background "#161616"
-                      :foreground "steel blue")
-  ;; Selection
-  (set-face-attribute 'helm-selection nil
-                      :background "midnight blue"
-                      :foreground "#40FF40"))
+      map)))
 
 (use-package helm-ag
   :ensure t
