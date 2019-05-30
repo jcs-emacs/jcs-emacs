@@ -336,6 +336,7 @@ $ cp -r ./.emacs.jcs ~/
 
 
 ## Optimization
+
 If you would like to optimize the configuration, you can 
 run the following command compile all the source code to 
 byte code so Emacs can run faster during both `initial time` 
