@@ -20,7 +20,7 @@
 (define-key isearch-mode-map (kbd "C-s") nil)
 (define-key isearch-mode-map (kbd "C-r") nil)
 
-;; TODO(jenchieh): Implements isearch cursor for these two keys.
+;; TODO: Implements isearch cursor for these two keys.
 ;;(define-key isearch-mode-map (kbd "C-x C-x") #'jcs-vs-cut-key)
 ;;(define-key isearch-mode-map (kbd "C-c C-c") #'kill-ring-save)
 (define-key isearch-mode-map (kbd "C-v") #'isearch-yank-pop)
@@ -299,7 +299,7 @@
 ;;; Open same file in other window.
 (progn
   (define-key global-map (kbd "<f7>") #'jcs-same-file-other-window)
-  ;; NOTE(jenchieh): If there are corresponding file, then
+  ;; NOTE: If there are corresponding file, then
   ;; key <f8> should be replace by find corresponding file
   ;; interactive function call.
   (define-key global-map (kbd "<f8>") #'jcs-same-file-other-window))
@@ -351,7 +351,7 @@
 
 ;;; Search Word
 (progn
-  ;; NOTE(jenchieh): Basic search is bind to `jcs-cross-mode' and `jcs-depend-mode'.
+  ;; NOTE: Basic search is bind to `jcs-cross-mode' and `jcs-depend-mode'.
   ;; See `jcs-mode.el' file for the settings.
   (define-key global-map (kbd "C-r C-f") #'isearch-backward-regexp)
 
@@ -422,7 +422,7 @@
   (define-key global-map "\eq" #'jcs-other-window-prev))
 
 (progn
-  ;; NOTE(jenchieh): Make compatible to Vim.
+  ;; NOTE: Make compatible to Vim.
   (define-key global-map (kbd "C-w <up>") #'windmove-up)
   (define-key global-map (kbd "C-w <down>") #'windmove-down)
   (define-key global-map (kbd "C-w <left>") #'windmove-left)
@@ -461,7 +461,7 @@
 
 ;;; Undo Tree
 (define-key undo-tree-visualizer-mode-map (kbd "RET") #'undo-tree-visualizer-quit)
-;; STUDY(jenchieh): `undo-tree''s minor mode will overwrite
+;; STUDY: `undo-tree''s minor mode will overwrite
 ;; the global key map's key bindings. What we need to do
 ;; is to remap this again...
 (define-key undo-tree-map (kbd "C-/") #'jcs-comment-uncomment-region-or-line)
@@ -495,7 +495,7 @@ the key everytime the mode changes."
   (define-key global-map (kbd "C-r S-<backspace>") #'jcs-forward-delete-current-char-repeat)
   )
 
-;; NOTE(jenchieh): Call depend mode once.
+;; NOTE: Call depend mode once.
 (call-interactively #'jcs-depend-mode)
 
 
