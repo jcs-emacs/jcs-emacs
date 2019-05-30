@@ -91,8 +91,8 @@ with `use-package` package to delay some packages load time.
  written by 
 [Anurag Peshne](https://github.com/anuragpeshne).*
 
-**Edit 2:** If you compiled the source code then the speed can 
-lower down more from `0.5` to `1.5` seconds.
+**Edit 2:** If you compiled the source code then the startup 
+time can lower down more from `0.5` to `1.5` seconds.
 
 
 ## Features
