@@ -526,7 +526,12 @@
 
 
 (use-package reload-emacs
+  :defer t
   :config
+  (setq reload-emacs-load-path '("~/.emacs.jcs/"
+                                 "~/.emacs.jcs/func/"
+                                 "~/.emacs.jcs/mode/"))
+
   (defun jcs-advice-reload-emacs-after ()
     "Advice after execute `reload-emacs' command."
     ;; Split window horizontally if full width.
