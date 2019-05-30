@@ -409,7 +409,15 @@
 
 (use-package isearch-project
   :ensure t
-  :defer t)
+  :defer t
+  :config
+  (setq isearch-project-ignore-paths '(".vs/"
+                                       ".vscode/"
+                                       "bin/"
+                                       "build/"
+                                       "build.min/"
+                                       "node_modules/"
+                                       "res/")))
 
 
 (use-package javadoc-lookup
