@@ -8,7 +8,7 @@
 ::                   Copyright © 2019 by Shen, Jen-Chieh $
 :: ========================================================================
 
-:: DESCRIPTION(jenchieh): Install this configuration onto this machine.
+:: DESCRIPTION: Install this configuration onto this machine.
 
 
 set INSTALL_DIR=%userprofile%\AppData\Roaming

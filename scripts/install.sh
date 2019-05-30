@@ -9,7 +9,7 @@
 # ========================================================================
 
 
-# DESCRIPTION(jenchieh): Install this configuration onto this machine.
+# DESCRIPTION: Install this configuration onto this machine.
 
 # To root directory.
 cd ..
