@@ -516,7 +516,7 @@ VEC : Either position or negative number."
          (help-xref-following t)
          (description (with-temp-buffer
                         (help-mode)
-                        (help-xref-interned thing)
+                        (describe-symbol thing)
                         (buffer-string)))
          (timeout 300)
          (fg-bg `(,company-quickhelp-color-foreground
