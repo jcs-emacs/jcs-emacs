@@ -3,6 +3,8 @@
 ;;; Code:
 
 
+(require 'javadoc-lookup)
+
 (defun jcs-java-class-format ()
   "Format the given file as a Java file."
   (when (jcs-is-current-file-empty-p)
