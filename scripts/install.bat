@@ -11,7 +11,7 @@
 :: DESCRIPTION(jenchieh): Install this configuration onto this machine.
 
 
-set INSTALL_DIR=%userprofile%\AppData\Roaming2
+set INSTALL_DIR=%userprofile%\AppData\Roaming
 
 :: To root directory.
 cd ..
