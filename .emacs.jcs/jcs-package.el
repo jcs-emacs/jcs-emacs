@@ -113,6 +113,7 @@
                                    scss-mode
                                    sublimity
                                    sql-indent
+                                   swift-mode
                                    tabbar
                                    togetherly
                                    typescript-mode
