@@ -1,5 +1,6 @@
 # ignore extensions.
 *.lnk
+*.elc
 
 # ignore I use to not ignore.
 TODO(JenChieh).txt
