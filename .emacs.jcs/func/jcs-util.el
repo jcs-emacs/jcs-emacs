@@ -40,6 +40,16 @@ Else we just return `buffer-file-name' if available."
   (get-buffer buf-name))
 
 ;;---------------------------------------------
+;; Compile
+;;---------------------------------------------
+
+;;;###autoload
+(defun jcs-byte-recompile-directory ()
+  "Recompile the current directory."
+  (interactive)
+  (byte-recompile-directory "./" 0))
+
+;;---------------------------------------------
 ;; Color
 ;;---------------------------------------------
 
