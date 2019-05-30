@@ -173,8 +173,8 @@
 (use-package dimmer
   :ensure t
   :config
-  (setq dimmer-fraction 0.2)
-  (dimmer-mode))
+  (dimmer-mode)
+  (setq dimmer-fraction 0.2))
 
 
 (use-package emmet-mode
