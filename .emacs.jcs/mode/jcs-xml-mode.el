@@ -3,6 +3,11 @@
 ;;; Code:
 
 
+(defun jcs-xml-format ()
+  "Format the given file as a XML file."
+  (when (jcs-is-current-file-empty-p)
+    (jcs-insert-xml-template)))
+
 (require 'nxml-mode)
 (defun jcs-xml-mode-hook ()
   "XML mode hook."
@@ -10,11 +15,6 @@
   (electric-pair-mode 1)
   (goto-address-mode 1)
   (auto-highlight-symbol-mode t)
-
-  (defun jcs-xml-format ()
-    "Format the given file as a XML file."
-    (when (jcs-is-current-file-empty-p)
-      (jcs-insert-xml-template)))
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)
@@ -27,7 +27,7 @@
   (define-key nxml-mode-map (kbd "<up>") #'jcs-smart-indent-up)
   (define-key nxml-mode-map (kbd "<down>") #'jcs-smart-indent-down)
   )
-;; STUDY(jenchieh): they ae using nxml-mode instead of xml-mode
+;; STUDY: they ae using nxml-mode instead of xml-mode
 ;; which is really weird.
 (add-hook 'nxml-mode-hook 'jcs-xml-mode-hook)
 (add-hook 'nxml-mode-hook 'emmet-mode)

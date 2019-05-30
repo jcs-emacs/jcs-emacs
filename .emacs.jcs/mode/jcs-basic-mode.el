@@ -3,6 +3,11 @@
 ;;; Code:
 
 
+(defun jcs-basic-script-format ()
+  "Format the given file as a Basic file."
+  (when (jcs-is-current-file-empty-p)
+    (jcs-insert-basic-template)))
+
 (require 'basic-mode)
 (defun jcs-basic-mode-hook ()
   "Hook for `basic-mode'."
@@ -10,11 +15,6 @@
   (electric-pair-mode 1)
   (goto-address-mode 1)
   (auto-highlight-symbol-mode t)
-
-  (defun jcs-basic-script-format ()
-    "Format the given file as a Basic file."
-    (when (jcs-is-current-file-empty-p)
-      (jcs-insert-basic-template)))
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)

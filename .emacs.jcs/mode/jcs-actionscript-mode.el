@@ -3,6 +3,11 @@
 ;;; Code:
 
 
+(defun jcs-actionsript-class-format ()
+  "Format the given file as a ActionScript file."
+  (when (jcs-is-current-file-empty-p)
+    (jcs-insert-actionscript-template)))
+
 (require 'actionscript-mode)
 (defun jcs-actionscript-mode-hook ()
   "ActionScript mode hook."
@@ -11,12 +16,6 @@
   ;; TOPIC(jenchieh): Treat underscore as word.
   ;; URL(jenchieh): https://emacs.stackexchange.com/questions/9583/how-to-treat-underscore-as-part-of-the-word
   (modify-syntax-entry ?_ "w")
-
-
-  (defun jcs-actionsript-class-format ()
-    "Format the given file as a ActionScript file."
-    (when (jcs-is-current-file-empty-p)
-      (jcs-insert-actionscript-template)))
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)

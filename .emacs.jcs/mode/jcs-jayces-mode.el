@@ -3,6 +3,11 @@
 ;;; Code:
 
 
+(defun jcs-jayces-class-format ()
+  "Format the given file as a JayCeS file."
+  (when (jcs-is-current-file-empty-p)
+    (jcs-insert-jayces-template)))
+
 (require 'jayces-mode)
 (defun jcs-jayces-mode-hook ()
   "JayCeS mode hook."
@@ -12,11 +17,6 @@
 
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
-
-  (defun jcs-jayces-class-format ()
-    "Format the given file as a JayCeS file."
-    (when (jcs-is-current-file-empty-p)
-      (jcs-insert-jayces-template)))
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)

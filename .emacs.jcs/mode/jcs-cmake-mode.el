@@ -3,17 +3,17 @@
 ;;; Code:
 
 
+(defun jcs-cmake-format ()
+  "Format the given file as a CMakeLists. - JenChieh CMake"
+  (when (jcs-is-current-file-empty-p)
+    (jcs-insert-cmake-template)))
+
 (require 'cmake-mode)
 (defun jcs-cmake-mode-hook ()
   "CMake mode hook."
   (electric-pair-mode nil)
   (goto-address-mode 1)
   (auto-highlight-symbol-mode t)
-
-  (defun jcs-cmake-format ()
-    "Format the given file as a CMakeLists. - JenChieh CMake"
-    (when (jcs-is-current-file-empty-p)
-      (jcs-insert-cmake-template)))
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)

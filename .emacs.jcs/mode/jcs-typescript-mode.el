@@ -3,6 +3,11 @@
 ;;; Code:
 
 
+(defun jcs-typescript-format ()
+  "Format the given file as a TypScript file."
+  (when (jcs-is-current-file-empty-p)
+    (jcs-insert-typescript-template)))
+
 (require 'typescript-mode)
 (defun jcs-typescript-mode-hook ()
   "TypeScript mode hook."
@@ -13,11 +18,6 @@
 
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
-
-  (defun jcs-typescript-format ()
-    "Format the given file as a TypScript file."
-    (when (jcs-is-current-file-empty-p)
-      (jcs-insert-typescript-template)))
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)

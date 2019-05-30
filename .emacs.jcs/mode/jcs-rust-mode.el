@@ -3,6 +3,11 @@
 ;;; Code:
 
 
+(defun jcs-rust-format ()
+  "Format the given file as a Rust file."
+  (when (jcs-is-current-file-empty-p)
+    (jcs-insert-rust-template)))
+
 (require 'rust-mode)
 (defun jcs-rust-mode-hook ()
   "Rust mode hook."
@@ -13,11 +18,6 @@
 
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
-
-  (defun jcs-rust-format ()
-    "Format the given file as a Rust file."
-    (when (jcs-is-current-file-empty-p)
-      (jcs-insert-rust-template)))
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)

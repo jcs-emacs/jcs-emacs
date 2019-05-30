@@ -3,17 +3,17 @@
 ;;; Code:
 
 
+(defun jcs-sass-file-format ()
+  "Format the given file as a SASS file."
+  (when (jcs-is-current-file-empty-p)
+    (jcs-insert-sass-template)))
+
 (require 'ssass-mode)
 (defun jcs-sass-mode-hook ()
   "Sass mode hook."
   (abbrev-mode 1)
   (goto-address-mode 1)
   (auto-highlight-symbol-mode t)
-
-  (defun jcs-sass-file-format ()
-    "Format the given file as a SASS file."
-    (when (jcs-is-current-file-empty-p)
-      (jcs-insert-sass-template)))
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)

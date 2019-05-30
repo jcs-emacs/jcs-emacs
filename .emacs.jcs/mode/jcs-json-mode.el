@@ -6,6 +6,14 @@
 (require 'json-reformat)
 (require 'json-snatcher)
 
+
+(defun jcs-json-format()
+  "Format for json file."
+  (when (jcs-is-current-file-empty-p)
+    ;; empty, cause json should only take data.
+    ;; Comment will be treat as a data too...
+    ))
+
 (require 'json-mode)
 (defun jcs-json-mode-hook ()
   "JSON mode hook."
@@ -19,14 +27,6 @@
   (electric-pair-mode 1)
   (goto-address-mode 1)
   (auto-highlight-symbol-mode t)
-
-
-  (defun jcs-json-format()
-    "Format for json file."
-    (when (jcs-is-current-file-empty-p)
-      ;; empty, cause json should only take data.
-      ;; Comment will be treat as a data too...
-      ))
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)

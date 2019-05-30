@@ -3,17 +3,17 @@
 ;;; Code:
 
 
+(defun jcs-scss-file-format ()
+  "Format the given file as a SCSS file."
+  (when (jcs-is-current-file-empty-p)
+    (jcs-insert-scss-template)))
+
 (require 'scss-mode)
 (defun jcs-scss-mode-hook ()
   "SCSS mode hook."
   (abbrev-mode 1)
   (goto-address-mode 1)
   (auto-highlight-symbol-mode t)
-
-  (defun jcs-scss-file-format ()
-    "Format the given file as a SCSS file."
-    (when (jcs-is-current-file-empty-p)
-      (jcs-insert-scss-template)))
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)
@@ -31,9 +31,9 @@
   (define-key scss-mode-map (kbd "RET") #'jcs-smart-context-line-break)
   (define-key scss-mode-map (kbd "*") #'jcs-c-comment-pair)
 
-  ;; sort attribute in order => `css-sort' package.
-  (define-key scss-mode-map "\C-ks" #'jcs-css-sort-attributes)
-  (define-key scss-mode-map "\C-kd" #'jcs-css-sort-attributes-document)
+  ;; sort attribute in order => `com-css-sort' package.
+  (define-key scss-mode-map "\C-ks" #'com-css-sort-attributes-block)
+  (define-key scss-mode-map "\C-kd" #'com-css-sort-attributes-document)
   )
 (add-hook 'scss-mode-hook 'jcs-scss-mode-hook)
 

@@ -3,6 +3,11 @@
 ;;; Code:
 
 
+(defun jcs-yaml-script-format ()
+  "Format the given file as a YAML script."
+  (when (jcs-is-current-file-empty-p)
+    (jcs-insert-yaml-template)))
+
 (require 'yaml-mode)
 (defun jcs-yaml-mode-hook ()
   "YAML mode hook."
@@ -13,11 +18,6 @@
 
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
-
-  (defun jcs-yaml-script-format ()
-    "Format the given file as a YAML script."
-    (when (jcs-is-current-file-empty-p)
-      (jcs-insert-yaml-template)))
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)

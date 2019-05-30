@@ -3,6 +3,11 @@
 ;;; Code:
 
 
+(defun jcs-dart-script-format ()
+  "Format the given file as a Dart script."
+  (when (jcs-is-current-file-empty-p)
+    (jcs-insert-dart-template)))
+
 (require 'dart-mode)
 (defun jcs-dart-mode-hook ()
   "Dart mode hook."
@@ -13,11 +18,6 @@
 
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
-
-  (defun jcs-dart-script-format ()
-    "Format the given file as a Dart script."
-    (when (jcs-is-current-file-empty-p)
-      (jcs-insert-dart-template)))
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)

@@ -3,6 +3,11 @@
 ;;; Code:
 
 
+(defun jcs-cobol-format ()
+  "Format the given file as a COBOL file."
+  (when (jcs-is-current-file-empty-p)
+    (jcs-insert-cobol-template)))
+
 (require 'cobol-mode)
 (defun jcs-cobol-mode-hook ()
   "COBOL mode hook."
@@ -10,11 +15,6 @@
   (abbrev-mode 1)
   (goto-address-mode 1)
   (auto-highlight-symbol-mode t)
-
-  (defun jcs-cobol-format ()
-    "Format the given file as a COBOL file."
-    (when (jcs-is-current-file-empty-p)
-      (jcs-insert-cobol-template)))
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)

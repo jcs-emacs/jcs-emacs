@@ -3,6 +3,11 @@
 ;;; Code:
 
 
+(defun jcs-elixir-format ()
+  "Format the given file as an Elixir file."
+  (when (jcs-is-current-file-empty-p)
+    (jcs-insert-elixir-template)))
+
 (require 'elixir-mode)
 (defun jcs-elixir-mode-hook ()
   "Elixir mode hook."
@@ -13,11 +18,6 @@
 
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
-
-  (defun jcs-elixir-format ()
-    "Format the given file as an Elixir file."
-    (when (jcs-is-current-file-empty-p)
-      (jcs-insert-elixir-template)))
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)

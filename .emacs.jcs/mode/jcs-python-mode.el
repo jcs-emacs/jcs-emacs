@@ -3,6 +3,11 @@
 ;;; Code:
 
 
+(defun jcs-python-class-format ()
+  "Format the given file as a Python file."
+  (when (jcs-is-current-file-empty-p)
+    (call-interactively #'jcs-ask-python-template)))
+
 (require 'python)
 (require 'python-mode)
 (defun jcs-python-mode-hook ()
@@ -15,13 +20,8 @@
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
 
-  ;; NOTE(jenchieh): Default is set to 8 for some reason.
+  ;; NOTE: Default is set to 8 for some reason.
   (setq-local tab-width 4)
-
-  (defun jcs-python-class-format ()
-    "Format the given file as a Python file."
-    (when (jcs-is-current-file-empty-p)
-      (call-interactively #'jcs-ask-python-template)))
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)

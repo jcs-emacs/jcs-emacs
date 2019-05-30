@@ -3,6 +3,11 @@
 ;;; Code:
 
 
+(defun jcs-vim-script-format ()
+  "Format the given file as a VimScript file."
+  (when (jcs-is-current-file-empty-p)
+    (jcs-insert-vimscript-template)))
+
 (require 'vimrc-mode)
 (defun jcs-vim-mode-hook ()
   "Vimrc mode hook."
@@ -10,11 +15,6 @@
   (electric-pair-mode 1)
   (goto-address-mode 1)
   (auto-highlight-symbol-mode t)
-
-  (defun jcs-vim-script-format ()
-    "Format the given file as a VimScript file."
-    (when (jcs-is-current-file-empty-p)
-      (jcs-insert-vimscript-template)))
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)

@@ -3,6 +3,11 @@
 ;;; Code:
 
 
+(defun jcs-swift-format ()
+  "Format the given file as a Swift file."
+  (when (jcs-is-current-file-empty-p)
+    (jcs-insert-swift-template)))
+
 (require 'swift-mode)
 (defun jcs-swift-mode-hook ()
   "Swift mode hook."
@@ -13,11 +18,6 @@
 
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
-
-  (defun jcs-swift-format ()
-    "Format the given file as a Swift file."
-    (when (jcs-is-current-file-empty-p)
-      (jcs-insert-swift-template)))
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)

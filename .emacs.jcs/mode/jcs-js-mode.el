@@ -3,6 +3,11 @@
 ;;; Code:
 
 
+(defun jcs-javascript-format()
+  "JavaScript template format."
+  (when (jcs-is-current-file-empty-p)
+    (jcs-insert-js-template)))
+
 (require 'js2-mode)
 (defun jcs-js-mode-hook ()
   "JavaScript mode hook."
@@ -16,11 +21,6 @@
 
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
-
-  (defun jcs-javascript-format()
-    "JavaScript template format."
-    (when (jcs-is-current-file-empty-p)
-      (jcs-insert-js-template)))
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)

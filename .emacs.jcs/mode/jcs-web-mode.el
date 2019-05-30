@@ -32,6 +32,17 @@
 (require 'htmltagwrap)
 
 
+(defun jcs-html-format ()
+  "Format the give file as a HTML file."
+  (when (jcs-is-current-file-empty-p)
+    (jcs-insert-html-template)))
+
+(defun jcs-php-format ()
+  "Format the give file as a PHP file."
+  (when (jcs-is-current-file-empty-p)
+    (jcs-insert-php-template)))
+
+
 (require 'web-mode)
 (defun jcs-web-mode-hook ()
   "Hooks for Web mode."
@@ -61,17 +72,6 @@
 
   (jcs-make-electric-pair-pairs-local '((?\' . ?\')))
   (jcs-make-electric-pair-pairs-local '((?\" . ?\")))
-
-
-  (defun jcs-html-format ()
-    "Format the give file as a HTML file."
-    (when (jcs-is-current-file-empty-p)
-      (jcs-insert-html-template)))
-
-  (defun jcs-php-format ()
-    "Format the give file as a PHP file."
-    (when (jcs-is-current-file-empty-p)
-      (jcs-insert-php-template)))
 
   (cond ((file-exists-p buffer-file-name) t)
         ((string-match "[.]html" buffer-file-name) (jcs-html-format))

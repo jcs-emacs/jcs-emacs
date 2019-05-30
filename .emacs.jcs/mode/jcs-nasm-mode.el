@@ -3,6 +3,11 @@
 ;;; Code:
 
 
+(defun jcs-asm-format ()
+  "Format the given file as a ASM code."
+  (when (jcs-is-current-file-empty-p)
+    (jcs-insert-asm-template)))
+
 (require 'nasm-mode)
 (defun jcs-nasm-mode-hook ()
   "NASM mode hook."
@@ -11,15 +16,10 @@
   (goto-address-mode 1)
   (auto-highlight-symbol-mode t)
 
-  ;; TOPIC(jenchieh): Treat underscore as word.
-  ;; URL(jenchieh): https://emacs.stackexchange.com/questions/9583/how-to-treat-underscore-as-part-of-the-word
+  ;; TOPIC: Treat underscore as word.
+  ;; URL: https://emacs.stackexchange.com/questions/9583/how-to-treat-underscore-as-part-of-the-word
   (modify-syntax-entry ?_ "w")
 
-
-  (defun jcs-asm-format ()
-    "Format the given file as a ASM code."
-    (when (jcs-is-current-file-empty-p)
-      (jcs-insert-asm-template)))
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)

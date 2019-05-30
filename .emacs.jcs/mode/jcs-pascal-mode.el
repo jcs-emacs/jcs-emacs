@@ -3,6 +3,11 @@
 ;;; Code:
 
 
+(defun jcs-pascal-script-format ()
+  "Format the given file as a Pascal script."
+  (when (jcs-is-current-file-empty-p)
+    (jcs-insert-pascal-template)))
+
 (require 'pascal)
 (defun jcs-pascal-mode-hook ()
   "Pascal mode hook."
@@ -13,11 +18,6 @@
 
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
-
-  (defun jcs-pascal-script-format ()
-    "Format the given file as a Pascal script."
-    (when (jcs-is-current-file-empty-p)
-      (jcs-insert-pascal-template)))
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)

@@ -3,15 +3,15 @@
 ;;; Code:
 
 
+(defun jcs-text-mode-format()
+  "Fromat the given file as a normal Text file."
+  (when (jcs-is-current-file-empty-p)
+    (jcs-insert-text-template)))
+
 (defun jcs-text-mode-hook ()
   "Text mode hook."
   (goto-address-mode 1)
   (auto-highlight-symbol-mode t)
-
-  (defun jcs-text-mode-format()
-    "Fromat the given file as a normal Text file."
-    (when (jcs-is-current-file-empty-p)
-      (jcs-insert-text-template)))
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)

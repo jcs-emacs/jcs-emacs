@@ -3,6 +3,11 @@
 ;;; Code:
 
 
+(defun jcs-haskell-script-format ()
+  "Format the given file as a Haskell file."
+  (when (jcs-is-current-file-empty-p)
+    (jcs-insert-haskell-template)))
+
 (require 'haskell-mode)
 (defun jcs-haskell-mode-hook ()
   "Haskell mode hook."
@@ -10,11 +15,6 @@
   (electric-pair-mode 1)
   (goto-address-mode 1)
   (auto-highlight-symbol-mode t)
-
-  (defun jcs-haskell-script-format ()
-    "Format the given file as a Haskell file."
-    (when (jcs-is-current-file-empty-p)
-      (jcs-insert-haskell-template)))
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)

@@ -3,6 +3,11 @@
 ;;; Code:
 
 
+(defun jcs-emacs-lisp-format ()
+  "Format the given file as a Emacs Lisp file."
+  (when (jcs-is-current-file-empty-p)
+    (jcs-insert-emacs-lisp-template)))
+
 (defun jcs-emacs-lisp-mode-hook ()
   "Emacs Lisp mode hook."
   (abbrev-mode 1)
@@ -14,11 +19,6 @@
   (modify-syntax-entry ?_ "w")
 
   (jcs-make-electric-pair-pairs-local '((?\` . ?\')))
-
-  (defun jcs-emacs-lisp-format ()
-    "Format the given file as a Emacs Lisp file."
-    (when (jcs-is-current-file-empty-p)
-      (jcs-insert-emacs-lisp-template)))
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)

@@ -5,6 +5,11 @@
 
 (require 'sql-indent)
 
+(defun jcs-sql-format ()
+  "File format for editing SQL file."
+  (when (jcs-is-current-file-empty-p)
+    (jcs-insert-sql-template)))
+
 (require 'sql)
 (defun jcs-sql-mode-hook()
   "SQL mode hook."
@@ -12,11 +17,6 @@
   (electric-pair-mode 1)
   (goto-address-mode 1)
   (auto-highlight-symbol-mode t)
-
-  (defun jcs-sql-format ()
-    "File format for editing SQL file."
-    (when (jcs-is-current-file-empty-p)
-      (jcs-insert-sql-template)))
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)

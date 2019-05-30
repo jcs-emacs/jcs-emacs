@@ -3,6 +3,11 @@
 ;;; Code:
 
 
+(defun jcs-shader-format ()
+  "Format the given file as a Unity CG Shader script."
+  (when (jcs-is-current-file-empty-p)
+    (jcs-insert-shader-template)))
+
 (require 'shader-mode)
 (defun jcs-shader-mode-hook ()
   "Shader mode hook."
@@ -16,15 +21,9 @@
   (setq-local comment-end "*/")
   (setq-local comment-end-skip "[ \t]*\\*+/")
 
-  ;; TOPIC(jenchieh): Treat underscore as word.
-  ;; URL(jenchieh): https://emacs.stackexchange.com/questions/9583/how-to-treat-underscore-as-part-of-the-word
+  ;; TOPIC: Treat underscore as word.
+  ;; URL: https://emacs.stackexchange.com/questions/9583/how-to-treat-underscore-as-part-of-the-word
   (modify-syntax-entry ?_ "w")
-
-
-  (defun jcs-shader-format ()
-    "Format the given file as a Unity CG Shader script."
-    (when (jcs-is-current-file-empty-p)
-      (jcs-insert-shader-template)))
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)
@@ -34,6 +33,11 @@
   )
 (add-hook 'shader-mode-hook 'jcs-shader-mode-hook)
 
+
+(defun jcs-glsl-script-format ()
+  "Format the given file as a GLSL shader file."
+  (when (jcs-is-current-file-empty-p)
+    (jcs-insert-glsl-template)))
 
 (require 'glsl-mode)
 (defun jcs-glsl-mode-hook ()
@@ -45,11 +49,6 @@
 
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
-
-  (defun jcs-glsl-script-format ()
-    "Format the given file as a GLSL shader file."
-    (when (jcs-is-current-file-empty-p)
-      (jcs-insert-glsl-template)))
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)

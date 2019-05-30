@@ -3,6 +3,11 @@
 ;;; Code:
 
 
+(defun jcs-erlang-format ()
+  "Format the given file as an Erlang file."
+  (when (jcs-is-current-file-empty-p)
+    (jcs-insert-erlang-template)))
+
 (require 'erlang)
 (defun jcs-erlang-mode-hook ()
   "Erlang mode hook."
@@ -13,11 +18,6 @@
 
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
-
-  (defun jcs-erlang-format ()
-    "Format the given file as an Erlang file."
-    (when (jcs-is-current-file-empty-p)
-      (jcs-insert-erlang-template)))
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)

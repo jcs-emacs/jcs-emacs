@@ -3,6 +3,11 @@
 ;;; Code:
 
 
+(defun jcs-clojure-format ()
+  "Format the given file as a Clojure file."
+  (when (jcs-is-current-file-empty-p)
+    (jcs-insert-clojure-template)))
+
 (require 'clojure-mode)
 (defun jcs-clojure-mode-hook ()
   "Clojure mode hook."
@@ -13,11 +18,6 @@
 
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
-
-  (defun jcs-clojure-format ()
-    "Format the given file as a Clojure file."
-    (when (jcs-is-current-file-empty-p)
-      (jcs-insert-clojure-template)))
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)

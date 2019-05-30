@@ -3,6 +3,11 @@
 ;;; Code:
 
 
+(defun jcs-csharp-format ()
+  "Format the given file as a C# file."
+  (when (jcs-is-current-file-empty-p)
+    (jcs-insert-csharp-template)))
+
 (require 'csharp-mode)
 (defun jcs-csharp-mode-hook ()
   "CSharp mode hoo."
@@ -12,15 +17,9 @@
   (goto-address-mode 1)
   (auto-highlight-symbol-mode t)
 
-  ;; TOPIC(jenchieh): Treat underscore as word.
-  ;; URL(jenchieh): https://emacs.stackexchange.com/questions/9583/how-to-treat-underscore-as-part-of-the-word
+  ;; TOPIC: Treat underscore as word.
+  ;; URL: https://emacs.stackexchange.com/questions/9583/how-to-treat-underscore-as-part-of-the-word
   (modify-syntax-entry ?_ "w")
-
-
-  (defun jcs-csharp-format ()
-    "Format the given file as a C# file."
-    (when (jcs-is-current-file-empty-p)
-      (jcs-insert-csharp-template)))
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)

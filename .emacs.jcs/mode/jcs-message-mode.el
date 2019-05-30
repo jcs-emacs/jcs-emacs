@@ -10,7 +10,7 @@
   (goto-address-mode 1)
   (auto-highlight-symbol-mode t)
 
-  Normal
+  ;; Normal
   (define-key message-mode-map (kbd "<up>") #'previous-line)
   (define-key message-mode-map (kbd "<down>") #'next-line)
   )

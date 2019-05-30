@@ -3,6 +3,11 @@
 ;;; Code:
 
 
+(defun jcs-ruby-script-format ()
+  "Format the given file as a Ruby script."
+  (when (jcs-is-current-file-empty-p)
+    (jcs-insert-ruby-template)))
+
 (require 'ruby-mode)
 (defun jcs-ruby-mode-hook ()
   "Ruby mode hook."
@@ -13,11 +18,6 @@
 
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
-
-  (defun jcs-ruby-script-format ()
-    "Format the given file as a Ruby script."
-    (when (jcs-is-current-file-empty-p)
-      (jcs-insert-ruby-template)))
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)
