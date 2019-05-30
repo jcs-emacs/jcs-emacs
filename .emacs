@@ -112,26 +112,21 @@
 ;;         Manually Installation
 ;;----------------------------------
 
-(load-file "~/.emacs.d/elisp/jayces-mode-20190205.001/jayces-mode.elc")
-(load-file "~/.emacs.d/elisp/jcs-ex-pkg-20190326.001/jcs-ex-pkg.elc")
-(load-file "~/.emacs.d/elisp/reload-emacs-20190326.001/reload-emacs.elc")
-(load-file "~/.emacs.d/elisp/shift-select-20190423.001/shift-select.elc")
+(unless (boundp 'reload-emacs-reloading)
+  (add-to-list 'load-path "~/.emacs.d/elisp/jayces-mode-20190205.001/")
+  (add-to-list 'load-path "~/.emacs.d/elisp/jcs-ex-pkg-20190326.001/")
+  (add-to-list 'load-path "~/.emacs.d/elisp/reload-emacs-20190326.001/")
+  (add-to-list 'load-path "~/.emacs.d/elisp/shift-select-20190423.001/"))
 
 ;;========================================
 ;;      JENCHIEH FILE LOADING
 ;;----------------------------------
 
 (require 'reload-emacs)
-(setq reload-emacs-load-path '("~/.emacs.jcs/"
-                               "~/.emacs.jcs/func/"
-                               "~/.emacs.jcs/mode/"))
-
-;; NOTE(jenchieh): Add load path.
 (unless reload-emacs-reloading
   (add-to-list 'load-path "~/.emacs.jcs/")
   (add-to-list 'load-path "~/.emacs.jcs/func/")
   (add-to-list 'load-path "~/.emacs.jcs/mode/"))
-
 
 ;;; Utilities
 (require 'jcs-log)
