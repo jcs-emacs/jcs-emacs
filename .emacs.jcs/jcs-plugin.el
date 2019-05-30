@@ -161,6 +161,8 @@
   :ensure t
   :config
   (diminish 'abbrev-mode)
+  (use-package face-remap
+    :diminish buffer-face-mode)
   (diminish 'eldoc-mode)
   (diminish 'outline-minor-mode)
   (diminish 'overwrite-mode)
