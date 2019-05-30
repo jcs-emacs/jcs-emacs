@@ -173,8 +173,8 @@
 (use-package dimmer
   :ensure t
   :config
-  (dimmer-mode)
-  (setq dimmer-fraction 0.2))
+  (setq dimmer-fraction 0.2)
+  (dimmer-mode))
 
 
 (use-package emmet-mode
@@ -254,7 +254,7 @@
   ;;(setq helm-ff-auto-update-initial-value nil)
 
   ;; Helm search configuration.
-  (setq helm-split-window-in-side-p           t
+  (setq helm-split-window-inside-p            t
         helm-move-to-line-cycle-in-source     t
         helm-ff-search-library-in-sexp        t
         helm-M-x-fuzzy-match                  t   ; 模糊搜索

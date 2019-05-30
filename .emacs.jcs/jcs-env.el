@@ -49,7 +49,7 @@
        ;;(osx-key-mode 0)
        ;;(tabar-mode 0)
        (setq mac-command-modifier 'meta)
-       (setq x-select-enable-clipboard t)
+       (setq select-enable-clipboard t)
        (setq aquamacs-save-options-on-quit 0)
        (setq special-display-regexps nil)
        (setq special-display-buffer-names nil)
