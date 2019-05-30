@@ -4,8 +4,8 @@
 
 
 ;;
-;; TOPIC(jenchieh): How to preserve color in *Messages* buffer?
-;; SOURCE(jenchieh): https://emacs.stackexchange.com/questions/20171/how-to-preserve-color-in-messages-buffer
+;; TOPIC: How to preserve color in *Messages* buffer?
+;; SOURCE: https://emacs.stackexchange.com/questions/20171/how-to-preserve-color-in-messages-buffer
 ;;
 (defun jcs-message (format &rest args)
   "Acts like `message' but preserves string properties in the *Messages* buffer.
@@ -18,14 +18,14 @@ ARGS : arguments."
       (goto-char (point-max))
       (let ((inhibit-read-only t))
         (unless (zerop (current-column))
-          ;; NOTE(jenchieh): no line break for this implementation.
+          ;; NOTE: no line break for this implementation.
           ;;(insert "\n")
           )
         (insert (apply 'format format args))
-        ;; NOTE(jenchieh): no line break for this implementation.
+        ;; NOTE: no line break for this implementation.
         ;;(insert "\n")
         )))
-  ;; NOTE(jenchieh): Do some stuff after logging message.
+  ;; NOTE: Do some stuff after logging message.
   (jcs-do-after-log-action))
 
 
