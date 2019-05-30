@@ -335,6 +335,20 @@ $ cp -r ./.emacs.jcs ~/
 ```
 
 
+## Optimization
+If you would like to optimize the configuration, you can 
+run the following command compile all the source code to 
+byte code so Emacs can run faster during both `initial time` 
+and `run time`. 
+```bash
+# change directory to the `jcs` config directory
+$ cd ./.emacs.jcs
+
+# compile all the config source code
+$ emacs --batch --eval "(byte-recompile-directory \"./\" 0)"
+```
+
+
 ## Supported Emacs versions
 
 The config should run on Emacs 24.3 or higher, but I will 
