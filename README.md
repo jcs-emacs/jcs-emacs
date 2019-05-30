@@ -81,7 +81,7 @@ to check the startup time on your machine. Not quite sure what
 causes that much of performance, hopefully, I'm able to lower 
 the startup time down to `5` to `15` seconds.
 
-**Edit:** After version `5.3.2`, the average startup time is 
+**Edit 1:** After version `5.3.2`, the average startup time is 
 around `5` to `15` seconds. Solved this issue by removing 
 unnecessary `require` keyword load file and use `:defer` keyword 
 with `use-package` package to delay some packages load time.
@@ -90,6 +90,9 @@ with `use-package` package to delay some packages load time.
 [Speeding Up Emacs](https://anuragpeshne.github.io/essays/emacsSpeed.html)
  written by 
 [Anurag Peshne](https://github.com/anuragpeshne).*
+
+**Edit 2:** If you compiled the source code then the speed can 
+lower down more from `0.5` to `1.5` seconds.
 
 
 ## Features
