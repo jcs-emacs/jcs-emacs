@@ -479,5 +479,5 @@ on language selected."
   (jcs-insert-template-by-file-path "~/.emacs.jcs/template/yaml/yaml_template.txt"))
 
 
-(provide 'jcs-file-info-format)
+(provide 'jcs-file-info-format)
 ;;; jcs-file-info-format.el ends here
