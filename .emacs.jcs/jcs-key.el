@@ -100,7 +100,7 @@
 (define-key global-map "" #'rotate-yank-pointer)
 (define-key global-map "\eu" #'undo)
 (define-key global-map "\e6" #'upcase-word)
-(define-key global-map "\e^" #'captilize-word)
+(define-key global-map "\e^" #'capitalize-word)
 (define-key global-map "\e." #'fill-paragraph)
 
 (define-key global-map "\eo" #'query-replace)
