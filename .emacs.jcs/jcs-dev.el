@@ -6,11 +6,11 @@
 (defun jcs-compile (in-op)
   "Compile command rewrapper.
 IN-OP : inpuit operation script."
-  ;; NOTE(jenchieh): First we need to get the script directory. In order
+  ;; NOTE: First we need to get the script directory. In order
   ;; to change execute/workspace directory to the current target script's
   ;; directory path.
   (let ((script-dir (f-dirname in-op)))
-    ;; NOTE(jenchieh): Change the current execute/workspace directory
+    ;; NOTE: Change the current execute/workspace directory
     ;; to the script directory temporary. So the script will execute
     ;; within the current directory the script is currently in.
     ;;
