@@ -91,6 +91,9 @@
   ;; NOTE: Set smaller font.
   (setq buffer-face-mode-face '(:height 120))
   (buffer-face-mode)
+
+  ;; Normal
+  (define-key compilation-mode-map (kbd "C-c C-c") #'kill-ring-save)
   )
 (add-hook 'compilation-mode-hook 'jcs-compilation-mode-hook)
 
