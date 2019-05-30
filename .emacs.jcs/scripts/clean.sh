@@ -11,4 +11,4 @@
 
 cd ..
 
-rm -r **/*.elc
+find . -name "*.elc" -type f -delete
