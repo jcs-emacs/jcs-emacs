@@ -923,7 +923,6 @@
 
 
 (use-package windmove
-  :defer t
   :init
   (defvar jcs-windmove-max-move-count 25
     "Possible maximum windows count.")
