@@ -164,7 +164,8 @@
                                           "*Package-Lint*"
                                           "*Packages*"
                                           "*SPEEDBAR*"
-                                          "*undo-tree*")
+                                          "*undo-tree*"
+                                          "*Warnings*")
   "List of buffers that you do not want to show line numbers in it.")
 
 (defvar jcs-line-numbers-ignore-modes '("dired-mode"
