@@ -10,61 +10,61 @@
 (defface jcs-font-lock-builtin-face
   '((t (:foreground "light steel blue")))
   "JCS local builtin face."
-  :group 'basic-faces)
+  :group 'jcs)
 (defvar jcs-font-lock-builtin-face 'jcs-font-lock-builtin-face)
 
 (defface jcs-font-lock-comment-face
   '((t (:foreground "olive drab")))
   "JCS local comment face."
-  :group 'basic-faces)
+  :group 'jcs)
 (defvar jcs-font-lock-comment-face 'jcs-font-lock-comment-face)
 
 (defface jcs-font-lock-constant-face
   '((t (:foreground "#38EFCA")))
   "JCS local constant face."
-  :group 'basic-faces)
+  :group 'jcs)
 (defvar jcs-font-lock-constant-face 'jcs-font-lock-constant-face)
 
 (defface jcs-font-lock-doc-face
   '((t (:foreground "olive drab")))
   "JCS local doc face."
-  :group 'basic-faces)
+  :group 'jcs)
 (defvar jcs-font-lock-doc-face 'jcs-font-lock-doc-face)
 
 (defface jcs-font-lock-function-name-face
   '((t (:foreground "#D2D2D2")))
   "JCS local function name face."
-  :group 'basic-faces)
+  :group 'jcs)
 (defvar jcs-font-lock-function-name-face 'jcs-font-lock-function-name-face)
 
 (defface jcs-font-lock-keyword-face
   '((t (:foreground "#17A0FB")))
   "JCS local keyword face."
-  :group 'basic-faces)
+  :group 'jcs)
 (defvar jcs-font-lock-keyword-face 'jcs-font-lock-keyword-face)
 
 (defface jcs-font-lock-preprocessor-face
   '((t (:foreground "#8D9B99")))
   "JCS local preprocessor face."
-  :group 'basic-faces)
+  :group 'jcs)
 (defvar jcs-font-lock-preprocessor-face 'jcs-font-lock-preprocessor-face)
 
 (defface jcs-font-lock-string-face
   '((t (:foreground "#D69D78")))
   "JCS local string face."
-  :group 'basic-faces)
+  :group 'jcs)
 (defvar jcs-font-lock-string-face 'jcs-font-lock-string-face)
 
 (defface jcs-font-lock-type-face
   '((t (:foreground "#38EFCA")))
   "JCS local type face."
-  :group 'basic-faces)
+  :group 'jcs)
 (defvar jcs-font-lock-type-face 'jcs-font-lock-type-face)
 
 (defface jcs-font-lock-variable-name-face
   '((t (:foreground "#D2D2D2")))
   "JCS local variable name face."
-  :group 'basic-faces)
+  :group 'jcs)
 (defvar jcs-font-lock-variable-name-face 'jcs-font-lock-variable-name-face)
 
 
@@ -102,18 +102,32 @@ For those mode does not apply faces correctly!"
 
 (defface jcs-oop-tag-face
   '((t (:foreground "#38EFCA")))
-  "Highlight OOP tag.")
+  "Highlight OOP tag."
+  :group 'jcs)
 (defvar jcs-oop-tag-face 'jcs-oop-tag-face)
 
 (defface jcs-oop-type-face
   '((t (:foreground "SteelBlue")))
-  "Highlight OOP type.")
+  "Highlight OOP type."
+  :group 'jcs)
 (defvar jcs-oop-type-face 'jcs-oop-type-face)
 
 (defface jcs-oop-value-face
   '((t (:foreground "LightCoral")))
-  "Highlight OOP value.")
+  "Highlight OOP value."
+  :group 'jcs)
 (defvar jcs-oop-value-face 'jcs-oop-value-face)
+
+
+;;----------------------------------------------
+;; Preprocessor
+;;----------------------------------------------
+
+(defface jcs-preproc-variable-name-face
+  '((t (:foreground "#B363BE")))
+  "Highlight OOP tag."
+  :group 'jcs)
+(defvar jcs-preproc-variable-name-face 'jcs-preproc-variable-name-face)
 
 
 ;;----------------------------------------------
@@ -123,13 +137,13 @@ For those mode does not apply faces correctly!"
 (defface jcs-font-lock-null-face
   '((t (:foreground "LightSteelBlue")))
   "Java null face."
-  :group 'basic-faces)
+  :group 'jcs)
 (defvar jcs-font-lock-null-face 'jcs-font-lock-null-face)
 
 (defface jcs-font-lock-void-face
   '((t (:foreground "LightSteelBlue")))
   "Java void face."
-  :group 'basic-faces)
+  :group 'jcs)
 (defvar jcs-font-lock-void-face 'jcs-font-lock-void-face)
 
 
@@ -139,7 +153,8 @@ For those mode does not apply faces correctly!"
 
 (defface jcs-py-mode-docstring-face
   '((t (:foreground "olive drab")))
-  "Python mode docstring face.")
+  "Python mode docstring face."
+  :group 'jcs)
 (defvar jcs-py-mode-docstring-face 'jcs-py-mode-docstring-face)
 
 
@@ -150,43 +165,50 @@ For those mode does not apply faces correctly!"
 (defface jcs-web-mode-block-comment-face
   '((t (:inherit 'jcs-font-lock-comment-face :background "#000000")))
   "Web mode block comment face with dark background."
-  :group 'jcs-web-faces)
+  :group 'jcs)
 (defvar jcs-web-mode-block-comment-face 'jcs-web-mode-block-comment-face)
 
 (defface jcs-web-mode-html-attr-value-face
   '((t (:foreground "olive drab")))
-  "Highlight HTML value.")
+  "Highlight HTML value."
+  :group 'jcs)
 (defvar jcs-web-mode-html-attr-value-face 'jcs-web-mode-html-attr-value-face)
 
 
 (defface jcs-css-type-face
   '((t (:foreground "#38EFCA")))
-  "Highlight CSS value.")
+  "Highlight CSS value."
+  :group 'jcs)
 (defvar jcs-css-type-face 'jcs-css-type-face)
 
 (defface jcs-css-value-face
   '((t (:foreground "#D2D2D2")))
-  "Highlight CSS value.")
+  "Highlight CSS value."
+  :group 'jcs)
 (defvar jcs-css-value-face 'jcs-css-value-face)
 
 (defface jcs-css-id-face
   '((t (:foreground "#D68974")))
-  "Highlight CSS id.")
+  "Highlight CSS id."
+  :group 'jcs)
 (defvar jcs-css-id-face 'jcs-css-id-face)
 
 (defface jcs-css-class-face
   '((t (:foreground "#FAD42D")))
-  "Highlight CSS class.")
+  "Highlight CSS class."
+  :group 'jcs)
 (defvar jcs-css-class-face 'jcs-css-class-face)
 
 (defface jcs-css-event-face
   '((t (:foreground "#B592EA")))
-  "Highlight CSS event.")
+  "Highlight CSS event."
+  :group 'jcs)
 (defvar jcs-css-event-face 'jcs-css-event-face)
 
 (defface jcs-css-number-face
   '((t (:foreground "#B5CE89")))
-  "Highlight CSS number.")
+  "Highlight CSS number."
+  :group 'jcs)
 (defvar jcs-css-number-face 'jcs-css-number-face)
 
 
@@ -197,6 +219,7 @@ For those mode does not apply faces correctly!"
 (jcs-init-css-faces)
 (jcs-init-java-faces)
 (jcs-init-lua-faces)
+(jcs-init-preproc-faces)
 (jcs-init-py-faces)
 (jcs-init-web-faces)
 
