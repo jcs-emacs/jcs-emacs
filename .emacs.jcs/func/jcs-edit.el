@@ -674,16 +674,14 @@ the current line."
 (defun jcs-do-stuff-before-save (&optional arg)
   "Do stuff before save command executed.
 ARG : Match with `save-buffer' command."
-  ;; NOTE: If company menu currently active,
-  ;; abort it.
+  ;; NOTE: If company menu currently active, abort it.
   (company-abort))
 (advice-add 'save-buffer :before #'jcs-do-stuff-before-save)
 
 (defun jcs-do-stuff-after-save (&optional arg)
   "Do stuff after save command executed.
 ARG : Match with `save-buffer' command."
-  ;; NOTE: Is we found `*undo-tree*' buffer, we
-  ;; try to close it.
+  ;; NOTE: Is we found `*undo-tree*' buffer, we try to close it.
   (save-selected-window
     (when (ignore-errors (jcs-jump-shown-to-buffer "*undo-tree*"))
       (jcs-maybe-kill-this-buffer t)))
@@ -897,7 +895,7 @@ ECP-SAME : Exception for the same buffer."
   "Backward delete the word unitl the word is capital."
   (interactive)
 
-  (when (eq jcs-check-first-char nil)
+  (unless jcs-check-first-char
     ;; check the first character a character
     (when (wordp (jcs-get-current-char-byte))
       (setq jcs-first-char-is-char t))
@@ -936,7 +934,7 @@ ECP-SAME : Exception for the same buffer."
   "Forward delete the word unitl the word is capital."
   (interactive)
 
-  (when (eq jcs-check-first-char nil)
+  (unless jcs-check-first-char
     (backward-delete-char -1)
     ;; check the first character a character
     (when (wordp (jcs-get-current-char-byte))
@@ -979,7 +977,7 @@ ECP-SAME : Exception for the same buffer."
 to the point."
   (interactive)
 
-  (when (eq jcs-check-first-char nil)
+  (unless jcs-check-first-char
     ;; check the first character a character
     (when (wordp (jcs-get-current-char-byte))
       (setq jcs-first-char-is-char t))
@@ -1021,7 +1019,7 @@ the point."
 
   (save-excursion
     ;; Get the first 'Beginning of buffer's Point'.
-    (beginning-of-buffer)
+    (goto-char (point-min))
     (setq beginningBufferPoint (point)))
 
   ;; If the point is at the first character, we will get the error.
@@ -1029,7 +1027,7 @@ the point."
   (when (= beginningBufferPoint (point))
     (forward-char 1))
 
-  (when (eq jcs-check-first-char nil)
+  (unless jcs-check-first-char
     ;; check the first character a character
     (when (wordp (jcs-get-current-char-byte))
       (forward-char 1)
