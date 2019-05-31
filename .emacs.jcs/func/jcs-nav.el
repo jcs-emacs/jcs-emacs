@@ -238,21 +238,23 @@ CH : character we target to move toward."
       (setq jcs-search-trigger-forward-char 0)
       (setq jcs-current-search-char ch))
 
-    (let ((point-before-do-anything (point)))
+    (let ((point-before-do-anything (point))
+          (point-after-look -1)
+          (point-end-of-buffer -1))
       (when (looking-at ch)
         (forward-char 1))
       (ignore-errors (while (not (looking-at ch)) (forward-char 1)))
 
       ;; record down point max and point after look
       (setq point-after-look (point))
-      (end-of-buffer)
+      (goto-char (point-max))
       (setq point-end-of-buffer (point))
 
       ;; go back to search result.
       (goto-char point-after-look)
 
       (when (= jcs-search-trigger-forward-char 1)
-        (beginning-of-buffer)
+        (goto-char (point-min))
         (setq jcs-search-trigger-forward-char 0)
         (jcs-move-to-forward-a-char-recursive ch))
 
@@ -278,8 +280,9 @@ CH : character we target to move toward."
       (setq jcs-search-trigger-backward-char 0)
       (setq jcs-current-search-char ch))
 
-    (let ((point-before-do-anything (point)))
-
+    (let ((point-before-do-anything (point))
+          (point-after-look -1)
+          (point-beginning-of-buffer -1))
       ;; so lets just search back part of the parenthesis
       (when (looking-at ch)
         (forward-char -1))
@@ -287,14 +290,14 @@ CH : character we target to move toward."
 
       ;; record down point min and point after look
       (setq point-after-look (point))
-      (beginning-of-buffer)
+      (goto-char (point-min))
       (setq point-beginning-of-buffer (point))
 
       ;; go back to search result.
       (goto-char point-after-look)
 
       (when (= jcs-search-trigger-backward-char 1)
-        (end-of-buffer)
+        (goto-char (point-max))
         (setq jcs-search-trigger-backward-char 0)
         (jcs-move-to-backward-a-char-recursive ch))
 
@@ -316,13 +319,15 @@ CH : character we target to move toward."
 
 (defun jcs-move-forward-open-close-epair (openChar closeChar)
   "Move forward to a open/close parenthesis."
-
   (save-window-excursion
     ;; No matter what reset the forward trigger b/c we are doing
     ;; backward search now.
     (setq jcs-search-trigger-backward-open-close-char 0)
 
-    (let ((point-before-do-anything (point)))
+    (let ((point-before-do-anything (point))
+          (point-after-look-open-char -1)
+          (point-end-of-buffer -1)
+          (point-after-look-close-char -1))
       (when (looking-at openChar)
         (forward-char 1))
       (ignore-errors (while (not (looking-at openChar)) (forward-char 1)))
@@ -337,8 +342,7 @@ CH : character we target to move toward."
       (setq point-after-look-close-char (point))
 
       ;; record down point max and point after look
-      (setq point-after-look (point))
-      (end-of-buffer)
+      (goto-char (point-max))
       (setq point-end-of-buffer (point))
 
       ;; back to where it start
@@ -349,7 +353,7 @@ CH : character we target to move toward."
         (goto-char point-after-look-open-char))
 
       (when (= jcs-search-trigger-forward-open-close-char 1)
-        (beginning-of-buffer)
+        (goto-char (point-min))
         (setq jcs-search-trigger-forward-open-close-char 0)
         (jcs-move-forward-open-close-epair openChar closeChar))
 
@@ -363,14 +367,15 @@ CH : character we target to move toward."
 
 (defun jcs-move-backward-open-close-epair (openChar closeChar)
   "Move backward to a open/close parenthesis."
-
   (save-window-excursion
     ;; No matter what reset the forward trigger b/c we are doing
     ;; backward search now.
     (setq jcs-search-trigger-forward-open-close-char 0)
 
-    (let ((point-before-do-anything (point)))
-
+    (let ((point-before-do-anything (point))
+          (point-after-look-open-char -1)
+          (point-beginning-of-buffer -1)
+          (point-after-look-close-char -1))
       (when (looking-at openChar)
         (forward-char -1))
       (ignore-errors  (while (not (looking-at openChar)) (backward-char 1)))
@@ -385,8 +390,7 @@ CH : character we target to move toward."
       (setq point-after-look-close-char (point))
 
       ;; record down point max and point after look
-      (setq point-after-look (point))
-      (beginning-of-buffer)
+      (goto-char (point-min))
       (setq point-beginning-of-buffer (point))
 
       ;; back to where it start
@@ -397,7 +401,7 @@ CH : character we target to move toward."
         (goto-char point-after-look-close-char))
 
       (when (= jcs-search-trigger-backward-open-close-char 1)
-        (end-of-buffer)
+        (goto-char (point-max))
         (setq jcs-search-trigger-backward-open-close-char 0)
         (jcs-move-backward-open-close-epair openChar closeChar))
 
