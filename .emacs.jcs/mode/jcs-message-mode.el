@@ -3,6 +3,7 @@
 ;;; Code:
 
 
+(require 'message)
 (defun jcs-message-mode-hook ()
   "Message mode hook."
   (abbrev-mode 1)

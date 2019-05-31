@@ -3,6 +3,11 @@
 ;;; Code:
 
 
+(defun jcs-opascal-script-format ()
+  "Format the given file as an Object Pascal script."
+  (when (jcs-is-current-file-empty-p)
+    (jcs-insert-opascal-template)))
+
 (require 'opascal)
 (defun jcs-opascal-mode-hook ()
   "Object Pascal mode hook."
@@ -13,11 +18,6 @@
 
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
-
-  (defun jcs-opascal-script-format ()
-    "Format the given file as an Object Pascal script."
-    (when (jcs-is-current-file-empty-p)
-      (jcs-insert-opascal-template)))
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)

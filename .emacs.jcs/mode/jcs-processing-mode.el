@@ -15,6 +15,13 @@
 ;; to set the processing-output-dir to another directory:
 ;;(setq processing-output-dir "/tmp")
 
+
+(defun jcs-processing-script-format ()
+  "Format the given file as a Processing file."
+  (when (jcs-is-current-file-empty-p)
+    (jcs-insert-processing-template)))
+
+
 (defun jcs-processing-mode-hook ()
   "Hook for processing mode."
   (abbrev-mode 1)
@@ -24,11 +31,6 @@
 
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
-
-  (defun jcs-processing-script-format ()
-    "Format the given file as a Processing file."
-    (when (jcs-is-current-file-empty-p)
-      (jcs-insert-processing-template)))
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)

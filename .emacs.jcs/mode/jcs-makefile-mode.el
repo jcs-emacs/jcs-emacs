@@ -9,6 +9,8 @@
     (jcs-makefile-format-info)
     (goto-char (point-min))))
 
+
+(require 'make-mode)
 (defun jcs-makefile-mode-hook ()
   "Makefile mode hook."
   (electric-pair-mode nil)

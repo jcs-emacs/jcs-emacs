@@ -5,6 +5,7 @@
 
 (require 'css-mode)
 (require 'com-css-sort)
+(require 'emmet-mode)
 (require 'rainbow-mode)
 
 ;; css indent spaces.

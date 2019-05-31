@@ -122,13 +122,8 @@
   ;; No hungry backspace
   (c-toggle-auto-hungry-state -1)
 
-  ;; Handle super-tabbify (TAB completes, shift-TAB actually tabs)
-  (setq dabbrev-case-replace t)
-  (setq dabbrev-case-fold-search t)
-  (setq dabbrev-upcase-means-case-search t)
-
-  ;; TOPIC(jenchieh): Treat underscore as word.
-  ;; URL(jenchieh): https://emacs.stackexchange.com/questions/9583/how-to-treat-underscore-as-part-of-the-word
+  ;; TOPIC: Treat underscore as word.
+  ;; URL: https://emacs.stackexchange.com/questions/9583/how-to-treat-underscore-as-part-of-the-word
   (modify-syntax-entry ?_ "w")
   )
 (add-hook 'c-mode-common-hook 'jcs-cc-mode-hook)
