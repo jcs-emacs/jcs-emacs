@@ -57,9 +57,7 @@ CNT : Count for buffer to switch to."
 
 ;;;###autoload
 (defun jcs-switch-to-next-buffer-not-nil ()
-  "Switch to the previous buffer that are not nil.
-MAX-CNT : Maxinum count.
-CNT : Counter."
+  "Switch to the previous buffer that are not nil."
   (interactive)
   (when (<= 1 (jcs-not-nil-buffer-count))
     (let ((found-not-nil-buf nil))
@@ -69,10 +67,8 @@ CNT : Counter."
           (setq found-not-nil-buf t))))))
 
 ;;;###autoload
-(defun jcs-switch-to-prev-buffer-not-nil (&optional cnt)
-  "Switch to the previous buffer that are not nil.
-MAX-CNT : Maxinum count.
-CNT : Counter."
+(defun jcs-switch-to-prev-buffer-not-nil ()
+  "Switch to the previous buffer that are not nil."
   (interactive)
   (when (<= 1 (jcs-not-nil-buffer-count))
     (let ((found-not-nil-buf nil))
