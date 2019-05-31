@@ -451,8 +451,7 @@ SR-OP :
 
 MEET-FUNCTION-NAME     : Meet the function name?
 KEYWORD-STRINGS        : Keyword strings list.
-DATATYPE-NAME          : Data type name, store keyword for
-                               struct/class related.
+DATATYPE-NAME          : Data type name, store keyword for struct/class related.
 FUNCTION-NAME-STRING   : Function name.
 THERE-IS-RETURN        : There is return in this function?
 RETURN-TYPE-STRING     : String of the return type.
@@ -512,22 +511,36 @@ PAREN-STRING           : Param raw string."
       ;; NOTE: Ensure the `mode-doc-string-func-name'
       ;; is assign to something valid to execute.
       (when mode-doc-string-func-name
-        (if meet-function-name
-            (funcall mode-doc-string-func-name
-                     keyword-strings
-                     datatype-name
-                     function-name-string
-                     there-is-return
-                     return-type-string
-                     param-type-strings
-                     param-variable-strings
-                     search-string)
-          (funcall mode-doc-string-func-name))))))
+        (funcall mode-doc-string-func-name
+                 keyword-strings
+                 datatype-name
+                 function-name-string
+                 there-is-return
+                 return-type-string
+                 param-type-strings
+                 param-variable-strings
+                 search-string)))))
 
 
 
-(defun jcs-as-mode-doc-string-others ()
-  "Insert `actionscript-mode' other doc string."
+(defun jcs-as-mode-doc-string-others (keyword-strings
+                                      datatype-name
+                                      function-name-string
+                                      there-is-return
+                                      return-type-string
+                                      param-type-strings
+                                      param-variable-strings
+                                      search-string)
+  "Insert `actionscript-mode' other doc string.
+
+KEYWORD-STRINGS        : Keyword strings list.
+DATATYPE-NAME          : Data type name, store keyword for struct/class related.
+FUNCTION-NAME-STRING   : Function name.
+THERE-IS-RETURN        : There is return in this function?
+RETURN-TYPE-STRING     : String of the return type.
+PARAM-TYPE-STRINGS     : Param type strings list.
+PARAM-VARIABLE-STRINGS : Param name strings list.
+SEARCH-STRING          : Search raw string."
   (cond ((jcs-is-contain-list-string keyword-strings "class")
          (progn
            ;; TODO: implement into ActionScript mode.
@@ -545,8 +558,7 @@ PAREN-STRING           : Param raw string."
   "Insert `actionscript-mode' function doc string.
 
 KEYWORD-STRINGS        : Keyword strings list.
-DATATYPE-NAME          : Data type name, store keyword for
-                               struct/class related.
+DATATYPE-NAME          : Data type name, store keyword for struct/class related.
 FUNCTION-NAME-STRING   : Function name.
 THERE-IS-RETURN        : There is return in this function?
 RETURN-TYPE-STRING     : String of the return type.
@@ -598,8 +610,24 @@ SEARCH-STRING          : Search raw string."
         (indent-for-tab-command)))))
 
 
-(defun jcs-cc-mode-doc-string-others ()
-  "Insert `c-mode' or `c++-mode' other doc string."
+(defun jcs-cc-mode-doc-string-others (keyword-strings
+                                      datatype-name
+                                      function-name-string
+                                      there-is-return
+                                      return-type-string
+                                      param-type-strings
+                                      param-variable-strings
+                                      search-string)
+  "Insert `c-mode' or `c++-mode' other doc string.
+
+KEYWORD-STRINGS        : Keyword strings list.
+DATATYPE-NAME          : Data type name, store keyword for struct/class related.
+FUNCTION-NAME-STRING   : Function name.
+THERE-IS-RETURN        : There is return in this function?
+RETURN-TYPE-STRING     : String of the return type.
+PARAM-TYPE-STRINGS     : Param type strings list.
+PARAM-VARIABLE-STRINGS : Param name strings list.
+SEARCH-STRING          : Search raw string."
   (cond ((jcs-is-contain-list-string-regexp keyword-strings "class")
          (progn
            ;; go back to comment line.
@@ -681,8 +709,7 @@ SEARCH-STRING          : Search raw string."
   "Insert `c-mode' or `c++-mode' function doc string.
 
 KEYWORD-STRINGS        : Keyword strings list.
-DATATYPE-NAME          : Data type name, store keyword for
-                               struct/class related.
+DATATYPE-NAME          : Data type name, store keyword for struct/class related.
 FUNCTION-NAME-STRING   : Function name.
 THERE-IS-RETURN        : There is return in this function?
 RETURN-TYPE-STRING     : String of the return type.
@@ -783,8 +810,24 @@ SEARCH-STRING          : Search raw string."
                 (indent-for-tab-command)))))))
 
 
-(defun jcs-csharp-mode-doc-string-others ()
-  "Insert `csharp-mode' other doc string."
+(defun jcs-csharp-mode-doc-string-others (keyword-strings
+                                          datatype-name
+                                          function-name-string
+                                          there-is-return
+                                          return-type-string
+                                          param-type-strings
+                                          param-variable-strings
+                                          search-string)
+  "Insert `csharp-mode' other doc string.
+
+KEYWORD-STRINGS        : Keyword strings list.
+DATATYPE-NAME          : Data type name, store keyword for struct/class related.
+FUNCTION-NAME-STRING   : Function name.
+THERE-IS-RETURN        : There is return in this function?
+RETURN-TYPE-STRING     : String of the return type.
+PARAM-TYPE-STRINGS     : Param type strings list.
+PARAM-VARIABLE-STRINGS : Param name strings list.
+SEARCH-STRING          : Search raw string."
   (cond ((jcs-is-contain-list-string keyword-strings "class")
          (progn
            ;; STUDY: Don't think that C#
@@ -813,8 +856,7 @@ SEARCH-STRING          : Search raw string."
   "Insert `csharp-mode' function doc string.
 
 KEYWORD-STRINGS        : Keyword strings list.
-DATATYPE-NAME          : Data type name, store keyword for
-                               struct/class related.
+DATATYPE-NAME          : Data type name, store keyword for struct/class related.
 FUNCTION-NAME-STRING   : Function name.
 THERE-IS-RETURN        : There is return in this function?
 RETURN-TYPE-STRING     : String of the return type.
@@ -903,8 +945,24 @@ SEARCH-STRING          : Search raw string."
             (indent-for-tab-command))))))))
 
 
-(defun jcs-java-mode-doc-string-others ()
-  "Insert `java-mode' other doc string."
+(defun jcs-java-mode-doc-string-others (keyword-strings
+                                        datatype-name
+                                        function-name-string
+                                        there-is-return
+                                        return-type-string
+                                        param-type-strings
+                                        param-variable-strings
+                                        search-string)
+  "Insert `java-mode' other doc string.
+
+KEYWORD-STRINGS        : Keyword strings list.
+DATATYPE-NAME          : Data type name, store keyword for struct/class related.
+FUNCTION-NAME-STRING   : Function name.
+THERE-IS-RETURN        : There is return in this function?
+RETURN-TYPE-STRING     : String of the return type.
+PARAM-TYPE-STRINGS     : Param type strings list.
+PARAM-VARIABLE-STRINGS : Param name strings list.
+SEARCH-STRING          : Search raw string."
   (cond ((jcs-is-contain-list-string keyword-strings "class")
          (progn
            ;; STUDY: Don't think that java
@@ -927,8 +985,7 @@ SEARCH-STRING          : Search raw string."
   "Insert `java-mode' function doc string.
 
 KEYWORD-STRINGS        : Keyword strings list.
-DATATYPE-NAME          : Data type name, store keyword for
-                               struct/class related.
+DATATYPE-NAME          : Data type name, store keyword for struct/class related.
 FUNCTION-NAME-STRING   : Function name.
 THERE-IS-RETURN        : There is return in this function?
 RETURN-TYPE-STRING     : String of the return type.
@@ -980,8 +1037,24 @@ SEARCH-STRING          : Search raw string."
         (indent-for-tab-command)))))
 
 
-(defun jcs-js-mode-doc-string-others ()
-  "Insert `js2-mode' other doc string."
+(defun jcs-js-mode-doc-string-others (keyword-strings
+                                      datatype-name
+                                      function-name-string
+                                      there-is-return
+                                      return-type-string
+                                      param-type-strings
+                                      param-variable-strings
+                                      search-string)
+  "Insert `js2-mode' other doc string.
+
+KEYWORD-STRINGS        : Keyword strings list.
+DATATYPE-NAME          : Data type name, store keyword for struct/class related.
+FUNCTION-NAME-STRING   : Function name.
+THERE-IS-RETURN        : There is return in this function?
+RETURN-TYPE-STRING     : String of the return type.
+PARAM-TYPE-STRINGS     : Param type strings list.
+PARAM-VARIABLE-STRINGS : Param name strings list.
+SEARCH-STRING          : Search raw string."
   (cond ((jcs-is-contain-list-string keyword-strings "class")
          (progn
            ;; STUDY: Don't know if javascript
@@ -999,8 +1072,7 @@ SEARCH-STRING          : Search raw string."
   "Insert `js2-mode' function doc string.
 
 KEYWORD-STRINGS        : Keyword strings list.
-DATATYPE-NAME          : Data type name, store keyword for
-                               struct/class related.
+DATATYPE-NAME          : Data type name, store keyword for struct/class related.
 FUNCTION-NAME-STRING   : Function name.
 THERE-IS-RETURN        : There is return in this function?
 RETURN-TYPE-STRING     : String of the return type.
@@ -1052,8 +1124,24 @@ SEARCH-STRING          : Search raw string."
         (indent-for-tab-command)))))
 
 
-(defun jcs-lua-mode-doc-string-others ()
-  "Insert `lua-mode' other doc string."
+(defun jcs-lua-mode-doc-string-others (keyword-strings
+                                       datatype-name
+                                       function-name-string
+                                       there-is-return
+                                       return-type-string
+                                       param-type-strings
+                                       param-variable-strings
+                                       search-string)
+  "Insert `lua-mode' other doc string.
+
+KEYWORD-STRINGS        : Keyword strings list.
+DATATYPE-NAME          : Data type name, store keyword for struct/class related.
+FUNCTION-NAME-STRING   : Function name.
+THERE-IS-RETURN        : There is return in this function?
+RETURN-TYPE-STRING     : String of the return type.
+PARAM-TYPE-STRINGS     : Param type strings list.
+PARAM-VARIABLE-STRINGS : Param name strings list.
+SEARCH-STRING          : Search raw string."
   ;; NOTE: I don't think Lua have any keywords...
   )
 
@@ -1068,8 +1156,7 @@ SEARCH-STRING          : Search raw string."
   "Insert `lua-mode' function doc string.
 
 KEYWORD-STRINGS        : Keyword strings list.
-DATATYPE-NAME          : Data type name, store keyword for
-                               struct/class related.
+DATATYPE-NAME          : Data type name, store keyword for struct/class related.
 FUNCTION-NAME-STRING   : Function name.
 THERE-IS-RETURN        : There is return in this function?
 RETURN-TYPE-STRING     : String of the return type.
@@ -1121,8 +1208,24 @@ SEARCH-STRING          : Search raw string."
         (indent-for-tab-command)))))
 
 
-(defun jcs-py-mode-doc-string-others ()
-  "Insert `python-mode' other doc string."
+(defun jcs-py-mode-doc-string-others (keyword-strings
+                                      datatype-name
+                                      function-name-string
+                                      there-is-return
+                                      return-type-string
+                                      param-type-strings
+                                      param-variable-strings
+                                      search-string)
+  "Insert `python-mode' other doc string.
+
+KEYWORD-STRINGS        : Keyword strings list.
+DATATYPE-NAME          : Data type name, store keyword for struct/class related.
+FUNCTION-NAME-STRING   : Function name.
+THERE-IS-RETURN        : There is return in this function?
+RETURN-TYPE-STRING     : String of the return type.
+PARAM-TYPE-STRINGS     : Param type strings list.
+PARAM-VARIABLE-STRINGS : Param name strings list.
+SEARCH-STRING          : Search raw string."
   (cond ((jcs-is-contain-list-string keyword-strings "class")
          (progn
            ;; TODO: implement into python mode.
@@ -1139,8 +1242,7 @@ SEARCH-STRING          : Search raw string."
   "Insert `python-mode' function doc string.
 
 KEYWORD-STRINGS        : Keyword strings list.
-DATATYPE-NAME          : Data type name, store keyword for
-                               struct/class related.
+DATATYPE-NAME          : Data type name, store keyword for struct/class related.
 FUNCTION-NAME-STRING   : Function name.
 THERE-IS-RETURN        : There is return in this function?
 RETURN-TYPE-STRING     : String of the return type.
@@ -1201,8 +1303,24 @@ SEARCH-STRING          : Search raw string."
         (indent-for-tab-command)))))
 
 
-(defun jcs-php-mode-doc-string-others ()
-  "Insert `php-mode' other doc string."
+(defun jcs-php-mode-doc-string-others (keyword-strings
+                                       datatype-name
+                                       function-name-string
+                                       there-is-return
+                                       return-type-string
+                                       param-type-strings
+                                       param-variable-strings
+                                       search-string)
+  "Insert `php-mode' other doc string.
+
+KEYWORD-STRINGS        : Keyword strings list.
+DATATYPE-NAME          : Data type name, store keyword for struct/class related.
+FUNCTION-NAME-STRING   : Function name.
+THERE-IS-RETURN        : There is return in this function?
+RETURN-TYPE-STRING     : String of the return type.
+PARAM-TYPE-STRINGS     : Param type strings list.
+PARAM-VARIABLE-STRINGS : Param name strings list.
+SEARCH-STRING          : Search raw string."
   (cond ((jcs-is-contain-list-string keyword-strings "class")
          (progn
            ;; TODO: implement into PHP mode.
@@ -1219,8 +1337,7 @@ SEARCH-STRING          : Search raw string."
   "Insert `php-mode' function doc string.
 
 KEYWORD-STRINGS        : Keyword strings list.
-DATATYPE-NAME          : Data type name, store keyword for
-                               struct/class related.
+DATATYPE-NAME          : Data type name, store keyword for struct/class related.
 FUNCTION-NAME-STRING   : Function name.
 THERE-IS-RETURN        : There is return in this function?
 RETURN-TYPE-STRING     : String of the return type.
@@ -1272,8 +1389,24 @@ SEARCH-STRING          : Search raw string."
         (indent-for-tab-command)))))
 
 
-(defun jcs-ts-mode-doc-string-others ()
-  "Insert `typescript-mode' other doc string."
+(defun jcs-ts-mode-doc-string-others (keyword-strings
+                                      datatype-name
+                                      function-name-string
+                                      there-is-return
+                                      return-type-string
+                                      param-type-strings
+                                      param-variable-strings
+                                      search-string)
+  "Insert `typescript-mode' other doc string.
+
+KEYWORD-STRINGS        : Keyword strings list.
+DATATYPE-NAME          : Data type name, store keyword for struct/class related.
+FUNCTION-NAME-STRING   : Function name.
+THERE-IS-RETURN        : There is return in this function?
+RETURN-TYPE-STRING     : String of the return type.
+PARAM-TYPE-STRINGS     : Param type strings list.
+PARAM-VARIABLE-STRINGS : Param name strings list.
+SEARCH-STRING          : Search raw string."
   (cond ((jcs-is-contain-list-string keyword-strings "class")
          (progn
            ;; TODO: implement into TypeScript mode.
@@ -1290,8 +1423,7 @@ SEARCH-STRING          : Search raw string."
   "Insert `typescript-mode' function doc string.
 
 KEYWORD-STRINGS        : Keyword strings list.
-DATATYPE-NAME          : Data type name, store keyword for
-                               struct/class related.
+DATATYPE-NAME          : Data type name, store keyword for struct/class related.
 FUNCTION-NAME-STRING   : Function name.
 THERE-IS-RETURN        : There is return in this function?
 RETURN-TYPE-STRING     : String of the return type.
