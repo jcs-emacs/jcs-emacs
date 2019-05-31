@@ -759,6 +759,102 @@
   (use-ttf-set-default-font))
 
 
+(use-package web-mode
+  :ensure t
+  :defer t
+  :config
+  ;; Associate an engine
+  (setq web-mode-engines-alist
+        '(("php"    . "\\.phtml\\'")
+          ("blade"  . "\\.blade\\."))
+        )
+
+  ;; Associate a content type
+  (add-to-list 'auto-mode-alist '("\\.api\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("/some/react/path/.*\\.js[x]?\\'" . web-mode))
+
+  (setq web-mode-content-types-alist
+        '(("json" . "/some/path/.*\\.api\\'")
+          ("xml"  . "/other/path/.*\\.api\\'")
+          ("jsx"  . "/some/react/path/.*\\.js[x]?\\'")))
+
+  ;; Indentation
+  ;; NOTE: HTML element offset indentation
+  (setq web-mode-markup-indent-offset 2)
+  ;; NOTE: CSS offset indentation
+  (setq web-mode-css-indent-offset 2)
+  ;; NOTE: Script/code offset indentation (for JavaScript,
+  ;;                                           Java,
+  ;;                                           PHP,
+  ;;                                           Ruby,
+  ;;                                           Go,
+  ;;                                           VBScript,
+  ;;                                           Python, etc.)
+  (setq web-mode-code-indent-offset 2)
+
+  (add-to-list 'web-mode-indentation-params '("lineup-args" . nil))
+  (add-to-list 'web-mode-indentation-params '("lineup-calls" . nil))
+  (add-to-list 'web-mode-indentation-params '("lineup-concats" . nil))
+  (add-to-list 'web-mode-indentation-params '("lineup-ternary" . nil))
+
+  ;; Left padding
+  (setq web-mode-style-padding 2)   ;; For `<style>' tag
+  (setq web-mode-script-padding 2)  ;; For `<script>' tag
+  (setq web-mode-block-padding 0)   ;; For `php', `ruby', `java', `python', `asp', etc.
+
+  ;; Offsetless Elements
+  ;; NOTE: Do not make these lists to one list.
+  ;; They are totally different list.
+  ;; NOTE: This variable is from `web-mode' itself.
+  (setq web-mode-offsetless-elements '("html"))
+
+  ;; NOTE: Do not make these lists to one list.
+  ;; They are totally different list.
+  (defvar jcs-web-mode-offsetless-elements-toggle '("html")
+    "List of HTML elements you want to be toggable to the
+`wen-mode-offsetless-elements' list in Web mode.")
+
+  ;; Comments
+  ;;(setq web-mode-comment-style 2)
+
+  ;; Syntax Highlighting
+  (set-face-attribute 'web-mode-doctype-face nil :foreground "Pink3")
+  (set-face-attribute 'web-mode-block-comment-face nil :foreground (face-foreground jcs-font-lock-comment-face))
+  (set-face-attribute 'web-mode-comment-face nil :foreground (face-foreground jcs-font-lock-comment-face))
+  (set-face-attribute 'web-mode-css-property-name-face nil :foreground (face-foreground jcs-css-type-face))
+
+  ;; Snippets
+  (setq web-mode-extra-snippets
+        '(("erb" . (("toto" . ("<% toto | %>\n\n<% end %>"))))
+          ("php" . (("dowhile" . ("<?php do { ?>\n\n<?php } while (|); ?>"))
+                    ("debug" . ("<?php error_log(__LINE__); ?>"))))
+          ))
+
+  ;; Auto-pairs
+  (setq web-mode-extra-auto-pairs
+        '(("erb"  . (("beg" "end")))
+          ("php"  . (("beg" "end")
+                     ("beg" "end")))
+          ))
+
+  ;; Enable / disable features
+  (setq web-mode-enable-auto-pairing t)
+  (setq web-mode-enable-css-colorization t)
+  (setq web-mode-enable-block-face t)
+  (setq web-mode-enable-part-face t)
+  (setq web-mode-enable-comment-keywords t)
+  (setq web-mode-enable-heredoc-fontification t)
+
+  ;; Keywords / Constants
+  ;;(setq web-mode-extra-constants '(("php" . ("CONS1" "CONS2"))))
+
+  ;; Highlight current HTML element
+  (setq web-mode-enable-current-element-highlight t)
+
+  ;; You can also highlight the current column with
+  (setq web-mode-enable-current-column-highlight t))
+
+
 (use-package wgrep
   :ensure t
   :defer t
