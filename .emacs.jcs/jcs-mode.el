@@ -261,7 +261,7 @@ control of the editor."
 
 
 ;; Modes
-(require 'jcs-message-mode)
+(with-eval-after-load 'message (require 'jcs-message-mode))
 (with-eval-after-load 're-builder (require 'jcs-re-builder-mode))
 (with-eval-after-load 'shell (require 'jcs-shell-mode))
 
