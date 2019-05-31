@@ -97,7 +97,7 @@ HEX-CODE : Color HEX code to check."
 (defun jcs-is-dark-color (hex-code)
   "Check if the `hex-code' light color.
 HEX-CODE : Color HEX code to check."
-  (not (jcs-is-light-color)))
+  (not (jcs-is-light-color hex-code)))
 
 ;;---------------------------------------------
 ;; Event
