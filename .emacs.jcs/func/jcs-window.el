@@ -4,6 +4,7 @@
 
 
 (require 'ace-window)
+(require 'windmove)
 
 ;;-----------------------------------------------------------
 ;; Navigation
