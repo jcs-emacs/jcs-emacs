@@ -12,13 +12,13 @@
     (mapc (lambda (mode)
             (font-lock-add-keywords
              mode
-             '(;; NOTE(jenchieh): `(require 'python)' actually solved the docstring
+             '(;; NOTE: `(require 'python)' actually solved the docstring
                ;; highlighting issue.
-               ;; TODO(jenchieh): Maybe remove this?
+               ;; TODO: Maybe remove this?
                ("\\(\"\"\"[^\"]*\"\"\"\\)" 1 'jcs-py-mode-docstring-face t)
 
                ;;<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-               ;; NOTE(jenchieh): Fixed comment and string conflict.
+               ;; NOTE: Fixed comment and string conflict.
                ("[^\"]\\(#[^\"\r\n]*\\)[^\"]" 1 'jcs-font-lock-comment-face t)
                ("[^\"]\\(\"[^\"]*\"\\)[^\"]" 1 'jcs-font-lock-string-face t)
                ;;>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -34,34 +34,38 @@
   (interactive)
   (save-excursion
     (save-window-excursion
-      (setq endLineNum (string-to-number (format-mode-line "%l")))
+      (let ((endLineNum (line-number-at-pos))
+            (startLineNum -1)
+            (endLineNum2 -1)
+            (startLineNum2 -1))
 
-      (goto-char (region-beginning))
-      (setq startLineNum (string-to-number (format-mode-line "%l")))
+        (goto-char (region-beginning))
+        (setq startLineNum (line-number-at-pos))
 
-      (exchange-point-and-mark)
+        (exchange-point-and-mark)
 
-      (goto-char (region-end))
-      (setq endLineNum2 (string-to-number (format-mode-line "%l")))
+        (goto-char (region-end))
+        (setq endLineNum2 (line-number-at-pos))
 
-      (goto-char (region-beginning))
-      (setq startLineNum2 (string-to-number (format-mode-line "%l")))
+        (goto-char (region-beginning))
+        (setq startLineNum2 (line-number-at-pos))
 
-      (deactivate-mark)
+        (deactivate-mark)
 
-      (goto-line startLineNum)
-      (previous-line 1)
+        (goto-line startLineNum)
+        (previous-line 1)
 
-      (while (and (<= (string-to-number (format-mode-line "%l")) endLineNum))
-        (jcs-py-indent-down)
-        (end-of-line))
+        (while (and (<= (line-number-at-pos) endLineNum))
+          (jcs-py-indent-down)
+          (end-of-line))
 
-      (goto-line endLineNum2)
-      (next-line 1)
+        (goto-line endLineNum2)
+        (next-line 1)
 
-      (while (and (>= (string-to-number (format-mode-line "%l")) startLineNum2))
-        (jcs-py-indent-up)
-        (end-of-line)))))
+        (while (and (>= (line-number-at-pos) startLineNum2))
+          (jcs-py-indent-up)
+          (end-of-line))
+        ))))
 
 ;;;###autoload
 (defun jcs-py-format-document ()
@@ -70,14 +74,10 @@ once to the whole document. For `python-mode'."
   (interactive)
   (save-excursion
     (save-window-excursion
-      (end-of-buffer)
-      (setq endLineNum (string-to-number (format-mode-line "%l")))
-
-      (beginning-of-buffer)
-      (setq startLineNum (string-to-number (format-mode-line "%l")))
-
-      (while (and (<= (string-to-number (format-mode-line "%l")) endLineNum))
-        (jcs-py-indent-down)))))
+      (let ((endLineNum (line-number-at-pos (point-max))))
+        (goto-char (point-min))
+        (while (and (<= (line-number-at-pos) endLineNum))
+          (jcs-py-indent-down))))))
 
 ;;;###autoload
 (defun jcs-py-format-region-or-document ()
@@ -158,9 +158,9 @@ spaces instead of `py-electric-backspace'."
               (jcs-py-safe-backward-delete-char)
               (jcs-py-safe-backward-delete-char))
           (backward-delete-char 1)))
-    ;; OPTION(jenchieh): Default is the `py' version.
+    ;; OPTION: Default is the `py' version.
     ;;(py-electric-backspace)
-    ;; OPTION(jenchieh): `jcs' version.
+    ;; OPTION: `jcs' version.
     (jcs-electric-backspace)))
 
 
@@ -224,11 +224,11 @@ comment character on the same line."
   "Insert common Python document/comment string."
   (interactive)
   ;; -- Officual
-  ;; URL(jenchieh): https://www.python.org/dev/peps/pep-0008/
+  ;; URL: https://www.python.org/dev/peps/pep-0008/
   ;; -- Google
-  ;; URL(jenchieh): https://google.github.io/styleguide/pyguide.html
+  ;; URL: https://google.github.io/styleguide/pyguide.html
   ;; -- Hitchhiker's
-  ;; URL(jenchieh): http://docs.python-guide.org/en/latest/writing/style/
+  ;; URL: http://docs.python-guide.org/en/latest/writing/style/
   (let ((active-comment nil)
         (previous-line-not-empty nil)
         ;; Flag, if second situation. Check below.
@@ -237,7 +237,7 @@ comment character on the same line."
     (insert "\"")
 
     (save-excursion
-      ;; OPTION(jenchieh): First situation.
+      ;; OPTION: First situation.
       ;; Check if two double-quote infront of this double-quote.
       (save-excursion
         (backward-char 1)
@@ -249,7 +249,7 @@ comment character on the same line."
               (when (jcs-py-do-doc-string)
                 (setq active-comment t))))))
 
-      ;; OPTION(jenchieh): Second situation.
+      ;; OPTION: Second situation.
       ;; Check if between the double-quote.
       (save-excursion
         (backward-char 1)
@@ -281,7 +281,7 @@ comment character on the same line."
     (when (and active-comment
                previous-line-not-empty)
       (when (= jcs-py-doc-string-version 1)
-        ;; OPTION(jenchieh): docstring option..
+        ;; OPTION: docstring option..
         (insert "\n"))
       (insert "Description here..\n")
       (insert "\"\"\"")
