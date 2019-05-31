@@ -170,7 +170,7 @@ CBF : Current buffer file name."
             (when jcs-undo-tree-auto-show-diff
               (undo-tree-visualizer-toggle-diff)))))
     ;; In Emacs, undo/redo is the same thing.
-    (call-interactively #'redo)))
+    (call-interactively #'undo)))
 
 ;;----------------------------------------------
 ;; Tab
@@ -883,10 +883,8 @@ ECP-SAME : Exception for the same buffer."
 
 (defvar jcs-first-char-is-char nil
   "Check the first character a character.")
-
 (defvar jcs-check-first-char nil
   "Boolean to check the first character")
-
 (defvar jcs-found-first-char nil
   "Found the first character in search?")
 
@@ -956,12 +954,10 @@ ECP-SAME : Exception for the same buffer."
         (jcs-forward-kill-word-capital))
     (if (or (not (wordp (jcs-get-current-char-byte)))
             (jcs-is-end-of-line-p))
-        ;; NOTE: Here is end of the recursive
-        ;; function loop...
+        ;; NOTE: Here is end of the recursive function loop...
         (backward-delete-char 1)
       (if (uppercasep (jcs-get-current-char-byte))
-          ;; NOTE: Here is end of the recursive
-          ;; function loop...
+          ;; NOTE: Here is end of the recursive function loop...
           (forward-char -1)
         (backward-delete-char 1)
         (jcs-forward-kill-word-capital))))
@@ -1016,15 +1012,9 @@ to the point."
   "Forward search capital character and set the cursor to
 the point."
   (interactive)
-
-  (save-excursion
-    ;; Get the first 'Beginning of buffer's Point'.
-    (goto-char (point-min))
-    (setq beginningBufferPoint (point)))
-
   ;; If the point is at the first character, we will get the error.
   ;; So move forward a character then check.
-  (when (= beginningBufferPoint (point))
+  (when (= (point-min) (point))
     (forward-char 1))
 
   (unless jcs-check-first-char
