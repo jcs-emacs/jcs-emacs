@@ -15,7 +15,7 @@
 cursor currently on."
   (save-excursion
     (when (and (not (jcs-current-char-string-match-p "[ \t\n]"))
-               ;; NOTE(jenchieh): To avoid empty line navigation.
+               ;; NOTE: To avoid empty line navigation.
                (not (jcs-is-beginning-of-line-p)))
       (if (and (jcs-is-default-face-p)
                (not (jcs-current-char-string-match-p "[><]"))
@@ -78,7 +78,7 @@ another function..."
   (interactive)
   ;; if region, delete the region first.
   (when (use-region-p)
-    ;; NOTE(jayces): `kill-region' will copy the word.
+    ;; NOTE: `kill-region' will copy the word.
     ;; Use `delete-region' instead, this will not copy
     ;; the word.
     (delete-region (region-beginning) (region-end)))
@@ -157,7 +157,7 @@ another function..."
 (defun jcs-httpd-start ()
   "Active real time editing with default port (`impatient-mode')."
   (interactive)
-  ;; NOTE(jayces): port can be change at `jcs-web-mode.el' file.
+  ;; NOTE: port can be change at `jcs-web-mode.el' file.
   (message "Active real time editing with port: %d" httpd-port)
   (call-interactively 'httpd-start))
 
@@ -165,7 +165,7 @@ another function..."
 (defun jcs-httpd-stop ()
   "Close real time editing with default port. (`impatient-mode')"
   (interactive)
-  ;; NOTE(jayces): port can be change at `jcs-web-mode.el' file.
+  ;; NOTE: port can be change at `jcs-web-mode.el' file.
   (message "Close real time editing with port: %d" httpd-port)
   (call-interactively 'httpd-stop))
 
@@ -182,10 +182,9 @@ another function..."
         (dolist (tmp-element jcs-web-mode-offsetless-elements-toggle)
           (push tmp-element web-mode-offsetless-elements))
         (put 'jcs-toggle-web-mode-offsetless-elements 'state nil))
-    (progn
-      (dolist (tmp-element jcs-web-mode-offsetless-elements-toggle)
-        (setq web-mode-offsetless-elements (remove tmp-element web-mode-offsetless-elements)))
-      (put 'jcs-toggle-web-mode-offsetless-elements 'state t))))
+    (dolist (tmp-element jcs-web-mode-offsetless-elements-toggle)
+      (setq web-mode-offsetless-elements (remove tmp-element web-mode-offsetless-elements)))
+    (put 'jcs-toggle-web-mode-offsetless-elements 'state t)))
 
 ;;-----------------------------------------------------------
 ;;-----------------------------------------------------------
@@ -210,8 +209,8 @@ another function..."
              '(;; For nomral HTML comment.
                ("\\(<!--[a-zA-Z0-9 \n\t-.<>?,*'`@\"=_(){}:;&^%$#!~]*-->\\)" 1 'jcs-font-lock-comment-face t)
                ;; For multi-lines comment.
-               ;; TODO(jenchieh): Only inside the curly bracket.
-               ;; TODO(jenchieh): There is bug if `/' is inside the comment space.
+               ;; TODO: Only inside the curly bracket.
+               ;; TODO: There is bug if `/' is inside the comment space.
                ("\\(/\\*[^/]*\\*/\\)" 1 'jcs-web-mode-block-comment-face t)
                )'end))
           web-type-comment-missing-modes)))
