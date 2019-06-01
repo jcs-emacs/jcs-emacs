@@ -3,12 +3,16 @@
 ;;; Code:
 
 
+(require 'cmake-mode)
+(require 'cmake-font-lock)
+
+
 (defun jcs-cmake-format ()
   "Format the given file as a CMakeLists. - JenChieh CMake"
   (when (jcs-is-current-file-empty-p)
     (jcs-insert-cmake-template)))
 
-(require 'cmake-mode)
+
 (defun jcs-cmake-mode-hook ()
   "CMake mode hook."
   (electric-pair-mode nil)
