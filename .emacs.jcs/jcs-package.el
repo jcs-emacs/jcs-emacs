@@ -9,7 +9,7 @@
 ;; start package.el with emacs
 (require 'package)
 
-;; NOTE(jenchieh): Add `GNU', `MELPA', `Marmalade', `ELPA' to repository list
+;; NOTE: Add `GNU', `MELPA', `Marmalade', `ELPA' to repository list
 (progn
   ;;(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
   ;;(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
@@ -23,7 +23,7 @@
 ;; initialize package.el
 (package-initialize)
 
-;; NOTE(jenchieh): This actually worsen the startup time.
+;; NOTE: This actually worsen the startup time.
 ;;(package-refresh-contents)
 
 ;;-----------------------------------------------------------
