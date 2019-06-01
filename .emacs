@@ -13,7 +13,7 @@
 ;;; Code:
 
 
-;; DEBUG(jenchieh): Debug mode?
+;; DEBUG: Debug mode?
 ;; Produce backtraces when errors occur.
 (setq debug-on-error t)
 
@@ -23,7 +23,7 @@
 (defvar jcs-normal-gc-cons-threshold (* 1024 1024 20)
   "The `GC' threshold during the normal task.")
 
-;; NOTE(jenchieh): Raise the `GC' threshold when starting Emacs.
+;; NOTE: Raise the `GC' threshold when starting Emacs.
 (setq gc-cons-threshold jcs-init-gc-cons-threshold)
 
 
@@ -62,7 +62,7 @@
  '(mouse-wheel-scroll-amount (quote (15)))
  '(package-selected-packages
    (quote
-    (google-this helm-core helm-projectile helm-gtags helm-ag helm flycheck-popup-tip dart-mode right-click-context show-eol csharp-mode haxe-mode isearch-project async hl-todo page-break-lines goto-char-preview elixir-mode erlang multiple-cursors projectile buffer-move beacon dashboard glsl-mode company-quickhelp origami line-reminder yasnippet-snippets dash git-commit move-text cmake-font-lock restart-emacs focus dimmer goto-line-preview transient magit with-editor ini-mode htmltagwrap auto-rename-tag indent-info cobol-mode swift-mode rust-mode yaml-mode markdown-mode nhexl-mode sr-speedbar clojure-mode undo-tree tabbar javadoc-lookup typescript-mode yasnippet xcscope wgrep-helm wgrep-ag wgrep vimrc-mode sql-indent simple-httpd scss-mode s popup pkg-info json-snatcher json-reformat htmlize google-translate f epl emmet-mode diminish cmake-mode bind-key avy ace-window js2-mode company apache-mode which-key web-mode use-ttf use-package tree-mode togetherly sublimity ssass-mode shader-mode scala-mode rainbow-mode python-mode project-abbrev processing-mode preproc-font-lock powerline package-lint package-build organize-imports-java nasm-mode lua-mode json-mode impatient-mode iedit haskell-mode go-mode gitignore-mode gitconfig-mode gitattributes-mode exec-path-from-shell com-css-sort basic-mode auto-highlight-symbol ag adaptive-wrap actionscript-mode)))
+    (swift-mode flycheck-popup-tip dart-mode basic-mode beacon google-this helm-core helm-projectile helm-gtags helm-ag helm right-click-context show-eol csharp-mode haxe-mode isearch-project async hl-todo page-break-lines goto-char-preview elixir-mode erlang multiple-cursors projectile buffer-move dashboard glsl-mode company-quickhelp origami line-reminder yasnippet-snippets dash git-commit move-text cmake-font-lock restart-emacs focus dimmer goto-line-preview transient magit with-editor ini-mode htmltagwrap auto-rename-tag indent-info cobol-mode rust-mode yaml-mode markdown-mode nhexl-mode sr-speedbar clojure-mode undo-tree tabbar javadoc-lookup typescript-mode yasnippet xcscope wgrep-helm wgrep-ag wgrep vimrc-mode sql-indent simple-httpd scss-mode s popup pkg-info json-snatcher json-reformat htmlize google-translate f epl emmet-mode diminish cmake-mode bind-key avy ace-window js2-mode company apache-mode which-key web-mode use-ttf use-package tree-mode togetherly sublimity ssass-mode shader-mode scala-mode rainbow-mode python-mode project-abbrev processing-mode preproc-font-lock powerline package-lint package-build organize-imports-java nasm-mode lua-mode json-mode impatient-mode iedit haskell-mode go-mode gitignore-mode gitconfig-mode gitattributes-mode exec-path-from-shell com-css-sort auto-highlight-symbol ag adaptive-wrap actionscript-mode)))
  '(paradox-github-token t)
  '(send-mail-function (quote mailclient-send-it))
  '(version-control nil))
@@ -89,25 +89,6 @@
 
 (put 'erase-buffer 'disabled nil)
 
-;;------------------------------------------------------------------------------------------------------
-;;;
-;; Auto install list of packages I want at the startup of Emacs.
-;;;
-
-;; Get the list of package dependencies.
-(load-file "~/.emacs.jcs/jcs-package.el")
-
-;; make sure to have downloaded archive description.
-;; Or use package-archive-contents as suggested by Nicolas Dudebout
-(or (file-exists-p package-user-dir)
-    (package-refresh-contents))
-
-;; Install all packages that this config needs.
-(jcs-ensure-package-installed jcs-package-install-list)
-
-;; activate installed packages
-(package-initialize)
-
 ;;========================================
 ;;         Manually Installation
 ;;----------------------------------
@@ -127,6 +108,21 @@
   (add-to-list 'load-path "~/.emacs.jcs/")
   (add-to-list 'load-path "~/.emacs.jcs/func/")
   (add-to-list 'load-path "~/.emacs.jcs/mode/"))
+
+;;; Auto install list of packages I want at the startup of Emacs.
+(require 'jcs-package)  ;; Get the list of package dependencies.
+
+;; make sure to have downloaded archive description.
+;; Or use package-archive-contents as suggested by Nicolas Dudebout
+(or (file-exists-p package-user-dir)
+    (package-refresh-contents))
+
+;; Install all packages that this config needs.
+(jcs-ensure-package-installed jcs-package-install-list)
+
+;; activate installed packages
+(package-initialize)
+
 
 ;;; Utilities
 (require 'jcs-log)
