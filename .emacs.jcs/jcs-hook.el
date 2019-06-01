@@ -5,7 +5,7 @@
 
 ;;
 ;; All hook listed.
-;; URL(jenchieh): https://www.gnu.org/software/emacs/manual/html_node/elisp/Standard-Hooks.html
+;; URL: https://www.gnu.org/software/emacs/manual/html_node/elisp/Standard-Hooks.html
 ;;
 
 ;;-----------------------------------------------------------
@@ -31,6 +31,7 @@
   "Find file hook."
   (when (and (not reload-emacs-reloading)
              (not jcs-package-upgrading)
+             (not (get-buffer "*Packages*"))
              (jcs-is-contain-list-string jcs-find-file-read-only-paths
                                          (buffer-file-name)))
     (read-only-mode))
@@ -49,12 +50,12 @@
   (jcs-reload-file-info)
   (jcs-reload-docstring-info)
 
-  ;; NOTE(jenchieh): Lower the `GC' back to normal threshold.
+  ;; NOTE: Lower the `GC' back to normal threshold.
   (setq gc-cons-threshold jcs-normal-gc-cons-threshold)
 
   (save-selected-window
-    ;; ATTENTION(jenchieh): First active the correct line number,
-    ;; because this would not works in `jcs-after-change-major-mode-hook'.
+    ;; ATTENTION: First active the correct line number, because this
+    ;; would not works in `jcs-after-change-major-mode-hook'.
     (switch-to-buffer "*Messages*")
     (jcs-active-line-numbers-by-mode))
   )
@@ -74,7 +75,7 @@
     ;; Refresh the syntax highlighting.
     (jcs-font-lock-fontify-buffer))
 
-  ;; TODO(jenchieh): Move this to `web-mode' only.
+  ;; TODO: Move this to `web-mode' only.
   (when (jcs-is-current-major-mode-p "web-mode")
     (when jcs-web-auto-truncate-lines
       (jcs-web-truncate-lines-by-face)))
@@ -107,10 +108,10 @@
 (defun jcs-minibuffer-setup-hook ()
   "Hook when minibuffer setup."
   (when (and (not (jcs-current-char-equal-p "/"))
-             ;; SEE(jenchieh): this trigger can be check
+             ;; SEE: this trigger can be check
              ;; at `jcs-helm.el' file.
              jcs-helm-find-files-active)
-    ;; NOTE(jenchieh): This will prevent missing the
+    ;; NOTE: This will prevent missing the
     ;; slash at the end of the search file path.
     (insert "/"))
 
@@ -121,7 +122,7 @@
 
 (defun jcs-minibuffer-post-command-hook ()
   "Minibuffer post command hook."
-  ;; NOTE(jenchieh): reserve usage...
+  ;; NOTE: reserve usage...
   )
 
 (defun jcs-minibuffer-exit-hook ()
