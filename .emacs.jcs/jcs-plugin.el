@@ -9,24 +9,20 @@
 
 
 (use-package adaptive-wrap
-  :ensure t
   :defer t
   :config
   (setq-default adaptive-wrap-extra-indent 0))
 
 
 (use-package ag
-  :ensure t
   :defer t)
 
 
 (use-package async
-  :ensure t
   :defer t)
 
 
 (use-package auto-highlight-symbol
-  :ensure t
   :diminish auto-highlight-symbol-mode
   :config
   (global-auto-highlight-symbol-mode t)
@@ -60,13 +56,15 @@
 
 
 (use-package auto-rename-tag
-  :ensure t
   :defer t
   :diminish auto-rename-tag-mode)
 
 
+(use-package avy
+  :defer t)
+
+
 (use-package beacon
-  :ensure t
   :diminish beacon-mode
   :config
   (jcs-reset-beacon-color-by-theme)
@@ -74,17 +72,18 @@
 
 
 (use-package buffer-move
-  :ensure t
+  :defer t)
+
+
+(use-package cmake-font-lock
   :defer t)
 
 
 (use-package com-css-sort
-  :ensure t
-  :defer)
+  :defer t)
 
 
 (use-package company
-  :ensure t
   :defer t
   :diminish company-mode
   :config
@@ -126,7 +125,6 @@
   (global-company-mode t))
 
 (use-package company-quickhelp
-  :ensure t
   :config
   (setq company-quickhelp-delay 0.3)
   (setq company-quickhelp-color-background "#FFF08A")
@@ -134,17 +132,18 @@
 
 
 (use-package dashboard
-  :ensure t
   :defer t
   :config
   (setq dashboard-banner-logo-title "Welcome to J-Emacs!")
   (jcs-reset-dashboard-banner-by-theme)
   (setq dashboard-items '((recents  . 10)
-                          (bookmarks . 10)
+                          ;;(bookmarks . 10)
                           (projects . 10)
                           ;;(agenda . 10)
                           ;;(registers . 10)
                           ))
+
+  (setq dashboard-center-content t)
 
   (custom-set-faces
    '(dashboard-banner-logo-title
@@ -158,7 +157,6 @@
 
 
 (use-package diminish
-  :ensure t
   :config
   (diminish 'abbrev-mode)
   (use-package face-remap
@@ -171,26 +169,22 @@
 
 
 (use-package dimmer
-  :ensure t
   :config
   (setq dimmer-fraction 0.2)
   (dimmer-mode))
 
 
 (use-package emmet-mode
-  :ensure t
   :defer t)
 
 
 (use-package exec-path-from-shell
-  :ensure t
   :config
   (when (memq window-system '(mac ns x))
     (exec-path-from-shell-initialize)))
 
 
 (use-package flycheck
-  :ensure t
   :defer t
   :diminish flycheck-mode
   :config
@@ -198,29 +192,28 @@
   )
 
 (use-package flycheck-popup-tip
-  :ensure t
   :config
   (with-eval-after-load 'flycheck
     (flycheck-popup-tip-mode t)))
 
 
 (use-package focus
-  :ensure t
+  :defer t)
+
+
+(use-package git-commit
   :defer t)
 
 
 (use-package google-this
-  :ensure t
   :defer t)
 
 
 (use-package google-translate
-  :ensure t
   :defer t)
 
 
 (use-package goto-char-preview
-  :ensure t
   :defer t
   :config
   (defun jcs-advice-goto-char-preview-after ()
@@ -230,7 +223,6 @@
 
 
 (use-package goto-line-preview
-  :ensure t
   :defer t
   :config
   (defun jcs-advice-goto-line-preview-after ()
@@ -240,8 +232,6 @@
 
 
 (use-package helm
-  :ensure t
-  :defer t
   :diminish helm-mode
   :config
   ;; 相關教學:
@@ -286,13 +276,11 @@
       map)))
 
 (use-package helm-ag
-  :ensure t
   :defer t)
 
 ;; NOTE: You will need GNU GLOBAL executable in order
 ;; to make the tag system work.
 (use-package helm-gtags
-  :ensure t
   :defer t
   :diminish helm-gtags-mode
   :config
@@ -313,13 +301,11 @@
    '(helm-gtags-auto-update t)))
 
 (use-package helm-projectile
-    :ensure t
-    :config
-    (helm-projectile-on))
+  :config
+  (helm-projectile-on))
 
 
 (use-package hl-todo
-  :ensure t
   :init
   (setq hl-todo-keyword-faces
         '(("HOLD" . "#d0bf8f")
@@ -369,23 +355,19 @@
 
 
 (use-package htmltagwrap
-  :ensure t
   :defer t)
 
 
 (use-package iedit
-  :ensure t
   :defer t)
 
 
 (use-package impatient-mode
-  :ensure t
   :defer t
   :diminish impatient-mode)
 
 
 (use-package indent-info
-  :ensure t
   :config
   (global-indent-info-mode +1))
 
@@ -421,54 +403,51 @@
 
 
 (use-package javadoc-lookup
-  :ensure t
   :defer t)
 
 
 (use-package json-reformat
-  :ensure t
   :defer t)
 
-
 (use-package json-snatcher
-  :ensure t
   :defer t)
 
 
 (use-package line-reminder
-  :ensure t
   :diminish line-reminder-mode
   :config
   (global-line-reminder-mode t))
 
 
 (use-package magit
-  :ensure t
   :defer t)
 
 
 (use-package move-text
-  :ensure t
   :defer t)
 
 
-(use-package multiple-cursors
-  :ensure t)
+(use-package multiple-cursors)
 
 
 (use-package organize-imports-java
-  :ensure t
   :defer t)
 
 
 (use-package origami
-  :ensure t
   :config
   (global-origami-mode t))
 
 
+(use-package package-lint
+  :defer t)
+
+
+(use-package pkg-info
+  :defer t)
+
+
 (use-package popup
-  :ensure t
   :defer t
   :config
   (defvar jcs-popup-mouse-events-flag nil
@@ -506,7 +485,6 @@
 
 
 (use-package powerline
-  :ensure t
   :config
   (powerline-default-theme)
   ;;(powerline-center-theme)
@@ -523,9 +501,7 @@
   (setq powerline-default-separator 'wave))
 
 
-;;; Preprocessor/Marcos highlight.
 (use-package preproc-font-lock
-  :ensure t
   :config
   (preproc-font-lock-global-mode t)
   (preproc-font-lock-mode t)
@@ -536,24 +512,20 @@
 
 
 (use-package project-abbrev
-  :ensure t
   :defer t)
 
 
 (use-package projectile
-  :ensure t
   :diminish projectile-mode
   :config
   (projectile-mode t))
 
 
 (use-package rainbow-mode
-  :ensure t
   :defer t)
 
 
 (use-package reload-emacs
-  :defer t
   :config
   (setq reload-emacs-load-path '("~/.emacs.jcs/"
                                  "~/.emacs.jcs/func/"
@@ -588,12 +560,10 @@
 
 
 (use-package restart-emacs
-  :ensure t
   :defer t)
 
 
 (use-package right-click-context
-  :ensure t
   :diminish right-click-context-mode
   :config
   ;;;###autoload
@@ -612,6 +582,7 @@
   (right-click-context-mode 1))
 
 
+
 (use-package shift-select
   :diminish shift-select-minor-mode
   :config
@@ -628,7 +599,6 @@
 
 
 (use-package show-eol
-  :ensure t
   :defer t
   :config
   (show-eol-set-mark-with-string 'newline-mark "¶")
@@ -645,7 +615,6 @@
 
 
 (use-package sql-indent
-  :ensure t
   :defer t
   :config
   ;; URL: https://www.emacswiki.org/emacs/SqlIndent
@@ -658,7 +627,6 @@
 
 
 (use-package sr-speedbar
-  :ensure t
   :defer t
   :config
   ;;(setq sr-speedbar-auto-refresh nil)
@@ -669,7 +637,6 @@
 
 
 (use-package sublimity
-  :ensure t
   :defer t
   :config
   (require 'sublimity-scroll)
@@ -722,7 +689,6 @@
 
 
 (use-package tabbar
-  :ensure t
   :defer t
   :config
   ;; Turn-off `tabbar-mode' as default.
@@ -730,19 +696,16 @@
 
 
 (use-package togetherly
-  :ensure t
   :defer t)
 
 
 (use-package undo-tree
-  :ensure t
   :diminish undo-tree-mode
   :config
   (global-undo-tree-mode t))
 
 
 (use-package use-ttf
-  :ensure t
   :config
   ;; List of TTF fonts you want to use in the currnet OS.
   (setq use-ttf-default-ttf-fonts '(;; >> Classic Console <<
@@ -760,7 +723,6 @@
 
 
 (use-package web-mode
-  :ensure t
   :defer t
   :config
   ;; Associate an engine
@@ -856,22 +818,18 @@
 
 
 (use-package wgrep
-  :ensure t
   :defer t
   :config
   (setq wgrep-auto-save-buffer t))
 
 (use-package wgrep-ag
-  :ensure t
   :defer t)
 
 (use-package wgrep-helm
-  :ensure t
   :defer t)
 
 
 (use-package which-key
-  :ensure t
   :diminish which-key-mode
   :config
   (which-key-mode)
@@ -901,7 +859,6 @@
 
 
 (use-package whitespace
-  :ensure t
   :defer t
   :diminish whitespace-mode
   :diminish whitespace-newline-mode
@@ -931,11 +888,9 @@
 
 
 (use-package yasnippet
-  :ensure t
   :diminish yas-minor-mode
   :config
-  (use-package yasnippet-snippets
-    :ensure t)
+  (use-package yasnippet-snippets)
   (yas-global-mode 1))
 
 
