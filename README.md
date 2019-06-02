@@ -94,6 +94,10 @@ with `use-package` package to delay some packages load time.
 **Edit 2:** If you compiled the source code then the startup 
 time can lower down more from `0.5` to `1.5` seconds.
 
+**Edit 3:** Using [esup](https://github.com/jschaf/esup) package 
+to test and optimize the configuration, lower the startup time 
+from around `4` to `8` seconds.
+
 
 ## Features
 
