@@ -128,10 +128,6 @@
   )
 (add-hook 'c-mode-common-hook 'jcs-cc-mode-hook)
 
-;; Faces
-(set-face-attribute 'preproc-font-lock-preprocessor-background nil
-                    :background nil)
-
 
 (provide 'jcs-cc-mode)
 ;;; jcs-cc-mode.el ends here

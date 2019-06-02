@@ -4,6 +4,8 @@
 
 
 (require 'javadoc-lookup)
+(require 'organize-imports-java)
+
 
 (defun jcs-java-class-format ()
   "Format the given file as a Java file."

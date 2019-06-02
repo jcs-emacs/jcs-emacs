@@ -65,9 +65,6 @@
        (display-battery-mode 1)))
 
 
-;;; Auto Revert Files
-(global-auto-revert-mode t)
-
 ;;; Backup Files
 (setq make-backup-files nil)
 
@@ -75,14 +72,12 @@
 (defun nil-bell ())  ;; Turn off the bell on Mac OS X
 (setq ring-bell-function 'nil-bell)
 
-;;; Clock
-(display-time)
-
 ;;; Compilation
-(setq compilation-context-lines t)
-(setq compilation-error-regexp-alist
-      (cons '("^\\([0-9]+>\\)?\\(\\(?:[a-zA-Z]:\\)?[^:(\t\n]+\\)(\\([0-9]+\\)) : \\(?:fatal error\\|warnin\\(g\\)\\) C[0-9]+:" 2 3 nil (4))
-            compilation-error-regexp-alist))
+(with-eval-after-load 'compile
+  (setq compilation-context-lines t)
+  (setq compilation-error-regexp-alist
+        (cons '("^\\([0-9]+>\\)?\\(\\(?:[a-zA-Z]:\\)?[^:(\t\n]+\\)(\\([0-9]+\\)) : \\(?:fatal error\\|warnin\\(g\\)\\) C[0-9]+:" 2 3 nil (4))
+              compilation-error-regexp-alist)))
 
 (defun jcs-compilation-mode-hook ()
   "Compilation mode hook."
@@ -98,10 +93,11 @@
 (add-hook 'compilation-mode-hook 'jcs-compilation-mode-hook)
 
 ;;; Commands
-(set-variable 'grep-command "grep -irHn ")
-(when jcs-win32
-  (setq grep-use-null-device t)
-  (set-variable 'grep-command "findstr -s -n -i -l "))
+(with-eval-after-load 'grep
+  (set-variable 'grep-command "grep -irHn ")
+  (when jcs-win32
+    (setq grep-use-null-device t)
+    (set-variable 'grep-command "findstr -s -n -i -l ")))
 
 ;;; Default Major Mode
 (setq-default major-mode 'org-mode)
@@ -157,12 +153,15 @@
                                           "*Compile-Log*"
                                           "*compilation*"
                                           "*dashboard*"
+                                          "*esup*"
                                           "*Flycheck errors*"
                                           "*GNU Emacs*"
                                           "*helm"
                                           "*Messages*"
+                                          "*Music*"
                                           "*Package-Lint*"
                                           "*Packages*"
+                                          "*shell*"
                                           "*SPEEDBAR*"
                                           "*undo-tree*"
                                           "*Warnings*")
@@ -183,7 +182,6 @@
 can see the error/operation message.")
 
 ;;; Recent Files
-(recentf-mode 1)
 (setq recentf-max-menu-items 25)
 
 (defun jcs-advice-recentf-track-opened-file-after ()
@@ -241,8 +239,7 @@ can see the error/operation message.")
 (tool-bar-mode 0)
 
 ;;; Uniquify
-;; NOTE: meaningful names for buffers with the same name from
-;; prelude.
+;; NOTE: meaningful names for buffers with the same name from prelude.
 ;; SOURCE: http://pragmaticemacs.com/emacs/uniquify-your-buffer-names/
 ;; URL: https://github.com/bbatsov/prelude
 (require 'uniquify)

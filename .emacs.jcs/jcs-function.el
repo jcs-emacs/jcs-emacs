@@ -3,8 +3,10 @@
 ;;; Code:
 
 
+(require 'f)
 (require 'helm)
 (require 'linum)
+(require 's)
 
 ;;----------------------------------------------
 ;; Beacon
@@ -377,6 +379,7 @@ G : Active line numbers globally."
 (defun jcs-sr-speedbar-toggle ()
   "Toggle the speedbar window."
   (interactive)
+  (require 'sr-speedbar)
   (if (sr-speedbar-exist-p)
       (progn
         ;; Close it.
@@ -388,41 +391,41 @@ G : Active line numbers globally."
         ;; Try to open a recorded opening file.
         (when jcs-speedbar-opening-buffer-file-name
           (find-file jcs-speedbar-opening-buffer-file-name)))
-    (progn
-      (setq jcs-sr-speedbar-record-selected-window (selected-window))
+    (setq jcs-sr-speedbar-record-selected-window (selected-window))
 
-      (let ((default-directory default-directory)
-            (pro-dir (cdr (project-current))))
-        ;; NOTE: Use current buffer directory as default.
-        (when (buffer-file-name)
-          (setq default-directory (f-dirname (buffer-file-name))))
+    (let ((default-directory default-directory)
+          (pro-dir (cdr (project-current))))
+      ;; NOTE: Use current buffer directory as default.
+      (when (buffer-file-name)
+        (setq default-directory (f-dirname (buffer-file-name))))
 
-        ;; NOTE: If found project directory, use project directory.
-        (when pro-dir
-          (setq default-directory pro-dir))
+      ;; NOTE: If found project directory, use project directory.
+      (when pro-dir
+        (setq default-directory pro-dir))
 
-        ;; Esure speedbar is active.
-        (call-interactively #'sr-speedbar-toggle)
-        (call-interactively #'sr-speedbar-toggle)
+      ;; Esure speedbar is active.
+      (call-interactively #'sr-speedbar-toggle)
+      (call-interactively #'sr-speedbar-toggle)
 
-        ;; Refresh the speedbar object after the `default-directory'
-        ;; has been set.
-        (call-interactively #'speedbar-refresh)
+      ;; Refresh the speedbar object after the `default-directory'
+      ;; has been set.
+      (call-interactively #'speedbar-refresh)
 
-          ;; Goto very right/left of the window.
-        (if jcs-sr-speedbar-window-all-on-right
-            (jcs-move-to-rightmost-window nil)
-          (jcs-move-to-leftmost-window nil))
+      ;; Goto very right/left of the window.
+      (if jcs-sr-speedbar-window-all-on-right
+          (jcs-move-to-rightmost-window nil)
+        (jcs-move-to-leftmost-window nil))
 
-        ;; Open it.
-        (call-interactively #'sr-speedbar-toggle))
+      ;; Open it.
+      (call-interactively #'sr-speedbar-toggle))
 
-      ;; Select the speedbar window.
-      (call-interactively #'sr-speedbar-select-window))))
+    ;; Select the speedbar window.
+    (call-interactively #'sr-speedbar-select-window)))
 
 (defun jcs-update-speedbar-record-after-select-new-window ()
   "Update speedbar by selecting new window."
-  (when (and (sr-speedbar-exist-p)
+  (when (and (functionp 'sr-speedbar-exist-p)
+             (sr-speedbar-exist-p)
              (not (jcs-is-current-major-mode-p "speedbar-mode")))
     (setq jcs-sr-speedbar-record-selected-window (selected-window))))
 
@@ -549,6 +552,7 @@ VEC : Either position or negative number."
   "Around `hl-todo-previous' command.
 NO-PROMPT : Don't prompt the overwrap message."
   (interactive)
+  (require 'hl-todo)
   (setq jcs-hl-todo-not-found-next nil)
   (if jcs-hl-todo-not-found-prev
       (progn
@@ -570,6 +574,7 @@ NO-PROMPT : Don't prompt the overwrap message."
   "Around `hl-todo-next' command.
 NO-PROMPT : Don't prompt the overwrap message."
   (interactive)
+  (require 'hl-todo)
   (setq jcs-hl-todo-not-found-prev nil)
   (if jcs-hl-todo-not-found-next
       (progn
@@ -630,9 +635,9 @@ NO-PROMPT : Don't prompt the overwrap message."
 (require 'jcs-util)
 (require 'jcs-frame)
 (require 'jcs-window)
-(require 'jcs-shell)
-(require 'jcs-minimap)
-(require 'jcs-helm-func)
+(with-eval-after-load 'shell (require 'jcs-shell))
+(with-eval-after-load 'sublimity (require 'jcs-minimap))
+(with-eval-after-load 'helm (require 'jcs-helm-func))
 (require 'jcs-message-func)
 
 ;; Editing
@@ -645,20 +650,22 @@ NO-PROMPT : Don't prompt the overwrap message."
 (require 'jcs-nav)
 
 ;; For Specific Mode
-(require 'jcs-org-func)
+(with-eval-after-load 're-builder (require 'jcs-re-builder-func))
 (require 'jcs-preproc-func)
-(require 'jcs-cc-func)
-(require 'jcs-csharp-func)
-(require 'jcs-makefile-func)
-(require 'jcs-java-func)
-(require 'jcs-lua-func)
-(require 'jcs-nasm-func)
-(require 'jcs-python-func)
-(require 'jcs-sh-func)
-(require 'jcs-css-func)
-(require 'jcs-web-func)
-(require 'jcs-re-builder-func)
-(require 'jcs-yaml-func)
+
+(with-eval-after-load 'org (require 'jcs-org-func))
+(with-eval-after-load 'cc-mode
+  (require 'jcs-cc-func)
+  (require 'jcs-java-func))
+(with-eval-after-load 'csharp-mode (require 'jcs-csharp-func))
+(with-eval-after-load 'make-mode (require 'jcs-makefile-func))
+(with-eval-after-load 'lua-mode (require 'jcs-lua-func))
+(with-eval-after-load 'nasm-mode (require 'jcs-nasm-func))
+(with-eval-after-load 'python-mode (require 'jcs-python-func))
+(with-eval-after-load 'sh-script (require 'jcs-sh-func))
+(with-eval-after-load 'css-mode (require 'jcs-css-func))
+(with-eval-after-load 'web-mode (require 'jcs-web-func))
+(with-eval-after-load 'yaml-mode (require 'jcs-yaml-func))
 (require 'jcs-oop-func)
 
 

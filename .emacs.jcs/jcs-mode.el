@@ -395,7 +395,7 @@ PR : pair file `regexp' and file mode `symbol'."
   (jcs-add-auto-mode-alist '("\\.hs'?\\'" . haskell-mode))
   ;; ATTENTION: Haxe-mode is no longer maintaining...
   ;; Consider remove `haxe-mode' from this config.
-  (require 'haxe-mode)
+  ;;(require 'haxe-mode)
   (jcs-add-auto-mode-alist '("\\.hx'?\\'" . haxe-mode))
   (jcs-add-auto-mode-alist '("\\.hxml'?\\'" . haxe-mode)))
 

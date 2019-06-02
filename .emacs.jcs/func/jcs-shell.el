@@ -14,24 +14,22 @@
       (progn
         (jcs-hide-shell-window)
         (put 'jcs-toggle-shell-window 'state nil))
-    (progn
-      (jcs-show-shell-window)
-      (put 'jcs-toggle-shell-window 'state t))))
+    (jcs-show-shell-window)
+    (put 'jcs-toggle-shell-window 'state t)))
 
 ;;;###autoload
 (defun jcs-show-shell-window()
   "Shell Command prompt."
   (interactive)
-
-  (when (not (get-buffer-process "*shell*"))
+  (unless (get-buffer-process "*shell*")
     (split-window-below)
 
-    ;; TODO(jenchieh): I have no idea why the first time would
-    ;; not work. So I have to error handle it and do it again
-    ;; to just in if something weird happen to Emacs itself.
+    ;; TODO: I have no idea why the first time would not work.
+    ;; So I have to error handle it and do it again to just in
+    ;; if something weird happen to Emacs itself.
     ;;
-    ;; NOTE(jenchieh): Call it multiple time to just in case
-    ;; the shell process will run.
+    ;; NOTE: Call it multiple time to just in case the shell
+    ;; process will run.
     (jcs-ensure-switch-to-buffer-other-window "*shell*")
 
     (erase-buffer)
@@ -85,10 +83,10 @@
   ;; Goto the end of the command line.
   (goto-char (point-max))
 
-  ;; STUDY(jenchieh): This actually does not
-  ;; goes to the beginning of line. It actually
-  ;; goto the start of the command prompt. Which
-  ;; mean we do not have to code ourselves to the
+  ;; STUDY: This actually does not goes to the
+  ;; beginning of line. It actually goto the
+  ;; start of the command prompt. Which mean
+  ;; we do not have to code ourselves to the
   ;; start of command line.
   ;;
   ;; >>> Image: <<<

@@ -63,11 +63,11 @@
 (define-key global-map [C-tab] #'indent-region)
 
 ;;; Binary/Hex Editor
-(require 'nhexl-mode)
-(define-key nhexl-mode-map (kbd "<up>") #'previous-line)
-(define-key nhexl-mode-map (kbd "<down>") #'next-line)
-(define-key nhexl-mode-map (kbd "<right>") #'forward-char)
-(define-key nhexl-mode-map (kbd "<left>") #'backward-char)
+(with-eval-after-load 'nhexl-mode
+  (define-key nhexl-mode-map (kbd "<up>") #'previous-line)
+  (define-key nhexl-mode-map (kbd "<down>") #'next-line)
+  (define-key nhexl-mode-map (kbd "<right>") #'forward-char)
+  (define-key nhexl-mode-map (kbd "<left>") #'backward-char))
 
 ;;; Calculator
 (define-key global-map (kbd "C-x =") #'jcs-calc-eval-region)
@@ -189,12 +189,15 @@
 (define-key global-map [f11] #'next-error)
 
 ;;; File Explorer
-(require 'sr-speedbar)
-(define-key global-map (kbd "C-M-l") #'jcs-sr-speedbar-toggle)  ;; Compatible to `Visual Studio'.
-(define-key global-map (kbd "C-b") #'jcs-sr-speedbar-toggle)    ;; Compatible to `VS Code'.
-(define-key speedbar-mode-map (kbd "<backspace>") #'speedbar-up-directory)
-(define-key speedbar-mode-map (kbd "<return>") #'jcs-speedbar-edit-line)
-(define-key speedbar-mode-map (kbd "<f2>") #'speedbar-item-rename)
+(use-package sr-speedbar
+  :defer t
+  :init
+  (define-key global-map (kbd "C-M-l") #'jcs-sr-speedbar-toggle)  ;; Compatible to `Visual Studio'.
+  (define-key global-map (kbd "C-b") #'jcs-sr-speedbar-toggle)    ;; Compatible to `VS Code'.
+  :config
+  (define-key speedbar-mode-map (kbd "<backspace>") #'speedbar-up-directory)
+  (define-key speedbar-mode-map (kbd "<return>") #'jcs-speedbar-edit-line)
+  (define-key speedbar-mode-map (kbd "<f2>") #'speedbar-item-rename))
 
 ;;; File editing
 (define-key global-map (kbd "M-k") #'jcs-maybe-kill-this-buffer)
@@ -376,12 +379,14 @@
 (define-key global-map (kbd "C-x g") #'magit-status)
 
 ;;; Startup Screen
-(require 'dashboard)
-(define-key dashboard-mode-map (kbd "<up>") #'jcs-previous-line)
-(define-key dashboard-mode-map (kbd "<down>") #'jcs-next-line)
-(define-key dashboard-mode-map (kbd "C-p") #'package-list-packages)
-(define-key dashboard-mode-map (kbd "M-k") #'jcs-maybe-kill-dashboard-buffer)
-(define-key dashboard-mode-map (kbd "M-K") #'jcs-refresh-dashboard-buffer)
+(use-package dashboard
+  :defer t
+  :config
+  (define-key dashboard-mode-map (kbd "<up>") #'jcs-previous-line)
+  (define-key dashboard-mode-map (kbd "<down>") #'jcs-next-line)
+  (define-key dashboard-mode-map (kbd "C-p") #'package-list-packages)
+  (define-key dashboard-mode-map (kbd "M-k") #'jcs-maybe-kill-dashboard-buffer)
+  (define-key dashboard-mode-map (kbd "M-K") #'jcs-refresh-dashboard-buffer))
 
 ;;; Syntax Check
 (require 'flycheck)

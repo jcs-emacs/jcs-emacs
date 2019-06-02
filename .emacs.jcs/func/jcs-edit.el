@@ -1552,6 +1552,7 @@ CC : current character before character deletion occured."
 (defun jcs-mc/mark-previous-like-this ()
   "Smart marking previous line."
   (interactive)
+  (require 'multiple-cursors)
   (let ((before-unmark-cur-cnt (mc/num-cursors))
         (unmark-do (ignore-errors (call-interactively #'mc/unmark-next-like-this))))
     (unless unmark-do
@@ -1562,6 +1563,7 @@ CC : current character before character deletion occured."
 (defun jcs-mc/mark-next-like-this ()
   "Smart marking next line."
   (interactive)
+  (require 'multiple-cursors)
   (let ((before-unmark-cur-cnt (mc/num-cursors))
         (unmark-do (ignore-errors (call-interactively #'mc/unmark-previous-like-this))))
     (unless unmark-do

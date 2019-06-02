@@ -56,6 +56,7 @@
                                    elixir-mode
                                    emmet-mode
                                    erlang
+                                   esup
                                    exec-path-from-shell
                                    focus
                                    flycheck

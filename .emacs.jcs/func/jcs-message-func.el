@@ -1,4 +1,4 @@
-;;; jcs-message-func.el --- When editing the file.  -*- lexical-binding: t -*-
+;;; jcs-message-func.el --- In *Message* buffer.  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

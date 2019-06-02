@@ -82,8 +82,6 @@
     (jcs-keep-one-line-between)))
 
 
-(require 'organize-imports-java)
-
 ;;;###autoload
 (defun jcs-java-organize-imports ()
   "Organize all the import package.

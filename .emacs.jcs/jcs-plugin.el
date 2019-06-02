@@ -10,23 +10,13 @@
 
 (use-package adaptive-wrap
   :defer t
-  :config
-  (setq-default adaptive-wrap-extra-indent 0))
-
-
-(use-package ag
-  :defer t)
-
-
-(use-package async
-  :defer t)
+  :init
+  (setq adaptive-wrap-extra-indent 0))
 
 
 (use-package auto-highlight-symbol
   :diminish auto-highlight-symbol-mode
   :config
-  (global-auto-highlight-symbol-mode t)
-
   ;; Current highlight. (Cursor point currently on.)
   (custom-set-faces
    '(ahs-plugin-defalt-face ((t (:foreground nil :background "#123E70"))))
@@ -36,32 +26,22 @@
 
   ;; Current highlight. (Cursor point currently on.)
   (set-face-attribute 'ahs-plugin-defalt-face nil
-                      :box '(:line-width -1 :color "#525D68" :style pressed-button)
-                      ;;:underline nil
-                      )
-
+                      :box '(:line-width -1 :color "#525D68" :style pressed-button))
   ;; Other highlight. (Same words in the buffer)
   (set-face-attribute 'ahs-face nil
-                      :box '(:line-width -1 :color "#525D68" :style pressed-button)
-                      ;;:underline nil
-                      )
-
+                      :box '(:line-width -1 :color "#525D68" :style pressed-button))
   (set-face-attribute 'ahs-definition-face nil
-                      :box '(:line-width -1 :color "#525D68" :style pressed-button)
-                      ;;:underline nil
-                      )
+                      :box '(:line-width -1 :color "#525D68" :style pressed-button))
 
   ;; Number of seconds to wait before highlighting symbol.
-  (custom-set-variables '(ahs-idle-interval 0.3)))
+  (setq ahs-idle-interval 0.3)
+
+  (global-auto-highlight-symbol-mode t))
 
 
 (use-package auto-rename-tag
   :defer t
   :diminish auto-rename-tag-mode)
-
-
-(use-package avy
-  :defer t)
 
 
 (use-package beacon
@@ -71,20 +51,7 @@
   (beacon-mode 1))
 
 
-(use-package buffer-move
-  :defer t)
-
-
-(use-package cmake-font-lock
-  :defer t)
-
-
-(use-package com-css-sort
-  :defer t)
-
-
 (use-package company
-  :defer t
   :diminish company-mode
   :config
   ;; TOPIC: How add company-dabbrev to the Company completion popup?
@@ -125,26 +92,23 @@
   (global-company-mode t))
 
 (use-package company-quickhelp
-  :config
+  :init
   (setq company-quickhelp-delay 0.3)
   (setq company-quickhelp-color-background "#FFF08A")
+  :config
   (company-quickhelp-mode t))
 
 
 (use-package dashboard
-  :defer t
-  :config
+  :init
   (setq dashboard-banner-logo-title "Welcome to J-Emacs!")
-  (jcs-reset-dashboard-banner-by-theme)
   (setq dashboard-items '((recents  . 10)
                           ;;(bookmarks . 10)
                           (projects . 10)
                           ;;(agenda . 10)
                           ;;(registers . 10)
                           ))
-
   (setq dashboard-center-content t)
-
   (custom-set-faces
    '(dashboard-banner-logo-title
      ((t (:foreground "cyan1"))))
@@ -152,7 +116,7 @@
      ((t (:foreground "#17A0FB"))))
    '(widget-button
      ((t (:foreground "light steel blue")))))
-
+  :config
   (dashboard-setup-startup-hook))
 
 
@@ -169,13 +133,10 @@
 
 
 (use-package dimmer
-  :config
+  :init
   (setq dimmer-fraction 0.2)
+  :config
   (dimmer-mode))
-
-
-(use-package emmet-mode
-  :defer t)
 
 
 (use-package exec-path-from-shell
@@ -192,25 +153,10 @@
   )
 
 (use-package flycheck-popup-tip
+  :defer t
   :config
   (with-eval-after-load 'flycheck
     (flycheck-popup-tip-mode t)))
-
-
-(use-package focus
-  :defer t)
-
-
-(use-package git-commit
-  :defer t)
-
-
-(use-package google-this
-  :defer t)
-
-
-(use-package google-translate
-  :defer t)
 
 
 (use-package goto-char-preview
@@ -220,7 +166,6 @@
     "Advice after execute `goto-char-preview' command."
     (call-interactively #'recenter))
   (advice-add 'goto-char-preview :after #'jcs-advice-goto-char-preview-after))
-
 
 (use-package goto-line-preview
   :defer t
@@ -233,12 +178,9 @@
 
 (use-package helm
   :diminish helm-mode
-  :config
+  :init
   ;; 相關教學:
   ;; * http://emacsist.com/10295
-
-  (helm-mode 1)
-  (helm-autoresize-mode 1)
 
   ;; 禁止自動補全
   ;;(setq helm-ff-auto-update-initial-value nil)
@@ -255,8 +197,7 @@
         helm-ff-file-name-history-use-recentf t)
 
 
-  ;; NOTE: Make Helm window at the bottom WITHOUT
-  ;; using any extra package.
+  ;; NOTE: Make Helm window at the bottom WITHOUT using any extra package.
   ;; SOURCE: https://www.reddit.com/r/emacs/comments/345vtl/make_helm_window_at_the_bottom_without_using_any/
   (add-to-list 'display-buffer-alist
                `(,(rx bos "*helm" (* not-newline) "*" eos)
@@ -264,19 +205,20 @@
                  (inhibit-same-window . t)
                  (window-height . 0.4)))
 
-  ;; `helm-colors'
-  ;; NOTE: make key insert 'HEX' and 'Name'
-  (defvar helm-color-map
-    (let ((map (make-sparse-keymap)))
-      (set-keymap-parent map helm-map)
-      (define-key map (kbd "RET") 'helm-color-run-insert-name)
-      (define-key map (kbd "C-c N") 'helm-color-run-kill-name)
-      (define-key map (kbd "M-RET") 'helm-color-run-insert-rgb)
-      (define-key map (kbd "C-c R") 'helm-color-run-kill-rgb)
-      map)))
-
-(use-package helm-ag
-  :defer t)
+  (with-eval-after-load 'helm-color
+    ;; `helm-colors'
+    ;; NOTE: make key insert 'HEX' and 'Name'
+    (defvar helm-color-map
+      (let ((map (make-sparse-keymap)))
+        (set-keymap-parent map helm-map)
+        (define-key map (kbd "RET") 'helm-color-run-insert-name)
+        (define-key map (kbd "C-c N") 'helm-color-run-kill-name)
+        (define-key map (kbd "M-RET") 'helm-color-run-insert-rgb)
+        (define-key map (kbd "C-c R") 'helm-color-run-kill-rgb)
+        map)))
+  :config
+  (helm-mode 1)
+  (helm-autoresize-mode 1))
 
 ;; NOTE: You will need GNU GLOBAL executable in order
 ;; to make the tag system work.
@@ -354,14 +296,6 @@
   (global-hl-todo-mode 1))
 
 
-(use-package htmltagwrap
-  :defer t)
-
-
-(use-package iedit
-  :defer t)
-
-
 (use-package impatient-mode
   :defer t
   :diminish impatient-mode)
@@ -402,49 +336,15 @@
                                        "res/")))
 
 
-(use-package javadoc-lookup
-  :defer t)
-
-
-(use-package json-reformat
-  :defer t)
-
-(use-package json-snatcher
-  :defer t)
-
-
 (use-package line-reminder
   :diminish line-reminder-mode
   :config
   (global-line-reminder-mode t))
 
 
-(use-package magit
-  :defer t)
-
-
-(use-package move-text
-  :defer t)
-
-
-(use-package multiple-cursors)
-
-
-(use-package organize-imports-java
-  :defer t)
-
-
 (use-package origami
   :config
   (global-origami-mode t))
-
-
-(use-package package-lint
-  :defer t)
-
-
-(use-package pkg-info
-  :defer t)
 
 
 (use-package popup
@@ -485,44 +385,37 @@
 
 
 (use-package powerline
-  :config
-  (powerline-default-theme)
-  ;;(powerline-center-theme)
-  ;;(powerline-center-evil-theme)
-  ;;(powerline-vim-theme)
-  ;;(powerline-nano-theme)
-
+  :init
   ;; NOTE:
   ;; The separator to use for the default theme.
   ;;
   ;; Valid Values: alternate, arrow, arrow-fade, bar, box,
   ;; brace, butt, chamfer, contour, curve, rounded, roundstub,
   ;; wave, zigzag, utf-8.
-  (setq powerline-default-separator 'wave))
+  (setq powerline-default-separator 'wave)
+  :config
+  (powerline-default-theme)
+  ;;(powerline-center-theme)
+  ;;(powerline-center-evil-theme)
+  ;;(powerline-vim-theme)
+  ;;(powerline-nano-theme)
+  )
 
 
 (use-package preproc-font-lock
   :config
-  (preproc-font-lock-global-mode t)
-  (preproc-font-lock-mode t)
   (set-face-attribute 'preproc-font-lock-preprocessor-background
                       nil
-                      :background "#333333"
-                      :inherit nil))
-
-
-(use-package project-abbrev
-  :defer t)
+                      :background nil
+                      :inherit nil)
+  (preproc-font-lock-global-mode t)
+  (preproc-font-lock-mode t))
 
 
 (use-package projectile
   :diminish projectile-mode
   :config
   (projectile-mode t))
-
-
-(use-package rainbow-mode
-  :defer t)
 
 
 (use-package reload-emacs
@@ -559,10 +452,6 @@
   (advice-add 'reload-emacs :after #'jcs-advice-reload-emacs-after))
 
 
-(use-package restart-emacs
-  :defer t)
-
-
 (use-package right-click-context
   :diminish right-click-context-mode
   :config
@@ -591,7 +480,7 @@
     (when (and shift-select-active
                (not this-command-keys-shift-translated))
       (let ((sym-lst '(jcs-smart-indent-up
-                       jcs-smart-indent-down)))
+                       jcs-smart-indent-down)))
         (when (jcs-is-contain-list-symbol sym-lst this-command)
           (deactivate-mark)))))
   (advice-add 'shift-select-pre-command-hook :after #'jcs-advice-shift-select-pre-command-hook-after)
@@ -693,10 +582,6 @@
   :config
   ;; Turn-off `tabbar-mode' as default.
   (tabbar-mode 0))
-
-
-(use-package togetherly
-  :defer t)
 
 
 (use-package undo-tree
@@ -819,21 +704,13 @@
 
 (use-package wgrep
   :defer t
-  :config
+  :init
   (setq wgrep-auto-save-buffer t))
-
-(use-package wgrep-ag
-  :defer t)
-
-(use-package wgrep-helm
-  :defer t)
 
 
 (use-package which-key
   :diminish which-key-mode
   :config
-  (which-key-mode)
-
   ;; Provide following type: `minibuffer', `side-window', `frame'.
   (setq which-key-popup-type 'side-window)
 
@@ -855,7 +732,9 @@
 
   ;; Set the time delay (in seconds) for the which-key popup to appear. A value of
   ;; zero might cause issues so a non-zero value is recommended.
-  (setq which-key-idle-delay 1.0))
+  (setq which-key-idle-delay 1.0)
+
+  (which-key-mode))
 
 
 (use-package whitespace
@@ -890,7 +769,7 @@
 (use-package yasnippet
   :diminish yas-minor-mode
   :config
-  (use-package yasnippet-snippets)
+  (require 'yasnippet-snippets)
   (yas-global-mode 1))
 
 
