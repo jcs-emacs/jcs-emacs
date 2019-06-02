@@ -189,12 +189,9 @@
 (define-key global-map [f11] #'next-error)
 
 ;;; File Explorer
-(use-package sr-speedbar
-  :defer t
-  :init
+(with-eval-after-load 'sr-speedbar
   (define-key global-map (kbd "C-M-l") #'jcs-sr-speedbar-toggle)  ;; Compatible to `Visual Studio'.
   (define-key global-map (kbd "C-b") #'jcs-sr-speedbar-toggle)    ;; Compatible to `VS Code'.
-  :config
   (define-key speedbar-mode-map (kbd "<backspace>") #'speedbar-up-directory)
   (define-key speedbar-mode-map (kbd "<return>") #'jcs-speedbar-edit-line)
   (define-key speedbar-mode-map (kbd "<f2>") #'speedbar-item-rename))
@@ -379,9 +376,7 @@
 (define-key global-map (kbd "C-x g") #'magit-status)
 
 ;;; Startup Screen
-(use-package dashboard
-  :defer t
-  :config
+(with-eval-after-load 'dashboard
   (define-key dashboard-mode-map (kbd "<up>") #'jcs-previous-line)
   (define-key dashboard-mode-map (kbd "<down>") #'jcs-next-line)
   (define-key dashboard-mode-map (kbd "C-p") #'package-list-packages)
