@@ -14,18 +14,15 @@
 (defun jcs-toggle-c-comment-style ()
   "Toggle comment style between /* */ and //."
   (interactive)
-
   (when (or (jcs-is-current-major-mode-p "c-mode")
             (jcs-is-current-major-mode-p "c++-mode"))
     (if (string= comment-start "// ")
-        (progn
-          (setq comment-start "/*"
-                comment-start-skip "/\\*+[ \t]*"
-                comment-end "*/"
-                comment-end-skip "[ \t]*\\*+/"))
-      (progn
-        (setq comment-start "// "
-              comment-end "")))))
+        (setq comment-start "/*"
+              comment-start-skip "/\\*+[ \t]*"
+              comment-end "*/"
+              comment-end-skip "[ \t]*\\*+/")
+      (setq comment-start "// "
+            comment-end ""))))
 
 
 (provide 'jcs-cc-func)
