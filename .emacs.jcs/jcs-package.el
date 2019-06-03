@@ -23,9 +23,6 @@
 ;; initialize package.el
 (package-initialize)
 
-;; NOTE: This actually worsen the startup time.
-;;(package-refresh-contents)
-
 ;;-----------------------------------------------------------
 ;;-----------------------------------------------------------
 
@@ -133,29 +130,45 @@
   "List of packages this config needs.")
 
 
-(defvar jcs-package-upgrading nil
+(defun jcs-install-missing-package-install (pkg)
+  "Install PKG package."
+  ;; NOTE: Don't run `package-refresh-contents' if you don't need to
+  ;; install packages on startup.
+  (unless (get 'jcs-install-missing-package-install 'state)
+    (when (file-exists-p package-user-dir)
+      (package-refresh-contents))
+    (put 'jcs-install-missing-package-install 'state t))
+  ;; Else we just install the package regularly.
+  (package-install pkg))
+
+
+(defvar jcs-package-installing nil
   "Is currently upgrading the package.")
 
 (defun jcs-ensure-package-installed (packages &optional without-asking)
   "Assure every package is installed, ask for installation if it’s not.
 Return a list of installed packages or nil for every skipped package."
-  (setq jcs-package-upgrading t)
+  (setq jcs-package-installing t)
   (mapc (lambda (package)
           (if (package-installed-p package)
               nil
             (if without-asking
-                (package-install package)
+                (jcs-install-missing-package-install package)
               (if (y-or-n-p (format "Package %s is missing. Install it? " package))
-                  (package-install package)
+                  (jcs-install-missing-package-install package)
                 package))))
         packages)
-  (setq jcs-package-upgrading nil))
+  ;; NOTE: Not sure if you need this?
+  (when (get 'jcs-install-missing-package-install 'state)
+    ;; activate installed packages
+    (package-initialize))
+  (setq jcs-package-installing nil))
 
 ;;;###autoload
 (defun jcs-package-upgrade-all ()
   "Upgrade all packages automatically without showing *Packages* buffer."
   (interactive)
-  (setq jcs-package-upgrading t)
+  (setq jcs-package-installing t)
   (package-refresh-contents)
   (let (upgrades)
     (cl-flet ((get-version (name where)
@@ -183,7 +196,7 @@ Return a list of installed packages or nil for every skipped package."
                 (package-delete  old-package))))
           (message "Done upgrading all packages"))
       (message "All packages are up to date")))
-  (setq jcs-package-upgrading nil))
+  (setq jcs-package-installing nil))
 
 
 ;;;###autoload
