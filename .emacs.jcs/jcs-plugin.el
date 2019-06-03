@@ -103,7 +103,12 @@
 
 (use-package dashboard
   :init
-  (setq dashboard-banner-logo-title "Welcome to J-Emacs!")
+  (setq dashboard-banner-logo-title "[J C S • E M A C S]")
+  (setq dashboard-footer-icon "")
+  (setq dashboard-footer "╬ Copyright © 2015 Shen, Jen-Chieh ╬")
+  (setq dashboard-init-info (format "%d packages loaded in %s"
+                                    (length package-activated-list)
+                                    (emacs-init-time)))
   (setq dashboard-items '((recents  . 10)
                           ;;(bookmarks . 10)
                           (projects . 10)
@@ -502,7 +507,7 @@
   (advice-add 'show-eol-disable :before #'jcs-advice-show-eol-disable-before))
 
 
-(use-package sql-indent
+(use-package sql-indent
   :defer t
   :config
   ;; URL: https://www.emacswiki.org/emacs/SqlIndent
