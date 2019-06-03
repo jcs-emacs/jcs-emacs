@@ -108,7 +108,7 @@
   (setq dashboard-footer "╬ Copyright © 2015 Shen, Jen-Chieh ╬")
   (setq dashboard-init-info (format "%d packages loaded in %s"
                                     (length package-activated-list)
-                                    (emacs-init-time)))
+                                    jcs-package-init-time))
   (setq dashboard-items '((recents  . 10)
                           ;;(bookmarks . 10)
                           (projects . 10)
@@ -764,7 +764,7 @@
 
 (use-package windmove
   :init
-  (defvar jcs-windmove-max-move-count 25
+  (defconst jcs-windmove-max-move-count 25
     "Possible maximum windows count.")
   :config
   (setq windmove-wrap-around t))
