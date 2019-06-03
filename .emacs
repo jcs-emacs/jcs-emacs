@@ -18,13 +18,22 @@
 (setq debug-on-error t)
 
 
-(defvar jcs-init-gc-cons-threshold (* 1024 1024 128)
+(defconst jcs-init-gc-cons-threshold (* 1024 1024 128)
   "The `GC' threshold during starting up.")
-(defvar jcs-normal-gc-cons-threshold (* 1024 1024 20)
+(defconst jcs-normal-gc-cons-threshold (* 1024 1024 20)
   "The `GC' threshold during the normal task.")
 
 ;; NOTE: Raise the `GC' threshold when starting Emacs.
 (setq gc-cons-threshold jcs-init-gc-cons-threshold)
+
+(defconst jcs-emacs-version-number "5.4.5"
+  "JCS-Emacs version.")
+
+;;;###autoload
+(defun jcs-emacs-version ()
+  "Show JCS-Emacs version info."
+  (interactive)
+  (message "JCS-Emacs %s" jcs-emacs-version-number))
 
 
 ;;------------------------------------------------------------------------------------------------------
@@ -115,6 +124,8 @@
 ;; Install all packages that this config needs.
 (jcs-ensure-package-installed jcs-package-install-list)
 
+(defconst jcs-package-init-time (emacs-init-time)
+  "Record down the package initialize time.")
 
 ;;; Utilities
 (require 'jcs-log)
