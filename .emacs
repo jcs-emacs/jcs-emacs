@@ -112,17 +112,8 @@
 ;;; Auto install list of packages I want at the startup of Emacs.
 (require 'jcs-package)  ;; Get the list of package dependencies.
 
-;; make sure to have downloaded archive description.
-;; Or use package-archive-contents as suggested by Nicolas Dudebout
-;; NOTE: This actually worsen the startup time.
-(or (file-exists-p package-user-dir)
-    (package-refresh-contents))
-
 ;; Install all packages that this config needs.
 (jcs-ensure-package-installed jcs-package-install-list)
-
-;; activate installed packages
-(package-initialize)
 
 
 ;;; Utilities
