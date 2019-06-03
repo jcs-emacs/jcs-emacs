@@ -4,7 +4,7 @@
 
 
 (defun jcs-helm-before-initialize-hook ()
-  "Do the helm mx and change theme"
+  "Do the helm `M-x' and change theme"
   ;; NOTE: Change theme so we know which mode
   ;; we are in visually.
   (jcs-dark-blue-mode-line))
@@ -66,7 +66,6 @@
   "Goto the declaration / definition depends on the cursor position,
 in other window."
   (interactive)
-
   (ignore-errors
     ;; Update TAG file. Default is update only current file, You
     ;; can update all files with C-u prefix.
@@ -83,7 +82,7 @@ in other window."
 
 ;;;###autoload
 (defun jcs-helm-find-files ()
-  "Find the file with Helm"
+  "Find the file with Helm."
   (interactive)
   (put 'jcs-helm-execute-persistent-action 'state nil)
   (helm-find-files nil))
@@ -104,15 +103,10 @@ in other window."
   "Rewrap 'helm-execute-presistent-action' function to my
 own preferences."
   (interactive)
-  (if (get 'jcs-helm-execute-persistent-action 'state)
-      (progn
-        ;; switch the buffer to another window
-        (helm-ff-run-switch-other-window)
-        (put 'jcs-helm-execute-persistent-action 'state nil)
-        )
-    ;; NOTE: no longer needed.
-    ;;(helm-execute-persistent-action)
-    ))
+  (when (get 'jcs-helm-execute-persistent-action 'state)
+    ;; switch the buffer to another window
+    (helm-ff-run-switch-other-window)
+    (put 'jcs-helm-execute-persistent-action 'state nil)))
 
 ;;;###autoload
 (defun jcs-helm-projectile-find-file-other-window ()
