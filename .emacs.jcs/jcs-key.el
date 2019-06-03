@@ -35,10 +35,10 @@
 (define-key global-map (kbd "C-x C-b") #'restart-emacs)
 
 ;;; Auto Completion
-(require 'company)
-(define-key company-active-map [tab] #'company-complete-selection)
-(define-key company-active-map (kbd "TAB") #'company-complete-selection)
-(define-key company-active-map (kbd "C-s") #'jcs-untabify-save-buffer)
+(with-eval-after-load 'company
+  (define-key company-active-map [tab] #'company-complete-selection)
+  (define-key company-active-map (kbd "TAB") #'company-complete-selection)
+  (define-key company-active-map (kbd "C-s") #'jcs-untabify-save-buffer))
 
 ;;; Buffer Menu
 (define-key global-map (kbd "M-m") #'jcs-buffer-menu)
@@ -384,10 +384,10 @@
   (define-key dashboard-mode-map (kbd "M-K") #'jcs-refresh-dashboard-buffer))
 
 ;;; Syntax Check
-(require 'flycheck)
 (define-key global-map (kbd "<f6>") #'jcs-flycheck-mode)
-(define-key flycheck-error-list-mode-map (kbd "M-k") #'jcs-flycheck-mode)
-(define-key flycheck-error-list-mode-map (kbd "M-K") #'flycheck-error-list-reset-filter)
+(with-eval-after-load 'flycheck
+  (define-key flycheck-error-list-mode-map (kbd "M-k") #'jcs-flycheck-mode)
+  (define-key flycheck-error-list-mode-map (kbd "M-K") #'flycheck-error-list-reset-filter))
 
 ;;; Tab Bar
 (define-key global-map (kbd "C-t") #'jcs-toggle-tabbar-mode)
