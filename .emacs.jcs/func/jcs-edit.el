@@ -172,6 +172,29 @@ CBF : Current buffer file name."
     ;; In Emacs, undo/redo is the same thing.
     (call-interactively #'undo)))
 
+;;---------------------------------------------
+;; Return
+;;---------------------------------------------
+
+;;;###autoload
+(defun jcs-ctrl-return-key ()
+  "Global Ctrl-Return key."
+  (interactive)
+  ;;;
+  ;; Priority
+  ;;
+  ;; ATTENTION: all the function in the priority function
+  ;; list must all have error handling. Or else this the
+  ;; priority chain will break.
+  ;;
+  ;; 1. `project-abbrev-complete-word'
+  ;; 2. `yas-expand'
+  ;; 3. `goto-address-at-point'
+  ;;
+  (unless (ignore-errors (call-interactively #'project-abbrev-complete-word))
+    (unless (ignore-errors (call-interactively #'jcs-yas-expand))
+      (call-interactively #'goto-address-at-point))))
+
 ;;----------------------------------------------
 ;; Tab
 ;;----------------------------------------------
@@ -180,8 +203,9 @@ CBF : Current buffer file name."
 (defun jcs-tab-key ()
   "Global TAB key."
   (interactive)
-  (unless (ignore-errors (call-interactively #'dabbrev-expand))
-    (jcs-insert-spaces-by-tab-width)))
+  (unless (ignore-errors (call-interactively #'jcs-yas-expand))
+    (unless (ignore-errors (call-interactively #'dabbrev-expand))
+      (jcs-insert-spaces-by-tab-width))))
 
 ;;----------------------------------------------
 ;; Mark
@@ -503,6 +527,7 @@ REGEXP : reqular expression use to align."
 (defun jcs-revert-buffer-no-confirm ()
   "Revert buffer without confirmation."
   (interactive)
+  (require 'flycheck)
   ;; Record all the enabled mode that you want to
   ;; remain enabled after revert the file.
   (let ((was-flycheck flycheck-mode)

@@ -266,29 +266,6 @@ G : Active line numbers globally."
     (set-face-attribute 'mode-line-inactive nil
                         :height jcs-mode-line-inactive-face-attr-height)))
 
-;;---------------------------------------------
-;; Return
-;;---------------------------------------------
-
-;;;###autoload
-(defun jcs-ctrl-return-key ()
-  "JayCeS default return key."
-  (interactive)
-  ;;;
-  ;; Priority
-  ;;
-  ;; ATTENTION: all the function in the priority function
-  ;; list must all have error handling. Or else this the
-  ;; priority chain will break.
-  ;;
-  ;; 1. `project-abbrev-complete-word'
-  ;; 2. `yas-expand'
-  ;; 3. `goto-address-at-point'
-  ;;
-  (unless (ignore-errors (call-interactively #'project-abbrev-complete-word))
-    (unless (ignore-errors (call-interactively #'yas-expand))
-      (call-interactively #'goto-address-at-point))))
-
 ;;----------------------------------------------
 ;; Shift Select
 ;;----------------------------------------------
@@ -448,6 +425,7 @@ G : Active line numbers globally."
 (defun jcs-flycheck-mode ()
   "Flycheck mode toggle."
   (interactive)
+  (require 'flycheck)
   (if (string= (buffer-name) flycheck-error-list-buffer)
       (if (ignore-errors (jcs-jump-shown-to-buffer (buffer-name flycheck-error-list-source-buffer)))
           (jcs-flycheck-mode)
@@ -624,6 +602,17 @@ NO-PROMPT : Don't prompt the overwrap message."
 
   ;; make result menu editable.
   (call-interactively #'wgrep-change-to-wgrep-mode))
+
+;;----------------------------------------------
+;; Yasnippet
+;;----------------------------------------------
+
+;;;###autoload
+(defun jcs-yas-expand ()
+  "Yasnippet expand current point."
+  (interactive)
+  (require 'yasnippet-snippets)
+  (call-interactively #'yas-expand))
 
 
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
