@@ -57,6 +57,11 @@
     (require 'haxe-mode)
     (require 'right-click-context))
 
+  (setq dashboard-init-info
+        (concat "["
+                dashboard-init-info
+                (format "] [Total took %s]" (emacs-init-time))))
+
   (jcs-depend-mode)
 
   (jcs-reload-file-info)
