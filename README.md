@@ -95,8 +95,14 @@ with `use-package` package to delay some packages load time.
 time can lower down more from `0.5` to `1.5` seconds.
 
 **Edit 3:** Using [esup](https://github.com/jschaf/esup) package 
-to test and optimize the configuration, lower the startup time 
-from around `4` to `8` seconds.
+to test and optimize the configuration. Call `package-refresh-contents` 
+only when package installation is needed. By doing thing, lower 
+the startup time from around `4` to `8` seconds.
+
+*P.S. Some good hints from [StackExchange](https://emacs.stackexchange.com/), 
+[What can I do to speed up my start-up?](https://emacs.stackexchange.com/questions/2286/what-can-i-do-to-speed-up-my-start-up) 
+by 
+[Jordon Biondo](https://rubygems.pkg.github.com/jordonbiondo).*
 
 
 ## Features
