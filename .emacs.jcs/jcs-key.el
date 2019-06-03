@@ -229,12 +229,17 @@
 
 ;;; Helm
 (progn
-  (define-key global-map (kbd "M-x") 'helm-M-x)
-  (define-key global-map (kbd "M-y") 'helm-show-kill-ring)
-  (define-key helm-find-files-map (kbd "<return>") 'helm-execute-persistent-action)
+  (define-key global-map (kbd "M-x") #'helm-M-x)
+  (define-key global-map (kbd "M-y") #'helm-show-kill-ring)
+  ;; NOTE: Match to OS's file explorer's navigation system.
+  (progn
+    (define-key helm-find-files-map (kbd "<return>") #'helm-execute-persistent-action)
+    (define-key helm-find-files-map (kbd "M-<up>") #'helm-find-files-up-one-level)
+    (define-key helm-find-files-map (kbd "M-<left>") #'helm-find-files-up-one-level)
+    (define-key helm-find-files-map (kbd "M-<right>") #'helm-find-files-down-last-level))
 
-  (define-key global-map [f12] 'jcs-helm-gtags-to-def-dec)
-  (define-key global-map [S-f12] 'jcs-helm-gtags-to-def-dec-other-window))
+  (define-key global-map [f12] #'jcs-helm-gtags-to-def-dec)
+  (define-key global-map [S-f12] #'jcs-helm-gtags-to-def-dec-other-window))
 
 ;;; Help
 (define-key help-mode-map (kbd "C-c C-c") #'kill-ring-save)
