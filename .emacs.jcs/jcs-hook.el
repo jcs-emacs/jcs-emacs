@@ -30,7 +30,7 @@
 (defun jcs-find-file-hook ()
   "Find file hook."
   (when (and (not reload-emacs-reloading)
-             (not jcs-package-upgrading)
+             (not jcs-package-installing)
              (not (get-buffer "*Packages*"))
              (jcs-is-contain-list-string jcs-find-file-read-only-paths
                                          (buffer-file-name)))
@@ -45,6 +45,18 @@
 
 (defun jcs-after-init-hook ()
   "Hook run after initialize."
+  ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  ;; NOTE: Load required packages here.
+  ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  (progn
+    (require 'company)
+    ;; ATTENTION: Haxe-mode is no longer maintaining...
+    ;; Consider remove `haxe-mode' from this config.
+    ;;
+    ;; NOTE: `haxe-mode' does not autoload, loaded manually.
+    (require 'haxe-mode)
+    (require 'right-click-context))
+
   (jcs-depend-mode)
 
   (jcs-reload-file-info)
