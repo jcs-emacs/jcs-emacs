@@ -99,9 +99,10 @@ to test and optimize the configuration. Call `package-refresh-contents`
 only when package installation is needed. By doing thing, lower 
 the startup time from around `4` to `8` seconds.
 
-*P.S. Some good hints from [StackExchange](https://emacs.stackexchange.com/), 
+*P.S. Some good hints from one 
+[StackExchange](https://emacs.stackexchange.com/) question, 
 [What can I do to speed up my start-up?](https://emacs.stackexchange.com/questions/2286/what-can-i-do-to-speed-up-my-start-up) 
-by 
+answered by 
 [Jordon Biondo](https://rubygems.pkg.github.com/jordonbiondo).*
 
 
