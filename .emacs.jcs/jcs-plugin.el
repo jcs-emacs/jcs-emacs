@@ -52,6 +52,7 @@
 
 
 (use-package company
+  :defer t
   :diminish company-mode
   :config
   ;; TOPIC: How add company-dabbrev to the Company completion popup?
@@ -92,11 +93,12 @@
   (global-company-mode t))
 
 (use-package company-quickhelp
+  :defer t
   :init
   (setq company-quickhelp-delay 0.3)
   (setq company-quickhelp-color-background "#FFF08A")
-  :config
-  (company-quickhelp-mode t))
+  (with-eval-after-load 'company
+    (company-quickhelp-mode t)))
 
 
 (use-package dashboard
@@ -147,14 +149,11 @@
 
 (use-package flycheck
   :defer t
-  :diminish flycheck-mode
-  :config
-  ;;(global-flycheck-mode t)
-  )
+  :diminish flycheck-mode)
 
 (use-package flycheck-popup-tip
   :defer t
-  :config
+  :init
   (with-eval-after-load 'flycheck
     (flycheck-popup-tip-mode t)))
 
@@ -195,7 +194,6 @@
         helm-recentf-fuzzy-match              t
         helm-scroll-amount                    8
         helm-ff-file-name-history-use-recentf t)
-
 
   ;; NOTE: Make Helm window at the bottom WITHOUT using any extra package.
   ;; SOURCE: https://www.reddit.com/r/emacs/comments/345vtl/make_helm_window_at_the_bottom_without_using_any/
@@ -453,6 +451,7 @@
 
 
 (use-package right-click-context
+  :defer t
   :diminish right-click-context-mode
   :config
   ;;;###autoload
@@ -767,6 +766,7 @@
 
 
 (use-package yasnippet
+  :defer t
   :diminish yas-minor-mode
   :config
   (require 'yasnippet-snippets)
