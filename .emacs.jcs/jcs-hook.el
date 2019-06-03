@@ -58,9 +58,7 @@
     (require 'right-click-context))
 
   (setq dashboard-init-info
-        (concat "["
-                dashboard-init-info
-                (format "] [Total took %s]" (emacs-init-time))))
+        (format "[ %s ] [ Total took %s ]" dashboard-init-info (emacs-init-time)))
 
   (jcs-depend-mode)
 
