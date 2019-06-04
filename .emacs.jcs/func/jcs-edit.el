@@ -626,7 +626,8 @@ N : line to scroll."
   (save-excursion
     (let ((rec-point (point)))
       (goto-char (point-max))
-      (previous-line 1)
+      (unless (= (line-number-at-pos) 1)
+        (previous-line 1))
       (while (and (jcs-current-line-empty-p)
                   (< rec-point (point)))
         (jcs-kill-whole-line)
