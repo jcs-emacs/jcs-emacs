@@ -34,11 +34,19 @@
              (not (get-buffer "*Packages*"))
              (jcs-is-contain-list-string jcs-find-file-read-only-paths
                                          (buffer-file-name)))
-    (read-only-mode))
+    (read-only-mode 1))
   (jcs-refresh-buffer-menu-buffer)
   (jcs-active-line-numbers-by-mode)
   )
 (add-hook 'find-file-hook 'jcs-find-file-hook)
+
+;;-----------------------------------------------------------
+;;-----------------------------------------------------------
+
+(defun jcs-advice-switch-to-buffer-after (&rest args)
+  "Advice after execute `switch-to-buffer' command."
+  )
+(advice-add 'switch-to-buffer :after 'jcs-advice-switch-to-buffer-after)
 
 ;;-----------------------------------------------------------
 ;;-----------------------------------------------------------
