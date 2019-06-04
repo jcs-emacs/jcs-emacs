@@ -380,7 +380,7 @@
     (let ((do-orig-fun t))
       (when (and (jcs-last-input-event-p "mouse-1")
                  (not (jcs-popup-clicked-on-menu-p)))
-        (popup-delete (nth (1- (length popup-instances)) popup-instances))
+        (keyboard-quit)
         (setq do-orig-fun nil))
       (when do-orig-fun
         (apply orig-fun args))))
