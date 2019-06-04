@@ -125,9 +125,8 @@ CBF : Current buffer file name."
             ;; `undo-tree-undo' key.
             (if jumped-to-utv
                 (undo-tree-visualize-undo)
-              (progn
-                (undo-tree-undo)
-                (jcs-undo-tree-visualize)))
+              (undo-tree-undo)
+              (jcs-undo-tree-visualize))
             ;; STUDY: weird that they use word
             ;; toggle, instead of just set it.
             ;;
@@ -157,9 +156,8 @@ CBF : Current buffer file name."
             ;; `undo-tree-redo' key.
             (if jumped-to-utv
                 (undo-tree-visualize-redo)
-              (progn
-                (undo-tree-redo)
-                (jcs-undo-tree-visualize)))
+              (undo-tree-redo)
+              (jcs-undo-tree-visualize))
             ;; STUDY: weird that they use word
             ;; toggle, instead of just set it.
             ;;
