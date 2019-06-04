@@ -1030,7 +1030,7 @@ LST-STR : List of string."
   "Check if a string in the string list.
 IN-LIST : list of string.
 IN-STR : string to check if is inside the list of strings above."
-  (cl-some #'(lambda (lb-sub-str) (string-match lb-sub-str in-str)) in-list))
+  (cl-some #'(lambda (lb-sub-str) (string-match-p lb-sub-str in-str)) in-list))
 
 (defun jcs-is-contain-list-string (in-list in-str)
   "Check if a string contain in any string in the string list.
