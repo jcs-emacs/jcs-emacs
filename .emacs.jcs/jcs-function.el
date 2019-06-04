@@ -267,6 +267,40 @@ G : Active line numbers globally."
                         :height jcs-mode-line-inactive-face-attr-height)))
 
 ;;----------------------------------------------
+;; Re-Builder
+;;----------------------------------------------
+
+;;;###autoload
+(defun jcs-reb-maybe-kill-this-buffer ()
+  "Kill this buffer in `re-builder' mode."
+  (interactive)
+  (let ((is-killed nil))
+    ;; maybe kill this buffer.
+    (setq is-killed (jcs-maybe-kill-this-buffer))
+    (when is-killed
+      ;; then delete this window.
+      (delete-window))))
+
+;;;###autoload
+(defun jcs-re-builder (type)
+  "Rewrap `re-builder' function.
+TYPE : enable/disable case sensitive?"
+  (interactive
+   (list (completing-read
+          "Enable case sensitive?" '("Case Sensitive"
+                                     "Case Insensitive"))))
+
+  (if (string= type "Case Sensitive")
+      (setq case-fold-search nil)
+    (setq case-fold-search t))  ;; This is default.
+
+  ;; Start `RE-Builder' mode.
+  (re-builder)
+
+  ;; Set back to default.
+  (setq case-fold-search t))
+
+;;----------------------------------------------
 ;; Shift Select
 ;;----------------------------------------------
 
@@ -639,9 +673,7 @@ NO-PROMPT : Don't prompt the overwrap message."
 (require 'jcs-nav)
 
 ;; For Specific Mode
-(with-eval-after-load 're-builder (require 'jcs-re-builder-func))
 (require 'jcs-preproc-func)
-
 (with-eval-after-load 'org (require 'jcs-org-func))
 (with-eval-after-load 'cc-mode
   (require 'jcs-cc-func)
