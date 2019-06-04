@@ -153,7 +153,7 @@
                                           "*Compile-Log*"
                                           "*compilation*"
                                           "*dashboard*"
-                                          "*esup*"
+                                          "*esup"
                                           "*Flycheck errors*"
                                           "*GNU Emacs*"
                                           "*helm"
