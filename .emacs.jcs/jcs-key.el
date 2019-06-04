@@ -17,13 +17,10 @@
 (define-key auto-highlight-symbol-mode-map (kbd "M-<left>") 'nil)
 (define-key auto-highlight-symbol-mode-map (kbd "M-<right>") 'nil)
 
+(define-key Buffer-menu-mode-map (kbd "C-k") nil)
+
 (define-key isearch-mode-map (kbd "C-s") nil)
 (define-key isearch-mode-map (kbd "C-r") nil)
-
-;; TODO: Implements isearch cursor for these two keys.
-;;(define-key isearch-mode-map (kbd "C-x C-x") #'jcs-vs-cut-key)
-;;(define-key isearch-mode-map (kbd "C-c C-c") #'kill-ring-save)
-(define-key isearch-mode-map (kbd "C-v") #'isearch-yank-pop)
 
 
 ;;;---------------------------------------------
@@ -51,6 +48,7 @@
 (define-key Buffer-menu-mode-map "4" #'jcs-buffer-menu-sort-by-time)
 (define-key Buffer-menu-mode-map "5" #'jcs-buffer-menu-sort-by-mode)
 (define-key Buffer-menu-mode-map "6" #'jcs-buffer-menu-sort-by-file)
+(define-key Buffer-menu-mode-map (kbd "C-k C-s") #'describe-bindings)
 
 ;;; Buffers
 (define-key global-map "\C-a" #'jcs-mark-whole-buffer)
@@ -94,20 +92,7 @@
 (define-key global-map [C-next] #'scroll-other-window)
 (define-key global-map [C-prior] #'scroll-other-window-down)
 
-(define-key global-map "" #'copy-region-as-kill)
-(define-key global-map "" #'yank)
-(define-key global-map "" #'nil)
-(define-key global-map "" #'rotate-yank-pointer)
-(define-key global-map "\eu" #'undo)
-(define-key global-map "\e6" #'upcase-word)
 (define-key global-map "\e^" #'capitalize-word)
-(define-key global-map "\e." #'fill-paragraph)
-
-(define-key global-map "\eo" #'query-replace)
-
-(define-key global-map "\e[" #'start-kbd-macro)
-(define-key global-map "\e]" #'end-kbd-macro)
-(define-key global-map "\e'" #'call-last-kbd-macro)
 
 (define-key global-map (kbd "C-c d") #'jcs-duplicate-line)
 (define-key global-map (kbd "C-d") #'jcs-kill-whole-line)
@@ -348,7 +333,6 @@
 ;;; Script Executing
 (progn
   ;; Run
-  (define-key global-map "\e]" #'jcs-run-without-asking)
   (define-key global-map (kbd "<f5>") #'jcs-run-without-asking)
 
   ;; Build
@@ -369,6 +353,11 @@
   (define-key isearch-mode-map (kbd "C-.") #'jcs-isearch-repeat-forward)
   (define-key isearch-mode-map (kbd "C-<") #'jcs-isearch-project-repeat-backward)
   (define-key isearch-mode-map (kbd "C->") #'jcs-isearch-project-repeat-forward)
+
+  ;; TODO: Implements isearch cursor for these two keys.
+  ;;(define-key isearch-mode-map (kbd "C-x C-x") #'jcs-vs-cut-key)
+  ;;(define-key isearch-mode-map (kbd "C-c C-c") #'kill-ring-save)
+  (define-key isearch-mode-map (kbd "C-v") #'isearch-yank-pop)
   )
 
 ;;; Show Hover
@@ -379,6 +368,10 @@
 
 ;;; Source Control
 (define-key global-map (kbd "C-x g") #'magit-status)
+
+;;; Special
+(define-key special-mode-map (kbd "<up>") #'previous-line)
+(define-key special-mode-map (kbd "<down>") #'next-line)
 
 ;;; Startup Screen
 (with-eval-after-load 'dashboard
