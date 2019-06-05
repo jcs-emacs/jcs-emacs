@@ -196,8 +196,8 @@
 (define-key global-map (kbd "C-x M-F") #'jcs-helm-projectile-find-file-other-window)
 
 ;;; Folding Settings
-(define-key global-map (kbd "C-M-o") #'origami-close-all-nodes)
-(define-key global-map (kbd "C-M-p") #'origami-open-all-nodes)
+(define-key global-map (kbd "C-M-o") #'jcs-close-all-nodes)
+(define-key global-map (kbd "C-M-p") #'jcs-open-all-nodes)
 
 ;;; Font
 (define-key global-map (kbd "C-c f") #'jcs-change-font)
