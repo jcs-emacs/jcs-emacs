@@ -34,9 +34,7 @@
   (set-face-attribute 'ahs-face nil
                       :box '(:line-width -1 :color "#525D68" :style pressed-button))
   (set-face-attribute 'ahs-definition-face nil
-                      :box '(:line-width -1 :color "#525D68" :style pressed-button))
-
-  (global-auto-highlight-symbol-mode t))
+                      :box '(:line-width -1 :color "#525D68" :style pressed-button)))
 
 
 (use-package auto-rename-tag
@@ -45,9 +43,7 @@
 
 
 (use-package beacon
-  :diminish beacon-mode
-  :config
-  (beacon-mode 1))
+  :diminish beacon-mode)
 
 
 (use-package company
@@ -140,9 +136,7 @@
 
 (use-package dimmer
   :init
-  (setq dimmer-fraction 0.2)
-  :config
-  (dimmer-mode))
+  (setq dimmer-fraction 0.2))
 
 
 (use-package exec-path-from-shell
@@ -180,11 +174,9 @@
 
 
 (use-package helm
+  :defer t
   :diminish helm-mode
   :init
-  ;; 相關教學:
-  ;; * http://emacsist.com/10295
-
   ;; 禁止自動補全
   ;;(setq helm-ff-auto-update-initial-value nil)
 
@@ -217,10 +209,7 @@
         (define-key map (kbd "C-c N") 'helm-color-run-kill-name)
         (define-key map (kbd "M-RET") 'helm-color-run-insert-rgb)
         (define-key map (kbd "C-c R") 'helm-color-run-kill-rgb)
-        map)))
-  :config
-  (helm-mode 1)
-  (helm-autoresize-mode 1))
+        map))))
 
 ;; NOTE: You will need GNU GLOBAL executable in order
 ;; to make the tag system work.
@@ -243,12 +232,6 @@
    '(helm-gtags-path-style 'relative)
    '(helm-gtags-ignore-case t)
    '(helm-gtags-auto-update t)))
-
-(use-package helm-projectile
-  :defer t
-  :init
-  (with-eval-after-load 'helm
-    (helm-projectile-on)))
 
 
 (use-package hl-todo
@@ -294,9 +277,7 @@
   :config
   (defun hl-todo--inside-comment-or-string-p ()
     "Redefine `hl-todo--inside-comment-or-string-p', for accurate highlighting."
-    (jcs-inside-comment-or-string-p))
-
-  (global-hl-todo-mode 1))
+    (jcs-inside-comment-or-string-p)))
 
 
 (use-package impatient-mode
@@ -339,9 +320,7 @@
 
 
 (use-package line-reminder
-  :diminish line-reminder-mode
-  :config
-  (global-line-reminder-mode t))
+  :diminish line-reminder-mode)
 
 
 (use-package origami
@@ -410,15 +389,12 @@
   (set-face-attribute 'preproc-font-lock-preprocessor-background
                       nil
                       :background nil
-                      :inherit nil)
-  (preproc-font-lock-global-mode t)
-  (preproc-font-lock-mode t))
+                      :inherit nil))
 
 
 (use-package projectile
-  :diminish projectile-mode
-  :config
-  (projectile-mode t))
+  :defer t
+  :diminish projectile-mode)
 
 
 (use-package reload-emacs
@@ -470,9 +446,7 @@
                    value)
           (if (symbolp value)
               (call-interactively value t)
-            (eval value))))))
-
-  (right-click-context-mode 1))
+            (eval value)))))))
 
 
 
@@ -487,8 +461,7 @@
                        jcs-smart-indent-down)))
         (when (jcs-is-contain-list-symbol sym-lst this-command)
           (deactivate-mark)))))
-  (advice-add 'shift-select-pre-command-hook :after #'jcs-advice-shift-select-pre-command-hook-after)
-  (global-shift-select-mode t))
+  (advice-add 'shift-select-pre-command-hook :after #'jcs-advice-shift-select-pre-command-hook-after))
 
 
 (use-package show-eol
@@ -510,7 +483,7 @@
 (use-package sql-indent
   :defer t
   :config
-  ;; URL: https://www.emacswiki.org/emacs/SqlIndent
+  ;; URL: https://www.emacswiki.org/emacs/SqlIndent
   ;; 1 = 2 spaces,
   ;; 2 = 4 spaces,
   ;; 3 = 6 spaces,
@@ -574,12 +547,7 @@
     ;; Scroll Speed.
     (setq sublimity-scroll-weight 2         ; [Default : 2]
           sublimity-scroll-drift-length 2)  ; [Default : 2]
-    )
-
-  :config
-  ;; Default on or off?
-  ;; NOTE: This also trigger the animate scrolling too.
-  (sublimity-mode 1))
+    ))
 
 
 (use-package tabbar
@@ -604,11 +572,7 @@
                                     "/.emacs.jcs/fonts/UbuntuMono-R.ttf"))
   ;; Name of the font we want to use as default.
   ;; This you need to check the font name in the system manually.
-  (setq use-ttf-default-ttf-font-name "Ubuntu Mono")
-  :config
-  ;; Use the font by `use-ttf-default-ttf-font-name` variable. This will actually
-  ;; set your Emacs to your target font.
-  (use-ttf-set-default-font))
+  (setq use-ttf-default-ttf-font-name "Ubuntu Mono"))
 
 
 (use-package web-mode
@@ -732,9 +696,7 @@
   (setq which-key-side-window-max-height 0.25)
   ;; Set the time delay (in seconds) for the which-key popup to appear. A value of
   ;; zero might cause issues so a non-zero value is recommended.
-  (setq which-key-idle-delay 1.0)
-  :config
-  (which-key-mode))
+  (setq which-key-idle-delay 1.0))
 
 
 (use-package whitespace
