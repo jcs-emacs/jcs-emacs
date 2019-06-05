@@ -1594,6 +1594,22 @@ CC : current character before character deletion occured."
       (unless (> before-unmark-cur-cnt (mc/num-cursors))
         (call-interactively #'mc/mark-next-like-this)))))
 
+;;----------------------------------------------
+;; Folding / Unfolding
+;;----------------------------------------------
+
+;;;###autoload
+(defun jcs-close-all-nodes ()
+  (interactive)
+  (require 'origami)
+  (call-interactively #'origami-close-all-nodes))
+
+;;;###autoload
+(defun jcs-open-all-nodes ()
+  (interactive)
+  (require 'origami)
+  (call-interactively #'origami-open-all-nodes))
+
 
 (provide 'jcs-edit)
 ;;; jcs-edit.el ends here
