@@ -228,6 +228,29 @@ G : Active line numbers globally."
       ;; instead then.
       (jcs-active-line-numbers-by-version 1 g))))
 
+;;----------------------------------------------
+;; Minimap
+;;----------------------------------------------
+
+;;;###autoload
+(defun jcs-toggle-minimap ()
+  "Toggle minimap. (sublimity)"
+  (interactive)
+  (require 'sublimity-map)
+  ;; NOTE: Only when `sublimity-mode' is on.
+  (when sublimity-mode
+    (if (get 'jcs-toggle-minimap 'state)
+        (progn
+          (setq sublimity-map-size 0)
+          ;; ATTENTION: Set it to very hight so it
+          ;; will never reach the timer error.
+          (sublimity-map-set-delay 40000000)
+          (put 'jcs-toggle-minimap 'state nil))
+      (setq sublimity-map-size 10)
+      ;; NOTE: Set it to nil, cost too many performance...
+      (sublimity-map-set-delay 0)
+      (put 'jcs-toggle-minimap 'state t))))
+
 ;;---------------------------------------------
 ;; Mode Line
 ;;---------------------------------------------
@@ -659,7 +682,6 @@ NO-PROMPT : Don't prompt the overwrap message."
 (require 'jcs-frame)
 (require 'jcs-window)
 (with-eval-after-load 'shell (require 'jcs-shell))
-(with-eval-after-load 'sublimity (require 'jcs-minimap))
 (with-eval-after-load 'helm (require 'jcs-helm-func))
 (require 'jcs-message-func)
 
