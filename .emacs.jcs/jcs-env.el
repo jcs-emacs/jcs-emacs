@@ -125,17 +125,12 @@
       (list (format "%s %%S: %%j " (system-name))
             '(buffer-file-name "%f" (dired-directory dired-directory "%b"))))
 
-;;; Goto Address
-(goto-address-mode t)
-
 ;;; Highlight Line
-(global-hl-line-mode 1)
-(set-face-background 'hl-line "midnight blue")
+(require 'hl-line)
 
 ;;; Highlight Select Region
 (transient-mark-mode t)
 
-(delete-selection-mode 1)  ;; replace the hightlighted text!
 (electric-indent-mode 1)
 
 ;;; Language Environment
@@ -207,11 +202,6 @@ can see the error/operation message.")
 ;; NOTE: This act weird, does not make it works
 ;; like other editor.
 (setq shift-select-mode nil)
-
-;;; Show Paren
-;; NOTE: turn on highlight matching brackets
-;; when cursor is on one
-(show-paren-mode t)
 
 ;;; Smooth scroll
 (setq scroll-step 2)
