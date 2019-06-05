@@ -4,19 +4,6 @@
 
 
 ;;;###autoload
-(defun jcs-buffer-menu ()
-  "Open Buffer Menu."
-  (interactive)
-
-  ;; NOTE: even you reopen the `buffer-menu'
-  ;; this will not sort.
-  (buffer-menu)
-
-  ;; Sort it?
-  ;;(jcs-buffer-menu-sort)
-  )
-
-;;;###autoload
 (defun jcs-refresh-buffer-menu-buffer ()
   "Update buffer menu buffer."
   (interactive)
