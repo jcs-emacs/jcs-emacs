@@ -38,10 +38,10 @@
   (define-key company-active-map (kbd "C-s") #'jcs-untabify-save-buffer))
 
 ;;; Buffer Menu
-(define-key global-map (kbd "M-m") #'jcs-buffer-menu)
+(define-key global-map (kbd "M-m") #'buffer-menu)
 (define-key global-map (kbd "M-M") #'buffer-menu-other-window)
 
-(define-key Buffer-menu-mode-map "\eK" #'jcs-buffer-menu)
+(define-key Buffer-menu-mode-map "\eK" #'buffer-menu)
 (define-key Buffer-menu-mode-map "1" #'jcs-buffer-menu-sort-by-visit)
 (define-key Buffer-menu-mode-map "2" #'jcs-buffer-menu-sort-by-buffer)
 (define-key Buffer-menu-mode-map "3" #'jcs-buffer-menu-sort-by-size)
@@ -217,7 +217,7 @@
   (define-key global-map (kbd "M-x") #'helm-M-x)
   (define-key global-map (kbd "M-y") #'helm-show-kill-ring)
   ;; NOTE: Match to OS's file explorer's navigation system.
-  (progn
+  (with-eval-after-load 'helm-find-files
     (define-key helm-find-files-map (kbd "<return>") #'helm-execute-persistent-action)
     (define-key helm-find-files-map (kbd "M-<up>") #'helm-find-files-up-one-level)
     (define-key helm-find-files-map (kbd "M-<left>") #'helm-find-files-up-one-level)
