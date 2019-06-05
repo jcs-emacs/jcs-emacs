@@ -65,6 +65,52 @@
     (require 'haxe-mode)
     (require 'right-click-context))
 
+  ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  ;; NOTE: Enable util modes here.
+  ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  (progn
+    ;;-------------------------------- `auto-highlight-symbol'
+    (global-auto-highlight-symbol-mode t)
+    ;;-------------------------------- `beacon'
+    (beacon-mode 1)
+    ;;-------------------------------- `delete-selection'
+    (delete-selection-mode 1)
+    ;;-------------------------------- `dimmer'
+    (dimmer-mode)
+    ;;-------------------------------- `goto-address'
+    (goto-address-mode t)
+    ;;-------------------------------- `helm'
+    (helm-mode 1)
+    (helm-autoresize-mode 1)
+    ;;-------------------------------- `helm-projectile'
+    (helm-projectile-on)
+    ;;-------------------------------- `hl-line'
+    (global-hl-line-mode 1)
+    ;;-------------------------------- `hl-todo'
+    (global-hl-todo-mode 1)
+    ;;-------------------------------- `line-reminder'
+    (global-line-reminder-mode t)
+    ;;-------------------------------- `preproc-font-lock'
+    (preproc-font-lock-global-mode t)
+    (preproc-font-lock-mode t)
+    ;;-------------------------------- `projectile'
+    (projectile-mode t)
+    ;;-------------------------------- `right-click-context'
+    (right-click-context-mode 1)
+    ;;-------------------------------- `shift-select'
+    (global-shift-select-mode t)
+    ;;-------------------------------- `show-paren'
+    ;; NOTE: turn on highlight matching brackets when cursor is on one
+    (show-paren-mode t)
+    ;;-------------------------------- `sublimity'
+    ;; Default on or off?
+    ;; NOTE: This also trigger the animate scrolling too.
+    (sublimity-mode 1)
+    ;;-------------------------------- `use-ttf'
+    (use-ttf-set-default-font)
+    ;;-------------------------------- `which-key'
+    (which-key-mode))
+
   (setq dashboard-init-info
         (format "[ %s ] [ Total took %s ]" dashboard-init-info (emacs-init-time)))
 
