@@ -16,6 +16,9 @@
 
 (use-package auto-highlight-symbol
   :diminish auto-highlight-symbol-mode
+  :init
+  ;; Number of seconds to wait before highlighting symbol.
+  (setq ahs-idle-interval 0.3)
   :config
   ;; Current highlight. (Cursor point currently on.)
   (custom-set-faces
@@ -33,9 +36,6 @@
   (set-face-attribute 'ahs-definition-face nil
                       :box '(:line-width -1 :color "#525D68" :style pressed-button))
 
-  ;; Number of seconds to wait before highlighting symbol.
-  (setq ahs-idle-interval 0.3)
-
   (global-auto-highlight-symbol-mode t))
 
 
@@ -47,7 +47,6 @@
 (use-package beacon
   :diminish beacon-mode
   :config
-  (jcs-reset-beacon-color-by-theme)
   (beacon-mode 1))
 
 
@@ -246,8 +245,10 @@
    '(helm-gtags-auto-update t)))
 
 (use-package helm-projectile
-  :config
-  (helm-projectile-on))
+  :defer t
+  :init
+  (with-eval-after-load 'helm
+    (helm-projectile-on)))
 
 
 (use-package hl-todo
@@ -291,7 +292,6 @@
           )
         )
   :config
-
   (defun hl-todo--inside-comment-or-string-p ()
     "Redefine `hl-todo--inside-comment-or-string-p', for accurate highlighting."
     (jcs-inside-comment-or-string-p))
@@ -327,9 +327,8 @@
   (add-hook 'isearch-mode-hook #'jcs-isearch-mode-hook))
 
 (use-package isearch-project
-  :ensure t
   :defer t
-  :config
+  :init
   (setq isearch-project-ignore-paths '(".vs/"
                                        ".vscode/"
                                        "bin/"
@@ -346,6 +345,7 @@
 
 
 (use-package origami
+  :defer t
   :config
   (global-origami-mode t))
 
@@ -422,11 +422,11 @@
 
 
 (use-package reload-emacs
-  :config
+  :init
   (setq reload-emacs-load-path '("~/.emacs.jcs/"
                                  "~/.emacs.jcs/func/"
                                  "~/.emacs.jcs/mode/"))
-
+  :config
   (defun jcs-advice-reload-emacs-after ()
     "Advice after execute `reload-emacs' command."
     ;; Split window horizontally if full width.
@@ -484,7 +484,7 @@
     (when (and shift-select-active
                (not this-command-keys-shift-translated))
       (let ((sym-lst '(jcs-smart-indent-up
-                       jcs-smart-indent-down)))
+                       jcs-smart-indent-down)))
         (when (jcs-is-contain-list-symbol sym-lst this-command)
           (deactivate-mark)))))
   (advice-add 'shift-select-pre-command-hook :after #'jcs-advice-shift-select-pre-command-hook-after)
@@ -502,12 +502,12 @@
   (advice-add 'show-eol-enable :before #'jcs-advice-show-eol-enable-before)
 
   (defun jcs-advice-show-eol-disable-before ()
-    "Advice before execute `show-eol-disable' command."
+    "Advice before execute `show-eol-disable' command."
     (face-remap-add-relative 'whitespace-newline :inverse-video nil))
   (advice-add 'show-eol-disable :before #'jcs-advice-show-eol-disable-before))
 
 
-(use-package sql-indent
+(use-package sql-indent
   :defer t
   :config
   ;; URL: https://www.emacswiki.org/emacs/SqlIndent
@@ -521,7 +521,7 @@
 
 (use-package sr-speedbar
   :defer t
-  :config
+  :init
   ;;(setq sr-speedbar-auto-refresh nil)
   (setq speedbar-show-unknown-files t)  ; show all files
   (setq speedbar-use-images nil)  ; use text for buttons
@@ -531,54 +531,55 @@
 
 (use-package sublimity
   :defer t
-  :config
-  (require 'sublimity-scroll)
-  (require 'sublimity-map)
-  (require 'sublimity-attractive)
+  :init
+  (with-eval-after-load 'sublimity-attractive
+    ;; NOTE: Following functions are available to hide
+    ;; some UI parts.
+    ;;(sublimity-attractive-hide-bars)
+    ;;(sublimity-attractive-hide-vertical-border)
+    ;;(sublimity-attractive-hide-fringes)
+    ;;(sublimity-attractive-hide-modelines)
+    )
 
-  ;; default on or off?
-  ;; NOTE: This also trigger the animate scrolling too.
-  (sublimity-mode 1)
+  (with-eval-after-load 'sublimity-map
+    (setq sublimity-map-size 0)         ; [Default : 10]
+    (setq sublimity-map-fraction 0.3)   ; [Default : 0.3]
+    (setq sublimity-map-text-scale -7)  ; [Default: -7]
 
-  ;; Scroll Speed.
-  (setq sublimity-scroll-weight 2  ;; [Default : 2]
-        sublimity-scroll-drift-length 2)  ;; [Default : 2]
+    ;; NOTE: With the setting above, minimap is displayed after
+    ;; 5 seconds of idle time. When sublimity-map-set-delay is
+    ;; called with nil, then minimap is shown with no delay. This
+    ;; defers from setting delay to 0, especially when used with
+    ;; sublimity-scroll, in the sense that minimap looks not deleted
+    ;; at all but gets worse performance.
 
+    ;; ATTENTION: Set it to very hight so it will never
+    ;; reach the timer error.
+    (sublimity-map-set-delay 40000000)
 
-  (setq sublimity-map-size 0)  ;; [Default : 10]
-  (setq sublimity-map-fraction 0.3)  ;; [Default : 0.3]
-  (setq sublimity-map-text-scale -7)  ;; [Default: -7]
+    ;; NOTE: sublimity-map-setup-hook will run when
+    ;; minimap is created.
+    (add-hook 'sublimity-map-setup-hook
+              (lambda ()
+                (setq buffer-face-mode-face '(:family "Monospace"))
+                (buffer-face-mode))))
+
 
   ;; NOTE: When a positive integer is set, buffer width
   ;; is truncated to this value and drawn centered. To
   ;; cancel this feature, set this value nil.
   (setq sublimity-attractive-centering-width nil)  ;; [Default : 110]
 
-  ;; NOTE: With the setting above, minimap is displayed after
-  ;; 5 seconds of idle time. When sublimity-map-set-delay is
-  ;; called with nil, then minimap is shown with no delay. This
-  ;; defers from setting delay to 0, especially when used with
-  ;; sublimity-scroll, in the sense that minimap looks not deleted
-  ;; at all but gets worse performance.
+  (with-eval-after-load 'sublimity-scroll
+    ;; Scroll Speed.
+    (setq sublimity-scroll-weight 2         ; [Default : 2]
+          sublimity-scroll-drift-length 2)  ; [Default : 2]
+    )
 
-  ;; ATTENTION: Set it to very hight so it will never
-  ;; reach the timer error.
-  (sublimity-map-set-delay 40000000)
-
-  ;; NOTE: sublimity-map-setup-hook will run when
-  ;; minimap is created.
-  (add-hook 'sublimity-map-setup-hook
-            (lambda ()
-              (setq buffer-face-mode-face '(:family "Monospace"))
-              (buffer-face-mode)))
-
-  ;; NOTE: Following functions are available to hide
-  ;; some UI parts.
-  ;;(sublimity-attractive-hide-bars)
-  ;;(sublimity-attractive-hide-vertical-border)
-  ;;(sublimity-attractive-hide-fringes)
-  ;;(sublimity-attractive-hide-modelines)
-  )
+  :config
+  ;; Default on or off?
+  ;; NOTE: This also trigger the animate scrolling too.
+  (sublimity-mode 1))
 
 
 (use-package tabbar
@@ -595,17 +596,16 @@
 
 
 (use-package use-ttf
-  :config
+  :init
   ;; List of TTF fonts you want to use in the currnet OS.
   (setq use-ttf-default-ttf-fonts '(;; >> Classic Console <<
                                     "/.emacs.jcs/fonts/clacon.ttf"
                                     ;; >> Ubuntu Mono <<
                                     "/.emacs.jcs/fonts/UbuntuMono-R.ttf"))
-
   ;; Name of the font we want to use as default.
   ;; This you need to check the font name in the system manually.
   (setq use-ttf-default-ttf-font-name "Ubuntu Mono")
-
+  :config
   ;; Use the font by `use-ttf-default-ttf-font-name` variable. This will actually
   ;; set your Emacs to your target font.
   (use-ttf-set-default-font))
@@ -714,30 +714,26 @@
 
 (use-package which-key
   :diminish which-key-mode
-  :config
+  :init
   ;; Provide following type: `minibuffer', `side-window', `frame'.
   (setq which-key-popup-type 'side-window)
-
   ;; location of which-key window. valid values: top, bottom, left, right,
   ;; or a list of any of the two. If it's a list, which-key will always try
   ;; the first location first. It will go to the second location if there is
   ;; not enough room to display any keys in the first location
   (setq which-key-side-window-location 'bottom)
-
   ;; max width of which-key window, when displayed at left or right.
   ;; valid values: number of columns (integer), or percentage out of current
   ;; frame's width (float larger than 0 and smaller than 1)
   (setq which-key-side-window-max-width 0.33)
-
   ;; max height of which-key window, when displayed at top or bottom.
   ;; valid values: number of lines (integer), or percentage out of current
   ;; frame's height (float larger than 0 and smaller than 1)
   (setq which-key-side-window-max-height 0.25)
-
   ;; Set the time delay (in seconds) for the which-key popup to appear. A value of
   ;; zero might cause issues so a non-zero value is recommended.
   (setq which-key-idle-delay 1.0)
-
+  :config
   (which-key-mode))
 
 
@@ -766,7 +762,6 @@
   :init
   (defconst jcs-windmove-max-move-count 25
     "Possible maximum windows count.")
-  :config
   (setq windmove-wrap-around t))
 
 
