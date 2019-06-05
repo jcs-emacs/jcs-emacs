@@ -21,7 +21,7 @@
       (save-selected-window
         (when (ignore-errors (jcs-jump-shown-to-buffer "*Buffer List*"))
           ;; NOTE: Refresh buffer menu once.
-          (jcs-buffer-menu))))))
+          (buffer-menu))))))
 
 ;;;###autoload
 (defun jcs-message-erase-buffer-stay ()
