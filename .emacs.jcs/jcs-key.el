@@ -11,11 +11,12 @@
 (global-unset-key (kbd "C-r"))
 (global-unset-key (kbd "C-w"))
 
-(define-key auto-highlight-symbol-mode-map (kbd "M-S-<right>") nil)
-(define-key auto-highlight-symbol-mode-map (kbd "M-S-<left>") nil)
-(define-key auto-highlight-symbol-mode-map (kbd "M--") nil)
-(define-key auto-highlight-symbol-mode-map (kbd "M-<left>") 'nil)
-(define-key auto-highlight-symbol-mode-map (kbd "M-<right>") 'nil)
+(with-eval-after-load 'auto-highlight-symbol
+  (define-key auto-highlight-symbol-mode-map (kbd "M-S-<right>") nil)
+  (define-key auto-highlight-symbol-mode-map (kbd "M-S-<left>") nil)
+  (define-key auto-highlight-symbol-mode-map (kbd "M--") nil)
+  (define-key auto-highlight-symbol-mode-map (kbd "M-<left>") 'nil)
+  (define-key auto-highlight-symbol-mode-map (kbd "M-<right>") 'nil))
 
 (define-key Buffer-menu-mode-map (kbd "C-k") nil)
 
@@ -190,7 +191,7 @@
 ;;; File Files
 ;;(define-key global-map "\ef" #'ido-find-file)
 ;;(define-key global-map "\eF" #'ido-find-file-other-window)
-(define-key global-map (kbd "M-f") #'jcs-helm-find-files)
+(define-key global-map (kbd "M-f") #'helm-find-files)
 (define-key global-map (kbd "M-F") #'jcs-helm-find-files-other-window)
 (define-key global-map (kbd "C-x M-f") #'helm-projectile-find-file)
 (define-key global-map (kbd "C-x M-F") #'jcs-helm-projectile-find-file-other-window)
