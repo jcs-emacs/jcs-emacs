@@ -655,10 +655,11 @@ NO-PROMPT : Don't prompt the overwrap message."
   ;; open search result menu.
   (call-interactively #'ag-project-regexp)
 
-  (other-window 1)
+  (jcs-jump-shown-to-buffer "*ag")
 
   ;; make result menu editable.
-  (call-interactively #'wgrep-change-to-wgrep-mode))
+  ;;(call-interactively #'wgrep-change-to-wgrep-mode)
+  )
 
 ;;----------------------------------------------
 ;; Yasnippet
