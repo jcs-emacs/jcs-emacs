@@ -11,6 +11,9 @@
 (global-unset-key (kbd "C-r"))
 (global-unset-key (kbd "C-w"))
 
+(with-eval-after-load 'ag
+  (define-key ag-mode-map (kbd "M-K") #'jcs-ag-refresh-search))
+
 (with-eval-after-load 'auto-highlight-symbol
   (define-key auto-highlight-symbol-mode-map (kbd "M-S-<right>") nil)
   (define-key auto-highlight-symbol-mode-map (kbd "M-S-<left>") nil)
@@ -464,6 +467,13 @@
 ;; the global key map's key bindings. What we need to do
 ;; is to remap this again...
 (define-key undo-tree-map (kbd "C-/") #'jcs-comment-uncomment-region-or-line)
+
+;;; wgrep
+(with-eval-after-load 'wgrep
+  (define-key wgrep-mode-map (kbd "<up>") #'jcs-previous-line)
+  (define-key wgrep-mode-map (kbd "<down>") #'jcs-next-line)
+  (define-key wgrep-mode-map (kbd "C-s") #'jcs-wgrep-finish-edit)
+  (define-key wgrep-mode-map (kbd "M-K") #'jcs-ag-refresh-search))
 
 ;;; Whitespace
 (define-key global-map (kbd "C-x b") #'whitespace-mode)
