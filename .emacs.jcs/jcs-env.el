@@ -141,7 +141,8 @@
 (setq inhibit-compacting-font-caches t)
 
 ;;; Line Numbers
-(defvar jcs-line-numbers-ignore-buffers '("*Backtrace*"
+(defvar jcs-line-numbers-ignore-buffers '("*ag"
+                                          "*Backtrace*"
                                           "*Buffer List*"
                                           "*Checkdoc Help*"
                                           "*Checkdoc Status*"
