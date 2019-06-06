@@ -29,11 +29,11 @@ IN-BUFFER-NAME : taget buffer name to jump to."
         (index 0)
         (found nil))
     (while (< index win-len)
-      ;; NOTE(jenchieh): we use `string-match-p' instead
-      ;; of `string=' because some buffer cannot be detected
-      ;; in the buffer list. For instance, `*undo-tree*' is
-      ;; buffer that cannot be detected for some reason.
-      (if (string-match-p (buffer-name) in-buffer-name)
+      ;; NOTE: we use `string-match-p' instead of `string='
+      ;; because some buffer cannot be detected in the buffer
+      ;; list. For instance, `*undo-tree*' is buffer that cannot
+      ;; be detected for some reason.
+      (if (string-match-p in-buffer-name (jcs-buffer-name-or-buffer-file-name))
           (setq found t)
         (jcs-other-window-next))
       (setq index (1+ index)))
@@ -94,8 +94,8 @@ CNT : Count for buffer to switch to."
 
 (defun jcs-buffer-in-window-list ()
   "Get all the buffer in window list."
-  ;; TOPIC(jenchieh): Show all open buffers in Emacs
-  ;; SOURCE(jenchieh): http://stackoverflow.com/questions/12186713/show-all-open-buffers-in-emacs
+  ;; TOPIC: Show all open buffers in Emacs
+  ;; SOURCE: http://stackoverflow.com/questions/12186713/show-all-open-buffers-in-emacs
   (let (buffers)
     (walk-windows
      (lambda (window)
