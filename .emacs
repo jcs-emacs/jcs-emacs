@@ -44,7 +44,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ahs-idle-interval 0.3)
  '(auto-save-default nil)
  '(auto-save-interval 0)
  '(auto-save-list-file-prefix nil)
@@ -53,9 +52,6 @@
  '(delete-auto-save-files nil)
  '(delete-old-versions (quote other))
  '(flymake-google-cpplint-command "C:/jcs_ide_packages/jcs_win7_packages/cpplint/cpplint.exe")
- '(helm-gtags-auto-update t)
- '(helm-gtags-ignore-case t)
- '(helm-gtags-path-style (quote relative))
  '(httpd-port 8877)
  '(imenu-auto-rescan t)
  '(imenu-auto-rescan-maxout 500000)
@@ -80,21 +76,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ahs-definition-face ((t (:foreground nil :background "#113D6F"))))
- '(ahs-face ((t (:foreground nil :background "#113D6F"))))
- '(ahs-plugin-defalt-face ((t (:foreground nil :background "#123E70"))))
- '(company-preview ((t (:foreground "dark gray" :underline t))))
- '(company-preview-common ((t (:inherit company-preview))))
- '(company-scrollbar-bg ((t (:background "dark gray"))))
- '(company-scrollbar-fg ((t (:background "black"))))
- '(company-tooltip ((t (:background "light gray" :foreground "black"))))
- '(company-tooltip-common ((((type x)) (:inherit company-tooltip :weight bold)) (t (:inherit company-tooltip))))
- '(company-tooltip-common-selection ((((type x)) (:inherit company-tooltip-selection :weight bold)) (t (:inherit company-tooltip-selection))))
- '(company-tooltip-selection ((t (:background "steel blue" :foreground "white"))))
- '(css-selector ((t (:inherit font-lock-function-name-face :foreground "#17A0FB"))))
- '(dashboard-banner-logo-title ((t (:foreground "cyan1"))))
- '(dashboard-heading ((t (:foreground "#17A0FB"))))
- '(widget-button ((t (:foreground "light steel blue")))))
+ '(css-selector ((t (:inherit font-lock-function-name-face :foreground "#17A0FB")))))
 
 (put 'erase-buffer 'disabled nil)
 
