@@ -576,6 +576,11 @@ Returns nil, the word isn't the same."
 ;; Line
 ;;---------------------------------------------
 
+(defun jcs-goto-line (ln)
+  "Goto LN line number."
+  (goto-char (point-min))
+  (forward-line (1- ln)))
+
 ;;;###autoload
 (defun jcs-goto-first-char-in-line ()
   "Goto beginning of line but ignore 'empty characters'(spaces/tabs)."
@@ -610,16 +615,16 @@ Returns nil, the word isn't the same."
 LN : line number."
   (save-excursion
     (unless (equal ln nil)
-      (goto-line ln))
+      (jcs-goto-line ln))
     (beginning-of-line)
-    (point)))
+    (point)))
 
 (defun jcs-get-end-of-line-point (&optional ln)
   "Return point at end of current line.
 LN : line number."
   (save-excursion
     (unless (equal ln nil)
-      (goto-line ln))
+      (jcs-goto-line ln))
     (end-of-line)
     (point)))
 
@@ -791,7 +796,7 @@ MAX-PT : larger position."
 (defun jcs-make-first-visible-line-to (ln)
   "Make the first visible line to target line.
 LN : target line to make first to."
-  (goto-line ln)
+  (jcs-goto-line ln)
   (recenter-top-bottom 'top)
   (unless (<= ln 1)
     (jcs-scroll-up-one-line)))
