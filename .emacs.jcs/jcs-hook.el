@@ -57,6 +57,7 @@
   ;; NOTE: Load required packages here.
   ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   (progn
+    (require 'auto-highlight-symbol)
     (require 'company)
     ;; ATTENTION: Haxe-mode is no longer maintaining...
     ;; Consider remove `haxe-mode' from this config.
@@ -114,9 +115,6 @@
     ;;-------------------------------- `which-key'
     (which-key-mode))
 
-  (setq dashboard-init-info
-        (format "[ %s ] [ Total took %s ]" dashboard-init-info (emacs-init-time)))
-
   (jcs-depend-mode)
 
   (jcs-reload-file-info)
@@ -130,6 +128,10 @@
     ;; would not works in `jcs-after-change-major-mode-hook'.
     (switch-to-buffer "*Messages*")
     (jcs-active-line-numbers-by-mode))
+
+  ;; IMPORTANT: This should always be the last thing.
+  (setq dashboard-init-info
+        (format "[ %s ] [ Total took %s ]" dashboard-init-info (emacs-init-time)))
   )
 (add-hook 'after-init-hook 'jcs-after-init-hook)
 
