@@ -20,9 +20,7 @@
            (equal args nil)
            (stringp (helm-get-selection))
            (not (file-directory-p (helm-get-selection))))
-      (progn
-        (jcs-helm-execute-persistent-action)
-        (helm-maybe-exit-minibuffer))
+      (helm-maybe-exit-minibuffer)
     (apply orig-fun args)))
 (advice-add 'helm-execute-persistent-action :around #'jcs-helm-find-files-navigate-forward)
 
@@ -81,41 +79,30 @@ in other window."
   (jcs-reload-active-mode))
 
 ;;;###autoload
-(defun jcs-helm-find-files ()
-  "Find the file with Helm."
-  (interactive)
-  (put 'jcs-helm-execute-persistent-action 'state nil)
-  (helm-find-files nil))
-
-;;;###autoload
 (defun jcs-helm-find-files-other-window ()
   "Find the file with Helm and open another window."
   (interactive)
-  ;; set the flag, so when next time run 'jcs-helm-execute-
-  ;; persistent-action', he will know what to do instead of
-  ;; normal 'helm-execute-persistent-action' action.
-  (put 'jcs-helm-execute-persistent-action 'state t)
-
-  (helm-find-files nil))
-
-;;;###autoload
-(defun jcs-helm-execute-persistent-action ()
-  "Rewrap 'helm-execute-presistent-action' function to my
-own preferences."
-  (interactive)
-  (when (get 'jcs-helm-execute-persistent-action 'state)
-    ;; switch the buffer to another window
-    (helm-ff-run-switch-other-window)
-    (put 'jcs-helm-execute-persistent-action 'state nil)))
+  (let ((record-dd default-directory)
+        (found-file nil)
+        (starting-window (selected-window)))
+    (jcs-other-window-next 1 t)
+    (setq default-directory record-dd)
+    (setq found-file (helm-find-files nil))
+    (unless found-file
+      (select-window starting-window))))
 
 ;;;###autoload
 (defun jcs-helm-projectile-find-file-other-window ()
   "Find file in project to other window."
   (interactive)
-  (let ((record-dd default-directory))
+  (let ((record-dd default-directory)
+        (found-file nil)
+        (starting-window (selected-window)))
     (jcs-other-window-next 1 t)
     (setq default-directory record-dd)
-    (call-interactively #'helm-projectile-find-file)))
+    (setq found-file (helm-projectile-find-file))
+    (unless found-file
+      (select-window starting-window))))
 
 
 (provide 'jcs-helm-func)
