@@ -9,7 +9,7 @@
   (interactive)
   (save-selected-window
     (when (ignore-errors (jcs-jump-shown-to-buffer "*Buffer List*"))
-      (jcs-buffer-menu))))
+      (buffer-menu))))
 
 ;; TOPIC: BufferMenuPlus
 ;; URL: https://www.emacswiki.org/emacs/BufferMenuPlus
