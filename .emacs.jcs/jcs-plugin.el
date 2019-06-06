@@ -15,6 +15,7 @@
 
 
 (use-package auto-highlight-symbol
+  :defer t
   :diminish auto-highlight-symbol-mode
   :init
   ;; Number of seconds to wait before highlighting symbol.
@@ -35,15 +36,6 @@
                       :box '(:line-width -1 :color "#525D68" :style pressed-button))
   (set-face-attribute 'ahs-definition-face nil
                       :box '(:line-width -1 :color "#525D68" :style pressed-button)))
-
-
-(use-package auto-rename-tag
-  :defer t
-  :diminish auto-rename-tag-mode)
-
-
-(use-package beacon
-  :diminish beacon-mode)
 
 
 (use-package company
@@ -111,6 +103,7 @@
                           ;;(registers . 10)
                           ))
   (setq dashboard-center-content t)
+  :config
   (custom-set-faces
    '(dashboard-banner-logo-title
      ((t (:foreground "cyan1"))))
@@ -118,20 +111,21 @@
      ((t (:foreground "#17A0FB"))))
    '(widget-button
      ((t (:foreground "light steel blue")))))
-  :config
   (dashboard-setup-startup-hook))
 
 
 (use-package diminish
   :config
   (diminish 'abbrev-mode)
-  (use-package face-remap
-    :diminish buffer-face-mode)
+  (use-package auto-rename-tag :diminish auto-rename-tag-mode :defer t)
+  (use-package beacon :diminish beacon-mode)
+  (use-package face-remap :diminish buffer-face-mode)
   (diminish 'eldoc-mode)
+  (use-package impatient-mode :diminish impatient-mode :defer t)
+  (use-package line-reminder :diminish line-reminder-mode)
   (diminish 'outline-minor-mode)
   (diminish 'overwrite-mode)
-  (use-package page-break-lines
-    :diminish page-break-lines-mode))
+  (use-package page-break-lines :diminish page-break-lines-mode))
 
 
 (use-package dimmer
@@ -280,11 +274,6 @@
     (jcs-inside-comment-or-string-p)))
 
 
-(use-package impatient-mode
-  :defer t
-  :diminish impatient-mode)
-
-
 (use-package indent-info
   :config
   (global-indent-info-mode +1))
@@ -317,11 +306,6 @@
                                        "build.min/"
                                        "node_modules/"
                                        "res/")))
-
-
-(use-package line-reminder
-  :diminish line-reminder-mode)
-
 
 (use-package origami
   :defer t
@@ -577,16 +561,12 @@
 
 (use-package web-mode
   :defer t
-  :config
+  :init
   ;; Associate an engine
   (setq web-mode-engines-alist
         '(("php"    . "\\.phtml\\'")
           ("blade"  . "\\.blade\\."))
         )
-
-  ;; Associate a content type
-  (add-to-list 'auto-mode-alist '("\\.api\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("/some/react/path/.*\\.js[x]?\\'" . web-mode))
 
   (setq web-mode-content-types-alist
         '(("json" . "/some/path/.*\\.api\\'")
@@ -607,11 +587,6 @@
   ;;                                           Python, etc.)
   (setq web-mode-code-indent-offset 2)
 
-  (add-to-list 'web-mode-indentation-params '("lineup-args" . nil))
-  (add-to-list 'web-mode-indentation-params '("lineup-calls" . nil))
-  (add-to-list 'web-mode-indentation-params '("lineup-concats" . nil))
-  (add-to-list 'web-mode-indentation-params '("lineup-ternary" . nil))
-
   ;; Left padding
   (setq web-mode-style-padding 2)   ;; For `<style>' tag
   (setq web-mode-script-padding 2)  ;; For `<script>' tag
@@ -631,12 +606,6 @@
 
   ;; Comments
   ;;(setq web-mode-comment-style 2)
-
-  ;; Syntax Highlighting
-  (set-face-attribute 'web-mode-doctype-face nil :foreground "Pink3")
-  (set-face-attribute 'web-mode-block-comment-face nil :foreground (face-foreground jcs-font-lock-comment-face))
-  (set-face-attribute 'web-mode-comment-face nil :foreground (face-foreground jcs-font-lock-comment-face))
-  (set-face-attribute 'web-mode-css-property-name-face nil :foreground (face-foreground jcs-css-type-face))
 
   ;; Snippets
   (setq web-mode-extra-snippets
@@ -667,7 +636,23 @@
   (setq web-mode-enable-current-element-highlight t)
 
   ;; You can also highlight the current column with
-  (setq web-mode-enable-current-column-highlight t))
+  (setq web-mode-enable-current-column-highlight t)
+
+  :config
+  ;; Associate a content type
+  (add-to-list 'auto-mode-alist '("\\.api\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("/some/react/path/.*\\.js[x]?\\'" . web-mode))
+
+  (add-to-list 'web-mode-indentation-params '("lineup-args" . nil))
+  (add-to-list 'web-mode-indentation-params '("lineup-calls" . nil))
+  (add-to-list 'web-mode-indentation-params '("lineup-concats" . nil))
+  (add-to-list 'web-mode-indentation-params '("lineup-ternary" . nil))
+
+  ;; Syntax Highlighting
+  (set-face-attribute 'web-mode-doctype-face nil :foreground "Pink3")
+  (set-face-attribute 'web-mode-block-comment-face nil :foreground (face-foreground jcs-font-lock-comment-face))
+  (set-face-attribute 'web-mode-comment-face nil :foreground (face-foreground jcs-font-lock-comment-face))
+  (set-face-attribute 'web-mode-css-property-name-face nil :foreground (face-foreground jcs-css-type-face)))
 
 
 (use-package wgrep
