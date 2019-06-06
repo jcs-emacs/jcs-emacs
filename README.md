@@ -194,7 +194,7 @@ VSCode like methods to `mark` and `unmark` multiple cursor.
 [sr-speedbar](http://cedet.sourceforge.net/speedbar.shtml).
 * *File Header* - powered by 
 [file-header](https://github.com/alt-elpa/file-header).
-* *Folding* - powered by 
+* *Folding/Unfolding* - powered by 
 [origami](https://github.com/gregsexton/origami.el).
 * *Font* - powered by 
 [use-ttf](https://github.com/elpa-host/use-ttf).
@@ -376,5 +376,5 @@ on your machine. The ultimate goal is to design to have each
 version of config can run on their each according Emacs version 
 base on the version what I'm currently running on my present 
 machine. For each version record, you can check the 
-[version_record](https://github.com/jcs090218/jcs-emacs-init/blob/master/emacs_version_record.txt)
+[version_record](https://github.com/jcs090218/jcs-emacs-init/blob/master/version_record.txt)
 file at the root of the project directory.
