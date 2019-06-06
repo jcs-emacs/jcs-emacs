@@ -3,6 +3,8 @@
 ;;; Code:
 
 
+(require 'yaml-mode)
+
 ;;;###autoload
 (defun jcs-yaml-electric-backspace ()
   "Backspace key for editing YAML file."
