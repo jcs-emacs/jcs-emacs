@@ -11,9 +11,6 @@
 (global-unset-key (kbd "C-r"))
 (global-unset-key (kbd "C-w"))
 
-(with-eval-after-load 'ag
-  (define-key ag-mode-map (kbd "M-K") #'jcs-ag-refresh-search))
-
 (with-eval-after-load 'auto-highlight-symbol
   (define-key auto-highlight-symbol-mode-map (kbd "M-S-<right>") nil)
   (define-key auto-highlight-symbol-mode-map (kbd "M-S-<left>") nil)
@@ -34,6 +31,10 @@
 ;;; Admin
 (define-key global-map (kbd "C-x C-v") #'reload-emacs)
 (define-key global-map (kbd "C-x C-b") #'restart-emacs)
+
+;;; ag
+(with-eval-after-load 'ag
+  (define-key ag-mode-map (kbd "M-K") #'jcs-ag-refresh-search))
 
 ;;; Auto Completion
 (with-eval-after-load 'company
