@@ -3,12 +3,17 @@
 ;;; Code:
 
 
+(require 'cobol-mode)
+
+(require 'jcs-python-func)
+
+
 (defun jcs-cobol-format ()
   "Format the given file as a COBOL file."
   (when (jcs-is-current-file-empty-p)
     (jcs-insert-cobol-template)))
 
-(require 'cobol-mode)
+
 (defun jcs-cobol-mode-hook ()
   "COBOL mode hook."
   (electric-pair-mode nil)

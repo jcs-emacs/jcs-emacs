@@ -8,6 +8,8 @@
 (require 'emmet-mode)
 (require 'rainbow-mode)
 
+(require 'jcs-web-func)
+
 ;; css indent spaces.
 (setq css-indent-offset 2)
 

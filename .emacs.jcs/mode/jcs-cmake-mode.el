@@ -6,6 +6,9 @@
 (require 'cmake-mode)
 (require 'cmake-font-lock)
 
+(require 'jcs-makefile-func)
+(require 'jcs-python-func)
+
 
 (defun jcs-cmake-format ()
   "Format the given file as a CMakeLists. - JenChieh CMake"

@@ -3,6 +3,11 @@
 ;;; Code:
 
 
+(require 'make-mode)
+
+(require 'jcs-python-func)
+
+
 (defun jcs-makefile-format ()
   "Format the given file as a makefile file."
   (when (jcs-is-current-file-empty-p)
@@ -10,7 +15,6 @@
     (goto-char (point-min))))
 
 
-(require 'make-mode)
 (defun jcs-makefile-mode-hook ()
   "Makefile mode hook."
   (electric-pair-mode nil)

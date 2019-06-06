@@ -3,12 +3,17 @@
 ;;; Code:
 
 
+(require 'nasm-mode)
+
+(require 'jcs-python-func)
+
+
 (defun jcs-asm-format ()
   "Format the given file as a ASM code."
   (when (jcs-is-current-file-empty-p)
     (jcs-insert-asm-template)))
 
-(require 'nasm-mode)
+
 (defun jcs-nasm-mode-hook ()
   "NASM mode hook."
   (electric-pair-mode nil)
