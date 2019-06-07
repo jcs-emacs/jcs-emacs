@@ -3,6 +3,30 @@
 ;;; Code:
 
 
+(defun jcs-powerline-set-theme-faces (ac-lst inac-lst)
+  "Set `powerline' them faces."
+  (progn
+    (set-face-foreground 'powerline-active0 (nth 0 ac-lst))
+    (set-face-background 'powerline-active0 (nth 1 ac-lst))
+
+    (set-face-foreground 'powerline-active1 (nth 2 ac-lst))
+    (set-face-background 'powerline-active1 (nth 3 ac-lst))
+
+    (set-face-foreground 'powerline-active2 (nth 4 ac-lst))
+    (set-face-background 'powerline-active2 (nth 5 ac-lst)))
+
+  (progn
+    (set-face-foreground 'powerline-inactive0 (nth 0 inac-lst))
+    (set-face-background 'powerline-inactive0 (nth 1 inac-lst))
+
+    (set-face-foreground 'powerline-inactive1 (nth 2 inac-lst))
+    (set-face-background 'powerline-inactive1 (nth 3 inac-lst))
+
+    (set-face-foreground 'powerline-inactive2 (nth 4 inac-lst))
+    (set-face-background 'powerline-inactive2 (nth 5 inac-lst)))
+
+  (powerline-reset))
+
 ;;;###autoload
 (defun jcs-gray-mode-line ()
   "Gray mode line."
@@ -16,23 +40,16 @@
   (set-face-foreground 'vertical-border (face-background 'vertical-border))
 
   ;; `powerline' font faces.
-  (set-face-foreground 'powerline-active1 "#CCCCCC")
-  (set-face-background 'powerline-active1 "#1C1C1C")
-
-  (set-face-foreground 'powerline-active2 "#CCCCCC")
-  (set-face-background 'powerline-active2 "#333333")
-
-  (set-face-foreground 'powerline-inactive1 "#CCCCCC")
-  (set-face-background 'powerline-inactive1 "#1C1C1C")
-
-  (set-face-foreground 'powerline-inactive2 "#CCCCCC")
-  (set-face-background 'powerline-inactive2 "#333333")
-
-  (powerline-reset))
+  (jcs-powerline-set-theme-faces '("#1C1C1C" "#CCCCCC"
+                                   "#CCCCCC" "#1C1C1C"
+                                   "#CCCCCC" "#333333")
+                                 '("#CCCCCC" "#4D4D4D"
+                                   "#CCCCCC" "#1C1C1C"
+                                   "#CCCCCC" "#333333")))
 
 ;;;###autoload
 (defun jcs-dark-green-mode-line ()
-  "Dark Green mode line."
+  "Dark green mode line."
   (interactive)
 
   ;; set mode line
@@ -43,51 +60,37 @@
   (set-face-foreground 'vertical-border (face-background 'vertical-border))
 
   ;; `powerline' font faces.
-  (set-face-foreground 'powerline-active1 "#CCCCCC")
-  (set-face-background 'powerline-active1 "#1C2E2D")
-
-  (set-face-foreground 'powerline-active2 "#CCCCCC")
-  (set-face-background 'powerline-active2 "#294645")
-
-  (set-face-foreground 'powerline-inactive1 "#CCCCCC")
-  (set-face-background 'powerline-inactive1 "#1C2E2D")
-
-  (set-face-foreground 'powerline-inactive2 "#CCCCCC")
-  (set-face-background 'powerline-inactive2 "#294645")
-
-  (powerline-reset))
+  (jcs-powerline-set-theme-faces '("#1C1C1C" "#529191"
+                                   "#CCCCCC" "#1C2E2D"
+                                   "#CCCCCC" "#294645")
+                                 '("#CCCCCC" "#2B4D4D"
+                                   "#CCCCCC" "#1C2E2D"
+                                   "#CCCCCC" "#294645")))
 
 ;;;###autoload
 (defun jcs-dark-blue-mode-line ()
-  "Dark Blue mode line."
+  "Dark blue mode line."
   (interactive)
 
   ;; set the 'vertical border'
-  (set-face-background 'vertical-border "#246aaf")
+  (set-face-background 'vertical-border "#246AAF")
   (set-face-foreground 'vertical-border (face-background 'vertical-border))
 
   ;; set 'mode line'
-  (set-face-background 'mode-line "#246aaf")
-  (set-face-background 'mode-line-inactive "#0e2944")
+  (set-face-background 'mode-line "#246AAF")
+  (set-face-background 'mode-line-inactive "#0E2944")
 
   ;; `powerline' font faces.
-  (set-face-foreground 'powerline-active1 "#CCCCCC")
-  (set-face-background 'powerline-active1 "#091A2B")
-
-  (set-face-foreground 'powerline-active2 "#222222")
-  (set-face-background 'powerline-active2 "#246aaf")
-
-  (set-face-foreground 'powerline-inactive1 "#CCCCCC")
-  (set-face-background 'powerline-inactive1 "#091A2B")
-
-  (set-face-foreground 'powerline-inactive2 "#CCCCCC")
-  (set-face-background 'powerline-inactive2 "#0e2944")
-
-  (powerline-reset))
+  (jcs-powerline-set-theme-faces '("#1C1C1C" "#246AAF"
+                                   "#CCCCCC" "#091A2B"
+                                   "#CCCCCC" "#0E2944")
+                                 '("#CCCCCC" "#14375B"
+                                   "#CCCCCC" "#091A2B"
+                                   "#CCCCCC" "#0E2944")))
 
 ;;;###autoload
 (defun jcs-dark-orange-mode-line ()
-  "Dark Orange mode line."
+  "Dark orange mode line."
   (interactive)
 
   ;; set mode line
@@ -97,34 +100,73 @@
   (set-face-background 'vertical-border "#FF6C32")
   (set-face-foreground 'vertical-border (face-background 'vertical-border))
 
-  (powerline-reset))
+  ;; `powerline' font faces.
+  (jcs-powerline-set-theme-faces '("#1C1C1C" "#FF6C32"
+                                   "#CCCCCC" "#682B12"
+                                   "#CCCCCC" "#9A431F")
+                                 '("#CCCCCC" "#9A431F"
+                                   "#CCCCCC" "#682B12"
+                                   "#CCCCCC" "#883919")))
 
 ;;;###autoload
 (defun jcs-light-blue-mode-line ()
-  "Dark Orange mode line."
+  "Light blue mode line."
   (interactive)
 
   ;; set mode line
-  (set-face-background 'mode-line "#7aeeef")
-  (set-face-background 'mode-line-inactive "#448b8c")
+  (set-face-background 'mode-line "#A3D1FF")
+  (set-face-background 'mode-line-inactive "#3685D4")
   ;; set the vertical border
-  (set-face-background 'vertical-border "#87fdff")
+  (set-face-background 'vertical-border "#A3D1FF")
   (set-face-foreground 'vertical-border (face-background 'vertical-border))
 
-  ;; NOTE: `powerline' font faces.
-  (set-face-foreground 'powerline-active1 "#CCCCCC")
-  (set-face-background 'powerline-active1 "#2B4D4D")
+  ;; `powerline' font faces.
+  (jcs-powerline-set-theme-faces '("#1C1C1C" "#5AA2E9"
+                                   "#CCCCCC" "#2C4D6D"
+                                   "#CCCCCC" "#3C6894")
+                                 '("#CCCCCC" "#3C6894"
+                                   "#CCCCCC" "#2C4966"
+                                   "#CCCCCC" "#365C82")))
 
-  (set-face-foreground 'powerline-active2 "#222222")
-  (set-face-background 'powerline-active2 "#448b8c")
+;;;###autoload
+(defun jcs-red-mode-line ()
+  "Red mode line."
+  (interactive)
 
-  (set-face-foreground 'powerline-inactive1 "#CCCCCC")
-  (set-face-background 'powerline-inactive1 "#2B4D4D")
+  ;; set mode line
+  (set-face-background 'mode-line "#FF0000")
+  (set-face-background 'mode-line-inactive "#6A0101")
+  ;; set the vertical border
+  (set-face-background 'vertical-border "#FF0000")
+  (set-face-foreground 'vertical-border (face-background 'vertical-border))
 
-  (set-face-foreground 'powerline-inactive2 "#222222")
-  (set-face-background 'powerline-inactive2 "#448b8c")
+  ;; `powerline' font faces.
+  (jcs-powerline-set-theme-faces '("#1C1C1C" "#FF0000"
+                                   "#CCCCCC" "#6A0101"
+                                   "#CCCCCC" "#920101")
+                                 '("#CCCCCC" "#920101"
+                                   "#CCCCCC" "#6A0101"
+                                   "#CCCCCC" "#970000")))
 
-  (powerline-reset))
+;;;###autoload
+(defun jcs-purple-mode-line ()
+  "Purple mode line."
+  (interactive)
+
+  ;; set mode line
+  (set-face-background 'mode-line "#B100EB")
+  (set-face-background 'mode-line-inactive "#650286")
+  ;; set the vertical border
+  (set-face-background 'vertical-border "#B100EB")
+  (set-face-foreground 'vertical-border (face-background 'vertical-border))
+
+  ;; `powerline' font faces.
+  (jcs-powerline-set-theme-faces '("#1C1C1C" "#B100EB"
+                                   "#CCCCCC" "#4B0263"
+                                   "#CCCCCC" "#69018B")
+                                 '("#CCCCCC" "#69018B"
+                                   "#CCCCCC" "#4B0263"
+                                   "#CCCCCC" "#670188")))
 
 
 (defun jcs-reset-plugins-base-on-theme ()
@@ -159,10 +201,6 @@
   "Set default Theme Color."
   (interactive)
   (jcs-vs-dark-theme))
-
-;; Set default theme once.
-(unless reload-emacs-reloading
-  (jcs-setup-default-theme))
 
 
 (provide 'jcs-theme)
