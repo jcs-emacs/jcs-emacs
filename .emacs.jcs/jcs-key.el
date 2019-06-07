@@ -222,11 +222,13 @@
   (define-key global-map (kbd "M-x") #'helm-M-x)
   (define-key global-map (kbd "M-y") #'helm-show-kill-ring)
   ;; NOTE: Match to OS's file explorer's navigation system.
-  (with-eval-after-load 'helm-find-files
+  (with-eval-after-load 'helm-files
     (define-key helm-find-files-map (kbd "<return>") #'helm-execute-persistent-action)
     (define-key helm-find-files-map (kbd "M-<up>") #'helm-find-files-up-one-level)
     (define-key helm-find-files-map (kbd "M-<left>") #'helm-find-files-up-one-level)
     (define-key helm-find-files-map (kbd "M-<right>") #'helm-find-files-down-last-level))
+  (with-eval-after-load 'helm-projectile
+    (define-key helm-projectile-find-file-map (kbd "<return>") #'jcs-helm-exit-minibuffer))
 
   (define-key global-map [f12] #'jcs-helm-gtags-to-def-dec)
   (define-key global-map [S-f12] #'jcs-helm-gtags-to-def-dec-other-window))
