@@ -134,8 +134,13 @@
 (electric-indent-mode 1)
 
 ;;; Language Environment
+(prefer-coding-system 'utf-8)
 (set-language-environment "UTF-8")
 (set-default-coding-systems 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+
+(setq locale-coding-system 'utf-8)
 
 ;; Resolve performance issue moving around Unicode Text.
 (setq inhibit-compacting-font-caches t)
