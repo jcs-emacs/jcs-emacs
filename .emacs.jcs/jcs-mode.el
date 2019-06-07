@@ -112,12 +112,9 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
   ;; -----------------------------------------
 
   )
-;; Make command mode start at the beginning.
-(call-interactively #'jcs-command-mode)
 
 (defun jcs-view-mode-hook()
   "In view mode, read only file."
-  (interactive)
 
   ;; unset all the key
   (define-key view-mode-map "a" nil)
