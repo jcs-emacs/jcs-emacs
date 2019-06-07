@@ -168,7 +168,6 @@
 
 
 (use-package helm
-  :defer t
   :diminish helm-mode
   :init
   ;; 禁止自動補全
@@ -662,6 +661,7 @@
 
 
 (use-package which-key
+  :defer t
   :diminish which-key-mode
   :init
   ;; Provide following type: `minibuffer', `side-window', `frame'.
@@ -707,9 +707,9 @@
 
 (use-package windmove
   :init
+  (setq windmove-wrap-around t)
   (defconst jcs-windmove-max-move-count 25
-    "Possible maximum windows count.")
-  (setq windmove-wrap-around t))
+    "Possible maximum windows count."))
 
 
 (use-package yasnippet
