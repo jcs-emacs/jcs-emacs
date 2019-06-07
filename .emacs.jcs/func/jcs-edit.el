@@ -7,8 +7,6 @@
 ;; Undo / Redo
 ;;----------------------------------------------
 
-(require 'undo-tree)
-
 ;;
 ;; NOTE: This is compatible with other text editor
 ;; or IDE. Most IDE/text editor have this undo/redo
