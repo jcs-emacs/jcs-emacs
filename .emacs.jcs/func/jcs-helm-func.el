@@ -36,14 +36,8 @@
 (advice-add 'helm-ff-delete-char-backward :around #'jcs-helm-find-files-navigate-back)
 
 
-(defvar jcs-helm-ff-other-window nil
-  "Helm find file other window flag.")
-
-;;;
-;; `helm-find-files-hook'
-;;
-(defvar jcs-helm-find-files-active nil
-  "Helm find file flag.")
+(defvar jcs-helm-ff-other-window nil "Helm find file other window flag.")
+(defvar jcs-helm-find-files-active nil "Helm find file flag.")
 
 (defun jcs-helm-find-files-hook ()
   "Hook after `helm-find-files' initialized."
