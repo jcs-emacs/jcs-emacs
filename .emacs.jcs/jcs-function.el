@@ -4,7 +4,6 @@
 
 
 (require 'f)
-(require 'helm)
 (require 'linum)
 (require 's)
 
@@ -753,7 +752,7 @@ NO-PROMPT : Don't prompt the overwrap message."
 (require 'jcs-frame)
 (require 'jcs-window)
 (with-eval-after-load 'shell (require 'jcs-shell))
-(require 'jcs-helm-func)
+(with-eval-after-load 'helm (require 'jcs-helm-func))
 
 ;; Editing
 (require 'jcs-buffer-menu)
