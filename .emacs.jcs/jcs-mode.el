@@ -67,42 +67,31 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
 (defun jcs-command-mode()
   "In command mode. - JenChieh"
   (interactive)
-
-  ;; set trigger
-  (put 'jcs-insert-command-mode-toggle 'state nil)
+  (put 'jcs-insert-command-mode-toggle 'state nil)  ; set trigger
 
   ;; switch to view mode
   ;;(view-mode-enable)
 
-  ;; -----------------------------------------
   ;; Customize Mode Line
-  ;; -----------------------------------------
   (jcs-gray-mode-line)
 
-  ;; -----------------------------------------
   ;; Unset insert mode key
-  ;;
   ;; NOTE: unset key should be before of set keys
-  ;; -----------------------------------------
 
-  ;; -----------------------------------------
   ;; Set command mode key
-  ;; -----------------------------------------
 
   )
 
 
 ;;---------------------------------------------
-;; Insert Mode
+;; Insert Mode / View Mode
 ;;---------------------------------------------
 
 ;;;###autoload
 (defun jcs-insert-mode()
   "In insert mode. - JenChieh"
   (interactive)
-
-  ;; set trigger
-  (put 'jcs-insert-command-mode-toggle 'state t)
+  (put 'jcs-insert-command-mode-toggle 'state t)  ; set trigger
 
   ;; disable to view mode
   ;;(view-mode-disable)
@@ -123,14 +112,8 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
   ;; -----------------------------------------
 
   )
-
 ;; Make command mode start at the beginning.
 (call-interactively #'jcs-command-mode)
-
-
-;;------------------------------------------------------------------------------------------------------
-;;; View Mode
-;;------------------------------------------------------------------------------------------------------
 
 (defun jcs-view-mode-hook()
   "In view mode, read only file."
@@ -189,32 +172,22 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
   "This mode depend on my own machine. More feature and more \
 control of the editor."
   (interactive)
+  (put 'jcs-depend-cross-mode-toggle 'state nil)  ; set toggle trigger
 
-  ;; set toggle trigger
-  (put 'jcs-depend-cross-mode-toggle 'state nil)
-
-  ;; -----------------------------------------
   ;; Customize Mode Line
-  ;; -----------------------------------------
   (jcs-gray-mode-line)
 
-  ;; -----------------------------------------
   ;; Unset 'depend' mode key
-  ;;
   ;; NOTE: unset key should be before of set keys
-  ;; -----------------------------------------
   (global-unset-key "\C-f")
   (global-unset-key "\C-r")
 
-  ;; -----------------------------------------
   ;; Set 'depend' mode key
-  ;; -----------------------------------------
 
   ;; search
   (define-key global-map "\C-f" 'jcs-helm-do-ag-this-file)
   (define-key global-map "\C-x\C-f" 'helm-do-ag-project-root)
 
-  ;; Search
   (define-key global-map "\C-rp" 'jcs-ag-project-regexp)
 
   (when (functionp 'jcs-global-key-rebind)
@@ -230,28 +203,20 @@ control of the editor."
   ;; set toggle trigger
   (put 'jcs-depend-cross-mode-toggle 'state t)
 
-  ;; -----------------------------------------
   ;; Customize Mode Line
-  ;; -----------------------------------------
   (jcs-dark-green-mode-line)
 
-  ;; -----------------------------------------
   ;; Unset 'cross' mode key
-  ;;
   ;; NOTE: unset key should be before of set keys
-  ;; -----------------------------------------
   (global-unset-key "\C-f")
   (global-unset-key "\C-r")
 
-  ;; -----------------------------------------
   ;; Set 'cross' mode key
-  ;; -----------------------------------------
 
   ;; search
   (define-key global-map "\C-f" 'isearch-forward)
   (define-key global-map "\C-x\C-f" 'isearch-project-forward)
 
-  ;; Search
   (global-unset-key "\C-rp")
 
   (when (functionp 'jcs-global-key-rebind)
@@ -261,6 +226,10 @@ control of the editor."
 
 
 ;; Modes
+(require 'jcs-elisp-mode)
+(require 'jcs-lisp-mode)
+(require 'jcs-text-mode)
+
 (with-eval-after-load 'message (require 'jcs-message-mode))
 (with-eval-after-load 're-builder (require 'jcs-re-builder-mode))
 (with-eval-after-load 'shell (require 'jcs-shell-mode))
@@ -281,7 +250,6 @@ control of the editor."
 (with-eval-after-load 'csharp-mode (require 'jcs-csharp-mode))
 (with-eval-after-load 'css-mode (require 'jcs-css-mode))
 (with-eval-after-load 'dart-mode (require 'jcs-dart-mode))
-(with-eval-after-load 'elisp-mode (require 'jcs-elisp-mode))
 (with-eval-after-load 'elixir-mode (require 'jcs-elixir-mode))
 (with-eval-after-load 'erlang (require 'jcs-erlang-mode))
 (with-eval-after-load 'gitattributes-mode (require 'jcs-git-mode))
@@ -295,7 +263,6 @@ control of the editor."
 (with-eval-after-load 'jayces-mode (require 'jcs-jayces-mode))
 (with-eval-after-load 'js2-mode (require 'jcs-js-mode))
 (with-eval-after-load 'json-mode (require 'jcs-json-mode))
-(with-eval-after-load 'lisp-mode (require 'jcs-lisp-mode))
 (with-eval-after-load 'lua-mode (require 'jcs-lua-mode))
 (with-eval-after-load 'make-mode (require 'jcs-makefile-mode))
 (with-eval-after-load 'markdown-mode (require 'jcs-markdown-mode))
@@ -316,7 +283,6 @@ control of the editor."
 (with-eval-after-load 'shader-mode (require 'jcs-shader-mode))
 (with-eval-after-load 'sql (require 'jcs-sql-mode))
 (with-eval-after-load 'swift-mode (require 'jcs-swift-mode))
-(with-eval-after-load 'text-mode (require 'jcs-text-mode))
 (with-eval-after-load 'typescript-mode (require 'jcs-typescript-mode))
 (with-eval-after-load 'verilog-mode (require 'jcs-verilog-mode))
 (with-eval-after-load 'vimrc-mode (require 'jcs-vimscript-mode))
