@@ -59,12 +59,21 @@
   (progn
     (require 'auto-highlight-symbol)
     (require 'company)
+    (require 'diminish)
+    (require 'dimmer)
     ;; ATTENTION: Haxe-mode is no longer maintaining...
     ;; Consider remove `haxe-mode' from this config.
     ;;
     ;; NOTE: `haxe-mode' does not autoload, loaded manually.
     (require 'haxe-mode)
+    (require 'helm)
+    (require 'hl-todo)
+    (require 'indent-info)
+    (require 'powerline)
+    (require 'preproc-font-lock)
     (require 'right-click-context)
+    (require 'shift-select)
+    (require 'undo-tree)
     (require 'which-key))
 
   ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -93,8 +102,18 @@
     (global-hl-line-mode 1)
     ;;-------------------------------- `hl-todo'
     (global-hl-todo-mode 1)
+    ;;-------------------------------- `indent-info'
+    (global-indent-info-mode +1)
     ;;-------------------------------- `line-reminder'
     (global-line-reminder-mode t)
+    ;;-------------------------------- `powerline'
+    (progn
+      (powerline-default-theme)
+      ;;(powerline-center-theme)
+      ;;(powerline-center-evil-theme)
+      ;;(powerline-vim-theme)
+      ;;(powerline-nano-theme)
+      )
     ;;-------------------------------- `preproc-font-lock'
     (preproc-font-lock-global-mode t)
     (preproc-font-lock-mode t)
@@ -116,6 +135,8 @@
     ;;-------------------------------- `which-key'
     (which-key-mode))
 
+  (jcs-setup-default-theme)
+  (jcs-command-mode)
   (jcs-depend-mode)
 
   (jcs-reload-file-info)
