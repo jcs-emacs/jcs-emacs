@@ -64,7 +64,8 @@
     ;;
     ;; NOTE: `haxe-mode' does not autoload, loaded manually.
     (require 'haxe-mode)
-    (require 'right-click-context))
+    (require 'right-click-context)
+    (require 'which-key))
 
   ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   ;; NOTE: Enable util modes here.
