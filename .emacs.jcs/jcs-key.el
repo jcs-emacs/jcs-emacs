@@ -404,8 +404,9 @@
 (define-key global-map (kbd "C--") #'jcs-text-scale-decrease)
 
 ;;; Todo
-(define-key hl-todo-mode-map [C-f10] #'jcs-hl-todo-previous)
-(define-key hl-todo-mode-map [C-f11] #'jcs-hl-todo-next)
+(with-eval-after-load 'hl-todo
+  (define-key hl-todo-mode-map [C-f10] #'jcs-hl-todo-previous)
+  (define-key hl-todo-mode-map [C-f11] #'jcs-hl-todo-next))
 
 ;;; Transparent Window
 (define-key global-map "\e`" #'jcs-toggle-transparent-frame)
@@ -465,11 +466,12 @@
 (define-key global-map "\C-y" #'jcs-redo)
 
 ;;; Undo Tree
-(define-key undo-tree-visualizer-mode-map (kbd "RET") #'undo-tree-visualizer-quit)
-;; STUDY: `undo-tree''s minor mode will overwrite
-;; the global key map's key bindings. What we need to do
-;; is to remap this again...
-(define-key undo-tree-map (kbd "C-/") #'jcs-comment-uncomment-region-or-line)
+(with-eval-after-load 'undo-tree
+  (define-key undo-tree-visualizer-mode-map (kbd "RET") #'undo-tree-visualizer-quit)
+  ;; STUDY: `undo-tree''s minor mode will overwrite
+  ;; the global key map's key bindings. What we need to do
+  ;; is to remap this again...
+  (define-key undo-tree-map (kbd "C-/") #'jcs-comment-uncomment-region-or-line))
 
 ;;; wgrep
 (with-eval-after-load 'wgrep
@@ -506,9 +508,6 @@ the key everytime the mode changes."
   (define-key global-map (kbd "C-r DEL") #'jcs-backward-delete-current-char-repeat)
   (define-key global-map (kbd "C-r S-<backspace>") #'jcs-forward-delete-current-char-repeat)
   )
-
-;; NOTE: Call depend mode once.
-(call-interactively #'jcs-depend-mode)
 
 
 (provide 'jcs-key)
