@@ -198,8 +198,7 @@
 (defun jcs-minibuffer-setup-hook ()
   "Hook when minibuffer setup."
   (when (and (not (jcs-current-char-equal-p "/"))
-             ;; SEE: this trigger can be check
-             ;; at `jcs-helm.el' file.
+             ;; SEE: this trigger can be check at `jcs-helm-func.el' file.
              jcs-helm-find-files-active)
     ;; NOTE: This will prevent missing the
     ;; slash at the end of the search file path.
