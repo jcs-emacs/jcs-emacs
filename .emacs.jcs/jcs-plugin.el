@@ -115,6 +115,7 @@
 
 
 (use-package diminish
+  :defer t
   :config
   (diminish 'abbrev-mode)
   (use-package auto-rename-tag :diminish auto-rename-tag-mode :defer t)
@@ -129,6 +130,7 @@
 
 
 (use-package dimmer
+  :defer t
   :init
   (setq dimmer-fraction 0.2))
 
@@ -168,6 +170,7 @@
 
 
 (use-package helm
+  :defer t
   :diminish helm-mode
   :init
   ;; 禁止自動補全
@@ -228,6 +231,7 @@
 
 
 (use-package hl-todo
+  :defer t
   :init
   (setq hl-todo-keyword-faces
         '(("HOLD" . "#d0bf8f")
@@ -271,11 +275,6 @@
   (defun hl-todo--inside-comment-or-string-p ()
     "Redefine `hl-todo--inside-comment-or-string-p', for accurate highlighting."
     (jcs-inside-comment-or-string-p)))
-
-
-(use-package indent-info
-  :config
-  (global-indent-info-mode +1))
 
 
 (use-package isearch
@@ -350,6 +349,7 @@
 
 
 (use-package powerline
+  :defer t
   :init
   ;; NOTE:
   ;; The separator to use for the default theme.
@@ -357,17 +357,11 @@
   ;; Valid Values: alternate, arrow, arrow-fade, bar, box,
   ;; brace, butt, chamfer, contour, curve, rounded, roundstub,
   ;; wave, zigzag, utf-8.
-  (setq powerline-default-separator 'wave)
-  :config
-  (powerline-default-theme)
-  ;;(powerline-center-theme)
-  ;;(powerline-center-evil-theme)
-  ;;(powerline-vim-theme)
-  ;;(powerline-nano-theme)
-  )
+  (setq powerline-default-separator 'wave))
 
 
 (use-package preproc-font-lock
+  :defer t
   :config
   (set-face-attribute 'preproc-font-lock-preprocessor-background
                       nil
@@ -434,6 +428,7 @@
 
 
 (use-package shift-select
+  :defer t
   :diminish shift-select-minor-mode
   :config
   (defun jcs-advice-shift-select-pre-command-hook-after ()
@@ -541,6 +536,7 @@
 
 
 (use-package undo-tree
+  :defer t
   :diminish undo-tree-mode
   :config
   (global-undo-tree-mode t))
