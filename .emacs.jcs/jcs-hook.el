@@ -124,12 +124,6 @@
   ;; NOTE: Lower the `GC' back to normal threshold.
   (setq gc-cons-threshold jcs-normal-gc-cons-threshold)
 
-  (save-selected-window
-    ;; ATTENTION: First active the correct line number, because this
-    ;; would not works in `jcs-after-change-major-mode-hook'.
-    (switch-to-buffer "*Messages*")
-    (jcs-active-line-numbers-by-mode))
-
   ;; IMPORTANT: This should always be the last thing.
   (setq dashboard-init-info
         (format "[ %s ] [ Total took %s ]" dashboard-init-info (emacs-init-time)))
