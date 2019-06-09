@@ -125,9 +125,6 @@
       (list (format "%s %%S: %%j " (system-name))
             '(buffer-file-name "%f" (dired-directory dired-directory "%b"))))
 
-;;; Highlight Line
-(require 'hl-line)
-
 ;;; Highlight Select Region
 (transient-mark-mode t)
 
