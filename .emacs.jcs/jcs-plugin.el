@@ -119,7 +119,7 @@
   :config
   (diminish 'abbrev-mode)
   (use-package auto-rename-tag :diminish auto-rename-tag-mode :defer t)
-  (use-package beacon :diminish beacon-mode)
+  (use-package beacon :diminish beacon-mode :defer t)
   (use-package face-remap :diminish buffer-face-mode)
   (diminish 'eldoc-mode)
   (use-package impatient-mode :diminish impatient-mode :defer t)
@@ -543,6 +543,7 @@
 
 
 (use-package use-ttf
+  :defer t
   :init
   ;; List of TTF fonts you want to use in the currnet OS.
   (setq use-ttf-default-ttf-fonts '(;; >> Classic Console <<
