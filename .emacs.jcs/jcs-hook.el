@@ -58,6 +58,7 @@
   ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   (progn
     (require 'auto-highlight-symbol)
+    (require 'beacon)
     (require 'company)
     (require 'diminish)
     (require 'dimmer)
@@ -67,6 +68,7 @@
     ;; NOTE: `haxe-mode' does not autoload, loaded manually.
     (require 'haxe-mode)
     (require 'helm)
+    (require 'hl-line)
     (require 'hl-todo)
     (require 'indent-info)
     (require 'powerline)
@@ -74,6 +76,7 @@
     (require 'right-click-context)
     (require 'shift-select)
     (require 'undo-tree)
+    (require 'use-ttf)
     (require 'which-key))
 
   ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
