@@ -216,7 +216,8 @@ For those mode does not apply faces correctly!"
 ;; Load face order.
 ;;----------------------------------------------
 
-(jcs-init-preproc-faces)
+(with-eval-after-load 'preproc-font-lock (jcs-init-preproc-faces))
+
 (with-eval-after-load 'cc-mode (jcs-init-java-faces))
 (with-eval-after-load 'css-mode (jcs-init-css-faces))
 (with-eval-after-load 'lua-mode (jcs-init-lua-faces))

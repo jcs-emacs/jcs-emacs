@@ -764,7 +764,8 @@ NO-PROMPT : Don't prompt the overwrap message."
 (require 'jcs-nav)
 
 ;; For Specific Mode
-(require 'jcs-preproc-func)
+(with-eval-after-load 'preproc-font-lock (require 'jcs-preproc-func))
+
 (with-eval-after-load 'org (require 'jcs-org-func))
 (with-eval-after-load 'cc-mode
   (require 'jcs-cc-func)
