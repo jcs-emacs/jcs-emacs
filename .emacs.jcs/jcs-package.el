@@ -129,6 +129,16 @@
                                    yasnippet-snippets)
   "List of packages this config needs.")
 
+(defvar jcs-package-installing nil
+  "Is currently upgrading the package.")
+
+
+(defun jcs-advice-package-install-around (ori-func &rest _args)
+  "Advice around execute `package-install' command."
+  (setq jcs-package-installing t)
+  (apply ori-func _args)
+  (setq jcs-package-installing nil))
+(advice-add 'package-install :around #'jcs-advice-package-install-around)
 
 (defun jcs-install-missing-package-install (pkg)
   "Install PKG package."
@@ -140,17 +150,6 @@
     (put 'jcs-install-missing-package-install 'state t))
   ;; Else we just install the package regularly.
   (package-install pkg))
-
-
-(defvar jcs-package-installing nil
-  "Is currently upgrading the package.")
-
-(defun jcs-advice-package-install-around (ori-func &rest _args)
-  "Advice around execute `package-install' command."
-  (setq jcs-package-installing t)
-  (apply ori-func _args)
-  (setq jcs-package-installing nil))
-(advice-add 'package-install :around #'jcs-advice-package-install-around)
 
 (defun jcs-ensure-package-installed (packages &optional without-asking)
   "Assure every package is installed, ask for installation if it’s not.
