@@ -29,7 +29,7 @@
 
 (defun jcs-find-file-hook ()
   "Find file hook."
-  (when (and (not reload-emacs-reloading)
+  (when (and (not (jcs-reload-emacs-reloading-p))
              (not jcs-package-installing)
              (not (get-buffer "*Packages*"))
              (jcs-is-contain-list-string jcs-find-file-read-only-paths
@@ -73,6 +73,7 @@
     (require 'indent-info)
     (require 'powerline)
     (require 'preproc-font-lock)
+    (require 'reload-emacs)
     (require 'right-click-context)
     (require 'shift-select)
     (require 'undo-tree)
@@ -145,6 +146,11 @@
   (jcs-reload-file-info)
   (jcs-reload-docstring-info)
 
+  ;; Frame Title
+  (setq frame-title-format
+        (list (format "%s %%S: %%j " (system-name))
+              '(buffer-file-name "%f" (dired-directory dired-directory "%b"))))
+
   ;; NOTE: Lower the `GC' back to normal threshold.
   (setq gc-cons-threshold jcs-normal-gc-cons-threshold)
 
@@ -188,7 +194,7 @@
 
 (defun jcs-after-change-major-mode-hook ()
   "Hook run after major mode changes."
-  (unless reload-emacs-reloading
+  (unless (jcs-reload-emacs-reloading-p)
     (jcs-active-line-numbers-by-mode))
   )
 (add-hook 'after-change-major-mode-hook 'jcs-after-change-major-mode-hook)
