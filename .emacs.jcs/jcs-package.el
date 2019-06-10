@@ -125,6 +125,7 @@
                                    wgrep-ag
                                    wgrep-helm
                                    yaml-mode
+                                   yascroll
                                    yasnippet
                                    yasnippet-snippets)
   "List of packages this config needs.")
