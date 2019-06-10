@@ -259,6 +259,7 @@
           ("DESCRIPTION" . "dark green")
           ("TAG" . "dark green")
           ("OPTION" . "dark green")
+          ("DEBUG" . "turquoise")
           ("DEBUGGING" . "turquoise")
           ("TEMPORARY" . "turquoise")
           ("SOURCE" . "PaleTurquoise2")
