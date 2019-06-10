@@ -711,6 +711,19 @@
     "Possible maximum windows count."))
 
 
+(use-package yascroll
+  :defer t
+  :init
+  (setq yascroll:delay-to-hide 0.8)
+  :config
+  (require 'cl)
+  (set-face-attribute 'yascroll:thumb-fringe
+                      nil
+                      :background "#424242"
+                      :foreground "#424242")
+  (global-yascroll-bar-mode 1))
+
+
 (use-package yasnippet
   :defer t
   :diminish yas-minor-mode
