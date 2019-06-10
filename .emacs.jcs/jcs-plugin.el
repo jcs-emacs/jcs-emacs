@@ -375,6 +375,7 @@
 
 
 (use-package reload-emacs
+  :defer t
   :init
   (setq reload-emacs-load-path '("~/.emacs.jcs/"
                                  "~/.emacs.jcs/func/"
