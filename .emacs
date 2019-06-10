@@ -80,11 +80,16 @@
 
 (put 'erase-buffer 'disabled nil)
 
+
+(defun jcs-reload-emacs-reloading-p ()
+  "Check if Emacs reloading now."
+  (if (boundp 'reload-emacs-reloading) reload-emacs-reloading nil))
+
 ;;========================================
 ;;         Manually Installation
 ;;----------------------------------
 
-(unless (boundp 'reload-emacs-reloading)
+(unless (jcs-reload-emacs-reloading-p)
   (add-to-list 'load-path "~/.emacs.d/elisp/jayces-mode-20190205.001/")
   (add-to-list 'load-path "~/.emacs.d/elisp/jcs-ex-pkg-20190326.001/")
   (add-to-list 'load-path "~/.emacs.d/elisp/reload-emacs-20190326.001/")
@@ -94,8 +99,7 @@
 ;;      JENCHIEH FILE LOADING
 ;;----------------------------------
 
-(require 'reload-emacs)
-(unless reload-emacs-reloading
+(unless (jcs-reload-emacs-reloading-p)
   (add-to-list 'load-path "~/.emacs.jcs/")
   (add-to-list 'load-path "~/.emacs.jcs/func/")
   (add-to-list 'load-path "~/.emacs.jcs/mode/"))
