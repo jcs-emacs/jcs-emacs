@@ -115,15 +115,9 @@
 ;;; Electric Pair
 (electric-pair-mode 1)
 
-;;; Font
-;; -- Font Size: The value is in 1/10pt, so 100 will give you 10pt, etc.
+;;; Font Size
+;; NOTE: The value is in 1/10pt, so 100 will give you 10pt, etc.
 (set-face-attribute 'default nil :height 160)
-
-;;; Frame Title
-;; SOURCE: https://stackoverflow.com/questions/3669511/the-function-to-show-current-files-full-path-in-mini-buffer
-(setq frame-title-format
-      (list (format "%s %%S: %%j " (system-name))
-            '(buffer-file-name "%f" (dired-directory dired-directory "%b"))))
 
 ;;; Highlight Select Region
 (transient-mark-mode t)
