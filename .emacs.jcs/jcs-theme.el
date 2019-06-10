@@ -171,10 +171,16 @@
 
 (defun jcs-reset-plugins-base-on-theme ()
   "Reset certain plugins base on the theme."
-  (jcs-reset-line-number-color-by-theme)
   (jcs-reset-beacon-color-by-theme)
   (jcs-reset-dashboard-banner-by-theme)
-  (jcs-reset-helm-theme-by-theme))
+  (jcs-reset-helm-theme-by-theme)
+  (jcs-reset-line-number-color-by-theme)
+  (jcs-reset-yascroll-color-by-theme)
+  (when dimmer-mode
+    (progn
+      ;; Toggle `dimmer-mode'.
+      (dimmer-mode -1) (dimmer-mode 1))
+    (dimmer-process-all)))
 
 ;;;###autoload
 (defun jcs-vs-light-theme ()
