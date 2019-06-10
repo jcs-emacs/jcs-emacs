@@ -6,6 +6,10 @@
         jcs-electric-backspace
         jcs-forward-delete-word
         jcs-forward-kill-word-capital
+        jcs-py-indent-down
+        jcs-py-indent-up
+        jcs-smart-indent-down
+        jcs-smart-indent-up
         jcs-web-backward-delete-word
         jcs-web-backward-delete-word-capital
         ))
@@ -22,8 +26,6 @@
         jcs-other-window-next
         jcs-other-window-prev
         jcs-previous-blank-line
-        jcs-smart-indent-down
-        jcs-smart-indent-up
         jcs-toggle-sublimity-mode
         jcs-untabify-save-buffer
         move-text-up
