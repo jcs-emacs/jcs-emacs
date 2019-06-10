@@ -119,17 +119,21 @@ this version instead."
 (defun jcs-previous-blank-line ()
   "Move to the previous line containing nothing but whitespaces or tabs."
   (interactive)
-  (unless (ignore-errors (or (search-backward-regexp "^[ \t]*\n") t))
-    (goto-char (point-min))))
+  (unless (ignore-errors (search-backward-regexp "^[ \t]*\n") t)
+    (goto-char (point-min)))
+  (when (functionp 'mc/keyboard-quit)
+    (mc/keyboard-quit)))
 
 ;;;###autoload
 (defun jcs-next-blank-line ()
   "Move to the next line containing nothing but whitespaces or tabs."
   (interactive)
-  (forward-line)
-  (if (ignore-errors (or (search-forward-regexp "^[ \t]*\n") t))
+  (forward-line 1)
+  (if (ignore-errors (search-forward-regexp "^[ \t]*\n") t)
       (forward-line -1)
-    (goto-char (point-max))))
+    (goto-char (point-max)))
+  (when (functionp 'mc/keyboard-quit)
+    (mc/keyboard-quit)))
 
 
 ;;----------------------------------------------
