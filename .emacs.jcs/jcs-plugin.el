@@ -717,10 +717,6 @@
   (setq yascroll:delay-to-hide 0.8)
   :config
   (require 'cl)
-  (set-face-attribute 'yascroll:thumb-fringe
-                      nil
-                      :background "#424242"
-                      :foreground "#424242")
   (global-yascroll-bar-mode 1))
 
 
