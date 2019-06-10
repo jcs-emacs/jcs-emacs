@@ -77,7 +77,8 @@
     (require 'shift-select)
     (require 'undo-tree)
     (require 'use-ttf)
-    (require 'which-key))
+    (require 'which-key)
+    (require 'yascroll))
 
   ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   ;; NOTE: Enable util modes here.
