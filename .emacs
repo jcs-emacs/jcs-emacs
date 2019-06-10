@@ -67,7 +67,7 @@
  '(mouse-wheel-scroll-amount (quote (15)))
  '(package-selected-packages
    (quote
-    (esup swift-mode flycheck-popup-tip dart-mode basic-mode beacon google-this helm-core helm-projectile helm-gtags helm-ag helm right-click-context show-eol csharp-mode haxe-mode isearch-project async hl-todo page-break-lines goto-char-preview elixir-mode erlang multiple-cursors projectile buffer-move dashboard glsl-mode company-quickhelp origami line-reminder yasnippet-snippets dash git-commit move-text cmake-font-lock restart-emacs focus dimmer goto-line-preview transient magit with-editor ini-mode htmltagwrap auto-rename-tag indent-info cobol-mode rust-mode yaml-mode markdown-mode nhexl-mode sr-speedbar clojure-mode undo-tree tabbar javadoc-lookup typescript-mode yasnippet xcscope wgrep-helm wgrep-ag wgrep vimrc-mode sql-indent simple-httpd scss-mode s popup pkg-info json-snatcher json-reformat htmlize google-translate f epl emmet-mode diminish cmake-mode bind-key avy ace-window js2-mode company apache-mode which-key web-mode use-ttf use-package tree-mode togetherly sublimity ssass-mode shader-mode scala-mode rainbow-mode python-mode project-abbrev processing-mode preproc-font-lock powerline package-lint package-build organize-imports-java nasm-mode lua-mode json-mode impatient-mode iedit haskell-mode go-mode gitignore-mode gitconfig-mode gitattributes-mode exec-path-from-shell com-css-sort auto-highlight-symbol ag adaptive-wrap actionscript-mode)))
+    (yascroll esup swift-mode flycheck-popup-tip dart-mode basic-mode beacon google-this helm-core helm-projectile helm-gtags helm-ag helm right-click-context show-eol csharp-mode haxe-mode isearch-project async hl-todo page-break-lines goto-char-preview elixir-mode erlang multiple-cursors projectile buffer-move dashboard glsl-mode company-quickhelp origami line-reminder yasnippet-snippets dash git-commit move-text cmake-font-lock restart-emacs focus dimmer goto-line-preview transient magit with-editor ini-mode htmltagwrap auto-rename-tag indent-info cobol-mode rust-mode yaml-mode markdown-mode nhexl-mode sr-speedbar clojure-mode undo-tree tabbar javadoc-lookup typescript-mode yasnippet xcscope wgrep-helm wgrep-ag wgrep vimrc-mode sql-indent simple-httpd scss-mode s popup pkg-info json-snatcher json-reformat htmlize google-translate f epl emmet-mode diminish cmake-mode bind-key avy ace-window js2-mode company apache-mode which-key web-mode use-ttf use-package tree-mode togetherly sublimity ssass-mode shader-mode scala-mode rainbow-mode python-mode project-abbrev processing-mode preproc-font-lock powerline package-lint package-build organize-imports-java nasm-mode lua-mode json-mode impatient-mode iedit haskell-mode go-mode gitignore-mode gitconfig-mode gitattributes-mode exec-path-from-shell com-css-sort auto-highlight-symbol ag adaptive-wrap actionscript-mode)))
  '(paradox-github-token t)
  '(send-mail-function (quote mailclient-send-it))
  '(version-control nil))
@@ -76,7 +76,21 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(css-selector ((t (:inherit font-lock-function-name-face :foreground "#17A0FB")))))
+ '(ahs-definition-face ((t (:foreground nil :background "#113D6F"))))
+ '(ahs-face ((t (:foreground nil :background "#113D6F"))))
+ '(ahs-plugin-defalt-face ((t (:foreground nil :background "#123E70"))))
+ '(company-preview ((t (:foreground "dark gray" :underline t))))
+ '(company-preview-common ((t (:inherit company-preview))))
+ '(company-scrollbar-bg ((t (:background "dark gray"))))
+ '(company-scrollbar-fg ((t (:background "black"))))
+ '(company-tooltip ((t (:background "light gray" :foreground "black"))))
+ '(company-tooltip-common ((((type x)) (:inherit company-tooltip :weight bold)) (t (:inherit company-tooltip))))
+ '(company-tooltip-common-selection ((((type x)) (:inherit company-tooltip-selection :weight bold)) (t (:inherit company-tooltip-selection))))
+ '(company-tooltip-selection ((t (:background "steel blue" :foreground "white"))))
+ '(css-selector ((t (:inherit font-lock-function-name-face :foreground "#17A0FB"))))
+ '(dashboard-banner-logo-title ((t (:foreground "cyan1"))))
+ '(dashboard-heading ((t (:foreground "#17A0FB"))))
+ '(widget-button ((t (:foreground "light steel blue")))))
 
 (put 'erase-buffer 'disabled nil)
 
