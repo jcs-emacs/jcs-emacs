@@ -145,10 +145,16 @@
 (defvar jcs-package-installing nil
   "Is currently upgrading the package.")
 
+(defun jcs-advice-package-install-around (ori-func &rest _args)
+  "Advice around execute `package-install' command."
+  (setq jcs-package-installing t)
+  (apply ori-func _args)
+  (setq jcs-package-installing nil))
+(advice-add 'package-install :around #'jcs-advice-package-install-around)
+
 (defun jcs-ensure-package-installed (packages &optional without-asking)
   "Assure every package is installed, ask for installation if it’s not.
 Return a list of installed packages or nil for every skipped package."
-  (setq jcs-package-installing t)
   (mapc (lambda (package)
           (if (package-installed-p package)
               nil
@@ -158,17 +164,15 @@ Return a list of installed packages or nil for every skipped package."
                   (jcs-install-missing-package-install package)
                 package))))
         packages)
-  ;; NOTE: Not sure if you need this?
+  ;; STUDY: Not sure if you need this?
   (when (get 'jcs-install-missing-package-install 'state)
     ;; activate installed packages
-    (package-initialize))
-  (setq jcs-package-installing nil))
+    (package-initialize)))
 
 ;;;###autoload
 (defun jcs-package-upgrade-all ()
   "Upgrade all packages automatically without showing *Packages* buffer."
   (interactive)
-  (setq jcs-package-installing t)
   (package-refresh-contents)
   (let (upgrades)
     (cl-flet ((get-version (name where)
@@ -195,8 +199,7 @@ Return a list of installed packages or nil for every skipped package."
                 (package-install package-desc)
                 (package-delete  old-package))))
           (message "Done upgrading all packages"))
-      (message "All packages are up to date")))
-  (setq jcs-package-installing nil))
+      (message "All packages are up to date"))))
 
 
 ;;;###autoload
