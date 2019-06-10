@@ -242,6 +242,8 @@ and
 [reload-emacs](https://github.com/alt-elpa/reload-emacs).
 * *Restart Emacs* - powered by 
 [restart-emacs](https://github.com/iqbalansari/restart-emacs).
+* *Scroll Bar* - powered by 
+[yascroll](https://github.com/m2ym/yascroll-el).
 * *Shell* - powered by 
 [shell](https://www.emacswiki.org/emacs/ShellMode) and 
 [exec-path-from-shell](https://github.com/purcell/exec-path-from-shell).
