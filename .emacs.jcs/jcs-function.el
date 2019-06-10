@@ -731,6 +731,22 @@ NO-PROMPT : Don't prompt the overwrap message."
   (message "Switched to `wgrep-mode'."))
 
 ;;----------------------------------------------
+;; Yascroll
+;;----------------------------------------------
+
+;;;###autoload
+(defun jcs-reset-yascroll-color-by-theme ()
+  "Reset yascroll color base on the theme color."
+  (interactive)
+  (let ((target-color "#424242"))
+    (when (jcs-is-light-color (face-background 'default))
+      (setq target-color "#C1C1C1"))
+    (set-face-attribute 'yascroll:thumb-fringe
+                        nil
+                        :background target-color
+                        :foreground target-color)))
+
+;;----------------------------------------------
 ;; Yasnippet
 ;;----------------------------------------------
 
