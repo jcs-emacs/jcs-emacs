@@ -180,6 +180,7 @@
     (progn
       ;; Toggle `dimmer-mode'.
       (dimmer-mode -1) (dimmer-mode 1))
+    ;; TODO: Weird bug here..
     (dimmer-process-all)))
 
 ;;;###autoload
