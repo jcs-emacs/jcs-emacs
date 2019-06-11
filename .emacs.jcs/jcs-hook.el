@@ -62,6 +62,7 @@
     (require 'dashboard)
     (require 'diminish)
     (require 'dimmer)
+    (require 'exec-path-from-shell)
     ;; ATTENTION: Haxe-mode is no longer maintaining...
     ;; Consider remove `haxe-mode' from this config.
     ;;
