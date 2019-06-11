@@ -406,6 +406,22 @@ TYPE : enable/disable case sensitive?"
   (setq case-fold-search t))
 
 ;;----------------------------------------------
+;; Shell
+;;----------------------------------------------
+
+;;;###autoload
+(defun jcs-toggle-shell-window ()
+  "Toggle Shell Command prompt."
+  (interactive)
+  (require 'shell)
+  (if (get 'jcs-toggle-shell-window 'state)
+      (progn
+        (jcs-hide-shell-window)
+        (put 'jcs-toggle-shell-window 'state nil))
+    (jcs-show-shell-window)
+    (put 'jcs-toggle-shell-window 'state t)))
+
+;;----------------------------------------------
 ;; Shift Select
 ;;----------------------------------------------
 
