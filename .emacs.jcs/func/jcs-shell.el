@@ -4,21 +4,7 @@
 
 
 ;;;###autoload
-(defun jcs-toggle-shell-window ()
-  "Toggle Shell Command prompt."
-  (interactive)
-
-  ;; local variable trigger/boolean
-  ;; TOGGLE SOURCE: http://ergoemacs.org/emacs/elisp_toggle_command.html
-  (if (get 'jcs-toggle-shell-window 'state)
-      (progn
-        (jcs-hide-shell-window)
-        (put 'jcs-toggle-shell-window 'state nil))
-    (jcs-show-shell-window)
-    (put 'jcs-toggle-shell-window 'state t)))
-
-;;;###autoload
-(defun jcs-show-shell-window()
+(defun jcs-show-shell-window ()
   "Shell Command prompt."
   (interactive)
   (unless (get-buffer-process "*shell*")
