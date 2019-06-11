@@ -121,7 +121,8 @@ this version instead."
   (interactive)
   (unless (ignore-errors (search-backward-regexp "^[ \t]*\n") t)
     (goto-char (point-min)))
-  (when (functionp 'mc/keyboard-quit)
+  (when (and (functionp 'mc/keyboard-quit)
+             (> (mc/num-cursors) 1))
     (mc/keyboard-quit)))
 
 ;;;###autoload
@@ -132,7 +133,8 @@ this version instead."
   (if (ignore-errors (search-forward-regexp "^[ \t]*\n") t)
       (forward-line -1)
     (goto-char (point-max)))
-  (when (functionp 'mc/keyboard-quit)
+  (when (and (functionp 'mc/keyboard-quit)
+             (> (mc/num-cursors) 1))
     (mc/keyboard-quit)))
 
 
