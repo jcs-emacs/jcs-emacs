@@ -81,7 +81,10 @@
                ;; TODO: There is bug if `/' is inside the comment space.
                ("\\(/\\*[^/]*\\*/\\)" 1 'jcs-font-lock-comment-face t)
                )'end))
-          tmp-css-modes)))
+          tmp-css-modes))
+  (set-face-attribute 'css-selector nil
+                      :inherit font-lock-function-name-face
+                      :foreground "#17A0FB"))
 
 
 (provide 'jcs-css-func)
