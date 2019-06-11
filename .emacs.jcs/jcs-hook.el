@@ -29,13 +29,13 @@
 
 (defun jcs-find-file-hook ()
   "Find file hook."
-  (when (and (not (jcs-reload-emacs-reloading-p))
-             (jcs-is-contain-list-string jcs-find-file-read-only-paths
-                                         (buffer-file-name))
-             (not jcs-package-installing))
-    (read-only-mode 1))
-  (jcs-refresh-buffer-menu-buffer)
-  (jcs-active-line-numbers-by-mode)
+  (unless (jcs-reload-emacs-reloading-p)
+    (when (and (jcs-is-contain-list-string jcs-find-file-read-only-paths
+                                           (buffer-file-name))
+               (not jcs-package-installing))
+      (read-only-mode 1))
+    (jcs-refresh-buffer-menu-buffer)
+    (jcs-active-line-numbers-by-mode))
   )
 (add-hook 'find-file-hook 'jcs-find-file-hook)
 
@@ -59,6 +59,7 @@
     (require 'auto-highlight-symbol)
     (require 'beacon)
     (require 'company)
+    (require 'dashboard)
     (require 'diminish)
     (require 'dimmer)
     ;; ATTENTION: Haxe-mode is no longer maintaining...
@@ -70,6 +71,7 @@
     (require 'hl-line)
     (require 'hl-todo)
     (require 'indent-info)
+    (require 'line-reminder)
     (require 'powerline)
     (require 'preproc-font-lock)
     (require 'reload-emacs)
