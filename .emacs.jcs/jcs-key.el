@@ -178,6 +178,11 @@
 (define-key global-map [f10] #'previous-error)
 (define-key global-map [f11] #'next-error)
 
+;;; ESUP
+(with-eval-after-load 'esup
+  (define-key esup-mode-map (kbd "C-z") #'undo-tree-undo)
+  (define-key esup-mode-map (kbd "C-y") #'undo-tree-redo))
+
 ;;; File Explorer
 (with-eval-after-load 'sr-speedbar
   (define-key global-map (kbd "C-M-l") #'jcs-sr-speedbar-toggle)  ;; Compatible to `Visual Studio'.
@@ -462,8 +467,8 @@
 (define-key global-map "\ed" #'downcase-word)
 
 ;;; Undo/Redo
-(define-key global-map "\C-z" #'jcs-undo)
-(define-key global-map "\C-y" #'jcs-redo)
+(define-key global-map (kbd "C-z") #'jcs-undo)
+(define-key global-map (kbd "C-y") #'jcs-redo)
 
 ;;; Undo Tree
 (with-eval-after-load 'undo-tree
