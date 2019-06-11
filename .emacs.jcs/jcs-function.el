@@ -108,6 +108,23 @@
   (if (jcs-is-light-color (face-background 'default))
       (setq dashboard-startup-banner "~/.emacs.jcs/banner/sink_black.png")
     (setq dashboard-startup-banner "~/.emacs.jcs/banner/sink_white.png"))
+  (let ((logo-title-fg "cyan1")
+        (heading-fg "#17A0FB")
+        (wb-fg "light steel blue"))
+    (when (jcs-is-light-color (face-background 'default))
+      (setq logo-title-fg "#616161")
+      (setq heading-fg "#727272")
+      (setq wb-fg "#1475B7"))
+    (set-face-attribute 'dashboard-banner-logo-title
+                        nil
+                        :foreground logo-title-fg)
+    (set-face-attribute 'dashboard-heading
+                        nil
+                        :foreground heading-fg)
+    (set-face-attribute 'widget-button
+                        nil
+                        :weight 'normal
+                        :foreground wb-fg))
   (jcs-refresh-dashboard-buffer))
 
 ;;----------------------------------------------
@@ -253,7 +270,8 @@ G : Active line numbers globally."
           (jcs-is-contain-list-string jcs-line-numbers-ignore-modes (symbol-name major-mode)))
       ;; Don't use line numbers at all.
       (jcs-deactive-line-numbers-modes)
-    (if (line-reminder-is-valid-line-reminder-situation)
+    (if (and (functionp 'line-reminder-is-valid-line-reminder-situation)
+             (line-reminder-is-valid-line-reminder-situation))
         ;; Use `linum' as default.
         (jcs-active-line-numbers-by-version -1 g)
       ;; Active `display-line-numbers-mode', if Emacs version
