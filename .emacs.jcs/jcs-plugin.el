@@ -3,11 +3,6 @@
 ;;; Code:
 
 
-;; This is only needed once, near the top of the file
-(eval-when-compile
-  (require 'use-package))
-
-
 (use-package adaptive-wrap
   :defer t
   :init
@@ -22,19 +17,18 @@
   (setq ahs-idle-interval 0.3)
   :config
   ;; Current highlight. (Cursor point currently on.)
-  (custom-set-faces
-   '(ahs-plugin-defalt-face ((t (:foreground nil :background "#123E70"))))
-   '(ahs-face ((t (:foreground nil :background "#113D6F"))))
-   '(ahs-definition-face ((t (:foreground nil :background "#113D6F"))))
-   )
-
-  ;; Current highlight. (Cursor point currently on.)
   (set-face-attribute 'ahs-plugin-defalt-face nil
+                      :foreground nil
+                      :background "#123E70"
                       :box '(:line-width -1 :color "#525D68" :style pressed-button))
   ;; Other highlight. (Same words in the buffer)
   (set-face-attribute 'ahs-face nil
+                      :foreground nil
+                      :background "#113D6F"
                       :box '(:line-width -1 :color "#525D68" :style pressed-button))
   (set-face-attribute 'ahs-definition-face nil
+                      :foreground nil
+                      :background "#113D6F"
                       :box '(:line-width -1 :color "#525D68" :style pressed-button)))
 
 
@@ -89,6 +83,7 @@
 
 
 (use-package dashboard
+  :defer t
   :init
   (setq dashboard-banner-logo-title "[J C S • E M A C S]")
   (setq dashboard-footer-icon "")
@@ -103,14 +98,9 @@
                           ;;(registers . 10)
                           ))
   (setq dashboard-center-content t)
+  (setq dashboard-set-navigator t)
+  (setq dashboard-set-navigator nil)
   :config
-  (custom-set-faces
-   '(dashboard-banner-logo-title
-     ((t (:foreground "cyan1"))))
-   '(dashboard-heading
-     ((t (:foreground "#17A0FB"))))
-   '(widget-button
-     ((t (:foreground "light steel blue")))))
   (dashboard-setup-startup-hook))
 
 
@@ -123,7 +113,7 @@
   (use-package face-remap :diminish buffer-face-mode)
   (diminish 'eldoc-mode)
   (use-package impatient-mode :diminish impatient-mode :defer t)
-  (use-package line-reminder :diminish line-reminder-mode)
+  (use-package line-reminder :diminish line-reminder-mode :defer t)
   (diminish 'outline-minor-mode)
   (diminish 'overwrite-mode)
   (use-package page-break-lines :diminish page-break-lines-mode))
