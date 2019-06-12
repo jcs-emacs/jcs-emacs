@@ -3,8 +3,6 @@
 ;;; Code:
 
 
-(require 'pp)
-
 ;;---------------------------------------------
 ;; Buffer
 ;;---------------------------------------------
@@ -36,7 +34,7 @@ Else we just return `buffer-file-name' if available."
     (buffer-name)))
 
 (defun jcs-buffer-exists-p (buf-name)
-  "Check if the buffer exists."
+  "Check if the buffer BUF-NAME exists."
   (get-buffer buf-name))
 
 ;;---------------------------------------------
@@ -335,10 +333,22 @@ IS-FORWARD : forward conversion instead of backward conversion."
 ;; TOPIC: Check if a character (not string) is lowercase,
 ;; uppercase, alphanumeric?
 ;; SOURCE: https://stackoverflow.com/questions/27798296/check-if-a-character-not-string-is-lowercase-uppercase-alphanumeric
-(defun wordp (c) (= ?w (char-syntax c)))
-(defun lowercasep (c) (and (wordp c) (= c (downcase c))))
-(defun uppercasep (c) (and (wordp c) (= c (upcase c))))
-(defun whitespacep (c) (= 32 (char-syntax c)))
+
+(defun wordp (c)
+  "Check if C a word."
+  (= ?w (char-syntax c)))
+
+(defun lowercasep (c)
+  "Check if C lowercase."
+  (and (wordp c) (= c (downcase c))))
+
+(defun uppercasep (c)
+  "Check if C uppercase."
+  (and (wordp c) (= c (upcase c))))
+
+(defun whitespacep (c)
+  "Check if C whitespace character."
+  (= 32 (char-syntax c)))
 
 (defun jcs-is-digit-string (c)
   "Check if C is a digit."
@@ -446,7 +456,7 @@ BND-PT : boundary point."
   "Check the first character on the left/backward is CH or not, limit to the \
 whole buffer."
   (save-excursion
-    ;; NOTE(jenchiech): First fowrad a char and ready to
+    ;; NOTE: First fowrad a char and ready to
     ;; be check for next backward character.
     (forward-char 1)
     (jcs-goto-next-backward-char)
@@ -463,7 +473,7 @@ whole buffer."
   "Check the first character on the left/backward is CH or not, limit to the \
 current line."
   (save-excursion
-    ;; NOTE(jenchiech): First fowrad a char and ready to
+    ;; NOTE: First fowrad a char and ready to
     ;; be check for next backward character.
     (forward-char 1)
     (jcs-goto-next-backward-char (1+ (jcs-get-beginning-of-line-point)))
@@ -659,7 +669,7 @@ LN : line number."
 
 ;;;###autoload
 (defun jcs-print-current-line ()
-  "Print out the current line.  (For testing purpose)"
+  "Print out the current line."
   (interactive)
   (message "Current line: %s" (jcs-get-current-line-string)))
 
@@ -680,9 +690,7 @@ LINE : number to check if current line this line?"
     (= firstCharPoint current-point)))
 
 (defun jcs-is-infront-first-char-at-line-p (&optional pt)
-  "Check current cursor point is before the first character at \
-the current line.
-
+  "Check current cursor PT is before the first character at the current line.
 Return non-nil, infront of first character.
 Return nil, vice versa."
   (save-excursion
@@ -700,8 +708,7 @@ Return nil, vice versa."
       is-infront)))
 
 (defun jcs-is-behind-last-char-at-line-p (&optional pt)
-  "Check current cursor point is after the last character at the current line.
-
+  "Check current cursor PT is after the last character at the current line.
 Return non-nil, behind the last character.
 Return nil, vice versa."
   (save-excursion
@@ -844,8 +851,9 @@ Return nil, is not active."
 ;;---------------------------------------------
 
 (defun jcs-is-region-selected-p ()
-  "Is region active? But if `region-start' and `region-end' is at the same point \
-this would not trigger.  Which normally that mark is active but does not move at all.
+  "Check if region active.
+But if `region-start' and `region-end' is at the same point this would
+not trigger.  Which normally that mark is active but does not move at all.
 
 Return non-nil, there is region selected.
 Return nil, no region selected."
@@ -960,7 +968,7 @@ IN-FONT : input font name."
   ;; Change the font and keep the size.
   (if (jcs-font-existsp in-font)
       (set-frame-font in-font t)
-    (jcs-error "Font you chose does not exists in current system, Please select other font.")))
+    (jcs-error "Font you chose does not exists in current system, please select other font")))
 
 (defun jcs-font-existsp (font)
   "Check if font exists?
@@ -1012,7 +1020,7 @@ LST : List you want to modified."
   "Split a string without consuming separators.
 STRING : string to chop.
 SEPARATOR : separator character."
-  ;; SOURCE(jenchieh): https://emacs.stackexchange.com/questions/5729/split-a-string-without-consuming-separators
+  ;; SOURCE: https://emacs.stackexchange.com/questions/5729/split-a-string-without-consuming-separators
   (cl-loop with seplen = (length separator)
            with len = (length string)
            with start = 0
@@ -1079,8 +1087,8 @@ MODE-OBJ : mode object memory."
 (defun jcs-get-string-from-file (filePath)
   "Return filePath's file content.
 FILEPATH : file path."
-  ;; TOPIC(jenchieh): Elisp: Read File Content as String or List of Lines
-  ;; URL(jenchieh): http://ergoemacs.org/emacs/elisp_read_file_content.html
+  ;; TOPIC: Elisp: Read File Content as String or List of Lines
+  ;; URL: http://ergoemacs.org/emacs/elisp_read_file_content.html
   (with-temp-buffer
     (insert-file-contents filePath)
     (buffer-string)))
@@ -1134,7 +1142,7 @@ FILEPATH : .ini file to parse."
     tmp-ini-list))
 
 (defun jcs-get-properties (ini-list in-key)
-  "Get properties data.  Search by key and returns value.
+  "Get properties data, searched by key and return value.
 INI-LIST : ini list.  Please use this with/after using `jcs-parse-ini' function.
 IN-KEY : key to search for value."
   (let ((tmp-index 0)
@@ -1201,24 +1209,24 @@ FILEPATH : directory/file path."
   (or (file-directory-p filePath)
       (file-exists-p filePath)))
 
-(defun jcs-is-vc-dir-p (dirPath)
+(defun jcs-is-vc-dir-p (dir-path)
   "Return `True' is version control diectory.
 Return `False' not a version control directory.
-DIRPATH : directory path."
+DIR-PATH : directory path."
   (let ((tmp-is-vc-dir nil))
     (dolist (tmp-vc-type grep-find-ignored-directories)
-      (let ((tmp-check-dir (concat dirPath "/" tmp-vc-type)))
+      (let ((tmp-check-dir (concat dir-path "/" tmp-vc-type)))
         (when (jcs-file-directory-exists-p tmp-check-dir)
           (setq tmp-is-vc-dir t))))
     ;; Return retult.
     tmp-is-vc-dir))
 
-(defun jcs-up-one-dir-string (dirPath)
+(defun jcs-up-one-dir-string (dir-path)
   "Go up one directory and return it directory string.
-DIRPATH : directory path."
+DIR-PATH : directory path."
   ;; Remove the last directory in the path.
-  (string-match "\\(.*\\)/" dirPath)
-  (match-string 1 dirPath))
+  (string-match "\\(.*\\)/" dir-path)
+  (match-string 1 dir-path))
 
 (defun jcs-vc-root-dir ()
   "Return version control root directory.
@@ -1235,7 +1243,7 @@ If not found, will return empty string."
 
     (if (string= tmp-result-dir "")
         ""  ;; Not found, return empty string.
-      ;; NOTE(jenchieh): if you do not like `/' at the end remove
+      ;; NOTE: if you do not like `/' at the end remove
       ;; concat slash function.
       (concat tmp-result-dir "/"))))
 
@@ -1250,7 +1258,7 @@ IN-PATH : input path.
 IGNORE-ERRORS-T : ignore errors for this function?"
   (if (and (not (jcs-file-directory-exists-p in-path))
            (not ignore-errors-t))
-      (error "Directory/File you trying get does not exists.")
+      (error "Directory/File you trying get does not exists")
     (progn
       (let ((result-dir-or-file nil)
             (split-dir-file-list '())
@@ -1306,7 +1314,7 @@ IGNORE-ERRORS-T : ignore errors for this function?"
     (jcs-goto-end-of-the-string)))
 
 (defun jcs-string-at-point (&optional pt)
-  "Get the string at point.
+  "Get the string at PT.
 Nil, not inside a string."
   (save-excursion
     (when pt
@@ -1348,10 +1356,10 @@ IN-STR : input string to check if is a `true' value."
     ;; return result.
     tmp-bool))
 
-(defun jcs-string-has-no-lowercase (string)
-  "Return true iff STRING has no lowercase
-SOURCE(jenchieh): https://stackoverflow.com/questions/2129840/check-if-a-string-is-all-caps-in-emacs-lisp"
-  (equal (upcase string) string))
+(defun jcs-string-has-no-lowercase (str)
+  "Return non-nil, if STR has no lowercase."
+  ;; SOURCE: https://stackoverflow.com/questions/2129840/check-if-a-string-is-all-caps-in-emacs-lisp
+  (equal (upcase str) str))
 
 (defun jcs-contain-string (in-sub-str in-str)
   "Check if a string is a substring of another string.
