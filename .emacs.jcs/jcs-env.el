@@ -149,6 +149,8 @@
                                           "*Flycheck errors*"
                                           "*GNU Emacs*"
                                           "*helm"
+                                          "*magit"
+                                          "magit: "
                                           "*Messages*"
                                           "*Music*"
                                           "*Package-Lint*"
