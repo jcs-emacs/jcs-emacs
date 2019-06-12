@@ -3,12 +3,6 @@
 ;;; Code:
 
 
-(use-package adaptive-wrap
-  :defer t
-  :init
-  (setq adaptive-wrap-extra-indent 0))
-
-
 (use-package auto-highlight-symbol
   :defer t
   :diminish auto-highlight-symbol-mode
@@ -699,6 +693,7 @@
 
 
 (use-package windmove
+  :defer t
   :init
   (setq windmove-wrap-around t)
   (defconst jcs-windmove-max-move-count 25
