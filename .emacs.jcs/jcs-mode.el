@@ -176,16 +176,16 @@ control of the editor."
 
   ;; Unset 'depend' mode key
   ;; NOTE: unset key should be before of set keys
-  (global-unset-key "\C-f")
-  (global-unset-key "\C-r")
+  (global-unset-key (kbd "C-f"))
+  (global-unset-key (kbd "C-r"))
 
   ;; Set 'depend' mode key
 
   ;; search
-  (define-key global-map "\C-f" 'jcs-helm-do-ag-this-file)
-  (define-key global-map "\C-x\C-f" 'helm-do-ag-project-root)
+  (define-key global-map (kbd "C-f") #'jcs-helm-do-ag-this-file)
+  (define-key global-map (kbd "C-x C-f") #'helm-do-ag-project-root)
 
-  (define-key global-map "\C-rp" 'jcs-ag-project-regexp)
+  (define-key global-map (kbd "C-r p") #'jcs-ag-project-regexp)
 
   (when (functionp 'jcs-global-key-rebind)
     (jcs-global-key-rebind))
@@ -205,14 +205,14 @@ control of the editor."
 
   ;; Unset 'cross' mode key
   ;; NOTE: unset key should be before of set keys
-  (global-unset-key "\C-f")
-  (global-unset-key "\C-r")
+  (global-unset-key (kbd "C-f"))
+  (global-unset-key (kbd "C-r"))
 
   ;; Set 'cross' mode key
 
   ;; search
-  (define-key global-map "\C-f" 'isearch-forward)
-  (define-key global-map "\C-x\C-f" 'isearch-project-forward)
+  (define-key global-map (kbd "C-f") #'isearch-forward)
+  (define-key global-map (kbd "C-x C-f") #'isearch-project-forward)
 
   (global-unset-key "\C-rp")
 
