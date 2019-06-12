@@ -50,9 +50,7 @@ editors. But I’ve had a hard time finding the best tool
 to use. I’ve jumped from one working field to another 
 trying to find something that suits my needs. So instead 
 of struggling with the tool itself, I chose Emacs and 
-configured the entire thing from scratch, to suit my 
-needs. Here are a few goals that I want this config 
-to accomplished.
+configured the entire thing from scratch, to suit my needs.
 
 Here are a few goals that I want this config to 
 accomplished.
