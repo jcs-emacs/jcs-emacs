@@ -3,9 +3,6 @@
 ;;; Code:
 
 
-(require 'ace-window)
-(require 'windmove)
-
 ;;-----------------------------------------------------------
 ;; Navigation
 ;;-----------------------------------------------------------
@@ -209,44 +206,41 @@ FNC : Callback apply to each windows."
 ;;;###autoload
 (defun jcs-toggle-window-split-hv ()
   "Switch window split from horizontally to vertically, or vice versa.
-
 i.e. change right window to bottom, or change bottom window to right."
   (interactive)
   (save-selected-window
     (let ((win-len (count-windows))
           (windmove-wrap-around nil))
       (if (= win-len 2)
-          (progn
-            (let ((other-win-buf nil)
-                  (split-h-now t)
-                  (window-switched nil))
+          (let ((other-win-buf nil)
+                (split-h-now t)
+                (window-switched nil))
 
-              (when (or (window-in-direction 'above)
-                        (window-in-direction 'below))
-                (setq split-h-now nil))
+            (when (or (window-in-direction 'above)
+                      (window-in-direction 'below))
+              (setq split-h-now nil))
 
-              (if split-h-now
-                  (progn
-                    (when (window-in-direction 'right)
-                      (windmove-right 1)
-                      (setq window-switched t)))
-                (when (window-in-direction 'below)
-                  (windmove-down 1)
-                  (setq window-switched t)))
+            (if split-h-now
+                (when (window-in-direction 'right)
+                  (windmove-right 1)
+                  (setq window-switched t))
+              (when (window-in-direction 'below)
+                (windmove-down 1)
+                (setq window-switched t)))
 
-              (setq other-win-buf (buffer-name))
-              (call-interactively #'delete-window)
+            (setq other-win-buf (buffer-name))
+            (call-interactively #'delete-window)
 
-              (if split-h-now
-                  (call-interactively #'split-window-vertically)
-                (call-interactively #'split-window-horizontally))
-              (other-window 1)
+            (if split-h-now
+                (call-interactively #'split-window-vertically)
+              (call-interactively #'split-window-horizontally))
+            (other-window 1)
 
-              (switch-to-buffer other-win-buf)
+            (switch-to-buffer other-win-buf)
 
-              ;; If the window is switched, switch back to original window.
-              (when window-switched
-                (other-window 1))))
+            ;; If the window is switched, switch back to original window.
+            (when window-switched
+              (other-window 1)))
         (error "Cannot toggle vertical/horizontal editor layout with more than 2 window in current frame")))))
 
 
@@ -441,6 +435,7 @@ BUF-NAME : Buffer name to search with."
 (defun jcs-ace-select-window (win-id)
   "Use `ace-window' to select the window by using window index.
 WIN-ID : Window index."
+  (require 'ace-window)
   (let ((wnd (nth win-id (aw-window-list))))
     (when wnd
       (select-window wnd)
