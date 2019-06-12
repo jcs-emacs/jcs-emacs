@@ -21,7 +21,8 @@
 (setq package-enable-at-startup nil)
 
 ;; initialize package.el
-(package-initialize)
+(when (version< emacs-version "27.0")
+  (package-initialize))
 
 ;;-----------------------------------------------------------
 ;;-----------------------------------------------------------
