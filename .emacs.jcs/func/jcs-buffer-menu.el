@@ -4,7 +4,7 @@
 
 
 ;;;###autoload
-(defun jcs-refresh-buffer-menu-buffer ()
+(defun jcs-buffer-menu-refresh-buffer ()
   "Update buffer menu buffer."
   (interactive)
   (save-selected-window
