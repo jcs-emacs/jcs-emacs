@@ -37,6 +37,16 @@ Else we just return `buffer-file-name' if available."
   "Check if the buffer BUF-NAME exists."
   (get-buffer buf-name))
 
+(defun jcs-valid-buffers-in-buffer-list ()
+  "See how many valid buffers in the `buffer-list'.
+Excluding buffers like `*GNU Emacs*', `*scratch*', etc.
+Return number of the valid buffers."
+  (let ((cnt 0))
+    (dolist (buf (buffer-list))
+      (when (buffer-file-name buf)
+        (setq cnt (1+ cnt))))
+    cnt))
+
 ;;---------------------------------------------
 ;; Compile
 ;;---------------------------------------------
