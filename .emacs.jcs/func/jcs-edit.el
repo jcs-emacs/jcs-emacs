@@ -808,7 +808,7 @@ ARG : Match with `save-buffer' command."
   (kill-this-buffer)
 
   ;; Refresh buffer menu once.
-  (jcs-refresh-buffer-menu-buffer)
+  (jcs-buffer-menu-refresh-buffer)
 
   ;; If still in the buffer menu, try switch to the
   ;; previous buffer
@@ -829,30 +829,30 @@ ECP-SAME : Exception for the same buffer."
             ;;(jcs-is-current-major-mode-p "Buffer-menu-mode")
             )
         (jcs-switch-to-previous-buffer)
-      (progn
-        (jcs-kill-this-buffer)
-        (setq is-killed t)
+      (jcs-kill-this-buffer)
+      (setq is-killed t)
 
-        ;; NOTE: After kill the buffer, if the buffer
-        ;; appear in multiple windows then we do switch to
-        ;; previous buffer again. Hence, it will not show
-        ;; repeated buffer at the same time in different windows.
-        (when (and (>= (jcs-buffer-showns (buffer-name)) 2)
-                   (not ecp-same))
-          (jcs-switch-to-previous-buffer)
+      ;; NOTE: After kill the buffer, if the buffer
+      ;; appear in multiple windows then we do switch to
+      ;; previous buffer again. Hence, it will not show
+      ;; repeated buffer at the same time in different windows.
+      (when (and (>= (jcs-buffer-showns (buffer-name)) 2)
+                 (not ecp-same))
+        (jcs-switch-to-previous-buffer)
 
-          ;; If is something from default Emacs's buffer,
-          ;; switch back to previous buffer once again.
-          ;;
-          ;; This will solve if there is only one file opened,
-          ;; and switch to none sense buffer issue.
-          ;;
-          ;; None sense buffer or Emacs's default buffer is
-          ;;   -> *GNU Emacs*
-          ;;   -> *scratch*
-          ;;   , etc.
-          (unless (buffer-file-name)
-            (jcs-switch-to-previous-buffer)))))
+        ;; If is something from default Emacs's buffer,
+        ;; switch back to previous buffer once again.
+        ;;
+        ;; This will solve if there is only one file opened,
+        ;; and switch to none sense buffer issue.
+        ;;
+        ;; None sense buffer or Emacs's default buffer is
+        ;;   -> *GNU Emacs*
+        ;;   -> *scratch*
+        ;;   , etc.
+        (when (and (not (buffer-file-name))
+                   (not (= (jcs-valid-buffers-in-buffer-list) 0)))
+          (jcs-switch-to-previous-buffer))))
     is-killed))
 
 ;;;###autoload
