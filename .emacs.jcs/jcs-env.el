@@ -180,9 +180,8 @@ can see the error/operation message.")
 
 (defun jcs-advice-recentf-track-opened-file-after ()
   "Advice after execute `recentf-track-opened-file' command."
-  ;; NOTE: Update dashboard after recent file
-  ;; list changes.
-  (jcs-refresh-dashboard-buffer))
+  ;; NOTE: Update dashboard after recent file list changes.
+  (jcs-dashboard-refresh-buffer))
 (advice-add 'recentf-track-opened-file :after #'jcs-advice-recentf-track-opened-file-after)
 
 ;;; Read Only
