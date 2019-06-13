@@ -5,6 +5,7 @@
 
 (require 'yaml-mode)
 
+(require 'jcs-python-func)
 (require 'jcs-yaml-func)
 
 
