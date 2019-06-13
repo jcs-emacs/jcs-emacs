@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://travis-ci.com/jcs090218/jcs-emacs-ini"><img src="https://travis-ci.com/jcs090218/jcs-emacs-init.svg?branch=master" alt="Build Status"></a>
+  <a href="https://travis-ci.com/jcs090218/jcs-emacs-init"><img src="https://travis-ci.com/jcs090218/jcs-emacs-init.svg?branch=master" alt="Build Status"></a>
   <a href="https://opensource.org/licenses/BSD-2-Clause"><img src="https://img.shields.io/badge/License-BSD%202--Clause-orange.svg" alt="License"></a>
 </p>
 
