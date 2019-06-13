@@ -390,8 +390,8 @@
   (define-key dashboard-mode-map (kbd "<up>") #'jcs-previous-line)
   (define-key dashboard-mode-map (kbd "<down>") #'jcs-next-line)
   (define-key dashboard-mode-map (kbd "C-p") #'package-list-packages)
-  (define-key dashboard-mode-map (kbd "M-k") #'jcs-maybe-kill-dashboard-buffer)
-  (define-key dashboard-mode-map (kbd "M-K") #'jcs-refresh-dashboard-buffer))
+  (define-key dashboard-mode-map (kbd "M-k") #'jcs-dashboard-maybe-kill-this-buffer)
+  (define-key dashboard-mode-map (kbd "M-K") #'jcs-dashboard-refresh-buffer))
 
 ;;; Syntax Check
 (define-key global-map (kbd "<f6>") #'jcs-flycheck-mode)
@@ -420,11 +420,11 @@
 
 ;;; Window
 (progn
-  (define-key global-map "\C-xn" #'jcs-new-frame)
-  (define-key global-map "\C-xd" #'delete-frame)  ; delete the external frame.
-  (define-key global-map "\C-xw" #'delete-window)  ; delete current window.
-  (define-key global-map "\C-hh" #'jcs-toggle-window-split-hv)
-  (define-key global-map "\C-we" #'jcs-toggle-enlarge-window-selected)
+  (define-key global-map (kbd "C-x n") #'jcs-new-frame)
+  (define-key global-map (kbd "C-x d") #'delete-frame)  ; delete the external frame.
+  (define-key global-map (kbd "C-x w") #'delete-window)  ; delete current window.
+  (define-key global-map (kbd "C-h h") #'jcs-toggle-window-split-hv)
+  (define-key global-map (kbd "C-w e") #'jcs-toggle-enlarge-window-selected)
   (define-key global-map (kbd "C-\\") #'split-window-horizontally))
 
 ;;; Window Navigation
