@@ -14,8 +14,9 @@
 (defun jcs-focus-in-hook ()
   "When window is focus."
   (jcs-revert-all-file-buffers)
-
-  (jcs-dashboard-refresh-buffer)
+  (let ((message-log-max nil)
+        (inhibit-message t))
+    (jcs-dashboard-refresh-buffer))
   )
 (add-hook 'focus-in-hook 'jcs-focus-in-hook)
 
