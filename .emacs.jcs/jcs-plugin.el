@@ -360,7 +360,12 @@
 
 (use-package projectile
   :defer t
-  :diminish projectile-mode)
+  :diminish projectile-mode
+  :init
+  (setq projectile-current-project-on-switch 'keep)
+  :config
+  (add-hook 'projectile-after-switch-project-hook
+            #'jcs-dashboard-refresh-buffer))
 
 
 (use-package reload-emacs
