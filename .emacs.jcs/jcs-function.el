@@ -68,7 +68,7 @@
 ;;----------------------------------------------
 
 ;;;###autoload
-(defun jcs-refresh-dashboard-buffer ()
+(defun jcs-dashboard-refresh-buffer ()
   "Update dashboard buffer by killing it and start a new one."
   (interactive)
   (when (boundp 'dashboard-buffer-name)
@@ -91,11 +91,11 @@
           (setq index (1+ index)))))))
 
 ;;;###autoload
-(defun jcs-maybe-kill-dashboard-buffer ()
+(defun jcs-dashboard-maybe-kill-this-buffer ()
   "Kill the dashboard buffer then open the new one immediately."
   (interactive)
   (jcs-maybe-kill-this-buffer)
-  (jcs-refresh-dashboard-buffer))
+  (jcs-dashboard-refresh-buffer))
 
 ;;;###autoload
 (defun jcs-reset-dashboard-banner-by-theme ()
@@ -121,7 +121,7 @@
                         nil
                         :weight 'normal
                         :foreground wb-fg))
-  (jcs-refresh-dashboard-buffer))
+  (jcs-dashboard-refresh-buffer))
 
 ;;----------------------------------------------
 ;; Electric Pair
