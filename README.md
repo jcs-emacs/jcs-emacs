@@ -1,13 +1,14 @@
+<p align="center">
+  <img src="./screenshot/logo-shadow.png" width="500" height="253"/>
+</p>
+
 [![Build Status](https://travis-ci.com/jcs090218/jcs-emacs-init.svg?branch=master)](https://travis-ci.com/jcs090218/jcs-emacs-init)
 [![License](https://img.shields.io/badge/License-BSD%202--Clause-orange.svg)](https://opensource.org/licenses/BSD-2-Clause)
 
 
+
 # jcs-emacs-init
 > An Emacs configuration bundle.
-
-<p align="center">
-  <img src="./screenshot/logo-shadow.png" width="500" height="253"/>
-</p>
 
 This is Jen-Chieh Shen's emacs configuration. Repeatedly utilized 
 and modified since 2015. Hopefully this will help someone who is 
