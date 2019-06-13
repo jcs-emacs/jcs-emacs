@@ -178,11 +178,8 @@ can see the error/operation message.")
 ;;; Recent Files
 (setq recentf-max-menu-items 25)
 
-(defun jcs-advice-recentf-track-opened-file-after ()
-  "Advice after execute `recentf-track-opened-file' command."
-  ;; NOTE: Update dashboard after recent file list changes.
-  (jcs-dashboard-refresh-buffer))
-(advice-add 'recentf-track-opened-file :after #'jcs-advice-recentf-track-opened-file-after)
+(advice-add 'recentf-track-opened-file
+            :after #'jcs-dashboard-refresh-buffer)
 
 ;;; Read Only
 (defvar jcs-find-file-read-only-paths '("/.emacs.d/elisp/"
