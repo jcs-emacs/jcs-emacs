@@ -4,6 +4,7 @@
 
 <p align="center">
   <a href="https://travis-ci.com/jcs090218/jcs-emacs-init"><img src="https://travis-ci.com/jcs090218/jcs-emacs-init.svg?branch=master" alt="Build Status"></a>
+  <a href="https://github.com/jcs090218/jcs-emacs-init/releases/latest"><img src="https://img.shields.io/github/tag/jcs090218/jcs-emacs-init.svg?label=release" alt="Release Tag"></a>
   <a href="https://opensource.org/licenses/BSD-2-Clause"><img src="https://img.shields.io/badge/License-BSD%202--Clause-orange.svg" alt="License"></a>
 </p>
 
