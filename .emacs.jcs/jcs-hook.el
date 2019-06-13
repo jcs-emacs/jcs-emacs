@@ -150,6 +150,9 @@
   (jcs-reload-file-info)
   (jcs-reload-docstring-info)
 
+  ;; Font Size
+  (set-face-attribute 'default nil :height jcs-default-font-size)
+
   ;; Frame Title
   (setq frame-title-format
         (list (format "%s %%S: %%j " (system-name))
