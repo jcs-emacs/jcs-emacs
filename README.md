@@ -6,7 +6,7 @@
 > An Emacs configuration bundle.
 
 <p align="center">
-  <img src="./screenshot/logo.png"/>
+  <img src="./screenshot/logo-shadow.png" width="500" height="253"/>
 </p>
 
 This is Jen-Chieh Shen's emacs configuration. Repeatedly utilized 
