@@ -15,7 +15,7 @@
   "When window is focus."
   (jcs-revert-all-file-buffers)
 
-  (jcs-refresh-dashboard-buffer)
+  (jcs-dashboard-refresh-buffer)
   )
 (add-hook 'focus-in-hook 'jcs-focus-in-hook)
 
