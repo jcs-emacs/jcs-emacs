@@ -5,6 +5,10 @@
 # jcs-emacs-init
 > An Emacs configuration bundle.
 
+<p align="center">
+  <img src="./screenshot/logo.png"/>
+</p>
+
 This is Jen-Chieh Shen's emacs configuration. Repeatedly utilized 
 and modified since 2015. Hopefully this will help someone who is 
 new or struggling with Emacs. This configuration should works on 
