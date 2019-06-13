@@ -34,7 +34,7 @@
                                            (buffer-file-name))
                (not jcs-package-installing))
       (read-only-mode 1))
-    (jcs-refresh-buffer-menu-buffer)
+    (jcs-buffer-menu-refresh-buffer)
     (jcs-active-line-numbers-by-mode))
   )
 (add-hook 'find-file-hook 'jcs-find-file-hook)
