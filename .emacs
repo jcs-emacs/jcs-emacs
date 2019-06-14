@@ -125,13 +125,13 @@
 (require 'jcs-function)
 
 ;;; Environment
+(require 'jcs-file)
 (require 'jcs-dev)
 (require 'jcs-env)
 (require 'jcs-theme)
 (require 'jcs-plugin)
 
 ;;; Customize
-(require 'jcs-file)
 (require 'jcs-template)
 (require 'jcs-mode)
 
