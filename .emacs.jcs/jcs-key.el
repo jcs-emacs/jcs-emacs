@@ -184,9 +184,9 @@
   (define-key esup-mode-map (kbd "C-y") #'undo-tree-redo))
 
 ;;; File Explorer
+(define-key global-map (kbd "C-M-l") #'jcs-sr-speedbar-toggle)  ;; Compatible to `Visual Studio'.
+(define-key global-map (kbd "C-b") #'jcs-sr-speedbar-toggle)    ;; Compatible to `VS Code'.
 (with-eval-after-load 'sr-speedbar
-  (define-key global-map (kbd "C-M-l") #'jcs-sr-speedbar-toggle)  ;; Compatible to `Visual Studio'.
-  (define-key global-map (kbd "C-b") #'jcs-sr-speedbar-toggle)    ;; Compatible to `VS Code'.
   (define-key speedbar-mode-map (kbd "<backspace>") #'speedbar-up-directory)
   (define-key speedbar-mode-map (kbd "<return>") #'jcs-speedbar-edit-line)
   (define-key speedbar-mode-map (kbd "<f2>") #'speedbar-item-rename))
