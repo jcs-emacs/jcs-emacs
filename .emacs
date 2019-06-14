@@ -131,8 +131,8 @@
 (require 'jcs-plugin)
 
 ;;; Customize
-(require 'jcs-corresponding-file)
-(require 'jcs-file-info-format)
+(require 'jcs-file)
+(require 'jcs-template)
 (require 'jcs-mode)
 
 ;;; Finalize
