@@ -73,8 +73,9 @@ We need a title to present which file to select."
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 ;;;###autoload
-(defun jcs-find-corresponding-file ()
-  "Find the file that corresponds to this one."
+(defun jcs-find-corresponding-file (&optional ow)
+  "Find the file that corresponds to this one.
+OW : Open file other window."
   (interactive)
   (let ((corresponding-file-name "")
         (found-filepath nil))
@@ -105,16 +106,16 @@ We need a title to present which file to select."
           (setq found-filepath
                 (jcs-find-file-in-project-and-current-dir corresponding-file-name
                                                           "Corresponding file: "))
-          (find-file found-filepath))
+          (if ow
+              (find-file-other-window found-filepath)
+            (find-file found-filepath)))
       (error "Unable to find a corresponding file.."))))
 
 ;;;###autoload
 (defun jcs-find-corresponding-file-other-window ()
   "Find the file that corresponds to this one."
   (interactive)
-  (find-file-other-window buffer-file-name)
-  (jcs-find-corresponding-file)
-  (other-window -1))
+  (jcs-find-corresponding-file t))
 
 
 ;;-----------------------------------------------------------
@@ -124,7 +125,7 @@ We need a title to present which file to select."
 (defun jcs-cc-corresponding-file ()
   "Find the corresponding file for C/C++ file."
   (let ((corresponding-file-name "")
-        (tmp-base-file-name (file-name-sans-extension (buffer-name))))
+        (tmp-base-file-name (f-filename (file-name-sans-extension (buffer-name)))))
     (cond ((string-match "\\.hin" buffer-file-name)
            (progn
              (setq corresponding-file-name (concat tmp-base-file-name ".cin"))))
