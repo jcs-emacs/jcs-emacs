@@ -25,10 +25,6 @@
   ;; corresponding file.
   (define-key c++-mode-map [f7] #'jcs-same-file-other-window)
 
-  ;; Alternate bindings for F-keyless setups (ie MacOS X terminal)
-  (define-key c++-mode-map "\ec" #'jcs-find-corresponding-file)
-  (define-key c++-mode-map "\eC" #'jcs-find-corresponding-file-other-window)
-
   (define-key c++-mode-map "\ej" #'imenu)
 
   (define-key c++-mode-map "\e." #'c-fill-paragraph)
