@@ -239,7 +239,8 @@
   (define-key global-map [S-f12] #'jcs-helm-gtags-to-def-dec-other-window))
 
 ;;; Help
-(define-key help-mode-map (kbd "C-c C-c") #'kill-ring-save)
+(with-eval-after-load 'help-mode
+  (define-key help-mode-map (kbd "C-c C-c") #'kill-ring-save))
 
 ;;; Impatient Mode
 (define-key global-map (kbd "C-w o") #'jcs-httpd-start)
