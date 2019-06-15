@@ -26,7 +26,7 @@
 ;; NOTE: Raise the `GC' threshold when starting Emacs.
 (setq gc-cons-threshold jcs-init-gc-cons-threshold)
 
-(defconst jcs-emacs-version-number "5.4.7"
+(defconst jcs-emacs-version-number "5.4.9"
   "JCS-Emacs version.")
 
 ;;;###autoload
