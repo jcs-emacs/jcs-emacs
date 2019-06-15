@@ -200,6 +200,10 @@
 (use-package helm-gtags
   :defer t
   :diminish helm-gtags-mode
+  :init
+  ;;(setq helm-gtags-path-style 'relative)
+  (setq helm-gtags-ignore-case t)
+  (setq helm-gtags-auto-update t)
   :config
   ;; Enable helm-gtags-mode
   (add-hook 'asm-mode-hook 'helm-gtags-mode)
@@ -209,13 +213,7 @@
   (add-hook 'jayces-mode-hook 'helm-gtags-mode)
   (add-hook 'js2-mode-hook 'helm-gtags-mode)
   (add-hook 'lua-mode-hook 'helm-gtags-mode)
-  (add-hook 'nasm-mode-hook 'helm-gtags-mode)
-
-  ;; customize 'helm-gtags' plugin
-  (custom-set-variables
-   '(helm-gtags-path-style 'relative)
-   '(helm-gtags-ignore-case t)
-   '(helm-gtags-auto-update t)))
+  (add-hook 'nasm-mode-hook 'helm-gtags-mode))
 
 
 (use-package hl-todo
