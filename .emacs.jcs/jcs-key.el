@@ -421,7 +421,7 @@
 
 ;;; Window
 (progn
-  (define-key global-map (kbd "C-x n") #'jcs-new-frame)
+  (define-key global-map (kbd "C-x n") #'make-frame)
   (define-key global-map (kbd "C-x d") #'delete-frame)  ; delete the external frame.
   (define-key global-map (kbd "C-x w") #'delete-window)  ; delete current window.
   (define-key global-map (kbd "C-h h") #'jcs-toggle-window-split-hv)
