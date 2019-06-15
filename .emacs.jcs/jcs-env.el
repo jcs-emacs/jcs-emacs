@@ -115,6 +115,10 @@
 ;;; Electric Pair
 (electric-pair-mode 1)
 
+;;; Error Handling
+(advice-add 'keyboard-quit :before #'jcs-reload-active-mode)
+(advice-add 'top-level :before #'jcs-reload-active-mode)
+
 ;;; Font Size
 (defconst jcs-default-font-size 160
   "Default font size, the value is in 1/10pt, so 100 will give you 10pt, etc.")
