@@ -130,7 +130,7 @@
 
 ;;; Language Environment
 (prefer-coding-system 'utf-8)
-(set-language-environment "UTF-8")
+(defconst jcs-language-environment "UTF-8" "Default language environment.")
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)

@@ -76,6 +76,7 @@
     (require 'line-reminder)
     (require 'powerline)
     (require 'preproc-font-lock)
+    (require 'region-occurrences-highlighter)
     (require 'reload-emacs)
     (require 'right-click-context)
     (require 'shift-select)
@@ -149,6 +150,9 @@
 
   (jcs-reload-file-info)
   (jcs-reload-docstring-info)
+
+  ;; Language Environment
+  (set-language-environment jcs-language-environment)
 
   ;; Font Size
   (set-face-attribute 'default nil :height jcs-default-font-size)
