@@ -101,6 +101,7 @@
                                    projectile
                                    python-mode
                                    rainbow-mode
+                                   region-occurrences-highlighter
                                    restart-emacs
                                    right-click-context
                                    rust-mode
