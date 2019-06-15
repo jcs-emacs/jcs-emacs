@@ -82,9 +82,7 @@
     (helm-gtags-update-tags)
 
     ;; goto definition or declaration.
-    (helm-gtags-find-tag-from-here))
-
-  (jcs-reload-active-mode))
+    (helm-gtags-find-tag-from-here)))
 
 ;;;###autoload
 (defun jcs-helm-gtags-to-def-dec-other-window ()
@@ -96,14 +94,11 @@ in other window."
     ;; can update all files with C-u prefix.
     (helm-gtags-update-tags)
 
-    ;; NOTE: this will make it jump to next window.
-    ;; Is stupid, but work.
-    (ignore-errors (helm-gtags-find-tag-other-window nil))
-
     ;; goto definition or declaration.
-    (helm-gtags-find-tag-from-here))
-
-  (jcs-reload-active-mode))
+    (when (helm-gtags-find-tag-from-here)
+      (jcs-same-file-other-window)
+      (previous-buffer)
+      (other-window 1))))
 
 
 (provide 'jcs-helm-func)
