@@ -107,13 +107,13 @@
   (diminish 'abbrev-mode)
   (use-package auto-rename-tag :diminish auto-rename-tag-mode :defer t)
   (use-package beacon :diminish beacon-mode :defer t)
-  (use-package face-remap :diminish buffer-face-mode)
+  (use-package face-remap :diminish buffer-face-mode :defer t)
   (diminish 'eldoc-mode)
   (use-package impatient-mode :diminish impatient-mode :defer t)
   (use-package line-reminder :diminish line-reminder-mode :defer t)
   (diminish 'outline-minor-mode)
   (diminish 'overwrite-mode)
-  (use-package page-break-lines :diminish page-break-lines-mode))
+  (use-package page-break-lines :diminish page-break-lines-mode :defer t))
 
 
 (use-package dimmer
@@ -364,6 +364,18 @@
   :config
   (add-hook 'projectile-after-switch-project-hook
             #'jcs-dashboard-refresh-buffer))
+
+
+(use-package region-occurrences-highlighter
+  :defer t
+  :init
+  (setq region-occurrences-highlighter-min-size 1)
+  :config
+  (set-face-attribute 'region-occurrences-highlighter-face
+                      nil
+                      :background "blue"
+                      :inverse-video nil)
+  (add-hook 'prog-mode-hook #'region-occurrences-highlighter-mode))
 
 
 (use-package reload-emacs
