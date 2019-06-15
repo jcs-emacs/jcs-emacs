@@ -183,29 +183,45 @@
     ;; TODO: Weird bug here..
     (dimmer-process-all)))
 
+(defun jcs-set-theme (fgc bgc cc hlc)
+  "Setup the theme."
+  (jcs-walk-through-all-frames-once
+   (lambda ()
+     (set-foreground-color fgc)
+     (set-background-color bgc)
+     (set-cursor-color cc)
+     (set-face-background 'hl-line hlc)
+     (jcs-reset-plugins-base-on-theme))))
+
 ;;;###autoload
 (defun jcs-vs-light-theme ()
   "Visual Studio IDE light theme."
   (interactive)
-  (set-foreground-color "#000000")
-  (set-background-color "#FFFFFF")
-  (set-cursor-color "midnight blue")
-  (set-face-background 'hl-line "#40FF40")
-  (jcs-reset-plugins-base-on-theme))
+  (jcs-set-theme "#000000"
+                 "#FFFFFF"
+                 "midnight blue"
+                 "#40FF40"))
 
 ;;;###autoload
 (defun jcs-vs-dark-theme ()
   "Visual Studio IDE dark theme."
   (interactive)
-  (set-foreground-color "#D2D2D2")
-  (set-background-color "#161616")
-  (set-cursor-color "#40FF40")
-  (set-face-background 'hl-line "midnight blue")
-  (jcs-reset-plugins-base-on-theme))
+  (jcs-set-theme "#D2D2D2"
+                 "#161616"
+                 "#40FF40"
+                 "midnight blue"))
+
+;;;###autoload
+(defun jcs-refresh-theme ()
+  "Refresh theme."
+  (interactive)
+  (if (jcs-is-light-color (face-background 'default))
+      (jcs-vs-light-theme)
+    (jcs-vs-dark-theme)))
 
 ;;;###autoload
 (defun jcs-setup-default-theme ()
-  "Set default Theme Color."
+  "Set default theme color."
   (interactive)
   (jcs-vs-dark-theme))
 
