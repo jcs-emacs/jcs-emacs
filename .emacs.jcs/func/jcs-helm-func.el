@@ -83,6 +83,7 @@
 
     ;; goto definition or declaration.
     (helm-gtags-find-tag-from-here))
+
   (jcs-reload-active-mode))
 
 ;;;###autoload
