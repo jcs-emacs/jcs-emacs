@@ -7,25 +7,17 @@
 ;; TOPIC: How to preserve color in *Messages* buffer?
 ;; SOURCE: https://emacs.stackexchange.com/questions/20171/how-to-preserve-color-in-messages-buffer
 ;;
-(defun jcs-message (format &rest args)
+(defun jcs-message (fmt &rest args)
   "Acts like `message' but preserves string properties in the *Messages* buffer.
-FORMAT : output format.
+FMT : output format.
 ARGS : arguments."
   (let ((message-log-max nil))
-    (apply 'message format args))
+    (apply 'message fmt args))
   (with-current-buffer (get-buffer "*Messages*")
     (save-excursion
       (goto-char (point-max))
       (let ((inhibit-read-only t))
-        (unless (zerop (current-column))
-          ;; NOTE: no line break for this implementation.
-          ;;(insert "\n")
-          )
-        (insert (apply 'format format args))
-        ;; NOTE: no line break for this implementation.
-        ;;(insert "\n")
-        )))
-  ;; NOTE: Do some stuff after logging message.
+        (insert (apply 'format fmt args)))))
   (jcs-do-after-log-action))
 
 
@@ -37,56 +29,32 @@ ARGS : arguments."
     (when (string= (buffer-name) "*Messages*")
       (goto-char (point-max)))))
 
-(defun jcs-log (format &rest args)
+
+(defun jcs--log (title clean fmt &rest args)
   "Log a log message.
-FORMAT : output format.
+FMT : output format.
 ARGS : arguments."
+  (when clean
+    (save-selected-window
+      (unless (string= (buffer-name) "*Messages*")
+        (jcs-ensure-switch-to-buffer-other-window "*Messages*"))
+      (jcs-message-erase-buffer-stay)))
   (jcs-message "\n$=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=$\n")
-  (jcs-message "$ Log : ")
-  (ignore-errors
-    (let ((message-log-max nil))
-      (apply 'message format args))
-    (with-current-buffer (get-buffer "*Messages*")
-      (save-excursion
-        (goto-char (point-max))
-        (let ((inhibit-read-only t))
-          (unless (zerop (current-column)))
-          (insert (apply 'format format args))))))
+  (jcs-message "$ %s : %s" title (apply 'format fmt args))
   (jcs-message "\n$=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=$\n"))
 
-(defun jcs-error (format &rest args)
-  "Log a error message.
-FORMAT : output format.
-ARGS : arguments."
-  (jcs-message "\n$=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=$\n")
-  (jcs-message "$ Error : ")
-  (ignore-errors
-    (let ((message-log-max nil))
-      (apply 'message format args))
-    (with-current-buffer (get-buffer "*Messages*")
-      (save-excursion
-        (goto-char (point-max))
-        (let ((inhibit-read-only t))
-          (unless (zerop (current-column)))
-          (insert (apply 'format format args))))))
-  (jcs-message "\n$=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=$\n"))
 
-(defun jcs-warning (format &rest args)
-  "Log a warning message.
-FORMAT : output format.
+(defun jcs-log (fmt &rest args)
+  "Log a log message.
+FMT : output format.
 ARGS : arguments."
-  (jcs-message "\n$=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=$\n")
-  (jcs-message "$ Warning : ")
-  (ignore-errors
-    (let ((message-log-max nil))
-      (apply 'message format args))
-    (with-current-buffer (get-buffer "*Messages*")
-      (save-excursion
-        (goto-char (point-max))
-        (let ((inhibit-read-only t))
-          (unless (zerop (current-column)))
-          (insert (apply 'format format args))))))
-  (jcs-message "\n$=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=$\n"))
+  (apply 'jcs--log "Log" nil fmt args))
+
+(defun jcs-log-clean (fmt &rest args)
+  "Log a log message.
+FMT : output format.
+ARGS : arguments."
+  (apply 'jcs--log "Log" t fmt args))
 
 
 (defun jcs-log-list (list &optional in-prefix-msg in-val-del)
