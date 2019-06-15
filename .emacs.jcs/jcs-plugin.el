@@ -369,7 +369,6 @@
 
 (use-package region-occurrences-highlighter
   :defer t
-  :diminish region-occurrences-highlighter-mode
   :init
   (setq region-occurrences-highlighter-min-size 1)
   :config
