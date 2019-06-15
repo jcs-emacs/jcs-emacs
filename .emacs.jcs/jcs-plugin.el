@@ -105,6 +105,7 @@
   :defer t
   :config
   (diminish 'abbrev-mode)
+  (diminish 'auto-fill-mode)
   (use-package auto-rename-tag :diminish auto-rename-tag-mode :defer t)
   (use-package beacon :diminish beacon-mode :defer t)
   (use-package face-remap :diminish buffer-face-mode :defer t)
@@ -368,6 +369,7 @@
 
 (use-package region-occurrences-highlighter
   :defer t
+  :diminish region-occurrences-highlighter-mode
   :init
   (setq region-occurrences-highlighter-min-size 1)
   :config
