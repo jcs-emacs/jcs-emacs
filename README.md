@@ -7,6 +7,7 @@
   <a href="https://www.gnu.org/software/emacs/download.html"><img src="https://img.shields.io/badge/Emacs-26.2-blue.svg" alt="Emacs"></a>
   <a href="https://github.com/jcs090218/jcs-emacs-init/releases/latest"><img src="https://img.shields.io/github/tag/jcs090218/jcs-emacs-init.svg?label=release" alt="Release Tag"></a>
   <a href="https://opensource.org/licenses/BSD-2-Clause"><img src="https://img.shields.io/badge/License-BSD%202--Clause-orange.svg" alt="License"></a>
+  <a href="https://www.paypal.me/jcs090218"><img alt="Support me" src="https://img.shields.io/badge/Support%20Me-%F0%9F%92%97-ff69b4.svg"></a>
 </p>
 
 
