@@ -375,7 +375,7 @@
   :config
   (set-face-attribute 'region-occurrences-highlighter-face
                       nil
-                      :background "blue"
+                      :background "#113D6F"
                       :inverse-video nil)
   (add-hook 'prog-mode-hook #'region-occurrences-highlighter-mode))
 
