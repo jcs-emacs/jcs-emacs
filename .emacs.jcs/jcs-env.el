@@ -123,6 +123,10 @@
 (defconst jcs-default-font-size 160
   "Default font size, the value is in 1/10pt, so 100 will give you 10pt, etc.")
 
+;; Frame
+(set-frame-parameter (selected-frame) 'alpha '(100 . 100))
+(add-to-list 'default-frame-alist '(alpha . (100 . 100)))
+
 ;;; Highlight Select Region
 (transient-mark-mode t)
 
@@ -198,16 +202,11 @@ can see the error/operation message.")
 ;;(setq scroll-preserve-screen-position 'always)
 
 ;;; Shift Select
-;; NOTE: This act weird, does not make it works
-;; like other editor.
+;; NOTE: This act weird, does not make it works like other editor.
 (setq shift-select-mode nil)
 
 ;;; Smooth scroll
 (setq scroll-step 2)
-
-;;; Splash Screen
-;;(setq fancy-splash-image t)
-;;(setq fancy-splash-image-file "~/.emacs.d/splash_screen.png")
 
 ;;; Startup windowing
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
@@ -215,10 +214,6 @@ can see the error/operation message.")
 (setq-default truncate-lines t)
 (setq truncate-partial-width-windows nil)
 (split-window-horizontally)
-
-;; Default frame transparency set here..
-(set-frame-parameter (selected-frame) 'alpha '(100 . 100))
-(add-to-list 'default-frame-alist '(alpha . (100 . 100)))
 
 ;;; Tab / Space
 (setq-default indent-tabs-mode nil)          ;; Disable inset tabs, insert space only
