@@ -335,6 +335,11 @@ and
 | XML | [nxml-mode](https://www.emacswiki.org/emacs/NxmlMode) | Major mode for editing XML. | ![Builtin](https://img.shields.io/badge/builtin-n/a-blue.svg) |
 | YAML | [yaml-mode](https://www.emacswiki.org/emacs/YamlMode) | Simple mode to edit YAML. | [![MELPA](https://melpa.org/packages/yaml-mode-badge.svg)](https://melpa.org/#/yaml-mode) |
 
+*P.S. The [awesome-emacs](https://github.com/emacs-tw/awesome-emacs) 
+is a list of Emacs package that you can choose other 
+alternatives to replace any similar packages listed here. 
+Is also a good place to seek and learn what's inside Emacs!*
+
 
 ## Key Bindings
 
