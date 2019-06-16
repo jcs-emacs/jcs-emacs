@@ -178,6 +178,8 @@ VSCode like methods to `mark` and `unmark` multiple cursor.
 
 ## Powered by
 
+### Functionalities
+
 * *Abbreivation Definition* - powered by 
 [project-abbrev](https://github.com/elpa-host/project-abbrev).
 * *Auto Completion* - powered by 
@@ -280,6 +282,56 @@ and
 [undo-tree](https://www.emacswiki.org/emacs/UndoTree).
 * *White Space* - powered by 
 [whitespace](https://www.emacswiki.org/emacs/WhiteSpace).
+
+### Programming Modes
+
+* *ActionScript 2.0 or 3.0* - uses [actionscript-mode](https://github.com/austinhaas/actionscript-mode).
+* *Assembly Language* - uses [nasm-mode](https://github.com/skeeto/nasm-mode).
+* *BASIC* - uses [basic-mode](https://github.com/dykstrom/basic-mode).
+* *Batchfile* - uses [bat-mode](https://www.emacswiki.org/emacs/BatMode).
+* *C* - uses [c-mode](https://www.emacswiki.org/emacs/CcMode).
+* *C++* - uses [c++-mode](https://www.emacswiki.org/emacs/CPlusPlusMode).
+* *C#* - uses [charp-mode](https://www.emacswiki.org/emacs/CSharpMode).
+* *Clojure* - uses [clojure-mode](https://github.com/clojure-emacs/clojure-mode).
+* *CMake* - uses [cmake-mode](https://www.emacswiki.org/emacs/CMakeMode).
+* *COBOL* - uses [cobol-mode](https://www.emacswiki.org/emacs/CobolMode).
+* *CSS* - uses [css-mode](https://github.com/emacs-mirror/emacs/blob/master/lisp/textmodes/css-mode.el).
+* *Dart* - uses [dart-mode](https://github.com/bradyt/dart-mode).
+* *Elixir* - uses [elixir-mode](https://github.com/elixir-editors/emacs-elixir).
+* *Emacs Lisp* - uses [elisp-mode](https://www.emacswiki.org/emacs/EmacsLispMode).
+* *Erlang* - uses [erlang-mode](https://www.emacswiki.org/emacs/ErlangMode).
+* *GLSL* - uses [glsl-mode](https://github.com/jimhourihan/glsl-mode).
+* *Go* - uses [go-mode](https://github.com/dominikh/go-mode.el).
+* *Haskell* - uses [haskell-mode](https://github.com/haskell/haskell-mode).
+* *Haxe* - uses [haxe-mode](https://www.emacswiki.org/emacs/HaxeMode).
+* *HTML* - uses [web-mode](https://github.com/fxbois/web-mode).
+* *INI* - uses [ini-mode](https://www.emacswiki.org/emacs/IniMode).
+* *JSON* - uses [json-mode](https://github.com/joshwnj/json-mode).
+* *Java* - uses [java-mode](https://www.emacswiki.org/emacs/JavaDevelopmentEnvironment).
+* *JavaScript* - uses [js2-mode](https://github.com/mooz/js2-mode).
+* *Lisp* - uses [lisp-mode](https://github.com/emacs-mirror/emacs/blob/master/lisp/emacs-lisp/lisp-mode.el).
+* *Lua* - uses [lua-mode](https://github.com/immerrr/lua-mode).
+* *Makefile* - uses [makefile-mode](https://www.emacswiki.org/emacs/MakefileMode).
+* *Object Pascal (Delphi)* - uses [opascal-mode](https://github.com/jwiegley/emacs-release/blob/master/lisp/progmodes/opascal.el).
+* *Objective-C* - uses [objc-mode](https://www.emacswiki.org/emacs/ObjectiveCMode).
+* *Pascal* - uses [pascal-mode](https://www.emacswiki.org/emacs/PascalMode).
+* *Perl* - uses [perl-mode](https://www.emacswiki.org/emacs/PerlMode).
+* *PHP* - uses [php-mode](https://www.emacswiki.org/emacs/PhpMode).
+* *Properties* - uses [conf-javaprop-mode](http://doc.endlessparentheses.com/Fun/conf-javaprop-mode.html).
+* *Python* - uses [python-mode](https://github.com/emacsmirror/python-mode).
+* *Ruby* - uses [ruby-mode](https://www.emacswiki.org/emacs/RubyMode).
+* *Rust* - uses [rust-mode](https://github.com/rust-lang/rust-mode).
+* *Sass* - uses [ssass-mode](https://github.com/AdamNiederer/ssass-mode).
+* *Scala* - uses [scala-mode](https://github.com/ensime/emacs-scala-mode).
+* *SCSS* - uses [scss-mode](https://github.com/antonj/scss-mode).
+* *Shell script* - uses [sh-mode](https://www.emacswiki.org/emacs/ShMode).
+* *SQL* - uses [sql-mode](https://www.emacswiki.org/emacs/SqlMode).
+* *Swift* - uses [swift-mode](https://github.com/swift-emacs/swift-mode).
+* *TypeScript* - uses [typescript-mode](https://github.com/emacs-typescript/typescript.el).
+* *Verilog* - uses [verilog-mode](https://github.com/veripool/verilog-mode).
+* *Vim script* - uses [vimrc-mode](https://github.com/mcandre/vimrc-mode).
+* *XML* - uses [nxml-mode](https://www.emacswiki.org/emacs/NxmlMode).
+* *YAML* - uses [yaml-mode](https://www.emacswiki.org/emacs/YamlMode).
 
 
 ## Key Bindings
