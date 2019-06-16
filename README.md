@@ -120,7 +120,9 @@ answered by
 ## Features
 
 This is the list of features that are built-in to this 
-configuration. 
+configuration. These features are heavily base on my personal 
+habits, and so these could be very tiny things. But I believed 
+detials make things better and make life smoother.
 
 * [*Auto Install Package*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/auto-install-package) - 
 Automatically installs the package that this config relies on.
