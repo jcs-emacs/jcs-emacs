@@ -211,10 +211,6 @@ VSCode like methods to `mark` and `unmark` multiple cursor.
 [goto-line-preview](https://github.com/elpa-host/goto-line-preview).
 * *Highlight Matched Pairs* - powered by 
 [show-paren-mode](https://www.emacswiki.org/emacs/ShowParenMode).
-* *Recet Files* - powered by 
-[recentf](https://www.emacswiki.org/emacs/RecentFiles).
-* *Regexp* - powered by 
-[re-builder](https://www.emacswiki.org/emacs/ReBuilder).
 * *Line Annotation* - powered by 
 [line-reminder](https://github.com/elpa-host/line-reminder).
 * *Line Numbers* - powered by 
@@ -245,6 +241,10 @@ and
 [ghostscript](https://www.ghostscript.com/index.html).
 * *Project Search* - powered by 
 [projectile](https://github.com/bbatsov/projectile).
+* *Recent Files* - powered by 
+[recentf](https://www.emacswiki.org/emacs/RecentFiles).
+* *Regexp* - powered by 
+[re-builder](https://www.emacswiki.org/emacs/ReBuilder).
 * *Reload Emacs* - powered by 
 [reload-emacs](https://github.com/alt-elpa/reload-emacs).
 * *Restart Emacs* - powered by 
