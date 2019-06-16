@@ -341,6 +341,7 @@ certain extension.
 | Python | [python-mode](https://github.com/emacsmirror/python-mode) | Python major mode | [![MELPA](https://melpa.org/packages/python-mode-badge.svg)](https://melpa.org/#/python-mode) |
 | Ruby | [ruby-mode](https://www.emacswiki.org/emacs/RubyMode) | Major mode for editing Ruby code. | ![Builtin](https://img.shields.io/badge/builtin-1.2-blue.svg) |
 | Rust | [rust-mode](https://github.com/rust-lang/rust-mode) | A major emacs mode for editing Rust source code | [![MELPA](https://melpa.org/packages/rust-mode-badge.svg)](https://melpa.org/#/rust-mode) |
+| Shader | [shader-mode](https://github.com/midnightSuyama/shader-mode) | Major mode for shader | [![MELPA](https://melpa.org/packages/shader-mode-badge.svg)](https://melpa.org/#/shader-mode) |
 | Sass | [ssass-mode](https://github.com/AdamNiederer/ssass-mode) | Edit Sass without a Turing Machine | [![MELPA](https://melpa.org/packages/ssass-mode-badge.svg)](https://melpa.org/#/ssass-mode) |
 | Scala | [scala-mode](https://github.com/ensime/emacs-scala-mode) | Major mode for editing Scala | [![MELPA](https://melpa.org/packages/scala-mode-badge.svg)](https://melpa.org/#/scala-mode) |
 | SCSS | [scss-mode](https://github.com/antonj/scss-mode) | Major mode for editing SCSS files | [![MELPA](https://melpa.org/packages/scss-mode-badge.svg)](https://melpa.org/#/scss-mode) |
