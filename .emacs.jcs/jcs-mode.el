@@ -273,7 +273,7 @@ control of the editor."
 (with-eval-after-load 'python-mode (require 'jcs-python-mode))
 (with-eval-after-load 'ruby-mode (require 'jcs-ruby-mode))
 (with-eval-after-load 'rust-mode (require 'jcs-rust-mode))
-(with-eval-after-load 'ssass-mode (require 'jcs-sass-mode))
+(with-eval-after-load 'sass-mode (require 'jcs-sass-mode))
 (with-eval-after-load 'scala-mode (require 'jcs-scala-mode))
 (with-eval-after-load 'scss-mode (require 'jcs-scss-mode))
 (with-eval-after-load 'sh-script (require 'jcs-sh-mode))
@@ -411,7 +411,7 @@ PR : pair file `regexp' and file mode `symbol'."
 
 ;;; S
 (progn
-  (jcs-add-auto-mode-alist '("\\.sass'?\\'" . ssass-mode))
+  (jcs-add-auto-mode-alist '("\\.sass'?\\'" . sass-mode))
   (jcs-add-auto-mode-alist '("\\.scala'?\\'" . scala-mode))
   (jcs-add-auto-mode-alist '("\\.scss?\\'" . scss-mode))
   (jcs-add-auto-mode-alist '("\\.sh'?\\'" . sh-mode))
