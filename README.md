@@ -358,6 +358,9 @@ certain extension.
 
 | Language | Mode | Description | Version |
 | --- | --- | --- | --- |
+| gitattributes | [gitattributes-mode](https://github.com/magit/git-modes) | Major mode for editing .gitattributes files | [![MELPA](https://melpa.org/packages/gitattributes-mode-badge.svg)](https://melpa.org/#/gitattributes-mode) |
+| gitconfig | [gitconfig-mode](https://github.com/magit/git-modes) | Major mode for editing .gitconfig files | [![MELPA](https://melpa.org/packages/gitconfig-mode-badge.svg)](https://melpa.org/#/gitconfig-mode) |
+| gitignore | [gitignore-mode](https://github.com/magit/git-modes) | Major mode for editing .gitignore files | [![MELPA](https://melpa.org/packages/gitignore-mode-badge.svg)](https://melpa.org/#/gitignore-mode) |
 | Markdown | [markdown-mode](https://github.com/jrblevin/markdown-mode) | Major mode for Markdown-formatted text | [![MELPA](https://melpa.org/packages/markdown-mode-badge.svg)](https://melpa.org/#/markdown-mode) |
 | Org | [org-mode](https://orgmode.org/) | Outline-based notes management and organizer | ![Builtin](https://img.shields.io/badge/builtin-9.1.9-blue.svg) |
 
