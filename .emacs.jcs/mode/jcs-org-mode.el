@@ -4,8 +4,11 @@
 
 
 (require 'org)
+
+
 ;; No fold when open `org' file.
 (setq org-startup-folded nil)
+
 
 (defun jcs-org-mode-hook ()
   "Org mode hook."

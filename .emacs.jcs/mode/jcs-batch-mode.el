@@ -3,12 +3,15 @@
 ;;; Code:
 
 
+(require 'bat-mode)
+
+
 (defun jcs-batch-script-format ()
   "Format the given file as a Batch file."
   (when (jcs-is-current-file-empty-p)
     (jcs-insert-batch-template)))
 
-(require 'bat-mode)
+
 (defun jcs-batch-mode-hook ()
   "Batch mode hook."
   (electric-pair-mode nil)

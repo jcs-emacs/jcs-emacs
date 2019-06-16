@@ -3,12 +3,15 @@
 ;;; Code:
 
 
+(require 'vimrc-mode)
+
+
 (defun jcs-vim-script-format ()
   "Format the given file as a VimScript file."
   (when (jcs-is-current-file-empty-p)
     (jcs-insert-vimscript-template)))
 
-(require 'vimrc-mode)
+
 (defun jcs-vim-mode-hook ()
   "Vimrc mode hook."
   (abbrev-mode 1)

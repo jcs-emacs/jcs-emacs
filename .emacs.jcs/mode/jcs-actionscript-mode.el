@@ -3,12 +3,15 @@
 ;;; Code:
 
 
+(require 'actionscript-mode)
+
+
 (defun jcs-actionsript-class-format ()
   "Format the given file as a ActionScript file."
   (when (jcs-is-current-file-empty-p)
     (jcs-insert-actionscript-template)))
 
-(require 'actionscript-mode)
+
 (defun jcs-actionscript-mode-hook ()
   "ActionScript mode hook."
   (goto-address-mode 1)

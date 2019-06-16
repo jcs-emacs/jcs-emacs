@@ -3,12 +3,15 @@
 ;;; Code:
 
 
+(require 'jayces-mode)
+
+
 (defun jcs-jayces-class-format ()
   "Format the given file as a JayCeS file."
   (when (jcs-is-current-file-empty-p)
     (jcs-insert-jayces-template)))
 
-(require 'jayces-mode)
+
 (defun jcs-jayces-mode-hook ()
   "JayCeS mode hook."
   (abbrev-mode 1)

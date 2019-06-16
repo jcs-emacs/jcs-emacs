@@ -3,12 +3,15 @@
 ;;; Code:
 
 
+(require 'swift-mode)
+
+
 (defun jcs-swift-format ()
   "Format the given file as a Swift file."
   (when (jcs-is-current-file-empty-p)
     (jcs-insert-swift-template)))
 
-(require 'swift-mode)
+
 (defun jcs-swift-mode-hook ()
   "Swift mode hook."
   (abbrev-mode 1)

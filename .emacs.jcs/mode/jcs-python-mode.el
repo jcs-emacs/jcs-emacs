@@ -3,13 +3,16 @@
 ;;; Code:
 
 
+(require 'python)
+(require 'python-mode)
+
+
 (defun jcs-python-class-format ()
   "Format the given file as a Python file."
   (when (jcs-is-current-file-empty-p)
     (call-interactively #'jcs-ask-python-template)))
 
-(require 'python)
-(require 'python-mode)
+
 (defun jcs-python-mode-hook ()
   "Python mode hook."
   (electric-pair-mode t)

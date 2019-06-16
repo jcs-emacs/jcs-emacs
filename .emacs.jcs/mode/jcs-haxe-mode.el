@@ -3,12 +3,15 @@
 ;;; Code:
 
 
+(require 'haxe-mode)
+
+
 (defun jcs-haxe-script-format ()
   "Format the given file as a Haxe file"
   (when (jcs-is-current-file-empty-p)
     (jcs-insert-haxe-template)))
 
-(require 'haxe-mode)
+
 (defun jcs-haxe-mode-hook ()
   "Haxe mode hook."
   (abbrev-mode 1)

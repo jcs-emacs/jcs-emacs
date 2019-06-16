@@ -4,6 +4,8 @@
 
 
 (require 'markdown-mode)
+
+
 (defun jcs-markdown-mode-hook ()
   "Markdown mode hook."
   (abbrev-mode 1)

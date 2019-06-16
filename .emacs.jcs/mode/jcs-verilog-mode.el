@@ -3,12 +3,15 @@
 ;;; Code:
 
 
+(require 'verilog-mode)
+
+
 (defun jcs-verilog-script-format ()
   "Format the given file as a Verilog file."
   (when (jcs-is-current-file-empty-p)
     (jcs-insert-verilog-template)))
 
-(require 'verilog-mode)
+
 (defun jcs-verilog-mode-hook ()
   "Verilog mode hook."
   (abbrev-mode 1)

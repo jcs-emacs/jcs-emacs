@@ -3,12 +3,15 @@
 ;;; Code:
 
 
+(require 'js2-mode)
+
+
 (defun jcs-javascript-format()
   "JavaScript template format."
   (when (jcs-is-current-file-empty-p)
     (jcs-insert-js-template)))
 
-(require 'js2-mode)
+
 (defun jcs-js-mode-hook ()
   "JavaScript mode hook."
   (setq js2-basic-offset 2)

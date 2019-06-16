@@ -3,12 +3,15 @@
 ;;; Code:
 
 
+(require 'rust-mode)
+
+
 (defun jcs-rust-format ()
   "Format the given file as a Rust file."
   (when (jcs-is-current-file-empty-p)
     (jcs-insert-rust-template)))
 
-(require 'rust-mode)
+
 (defun jcs-rust-mode-hook ()
   "Rust mode hook."
   (abbrev-mode 1)

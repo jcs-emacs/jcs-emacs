@@ -13,7 +13,6 @@
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
 
-
   ;; Normal
   (define-key conf-javaprop-mode-map (kbd "<up>") #'previous-line)
   (define-key conf-javaprop-mode-map (kbd "<down>") #'next-line)

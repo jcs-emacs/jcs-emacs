@@ -3,12 +3,15 @@
 ;;; Code:
 
 
+(require 'scala-mode)
+
+
 (defun jcs-scala-class-format ()
   "Format the given file as a Scala file."
   (when (jcs-is-current-file-empty-p)
     (jcs-insert-scala-template)))
 
-(require 'scala-mode)
+
 (defun jcs-scala-mode-hook ()
   "Scala mode hook."
   (abbrev-mode 1)

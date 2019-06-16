@@ -3,12 +3,15 @@
 ;;; Code:
 
 
+(require 'haskell-mode)
+
+
 (defun jcs-haskell-script-format ()
   "Format the given file as a Haskell file."
   (when (jcs-is-current-file-empty-p)
     (jcs-insert-haskell-template)))
 
-(require 'haskell-mode)
+
 (defun jcs-haskell-mode-hook ()
   "Haskell mode hook."
   (abbrev-mode 1)

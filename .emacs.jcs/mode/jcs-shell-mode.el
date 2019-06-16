@@ -4,6 +4,8 @@
 
 
 (require 'shell)
+
+
 (defun jcs-shell-mode-hook ()
   "Shell mode hook."
 

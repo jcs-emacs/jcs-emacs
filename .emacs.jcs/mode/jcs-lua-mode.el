@@ -3,12 +3,15 @@
 ;;; Code:
 
 
+(require 'lua-mode)
+
+
 (defun jcs-lua-script-format ()
   "Format the given file as a Lua script."
   (when (jcs-is-current-file-empty-p)
     (jcs-insert-lua-template)))
 
-(require 'lua-mode)
+
 (defun jcs-lua-mode-hook ()
   "Lau mode hook."
   (abbrev-mode 1)

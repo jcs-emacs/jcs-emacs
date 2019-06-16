@@ -3,12 +3,15 @@
 ;;; Code:
 
 
+(require 'shader-mode)
+
+
 (defun jcs-shader-format ()
   "Format the given file as a Unity CG Shader script."
   (when (jcs-is-current-file-empty-p)
     (jcs-insert-shader-template)))
 
-(require 'shader-mode)
+
 (defun jcs-shader-mode-hook ()
   "Shader mode hook."
   (abbrev-mode 1)

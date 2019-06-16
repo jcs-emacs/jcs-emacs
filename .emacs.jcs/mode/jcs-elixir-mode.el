@@ -3,12 +3,15 @@
 ;;; Code:
 
 
+(require 'elixir-mode)
+
+
 (defun jcs-elixir-format ()
   "Format the given file as an Elixir file."
   (when (jcs-is-current-file-empty-p)
     (jcs-insert-elixir-template)))
 
-(require 'elixir-mode)
+
 (defun jcs-elixir-mode-hook ()
   "Elixir mode hook."
   (abbrev-mode 1)

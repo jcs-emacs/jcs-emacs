@@ -8,6 +8,7 @@
   (when (jcs-is-current-file-empty-p)
     (jcs-insert-text-template)))
 
+
 (defun jcs-text-mode-hook ()
   "Text mode hook."
   (goto-address-mode 1)

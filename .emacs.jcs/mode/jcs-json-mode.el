@@ -5,6 +5,7 @@
 
 (require 'json-reformat)
 (require 'json-snatcher)
+(require 'json-mode)
 
 
 (defun jcs-json-format()
@@ -14,7 +15,7 @@
     ;; Comment will be treat as a data too...
     ))
 
-(require 'json-mode)
+
 (defun jcs-json-mode-hook ()
   "JSON mode hook."
 

@@ -3,12 +3,15 @@
 ;;; Code:
 
 
+(require 'ruby-mode)
+
+
 (defun jcs-ruby-script-format ()
   "Format the given file as a Ruby script."
   (when (jcs-is-current-file-empty-p)
     (jcs-insert-ruby-template)))
 
-(require 'ruby-mode)
+
 (defun jcs-ruby-mode-hook ()
   "Ruby mode hook."
   (abbrev-mode 1)

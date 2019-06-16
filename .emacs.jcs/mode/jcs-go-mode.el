@@ -3,12 +3,15 @@
 ;;; Code:
 
 
+(require 'go-mode)
+
+
 (defun jcs-go-script-format ()
   "Format the given file as a GO file."
   (when (jcs-is-current-file-empty-p)
     (jcs-insert-go-template)))
 
-(require 'go-mode)
+
 (defun jcs-go-mode-hook ()
   "Go mode hook."
   (abbrev-mode 1)

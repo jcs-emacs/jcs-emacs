@@ -3,12 +3,15 @@
 ;;; Code:
 
 
+(require 'dart-mode)
+
+
 (defun jcs-dart-script-format ()
   "Format the given file as a Dart script."
   (when (jcs-is-current-file-empty-p)
     (jcs-insert-dart-template)))
 
-(require 'dart-mode)
+
 (defun jcs-dart-mode-hook ()
   "Dart mode hook."
   (abbrev-mode 1)

@@ -3,12 +3,15 @@
 ;;; Code:
 
 
+(require 'csharp-mode)
+
+
 (defun jcs-csharp-format ()
   "Format the given file as a C# file."
   (when (jcs-is-current-file-empty-p)
     (jcs-insert-csharp-template)))
 
-(require 'csharp-mode)
+
 (defun jcs-csharp-mode-hook ()
   "CSharp mode hoo."
   (preproc-font-lock-mode t)

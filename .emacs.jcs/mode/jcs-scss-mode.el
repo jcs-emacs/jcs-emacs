@@ -3,12 +3,15 @@
 ;;; Code:
 
 
+(require 'scss-mode)
+
+
 (defun jcs-scss-file-format ()
   "Format the given file as a SCSS file."
   (when (jcs-is-current-file-empty-p)
     (jcs-insert-scss-template)))
 
-(require 'scss-mode)
+
 (defun jcs-scss-mode-hook ()
   "SCSS mode hook."
   (abbrev-mode 1)

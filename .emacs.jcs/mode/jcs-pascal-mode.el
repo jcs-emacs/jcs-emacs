@@ -3,12 +3,15 @@
 ;;; Code:
 
 
+(require 'pascal)
+
+
 (defun jcs-pascal-script-format ()
   "Format the given file as a Pascal script."
   (when (jcs-is-current-file-empty-p)
     (jcs-insert-pascal-template)))
 
-(require 'pascal)
+
 (defun jcs-pascal-mode-hook ()
   "Pascal mode hook."
   (abbrev-mode 1)

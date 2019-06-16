@@ -3,12 +3,15 @@
 ;;; Code:
 
 
+(require 'nxml-mode)
+
+
 (defun jcs-xml-format ()
   "Format the given file as a XML file."
   (when (jcs-is-current-file-empty-p)
     (jcs-insert-xml-template)))
 
-(require 'nxml-mode)
+
 (defun jcs-xml-mode-hook ()
   "XML mode hook."
   (abbrev-mode 1)

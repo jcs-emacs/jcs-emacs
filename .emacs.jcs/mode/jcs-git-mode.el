@@ -4,6 +4,10 @@
 
 
 (require 'gitattributes-mode)
+(require 'gitconfig-mode)
+(require 'gitignore-mode)
+
+
 (defun jcs-gitattributes-mode-hook ()
   "Gitattributes mode hook."
   (electric-pair-mode nil)
@@ -22,7 +26,6 @@
 
 
 
-(require 'gitconfig-mode)
 (defun jcs-gitconfig-mode-hook ()
   "Gitconfig mode hook."
   (electric-pair-mode nil)
@@ -41,7 +44,6 @@
 
 
 
-(require 'gitignore-mode)
 (defun jcs-gitignore-mode-hook ()
   "Gitignore mode hook."
   (electric-pair-mode nil)

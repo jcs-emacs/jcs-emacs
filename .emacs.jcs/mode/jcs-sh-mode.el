@@ -3,12 +3,15 @@
 ;;; Code:
 
 
+(require 'sh-script)
+
+
 (defun jcs-sh-script-format ()
   "Format the given file as a shell script file."
   (when (jcs-is-current-file-empty-p)
     (jcs-insert-sh-template)))
 
-(require 'sh-script)
+
 (defun jcs-sh-script-hook()
   "Shell Script mode hook."
   (abbrev-mode 1)

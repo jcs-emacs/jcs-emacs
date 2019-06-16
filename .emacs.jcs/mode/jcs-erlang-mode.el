@@ -3,12 +3,15 @@
 ;;; Code:
 
 
+(require 'erlang)
+
+
 (defun jcs-erlang-format ()
   "Format the given file as an Erlang file."
   (when (jcs-is-current-file-empty-p)
     (jcs-insert-erlang-template)))
 
-(require 'erlang)
+
 (defun jcs-erlang-mode-hook ()
   "Erlang mode hook."
   (abbrev-mode 1)

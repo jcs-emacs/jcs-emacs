@@ -3,14 +3,16 @@
 ;;; Code:
 
 
+(require 'sql)
 (require 'sql-indent)
+
 
 (defun jcs-sql-format ()
   "File format for editing SQL file."
   (when (jcs-is-current-file-empty-p)
     (jcs-insert-sql-template)))
 
-(require 'sql)
+
 (defun jcs-sql-mode-hook()
   "SQL mode hook."
   (abbrev-mode 1)

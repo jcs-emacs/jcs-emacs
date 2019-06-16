@@ -18,6 +18,7 @@
 
     (jcs-insert-java-template)))
 
+
 (defun jcs-java-mode-hook ()
   "Java mode hook."
   (abbrev-mode 1)

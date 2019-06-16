@@ -3,12 +3,15 @@
 ;;; Code:
 
 
+(require 'perl-mode)
+
+
 (defun jcs-perl-script-format ()
   "Format the given file as a Perl file."
   (when (jcs-is-current-file-empty-p)
     (jcs-insert-perl-template)))
 
-(require 'perl-mode)
+
 (defun jcs-perl-mode-hook ()
   "Perl mode hook."
   (abbrev-mode 1)

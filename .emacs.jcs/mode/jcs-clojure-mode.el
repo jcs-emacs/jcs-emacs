@@ -3,12 +3,15 @@
 ;;; Code:
 
 
+(require 'clojure-mode)
+
+
 (defun jcs-clojure-format ()
   "Format the given file as a Clojure file."
   (when (jcs-is-current-file-empty-p)
     (jcs-insert-clojure-template)))
 
-(require 'clojure-mode)
+
 (defun jcs-clojure-mode-hook ()
   "Clojure mode hook."
   (abbrev-mode 1)
