@@ -226,6 +226,8 @@ maintainer you want.
 [goto-line-preview](https://github.com/elpa-host/goto-line-preview).
 * *Highlight Matched Pairs* - powered by 
 [show-paren-mode](https://www.emacswiki.org/emacs/ShowParenMode).
+* *Highlight Same Region* - powered by 
+[region-occurrences-highlighter](https://github.com/alvarogonzalezsotillo/region-occurrences-highlighter).
 * *Line Annotation* - powered by 
 [line-reminder](https://github.com/elpa-host/line-reminder).
 * *Line Numbers* - powered by 
