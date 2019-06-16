@@ -119,6 +119,9 @@ answered by
 
 ## Features
 
+This is the list of features that are built-in to this 
+configuration. 
+
 * [*Auto Install Package*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/auto-install-package) - 
 Automatically installs the package that this config relies on.
 * [*Auto Truncate Lines*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/auto-truncate-lines) - 
@@ -291,7 +294,14 @@ and
 * *White Space* - powered by 
 [whitespace](https://www.emacswiki.org/emacs/WhiteSpace).
 
-### Programming Modes
+### File Modes
+
+If you want to change the default mode to certain file type, 
+you might want to checkout the `./.emacs.jcs/jcs-mode.el` file. 
+You will see a list of mode that are opened by default mode to 
+certain extension.
+
+#### Programming Modes
 
 | Language | Mode | Description | Version |
 | --- | --- | --- | --- |
@@ -342,6 +352,13 @@ and
 | Vim script | [vimrc-mode](https://github.com/mcandre/vimrc-mode) | Major mode for vimrc files | [![MELPA](https://melpa.org/packages/vimrc-mode-badge.svg)](https://melpa.org/#/vimrc-mode) |
 | XML | [nxml-mode](https://www.emacswiki.org/emacs/NxmlMode) | Major mode for editing XML. | ![Builtin](https://img.shields.io/badge/builtin-n/a-blue.svg) |
 | YAML | [yaml-mode](https://www.emacswiki.org/emacs/YamlMode) | Simple mode to edit YAML. | [![MELPA](https://melpa.org/packages/yaml-mode-badge.svg)](https://melpa.org/#/yaml-mode) |
+
+#### Other Modes
+
+| Language | Mode | Description | Version |
+| --- | --- | --- | --- |
+| Markdown | [markdown-mode](https://github.com/jrblevin/markdown-mode) | Major mode for Markdown-formatted text | [![MELPA](https://melpa.org/packages/markdown-mode-badge.svg)](https://melpa.org/#/markdown-mode) |
+| Org | [org-mode](https://orgmode.org/) | Outline-based notes management and organizer | ![Builtin](https://img.shields.io/badge/builtin-9.1.9-blue.svg) |
 
 *P.S. The [awesome-emacs](https://github.com/emacs-tw/awesome-emacs) 
 is a list of Emacs package that you can choose other 
