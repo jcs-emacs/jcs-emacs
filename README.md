@@ -35,12 +35,12 @@ from this configuration.
 * INI
 * JSON / Java / JavaScript
 * Lisp / Lua
-* Makefile
+* Makefile / Markdown
 * Object Pascal (Delphi) / Objective-C
 * Pascal / Perl / PHP / Properties / Python
 * Ruby / Rust
 * Sass / Scala / SCSS / Shell script / SQL / Swift
-* TypeScript
+* Text / TypeScript
 * Verilog / Vim script
 * XML
 * YAML
