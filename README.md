@@ -183,6 +183,8 @@ VSCode like methods to `mark` and `unmark` multiple cursor.
 
 ## Package Archives
 
+A list of package archives that this configuration uses.
+
 * *[elpa](https://elpa.gnu.org/packages/)* - 
 The default package repository for GNU Emacs.
 * ~~*[marmalade](https://marmalade-repo.org/)* - 
