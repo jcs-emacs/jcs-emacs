@@ -181,6 +181,19 @@ Visual Studio IDE like curly bracket implementation.
 VSCode like methods to `mark` and `unmark` multiple cursor.
 
 
+## Package Archives
+
+* *[elpa](https://elpa.gnu.org/packages/)* - 
+The default package repository for GNU Emacs.
+* ~~*[marmalade](https://marmalade-repo.org/)* - 
+Marmalade is an ELPA compatible package repository that allowed 
+users to upload their own packages.~~
+* *[melpa](https://melpa.org/#/)* - 
+MELPA is a growing collection of `package.el`-compatible Emacs Lisp
+packages built automatically on our server from the upstream source
+code using simple recipes.
+
+
 ## Powered by
 
 Here is the list of all packages that powered and make this 
