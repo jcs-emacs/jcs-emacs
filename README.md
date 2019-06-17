@@ -425,8 +425,8 @@ of the `.ttf` file to `use-ttf-default-ttf-font-name`
 variable.
 
 P.S.
-* See the file `./.emacs.jcs/jcs-font.el` to see how the 
-font is been set in this config.
+* See the file `./.emacs.jcs/jcs-plugin.el` to see how the 
+font is been set in `(use-package use-ttf)` section.
 * For more details about the font settings in this 
 configuration, check out the `use-ttf`package 
 [repo](https://github.com/elpa-host/use-ttf).
