@@ -39,7 +39,7 @@ from this configuration.
 * Object Pascal (Delphi) / Objective-C
 * Pascal / Perl / PHP / Properties / Python
 * Ruby / Rust
-* Sass / Scala / SCSS / Shell script / SQL / Swift
+* Sass / Scala / SCSS / Shader / Shell script / SQL / Swift
 * Text / TypeScript
 * Verilog / Vim script
 * XML
