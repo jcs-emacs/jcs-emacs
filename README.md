@@ -195,6 +195,12 @@ MELPA is a growing collection of `package.el`-compatible Emacs Lisp
 packages built automatically on our server from the upstream source
 code using simple recipes.
 
+*P.S. Here is a good talk comparing all package archives from a 
+[StackExchange](https://emacs.stackexchange.com/) question, 
+[What are the practical differences between the various Emacs Package Repositories?](https://emacs.stackexchange.com/questions/268/what-are-the-practical-differences-between-the-various-emacs-package-repositorie)
+answered by 
+[Tikhon Jelvis](https://github.com/TikhonJelvis).*
+
 
 ## Powered by
 
