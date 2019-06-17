@@ -185,7 +185,7 @@ VSCode like methods to `mark` and `unmark` multiple cursor.
 
 Here is the list of all packages that powered and make this 
 configuration works. Thanks to all the package maintainers; 
-this configuration cannot be made without them and if you 
+this configuration cannot be made without them, and if you 
 wish to support them you can go to this 
 [elisp-maintainers](https://github.com/tarsius/elisp-maintainers) 
 repo/site and search for the maintainer you want to support. 
