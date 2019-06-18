@@ -244,6 +244,8 @@ maintainer you want.
 [use-ttf](https://github.com/elpa-host/use-ttf).
 * *Goto Char* - powered by 
 [goto-char-preview](https://github.com/elpa-host/goto-char-preview).
+* *Goto Declaration/Definition* - powered by 
+[dumb-jump](https://github.com/jacktasia/dumb-jump).
 * *Goto Line* - powered by 
 [goto-line-preview](https://github.com/elpa-host/goto-line-preview).
 * *Highlight Matched Pairs* - powered by 
