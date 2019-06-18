@@ -97,10 +97,7 @@
     ;;-------------------------------- `goto-address'
     (goto-address-mode t)
     ;;-------------------------------- `helm'
-    (progn
-      (helm-mode 1)
-      ;; NOTE: After enabled `helm-mode', diminish it immediately.
-      (diminish 'helm-mode))
+    (helm-mode 1)
     (helm-autoresize-mode 1)
     ;;-------------------------------- `helm-projectile'
     (helm-projectile-on)
