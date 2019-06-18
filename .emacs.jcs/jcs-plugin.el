@@ -5,7 +5,6 @@
 
 (use-package auto-highlight-symbol
   :defer t
-  :diminish auto-highlight-symbol-mode
   :init
   ;; Number of seconds to wait before highlighting symbol.
   (setq ahs-idle-interval 0.3)
@@ -31,7 +30,6 @@
 
 (use-package company
   :defer t
-  :diminish company-mode
   :config
   ;; TOPIC: How add company-dabbrev to the Company completion popup?
   ;; URL: https://emacs.stackexchange.com/questions/15246/how-add-company-dabbrev-to-the-company-completion-popup
@@ -106,15 +104,36 @@
   :config
   (diminish 'abbrev-mode)
   (diminish 'auto-fill-mode)
-  (use-package auto-rename-tag :diminish auto-rename-tag-mode :defer t)
-  (use-package beacon :diminish beacon-mode :defer t)
-  (use-package face-remap :diminish buffer-face-mode :defer t)
+  (with-eval-after-load 'auto-highlight-symbol (diminish 'auto-highlight-symbol-mode))
+  (with-eval-after-load 'auto-rename-tag (diminish 'auto-rename-tag-mode))
+  (with-eval-after-load 'beacon (diminish 'beacon-mode))
+  (with-eval-after-load 'company (diminish 'company-mode))
   (diminish 'eldoc-mode)
-  (use-package impatient-mode :diminish impatient-mode :defer t)
-  (use-package line-reminder :diminish line-reminder-mode :defer t)
+  (with-eval-after-load 'face-remap (diminish 'buffer-face-mode))
+  (with-eval-after-load 'flycheck
+    (diminish 'flycheck-mode)
+    (require 'flycheck-popup-tip)
+    (flycheck-popup-tip-mode t))
+  (with-eval-after-load 'helm-mode (diminish 'helm-mode))
+  (with-eval-after-load 'helm-gtags (diminish 'helm-gtags-mode))
+  (with-eval-after-load 'impatient-mode (diminish 'impatient-mode))
+  (with-eval-after-load 'line-reminder (diminish 'line-reminder-mode))
   (diminish 'outline-minor-mode)
   (diminish 'overwrite-mode)
-  (use-package page-break-lines :diminish page-break-lines-mode :defer t))
+  (with-eval-after-load 'page-break-lines (diminish 'page-break-lines-mode))
+  (with-eval-after-load 'projectile (diminish 'projectile-mode))
+  (with-eval-after-load 'right-click-context (diminish 'right-click-context-mode))
+  (with-eval-after-load 'shift-select (diminish 'shift-select-minor-mode))
+  (with-eval-after-load 'show-eol (diminish 'show-eol-mode))
+  (with-eval-after-load 'undo-tree (diminish 'undo-tree-mode))
+  (with-eval-after-load 'view (diminish 'view-mode))
+  (with-eval-after-load 'which-key (diminish 'which-key-mode))
+  (with-eval-after-load 'whitespace
+    (diminish 'whitespace-mode)
+    (diminish 'whitespace-newline-mode)
+    (diminish 'global-whitespace-mode)
+    (diminish 'global-whitespace-newline-mode))
+  (with-eval-after-load 'yasnippet (diminish 'yas-minor-mode)))
 
 
 (use-package dimmer
@@ -128,17 +147,6 @@
   :config
   (when (memq window-system '(mac ns x))
     (exec-path-from-shell-initialize)))
-
-
-(use-package flycheck
-  :defer t
-  :diminish flycheck-mode)
-
-(use-package flycheck-popup-tip
-  :defer t
-  :init
-  (with-eval-after-load 'flycheck
-    (flycheck-popup-tip-mode t)))
 
 
 (use-package goto-char-preview
@@ -160,7 +168,6 @@
 
 (use-package helm
   :defer t
-  :diminish helm-mode
   :init
   ;; 禁止自動補全
   ;;(setq helm-ff-auto-update-initial-value nil)
@@ -200,7 +207,6 @@
 ;; to make the tag system work.
 (use-package helm-gtags
   :defer t
-  :diminish helm-gtags-mode
   :init
   ;;(setq helm-gtags-path-style 'relative)
   (setq helm-gtags-ignore-case t)
@@ -257,8 +263,7 @@
           ("DEPRECATED" . "DarkOrange3")
           ("TOPIC" . "slate blue")
           ("SEE" . "slate blue")
-          )
-        )
+          ))
   :config
   (defun hl-todo--inside-comment-or-string-p ()
     "Redefine `hl-todo--inside-comment-or-string-p', for accurate highlighting."
@@ -359,7 +364,6 @@
 
 (use-package projectile
   :defer t
-  :diminish projectile-mode
   :init
   (setq projectile-current-project-on-switch 'keep)
   :config
@@ -416,7 +420,6 @@
 
 (use-package right-click-context
   :defer t
-  :diminish right-click-context-mode
   :config
   ;;;###autoload
   (defun right-click-context-menu ()
@@ -435,7 +438,6 @@
 
 (use-package shift-select
   :defer t
-  :diminish shift-select-minor-mode
   :config
   (defun jcs-advice-shift-select-pre-command-hook-after ()
     "Advice after execute `shift-select-pre-command-hook'."
@@ -543,7 +545,6 @@
 
 (use-package undo-tree
   :defer t
-  :diminish undo-tree-mode
   :config
   (global-undo-tree-mode t))
 
@@ -665,7 +666,6 @@
 
 (use-package which-key
   :defer t
-  :diminish which-key-mode
   :init
   ;; Provide following type: `minibuffer', `side-window', `frame'.
   (setq which-key-popup-type 'side-window)
@@ -689,10 +689,6 @@
 
 (use-package whitespace
   :defer t
-  :diminish whitespace-mode
-  :diminish whitespace-newline-mode
-  :diminish global-whitespace-mode
-  :diminish global-whitespace-newline-mode
   :config
   (autoload 'whitespace-mode "whitespace-mode" "Toggle whitespace visualization." t)
   (autoload 'whitespace-toggle-options "whitespace-mode" "Toggle local `whitespace-mode' options." t)
@@ -727,7 +723,6 @@
 
 (use-package yasnippet
   :defer t
-  :diminish yas-minor-mode
   :config
   (require 'yasnippet-snippets)
   (yas-global-mode 1))
