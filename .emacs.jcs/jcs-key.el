@@ -218,6 +218,10 @@
 (define-key global-map (kbd "C-S-f") #'jcs-format-region-or-document)
 (define-key global-map "\C-xa" #'jcs-align-region-or-document)
 
+;;; Goto Definition
+(define-key global-map [f12] #'dumb-jump-go-prefer-external)
+(define-key global-map [S-f12] #'dumb-jump-go-prefer-external-other-window)
+
 ;;; Goto Thing
 (define-key global-map (kbd "M-g c") #'goto-char-preview)
 (define-key global-map (kbd "M-g l") #'goto-line-preview)
@@ -233,10 +237,7 @@
     (define-key helm-find-files-map (kbd "M-<left>") #'helm-find-files-up-one-level)
     (define-key helm-find-files-map (kbd "M-<right>") #'helm-find-files-down-last-level))
   (with-eval-after-load 'helm-projectile
-    (define-key helm-projectile-find-file-map (kbd "<return>") #'jcs-helm-exit-minibuffer))
-
-  (define-key global-map [f12] #'jcs-helm-gtags-to-def-dec)
-  (define-key global-map [S-f12] #'jcs-helm-gtags-to-def-dec-other-window))
+    (define-key helm-projectile-find-file-map (kbd "<return>") #'jcs-helm-exit-minibuffer)))
 
 ;;; Help
 (with-eval-after-load 'help-mode
