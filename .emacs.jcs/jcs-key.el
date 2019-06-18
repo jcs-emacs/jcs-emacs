@@ -218,7 +218,7 @@
 (define-key global-map (kbd "C-S-f") #'jcs-format-region-or-document)
 (define-key global-map "\C-xa" #'jcs-align-region-or-document)
 
-;;; Goto Definition
+;;; Goto Declaration/Definition
 (define-key global-map [f12] #'dumb-jump-go-prefer-external)
 (define-key global-map [S-f12] #'dumb-jump-go-prefer-external-other-window)
 
