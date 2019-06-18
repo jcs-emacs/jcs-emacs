@@ -115,7 +115,6 @@
     (require 'flycheck-popup-tip)
     (flycheck-popup-tip-mode t))
   (with-eval-after-load 'helm-mode (diminish 'helm-mode))
-  (with-eval-after-load 'helm-gtags (diminish 'helm-gtags-mode))
   (with-eval-after-load 'impatient-mode (diminish 'impatient-mode))
   (with-eval-after-load 'line-reminder (diminish 'line-reminder-mode))
   (diminish 'outline-minor-mode)
@@ -140,6 +139,13 @@
   :defer t
   :init
   (setq dimmer-fraction 0.2))
+
+
+(use-package dumb-jump
+  :defer t
+  :init
+  (setq dumb-jump-selector 'helm)
+  (setq dumb-jump-force-searcher 'ag))
 
 
 (use-package exec-path-from-shell
@@ -202,25 +208,6 @@
         (define-key map (kbd "M-RET") 'helm-color-run-insert-rgb)
         (define-key map (kbd "C-c R") 'helm-color-run-kill-rgb)
         map))))
-
-;; NOTE: You will need GNU GLOBAL executable in order
-;; to make the tag system work.
-(use-package helm-gtags
-  :defer t
-  :init
-  ;;(setq helm-gtags-path-style 'relative)
-  (setq helm-gtags-ignore-case t)
-  (setq helm-gtags-auto-update t)
-  :config
-  ;; Enable helm-gtags-mode
-  (add-hook 'asm-mode-hook 'helm-gtags-mode)
-  (add-hook 'c-mode-hook 'helm-gtags-mode)
-  (add-hook 'c++-mode-hook 'helm-gtags-mode)
-  (add-hook 'java-mode-hook 'helm-gtags-mode)
-  (add-hook 'jayces-mode-hook 'helm-gtags-mode)
-  (add-hook 'js2-mode-hook 'helm-gtags-mode)
-  (add-hook 'lua-mode-hook 'helm-gtags-mode)
-  (add-hook 'nasm-mode-hook 'helm-gtags-mode))
 
 
 (use-package hl-todo
