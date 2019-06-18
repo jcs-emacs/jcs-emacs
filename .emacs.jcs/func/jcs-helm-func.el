@@ -72,34 +72,5 @@
       (select-window starting-window))))
 
 
-;;;###autoload
-(defun jcs-helm-gtags-to-def-dec ()
-  "Goto the declaration / definition depends on the cursor position."
-  (interactive)
-  (ignore-errors
-    ;; Update TAG file. Default is update only current file, You
-    ;; can update all files with C-u prefix.
-    (helm-gtags-update-tags)
-
-    ;; goto definition or declaration.
-    (helm-gtags-find-tag-from-here)))
-
-;;;###autoload
-(defun jcs-helm-gtags-to-def-dec-other-window ()
-  "Goto the declaration / definition depends on the cursor position,
-in other window."
-  (interactive)
-  (ignore-errors
-    ;; Update TAG file. Default is update only current file, You
-    ;; can update all files with C-u prefix.
-    (helm-gtags-update-tags)
-
-    ;; goto definition or declaration.
-    (when (helm-gtags-find-tag-from-here)
-      (jcs-same-file-other-window)
-      (previous-buffer)
-      (other-window 1))))
-
-
 (provide 'jcs-helm-func)
 ;;; jcs-helm-func.el ends here
