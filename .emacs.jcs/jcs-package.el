@@ -51,6 +51,7 @@
                                    dashboard
                                    diminish
                                    dimmer
+                                   dumb-jump
                                    elixir-mode
                                    emmet-mode
                                    erlang
@@ -73,7 +74,6 @@
                                    helm
                                    helm-ag
                                    helm-core
-                                   helm-gtags
                                    helm-projectile
                                    hl-todo
                                    htmltagwrap
