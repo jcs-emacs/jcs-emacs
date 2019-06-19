@@ -273,7 +273,7 @@ and
 * *Package Archive* - powered by 
 [gnu](https://elpa.gnu.org/) 
 and 
-[melpa](http://melpa.org/),
+[melpa](http://melpa.org/).
 * *Package Management* - powered by 
 [use-package](https://github.com/jwiegley/use-package).
 * *PDF Viewer* - powered by 
