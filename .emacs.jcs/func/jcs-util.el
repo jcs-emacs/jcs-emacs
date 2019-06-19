@@ -164,7 +164,7 @@ TE : Target event name"
   (jcs-do-after-log-action))
 
 ;;---------------------------------------------
-;; Organize Code.
+;; Organize Code
 ;;---------------------------------------------
 
 (defun jcs-keep-n-line-between (n-line)
