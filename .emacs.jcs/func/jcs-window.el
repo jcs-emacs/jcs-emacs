@@ -57,7 +57,7 @@ CNT : Count for buffer to switch to."
 (defun jcs-switch-to-next-buffer-not-nil ()
   "Switch to the previous buffer that are not nil."
   (interactive)
-  (when (<= 1 (jcs-not-nil-buffer-count))
+  (when (<= 1 (jcs-valid-buffers-in-buffer-list))
     (let ((found-not-nil-buf nil))
       (while (not found-not-nil-buf)
         (call-interactively #'switch-to-next-buffer)
@@ -68,36 +68,12 @@ CNT : Count for buffer to switch to."
 (defun jcs-switch-to-prev-buffer-not-nil ()
   "Switch to the previous buffer that are not nil."
   (interactive)
-  (when (<= 1 (jcs-not-nil-buffer-count))
+  (when (<= 1 (jcs-valid-buffers-in-buffer-list))
     (let ((found-not-nil-buf nil))
       (while (not found-not-nil-buf)
         (call-interactively #'switch-to-prev-buffer)
         (when (buffer-file-name)
           (setq found-not-nil-buf t))))))
-
-(defun jcs-not-nil-buffer-count ()
-  "Returns count of the not nil buffer."
-  (save-window-excursion
-    (let ((index 0)
-          (buf-len (length (buffer-list)))
-          (buf-list '()))
-      (while (< index buf-len)
-        (when (buffer-file-name)
-          (push (buffer-file-name) buf-list))
-        (call-interactively #'switch-to-next-buffer)
-        (setq index (+ index 1)))
-      (setq buf-list (remove-duplicates buf-list))
-      (length buf-list))))
-
-(defun jcs-buffer-in-window-list ()
-  "Get all the buffer in window list."
-  ;; TOPIC: Show all open buffers in Emacs
-  ;; SOURCE: http://stackoverflow.com/questions/12186713/show-all-open-buffers-in-emacs
-  (let (buffers)
-    (walk-windows
-     (lambda (window)
-       (push (window-buffer window) buffers)) t t)
-    buffers))
 
 (defun jcs-count-windows ()
   "Total window count."
