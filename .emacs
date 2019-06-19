@@ -146,3 +146,4 @@
 ;; no-byte-compile: t
 ;; End:
 ;;; .emacs ends here
+(put 'upcase-region 'disabled nil)
