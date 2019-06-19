@@ -17,9 +17,15 @@ ARGS : arguments."
     (save-excursion
       (goto-char (point-max))
       (let ((inhibit-read-only t))
-        (insert (apply 'format fmt args)))))
-  (jcs-do-after-log-action))
+        (insert (apply 'format fmt args))))))
 
+(defun jcs-do-before-log-action (clean)
+  "Action do before doing log."
+  (when clean
+    (save-selected-window
+      (unless (string= (buffer-name) "*Messages*")
+        (jcs-ensure-switch-to-buffer-other-window "*Messages*"))
+      (jcs-message-erase-buffer-stay))))
 
 (defun jcs-do-after-log-action ()
   "Action do after doing log."
@@ -34,14 +40,11 @@ ARGS : arguments."
   "Log a log message.
 FMT : output format.
 ARGS : arguments."
-  (when clean
-    (save-selected-window
-      (unless (string= (buffer-name) "*Messages*")
-        (jcs-ensure-switch-to-buffer-other-window "*Messages*"))
-      (jcs-message-erase-buffer-stay)))
+  (jcs-do-before-log-action clean)
   (jcs-message "\n$=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=$\n")
   (jcs-message "$ %s : %s" title (apply 'format fmt args))
-  (jcs-message "\n$=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=$\n"))
+  (jcs-message "\n$=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=$\n")
+  (jcs-do-after-log-action))
 
 
 (defun jcs-log (fmt &rest args)
@@ -56,6 +59,11 @@ FMT : output format.
 ARGS : arguments."
   (apply 'jcs--log "Log" t fmt args))
 
+
+(defun jcs-log-list-clean (list &optional in-prefix-msg in-val-del)
+  "Log out a list in clean *Messages* buffer."
+  (jcs-do-before-log-action t)
+  (apply 'jcs-log-list list in-prefix-msg in-val-del))
 
 (defun jcs-log-list (list &optional in-prefix-msg in-val-del)
   "Log out a list.
@@ -75,10 +83,10 @@ IN-VAL-DEL : value delimiter."
 
     (dolist (tmp-str list)
       (jcs-log "%s%s%s%s"
-               prefix-msg  ;; Prefix Message
-               count       ;; Index/Count
-               val-del     ;; Index and Value Delimiter
-               tmp-str)    ;; Value in current index
+               prefix-msg  ; Prefix Message
+               count       ; Index/Count
+               val-del     ; Index and Value Delimiter
+               tmp-str)    ; Value in current index
       (setq count (1+ count)))))
 
 
