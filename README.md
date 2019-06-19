@@ -129,6 +129,8 @@ Automatically installs the package that this config relies on.
 * [*Auto Truncate Lines*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/auto-truncate-lines) - 
 Automatically enable/disable `truncate-lines-mode` depends 
 on certain situation. (`web-mode` only)
+* [*Better Dashboard*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/better-dashboard) - 
+> Implementation for improving experiences using dashboard.
 * [*Build Run*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/build-run) - 
 Implementation for executing script for building and running 
 the software.
