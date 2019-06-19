@@ -40,14 +40,16 @@ IN-VAL : Input value to reciprocal."
   (/ 1 in-val))
 
 (defun jcs-clamp-integer (in-val in-min in-max)
-  "Make sure the value in the range.
-IN-VAL : Input value.
-IN-MIN : Input minimum value.
-IN-MAX : Input maximum value."
+  "Make sure the IN-VALUE is between IN-MIN and IN-MAX."
   (let ((out-result in-val))
     (cond ((<= in-val in-min) (progn (setq out-result in-min)))
           ((>= in-val in-max) (progn (setq out-result in-max))))
     out-result))
+
+(defun jcs-in-range-p (in-val in-min in-max)
+  "Check if IN-VAL in the range."
+  (and (>= in-val in-min)
+       (<= in-val in-max)))
 
 
 (provide 'jcs-math)
