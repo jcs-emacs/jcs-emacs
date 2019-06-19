@@ -39,17 +39,12 @@
           (setq pg-cnt (1+ pg-cnt))
           (when (>= pg-cnt 2)
             (setq break-cond 2)))))
-    (cond ((= break-cond 1)
-           (progn
-             (goto-char start-pt)
-             (call-interactively #'jcs-previous-blank-line)))
-          ((= break-cond 2)
-           (progn
-             (forward-line 1)
-             (let* ((pg-lst (jcs-dashboard-page-break-list))
-                    (pg-start-ln (nth 0 pg-lst)))
-               (when (< (line-number-at-pos) pg-start-ln)
-                 (call-interactively #'jcs-previous-blank-line))))))))
+    (when (= break-cond 2)
+      (forward-line 1)
+      (let* ((pg-lst (jcs-dashboard-page-break-list))
+             (pg-start-ln (nth 0 pg-lst)))
+        (when (< (line-number-at-pos) pg-start-ln)
+          (call-interactively #'jcs-previous-blank-line))))))
 
 ;;;###autoload
 (defun jcs-dashboard-next-blank-line ()
@@ -59,8 +54,7 @@
          (pg-start-ln (nth 0 pg-lst))
          (pg-end-ln (nth (- (length pg-lst) 2) pg-lst))
          (break-cond 0)
-         (pg-cnt 0)
-         (start-pt (point)))
+         (pg-cnt 0))
     (when (jcs-in-range-p (line-number-at-pos) pg-start-ln pg-end-ln)
       (forward-line 1)
       (setq pg-cnt 1))
@@ -76,12 +70,8 @@
           (setq pg-cnt (1+ pg-cnt))
           (when (>= pg-cnt 2)
             (setq break-cond 2)))))
-    (cond ((= break-cond 1)
-           (progn
-             (goto-char start-pt)
-             (call-interactively #'jcs-next-blank-line)))
-          ((= break-cond 2)
-           (forward-line -1)))))
+    (when (= break-cond 2)
+      (forward-line -1))))
 
 
 ;;;###autoload
