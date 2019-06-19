@@ -455,22 +455,14 @@ region selected?"
           (pnt-max nil))
 
       ;; Code RegExp String
-      (cond ((or (jcs-is-current-major-mode-p "nasm-mode"))
-             (progn
-               (setq align-regexp-string-code "\\(\\s-*\\)equ ")
-               ))
-            ((or (jcs-is-current-major-mode-p "go-mode"))
-             (progn
-               (setq align-regexp-string-code "\\(\\s-*\\) := ")
-               ))
-            )
+      (cond ((jcs-is-current-major-mode-p "nasm-mode")
+             (setq align-regexp-string-code "\\(\\s-*\\)equ "))
+            ((jcs-is-current-major-mode-p "go-mode")
+             (setq align-regexp-string-code "\\(\\s-*\\) := ")))
 
       ;; Comment RegExp String
-      (cond ((or (jcs-is-current-major-mode-p "nasm-mode"))
-             (progn
-               (setq align-regexp-string-comment "\\(\\s-*\\)               [;]")
-               ))
-            )
+      (cond ((jcs-is-current-major-mode-p "nasm-mode")
+             (setq align-regexp-string-comment "\\(\\s-*\\)               [;]")))
 
       (if (jcs-is-region-selected-p)
           ;; NOTE: Align region only.
@@ -1520,8 +1512,7 @@ CC : current character before character deletion occured."
                    ;; Found sequence, delete them!
                    (backward-delete-char 1)
                    (backward-delete-char 1)
-                   (backward-delete-char 1))))))
-          )))
+                   (backward-delete-char 1)))))))))
 
 ;;;###autoload
 (defun jcs-electric-backspace ()
