@@ -1,4 +1,4 @@
-;;; jcs-buffer-menu.el --- Function in buffer menu mode. (*Buffer List*).  -*- lexical-binding: t -*-
+;;; jcs-buffer-menu.el --- Functions in buffer menu mode. (*Buffer List*).  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
