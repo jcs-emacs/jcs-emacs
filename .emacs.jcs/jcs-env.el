@@ -15,15 +15,12 @@
 (defvar jcs-linux nil "Is Linux?")
 
 (cond
- ((string-equal system-type "windows-nt") ; Microsoft Windows
-  (progn
-    (setq jcs-win32 t)))
- ((string-equal system-type "darwin") ; Mac OS X
-  (progn
-    (setq jcs-aquamacs t)))
- ((string-equal system-type "gnu/linux") ; linux
-  (progn
-    (setq jcs-linux t))))
+ ((string-equal system-type "windows-nt")  ; Microsoft Windows
+  (setq jcs-win32 t))
+ ((string-equal system-type "darwin")  ; Mac OS X
+  (setq jcs-aquamacs t))
+ ((string-equal system-type "gnu/linux")  ; Linux
+  (setq jcs-linux t)))
 
 
 (defvar jcs-daily-todo-file "" "Open the daily todo file.")
@@ -162,7 +159,6 @@
                                           "*Messages*"
                                           "*Music*"
                                           "*Package-Lint*"
-                                          "*Packages*"
                                           "*shell*"
                                           "*SPEEDBAR*"
                                           "*undo-tree*"
@@ -174,7 +170,8 @@
                                         "doc-view-mode"
                                         "help-mode"
                                         "image-mode"
-                                        "outline-mode")
+                                        "outline-mode"
+                                        "package-menu-mode")
   "List of modes that you do not want to show line numbers in it.")
 
 ;;; Menu Bar
