@@ -23,8 +23,15 @@
 (defconst jcs-normal-gc-cons-threshold (* 1024 1024 20)
   "The `GC' threshold during the normal task.")
 
+(defun jcs-gc-cons-threshold (speedup)
+  "Set the `gc-cons-threshold' depends if is SPEEDUP."
+  (if speedup
+      (setq gc-cons-threshold jcs-init-gc-cons-threshold)
+    (setq gc-cons-threshold jcs-normal-gc-cons-threshold)))
+
 ;; NOTE: Raise the `GC' threshold when starting Emacs.
-(setq gc-cons-threshold jcs-init-gc-cons-threshold)
+(jcs-gc-cons-threshold t)
+
 
 ;;; NOTE: Set custom file.
 (setq-default custom-file (expand-file-name ".jcs-custom.el" user-emacs-directory))
