@@ -123,6 +123,23 @@
                         :foreground wb-fg))
   (jcs-dashboard-refresh-buffer))
 
+;;;###autoload
+(defun jcs-dashboard (&optional ow)
+  "Jump to the dashboard buffer, if doesn't exists create one."
+  (interactive)
+  (if ow
+      (switch-to-buffer-other-window dashboard-buffer-name)
+    (switch-to-buffer dashboard-buffer-name))
+  (unless (jcs-is-current-major-mode-p "dashboard-mode")
+    (dashboard-mode)
+    (dashboard-refresh-buffer)))
+
+;;;###autoload
+(defun jcs-dashboard-other-window ()
+  "Just like `jcs-dashboard', but open on the other window."
+  (interactive)
+  (jcs-dashboard t))
+
 ;;----------------------------------------------
 ;; Electric Pair
 ;;----------------------------------------------
