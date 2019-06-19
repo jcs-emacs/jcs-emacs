@@ -391,9 +391,9 @@ Use `indent-according-to-mode' instead `indent-for-tab-command'."
     (next-line 1)))
 
 
-;;========================================
-;;      JCS Format File
-;;----------------------------------
+;;==============================
+;;      Format File
+;;------------------------
 
 ;;;###autoload
 (defun jcs-format-document ()
@@ -664,7 +664,35 @@ the current line."
   (indent-according-to-mode))
 
 ;;=================================
-;; Tabify / Unabify
+;;        Word Case
+;;-------------------------
+
+;;;###autoload
+(defun jcs-upcase-word-or-region ()
+  "Uppercase the word or region."
+  (interactive)
+  (if (use-region-p)
+      (upcase-region (region-beginning) (region-end))
+    (call-interactively #'upcase-word)))
+
+;;;###autoload
+(defun jcs-downcase-word-or-region ()
+  "Lowercase the word or region."
+  (interactive)
+  (if (use-region-p)
+      (downcase-region (region-beginning) (region-end))
+    (call-interactively #'downcase-word)))
+
+;;;###autoload
+(defun jcs-capitalize-word-or-region ()
+  "Capitalize the word or region."
+  (interactive)
+  (if (use-region-p)
+      (capitalize-region (region-beginning) (region-end))
+    (call-interactively #'capitalize-word)))
+
+;;=================================
+;;     Tabify / Unabify
 ;;-------------------------
 
 ;;;###autoload
@@ -852,7 +880,7 @@ ECP-SAME : Exception for the same buffer."
         ;;   , etc.
         (when (and (not (buffer-file-name))
                    (not (= (jcs-valid-buffers-in-buffer-list) 0)))
-          (jcs-switch-to-previous-buffer))))
+          (jcs-switch-to-next-buffer-not-nil))))
     is-killed))
 
 ;;;###autoload
