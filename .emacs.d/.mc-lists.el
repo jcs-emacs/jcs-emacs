@@ -3,13 +3,30 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        beginning-of-buffer
+        end-of-buffer
+        jcs-backward-capital-char
+        jcs-backward-delete-word
+        jcs-backward-kill-word-capital
+        jcs-beginning-of-line
+        jcs-downcase-word-or-region
         jcs-electric-backspace
+        jcs-end-of-line
+        jcs-forward-capital-char
         jcs-forward-delete-word
         jcs-forward-kill-word-capital
+        jcs-mark-whole-buffer
+        jcs-move-backward-comma
+        jcs-move-backward-open-sqrParen
+        jcs-move-forward-close-sqrParen
+        jcs-move-forward-comma
         jcs-py-indent-down
         jcs-py-indent-up
+        jcs-redo
         jcs-smart-indent-down
         jcs-smart-indent-up
+        jcs-undo
+        jcs-upcase-word-or-region
         jcs-web-backward-delete-word
         jcs-web-backward-delete-word-capital
         ))
@@ -17,17 +34,31 @@
 (setq mc/cmds-to-run-once
       '(
         ace-window
-        end-of-buffer
         helm-M-x
-        jcs-end-of-line
+        indent-new-comment-line
+        jcs-ace-window-1
+        jcs-ace-window-2
+        jcs-ace-window-3
+        jcs-ace-window-4
+        jcs-ace-window-5
+        jcs-ace-window-6
+        jcs-ace-window-7
+        jcs-ace-window-8
+        jcs-ace-window-9
+        jcs-make-without-asking
         jcs-mc/mark-next-like-this
         jcs-mc/mark-previous-like-this
         jcs-next-blank-line
         jcs-other-window-next
         jcs-other-window-prev
         jcs-previous-blank-line
+        jcs-run-without-asking
+        jcs-scroll-down-one-line
+        jcs-scroll-up-one-line
         jcs-toggle-sublimity-mode
         jcs-untabify-save-buffer
+        move-text-down
         move-text-up
+        package-list-packages
         reload-emacs
         ))
