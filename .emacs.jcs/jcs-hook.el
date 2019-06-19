@@ -211,7 +211,9 @@
 
 (defun jcs-minibuffer-setup-hook ()
   "Hook when minibuffer setup."
-  (jcs-gc-cons-threshold t)
+  ;; NOTE: Avoid GCs while using `ivy'/`counsel'/`swiper' and `helm', etc.
+  (progn
+    (jcs-gc-cons-threshold t))
 
   (when (and (not (jcs-current-char-equal-p "/"))
              ;; SEE: this trigger can be check at `jcs-helm-func.el' file.
@@ -237,8 +239,10 @@
 
   (jcs-reload-active-mode)
 
-  (garbage-collect)
-  (jcs-gc-cons-threshold nil)
+  ;; NOTE: Avoid GCs while using `ivy'/`counsel'/`swiper' and `helm', etc.
+  (progn
+    (garbage-collect)
+    (jcs-gc-cons-threshold nil))
   )
 (add-hook 'minibuffer-exit-hook 'jcs-minibuffer-exit-hook)
 
