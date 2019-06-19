@@ -84,10 +84,6 @@
 (define-key global-map (kbd "C-k C-c") #'jcs-comment-region-or-line)
 (define-key global-map (kbd "C-k C-u") #'jcs-uncomment-region-or-line)
 
-;;; Dashboard
-(define-key global-map (kbd "M-d") #'jcs-dashboard)
-(define-key global-map (kbd "M-D") #'jcs-dashboard-other-window)
-
 ;;; Describe Thing
 (define-key global-map (kbd "C-k C-s") #'describe-bindings)
 
@@ -389,10 +385,24 @@
 (define-key special-mode-map (kbd "<up>") #'previous-line)
 (define-key special-mode-map (kbd "<down>") #'next-line)
 
-;;; Startup Screen
+;;; Startup Screen (Dashboard)
+(define-key global-map (kbd "M-d") #'jcs-dashboard)
+(define-key global-map (kbd "M-D") #'jcs-dashboard-other-window)
+
 (with-eval-after-load 'dashboard
+  (define-key dashboard-mode-map "1" #'jcs-dashboard-items-1)
+  (define-key dashboard-mode-map "2" #'jcs-dashboard-items-2)
+  (define-key dashboard-mode-map "3" #'jcs-dashboard-items-3)
+  (define-key dashboard-mode-map "4" #'jcs-dashboard-items-4)
+  (define-key dashboard-mode-map "5" #'jcs-dashboard-items-5)
+  (define-key dashboard-mode-map "6" #'jcs-dashboard-items-6)
+  (define-key dashboard-mode-map "7" #'jcs-dashboard-items-7)
+  (define-key dashboard-mode-map "8" #'jcs-dashboard-items-8)
+  (define-key dashboard-mode-map "9" #'jcs-dashboard-items-9)
   (define-key dashboard-mode-map (kbd "<up>") #'jcs-previous-line)
   (define-key dashboard-mode-map (kbd "<down>") #'jcs-next-line)
+  (define-key dashboard-mode-map (kbd "C-<up>") #'jcs-dashboard-previous-blank-line)
+  (define-key dashboard-mode-map (kbd "C-<down>") #'jcs-dashboard-next-blank-line)
   (define-key dashboard-mode-map (kbd "C-p") #'package-list-packages)
   (define-key dashboard-mode-map (kbd "M-k") #'jcs-dashboard-maybe-kill-this-buffer)
   (define-key dashboard-mode-map (kbd "M-K") #'jcs-dashboard-refresh-buffer))
