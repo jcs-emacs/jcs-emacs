@@ -85,9 +85,7 @@ C-r C-r         Rename the whole text with the same name.
 
 C-a             Mark whole buffer (Select All)
 
-M-]             Run the program (run.linux/run.bat/run.mac)
 C-f5            Run the program (run.linux/run.bat/run.mac)
-
 C-S-b           Build the program (build.linux/build.bat/build.mac)
 
 C-u anykey      insert 4 of that key
@@ -119,16 +117,16 @@ C->             Search word forward at current point through
 C-f10           Goto previous highlight todo related symbol.
 C-f11           Goto next highlight todo related symbol.
 
-C-rr            Rename the whole text with the same name.
-C-rp            Replace pattern in project root.
-C-xC-s          Save the all the buffer that changes in the 
+C-r r           Rename the whole text with the same name.
+C-r p           Replace pattern in project root.
+C-x C-s         Save the all the buffer that changes in the 
                 `ag' replace Menu.
 
 C-s             Untabify the document then save the file.
 C-S             Tabify the document then save the file.
 
-C-/             comment-region
-C-?             uncomment-region
+C-/             Comment region.
+C-?             Uncomment region.
 
 C-p             package-list-packages
 M-=             text-scale-increase
@@ -138,14 +136,18 @@ C-k C-f         format select region
 C-k C-d         format current document
 C-S-f           format the region if region select else format the document.
 
-M-U             uppercase-word, if region do region
-M-D             downcase-word, if region do region
+C-w u           Uppercase the word, if region exists do region then.
+C-w d           Lowercase the word, if region exists do region then.
+C-w c           Capitalize the word, if region exists do region then.
 
-C-x a           align all variables in the region if region selected, 
+C-x a           Align all variables in the region if region selected, 
                 else align full document insteead.
 
-M-m             open buffer menu.
-M-M             open buffer menu in other window.
+M-m             Open buffer menu.
+M-M             Open buffer menu in other window.
+
+M-d             Open dashboard.
+M-D             Open dashboard in other window.
 
 M-r             reload the file withou asking.
 
@@ -174,7 +176,7 @@ C-w o           Start httpd server for real time editing markdown
                 using `impatient-mode'.
 C-w p           Close httpd server for real time editing markdown
                 using `impatient-mode'.
-				
+
 M-p             Open list of processes. (`list-processes')
 
 M-up            Move current line up.
