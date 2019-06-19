@@ -157,7 +157,7 @@
               '(buffer-file-name "%f" (dired-directory dired-directory "%b"))))
 
   ;; NOTE: Lower the `GC' back to normal threshold.
-  (setq gc-cons-threshold jcs-normal-gc-cons-threshold)
+  (jcs-gc-cons-threshold nil)
 
   ;; IMPORTANT: This should always be the last thing.
   (setq dashboard-init-info
@@ -211,6 +211,8 @@
 
 (defun jcs-minibuffer-setup-hook ()
   "Hook when minibuffer setup."
+  (jcs-gc-cons-threshold t)
+
   (when (and (not (jcs-current-char-equal-p "/"))
              ;; SEE: this trigger can be check at `jcs-helm-func.el' file.
              jcs-helm-find-files-active)
@@ -234,6 +236,9 @@
   (setq jcs-helm-find-files-active nil)
 
   (jcs-reload-active-mode)
+
+  (garbage-collect)
+  (jcs-gc-cons-threshold nil)
   )
 (add-hook 'minibuffer-exit-hook 'jcs-minibuffer-exit-hook)
 
