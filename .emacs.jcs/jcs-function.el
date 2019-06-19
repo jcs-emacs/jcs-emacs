@@ -68,6 +68,23 @@
 ;;----------------------------------------------
 
 ;;;###autoload
+(defun jcs-dashboard (&optional ow)
+  "Jump to the dashboard buffer, if doesn't exists create one."
+  (interactive)
+  (if ow
+      (switch-to-buffer-other-window dashboard-buffer-name)
+    (switch-to-buffer dashboard-buffer-name))
+  (unless (jcs-is-current-major-mode-p "dashboard-mode")
+    (dashboard-mode)
+    (dashboard-refresh-buffer)))
+
+;;;###autoload
+(defun jcs-dashboard-other-window ()
+  "Just like `jcs-dashboard', but open on the other window."
+  (interactive)
+  (jcs-dashboard t))
+
+;;;###autoload
 (defun jcs-dashboard-refresh-buffer ()
   "Update dashboard buffer by killing it and start a new one."
   (interactive)
@@ -122,23 +139,6 @@
                         :weight 'normal
                         :foreground wb-fg))
   (jcs-dashboard-refresh-buffer))
-
-;;;###autoload
-(defun jcs-dashboard (&optional ow)
-  "Jump to the dashboard buffer, if doesn't exists create one."
-  (interactive)
-  (if ow
-      (switch-to-buffer-other-window dashboard-buffer-name)
-    (switch-to-buffer dashboard-buffer-name))
-  (unless (jcs-is-current-major-mode-p "dashboard-mode")
-    (dashboard-mode)
-    (dashboard-refresh-buffer)))
-
-;;;###autoload
-(defun jcs-dashboard-other-window ()
-  "Just like `jcs-dashboard', but open on the other window."
-  (interactive)
-  (jcs-dashboard t))
 
 ;;----------------------------------------------
 ;; Electric Pair
@@ -399,7 +399,7 @@ G : Active line numbers globally."
       ;; then delete this window.
       (delete-window))))
 
-;;;###autoload
+;;;###autoload
 (defun jcs-re-builder (type)
   "Rewrap `re-builder' function.
 TYPE : enable/disable case sensitive?"
@@ -819,6 +819,7 @@ NO-PROMPT : Don't prompt the overwrap message."
 
 ;; Editing
 (require 'jcs-buffer-menu)
+(with-eval-after-load 'dashboard (require 'jcs-dashboard))
 (require 'jcs-edit)
 (require 'jcs-comment)
 (require 'jcs-vs-func)
