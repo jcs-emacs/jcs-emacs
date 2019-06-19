@@ -84,6 +84,10 @@
 (define-key global-map (kbd "C-k C-c") #'jcs-comment-region-or-line)
 (define-key global-map (kbd "C-k C-u") #'jcs-uncomment-region-or-line)
 
+;;; Dashboard
+(define-key global-map (kbd "M-d") #'jcs-dashboard)
+(define-key global-map (kbd "M-D") #'jcs-dashboard-other-window)
+
 ;;; Describe Thing
 (define-key global-map (kbd "C-k C-s") #'describe-bindings)
 
@@ -96,8 +100,6 @@
 (define-key global-map [pgdown] #'backward-page)
 (define-key global-map [C-next] #'scroll-other-window)
 (define-key global-map [C-prior] #'scroll-other-window-down)
-
-(define-key global-map "\e^" #'capitalize-word)
 
 (define-key global-map (kbd "C-c d") #'jcs-duplicate-line)
 (define-key global-map (kbd "C-d") #'jcs-kill-whole-line)
@@ -464,9 +466,11 @@
   (define-key global-map (kbd "C-8") #'jcs-ace-window-8)
   (define-key global-map (kbd "C-9") #'jcs-ace-window-9))
 
-;;; Upper/Down case key binding.
-(define-key global-map "\eu" #'upcase-word)
-(define-key global-map "\ed" #'downcase-word)
+;;; Word Case
+(define-key global-map (kbd "C-w u") #'jcs-upcase-word-or-region)
+(define-key global-map (kbd "C-w d") #'jcs-downcase-word-or-region)
+
+(define-key global-map (kbd "C-w c") #'jcs-capitalize-word-or-region)
 
 ;;; Undo/Redo
 (define-key global-map (kbd "C-z") #'jcs-undo)
