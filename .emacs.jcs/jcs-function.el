@@ -75,8 +75,8 @@
       (switch-to-buffer-other-window dashboard-buffer-name)
     (switch-to-buffer dashboard-buffer-name))
   (unless (jcs-is-current-major-mode-p "dashboard-mode")
-    (dashboard-mode)
-    (dashboard-refresh-buffer)))
+    (dashboard-mode))
+  (dashboard-refresh-buffer))
 
 ;;;###autoload
 (defun jcs-dashboard-other-window ()
