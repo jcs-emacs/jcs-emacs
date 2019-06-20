@@ -1,11 +1,11 @@
-;;; jayces-mode.el --- Major mode for editing JayCeS file.                 -*- lexical-binding: t; -*-
+;;; jayces-mode.el --- Major mode for editing JayCeS file.  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2018  Shen, Jen-Chieh
 ;; Created date 2018-10-11 16:28:04
 
 ;; Author: Shen, Jen-Chieh <jcs090218@gmail.com>
 ;; Description: Major mode for editing JayCeS file
-;; Keyword: jayces, major mode
+;; Keyword: jayces major mode
 ;; Version: 0.0.1
 ;; Package-Requires: ((emacs "24.3"))
 ;; URL: https://github.com/jcs090218/jayces-mode
@@ -23,7 +23,7 @@
 ;; GNU General Public License for more details.
 
 ;; You should have received a copy of the GNU General Public License
-;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;; along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 ;;; Commentary:
 ;;
@@ -43,10 +43,24 @@
   (require 'cl-lib))
 
 
+(defgroup jayces nil
+  "Major mode for editing JayCeS file."
+  :prefix "jayces-"
+  :group 'languages
+  :link '(url-link :tag "Repository" "https://github.com/jcs090218/jayces-mode"))
+
+
 ;;; Font Lock
 (defconst jayces--font-lock-keywords
   '(("function" . font-lock-keyword-face))
   "Font lock keywords for `jayces-mode'.  See `font-lock-keywords'.")
+
+
+;; define hook
+(defcustom jayces-mode-hook nil
+  "*Hook to be run when `jayces-mode' is entered."
+  :type  'hook
+  :group 'jayces)
 
 
 (defvar jayces-mode-syntax-table
@@ -58,26 +72,16 @@
   "Syntax table for `jayces-mode'.")
 
 
-(defvar jayces-mode-map nil
+(defvar jayces-mode-map
+  (let ((map (make-sparse-keymap)))
+    (define-key map (kbd "RET") #'jcs-smart-context-line-break)
+    (define-key map (kbd "*") #'jcs-c-comment-pair)
+    map)
   "Kaymap for `jayces-mode'.")
 
 
-(unless jayces-mode-map
-  (progn
-    (setq jayces-mode-map (make-sparse-keymap))
-
-    ;; keymap define here.
-    (define-key jayces-mode-map (kbd "RET") 'jcs-smart-context-line-break)
-    (define-key jayces-mode-map (kbd "*") 'jcs-c-comment-pair)
-    ))
-
-;; define hook
-(defcustom jayces-mode-hook nil
-  "*Hook to be run when `jayces-mode' is entered."
-  :group 'jayces
-  :type  'hook)
-
-;; main JayCeS code mode.
+;; The main mode functions
+;;;###autoload
 (define-derived-mode jayces-mode prog-mode "JayCeS"
   "Major mode for editing JayCeS file."
 
@@ -112,8 +116,11 @@
   (use-local-map jayces-mode-map)
   )
 
-(add-to-list 'auto-mode-alist '("\\.jcs$" . jayces-mode))
-(add-to-list 'auto-mode-alist '("\\.jayces$" . jayces-mode))
+;;;###autoload
+(add-to-list 'auto-mode-alist '("\\.jcs'?\\'" . jayces-mode))
+;;;###autoload
+(add-to-list 'auto-mode-alist '("\\.jayces'?\\'" . jayces-mode))
+
 
 (provide 'jayces-mode)
 ;;; jayces-mode.el ends here
