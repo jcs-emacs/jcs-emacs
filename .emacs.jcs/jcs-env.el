@@ -23,14 +23,14 @@
   (setq jcs-linux t)))
 
 
-(defvar jcs-daily-todo-file "" "Open the daily todo file.")
-(defvar jcs-log-file "" "Log file path, file location.")
+(defconst jcs-daily-todo-file "" "Open the daily todo file.")
+(defconst jcs-log-file "" "Log file path, file location.")
 
-(defvar jcs-project-todo-file "TODO" "Project TODO file.")
-(defvar jcs-project-update-log-file "Update_Log" "Project Update Log file.")
+(defconst jcs-project-todo-file "TODO" "Project TODO file.")
+(defconst jcs-project-update-log-file "Update_Log" "Project Update Log file.")
 
-(defvar jcs-makescript "" "Make script file name depends on the current OS.")
-(defvar jcs-runscript "" "Run script file name depends on the current OS.")
+(defconst jcs-makescript "" "Make script file name depends on the current OS.")
+(defconst jcs-runscript "" "Run script file name depends on the current OS.")
 
 (cond (jcs-win32
        (setq jcs-daily-todo-file "C:/TODO_JenChieh/code/todo.txt")
@@ -142,43 +142,43 @@
 (setq inhibit-compacting-font-caches t)
 
 ;;; Line Numbers
-(defvar jcs-line-numbers-ignore-buffers '("*ag"
-                                          "*Backtrace*"
-                                          "*Buffer List*"
-                                          "*Checkdoc Help*"
-                                          "*Checkdoc Status*"
-                                          "*Compile-Log*"
-                                          "*compilation*"
-                                          "*dashboard*"
-                                          "*esup"
-                                          "*Flycheck errors*"
-                                          "*GNU Emacs*"
-                                          "*helm"
-                                          "*magit"
-                                          "magit: "
-                                          "*Messages*"
-                                          "*Music*"
-                                          "*Package-Lint*"
-                                          "*shell*"
-                                          "*SPEEDBAR*"
-                                          "*undo-tree*"
-                                          "*Warnings*")
+(defconst jcs-line-numbers-ignore-buffers '("*ag"
+                                            "*Backtrace*"
+                                            "*Buffer List*"
+                                            "*Checkdoc Help*"
+                                            "*Checkdoc Status*"
+                                            "*Compile-Log*"
+                                            "*compilation*"
+                                            "*dashboard*"
+                                            "*esup"
+                                            "*Flycheck errors*"
+                                            "*GNU Emacs*"
+                                            "*helm"
+                                            "*magit"
+                                            "magit: "
+                                            "*Messages*"
+                                            "*Music*"
+                                            "*Package-Lint*"
+                                            "*shell*"
+                                            "*SPEEDBAR*"
+                                            "*undo-tree*"
+                                            "*Warnings*")
   "List of buffers that you do not want to show line numbers in it.")
 
-(defvar jcs-line-numbers-ignore-modes '("Custom-mode"
-                                        "dired-mode"
-                                        "doc-view-mode"
-                                        "help-mode"
-                                        "image-mode"
-                                        "outline-mode"
-                                        "package-menu-mode")
+(defconst jcs-line-numbers-ignore-modes '("Custom-mode"
+                                          "dired-mode"
+                                          "doc-view-mode"
+                                          "help-mode"
+                                          "image-mode"
+                                          "outline-mode"
+                                          "package-menu-mode")
   "List of modes that you do not want to show line numbers in it.")
 
 ;;; Menu Bar
 (menu-bar-mode -1)
 
 ;;; Messages
-(defvar jcs-prompt-message-sleep-delay-time 0.4  ;; in seconds
+(defconst jcs-prompt-message-sleep-delay-time 0.4  ;; in seconds
   "Delay for a time for prompting out the message, so the user
 can see the error/operation message.")
 
@@ -189,9 +189,9 @@ can see the error/operation message.")
             :after #'jcs-dashboard-refresh-buffer)
 
 ;;; Read Only
-(defvar jcs-find-file-read-only-paths '("/.emacs.d/elisp/"
-                                        "/.emacs.d/elpa/"
-                                        "/lisp/")
+(defconst jcs-find-file-read-only-paths '("/.emacs.d/elisp/"
+                                          "/.emacs.d/elpa/"
+                                          "/lisp/")
   "When `find-file' under these paths, enable `read-only-mode' as default when opens it.")
 
 ;;; Scroll bar
@@ -219,7 +219,7 @@ can see the error/operation message.")
 (setq-default tab-width 4)
 
 ;;; Toolbar
-(tool-bar-mode 0)
+(tool-bar-mode -1)
 
 ;;; Uniquify
 ;; NOTE: meaningful names for buffers with the same name from prelude.
