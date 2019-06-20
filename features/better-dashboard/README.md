@@ -18,4 +18,7 @@ sections' title instead of just skip the whole section.
 
 You can navigate item sections by using the number keys 
 starting from `0` to `9`.
-<img src="./bd-nav-by-num.gif"/>
+
+<p align="center">
+  <img src="./bd-nav-by-num.gif" width="450" height="525"/>
+</p>
