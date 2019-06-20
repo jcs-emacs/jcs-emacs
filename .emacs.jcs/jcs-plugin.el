@@ -96,6 +96,10 @@
   (setq dashboard-set-navigator t)
   (setq dashboard-set-navigator nil)
   :config
+  (defun jcs-dashboard-get-banner-path (&rest _)
+    "Return the full path to banner."
+    "~/.emacs.jcs/banner/sink.txt")
+  (advice-add #'dashboard-get-banner-path :override #'jcs-dashboard-get-banner-path)
   (dashboard-setup-startup-hook))
 
 
