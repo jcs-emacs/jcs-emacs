@@ -28,108 +28,109 @@
 ;;-----------------------------------------------------------
 
 ;; List of package you want to installed.
-(defvar jcs-package-install-list '(ace-window
-                                   actionscript-mode
-                                   adaptive-wrap
-                                   ag
-                                   apache-mode
-                                   auto-highlight-symbol
-                                   auto-rename-tag
-                                   beacon
-                                   basic-mode
-                                   buffer-move
-                                   clojure-mode
-                                   cmake-font-lock
-                                   cmake-mode
-                                   cobol-mode
-                                   com-css-sort
-                                   company
-                                   company-quickhelp
-                                   csharp-mode
-                                   dart-mode
-                                   dash
-                                   dashboard
-                                   diminish
-                                   dimmer
-                                   dumb-jump
-                                   elixir-mode
-                                   emmet-mode
-                                   erlang
-                                   esup
-                                   exec-path-from-shell
-                                   focus
-                                   flycheck
-                                   flycheck-popup-tip
-                                   gitattributes-mode
-                                   gitconfig-mode
-                                   gitignore-mode
-                                   glsl-mode
-                                   go-mode
-                                   google-this
-                                   google-translate
-                                   goto-char-preview
-                                   goto-line-preview
-                                   haskell-mode
-                                   haxe-mode
-                                   helm
-                                   helm-ag
-                                   helm-core
-                                   helm-projectile
-                                   hl-todo
-                                   htmltagwrap
-                                   indent-info
-                                   ini-mode
-                                   isearch-project
-                                   javadoc-lookup
-                                   js2-mode
-                                   json-mode
-                                   line-reminder
-                                   lua-mode
-                                   magit
-                                   markdown-mode
-                                   move-text
-                                   multiple-cursors
-                                   nasm-mode
-                                   nhexl-mode
-                                   organize-imports-java
-                                   origami
-                                   package-build
-                                   package-lint
-                                   powerline
-                                   processing-mode
-                                   project-abbrev
-                                   projectile
-                                   python-mode
-                                   rainbow-mode
-                                   region-occurrences-highlighter
-                                   restart-emacs
-                                   right-click-context
-                                   rust-mode
-                                   scala-mode
-                                   shader-mode
-                                   show-eol
-                                   sr-speedbar
-                                   ssass-mode
-                                   scss-mode
-                                   sublimity
-                                   sql-indent
-                                   swift-mode
-                                   tabbar
-                                   togetherly
-                                   typescript-mode
-                                   undo-tree
-                                   use-package
-                                   use-ttf
-                                   vimrc-mode
-                                   impatient-mode
-                                   web-mode
-                                   which-key
-                                   wgrep-ag
-                                   wgrep-helm
-                                   yaml-mode
-                                   yascroll
-                                   yasnippet
-                                   yasnippet-snippets)
+(defconst jcs-package-install-list
+  '(ace-window
+    actionscript-mode
+    adaptive-wrap
+    ag
+    apache-mode
+    auto-highlight-symbol
+    auto-rename-tag
+    beacon
+    basic-mode
+    buffer-move
+    clojure-mode
+    cmake-font-lock
+    cmake-mode
+    cobol-mode
+    com-css-sort
+    company
+    company-quickhelp
+    csharp-mode
+    dart-mode
+    dash
+    dashboard
+    diminish
+    dimmer
+    dumb-jump
+    elixir-mode
+    emmet-mode
+    erlang
+    esup
+    exec-path-from-shell
+    focus
+    flycheck
+    flycheck-popup-tip
+    gitattributes-mode
+    gitconfig-mode
+    gitignore-mode
+    glsl-mode
+    go-mode
+    google-this
+    google-translate
+    goto-char-preview
+    goto-line-preview
+    haskell-mode
+    haxe-mode
+    helm
+    helm-ag
+    helm-core
+    helm-projectile
+    hl-todo
+    htmltagwrap
+    indent-info
+    ini-mode
+    isearch-project
+    javadoc-lookup
+    js2-mode
+    json-mode
+    line-reminder
+    lua-mode
+    magit
+    markdown-mode
+    move-text
+    multiple-cursors
+    nasm-mode
+    nhexl-mode
+    organize-imports-java
+    origami
+    package-build
+    package-lint
+    powerline
+    processing-mode
+    project-abbrev
+    projectile
+    python-mode
+    rainbow-mode
+    region-occurrences-highlighter
+    restart-emacs
+    right-click-context
+    rust-mode
+    scala-mode
+    shader-mode
+    show-eol
+    sr-speedbar
+    ssass-mode
+    scss-mode
+    sublimity
+    sql-indent
+    swift-mode
+    tabbar
+    togetherly
+    typescript-mode
+    undo-tree
+    use-package
+    use-ttf
+    vimrc-mode
+    impatient-mode
+    web-mode
+    which-key
+    wgrep-ag
+    wgrep-helm
+    yaml-mode
+    yascroll
+    yasnippet
+    yasnippet-snippets)
   "List of packages this config needs.")
 
 (defvar jcs-package-installing nil
@@ -221,6 +222,25 @@ Return a list of installed packages or nil for every skipped package."
   (if (string= status "..")
       (package-list-packages)
     (package-menu-filter (concat "status:" status))))
+
+
+;;========================================
+;;         Manually Installation
+;;----------------------------------
+
+(defconst jcs-package-manually-install-list
+  '("~/.emacs.d/elisp/jayces-mode-20190620.001/"
+    "~/.emacs.d/elisp/jcs-ex-pkg-20190326.001/"
+    "~/.emacs.d/elisp/reload-emacs-20190326.001/"
+    "~/.emacs.d/elisp/shift-select-20190423.001/")
+  "List of package that you want to manually installed.")
+
+(unless (jcs-reload-emacs-reloading-p)
+  (dolist (pkg-path jcs-package-manually-install-list)
+    (add-to-list 'load-path pkg-path)
+    (let ((al-files (directory-files pkg-path nil "autoloads.el")))
+      (dolist (al-file al-files)
+        (load-file (concat pkg-path al-file))))))
 
 
 (provide 'jcs-package)
