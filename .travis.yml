@@ -13,6 +13,7 @@ matrix:
       - EVM_EMACS=emacs-git-snapshot-travis
 
 before_script:
+  - mv -f ./build.el ~/build.el
   - mv -f ./.emacs ~/.emacs
   - mv -f ./.emacs.d ~/.emacs.d
   - mv -f ./.emacs.jcs ~/.emacs.jcs
@@ -27,7 +28,7 @@ script:
     '(let ((debug-on-error (>=  emacs-major-version 26))
     (url-show-status nil)
     (user-emacs-directory default-directory)
-    (user-init-file (expand-file-name "~/.emacs"))
+    (user-init-file (expand-file-name "~/build.el"))
     (load-path (delq default-directory load-path)))
     (load-file user-init-file)
     (when (>= emacs-major-version 26)
