@@ -12,14 +12,14 @@
   "Calling `previous-line' does not execute.
 Just use this without remember Emacs Lisp function."
   (interactive)
-  (previous-line 1))
+  (call-interactively #'previous-line))
 
 ;;;###autoload
 (defun jcs-next-line ()
   "Calling `next-line' does not execute.
 Just use this without remember Emacs Lisp function."
   (interactive)
-  (next-line 1))
+  (call-interactively #'next-line))
 
 
 ;;----------------------------------------------
@@ -120,10 +120,7 @@ this version instead."
   "Move to the previous line containing nothing but whitespaces or tabs."
   (interactive)
   (unless (ignore-errors (search-backward-regexp "^[ \t]*\n") t)
-    (goto-char (point-min)))
-  (when (and (functionp 'mc/keyboard-quit)
-             (> (mc/num-cursors) 1))
-    (mc/keyboard-quit)))
+    (goto-char (point-min))))
 
 ;;;###autoload
 (defun jcs-next-blank-line ()
@@ -132,10 +129,7 @@ this version instead."
   (forward-line 1)
   (if (ignore-errors (search-forward-regexp "^[ \t]*\n") t)
       (forward-line -1)
-    (goto-char (point-max)))
-  (when (and (functionp 'mc/keyboard-quit)
-             (> (mc/num-cursors) 1))
-    (mc/keyboard-quit)))
+    (goto-char (point-max))))
 
 
 ;;----------------------------------------------
@@ -143,8 +137,7 @@ this version instead."
 ;;----------------------------------------------
 
 (defun jcs-move-to-forward-a-char (ch)
-  "Move forward to a character.
-CH : character we target to move toward."
+  "Move forward to a character CH."
   (ignore-errors
     (forward-char 1)
     (while (and (not (jcs-current-char-equal-p ch))
@@ -152,8 +145,7 @@ CH : character we target to move toward."
       (forward-char 1))))
 
 (defun jcs-move-to-backward-a-char (ch)
-  "Move backward to a character.
-CH : character we target to move toward."
+  "Move backward to a character CH."
   (ignore-errors
     (while (and (not (jcs-current-char-equal-p ch))
                 (not (jcs-is-beginning-of-buffer-p)))
@@ -161,16 +153,14 @@ CH : character we target to move toward."
     (backward-char 1)))
 
 (defun jcs-move-to-forward-a-word (word)
-  "Move forward to a word.
-WORD : word we target to move toward."
+  "Move forward to a WORD."
   (forward-word 1)
   (while (and (not (jcs-current-word-equal-p word))
               (not (jcs-is-end-of-buffer-p)))
     (forward-word 1)))
 
 (defun jcs-move-to-backward-a-word (word)
-  "Move backward to a word.
-WORD : word we target to move toward."
+  "Move backward to a WORD."
   (backward-word 1)
   (while (and (not (jcs-current-word-equal-p word))
               (not (jcs-is-beginning-of-buffer-p)))
