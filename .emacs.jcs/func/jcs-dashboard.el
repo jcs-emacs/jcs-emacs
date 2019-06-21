@@ -73,11 +73,33 @@
       (forward-line -1))))
 
 ;;;###autoload
-(defun jcs-dashboard-remove-item ()
+(defun jcs-dashboard-remove-current-item ()
   "Remove a item from the current item section."
   (interactive)
-  (message "hel")
-  )
+  (let ((pg-lst (jcs-dashboard-page-break-list))
+        (index 0)
+        (is-id -1)
+        (item-title ""))
+    (while (< index (1- (length pg-lst)))
+      (let ((min-pg-ln (nth index pg-lst))
+            (max-pg-ln (nth (1+ index) pg-lst)))
+        (when (jcs-in-range-p (line-number-at-pos) min-pg-ln max-pg-ln)
+          (setq is-id (1+ index))))
+      (setq index (1+ index)))
+    (unless (= is-id -1)
+      (save-excursion
+        (jcs-dashboard-goto-item-section is-id)
+        (setq item-title (string-trim (thing-at-point 'line t))))
+      (cond ((string= item-title "Recent Files: (r)")
+             (jcs-dashboard-remove-recent-files-item))
+            ((string= item-title "Projects: (p)")
+             (jcs-dashboard-remove-projects-item))
+            ((string= item-title "Bookmarks:")
+             (jcs-dashboard-remove-bookmarks-item))
+            ((string= item-title "Agenda for today:")
+             (jcs-dashboard-remove-agenda-item))
+            ((string= item-title "Registers:")
+             (jcs-dashboard-remove-registers-item))))))
 
 ;;;###autoload
 (defun jcs-dashboard-remove-recent-files-item ()
@@ -90,12 +112,30 @@
 
 ;;;###autoload
 (defun jcs-dashboard-remove-projects-item ()
-  "Remove a file from `recentf-list'."
+  "Remove a path from `projectile-known-projects'."
   (interactive)
   (when (boundp 'projectile-known-projects)
-    (let ((path (expand-file-name (string-trim (thing-at-point 'line t)))))
+    (let ((path (string-trim (thing-at-point 'line t))))
       (setq projectile-known-projects (delete path projectile-known-projects)))
     (jcs-dashboard-refresh-buffer)))
+
+;;;###autoload
+(defun jcs-dashboard-remove-bookmarks-item ()
+  "Remove a bookmarks from `'."
+  (interactive)
+  )
+
+;;;###autoload
+(defun jcs-dashboard-remove-agenda-item ()
+  "Remove an agenda from `'."
+  (interactive)
+  )
+
+;;;###autoload
+(defun jcs-dashboard-remove-registers-item ()
+  "Remove a registers from `'."
+  (interactive)
+  )
 
 
 ;;;###autoload
