@@ -3,19 +3,21 @@
 ;;; Code:
 
 
+(require 'org)
+
 ;;---------------------------------------------
 ;; Highlighting
 ;;---------------------------------------------
 
-(defvar jcs-org-font-lock-comment-face-modes '(org-mode)
-  "Revised version of `org-mode' comment face regexp.")
-
-(mapc (lambda (mode)
-        (font-lock-add-keywords
-         mode
-         '(("\\(#[[:blank:][:graph:]]*\\)" 1 'font-lock-comment-face)
-           )'end))
-      jcs-org-font-lock-comment-face-modes)
+(defun jcs-init-org-faces ()
+  "Initialize Org mode faces highlihgting."
+  (let ((org-font-lock-comment-face-modes '(org-mode)))
+    (mapc (lambda (mode)
+            (font-lock-add-keywords
+             mode
+             '(("\\(#[[:blank:][:graph:]]*\\)" 1 'font-lock-comment-face)
+               )'end))
+          org-font-lock-comment-face-modes)))
 
 ;;---------------------------------------------
 ;; Table
@@ -94,14 +96,14 @@
 (defun jcs-org-table-left ()
   "Move cursor left one column if in the table."
   (interactive)
-  ;; NOTE(jenchieh): use built-in.
+  ;; NOTE: use built-in.
   (org-shifttab))
 
 ;;;###autoload
 (defun jcs-org-table-right ()
   "Move cursor right one column if in the table."
   (interactive)
-  ;; NOTE(jenchieh): use built-in.
+  ;; NOTE: use built-in.
   (org-cycle))
 
 
