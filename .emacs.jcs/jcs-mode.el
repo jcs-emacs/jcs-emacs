@@ -115,6 +115,7 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
 
 (defun jcs-view-mode-hook()
   "In view mode, read only file."
+  (require 'view)
 
   ;; unset all the key
   (define-key view-mode-map "a" nil)
