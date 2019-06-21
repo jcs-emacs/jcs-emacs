@@ -90,15 +90,15 @@
       (save-excursion
         (jcs-dashboard-goto-item-section is-id)
         (setq item-title (string-trim (thing-at-point 'line t))))
-      (cond ((string= item-title "Recent Files: (r)")
+      (cond ((string-match-p "Recent Files:" item-title)
              (jcs-dashboard-remove-recent-files-item))
-            ((string= item-title "Projects: (p)")
+            ((string-match-p "Projects:" item-title)
              (jcs-dashboard-remove-projects-item))
-            ((string= item-title "Bookmarks:")
+            ((string-match-p "Bookmarks:" item-title)
              (jcs-dashboard-remove-bookmarks-item))
-            ((string= item-title "Agenda for today:")
+            ((string-match-p "Agenda for today:" item-title)
              (jcs-dashboard-remove-agenda-item))
-            ((string= item-title "Registers:")
+            ((string-match-p  "Registers:" item-title)
              (jcs-dashboard-remove-registers-item))))))
 
 ;;;###autoload
@@ -123,6 +123,7 @@
 (defun jcs-dashboard-remove-bookmarks-item ()
   "Remove a bookmarks from `'."
   (interactive)
+  (message "%s" bookmark-alist)
   )
 
 ;;;###autoload
@@ -148,9 +149,9 @@
          (items-len (- (length pg-lst) 2)))
     (when (and items-pg
                (< items-id items-len))
-      (goto-char (point-min))
-      (forward-line (1- items-pg))
-      (forward-line 1))))
+      (jcs-goto-line items-pg)
+      (forward-line 1)
+      (call-interactively #'recenter))))
 
 ;;;###autoload
 (defun jcs-dashboard-item-section-1 ()
@@ -177,7 +178,7 @@
   (jcs-dashboard-goto-item-section 4))
 
 ;;;###autoload
-(defun jcs-dashboard-items-5 ()
+(defun jcs-dashboard-item-section-5 ()
   "Navigate to item 5."
   (interactive)
   (jcs-dashboard-goto-item-section 5))
