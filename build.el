@@ -3,20 +3,11 @@
 ;;; Code:
 
 
-;; Get the list of package dependencies.
-(load-file "./.emacs.jcs/jcs-package.el")
-
-;; make sure to have downloaded archive description.
-;; Or use package-archive-contents as suggested by Nicolas Dudebout
-(or (file-exists-p package-user-dir)
-    (package-refresh-contents))
-
-;; Install all needed packages without asking.
-(jcs-ensure-package-installed jcs-package-install-list t)
-
+(defconst jcs-build-test t
+  "Define for build testing.")
 
 ;; Start regular Emacs file.
-;;(load-file "./.emacs")
+(load-file (expand-file-name "~/.emacs"))
 
 
 ;;(provide 'build)
