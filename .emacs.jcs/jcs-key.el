@@ -7,7 +7,6 @@
 ;;; Unset key binding
 ;;;---------------------------------------------
 (global-unset-key (kbd "C-k"))
-(global-unset-key (kbd "C-f"))
 (global-unset-key (kbd "C-r"))
 (global-unset-key (kbd "C-w"))
 
@@ -390,7 +389,9 @@
 (define-key global-map (kbd "M-D") #'jcs-dashboard-other-window)
 
 (with-eval-after-load 'dashboard
-  (define-key dashboard-mode-map (kbd "<delete>")  #'jcs-dashboard-remove-item)
+  (define-key dashboard-mode-map (kbd "<backspace>")  #'jcs-dashboard-remove-current-item)
+  (define-key dashboard-mode-map (kbd "<delete>")  #'jcs-dashboard-remove-current-item)
+  (define-key dashboard-mode-map (kbd "d")  #'jcs-dashboard-remove-current-item)
   (define-key dashboard-mode-map "1" #'jcs-dashboard-item-section-1)
   (define-key dashboard-mode-map "2" #'jcs-dashboard-item-section-2)
   (define-key dashboard-mode-map "3" #'jcs-dashboard-item-section-3)
