@@ -22,3 +22,16 @@ starting from `0` to `9`.
 <p align="center">
   <img src="./bd-nav-by-num.gif" width="450" height="525"/>
 </p>
+
+
+## Remove Items' item
+You are able to delete the item directly from `*dashboard*` 
+buffer by clicking `d`, `delete` or `backspace` keys. These 
+are functions that you can use.
+
+```
+M-x jcs-dashboard-remove-current-item
+
+M-x jcs-dashboard-remove-recent-files-item
+M-x jcs-dashboard-remove-projects-item
+```
