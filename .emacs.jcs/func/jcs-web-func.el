@@ -13,6 +13,7 @@
 (defun jcs-web-truncate-lines-by-face ()
   "Enable/Disable the truncate lines mode depends on the face \
 cursor currently on."
+  (require 'auto-rename-tag)
   (save-excursion
     (when (and (not (jcs-current-char-string-match-p "[ \t\n]"))
                ;; NOTE: To avoid empty line navigation.
@@ -157,17 +158,17 @@ another function..."
 (defun jcs-httpd-start ()
   "Active real time editing with default port (`impatient-mode')."
   (interactive)
-  ;; NOTE: port can be change at `jcs-web-mode.el' file.
-  (message "Active real time editing with port: %d" httpd-port)
-  (call-interactively 'httpd-start))
+  (require 'impatient-mode)
+  (call-interactively 'httpd-start)
+  (message "Active real time editing with port: %d" httpd-port))
 
 ;;;###autoload
 (defun jcs-httpd-stop ()
   "Close real time editing with default port. (`impatient-mode')"
   (interactive)
-  ;; NOTE: port can be change at `jcs-web-mode.el' file.
-  (message "Close real time editing with port: %d" httpd-port)
-  (call-interactively 'httpd-stop))
+  (require 'impatient-mode)
+  (call-interactively 'httpd-stop)
+  (message "Close real time editing with port: %d" httpd-port))
 
 
 ;;-----------------------------------------------------------
