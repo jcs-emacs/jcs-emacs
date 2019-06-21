@@ -143,8 +143,11 @@ C-w c           Capitalize the word, if region exists do region then.
 C-x a           Align all variables in the region if region selected, 
                 else align full document insteead.
 
-M-m             Open buffer menu.
-M-M             Open buffer menu in other window.
+M-b             Open buffer menu.
+M-B             Open buffer menu in other window.
+
+M-m             Open *Message* buffer.
+M-M             Open *Message* buffer in other window.
 
 M-d             Open dashboard.
 M-D             Open dashboard in other window.
