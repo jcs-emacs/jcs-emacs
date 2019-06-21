@@ -97,7 +97,7 @@
     (set-variable 'grep-command "findstr -s -n -i -l ")))
 
 ;;; Default Major Mode
-(setq-default major-mode 'org-mode)
+(setq-default major-mode 'text-mode)
 
 ;;; Doc View
 (when jcs-win32
