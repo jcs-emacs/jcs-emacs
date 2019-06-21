@@ -156,7 +156,7 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
   (define-key view-mode-map [space] nil)
 
   ;; just save buffer, don't care about the tab or spaces.
-  (define-key view-mode-map "\C-s" 'save-buffer)
+  (define-key view-mode-map (kbd "C-s") #'save-buffer)
   )
 (add-hook 'view-mode-hook 'jcs-view-mode-hook)
 
@@ -215,7 +215,7 @@ control of the editor."
   (define-key global-map (kbd "C-f") #'isearch-forward)
   (define-key global-map (kbd "C-x C-f") #'isearch-project-forward)
 
-  (global-unset-key "\C-rp")
+  (global-unset-key (kbd "C-r p"))
 
   (when (functionp 'jcs-global-key-rebind)
     (jcs-global-key-rebind))
