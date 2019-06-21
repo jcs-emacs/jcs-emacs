@@ -157,7 +157,9 @@
 
 (defun jcs-ensure-package-installed (packages &optional without-asking)
   "Assure every package is installed, ask for installation if it’s not."
-  (package-refresh-contents)
+  (when (or (boundp 'jcs-build-test)
+            (not (file-directory-p (expand-file-name "~/.emacs.d/elpa/archives/"))))
+    (package-refresh-contents))
   (dolist (package packages)
     (unless (package-installed-p package)
       (if without-asking
