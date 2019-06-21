@@ -738,7 +738,7 @@ MAX-PT : larger position."
   (save-excursion
     (let ((there-is-empty-line nil))
       (when (>= min-pt max-pt)
-        (jcs-warning "Min point cannot be larger than max point..")
+        (error "Min point cannot be larger than max point..")
         ;; Return false.
         (equal there-is-empty-line t))
 
@@ -978,7 +978,7 @@ IN-FONT : input font name."
   ;; Change the font and keep the size.
   (if (jcs-font-existsp in-font)
       (set-frame-font in-font t)
-    (jcs-error "Font you chose does not exists in current system, please select other font")))
+    (error "Font you chose does not exists in current system, please select other font")))
 
 (defun jcs-font-existsp (font)
   "Check if font exists?
