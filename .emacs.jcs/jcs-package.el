@@ -156,17 +156,15 @@
   (package-install pkg))
 
 (defun jcs-ensure-package-installed (packages &optional without-asking)
-  "Assure every package is installed, ask for installation if it’s not.
-Return a list of installed packages or nil for every skipped package."
+  "Assure every package is installed, ask for installation if it’s not."
   ;; (dolist (package packages)
-  ;;   (if (package-installed-p package)
-  ;;       nil
+  ;;   (unless (package-installed-p package)
   ;;     (if without-asking
   ;;         (jcs-install-missing-package-install package)
   ;;       (if (y-or-n-p (format "Package %s is missing. Install it? " package))
   ;;           (jcs-install-missing-package-install package)
   ;;         package))))
-  (dolist (package package-list)
+  (dolist (package packages)
     (unless (package-installed-p package)
       (jcs-install-missing-package-install package)))
   ;; STUDY: Not sure if you need this?
