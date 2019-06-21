@@ -72,10 +72,35 @@
     (when (= break-cond 2)
       (forward-line -1))))
 
+;;;###autoload
+(defun jcs-dashboard-remove-item ()
+  "Remove a item from the current item section."
+  (interactive)
+  (message "hel")
+  )
 
 ;;;###autoload
-(defun jcs-dashboard-items (id)
-  "Navigate to item ID."
+(defun jcs-dashboard-remove-recent-files-item ()
+  "Remove a file from `recentf-list'."
+  (interactive)
+  (when (boundp 'recentf-list)
+    (let ((path (expand-file-name (string-trim (thing-at-point 'line t)))))
+      (setq recentf-list (delete path recentf-list)))
+    (jcs-dashboard-refresh-buffer)))
+
+;;;###autoload
+(defun jcs-dashboard-remove-projects-item ()
+  "Remove a file from `recentf-list'."
+  (interactive)
+  (when (boundp 'projectile-known-projects)
+    (let ((path (expand-file-name (string-trim (thing-at-point 'line t)))))
+      (setq projectile-known-projects (delete path projectile-known-projects)))
+    (jcs-dashboard-refresh-buffer)))
+
+
+;;;###autoload
+(defun jcs-dashboard-goto-item-section (id)
+  "Navigate to item section by ID."
   (interactive)
   (let* ((pg-lst (jcs-dashboard-page-break-list))
          (items-id (1- id))
@@ -88,58 +113,58 @@
       (forward-line 1))))
 
 ;;;###autoload
-(defun jcs-dashboard-items-1 ()
+(defun jcs-dashboard-item-section-1 ()
   "Navigate to item 1."
   (interactive)
-  (jcs-dashboard-items 1))
+  (jcs-dashboard-goto-item-section 1))
 
 ;;;###autoload
-(defun jcs-dashboard-items-2 ()
+(defun jcs-dashboard-item-section-2 ()
   "Navigate to item 2."
   (interactive)
-  (jcs-dashboard-items 2))
+  (jcs-dashboard-goto-item-section 2))
 
 ;;;###autoload
-(defun jcs-dashboard-items-3 ()
+(defun jcs-dashboard-item-section-3 ()
   "Navigate to item 3."
   (interactive)
-  (jcs-dashboard-items 3))
+  (jcs-dashboard-goto-item-section 3))
 
 ;;;###autoload
-(defun jcs-dashboard-items-4 ()
+(defun jcs-dashboard-item-section-4 ()
   "Navigate to item 4."
   (interactive)
-  (jcs-dashboard-items 4))
+  (jcs-dashboard-goto-item-section 4))
 
 ;;;###autoload
 (defun jcs-dashboard-items-5 ()
   "Navigate to item 5."
   (interactive)
-  (jcs-dashboard-items 5))
+  (jcs-dashboard-goto-item-section 5))
 
 ;;;###autoload
-(defun jcs-dashboard-items-6 ()
+(defun jcs-dashboard-item-section-6 ()
   "Navigate to item 6."
   (interactive)
-  (jcs-dashboard-items 6))
+  (jcs-dashboard-goto-item-section 6))
 
 ;;;###autoload
-(defun jcs-dashboard-items-7 ()
+(defun jcs-dashboard-item-section-7 ()
   "Navigate to item 7."
   (interactive)
-  (jcs-dashboard-items 7))
+  (jcs-dashboard-goto-item-section 7))
 
 ;;;###autoload
-(defun jcs-dashboard-items-8 ()
+(defun jcs-dashboard-item-section-8 ()
   "Navigate to item 8."
   (interactive)
-  (jcs-dashboard-items 8))
+  (jcs-dashboard-goto-item-section 8))
 
 ;;;###autoload
-(defun jcs-dashboard-items-9 ()
+(defun jcs-dashboard-item-section-9 ()
   "Navigate to item 9."
   (interactive)
-  (jcs-dashboard-items 9))
+  (jcs-dashboard-goto-item-section 9))
 
 
 (provide 'jcs-dashboard)
