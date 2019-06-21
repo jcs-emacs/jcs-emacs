@@ -296,12 +296,6 @@ control of the editor."
 PR : pair file `regexp' and file mode `symbol'."
   (add-to-list 'auto-mode-alist pr))
 
-;;; Text Mode (Override this)
-(progn
-  ;; NOTE: Use `org-mode' instead of `text-mode'.
-  ;; Normal `text-mode' suck.
-  (jcs-add-auto-mode-alist '("\\.txt'?\\'" . org-mode)))
-
 ;;; A
 (progn
   (jcs-add-auto-mode-alist '("\\.as'?\\'" . actionscript-mode)))
@@ -424,7 +418,8 @@ PR : pair file `regexp' and file mode `symbol'."
 
 ;;; T
 (progn
-  (jcs-add-auto-mode-alist '("\\.ts'?\\'" . typescript-mode)))
+  (jcs-add-auto-mode-alist '("\\.ts'?\\'" . typescript-mode))
+  (jcs-add-auto-mode-alist '("\\.txt'?\\'" . text-mode)))
 
 ;;; V
 (progn
