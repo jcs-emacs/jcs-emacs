@@ -40,7 +40,7 @@
 ;;-----------------------------------------------------------
 ;;-----------------------------------------------------------
 
-(defun jcs-advice-switch-to-buffer-after (&rest args)
+(defun jcs-advice-switch-to-buffer-after (&rest _args)
   "Advice after execute `switch-to-buffer' command."
   )
 (advice-add 'switch-to-buffer :after 'jcs-advice-switch-to-buffer-after)
