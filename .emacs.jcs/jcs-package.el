@@ -137,10 +137,10 @@
   "Is currently upgrading the package.")
 
 
-(defun jcs-advice-package-install-around (ori-func &rest _args)
+(defun jcs-advice-package-install-around (ori-func &rest args)
   "Advice around execute `package-install' command."
   (setq jcs-package-installing t)
-  (apply ori-func _args)
+  (apply ori-func args)
   (setq jcs-package-installing nil))
 (advice-add 'package-install :around #'jcs-advice-package-install-around)
 
