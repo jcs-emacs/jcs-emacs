@@ -25,7 +25,7 @@
 
   ;; Normal
   (define-key ssass-mode-map (kbd "C-d") #'jcs-kill-whole-line)
-  (define-key ssass-mode-map "\C-c\C-c" #'kill-ring-save)
+  (define-key ssass-mode-map (kbd "C-c C-c") #'kill-ring-save)
 
   ;; comment block
   (define-key ssass-mode-map (kbd "RET") #'jcs-smart-context-line-break)

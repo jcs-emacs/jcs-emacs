@@ -82,9 +82,9 @@
 
   ;; Normal
   (define-key web-mode-map (kbd "C-d") #'jcs-web-kill-whole-line)
-  (define-key web-mode-map "\C-c\C-c" #'jcs-web-kill-ring-save)
-  (define-key emmet-mode-keymap "\C-c\C-c" #'jcs-web-kill-ring-save)
-  (define-key web-mode-map "\C-v" #'jcs-web-yank)
+  (define-key web-mode-map (kbd "C-c C-c") #'jcs-web-kill-ring-save)
+  (define-key emmet-mode-keymap (kbd "C-c C-c") #'jcs-web-kill-ring-save)
+  (define-key web-mode-map (kbd "C-v") #'jcs-web-yank)
 
   (define-key web-mode-map [f8] #'jcs-find-corresponding-file)
   (define-key web-mode-map [S-f8] #'jcs-find-corresponding-file-other-window)

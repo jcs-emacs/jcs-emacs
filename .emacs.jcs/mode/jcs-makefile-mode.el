@@ -33,7 +33,7 @@
   (define-key makefile-mode-map (kbd "RET") #'jcs-makefile-newline)
 
   (define-key makefile-mode-map (kbd "C-d") #'jcs-kill-whole-line)
-  (define-key makefile-mode-map "\C-c\C-c" #'kill-ring-save)
+  (define-key makefile-mode-map (kbd "C-c C-c") #'kill-ring-save)
 
   ;; tabify save key
   (define-key makefile-mode-map "\C-s" #'jcs-tabify-save-buffer)

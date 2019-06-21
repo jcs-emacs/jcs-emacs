@@ -21,7 +21,7 @@
 
   ;; Normal
   (define-key text-mode-map (kbd "C-d") #'jcs-kill-whole-line)
-  (define-key text-mode-map "\C-c\C-c" #'kill-ring-save)
+  (define-key text-mode-map (kbd "C-c C-c") #'kill-ring-save)
 
   (define-key text-mode-map (kbd "<up>") #'jcs-previous-line)
   (define-key text-mode-map (kbd "<down>") #'jcs-next-line)

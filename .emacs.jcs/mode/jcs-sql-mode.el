@@ -29,7 +29,7 @@
   (define-key sql-mode-map (kbd "<up>") #'jcs-smart-indent-up)
   (define-key sql-mode-map (kbd "<down>") #'jcs-smart-indent-down)
 
-  (define-key sql-mode-map "\C-c\C-c" 'kill-ring-save)
+  (define-key sql-mode-map (kbd "C-c C-c") #'kill-ring-save)
   )
 (add-hook 'sql-mode-hook 'jcs-sql-mode-hook)
 

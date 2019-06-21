@@ -30,7 +30,7 @@
 
   ;; Normal
   (define-key opascal-mode-map (kbd "C-d") #'jcs-kill-whole-line)
-  (define-key opascal-mode-map "\C-c\C-c" #'kill-ring-save)
+  (define-key opascal-mode-map (kbd "C-c C-c") #'kill-ring-save)
 
   (define-key opascal-mode-map "\eq" #'jcs-other-window-prev)
   )

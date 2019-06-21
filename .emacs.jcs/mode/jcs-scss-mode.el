@@ -25,7 +25,7 @@
 
   ;; Normal
   (define-key scss-mode-map (kbd "C-d") #'jcs-kill-whole-line)
-  (define-key scss-mode-map "\C-c\C-c" #'kill-ring-save)
+  (define-key scss-mode-map (kbd "C-c C-c") #'kill-ring-save)
 
   ;; Save
   (define-key css-mode-map "\C-s" #'jcs-css-save-buffer)

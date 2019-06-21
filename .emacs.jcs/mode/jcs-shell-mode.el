@@ -29,8 +29,8 @@
   (define-key shell-mode-map [C-down] #'jcs-next-blank-line)
 
   ;; Editing
-  (define-key shell-mode-map "\C-c\C-c" #'kill-ring-save)
-  (define-key shell-mode-map "\C-x\C-x" #'kill-ring-save)
+  (define-key shell-mode-map (kbd "C-c C-c") #'kill-ring-save)
+  (define-key shell-mode-map (kbd "C-x C-x") #'kill-ring-save)
 
   ;; Deletion
   (define-key shell-mode-map (kbd "C-<backspace>") #'jcs-shell-backward-delete-word)

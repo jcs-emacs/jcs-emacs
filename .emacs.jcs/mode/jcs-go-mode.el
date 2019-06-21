@@ -26,7 +26,7 @@
 
   ;; Normal
   (define-key go-mode-map (kbd "C-d") #'jcs-kill-whole-line)
-  (define-key go-mode-map "\C-c\C-c" #'kill-ring-save)
+  (define-key go-mode-map (kbd "C-c C-c") #'kill-ring-save)
   )
 (add-hook 'go-mode-hook 'jcs-go-mode-hook)
 

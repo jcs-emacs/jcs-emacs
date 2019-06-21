@@ -34,7 +34,7 @@
 
   ;; Normal
   (define-key nasm-mode-map (kbd "C-d") #'jcs-kill-whole-line)
-  (define-key nasm-mode-map "\C-c\C-c" #'kill-ring-save)
+  (define-key nasm-mode-map (kbd "C-c C-c") #'kill-ring-save)
   (define-key nasm-mode-map (kbd "<up>") #'jcs-py-indent-up)
   (define-key nasm-mode-map (kbd "<down>") #'jcs-py-indent-down)
 

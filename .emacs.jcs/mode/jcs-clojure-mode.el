@@ -29,7 +29,7 @@
 
   ;; Normal
   (define-key clojure-mode-map (kbd "C-d") #'jcs-kill-whole-line)
-  (define-key clojure-mode-map "\C-c\C-c" #'kill-ring-save)
+  (define-key clojure-mode-map (kbd "C-c C-c") #'kill-ring-save)
   )
 (add-hook 'clojure-mode-hook 'jcs-clojure-mode-hook)
 

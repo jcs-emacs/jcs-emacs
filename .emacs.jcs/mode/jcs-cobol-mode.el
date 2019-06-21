@@ -32,7 +32,7 @@
 
   ;; Normal
   (define-key cobol-mode-map (kbd "C-d") #'jcs-kill-whole-line)
-  (define-key cobol-mode-map "\C-c\C-c" #'kill-ring-save)
+  (define-key cobol-mode-map (kbd "C-c C-c") #'kill-ring-save)
 
   (define-key cobol-mode-map (kbd "<up>") #'jcs-py-indent-up)
   (define-key cobol-mode-map (kbd "<down>") #'jcs-py-indent-down)

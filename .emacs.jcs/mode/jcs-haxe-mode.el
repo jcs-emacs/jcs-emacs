@@ -30,7 +30,7 @@
 
   ;; Normal
   (define-key haxe-mode-map (kbd "C-d") #'jcs-kill-whole-line)
-  (define-key haxe-mode-map "\C-c\C-c" #'kill-ring-save)
+  (define-key haxe-mode-map (kbd "C-c C-c") #'kill-ring-save)
 
   (define-key haxe-mode-map (kbd "DEL") #'jcs-electric-backspace)
   (define-key haxe-mode-map (kbd "{") #'jcs-vs-front-curly-bracket-key)

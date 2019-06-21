@@ -35,8 +35,8 @@
 
   ;; Normal
   (define-key css-mode-map (kbd "C-d") #'jcs-kill-whole-line)
-  (define-key css-mode-map "\C-c\C-c" #'kill-ring-save)
-  (define-key emmet-mode-keymap "\C-c\C-c" #'kill-ring-save)
+  (define-key css-mode-map (kbd "C-c C-c") #'kill-ring-save)
+  (define-key emmet-mode-keymap (kbd "C-c C-c") #'kill-ring-save)
 
   (define-key css-mode-map (kbd "DEL") #'jcs-electric-backspace)
   (define-key css-mode-map (kbd "{") #'jcs-vs-front-curly-bracket-key)
@@ -47,15 +47,15 @@
   (define-key css-mode-map (kbd "<down>") #'jcs-css-smart-indent-down)
 
   ;; Save
-  (define-key css-mode-map "\C-s" #'jcs-css-save-buffer)
+  (define-key css-mode-map (kbd "C-s") #'jcs-css-save-buffer)
 
   ;; comment block
   (define-key css-mode-map (kbd "RET") #'jcs-css-return-key)
   (define-key css-mode-map (kbd "*") #'jcs-c-comment-pair)
 
   ;; sort attribute in order => `com-css-sort' package.
-  (define-key css-mode-map "\C-ks" #'com-css-sort-attributes-block)
-  (define-key css-mode-map "\C-kd" #'com-css-sort-attributes-document)
+  (define-key css-mode-map (kbd "C-k s") #'com-css-sort-attributes-block)
+  (define-key css-mode-map (kbd "C-k d") #'com-css-sort-attributes-document)
 
   ;; Eemmet
   (define-key emmet-mode-keymap (kbd "C-<return>") #'jcs-emmet-expand-line)
