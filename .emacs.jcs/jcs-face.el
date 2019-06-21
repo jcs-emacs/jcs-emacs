@@ -221,6 +221,7 @@ For those mode does not apply faces correctly!"
 (with-eval-after-load 'cc-mode (jcs-init-java-faces))
 (with-eval-after-load 'css-mode (jcs-init-css-faces))
 (with-eval-after-load 'lua-mode (jcs-init-lua-faces))
+(with-eval-after-load 'org (jcs-init-org-faces))
 (with-eval-after-load 'python-mode (jcs-init-py-faces))
 (with-eval-after-load 'web-mode (jcs-init-web-faces))
 
