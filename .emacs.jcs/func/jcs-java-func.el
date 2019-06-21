@@ -3,8 +3,9 @@
 ;;; Code:
 
 
-(defvar jcs-java-source-dir-name "src"
+(defconst jcs-java-source-dir-name "src"
   "Java source directory name.")
+
 
 (defun jcs-java-insert-package-from-src ()
   "Insert package string from `src' directory."
