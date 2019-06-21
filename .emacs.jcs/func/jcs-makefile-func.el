@@ -3,6 +3,9 @@
 ;;; Code:
 
 
+(require 'jcs-python-func)
+
+
 ;;;###autoload
 (defun jcs-ask-makefile-language (lan)
   "Ask makefile what major language is this makefile going to use.
