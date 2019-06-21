@@ -66,7 +66,7 @@
 (require 'jcs-package)  ;; Get the list of package dependencies.
 
 ;; Install all packages that this config needs.
-(jcs-ensure-package-installed jcs-package-install-list)
+(jcs-ensure-package-installed jcs-package-install-list (boundp 'jcs-build-test))
 
 (defconst jcs-package-init-time (emacs-init-time)
   "Record down the package initialize time.")
