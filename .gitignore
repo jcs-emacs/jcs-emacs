@@ -1,6 +1,6 @@
 # ignore extensions.
 *.lnk
-*.elc
+/.emacs.jcs/**/*.elc
 
 # ignore I use to not ignore.
 TODO(JenChieh).txt
