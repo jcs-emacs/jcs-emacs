@@ -2,6 +2,13 @@
 > Implementation for improving experiences using dashboard.
 
 
+## Realtime Updating Dashboard
+The default `*dashboard*` wouldn't automatically update the 
+item list when you do any changes until you manually called 
+`dashboard-refresh-buffer` to refresh the `*dashboard*` buffer
+yourself.
+
+
 ## Navigate with blank line
 
 Originally, navigating with blank line will ignore the whole 
