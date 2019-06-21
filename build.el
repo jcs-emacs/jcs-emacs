@@ -10,5 +10,8 @@
 (load-file (expand-file-name "~/.emacs"))
 
 
-;;(provide 'build)
+;; Local Variables:
+;; coding: utf-8
+;; no-byte-compile: t
+;; End:
 ;;; build.el ends here
