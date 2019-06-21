@@ -42,8 +42,8 @@
   (define-key company-active-map (kbd "C-s") #'jcs-untabify-save-buffer))
 
 ;;; Buffer Menu
-(define-key global-map (kbd "M-m") #'buffer-menu)
-(define-key global-map (kbd "M-M") #'buffer-menu-other-window)
+(define-key global-map (kbd "M-b") #'buffer-menu)
+(define-key global-map (kbd "M-B") #'buffer-menu-other-window)
 
 (define-key Buffer-menu-mode-map "\eK" #'buffer-menu)
 (define-key Buffer-menu-mode-map "1" #'jcs-buffer-menu-sort-by-visit)
@@ -262,6 +262,9 @@
 (define-key global-map "\e;" #'exchange-point-and-mark)
 
 ;;; *Messages*
+(define-key global-map (kbd "M-m") #'jcs-message-buffer)
+(define-key global-map (kbd "M-M") #'jcs-message-buffer-other-window)
+
 (define-key messages-buffer-mode-map "\ek" #'jcs-message-erase-buffer)
 (define-key messages-buffer-mode-map "\eK" #'jcs-message-erase-buffer-stay)
 
