@@ -121,21 +121,23 @@
 
 ;;;###autoload
 (defun jcs-dashboard-remove-bookmarks-item ()
-  "Remove a bookmarks from `'."
+  "Remove a bookmarks from `bookmark-alist'."
   (interactive)
-  (message "%s" bookmark-alist)
+  ;; TODO: implements this..
   )
 
 ;;;###autoload
 (defun jcs-dashboard-remove-agenda-item ()
-  "Remove an agenda from `'."
+  "Remove an agenda from `org-agenda-files'."
   (interactive)
+  ;; TODO: implements this..
   )
 
 ;;;###autoload
 (defun jcs-dashboard-remove-registers-item ()
-  "Remove a registers from `'."
+  "Remove a registers from `register-alist'."
   (interactive)
+  ;; TODO: implements this..
   )
 
 
