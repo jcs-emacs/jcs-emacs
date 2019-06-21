@@ -157,16 +157,14 @@
 
 (defun jcs-ensure-package-installed (packages &optional without-asking)
   "Assure every package is installed, ask for installation if it’s not."
-  ;; (dolist (package packages)
-  ;;   (unless (package-installed-p package)
-  ;;     (if without-asking
-  ;;         (jcs-install-missing-package-install package)
-  ;;       (if (y-or-n-p (format "Package %s is missing. Install it? " package))
-  ;;           (jcs-install-missing-package-install package)
-  ;;         package))))
+  (package-refresh-contents)
   (dolist (package packages)
     (unless (package-installed-p package)
-      (jcs-install-missing-package-install package)))
+      (if without-asking
+          (jcs-install-missing-package-install package)
+        (if (y-or-n-p (format "Package %s is missing. Install it? " package))
+            (jcs-install-missing-package-install package)
+          package))))
   ;; STUDY: Not sure if you need this?
   (when (get 'jcs-install-missing-package-install 'state)
     ;; activate installed packages
