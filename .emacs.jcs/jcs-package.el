@@ -238,9 +238,9 @@ Return a list of installed packages or nil for every skipped package."
 (unless (jcs-reload-emacs-reloading-p)
   (dolist (pkg-path jcs-package-manually-install-list)
     (add-to-list 'load-path pkg-path)
-    (let ((al-files (directory-files pkg-path nil "autoloads.el")))
+    (let ((al-files (directory-files pkg-path nil "-autoloads.el")))
       (dolist (al-file al-files)
-        (load-file (concat pkg-path al-file))))))
+        (require (intern (file-name-sans-extension al-file)))))))
 
 
 (provide 'jcs-package)
