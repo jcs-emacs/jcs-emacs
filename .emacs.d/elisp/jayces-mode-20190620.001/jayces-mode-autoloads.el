@@ -2,11 +2,8 @@
 ;;
 ;;; Code:
 
-(add-to-list 'load-path (directory-file-name
-                         (or (file-name-directory #$) (car load-path))))
-
 
-;;;### (autoloads nil "jayces-mode" "jayces-mode.el" (23819 41248
+;;;### (autoloads nil "jayces-mode" "jayces-mode.el" (23820 16516
 ;;;;;;  0 0))
 ;;; Generated autoloads from jayces-mode.el
 
@@ -23,6 +20,7 @@ Major mode for editing JayCeS file.
 
 ;;;***
 
+(provide 'jayces-mode-autoloads)
 ;; Local Variables:
 ;; version-control: never
 ;; no-byte-compile: t
