@@ -297,6 +297,18 @@ G : Active line numbers globally."
 ;;----------------------------------------------
 
 ;;;###autoload
+(defun jcs-message-buffer ()
+  "Switch to `*Messages*' buffer."
+  (interactive)
+  (switch-to-buffer "*Messages*"))
+
+;;;###autoload
+(defun jcs-message-buffer-other-window ()
+  "Switch to `*Messages*' buffer."
+  (interactive)
+  (switch-to-buffer-other-window "*Messages*"))
+
+;;;###autoload
 (defun jcs-message-erase-buffer ()
   "Erase the *Messages* buffer."
   (interactive)
