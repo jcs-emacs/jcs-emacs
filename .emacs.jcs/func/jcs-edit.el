@@ -217,7 +217,7 @@ CBF : Current buffer file name."
 (defun jcs-mark-whole-buffer ()
   "Mark the whole buffer."
   (interactive)
-  (mark-whole-buffer)
+  (call-interactively #'mark-whole-buffer)
   (setq-local jcs-marking-whole-buffer-cmd-count 0)
   (setq-local jcs-marking-whole-buffer t))
 
@@ -353,9 +353,9 @@ This function uses `indent-for-tab-command'."
   (interactive)
   (if (jcs-can-do-smart-indent-p)
       (progn
-        (previous-line 1)
+        (jcs-previous-line)
         (indent-for-tab-command))
-    (previous-line 1)))
+    (jcs-previous-line)))
 
 ;;;###autoload
 (defun jcs-smart-indent-up-by-mode ()
@@ -364,9 +364,9 @@ Use `indent-according-to-mode' instead `indent-for-tab-command'."
   (interactive)
   (if (jcs-can-do-smart-indent-p)
       (progn
-        (previous-line 1)
+        (jcs-previous-line)
         (indent-according-to-mode))
-    (previous-line 1)))
+    (jcs-previous-line)))
 
 ;;;###autoload
 (defun jcs-smart-indent-down ()
@@ -375,9 +375,9 @@ This function uses `indent-for-tab-command'."
   (interactive)
   (if (jcs-can-do-smart-indent-p)
       (progn
-        (next-line 1)
+        (jcs-next-line)
         (indent-for-tab-command))
-    (next-line 1)))
+    (jcs-next-line)))
 
 ;;;###autoload
 (defun jcs-smart-indent-down-by-mode ()
@@ -386,9 +386,9 @@ Use `indent-according-to-mode' instead `indent-for-tab-command'."
   (interactive)
   (if (jcs-can-do-smart-indent-p)
       (progn
-        (next-line 1)
+        (jcs-next-line)
         (indent-according-to-mode))
-    (next-line 1)))
+    (jcs-next-line)))
 
 
 ;;==============================
@@ -615,11 +615,11 @@ N : line to scroll."
     (let ((rec-point (point)))
       (goto-char (point-max))
       (unless (= (line-number-at-pos) 1)
-        (previous-line 1))
+        (forward-line -1))
       (while (and (jcs-current-line-empty-p)
                   (< rec-point (point)))
         (jcs-kill-whole-line)
-        (previous-line 1)))))
+        (forward-line -1)))))
 
 ;;;###autoload
 (defun jcs-delete-trailing-whitespace-except-current-line ()
@@ -713,14 +713,14 @@ the current line."
 ;; Save Buffer
 ;;-------------------------
 
-(defun jcs-do-stuff-before-save (&optional arg)
+(defun jcs-do-stuff-before-save (&rest _)
   "Do stuff before save command executed.
 ARG : Match with `save-buffer' command."
   ;; NOTE: If company menu currently active, abort it.
   (company-abort))
 (advice-add 'save-buffer :before #'jcs-do-stuff-before-save)
 
-(defun jcs-do-stuff-after-save (&optional arg)
+(defun jcs-do-stuff-after-save (&rest _)
   "Do stuff after save command executed.
 ARG : Match with `save-buffer' command."
   ;; NOTE: Is we found `*undo-tree*' buffer, we try to close it.
