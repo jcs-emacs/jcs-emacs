@@ -8,6 +8,7 @@
   (when (jcs-is-current-file-empty-p)
     (jcs-insert-lisp-template)))
 
+
 (defun jcs-lisp-mode-hook ()
   "Lisp mode hook."
   (abbrev-mode 1)
