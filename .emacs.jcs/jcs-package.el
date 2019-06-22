@@ -146,28 +146,23 @@
 
 (defun jcs-install-missing-package-install (pkg)
   "Install PKG package."
-  ;; NOTE: Don't run `package-refresh-contents' if you don't need to
-  ;; install packages on startup.
   (unless (get 'jcs-install-missing-package-install 'state)
-    (when (file-exists-p package-user-dir)
-      (package-refresh-contents))
     (put 'jcs-install-missing-package-install 'state t))
+  ;; Don't run `package-refresh-contents' if you don't need to
+  ;; install packages on startup.
+  (package-refresh-contents)
   ;; Else we just install the package regularly.
   (package-install pkg))
 
 (defun jcs-ensure-package-installed (packages &optional without-asking)
   "Assure every package is installed, ask for installation if it’s not."
-  (let ((always-refresh (or (boundp 'jcs-build-test)
-                            (not (file-directory-p (expand-file-name "~/.emacs.d/elpa/archives/"))))))
-    (dolist (package packages)
-      (when always-refresh
-        (package-refresh-contents))
-      (unless (package-installed-p package)
-        (if without-asking
+  (dolist (package packages)
+    (unless (package-installed-p package)
+      (if without-asking
+          (jcs-install-missing-package-install package)
+        (if (y-or-n-p (format "Package %s is missing. Install it? " package))
             (jcs-install-missing-package-install package)
-          (if (y-or-n-p (format "Package %s is missing. Install it? " package))
-              (jcs-install-missing-package-install package)
-            package)))))
+          package))))
   ;; STUDY: Not sure if you need this?
   (when (get 'jcs-install-missing-package-install 'state)
     ;; activate installed packages
