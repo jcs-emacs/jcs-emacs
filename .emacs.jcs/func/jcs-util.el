@@ -1016,13 +1016,11 @@ L : list we want to flaaten."
         ((atom l) (list l))
         (t (loop for a in l appending (jcs-flatten-list a)))))
 
-(defun jcs-remove-nth-element (n lst)
-  "Remove nth element from the list.
-N : nth element you want to remove from the list.
-LST : List you want to modified."
-  (if (zerop n)
+(defun jcs-remove-nth-element (nth lst)
+  "Remove NTH element from the LST and return the list."
+  (if (zerop nth)
       (cdr lst)
-    (let ((last (nthcdr (1- n) lst)))
+    (let ((last (nthcdr (1- nth) lst)))
       (setcdr last (cddr last))
       lst)))
 
