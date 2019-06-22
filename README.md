@@ -460,6 +460,11 @@ configuration, check out the `use-ttf`package
 
 ## Installation
 
+There are two way to install the configuration on to your 
+machine, it depends on if the internet is available to you.
+
+### With Internet
+
 To install, clone this repo and copy the core `files`/`directories` 
 to the emacs config directory accordingly. Make sure you backup 
 your own configuration before you installed.
@@ -477,6 +482,14 @@ $ cp ./.emacs ~/
 $ cp -r ./.emacs.d ~/
 $ cp -r ./.emacs.jcs ~/
 ```
+
+Then startup Emacsm then it will start asking you to install 
+all necessary packages due to this configuration. *[ATTENTION]: 
+MAKE SURE YOU INSTALLED THE CORRECT EMACS VERSION!*
+
+### Without Internet
+
+
 
 
 ## Optimization
