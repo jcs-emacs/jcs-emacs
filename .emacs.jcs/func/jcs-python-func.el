@@ -12,16 +12,9 @@
     (mapc (lambda (mode)
             (font-lock-add-keywords
              mode
-             '(;; NOTE: `(require 'python)' actually solved the docstring
-               ;; highlighting issue.
-               ;; TODO: Maybe remove this?
-               ("\\(\"\"\"[^\"]*\"\"\"\\)" 1 'jcs-py-mode-docstring-face t)
-
-               ;;<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-               ;; NOTE: Fixed comment and string conflict.
+             '(;; NOTE: Fixed comment and string conflict.
                ("[^\"]\\(#[^\"\r\n]*\\)[^\"]" 1 'jcs-font-lock-comment-face t)
                ("[^\"]\\(\"[^\"]*\"\\)[^\"]" 1 'jcs-font-lock-string-face t)
-               ;;>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
                )'end))
           py-missing-modes)))
 
