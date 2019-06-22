@@ -497,9 +497,9 @@ of the configuration from the release tab
 `HOME` directory or any directory that Emacs will start loading 
 initialize files.
 
-* .emacs      [FILE]
-* .emacs.d    [DIRECTORY]
-* .emacs.jcs  [DIRECTORY]
+* `.emacs`      [FILE]
+* `.emacs.d`    [DIRECTORY]
+* `.emacs.jcs`  [DIRECTORY]
 
 
 ## Optimization
