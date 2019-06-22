@@ -219,7 +219,8 @@
 
   (when (and (not (jcs-current-char-equal-p "/"))
              ;; SEE: this trigger can be check at `jcs-helm-func.el' file.
-             jcs-helm-find-files-active)
+             jcs-helm-find-files-active
+             (file-directory-p (thing-at-point 'line t)))
     ;; NOTE: This will prevent missing the
     ;; slash at the end of the search file path.
     (insert "/"))
