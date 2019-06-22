@@ -501,9 +501,11 @@ PAREN-STRING           : Param raw string."
 
 
 (defun jcs-paren-param-list (search-string)
-  "Return parentheses type parameter list.
+  "Return parentheses type parameter list.  This will works with programming
+language that define function like this `(type-name var-name, type-name var-name)`
+or with default value `(type-name var-name = default-value, type-name var-name =
+default-value)`.
 SEARCH-STRING : Search raw string."
-  ;; Get all the parameters.
   (let ((param-string "")
         (param-lst '())
         (param-type-str-lst '())
@@ -516,11 +518,12 @@ SEARCH-STRING : Search raw string."
 
     (setq param-lst (split-string param-string ","))
 
-    (let ((param-split-str-lst '())
-          (param-split-str-lst-len -1)
-          (param-var-str "")
-          (param-type-str ""))
-      (dolist (param-sec-string param-lst)
+    (dolist (param-sec-string param-lst)
+      (let ((param-split-str-lst '())
+            (param-split-str-lst-len -1)
+            (param-split-str-lst-len-1 -1 )
+            (param-var-str "")
+            (param-type-str ""))
         (setq param-sec-string (nth 0 (split-string param-sec-string "=")))
         (setq param-split-str-lst (jcs-chop param-sec-string " "))
 
@@ -528,11 +531,18 @@ SEARCH-STRING : Search raw string."
         (setq param-split-str-lst (remove " " param-split-str-lst))
 
         (setq param-split-str-lst-len (length param-split-str-lst))
+        (setq param-split-str-lst-len-1 (1- param-split-str-lst-len))
 
         ;; Variable name should always be that last element in the list.
-        (setq param-var-str (string-trim (nth (1- param-split-str-lst-len) param-split-str-lst)))
-        ;; Data type name should always be the second last element in the list.
-        (setq param-type-str (string-trim (nth (- param-split-str-lst-len 2) param-split-str-lst)))
+        (setq param-var-str (string-trim (nth param-split-str-lst-len-1 param-split-str-lst)))
+
+        ;; Data type name should be the rest except the last element.
+        (let ((index 0)
+              (sep ""))
+          (while (< index param-split-str-lst-len-1)
+            (if (string= param-type-str "") (setq sep "") (setq sep " "))
+            (setq param-type-str (concat param-type-str sep (string-trim (nth index param-split-str-lst))))
+            (setq index (1+ index))))
 
         (unless (string= "" param-var-str)
           (push param-var-str param-var-str-lst))
