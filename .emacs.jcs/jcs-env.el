@@ -23,14 +23,14 @@
   (setq jcs-linux t)))
 
 
-(defconst jcs-daily-todo-file "" "Open the daily todo file.")
-(defconst jcs-log-file "" "Log file path, file location.")
+(defvar jcs-daily-todo-file "" "Open the daily todo file.")
+(defvar jcs-log-file "" "Log file path, file location.")
 
 (defconst jcs-project-todo-file "TODO" "Project TODO file.")
 (defconst jcs-project-update-log-file "Update_Log" "Project Update Log file.")
 
-(defconst jcs-makescript "" "Make script file name depends on the current OS.")
-(defconst jcs-runscript "" "Run script file name depends on the current OS.")
+(defvar jcs-makescript "" "Make script file name depends on the current OS.")
+(defvar jcs-runscript "" "Run script file name depends on the current OS.")
 
 (cond (jcs-win32
        (setq jcs-daily-todo-file "C:/TODO_JenChieh/code/todo.txt")
@@ -52,7 +52,6 @@
        (setq special-display-buffer-names nil)
        (define-key function-key-map [return] [13])
        (setq mac-command-key-is-meta t)
-       (scroll-bar-mode nil)
        (setq mac-pass-command-to-system nil))
       (jcs-linux
        (setq jcs-daily-todo-file "/home/TODO_JenChieh/code/todo.txt")
@@ -195,7 +194,8 @@ can see the error/operation message.")
   "When `find-file' under these paths, enable `read-only-mode' as default when opens it.")
 
 ;;; Scroll bar
-(scroll-bar-mode -1)
+(when (display-graphic-p)
+  (scroll-bar-mode -1))
 
 ;;; Scrolling
 ;;(setq scroll-preserve-screen-position 'always)
