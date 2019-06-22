@@ -3,14 +3,6 @@
 ;;; Code:
 
 
-;;;###autoload
-(defun jcs-buffer-menu-refresh-buffer ()
-  "Update buffer menu buffer."
-  (interactive)
-  (save-selected-window
-    (when (ignore-errors (jcs-jump-shown-to-buffer "*Buffer List*"))
-      (buffer-menu))))
-
 ;; TOPIC: BufferMenuPlus
 ;; URL: https://www.emacswiki.org/emacs/BufferMenuPlus
 

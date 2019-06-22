@@ -50,6 +50,18 @@
     (setq beacon-color 0.5)))
 
 ;;----------------------------------------------
+;; Buffer Menu
+;;----------------------------------------------
+
+;;;###autoload
+(defun jcs-buffer-menu-refresh-buffer ()
+  "Update buffer menu buffer."
+  (interactive)
+  (save-selected-window
+    (when (ignore-errors (jcs-jump-shown-to-buffer "*Buffer List*"))
+      (buffer-menu))))
+
+;;----------------------------------------------
 ;; Calculator
 ;;----------------------------------------------
 
@@ -830,7 +842,7 @@ NO-PROMPT : Don't prompt the overwrap message."
 (with-eval-after-load 'helm (require 'jcs-helm-func))
 
 ;; Editing
-(require 'jcs-buffer-menu)
+(add-hook 'Buffer-menu-mode-hook (lambda () (require 'jcs-buffer-menu)))
 (with-eval-after-load 'dashboard (require 'jcs-dashboard))
 (require 'jcs-edit)
 (require 'jcs-comment)
