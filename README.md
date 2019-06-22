@@ -467,7 +467,8 @@ machine, it depends on if the internet is available to you.
 
 To install, clone this repo and copy the core `files`/`directories` 
 to the emacs config directory accordingly. Make sure you backup 
-your own configuration before you installed.
+your own configuration before you start the installation.
+
 ```bash
 # clone this repo
 $ git clone https://github.com/jcs090218/jcs-emacs-init.git
