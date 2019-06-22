@@ -502,6 +502,10 @@ initialize files.
 * `.emacs.d`    [DIRECTORY]
 * `.emacs.jcs`  [DIRECTORY]
 
+Install it this way; you wouldn't need to be asked to install 
+all the necessary packages. So this may be faster or benefits 
+to you.
+
 
 ## Optimization
 
