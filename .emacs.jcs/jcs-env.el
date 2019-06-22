@@ -173,9 +173,6 @@
                                           "package-menu-mode")
   "List of modes that you do not want to show line numbers in it.")
 
-;;; Menu Bar
-(menu-bar-mode -1)
-
 ;;; Messages
 (defconst jcs-prompt-message-sleep-delay-time 0.4  ;; in seconds
   "Delay for a time for prompting out the message, so the user
@@ -193,10 +190,6 @@ can see the error/operation message.")
                                           "/lisp/")
   "When `find-file' under these paths, enable `read-only-mode' as default when opens it.")
 
-;;; Scroll bar
-(when (display-graphic-p)
-  (scroll-bar-mode -1))
-
 ;;; Scrolling
 ;;(setq scroll-preserve-screen-position 'always)
 
@@ -212,14 +205,12 @@ can see the error/operation message.")
 (setq next-line-add-newlines nil)
 (setq-default truncate-lines t)
 (setq truncate-partial-width-windows nil)
-;;(split-window-horizontally)
+(unless (boundp 'jcs-build-test)
+  (split-window-horizontally))
 
 ;;; Tab / Space
 (setq-default indent-tabs-mode nil)          ;; Disable inset tabs, insert space only
 (setq-default tab-width 4)
-
-;;; Toolbar
-(tool-bar-mode -1)
 
 ;;; Uniquify
 ;; NOTE: meaningful names for buffers with the same name from prelude.

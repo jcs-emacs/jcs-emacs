@@ -143,6 +143,10 @@
   (jcs-reload-file-info)
   (jcs-reload-docstring-info)
 
+  (menu-bar-mode -1)
+  (when (display-graphic-p) (scroll-bar-mode -1))
+  (tool-bar-mode -1)
+
   ;; Language Environment
   (set-language-environment jcs-language-environment)
 
