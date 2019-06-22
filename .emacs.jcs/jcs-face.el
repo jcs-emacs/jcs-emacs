@@ -226,8 +226,9 @@ For those mode does not apply faces correctly!"
 (with-eval-after-load 'web-mode (jcs-init-web-faces))
 
 ;; Load OOP faces.
-(when (fboundp 'jcs-oop-reload-faces)
-  (jcs-oop-reload-faces))
+(add-hook 'prog-mode-hook
+          (lambda ()
+            (jcs-oop-reload-faces)))
 
 
 (provide 'jcs-face)
