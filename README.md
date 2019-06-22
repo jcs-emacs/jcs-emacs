@@ -486,7 +486,7 @@ $ cp -r ./.emacs.jcs ~/
 Then startup Emacsm then it will start asking you to install 
 all necessary packages due to this configuration. 
 
-**-[ATTENTION]- MAKE SURE YOU INSTALLED THE CORRECT EMACS 
+**[ATTENTION] -- MAKE SURE YOU INSTALLED THE CORRECT EMACS 
 VERSION!**
 
 ### Without Internet
