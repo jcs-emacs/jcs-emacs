@@ -96,7 +96,6 @@
     origami
     package-build
     package-lint
-    pdf-tools
     powerline
     processing-mode
     project-abbrev
