@@ -212,7 +212,7 @@ can see the error/operation message.")
 (setq next-line-add-newlines nil)
 (setq-default truncate-lines t)
 (setq truncate-partial-width-windows nil)
-(split-window-horizontally)
+;;(split-window-horizontally)
 
 ;;; Tab / Space
 (setq-default indent-tabs-mode nil)          ;; Disable inset tabs, insert space only
