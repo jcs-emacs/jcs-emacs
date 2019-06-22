@@ -181,7 +181,6 @@
 (defun jcs-reload-docstring-info ()
   "Reload the doc-string info once."
   (interactive)
-
   (let ((tmp-ini-list '()))
     ;; Read the doc-string configuration file.
     (setq tmp-ini-list (jcs-parse-ini jcs-docstring-config-filepath))
@@ -387,15 +386,14 @@ SR-OP :
                     (progn
                       (setq return-type-string (thing-at-point 'word))
                       (setq there-is-return t))
-                  (progn
-                    ;; NOTE: Since Lisp's default list data structure
-                    ;; dose not support duplicate item in the list. Update the
-                    ;; list by setting it to the brand new temporary list, which
-                    ;; make muliple item list doable.
-                    (let ((type-string (thing-at-point 'word))
-                          (temp-list '()))
-                      (push type-string temp-list)
-                      (setq param-type-strings (append param-type-strings temp-list))))))
+                  ;; NOTE: Since Lisp's default list data structure
+                  ;; dose not support duplicate item in the list. Update the
+                  ;; list by setting it to the brand new temporary list, which
+                  ;; make muliple item list doable.
+                  (let ((type-string (thing-at-point 'word))
+                        (temp-list '()))
+                    (push type-string temp-list)
+                    (setq param-type-strings (append param-type-strings temp-list)))))
 
               ;; NOTE: Store all the variables name.
               (when (or (jcs-is-current-point-face "font-lock-variable-name-face")
@@ -558,6 +556,47 @@ SEARCH-STRING : Search raw string."
     (setq result-datas (reverse result-datas))
     result-datas))
 
+(defun jcs-paren-param-list-colon (search-string)
+  "List `jcs-paren-param-list' but handle programming languages that use \
+colon to separate the type.  Support format like `(var-name : type-name,
+var-name : type-name)` or with default value `(var-name : type-name = default-val,
+var-name : type-name = default-val)`.
+SEARCH-STRING : Search raw string."
+  (let ((param-string "")
+        (param-lst '())
+        (param-type-str-lst '())
+        (param-var-str-lst '())
+        (result-datas '()))
+    (setq param-string (nth 1 (split-string search-string "(")))
+    (setq param-string (nth 0 (split-string param-string ")")))
+
+    (setq param-lst (split-string param-string ","))
+
+    (let ((param-split-str-lst '())
+          (param-var-str "")
+          (param-type-str ""))
+      (dolist (param-sec-string param-lst)
+        ;; First remove the possible default value.
+        (setq param-sec-string (nth 0 (split-string param-sec-string "=")))
+        (setq param-split-str-lst (split-string param-sec-string ":"))
+        (setq param-var-str (string-trim (nth 0 param-split-str-lst)))
+        (if (= (length param-split-str-lst) 1)
+            ;; Set default type name string here.
+            (setq param-type-str jcs-default-typename-string)
+          (setq param-type-str (string-trim (nth 1 param-split-str-lst))))
+
+        (push param-var-str param-var-str-lst)
+        (push param-type-str param-type-str-lst)))
+
+    (setq param-type-strings (reverse param-type-str-lst))
+    (setq param-variable-strings (reverse param-var-str-lst))
+
+    (push param-type-strings result-datas)
+    (push param-variable-strings result-datas)
+
+    (setq result-datas (reverse result-datas))
+    result-datas))
+
 
 
 (defun jcs-as-mode-doc-string-others (keyword-strings
@@ -602,6 +641,14 @@ RETURN-TYPE-STRING     : String of the return type.
 PARAM-TYPE-STRINGS     : Param type strings list.
 PARAM-VARIABLE-STRINGS : Param name strings list.
 SEARCH-STRING          : Search raw string."
+
+  (let ((paren-param-list (jcs-paren-param-list-colon search-string)))
+    (setq param-type-strings (nth 0 paren-param-list))
+    (setq param-variable-strings (nth 1 paren-param-list)))
+
+  ;; Get all return data types.
+  (setq return-type-string (nth 1 (split-string search-string ")")))
+  (setq return-type-string (string-trim (nth 1 (split-string return-type-string ":"))))
 
   (let ((param-var-len (length param-variable-strings))
         (param-index 0))
@@ -1283,7 +1330,7 @@ SEARCH-STRING          : Search raw string."
       (insert "\n"))
 
     (while (< param-index param-var-len)
-      (when (not (string= "self" (nth param-index param-variable-strings)))
+      (unless (string= "self" (nth param-index param-variable-strings))
         (insert "\n")  ;; start from newline.
         (insert "@")
         (insert jcs-py-param-string)
@@ -1451,39 +1498,13 @@ PARAM-TYPE-STRINGS     : Param type strings list.
 PARAM-VARIABLE-STRINGS : Param name strings list.
 SEARCH-STRING          : Search raw string."
 
-  ;; Get all the parameters.
-  (let ((param-string "")
-        (param-lst '())
-        (param-type-str-lst '())
-        (param-var-str-lst '()))
-    (setq param-string (nth 1 (split-string search-string "(")))
-    (setq param-string (nth 0 (split-string param-string ")")))
-
-    (setq param-lst (split-string param-string ","))
-
-    (let ((param-split-str-lst '())
-          (param-var-str "")
-          (param-type-str ""))
-      (dolist (param-sec-string param-lst)
-        ;; First remove the possible default value.
-        (setq param-sec-string (nth 0 (split-string param-sec-string "=")))
-        (setq param-split-str-lst (split-string param-sec-string ":"))
-        (setq param-var-str (string-trim (nth 0 param-split-str-lst)))
-        (if (= (length param-split-str-lst) 1)
-            ;; Set default type name string here.
-            (setq param-type-str jcs-default-typename-string)
-          (setq param-type-str (string-trim (nth 1 param-split-str-lst))))
-
-        (push param-var-str param-var-str-lst)
-        (push param-type-str param-type-str-lst)))
-
-    (setq param-type-strings (reverse param-type-str-lst))
-    (setq param-variable-strings (reverse param-var-str-lst)))
+  (let ((paren-param-list (jcs-paren-param-list-colon search-string)))
+    (setq param-type-strings (nth 0 paren-param-list))
+    (setq param-variable-strings (nth 1 paren-param-list)))
 
   ;; Get all return data types.
   (setq return-type-string (nth 1 (split-string search-string ")")))
   (setq return-type-string (string-trim (nth 1 (split-string return-type-string ":"))))
-
 
   (let* ((param-var-len (length param-variable-strings))
          (param-type-len (length param-type-strings))
@@ -1537,7 +1558,7 @@ SEARCH-STRING          : Search raw string."
 ;;-----------------------------------------------------------
 ;;-----------------------------------------------------------
 
-(defvar jcs-oop-missing-font-lock-variable-name-modes-strict '(c-mode)
+(defconst jcs-oop-missing-font-lock-variable-name-modes-strict '(c-mode)
   "Modes to fixed missing font lock variable name face in strict programming language.")
 
 (mapc (lambda (mode)
@@ -1557,7 +1578,7 @@ SEARCH-STRING          : Search raw string."
 ;;-----------------------------------------------------------
 ;;-----------------------------------------------------------
 
-(defvar jcs-oop-missing-font-lock-type-face-modes '(c++-mode)
+(defconst jcs-oop-missing-font-lock-type-face-modes '(c++-mode)
   "Font lock for namespace in C++.")
 
 (mapc (lambda (mode)
@@ -1570,8 +1591,8 @@ SEARCH-STRING          : Search raw string."
 ;;-----------------------------------------------------------
 ;;-----------------------------------------------------------
 
-(defvar jcs-oop-missing-font-lock-variable-name-modes-colon '(actionscript-mode
-                                                              typescript-mode)
+(defconst jcs-oop-missing-font-lock-variable-name-modes-colon '(actionscript-mode
+                                                                typescript-mode)
   "Modes to fixed missing font lock variable name face in programming language that uses `colon'.")
 
 (mapc (lambda (mode)
@@ -1591,8 +1612,8 @@ SEARCH-STRING          : Search raw string."
 ;;-----------------------------------------------------------
 ;;-----------------------------------------------------------
 
-(defvar jcs-oop-missing-font-lock-func-name-modes '(actionscript-mode
-                                                    typescript-mode)
+(defconst jcs-oop-missing-font-lock-func-name-modes '(actionscript-mode
+                                                      typescript-mode)
   "Modes to fixed missing function name face.")
 
 (mapc (lambda (mode)
@@ -1608,8 +1629,8 @@ SEARCH-STRING          : Search raw string."
 ;;-----------------------------------------------------------
 ;;-----------------------------------------------------------
 
-(defvar jcs-oop-missing-font-lock-type-face-modes-colon '(actionscript-mode
-                                                          typescript-mode)
+(defconst jcs-oop-missing-font-lock-type-face-modes-colon '(actionscript-mode
+                                                            typescript-mode)
   "Modes to fixed missing type face in programming language using `colon'.")
 
 (mapc (lambda (mode)
