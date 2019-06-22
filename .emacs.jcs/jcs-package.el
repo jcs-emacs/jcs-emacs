@@ -157,17 +157,17 @@
 
 (defun jcs-ensure-package-installed (packages &optional without-asking)
   "Assure every package is installed, ask for installation if it’s not."
-  (when (or (boundp 'jcs-build-test)
-            (not (file-directory-p (expand-file-name "~/.emacs.d/elpa/archives/"))))
-    (package-refresh-contents))
-  (dolist (package packages)
-    (package-refresh-contents)
-    (unless (package-installed-p package)
-      (if without-asking
-          (jcs-install-missing-package-install package)
-        (if (y-or-n-p (format "Package %s is missing. Install it? " package))
+  (let ((always-refresh (or (boundp 'jcs-build-test)
+                            (not (file-directory-p (expand-file-name "~/.emacs.d/elpa/archives/"))))))
+    (dolist (package packages)
+      (when always-refresh
+        (package-refresh-contents))
+      (unless (package-installed-p package)
+        (if without-asking
             (jcs-install-missing-package-install package)
-          package))))
+          (if (y-or-n-p (format "Package %s is missing. Install it? " package))
+              (jcs-install-missing-package-install package)
+            package)))))
   ;; STUDY: Not sure if you need this?
   (when (get 'jcs-install-missing-package-install 'state)
     ;; activate installed packages
