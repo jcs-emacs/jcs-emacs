@@ -534,8 +534,10 @@ SEARCH-STRING : Search raw string."
         ;; Data type name should always be the second last element in the list.
         (setq param-type-str (string-trim (nth (- param-split-str-lst-len 2) param-split-str-lst)))
 
-        (push param-var-str param-var-str-lst)
-        (push param-type-str param-type-str-lst)))
+        (unless (string= "" param-var-str)
+          (push param-var-str param-var-str-lst))
+        (unless (string= "" param-type-str)
+          (push param-type-str param-type-str-lst))))
 
     (setq param-type-strings (reverse param-type-str-lst))
     (setq param-variable-strings (reverse param-var-str-lst))
