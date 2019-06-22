@@ -161,6 +161,7 @@
             (not (file-directory-p (expand-file-name "~/.emacs.d/elpa/archives/"))))
     (package-refresh-contents))
   (dolist (package packages)
+    (package-refresh-contents)
     (unless (package-installed-p package)
       (if without-asking
           (jcs-install-missing-package-install package)
