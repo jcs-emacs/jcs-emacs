@@ -460,8 +460,8 @@ configuration, check out the `use-ttf`package
 
 ## Installation
 
-There are two way to install the configuration on to your 
-machine, it depends on if the internet is available to you.
+There are two ways to install the configuration on to your 
+machine; it depends on if the internet is available to you.
 
 ### With Internet
 
