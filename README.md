@@ -490,7 +490,16 @@ VERSION!*
 
 ### Without Internet
 
+If the internet isn't available to you, just download a copy 
+of the configuration from the release tab 
+[here](https://github.com/jcs090218/jcs-emacs-init/releases/)
+. You will see these following files, and extract them to your 
+`HOME` directory or any directory that Emacs will start loading 
+initialize files.
 
+* .emacs      [FILE]
+* .emacs.d    [DIRECTORY]
+* .emacs.jcs  [DIRECTORY]
 
 
 ## Optimization
