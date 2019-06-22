@@ -96,20 +96,13 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
   ;; disable to view mode
   ;;(view-mode-disable)
 
-  ;; -----------------------------------------
   ;; Customize Mode Line
-  ;; -----------------------------------------
   (jcs-dark-green-mode-line)
 
-  ;; -----------------------------------------
   ;; Unset command mode key
-  ;;
   ;; NOTE: unset key should be before of set keys
-  ;; -----------------------------------------
 
-  ;; -----------------------------------------
   ;; Set insert mode key
-  ;; -----------------------------------------
 
   )
 
@@ -167,8 +160,7 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
 
 ;;;###autoload
 (defun jcs-depend-mode ()
-  "This mode depend on my own machine. More feature and more \
-control of the editor."
+  "This mode depend on my own machine. More feature and more control of the editor."
   (interactive)
   (put 'jcs-depend-cross-mode-toggle 'state nil)  ; set toggle trigger
 
@@ -194,8 +186,7 @@ control of the editor."
 
 ;;;###autoload
 (defun jcs-cross-mode ()
-  "This mode run anywhere will work, usually less powerful then \
-'jcs-depend-mode'."
+  "This mode run anywhere will work, usually less powerful then `jcs-depend-mode'."
   (interactive)
 
   ;; set toggle trigger
@@ -222,8 +213,10 @@ control of the editor."
   )
 
 
+;;------------------------------------------------------------------------------------------------------
+;;; Modes
+;;------------------------------------------------------------------------------------------------------
 
-;; Modes
 (require 'jcs-elisp-mode)
 (require 'jcs-lisp-mode)
 (require 'jcs-text-mode)
