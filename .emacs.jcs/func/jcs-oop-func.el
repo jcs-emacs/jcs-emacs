@@ -41,29 +41,13 @@
             (font-lock-add-keywords
              mode
              '(("\\(?:^\\|\\s-\\)\\(@[a-zA-Z0-9_-]*\\)" 1 'jcs-oop-tag-face t)
-               ;; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-               ;; OPTION: Highlight curly bracket.
                ("@[a-zA-Z0-9_-]*\\(?:^\\|\\s-\\)\\([\\[{].*.[\]}]\\)" 1 'jcs-oop-type-face t)
-               ;; >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-               ;; OR:
-               ;; >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-               ;; OPTION: Don't highlight curly bracket.
-               ;;("@[a-zA-Z0-9_-]*\\(?:^\\|\\s-\\)[\\[{]\\(.*.\\)[]}]" 1 'jcs-oop-type-face t)
-               ;; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-               ;;
-               ;; NOTE:
-               ;; Doc String Style:
-               ;;
+               ;; NOTE: Doc String Style:
                ;; @param { TypeName } `ValueTag' : value tag description..
-               ;;
-               ("@[a-zA-Z0-9_].*[\]\|}][ \t\n]*\\([a-zA-Z0-9_$*&]*\\)[ \t\n]*[:-]" 1 'jcs-oop-value-face t)
-               ;;
-               ;; NOTE:
-               ;; Doc String Style:
-               ;;
+               ("@[a-zA-Z0-9_].*[\]\|}][    \t\n]*\\([a-zA-Z0-9[_$*&[]+[]]*\\)[ \t\n]*[:-]" 1 'jcs-oop-value-face t)
+               ;; NOTE: Doc String Style:
                ;; @param `ValueTag' : value tag description..
-               ;;
                ("@[a-zA-Z0-9_]*[ \t\n]*\\([a-zA-Z0-9_.*&]*\\)[ \t\n]*[{:-]" 1 'jcs-oop-value-face t)
                )'end))
           oop-highlight-modes)))
@@ -189,7 +173,7 @@
 
 
 
-(defvar jcs-docstring-config-filepath "~/.emacs.jcs/docstring/docstring_config.properties"
+(defconst jcs-docstring-config-filepath "~/.emacs.jcs/docstring/docstring_config.properties"
   "Doc-string properties file.")
 
 
@@ -280,11 +264,7 @@
 
 
 (defun jcs-insert-jsdoc-type (type-name open-char close-char)
-  "Insert the curly bracket part.
-
-TYPE-NAME : type name string.
-OPEN-CHAR : opening character.
-CLOSE-CHAR : closing character."
+  "Insert the curly bracket by this order => OPEN-CHAR, TYPE-NAME, CLOSE-CHAR."
   (insert open-char)
   (insert type-name)
   (insert close-char))
@@ -310,9 +290,7 @@ SR-OP :
 
 
 (defun jcs-insert-comment-style-by-current-line (sr-op)
-  "Read the current line and insert by reading the need from \
-the input line.
-
+  "Read the current line and insert by reading the need from the input line.
 SR-OP :
 0) search only current line.
 1) search witch closing parenthesis.
@@ -322,8 +300,8 @@ SR-OP :
         (datatype-name "")
         (meet-function-name nil)
         (function-name-string "")
-        (param-type-strings '())  ;; param type string list.
-        (param-variable-strings '())  ;; param name string list.
+        (param-type-strings '())      ; param type string list.
+        (param-variable-strings '())  ; param name string list.
         (there-is-return nil)
         (return-type-string "")
         (search-string "")
@@ -522,6 +500,53 @@ PAREN-STRING           : Param raw string."
                  search-string)))))
 
 
+(defun jcs-paren-param-list (search-string)
+  "Return parentheses type parameter list.
+SEARCH-STRING : Search raw string."
+  ;; Get all the parameters.
+  (let ((param-string "")
+        (param-lst '())
+        (param-type-str-lst '())
+        (param-var-str-lst '())
+        (param-type-strings nil)
+        (param-variable-strings nil)
+        (result-datas '()))
+    (setq param-string (nth 1 (split-string search-string "(")))
+    (setq param-string (nth 0 (split-string param-string ")")))
+
+    (setq param-lst (split-string param-string ","))
+
+    (let ((param-split-str-lst '())
+          (param-split-str-lst-len -1)
+          (param-var-str "")
+          (param-type-str ""))
+      (dolist (param-sec-string param-lst)
+        (setq param-sec-string (nth 0 (split-string param-sec-string "=")))
+        (setq param-split-str-lst (jcs-chop param-sec-string " "))
+
+        (delete-dups param-split-str-lst)
+        (setq param-split-str-lst (remove " " param-split-str-lst))
+
+        (setq param-split-str-lst-len (length param-split-str-lst))
+
+        ;; Variable name should always be that last element in the list.
+        (setq param-var-str (string-trim (nth (1- param-split-str-lst-len) param-split-str-lst)))
+        ;; Data type name should always be the second last element in the list.
+        (setq param-type-str (string-trim (nth (- param-split-str-lst-len 2) param-split-str-lst)))
+
+        (push param-var-str param-var-str-lst)
+        (push param-type-str param-type-str-lst)))
+
+    (setq param-type-strings (reverse param-type-str-lst))
+    (setq param-variable-strings (reverse param-var-str-lst))
+
+    (push param-type-strings result-datas)
+    (push param-variable-strings result-datas)
+
+    (setq result-datas (reverse result-datas))
+    result-datas))
+
+
 
 (defun jcs-as-mode-doc-string-others (keyword-strings
                                       datatype-name
@@ -717,39 +742,9 @@ PARAM-TYPE-STRINGS     : Param type strings list.
 PARAM-VARIABLE-STRINGS : Param name strings list.
 SEARCH-STRING          : Search raw string."
 
-  ;; Get all the parameters.
-  (let ((param-string "")
-        (param-lst '())
-        (param-type-str-lst '())
-        (param-var-str-lst '()))
-    (setq param-string (nth 1 (split-string search-string "(")))
-    (setq param-string (nth 0 (split-string param-string ")")))
-
-    (setq param-lst (split-string param-string ","))
-
-    (let ((param-split-str-lst '())
-          (param-split-str-lst-len -1)
-          (param-var-str "")
-          (param-type-str ""))
-      (dolist (param-sec-string param-lst)
-        (setq param-sec-string (nth 0 (split-string param-sec-string "=")))
-        (setq param-split-str-lst (jcs-chop param-sec-string " "))
-
-        (delete-dups param-split-str-lst)
-        (setq param-split-str-lst (remove " " param-split-str-lst))
-
-        (setq param-split-str-lst-len (length param-split-str-lst))
-
-        ;; Variable name should always be that last element in the list.
-        (setq param-var-str (string-trim (nth (1- param-split-str-lst-len) param-split-str-lst)))
-        ;; Data type name should always be the second last element in the list.
-        (setq param-type-str (string-trim (nth (- param-split-str-lst-len 2) param-split-str-lst)))
-
-        (push param-var-str param-var-str-lst)
-        (push param-type-str param-type-str-lst)))
-
-    (setq param-type-strings (reverse param-type-str-lst))
-    (setq param-variable-strings (reverse param-var-str-lst)))
+  (let ((paren-param-list (jcs-paren-param-list search-string)))
+    (setq param-type-strings (nth 0 paren-param-list))
+    (setq param-variable-strings (nth 1 paren-param-list)))
 
   ;; Get the return data type.
   (setq return-type-string (nth 0 (split-string search-string " ")))
@@ -1164,6 +1159,10 @@ PARAM-TYPE-STRINGS     : Param type strings list.
 PARAM-VARIABLE-STRINGS : Param name strings list.
 SEARCH-STRING          : Search raw string."
 
+  (let ((paren-param-list (jcs-paren-param-list search-string)))
+    (setq param-type-strings (nth 0 paren-param-list))
+    (setq param-variable-strings (nth 1 paren-param-list)))
+
   (let ((param-var-len (length param-variable-strings))
         (param-index 0))
     ;; go back to comment line.
@@ -1250,6 +1249,10 @@ PARAM-TYPE-STRINGS     : Param type strings list.
 PARAM-VARIABLE-STRINGS : Param name strings list.
 SEARCH-STRING          : Search raw string."
 
+  (let ((paren-param-list (jcs-paren-param-list search-string)))
+    (setq param-type-strings (nth 0 paren-param-list))
+    (setq param-variable-strings (nth 1 paren-param-list)))
+
   (let ((param-var-len (length param-variable-strings))
         (param-index 0))
     ;; go back to comment line.
@@ -1263,8 +1266,9 @@ SEARCH-STRING          : Search raw string."
     (end-of-line)
 
     ;; Line breack between description and tags.
-    (if (>= param-index 0)
-        (insert "\n"))
+    (when (and (>= param-index 0)
+               (not (= param-var-len 0)))
+      (insert "\n"))
 
     (while (< param-index param-var-len)
       (when (not (string= "self" (nth param-index param-variable-strings)))
@@ -1344,6 +1348,10 @@ RETURN-TYPE-STRING     : String of the return type.
 PARAM-TYPE-STRINGS     : Param type strings list.
 PARAM-VARIABLE-STRINGS : Param name strings list.
 SEARCH-STRING          : Search raw string."
+
+  (let ((paren-param-list (jcs-paren-param-list search-string)))
+    (setq param-type-strings (nth 0 paren-param-list))
+    (setq param-variable-strings (nth 1 paren-param-list)))
 
   (let ((param-var-len (length param-variable-strings))
         (param-index 0))
@@ -1546,25 +1554,6 @@ SEARCH-STRING          : Search raw string."
          '(("[a-zA-Z0-9_]*::\\([a-zA-Z0-9_]*\\)[ \t]" 1 'font-lock-type-face t)
            )'end))
       jcs-oop-missing-font-lock-type-face-modes)
-
-;;-----------------------------------------------------------
-;;-----------------------------------------------------------
-
-(defvar jcs-oop-missing-font-lock-variable-name-modes '(lua-mode
-                                                        php-mode
-                                                        python-mode)
-  "Modes to fixed missing font lock variable name face.")
-
-(mapc (lambda (mode)
-        (font-lock-add-keywords
-         mode
-         '(("(,*\\([a-zA-Z_$0-9 \t]*\\)[,)]" 1 'font-lock-variable-name-face t)
-           (",\\([a-zA-Z_$0-9, \t]*\\)," 1 'font-lock-variable-name-face t)
-           ("\\([a-zA-Z_$0-9 \t]*\\)[)]" 1 'font-lock-variable-name-face t)
-           ;; For line break parameter declaration.
-           ("^[ \t]* \\([a-zA-Z_$0-9,]*\\)[ \t]*[,)]" 1 'font-lock-variable-name-face t)
-           )'end))
-      jcs-oop-missing-font-lock-variable-name-modes)
 
 ;;-----------------------------------------------------------
 ;;-----------------------------------------------------------
