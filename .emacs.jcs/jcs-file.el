@@ -3,26 +3,34 @@
 ;;; Code:
 
 
+(defun jcs-display-file (title filepath &optional ow)
+  "Display a file with FILEPATH with TITLE.
+OW : Display it other window."
+  (if ow (switch-to-buffer-other-window title) (switch-to-buffer title))
+  (read-only-mode -1)
+  (erase-buffer)
+  (save-excursion
+    (if (file-exists-p filepath)
+        (insert (jcs-get-string-from-file filepath))
+      (insert (format "Missing table file: '%s'" filepath))))
+  (read-only-mode 1)
+  (special-mode))
+
+
 (defun jcs-select-find-file-current-dir (in-filename)
-  "Find the file in the current directory.
-Return the absolute filepath.
-IN-FILENAME : file name to find.
-IN-TITLE : title for `completing-read' function call."
+  "Find the IN-FILENAME in the current directory.  Return the absolute filepath."
   (let ((target-filepath "")
         (current-source-dir default-directory))
     (setq target-filepath (concat current-source-dir in-filename))
-
     (if (file-exists-p target-filepath)
         target-filepath  ;; Return if the target file exists.
       (error (format "No '%s' file found in the current directory"
                      in-filename)))))
 
 (defun jcs-select-find-file-in-project (in-filename in-title)
-  "Find the file in the project.  Version Control directory must exists
-in order to make it work.
-Return the absolute filepath.
-IN-FILENAME : file name to find.
-IN-TITLE : title for `completing-read' function call."
+  "Find IN-FILENAME in the project with displayed IN-TITLE for `completing-read'.
+Version Control directory must exists in order to make it work.
+Return the absolute filepath."
   (let ((target-files '())
         (project-source-dir (jcs-vc-root-dir)))
     ;; Do the find file only when the project directory exists.
@@ -37,10 +45,9 @@ IN-TITLE : title for `completing-read' function call."
         (if (= target-files-len 1)
             ;; If only one file found, just get that file.
             (setq target-filepath (nth 0 target-files))
-          (progn
-            ;; Get the selected file.
-            (setq target-filepath (completing-read
-                                   in-title target-files)))))
+          ;; Get the selected file.
+          (setq target-filepath (completing-read
+                                 in-title target-files))))
       target-filepath)))
 
 (defun jcs-find-file-in-project-and-current-dir (in-filename in-title)
@@ -79,9 +86,9 @@ OW : Open file other window."
   (interactive)
   (let ((corresponding-file-name "")
         (found-filepath nil))
-    ;;;
+    ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
     ;; NOTE: Add your corresponding file here.
-    ;;;
+    ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
     ;; NOTE: Find C/C++ corresponding file.
     (when (or (jcs-is-current-major-mode-p "c++-mode")
