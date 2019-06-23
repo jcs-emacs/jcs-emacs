@@ -13,10 +13,8 @@
   (interactive)
   (if (get 'jcs-insert-command-mode-toggle 'state)
       (progn
-        ;; command mode
         (jcs-command-mode)
         (put 'jcs-insert-command-mode-toggle 'state nil))
-    ;; insert mode
     (jcs-insert-mode)
     (put 'jcs-insert-command-mode-toggle 'state t)))
 
@@ -27,10 +25,8 @@
   (unless (minibufferp)
     (if (get 'jcs-depend-cross-mode-toggle 'state)
         (progn
-          ;; depend mode
           (jcs-depend-mode)
           (put 'jcs-depend-cross-mode-toggle 'state nil))
-      ;; cross mode
       (jcs-cross-mode)
       (put 'jcs-depend-cross-mode-toggle 'state t))))
 
@@ -58,6 +54,12 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
       (message "Error: This buffer is not visited file. Switch to cross mode search..")
       (sleep-for jcs-prompt-message-sleep-delay-time)
       (call-interactively 'isearch-forward))))
+
+(defun jcs-insert-header-if-empty (insert-func)
+  "Insert the header if empty."
+  (when (jcs-is-current-file-empty-p)
+    (funcall insert-func)
+    (goto-char (point-min))))
 
 ;;---------------------------------------------
 ;; Command Mode
@@ -214,12 +216,94 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
 
 
 ;;------------------------------------------------------------------------------------------------------
-;;; Modes
+;;; Startup Modes
 ;;------------------------------------------------------------------------------------------------------
 
-(require 'jcs-elisp-mode)
-(require 'jcs-lisp-mode)
-(require 'jcs-text-mode)
+;; NOTE: These are modes that will startup immediately, meaning there will
+;; be no benefits having in the separated files except the modulation.
+;;
+;; So just put all the startup modes' configuration here.
+
+;;==============================
+;;      Emacs Lisp
+;;------------------------
+
+(defun jcs-emacs-lisp-mode-hook ()
+  "Emacs Lisp mode hook."
+  (abbrev-mode 1)
+  (electric-pair-mode 1)
+  (goto-address-mode 1)
+  (auto-highlight-symbol-mode t)
+
+  ;; Treat underscore as word.
+  (modify-syntax-entry ?_ "w")
+
+  (jcs-make-electric-pair-pairs-local '((?\` . ?\')))
+
+  (when buffer-file-name
+    (cond ((file-exists-p buffer-file-name) t)
+          ((string-match "[.]el" buffer-file-name)
+           (jcs-insert-header-if-empty 'jcs-insert-emacs-lisp-template))
+          ))
+
+  )
+(add-hook 'emacs-lisp-mode-hook 'jcs-emacs-lisp-mode-hook)
+
+
+;;==============================
+;;          Lisp
+;;------------------------
+
+(defun jcs-lisp-mode-hook ()
+  "Lisp mode hook."
+  (abbrev-mode 1)
+  (electric-pair-mode 1)
+  (goto-address-mode 1)
+  (auto-highlight-symbol-mode t)
+
+  ;; Treat underscore as word.
+  (modify-syntax-entry ?_ "w")
+
+  (jcs-make-electric-pair-pairs-local '((?\` . ?\')))
+
+  (when buffer-file-name
+    (cond ((file-exists-p buffer-file-name) t)
+          ((string-match "[.]lisp" buffer-file-name)
+           (jcs-insert-header-if-empty 'jcs-insert-lisp-template))
+          ))
+
+  )
+(add-hook 'lisp-mode-hook 'jcs-lisp-mode-hook)
+
+
+;;==============================
+;;          Text
+;;------------------------
+
+(defun jcs-text-mode-hook ()
+  "Text mode hook."
+  (goto-address-mode 1)
+  (auto-highlight-symbol-mode t)
+
+  (when buffer-file-name
+    (cond ((file-exists-p buffer-file-name) t)
+          ((string-match "[.]txt" buffer-file-name)
+           (jcs-insert-header-if-empty 'jcs-insert-text-template))
+          ))
+
+  ;; Normal
+  (define-key text-mode-map (kbd "C-d") #'jcs-kill-whole-line)
+  (define-key text-mode-map (kbd "C-c C-c") #'kill-ring-save)
+
+  (define-key text-mode-map (kbd "<up>") #'jcs-previous-line)
+  (define-key text-mode-map (kbd "<down>") #'jcs-next-line)
+  )
+(add-hook 'text-mode-hook 'jcs-text-mode-hook)
+
+
+;;------------------------------------------------------------------------------------------------------
+;;; Modes
+;;------------------------------------------------------------------------------------------------------
 
 (with-eval-after-load 'message (require 'jcs-message-mode))
 (with-eval-after-load 're-builder (require 'jcs-re-builder-mode))
