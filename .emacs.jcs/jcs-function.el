@@ -38,16 +38,6 @@
   (jcs-wgrep-change-to-wgrep-mode))
 
 ;;----------------------------------------------
-;; Table
-;;----------------------------------------------
-
-;;;###autoload
-(defun jcs-ascii-table ()
-  "Display basic ASCII table"
-  (interactive)
-  (jcs-display-file "*ASCII*" "~/.emacs.jcs/data/ascii.txt" t))
-
-;;----------------------------------------------
 ;; Beacon
 ;;----------------------------------------------
 
@@ -467,7 +457,7 @@ TYPE : enable/disable case sensitive?"
         (put 'jcs-toggle-shell-window 'state nil))
     (jcs-show-shell-window)
     (put 'jcs-toggle-shell-window 'state t)))
-
+
 ;;----------------------------------------------
 ;; Shift Select
 ;;----------------------------------------------
@@ -656,6 +646,16 @@ TYPE : enable/disable case sensitive?"
     (tabbar-mode 1))
   ;; Loop through all window so all windows take effect.
   (jcs-buffer-visible-list))
+
+;;----------------------------------------------
+;; Table
+;;----------------------------------------------
+
+;;;###autoload
+(defun jcs-ascii-table ()
+  "Display basic ASCII table"
+  (interactive)
+  (jcs-display-file "*ASCII*" "~/.emacs.jcs/data/ascii.txt" t))
 
 ;;---------------------------------------------
 ;; Text Scale
