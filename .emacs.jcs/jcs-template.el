@@ -3,7 +3,7 @@
 ;;; Code:
 
 
-(defvar jcs-template-config-filepath "~/.emacs.jcs/template/template_config.properties"
+(defconst jcs-template-config-filepath "~/.emacs.jcs/template/template_config.properties"
   "File path to template config properties.")
 
 (defun jcs-swap-keyword-template (template-str)
@@ -27,8 +27,8 @@ TEMPLATE-STR : template string data."
       (setq tmp-keyword (concat "#" tmp-keyword))
       (setq tmp-keyword (concat tmp-keyword "#"))
 
-      ;; NOTE(jenchieh): Check keyword exist before replacing
-      ;; it. Or else it will cause `max-lisp-eval-depth' error.
+      ;; NOTE: Check keyword exist before replacing it.
+      ;; Or else it will cause `max-lisp-eval-depth' error.
       (when (string-match-p tmp-keyword template-str)
 
         ;; Check if the value is a function?
