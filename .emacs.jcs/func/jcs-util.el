@@ -983,8 +983,7 @@ IN-FONT : input font name."
 (defun jcs-font-existsp (font)
   "Check if font exists?
 FONT : font to check."
-  (if (string-equal (describe-font font)
-                    "No matching font being used")
+  (if (string-equal (describe-font font) "No matching font being used")
       nil
     t))
 
@@ -1093,10 +1092,7 @@ MODE-OBJ : mode object memory."
 ;;---------------------------------------------
 
 (defun jcs-get-string-from-file (filePath)
-  "Return filePath's file content.
-FILEPATH : file path."
-  ;; TOPIC: Elisp: Read File Content as String or List of Lines
-  ;; URL: http://ergoemacs.org/emacs/elisp_read_file_content.html
+  "Return FILEPATH file content."
   (with-temp-buffer
     (insert-file-contents filePath)
     (buffer-string)))
@@ -1114,9 +1110,7 @@ IN-CONTENT : content/buffer to write to the IN-FILENAME."
                 t))
 
 (defun jcs-parse-ini (filePath)
-  "Parse a .ini file.
-FILEPATH : .ini file to parse."
-
+  "Parse a .ini file by FILEPATH."
   (let ((tmp-ini (jcs-get-string-from-file filePath))
         (tmp-ini-list '())
         (tmp-pair-list nil)
