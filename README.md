@@ -219,6 +219,8 @@ maintainer you want.
 
 * *Abbreivation Definition* - powered by 
 [project-abbrev](https://github.com/elpa-host/project-abbrev).
+* *Alt-Codes* - powered by 
+[alt-codes](https://github.com/jcs090218/alt-codes).
 * *Auto Completion* - powered by 
 [company](https://github.com/company-mode/company-mode).
 * *Auto Highlight Symbol* - powered by 
