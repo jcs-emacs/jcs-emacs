@@ -6,12 +6,6 @@
 (require 'vimrc-mode)
 
 
-(defun jcs-vim-script-format ()
-  "Format the given file as a VimScript file."
-  (when (jcs-is-current-file-empty-p)
-    (jcs-insert-vimscript-template)))
-
-
 (defun jcs-vim-mode-hook ()
   "Vimrc mode hook."
   (abbrev-mode 1)
@@ -21,9 +15,10 @@
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]vim" buffer-file-name) (jcs-vim-script-format))
-          ((string-match "[.]vimrc" buffer-file-name) (jcs-vim-script-format))
-          ((string-match "_vimrc" buffer-file-name) (jcs-vim-script-format))
+          ((or (string-match "[.]vim" buffer-file-name)
+               (string-match "[.]vimrc" buffer-file-name)
+               (string-match "_vimrc" buffer-file-name))
+           (jcs-insert-header-if-empty 'jcs-insert-vimscript-template))
           ))
 
   ;; Normal

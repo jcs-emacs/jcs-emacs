@@ -6,12 +6,6 @@
 (require 'nxml-mode)
 
 
-(defun jcs-xml-format ()
-  "Format the given file as a XML file."
-  (when (jcs-is-current-file-empty-p)
-    (jcs-insert-xml-template)))
-
-
 (defun jcs-xml-mode-hook ()
   "XML mode hook."
   (abbrev-mode 1)
@@ -21,7 +15,8 @@
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]xml" buffer-file-name) (jcs-xml-format))
+          ((string-match "[.]xml" buffer-file-name)
+           (jcs-insert-header-if-empty 'jcs-insert-xml-template))
           ))
 
   ;; Normal

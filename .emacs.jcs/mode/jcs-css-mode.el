@@ -14,12 +14,6 @@
 (setq css-indent-offset 2)
 
 
-(defun jcs-css-format()
-  "Format the given file as a CSS file."
-  (when (jcs-is-current-file-empty-p)
-    (jcs-insert-css-template)))
-
-
 (defun jcs-css-mode-hook ()
   "Hook for CSS mode."
   (impatient-mode t)
@@ -30,7 +24,8 @@
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]css" buffer-file-name) (jcs-css-format))
+          ((string-match "[.]css" buffer-file-name)
+           (jcs-insert-header-if-empty 'jcs-insert-css-template))
           ))
 
   ;; Normal

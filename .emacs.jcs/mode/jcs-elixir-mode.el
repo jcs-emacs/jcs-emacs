@@ -6,12 +6,6 @@
 (require 'elixir-mode)
 
 
-(defun jcs-elixir-format ()
-  "Format the given file as an Elixir file."
-  (when (jcs-is-current-file-empty-p)
-    (jcs-insert-elixir-template)))
-
-
 (defun jcs-elixir-mode-hook ()
   "Elixir mode hook."
   (abbrev-mode 1)
@@ -24,8 +18,9 @@
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]ex" buffer-file-name) (jcs-elixir-format))
-          ((string-match "[.]exs" buffer-file-name) (jcs-elixir-format))
+          ((or (string-match "[.]ex" buffer-file-name)
+               (string-match "[.]exs" buffer-file-name))
+           (jcs-insert-header-if-empty 'jcs-insert-elixir-template))
           ))
 
   )

@@ -6,12 +6,6 @@
 (require 'scss-mode)
 
 
-(defun jcs-scss-file-format ()
-  "Format the given file as a SCSS file."
-  (when (jcs-is-current-file-empty-p)
-    (jcs-insert-scss-template)))
-
-
 (defun jcs-scss-mode-hook ()
   "SCSS mode hook."
   (abbrev-mode 1)
@@ -20,7 +14,8 @@
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]scss" buffer-file-name) (jcs-scss-file-format))
+          ((string-match "[.]scss" buffer-file-name)
+           (jcs-insert-header-if-empty 'jcs-insert-scss-template))
           ))
 
   ;; Normal

@@ -6,12 +6,6 @@
 (require 'clojure-mode)
 
 
-(defun jcs-clojure-format ()
-  "Format the given file as a Clojure file."
-  (when (jcs-is-current-file-empty-p)
-    (jcs-insert-clojure-template)))
-
-
 (defun jcs-clojure-mode-hook ()
   "Clojure mode hook."
   (abbrev-mode 1)
@@ -24,7 +18,8 @@
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]clj" buffer-file-name) (jcs-clojure-format))
+          ((string-match "[.]clj" buffer-file-name)
+           (jcs-insert-header-if-empty 'jcs-insert-clojure-template))
           ))
 
   ;; Normal

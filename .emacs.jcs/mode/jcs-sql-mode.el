@@ -7,12 +7,6 @@
 (require 'sql-indent)
 
 
-(defun jcs-sql-format ()
-  "File format for editing SQL file."
-  (when (jcs-is-current-file-empty-p)
-    (jcs-insert-sql-template)))
-
-
 (defun jcs-sql-mode-hook()
   "SQL mode hook."
   (abbrev-mode 1)
@@ -22,7 +16,8 @@
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]sql" buffer-file-name) (jcs-sql-format))
+          ((string-match "[.]sql" buffer-file-name)
+           (jcs-insert-header-if-empty 'jcs-insert-sql-template))
           ))
 
   ;; Normal

@@ -6,12 +6,6 @@
 (require 'dart-mode)
 
 
-(defun jcs-dart-script-format ()
-  "Format the given file as a Dart script."
-  (when (jcs-is-current-file-empty-p)
-    (jcs-insert-dart-template)))
-
-
 (defun jcs-dart-mode-hook ()
   "Dart mode hook."
   (abbrev-mode 1)
@@ -24,7 +18,8 @@
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]dart" buffer-file-name) (jcs-dart-script-format))
+          ((string-match "[.]dart" buffer-file-name)
+           (jcs-insert-header-if-empty 'jcs-insert-dart-template))
           ))
 
   ;; Normal

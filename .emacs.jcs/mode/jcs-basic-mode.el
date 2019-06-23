@@ -6,12 +6,6 @@
 (require 'basic-mode)
 
 
-(defun jcs-basic-script-format ()
-  "Format the given file as a Basic file."
-  (when (jcs-is-current-file-empty-p)
-    (jcs-insert-basic-template)))
-
-
 (defun jcs-basic-mode-hook ()
   "Hook for `basic-mode'."
   (abbrev-mode 1)
@@ -21,7 +15,8 @@
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]bas" buffer-file-name) (jcs-basic-script-format))
+          ((string-match "[.]bas" buffer-file-name)
+           (jcs-insert-header-if-empty 'jcs-insert-basic-template))
           ))
 
   ;; Normal

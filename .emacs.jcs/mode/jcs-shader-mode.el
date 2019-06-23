@@ -6,12 +6,6 @@
 (require 'shader-mode)
 
 
-(defun jcs-shader-format ()
-  "Format the given file as a Unity CG Shader script."
-  (when (jcs-is-current-file-empty-p)
-    (jcs-insert-shader-template)))
-
-
 (defun jcs-shader-mode-hook ()
   "Shader mode hook."
   (abbrev-mode 1)
@@ -24,13 +18,12 @@
   (setq-local comment-end "*/")
   (setq-local comment-end-skip "[ \t]*\\*+/")
 
-  ;; TOPIC: Treat underscore as word.
-  ;; URL: https://emacs.stackexchange.com/questions/9583/how-to-treat-underscore-as-part-of-the-word
   (modify-syntax-entry ?_ "w")
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]shader" buffer-file-name) (jcs-shader-format))
+          ((string-match "[.]shader" buffer-file-name)
+           (jcs-insert-header-if-empty 'jcs-insert-shader-template))
           ))
 
   )

@@ -16,7 +16,9 @@
     ;; Leave one empty line between header.
     (insert "\n")
 
-    (jcs-insert-java-template)))
+    (jcs-insert-java-template)
+
+    (goto-char (point-min))))
 
 
 (defun jcs-java-mode-hook ()

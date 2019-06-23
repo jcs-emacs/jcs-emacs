@@ -6,12 +6,6 @@
 (require 'erlang)
 
 
-(defun jcs-erlang-format ()
-  "Format the given file as an Erlang file."
-  (when (jcs-is-current-file-empty-p)
-    (jcs-insert-erlang-template)))
-
-
 (defun jcs-erlang-mode-hook ()
   "Erlang mode hook."
   (abbrev-mode 1)
@@ -24,8 +18,9 @@
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]erl" buffer-file-name) (jcs-erlang-format))
-          ((string-match "[.]hrl" buffer-file-name) (jcs-erlang-format))
+          ((or (string-match "[.]erl" buffer-file-name)
+               (string-match "[.]hrl" buffer-file-name))
+           (jcs-insert-header-if-empty 'jcs-insert-erlang-template))
           ))
 
   )

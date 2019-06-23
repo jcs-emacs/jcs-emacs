@@ -76,33 +76,27 @@
 
 (defun jcs-c-header-format ()
   "Format the given file as a C header file."
-  (when (jcs-is-current-file-empty-p)
-    (jcs-insert-c-header-template)))
+  (jcs-insert-header-if-empty 'jcs-insert-c-header-template))
 
 (defun jcs-c-source-format ()
   "Format the given file as a C source file."
-  (when (jcs-is-current-file-empty-p)
-    (jcs-insert-c-source-template)))
+  (jcs-insert-header-if-empty 'jcs-insert-c-source-template))
 
 (defun jcs-c++-header-format ()
   "Format the given file as a C++ header file."
-  (when (jcs-is-current-file-empty-p)
-    (jcs-insert-c++-header-template)))
+  (jcs-insert-header-if-empty 'jcs-insert-c++-header-template))
 
 (defun jcs-c++-source-format ()
   "Format the given file as a C++ source file."
-  (when (jcs-is-current-file-empty-p)
-    (jcs-insert-c++-source-template)))
+  (jcs-insert-header-if-empty 'jcs-insert-c++-source-template))
 
 (defun jcs-objc-header-format ()
   "Format the given file as a Objective-C header file."
-  (when (jcs-is-current-file-empty-p)
-    (jcs-insert-objc-header-template)))
+  (jcs-insert-header-if-empty 'jcs-insert-objc-header-template))
 
 (defun jcs-objc-source-format ()
   "Format the given file as a Objective-C source file."
-  (when (jcs-is-current-file-empty-p)
-    (jcs-insert-objc-source-template)))
+  (jcs-insert-header-if-empty 'jcs-insert-objc-source-template))
 
 ;;-----------------------------------------------------------
 ;;-----------------------------------------------------------

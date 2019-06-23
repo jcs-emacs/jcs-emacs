@@ -6,12 +6,6 @@
 (require 'swift-mode)
 
 
-(defun jcs-swift-format ()
-  "Format the given file as a Swift file."
-  (when (jcs-is-current-file-empty-p)
-    (jcs-insert-swift-template)))
-
-
 (defun jcs-swift-mode-hook ()
   "Swift mode hook."
   (abbrev-mode 1)
@@ -24,7 +18,8 @@
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]swift" buffer-file-name) (jcs-swift-format))
+          ((string-match "[.]swift" buffer-file-name)
+           (jcs-insert-header-if-empty 'jcs-insert-swift-template))
           ))
 
   ;; Normal

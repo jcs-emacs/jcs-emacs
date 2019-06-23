@@ -6,12 +6,6 @@
 (require 'opascal)
 
 
-(defun jcs-opascal-script-format ()
-  "Format the given file as an Object Pascal script."
-  (when (jcs-is-current-file-empty-p)
-    (jcs-insert-opascal-template)))
-
-
 (defun jcs-opascal-mode-hook ()
   "Object Pascal mode hook."
   (abbrev-mode 1)
@@ -24,8 +18,9 @@
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]dpk" buffer-file-name) (jcs-opascal-script-format))
-          ((string-match "[.]dpr" buffer-file-name) (jcs-opascal-script-format))
+          ((or (string-match "[.]dpk" buffer-file-name)
+               (string-match "[.]dpr" buffer-file-name))
+           (jcs-insert-header-if-empty 'jcs-insert-opascal-template))
           ))
 
   ;; Normal

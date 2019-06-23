@@ -6,12 +6,6 @@
 (require 'haxe-mode)
 
 
-(defun jcs-haxe-script-format ()
-  "Format the given file as a Haxe file"
-  (when (jcs-is-current-file-empty-p)
-    (jcs-insert-haxe-template)))
-
-
 (defun jcs-haxe-mode-hook ()
   "Haxe mode hook."
   (abbrev-mode 1)
@@ -19,13 +13,12 @@
   (goto-address-mode 1)
   (auto-highlight-symbol-mode t)
 
-  ;; TOPIC: Treat underscore as word.
-  ;; URL: https://emacs.stackexchange.com/questions/9583/how-to-treat-underscore-as-part-of-the-word
   (modify-syntax-entry ?_ "w")
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]hx" buffer-file-name) (jcs-haxe-script-format))
+          ((string-match "[.]hx" buffer-file-name)
+           (jcs-insert-header-if-empty 'jcs-insert-haxe-template))
           ))
 
   ;; Normal

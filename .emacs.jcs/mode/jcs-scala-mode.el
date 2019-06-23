@@ -6,12 +6,6 @@
 (require 'scala-mode)
 
 
-(defun jcs-scala-class-format ()
-  "Format the given file as a Scala file."
-  (when (jcs-is-current-file-empty-p)
-    (jcs-insert-scala-template)))
-
-
 (defun jcs-scala-mode-hook ()
   "Scala mode hook."
   (abbrev-mode 1)
@@ -21,7 +15,8 @@
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]scala" buffer-file-name) (jcs-scala-class-format))
+          ((string-match "[.]scala" buffer-file-name)
+           (jcs-insert-header-if-empty 'jcs-insert-scala-template))
           ))
 
   ;; Normal

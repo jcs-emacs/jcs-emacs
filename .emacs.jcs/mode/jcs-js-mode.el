@@ -6,12 +6,6 @@
 (require 'js2-mode)
 
 
-(defun jcs-javascript-format()
-  "JavaScript template format."
-  (when (jcs-is-current-file-empty-p)
-    (jcs-insert-js-template)))
-
-
 (defun jcs-js-mode-hook ()
   "JavaScript mode hook."
   (setq js2-basic-offset 2)
@@ -27,7 +21,8 @@
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]js" buffer-file-name) (jcs-javascript-format))
+          ((string-match "[.]js" buffer-file-name)
+           (jcs-insert-header-if-empty 'jcs-insert-js-template))
           ))
 
   ;; Set Faces.

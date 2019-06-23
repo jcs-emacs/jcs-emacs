@@ -6,12 +6,6 @@
 (require 'pascal)
 
 
-(defun jcs-pascal-script-format ()
-  "Format the given file as a Pascal script."
-  (when (jcs-is-current-file-empty-p)
-    (jcs-insert-pascal-template)))
-
-
 (defun jcs-pascal-mode-hook ()
   "Pascal mode hook."
   (abbrev-mode 1)
@@ -24,7 +18,8 @@
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]pas" buffer-file-name) (jcs-pascal-script-format))
+          ((string-match "[.]pas" buffer-file-name)
+           (jcs-insert-header-if-empty 'jcs-insert-pascal-template))
           ))
 
   ;; Normal

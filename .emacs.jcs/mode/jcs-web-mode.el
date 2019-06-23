@@ -32,17 +32,6 @@
 (require 'htmltagwrap)
 
 
-(defun jcs-html-format ()
-  "Format the give file as a HTML file."
-  (when (jcs-is-current-file-empty-p)
-    (jcs-insert-html-template)))
-
-(defun jcs-php-format ()
-  "Format the give file as a PHP file."
-  (when (jcs-is-current-file-empty-p)
-    (jcs-insert-php-template)))
-
-
 (require 'web-mode)
 (defun jcs-web-mode-hook ()
   "Hooks for Web mode."
@@ -74,10 +63,12 @@
   (jcs-make-electric-pair-pairs-local '((?\" . ?\")))
 
   (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]html" buffer-file-name) (jcs-html-format))
-        ((string-match "[.]asp" buffer-file-name) (jcs-html-format))
-        ((string-match "[.]as[cp]x" buffer-file-name) (jcs-html-format))
-        ((string-match "[.]php" buffer-file-name) (jcs-php-format))
+        ((or (string-match "[.]html" buffer-file-name)
+             (string-match "[.]asp" buffer-file-name)
+             (string-match "[.]as[cp]x" buffer-file-name))
+         (jcs-insert-header-if-empty 'jcs-insert-html-template))
+        ((string-match "[.]php" buffer-file-name)
+         (jcs-insert-header-if-empty 'jcs-insert-php-template))
         )
 
   ;; Normal

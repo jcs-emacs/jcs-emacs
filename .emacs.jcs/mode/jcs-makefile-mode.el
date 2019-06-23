@@ -21,11 +21,13 @@
   (goto-address-mode 1)
   (auto-highlight-symbol-mode t)
 
-  (cond ((file-exists-p buffer-file-name) t)
-        ((string-match "[.]makefile" buffer-file-name) (jcs-makefile-format))
-        ((string-match "[Mm]akefile" buffer-file-name) (jcs-makefile-format))
-        ((string-match "[.]mak" buffer-file-name) (jcs-makefile-format))
-        )
+  (when buffer-file-name
+    (cond ((file-exists-p buffer-file-name) t)
+          ((or (string-match "[.]makefile" buffer-file-name)
+               (string-match "[Mm]akefile" buffer-file-name)
+               (string-match "[.]mak" buffer-file-name))
+           (jcs-makefile-format))
+          ))
 
   ;; Normal
   (define-key makefile-mode-map (kbd "<up>") #'jcs-py-indent-up)

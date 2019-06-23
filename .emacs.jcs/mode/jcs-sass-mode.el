@@ -6,12 +6,6 @@
 (require 'ssass-mode)
 
 
-(defun jcs-sass-file-format ()
-  "Format the given file as a SASS file."
-  (when (jcs-is-current-file-empty-p)
-    (jcs-insert-sass-template)))
-
-
 (defun jcs-sass-mode-hook ()
   "Sass mode hook."
   (abbrev-mode 1)
@@ -20,7 +14,8 @@
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]sass" buffer-file-name) (jcs-sass-file-format))
+          ((string-match "[.]sass" buffer-file-name)
+           (jcs-insert-header-if-empty 'jcs-insert-sass-template))
           ))
 
   ;; Normal

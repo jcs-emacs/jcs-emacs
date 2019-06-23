@@ -6,12 +6,6 @@
 (require 'lua-mode)
 
 
-(defun jcs-lua-script-format ()
-  "Format the given file as a Lua script."
-  (when (jcs-is-current-file-empty-p)
-    (jcs-insert-lua-template)))
-
-
 (defun jcs-lua-mode-hook ()
   "Lau mode hook."
   (abbrev-mode 1)
@@ -24,8 +18,9 @@
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]lua" buffer-file-name) (jcs-lua-script-format))
-          ((string-match "[.]luac" buffer-file-name) (jcs-lua-script-format))
+          ((or (string-match "[.]lua" buffer-file-name)
+               (string-match "[.]luac" buffer-file-name))
+           (jcs-insert-header-if-empty 'jcs-insert-lua-template))
           ))
 
   ;; Normal

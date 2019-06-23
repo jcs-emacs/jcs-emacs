@@ -6,12 +6,6 @@
 (require 'typescript-mode)
 
 
-(defun jcs-typescript-format ()
-  "Format the given file as a TypScript file."
-  (when (jcs-is-current-file-empty-p)
-    (jcs-insert-typescript-template)))
-
-
 (defun jcs-typescript-mode-hook ()
   "TypeScript mode hook."
   (abbrev-mode 1)
@@ -24,7 +18,8 @@
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]ts" buffer-file-name) (jcs-typescript-format))
+          ((string-match "[.]ts" buffer-file-name)
+           (jcs-insert-header-if-empty 'jcs-insert-typescript-template))
           ))
 
   ;; Normal

@@ -8,12 +8,6 @@
 (require 'jcs-python-func)
 
 
-(defun jcs-asm-format ()
-  "Format the given file as a ASM code."
-  (when (jcs-is-current-file-empty-p)
-    (jcs-insert-asm-template)))
-
-
 (defun jcs-nasm-mode-hook ()
   "NASM mode hook."
   (electric-pair-mode nil)
@@ -21,15 +15,13 @@
   (goto-address-mode 1)
   (auto-highlight-symbol-mode t)
 
-  ;; TOPIC: Treat underscore as word.
-  ;; URL: https://emacs.stackexchange.com/questions/9583/how-to-treat-underscore-as-part-of-the-word
   (modify-syntax-entry ?_ "w")
-
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]asm" buffer-file-name) (jcs-asm-format))
-          ((string-match "[.]inc" buffer-file-name) (jcs-asm-format))
+          ((or (string-match "[.]asm" buffer-file-name)
+               (string-match "[.]inc" buffer-file-name))
+           (jcs-insert-header-if-empty 'jcs-insert-asm-template))
           ))
 
   ;; Normal

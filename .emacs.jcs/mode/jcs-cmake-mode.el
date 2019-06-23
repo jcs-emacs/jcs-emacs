@@ -10,12 +10,6 @@
 (require 'jcs-python-func)
 
 
-(defun jcs-cmake-format ()
-  "Format the given file as a CMakeLists. - JenChieh CMake"
-  (when (jcs-is-current-file-empty-p)
-    (jcs-insert-cmake-template)))
-
-
 (defun jcs-cmake-mode-hook ()
   "CMake mode hook."
   (electric-pair-mode nil)
@@ -24,7 +18,8 @@
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "CMakeLists.txt" buffer-file-name) (jcs-cmake-format))
+          ((string-match "CMakeLists.txt" buffer-file-name)
+           (jcs-insert-header-if-empty 'jcs-insert-cmake-template))
           ))
 
   ;; Normal

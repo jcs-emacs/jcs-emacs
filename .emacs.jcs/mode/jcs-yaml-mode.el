@@ -9,12 +9,6 @@
 (require 'jcs-yaml-func)
 
 
-(defun jcs-yaml-script-format ()
-  "Format the given file as a YAML script."
-  (when (jcs-is-current-file-empty-p)
-    (jcs-insert-yaml-template)))
-
-
 (defun jcs-yaml-mode-hook ()
   "YAML mode hook."
   (abbrev-mode 1)
@@ -27,8 +21,9 @@
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]yaml" buffer-file-name) (jcs-yaml-script-format))
-          ((string-match "[.]yml" buffer-file-name) (jcs-yaml-script-format))
+          ((or (string-match "[.]yaml" buffer-file-name)
+               (string-match "[.]yml" buffer-file-name))
+           (jcs-insert-header-if-empty 'jcs-insert-yaml-template))
           ))
 
   ;; Normal

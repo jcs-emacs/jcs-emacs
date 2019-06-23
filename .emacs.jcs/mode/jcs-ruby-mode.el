@@ -6,12 +6,6 @@
 (require 'ruby-mode)
 
 
-(defun jcs-ruby-script-format ()
-  "Format the given file as a Ruby script."
-  (when (jcs-is-current-file-empty-p)
-    (jcs-insert-ruby-template)))
-
-
 (defun jcs-ruby-mode-hook ()
   "Ruby mode hook."
   (abbrev-mode 1)
@@ -24,7 +18,8 @@
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]rb" buffer-file-name) (jcs-ruby-script-format))
+          ((string-match "[.]rb" buffer-file-name)
+           (jcs-insert-header-if-empty 'jcs-insert-ruby-template))
           ))
 
   )

@@ -6,12 +6,6 @@
 (require 'jayces-mode)
 
 
-(defun jcs-jayces-class-format ()
-  "Format the given file as a JayCeS file."
-  (when (jcs-is-current-file-empty-p)
-    (jcs-insert-jayces-template)))
-
-
 (defun jcs-jayces-mode-hook ()
   "JayCeS mode hook."
   (abbrev-mode 1)
@@ -23,8 +17,9 @@
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]jcs" buffer-file-name) (jcs-jayces-class-format))
-          ((string-match "[.]jayces" buffer-file-name) (jcs-jayces-class-format))
+          ((or (string-match "[.]jcs" buffer-file-name)
+               (string-match "[.]jayces" buffer-file-name))
+           (jcs-insert-header-if-empty 'jcs-insert-jayces-template))
           ))
 
   )

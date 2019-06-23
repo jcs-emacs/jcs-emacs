@@ -8,12 +8,6 @@
 (require 'jcs-python-func)
 
 
-(defun jcs-cobol-format ()
-  "Format the given file as a COBOL file."
-  (when (jcs-is-current-file-empty-p)
-    (jcs-insert-cobol-template)))
-
-
 (defun jcs-cobol-mode-hook ()
   "COBOL mode hook."
   (electric-pair-mode nil)
@@ -23,7 +17,8 @@
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]cbl" buffer-file-name) (jcs-cobol-format))
+          ((string-match "[.]cbl" buffer-file-name)
+           (jcs-insert-header-if-empty 'jcs-insert-cobol-template))
           ))
 
   ;; Set Faces.

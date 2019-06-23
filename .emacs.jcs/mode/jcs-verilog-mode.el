@@ -6,12 +6,6 @@
 (require 'verilog-mode)
 
 
-(defun jcs-verilog-script-format ()
-  "Format the given file as a Verilog file."
-  (when (jcs-is-current-file-empty-p)
-    (jcs-insert-verilog-template)))
-
-
 (defun jcs-verilog-mode-hook ()
   "Verilog mode hook."
   (abbrev-mode 1)
@@ -21,7 +15,8 @@
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]v" buffer-file-name) (jcs-verilog-script-format))
+          ((string-match "[.]v" buffer-file-name)
+           (jcs-insert-header-if-empty 'jcs-insert-verilog-template))
           ))
 
   )

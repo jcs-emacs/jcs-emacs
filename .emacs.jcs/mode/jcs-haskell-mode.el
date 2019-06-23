@@ -6,12 +6,6 @@
 (require 'haskell-mode)
 
 
-(defun jcs-haskell-script-format ()
-  "Format the given file as a Haskell file."
-  (when (jcs-is-current-file-empty-p)
-    (jcs-insert-haskell-template)))
-
-
 (defun jcs-haskell-mode-hook ()
   "Haskell mode hook."
   (abbrev-mode 1)
@@ -21,7 +15,8 @@
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]hs" buffer-file-name) (jcs-haskell-script-format))
+          ((string-match "[.]hs" buffer-file-name)
+           (jcs-insert-header-if-empty 'jcs-insert-haskell-template))
           ))
 
   )
