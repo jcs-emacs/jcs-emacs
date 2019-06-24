@@ -126,8 +126,6 @@ detials make things better and make life smoother.
 
 * [*Auto Install Package*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/auto-install-package) - 
 Automatically installs the package that this config relies on.
-* [*Auto Switch State*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/auto-switch-state) - 
-Automatcially switch mini state depends on certain circumstances.
 * [*Auto Truncate Lines*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/auto-truncate-lines) - 
 Automatically enable/disable `truncate-lines-mode` depends 
 on certain situation. (`web-mode` only)
@@ -160,6 +158,8 @@ base on the file usage.
 * [*Mini State*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/mini-state) - 
 Mini mode state use to visually see what backend is the 
 config currently running.
+  * [*Auto Switch State*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/mini-state/auto-switch-state) - 
+  Automatcially switch mini state depends on certain circumstances.
 * [*Mode Line Toggle*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/mode-line-toggle) - 
 Toggle to `show` or `hide` the mode line.
 * [*Modern Text Editor*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/modern-text-editor) - 
