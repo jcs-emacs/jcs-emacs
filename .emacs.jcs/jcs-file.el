@@ -15,6 +15,31 @@ NOT-OW : Default is other window, not other window."
     (erase-buffer)
     (save-excursion
       (insert buf-str)
+      ;; NOTE: Start swapping html:src url path.
+      (goto-char (point-min))
+      (while (not (jcs-is-end-of-buffer-p))
+        (jcs-move-to-forward-a-word "src")
+        (unless (jcs-is-end-of-buffer-p)
+          (forward-char 2)
+          (let ((start-ch (jcs-get-current-char-string))
+                (start-pt (point))
+                (end-pt -1)
+                (url-path "")
+                (external-src nil))
+            (save-excursion
+              (forward-char 1)
+              (when (jcs-current-char-equal-p "h")
+                (setq external-src t)))
+            (unless external-src
+              (jcs-move-to-forward-a-char start-ch)
+              (forward-char -1)
+              (setq end-pt (point))
+
+              (setq url-path (buffer-substring start-pt end-pt))
+              (delete-region start-pt end-pt)
+
+              (setq url-path (format "file:///%s" (expand-file-name url-path)))
+              (insert url-path)))))
       (shr-render-region (point-min) (point-max)))
     (read-only-mode 1)
     (special-mode)))
