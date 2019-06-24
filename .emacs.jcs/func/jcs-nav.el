@@ -206,9 +206,9 @@ as NO-REC : recursive? (Default: do recusrive method)"
 ;; Navigating to a Character
 ;;----------------------------------------------
 
-(defvar jcs-search-trigger-forward-char 0
+(defvar jcs-search-trigger-forward-char nil
   "Trigger search forward character.")
-(defvar jcs-search-trigger-backward-char 0
+(defvar jcs-search-trigger-backward-char nil
   "Trigger search backward character.")
 
 (defun jcs-move-to-forward-a-char-recursive (ch)
@@ -370,25 +370,25 @@ CH : character we target to move toward."
   (jcs-move-backward-open-close-epair "(" ")"))
 
 ;;;###autoload
-(defun jcs-move-forward-open-close-sqrParen ()
+(defun jcs-move-forward-open-close-sqr-paren ()
   "Move forward to a open/close square parenthesis."
   (interactive)
   (jcs-move-forward-open-close-epair "[[]" "]"))
 
 ;;;###autoload
-(defun jcs-move-backward-open-close-sqrParen ()
+(defun jcs-move-backward-open-close-sqr-paren ()
   "Move backward to a open/close square parenthesis."
   (interactive)
   (jcs-move-backward-open-close-epair "[[]" "]"))
 
 ;;;###autoload
-(defun jcs-move-forward-open-close-curlyParen ()
+(defun jcs-move-forward-open-close-curly-paren ()
   "Move forward to a open/close curly parenthesis."
   (interactive)
   (jcs-move-forward-open-close-epair "{" "}"))
 
 ;;;###autoload
-(defun jcs-move-backward-open-close-curlyParen ()
+(defun jcs-move-backward-open-close-curly-paren ()
   "Move backward to a open/close curly parenthesis."
   (interactive)
   (jcs-move-backward-open-close-epair "{" "}"))

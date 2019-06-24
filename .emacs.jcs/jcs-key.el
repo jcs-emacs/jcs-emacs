@@ -116,10 +116,10 @@
 (progn ;; Navigating General Programming Symbols
   (define-key global-map (kbd "M-)") (quote jcs-move-forward-close-paren))
   (define-key global-map (kbd "M-(") (quote jcs-move-backward-open-paren))
-  (define-key global-map (kbd "M-]") (quote jcs-move-forward-close-sqrParen))
-  (define-key global-map (kbd "M-[") (quote jcs-move-backward-open-sqrParen))
-  (define-key global-map (kbd "M-}") (quote jcs-move-forward-close-curlyParen))
-  (define-key global-map (kbd "M-{") (quote jcs-move-backward-open-curlyParen))
+  (define-key global-map (kbd "M-]") (quote jcs-move-forward-close-sqr-paren))
+  (define-key global-map (kbd "M-[") (quote jcs-move-backward-open-sqr-paren))
+  (define-key global-map (kbd "M-}") (quote jcs-move-forward-close-curly-paren))
+  (define-key global-map (kbd "M-{") (quote jcs-move-backward-open-curly-paren))
   (define-key global-map (kbd "M-'") (quote jcs-move-forward-single-quot))
   (define-key global-map (kbd "M-;") (quote jcs-move-backward-single-quot))
   (define-key global-map (kbd "M-\"") (quote jcs-move-forward-double-quot))
@@ -134,12 +134,12 @@
 
 
 (progn ;; Changing/Deleting inside between Programming Symbols
-  (define-key global-map (kbd "C-c i [") #'jcs-delete-inside-sqrParen)
-  (define-key global-map (kbd "C-c i ]") #'jcs-delete-inside-sqrParen)
+  (define-key global-map (kbd "C-c i [") #'jcs-delete-inside-sqr-paren)
+  (define-key global-map (kbd "C-c i ]") #'jcs-delete-inside-sqr-paren)
   (define-key global-map (kbd "C-c i (") #'jcs-delete-inside-paren)
   (define-key global-map (kbd "C-c i )") #'jcs-delete-inside-paren)
-  (define-key global-map (kbd "C-c i {") #'jcs-delete-inside-curlyParen)
-  (define-key global-map (kbd "C-c i }") #'jcs-delete-inside-curlyParen)
+  (define-key global-map (kbd "C-c i {") #'jcs-delete-inside-curly-paren)
+  (define-key global-map (kbd "C-c i }") #'jcs-delete-inside-curly-paren)
   (define-key global-map (kbd "C-c i '") #'jcs-delete-inside-single-quot)
   (define-key global-map (kbd "C-c i \"") #'jcs-delete-inside-double-quot)
   (define-key global-map (kbd "C-c i <") #'jcs-delete-inside-greater-less-sign)
