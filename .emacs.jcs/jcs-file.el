@@ -3,6 +3,24 @@
 ;;; Code:
 
 
+;;;###autoload
+(defun jcs-html-preview (&optional title not-ow)
+  "Preview html file other window.
+NOT-OW : Default is other window, not other window."
+  (interactive)
+  (let ((buf-str (buffer-string)))
+    (unless title
+      (setq title (format "*html-preview - %s*" (buffer-name))))
+    (if not-ow (switch-to-buffer title) (switch-to-buffer-other-window title))
+    (read-only-mode -1)
+    (erase-buffer)
+    (save-excursion
+      (insert buf-str)
+      (shr-render-region (point-min) (point-max)))
+    (read-only-mode 1)
+    (special-mode)))
+
+
 (defun jcs-display-file (title filepath &optional ow)
   "Display a file with FILEPATH with TITLE.
 OW : Display it other window."
