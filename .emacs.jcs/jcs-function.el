@@ -80,16 +80,16 @@
 ;;----------------------------------------------
 
 ;;;###autoload
-(defun jcs-ascii-table ()
-  "Display basic ASCII table"
-  (interactive)
-  (jcs-display-file "*ASCII*" "~/.emacs.jcs/data/ascii.txt" t))
-
-;;;###autoload
 (defun jcs-alt-codes-table ()
   "Display basic Alt-Codes table"
   (interactive)
   (jcs-display-file "*Alt Codes*" "~/.emacs.jcs/data/alt-code.txt" t))
+
+;;;###autoload
+(defun jcs-ascii-table ()
+  "Display basic ASCII table"
+  (interactive)
+  (jcs-display-file "*ASCII*" "~/.emacs.jcs/data/ascii.txt" t))
 
 ;;----------------------------------------------
 ;; Dashboard
