@@ -168,7 +168,7 @@ Use `C-<up>` and `C-<down>` to navigate previous and next
 blank line.
 * [*Navigate Table*](https://github.com/jcs090218/jcs-emacs-init/tree/master/features/navigate-table) - 
 Navigate `org-mode`'s table easier by using arrow keys.
-* [*Preview HTML*]https://github.com/jcs090218/jcs-emacs-init/tree/master/features/preview-html() - 
+* [*Preview HTML*](https://github.com/jcs090218/jcs-emacs-init/tree/master/features/preview-html) - 
 Preview rendered HTML file on the other window.
 * [*Simulate Shell*](https://github.com/jcs090218/jcs-emacs-init/tree/master/features/simulate-shell) - 
 Completely simulate shell behaviors, make better user 
