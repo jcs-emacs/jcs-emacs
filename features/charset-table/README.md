@@ -2,6 +2,6 @@
 > Built-in functions that displays character sets.
 
 
-| ASCII                        |
-|:-----------------------------|
-|<img src="./ascii-table.png"/>|
+| ASCII                        | Alt Codes                        |
+|:-----------------------------|:---------------------------------|
+|<img src="./ascii-table.png"/>|<img src="./alt-codes-table.png"/>|
