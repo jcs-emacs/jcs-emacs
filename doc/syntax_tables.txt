@@ -1,14 +1,4 @@
-# ========================================================================
-# $File: syntax_tables.txt $
-# $Date: 2018-10-07 19:41:11 $
-# $Revision: $
-# $Creator: Jen-Chieh Shen $
-# $Notice: See LICENSE.txt for modification and distribution information
-#                   Copyright © 2018 by Shen, Jen-Chieh $
-# ========================================================================
-
-
-# URL(jenchieh): https://www.emacswiki.org/emacs/EmacsSyntaxTable
+# URL: https://www.emacswiki.org/emacs/EmacsSyntaxTable
 
 |-----------+--------------------------------------|
 | Character | Description                          |
