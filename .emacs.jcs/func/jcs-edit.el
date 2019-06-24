@@ -1118,17 +1118,13 @@ CHAR : character to check to delete.
 REVERSE : t forward, nil backward."
   (let ((do-kill-char nil))
     (save-excursion
-      (if (equal reverse t)
-          (backward-char)
-        (forward-char))
+      (if reverse (backward-char) (forward-char))
 
       (when (jcs-current-char-equal-p char)
         (setq do-kill-char t)))
 
-    (when (equal do-kill-char t)
-      (if (equal reverse t)
-          (delete-char -1)
-        (delete-char 1))
+    (when do-kill-char
+      (if reverse (delete-char -1) (delete-char 1))
       (jcs-delete-char-repeat char reverse))))
 
 ;;----------------------------------------------
@@ -1142,9 +1138,9 @@ REVERSE : t forward, nil backward."
     (jcs-move-to-backward-a-char-do-recursive start-char nil)
 
     ;; If failed search backward start character..
-    (if (= jcs-search-trigger-backward-char 1)
+    (if jcs-search-trigger-backward-char
         (progn
-          (setq jcs-search-trigger-backward-char 0)
+          (setq jcs-search-trigger-backward-char nil)
           (goto-char preserve-point)
           (error "Does not find beginning character : %s" start-char))
       ;; Fixed column position.
@@ -1162,17 +1158,20 @@ REVERSE : t forward, nil backward."
     (jcs-move-to-forward-a-char-do-recursive end-char nil)
 
     ;; If failed search forward end character..
-    (when (= jcs-search-trigger-forward-char 1)
-      (setq jcs-search-trigger-forward-char 0)
-      (goto-char preserve-point)
-      (error "Does not find end character : %s" end-char))
+    (if jcs-search-trigger-forward-char
+        (progn
+          (setq jcs-search-trigger-forward-char nil)
+          (goto-char preserve-point)
+          (error "Does not find end character : %s" end-char))
+      (forward-char -1))
+
     (setq end-point (point))
 
     ;; Returns found point.
     end-point))
 
 (defun jcs-check-outside-nested-char-p (start-char end-char)
-  "Check if outside the nested START-CHAR and END-CHAR?"
+  "Check if outside the nested START-CHAR and END-CHAR."
   (save-excursion
     (ignore-errors
       (let ((preserve-point (point))
@@ -1226,58 +1225,60 @@ REVERSE : t forward, nil backward."
       (backward-char 1)
       (setq end-point (jcs-find-end-char end-char preserve-point)))
 
-    ;; NOTE: Start to solve the nested character issue.
-    (goto-char preserve-point)
-    (let ((nested-count 0)
-          (break-search-nested nil))
-      (ignore-errors
-        ;; Solve backward nested.
-        (while (equal break-search-nested nil)
-          (goto-char start-point)
-          (backward-char 1)
+    (unless (string= start-char end-char)
+      ;; NOTE: Start to solve the nested character issue.
+      (goto-char preserve-point)
+      (let ((nested-count 0)
+            (break-search-nested nil)
+            (nested-counter 0))
+        (ignore-errors
+          ;; Solve backward nested.
+          (while (not break-search-nested)
+            (goto-char start-point)
+            (backward-char 1)
 
-          (let ((nested-counter 0))
             (while (<= nested-counter nested-count)
               (jcs-find-end-char end-char preserve-point)
-              (setq nested-counter (+ nested-counter 1))))
+              (setq nested-counter (+ nested-counter 1)))
 
-          (if (not (= end-point (point)))
-              (progn
-                (setq nested-count (+ nested-count 1))
-                (goto-char start-point)
-                (backward-char 1)
-                (setq start-point (jcs-find-start-char start-char preserve-point)))
-            (setq break-search-nested t))))
+            (if (not (= end-point (point)))
+                (progn
+                  (setq nested-count (+ nested-count 1))
+                  (goto-char start-point)
+                  (backward-char 1)
+                  (setq start-point (jcs-find-start-char start-char preserve-point)))
+              (setq break-search-nested t))))
 
-      ;; IMPORTANT: reset variables.
-      (goto-char preserve-point)
-      (setq nested-count 0)
-      (setq break-search-nested nil)
+        ;; IMPORTANT: reset variables.
+        (goto-char preserve-point)
+        (setq nested-count 0)
+        (setq break-search-nested nil)
+        (setq nested-counter 0)
 
-      (ignore-errors
-        ;; Solve forward nested.
-        (while (equal break-search-nested nil)
-          (goto-char end-point)
+        (ignore-errors
+          ;; Solve forward nested.
+          (while (not break-search-nested)
+            (goto-char end-point)
 
-          (let ((nested-counter 0))
             (while (<= nested-counter nested-count)
               (jcs-find-start-char start-char preserve-point)
-              (setq nested-counter (+ nested-counter 1))))
+              (setq nested-counter (+ nested-counter 1)))
 
-          (if (not (= start-point (point)))
-              (progn
-                (setq nested-count (+ nested-count 1))
-                (goto-char end-point)
-                (setq end-point (jcs-find-end-char end-char preserve-point)))
-            (setq break-search-nested t)))))
+            (if (not (= start-point (point)))
+                (progn
+                  (setq nested-count (+ nested-count 1))
+                  (goto-char end-point)
+                  (setq end-point (jcs-find-end-char end-char preserve-point)))
+              (setq break-search-nested t)))))
 
-    ;; Go back to original position before do anything.
-    (goto-char preserve-point)
+      ;; Go back to original position before do anything.
+      (goto-char preserve-point))
 
     ;; Check if is inside the region.
     (if (and (>= preserve-point start-point)
              (<= preserve-point end-point)
-             (not (jcs-check-outside-nested-char-p start-char end-char)))
+             (or (string= start-char end-char)
+                 (not (jcs-check-outside-nested-char-p start-char end-char))))
         ;; Delete the region.
         (delete-region start-point end-point)
       ;; Back to where you were.
@@ -1291,13 +1292,13 @@ REVERSE : t forward, nil backward."
   (jcs-delete-between-char "(" ")"))
 
 ;;;###autoload
-(defun jcs-delete-inside-sqrParen ()
+(defun jcs-delete-inside-sqr-paren ()
   "Delete everything between open square parenthesis and close square parenthesis."
   (interactive)
   (jcs-delete-between-char "[[]" "]"))
 
 ;;;###autoload
-(defun jcs-delete-inside-curlyParen ()
+(defun jcs-delete-inside-curly-paren ()
   "Delete everything between open curly parenthesis and close curly parenthesis."
   (interactive)
   (jcs-delete-between-char "{" "}"))
