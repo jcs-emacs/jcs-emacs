@@ -4,11 +4,17 @@
 
 
 ;;;###autoload
-(defun jcs-html-preview (&optional title filepath not-ow)
+(defun jcs-html-preview (&optional filepath not-ow title)
   "Preview html FILEPATH other window with TITLE.
 NOT-OW : Default is other window, not other window."
   (interactive)
-  (let ((buf-str (if filepath (jcs-get-string-from-file filepath) (buffer-string))))
+  (let ((buf-str "")
+        (default-directory default-directory))
+    (if filepath
+        (progn
+          (setq buf-str (jcs-get-string-from-file filepath))
+          (setq default-directory (f-dirname filepath)))
+      (setq buf-str (buffer-string)))
     (unless title (setq title (format "*html-preview - %s*" (buffer-name))))
     (if not-ow (switch-to-buffer title) (switch-to-buffer-other-window title))
     (read-only-mode -1)
