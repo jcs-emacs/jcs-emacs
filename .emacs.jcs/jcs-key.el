@@ -294,6 +294,9 @@
 (define-key global-map (kbd "C-M-S-<up>") #'jcs-mc/mark-previous-like-this)
 (define-key global-map (kbd "C-M-S-<down>") #'jcs-mc/mark-next-like-this)
 
+(with-eval-after-load 'multiple-cursors
+  (define-key mc/keymap (kbd "C-v") #'yank))
+
 ;;; Navigation
 (define-key global-map [home] #'jcs-beginning-of-line)
 (define-key global-map [end] #'jcs-end-of-line)
