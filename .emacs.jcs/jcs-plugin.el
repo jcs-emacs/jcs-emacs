@@ -153,6 +153,12 @@
   (setq dumb-jump-force-searcher 'ag))
 
 
+(use-package eww
+  :defer t
+  :init
+  (setq eww-search-prefix "https://www.google.com/search?q="))
+
+
 (use-package exec-path-from-shell
   :defer t
   :config
