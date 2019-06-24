@@ -1,0 +1,45 @@
+|----------------+---------------------------------------+------------------------------------------|
+| Data Strcuture | Advantages                            | Disadvantages                            |
+|----------------+---------------------------------------+------------------------------------------|
+|----------------+---------------------------------------+------------------------------------------|
+| Array          | Quick inserts                         | Slow search                              |
+|                | Fast access if index known            | Slow deletes                             |
+|                |                                       | Fixed size                               |
+|----------------+---------------------------------------+------------------------------------------|
+| Ordered Array  | Faster search than unsorted array     | Slow inserts                             |
+|                |                                       | Slow deletes                             |
+|                |                                       | Fixed size                               |
+|----------------+---------------------------------------+------------------------------------------|
+| Stack          | Last-in, first-out access             | Slow access to other items               |
+|----------------+---------------------------------------+------------------------------------------|
+| Queue          | First-in, first-out access            | Slow access to other items               |
+|----------------+---------------------------------------+------------------------------------------|
+| Linked List    | Quick inserts                         | Slow search                              |
+|                | Quick deletes                         |                                          |
+|----------------+---------------------------------------+------------------------------------------|
+| Binary Tree    | Quick search                          | Deletion algorithm is complex            |
+|                | Quick inserts                         |                                          |
+|                | Quick deletes                         |                                          |
+|                | (If the tree remains balanced)        |                                          |
+|----------------+---------------------------------------+------------------------------------------|
+| Red-Black Tree | Quick search                          | Complex to implement                     |
+|                | Quick inserts                         |                                          |
+|                | Quick deletes                         |                                          |
+|                | (Tree always remains balanced)        |                                          |
+|----------------+---------------------------------------+------------------------------------------|
+| 2-3-4 Tree     | Quick search                          | Complex to implement                     |
+|                | Quick inserts                         |                                          |
+|                | Quick deletes                         |                                          |
+|                | (Tree always remains balanced)        |                                          |
+|                | (Similar trees good for disk storage) |                                          |
+|----------------+---------------------------------------+------------------------------------------|
+| Hash Table     | Very fast access if key is known      | Slow deletes                             |
+|                | Quick inserts                         | Access is slow if not known              |
+|                |                                       | Inefficient memory usage                 |
+|----------------+---------------------------------------+------------------------------------------|
+| Head           | Quick inserts                         | Slow access other items                  |
+|                | Quick deletes                         |                                          |
+|                | Access to largest item                |                                          |
+|----------------+---------------------------------------+------------------------------------------|
+| Graph          | Best module real-world situtations    | Some algorithm are slow and very complex |
+|----------------+---------------------------------------+------------------------------------------|
