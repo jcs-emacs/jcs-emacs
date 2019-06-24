@@ -171,6 +171,7 @@
 (defconst jcs-line-numbers-ignore-modes '("Custom-mode"
                                           "dired-mode"
                                           "doc-view-mode"
+                                          "eww-mode"
                                           "help-mode"
                                           "image-mode"
                                           "message-mode"
