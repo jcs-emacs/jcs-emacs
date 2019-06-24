@@ -25,12 +25,13 @@ NOT-OW : Default is other window, not other window."
                 (start-pt (point))
                 (end-pt -1)
                 (url-path "")
-                (external-src nil))
+                (relative-ulr-path t))
             (save-excursion
-              (forward-char 1)
-              (when (jcs-current-char-equal-p "h")
-                (setq external-src t)))
-            (unless external-src
+              (when (or (jcs-current-word-equal-p "http")
+                        (jcs-current-word-equal-p "https")
+                        (jcs-current-word-equal-p "file"))
+                (setq relative-ulr-path nil)))
+            (when relative-ulr-path
               (jcs-move-to-forward-a-char start-ch)
               (forward-char -1)
               (setq end-pt (point))
