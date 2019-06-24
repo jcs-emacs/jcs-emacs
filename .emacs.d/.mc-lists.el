@@ -22,13 +22,15 @@
         jcs-move-forward-comma
         jcs-py-indent-down
         jcs-py-indent-up
-        jcs-redo
         jcs-smart-indent-down
         jcs-smart-indent-up
-        jcs-undo
         jcs-upcase-word-or-region
+        jcs-vs-cut-key
         jcs-web-backward-delete-word
         jcs-web-backward-delete-word-capital
+        kill-region
+        org-force-self-insert
+        org-self-insert-command
         ))
 
 (setq mc/cmds-to-run-once
@@ -52,10 +54,12 @@
         jcs-other-window-next
         jcs-other-window-prev
         jcs-previous-blank-line
+        jcs-redo
         jcs-run-without-asking
         jcs-scroll-down-one-line
         jcs-scroll-up-one-line
         jcs-toggle-sublimity-mode
+        jcs-undo
         jcs-untabify-save-buffer
         move-text-down
         move-text-up
