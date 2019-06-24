@@ -142,6 +142,8 @@ Built-in functions that displays character sets.
 Has consistent key bindings across all modes.
 * [*Curly Bracket Modes*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/curly-bracket-modes) - 
 Use curly bracket depends on different mode.
+* [*Display File*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/display-file) - 
+Utility function to use to view a file on the other window.
 * [*Docstring Completion*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/docstring-completion) - 
 Some standard docstring completion implementations built-in 
 to this configuration.
@@ -166,6 +168,8 @@ Use `C-<up>` and `C-<down>` to navigate previous and next
 blank line.
 * [*Navigate Table*](https://github.com/jcs090218/jcs-emacs-init/tree/master/features/navigate-table) - 
 Navigate `org-mode`'s table easier by using arrow keys.
+* [*Preview HTML*]https://github.com/jcs090218/jcs-emacs-init/tree/master/features/preview-html() - 
+Preview rendered HTML file on the other window.
 * [*Simulate Shell*](https://github.com/jcs090218/jcs-emacs-init/tree/master/features/simulate-shell) - 
 Completely simulate shell behaviors, make better user 
 experience when using shell in Emacs.
