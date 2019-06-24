@@ -142,7 +142,7 @@ Has consistent key bindings across all modes.
 Use curly bracket depends on different mode.
 * [*Display File*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/display-file) - 
 Utility function to use to view a file on the other window.
-  * [*Charset Table*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/charset-table) - 
+  * [*Charset Table*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/display-file/charset-table) - 
   Built-in functions that displays character sets.
 * [*Docstring Completion*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/docstring-completion) - 
 Some standard docstring completion implementations built-in 
