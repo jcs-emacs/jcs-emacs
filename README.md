@@ -136,14 +136,14 @@ Implementation for executing script for building and running
 the software.
 * [*Capital Word*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/capital-word) - 
 You can navigate/kill word by seeing capital letter.
-* [*Charset Table*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/charset-table) - 
-Built-in functions that displays character sets.
 * [*Consistent Key Bindings*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/consistent-key-bindings) - 
 Has consistent key bindings across all modes.
 * [*Curly Bracket Modes*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/curly-bracket-modes) - 
 Use curly bracket depends on different mode.
 * [*Display File*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/display-file) - 
 Utility function to use to view a file on the other window.
+  * [*Charset Table*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/charset-table) - 
+  Built-in functions that displays character sets.
 * [*Docstring Completion*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/docstring-completion) - 
 Some standard docstring completion implementations built-in 
 to this configuration.
