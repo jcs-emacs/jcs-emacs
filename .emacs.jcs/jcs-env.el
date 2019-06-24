@@ -155,6 +155,8 @@
                                             "*Flycheck errors*"
                                             "*GNU Emacs*"
                                             "*helm"
+                                            "*html*"
+                                            "*html-preview - "
                                             "*magit"
                                             "magit: "
                                             "*Messages*"
@@ -171,6 +173,7 @@
                                           "doc-view-mode"
                                           "help-mode"
                                           "image-mode"
+                                          "message-mode"
                                           "outline-mode"
                                           "package-menu-mode")
   "List of modes that you do not want to show line numbers in it.")
@@ -190,7 +193,7 @@ can see the error/operation message.")
 (defconst jcs-find-file-read-only-paths '("/.emacs.d/elisp/"
                                           "/.emacs.d/elpa/"
                                           "/lisp/")
-  "When `find-file' under these paths, enable `read-only-mode' as default when opens it.")
+  "Find file with these paths, esure read only mode enabled.")
 
 ;;; Scrolling
 ;;(setq scroll-preserve-screen-position 'always)
