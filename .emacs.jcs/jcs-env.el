@@ -142,6 +142,7 @@
 
 ;;; Line Numbers
 (defconst jcs-line-numbers-ignore-buffers '("*ag"
+                                            "*Alt Codes*"
                                             "*ASCII*"
                                             "*Backtrace*"
                                             "*Buffer List*"
