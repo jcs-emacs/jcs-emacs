@@ -126,6 +126,8 @@ detials make things better and make life smoother.
 
 * [*Auto Install Package*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/auto-install-package) - 
 Automatically installs the package that this config relies on.
+* [*Auto Switch State*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/auto-switch-state) - 
+Automatcially switch mini state depends on certain circumstances.
 * [*Auto Truncate Lines*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/auto-truncate-lines) - 
 Automatically enable/disable `truncate-lines-mode` depends 
 on certain situation. (`web-mode` only)
