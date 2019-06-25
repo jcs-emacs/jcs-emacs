@@ -1385,7 +1385,7 @@ IN-VAL : input value to set to IN-VAR."
             (index 0))
         (while (< index win-len)
           (with-current-buffer (buffer-name)
-            ;; NOTE(jenchieh): this will actually set whatever the
+            ;; NOTE: this will actually set whatever the
             ;; variable are. Either global or local variable will work.
             ;;
             ;; TOPIC: Variable references in lisp
