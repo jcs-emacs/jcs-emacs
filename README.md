@@ -30,7 +30,7 @@ from this configuration.
 * C / C++ / C# / Clojure / CMake / COBOL / CSS
 * Dart
 * Elixir / Emacs Lisp / Erlang
-* GLSL / Go
+* GLSL / Go / Godot Script
 * Haskell / Haxe / HTML
 * INI
 * JSON / Java / JavaScript
@@ -364,6 +364,7 @@ certain extension.
 | Erlang | [erlang-mode](https://www.emacswiki.org/emacs/ErlangMode) | Major modes for editing and running Erlang | [![MELPA](https://melpa.org/packages/erlang-badge.svg)](https://melpa.org/#/erlang) |
 | GLSL | [glsl-mode](https://github.com/jimhourihan/glsl-mode) | major mode for Open GLSL shader files | [![MELPA](https://melpa.org/packages/glsl-mode-badge.svg)](https://melpa.org/#/glsl-mode) |
 | Go | [go-mode](https://github.com/dominikh/go-mode.el) | Major mode for the Go programming language | [![MELPA](https://melpa.org/packages/go-mode-badge.svg)](https://melpa.org/#/go-mode) |
+| Godot Script | [gdscript-mode](https://github.com/AdamBark/gdscript-mode) | Major mode for editing Godot GDScript files | [![MELPA](https://melpa.org/packages/gdscript-mode-badge.svg)](https://melpa.org/#/gdscript-mode) |
 | Haskell | [haskell-mode](https://github.com/haskell/haskell-mode) | A Haskell editing mode | [![MELPA](https://melpa.org/packages/haskell-mode-badge.svg)](https://melpa.org/#/haskell-mode) |
 | Haxe | [haxe-mode](https://www.emacswiki.org/emacs/HaxeMode) | An Emacs major mode for Haxe | [![MELPA](https://melpa.org/packages/haxe-mode-badge.svg)](https://melpa.org/#/haxe-mode) |
 | HTML | [web-mode](https://github.com/fxbois/web-mode) | major mode for editing web templates | [![MELPA](https://melpa.org/packages/web-mode-badge.svg)](https://melpa.org/#/web-mode) |
