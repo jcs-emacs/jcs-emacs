@@ -290,6 +290,11 @@ in order to take effect.  Half hot reloading process."
   "Header for Go header file."
   (jcs-insert-template-by-file-path "~/.emacs.jcs/template/go/go_template.txt"))
 
+;;; Godot Script
+(defun jcs-insert-gdscript-template ()
+  "Header for Godot Script header file."
+  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/gdscript/gdscript_template.txt"))
+
 ;;; Haskell
 (defun jcs-insert-haskell-template ()
   "Template for Haskell."
