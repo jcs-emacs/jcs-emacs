@@ -180,6 +180,8 @@ Fast keys switch between windows quickly.
 * [*Tabify/Untabify Modes*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/tabify-untabify-modes) -
 Tabify or Untabify the file depends on the mode you 
 currently in.
+* [*Transparent Window*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/transparent-window) - 
+Keys to increase/decrease the transparency of the frame.
 * [*Trim Trailing Whitespace*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/trim-trailing-whitespace) - 
 Remove trailing spaces and tabs automatically on save.
 * [*Visualize Undo/Redo*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/visualize-undo-redo) - 
