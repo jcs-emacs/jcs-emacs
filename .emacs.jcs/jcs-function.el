@@ -5,7 +5,6 @@
 
 ;;----------------------------------------------
 ;; ag
-;;----------------------------------------------
 
 (defun jcs-ag-get-search-string-by-current-buffer-name ()
   "Get the `search-string' by the current `buffer-name'."
@@ -39,7 +38,6 @@
 
 ;;----------------------------------------------
 ;; Beacon
-;;----------------------------------------------
 
 ;;;###autoload
 (defun jcs-reset-beacon-color-by-theme ()
@@ -51,7 +49,6 @@
 
 ;;----------------------------------------------
 ;; Buffer Menu
-;;----------------------------------------------
 
 ;;;###autoload
 (defun jcs-buffer-menu-refresh-buffer ()
@@ -63,7 +60,6 @@
 
 ;;----------------------------------------------
 ;; Calculator
-;;----------------------------------------------
 
 ;;;###autoload
 (defun jcs-calc-eval-region ()
@@ -76,24 +72,34 @@
       (insert val))))
 
 ;;----------------------------------------------
-;; Charset Table
-;;----------------------------------------------
+;; Cheat Sheet
 
 ;;;###autoload
 (defun jcs-alt-codes-table ()
   "Display basic Alt-Codes table"
   (interactive)
-  (jcs-display-file "*Alt Codes*" "~/.emacs.jcs/data/charset/alt-code.txt" t))
+  (jcs-display-file "~/.emacs.jcs/data/charset/alt-code.txt" "*Alt Codes*" nil))
 
 ;;;###autoload
 (defun jcs-ascii-table ()
   "Display basic ASCII table"
   (interactive)
-  (jcs-display-file "*ASCII*" "~/.emacs.jcs/data/charset/ascii.txt" t))
+  (jcs-display-file "~/.emacs.jcs/data/charset/ascii.txt" "*ASCII*" nil))
+
+;;;###autoload
+(defun jcs-algorithm-cheat-sheet ()
+  "Display basic Alt-Codes table"
+  (interactive)
+  (jcs-html-preview "~/.emacs.jcs/data/algorithm/cheat-sheet.html" "*Algorithm Cheat Sheet*" nil))
+
+;;;###autoload
+(defun jcs-data-structure-cheat-sheet ()
+  "Display basic Alt-Codes table"
+  (interactive)
+  (jcs-display-file "~/.emacs.jcs/data/data-structure/cheat-sheet.txt" "*Data Structure Cheat Sheet*" nil))
 
 ;;----------------------------------------------
 ;; Dashboard
-;;----------------------------------------------
 
 ;;;###autoload
 (defun jcs-dashboard (&optional ow)
@@ -170,7 +176,6 @@
 
 ;;----------------------------------------------
 ;; Electric Pair
-;;----------------------------------------------
 
 (defun jcs-make-electric-pair-pairs-local (lst-pr)
   "Append a list of pair to local mode.
@@ -180,7 +185,6 @@ LST-PR: List of pair."
 
 ;;---------------------------------------------
 ;; Helm
-;;---------------------------------------------
 
 ;;;###autoload
 (defun jcs-reset-helm-theme-by-theme ()
@@ -195,7 +199,6 @@ LST-PR: List of pair."
 
 ;;---------------------------------------------
 ;; Iedit
-;;---------------------------------------------
 
 ;;;###autoload
 (defun jcs-iedit-mode ()
@@ -207,7 +210,6 @@ LST-PR: List of pair."
 
 ;;---------------------------------------------
 ;; Line Numbers
-;;---------------------------------------------
 
 (defun jcs-display-line-numbers-mode-exists-p ()
   "Return nil, `display-line-numbers-mode' does not exists in current Emacs version.
@@ -307,7 +309,7 @@ G : Deactive line numbers globally."
 G : Active line numbers globally."
   (interactive)
   (if (or (minibufferp)
-          (jcs-is-contain-list-string jcs-line-numbers-ignore-buffers (buffer-name))
+          (jcs-is-contain-list-string-regexp jcs-line-numbers-ignore-buffers (buffer-name))
           (jcs-is-contain-list-string jcs-line-numbers-ignore-modes (symbol-name major-mode)))
       ;; Don't use line numbers at all.
       (jcs-deactive-line-numbers-modes)
@@ -322,7 +324,6 @@ G : Active line numbers globally."
 
 ;;----------------------------------------------
 ;; Message
-;;----------------------------------------------
 
 ;;;###autoload
 (defun jcs-message-buffer ()
@@ -365,7 +366,6 @@ G : Active line numbers globally."
 
 ;;----------------------------------------------
 ;; Minimap
-;;----------------------------------------------
 
 ;;;###autoload
 (defun jcs-toggle-minimap ()
@@ -388,7 +388,6 @@ G : Active line numbers globally."
 
 ;;---------------------------------------------
 ;; Mode Line
-;;---------------------------------------------
 
 (defvar jcs-mode-line-face-attr-height 1
   "Record down `mode-line' the face attribute height.")
@@ -426,7 +425,6 @@ G : Active line numbers globally."
 
 ;;----------------------------------------------
 ;; Re-Builder
-;;----------------------------------------------
 
 ;;;###autoload
 (defun jcs-reb-maybe-kill-this-buffer ()
@@ -460,7 +458,6 @@ TYPE : enable/disable case sensitive?"
 
 ;;----------------------------------------------
 ;; Shell
-;;----------------------------------------------
 
 ;;;###autoload
 (defun jcs-toggle-shell-window ()
@@ -476,7 +473,6 @@ TYPE : enable/disable case sensitive?"
 
 ;;----------------------------------------------
 ;; Shift Select
-;;----------------------------------------------
 
 ;;;###autoload
 (defun jcs-toggle-shift-select-mode ()
@@ -500,7 +496,6 @@ TYPE : enable/disable case sensitive?"
 
 ;;----------------------------------------------
 ;; Speedbar
-;;----------------------------------------------
 
 (defvar jcs-speedbar-opening-buffer-file-name nil
   "Record down the current speedbar is opening which buffer.")
@@ -616,7 +611,6 @@ TYPE : enable/disable case sensitive?"
 
 ;;----------------------------------------------
 ;; Sublimity Mode
-;;----------------------------------------------
 
 ;;;###autoload
 (defun jcs-toggle-sublimity-mode ()
@@ -627,7 +621,6 @@ TYPE : enable/disable case sensitive?"
 
 ;;----------------------------------------------
 ;; Syntax Check
-;;----------------------------------------------
 
 ;;;###autoload
 (defun jcs-flycheck-mode ()
@@ -651,7 +644,6 @@ TYPE : enable/disable case sensitive?"
 
 ;;----------------------------------------------
 ;; Tabbar Mode
-;;----------------------------------------------
 
 ;;;###autoload
 (defun jcs-toggle-tabbar-mode ()
@@ -665,7 +657,6 @@ TYPE : enable/disable case sensitive?"
 
 ;;---------------------------------------------
 ;; Text Scale
-;;---------------------------------------------
 
 (defun jcs-text-scale-delta (vec)
   "Scale the text by passing `vec' value.
@@ -695,7 +686,6 @@ VEC : Either position or negative number."
 
 ;;----------------------------------------------
 ;; Tips
-;;----------------------------------------------
 
 ;;;###autoload
 (defun jcs-describe-thing-in-popup ()
@@ -725,7 +715,6 @@ VEC : Either position or negative number."
 
 ;;---------------------------------------------
 ;; Todo
-;;---------------------------------------------
 
 (defvar jcs-hl-todo-not-found-prev nil
   "See if found the previous `hl-todo' matches.")
@@ -779,7 +768,6 @@ NO-PROMPT : Don't prompt the overwrap message."
 
 ;;---------------------------------------------
 ;; Truncate Lines
-;;---------------------------------------------
 
 ;;;###autoload
 (defun jcs-enable-truncate-lines ()
@@ -797,7 +785,6 @@ NO-PROMPT : Don't prompt the overwrap message."
 
 ;;----------------------------------------------
 ;; wgrep
-;;----------------------------------------------
 
 ;;;###autoload
 (defun jcs-wgrep-finish-edit ()
@@ -819,7 +806,6 @@ NO-PROMPT : Don't prompt the overwrap message."
 
 ;;----------------------------------------------
 ;; Yascroll
-;;----------------------------------------------
 
 ;;;###autoload
 (defun jcs-reset-yascroll-color-by-theme ()
@@ -835,7 +821,6 @@ NO-PROMPT : Don't prompt the overwrap message."
 
 ;;----------------------------------------------
 ;; Yasnippet
-;;----------------------------------------------
 
 ;;;###autoload
 (defun jcs-yas-expand ()
