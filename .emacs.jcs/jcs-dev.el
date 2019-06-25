@@ -42,8 +42,7 @@ IN-OP : inpuit operation script."
 
 ;;;###autoload
 (defun jcs-run-without-asking ()
-  "Run the current build program. - JenChieh
-IN-FILE : selected file."
+  "Run the current build program."
   (interactive)
   (let ((runscript-path "")
         (target-script jcs-runscript))
@@ -55,7 +54,7 @@ IN-FILE : selected file."
 
 ;;;###autoload
 (defun jcs-open-project-todo-file ()
-  "Open the TODO list from this project. - JenChieh"
+  "Open the TODO list from this project."
   (interactive)
   (let ((project-todo-file-path "")
         (target-script jcs-project-todo-file))
@@ -67,7 +66,7 @@ IN-FILE : selected file."
 
 ;;;###autoload
 (defun jcs-open-project-update-log-file ()
-  "Open the Update Log from this project. - JenChieh"
+  "Open the Update Log from this project."
   (interactive)
   (let ((project-update-log-file-path "")
         (target-script jcs-project-update-log-file))

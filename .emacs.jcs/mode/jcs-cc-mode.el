@@ -67,7 +67,7 @@
                                     (knr-argdecl-intro     . -4)
                                     (brace-list-open       .  0)
                                     (brace-list-intro      .  4)))
-    ;; NOTE(jenchieh): no more echo.
+    ;; NOTE: no more echo.
     (c-echo-syntactic-information-p . nil))
   "Casey's Big Fun C/C++ Style")
 

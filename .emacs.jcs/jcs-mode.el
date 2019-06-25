@@ -67,7 +67,7 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
 
 ;;;###autoload
 (defun jcs-command-mode()
-  "In command mode. - JenChieh"
+  "In command mode."
   (interactive)
   (put 'jcs-insert-command-mode-toggle 'state nil)  ; set trigger
 
@@ -91,7 +91,7 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
 
 ;;;###autoload
 (defun jcs-insert-mode()
-  "In insert mode. - JenChieh"
+  "In insert mode."
   (interactive)
   (put 'jcs-insert-command-mode-toggle 'state t)  ; set trigger
 
