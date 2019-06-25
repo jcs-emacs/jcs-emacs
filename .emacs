@@ -39,7 +39,7 @@
   (load custom-file))
 
 
-(defconst jcs-emacs-version-number "5.5.3"
+(defconst jcs-emacs-version-number "5.5.5"
   "JCS-Emacs version.")
 
 ;;;###autoload
