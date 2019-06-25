@@ -145,6 +145,9 @@
                                             "magit: ")
   "List of buffers that you do not want to show line numbers in it.")
 
+(defconst jcs-line-numbers-ignore-buffer-exceptions '("*scratch*")
+  "These buffers wouldn't be ignored line numbers mode.")
+
 (defconst jcs-line-numbers-ignore-modes '("Custom-mode"
                                           "dired-mode"
                                           "doc-view-mode"
