@@ -3,8 +3,7 @@
 ;;; Code:
 
 
-;; DESCRIPTION(jenchieh): For function that simulate the Visual Studio
-;; IDE's action.
+;; DESCRIPTION: For function that simulate the Visual Studio IDE's action.
 
 ;;;###autoload
 (defun jcs-vs-front-curly-bracket-key ()
