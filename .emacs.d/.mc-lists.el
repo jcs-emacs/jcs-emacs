@@ -20,6 +20,8 @@
         jcs-move-backward-open-sqrParen
         jcs-move-forward-close-sqrParen
         jcs-move-forward-comma
+        jcs-next-line
+        jcs-previous-line
         jcs-py-indent-down
         jcs-py-indent-up
         jcs-smart-indent-down
@@ -37,6 +39,7 @@
       '(
         ace-window
         helm-M-x
+        ignore
         indent-new-comment-line
         jcs-ace-window-1
         jcs-ace-window-2
@@ -48,6 +51,7 @@
         jcs-ace-window-8
         jcs-ace-window-9
         jcs-make-without-asking
+        jcs-maybe-kill-this-buffer
         jcs-mc/mark-next-like-this
         jcs-mc/mark-previous-like-this
         jcs-next-blank-line
@@ -56,11 +60,13 @@
         jcs-previous-blank-line
         jcs-redo
         jcs-run-without-asking
+        jcs-same-file-other-window
         jcs-scroll-down-one-line
         jcs-scroll-up-one-line
         jcs-toggle-sublimity-mode
         jcs-undo
         jcs-untabify-save-buffer
+        mouse-set-region
         move-text-down
         move-text-up
         package-list-packages
