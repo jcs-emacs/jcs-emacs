@@ -220,6 +220,21 @@
         (define-key map (kbd "C-c R") 'helm-color-run-kill-rgb)
         map))))
 
+(use-package helm-ag
+  :defer t
+  :config
+  (setq helm-source-do-ag
+        (helm-build-async-source "The Silver Searcher"
+          :init 'helm-ag--do-ag-set-command
+          :candidates-process 'helm-ag--do-ag-candidate-process
+          :persistent-action  'helm-ag--persistent-action
+          :action helm-ag--actions
+          :nohighlight t
+          :requires-pattern 2
+          :candidate-number-limit 9999
+          :keymap helm-do-ag-map
+          :follow (and helm-follow-mode-persistent 1))))
+
 
 (use-package hl-todo
   :defer t
