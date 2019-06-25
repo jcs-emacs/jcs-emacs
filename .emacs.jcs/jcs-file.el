@@ -4,7 +4,7 @@
 
 
 ;;;###autoload
-(defun jcs-html-preview (&optional filepath not-ow title)
+(defun jcs-html-preview (&optional filepath title not-ow)
   "Preview html FILEPATH other window with TITLE.
 NOT-OW : Default is other window, not other window."
   (interactive)
@@ -52,10 +52,10 @@ NOT-OW : Default is other window, not other window."
     (special-mode)))
 
 
-(defun jcs-display-file (title filepath &optional ow)
+(defun jcs-display-file (filepath title &optional not-ow)
   "Display a file with FILEPATH with TITLE.
-OW : Display it other window."
-  (if ow (switch-to-buffer-other-window title) (switch-to-buffer title))
+NOT-OW : Default is other window, not other window."
+  (if not-ow (switch-to-buffer title) (switch-to-buffer-other-window title))
   (read-only-mode -1)
   (erase-buffer)
   (save-excursion
