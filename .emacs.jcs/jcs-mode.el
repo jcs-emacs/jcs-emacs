@@ -327,6 +327,7 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
 (with-eval-after-load 'dart-mode (require 'jcs-dart-mode))
 (with-eval-after-load 'elixir-mode (require 'jcs-elixir-mode))
 (with-eval-after-load 'erlang (require 'jcs-erlang-mode))
+(with-eval-after-load 'gdscript-mode (require 'jcs-gdscript-mode))
 (with-eval-after-load 'gitattributes-mode (require 'jcs-git-mode))
 (with-eval-after-load 'gitconfig-mode (require 'jcs-git-mode))
 (with-eval-after-load 'gitignore-mode (require 'jcs-git-mode))
@@ -415,6 +416,8 @@ PR : pair file `regexp' and file mode `symbol'."
 
 ;;; G
 (progn
+  (jcs-add-auto-mode-alist '("\\.gd'?\\'" . gdscript-mode))
+
   (jcs-add-auto-mode-alist '("\\.gitattributes'?\\'" . gitattributes-mode))
   (jcs-add-auto-mode-alist '("\\.gitconfig'?\\'" . gitconfig-mode))
   (jcs-add-auto-mode-alist '("\\.gitignore'?\\'" . gitignore-mode))
