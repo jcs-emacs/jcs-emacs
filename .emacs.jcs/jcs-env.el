@@ -141,31 +141,8 @@
 (setq inhibit-compacting-font-caches t)
 
 ;;; Line Numbers
-(defconst jcs-line-numbers-ignore-buffers '("*ag"
-                                            "*Alt Codes*"
-                                            "*ASCII*"
-                                            "*Backtrace*"
-                                            "*Buffer List*"
-                                            "*Checkdoc Help*"
-                                            "*Checkdoc Status*"
-                                            "*Compile-Log*"
-                                            "*compilation*"
-                                            "*dashboard*"
-                                            "*esup"
-                                            "*Flycheck errors*"
-                                            "*GNU Emacs*"
-                                            "*helm"
-                                            "*html*"
-                                            "*html-preview - "
-                                            "*magit"
-                                            "magit: "
-                                            "*Messages*"
-                                            "*Music*"
-                                            "*Package-Lint*"
-                                            "*shell*"
-                                            "*SPEEDBAR*"
-                                            "*undo-tree*"
-                                            "*Warnings*")
+(defconst jcs-line-numbers-ignore-buffers '("[*]+[[:ascii:]]+"
+                                            "magit: ")
   "List of buffers that you do not want to show line numbers in it.")
 
 (defconst jcs-line-numbers-ignore-modes '("Custom-mode"
