@@ -61,6 +61,7 @@
     focus
     flycheck
     flycheck-popup-tip
+    gdscript-mode
     gitattributes-mode
     gitconfig-mode
     gitignore-mode
