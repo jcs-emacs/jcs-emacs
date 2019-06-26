@@ -186,13 +186,11 @@ If you want to keep more than one line use
   (if (jcs-current-line-empty-p)
       (progn
         (jcs-next-line)
-
         ;; Kill empty line until there is one line.
         (while (jcs-current-line-empty-p)
           (jcs-kill-whole-line)))
-    (progn
-      ;; Make sure have one empty line between.
-      (insert "\n"))))
+    ;; Make sure have one empty line between.
+    (insert "\n")))
 
 ;;---------------------------------------------
 ;; Tab / Space
@@ -251,12 +249,11 @@ IS-FORWARD : forward check convert instead of backward."
               (backward-delete-char -1)
               (backward-delete-char -1)
               (insert "\t"))
-          (progn
-            (backward-delete-char 1)
-            (backward-delete-char 1)
-            (backward-delete-char 1)
-            (backward-delete-char 1)
-            (insert "\t")))))))
+          (backward-delete-char 1)
+          (backward-delete-char 1)
+          (backward-delete-char 1)
+          (backward-delete-char 1)
+          (insert "\t"))))))
 
 ;;;###autoload
 (defun jcs-backward-convert-space-to-tab ()
@@ -279,9 +276,8 @@ IS-FORWARD : forward conversion instead of backward conversion."
           (progn
             (backward-delete-char -1)
             (insert "    "))
-        (progn
-          (backward-delete-char 1)
-          (insert "    "))))))
+        (backward-delete-char 1)
+        (insert "    ")))))
 
 ;;;###autoload
 (defun jcs-backward-convert-tab-to-space ()
@@ -344,21 +340,17 @@ IS-FORWARD : forward conversion instead of backward conversion."
 ;; uppercase, alphanumeric?
 ;; SOURCE: https://stackoverflow.com/questions/27798296/check-if-a-character-not-string-is-lowercase-uppercase-alphanumeric
 
-(defun wordp (c)
+(defun jcs-word-p (c)
   "Check if C a word."
   (= ?w (char-syntax c)))
 
-(defun lowercasep (c)
+(defun jcs-lowercase-p (c)
   "Check if C lowercase."
-  (and (wordp c) (= c (downcase c))))
+  (and (jcs-word-p c) (= c (downcase c))))
 
-(defun uppercasep (c)
+(defun jcs-uppercase-p (c)
   "Check if C uppercase."
-  (and (wordp c) (= c (upcase c))))
-
-(defun whitespacep (c)
-  "Check if C whitespace character."
-  (= 32 (char-syntax c)))
+  (and (jcs-word-p c) (= c (upcase c))))
 
 (defun jcs-is-digit-string (c)
   "Check if C is a digit."
@@ -372,10 +364,10 @@ IS-FORWARD : forward conversion instead of backward conversion."
     (setq current-char (char-before))
     (setq current-char-string (string current-char))
     (setq current-char-char (string-to-char current-char-string))
-    (wordp current-char-char)))
+    (jcs-word-p current-char-char)))
 
 (defun jcs-current-char-uppercasep()
-  "Check if current character a uppercase character?"
+  "Check if current character a uppercase character."
   (let ((current-char nil)
         (current-char-string nil)
         (current-char-char nil))
@@ -385,15 +377,15 @@ IS-FORWARD : forward conversion instead of backward conversion."
     (uppercasep current-char-char)))
 
 (defun jcs-current-char-lowercasep ()
-  "Check if current character a lowercase character?"
+  "Check if current character a lowercase character."
   (not (jcs-current-char-uppercasep)))
 
 (defun jcs-current-whitespace-p ()
-  "Check if current character a whitespace character?"
+  "Check if current character a whitespace character."
   (jcs-current-char-equal-p " "))
 
 (defun jcs-current-tab-p ()
-  "Check if current character a tab character?"
+  "Check if current character a tab character."
   (jcs-current-char-equal-p "\t"))
 
 (defun jcs-current-whitespace-or-tab-p ()
@@ -402,14 +394,14 @@ IS-FORWARD : forward conversion instead of backward conversion."
       (jcs-current-char-equal-p "\t")))
 
 (defun jcs-current-char-equal-p (c)
-  "Check the current character equal to 'C'."
+  "Check the current character equal to C."
   (if (jcs-is-beginning-of-buffer-p)
       ;; No character at the beginning of the buffer, just return `nil'.
       nil
     (string= (jcs-get-current-char-string) c)))
 
 (defun jcs-current-char-string-match-p (c)
-  "Check the current character string match to 'C'."
+  "Check the current character string match to C."
   (if (jcs-is-beginning-of-buffer-p)
       ;; No character at the beginning of the buffer, just return `nil'.
       nil
@@ -555,7 +547,7 @@ IN-SYMBOL : symbol using to check if is contain one of the IN-LIST."
   (message "Current word: %s" (jcs-get-word-at-point)))
 
 (defun jcs-get-word-at-point ()
-  "Get word at current cursor position."
+  "Get word at current cursor position."
   (thing-at-point 'word))
 
 (defun jcs-current-word-equal-p (str)
@@ -596,6 +588,12 @@ Returns nil, the word isn't the same."
 ;; Line
 ;;---------------------------------------------
 
+;;;###autoload
+(defun jcs-print-current-line ()
+  "Print out the current line."
+  (interactive)
+  (message "Current line: %s" (jcs-get-current-line-string)))
+
 (defun jcs-goto-line (ln)
   "Goto LN line number."
   (goto-char (point-min))
@@ -631,30 +629,18 @@ Returns nil, the word isn't the same."
       is-comment-line)))
 
 (defun jcs-get-beginning-of-line-point (&optional ln)
-  "Return point at beginning of current line.
-LN : line number."
+  "Return point at beginning of LN."
   (save-excursion
-    (unless (equal ln nil)
-      (jcs-goto-line ln))
+    (when ln (jcs-goto-line ln))
     (beginning-of-line)
     (point)))
 
 (defun jcs-get-end-of-line-point (&optional ln)
-  "Return point at end of current line.
-LN : line number."
+  "Return point at end of LN."
   (save-excursion
-    (unless (equal ln nil)
-      (jcs-goto-line ln))
+    (when ln (jcs-goto-line ln))
     (end-of-line)
     (point)))
-
-(defun jcs-is-end-of-line-p ()
-  "Is at the end of line?"
-  (= (point) (jcs-get-end-of-line-point)))
-
-(defun jcs-is-end-of-buffer-p ()
-  "Is at the end of buffer?"
-  (= (point) (point-max)))
 
 (defun jcs-is-beginning-of-line-p ()
   "Is at the beginning of line?"
@@ -663,6 +649,14 @@ LN : line number."
 (defun jcs-is-beginning-of-buffer-p ()
   "Is at the beginning of buffer?"
   (= (point) (point-min)))
+
+(defun jcs-is-end-of-line-p ()
+  "Is at the end of line."
+  (= (point) (jcs-get-end-of-line-point)))
+
+(defun jcs-is-end-of-buffer-p ()
+  "Is at the end of buffer."
+  (= (point) (point-max)))
 
 (defun jcs-is-current-file-empty-p ()
   "Check if the file a empty file."
@@ -676,12 +670,6 @@ LN : line number."
 (defun jcs-get-current-line-string ()
   "Get the current line as string."
   (format-mode-line "%l"))
-
-;;;###autoload
-(defun jcs-print-current-line ()
-  "Print out the current line."
-  (interactive)
-  (message "Current line: %s" (jcs-get-current-line-string)))
 
 (defun jcs-is-current-line (line)
   "Is current line number this line?
@@ -917,6 +905,12 @@ Return nil, there is no region selected and mark is not active."
 ;; Face
 ;;---------------------------------------------
 
+;;;###autoload
+(defun jcs-print-current-face ()
+  "Print out all the faces the current cursor on."
+  (interactive)
+  (message "Current faces: %s" (jcs-get-current-point-face)))
+
 (defun jcs-get-faces (pos)
   "Get the font faces at POS."
   (jcs-flatten-list
@@ -929,12 +923,6 @@ Return nil, there is no region selected and mark is not active."
 (defun jcs-get-current-point-face ()
   "Get current point's type face as string."
   (jcs-get-faces (point)))
-
-;;;###autoload
-(defun jcs-print-current-face ()
-  "Print out all the faces the current cursor on."
-  (interactive)
-  (message "Current faces: %s" (jcs-get-current-point-face)))
 
 (defun jcs-is-current-point-face (in-face)
   "Check if current face the same face as IN-FACE.
@@ -1010,7 +998,7 @@ FONT : font to check."
 (defun jcs-flatten-list (l)
   "Flatten the multiple dimensional array to one dimensonal array.
 '(1 2 3 4 (5 6 7 8)) => '(1 2 3 4 5 6 7 8).
-L : list we want to flaaten."
+L : list we want to flatten."
   (cond ((null l) nil)
         ((atom l) (list l))
         (t (loop for a in l appending (jcs-flatten-list a)))))
@@ -1098,9 +1086,8 @@ MODE-OBJ : mode object memory."
     (buffer-string)))
 
 (defun jcs-project-write-file (in-filename in-content)
-  "Write to a file in the project root.
-IN-FILENAME : path to write, is relative path to project root.
-IN-CONTENT : content/buffer to write to the IN-FILENAME."
+  "Write to IN-FILENAME file path relative to the project root with \
+IN-CONTENT content."
   (write-region in-content  ;; Start
                 nil  ;; End
                 ;; File name (concatenate full path)
@@ -1151,7 +1138,6 @@ IN-KEY : key to search for value."
         (tmp-key "")
         (tmp-value "")
         (returns-value ""))
-
     (while (< tmp-index (length ini-list))
       ;; Get the key and data value.
       (setq tmp-key (nth tmp-index ini-list))
@@ -1212,9 +1198,7 @@ FILEPATH : directory/file path."
       (file-exists-p filePath)))
 
 (defun jcs-is-vc-dir-p (dir-path)
-  "Return `True' is version control diectory.
-Return `False' not a version control directory.
-DIR-PATH : directory path."
+  "Check if DIR-PATH a version control directory."
   (let ((tmp-is-vc-dir nil))
     (dolist (tmp-vc-type grep-find-ignored-directories)
       (let ((tmp-check-dir (concat dir-path "/" tmp-vc-type)))
@@ -1224,10 +1208,8 @@ DIR-PATH : directory path."
     tmp-is-vc-dir))
 
 (defun jcs-up-one-dir-string (dir-path)
-  "Go up one directory and return it directory string.
-DIR-PATH : directory path."
-  ;; Remove the last directory in the path.
-  (string-match "\\(.*\\)/" dir-path)
+  "Go up one directory from DIR-PATH and return it directory string."
+  (string-match "\\(.*\\)/" dir-path)  ; Remove the last directory in the path.
   (match-string 1 dir-path))
 
 (defun jcs-vc-root-dir ()
@@ -1395,31 +1377,6 @@ IN-VAL : input value to set to IN-VAR."
           ;; To next window.
           (jcs-other-window-next)
           (setq index (1+ index)))))))
-
-;;---------------------------------------------
-;; Key
-;;---------------------------------------------
-
-(defvar jcs-show-last-command-event nil
-  "Print out the `last-command-event' everytime post the command is hit.")
-
-;;;###autoload
-(defun jcs-print-last-command-event ()
-  "Print out the `last-command-event' id."
-  (interactive)
-  (message "Last command event: %s" last-command-event))
-
-;;;###autoload
-(defun jcs-enable-show-last-command-event ()
-  "Show the last command event post the command is hit."
-  (interactive)
-  (setq jcs-show-last-command-event t))
-
-;;;###autoload
-(defun jcs-disable-show-last-command-event ()
-  "Hide the last command event post the command is hit."
-  (interactive)
-  (setq jcs-show-last-command-event nil))
 
 
 (provide 'jcs-util)
