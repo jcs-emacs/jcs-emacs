@@ -173,10 +173,6 @@
 (defun jcs-post-command-hook ()
   "Hook run after every command."
 
-  ;; Show the last command event id?
-  (when jcs-show-last-command-event
-    (jcs-print-last-command-event))
-
   (when (jcs-is-font-lock-fontify-buffer-mode-p)
     ;; Refresh the syntax highlighting.
     (jcs-font-lock-fontify-buffer))
