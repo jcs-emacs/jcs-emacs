@@ -3,6 +3,28 @@
 ;;; Code:
 
 
+;;;###autoload
+(defun jcs-open-project-file (in-filename title &optional ow)
+  "Open the IN-FILENAME from this project with TITLE.
+OW : Opened it in other window."
+  (interactive)
+  (let ((filepath
+         (jcs-find-file-in-project-and-current-dir in-filename
+                                                   title)))
+    (if ow
+        (find-file-other-window filepath)
+      (find-file filepath))))
+
+;;;###autoload
+(defun jcs-compile-project-file (in-filename title)
+  "Compile IN-FILENAME from the project"
+  (interactive)
+  (let ((filepath
+         (jcs-find-file-in-project-and-current-dir in-filename
+                                                   title)))
+    (jcs-compile filepath)))
+
+
 (defun jcs-compile (in-op)
   "Compile command rewrapper.
 IN-OP : inpuit operation script."
@@ -32,49 +54,25 @@ IN-OP : inpuit operation script."
 (defun jcs-make-without-asking ()
   "Make the current build."
   (interactive)
-  (let ((makescript-path "")
-        (target-script jcs-makescript))
-    ;; Get the file.
-    (setq makescript-path (jcs-find-file-in-project-and-current-dir target-script
-                                                                    "Makescript: "))
-    ;; Do the compile
-    (jcs-compile makescript-path)))
+  (jcs-compile-project-file jcs-makescript "Make script: "))
 
 ;;;###autoload
 (defun jcs-run-without-asking ()
   "Run the current build program."
   (interactive)
-  (let ((runscript-path "")
-        (target-script jcs-runscript))
-    ;; Get the file.
-    (setq runscript-path (jcs-find-file-in-project-and-current-dir target-script
-                                                                   "Runscript: "))
-    ;; Do the compile
-    (jcs-compile runscript-path)))
+  (jcs-compile-project-file jcs-runscript "Run script: "))
 
 ;;;###autoload
 (defun jcs-open-project-todo-file ()
   "Open the TODO list from this project."
   (interactive)
-  (let ((project-todo-file-path "")
-        (target-script jcs-project-todo-file))
-    ;; Get the file.
-    (setq project-todo-file-path (jcs-find-file-in-project-and-current-dir target-script
-                                                                           "TODO file: "))
-    ;; Open the file. [Default other window]
-    (find-file-other-window project-todo-file-path)))
+  (jcs-open-project-file jcs-project-todo-file "TODO file: " t))
 
 ;;;###autoload
 (defun jcs-open-project-update-log-file ()
   "Open the Update Log from this project."
   (interactive)
-  (let ((project-update-log-file-path "")
-        (target-script jcs-project-update-log-file))
-    ;; Get the file.
-    (setq project-update-log-file-path (jcs-find-file-in-project-and-current-dir target-script
-                                                                                 "Update Log file: "))
-    ;; Open the file. [Default other window]
-    (find-file-other-window project-update-log-file-path)))
+  (jcs-open-project-file jcs-project-update-log-file "Update Log file: " t))
 
 
 (provide 'jcs-dev)
