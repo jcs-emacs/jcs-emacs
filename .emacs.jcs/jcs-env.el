@@ -44,7 +44,6 @@
        (setq jcs-runscript "./run.macosx")
        (cua-mode 0)
        ;;(osx-key-mode 0)
-       ;;(tabar-mode 0)
        (setq mac-command-modifier 'meta)
        (setq select-enable-clipboard t)
        (setq aquamacs-save-options-on-quit 0)
@@ -57,8 +56,7 @@
        (setq jcs-daily-todo-file "/home/TODO_JenChieh/code/todo.txt")
        (setq jcs-log-file "/home/TODO_JenChieh/code/log.txt")
        (setq jcs-makescript "./build.linux")
-       (setq jcs-runscript "./run.linux")
-       (display-battery-mode 1)))
+       (setq jcs-runscript "./run.linux")))
 
 
 ;;; Backup Files
