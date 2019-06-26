@@ -937,14 +937,14 @@ ECP-SAME : Exception for the same buffer."
 
   (unless jcs-check-first-char
     ;; check the first character a character
-    (when (wordp (jcs-get-current-char-byte))
+    (when (jcs-word-p (jcs-get-current-char-byte))
       (setq jcs-first-char-is-char t))
 
     ;; check the first character mission complete.
     (setq jcs-check-first-char t))
 
   ;; found the first character!
-  (when (wordp (jcs-get-current-char-byte))
+  (when (jcs-word-p (jcs-get-current-char-byte))
     (setq jcs-found-first-char t))
 
   (if (not jcs-found-first-char)
@@ -952,12 +952,12 @@ ECP-SAME : Exception for the same buffer."
           (backward-delete-char 1)
         (backward-delete-char 1)
         (jcs-backward-kill-word-capital))
-    (if (not (wordp (jcs-get-current-char-byte)))
+    (if (not (jcs-word-p (jcs-get-current-char-byte)))
         (progn
           ;; NOTE: Here is end of the recursive
           ;; function loop...
           )
-      (if (uppercasep (jcs-get-current-char-byte))
+      (if (jcs-uppercase-p (jcs-get-current-char-byte))
           ;; NOTE: Here is end of the recursive
           ;; function loop...
           (backward-delete-char 1)
@@ -977,7 +977,7 @@ ECP-SAME : Exception for the same buffer."
   (unless jcs-check-first-char
     (backward-delete-char -1)
     ;; check the first character a character
-    (when (wordp (jcs-get-current-char-byte))
+    (when (jcs-word-p (jcs-get-current-char-byte))
       (setq jcs-first-char-is-char t))
 
     ;; check the first character mission complete.
@@ -986,7 +986,7 @@ ECP-SAME : Exception for the same buffer."
   (forward-char 1)
 
   ;; found the first character!
-  (when (wordp (jcs-get-current-char-byte))
+  (when (jcs-word-p (jcs-get-current-char-byte))
     (setq jcs-found-first-char t))
 
   (if (not jcs-found-first-char)
@@ -994,11 +994,11 @@ ECP-SAME : Exception for the same buffer."
           (backward-delete-char 1)
         (backward-delete-char 1)
         (jcs-forward-kill-word-capital))
-    (if (or (not (wordp (jcs-get-current-char-byte)))
+    (if (or (not (jcs-word-p (jcs-get-current-char-byte)))
             (jcs-is-end-of-line-p))
         ;; NOTE: Here is end of the recursive function loop...
         (backward-delete-char 1)
-      (if (uppercasep (jcs-get-current-char-byte))
+      (if (jcs-uppercase-p (jcs-get-current-char-byte))
           ;; NOTE: Here is end of the recursive function loop...
           (forward-char -1)
         (backward-delete-char 1)
@@ -1017,14 +1017,14 @@ to the point."
 
   (unless jcs-check-first-char
     ;; check the first character a character
-    (when (wordp (jcs-get-current-char-byte))
+    (when (jcs-word-p (jcs-get-current-char-byte))
       (setq jcs-first-char-is-char t))
 
     ;; check the first character mission complete.
     (setq jcs-check-first-char t))
 
   ;; found the first character!
-  (when (wordp (jcs-get-current-char-byte))
+  (when (jcs-word-p (jcs-get-current-char-byte))
     (setq jcs-found-first-char t))
 
   (if (not jcs-found-first-char)
@@ -1032,12 +1032,12 @@ to the point."
           (backward-char 1)
         (backward-char 1)
         (jcs-backward-capital-char))
-    (if (not (wordp (jcs-get-current-char-byte)))
+    (if (not (jcs-word-p (jcs-get-current-char-byte)))
         (progn
           ;; NOTE: Here is end of the recursive
           ;; function loop...
           )
-      (if (uppercasep (jcs-get-current-char-byte))
+      (if (jcs-uppercase-p (jcs-get-current-char-byte))
           ;; NOTE: Here is end of the recursive
           ;; function loop...
           (backward-char 1)
@@ -1061,7 +1061,7 @@ the point."
 
   (unless jcs-check-first-char
     ;; check the first character a character
-    (when (wordp (jcs-get-current-char-byte))
+    (when (jcs-word-p (jcs-get-current-char-byte))
       (forward-char 1)
       (setq jcs-first-char-is-char t))
 
@@ -1069,18 +1069,18 @@ the point."
     (setq jcs-check-first-char t))
 
   ;; found the first character!
-  (when (wordp (jcs-get-current-char-byte))
+  (when (jcs-word-p (jcs-get-current-char-byte))
     (setq jcs-found-first-char t))
 
   (if (not jcs-found-first-char)
       (progn
         (forward-char 1)
         (jcs-forward-capital-char))
-    (if (not (wordp (jcs-get-current-char-byte)))
+    (if (not (jcs-word-p (jcs-get-current-char-byte)))
         ;; NOTE: Here is end of the recursive
         ;; function loop...
         (backward-char 1)
-      (if (uppercasep (jcs-get-current-char-byte))
+      (if (jcs-uppercase-p (jcs-get-current-char-byte))
           (progn
             ;; NOTE: Here is end of the recursive
             ;; function loop...
