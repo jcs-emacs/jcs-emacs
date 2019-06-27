@@ -9,14 +9,13 @@
 (defun jcs-init-py-faces ()
   "Initialize Python mode faces highlighting."
   (let ((py-missing-modes '(python-mode)))
-    (mapc (lambda (mode)
-            (font-lock-add-keywords
-             mode
-             '(;; NOTE: Fixed comment and string conflict.
-               ("[^\"]\\(#[^\"\r\n]*\\)[^\"]" 1 'jcs-font-lock-comment-face t)
-               ("[^\"]\\(\"[^\"]*\"\\)[^\"]" 1 'jcs-font-lock-string-face t)
-               )'end))
-          py-missing-modes)))
+    (dolist (mode py-missing-modes)
+      (font-lock-add-keywords
+       mode
+       '(;; NOTE: Fixed comment and string conflict.
+         ("[^\"]\\(#[^\"\r\n]*\\)[^\"]" 1 'jcs-font-lock-comment-face t)
+         ("[^\"]\\(\"[^\"]*\"\\)[^\"]" 1 'jcs-font-lock-string-face t)
+         )'end))))
 
 ;;-----------------------------------------------------------
 ;;-----------------------------------------------------------

@@ -128,17 +128,16 @@ Including adding or removing the package path."
 
 (defun jcs-init-java-faces ()
   "Initialize Java mode faces highlihgting."
-  (let ((java-font-lock-face-missing-modes '(java-mode)))
-    (mapc (lambda (mode)
-            (let ((case-fold-search t))
-              (font-lock-add-keywords
-               mode
-               '(("^[ ]*\\([A-Z][a-zA-Z0-9_-]*\\)[a-zA-Z0-9._-]*\\.[a-zA-Z0-9_-]*[(]" 1 'font-lock-type-face t)
-                 ("\\([A-Z][a-zA-Z0-9._-]*\\)\\.[a-zA-Z0-9_-]*[),:]" 1 'font-lock-type-face t)
-                 ("\\(null\\)" 1 'jcs-font-lock-null-face t)
-                 ("\\(void\\)" 1 'jcs-font-lock-void-face t)
-                 )'end)))
-          java-font-lock-face-missing-modes)))
+  (let ((java-font-lock-face-missing-modes '(java-mode))
+        (case-fold-search t))
+    (dolist (mode java-font-lock-face-missing-modes)
+      (font-lock-add-keywords
+       mode
+       '(("^[ ]*\\([A-Z][a-zA-Z0-9_-]*\\)[a-zA-Z0-9._-]*\\.[a-zA-Z0-9_-]*[(]" 1 'font-lock-type-face t)
+         ("\\([A-Z][a-zA-Z0-9._-]*\\)\\.[a-zA-Z0-9_-]*[),:]" 1 'font-lock-type-face t)
+         ("\\(null\\)" 1 'jcs-font-lock-null-face t)
+         ("\\(void\\)" 1 'jcs-font-lock-void-face t)
+         )'end))))
 
 
 (provide 'jcs-java-func)

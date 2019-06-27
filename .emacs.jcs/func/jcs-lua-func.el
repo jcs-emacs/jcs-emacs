@@ -5,14 +5,14 @@
 
 (defun jcs-init-lua-faces ()
   "Initialize Web mode faces highlihgting."
-  (font-lock-add-keywords
-   'lua-mode
-   '(;;<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-     ;; NOTE: Fixed comment and string conflict.
-     ("\\(--[^\"\r\n]*\\)[^\"\r\n]" 1 'jcs-font-lock-comment-face t)
-     ("[^\"]\\(\"[^\"]*\"\\)[^\"]" 1 'jcs-font-lock-string-face t)
-     ;;>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-     )'end))
+  (let ((tmp-lua-modes '(lua-mode)))
+    (dolist (mode tmp-lua-modes)
+      (font-lock-add-keywords
+       mode
+       '(;; NOTE: Fixed comment and string conflict.
+         ("\\(--[^\"\r\n]*\\)[^\"\r\n]" 1 'jcs-font-lock-comment-face t)
+         ("[^\"]\\(\"[^\"]*\"\\)[^\"]" 1 'jcs-font-lock-string-face t)
+         )'end))))
 
 
 (defun jcs-lua-comment-prefix-p ()

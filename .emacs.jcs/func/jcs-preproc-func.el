@@ -10,17 +10,16 @@
                                    c++-mode
                                    csharp-mode
                                    nasm-mode)))
-    (mapc (lambda (mode)
-            (font-lock-add-keywords
-             mode
-             '(("[#%][ \t]*define[ \t]*\\([a-zA-Z0-9_$]*\\)" 1 'jcs-preproc-variable-name-face t)
-               ("[#%][ \t]*ifdef[a-z0-9_$]*[ \t]*\\([a-zA-Z0-9_$]*\\)" 1 'jcs-preproc-variable-name-face t)
-               ("[#%][ \t]*ifndef[a-z0-9_$]*[ \t]*\\([a-zA-Z0-9_$]*\\)" 1 'jcs-preproc-variable-name-face t)
-               ("[#%][ \t]*elif[a-z0-9_$]*[ \t]*\\([a-zA-Z0-9_$]*\\)" 1 'jcs-preproc-variable-name-face t)
-               ("[#%][ \t]*if defined[a-z0-9_$]*[ \t]*\\([a-zA-Z0-9_$]*\\)" 1 'jcs-preproc-variable-name-face t)
-               ("[#%][ \t]*if !defined[a-z0-9_$]*[ \t]*\\([a-zA-Z0-9_$]*\\)" 1 'jcs-preproc-variable-name-face t)
-               )'end))
-          preproc-highlight-modes)))
+    (dolist (mode preproc-highlight-modes)
+      (font-lock-add-keywords
+       mode
+       '(("[#%][ \t]*define[ \t]*\\([a-zA-Z0-9_$]*\\)" 1 'jcs-preproc-variable-name-face t)
+         ("[#%][ \t]*ifdef[a-z0-9_$]*[ \t]*\\([a-zA-Z0-9_$]*\\)" 1 'jcs-preproc-variable-name-face t)
+         ("[#%][ \t]*ifndef[a-z0-9_$]*[ \t]*\\([a-zA-Z0-9_$]*\\)" 1 'jcs-preproc-variable-name-face t)
+         ("[#%][ \t]*elif[a-z0-9_$]*[ \t]*\\([a-zA-Z0-9_$]*\\)" 1 'jcs-preproc-variable-name-face t)
+         ("[#%][ \t]*if defined[a-z0-9_$]*[ \t]*\\([a-zA-Z0-9_$]*\\)" 1 'jcs-preproc-variable-name-face t)
+         ("[#%][ \t]*if !defined[a-z0-9_$]*[ \t]*\\([a-zA-Z0-9_$]*\\)" 1 'jcs-preproc-variable-name-face t)
+         )'end))))
 
 
 (provide 'jcs-preproc-func)

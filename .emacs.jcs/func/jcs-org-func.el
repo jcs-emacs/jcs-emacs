@@ -12,12 +12,11 @@
 (defun jcs-init-org-faces ()
   "Initialize Org mode faces highlihgting."
   (let ((org-font-lock-comment-face-modes '(org-mode)))
-    (mapc (lambda (mode)
-            (font-lock-add-keywords
+    (dolist (mode org-font-lock-comment-face-modes)
+      (font-lock-add-keywords
              mode
              '(("\\(#[[:blank:][:graph:]]*\\)" 1 'font-lock-comment-face)
-               )'end))
-          org-font-lock-comment-face-modes)))
+               )'end))))
 
 ;;---------------------------------------------
 ;; Table

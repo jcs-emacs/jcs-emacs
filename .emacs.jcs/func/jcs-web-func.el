@@ -204,17 +204,16 @@ another function..."
 (defun jcs-init-web-faces ()
   "Initialize Web mode faces highlihgting."
   (let ((web-type-comment-missing-modes '(web-mode)))
-    (mapc (lambda (mode)
-            (font-lock-add-keywords
-             mode
-             '(;; For nomral HTML comment.
-               ("\\(<!--[a-zA-Z0-9 \n\t-.<>?,*'`@\"=_(){}:;&^%$#!~]*-->\\)" 1 'jcs-font-lock-comment-face t)
-               ;; For multi-lines comment.
-               ;; TODO: Only inside the curly bracket.
-               ;; TODO: There is bug if `/' is inside the comment space.
-               ("\\(/\\*[^/]*\\*/\\)" 1 'jcs-web-mode-block-comment-face t)
-               )'end))
-          web-type-comment-missing-modes)))
+    (dolist (mode web-type-comment-missing-modes)
+      (font-lock-add-keywords
+       mode
+       '(;; For nomral HTML comment.
+         ("\\(<!--[a-zA-Z0-9 \n\t-.<>?,*'`@\"=_(){}:;&^%$#!~]*-->\\)" 1 'jcs-font-lock-comment-face t)
+         ;; For multi-lines comment.
+         ;; TODO: Only inside the curly bracket.
+         ;; TODO: There is bug if `/' is inside the comment space.
+         ("\\(/\\*[^/]*\\*/\\)" 1 'jcs-web-mode-block-comment-face t)
+         )'end))))
 
 
 (provide 'jcs-web-func)
