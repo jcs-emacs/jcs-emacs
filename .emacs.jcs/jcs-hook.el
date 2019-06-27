@@ -160,6 +160,7 @@
 
   ;; NOTE: Lower the `GC' back to normal threshold.
   (jcs-gc-cons-threshold nil)
+  (setq file-name-handler-alist jcs-file-name-handler-alist)
 
   ;; IMPORTANT: This should always be the last thing.
   (setq dashboard-init-info
