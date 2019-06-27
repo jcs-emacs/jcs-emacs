@@ -83,10 +83,10 @@
   (setq dashboard-banner-logo-title "[J C S • E M A C S]")
   (setq dashboard-footer-icon "")
   (setq dashboard-footer "╬ Copyright © 2015 Shen, Jen-Chieh ╬")
-  (setq dashboard-init-info (format "%d + %d packages loaded in %s seconds"
+  (setq dashboard-init-info (format "%d + %d packages loaded in %0.1f seconds"
                                     (length package-activated-list)
                                     (length jcs-package-manually-install-list)
-                                    jcs-package-init-time))
+                                    (string-to-number jcs-package-init-time)))
   (setq dashboard-items '((recents  . 10)
                           (projects . 10)
                           ;;(bookmarks . 10)

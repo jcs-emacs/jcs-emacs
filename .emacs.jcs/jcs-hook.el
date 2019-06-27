@@ -164,7 +164,9 @@
 
   ;; IMPORTANT: This should always be the last thing.
   (setq dashboard-init-info
-        (format "[ %s ] [ Total took %s ]" dashboard-init-info (emacs-init-time)))
+        (format "[ %s ] [ Total took %0.1f seconds ]"
+                dashboard-init-info
+                (string-to-number (emacs-init-time))))
   )
 (add-hook 'after-init-hook 'jcs-after-init-hook)
 
