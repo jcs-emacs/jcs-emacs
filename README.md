@@ -112,10 +112,6 @@ the startup time from around `4` to `8` seconds.
 answered by 
 [Jordon Biondo](https://rubygems.pkg.github.com/jordonbiondo).*
 
-**Edit 4:** Moved all modes enabling configuration to 
-`after-init-hook`. This lower the startup time from `2` to 
-`6` seconds.
-
 
 ## Features
 
