@@ -3,10 +3,18 @@
 ;;; Code:
 
 
-;;
-;; All hook listed.
-;; URL: https://www.gnu.org/software/emacs/manual/html_node/elisp/Standard-Hooks.html
-;;
+(defun jcs-first-setup-post-command ()
+  "First setup the Emacs once."
+  (unless (get 'jcs-first-setup-post-command 'state)
+    (require 'beacon)
+    (require 'dimmer)
+    (require 'exec-path-from-shell)
+    ;; ATTENTION: Haxe-mode is no longer maintaining...
+    ;; Consider remove `haxe-mode' from this config.
+    ;;
+    ;; NOTE: `haxe-mode' does not autoload, loaded manually.
+    (require 'haxe-mode)
+    (put 'jcs-first-setup-post-command 'state t)))
 
 ;;-----------------------------------------------------------
 ;;-----------------------------------------------------------
@@ -55,17 +63,9 @@
   ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   (progn
     (require 'auto-highlight-symbol)
-    (require 'beacon)
     (require 'company)
     (require 'dashboard)
     (require 'diminish)
-    (require 'dimmer)
-    (require 'exec-path-from-shell)
-    ;; ATTENTION: Haxe-mode is no longer maintaining...
-    ;; Consider remove `haxe-mode' from this config.
-    ;;
-    ;; NOTE: `haxe-mode' does not autoload, loaded manually.
-    (require 'haxe-mode)
     (require 'helm)
     (require 'hl-line)
     (require 'hl-todo)
@@ -75,66 +75,9 @@
     (require 'preproc-font-lock)
     (require 'region-occurrences-highlighter)
     (require 'right-click-context)
-    (require 'undo-tree)
     (require 'use-ttf)
     (require 'which-key)
     (require 'yascroll))
-
-  ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-  ;; NOTE: Enable util modes here.
-  ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-  (progn
-    ;;-------------------------------- `auto-highlight-symbol'
-    (global-auto-highlight-symbol-mode t)
-    ;;-------------------------------- `beacon'
-    (beacon-mode 1)
-    ;;-------------------------------- `delete-selection'
-    (delete-selection-mode 1)
-    ;;-------------------------------- `dimmer'
-    (dimmer-mode)
-    ;;-------------------------------- `goto-address'
-    (goto-address-mode t)
-    ;;-------------------------------- `helm'
-    (helm-mode 1)
-    (helm-autoresize-mode 1)
-    ;;-------------------------------- `helm-projectile'
-    (helm-projectile-on)
-    ;;-------------------------------- `hl-line'
-    (global-hl-line-mode 1)
-    ;;-------------------------------- `hl-todo'
-    (global-hl-todo-mode 1)
-    ;;-------------------------------- `indent-info'
-    (global-indent-info-mode +1)
-    ;;-------------------------------- `line-reminder'
-    (global-line-reminder-mode t)
-    ;;-------------------------------- `powerline'
-    (progn
-      (powerline-default-theme)
-      ;;(powerline-center-theme)
-      ;;(powerline-center-evil-theme)
-      ;;(powerline-vim-theme)
-      ;;(powerline-nano-theme)
-      )
-    ;;-------------------------------- `preproc-font-lock'
-    (preproc-font-lock-global-mode t)
-    (preproc-font-lock-mode t)
-    ;;-------------------------------- `projectile'
-    (projectile-mode t)
-    ;;-------------------------------- `right-click-context'
-    (right-click-context-mode 1)
-    ;;-------------------------------- `shift-select'
-    (global-shift-select-mode t)
-    ;;-------------------------------- `show-paren'
-    ;; NOTE: turn on highlight matching brackets when cursor is on one
-    (show-paren-mode t)
-    ;;-------------------------------- `sublimity'
-    ;; Default on or off?
-    ;; NOTE: This also trigger the animate scrolling too.
-    (sublimity-mode 1)
-    ;;-------------------------------- `use-ttf'
-    (use-ttf-set-default-font)
-    ;;-------------------------------- `which-key'
-    (which-key-mode))
 
   (jcs-setup-default-theme)
   (jcs-command-mode)
@@ -142,21 +85,6 @@
 
   (jcs-reload-file-info)
   (jcs-reload-docstring-info)
-
-  (menu-bar-mode -1)
-  (when (display-graphic-p) (scroll-bar-mode -1))
-  (tool-bar-mode -1)
-
-  ;; Language Environment
-  (set-language-environment jcs-language-environment)
-
-  ;; Font Size
-  (set-face-attribute 'default nil :height jcs-default-font-size)
-
-  ;; Frame Title
-  (setq frame-title-format
-        (list (format "%s %%S: %%j " (system-name))
-              '(buffer-file-name "%f" (dired-directory dired-directory "%b"))))
 
   ;; NOTE: Lower the `GC' back to normal threshold.
   (jcs-gc-cons-threshold nil)
@@ -175,6 +103,7 @@
 
 (defun jcs-post-command-hook ()
   "Hook run after every command."
+  (jcs-first-setup-post-command)
 
   (when (jcs-is-font-lock-fontify-buffer-mode-p)
     ;; Refresh the syntax highlighting.
