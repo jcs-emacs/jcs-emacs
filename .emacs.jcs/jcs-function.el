@@ -872,6 +872,5 @@ NO-PROMPT : Don't prompt the overwrap message."
 (require 'jcs-oop-func)
 
 
-
 (provide 'jcs-function)
 ;;; jcs-function.el ends here
