@@ -14,6 +14,7 @@
     ;;
     ;; NOTE: `haxe-mode' does not autoload, loaded manually.
     (require 'haxe-mode)
+    (require 'shift-select)
     (put 'jcs-first-setup-post-command 'state t)))
 
 ;;-----------------------------------------------------------
