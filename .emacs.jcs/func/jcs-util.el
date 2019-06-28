@@ -3,9 +3,8 @@
 ;;; Code:
 
 
-;;---------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Buffer
-;;---------------------------------------------
 
 ;;;###autoload
 (defun jcs-print-current-buffer-name ()
@@ -47,9 +46,8 @@ Return number of the valid buffers."
         (setq cnt (1+ cnt))))
     cnt))
 
-;;---------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Compile
-;;---------------------------------------------
 
 ;;;###autoload
 (defun jcs-byte-recompile-directory ()
@@ -57,9 +55,8 @@ Return number of the valid buffers."
   (interactive)
   (byte-recompile-directory "./" 0))
 
-;;---------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Color
-;;---------------------------------------------
 
 (defun jcs-is-hex-code-p (hex-code)
   "Check if the `hex-code' is valid HEX code.
@@ -107,9 +104,8 @@ HEX-CODE : Color HEX code to check."
 HEX-CODE : Color HEX code to check."
   (not (jcs-is-light-color hex-code)))
 
-;;---------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Event
-;;---------------------------------------------
 
 (defun jcs-last-input-event-p (te)
   "Check if `last-input-event' a target event.
@@ -124,9 +120,8 @@ TE : Target event name"
       (setq is-event t))
     is-event))
 
-;;---------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Time
-;;---------------------------------------------
 
 (defun jcs-get-timestamp-ver1 ()
   "Get timestamp version 1."
@@ -163,9 +158,8 @@ TE : Target event name"
   (message "All version of timestamps printed.")
   (jcs-do-after-log-action))
 
-;;---------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Organize Code
-;;---------------------------------------------
 
 (defun jcs-keep-n-line-between (n-line)
   "Keep n line between the two line of code.  (Guarantee)
@@ -192,9 +186,8 @@ If you want to keep more than one line use
     ;; Make sure have one empty line between.
     (insert "\n")))
 
-;;---------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Tab / Space
-;;---------------------------------------------
 
 ;;;###autoload
 (defun jcs-delete-trailing-whitspace-current-line ()
@@ -314,10 +307,8 @@ IS-FORWARD : forward conversion instead of backward conversion."
       (insert " ")
       (setq tmp-count (1+ tmp-count)))))
 
-
-;;---------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Point
-;;---------------------------------------------
 
 ;;;###autoload
 (defun jcs-print-current-point ()
@@ -325,10 +316,8 @@ IS-FORWARD : forward conversion instead of backward conversion."
   (interactive)
   (message "Current point: %s" (point)))
 
-
-;;---------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Character
-;;---------------------------------------------
 
 ;;;###autoload
 (defun jcs-print-current-char ()
@@ -507,16 +496,15 @@ PT : point."
 (defun jcs-is-there-char-backward-util-beginning-of-line-p ()
   "Check if there are at least a character on the left until \
 the beginning of the line."
-  (jcs-is-there-char-backward-point-p (jcs-get-beginning-of-line-point)))
+  (jcs-is-there-char-backward-point-p (jcs-get-beginning-of-line-point)))
 
 (defun jcs-is-there-char-forward-until-end-of-line-p ()
   "Check if there are at least a character on the right until \
 the end of the line."
   (jcs-is-there-char-forward-point-p (jcs-get-end-of-line-point)))
 
-;;---------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Symbol
-;;---------------------------------------------
 
 ;;;###autoload
 (defun jcs-print-current-symbol ()
@@ -535,10 +523,8 @@ the symbol.
 IN-SYMBOL : symbol using to check if is contain one of the IN-LIST."
   (cl-some #'(lambda (lb-sub-symbol) (equal lb-sub-symbol in-symbol)) in-list))
 
-
-;;---------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Word
-;;---------------------------------------------
 
 ;;;###autoload
 (defun jcs-print-current-word ()
@@ -584,9 +570,8 @@ Returns non-nil, the word is the same.
 Returns nil, the word isn't the same."
   (string= w (jcs-first-forward-word)))
 
-;;---------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Line
-;;---------------------------------------------
 
 ;;;###autoload
 (defun jcs-print-current-line ()
@@ -814,9 +799,9 @@ LN : target line to make first to."
                   (jcs-first-visible-line-in-window))))
     (jcs-scroll-down-one-line sh-ln)))
 
-;;---------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Move between button.
-;;---------------------------------------------
+
 ;;URL: https://www.gnu.org/software/emacs/manual/html_node/emacs/Moving-Point.html
 
 ;;;###autoload
@@ -833,9 +818,8 @@ LN : target line to make first to."
   ;; NOTE: 0 : top-most-line, -1 : bottom-most-line
   (move-to-window-line-top-bottom -1))
 
-;;---------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Mark
-;;---------------------------------------------
 
 (defun jcs-is-mark-active-p ()
   "Is mark active?
@@ -844,9 +828,8 @@ Return nil, is not active."
   (and mark-active
        (= (point) (mark))))
 
-;;---------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Region
-;;---------------------------------------------
 
 (defun jcs-is-region-selected-p ()
   "Check if region active.
@@ -871,9 +854,8 @@ Return nil, there is no region selected and mark is not active."
   (interactive)
   (delete-region (region-beginning) (region-end)))
 
-;;---------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Comment
-;;---------------------------------------------
 
 (defun jcs-is-inside-comment-block-p ()
   "Check if current cursor point inside the comment block."
@@ -901,9 +883,8 @@ Return nil, there is no region selected and mark is not active."
     (backward-char -1)
     (jcs-goto-end-of-the-comment)))
 
-;;---------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Face
-;;---------------------------------------------
 
 ;;;###autoload
 (defun jcs-print-current-face ()
@@ -945,9 +926,8 @@ Return nil, if not default face."
       (and (= (length (jcs-get-current-point-face)) 1)
            (jcs-is-current-point-face "hl-line"))))
 
-;;---------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Font
-;;---------------------------------------------
 
 ;;;###autoload
 (defun jcs-list-font-list ()
@@ -990,10 +970,8 @@ FONT : font to check."
     ;; Refresh the syntax hightlight.
     (call-interactively #'font-lock-fontify-buffer)))
 
-
-;;---------------------------------------------
+;;----------------------------------------------------------------------------
 ;; List
-;;---------------------------------------------
 
 (defun jcs-flatten-list (l)
   "Flatten the multiple dimensional array to one dimensonal array.
@@ -1054,10 +1032,8 @@ the string.
 IN-INT : integer using to check if is contain one of the IN-LIST."
   (cl-some #'(lambda (lb-sub-int) (= lb-sub-int in-int)) in-list))
 
-
-;;---------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Mode
-;;---------------------------------------------
 
 ;;;###autoload
 (defun jcs-print-current-major-mode ()
@@ -1075,9 +1051,8 @@ STR : major mode name."
 MODE-OBJ : mode object memory."
   (bound-and-true-p mode-obj))
 
-;;---------------------------------------------
+;;----------------------------------------------------------------------------
 ;; I/O
-;;---------------------------------------------
 
 (defun jcs-get-string-from-file (filePath)
   "Return FILEPATH file content."
@@ -1154,9 +1129,8 @@ IN-KEY : key to search for value."
     ;; Found nothing, return empty string.
     returns-value))
 
-;;---------------------------------------------
+;;----------------------------------------------------------------------------
 ;; File
-;;---------------------------------------------
 
 (defun jcs-get-file-name ()
   "Get current file name."
@@ -1182,9 +1156,8 @@ IN-KEY : key to search for value."
   "Get current file name without extension."
   (downcase (file-name-sans-extension (file-name-nondirectory buffer-file-name))))
 
-;;---------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Directory
-;;---------------------------------------------
 
 (defun jcs-get-current-dir ()
   "Return the string of current directory."
@@ -1267,9 +1240,8 @@ IGNORE-ERRORS-T : ignore errors for this function?"
         ;; Return result.
         result-dir-or-file))))
 
-;;---------------------------------------------
+;;----------------------------------------------------------------------------
 ;; String
-;;---------------------------------------------
 
 ;;;###autoload
 (defun jcs-print-current-string ()
@@ -1352,10 +1324,8 @@ IN-SUB-STR : substring to see if contain in the IN-STR.
 IN-STR : string to check by the IN-SUB-STR."
   (string-match-p (regexp-quote in-sub-str) in-str))
 
-
-;;---------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Variable
-;;---------------------------------------------
 
 (defun jcs-setq-all-local-buffer (in-var in-val)
   "Set all the local buffer to some value.
@@ -1377,6 +1347,14 @@ IN-VAL : input value to set to IN-VAR."
           ;; To next window.
           (jcs-other-window-next)
           (setq index (1+ index)))))))
+
+;;----------------------------------------------------------------------------
+;; Loading
+
+(defun jcs-with-eval-after-load-multiple (syms func)
+  "With eval after load with list of symbols."
+  (dolist (sym syms)
+    (with-eval-after-load sym func)))
 
 
 (provide 'jcs-util)
