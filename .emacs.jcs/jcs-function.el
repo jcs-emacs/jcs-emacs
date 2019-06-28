@@ -4,6 +4,26 @@
 
 
 ;;----------------------------------------------
+;; *scratch*
+
+;;;###autoload
+(defun jcs-scratch-buffer ()
+  "Start a new scratch buffer."
+  (interactive)
+  (switch-to-buffer "*scratch*")
+  (erase-buffer)
+  (insert ";; This buffer is for text that is not saved, and for Lisp evaluation.\n")
+  (insert ";; To create a file, visit it with <open> and enter text in its buffer.\n\n")
+  (goto-char (point-min)))
+
+;;;###autoload
+(defun jcs-scratch-buffer-refresh ()
+  "Refresh scratch buffer."
+  (interactive)
+  (when (string= (buffer-name) "*scratch*")
+    (jcs-scratch-buffer)))
+
+;;----------------------------------------------
 ;; ag
 
 (defun jcs-ag-get-search-string-by-current-buffer-name ()
@@ -461,14 +481,14 @@ TYPE : enable/disable case sensitive?"
 ;; Shell
 
 ;;;###autoload
-(defun jcs-toggle-shell-window ()
+(defun jcs-toggle-shell-window ()
   "Toggle Shell Command prompt."
   (interactive)
   (require 'shell)
   (if (get 'jcs-toggle-shell-window 'state)
       (progn
         (jcs-hide-shell-window)
-        (put 'jcs-toggle-shell-window 'state nil))
+        (put 'jcs-toggle-shell-window 'state nil))
     (jcs-show-shell-window)
     (put 'jcs-toggle-shell-window 'state t)))
 
