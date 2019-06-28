@@ -840,7 +840,7 @@ NO-PROMPT : Don't prompt the overwrap message."
 (require 'jcs-util)
 (require 'jcs-frame)
 (require 'jcs-window)
-(with-eval-after-load 'shell (require 'jcs-shell))
+(jcs-with-eval-after-load-multiple '(shell eshell-mode) (require 'jcs-shell))
 (with-eval-after-load 'helm (require 'jcs-helm-func))
 
 ;; Editing
@@ -870,6 +870,7 @@ NO-PROMPT : Don't prompt the overwrap message."
 (with-eval-after-load 'web-mode (require 'jcs-web-func))
 (with-eval-after-load 'yaml-mode (require 'jcs-yaml-func))
 (require 'jcs-oop-func)
+
 
 
 (provide 'jcs-function)
