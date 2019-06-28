@@ -175,9 +175,12 @@
 (menu-bar-mode -1)
 
 ;;; Messages
-(defconst jcs-prompt-message-sleep-delay-time 0.4  ;; in seconds
+(defconst jcs-prompt-message-sleep-delay-time 0.4  ; in seconds
   "Delay for a time for prompting out the message, so the user
 can see the error/operation message.")
+
+;;; Process
+(setq kill-buffer-query-functions nil)
 
 ;;; Recent Files
 (setq recentf-max-menu-items 25)
@@ -193,6 +196,15 @@ can see the error/operation message.")
 
 ;; Scroll Bar
 (when (display-graphic-p) (scroll-bar-mode -1))
+
+;;; Shell
+(defconst jcs-prefer-shell-type 'shell
+  "Prefer shell type.")
+
+(defconst jcs-shell-buffer-name
+  (cond ((equal jcs-prefer-shell-type 'shell) "*shell*")
+        ((equal jcs-prefer-shell-type 'eshell) "*eshell*"))
+  "Record shell buffer name.")
 
 ;;; Shift Select
 ;; NOTE: This act weird, does not make it works like other editor.
