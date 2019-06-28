@@ -10,17 +10,14 @@
 
 
 ;; Determine the underlying operating system
-(defvar jcs-win32 nil "Is Microsoft Windows?")
-(defvar jcs-aquamacs nil "Is Mac OS X?")
-(defvar jcs-linux nil "Is Linux?")
-
-(cond
- ((string-equal system-type "windows-nt")  ; Microsoft Windows
-  (setq jcs-win32 t))
- ((string-equal system-type "darwin")  ; Mac OS X
-  (setq jcs-aquamacs t))
- ((string-equal system-type "gnu/linux")  ; Linux
-  (setq jcs-linux t)))
+(defconst jcs-is-windows (memq system-type '(cygwin windows-nt ms-dos))
+  "Is Microsoft Windows.")
+(defconst jcs-is-mac (eq system-type 'darwin)
+  "Is Mac OS X.")
+(defconst jcs-is-linux (eq system-type 'gnu/linux)
+  "Is Linux.")
+(defconst jcs-is-bsd (or jcs-is-mac (eq system-type 'berkeley-unix))
+  "Is BSD.")
 
 
 (defvar jcs-daily-todo-file "" "Open the daily todo file.")
@@ -32,12 +29,12 @@
 (defvar jcs-makescript "" "Make script file name depends on the current OS.")
 (defvar jcs-runscript "" "Run script file name depends on the current OS.")
 
-(cond (jcs-win32
+(cond (jcs-is-windows
        (setq jcs-daily-todo-file "C:/TODO_JenChieh/code/todo.txt")
        (setq jcs-log-file "C:/TODO_JenChieh/code/log.txt")
        (setq jcs-makescript "build.bat")
        (setq jcs-runscript "run.bat"))
-      (jcs-aquamacs
+      (jcs-is-mac
        (setq jcs-daily-todo-file "/home/TODO_JenChieh/code/todo.txt")
        (setq jcs-log-file "/home/TODO_JenChieh/code/log.txt")
        (setq jcs-makescript "./build.macosx")
@@ -52,7 +49,7 @@
        (define-key function-key-map [return] [13])
        (setq mac-command-key-is-meta t)
        (setq mac-pass-command-to-system nil))
-      (jcs-linux
+      (jcs-is-linux
        (setq jcs-daily-todo-file "/home/TODO_JenChieh/code/todo.txt")
        (setq jcs-log-file "/home/TODO_JenChieh/code/log.txt")
        (setq jcs-makescript "./build.linux")
@@ -89,7 +86,7 @@
 ;;; Commands
 (with-eval-after-load 'grep
   (set-variable 'grep-command "grep -irHn ")
-  (when jcs-win32
+  (when jcs-is-windows
     (setq grep-use-null-device t)
     (set-variable 'grep-command "findstr -s -n -i -l ")))
 
@@ -100,7 +97,7 @@
 (delete-selection-mode 1)
 
 ;;; Doc View
-(when jcs-win32
+(when jcs-is-windows
   (setq doc-view-ghostscript-program (executable-find "gswin64c")))
 
 ;;; Ediff
