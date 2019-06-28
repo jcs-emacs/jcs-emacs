@@ -7,7 +7,7 @@
 (defun jcs-show-shell-window ()
   "Shell Command prompt."
   (interactive)
-  (unless (get-buffer-process "*shell*")
+  (unless (get-buffer-process jcs-shell-buffer-name)
     (split-window-below)
 
     ;; TODO: I have no idea why the first time would not work.
@@ -16,12 +16,12 @@
     ;;
     ;; NOTE: Call it multiple time to just in case the shell
     ;; process will run.
-    (jcs-ensure-switch-to-buffer-other-window "*shell*")
+    (jcs-ensure-switch-to-buffer-other-window jcs-shell-buffer-name)
 
     (erase-buffer)
-
     ;; Run shell process.
-    (shell)
+    (cond ((equal jcs-prefer-shell-type 'shell) (shell))
+          ((equal jcs-prefer-shell-type 'eshell) (eshell)))
 
     ;; active truncate line as default for shell window.
     (jcs-disable-truncate-lines)))
@@ -30,26 +30,20 @@
 (defun jcs-hide-shell-window ()
   "Kill process prompt."
   (interactive)
-
-  ;; goto this window.
-  (jcs-jump-shown-to-buffer "*shell*")
-
-  ;; kill the process before closing the frame.
-  (when (get-buffer-process "*shell*")
-    (kill-process)
-    (erase-buffer))
-
-  ;; kill the frame.
-  (delete-window))
+  (if (ignore-errors (jcs-jump-shown-to-buffer jcs-shell-buffer-name))
+      (progn
+        (kill-this-buffer)
+        (delete-window))
+    (error (format "No \"%s\" buffer found" jcs-shell-buffer-name))))
 
 ;;;###autoload
 (defun jcs-maybe-kill-shell ()
   "Ask to make sure the user want to kill shell."
   (interactive)
-  (if (get-buffer-process "*shell*")
-      (when (yes-or-no-p "Buffer \"*shell*\" has a running process; kill it? ")
-        (call-interactively #'jcs-toggle-shell-window))
-    (call-interactively #'jcs-maybe-kill-this-buffer)))
+  (if (ignore-errors (jcs-jump-shown-to-buffer jcs-shell-buffer-name))
+      (when (yes-or-no-p (format "Buffer \"%s\" has a running process; kill it? " jcs-shell-buffer-name))
+        (jcs-toggle-shell-window))
+    (jcs-maybe-kill-this-buffer)))
 
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 ;; Shell Commands
