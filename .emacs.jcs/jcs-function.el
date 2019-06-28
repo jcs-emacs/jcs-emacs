@@ -130,7 +130,7 @@
     (switch-to-buffer dashboard-buffer-name))
   (unless (jcs-is-current-major-mode-p "dashboard-mode")
     (dashboard-mode))
-  (dashboard-refresh-buffer))
+  (jcs-dashboard-refresh-buffer))
 
 ;;;###autoload
 (defun jcs-dashboard-other-window ()
@@ -144,13 +144,16 @@
   (interactive)
   (when (boundp 'dashboard-buffer-name)
     (let ((db-id-lst (jcs-get-window-id-by-buffer-name dashboard-buffer-name))
-          (buf-pts '())
+          (buf-lns '())
+          (buf-cls '())
           (index 0))
       (save-selected-window
         (dolist (win-id db-id-lst)
           (jcs-ace-select-window win-id)
-          (push (point) buf-pts)))
-      (setq buf-pts (reverse buf-pts))
+          (push (line-number-at-pos) buf-lns)
+          (push (current-column) buf-cls)))
+      (setq buf-lns (reverse buf-lns))
+      (setq buf-cls (reverse buf-cls))
       (when (jcs-buffer-exists-p dashboard-buffer-name)
         (kill-buffer dashboard-buffer-name))
       (dashboard-insert-startupify-lists)
@@ -158,7 +161,8 @@
         (dolist (win-id db-id-lst)
           (jcs-ace-select-window win-id)
           (switch-to-buffer dashboard-buffer-name)
-          (goto-char (nth index buf-pts))
+          (jcs-goto-line (nth index buf-lns))
+          (move-to-column (nth index buf-cls))
           (setq index (1+ index)))))))
 
 ;;;###autoload
