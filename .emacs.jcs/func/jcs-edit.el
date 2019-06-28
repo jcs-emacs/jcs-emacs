@@ -109,6 +109,7 @@ CBF : Current buffer file name."
 (defun jcs-undo ()
   "Undo key."
   (interactive)
+  (require 'undo-tree)
   (if jcs-use-undo-tree-key
       (progn
         (save-selected-window
@@ -140,6 +141,7 @@ CBF : Current buffer file name."
 (defun jcs-redo ()
   "Redo key."
   (interactive)
+  (require 'undo-tree)
   (if jcs-use-undo-tree-key
       (progn
         (save-selected-window
