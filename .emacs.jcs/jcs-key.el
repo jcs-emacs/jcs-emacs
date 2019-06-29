@@ -512,7 +512,7 @@
 the key everytime the mode changes."
 
   ;; re-builder
-  (define-key global-map "\C-rb" #'jcs-re-builder)
+  (define-key global-map (kbd "C-r b") #'jcs-re-builder)
 
   ;; Read-Only toggle.
   (define-key global-map (kbd "C-r o") #'read-only-mode)
