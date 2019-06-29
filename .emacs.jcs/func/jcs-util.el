@@ -1351,10 +1351,9 @@ IN-VAL : input value to set to IN-VAR."
 ;;----------------------------------------------------------------------------
 ;; Loading
 
-(defun jcs-with-eval-after-load-multiple (syms func)
-  "With eval after load with list of symbols."
-  (dolist (sym syms)
-    (with-eval-after-load sym func)))
+(defun jcs-with-eval-after-load-multiple (files &rest body)
+  "Execute BODY after one of the FILES is loaded."
+  (dolist (file files) (with-eval-after-load file (dolist (bd body) (funcall bd)))))
 
 
 (provide 'jcs-util)
