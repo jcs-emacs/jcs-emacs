@@ -281,6 +281,7 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
 
 (defun jcs-lisp-interaction-mode-hook ()
   "Lisp Interaction mode hook."
+  (define-key lisp-interaction-mode-map (kbd "M-k") #'jcs-scratch-buffer-maybe-kill)
   (define-key lisp-interaction-mode-map (kbd "M-K") #'jcs-scratch-buffer-refresh))
 (add-hook 'lisp-interaction-mode-hook 'jcs-lisp-interaction-mode-hook)
 
