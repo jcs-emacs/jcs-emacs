@@ -17,11 +17,20 @@
   (goto-char (point-min)))
 
 ;;;###autoload
+(defun jcs-scratch-buffer-maybe-kill ()
+  "Kill buffer scratch."
+  (interactive)
+  (if (string= (buffer-name) "*scratch*")
+      (jcs-switch-to-previous-buffer)
+    (jcs-maybe-kill-this-buffer)))
+
+;;;###autoload
 (defun jcs-scratch-buffer-refresh ()
   "Refresh scratch buffer."
   (interactive)
-  (when (string= (buffer-name) "*scratch*")
-    (jcs-scratch-buffer)))
+  (if (string= (buffer-name) "*scratch*")
+      (jcs-scratch-buffer)
+    (jcs-reopen-this-buffer)))
 
 ;;----------------------------------------------
 ;; ag
@@ -462,7 +471,7 @@ G : Active line numbers globally."
       ;; then delete this window.
       (delete-window))))
 
-;;;###autoload
+;;;###autoload
 (defun jcs-re-builder (type)
   "Rewrap `re-builder' function.
 TYPE : enable/disable case sensitive?"
@@ -485,14 +494,14 @@ TYPE : enable/disable case sensitive?"
 ;; Shell
 
 ;;;###autoload
-(defun jcs-toggle-shell-window ()
+(defun jcs-toggle-shell-window ()
   "Toggle Shell Command prompt."
   (interactive)
   (require 'shell)
   (if (get 'jcs-toggle-shell-window 'state)
       (progn
         (jcs-hide-shell-window)
-        (put 'jcs-toggle-shell-window 'state nil))
+        (put 'jcs-toggle-shell-window 'state nil))
     (jcs-show-shell-window)
     (put 'jcs-toggle-shell-window 'state t)))
 
