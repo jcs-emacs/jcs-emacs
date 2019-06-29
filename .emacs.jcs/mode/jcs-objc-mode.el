@@ -59,14 +59,8 @@
   (define-key objc-mode-map (kbd "C-c s") #'jcs-toggle-c-comment-style)
 
   ;; Undo/Redo
-  (define-key objc-mode-map "\C-z" #'jcs-undo)
-  (define-key objc-mode-map "\C-y" #'jcs-redo)
-
-  ;; devenv.com error parsing
-  (add-to-list 'compilation-error-regexp-alist 'casey-devenv)
-  (add-to-list 'compilation-error-regexp-alist-alist '(casey-devenv
-                                                       "*\\([0-9]+>\\)?\\(\\(?:[a-zA-Z]:\\)?[^:(\t\n]+\\)(\\([0-9]+\\)) : \\(?:see declaration\\|\\(?:warnin\\(g\\)\\|[a-z ]+\\) C[0-9]+:\\)"
-                                                       2 3 nil (4)))
+  (define-key objc-mode-map (kbd "C-z") #'jcs-undo)
+  (define-key objc-mode-map (kbd "C-y") #'jcs-redo)
   )
 (add-hook 'objc-mode-hook 'jcs-objc-mode-hook)
 

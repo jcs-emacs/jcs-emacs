@@ -31,11 +31,6 @@
 
   (define-key c-mode-map "\e/" #'c-mark-function)
 
-  (define-key c-mode-map "\eq" #'jcs-other-window-prev)
-  (define-key c-mode-map "\ea" #'yank)
-  (define-key c-mode-map "\ez" #'kill-region)
-
-  ;; jcs-added
   (define-key c-mode-map (kbd "C-d") #'jcs-kill-whole-line)
   (define-key c-mode-map (kbd "C-c C-c") #'kill-ring-save)
 
@@ -51,14 +46,8 @@
   (define-key c-mode-map (kbd "C-c s") #'jcs-toggle-c-comment-style)
 
   ;; Undo/Redo
-  (define-key c-mode-map "\C-z" #'jcs-undo)
-  (define-key c-mode-map "\C-y" #'jcs-redo)
-
-  ;; devenv.com error parsing
-  (add-to-list 'compilation-error-regexp-alist 'casey-devenv)
-  (add-to-list 'compilation-error-regexp-alist-alist '(casey-devenv
-                                                       "*\\([0-9]+>\\)?\\(\\(?:[a-zA-Z]:\\)?[^:(\t\n]+\\)(\\([0-9]+\\)) : \\(?:see declaration\\|\\(?:warnin\\(g\\)\\|[a-z ]+\\) C[0-9]+:\\)"
-                                                       2 3 nil (4)))
+  (define-key c-mode-map (kbd "C-z") #'jcs-undo)
+  (define-key c-mode-map (kbd "C-y") #'jcs-redo)
   )
 (add-hook 'c-mode-hook 'jcs-c-mode-hook)
 
