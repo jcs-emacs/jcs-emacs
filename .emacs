@@ -17,11 +17,6 @@
 ;; Produce backtraces when errors occur.
 (setq debug-on-error t)
 
-(defconst jcs-file-name-handler-alist file-name-handler-alist
-  "Record file name handler alist.")
-
-(setq file-name-handler-alist nil)
-
 
 (defconst jcs-init-gc-cons-threshold (* 1024 1024 128)
   "The `GC' threshold during starting up.")
@@ -44,7 +39,13 @@
   (load custom-file))
 
 
-(defconst jcs-emacs-version-number "5.5.5"
+(defconst jcs-file-name-handler-alist file-name-handler-alist
+  "Record file name handler alist.")
+
+(setq file-name-handler-alist nil)
+
+
+(defconst jcs-emacs-version-number "5.5.7"
   "JCS-Emacs version.")
 
 ;;;###autoload
