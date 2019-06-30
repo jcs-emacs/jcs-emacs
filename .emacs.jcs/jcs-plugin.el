@@ -248,6 +248,12 @@
           :keymap helm-do-ag-map
           :follow (and helm-follow-mode-persistent 1))))
 
+(use-package helm-file-preview
+  :defer t
+  :init
+  (with-eval-after-load 'helm
+    (helm-file-preview-mode 1)))
+
 (use-package helm-projectile
   :defer t
   :init
