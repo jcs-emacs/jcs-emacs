@@ -3,6 +3,9 @@
 ;;; Code:
 
 
+(require 'cc-mode)
+
+
 ;; Accepted file extensions and their appropriate modes
 (setq auto-mode-alist
       (append

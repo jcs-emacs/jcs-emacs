@@ -3,6 +3,9 @@
 ;;; Code:
 
 
+(require 'jcs-cc-mode)
+
+
 (defun jcs-c++-mode-hook ()
   "C++ mode handling"
 
