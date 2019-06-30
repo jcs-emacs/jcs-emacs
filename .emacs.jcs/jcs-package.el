@@ -98,6 +98,7 @@
     package-build
     package-lint
     powerline
+    preproc-font-lock
     processing-mode
     project-abbrev
     projectile
