@@ -182,8 +182,7 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
 
   (define-key global-map (kbd "C-r p") #'jcs-ag-project-regexp)
 
-  (when (functionp 'jcs-global-key-rebind)
-    (jcs-global-key-rebind))
+  (jcs-global-key-rebind)
   )
 
 ;;;###autoload
@@ -210,8 +209,7 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
 
   (global-unset-key (kbd "C-r p"))
 
-  (when (functionp 'jcs-global-key-rebind)
-    (jcs-global-key-rebind))
+  (jcs-global-key-rebind)
   )
 
 
