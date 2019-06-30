@@ -53,11 +53,6 @@
     (require 'diminish)
     (require 'dimmer)
     (require 'exec-path-from-shell)
-    ;; ATTENTION: Haxe-mode is no longer maintaining...
-    ;; Consider remove `haxe-mode' from this config.
-    ;;
-    ;; NOTE: `haxe-mode' does not autoload, loaded manually.
-    (require 'haxe-mode)
     (require 'helm)
     (require 'hl-line)
     (require 'hl-todo)
