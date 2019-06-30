@@ -3,23 +3,6 @@
 ;;; Code:
 
 
-(defun jcs-first-setup-post-command ()
-  "First setup the Emacs once."
-  (unless (get 'jcs-first-setup-post-command 'state)
-    (require 'beacon)
-    (require 'dimmer)
-    (require 'exec-path-from-shell)
-    ;; ATTENTION: Haxe-mode is no longer maintaining...
-    ;; Consider remove `haxe-mode' from this config.
-    ;;
-    ;; NOTE: `haxe-mode' does not autoload, loaded manually.
-    (require 'haxe-mode)
-    (require 'shift-select)
-    (put 'jcs-first-setup-post-command 'state t)))
-
-;;-----------------------------------------------------------
-;;-----------------------------------------------------------
-
 (defun jcs-focus-in-hook ()
   "When window is focus."
   (jcs-revert-all-file-buffers)
@@ -64,9 +47,17 @@
   ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   (progn
     (require 'auto-highlight-symbol)
+    (require 'beacon)
     (require 'company)
     (require 'dashboard)
     (require 'diminish)
+    (require 'dimmer)
+    (require 'exec-path-from-shell)
+    ;; ATTENTION: Haxe-mode is no longer maintaining...
+    ;; Consider remove `haxe-mode' from this config.
+    ;;
+    ;; NOTE: `haxe-mode' does not autoload, loaded manually.
+    (require 'haxe-mode)
     (require 'helm)
     (require 'hl-line)
     (require 'hl-todo)
@@ -76,6 +67,7 @@
     (require 'preproc-font-lock)
     (require 'region-occurrences-highlighter)
     (require 'right-click-context)
+    (require 'shift-select)
     (require 'use-ttf)
     (require 'which-key)
     (require 'yascroll))
@@ -104,8 +96,6 @@
 
 (defun jcs-post-command-hook ()
   "Hook run after every command."
-  (jcs-first-setup-post-command)
-
   (when (jcs-is-font-lock-fontify-buffer-mode-p)
     ;; Refresh the syntax highlighting.
     (jcs-font-lock-fontify-buffer))
