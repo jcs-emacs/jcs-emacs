@@ -45,14 +45,16 @@
 (define-key global-map (kbd "M-b") #'buffer-menu)
 (define-key global-map (kbd "M-B") #'buffer-menu-other-window)
 
-(define-key Buffer-menu-mode-map "\eK" #'buffer-menu)
-(define-key Buffer-menu-mode-map "1" #'jcs-buffer-menu-sort-by-visit)
-(define-key Buffer-menu-mode-map "2" #'jcs-buffer-menu-sort-by-buffer)
-(define-key Buffer-menu-mode-map "3" #'jcs-buffer-menu-sort-by-size)
-(define-key Buffer-menu-mode-map "4" #'jcs-buffer-menu-sort-by-time)
-(define-key Buffer-menu-mode-map "5" #'jcs-buffer-menu-sort-by-mode)
-(define-key Buffer-menu-mode-map "6" #'jcs-buffer-menu-sort-by-file)
+(define-key Buffer-menu-mode-map (kbd "M-K") #'buffer-menu)
 (define-key Buffer-menu-mode-map (kbd "C-k C-s") #'describe-bindings)
+
+(with-eval-after-load 'jcs-buffer-menu
+  (define-key Buffer-menu-mode-map "1" #'jcs-buffer-menu-sort-by-visit)
+  (define-key Buffer-menu-mode-map "2" #'jcs-buffer-menu-sort-by-buffer)
+  (define-key Buffer-menu-mode-map "3" #'jcs-buffer-menu-sort-by-size)
+  (define-key Buffer-menu-mode-map "4" #'jcs-buffer-menu-sort-by-time)
+  (define-key Buffer-menu-mode-map "5" #'jcs-buffer-menu-sort-by-mode)
+  (define-key Buffer-menu-mode-map "6" #'jcs-buffer-menu-sort-by-file))
 
 ;;; Buffers
 (define-key global-map "\C-a" #'jcs-mark-whole-buffer)
