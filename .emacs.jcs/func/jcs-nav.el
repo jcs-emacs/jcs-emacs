@@ -465,14 +465,14 @@ as NO-REC : recursive? (Default: do recusrive method)"
 ;;; Open Square Parenthesis
 
 ;;;###autoload
-(defun jcs-move-forward-open-sqrParen (&optional no-rec)
+(defun jcs-move-forward-open-sqr-paren (&optional no-rec)
   "Move forward to a open square parenthesis.
 as NO-REC : recursive? (Default: do recusrive method)"
   (interactive)
   (jcs-move-to-forward-a-char-do-recursive "[" no-rec))
 
 ;;;###autoload
-(defun jcs-move-backward-open-sqrParen (&optional no-rec)
+(defun jcs-move-backward-open-sqr-paren (&optional no-rec)
   "Move backward to a open square parenthesis.
 as NO-REC : recursive? (Default: do recusrive method)"
   (interactive)
@@ -482,14 +482,14 @@ as NO-REC : recursive? (Default: do recusrive method)"
 ;;; Close Square Parenthesis
 
 ;;;###autoload
-(defun jcs-move-forward-close-sqrParen (&optional no-rec)
+(defun jcs-move-forward-close-sqr-paren (&optional no-rec)
   "Move forward to a close square parenthesis.
 as NO-REC : recursive? (Default: do recusrive method)"
   (interactive)
   (jcs-move-to-forward-a-char-do-recursive "]" no-rec))
 
 ;;;###autoload
-(defun jcs-move-backward-close-sqrParen (&optional no-rec)
+(defun jcs-move-backward-close-sqr-paren (&optional no-rec)
   "Move backward to a close square parenthesis.
 as NO-REC : recursive? (Default: do recusrive method)"
   (interactive)
@@ -499,14 +499,14 @@ as NO-REC : recursive? (Default: do recusrive method)"
 ;;; Open Curly Parenthesis
 
 ;;;###autoload
-(defun jcs-move-forward-open-curlyParen (&optional no-rec)
+(defun jcs-move-forward-open-curly-paren (&optional no-rec)
   "Move forward to a open curly parenthesis.
 as NO-REC : recursive? (Default: do recusrive method)"
   (interactive)
   (jcs-move-to-forward-a-char-do-recursive "{" no-rec))
 
 ;;;###autoload
-(defun jcs-move-backward-open-curlyParen (&optional no-rec)
+(defun jcs-move-backward-open-curly-paren (&optional no-rec)
   "Move backward to a open curly parenthesis.
 as NO-REC : recursive? (Default: do recusrive method)"
   (interactive)
@@ -516,14 +516,14 @@ as NO-REC : recursive? (Default: do recusrive method)"
 ;;; Close Curly Parenthesis
 
 ;;;###autoload
-(defun jcs-move-forward-close-curlyParen (&optional no-rec)
+(defun jcs-move-forward-close-curly-paren (&optional no-rec)
   "Move forward to a close curly parenthesis.
 as NO-REC : recursive? (Default: do recusrive method)"
   (interactive)
   (jcs-move-to-forward-a-char-do-recursive "}" no-rec))
 
 ;;;###autoload
-(defun jcs-move-backward-close-curlyParen (&optional no-rec)
+(defun jcs-move-backward-close-curly-paren (&optional no-rec)
   "Move backward to a close curly parenthesis.
 as NO-REC : recursive? (Default: do recusrive method)"
   (interactive)
@@ -538,7 +538,7 @@ as NO-REC : recursive? (Default: do recusrive method)"
 as NO-REC : recursive? (Default: do recusrive method)"
   (interactive)
   (jcs-move-to-forward-a-char-do-recursive ":" no-rec))
-
+
 ;;;###autoload
 (defun jcs-move-backward-colon (&optional no-rec)
   "Move backward to a colon.
