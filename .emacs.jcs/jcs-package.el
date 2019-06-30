@@ -76,6 +76,7 @@
     helm
     helm-ag
     helm-core
+    helm-file-preview
     helm-projectile
     hl-todo
     htmltagwrap
