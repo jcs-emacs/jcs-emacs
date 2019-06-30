@@ -284,7 +284,7 @@ SR-OP :
           ((= sr-op 2)
            ;; Opening Curly Parenthesis
            ;; NOTE: No recursive/No prompt.
-           (jcs-move-forward-open-curlyParen t)))))
+           (jcs-move-forward-open-curly-paren t)))))
 
 
 (defun jcs-insert-comment-style-by-current-line (sr-op)
@@ -565,6 +565,8 @@ SEARCH-STRING : Search raw string."
         (param-lst '())
         (param-type-str-lst '())
         (param-var-str-lst '())
+        (param-type-strings nil)
+        (param-variable-strings nil)
         (result-datas '()))
     (setq param-string (nth 1 (split-string search-string "(")))
     (setq param-string (nth 0 (split-string param-string ")")))
