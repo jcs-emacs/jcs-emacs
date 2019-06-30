@@ -200,14 +200,13 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
   ;; NOTE: unset key should be before of set keys
   (global-unset-key (kbd "C-f"))
   (global-unset-key (kbd "C-r"))
+  (global-unset-key (kbd "C-r p"))
 
   ;; Set 'cross' mode key
 
   ;; search
   (define-key global-map (kbd "C-f") #'isearch-forward)
   (define-key global-map (kbd "C-x C-f") #'isearch-project-forward)
-
-  (global-unset-key (kbd "C-r p"))
 
   (jcs-global-key-rebind)
   )
