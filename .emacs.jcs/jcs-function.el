@@ -52,7 +52,13 @@
 (defun jcs-scratch-buffer ()
   "Start a new scratch buffer."
   (interactive)
-  (switch-to-buffer "*scratch*")
+  (switch-to-buffer "*scratch*"))
+
+;;;###autoload
+(defun jcs-new-scratch-buffer ()
+  "Start a new scratch buffer."
+  (interactive)
+  (jcs-scratch-buffer)
   (erase-buffer)
   (insert ";; This buffer is for text that is not saved, and for Lisp evaluation.\n")
   (insert ";; To create a file, visit it with <open> and enter text in its buffer.\n\n")
@@ -71,7 +77,7 @@
   "Refresh scratch buffer."
   (interactive)
   (if (string= (buffer-name) "*scratch*")
-      (jcs-scratch-buffer)
+      (jcs-new-scratch-buffer)
     (jcs-reopen-this-buffer)))
 
 ;;----------------------------------------------
