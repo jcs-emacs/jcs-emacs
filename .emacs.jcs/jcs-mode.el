@@ -55,10 +55,12 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
       (sleep-for jcs-prompt-message-sleep-delay-time)
       (call-interactively 'isearch-forward))))
 
-(defun jcs-insert-header-if-empty (insert-func)
-  "Insert the header if empty."
+(defun jcs-insert-header-if-empty (insert-func &optional ci)
+  "Execute INSERT-FUNC if empty, CI means `call-interactively'."
   (when (jcs-is-current-file-empty-p)
-    (funcall insert-func)
+    (if ci
+        (call-interactively insert-func)
+      (funcall insert-func))
     (goto-char (point-min))))
 
 ;;---------------------------------------------
@@ -347,7 +349,7 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
 (with-eval-after-load 'js2-mode (require 'jcs-js-mode))
 (with-eval-after-load 'json-mode (require 'jcs-json-mode))
 (with-eval-after-load 'lua-mode (require 'jcs-lua-mode))
-(with-eval-after-load 'make-mode (require 'jcs-makefile-mode))
+(with-eval-after-load 'make-mode (require 'jcs-make-mode))
 (with-eval-after-load 'markdown-mode (require 'jcs-markdown-mode))
 (with-eval-after-load 'nasm-mode (require 'jcs-nasm-mode))
 (with-eval-after-load 'nxml-mode (require 'jcs-xml-mode))
