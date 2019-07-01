@@ -1,4 +1,4 @@
-;;; jcs-makefile-mode.el --- Makefile mode. -*- lexical-binding: t -*-
+;;; jcs-make-mode.el --- Makefile mode. -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -6,13 +6,6 @@
 (require 'make-mode)
 
 (require 'jcs-python-func)
-
-
-(defun jcs-makefile-format ()
-  "Format the given file as a makefile file."
-  (when (jcs-is-current-file-empty-p)
-    (jcs-makefile-format-info)
-    (goto-char (point-min))))
 
 
 (defun jcs-makefile-mode-hook ()
@@ -26,8 +19,9 @@
           ((or (string-match "[.]makefile" buffer-file-name)
                (string-match "[Mm]akefile" buffer-file-name)
                (string-match "[.]mak" buffer-file-name))
-           (jcs-makefile-format))
-          ))
+           (jcs-makefile-format)
+           (jcs-insert-header-if-empty 'jcs-makefile-format-info)))
+    ))
 
   ;; Normal
   (define-key makefile-mode-map (kbd "<up>") #'jcs-py-indent-up)
@@ -49,5 +43,5 @@
 (add-hook 'makefile-mode-hook 'jcs-makefile-mode-hook)
 
 
-(provide 'jcs-makefile-mode)
-;;; jcs-makefile-mode.el ends here
+(provide 'jcs-make-mode)
+;;; jcs-make-mode.el ends here
