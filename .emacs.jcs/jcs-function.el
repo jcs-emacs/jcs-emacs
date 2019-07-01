@@ -55,6 +55,12 @@
   (switch-to-buffer "*scratch*"))
 
 ;;;###autoload
+(defun jcs-scratch-buffer-other-window ()
+  "Start a new scratch buffer."
+  (interactive)
+  (switch-to-buffer-other-window "*scratch*"))
+
+;;;###autoload
 (defun jcs-new-scratch-buffer ()
   "Start a new scratch buffer."
   (interactive)
