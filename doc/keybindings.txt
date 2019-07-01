@@ -28,8 +28,8 @@ M-F             Find file in working directory to other window.
 C-x M-f         Find file in project to current window.
 C-x M-F         Find file in project to other window.
 
-M-s             Save the file in the current window.
-M-m             Looks for and executes a build.bat.
+M-s             Open *scratch* buffer.
+M-S             Open *scratch* buffer in other window.
 
 M-w             Switch to the other window. (Next)
 M-q             Switch to the other window. (Prev)
