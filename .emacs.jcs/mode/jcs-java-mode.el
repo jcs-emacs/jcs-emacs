@@ -7,20 +7,6 @@
 (require 'organize-imports-java)
 
 
-(defun jcs-java-class-format ()
-  "Format the given file as a Java file."
-  (when (jcs-is-current-file-empty-p)
-    ;; insert the package declaration.
-    (jcs-java-insert-package-from-src)
-
-    ;; Leave one empty line between header.
-    (insert "\n")
-
-    (jcs-insert-java-template)
-
-    (goto-char (point-min))))
-
-
 (defun jcs-java-mode-hook ()
   "Java mode hook."
   (abbrev-mode 1)
@@ -34,7 +20,10 @@
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]java" buffer-file-name) (jcs-java-class-format))
+          ((string-match "[.]java" buffer-file-name)
+           (progn
+             (jcs-java-insert-package-from-src)
+             (jcs-insert-header-if-empty 'jcs-insert-java-template)))
           ))
 
   ;; Normal

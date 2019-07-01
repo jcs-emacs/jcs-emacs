@@ -7,12 +7,6 @@
 (require 'python-mode)
 
 
-(defun jcs-python-class-format ()
-  "Format the given file as a Python file."
-  (when (jcs-is-current-file-empty-p)
-    (call-interactively #'jcs-ask-python-template)))
-
-
 (defun jcs-python-mode-hook ()
   "Python mode hook."
   (electric-pair-mode t)
@@ -28,7 +22,8 @@
 
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]py" buffer-file-name) (jcs-python-class-format))
+          ((string-match "[.]py" buffer-file-name)
+           (jcs-insert-header-if-empty 'jcs-ask-python-template t))
           ))
 
   ;; Normal
