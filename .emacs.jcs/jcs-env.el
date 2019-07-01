@@ -93,9 +93,6 @@
 ;;; Default Major Mode
 (setq-default major-mode 'text-mode)
 
-;;; Delete Selection
-(delete-selection-mode 1)
-
 ;;; Doc View
 (when jcs-is-windows
   (setq doc-view-ghostscript-program (executable-find "gswin64c")))
@@ -117,29 +114,19 @@
 (advice-add 'top-level :before #'jcs-reload-active-mode)
 
 ;;; Font Size
-(set-face-attribute 'default nil :height 160)
+(defconst jcs-default-font-size 160
+  "Default font size, the value is in 1/10pt, so 100 will give you 10pt, etc.")
 
 ;; Frame
 (set-frame-parameter (selected-frame) 'alpha '(100 . 100))
 (add-to-list 'default-frame-alist '(alpha . (100 . 100)))
 
-;; Frame Title
-(setq frame-title-format
-      (list (format "%s %%S: %%j " (system-name))
-            '(buffer-file-name "%f" (dired-directory dired-directory "%b"))))
-
-;;; Goto Address
-(goto-address-mode t)
-
 ;;; Highlight Select Region
 (transient-mark-mode t)
 
-;;; Highlight Line
-(global-hl-line-mode 1)
-
 ;;; Language Environment
 (prefer-coding-system 'utf-8)
-(set-language-environment "UTF-8")
+(defconst jcs-language-environment "UTF-8" "Default language environment.")
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
@@ -168,9 +155,6 @@
                                           "package-menu-mode")
   "List of modes that you do not want to show line numbers in it.")
 
-;;; Menu Bar
-(menu-bar-mode -1)
-
 ;;; Messages
 (defconst jcs-prompt-message-sleep-delay-time 0.4  ; in seconds
   "Delay for a time for prompting out the message, so the user
@@ -191,9 +175,6 @@ can see the error/operation message.")
                                           "/lisp/")
   "Find file with these paths, esure read only mode enabled.")
 
-;; Scroll Bar
-(when (display-graphic-p) (scroll-bar-mode -1))
-
 ;;; Shell
 (defconst jcs-prefer-shell-type 'shell
   "Prefer shell type.")
@@ -206,10 +187,6 @@ can see the error/operation message.")
 ;;; Shift Select
 ;; NOTE: This act weird, does not make it works like other editor.
 (setq shift-select-mode nil)
-
-;;; Show Parentheses
-;; NOTE: turn on highlight matching brackets when cursor is on one
-(show-paren-mode t)
 
 ;;; Smooth scroll
 (setq scroll-step 2)
@@ -225,9 +202,6 @@ can see the error/operation message.")
 ;;; Tab / Space
 (setq-default indent-tabs-mode nil)          ;; Disable inset tabs, insert space only
 (setq-default tab-width 4)
-
-;;; Tool Bar
-(tool-bar-mode -1)
 
 ;;; Uniquify
 ;; NOTE: meaningful names for buffers with the same name from prelude.

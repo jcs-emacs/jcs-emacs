@@ -25,15 +25,7 @@
                       :foreground nil
                       :background "#113D6F"
                       :box '(:line-width -1 :color "#525D68" :style pressed-button)
-                      :underline nil)
-  :config
-  (global-auto-highlight-symbol-mode t))
-
-
-(use-package beacon
-  :defer t
-  :config
-  (beacon-mode 1))
+                      :underline nil))
 
 
 (use-package company
@@ -116,6 +108,7 @@
   :defer t
   :config
   (diminish 'abbrev-mode)
+  (with-eval-after-load 'alt-codes (diminish 'alt-codes-mode))
   (diminish 'auto-fill-mode)
   (with-eval-after-load 'auto-highlight-symbol (diminish 'auto-highlight-symbol-mode))
   (with-eval-after-load 'auto-rename-tag (diminish 'auto-rename-tag-mode))
@@ -151,9 +144,7 @@
 (use-package dimmer
   :defer t
   :init
-  (setq dimmer-fraction 0.2)
-  :config
-  (dimmer-mode))
+  (setq dimmer-fraction 0.2))
 
 
 (use-package dumb-jump
@@ -228,10 +219,7 @@
         (define-key map (kbd "C-c N") 'helm-color-run-kill-name)
         (define-key map (kbd "M-RET") 'helm-color-run-insert-rgb)
         (define-key map (kbd "C-c R") 'helm-color-run-kill-rgb)
-        map)))
-  :config
-  (helm-mode 1)
-  (helm-autoresize-mode 1))
+        map))))
 
 (use-package helm-ag
   :defer t
@@ -253,12 +241,6 @@
   :init
   (with-eval-after-load 'helm
     (helm-file-preview-mode 1)))
-
-(use-package helm-projectile
-  :defer t
-  :init
-  (with-eval-after-load 'helm
-    (helm-projectile-on)))
 
 
 (use-package hl-todo
@@ -306,14 +288,7 @@
   (defun jcs--hl-todo--inside-comment-or-string-p ()
     "Redefine `hl-todo--inside-comment-or-string-p', for accurate highlighting."
     (jcs-inside-comment-or-string-p))
-  (advice-add #'hl-todo--inside-comment-or-string-p :override #'jcs--hl-todo--inside-comment-or-string-p)
-  (global-hl-todo-mode 1))
-
-
-(use-package indent-info
-  :defer t
-  :config
-  (global-indent-info-mode +1))
+  (advice-add #'hl-todo--inside-comment-or-string-p :override #'jcs--hl-todo--inside-comment-or-string-p))
 
 
 (use-package isearch
@@ -343,12 +318,6 @@
                                        "build.min/"
                                        "node_modules/"
                                        "res/")))
-
-
-(use-package line-reminder
-  :defer t
-  :config
-  (global-line-reminder-mode t))
 
 
 (use-package multiple-cursors
@@ -415,9 +384,7 @@
   ;; Valid Values: alternate, arrow, arrow-fade, bar, box,
   ;; brace, butt, chamfer, contour, curve, rounded, roundstub,
   ;; wave, zigzag, utf-8.
-  (setq powerline-default-separator 'wave)
-  :config
-  (powerline-default-theme))
+  (setq powerline-default-separator 'wave))
 
 
 (use-package preproc-font-lock
@@ -426,9 +393,7 @@
   (set-face-attribute 'preproc-font-lock-preprocessor-background
                       nil
                       :background nil
-                      :inherit nil)
-  (preproc-font-lock-global-mode t)
-  (preproc-font-lock-mode t))
+                      :inherit nil))
 
 
 (use-package projectile
@@ -436,8 +401,7 @@
   :init
   (setq projectile-current-project-on-switch 'keep)
   :config
-  (add-hook 'projectile-after-switch-project-hook #'jcs-dashboard-refresh-buffer)
-  (projectile-mode t))
+  (add-hook 'projectile-after-switch-project-hook #'jcs-dashboard-refresh-buffer))
 
 
 (use-package region-occurrences-highlighter
@@ -501,8 +465,7 @@
                    value)
           (if (symbolp value)
               (call-interactively value t)
-            (eval value))))))
-  (right-click-context-mode 1))
+            (eval value)))))))
 
 
 (use-package shift-select
@@ -516,8 +479,7 @@
                        jcs-smart-indent-down)))
         (when (jcs-is-contain-list-symbol sym-lst this-command)
           (deactivate-mark)))))
-  (advice-add 'shift-select-pre-command-hook :after #'jcs-advice-shift-select-pre-command-hook-after)
-  (global-shift-select-mode t))
+  (advice-add 'shift-select-pre-command-hook :after #'jcs-advice-shift-select-pre-command-hook-after))
 
 
 (use-package show-eol
@@ -603,11 +565,7 @@
     ;; Scroll Speed.
     (setq sublimity-scroll-weight 2         ; [Default : 2]
           sublimity-scroll-drift-length 2)  ; [Default : 2]
-    )
-  :config
-  ;; Default on or off?
-  ;; NOTE: This also trigger the animate scrolling too.
-  (sublimity-mode 1))
+    ))
 
 
 (use-package tabbar
@@ -633,9 +591,7 @@
                                     "/.emacs.jcs/fonts/UbuntuMono-R.ttf"))
   ;; Name of the font we want to use as default.
   ;; This you need to check the font name in the system manually.
-  (setq use-ttf-default-ttf-font-name "Ubuntu Mono")
-  :config
-  (use-ttf-set-default-font))
+  (setq use-ttf-default-ttf-font-name "Ubuntu Mono"))
 
 
 (use-package web-mode
@@ -760,9 +716,7 @@
   (setq which-key-side-window-max-height 0.25)
   ;; Set the time delay (in seconds) for the which-key popup to appear. A value of
   ;; zero might cause issues so a non-zero value is recommended.
-  (setq which-key-idle-delay 1.0)
-  :config
-  (which-key-mode))
+  (setq which-key-idle-delay 1.0))
 
 
 (use-package whitespace
