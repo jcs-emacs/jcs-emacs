@@ -33,6 +33,7 @@
     actionscript-mode
     adaptive-wrap
     ag
+    alt-codes
     apache-mode
     auto-highlight-symbol
     auto-rename-tag
