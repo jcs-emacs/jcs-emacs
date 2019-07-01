@@ -4,6 +4,48 @@
 
 
 ;;----------------------------------------------
+;; *Messages*
+
+;;;###autoload
+(defun jcs-message-buffer ()
+  "Switch to `*Messages*' buffer."
+  (interactive)
+  (switch-to-buffer "*Messages*"))
+
+;;;###autoload
+(defun jcs-message-buffer-other-window ()
+  "Switch to `*Messages*' buffer."
+  (interactive)
+  (switch-to-buffer-other-window "*Messages*"))
+
+;;;###autoload
+(defun jcs-message-erase-buffer ()
+  "Erase the *Messages* buffer."
+  (interactive)
+  (let ((is-killed nil))
+    ;; Kill it first.
+    (setq is-killed (jcs-maybe-kill-this-buffer))
+
+    ;; Message one message to retrieve `*Message*' buffer
+    ;; prepare for next use. Or else it some operation
+    ;; might prompt some issue that needed `*Message*'
+    ;; buffer to be exists.
+    (message "Retrieve *Message* buffer..")
+
+    (when is-killed
+      (save-selected-window
+        (when (ignore-errors (jcs-jump-shown-to-buffer "*Buffer List*"))
+          ;; NOTE: Refresh buffer menu once.
+          (buffer-menu))))))
+
+;;;###autoload
+(defun jcs-message-erase-buffer-stay ()
+  "Reopen *Messages* buffer."
+  (interactive)
+  (jcs-message-erase-buffer)
+  (switch-to-buffer "*Messages*"))
+
+;;----------------------------------------------
 ;; *scratch*
 
 ;;;###autoload
@@ -354,48 +396,6 @@ G : Active line numbers globally."
       ;; does not have `display-line-numbers-mode' use `linum'
       ;; instead then.
       (jcs-active-line-numbers-by-version 1 g))))
-
-;;----------------------------------------------
-;; Message
-
-;;;###autoload
-(defun jcs-message-buffer ()
-  "Switch to `*Messages*' buffer."
-  (interactive)
-  (switch-to-buffer "*Messages*"))
-
-;;;###autoload
-(defun jcs-message-buffer-other-window ()
-  "Switch to `*Messages*' buffer."
-  (interactive)
-  (switch-to-buffer-other-window "*Messages*"))
-
-;;;###autoload
-(defun jcs-message-erase-buffer ()
-  "Erase the *Messages* buffer."
-  (interactive)
-  (let ((is-killed nil))
-    ;; Kill it first.
-    (setq is-killed (jcs-maybe-kill-this-buffer))
-
-    ;; Message one message to retrieve `*Message*' buffer
-    ;; prepare for next use. Or else it some operation
-    ;; might prompt some issue that needed `*Message*'
-    ;; buffer to be exists.
-    (message "Retrieve *Message* buffer..")
-
-    (when is-killed
-      (save-selected-window
-        (when (ignore-errors (jcs-jump-shown-to-buffer "*Buffer List*"))
-          ;; NOTE: Refresh buffer menu once.
-          (buffer-menu))))))
-
-;;;###autoload
-(defun jcs-message-erase-buffer-stay ()
-  "Reopen *Messages* buffer."
-  (interactive)
-  (jcs-message-erase-buffer)
-  (switch-to-buffer "*Messages*"))
 
 ;;----------------------------------------------
 ;; Minimap
@@ -894,7 +894,7 @@ NO-PROMPT : Don't prompt the overwrap message."
   (require 'jcs-cc-func)
   (require 'jcs-java-func))
 (with-eval-after-load 'csharp-mode (require 'jcs-csharp-func))
-(with-eval-after-load 'make-mode (require 'jcs-makefile-func))
+(with-eval-after-load 'make-mode (require 'jcs-make-func))
 (with-eval-after-load 'lua-mode (require 'jcs-lua-func))
 (with-eval-after-load 'nasm-mode (require 'jcs-nasm-func))
 (with-eval-after-load 'python-mode (require 'jcs-python-func))
