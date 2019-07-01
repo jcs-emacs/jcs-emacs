@@ -34,6 +34,7 @@
 
 ;;; *scratch*
 (define-key global-map (kbd "M-s") #'jcs-scratch-buffer)
+(define-key global-map (kbd "M-S") #'jcs-scratch-buffer-other-window)
 
 ;;; Admin
 (define-key global-map (kbd "C-x C-v") #'reload-emacs)
