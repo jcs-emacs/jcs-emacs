@@ -3,9 +3,8 @@
 ;;; Code:
 
 
-;;;---------------------------------------------
-;;; Unset key binding
-;;;---------------------------------------------
+;;-------------------------------------------------------------------
+;; Unset key binding
 (global-unset-key (kbd "C-k"))
 (global-unset-key (kbd "C-r"))
 (global-unset-key (kbd "C-w"))
@@ -23,9 +22,18 @@
 (define-key isearch-mode-map (kbd "C-r") nil)
 
 
-;;;---------------------------------------------
-;;; Set key binding
-;;;---------------------------------------------
+;;-------------------------------------------------------------------
+;; Set key bindings
+
+;;; *Messages*
+(define-key global-map (kbd "M-m") #'jcs-message-buffer)
+(define-key global-map (kbd "M-M") #'jcs-message-buffer-other-window)
+
+(define-key messages-buffer-mode-map "\ek" #'jcs-message-erase-buffer)
+(define-key messages-buffer-mode-map "\eK" #'jcs-message-erase-buffer-stay)
+
+;;; *scratch*
+(define-key global-map (kbd "M-s") #'jcs-scratch-buffer)
 
 ;;; Admin
 (define-key global-map (kbd "C-x C-v") #'reload-emacs)
@@ -57,9 +65,8 @@
   (define-key Buffer-menu-mode-map "6" #'jcs-buffer-menu-sort-by-file))
 
 ;;; Buffers
-(define-key global-map "\C-a" #'jcs-mark-whole-buffer)
-(define-key global-map "\er" #'revert-buffer)
-(define-key global-map "\es" #'save-buffer)
+(define-key global-map (kbd "C-a") #'jcs-mark-whole-buffer)
+(define-key global-map (kbd "M-r") #'revert-buffer)
 
 (define-key global-map [S-tab] #'indent-for-tab-command)
 (define-key global-map [backtab] #'indent-for-tab-command)
@@ -115,7 +122,7 @@
 (define-key global-map (kbd "C-M-<left>") #'buf-move-left)
 (define-key global-map (kbd "C-M-<right>") #'buf-move-right)
 
-(progn ;; Navigating General Programming Symbols
+(progn  ; Navigating General Programming Symbols
   (define-key global-map (kbd "M-)") (quote jcs-move-forward-close-paren))
   (define-key global-map (kbd "M-(") (quote jcs-move-backward-open-paren))
   (define-key global-map (kbd "M-]") (quote jcs-move-forward-close-sqr-paren))
@@ -135,7 +142,7 @@
   (define-key global-map (kbd "C-M-,") (quote jcs-move-backward-period)))
 
 
-(progn ;; Changing/Deleting inside between Programming Symbols
+(progn  ; Changing/Deleting inside between Programming Symbols
   (define-key global-map (kbd "C-c i [") #'jcs-delete-inside-sqr-paren)
   (define-key global-map (kbd "C-c i ]") #'jcs-delete-inside-sqr-paren)
   (define-key global-map (kbd "C-c i (") #'jcs-delete-inside-paren)
@@ -262,13 +269,6 @@
 
 (define-key global-map "\e:" #'View-back-to-mark)
 (define-key global-map "\e;" #'exchange-point-and-mark)
-
-;;; *Messages*
-(define-key global-map (kbd "M-m") #'jcs-message-buffer)
-(define-key global-map (kbd "M-M") #'jcs-message-buffer-other-window)
-
-(define-key messages-buffer-mode-map "\ek" #'jcs-message-erase-buffer)
-(define-key messages-buffer-mode-map "\eK" #'jcs-message-erase-buffer-stay)
 
 ;;; Minimap
 (define-key global-map "\C-cm" #'jcs-toggle-minimap)
@@ -505,9 +505,8 @@
 (define-key global-map (kbd "C-x b") #'whitespace-mode)
 
 
-;;;---------------------------------------------
-;;; Rebinding
-;;;---------------------------------------------
+;;-------------------------------------------------------------------
+;; Rebinding
 
 (defun jcs-global-key-rebind ()
   "Some key are not allow to bind, the solution here is just re-bind
