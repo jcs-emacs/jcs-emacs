@@ -55,6 +55,7 @@
     (require 'dimmer)
     (require 'exec-path-from-shell)
     (require 'helm)
+    (require 'highlight-indent-guides)
     (require 'hl-line)
     (require 'hl-todo)
     (require 'indent-info)
