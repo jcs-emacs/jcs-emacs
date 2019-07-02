@@ -79,6 +79,7 @@
     helm-core
     helm-file-preview
     helm-projectile
+    highlight-indent-guides
     hl-todo
     htmltagwrap
     indent-info
