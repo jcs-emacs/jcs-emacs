@@ -243,6 +243,15 @@
     (helm-file-preview-mode 1)))
 
 
+(use-package highlight-indent-guides
+  :defer t
+  :init
+  (setq highlight-indent-guides-method 'character)
+  (setq highlight-indent-guides-character ?\|)
+  :config
+  (add-hook 'prog-mode-hook #'highlight-indent-guides-mode))
+
+
 (use-package hl-todo
   :defer t
   :init
