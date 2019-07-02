@@ -1559,90 +1559,74 @@ SEARCH-STRING          : Search raw string."
 ;;-----------------------------------------------------------
 ;;-----------------------------------------------------------
 
-(defconst jcs-oop-missing-font-lock-variable-name-modes-strict '(c-mode)
-  "Modes to fixed missing font lock variable name face in strict programming language.")
+(defun jcs-oop-complete-missing-font ()
+  "Complete all the missing font that doesn't work with built-in docstirng."
 
-(mapc (lambda (mode)
-        (font-lock-add-keywords
-         mode
-         '(("([ \t]*[a-zA-Z_$0-9[&* \t]* \\([a-zA-Z_$0-9[&* \t]*\\)[ \t]*," 1 'font-lock-variable-name-face t)
-           ("([ \t]*[a-zA-Z_$0-9[&* \t]* [a-zA-Z_$0-9[&* \t]* \\([a-zA-Z_$0-9[&* \t]*\\)[ \t]*," 1 'font-lock-variable-name-face t)
-           ;; Require for two word variables.
-           ;; For instance, `const'.
-           (",[ \t]*[a-zA-Z_$0-9[&* \t]* \\([a-zA-Z_$0-9[&* \t]*\\)[ \t]*," 1 'font-lock-variable-name-face t)
-           (",[ \t]*[a-zA-Z_$0-9[&* \t]* [a-zA-Z_$0-9[&* \t]* \\([a-zA-Z_$0-9[&* \t]*\\)[ \t]*," 1 'font-lock-variable-name-face t)
-           ;; For line break parameter declaration.
-           ("^[ \t] [a-zA-Z_$0-9[&* \t]* [a-zA-Z_$0-9[&* \t]* \\([a-zA-Z_$0-9[&* \t]*\\)[ \t]*[,)]" 1 'font-lock-variable-name-face t)
-           )'end))
-      jcs-oop-missing-font-lock-variable-name-modes-strict)
+  ;; Modes to fixed missing font lock variable name face in strict
+  ;; programming language.
+  (let ((oop-missing-font-lock-variable-name-modes-strict '(c-mode)))
+    (dolist (mode oop-missing-font-lock-variable-name-modes-strict)
+      (font-lock-add-keywords
+       mode
+       '(("([ \t]*[a-zA-Z_$0-9[&* \t]* \\([a-zA-Z_$0-9[&* \t]*\\)[ \t]*," 1 'font-lock-variable-name-face t)
+         ("([ \t]*[a-zA-Z_$0-9[&* \t]* [a-zA-Z_$0-9[&* \t]* \\([a-zA-Z_$0-9[&* \t]*\\)[ \t]*," 1 'font-lock-variable-name-face t)
+         ;; Require for two word variables.
+         ;; For instance, `const'.
+         (",[ \t]*[a-zA-Z_$0-9[&* \t]* \\([a-zA-Z_$0-9[&* \t]*\\)[ \t]*," 1 'font-lock-variable-name-face t)
+         (",[ \t]*[a-zA-Z_$0-9[&* \t]* [a-zA-Z_$0-9[&* \t]* \\([a-zA-Z_$0-9[&* \t]*\\)[ \t]*," 1 'font-lock-variable-name-face t)
+         ;; For line break parameter declaration.
+         ("^[ \t] [a-zA-Z_$0-9[&* \t]* [a-zA-Z_$0-9[&* \t]* \\([a-zA-Z_$0-9[&* \t]*\\)[ \t]*[,)]" 1 'font-lock-variable-name-face t)
+         )'end)))
 
-;;-----------------------------------------------------------
-;;-----------------------------------------------------------
-
-(defconst jcs-oop-missing-font-lock-type-face-modes '(c++-mode)
-  "Font lock for namespace in C++.")
-
-(mapc (lambda (mode)
-        (font-lock-add-keywords
-         mode
+  ;; Font lock for namespace in C++.
+  (let ((oop-missing-font-lock-type-face-modes '(c++mode)))
+    (dolist (mode oop-missing-font-lock-type-face-modes)
+      (font-lock-add-keywords
+       mode
          '(("[a-zA-Z0-9_]*::\\([a-zA-Z0-9_]*\\)[ \t]" 1 'font-lock-type-face t)
-           )'end))
-      jcs-oop-missing-font-lock-type-face-modes)
+           )'end)))
 
-;;-----------------------------------------------------------
-;;-----------------------------------------------------------
+  ;; Modes to fixed missing font lock variable name face in programming
+  ;; language that uses `colon'.
+  (let ((oop-missing-font-lock-variable-name-modes-colon '(actionscript-mode
+                                                           typescript-mode)))
+    (dolist (mode oop-missing-font-lock-variable-name-modes-colon)
+      (font-lock-add-keywords
+       mode
+       '(("(,*\\([a-zA-Z_$0-9 \t]*\\)[,)]" 1 'font-lock-variable-name-face t)
+         (",\\([a-zA-Z_$0-9, \t]*\\)," 1 'font-lock-variable-name-face t)
+         (",\\([a-zA-Z_$0-9 \t]*\\)[)]" 1 'font-lock-variable-name-face t)
+         ;; For line break parameter declaration.
+         ("^[ \t]* \\([a-zA-Z_$0-9,]*\\)[ \t]*[,)]" 1 'font-lock-variable-name-face t)
+         ;; With colon.
+         ("(,*\\([a-zA-Z_$0-9 \t]*\\)[:,)]" 1 'font-lock-variable-name-face t)
+         (",\\([a-zA-Z_$0-9, \t]*\\):" 1 'font-lock-variable-name-face t)
+         )'end)))
 
-(defconst jcs-oop-missing-font-lock-variable-name-modes-colon '(actionscript-mode
-                                                                typescript-mode)
-  "Modes to fixed missing font lock variable name face in programming language that uses `colon'.")
+  ;; Modes to fixed missing function name face.
+  (let ((oop-missing-font-lock-func-name-modes '(actionscript-mode
+                                                 typescript-mode)))
+    (dolist (mode oop-missing-font-lock-func-name-modes)
+      (font-lock-add-keywords
+       mode
+       '(("function[ \t]*\\([a-zA-Z_$0-9]*\\)[ \t]*(" 1 'font-lock-function-name-face t)
+         ("public[ \t]*\\([a-zA-Z_$0-9]*\\)[ \t]*(" 1 'font-lock-function-name-face t)
+         ("private[ \t]*\\([a-zA-Z_$0-9]*\\)[ \t]*(" 1 'font-lock-function-name-face t)
+         ("protected[ \t]*\\([a-zA-Z_$0-9]*\\)[ \t]*(" 1 'font-lock-function-name-face t)
+         )'end)))
 
-(mapc (lambda (mode)
-        (font-lock-add-keywords
-         mode
-         '(("(,*\\([a-zA-Z_$0-9 \t]*\\)[,)]" 1 'font-lock-variable-name-face t)
-           (",\\([a-zA-Z_$0-9, \t]*\\)," 1 'font-lock-variable-name-face t)
-           (",\\([a-zA-Z_$0-9 \t]*\\)[)]" 1 'font-lock-variable-name-face t)
-           ;; For line break parameter declaration.
-           ("^[ \t]* \\([a-zA-Z_$0-9,]*\\)[ \t]*[,)]" 1 'font-lock-variable-name-face t)
-           ;; With colon.
-           ("(,*\\([a-zA-Z_$0-9 \t]*\\)[:,)]" 1 'font-lock-variable-name-face t)
-           (",\\([a-zA-Z_$0-9, \t]*\\):" 1 'font-lock-variable-name-face t)
-           )'end))
-      jcs-oop-missing-font-lock-variable-name-modes-colon)
-
-;;-----------------------------------------------------------
-;;-----------------------------------------------------------
-
-(defconst jcs-oop-missing-font-lock-func-name-modes '(actionscript-mode
-                                                      typescript-mode)
-  "Modes to fixed missing function name face.")
-
-(mapc (lambda (mode)
-        (font-lock-add-keywords
-         mode
-         '(("function[ \t]*\\([a-zA-Z_$0-9]*\\)[ \t]*(" 1 'font-lock-function-name-face t)
-           ("public[ \t]*\\([a-zA-Z_$0-9]*\\)[ \t]*(" 1 'font-lock-function-name-face t)
-           ("private[ \t]*\\([a-zA-Z_$0-9]*\\)[ \t]*(" 1 'font-lock-function-name-face t)
-           ("protected[ \t]*\\([a-zA-Z_$0-9]*\\)[ \t]*(" 1 'font-lock-function-name-face t)
-           )'end))
-      jcs-oop-missing-font-lock-func-name-modes)
-
-;;-----------------------------------------------------------
-;;-----------------------------------------------------------
-
-(defconst jcs-oop-missing-font-lock-type-face-modes-colon '(actionscript-mode
-                                                            typescript-mode)
-  "Modes to fixed missing type face in programming language using `colon'.")
-
-(mapc (lambda (mode)
-        (font-lock-add-keywords
-         mode
-         '(("[|:][ \t\n]*\\([a-zA-Z0-9_-]*\\)[.][a-zA-Z0-9_-]*[ \t\n]*[|=),{]" 1 'font-lock-type-face t)
-           ("[|:][ \t\n]*[a-zA-Z0-9_-]*[.]\\([a-zA-Z0-9_-]*\\)[ \t\n]*[|=),{]" 1 'font-lock-type-face t)
-           ("[|:][ \t\n]*\\([a-zA-Z0-9_-]*\\)[ \t\n]*[|{]" 1 'font-lock-type-face t)
-           ("[|:][ \t\n]*\\([a-zA-Z0-9_-]*\\)[ \t\n]*[=),]" 1 'font-lock-type-face t)
-           )'end))
-      jcs-oop-missing-font-lock-type-face-modes-colon)
+  ;; Modes to fixed missing type face in programming language using `colon'.
+  (let ((oop-missing-font-lock-type-face-modes-colon '(actionscript-mode
+                                                       typescript-mode)))
+    (dolist (mode oop-missing-font-lock-type-face-modes-colon)
+      (font-lock-add-keywords
+       mode
+       '(("[|:][ \t\n]*\\([a-zA-Z0-9_-]*\\)[.][a-zA-Z0-9_-]*[ \t\n]*[|=),{]" 1 'font-lock-type-face t)
+         ("[|:][ \t\n]*[a-zA-Z0-9_-]*[.]\\([a-zA-Z0-9_-]*\\)[ \t\n]*[|=),{]" 1 'font-lock-type-face t)
+         ("[|:][ \t\n]*\\([a-zA-Z0-9_-]*\\)[ \t\n]*[|{]" 1 'font-lock-type-face t)
+         ("[|:][ \t\n]*\\([a-zA-Z0-9_-]*\\)[ \t\n]*[=),]" 1 'font-lock-type-face t)
+         )'end)))
+  )
 
 
 (provide 'jcs-oop-func)
