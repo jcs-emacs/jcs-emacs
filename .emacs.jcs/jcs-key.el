@@ -327,7 +327,7 @@
 (define-key global-map [insert] #'jcs-overwrite-mode)
 
 ;;; Packages
-(define-key global-map (kbd "C-p") #'package-list-packages)
+(define-key global-map (kbd "C-x C-p") #'package-list-packages)
 (define-key package-menu-mode-map (kbd "s") #'jcs-package-menu-filter-by-status)
 (define-key package-menu-mode-map (kbd "u") #'jcs-package-upgrade-all)
 (define-key package-menu-mode-map (kbd "C-x r m") #'package-autoremove)
@@ -414,7 +414,7 @@
   (define-key dashboard-mode-map (kbd "<down>") #'jcs-next-line)
   (define-key dashboard-mode-map (kbd "C-<up>") #'jcs-dashboard-previous-blank-line)
   (define-key dashboard-mode-map (kbd "C-<down>") #'jcs-dashboard-next-blank-line)
-  (define-key dashboard-mode-map (kbd "C-p") #'package-list-packages)
+  (define-key dashboard-mode-map (kbd "C-x C-p") #'package-list-packages)
   (define-key dashboard-mode-map (kbd "M-k") #'jcs-dashboard-maybe-kill-this-buffer)
   (define-key dashboard-mode-map (kbd "M-K") #'jcs-dashboard-refresh-buffer))
 
