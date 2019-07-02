@@ -258,6 +258,8 @@ maintainer you want.
 [dumb-jump](https://github.com/jacktasia/dumb-jump).
 * *Goto Line* - powered by 
 [goto-line-preview](https://github.com/elpa-host/goto-line-preview).
+* *Highlight Indentation* - powered by 
+[highlight-indent-guides](https://github.com/DarthFennec/highlight-indent-guides).
 * *Highlight Matched Pairs* - powered by 
 [show-paren-mode](https://www.emacswiki.org/emacs/ShowParenMode).
 * *Highlight Same Region* - powered by 
