@@ -278,8 +278,7 @@ and
 [iedit](https://github.com/victorhge/iedit)
 and 
 [multiple-cursors](https://github.com/magnars/multiple-cursors.el).
-* *Multiple Shell* - powered by 
-none, planning in the future.
+* *Multiple Shell* - none, planning in the future.
 * *Navigation/Searcher* - powered by 
 [ag](https://github.com/Wilfred/ag.el)
 and 
