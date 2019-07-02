@@ -118,9 +118,13 @@ C-S             Tabify the document then save the file.
 C-/             Comment region.
 C-?             Uncomment region.
 
-C-p             package-list-packages
-M-=             text-scale-increase
-M--             text-scale-decrease
+C-x C-p         Package list.
+
+C-=             Text scale increase.
+C--             Text scale decrease.
+
+M-=             Frame transparent increase.
+M--             Frame transparent decrease.
 
 C-k C-f         format select region
 C-k C-d         format current document
