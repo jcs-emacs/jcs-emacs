@@ -228,7 +228,8 @@ For those mode does not apply faces correctly!"
 ;; Load OOP faces.
 (add-hook 'prog-mode-hook
           (lambda ()
-            (jcs-oop-reload-faces)))
+            (jcs-oop-reload-faces)
+            (jcs-oop-complete-missing-font)))
 
 
 (provide 'jcs-face)
