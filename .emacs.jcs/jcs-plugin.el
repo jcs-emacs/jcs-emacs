@@ -121,6 +121,7 @@
     (require 'flycheck-popup-tip)
     (flycheck-popup-tip-mode t))
   (with-eval-after-load 'helm-mode (diminish 'helm-mode))
+  (with-eval-after-load 'highlight-indent-guides (diminish 'highlight-indent-guides-mode))
   (with-eval-after-load 'impatient-mode (diminish 'impatient-mode))
   (with-eval-after-load 'line-reminder (diminish 'line-reminder-mode))
   (diminish 'outline-minor-mode)
