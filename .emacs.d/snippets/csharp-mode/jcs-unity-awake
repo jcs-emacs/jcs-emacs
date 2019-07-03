@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: jcs-unity-awake
+# key: jcs-unity-awake
+# --
+private void Awake()
+{
+    $0
+}

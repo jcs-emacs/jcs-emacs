@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: jcs-unity-ns
+# key: jcs-unity-ns
+# --
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;$0

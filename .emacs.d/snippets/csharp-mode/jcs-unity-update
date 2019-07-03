@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: jcs-unity-update
+# key: jcs-unity-update
+# --
+private void Update()
+{
+    $0
+}

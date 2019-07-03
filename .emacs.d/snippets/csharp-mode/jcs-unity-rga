@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: jcs-unity-rga
+# key: jcs-unity-rga
+# --
+[Range($1, $2)]$0

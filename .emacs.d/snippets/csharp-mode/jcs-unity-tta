@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: jcs-unity-tta
+# key: jcs-unity-tta
+# --
+[Tooltip("$1")]$0

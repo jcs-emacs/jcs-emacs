@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: jcs-unity-rca
+# key: jcs-unity-rca
+# --
+[RequireComponent(typeof($1))]$0
