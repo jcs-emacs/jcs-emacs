@@ -28,12 +28,6 @@
   ;; corresponding file.
   (define-key c++-mode-map [f7] #'jcs-same-file-other-window)
 
-  (define-key c++-mode-map "\ej" #'imenu)
-
-  (define-key c++-mode-map "\e." #'c-fill-paragraph)
-
-  (define-key c++-mode-map "\e/" #'c-mark-function)
-
   (define-key c++-mode-map (kbd "C-d") #'jcs-kill-whole-line)
   (define-key c++-mode-map (kbd "C-c C-c") #'kill-ring-save)
 
