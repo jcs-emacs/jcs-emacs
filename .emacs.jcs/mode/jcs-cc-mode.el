@@ -119,8 +119,6 @@
   ;; No hungry backspace
   (c-toggle-auto-hungry-state -1)
 
-  ;; TOPIC: Treat underscore as word.
-  ;; URL: https://emacs.stackexchange.com/questions/9583/how-to-treat-underscore-as-part-of-the-word
   (modify-syntax-entry ?_ "w")
   )
 (add-hook 'c-mode-common-hook 'jcs-cc-mode-hook)
