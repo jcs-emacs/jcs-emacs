@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: jcs-unity-ha
+# key: jcs-unity-ha
+# --
+[Header("$1")]$0
