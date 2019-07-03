@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: jcs-unity-class
+# key: jcs-unity-class
+# --
+public class `(jcs-get-file-name-without-extension)` : MonoBehaviour
+{
+    $0
+}
