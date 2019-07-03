@@ -49,11 +49,11 @@ to the `jcs-cross-mode' in order to use cross mode search instead
 of machine depenedent plugins/packages which is the `jcs-depend-mode'."
   (interactive)
   (unless (minibufferp)
-    (unless (ignore-errors (or (helm-do-ag-this-file) t))
+    (unless (ignore-errors (helm-do-ag-this-file))
       (jcs-cross-mode)
       (message "Error: This buffer is not visited file. Switch to cross mode search..")
       (sleep-for jcs-prompt-message-sleep-delay-time)
-      (call-interactively 'isearch-forward))))
+      (call-interactively #'isearch-forward))))
 
 (defun jcs-insert-header-if-empty (insert-func &optional ci)
   "Execute INSERT-FUNC if empty, CI means `call-interactively'."
