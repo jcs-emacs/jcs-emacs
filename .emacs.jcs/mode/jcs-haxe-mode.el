@@ -12,6 +12,7 @@
   (electric-pair-mode 1)
   (goto-address-mode 1)
   (auto-highlight-symbol-mode t)
+  (highlight-indent-guides-mode 1)
 
   (modify-syntax-entry ?_ "w")
 

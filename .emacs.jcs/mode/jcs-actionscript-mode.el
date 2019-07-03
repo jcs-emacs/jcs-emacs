@@ -9,6 +9,7 @@
 (defun jcs-actionscript-mode-hook ()
   "ActionScript mode hook."
   (goto-address-mode 1)
+  (highlight-indent-guides-mode 1)
 
   (modify-syntax-entry ?_ "w")
 
