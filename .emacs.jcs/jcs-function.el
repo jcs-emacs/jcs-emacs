@@ -290,8 +290,7 @@ LST-PR: List of pair."
 (defun jcs-iedit-mode ()
   "Enable Iedit mode in the safe way."
   (interactive)
-  (when (and (not (jcs-current-whitespace-or-tab-p))
-             (not (jcs-is-beginning-of-line-p)))
+  (when (jcs-get-word-at-point)
     (call-interactively #'iedit-mode)))
 
 ;;---------------------------------------------
