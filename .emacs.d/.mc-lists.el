@@ -5,14 +5,12 @@
       '(
         beginning-of-buffer
         end-of-buffer
-        jcs-backward-capital-char
         jcs-backward-delete-word
         jcs-backward-kill-word-capital
         jcs-beginning-of-line
         jcs-downcase-word-or-region
         jcs-electric-backspace
         jcs-end-of-line
-        jcs-forward-capital-char
         jcs-forward-delete-word
         jcs-forward-kill-word-capital
         jcs-mark-whole-buffer
