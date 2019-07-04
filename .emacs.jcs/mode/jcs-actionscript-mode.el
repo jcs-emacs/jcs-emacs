@@ -13,11 +13,9 @@
 
   (modify-syntax-entry ?_ "w")
 
-  (when buffer-file-name
-    (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]as" buffer-file-name)
-           (jcs-insert-header-if-empty 'jcs-insert-actionscript-template))
-          ))
+  ;; File Header
+  (jcs-insert-header-if-valid '("[.]as")
+                              'jcs-insert-actionscript-template)
 
   ;; Normal
   (define-key actionscript-mode-map (kbd "C-d") #'jcs-kill-whole-line)

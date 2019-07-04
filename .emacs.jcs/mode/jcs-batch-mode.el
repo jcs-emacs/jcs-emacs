@@ -14,11 +14,9 @@
 
   (modify-syntax-entry ?_ "w")
 
-  (when buffer-file-name
-    (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]bat" buffer-file-name)
-           (jcs-insert-header-if-empty 'jcs-insert-batch-template))
-          ))
+  ;; File Header
+  (jcs-insert-header-if-valid '("[.]bat")
+                              'jcs-insert-batch-template)
 
   ;; Normal
   (define-key bat-mode-map (kbd "C-d") #'jcs-kill-whole-line)

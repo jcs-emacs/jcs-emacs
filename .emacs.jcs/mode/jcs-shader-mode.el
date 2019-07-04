@@ -4,6 +4,7 @@
 
 
 (require 'shader-mode)
+(require 'glsl-mode)
 
 
 (defun jcs-shader-mode-hook ()
@@ -20,22 +21,14 @@
 
   (modify-syntax-entry ?_ "w")
 
-  (when buffer-file-name
-    (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]shader" buffer-file-name)
-           (jcs-insert-header-if-empty 'jcs-insert-shader-template))
-          ))
+  ;; File Header
+  (jcs-insert-header-if-valid '("[.]shader")
+                              'jcs-insert-shader-template)
 
   )
 (add-hook 'shader-mode-hook 'jcs-shader-mode-hook)
 
 
-(defun jcs-glsl-script-format ()
-  "Format the given file as a GLSL shader file."
-  (when (jcs-is-current-file-empty-p)
-    (jcs-insert-glsl-template)))
-
-(require 'glsl-mode)
 (defun jcs-glsl-mode-hook ()
   "GLSL mode hook."
   (abbrev-mode 1)
@@ -46,13 +39,12 @@
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
 
-  (when buffer-file-name
-    (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]frag" buffer-file-name) (jcs-glsl-script-format))
-          ((string-match "[.]geom" buffer-file-name) (jcs-glsl-script-format))
-          ((string-match "[.]glsl" buffer-file-name) (jcs-glsl-script-format))
-          ((string-match "[.]vert" buffer-file-name) (jcs-glsl-script-format))
-          ))
+  ;; File Header
+  (jcs-insert-header-if-valid '("[.]frag"
+                                "[.]geom"
+                                "[.]glsl"
+                                "[.]vert")
+                              'jcs-insert-glsl-template)
 
   ;; Normal
   (define-key glsl-mode-map (kbd "C-d") #'jcs-kill-whole-line)

@@ -13,11 +13,9 @@
   (goto-address-mode 1)
   (auto-highlight-symbol-mode t)
 
-  (when buffer-file-name
-    (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]bas" buffer-file-name)
-           (jcs-insert-header-if-empty 'jcs-insert-basic-template))
-          ))
+  ;; File Header
+  (jcs-insert-header-if-valid '("[.]bas")
+                              'jcs-insert-basic-template)
 
   ;; Normal
   (define-key basic-mode-map (kbd "C-d") #'jcs-kill-whole-line)
