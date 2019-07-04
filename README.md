@@ -187,6 +187,8 @@ showing the `undo-tree-visualizer` at the other window.
 Visual Studio IDE like curly bracket implementation.
 * [*VS Multiple Cursors*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/vs-multiple-cursors) - 
 VSCode like methods to `mark` and `unmark` multiple cursor.
+* [*VS Navigate Word*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/vs-navigate-word) - 
+Visual Studio IDE like navigating between word implementation.
 
 
 ## Package Archives
