@@ -21,10 +21,6 @@
            (jcs-insert-header-if-empty 'jcs-insert-cobol-template))
           ))
 
-  ;; Set Faces.
-  (face-remap-add-relative 'font-lock-comment-face '(jcs-font-lock-comment-face))
-  (face-remap-add-relative 'font-lock-string-face '(jcs-font-lock-string-face))
-
   ;; Normal
   (define-key cobol-mode-map (kbd "C-d") #'jcs-kill-whole-line)
   (define-key cobol-mode-map (kbd "C-c C-c") #'kill-ring-save)

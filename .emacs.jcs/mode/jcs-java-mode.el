@@ -16,8 +16,6 @@
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
 
-  (face-remap-add-relative 'font-lock-constant-face '((:foreground "#D2D2D2")))
-
   (when buffer-file-name
     (cond ((file-exists-p buffer-file-name) t)
           ((string-match "[.]java" buffer-file-name)

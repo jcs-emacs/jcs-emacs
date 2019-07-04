@@ -25,9 +25,6 @@
            (jcs-insert-header-if-empty 'jcs-insert-js-template))
           ))
 
-  ;; Set Faces.
-  (jcs-init-set-face)
-
   ;; Normal
   (define-key js2-mode-map (kbd "C-d") #'jcs-kill-whole-line)
   (define-key js2-mode-map (kbd "C-c C-c") #'kill-ring-save)
