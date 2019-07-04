@@ -890,12 +890,10 @@ NO-PROMPT : Don't prompt the overwrap message."
 ;; Editing
 (add-hook 'Buffer-menu-mode-hook (lambda () (require 'jcs-buffer-menu)))
 (with-eval-after-load 'dashboard (require 'jcs-dashboard))
+(require 'jcs-nav)
 (require 'jcs-edit)
 (require 'jcs-comment)
 (require 'jcs-vs-func)
-
-;; Navigation
-(require 'jcs-nav)
 
 ;; For Specific Mode
 (with-eval-after-load 'preproc-font-lock (require 'jcs-preproc-func))
