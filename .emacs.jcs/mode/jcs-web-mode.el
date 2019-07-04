@@ -98,8 +98,8 @@
   ;; PHP
   (define-key web-mode-map [C-backspace] #'jcs-web-backward-delete-word)
   (define-key web-mode-map (kbd "M-<backspace>") #'jcs-web-backward-delete-word-capital)
-  (define-key emmet-mode-keymap (kbd "M-<left>") #'jcs-backward-capital-char)
-  (define-key emmet-mode-keymap (kbd "M-<right>") #'jcs-forward-capital-char)
+  (define-key emmet-mode-keymap (kbd "M-<left>") #'jcs-forward-word-capital)
+  (define-key emmet-mode-keymap (kbd "M-<right>") #'jcs-backward-word-capital)
   )
 (add-hook 'web-mode-hook  'jcs-web-mode-hook)
 (add-hook 'web-mode-hook 'emmet-mode)

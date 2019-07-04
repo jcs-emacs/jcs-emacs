@@ -255,8 +255,8 @@
 (define-key global-map (kbd "C-w p") #'jcs-httpd-stop)
 
 ;;; Kill Word
-(define-key global-map (kbd "C-<backspace>") #'jcs-backward-delete-word)
-(define-key global-map (kbd "C-<delete>") #'jcs-forward-delete-word)
+(define-key global-map (kbd "C-<backspace>") #'jcs-smart-backward-delete-word)
+(define-key global-map (kbd "C-<delete>") #'jcs-smart-forward-delete-word)
 
 (define-key global-map (kbd "M-<backspace>") #'jcs-backward-kill-word-capital)
 (define-key global-map (kbd "M-<delete>") #'jcs-forward-kill-word-capital)
@@ -303,8 +303,8 @@
 ;;; Navigation
 (define-key global-map [home] #'jcs-beginning-of-line)
 (define-key global-map [end] #'jcs-end-of-line)
-(define-key global-map (kbd "M-<left>") #'jcs-backward-capital-char)
-(define-key global-map (kbd "M-<right>") #'jcs-forward-capital-char)
+(define-key global-map (kbd "M-<left>") #'jcs-backward-word-capital)
+(define-key global-map (kbd "M-<right>") #'jcs-forward-word-capital)
 
 ;;; Open same file in other window.
 (progn
