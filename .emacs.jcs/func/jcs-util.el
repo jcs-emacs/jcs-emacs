@@ -347,23 +347,11 @@ IS-FORWARD : forward conversion instead of backward conversion."
 
 (defun jcs-current-char-a-wordp ()
   "Check if current character a usual letter."
-  (let ((current-char nil)
-        (current-char-string nil)
-        (current-char-char nil))
-    (setq current-char (char-before))
-    (setq current-char-string (string current-char))
-    (setq current-char-char (string-to-char current-char-string))
-    (jcs-word-p current-char-char)))
+  (jcs-word-p (string-to-char (jcs-get-current-char-string))))
 
 (defun jcs-current-char-uppercasep ()
   "Check if current character a uppercase character."
-  (let ((current-char nil)
-        (current-char-string nil)
-        (current-char-char nil))
-    (setq current-char (char-before))
-    (setq current-char-string (string current-char))
-    (setq current-char-char (string-to-char current-char-string))
-    (jcs-uppercase-p current-char-char)))
+  (jcs-uppercase-p (string-to-char (jcs-get-current-char-string))))
 
 (defun jcs-current-char-lowercasep ()
   "Check if current character a lowercase character."
