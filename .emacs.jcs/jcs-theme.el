@@ -176,6 +176,7 @@
   (jcs-reset-helm-theme-by-theme)
   (jcs-reset-line-number-color-by-theme)
   (jcs-reset-yascroll-color-by-theme)
+  (jcs-reset-common-faces-by-theme)
   (when dimmer-mode
     (progn
       ;; Toggle `dimmer-mode'.
