@@ -294,17 +294,11 @@ This command does not push text to `kill-ring'."
 With argument, do this that many times.
 This command does not push text to `kill-ring'."
   (interactive "p")
-  (delete-region
-   (point)
-   (progn
-     (forward-word arg)
-     (point))))
+  (delete-region (point) (progn (forward-word arg) (point))))
 
 ;;;###autoload
 (defun jcs-backward-delete-word (arg)
-  "Delete characters backward until encountering the beginning of a word.
-With argument, do this that many times.
-This command does not push text to `kill-ring'."
+  "Backward deleteing ARG words."
   (interactive "p")
   (if (use-region-p)
       (delete-region (region-beginning) (region-end))
@@ -312,13 +306,47 @@ This command does not push text to `kill-ring'."
 
 ;;;###autoload
 (defun jcs-forward-delete-word (arg)
-  "Delete characters forward until encountering the beginning of a word.
-With argument, do this that many times.
-This command does not push text to `kill-ring'."
+  "Forward deleteing ARG words."
   (interactive "p")
   (if (use-region-p)
       (delete-region (region-beginning) (region-end))
     (jcs-delete-word (+ arg))))
+
+;;;###autoload
+(defun jcs-smart-backward-delete-word ()
+  "Backward deleteing ARG words in the smart way."
+  (interactive)
+  (let ((start-pt -1)
+        (end-pt (point)))
+    (save-excursion (jcs-smart-backward-word) (setq start-pt (point)))
+    (delete-region start-pt end-pt)))
+
+;;;###autoload
+(defun jcs-smart-forward-delete-word ()
+  "Forward deleteing ARG words in the smart way."
+  (interactive)
+  (let ((start-pt (point))
+        (end-pt -1))
+    (save-excursion (jcs-smart-forward-word) (setq end-pt (point)))
+    (delete-region start-pt end-pt)))
+
+;;;###autoload
+(defun jcs-backward-kill-word-capital ()
+  "Backward delete the word unitl the word is capital."
+  (interactive)
+  (let ((start-pt -1)
+        (end-pt (point)))
+    (save-excursion (jcs-backward-word-capital) (setq start-pt (point)))
+    (delete-region start-pt end-pt)))
+
+;;;###autoload
+(defun jcs-forward-kill-word-capital ()
+  "Forward delete the word unitl the word is capital."
+  (interactive)
+  (let ((start-pt (point))
+        (end-pt -1))
+    (save-excursion (jcs-forward-word-capital) (setq end-pt (point)))
+    (delete-region start-pt end-pt)))
 
 (defun jcs-kill-thing-at-point (thing)
   "Kill the `thing-at-point' for the specified kind of THING."
@@ -754,9 +782,9 @@ ARG : Match with `save-buffer' command."
     (jcs-tabify-buffer)
     (save-buffer)))
 
-;;=================================
+;;----------------------------------------------
 ;; Find file
-;;-------------------------
+;;----------------------------------------------
 
 ;;;###autoload
 (defun jcs-same-file-other-window ()
@@ -768,7 +796,7 @@ ARG : Match with `save-buffer' command."
       (switch-to-buffer buf-name))))
 
 ;;----------------------------------------------
-;; Rename file.
+;; Rename file
 ;;----------------------------------------------
 
 ;;;###autoload
@@ -920,180 +948,6 @@ ECP-SAME : Exception for the same buffer."
            (setq win-cnt (+ win-cnt 1))))
 
         (message "Reopened file => '%s'" buf-name)))))
-
-;;----------------------------------------------
-;; Search/Kill word capital.
-;;----------------------------------------------
-
-(defvar jcs-first-char-is-char nil
-  "Check the first character a character.")
-(defvar jcs-check-first-char nil
-  "Boolean to check the first character")
-(defvar jcs-found-first-char nil
-  "Found the first character in search?")
-
-;;;###autoload
-(defun jcs-backward-kill-word-capital ()
-  "Backward delete the word unitl the word is capital."
-  (interactive)
-
-  (unless jcs-check-first-char
-    ;; check the first character a character
-    (when (jcs-word-p (jcs-get-current-char-byte))
-      (setq jcs-first-char-is-char t))
-
-    ;; check the first character mission complete.
-    (setq jcs-check-first-char t))
-
-  ;; found the first character!
-  (when (jcs-word-p (jcs-get-current-char-byte))
-    (setq jcs-found-first-char t))
-
-  (if (not jcs-found-first-char)
-      (if jcs-first-char-is-char
-          (backward-delete-char 1)
-        (backward-delete-char 1)
-        (jcs-backward-kill-word-capital))
-    (if (not (jcs-word-p (jcs-get-current-char-byte)))
-        (progn
-          ;; NOTE: Here is end of the recursive
-          ;; function loop...
-          )
-      (if (jcs-uppercase-p (jcs-get-current-char-byte))
-          ;; NOTE: Here is end of the recursive
-          ;; function loop...
-          (backward-delete-char 1)
-        (backward-delete-char 1)
-        (jcs-backward-kill-word-capital))))
-
-  ;; reset triggers
-  (setq jcs-first-char-is-char nil)
-  (setq jcs-check-first-char nil)
-  (setq jcs-found-first-char nil))
-
-;;;###autoload
-(defun jcs-forward-kill-word-capital ()
-  "Forward delete the word unitl the word is capital."
-  (interactive)
-
-  (unless jcs-check-first-char
-    (backward-delete-char -1)
-    ;; check the first character a character
-    (when (jcs-word-p (jcs-get-current-char-byte))
-      (setq jcs-first-char-is-char t))
-
-    ;; check the first character mission complete.
-    (setq jcs-check-first-char t))
-
-  (forward-char 1)
-
-  ;; found the first character!
-  (when (jcs-word-p (jcs-get-current-char-byte))
-    (setq jcs-found-first-char t))
-
-  (if (not jcs-found-first-char)
-      (if jcs-first-char-is-char
-          (backward-delete-char 1)
-        (backward-delete-char 1)
-        (jcs-forward-kill-word-capital))
-    (if (or (not (jcs-word-p (jcs-get-current-char-byte)))
-            (jcs-is-end-of-line-p))
-        ;; NOTE: Here is end of the recursive function loop...
-        (backward-delete-char 1)
-      (if (jcs-uppercase-p (jcs-get-current-char-byte))
-          ;; NOTE: Here is end of the recursive function loop...
-          (forward-char -1)
-        (backward-delete-char 1)
-        (jcs-forward-kill-word-capital))))
-
-  ;; reset triggers
-  (setq jcs-first-char-is-char nil)
-  (setq jcs-check-first-char nil)
-  (setq jcs-found-first-char nil))
-
-;;;###autoload
-(defun jcs-backward-capital-char ()
-  "Backward search capital character and set the cursor
-to the point."
-  (interactive)
-
-  (unless jcs-check-first-char
-    ;; check the first character a character
-    (when (jcs-word-p (jcs-get-current-char-byte))
-      (setq jcs-first-char-is-char t))
-
-    ;; check the first character mission complete.
-    (setq jcs-check-first-char t))
-
-  ;; found the first character!
-  (when (jcs-word-p (jcs-get-current-char-byte))
-    (setq jcs-found-first-char t))
-
-  (if (not jcs-found-first-char)
-      (if jcs-first-char-is-char
-          (backward-char 1)
-        (backward-char 1)
-        (jcs-backward-capital-char))
-    (if (not (jcs-word-p (jcs-get-current-char-byte)))
-        (progn
-          ;; NOTE: Here is end of the recursive
-          ;; function loop...
-          )
-      (if (jcs-uppercase-p (jcs-get-current-char-byte))
-          ;; NOTE: Here is end of the recursive
-          ;; function loop...
-          (backward-char 1)
-        (backward-char 1)
-        (jcs-backward-capital-char))))
-
-  ;; reset triggers
-  (setq jcs-first-char-is-char nil)
-  (setq jcs-check-first-char nil)
-  (setq jcs-found-first-char nil))
-
-;;;###autoload
-(defun jcs-forward-capital-char ()
-  "Forward search capital character and set the cursor to
-the point."
-  (interactive)
-  ;; If the point is at the first character, we will get the error.
-  ;; So move forward a character then check.
-  (when (= (point-min) (point))
-    (forward-char 1))
-
-  (unless jcs-check-first-char
-    ;; check the first character a character
-    (when (jcs-word-p (jcs-get-current-char-byte))
-      (forward-char 1)
-      (setq jcs-first-char-is-char t))
-
-    ;; check the first character mission complete.
-    (setq jcs-check-first-char t))
-
-  ;; found the first character!
-  (when (jcs-word-p (jcs-get-current-char-byte))
-    (setq jcs-found-first-char t))
-
-  (if (not jcs-found-first-char)
-      (progn
-        (forward-char 1)
-        (jcs-forward-capital-char))
-    (if (not (jcs-word-p (jcs-get-current-char-byte)))
-        ;; NOTE: Here is end of the recursive
-        ;; function loop...
-        (backward-char 1)
-      (if (jcs-uppercase-p (jcs-get-current-char-byte))
-          (progn
-            ;; NOTE: Here is end of the recursive
-            ;; function loop...
-            )
-        (forward-char 1)
-        (jcs-forward-capital-char))))
-
-  ;; reset triggers
-  (setq jcs-first-char-is-char nil)
-  (setq jcs-check-first-char nil)
-  (setq jcs-found-first-char nil))
 
 ;;----------------------------------------------
 ;; Delete Repeatedly
