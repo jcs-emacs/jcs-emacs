@@ -63,9 +63,10 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
       (funcall insert-func))
     (goto-char (point-min))))
 
-;;---------------------------------------------
-;; Command Mode
-;;---------------------------------------------
+
+;;------------------------------------------------------------------------------------------------------
+;;; Command Mode & Insert Mode
+;;------------------------------------------------------------------------------------------------------
 
 ;;;###autoload
 (defun jcs-command-mode()
@@ -85,11 +86,6 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
   ;; Set command mode key
 
   )
-
-
-;;---------------------------------------------
-;; Insert Mode / View Mode
-;;---------------------------------------------
 
 ;;;###autoload
 (defun jcs-insert-mode()
