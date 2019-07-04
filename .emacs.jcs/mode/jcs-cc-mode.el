@@ -101,6 +101,18 @@
   "Format the given file as a Objective-C source file."
   (jcs-insert-header-if-empty 'jcs-insert-objc-source-template))
 
+(defun jcs-cc-insert-header ()
+  "Insert header for `cc-mode' related modes."
+  (jcs-insert-header-if-valid '("[.]hin"
+                                "[.]hpp"
+                                "[.]h")
+                              'jcs-c++-header-format)
+  (jcs-insert-header-if-valid '("[.]cin"
+                                "[.]cpp")
+                              'jcs-c++-source-format)
+  (jcs-insert-header-if-valid '("[.]c")
+                              'jcs-c-source-format))
+
 ;;-----------------------------------------------------------
 ;;-----------------------------------------------------------
 

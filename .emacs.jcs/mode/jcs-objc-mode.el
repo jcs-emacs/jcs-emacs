@@ -9,17 +9,16 @@
   (auto-highlight-symbol-mode t)
   (goto-address-mode 1)
 
-  (when buffer-file-name
-    (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]hin" buffer-file-name) (jcs-objc-header-format))
-          ((string-match "[.]hpp" buffer-file-name) (jcs-objc-header-format))
-          ((string-match "[.]h" buffer-file-name) (jcs-objc-header-format))
-
-          ((string-match "[.]cin" buffer-file-name) (jcs-objc-source-format))
-          ((string-match "[.]cpp" buffer-file-name) (jcs-objc-source-format))
-          ((string-match "[.]c" buffer-file-name) (jcs-objc-source-format))
-          ((string-match "[.]m" buffer-file-name) (jcs-objc-source-format))
-          ))
+  ;; File Header
+  (jcs-insert-header-if-valid '("[.]hin"
+                                "[.]hpp"
+                                "[.]h")
+                              'jcs-objc-header-format)
+  (jcs-insert-header-if-valid '("[.]cin"
+                                "[.]cpp"
+                                "[.]c"
+                                "[.]m")
+                              'jcs-objc-source-format)
 
   ;; Normal
   (define-key objc-mode-map [f8] #'jcs-find-corresponding-file)
