@@ -81,6 +81,30 @@ Just use this without remember Emacs Lisp function."
              (forward-line 1)
              (jcs-back-to-indentation-or-beginning))))))
 
+;;;###autoload
+(defun jcs-backward-word-capital ()
+  "Backward search capital character and set the cursor to the point."
+  (interactive)
+  (let ((max-pt -1))
+    (save-excursion (jcs-smart-backward-word) (setq max-pt (1+ (point))))
+    (while (and (not (jcs-is-beginning-of-buffer-p))
+                (not (jcs-current-char-uppercasep))
+                (> (point) max-pt))
+      (backward-char 1))
+    (backward-char 1)))
+
+;;;###autoload
+(defun jcs-forward-word-capital ()
+  "Forward search capital character and set the cursor to the point."
+  (interactive)
+  (let ((max-pt -1))
+    (save-excursion (jcs-smart-forward-word) (setq max-pt (point)))
+    (forward-char 1)
+    (while (and (not (jcs-is-end-of-buffer-p))
+                (not (jcs-current-char-uppercasep))
+                (< (point) max-pt))
+      (forward-char 1))))
+
 ;;----------------------------------------------
 ;; Move Inside Line
 ;;----------------------------------------------
@@ -453,12 +477,12 @@ CH : character we target to move toward."
   (jcs-move-backward-open-close-epair "{" "}"))
 
 ;;;------------------------------------------------
-;;; Single Quotation Mark
+;;; Single Quotation Mark
 
 ;;;###autoload
 (defun jcs-move-forward-single-quot (&optional no-rec)
   "Move forward to a single quotation mark.
-as NO-REC : recursive? (Default: do recusrive method)"
+as NO-REC : recursive? (Default: do recusrive method)"
   (interactive)
   (jcs-move-to-forward-a-char-do-recursive "'" no-rec))
 
