@@ -97,8 +97,8 @@
 (define-key global-map (kbd "C-k C-s") #'describe-bindings)
 
 ;;; Editting
-(define-key global-map [C-right] #'forward-word)
-(define-key global-map [C-left] #'backward-word)
+(define-key global-map [C-right] #'jcs-smart-forward-word)
+(define-key global-map [C-left] #'jcs-smart-backward-word)
 (define-key global-map [C-up] #'jcs-previous-blank-line)
 (define-key global-map [C-down] #'jcs-next-blank-line)
 (define-key global-map [pgup] #'forward-page)
