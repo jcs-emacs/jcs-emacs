@@ -208,7 +208,7 @@ another function..."
       (font-lock-add-keywords
        mode
        '(;; For nomral HTML comment.
-         ("\\(<!--[a-zA-Z0-9 \n\t-.<>?,*'`@\"=_(){}:;&^%$#!~]*-->\\)" 1 'jcs-font-lock-comment-face t)
+         ("\\(<!--[a-zA-Z0-9 \n\t-.<>?,*'`@\"=_(){}:;&^%$#!~]*-->\\)" 1 'font-lock-comment-face t)
          ;; For multi-lines comment.
          ;; TODO: Only inside the curly bracket.
          ;; TODO: There is bug if `/' is inside the comment space.

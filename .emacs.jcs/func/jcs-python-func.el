@@ -13,8 +13,8 @@
       (font-lock-add-keywords
        mode
        '(;; NOTE: Fixed comment and string conflict.
-         ("[^\"]\\(#[^\"\r\n]*\\)[^\"]" 1 'jcs-font-lock-comment-face t)
-         ("[^\"]\\(\"[^\"]*\"\\)[^\"]" 1 'jcs-font-lock-string-face t)
+         ("[^\"]\\(#[^\"\r\n]*\\)[^\"]" 1 'font-lock-comment-face t)
+         ("[^\"]\\(\"[^\"]*\"\\)[^\"]" 1 'font-lock-string-face t)
          )'end))))
 
 ;;-----------------------------------------------------------

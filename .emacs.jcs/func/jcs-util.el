@@ -496,7 +496,8 @@ PT : point."
 (defun jcs-is-there-char-backward-util-beginning-of-line-p ()
   "Check if there are at least a character on the left until \
 the beginning of the line."
-  (jcs-is-there-char-backward-point-p (jcs-get-beginning-of-line-point)))
+  (jcs-is-there-char-backward-point-p (jcs-get-beginning-of-line-point)))
+
 
 (defun jcs-is-there-char-forward-until-end-of-line-p ()
   "Check if there are at least a character on the right until \
@@ -864,8 +865,8 @@ Return nil, there is no region selected and mark is not active."
 (defun jcs-inside-comment-or-string-p ()
   "Check if inside comment or stirng."
   (or (nth 8 (syntax-ppss))
-      (jcs-is-current-point-face "jcs-font-lock-comment-face")
-      (jcs-is-current-point-face "jcs-font-lock-string-face")))
+      (jcs-is-current-point-face "font-lock-comment-face")
+      (jcs-is-current-point-face "font-lock-string-face")))
 
 ;;;###autoload
 (defun jcs-goto-start-of-the-comment ()

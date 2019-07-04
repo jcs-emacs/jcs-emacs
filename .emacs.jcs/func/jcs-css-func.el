@@ -64,7 +64,7 @@
       (font-lock-add-keywords
        mode
        '(;; Comment overwrite value face.
-         ("\\(/\\*[a-zA-Z0-9 \n\t-.<>?,*'`@\"=_(){}:;&^%$#!~]*\\*/\\)" 1 'jcs-font-lock-comment-face t)
+         ("\\(/\\*[a-zA-Z0-9 \n\t-.<>?,*'`@\"=_(){}:;&^%$#!~]*\\*/\\)" 1 'font-lock-comment-face t)
          ("[ \t]*\\([#][a-zA-Z0-9_-]*\\)[ \t\n]*[(\[*:>+~,{]" 1 'jcs-css-id-face t)
          ("[ \t]*\\([.][a-zA-Z0-9_-]*\\)[ \t\n]*[(\[*:>+~,{]" 1 'jcs-css-class-face t)
          ("\\([:][a-zA-Z0-9>+~:_-]+\\)[ \t\n]*[,{]" 1 'jcs-css-event-face t)
@@ -74,12 +74,12 @@
          ;; Number
          ("[ \t;,)]*\\([+-]*[0-9]*[.]*[0-9]+[a-z%]*\\)[ \t\n;,)]" 1 'jcs-css-number-face t)
          ;; String
-         ("[^\']\\(\'[^\']*\'\\)[^\']" 1 'jcs-font-lock-string-face t)
-         ("[^\"]\\(\"[^\"]*\"\\)[^\"]" 1 'jcs-font-lock-string-face t)
+         ("[^\']\\(\'[^\']*\'\\)[^\']" 1 'font-lock-string-face t)
+         ("[^\"]\\(\"[^\"]*\"\\)[^\"]" 1 'font-lock-string-face t)
          ;; For multi-lines comment.
          ;; TODO: Only inside the curly bracket.
          ;; TODO: There is bug if `/' is inside the comment space.
-         ("\\(/\\*[^/]*\\*/\\)" 1 'jcs-font-lock-comment-face t)
+         ("\\(/\\*[^/]*\\*/\\)" 1 'font-lock-comment-face t)
          )'end)))
   (set-face-attribute 'css-selector nil
                       :inherit font-lock-function-name-face
