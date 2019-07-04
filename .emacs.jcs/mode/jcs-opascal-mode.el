@@ -16,12 +16,10 @@
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
 
-  (when buffer-file-name
-    (cond ((file-exists-p buffer-file-name) t)
-          ((or (string-match "[.]dpk" buffer-file-name)
-               (string-match "[.]dpr" buffer-file-name))
-           (jcs-insert-header-if-empty 'jcs-insert-opascal-template))
-          ))
+  ;; File Header
+  (jcs-insert-header-if-valid '("[.]dpk"
+                                "[.]dpr")
+                              'jcs-insert-opascal-template)
 
   ;; Normal
   (define-key opascal-mode-map (kbd "C-d") #'jcs-kill-whole-line)

@@ -16,12 +16,10 @@
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
 
-  (when buffer-file-name
-    (cond ((file-exists-p buffer-file-name) t)
-          ((or (string-match "[.]erl" buffer-file-name)
-               (string-match "[.]hrl" buffer-file-name))
-           (jcs-insert-header-if-empty 'jcs-insert-erlang-template))
-          ))
+  ;; File Header
+  (jcs-insert-header-if-valid '("[.]erl"
+                                "[.]hrl")
+                              'jcs-insert-erlang-template)
 
   )
 (add-hook 'erlang-mode-hook 'jcs-erlang-mode-hook)

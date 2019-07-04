@@ -16,11 +16,9 @@
 
   (modify-syntax-entry ?_ "w")
 
-  (when buffer-file-name
-    (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]hx" buffer-file-name)
-           (jcs-insert-header-if-empty 'jcs-insert-haxe-template))
-          ))
+  ;; File Header
+  (jcs-insert-header-if-valid '("[.]hx")
+                              'jcs-insert-haxe-template)
 
   ;; Normal
   (define-key haxe-mode-map (kbd "C-d") #'jcs-kill-whole-line)

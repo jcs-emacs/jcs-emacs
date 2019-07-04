@@ -14,14 +14,11 @@
   (goto-address-mode 1)
   (auto-highlight-symbol-mode t)
 
-  (when buffer-file-name
-    (cond ((file-exists-p buffer-file-name) t)
-          ((or (string-match "[.]makefile" buffer-file-name)
-               (string-match "[Mm]akefile" buffer-file-name)
-               (string-match "[.]mak" buffer-file-name))
-           (jcs-makefile-format)
-           (jcs-insert-header-if-empty 'jcs-makefile-format-info)))
-    ))
+  ;; File Header
+  (jcs-insert-header-if-valid '("[.]makefile"
+                                "[Mm]akefile"
+                                "[.]mak")
+                              'jcs-makefile-format-info)
 
   ;; Normal
   (define-key makefile-mode-map (kbd "<up>") #'jcs-py-indent-up)

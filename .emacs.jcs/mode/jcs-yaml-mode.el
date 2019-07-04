@@ -19,12 +19,10 @@
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
 
-  (when buffer-file-name
-    (cond ((file-exists-p buffer-file-name) t)
-          ((or (string-match "[.]yaml" buffer-file-name)
-               (string-match "[.]yml" buffer-file-name))
-           (jcs-insert-header-if-empty 'jcs-insert-yaml-template))
-          ))
+  ;; File Header
+  (jcs-insert-header-if-valid '("[.]yaml"
+                                "[.]yml")
+                              'jcs-insert-yaml-template)
 
   ;; Normal
   (define-key yaml-mode-map (kbd "C-d") #'jcs-kill-whole-line)

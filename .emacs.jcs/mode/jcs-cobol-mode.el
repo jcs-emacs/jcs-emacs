@@ -15,11 +15,9 @@
   (goto-address-mode 1)
   (auto-highlight-symbol-mode t)
 
-  (when buffer-file-name
-    (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]cbl" buffer-file-name)
-           (jcs-insert-header-if-empty 'jcs-insert-cobol-template))
-          ))
+  ;; File Header
+  (jcs-insert-header-if-valid '("[.]cbl")
+                              'jcs-insert-cobol-template)
 
   ;; Normal
   (define-key cobol-mode-map (kbd "C-d") #'jcs-kill-whole-line)

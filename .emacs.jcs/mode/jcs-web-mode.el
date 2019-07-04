@@ -62,14 +62,13 @@
   (jcs-make-electric-pair-pairs-local '((?\' . ?\')))
   (jcs-make-electric-pair-pairs-local '((?\" . ?\")))
 
-  (cond ((file-exists-p buffer-file-name) t)
-        ((or (string-match "[.]html" buffer-file-name)
-             (string-match "[.]asp" buffer-file-name)
-             (string-match "[.]as[cp]x" buffer-file-name))
-         (jcs-insert-header-if-empty 'jcs-insert-html-template))
-        ((string-match "[.]php" buffer-file-name)
-         (jcs-insert-header-if-empty 'jcs-insert-php-template))
-        )
+  ;; File Header
+  (jcs-insert-header-if-valid '("[.]html"
+                                "[.]asp"
+                                "[.]as[cp]x")
+                              'jcs-insert-html-template)
+  (jcs-insert-header-if-valid '("[.]php")
+                              'jcs-insert-php-template)
 
   ;; Normal
   (define-key web-mode-map (kbd "C-d") #'jcs-web-kill-whole-line)

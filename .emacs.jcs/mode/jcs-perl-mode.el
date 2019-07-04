@@ -14,11 +14,9 @@
 
   (modify-syntax-entry ?_ "w")
 
-  (when buffer-file-name
-    (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]pl" buffer-file-name)
-           (jcs-insert-header-if-empty 'jcs-insert-perl-template))
-          ))
+  ;; File Header
+  (jcs-insert-header-if-valid '("[.]pl")
+                              'jcs-insert-perl-template)
 
   ;; Normal
   (define-key perl-mode-map (kbd "C-d") #'jcs-kill-whole-line)

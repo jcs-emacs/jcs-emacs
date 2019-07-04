@@ -13,11 +13,9 @@
   (goto-address-mode 1)
   (auto-highlight-symbol-mode t)
 
-  (when buffer-file-name
-    (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]hs" buffer-file-name)
-           (jcs-insert-header-if-empty 'jcs-insert-haskell-template))
-          ))
+  ;; File Header
+  (jcs-insert-header-if-valid '("[.]hs")
+                              'jcs-insert-haskell-template)
 
   )
 (add-hook 'haskell-mode-hook 'jcs-haskell-mode-hook)

@@ -13,13 +13,12 @@
   (goto-address-mode 1)
   (auto-highlight-symbol-mode t)
 
-  (when buffer-file-name
-    (cond ((file-exists-p buffer-file-name) t)
-          ((or (string-match "[.]vim" buffer-file-name)
-               (string-match "[.]vimrc" buffer-file-name)
-               (string-match "_vimrc" buffer-file-name))
-           (jcs-insert-header-if-empty 'jcs-insert-vimscript-template))
-          ))
+
+  ;; File Header
+  (jcs-insert-header-if-valid '("[.]vim"
+                                "[.]vimrc"
+                                "_vimrc")
+                              'jcs-insert-vimscript-template)
 
   ;; Normal
   (define-key vimrc-mode-map (kbd "C-d") #'jcs-kill-whole-line)

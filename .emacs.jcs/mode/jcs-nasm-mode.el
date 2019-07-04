@@ -17,12 +17,10 @@
 
   (modify-syntax-entry ?_ "w")
 
-  (when buffer-file-name
-    (cond ((file-exists-p buffer-file-name) t)
-          ((or (string-match "[.]asm" buffer-file-name)
-               (string-match "[.]inc" buffer-file-name))
-           (jcs-insert-header-if-empty 'jcs-insert-asm-template))
-          ))
+  ;; File Header
+  (jcs-insert-header-if-valid '("[.]asm"
+                                "[.]inc")
+                              'jcs-insert-asm-template)
 
   ;; Normal
   (define-key nasm-mode-map (kbd "C-d") #'jcs-kill-whole-line)

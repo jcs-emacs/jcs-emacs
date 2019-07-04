@@ -20,11 +20,10 @@
   ;; NOTE: Default is set to 8 for some reason.
   (setq-local tab-width 4)
 
-  (when buffer-file-name
-    (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]py" buffer-file-name)
-           (jcs-insert-header-if-empty 'jcs-ask-python-template t))
-          ))
+  ;; File Header
+  (jcs-insert-header-if-valid '("[.]py")
+                              'jcs-ask-python-template
+                              t)
 
   ;; Normal
   (define-key python-mode-map (kbd "C-d") #'jcs-kill-whole-line)

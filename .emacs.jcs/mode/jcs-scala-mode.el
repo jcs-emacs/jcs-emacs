@@ -13,11 +13,9 @@
   (goto-address-mode 1)
   (auto-highlight-symbol-mode t)
 
-  (when buffer-file-name
-    (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]scala" buffer-file-name)
-           (jcs-insert-header-if-empty 'jcs-insert-scala-template))
-          ))
+  ;; File Header
+  (jcs-insert-header-if-valid '("[.]scala")
+                              'jcs-insert-scala-template)
 
   ;; Normal
 

@@ -16,13 +16,10 @@
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
 
-  (when buffer-file-name
-    (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]java" buffer-file-name)
-           (progn
-             (jcs-java-insert-package-from-src)
-             (jcs-insert-header-if-empty 'jcs-insert-java-template)))
-          ))
+
+  ;; File Header
+  (jcs-insert-header-if-valid '("[.]java")
+                              'jcs-insert-java-template)
 
   ;; Normal
   (define-key java-mode-map (kbd "C-d") #'jcs-kill-whole-line)

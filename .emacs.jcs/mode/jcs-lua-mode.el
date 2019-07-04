@@ -16,12 +16,10 @@
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
 
-  (when buffer-file-name
-    (cond ((file-exists-p buffer-file-name) t)
-          ((or (string-match "[.]lua" buffer-file-name)
-               (string-match "[.]luac" buffer-file-name))
-           (jcs-insert-header-if-empty 'jcs-insert-lua-template))
-          ))
+  ;; File Header
+  (jcs-insert-header-if-valid '("[.]lua"
+                                "[.]luac")
+                              'jcs-insert-lua-template)
 
   ;; Normal
   (define-key lua-mode-map (kbd "C-d") #'jcs-kill-whole-line)

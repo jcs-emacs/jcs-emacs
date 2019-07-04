@@ -16,11 +16,9 @@
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
 
-  (when buffer-file-name
-    (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]rb" buffer-file-name)
-           (jcs-insert-header-if-empty 'jcs-insert-ruby-template))
-          ))
+  ;; File Header
+  (jcs-insert-header-if-valid '("[.]rb")
+                              'jcs-insert-ruby-template)
 
   )
 (add-hook 'ruby-mode-hook 'jcs-ruby-mode-hook)

@@ -16,11 +16,9 @@
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
 
-  (when buffer-file-name
-    (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]gd" buffer-file-name)
-           (jcs-insert-header-if-empty 'jcs-insert-gdscript-template))
-          ))
+  ;; File Header
+  (jcs-insert-header-if-valid '("[.]gd")
+                              'jcs-insert-gdscript-template)
 
   ;; Normal
   (define-key gdscript-mode-map (kbd "C-d") #'jcs-kill-whole-line)

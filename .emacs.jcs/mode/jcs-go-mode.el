@@ -13,11 +13,9 @@
   (goto-address-mode 1)
   (auto-highlight-symbol-mode t)
 
-  (when buffer-file-name
-    (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]go" buffer-file-name)
-           (jcs-insert-header-if-empty 'jcs-insert-go-template))
-          ))
+  ;; File Header
+  (jcs-insert-header-if-valid '("[.]go")
+                              'jcs-insert-go-template)
 
   ;; Normal
   (define-key go-mode-map (kbd "C-d") #'jcs-kill-whole-line)

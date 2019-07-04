@@ -16,11 +16,9 @@
   (goto-address-mode 1)
   (auto-highlight-symbol-mode t)
 
-  (when buffer-file-name
-    (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "CMakeLists.txt" buffer-file-name)
-           (jcs-insert-header-if-empty 'jcs-insert-cmake-template))
-          ))
+  ;; File Header
+  (jcs-insert-header-if-valid '("CMakeLists.txt")
+                              'jcs-insert-cmake-template)
 
   ;; Normal
   (define-key cmake-mode-map (kbd "<up>") #'jcs-py-indent-up)

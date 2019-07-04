@@ -16,11 +16,9 @@
 
   (modify-syntax-entry ?_ "w")
 
-  (when buffer-file-name
-    (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]cs" buffer-file-name)
-           (jcs-insert-header-if-empty 'jcs-insert-csharp-template))
-          ))
+  ;; File Header
+  (jcs-insert-header-if-valid '("[.]cs")
+                              'jcs-insert-csharp-template)
 
   ;; Normal
   (define-key csharp-mode-map (kbd "C-d") #'jcs-kill-whole-line)

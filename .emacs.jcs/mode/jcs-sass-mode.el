@@ -12,11 +12,9 @@
   (goto-address-mode 1)
   (auto-highlight-symbol-mode t)
 
-  (when buffer-file-name
-    (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]sass" buffer-file-name)
-           (jcs-insert-header-if-empty 'jcs-insert-sass-template))
-          ))
+  ;; File Header
+  (jcs-insert-header-if-valid '("[.]sass")
+                              'jcs-insert-sass-template)
 
   ;; Normal
   (define-key ssass-mode-map (kbd "C-d") #'jcs-kill-whole-line)

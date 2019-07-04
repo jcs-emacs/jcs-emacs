@@ -68,13 +68,13 @@ FILEPATH : file path to insert and swap keyword."
 ;; File Header Insertion
 ;;---------------------------------------------
 
-(defun jcs-insert-header-if-valid (ext-lst insert-func)
+(defun jcs-insert-header-if-valid (ext-lst insert-func &optional ci)
   "Insert the header if certain conditions met.
-If one of the EXT-LST, we execute INSERT-FUNC then."
+If one of the EXT-LST, we execute INSERT-FUNC then, CI means `call-interactively'."
   (when (and buffer-file-name
              (not (file-exists-p buffer-file-name))
              (jcs-is-contain-list-string-regexp ext-lst buffer-file-name))
-    (jcs-insert-header-if-empty insert-func)))
+    (jcs-insert-header-if-empty insert-func ci)))
 
 (defun jcs-insert-header-if-empty (insert-func &optional ci)
   "Execute INSERT-FUNC if empty, CI means `call-interactively'."

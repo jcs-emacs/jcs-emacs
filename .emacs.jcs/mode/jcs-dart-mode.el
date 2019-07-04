@@ -16,11 +16,9 @@
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
 
-  (when buffer-file-name
-    (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]dart" buffer-file-name)
-           (jcs-insert-header-if-empty 'jcs-insert-dart-template))
-          ))
+  ;; File Header
+  (jcs-insert-header-if-valid '("[.]dart")
+                              'jcs-insert-dart-template)
 
   ;; Normal
   (define-key dart-mode-map (kbd "C-d") #'jcs-kill-whole-line)

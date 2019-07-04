@@ -16,12 +16,11 @@
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
 
-  (when buffer-file-name
-    (cond ((file-exists-p buffer-file-name) t)
-          ((or (string-match "[.]ex" buffer-file-name)
-               (string-match "[.]exs" buffer-file-name))
-           (jcs-insert-header-if-empty 'jcs-insert-elixir-template))
-          ))
+
+  ;; File Header
+  (jcs-insert-header-if-valid '("[.]ex"
+                                "[.]exs")
+                              'jcs-insert-elixir-template)
 
   )
 (add-hook 'elixir-mode-hook 'jcs-elixir-mode-hook)

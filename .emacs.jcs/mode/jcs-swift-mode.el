@@ -16,11 +16,9 @@
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
 
-  (when buffer-file-name
-    (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]swift" buffer-file-name)
-           (jcs-insert-header-if-empty 'jcs-insert-swift-template))
-          ))
+  ;; File Header
+  (jcs-insert-header-if-valid '("[.]swift")
+                              'jcs-insert-swift-template)
 
   ;; Normal
   (define-key swift-mode-map "\ek" #'jcs-maybe-kill-this-buffer)

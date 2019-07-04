@@ -19,11 +19,9 @@
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
 
-  (when buffer-file-name
-    (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]js" buffer-file-name)
-           (jcs-insert-header-if-empty 'jcs-insert-js-template))
-          ))
+  ;; File Header
+  (jcs-insert-header-if-valid '("[.]js")
+                              'jcs-insert-js-template)
 
   ;; Normal
   (define-key js2-mode-map (kbd "C-d") #'jcs-kill-whole-line)

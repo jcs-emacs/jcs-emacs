@@ -16,11 +16,9 @@
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
 
-  (when buffer-file-name
-    (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]pas" buffer-file-name)
-           (jcs-insert-header-if-empty 'jcs-insert-pascal-template))
-          ))
+  ;; File Header
+  (jcs-insert-header-if-valid '("[.]pas")
+                              'jcs-insert-pascal-template)
 
   ;; Normal
   (define-key pascal-mode-map (kbd "C-d") #'jcs-kill-whole-line)

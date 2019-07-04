@@ -10,10 +10,11 @@
 
 (defun jcs-json-format()
   "Format for json file."
-  (when (jcs-is-current-file-empty-p)
-    ;; empty, cause json should only take data.
-    ;; Comment will be treat as a data too...
-    ))
+  ;; Empty, cause json should only take data. Even comments will
+  ;; be treat as a data too...
+  ;;
+  ;; TODO: Might add it later?
+  )
 
 
 (defun jcs-json-mode-hook ()
@@ -29,10 +30,10 @@
   (goto-address-mode 1)
   (auto-highlight-symbol-mode t)
 
-  (when buffer-file-name
-    (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]json" buffer-file-name) (jcs-json-format))
-          ))
+
+  ;; File Header
+  (jcs-insert-header-if-valid '("[.]json")
+                              'jcs-json-format)
 
   ;; Normal
   (define-key json-mode-map (kbd "C-d") #'jcs-kill-whole-line)

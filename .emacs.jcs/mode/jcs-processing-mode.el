@@ -27,11 +27,9 @@
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
 
-  (when buffer-file-name
-    (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]pde" buffer-file-name)
-           (jcs-insert-header-if-empty 'jcs-insert-processing-template))
-          ))
+  ;; File Header
+  (jcs-insert-header-if-valid '("[.]pde")
+                              'jcs-insert-processing-template)
 
   ;; Normal
   (define-key processing-mode-map (kbd "C-d") #'jcs-kill-whole-line)
