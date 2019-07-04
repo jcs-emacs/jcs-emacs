@@ -7,12 +7,14 @@
         end-of-buffer
         jcs-backward-delete-word
         jcs-backward-kill-word-capital
+        jcs-backward-word-capital
         jcs-beginning-of-line
         jcs-downcase-word-or-region
         jcs-electric-backspace
         jcs-end-of-line
         jcs-forward-delete-word
         jcs-forward-kill-word-capital
+        jcs-forward-word-capital
         jcs-mark-whole-buffer
         jcs-move-backward-comma
         jcs-move-backward-open-sqrParen
@@ -22,6 +24,8 @@
         jcs-previous-line
         jcs-py-indent-down
         jcs-py-indent-up
+        jcs-smart-backward-word
+        jcs-smart-forward-word
         jcs-smart-indent-down
         jcs-smart-indent-up
         jcs-upcase-word-or-region
