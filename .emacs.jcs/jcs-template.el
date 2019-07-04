@@ -64,6 +64,25 @@ FILEPATH : file path to insert and swap keyword."
 FILEPATH : file path to insert and swap keyword."
   (insert (jcs-get-template-by-file-path filePath)))
 
+;;---------------------------------------------
+;; File Header Insertion
+;;---------------------------------------------
+
+(defun jcs-insert-header-if-valid (ext-lst insert-func)
+  "Insert the header if certain conditions met.
+If one of the EXT-LST, we execute INSERT-FUNC then."
+  (when (and buffer-file-name
+             (not (file-exists-p buffer-file-name))
+             (jcs-is-contain-list-string-regexp ext-lst buffer-file-name))
+    (jcs-insert-header-if-empty insert-func)))
+
+(defun jcs-insert-header-if-empty (insert-func &optional ci)
+  "Execute INSERT-FUNC if empty, CI means `call-interactively'."
+  (when (jcs-is-current-file-empty-p)
+    (if ci
+        (call-interactively insert-func)
+      (funcall insert-func))
+    (goto-char (point-min))))
 
 ;;---------------------------------------------
 ;; Buffer String
