@@ -503,7 +503,8 @@
   (advice-add 'show-eol-enable :before #'jcs-advice-show-eol-enable-before)
 
   (defun jcs-advice-show-eol-disable-before ()
-    "Advice before execute `show-eol-disable' command."
+    "Advice before execute `show-eol-disable' command."
+
     (face-remap-add-relative 'whitespace-newline :inverse-video nil))
   (advice-add 'show-eol-disable :before #'jcs-advice-show-eol-disable-before))
 
@@ -511,7 +512,8 @@
 (use-package sql-indent
   :defer t
   :config
-  ;; URL: https://www.emacswiki.org/emacs/SqlIndent
+  ;; URL: https://www.emacswiki.org/emacs/SqlIndent
+
   ;; 1 = 2 spaces,
   ;; 2 = 4 spaces,
   ;; 3 = 6 spaces,
@@ -695,8 +697,8 @@
 
   ;; Syntax Highlighting
   (set-face-attribute 'web-mode-doctype-face nil :foreground "Pink3")
-  (set-face-attribute 'web-mode-block-comment-face nil :foreground (face-foreground jcs-font-lock-comment-face))
-  (set-face-attribute 'web-mode-comment-face nil :foreground (face-foreground jcs-font-lock-comment-face))
+  (set-face-attribute 'web-mode-block-comment-face nil :foreground (face-foreground font-lock-comment-face))
+  (set-face-attribute 'web-mode-comment-face nil :foreground (face-foreground font-lock-comment-face))
   (set-face-attribute 'web-mode-css-property-name-face nil :foreground (face-foreground jcs-css-type-face)))
 
 
