@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: jcs-unity-hiia
+# key: jcs-unity-hiia
+# --
+[HideInInspector]$0
