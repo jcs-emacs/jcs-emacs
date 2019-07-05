@@ -687,15 +687,15 @@ TYPE : enable/disable case sensitive?"
     (jcs-walk-through-all-windows-once)))
 
 ;;----------------------------------------------
-;; Tabbar Mode
+;; Tab Bar
 
 ;;;###autoload
 (defun jcs-toggle-tabbar-mode ()
-  "Toggle `tabbar-mode'."
+  "Toggle tab bar."
   (interactive)
-  (if tabbar-mode
-      (tabbar-mode 0)
-    (tabbar-mode 1))
+  (if centaur-tabs-mode
+      (centaur-tabs-mode -1)
+    (centaur-tabs-mode 1))
   ;; Loop through all window so all windows take effect.
   (jcs-buffer-visible-list))
 
