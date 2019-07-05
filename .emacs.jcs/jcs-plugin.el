@@ -28,6 +28,15 @@
                       :underline nil))
 
 
+(use-package centaur-tabs
+  :defer t
+  :init
+  (setq centaur-tabs-set-icons nil)
+  (setq centaur-tabs-style "wave")
+  (setq centaur-tabs-set-modified-marker t)
+  (setq centaur-tabs-modified-marker "*"))
+
+
 (use-package company
   :defer t
   :config
@@ -75,6 +84,12 @@
   (setq company-quickhelp-color-background "#FFF08A")
   (with-eval-after-load 'company
     (company-quickhelp-mode t)))
+
+(use-package company-statistics
+  :defer t
+  :init
+  (with-eval-after-load 'company
+    (company-statistics-mode 1)))
 
 
 (use-package dashboard
@@ -578,13 +593,6 @@
     (setq sublimity-scroll-weight 2         ; [Default : 2]
           sublimity-scroll-drift-length 2)  ; [Default : 2]
     ))
-
-
-(use-package tabbar
-  :defer t
-  :config
-  ;; Turn-off `tabbar-mode' as default.
-  (tabbar-mode 0))
 
 
 (use-package undo-tree
