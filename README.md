@@ -323,7 +323,7 @@ and
 * *Syntax Check* - powered by 
 [flycheck](http://www.flycheck.org/en/latest/).
 * *Tab Bar* - powered by 
-[tabber](https://github.com/dholm/tabbar).
+[centaur-tabs](https://github.com/ema2159/centaur-tabs).
 * ~~*Tags* - powered by 
 [gtags](https://www.gnu.org/software/global/).~~
 * *Text Editing* - powered by 
