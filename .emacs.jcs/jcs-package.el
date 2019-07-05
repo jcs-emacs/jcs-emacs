@@ -40,6 +40,7 @@
     beacon
     basic-mode
     buffer-move
+    centaur-tabs
     clojure-mode
     cmake-font-lock
     cmake-mode
@@ -47,6 +48,7 @@
     com-css-sort
     company
     company-quickhelp
+    company-statistics
     csharp-mode
     dart-mode
     dash
@@ -120,7 +122,6 @@
     sublimity
     sql-indent
     swift-mode
-    tabbar
     togetherly
     typescript-mode
     undo-tree
