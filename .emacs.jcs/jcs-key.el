@@ -426,8 +426,8 @@
 
 ;;; Tab Bar
 (define-key global-map (kbd "C-t") #'jcs-toggle-tabbar-mode)
-(define-key global-map [C-S-tab] #'tabbar-forward)
-(define-key global-map [C-tab] #'tabbar-backward)
+(define-key global-map [C-S-tab] #'centaur-tabs-backward)
+(define-key global-map [C-tab] #'centaur-tabs-forward)
 
 ;;; Text Scale
 (define-key global-map (kbd "C-=") #'jcs-text-scale-increase)
