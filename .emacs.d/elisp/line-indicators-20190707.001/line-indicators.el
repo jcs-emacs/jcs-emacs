@@ -299,7 +299,7 @@ LENGTH : deletion length."
                   (not (= delta-line-count 0)))
           (line-indicators-remove-lines-out-range-once)
 
-          ;; NOTE(jenchieh): Deletion..
+          ;; NOTE: Deletion..
           (when is-deleting-line
             (let ((current-linum begin-linum)
                   (record-last-linum begin-linum)
@@ -358,7 +358,7 @@ LENGTH : deletion length."
                 (forward-line 1)
                 (setq current-linum (line-number-at-pos))
 
-                ;; NOTE(jenchieh): Check if we need to terminate this loop?
+                ;; NOTE: Check if we need to terminate this loop?
                 (when (or
                        ;; Check if still the same as last line.
                        (= current-linum record-last-linum)

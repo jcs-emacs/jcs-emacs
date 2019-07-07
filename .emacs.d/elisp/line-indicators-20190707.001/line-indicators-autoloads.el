@@ -4,7 +4,7 @@
 
 
 ;;;### (autoloads nil "line-indicators" "line-indicators.el" (23841
-;;;;;;  50782 0 0))
+;;;;;;  62468 0 0))
 ;;; Generated autoloads from line-indicators.el
 
 (autoload 'line-indicators-transfer-to-saved-lines "line-indicators" "\
