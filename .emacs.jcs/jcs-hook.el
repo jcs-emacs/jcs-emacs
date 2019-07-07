@@ -59,7 +59,6 @@
     (require 'hl-line)
     (require 'hl-todo)
     (require 'indent-info)
-    (require 'line-reminder)
     (require 'powerline)
     (require 'preproc-font-lock)
     (require 'region-occurrences-highlighter)
@@ -96,8 +95,6 @@
     (global-hl-todo-mode 1)
     ;;-------------------------------- `indent-info'
     (global-indent-info-mode +1)
-    ;;-------------------------------- `line-reminder'
-    (global-line-reminder-mode t)
     ;;-------------------------------- `powerline'
     (powerline-default-theme)
     ;;-------------------------------- `preproc-font-lock'
