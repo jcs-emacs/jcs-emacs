@@ -316,17 +316,17 @@ LST-PR: List of pair."
 
 ;;;###autoload
 (defun jcs-active-line-numbers-by-mode ()
-  "Active line number by mode.
-G : Active line numbers globally."
+  "Active line number by mode."
   (interactive)
+  (require 'line-indicators)
   (if (or (minibufferp)
           (and (jcs-is-contain-list-string-regexp jcs-line-numbers-ignore-buffers (buffer-name))
                (not (jcs-is-contain-list-string jcs-line-numbers-ignore-buffer-exceptions (buffer-name))))
           (jcs-is-contain-list-string jcs-line-numbers-ignore-modes (symbol-name major-mode)))
       (progn
-        (line-indicators-mode -1)
+        (when line-indicators-mode (line-indicators-mode -1))
         (display-line-numbers-mode -1))
-    (line-indicators-mode 1)
+    (unless line-indicators-mode (line-indicators-mode 1))
     (display-line-numbers-mode 1)))
 
 ;;----------------------------------------------
