@@ -23,6 +23,7 @@
 
       (insert "{ }")
       (backward-char 1)
+      (indent-for-tab-command)
 
       (when pretty-it
         (save-excursion
