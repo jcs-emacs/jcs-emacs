@@ -85,6 +85,7 @@
     hl-todo
     htmltagwrap
     indent-info
+    indicators
     ini-mode
     isearch-project
     javadoc-lookup
