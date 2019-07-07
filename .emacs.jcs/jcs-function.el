@@ -296,11 +296,6 @@ LST-PR: List of pair."
 ;;---------------------------------------------
 ;; Line Numbers
 
-(defun jcs-display-line-numbers-mode-exists-p ()
-  "Return nil, `display-line-numbers-mode' does not exists in current Emacs version.
-Return non-nil, `display-line-numbers-mode' does exists in current Emacs version."
-  (version<= "26.0.50" emacs-version))
-
 ;;;###autoload
 (defun jcs-reset-line-number-color-by-theme ()
   "Reset the line numbers color base on the theme."
@@ -308,13 +303,8 @@ Return non-nil, `display-line-numbers-mode' does exists in current Emacs version
   (let ((ln-light-theme-color "#2B91AF")
         (ln-dark-theme-color "#B3B3B3"))
     (if (jcs-is-light-color (face-background 'default))
-        (progn
-          (when (jcs-display-line-numbers-mode-exists-p)
-            (set-face-foreground 'line-number ln-light-theme-color))
-          (set-face-foreground 'linum ln-light-theme-color))
-      (when (jcs-display-line-numbers-mode-exists-p)
-        (set-face-foreground 'line-number ln-dark-theme-color))
-      (set-face-foreground 'linum ln-dark-theme-color))))
+        (set-face-foreground 'line-number ln-light-theme-color)
+      (set-face-foreground 'line-number ln-dark-theme-color))))
 
 ;;;###autoload
 (defun jcs-update-line-number-each-window ()
@@ -325,71 +315,7 @@ Return non-nil, `display-line-numbers-mode' does exists in current Emacs version
      (jcs-active-line-numbers-by-mode))))
 
 ;;;###autoload
-(defun jcs-display-line-numbers-mode (&optional act)
-  "Safe enable/disable `display-line-numbers-mode'.
-If non-nil, safe active `display-line-numbers-mode'."
-  (interactive)
-  (unless act
-    (if act (setq act 1) (setq act -1)))
-  (when (jcs-display-line-numbers-mode-exists-p)
-    (display-line-numbers-mode act)))
-
-;;;###autoload
-(defun jcs-global-display-line-numbers-mode (&optional act)
-  "Safe enable/disable `global-display-line-numbers-mode'.
-If non-nil, safe active `global-display-line-numbers-mode'."
-  (interactive)
-  (unless act
-    (if act (setq act 1) (setq act -1)))
-  (when (jcs-display-line-numbers-mode-exists-p)
-    (global-display-line-numbers-mode act)))
-
-;;;###autoload
-(defun jcs-active-line-numbers-by-version (&optional act g)
-  "Active line number by Emacs version.
-Basically decide between `linum-mode' and `display-line-numbers-mode'.
-If one is activated, the other one will be deactivated.
-
-ACT : 1 => `display-line-numbers-mode'
-     -1 => `linum-mode'.
-G : Active line numbers globally."
-  (interactive)
-  (unless act
-    (if act (setq act 1) (setq act -1)))
-  ;; Flag confirm line number activated.
-  (if (jcs-display-line-numbers-mode-exists-p)
-      (progn
-        (if g
-            (if (= act 1)
-                (progn
-                  (jcs-global-display-line-numbers-mode 1)
-                  (global-linum-mode -1))
-              (jcs-global-display-line-numbers-mode -1)
-              (global-linum-mode 1))
-          (if (= act 1)
-              (progn
-                (jcs-display-line-numbers-mode 1)
-                (linum-mode -1))
-            (jcs-display-line-numbers-mode -1)
-            (linum-mode 1))))
-    ;; If `display-line-numbers-mode' does not exists,
-    ;; ue `linum-mode' instead.
-    (linum-mode act)))
-
-;;;###autoload
-(defun jcs-deactive-line-numbers-modes (&optional g)
-  "Deactive all line numbers modes.
-G : Deactive line numbers globally."
-  (interactive)
-  (if g
-      (progn
-        (jcs-global-display-line-numbers-mode -1)
-        (global-linum-mode 1))
-    (jcs-display-line-numbers-mode -1)
-    (linum-mode -1)))
-
-;;;###autoload
-(defun jcs-active-line-numbers-by-mode (&optional g)
+(defun jcs-active-line-numbers-by-mode ()
   "Active line number by mode.
 G : Active line numbers globally."
   (interactive)
@@ -397,16 +323,11 @@ G : Active line numbers globally."
           (and (jcs-is-contain-list-string-regexp jcs-line-numbers-ignore-buffers (buffer-name))
                (not (jcs-is-contain-list-string jcs-line-numbers-ignore-buffer-exceptions (buffer-name))))
           (jcs-is-contain-list-string jcs-line-numbers-ignore-modes (symbol-name major-mode)))
-      ;; Don't use line numbers at all.
-      (jcs-deactive-line-numbers-modes)
-    (if (and (functionp 'line-reminder-is-valid-line-reminder-situation)
-             (line-reminder-is-valid-line-reminder-situation))
-        ;; Use `linum' as default.
-        (jcs-active-line-numbers-by-version -1 g)
-      ;; Active `display-line-numbers-mode', if Emacs version
-      ;; does not have `display-line-numbers-mode' use `linum'
-      ;; instead then.
-      (jcs-active-line-numbers-by-version 1 g))))
+      (progn
+        (line-indicators-mode -1)
+        (display-line-numbers-mode -1))
+    (line-indicators-mode 1)
+    (display-line-numbers-mode 1)))
 
 ;;----------------------------------------------
 ;; Minimap
@@ -709,12 +630,12 @@ VEC : Either position or negative number."
   ;; `text-scale-decrease' ruin the margin of the
   ;; `linum-mode'. Disable it before ruining it, to
   ;; avoid the bug.
-  (jcs-deactive-line-numbers-modes)
+  (display-line-numbers-mode -1)
   (if (jcs-is-positive vec)
       (call-interactively #'text-scale-increase)
     (call-interactively #'text-scale-decrease))
   ;; Renable line number mode.
-  (jcs-active-line-numbers-by-mode))
+  (display-line-numbers-mode 1))
 
 ;;;###autoload
 (defun jcs-text-scale-increase ()
