@@ -267,7 +267,7 @@ maintainer you want.
 * *Highlight Same Region* - powered by 
 [region-occurrences-highlighter](https://github.com/alvarogonzalezsotillo/region-occurrences-highlighter).
 * *Line Annotation* - powered by 
-[line-reminder](https://github.com/elpa-host/line-reminder).
+[line-indicators](https://github.com/jcs090218/line-indicators).
 * *Line Numbers* - powered by 
 [display-line-numbers](https://github.com/emacs-mirror/emacs/blob/master/lisp/display-line-numbers.el)
 and 
