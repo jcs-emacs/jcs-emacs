@@ -138,6 +138,8 @@
   (with-eval-after-load 'helm-mode (diminish 'helm-mode))
   (with-eval-after-load 'highlight-indent-guides (diminish 'highlight-indent-guides-mode))
   (with-eval-after-load 'impatient-mode (diminish 'impatient-mode))
+  (with-eval-after-load 'line-indicators (diminish 'line-indicators-mode))
+  (with-eval-after-load 'indicators (diminish 'indicators-mode))
   (diminish 'outline-minor-mode)
   (diminish 'overwrite-mode)
   (with-eval-after-load 'page-break-lines (diminish 'page-break-lines-mode))
