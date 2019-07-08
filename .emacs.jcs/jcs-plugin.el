@@ -349,7 +349,7 @@
 (use-package line-reminder
   :defer t
   :init
-  (setq line-reminder-show-option 'indicators))
+  (setq line-reminder-show-option (if (display-graphic-p) 'indicators 'linum)))
 
 
 (use-package multiple-cursors

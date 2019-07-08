@@ -326,9 +326,13 @@ LST-PR: List of pair."
           (jcs-is-contain-list-string jcs-line-numbers-ignore-modes (symbol-name major-mode)))
       (progn
         (when line-reminder-mode (line-reminder-mode -1))
-        (display-line-numbers-mode -1))
+        (if (display-graphic-p)
+            (display-line-numbers-mode -1)
+          (linum-mode -1)))
     (unless line-reminder-mode (line-reminder-mode 1))
-    (display-line-numbers-mode 1)))
+    (if (display-graphic-p)
+        (display-line-numbers-mode 1)
+      (linum-mode 1))))
 
 ;;----------------------------------------------
 ;; Minimap
