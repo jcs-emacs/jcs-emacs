@@ -253,7 +253,9 @@ END : end region."
 
   (let ((line-reminder--change-lines)
         (line-reminder--saved-lines))
-    (funcall fn start end)))
+    (funcall fn start end))
+
+  (line-reminder--mark-buffer))
 
 ;;;###autoload
 (defun jcs-toggle-comment-on-line ()
