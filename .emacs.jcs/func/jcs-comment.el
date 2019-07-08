@@ -246,13 +246,13 @@ END : end region."
             (goto-char re))
           (if (= (line-number-at-pos) rel)
               (unless (jcs-is-infront-first-char-at-line-p)
-                (push (line-number-at-pos) line-indicators-change-lines))
-            (push (line-number-at-pos) line-indicators-change-lines)))
+                (push (line-number-at-pos) line-reminder--change-lines))
+            (push (line-number-at-pos) line-reminder--change-lines)))
         (next-line 1)
         (beginning-of-line))))
 
-  (let ((line-indicators-change-lines)
-        (line-indicators-saved-lines))
+  (let ((line-reminder--change-lines)
+        (line-reminder--saved-lines))
     (funcall fn start end)))
 
 ;;;###autoload
