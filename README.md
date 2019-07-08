@@ -269,9 +269,7 @@ maintainer you want.
 * *Line Annotation* - powered by 
 [line-indicators](https://github.com/jcs090218/line-indicators).
 * *Line Numbers* - powered by 
-[display-line-numbers](https://github.com/emacs-mirror/emacs/blob/master/lisp/display-line-numbers.el)
-and 
-[linum](https://github.com/emacs-mirror/emacs/blob/master/lisp/linum.el).
+[display-line-numbers](https://github.com/emacs-mirror/emacs/blob/master/lisp/display-line-numbers.el).
 * *Minimap* - powered by 
 [sublimity](https://github.com/zk-phi/sublimity).
 * *Mode Line* - powered by 
