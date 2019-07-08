@@ -318,15 +318,15 @@ LST-PR: List of pair."
 (defun jcs-active-line-numbers-by-mode ()
   "Active line number by mode."
   (interactive)
-  (require 'line-indicators)
+  (require 'line-reminder)
   (if (or (minibufferp)
           (and (jcs-is-contain-list-string-regexp jcs-line-numbers-ignore-buffers (buffer-name))
                (not (jcs-is-contain-list-string jcs-line-numbers-ignore-buffer-exceptions (buffer-name))))
           (jcs-is-contain-list-string jcs-line-numbers-ignore-modes (symbol-name major-mode)))
       (progn
-        (when line-indicators-mode (line-indicators-mode -1))
+        (when line-reminder-mode (line-reminder-mode -1))
         (display-line-numbers-mode -1))
-    (unless line-indicators-mode (line-indicators-mode 1))
+    (unless line-reminder-mode (line-reminder-mode 1))
     (display-line-numbers-mode 1)))
 
 ;;----------------------------------------------

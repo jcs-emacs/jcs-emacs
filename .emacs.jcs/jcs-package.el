@@ -91,6 +91,7 @@
     javadoc-lookup
     js2-mode
     json-mode
+    line-reminder
     lua-mode
     magit
     markdown-mode
@@ -233,7 +234,6 @@
 (defconst jcs-package-manually-install-list
   '("~/.emacs.d/elisp/jayces-mode-20190620.001/"
     "~/.emacs.d/elisp/jcs-ex-pkg-20190326.001/"
-    "~/.emacs.d/elisp/line-indicators-20190707.001/"
     "~/.emacs.d/elisp/reload-emacs-20190326.001/"
     "~/.emacs.d/elisp/shift-select-20190423.001/")
   "List of package that you want to manually installed.")
