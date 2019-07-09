@@ -46,6 +46,16 @@
       (insert " "))))
 
 ;;;###autoload
+(defun jcs-vs-sharp-key ()
+  "For programming language that use # as the preprocessor."
+  (interactive)
+  (insert "#")
+  (backward-char 1)
+  (when (jcs-is-infront-first-char-at-line-p)
+    (kill-region (line-beginning-position) (point)))
+  (forward-char 1))
+
+;;;###autoload
 (defun jcs-own-delete-backward-char ()
   "This isn't the VS like key action, is more likely to be users own preferences."
   (interactive)
