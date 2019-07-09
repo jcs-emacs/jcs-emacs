@@ -228,7 +228,7 @@ maintainer you want.
 * *Abbreivation Definition* - powered by 
 [project-abbrev](https://github.com/elpa-host/project-abbrev).
 * *Alt-Codes* - powered by 
-[alt-codes](https://github.com/jcs090218/alt-codes).
+[alt-codes](https://github.com/elpa-host/alt-codes).
 * *Auto Completion* - powered by 
 [company](https://github.com/company-mode/company-mode).
 * *Auto Highlight Symbol* - powered by 
@@ -243,7 +243,7 @@ maintainer you want.
 [right-click-context](https://github.com/zonuexe/right-click-context).
 * *Docstring* - none, built-in to this configuration.
 * *End of Line* - powered by 
-[show-eol](https://github.com/jcs090218/show-eol).
+[show-eol](https://github.com/elpa-host/show-eol).
 * *Execute Commands* - powered by 
 [compile](https://www.emacswiki.org/emacs/CompilationMode).
 * *File Explorer* - powered by 
