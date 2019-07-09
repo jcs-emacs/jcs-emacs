@@ -8,7 +8,7 @@ config would have trouble dealing with large file.
 To resolve this issue I active the line numbers 
 depends on the mode and file type.
 
-**Edit:** The package [line-reminder](https://github.com/elpa-host/line-reminder)
+**[Edit 1]** The package [line-reminder](https://github.com/elpa-host/line-reminder)
 no longer depends on `linum` and can be use with 
 built in `display-line-numbers`. Hence the modding wouldn't 
 be that important anymore. Notice `indicators` only supports 
@@ -18,9 +18,9 @@ GUI version and not the terminal version so we only enabled
 
 #### Modes that use `linum`:
 * ~~Any file that are editable.~~
-* Emacs in terminal only.
+* Emacs in terminal only.  **[Edit 1]**
 
 #### Modes that use `display-line-numbers-mode`:
 * ~~Read-only file.~~
 * ~~Packages, Help, etc.~~
-* In GUI version of Emacs.
+* In GUI version of Emacs.  **[Edit 1]**
