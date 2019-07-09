@@ -34,6 +34,8 @@
   ;; Comement
   (define-key c-mode-map (kbd "C-c s") #'jcs-toggle-c-comment-style)
 
+  (define-key c-mode-map (kbd "#") #'jcs-vs-sharp-key)
+
   ;; Undo/Redo
   (define-key c-mode-map (kbd "C-z") #'jcs-undo)
   (define-key c-mode-map (kbd "C-y") #'jcs-redo)
