@@ -106,8 +106,14 @@
 (define-key global-map [C-next] #'scroll-other-window)
 (define-key global-map [C-prior] #'scroll-other-window-down)
 
-;;(define-key global-map (kbd "<backspace>") #'jcs-smart-backspace)
-;;(define-key global-map (kbd "<delete>") #'jcs-smart-delete)
+(define-key prog-mode-map (kbd "<backspace>") #'jcs-smart-backspace)
+(define-key global-map (kbd "S-<backspace>") #'jcs-real-backspace)
+
+(define-key global-map (kbd "<delete>") #'jcs-smart-delete)
+(define-key global-map (kbd "S-<delete>") #'jcs-real-delete)
+
+(define-key global-map (kbd "SPC") #'jcs-smart-space)
+(define-key global-map (kbd "S-SPC") #'jcs-real-space)
 
 (define-key global-map (kbd "C-c d") #'jcs-duplicate-line)
 (define-key global-map (kbd "C-d") #'jcs-kill-whole-line)
