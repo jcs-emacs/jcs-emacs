@@ -110,28 +110,6 @@ line instead of indent the whole file at once."
   (call-interactively #'newline)
   (py-indent-line-outmost))
 
-;;;###autoload
-(defun jcs-py-backspace ()
-  "Backspace key for `python-mode'. If the current cursor position
-is infront of the first character in the line we delete fource
-spaces instead of `py-electric-backspace'."
-  (interactive)
-  (if (jcs-is-infront-first-char-at-line-p)
-      (if (use-region-p)
-          (delete-region (region-beginning) (region-end))
-        (if (jcs-py-check-backward-delete-space)
-            (progn
-              ;; delete four spaces
-              (jcs-py-safe-backward-delete-char)
-              (jcs-py-safe-backward-delete-char)
-              (jcs-py-safe-backward-delete-char)
-              (jcs-py-safe-backward-delete-char))
-          (backward-delete-char 1)))
-    ;; OPTION: Default is the `py' version.
-    ;;(py-electric-backspace)
-    ;; OPTION: `jcs' version.
-    (jcs-electric-backspace)))
-
 
 (defun jcs-py-safe-backward-delete-char ()
   "Backward delete char safely in `python-mode'."
