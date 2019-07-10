@@ -4,11 +4,16 @@
 (setq mc/cmds-to-run-for-all
       '(
         beginning-of-buffer
+        c-electric-slash
+        electric-pair-delete-pair
         end-of-buffer
         jcs-backward-delete-word
         jcs-backward-kill-word-capital
         jcs-backward-word-capital
         jcs-beginning-of-line
+        jcs-c-comment-pair
+        jcs-csharp-smart-indent-down
+        jcs-csharp-smart-indent-up
         jcs-downcase-word-or-region
         jcs-electric-backspace
         jcs-end-of-line
@@ -24,22 +29,29 @@
         jcs-previous-line
         jcs-py-indent-down
         jcs-py-indent-up
+        jcs-smart-backward-delete-word
         jcs-smart-backward-word
+        jcs-smart-forward-delete-word
         jcs-smart-forward-word
         jcs-smart-indent-down
         jcs-smart-indent-up
         jcs-upcase-word-or-region
+        jcs-vs-csharp-maybe-insert-codedoc
         jcs-vs-cut-key
+        jcs-vs-front-curly-bracket-key
+        jcs-vs-sharp-key
         jcs-web-backward-delete-word
         jcs-web-backward-delete-word-capital
         kill-region
         org-force-self-insert
         org-self-insert-command
+        yas-expand
         ))
 
 (setq mc/cmds-to-run-once
       '(
         ace-window
+        feebleline-mode
         helm-M-x
         ignore
         indent-new-comment-line
