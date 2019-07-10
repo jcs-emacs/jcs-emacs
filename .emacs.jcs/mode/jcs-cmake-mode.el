@@ -29,13 +29,10 @@
   (define-key cmake-mode-map (kbd "C-c C-c") #'kill-ring-save)
 
   ;; tabify save key
-  (define-key cmake-mode-map "\C-s" #'jcs-tabify-save-buffer)
+  (define-key cmake-mode-map (kbd "C-s") #'jcs-tabify-save-buffer)
 
   ;; Edit
-  (define-key cmake-mode-map (kbd "SPC") #'jcs-py-space)
-  (define-key cmake-mode-map (kbd "S-SPC") #'jcs-py-real-space)
   (define-key cmake-mode-map (kbd "<backspace>") #'jcs-py-backspace)
-  (define-key cmake-mode-map (kbd "S-<backspace>") #'jcs-py-real-backspace)
   )
 (add-hook 'cmake-mode-hook 'jcs-cmake-mode-hook)
 

@@ -29,13 +29,10 @@
   (define-key makefile-mode-map (kbd "C-c C-c") #'kill-ring-save)
 
   ;; tabify save key
-  (define-key makefile-mode-map "\C-s" #'jcs-tabify-save-buffer)
+  (define-key makefile-mode-map (kbd "C-s") #'jcs-tabify-save-buffer)
 
   ;; Edit
-  (define-key makefile-mode-map (kbd "SPC") #'jcs-py-space)
-  (define-key makefile-mode-map (kbd "S-SPC") #'jcs-py-real-space)
   (define-key makefile-mode-map (kbd "<backspace>") #'jcs-py-backspace)
-  (define-key makefile-mode-map (kbd "S-<backspace>") #'jcs-py-real-backspace)
   )
 (add-hook 'makefile-mode-hook 'jcs-makefile-mode-hook)
 

@@ -40,10 +40,7 @@
   ;; Edit
   (define-key python-mode-map (kbd "<up>") #'jcs-py-indent-up)
   (define-key python-mode-map (kbd "<down>") #'jcs-py-indent-down)
-  (define-key python-mode-map (kbd "SPC") #'jcs-py-space)
-  (define-key python-mode-map (kbd "S-SPC") #'jcs-py-real-space)
   (define-key python-mode-map (kbd "<backspace>") #'jcs-py-backspace)
-  (define-key python-mode-map (kbd "S-<backspace>") #'jcs-py-real-backspace)
   (define-key python-mode-map (kbd "TAB") #'jcs-tab-key)
 
   (define-key python-mode-map (kbd "RET") #'jcs-py-return)
