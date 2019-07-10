@@ -184,6 +184,20 @@
     (exec-path-from-shell-initialize)))
 
 
+(use-package feebleline
+  :defer t
+  :config
+  (setq feebleline-msg-functions
+        '((feebleline-line-number :fmt "%4s" :post "")
+          (feebleline-column-number :pre " : " :fmt "%-2s")
+          (feebleline-file-directory :face feebleline-dir-face :post "")
+          (feebleline-file-or-buffer-name :face font-lock-keyword-face :post "")
+          (feebleline-file-modified-star :pre " " :face font-lock-warning-face :post "")
+          ;;(feebleline-git-branch :face feebleline-git-face :pre " : ")
+          (feebleline-project-name :pre " [" :align right :post "] ")
+          )))
+
+
 (use-package goto-char-preview
   :defer t
   :config
@@ -450,7 +464,7 @@
 
 (use-package reload-emacs
   :defer t
-  :init
+  :init
   (setq reload-emacs-load-path '("~/.emacs.jcs/"
                                  "~/.emacs.jcs/func/"
                                  "~/.emacs.jcs/mode/"))
