@@ -163,13 +163,32 @@ CBF : Current buffer file name."
     (call-interactively #'undo)))
 
 ;;---------------------------------------------
+;; Backspace
+
+;;;###autoload
+(defun jcs-real-backspace ()
+  "Just backspace a char."
+  (interactive)
+  (jcs-electric-backspace))
+
+;;;###autoload
+(defun jcs-smart-backspace ()
+  "Smart backspace."
+  (interactive)
+  (if (and (jcs-is-infront-first-char-at-line-p)
+           (not (jcs-is-beginning-of-line-p))
+           (not (use-region-p)))
+      (jcs-backward-delete-spaces-by-tab-width)
+    (jcs-real-backspace)))
+
+;;---------------------------------------------
 ;; Delete
 
 ;;;###autoload
 (defun jcs-real-delete ()
   "Just delete a char."
   (interactive)
-  (backward-delete-char -1))
+  (jcs-electric-delete))
 
 ;;;###autoload
 (defun jcs-smart-delete ()
@@ -178,25 +197,7 @@ CBF : Current buffer file name."
   (if (and (jcs-is-infront-first-char-at-line-p (1+ (point)))
            (not (jcs-is-end-of-line-p)))
       (jcs-forward-delete-spaces-by-tab-width)
-    (backward-delete-char -1)))
-
-;;---------------------------------------------
-;; Backspace
-
-;;;###autoload
-(defun jcs-real-backspace ()
-  "Just backspace a char."
-  (interactive)
-  (backward-delete-char 1))
-
-;;;###autoload
-(defun jcs-smart-backspace ()
-  "Smart backspace."
-  (interactive)
-  (if (and (jcs-is-infront-first-char-at-line-p)
-           (not (jcs-is-beginning-of-line-p)))
-      (jcs-backward-delete-spaces-by-tab-width)
-    (backward-delete-char 1)))
+    (jcs-real-delete)))
 
 ;;---------------------------------------------
 ;; Space
@@ -216,7 +217,7 @@ the space."
   (if (or (jcs-is-infront-first-char-at-line-p)
           (jcs-is-beginning-of-line-p))
       (jcs-insert-spaces-by-tab-width)
-    (insert " ")))
+    (jcs-real-space)))
 
 ;;---------------------------------------------
 ;; Return
@@ -1384,9 +1385,8 @@ REVERSE : t forward, nil backward."
     pair-char))
 
 
-(defun jcs-process-close-pair-char (cpc)
-  "Process the close pair character.
-CPC : close pair character."
+(defun jcs-forward-delete-close-pair-char (cpc)
+  "Forward delete close pair characters CPC."
   (when (and cpc
              (not (jcs-is-end-of-buffer-p)))
     (save-excursion
@@ -1394,9 +1394,17 @@ CPC : close pair character."
       (when (jcs-current-char-equal-p cpc)
         (backward-delete-char 1)))))
 
-(defun jcs-process-close-pair-char-seq (cc)
-  "Process close pair character sequence.
-CC : current character before character deletion occured."
+(defun jcs-backward-delete-open-pair-char (opc)
+  "Backward delete open pair characters OPC."
+  (when (and opc
+             (not (jcs-is-beginning-of-buffer-p)))
+    (save-excursion
+      (when (jcs-current-char-equal-p opc)
+        (backward-delete-char 1)))))
+
+(defun jcs-forward-delete-close-pair-char-seq (cc)
+  "Forward delete close pair characters in sequence.
+CC : Current character at position."
   (save-excursion
     (cond (;; Seq => /**/
            (string= cc "*")
@@ -1411,6 +1419,39 @@ CC : current character before character deletion occured."
                    (backward-delete-char 1)
                    (backward-delete-char 1)))))))))
 
+(defun jcs-backward-delete-open-pair-char-seq (cc)
+  "Backward delete open pair characters in sequence.
+CC : Current character at position."
+  (save-excursion
+    (cond (;; Seq => /**/
+           (string= cc "*")
+           (progn
+             (save-excursion
+               (backward-char 1)
+               (when (jcs-current-char-equal-p "/")
+                 (forward-char 1)
+                 (when (jcs-current-char-equal-p "*")
+                   (forward-char 1)
+                   (when (jcs-current-char-equal-p "/")
+                     ;; Found sequence, delete them!
+                     (backward-delete-char 1)
+                     (backward-delete-char 1)
+                     (backward-delete-char 1))))))))))
+
+;;;###autoload
+(defun jcs-electric-delete ()
+  "Electric delete key."
+  (interactive)
+  (let ((cc "")
+        (opc ""))
+    (save-excursion
+      (forward-char 1)
+      (setq cc (jcs-get-current-char-string)))
+    (setq opc (jcs-get-open-pair-char cc))
+    (backward-delete-char -1)
+    (jcs-backward-delete-open-pair-char opc)
+    (jcs-backward-delete-open-pair-char-seq cc)))
+
 ;;;###autoload
 (defun jcs-electric-backspace ()
   "Electric backspace key."
@@ -1418,8 +1459,8 @@ CC : current character before character deletion occured."
   (let* ((cc (jcs-get-current-char-string))
          (cpc (jcs-get-close-pair-char cc)))
     (jcs-own-delete-backward-char)
-    (jcs-process-close-pair-char cpc)
-    (jcs-process-close-pair-char-seq cc)))
+    (jcs-forward-delete-close-pair-char cpc)
+    (jcs-forward-delete-close-pair-char-seq cc)))
 
 ;;----------------------------------------------
 ;; Isearch
