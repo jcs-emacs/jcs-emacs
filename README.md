@@ -156,8 +156,8 @@ Mini mode state use to visually see what backend is the
 config currently running.
   * [*Auto Switch State*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/mini-state/auto-switch-state) - 
   Automatcially switch mini state depends on certain circumstances.
-* [*Mode Line Toggle*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/mode-line-toggle) - 
-Toggle to `show` or `hide` the mode line.
+* ~~[*Mode Line Toggle*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/mode-line-toggle) - 
+Toggle to `show` or `hide` the mode line.~~
 * [*Modern Text Editor*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/modern-text-editor) - 
 Design to have the preset settings close to modern text 
 editors but faster.
@@ -332,6 +332,8 @@ and
 [Visual Studio IDE](https://visualstudio.microsoft.com/)'s themes.
 * *Todo* - powered by 
 [hl-todo](https://github.com/tarsius/hl-todo).
+* *Toggle Mode Line* - powered by 
+[feebleline](https://github.com/tautologyclub/feebleline).
 * *Undo/Redo* - powered by 
 [undo-tree](https://www.emacswiki.org/emacs/UndoTree).
 * *White Space* - powered by 
