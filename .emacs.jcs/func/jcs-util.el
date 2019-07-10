@@ -307,6 +307,28 @@ IS-FORWARD : forward conversion instead of backward conversion."
       (insert " ")
       (setq tmp-count (1+ tmp-count)))))
 
+;;;###autoload
+(defun jcs-backward-delete-spaces-by-tab-width ()
+  "Backward delete spaces using tab width."
+  (interactive)
+  (let ((tmp-count 0))
+    (while (and (< tmp-count tab-width)
+                (not (jcs-is-beginning-of-line-p))
+                (jcs-current-whitespace-p))
+      (backward-delete-char 1)
+      (setq tmp-count (1+ tmp-count)))))
+
+;;;###autoload
+(defun jcs-forward-delete-spaces-by-tab-width ()
+  "Forward delete spaces using tab width."
+  (interactive)
+  (let ((tmp-count 0))
+    (while (and (< tmp-count tab-width)
+                (not (jcs-is-end-of-line-p))
+                (jcs-current-whitespace-p))
+      (backward-delete-char -1)
+      (setq tmp-count (1+ tmp-count)))))
+
 ;;----------------------------------------------------------------------------
 ;; Point
 
