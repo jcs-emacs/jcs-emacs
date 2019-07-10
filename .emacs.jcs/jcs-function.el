@@ -738,16 +738,6 @@ NO-PROMPT : Don't prompt the overwrap message."
   (message "Switched to `wgrep-mode'."))
 
 ;;----------------------------------------------
-;; Yank
-
-;;;###autoload
-(defun jcs-smart-yank ()
-  "Yank and then indent region."
-  (interactive)
-  (call-interactively #'yank)
-  (indent-region (region-beginning) (region-end)))
-
-;;----------------------------------------------
 ;; Yascroll
 
 ;;;###autoload
