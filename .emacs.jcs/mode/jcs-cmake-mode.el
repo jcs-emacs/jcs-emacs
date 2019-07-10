@@ -7,7 +7,6 @@
 (require 'cmake-font-lock)
 
 (require 'jcs-make-func)
-(require 'jcs-python-func)
 
 
 (defun jcs-cmake-mode-hook ()
@@ -30,9 +29,6 @@
 
   ;; tabify save key
   (define-key cmake-mode-map (kbd "C-s") #'jcs-tabify-save-buffer)
-
-  ;; Edit
-  (define-key cmake-mode-map (kbd "<backspace>") #'jcs-py-backspace)
   )
 (add-hook 'cmake-mode-hook 'jcs-cmake-mode-hook)
 

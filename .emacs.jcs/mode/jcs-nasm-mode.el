@@ -5,8 +5,6 @@
 
 (require 'nasm-mode)
 
-(require 'jcs-python-func)
-
 
 (defun jcs-nasm-mode-hook ()
   "NASM mode hook."
@@ -31,9 +29,6 @@
   ;; Comment
   (define-key nasm-mode-map (kbd "RET") #'jcs-nasm-return)
   (define-key nasm-mode-map (kbd ";") #'jcs-nasm-comment)
-
-  ;; Edit
-  (define-key nasm-mode-map (kbd "<backspace>") #'jcs-py-backspace)
   )
 (add-hook 'nasm-mode-hook 'jcs-nasm-mode-hook)
 

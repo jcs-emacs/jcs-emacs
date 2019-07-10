@@ -5,8 +5,6 @@
 
 (require 'make-mode)
 
-(require 'jcs-python-func)
-
 
 (defun jcs-makefile-mode-hook ()
   "Makefile mode hook."
@@ -30,9 +28,6 @@
 
   ;; tabify save key
   (define-key makefile-mode-map (kbd "C-s") #'jcs-tabify-save-buffer)
-
-  ;; Edit
-  (define-key makefile-mode-map (kbd "<backspace>") #'jcs-py-backspace)
   )
 (add-hook 'makefile-mode-hook 'jcs-makefile-mode-hook)
 
