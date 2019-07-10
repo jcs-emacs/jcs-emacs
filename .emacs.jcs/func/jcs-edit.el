@@ -166,10 +166,17 @@ CBF : Current buffer file name."
 ;; Delete
 
 ;;;###autoload
+(defun jcs-real-delete ()
+  "Just delete a char."
+  (interactive)
+  (backward-delete-char -1))
+
+;;;###autoload
 (defun jcs-smart-delete ()
   "Smart backspace."
   (interactive)
-  (if (jcs-is-infront-first-char-at-line-p)
+  (if (and (jcs-is-infront-first-char-at-line-p (1+ (point)))
+           (not (jcs-is-end-of-line-p)))
       (jcs-forward-delete-spaces-by-tab-width)
     (backward-delete-char -1)))
 
@@ -177,12 +184,39 @@ CBF : Current buffer file name."
 ;; Backspace
 
 ;;;###autoload
+(defun jcs-real-backspace ()
+  "Just backspace a char."
+  (interactive)
+  (backward-delete-char 1))
+
+;;;###autoload
 (defun jcs-smart-backspace ()
   "Smart backspace."
   (interactive)
-  (if (jcs-is-infront-first-char-at-line-p)
+  (if (and (jcs-is-infront-first-char-at-line-p)
+           (not (jcs-is-beginning-of-line-p)))
       (jcs-backward-delete-spaces-by-tab-width)
     (backward-delete-char 1)))
+
+;;---------------------------------------------
+;; Space
+
+;;;###autoload
+(defun jcs-real-space ()
+  "Just insert a space."
+  (interactive)
+  (insert " "))
+
+;;;###autoload
+(defun jcs-smart-space ()
+  "Space key for `python-mode'. If the current cursor position is
+infront of the first character we indent the line instead of insert
+the space."
+  (interactive)
+  (if (or (jcs-is-infront-first-char-at-line-p)
+          (jcs-is-beginning-of-line-p))
+      (jcs-insert-spaces-by-tab-width)
+    (insert " ")))
 
 ;;---------------------------------------------
 ;; Return
@@ -205,6 +239,16 @@ CBF : Current buffer file name."
   (unless (ignore-errors (call-interactively #'project-abbrev-complete-word))
     (unless (ignore-errors (call-interactively #'jcs-yas-expand))
       (call-interactively #'goto-address-at-point))))
+
+;;----------------------------------------------
+;; Yank
+
+;;;###autoload
+(defun jcs-smart-yank ()
+  "Yank and then indent region."
+  (interactive)
+  (call-interactively #'yank)
+  (indent-region (region-beginning) (region-end)))
 
 ;;----------------------------------------------
 ;; Tab
