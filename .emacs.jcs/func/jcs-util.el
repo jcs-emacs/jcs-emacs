@@ -1030,6 +1030,10 @@ IN-INT : integer using to check if is contain one of the IN-LIST."
   (interactive)
   (message "Current major mode: %s" (symbol-name major-mode)))
 
+(defun jcs-current-major-mode ()
+  "Get current major mode."
+  major-mode)
+
 (defun jcs-is-current-major-mode-p (str)
   "Check if this major mode.
 STR : major mode name."
