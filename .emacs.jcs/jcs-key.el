@@ -106,11 +106,14 @@
 (define-key global-map [C-next] #'scroll-other-window)
 (define-key global-map [C-prior] #'scroll-other-window-down)
 
+;;(define-key global-map (kbd "<backspace>") #'jcs-smart-backspace)
+;;(define-key global-map (kbd "<delete>") #'jcs-smart-delete)
+
 (define-key global-map (kbd "C-c d") #'jcs-duplicate-line)
 (define-key global-map (kbd "C-d") #'jcs-kill-whole-line)
 (define-key global-map (kbd "C-x C-x") #'jcs-vs-cut-key)
 (define-key global-map (kbd "C-c C-c") #'kill-ring-save)
-(define-key global-map (kbd "C-v") #'yank)
+(define-key global-map (kbd "C-v") #'jcs-smart-yank)
 (define-key global-map (kbd "C-s") #'jcs-untabify-save-buffer)
 (define-key global-map (kbd "C-S-s") #'jcs-tabify-save-buffer)
 
@@ -298,7 +301,7 @@
 (define-key global-map (kbd "C-M-S-<down>") #'jcs-mc/mark-next-like-this)
 
 (with-eval-after-load 'multiple-cursors
-  (define-key mc/keymap (kbd "C-v") #'yank))
+  (define-key mc/keymap (kbd "C-v") #'jcs-smart-yank))
 
 ;;; Navigation
 (define-key global-map [home] #'jcs-beginning-of-line)
