@@ -61,6 +61,7 @@
     erlang
     esup
     exec-path-from-shell
+    feebleline
     focus
     flycheck
     flycheck-popup-tip
