@@ -29,12 +29,18 @@
         jcs-previous-line
         jcs-py-indent-down
         jcs-py-indent-up
+        jcs-real-backspace
+        jcs-real-delete
+        jcs-real-space
+        jcs-smart-backspace
         jcs-smart-backward-delete-word
         jcs-smart-backward-word
+        jcs-smart-delete
         jcs-smart-forward-delete-word
         jcs-smart-forward-word
         jcs-smart-indent-down
         jcs-smart-indent-up
+        jcs-smart-space
         jcs-upcase-word-or-region
         jcs-vs-csharp-maybe-insert-codedoc
         jcs-vs-cut-key
