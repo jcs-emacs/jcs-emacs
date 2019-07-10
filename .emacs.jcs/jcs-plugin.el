@@ -188,11 +188,13 @@
   :defer t
   :config
   (setq feebleline-msg-functions
-        '((feebleline-line-number :fmt "%4s" :post "")
-          (feebleline-column-number :pre " : " :fmt "%-2s")
-          (feebleline-file-directory :face feebleline-dir-face :post "")
-          (feebleline-file-or-buffer-name :face font-lock-keyword-face :post "")
-          (feebleline-file-modified-star :pre " " :face font-lock-warning-face :post "")
+        '((jcs-current-major-mode :pre " [" :face font-lock-constant-face :post "] ")
+          (feebleline-line-number :pre "{ " :fmt "%s" :post "")
+          (feebleline-column-number :pre " : " :fmt "%s" :post " } -")
+          (feebleline-file-modified-star :pre " " :face font-lock-constant-face :post "")
+          ;;(feebleline-file-directory :face feebleline-dir-face :post "")
+          ;;(feebleline-file-or-buffer-name :face font-lock-keyword-face :post "")
+          (buffer-name :pre " " :face font-lock-keyword-face :post " ")
           ;;(feebleline-git-branch :face feebleline-git-face :pre " : ")
           (feebleline-project-name :pre " [" :align right :post "] ")
           )))
