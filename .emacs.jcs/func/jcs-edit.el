@@ -5,7 +5,6 @@
 
 ;;----------------------------------------------
 ;; Undo / Redo
-;;----------------------------------------------
 
 ;;
 ;; NOTE: This is compatible with other text editor
@@ -20,9 +19,6 @@ This variable must be use with `jcs-undo' and `jcs-redo' functions.")
 ;; consider this before active.
 (defvar jcs-undo-tree-auto-show-diff nil
   "Show the difference code when undo tree minor mode is active.")
-
-;;-----------------------------------------------------------
-;;-----------------------------------------------------------
 
 ;;;###autoload
 (defun jcs-toggle-undo-tree-auto-show-diff ()
@@ -45,8 +41,6 @@ This variable must be use with `jcs-undo' and `jcs-redo' functions.")
   (setq jcs-undo-tree-auto-show-diff nil)
   (message "Disable undo tree auto show diff."))
 
-;;-----------------------------------------------------------
-;;-----------------------------------------------------------
 
 ;;;###autoload
 (defun jcs-toggle-undo-tree-key()
@@ -72,8 +66,6 @@ This will no longer overwrite usual Emacs' undo key."
   (setq jcs-use-undo-tree-key nil)
   (message "Disable undo tree key."))
 
-;;-----------------------------------------------------------
-;;-----------------------------------------------------------
 
 (defun jcs-undo-tree-visualize (&optional cbf)
   "Call `undo-tree-visualize' only in window that is full height (next window).
@@ -171,8 +163,29 @@ CBF : Current buffer file name."
     (call-interactively #'undo)))
 
 ;;---------------------------------------------
-;; Return
+;; Delete
+
+;;;###autoload
+(defun jcs-smart-delete ()
+  "Smart backspace."
+  (interactive)
+  (if (jcs-is-infront-first-char-at-line-p)
+      (jcs-forward-delete-spaces-by-tab-width)
+    (backward-delete-char -1)))
+
 ;;---------------------------------------------
+;; Backspace
+
+;;;###autoload
+(defun jcs-smart-backspace ()
+  "Smart backspace."
+  (interactive)
+  (if (jcs-is-infront-first-char-at-line-p)
+      (jcs-backward-delete-spaces-by-tab-width)
+    (backward-delete-char 1)))
+
+;;---------------------------------------------
+;; Return
 
 ;;;###autoload
 (defun jcs-ctrl-return-key ()
@@ -195,7 +208,6 @@ CBF : Current buffer file name."
 
 ;;----------------------------------------------
 ;; Tab
-;;----------------------------------------------
 
 ;;;###autoload
 (defun jcs-tab-key ()
@@ -207,7 +219,6 @@ CBF : Current buffer file name."
 
 ;;----------------------------------------------
 ;; Mark
-;;----------------------------------------------
 
 (defvar-local jcs-marking-whole-buffer nil
   "Marking the whole buffer now?")
@@ -225,7 +236,6 @@ CBF : Current buffer file name."
 
 ;;----------------------------------------------
 ;; Overwrite (Insert toggle)
-;;----------------------------------------------
 
 ;;;###autoload
 (defun jcs-overwrite-mode ()
@@ -247,14 +257,13 @@ CBF : Current buffer file name."
     (setq-local cursor-type 'box)))
 
 ;;---------------------------------------------
-;;-- Source --
-;;      Deletion: http://ergoemacs.org/emacs/emacs_kill-ring.html
-;;---------------------------------------------
+;; Kill Line
 
 ;;;###autoload
 (defun jcs-kill-whole-line ()
   "Deletes a line, but does not put it in the `kill-ring'."
   (interactive)
+  ;; SOURCE: http://ergoemacs.org/emacs/emacs_kill-ring.html
   (let ((kill-ring))
     (if (use-region-p)
         (delete-region (region-beginning) (region-end))
@@ -368,7 +377,6 @@ This command does not push text to `kill-ring'."
 
 ;;---------------------------------------------
 ;; Indent moving UP or DOWN.
-;;---------------------------------------------
 
 (defun jcs-can-do-smart-indent-p ()
   "Check smart indent conditions."
@@ -421,9 +429,8 @@ Use `indent-according-to-mode' instead `indent-for-tab-command'."
     (jcs-next-line)))
 
 
-;;==============================
+;;----------------------------------------------
 ;;      Format File
-;;------------------------
 
 ;;;###autoload
 (defun jcs-format-document ()
@@ -527,10 +534,9 @@ region selected?"
       ;; Align comment segment.
       (jcs-align-region-by-points align-regexp-string-comment
                                   pnt-min
-                                  pnt-max)
-      )))
+                                  pnt-max))))
 
-;;;###autoload
+;;;###autoload
 (defun jcs-align-repeat (regexp)
   "Repeat alignment with respect to the given regular expression.
 REGEXP : reqular expression use to align."
@@ -666,7 +672,6 @@ the current line."
 
 ;;----------------------------------------------
 ;; Move Current Line Up or Down
-;;----------------------------------------------
 
 ;;;###autoload
 (defun jcs-move-line-up ()
@@ -685,9 +690,8 @@ the current line."
   (forward-line -1)
   (indent-according-to-mode))
 
-;;=================================
+;;----------------------------------------------
 ;;        Word Case
-;;-------------------------
 
 ;;;###autoload
 (defun jcs-upcase-word-or-region ()
@@ -713,9 +717,8 @@ the current line."
       (capitalize-region (region-beginning) (region-end))
     (call-interactively #'capitalize-word)))
 
-;;=================================
+;;----------------------------------------------
 ;;     Tabify / Unabify
-;;-------------------------
 
 ;;;###autoload
 (defun jcs-untabify-buffer (&optional start end)
@@ -739,9 +742,8 @@ the current line."
         (widen)
         (tabify start-pt end-pt)))))
 
-;;=================================
+;;----------------------------------------------
 ;; Save Buffer
-;;-------------------------
 
 (defun jcs-do-stuff-before-save (&rest _)
   "Do stuff before save command executed.
@@ -784,7 +786,6 @@ ARG : Match with `save-buffer' command."
 
 ;;----------------------------------------------
 ;; Find file
-;;----------------------------------------------
 
 ;;;###autoload
 (defun jcs-same-file-other-window ()
@@ -797,7 +798,6 @@ ARG : Match with `save-buffer' command."
 
 ;;----------------------------------------------
 ;; Rename file
-;;----------------------------------------------
 
 ;;;###autoload
 (defun jcs-rename-current-buffer-file ()
@@ -822,7 +822,6 @@ ARG : Match with `save-buffer' command."
 
 ;;----------------------------------------------
 ;; Kill Buffer
-;;----------------------------------------------
 
 (defun jcs-advice-kill-this-buffer-around (orig-fun &rest args)
   "Advice around execute `kill-this-buffer' command."
@@ -951,7 +950,6 @@ ECP-SAME : Exception for the same buffer."
 
 ;;----------------------------------------------
 ;; Delete Repeatedly
-;;----------------------------------------------
 
 ;;;###autoload
 (defun jcs-backward-delete-current-char-repeat ()
@@ -985,7 +983,6 @@ REVERSE : t forward, nil backward."
 
 ;;----------------------------------------------
 ;; Delete inside a Character.
-;;----------------------------------------------
 
 (defun jcs-find-start-char (start-char preserve-point)
   "Find the starting character."
@@ -1319,7 +1316,6 @@ REVERSE : t forward, nil backward."
 
 ;;----------------------------------------------
 ;; Electric Pair
-;;----------------------------------------------
 
 (defun jcs-get-open-pair-char (c)
   "Get the open pairing character from C."
@@ -1383,7 +1379,6 @@ CC : current character before character deletion occured."
 
 ;;----------------------------------------------
 ;; Isearch
-;;----------------------------------------------
 
 ;;;###autoload
 (defun jcs-isearch-backward-symbol-at-point ()
@@ -1444,7 +1439,6 @@ CC : current character before character deletion occured."
 
 ;;----------------------------------------------
 ;; Multiple Cursors
-;;----------------------------------------------
 
 ;;;###autoload
 (defun jcs-mc/mark-previous-like-this ()
@@ -1468,9 +1462,9 @@ CC : current character before character deletion occured."
       (unless (> before-unmark-cur-cnt (mc/num-cursors))
         (call-interactively #'mc/mark-next-like-this)))))
 
+
 ;;----------------------------------------------
 ;; Folding / Unfolding
-;;----------------------------------------------
 
 ;;;###autoload
 (defun jcs-close-all-nodes ()
