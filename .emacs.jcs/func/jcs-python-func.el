@@ -111,29 +111,6 @@ line instead of indent the whole file at once."
   (py-indent-line-outmost))
 
 ;;;###autoload
-(defun jcs-py-real-space ()
-  "Just insert a space!"
-  (interactive)
-  (insert " "))
-
-;;;###autoload
-(defun jcs-py-space ()
-  "Space key for `python-mode'. If the current cursor position is
-infront of the first character we indent the line instead of insert
-the space."
-  (interactive)
-  (if (or (jcs-is-infront-first-char-at-line-p)
-          (jcs-is-beginning-of-line-p))
-      (jcs-insert-spaces-by-tab-width)
-    (insert " ")))
-
-;;;###autoload
-(defun jcs-py-real-backspace ()
-  "Just delete a char."
-  (interactive)
-  (backward-delete-char 1))
-
-;;;###autoload
 (defun jcs-py-backspace ()
   "Backspace key for `python-mode'. If the current cursor position
 is infront of the first character in the line we delete fource
