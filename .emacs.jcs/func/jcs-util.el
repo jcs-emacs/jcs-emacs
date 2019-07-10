@@ -324,9 +324,14 @@ IS-FORWARD : forward conversion instead of backward conversion."
   (interactive)
   (let ((tmp-count 0))
     (while (and (< tmp-count tab-width)
-                (not (jcs-is-end-of-line-p))
-                (jcs-current-whitespace-p))
-      (backward-delete-char -1)
+                (not (jcs-is-end-of-line-p)))
+      (let ((is-valid nil))
+        (save-excursion
+          (forward-char 1)
+          (when (jcs-current-whitespace-p)
+            (setq is-valid t)))
+        (when is-valid
+          (backward-delete-char -1)))
       (setq tmp-count (1+ tmp-count)))))
 
 ;;----------------------------------------------------------------------------
