@@ -1444,15 +1444,17 @@ CC : Current character at position."
 (defun jcs-electric-delete ()
   "Electric delete key."
   (interactive)
-  (let ((cc "")
-        (opc ""))
-    (save-excursion
-      (forward-char 1)
-      (setq cc (jcs-get-current-char-string)))
-    (setq opc (jcs-get-open-pair-char cc))
-    (backward-delete-char -1)
-    (jcs-backward-delete-open-pair-char opc)
-    (jcs-backward-delete-open-pair-char-seq cc)))
+  (if (use-region-p)
+      (delete-region (region-beginning) (region-end))
+    (let ((cc "")
+          (opc ""))
+      (save-excursion
+        (forward-char 1)
+        (setq cc (jcs-get-current-char-string)))
+      (setq opc (jcs-get-open-pair-char cc))
+      (backward-delete-char -1)
+      (jcs-backward-delete-open-pair-char opc)
+      (jcs-backward-delete-open-pair-char-seq cc))))
 
 ;;;###autoload
 (defun jcs-electric-backspace ()
