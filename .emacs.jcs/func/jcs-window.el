@@ -77,20 +77,10 @@ CNT : Count for buffer to switch to."
 
 (defun jcs-count-windows ()
   "Total window count."
-  (save-selected-window
-    (let ((count 0)
-          (frame-len (length (frame-list)))
-          (current-frame-count 0)
-          (frame-counter 0))
-      (while (< frame-counter frame-len)
-        (setq current-frame-count (count-windows))
-        (setq count (+ count current-frame-count))
-        (let ((index 0))
-          (while (< index current-frame-count)
-            (call-interactively #'jcs-other-window-next)
-            (setq index (+ index 1))))
-        (setq frame-counter (+ frame-counter 1)))
-      count)))
+  (let ((count 0))
+    (dolist (fn (frame-list))
+      (setq count (+ (length (window-list fn)) count)))
+    count))
 
 (defun jcs-buffer-visible-list ()
   "List of buffer that current visible in frame."
