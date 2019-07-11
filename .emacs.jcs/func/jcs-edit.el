@@ -248,6 +248,9 @@ the space."
 (defun jcs-smart-yank ()
   "Yank and then indent region."
   (interactive)
+  (when (use-region-p)
+    (let ((kill-ring))
+      (kill-region (region-beginning) (region-end))))
   (call-interactively #'yank)
   (indent-region (region-beginning) (region-end)))
 
