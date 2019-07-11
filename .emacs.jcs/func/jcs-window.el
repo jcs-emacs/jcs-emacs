@@ -117,7 +117,7 @@ If nout found, returns 0."
 
 ;;;###autoload
 (defun jcs-walk-through-all-windows-once (&optional fnc)
-  "Walk through all the windows once and execute callback FUNC."
+  "Walk through all the windows once and execute callback FNC."
   (interactive)
   (save-selected-window
     (let ((index 0))
