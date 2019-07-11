@@ -188,15 +188,16 @@
   :defer t
   :config
   (setq feebleline-msg-functions
-        '((jcs-current-major-mode :pre " [" :face font-lock-constant-face :post "] ")
-          (feebleline-line-number :pre "{ " :fmt "%s" :post "")
-          (feebleline-column-number :pre " : " :fmt "%s" :post " } -")
-          (feebleline-file-modified-star :pre " " :face font-lock-constant-face :post "")
-          ;;(feebleline-file-directory :face feebleline-dir-face :post "")
-          ;;(feebleline-file-or-buffer-name :face font-lock-keyword-face :post "")
-          (buffer-name :pre " " :face font-lock-keyword-face :post " ")
-          ;;(feebleline-git-branch :face feebleline-git-face :pre " : ")
-          (feebleline-project-name :pre " [" :align right :post "] ")
+        '(;;-- Left
+          (jcs-current-major-mode :pre " [" :face font-lock-constant-face :post "]")
+          (feebleline-project-name :pre " { " :post " }")
+          ((lambda () " -"))
+          (feebleline-file-modified-star :pre "" :face font-lock-constant-face :post " ")
+          (buffer-name :pre "" :face font-lock-keyword-face :post " ")
+          ;;-- Right
+          (feebleline-line-number :pre "[ " :fmt "%s" :post "" :align right)
+          (feebleline-column-number :pre " : " :fmt "%s" :post " ] " :align right)
+          ((lambda () (format-time-string "[%Y-%m-%d %H:%M:%S]")) :align right)
           )))
 
 
@@ -457,7 +458,7 @@
   :init
   (setq region-occurrences-highlighter-min-size 1)
   :config
-  (set-face-attribute 'region-occurrences-highlighter-face
+  (set-face-attribute 'region-occurrences-highlighter-face
                       nil
                       :background "#113D6F"
                       :inverse-video nil)
