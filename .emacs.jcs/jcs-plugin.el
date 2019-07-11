@@ -190,8 +190,13 @@
   (setq feebleline-msg-functions
         '(;;-- Left
           (jcs-current-major-mode :pre " [" :face font-lock-constant-face :post "]")
-          (feebleline-project-name :pre " { " :post " }")
-          ((lambda () " -"))
+          ((lambda ()
+             (let ((project-root (cdr (project-current))))
+               (if (and project-root
+                        (buffer-file-name))
+                   (concat " { " (file-name-nondirectory (directory-file-name project-root)) " }")
+                 ""))))
+          ((lambda () "-"))
           (feebleline-file-modified-star :pre "" :face font-lock-constant-face :post " ")
           (buffer-name :pre "" :face font-lock-keyword-face :post " ")
           ;;-- Right
