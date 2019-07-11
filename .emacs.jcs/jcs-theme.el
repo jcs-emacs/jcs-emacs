@@ -35,9 +35,11 @@
   ;; set mode line
   (set-face-background 'mode-line "#BFBFBF")
   (set-face-background 'mode-line-inactive "#4D4D4D")
+
   ;; set the vertical border
-  (set-face-background 'vertical-border "#D2D2D2")
-  (set-face-foreground 'vertical-border (face-background 'vertical-border))
+  (set-face-foreground 'vertical-border "#D2D2D2")
+
+  (set-face-foreground 'window-divider "#D2D2D2")
 
   ;; `powerline' font faces.
   (jcs-powerline-set-theme-faces '("#1C1C1C" "#CCCCCC"
@@ -55,9 +57,11 @@
   ;; set mode line
   (set-face-background 'mode-line "#467E7D")
   (set-face-background 'mode-line-inactive "#2B4D4D")
+
   ;; set the vertical border
-  (set-face-background 'vertical-border "#467E7D")
-  (set-face-foreground 'vertical-border (face-background 'vertical-border))
+  (set-face-foreground 'vertical-border "#467E7D")
+
+  (set-face-foreground 'window-divider "#467E7D")
 
   ;; `powerline' font faces.
   (jcs-powerline-set-theme-faces '("#1C1C1C" "#529191"
@@ -72,13 +76,14 @@
   "Dark blue mode line."
   (interactive)
 
-  ;; set the 'vertical border'
-  (set-face-background 'vertical-border "#246AAF")
-  (set-face-foreground 'vertical-border (face-background 'vertical-border))
-
-  ;; set 'mode line'
+  ;; set mode line
   (set-face-background 'mode-line "#246AAF")
   (set-face-background 'mode-line-inactive "#0E2944")
+
+  ;; set the 'vertical border'
+  (set-face-foreground 'vertical-border "#246AAF")
+
+  (set-face-foreground 'window-divider "#246AAF")
 
   ;; `powerline' font faces.
   (jcs-powerline-set-theme-faces '("#1C1C1C" "#246AAF"
@@ -96,9 +101,11 @@
   ;; set mode line
   (set-face-background 'mode-line "#FF6C32")
   (set-face-background 'mode-line-inactive "#682B12")
+
   ;; set the vertical border
-  (set-face-background 'vertical-border "#FF6C32")
-  (set-face-foreground 'vertical-border (face-background 'vertical-border))
+  (set-face-foreground 'vertical-border "#FF6C32")
+
+  (set-face-foreground 'window-divider "#FF6C32")
 
   ;; `powerline' font faces.
   (jcs-powerline-set-theme-faces '("#1C1C1C" "#FF6C32"
@@ -116,9 +123,11 @@
   ;; set mode line
   (set-face-background 'mode-line "#A3D1FF")
   (set-face-background 'mode-line-inactive "#3685D4")
+
   ;; set the vertical border
-  (set-face-background 'vertical-border "#A3D1FF")
-  (set-face-foreground 'vertical-border (face-background 'vertical-border))
+  (set-face-foreground 'vertical-border "#A3D1FF")
+
+  (set-face-foreground 'window-divider "#A3D1FF")
 
   ;; `powerline' font faces.
   (jcs-powerline-set-theme-faces '("#1C1C1C" "#5AA2E9"
@@ -136,9 +145,11 @@
   ;; set mode line
   (set-face-background 'mode-line "#FF0000")
   (set-face-background 'mode-line-inactive "#6A0101")
+
   ;; set the vertical border
-  (set-face-background 'vertical-border "#FF0000")
-  (set-face-foreground 'vertical-border (face-background 'vertical-border))
+  (set-face-foreground 'vertical-border "#FF0000")
+
+  (set-face-foreground 'window-divider "#FF0000")
 
   ;; `powerline' font faces.
   (jcs-powerline-set-theme-faces '("#1C1C1C" "#FF0000"
@@ -156,9 +167,11 @@
   ;; set mode line
   (set-face-background 'mode-line "#B100EB")
   (set-face-background 'mode-line-inactive "#650286")
+
   ;; set the vertical border
-  (set-face-background 'vertical-border "#B100EB")
-  (set-face-foreground 'vertical-border (face-background 'vertical-border))
+  (set-face-foreground 'vertical-border "#B100EB")
+
+  (set-face-foreground 'window-divider "#B100EB")
 
   ;; `powerline' font faces.
   (jcs-powerline-set-theme-faces '("#1C1C1C" "#B100EB"
