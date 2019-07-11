@@ -198,7 +198,18 @@
           (feebleline-line-number :pre "[ " :fmt "%s" :post "" :align right)
           (feebleline-column-number :pre " : " :fmt "%s" :post " ] " :align right)
           ((lambda () (format-time-string "[%Y-%m-%d %H:%M:%S]")) :align right)
-          )))
+          ))
+
+  (defun jcs-advice-feebleline-mode-after (&rest _)
+    "Advice after execute `feebleline-mode'."
+    (if feebleline-mode
+        (jcs-walk-through-all-windows-once
+         (lambda ()
+           (setq mode-line-format nil)))
+      (jcs-walk-through-all-windows-once
+       (lambda ()
+         (setq mode-line-format feebleline--mode-line-format-previous)))))
+  (advice-add 'feebleline-mode :after #'jcs-advice-feebleline-mode-after))
 
 
 (use-package goto-char-preview
