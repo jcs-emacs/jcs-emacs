@@ -49,7 +49,7 @@ to the `jcs-cross-mode' in order to use cross mode search instead
 of machine depenedent plugins/packages which is the `jcs-depend-mode'."
   (interactive)
   (unless (minibufferp)
-    (unless (ignore-errors (helm-do-ag-this-file))
+    (unless (ignore-errors (or (helm-do-ag-this-file) t))
       (jcs-cross-mode)
       (message "Error: This buffer is not visited file. Switch to cross mode search..")
       (sleep-for jcs-prompt-message-sleep-delay-time)
