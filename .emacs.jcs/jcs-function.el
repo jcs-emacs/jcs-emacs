@@ -208,7 +208,9 @@
   (let ((db-id-lst (jcs-get-window-id-by-buffer-name dashboard-buffer-name))
         (buf-lns '())
         (buf-cls '())
-        (index 0))
+        (index 0)
+        (message-log-max nil)
+        (inhibit-message t))
     (save-selected-window
       (dolist (win-id db-id-lst)
         (jcs-ace-select-window win-id)
