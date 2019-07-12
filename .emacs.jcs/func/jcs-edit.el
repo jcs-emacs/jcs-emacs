@@ -1446,25 +1446,29 @@ CC : Current character at position."
   (interactive)
   (if (use-region-p)
       (delete-region (region-beginning) (region-end))
-    (let ((cc "")
-          (opc ""))
-      (save-excursion
-        (forward-char 1)
-        (setq cc (jcs-get-current-char-string)))
-      (setq opc (jcs-get-open-pair-char cc))
-      (backward-delete-char -1)
-      (jcs-backward-delete-open-pair-char opc)
-      (jcs-backward-delete-open-pair-char-seq cc))))
+    (if (jcs-inside-comment-or-string-p)
+        (backward-delete-char -1)
+      (let ((cc "")
+            (opc ""))
+        (save-excursion
+          (forward-char 1)
+          (setq cc (jcs-get-current-char-string)))
+        (setq opc (jcs-get-open-pair-char cc))
+        (backward-delete-char -1)
+        (jcs-backward-delete-open-pair-char opc)
+        (jcs-backward-delete-open-pair-char-seq cc)))))
 
 ;;;###autoload
 (defun jcs-electric-backspace ()
   "Electric backspace key."
   (interactive)
-  (let* ((cc (jcs-get-current-char-string))
-         (cpc (jcs-get-close-pair-char cc)))
-    (jcs-own-delete-backward-char)
-    (jcs-forward-delete-close-pair-char cpc)
-    (jcs-forward-delete-close-pair-char-seq cc)))
+  (if (jcs-inside-comment-or-string-p)
+      (jcs-own-delete-backward-char)
+    (let* ((cc (jcs-get-current-char-string))
+           (cpc (jcs-get-close-pair-char cc)))
+      (jcs-own-delete-backward-char)
+      (jcs-forward-delete-close-pair-char cpc)
+      (jcs-forward-delete-close-pair-char-seq cc))))
 
 ;;----------------------------------------------
 ;; Isearch
