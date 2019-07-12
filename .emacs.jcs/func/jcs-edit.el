@@ -738,7 +738,7 @@ the current line."
   (indent-according-to-mode))
 
 ;;----------------------------------------------
-;;        Word Case
+;; Word Case
 
 ;;;###autoload
 (defun jcs-upcase-word-or-region ()
@@ -765,7 +765,23 @@ the current line."
     (call-interactively #'capitalize-word)))
 
 ;;----------------------------------------------
-;;     Tabify / Unabify
+;; Line Ending
+
+;;;###autoload
+(defun jcs-remove-control-M ()
+  "Remove ^M at end of line in the whole buffer."
+  (interactive)
+  (save-match-data
+    (save-excursion
+      (let ((remove-count 0))
+        (goto-char (point-min))
+        (while (re-search-forward (concat (char-to-string 13) "$") (point-max) t)
+          (setq remove-count (+ remove-count 1))
+          (replace-match "" nil nil))
+        (message (format "%d ^M removed from buffer." remove-count))))))
+
+;;----------------------------------------------
+;; Tabify / Unabify
 
 ;;;###autoload
 (defun jcs-untabify-buffer (&optional start end)
@@ -818,7 +834,10 @@ ARG : Match with `save-buffer' command."
     (jcs-delete-trailing-whitespace-except-current-line)
     (jcs-remove-trailing-lines-end-buffer)
     (jcs-untabify-buffer)
-    (save-buffer)))
+    (let ((inhibit-message t)
+          (message-log-max nil))
+      (jcs-remove-control-M))
+    (jcs-save-buffer)))
 
 ;;;###autoload
 (defun jcs-tabify-save-buffer ()
@@ -829,7 +848,19 @@ ARG : Match with `save-buffer' command."
     (jcs-delete-trailing-whitespace-except-current-line)
     (jcs-remove-trailing-lines-end-buffer)
     (jcs-tabify-buffer)
-    (save-buffer)))
+    (let ((inhibit-message t)
+          (message-log-max nil))
+      (jcs-remove-control-M))
+    (jcs-save-buffer)))
+
+;;;###autoload
+(defun jcs-save-buffer ()
+  (interactive)
+  (if (buffer-modified-p)
+      (progn
+        (save-buffer)
+        (message "Wrote file %s" (buffer-file-name)))
+    (message "(No changes need to be saved)")))
 
 ;;----------------------------------------------
 ;; Find file
