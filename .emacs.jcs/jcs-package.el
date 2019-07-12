@@ -85,7 +85,6 @@
     highlight-indent-guides
     hl-todo
     htmltagwrap
-    indent-info
     indicators
     ini-mode
     isearch-project
