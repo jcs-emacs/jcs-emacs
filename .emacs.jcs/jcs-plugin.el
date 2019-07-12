@@ -195,7 +195,7 @@
                (if (and project-root
                         (buffer-file-name))
                    (concat " { " (file-name-nondirectory (directory-file-name project-root)) " }")
-                 ""))))
+                 " { ╬ }"))))
           ((lambda () "-"))
           (feebleline-file-modified-star :pre "" :face font-lock-constant-face :post " ")
           (buffer-name :pre "" :face font-lock-keyword-face :post " ")
