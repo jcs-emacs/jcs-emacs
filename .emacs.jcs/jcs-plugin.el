@@ -187,6 +187,7 @@
 (use-package feebleline
   :defer t
   :config
+  (require 'show-eol)
   (setq feebleline-msg-functions
         '(;;-- Left
           (jcs-current-major-mode :pre " [" :face font-lock-constant-face :post "]")
@@ -200,6 +201,8 @@
           (feebleline-file-modified-star :pre "" :face font-lock-constant-face :post " ")
           (buffer-name :pre "" :face font-lock-keyword-face :post " ")
           ;;-- Right
+          ((lambda () buffer-file-coding-system) :pre "# " :post "" :align right)
+          (show-eol-get-eol-mark-by-system :pre " : " :post " # " :align right)
           (feebleline-line-number :pre "[ " :fmt "%s" :post "" :align right)
           (feebleline-column-number :pre " : " :fmt "%s" :post " ] " :align right)
           ((lambda () (format-time-string "[%Y-%m-%d %H:%M:%S]")) :align right)
@@ -448,7 +451,7 @@
   ;;
   ;; Valid Values: alternate, arrow, arrow-fade, bar, box,
   ;; brace, butt, chamfer, contour, curve, rounded, roundstub,
-  ;; wave, zigzag, utf-8.
+  ;; wave, zigzag, utf-8.
   (setq powerline-default-separator 'wave))
 
 
