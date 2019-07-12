@@ -451,7 +451,7 @@
   ;;
   ;; Valid Values: alternate, arrow, arrow-fade, bar, box,
   ;; brace, butt, chamfer, contour, curve, rounded, roundstub,
-  ;; wave, zigzag, utf-8.
+  ;; wave, zigzag, utf-8.
   (setq powerline-default-separator 'wave))
 
 
@@ -477,7 +477,7 @@
   :init
   (setq region-occurrences-highlighter-min-size 1)
   :config
-  (set-face-attribute 'region-occurrences-highlighter-face
+  (set-face-attribute 'region-occurrences-highlighter-face
                       nil
                       :background "#113D6F"
                       :inverse-video nil)
@@ -486,7 +486,7 @@
 
 (use-package reload-emacs
   :defer t
-  :init
+  :init
   (setq reload-emacs-load-path '("~/.emacs.jcs/"
                                  "~/.emacs.jcs/func/"
                                  "~/.emacs.jcs/mode/"))
