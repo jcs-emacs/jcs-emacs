@@ -55,6 +55,41 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
       (sleep-for jcs-prompt-message-sleep-delay-time)
       (call-interactively #'isearch-forward))))
 
+(defun jcs-get-indent-level-by-mode ()
+  "Get indentation level by mode."
+  (cond
+   ((jcs-is-current-major-mode-p
+     '("actionscript-mode"
+       "cc-mode"
+       "c-mode"
+       "c++-mode"
+       "csharp-mode"
+       "java-mode"
+       "jayces-mode"
+       "lua-mode"
+       "nasm-mode"
+       "objc-mode"
+       "python-mode"
+       "typescript-mode"))
+    4)
+   ((jcs-is-current-major-mode-p
+     '("css-mode"
+       "lisp-mode"
+       "lisp-interaction-mode"
+       "emacs-lisp-mode"
+       "js2-mode"
+       "json-mode"
+       "sql-mode"
+       "web-mode"
+       "nxml-mode"
+       "yaml-mode"))
+    2)
+   (t tab-width)))
+
+(defun jcs-set-tab-width-by-mode ()
+  "Set the tab width by current major mode."
+  (setq-local tab-width (jcs-get-indent-level-by-mode)))
+
 
 ;;------------------------------------------------------------------------------------------------------
 ;;; Command Mode & Insert Mode
@@ -212,6 +247,16 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
 ;; So just put all the startup modes' configuration here.
 
 ;;==============================
+;;    Programming Mode
+;;------------------------
+
+(defun jcs-prog-mode-hook ()
+  "Programming language mode hook."
+  (jcs-set-tab-width-by-mode)
+  )
+(add-hook 'prog-mode-hook 'jcs-prog-mode-hook)
+
+;;==============================
 ;;      Emacs Lisp
 ;;------------------------
 
@@ -227,11 +272,8 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
 
   (jcs-make-electric-pair-pairs-local '((?\` . ?\')))
 
-  (when buffer-file-name
-    (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]el" buffer-file-name)
-           (jcs-insert-header-if-empty 'jcs-insert-emacs-lisp-template))
-          ))
+  (jcs-insert-header-if-valid '("[.]el")
+                              'jcs-insert-emacs-lisp-template)
 
   )
 (add-hook 'emacs-lisp-mode-hook 'jcs-emacs-lisp-mode-hook)
@@ -253,11 +295,8 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
 
   (jcs-make-electric-pair-pairs-local '((?\` . ?\')))
 
-  (when buffer-file-name
-    (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]lisp" buffer-file-name)
-           (jcs-insert-header-if-empty 'jcs-insert-lisp-template))
-          ))
+  (jcs-insert-header-if-valid '("[.]lisp")
+                              'jcs-insert-lisp-template)
 
   )
 (add-hook 'lisp-mode-hook 'jcs-lisp-mode-hook)
@@ -281,11 +320,8 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
   (goto-address-mode 1)
   (auto-highlight-symbol-mode t)
 
-  (when buffer-file-name
-    (cond ((file-exists-p buffer-file-name) t)
-          ((string-match "[.]txt" buffer-file-name)
-           (jcs-insert-header-if-empty 'jcs-insert-text-template))
-          ))
+  (jcs-insert-header-if-valid '("[.]txt")
+                              'jcs-insert-text-template)
 
   ;; Normal
   (define-key text-mode-map (kbd "C-d") #'jcs-kill-whole-line)
