@@ -583,7 +583,7 @@ region selected?"
                                   pnt-min
                                   pnt-max))))
 
-;;;###autoload
+;;;###autoload
 (defun jcs-align-repeat (regexp)
   "Repeat alignment with respect to the given regular expression.
 REGEXP : reqular expression use to align."
@@ -856,11 +856,11 @@ ARG : Match with `save-buffer' command."
 ;;;###autoload
 (defun jcs-save-buffer ()
   (interactive)
-  (if (buffer-modified-p)
-      (progn
-        (save-buffer)
+  (let ((modified (buffer-modified-p)))
+    (save-buffer)
+    (if modified
         (message "Wrote file %s" (buffer-file-name)))
-    (message "(No changes need to be saved)")))
+    (message "(No changes need to be saved)") ))
 
 ;;----------------------------------------------
 ;; Find file
