@@ -10,9 +10,6 @@
 
 (require 'jcs-web-func)
 
-;; css indent spaces.
-(setq css-indent-offset 2)
-
 
 (defun jcs-css-mode-hook ()
   "Hook for CSS mode."
@@ -21,6 +18,8 @@
 
   ;; Treat some character as whitespace character.
   (modify-syntax-entry ?- "-")
+
+  (setq css-indent-offset 2)
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]css")

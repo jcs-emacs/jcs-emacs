@@ -17,9 +17,6 @@
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
 
-  ;; NOTE: Default is set to 8 for some reason.
-  (setq-local tab-width 4)
-
   ;; File Header
   (jcs-insert-header-if-valid '("[.]py")
                               'jcs-ask-python-template
@@ -33,13 +30,15 @@
   (define-key python-mode-map [M-up] #'jcs-previous-blank-line)
   (define-key python-mode-map [M-down] #'jcs-next-blank-line)
 
-  (define-key python-mode-map "\C-k\C-f" #'jcs-py-indent-region)
-  (define-key python-mode-map "\C-k\C-d" #'jcs-py-format-document)
+  (define-key python-mode-map (kbd "C-k C-f") #'jcs-py-indent-region)
+  (define-key python-mode-map (kbd "C-k C-d") #'jcs-py-format-document)
   (define-key python-mode-map (kbd "C-S-f") #'jcs-py-format-region-or-document)
 
   ;; Edit
   (define-key python-mode-map (kbd "<up>") #'jcs-py-indent-up)
   (define-key python-mode-map (kbd "<down>") #'jcs-py-indent-down)
+
+  (define-key python-mode-map (kbd "<delete>") #'jcs-smart-delete)
   (define-key python-mode-map (kbd "TAB") #'jcs-tab-key)
 
   (define-key python-mode-map (kbd "RET") #'jcs-py-return)
