@@ -302,8 +302,10 @@ IS-FORWARD : forward conversion instead of backward conversion."
 (defun jcs-insert-spaces-by-tab-width ()
   "Insert spaces depends on tab width configuration."
   (interactive)
-  (let ((tmp-count 0))
-    (while (< tmp-count tab-width)
+  (let* ((tmp-count 0)
+         (remainder (% (current-column) tab-width))
+         (target-width (if (= remainder 0) tab-width (- tab-width remainder))))
+    (while (< tmp-count target-width)
       (insert " ")
       (setq tmp-count (1+ tmp-count)))))
 
@@ -311,8 +313,10 @@ IS-FORWARD : forward conversion instead of backward conversion."
 (defun jcs-backward-delete-spaces-by-tab-width ()
   "Backward delete spaces using tab width."
   (interactive)
-  (let ((tmp-count 0))
-    (while (and (< tmp-count tab-width)
+  (let* ((tmp-count 0)
+         (remainder (% (current-column) tab-width))
+         (target-width (if (= remainder 0) tab-width remainder)))
+    (while (and (< tmp-count target-width)
                 (not (jcs-is-beginning-of-line-p))
                 (jcs-current-whitespace-p))
       (backward-delete-char 1)
@@ -322,8 +326,10 @@ IS-FORWARD : forward conversion instead of backward conversion."
 (defun jcs-forward-delete-spaces-by-tab-width ()
   "Forward delete spaces using tab width."
   (interactive)
-  (let ((tmp-count 0))
-    (while (and (< tmp-count tab-width)
+  (let* ((tmp-count 0)
+         (remainder (% (jcs-first-char-in-line-column) tab-width))
+         (target-width (if (= remainder 0) tab-width remainder)))
+    (while (and (< tmp-count target-width)
                 (not (jcs-is-end-of-line-p)))
       (let ((is-valid nil))
         (save-excursion
@@ -607,6 +613,18 @@ Returns nil, the word isn't the same."
   (jcs-back-to-indentation-or-beginning)
   (when (jcs-is-beginning-of-line-p)
     (jcs-back-to-indentation-or-beginning)))
+
+(defun jcs-first-char-in-line-point ()
+  "Return point in first character in line."
+  (save-excursion
+    (jcs-goto-first-char-in-line)
+    (point)))
+
+(defun jcs-first-char-in-line-column ()
+  "Return column in first character in line."
+  (save-excursion
+    (jcs-goto-first-char-in-line)
+    (current-column)))
 
 (defun jcs-current-line-empty-p ()
   "Current line empty, but accept spaces/tabs in there.  (not absolute)."
@@ -1061,10 +1079,14 @@ IN-INT : integer using to check if is contain one of the IN-LIST."
   "Get current major mode."
   major-mode)
 
-(defun jcs-is-current-major-mode-p (str)
-  "Check if this major mode.
-STR : major mode name."
-  (string= (symbol-name major-mode) str))
+(defun jcs-is-current-major-mode-p (mode-names)
+  "Check if this major mode MODE-NAMES."
+  (let ((current-mode-name (symbol-name major-mode)))
+    (cond ((stringp mode-names)
+           (string= current-mode-name mode-names))
+          ((listp mode-names)
+           (jcs-is-contain-list-string mode-names current-mode-name))
+          (t nil))))
 
 (defun jcs-is-minor-mode-enabled-p (mode-obj)
   "Check if this minor enabled in current buffer/file.
