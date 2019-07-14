@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: jcs-header
+# key: jcs-header
+# --
+# -*- mode: snippet -*-
+# name: ${1:Snippet Name}
+# key: ${2:Snippet Key}
+# --
+$0
