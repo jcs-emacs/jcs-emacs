@@ -246,6 +246,9 @@
 (progn
   (define-key global-map (kbd "M-x") #'helm-M-x)
   (define-key global-map (kbd "M-y") #'helm-show-kill-ring)
+  (with-eval-after-load 'helm
+    (define-key helm-map (kbd "<right>") #'helm-next-source)
+    (define-key helm-map (kbd "<left>") #'helm-previous-source))
   ;; NOTE: Match to OS's file explorer's navigation system.
   (with-eval-after-load 'helm-files
     (define-key helm-find-files-map (kbd "<return>") #'helm-execute-persistent-action)
