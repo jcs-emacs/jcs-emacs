@@ -24,16 +24,19 @@
                                            (buffer-file-name))
                (not jcs-package-installing))
       (read-only-mode 1))
-    (jcs-buffer-menu-refresh-buffer)
     (jcs-active-line-numbers-by-mode))
   )
 (add-hook 'find-file-hook 'jcs-find-file-hook)
 
-;;-----------------------------------------------------------
-;;-----------------------------------------------------------
+(defun jcs-advice-find-file-after (&rest _args)
+  "Advice after execute `find-file' command."
+  (jcs-buffer-menu-safe-refresh)
+  )
+(advice-add 'find-file :after 'jcs-advice-find-file-after)
 
 (defun jcs-advice-switch-to-buffer-after (&rest _args)
   "Advice after execute `switch-to-buffer' command."
+  (jcs-buffer-menu-safe-refresh)
   )
 (advice-add 'switch-to-buffer :after 'jcs-advice-switch-to-buffer-after)
 
