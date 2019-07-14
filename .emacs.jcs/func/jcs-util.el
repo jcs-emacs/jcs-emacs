@@ -1047,23 +1047,19 @@ LST-STR : List of string."
     full-str))
 
 (defun jcs-is-contain-list-string-regexp (in-list in-str)
-  "Check if a string in the string list.
-IN-LIST : list of string.
-IN-STR : string to check if is inside the list of strings above."
+  "Check if a string IN-STR contain in any string in the string list IN-LIST."
   (cl-some #'(lambda (lb-sub-str) (string-match-p lb-sub-str in-str)) in-list))
 
 (defun jcs-is-contain-list-string (in-list in-str)
-  "Check if a string contain in any string in the string list.
-IN-LIST : list of string use to check if IN-STR in contain one of
-the string.
-IN-STR : string using to check if is contain one of the IN-LIST."
+  "Check if a string IN-STR contain in any string in the string list IN-LIST."
   (cl-some #'(lambda (lb-sub-str) (string-match-p (regexp-quote lb-sub-str) in-str)) in-list))
 
+(defun jcs-is-contain-list-symbol (in-list in-sym)
+  "Check if a symbol IN-STR contain in any symbol in the symbol list IN-LIST."
+  (cl-some #'(lambda (lb-sub-str) (equal lb-sub-str in-sym)) in-list))
+
 (defun jcs-is-contain-list-integer (in-list in-int)
-  "Check if a integer contain in any integer in the integer list.
-IN-LIST : list of integer use to check if IN-INT in contain one of
-the string.
-IN-INT : integer using to check if is contain one of the IN-LIST."
+  "Check if an integer IN-STR contain in any integer in the integer list IN-LIST."
   (cl-some #'(lambda (lb-sub-int) (= lb-sub-int in-int)) in-list))
 
 ;;----------------------------------------------------------------------------
@@ -1081,12 +1077,21 @@ IN-INT : integer using to check if is contain one of the IN-LIST."
 
 (defun jcs-is-current-major-mode-p (mode-names)
   "Check if this major mode MODE-NAMES."
-  (let ((current-mode-name (symbol-name major-mode)))
-    (cond ((stringp mode-names)
-           (string= current-mode-name mode-names))
-          ((listp mode-names)
-           (jcs-is-contain-list-string mode-names current-mode-name))
-          (t nil))))
+  (cond ((stringp mode-names)
+         (string= (symbol-name major-mode) mode-names))
+        ((listp mode-names)
+         (let ((index 0)
+               (current-mode-name nil)
+               (found nil))
+           (while (and (< index (length mode-names))
+                       (not found))
+             (setq current-mode-name (nth index mode-names))
+             (setq found (jcs-is-current-major-mode-p current-mode-name))
+             (setq index (1+ index)))
+           found))
+        ((symbolp mode-names)
+         (equal major-mode mode-names))
+        (t nil)))
 
 (defun jcs-is-minor-mode-enabled-p (mode-obj)
   "Check if this minor enabled in current buffer/file.
