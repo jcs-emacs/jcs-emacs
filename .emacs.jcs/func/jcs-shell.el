@@ -32,7 +32,8 @@
   (interactive)
   (if (ignore-errors (jcs-jump-shown-to-buffer jcs-shell-buffer-name))
       (progn
-        (kill-this-buffer)
+        (kill-process jcs-shell-buffer-name)
+        (kill-buffer jcs-shell-buffer-name)
         (delete-window))
     (error (format "No \"%s\" buffer found" jcs-shell-buffer-name))))
 
