@@ -141,6 +141,17 @@
     (when (ignore-errors (jcs-jump-shown-to-buffer "*Buffer List*"))
       (buffer-menu))))
 
+
+(defvar jcs-buffer-menu-switch-buffer-refreshing nil
+  "Flag to check if current buffer menu refresing.")
+
+(defun jcs-buffer-menu-safe-refresh ()
+  "Safely refresh `buffer menu`'s buffer."
+  (unless jcs-buffer-menu-switch-buffer-refreshing
+    (setq jcs-buffer-menu-switch-buffer-refreshing t)
+    (jcs-buffer-menu-refresh-buffer)
+    (setq jcs-buffer-menu-switch-buffer-refreshing nil)))
+
 ;;----------------------------------------------
 ;; Calculator
 
