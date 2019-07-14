@@ -855,12 +855,14 @@ ARG : Match with `save-buffer' command."
 
 ;;;###autoload
 (defun jcs-save-buffer ()
+  "Save buffer wrapper."
   (interactive)
   (let ((modified (buffer-modified-p)))
-    (save-buffer)
+    (save-excursion
+      (save-buffer))
     (if modified
-        (message "Wrote file %s" (buffer-file-name)))
-    (message "(No changes need to be saved)") ))
+        (message "Wrote file %s" (buffer-file-name))
+      (message "(No changes need to be saved)"))))
 
 ;;----------------------------------------------
 ;; Find file
