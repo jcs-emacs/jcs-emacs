@@ -341,6 +341,7 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
 (with-eval-after-load 're-builder (require 'jcs-re-builder-mode))
 (with-eval-after-load 'shell (require 'jcs-shell-mode))
 (with-eval-after-load 'esh-mode (require 'jcs-esh-mode))
+(with-eval-after-load 'yasnippet (require 'jcs-snippet-mode))
 
 (with-eval-after-load 'actionscript-mode (require 'jcs-actionscript-mode))
 (with-eval-after-load 'basic-mode (require 'jcs-basic-mode))
