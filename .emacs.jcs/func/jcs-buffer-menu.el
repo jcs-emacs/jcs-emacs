@@ -52,8 +52,8 @@ Sorted by (1) visit, (2) buffer, (3) size, (4) time, (5) mode, (6) file."
 (defvar jcs-buffer-menu-filter-timer nil
   "Store filter timer function.")
 
-(defvar jcs-buffer-menu-filter-delay 0.3
-  "Store filter timer function.")
+(defvar jcs-buffer-menu-filter-delay 0.1
+  "Filter delay time.")
 
 (defun jcs-buffer-menu-fuzzy-match (pattern candidate)
   "Fuzzy match for searching buffer name."
@@ -62,25 +62,33 @@ Sorted by (1) visit, (2) buffer, (3) size, (4) time, (5) mode, (6) file."
         (not (string-match pattern candidate))
       (string-match pattern candidate))))
 
+;;;###autoload
+(defun jcs-tabulated-list-remove-header ()
+  "Remove `tabulated-list' header."
+  (interactive)
+  (when tabulated-list--header-string
+    (save-excursion
+      (goto-char (point-min))
+      (unless (tabulated-list-get-entry)
+        (let ((inhibit-read-only t))
+          (delete-region (point-min) (1+ (line-end-position))))))))
+
 (defun jcs-buffer-menu-filter-list ()
   "Do filtering the buffer list."
-  (jcs-goto-line 2)
-  (save-excursion
-    (while (< (line-number-at-pos) (line-number-at-pos (point-max)))
-      (let* ((cl (string-trim (thing-at-point 'line)))
-             (buf-name (elt (tabulated-list-get-entry) 3))
-             (search-str (substring tabulated-list--header-string
-                                    (length jcs-buffer-menu-search-title)
-                                    (length tabulated-list--header-string))))
-        (if (string-match-p search-str buf-name)
-            (next-line)
-          (tabulated-list-delete-entry))))))
+  (while (< (line-number-at-pos) (line-number-at-pos (point-max)))
+    (let* ((cl (string-trim (thing-at-point 'line)))
+           (buf-name (elt (tabulated-list-get-entry) 3))
+           (search-str (substring tabulated-list--header-string
+                                  (length jcs-buffer-menu-search-title)
+                                  (length tabulated-list--header-string))))
+      (if (string-match-p search-str buf-name)
+          (next-line)
+        (tabulated-list-delete-entry))))
+  (jcs-goto-line 2))
 
 (defun jcs-buffer-menu-input (key-input &optional add-del-num)
   "Insert key KEY-INPUT for fake header for search bar.
 ADD-DEL-NUM : Addition or deletion number."
-  (setq jcs-buffer-menu-inputing t)
-  (buffer-menu)
   (unless add-del-num (setq add-del-num (length key-input)))
   (if (jcs-is-positive add-del-num)
       (setq tabulated-list--header-string
@@ -90,14 +98,14 @@ ADD-DEL-NUM : Addition or deletion number."
   ;; NOTE: Ensure title exists.
   (when (> (length jcs-buffer-menu-search-title) (length tabulated-list--header-string))
     (setq tabulated-list--header-string jcs-buffer-menu-search-title))
+  (tabulated-list-revert)
   (tabulated-list-print-fake-header)
   (when (timerp jcs-buffer-menu-filter-timer)
     (cancel-timer jcs-buffer-menu-filter-timer))
   (setq jcs-buffer-menu-filter-timer
         (run-with-idle-timer jcs-buffer-menu-filter-delay
                              nil
-                             'jcs-buffer-menu-filter-list))
-  (setq jcs-buffer-menu-inputing nil))
+                             'jcs-buffer-menu-filter-list)))
 
 
 (provide 'jcs-buffer-menu)
