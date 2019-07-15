@@ -56,14 +56,30 @@
 
 (define-key Buffer-menu-mode-map (kbd "M-K") #'buffer-menu)
 (define-key Buffer-menu-mode-map (kbd "C-k C-s") #'describe-bindings)
+(define-key Buffer-menu-mode-map (kbd "M-s") #'jcs-scratch-buffer)
 
 (with-eval-after-load 'jcs-buffer-menu
-  (define-key Buffer-menu-mode-map "1" #'jcs-buffer-menu-sort-by-visit)
-  (define-key Buffer-menu-mode-map "2" #'jcs-buffer-menu-sort-by-buffer)
-  (define-key Buffer-menu-mode-map "3" #'jcs-buffer-menu-sort-by-size)
-  (define-key Buffer-menu-mode-map "4" #'jcs-buffer-menu-sort-by-time)
-  (define-key Buffer-menu-mode-map "5" #'jcs-buffer-menu-sort-by-mode)
-  (define-key Buffer-menu-mode-map "6" #'jcs-buffer-menu-sort-by-file))
+  (define-key Buffer-menu-mode-map (kbd "M-1") #'jcs-buffer-menu-sort-by-visit)
+  (define-key Buffer-menu-mode-map (kbd "M-2") #'jcs-buffer-menu-sort-by-buffer)
+  (define-key Buffer-menu-mode-map (kbd "M-3") #'jcs-buffer-menu-sort-by-size)
+  (define-key Buffer-menu-mode-map (kbd "M-4") #'jcs-buffer-menu-sort-by-time)
+  (define-key Buffer-menu-mode-map (kbd "M-5") #'jcs-buffer-menu-sort-by-mode)
+  (define-key Buffer-menu-mode-map (kbd "M-6") #'jcs-buffer-menu-sort-by-file)
+
+  (let ((bind-keys '("a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m"
+                     "n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z"
+                     "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M"
+                     "N" "O" "P" "Q" "R" "S" "T" "U" "V" "W" "X" "Y" "Z"
+                     "1" "2" "3" "4" "5" "6" "7" "8" "9" "0" "-" "=" "`"
+                     "!" "@" "#" "$" "%" "^" "&" "*" "(" ")" "_" "\\" "~"
+                     "{" "}" "[" "]" ";" ":" "'" "\"" "," "." "<" ">" "/"
+                     "?" "|" " ")))
+    (dolist (key-str bind-keys)
+      (define-key Buffer-menu-mode-map key-str
+        (lambda () (interactive) (jcs-buffer-menu-input key-str)))))
+
+  (define-key Buffer-menu-mode-map (kbd "<backspace>")
+    (lambda () (interactive) (jcs-buffer-menu-input "" -1))))
 
 ;;; Buffers
 (define-key global-map (kbd "C-a") #'jcs-mark-whole-buffer)
