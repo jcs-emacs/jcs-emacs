@@ -133,6 +133,18 @@
 ;;----------------------------------------------
 ;; Buffer Menu
 
+(defvar jcs-buffer-menu-inputing nil
+  "Is currently inputing the search.")
+
+(defconst jcs-buffer-menu-search-title "Search: "
+  "Search bar title in `buffer-menu''s buffer.")
+
+(defun jcs-advice-buffer-menu-before (&rest _)
+  "Advice before execute `buffer-menu' command."
+  (unless jcs-buffer-menu-inputing
+    (setq tabulated-list--header-string jcs-buffer-menu-search-title)))
+(advice-add 'buffer-menu :before 'jcs-advice-buffer-menu-before)
+
 ;;;###autoload
 (defun jcs-buffer-menu-refresh-buffer ()
   "Update buffer menu buffer."
