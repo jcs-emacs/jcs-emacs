@@ -245,7 +245,8 @@
   "Kill the dashboard buffer then open the new one immediately."
   (interactive)
   (jcs-maybe-kill-this-buffer)
-  (jcs-dashboard-refresh-buffer))
+  (jcs-dashboard-refresh-buffer)
+  (jcs-buffer-menu-refresh-buffer))
 
 ;;;###autoload
 (defun jcs-reset-dashboard-banner-by-theme ()
