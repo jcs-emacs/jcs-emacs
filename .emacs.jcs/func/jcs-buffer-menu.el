@@ -62,17 +62,6 @@ Sorted by (1) visit, (2) buffer, (3) size, (4) time, (5) mode, (6) file."
         (not (string-match pattern candidate))
       (string-match pattern candidate))))
 
-;;;###autoload
-(defun jcs-tabulated-list-remove-header ()
-  "Remove `tabulated-list' header."
-  (interactive)
-  (when tabulated-list--header-string
-    (save-excursion
-      (goto-char (point-min))
-      (unless (tabulated-list-get-entry)
-        (let ((inhibit-read-only t))
-          (delete-region (point-min) (1+ (line-end-position))))))))
-
 (defun jcs-buffer-menu-filter-list ()
   "Do filtering the buffer list."
   (while (< (line-number-at-pos) (line-number-at-pos (point-max)))
