@@ -127,6 +127,8 @@ Automatically enable/disable `truncate-lines-mode` depends
 on certain situation. (`web-mode` only)
 * [*Better Dashboard*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/better-dashboard) - 
 Implementation for improving experiences using dashboard.
+* [*Buffer Menu Search*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/buffer-menu-search) - 
+Able to search in the `*Buffer List*` buffer.
 * [*Build Run*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/build-run) - 
 Implementation for executing script for building and running 
 the software.
