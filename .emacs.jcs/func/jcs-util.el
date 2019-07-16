@@ -404,11 +404,13 @@ IS-FORWARD : forward conversion instead of backward conversion."
       (jcs-current-char-equal-p "\t")))
 
 (defun jcs-current-char-equal-p (c)
-  "Check the current character equal to C."
-  (if (jcs-is-beginning-of-buffer-p)
-      ;; No character at the beginning of the buffer, just return `nil'.
-      nil
-    (string= (jcs-get-current-char-string) c)))
+  "Check the current character equal to C, C can be a list of character."
+  (cond ((and (stringp c)
+              (stringp (jcs-get-current-char-string)))
+         (string= (jcs-get-current-char-string) c))
+        ((listp c)
+         (jcs-is-contain-list-string c (jcs-get-current-char-string)))
+        (t nil)))
 
 (defun jcs-current-char-string-match-p (c)
   "Check the current character string match to C."
@@ -1263,29 +1265,25 @@ IGNORE-ERRORS-T : ignore errors for this function?"
   (if (and (not (jcs-file-directory-exists-p in-path))
            (not ignore-errors-t))
       (error "Directory/File you trying get does not exists")
-    (progn
-      (let ((result-dir-or-file nil)
-            (split-dir-file-list '())
-            (split-dir-file-list-len 0))
+    (let ((result-dir-or-file nil)
+          (split-dir-file-list '())
+          (split-dir-file-list-len 0))
 
-        (cond ((string-match-p "/" in-path)
-               (progn
-                 (setq split-dir-file-list (split-string in-path "/"))))
-              ((string-match-p "\\" in-path)
-               (progn
-                 (setq split-dir-file-list (split-string in-path "\\"))))
-              ((string-match-p "\\\\" in-path)
-               (progn
-                 (setq split-dir-file-list (split-string in-path "\\\\")))))
+      (cond ((string-match-p "/" in-path)
+             (setq split-dir-file-list (split-string in-path "/")))
+            ((string-match-p "\\" in-path)
+             (setq split-dir-file-list (split-string in-path "\\")))
+            ((string-match-p "\\\\" in-path)
+             (setq split-dir-file-list (split-string in-path "\\\\"))))
 
-        ;; Get the last element/item in the list.
-        (setq split-dir-file-list-len (1- (length split-dir-file-list)))
+      ;; Get the last element/item in the list.
+      (setq split-dir-file-list-len (1- (length split-dir-file-list)))
 
-        ;; Result is alwasy the last item in the list.
-        (setq result-dir-or-file (nth split-dir-file-list-len split-dir-file-list))
+      ;; Result is alwasy the last item in the list.
+      (setq result-dir-or-file (nth split-dir-file-list-len split-dir-file-list))
 
-        ;; Return result.
-        result-dir-or-file))))
+      ;; Return result.
+      result-dir-or-file)))
 
 ;;----------------------------------------------------------------------------
 ;; String
