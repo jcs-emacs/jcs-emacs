@@ -66,6 +66,8 @@
   (define-key Buffer-menu-mode-map (kbd "M-5") #'jcs-buffer-menu-sort-by-mode)
   (define-key Buffer-menu-mode-map (kbd "M-6") #'jcs-buffer-menu-sort-by-file)
 
+  (define-key Buffer-menu-mode-map (kbd "<return>") #'jcs-buffer-menu-return)
+
   (let ((bind-keys '("a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m"
                      "n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z"
                      "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M"
