@@ -49,6 +49,19 @@ Sorted by (1) visit, (2) buffer, (3) size, (4) time, (5) mode, (6) file."
   (jcs-buffer-menu-sort 6))
 
 
+;;;###autoload
+(defun jcs-buffer-menu-return ()
+  "Implemenetation for `buffer menu`'s return key."
+  (interactive)
+  (if jcs-buffer-menu-done-filtering
+      (unless (ignore-errors (Buffer-menu-this-window))
+        (user-error "No buffer on this line"))
+    (message "[Display not ready]")))
+
+
+(defvar jcs-buffer-menu-done-filtering nil
+  "Flag to check if done filtering.")
+
 (defvar jcs-buffer-menu-filter-timer nil
   "Store filter timer function.")
 
@@ -73,11 +86,13 @@ Sorted by (1) visit, (2) buffer, (3) size, (4) time, (5) mode, (6) file."
       (if (string-match-p search-str buf-name)
           (next-line)
         (tabulated-list-delete-entry))))
-  (jcs-goto-line 2))
+  (jcs-goto-line 2)
+  (setq jcs-buffer-menu-done-filtering t))
 
 (defun jcs-buffer-menu-input (key-input &optional add-del-num)
   "Insert key KEY-INPUT for fake header for search bar.
 ADD-DEL-NUM : Addition or deletion number."
+  (setq jcs-buffer-menu-done-filtering nil)
   (unless add-del-num (setq add-del-num (length key-input)))
   (if (jcs-is-positive add-del-num)
       (setq tabulated-list--header-string
