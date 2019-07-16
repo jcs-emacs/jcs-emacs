@@ -1400,23 +1400,23 @@ REVERSE : t forward, nil backward."
 (defun jcs-get-open-pair-char (c)
   "Get the open pairing character from C."
   (let ((pair-char nil))
-    (cond ((string= c "\"") (setq pair-char "\""))
-          ((string= c "'") (setq pair-char "'"))
-          ((string= c ")") (setq pair-char "("))
-          ((string= c "]") (setq pair-char "["))
-          ((string= c "}") (setq pair-char "{"))
-          ((string= c "`") (setq pair-char "`")))
+    (cond ((string= c "\"") (setq pair-char '("\"")))
+          ((string= c "'") (setq pair-char '("'" "`")))
+          ((string= c ")") (setq pair-char '("(")))
+          ((string= c "]") (setq pair-char '("[")))
+          ((string= c "}") (setq pair-char '("{")))
+          ((string= c "`") (setq pair-char '("`"))))
     pair-char))
 
 (defun jcs-get-close-pair-char (c)
-  "Get the close pairing character from C."
+  "Get the list of close pairing character from C."
   (let ((pair-char nil))
-    (cond ((string= c "\"") (setq pair-char "\""))
-          ((string= c "'") (setq pair-char "'"))
-          ((string= c "(") (setq pair-char ")"))
-          ((string= c "[") (setq pair-char "]"))
-          ((string= c "{") (setq pair-char "}"))
-          ((string= c "`") (setq pair-char "`")))
+    (cond ((string= c "\"") (setq pair-char '("\"")))
+          ((string= c "'") (setq pair-char '("'")))
+          ((string= c "(") (setq pair-char '(")")))
+          ((string= c "[") (setq pair-char '("]")))
+          ((string= c "{") (setq pair-char '("}")))
+          ((string= c "`") (setq pair-char '("`" "'"))))
     pair-char))
 
 
