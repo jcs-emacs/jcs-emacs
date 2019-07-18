@@ -192,7 +192,7 @@ can see the error/operation message.")
 (setq scroll-step 2)
 
 ;;; So Long  (for very long file, like `jquery.min.js', etc)
-(when (version<= "27.0" emacs-version)
+(when (version<= "27.1" emacs-version)
   (global-so-long-mode 1))
 
 ;;; Startup windowing
