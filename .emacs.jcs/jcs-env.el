@@ -191,6 +191,10 @@ can see the error/operation message.")
 ;;; Smooth scroll
 (setq scroll-step 2)
 
+;;; So Long  (for very long file, like `jquery.min.js', etc)
+(when (version<= "27.0" emacs-version)
+  (global-so-long-mode 1))
+
 ;;; Startup windowing
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 (setq next-line-add-newlines nil)
