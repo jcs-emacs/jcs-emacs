@@ -13,7 +13,10 @@
   (define-key reb-mode-map (kbd "C-d") #'jcs-kill-whole-line)
   (define-key reb-mode-map (kbd "C-c C-c") #'kill-ring-save)
 
-  (define-key reb-mode-map "\ek" #'jcs-reb-maybe-kill-this-buffer)
+  (define-key reb-mode-map (kbd "<up>") #'previous-line)
+  (define-key reb-mode-map (kbd "<down>") #'next-line)
+
+  (define-key reb-mode-map (kbd "M-k") #'jcs-reb-maybe-kill-this-buffer)
   )
 
 (add-hook 'reb-mode-hook 'jcs-re-builder-mode-hook)
