@@ -66,6 +66,7 @@
                                     (case-label            . 0)
                                     (block-open            . 0)
                                     (inline-open           . 0)
+                                    (inlambda              . 0)
                                     (topmost-intro-cont    . 0)
                                     (knr-argdecl-intro     . -)
                                     (brace-list-open       . 0)
