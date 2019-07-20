@@ -317,7 +317,7 @@
   (define-key global-map (kbd "C-c r") #'rainbow-mode))
 
 ;;; Mouse
-(global-unset-key [mouse-2])  ;; no screwing with my middle mouse button
+(define-key global-map [mouse-2] #'mouse-set-point)
 
 ;;; Move Current Line Up or Down
 (define-key global-map [M-up] #'move-text-up)
