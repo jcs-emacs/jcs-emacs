@@ -438,7 +438,7 @@ This command does not push text to `kill-ring'."
   (if (jcs-can-do-smart-indent-p)
       (progn
         (jcs-previous-line)
-        (ignore-errors (indent-for-tab-command)))
+        (indent-for-tab-command))
     (jcs-previous-line)))
 
 ;;;###autoload
@@ -448,7 +448,7 @@ This command does not push text to `kill-ring'."
   (if (jcs-can-do-smart-indent-p)
       (progn
         (jcs-previous-line)
-        (ignore-errors (indent-according-to-mode)))
+        (indent-according-to-mode))
     (jcs-previous-line)))
 
 ;;;###autoload
@@ -458,7 +458,7 @@ This command does not push text to `kill-ring'."
   (if (jcs-can-do-smart-indent-p)
       (progn
         (jcs-next-line)
-        (ignore-errors (indent-for-tab-command)))
+        (indent-for-tab-command))
     (jcs-next-line)))
 
 ;;;###autoload
@@ -468,7 +468,7 @@ This command does not push text to `kill-ring'."
   (if (jcs-can-do-smart-indent-p)
       (progn
         (jcs-next-line)
-        (ignore-errors (indent-according-to-mode)))
+        (indent-according-to-mode))
     (jcs-next-line)))
 
 
@@ -479,8 +479,7 @@ This command does not push text to `kill-ring'."
 (defun jcs-format-document ()
   "Format current document."
   (interactive)
-  (ignore-errors
-    (indent-region (point-min) (point-max))))
+  (indent-region (point-min) (point-max)))
 
 ;;;###autoload
 (defun jcs-format-region-or-document ()
@@ -723,7 +722,7 @@ the current line."
   (interactive)
   (transpose-lines 1)
   (forward-line -2)
-  (ignore-errors (indent-according-to-mode)))
+  (indent-according-to-mode))
 
 ;;;###autoload
 (defun jcs-move-line-down ()
@@ -732,7 +731,7 @@ the current line."
   (forward-line 1)
   (transpose-lines 1)
   (forward-line -1)
-  (ignore-errors (indent-according-to-mode)))
+  (indent-according-to-mode))
 
 ;;----------------------------------------------
 ;; Word Case
