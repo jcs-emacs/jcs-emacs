@@ -433,46 +433,42 @@ This command does not push text to `kill-ring'."
 
 ;;;###autoload
 (defun jcs-smart-indent-up ()
-  "Indent line after move up one line.
-This function uses `indent-for-tab-command'."
+  "Indent line after move up one line."
   (interactive)
   (if (jcs-can-do-smart-indent-p)
       (progn
         (jcs-previous-line)
-        (indent-for-tab-command))
+        (ignore-errors (indent-for-tab-command)))
     (jcs-previous-line)))
 
 ;;;###autoload
 (defun jcs-smart-indent-up-by-mode ()
-  "Indent line after move up one line.
-Use `indent-according-to-mode' instead `indent-for-tab-command'."
+  "Indent line after move up one line."
   (interactive)
   (if (jcs-can-do-smart-indent-p)
       (progn
         (jcs-previous-line)
-        (indent-according-to-mode))
+        (ignore-errors (indent-according-to-mode)))
     (jcs-previous-line)))
 
 ;;;###autoload
 (defun jcs-smart-indent-down ()
-  "Indent line after move down one line.
-This function uses `indent-for-tab-command'."
+  "Indent line after move down one line."
   (interactive)
   (if (jcs-can-do-smart-indent-p)
       (progn
         (jcs-next-line)
-        (indent-for-tab-command))
+        (ignore-errors (indent-for-tab-command)))
     (jcs-next-line)))
 
 ;;;###autoload
 (defun jcs-smart-indent-down-by-mode ()
-  "Indent line after move down one line.
-Use `indent-according-to-mode' instead `indent-for-tab-command'."
+  "Indent line after move down one line."
   (interactive)
   (if (jcs-can-do-smart-indent-p)
       (progn
         (jcs-next-line)
-        (indent-according-to-mode))
+        (ignore-errors (indent-according-to-mode)))
     (jcs-next-line)))
 
 
@@ -483,15 +479,16 @@ Use `indent-according-to-mode' instead `indent-for-tab-command'."
 (defun jcs-format-document ()
   "Format current document."
   (interactive)
-  (indent-region (point-min) (point-max)))
+  (ignore-errors
+    (indent-region (point-min) (point-max))))
 
 ;;;###autoload
 (defun jcs-format-region-or-document ()
   "Format the document if there are no region apply."
   (interactive)
   (if (use-region-p)
-      (call-interactively #'indent-region)
-    (call-interactively #'jcs-format-document)))
+      (indent-region (region-beginning) (region-end))
+    (jcs-format-document)))
 
 ;;;###autoload
 (defun jcs-align-region-by-points (regexp pnt-min pnt-max)
@@ -726,7 +723,7 @@ the current line."
   (interactive)
   (transpose-lines 1)
   (forward-line -2)
-  (indent-according-to-mode))
+  (ignore-errors (indent-according-to-mode)))
 
 ;;;###autoload
 (defun jcs-move-line-down ()
@@ -735,7 +732,7 @@ the current line."
   (forward-line 1)
   (transpose-lines 1)
   (forward-line -1)
-  (indent-according-to-mode))
+  (ignore-errors (indent-according-to-mode)))
 
 ;;----------------------------------------------
 ;; Word Case
