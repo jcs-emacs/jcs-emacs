@@ -58,32 +58,40 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
 (defun jcs-get-indent-level-by-mode ()
   "Get indentation level by mode."
   (cond
-   ((jcs-is-current-major-mode-p
-     '("actionscript-mode"
-       "cc-mode"
-       "c-mode"
-       "c++-mode"
-       "csharp-mode"
-       "java-mode"
-       "jayces-mode"
-       "lua-mode"
-       "nasm-mode"
-       "objc-mode"
-       "python-mode"
-       "typescript-mode"))
+   ((jcs-is-current-major-mode-p '("python-mode"
+                                   "typescript-mode"))
     4)
-   ((jcs-is-current-major-mode-p
-     '("css-mode"
-       "lisp-mode"
-       "lisp-interaction-mode"
-       "emacs-lisp-mode"
-       "js2-mode"
-       "json-mode"
-       "sql-mode"
-       "web-mode"
-       "nxml-mode"
-       "yaml-mode"))
+   ((jcs-is-current-major-mode-p '("lisp-mode"
+                                   "lisp-interaction-mode"
+                                   "emacs-lisp-mode"
+                                   "nxml-mode"
+                                   "yaml-mode"))
     2)
+   ((jcs-is-current-major-mode-p '("actionscript-mode"))
+    actionscript-indent-level)
+   ((jcs-is-current-major-mode-p '("cc-mode"
+                                   "c-mode"
+                                   "c++-mode"
+                                   "csharp-mode"
+                                   "java-mode"
+                                   "jayces-mode"
+                                   "objc-mode"))
+    c-basic-offset)
+   ((jcs-is-current-major-mode-p '("css-mode"))
+    css-indent-offset)
+   ((jcs-is-current-major-mode-p '("js-mode"
+                                   "json-mode"))
+    js-indent-level)
+   ((jcs-is-current-major-mode-p '("js2-mode"))
+    js2-basic-offset)
+   ((jcs-is-current-major-mode-p '("lua-mode"))
+    lua-indent-level)
+   ((jcs-is-current-major-mode-p '("nasm-mode"))
+    nasm-basic-offset)
+   ((jcs-is-current-major-mode-p '("sql-mode"))
+    sql-indent-offset)
+   ((jcs-is-current-major-mode-p '("web-mode"))
+    web-mode-markup-indent-offset)
    (t tab-width)))
 
 (defun jcs-set-tab-width-by-mode ()
