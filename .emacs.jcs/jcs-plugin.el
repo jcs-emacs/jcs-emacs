@@ -201,10 +201,12 @@
           (feebleline-file-modified-star :pre "" :face font-lock-constant-face :post " ")
           (buffer-name :pre "" :face font-lock-keyword-face :post " ")
           ;;-- Right
-          ((lambda () buffer-file-coding-system) :pre "# " :post "" :align right)
-          (show-eol-get-eol-mark-by-system :pre " : " :post " # " :align right)
-          (feebleline-line-number :pre "[ " :fmt "%s" :post "" :align right)
-          (feebleline-column-number :pre " : " :fmt "%s" :post " ] " :align right)
+          ((lambda () buffer-file-coding-system) :pre "[" :post "" :align right)
+          (show-eol-get-eol-mark-by-system :pre " : " :post "] " :align right)
+          ((lambda ()
+             (format "%s : %s" (jcs-buffer-spaces-to-tabs) (jcs-get-indent-level-by-mode))) :pre "[" :post "] " :align right)
+          (feebleline-line-number :pre "[" :fmt "%s" :post "" :align right)
+          (feebleline-column-number :pre " : " :fmt "%s" :post "] " :align right)
           ((lambda () (format-time-string "[%Y-%m-%d %H:%M:%S]")) :align right)
           ))
 
@@ -477,7 +479,7 @@
   :init
   (setq region-occurrences-highlighter-min-size 1)
   :config
-  (set-face-attribute 'region-occurrences-highlighter-face
+  (set-face-attribute 'region-occurrences-highlighter-face
                       nil
                       :background "#113D6F"
                       :inverse-video nil)
