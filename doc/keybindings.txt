@@ -228,6 +228,9 @@ C-x =           Calcualte the region and replace with the result.
 
 S-f10           Right click context menu.
 
+C-x >           Increment tab size by 2.
+C-x <           Decrement tab size by 2.
+
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * Window
