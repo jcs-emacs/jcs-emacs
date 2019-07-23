@@ -624,50 +624,47 @@ TYPE : enable/disable case sensitive?"
 
 (defun jcs-delta-tab-width (dv)
   "Increase/Decrease tab width by delta value DV."
-  (let ((cv nil))
-    (cond ((jcs-is-current-major-mode-p '("actionscript-mode"))
-           (setq actionscript-indent-level
-                 (jcs-ensure-valid-tab-width actionscript-indent-level dv))
-           (setq cv actionscript-indent-level))
-          ((jcs-is-current-major-mode-p '("cc-mode"
-                                          "c-mode"
-                                          "c++-mode"
-                                          "csharp-mode"
-                                          "java-mode"
-                                          "jayces-mode"
-                                          "objc-mode"))
-           (setq c-basic-offset
-                 (jcs-ensure-valid-tab-width c-basic-offset dv))
-           (setq cv c-basic-offset))
-          ((jcs-is-current-major-mode-p '("css-mode"))
-           (setq css-indent-offset
-                 (jcs-ensure-valid-tab-width css-indent-offset dv))
-           (setq cv css-indent-offset))
-          ((jcs-is-current-major-mode-p '("js-mode"
-                                          "json-mode"))
-           (setq js-indent-level
-                 (jcs-ensure-valid-tab-width js-indent-level dv))
-           (setq cv js-indent-level))
-          ((jcs-is-current-major-mode-p '("js2-mode"))
-           (setq js2-basic-offset
-                 (jcs-ensure-valid-tab-width js2-basic-offset dv))
-           (setq cv js2-basic-offset))
-          ((jcs-is-current-major-mode-p '("lua-mode"))
-           (setq lua-indent-level
-                 (jcs-ensure-valid-tab-width lua-indent-level dv))
-           (setq cv lua-indent-level))
-          ((jcs-is-current-major-mode-p '("nasm-mode"))
-           (setq nasm-basic-offset
-                 (jcs-ensure-valid-tab-width nasm-basic-offset dv))
-           (setq cv nasm-basic-offset))
-          ((jcs-is-current-major-mode-p '("sql-mode"))
-           (setq sql-indent-offset
-                 (jcs-ensure-valid-tab-width sql-indent-offset dv))
-           (setq cv sql-indent-offset))
-          ((jcs-is-current-major-mode-p '("web-mode"))
-           (setq web-mode-markup-indent-offset
-                 (jcs-ensure-valid-tab-width web-mode-markup-indent-offset dv))
-           (setq cv web-mode-markup-indent-offset)))
+  (let ((cv (jcs-ensure-valid-tab-width (jcs-get-indent-level-by-mode) dv)))
+    (cond
+     ((jcs-is-current-major-mode-p '("actionscript-mode"))
+      (setq actionscript-indent-level cv))
+     ((jcs-is-current-major-mode-p '("cc-mode"
+                                     "c-mode"
+                                     "c++-mode"
+                                     "csharp-mode"
+                                     "java-mode"
+                                     "jayces-mode"
+                                     "objc-mode"))
+      (setq c-basic-offset cv))
+     ((jcs-is-current-major-mode-p '("css-mode"))
+      (setq css-indent-offset cv))
+     ((jcs-is-current-major-mode-p '("js-mode"
+                                     "json-mode"))
+      (setq js-indent-level cv))
+     ((jcs-is-current-major-mode-p '("js2-mode"))
+      (setq js2-basic-offset cv))
+     ((jcs-is-current-major-mode-p '("lisp-mode"
+                                     "lisp-interaction-mode"
+                                     "emacs-lisp-mode"))
+      (setq lisp-body-indent cv))
+     ((jcs-is-current-major-mode-p '("lua-mode"))
+      (setq lua-indent-level cv))
+     ((jcs-is-current-major-mode-p '("lua-mode"))
+      (setq lua-indent-level cv))
+     ((jcs-is-current-major-mode-p '("nasm-mode"))
+      (setq nasm-basic-offset cv))
+     ((jcs-is-current-major-mode-p '("nxml-mode"))
+      (setq nxml-child-indent cv))
+     ((jcs-is-current-major-mode-p '("python-mode"))
+      (setq-local tab-width cv))
+     ((jcs-is-current-major-mode-p '("sql-mode"))
+      (setq sql-indent-offset cv))
+     ((jcs-is-current-major-mode-p '("typescript-mode"))
+      (setq typescript-indent-level cv))
+     ((jcs-is-current-major-mode-p '("web-mode"))
+      (setq web-mode-markup-indent-offset cv))
+     ((jcs-is-current-major-mode-p '("yaml-mode"))
+      (setq yaml-indent-offset cv)))
     (if cv
         (message "Current indent level: %s" cv)
       (error "No indent offset define in this major mode: %s" major-mode))))
