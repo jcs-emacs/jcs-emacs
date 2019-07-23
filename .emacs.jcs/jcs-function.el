@@ -615,6 +615,77 @@ TYPE : enable/disable case sensitive?"
   ;; Loop through all window so all windows take effect.
   (jcs-buffer-visible-list))
 
+;;----------------------------------------------
+;; Tab Width
+
+(defun jcs-ensure-valid-tab-width (cv dv)
+  "Change tab width by current value CV and delta value DV."
+  (jcs-clamp-integer (+ cv dv) 0 8))
+
+(defun jcs-delta-tab-width (dv)
+  "Increase/Decrease tab width by delta value DV."
+  (let ((cv nil))
+    (cond ((jcs-is-current-major-mode-p '("actionscript-mode"))
+           (setq actionscript-indent-level
+                 (jcs-ensure-valid-tab-width actionscript-indent-level dv))
+           (setq cv actionscript-indent-level))
+          ((jcs-is-current-major-mode-p '("cc-mode"
+                                          "c-mode"
+                                          "c++-mode"
+                                          "csharp-mode"
+                                          "java-mode"
+                                          "jayces-mode"
+                                          "objc-mode"))
+           (setq c-basic-offset
+                 (jcs-ensure-valid-tab-width c-basic-offset dv))
+           (setq cv c-basic-offset))
+          ((jcs-is-current-major-mode-p '("css-mode"))
+           (setq css-indent-offset
+                 (jcs-ensure-valid-tab-width css-indent-offset dv))
+           (setq cv css-indent-offset))
+          ((jcs-is-current-major-mode-p '("js-mode"
+                                          "json-mode"))
+           (setq js-indent-level
+                 (jcs-ensure-valid-tab-width js-indent-level dv))
+           (setq cv js-indent-level))
+          ((jcs-is-current-major-mode-p '("js2-mode"))
+           (setq js2-basic-offset
+                 (jcs-ensure-valid-tab-width js2-basic-offset dv))
+           (setq cv js2-basic-offset))
+          ((jcs-is-current-major-mode-p '("lua-mode"))
+           (setq lua-indent-level
+                 (jcs-ensure-valid-tab-width lua-indent-level dv))
+           (setq cv lua-indent-level))
+          ((jcs-is-current-major-mode-p '("nasm-mode"))
+           (setq nasm-basic-offset
+                 (jcs-ensure-valid-tab-width nasm-basic-offset dv))
+           (setq cv nasm-basic-offset))
+          ((jcs-is-current-major-mode-p '("sql-mode"))
+           (setq sql-indent-offset
+                 (jcs-ensure-valid-tab-width sql-indent-offset dv))
+           (setq cv sql-indent-offset))
+          ((jcs-is-current-major-mode-p '("web-mode"))
+           (setq web-mode-markup-indent-offset
+                 (jcs-ensure-valid-tab-width web-mode-markup-indent-offset dv))
+           (setq cv web-mode-markup-indent-offset)))
+    (if cv
+        (message "Current indent level: %s" cv)
+      (error "No indent offset define in this major mode: %s" major-mode))))
+
+;;;###autoload
+(defun jcs-inc-tab-width ()
+  "Increase tab width by 2."
+  (interactive)
+  (jcs-delta-tab-width 2)
+  (indent-for-tab-command))
+
+;;;###autoload
+(defun jcs-dec-tab-width ()
+  "Decrease tab width by 2."
+  (interactive)
+  (jcs-delta-tab-width -2)
+  (indent-for-tab-command))
+
 ;;---------------------------------------------
 ;; Text Scale
 
