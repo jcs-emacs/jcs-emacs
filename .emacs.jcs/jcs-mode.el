@@ -86,7 +86,7 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
    ((jcs-is-current-major-mode-p '("nxml-mode"))
     nxml-child-indent)
    ((jcs-is-current-major-mode-p '("python-mode"))
-    tab-width)
+    py-indent-offset)
    ((jcs-is-current-major-mode-p '("sql-mode"))
     sql-indent-offset)
    ((jcs-is-current-major-mode-p '("typescript-mode"))
@@ -103,9 +103,9 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
 
 (defun jcs-buffer-spaces-to-tabs ()
   "Check if buffer using spaces or tabs."
-  (if (string-match-p "[\t]" (buffer-string))
-      "TAB"
-    "SPC"))
+  (if (= (how-many "^\t" (point-min) (point-max)) 0)
+      "SPC"
+    "TAB"))
 
 
 ;;------------------------------------------------------------------------------------------------------
