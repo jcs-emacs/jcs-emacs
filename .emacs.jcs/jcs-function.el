@@ -656,7 +656,7 @@ TYPE : enable/disable case sensitive?"
      ((jcs-is-current-major-mode-p '("nxml-mode"))
       (setq nxml-child-indent cv))
      ((jcs-is-current-major-mode-p '("python-mode"))
-      (setq-local tab-width cv))
+      (setq py-indent-offset cv))
      ((jcs-is-current-major-mode-p '("sql-mode"))
       (setq sql-indent-offset cv))
      ((jcs-is-current-major-mode-p '("typescript-mode"))
