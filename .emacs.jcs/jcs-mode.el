@@ -58,15 +58,6 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
 (defun jcs-get-indent-level-by-mode ()
   "Get indentation level by mode."
   (cond
-   ((jcs-is-current-major-mode-p '("python-mode"
-                                   "typescript-mode"))
-    4)
-   ((jcs-is-current-major-mode-p '("lisp-mode"
-                                   "lisp-interaction-mode"
-                                   "emacs-lisp-mode"
-                                   "nxml-mode"
-                                   "yaml-mode"))
-    2)
    ((jcs-is-current-major-mode-p '("actionscript-mode"))
     actionscript-indent-level)
    ((jcs-is-current-major-mode-p '("cc-mode"
@@ -84,19 +75,37 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
     js-indent-level)
    ((jcs-is-current-major-mode-p '("js2-mode"))
     js2-basic-offset)
+   ((jcs-is-current-major-mode-p '("lisp-mode"
+                                   "lisp-interaction-mode"
+                                   "emacs-lisp-mode"))
+    lisp-body-indent)
    ((jcs-is-current-major-mode-p '("lua-mode"))
     lua-indent-level)
    ((jcs-is-current-major-mode-p '("nasm-mode"))
     nasm-basic-offset)
+   ((jcs-is-current-major-mode-p '("nxml-mode"))
+    nxml-child-indent)
+   ((jcs-is-current-major-mode-p '("python-mode"))
+    tab-width)
    ((jcs-is-current-major-mode-p '("sql-mode"))
     sql-indent-offset)
+   ((jcs-is-current-major-mode-p '("typescript-mode"))
+    typescript-indent-level)
    ((jcs-is-current-major-mode-p '("web-mode"))
     web-mode-markup-indent-offset)
+   ((jcs-is-current-major-mode-p '("yaml-mode"))
+    yaml-indent-offset)
    (t tab-width)))
 
 (defun jcs-set-tab-width-by-mode ()
   "Set the tab width by current major mode."
   (setq-local tab-width (jcs-get-indent-level-by-mode)))
+
+(defun jcs-buffer-spaces-to-tabs ()
+  "Check if buffer using spaces or tabs."
+  (if (string-match-p "[\t]" (buffer-string))
+      "TAB"
+    "SPC"))
 
 
 ;;------------------------------------------------------------------------------------------------------
