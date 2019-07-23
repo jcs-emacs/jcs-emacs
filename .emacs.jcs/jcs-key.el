@@ -459,6 +459,10 @@
 (define-key global-map [C-S-tab] #'centaur-tabs-backward)
 (define-key global-map [C-tab] #'centaur-tabs-forward)
 
+;;; Tab Width
+(define-key global-map (kbd "C-x >") #'jcs-inc-tab-width)
+(define-key global-map (kbd "C-x <") #'jcs-dec-tab-width)
+
 ;;; Text Scale
 (define-key global-map (kbd "C-=") #'jcs-text-scale-increase)
 (define-key global-map (kbd "C--") #'jcs-text-scale-decrease)
