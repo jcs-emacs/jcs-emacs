@@ -119,7 +119,7 @@ Just use this without remember Emacs Lisp function."
 
 ;;;###autoload
 (defun jcs-beginning-of-line-or-indentation ()
-  "move to beginning of line, or indentation
+  "Move to beginning of line, or indentation
 
 If you rather it go to beginning-of-line
 first and to indentation on the next hit use
@@ -131,7 +131,7 @@ this version instead."
 
 ;;;###autoload
 (defun jcs-back-to-indentation ()
-  "back to identation by checking first character in the line."
+  "Back to identation by checking first character in the line."
   (interactive)
   (beginning-of-line)
   (unless (jcs-current-line-totally-empty-p)
@@ -142,7 +142,7 @@ this version instead."
 
 ;;;###autoload
 (defun jcs-beginning-of-visual-line ()
-  "JayCeS beginning of visual line."
+  "Goto the beginning of visual line."
   (interactive)
   (let ((first-line-in-non-truncate-line nil)
         (visual-line-column -1))
@@ -167,7 +167,7 @@ this version instead."
 
 ;;;###autoload
 (defun jcs-end-of-visual-line()
-  "JayCeS end of visual line."
+  "Goto the end of visual line."
   (interactive)
   (let ((before-pnt (point)))
     (call-interactively #'end-of-visual-line)
@@ -179,7 +179,7 @@ this version instead."
 
 ;;;###autoload
 (defun jcs-beginning-of-line ()
-  "JayCeS beginning of line."
+  "Goto the beginning of line."
   (interactive)
   (if truncate-lines
       (call-interactively #'jcs-back-to-indentation-or-beginning)
@@ -187,12 +187,27 @@ this version instead."
 
 ;;;###autoload
 (defun jcs-end-of-line ()
-  "JayCeS end of line."
+  "Goto the end of line."
   (interactive)
   (if truncate-lines
       (call-interactively #'end-of-line)
     (call-interactively #'jcs-end-of-visual-line)))
 
+;;;###autoload
+(defun jcs-beginning-of-buffer ()
+  "Goto the beginning of buffer."
+  (interactive)
+  (let ((inhibit-message t)
+        (message-log-max nil))
+    (beginning-of-buffer)))
+
+;;;###autoload
+(defun jcs-end-of-buffer ()
+  "Goto the end of buffer."
+  (interactive)
+  (let ((inhibit-message t)
+        (message-log-max nil))
+    (end-of-buffer)))
 
 ;;----------------------------------------------
 ;; Navigating Blank Line
@@ -477,12 +492,12 @@ CH : character we target to move toward."
   (jcs-move-backward-open-close-epair "{" "}"))
 
 ;;;------------------------------------------------
-;;; Single Quotation Mark
+;;; Single Quotation Mark
 
 ;;;###autoload
 (defun jcs-move-forward-single-quot (&optional no-rec)
   "Move forward to a single quotation mark.
-as NO-REC : recursive? (Default: do recusrive method)"
+as NO-REC : recursive? (Default: do recusrive method)"
   (interactive)
   (jcs-move-to-forward-a-char-do-recursive "'" no-rec))
 
