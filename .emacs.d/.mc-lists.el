@@ -10,12 +10,16 @@
         jcs-backward-delete-word
         jcs-backward-kill-word-capital
         jcs-backward-word-capital
+        jcs-beginning-of-buffer
         jcs-beginning-of-line
         jcs-c-comment-pair
         jcs-csharp-smart-indent-down
         jcs-csharp-smart-indent-up
+        jcs-css-smart-indent-down
+        jcs-css-smart-indent-up
         jcs-downcase-word-or-region
         jcs-electric-backspace
+        jcs-end-of-buffer
         jcs-end-of-line
         jcs-forward-delete-word
         jcs-forward-kill-word-capital
@@ -59,6 +63,7 @@
         ace-window
         feebleline-mode
         helm-M-x
+        helm-find-files
         ignore
         indent-new-comment-line
         jcs-ace-window-1
@@ -70,6 +75,10 @@
         jcs-ace-window-7
         jcs-ace-window-8
         jcs-ace-window-9
+        jcs-css-save-buffer
+        jcs-dashboard-next-blank-line
+        jcs-dashboard-previous-blank-line
+        jcs-find-corresponding-file-other-window
         jcs-make-without-asking
         jcs-maybe-kill-this-buffer
         jcs-mc/mark-next-like-this
@@ -81,8 +90,12 @@
         jcs-redo
         jcs-run-without-asking
         jcs-same-file-other-window
+        jcs-save-buffer
+        jcs-scratch-buffer-maybe-kill
         jcs-scroll-down-one-line
         jcs-scroll-up-one-line
+        jcs-sh-untabify-save-buffer
+        jcs-tabify-save-buffer
         jcs-toggle-sublimity-mode
         jcs-undo
         jcs-untabify-save-buffer
@@ -91,4 +104,6 @@
         move-text-up
         package-list-packages
         reload-emacs
+        scroll-other-window
+        scroll-other-window-down
         ))
