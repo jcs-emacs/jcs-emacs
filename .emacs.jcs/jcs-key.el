@@ -331,6 +331,8 @@
   (define-key mc/keymap (kbd "C-v") #'jcs-smart-yank))
 
 ;;; Navigation
+(define-key global-map (kbd "C-<home>") #'jcs-beginning-of-buffer)
+(define-key global-map (kbd "C-<end>") #'jcs-end-of-buffer)
 (define-key global-map [home] #'jcs-beginning-of-line)
 (define-key global-map [end] #'jcs-end-of-line)
 (define-key global-map (kbd "M-<left>") #'jcs-backward-word-capital)
