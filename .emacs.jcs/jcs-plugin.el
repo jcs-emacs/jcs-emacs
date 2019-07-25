@@ -204,7 +204,7 @@
           ((lambda () buffer-file-coding-system) :pre "[" :post "" :align right)
           (show-eol-get-eol-mark-by-system :pre " : " :post "] " :align right)
           ((lambda ()
-             (format "%s : %s" (jcs-buffer-spaces-to-tabs) (jcs-get-indent-level-by-mode))) :pre "[" :post "] " :align right)
+             (format "%s : %s" (jcs-buffer-spaces-to-tabs) (jcs-get-tab-width-by-mode))) :pre "[" :post "] " :align right)
           (feebleline-line-number :pre "[" :fmt "%s" :post "" :align right)
           (feebleline-column-number :pre " : " :fmt "%s" :post "] " :align right)
           ((lambda () (format-time-string "[%Y-%m-%d %H:%M:%S]")) :align right)
