@@ -49,6 +49,7 @@
         jcs-vs-csharp-maybe-insert-codedoc
         jcs-vs-cut-key
         jcs-vs-front-curly-bracket-key
+        jcs-vs-semicolon-key
         jcs-vs-sharp-key
         jcs-web-backward-delete-word
         jcs-web-backward-delete-word-capital
