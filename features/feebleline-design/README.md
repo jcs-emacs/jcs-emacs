@@ -1,5 +1,5 @@
 # Feebleline Design
-> Personal design for `feebleline`.
+> Personal displayed design for `feebleline`.
 
 <p align="center">
   <img src="./fd-preview.png"/>
