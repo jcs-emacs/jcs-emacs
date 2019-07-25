@@ -55,7 +55,7 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
       (sleep-for jcs-prompt-message-sleep-delay-time)
       (call-interactively #'isearch-forward))))
 
-(defun jcs-get-indent-level-by-mode ()
+(defun jcs-get-tab-width-by-mode ()
   "Get indentation level by mode."
   (cond
    ((jcs-is-current-major-mode-p '("actionscript-mode"))
@@ -97,9 +97,9 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
     yaml-indent-offset)
    (t tab-width)))
 
-(defun jcs-set-tab-width-by-mode ()
-  "Set the tab width by current major mode."
-  (setq-local tab-width (jcs-get-indent-level-by-mode)))
+(defun jcs-continue-tab-width ()
+  "Keep the tab width the same as last time modified."
+  (jcs-set-tab-width-by-mode (jcs-get-tab-width-by-mode)))
 
 (defun jcs-buffer-spaces-to-tabs ()
   "Check if buffer using spaces or tabs."
@@ -155,42 +155,11 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
   (require 'view)
 
   ;; unset all the key
-  (define-key view-mode-map "a" nil)
-  (define-key view-mode-map "b" nil)
-  (define-key view-mode-map "c" nil)
-  (define-key view-mode-map "d" nil)
-  (define-key view-mode-map "e" nil)
-  (define-key view-mode-map "f" nil)
-  (define-key view-mode-map "g" nil)
-  (define-key view-mode-map "h" nil)
-  (define-key view-mode-map "i" nil)
-  (define-key view-mode-map "j" nil)
-  (define-key view-mode-map "k" nil)
-  (define-key view-mode-map "l" nil)
-  (define-key view-mode-map "m" nil)
-  (define-key view-mode-map "n" nil)
-  (define-key view-mode-map "o" nil)
-  (define-key view-mode-map "p" nil)
-  (define-key view-mode-map "q" nil)
-  (define-key view-mode-map "r" nil)
-  (define-key view-mode-map "s" nil)
-  (define-key view-mode-map "t" nil)
-  (define-key view-mode-map "u" nil)
-  (define-key view-mode-map "v" nil)
-  (define-key view-mode-map "w" nil)
-  (define-key view-mode-map "x" nil)
-  (define-key view-mode-map "y" nil)
-  (define-key view-mode-map "z" nil)
-  (define-key view-mode-map "," nil)
-  (define-key view-mode-map "\\" nil)
-  (define-key view-mode-map "." nil)
-  (define-key view-mode-map "," nil)
-  (define-key view-mode-map "/" nil)
-  (define-key view-mode-map "'" nil)
-  (define-key view-mode-map " " nil)
   (define-key view-mode-map [tab] nil)
   (define-key view-mode-map (kbd "RET") nil)
-  (define-key view-mode-map [space] nil)
+
+  (dolist (key-str jcs-key-list)
+    (define-key view-mode-map key-str nil))
 
   ;; just save buffer, don't care about the tab or spaces.
   (define-key view-mode-map (kbd "C-s") #'save-buffer)
@@ -269,7 +238,7 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
 
 (defun jcs-prog-mode-hook ()
   "Programming language mode hook."
-  (jcs-set-tab-width-by-mode)
+  (jcs-continue-tab-width)
   )
 (add-hook 'prog-mode-hook 'jcs-prog-mode-hook)
 
