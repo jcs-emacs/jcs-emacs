@@ -8,7 +8,6 @@
 
 (defun jcs-js-mode-hook ()
   "JavaScript mode hook."
-  (setq js2-basic-offset 2)
   (setq js2-bounce-indent-p t)
 
   (impatient-mode t)

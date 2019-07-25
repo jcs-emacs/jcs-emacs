@@ -7,7 +7,7 @@
 
 
 (defun jcs-csharp-mode-hook ()
-  "CSharp mode hoo."
+  "CSharp mode hook."
   (preproc-font-lock-mode t)
   (abbrev-mode 1)
   (electric-pair-mode 1)

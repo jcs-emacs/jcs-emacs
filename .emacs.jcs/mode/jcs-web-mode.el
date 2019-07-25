@@ -36,8 +36,6 @@
 (defun jcs-web-mode-hook ()
   "Hooks for Web mode."
 
-  (setq web-mode-markup-indent-offset 2)
-
   ;; 1 (default) for double quotes, 2 for single quotes
   (setq web-mode-auto-quote-style 1)
 

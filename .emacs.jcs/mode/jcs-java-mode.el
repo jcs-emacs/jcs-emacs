@@ -16,7 +16,6 @@
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
 
-
   ;; File Header
   (jcs-insert-header-if-valid '("[.]java")
                               'jcs-insert-java-template)
@@ -35,7 +34,7 @@
   (define-key java-mode-map (kbd "RET") #'jcs-smart-context-line-break)
   (define-key java-mode-map (kbd "*") #'jcs-c-comment-pair)
 
-  ;; switch frame.
+  ;; switch window
   (define-key java-mode-map "\ew" #'jcs-other-window-next)
   (define-key java-mode-map (kbd "M-q") #'jcs-other-window-prev)
 

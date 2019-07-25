@@ -19,8 +19,6 @@
   ;; Treat some character as whitespace character.
   (modify-syntax-entry ?- "-")
 
-  (setq css-indent-offset 2)
-
   ;; File Header
   (jcs-insert-header-if-valid '("[.]css")
                               'jcs-insert-css-template)
