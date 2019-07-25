@@ -124,6 +124,18 @@
 ;;; Highlight Select Region
 (transient-mark-mode t)
 
+;;; Key List
+(defconst jcs-key-list
+  '("a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m"
+    "n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z"
+    "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M"
+    "N" "O" "P" "Q" "R" "S" "T" "U" "V" "W" "X" "Y" "Z"
+    "1" "2" "3" "4" "5" "6" "7" "8" "9" "0" "-" "=" "`"
+    "!" "@" "#" "$" "%" "^" "&" "*" "(" ")" "_" "\\" "~"
+    "{" "}" "[" "]" ";" ":" "'" "\"" "," "." "<" ">" "/"
+    "?" "|" " ")
+  "List of key to bind.")
+
 ;;; Language Environment
 (prefer-coding-system 'utf-8)
 (defconst jcs-language-environment "UTF-8" "Default language environment.")
