@@ -303,6 +303,7 @@ IS-FORWARD : forward conversion instead of backward conversion."
   "Insert spaces depends on tab width configuration."
   (interactive)
   (let* ((tmp-count 0)
+         (tab-width (jcs-get-tab-width-record-by-mode))
          (remainder (% (current-column) tab-width))
          (target-width (if (= remainder 0) tab-width (- tab-width remainder))))
     (while (< tmp-count target-width)
@@ -314,6 +315,7 @@ IS-FORWARD : forward conversion instead of backward conversion."
   "Backward delete spaces using tab width."
   (interactive)
   (let* ((tmp-count 0)
+         (tab-width (jcs-get-tab-width-record-by-mode))
          (remainder (% (current-column) tab-width))
          (target-width (if (= remainder 0) tab-width remainder)))
     (while (and (< tmp-count target-width)
@@ -327,6 +329,7 @@ IS-FORWARD : forward conversion instead of backward conversion."
   "Forward delete spaces using tab width."
   (interactive)
   (let* ((tmp-count 0)
+         (tab-width (jcs-get-tab-width-record-by-mode))
          (remainder (% (jcs-first-char-in-line-column) tab-width))
          (target-width (if (= remainder 0) tab-width remainder)))
     (while (and (< tmp-count target-width)
