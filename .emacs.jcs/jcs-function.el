@@ -618,60 +618,6 @@ TYPE : enable/disable case sensitive?"
 ;;----------------------------------------------
 ;; Tab Width
 
-(defun jcs-set-tab-width-by-mode (tw)
-  "Set the tab width for current major mode."
-  (cond
-   ((jcs-is-current-major-mode-p '("actionscript-mode"))
-    (setq actionscript-indent-level cv))
-   ((jcs-is-current-major-mode-p '("cc-mode"
-                                   "c-mode"
-                                   "c++-mode"
-                                   "csharp-mode"
-                                   "java-mode"
-                                   "jayces-mode"
-                                   "objc-mode"))
-    (setq c-basic-offset tw))
-   ((jcs-is-current-major-mode-p '("css-mode"))
-    (setq css-indent-offset tw))
-   ((jcs-is-current-major-mode-p '("js-mode"
-                                   "json-mode"))
-    (setq js-indent-level tw))
-   ((jcs-is-current-major-mode-p '("js2-mode"))
-    (setq js2-basic-offset tw))
-   ((jcs-is-current-major-mode-p '("lisp-mode"
-                                   "lisp-interaction-mode"
-                                   "emacs-lisp-mode"))
-    (setq lisp-body-indent tw))
-   ((jcs-is-current-major-mode-p '("lua-mode"))
-    (setq lua-indent-level tw))
-   ((jcs-is-current-major-mode-p '("lua-mode"))
-    (setq lua-indent-level tw))
-   ((jcs-is-current-major-mode-p '("nasm-mode"))
-    (setq nasm-basic-offset tw))
-   ((jcs-is-current-major-mode-p '("nxml-mode"))
-    (setq nxml-child-indent tw))
-   ((jcs-is-current-major-mode-p '("python-mode"))
-    (setq py-indent-offset tw))
-   ((jcs-is-current-major-mode-p '("sql-mode"))
-    (setq sql-indent-offset tw))
-   ((jcs-is-current-major-mode-p '("typescript-mode"))
-    (setq typescript-indent-level tw))
-   ((jcs-is-current-major-mode-p '("web-mode"))
-    (setq web-mode-markup-indent-offset tw))
-   ((jcs-is-current-major-mode-p '("yaml-mode"))
-    (setq yaml-indent-offset tw)))
-  (if tw
-      (message "Current indent level: %s" tw)
-    (error "No indent offset define in this major mode: %s" major-mode)))
-
-(defun jcs-ensure-valid-tab-width (cv dv)
-  "Change tab width by current value CV and delta value DV."
-  (jcs-clamp-integer (+ cv dv) 0 8))
-
-(defun jcs-delta-tab-width (dv)
-  "Increase/Decrease tab width by delta value DV."
-  (jcs-set-tab-width-by-mode (jcs-ensure-valid-tab-width (jcs-get-tab-width-by-mode) dv)))
-
 ;;;###autoload
 (defun jcs-inc-tab-width ()
   "Increase tab width by 2."
