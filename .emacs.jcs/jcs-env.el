@@ -216,8 +216,33 @@ can see the error/operation message.")
   (split-window-horizontally))
 
 ;;; Tab / Space
-(setq-default indent-tabs-mode nil)          ;; Disable inset tabs, insert space only
+(setq-default indent-tabs-mode nil)          ; Disable inset tabs, insert space only
 (setq-default tab-width 4)
+
+(defvar jcs-tab-with-records '((actionscript-mode     . 4)
+                               (c-mode                . 4)
+                               (c++-mode              . 4)
+                               (csharp-mode           . 4)
+                               (css-mode              . 2)
+                               (elisp-mode            . 2)
+                               (emacs-lisp-mode       . 2)
+                               (java-mode             . 4)
+                               (jayces-mode           . 4)
+                               (js-mode               . 4)
+                               (js2-mode              . 4)
+                               (json-mode             . 4)
+                               (lisp-mode             . 2)
+                               (lisp-interaction-mode . 2)
+                               (lua-mode              . 4)
+                               (nasm-mode             . 4)
+                               (nxml-mode             . 2)
+                               (objc-mode             . 4)
+                               (python-mode           . 4)
+                               (sql-mode              . 1)
+                               (typescript-mode       . 4)
+                               (web-mode              . 2)
+                               (yaml-mode             . 2))
+  "Tab with recrods for all major mode.")
 
 ;;; Uniquify
 ;; NOTE: meaningful names for buffers with the same name from prelude.
