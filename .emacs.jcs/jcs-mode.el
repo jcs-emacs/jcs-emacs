@@ -90,6 +90,10 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
     (setq nxml-child-indent tw))
    ((jcs-is-current-major-mode-p '("python-mode"))
     (setq py-indent-offset tw))
+   ((jcs-is-current-major-mode-p '("ruby-mode"))
+    (setq ruby-indent-level tw))
+   ((jcs-is-current-major-mode-p '("rust-mode"))
+    (setq rust-indent-offset tw))
    ((jcs-is-current-major-mode-p '("sql-mode"))
     (setq sql-indent-offset tw))
    ((jcs-is-current-major-mode-p '("typescript-mode"))
@@ -102,7 +106,7 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
       (progn
         (jcs-set-tab-width-record-by-mode tw)
         (message "Current indent level: %s" tw))
-    (error "No indent offset define in this major mode: %s" major-mode)))
+    (message "No indent offset defined in major mode: %s" major-mode)))
 
 (defun jcs-get-tab-width-by-mode ()
   "Get indentation level by mode."
@@ -136,6 +140,10 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
     nxml-child-indent)
    ((jcs-is-current-major-mode-p '("python-mode"))
     py-indent-offset)
+   ((jcs-is-current-major-mode-p '("ruby-mode"))
+    ruby-indent-level)
+   ((jcs-is-current-major-mode-p '("rust-mode"))
+    rust-indent-offset)
    ((jcs-is-current-major-mode-p '("sql-mode"))
     sql-indent-offset)
    ((jcs-is-current-major-mode-p '("typescript-mode"))
@@ -326,7 +334,9 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
 
 (defun jcs-prog-mode-hook ()
   "Programming language mode hook."
-  (jcs-continue-with-tab-width-record)
+  (let ((inhibit-message t)
+        (message-log-max nil))
+    (jcs-continue-with-tab-width-record))
   )
 (add-hook 'prog-mode-hook 'jcs-prog-mode-hook)
 
