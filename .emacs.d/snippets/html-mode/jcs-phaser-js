@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: jcs-phaser-js
+# key: jcs-phaser-js
+# --
+<script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.18.1/phaser.min.js"></script>$0
