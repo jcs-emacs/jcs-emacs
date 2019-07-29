@@ -69,7 +69,8 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
                                    "jayces-mode"
                                    "objc-mode"))
     (setq c-basic-offset tw))
-   ((jcs-is-current-major-mode-p '("css-mode"))
+   ((jcs-is-current-major-mode-p '("css-mode"
+                                   "scss-mode"))
     (setq css-indent-offset tw))
    ((jcs-is-current-major-mode-p '("js-mode"
                                    "json-mode"))
@@ -94,6 +95,8 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
     (setq ruby-indent-level tw))
    ((jcs-is-current-major-mode-p '("rust-mode"))
     (setq rust-indent-offset tw))
+   ((jcs-is-current-major-mode-p '("shader-mode"))
+    (setq shader-indent-offset tw))
    ((jcs-is-current-major-mode-p '("sql-mode"))
     (setq sql-indent-offset tw))
    ((jcs-is-current-major-mode-p '("typescript-mode"))
@@ -101,7 +104,9 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
    ((jcs-is-current-major-mode-p '("web-mode"))
     (setq web-mode-markup-indent-offset tw))
    ((jcs-is-current-major-mode-p '("yaml-mode"))
-    (setq yaml-indent-offset tw)))
+    (setq yaml-indent-offset tw))
+   (t
+    (setq tab-width tw)))
   (if tw
       (progn
         (jcs-set-tab-width-record-by-mode tw)
@@ -144,6 +149,8 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
     ruby-indent-level)
    ((jcs-is-current-major-mode-p '("rust-mode"))
     rust-indent-offset)
+   ((jcs-is-current-major-mode-p '("shader-mode"))
+    shader-indent-offset)
    ((jcs-is-current-major-mode-p '("sql-mode"))
     sql-indent-offset)
    ((jcs-is-current-major-mode-p '("typescript-mode"))
