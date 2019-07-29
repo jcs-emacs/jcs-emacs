@@ -200,26 +200,6 @@ CBF : Current buffer file name."
     (jcs-real-delete)))
 
 ;;---------------------------------------------
-;; Space
-
-;;;###autoload
-(defun jcs-real-space ()
-  "Just insert a space."
-  (interactive)
-  (insert " "))
-
-;;;###autoload
-(defun jcs-smart-space ()
-  "Space key for `python-mode'. If the current cursor position is
-infront of the first character we indent the line instead of insert
-the space."
-  (interactive)
-  (if (or (jcs-is-infront-first-char-at-line-p)
-          (jcs-is-beginning-of-line-p))
-      (jcs-insert-spaces-by-tab-width)
-    (jcs-real-space)))
-
-;;---------------------------------------------
 ;; Return
 
 ;;;###autoload
@@ -240,6 +220,26 @@ the space."
   (unless (ignore-errors (call-interactively #'project-abbrev-complete-word))
     (unless (ignore-errors (call-interactively #'jcs-yas-expand))
       (call-interactively #'goto-address-at-point))))
+
+;;---------------------------------------------
+;; Space
+
+;;;###autoload
+(defun jcs-real-space ()
+  "Just insert a space."
+  (interactive)
+  (insert " "))
+
+;;;###autoload
+(defun jcs-smart-space ()
+  "Space key for `python-mode'. If the current cursor position is
+infront of the first character we indent the line instead of insert
+the space."
+  (interactive)
+  (if (or (jcs-is-infront-first-char-at-line-p)
+          (jcs-is-beginning-of-line-p))
+      (jcs-insert-spaces-by-tab-width)
+    (jcs-real-space)))
 
 ;;----------------------------------------------
 ;; Yank
