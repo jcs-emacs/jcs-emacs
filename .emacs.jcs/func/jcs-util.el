@@ -1080,22 +1080,22 @@ LST-STR : List of string."
   "Get current major mode."
   major-mode)
 
-(defun jcs-is-current-major-mode-p (mode-names)
-  "Check if this major mode MODE-NAMES."
-  (cond ((stringp mode-names)
-         (string= (symbol-name major-mode) mode-names))
-        ((listp mode-names)
+(defun jcs-is-current-major-mode-p (mns)
+  "Check if this major modes MNS."
+  (cond ((stringp mns)
+         (string= (symbol-name major-mode) mns))
+        ((listp mns)
          (let ((index 0)
                (current-mode-name nil)
                (found nil))
-           (while (and (< index (length mode-names))
+           (while (and (< index (length mns))
                        (not found))
-             (setq current-mode-name (nth index mode-names))
+             (setq current-mode-name (nth index mns))
              (setq found (jcs-is-current-major-mode-p current-mode-name))
              (setq index (1+ index)))
            found))
-        ((symbolp mode-names)
-         (equal major-mode mode-names))
+        ((symbolp mns)
+         (equal major-mode mns))
         (t nil)))
 
 (defun jcs-is-minor-mode-enabled-p (mode-obj)
