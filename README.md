@@ -150,6 +150,8 @@ Fast keys for incremental search forward/backward
 to the cursor is currently pointing.
 * [*Feebleline Design*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/feebleline-design) - 
 Personal displayed design for `feebleline`.
+* [*Indent Control*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/indent-control) - 
+Generic control the indentation level for each mode.
 * [*Indent Move*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/indent-move) - 
 Automatically indent when cursor moves up and down.
 * [*Line Numbers Modding*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/line-numbers-modding) - 
