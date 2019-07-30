@@ -57,10 +57,10 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
 
 
 (defun jcs-set-tab-width-by-mode (tw)
-  "Set the tab width for current major mode."
+  "Set the tab width TW for current major mode."
   (cond
    ((jcs-is-current-major-mode-p '("actionscript-mode"))
-    (setq actionscript-indent-level cv))
+    (setq actionscript-indent-level tw))
    ((jcs-is-current-major-mode-p '("cc-mode"
                                    "c-mode"
                                    "c++-mode"
@@ -169,32 +169,33 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
   "Increase/Decrease tab width by delta value DV."
   (jcs-set-tab-width-by-mode (jcs-ensure-valid-tab-width (jcs-get-tab-width-by-mode) dv)))
 
-(defun jcs-set-tab-width-record-by-mode (tw &optional mode-name)
-  "Set the tab width record by MODE-NAME with tab width TW."
-  (unless mode-name (setq mode-name (jcs-current-major-mode)))
+(defun jcs-set-tab-width-record-by-mode (tw &optional mn)
+  "Set the tab width record by mode-name MN with tab width TW."
+  (unless mn (setq mn (jcs-current-major-mode)))
   (let ((index 0)
         (break-it nil))
     (while (and (< index (length jcs-tab-with-records))
                 (not break-it))
       (let ((record-mode-name (car (nth index jcs-tab-with-records))))
-        (when (equal mode-name record-mode-name)
+        (when (equal mn record-mode-name)
           (setf (cdr (nth index jcs-tab-with-records)) tw)
           (setq break-it t)))
       (setq index (1+ index)))
     (unless break-it
-      (message "Tab width record not found: %s" mode-name))))
+      (message "Tab width record not found: %s" mn))))
 
-(defun jcs-get-tab-width-record-by-mode (&optional mode-name)
-  "Get the tab width record by MODE-NAME."
-  (unless mode-name (setq mode-name (jcs-current-major-mode)))
+(defun jcs-get-tab-width-record-by-mode (&optional mn)
+  "Get the tab width record by mode name, MN."
+  (unless mn (setq mn (jcs-current-major-mode)))
   (let ((index 0)
         (break-it nil)
-        (target-tab-width nil))
+        ;; Have default to `tab-width'.
+        (target-tab-width tab-width))
     (while (and (< index (length jcs-tab-with-records))
                 (not break-it))
       (let ((record-mode-name (car (nth index jcs-tab-with-records)))
             (record-tab-width (cdr (nth index jcs-tab-with-records))))
-        (when (equal mode-name record-mode-name)
+        (when (equal mn record-mode-name)
           (setq target-tab-width record-tab-width)
           (setq break-it t)))
       (setq index (1+ index)))
