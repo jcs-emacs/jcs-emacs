@@ -151,10 +151,10 @@
   (setq jcs-package-installing nil))
 (advice-add 'package-install :around #'jcs-advice-package-install-around)
 
-(defun jcs-install-missing-package-install (pkg)
+(defun jcs-package-install (pkg)
   "Install PKG package."
-  (unless (get 'jcs-install-missing-package-install 'state)
-    (put 'jcs-install-missing-package-install 'state t))
+  (unless (get 'jcs-package-install 'state)
+    (put 'jcs-package-install 'state t))
   ;; Don't run `package-refresh-contents' if you don't need to
   ;; install packages on startup.
   (package-refresh-contents)
@@ -166,12 +166,12 @@
   (dolist (package packages)
     (unless (package-installed-p package)
       (if without-asking
-          (jcs-install-missing-package-install package)
+          (jcs-package-install package)
         (if (y-or-n-p (format "Package %s is missing. Install it? " package))
-            (jcs-install-missing-package-install package)
+            (jcs-package-install package)
           package))))
   ;; STUDY: Not sure if you need this?
-  (when (get 'jcs-install-missing-package-install 'state)
+  (when (get 'jcs-package-install 'state)
     ;; activate installed packages
     (package-initialize)))
 
@@ -202,7 +202,7 @@
             (dolist (package-desc upgrades)
               (let ((old-package (cadr (assq (package-desc-name package-desc)
                                              package-alist))))
-                (package-install package-desc)
+                (jcs-package-install package-desc)
                 (package-delete  old-package))))
           (message "Done upgrading all packages"))
       (message "All packages are up to date"))))
