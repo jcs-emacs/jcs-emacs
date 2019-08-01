@@ -160,12 +160,6 @@
     (jcs-buffer-menu-refresh-buffer)
     (setq jcs-buffer-menu-switch-buffer-refreshing nil)))
 
-
-(defun jcs-buffer-menu-advice-after (&rest _)
-  "Advice execute after running `buffer-menu' command."
-  (setq tabulated-list--header-string ""))
-(advice-add 'buffer-menu :after #'jcs-buffer-menu-advice-after)
-
 ;;----------------------------------------------
 ;; Calculator
 
