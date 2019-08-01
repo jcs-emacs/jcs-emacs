@@ -899,6 +899,16 @@ ARG : Match with `save-buffer' command."
 ;;----------------------------------------------
 ;; Kill Buffer
 
+;;;###autoload
+(defun jcs-bury-buffer ()
+  "Bury this buffer."
+  (interactive)
+  (let ((bn (jcs-buffer-name-or-buffer-file-name)))
+    (bury-buffer)
+    (when (or (jcs-is-current-major-mode-p "Buffer-menu-mode")
+              (string= bn (jcs-buffer-name-or-buffer-file-name)))
+      (jcs-switch-to-previous-buffer))))
+
 (defun jcs-advice-kill-this-buffer-around (orig-fun &rest args)
   "Advice around execute `kill-this-buffer' command."
   (let ((target-kill-buffer (jcs-buffer-name-or-buffer-file-name))
@@ -938,7 +948,7 @@ ARG : Match with `save-buffer' command."
   ;; If still in the buffer menu, try switch to the
   ;; previous buffer
   (when (jcs-is-current-major-mode-p "Buffer-menu-mode")
-    (previous-buffer)))
+    (jcs-switch-to-previous-buffer)))
 
 ;;;###autoload
 (defun jcs-maybe-kill-this-buffer (&optional ecp-same)
@@ -953,7 +963,7 @@ ECP-SAME : Exception for the same buffer."
             ;; at the same time. Enable the line under.
             ;;(jcs-is-current-major-mode-p "Buffer-menu-mode")
             )
-        (jcs-switch-to-previous-buffer)
+        (jcs-bury-buffer)
       (jcs-kill-this-buffer)
       (setq is-killed t)
 
