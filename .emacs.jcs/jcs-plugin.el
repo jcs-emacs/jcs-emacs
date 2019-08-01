@@ -42,6 +42,7 @@
   :init
   (setq company-frontends '(company-pseudo-tooltip-frontend
                             company-echo-metadata-frontend))
+  (setq company-require-match nil)
   :config
   ;; TOPIC: How add company-dabbrev to the Company completion popup?
   ;; URL: https://emacs.stackexchange.com/questions/15246/how-add-company-dabbrev-to-the-company-completion-popup
@@ -443,8 +444,7 @@
                  (not (jcs-popup-clicked-on-menu-p)))
         (keyboard-quit)
         (setq do-orig-fun nil))
-      (when do-orig-fun
-        (apply orig-fun args))))
+      (when do-orig-fun (apply orig-fun args))))
   (advice-add 'popup-draw :around #'jcs-advice-popup-select-around))
 
 
