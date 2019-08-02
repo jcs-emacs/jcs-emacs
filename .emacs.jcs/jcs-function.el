@@ -136,8 +136,12 @@
 (defconst jcs-buffer-menu-search-title "Search: "
   "Search bar title in `buffer-menu''s buffer.")
 
+(defvar jcs-buffer-menu-return-delay nil
+  "Record if hit return when display not ready; once it is ready we redo the action.")
+
 (defun jcs-advice-buffer-menu-before (&rest _)
   "Advice before execute `buffer-menu' command."
+  (setq jcs-buffer-menu-return-delay nil)
   (setq tabulated-list--header-string jcs-buffer-menu-search-title))
 (advice-add 'buffer-menu :before 'jcs-advice-buffer-menu-before)
 
@@ -281,6 +285,20 @@
                         :weight 'normal
                         :foreground wb-fg))
   (jcs-dashboard-refresh-buffer))
+
+;;----------------------------------------------
+;; ElDoc
+
+;;;###autoload
+(defun jcs-eldoc-message-now () "Show eldoc message now." (interactive))
+
+(defun jcs-eldoc--message-command-p (command)
+  "Advice overwrite `eldoc--message-command-p' command."
+  ;; One can also loop through `eldoc-message-commands' and empty it out
+  (memq command '(jcs-eldoc-message-now
+                  jcs-real-space jcs-smart-space
+                  jcs-real-backspace jcs-smart-backspace)))
+(advice-add 'eldoc--message-command-p :override #'jcs-eldoc--message-command-p)
 
 ;;----------------------------------------------
 ;; Electric Pair
