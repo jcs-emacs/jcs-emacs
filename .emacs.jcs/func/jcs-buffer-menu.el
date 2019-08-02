@@ -54,8 +54,10 @@ Sorted by (1) visit, (2) buffer, (3) size, (4) time, (5) mode, (6) file."
   "Implemenetation for `buffer menu`'s return key."
   (interactive)
   (if jcs-buffer-menu-done-filtering
-      (unless (ignore-errors (Buffer-menu-this-window))
+      (if (ignore-errors (Buffer-menu-this-window))
+          (message nil)  ; Use to clear `[Display not ready]'.
         (user-error "No buffer on this line"))
+    (setq jcs-buffer-menu-return-delay t)
     (message "[Display not ready]")))
 
 
@@ -87,7 +89,10 @@ Sorted by (1) visit, (2) buffer, (3) size, (4) time, (5) mode, (6) file."
           (next-line)
         (tabulated-list-delete-entry))))
   (jcs-goto-line 2)
-  (setq jcs-buffer-menu-done-filtering t))
+  (setq jcs-buffer-menu-done-filtering t)
+  ;; Once it is done filtering, we redo return action if needed.
+  (when jcs-buffer-menu-return-delay
+    (jcs-buffer-menu-return)))
 
 (defun jcs-buffer-menu-input (key-input &optional add-del-num)
   "Insert key KEY-INPUT for fake header for search bar.
