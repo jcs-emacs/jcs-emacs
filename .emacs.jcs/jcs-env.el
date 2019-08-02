@@ -103,6 +103,11 @@
 (setq ediff-window-setup-function 'jcs-ediff-setup-windows)
 (setq ediff-split-window-function 'split-window-horizontally)
 
+;;; ElDoc
+;; It shows you the argument list of the function call you are currently
+;; writing in the echo area.
+(global-eldoc-mode 1)
+
 ;;; Electric Indent
 (electric-indent-mode 1)
 
