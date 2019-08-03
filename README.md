@@ -272,6 +272,8 @@ maintainer you want.
 [show-paren-mode](https://www.emacswiki.org/emacs/ShowParenMode).
 * *Highlight Same Region* - powered by 
 [region-occurrences-highlighter](https://github.com/alvarogonzalezsotillo/region-occurrences-highlighter).
+* *Indentation Management* - powered by 
+[indent-control](https://github.com/alt-elpa/indent-control).
 * *Line Annotation* - powered by 
 [line-indicators](https://github.com/jcs090218/line-indicators).
 * *Line Numbers* - powered by 
