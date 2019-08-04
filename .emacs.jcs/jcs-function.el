@@ -297,7 +297,8 @@
   ;; One can also loop through `eldoc-message-commands' and empty it out
   (memq command '(jcs-eldoc-message-now
                   jcs-real-space jcs-smart-space
-                  jcs-real-backspace jcs-smart-backspace)))
+                  jcs-real-backspace jcs-smart-backspace
+                  left-char right-char)))
 (advice-add 'eldoc--message-command-p :override #'jcs-eldoc--message-command-p)
 
 ;;----------------------------------------------
