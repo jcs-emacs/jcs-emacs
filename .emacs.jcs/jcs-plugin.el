@@ -89,12 +89,6 @@
   (with-eval-after-load 'company
     (company-quickhelp-mode t)))
 
-(use-package company-statistics
-  :defer t
-  :init
-  (with-eval-after-load 'company
-    (company-statistics-mode 1)))
-
 
 (use-package dashboard
   :defer t
