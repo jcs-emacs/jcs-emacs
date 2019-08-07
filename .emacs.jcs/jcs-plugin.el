@@ -43,6 +43,8 @@
   (setq company-frontends '(company-pseudo-tooltip-frontend
                             company-echo-metadata-frontend))
   (setq company-require-match nil)
+  (setq company-tooltip-align-annotations t)
+  (setq company-dabbrev-downcase nil)
   :config
   ;; TOPIC: How add company-dabbrev to the Company completion popup?
   ;; URL: https://emacs.stackexchange.com/questions/15246/how-add-company-dabbrev-to-the-company-completion-popup
@@ -79,6 +81,13 @@
        ((t (:background "dark gray"))))))
 
   (jcs-company-ac-setup)
+
+  (defun jcs--company-complete-selection--advice-around (fn)
+    "Advice execute around `company-complete-selection' command."
+    (let ((company-dabbrev-downcase t))
+      (call-interactively fn)))
+  (advice-add 'company-complete-selection :around #'jcs--company-complete-selection--advice-around)
+
   (global-company-mode t))
 
 (use-package company-quickhelp
