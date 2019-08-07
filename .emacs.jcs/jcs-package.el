@@ -48,7 +48,6 @@
     com-css-sort
     company
     company-quickhelp
-    company-statistics
     csharp-mode
     dart-mode
     dash
