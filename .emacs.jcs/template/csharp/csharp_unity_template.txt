@@ -1,0 +1,14 @@
+#GLOBAL_FILE_INFO#
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class #FILE_NAME_NO_EXT# : MonoBehaviour
+{
+    /* Variables */
+
+    /* Setter/Getter */
+
+    /* Functions */
+
+}
