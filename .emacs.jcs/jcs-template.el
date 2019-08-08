@@ -259,6 +259,10 @@ in order to take effect.  Half hot reloading process."
   "Header for CS header file."
   (jcs-insert-template-by-file-path "~/.emacs.jcs/template/csharp/csharp_template.txt"))
 
+(defun jcs-insert-csharp-unity-template ()
+  "Header for CS header file."
+  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/csharp/csharp_unity_template.txt"))
+
 ;;; Clojure
 (defun jcs-insert-clojure-template ()
   "Header for Clojure header file."
