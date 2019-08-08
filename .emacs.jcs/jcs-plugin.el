@@ -82,11 +82,11 @@
 
   (jcs-company-ac-setup)
 
-  (defun jcs--company-complete-selection--around-advice (fn)
+  (defun jcs--company-complete-selection--advice-around (fn)
     "Advice execute around `company-complete-selection' command."
     (let ((company-dabbrev-downcase t))
       (call-interactively fn)))
-  (advice-add 'company-complete-selection :around #'jcs--company-complete-selection--around-advice)
+  (advice-add 'company-complete-selection :around #'jcs--company-complete-selection--advice-around)
 
   (global-company-mode t))
 
