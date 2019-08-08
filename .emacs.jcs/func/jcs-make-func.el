@@ -8,10 +8,7 @@
 
 ;;;###autoload
 (defun jcs-ask-makefile-language (lan)
-  "Ask makefile what major language is this makefile going to use.
-Then specialize makefile to that target language.
-
-LAN : temporary variable store user langauge input."
+  "Ask make file language LAN type."
   (interactive
    (list (completing-read
           "Major language for this Makfile: " '("Default (empty)"
