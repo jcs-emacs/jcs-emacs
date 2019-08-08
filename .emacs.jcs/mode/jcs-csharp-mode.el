@@ -18,7 +18,8 @@
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]cs")
-                              'jcs-insert-csharp-template)
+                              'jcs-csharp-ask-source
+                              t)
 
   ;; Normal
   (define-key csharp-mode-map (kbd "C-d") #'jcs-kill-whole-line)
