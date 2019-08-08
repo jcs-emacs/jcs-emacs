@@ -1184,27 +1184,31 @@ IN-KEY : key to search for value."
 
 (defun jcs-get-file-name ()
   "Get current file name."
-  (file-name-nondirectory buffer-file-name))
+  (if buffer-file-name
+      (file-name-nondirectory buffer-file-name)
+    (buffer-name)))
 
 (defun jcs-get-file-name-uppercase ()
   "Get current file name uppercase."
-  (upcase (file-name-nondirectory buffer-file-name)))
+  (upcase (jcs-get-file-name)))
 
 (defun jcs-get-file-name-lowercase ()
   "Get current file name uppercase."
-  (downcase (file-name-nondirectory buffer-file-name)))
+  (downcase (jcs-get-file-name)))
 
 (defun jcs-get-file-name-without-extension ()
   "Get current file name without extension."
-  (file-name-sans-extension (file-name-nondirectory buffer-file-name)))
+  (if buffer-file-name
+      (file-name-sans-extension (jcs-get-file-name))
+    (buffer-name)))
 
 (defun jcs-get-file-name-without-extension-uppercase ()
-  "Get current file name without extension."
-  (upcase (file-name-sans-extension (file-name-nondirectory buffer-file-name))))
+  "Get current file name without extension uppercase."
+  (upcase (jcs-get-file-name-without-extension)))
 
 (defun jcs-get-file-name-without-extension-lowercase ()
-  "Get current file name without extension."
-  (downcase (file-name-sans-extension (file-name-nondirectory buffer-file-name))))
+  "Get current file name without extension lowercase."
+  (downcase (jcs-get-file-name-without-extension)))
 
 ;;----------------------------------------------------------------------------
 ;; Directory
