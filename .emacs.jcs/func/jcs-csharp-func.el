@@ -3,6 +3,17 @@
 ;;; Code:
 
 
+;;;###autoload
+(defun jcs-csharp-ask-source (sc)
+  "Ask the source SC for editing CSharp file."
+  (interactive
+   (list (completing-read
+          "Major source for this CSharp file: " '("Default"
+                                                  "Unity Scripting"))))
+  (cond ((string= sc "Default") (jcs-insert-csharp-template))
+        ((string= sc "Unity Scripting") (jcs-insert-csharp-unity-template))))
+
+
 (defun jcs-vs-csharp-comment-prefix-p ()
   "Check if current line is a Visual Studio's style comment prefix."
   (jcs-triple-char-comment-prefix-p "/"))
