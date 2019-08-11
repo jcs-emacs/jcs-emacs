@@ -1503,15 +1503,17 @@ CC : Current character at position."
 (defun jcs-electric-backspace ()
   "Electric backspace key."
   (interactive)
-  (if (and (jcs-inside-comment-or-string-p)
-           (not (jcs-current-char-equal-p "\""))
-           (not (jcs-current-char-equal-p "'")))
-      (jcs-own-delete-backward-char)
-    (let* ((cc (jcs-get-current-char-string))
-           (cpc (jcs-get-close-pair-char cc)))
-      (jcs-own-delete-backward-char)
-      (jcs-forward-delete-close-pair-char cpc)
-      (jcs-forward-delete-close-pair-char-seq cc))))
+  (if (use-region-p)
+      (delete-region (region-beginning) (region-end))
+    (if (and (jcs-inside-comment-or-string-p)
+             (not (jcs-current-char-equal-p "\""))
+             (not (jcs-current-char-equal-p "'")))
+        (jcs-own-delete-backward-char)
+      (let* ((cc (jcs-get-current-char-string))
+             (cpc (jcs-get-close-pair-char cc)))
+        (jcs-own-delete-backward-char)
+        (jcs-forward-delete-close-pair-char cpc)
+        (jcs-forward-delete-close-pair-char-seq cc)))))
 
 ;;----------------------------------------------
 ;; Isearch
