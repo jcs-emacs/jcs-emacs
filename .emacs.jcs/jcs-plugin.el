@@ -67,14 +67,18 @@
        ((t (:inherit company-preview))))
      '(company-tooltip
        ((t (:background "light gray" :foreground "black"))))
+
      '(company-tooltip-selection
        ((t (:background "steel blue" :foreground "white"))))
+     ;; Other selection
      '(company-tooltip-common
        ((((type x)) (:inherit company-tooltip :weight bold))
-        (t (:inherit company-tooltip))))
+        (t (:background "light gray" :foreground "#E80000"))))
+     ;; Current selection
      '(company-tooltip-common-selection
        ((((type x)) (:inherit company-tooltip-selection :weight bold))
-        (t (:inherit company-tooltip-selection))))
+        (t (:background "steel blue" :foreground "#E80000"))))
+
      '(company-scrollbar-fg
        ((t (:background "black"))))
      '(company-scrollbar-bg
