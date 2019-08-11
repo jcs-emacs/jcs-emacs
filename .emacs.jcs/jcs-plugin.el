@@ -61,24 +61,28 @@
     (setq company-selection-wrap-around 'on)
 
     (custom-set-faces
+     ;;--------------------------------------------------------------------
+     ;; Preview
      '(company-preview
        ((t (:foreground "dark gray" :underline t))))
      '(company-preview-common
        ((t (:inherit company-preview))))
+     ;;--------------------------------------------------------------------
+     ;; Base Selection
      '(company-tooltip
        ((t (:background "light gray" :foreground "black"))))
-
      '(company-tooltip-selection
        ((t (:background "steel blue" :foreground "white"))))
-     ;; Other selection
+     ;;--------------------------------------------------------------------
+     ;; Keyword Selection
      '(company-tooltip-common
        ((((type x)) (:inherit company-tooltip :weight bold))
         (t (:background "light gray" :foreground "#E80000"))))
-     ;; Current selection
      '(company-tooltip-common-selection
        ((((type x)) (:inherit company-tooltip-selection :weight bold))
         (t (:background "steel blue" :foreground "#E80000"))))
-
+     ;;--------------------------------------------------------------------
+     ;; Scroll Bar
      '(company-scrollbar-fg
        ((t (:background "black"))))
      '(company-scrollbar-bg
