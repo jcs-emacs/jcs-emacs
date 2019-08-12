@@ -46,8 +46,8 @@
 
 ;;; Auto Completion
 (with-eval-after-load 'company
-  (define-key company-active-map [tab] #'company-complete-selection)
-  (define-key company-active-map (kbd "TAB") #'company-complete-selection)
+  (define-key company-active-map [tab] #'jcs-tab-key)
+  (define-key company-active-map (kbd "TAB") #'jcs-tab-key)
   (define-key company-active-map (kbd "C-s") #'jcs-untabify-save-buffer))
 
 ;;; Buffer Menu
