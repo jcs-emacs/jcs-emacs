@@ -108,8 +108,7 @@ HEX-CODE : Color HEX code to check."
 ;; Event
 
 (defun jcs-last-input-event-p (te)
-  "Check if `last-input-event' a target event.
-TE : Target event name"
+  "Check if `last-input-event' a target event, TE."
   (let ((is-event nil))
     (when (listp last-input-event)
       (let ((kn (nth 0 last-input-event)))
@@ -162,8 +161,7 @@ TE : Target event name"
 ;; Organize Code
 
 (defun jcs-keep-n-line-between (n-line)
-  "Keep n line between the two line of code.  (Guarantee)
-N-LINE : line between the two line of code"
+  "Keep N-LINE between the two line of code."
   (save-excursion
     (let ((index 0))
       (while (< index n-line)
@@ -173,9 +171,7 @@ N-LINE : line between the two line of code"
 
 ;;;###autoload
 (defun jcs-keep-one-line-between ()
-  "Keep one line between the two line of code.
-If you want to keep more than one line use
-`jcs-keep-n-line-between' instead."
+  "Keep one line between the two line of code."
   (interactive)
   (if (jcs-current-line-empty-p)
       (progn
@@ -213,29 +209,20 @@ Generally you will have to check it four times."
        (jcs-current-char-equal-p " ")))
 
 (defun jcs-convert-space-to-tab (is-forward)
-  "Convert space to tab if current point is space.
-IS-FORWARD : forward check convert instead of backward."
-
+  "Convert space to tab if current point is space by direction IS-FORWARD."
   (save-excursion
     (let ((good-to-convert nil))
       (save-excursion
         (when (jcs-is-good-space-to-convert-to-tab-p)
-          (if (equal is-forward t)
-              (forward-char 1)
-            (backward-char 1))
+          (if is-forward (forward-char 1) (backward-char 1))
           (when (jcs-is-good-space-to-convert-to-tab-p)
-            (if (equal is-forward t)
-                (forward-char 1)
-              (backward-char 1))
+            (if is-forward (forward-char 1) (backward-char 1))
             (when (jcs-is-good-space-to-convert-to-tab-p)
-              (if (equal is-forward t)
-                  (forward-char 1)
-                (backward-char 1))
+              (if is-forward (forward-char 1) (backward-char 1))
               (when (jcs-is-good-space-to-convert-to-tab-p)
                 (setq good-to-convert t))))))
-
-      (when (equal good-to-convert t)
-        (if (equal is-forward t)
+      (when good-to-convert
+        (if is-forward
             (progn
               (backward-delete-char -1)
               (backward-delete-char -1)
@@ -261,8 +248,7 @@ IS-FORWARD : forward check convert instead of backward."
   (jcs-convert-space-to-tab t))
 
 (defun jcs-convert-tab-to-space (is-forward)
-  "Convert tab to space if current point is tab.
-IS-FORWARD : forward conversion instead of backward conversion."
+  "Convert tab to space if current point is tab by direction, IS-FORWARD."
   (save-excursion
     (when (jcs-current-char-equal-p "\t")
       (if (equal is-forward t)
@@ -456,14 +442,10 @@ BND-PT : limit point."
 BND-PT : boundary point."
   (interactive)
   (let ((real-lmt-pt (point-max)))
-
     ;; If no limit point, default as `point-max'.
-    (when bnd-pt
-      (setq real-lmt-pt bnd-pt))
-
+    (when bnd-pt (setq real-lmt-pt bnd-pt))
     (unless (jcs-is-end-of-buffer-p)
       (forward-char 1)
-
       (while (and (<= (point) real-lmt-pt)
                   (or (jcs-current-whitespace-or-tab-p)
                       (jcs-is-beginning-of-line-p)))
@@ -487,8 +469,8 @@ whole buffer."
     (string= (jcs-get-current-char-string) ch)))
 
 (defun jcs-first-backward-char-in-line-p (ch)
-  "Check the first character on the left/backward is CH or not, limit to the \
-current line."
+  "Check the first character on the left/backward is CH or not, with \
+current line as boundary."
   (save-excursion
     ;; NOTE: First fowrad a char and ready to
     ;; be check for next backward character.
@@ -497,16 +479,14 @@ current line."
     (string= (jcs-get-current-char-string) ch)))
 
 (defun jcs-first-forward-char-in-line-p (ch)
-  "Check the first character on the right/forward is CH or not, limit to the \
-current line."
+  "Check the first character on the right/forward is CH or not with \
+current line as boundary."
   (save-excursion
     (jcs-goto-next-forward-char (jcs-get-end-of-line-point))
     (string= (jcs-get-current-char-string) ch)))
 
 (defun jcs-is-there-char-backward-point-p (pt)
-  "Check if there is at least one character backward until \
-the point.
-PT : point."
+  "Check if there is at least one character backward until the point, PT."
   (save-excursion
     (jcs-goto-next-backward-char pt)
     (>= (point) pt)))
@@ -664,23 +644,23 @@ Returns nil, the word isn't the same."
     (point)))
 
 (defun jcs-is-beginning-of-line-p ()
-  "Is at the beginning of line?"
+  "Check if it's at the beginning of line."
   (= (current-column) 0))
 
 (defun jcs-is-beginning-of-buffer-p ()
-  "Is at the beginning of buffer?"
+  "Check if it's at the beginning of buffer."
   (= (point) (point-min)))
 
 (defun jcs-is-end-of-line-p ()
-  "Is at the end of line."
+  "Check if it's at the end of line."
   (= (point) (jcs-get-end-of-line-point)))
 
 (defun jcs-is-end-of-buffer-p ()
-  "Is at the end of buffer."
+  "Check if it's at the end of buffer."
   (= (point) (point-max)))
 
 (defun jcs-is-current-file-empty-p ()
-  "Check if the file a empty file."
+  "Check if the file an empty file."
   (and (jcs-is-beginning-of-buffer-p)
        (jcs-is-end-of-buffer-p)))
 
@@ -693,8 +673,7 @@ Returns nil, the word isn't the same."
   (format-mode-line "%l"))
 
 (defun jcs-is-current-line (line)
-  "Is current line number this line?
-LINE : number to check if current line this line?"
+  "Is current line number this LINE."
   (= (string-to-number (format-mode-line "%l")) line))
 
 (defun jcs-is-at-start-of-line-p ()
@@ -741,16 +720,13 @@ Return nil, vice versa."
       is-behind)))
 
 (defun jcs-empty-line-between-point (min-pt max-pt)
-  "Check if there is empty line between two point.
-MIN-PT : smaller position.
-MAX-PT : larger position."
+  "Check if there is empty line between two point, MIN-PT and MAX-PT."
   (save-excursion
     (let ((there-is-empty-line nil))
       (when (>= min-pt max-pt)
         (error "Min point cannot be larger than max point..")
         ;; Return false.
         (equal there-is-empty-line t))
-
       (goto-char min-pt)
       (while (< (point) max-pt)
         (when (jcs-current-line-empty-p)
@@ -820,16 +796,14 @@ MAX-PT : larger position."
   (line-number-at-pos (jcs-last-visible-pos-in-window)))
 
 (defun jcs-make-first-visible-line-to (ln)
-  "Make the first visible line to target line.
-LN : target line to make first to."
+  "Make the first visible line to target line, LN."
   (jcs-goto-line ln)
   (recenter-top-bottom 'top)
   (unless (<= ln 1)
     (jcs-scroll-up-one-line)))
 
 (defun jcs-make-last-visible-line-to (ln)
-  "Make the last visible line to target line.
-LN : target line to make first to."
+  "Make the last visible line to target line, LN."
   (jcs-make-first-visible-line-to ln)
   (let ((sh-ln (- (jcs-last-visible-line-in-window)
                   (jcs-first-visible-line-in-window))))
@@ -858,9 +832,7 @@ LN : target line to make first to."
 ;; Mark
 
 (defun jcs-is-mark-active-p ()
-  "Is mark active?
-Return non-nil, is active.
-Return nil, is not active."
+  "Check if the mark active."
   (and mark-active
        (= (point) (mark))))
 
@@ -942,10 +914,7 @@ Return nil, there is no region selected and mark is not active."
   (jcs-get-faces (point)))
 
 (defun jcs-is-current-point-face (in-face)
-  "Check if current face the same face as IN-FACE.
-Returns, True if is the same as pass in face name string.
-False, is not the same as pass in face name string.
-IN-FACE : input face name as string."
+  "Check if current face the same face as IN-FACE."
   (let ((faces (jcs-get-current-point-face)))
     (if (listp faces)
         (if (equal (cl-position in-face faces :test 'string=) nil)
@@ -956,8 +925,7 @@ IN-FACE : input face name as string."
       (string= in-face faces))))
 
 (defun jcs-is-default-face-p ()
-  "Return non-nil, if is default face.
-Return nil, if not default face."
+  "Check default face."
   (or (= (length (jcs-get-current-point-face)) 0)
       (and (= (length (jcs-get-current-point-face)) 1)
            (jcs-is-current-point-face "hl-line"))))
@@ -973,20 +941,17 @@ Return nil, if not default face."
 
 ;;;###autoload
 (defun jcs-change-font (in-font)
-  "Choose a font and change that to the current font.
-IN-FONT : input font name."
+  "Choose a font, IN-FONT and change that to the current font."
   (interactive
    (list (completing-read
           "Fonts: " (font-family-list))))
-
   ;; Change the font and keep the size.
   (if (jcs-font-existsp in-font)
       (set-frame-font in-font t)
     (error "Font you chose does not exists in current system, please select other font")))
 
 (defun jcs-font-existsp (font)
-  "Check if font exists?
-FONT : font to check."
+  "Check if FONT exists."
   (if (string-equal (describe-font font) "No matching font being used")
       nil
     t))
@@ -1011,9 +976,9 @@ FONT : font to check."
 ;; List
 
 (defun jcs-flatten-list (l)
-  "Flatten the multiple dimensional array to one dimensonal array.
-'(1 2 3 4 (5 6 7 8)) => '(1 2 3 4 5 6 7 8).
-L : list we want to flatten."
+  "Flatten the multiple dimensional array, L to one dimensonal array.
+For instance,
+  '(1 2 3 4 (5 6 7 8)) => '(1 2 3 4 5 6 7 8)."
   (cond ((null l) nil)
         ((atom l) (list l))
         (t (loop for a in l appending (jcs-flatten-list a)))))
@@ -1027,9 +992,7 @@ L : list we want to flatten."
       lst)))
 
 (defun jcs-chop (string separator)
-  "Split a string without consuming separators.
-STRING : string to chop.
-SEPARATOR : separator character."
+  "Split a STRING without consuming a SEPARATOR."
   ;; SOURCE: https://emacs.stackexchange.com/questions/5729/split-a-string-without-consuming-separators
   (cl-loop with seplen = (length separator)
            with len = (length string)
@@ -1042,8 +1005,7 @@ SEPARATOR : separator character."
            do (setf start end next (+ seplen end))))
 
 (defun jcs-concat-string-list (lst-str)
-  "Convert list of string to one string.
-LST-STR : List of string."
+  "Convert list of string, LST-STR to one string."
   (let ((full-str ""))
     (dolist (s lst-str)
       (setq full-str (concat full-str s)))
@@ -1097,8 +1059,7 @@ LST-STR : List of string."
         (t nil)))
 
 (defun jcs-is-minor-mode-enabled-p (mode-obj)
-  "Check if this minor enabled in current buffer/file.
-MODE-OBJ : mode object memory."
+  "Check if this minor MODE-OBJ enabled in current buffer/file."
   (bound-and-true-p mode-obj))
 
 ;;----------------------------------------------------------------------------
@@ -1111,15 +1072,12 @@ MODE-OBJ : mode object memory."
     (buffer-string)))
 
 (defun jcs-project-write-file (in-filename in-content)
-  "Write to IN-FILENAME file path relative to the project root with \
-IN-CONTENT content."
-  (write-region in-content  ;; Start
-                nil  ;; End
-                ;; File name (concatenate full path)
-                (concat (cdr (project-current))
-                        in-filename)  ;; Cache filename.
-                ;; Overwrite?
-                t))
+  "Write to IN-FILENAME file path relative to the project root with IN-CONTENT content."
+  (write-region in-content  ; Start
+                nil  ; End
+                (concat (cdr (project-current)) in-filename)
+                t  ; Overwrite?
+                ))
 
 (defun jcs-parse-ini (filePath)
   "Parse a .ini file by FILEPATH."
@@ -1217,12 +1175,10 @@ IN-KEY : key to search for value."
   "Return the string of current directory."
   default-directory)
 
-(defun jcs-file-directory-exists-p (filePath)
-  "Return non-nil if the directory/file exists.
-Return nil if the directory/file not exists.
-FILEPATH : directory/file path."
-  (or (file-directory-p filePath)
-      (file-exists-p filePath)))
+(defun jcs-file-directory-exists-p (file-path)
+  "Check if FILE-PATH exists."
+  (or (file-directory-p file-path)
+      (file-exists-p file-path)))
 
 (defun jcs-is-vc-dir-p (dir-path)
   "Check if DIR-PATH a version control directory."
@@ -1240,8 +1196,7 @@ FILEPATH : directory/file path."
   (match-string 1 dir-path))
 
 (defun jcs-vc-root-dir ()
-  "Return version control root directory.
-If not found, will return empty string."
+  "Check if version control directory."
   (let ((tmp-current-dir (jcs-get-current-dir))
         (tmp-result-dir ""))
     (while (jcs-contain-string "/" tmp-current-dir)
@@ -1259,8 +1214,7 @@ If not found, will return empty string."
       (concat tmp-result-dir "/"))))
 
 (defun jcs-project-current ()
-  "Return the current project's root directory.
-Is almost the same as `jcs-vc-root-dir'."
+  "Return project directory path."
   (cdr (project-current)))
 
 (defun jcs-get-file-name-or-last-dir-fromt-path (in-path &optional ignore-errors-t)
@@ -1320,8 +1274,7 @@ IGNORE-ERRORS-T : ignore errors for this function?"
     (jcs-goto-end-of-the-string)))
 
 (defun jcs-string-at-point (&optional pt)
-  "Get the string at PT.
-Nil, not inside a string."
+  "Get the string at PT."
   (save-excursion
     (when pt
       (goto-char pt))
@@ -1339,21 +1292,15 @@ Nil, not inside a string."
       ret-str)))
 
 (defun jcs-remove-string-by-substring (str substr)
-  "Remove a certain string by a substring.
-STR : string to want to be remove by SUBSTR.
-SUBSTR : string you want to remove from STR."
+  "Remove a STR by a SUBSTR."
   (s-replace substr "" str))
 
 (defun jcs-replace-string (rp-tar rp-str str)
-  "Replace a string from another string.
-STR : main string to change.
-RP-TAR : target string we want to remove from STR.
-RP-STR : replace string will be set into STR."
+  "Replace a RP-TAR with RP-STR in STR."
   (s-replace rp-tar rp-str str))
 
 (defun jcs-parse-bool (in-str)
-  "Parse string to boolean type value.
-IN-STR : input string to check if is a `true' value."
+  "Parse IN-STR to boolean type value."
   (let ((tmp-bool nil))
     (when (or (string= in-str "True")
               (string= in-str "true")
@@ -1368,10 +1315,7 @@ IN-STR : input string to check if is a `true' value."
   (equal (upcase str) str))
 
 (defun jcs-contain-string (in-sub-str in-str)
-  "Check if a string is a substring of another string.
-Return true if contain, else return false.
-IN-SUB-STR : substring to see if contain in the IN-STR.
-IN-STR : string to check by the IN-SUB-STR."
+  "Check if the IN-SUB-STR is a string in IN-STR."
   (string-match-p (regexp-quote in-sub-str) in-str))
 
 ;;----------------------------------------------------------------------------
