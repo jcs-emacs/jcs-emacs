@@ -261,7 +261,8 @@ the space."
   "Global TAB key."
   (interactive)
   (unless (ignore-errors (call-interactively #'jcs-yas-expand))
-    (unless (ignore-errors (call-interactively #'dabbrev-expand))
+    (if (company--active-p)
+        (call-interactively #'company-complete-selection)
       (jcs-insert-spaces-by-tab-width))))
 
 ;;----------------------------------------------
