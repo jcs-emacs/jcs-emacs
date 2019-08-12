@@ -8,8 +8,7 @@
 ;;-----------------------------------------------------------
 
 (defun jcs-ensure-switch-to-buffer-other-window (win-name)
-  "Ensure switch to buffer, try multiple times.
-Because sometime first time switching the buffer would not success."
+  "Ensure switch to buffer, try multiple times with WIN-NAME"
   (unless (or (ignore-errors (switch-to-buffer-other-window win-name)))
     (unless (or (ignore-errors (switch-to-buffer-other-window win-name)))
       (unless (or (ignore-errors (switch-to-buffer-other-window win-name)))
@@ -17,10 +16,7 @@ Because sometime first time switching the buffer would not success."
 
 ;;;###autoload
 (defun jcs-jump-shown-to-buffer (in-buffer-name)
-  "Jump to the buffer if the buffer current shown in the window.
-If there is two window shown the same buffer/file, then it will
-choose the one which is close to the next buffer.
-IN-BUFFER-NAME : taget buffer name to jump to."
+  "Jump to the IN-BUFFER-NAME if the buffer current shown in the window."
   (interactive "bEnter buffer to jump to: ")
   (let ((win-len (jcs-count-windows))
         (index 0)
@@ -43,12 +39,9 @@ IN-BUFFER-NAME : taget buffer name to jump to."
 
 ;;;###autoload
 (defun jcs-switch-to-previous-buffer (&optional cnt)
-  "Switch to previously open buffer.
-Repeated invocations toggle between the two most recently open buffers.
-CNT : Count for buffer to switch to."
+  "Switch to previously open buffer with CNT."
   (interactive)
-  (let (;; Default is 1.
-        (target-cnt 1))
+  (let ((target-cnt 1))  ; Default is 1.
     (when cnt
       (setq target-cnt cnt))
     (switch-to-buffer (other-buffer (current-buffer) target-cnt))))
@@ -95,10 +88,7 @@ CNT : Count for buffer to switch to."
       buffers)))
 
 (defun jcs-buffer-showns (in-buf-name)
-  "Check if buffer showns how many times?
-IN-BUF-NAME : input buffer name you want to check.
-Returns the count of the buffer shown in the window.
-If nout found, returns 0."
+  "Check if IN-BUF-NAME showns in program."
   (let ((displayed-frame-count 0))
     (dolist (buf (jcs-buffer-visible-list))
       (when (string= buf in-buf-name)
@@ -154,18 +144,17 @@ If nout found, returns 0."
       (progn
         (balance-windows)
         (setq jcs-is-enlarge-buffer nil))
-    (progn
-      (maximize-window)
+    (maximize-window)
 
-      ;; Set all local enlarge to false.
-      (jcs-setq-all-local-buffer 'jcs-is-enlarge-current-buffer
-                                 nil)
+    ;; Set all local enlarge to false.
+    (jcs-setq-all-local-buffer 'jcs-is-enlarge-current-buffer
+                               nil)
 
-      ;; Current buffer is enlarge.
-      (setq-local jcs-is-enlarge-current-buffer t)
+    ;; Current buffer is enlarge.
+    (setq-local jcs-is-enlarge-current-buffer t)
 
-      ;; One buffer in the frame is enlarge.
-      (setq jcs-is-enlarge-buffer t))))
+    ;; One buffer in the frame is enlarge.
+    (setq jcs-is-enlarge-buffer t)))
 
 
 ;;;###autoload
@@ -214,9 +203,7 @@ i.e. change right window to bottom, or change bottom window to right."
 ;;-----------------------------------------------------------
 
 (defun jcs-window-is-larger-in-height-p ()
-  "Get the window that are larget than other windows in vertical.
-If non-nil, current window's height is larger than neighbor windows.
-If nil, current window's height is smaller than neighbor windows."
+  "Get the window that are larget than other windows in vertical."
   (let ((is-larger nil)
         (cur-win-h (window-height))
         (next-win-h -1)
@@ -237,8 +224,7 @@ If nil, current window's height is smaller than neighbor windows."
 
 ;;;###autoload
 (defun jcs-move-to-upmost-window (&optional not-all-frame)
-  "Move to the upmost window.
-NOT-ALL-FRAME : Default boundaries is all frame, limit to curent frame."
+  "Move to the upmost window by flag NOT-ALL-FRAME."
   (interactive)
   (if not-all-frame
       (let ((windmove-wrap-around nil))
@@ -248,8 +234,7 @@ NOT-ALL-FRAME : Default boundaries is all frame, limit to curent frame."
 
 ;;;###autoload
 (defun jcs-move-to-downmost-window (&optional not-all-frame)
-  "Move to the downmost window.
-NOT-ALL-FRAME : Default boundaries is all frame, limit to curent frame."
+  "Move to the downmost window by flag NOT-ALL-FRAME."
   (interactive)
   (if not-all-frame
       (let ((windmove-wrap-around nil))
@@ -259,8 +244,7 @@ NOT-ALL-FRAME : Default boundaries is all frame, limit to curent frame."
 
 ;;;###autoload
 (defun jcs-move-to-leftmost-window (&optional not-all-frame)
-  "Move to the leftmost window.
-NOT-ALL-FRAME : Default boundaries is all frame, limit to curent frame."
+  "Move to the leftmost window by flag NOT-ALL-FRAME."
   (interactive)
   (if not-all-frame
       (let ((windmove-wrap-around nil))
@@ -270,8 +254,7 @@ NOT-ALL-FRAME : Default boundaries is all frame, limit to curent frame."
 
 ;;;###autoload
 (defun jcs-move-to-rightmost-window (&optional not-all-frame)
-  "Move to the rightmost window.
-NOT-ALL-FRAME : Default boundaries is all frame, limit to curent frame."
+  "Move to the rightmost window by flag NOT-ALL-FRAME."
   (interactive)
   (if not-all-frame
       (let ((windmove-wrap-around nil))
@@ -296,8 +279,7 @@ NOT-ALL-FRAME : Default boundaries is all frame, limit to curent frame."
 
 ;;;###autoload
 (defun jcs-ask-set-transparency (alpha-level)
-  "Set the frame transparency.
-ALPHA-LEVEL : Target alpha level you want to set to the current frame."
+  "Set the frame transparency by ALPHA-LEVEL."
   (interactive "p")
   ;; SOURCE: https://gist.github.com/benzap/89759928060f4578c063
   (let ((alpha-level (if (< alpha-level 2)
@@ -306,8 +288,7 @@ ALPHA-LEVEL : Target alpha level you want to set to the current frame."
     (jcs-set-transparency alpha-level)))
 
 (defun jcs-set-transparency (alpha-level)
-  "Set the frame transparency.
-ALPHA-LEVEL : Target alpha level you want to set to the current frame."
+  "Set the frame transparency by ALPHA-LEVEL."
   (set-frame-parameter nil 'alpha alpha-level)
   (message (format "Frame alpha level is %d" (frame-parameter nil 'alpha)))
   (setq jcs-current-frame-transparency alpha-level)
@@ -324,8 +305,7 @@ ALPHA-LEVEL : Target alpha level you want to set to the current frame."
 
 
 (defun jcs-delta-frame-transparent (del-trans)
-  "Delta change the frame transparency by a certain percentage.
-DEL-TRANS : Delta transparency value."
+  "Delta changes the frame transparency by a certain percentage, DEL-TRANS."
   (let ((alpha (frame-parameter nil 'alpha))
         (current-transparency jcs-default-delta-transparency))
 
@@ -342,8 +322,7 @@ DEL-TRANS : Delta transparency value."
 
 ;;;###autoload
 (defun jcs-increment-frame-transparent (&optional del-trans)
-  "Increment the frame transparency by a certain percentage.
-DEL-TRANS : Delta transparency value."
+  "Increment the frame transparency by a certain percentage, DEL-TRANS."
   (interactive)
   (unless del-trans
     (setq del-trans (jcs-to-positive jcs-default-delta-transparency)))
@@ -351,8 +330,7 @@ DEL-TRANS : Delta transparency value."
 
 ;;;###autoload
 (defun jcs-decrement-frame-transparent (&optional del-trans)
-  "Decrement the frame transparency by a certain percentage.
-DEL-TRANS : Delta transparency value."
+  "Decrement the frame transparency by a certain percentage, DEL-TRANS."
   (interactive)
   (unless del-trans
     (setq del-trans (jcs-to-negative jcs-default-delta-transparency)))
@@ -378,8 +356,7 @@ DEL-TRANS : Delta transparency value."
       win-id)))
 
 (defun jcs-get-window-id-by-buffer-name (buf-name)
-  "Return a list of window id if match the buffer name.
-BUF-NAME : Buffer name to search with."
+  "Return a list of window id if match the BUF-NAME."
   (save-selected-window
     (let ((win-id-lst '())
           (index 0))
@@ -398,8 +375,7 @@ BUF-NAME : Buffer name to search with."
 ;;-----------------------------------------------------------
 
 (defun jcs-ace-select-window (win-id)
-  "Use `ace-window' to select the window by using window index.
-WIN-ID : Window index."
+  "Use `ace-window' to select the window by using window index, WIN-ID."
   (require 'ace-window)
   (let ((wnd (nth win-id (aw-window-list))))
     (when wnd
