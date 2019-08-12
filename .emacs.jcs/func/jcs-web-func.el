@@ -11,8 +11,7 @@
   "Toggle between using automatically truncate lines or not.")
 
 (defun jcs-web-truncate-lines-by-face ()
-  "Enable/Disable the truncate lines mode depends on the face \
-cursor currently on."
+  "Enable/Disable the truncate lines mode depends on the face cursor currently on."
   (require 'auto-rename-tag)
   (save-excursion
     (when (and (not (jcs-current-char-string-match-p "[ \t\n]"))
@@ -73,10 +72,11 @@ Is the opposite of `jcs-web-toggle-auto-truncate-lines'."
 
 ;;;###autoload
 (defun jcs-web-yank ()
-  "Yank in web-mode.
-No idea why, yank function just need to get wrap by
-another function..."
+  "Yank in web-mode."
   (interactive)
+  ;; NOTE: No idea why, yank function just need to get wrap by
+  ;; another function...
+
   ;; if region, delete the region first.
   (when (use-region-p)
     ;; NOTE: `kill-region' will copy the word.
@@ -85,7 +85,7 @@ another function..."
     (delete-region (region-beginning) (region-end)))
 
   ;; then paste it.
-  (yank))
+  (jcs-smart-yank))
 
 ;;;###autoload
 (defun jcs-web-backward-delete-word ()
