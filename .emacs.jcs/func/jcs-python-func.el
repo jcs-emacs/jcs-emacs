@@ -73,9 +73,9 @@ once to the whole document. For `python-mode'."
 
 ;;;###autoload
 (defun jcs-py-format-region-or-document ()
-  "Format the document if there are no region apply. For
-`python-mode' we specificlly indent through the file line by
-line instead of indent the whole file at once."
+  "Format the document if there are no region apply.
+For `python-mode' we specificlly indent through the file line by line \
+instead of indent the whole file at once."
   (interactive)
   (if (use-region-p)
       (call-interactively 'jcs-py-indent-region)
@@ -145,14 +145,13 @@ line instead of indent the whole file at once."
   "List of `python' keyword.")
 
 (defun jcs-py-is-python-keyword (in-keyword)
-  "Check if the current word is in the `python-keyword-list'.
-vector list."
+  "Check if the current word is in the `python-keyword-list'."
   (jcs-is-contain-list-string jcs-py-keywords in-keyword))
 
 
 (defun jcs-py-do-doc-string ()
-  "Check if should insert the doc string by checking only \
-comment character on the same line."
+  "Check if should insert the doc string by checking only the comment character \
+on the same line."
   (let ((do-doc-string t))
     (jcs-goto-first-char-in-line)
 
@@ -255,7 +254,6 @@ comment character on the same line."
    (list (completing-read
           "Type of the Python template: " '("Class"
                                             "Plain"))))
-
   (cond ((string= type "Class")
          (progn
            (jcs-insert-python-class-template)))
