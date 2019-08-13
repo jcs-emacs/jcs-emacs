@@ -478,7 +478,8 @@
   (define-key global-map (kbd "C-x w") #'jcs-balance-delete-window)  ; delete current window.
   (define-key global-map (kbd "C-h h") #'jcs-toggle-window-split-hv)
   (define-key global-map (kbd "C-w e") #'jcs-toggle-enlarge-window-selected)
-  (define-key global-map (kbd "C-\\") #'jcs-balance-split-window-horizontally))
+  (define-key global-map (kbd "C-\\") #'jcs-balance-split-window-horizontally)
+  (define-key global-map (kbd "C-|") #'jcs-balance-split-window-vertically))
 
 ;;; Window Navigation
 (progn
