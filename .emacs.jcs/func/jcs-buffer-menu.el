@@ -79,6 +79,7 @@ Sorted by (1) visit, (2) buffer, (3) size, (4) time, (5) mode, (6) file."
 
 (defun jcs-buffer-menu-filter-list ()
   "Do filtering the buffer list."
+  (setq jcs-buffer-menu-done-filtering nil)
   (while (< (line-number-at-pos) (line-number-at-pos (point-max)))
     (let* ((cl (string-trim (thing-at-point 'line)))
            (buf-name (elt (tabulated-list-get-entry) 3))
@@ -97,7 +98,6 @@ Sorted by (1) visit, (2) buffer, (3) size, (4) time, (5) mode, (6) file."
 (defun jcs-buffer-menu-input (key-input &optional add-del-num)
   "Insert key KEY-INPUT for fake header for search bar.
 ADD-DEL-NUM : Addition or deletion number."
-  (setq jcs-buffer-menu-done-filtering nil)
   (unless add-del-num (setq add-del-num (length key-input)))
   (if (jcs-is-positive add-del-num)
       (setq tabulated-list--header-string
