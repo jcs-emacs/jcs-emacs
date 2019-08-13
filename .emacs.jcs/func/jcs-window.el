@@ -5,7 +5,6 @@
 
 ;;-----------------------------------------------------------
 ;; Navigation
-;;-----------------------------------------------------------
 
 (defun jcs-ensure-switch-to-buffer-other-window (win-name)
   "Ensure switch to buffer, try multiple times with WIN-NAME"
@@ -102,14 +101,12 @@
   (save-selected-window
     (let ((index 0))
       (while (< index (jcs-count-windows))
-        (when fnc
-          (funcall fnc))
+        (when fnc (funcall fnc))
         (jcs-other-window-next)
         (setq index (+ index 1))))))
 
 ;;-----------------------------------------------------------
 ;; Deleting
-;;-----------------------------------------------------------
 
 ;;;###autoload
 (defun jcs-balance-delete-window ()
@@ -118,6 +115,9 @@
   (delete-window)
   (balance-windows))
 
+;;-----------------------------------------------------------
+;; Splitting
+
 ;;;###autoload
 (defun jcs-balance-split-window-horizontally ()
   "Balance windows after split window horizontally."
@@ -125,9 +125,6 @@
   (split-window-horizontally)
   (balance-windows))
 
-;;-----------------------------------------------------------
-;; Splitting
-;;-----------------------------------------------------------
 
 (defvar jcs-is-enlarge-buffer nil
   "Is any buffer in the frame enlarge already?")
@@ -197,10 +194,8 @@ i.e. change right window to bottom, or change bottom window to right."
               (other-window 1)))
         (error "Cannot toggle vertical/horizontal editor layout with more than 2 window in current frame")))))
 
-
 ;;-----------------------------------------------------------
 ;; Util
-;;-----------------------------------------------------------
 
 (defun jcs-window-is-larger-in-height-p ()
   "Get the window that are larget than other windows in vertical."
@@ -262,10 +257,8 @@ i.e. change right window to bottom, or change bottom window to right."
           (windmove-right jcs-windmove-max-move-count)))
     (jcs-ace-window-max)))
 
-
 ;;-----------------------------------------------------------
 ;; Transparent
-;;-----------------------------------------------------------
 
 (defvar jcs-current-frame-transparency 100
   "Current active frame transparency.")
@@ -336,10 +329,8 @@ i.e. change right window to bottom, or change bottom window to right."
     (setq del-trans (jcs-to-negative jcs-default-delta-transparency)))
   (jcs-delta-frame-transparent del-trans))
 
-
 ;;-----------------------------------------------------------
 ;; Get Window
-;;-----------------------------------------------------------
 
 (defun jcs-current-window-id ()
   "Return the current window id."
@@ -372,7 +363,6 @@ i.e. change right window to bottom, or change bottom window to right."
 
 ;;-----------------------------------------------------------
 ;; Ace Window
-;;-----------------------------------------------------------
 
 (defun jcs-ace-select-window (win-id)
   "Use `ace-window' to select the window by using window index, WIN-ID."
