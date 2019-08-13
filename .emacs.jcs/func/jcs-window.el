@@ -125,6 +125,13 @@
   (split-window-horizontally)
   (balance-windows))
 
+;;;###autoload
+(defun jcs-balance-split-window-vertically ()
+  "Balance windows after split window vertically."
+  (interactive)
+  (split-window-vertically)
+  (balance-windows))
+
 
 (defvar jcs-is-enlarge-buffer nil
   "Is any buffer in the frame enlarge already?")
