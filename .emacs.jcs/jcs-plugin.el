@@ -45,6 +45,7 @@
   (setq company-require-match nil)
   (setq company-tooltip-align-annotations t)
   (setq company-dabbrev-downcase nil)
+  (setq company-eclim-auto-save nil)
   :config
   ;; TOPIC: How add company-dabbrev to the Company completion popup?
   ;; URL: https://emacs.stackexchange.com/questions/15246/how-add-company-dabbrev-to-the-company-completion-popup
