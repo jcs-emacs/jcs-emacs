@@ -475,10 +475,10 @@
 (progn
   (define-key global-map (kbd "C-x n") #'make-frame)
   (define-key global-map (kbd "C-x d") #'delete-frame)  ; delete the external frame.
-  (define-key global-map (kbd "C-x w") #'delete-window)  ; delete current window.
+  (define-key global-map (kbd "C-x w") #'jcs-balance-delete-window)  ; delete current window.
   (define-key global-map (kbd "C-h h") #'jcs-toggle-window-split-hv)
   (define-key global-map (kbd "C-w e") #'jcs-toggle-enlarge-window-selected)
-  (define-key global-map (kbd "C-\\") #'split-window-horizontally))
+  (define-key global-map (kbd "C-\\") #'jcs-balance-split-window-horizontally))
 
 ;;; Window Navigation
 (progn
