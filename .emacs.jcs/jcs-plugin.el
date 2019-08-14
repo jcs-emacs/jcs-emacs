@@ -78,10 +78,10 @@
      ;; Keyword Selection
      '(company-tooltip-common
        ((((type x)) (:inherit company-tooltip :weight bold))
-        (t (:background "light gray" :foreground "#E80000"))))
+        (t (:background "light gray" :foreground "#C00000"))))
      '(company-tooltip-common-selection
        ((((type x)) (:inherit company-tooltip-selection :weight bold))
-        (t (:background "steel blue" :foreground "#E80000"))))
+        (t (:background "steel blue" :foreground "#C00000"))))
      ;;--------------------------------------------------------------------
      ;; Scroll Bar
      '(company-scrollbar-fg
