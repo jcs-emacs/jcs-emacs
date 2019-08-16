@@ -16,8 +16,8 @@ QUICK REFERENCE GUIDE FOR JEN-CHIEH'S .EMACS KEYBINDINGS
 
 ESC             Exit minibuffer and go to the top level.
 
-TAB             Cycles through completions for a word, if it 
-                fails insert spaces base on tab width. Mimic 
+TAB             Cycles through completions for a word, if it
+                fails insert spaces base on tab width. Mimic
                 the normal text editor preset behavior.
 
 M-b             Switch to buffer in the current window.
@@ -99,9 +99,9 @@ C-x C-f         Search word in project.
 
 C-,             Search word backward at current point.
 C-.             Search word forward at current point.
-C-<             Search word backward at current point through 
+C-<             Search word backward at current point through
                 whole project.
-C->             Search word forward at current point through 
+C->             Search word forward at current point through
                 whole project.
 
 C-f10           Goto previous highlight todo related symbol.
@@ -109,7 +109,7 @@ C-f11           Goto next highlight todo related symbol.
 
 C-r r           Rename the whole text with the same name.
 C-r p           Replace pattern in project root.
-C-x C-s         Save the all the buffer that changes in the 
+C-x C-s         Save the all the buffer that changes in the
                 `ag' replace Menu.
 
 C-s             Untabify the document then save the file.
@@ -134,7 +134,7 @@ C-w u           Uppercase the word, if region exists do region then.
 C-w d           Lowercase the word, if region exists do region then.
 C-w c           Capitalize the word, if region exists do region then.
 
-C-x a           Align all variables in the region if region selected, 
+C-x a           Align all variables in the region if region selected,
                 else align full document insteead.
 
 M-b             Open buffer menu.
@@ -159,11 +159,11 @@ C-delete        Backward delete word.
 M-backspace     Backward delete capital word.
 M-delete        Forward delete capital word.
 
-C-r backspace   Delete the same character at current cursor's 
-                position backward repeatedly util it meet different 
+C-r backspace   Delete the same character at current cursor's
+                position backward repeatedly util it meet different
                 character.
-C-r S-backspace Delete the same character at current cursor's 
-                position forward repeatedly util it meet different 
+C-r S-backspace Delete the same character at current cursor's
+                position forward repeatedly util it meet different
                 character.
 
 C-x C-v         Reload Emacs.
@@ -187,11 +187,11 @@ C-M-right       Move buffer right.
 
 C-c f           Change font style.
 
-C-return        Binds to `jcs-ctrl-return-key'. If follows the list 
-                of function error handling. If something wrong with 
-                the order down function, the next function will be 
-                call to replace the previous function. The priority 
-                function list is list below: 
+C-return        Binds to `jcs-ctrl-return-key'. If follows the list
+                of function error handling. If something wrong with
+                the order down function, the next function will be
+                call to replace the previous function. The priority
+                function list is list below:
                   (1) project-abbrev-complete-word
                   (2) yas-expand
                   (3) goto-address-at-point
@@ -238,7 +238,7 @@ C-x <           Decrement tab size by 2.
 C-x n           Create new frame.
 C-x d           Delete current frame.
 C-x w           Delete current window.
-C-h h           Toggle window split between horizontal and 
+C-h h           Toggle window split between horizontal and
                 vertcial.
 C-w e           Toggle enlarge current selected window.
 C-\             Split window horizontally.
@@ -364,7 +364,7 @@ C-return        Expand abbrev.
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * Switch Mode
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-C-c c           Toggle between c and c++ mode if you are 
+C-c c           Toggle between c and c++ mode if you are
                 either in c or c++ mode.
 C-x b           Enable/disable whitespace-mode.
 C-c r           Enable/disable raindbow-mode.
@@ -382,21 +382,21 @@ f12             goto declaration/definition on same window.
 S-f12           goto declaration/definition on other window.
 
 f7              open the same file on other window.
-f8              If there is corresponding file then open that. Otherwise 
+f8              If there is corresponding file then open that. Otherwise
                 the functionality is the same as f7 above.
 
-C-S-B           Run the build script in the project. If cannot find 
-                the file in the project it will find the file in just 
+C-S-B           Run the build script in the project. If cannot find
+                the file in the project it will find the file in just
                 the current directory instead. (.bat, .linux, .macosx, etc.)
-f5              Run the run script in the project. If cannot find 
-                the file in the project it will find the file in just 
+f5              Run the run script in the project. If cannot find
+                the file in the project it will find the file in just
                 the current directory instead. (.bat, .linux, .macosx, etc.)
 
-C-x t           Open todo list file in the project. If cannot find 
-                the file in the project it will find the file in just 
+C-x t           Open todo list file in the project. If cannot find
+                the file in the project it will find the file in just
                 the current directory instead. [Default: other window]
-C-x u           Open update log file in the project. If cannot find 
-                the file in the project it will find the file in just 
+C-x u           Open update log file in the project. If cannot find
+                the file in the project it will find the file in just
                 the current directory instead. [Default: other window]
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -414,7 +414,7 @@ C-c C-s         In the mail buffer, send the message (message
                 -send).
 C-c C-c         In the mail buffer, send the message and bury
                 the buffer (message-send-and-exit).
-         
+
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * Navigating General Programming Symbols
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -480,5 +480,5 @@ C-c i ?         Delete everything between two ?.
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 * Regular Expression
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-C-r b           Open RE-Builder mode window. (Use to test regular 
+C-r b           Open RE-Builder mode window. (Use to test regular
                 expression string)

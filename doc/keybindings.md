@@ -11,10 +11,40 @@
   * <kbd>Ctrl</kbd>+<kbd>d</kbd> - Kill whole line.
   * <kbd>Ctrl</kbd>+<kbd>r</kbd>, <kbd>Ctrl</kbd>+<kbd>r</kbd> - Rename the whole text with the same name.
   * <kbd>Ctrl</kbd>+<kbd>a</kbd> - Mark whole buffer. (Select All)
+
   * **Build**
+
     * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>b</kbd> - Build the program. (`build.linux`/`build.bat`/`build.mac`)
+
   * **Run**
+
     * <kbd>f5</kbd> - Run the program. (`run.linux`/`run.bat`/`run.mac`)
+
+  * <kbd>Ctrl</kbd>+<kbd>x</kbd>, <kbd>Ctrl</kbd>+<kbd>x</kbd> - Cut
+  * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>Ctrl</kbd>+<kbd>c</kbd> - Copy
+  * <kbd>Ctrl</kbd>+<kbd>v</kbd> - Paste
+  * <kbd>Ctrl</kbd>+<kbd>z</kbd> - Undo
+  * <kbd>Ctrl</kbd>+<kbd>y</kbd> - Redo
+
+  * **Search**
+
+    * <kbd>Ctrl</kbd>+<kbd>f</kbd> - Search through file.
+    * <kbd>Ctrl</kbd>+<kbd>x</kbd>, <kbd>Ctrl</kbd>+<kbd>f</kbd> - Search through project.
+    * <kbd>Ctrl</kbd>+<kbd>,</kbd> - Ssearch through file current point. (backward)
+    * <kbd>Ctrl</kbd>+<kbd>.</kbd> - Ssearch through file current point. (forward)
+    * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>,</kbd> - Ssearch through project current point. (backward)
+    * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>.</kbd> - Ssearch through project current point. (forward)
+
+  * **Todo**
+
+    * <kbd>Ctrl</kbd>+<kbd>f10</kbd> - Goto `previous` highlighted todo related symbol.
+    * <kbd>Ctrl</kbd>+<kbd>f11</kbd> - Goto `next` highlighted todo related symbol.
+
+  * **Commenting/Uncommenting**
+
+    * <kbd>Ctrl</kbd>+<kbd>/</kbd> - Comment/Uncomment region or line.
+    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>Ctrl</kbd>+<kbd>c</kbd> - Comment region or line.
+    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>Ctrl</kbd>+<kbd>u</kbd> - Uncomment region or line.
 
 * **Debugging**
 
@@ -29,7 +59,12 @@
 
 * **Kill Buffer**
 
-* <kbd>Alt</kbd>+<kbd>k</kbd> - Kill current buffer.
+  * <kbd>Alt</kbd>+<kbd>k</kbd> - Kill current buffer.
+
+* **Save Buffer**
+
+  * <kbd>Ctrl</kbd>+<kbd>s</kbd> - Untabify save file.
+  * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>s</kbd> - Tabify save file.
 
 ### File
 
@@ -101,6 +136,10 @@
 
   * <kbd>Ctrl</kbd>+<kbd>SPC</kbd> or <kbd>Alt</kbd>+<kbd>SPC</kbd> - Set mark at current point.
   * <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>;</kbd> - Pops back to the previous mark.
+
+* **Packet List**
+
+* <kbd>Ctrl</kbd>+<kbd>x</kbd>, <kbd>Ctrl</kbd>+<kbd>p</kbd> - Package list.
 
 * **`*Scratch*`**
 
