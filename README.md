@@ -354,7 +354,7 @@ you might want to checkout the `./.emacs.jcs/jcs-mode.el` file.
 You will see a list of mode that are opened by default mode to 
 certain extension.
 
-&nbsp;&nbsp;[*List of modes*](https://github.com/jcs090218/jcs-emacs-init/blob/master/doc/programming_modes.md)
+&nbsp;&nbsp;&nbsp;&nbsp;[*List of modes*](https://github.com/jcs090218/jcs-emacs-init/blob/master/doc/programming_modes.md)
 
 
 *P.S. The [awesome-emacs](https://github.com/emacs-tw/awesome-emacs) 
