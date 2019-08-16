@@ -2,19 +2,41 @@
 
 ## Global
 
-* **Exit**
-
-  * <kbd>ESC</kbd> - Exit minibuffer and go to the top level.
+### Programming
 
 * **Editing**
 
   * <kbd>TAB</kbd> - Mimic the normal text editor preset behavior.
   * <kbd>Ctrl</kbd>+<kbd>TAB</kbd> - Reindent block.
+  * <kbd>Ctrl</kbd>+<kbd>d</kbd> - Kill whole line.
+  * <kbd>Ctrl</kbd>+<kbd>r</kbd>, <kbd>Ctrl</kbd>+<kbd>r</kbd> - Rename the whole text with the same name.
+  * <kbd>Ctrl</kbd>+<kbd>a</kbd> - Mark whole buffer. (Select All)
+  * **Build**
+    * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>b</kbd> - Build the program. (`build.linux`/`build.bat`/`build.mac`)
+  * **Run**
+    * <kbd>f5</kbd> - Run the program. (`run.linux`/`run.bat`/`run.mac`)
+
+* **Debugging**
+
+  * <kbd>f6</kbd> - Toggle `flycheck`.
+
+### Buffer
 
 * **Switch Buffer**
 
   * <kbd>Alt</kbd>+<kbd>b</kbd> - Switch to buffer in the current window.
   * <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>b</kbd> - Switch to buffer in the other window.
+
+* **Kill Buffer**
+
+* <kbd>Alt</kbd>+<kbd>k</kbd> - Kill current buffer.
+
+### File
+
+* **File Explorer**
+
+  * <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>l</kbd> - Toggle file explorer.
+  * <kbd>Ctrl</kbd>+<kbd>b</kbd> - Toggle file explorer.
 
 * **Find Files**
 
@@ -23,10 +45,16 @@
   * <kbd>Ctrl</kbd>+<kbd>x</kbd>, <kbd>Alt</kbd>+<kbd>f</kbd> - Find file in project to current window.
   * <kbd>Ctrl</kbd>+<kbd>x</kbd>, <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>f</kbd> - Find file in project to other window.
 
-* **Scratch**
+### Navigating
 
-  * <kbd>Alt</kbd>+<kbd>s</kbd> - Open `*scratch*` buffer.
-  * <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>s</kbd> - Open `*scratch*` buffer in other window.
+* **Navigate Cursor**
+
+  * <kbd>Ctrl</kbd>+<kbd>right</kbd> - Navigate a word `right`.
+  * <kbd>Ctrl</kbd>+<kbd>left</kbd> - Navigate a word `left`.
+  * <kbd>Alt</kbd>+<kbd>right</kbd> - Navigate a word `right` excluding capital.
+  * <kbd>Alt</kbd>+<kbd>left</kbd> - Navigate a word `left` excluding capital..
+  * <kbd>Alt</kbd>+<kbd>g</kbd>, <kbd>l</kbd> - Goto line number.
+  * <kbd>Alt</kbd>+<kbd>g</kbd>, <kbd>c</kbd> - Goto character position.
 
 * **Navigate Windows**
 
@@ -56,21 +84,28 @@
     * <kbd>Ctrl</kbd>+<kbd>8</kbd> - Select window 8.
     * <kbd>Ctrl</kbd>+<kbd>9</kbd> - Select window 9.
 
-* **Kill Buffer**
+### Others
 
-  * <kbd>Alt</kbd>+<kbd>k</kbd> - Kill current buffer.
+* **System**
 
-* **Navigate Cursor**
+  * <kbd>Ctrl</kbd>+<kbd>k</kbd>,<kbd>Ctrl</kbd>+<kbd>s</kbd> - Describe key bindings with current `major-mode`.
+  * <kbd>Ctrl</kbd>+<kbd>k</kbd>,<kbd>Ctrl</kbd>+<kbd>i</kbd> - Describe current symbol.
+  * <kbd>Ctrl</kbd>+<kbd>t</kbd> - Toggle `tabbar-mode`.
+  * <kbd>Alt</kbd>+<kbd>z</kbd> - Toggle `truncate-lines'`.
 
-  * <kbd>Ctrl</kbd>+<kbd>right</kbd> - Navigate a word `right`.
-  * <kbd>Ctrl</kbd>+<kbd>left</kbd> - Navigate a word `left`.
-  * <kbd>Alt</kbd>+<kbd>right</kbd> - Navigate a word `right` excluding capital.
-  * <kbd>Alt</kbd>+<kbd>left</kbd> - Navigate a word `left` excluding capital..
+* **Exit**
+
+* <kbd>ESC</kbd> - Exit minibuffer and go to the top level.
 
 * **Mark**
 
   * <kbd>Ctrl</kbd>+<kbd>SPC</kbd> or <kbd>Alt</kbd>+<kbd>SPC</kbd> - Set mark at current point.
   * <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>;</kbd> - Pops back to the previous mark.
+
+* **`*Scratch*`**
+
+  * <kbd>Alt</kbd>+<kbd>s</kbd> - Open `*scratch*` buffer.
+  * <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>s</kbd> - Open `*scratch*` buffer in other window.
 
 ## Web Mode
 
