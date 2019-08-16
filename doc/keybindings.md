@@ -6,23 +6,24 @@
 
 * **Editing**
 
-  * <kbd>TAB</kbd> - Mimic the normal text editor preset behavior.
-  * <kbd>Ctrl</kbd>+<kbd>TAB</kbd> - Reindent block.
-  * <kbd>Ctrl</kbd>+<kbd>d</kbd> - Kill whole line.
-  * <kbd>Ctrl</kbd>+<kbd>r</kbd>, <kbd>Ctrl</kbd>+<kbd>r</kbd> - Rename the whole text with the same name.
-  * <kbd>Ctrl</kbd>+<kbd>a</kbd> - Mark whole buffer. (Select All)
   * <kbd>Ctrl</kbd>+<kbd>x</kbd>, <kbd>Ctrl</kbd>+<kbd>x</kbd> - Cut
   * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>Ctrl</kbd>+<kbd>c</kbd> - Copy
   * <kbd>Ctrl</kbd>+<kbd>v</kbd> - Paste
   * <kbd>Ctrl</kbd>+<kbd>z</kbd> - Undo
   * <kbd>Ctrl</kbd>+<kbd>y</kbd> - Redo
+  * <kbd>TAB</kbd> - Mimic the normal text editor preset behavior.
+  * <kbd>Ctrl</kbd>+<kbd>TAB</kbd> - Reindent block.
+  * <kbd>Ctrl</kbd>+<kbd>r</kbd>, <kbd>Ctrl</kbd>+<kbd>r</kbd> - Rename the whole text with the same name.
+  * <kbd>Ctrl</kbd>+<kbd>a</kbd> - Mark whole buffer. (Select All)
+  * <kbd>Ctrl</kbd>+<kbd>d</kbd> - Kill whole line.
+  * <kbd>Ctrl</kbd>+<kbd>backspace</kbd> - Backspace word.
+  * <kbd>Ctrl</kbd>+<kbd>delete</kbd> - Delete word.
+  * <kbd>Alt</kbd>+<kbd>backspace</kbd> - Backspace word excluding capital letter.
+  * <kbd>Alt</kbd>+<kbd>delete</kbd> - Delete word excluding capital letter.
 
-  * **Build**
+  * **Build/Run**
 
     * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>b</kbd> - Build the program. (`build.linux`/`build.bat`/`build.mac`)
-
-  * **Run**
-
     * <kbd>f5</kbd> - Run the program. (`run.linux`/`run.bat`/`run.mac`)
 
   * **Search**
@@ -126,8 +127,8 @@
 
   * <kbd>Ctrl</kbd>+<kbd>right</kbd> - Navigate a word `right`.
   * <kbd>Ctrl</kbd>+<kbd>left</kbd> - Navigate a word `left`.
-  * <kbd>Alt</kbd>+<kbd>right</kbd> - Navigate a word `right` excluding capital.
-  * <kbd>Alt</kbd>+<kbd>left</kbd> - Navigate a word `left` excluding capital..
+  * <kbd>Alt</kbd>+<kbd>right</kbd> - Navigate a word `right` excluding capital letter.
+  * <kbd>Alt</kbd>+<kbd>left</kbd> - Navigate a word `left` excluding capital letter.
   * <kbd>Alt</kbd>+<kbd>g</kbd>, <kbd>l</kbd> - Goto line number.
   * <kbd>Alt</kbd>+<kbd>g</kbd>, <kbd>c</kbd> - Goto character position.
 
@@ -170,6 +171,9 @@
 
 * **System**
 
+  * <kbd>Ctrl</kbd>+<kbd>x</kbd>, <kbd>Ctrl</kbd>+<kbd>c</kbd> - Shutdown Emacs.
+  * <kbd>Ctrl</kbd>+<kbd>x</kbd>, <kbd>Ctrl</kbd>+<kbd>v</kbd> - Reload Emacs.
+  * <kbd>Ctrl</kbd>+<kbd>x</kbd>, <kbd>Ctrl</kbd>+<kbd>b</kbd> - Restart Emacs.
   * <kbd>Ctrl</kbd>+<kbd>k</kbd>,<kbd>Ctrl</kbd>+<kbd>s</kbd> - Describe key bindings with current `major-mode`.
   * <kbd>Ctrl</kbd>+<kbd>k</kbd>,<kbd>Ctrl</kbd>+<kbd>i</kbd> - Describe current symbol.
   * <kbd>Ctrl</kbd>+<kbd>t</kbd> - Toggle `tabbar-mode`.
