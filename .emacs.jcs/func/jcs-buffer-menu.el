@@ -53,7 +53,8 @@ Sorted by (1) visit, (2) buffer, (3) size, (4) time, (5) mode, (6) file."
 (defun jcs-buffer-menu-return ()
   "Implemenetation for `buffer menu`'s return key."
   (interactive)
-  (if jcs-buffer-menu-done-filtering
+  (if (or jcs-buffer-menu-done-filtering
+           (string= tabulated-list--header-string jcs-buffer-menu-search-title))
       (if (ignore-errors (Buffer-menu-this-window))
           (message nil)  ; Use to clear `[Display not ready]'.
         (user-error "No buffer on this line"))
