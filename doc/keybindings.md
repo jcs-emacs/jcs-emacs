@@ -11,6 +11,11 @@
   * <kbd>Ctrl</kbd>+<kbd>d</kbd> - Kill whole line.
   * <kbd>Ctrl</kbd>+<kbd>r</kbd>, <kbd>Ctrl</kbd>+<kbd>r</kbd> - Rename the whole text with the same name.
   * <kbd>Ctrl</kbd>+<kbd>a</kbd> - Mark whole buffer. (Select All)
+  * <kbd>Ctrl</kbd>+<kbd>x</kbd>, <kbd>Ctrl</kbd>+<kbd>x</kbd> - Cut
+  * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>Ctrl</kbd>+<kbd>c</kbd> - Copy
+  * <kbd>Ctrl</kbd>+<kbd>v</kbd> - Paste
+  * <kbd>Ctrl</kbd>+<kbd>z</kbd> - Undo
+  * <kbd>Ctrl</kbd>+<kbd>y</kbd> - Redo
 
   * **Build**
 
@@ -19,12 +24,6 @@
   * **Run**
 
     * <kbd>f5</kbd> - Run the program. (`run.linux`/`run.bat`/`run.mac`)
-
-  * <kbd>Ctrl</kbd>+<kbd>x</kbd>, <kbd>Ctrl</kbd>+<kbd>x</kbd> - Cut
-  * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>Ctrl</kbd>+<kbd>c</kbd> - Copy
-  * <kbd>Ctrl</kbd>+<kbd>v</kbd> - Paste
-  * <kbd>Ctrl</kbd>+<kbd>z</kbd> - Undo
-  * <kbd>Ctrl</kbd>+<kbd>y</kbd> - Redo
 
   * **Search**
 
@@ -46,11 +45,33 @@
     * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>Ctrl</kbd>+<kbd>c</kbd> - Comment region or line.
     * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>Ctrl</kbd>+<kbd>u</kbd> - Uncomment region or line.
 
+  * **Formating**
+
+    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>Ctrl</kbd>+<kbd>f</kbd> - Format region.
+    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>Ctrl</kbd>+<kbd>d</kbd> - Format document.
+    * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>f</kbd> - Format region or document.
+
+  * **Case**
+
+    * <kbd>Ctrl</kbd>+<kbd>w</kbd>, <kbd>u</kbd> - Uppercase word or region.
+    * <kbd>Ctrl</kbd>+<kbd>w</kbd>, <kbd>d</kbd> - Downcase word or region.
+    * <kbd>Ctrl</kbd>+<kbd>w</kbd>, <kbd>c</kbd> - Capitalize word or region.
+
+  * **Alignment**
+
+    * <kbd>Ctrl</kbd>+<kbd>x</kbd>, <kbd>aa</kbd> - Align region or document.
+
+
 * **Debugging**
 
   * <kbd>f6</kbd> - Toggle `flycheck`.
 
 ### Buffer
+
+* **Buffer Menu**
+
+  * <kbd>Alt</kbd>+<kbd>b</kbd> - Open buffer menu.
+  * <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>b</kbd> - Open buffer menu other window.
 
 * **Switch Buffer**
 
@@ -65,6 +86,25 @@
 
   * <kbd>Ctrl</kbd>+<kbd>s</kbd> - Untabify save file.
   * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>s</kbd> - Tabify save file.
+
+* **Rename Buffer**
+
+  * <kbd>Alt</kbd>+<kbd>f2</kbd> - Rename current file
+
+* **`*Scratch*`**
+
+  * <kbd>Alt</kbd>+<kbd>s</kbd> - Open `*scratch*` buffer.
+  * <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>s</kbd> - Open `*scratch*` buffer in other window.
+
+* **`*Message*`**
+
+  * <kbd>Alt</kbd>+<kbd>m</kbd> - Open `*Message*` buffer.
+  * <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>m</kbd> - Open `*Message*` buffer in other window.
+
+* **`*Dashboard*`**
+
+  * <kbd>Alt</kbd>+<kbd>d</kbd> - Open `*dashboard*` buffer.
+  * <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>d</kbd> - Open `*dashboard*` buffer in other window.
 
 ### File
 
@@ -119,6 +159,13 @@
     * <kbd>Ctrl</kbd>+<kbd>8</kbd> - Select window 8.
     * <kbd>Ctrl</kbd>+<kbd>9</kbd> - Select window 9.
 
+### Visualization
+
+* <kbd>Ctrl</kbd>+<kbd>=</kbd> - Text scale increase.
+* <kbd>Ctrl</kbd>+<kbd>-</kbd> - Text scale decrease.
+* <kbd>Alt</kbd>+<kbd>=</kbd> - Frame transparent increase.
+* <kbd>Alt</kbd>+<kbd>-</kbd> - Frame transparent decrease.
+
 ### Others
 
 * **System**
@@ -140,11 +187,6 @@
 * **Packet List**
 
 * <kbd>Ctrl</kbd>+<kbd>x</kbd>, <kbd>Ctrl</kbd>+<kbd>p</kbd> - Package list.
-
-* **`*Scratch*`**
-
-  * <kbd>Alt</kbd>+<kbd>s</kbd> - Open `*scratch*` buffer.
-  * <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>s</kbd> - Open `*scratch*` buffer in other window.
 
 ## Web Mode
 
