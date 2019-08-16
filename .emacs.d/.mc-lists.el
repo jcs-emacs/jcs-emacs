@@ -54,6 +54,7 @@
         jcs-web-backward-delete-word
         jcs-web-backward-delete-word-capital
         kill-region
+        markdown-outdent-or-delete
         org-force-self-insert
         org-self-insert-command
         yas-expand
@@ -62,6 +63,8 @@
 (setq mc/cmds-to-run-once
       '(
         ace-window
+        buf-move-left
+        buf-move-right
         feebleline-mode
         helm-M-x
         helm-find-files
@@ -76,6 +79,8 @@
         jcs-ace-window-7
         jcs-ace-window-8
         jcs-ace-window-9
+        jcs-balance-delete-window
+        jcs-balance-split-window-horizontally
         jcs-css-save-buffer
         jcs-dashboard-next-blank-line
         jcs-dashboard-previous-blank-line
@@ -100,6 +105,7 @@
         jcs-toggle-sublimity-mode
         jcs-undo
         jcs-untabify-save-buffer
+        markdown-shifttab
         mouse-set-region
         move-text-down
         move-text-up
