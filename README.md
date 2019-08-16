@@ -368,7 +368,9 @@ Is also a good place to seek and learn what's inside Emacs!*
 This configuration have all modes bind to the same set of 
 key bindings. It benefits the developer would not need to change 
 their key bindings while after the mode swichted. The key bindings 
-set can be check in `./.emacs.jcs/jcs-key.el` file. 
+set can be modified in `./.emacs.jcs/jcs-key.el` file. 
+
+* [List of key bindings](https://github.com/jcs090218/jcs-emacs-init/blob/master/doc/keybindings.md)
 
 P.S. 
 * My work requires me to use 
