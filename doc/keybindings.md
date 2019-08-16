@@ -20,6 +20,6 @@
   * <kbd>Alt</kbd>+<kbd>s</kbd> - Open `*scratch*` buffer.
   * <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>s</kbd> - Open `*scratch*` buffer in other window.
 
-* **Scratch**
-  * <kbd>Alt</kbd>+<kbd>w</kbd> - Switch to the other window. (Next)
-  * <kbd>Alt</kbd>+<kbd>w</kbd> - Switch to the other window. (Prev)
+* **Navigate Windows**
+  * <kbd>Alt</kbd>+<kbd>w</kbd> - Switch to the next window.
+  * <kbd>Alt</kbd>+<kbd>w</kbd> - Switch to the previous window.
