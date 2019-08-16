@@ -1,4 +1,4 @@
-#### Programming Modes
+# Programming Modes
 
 | Language | Mode | Description | Version |
 | --- | --- | --- | --- |
@@ -52,7 +52,7 @@
 | XML | [nxml-mode](https://www.emacswiki.org/emacs/NxmlMode) | Major mode for editing XML. | ![Builtin](https://img.shields.io/badge/builtin-depends-blue.svg) |
 | YAML | [yaml-mode](https://www.emacswiki.org/emacs/YamlMode) | Simple mode to edit YAML. | [![MELPA](https://melpa.org/packages/yaml-mode-badge.svg)](https://melpa.org/#/yaml-mode) |
 
-#### Other Modes
+# Other Modes
 
 | Language | Mode | Description | Version |
 | --- | --- | --- | --- |
