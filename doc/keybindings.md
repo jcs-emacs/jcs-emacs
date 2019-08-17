@@ -261,6 +261,10 @@
 * <kbd>Alt</kbd>+<kbd>=</kbd> - Increment frame transparent by 5 percent.
 * <kbd>Alt</kbd>+<kbd>-</kbd> - Decrement frame transparent by 5 percent.
 
+### Source Control
+
+* <kbd>Ctrl</kbd>+<kbd>x</kbd>, <kbd>g</kbd> - Open magit interface.
+
 ### Terminal
 
 * <kbd>Ctrl</kbd>+<kbd>`</kbd> - Toggle shell window.
@@ -283,6 +287,7 @@
 * **Exit**
 
   * <kbd>ESC</kbd> - Exit minibuffer and go to the top level.
+  * <kbd>Ctrl</kbd>+<kbd>g</kbd> - Exit keyboard.
 
 * **Mark**
 
@@ -304,33 +309,40 @@
   * <kbd>Alt</kbd>+<kbd>h</kbd>, <kbd>v</kbd> - Describe variable.
   * <kbd>Alt</kbd>+<kbd>h</kbd>, <kbd>b</kbd> - Describe bindings.
 
-## Web Mode
+## Package Mode
 
-  * <kbd>Ctrl</kbd>+<kbd>Return</kbd> - Emment expand.
-  * <kbd>Ctrl</kbd>+<kbd>w</kbd>, <kbd>o</kbd> - Start httpd server for real time editing website.
-  * <kbd>Ctrl</kbd>+<kbd>w</kbd>, <kbd>p</kbd> - Start httpd server for real time editing website.
+* <kbd>i</kbd> - Select package to install.
+* <kbd>d</kbd> - Select package to delete.
+* <kbd>x</kbd> - Execute marked packages.
+* <kbd>s</kbd> - Sort packages in order.
+* <kbd>u</kbd> - Select package to upgrade.
+* <kbd>Ctrl</kbd>+<kbd>x</kbd>, <kbd>r</kbd>, <kbd>m</kbd> - Auto remove unused pacakges.
 
-## CSS Mode
+## Org Mode
 
-  * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>s</kbd> - Sort the CSS attributes between open/close parenthesis.
-  * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>d</kbd> - Sort the CSS attribute for the whole file.
+* <kbd>Shift</kbd>+<kbd>up</kbd> - Move cursor `up` one row table.
+* <kbd>Shift</kbd>+<kbd>down</kbd> - Move cursor `down` one row table.
+* <kbd>Shift</kbd>+<kbd>right</kbd> - Move cursor `right` one column table.
+* <kbd>Shift</kbd>+<kbd>left</kbd> - Move cursor `left` one column table.
 
 ## C/C++/Objective-C Mode
 
-  * <kbd>f8</kbd> - Switch between header/source file.
-  * <kbd>Shift</kbd>+<kbd>f8</kbd> - Switch between header/source file other window.
+* <kbd>f8</kbd> - Switch between header/source file.
+* <kbd>Shift</kbd>+<kbd>f8</kbd> - Switch between header/source file other window.
   
 ## Java Mode
 
-  * <kbd>f2</kbd> - Lookup javadoc in browser. (javadoc-lookup)
-  * <kbd>Shift</kbd>+<kbd>f2</kbd> - Lookup javadoc in browser. (javadoc-lookup)
-  * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>o</kbd> - Organize imports java paths.
+* <kbd>f2</kbd> - Lookup javadoc in browser. (javadoc-lookup)
+* <kbd>Shift</kbd>+<kbd>f2</kbd> - Lookup javadoc in browser. (javadoc-lookup)
+* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>o</kbd> - Organize imports java paths.
 
-## Package Mode
+## Web Mode
 
-  * <kbd>i</kbd> - Select package to install.
-  * <kbd>d</kbd> - Select package to delete.
-  * <kbd>x</kbd> - Execute marked packages.
-  * <kbd>s</kbd> - Sort packages in order.
-  * <kbd>u</kbd> - Select package to upgrade.
-  * <kbd>Ctrl</kbd>+<kbd>x</kbd>, <kbd>r</kbd>, <kbd>m</kbd> - Auto remove unused pacakges.
+* <kbd>Ctrl</kbd>+<kbd>Return</kbd> - Emment expand.
+* <kbd>Ctrl</kbd>+<kbd>w</kbd>, <kbd>o</kbd> - Start httpd server for real time editing website.
+* <kbd>Ctrl</kbd>+<kbd>w</kbd>, <kbd>p</kbd> - Start httpd server for real time editing website.
+
+## CSS Mode
+
+* <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>s</kbd> - Sort the CSS attributes between open/close parenthesis.
+* <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>d</kbd> - Sort the CSS attribute for the whole file.
