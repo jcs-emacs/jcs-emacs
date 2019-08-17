@@ -99,6 +99,14 @@
 
   (global-company-mode t))
 
+(use-package company-fuzzy
+  :defer t
+  :init
+  (setq company-fuzzy-sorting-backend 'flx)
+  (setq company-fuzzy-prefix-ontop nil)
+  (with-eval-after-load 'company
+    (global-company-fuzzy-mode t)))
+
 (use-package company-quickhelp
   :defer t
   :init
