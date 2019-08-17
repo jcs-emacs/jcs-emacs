@@ -256,7 +256,7 @@
 * <kbd>Ctrl</kbd>+<kbd>x</kbd>, <kbd>w</kbd> - Delete current window.
 * <kbd>Ctrl</kbd>+<kbd>h</kbd>, <kbd>h</kbd> - Toggle window split between horizontal and vertcial.
 * <kbd>Ctrl</kbd>+<kbd>w</kbd>, <kbd>e</kbd> - Toggle enlarge current selected window.
-* <kbd>Ctrl</kbd>+<kbd>\</kbd> - Split window horizontally.
+* <kbd>Ctrl</kbd>+<kbd>\\</kbd> - Split window horizontally.
 * <kbd>Alt</kbd>+<kbd>`</kbd> - Toggle transparent frame.
 * <kbd>Alt</kbd>+<kbd>=</kbd> - Increment frame transparent by 5 percent.
 * <kbd>Alt</kbd>+<kbd>-</kbd> - Decrement frame transparent by 5 percent.
