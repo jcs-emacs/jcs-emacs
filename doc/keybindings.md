@@ -20,8 +20,31 @@
   * <kbd>Ctrl</kbd>+<kbd>delete</kbd> - Delete word.
   * <kbd>Alt</kbd>+<kbd>backspace</kbd> - Backspace word excluding capital letter.
   * <kbd>Alt</kbd>+<kbd>delete</kbd> - Delete word excluding capital letter.
+  * <kbd>Ctrl</kbd>+<kbd>r</kbd>, <kbd>backspace</kbd> - 
+  Delete the same character at current cursor's position 
+  backward repeatedly util it meet different character.
+  * <kbd>Ctrl</kbd>+<kbd>r</kbd>, <kbd>Shift</kbd>+<kbd>backspace</kbd> - 
+  Delete the same character at current cursor's position 
+  forward repeatedly util it meet different character.
+  * <kbd>Alt</kbd>+<kbd>up</kbd> - Move current line `up`.
+  * <kbd>Alt</kbd>+<kbd>down</kbd> - Move current line `down`.
+  * <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>up</kbd> - Scroll window `up` one line without moving cursor.
+  * <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>down</kbd> - Scroll window `down` one line without moving cursor.
+  * <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>left</kbd> - Move buffer `left`.
+  * <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>right</kbd> - Move buffer `right`.
+  * <kbd>Ctrl</kbd>+<kbd>return</kbd> - Complete word or Goto address at point.
+  * <kbd>Ctrl</kbd>+<kbd>x</kbd>, <kbd>Shift</kbd>+<kbd>,</kbd> - Decrement tab size by 2.
+  * <kbd>Ctrl</kbd>+<kbd>x</kbd>, <kbd>Shift</kbd>+<kbd>.</kbd> - Increment tab size by 2.
+  * <kbd>Ctrl</kbd>+<kbd>x</kbd>, <kbd>=</kbd> - Calcualte the region and replace with the result.
+  * <kbd>Shift</kbd>+<kbd>f10</kbd> - Right click context menu.
+  * <kbd>f12</kbd> - Goto declaration/definition.
+  * <kbd>Shift</kbd>+<kbd>f12</kbd> - Goto declaration/definition other window.
+  * <kbd>f7</kbd> - Open same file other window.
+  * <kbd>f8</kbd> - Open corresponding file other window, if not found open same file instead.
+  * <kbd>Ctrl</kbd>+<kbd>x</kbd>, <kbd>Ctrl</kbd>+<kbd>e</kbd> - Switch file coding system.
+  * <kbd>Ctrl</kbd>+<kbd>r</kbd>, <kbd>b</kbd> - Open RE-Builder mode window.
 
-  * **Build/Run**
+  * **Build / Run**
 
     * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>b</kbd> - Build the program. (`build.linux`/`build.bat`/`build.mac`)
     * <kbd>f5</kbd> - Run the program. (`run.linux`/`run.bat`/`run.mac`)
@@ -40,7 +63,7 @@
     * <kbd>Ctrl</kbd>+<kbd>f10</kbd> - Goto `previous` highlighted todo related symbol.
     * <kbd>Ctrl</kbd>+<kbd>f11</kbd> - Goto `next` highlighted todo related symbol.
 
-  * **Commenting/Uncommenting**
+  * **Commenting / Uncommenting**
 
     * <kbd>Ctrl</kbd>+<kbd>/</kbd> - Comment/Uncomment region or line.
     * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>Ctrl</kbd>+<kbd>c</kbd> - Comment region or line.
@@ -52,6 +75,11 @@
     * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>Ctrl</kbd>+<kbd>d</kbd> - Format document.
     * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>f</kbd> - Format region or document.
 
+  * **Folding / Unfolding**
+
+    * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>o</kbd> - Collpase all foldings.
+    * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>p</kbd> - Expand all foldings.
+
   * **Case**
 
     * <kbd>Ctrl</kbd>+<kbd>w</kbd>, <kbd>u</kbd> - Uppercase word or region.
@@ -62,6 +90,39 @@
 
     * <kbd>Ctrl</kbd>+<kbd>x</kbd>, <kbd>aa</kbd> - Align region or document.
 
+  * **Symbol**
+
+    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>[</kbd> - Delete everything between `[` and `]`.
+    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>]</kbd> - Delete everything between `[` and `]`.
+    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>(</kbd> - Delete everything between `(` and `)`.
+    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>)</kbd> - Delete everything between `(` and `)`.
+    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>{</kbd> - Delete everything between `{` and `}`.
+    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>}</kbd> - Delete everything between `{` and `}`.
+    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>'</kbd> - Delete everything between two `'`.
+    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>"</kbd> - Delete everything between two `"`.
+    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd><</kbd> - Delete everything between `<` and `>`.
+    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>></kbd> - Delete everything between `>` and `<`.
+    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>`</kbd> - Delete everything between two ```.
+    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>~</kbd> - Delete everything between two `~`.
+    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>@</kbd> - Delete everything between two `@`.
+    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>#</kbd> - Delete everything between two `#`.
+    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>$</kbd> - Delete everything between two `$`.
+    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>%</kbd> - Delete everything between two `%`.
+    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>^</kbd> - Delete everything between two `^`.
+    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>&</kbd> - Delete everything between two `&`.
+    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>*</kbd> - Delete everything between two `*`.
+    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>-</kbd> - Delete everything between two `-`.
+    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>_</kbd> - Delete everything between two `_`.
+    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>=</kbd> - Delete everything between two `=`.
+    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>+</kbd> - Delete everything between two `+`.
+    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>`\`</kbd> - Delete everything between two `\`.
+    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>|</kbd> - Delete everything between two `|`.
+    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>:</kbd> - Delete everything between two `:`.
+    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>;</kbd> - Delete everything between two `;`.
+    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>,</kbd> - Delete everything between two `,`.
+    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>.</kbd> - Delete everything between two `.`.
+    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>/</kbd> - Delete everything between two ``.
+    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>?</kbd> - Delete everything between two `?`.
 
 * **Debugging**
 
@@ -160,12 +221,49 @@
     * <kbd>Ctrl</kbd>+<kbd>8</kbd> - Select window 8.
     * <kbd>Ctrl</kbd>+<kbd>9</kbd> - Select window 9.
 
+* **Navigate Symbol**
+
+  * <kbd>Alt</kbd>+<kbd>)</kbd> - Search forward next `)`.
+  * <kbd>Alt</kbd>+<kbd>(</kbd> - Search backward next `(`.
+  * <kbd>Alt</kbd>+<kbd>]</kbd> - Search forward next `]`.
+  * <kbd>Alt</kbd>+<kbd>[</kbd> - Search backward next `[`.
+  * <kbd>Alt</kbd>+<kbd>}</kbd> - Search forward next `}`.
+  * <kbd>Alt</kbd>+<kbd>{</kbd> - Search backward next `{`.
+  * <kbd>Alt</kbd>+<kbd>'</kbd> - Search forward next `'`. (single quotation mark)
+  * <kbd>Alt</kbd>+<kbd>;</kbd> - Search backward next `'`. (single quotation mark)
+  * <kbd>Alt</kbd>+<kbd>"</kbd> - Search forward next `"`. (double quotation mark)
+  * <kbd>Alt</kbd>+<kbd>:</kbd> - Search backward next `"`. (double quotation mark)
+  * <kbd>Alt</kbd>+<kbd>></kbd> - Search forward next `>`. (Greater than sign)
+  * <kbd>Alt</kbd>+<kbd><</kbd> - Search backward next `<`. (Less than sign)
+  * <kbd>Alt</kbd>+<kbd>.</kbd> - Search forward next `,`. (comma)
+  * <kbd>Alt</kbd>+<kbd>,</kbd> - Search backward next `,`. (comma)
+  * <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>.</kbd> - Search forward next `.`. (period)
+  * <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>,</kbd> - Search backward next `.`. (period)
+
 ### Visualization
 
 * <kbd>Ctrl</kbd>+<kbd>=</kbd> - Text scale increase.
 * <kbd>Ctrl</kbd>+<kbd>-</kbd> - Text scale decrease.
 * <kbd>Alt</kbd>+<kbd>=</kbd> - Frame transparent increase.
 * <kbd>Alt</kbd>+<kbd>-</kbd> - Frame transparent decrease.
+* <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>f</kbd> - Change font style.
+* <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>m</kbd> - Toggle minimap.
+
+### Windows
+
+* <kbd>Ctrl</kbd>+<kbd>x</kbd>, <kbd>n</kbd> - Create new frame.
+* <kbd>Ctrl</kbd>+<kbd>x</kbd>, <kbd>d</kbd> - Delete current frame.
+* <kbd>Ctrl</kbd>+<kbd>x</kbd>, <kbd>w</kbd> - Delete current window.
+* <kbd>Ctrl</kbd>+<kbd>h</kbd>, <kbd>h</kbd> - Toggle window split between horizontal and vertcial.
+* <kbd>Ctrl</kbd>+<kbd>w</kbd>, <kbd>e</kbd> - Toggle enlarge current selected window.
+* <kbd>Ctrl</kbd>+<kbd>\</kbd> - Split window horizontally.
+* <kbd>Alt</kbd>+<kbd>`</kbd> - Toggle transparent frame.
+* <kbd>Alt</kbd>+<kbd>=</kbd> - Increment frame transparent by 5 percent.
+* <kbd>Alt</kbd>+<kbd>-</kbd> - Decrement frame transparent by 5 percent.
+
+### Terminal
+
+* <kbd>Ctrl</kbd>+<kbd>`</kbd> - Toggle shell window.
 
 ### Others
 
@@ -178,6 +276,9 @@
   * <kbd>Ctrl</kbd>+<kbd>k</kbd>,<kbd>Ctrl</kbd>+<kbd>i</kbd> - Describe current symbol.
   * <kbd>Ctrl</kbd>+<kbd>t</kbd> - Toggle `tabbar-mode`.
   * <kbd>Alt</kbd>+<kbd>z</kbd> - Toggle `truncate-lines'`.
+  * <kbd>Ctrl</kbd>+<kbd>r</kbd>, <kbd>o</kbd> - Read-Only mode toggle.
+  * <kbd>Ctrl</kbd>+<kbd>r</kbd>, <kbd>f</kbd> - Open recent files.
+  * <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>m</kbd> - Toggle `mode-line`.
 
 * **Exit**
 
@@ -190,8 +291,46 @@
 
 * **Packet List**
 
-* <kbd>Ctrl</kbd>+<kbd>x</kbd>, <kbd>Ctrl</kbd>+<kbd>p</kbd> - Package list.
+  * <kbd>Ctrl</kbd>+<kbd>x</kbd>, <kbd>Ctrl</kbd>+<kbd>p</kbd> - Package list.
+  
+* **Process**
+  
+  * <kbd>Alt</kbd>+<kbd>p</kbd> - Show list of process.
+  
+* **Describing**
+
+  * <kbd>Alt</kbd>+<kbd>h</kbd>, <kbd>f</kbd> - Describe function.
+  * <kbd>Alt</kbd>+<kbd>h</kbd>, <kbd>m</kbd> - Describe mode.
+  * <kbd>Alt</kbd>+<kbd>h</kbd>, <kbd>v</kbd> - Describe variable.
+  * <kbd>Alt</kbd>+<kbd>h</kbd>, <kbd>b</kbd> - Describe bindings.
 
 ## Web Mode
 
   * <kbd>Ctrl</kbd>+<kbd>Return</kbd> - Emment expand.
+  * <kbd>Ctrl</kbd>+<kbd>w</kbd>, <kbd>o</kbd> - Start httpd server for real time editing website.
+  * <kbd>Ctrl</kbd>+<kbd>w</kbd>, <kbd>p</kbd> - Start httpd server for real time editing website.
+
+## CSS Mode
+
+  * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>s</kbd> - Sort the CSS attributes between open/close parenthesis.
+  * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>d</kbd> - Sort the CSS attribute for the whole file.
+
+## C/C++/Objective-C Mode
+
+  * <kbd>f8</kbd> - Switch between header/source file.
+  * <kbd>Shift</kbd>+<kbd>f8</kbd> - Switch between header/source file other window.
+  
+## Java Mode
+
+  * <kbd>f2</kbd> - Lookup javadoc in browser. (javadoc-lookup)
+  * <kbd>Shift</kbd>+<kbd>f2</kbd> - Lookup javadoc in browser. (javadoc-lookup)
+  * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>o</kbd> - Organize imports java paths.
+
+## Package Mode
+
+  * <kbd>i</kbd> - Select package to install.
+  * <kbd>d</kbd> - Select package to delete.
+  * <kbd>x</kbd> - Execute marked packages.
+  * <kbd>s</kbd> - Sort packages in order.
+  * <kbd>u</kbd> - Select package to upgrade.
+  * <kbd>Ctrl</kbd>+<kbd>x</kbd>, <kbd>r</kbd>, <kbd>m</kbd> - Auto remove unused pacakges.
