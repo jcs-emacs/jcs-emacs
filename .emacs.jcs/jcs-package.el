@@ -47,6 +47,7 @@
     cobol-mode
     com-css-sort
     company
+    company-fuzzy
     company-quickhelp
     csharp-mode
     dart-mode
@@ -62,6 +63,7 @@
     exec-path-from-shell
     feebleline
     focus
+    flx
     flycheck
     flycheck-popup-tip
     gdscript-mode
