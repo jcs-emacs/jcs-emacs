@@ -153,6 +153,7 @@
   (with-eval-after-load 'auto-rename-tag (diminish 'auto-rename-tag-mode))
   (with-eval-after-load 'beacon (diminish 'beacon-mode))
   (with-eval-after-load 'company (diminish 'company-mode))
+  (with-eval-after-load 'company-fuzzy (diminish 'company-fuzzy-mode))
   (diminish 'eldoc-mode)
   (with-eval-after-load 'face-remap (diminish 'buffer-face-mode))
   (with-eval-after-load 'flycheck
