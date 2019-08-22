@@ -93,6 +93,7 @@
     js2-mode
     json-mode
     line-reminder
+    lsp-mode
     lua-mode
     magit
     markdown-mode
