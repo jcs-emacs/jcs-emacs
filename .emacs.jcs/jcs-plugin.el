@@ -244,6 +244,7 @@
         (jcs-walk-through-all-windows-once
          (lambda ()
            (setq mode-line-format nil)))
+      (window-divider-mode -1)
       (jcs-walk-through-all-windows-once
        (lambda ()
          (setq mode-line-format feebleline--mode-line-format-previous)))))
