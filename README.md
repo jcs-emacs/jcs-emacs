@@ -274,6 +274,8 @@ maintainer you want.
 [region-occurrences-highlighter](https://github.com/alvarogonzalezsotillo/region-occurrences-highlighter).
 * *Indentation Management* - powered by 
 [indent-control](https://github.com/alt-elpa/indent-control).
+* *Language Server Protocol* - powered by 
+[lsp-mode](https://github.com/emacs-lsp/lsp-mode).
 * *Line Annotation* - powered by 
 [line-indicators](https://github.com/jcs090218/line-indicators).
 * *Line Numbers* - powered by 
