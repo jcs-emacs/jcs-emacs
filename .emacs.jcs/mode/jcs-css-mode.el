@@ -15,6 +15,7 @@
   "Hook for CSS mode."
   (impatient-mode t)
   (goto-address-mode 1)
+  (lsp-deferred)
 
   ;; Treat some character as whitespace character.
   (modify-syntax-entry ?- "-")

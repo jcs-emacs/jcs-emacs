@@ -11,6 +11,7 @@
   (abbrev-mode 1)
   (goto-address-mode 1)
   (auto-highlight-symbol-mode t)
+  (lsp-deferred)
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]scss")
