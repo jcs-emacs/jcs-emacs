@@ -415,6 +415,11 @@
   (setq line-reminder-show-option (if (display-graphic-p) 'indicators 'linum)))
 
 
+(use-package lsp-mode
+  :defer t
+  :commands (lsp lsp-deferred))
+
+
 (use-package multiple-cursors
   :defer t
   :init
