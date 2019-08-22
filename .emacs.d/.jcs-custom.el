@@ -26,10 +26,14 @@
  '(mouse-wheel-scroll-amount (quote (15)))
  '(package-selected-packages
    (quote
-    (helm go-mode helm-core feebleline line-reminder helm-projectile helm-file-preview helm-ag indicators centaur-tabs highlight-indent-guides use-ttf alt-codes preproc-font-lock gdscript-mode rainbow-mode haxe-mode dumb-jump ssass-mode region-occurrences-highlighter flycheck yascroll esup swift-mode flycheck-popup-tip dart-mode basic-mode beacon google-this right-click-context show-eol csharp-mode isearch-project async hl-todo page-break-lines goto-char-preview elixir-mode erlang multiple-cursors projectile buffer-move dashboard glsl-mode company-quickhelp origami yasnippet-snippets dash git-commit move-text cmake-font-lock restart-emacs focus dimmer goto-line-preview transient magit with-editor ini-mode htmltagwrap auto-rename-tag cobol-mode rust-mode yaml-mode markdown-mode nhexl-mode sr-speedbar clojure-mode undo-tree javadoc-lookup typescript-mode yasnippet xcscope wgrep-helm wgrep-ag wgrep vimrc-mode sql-indent simple-httpd scss-mode s popup pkg-info json-snatcher json-reformat htmlize google-translate f epl emmet-mode diminish cmake-mode bind-key avy ace-window js2-mode company apache-mode which-key web-mode use-package tree-mode togetherly sublimity shader-mode scala-mode python-mode project-abbrev processing-mode powerline package-lint package-build organize-imports-java nasm-mode lua-mode json-mode impatient-mode iedit haskell-mode gitignore-mode gitconfig-mode gitattributes-mode exec-path-from-shell com-css-sort auto-highlight-symbol ag adaptive-wrap actionscript-mode)))
+    (lsp-mode company-fuzzy flx helm go-mode helm-core feebleline line-reminder helm-projectile helm-file-preview helm-ag indicators centaur-tabs highlight-indent-guides use-ttf alt-codes preproc-font-lock gdscript-mode rainbow-mode haxe-mode dumb-jump ssass-mode region-occurrences-highlighter flycheck yascroll esup swift-mode flycheck-popup-tip dart-mode basic-mode beacon google-this right-click-context show-eol csharp-mode isearch-project async hl-todo page-break-lines goto-char-preview elixir-mode erlang multiple-cursors projectile buffer-move dashboard glsl-mode company-quickhelp origami yasnippet-snippets dash git-commit move-text cmake-font-lock restart-emacs focus dimmer goto-line-preview transient magit with-editor ini-mode htmltagwrap auto-rename-tag cobol-mode rust-mode yaml-mode markdown-mode nhexl-mode sr-speedbar clojure-mode undo-tree javadoc-lookup typescript-mode yasnippet xcscope wgrep-helm wgrep-ag wgrep vimrc-mode sql-indent simple-httpd scss-mode s popup pkg-info json-snatcher json-reformat htmlize google-translate f epl emmet-mode diminish cmake-mode bind-key avy ace-window js2-mode company apache-mode which-key web-mode use-package tree-mode togetherly sublimity shader-mode scala-mode python-mode project-abbrev processing-mode powerline package-lint package-build organize-imports-java nasm-mode lua-mode json-mode impatient-mode iedit haskell-mode gitignore-mode gitconfig-mode gitattributes-mode exec-path-from-shell com-css-sort auto-highlight-symbol ag adaptive-wrap actionscript-mode)))
  '(paradox-github-token t)
  '(send-mail-function (quote mailclient-send-it))
  '(version-control nil))
+
+(put 'erase-buffer 'disabled nil)
+(put 'downcase-region 'disabled nil)              ; Enable downcase-region
+(put 'upcase-region 'disabled nil)                ; Enable upcase-region
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -40,10 +44,6 @@
  '(company-scrollbar-bg ((t (:background "dark gray"))))
  '(company-scrollbar-fg ((t (:background "black"))))
  '(company-tooltip ((t (:background "light gray" :foreground "black"))))
- '(company-tooltip-common ((((type x)) (:inherit company-tooltip :weight bold)) (t (:inherit company-tooltip))))
- '(company-tooltip-common-selection ((((type x)) (:inherit company-tooltip-selection :weight bold)) (t (:inherit company-tooltip-selection))))
+ '(company-tooltip-common ((((type x)) (:inherit company-tooltip :weight bold)) (t (:background "light gray" :foreground "#C00000"))))
+ '(company-tooltip-common-selection ((((type x)) (:inherit company-tooltip-selection :weight bold)) (t (:background "steel blue" :foreground "#C00000"))))
  '(company-tooltip-selection ((t (:background "steel blue" :foreground "white")))))
-
-(put 'erase-buffer 'disabled nil)
-(put 'downcase-region 'disabled nil)              ; Enable downcase-region
-(put 'upcase-region 'disabled nil)                ; Enable upcase-region
