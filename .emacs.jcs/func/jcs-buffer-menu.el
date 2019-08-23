@@ -87,7 +87,8 @@ Sorted by (1) visit, (2) buffer, (3) size, (4) time, (5) mode, (6) file."
            (search-str (substring tabulated-list--header-string
                                   (length jcs-buffer-menu-search-title)
                                   (length tabulated-list--header-string))))
-      (if (string-match-p search-str buf-name)
+      (if (and (stringp buf-name)
+               (string-match-p search-str buf-name))
           (next-line)
         (tabulated-list-delete-entry))))
   (jcs-goto-line 2)
