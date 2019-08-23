@@ -35,15 +35,12 @@
 (require 'web-mode)
 (defun jcs-web-mode-hook ()
   "Hooks for Web mode."
-
-  ;; 1 (default) for double quotes, 2 for single quotes
-  (setq web-mode-auto-quote-style 1)
-
   (abbrev-mode 1)
   (goto-address-mode 1)
   (auto-highlight-symbol-mode t)
   (visual-line-mode t)
   (impatient-mode t)
+  (lsp-deferred)
 
   ;; Enable truncates lines as default in `web-mode'.
   (jcs-enable-truncate-lines)
