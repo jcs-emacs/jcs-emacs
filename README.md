@@ -282,8 +282,8 @@ maintainer you want.
 [display-line-numbers](https://github.com/emacs-mirror/emacs/blob/master/lisp/display-line-numbers.el)
 and 
 [linum](https://github.com/emacs-mirror/emacs/blob/master/lisp/linum.el).
-* *Minimap* - powered by 
-[sublimity](https://github.com/zk-phi/sublimity).
+* *Minimap* - none, originally powered by 
+~~[sublimity](https://github.com/zk-phi/sublimity)~~.
 * *Mode Line* - powered by 
 [powerline](https://github.com/milkypostman/powerline).
 * *Multiple Cursor* - powered by 
@@ -322,8 +322,8 @@ and
 [exec-path-from-shell](https://github.com/purcell/exec-path-from-shell).
 * *Simplify Usage* - powered by 
 [helm](https://github.com/emacs-helm/helm).
-* *Smooth Scrolling* - powered by 
-[sublimity](https://github.com/zk-phi/sublimity).
+* *Smooth Scrolling* - none, originally powered by 
+~~[sublimity](https://github.com/zk-phi/sublimity)~~.
 * *Snippet* - powered by 
 [yasnippet](https://github.com/joaotavora/yasnippet).
 * *Source Control Management* - powered by 
