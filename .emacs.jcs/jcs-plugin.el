@@ -158,6 +158,7 @@
   (with-eval-after-load 'company (diminish 'company-mode))
   (with-eval-after-load 'company-fuzzy (diminish 'company-fuzzy-mode))
   (diminish 'eldoc-mode)
+  (with-eval-after-load 'emmet-mode (diminish 'emmet-mode))
   (with-eval-after-load 'face-remap (diminish 'buffer-face-mode))
   (with-eval-after-load 'flycheck
     (diminish 'flycheck-mode)
@@ -241,11 +242,11 @@
   (defun jcs-advice-feebleline-mode-after (&rest _)
     "Advice after execute `feebleline-mode'."
     (if feebleline-mode
-        (jcs-walk-through-all-windows-once
+        (jcs-walk-through-all-buffers-once
          (lambda ()
            (setq mode-line-format nil)))
       (window-divider-mode -1)
-      (jcs-walk-through-all-windows-once
+      (jcs-walk-through-all-buffers-once
        (lambda ()
          (setq mode-line-format feebleline--mode-line-format-previous)))))
   (advice-add 'feebleline-mode :after #'jcs-advice-feebleline-mode-after))
@@ -705,6 +706,10 @@
         '(("json" . "/some/path/.*\\.api\\'")
           ("xml"  . "/other/path/.*\\.api\\'")
           ("jsx"  . "/some/react/path/.*\\.js[x]?\\'")))
+
+
+  ;; Quotation Mark
+  (setq web-mode-auto-quote-style 1)  ; 1, for double quotes; 2, for single quotes
 
   ;; Indentation
   ;; NOTE: HTML element offset indentation
