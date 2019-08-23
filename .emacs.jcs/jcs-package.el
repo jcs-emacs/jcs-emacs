@@ -21,8 +21,7 @@
 (setq package-enable-at-startup nil)
 
 ;; initialize package.el
-(when (version< emacs-version "27.0")
-  (package-initialize))
+(package-initialize)
 
 ;;-----------------------------------------------------------
 ;;-----------------------------------------------------------
@@ -50,6 +49,7 @@
     company-fuzzy
     company-quickhelp
     csharp-mode
+    dap-mode
     dart-mode
     dash
     dashboard
