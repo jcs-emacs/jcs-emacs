@@ -665,13 +665,18 @@
   ;; NOTE: When a positive integer is set, buffer width
   ;; is truncated to this value and drawn centered. To
   ;; cancel this feature, set this value nil.
-  (setq sublimity-attractive-centering-width nil)  ;; [Default : 110]
+  (setq sublimity-attractive-centering-width nil)  ; [Default : 110]
 
   (with-eval-after-load 'sublimity-scroll
     ;; Scroll Speed.
     (setq sublimity-scroll-weight 2         ; [Default : 2]
           sublimity-scroll-drift-length 2)  ; [Default : 2]
-    ))
+    )
+
+  (defun jcs--sublimity-mode--advice-after (&rest _)
+    "Advice after execute `sublimity-mode' command."
+    (setq auto-hscroll-mode t))
+  (advice-add 'sublimity-mode :after #'jcs--sublimity-mode--advice-after))
 
 
 (use-package undo-tree
