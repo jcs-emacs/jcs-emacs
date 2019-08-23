@@ -122,7 +122,6 @@
     sr-speedbar
     ssass-mode
     scss-mode
-    sublimity
     sql-indent
     swift-mode
     togetherly
