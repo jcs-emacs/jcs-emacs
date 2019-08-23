@@ -380,22 +380,9 @@ LST-PR: List of pair."
 
 ;;;###autoload
 (defun jcs-toggle-minimap ()
-  "Toggle minimap. (sublimity)"
+  "Toggle minimap."
   (interactive)
-  (require 'sublimity-map)
-  ;; NOTE: Only when `sublimity-mode' is on.
-  (when sublimity-mode
-    (if (get 'jcs-toggle-minimap 'state)
-        (progn
-          (setq sublimity-map-size 0)
-          ;; ATTENTION: Set it to very hight so it
-          ;; will never reach the timer error.
-          (sublimity-map-set-delay 40000000)
-          (put 'jcs-toggle-minimap 'state nil))
-      (setq sublimity-map-size 10)
-      ;; NOTE: Set it to nil, cost too many performance...
-      (sublimity-map-set-delay 0)
-      (put 'jcs-toggle-minimap 'state t))))
+  (user-error "Minimap no longer supported in this configuration"))
 
 ;;----------------------------------------------
 ;; Re-Builder
@@ -587,16 +574,6 @@ TYPE : enable/disable case sensitive?"
              (sr-speedbar-exist-p)
              (not (jcs-is-current-major-mode-p "speedbar-mode")))
     (setq jcs-sr-speedbar-record-selected-window (selected-window))))
-
-;;----------------------------------------------
-;; Sublimity Mode
-
-;;;###autoload
-(defun jcs-toggle-sublimity-mode ()
-  "Toggle sublimity mode and reactive line number."
-  (interactive)
-  (call-interactively #'sublimity-mode)
-  (jcs-update-line-number-each-window))
 
 ;;----------------------------------------------
 ;; Syntax Check
