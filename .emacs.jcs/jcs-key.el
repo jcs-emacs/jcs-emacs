@@ -8,6 +8,7 @@
 (global-unset-key (kbd "C-k"))
 (global-unset-key (kbd "C-r"))
 (global-unset-key (kbd "C-w"))
+(global-unset-key (kbd "C-x w"))
 
 (with-eval-after-load 'auto-highlight-symbol
   (define-key auto-highlight-symbol-mode-map (kbd "M-S-<right>") nil)
