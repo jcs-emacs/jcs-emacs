@@ -812,8 +812,6 @@ Return nil, vice versa."
 ;;----------------------------------------------------------------------------
 ;; Move between button.
 
-;;URL: https://www.gnu.org/software/emacs/manual/html_node/emacs/Moving-Point.html
-
 ;;;###autoload
 (defun jcs-top-most-line ()
   "Move to top of the buffer."
