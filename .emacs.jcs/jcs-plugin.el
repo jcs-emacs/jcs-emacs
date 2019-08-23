@@ -626,59 +626,6 @@
   )
 
 
-(use-package sublimity
-  :defer t
-  :init
-  (with-eval-after-load 'sublimity-attractive
-    ;; NOTE: Following functions are available to hide
-    ;; some UI parts.
-    ;;(sublimity-attractive-hide-bars)
-    ;;(sublimity-attractive-hide-vertical-border)
-    ;;(sublimity-attractive-hide-fringes)
-    ;;(sublimity-attractive-hide-modelines)
-    )
-
-  (with-eval-after-load 'sublimity-map
-    (setq sublimity-map-size 0)         ; [Default : 10]
-    (setq sublimity-map-fraction 0.3)   ; [Default : 0.3]
-    (setq sublimity-map-text-scale -7)  ; [Default: -7]
-
-    ;; NOTE: With the setting above, minimap is displayed after
-    ;; 5 seconds of idle time. When sublimity-map-set-delay is
-    ;; called with nil, then minimap is shown with no delay. This
-    ;; defers from setting delay to 0, especially when used with
-    ;; sublimity-scroll, in the sense that minimap looks not deleted
-    ;; at all but gets worse performance.
-
-    ;; ATTENTION: Set it to very hight so it will never
-    ;; reach the timer error.
-    (sublimity-map-set-delay 40000000)
-
-    ;; NOTE: sublimity-map-setup-hook will run when
-    ;; minimap is created.
-    (add-hook 'sublimity-map-setup-hook
-              (lambda ()
-                (setq buffer-face-mode-face '(:family "Monospace"))
-                (buffer-face-mode))))
-
-
-  ;; NOTE: When a positive integer is set, buffer width
-  ;; is truncated to this value and drawn centered. To
-  ;; cancel this feature, set this value nil.
-  (setq sublimity-attractive-centering-width nil)  ; [Default : 110]
-
-  (with-eval-after-load 'sublimity-scroll
-    ;; Scroll Speed.
-    (setq sublimity-scroll-weight 2         ; [Default : 2]
-          sublimity-scroll-drift-length 2)  ; [Default : 2]
-    )
-
-  (defun jcs--sublimity-mode--advice-after (&rest _)
-    "Advice after execute `sublimity-mode' command."
-    (setq auto-hscroll-mode t))
-  (advice-add 'sublimity-mode :after #'jcs--sublimity-mode--advice-after))
-
-
 (use-package undo-tree
   :defer t
   :config
