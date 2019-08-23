@@ -109,10 +109,6 @@
     ;;-------------------------------- `show-paren'
     ;; NOTE: turn on highlight matching brackets when cursor is on one
     (show-paren-mode t)
-    ;;-------------------------------- `sublimity'
-    ;; Default on or off?
-    ;; NOTE: This also trigger the animate scrolling too.
-    (sublimity-mode 1)
     ;;-------------------------------- `use-ttf'
     (use-ttf-set-default-font)
     ;;-------------------------------- `which-key'
