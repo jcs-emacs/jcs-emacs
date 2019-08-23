@@ -337,6 +337,22 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
 ;; So just put all the startup modes' configuration here.
 
 ;;==============================
+;;       Compilation
+;;------------------------
+
+(defun jcs-compilation-mode-hook ()
+  "Compilation mode hook."
+  (jcs-disable-truncate-lines)
+
+  ;; NOTE: Set smaller font.
+  (setq buffer-face-mode-face '(:height 120))
+  (buffer-face-mode)
+
+  (define-key compilation-mode-map (kbd "C-c C-c") #'kill-ring-save)
+  )
+(add-hook 'compilation-mode-hook 'jcs-compilation-mode-hook)
+
+;;==============================
 ;;    Programming Mode
 ;;------------------------
 
