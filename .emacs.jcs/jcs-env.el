@@ -70,19 +70,6 @@
         (cons '("^\\([0-9]+>\\)?\\(\\(?:[a-zA-Z]:\\)?[^:(\t\n]+\\)(\\([0-9]+\\)) : \\(?:fatal error\\|warnin\\(g\\)\\) C[0-9]+:" 2 3 nil (4))
               compilation-error-regexp-alist)))
 
-(defun jcs-compilation-mode-hook ()
-  "Compilation mode hook."
-  (jcs-disable-truncate-lines)
-
-  ;; NOTE: Set smaller font.
-  (setq buffer-face-mode-face '(:height 120))
-  (buffer-face-mode)
-
-  ;; Normal
-  (define-key compilation-mode-map (kbd "C-c C-c") #'kill-ring-save)
-  )
-(add-hook 'compilation-mode-hook 'jcs-compilation-mode-hook)
-
 ;;; Commands
 (with-eval-after-load 'grep
   (set-variable 'grep-command "grep -irHn ")
