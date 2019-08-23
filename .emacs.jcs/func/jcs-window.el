@@ -105,6 +105,41 @@
         (jcs-other-window-next)
         (setq index (+ index 1))))))
 
+;;========================
+;; Ace Window
+
+(defun jcs-ace-select-window (win-id)
+  "Use `ace-window' to select the window by using window index, WIN-ID."
+  (require 'ace-window)
+  (let ((wnd (nth win-id (aw-window-list))))
+    (when wnd
+      (select-window wnd)
+      (select-frame-set-input-focus (selected-frame)))))
+
+;;;###autoload
+(defun jcs-ace-window-min () "Select window min." (interactive) (jcs-ace-select-window 0))
+;;;###autoload
+(defun jcs-ace-window-max () "Select window max." (interactive) (jcs-ace-select-window (1- (length (aw-window-list)))))
+
+;;;###autoload
+(defun jcs-ace-window-1 () "Select window 1." (interactive) (jcs-ace-window-min))
+;;;###autoload
+(defun jcs-ace-window-2 () "Select window 2." (interactive) (jcs-ace-select-window 1))
+;;;###autoload
+(defun jcs-ace-window-3 () "Select window 3." (interactive) (jcs-ace-select-window 2))
+;;;###autoload
+(defun jcs-ace-window-4 () "Select window 4." (interactive) (jcs-ace-select-window 3))
+;;;###autoload
+(defun jcs-ace-window-5 () "Select window 5." (interactive) (jcs-ace-select-window 4))
+;;;###autoload
+(defun jcs-ace-window-6 () "Select window 6." (interactive) (jcs-ace-select-window 5))
+;;;###autoload
+(defun jcs-ace-window-7 () "Select window 7." (interactive) (jcs-ace-select-window 6))
+;;;###autoload
+(defun jcs-ace-window-8 () "Select window 8." (interactive) (jcs-ace-select-window 7))
+;;;###autoload
+(defun jcs-ace-window-9 () "Select window 9." (interactive) (jcs-ace-select-window 8))
+
 ;;-----------------------------------------------------------
 ;; Deleting
 
@@ -123,14 +158,20 @@
   "Balance windows after split window horizontally."
   (interactive)
   (split-window-horizontally)
-  (balance-windows))
+  (balance-windows)
+  (save-selected-window
+    (other-window 1)
+    (bury-buffer)))
 
 ;;;###autoload
 (defun jcs-balance-split-window-vertically ()
   "Balance windows after split window vertically."
   (interactive)
   (split-window-vertically)
-  (balance-windows))
+  (balance-windows)
+  (save-selected-window
+    (other-window 1)
+    (bury-buffer)))
 
 
 (defvar jcs-is-enlarge-buffer nil
@@ -369,82 +410,18 @@ i.e. change right window to bottom, or change bottom window to right."
 
 
 ;;-----------------------------------------------------------
-;; Ace Window
-
-(defun jcs-ace-select-window (win-id)
-  "Use `ace-window' to select the window by using window index, WIN-ID."
-  (require 'ace-window)
-  (let ((wnd (nth win-id (aw-window-list))))
-    (when wnd
-      (select-window wnd)
-      (select-frame-set-input-focus (selected-frame)))))
+;; Center
 
 ;;;###autoload
-(defun jcs-ace-window-min ()
-  "Select window min."
+(defun jcs-horizontal-recenter ()
+  "Make the point horizontally centered in the window."
   (interactive)
-  (jcs-ace-select-window 0))
-
-;;;###autoload
-(defun jcs-ace-window-max ()
-  "Select window max."
-  (interactive)
-  (jcs-ace-select-window (1- (length (aw-window-list)))))
-
-;;;###autoload
-(defun jcs-ace-window-1 ()
-  "Select window 1."
-  (interactive)
-  (jcs-ace-window-min))
-
-;;;###autoload
-(defun jcs-ace-window-2 ()
-  "Select window 2."
-  (interactive)
-  (jcs-ace-select-window 1))
-
-;;;###autoload
-(defun jcs-ace-window-3 ()
-  "Select window 3."
-  (interactive)
-  (jcs-ace-select-window 2))
-
-;;;###autoload
-(defun jcs-ace-window-4 ()
-  "Select window 4."
-  (interactive)
-  (jcs-ace-select-window 3))
-
-;;;###autoload
-(defun jcs-ace-window-5 ()
-  "Select window 5."
-  (interactive)
-  (jcs-ace-select-window 4))
-
-;;;###autoload
-(defun jcs-ace-window-6 ()
-  "Select window 6."
-  (interactive)
-  (jcs-ace-select-window 5))
-
-;;;###autoload
-(defun jcs-ace-window-7 ()
-  "Select window 7."
-  (interactive)
-  (jcs-ace-select-window 6))
-
-;;;###autoload
-(defun jcs-ace-window-8 ()
-  "Select window 8."
-  (interactive)
-  (jcs-ace-select-window 7))
-
-;;;###autoload
-(defun jcs-ace-window-9 ()
-  "Select window 9."
-  (interactive)
-  (jcs-ace-select-window 8))
-
+  (let ((mid (/ (window-width) 2))
+        (line-len (save-excursion (end-of-line) (current-column)))
+        (cur (current-column)))
+    (if (< mid cur)
+        (set-window-hscroll (selected-window)
+                            (- cur mid)))))
 
 (provide 'jcs-window)
 ;;; jcs-window.el ends here
