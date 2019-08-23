@@ -408,9 +408,6 @@
 ;;; Show Hover
 (define-key global-map (kbd "C-k C-i") #'jcs-describe-thing-in-popup)
 
-;;; Smooth Scrolling
-(define-key global-map "\C-ca" #'jcs-toggle-sublimity-mode)
-
 ;;; Source Control
 (define-key global-map (kbd "C-x g") #'magit-status)
 
