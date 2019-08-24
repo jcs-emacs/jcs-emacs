@@ -27,7 +27,7 @@
       ;; be detected for some reason.
       (if (string-match-p in-buffer-name (jcs-buffer-name-or-buffer-file-name))
           (setq found t)
-        (jcs-other-window-next))
+        (other-window 1 t))
       (setq index (1+ index)))
 
     ;; If not found, prompt error.
@@ -82,7 +82,7 @@
           (buffers '()))
       (while (> win-len index)
         (push (buffer-name) buffers)
-        (jcs-other-window-next)
+        (other-window 1 t)
         (setq index (+ index 1)))
       buffers)))
 
@@ -102,7 +102,7 @@
     (let ((index 0))
       (while (< index (jcs-count-windows))
         (when fnc (funcall fnc))
-        (jcs-other-window-next)
+        (other-window 1 t)
         (setq index (+ index 1))))))
 
 ;;========================
@@ -253,16 +253,15 @@ i.e. change right window to bottom, or change bottom window to right."
         (prev-win-h -1))
     (if (window-full-height-p)
         (setq is-larger t)
-      (progn
-        (save-selected-window
-          (jcs-other-window-next)
-          (setq next-win-h (window-height)))
-        (save-selected-window
-          (jcs-other-window-prev)
-          (setq prev-win-h (window-height)))
-        (when (or (>= cur-win-h prev-win-h)
-                  (>= cur-win-h next-win-h))
-          (setq is-larger t))))
+      (save-selected-window
+        (other-window 1 t)
+        (setq next-win-h (window-height)))
+      (save-selected-window
+        (other-window -1 t)
+        (setq prev-win-h (window-height)))
+      (when (or (>= cur-win-h prev-win-h)
+                (>= cur-win-h next-win-h))
+        (setq is-larger t)))
     is-larger))
 
 ;;;###autoload
