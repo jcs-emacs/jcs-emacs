@@ -28,17 +28,17 @@
   )
 (add-hook 'find-file-hook 'jcs-find-file-hook)
 
-(defun jcs-advice-find-file-after (&rest _args)
+(defun jcs--find-file--advice-after (&rest _args)
   "Advice after execute `find-file' command."
   (jcs-buffer-menu-safe-refresh)
   )
-(advice-add 'find-file :after 'jcs-advice-find-file-after)
+(advice-add 'find-file :after 'jcs--find-file--advice-after)
 
-(defun jcs-advice-switch-to-buffer-after (&rest _args)
+(defun jcs--switch-to-buffer--advice-after (&rest _args)
   "Advice after execute `switch-to-buffer' command."
   (jcs-buffer-menu-safe-refresh)
   )
-(advice-add 'switch-to-buffer :after 'jcs-advice-switch-to-buffer-after)
+(advice-add 'switch-to-buffer :after 'jcs--switch-to-buffer--advice-after)
 
 ;;-----------------------------------------------------------
 ;;-----------------------------------------------------------
