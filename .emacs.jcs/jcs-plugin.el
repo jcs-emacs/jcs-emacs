@@ -327,6 +327,14 @@
   (with-eval-after-load 'helm
     (helm-file-preview-mode 1)))
 
+(use-package helm-flx
+  :defer t
+  :init
+  (setq helm-flx-for-helm-find-files t) ; t by default
+  (setq helm-flx-for-helm-locate t)     ; nil by default
+  (with-eval-after-load 'helm
+    (helm-flx-mode +1)))
+
 
 (use-package highlight-indent-guides
   :defer t
