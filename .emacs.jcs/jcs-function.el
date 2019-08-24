@@ -149,9 +149,12 @@
 (defun jcs-buffer-menu-refresh-buffer ()
   "Update buffer menu buffer."
   (interactive)
-  (save-selected-window
-    (when (ignore-errors (jcs-jump-shown-to-buffer "*Buffer List*"))
-      (buffer-menu))))
+  (unless (string= (jcs-buffer-name-or-buffer-file-name) "*Buffer List*")
+    (save-window-excursion
+      (let ((inhibit-message t)
+            (message-log-max nil))
+        (buffer-menu))
+      (bury-buffer))))
 
 
 (defvar jcs-buffer-menu-switch-buffer-refreshing nil
