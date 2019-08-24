@@ -21,6 +21,9 @@
                                 "[.]hrl")
                               'jcs-insert-erlang-template)
 
+  ;; switch window
+  (define-key erlang-mode-map "\ew" #'jcs-other-window-next)
+  (define-key erlang-mode-map (kbd "M-q") #'jcs-other-window-prev)
   )
 (add-hook 'erlang-mode-hook 'jcs-erlang-mode-hook)
 
