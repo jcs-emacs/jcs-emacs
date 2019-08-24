@@ -68,7 +68,7 @@ This will no longer overwrite usual Emacs' undo key."
 
 
 (defun jcs-undo-tree-visualize (&optional cbf)
-  "Call `undo-tree-visualize' only in window that is full height (next window).
+  "Call `undo-tree-visualize' only in window that is full height.
 CBF : Current buffer file name."
   (let ((win-len (jcs-count-windows))
         (win-index 0)
@@ -637,52 +637,37 @@ will be killed."
     ;;(message "Finished reverting buffers containing unmodified files.")
     ))
 
+
 ;;;###autoload
 (defun jcs-other-window-next (&optional cnt not-all-frame)
-  "Move to the next window.
-CNT : Move count.
-NOT-ALL-FRAME : Default boundaries is all frame, limit to curent frame."
+  "Move CNT to the next window with NOT-ALL-FRAME."
   (interactive)
-  (when (or (not cnt)
-            (not (numberp cnt)))
-    (setq cnt 1))
-  ;; find next window and jump to that window.
-  (if not-all-frame
-      (other-window cnt nil)
-    (other-window cnt t))
+  (when (or (not cnt) (not (numberp cnt))) (setq cnt 1))
+  (if not-all-frame (other-window cnt nil) (other-window cnt t))
   (select-frame-set-input-focus (selected-frame))
-  ;; Update the selected window if speedbar is active.
-  (jcs-update-speedbar-record-after-select-new-window))
+  (jcs-update-speedbar-record-after-select-new-window)  ; Update `speedbar'
+  (jcs-buffer-menu-safe-refresh))
 
 ;;;###autoload
 (defun jcs-other-window-prev (&optional cnt not-all-frame)
-  "Move to the previous window.
-CNT : Move count.
-NOT-ALL-FRAME : Default boundaries is all frame, limit to curent frame."
+  "Move CNT to the previous window with NOT-ALL-FRAME."
   (interactive)
-  (when (or (not cnt)
-            (not (numberp cnt)))
-    (setq cnt -1))
-  ;; find previous window and jump to that window.
-  (if not-all-frame
-      (other-window cnt nil)
-    (other-window cnt t))
+  (when (or (not cnt) (not (numberp cnt))) (setq cnt -1))
+  (if not-all-frame (other-window cnt nil) (other-window cnt t))
   (select-frame-set-input-focus (selected-frame))
-  ;; Update the selected window if speedbar is active.
-  (jcs-update-speedbar-record-after-select-new-window))
+  (jcs-update-speedbar-record-after-select-new-window)  ; Update `speedbar'
+  (jcs-buffer-menu-safe-refresh))
 
 ;;;###autoload
 (defun jcs-scroll-up-one-line (&optional n)
-  "Scroll the text up one line.
-N : line to scroll."
+  "Scroll the text up N line."
   (interactive)
   (let ((rel-n (if n n 1)))
     (scroll-up rel-n)))
 
 ;;;###autoload
 (defun jcs-scroll-down-one-line (&optional n)
-  "Scroll the text down one line.
-N : line to scroll."
+  "Scroll the text down N line."
   (interactive)
   (let ((rel-n (if n n 1)))
     (scroll-down rel-n)))
@@ -703,8 +688,7 @@ N : line to scroll."
 
 ;;;###autoload
 (defun jcs-delete-trailing-whitespace-except-current-line ()
-  "Delete the trailing whitespace for whole document execpt \
-the current line."
+  "Delete the trailing whitespace for whole document execpt the current line."
   (interactive)
   (let ((begin (line-beginning-position))
         (end (line-end-position)))
@@ -806,15 +790,13 @@ the current line."
 ;; Save Buffer
 
 (defun jcs-do-stuff-before-save (&rest _)
-  "Do stuff before save command executed.
-ARG : Match with `save-buffer' command."
+  "Do stuff before save command executed."
   ;; NOTE: If company menu currently active, abort it.
   (company-abort))
 (advice-add 'save-buffer :before #'jcs-do-stuff-before-save)
 
 (defun jcs-do-stuff-after-save (&rest _)
-  "Do stuff after save command executed.
-ARG : Match with `save-buffer' command."
+  "Do stuff after save command executed."
   ;; NOTE: Is we found `*undo-tree*' buffer, we try to close it.
   (save-selected-window
     (when (ignore-errors (jcs-jump-shown-to-buffer "*undo-tree*"))
@@ -854,9 +836,11 @@ ARG : Match with `save-buffer' command."
 (defun jcs-save-buffer ()
   "Save buffer wrapper."
   (interactive)
-  (let ((modified (buffer-modified-p)))
-    (save-excursion
-      (save-buffer))
+  (let ((modified (buffer-modified-p))
+        (cur-frame (selected-frame)))
+    ;; For some mode, broken save.
+    (let ((inhibit-message t) (message-log-max nil)) (save-excursion (save-buffer)))
+    (select-frame-set-input-focus cur-frame)  ; For multi frames.
     (if modified
         (message "Wrote file %s" (buffer-file-name))
       (message "(No changes need to be saved)"))))
