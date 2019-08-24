@@ -80,6 +80,12 @@ because it lets me work on different machine efficiently,
 without having to get used to an new IDE.
 
 
+## News
+
+* Start integrating `lsp-mode` and `dap-mode` to this configuration 
+after version `5.8.1`.
+
+
 ## Startup Time
 
 The average startup time for this configuration is around 
