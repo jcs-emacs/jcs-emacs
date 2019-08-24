@@ -82,6 +82,7 @@
     helm-ag
     helm-core
     helm-file-preview
+    helm-flx
     helm-projectile
     highlight-indent-guides
     hl-todo
