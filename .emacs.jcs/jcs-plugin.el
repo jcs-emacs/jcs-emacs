@@ -330,8 +330,8 @@
 (use-package helm-flx
   :defer t
   :init
-  (setq helm-flx-for-helm-find-files t) ; t by default
-  (setq helm-flx-for-helm-locate t)     ; nil by default
+  (setq helm-flx-for-helm-find-files t)
+  (setq helm-flx-for-helm-locate t)
   (with-eval-after-load 'helm
     (helm-flx-mode +1)))
 
