@@ -54,7 +54,7 @@ Sorted by (1) visit, (2) buffer, (3) size, (4) time, (5) mode, (6) file."
   "Implemenetation for `buffer menu`'s return key."
   (interactive)
   (if (or jcs-buffer-menu-done-filtering
-           (string= tabulated-list--header-string jcs-buffer-menu-search-title))
+          (string= tabulated-list--header-string jcs-buffer-menu-search-title))
       (if (ignore-errors (Buffer-menu-this-window))
           (message nil)  ; Use to clear `[Display not ready]'.
         (user-error "No buffer on this line"))
@@ -71,19 +71,11 @@ Sorted by (1) visit, (2) buffer, (3) size, (4) time, (5) mode, (6) file."
 (defvar jcs-buffer-menu-filter-delay 0.1
   "Filter delay time.")
 
-(defun jcs-buffer-menu-fuzzy-match (pattern candidate)
-  "Fuzzy match for searching buffer name."
-  (unless (string-match " " pattern)
-    (if (string-match "\\`!" pattern)
-        (not (string-match pattern candidate))
-      (string-match pattern candidate))))
-
 (defun jcs-buffer-menu-filter-list ()
   "Do filtering the buffer list."
   (setq jcs-buffer-menu-done-filtering nil)
   (while (< (line-number-at-pos) (line-number-at-pos (point-max)))
-    (let* ((cl (string-trim (thing-at-point 'line)))
-           (buf-name (elt (tabulated-list-get-entry) 3))
+    (let* ((buf-name (elt (tabulated-list-get-entry) 3))
            (search-str (substring tabulated-list--header-string
                                   (length jcs-buffer-menu-search-title)
                                   (length tabulated-list--header-string))))
