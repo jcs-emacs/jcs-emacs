@@ -82,7 +82,10 @@ without having to get used to an new IDE.
 
 ## News
 
-* Start integrating `lsp-mode` and `dap-mode` to this configuration 
+Here is the list of few important and recent changes to this 
+configuration.
+
+* Integrating `lsp-mode` and `dap-mode` to this configuration 
 after version `5.8.1`.
 
 
