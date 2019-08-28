@@ -805,16 +805,21 @@ Return nil, vice versa."
 (defun jcs-make-first-visible-line-to (ln)
   "Make the first visible line to target line, LN."
   (jcs-goto-line ln)
-  (recenter-top-bottom 'top)
-  (unless (<= ln 1)
-    (jcs-scroll-up-one-line)))
+  (jcs-recenter-top-bottom 'top))
 
 (defun jcs-make-last-visible-line-to (ln)
   "Make the last visible line to target line, LN."
-  (jcs-make-first-visible-line-to ln)
-  (let ((sh-ln (- (jcs-last-visible-line-in-window)
-                  (jcs-first-visible-line-in-window))))
-    (jcs-scroll-down-one-line sh-ln)))
+  (jcs-goto-line ln)
+  (jcs-recenter-top-bottom 'bottom))
+
+(defun jcs--recenter-positions (type)
+  "Return the recenter position value by TYPE."
+  (cl-case type (top '(top)) (middle '(middle)) (bottom '(bottom))))
+
+(defun jcs-recenter-top-bottom (type)
+  "Recenter the window by TYPE."
+  (let ((recenter-positions (jcs--recenter-positions type)))
+    (recenter-top-bottom)))
 
 ;;----------------------------------------------------------------------------
 ;; Move between button.
@@ -1066,6 +1071,11 @@ For instance,
 (defun jcs-is-minor-mode-enabled-p (mode-obj)
   "Check if this minor MODE-OBJ enabled in current buffer/file."
   (bound-and-true-p mode-obj))
+
+(defun jcs-re-enable-mode (mode-name)
+  "Re-enable the mode."
+  (funcall mode-name -1)
+  (funcall mode-name 1))
 
 ;;----------------------------------------------------------------------------
 ;; I/O
