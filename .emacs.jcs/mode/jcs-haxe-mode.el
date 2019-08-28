@@ -21,6 +21,9 @@
                               'jcs-insert-haxe-template)
 
   ;; Normal
+  (define-key haxe-mode-map (kbd "<up>") #'jcs-smart-indent-up)
+  (define-key haxe-mode-map (kbd "<down>") #'jcs-smart-indent-down)
+
   (define-key haxe-mode-map (kbd "C-d") #'jcs-kill-whole-line)
   (define-key haxe-mode-map (kbd "C-c C-c") #'kill-ring-save)
 

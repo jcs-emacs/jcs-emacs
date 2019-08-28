@@ -18,6 +18,9 @@
                               'jcs-insert-actionscript-template)
 
   ;; Normal
+  (define-key actionscript-mode-map (kbd "<up>") #'jcs-smart-indent-up)
+  (define-key actionscript-mode-map (kbd "<down>") #'jcs-smart-indent-down)
+
   (define-key actionscript-mode-map (kbd "C-d") #'jcs-kill-whole-line)
   (define-key actionscript-mode-map (kbd "C-c C-c") #'kill-ring-save)
 
