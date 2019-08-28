@@ -310,9 +310,9 @@
     "Move selection hook in `helm' buffer."
     (let* ((cur-line (line-number-at-pos))
            (last-line (line-number-at-pos (point-max)))
-           (is-last-selection (= cur-line (1- last-line))))
-      (when is-last-selection
-        (recenter-top-bottom 14))))
+           (recenter-positions '(bottom)))
+      (when (= cur-line (1- last-line))  ; Check last selection.
+        (jcs-recenter-top-bottom 'bottom))))
   (add-hook 'helm-move-selection-after-hook 'jcs--helm-move-selection-after-hook))
 
 (use-package helm-ag
@@ -544,32 +544,10 @@
                                  "~/.emacs.jcs/func/"
                                  "~/.emacs.jcs/mode/"))
   :config
-  (defun jcs-advice-reload-emacs-after ()
-    "Advice after execute `reload-emacs' command."
-    ;; Split window horizontally if full width.
-    (when (and (window-full-width-p)
-               (= (length (window-list)) 1))
-      (jcs-balance-split-window-horizontally))
-
-    ;; Restore to what ever state it was.
-    ;;
-    ;; NOTE: we need these two lines because we need it for
-    ;; solving after reloading Emacs, there are some space at
-    ;; the bottom. Which is weird and I have no idea why...
-    (toggle-frame-maximized)
-    (toggle-frame-maximized)
-
-    ;; When frame not maximize we make sure it maximized.
-    (unless (jcs-is-frame-maximize-p)
-      (toggle-frame-maximized))
-
-    ;; Refresh `dashboard' buffer if is on `dashboard' buffer.
-    (when (or (jcs-is-current-major-mode-p "dashboard-mode"))
-      (let ((prev-pt (point)))
-        (save-excursion
-          (dashboard-refresh-buffer))
-        (goto-char prev-pt))))
-  (advice-add 'reload-emacs :after #'jcs-advice-reload-emacs-after))
+  (defun jcs--reload-emacs-after-hook ()
+    "Hook runs after reload Emacs."
+    (jcs-re-enable-mode 'company-fuzzy-mode))
+  (add-hook 'reload-emacs-after-hook #'jcs--reload-emacs-after-hook))
 
 
 (use-package right-click-context
