@@ -16,8 +16,6 @@
   (auto-highlight-symbol-mode t)
 
   ;; Normal
-  (define-key org-mode-map (kbd "<up>") #'previous-line)
-  (define-key org-mode-map (kbd "<down>") #'next-line)
   (define-key org-mode-map (kbd "C-d") #'jcs-kill-whole-line)
   (define-key org-mode-map (kbd "C-c C-c") #'kill-ring-save)
   (define-key org-mode-map (kbd "C-a") #'jcs-mark-whole-buffer)
@@ -25,6 +23,8 @@
   (define-key org-mode-map [C-tab] #'org-cycle)
 
   (define-key org-mode-map (kbd "C-y") #'jcs-redo)
+
+  (define-key org-mode-map (kbd "C-s") #'save-buffer)
 
   ;; `org-nav'
   (define-key org-mode-map (kbd "S-<up>") #'jcs-org-table-up)
