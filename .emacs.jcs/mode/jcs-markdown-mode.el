@@ -19,8 +19,7 @@
   (define-key markdown-mode-map (kbd "C-d") #'jcs-kill-whole-line)
   (define-key markdown-mode-map (kbd "C-c C-c") #'kill-ring-save)
 
-  (define-key markdown-mode-map (kbd "<up>") #'jcs-previous-line)
-  (define-key markdown-mode-map (kbd "<down>") #'jcs-next-line)
+  (define-key markdown-mode-map (kbd "<backspace>") #'jcs-real-backspace)
 
   (define-key markdown-mode-map (kbd "C-s") #'save-buffer)
   )
