@@ -118,12 +118,15 @@
 (define-key global-map [C-prior] #'scroll-other-window-down)
 
 (define-key prog-mode-map (kbd "<backspace>") #'jcs-smart-backspace)
+(define-key global-map (kbd "<backspace>") #'jcs-real-backspace)
 (define-key global-map (kbd "S-<backspace>") #'jcs-real-backspace)
 
-(define-key global-map (kbd "<delete>") #'jcs-smart-delete)
+(define-key prog-mode-map (kbd "<delete>") #'jcs-smart-delete)
+(define-key global-map (kbd "<delete>") #'jcs-real-delete)
 (define-key global-map (kbd "S-<delete>") #'jcs-real-delete)
 
-(define-key global-map (kbd "SPC") #'jcs-smart-space)
+(define-key prog-mode-map (kbd "SPC") #'jcs-smart-space)
+(define-key global-map (kbd "SPC") #'jcs-real-space)
 (define-key global-map (kbd "S-SPC") #'jcs-real-space)
 
 (define-key global-map (kbd "C-c d") #'jcs-duplicate-line)
@@ -134,8 +137,10 @@
 (define-key global-map (kbd "C-s") #'jcs-untabify-save-buffer)
 (define-key global-map (kbd "C-S-s") #'jcs-tabify-save-buffer)
 
-(define-key global-map (kbd "<up>") #'jcs-smart-indent-up)
-(define-key global-map (kbd "<down>") #'jcs-smart-indent-down)
+(define-key prog-mode-map (kbd "<up>") #'jcs-smart-indent-up)
+(define-key global-map (kbd "<up>") #'previous-line)
+(define-key prog-mode-map (kbd "<down>") #'jcs-smart-indent-down)
+(define-key global-map (kbd "<down>") #'next-line)
 
 (define-key global-map (kbd "C-M-<up>") #'jcs-scroll-down-one-line)
 (define-key global-map (kbd "C-M-<down>") #'jcs-scroll-up-one-line)
@@ -144,23 +149,23 @@
 (define-key global-map (kbd "C-M-<right>") #'buf-move-right)
 
 (progn  ; Navigating General Programming Symbols
-  (define-key global-map (kbd "M-)") (quote jcs-move-forward-close-paren))
-  (define-key global-map (kbd "M-(") (quote jcs-move-backward-open-paren))
-  (define-key global-map (kbd "M-]") (quote jcs-move-forward-close-sqr-paren))
-  (define-key global-map (kbd "M-[") (quote jcs-move-backward-open-sqr-paren))
-  (define-key global-map (kbd "M-}") (quote jcs-move-forward-close-curly-paren))
-  (define-key global-map (kbd "M-{") (quote jcs-move-backward-open-curly-paren))
-  (define-key global-map (kbd "M-'") (quote jcs-move-forward-single-quot))
-  (define-key global-map (kbd "M-;") (quote jcs-move-backward-single-quot))
-  (define-key global-map (kbd "M-\"") (quote jcs-move-forward-double-quot))
-  (define-key global-map (kbd "M-:") (quote jcs-move-backward-double-quot))
-  (define-key global-map (kbd "M->") (quote jcs-move-forward-greater-than-sign))
-  (define-key global-map (kbd "M-<") (quote jcs-move-backward-less-than-sign))
+  (define-key global-map (kbd "M-)") #'jcs-move-forward-close-paren)
+  (define-key global-map (kbd "M-(") #'jcs-move-backward-open-paren)
+  (define-key global-map (kbd "M-]") #'jcs-move-forward-close-sqr-paren)
+  (define-key global-map (kbd "M-[") #'jcs-move-backward-open-sqr-paren)
+  (define-key global-map (kbd "M-}") #'jcs-move-forward-close-curly-paren)
+  (define-key global-map (kbd "M-{") #'jcs-move-backward-open-curly-paren)
+  (define-key global-map (kbd "M-'") #'jcs-move-forward-single-quot)
+  (define-key global-map (kbd "M-;") #'jcs-move-backward-single-quot)
+  (define-key global-map (kbd "M-\"") #'jcs-move-forward-double-quot)
+  (define-key global-map (kbd "M-:") #'jcs-move-backward-double-quot)
+  (define-key global-map (kbd "M->") #'jcs-move-forward-greater-than-sign)
+  (define-key global-map (kbd "M-<") #'jcs-move-backward-less-than-sign)
 
-  (define-key global-map (kbd "M-.") (quote jcs-move-forward-comma))
-  (define-key global-map (kbd "M-,") (quote jcs-move-backward-comma))
-  (define-key global-map (kbd "C-M-.") (quote jcs-move-forward-period))
-  (define-key global-map (kbd "C-M-,") (quote jcs-move-backward-period)))
+  (define-key global-map (kbd "M-.") #'jcs-move-forward-comma)
+  (define-key global-map (kbd "M-,") #'jcs-move-backward-comma)
+  (define-key global-map (kbd "C-M-.") #'jcs-move-forward-period)
+  (define-key global-map (kbd "C-M-,") #'jcs-move-backward-period))
 
 
 (progn  ; Changing/Deleting inside between Programming Symbols
@@ -225,8 +230,6 @@
 (define-key global-map [tab] #'jcs-tab-key)
 
 ;;; File Files
-;;(define-key global-map "\ef" #'ido-find-file)
-;;(define-key global-map "\eF" #'ido-find-file-other-window)
 (define-key global-map (kbd "M-f") #'helm-find-files)
 (define-key global-map (kbd "M-F") #'jcs-helm-find-files-other-window)
 (define-key global-map (kbd "C-x M-f") #'helm-projectile-find-file)
@@ -262,6 +265,7 @@
     (define-key helm-map (kbd "<left>") #'helm-previous-source))
   ;; NOTE: Match to OS's file explorer's navigation system.
   (with-eval-after-load 'helm-files
+    (define-key helm-find-files-map (kbd "<backspace>") #'helm-ff-delete-char-backward)
     (define-key helm-find-files-map (kbd "<return>") #'helm-execute-persistent-action)
     (define-key helm-find-files-map (kbd "M-<up>") #'helm-find-files-up-one-level)
     (define-key helm-find-files-map (kbd "M-<left>") #'helm-find-files-up-one-level)
