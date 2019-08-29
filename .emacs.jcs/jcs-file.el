@@ -8,6 +8,7 @@
   "Preview html FILEPATH other window with TITLE.
 NOT-OW : Default is other window, not other window."
   (interactive)
+  (require 'f)
   (let ((buf-str "")
         (default-directory default-directory))
     (if filepath

@@ -28,6 +28,7 @@ OW : Opened it in other window."
 (defun jcs-compile (in-op)
   "Compile command rewrapper.
 IN-OP : inpuit operation script."
+  (require 'f)
   ;; NOTE: First we need to get the script directory. In order
   ;; to change execute/workspace directory to the current target script's
   ;; directory path.
