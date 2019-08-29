@@ -25,6 +25,7 @@
   ;; Normal
   (define-key python-mode-map (kbd "C-d") #'jcs-kill-whole-line)
   (define-key python-mode-map (kbd "C-c C-c") #'kill-ring-save)
+  (define-key python-mode-map (kbd "<backspace>") #'jcs-smart-backspace)
   (define-key python-mode-map [C-backspace] #'jcs-backward-delete-word)
 
   (define-key python-mode-map [M-up] #'jcs-previous-blank-line)
