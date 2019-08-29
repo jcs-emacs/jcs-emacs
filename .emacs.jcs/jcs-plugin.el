@@ -310,8 +310,11 @@
     "Move selection hook in `helm' buffer."
     (let* ((cur-line (line-number-at-pos))
            (last-line (line-number-at-pos (point-max)))
-           (recenter-positions '(bottom)))
-      (when (= cur-line (1- last-line))  ; Check last selection.
+           (recenter-positions '(bottom))
+           (is-last-selection (= cur-line (1- last-line)))
+           (one-selection-left (= last-line 3)))
+      (when (and is-last-selection
+                 (not one-selection-left))
         (jcs-recenter-top-bottom 'bottom))))
   (add-hook 'helm-move-selection-after-hook 'jcs--helm-move-selection-after-hook))
 
