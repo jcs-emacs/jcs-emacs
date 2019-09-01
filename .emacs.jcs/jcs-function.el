@@ -143,7 +143,7 @@
   "Advice before execute `buffer-menu' command."
   (setq jcs-buffer-menu-return-delay nil)
   (setq tabulated-list--header-string jcs-buffer-menu-search-title))
-(advice-add 'buffer-menu :before 'jcs-advice-buffer-menu-before)
+(advice-add 'buffer-menu :before #'jcs-advice-buffer-menu-before)
 
 ;;;###autoload
 (defun jcs-buffer-menu-refresh-buffer ()
