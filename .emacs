@@ -45,7 +45,7 @@
 (setq file-name-handler-alist nil)
 
 
-(defconst jcs-emacs-version-number "5.8.4"
+(defconst jcs-emacs-version-number "5.8.3"
   "JCS-Emacs version.")
 
 ;;;###autoload
