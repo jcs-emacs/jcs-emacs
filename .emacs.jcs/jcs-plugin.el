@@ -339,13 +339,11 @@
   (with-eval-after-load 'helm
     (helm-file-preview-mode 1)))
 
-(use-package helm-flx
+(use-package helm-fuzzy
   :defer t
   :init
-  (setq helm-flx-for-helm-find-files t)
-  (setq helm-flx-for-helm-locate t)
   (with-eval-after-load 'helm
-    (helm-flx-mode +1)))
+    (helm-fuzzy-mode 1)))
 
 
 (use-package highlight-indent-guides
