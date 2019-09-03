@@ -342,6 +342,8 @@
 (use-package helm-fuzzy
   :defer t
   :init
+  (setq helm-fuzzy-not-allow-fuzzy '("*helm-ag*"
+                                     "*helm grep*"))
   (with-eval-after-load 'helm
     (helm-fuzzy-mode 1)))
 
