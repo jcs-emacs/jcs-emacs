@@ -87,9 +87,10 @@
   "VS like cut key action.
 If nothing is selected, we cut the current line. Else we just delete the region."
   (interactive)
-  (if (jcs-is-region-selected-p)
-      (call-interactively #'kill-region)
-    (kill-whole-line)))
+  (unless buffer-read-only
+    (if (jcs-is-region-selected-p)
+        (call-interactively #'kill-region)
+      (kill-whole-line))))
 
 
 (provide 'jcs-vs-func)
