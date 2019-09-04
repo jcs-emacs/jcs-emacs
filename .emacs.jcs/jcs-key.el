@@ -38,8 +38,9 @@
 (define-key global-map (kbd "M-S") #'jcs-scratch-buffer-other-window)
 
 ;;; Admin
-(define-key global-map (kbd "C-x C-v") #'reload-emacs)
-(define-key global-map (kbd "C-x C-b") #'restart-emacs)
+(define-key global-map (kbd "M-<f4>") #'save-buffers-kill-terminal)
+(define-key global-map (kbd "M-<f5>") #'reload-emacs)
+(define-key global-map (kbd "M-<f6>") #'restart-emacs)
 
 ;;; ag
 (with-eval-after-load 'ag
@@ -93,7 +94,7 @@
   (define-key nhexl-mode-map (kbd "<left>") #'backward-char))
 
 ;;; Calculator
-(define-key global-map (kbd "C-x =") #'jcs-calc-eval-region)
+(define-key global-map (kbd "C-k =") #'jcs-calc-eval-region)
 
 ;;; Canceling Action.
 ;;(define-key global-map (kbd "C-g") #'top-level)
@@ -130,9 +131,9 @@
 (define-key global-map (kbd "S-SPC") #'jcs-real-space)
 
 (define-key global-map (kbd "C-S-d") #'jcs-duplicate-line)
-(define-key global-map (kbd "C-d") #'jcs-kill-whole-line)
-(define-key global-map (kbd "C-x C-x") #'jcs-vs-cut-key)
-(define-key global-map (kbd "C-c C-c") #'kill-ring-save)
+(bind-key* (kbd "C-d") #'jcs-kill-whole-line)
+(bind-key* (kbd "C-x") #'jcs-vs-cut-key)
+(bind-key* (kbd "C-c") #'kill-ring-save)
 (define-key global-map (kbd "C-v") #'jcs-smart-yank)
 (define-key global-map (kbd "C-s") #'jcs-untabify-save-buffer)
 (define-key global-map (kbd "C-S-s") #'jcs-tabify-save-buffer)
@@ -169,41 +170,41 @@
 
 
 (progn  ; Changing/Deleting inside between Programming Symbols
-  (define-key global-map (kbd "C-c i [") #'jcs-delete-inside-sqr-paren)
-  (define-key global-map (kbd "C-c i ]") #'jcs-delete-inside-sqr-paren)
-  (define-key global-map (kbd "C-c i (") #'jcs-delete-inside-paren)
-  (define-key global-map (kbd "C-c i )") #'jcs-delete-inside-paren)
-  (define-key global-map (kbd "C-c i {") #'jcs-delete-inside-curly-paren)
-  (define-key global-map (kbd "C-c i }") #'jcs-delete-inside-curly-paren)
-  (define-key global-map (kbd "C-c i '") #'jcs-delete-inside-single-quot)
-  (define-key global-map (kbd "C-c i \"") #'jcs-delete-inside-double-quot)
-  (define-key global-map (kbd "C-c i <") #'jcs-delete-inside-greater-less-sign)
-  (define-key global-map (kbd "C-c i >") #'jcs-delete-inside-less-greater-sign)
+  (define-key global-map (kbd "C-k i [") #'jcs-delete-inside-sqr-paren)
+  (define-key global-map (kbd "C-k i ]") #'jcs-delete-inside-sqr-paren)
+  (define-key global-map (kbd "C-k i (") #'jcs-delete-inside-paren)
+  (define-key global-map (kbd "C-k i )") #'jcs-delete-inside-paren)
+  (define-key global-map (kbd "C-k i {") #'jcs-delete-inside-curly-paren)
+  (define-key global-map (kbd "C-k i }") #'jcs-delete-inside-curly-paren)
+  (define-key global-map (kbd "C-k i '") #'jcs-delete-inside-single-quot)
+  (define-key global-map (kbd "C-k i \"") #'jcs-delete-inside-double-quot)
+  (define-key global-map (kbd "C-k i <") #'jcs-delete-inside-greater-less-sign)
+  (define-key global-map (kbd "C-k i >") #'jcs-delete-inside-less-greater-sign)
 
-  (define-key global-map (kbd "C-c i `") #'jcs-delete-inside-back-quot)
-  (define-key global-map (kbd "C-c i ~") #'jcs-delete-inside-tilde)
-  (define-key global-map (kbd "C-c i !") #'jcs-delete-inside-exclamation-mark)
-  (define-key global-map (kbd "C-c i @") #'jcs-delete-inside-at-sign)
-  (define-key global-map (kbd "C-c i #") #'jcs-delete-inside-sharp-sign)
-  (define-key global-map (kbd "C-c i $") #'jcs-delete-inside-dollar-sign)
-  (define-key global-map (kbd "C-c i %") #'jcs-delete-inside-percent-sign)
-  (define-key global-map (kbd "C-c i ^") #'jcs-delete-inside-caret)
-  (define-key global-map (kbd "C-c i &") #'jcs-delete-inside-and)
-  (define-key global-map (kbd "C-c i *") #'jcs-delete-inside-asterisk)
-  (define-key global-map (kbd "C-c i -") #'jcs-delete-inside-dash)
-  (define-key global-map (kbd "C-c i _") #'jcs-delete-inside-underscore)
-  (define-key global-map (kbd "C-c i =") #'jcs-delete-inside-equal)
-  (define-key global-map (kbd "C-c i +") #'jcs-delete-inside-plus)
+  (define-key global-map (kbd "C-k i `") #'jcs-delete-inside-back-quot)
+  (define-key global-map (kbd "C-k i ~") #'jcs-delete-inside-tilde)
+  (define-key global-map (kbd "C-k i !") #'jcs-delete-inside-exclamation-mark)
+  (define-key global-map (kbd "C-k i @") #'jcs-delete-inside-at-sign)
+  (define-key global-map (kbd "C-k i #") #'jcs-delete-inside-sharp-sign)
+  (define-key global-map (kbd "C-k i $") #'jcs-delete-inside-dollar-sign)
+  (define-key global-map (kbd "C-k i %") #'jcs-delete-inside-percent-sign)
+  (define-key global-map (kbd "C-k i ^") #'jcs-delete-inside-caret)
+  (define-key global-map (kbd "C-k i &") #'jcs-delete-inside-and)
+  (define-key global-map (kbd "C-k i *") #'jcs-delete-inside-asterisk)
+  (define-key global-map (kbd "C-k i -") #'jcs-delete-inside-dash)
+  (define-key global-map (kbd "C-k i _") #'jcs-delete-inside-underscore)
+  (define-key global-map (kbd "C-k i =") #'jcs-delete-inside-equal)
+  (define-key global-map (kbd "C-k i +") #'jcs-delete-inside-plus)
 
-  (define-key global-map (kbd "C-c i \\") #'jcs-delete-inside-backslash)
-  (define-key global-map (kbd "C-c i |") #'jcs-delete-inside-or)
+  (define-key global-map (kbd "C-k i \\") #'jcs-delete-inside-backslash)
+  (define-key global-map (kbd "C-k i |") #'jcs-delete-inside-or)
 
-  (define-key global-map (kbd "C-c i :") #'jcs-delete-inside-colon)
-  (define-key global-map (kbd "C-c i ;") #'jcs-delete-inside-semicolon)
-  (define-key global-map (kbd "C-c i ,") #'jcs-delete-inside-comma)
-  (define-key global-map (kbd "C-c i .") #'jcs-delete-inside-period)
-  (define-key global-map (kbd "C-c i /") #'jcs-delete-inside-slash)
-  (define-key global-map (kbd "C-c i ?") #'jcs-delete-inside-question-mark))
+  (define-key global-map (kbd "C-k i :") #'jcs-delete-inside-colon)
+  (define-key global-map (kbd "C-k i ;") #'jcs-delete-inside-semicolon)
+  (define-key global-map (kbd "C-k i ,") #'jcs-delete-inside-comma)
+  (define-key global-map (kbd "C-k i .") #'jcs-delete-inside-period)
+  (define-key global-map (kbd "C-k i /") #'jcs-delete-inside-slash)
+  (define-key global-map (kbd "C-k i ?") #'jcs-delete-inside-question-mark))
 
 ;;; Error
 (define-key global-map [f9] #'first-error)
@@ -232,21 +233,21 @@
 ;;; File Files
 (define-key global-map (kbd "M-f") #'helm-find-files)
 (define-key global-map (kbd "M-F") #'jcs-helm-find-files-other-window)
-(define-key global-map (kbd "C-x M-f") #'helm-projectile-find-file)
-(define-key global-map (kbd "C-x M-F") #'jcs-helm-projectile-find-file-other-window)
+(define-key global-map (kbd "C-k M-f") #'helm-projectile-find-file)
+(define-key global-map (kbd "C-k M-F") #'jcs-helm-projectile-find-file-other-window)
 
 ;;; Folding Settings
 (define-key global-map (kbd "C-M-o") #'jcs-close-all-nodes)
 (define-key global-map (kbd "C-M-p") #'jcs-open-all-nodes)
 
 ;;; Font
-(define-key global-map (kbd "C-c f") #'jcs-change-font)
+(define-key global-map (kbd "C-k f") #'jcs-change-font)
 
 ;;; Format file.
 (define-key global-map "\C-k\C-f" #'indent-region)
 (define-key global-map "\C-k\C-d" #'jcs-format-document)
 (define-key global-map (kbd "C-S-f") #'jcs-format-region-or-document)
-(define-key global-map "\C-xa" #'jcs-align-region-or-document)
+(define-key global-map (kbd "C-k a") #'jcs-align-region-or-document)
 
 ;;; Goto Declaration/Definition
 (define-key global-map [f12] #'dumb-jump-go-prefer-external)
@@ -275,7 +276,7 @@
 
 ;;; Help
 (with-eval-after-load 'help-mode
-  (define-key help-mode-map (kbd "C-c C-c") #'kill-ring-save))
+  (define-key help-mode-map (kbd "C-c") #'kill-ring-save))
 
 ;;; Impatient Mode
 (define-key global-map (kbd "C-w o") #'jcs-httpd-start)
@@ -289,7 +290,7 @@
 (define-key global-map (kbd "M-<delete>") #'jcs-forward-kill-word-capital)
 
 ;;; Line Endings
-(define-key global-map (kbd "C-x C-e") #'set-buffer-file-coding-system)
+(define-key global-map (kbd "C-k C-e") #'set-buffer-file-coding-system)
 
 ;;; Mark
 (define-key global-map "\e " #'set-mark-command)
@@ -299,7 +300,7 @@
 (define-key global-map "\e;" #'exchange-point-and-mark)
 
 ;;; Minimap
-(define-key global-map "\C-cm" #'jcs-toggle-minimap)
+(define-key global-map (kbd "C-k m") #'jcs-toggle-minimap)
 
 ;;; Mode Line
 (define-key global-map (kbd "C-M-m") #'feebleline-mode)
@@ -310,8 +311,8 @@
   (define-key global-map (kbd "C-~") #'jcs-depend-cross-mode-toggle)
   (define-key global-map (kbd "C-`") #'jcs-toggle-shell-window))
 (progn
-  (define-key global-map (kbd "C-c c") #'jcs-toggle-cc-mode)
-  (define-key global-map (kbd "C-c r") #'rainbow-mode))
+  (define-key global-map (kbd "C-k c") #'jcs-toggle-cc-mode)
+  (define-key global-map (kbd "C-k r") #'rainbow-mode))
 
 ;;; Mouse
 (define-key global-map [mouse-2] #'mouse-set-point)
@@ -344,22 +345,19 @@
   (define-key global-map (kbd "<f8>") #'jcs-same-file-other-window))
 
 ;;; Open TODO file.
-(define-key global-map (kbd "C-x t") #'jcs-open-project-todo-file)
+(define-key global-map (kbd "C-k t") #'jcs-open-project-todo-file)
 
 ;;; Open Log file.
-(define-key global-map (kbd "C-x u") #'jcs-open-project-update-log-file)
-
-;;; Org
-(define-key global-map "\C-xo" #'org-mode)
+(define-key global-map (kbd "C-k u") #'jcs-open-project-update-log-file)
 
 ;;; Overwrite
 (define-key global-map [insert] #'jcs-overwrite-mode)
 
 ;;; Packages
-(define-key global-map (kbd "C-x C-p") #'package-list-packages)
+(define-key global-map (kbd "C-k C-p") #'package-list-packages)
 (define-key package-menu-mode-map (kbd "s") #'jcs-package-menu-filter-by-status)
 (define-key package-menu-mode-map (kbd "u") #'jcs-package-upgrade-all)
-(define-key package-menu-mode-map (kbd "C-x r m") #'package-autoremove)
+(define-key package-menu-mode-map (kbd "C-k r m") #'package-autoremove)
 
 ;;; Process
 (define-key global-map (kbd "M-p") #'list-processes)
@@ -404,8 +402,8 @@
   (define-key isearch-mode-map (kbd "C->") #'jcs-isearch-project-repeat-forward)
 
   ;; TODO: Implements isearch cursor for these two keys.
-  ;;(define-key isearch-mode-map (kbd "C-x C-x") #'jcs-vs-cut-key)
-  ;;(define-key isearch-mode-map (kbd "C-c C-c") #'kill-ring-save)
+  ;;(define-key isearch-mode-map (kbd "C-x") #'jcs-vs-cut-key)
+  ;;(define-key isearch-mode-map (kbd "C-c") #'kill-ring-save)
   (define-key isearch-mode-map (kbd "C-v") #'isearch-yank-pop)
   )
 
@@ -413,7 +411,7 @@
 (define-key global-map (kbd "C-k C-i") #'jcs-describe-thing-in-popup)
 
 ;;; Source Control
-(define-key global-map (kbd "C-x g") #'magit-status)
+(define-key global-map (kbd "C-k g") #'magit-status)
 
 ;;; Special
 (define-key special-mode-map (kbd "<up>") #'previous-line)
@@ -440,7 +438,7 @@
   (define-key dashboard-mode-map (kbd "<down>") #'jcs-next-line)
   (define-key dashboard-mode-map (kbd "C-<up>") #'jcs-dashboard-previous-blank-line)
   (define-key dashboard-mode-map (kbd "C-<down>") #'jcs-dashboard-next-blank-line)
-  (define-key dashboard-mode-map (kbd "C-x C-p") #'package-list-packages)
+  (define-key dashboard-mode-map (kbd "C-k C-p") #'package-list-packages)
   (define-key dashboard-mode-map (kbd "M-k") #'jcs-dashboard-maybe-kill-this-buffer)
   (define-key dashboard-mode-map (kbd "M-K") #'jcs-dashboard-refresh-buffer))
 
@@ -456,8 +454,8 @@
 (define-key global-map [C-tab] #'centaur-tabs-forward)
 
 ;;; Tab Width
-(define-key global-map (kbd "C-x >") #'jcs-inc-tab-width)
-(define-key global-map (kbd "C-x <") #'jcs-dec-tab-width)
+(define-key global-map (kbd "C-k >") #'jcs-inc-tab-width)
+(define-key global-map (kbd "C-k <") #'jcs-dec-tab-width)
 
 ;;; Text Scale
 (define-key global-map (kbd "C-=") #'jcs-text-scale-increase)
@@ -475,9 +473,9 @@
 
 ;;; Window
 (progn
-  (define-key global-map (kbd "C-x n") #'make-frame)
-  (define-key global-map (kbd "C-x d") #'delete-frame)  ; delete the external frame.
-  (define-key global-map (kbd "C-x w") #'jcs-balance-delete-window)  ; delete current window.
+  (define-key global-map (kbd "C-k n") #'make-frame)
+  (define-key global-map (kbd "C-k d") #'delete-frame)  ; delete the external frame.
+  (define-key global-map (kbd "C-k w") #'jcs-balance-delete-window)  ; delete current window.
   (define-key global-map (kbd "C-h h") #'jcs-toggle-window-split-hv)
   (define-key global-map (kbd "C-w e") #'jcs-toggle-enlarge-window-selected)
   (define-key global-map (kbd "C-\\") #'jcs-balance-split-window-horizontally)
@@ -534,7 +532,7 @@
   (define-key wgrep-mode-map (kbd "M-K") #'jcs-ag-refresh-search))
 
 ;;; Whitespace
-(define-key global-map (kbd "C-x b") #'whitespace-mode)
+(define-key global-map (kbd "C-k b") #'whitespace-mode)
 
 
 ;;-------------------------------------------------------------------
