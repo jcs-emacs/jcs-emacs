@@ -129,7 +129,7 @@
 (define-key global-map (kbd "SPC") #'jcs-real-space)
 (define-key global-map (kbd "S-SPC") #'jcs-real-space)
 
-(define-key global-map (kbd "C-c d") #'jcs-duplicate-line)
+(define-key global-map (kbd "C-S-d") #'jcs-duplicate-line)
 (define-key global-map (kbd "C-d") #'jcs-kill-whole-line)
 (define-key global-map (kbd "C-x C-x") #'jcs-vs-cut-key)
 (define-key global-map (kbd "C-c C-c") #'kill-ring-save)
