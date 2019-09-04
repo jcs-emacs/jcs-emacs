@@ -15,6 +15,7 @@
   * <kbd>Ctrl</kbd>+<kbd>TAB</kbd> - Reindent block.
   * <kbd>Ctrl</kbd>+<kbd>r</kbd>, <kbd>Ctrl</kbd>+<kbd>r</kbd> - Rename the whole text with the same name.
   * <kbd>Ctrl</kbd>+<kbd>a</kbd> - Mark whole buffer. (Select All)
+  * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>d</kbd> - Duplicate whole line.
   * <kbd>Ctrl</kbd>+<kbd>d</kbd> - Kill whole line.
   * <kbd>Ctrl</kbd>+<kbd>backspace</kbd> - Backspace word.
   * <kbd>Ctrl</kbd>+<kbd>delete</kbd> - Delete word.
