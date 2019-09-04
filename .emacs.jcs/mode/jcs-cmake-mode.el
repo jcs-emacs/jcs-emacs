@@ -24,9 +24,6 @@
   (define-key cmake-mode-map (kbd "<down>") #'jcs-py-indent-down)
   (define-key cmake-mode-map (kbd "RET") #'jcs-makefile-newline)
 
-  (define-key cmake-mode-map (kbd "C-d") #'jcs-kill-whole-line)
-  (define-key cmake-mode-map (kbd "C-c C-c") #'kill-ring-save)
-
   ;; tabify save key
   (define-key cmake-mode-map (kbd "C-s") #'jcs-tabify-save-buffer)
   )

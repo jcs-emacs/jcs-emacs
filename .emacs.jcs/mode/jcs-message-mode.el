@@ -14,9 +14,6 @@
   (auto-highlight-symbol-mode t)
 
   ;; Normal
-  (define-key message-mode-map (kbd "C-d") #'jcs-kill-whole-line)
-  (define-key message-mode-map (kbd "C-c C-c") #'kill-ring-save)
-
   (define-key message-mode-map (kbd "<up>") #'previous-line)
   (define-key message-mode-map (kbd "<down>") #'next-line)
   )

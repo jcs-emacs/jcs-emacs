@@ -16,8 +16,6 @@
   (auto-highlight-symbol-mode t)
 
   ;; Normal
-  (define-key org-mode-map (kbd "C-d") #'jcs-kill-whole-line)
-  (define-key org-mode-map (kbd "C-c C-c") #'kill-ring-save)
   (define-key org-mode-map (kbd "C-a") #'jcs-mark-whole-buffer)
   (define-key org-mode-map [tab] #'jcs-tab-key)
   (define-key org-mode-map [C-tab] #'org-cycle)

@@ -20,9 +20,6 @@
   ;; corresponding file.
   (define-key c-mode-map [f7] #'jcs-same-file-other-window)
 
-  (define-key c-mode-map (kbd "C-d") #'jcs-kill-whole-line)
-  (define-key c-mode-map (kbd "C-c C-c") #'kill-ring-save)
-
   (define-key c-mode-map (kbd "DEL") #'jcs-electric-backspace)
   (define-key c-mode-map (kbd "{") #'jcs-vs-front-curly-bracket-key)
   (define-key c-mode-map (kbd ";") #'jcs-vs-semicolon-key)

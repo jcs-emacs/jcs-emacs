@@ -24,15 +24,12 @@
   (define-key haxe-mode-map (kbd "<up>") #'jcs-smart-indent-up)
   (define-key haxe-mode-map (kbd "<down>") #'jcs-smart-indent-down)
 
-  (define-key haxe-mode-map (kbd "C-d") #'jcs-kill-whole-line)
-  (define-key haxe-mode-map (kbd "C-c C-c") #'kill-ring-save)
-
   (define-key haxe-mode-map (kbd "DEL") #'jcs-electric-backspace)
   (define-key haxe-mode-map (kbd "{") #'jcs-vs-front-curly-bracket-key)
   (define-key haxe-mode-map (kbd ";") #'jcs-vs-semicolon-key)
 
   ;; switch frame.
-  (define-key haxe-mode-map "\ew" #'jcs-other-window-next)
+  (define-key haxe-mode-map (kbd "M-w") #'jcs-other-window-next)
   (define-key haxe-mode-map (kbd "M-q") #'jcs-other-window-prev)
   )
 (add-hook 'haxe-mode-hook 'jcs-haxe-mode-hook)

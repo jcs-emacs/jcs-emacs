@@ -21,10 +21,6 @@
                               'jcs-insert-sh-template)
 
   ;; Normal
-  (define-key sh-mode-map (kbd "C-d") #'jcs-kill-whole-line)
-  (define-key sh-mode-map (kbd "C-c C-c") #'kill-ring-save)
-
-  ;; save buffer
   (define-key sh-mode-map (kbd "C-s") #'jcs-sh-untabify-save-buffer)
   )
 (add-hook 'sh-mode-hook 'jcs-sh-script-hook)

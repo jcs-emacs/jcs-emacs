@@ -36,9 +36,6 @@
                               'jcs-json-format)
 
   ;; Normal
-  (define-key json-mode-map (kbd "C-d") #'jcs-kill-whole-line)
-  (define-key json-mode-map (kbd "C-c C-c") #'kill-ring-save)
-
   (define-key json-mode-map (kbd "DEL") #'jcs-electric-backspace)
   (define-key json-mode-map (kbd "{") #'jcs-vs-front-curly-bracket-key)
   (define-key json-mode-map (kbd ";") #'jcs-vs-semicolon-key)

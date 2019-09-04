@@ -20,9 +20,6 @@
   (jcs-insert-header-if-valid '("[.]gd")
                               'jcs-insert-gdscript-template)
 
-  ;; Normal
-  (define-key gdscript-mode-map (kbd "C-d") #'jcs-kill-whole-line)
-  (define-key gdscript-mode-map (kbd "C-c C-c") #'kill-ring-save)
   )
 (add-hook 'gdscript-mode-hook 'jcs-gdscript-mode-hook)
 

@@ -19,9 +19,6 @@
                               'jcs-insert-perl-template)
 
   ;; Normal
-  (define-key perl-mode-map (kbd "C-d") #'jcs-kill-whole-line)
-  (define-key perl-mode-map (kbd "C-c C-c") #'kill-ring-save)
-
   (define-key perl-mode-map (kbd "DEL") #'jcs-electric-backspace)
   (define-key perl-mode-map (kbd "{") #'jcs-vs-front-curly-bracket-key)
   (define-key perl-mode-map (kbd ";") #'jcs-vs-semicolon-key)

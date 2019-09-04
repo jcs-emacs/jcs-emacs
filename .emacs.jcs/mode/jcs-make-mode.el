@@ -23,9 +23,6 @@
   (define-key makefile-mode-map (kbd "<down>") #'jcs-py-indent-down)
   (define-key makefile-mode-map (kbd "RET") #'jcs-makefile-newline)
 
-  (define-key makefile-mode-map (kbd "C-d") #'jcs-kill-whole-line)
-  (define-key makefile-mode-map (kbd "C-c C-c") #'kill-ring-save)
-
   ;; tabify save key
   (define-key makefile-mode-map (kbd "C-s") #'jcs-tabify-save-buffer)
   )

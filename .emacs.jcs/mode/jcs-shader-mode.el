@@ -45,10 +45,6 @@
                                 "[.]glsl"
                                 "[.]vert")
                               'jcs-insert-glsl-template)
-
-  ;; Normal
-  (define-key glsl-mode-map (kbd "C-d") #'jcs-kill-whole-line)
-  (define-key glsl-mode-map (kbd "C-c C-c") #'kill-ring-save)
   )
 (add-hook 'glsl-mode-hook 'jcs-glsl-mode-hook)
 

@@ -20,9 +20,6 @@
   (jcs-insert-header-if-valid '("[.]pas")
                               'jcs-insert-pascal-template)
 
-  ;; Normal
-  (define-key pascal-mode-map (kbd "C-d") #'jcs-kill-whole-line)
-  (define-key pascal-mode-map (kbd "C-c C-c") #'kill-ring-save)
   )
 (add-hook 'pascal-mode-hook 'jcs-pascal-mode-hook)
 

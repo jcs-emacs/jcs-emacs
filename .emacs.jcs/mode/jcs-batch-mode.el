@@ -19,9 +19,6 @@
                               'jcs-insert-batch-template)
 
   ;; Normal
-  (define-key bat-mode-map (kbd "C-d") #'jcs-kill-whole-line)
-  (define-key bat-mode-map (kbd "C-c C-c") #'kill-ring-save)
-
   (define-key bat-mode-map (kbd "<up>") #'jcs-previous-line)
   (define-key bat-mode-map (kbd "<down>") #'jcs-next-line)
   )

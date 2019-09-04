@@ -18,19 +18,15 @@
                               'jcs-insert-scss-template)
 
   ;; Normal
-  (define-key scss-mode-map (kbd "C-d") #'jcs-kill-whole-line)
-  (define-key scss-mode-map (kbd "C-c C-c") #'kill-ring-save)
-
-  ;; Save
-  (define-key css-mode-map "\C-s" #'jcs-css-save-buffer)
+  (define-key css-mode-map (kbd "C-s") #'jcs-css-save-buffer)
 
   ;; comment block
   (define-key scss-mode-map (kbd "RET") #'jcs-smart-context-line-break)
   (define-key scss-mode-map (kbd "*") #'jcs-c-comment-pair)
 
   ;; sort attribute in order => `com-css-sort' package.
-  (define-key scss-mode-map "\C-ks" #'com-css-sort-attributes-block)
-  (define-key scss-mode-map "\C-kd" #'com-css-sort-attributes-document)
+  (define-key scss-mode-map (kbd "C-k s") #'com-css-sort-attributes-block)
+  (define-key scss-mode-map (kbd "C-k d") #'com-css-sort-attributes-document)
   )
 (add-hook 'scss-mode-hook 'jcs-scss-mode-hook)
 

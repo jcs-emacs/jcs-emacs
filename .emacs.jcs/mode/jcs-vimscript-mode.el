@@ -21,8 +21,6 @@
                               'jcs-insert-vimscript-template)
 
   ;; Normal
-  (define-key vimrc-mode-map (kbd "C-d") #'jcs-kill-whole-line)
-  (define-key vimrc-mode-map (kbd "C-c C-c") #'kill-ring-save)
   (define-key vimrc-mode-map (kbd "C-a") #'jcs-mark-whole-buffer)
 
   (define-key vimrc-mode-map (kbd "<up>") #'jcs-previous-line)

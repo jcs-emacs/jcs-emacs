@@ -21,9 +21,6 @@
                               'jcs-insert-java-template)
 
   ;; Normal
-  (define-key java-mode-map (kbd "C-d") #'jcs-kill-whole-line)
-  (define-key java-mode-map (kbd "C-c C-c") #'kill-ring-save)
-
   (define-key java-mode-map (kbd "C-s") #'jcs-java-untabify-save-buffer)
 
   (define-key java-mode-map (kbd "DEL") #'jcs-electric-backspace)

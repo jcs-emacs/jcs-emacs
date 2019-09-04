@@ -20,9 +20,6 @@
   (jcs-insert-header-if-valid '("[.]dart")
                               'jcs-insert-dart-template)
 
-  ;; Normal
-  (define-key dart-mode-map (kbd "C-d") #'jcs-kill-whole-line)
-  (define-key dart-mode-map (kbd "C-c C-c") #'kill-ring-save)
   )
 (add-hook 'dart-mode-hook 'jcs-dart-mode-hook)
 

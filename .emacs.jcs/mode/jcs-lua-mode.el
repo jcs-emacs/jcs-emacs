@@ -21,10 +21,6 @@
                                 "[.]luac")
                               'jcs-insert-lua-template)
 
-  ;; Normal
-  (define-key lua-mode-map (kbd "C-d") #'jcs-kill-whole-line)
-  (define-key lua-mode-map (kbd "C-c C-c") #'kill-ring-save)
-
   ;; Comment
   (define-key lua-mode-map (kbd "-") #'jcs-lua-maybe-insert-codedoc)
 

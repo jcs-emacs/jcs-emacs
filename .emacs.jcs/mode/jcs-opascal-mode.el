@@ -22,10 +22,7 @@
                               'jcs-insert-opascal-template)
 
   ;; Normal
-  (define-key opascal-mode-map (kbd "C-d") #'jcs-kill-whole-line)
-  (define-key opascal-mode-map (kbd "C-c C-c") #'kill-ring-save)
-
-  (define-key opascal-mode-map "\eq" #'jcs-other-window-prev)
+  (define-key opascal-mode-map (kbd "M-q") #'jcs-other-window-prev)
   )
 (add-hook 'opascal-mode-hook 'jcs-opascal-mode-hook)
 

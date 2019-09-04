@@ -25,10 +25,6 @@
                               'jcs-insert-css-template)
 
   ;; Normal
-  (define-key css-mode-map (kbd "C-d") #'jcs-kill-whole-line)
-  (define-key css-mode-map (kbd "C-c C-c") #'kill-ring-save)
-  (define-key emmet-mode-keymap (kbd "C-c C-c") #'kill-ring-save)
-
   (define-key css-mode-map (kbd "DEL") #'jcs-electric-backspace)
   (define-key css-mode-map (kbd "{") #'jcs-vs-front-curly-bracket-key)
   (define-key css-mode-map (kbd ";") #'jcs-vs-semicolon-key)

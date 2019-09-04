@@ -10,9 +10,6 @@
   "Mode hook for `RE-Builder-mode'."
 
   ;; Normal
-  (define-key reb-mode-map (kbd "C-d") #'jcs-kill-whole-line)
-  (define-key reb-mode-map (kbd "C-c C-c") #'kill-ring-save)
-
   (define-key reb-mode-map (kbd "<up>") #'previous-line)
   (define-key reb-mode-map (kbd "<down>") #'next-line)
 
