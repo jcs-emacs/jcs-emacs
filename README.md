@@ -85,8 +85,8 @@ without having to get used to an new IDE.
 Here is the list of few important and recent changes to this 
 configuration.
 
-* Integrating `lsp-mode` and `dap-mode` to this configuration 
-after version `5.8.1`.
+* [5.8.3] - Corrected key bindings `C-x` to cut and `C-c` to copy.
+* [5.8.1] - Integrating `lsp-mode` and `dap-mode` to this configuration.
 
 
 ## Startup Time
@@ -395,6 +395,11 @@ for there preset keys. As you may know these two keys are often
 `cut` and `copy`, is awkward that I solved this by adding the 
 same key stroke once again, hence the `cut` key is `C-x C-x` and 
 the `copy` key is `C-c C-c`. 
+
+**Edit 1:** After version `5.8.3`, the `cut` and `copy` keys had been
+corrected and no longer the hassle to this configuration. Thanks to 
+`use-package` again, letting me bind `C-x` and `C-c` keys for higher 
+precedence.
 
 
 ## Themes
