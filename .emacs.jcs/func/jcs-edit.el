@@ -250,8 +250,9 @@ the space."
   (interactive)
   (when (use-region-p)
     (delete-region (region-beginning) (region-end)))
-  (call-interactively #'yank)
-  (indent-region (region-beginning) (region-end)))
+  (let ((reg-beg (point)))
+    (call-interactively #'yank)
+    (indent-region reg-beg (point))))
 
 ;;----------------------------------------------
 ;; Tab
