@@ -293,7 +293,7 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
 
   ;; search
   (define-key global-map (kbd "C-f") #'jcs-helm-do-ag-this-file)
-  (define-key global-map (kbd "C-x C-f") #'helm-do-ag-project-root)
+  (define-key global-map (kbd "C-k C-f") #'helm-do-ag-project-root)
 
   (define-key global-map (kbd "C-r p") #'jcs-ag-project-regexp)
 
@@ -321,7 +321,7 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
 
   ;; search
   (define-key global-map (kbd "C-f") #'isearch-forward)
-  (define-key global-map (kbd "C-x C-f") #'isearch-project-forward)
+  (define-key global-map (kbd "C-k C-f") #'isearch-project-forward)
 
   (jcs-global-key-rebind)
   )
@@ -347,8 +347,6 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
   ;; NOTE: Set smaller font.
   (setq buffer-face-mode-face '(:height 120))
   (buffer-face-mode)
-
-  (define-key compilation-mode-map (kbd "C-c C-c") #'kill-ring-save)
   )
 (add-hook 'compilation-mode-hook 'jcs-compilation-mode-hook)
 
@@ -432,9 +430,6 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
                               'jcs-insert-text-template)
 
   ;; Normal
-  (define-key text-mode-map (kbd "C-d") #'jcs-kill-whole-line)
-  (define-key text-mode-map (kbd "C-c C-c") #'kill-ring-save)
-
   (define-key text-mode-map (kbd "<up>") #'jcs-previous-line)
   (define-key text-mode-map (kbd "<down>") #'jcs-next-line)
   )
