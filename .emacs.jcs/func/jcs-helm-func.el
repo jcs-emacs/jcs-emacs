@@ -71,6 +71,24 @@
     (unless found-file
       (select-window starting-window))))
 
+;;----------------------------------------------------------------------------
+;; Util
+
+(defvar jcs--helm-window-line-height -1
+  "Helm window line height cache.")
+
+(defun jcs--helm-find-window-line-height ()
+  "How many lines in the current active helm window."
+  (when (<= jcs--helm-window-line-height 0)
+    (save-excursion
+      (goto-char (point-max))
+      (let ((vis-bot-line -1))
+        (save-window-excursion
+          (jcs-recenter-top-bottom 'bottom)
+          (setq vis-bot-line (jcs-first-visible-line-in-window)))
+        (setq jcs--helm-window-line-height (- (line-number-at-pos) vis-bot-line)))))
+  jcs--helm-window-line-height)
+
 
 (provide 'jcs-helm-func)
 ;;; jcs-helm-func.el ends here
