@@ -6,8 +6,8 @@
 
 * **Editing**
 
-  * <kbd>Ctrl</kbd>+<kbd>x</kbd>, <kbd>Ctrl</kbd>+<kbd>x</kbd> - Cut
-  * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>Ctrl</kbd>+<kbd>c</kbd> - Copy
+  * <kbd>Ctrl</kbd>+<kbd>x</kbd> - Cut
+  * <kbd>Ctrl</kbd>+<kbd>c</kbd> - Copy
   * <kbd>Ctrl</kbd>+<kbd>v</kbd> - Paste
   * <kbd>Ctrl</kbd>+<kbd>z</kbd> - Undo
   * <kbd>Ctrl</kbd>+<kbd>y</kbd> - Redo
@@ -34,15 +34,15 @@
   * <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>left</kbd> - Move buffer `left`.
   * <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>right</kbd> - Move buffer `right`.
   * <kbd>Ctrl</kbd>+<kbd>return</kbd> - Complete word or Goto address at point.
-  * <kbd>Ctrl</kbd>+<kbd>x</kbd>, <kbd>Shift</kbd>+<kbd>,</kbd> - Decrement tab size by 2.
-  * <kbd>Ctrl</kbd>+<kbd>x</kbd>, <kbd>Shift</kbd>+<kbd>.</kbd> - Increment tab size by 2.
-  * <kbd>Ctrl</kbd>+<kbd>x</kbd>, <kbd>=</kbd> - Calcualte the region and replace with the result.
+  * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>Shift</kbd>+<kbd>,</kbd> - Decrement tab size by 2.
+  * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>Shift</kbd>+<kbd>.</kbd> - Increment tab size by 2.
+  * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>=</kbd> - Calcualte the region and replace with the result.
   * <kbd>Shift</kbd>+<kbd>f10</kbd> - Right click context menu.
   * <kbd>f12</kbd> - Goto declaration/definition.
   * <kbd>Shift</kbd>+<kbd>f12</kbd> - Goto declaration/definition other window.
   * <kbd>f7</kbd> - Open same file other window.
   * <kbd>f8</kbd> - Open corresponding file other window, if not found open same file instead.
-  * <kbd>Ctrl</kbd>+<kbd>x</kbd>, <kbd>Ctrl</kbd>+<kbd>e</kbd> - Switch file coding system.
+  * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>Ctrl</kbd>+<kbd>e</kbd> - Switch file coding system.
   * <kbd>Ctrl</kbd>+<kbd>r</kbd>, <kbd>b</kbd> - Open RE-Builder mode window.
 
   * **Build / Run**
@@ -53,7 +53,7 @@
   * **Search**
 
     * <kbd>Ctrl</kbd>+<kbd>f</kbd> - Search through file.
-    * <kbd>Ctrl</kbd>+<kbd>x</kbd>, <kbd>Ctrl</kbd>+<kbd>f</kbd> - Search through project.
+    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>Ctrl</kbd>+<kbd>f</kbd> - Search through project.
     * <kbd>Ctrl</kbd>+<kbd>,</kbd> - Ssearch through file current point. (backward)
     * <kbd>Ctrl</kbd>+<kbd>.</kbd> - Ssearch through file current point. (forward)
     * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>,</kbd> - Ssearch through project current point. (backward)
@@ -89,41 +89,41 @@
 
   * **Alignment**
 
-    * <kbd>Ctrl</kbd>+<kbd>x</kbd>, <kbd>aa</kbd> - Align region or document.
+    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>a</kbd> - Align region or document.
 
   * **Symbol**
 
-    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>[</kbd> - Delete everything between `[` and `]`.
-    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>]</kbd> - Delete everything between `[` and `]`.
-    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>(</kbd> - Delete everything between `(` and `)`.
-    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>)</kbd> - Delete everything between `(` and `)`.
-    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>{</kbd> - Delete everything between `{` and `}`.
-    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>}</kbd> - Delete everything between `{` and `}`.
-    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>'</kbd> - Delete everything between two `'`.
-    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>"</kbd> - Delete everything between two `"`.
-    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd><</kbd> - Delete everything between `<` and `>`.
-    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>></kbd> - Delete everything between `>` and `<`.
-    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>`</kbd> - Delete everything between two ```.
-    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>~</kbd> - Delete everything between two `~`.
-    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>@</kbd> - Delete everything between two `@`.
-    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>#</kbd> - Delete everything between two `#`.
-    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>$</kbd> - Delete everything between two `$`.
-    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>%</kbd> - Delete everything between two `%`.
-    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>^</kbd> - Delete everything between two `^`.
-    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>&</kbd> - Delete everything between two `&`.
-    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>*</kbd> - Delete everything between two `*`.
-    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>-</kbd> - Delete everything between two `-`.
-    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>_</kbd> - Delete everything between two `_`.
-    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>=</kbd> - Delete everything between two `=`.
-    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>+</kbd> - Delete everything between two `+`.
-    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>`\`</kbd> - Delete everything between two `\`.
-    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>|</kbd> - Delete everything between two `|`.
-    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>:</kbd> - Delete everything between two `:`.
-    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>;</kbd> - Delete everything between two `;`.
-    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>,</kbd> - Delete everything between two `,`.
-    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>.</kbd> - Delete everything between two `.`.
-    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>/</kbd> - Delete everything between two ``.
-    * <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>i</kbd>, <kbd>?</kbd> - Delete everything between two `?`.
+    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>[</kbd> - Delete everything between `[` and `]`.
+    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>]</kbd> - Delete everything between `[` and `]`.
+    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>(</kbd> - Delete everything between `(` and `)`.
+    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>)</kbd> - Delete everything between `(` and `)`.
+    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>{</kbd> - Delete everything between `{` and `}`.
+    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>}</kbd> - Delete everything between `{` and `}`.
+    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>'</kbd> - Delete everything between two `'`.
+    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>"</kbd> - Delete everything between two `"`.
+    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd><</kbd> - Delete everything between `<` and `>`.
+    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>></kbd> - Delete everything between `>` and `<`.
+    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>`</kbd> - Delete everything between two ```.
+    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>~</kbd> - Delete everything between two `~`.
+    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>@</kbd> - Delete everything between two `@`.
+    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>#</kbd> - Delete everything between two `#`.
+    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>$</kbd> - Delete everything between two `$`.
+    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>%</kbd> - Delete everything between two `%`.
+    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>^</kbd> - Delete everything between two `^`.
+    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>&</kbd> - Delete everything between two `&`.
+    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>*</kbd> - Delete everything between two `*`.
+    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>-</kbd> - Delete everything between two `-`.
+    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>_</kbd> - Delete everything between two `_`.
+    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>=</kbd> - Delete everything between two `=`.
+    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>+</kbd> - Delete everything between two `+`.
+    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>`\`</kbd> - Delete everything between two `\`.
+    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>|</kbd> - Delete everything between two `|`.
+    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>:</kbd> - Delete everything between two `:`.
+    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>;</kbd> - Delete everything between two `;`.
+    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>,</kbd> - Delete everything between two `,`.
+    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>.</kbd> - Delete everything between two `.`.
+    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>/</kbd> - Delete everything between two ``.
+    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>?</kbd> - Delete everything between two `?`.
 
 * **Debugging**
 
@@ -180,8 +180,8 @@
 
   * <kbd>Alt</kbd>+<kbd>f</kbd> - Find file in working directory to current window.
   * <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>f</kbd> - Find file in working directory to other window.
-  * <kbd>Ctrl</kbd>+<kbd>x</kbd>, <kbd>Alt</kbd>+<kbd>f</kbd> - Find file in project to current window.
-  * <kbd>Ctrl</kbd>+<kbd>x</kbd>, <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>f</kbd> - Find file in project to other window.
+  * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>Alt</kbd>+<kbd>f</kbd> - Find file in project to current window.
+  * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>f</kbd> - Find file in project to other window.
 
 ### Navigating
 
@@ -247,14 +247,14 @@
 * <kbd>Ctrl</kbd>+<kbd>-</kbd> - Text scale decrease.
 * <kbd>Alt</kbd>+<kbd>=</kbd> - Frame transparent increase.
 * <kbd>Alt</kbd>+<kbd>-</kbd> - Frame transparent decrease.
-* <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>f</kbd> - Change font style.
-* <kbd>Ctrl</kbd>+<kbd>c</kbd>, <kbd>m</kbd> - Toggle minimap.
+* <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>f</kbd> - Change font style.
+* <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>m</kbd> - Toggle minimap.
 
 ### Windows
 
-* <kbd>Ctrl</kbd>+<kbd>x</kbd>, <kbd>n</kbd> - Create new frame.
-* <kbd>Ctrl</kbd>+<kbd>x</kbd>, <kbd>d</kbd> - Delete current frame.
-* <kbd>Ctrl</kbd>+<kbd>x</kbd>, <kbd>w</kbd> - Delete current window.
+* <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>n</kbd> - Create new frame.
+* <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>d</kbd> - Delete current frame.
+* <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>w</kbd> - Delete current window.
 * <kbd>Ctrl</kbd>+<kbd>h</kbd>, <kbd>h</kbd> - Toggle window split between horizontal and vertcial.
 * <kbd>Ctrl</kbd>+<kbd>w</kbd>, <kbd>e</kbd> - Toggle enlarge current selected window.
 * <kbd>Ctrl</kbd>+<kbd>\\</kbd> - Split window horizontally.
@@ -264,7 +264,7 @@
 
 ### Source Control
 
-* <kbd>Ctrl</kbd>+<kbd>x</kbd>, <kbd>g</kbd> - Open magit interface.
+* <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>g</kbd> - Open magit interface.
 
 ### Terminal
 
@@ -274,9 +274,9 @@
 
 * **System**
 
-  * <kbd>Ctrl</kbd>+<kbd>x</kbd>, <kbd>Ctrl</kbd>+<kbd>c</kbd> - Shutdown Emacs.
-  * <kbd>Ctrl</kbd>+<kbd>x</kbd>, <kbd>Ctrl</kbd>+<kbd>v</kbd> - Reload Emacs.
-  * <kbd>Ctrl</kbd>+<kbd>x</kbd>, <kbd>Ctrl</kbd>+<kbd>b</kbd> - Restart Emacs.
+  * <kbd>Alt</kbd>+<kbd>f4</kbd> - Shutdown Emacs.
+  * <kbd>Alt</kbd>+<kbd>f5</kbd> - Reload Emacs.
+  * <kbd>Alt</kbd>+<kbd>f6</kbd> - Restart Emacs.
   * <kbd>Ctrl</kbd>+<kbd>k</kbd>,<kbd>Ctrl</kbd>+<kbd>s</kbd> - Describe key bindings with current `major-mode`.
   * <kbd>Ctrl</kbd>+<kbd>k</kbd>,<kbd>Ctrl</kbd>+<kbd>i</kbd> - Describe current symbol.
   * <kbd>Ctrl</kbd>+<kbd>t</kbd> - Toggle `tabbar-mode`.
@@ -297,7 +297,7 @@
 
 * **Packet List**
 
-  * <kbd>Ctrl</kbd>+<kbd>x</kbd>, <kbd>Ctrl</kbd>+<kbd>p</kbd> - Package list.
+  * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>Ctrl</kbd>+<kbd>p</kbd> - Package list.
   
 * **Process**
   
@@ -317,7 +317,7 @@
 * <kbd>x</kbd> - Execute marked packages.
 * <kbd>s</kbd> - Sort packages in order.
 * <kbd>u</kbd> - Select package to upgrade.
-* <kbd>Ctrl</kbd>+<kbd>x</kbd>, <kbd>r</kbd>, <kbd>m</kbd> - Auto remove unused pacakges.
+* <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>r</kbd>, <kbd>m</kbd> - Auto remove unused pacakges.
 
 ## Org Mode
 
