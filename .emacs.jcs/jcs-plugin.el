@@ -217,26 +217,25 @@
   :defer t
   :config
   (require 'show-eol)
+
   (setq feebleline-msg-functions
         '(;;-- Left
-          (jcs-current-major-mode :pre " [" :face font-lock-constant-face :post "]")
-          ((lambda ()
-             (let ((project-root (cdr (project-current))))
-               (if (and project-root
-                        (buffer-file-name))
-                   (concat " { " (file-name-nondirectory (directory-file-name project-root)) " }")
-                 " { ╬ }"))))
+          (jcs--feebleline--symbol-read-only
+           :pre " "
+           :face '((t (:foreground "yellow"))))
+          (jcs-current-major-mode :pre "[" :post "]" :face font-lock-constant-face)
+          (jcs--feebleline--project-name
+           :pre " { " :post " } ")
           ((lambda () "-"))
           (feebleline-file-modified-star :pre "" :face font-lock-constant-face :post " ")
           (buffer-name :pre "" :face font-lock-keyword-face :post " ")
           ;;-- Right
-          ((lambda () buffer-file-coding-system) :pre "[" :post "" :align right)
+          (jcs--feebleline--coding-system :pre "[" :post "" :align right)
           (show-eol-get-eol-mark-by-system :pre " : " :post "] " :align right)
-          ((lambda ()
-             (format "%s : %s" (jcs-buffer-spaces-to-tabs) (jcs-get-tab-width-by-mode))) :pre "[" :post "] " :align right)
+          (jcs--feebleline--spc/tab :pre "[" :post "] " :align right)
           (feebleline-line-number :pre "[" :fmt "%s" :post "" :align right)
           (feebleline-column-number :pre " : " :fmt "%s" :post "] " :align right)
-          ((lambda () (format-time-string "[%Y-%m-%d %H:%M:%S]")) :align right)
+          (jcs--feebleline--time :align right)
           ))
 
   (defun jcs-advice-feebleline-mode-after (&rest _)
