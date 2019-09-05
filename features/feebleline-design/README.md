@@ -11,7 +11,7 @@ package `feebline`. The format is describe as below.
 ### On Left
 
 ```
-[major-mode] { project-name } - buffer-name
+buffer-read-only [major-mode] { project-name } - buffer-name
 ```
 
 ### On Right
