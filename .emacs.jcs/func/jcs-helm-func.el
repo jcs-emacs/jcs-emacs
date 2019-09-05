@@ -90,21 +90,40 @@
 ;;----------------------------------------------------------------------------
 ;; Adjust Scroll after selecting
 
+(defun jcs--helm-adjust-scroll-window ()
+  "Auto adjust the scrolling window to fit bottom."
+  (when (helm--alive-p)
+    (save-selected-window
+      (jcs-jump-shown-to-buffer helm-buffer)
+      (let* ((cur-line (line-number-at-pos))
+             (last-line (line-number-at-pos (point-max)))
+             (is-last-selection (= cur-line (1- last-line))))
+        (if is-last-selection
+            (jcs-recenter-top-bottom 'bottom)
+          (let* ((first-vis-line (jcs-first-visible-line-in-window))
+                 (last-vis-line (jcs-last-visible-line-in-window))
+                 (win-lh (jcs--helm-find-window-line-height))
+                 (lines-to-scroll (- win-lh (- last-vis-line first-vis-line))))
+            (when (and (jcs-is-positive lines-to-scroll)
+                       (> last-line win-lh)  ; Ensure no `auto-resize' occured.
+                       (not (= cur-line first-vis-line)))
+              (ignore-errors (scroll-down-line lines-to-scroll)))))))))
+
+(defvar jcs--helm-adjust-scroll-window-timer nil
+  "Auto adjust scroll window timer.")
+
+(defvar jcs--helm-adjust-scroll-window-time 0.05
+  "Auto adjust scroll window time.")
+
 (defun jcs--helm-move-selection-after-hook ()
   "Move selection hook in `helm' buffer."
-  (let* ((cur-line (line-number-at-pos))
-         (last-line (line-number-at-pos (point-max)))
-         (is-last-selection (= cur-line (1- last-line))))
-    (if is-last-selection
-        (jcs-recenter-top-bottom 'bottom)
-      (let* ((first-vis-line (jcs-first-visible-line-in-window))
-             (last-vis-line (jcs-last-visible-line-in-window))
-             (win-lh (jcs--helm-find-window-line-height))
-             (lines-to-scroll (- win-lh (- last-vis-line first-vis-line))))
-        (when (and (jcs-is-positive lines-to-scroll)
-                   (> last-line win-lh)  ; Ensure no `auto-resize' occured.
-                   (not (= cur-line first-vis-line)))
-          (ignore-errors (scroll-down-line lines-to-scroll))))))
+  ;;(jcs--helm-adjust-scroll-window)
+  (when (timerp jcs--helm-adjust-scroll-window-timer)
+    (cancel-timer jcs--helm-adjust-scroll-window-timer))
+  (setq jcs--helm-adjust-scroll-window-timer
+        (run-with-idle-timer jcs--helm-adjust-scroll-window-time
+                             nil
+                             'jcs--helm-adjust-scroll-window))
   )
 (add-hook 'helm-move-selection-after-hook 'jcs--helm-move-selection-after-hook)
 
