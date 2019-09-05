@@ -222,7 +222,7 @@
         '(;;-- Left
           (jcs--feebleline--symbol-read-only
            :pre " "
-           :face '((t (:foreground "yellow"))))
+           :face jcs--feebleline-read-only)
           (jcs-current-major-mode :pre "[" :post "]" :face font-lock-constant-face)
           (jcs--feebleline--project-name
            :pre " { " :post " } ")
