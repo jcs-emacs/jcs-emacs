@@ -304,24 +304,7 @@
         (define-key map (kbd "C-c N") 'helm-color-run-kill-name)
         (define-key map (kbd "M-RET") 'helm-color-run-insert-rgb)
         (define-key map (kbd "C-c R") 'helm-color-run-kill-rgb)
-        map)))
-
-  (defun jcs--helm-move-selection-after-hook ()
-    "Move selection hook in `helm' buffer."
-    (let* ((cur-line (line-number-at-pos))
-           (last-line (line-number-at-pos (point-max)))
-           (is-last-selection (= cur-line (1- last-line))))
-      (if is-last-selection
-          (jcs-recenter-top-bottom 'bottom)
-        (let* ((first-vis-line (jcs-first-visible-line-in-window))
-               (last-vis-line (jcs-last-visible-line-in-window))
-               (win-lh (jcs--helm-find-window-line-height))
-               (lines-to-scroll (- win-lh (- last-vis-line first-vis-line))))
-          (when (and (jcs-is-positive lines-to-scroll)
-                     (> last-line win-lh)  ; Ensure no `auto-resize' occured.
-                     (not (= cur-line first-vis-line)))
-            (scroll-down-line lines-to-scroll))))))
-  (add-hook 'helm-move-selection-after-hook 'jcs--helm-move-selection-after-hook))
+        map))))
 
 (use-package helm-ag
   :defer t

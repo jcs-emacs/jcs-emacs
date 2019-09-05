@@ -3,6 +3,22 @@
 ;;; Code:
 
 
+;;----------------------------------------------------------------------------
+;; Util
+
+(defun jcs--helm-find-window-line-height ()
+  "How many lines in the current active helm window."
+  (save-excursion
+    (goto-char (point-max))
+    (let ((vis-bot-line -1))
+      (save-window-excursion
+        (jcs-recenter-top-bottom 'bottom)
+        (setq vis-bot-line (jcs-first-visible-line-in-window)))
+      (- (line-number-at-pos) vis-bot-line))))
+
+;;----------------------------------------------------------------------------
+;; Core
+
 (defun jcs-helm-before-initialize-hook ()
   "Do the helm `M-x' and change theme"
   ;; NOTE: Change theme so we know which mode we are in visually.
@@ -72,22 +88,25 @@
       (select-window starting-window))))
 
 ;;----------------------------------------------------------------------------
-;; Util
+;; Adjust Scroll after selecting
 
-(defvar jcs--helm-window-line-height -1
-  "Helm window line height cache.")
-
-(defun jcs--helm-find-window-line-height ()
-  "How many lines in the current active helm window."
-  (when (<= jcs--helm-window-line-height 0)
-    (save-excursion
-      (goto-char (point-max))
-      (let ((vis-bot-line -1))
-        (save-window-excursion
-          (jcs-recenter-top-bottom 'bottom)
-          (setq vis-bot-line (jcs-first-visible-line-in-window)))
-        (setq jcs--helm-window-line-height (- (line-number-at-pos) vis-bot-line)))))
-  jcs--helm-window-line-height)
+(defun jcs--helm-move-selection-after-hook ()
+  "Move selection hook in `helm' buffer."
+  (let* ((cur-line (line-number-at-pos))
+         (last-line (line-number-at-pos (point-max)))
+         (is-last-selection (= cur-line (1- last-line))))
+    (if is-last-selection
+        (jcs-recenter-top-bottom 'bottom)
+      (let* ((first-vis-line (jcs-first-visible-line-in-window))
+             (last-vis-line (jcs-last-visible-line-in-window))
+             (win-lh (jcs--helm-find-window-line-height))
+             (lines-to-scroll (- win-lh (- last-vis-line first-vis-line))))
+        (when (and (jcs-is-positive lines-to-scroll)
+                   (> last-line win-lh)  ; Ensure no `auto-resize' occured.
+                   (not (= cur-line first-vis-line)))
+          (ignore-errors (scroll-down-line lines-to-scroll))))))
+  )
+(add-hook 'helm-move-selection-after-hook 'jcs--helm-move-selection-after-hook)
 
 
 (provide 'jcs-helm-func)
