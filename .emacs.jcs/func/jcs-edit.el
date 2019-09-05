@@ -322,7 +322,7 @@ the space."
 
         ;; Do kill the whole line!
         (move-beginning-of-line 1)
-        (kill-line 1)
+        (ignore-errors (kill-line 1))
 
         ;; Goto the same column as before we do the killing
         ;; the whole line operations above.
