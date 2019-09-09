@@ -18,7 +18,7 @@
 
 (defun jcs--feebleline--symbol-read-only ()
   "Feebleline read-only symbol."
-  (propertize " ✍" 'face jcs--feebleline-read-only--enabled)
+  (propertize " ≡" 'face jcs--feebleline-read-only--enabled)
   )
 
 (defun jcs--feebleline--project-name ()
