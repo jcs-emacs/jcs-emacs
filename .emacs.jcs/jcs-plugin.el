@@ -294,16 +294,10 @@
                  (window-height . 0.4)))
 
   (with-eval-after-load 'helm-color
-    ;; `helm-colors'
-    ;; NOTE: make key insert 'HEX' and 'Name'
-    (defvar helm-color-map
-      (let ((map (make-sparse-keymap)))
-        (set-keymap-parent map helm-map)
-        (define-key map (kbd "RET") 'helm-color-run-insert-name)
-        (define-key map (kbd "C-c N") 'helm-color-run-kill-name)
-        (define-key map (kbd "M-RET") 'helm-color-run-insert-rgb)
-        (define-key map (kbd "C-c R") 'helm-color-run-kill-rgb)
-        map))))
+    (define-key helm-color-map (kbd "<return>") #'helm-color-run-insert-name)
+    (define-key helm-color-map (kbd "C-k N") #'helm-color-run-kill-name)
+    (define-key helm-color-map (kbd "C-<return>") #'helm-color-run-insert-rgb)
+    (define-key helm-color-map (kbd "C-k R") #'helm-color-run-kill-rgb)))
 
 (use-package helm-ag
   :defer t
