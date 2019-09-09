@@ -154,7 +154,6 @@
   (diminish 'auto-fill-mode)
   (with-eval-after-load 'auto-highlight-symbol (diminish 'auto-highlight-symbol-mode))
   (with-eval-after-load 'auto-rename-tag (diminish 'auto-rename-tag-mode))
-  (with-eval-after-load 'beacon (diminish 'beacon-mode))
   (with-eval-after-load 'company (diminish 'company-mode))
   (with-eval-after-load 'company-fuzzy (diminish 'company-fuzzy-mode))
   (diminish 'eldoc-mode)
@@ -220,8 +219,7 @@
 
   (setq feebleline-msg-functions
         '(;;-- Left
-          (jcs--feebleline--symbol-read-only
-           :face jcs--feebleline-read-only--disabled)
+          (jcs--feebleline--symbol-read-only)
           (jcs-current-major-mode :pre "[" :post "]" :face font-lock-constant-face)
           (jcs--feebleline--project-name :pre " { " :post " } ")
           ((lambda () "-"))
@@ -235,6 +233,18 @@
           (feebleline-column-number :pre " : " :post "] " :align right)
           (jcs--feebleline--time :align right)
           ))
+
+  (cl-defun jcs--feebleline--insert-func (func &key (face 'default) pre (post " ") (fmt "%s") (align 'left))
+    "Overwrite `feebleline--insert-func'."
+    (list align
+          (let* ((msg (apply func nil))
+                 (string (concat pre (format fmt msg) post)))
+            (if msg
+                (if (equal face 'default)
+                    string
+                  (propertize string 'face face))
+              ""))))
+  (advice-add 'feebleline--insert-func :override #'jcs--feebleline--insert-func)
 
   (defun jcs-advice-feebleline-mode-after (&rest _)
     "Advice after execute `feebleline-mode'."
