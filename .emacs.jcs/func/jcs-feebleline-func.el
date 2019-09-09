@@ -4,7 +4,7 @@
 
 
 (defface jcs--feebleline-read-only
-  '((t (:foreground "yellow")))
+  '((t (:foreground "#FFE13D")))
   "Ready only symbol."
   :group 'jcs)
 (defvar jcs--feebleline-read-only 'jcs--feebleline-read-only)
@@ -12,7 +12,7 @@
 
 (defun jcs--feebleline--symbol-read-only ()
   "Feebleline read-only symbol."
-  (if buffer-read-only "§" ""))
+  (if buffer-read-only "¢" "δ"))
 
 (defun jcs--feebleline--project-name ()
   "Feebleline project name."
