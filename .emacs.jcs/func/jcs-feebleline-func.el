@@ -3,16 +3,23 @@
 ;;; Code:
 
 
-(defface jcs--feebleline-read-only
-  '((t (:foreground "#FFE13D")))
-  "Ready only symbol."
+(defface jcs--feebleline-read-only--enabled
+  '((t (:foreground "#FF0000")))
+  "Ready only symbol face when active.."
   :group 'jcs)
-(defvar jcs--feebleline-read-only 'jcs--feebleline-read-only)
+(defvar jcs--feebleline-read-only--enabled 'jcs--feebleline-read-only--enabled)
+
+(defface jcs--feebleline-read-only--disabled
+  '((t (:foreground "#00FF00")))
+  "Ready only symbol face when deactive."
+  :group 'jcs)
+(defvar jcs--feebleline-read-only--disabled 'jcs--feebleline-read-only--disabled)
 
 
 (defun jcs--feebleline--symbol-read-only ()
   "Feebleline read-only symbol."
-  (if buffer-read-only "¢" "δ"))
+  (propertize " ✍" 'face jcs--feebleline-read-only--enabled)
+  )
 
 (defun jcs--feebleline--project-name ()
   "Feebleline project name."

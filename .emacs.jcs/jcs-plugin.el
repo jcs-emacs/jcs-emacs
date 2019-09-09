@@ -221,20 +221,18 @@
   (setq feebleline-msg-functions
         '(;;-- Left
           (jcs--feebleline--symbol-read-only
-           :pre " "
-           :face jcs--feebleline-read-only)
+           :face jcs--feebleline-read-only--disabled)
           (jcs-current-major-mode :pre "[" :post "]" :face font-lock-constant-face)
-          (jcs--feebleline--project-name
-           :pre " { " :post " } ")
+          (jcs--feebleline--project-name :pre " { " :post " } ")
           ((lambda () "-"))
-          (feebleline-file-modified-star :pre "" :face font-lock-constant-face :post " ")
-          (buffer-name :pre "" :face font-lock-keyword-face :post " ")
+          (feebleline-file-modified-star :post " " :face font-lock-constant-face)
+          (buffer-name :post " " :face font-lock-keyword-face)
           ;;-- Right
           (jcs--feebleline--coding-system :pre "[" :post "" :align right)
           (show-eol-get-eol-mark-by-system :pre " : " :post "] " :align right)
           (jcs--feebleline--spc/tab :pre "[" :post "] " :align right)
-          (feebleline-line-number :pre "[" :fmt "%s" :post "" :align right)
-          (feebleline-column-number :pre " : " :fmt "%s" :post "] " :align right)
+          (feebleline-line-number :pre "[" :align right)
+          (feebleline-column-number :pre " : " :post "] " :align right)
           (jcs--feebleline--time :align right)
           ))
 
