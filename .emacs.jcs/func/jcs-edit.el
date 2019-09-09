@@ -313,7 +313,7 @@ the space."
   "Deletes a line, but does not put it in the `kill-ring'."
   (interactive)
   ;; SOURCE: http://ergoemacs.org/emacs/emacs_kill-ring.html
-  (let ((kill-ring))
+  (let (kill-ring)
     (if (use-region-p)
         (delete-region (region-beginning) (region-end))
       (let (;; Record down the column before
@@ -321,8 +321,7 @@ the space."
             (before-column-num (current-column)))
 
         ;; Do kill the whole line!
-        (move-beginning-of-line 1)
-        (ignore-errors (kill-line 1))
+        (delete-region (line-beginning-position) (1+ (line-end-position)))
 
         ;; Goto the same column as before we do the killing
         ;; the whole line operations above.
@@ -340,11 +339,7 @@ the space."
   "Delete text between the beginning of the line to the cursor position.
 This command does not push text to `kill-ring'."
   (interactive)
-  (let (p1 p2)
-    (setq p1 (point))
-    (beginning-of-line 1)
-    (setq p2 (point))
-    (delete-region p1 p2)))
+  (delete-region (line-beginning-position) (point)))
 
 ;;;###autoload
 (defun jcs-delete-word (arg)
