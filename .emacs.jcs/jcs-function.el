@@ -120,17 +120,6 @@
   (jcs-wgrep-change-to-wgrep-mode))
 
 ;;----------------------------------------------
-;; Beacon
-
-;;;###autoload
-(defun jcs-reset-beacon-color-by-theme ()
-  "Reset beacon color base on the theme color."
-  (interactive)
-  (if (jcs-is-light-color (face-background 'default))
-      (setq beacon-color "yellow")
-    (setq beacon-color 0.5)))
-
-;;----------------------------------------------
 ;; Buffer Menu
 
 (defconst jcs-buffer-menu-search-title "Search: "

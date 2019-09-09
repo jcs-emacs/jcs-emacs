@@ -51,7 +51,6 @@
   (progn
     (require 'alt-codes)
     (require 'auto-highlight-symbol)
-    (require 'beacon)
     (require 'company)
     (require 'dashboard)
     (require 'diminish)
@@ -78,8 +77,6 @@
     (global-alt-codes-mode 1)
     ;;-------------------------------- `auto-highlight-symbol'
     (global-auto-highlight-symbol-mode t)
-    ;;-------------------------------- `beacon'
-    (beacon-mode 1)
     ;;-------------------------------- `delete-selection'
     (delete-selection-mode 1)
     ;;-------------------------------- `dimmer'

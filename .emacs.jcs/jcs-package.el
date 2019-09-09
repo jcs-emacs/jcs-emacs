@@ -36,7 +36,6 @@
     apache-mode
     auto-highlight-symbol
     auto-rename-tag
-    beacon
     basic-mode
     buffer-move
     centaur-tabs
