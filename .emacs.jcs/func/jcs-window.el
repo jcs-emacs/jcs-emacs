@@ -141,6 +141,14 @@
 (defun jcs-ace-window-9 () "Select window 9." (interactive) (jcs-ace-select-window 8))
 
 ;;-----------------------------------------------------------
+;; Advices
+
+(defun jcs--select-window--advice-after (&rest _)
+  "Advice run after execute `select-window' function."
+  (jcs-buffer-menu-safe-refresh))
+(advice-add 'select-window :after #'jcs--select-window--advice-after)
+
+;;-----------------------------------------------------------
 ;; Deleting
 
 ;;;###autoload
