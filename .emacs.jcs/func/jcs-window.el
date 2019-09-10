@@ -143,9 +143,15 @@
 ;;-----------------------------------------------------------
 ;; Advices
 
+(defvar jcs--window-last-command-record nil
+  "Record of the `last-command'.")
+
 (defun jcs--select-window--advice-after (&rest _)
   "Advice run after execute `select-window' function."
-  (jcs-buffer-menu-safe-refresh))
+  (unless (eq jcs--window-last-command-record last-command)
+    (setq jcs--window-last-command-record last-command)
+    (jcs-buffer-menu-safe-refresh))
+  )
 (advice-add 'select-window :after #'jcs--select-window--advice-after)
 
 ;;-----------------------------------------------------------
