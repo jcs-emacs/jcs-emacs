@@ -154,6 +154,12 @@
   )
 (advice-add 'select-window :after #'jcs--select-window--advice-after)
 
+(defun jcs--delete-window--advice-after (&rest _)
+  "Advice run after execute `delete-window' function."
+  (jcs-buffer-menu-safe-refresh)
+  )
+(advice-add 'delete-window :after #'jcs--delete-window--advice-after)
+
 ;;-----------------------------------------------------------
 ;; Deleting
 
