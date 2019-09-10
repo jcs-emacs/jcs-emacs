@@ -90,38 +90,39 @@ From scale 0 to 100.")
 (defun jcs--buffer-menu-filter-list ()
   "Do filtering the buffer list."
   (require 'flx)
-  (let ((jcs-buffer-menu-done-filtering nil)
-        (scoring-table (make-hash-table))
-        (scoring-keys '()))
-    (while (< (line-number-at-pos) (line-number-at-pos (point-max)))
-      (let* ((id (tabulated-list-get-id))
-             (entry (tabulated-list-get-entry))
-             (buf-name (buffer-name id))
-             (scoring (flx-score buf-name jcs-buffer-menu-pattern))
-             ;; Ensure score is not `nil'.
-             (score (if scoring (nth 0 scoring) 0)))
-        ;; For first time access score with hash-table, setup empty array.
-        (unless (gethash score scoring-table) (setf (gethash score scoring-table) '()))
-        ;; Push the candidate with the target score to hash-table.
-        (push (cons id entry) (gethash score scoring-table)))
-      (forward-line 1))
-    ;; Get all the keys into a list.
-    (maphash (lambda (score-key _cand-lst) (push score-key scoring-keys)) scoring-table)
-    (setq scoring-keys (sort scoring-keys #'>))  ; Sort keys in order.
-    (jcs--buffer-menu-clean)  ; Clean it.
-    (dolist (key scoring-keys)
-      (when (< jcs-buffer-menu-score-standard key)
-        (let ((ens (sort (gethash key scoring-table)
-                         (lambda (en1 en2)
-                           (let ((en1-str (buffer-name (car en1)))
-                                 (en2-str (buffer-name (car en2))))
-                             (string-lessp en1-str en2-str))))))
-          (dolist (en ens)
-            (tabulated-list-print-entry (car en) (cdr en))))))
-    (jcs-goto-line 2))
-  ;; Once it is done filtering, we redo return action if needed.
-  (when jcs-buffer-menu-return-delay
-    (jcs-buffer-menu-return)))
+  (with-current-buffer "*Buffer List*"
+    (let ((jcs-buffer-menu-done-filtering nil)
+          (scoring-table (make-hash-table))
+          (scoring-keys '()))
+      (while (< (line-number-at-pos) (line-number-at-pos (point-max)))
+        (let* ((id (tabulated-list-get-id))
+               (entry (tabulated-list-get-entry))
+               (buf-name (buffer-name id))
+               (scoring (flx-score buf-name jcs-buffer-menu-pattern))
+               ;; Ensure score is not `nil'.
+               (score (if scoring (nth 0 scoring) 0)))
+          ;; For first time access score with hash-table, setup empty array.
+          (unless (gethash score scoring-table) (setf (gethash score scoring-table) '()))
+          ;; Push the candidate with the target score to hash-table.
+          (push (cons id entry) (gethash score scoring-table)))
+        (forward-line 1))
+      ;; Get all the keys into a list.
+      (maphash (lambda (score-key _cand-lst) (push score-key scoring-keys)) scoring-table)
+      (setq scoring-keys (sort scoring-keys #'>))  ; Sort keys in order.
+      (jcs--buffer-menu-clean)  ; Clean it.
+      (dolist (key scoring-keys)
+        (when (< jcs-buffer-menu-score-standard key)
+          (let ((ens (sort (gethash key scoring-table)
+                           (lambda (en1 en2)
+                             (let ((en1-str (buffer-name (car en1)))
+                                   (en2-str (buffer-name (car en2))))
+                               (string-lessp en1-str en2-str))))))
+            (dolist (en ens)
+              (tabulated-list-print-entry (car en) (cdr en))))))
+      (jcs-goto-line 2))
+    ;; Once it is done filtering, we redo return action if needed.
+    (when jcs-buffer-menu-return-delay
+      (jcs-buffer-menu-return))))
 
 (defun jcs--buffer-menu-trigger-filter (&optional print-header)
   "Trigger the filtering operation, with PRINT-HEADER."
