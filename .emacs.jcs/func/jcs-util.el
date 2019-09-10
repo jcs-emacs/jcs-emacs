@@ -127,6 +127,15 @@ HEX-CODE : Color HEX code to check."
     is-event))
 
 ;;----------------------------------------------------------------------------
+;; Function
+
+(defun jcs-mute-apply (fnc &rest args)
+  "Execute function without message."
+  (let ((inhibit-message t)
+        (message-log-max nil))
+    (apply fnc args)))
+
+;;----------------------------------------------------------------------------
 ;; Time
 
 (defun jcs-get-timestamp-ver1 ()
@@ -281,15 +290,14 @@ Generally you will have to check it four times."
 (defun jcs-delete-space-infront-of-line ()
   "Delete tab/spaces before the first character in line."
   (interactive)
-  (let ((message-log-max nil)
-        (inhibit-message t))
-    (save-excursion
-      (ignore-errors
-        (jcs-goto-first-char-in-line)
-        (push-mark-command nil)
-        (beginning-of-line)
-        (jcs-delete-region)
-        (deactivate-mark)))))
+  (jcs-mute-apply
+   (lambda () (save-excursion
+                (ignore-errors
+                  (jcs-goto-first-char-in-line)
+                  (push-mark-command nil)
+                  (beginning-of-line)
+                  (jcs-delete-region)
+                  (deactivate-mark))))))
 
 ;;;###autoload
 (defun jcs-insert-spaces-by-tab-width ()
@@ -977,10 +985,8 @@ Return nil, there is no region selected and mark is not active."
 (defun jcs-font-lock-fontify-buffer ()
   "Refresh the syntax hightlight for whole buffer."
   (interactive)
-  (let ((message-log-max nil)
-        (inhibit-message t))
-    ;; Refresh the syntax hightlight.
-    (call-interactively #'font-lock-fontify-buffer)))
+  ;; Refresh the syntax hightlight.
+  (jcs-mute-apply (lambda () (call-interactively #'font-lock-fontify-buffer))))
 
 ;;----------------------------------------------------------------------------
 ;; List
