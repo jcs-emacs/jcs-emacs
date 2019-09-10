@@ -18,9 +18,10 @@
 
 (defun jcs--feebleline--symbol-read-only ()
   "Feebleline read-only symbol."
-  (propertize " δ" 'face (if buffer-read-only
-                             jcs--feebleline-read-only--enabled
-                           jcs--feebleline-read-only--disabled)))
+  (propertize " ¢"
+              'face (if buffer-read-only
+                        jcs--feebleline-read-only--enabled
+                      jcs--feebleline-read-only--disabled)))
 
 (defun jcs--feebleline--project-name ()
   "Feebleline project name."
