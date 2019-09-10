@@ -128,22 +128,29 @@
 (defvar jcs-buffer-menu-return-delay nil
   "Record if hit return when display not ready; once it is ready we redo the action.")
 
-(defun jcs-advice-buffer-menu-before (&rest _)
+(defun jcs--buffer-menu--advice-before (&rest _)
   "Advice before execute `buffer-menu' command."
   (setq jcs-buffer-menu-return-delay nil)
   (setq tabulated-list--header-string jcs-buffer-menu-search-title))
-(advice-add 'buffer-menu :before #'jcs-advice-buffer-menu-before)
+(advice-add 'buffer-menu :before #'jcs--buffer-menu--advice-before)
 
 ;;;###autoload
 (defun jcs-buffer-menu-refresh-buffer ()
   "Update buffer menu buffer."
   (interactive)
-  (unless (string= (jcs-buffer-name-or-buffer-file-name) "*Buffer List*")
-    (save-window-excursion
-      (let ((inhibit-message t)
-            (message-log-max nil))
-        (buffer-menu))
-      (bury-buffer))))
+  (save-window-excursion
+    (let ((was-fake-header-printed nil)
+          (get-title ""))
+      (when (get-buffer "*Buffer List*")
+        (with-current-buffer "*Buffer List*"
+          (save-excursion
+            (goto-char (point-min))
+            (setq get-title (thing-at-point 'line)))
+          (setq was-fake-header-printed (string-match-p jcs-buffer-menu-search-title get-title))))
+      (let (tabulated-list--header-string) (jcs-mute-apply #'buffer-menu))
+      (when jcs-buffer-menu-switch-buffer-refreshing
+        (jcs--buffer-menu-trigger-filter was-fake-header-printed)))
+    (bury-buffer)))
 
 
 (defvar jcs-buffer-menu-switch-buffer-refreshing nil
@@ -152,9 +159,8 @@
 (defun jcs-buffer-menu-safe-refresh ()
   "Safely refresh `buffer menu`'s buffer."
   (unless jcs-buffer-menu-switch-buffer-refreshing
-    (setq jcs-buffer-menu-switch-buffer-refreshing t)
-    (jcs-buffer-menu-refresh-buffer)
-    (setq jcs-buffer-menu-switch-buffer-refreshing nil)))
+    (let ((jcs-buffer-menu-switch-buffer-refreshing t))
+      (jcs-buffer-menu-refresh-buffer))))
 
 ;;----------------------------------------------
 ;; Calculator
@@ -220,29 +226,29 @@
 (defun jcs-dashboard-refresh-buffer ()
   "Update dashboard buffer by killing it and start a new one."
   (interactive)
-  (let ((db-id-lst (jcs-get-window-id-by-buffer-name dashboard-buffer-name))
-        (buf-lns '())
-        (buf-cls '())
-        (index 0)
-        (message-log-max nil)
-        (inhibit-message t))
-    (save-selected-window
-      (dolist (win-id db-id-lst)
-        (jcs-ace-select-window win-id)
-        (push (line-number-at-pos) buf-lns)
-        (push (current-column) buf-cls)))
-    (setq buf-lns (reverse buf-lns))
-    (setq buf-cls (reverse buf-cls))
-    (when (jcs-buffer-exists-p dashboard-buffer-name)
-      (kill-buffer dashboard-buffer-name))
-    (dashboard-insert-startupify-lists)
-    (save-selected-window
-      (dolist (win-id db-id-lst)
-        (jcs-ace-select-window win-id)
-        (switch-to-buffer dashboard-buffer-name)
-        (jcs-goto-line (nth index buf-lns))
-        (move-to-column (nth index buf-cls))
-        (setq index (1+ index))))))
+  (jcs-mute-apply
+   (lambda ()
+     (let ((db-id-lst (jcs-get-window-id-by-buffer-name dashboard-buffer-name))
+           (buf-lns '())
+           (buf-cls '())
+           (index 0))
+       (save-selected-window
+         (dolist (win-id db-id-lst)
+           (jcs-ace-select-window win-id)
+           (push (line-number-at-pos) buf-lns)
+           (push (current-column) buf-cls)))
+       (setq buf-lns (reverse buf-lns))
+       (setq buf-cls (reverse buf-cls))
+       (when (jcs-buffer-exists-p dashboard-buffer-name)
+         (kill-buffer dashboard-buffer-name))
+       (dashboard-insert-startupify-lists)
+       (save-selected-window
+         (dolist (win-id db-id-lst)
+           (jcs-ace-select-window win-id)
+           (switch-to-buffer dashboard-buffer-name)
+           (jcs-goto-line (nth index buf-lns))
+           (move-to-column (nth index buf-cls))
+           (setq index (1+ index))))))))
 
 ;;;###autoload
 (defun jcs-dashboard-maybe-kill-this-buffer ()

@@ -356,9 +356,7 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
 
 (defun jcs-prog-mode-hook ()
   "Programming language mode hook."
-  (let ((inhibit-message t)
-        (message-log-max nil))
-    (jcs-continue-with-tab-width-record))
+  (jcs-mute-apply #'jcs-continue-with-tab-width-record)
   )
 (add-hook 'prog-mode-hook 'jcs-prog-mode-hook)
 
