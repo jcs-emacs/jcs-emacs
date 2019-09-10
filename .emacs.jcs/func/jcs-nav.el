@@ -197,17 +197,13 @@ this version instead."
 (defun jcs-beginning-of-buffer ()
   "Goto the beginning of buffer."
   (interactive)
-  (let ((inhibit-message t)
-        (message-log-max nil))
-    (beginning-of-buffer)))
+  (jcs-mute-apply #'beginning-of-buffer))
 
 ;;;###autoload
 (defun jcs-end-of-buffer ()
   "Goto the end of buffer."
   (interactive)
-  (let ((inhibit-message t)
-        (message-log-max nil))
-    (end-of-buffer)))
+  (jcs-mute-apply #'end-of-buffer))
 
 ;;----------------------------------------------
 ;; Navigating Blank Line

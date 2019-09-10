@@ -89,40 +89,57 @@ From scale 0 to 100.")
 
 (defun jcs--buffer-menu-filter-list ()
   "Do filtering the buffer list."
+  (require 'flx)
+  (let ((jcs-buffer-menu-done-filtering nil)
+        (scoring-table (make-hash-table))
+        (scoring-keys '()))
+    (while (< (line-number-at-pos) (line-number-at-pos (point-max)))
+      (let* ((id (tabulated-list-get-id))
+             (entry (tabulated-list-get-entry))
+             (buf-name (buffer-name id))
+             (scoring (flx-score buf-name jcs-buffer-menu-pattern))
+             ;; Ensure score is not `nil'.
+             (score (if scoring (nth 0 scoring) 0)))
+        ;; For first time access score with hash-table, setup empty array.
+        (unless (gethash score scoring-table) (setf (gethash score scoring-table) '()))
+        ;; Push the candidate with the target score to hash-table.
+        (push (cons id entry) (gethash score scoring-table)))
+      (forward-line 1))
+    ;; Get all the keys into a list.
+    (maphash (lambda (score-key _cand-lst) (push score-key scoring-keys)) scoring-table)
+    (setq scoring-keys (sort scoring-keys #'>))  ; Sort keys in order.
+    (jcs--buffer-menu-clean)  ; Clean it.
+    (dolist (key scoring-keys)
+      (when (< jcs-buffer-menu-score-standard key)
+        (let ((ens (sort (gethash key scoring-table)
+                         (lambda (en1 en2)
+                           (let ((en1-str (buffer-name (car en1)))
+                                 (en2-str (buffer-name (car en2))))
+                             (string-lessp en1-str en2-str))))))
+          (dolist (en ens)
+            (tabulated-list-print-entry (car en) (cdr en))))))
+    (jcs-goto-line 2))
+  ;; Once it is done filtering, we redo return action if needed.
+  (when jcs-buffer-menu-return-delay
+    (jcs-buffer-menu-return)))
+
+(defun jcs--buffer-menu-trigger-filter (&optional print-header)
+  "Trigger the filtering operation, with PRINT-HEADER."
+  (tabulated-list-revert)
+  ;; NOTE: Ensure title exists.
+  (when (> (length jcs-buffer-menu-search-title) (length tabulated-list--header-string))
+    (setq tabulated-list--header-string jcs-buffer-menu-search-title))
+  (when print-header (tabulated-list-print-fake-header))
+  (setq jcs-buffer-menu-pattern (substring tabulated-list--header-string
+                                           (length jcs-buffer-menu-search-title)
+                                           (length tabulated-list--header-string)))
   (unless (string= jcs-buffer-menu-pattern "")
-    (require 'flx)
-    (let ((jcs-buffer-menu-done-filtering nil)
-          (scoring-table (make-hash-table))
-          (scoring-keys '()))
-      (while (< (line-number-at-pos) (line-number-at-pos (point-max)))
-        (let* ((id (tabulated-list-get-id))
-               (entry (tabulated-list-get-entry))
-               (buf-name (buffer-name id))
-               (scoring (flx-score buf-name jcs-buffer-menu-pattern))
-               ;; Ensure score is not `nil'.
-               (score (if scoring (nth 0 scoring) 0)))
-          ;; For first time access score with hash-table, setup empty array.
-          (unless (gethash score scoring-table) (setf (gethash score scoring-table) '()))
-          ;; Push the candidate with the target score to hash-table.
-          (push (cons id entry) (gethash score scoring-table)))
-        (forward-line 1))
-      ;; Get all the keys into a list.
-      (maphash (lambda (score-key _cand-lst) (push score-key scoring-keys)) scoring-table)
-      (setq scoring-keys (sort scoring-keys #'>))  ; Sort keys in order.
-      (jcs--buffer-menu-clean)  ; Clean it.
-      (dolist (key scoring-keys)
-        (when (< jcs-buffer-menu-score-standard key)
-          (let ((ens (sort (gethash key scoring-table)
-                           (lambda (en1 en2)
-                             (let ((en1-str (buffer-name (car en1)))
-                                   (en2-str (buffer-name (car en2))))
-                               (string-lessp en1-str en2-str))))))
-            (dolist (en ens)
-              (tabulated-list-print-entry (car en) (cdr en))))))
-      (jcs-goto-line 2))
-    ;; Once it is done filtering, we redo return action if needed.
-    (when jcs-buffer-menu-return-delay
-      (jcs-buffer-menu-return))))
+    (when (timerp jcs-buffer-menu-filter-timer)
+      (cancel-timer jcs-buffer-menu-filter-timer))
+    (setq jcs-buffer-menu-filter-timer
+          (run-with-idle-timer jcs-buffer-menu-filter-delay
+                               nil
+                               'jcs--buffer-menu-filter-list))))
 
 (defun jcs--buffer-menu-input (key-input &optional add-del-num)
   "Insert key KEY-INPUT for fake header for search bar.
@@ -133,20 +150,7 @@ ADD-DEL-NUM : Addition or deletion number."
             (concat tabulated-list--header-string key-input))
     (setq tabulated-list--header-string
           (substring tabulated-list--header-string 0 (1- (length tabulated-list--header-string)))))
-  ;; NOTE: Ensure title exists.
-  (when (> (length jcs-buffer-menu-search-title) (length tabulated-list--header-string))
-    (setq tabulated-list--header-string jcs-buffer-menu-search-title))
-  (tabulated-list-revert)
-  (tabulated-list-print-fake-header)
-  (setq jcs-buffer-menu-pattern (substring tabulated-list--header-string
-                                           (length jcs-buffer-menu-search-title)
-                                           (length tabulated-list--header-string)))
-  (when (timerp jcs-buffer-menu-filter-timer)
-    (cancel-timer jcs-buffer-menu-filter-timer))
-  (setq jcs-buffer-menu-filter-timer
-        (run-with-idle-timer jcs-buffer-menu-filter-delay
-                             nil
-                             'jcs--buffer-menu-filter-list)))
+  (jcs--buffer-menu-trigger-filter t))
 
 
 (provide 'jcs-buffer-menu)

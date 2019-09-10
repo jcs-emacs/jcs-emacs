@@ -809,9 +809,7 @@ will be killed."
     (jcs-delete-trailing-whitespace-except-current-line)
     (jcs-remove-trailing-lines-end-buffer)
     (jcs-untabify-buffer)
-    (let ((inhibit-message t)
-          (message-log-max nil))
-      (jcs-remove-control-M))
+    (jcs-mute-apply #'jcs-remove-control-M)
     (jcs-save-buffer)))
 
 ;;;###autoload
@@ -823,9 +821,7 @@ will be killed."
     (jcs-delete-trailing-whitespace-except-current-line)
     (jcs-remove-trailing-lines-end-buffer)
     (jcs-tabify-buffer)
-    (let ((inhibit-message t)
-          (message-log-max nil))
-      (jcs-remove-control-M))
+    (jcs-mute-apply #'jcs-remove-control-M)
     (jcs-save-buffer)))
 
 ;;;###autoload
