@@ -62,7 +62,11 @@ Sorted by (1) visit, (2) buffer, (3) size, (4) time, (5) mode, (6) file."
     (message "[Display not ready]")))
 
 
-(defvar jcs-buffer-menu-done-filtering nil
+(defvar jcs-buffer-menu-score-standard 0
+  "Standard score that minimum to reach, or else delete it.
+From scale 0 to 100.")
+
+(defvar jcs-buffer-menu-done-filtering t
   "Flag to check if done filtering.")
 
 (defvar jcs-buffer-menu-filter-timer nil
@@ -71,29 +75,54 @@ Sorted by (1) visit, (2) buffer, (3) size, (4) time, (5) mode, (6) file."
 (defvar jcs-buffer-menu-filter-delay 0.1
   "Filter delay time.")
 
+(defvar jcs-buffer-menu-pattern ""
+  "Search pattern.")
 
-(defun jcs--buffer-menu-sort ()
-  "Sort buffer menu."
 
-  )
+(defun jcs--buffer-menu-clean ()
+  "Clean all the menu list."
+  (goto-char (point-min))
+  (while (< (line-number-at-pos) (line-number-at-pos (point-max)))
+    (if (tabulated-list-get-id)
+        (tabulated-list-delete-entry)
+      (forward-line 1))))
 
 (defun jcs--buffer-menu-filter-list ()
   "Do filtering the buffer list."
-  (setq jcs-buffer-menu-done-filtering nil)
-  (while (< (line-number-at-pos) (line-number-at-pos (point-max)))
-    (let* ((buf-name (elt (tabulated-list-get-entry) 3))
-           (search-str (substring tabulated-list--header-string
-                                  (length jcs-buffer-menu-search-title)
-                                  (length tabulated-list--header-string))))
-      (if (and (stringp buf-name)
-               (string-match-p search-str buf-name))
-          (next-line)
-        (tabulated-list-delete-entry))))
-  (jcs-goto-line 2)
-  (setq jcs-buffer-menu-done-filtering t)
-  ;; Once it is done filtering, we redo return action if needed.
-  (when jcs-buffer-menu-return-delay
-    (jcs-buffer-menu-return)))
+  (unless (string= jcs-buffer-menu-pattern "")
+    (require 'flx)
+    (let ((jcs-buffer-menu-done-filtering nil)
+          (scoring-table (make-hash-table))
+          (scoring-keys '()))
+      (while (< (line-number-at-pos) (line-number-at-pos (point-max)))
+        (let* ((id (tabulated-list-get-id))
+               (entry (tabulated-list-get-entry))
+               (buf-name (buffer-name id))
+               (scoring (flx-score buf-name jcs-buffer-menu-pattern))
+               ;; Ensure score is not `nil'.
+               (score (if scoring (nth 0 scoring) 0)))
+          ;; For first time access score with hash-table, setup empty array.
+          (unless (gethash score scoring-table) (setf (gethash score scoring-table) '()))
+          ;; Push the candidate with the target score to hash-table.
+          (push (cons id entry) (gethash score scoring-table)))
+        (forward-line 1))
+      ;; Get all the keys into a list.
+      (maphash (lambda (score-key _cand-lst) (push score-key scoring-keys)) scoring-table)
+      (setq scoring-keys (sort scoring-keys #'>))  ; Sort keys in order.
+      (jcs--buffer-menu-clean)  ; Clean it.
+      (dolist (key scoring-keys)
+        (when (< jcs-buffer-menu-score-standard key)
+          (let ((ens (sort (gethash key scoring-table)
+                           (lambda (en1 en2)
+                             (let ((en1-str (buffer-name (car en1)))
+                                   (en2-str (buffer-name (car en2))))
+                               (string-lessp en1-str en2-str))))))
+            (dolist (en ens)
+              (tabulated-list-print-entry (car en) (cdr en))))))
+      (jcs-goto-line 2))
+    ;; Once it is done filtering, we redo return action if needed.
+    (when jcs-buffer-menu-return-delay
+      (jcs-buffer-menu-return))))
 
 (defun jcs--buffer-menu-input (key-input &optional add-del-num)
   "Insert key KEY-INPUT for fake header for search bar.
@@ -109,6 +138,9 @@ ADD-DEL-NUM : Addition or deletion number."
     (setq tabulated-list--header-string jcs-buffer-menu-search-title))
   (tabulated-list-revert)
   (tabulated-list-print-fake-header)
+  (setq jcs-buffer-menu-pattern (substring tabulated-list--header-string
+                                           (length jcs-buffer-menu-search-title)
+                                           (length tabulated-list--header-string)))
   (when (timerp jcs-buffer-menu-filter-timer)
     (cancel-timer jcs-buffer-menu-filter-timer))
   (setq jcs-buffer-menu-filter-timer
