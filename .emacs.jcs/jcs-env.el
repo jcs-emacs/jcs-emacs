@@ -132,7 +132,7 @@
 (prefer-coding-system 'utf-8)
 (defconst jcs-language-environment "UTF-8" "Default language environment.")
 (set-default-coding-systems 'utf-8)
-(set-terminal-coding-system 'utf-8)
+(unless (jcs-reload-emacs-reloading-p) (set-terminal-coding-system 'utf-8))
 (set-keyboard-coding-system 'utf-8)
 
 (setq locale-coding-system 'utf-8)
