@@ -71,7 +71,13 @@ Sorted by (1) visit, (2) buffer, (3) size, (4) time, (5) mode, (6) file."
 (defvar jcs-buffer-menu-filter-delay 0.1
   "Filter delay time.")
 
-(defun jcs-buffer-menu-filter-list ()
+
+(defun jcs--buffer-menu-sort ()
+  "Sort buffer menu."
+
+  )
+
+(defun jcs--buffer-menu-filter-list ()
   "Do filtering the buffer list."
   (setq jcs-buffer-menu-done-filtering nil)
   (while (< (line-number-at-pos) (line-number-at-pos (point-max)))
@@ -89,7 +95,7 @@ Sorted by (1) visit, (2) buffer, (3) size, (4) time, (5) mode, (6) file."
   (when jcs-buffer-menu-return-delay
     (jcs-buffer-menu-return)))
 
-(defun jcs-buffer-menu-input (key-input &optional add-del-num)
+(defun jcs--buffer-menu-input (key-input &optional add-del-num)
   "Insert key KEY-INPUT for fake header for search bar.
 ADD-DEL-NUM : Addition or deletion number."
   (unless add-del-num (setq add-del-num (length key-input)))
@@ -108,7 +114,7 @@ ADD-DEL-NUM : Addition or deletion number."
   (setq jcs-buffer-menu-filter-timer
         (run-with-idle-timer jcs-buffer-menu-filter-delay
                              nil
-                             'jcs-buffer-menu-filter-list)))
+                             'jcs--buffer-menu-filter-list)))
 
 
 (provide 'jcs-buffer-menu)

@@ -72,10 +72,10 @@
 
   (dolist (key-str jcs-key-list)
     (define-key Buffer-menu-mode-map key-str
-      (lambda () (interactive) (jcs-buffer-menu-input key-str))))
+      (lambda () (interactive) (jcs--buffer-menu-input key-str))))
 
   (define-key Buffer-menu-mode-map (kbd "<backspace>")
-    (lambda () (interactive) (jcs-buffer-menu-input "" -1))))
+    (lambda () (interactive) (jcs--buffer-menu-input "" -1))))
 
 ;;; Buffers
 (define-key global-map (kbd "C-a") #'jcs-mark-whole-buffer)
