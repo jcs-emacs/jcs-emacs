@@ -85,8 +85,8 @@ without having to get used to an new IDE.
 Here is the list of few important and recent changes to this 
 configuration.
 
-* [5.8.3] - Corrected key bindings `C-x` to cut and `C-c` to copy.
-* [5.8.1] - Integrating `lsp-mode` and `dap-mode` to this configuration.
+* [`5.8.3`] - Corrected key bindings `C-x` to cut and `C-c` to copy.
+* [`5.8.1`] - Integrating `lsp-mode` and `dap-mode` to this configuration.
 
 
 ## Startup Time
