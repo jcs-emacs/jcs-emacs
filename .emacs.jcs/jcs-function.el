@@ -138,19 +138,20 @@
 (defun jcs-buffer-menu-refresh-buffer ()
   "Update buffer menu buffer."
   (interactive)
-  (save-window-excursion
-    (let ((was-fake-header-printed nil)
-          (get-title ""))
-      (when (get-buffer "*Buffer List*")
-        (with-current-buffer "*Buffer List*"
-          (save-excursion
-            (goto-char (point-min))
-            (setq get-title (thing-at-point 'line)))
-          (setq was-fake-header-printed (string-match-p jcs-buffer-menu-search-title get-title))))
-      (let (tabulated-list--header-string) (jcs-mute-apply #'buffer-menu))
-      (when jcs-buffer-menu-switch-buffer-refreshing
-        (jcs--buffer-menu-trigger-filter was-fake-header-printed)))
-    (bury-buffer)))
+  (unless (string= (jcs-buffer-name-or-buffer-file-name) "*Buffer List*")
+    (save-window-excursion
+      (let ((was-fake-header-printed nil)
+            (get-title ""))
+        (when (get-buffer "*Buffer List*")
+          (with-current-buffer "*Buffer List*"
+            (save-excursion
+              (goto-char (point-min))
+              (setq get-title (thing-at-point 'line)))
+            (setq was-fake-header-printed (string-match-p jcs-buffer-menu-search-title get-title))))
+        (let (tabulated-list--header-string) (jcs-mute-apply #'buffer-menu))
+        (when jcs-buffer-menu-switch-buffer-refreshing
+          (jcs--buffer-menu-trigger-filter was-fake-header-printed)))
+      (bury-buffer))))
 
 
 (defvar jcs-buffer-menu-switch-buffer-refreshing nil
