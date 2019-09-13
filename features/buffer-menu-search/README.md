@@ -6,7 +6,7 @@
 </p>
 
 You are able to search the buffer you want in the `*Buffer List*` 
-buffer using `tabulated-list`'s faker header feature. This feature 
+buffer using `tabulated-list`'s fake header feature. This feature 
 is basically the same as using `helm` interface and call 
 `switch-to-buffer` related commands but with different interfaace. 
 I personally recommend this way so once I am in the `buffer-menu`; 
