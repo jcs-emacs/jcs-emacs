@@ -111,6 +111,7 @@
     project-abbrev
     projectile
     python-mode
+    quelpa
     rainbow-mode
     region-occurrences-highlighter
     restart-emacs
