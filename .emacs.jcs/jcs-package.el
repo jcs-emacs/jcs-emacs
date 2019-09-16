@@ -164,7 +164,7 @@
   (package-install pkg))
 
 (defun jcs-ensure-package-installed (packages &optional without-asking)
-  "Assure every package is installed, ask for installation if it’s not."
+  "Assure every PACKAGES is installed, ask WITHOUT-ASKING."
   (dolist (package packages)
     (unless (package-installed-p package)
       (if without-asking
@@ -234,30 +234,35 @@
 ;;----------------------------------
 
 (defconst jcs-package-manually-install-list
-  '(("reload-emacs" "alt-elpa/reload-emacs" "github")
+  '(("jayces-mode" "alt-elpa/jayces-mode" "github")
+    ("reload-emacs" "alt-elpa/reload-emacs" "github")
     ("shift-select" "alt-elpa/shift-select" "github"))
   "List of package that you want to manually installed.")
 
-;; (unless (jcs-reload-emacs-reloading-p)
-;;   (dolist (pkg-path jcs-package-manually-install-list)
-;;     (add-to-list 'load-path pkg-path)
-;;     (let ((al-files (directory-files pkg-path nil "-autoloads.el")))
-;;       (dolist (al-file al-files)
-;;         (require (intern (file-name-sans-extension al-file)))))))
 
+(defun jcs--form-recipe (name repo fetcher)
+  "Create the recipe, with NAME, REPO, FETCHER."
+  (let ((recipe '()))
+    (push (plist-put nil ':fetcher fetcher) recipe)
+    (push (plist-put nil ':repo repo) recipe)
+    (push (make-symbol name) recipe)
+    (require 'dash)
+    (-flatten recipe)))
 
-(unless (jcs-reload-emacs-reloading-p)
-  (let ((jcs-package-installing t))
-    (dolist (pkg-info jcs-package-manually-install-list)
-      (let* ((pkg-name (nth 0 pkg-info))
-             (pkg-url (nth 1 pkg-info))
-             (pkg-fetcher (nth 2 pkg-info))
-             (recipe (format "(%s :repo %s :fetcher %s)" pkg-name pkg-url pkg-fetcher)))
-        (when (and (not (package-installed-p (intern pkg-name)))
-                   (y-or-n-p (format "Package %s is missing. Install it? " pkg-name)))
-          (require 'quelpa)
-          (quelpa (make-symbol recipe))
-          )))))
+(defun jcs-ensure-manual-package-installed (packages &optional without-asking)
+  "Ensure all manually installed PACKAGES are installed, ask WITHOUT-ASKING."
+  (unless (jcs-reload-emacs-reloading-p)
+    (let ((jcs-package-installing t))
+      (dolist (pkg-info packages)
+        (let* ((pkg-name (nth 0 pkg-info))
+               (pkg-repo (nth 1 pkg-info))
+               (pkg-fetcher (nth 2 pkg-info))
+               (recipe (jcs--form-recipe pkg-name pkg-repo pkg-fetcher)))
+          (unless (package-installed-p (intern pkg-name))
+            (when (or without-asking
+                      (y-or-n-p (format "Package %s is missing. Install it? " pkg-name)))
+              (require 'quelpa)
+              (quelpa recipe))))))))
 
 
 (provide 'jcs-package)
