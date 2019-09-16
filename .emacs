@@ -75,6 +75,9 @@
 (jcs-ensure-package-installed jcs-package-install-list
                               (boundp 'jcs-build-test))
 
+(jcs-ensure-manual-package-installed jcs-package-manually-install-list
+                                     (boundp 'jcs-build-test))
+
 (defconst jcs-package-init-time (emacs-init-time)
   "Record down the package initialize time.")
 
@@ -82,14 +85,14 @@
 (require 'jcs-log)
 (require 'jcs-function)
 
-;;; Environment
+;; ;;; Environment
 (require 'jcs-file)
 (require 'jcs-dev)
 (require 'jcs-env)
 (require 'jcs-theme)
 (require 'jcs-plugin)
 
-;;; Customize
+;; ;;; Customize
 (require 'jcs-template)
 (require 'jcs-mode)
 
