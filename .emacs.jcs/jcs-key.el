@@ -84,7 +84,6 @@
 (define-key global-map [S-tab] #'indent-for-tab-command)
 (define-key global-map [backtab] #'indent-for-tab-command)
 (define-key global-map (kbd "C-y") #'indent-for-tab-command)
-(define-key global-map [C-tab] #'indent-region)
 
 ;;; Binary/Hex Editor
 (with-eval-after-load 'nhexl-mode
