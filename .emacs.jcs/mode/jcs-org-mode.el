@@ -4,7 +4,9 @@
 
 
 (require 'org)
+(require 'org-bullets)
 
+(add-hook 'org-mode-hook 'org-bullets-mode)
 
 ;; No fold when open `org' file.
 (setq org-startup-folded nil)
@@ -23,6 +25,8 @@
   (define-key org-mode-map (kbd "C-y") #'jcs-redo)
 
   (define-key org-mode-map (kbd "C-s") #'save-buffer)
+
+  (define-key org-mode-map (kbd "C-k") nil)
 
   ;; `org-nav'
   (define-key org-mode-map (kbd "S-<up>") #'jcs-org-table-up)
