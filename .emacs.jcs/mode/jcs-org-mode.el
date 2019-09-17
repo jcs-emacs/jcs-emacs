@@ -8,9 +8,6 @@
 
 (add-hook 'org-mode-hook 'org-bullets-mode)
 
-;; No fold when open `org' file.
-(setq org-startup-folded nil)
-
 
 (defun jcs-org-mode-hook ()
   "Org mode hook."
@@ -20,7 +17,7 @@
   ;; Normal
   (define-key org-mode-map (kbd "C-a") #'jcs-mark-whole-buffer)
   (define-key org-mode-map [tab] #'jcs-tab-key)
-  (define-key org-mode-map [C-tab] #'org-cycle)
+  (define-key org-mode-map [S-tab] #'org-cycle)
 
   (define-key org-mode-map (kbd "C-y") #'jcs-redo)
 
