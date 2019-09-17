@@ -86,6 +86,7 @@
     highlight-indent-guides
     hl-todo
     htmltagwrap
+    iedit
     indicators
     ini-mode
     isearch-project
