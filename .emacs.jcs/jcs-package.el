@@ -102,6 +102,7 @@
     multiple-cursors
     nasm-mode
     nhexl-mode
+    org-bullets
     organize-imports-java
     origami
     package-build
