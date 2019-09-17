@@ -321,7 +321,10 @@ the space."
             (before-column-num (current-column)))
 
         ;; Do kill the whole line!
-        (delete-region (line-beginning-position) (1+ (line-end-position)))
+        (delete-region (line-beginning-position)
+                       (if (= (line-number-at-pos (point)) (line-number-at-pos (point-max)))
+                           (line-end-position)
+                         (1+ (line-end-position))))
 
         ;; Goto the same column as before we do the killing
         ;; the whole line operations above.
