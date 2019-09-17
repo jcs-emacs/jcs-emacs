@@ -27,6 +27,11 @@
 
   (powerline-reset))
 
+(defun jcs--set-border-color (color)
+  "Set the border color with COLOR."
+  (set-face-foreground 'vertical-border color)
+  (set-face-foreground 'window-divider color))
+
 ;;;###autoload
 (defun jcs-gray-mode-line ()
   "Gray mode line."
@@ -37,9 +42,10 @@
   (set-face-background 'mode-line-inactive "#4D4D4D")
 
   ;; set the vertical border
-  (set-face-foreground 'vertical-border "#D2D2D2")
-
-  (set-face-foreground 'window-divider "#D2D2D2")
+  (jcs--set-border-color
+   (if (jcs-is-light-color (face-background 'default))
+       "#4D4D4D"
+     "#D2D2D2"))
 
   ;; `powerline' font faces.
   (jcs-powerline-set-theme-faces '("#1C1C1C" "#CCCCCC"
@@ -59,9 +65,7 @@
   (set-face-background 'mode-line-inactive "#2B4D4D")
 
   ;; set the vertical border
-  (set-face-foreground 'vertical-border "#467E7D")
-
-  (set-face-foreground 'window-divider "#467E7D")
+  (jcs--set-border-color "#467E7D")
 
   ;; `powerline' font faces.
   (jcs-powerline-set-theme-faces '("#1C1C1C" "#529191"
@@ -81,9 +85,7 @@
   (set-face-background 'mode-line-inactive "#0E2944")
 
   ;; set the 'vertical border'
-  (set-face-foreground 'vertical-border "#246AAF")
-
-  (set-face-foreground 'window-divider "#246AAF")
+  (jcs--set-border-color "#246AAF")
 
   ;; `powerline' font faces.
   (jcs-powerline-set-theme-faces '("#1C1C1C" "#246AAF"
@@ -103,9 +105,7 @@
   (set-face-background 'mode-line-inactive "#682B12")
 
   ;; set the vertical border
-  (set-face-foreground 'vertical-border "#FF6C32")
-
-  (set-face-foreground 'window-divider "#FF6C32")
+  (jcs--set-border-color "#FF6C32")
 
   ;; `powerline' font faces.
   (jcs-powerline-set-theme-faces '("#1C1C1C" "#FF6C32"
@@ -125,9 +125,7 @@
   (set-face-background 'mode-line-inactive "#3685D4")
 
   ;; set the vertical border
-  (set-face-foreground 'vertical-border "#A3D1FF")
-
-  (set-face-foreground 'window-divider "#A3D1FF")
+  (jcs--set-border-color "#A3D1FF")
 
   ;; `powerline' font faces.
   (jcs-powerline-set-theme-faces '("#1C1C1C" "#5AA2E9"
@@ -147,9 +145,7 @@
   (set-face-background 'mode-line-inactive "#6A0101")
 
   ;; set the vertical border
-  (set-face-foreground 'vertical-border "#FF0000")
-
-  (set-face-foreground 'window-divider "#FF0000")
+  (jcs--set-border-color "#FF0000")
 
   ;; `powerline' font faces.
   (jcs-powerline-set-theme-faces '("#1C1C1C" "#FF0000"
@@ -169,9 +165,7 @@
   (set-face-background 'mode-line-inactive "#650286")
 
   ;; set the vertical border
-  (set-face-foreground 'vertical-border "#B100EB")
-
-  (set-face-foreground 'window-divider "#B100EB")
+  (jcs--set-border-color "#B100EB")
 
   ;; `powerline' font faces.
   (jcs-powerline-set-theme-faces '("#1C1C1C" "#B100EB"
@@ -189,6 +183,7 @@
   (jcs-reset-line-number-color-by-theme)
   (jcs-reset-yascroll-color-by-theme)
   (jcs-reset-common-faces-by-theme)
+  (jcs-reload-active-mode)
   (when dimmer-mode
     (progn
       ;; Toggle `dimmer-mode'.
