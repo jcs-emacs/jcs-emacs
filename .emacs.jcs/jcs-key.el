@@ -449,8 +449,8 @@
 
 ;;; Tab Bar
 (define-key global-map (kbd "C-t") #'jcs-toggle-tabbar-mode)
-(define-key global-map [C-S-tab] #'centaur-tabs-backward)
-(define-key global-map [C-tab] #'centaur-tabs-forward)
+(bind-key* [C-S-tab] #'centaur-tabs-backward)
+(bind-key* [C-tab] #'centaur-tabs-forward)
 
 ;;; Tab Width
 (define-key global-map (kbd "C-k >") #'jcs-inc-tab-width)
