@@ -332,6 +332,7 @@ LST-PR: List of pair."
   (interactive)
   (when (or (jcs-get-word-at-point)
             (jcs-get-symbol-at-point))
+    (require 'iedit)
     (call-interactively #'iedit-mode)))
 
 ;;---------------------------------------------
@@ -341,11 +342,16 @@ LST-PR: List of pair."
 (defun jcs-reset-line-number-color-by-theme ()
   "Reset the line numbers color base on the theme."
   (interactive)
-  (let ((ln-light-theme-color "#2B91AF")
-        (ln-dark-theme-color "#B3B3B3"))
+  (let ((ln-light-color-fg "#2B91AF")
+        (ln-light-color-bg "#EEEEEE")
+        (ln-dark-color-fg "#B3B3B3")
+        (ln-dark-color-bg "#212121"))
     (if (jcs-is-light-color (face-background 'default))
-        (set-face-foreground 'line-number ln-light-theme-color)
-      (set-face-foreground 'line-number ln-dark-theme-color))))
+        (progn
+          (set-face-foreground 'line-number ln-light-color-fg)
+          (set-face-background 'line-number ln-light-color-bg))
+      (set-face-foreground 'line-number ln-dark-color-fg)
+      (set-face-background 'line-number ln-dark-color-bg))))
 
 ;;;###autoload
 (defun jcs-update-line-number-each-window ()
