@@ -6,30 +6,34 @@
 ;;----------------------------------------------
 ;; Regular Faces
 
+(defun jcs--set-common-face (face color-fg)
+  "Set the FACE foreground COLOR-FG."
+  (set-face-attribute face nil :foreground color-fg))
+
 (defun jcs-reset-common-faces-by-theme ()
   "Reset comment faces case on the theme."
   (if (jcs-is-light-color (face-background 'default))
       (progn
-        (set-face-attribute 'font-lock-builtin-face nil :foreground "light steel blue")
-        (set-face-attribute 'font-lock-comment-face nil :foreground "olive drab")
-        (set-face-attribute 'font-lock-constant-face nil :foreground "#38EFCA")
-        (set-face-attribute 'font-lock-doc-face nil :foreground "olive drab")
-        (set-face-attribute 'font-lock-function-name-face nil :foreground "#D2D2D2")
-        (set-face-attribute 'font-lock-keyword-face nil :foreground "#17A0FB")
-        (set-face-attribute 'font-lock-preprocessor-face nil :foreground "#8D9B99")
-        (set-face-attribute 'font-lock-string-face nil :foreground "#D69D78")
-        (set-face-attribute 'font-lock-type-face nil :foreground "#38EFCA")
-        (set-face-attribute 'font-lock-variable-name-face nil :foreground "#D2D2D2"))
-    (set-face-attribute 'font-lock-builtin-face nil :foreground "light steel blue")
-    (set-face-attribute 'font-lock-comment-face nil :foreground "olive drab")
-    (set-face-attribute 'font-lock-constant-face nil :foreground "#38EFCA")
-    (set-face-attribute 'font-lock-doc-face nil :foreground "olive drab")
-    (set-face-attribute 'font-lock-function-name-face nil :foreground "#D2D2D2")
-    (set-face-attribute 'font-lock-keyword-face nil :foreground "#17A0FB")
-    (set-face-attribute 'font-lock-preprocessor-face nil :foreground "#8D9B99")
-    (set-face-attribute 'font-lock-string-face nil :foreground "#D69D78")
-    (set-face-attribute 'font-lock-type-face nil :foreground "#38EFCA")
-    (set-face-attribute 'font-lock-variable-name-face nil :foreground "#D2D2D2")))
+        (jcs--set-common-face 'font-lock-builtin-face "light steel blue")
+        (jcs--set-common-face 'font-lock-comment-face "olive drab")
+        (jcs--set-common-face 'font-lock-constant-face "#2B91AF")
+        (jcs--set-common-face 'font-lock-doc-face "olive drab")
+        (jcs--set-common-face 'font-lock-function-name-face "#74534B")
+        (jcs--set-common-face 'font-lock-keyword-face "#0000FF")
+        (jcs--set-common-face 'font-lock-preprocessor-face "#808080")
+        (jcs--set-common-face 'font-lock-string-face "#B21515")
+        (jcs--set-common-face 'font-lock-type-face "#2B91AF")
+        (jcs--set-common-face 'font-lock-variable-name-face "#000000"))
+    (jcs--set-common-face 'font-lock-builtin-face "light steel blue")
+    (jcs--set-common-face 'font-lock-comment-face "olive drab")
+    (jcs--set-common-face 'font-lock-constant-face "#38EFCA")
+    (jcs--set-common-face 'font-lock-doc-face "olive drab")
+    (jcs--set-common-face 'font-lock-function-name-face "#D2D2D2")
+    (jcs--set-common-face 'font-lock-keyword-face "#17A0FB")
+    (jcs--set-common-face 'font-lock-preprocessor-face "#8D9B99")
+    (jcs--set-common-face 'font-lock-string-face "#D69D78")
+    (jcs--set-common-face 'font-lock-type-face "#38EFCA")
+    (jcs--set-common-face 'font-lock-variable-name-face "#D2D2D2")))
 
 
 ;;----------------------------------------------
