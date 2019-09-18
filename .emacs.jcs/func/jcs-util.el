@@ -542,6 +542,12 @@ the end of the line."
   "Check if a symbol IN-SYMBOL contain in any symbol in the symbol list IN-LIST."
   (cl-some #'(lambda (lb-sub-symbol) (equal lb-sub-symbol in-symbol)) in-list))
 
+(defun jcs-form-p-symbol (lst sym val)
+  "Form a plist symbol with LST, SYM, VAL."
+  (require 'dash)
+  (push (plist-put nil sym val) lst)
+  (-flatten lst))
+
 ;;----------------------------------------------------------------------------
 ;; Word
 

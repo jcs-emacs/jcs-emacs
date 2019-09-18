@@ -120,6 +120,43 @@
   (jcs-wgrep-change-to-wgrep-mode))
 
 ;;----------------------------------------------
+;; Autio Highlight Symbol
+
+(defun jcs--ahs--set-face (pt pt-box ot ot-box)
+  "Set `auto-highlight-symbol' face's with PT, PT-BOX, OT, OT-BOX."
+  (let ((box-face '()))
+    (setq box-face (jcs-form-p-symbol box-face :line-width -1))
+    (setq box-face (jcs-form-p-symbol box-face :style 'pressed-button))
+    (let ((box-face box-face))
+      (setq box-face (jcs-form-p-symbol box-face :color pt-box))
+      ;; Current highlight. (Cursor point currently on.)
+      (set-face-attribute 'ahs-plugin-defalt-face nil
+                          :foreground nil
+                          :background pt
+                          :box box-face
+                          :underline nil))
+    (setq box-face (jcs-form-p-symbol box-face :color ot-box))
+    ;; Other highlight. (Same words in the buffer)
+    (set-face-attribute 'ahs-face nil
+                        :foreground nil
+                        :background ot
+                        :box box-face
+                        :underline nil)
+    (set-face-attribute 'ahs-definition-face nil
+                        :foreground nil
+                        :background ot
+                        :box box-face
+                        :underline nil)))
+
+(defun jcs-reset-ahs-by-theme ()
+  "Reset `auto-highlight-symbol' by theme."
+  (if (jcs-is-light-color (face-background 'default))
+      (jcs--ahs--set-face "#E2E6D6" "#525D68"
+                          "#DDE2CD" "#525D68")
+    (jcs--ahs--set-face "#123E70" "#525D68"
+                        "#113D6F" "#525D68")))
+
+;;----------------------------------------------
 ;; Buffer Menu
 
 (defconst jcs-buffer-menu-search-title "Search: "

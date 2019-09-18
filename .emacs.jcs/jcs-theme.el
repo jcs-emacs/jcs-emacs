@@ -44,7 +44,7 @@
   ;; set the vertical border
   (jcs--set-border-color
    (if (jcs-is-light-color (face-background 'default))
-       "#4D4D4D"
+       "#161616"
      "#D2D2D2"))
 
   ;; `powerline' font faces.
@@ -178,6 +178,7 @@
 
 (defun jcs-reset-plugins-base-on-theme ()
   "Reset certain plugins base on the theme."
+  (jcs-reset-ahs-by-theme)
   (jcs-reset-dashboard-banner-by-theme)
   (jcs-reset-helm-theme-by-theme)
   (jcs-reset-line-number-color-by-theme)

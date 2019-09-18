@@ -7,25 +7,7 @@
   :defer t
   :init
   ;; Number of seconds to wait before highlighting symbol.
-  (setq ahs-idle-interval 0.3)
-  :config
-  ;; Current highlight. (Cursor point currently on.)
-  (set-face-attribute 'ahs-plugin-defalt-face nil
-                      :foreground nil
-                      :background "#123E70"
-                      :box '(:line-width -1 :color "#525D68" :style pressed-button)
-                      :underline nil)
-  ;; Other highlight. (Same words in the buffer)
-  (set-face-attribute 'ahs-face nil
-                      :foreground nil
-                      :background "#113D6F"
-                      :box '(:line-width -1 :color "#525D68" :style pressed-button)
-                      :underline nil)
-  (set-face-attribute 'ahs-definition-face nil
-                      :foreground nil
-                      :background "#113D6F"
-                      :box '(:line-width -1 :color "#525D68" :style pressed-button)
-                      :underline nil))
+  (setq ahs-idle-interval 0.3))
 
 
 (use-package centaur-tabs
