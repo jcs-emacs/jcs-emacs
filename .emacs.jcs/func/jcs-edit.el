@@ -219,7 +219,12 @@ CBF : Current buffer file name."
   ;;
   (unless (ignore-errors (call-interactively #'project-abbrev-complete-word))
     (unless (ignore-errors (call-interactively #'jcs-yas-expand))
-      (call-interactively #'goto-address-at-point))))
+      (if (or (jcs-is-current-point-face 'link)
+              (and (jcs-is-end-of-symbol-p)
+                   (jcs-is-current-point-face 'link (1- (point)))))
+          (call-interactively #'goto-address-at-point)
+        (cl-case major-mode
+          ('org-mode (call-interactively #'org-todo)))))))
 
 ;;---------------------------------------------
 ;; Space
