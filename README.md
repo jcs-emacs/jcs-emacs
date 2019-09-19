@@ -17,7 +17,7 @@
 This is Jen-Chieh Shen's emacs configuration. This configuration 
 started from [Casey Muratori](https://github.com/cmuratori)'s 
 Emacs configuration. It has been repeatedly utilized and modified 
-since 2015 and are now very different to his configuration. 
+since 2015 and is now very different to his configuration. 
 
 I wouldn't claim this is the best Emacs config, but this is the 
 best config to myself. If you wish to learn Emacs, this could be 
