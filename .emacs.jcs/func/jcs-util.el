@@ -548,6 +548,22 @@ the end of the line."
   (push (plist-put nil sym val) lst)
   (-flatten lst))
 
+(defun jcs-is-start-of-symbol-p ()
+  "Check if position end of the symbol."
+  (save-excursion
+    (let ((cur-pos (point)))
+      (forward-symbol 1)
+      (forward-symbol -1)
+      (= (point) cur-pos))))
+
+(defun jcs-is-end-of-symbol-p ()
+  "Check if position end of the symbol."
+  (save-excursion
+    (let ((cur-pos (point)))
+      (forward-symbol -1)
+      (forward-symbol 1)
+      (= (point) cur-pos))))
+
 ;;----------------------------------------------------------------------------
 ;; Word
 
@@ -933,13 +949,14 @@ Return nil, there is no region selected and mark is not active."
           (get-char-property pos 'face)
           (plist-get (text-properties-at pos) 'face)))))
 
-(defun jcs-get-current-point-face ()
+(defun jcs-get-current-point-face (&optional pos)
   "Get current point's type face as string."
-  (jcs-get-faces (point)))
+  (unless pos (setq pos (point)))
+  (jcs-get-faces pos))
 
-(defun jcs-is-current-point-face (in-face)
+(defun jcs-is-current-point-face (in-face &optional pos)
   "Check if current face the same face as IN-FACE."
-  (let ((faces (jcs-get-current-point-face)))
+  (let ((faces (jcs-get-current-point-face pos)))
     (if (listp faces)
         (if (equal (cl-position in-face faces :test 'string=) nil)
             ;; If return nil, mean not found in the `faces' list.
@@ -948,10 +965,10 @@ Return nil, there is no region selected and mark is not active."
           t)
       (string= in-face faces))))
 
-(defun jcs-is-default-face-p ()
+(defun jcs-is-default-face-p (&optional pos)
   "Check default face."
-  (or (= (length (jcs-get-current-point-face)) 0)
-      (and (= (length (jcs-get-current-point-face)) 1)
+  (or (= (length (jcs-get-current-point-face pos)) 0)
+      (and (= (length (jcs-get-current-point-face pos)) 1)
            (jcs-is-current-point-face "hl-line"))))
 
 ;;----------------------------------------------------------------------------
