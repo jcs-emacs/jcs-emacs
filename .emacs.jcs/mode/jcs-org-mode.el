@@ -9,6 +9,17 @@
 (add-hook 'org-mode-hook 'org-bullets-mode)
 
 
+(setq org-todo-keywords
+      '((sequence "TODO"
+                  "WAITING"
+                  "DONE")))
+
+(setq org-todo-keyword-faces
+      '(("TODO" :foreground "red")
+        ("WAITING" :foreground "yellow")
+        ("DONE" :foreground "green")))
+
+
 (defun jcs-org-mode-hook ()
   "Org mode hook."
   (goto-address-mode 1)
@@ -17,13 +28,14 @@
   ;; Normal
   (define-key org-mode-map (kbd "C-a") #'jcs-mark-whole-buffer)
   (define-key org-mode-map [tab] #'jcs-tab-key)
-  (define-key org-mode-map [S-tab] #'org-cycle)
 
   (define-key org-mode-map (kbd "C-y") #'jcs-redo)
 
   (define-key org-mode-map (kbd "C-s") #'save-buffer)
 
+  (define-key org-mode-map [S-tab] #'org-cycle)
   (define-key org-mode-map (kbd "C-k") nil)
+  (define-key org-mode-map (kbd "C-<return>") #'jcs-ctrl-return-key)
 
   ;; `org-nav'
   (define-key org-mode-map (kbd "S-<up>") #'jcs-org-table-up)
