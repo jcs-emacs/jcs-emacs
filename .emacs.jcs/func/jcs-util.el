@@ -696,10 +696,11 @@ Returns nil, the word isn't the same."
   "Check if it's at the end of buffer."
   (= (point) (point-max)))
 
-(defun jcs-is-current-file-empty-p ()
+(defun jcs-is-current-file-empty-p (&optional fn)
   "Check if the file an empty file."
-  (and (jcs-is-beginning-of-buffer-p)
-       (jcs-is-end-of-buffer-p)))
+  (with-current-buffer fn
+    (and (jcs-is-beginning-of-buffer-p)
+         (jcs-is-end-of-buffer-p))))
 
 (defun jcs-get-current-line-integer ()
   "Get the current line as integer."
