@@ -639,31 +639,23 @@ REGEXP : reqular expression use to align."
 
 ;;;###autoload
 (defun jcs-revert-all-file-buffers ()
-  "Refresh all open file buffers without confirmation.
-Buffers in modified (not yet saved) state in Emacs will not be reverted.
-They will be reverted though if they were modified outside Emacs.
-Buffers visiting files which do not exist any more or are no longer readable
-will be killed."
+  "Refresh all open file buffers without confirmation."
   (interactive)
-  ;; SOURCE: https://emacs.stackexchange.com/questions/24459/revert-all-open-buffers-and-ignore-errors
-  (save-excursion
+  (save-window-excursion
     (dolist (buf (buffer-list))
       (let ((filename (buffer-file-name buf)))
         ;; Revert only buffers containing files, which are not modified;
         ;; do not try to revert non-file buffers like *Messages*.
         (when (and filename
-                   (not (buffer-modified-p buf)))
+                   (not (buffer-modified-p buf))
+                   (not (jcs-is-current-file-empty-p buf)))
           (if (file-readable-p filename)
               ;; If the file exists and is readable, revert the buffer.
               (with-current-buffer buf
                 (jcs-revert-buffer-no-confirm))
             ;; Otherwise, kill the buffer.
-            (let (kill-buffer-query-functions) ; No query done when killing buffer
-              (kill-buffer buf)
-              ;;(message "Killed non-existing/unreadable file buffer: %s" filename)
-              )))))
-    ;;(message "Finished reverting buffers containing unmodified files.")
-    ))
+            (let (kill-buffer-query-functions)
+              (kill-buffer buf))))))))
 
 
 ;;;###autoload
