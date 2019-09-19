@@ -68,6 +68,8 @@
   (define-key Buffer-menu-mode-map (kbd "M-5") #'jcs-buffer-menu-sort-by-mode)
   (define-key Buffer-menu-mode-map (kbd "M-6") #'jcs-buffer-menu-sort-by-file)
 
+  (define-key Buffer-menu-mode-map (kbd "<escape>")
+    (lambda () (interactive) (buffer-menu) (top-level)))
   (define-key Buffer-menu-mode-map (kbd "<return>") #'jcs-buffer-menu-return)
 
   (dolist (key-str jcs-key-list)
