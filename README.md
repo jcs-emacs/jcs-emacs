@@ -308,7 +308,7 @@ and
 * *Package Archive* - see 
 [here](https://github.com/jcs090218/jcs-emacs-init#package-archives).
 * *Package Management* - powered by 
-[use-package](https://github.com/jwiegley/use-package).
+[use-package](https://github.com/jwiegley/use-package)
 and 
 [quelpa](https://framagit.org/steckerhalter/quelpa).
 * *PDF Viewer* - powered by 
