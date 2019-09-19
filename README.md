@@ -14,10 +14,17 @@
 # jcs-emacs-init
 > An Emacs configuration bundle.
 
-This is Jen-Chieh Shen's emacs configuration. Repeatedly utilized 
-and modified since 2015. Hopefully this will help someone who is 
-new or struggling with Emacs. This configuration should works on 
-most OSs, indicates Windows, Linux and MacOS.
+This is Jen-Chieh Shen's emacs configuration. This configuration 
+started from [Casey Muratori](https://github.com/cmuratori)'s 
+Emacs configuration. It has been repeatedly utilized and modified 
+since 2015 and are now very different to his configuration. 
+
+I wouldn't claim this is the best Emacs config, but this is the 
+best config to myself. If you wish to learn Emacs, this could be 
+a good start, because this configuration has been rewritten 
+basically from scratch. Hopefully, this config will help someone 
+who is new or struggle to Emacs. This configuration should work 
+on most OSs, indicates Windows, macOS, and Linux.
 
 Emacs itself supports multiple programming languages. I managed 
 all the programming languages I personally used. I dabble in 
