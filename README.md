@@ -305,12 +305,12 @@ and
 [ag](https://github.com/Wilfred/ag.el)
 and 
 [isearch-project](https://github.com/elpa-host/isearch-project).
-* *Package Archive* - powered by 
-[gnu](https://elpa.gnu.org/) 
-and 
-[melpa](http://melpa.org/).
+* *Package Archive* - see 
+[here](https://github.com/jcs090218/jcs-emacs-init#package-archives).
 * *Package Management* - powered by 
 [use-package](https://github.com/jwiegley/use-package).
+and 
+[quelpa](https://framagit.org/steckerhalter/quelpa).
 * *PDF Viewer* - powered by 
 [doc-view-mode](https://www.emacswiki.org/emacs/DocViewMode)
 and 
