@@ -131,9 +131,10 @@ HEX-CODE : Color HEX code to check."
 
 (defun jcs-mute-apply (fnc &rest args)
   "Execute function without message."
-  (let ((inhibit-message t)
-        (message-log-max nil))
-    (apply fnc args)))
+  (with-temp-message (or (current-message) nil)
+    (let ((inhibit-message t)
+          (message-log-max nil))
+      (apply fnc args))))
 
 ;;----------------------------------------------------------------------------
 ;; Time
