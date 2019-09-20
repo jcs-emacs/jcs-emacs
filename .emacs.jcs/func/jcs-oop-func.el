@@ -1541,19 +1541,20 @@ SEARCH-STRING          : Search raw string."
 
     ;; Lastly, process returns tag.
     (when there-is-return
-      (insert "\n")
-      (insert "* @")
-      (insert jcs-ts-return-string)
-      (when jcs-ts-doc-show-typename
-        (jcs-insert-jsdoc-type return-type-string
-                               jcs-ts-open-type-char
-                               jcs-ts-close-type-char))
-      (backward-delete-char 1)
-      (if jcs-ts-doc-show-typename
-          (insert jcs-js-doc-after-value-type-char)
-        (insert " "))
-      (insert jcs-return-desc-string)
-      (indent-for-tab-command))))
+      (unless (string= return-type-string "void")
+        (insert "\n")
+        (insert "* @")
+        (insert jcs-ts-return-string)
+        (when jcs-ts-doc-show-typename
+          (jcs-insert-jsdoc-type return-type-string
+                                 jcs-ts-open-type-char
+                                 jcs-ts-close-type-char))
+        (backward-delete-char 1)
+        (if jcs-ts-doc-show-typename
+            (insert jcs-js-doc-after-value-type-char)
+          (insert " "))
+        (insert jcs-return-desc-string)
+        (indent-for-tab-command)))))
 
 
 ;;-----------------------------------------------------------
@@ -1583,8 +1584,8 @@ SEARCH-STRING          : Search raw string."
     (dolist (mode oop-missing-font-lock-type-face-modes)
       (font-lock-add-keywords
        mode
-         '(("[a-zA-Z0-9_]*::\\([a-zA-Z0-9_]*\\)[ \t]" 1 'font-lock-type-face t)
-           )'end)))
+       '(("[a-zA-Z0-9_]*::\\([a-zA-Z0-9_]*\\)[ \t]" 1 'font-lock-type-face t)
+         )'end)))
 
   ;; Modes to fixed missing font lock variable name face in programming
   ;; language that uses `colon'.
