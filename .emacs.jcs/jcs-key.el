@@ -250,6 +250,10 @@
 (define-key global-map (kbd "C-S-f") #'jcs-format-region-or-document)
 (define-key global-map (kbd "C-k a") #'jcs-align-region-or-document)
 
+;;; Goto Address
+(with-eval-after-load 'goto-addr
+  (define-key goto-address-highlight-keymap (kbd "C-c") nil))
+
 ;;; Goto Declaration/Definition
 (define-key global-map [f12] #'dumb-jump-go-prefer-external)
 (define-key global-map [S-f12] #'dumb-jump-go-prefer-external-other-window)
