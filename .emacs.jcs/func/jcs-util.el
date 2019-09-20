@@ -698,7 +698,10 @@ Returns nil, the word isn't the same."
 
 (defun jcs-is-current-file-empty-p (&optional fn)
   "Check if the file an empty file."
-  (with-current-buffer fn
+  (if fn
+      (with-current-buffer fn
+        (and (jcs-is-beginning-of-buffer-p)
+             (jcs-is-end-of-buffer-p)))
     (and (jcs-is-beginning-of-buffer-p)
          (jcs-is-end-of-buffer-p))))
 
