@@ -853,11 +853,13 @@ REGEXP : reqular expression use to align."
   "Save buffer wrapper."
   (interactive)
   (let ((modified (buffer-modified-p))
+        (readable (file-readable-p (buffer-file-name)))
         (cur-frame (selected-frame)))
     ;; For some mode, broken save.
-    (let ((inhibit-message t) (message-log-max nil)) (save-excursion (save-buffer)))
+    (jcs-mute-apply (lambda () (save-excursion (save-buffer))))
     (select-frame-set-input-focus cur-frame)  ; For multi frames.
-    (if modified
+    (if (or modified
+            (not readable))
         (message "Wrote file %s" (buffer-file-name))
       (message "(No changes need to be saved)"))))
 
