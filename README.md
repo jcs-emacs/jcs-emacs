@@ -11,9 +11,6 @@
 </p>
 
 
-# jcs-emacs-init
-> An Emacs configuration bundle.
-
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
 **Table of Contents**
 
@@ -36,6 +33,10 @@
     - [Supported Emacs versions](#supported-emacs-versions)
 
 <!-- markdown-toc end -->
+
+
+# jcs-emacs-init
+> An Emacs configuration bundle.
 
 This is Jen-Chieh Shen's emacs configuration. This configuration 
 started from [Casey Muratori](https://github.com/cmuratori)'s 
