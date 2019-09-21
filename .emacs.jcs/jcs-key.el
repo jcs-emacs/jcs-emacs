@@ -287,6 +287,10 @@
 (define-key global-map (kbd "C-w o") #'jcs-httpd-start)
 (define-key global-map (kbd "C-w p") #'jcs-httpd-stop)
 
+;;; Kill Ring
+(with-eval-after-load 'browse-kill-ring
+  (define-key browse-kill-ring-mode-map (kbd "<escape>") #'kill-this-buffer))
+
 ;;; Kill Word
 (define-key global-map (kbd "C-<backspace>") #'jcs-smart-backward-delete-word)
 (define-key global-map (kbd "C-<delete>") #'jcs-smart-forward-delete-word)
