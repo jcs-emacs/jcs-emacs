@@ -10,6 +10,13 @@
   (setq ahs-idle-interval 0.3))
 
 
+(use-package browse-kill-ring
+  :defer t
+  :init
+  (setq browse-kill-ring-separator ">>> Separator <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+  (setq browse-kill-ring-separator-face 'font-lock-comment-face))
+
+
 (use-package centaur-tabs
   :defer t
   :init
