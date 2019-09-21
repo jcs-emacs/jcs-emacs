@@ -25,6 +25,8 @@
   (define-key actionscript-mode-map (kbd "{") #'jcs-vs-front-curly-bracket-key)
   (define-key actionscript-mode-map (kbd ";") #'jcs-vs-semicolon-key)
 
+  (define-key actionscript-mode-map (kbd "C-v") #'jcs-smart-yank)
+
   ;; comment block
   (define-key actionscript-mode-map (kbd "RET") #'jcs-smart-context-line-break)
   (define-key actionscript-mode-map (kbd "*") #'jcs-c-comment-pair)

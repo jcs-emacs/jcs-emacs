@@ -28,6 +28,8 @@
   (define-key haxe-mode-map (kbd "{") #'jcs-vs-front-curly-bracket-key)
   (define-key haxe-mode-map (kbd ";") #'jcs-vs-semicolon-key)
 
+  (define-key haxe-mode-map (kbd "C-v") #'jcs-smart-yank)
+
   ;; switch frame.
   (define-key haxe-mode-map (kbd "M-w") #'jcs-other-window-next)
   (define-key haxe-mode-map (kbd "M-q") #'jcs-other-window-prev)
