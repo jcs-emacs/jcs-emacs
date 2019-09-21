@@ -133,9 +133,12 @@
 
 (define-key global-map (kbd "C-S-d") #'jcs-duplicate-line)
 (bind-key* (kbd "C-d") #'jcs-kill-whole-line)
+
 (bind-key* (kbd "C-x") #'jcs-vs-cut-key)
 (bind-key* (kbd "C-c") #'kill-ring-save)
-(define-key global-map (kbd "C-v") #'jcs-smart-yank)
+(define-key prog-mode-map (kbd "C-v") #'jcs-smart-yank)
+(define-key global-map (kbd "C-v") #'yank)
+
 (define-key global-map (kbd "C-s") #'jcs-untabify-save-buffer)
 (define-key global-map (kbd "C-S-s") #'jcs-tabify-save-buffer)
 
