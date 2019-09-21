@@ -99,6 +99,7 @@
     lua-mode
     magit
     markdown-mode
+    markdown-toc
     move-text
     multiple-cursors
     nasm-mode
