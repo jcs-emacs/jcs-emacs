@@ -38,6 +38,7 @@
     auto-rename-tag
     basic-mode
     buffer-move
+    browse-kill-ring
     centaur-tabs
     clojure-mode
     cmake-font-lock
