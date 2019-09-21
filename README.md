@@ -14,6 +14,29 @@
 # jcs-emacs-init
 > An Emacs configuration bundle.
 
+<!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
+**Table of Contents**
+
+- [jcs-emacs-init](#jcs-emacs-init)
+    - [Philosophy](#philosophy)
+    - [News](#news)
+    - [Startup Time](#startup-time)
+    - [Features](#features)
+    - [Package Archives](#package-archives)
+    - [Powered by](#powered-by)
+        - [Functionalities](#functionalities)
+        - [File Modes](#file-modes)
+    - [Key Bindings](#key-bindings)
+    - [Themes](#themes)
+    - [Font](#font)
+    - [Installation](#installation)
+        - [With Internet](#with-internet)
+        - [Without Internet](#without-internet)
+    - [Optimization](#optimization)
+    - [Supported Emacs versions](#supported-emacs-versions)
+
+<!-- markdown-toc end -->
+
 This is Jen-Chieh Shen's emacs configuration. This configuration 
 started from [Casey Muratori](https://github.com/cmuratori)'s 
 Emacs configuration. It has been repeatedly utilized and modified 
