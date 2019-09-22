@@ -54,6 +54,7 @@
     dash
     dashboard
     diminish
+    diminish-buffer
     dimmer
     dumb-jump
     elixir-mode
