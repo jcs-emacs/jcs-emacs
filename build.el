@@ -6,6 +6,7 @@
 (defconst jcs-build-test t
   "Define for build testing.")
 
+;; Disable check signature while installing packages.
 (setq package-check-signature nil)
 
 ;; Start regular Emacs file.
