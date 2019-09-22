@@ -172,11 +172,10 @@
   "Assure every PACKAGES is installed, ask WITHOUT-ASKING."
   (dolist (package packages)
     (unless (package-installed-p package)
-      (if without-asking
+      (if (or without-asking
+              (y-or-n-p (format "Package %s is missing. Install it? " package)))
           (jcs-package-install package)
-        (if (y-or-n-p (format "Package %s is missing. Install it? " package))
-            (jcs-package-install package)
-          package))))
+        package)))
   ;; STUDY: Not sure if you need this?
   (when (get 'jcs-package-install 'state)
     ;; activate installed packages
