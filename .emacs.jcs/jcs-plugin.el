@@ -175,6 +175,19 @@
   (with-eval-after-load 'yasnippet (diminish 'yas-minor-mode)))
 
 
+(use-package diminish-buffer
+  :defer t
+  :init
+  (setq diminish-buffer-list '("*helm"))
+  (with-eval-after-load 'jcs-buffer-menu
+    (diminish-buffer-mode 1))
+  :config
+  (defun jcs--diminish-buffer-clean--advice-before ()
+    "Advice do clean buffer."
+    (when diminish-buffer-mode (diminish-buffer-clean)))
+  (advice-add 'jcs-buffer-menu-refresh-buffer :before #'jcs--diminish-buffer-clean--advice-before))
+
+
 (use-package dimmer
   :defer t
   :init
