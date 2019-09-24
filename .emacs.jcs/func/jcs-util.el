@@ -1423,16 +1423,17 @@ IN-VAL : input value to set to IN-VAR."
   (interactive
    (list
     (completing-read
-     "OS Type: "
+     "Line Endings Type: "
      (let ((read-lst '("Windows (dos)" "macOS (mac)" "Linux (unix)")))
-       (push (format ".. system: (%s)" (jcs-get-current-sysem)) read-lst)
-       (push (format ". file: (%s)" (show-eol--get-current-system)) read-lst)
+       (push (format "=> system: (%s)" (jcs-get-current-sysem)) read-lst)
+       (push (format "=> file: (%s)" (show-eol--get-current-system)) read-lst)
        read-lst))))
   (let ((sys-type nil))
     (cond ((string= tp "Windows (dos)") (setq sys-type 'dos))
           ((string= tp "macOS (mac)") (setq sys-type 'mac))
           ((string= tp "Linux (unix)") (setq sys-type 'unix))
-          (t (setq sys-type (jcs-get-current-sysem))))
+          ((string-match-p "file" tp) (setq sys-type (show-eol--get-current-system)))
+          ((string-match-p "system" tp) (setq sys-type (jcs-get-current-sysem))))
     (set-buffer-file-coding-system sys-type)))
 
 
