@@ -131,10 +131,10 @@ HEX-CODE : Color HEX code to check."
 
 (defun jcs-mute-apply (fnc &rest args)
   "Execute function without message."
-  (with-temp-message (or (current-message) nil)
-    (let ((inhibit-message t)
-          (message-log-max nil))
-      (apply fnc args))))
+  (let ((message-log-max nil))
+    (with-temp-message (or (current-message) nil)
+      (let ((inhibit-message t))
+        (apply fnc args)))))
 
 ;;----------------------------------------------------------------------------
 ;; Time
@@ -292,13 +292,14 @@ Generally you will have to check it four times."
   "Delete tab/spaces before the first character in line."
   (interactive)
   (jcs-mute-apply
-   (lambda () (save-excursion
-                (ignore-errors
-                  (jcs-goto-first-char-in-line)
-                  (push-mark-command nil)
-                  (beginning-of-line)
-                  (jcs-delete-region)
-                  (deactivate-mark))))))
+   (lambda ()
+     (save-excursion
+       (ignore-errors
+         (jcs-goto-first-char-in-line)
+         (push-mark-command nil)
+         (beginning-of-line)
+         (jcs-delete-region)
+         (deactivate-mark))))))
 
 ;;;###autoload
 (defun jcs-insert-spaces-by-tab-width ()
