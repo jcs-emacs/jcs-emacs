@@ -538,7 +538,7 @@ $ emacs --batch --eval "(byte-recompile-directory \"./\" 0)"
 
 ## Supported Emacs versions
 
-The config should run on Emacs `26` or higher, but I will 
+The config should run on Emacs **26.1** or higher, but I will 
 recommend to always run on the latest Emacs version available
 on your machine. The ultimate goal is to design to have each
 version of config can run on their each according Emacs version
