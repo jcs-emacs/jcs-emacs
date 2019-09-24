@@ -3,7 +3,7 @@
 ;;; Code:
 
 
-;;----------------------------------------------
+;;----------------------------------------------------------------------------
 ;; *Messages*
 
 ;;;###autoload
@@ -45,7 +45,7 @@
   (jcs-message-erase-buffer)
   (switch-to-buffer "*Messages*"))
 
-;;----------------------------------------------
+;;----------------------------------------------------------------------------
 ;; *scratch*
 
 ;;;###autoload
@@ -86,7 +86,7 @@
       (jcs-new-scratch-buffer)
     (jcs-reopen-this-buffer)))
 
-;;----------------------------------------------
+;;----------------------------------------------------------------------------
 ;; ag
 
 (defun jcs-ag-get-search-string-by-current-buffer-name ()
@@ -119,7 +119,7 @@
   ;; Make result menu editable.
   (jcs-wgrep-change-to-wgrep-mode))
 
-;;----------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Autio Highlight Symbol
 
 (defun jcs--ahs--set-face (pt pt-box ot ot-box)
@@ -156,7 +156,7 @@
     (jcs--ahs--set-face "#123E70" "#525D68"
                         "#113D6F" "#525D68")))
 
-;;----------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Buffer Menu
 
 (defconst jcs-buffer-menu-search-title "Search: "
@@ -200,7 +200,7 @@
     (let ((jcs-buffer-menu-switch-buffer-refreshing t))
       (jcs-buffer-menu-refresh-buffer))))
 
-;;----------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Calculator
 
 ;;;###autoload
@@ -240,7 +240,7 @@
   (interactive)
   (jcs-display-file "~/.emacs.jcs/data/data-structure/cheat-sheet.txt" "*Data Structure Cheat Sheet*" nil))
 
-;;----------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Dashboard
 
 ;;;###autoload
@@ -322,7 +322,7 @@
                         :foreground wb-fg))
   (jcs-dashboard-refresh-buffer))
 
-;;----------------------------------------------
+;;----------------------------------------------------------------------------
 ;; ElDoc
 
 ;;;###autoload
@@ -337,7 +337,7 @@
                   left-char right-char)))
 (advice-add 'eldoc--message-command-p :override #'jcs-eldoc--message-command-p)
 
-;;----------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Electric Pair
 
 (defun jcs-make-electric-pair-pairs-local (lst-pr)
@@ -346,7 +346,7 @@ LST-PR: List of pair."
   (setq-local electric-pair-pairs (append electric-pair-pairs lst-pr))
   (setq-local electric-pair-text-pairs electric-pair-pairs))
 
-;;---------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Helm
 
 ;;;###autoload
@@ -360,7 +360,7 @@ LST-PR: List of pair."
                       :background (face-background 'hl-line)
                       :foreground (face-background 'cursor)))
 
-;;---------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Iedit
 
 ;;;###autoload
@@ -372,7 +372,7 @@ LST-PR: List of pair."
     (require 'iedit)
     (call-interactively #'iedit-mode)))
 
-;;---------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Line Numbers
 
 ;;;###autoload
@@ -417,7 +417,7 @@ LST-PR: List of pair."
         (display-line-numbers-mode 1)
       (linum-mode 1))))
 
-;;----------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Minimap
 
 ;;;###autoload
@@ -426,7 +426,7 @@ LST-PR: List of pair."
   (interactive)
   (user-error "Minimap no longer supported in this configuration"))
 
-;;----------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Re-Builder
 
 ;;;###autoload
@@ -459,7 +459,7 @@ TYPE : enable/disable case sensitive?"
   ;; Set back to default.
   (setq case-fold-search t))
 
-;;----------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Shell
 
 ;;;###autoload
@@ -479,7 +479,7 @@ TYPE : enable/disable case sensitive?"
           (jcs-show-shell-window))
       (jcs-show-shell-window))))
 
-;;----------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Shift Select
 
 ;;;###autoload
@@ -502,7 +502,7 @@ TYPE : enable/disable case sensitive?"
   (interactive)
   (setq shift-select-mode nil))
 
-;;----------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Speedbar
 
 (defvar jcs-speedbar-opening-buffer-file-name nil
@@ -617,7 +617,7 @@ TYPE : enable/disable case sensitive?"
              (not (jcs-is-current-major-mode-p "speedbar-mode")))
     (setq jcs-sr-speedbar-record-selected-window (selected-window))))
 
-;;----------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Syntax Check
 
 ;;;###autoload
@@ -640,7 +640,7 @@ TYPE : enable/disable case sensitive?"
     ;; the `flycheck-list-errors' in other window.
     (jcs-walk-through-all-windows-once)))
 
-;;----------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Tab Bar
 
 ;;;###autoload
@@ -653,7 +653,7 @@ TYPE : enable/disable case sensitive?"
   ;; Loop through all window so all windows take effect.
   (jcs-buffer-visible-list))
 
-;;----------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Tab Width
 
 ;;;###autoload
@@ -670,7 +670,7 @@ TYPE : enable/disable case sensitive?"
   (jcs-delta-tab-width -2)
   (indent-for-tab-command))
 
-;;---------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Text Scale
 
 (defun jcs-text-scale-delta (vec)
@@ -699,7 +699,7 @@ VEC : Either position or negative number."
   (interactive)
   (jcs-text-scale-delta -1))
 
-;;----------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Tips
 
 ;;;###autoload
@@ -728,7 +728,7 @@ VEC : Either position or negative number."
                  :scroll-bar t
                  :margin t))))
 
-;;---------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Todo
 
 (defvar jcs-hl-todo-not-found-prev nil
@@ -781,7 +781,7 @@ NO-PROMPT : Don't prompt the overwrap message."
           (message "%s" (propertize "user-error: No more matches :: overwrap"
                                     'face '(:foreground "cyan"))))))))
 
-;;---------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Truncate Lines
 
 ;;;###autoload
@@ -798,7 +798,7 @@ NO-PROMPT : Don't prompt the overwrap message."
   (when truncate-lines
     (toggle-truncate-lines)))
 
-;;----------------------------------------------
+;;----------------------------------------------------------------------------
 ;; wgrep
 
 ;;;###autoload
@@ -819,7 +819,7 @@ NO-PROMPT : Don't prompt the overwrap message."
     (message "Switching to `wgrep-mode'..."))
   (message "Switched to `wgrep-mode'."))
 
-;;----------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Yascroll
 
 ;;;###autoload
@@ -834,7 +834,7 @@ NO-PROMPT : Don't prompt the overwrap message."
                         :background target-color
                         :foreground target-color)))
 
-;;----------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Yasnippet
 
 ;;;###autoload
