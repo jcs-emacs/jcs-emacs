@@ -30,6 +30,7 @@
         - [With Internet](#with-internet)
         - [Without Internet](#without-internet)
     - [Optimization](#optimization)
+    - [Write your own customization](#write-your-own-customization)
     - [Supported Emacs versions](#supported-emacs-versions)
 
 <!-- markdown-toc end -->
