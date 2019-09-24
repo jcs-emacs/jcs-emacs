@@ -3,6 +3,17 @@
 ;;; Code:
 
 
+;;----------------------------------------------------------------------------
+;; Eval Elisp
+
+(defun jcs--eval-region--advice-after (&rest _)
+  "Advice execute after `eval-region' function."
+  (deactivate-mark))
+(advice-add 'eval-region :after #'jcs--eval-region--advice-after)
+
+;;----------------------------------------------------------------------------
+;; Build & Run
+
 ;;;###autoload
 (defun jcs-open-project-file (in-filename title &optional ow)
   "Open the IN-FILENAME from this project with TITLE.
