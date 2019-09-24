@@ -1398,6 +1398,43 @@ IN-VAL : input value to set to IN-VAR."
   "Execute BODY after one of the FILES is loaded."
   (dolist (file files) (with-eval-after-load file (dolist (bd body) (funcall bd)))))
 
+;;----------------------------------------------------------------------------
+;; System
+
+;;;###autoload
+(defun jcs-print-current-system ()
+  "Print out the current system info."
+  (interactive)
+  (message "Current system: %s - %s"
+           (jcs-get-current-sysem)
+           (system-name)))
+
+(defun jcs-get-current-sysem ()
+  "Return the current operating system."
+  (cond (jcs-is-windows 'dos)
+        (jcs-is-bsd 'mac)
+        (jcs-is-linux 'unix)
+        (t nil)))
+
+;;;###autoload
+(defun jcs-ask-line-endings-for-this-sh-script (tp)
+  "Ask the saved line endings for this shell script."
+  (require 'show-eol)
+  (interactive
+   (list
+    (completing-read
+     "OS Type: "
+     (let ((read-lst '("Windows (dos)" "macOS (mac)" "Linux (unix)")))
+       (push (format ".. system: (%s)" (jcs-get-current-sysem)) read-lst)
+       (push (format ". file: (%s)" (show-eol--get-current-system)) read-lst)
+       read-lst))))
+  (let ((sys-type nil))
+    (cond ((string= tp "Windows (dos)") (setq sys-type 'dos))
+          ((string= tp "macOS (mac)") (setq sys-type 'mac))
+          ((string= tp "Linux (unix)") (setq sys-type 'unix))
+          (t (setq sys-type (jcs-get-current-sysem))))
+    (set-buffer-file-coding-system sys-type)))
+
 
 (provide 'jcs-util)
 ;;; jcs-util.el ends here
