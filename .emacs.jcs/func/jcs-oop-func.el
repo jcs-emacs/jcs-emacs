@@ -649,7 +649,10 @@ SEARCH-STRING          : Search raw string."
 
   ;; Get all return data types.
   (setq return-type-string (nth 1 (split-string search-string ")")))
-  (setq return-type-string (string-trim (nth 1 (split-string return-type-string ":"))))
+  (setq return-type-string (nth 1 (split-string return-type-string ":")))
+  (if (stringp return-type-string)
+      (setq return-type-string (string-trim return-type-string))
+    (setq there-is-return nil))
 
   (let ((param-var-len (length param-variable-strings))
         (param-index 0))
@@ -1505,7 +1508,10 @@ SEARCH-STRING          : Search raw string."
 
   ;; Get all return data types.
   (setq return-type-string (nth 1 (split-string search-string ")")))
-  (setq return-type-string (string-trim (nth 1 (split-string return-type-string ":"))))
+  (setq return-type-string (nth 1 (split-string return-type-string ":")))
+  (if (stringp return-type-string)
+      (setq return-type-string (string-trim return-type-string))
+    (setq there-is-return nil))
 
   (let* ((param-var-len (length param-variable-strings))
          (param-type-len (length param-type-strings))
