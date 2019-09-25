@@ -1587,35 +1587,6 @@ SEARCH-STRING          : Search raw string."
        '(("[a-zA-Z0-9_]*::\\([a-zA-Z0-9_]*\\)[ \t]" 1 'font-lock-type-face t)
          )'end)))
 
-  ;; Modes to fixed missing font lock variable name face in programming
-  ;; language that uses `colon'.
-  (let ((oop-missing-font-lock-variable-name-modes-colon '(actionscript-mode
-                                                           typescript-mode)))
-    (dolist (mode oop-missing-font-lock-variable-name-modes-colon)
-      (font-lock-add-keywords
-       mode
-       '(("(,*\\([a-zA-Z_$0-9 \t]*\\)[,)]" 1 'font-lock-variable-name-face t)
-         (",\\([a-zA-Z_$0-9, \t]*\\)," 1 'font-lock-variable-name-face t)
-         (",\\([a-zA-Z_$0-9 \t]*\\)[)]" 1 'font-lock-variable-name-face t)
-         ;; For line break parameter declaration.
-         ("^[ \t]* \\([a-zA-Z_$0-9,]*\\)[ \t]*[,)]" 1 'font-lock-variable-name-face t)
-         ;; With colon.
-         ("(,*\\([a-zA-Z_$0-9 \t]*\\)[:,)]" 1 'font-lock-variable-name-face t)
-         (",\\([a-zA-Z_$0-9, \t]*\\):" 1 'font-lock-variable-name-face t)
-         )'end)))
-
-  ;; Modes to fixed missing function name face.
-  (let ((oop-missing-font-lock-func-name-modes '(actionscript-mode
-                                                 typescript-mode)))
-    (dolist (mode oop-missing-font-lock-func-name-modes)
-      (font-lock-add-keywords
-       mode
-       '(("function[ \t]*\\([a-zA-Z_$0-9]*\\)[ \t]*(" 1 'font-lock-function-name-face t)
-         ("public[ \t]*\\([a-zA-Z_$0-9]*\\)[ \t]*(" 1 'font-lock-function-name-face t)
-         ("private[ \t]*\\([a-zA-Z_$0-9]*\\)[ \t]*(" 1 'font-lock-function-name-face t)
-         ("protected[ \t]*\\([a-zA-Z_$0-9]*\\)[ \t]*(" 1 'font-lock-function-name-face t)
-         )'end)))
-
   ;; Modes to fixed missing type face in programming language using `colon'.
   (let ((oop-missing-font-lock-type-face-modes-colon '(actionscript-mode
                                                        typescript-mode)))
