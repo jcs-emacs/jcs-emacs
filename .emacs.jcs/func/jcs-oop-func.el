@@ -497,6 +497,19 @@ PAREN-STRING           : Param raw string."
                  search-string)))))
 
 
+(defun jcs--param-empty-p (param-lst)
+  "Check if the full PARAM-LST' empty."
+  (let ((index 0)
+        (break-it nil)
+        (is-empty t)
+        (param-lst-len (length param-lst)))
+    (while (and (< index param-lst-len)
+                is-empty)
+      (unless (string= "" (string-trim (nth index param-lst)))
+        (setq is-empty nil))
+      (setq index (1+ index)))
+    is-empty))
+
 (defun jcs-paren-param-list (search-string)
   "Return parentheses type parameter list.  This will works with programming
 language that define function like this `(type-name var-name, type-name var-name)`
@@ -514,6 +527,8 @@ SEARCH-STRING : Search raw string."
     (setq param-string (nth 0 (split-string param-string ")")))
 
     (setq param-lst (split-string param-string ","))
+    (when (jcs--param-empty-p param-lst)
+      (setq param-lst '()))
 
     (dolist (param-sec-string param-lst)
       (let ((param-split-str-lst '())
@@ -572,6 +587,12 @@ SEARCH-STRING : Search raw string."
     (setq param-string (nth 0 (split-string param-string ")")))
 
     (setq param-lst (split-string param-string ","))
+    (when (jcs--param-empty-p param-lst)
+      (setq param-lst '()))
+
+    (when (and (= (length param-lst) 1)
+               (string= "" (string-trim (nth 0 param-lst))))
+      (setq param-lst '()))
 
     (let ((param-split-str-lst '())
           (param-var-str "")
