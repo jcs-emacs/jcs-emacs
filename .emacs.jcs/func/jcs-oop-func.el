@@ -590,14 +590,10 @@ SEARCH-STRING : Search raw string."
     (when (jcs--param-empty-p param-lst)
       (setq param-lst '()))
 
-    (when (and (= (length param-lst) 1)
-               (string= "" (string-trim (nth 0 param-lst))))
-      (setq param-lst '()))
-
-    (let ((param-split-str-lst '())
-          (param-var-str "")
-          (param-type-str ""))
-      (dolist (param-sec-string param-lst)
+    (dolist (param-sec-string param-lst)
+      (let ((param-split-str-lst '())
+            (param-var-str "")
+            (param-type-str ""))
         ;; First remove the possible default value.
         (setq param-sec-string (nth 0 (split-string param-sec-string "=")))
         (setq param-split-str-lst (split-string param-sec-string ":"))
