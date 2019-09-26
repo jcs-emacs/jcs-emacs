@@ -57,7 +57,7 @@
   "Document string version.
 
 0 : Description after \"\"\" opening docstring..
-1 : Line breack description \"\"\" opening docstring.")
+1 : Line break description \"\"\" opening docstring.")
 
 
 ;; All Languages
@@ -432,7 +432,8 @@ THERE-IS-RETURN        : There is return in this function?
 RETURN-TYPE-STRING     : String of the return type.
 PARAM-TYPE-STRINGS     : Param type strings list.
 PARAM-VARIABLE-STRINGS : Param name strings list.
-PAREN-STRING           : Param raw string."
+PAREN-STRING           : Param raw string.
+SEARCH-STRING          : Full content string."
 
   (save-excursion
     (let ((mode-doc-string-func-name nil))
@@ -497,8 +498,35 @@ PAREN-STRING           : Param raw string."
                  search-string)))))
 
 
+(defun jcs--return-type-colon (search-string)
+  "Get the return type by colon type of programming languages.  For example, \
+`actionscript', `typescript', etc.
+SEARCH-STRING : string that use to analyze."
+  (let ((return-type-string nil))
+    (setq return-type-string
+          (substring search-string
+                     (jcs-last-char-in-string ")" search-string)
+                     (length search-string)))
+    (setq return-type-string (nth 1 (split-string return-type-string ":")))
+    (if (stringp return-type-string)
+        (string-trim return-type-string)
+      nil)))
+
+(defun jcs--analyze-param-string (search-string)
+  "Get rid of the open and close parentheses, only get the center part.
+SEARCH-STRING : string that use to analyze."
+  (let ((param-string nil)
+        (pos -1)
+        (run-it t))
+    (setq param-string (substring search-string
+                                  (1+ (string-match-p "(" search-string))
+                                  (length search-string)))
+    (setq pos (jcs-last-char-in-string ")" param-string))
+    (setq param-string (substring param-string 0 pos))
+    param-string))
+
 (defun jcs--param-empty-p (param-lst)
-  "Check if the full PARAM-LST' empty."
+  "Check if the full PARAM-LST empty."
   (let ((index 0)
         (break-it nil)
         (is-empty t)
@@ -511,10 +539,10 @@ PAREN-STRING           : Param raw string."
     is-empty))
 
 (defun jcs-paren-param-list (search-string)
-  "Return parentheses type parameter list.  This will works with programming
-language that define function like this `(type-name var-name, type-name var-name)`
-or with default value `(type-name var-name = default-value, type-name var-name =
-default-value)`.
+  "Return parentheses type parameter list.
+This will works with programming language that define function like
+this `(type-name var-name, type-name var-name)` or with default value
+`(type-name var-name = default-val, type-name var-name = default-val)`.
 SEARCH-STRING : Search raw string."
   (let ((param-string "")
         (param-lst '())
@@ -523,8 +551,7 @@ SEARCH-STRING : Search raw string."
         (param-type-strings nil)
         (param-variable-strings nil)
         (result-datas '()))
-    (setq param-string (nth 1 (split-string search-string "(")))
-    (setq param-string (nth 0 (split-string param-string ")")))
+    (setq param-string (jcs--analyze-param-string search-string))
 
     (setq param-lst (split-string param-string ","))
     (when (jcs--param-empty-p param-lst)
@@ -583,8 +610,7 @@ SEARCH-STRING : Search raw string."
         (param-type-strings nil)
         (param-variable-strings nil)
         (result-datas '()))
-    (setq param-string (nth 1 (split-string search-string "(")))
-    (setq param-string (nth 0 (split-string param-string ")")))
+    (setq param-string (jcs--analyze-param-string search-string))
 
     (setq param-lst (split-string param-string ","))
     (when (jcs--param-empty-p param-lst)
@@ -595,7 +621,7 @@ SEARCH-STRING : Search raw string."
             (param-var-str "")
             (param-type-str ""))
         ;; First remove the possible default value.
-        (setq param-sec-string (nth 0 (split-string param-sec-string "=")))
+        (setq param-sec-string (nth 0 (split-string param-sec-string "=[^>]")))
         (setq param-split-str-lst (split-string param-sec-string ":"))
         (setq param-var-str (string-trim (nth 0 param-split-str-lst)))
         (if (= (length param-split-str-lst) 1)
@@ -665,11 +691,8 @@ SEARCH-STRING          : Search raw string."
     (setq param-variable-strings (nth 1 paren-param-list)))
 
   ;; Get all return data types.
-  (setq return-type-string (nth 1 (split-string search-string ")")))
-  (setq return-type-string (nth 1 (split-string return-type-string ":")))
-  (if (stringp return-type-string)
-      (setq return-type-string (string-trim return-type-string))
-    (setq there-is-return nil))
+  (setq return-type-string (jcs--return-type-colon search-string))
+  (unless return-type-string (setq there-is-return nil))
 
   (let ((param-var-len (length param-variable-strings))
         (param-index 0))
@@ -1345,7 +1368,7 @@ SEARCH-STRING          : Search raw string."
       (jcs-next-line))
     (end-of-line)
 
-    ;; Line breack between description and tags.
+    ;; Line break between description and tags.
     (when (and (>= param-index 0)
                (not (= param-var-len 0)))
       (insert "\n"))
@@ -1524,11 +1547,8 @@ SEARCH-STRING          : Search raw string."
     (setq param-variable-strings (nth 1 paren-param-list)))
 
   ;; Get all return data types.
-  (setq return-type-string (nth 1 (split-string search-string ")")))
-  (setq return-type-string (nth 1 (split-string return-type-string ":")))
-  (if (stringp return-type-string)
-      (setq return-type-string (string-trim return-type-string))
-    (setq there-is-return nil))
+  (setq return-type-string (jcs--return-type-colon search-string))
+  (unless return-type-string (setq there-is-return nil))
 
   (let* ((param-var-len (length param-variable-strings))
          (param-type-len (length param-type-strings))
