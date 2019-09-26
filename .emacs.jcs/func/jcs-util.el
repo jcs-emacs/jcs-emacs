@@ -1368,6 +1368,15 @@ IGNORE-ERRORS-T : ignore errors for this function?"
   "Check if the IN-SUB-STR is a string in IN-STR."
   (string-match-p (regexp-quote in-sub-str) in-str))
 
+(defun jcs-last-char-in-string (reg str)
+  "Find the position in STR using REG from th end."
+  (let ((pos -1)
+        (run-it t))
+    (while run-it
+      (setq run-it (string-match-p reg str (1+ pos)))
+      (when run-it (setq pos run-it)))
+    (if (= pos -1) nil pos)))
+
 ;;----------------------------------------------------------------------------
 ;; Variable
 
