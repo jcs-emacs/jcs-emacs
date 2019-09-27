@@ -1639,7 +1639,7 @@ SEARCH-STRING          : Search raw string."
        '(("[|:][ \t\n]*\\([a-zA-Z0-9_-]*\\)[.][a-zA-Z0-9_-]*[ \t\n]*[|=),{]" 1 'font-lock-type-face t)
          ("[|:][ \t\n]*[a-zA-Z0-9_-]*[.]\\([a-zA-Z0-9_-]*\\)[ \t\n]*[|=),{]" 1 'font-lock-type-face t)
          ("[|:][ \t\n]*\\([a-zA-Z0-9_-]*\\)[ \t\n]*[|{]" 1 'font-lock-type-face t)
-         ("[|:][ \t\n]*\\([a-zA-Z0-9_-]*\\)[ \t\n]*[=),]" 1 'font-lock-type-face t)
+         ("[a-zA-Z0-9_-(]+[ \t\n]*[|:]+[ \t\n]*\\([a-zA-Z0-9_-]+\\)[ \t\n]*[=),]" 1 'font-lock-type-face t)
          )'end)))
   )
 
