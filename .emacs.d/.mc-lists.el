@@ -45,6 +45,7 @@
         jcs-smart-indent-down
         jcs-smart-indent-up
         jcs-smart-space
+        jcs-smart-yank
         jcs-upcase-word-or-region
         jcs-vs-csharp-maybe-insert-codedoc
         jcs-vs-cut-key
