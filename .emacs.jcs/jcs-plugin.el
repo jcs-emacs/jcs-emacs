@@ -344,8 +344,19 @@
   :init
   (setq highlight-indent-guides-method 'character)
   (setq highlight-indent-guides-character ?\|)
+  (setq highlight-indent-guides-responsive 'top)
   :config
-  (add-hook 'prog-mode-hook #'highlight-indent-guides-mode))
+  (add-hook 'prog-mode-hook #'highlight-indent-guides-mode)
+
+  (defvar-local jcs--highlight-indent-guides--buffer-string-record ""
+    "Record of each buffer string.")
+
+  (defun jcs--highlight-indent-guides--guide-region--advice-around (fnc &rest args)
+    "Advice execute around `highlight-indent-guides--guide-region' function."
+    (unless (string= jcs--highlight-indent-guides--buffer-string-record (buffer-string))
+      (setq jcs--highlight-indent-guides--buffer-string-record (buffer-string))
+      (apply fnc args)))
+  (advice-add 'highlight-indent-guides--guide-region :around #'jcs--highlight-indent-guides--guide-region--advice-around))
 
 
 (use-package hl-todo
