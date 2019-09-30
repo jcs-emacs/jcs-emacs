@@ -150,10 +150,6 @@
 
 (defun jcs-post-command-hook ()
   "Hook run after every command."
-  (when (jcs-is-font-lock-fontify-buffer-mode-p)
-    ;; Refresh the syntax highlighting.
-    (jcs-font-lock-fontify-buffer))
-
   ;; TODO: Move this to `web-mode' only.
   (when (jcs-is-current-major-mode-p "web-mode")
     (when jcs-web-auto-truncate-lines

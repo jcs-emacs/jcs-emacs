@@ -1003,13 +1003,6 @@ Return nil, there is no region selected and mark is not active."
       nil
     t))
 
-(defun jcs-is-font-lock-fontify-buffer-mode-p ()
-  "List of mode that need to refresh highlighting in `jcs-post-command-hook'."
-  (jcs-is-current-major-mode-p '("c-mode"
-                                 "c++-mode"
-                                 "css-mode"
-                                 "typescript-mode")))
-
 ;;;###autoload
 (defun jcs-font-lock-fontify-buffer ()
   "Refresh the syntax hightlight for whole buffer."
