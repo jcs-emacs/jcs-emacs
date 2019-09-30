@@ -40,7 +40,7 @@
 ;; Object Oriented Programming
 
 (defface jcs-oop-tag-face
-  '((t (:foreground "#38EFCA")))
+  '((t (:foreground "SlateGray")))
   "Highlight OOP tag."
   :group 'jcs)
 (defvar jcs-oop-tag-face 'jcs-oop-tag-face)
@@ -52,7 +52,7 @@
 (defvar jcs-oop-type-face 'jcs-oop-type-face)
 
 (defface jcs-oop-value-face
-  '((t (:foreground "LightCoral")))
+  '((t (:foreground "gold4")))
   "Highlight OOP value."
   :group 'jcs)
 (defvar jcs-oop-value-face 'jcs-oop-value-face)
