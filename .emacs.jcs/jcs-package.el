@@ -20,6 +20,9 @@
 ;; To avoid initializing twice
 (setq package-enable-at-startup nil)
 
+;; Disable check signature while installing packages.
+(setq package-check-signature nil)
+
 ;; initialize package.el
 (package-initialize)
 
