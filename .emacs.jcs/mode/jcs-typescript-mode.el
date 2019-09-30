@@ -13,6 +13,10 @@
   (goto-address-mode 1)
   (auto-highlight-symbol-mode t)
 
+  (face-remap-add-relative 'typescript-jsdoc-tag '(:inherit jcs-oop-tag-face))
+  (face-remap-add-relative 'typescript-jsdoc-type '(:inherit jcs-oop-type-face))
+  (face-remap-add-relative 'typescript-jsdoc-value '(:inherit jcs-oop-value-face))
+
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
 
