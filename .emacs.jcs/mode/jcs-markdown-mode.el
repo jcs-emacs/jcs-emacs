@@ -8,9 +8,6 @@
 
 (defun jcs-markdown-mode-hook ()
   "Markdown mode hook."
-  (abbrev-mode 1)
-  (electric-pair-mode 1)
-  (goto-address-mode 1)
 
   (jcs-make-electric-pair-pairs-local '((?\` . ?\`)))
 

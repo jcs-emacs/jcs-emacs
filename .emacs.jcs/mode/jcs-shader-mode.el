@@ -9,10 +9,6 @@
 
 (defun jcs-shader-mode-hook ()
   "Shader mode hook."
-  (abbrev-mode 1)
-  (electric-pair-mode 1)
-  (goto-address-mode 1)
-  (auto-highlight-symbol-mode t)
 
   (setq-local comment-start "/*")
   (setq-local comment-start-skip "/\\*+[ \t]*")
@@ -31,10 +27,6 @@
 
 (defun jcs-glsl-mode-hook ()
   "GLSL mode hook."
-  (abbrev-mode 1)
-  (electric-pair-mode 1)
-  (goto-address-mode 1)
-  (auto-highlight-symbol-mode t)
 
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")

@@ -119,9 +119,6 @@
 
 (defun jcs-cc-mode-hook ()
   "C/C++ mode hook."
-  (abbrev-mode 1)
-  (auto-highlight-symbol-mode t)
-  (goto-address-mode 1)
 
   ;; Set my style for the current buffer
   (c-add-style "BigFun" jcs-big-fun-cc-style t)

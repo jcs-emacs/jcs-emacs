@@ -9,10 +9,11 @@
 (defun jcs-haxe-mode-hook ()
   "Haxe mode hook."
   (abbrev-mode 1)
+  (auto-highlight-symbol-mode t)
   (electric-pair-mode 1)
   (goto-address-mode 1)
-  (auto-highlight-symbol-mode t)
   (highlight-indent-guides-mode 1)
+  (lsp-deferred)
 
   (modify-syntax-entry ?_ "w")
 

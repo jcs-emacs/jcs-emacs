@@ -8,10 +8,6 @@
 
 (defun jcs-typescript-mode-hook ()
   "TypeScript mode hook."
-  (abbrev-mode 1)
-  (electric-pair-mode 1)
-  (goto-address-mode 1)
-  (auto-highlight-symbol-mode t)
 
   (face-remap-add-relative 'typescript-jsdoc-tag '(:inherit jcs-oop-tag-face))
   (face-remap-add-relative 'typescript-jsdoc-type '(:inherit jcs-oop-type-face))

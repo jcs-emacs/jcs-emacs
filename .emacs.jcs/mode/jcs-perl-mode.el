@@ -8,9 +8,6 @@
 
 (defun jcs-perl-mode-hook ()
   "Perl mode hook."
-  (abbrev-mode 1)
-  (goto-address-mode 1)
-  (auto-highlight-symbol-mode t)
 
   (modify-syntax-entry ?_ "w")
 

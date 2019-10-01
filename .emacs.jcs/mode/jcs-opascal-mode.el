@@ -8,10 +8,6 @@
 
 (defun jcs-opascal-mode-hook ()
   "Object Pascal mode hook."
-  (abbrev-mode 1)
-  (electric-pair-mode 1)
-  (goto-address-mode 1)
-  (auto-highlight-symbol-mode t)
 
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")

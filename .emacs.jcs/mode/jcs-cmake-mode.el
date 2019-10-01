@@ -11,9 +11,6 @@
 
 (defun jcs-cmake-mode-hook ()
   "CMake mode hook."
-  (electric-pair-mode nil)
-  (goto-address-mode 1)
-  (auto-highlight-symbol-mode t)
 
   ;; File Header
   (jcs-insert-header-if-valid '("CMakeLists.txt")

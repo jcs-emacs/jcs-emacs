@@ -26,11 +26,6 @@
   (make-local-variable 'js-indent-level)
   (setq js-indent-level 2)
 
-  (electric-pair-mode 1)
-  (goto-address-mode 1)
-  (auto-highlight-symbol-mode t)
-
-
   ;; File Header
   (jcs-insert-header-if-valid '("[.]json")
                               'jcs-json-format)

@@ -8,9 +8,6 @@
 
 (defun jcs-batch-mode-hook ()
   "Batch mode hook."
-  (electric-pair-mode nil)
-  (abbrev-mode 1)
-  (goto-address-mode 1)
 
   (modify-syntax-entry ?_ "w")
 

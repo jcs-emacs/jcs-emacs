@@ -11,9 +11,6 @@
 (defun jcs-cobol-mode-hook ()
   "COBOL mode hook."
   (electric-pair-mode nil)
-  (abbrev-mode 1)
-  (goto-address-mode 1)
-  (auto-highlight-symbol-mode t)
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]cbl")

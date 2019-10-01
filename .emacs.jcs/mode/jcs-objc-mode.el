@@ -5,9 +5,6 @@
 
 (defun jcs-objc-mode-hook ()
   "Objective-C mode hook."
-  (abbrev-mode 1)
-  (auto-highlight-symbol-mode t)
-  (goto-address-mode 1)
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]hin"

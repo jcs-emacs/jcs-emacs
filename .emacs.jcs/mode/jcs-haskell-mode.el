@@ -8,10 +8,6 @@
 
 (defun jcs-haskell-mode-hook ()
   "Haskell mode hook."
-  (abbrev-mode 1)
-  (electric-pair-mode 1)
-  (goto-address-mode 1)
-  (auto-highlight-symbol-mode t)
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]hs")

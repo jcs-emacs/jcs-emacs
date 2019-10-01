@@ -351,12 +351,29 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
 (add-hook 'compilation-mode-hook 'jcs-compilation-mode-hook)
 
 ;;==============================
+;;        Text Mode
+;;------------------------
+
+(defun jcs-text-mode-hook ()
+  "Text mode hook."
+  (auto-highlight-symbol-mode t)
+  (goto-address-mode 1)
+  )
+(add-hook 'text-mode-hook 'jcs-text-mode-hook)
+
+;;==============================
 ;;    Programming Mode
 ;;------------------------
 
 (defun jcs-prog-mode-hook ()
   "Programming language mode hook."
   (jcs-mute-apply #'jcs-continue-with-tab-width-record)
+
+  (abbrev-mode 1)
+  (auto-highlight-symbol-mode t)
+  (electric-pair-mode 1)
+  (goto-address-mode 1)
+  (lsp-deferred)
   )
 (add-hook 'prog-mode-hook 'jcs-prog-mode-hook)
 
@@ -366,10 +383,6 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
 
 (defun jcs-emacs-lisp-mode-hook ()
   "Emacs Lisp mode hook."
-  (abbrev-mode 1)
-  (electric-pair-mode 1)
-  (goto-address-mode 1)
-  (auto-highlight-symbol-mode t)
 
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
@@ -389,10 +402,6 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
 
 (defun jcs-lisp-mode-hook ()
   "Lisp mode hook."
-  (abbrev-mode 1)
-  (electric-pair-mode 1)
-  (goto-address-mode 1)
-  (auto-highlight-symbol-mode t)
 
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")

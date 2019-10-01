@@ -8,10 +8,6 @@
 
 (defun jcs-snippet-mode-hook()
   "Snippet mode hook."
-  (abbrev-mode 1)
-  (electric-pair-mode 1)
-  (goto-address-mode 1)
-  (auto-highlight-symbol-mode t)
 
   ;; Normal
   (define-key snippet-mode-map (kbd "<up>") #'previous-line)

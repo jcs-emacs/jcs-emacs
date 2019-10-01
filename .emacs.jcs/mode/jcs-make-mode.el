@@ -9,8 +9,6 @@
 (defun jcs-makefile-mode-hook ()
   "Makefile mode hook."
   (electric-pair-mode nil)
-  (goto-address-mode 1)
-  (auto-highlight-symbol-mode t)
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]makefile"

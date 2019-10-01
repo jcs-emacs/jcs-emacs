@@ -8,12 +8,9 @@
 
 (defun jcs-js-mode-hook ()
   "JavaScript mode hook."
-  (setq js2-bounce-indent-p t)
-
   (impatient-mode t)
-  (electric-pair-mode 1)
-  (goto-address-mode 1)
-  (auto-highlight-symbol-mode t)
+
+  (setq js2-bounce-indent-p t)
 
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")

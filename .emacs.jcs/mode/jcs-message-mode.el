@@ -8,10 +8,7 @@
 
 (defun jcs-message-mode-hook ()
   "Message mode hook."
-  (abbrev-mode 1)
   (electric-pair-mode nil)
-  (goto-address-mode 1)
-  (auto-highlight-symbol-mode t)
 
   ;; Normal
   (define-key message-mode-map (kbd "<up>") #'previous-line)

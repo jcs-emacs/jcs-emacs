@@ -9,10 +9,6 @@
 (defun jcs-csharp-mode-hook ()
   "CSharp mode hook."
   (preproc-font-lock-mode t)
-  (abbrev-mode 1)
-  (electric-pair-mode 1)
-  (goto-address-mode 1)
-  (auto-highlight-symbol-mode t)
 
   (modify-syntax-entry ?_ "w")
 
