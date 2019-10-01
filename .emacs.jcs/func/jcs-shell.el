@@ -20,8 +20,9 @@
 
     (erase-buffer)
     ;; Run shell process.
-    (cond ((equal jcs-prefer-shell-type 'shell) (shell))
-          ((equal jcs-prefer-shell-type 'eshell) (eshell)))
+    (cl-case jcs-prefer-shell-type
+      ('shell (shell))
+      ('eshell (eshell)))
 
     ;; active truncate line as default for shell window.
     (jcs-disable-truncate-lines)))
@@ -34,7 +35,10 @@
       (progn
         (kill-process jcs-shell-buffer-name)
         (kill-buffer jcs-shell-buffer-name)
-        (delete-window))
+        (other-window -1)
+        (save-selected-window
+          (other-window 1)
+          (delete-window)))
     (error (format "No \"%s\" buffer found" jcs-shell-buffer-name))))
 
 ;;;###autoload
