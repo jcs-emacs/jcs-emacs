@@ -8,6 +8,7 @@
 
 (defun jcs-shell-mode-hook ()
   "Shell mode hook."
+  (company-fuzzy-mode -1)
 
   ;; Normal
   (define-key shell-mode-map (kbd "DEL") #'jcs-electric-backspace)
