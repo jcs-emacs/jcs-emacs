@@ -8,9 +8,8 @@
 ;; SOURCE: https://emacs.stackexchange.com/questions/20171/how-to-preserve-color-in-messages-buffer
 ;;
 (defun jcs-message (fmt &rest args)
-  "Acts like `message' but preserves string properties in the *Messages* buffer.
-FMT : output format.
-ARGS : arguments."
+  "Log a message with FMT and ARGS.
+Acts like `message' but preserves string properties in the *Messages* buffer."
   (let ((message-log-max nil))
     (apply 'message fmt args))
   (with-current-buffer (get-buffer "*Messages*")
@@ -37,52 +36,40 @@ ARGS : arguments."
 
 
 (defun jcs--log (title clean fmt &rest args)
-  "Log a log message.
-FMT : output format.
-ARGS : arguments."
+  "Log a message with TITLE, CLEAN, FMT and ARGS."
   (jcs-do-before-log-action clean)
-  (jcs-message "\n$=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=$\n")
-  (jcs-message "$ %s : %s" title (apply 'format fmt args))
-  (jcs-message "\n$=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=$\n")
+  (let ((seq-len (- (window-width) 2)))
+    (jcs-message (concat "\n$" (jcs-fill-n-char-seq "=-" seq-len) "$\n"))
+    (jcs-message "$ %s : %s" title (apply 'format fmt args))
+    (jcs-message (concat "\n$" (jcs-fill-n-char-seq "=-" seq-len) "$\n")))
   (jcs-do-after-log-action))
 
 
 (defun jcs-log (fmt &rest args)
-  "Log a log message.
-FMT : output format.
-ARGS : arguments."
+  "Log a message with FMT and ARGS."
   (apply 'jcs--log "Log" nil fmt args))
 
 (defun jcs-log-clean (fmt &rest args)
-  "Log a log message.
-FMT : output format.
-ARGS : arguments."
+  "Log a message with FMT and ARGS in the clean way."
   (apply 'jcs--log "Log" t fmt args))
 
 
 (defun jcs-log-list-clean (list &optional in-prefix-msg in-val-del)
-  "Log out a list in clean *Messages* buffer."
+  "Log out a LIST in clean *Messages* buffer with IN-PREFIX-MSG and IN-VAL-DEL."
   (jcs-do-before-log-action t)
   (apply 'jcs-log-list list in-prefix-msg in-val-del))
 
 (defun jcs-log-list (list &optional in-prefix-msg in-val-del)
-  "Log out a list.
-LIST: list to log out.
+  "Log out a LIST.
 IN-PREFIX-MSG : prefix message.
 IN-VAL-DEL : value delimiter."
   (let ((count 0)
         (prefix-msg in-prefix-msg)
         (val-del in-val-del))
-    ;; Set defult prefix message.
-    (unless in-prefix-msg
-      (setq prefix-msg "Index "))
-
-    ;; Set default delimiter.
-    (unless in-val-del
-      (setq val-del " => "))
-
+    (unless in-prefix-msg (setq prefix-msg "nth "))  ; Set defult prefix message.
+    (unless in-val-del (setq val-del " => "))  ; Set default delimiter.
     (dolist (tmp-str list)
-      (jcs-log "%s%s%s%s"
+      (jcs-log "%s%s%s`%s`"
                prefix-msg  ; Prefix Message
                count       ; Index/Count
                val-del     ; Index and Value Delimiter
