@@ -59,7 +59,8 @@ IN-OP : inpuit operation script."
     (let ((default-directory script-dir))
       ;; Compile/Execute the target script.
       (compile in-op)
-      (jcs-update-line-number-each-window))))
+      (jcs-update-line-number-each-window)
+      (message "Executing script file: '%s'" in-op))))
 
 
 ;;;###autoload
