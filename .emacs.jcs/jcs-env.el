@@ -26,34 +26,31 @@
 (defconst jcs-project-todo-file "TODO" "Project TODO file.")
 (defconst jcs-project-update-log-file "Update_Log" "Project Update Log file.")
 
-(defvar jcs-makescript "" "Make script file name depends on the current OS.")
-(defvar jcs-runscript "" "Run script file name depends on the current OS.")
+(defconst jcs-makescript "[[:ascii:]]*build[[:ascii:]]*.[[:ascii:]]+"
+  "Build/Make script's file name.")
+(defconst jcs-runscript "[[:ascii:]]*run[[:ascii:]]*.[[:ascii:]]+"
+  "Execute/Run script's file name.")
 
-(cond (jcs-is-windows
-       (setq jcs-daily-todo-file "C:/TODO_JenChieh/code/todo.txt")
-       (setq jcs-log-file "C:/TODO_JenChieh/code/log.txt")
-       (setq jcs-makescript "build.bat")
-       (setq jcs-runscript "run.bat"))
-      (jcs-is-mac
-       (setq jcs-daily-todo-file "/home/TODO_JenChieh/code/todo.txt")
-       (setq jcs-log-file "/home/TODO_JenChieh/code/log.txt")
-       (setq jcs-makescript "./build.macosx")
-       (setq jcs-runscript "./run.macosx")
-       (cua-mode 0)
-       ;;(osx-key-mode 0)
-       (setq mac-command-modifier 'meta)
-       (setq select-enable-clipboard t)
-       (setq aquamacs-save-options-on-quit 0)
-       (setq special-display-regexps nil)
-       (setq special-display-buffer-names nil)
-       (define-key function-key-map [return] [13])
-       (setq mac-command-key-is-meta t)
-       (setq mac-pass-command-to-system nil))
-      (jcs-is-linux
-       (setq jcs-daily-todo-file "/home/TODO_JenChieh/code/todo.txt")
-       (setq jcs-log-file "/home/TODO_JenChieh/code/log.txt")
-       (setq jcs-makescript "./build.linux")
-       (setq jcs-runscript "./run.linux")))
+(cond
+ (jcs-is-windows
+  (setq jcs-daily-todo-file "C:/TODO_JenChieh/code/todo.txt")
+  (setq jcs-log-file "C:/TODO_JenChieh/code/log.txt"))
+ (jcs-is-mac
+  (setq jcs-daily-todo-file "/home/TODO_JenChieh/code/todo.txt")
+  (setq jcs-log-file "/home/TODO_JenChieh/code/log.txt")
+  (cua-mode 0)
+  ;;(osx-key-mode 0)
+  (setq mac-command-modifier 'meta)
+  (setq select-enable-clipboard t)
+  (setq aquamacs-save-options-on-quit 0)
+  (setq special-display-regexps nil)
+  (setq special-display-buffer-names nil)
+  (define-key function-key-map [return] [13])
+  (setq mac-command-key-is-meta t)
+  (setq mac-pass-command-to-system nil))
+ (jcs-is-linux
+  (setq jcs-daily-todo-file "/home/TODO_JenChieh/code/todo.txt")
+  (setq jcs-log-file "/home/TODO_JenChieh/code/log.txt")))
 
 
 ;;; Backup Files
