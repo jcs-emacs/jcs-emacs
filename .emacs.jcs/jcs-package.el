@@ -242,9 +242,9 @@
 ;;----------------------------------
 
 (defconst jcs-package-manually-install-list
-  '(("jayces-mode" "alt-elpa/jayces-mode" "github")
-    ("reload-emacs" "alt-elpa/reload-emacs" "github")
-    ("shift-select" "alt-elpa/shift-select" "github"))
+  '(("jayces-mode" "jcs-elpa/jayces-mode" "github")
+    ("reload-emacs" "jcs-elpa/reload-emacs" "github")
+    ("shift-select" "jcs-elpa/shift-select" "github"))
   "List of package that you want to manually installed.")
 
 
