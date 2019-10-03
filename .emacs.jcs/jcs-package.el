@@ -63,6 +63,7 @@
     elixir-mode
     emmet-mode
     erlang
+    ess
     esup
     exec-path-from-shell
     feebleline
