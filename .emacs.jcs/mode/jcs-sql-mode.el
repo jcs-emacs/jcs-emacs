@@ -14,9 +14,8 @@
   (jcs-insert-header-if-valid '("[.]sql")
                               'jcs-insert-sql-template)
 
-  ;; Normal
-  (define-key sql-mode-map (kbd "<up>") #'jcs-smart-indent-up)
-  (define-key sql-mode-map (kbd "<down>") #'jcs-smart-indent-down)
+  (define-key sql-mode-map (kbd "<up>") #'previous-line)
+  (define-key sql-mode-map (kbd "<down>") #'next-line)
   )
 (add-hook 'sql-mode-hook 'jcs-sql-mode-hook)
 
