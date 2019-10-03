@@ -70,7 +70,7 @@ from this configuration.
 * Makefile / Markdown
 * Object Pascal (Delphi) / Objective-C
 * Pascal / Perl / PHP / Properties / Python
-* Ruby / Rust
+* R / Ruby / Rust
 * Sass / Scala / SCSS / Shader / Shell script / SQL / Swift
 * Text / TypeScript
 * Verilog / Vim script
