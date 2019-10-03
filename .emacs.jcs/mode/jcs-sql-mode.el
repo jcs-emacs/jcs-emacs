@@ -14,6 +14,7 @@
   (jcs-insert-header-if-valid '("[.]sql")
                               'jcs-insert-sql-template)
 
+  ;; Normal
   (define-key sql-mode-map (kbd "<up>") #'previous-line)
   (define-key sql-mode-map (kbd "<down>") #'next-line)
   )
