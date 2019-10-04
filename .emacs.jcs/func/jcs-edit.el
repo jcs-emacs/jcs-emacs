@@ -699,8 +699,10 @@ REGEXP : reqular expression use to align."
   (save-excursion
     (let ((rec-point (point)))
       (goto-char (point-max))
-      (unless (= (line-number-at-pos) 1)
-        (forward-line -1))
+      (if (and (jcs-current-line-empty-p)
+               (not (= (line-number-at-pos) 1)))
+          (forward-line -1)
+        (newline))
       (while (and (jcs-current-line-empty-p)
                   (< rec-point (point)))
         (jcs-kill-whole-line)
