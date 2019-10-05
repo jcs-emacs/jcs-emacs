@@ -184,7 +184,8 @@
             (save-excursion
               (goto-char (point-min))
               (setq get-title (thing-at-point 'line)))
-            (setq was-fake-header-printed (string-match-p jcs-buffer-menu-search-title get-title))))
+            (when get-title
+              (setq was-fake-header-printed (string-match-p jcs-buffer-menu-search-title get-title)))))
         (let (tabulated-list--header-string) (jcs-mute-apply #'buffer-menu))
         (when jcs-buffer-menu-switch-buffer-refreshing
           (jcs--buffer-menu-trigger-filter was-fake-header-printed)))
