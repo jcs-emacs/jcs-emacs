@@ -47,13 +47,16 @@
         jcs-smart-space
         jcs-smart-yank
         jcs-upcase-word-or-region
+        jcs-vs-closing-curly-bracket-key
         jcs-vs-csharp-maybe-insert-codedoc
         jcs-vs-cut-key
         jcs-vs-front-curly-bracket-key
+        jcs-vs-opening-curly-bracket-key
         jcs-vs-semicolon-key
         jcs-vs-sharp-key
         jcs-web-backward-delete-word
         jcs-web-backward-delete-word-capital
+        jcs-web-vs-opening-curly-bracket-key
         kill-region
         markdown-outdent-or-delete
         org-force-self-insert
