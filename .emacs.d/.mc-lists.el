@@ -50,7 +50,6 @@
         jcs-vs-closing-curly-bracket-key
         jcs-vs-csharp-maybe-insert-codedoc
         jcs-vs-cut-key
-        jcs-vs-front-curly-bracket-key
         jcs-vs-opening-curly-bracket-key
         jcs-vs-semicolon-key
         jcs-vs-sharp-key
