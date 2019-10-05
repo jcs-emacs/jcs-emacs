@@ -19,7 +19,8 @@
 
   ;; Normal
   (define-key csharp-mode-map (kbd "DEL") #'jcs-electric-backspace)
-  (define-key csharp-mode-map (kbd "{") #'jcs-vs-front-curly-bracket-key)
+  (define-key csharp-mode-map (kbd "{") #'jcs-vs-opening-curly-bracket-key)
+  (define-key csharp-mode-map (kbd "}") #'jcs-vs-closing-curly-bracket-key)
   (define-key csharp-mode-map (kbd ";") #'jcs-vs-semicolon-key)
 
   (define-key csharp-mode-map [f8] #'jcs-find-corresponding-file)

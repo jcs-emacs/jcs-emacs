@@ -71,7 +71,8 @@
   (define-key web-mode-map (kbd "RET") #'jcs-web-return-key)
 
   (define-key web-mode-map (kbd "DEL") #'jcs-electric-backspace)
-  (define-key web-mode-map (kbd "{") #'jcs-web-vs-front-curly-bracket-key)
+  (define-key web-mode-map (kbd "{") #'jcs-web-vs-opening-curly-bracket-key)
+  (define-key web-mode-map (kbd "}") #'jcs-vs-closing-curly-bracket-key)
   (define-key web-mode-map (kbd ";") #'jcs-vs-semicolon-key)
 
   ;; comment block

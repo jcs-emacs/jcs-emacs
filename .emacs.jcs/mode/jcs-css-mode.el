@@ -24,7 +24,8 @@
 
   ;; Normal
   (define-key css-mode-map (kbd "DEL") #'jcs-electric-backspace)
-  (define-key css-mode-map (kbd "{") #'jcs-vs-front-curly-bracket-key)
+  (define-key css-mode-map (kbd "{") #'jcs-vs-opening-curly-bracket-key)
+  (define-key css-mode-map (kbd "}") #'jcs-vs-closing-curly-bracket-key)
   (define-key css-mode-map (kbd ";") #'jcs-vs-semicolon-key)
 
   ;; Edit

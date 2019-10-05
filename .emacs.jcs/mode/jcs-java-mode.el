@@ -21,7 +21,8 @@
   (define-key java-mode-map (kbd "C-s") #'jcs-java-untabify-save-buffer)
 
   (define-key java-mode-map (kbd "DEL") #'jcs-electric-backspace)
-  (define-key java-mode-map (kbd "{") #'jcs-vs-front-curly-bracket-key)
+  (define-key java-mode-map (kbd "{") #'jcs-vs-opening-curly-bracket-key)
+  (define-key java-mode-map (kbd "}") #'jcs-vs-closing-curly-bracket-key)
   (define-key java-mode-map (kbd ";") #'jcs-vs-semicolon-key)
 
   ;; comment block

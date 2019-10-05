@@ -26,7 +26,8 @@
   (define-key objc-mode-map [f7] #'jcs-same-file-other-window)
 
   (define-key objc-mode-map (kbd "DEL") #'jcs-electric-backspace)
-  (define-key objc-mode-map (kbd "{") #'jcs-vs-front-curly-bracket-key)
+  (define-key objc-mode-map (kbd "{") #'jcs-vs-opening-curly-bracket-key)
+  (define-key objc-mode-map (kbd "}") #'jcs-vs-closing-curly-bracket-key)
   (define-key objc-mode-map (kbd ";") #'jcs-vs-semicolon-key)
 
   ;; Comment Block.
