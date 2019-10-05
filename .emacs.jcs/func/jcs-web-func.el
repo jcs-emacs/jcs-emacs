@@ -140,13 +140,13 @@ Is the opposite of `jcs-web-toggle-auto-truncate-lines'."
       (call-interactively #'jcs-smart-context-line-break))))
 
 ;;;###autoload
-(defun jcs-web-vs-front-curly-bracket-key ()
+(defun jcs-web-vs-opening-curly-bracket-key ()
   "Web mode front curly bracket key."
   (interactive)
   (if (or (jcs-is-current-point-face "web-mode-script-face")
           (jcs-is-current-point-face "web-mode-block-face")
           (jcs-is-current-point-face "web-mode-style-face"))
-      (call-interactively #'jcs-vs-front-curly-bracket-key)
+      (call-interactively #'jcs-vs-opening-curly-bracket-key)
     (insert "{}")
     (backward-char 1)))
 
