@@ -6,8 +6,8 @@
 ;; DESCRIPTION: For function that simulate the Visual Studio IDE's action.
 
 ;;;###autoload
-(defun jcs-vs-front-curly-bracket-key ()
-  "For programming language that need curly bracket."
+(defun jcs-vs-opening-curly-bracket-key ()
+  "For programming langauge that need `{`."
   (interactive)
   (if (jcs-inside-comment-or-string-p)
       (insert "{")
@@ -32,6 +32,18 @@
                      (jcs-current-char-equal-p "}"))
             (backward-char 1)
             (insert " ")))))))
+
+;;;###autoload
+(defun jcs-vs-closing-curly-bracket-key ()
+  "For programming langauge that need `}`."
+  (interactive)
+  (insert "}")
+  (let ((ind-beg -1)
+        (ind-end (point)))
+    (save-excursion
+      (jcs-find-pair-paren "{" "}" 'backward)
+      (setq ind-beg (point)))
+    (indent-region ind-beg ind-end)))
 
 ;;;###autoload
 (defun jcs-vs-semicolon-key ()
@@ -68,9 +80,7 @@
         (when (and (not (jcs-is-beginning-of-line-p))
                    (jcs-current-char-equal-p "}"))
           (backward-delete-char 1)))))
-
   (backward-delete-char 1)
-
   (save-excursion
     (when (jcs-current-char-equal-p "{")
       (forward-char 1)
@@ -85,7 +95,7 @@
 ;;;###autoload
 (defun jcs-vs-cut-key ()
   "VS like cut key action.
-If nothing is selected, we cut the current line. Else we just delete the region."
+If nothing is selected, we cut the current line, else we just delete the region."
   (interactive)
   (if buffer-read-only
       (call-interactively #'kill-ring-save)
