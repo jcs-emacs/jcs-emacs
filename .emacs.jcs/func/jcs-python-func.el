@@ -177,58 +177,37 @@ on the same line."
   ;; URL: http://docs.python-guide.org/en/latest/writing/style/
   (let ((active-comment nil)
         (previous-line-not-empty nil)
-        ;; Flag, if second situation. Check below.
-        (between-dq nil))
-
-    (insert "\"")
-
+        (dq-infront 0))
+    ;; Count how many double quote infront.
     (save-excursion
-      ;; OPTION: First situation.
-      ;; Check if two double-quote infront of this double-quote.
-      (save-excursion
+      (when (jcs-current-char-equal-p "\"")
+        (setq dq-infront (1+ dq-infront))
         (backward-char 1)
         (when (jcs-current-char-equal-p "\"")
-          (backward-char 1)
-          (when (jcs-current-char-equal-p "\"")
-            (backward-char 1)
-            (unless (jcs-current-char-equal-p "\"")
-              (when (jcs-py-do-doc-string)
-                (setq active-comment t))))))
+          (setq dq-infront (1+ dq-infront)))))
 
-      ;; OPTION: Second situation.
-      ;; Check if between the double-quote.
+    (cond ((= dq-infront 2)
+           (insert "\"")
+           (when (jcs-py-do-doc-string) (setq active-comment t)))
+          ((= dq-infront 1)
+           (let ((between-dq nil))
+             (save-excursion
+               (forward-char 1)
+               (when (jcs-current-char-equal-p "\"")
+                 (setq between-dq t)))
+             (if between-dq (forward-char 1) (insert "\""))))
+          (t (insert "\"\"") (backward-char 1)))
+
+    (when active-comment
       (save-excursion
-        (backward-char 1)
-        (when (jcs-current-char-equal-p "\"")
-          (backward-char 1)
-          (unless (jcs-current-char-equal-p "\"")
-            (forward-char 3)
-            (when (jcs-current-char-equal-p "\"")
-              (forward-char 1)
-              (unless (jcs-current-char-equal-p "\"")
-                (backward-char 4)
-                (when (jcs-py-do-doc-string)
-                  (setq active-comment t)
-                  (setq between-dq t)))))))
-
-      (when active-comment
         ;; check if previous line empty.
         (jcs-previous-line)
         (when (not (jcs-current-line-empty-p))
           (setq previous-line-not-empty t))))
 
-    (unless active-comment
-      (insert "\"")
-      (backward-char 1))
-
-    (when between-dq
-      (forward-char 1))
-
-    (when (and active-comment
-               previous-line-not-empty)
-      (when (= jcs-py-doc-string-version 1)
-        ;; OPTION: docstring option..
-        (insert "\n"))
+    (when previous-line-not-empty
+      ;; OPTION: docstring option..
+      (when (= jcs-py-doc-string-version 1) (insert "\n"))
       (insert "Description here..\n")
       (insert "\"\"\"")
 
@@ -244,7 +223,7 @@ on the same line."
         ;; the necessary info before inserting doc string.
         (jcs-move-to-backward-a-word "def")
 
-        ;; insert comment doc comment string.
+        ;; Insert comment doc comment string.
         (jcs-insert-comment-style-by-current-line 1)))))
 
 
