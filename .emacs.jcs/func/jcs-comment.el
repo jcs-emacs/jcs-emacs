@@ -198,25 +198,8 @@ comment character on the same line."
 
     (save-excursion
       (when (and insert-pair
-                 (jcs-check-new-block-of-comment))
+                 (jcs-is-behind-last-char-at-line-p))
         (insert "*/")))))
-
-(defun jcs-check-new-block-of-comment ()
-  "If there is one closing comment string without opening comment \
-string, do not insert closing comment string.  Check this situation."
-  (let ((check-point (point))
-        (new-comment-block t))
-    (save-excursion
-      (jcs-move-to-forward-a-char "/")
-      (backward-char 1)
-      (when (jcs-current-char-equal-p "*")
-        (jcs-goto-start-of-the-comment)
-
-        ;; No opening comment string by using
-        ;; `jcs-goto-start-of-the-comment' function.
-        (when (>= check-point (point))
-          (setq new-comment-block nil))))
-    new-comment-block))
 
 (defun jcs-insert-comment-string ()
   "Insert comment document string."
