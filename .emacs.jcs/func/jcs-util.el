@@ -521,7 +521,6 @@ PT : point."
 the beginning of the line."
   (jcs-is-there-char-backward-point-p (jcs-get-beginning-of-line-point)))
 
-
 (defun jcs-is-there-char-forward-until-end-of-line-p ()
   "Check if there are at least a character on the right until \
 the end of the line."
@@ -1448,6 +1447,29 @@ IN-VAL : input value to set to IN-VAR."
           ((string-match-p "file" tp) (setq sys-type (show-eol--get-current-system)))
           ((string-match-p "system" tp) (setq sys-type (jcs-get-current-sysem))))
     (set-buffer-file-coding-system sys-type)))
+
+;;----------------------------------------------------------------------------
+;; Parentheses
+
+(defun jcs-find-pair-paren (beg-ch end-ch direction)
+  "Find pair parenthese with BEG-CH, END-CH and DIRECTION."
+  (let ((beg-cnt 0) (end-cnt 0) (fnc nil) (lim-pt -1))
+    (cl-case direction
+      ('backward
+       (setq lim-pt (point-min))
+       (setq end-cnt 1)
+       (setq fnc 'backward-char))
+      ('forward
+       (setq lim-pt (point-max))
+       (setq beg-cnt 1)
+       (setq fnc 'forward-char)))
+    (if (not fnc)
+        (user-error "Can't find pair parenthese with this '%s' define" direction)
+      (while (and (not (= beg-cnt end-cnt))
+                  (not (= (point) lim-pt)))
+        (funcall fnc 1)
+        (cond ((jcs-current-char-equal-p beg-ch) (setq beg-cnt (1+ beg-cnt)))
+              ((jcs-current-char-equal-p end-ch) (setq end-cnt (1+ end-cnt))))))))
 
 
 (provide 'jcs-util)
