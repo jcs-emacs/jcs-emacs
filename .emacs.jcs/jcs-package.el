@@ -140,6 +140,7 @@
     use-package
     use-ttf
     vimrc-mode
+    vue-mode
     impatient-mode
     web-mode
     which-key
