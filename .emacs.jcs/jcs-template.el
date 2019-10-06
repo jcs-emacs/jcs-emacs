@@ -496,6 +496,11 @@ on language selected."
   "Header for Vimscript header file."
   (jcs-insert-template-by-file-path "~/.emacs.jcs/template/vimscript/vimscript_template.txt"))
 
+;;; Vue
+(defun jcs-insert-vue-template ()
+  "Header for Vue header file."
+  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/vue/vue_template.txt"))
+
 ;;; XML
 (defun jcs-insert-xml-template ()
   "Header for XML header file."
