@@ -73,7 +73,7 @@ from this configuration.
 * R / Ruby / Rust
 * Sass / Scala / SCSS / Shader / Shell script / SQL / Swift
 * Text / TypeScript
-* Verilog / Vim script
+* Verilog / Vim script / Vue
 * XML
 * YAML
 
