@@ -506,6 +506,7 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
 (with-eval-after-load 'typescript-mode (require 'jcs-typescript-mode))
 (with-eval-after-load 'verilog-mode (require 'jcs-verilog-mode))
 (with-eval-after-load 'vimrc-mode (require 'jcs-vimscript-mode))
+(with-eval-after-load 'vue-mode (require 'jcs-vue-mode))
 (with-eval-after-load 'web-mode (require 'jcs-web-mode))
 (with-eval-after-load 'yaml-mode (require 'jcs-yaml-mode))
 
@@ -649,7 +650,8 @@ PR : pair file `regexp' and file mode `symbol'."
 (progn
   (jcs-add-auto-mode-alist '("\\.v'?\\'" . verilog-mode))
   (jcs-add-auto-mode-alist '("\\.vim\\(rc\\)'?\\'" . vimrc-mode))
-  (jcs-add-auto-mode-alist '("\\(/\\|\\`\\)_vimrc" . vimrc-mode)))
+  (jcs-add-auto-mode-alist '("\\(/\\|\\`\\)_vimrc" . vimrc-mode))
+  (jcs-add-auto-mode-alist '("\\.vue'?\\'" . vue-mode)))
 
 ;;; W
 (progn
