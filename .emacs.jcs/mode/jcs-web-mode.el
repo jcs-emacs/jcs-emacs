@@ -31,8 +31,8 @@
 (require 'emmet-mode)
 (require 'htmltagwrap)
 
-
 (require 'web-mode)
+
 (defun jcs-web-mode-hook ()
   "Hooks for Web mode."
   (visual-line-mode t)
@@ -92,6 +92,14 @@
   )
 (add-hook 'web-mode-hook  'jcs-web-mode-hook)
 (add-hook 'web-mode-hook 'emmet-mode)
+
+
+(defun jcs-html-mode-hook ()
+  "HTML mode hook."
+  (define-key html-mode-map (kbd "<up>") #'jcs-smart-indent-up)
+  (define-key html-mode-map (kbd "<down>") #'jcs-smart-indent-down)
+  )
+(add-hook 'html-mode-hook 'jcs-html-mode-hook)
 
 
 (provide 'jcs-web-mode)

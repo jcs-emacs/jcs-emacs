@@ -15,6 +15,7 @@
       ;; the line below.
       ;; =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
       (jcs-is-current-major-mode-p "csharp-mode")
+      (jcs-is-current-major-mode-p "js-mode")
       (jcs-is-current-major-mode-p "js2-mode")
       (jcs-is-current-major-mode-p "php-mode")
       (jcs-is-current-major-mode-p "typescript-mode")
@@ -30,6 +31,7 @@
                                csharp-mode
                                java-mode
                                jayces-mode
+                               js-mode
                                js2-mode
                                lua-mode
                                nasm-mode

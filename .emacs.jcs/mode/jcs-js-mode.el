@@ -29,6 +29,7 @@
   (define-key js2-mode-map (kbd "RET") #'jcs-smart-context-line-break)
   (define-key js2-mode-map (kbd "*") #'jcs-c-comment-pair)
   )
+(add-hook 'js-mode-hook 'jcs-js-mode-hook)
 (add-hook 'js2-mode-hook 'jcs-js-mode-hook)
 
 
