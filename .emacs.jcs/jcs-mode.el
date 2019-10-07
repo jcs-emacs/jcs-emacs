@@ -211,6 +211,25 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
       "SPC"
     "TAB"))
 
+(defun jcs-use-cc-mutliline-comment ()
+  "Fixed multiline comment."
+  (require 'typescript-mode)
+  (setq-local indent-line-function 'typescript-indent-line)
+  (setq c-comment-prefix-regexp "//+\\|\\**"
+        c-paragraph-start "$"
+        c-paragraph-separate "$"
+        c-block-comment-prefix "* "
+        c-line-comment-starter "//"
+        c-comment-start-regexp "/[*/]\\|\\s!"
+        comment-start-skip "\\(//+\\|/\\*+\\)\\s *")
+  (let ((c-buffer-is-cc-mode t))
+    (make-local-variable 'paragraph-start)
+    (make-local-variable 'paragraph-separate)
+    (make-local-variable 'paragraph-ignore-fill-prefix)
+    (make-local-variable 'adaptive-fill-mode)
+    (make-local-variable 'adaptive-fill-regexp)
+    (c-setup-paragraph-variables)))
+
 
 ;;------------------------------------------------------------------------------------------------------
 ;;; Command Mode & Insert Mode
