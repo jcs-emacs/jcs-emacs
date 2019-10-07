@@ -335,6 +335,8 @@
   (memq command '(jcs-eldoc-message-now
                   jcs-real-space jcs-smart-space
                   jcs-real-backspace jcs-smart-backspace
+                  jcs-smart-indent-up jcs-smart-indent-down
+                  jcs-py-indent-up jcs-py-indent-down
                   left-char right-char)))
 (advice-add 'eldoc--message-command-p :override #'jcs-eldoc--message-command-p)
 
