@@ -15,6 +15,8 @@
   (highlight-indent-guides-mode 1)
   (lsp-deferred)
 
+  (jcs-use-cc-mutliline-comment)
+
   (modify-syntax-entry ?_ "w")
 
   ;; File Header
