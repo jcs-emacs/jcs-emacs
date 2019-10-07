@@ -74,24 +74,29 @@ NOT-OW : Default is other window, not other window."
     (setq target-filepath (concat current-source-dir in-filename))
     (if (file-exists-p target-filepath)
         target-filepath  ;; Return if the target file exists.
-      (error (format "No '%s' file found in the current directory"
-                     in-filename)))))
+      (error "No '%s' file found in the current directory" in-filename))))
 
 (defun jcs-select-find-file-in-project (in-filename in-title)
   "Find IN-FILENAME in the project with displayed IN-TITLE for `completing-read'.
 Version Control directory must exists in order to make it work.
 Return the absolute filepath."
+  (require 'f)
   (let ((target-files '())
         (project-source-dir (jcs-vc-root-dir)))
     ;; Do the find file only when the project directory exists.
     (unless (string= project-source-dir "")
-      (setq target-files (f--files project-source-dir (string-match-p in-filename (f-filename it)) t)))
-
+      (setq target-files
+            (f--files project-source-dir
+                      (and (string-match-p in-filename (f-filename it))
+                           (not (jcs-is-contain-list-string
+                                 projectile-globally-ignored-directories
+                                 it)))
+                      t)))
     (let ((target-files-len (length target-files))
           (target-filepath ""))
       (if (= target-files-len 0)
-          (error (format "No '%s' file found in the project, make sure the project directory exists"
-                         in-filename))
+          (error "No '%s' file found in the project, make sure the project directory exists"
+                 in-filename)
         (if (= target-files-len 1)
             ;; If only one file found, just get that file.
             (setq target-filepath (nth 0 target-files))
@@ -113,11 +118,11 @@ We need a title to present which file to select."
                                                               in-title)))
       (unless (ignore-errors
                 (setq filepath (jcs-select-find-file-current-dir in-filename)))
-        (error (format (concat "Cannot find '%s' file either in the project or current "
-                               "directory, make sure the project directory exists or "
-                               "the '%s' file exists in the current directory")
-                       in-filename
-                       in-filename))))
+        (error (concat "Cannot find '%s' file either in the project or current "
+                       "directory, make sure the project directory exists or "
+                       "the '%s' file exists in the current directory")
+               in-filename
+               in-filename)))
     ;; Return the path.
     filepath))
 
@@ -134,6 +139,7 @@ We need a title to present which file to select."
   "Find the file that corresponds to this one.
 OW : Open file other window."
   (interactive)
+  (require 'f)
   (let ((corresponding-file-name "")
         (found-filepath nil))
     ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -166,7 +172,7 @@ OW : Open file other window."
           (if ow
               (find-file-other-window found-filepath)
             (find-file found-filepath)))
-      (error "Unable to find a corresponding file.."))))
+      (error "Unable to find a corresponding file"))))
 
 ;;;###autoload
 (defun jcs-find-corresponding-file-other-window ()
