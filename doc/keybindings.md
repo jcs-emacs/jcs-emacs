@@ -21,11 +21,11 @@
   * <kbd>Ctrl</kbd>+<kbd>delete</kbd> - Delete word.
   * <kbd>Alt</kbd>+<kbd>backspace</kbd> - Backspace word excluding capital letter.
   * <kbd>Alt</kbd>+<kbd>delete</kbd> - Delete word excluding capital letter.
-  * <kbd>Ctrl</kbd>+<kbd>r</kbd>, <kbd>backspace</kbd> - 
-  Delete the same character at current cursor's position 
+  * <kbd>Ctrl</kbd>+<kbd>r</kbd>, <kbd>backspace</kbd> -
+  Delete the same character at current cursor's position
   backward repeatedly util it meet different character.
-  * <kbd>Ctrl</kbd>+<kbd>r</kbd>, <kbd>Shift</kbd>+<kbd>backspace</kbd> - 
-  Delete the same character at current cursor's position 
+  * <kbd>Ctrl</kbd>+<kbd>r</kbd>, <kbd>Shift</kbd>+<kbd>backspace</kbd> -
+  Delete the same character at current cursor's position
   forward repeatedly util it meet different character.
   * <kbd>Alt</kbd>+<kbd>up</kbd> - Move current line `up`.
   * <kbd>Alt</kbd>+<kbd>down</kbd> - Move current line `down`.
@@ -78,8 +78,10 @@
 
   * **Folding / Unfolding**
 
-    * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>o</kbd> - Collpase all foldings.
-    * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>p</kbd> - Expand all foldings.
+    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>Ctrl</kbd>+<kbd>0</kbd> - Collapse all foldings.
+    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>Ctrl</kbd>+<kbd>j</kbd> - Expand all foldings.
+    * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>[</kbd> - Collapse current folding.
+    * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>]</kbd> - Expand current folding.
 
   * **Case**
 
@@ -298,11 +300,11 @@
 * **Packet List**
 
   * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>Ctrl</kbd>+<kbd>p</kbd> - Package list.
-  
+
 * **Process**
-  
+
   * <kbd>Alt</kbd>+<kbd>p</kbd> - Show list of process.
-  
+
 * **Describing**
 
   * <kbd>Alt</kbd>+<kbd>h</kbd>, <kbd>f</kbd> - Describe function.
@@ -330,7 +332,7 @@
 
 * <kbd>f8</kbd> - Switch between header/source file.
 * <kbd>Shift</kbd>+<kbd>f8</kbd> - Switch between header/source file other window.
-  
+
 ## Java Mode
 
 * <kbd>f2</kbd> - Lookup javadoc in browser. (javadoc-lookup)
