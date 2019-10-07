@@ -9,6 +9,7 @@
 (defun jcs-js-mode-hook ()
   "JavaScript mode hook."
   (impatient-mode t)
+  (js2-minor-mode 1)
 
   (setq js2-bounce-indent-p t)
 
