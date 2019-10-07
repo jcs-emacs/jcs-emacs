@@ -241,8 +241,10 @@
 (define-key global-map (kbd "C-k M-F") #'jcs-helm-projectile-find-file-other-window)
 
 ;;; Folding Settings
-(define-key global-map (kbd "C-M-o") #'jcs-close-all-nodes)
-(define-key global-map (kbd "C-M-p") #'jcs-open-all-nodes)
+(define-key global-map (kbd "C-k C-0") #'jcs-close-all-nodes)
+(define-key global-map (kbd "C-k C-j") #'jcs-open-all-nodes)
+(define-key global-map (kbd "C-{") #'jcs-close-node)
+(define-key global-map (kbd "C-}") #'jcs-open-node)
 
 ;;; Font
 (define-key global-map (kbd "C-k f") #'jcs-change-font)
