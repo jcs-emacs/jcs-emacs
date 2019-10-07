@@ -517,6 +517,9 @@
   :init
   (setq projectile-current-project-on-switch 'keep)
   :config
+  (setq projectile-globally-ignored-directories
+        (append projectile-globally-ignored-directories
+                '(".vs" ".vscode" "node_modules")))
   (add-hook 'projectile-after-switch-project-hook #'jcs-dashboard-refresh-buffer))
 
 
