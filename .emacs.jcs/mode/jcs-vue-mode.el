@@ -6,6 +6,10 @@
 (require 'vue-mode)
 
 
+(setq mmm-js-mode-enter-hook (lambda () (setq syntax-ppss-table nil)))
+(setq mmm-typescript-mode-enter-hook (lambda () (setq syntax-ppss-table nil)))
+
+
 (defun jcs-vue-mode-hook ()
   "Vue mode hook."
   ;; File Header
