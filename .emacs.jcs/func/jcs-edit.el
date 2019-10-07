@@ -1611,15 +1611,31 @@ CC : Current character at position."
 
 ;;;###autoload
 (defun jcs-close-all-nodes ()
+  "Close all nodes in current file."
   (interactive)
   (require 'origami)
   (call-interactively #'origami-close-all-nodes))
 
 ;;;###autoload
 (defun jcs-open-all-nodes ()
+  "Open all nodes in current file."
   (interactive)
   (require 'origami)
   (call-interactively #'origami-open-all-nodes))
+
+;;;###autoload
+(defun jcs-close-node ()
+  "Close the current scope of the node."
+  (interactive)
+  (require 'origami)
+  (call-interactively #'origami-close-node))
+
+;;;###autoload
+(defun jcs-open-node ()
+  "Open the current scope of the node."
+  (interactive)
+  (require 'origami)
+  (call-interactively #'origami-open-node))
 
 
 (provide 'jcs-edit)
