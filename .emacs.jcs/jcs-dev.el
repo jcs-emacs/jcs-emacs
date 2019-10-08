@@ -60,6 +60,8 @@ IN-OP : inpuit operation script."
       ;; Compile/Execute the target script.
       (compile in-op)
       (jcs-update-line-number-each-window)
+      (with-current-buffer "*compilation*"
+        (rename-buffer (format "*compilation*: %s" (f-filename in-op)) t))
       (message "Executing script file: '%s'" in-op))))
 
 
