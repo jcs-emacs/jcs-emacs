@@ -826,29 +826,39 @@ REGEXP : reqular expression use to align."
   (jcs-update-line-number-each-window))
 (advice-add 'save-buffer :after #'jcs-do-stuff-after-save)
 
-;;;###autoload
-(defun jcs-untabify-save-buffer ()
-  "Untabify the file and save the buffer."
-  (interactive)
+(defun jcs-organize-save-buffer (tab-it)
+  "Organize save buffer by TAB-IT."
   (let (deactivate-mark
         truncate-lines)
     (jcs-delete-trailing-whitespace-except-current-line)
     (jcs-remove-trailing-lines-end-buffer)
-    (jcs-untabify-buffer)
+    (if tab-it (jcs-tabify-buffer) (jcs-untabify-buffer))
     (jcs-mute-apply #'jcs-remove-control-M)
     (jcs-save-buffer)))
+
+;;;###autoload
+(defun jcs-untabify-save-buffer ()
+  "Untabify the file and save the buffer."
+  (interactive)
+  (cond
+   ((not (buffer-file-name))
+    (user-error "[WARNINGS] Can't save with invalid filename: %s" (buffer-name)))
+   (buffer-read-only
+    (user-error "[WARNINGS] Can't save read-only file: %s" buffer-read-only))
+   (t
+    (jcs-organize-save-buffer nil))))
 
 ;;;###autoload
 (defun jcs-tabify-save-buffer ()
   "Tabify the file and save the buffer."
   (interactive)
-  (let (deactivate-mark
-        truncate-lines)
-    (jcs-delete-trailing-whitespace-except-current-line)
-    (jcs-remove-trailing-lines-end-buffer)
-    (jcs-tabify-buffer)
-    (jcs-mute-apply #'jcs-remove-control-M)
-    (jcs-save-buffer)))
+  (cond
+   ((not (buffer-file-name))
+    (user-error "[WARNINGS] Can't save with invalid filename: %s" (buffer-name)))
+   (buffer-read-only
+    (user-error "[WARNINGS] Can't save read-only file: %s" buffer-read-only))
+   (t
+    (jcs-organize-save-buffer t))))
 
 ;;;###autoload
 (defun jcs-save-buffer ()
