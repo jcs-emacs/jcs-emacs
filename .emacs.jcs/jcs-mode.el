@@ -102,7 +102,9 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
    ((jcs-is-current-major-mode-p '("typescript-mode"))
     (setq typescript-indent-level tw))
    ((jcs-is-current-major-mode-p '("web-mode"))
-    (setq web-mode-markup-indent-offset tw))
+    (setq web-mode-markup-indent-offset tw)
+    (setq web-mode-css-indent-offset tw)
+    (setq web-mode-code-indent-offset tw))
    ((jcs-is-current-major-mode-p '("yaml-mode"))
     (setq yaml-indent-offset tw))
    (t
