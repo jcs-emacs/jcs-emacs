@@ -87,6 +87,12 @@
 ;;----------------------------------------------
 ;; Web
 
+(defface jcs-web-mode-block-face
+  '((t (:inherit 'default :background "#000000")))
+  "Web mode block face with dark background."
+  :group 'jcs)
+(defvar jcs-web-mode-block-face 'jcs-web-mode-block-face)
+
 (defface jcs-web-mode-block-comment-face
   '((t (:inherit 'font-lock-comment-face :background "#000000")))
   "Web mode block comment face with dark background."
