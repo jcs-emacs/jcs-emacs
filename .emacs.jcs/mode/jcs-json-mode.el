@@ -19,6 +19,7 @@
 
 (defun jcs-json-mode-hook ()
   "JSON mode hook."
+  (js2-minor-mode -1)
 
   (setq js2-basic-offset 2)
   (setq js2-bounce-indent-p t)
