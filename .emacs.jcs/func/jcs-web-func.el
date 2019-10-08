@@ -209,10 +209,10 @@ Is the opposite of `jcs-web-toggle-auto-truncate-lines'."
        mode
        '(;; For nomral HTML comment.
          ("\\(<!--[a-zA-Z0-9 \n\t-.<>?,*'`@\"=_(){}:;&^%$#!~]*-->\\)" 1 'font-lock-comment-face t)
+         ("\\(@[ \t\n]*{[[:ascii:]]*\\)/\\*[[:ascii:]]*\\*/[[:ascii:]]*}" 1 'jcs-web-mode-block-face t)
+         ("@[ \t\n]*{[[:ascii:]]*/\\*[[:ascii:]]*\\*/\\([[:ascii:]]*}\\)" 1 'jcs-web-mode-block-face t)
          ;; For multi-lines comment.
-         ;; TODO: Only inside the curly bracket.
-         ;; TODO: There is bug if `/' is inside the comment space.
-         ("\\(/\\*[^/]*\\*/\\)" 1 'jcs-web-mode-block-comment-face t)
+         ("@[ \t\n]*{[[:ascii:]]*\\(/\\*[[:ascii:]]*\\*/\\)[[:ascii:]]*}" 1 'jcs-web-mode-block-comment-face t)
          )'end))))
 
 
