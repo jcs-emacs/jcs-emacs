@@ -670,7 +670,12 @@ PR : pair file `regexp' and file mode `symbol'."
   (jcs-add-auto-mode-alist '("\\.v'?\\'" . verilog-mode))
   (jcs-add-auto-mode-alist '("\\.vim\\(rc\\)'?\\'" . vimrc-mode))
   (jcs-add-auto-mode-alist '("\\(/\\|\\`\\)_vimrc" . vimrc-mode))
-  (jcs-add-auto-mode-alist '("\\.vue'?\\'" . vue-mode)))
+  ;; ATTENTION: I think `vue-mode' using `mmm-mode' isn't
+  ;; ready for the development yet. So I'm currently using
+  ;; `web-mode' instead.
+  (progn
+    ;;(jcs-add-auto-mode-alist '("\\.vue'?\\'" . vue-mode))
+    (jcs-add-auto-mode-alist '("\\.vue'?\\'" . web-mode))))
 
 ;;; W
 (progn
