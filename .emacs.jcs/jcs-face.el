@@ -63,7 +63,7 @@
 
 (defface jcs-preproc-variable-name-face
   '((t (:foreground "#B363BE")))
-  "Highlight OOP tag."
+  "Highlight preprocessor operator."
   :group 'jcs)
 (defvar jcs-preproc-variable-name-face 'jcs-preproc-variable-name-face)
 
