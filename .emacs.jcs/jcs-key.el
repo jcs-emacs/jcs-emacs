@@ -347,8 +347,8 @@
 (define-key global-map (kbd "C-<end>") #'jcs-end-of-buffer)
 (define-key global-map [home] #'jcs-beginning-of-line)
 (define-key global-map [end] #'jcs-end-of-line)
-(define-key global-map (kbd "M-<left>") #'jcs-backward-word-capital)
-(define-key global-map (kbd "M-<right>") #'jcs-forward-word-capital)
+(bind-key* (kbd "M-<left>") #'jcs-backward-word-capital)
+(bind-key* (kbd "M-<right>") #'jcs-forward-word-capital)
 
 ;;; Open same file in other window.
 (progn
