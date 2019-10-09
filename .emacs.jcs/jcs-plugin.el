@@ -446,7 +446,25 @@
     (when (> (mc/num-cursors) 1)
       (mc/keyboard-quit)))
   (advice-add 'jcs-previous-blank-line :after #'jcs-mc/-cancel-multiple-cursors)
-  (advice-add 'jcs-next-blank-line :after #'jcs-mc/-cancel-multiple-cursors))
+  (advice-add 'jcs-next-blank-line :after #'jcs-mc/-cancel-multiple-cursors)
+  :config
+  (defun jcs--mc/mark-lines (num-lines direction)
+    (let ((cur-column (current-column)))
+      (dotimes (i (if (= num-lines 0) 1 num-lines))
+        (mc/save-excursion
+         (let ((furthest-cursor (cl-ecase direction
+                                  (forwards  (mc/furthest-cursor-after-point))
+                                  (backwards (mc/furthest-cursor-before-point)))))
+           (when (overlayp furthest-cursor)
+             (goto-char (overlay-get furthest-cursor 'point))
+             (when (= num-lines 0)
+               (mc/remove-fake-cursor furthest-cursor))))
+         (cl-ecase direction
+           (forwards (next-logical-line 1 nil))
+           (backwards (previous-logical-line 1 nil)))
+         (move-to-column cur-column)
+         (mc/create-fake-cursor-at-point)))))
+  (advice-add 'mc/mark-lines :override #'jcs--mc/mark-lines))
 
 
 (use-package origami
