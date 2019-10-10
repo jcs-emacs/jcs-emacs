@@ -401,6 +401,20 @@ LST-PR: List of pair."
    (lambda ()
      (jcs-active-line-numbers-by-mode))))
 
+(defun jcs-safe-display-line-numbers (act)
+  "Active `display-line-numbers' by ACT."
+  (require 'display-line-numbers)
+  (if (and (numberp act) (>= act 1))
+      (unless display-line-numbers-mode (display-line-numbers-mode 1))
+    (when display-line-numbers-mode (display-line-numbers-mode ac-1))))
+
+(defun jcs-safe-display-linum (act)
+  "Active `linum' by ACT."
+  (require 'linum)
+  (if (and (numberp act) (>= act 1))
+      (unless linum-mode (linum-mode 1))
+    (when linum-mode (linum-mode -1))))
+
 ;;;###autoload
 (defun jcs-active-line-numbers-by-mode ()
   "Active line number by mode."
@@ -413,12 +427,12 @@ LST-PR: List of pair."
       (progn
         (when line-reminder-mode (line-reminder-mode -1))
         (if (display-graphic-p)
-            (when display-line-numbers-mode (display-line-numbers-mode -1))
-          (when linum-mode (linum-mode -1))))
+            (jcs-safe-display-line-numbers -1)
+          (jcs-safe-display-linum -1)))
     (unless line-reminder-mode (line-reminder-mode 1))
     (if (display-graphic-p)
-        (unless display-line-numbers-mode (display-line-numbers-mode 1))
-      (unless linum-mode (linum-mode 1)))))
+        (jcs-safe-display-line-numbers 1)
+      (jcs-safe-display-linum 1))))
 
 ;;----------------------------------------------------------------------------
 ;; Minimap
