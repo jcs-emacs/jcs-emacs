@@ -413,12 +413,12 @@ LST-PR: List of pair."
       (progn
         (when line-reminder-mode (line-reminder-mode -1))
         (if (display-graphic-p)
-            (display-line-numbers-mode -1)
-          (linum-mode -1)))
+            (when display-line-numbers-mode (display-line-numbers-mode -1))
+          (when linum-mode (linum-mode -1))))
     (unless line-reminder-mode (line-reminder-mode 1))
     (if (display-graphic-p)
-        (display-line-numbers-mode 1)
-      (linum-mode 1))))
+        (unless display-line-numbers-mode (display-line-numbers-mode 1))
+      (unless linum-mode (linum-mode 1)))))
 
 ;;----------------------------------------------------------------------------
 ;; Minimap
