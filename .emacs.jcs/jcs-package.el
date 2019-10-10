@@ -214,7 +214,7 @@
               (let ((old-package (cadr (assq (package-desc-name package-desc)
                                              package-alist))))
                 (jcs-package-install package-desc)
-                (package-delete  old-package))))
+                (package-delete old-package))))
           (message "Done upgrading all packages"))
       (message "All packages are up to date"))))
 
