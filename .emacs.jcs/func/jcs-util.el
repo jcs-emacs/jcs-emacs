@@ -813,7 +813,10 @@ Return nil, vice versa."
           (beginning-of-line)
           (unless (jcs-is-beginning-of-buffer-p)
             (backward-char 1))
-          (setq cp (point)))))
+          (setq cp (point)))
+        (when (and (jcs-is-beginning-of-buffer-p)
+                   (pos-visible-in-window-p cp))
+          (setq cp (1- (point))))))
     (+ cp 1)))
 
 (defun jcs-last-visible-pos-in-window ()
