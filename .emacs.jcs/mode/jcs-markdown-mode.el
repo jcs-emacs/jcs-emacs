@@ -15,7 +15,7 @@
   ;; Normal
   (define-key markdown-mode-map (kbd "<backspace>") #'jcs-real-backspace)
 
-  (define-key markdown-mode-map (kbd "C-s") #'save-buffer)
+  (define-key markdown-mode-map (kbd "C-s") #'jcs-save-buffer)
   )
 (add-hook 'markdown-mode-hook 'jcs-markdown-mode-hook)
 
