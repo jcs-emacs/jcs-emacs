@@ -4,4 +4,3 @@
 <p align="center">
   <img src="./nav-table.gif" width="600" height="305"/>
 </p>
-
