@@ -8,12 +8,6 @@
 
 (defun jcs-haxe-mode-hook ()
   "Haxe mode hook."
-  (abbrev-mode 1)
-  (auto-highlight-symbol-mode t)
-  (electric-pair-mode 1)
-  (goto-address-mode 1)
-  (highlight-indent-guides-mode 1)
-  (lsp-deferred)
 
   (modify-syntax-entry ?_ "w")
 
@@ -22,9 +16,9 @@
                               'jcs-insert-haxe-template)
 
   ;; Normal
-  (define-key haxe-mode-map (kbd "<up>") #'jcs-smart-indent-up)
-  (define-key haxe-mode-map (kbd "<down>") #'jcs-smart-indent-down)
-
+  (define-key haxe-mode-map (kbd "<backspace>") #'jcs-smart-backspace)
+  (define-key haxe-mode-map (kbd "<delete>") #'jcs-smart-delete)
+  
   (define-key haxe-mode-map (kbd "DEL") #'jcs-electric-backspace)
   (define-key haxe-mode-map (kbd "{") #'jcs-vs-opening-curly-bracket-key)
   (define-key haxe-mode-map (kbd "}") #'jcs-vs-closing-curly-bracket-key)
@@ -36,6 +30,7 @@
   (define-key haxe-mode-map (kbd "M-w") #'jcs-other-window-next)
   (define-key haxe-mode-map (kbd "M-q") #'jcs-other-window-prev)
   )
+(add-hook 'haxe-mode-hook 'jcs-prog-mode-hook)
 (add-hook 'haxe-mode-hook 'jcs-haxe-mode-hook)
 
 

@@ -8,12 +8,6 @@
 
 (defun jcs-actionscript-mode-hook ()
   "ActionScript mode hook."
-  (abbrev-mode 1)
-  (auto-highlight-symbol-mode t)
-  (electric-pair-mode 1)
-  (goto-address-mode 1)
-  (highlight-indent-guides-mode 1)
-  (lsp-deferred)
 
   (jcs-use-cc-mutliline-comment)
 
@@ -24,8 +18,8 @@
                               'jcs-insert-actionscript-template)
 
   ;; Normal
-  (define-key actionscript-mode-map (kbd "<up>") #'jcs-smart-indent-up)
-  (define-key actionscript-mode-map (kbd "<down>") #'jcs-smart-indent-down)
+  (define-key actionscript-mode-map (kbd "<backspace>") #'jcs-smart-backspace)
+  (define-key actionscript-mode-map (kbd "<delete>") #'jcs-smart-delete)
 
   (define-key actionscript-mode-map (kbd "DEL") #'jcs-electric-backspace)
   (define-key actionscript-mode-map (kbd "{") #'jcs-vs-opening-curly-bracket-key)
@@ -38,6 +32,7 @@
   (define-key actionscript-mode-map (kbd "RET") #'jcs-smart-context-line-break)
   (define-key actionscript-mode-map (kbd "*") #'jcs-c-comment-pair)
   )
+(add-hook 'actionscript-mode-hook 'jcs-prog-mode-hook)
 (add-hook 'actionscript-mode-hook 'jcs-actionscript-mode-hook)
 
 
