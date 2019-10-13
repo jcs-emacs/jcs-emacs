@@ -308,18 +308,18 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
   ;; Unset 'depend' mode key
   ;; NOTE: unset key should be before of set keys
   (global-unset-key (kbd "C-f"))
+  (global-unset-key (kbd "C-p"))
   (global-unset-key (kbd "C-r"))
 
   ;; Set 'depend' mode key
 
   ;; search
   (define-key global-map (kbd "C-f") #'jcs-helm-do-ag-this-file)
-  (define-key global-map (kbd "C-k C-f") #'helm-do-ag-project-root)
+  (define-key global-map (kbd "C-p C-f") #'helm-do-ag-project-root)
 
   (define-key global-map (kbd "C-r p") #'jcs-ag-project-regexp)
 
-  (jcs-global-key-rebind)
-  )
+  (jcs-global-key-rebind))
 
 ;;;###autoload
 (defun jcs-cross-mode ()
@@ -335,6 +335,7 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
   ;; Unset 'cross' mode key
   ;; NOTE: unset key should be before of set keys
   (global-unset-key (kbd "C-f"))
+  (global-unset-key (kbd "C-p"))
   (global-unset-key (kbd "C-r"))
   (global-unset-key (kbd "C-r p"))
 
@@ -342,7 +343,7 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
 
   ;; search
   (define-key global-map (kbd "C-f") #'isearch-forward)
-  (define-key global-map (kbd "C-k C-f") #'isearch-project-forward)
+  (define-key global-map (kbd "C-p C-f") #'isearch-project-forward)
 
   (jcs-global-key-rebind)
   )
@@ -394,6 +395,7 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
   (auto-highlight-symbol-mode t)
   (electric-pair-mode 1)
   (goto-address-mode 1)
+  (highlight-indent-guides-mode 1)
   (lsp-deferred)
   )
 (add-hook 'prog-mode-hook 'jcs-prog-mode-hook)
