@@ -416,7 +416,7 @@ key bindings. It benefits the developer would not need to change
 their key bindings while after the mode swichted. The key bindings
 set can be modified in `./.emacs.jcs/jcs-key.el` file.
 
-* [List of key bindings](https://github.com/jcs090218/jcs-emacs-init/blob/master/doc/keybindings.md)
+* [List of key bindings](./doc/keybindings.md)
 
 P.S.
 * My work requires me to use
@@ -563,5 +563,5 @@ on your machine. The ultimate goal is to design to have each
 version of config can run on their each according Emacs version
 base on the version what I'm currently running on my present
 machine. For each version record, you can check the
-[version_record](https://github.com/jcs090218/jcs-emacs-init/blob/master/version_record.txt)
+[version_record](./version_record.txt)
 file at the root of the project directory.
