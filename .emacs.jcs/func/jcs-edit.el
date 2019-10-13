@@ -22,6 +22,7 @@ This variable must be use with `jcs-undo' and `jcs-redo' functions.")
 
 ;;;###autoload
 (defun jcs-toggle-undo-tree-auto-show-diff ()
+  "Toggle auto show diff functionality."
   (interactive)
   (if jcs-undo-tree-auto-show-diff
       (jcs-disable-undo-tree-auto-show-diff)
@@ -237,9 +238,7 @@ CBF : Current buffer file name."
 
 ;;;###autoload
 (defun jcs-smart-space ()
-  "Space key for `python-mode'. If the current cursor position is
-infront of the first character we indent the line instead of insert
-the space."
+  "Smart way of inserting space."
   (interactive)
   (if (or (jcs-is-infront-first-char-at-line-p)
           (jcs-is-beginning-of-line-p))
@@ -293,7 +292,7 @@ the space."
 
 ;;;###autoload
 (defun jcs-overwrite-mode ()
-  "Wrap <insert> key with cursor changes."
+  "Wrap insert key with cursor changed."
   (interactive)
 
   ;; Toggle overwrite mode
@@ -352,7 +351,7 @@ This command does not push text to `kill-ring'."
 ;;;###autoload
 (defun jcs-delete-word (arg)
   "Delete characters forward until encountering the end of a word.
-With argument, do this that many times.
+With ARG, do this that many times.
 This command does not push text to `kill-ring'."
   (interactive "p")
   (delete-region (point) (progn (forward-word arg) (point))))
@@ -442,14 +441,16 @@ This command does not push text to `kill-ring'."
 
 ;;;###autoload
 (defun jcs-duplicate-line ()
-  "Duplicate the line"
+  "Duplicate the line."
   (interactive)
-  (move-beginning-of-line 1)
-  (kill-line)
-  (yank)
-  (open-line 1)
-  (next-line 1)
-  (yank))
+  (let ((cur-col (current-column)))
+    (move-beginning-of-line 1)
+    (kill-line)
+    (yank)
+    (open-line 1)
+    (forward-line 1)
+    (yank)
+    (move-to-column cur-col)))
 
 ;;---------------------------------------------
 ;; Indent moving UP or DOWN.
@@ -464,42 +465,33 @@ This command does not push text to `kill-ring'."
 (defun jcs-smart-indent-up ()
   "Indent line after move up one line."
   (interactive)
-  (if (jcs-can-do-smart-indent-p)
-      (progn
-        (jcs-previous-line)
-        (indent-for-tab-command))
-    (jcs-previous-line)))
+  (jcs-previous-line)
+  (when (jcs-can-do-smart-indent-p)
+    (indent-for-tab-command)))
 
 ;;;###autoload
 (defun jcs-smart-indent-up-by-mode ()
   "Indent line after move up one line."
   (interactive)
-  (if (jcs-can-do-smart-indent-p)
-      (progn
-        (jcs-previous-line)
-        (indent-according-to-mode))
-    (jcs-previous-line)))
+  (jcs-previous-line)
+  (when (jcs-can-do-smart-indent-p)
+    (indent-according-to-mode)))
 
 ;;;###autoload
 (defun jcs-smart-indent-down ()
   "Indent line after move down one line."
   (interactive)
-  (if (jcs-can-do-smart-indent-p)
-      (progn
-        (jcs-next-line)
-        (indent-for-tab-command))
-    (jcs-next-line)))
+  (jcs-next-line)
+  (when (jcs-can-do-smart-indent-p)
+    (indent-for-tab-command)))
 
 ;;;###autoload
 (defun jcs-smart-indent-down-by-mode ()
   "Indent line after move down one line."
   (interactive)
-  (if (jcs-can-do-smart-indent-p)
-      (progn
-        (jcs-next-line)
-        (indent-according-to-mode))
-    (jcs-next-line)))
-
+  (jcs-next-line)
+  (when (jcs-can-do-smart-indent-p)
+    (indent-according-to-mode)))
 
 ;;----------------------------------------------
 ;;      Format File
@@ -520,19 +512,14 @@ This command does not push text to `kill-ring'."
 
 ;;;###autoload
 (defun jcs-align-region-by-points (regexp pnt-min pnt-max)
-  "Align current selected region.
-
-REGEXP : reqular expression use to align.
-PNT-MIN: point min.
-PNT-MAX: point max."
+  "Align current selected region with REGEXP, PNT-MIN and PNT-MAX."
   (interactive)
   (align pnt-min pnt-max)
   (align-regexp pnt-min pnt-max regexp 1 1 t))
 
 ;;;###autoload
 (defun jcs-align-region (regexp)
-  "Align current selected region.
-REGEXP : reqular expression use to align."
+  "Align current selected region REGEXP."
   (interactive)
   (jcs-align-region-by-points regexp (region-beginning) (region-end))
   ;; Deactive region no matter what.
@@ -540,8 +527,7 @@ REGEXP : reqular expression use to align."
 
 ;;;###autoload
 (defun jcs-align-document (regexp)
-  "Align current document.
-REGEXP : reqular expression use to align."
+  "Align current document with REGEXP."
   (interactive)
   ;; URL: https://www.emacswiki.org/emacs/AlignCommands
   ;; align the whole doc.
@@ -549,8 +535,7 @@ REGEXP : reqular expression use to align."
 
 ;;;###autoload
 (defun jcs-align-region-or-document ()
-  "Either align the region or document depend on if there is \
-region selected?"
+  "Either align the region or document depend on if there is region selected."
   (interactive)
   (save-excursion
     (let (;; NOTE: this is the most common one.
@@ -788,7 +773,7 @@ REGEXP : reqular expression use to align."
 
 ;;;###autoload
 (defun jcs-untabify-buffer (&optional start end)
-  "Untabify the current buffer."
+  "Untabify the current buffer with region START and END."
   (interactive)
   (save-excursion
     (save-restriction
@@ -799,7 +784,7 @@ REGEXP : reqular expression use to align."
 
 ;;;###autoload
 (defun jcs-tabify-buffer (&optional start end)
-  "Tabify the current buffer."
+  "Tabify the current buffer with region START and END."
   (interactive)
   (save-excursion
     (save-restriction
@@ -924,8 +909,8 @@ REGEXP : reqular expression use to align."
               (string= bn (jcs-buffer-name-or-buffer-file-name)))
       (jcs-switch-to-previous-buffer))))
 
-(defun jcs-advice-kill-this-buffer-around (orig-fun &rest args)
-  "Advice around execute `kill-this-buffer' command."
+(defun jcs-advice-kill-this-buffer-around (fnc &rest args)
+  "Advice around execute `kill-this-buffer' command with FNC and ARGS."
   (let ((target-kill-buffer (jcs-buffer-name-or-buffer-file-name))
         (undoing-buffer-name nil)
         (jumped-to-utv nil))
@@ -936,7 +921,7 @@ REGEXP : reqular expression use to align."
       (when jumped-to-utv
         (setq undoing-buffer-name (buffer-name undo-tree-visualizer-parent-buffer))))
 
-    (apply orig-fun args)
+    (apply fnc args)
 
     ;; If `undo-tree' visualizer exists, kill it too.
     (when jumped-to-utv
@@ -967,8 +952,8 @@ REGEXP : reqular expression use to align."
 
 ;;;###autoload
 (defun jcs-maybe-kill-this-buffer (&optional ecp-same)
-  "Kill the buffer if this file is the only file. Otherwise just
-switch to the previous buffer.
+  "Kill the buffer if this file is the only file.
+Otherwise just switch to the previous buffer.
 ECP-SAME : Exception for the same buffer."
   (interactive)
   (let ((is-killed nil))
@@ -1086,7 +1071,7 @@ REVERSE : t forward, nil backward."
 ;; Delete inside a Character.
 
 (defun jcs-find-start-char (start-char preserve-point)
-  "Find the starting character."
+  "Find the START-CHAR with PRESERVE-POINT."
   (let ((inhibit-message t)
         (start-point nil))
     (jcs-move-to-backward-a-char-do-recursive start-char nil)
@@ -1106,7 +1091,7 @@ REVERSE : t forward, nil backward."
     start-point))
 
 (defun jcs-find-end-char (end-char preserve-point)
-  "Find the ending character."
+  "Find the END-CHAR with PRESERVE-POINT."
   (let ((inhibit-message t)
         (end-point nil))
     (jcs-move-to-forward-a-char-do-recursive end-char nil)
