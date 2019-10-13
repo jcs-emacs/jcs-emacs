@@ -5,7 +5,6 @@
 
 ;;----------------------------------------------
 ;; Move Between Line (Wrapper)
-;;----------------------------------------------
 
 ;;;###autoload
 (defun jcs-previous-line ()
@@ -21,9 +20,16 @@ Just use this without remember Emacs Lisp function."
   (interactive)
   (call-interactively #'next-line))
 
+(defun jcs--nav-line--advice-after (&rest _)
+  "Advice execute after `previous-line' command."
+  (when (jcs-is-infront-first-char-at-line-p)
+    (end-of-line)
+    (jcs-beginning-of-line)))
+(advice-add 'previous-line :after #'jcs--nav-line--advice-after)
+(advice-add 'next-line :after #'jcs--nav-line--advice-after)
+
 ;;----------------------------------------------
-;; Move Between Word (Wrapper)
-;;----------------------------------------------
+;;      Move Between Word (Wrapper)
 
 ;;;###autoload
 (defun jcs-backward-word ()
@@ -107,7 +113,6 @@ Just use this without remember Emacs Lisp function."
 
 ;;----------------------------------------------
 ;; Move Inside Line
-;;----------------------------------------------
 
 ;;;###autoload
 (defun jcs-back-to-indentation-or-beginning ()
@@ -207,7 +212,6 @@ this version instead."
 
 ;;----------------------------------------------
 ;; Navigating Blank Line
-;;----------------------------------------------
 
 ;;;###autoload
 (defun jcs-previous-blank-line ()
@@ -225,10 +229,8 @@ this version instead."
       (forward-line -1)
     (goto-char (point-max))))
 
-
 ;;----------------------------------------------
 ;; Character Navigation
-;;----------------------------------------------
 
 (defun jcs-move-to-forward-a-char (ch)
   "Move forward to a character CH."
@@ -280,10 +282,8 @@ as NO-REC : recursive? (Default: do recusrive method)"
       (jcs-move-to-backward-a-char ch)
     (jcs-move-to-backward-a-char-recursive ch)))
 
-
 ;;----------------------------------------------
 ;; Symbol Navigation
-;;----------------------------------------------
 
 ;;;###autoload
 (defun jcs-backward-symbol (arg)
@@ -295,10 +295,8 @@ as NO-REC : recursive? (Default: do recusrive method)"
   (interactive "p")
   (forward-symbol arg))
 
-
 ;;----------------------------------------------
 ;; Navigating to a Character
-;;----------------------------------------------
 
 (defvar jcs-search-trigger-forward-char nil
   "Trigger search forward character.")
@@ -344,8 +342,8 @@ CH : character we target to move toward."
                            'face '(:foreground "cyan"))))))
 
 
-;;;------------------------------------------------
-;;; Move toggle Open and Close all kind of char.
+;;------------------------------------------------
+;; Move toggle Open and Close all kind of char.
 
 (defvar jcs-search-trigger-forward-open-close-char 0
   "Trigger search forward open and close character.")
@@ -448,8 +446,8 @@ CH : character we target to move toward."
                  (propertize (concat "Failing overwrap jcs-move-forward-open-close-epair: '" openChar "' and '" closeChar "'")
                              'face '(:foreground "cyan")))))))
 
-;;;------------------------------------------------
-;;; Move toggle Open and Close all kind of parenthesis.
+;;------------------------------------------------
+;; Move toggle Open and Close all kind of parenthesis.
 
 ;;;###autoload
 (defun jcs-move-forward-open-close-paren ()
@@ -487,8 +485,8 @@ CH : character we target to move toward."
   (interactive)
   (jcs-move-backward-open-close-epair "{" "}"))
 
-;;;------------------------------------------------
-;;; Single Quotation Mark
+;;------------------------------------------------
+;; Single Quotation Mark
 
 ;;;###autoload
 (defun jcs-move-forward-single-quot (&optional no-rec)
@@ -504,8 +502,8 @@ as NO-REC : recursive? (Default: do recusrive method)"
   (interactive)
   (jcs-move-to-backward-a-char-do-recursive "'" no-rec))
 
-;;;------------------------------------------------
-;;; Double Quotation Mark
+;;------------------------------------------------
+;; Double Quotation Mark
 
 ;;;###autoload
 (defun jcs-move-forward-double-quot (&optional no-rec)
@@ -521,8 +519,8 @@ as NO-REC : recursive? (Default: do recusrive method)"
   (interactive)
   (jcs-move-to-backward-a-char-do-recursive "\"" no-rec))
 
-;;;------------------------------------------------
-;;; Open Parenthesis
+;;------------------------------------------------
+;; Open Parenthesis
 
 ;;;###autoload
 (defun jcs-move-forward-open-paren (&optional no-rec)
@@ -538,8 +536,8 @@ as NO-REC : recursive? (Default: do recusrive method)"
   (interactive)
   (jcs-move-to-backward-a-char-do-recursive "(" no-rec))
 
-;;;------------------------------------------------
-;;; Close Parenthesis
+;;------------------------------------------------
+;; Close Parenthesis
 
 ;;;###autoload
 (defun jcs-move-forward-close-paren (&optional no-rec)
@@ -555,8 +553,8 @@ as NO-REC : recursive? (Default: do recusrive method)"
   (interactive)
   (jcs-move-to-backward-a-char-do-recursive ")" no-rec))
 
-;;;------------------------------------------------
-;;; Open Square Parenthesis
+;;------------------------------------------------
+;; Open Square Parenthesis
 
 ;;;###autoload
 (defun jcs-move-forward-open-sqr-paren (&optional no-rec)
@@ -572,8 +570,8 @@ as NO-REC : recursive? (Default: do recusrive method)"
   (interactive)
   (jcs-move-to-backward-a-char-do-recursive "[" no-rec))
 
-;;;------------------------------------------------
-;;; Close Square Parenthesis
+;;------------------------------------------------
+;; Close Square Parenthesis
 
 ;;;###autoload
 (defun jcs-move-forward-close-sqr-paren (&optional no-rec)
@@ -589,8 +587,8 @@ as NO-REC : recursive? (Default: do recusrive method)"
   (interactive)
   (jcs-move-to-backward-a-char-do-recursive "]" no-rec))
 
-;;;------------------------------------------------
-;;; Open Curly Parenthesis
+;;------------------------------------------------
+;; Open Curly Parenthesis
 
 ;;;###autoload
 (defun jcs-move-forward-open-curly-paren (&optional no-rec)
@@ -606,8 +604,8 @@ as NO-REC : recursive? (Default: do recusrive method)"
   (interactive)
   (jcs-move-to-backward-a-char-do-recursive "{" no-rec))
 
-;;;------------------------------------------------
-;;; Close Curly Parenthesis
+;;------------------------------------------------
+;; Close Curly Parenthesis
 
 ;;;###autoload
 (defun jcs-move-forward-close-curly-paren (&optional no-rec)
@@ -623,8 +621,8 @@ as NO-REC : recursive? (Default: do recusrive method)"
   (interactive)
   (jcs-move-to-backward-a-char-do-recursive "}" no-rec))
 
-;;;------------------------------------------------
-;;; Colon
+;;------------------------------------------------
+;; Colon
 
 ;;;###autoload
 (defun jcs-move-forward-colon (&optional no-rec)
@@ -640,8 +638,8 @@ as NO-REC : recursive? (Default: do recusrive method)"
   (interactive)
   (jcs-move-to-backward-a-char-do-recursive ":" no-rec))
 
-;;;------------------------------------------------
-;;; Semicolon
+;;------------------------------------------------
+;; Semicolon
 
 ;;;###autoload
 (defun jcs-move-forward-semicolon (&optional no-rec)
@@ -657,8 +655,8 @@ as NO-REC : recursive? (Default: do recusrive method)"
   (interactive)
   (jcs-move-to-backward-a-char-do-recursive ";" no-rec))
 
-;;;------------------------------------------------
-;;; Geater than sign
+;;------------------------------------------------
+;; Geater than sign
 
 ;;;###autoload
 (defun jcs-move-forward-greater-than-sign (&optional no-rec)
@@ -674,8 +672,8 @@ as NO-REC : recursive? (Default: do recusrive method)"
   (interactive)
   (jcs-move-to-backward-a-char-do-recursive ">" no-rec))
 
-;;;------------------------------------------------
-;;; Less than sign
+;;------------------------------------------------
+;; Less than sign
 
 ;;;###autoload
 (defun jcs-move-forward-less-than-sign (&optional no-rec)
@@ -691,8 +689,8 @@ as NO-REC : recursive? (Default: do recusrive method)"
   (interactive)
   (jcs-move-to-backward-a-char-do-recursive "<" no-rec))
 
-;;;------------------------------------------------
-;;; Comma
+;;------------------------------------------------
+;; Comma
 
 ;;;###autoload
 (defun jcs-move-forward-comma (&optional no-rec)
@@ -708,8 +706,8 @@ as NO-REC : recursive? (Default: do recusrive method)"
   (interactive)
   (jcs-move-to-backward-a-char-do-recursive "," no-rec))
 
-;;;------------------------------------------------
-;;; Period
+;;------------------------------------------------
+;; Period
 
 ;;;###autoload
 (defun jcs-move-forward-period (&optional no-rec)
