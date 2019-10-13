@@ -344,9 +344,7 @@
   :init
   (setq highlight-indent-guides-method 'character)
   (setq highlight-indent-guides-character ?\|)
-  (setq highlight-indent-guides-responsive 'top)
-  :config
-  (add-hook 'prog-mode-hook #'highlight-indent-guides-mode))
+  (setq highlight-indent-guides-responsive 'top))
 
 
 (use-package hl-todo
@@ -591,7 +589,9 @@
     (when (and shift-select-active
                (not this-command-keys-shift-translated))
       (let ((sym-lst '(jcs-smart-indent-up
-                       jcs-smart-indent-down)))
+                       jcs-smart-indent-down
+                       previous-line
+                       next-line)))
         (when (jcs-is-contain-list-symbol sym-lst this-command)
           (deactivate-mark)))))
   (advice-add 'shift-select-pre-command-hook :after #'jcs-advice-shift-select-pre-command-hook-after))
