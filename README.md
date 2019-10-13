@@ -164,80 +164,80 @@ configuration. These features are heavily base on my personal
 habits, and so these could be very tiny things. But I believed
 detials make things better and make life smoother.
 
-* [*Auto Install Package*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/auto-install-package) -
+* [*Auto Install Package*](./features/auto-install-package) -
 Automatically installs the package that this config relies on.
-* [*Auto Truncate Lines*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/auto-truncate-lines) -
+* [*Auto Truncate Lines*](./features/auto-truncate-lines) -
 Automatically enable/disable `truncate-lines-mode` depends
 on certain situation. (`web-mode` only)
-* [*Better Dashboard*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/better-dashboard) -
+* [*Better Dashboard*](./features/better-dashboard) -
 Implementation for improving experiences using dashboard.
-* [*Buffer Menu Search*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/buffer-menu-search) -
+* [*Buffer Menu Search*](./features/buffer-menu-search) -
 Able to search in the `*Buffer List*` buffer.
-* [*Build Run*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/build-run) -
+* [*Build Run*](./features/build-run) -
 Implementation for executing script for building and running
 the software.
-* [*Capital Word*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/capital-word) -
+* [*Capital Word*](./features/capital-word) -
 You can navigate/kill word by seeing capital letter.
-* [*Consistent Key Bindings*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/consistent-key-bindings) -
+* [*Consistent Key Bindings*](./features/consistent-key-bindings) -
 Has consistent key bindings across all modes.
-* [*Curly Bracket Modes*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/curly-bracket-modes) -
+* [*Curly Bracket Modes*](./curly-bracket-modes) -
 Use curly bracket depends on different mode.
-* [*Display File*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/display-file) -
+* [*Display File*](./features/display-file) -
 Utility function to use to view a file on the other window.
-  * [*Charset Table*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/display-file/charset-table) -
+  * [*Charset Table*](./features/display-file/charset-table) -
   Built-in functions that displays character sets.
-* [*Docstring Completion*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/docstring-completion) -
+* [*Docstring Completion*](./features/docstring-completion) -
 Some standard docstring completion implementations built-in
 to this configuration.
-* [*Fast Incremental Search*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/fast-incremental-search) -
+* [*Fast Incremental Search*](./features/fast-incremental-search) -
 Fast keys for incremental search forward/backward
 to the cursor is currently pointing.
-* [*Feebleline Design*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/feebleline-design) -
+* [*Feebleline Design*](./features/feebleline-design) -
 Personal displayed design for `feebleline`.
-* [*Indent Control*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/indent-control) -
+* [*Indent Control*](./features/indent-control) -
 Generic control the indentation level for each mode, for more information see [indent-control](https://github.com/alt-elpa/indent-control).
-* ~~[*Indent Move*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/indent-move) -
+* ~~[*Indent Move*](./features/indent-move) -
 Automatically indent when cursor moves up and down.~~
-* [*Line Numbers Modding*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/line-numbers-modding) -
+* [*Line Numbers Modding*](./features/line-numbers-modding) -
 Mixed used of `linum` and `display-line-numbers-mode`
 base on the file usage.
-* [*Mini State*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/mini-state) -
+* [*Mini State*](./features/mini-state) -
 Mini mode state use to visually see what backend is the
 config currently running.
-  * [*Auto Switch State*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/mini-state/auto-switch-state) -
+  * [*Auto Switch State*](./features/mini-state/auto-switch-state) -
   Automatcially switch mini state depends on certain circumstances.
-* ~~[*Mode Line Toggle*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/mode-line-toggle) -
+* ~~[*Mode Line Toggle*](./features/mode-line-toggle) -
 Toggle to `show` or `hide` the mode line.~~
-* [*Modern Text Editor*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/modern-text-editor) -
+* [*Modern Text Editor*](./features/modern-text-editor) -
 Design to have the preset settings close to modern text
 editors but faster.
-* [*Navigate Blank Line*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/navigate-blank-line) -
+* [*Navigate Blank Line*](./features/navigate-blank-line) -
 Use `C-<up>` and `C-<down>` to navigate previous and next
 blank line.
-* [*Navigate Table*](https://github.com/jcs090218/jcs-emacs-init/tree/master/features/navigate-table) -
+* [*Navigate Table*](./features/navigate-table) -
 Navigate `org-mode`'s table easier by using arrow keys.
-* [*Preview HTML*](https://github.com/jcs090218/jcs-emacs-init/tree/master/features/preview-html) -
+* [*Preview HTML*](./features/preview-html) -
 Preview rendered HTML file on the other window.
-* [*Simulate Shell*](https://github.com/jcs090218/jcs-emacs-init/tree/master/features/simulate-shell) -
+* [*Simulate Shell*](./features/simulate-shell) -
 Completely simulate shell behaviors, make better user
 experience when using shell in Emacs.
-* [*Switch Window*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/switch-window) -
+* [*Switch Window*](./features/switch-window) -
 Fast keys switch between windows quickly.
-* [*Tabify/Untabify Modes*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/tabify-untabify-modes) -
+* [*Tabify/Untabify Modes*](./features/tabify-untabify-modes) -
 Tabify or Untabify the file depends on the mode you
 currently in.
-* [*Transparent Window*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/transparent-window) -
+* [*Transparent Window*](./features/transparent-window) -
 Keys to increase/decrease the transparency of the frame.
-* [*Trim Trailing Whitespace*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/trim-trailing-whitespace) -
+* [*Trim Trailing Whitespace*](./features/trim-trailing-whitespace) -
 Remove trailing spaces and tabs automatically on save.
-* [*Visualize Undo/Redo*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/visualize-undo-redo) -
+* [*Visualize Undo/Redo*](./features/visualize-undo-redo) -
 Improved the user experience on undoing and redoing by
 showing the `undo-tree-visualizer` at the other window.
-* [*VS Curly Bracket*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/vs-curly-bracket) -
+* [*VS Curly Bracket*](./features/vs-curly-bracket) -
 Visual Studio IDE like curly bracket implementation.
-* [*VS Multiple Cursors*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/vs-multiple-cursors) -
+* [*VS Multiple Cursors*](./features/vs-multiple-cursors) -
 VSCode like methods to `mark` and `unmark` multiple cursor.
-* [*VS Navigate Word*](https://github.com/jcs090218/jcs-emacs-init/blob/master/features/vs-navigate-word) -
+* [*VS Navigate Word*](./features/vs-navigate-word) -
 Visual Studio IDE like navigating between word implementation.
 
 
