@@ -1,5 +1,5 @@
 # Smart Move
-> Smart enough to move cursor to the beginning of line.
+> Smart enough to move cursor to the beginning of the line.
 
 <p align="center">
   <img src="./smart-move.gif" width="600" height="202"/>
