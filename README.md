@@ -117,6 +117,7 @@ without having to get used to an new IDE.
 Here is the list of few important and recent changes to this
 configuration.
 
+* `5.8.7` - No longer using `smart-indent` for moving cursor up/down line.
 * `5.8.6` - Use `web-mode` instead of `vue-mode` for editing `.vue` file.
 * `5.8.4` - Start using `quelpa` to manage self dependencies on the fly.
 * `5.8.3` - Corrected key bindings `C-x` to cut and `C-c` to copy.
