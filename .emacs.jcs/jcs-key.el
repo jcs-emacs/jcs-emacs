@@ -142,9 +142,9 @@
 (define-key global-map (kbd "C-s") #'jcs-untabify-save-buffer)
 (define-key global-map (kbd "C-S-s") #'jcs-tabify-save-buffer)
 
-(define-key prog-mode-map (kbd "<up>") #'jcs-smart-indent-up)
+(define-key prog-mode-map (kbd "<up>") #'previous-line)
 (define-key global-map (kbd "<up>") #'previous-line)
-(define-key prog-mode-map (kbd "<down>") #'jcs-smart-indent-down)
+(define-key prog-mode-map (kbd "<down>") #'next-line)
 (define-key global-map (kbd "<down>") #'next-line)
 
 (define-key global-map (kbd "C-M-<up>") #'jcs-scroll-down-one-line)
@@ -250,8 +250,8 @@
 (define-key global-map (kbd "C-k f") #'jcs-change-font)
 
 ;;; Format file.
-(define-key global-map "\C-k\C-f" #'indent-region)
-(define-key global-map "\C-k\C-d" #'jcs-format-document)
+(define-key global-map (kbd "C-k C-f") #'indent-region)
+(define-key global-map (kbd "C-k C-d") #'jcs-format-document)
 (define-key global-map (kbd "C-S-f") #'jcs-format-region-or-document)
 (define-key global-map (kbd "C-k a") #'jcs-align-region-or-document)
 
