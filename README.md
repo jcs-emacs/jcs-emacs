@@ -198,7 +198,7 @@ Personal displayed design for `feebleline`.
 Generic control the indentation level for each mode, for more information see [indent-control](https://github.com/alt-elpa/indent-control).
 * ~~[*Indent Move*](./features/indent-move) -
 Automatically indent when cursor moves up and down.~~
-  * [*Smart-Move*](./features/smart-move)
+  * [*Smart-Move*](./features/smart-move) -
   Smart enough to move cursor to the beginning of the line.
 * [*Line Numbers Modding*](./features/line-numbers-modding) -
 Mixed used of `linum` and `display-line-numbers-mode`
