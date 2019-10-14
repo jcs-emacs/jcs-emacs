@@ -105,7 +105,6 @@ comment character on the same line."
   "CSharp mode smart indent up."
   (interactive)
   (jcs-smart-indent-up)
-
   (when (and (jcs-is-end-of-line-p)
              (jcs-current-char-equal-p "/")
              (jcs-vs-csharp-only-vs-comment-prefix-this-line-p))
@@ -116,7 +115,6 @@ comment character on the same line."
   "CSharp mode smart indent down."
   (interactive)
   (jcs-smart-indent-down)
-
   (when (and (jcs-is-end-of-line-p)
              (jcs-current-char-equal-p "/")
              (jcs-vs-csharp-only-vs-comment-prefix-this-line-p))
