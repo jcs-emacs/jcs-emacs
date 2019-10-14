@@ -6,6 +6,80 @@
 ;;----------------------------------------------
 ;; Move Between Line (Wrapper)
 
+(defun jcs-get-major-mode-prev/next-key-type (direction)
+  "Return the major-mode's prev/next key type by DIRECTION."
+  (cl-case direction
+    ('previous
+     (cond
+      ((jcs-is-current-major-mode-p '("cmake-mode"
+                                      "cobol-mode"
+                                      "makefile-mode"
+                                      "nasm-mode"
+                                      "python-mode"
+                                      "yaml-mode"))
+       'jcs-py-indent-up)
+      ((jcs-is-current-major-mode-p '("bat-mode"
+                                      "conf-javaprop-mode"
+                                      "gitattributes-mode"
+                                      "gitconfig-mode"
+                                      "gitignore-mode"
+                                      "ini-mode"
+                                      "message-mode"
+                                      "reb-mode"
+                                      "ssass-mode"
+                                      "sql-mode"))
+       'previous-line)
+      ((jcs-is-current-major-mode-p '("csharp-mode"))
+       'jcs-csharp-smart-indent-up)
+      ((jcs-is-current-major-mode-p '("css-mode"))
+       'jcs-css-smart-indent-up)
+      ((jcs-is-current-major-mode-p '("shell-mode"))
+       'jcs-shell-up-key)
+      (t 'jcs-smart-indent-up)))
+    ('next
+     (cond
+      ((jcs-is-current-major-mode-p '("cmake-mode"
+                                      "cobol-mode"
+                                      "makefile-mode"
+                                      "nasm-mode"
+                                      "python-mode"
+                                      "yaml-mode"))
+       'jcs-py-indent-down)
+      ((jcs-is-current-major-mode-p '("bat-mode"
+                                      "conf-javaprop-mode"
+                                      "gitattributes-mode"
+                                      "gitconfig-mode"
+                                      "gitignore-mode"
+                                      "ini-mode"
+                                      "message-mode"
+                                      "reb-mode"
+                                      "ssass-mode"
+                                      "sql-mode"))
+       'next-line)
+      ((jcs-is-current-major-mode-p '("csharp-mode"))
+       'jcs-csharp-smart-indent-down)
+      ((jcs-is-current-major-mode-p '("css-mode"))
+       'jcs-css-smart-indent-down)
+      ((jcs-is-current-major-mode-p '("shell-mode"))
+       'jcs-shell-down-key)
+      (t 'jcs-smart-indent-down)))
+    (t (user-error "Please define direction with 'previous' or 'next'"))))
+
+(defun jcs-get-prev/next-key-type (direction)
+  "Return the prev/next key type by DIRECTION."
+  (cl-case direction
+    ('previous (cl-case jcs-prev/next-key-type
+                 ('normal 'previous-line)
+                 ('indent (jcs-get-major-mode-prev/next-key-type direction))
+                 ('smart 'jcs-smart-previous-line)
+                 (t (user-error "Prev/Next key type not defined"))))
+    ('next (cl-case jcs-prev/next-key-type
+             ('normal 'next-line)
+             ('indent (jcs-get-major-mode-prev/next-key-type direction))
+             ('smart 'jcs-smart-next-line)
+             (t (user-error "Prev/Next key type not defined"))))
+    (t (user-error "Please define direction with 'previous' or 'next'"))))
+
 ;;;###autoload
 (defun jcs-previous-line ()
   "Calling `previous-line' does not execute.
@@ -20,13 +94,23 @@ Just use this without remember Emacs Lisp function."
   (interactive)
   (call-interactively #'next-line))
 
-(defun jcs--nav-line--advice-after (&rest _)
-  "Advice execute after `previous-line' command."
+;;;###autoload
+(defun jcs-smart-previous-line ()
+  "Smart way to navigate to previous line."
+  (interactive)
+  (jcs-previous-line)
   (when (jcs-is-infront-first-char-at-line-p)
     (end-of-line)
     (jcs-beginning-of-line)))
-(advice-add 'previous-line :after #'jcs--nav-line--advice-after)
-(advice-add 'next-line :after #'jcs--nav-line--advice-after)
+
+;;;###autoload
+(defun jcs-smart-next-line ()
+  "Smart way to navigate to next line."
+  (interactive)
+  (jcs-next-line)
+  (when (jcs-is-infront-first-char-at-line-p)
+    (end-of-line)
+    (jcs-beginning-of-line)))
 
 ;;----------------------------------------------
 ;;      Move Between Word (Wrapper)
