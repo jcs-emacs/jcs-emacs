@@ -18,12 +18,14 @@
         jcs-css-smart-indent-down
         jcs-css-smart-indent-up
         jcs-downcase-word-or-region
+        jcs-duplicate-line
         jcs-electric-backspace
         jcs-end-of-buffer
         jcs-end-of-line
         jcs-forward-delete-word
         jcs-forward-kill-word-capital
         jcs-forward-word-capital
+        jcs-kill-whole-line
         jcs-mark-whole-buffer
         jcs-move-backward-comma
         jcs-move-backward-open-sqrParen
@@ -44,6 +46,8 @@
         jcs-smart-forward-word
         jcs-smart-indent-down
         jcs-smart-indent-up
+        jcs-smart-next-line
+        jcs-smart-previous-line
         jcs-smart-space
         jcs-smart-yank
         jcs-upcase-word-or-region
