@@ -142,9 +142,9 @@
 (define-key global-map (kbd "C-s") #'jcs-untabify-save-buffer)
 (define-key global-map (kbd "C-S-s") #'jcs-tabify-save-buffer)
 
-(define-key prog-mode-map (kbd "<up>") #'previous-line)
+(define-key prog-mode-map (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
 (define-key global-map (kbd "<up>") #'previous-line)
-(define-key prog-mode-map (kbd "<down>") #'next-line)
+(define-key prog-mode-map (kbd "<down>") (jcs-get-prev/next-key-type 'next))
 (define-key global-map (kbd "<down>") #'next-line)
 
 (define-key global-map (kbd "C-M-<up>") #'jcs-scroll-down-one-line)
