@@ -5,6 +5,8 @@
 
 (require 'nasm-mode)
 
+(require 'jcs-python-func)
+
 
 (defun jcs-nasm-mode-hook ()
   "NASM mode hook."
