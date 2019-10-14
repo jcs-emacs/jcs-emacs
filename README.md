@@ -197,6 +197,8 @@ Personal displayed design for `feebleline`.
 * [*Indent Control*](./features/indent-control) -
 Generic control the indentation level for each mode, for more information see [indent-control](https://github.com/alt-elpa/indent-control).
 * Previous/Next Keys
+  * [*Normal Move*]() -
+  Act like other normal editors.
   * [*Indent Move*](./features/indent-move) -
   Automatically indent when cursor moves up and down.
   * [*Smart-Move*](./features/smart-move) -
