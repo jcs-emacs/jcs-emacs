@@ -57,7 +57,7 @@
 (setq make-backup-files nil)
 
 ;;; Bell
-(defun nil-bell ())  ;; Turn off the bell on Mac OS X
+(defun nil-bell ())  ; Turn off the bell on Mac OS X
 (setq ring-bell-function 'nil-bell)
 
 ;;; Compilation
@@ -160,6 +160,13 @@
 (defconst jcs-prompt-message-sleep-delay-time 0.4  ; in seconds
   "Delay for a time for prompting out the message, so the user
 can see the error/operation message.")
+
+;;; Previous/Next keys
+(defcustom jcs-prev/next-key-type 'indent
+  "Previous or Next key definition."
+  :type '(choice (const :tag "normal" normal)
+                 (const :tag "indent" indent)
+                 (const :tag "smart" smart)))
 
 ;;; Process
 (setq kill-buffer-query-functions nil)
