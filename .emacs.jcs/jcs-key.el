@@ -340,6 +340,7 @@
 (define-key global-map (kbd "C-M-S-<down>") #'jcs-mc/mark-next-like-this)
 
 (with-eval-after-load 'multiple-cursors
+  (define-key mc/keymap (kbd "<escape>") #'mc/keyboard-quit)
   (define-key mc/keymap (kbd "C-v") #'jcs-smart-yank))
 
 ;;; Navigation
