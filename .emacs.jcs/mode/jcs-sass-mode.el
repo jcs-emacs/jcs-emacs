@@ -20,8 +20,8 @@
   (define-key ssass-mode-map (kbd "*") #'jcs-c-comment-pair)
 
   ;; Edit
-  (define-key ssass-mode-map (kbd "<up>") #'jcs-previous-line)
-  (define-key ssass-mode-map (kbd "<down>") #'jcs-next-line)
+  (define-key ssass-mode-map (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
+  (define-key ssass-mode-map (kbd "<down>") (jcs-get-prev/next-key-type 'next))
   )
 (add-hook 'ssass-mode-hook 'jcs-sass-mode-hook)
 

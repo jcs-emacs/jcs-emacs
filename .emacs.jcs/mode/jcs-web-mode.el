@@ -94,8 +94,8 @@
 
 (defun jcs-html-mode-hook ()
   "HTML mode hook."
-  (define-key html-mode-map (kbd "<up>") #'jcs-smart-indent-up)
-  (define-key html-mode-map (kbd "<down>") #'jcs-smart-indent-down)
+  (define-key html-mode-map (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
+  (define-key html-mode-map (kbd "<down>") (jcs-get-prev/next-key-type 'next))
   )
 (add-hook 'html-mode-hook 'jcs-html-mode-hook)
 

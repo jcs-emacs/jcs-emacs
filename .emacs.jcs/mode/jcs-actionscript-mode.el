@@ -18,6 +18,9 @@
                               'jcs-insert-actionscript-template)
 
   ;; Normal
+  (define-key actionscript-mode-map (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
+  (define-key actionscript-mode-map (kbd "<down>") (jcs-get-prev/next-key-type 'next))
+
   (define-key actionscript-mode-map (kbd "<backspace>") #'jcs-smart-backspace)
   (define-key actionscript-mode-map (kbd "<delete>") #'jcs-smart-delete)
 

@@ -21,10 +21,10 @@
                               'jcs-insert-yaml-template)
 
   ;; Normal
-  (define-key yaml-mode-map (kbd "<backspace>") #'jcs-yaml-electric-backspace)
+  (define-key yaml-mode-map (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
+  (define-key yaml-mode-map (kbd "<down>") (jcs-get-prev/next-key-type 'next))
 
-  (define-key yaml-mode-map (kbd "<up>") #'jcs-py-indent-up)
-  (define-key yaml-mode-map (kbd "<down>") #'jcs-py-indent-down)
+  (define-key yaml-mode-map (kbd "<backspace>") #'jcs-yaml-electric-backspace)
   )
 (add-hook 'yaml-mode-hook 'jcs-yaml-mode-hook)
 

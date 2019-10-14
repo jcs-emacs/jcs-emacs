@@ -15,8 +15,8 @@
   (auto-highlight-symbol-mode t)
 
   ;; Normal
-  (define-key gitattributes-mode-map (kbd "<up>") #'previous-line)
-  (define-key gitattributes-mode-map (kbd "<down>") #'next-line)
+  (define-key gitattributes-mode-map (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
+  (define-key gitattributes-mode-map (kbd "<down>") (jcs-get-prev/next-key-type 'next))
   )
 (add-hook 'gitattributes-mode-hook 'jcs-gitattributes-mode-hook)
 
@@ -29,10 +29,10 @@
   (auto-highlight-symbol-mode t)
 
   ;; Normal
+  (define-key gitconfig-mode-map (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
+  (define-key gitconfig-mode-map (kbd "<down>") (jcs-get-prev/next-key-type 'next))
   (define-key gitconfig-mode-map (kbd "C-d") #'jcs-kill-whole-line)
   (define-key gitconfig-mode-map (kbd "C-c C-c") #'kill-ring-save)
-  (define-key gitconfig-mode-map (kbd "<up>") #'previous-line)
-  (define-key gitconfig-mode-map (kbd "<down>") #'next-line)
   )
 (add-hook 'gitconfig-mode-hook 'jcs-gitconfig-mode-hook)
 
@@ -45,10 +45,10 @@
   (auto-highlight-symbol-mode t)
 
   ;; Normal
+  (define-key gitignore-mode-map (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
+  (define-key gitignore-mode-map (kbd "<down>") (jcs-get-prev/next-key-type 'next))
   (define-key gitignore-mode-map (kbd "C-d") #'jcs-kill-whole-line)
   (define-key gitignore-mode-map (kbd "C-c C-c") #'kill-ring-save)
-  (define-key gitignore-mode-map (kbd "<up>") #'previous-line)
-  (define-key gitignore-mode-map (kbd "<down>") #'next-line)
   )
 (add-hook 'gitignore-mode-hook 'jcs-gitignore-mode-hook)
 

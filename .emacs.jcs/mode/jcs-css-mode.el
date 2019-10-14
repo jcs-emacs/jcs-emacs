@@ -23,14 +23,13 @@
                               'jcs-insert-css-template)
 
   ;; Normal
+  (define-key css-mode-map (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
+  (define-key css-mode-map (kbd "<down>") (jcs-get-prev/next-key-type 'next))
+
   (define-key css-mode-map (kbd "DEL") #'jcs-electric-backspace)
   (define-key css-mode-map (kbd "{") #'jcs-vs-opening-curly-bracket-key)
   (define-key css-mode-map (kbd "}") #'jcs-vs-closing-curly-bracket-key)
   (define-key css-mode-map (kbd ";") #'jcs-vs-semicolon-key)
-
-  ;; Edit
-  (define-key css-mode-map (kbd "<up>") #'jcs-css-smart-indent-up)
-  (define-key css-mode-map (kbd "<down>") #'jcs-css-smart-indent-down)
 
   ;; Save
   (define-key css-mode-map (kbd "C-s") #'jcs-css-save-buffer)

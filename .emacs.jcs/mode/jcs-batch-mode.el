@@ -16,8 +16,8 @@
                               'jcs-insert-batch-template)
 
   ;; Normal
-  (define-key bat-mode-map (kbd "<up>") #'jcs-previous-line)
-  (define-key bat-mode-map (kbd "<down>") #'jcs-next-line)
+  (define-key bat-mode-map (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
+  (define-key bat-mode-map (kbd "<down>") (jcs-get-prev/next-key-type 'next))
   )
 (add-hook 'bat-mode-hook 'jcs-batch-mode-hook)
 

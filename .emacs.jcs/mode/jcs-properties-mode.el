@@ -14,8 +14,8 @@
   (modify-syntax-entry ?_ "w")
 
   ;; Normal
-  (define-key conf-javaprop-mode-map (kbd "<up>") #'previous-line)
-  (define-key conf-javaprop-mode-map (kbd "<down>") #'next-line)
+  (define-key conf-javaprop-mode-map (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
+  (define-key conf-javaprop-mode-map (kbd "<down>") (jcs-get-prev/next-key-type 'next))
 
   (define-key conf-javaprop-mode-map (kbd "C-s") #'save-buffer)
   )

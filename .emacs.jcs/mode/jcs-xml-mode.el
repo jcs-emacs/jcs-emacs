@@ -14,8 +14,8 @@
                               'jcs-insert-xml-template)
 
   ;; Normal
-  (define-key nxml-mode-map (kbd "<up>") #'jcs-smart-indent-up)
-  (define-key nxml-mode-map (kbd "<down>") #'jcs-smart-indent-down)
+  (define-key nxml-mode-map (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
+  (define-key nxml-mode-map (kbd "<down>") (jcs-get-prev/next-key-type 'next))
   )
 ;; STUDY: they ae using nxml-mode instead of xml-mode
 ;; which is really weird.

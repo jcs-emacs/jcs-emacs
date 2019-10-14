@@ -11,8 +11,8 @@
   (electric-pair-mode nil)
 
   ;; Normal
-  (define-key message-mode-map (kbd "<up>") #'previous-line)
-  (define-key message-mode-map (kbd "<down>") #'next-line)
+  (define-key message-mode-map (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
+  (define-key message-mode-map (kbd "<down>") (jcs-get-prev/next-key-type 'next))
   )
 (add-hook 'message-mode-hook 'jcs-message-mode-hook)
 

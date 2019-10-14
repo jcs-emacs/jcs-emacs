@@ -19,6 +19,9 @@
                               t)
 
   ;; Normal
+  (define-key python-mode-map (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
+  (define-key python-mode-map (kbd "<down>") (jcs-get-prev/next-key-type 'next))
+
   (define-key python-mode-map (kbd "<backspace>") #'jcs-smart-backspace)
   (define-key python-mode-map [C-backspace] #'jcs-backward-delete-word)
 
@@ -30,9 +33,6 @@
   (define-key python-mode-map (kbd "C-S-f") #'jcs-py-format-region-or-document)
 
   ;; Edit
-  (define-key python-mode-map (kbd "<up>") #'jcs-py-indent-up)
-  (define-key python-mode-map (kbd "<down>") #'jcs-py-indent-down)
-
   (define-key python-mode-map (kbd "<delete>") #'jcs-smart-delete)
   (define-key python-mode-map (kbd "TAB") #'jcs-tab-key)
 

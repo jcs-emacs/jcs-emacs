@@ -17,8 +17,8 @@
                               'jcs-insert-cobol-template)
 
   ;; Normal
-  (define-key cobol-mode-map (kbd "<up>") #'jcs-py-indent-up)
-  (define-key cobol-mode-map (kbd "<down>") #'jcs-py-indent-down)
+  (define-key cobol-mode-map (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
+  (define-key cobol-mode-map (kbd "<down>") (jcs-get-prev/next-key-type 'next))
   )
 (add-hook 'cobol-mode-hook 'jcs-cobol-mode-hook)
 

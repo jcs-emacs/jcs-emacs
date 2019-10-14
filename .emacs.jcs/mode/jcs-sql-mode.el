@@ -15,8 +15,8 @@
                               'jcs-insert-sql-template)
 
   ;; Normal
-  (define-key sql-mode-map (kbd "<up>") #'previous-line)
-  (define-key sql-mode-map (kbd "<down>") #'next-line)
+  (define-key sql-mode-map (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
+  (define-key sql-mode-map (kbd "<down>") (jcs-get-prev/next-key-type 'next))
   )
 (add-hook 'sql-mode-hook 'jcs-sql-mode-hook)
 

@@ -18,8 +18,8 @@
                               'jcs-insert-asm-template)
 
   ;; Normal
-  (define-key nasm-mode-map (kbd "<up>") #'jcs-py-indent-up)
-  (define-key nasm-mode-map (kbd "<down>") #'jcs-py-indent-down)
+  (define-key nasm-mode-map (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
+  (define-key nasm-mode-map (kbd "<down>") (jcs-get-prev/next-key-type 'next))
 
   ;; Comment
   (define-key nasm-mode-map (kbd "RET") #'jcs-nasm-return)

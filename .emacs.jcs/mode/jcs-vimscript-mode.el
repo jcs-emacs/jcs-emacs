@@ -16,10 +16,10 @@
                               'jcs-insert-vimscript-template)
 
   ;; Normal
-  (define-key vimrc-mode-map (kbd "C-a") #'jcs-mark-whole-buffer)
-
   (define-key vimrc-mode-map (kbd "<up>") #'jcs-previous-line)
   (define-key vimrc-mode-map (kbd "<down>") #'jcs-next-line)
+
+  (define-key vimrc-mode-map (kbd "C-a") #'jcs-mark-whole-buffer)
   )
 (add-hook 'vimrc-mode-hook 'jcs-vim-mode-hook)
 

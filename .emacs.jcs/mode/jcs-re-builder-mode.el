@@ -10,8 +10,8 @@
   "Mode hook for `RE-Builder-mode'."
 
   ;; Normal
-  (define-key reb-mode-map (kbd "<up>") #'previous-line)
-  (define-key reb-mode-map (kbd "<down>") #'next-line)
+  (define-key reb-mode-map (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
+  (define-key reb-mode-map (kbd "<down>") (jcs-get-prev/next-key-type 'next))
 
   (define-key reb-mode-map (kbd "M-k") #'jcs-reb-maybe-kill-this-buffer)
   )

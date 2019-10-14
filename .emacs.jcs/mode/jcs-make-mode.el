@@ -17,8 +17,8 @@
                               'jcs-makefile-format-info)
 
   ;; Normal
-  (define-key makefile-mode-map (kbd "<up>") #'jcs-py-indent-up)
-  (define-key makefile-mode-map (kbd "<down>") #'jcs-py-indent-down)
+  (define-key makefile-mode-map (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
+  (define-key makefile-mode-map (kbd "<down>") (jcs-get-prev/next-key-type 'next))
   (define-key makefile-mode-map (kbd "RET") #'jcs-makefile-newline)
 
   ;; tabify save key

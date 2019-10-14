@@ -16,9 +16,12 @@
                               'jcs-insert-haxe-template)
 
   ;; Normal
+  (define-key haxe-mode-map (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
+  (define-key haxe-mode-map (kbd "<down>") (jcs-get-prev/next-key-type 'next))
+
   (define-key haxe-mode-map (kbd "<backspace>") #'jcs-smart-backspace)
   (define-key haxe-mode-map (kbd "<delete>") #'jcs-smart-delete)
-  
+
   (define-key haxe-mode-map (kbd "DEL") #'jcs-electric-backspace)
   (define-key haxe-mode-map (kbd "{") #'jcs-vs-opening-curly-bracket-key)
   (define-key haxe-mode-map (kbd "}") #'jcs-vs-closing-curly-bracket-key)
