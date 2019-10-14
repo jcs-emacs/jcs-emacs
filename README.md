@@ -117,7 +117,7 @@ without having to get used to an new IDE.
 Here is the list of few important and recent changes to this
 configuration.
 
-* `5.8.7` - No longer using `smart-indent` for moving cursor up/down line.
+* `5.8.7` - Set `smart-indent` as one option to move previous/next line.
 * `5.8.6` - Use `web-mode` instead of `vue-mode` for editing `.vue` file.
 * `5.8.4` - Start using `quelpa` to manage self dependencies on the fly.
 * `5.8.3` - Corrected key bindings `C-x` to cut and `C-c` to copy.
@@ -196,8 +196,9 @@ to the cursor is currently pointing.
 Personal displayed design for `feebleline`.
 * [*Indent Control*](./features/indent-control) -
 Generic control the indentation level for each mode, for more information see [indent-control](https://github.com/alt-elpa/indent-control).
-* ~~[*Indent Move*](./features/indent-move) -
-Automatically indent when cursor moves up and down.~~
+* Previous/Next Keys
+  * [*Indent Move*](./features/indent-move) -
+  Automatically indent when cursor moves up and down.
   * [*Smart-Move*](./features/smart-move) -
   Smart enough to move cursor to the beginning of the line.
 * [*Line Numbers Modding*](./features/line-numbers-modding) -
