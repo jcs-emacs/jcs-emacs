@@ -60,12 +60,13 @@ from this configuration.
 * ActionScript 2.0 or 3.0 / Assembly Language
 * BASIC / Batchfile
 * C / C++ / C# / Clojure / CMake / COBOL / CSS
-* Dart
+* Dart / Dockerfile
 * Elixir / Emacs Lisp / Erlang
 * GLSL / Go / Godot Script
 * Haskell / Haxe / HTML
 * INI
 * JSON / Java / JavaScript
+* Kotlin
 * LESS / Lisp / Lua
 * Makefile / Markdown
 * Object Pascal (Delphi) / Objective-C
