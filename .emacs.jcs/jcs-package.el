@@ -59,6 +59,7 @@
     diminish
     diminish-buffer
     dimmer
+    dockerfile-mode
     dumb-jump
     elixir-mode
     emmet-mode
@@ -99,6 +100,7 @@
     javadoc-lookup
     js2-mode
     json-mode
+    kotlin-mode
     line-reminder
     lsp-mode
     lua-mode
