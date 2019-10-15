@@ -13,6 +13,7 @@
      (cond
       ((jcs-is-current-major-mode-p '("cmake-mode"
                                       "cobol-mode"
+                                      "dockerfile-mode"
                                       "makefile-mode"
                                       "nasm-mode"
                                       "python-mode"
@@ -40,6 +41,7 @@
      (cond
       ((jcs-is-current-major-mode-p '("cmake-mode"
                                       "cobol-mode"
+                                      "dockerfile-mode"
                                       "makefile-mode"
                                       "nasm-mode"
                                       "python-mode"
