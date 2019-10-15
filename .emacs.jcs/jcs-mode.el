@@ -70,8 +70,11 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
                                    "objc-mode"))
     (setq c-basic-offset tw))
    ((jcs-is-current-major-mode-p '("css-mode"
+                                   "less-css-mode"
                                    "scss-mode"))
     (setq css-indent-offset tw))
+   ((jcs-is-current-major-mode-p '("ssass-mode"))
+    (setq ssass-tab-width tw))
    ((jcs-is-current-major-mode-p '("js-mode"
                                    "json-mode"))
     (setq js-indent-level tw))
@@ -128,8 +131,12 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
                                    "jayces-mode"
                                    "objc-mode"))
     c-basic-offset)
-   ((jcs-is-current-major-mode-p '("css-mode"))
+   ((jcs-is-current-major-mode-p '("css-mode"
+                                   "less-css-mode"
+                                   "scss-mode"))
     css-indent-offset)
+   ((jcs-is-current-major-mode-p '("ssass-mode"))
+    ssass-tab-width)
    ((jcs-is-current-major-mode-p '("js-mode"
                                    "json-mode"))
     js-indent-level)
@@ -506,6 +513,7 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
 (with-eval-after-load 'jayces-mode (require 'jcs-jayces-mode))
 (with-eval-after-load 'js2-mode (require 'jcs-js-mode))
 (with-eval-after-load 'json-mode (require 'jcs-json-mode))
+(with-eval-after-load 'less-css-mode (require 'jcs-less-css-mode))
 (with-eval-after-load 'lua-mode (require 'jcs-lua-mode))
 (with-eval-after-load 'make-mode (require 'jcs-make-mode))
 (with-eval-after-load 'markdown-mode (require 'jcs-markdown-mode))
@@ -616,6 +624,7 @@ PR : pair file `regexp' and file mode `symbol'."
 
 ;;; L
 (progn
+  (jcs-add-auto-mode-alist '("\\.less'?\\'" . less-css-mode))
   (jcs-add-auto-mode-alist '("\\.lisp'?\\'" . lisp-mode))
   (jcs-add-auto-mode-alist '("\\.lua'?\\'" . lua-mode))
   (jcs-add-auto-mode-alist '("\\.luac'?\\'" . lua-mode)))
