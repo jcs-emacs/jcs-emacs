@@ -499,6 +499,7 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
 (with-eval-after-load 'csharp-mode (require 'jcs-csharp-mode))
 (with-eval-after-load 'css-mode (require 'jcs-css-mode))
 (with-eval-after-load 'dart-mode (require 'jcs-dart-mode))
+(with-eval-after-load 'dockerfile-mode (require 'jcs-dockerfile-mode))
 (with-eval-after-load 'elixir-mode (require 'jcs-elixir-mode))
 (with-eval-after-load 'erlang (require 'jcs-erlang-mode))
 (with-eval-after-load 'gdscript-mode (require 'jcs-gdscript-mode))
@@ -513,6 +514,7 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
 (with-eval-after-load 'jayces-mode (require 'jcs-jayces-mode))
 (with-eval-after-load 'js2-mode (require 'jcs-js-mode))
 (with-eval-after-load 'json-mode (require 'jcs-json-mode))
+(with-eval-after-load 'kotlin-mode (require 'jcs-kotlin-mode))
 (with-eval-after-load 'less-css-mode (require 'jcs-less-css-mode))
 (with-eval-after-load 'lua-mode (require 'jcs-lua-mode))
 (with-eval-after-load 'make-mode (require 'jcs-make-mode))
@@ -580,7 +582,8 @@ PR : pair file `regexp' and file mode `symbol'."
 
 ;;; D
 (progn
-  (jcs-add-auto-mode-alist '("\\.dart'?" . dart-mode)))
+  (jcs-add-auto-mode-alist '("\\.dart'?" . dart-mode))
+  (jcs-add-auto-mode-alist '("\\(/\\|\\`\\)Dokerfile" . dockerfile-mode )))
 
 ;;; E
 (progn
@@ -621,6 +624,12 @@ PR : pair file `regexp' and file mode `symbol'."
   (jcs-add-auto-mode-alist '("\\.jayces'?\\'" . jayces-mode))
   (jcs-add-auto-mode-alist '("\\.js'?\\'" . js2-mode))
   (jcs-add-auto-mode-alist '("\\.json'?\\'" . json-mode)))
+
+;;; K
+(progn
+  (jcs-add-auto-mode-alist '("\\.kt'?\\'" . kotlin-mode))
+  (jcs-add-auto-mode-alist '("\\.ktm'?\\'" . kotlin-mode))
+  (jcs-add-auto-mode-alist '("\\.kts'?\\'" . kotlin-mode)))
 
 ;;; L
 (progn
