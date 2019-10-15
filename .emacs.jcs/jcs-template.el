@@ -348,6 +348,11 @@ in order to take effect.  Half hot reloading process."
   "Header for JayCeS header file."
   (jcs-insert-template-by-file-path "~/.emacs.jcs/template/jayces/jayces_template.txt"))
 
+;;; LESS
+(defun jcs-insert-less-template ()
+  "Header for LESS header file."
+  (jcs-insert-template-by-file-path "~/.emacs.jcs/template/less/less_template.txt"))
+
 ;;; Lisp
 (defun jcs-insert-lisp-template ()
   "Lisp file header format."
