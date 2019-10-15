@@ -66,7 +66,7 @@ from this configuration.
 * Haskell / Haxe / HTML
 * INI
 * JSON / Java / JavaScript
-* Lisp / Lua
+* LESS / Lisp / Lua
 * Makefile / Markdown
 * Object Pascal (Delphi) / Objective-C
 * Pascal / Perl / PHP / Properties / Python
