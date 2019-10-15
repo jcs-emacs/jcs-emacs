@@ -99,7 +99,6 @@
     javadoc-lookup
     js2-mode
     json-mode
-    less-css-mode
     line-reminder
     lsp-mode
     lua-mode
