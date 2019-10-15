@@ -27,6 +27,7 @@
 | JSON | [json-mode](https://github.com/joshwnj/json-mode) | Major mode for editing JSON files. | [![MELPA](https://melpa.org/packages/json-mode-badge.svg)](https://melpa.org/#/json-mode) |
 | Java | [java-mode](https://www.emacswiki.org/emacs/JavaDevelopmentEnvironment) | Major mode for editing Java code. | ![Builtin](https://img.shields.io/badge/builtin-depends-blue.svg) |
 | JavaScript | [js2-mode](https://github.com/mooz/js2-mode) | Improved JavaScript editing mode | [![MELPA](https://melpa.org/packages/js2-mode-badge.svg)](https://melpa.org/#/js2-mode) |
+| LESS | [less-css-mode](https://github.com/purcell/less-css-mode) | Major mode for editing Lisp code for Lisps other than GNU Emacs Lisp. | [![MELPA](http://melpa.org/packages/less-css-mode-badge.svg)](http://melpa.org/#/less-css-mode) |
 | Lisp | [lisp-mode](https://github.com/emacs-mirror/emacs/blob/master/lisp/emacs-lisp/lisp-mode.el) | Major mode for editing Lisp code for Lisps other than GNU Emacs Lisp. | ![Builtin](https://img.shields.io/badge/builtin-depends-blue.svg) |
 | Lua | [lua-mode](https://github.com/immerrr/lua-mode) | a major-mode for editing Lua scripts | [![MELPA](https://melpa.org/packages/lua-mode-badge.svg)](https://melpa.org/#/lua-mode) |
 | Makefile | [makefile-mode](https://www.emacswiki.org/emacs/MakefileMode) | A major mode for editing makefiles. | ![Builtin](https://img.shields.io/badge/builtin-depends-blue.svg) |
