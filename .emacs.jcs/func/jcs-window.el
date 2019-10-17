@@ -99,11 +99,13 @@
   "Walk through all the windows once and execute callback FNC."
   (interactive)
   (save-selected-window
-    (let ((index 0))
+    (let ((cur-frame (selected-frame))
+          (index 0))
       (while (< index (jcs-count-windows))
         (when fnc (funcall fnc))
         (other-window 1 t)
-        (setq index (+ index 1))))))
+        (setq index (+ index 1)))
+      (select-frame-set-input-focus cur-frame))))
 
 ;;========================
 ;; Ace Window
