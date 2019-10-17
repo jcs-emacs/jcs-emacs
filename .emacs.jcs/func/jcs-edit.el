@@ -996,11 +996,8 @@ ECP-SAME : Exception for the same buffer."
   (interactive)
   (save-selected-window
     (let ((buf-name (buffer-file-name))
-          (win-cnt-lst '())
-          (first-vs-ln-lst '())
-          (record-pt-lst '())
-          (win-cnt 0)
-          (win-id-cnt 0))
+          (win-cnt-lst '()) (first-vs-ln-lst '()) (record-pt-lst '())
+          (win-cnt 0) (win-id-cnt 0))
       (when buf-name
         ;; Record down all the window information with the same
         ;; buffer opened.
