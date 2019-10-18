@@ -224,7 +224,7 @@ on the same line."
         (jcs-move-to-backward-a-word "def")
 
         ;; Insert comment doc comment string.
-        (jcs-insert-comment-style-by-current-line 1)))))
+        (jcs-insert-comment-style-by-current-line "[\r\n]")))))
 
 
 ;;;###autoload

@@ -95,7 +95,7 @@ comment character on the same line."
         (jcs-next-line)
 
         ;; insert comment doc comment string.
-        (jcs-insert-comment-style-by-current-line 2)))))
+        (jcs-insert-comment-style-by-current-line "[{;]")))))
 
 ;;-----------------------------------------------------------
 ;;-----------------------------------------------------------
