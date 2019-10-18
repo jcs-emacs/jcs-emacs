@@ -269,42 +269,15 @@
   (insert type-name)
   (insert close-char))
 
-(defun jcs-move-cursor-by-search-option (sr-op)
-  "Move to next targeting end function character.
-SR-OP :
-0) search only current line.
-1) search witch closing parenthesis.
-2) search with opening culry parenthesis."
-  (ignore-errors
-    (cond ((= sr-op 0)
-           ;; Only the current line.
-           (end-of-line))
-          ((= sr-op 1)
-           ;; Closing Parenthesis
-           ;; NOTE: No recursive/No prompt.
-           (jcs-move-forward-close-paren t))
-          ((= sr-op 2)
-           ;; Opening Curly Parenthesis
-           ;; NOTE: No recursive/No prompt.
-           (jcs-move-forward-open-curly-paren t)))))
-
 
 (defun jcs-insert-comment-style-by-current-line (sr-op)
   "Read the current line and insert by reading the need from the input line.
-SR-OP :
-0) search only current line.
-1) search witch closing parenthesis.
-2) search with opening culry parenthesis."
-
-  (let ((keyword-strings '())
-        (datatype-name "")
-        (meet-function-name nil)
+SR-OP is the boundary of the search limit."
+  (let ((keyword-strings '()) (datatype-name "") (meet-function-name nil)
         (function-name-string "")
         (param-type-strings '())      ; param type string list.
         (param-variable-strings '())  ; param name string list.
-        (there-is-return nil)
-        (return-type-string "")
-        (search-string "")
+        (there-is-return nil) (return-type-string "") (search-string "")
         (close-bracket-pt -1))
 
     (save-excursion
@@ -328,7 +301,7 @@ SR-OP :
 
               (let ((tmp-current-point (point)))
                 ;; Move to next targeting end function character.
-                (jcs-move-cursor-by-search-option sr-op)
+                (jcs-move-to-forward-a-char sr-op)
 
                 ;; Check if we did move the point?
                 ;; If the recorded point is the same as
@@ -336,13 +309,13 @@ SR-OP :
                 ;; did not move at all.
                 ;;
                 ;; If that is the case, use the default one which
-                ;; is the `end-of-line' function.
+                ;; is the new line.
                 (when (or (= tmp-current-point (point))
                           (jcs-empty-line-between-point tmp-current-point (point)))
                   ;; back to where we were.
                   (goto-char tmp-current-point)
-                  ;; Use the default one. (Pass in zero)
-                  (jcs-move-cursor-by-search-option 0)))
+                  ;; Default to new line.
+                  (jcs-move-to-forward-a-char "[\r\n]")))
 
               ;; After moved to the closing parenthesis, record
               ;; down the point's position.
@@ -401,8 +374,7 @@ SR-OP :
                         (jcs-is-current-point-face 'js2-function-param)
                         (jcs-is-current-point-face "web-mode-variable-name-face")
                         (jcs-is-current-point-face "jcs-preproc-variable-name-face"))
-                (push (thing-at-point 'word) param-variable-strings))
-              )))))
+                (push (thing-at-point 'word) param-variable-strings)))))))
 
     ;; Insert document comment string.
     (jcs-insert-doc-comment-string meet-function-name
@@ -694,7 +666,7 @@ SEARCH-STRING          : Search raw string."
 
   ;; Get all return data types.
   (setq return-type-string (jcs--return-type-colon search-string))
-  (unless return-type-string (setq there-is-return nil))
+  (setq there-is-return (not (null return-type-string)))
 
   (let ((param-var-len (length param-variable-strings))
         (param-index 0))
@@ -1550,7 +1522,7 @@ SEARCH-STRING          : Search raw string."
 
   ;; Get all return data types.
   (setq return-type-string (jcs--return-type-colon search-string))
-  (unless return-type-string (setq there-is-return nil))
+  (setq there-is-return (not (null return-type-string)))
 
   (let* ((param-var-len (length param-variable-strings))
          (param-type-len (length param-type-strings))
@@ -1622,7 +1594,8 @@ SEARCH-STRING          : Search raw string."
          (",[ \t]*[a-zA-Z_$0-9[&* \t]* [a-zA-Z_$0-9[&* \t]* \\([a-zA-Z_$0-9[&* \t]*\\)[ \t]*," 1 'font-lock-variable-name-face t)
          ;; For line break parameter declaration.
          ("^[ \t] [a-zA-Z_$0-9[&* \t]* [a-zA-Z_$0-9[&* \t]* \\([a-zA-Z_$0-9[&* \t]*\\)[ \t]*[,)]" 1 'font-lock-variable-name-face t)
-         )'end)))
+         )
+       'end)))
 
   ;; Font lock for namespace in C++.
   (let ((oop-missing-font-lock-type-face-modes '(c++mode)))
@@ -1630,7 +1603,8 @@ SEARCH-STRING          : Search raw string."
       (font-lock-add-keywords
        mode
        '(("[a-zA-Z0-9_]*::\\([a-zA-Z0-9_]*\\)[ \t]" 1 'font-lock-type-face t)
-         )'end)))
+         )
+       'end)))
 
   ;; Modes to fixed missing type face in programming language using `colon'.
   (let ((oop-missing-font-lock-type-face-modes-colon '(actionscript-mode
@@ -1642,8 +1616,8 @@ SEARCH-STRING          : Search raw string."
          ("[|:][ \t\n]*[a-zA-Z0-9_-]*[.]\\([a-zA-Z0-9_-]*\\)[ \t\n]*[|=),{]" 1 'font-lock-type-face t)
          ("[|:][ \t\n]*\\([a-zA-Z0-9_-]*\\)[ \t\n]*[|{]" 1 'font-lock-type-face t)
          ("[a-zA-Z0-9_-(]+[ \t\n]*[|:]+[ \t\n]*\\([a-zA-Z0-9_-]+\\)[ \t\n]*[=),]" 1 'font-lock-type-face t)
-         )'end)))
-  )
+         )
+       'end))))
 
 
 (provide 'jcs-oop-func)
