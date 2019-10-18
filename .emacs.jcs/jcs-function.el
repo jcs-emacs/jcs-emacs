@@ -444,6 +444,28 @@ LST-PR: List of pair."
   (user-error "Minimap no longer supported in this configuration"))
 
 ;;----------------------------------------------------------------------------
+;; Prettify/Minify
+
+;;;###autoload
+(defun jcs-prettify-buffer-contents ()
+  "Prettify the buffer contents by file type."
+  (interactive)
+  (require 'sgml-mode)
+  (cl-case major-mode
+    ('json-mode (json-reformat-region (point-min) (point-max)))
+    ('web-mode (sgml-pretty-print (point-min) (point-max)))
+    (t (user-error "No prettify command in this context"))))
+
+;;;###autoload
+(defun jcs-minify-buffer-contents ()
+  "Minifies the buffer contents by removing whitespaces."
+  (interactive)
+  (delete-whitespace-rectangle (point-min) (point-max))
+  (mark-whole-buffer)
+  (goto-char (point-min))
+  (while (search-forward "\n" nil t) (replace-match "" nil t)))
+
+;;----------------------------------------------------------------------------
 ;; Re-Builder
 
 ;;;###autoload
