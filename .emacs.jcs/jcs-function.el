@@ -715,16 +715,17 @@ TYPE : enable/disable case sensitive?"
 (defun jcs-text-scale-delta (vec)
   "Scale the text by passing `vec' value.
 VEC : Either position or negative number."
-  ;; NOTE: Known `text-scale-increase' and
-  ;; `text-scale-decrease' ruin the margin of the
-  ;; `linum-mode'. Disable it before ruining it, to
-  ;; avoid the bug.
-  (display-line-numbers-mode -1)
-  (if (jcs-is-positive vec)
-      (call-interactively #'text-scale-increase)
-    (call-interactively #'text-scale-decrease))
-  ;; Renable line number mode.
-  (display-line-numbers-mode 1))
+  (let ((was-dln display-line-numbers-mode))
+    ;; NOTE: Known `text-scale-increase' and
+    ;; `text-scale-decrease' ruin the margin of the
+    ;; `linum-mode'. Disable it before ruining it, to
+    ;; avoid the bug.
+    (when was-dln (display-line-numbers-mode -1))
+    (if (jcs-is-positive vec)
+        (call-interactively #'text-scale-increase)
+      (call-interactively #'text-scale-decrease))
+    ;; Renable line number mode.
+    (when was-dln (display-line-numbers-mode 1))))
 
 ;;;###autoload
 (defun jcs-text-scale-increase ()
