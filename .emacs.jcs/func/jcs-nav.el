@@ -319,17 +319,17 @@ this version instead."
 ;; Character Navigation
 
 (defun jcs-move-to-forward-a-char (ch)
-  "Move forward to a character CH."
+  "Move forward to a character CH, can be regular expression."
   (ignore-errors
     (forward-char 1)
-    (while (and (not (jcs-current-char-equal-p ch))
+    (while (and (not (string-match-p ch (jcs-get-current-char-string)))
                 (not (jcs-is-end-of-buffer-p)))
       (forward-char 1))))
 
 (defun jcs-move-to-backward-a-char (ch)
-  "Move backward to a character CH."
+  "Move backward to a character CH, can be regular expression."
   (ignore-errors
-    (while (and (not (jcs-current-char-equal-p ch))
+    (while (and (not (string-match-p ch (jcs-get-current-char-string)))
                 (not (jcs-is-beginning-of-buffer-p)))
       (backward-char 1))
     (backward-char 1)))
