@@ -240,10 +240,14 @@ CBF : Current buffer file name."
 (defun jcs-smart-space ()
   "Smart way of inserting space."
   (interactive)
-  (if (or (jcs-is-infront-first-char-at-line-p)
-          (jcs-is-beginning-of-line-p))
-      (jcs-insert-spaces-by-tab-width)
-    (jcs-real-space)))
+  (if (jcs-current-line-empty-p)
+      (let ((pt (point)))
+        (indent-for-tab-command)
+        (when (= pt (point)) (jcs-real-space)))
+    (if (or (jcs-is-infront-first-char-at-line-p)
+            (jcs-is-beginning-of-line-p))
+        (jcs-insert-spaces-by-tab-width)
+      (jcs-real-space))))
 
 ;;----------------------------------------------
 ;; Yank
@@ -268,7 +272,11 @@ CBF : Current buffer file name."
   (unless (ignore-errors (call-interactively #'jcs-yas-expand))
     (if (company--active-p)
         (call-interactively #'company-complete-selection)
-      (jcs-insert-spaces-by-tab-width))))
+      (if (jcs-current-line-empty-p)
+          (let ((pt (point)))
+            (indent-for-tab-command)
+            (when (= pt (point)) (jcs-insert-spaces-by-tab-width)))
+        (jcs-insert-spaces-by-tab-width)))))
 
 ;;----------------------------------------------
 ;; Mark
