@@ -142,6 +142,7 @@
     use-package
     use-ttf
     vimrc-mode
+    visual-regexp
     vue-mode
     impatient-mode
     web-mode
