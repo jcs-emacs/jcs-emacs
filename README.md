@@ -360,7 +360,8 @@ and
 * *Recent Files* - powered by
 [recentf](https://www.emacswiki.org/emacs/RecentFiles).
 * *Regexp* - powered by
-[re-builder](https://www.emacswiki.org/emacs/ReBuilder).
+[re-builder](https://www.emacswiki.org/emacs/ReBuilder) and 
+[visual-regexp](https://github.com/benma/visual-regexp.el).
 * *Reload Emacs* - powered by
 [reload-emacs](https://github.com/alt-elpa/reload-emacs).
 * *Restart Emacs* - powered by
