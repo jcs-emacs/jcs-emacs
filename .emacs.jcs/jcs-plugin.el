@@ -350,6 +350,7 @@
 (use-package hl-todo
   :defer t
   :init
+  (setq hl-todo-highlight-punctuation "")
   (setq hl-todo-keyword-faces
         '(("HOLD" . "#d0bf8f")
           ("TODO" . "red")
@@ -382,7 +383,6 @@
           ("SOURCE" . "PaleTurquoise2")
           ("URL" . "PaleTurquoise2")
           ("IDEA" . "green yellow")
-          ("OR" . "green yellow")
           ("OBSOLETE" . "DarkOrange3")
           ("DEPRECATED" . "DarkOrange3")
           ("TOPIC" . "slate blue")
