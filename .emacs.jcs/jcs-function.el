@@ -749,7 +749,10 @@ VEC : Either position or negative number."
 STRING is the content of the toolip. The location POINT. TIMEOUT for not forever
 delay. HEIGHT of the tooltip that will display."
   (if (display-graphic-p)
-      (pos-tip-show string `(,company-quickhelp-color-foreground . ,company-quickhelp-color-background) point nil timeout)
+      (progn
+        (require 'pos-tip)
+        (pos-tip-show string `(,company-quickhelp-color-foreground . ,company-quickhelp-color-background) point nil timeout))
+    (require 'popup)
     (popup-tip string :point point :around t :height height :scroll-bar t :margin t)))
 
 ;;;###autoload
