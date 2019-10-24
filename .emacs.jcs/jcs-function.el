@@ -171,6 +171,10 @@
   (setq tabulated-list--header-string jcs-buffer-menu-search-title))
 (advice-add 'buffer-menu :before #'jcs--buffer-menu--advice-before)
 
+
+(defvar jcs-buffer-menu-switch-buffer-refreshing nil
+  "Flag to check if current buffer menu refresing.")
+
 ;;;###autoload
 (defun jcs-buffer-menu-refresh-buffer ()
   "Update buffer menu buffer."
@@ -190,10 +194,6 @@
         (when jcs-buffer-menu-switch-buffer-refreshing
           (jcs--buffer-menu-trigger-filter was-fake-header-printed)))
       (bury-buffer))))
-
-
-(defvar jcs-buffer-menu-switch-buffer-refreshing nil
-  "Flag to check if current buffer menu refresing.")
 
 (defun jcs-buffer-menu-safe-refresh ()
   "Safely refresh `buffer menu`'s buffer."
@@ -219,25 +219,25 @@
 
 ;;;###autoload
 (defun jcs-alt-codes-table ()
-  "Display basic Alt-Codes table"
+  "Display basic Alt-Codes table."
   (interactive)
   (jcs-display-file "~/.emacs.jcs/data/charset/alt-code.txt" "*Alt Codes*" nil))
 
 ;;;###autoload
 (defun jcs-ascii-table ()
-  "Display basic ASCII table"
+  "Display basic ASCII table."
   (interactive)
   (jcs-display-file "~/.emacs.jcs/data/charset/ascii.txt" "*ASCII*" nil))
 
 ;;;###autoload
 (defun jcs-algorithm-cheat-sheet ()
-  "Display basic Alt-Codes table"
+  "Display basic Alt-Codes table."
   (interactive)
   (jcs-html-preview "~/.emacs.jcs/data/algorithm/cheat-sheet.html" "*Algorithm Cheat Sheet*" nil))
 
 ;;;###autoload
 (defun jcs-data-structure-cheat-sheet ()
-  "Display basic Alt-Codes table"
+  "Display basic Alt-Codes table."
   (interactive)
   (jcs-display-file "~/.emacs.jcs/data/data-structure/cheat-sheet.txt" "*Data Structure Cheat Sheet*" nil))
 
@@ -246,7 +246,8 @@
 
 ;;;###autoload
 (defun jcs-dashboard (&optional ow)
-  "Jump to the dashboard buffer, if doesn't exists create one."
+  "Jump to the dashboard buffer, if doesn't exists create one.
+OW is the other window flag."
   (interactive)
   (if ow
       (switch-to-buffer-other-window dashboard-buffer-name)
@@ -330,7 +331,7 @@
 (defun jcs-eldoc-message-now () "Show eldoc message now." (interactive))
 
 (defun jcs-eldoc--message-command-p (command)
-  "Advice overwrite `eldoc--message-command-p' command."
+  "Advice overwrite `eldoc--message-command-p' COMMAND."
   ;; One can also loop through `eldoc-message-commands' and empty it out
   (memq command '(jcs-eldoc-message-now
                   jcs-real-space jcs-smart-space
@@ -743,7 +744,10 @@ VEC : Either position or negative number."
 ;; Tips
 
 (cl-defun jcs-pop-tooltip (string &key point (timeout 300) (height 30))
-  "Pop up an tooltip depends on the graphic used."
+  "Pop up an tooltip depends on the graphic used.
+
+STRING is the content of the toolip. The location POINT. TIMEOUT for not forever
+delay. HEIGHT of the tooltip that will display."
   (if (display-graphic-p)
       (pos-tip-show string `(,company-quickhelp-color-foreground . ,company-quickhelp-color-background) point nil timeout)
     (popup-tip string :point point :around t :height height :scroll-bar t :margin t)))
