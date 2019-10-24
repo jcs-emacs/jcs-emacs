@@ -225,7 +225,8 @@ CBF : Current buffer file name."
                    (jcs-is-current-point-face 'link (1- (point)))))
           (call-interactively #'goto-address-at-point)
         (cl-case major-mode
-          ('org-mode (call-interactively #'org-todo)))))))
+          ('org-mode (call-interactively #'org-todo))
+          (t (call-interactively (key-binding (kbd "RET")))))))))
 
 ;;---------------------------------------------
 ;; Space
