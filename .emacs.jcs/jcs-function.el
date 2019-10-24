@@ -742,6 +742,12 @@ VEC : Either position or negative number."
 ;;----------------------------------------------------------------------------
 ;; Tips
 
+(cl-defun jcs-pop-tooltip (string &key point (timeout 300) (height 30))
+  "Pop up an tooltip depends on the graphic used."
+  (if (display-graphic-p)
+      (pos-tip-show string `(,company-quickhelp-color-foreground . ,company-quickhelp-color-background) point nil timeout)
+    (popup-tip string :point point :around t :height height :scroll-bar t :margin t)))
+
 ;;;###autoload
 (defun jcs-describe-thing-in-popup ()
   "Show current symbol info."
@@ -752,21 +758,8 @@ VEC : Either position or negative number."
                         (help-mode)
                         (describe-symbol thing)
                         (buffer-string)))
-         (timeout 300)
-         (fg-bg `(,company-quickhelp-color-foreground
-                  . ,company-quickhelp-color-background)))
-    (if (display-graphic-p)
-        (pos-tip-show description
-                      fg-bg
-                      (point)
-                      nil
-                      timeout)
-      (popup-tip description
-                 :point (point)
-                 :around t
-                 :height 30
-                 :scroll-bar t
-                 :margin t))))
+         (timeout 300))
+    (jcs-pop-tooltip description :point (point) :timeout timeout)))
 
 ;;----------------------------------------------------------------------------
 ;; Todo
