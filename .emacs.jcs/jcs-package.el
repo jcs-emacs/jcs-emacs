@@ -146,9 +146,10 @@
     vue-mode
     impatient-mode
     web-mode
-    which-key
     wgrep-ag
     wgrep-helm
+    which-key
+    wiki-summary
     yaml-mode
     yascroll
     yasnippet
