@@ -261,6 +261,13 @@
   (advice-add 'feebleline-mode :after #'jcs-advice-feebleline-mode-after))
 
 
+(use-package google-translate
+  :defer t
+  :init
+  (setq google-translate-default-source-language "auto")
+  (setq google-translate-default-target-language "zh-TW"))
+
+
 (use-package goto-char-preview
   :defer t
   :config
