@@ -125,6 +125,7 @@
     quelpa
     rainbow-mode
     region-occurrences-highlighter
+    request
     restart-emacs
     right-click-context
     rust-mode
