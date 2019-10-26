@@ -25,30 +25,35 @@
       ('eshell (eshell)))
 
     ;; active truncate line as default for shell window.
-    (jcs-disable-truncate-lines)))
+    (jcs-disable-truncate-lines)
+
+    (message "Start terminal at '%s'" default-directory)))
 
 ;;;###autoload
 (defun jcs-hide-shell-window ()
   "Kill process prompt."
   (interactive)
-  (if (ignore-errors (jcs-jump-shown-to-buffer jcs-shell-buffer-name))
-      (progn
-        (kill-process jcs-shell-buffer-name)
-        (kill-buffer jcs-shell-buffer-name)
-        (other-window -1)
-        (save-selected-window
-          (other-window 1)
-          (delete-window)))
-    (error (format "No \"%s\" buffer found" jcs-shell-buffer-name))))
+  (jcs-safe-jump-shown-to-buffer
+   jcs-shell-buffer-name
+   (lambda ()
+     (kill-process jcs-shell-buffer-name)
+     (kill-buffer jcs-shell-buffer-name)
+     (other-window -1)
+     (save-selected-window (other-window 1) (delete-window)))
+   (lambda ()
+     (error (format "No \"%s\" buffer found" jcs-shell-buffer-name)))))
 
 ;;;###autoload
 (defun jcs-maybe-kill-shell ()
   "Ask to make sure the user want to kill shell."
   (interactive)
-  (if (ignore-errors (jcs-jump-shown-to-buffer jcs-shell-buffer-name))
-      (when (yes-or-no-p (format "Buffer \"%s\" has a running process; kill it? " jcs-shell-buffer-name))
-        (jcs-toggle-shell-window))
-    (jcs-maybe-kill-this-buffer)))
+  (jcs-safe-jump-shown-to-buffer
+   jcs-shell-buffer-name
+   (lambda ()
+     (when (yes-or-no-p (format "Buffer \"%s\" has a running process; kill it? " jcs-shell-buffer-name))
+       (jcs-toggle-shell-window)))
+   (lambda ()
+     (jcs-maybe-kill-this-buffer))))
 
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 ;; Shell Commands
