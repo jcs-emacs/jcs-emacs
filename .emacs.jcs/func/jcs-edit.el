@@ -916,7 +916,12 @@ REGEXP : reqular expression use to align."
     (bury-buffer)
     (when (or (jcs-is-current-major-mode-p "Buffer-menu-mode")
               (string= bn (jcs-buffer-name-or-buffer-file-name)))
-      (jcs-switch-to-previous-buffer))))
+      (jcs-switch-to-previous-buffer)))
+  ;; If something that I doesn't want to see, bury it.
+  ;; For instance, any `*helm-' buffers.
+  (when (jcs-is-contain-list-string-regexp diminish-buffer-list
+                                           (jcs-buffer-name-or-buffer-file-name))
+    (jcs-bury-buffer)))
 
 (defun jcs-advice-kill-this-buffer-around (fnc &rest args)
   "Advice around execute `kill-this-buffer' command with FNC and ARGS."
@@ -982,7 +987,7 @@ ECP-SAME : Exception for the same buffer."
       ;; repeated buffer at the same time in different windows.
       (when (and (>= (jcs-buffer-showns (buffer-name)) 2)
                  (not ecp-same))
-        (jcs-switch-to-previous-buffer)
+        (jcs-bury-buffer)
 
         ;; If is something from default Emacs's buffer,
         ;; switch back to previous buffer once again.
@@ -997,6 +1002,11 @@ ECP-SAME : Exception for the same buffer."
         (when (and (not (buffer-file-name))
                    (not (= (jcs-valid-buffers-in-buffer-list) 0)))
           (jcs-switch-to-next-buffer-not-nil))))
+    ;; If something that I doesn't want to see, bury it.
+    ;; For instance, any `*helm-' buffers.
+    (when (jcs-is-contain-list-string-regexp diminish-buffer-list
+                                             (jcs-buffer-name-or-buffer-file-name))
+      (jcs-bury-buffer))
     is-killed))
 
 ;;;###autoload
