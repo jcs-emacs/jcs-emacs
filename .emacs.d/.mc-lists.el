@@ -20,6 +20,7 @@
         jcs-downcase-word-or-region
         jcs-duplicate-line
         jcs-electric-backspace
+        jcs-emmet-expand-line
         jcs-end-of-buffer
         jcs-end-of-line
         jcs-forward-delete-word
@@ -50,6 +51,7 @@
         jcs-smart-previous-line
         jcs-smart-space
         jcs-smart-yank
+        jcs-tab-key
         jcs-upcase-word-or-region
         jcs-vs-closing-curly-bracket-key
         jcs-vs-csharp-maybe-insert-codedoc
