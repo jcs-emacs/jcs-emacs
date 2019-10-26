@@ -13,6 +13,15 @@
       (unless (or (ignore-errors (switch-to-buffer-other-window win-name)))
         (switch-to-buffer-other-window win-name)))))
 
+(defun jcs-safe-jump-shown-to-buffer (in-buffer-name fnc &optional exp-fnc)
+  "Safely jump to IN-BUFFER-NAME's window and execute FNC with EXP-FNC."
+  (save-selected-window
+    (let ((fm (selected-frame)))
+      (if (ignore-errors (jcs-jump-shown-to-buffer in-buffer-name))
+          (when fnc (funcall fnc))
+        (when exp-fnc (funcall exp-fnc)))
+      (select-frame-set-input-focus fm))))
+
 ;;;###autoload
 (defun jcs-jump-shown-to-buffer (in-buffer-name)
   "Jump to the IN-BUFFER-NAME if the buffer current shown in the window."
