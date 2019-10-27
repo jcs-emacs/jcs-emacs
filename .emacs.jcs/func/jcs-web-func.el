@@ -196,7 +196,8 @@ Is the opposite of `jcs-web-toggle-auto-truncate-lines'."
   (interactive)
   (if (jcs-is-current-point-face "link")
       (call-interactively #'goto-address-at-point)
-    (call-interactively #'emmet-expand-line)))
+    (unless (call-interactively #'emmet-expand-line)
+      (jcs-ctrl-return-key))))
 
 ;;-----------------------------------------------------------
 ;;-----------------------------------------------------------
