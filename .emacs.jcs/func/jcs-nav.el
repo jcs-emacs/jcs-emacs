@@ -28,7 +28,8 @@
                                       "message-mode"
                                       "reb-mode"
                                       "ssass-mode"
-                                      "sql-mode"))
+                                      "sql-mode"
+                                      "vimrc-mode"))
        'previous-line)
       ((jcs-is-current-major-mode-p '("csharp-mode"))
        'jcs-csharp-smart-indent-up)
@@ -56,7 +57,8 @@
                                       "message-mode"
                                       "reb-mode"
                                       "ssass-mode"
-                                      "sql-mode"))
+                                      "sql-mode"
+                                      "vimrc-mode"))
        'next-line)
       ((jcs-is-current-major-mode-p '("csharp-mode"))
        'jcs-csharp-smart-indent-down)
