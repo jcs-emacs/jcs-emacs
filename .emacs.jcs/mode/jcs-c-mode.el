@@ -30,7 +30,7 @@
   (define-key c-mode-map (kbd "*") #'jcs-c-comment-pair)
 
   ;; Comement
-  (define-key c-mode-map (kbd "C-c s") #'jcs-toggle-c-comment-style)
+  (define-key c-mode-map (kbd "C-k s") #'jcs-toggle-c-comment-style)
 
   (define-key c-mode-map (kbd "#") #'jcs-vs-sharp-key)
 

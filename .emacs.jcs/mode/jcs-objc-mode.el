@@ -35,7 +35,7 @@
   (define-key objc-mode-map (kbd "*") #'jcs-c-comment-pair)
 
   ;; Comement
-  (define-key objc-mode-map (kbd "C-c s") #'jcs-toggle-c-comment-style)
+  (define-key objc-mode-map (kbd "C-k s") #'jcs-toggle-c-comment-style)
 
   ;; Undo/Redo
   (define-key objc-mode-map (kbd "C-z") #'jcs-undo)
