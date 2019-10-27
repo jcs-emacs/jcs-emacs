@@ -5,6 +5,8 @@
 
 (require 'nxml-mode)
 
+(require 'jcs-web-func)
+
 
 (defun jcs-xml-mode-hook ()
   "XML mode hook."
@@ -16,6 +18,9 @@
   ;; Normal
   (define-key nxml-mode-map (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
   (define-key nxml-mode-map (kbd "<down>") (jcs-get-prev/next-key-type 'next))
+
+  ;; Edit
+  (define-key web-mode-map (kbd "RET") #'jcs-web-return-key)
   )
 ;; STUDY: they ae using nxml-mode instead of xml-mode
 ;; which is really weird.
