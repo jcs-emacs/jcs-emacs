@@ -341,6 +341,7 @@
 
 (with-eval-after-load 'multiple-cursors
   (define-key mc/keymap (kbd "<escape>") #'mc/keyboard-quit)
+  (define-key mc/keymap (kbd "<return>") nil)
   (define-key mc/keymap (kbd "C-v") #'jcs-smart-yank))
 
 ;;; Navigation
