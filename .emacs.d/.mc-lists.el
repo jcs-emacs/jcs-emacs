@@ -17,6 +17,7 @@
         jcs-csharp-smart-indent-up
         jcs-css-smart-indent-down
         jcs-css-smart-indent-up
+        jcs-ctrl-return-key
         jcs-downcase-word-or-region
         jcs-duplicate-line
         jcs-electric-backspace
@@ -27,12 +28,20 @@
         jcs-forward-kill-word-capital
         jcs-forward-word-capital
         jcs-kill-whole-line
+        jcs-makefile-newline
         jcs-mark-whole-buffer
         jcs-move-backward-comma
         jcs-move-backward-open-sqrParen
         jcs-move-forward-close-sqrParen
         jcs-move-forward-comma
+        jcs-nasm-comment
+        jcs-nasm-return
         jcs-next-line
+        jcs-org-table-down
+        jcs-org-table-left
+        jcs-org-table-right
+        jcs-org-table-up
+        jcs-overwrite-mode
         jcs-previous-line
         jcs-py-indent-down
         jcs-py-indent-up
@@ -61,11 +70,16 @@
         jcs-vs-sharp-key
         jcs-web-backward-delete-word
         jcs-web-backward-delete-word-capital
+        jcs-web-return-key
         jcs-web-vs-opening-curly-bracket-key
+        jcs-yaml-electric-backspace
         kill-region
         markdown-outdent-or-delete
+        org-cycle
         org-force-self-insert
+        org-return
         org-self-insert-command
+        web-mode-tag-match
         yas-expand
         ))
 
@@ -77,8 +91,10 @@
         feebleline-mode
         helm-M-x
         helm-find-files
+        iedit-switch-to-mc-mode
         ignore
         indent-new-comment-line
+        javadoc-lookup
         jcs-ace-window-1
         jcs-ace-window-2
         jcs-ace-window-3
@@ -94,6 +110,8 @@
         jcs-dashboard-next-blank-line
         jcs-dashboard-previous-blank-line
         jcs-find-corresponding-file-other-window
+        jcs-java-organize-imports
+        jcs-java-untabify-save-buffer
         jcs-make-without-asking
         jcs-maybe-kill-this-buffer
         jcs-mc/mark-next-like-this
@@ -122,4 +140,5 @@
         reload-emacs
         scroll-other-window
         scroll-other-window-down
+        whitespace-mode
         ))
