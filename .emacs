@@ -85,14 +85,14 @@
 (require 'jcs-log)
 (require 'jcs-function)
 
-;; ;;; Environment
+;;; Environment
 (require 'jcs-file)
 (require 'jcs-dev)
 (require 'jcs-env)
 (require 'jcs-theme)
 (require 'jcs-plugin)
 
-;; ;;; Customize
+;;; Customize
 (require 'jcs-template)
 (require 'jcs-mode)
 
