@@ -403,7 +403,8 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
   (electric-pair-mode 1)
   (goto-address-mode 1)
   (highlight-indent-guides-mode 1)
-  (lsp-deferred)
+  (unless (string= (buffer-name) "*scratch*")
+    (lsp-deferred))
   )
 (add-hook 'prog-mode-hook 'jcs-prog-mode-hook)
 
@@ -421,7 +422,6 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
 
   (jcs-insert-header-if-valid '("[.]el")
                               'jcs-insert-emacs-lisp-template)
-
   )
 (add-hook 'emacs-lisp-mode-hook 'jcs-emacs-lisp-mode-hook)
 
