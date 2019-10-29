@@ -237,7 +237,6 @@
                        "installed"
                        "new"
                        "obsolete"))))
-
   (if (string= status "..")
       (package-list-packages)
     (package-menu-filter (concat "status:" status))))
@@ -249,6 +248,7 @@
 
 (defconst jcs-package-manually-install-list
   '(("jayces-mode" "jcs-elpa/jayces-mode" "github")
+    ("multi-shell" "jcs-elpa/multi-shell" "github")
     ("reload-emacs" "jcs-elpa/reload-emacs" "github")
     ("shift-select" "jcs-elpa/shift-select" "github"))
   "List of package that you want to manually installed.")
