@@ -3,57 +3,59 @@
 ;;; Code:
 
 
+(require 'multi-shell)
+
+
+;;;###autoload
+(defun jcs-shell-new-shell ()
+  "Create a new shell window."
+  (interactive)
+  (if (ignore-errors (jcs-jump-shown-to-buffer (multi-shell--prefix-name)))
+      (progn
+        (other-window -2)
+        (other-window 1)
+        (multi-shell))
+    (jcs-show-shell-window)))
+
 ;;;###autoload
 (defun jcs-show-shell-window ()
   "Shell Command prompt."
   (interactive)
-  (unless (get-buffer-process jcs-shell-buffer-name)
-    (split-window-below)
-
-    ;; TODO: I have no idea why the first time would not work.
-    ;; So I have to error handle it and do it again to just in
-    ;; if something weird happen to Emacs itself.
-    ;;
-    ;; NOTE: Call it multiple time to just in case the shell
-    ;; process will run.
-    (jcs-ensure-switch-to-buffer-other-window jcs-shell-buffer-name)
-
-    (erase-buffer)
-    ;; Run shell process.
-    (cl-case jcs-prefer-shell-type
-      ('shell (shell))
-      ('eshell (eshell)))
-
-    ;; active truncate line as default for shell window.
-    (jcs-disable-truncate-lines)
-
-    (message "Start terminal at '%s'" default-directory)))
+  (unless (ignore-errors (jcs-jump-shown-to-buffer (multi-shell--prefix-name)))
+    (if (multi-shell-live-p)
+        (let ((sp-name nil))
+          (save-window-excursion
+            (setq sp-name (call-interactively #'multi-shell-select)))
+          (split-window-below)
+          (jcs-ensure-switch-to-buffer-other-window sp-name))
+      (split-window-below)
+      (multi-shell))))
 
 ;;;###autoload
 (defun jcs-hide-shell-window ()
   "Kill process prompt."
   (interactive)
   (jcs-safe-jump-shown-to-buffer
-   jcs-shell-buffer-name
+   (multi-shell--prefix-name)
    (lambda ()
-     (kill-process jcs-shell-buffer-name)
-     (kill-buffer jcs-shell-buffer-name)
-     (other-window -1)
-     (save-selected-window (other-window 1) (delete-window)))
+     (jcs-shell-delete-shell-window))
    (lambda ()
-     (error (format "No \"%s\" buffer found" jcs-shell-buffer-name)))))
+     (user-error (format "No \"%s\" buffer found" (multi-shell--prefix-name))))))
+
+(defun jcs-shell-delete-shell-window ()
+  "Delete shell window."
+  (other-window -1)
+  (save-selected-window (other-window 1) (delete-window)))
 
 ;;;###autoload
 (defun jcs-maybe-kill-shell ()
-  "Ask to make sure the user want to kill shell."
+  "Maybe kill shell behaviour."
   (interactive)
-  (jcs-safe-jump-shown-to-buffer
-   jcs-shell-buffer-name
-   (lambda ()
-     (when (yes-or-no-p (format "Buffer \"%s\" has a running process; kill it? " jcs-shell-buffer-name))
-       (jcs-toggle-shell-window)))
-   (lambda ()
-     (jcs-maybe-kill-this-buffer))))
+  (if (ignore-errors (jcs-jump-shown-to-buffer (multi-shell--prefix-name)))
+      (let ((kill-win (= 1 (length multi-shell--live-shells))))
+        (multi-shell-kill)
+        (when kill-win (jcs-shell-delete-shell-window)))
+    (jcs-maybe-kill-this-buffer)))
 
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 ;; Shell Commands
@@ -95,20 +97,18 @@
     (setq command-string (buffer-substring command-start-point (point-max)))
 
     ;; Execute the command.
-    (cond ((string= command-string "exit")
-           (progn
-             ;; Here toggle, actually close the terminal itself.
-             (jcs-toggle-shell-window)))
-          ((or (string= command-string "clear")
-               (string= command-string "cls"))
-           (progn
-             ;; Clear the terminal once.
-             (jcs-shell-clear-command)))
-          ;; Else just send the command to terminal.
-          (t
-           (progn
-             ;; Call default return key.
-             (comint-send-input))))))
+    (cond
+     ((string= command-string "exit")
+      ;; Here toggle, actually close the terminal itself.
+      (jcs-maybe-kill-shell))
+     ((or (string= command-string "clear")
+          (string= command-string "cls"))
+      ;; Clear the terminal once.
+      (jcs-shell-clear-command))
+     ;; Else just send the command to terminal.
+     (t
+      ;; Call default return key.
+      (comint-send-input)))))
 
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 ;; Deletion
