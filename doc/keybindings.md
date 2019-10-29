@@ -271,6 +271,9 @@
 ### Terminal
 
 * <kbd>Ctrl</kbd>+<kbd>`</kbd> - Toggle shell window.
+* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>`</kbd> - New shell process.
+* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>=</kbd> - Previous shell buffer.
+* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>-</kbd> - Next shell buffer.
 
 ### Others
 
@@ -282,7 +285,7 @@
   * <kbd>Ctrl</kbd>+<kbd>k</kbd>,<kbd>Ctrl</kbd>+<kbd>s</kbd> - Describe key bindings with current `major-mode`.
   * <kbd>Ctrl</kbd>+<kbd>k</kbd>,<kbd>Ctrl</kbd>+<kbd>i</kbd> - Describe current symbol.
   * <kbd>Ctrl</kbd>+<kbd>t</kbd> - Toggle `tabbar-mode`.
-  * <kbd>Alt</kbd>+<kbd>z</kbd> - Toggle `truncate-lines'`.
+  * <kbd>Alt</kbd>+<kbd>z</kbd> - Toggle `truncate-lines`.
   * <kbd>Ctrl</kbd>+<kbd>r</kbd>, <kbd>o</kbd> - Read-Only mode toggle.
   * <kbd>Ctrl</kbd>+<kbd>r</kbd>, <kbd>f</kbd> - Open recent files.
   * <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>m</kbd> - Toggle `mode-line`.
