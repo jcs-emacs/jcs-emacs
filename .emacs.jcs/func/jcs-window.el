@@ -26,9 +26,7 @@
 (defun jcs-jump-shown-to-buffer (in-buffer-name)
   "Jump to the IN-BUFFER-NAME if the buffer current shown in the window."
   (interactive "bEnter buffer to jump to: ")
-  (let ((win-len (jcs-count-windows))
-        (index 0)
-        (found nil))
+  (let ((win-len (jcs-count-windows)) (index 0) (found nil))
     (while (< index win-len)
       ;; NOTE: we use `string-match-p' instead of `string='
       ;; because some buffer cannot be detected in the buffer
