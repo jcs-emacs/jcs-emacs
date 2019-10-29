@@ -30,6 +30,11 @@
   (define-key shell-mode-map [C-up] #'jcs-previous-blank-line)
   (define-key shell-mode-map [C-down] #'jcs-next-blank-line)
 
+  (define-key shell-mode-map (kbd "C-~") #'jcs-shell-new-shell)
+
+  (define-key shell-mode-map (kbd "C-+") #'multi-shell-prev)
+  (define-key shell-mode-map (kbd "C-_") #'multi-shell-next)
+
   ;; Deletion
   (define-key shell-mode-map (kbd "C-<backspace>") #'jcs-shell-backward-delete-word)
   (define-key shell-mode-map (kbd "C-S-<backspace>") #'jcs-shell-forward-delete-word)
