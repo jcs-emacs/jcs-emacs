@@ -156,7 +156,7 @@ the startup time from around `4` to `8` seconds.
 [StackExchange](https://emacs.stackexchange.com/) question,
 [What can I do to speed up my start-up?](https://emacs.stackexchange.com/questions/2286/what-can-i-do-to-speed-up-my-start-up)
 answered by
-[Jordon Biondo](https://rubygems.pkg.github.com/jordonbiondo).*
+[Jordon Biondo](https://github.com/jordonbiondo).*
 
 
 ## Features
