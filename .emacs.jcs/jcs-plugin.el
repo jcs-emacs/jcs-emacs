@@ -437,6 +437,13 @@
   (setq line-reminder-show-option (if (display-graphic-p) 'indicators 'linum)))
 
 
+(use-package multi-shell
+  :defer t
+  :init
+  ;; Accept `shell' or `eshll'.
+  (setq multi-shell-prefer-shell-type 'shell))
+
+
 (use-package multiple-cursors
   :defer t
   :init
