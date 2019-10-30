@@ -341,7 +341,7 @@ and
 [iedit](https://github.com/victorhge/iedit)
 and
 [multiple-cursors](https://github.com/magnars/multiple-cursors.el).
-* *Multiple Shell* - powered by 
+* *Multiple Terminal* - powered by 
 [multi-shell](https://github.com/jcs-elpa/multi-shell).
 * *Navigation/Searcher* - powered by
 [ag](https://github.com/Wilfred/ag.el)
