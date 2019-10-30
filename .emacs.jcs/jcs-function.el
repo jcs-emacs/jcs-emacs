@@ -506,18 +506,10 @@ TYPE : enable/disable case sensitive?"
 (defun jcs-toggle-shell-window ()
   "Toggle Shell Command prompt."
   (interactive)
-  (require 'shell)
-  (if (ignore-errors (jcs-jump-shown-to-buffer jcs-shell-buffer-name))
+  (require 'multi-shell)
+  (if (ignore-errors (jcs-jump-shown-to-buffer (multi-shell--prefix-name)))
       (jcs-hide-shell-window)
-    (if (or (jcs-buffer-exists-p jcs-shell-buffer-name)
-            (get-buffer-process jcs-shell-buffer-name))
-        (progn
-          (kill-process jcs-shell-buffer-name)
-          (kill-buffer jcs-shell-buffer-name)
-          (unless (window-full-height-p)
-            (delete-window))
-          (jcs-show-shell-window))
-      (jcs-show-shell-window))))
+    (jcs-show-shell-window)))
 
 ;;----------------------------------------------------------------------------
 ;; Shift Select
