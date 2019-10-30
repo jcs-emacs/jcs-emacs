@@ -3,9 +3,6 @@
 ;;; Code:
 
 
-(require 'multi-shell)
-
-
 ;;;###autoload
 (defun jcs-shell-new-shell ()
   "Create a new shell window."
