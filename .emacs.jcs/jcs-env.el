@@ -187,15 +187,6 @@ can see the error/operation message.")
                                           "/lisp/")
   "Find file with these paths, esure read only mode enabled.")
 
-;;; Shell
-(defconst jcs-prefer-shell-type 'shell
-  "Prefer shell type.")
-
-(defconst jcs-shell-buffer-name
-  (cond ((equal jcs-prefer-shell-type 'shell) "*shell*")
-        ((equal jcs-prefer-shell-type 'eshell) "*eshell*"))
-  "Record shell buffer name.")
-
 ;;; Shift Select
 ;; NOTE: This act weird, does not make it works like other editor.
 (setq shift-select-mode nil)
