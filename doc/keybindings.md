@@ -105,7 +105,7 @@
     * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>"</kbd> - Delete everything between two `"`.
     * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd><</kbd> - Delete everything between `<` and `>`.
     * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>></kbd> - Delete everything between `>` and `<`.
-    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>`</kbd> - Delete everything between two ```.
+    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>\`</kbd> - Delete everything between two `\`\`.
     * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>~</kbd> - Delete everything between two `~`.
     * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>@</kbd> - Delete everything between two `@`.
     * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>#</kbd> - Delete everything between two `#`.
@@ -260,7 +260,7 @@
 * <kbd>Ctrl</kbd>+<kbd>h</kbd>, <kbd>h</kbd> - Toggle window split between horizontal and vertcial.
 * <kbd>Ctrl</kbd>+<kbd>w</kbd>, <kbd>e</kbd> - Toggle enlarge current selected window.
 * <kbd>Ctrl</kbd>+<kbd>\\</kbd> - Split window horizontally.
-* <kbd>Alt</kbd>+<kbd>`</kbd> - Toggle transparent frame.
+* <kbd>Alt</kbd>+<kbd>\`</kbd> - Toggle transparent frame.
 * <kbd>Alt</kbd>+<kbd>=</kbd> - Increment frame transparent by 5 percent.
 * <kbd>Alt</kbd>+<kbd>-</kbd> - Decrement frame transparent by 5 percent.
 
@@ -270,8 +270,8 @@
 
 ### Terminal / Shell
 
-* <kbd>Ctrl</kbd>+<kbd>`</kbd> - Toggle shell window.
-* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>`</kbd> - New shell process.
+* <kbd>Ctrl</kbd>+<kbd>\`</kbd> - Toggle shell window.
+* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>\`</kbd> - New shell process.
 * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>=</kbd> - Previous shell buffer.
 * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>-</kbd> - Next shell buffer.
 
