@@ -124,7 +124,7 @@
     * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>;</kbd> - Delete everything between two `;`.
     * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>,</kbd> - Delete everything between two `,`.
     * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>.</kbd> - Delete everything between two `.`.
-    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>/</kbd> - Delete everything between two ``.
+    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>/</kbd> - Delete everything between two `/`.
     * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>?</kbd> - Delete everything between two `?`.
 
 * **Debugging**
