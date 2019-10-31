@@ -3,6 +3,9 @@
 ;;; Code:
 
 
+(require 'multi-shell)
+
+
 (defvar jcs-shell--last-selected-shell-index -1
   "Record last selected shell.")
 
@@ -22,17 +25,6 @@
   "Delete shell window."
   (other-window -1)
   (save-selected-window (other-window 1) (delete-window)))
-
-;;;###autoload
-(defun jcs-shell-new-shell ()
-  "Create a new shell window."
-  (interactive)
-  (if (ignore-errors (jcs-jump-shown-to-buffer (multi-shell--prefix-name)))
-      (progn
-        (other-window -2)
-        (other-window 1)
-        (multi-shell))
-    (jcs-show-shell-window)))
 
 ;;;###autoload
 (defun jcs-show-shell-window ()
