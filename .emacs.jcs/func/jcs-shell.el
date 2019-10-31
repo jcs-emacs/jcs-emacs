@@ -3,6 +3,26 @@
 ;;; Code:
 
 
+(defvar jcs-shell--last-selected-shell-index -1
+  "Record last selected shell.")
+
+(defun jcs-shell-select-shell-by-index (index)
+  "Select the shell by index."
+  (let ((sp (nth index multi-shell--live-shells)))
+    (multi-shell-select (multi-shell--form-name-by-id (car sp)))))
+
+(defun jcs-shell--multi-shell-new-select--advice-after ()
+  "Advcie execute after select multiple shell related commands."
+  (setq jcs-shell--last-selected-shell-index (multi-shell--get-current-shell-index-by-id)))
+(advice-add 'multi-shell :after #'jcs-shell--multi-shell-new-select--advice-after)
+(advice-add 'multi-shell-prev :after #'jcs-shell--multi-shell-new-select--advice-after)
+(advice-add 'multi-shell-next :after #'jcs-shell--multi-shell-new-select--advice-after)
+
+(defun jcs-shell-delete-shell-window ()
+  "Delete shell window."
+  (other-window -1)
+  (save-selected-window (other-window 1) (delete-window)))
+
 ;;;###autoload
 (defun jcs-shell-new-shell ()
   "Create a new shell window."
@@ -22,7 +42,8 @@
     (if (multi-shell-live-p)
         (let ((sp-name nil))
           (save-window-excursion
-            (setq sp-name (call-interactively #'multi-shell-select)))
+            (setq sp-name (jcs-shell-select-shell-by-index
+                           jcs-shell--last-selected-shell-index)))
           (split-window-below)
           (jcs-ensure-switch-to-buffer-other-window sp-name))
       (split-window-below)
@@ -38,11 +59,6 @@
      (jcs-shell-delete-shell-window))
    (lambda ()
      (user-error (format "No \"%s\" buffer found" (multi-shell--prefix-name))))))
-
-(defun jcs-shell-delete-shell-window ()
-  "Delete shell window."
-  (other-window -1)
-  (save-selected-window (other-window 1) (delete-window)))
 
 ;;;###autoload
 (defun jcs-maybe-kill-shell ()
@@ -86,13 +102,9 @@
   ;; `c:\to\some\example\dir\path>'
   (beginning-of-line)
 
-  (let ((command-start-point nil)
-        (command-string ""))
-    (setq command-start-point (point))
-
-    ;; Get the string start from command to end of command.
-    (setq command-string (buffer-substring command-start-point (point-max)))
-
+  (let* ((command-start-point (point))
+         ;; Get the string start from command to end of command.
+         (command-string (buffer-substring command-start-point (point-max))))
     ;; Execute the command.
     (cond
      ((string= command-string "exit")
