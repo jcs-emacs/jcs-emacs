@@ -32,8 +32,8 @@
 
   (define-key shell-mode-map (kbd "C-~") #'jcs-shell-new-shell)
 
-  (define-key shell-mode-map (kbd "C-+") #'multi-shell-prev)
-  (define-key shell-mode-map (kbd "C-_") #'multi-shell-next)
+  (define-key shell-mode-map (kbd "C-_") #'multi-shell-prev)
+  (define-key shell-mode-map (kbd "C-+") #'multi-shell-next)
 
   ;; Deletion
   (define-key shell-mode-map (kbd "C-<backspace>") #'jcs-shell-backward-delete-word)
