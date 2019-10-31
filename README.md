@@ -244,6 +244,8 @@ showing the `undo-tree-visualizer` at the other window.
 Visual Studio IDE like curly bracket implementation.
 * [*VS Multiple Cursors*](./features/vs-multiple-cursors) -
 VSCode like methods to `mark` and `unmark` multiple cursor.
+* [*VS Multiple Terminal*](./features/vs-multiple-terminal) -
+VSCode like multiple shell control.
 * [*VS Navigate Word*](./features/vs-navigate-word) -
 Visual Studio IDE like navigating between word implementation.
 
@@ -341,7 +343,7 @@ and
 [iedit](https://github.com/victorhge/iedit)
 and
 [multiple-cursors](https://github.com/magnars/multiple-cursors.el).
-* *Multiple Terminal* - powered by 
+* *Multiple Terminal* - powered by
 [multi-shell](https://github.com/jcs-elpa/multi-shell).
 * *Navigation/Searcher* - powered by
 [ag](https://github.com/Wilfred/ag.el)
@@ -362,7 +364,7 @@ and
 * *Recent Files* - powered by
 [recentf](https://www.emacswiki.org/emacs/RecentFiles).
 * *Regexp* - powered by
-[re-builder](https://www.emacswiki.org/emacs/ReBuilder) and 
+[re-builder](https://www.emacswiki.org/emacs/ReBuilder) and
 [visual-regexp](https://github.com/benma/visual-regexp.el).
 * *Reload Emacs* - powered by
 [reload-emacs](https://github.com/alt-elpa/reload-emacs).
