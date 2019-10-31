@@ -14,9 +14,8 @@
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]dart")
-                              'jcs-insert-dart-template)
+                              'jcs-insert-dart-template))
 
-  )
 (add-hook 'dart-mode-hook 'jcs-dart-mode-hook)
 
 

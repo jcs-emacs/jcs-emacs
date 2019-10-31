@@ -19,8 +19,8 @@
   (define-key markdown-mode-map (kbd "C-s") #'jcs-save-buffer)
 
   ;; Eemmet
-  (define-key emmet-mode-keymap (kbd "C-<return>") #'jcs-emmet-expand-line)
-  )
+  (define-key emmet-mode-keymap (kbd "C-<return>") #'jcs-emmet-expand-line))
+
 (add-hook 'markdown-mode-hook 'jcs-markdown-mode-hook)
 (add-hook 'markdown-mode-hook 'emmet-mode)
 

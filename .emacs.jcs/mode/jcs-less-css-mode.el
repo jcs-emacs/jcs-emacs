@@ -11,9 +11,8 @@
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]less")
-                              'jcs-insert-less-template)
+                              'jcs-insert-less-template))
 
-  )
 (add-hook 'less-css-mode-hook 'jcs-less-css-mode-hook)
 
 

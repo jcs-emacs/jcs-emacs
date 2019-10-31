@@ -16,9 +16,8 @@
   ;; File Header
   (jcs-insert-header-if-valid '("[.]ex"
                                 "[.]exs")
-                              'jcs-insert-elixir-template)
+                              'jcs-insert-elixir-template))
 
-  )
 (add-hook 'elixir-mode-hook 'jcs-elixir-mode-hook)
 
 

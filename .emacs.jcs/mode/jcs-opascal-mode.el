@@ -18,8 +18,8 @@
                               'jcs-insert-opascal-template)
 
   ;; Normal
-  (define-key opascal-mode-map (kbd "M-q") #'jcs-other-window-prev)
-  )
+  (define-key opascal-mode-map (kbd "M-q") #'jcs-other-window-prev))
+
 (add-hook 'opascal-mode-hook 'jcs-opascal-mode-hook)
 
 

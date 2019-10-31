@@ -19,8 +19,8 @@
   (define-key vimrc-mode-map (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
   (define-key vimrc-mode-map (kbd "<down>") (jcs-get-prev/next-key-type 'next))
 
-  (define-key vimrc-mode-map (kbd "C-a") #'jcs-mark-whole-buffer)
-  )
+  (define-key vimrc-mode-map (kbd "C-a") #'jcs-mark-whole-buffer))
+
 (add-hook 'vimrc-mode-hook 'jcs-vim-mode-hook)
 
 

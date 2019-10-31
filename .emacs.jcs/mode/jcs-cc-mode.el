@@ -129,8 +129,8 @@
   ;; No hungry backspace
   (c-toggle-auto-hungry-state -1)
 
-  (modify-syntax-entry ?_ "w")
-  )
+  (modify-syntax-entry ?_ "w"))
+
 (add-hook 'c-mode-common-hook 'jcs-cc-mode-hook)
 
 

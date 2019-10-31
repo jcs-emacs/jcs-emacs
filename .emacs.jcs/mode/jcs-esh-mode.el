@@ -9,8 +9,8 @@
 (defun jcs-eshell-mode-hook ()
   "Eshell mode hook."
 
-  (define-key eshell-mode-map (kbd "M-k") #'jcs-maybe-kill-shell)  ; Close it.
-  )
+  (define-key eshell-mode-map (kbd "M-k") #'jcs-maybe-kill-shell))
+
 (add-hook 'eshell-mode-hook 'jcs-eshell-mode-hook)
 
 

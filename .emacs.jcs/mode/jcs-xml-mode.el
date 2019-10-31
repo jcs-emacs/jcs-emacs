@@ -20,8 +20,8 @@
   (define-key nxml-mode-map (kbd "<down>") (jcs-get-prev/next-key-type 'next))
 
   ;; Edit
-  (define-key web-mode-map (kbd "RET") #'jcs-web-return-key)
-  )
+  (define-key web-mode-map (kbd "RET") #'jcs-web-return-key))
+
 ;; STUDY: they ae using nxml-mode instead of xml-mode
 ;; which is really weird.
 (add-hook 'nxml-mode-hook 'jcs-xml-mode-hook)

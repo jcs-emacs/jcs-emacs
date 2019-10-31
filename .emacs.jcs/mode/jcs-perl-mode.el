@@ -19,8 +19,8 @@
   (define-key perl-mode-map (kbd "DEL") #'jcs-electric-backspace)
   (define-key perl-mode-map (kbd "{") #'jcs-vs-opening-curly-bracket-key)
   (define-key perl-mode-map (kbd "}") #'jcs-vs-closing-curly-bracket-key)
-  (define-key perl-mode-map (kbd ";") #'jcs-vs-semicolon-key)
-  )
+  (define-key perl-mode-map (kbd ";") #'jcs-vs-semicolon-key))
+
 (add-hook 'perl-mode-hook 'jcs-perl-mode-hook)
 
 

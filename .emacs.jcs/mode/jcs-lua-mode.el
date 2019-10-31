@@ -21,8 +21,8 @@
   (define-key lua-mode-map (kbd "-") #'jcs-lua-maybe-insert-codedoc)
 
   ;; comment block
-  (define-key lua-mode-map (kbd "RET") #'jcs-smart-context-line-break)
-  )
+  (define-key lua-mode-map (kbd "RET") #'jcs-smart-context-line-break))
+
 (add-hook 'lua-mode-hook 'jcs-lua-mode-hook)
 
 

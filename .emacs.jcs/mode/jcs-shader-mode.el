@@ -19,9 +19,8 @@
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]shader")
-                              'jcs-insert-shader-template)
+                              'jcs-insert-shader-template))
 
-  )
 (add-hook 'shader-mode-hook 'jcs-shader-mode-hook)
 
 
@@ -36,8 +35,8 @@
                                 "[.]geom"
                                 "[.]glsl"
                                 "[.]vert")
-                              'jcs-insert-glsl-template)
-  )
+                              'jcs-insert-glsl-template))
+
 (add-hook 'glsl-mode-hook 'jcs-glsl-mode-hook)
 
 

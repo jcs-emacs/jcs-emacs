@@ -11,9 +11,8 @@
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]v")
-                              'jcs-insert-verilog-template)
+                              'jcs-insert-verilog-template))
 
-  )
 (add-hook 'verilog-mode-hook 'jcs-verilog-mode-hook)
 
 

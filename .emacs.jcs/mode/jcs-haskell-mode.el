@@ -11,9 +11,8 @@
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]hs")
-                              'jcs-insert-haskell-template)
+                              'jcs-insert-haskell-template))
 
-  )
 (add-hook 'haskell-mode-hook 'jcs-haskell-mode-hook)
 
 

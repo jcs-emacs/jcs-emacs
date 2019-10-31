@@ -14,9 +14,8 @@
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]rb")
-                              'jcs-insert-ruby-template)
+                              'jcs-insert-ruby-template))
 
-  )
 (add-hook 'ruby-mode-hook 'jcs-ruby-mode-hook)
 
 

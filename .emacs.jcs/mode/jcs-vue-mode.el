@@ -20,8 +20,8 @@
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]vue")
-                              'jcs-insert-vue-template)
-  )
+                              'jcs-insert-vue-template))
+
 (add-hook 'vue-mode-hook 'jcs-vue-mode-hook)
 
 

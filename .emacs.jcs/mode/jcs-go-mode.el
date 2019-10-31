@@ -11,9 +11,8 @@
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]go")
-                              'jcs-insert-go-template)
+                              'jcs-insert-go-template))
 
-  )
 (add-hook 'go-mode-hook 'jcs-go-mode-hook)
 
 

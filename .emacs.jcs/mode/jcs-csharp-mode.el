@@ -37,8 +37,8 @@
 
   (define-key csharp-mode-map (kbd "#") #'jcs-vs-sharp-key)
 
-  (define-key csharp-mode-map (kbd "M-q") #'jcs-other-window-prev)
-  )
+  (define-key csharp-mode-map (kbd "M-q") #'jcs-other-window-prev))
+
 (add-hook 'csharp-mode-hook 'jcs-csharp-mode-hook)
 
 

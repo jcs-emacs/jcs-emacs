@@ -17,8 +17,8 @@
   (define-key conf-javaprop-mode-map (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
   (define-key conf-javaprop-mode-map (kbd "<down>") (jcs-get-prev/next-key-type 'next))
 
-  (define-key conf-javaprop-mode-map (kbd "C-s") #'save-buffer)
-  )
+  (define-key conf-javaprop-mode-map (kbd "C-s") #'save-buffer))
+
 (add-hook 'conf-javaprop-mode-hook 'jcs-properties-mode-hook)
 
 

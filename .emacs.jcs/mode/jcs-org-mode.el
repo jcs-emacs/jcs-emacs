@@ -41,8 +41,8 @@
   (define-key org-mode-map (kbd "S-<up>") #'jcs-org-table-up)
   (define-key org-mode-map (kbd "S-<down>") #'jcs-org-table-down)
   (define-key org-mode-map (kbd "S-<left>") #'jcs-org-table-left)
-  (define-key org-mode-map (kbd "S-<right>") #'jcs-org-table-right)
-  )
+  (define-key org-mode-map (kbd "S-<right>") #'jcs-org-table-right))
+
 (add-hook 'org-mode-hook 'jcs-org-mode-hook)
 
 

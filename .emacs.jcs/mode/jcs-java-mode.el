@@ -38,8 +38,8 @@
 
   ;; javadoc
   (define-key java-mode-map (kbd "<f2>") #'javadoc-lookup)
-  (define-key java-mode-map (kbd "S-<f2>") #'javadoc-lookup)
-  )
+  (define-key java-mode-map (kbd "S-<f2>") #'javadoc-lookup))
+
 (add-hook 'java-mode-hook 'jcs-java-mode-hook)
 
 

@@ -39,8 +39,8 @@
 
   ;; comment block
   (define-key json-mode-map (kbd "RET") #'jcs-smart-context-line-break)
-  (define-key json-mode-map (kbd "*") #'jcs-c-comment-pair)
-  )
+  (define-key json-mode-map (kbd "*") #'jcs-c-comment-pair))
+
 (add-hook 'json-mode-hook 'jcs-json-mode-hook)
 
 

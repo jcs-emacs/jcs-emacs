@@ -14,9 +14,8 @@
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]rs")
-                              'jcs-insert-rust-template)
+                              'jcs-insert-rust-template))
 
-  )
 (add-hook 'rust-mode-hook 'jcs-rust-mode-hook)
 
 

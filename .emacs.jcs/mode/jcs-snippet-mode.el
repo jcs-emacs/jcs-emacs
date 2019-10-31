@@ -13,8 +13,8 @@
   (define-key snippet-mode-map (kbd "<up>") #'previous-line)
   (define-key snippet-mode-map (kbd "<down>") #'next-line)
 
-  (define-key snippet-mode-map (kbd "C-s") #'jcs-save-buffer)
-  )
+  (define-key snippet-mode-map (kbd "C-s") #'jcs-save-buffer))
+
 (add-hook 'snippet-mode-hook 'jcs-snippet-mode-hook)
 
 

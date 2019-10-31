@@ -22,8 +22,8 @@
   (define-key cmake-mode-map (kbd "RET") #'jcs-makefile-newline)
 
   ;; tabify save key
-  (define-key cmake-mode-map (kbd "C-s") #'jcs-tabify-save-buffer)
-  )
+  (define-key cmake-mode-map (kbd "C-s") #'jcs-tabify-save-buffer))
+
 (add-hook 'cmake-mode-hook 'jcs-cmake-mode-hook)
 
 

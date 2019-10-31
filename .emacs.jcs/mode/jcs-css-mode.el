@@ -43,8 +43,8 @@
   (define-key css-mode-map (kbd "C-k d") #'com-css-sort-attributes-document)
 
   ;; Eemmet
-  (define-key emmet-mode-keymap (kbd "C-<return>") #'jcs-emmet-expand-line)
-  )
+  (define-key emmet-mode-keymap (kbd "C-<return>") #'jcs-emmet-expand-line))
+
 (add-hook 'css-mode-hook 'jcs-css-mode-hook)
 (add-hook 'css-mode-hook 'emmet-mode)
 

@@ -36,8 +36,8 @@
 
   ;; Undo/Redo
   (define-key c-mode-map (kbd "C-z") #'jcs-undo)
-  (define-key c-mode-map (kbd "C-y") #'jcs-redo)
-  )
+  (define-key c-mode-map (kbd "C-y") #'jcs-redo))
+
 (add-hook 'c-mode-hook 'jcs-c-mode-hook)
 
 

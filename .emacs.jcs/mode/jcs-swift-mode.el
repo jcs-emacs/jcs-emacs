@@ -17,8 +17,8 @@
                               'jcs-insert-swift-template)
 
   ;; Normal
-  (define-key swift-mode-map (kbd "M-k") #'jcs-maybe-kill-this-buffer)
-  )
+  (define-key swift-mode-map (kbd "M-k") #'jcs-maybe-kill-this-buffer))
+
 (add-hook 'swift-mode-hook 'jcs-swift-mode-hook)
 
 

@@ -25,8 +25,8 @@
 
   ;; Comment
   (define-key nasm-mode-map (kbd "RET") #'jcs-nasm-return)
-  (define-key nasm-mode-map (kbd ";") #'jcs-nasm-comment)
-  )
+  (define-key nasm-mode-map (kbd ";") #'jcs-nasm-comment))
+
 (add-hook 'nasm-mode-hook 'jcs-nasm-mode-hook)
 
 

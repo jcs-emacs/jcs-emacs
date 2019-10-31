@@ -14,9 +14,8 @@
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]gd")
-                              'jcs-insert-gdscript-template)
+                              'jcs-insert-gdscript-template))
 
-  )
 (add-hook 'gdscript-mode-hook 'jcs-gdscript-mode-hook)
 
 

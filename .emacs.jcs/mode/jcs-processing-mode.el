@@ -32,8 +32,8 @@
 
   ;; Comment
   (define-key processing-mode-map (kbd "RET") #'jcs-smart-context-line-break)
-  (define-key processing-mode-map (kbd "*") #'jcs-c-comment-pair)
-  )
+  (define-key processing-mode-map (kbd "*") #'jcs-c-comment-pair))
+
 (add-hook 'processing-mode-hook 'jcs-processing-mode-hook)
 
 

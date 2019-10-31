@@ -39,8 +39,8 @@
   (define-key python-mode-map (kbd "RET") #'jcs-py-return)
 
   ;; Comment
-  (define-key python-mode-map (kbd "\"") #'jcs-py-maybe-insert-codedoc)
-  )
+  (define-key python-mode-map (kbd "\"") #'jcs-py-maybe-insert-codedoc))
+
 (add-hook 'python-mode-hook 'jcs-python-mode-hook)
 
 

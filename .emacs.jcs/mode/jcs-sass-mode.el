@@ -21,8 +21,8 @@
 
   ;; Edit
   (define-key ssass-mode-map (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
-  (define-key ssass-mode-map (kbd "<down>") (jcs-get-prev/next-key-type 'next))
-  )
+  (define-key ssass-mode-map (kbd "<down>") (jcs-get-prev/next-key-type 'next)))
+
 (add-hook 'ssass-mode-hook 'jcs-sass-mode-hook)
 
 

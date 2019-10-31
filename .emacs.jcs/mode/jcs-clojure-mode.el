@@ -14,9 +14,8 @@
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]clj")
-                              'jcs-insert-clojure-template)
+                              'jcs-insert-clojure-template))
 
-  )
 (add-hook 'clojure-mode-hook 'jcs-clojure-mode-hook)
 
 

@@ -19,8 +19,8 @@
 
   ;; switch window
   (define-key erlang-mode-map (kbd "M-w") #'jcs-other-window-next)
-  (define-key erlang-mode-map (kbd "M-q") #'jcs-other-window-prev)
-  )
+  (define-key erlang-mode-map (kbd "M-q") #'jcs-other-window-prev))
+
 (add-hook 'erlang-mode-hook 'jcs-erlang-mode-hook)
 
 

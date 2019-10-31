@@ -17,8 +17,8 @@
 
   ;; Normal
   (define-key bat-mode-map (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
-  (define-key bat-mode-map (kbd "<down>") (jcs-get-prev/next-key-type 'next))
-  )
+  (define-key bat-mode-map (kbd "<down>") (jcs-get-prev/next-key-type 'next)))
+
 (add-hook 'bat-mode-hook 'jcs-batch-mode-hook)
 
 

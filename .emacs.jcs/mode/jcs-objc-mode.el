@@ -39,8 +39,8 @@
 
   ;; Undo/Redo
   (define-key objc-mode-map (kbd "C-z") #'jcs-undo)
-  (define-key objc-mode-map (kbd "C-y") #'jcs-redo)
-  )
+  (define-key objc-mode-map (kbd "C-y") #'jcs-redo))
+
 (add-hook 'objc-mode-hook 'jcs-objc-mode-hook)
 
 

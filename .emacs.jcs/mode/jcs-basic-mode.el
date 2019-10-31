@@ -11,9 +11,8 @@
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]bas")
-                              'jcs-insert-basic-template)
+                              'jcs-insert-basic-template))
 
-  )
 (add-hook 'basic-mode-hook 'jcs-basic-mode-hook)
 
 

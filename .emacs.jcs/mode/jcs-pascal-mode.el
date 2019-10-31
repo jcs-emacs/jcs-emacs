@@ -14,9 +14,8 @@
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]pas")
-                              'jcs-insert-pascal-template)
+                              'jcs-insert-pascal-template))
 
-  )
 (add-hook 'pascal-mode-hook 'jcs-pascal-mode-hook)
 
 

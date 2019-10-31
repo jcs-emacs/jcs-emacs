@@ -45,8 +45,8 @@
   (define-key shell-mode-map (kbd "<backspace>") #'jcs-shell-backspace)
 
   ;; Mode Line
-  (define-key shell-mode-map (kbd "C-M-m") #'feebleline-mode)
-  )
+  (define-key shell-mode-map (kbd "C-M-m") #'feebleline-mode))
+
 (add-hook 'shell-mode-hook #'jcs-shell-mode-hook)
 
 

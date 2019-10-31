@@ -12,8 +12,8 @@
   (jcs-insert-header-if-valid '("[.]kt"
                                 "[.]ktm"
                                 "[.]kts")
-                              'jcs-insert-kotlin-template)
-  )
+                              'jcs-insert-kotlin-template))
+
 (add-hook 'kotlin-mode-hook 'jcs-kotlin-mode-hook)
 
 

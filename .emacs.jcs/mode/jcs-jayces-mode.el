@@ -16,9 +16,8 @@
   ;; File Header
   (jcs-insert-header-if-valid '("[.]jcs"
                                 "[.]jayces")
-                              'jcs-insert-jayces-template)
+                              'jcs-insert-jayces-template))
 
-  )
 (add-hook 'jayces-mode-hook 'jcs-jayces-mode-hook)
 
 
