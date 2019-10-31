@@ -261,7 +261,7 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
 
   ;; Set command mode key
 
-  )
+  (message "[INFO] Turn into `command-mode` now"))
 
 ;;;###autoload
 (defun jcs-insert-mode()
@@ -280,7 +280,7 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
 
   ;; Set insert mode key
 
-  )
+  (message "[INFO] Turn into `insert-mode` now"))
 
 (defun jcs-view-mode-hook()
   "In view mode, read only file."
@@ -294,8 +294,8 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
     (define-key view-mode-map key-str nil))
 
   ;; just save buffer, don't care about the tab or spaces.
-  (define-key view-mode-map (kbd "C-s") #'save-buffer)
-  )
+  (define-key view-mode-map (kbd "C-s") #'save-buffer))
+
 (add-hook 'view-mode-hook 'jcs-view-mode-hook)
 
 
@@ -326,7 +326,9 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
 
   (define-key global-map (kbd "C-r p") #'jcs-ag-project-regexp)
 
-  (jcs-global-key-rebind))
+  (jcs-global-key-rebind)
+
+  (message "[INFO] Turn into `depend-mode` now"))
 
 ;;;###autoload
 (defun jcs-cross-mode ()
@@ -353,7 +355,8 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
   (define-key global-map (kbd "C-p C-f") #'isearch-project-forward)
 
   (jcs-global-key-rebind)
-  )
+
+  (message "[INFO] Turn into `cross-mode` now"))
 
 
 ;;------------------------------------------------------------------------------------------------------
@@ -375,8 +378,8 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
 
   ;; NOTE: Set smaller font.
   (setq buffer-face-mode-face '(:height 120))
-  (buffer-face-mode)
-  )
+  (buffer-face-mode))
+
 (add-hook 'compilation-mode-hook 'jcs-compilation-mode-hook)
 
 ;;==============================
@@ -386,8 +389,8 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
 (defun jcs-text-mode-hook ()
   "Text mode hook."
   (auto-highlight-symbol-mode t)
-  (goto-address-mode 1)
-  )
+  (goto-address-mode 1))
+
 (add-hook 'text-mode-hook 'jcs-text-mode-hook)
 
 ;;==============================
@@ -403,9 +406,8 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
   (electric-pair-mode 1)
   (goto-address-mode 1)
   (highlight-indent-guides-mode 1)
-  (unless (string= (buffer-name) "*scratch*")
-    (lsp-deferred))
-  )
+  (unless (string= (buffer-name) "*scratch*") (lsp-deferred)))
+
 (add-hook 'prog-mode-hook 'jcs-prog-mode-hook)
 
 ;;==============================
@@ -414,15 +416,13 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
 
 (defun jcs-emacs-lisp-mode-hook ()
   "Emacs Lisp mode hook."
-
-  ;; Treat underscore as word.
-  (modify-syntax-entry ?_ "w")
+  (modify-syntax-entry ?_ "w")  ; Treat underscore as word.
 
   (jcs-make-electric-pair-pairs-local '((?\` . ?\')))
 
   (jcs-insert-header-if-valid '("[.]el")
-                              'jcs-insert-emacs-lisp-template)
-  )
+                              'jcs-insert-emacs-lisp-template))
+
 (add-hook 'emacs-lisp-mode-hook 'jcs-emacs-lisp-mode-hook)
 
 
@@ -432,16 +432,13 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
 
 (defun jcs-lisp-mode-hook ()
   "Lisp mode hook."
-
-  ;; Treat underscore as word.
-  (modify-syntax-entry ?_ "w")
+  (modify-syntax-entry ?_ "w")  ; Treat underscore as word.
 
   (jcs-make-electric-pair-pairs-local '((?\` . ?\')))
 
   (jcs-insert-header-if-valid '("[.]lisp")
-                              'jcs-insert-lisp-template)
+                              'jcs-insert-lisp-template))
 
-  )
 (add-hook 'lisp-mode-hook 'jcs-lisp-mode-hook)
 
 ;;==============================
@@ -452,6 +449,7 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
   "Lisp Interaction mode hook."
   (define-key lisp-interaction-mode-map (kbd "M-k") #'jcs-scratch-buffer-maybe-kill)
   (define-key lisp-interaction-mode-map (kbd "M-K") #'jcs-scratch-buffer-refresh))
+
 (add-hook 'lisp-interaction-mode-hook 'jcs-lisp-interaction-mode-hook)
 
 ;;==============================
@@ -468,8 +466,7 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
 
   ;; Normal
   (define-key text-mode-map (kbd "<up>") #'jcs-previous-line)
-  (define-key text-mode-map (kbd "<down>") #'jcs-next-line)
-  )
+  (define-key text-mode-map (kbd "<down>") #'jcs-next-line))
 (add-hook 'text-mode-hook 'jcs-text-mode-hook)
 
 
