@@ -759,18 +759,22 @@ delay. HEIGHT of the tooltip that will display."
     (require 'popup)
     (popup-tip string :point point :around t :height height :scroll-bar t :margin t)))
 
+(defun jcs--describe-symbol-string ()
+  "Return the describe symbol string."
+  (let ((thing (symbol-at-point)))
+    (with-temp-buffer (help-mode) (describe-symbol thing) (buffer-string))))
+
 ;;;###autoload
 (defun jcs-describe-thing-in-popup ()
   "Show current symbol info."
   (interactive)
-  (let* ((thing (symbol-at-point))
-         (help-xref-following t)
-         (description (with-temp-buffer
-                        (help-mode)
-                        (describe-symbol thing)
-                        (buffer-string)))
-         (timeout 300))
-    (jcs-pop-tooltip description :point (point) :timeout timeout)))
+  (if (not (jcs-inside-comment-or-string-p))
+      (let* ((help-xref-following t)
+             (description (jcs--describe-symbol-string))
+             (timeout 300))
+        (jcs-pop-tooltip description :point (point) :timeout timeout))
+    (require 'define-it)
+    (define-it-at-point)))
 
 ;;----------------------------------------------------------------------------
 ;; Todo
