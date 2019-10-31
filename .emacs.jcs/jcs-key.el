@@ -322,7 +322,8 @@
 ;;; Mode Toggle
 (progn
   ;;(define-key global-map (kbd "M-`") #'jcs-insert-command-mode-toggle)
-  (define-key global-map (kbd "C-~") #'jcs-depend-cross-mode-toggle)
+  (define-key global-map (kbd "C-k `") #'jcs-depend-cross-mode-toggle)
+  (define-key global-map (kbd "C-~") #'jcs-shell-new-shell)
   (define-key global-map (kbd "C-`") #'jcs-toggle-shell-window))
 (progn
   (define-key global-map (kbd "C-k c") #'jcs-toggle-cc-mode)
