@@ -268,7 +268,7 @@
 
 * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>g</kbd> - Open magit interface.
 
-### Terminal
+### Terminal / Shell
 
 * <kbd>Ctrl</kbd>+<kbd>`</kbd> - Toggle shell window.
 * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>`</kbd> - New shell process.
@@ -289,6 +289,7 @@
   * <kbd>Ctrl</kbd>+<kbd>r</kbd>, <kbd>o</kbd> - Read-Only mode toggle.
   * <kbd>Ctrl</kbd>+<kbd>r</kbd>, <kbd>f</kbd> - Open recent files.
   * <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>m</kbd> - Toggle `mode-line`.
+  * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>`</kbd> - Toggle `depend`/`cross` mode.
 
 * **Exit**
 
