@@ -5,17 +5,14 @@
 
 (defun jcs-focus-in-hook ()
   "When window is focus."
-  (jcs-revert-all-file-buffers)
-  )
+  (jcs-revert-all-file-buffers))
 (add-hook 'focus-in-hook 'jcs-focus-in-hook)
 
 (defun jcs-focus-out-hook ()
-  "When window is not focus."
-  )
+  "When window is not focus.")
 (add-hook 'focus-out-hook 'jcs-focus-out-hook)
 
-;;-----------------------------------------------------------
-;;-----------------------------------------------------------
+;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 (defun jcs-find-file-hook ()
   "Find file hook."
@@ -24,24 +21,20 @@
                                            (buffer-file-name))
                (not jcs-package-installing))
       (read-only-mode 1))
-    (jcs-active-line-numbers-by-mode))
-  )
+    (jcs-active-line-numbers-by-mode)))
 (add-hook 'find-file-hook 'jcs-find-file-hook)
 
 (defun jcs--find-file--advice-after (&rest _args)
   "Advice after execute `find-file' command."
-  (jcs-buffer-menu-safe-refresh)
-  )
+  (jcs-buffer-menu-safe-refresh))
 (advice-add 'find-file :after 'jcs--find-file--advice-after)
 
 (defun jcs--switch-to-buffer--advice-after (&rest _args)
   "Advice after execute `switch-to-buffer' command."
-  (jcs-buffer-menu-safe-refresh)
-  )
+  (jcs-buffer-menu-safe-refresh))
 (advice-add 'switch-to-buffer :after 'jcs--switch-to-buffer--advice-after)
 
-;;-----------------------------------------------------------
-;;-----------------------------------------------------------
+;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 (defun jcs-after-init-hook ()
   "Hook run after initialize."
@@ -141,12 +134,10 @@
   (setq dashboard-init-info
         (format "[ %s ] [ Total took %0.1f seconds ]"
                 dashboard-init-info
-                (string-to-number (emacs-init-time))))
-  )
+                (string-to-number (emacs-init-time)))))
 (add-hook 'after-init-hook 'jcs-after-init-hook)
 
-;;-----------------------------------------------------------
-;;-----------------------------------------------------------
+;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 (defun jcs-post-command-hook ()
   "Hook run after every command."
@@ -161,18 +152,15 @@
     (when (>= jcs-marking-whole-buffer-cmd-count 2)
       (deactivate-mark)
       (setq-local jcs-marking-whole-buffer-cmd-count 0)
-      (setq-local jcs-marking-whole-buffer nil)))
-  )
+      (setq-local jcs-marking-whole-buffer nil))))
 (add-hook 'post-command-hook 'jcs-post-command-hook)
 
-;;-----------------------------------------------------------
-;;-----------------------------------------------------------
+;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 (defun jcs-after-change-major-mode-hook ()
   "Hook run after major mode changes."
   (unless (jcs-reload-emacs-reloading-p)
-    (jcs-active-line-numbers-by-mode))
-  )
+    (jcs-active-line-numbers-by-mode)))
 (add-hook 'after-change-major-mode-hook 'jcs-after-change-major-mode-hook)
 
 
@@ -195,8 +183,7 @@
     (insert "/"))
 
   ;; Register hook.
-  (add-hook 'post-command-hook #'jcs-minibuffer-post-command-hook nil t)
-  )
+  (add-hook 'post-command-hook #'jcs-minibuffer-post-command-hook nil t))
 (add-hook 'minibuffer-setup-hook 'jcs-minibuffer-setup-hook)
 
 (defun jcs-minibuffer-post-command-hook ()
@@ -214,8 +201,7 @@
   ;; NOTE: Avoid GCs while using `ivy'/`counsel'/`swiper' and `helm', etc.
   (progn
     (garbage-collect)
-    (jcs-gc-cons-threshold nil))
-  )
+    (jcs-gc-cons-threshold nil)))
 (add-hook 'minibuffer-exit-hook 'jcs-minibuffer-exit-hook)
 
 
