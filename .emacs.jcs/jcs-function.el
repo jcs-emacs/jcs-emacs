@@ -500,18 +500,6 @@ TYPE : enable/disable case sensitive?"
   (setq case-fold-search t))
 
 ;;----------------------------------------------------------------------------
-;; Shell
-
-;;;###autoload
-(defun jcs-toggle-shell-window ()
-  "Toggle Shell Command prompt."
-  (interactive)
-  (require 'multi-shell)
-  (if (ignore-errors (jcs-jump-shown-to-buffer (multi-shell--prefix-name)))
-      (jcs-hide-shell-window)
-    (jcs-show-shell-window)))
-
-;;----------------------------------------------------------------------------
 ;; Shift Select
 
 ;;;###autoload
@@ -701,6 +689,30 @@ TYPE : enable/disable case sensitive?"
   (interactive)
   (jcs-delta-tab-width -2)
   (indent-for-tab-command))
+
+;;----------------------------------------------------------------------------
+;; Terminal / Shell
+
+;;;###autoload
+(defun jcs-toggle-shell-window ()
+  "Toggle Shell Command prompt."
+  (interactive)
+  (require 'jcs-shell)
+  (if (ignore-errors (jcs-jump-shown-to-buffer (multi-shell--prefix-name)))
+      (jcs-hide-shell-window)
+    (jcs-show-shell-window)))
+
+;;;###autoload
+(defun jcs-shell-new-shell ()
+  "Create a new shell window."
+  (interactive)
+  (require 'jcs-shell)
+  (if (ignore-errors (jcs-jump-shown-to-buffer (multi-shell--prefix-name)))
+      (progn
+        (other-window -2)
+        (other-window 1)
+        (multi-shell))
+    (jcs-show-shell-window)))
 
 ;;----------------------------------------------------------------------------
 ;; Text Scale
