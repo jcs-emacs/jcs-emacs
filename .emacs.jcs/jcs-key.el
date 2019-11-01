@@ -259,9 +259,9 @@
 (with-eval-after-load 'goto-addr
   (define-key goto-address-highlight-keymap (kbd "C-c") nil))
 
-;;; Goto Declaration/Definition
-(define-key global-map [f12] #'dumb-jump-go-prefer-external)
-(define-key global-map [S-f12] #'dumb-jump-go-prefer-external-other-window)
+;;; Goto Definition
+(define-key global-map [f12] #'jcs-goto-definition)
+(define-key global-map [S-f12] #'jcs-goto-definition-other-window)
 
 ;;; Goto Thing
 (define-key global-map (kbd "M-g c") #'goto-char-preview)
