@@ -764,15 +764,20 @@ delay. HEIGHT of the tooltip that will display."
   (let ((thing (symbol-at-point)))
     (with-temp-buffer (help-mode) (describe-symbol thing) (buffer-string))))
 
+(defun jcs-tip-describe-it ()
+  "Describe symbol at point."
+  (let* ((help-xref-following t)
+         (description (jcs--describe-symbol-string))
+         (timeout 300))
+    (if (string-empty-p description)
+        (error "[ERROR] No description at point")
+      (jcs-pop-tooltip description :point (point) :timeout timeout))))
+
 ;;;###autoload
 (defun jcs-describe-thing-in-popup ()
   "Show current symbol info."
   (interactive)
-  (if (not (jcs-inside-comment-or-string-p))
-      (let* ((help-xref-following t)
-             (description (jcs--describe-symbol-string))
-             (timeout 300))
-        (jcs-pop-tooltip description :point (point) :timeout timeout))
+  (unless (ignore-errors (jcs-tip-describe-it))
     (require 'define-it)
     (define-it-at-point)))
 
