@@ -565,7 +565,7 @@ This command does not push text to `kill-ring'."
 
       ;; Comment RegExp String
       (cond ((jcs-is-current-major-mode-p "nasm-mode")
-             (setq align-regexp-string-comment "\\(\\s-*\\)               [;]")))
+             (setq align-regexp-string-comment "\\(\\s-*\\)                   [;]")))
 
       (if (jcs-is-region-selected-p)
           ;; NOTE: Align region only.
@@ -831,6 +831,14 @@ REGEXP : reqular expression use to align."
     (jcs-save-buffer)))
 
 ;;;###autoload
+(defun jcs-reverse-tab-untab-save-buffer ()
+  (interactive)
+  (cl-case (key-binding (kbd "C-s"))
+    ('jcs-untabify-save-buffer (jcs-tabify-save-buffer))
+    ('jcs-tabify-save-buffer (jcs-untabify-save-buffer))
+    (t (user-error "[ERROR] Their are no default tab/untab save"))))
+
+;;;###autoload
 (defun jcs-untabify-save-buffer ()
   "Untabify the file and save the buffer."
   (interactive)
@@ -868,6 +876,16 @@ REGEXP : reqular expression use to align."
             (not readable))
         (message "Wrote file %s" (buffer-file-name))
       (message "(No changes need to be saved)"))))
+
+;;;###autoload
+(defun jcs-save-all-buffers ()
+  "Save all buffers currently opened."
+  (interactive)
+  (save-window-excursion
+    (dolist (buf (buffer-list))
+      (switch-to-buffer buf)
+      (ignore-errors (call-interactively (key-binding (kbd "C-s"))))))
+  (message "All buffers are saved"))
 
 ;;----------------------------------------------
 ;; Find file
