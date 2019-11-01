@@ -4,6 +4,34 @@
 
 
 ;;----------------------------------------------
+;; Goto Definition
+
+;;;###autoload
+(defun jcs-goto-definition ()
+  "Move to definition."
+  (interactive)
+  (cond
+   ((jcs-is-current-major-mode-p '("elisp-mode"
+                                   "lisp-mode"
+                                   "lisp-interaction-mode"))
+    (ignore-errors (elisp-def)))
+   (t (dumb-jump-go-prefer-external))))
+
+;;;###autoload
+(defun jcs-goto-definition-other-window ()
+  "Move to definition other window."
+  (interactive)
+  (let ((fnc nil))
+    (cond
+     ((jcs-is-current-major-mode-p '("elisp-mode"
+                                     "lisp-mode"
+                                     "lisp-interaction-mode"))
+      (setq fnc #'jcs-goto-definition))
+     (t (dumb-jump-go-prefer-external-other-window)))
+    (when fnc
+      (jcs--record-window-excursion-apply (jcs--record-window-excursion fnc)))))
+
+;;----------------------------------------------
 ;; Move Between Line (Wrapper)
 
 (defun jcs-get-major-mode-prev/next-key-type (direction)
@@ -117,7 +145,7 @@ Just use this without remember Emacs Lisp function."
     (jcs-beginning-of-line)))
 
 ;;----------------------------------------------
-;;      Move Between Word (Wrapper)
+;; Move Between Word (Wrapper)
 
 ;;;###autoload
 (defun jcs-backward-word ()
