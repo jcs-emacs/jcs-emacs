@@ -140,7 +140,8 @@
 (define-key global-map (kbd "C-v") #'yank)
 
 (define-key global-map (kbd "C-s") #'jcs-untabify-save-buffer)
-(define-key global-map (kbd "C-S-s") #'jcs-tabify-save-buffer)
+(define-key global-map (kbd "C-S-s") #'jcs-save-all-buffers)
+(define-key global-map (kbd "C-k s") #'jcs-reverse-tab-untab-save-buffer)
 
 (define-key prog-mode-map (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
 (define-key global-map (kbd "<up>") #'previous-line)
@@ -229,6 +230,7 @@
   (define-key speedbar-mode-map (kbd "<f2>") #'speedbar-item-rename))
 
 ;;; File editing
+(define-key global-map (kbd "C-<f4>") #'kill-this-buffer)
 (define-key global-map (kbd "M-k") #'jcs-maybe-kill-this-buffer)
 (define-key global-map (kbd "M-K") #'jcs-reopen-this-buffer)
 ;;(define-key global-map (kbd "M-k") #'jcs-kill-this-buffer)
