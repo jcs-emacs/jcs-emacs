@@ -61,6 +61,7 @@
     dimmer
     dockerfile-mode
     dumb-jump
+    elisp-def
     elixir-mode
     emmet-mode
     erlang
