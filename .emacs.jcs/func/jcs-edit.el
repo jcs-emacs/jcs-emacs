@@ -565,7 +565,7 @@ This command does not push text to `kill-ring'."
 
       ;; Comment RegExp String
       (cond ((jcs-is-current-major-mode-p "nasm-mode")
-             (setq align-regexp-string-comment "\\(\\s-*\\)                   [;]")))
+             (setq align-regexp-string-comment "\\(\\s-*\\)               [;]")))
 
       (if (jcs-is-region-selected-p)
           ;; NOTE: Align region only.
