@@ -24,11 +24,8 @@
   (interactive)
   (unless (minibufferp)
     (if (get 'jcs-depend-cross-mode-toggle 'state)
-        (progn
-          (jcs-depend-mode)
-          (put 'jcs-depend-cross-mode-toggle 'state nil))
-      (jcs-cross-mode)
-      (put 'jcs-depend-cross-mode-toggle 'state t))))
+        (jcs-depend-mode)
+      (jcs-cross-mode))))
 
 ;;;###autoload
 (defun jcs-reload-active-mode ()
@@ -307,8 +304,6 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
 (defun jcs-depend-mode ()
   "This mode depend on my own machine. More feature and more control of the editor."
   (interactive)
-  (put 'jcs-depend-cross-mode-toggle 'state nil)  ; set toggle trigger
-
   ;; Customize Mode Line
   (jcs-gray-mode-line)
 
@@ -328,16 +323,16 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
 
   (jcs-global-key-rebind)
 
-  (message "[INFO] Turn into `depend-mode` now"))
+  (when (get 'jcs-depend-cross-mode-toggle 'state)
+    (message "[INFO] Turn into `depend-mode` now"))
+
+  ;; set toggle trigger
+  (put 'jcs-depend-cross-mode-toggle 'state nil))
 
 ;;;###autoload
 (defun jcs-cross-mode ()
   "This mode run anywhere will work, usually less powerful then `jcs-depend-mode'."
   (interactive)
-
-  ;; set toggle trigger
-  (put 'jcs-depend-cross-mode-toggle 'state t)
-
   ;; Customize Mode Line
   (jcs-dark-green-mode-line)
 
@@ -356,7 +351,11 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
 
   (jcs-global-key-rebind)
 
-  (message "[INFO] Turn into `cross-mode` now"))
+  (unless (get 'jcs-depend-cross-mode-toggle 'state)
+    (message "[INFO] Turn into `cross-mode` now"))
+
+  ;; set toggle trigger
+  (put 'jcs-depend-cross-mode-toggle 'state t))
 
 
 ;;------------------------------------------------------------------------------------------------------
