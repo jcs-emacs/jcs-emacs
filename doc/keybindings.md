@@ -149,8 +149,9 @@
 
 * **Save Buffer**
 
-  * <kbd>Ctrl</kbd>+<kbd>s</kbd> - Untabify save file.
-  * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>s</kbd> - Tabify save file.
+  * <kbd>Ctrl</kbd>+<kbd>s</kbd> - Untabify save file. [DEFAULT]
+  * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>s</kbd> - Save all buffers to it's current major mode.
+  * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>s</kbd> - Reverse `tabify` or `untabify` save buffer.
 
 * **Rename Buffer**
 
