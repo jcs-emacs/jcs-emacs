@@ -127,6 +127,21 @@ HEX-CODE : Color HEX code to check."
     is-event))
 
 ;;----------------------------------------------------------------------------
+;; Excursion Record
+
+(defun jcs--record-window-excursion (fnc)
+  "Record the info from an excursion, the FNC and ARGS."
+  (save-window-excursion
+    (funcall fnc)
+    (list (current-buffer) (line-number-at-pos) (current-column))))
+
+(defun jcs--record-window-excursion-apply (record)
+  "Apply the RECORD from `jcs--record-window-excursion'."
+  (switch-to-buffer-other-window (nth 0 record))
+  (jcs-goto-line (nth 1 record))
+  (move-to-column (nth 2 record)))
+
+;;----------------------------------------------------------------------------
 ;; Function
 
 (defun jcs-mute-apply (fnc &rest args)
