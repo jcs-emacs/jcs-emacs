@@ -59,7 +59,11 @@
   (if (ignore-errors (jcs-jump-shown-to-buffer (multi-shell--prefix-name)))
       (let ((kill-win (= 1 (length multi-shell--live-shells))))
         (multi-shell-kill)
-        (when kill-win (jcs-shell-delete-shell-window)))
+        (if kill-win
+            (jcs-shell-delete-shell-window)
+          (when (>= (1- jcs-shell--last-selected-shell-index) 0)
+            (setq jcs-shell--last-selected-shell-index (1- jcs-shell--last-selected-shell-index)))
+          (jcs-shell-select-shell-by-index jcs-shell--last-selected-shell-index)))
     (jcs-maybe-kill-this-buffer)))
 
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
