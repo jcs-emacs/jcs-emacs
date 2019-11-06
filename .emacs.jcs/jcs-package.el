@@ -88,6 +88,7 @@
     helm
     helm-ag
     helm-core
+    helm-describe-modes
     helm-file-preview
     helm-fuzzy
     helm-projectile
