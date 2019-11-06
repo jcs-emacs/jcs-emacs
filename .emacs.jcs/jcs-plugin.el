@@ -331,6 +331,16 @@
           :keymap helm-do-ag-map
           :follow (and helm-follow-mode-persistent 1))))
 
+(use-package helm-describe-modes
+  :defer t
+  :init
+  (defun jcs--describe-mode--advice-around (fnc &rest args)
+    "Advice execute around `describe-mode' function."
+    (if (eq this-command 'helm-describe-modes)
+        (apply fnc args)
+      (helm-describe-modes)))
+  (advice-add 'describe-mode :around #'jcs--describe-mode--advice-around))
+
 (use-package helm-file-preview
   :defer t
   :init
@@ -721,15 +731,13 @@
   (setq web-mode-extra-snippets
         '(("erb" . (("toto" . ("<% toto | %>\n\n<% end %>"))))
           ("php" . (("dowhile" . ("<?php do { ?>\n\n<?php } while (|); ?>"))
-                    ("debug" . ("<?php error_log(__LINE__); ?>"))))
-          ))
+                    ("debug" . ("<?php error_log(__LINE__); ?>"))))))
 
   ;; Auto-pairs
   (setq web-mode-extra-auto-pairs
         '(("erb"  . (("beg" "end")))
           ("php"  . (("beg" "end")
-                     ("beg" "end")))
-          ))
+                     ("beg" "end")))))
 
   ;; Enable / disable features
   (setq web-mode-enable-auto-pairing t)
