@@ -141,10 +141,12 @@
 
 (defun jcs-post-command-hook ()
   "Hook run after every command."
-  ;; TODO: Move this to `web-mode' only.
-  (when (jcs-is-current-major-mode-p "web-mode")
+  (cond
+   ((jcs-is-current-major-mode-p "json-mode")
+    (js2-minor-mode-exit))
+   ((jcs-is-current-major-mode-p "web-mode")
     (when jcs-web-auto-truncate-lines
-      (jcs-web-truncate-lines-by-face)))
+      (jcs-web-truncate-lines-by-face))))
 
   (when jcs-marking-whole-buffer
     (setq-local jcs-marking-whole-buffer-cmd-count
