@@ -390,6 +390,9 @@
 ;;; Return
 (define-key global-map (kbd "C-<return>") #'jcs-ctrl-return-key)
 
+;;; Reveal In Folder
+(define-key global-map (kbd "M-R") #'reveal-in-folder)
+
 ;;; Revert Buffer
 (define-key global-map "\er" #'jcs-revert-buffer-no-confirm)
 
