@@ -459,8 +459,7 @@
   :init
   (defun jcs-mc/-cancel-multiple-cursors ()
     "Cancel the `multiple-cursors' behaviour."
-    (require 'multiple-cursors)
-    (when (> (mc/num-cursors) 1)
+    (when (and (functionp 'mc/num-cursors) (> (mc/num-cursors) 1))
       (mc/keyboard-quit)))
   (advice-add 'jcs-previous-blank-line :after #'jcs-mc/-cancel-multiple-cursors)
   (advice-add 'jcs-next-blank-line :after #'jcs-mc/-cancel-multiple-cursors)
