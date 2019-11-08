@@ -15,6 +15,9 @@
                                    "lisp-mode"
                                    "lisp-interaction-mode"))
     (ignore-errors (elisp-def)))
+   ((and lsp-mode
+         (or (ignore-errors (lsp-goto-type-definition))
+             (ignore-errors (lsp-goto-implementation)))))
    (t (dumb-jump-go-prefer-external))))
 
 ;;;###autoload
@@ -23,12 +26,14 @@
   (interactive)
   (let ((fnc nil))
     (cond
-     ((jcs-is-current-major-mode-p '("elisp-mode"
-                                     "lisp-mode"
-                                     "lisp-interaction-mode"))
+     ((or
+       (jcs-is-current-major-mode-p '("elisp-mode"
+                                      "lisp-mode"
+                                      "lisp-interaction-mode"))
+       lsp-mode)
       (setq fnc #'jcs-goto-definition))
      (t (dumb-jump-go-prefer-external-other-window)))
-    (when fnc
+    (when fnc  ; Open it on the other window.
       (jcs--record-window-excursion-apply (jcs--record-window-excursion fnc)))))
 
 ;;----------------------------------------------
