@@ -17,7 +17,7 @@
   (modify-syntax-entry ?_ "w")
 
   ;; File Header
-  (jcs-insert-header-if-valid '("[.]js")
+  (jcs-insert-header-if-valid '("[.]js$")
                               'jcs-insert-js-template)
 
   ;; Normal
