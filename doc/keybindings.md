@@ -44,6 +44,7 @@
   * <kbd>f8</kbd> - Open corresponding file other window, if not found open same file instead.
   * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>Ctrl</kbd>+<kbd>e</kbd> - Switch file coding system.
   * <kbd>Ctrl</kbd>+<kbd>r</kbd>, <kbd>b</kbd> - Open RE-Builder mode window.
+  * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>r</kbd> - Reveal file in folder.
 
   * **Build / Run**
 
