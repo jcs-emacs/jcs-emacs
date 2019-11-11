@@ -628,6 +628,16 @@ Returns nil, the word isn't the same."
   (string= w (jcs-first-forward-word)))
 
 ;;----------------------------------------------------------------------------
+;; Column
+
+(defun jcs-column-at-pos (&optional pt)
+  "Column at PT."
+  (unless pt (setq pt (point)))
+  (save-excursion
+    (goto-char pt)
+    (current-column)))
+
+;;----------------------------------------------------------------------------
 ;; Line
 
 ;;;###autoload
@@ -924,6 +934,10 @@ Return nil, there is no region selected and mark is not active."
   "Delete region by default value."
   (interactive)
   (delete-region (region-beginning) (region-end)))
+
+(defun jcs-select-region (st ed)
+  "Select region from ST and ED."
+  (goto-char st) (call-interactively #'set-mark-command) (goto-char ed))
 
 ;;----------------------------------------------------------------------------
 ;; Comment
@@ -1348,9 +1362,7 @@ IGNORE-ERRORS-T : ignore errors for this function?"
   (save-excursion
     (when pt
       (goto-char pt))
-    (let ((ret-str nil)
-          (st-str -1)
-          (ed-str -1))
+    (let ((ret-str nil) (st-str -1) (ed-str -1))
       (save-excursion
         (jcs-goto-start-of-the-string)
         (setq st-str (point)))
