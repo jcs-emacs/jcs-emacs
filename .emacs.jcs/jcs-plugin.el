@@ -148,10 +148,7 @@
   (diminish 'eldoc-mode)
   (with-eval-after-load 'emmet-mode (diminish 'emmet-mode))
   (with-eval-after-load 'face-remap (diminish 'buffer-face-mode))
-  (with-eval-after-load 'flycheck
-    (diminish 'flycheck-mode)
-    (require 'flycheck-popup-tip)
-    (flycheck-popup-tip-mode t))
+  (with-eval-after-load 'flycheck (diminish 'flycheck-mode))
   (with-eval-after-load 'helm-mode (diminish 'helm-mode))
   (with-eval-after-load 'highlight-indent-guides (diminish 'highlight-indent-guides-mode))
   (with-eval-after-load 'impatient-mode (diminish 'impatient-mode))
@@ -259,6 +256,22 @@
        (lambda ()
          (setq mode-line-format feebleline--mode-line-format-previous)))))
   (advice-add 'feebleline-mode :after #'jcs-advice-feebleline-mode-after))
+
+
+(use-package flycheck-popup-tip
+  :defer t
+  :init
+  (unless (display-graphic-p)
+    (with-eval-after-load 'flycheck
+      (flycheck-popup-tip-mode 1))))
+
+
+(use-package flycheck-pos-tip
+  :defer t
+  :init
+  (when (display-graphic-p)
+    (with-eval-after-load 'flycheck
+      (flycheck-pos-tip-mode 1))))
 
 
 (use-package google-translate
