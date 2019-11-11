@@ -69,10 +69,11 @@
     esup
     exec-path-from-shell
     feebleline
-    focus
     flx
     flycheck
     flycheck-popup-tip
+    flycheck-pos-tip
+    focus
     gdscript-mode
     gitattributes-mode
     gitconfig-mode
