@@ -227,13 +227,16 @@
       (message "[ELPA] All packages are up to date")))
   ;; NOTE: Upgrade for manually installed packages.
   (let ((upgrades jcs-package-manually-install-list))
-    (when (yes-or-no-p
-           (message "Upgrade %d package%s (%s)? "
-                    (length upgrades)
-                    (if (= (length upgrades) 1) "" "s")
-                    (mapconcat (lambda (pkgs) (nth 0 pkgs)) upgrades ", ")))
-      (require 'quelpa)
-      (quelpa-upgrade))))
+    (if upgrades
+        (when (yes-or-no-p
+               (message "Upgrade %d package%s (%s)? "
+                        (length upgrades)
+                        (if (= (length upgrades) 1) "" "s")
+                        (mapconcat (lambda (pkgs) (nth 0 pkgs)) upgrades ", ")))
+          (require 'quelpa)
+          (quelpa-upgrade)
+          (message "[QUELPA] Done upgrading all packages"))
+      (message "[QUELPA] All packages are up to date"))))
 
 
 ;;;###autoload
