@@ -780,9 +780,11 @@ delay. HEIGHT of the tooltip that will display."
 (defun jcs-describe-thing-in-popup ()
   "Show current symbol info."
   (interactive)
-  (unless (ignore-errors (jcs-tip-describe-it))
-    (require 'define-it)
-    (define-it-at-point)))
+  (if (and (boundp 'flycheck-mode) flycheck-mode)
+      (user-error "[INFO] Describe thing is unused when 'flycheck' is enabled")
+    (unless (ignore-errors (jcs-tip-describe-it))
+      (require 'define-it)
+      (define-it-at-point))))
 
 ;;----------------------------------------------------------------------------
 ;; Todo
