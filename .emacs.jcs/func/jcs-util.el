@@ -1136,6 +1136,10 @@ For instance,
   (funcall mode-name -1)
   (funcall mode-name 1))
 
+(defun jcs-to-enable-mode (mode-name pred)
+  "To enable/disable the MODE-NAME by PREDICATE."
+  (if pred (funcall mode-name 1) (funcall mode-name -1)))
+
 ;;----------------------------------------------------------------------------
 ;; I/O
 
