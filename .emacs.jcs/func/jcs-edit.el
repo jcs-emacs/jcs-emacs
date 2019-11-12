@@ -620,16 +620,12 @@ REGEXP : reqular expression use to align."
   (require 'flycheck)
   ;; Record all the enabled mode that you want to
   ;; remain enabled after revert the file.
-  (let ((was-flycheck flycheck-mode)
-        (was-readonly buffer-read-only))
-
+  (let ((was-flycheck flycheck-mode) (was-readonly buffer-read-only))
+    ;; Revert it!
     (revert-buffer :ignore-auto :noconfirm :preserve-modes)
-
     ;; Revert all the enabled mode.
-    (when was-flycheck
-      (flycheck-mode 1))
-    (when was-readonly
-      (read-only-mode 1))))
+    (when was-flycheck (flycheck-mode 1))
+    (when was-readonly (read-only-mode 1))))
 
 ;;;###autoload
 (defun jcs-revert-all-file-buffers ()
