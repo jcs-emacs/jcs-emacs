@@ -261,17 +261,21 @@
 (use-package flycheck-popup-tip
   :defer t
   :init
-  (unless (display-graphic-p)
-    (with-eval-after-load 'flycheck
-      (flycheck-popup-tip-mode 1))))
+  (defun jcs--flycheck-mode--pos-tip--advice-after (&rest _)
+    "Advice runs after `flycheck-mode' function with `flycheck-popup-tip'."
+    (jcs-to-enable-mode 'flycheck-popup-tip-mode
+                        (and (not (display-graphic-p)) flycheck-mode)))
+  (advice-add 'flycheck-mode :after #'jcs--flycheck-mode--pos-tip--advice-after))
 
 
 (use-package flycheck-pos-tip
   :defer t
   :init
-  (when (display-graphic-p)
-    (with-eval-after-load 'flycheck
-      (flycheck-pos-tip-mode 1))))
+  (defun jcs--flycheck-mode--pos-tip--advice-after (&rest _)
+    "Advice runs after `flycheck-mode' function with `flycheck-pos-tip'."
+    (jcs-to-enable-mode 'flycheck-pos-tip-mode
+                        (and (display-graphic-p) flycheck-mode)))
+  (advice-add 'flycheck-mode :after #'jcs--flycheck-mode--pos-tip--advice-after))
 
 
 (use-package google-translate
