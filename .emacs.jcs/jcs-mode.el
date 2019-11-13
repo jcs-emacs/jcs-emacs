@@ -310,14 +310,13 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
   ;; Unset 'depend' mode key
   ;; NOTE: unset key should be before of set keys
   (global-unset-key (kbd "C-f"))
-  (global-unset-key (kbd "C-p"))
   (global-unset-key (kbd "C-r"))
 
   ;; Set 'depend' mode key
 
   ;; search
   (define-key global-map (kbd "C-f") #'jcs-helm-do-ag-this-file)
-  (define-key global-map (kbd "C-p C-f") #'helm-do-ag-project-root)
+  (define-key global-map (kbd "C-S-f") #'helm-do-ag-project-root)
 
   (define-key global-map (kbd "C-r p") #'jcs-ag-project-regexp)
 
@@ -339,7 +338,6 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
   ;; Unset 'cross' mode key
   ;; NOTE: unset key should be before of set keys
   (global-unset-key (kbd "C-f"))
-  (global-unset-key (kbd "C-p"))
   (global-unset-key (kbd "C-r"))
   (global-unset-key (kbd "C-r p"))
 
@@ -347,7 +345,7 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
 
   ;; search
   (define-key global-map (kbd "C-f") #'isearch-forward)
-  (define-key global-map (kbd "C-p C-f") #'isearch-project-forward)
+  (define-key global-map (kbd "C-S-f") #'isearch-project-forward)
 
   (jcs-global-key-rebind)
 
