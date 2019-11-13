@@ -6,6 +6,7 @@
 ;;-------------------------------------------------------------------
 ;; Unset key binding
 (global-unset-key (kbd "C-k"))
+(global-unset-key (kbd "C-p"))
 (global-unset-key (kbd "C-r"))
 (global-unset-key (kbd "C-w"))
 (global-unset-key (kbd "C-x w"))
@@ -238,6 +239,7 @@
 
 ;;; File Files
 (define-key global-map (kbd "M-f") #'helm-find-files)
+(define-key global-map (kbd "C-p") #'helm-find-files)
 (define-key global-map (kbd "M-F") #'jcs-helm-find-files-other-window)
 (define-key global-map (kbd "C-k M-f") #'helm-projectile-find-file)
 (define-key global-map (kbd "C-k M-F") #'jcs-helm-projectile-find-file-other-window)
@@ -254,7 +256,6 @@
 ;;; Format file.
 (define-key global-map (kbd "C-k C-f") #'indent-region)
 (define-key global-map (kbd "C-k C-d") #'jcs-format-document)
-(define-key global-map (kbd "C-S-f") #'jcs-format-region-or-document)
 (define-key global-map (kbd "C-k a") #'jcs-align-region-or-document)
 
 ;;; Goto Address
@@ -272,6 +273,7 @@
 ;;; Helm
 (progn
   (define-key global-map (kbd "M-x") #'helm-M-x)
+  (define-key global-map (kbd "C-S-p") #'helm-M-x)
   (define-key global-map (kbd "M-y") #'helm-show-kill-ring)
   (with-eval-after-load 'helm
     (define-key helm-map (kbd "<right>") #'helm-next-source)
