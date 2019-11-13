@@ -54,11 +54,11 @@
   * **Search**
 
     * <kbd>Ctrl</kbd>+<kbd>f</kbd> - Search through file.
-    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>Ctrl</kbd>+<kbd>f</kbd> - Search through project.
-    * <kbd>Ctrl</kbd>+<kbd>,</kbd> - Ssearch through file current point. (backward)
-    * <kbd>Ctrl</kbd>+<kbd>.</kbd> - Ssearch through file current point. (forward)
-    * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>,</kbd> - Ssearch through project current point. (backward)
-    * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>.</kbd> - Ssearch through project current point. (forward)
+    * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>f</kbd> - Search through project.
+    * <kbd>Ctrl</kbd>+<kbd>,</kbd> - Search through file current point. (backward)
+    * <kbd>Ctrl</kbd>+<kbd>.</kbd> - Search through file current point. (forward)
+    * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>,</kbd> - Search through project current point. (backward)
+    * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>.</kbd> - Search through project current point. (forward)
 
   * **Todo**
 
@@ -75,7 +75,6 @@
 
     * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>Ctrl</kbd>+<kbd>f</kbd> - Format region.
     * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>Ctrl</kbd>+<kbd>d</kbd> - Format document.
-    * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>f</kbd> - Format region or document.
 
   * **Folding / Unfolding**
 
