@@ -375,7 +375,10 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
 
   ;; NOTE: Set smaller font.
   (setq buffer-face-mode-face '(:height 120))
-  (buffer-face-mode))
+  (buffer-face-mode)
+
+  (define-key compilation-mode-map (kbd "C-_") #'jcs-output-prev-compilation)
+  (define-key compilation-mode-map (kbd "C-+") #'jcs-output-next-compilation))
 
 (add-hook 'compilation-mode-hook 'jcs-compilation-mode-hook)
 
