@@ -715,7 +715,13 @@ TYPE : enable/disable case sensitive?"
     (jcs-show-shell-window)))
 
 ;;----------------------------------------------------------------------------
-;; Text Scale
+;; Zoom
+
+;;;###autoload
+(defun jcs-reset-zoom ()
+  "Reset zoom level."
+  (interactive)
+  (text-scale-set 0))
 
 (defun jcs-text-scale-delta (vec)
   "Scale the text by passing `vec' value.
