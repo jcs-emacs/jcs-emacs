@@ -14,6 +14,59 @@
 (advice-add 'eval-region :after #'jcs--eval-func--advice-after)
 
 ;;----------------------------------------------------------------------------
+;; Control Output
+
+(defun jcs-output-list-compilation ()
+  "Return the list of compilation buffers."
+  (let ((file-regexp (format "[*]%s[*]: " jcs-compilation-base-filename))
+        (lst '()))
+    (dolist (buf (buffer-list))
+      (when (string-match-p file-regexp (buffer-name buf))
+        (push buf lst)))
+    lst))
+
+(defun jcs-output-set-compilation-index (index lst)
+  "Set compilation buffer with INDEX and LST."
+  (cond
+   ((< index 0) (setq index (1- (length lst))))
+   ((>= index (length lst)) (setq index 0)))
+  (switch-to-buffer (nth index lst)))
+
+;;;###autoload
+(defun jcs-output-prev-compilation ()
+  "Select the previous compilation buffer."
+  (interactive)
+  (let ((output-lst (jcs-output-list-compilation))
+        (break nil) (index 0))
+    (while (and (< index (length output-lst)) (not break))
+      (when (equal (current-buffer) (nth index output-lst))
+        (bury-buffer)
+        (jcs-output-set-compilation-index (1- index) output-lst)
+        (setq break t))
+      (setq index (1+ index)))))
+
+;;;###autoload
+(defun jcs-output-next-compilation ()
+  "Select the next compilation buffer."
+  (interactive)
+  (let ((output-lst (jcs-output-list-compilation))
+        (break nil) (index 0))
+    (while (and (< index (length output-lst)) (not break))
+      (when (equal (current-buffer) (nth index output-lst))
+        (jcs-output-set-compilation-index (1+ index) output-lst)
+        (setq break t))
+      (setq index (1+ index)))))
+
+;;;###autoload
+(defun jcs-output-window ()
+  "Show output window."
+  (interactive)
+  (let ((output-lst (jcs-output-list-compilation)))
+    (if (= 0 (length output-lst))
+        (user-error "[INFO] No output compilation exists")
+      (jcs-output-set-compilation-index 0 output-lst))))
+
+;;----------------------------------------------------------------------------
 ;; Build & Run
 
 ;;;###autoload
@@ -59,7 +112,7 @@ IN-OP : inpuit operation script."
     (compile in-op)
     (jcs-update-line-number-each-window)
     (with-current-buffer "*compilation*"
-      (rename-buffer (format "*compilation*: %s" (f-filename in-op)) t))
+      (rename-buffer (format "*%s*: %s" jcs-compilation-base-filename (f-filename in-op)) t))
     (message "Executing script file: '%s'" in-op)))
 
 
