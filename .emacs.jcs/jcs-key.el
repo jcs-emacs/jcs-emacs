@@ -273,7 +273,9 @@
 ;;; Helm
 (progn
   (define-key global-map (kbd "M-x") #'helm-M-x)
-  (define-key global-map (kbd "C-S-p") #'helm-M-x)
+  (progn  ; Compatible to VSCode.
+    (define-key global-map (kbd "C-S-p") #'helm-M-x)
+    (define-key global-map (kbd "<f1>") #'helm-M-x))
   (define-key global-map (kbd "M-y") #'helm-show-kill-ring)
   (with-eval-after-load 'helm
     (define-key helm-map (kbd "<right>") #'helm-next-source)
