@@ -246,8 +246,9 @@
 
 ### Visualization
 
-* <kbd>Ctrl</kbd>+<kbd>=</kbd> - Text scale increase.
-* <kbd>Ctrl</kbd>+<kbd>-</kbd> - Text scale decrease.
+* <kbd>Ctrl</kbd>+<kbd>=</kbd> - Text scale increase (Zoom in).
+* <kbd>Ctrl</kbd>+<kbd>-</kbd> - Text scale decrease (Zoom out).
+* <kbd>Ctrl</kbd>+<kbd>0(Numpad)</kbd> - Reset zoom.
 * <kbd>Alt</kbd>+<kbd>=</kbd> - Frame transparent increase.
 * <kbd>Alt</kbd>+<kbd>-</kbd> - Frame transparent decrease.
 * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>f</kbd> - Change font style.
@@ -267,7 +268,7 @@
 
 ### Source Control
 
-* <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>g</kbd> - Open magit interface.
+* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>g</kbd> - Open magit interface.
 
 ### Terminal / Shell
 
@@ -280,9 +281,10 @@
 
 * **System**
 
-  * <kbd>Alt</kbd>+<kbd>x</kbd> - Active minibuffer.
-  * <kbd>f1</kbd> - Active minibuffer.
-  * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>p</kbd> - Active minibuffer.
+  * Active minibuffer.
+    - <kbd>Alt</kbd>+<kbd>x</kbd> - Active minibuffer.
+    - <kbd>f1</kbd> - Active minibuffer.
+    - <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>p</kbd> - Active minibuffer.
   * <kbd>Alt</kbd>+<kbd>f4</kbd> - Shutdown Emacs.
   * <kbd>Alt</kbd>+<kbd>f5</kbd> - Reload Emacs.
   * <kbd>Alt</kbd>+<kbd>f6</kbd> - Restart Emacs.
@@ -305,9 +307,10 @@
   * <kbd>Ctrl</kbd>+<kbd>SPC</kbd> or <kbd>Alt</kbd>+<kbd>SPC</kbd> - Set mark at current point.
   * <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>;</kbd> - Pops back to the previous mark.
 
-* **Packet List**
+* **Package List**
 
   * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>Ctrl</kbd>+<kbd>p</kbd> - Package list.
+  * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>e</kbd> - Package list.
 
 * **Process**
 
