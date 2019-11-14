@@ -46,8 +46,9 @@
   * <kbd>Ctrl</kbd>+<kbd>r</kbd>, <kbd>b</kbd> - Open RE-Builder mode window.
   * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>r</kbd> - Reveal file in folder.
 
-  * **Build / Run**
+  * **Build / Run (Output)**
 
+    * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>u</kbd> - Show output window.
     * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>b</kbd> - Build the program. (`build.linux`/`build.bat`/`build.mac`)
     * <kbd>f5</kbd> - Run the program. (`run.linux`/`run.bat`/`run.mac`)
 
@@ -130,6 +131,9 @@
 * **Debugging**
 
   * <kbd>f6</kbd> - Toggle `flycheck`.
+  * <kbd>f9</kbd> - Goto first error.
+  * <kbd>f10</kbd> - Goto previous error.
+  * <kbd>f11</kbd> - Goto next error.
 
 ### Buffer
 
