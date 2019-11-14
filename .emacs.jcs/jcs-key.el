@@ -407,7 +407,8 @@
 ;;; Right Click Context
 (define-key global-map [S-f10] #'right-click-context-menu)
 
-;;; Script Executing
+;;; Script Executing (Output)
+(define-key global-map (kbd "C-S-u") #'jcs-output-window)
 (progn
   ;; Run
   (define-key global-map (kbd "<f5>") #'jcs-run-without-asking)
@@ -504,6 +505,8 @@
 
 ;;; Window
 (progn
+  ;; TODO: Determine `toggle-frame-fullscreen' key.
+  ;;(define-key global-map [f11] #'toggle-frame-fullscreen)
   (define-key global-map (kbd "C-k n") #'make-frame)
   (define-key global-map (kbd "C-k d") #'delete-frame)  ; delete the external frame.
   (define-key global-map (kbd "C-k w") #'jcs-balance-delete-window)  ; delete current window.
