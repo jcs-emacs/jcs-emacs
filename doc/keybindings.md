@@ -280,6 +280,9 @@
 
 * **System**
 
+  * <kbd>Alt</kbd>+<kbd>x</kbd> - Active minibuffer.
+  * <kbd>f1</kbd> - Active minibuffer.
+  * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>p</kbd> - Active minibuffer.
   * <kbd>Alt</kbd>+<kbd>f4</kbd> - Shutdown Emacs.
   * <kbd>Alt</kbd>+<kbd>f5</kbd> - Reload Emacs.
   * <kbd>Alt</kbd>+<kbd>f6</kbd> - Restart Emacs.
