@@ -181,8 +181,7 @@
   (interactive)
   (unless (string= (jcs-buffer-name-or-buffer-file-name) "*Buffer List*")
     (save-window-excursion
-      (let ((was-fake-header-printed nil)
-            (get-title ""))
+      (let ((was-fake-header-printed nil) (get-title ""))
         (when (get-buffer "*Buffer List*")
           (with-current-buffer "*Buffer List*"
             (save-excursion
@@ -193,7 +192,9 @@
         (let (tabulated-list--header-string) (jcs-mute-apply #'buffer-menu))
         (when jcs-buffer-menu-switch-buffer-refreshing
           (jcs--buffer-menu-trigger-filter was-fake-header-printed)))
-      (bury-buffer))))
+      (bury-buffer)))
+  (with-current-buffer "*Buffer List*"
+    (diminish-buffer--refresh-buffer-menu)))
 
 (defun jcs-buffer-menu-safe-refresh ()
   "Safely refresh `buffer menu`'s buffer."
