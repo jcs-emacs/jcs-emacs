@@ -310,7 +310,7 @@
 * **Package List**
 
   * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>Ctrl</kbd>+<kbd>p</kbd> - Package list.
-  * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>e</kbd> - Package list.
+  * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>x</kbd> - Package list.
 
 * **Process**
 
