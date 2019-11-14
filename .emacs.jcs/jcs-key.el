@@ -107,6 +107,9 @@
 (define-key global-map (kbd "C-k C-c") #'jcs-comment-region-or-line)
 (define-key global-map (kbd "C-k C-u") #'jcs-uncomment-region-or-line)
 
+;;; Debug
+(define-key global-map (kbd "C-S-d") #'dap-mode)
+
 ;;; Describe Thing
 (define-key global-map (kbd "C-k C-s") #'describe-bindings)
 
@@ -223,8 +226,8 @@
   (define-key esup-mode-map (kbd "C-y") #'undo-tree-redo))
 
 ;;; File Explorer
-(define-key global-map (kbd "C-M-l") #'jcs-sr-speedbar-toggle)  ;; Compatible to `Visual Studio'.
-(define-key global-map (kbd "C-b") #'jcs-sr-speedbar-toggle)    ;; Compatible to `VS Code'.
+(define-key global-map (kbd "C-M-l") #'jcs-sr-speedbar-toggle)  ; Compatible to `Visual Studio'.
+(define-key global-map (kbd "C-b") #'jcs-sr-speedbar-toggle)    ; Compatible to `VS Code'.
 (with-eval-after-load 'sr-speedbar
   (define-key speedbar-mode-map (kbd "<backspace>") #'speedbar-up-directory)
   (define-key speedbar-mode-map (kbd "<return>") #'jcs-speedbar-edit-line)
@@ -378,6 +381,7 @@
 
 ;;; Packages
 (define-key global-map (kbd "C-k C-p") #'package-list-packages)
+(define-key global-map (kbd "C-S-x") #'package-list-packages)
 (define-key package-menu-mode-map (kbd "s") #'jcs-package-menu-filter-by-status)
 (define-key package-menu-mode-map (kbd "u") #'jcs-package-upgrade-all)
 (define-key package-menu-mode-map (kbd "C-k r m") #'package-autoremove)
@@ -437,7 +441,7 @@
 (define-key global-map (kbd "C-k C-i") #'jcs-describe-thing-in-popup)
 
 ;;; Source Control
-(define-key global-map (kbd "C-k g") #'magit-status)
+(define-key global-map (kbd "C-S-g") #'magit-status)
 
 ;;; Special
 (define-key special-mode-map (kbd "<up>") #'previous-line)
@@ -483,9 +487,10 @@
 (define-key global-map (kbd "C-k >") #'jcs-inc-tab-width)
 (define-key global-map (kbd "C-k <") #'jcs-dec-tab-width)
 
-;;; Text Scale
+;;; Zoom
 (define-key global-map (kbd "C-=") #'jcs-text-scale-increase)
 (define-key global-map (kbd "C--") #'jcs-text-scale-decrease)
+(define-key global-map (kbd "C-<kp-0>") #'jcs-reset-zoom)
 
 ;;; Todo
 (with-eval-after-load 'hl-todo
