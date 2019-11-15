@@ -218,6 +218,8 @@ Toggle to `show` or `hide` the mode line.~~
 * [*Modern Text Editor*](./features/modern-text-editor) -
 Design to have the preset settings close to modern text
 editors but faster.
+* [*Multiple Output*](./features/multiple-output) -
+Handle multiple output/compilation buffers.
 * [*Navigate Blank Line*](./features/navigate-blank-line) -
 Use `C-<up>` and `C-<down>` to navigate previous and next
 blank line.
