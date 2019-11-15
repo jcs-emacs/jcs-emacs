@@ -3,8 +3,22 @@
 ;;; Code:
 
 
+(defun jcs--set-mode-line-color (ac-lst inac-lst)
+  "Set `mode-line' them faces with AC-LST and INAC-LST."
+  (progn
+    (set-face-foreground 'mode-line (nth 0 ac-lst))
+    (set-face-background 'mode-line (nth 1 ac-lst)))
+  (progn
+    (set-face-foreground 'mode-line-inactive (nth 0 inac-lst))
+    (set-face-background 'mode-line-inactive (nth 1 inac-lst))))
+
+(defun jcs--set-border-color (color)
+  "Set the border color with COLOR."
+  (set-face-foreground 'vertical-border color)
+  (set-face-foreground 'window-divider color))
+
 (defun jcs-powerline-set-theme-faces (ac-lst inac-lst)
-  "Set `powerline' them faces."
+  "Set `powerline' them faces with AC-LST and INAC-LST."
   (progn
     (set-face-foreground 'powerline-active0 (nth 0 ac-lst))
     (set-face-background 'powerline-active0 (nth 1 ac-lst))
@@ -27,161 +41,170 @@
 
   (powerline-reset))
 
-(defun jcs--set-border-color (color)
-  "Set the border color with COLOR."
-  (set-face-foreground 'vertical-border color)
-  (set-face-foreground 'window-divider color))
+(defun jcs--set-mode-line-theme (ml-ac-lst ml-inac-lst bc power-ac-lst power-inac-lst)
+  "Set the mode line theme.
+ML-AC-LST : mode-line active list.  ML-INAC-LST : mode-line inactive list.
+BC : border color.
+POWER-AC-LST : powerline active list.  POWER-INAC-LST : powerline inactive list."
+  (jcs--set-mode-line-color ml-ac-lst ml-inac-lst)
+  (jcs--set-border-color bc)
+  (jcs-powerline-set-theme-faces power-ac-lst power-inac-lst))
 
 ;;;###autoload
 (defun jcs-gray-mode-line ()
   "Gray mode line."
   (interactive)
-
-  ;; set mode line
-  (set-face-background 'mode-line "#BFBFBF")
-  (set-face-background 'mode-line-inactive "#4D4D4D")
-
-  ;; set the vertical border
-  (jcs--set-border-color
-   (if (jcs-is-light-color (face-background 'default))
-       "#161616"
-     "#D2D2D2"))
-
-  ;; `powerline' font faces.
   (if (jcs-is-light-color (face-background 'default))
-      (jcs-powerline-set-theme-faces '("#1C1C1C" "#D8D8D8"
-                                       "#000000" "#B8B8B8"
-                                       "#1C1C1C" "#C7C7C7")
-                                     '("#1C1C1C" "#CCCCCC"
-                                       "#000000" "#B8B8B8"
-                                       "#1C1C1C" "#C7C7C7"))
-    (jcs-powerline-set-theme-faces '("#1C1C1C" "#CCCCCC"
-                                     "#CCCCCC" "#1C1C1C"
-                                     "#CCCCCC" "#333333")
-                                   '("#CCCCCC" "#4D4D4D"
-                                     "#CCCCCC" "#1C1C1C"
-                                     "#CCCCCC" "#333333"))))
+      (jcs--set-mode-line-theme
+       '("#1C1C1C" "#BFBFBF")
+       '("#CCCCCC" "#4D4D4D")
+       "#161616"
+       '("#1C1C1C" "#D8D8D8"
+         "#000000" "#B8B8B8"
+         "#1C1C1C" "#C7C7C7")
+       '("#1C1C1C" "#CCCCCC"
+         "#000000" "#B8B8B8"
+         "#1C1C1C" "#C7C7C7"))
+    (jcs--set-mode-line-theme
+     '("#1C1C1C" "#BFBFBF")
+     '("#CCCCCC" "#4D4D4D")
+     "#D2D2D2"
+     '("#1C1C1C" "#CCCCCC"
+       "#CCCCCC" "#1C1C1C"
+       "#CCCCCC" "#333333")
+     '("#CCCCCC" "#4D4D4D"
+       "#CCCCCC" "#1C1C1C"
+       "#CCCCCC" "#333333"))))
 
 ;;;###autoload
 (defun jcs-dark-green-mode-line ()
   "Dark green mode line."
   (interactive)
-
-  ;; set mode line
-  (set-face-background 'mode-line "#467E7D")
-  (set-face-background 'mode-line-inactive "#2B4D4D")
-
-  ;; set the vertical border
-  (jcs--set-border-color "#467E7D")
-
-  ;; `powerline' font faces.
-  (jcs-powerline-set-theme-faces '("#1C1C1C" "#529191"
-                                   "#CCCCCC" "#1C2E2D"
-                                   "#CCCCCC" "#294645")
-                                 '("#CCCCCC" "#2B4D4D"
-                                   "#CCCCCC" "#1C2E2D"
-                                   "#CCCCCC" "#294645")))
+  (if (jcs-is-light-color (face-background 'default))
+      (jcs--set-mode-line-theme
+       '("#CCCCCC" "#467E7D")
+       '("#CCCCCC" "#2B4D4D")
+       "#7ED5D5"
+       '("#1C1C1C" "#7ED5D5"
+         "#1C1C1C" "#5B928F"
+         "#1C1C1C" "#68AFAC")
+       '("#1C1C1C" "#75C0C0"
+         "#1C1C1C" "#5B928F"
+         "#1C1C1C" "#68AFAC"))
+    (jcs--set-mode-line-theme
+     '("#CCCCCC" "#467E7D")
+     '("#CCCCCC" "#2B4D4D")
+     "#467E7D"
+     '("#1C1C1C" "#529191"
+       "#CCCCCC" "#1C2E2D"
+       "#CCCCCC" "#294645")
+     '("#CCCCCC" "#2B4D4D"
+       "#CCCCCC" "#1C2E2D"
+       "#CCCCCC" "#294645"))))
 
 ;;;###autoload
 (defun jcs-dark-blue-mode-line ()
   "Dark blue mode line."
   (interactive)
-
-  ;; set mode line
-  (set-face-background 'mode-line "#246AAF")
-  (set-face-background 'mode-line-inactive "#0E2944")
-
-  ;; set the 'vertical border'
-  (jcs--set-border-color "#246AAF")
-
-  ;; `powerline' font faces.
-  (jcs-powerline-set-theme-faces '("#1C1C1C" "#246AAF"
-                                   "#CCCCCC" "#091A2B"
-                                   "#CCCCCC" "#0E2944")
-                                 '("#CCCCCC" "#14375B"
-                                   "#CCCCCC" "#091A2B"
-                                   "#CCCCCC" "#0E2944")))
+  (if (jcs-is-light-color (face-background 'default))
+      (jcs--set-mode-line-theme
+       '("#CCCCCC" "#246AAF")
+       '("#CCCCCC" "#0E2944")
+       "#2E84D9"
+       '("#EDEDED" "#2E84D9"
+         "#EDEDED" "#225F9A"
+         "#EDEDED" "#2D7AC4")
+       '("#EDEDED" "#2C7AC6"
+         "#EDEDED" "#225F9A"
+         "#EDEDED" "#2D7AC4"))
+    (jcs--set-mode-line-theme
+     '("#CCCCCC" "#246AAF")
+     '("#CCCCCC" "#0E2944")
+     "#246AAF"
+     '("#1C1C1C" "#246AAF"
+       "#CCCCCC" "#091A2B"
+       "#CCCCCC" "#0E2944")
+     '("#CCCCCC" "#14375B"
+       "#CCCCCC" "#091A2B"
+       "#CCCCCC" "#0E2944"))))
 
 ;;;###autoload
 (defun jcs-dark-orange-mode-line ()
   "Dark orange mode line."
   (interactive)
-
-  ;; set mode line
-  (set-face-background 'mode-line "#FF6C32")
-  (set-face-background 'mode-line-inactive "#682B12")
-
-  ;; set the vertical border
-  (jcs--set-border-color "#FF6C32")
-
-  ;; `powerline' font faces.
-  (jcs-powerline-set-theme-faces '("#1C1C1C" "#FF6C32"
-                                   "#CCCCCC" "#682B12"
-                                   "#CCCCCC" "#9A431F")
-                                 '("#CCCCCC" "#9A431F"
-                                   "#CCCCCC" "#682B12"
-                                   "#CCCCCC" "#883919")))
-
-;;;###autoload
-(defun jcs-light-blue-mode-line ()
-  "Light blue mode line."
-  (interactive)
-
-  ;; set mode line
-  (set-face-background 'mode-line "#A3D1FF")
-  (set-face-background 'mode-line-inactive "#3685D4")
-
-  ;; set the vertical border
-  (jcs--set-border-color "#A3D1FF")
-
-  ;; `powerline' font faces.
-  (jcs-powerline-set-theme-faces '("#1C1C1C" "#5AA2E9"
-                                   "#CCCCCC" "#2C4D6D"
-                                   "#CCCCCC" "#3C6894")
-                                 '("#CCCCCC" "#3C6894"
-                                   "#CCCCCC" "#2C4966"
-                                   "#CCCCCC" "#365C82")))
+  (if (jcs-is-light-color (face-background 'default))
+      (jcs--set-mode-line-theme
+       '("#1C1C1C" "#FF6C32")
+       '("#CCCCCC" "#682B12")
+       "#FF6C32"
+       '("#1C1C1C" "#FF6C32"
+         "#CCCCCC" "#682B12"
+         "#CCCCCC" "#9A431F")
+       '("#CCCCCC" "#9A431F"
+         "#CCCCCC" "#682B12"
+         "#CCCCCC" "#883919"))
+    (jcs--set-mode-line-theme
+     '("#1C1C1C" "#FF6C32")
+     '("#CCCCCC" "#682B12")
+     "#FF6C32"
+     '("#1C1C1C" "#FF6C32"
+       "#CCCCCC" "#682B12"
+       "#CCCCCC" "#9A431F")
+     '("#CCCCCC" "#9A431F"
+       "#CCCCCC" "#682B12"
+       "#CCCCCC" "#883919"))))
 
 ;;;###autoload
 (defun jcs-red-mode-line ()
   "Red mode line."
   (interactive)
-
-  ;; set mode line
-  (set-face-background 'mode-line "#FF0000")
-  (set-face-background 'mode-line-inactive "#6A0101")
-
-  ;; set the vertical border
-  (jcs--set-border-color "#FF0000")
-
-  ;; `powerline' font faces.
-  (jcs-powerline-set-theme-faces '("#1C1C1C" "#FF0000"
-                                   "#CCCCCC" "#6A0101"
-                                   "#CCCCCC" "#920101")
-                                 '("#CCCCCC" "#920101"
-                                   "#CCCCCC" "#6A0101"
-                                   "#CCCCCC" "#970000")))
+  (if (jcs-is-light-color (face-background 'default))
+      (jcs--set-mode-line-theme
+       '("#CCCCCC" "#FF0000")
+       '("#CCCCCC" "#6A0101")
+       "#FF0000"
+       '("#1C1C1C" "#FF0000"
+         "#CCCCCC" "#6A0101"
+         "#CCCCCC" "#920101")
+       '("#CCCCCC" "#920101"
+         "#CCCCCC" "#6A0101"
+         "#CCCCCC" "#970000"))
+    (jcs--set-mode-line-theme
+     '("#CCCCCC" "#FF0000")
+     '("#CCCCCC" "#6A0101")
+     "#FF0000"
+     '("#1C1C1C" "#FF0000"
+       "#CCCCCC" "#6A0101"
+       "#CCCCCC" "#920101")
+     '("#CCCCCC" "#920101"
+       "#CCCCCC" "#6A0101"
+       "#CCCCCC" "#970000"))))
 
 ;;;###autoload
 (defun jcs-purple-mode-line ()
   "Purple mode line."
   (interactive)
-
-  ;; set mode line
-  (set-face-background 'mode-line "#B100EB")
-  (set-face-background 'mode-line-inactive "#650286")
-
-  ;; set the vertical border
-  (jcs--set-border-color "#B100EB")
-
-  ;; `powerline' font faces.
-  (jcs-powerline-set-theme-faces '("#1C1C1C" "#B100EB"
-                                   "#CCCCCC" "#4B0263"
-                                   "#CCCCCC" "#69018B")
-                                 '("#CCCCCC" "#69018B"
-                                   "#CCCCCC" "#4B0263"
-                                   "#CCCCCC" "#670188")))
-
+  (if (jcs-is-light-color (face-background 'default))
+      (jcs--set-mode-line-theme
+       '("#CCCCCC" "#B100EB")
+       '("#CCCCCC" "#650286")
+       "#B100EB"
+       '("#1C1C1C" "#B100EB"
+         "#CCCCCC" "#4B0263"
+         "#CCCCCC" "#69018B")
+       '("#CCCCCC" "#69018B"
+         "#CCCCCC" "#4B0263"
+         "#CCCCCC" "#670188"))
+    (jcs--set-mode-line-theme
+     '("#CCCCCC" "#B100EB")
+     '("#CCCCCC" "#650286")
+     "#B100EB"
+     '("#1C1C1C" "#B100EB"
+       "#CCCCCC" "#4B0263"
+       "#CCCCCC" "#69018B")
+     '("#CCCCCC" "#69018B"
+       "#CCCCCC" "#4B0263"
+       "#CCCCCC" "#670188"))))
 
 (defun jcs-reset-plugins-base-on-theme ()
   "Reset certain plugins base on the theme."
@@ -192,16 +215,15 @@
   (jcs-reset-yascroll-color-by-theme)
   (jcs-reset-common-faces-by-theme)
   (jcs-reload-active-mode)
-  (jcs-re-enable-mode 'highlight-indent-guides-mode)
+  (when highlight-indent-guides-mode
+    (jcs-re-enable-mode 'highlight-indent-guides-mode))
   (when dimmer-mode
-    (progn
-      ;; Toggle `dimmer-mode'.
-      (dimmer-mode -1) (dimmer-mode 1))
+    (jcs-re-enable-mode 'dimmer-mode)
     ;; TODO: Weird bug here..
     (dimmer-process-all)))
 
 (defun jcs-set-theme (fgc bgc cc hlc)
-  "Setup the theme."
+  "Setup the theme to all frames with FGC, BGC, CC and HLC."
   (jcs-walk-through-all-frames-once
    (lambda ()
      (set-foreground-color fgc)
