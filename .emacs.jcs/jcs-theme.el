@@ -48,12 +48,19 @@
      "#D2D2D2"))
 
   ;; `powerline' font faces.
-  (jcs-powerline-set-theme-faces '("#1C1C1C" "#CCCCCC"
-                                   "#CCCCCC" "#1C1C1C"
-                                   "#CCCCCC" "#333333")
-                                 '("#CCCCCC" "#4D4D4D"
-                                   "#CCCCCC" "#1C1C1C"
-                                   "#CCCCCC" "#333333")))
+  (if (jcs-is-light-color (face-background 'default))
+      (jcs-powerline-set-theme-faces '("#1C1C1C" "#D8D8D8"
+                                       "#000000" "#B8B8B8"
+                                       "#1C1C1C" "#C7C7C7")
+                                     '("#1C1C1C" "#CCCCCC"
+                                       "#000000" "#B8B8B8"
+                                       "#1C1C1C" "#C7C7C7"))
+    (jcs-powerline-set-theme-faces '("#1C1C1C" "#CCCCCC"
+                                     "#CCCCCC" "#1C1C1C"
+                                     "#CCCCCC" "#333333")
+                                   '("#CCCCCC" "#4D4D4D"
+                                     "#CCCCCC" "#1C1C1C"
+                                     "#CCCCCC" "#333333"))))
 
 ;;;###autoload
 (defun jcs-dark-green-mode-line ()
@@ -185,6 +192,7 @@
   (jcs-reset-yascroll-color-by-theme)
   (jcs-reset-common-faces-by-theme)
   (jcs-reload-active-mode)
+  (jcs-re-enable-mode 'highlight-indent-guides-mode)
   (when dimmer-mode
     (progn
       ;; Toggle `dimmer-mode'.
