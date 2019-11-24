@@ -372,10 +372,10 @@ LST-PR: List of pair."
 (defun jcs-iedit-mode ()
   "Enable Iedit mode in the safe way."
   (interactive)
-  (when (or (jcs-get-word-at-point)
-            (jcs-get-symbol-at-point))
-    (require 'iedit)
-    (call-interactively #'iedit-mode)))
+  (let (kill-ring)
+    (when (or (jcs-get-word-at-point) (jcs-get-symbol-at-point))
+      (require 'iedit)
+      (call-interactively #'iedit-mode))))
 
 ;;----------------------------------------------------------------------------
 ;; Line Numbers
