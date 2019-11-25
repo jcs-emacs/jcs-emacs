@@ -355,9 +355,14 @@
   :init
   (defun jcs--describe-mode--advice-around (fnc &rest args)
     "Advice execute around `describe-mode' function."
-    (if (eq this-command 'helm-describe-modes)
-        (apply fnc args)
-      (helm-describe-modes)))
+    (let ((pick (nth 0
+                     (list (completing-read
+                            "Describe major mode: " '("describe-mode (DEFAULT)"
+                                                      "helm-describe-modes"))))))
+      (cond ((string= pick "describe-mode (DEFAULT)")
+             (apply fnc args))
+            ((string= pick "helm-describe-modes")
+             (helm-describe-modes)))))
   (advice-add 'describe-mode :around #'jcs--describe-mode--advice-around))
 
 (use-package helm-file-preview
