@@ -158,6 +158,7 @@
 (defun jcs--select-window--advice-after (&rest _)
   "Advice run after execute `select-window' function."
   (when (and (not (active-minibuffer-window))
+             (not isearch-mode)
              (not (eq jcs--window-last-command-record last-command)))
     (setq jcs--window-last-command-record last-command)
     (jcs-buffer-menu-safe-refresh))
