@@ -373,12 +373,13 @@ LST-PR: List of pair."
 (defun jcs-iedit-mode ()
   "Enable Iedit mode in the safe way."
   (interactive)
-  (let (kill-ring)
+  (let ((kill-ring kill-ring))
     (require 'iedit)
     (if iedit-mode
         (call-interactively #'iedit-mode)
       (when (or (jcs-get-word-at-point) (jcs-get-symbol-at-point))
         (call-interactively #'iedit-mode))))
+  (current-kill 1)  ; Call this function just to update `kill-ring'.
   iedit-mode)
 
 ;;----------------------------------------------------------------------------
