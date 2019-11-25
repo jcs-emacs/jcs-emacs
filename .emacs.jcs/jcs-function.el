@@ -378,7 +378,8 @@ LST-PR: List of pair."
     (if iedit-mode
         (call-interactively #'iedit-mode)
       (when (or (jcs-get-word-at-point) (jcs-get-symbol-at-point))
-        (call-interactively #'iedit-mode)))))
+        (call-interactively #'iedit-mode))))
+  iedit-mode)
 
 ;;----------------------------------------------------------------------------
 ;; Line Numbers
@@ -662,7 +663,8 @@ TYPE : enable/disable case sensitive?"
     ;; STUDY: For some reason, we need to walk
     ;; through all windows once in order to display
     ;; the `flycheck-list-errors' in other window.
-    (jcs-walk-through-all-windows-once)))
+    (jcs-walk-through-all-windows-once))
+  flycheck-mode)
 
 ;;----------------------------------------------------------------------------
 ;; Tab Bar
