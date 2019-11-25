@@ -194,6 +194,7 @@
           (jcs--buffer-menu-trigger-filter was-fake-header-printed)))
       (bury-buffer)))
   (with-current-buffer "*Buffer List*"
+    (require 'diminish-buffer)
     (diminish-buffer--refresh-buffer-menu)))
 
 (defun jcs-buffer-menu-safe-refresh ()
