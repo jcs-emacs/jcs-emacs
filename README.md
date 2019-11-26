@@ -239,6 +239,8 @@ currently in.
 Keys to increase/decrease the transparency of the frame.
 * [*Trim Trailing Whitespace*](./features/trim-trailing-whitespace) -
 Remove trailing spaces and tabs automatically on save.
+* [*Video Player*](./features/video-player) -
+Play media on the top window.
 * [*Visualize Undo/Redo*](./features/visualize-undo-redo) -
 Improved the user experience on undoing and redoing by
 showing the `undo-tree-visualizer` at the other window.
@@ -347,6 +349,9 @@ and
 [multiple-cursors](https://github.com/magnars/multiple-cursors.el).
 * *Multiple Terminal* - powered by
 [multi-shell](https://github.com/jcs-elpa/multi-shell).
+* *Music Player* - powered by
+[ffmpeg-player](https://github.com/jcs-elpa/ffmpeg-player); 
+might change to something else.
 * *Navigation/Searcher* - powered by
 [ag](https://github.com/Wilfred/ag.el)
 and
@@ -403,6 +408,8 @@ and
 [feebleline](https://github.com/tautologyclub/feebleline).
 * *Undo/Redo* - powered by
 [undo-tree](https://www.emacswiki.org/emacs/UndoTree).
+* *Video Player* - powered by
+[ffmpeg-player](https://github.com/jcs-elpa/ffmpeg-player).
 * *White Space* - powered by
 [whitespace](https://www.emacswiki.org/emacs/WhiteSpace).
 
