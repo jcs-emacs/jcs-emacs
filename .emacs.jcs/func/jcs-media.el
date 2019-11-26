@@ -13,8 +13,9 @@
     (windmove-up)
     (switch-to-buffer ffmpeg-player--buffer)))
 
-(defun jcs-media--close-media-window ()
+(defun jcs-media-close-media-window ()
   "Close the media window."
+  (interactive)
   (when (ignore-errors (jcs-jump-shown-to-buffer "*ffmpeg-player*: "))
     (jcs-maybe-kill-this-buffer)
     (jcs-delete-window-downwind)))
