@@ -8,14 +8,16 @@
 
 (defun jcs-media--open-media-window ()
   "Open the media window."
-  (when (not ffmpeg-player--buffer)
-    ))
+  (when ffmpeg-player--buffer
+    (when (window-full-height-p) (jcs-balance-split-window-vertically))
+    (windmove-up)
+    (switch-to-buffer ffmpeg-player--buffer)))
 
 (defun jcs-media--close-media-window ()
   "Close the media window."
   (when (ignore-errors (jcs-jump-shown-to-buffer "*ffmpeg-player*: "))
-    (jcs-delete-window-downwind)
-    ))
+    (jcs-maybe-kill-this-buffer)
+    (jcs-delete-window-downwind)))
 
 
 (provide 'jcs-media)
