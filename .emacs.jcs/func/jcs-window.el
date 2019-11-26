@@ -106,8 +106,7 @@
   "Walk through all the windows once and execute callback FNC."
   (interactive)
   (save-selected-window
-    (let ((cur-frame (selected-frame))
-          (index 0))
+    (let ((cur-frame (selected-frame)) (index 0))
       (while (< index (jcs-count-windows))
         (when fnc (funcall fnc))
         (other-window 1 t)
