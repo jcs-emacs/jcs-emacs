@@ -118,6 +118,7 @@ without having to get used to an new IDE.
 Here is the list of few important and recent changes to this
 configuration.
 
+* `5.9.0` - Implemented video player functionalities.
 * `5.8.8` - Multiple terminal is now working.
 * `5.8.7` - Set `smart-indent` as one option to move previous/next line.
 * `5.8.6` - Use `web-mode` instead of `vue-mode` for editing `.vue` file.
