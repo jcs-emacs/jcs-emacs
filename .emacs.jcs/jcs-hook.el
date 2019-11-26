@@ -165,6 +165,13 @@
     (jcs-active-line-numbers-by-mode)))
 (add-hook 'after-change-major-mode-hook 'jcs-after-change-major-mode-hook)
 
+;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+(defun jcs--kill-emacs-hook ()
+  "Kill Emacs hook."
+  (when (and (boundp 'ffmpeg-player-clean) (functionp 'ffmpeg-player-clean))
+    (ffmpeg-player-clean)))
+(add-hook 'kill-emacs-hook 'jcs--kill-emacs-hook)
 
 ;;-----------------------------------------------------------
 ;; Minibuffer
