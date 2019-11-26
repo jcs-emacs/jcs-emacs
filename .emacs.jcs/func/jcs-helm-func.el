@@ -34,7 +34,9 @@
   (if jcs-file--selecting-file
       (if (and (stringp (helm-get-selection))
                (file-directory-p (helm-get-selection)))
-          )
+          (apply orig-fun args)
+        (setq jcs-file--selected-file (helm-get-selection))
+        (call-interactively #'helm-kill-selection-and-quit))
     (if (and (equal "Find Files" (assoc-default 'name (helm-get-current-source)))
              (equal args nil)
              (stringp (helm-get-selection))
