@@ -21,11 +21,6 @@
 (advice-add 'multi-shell-prev :after #'jcs-shell--multi-shell-new-select--advice-after)
 (advice-add 'multi-shell-next :after #'jcs-shell--multi-shell-new-select--advice-after)
 
-(defun jcs-shell-delete-shell-window ()
-  "Delete shell window."
-  (other-window -1)
-  (save-selected-window (other-window 1) (delete-window)))
-
 ;;;###autoload
 (defun jcs-show-shell-window ()
   "Shell Command prompt."
@@ -36,9 +31,9 @@
           (save-window-excursion
             (setq sp-name (jcs-shell-select-shell-by-index
                            jcs-shell--last-selected-shell-index)))
-          (split-window-below)
+          (when (window-full-height-p) (jcs-balance-split-window-vertically))
           (jcs-ensure-switch-to-buffer-other-window sp-name))
-      (split-window-below)
+      (when (window-full-height-p) (jcs-balance-split-window-vertically))
       (multi-shell))))
 
 ;;;###autoload
@@ -48,9 +43,10 @@
   (jcs-safe-jump-shown-to-buffer
    (multi-shell--prefix-name)
    (lambda ()
-     (jcs-shell-delete-shell-window))
+     (jcs-delete-window-downwind))
    (lambda ()
-     (user-error (format "No \"%s\" buffer found" (multi-shell--prefix-name))))))
+     (user-error (format "No \"%s\" buffer found" (multi-shell--prefix-name)))))
+  (balance-windows))
 
 ;;;###autoload
 (defun jcs-maybe-kill-shell ()
@@ -60,7 +56,7 @@
       (let ((kill-win (= 1 (length multi-shell--live-shells))))
         (multi-shell-kill)
         (if kill-win
-            (jcs-shell-delete-shell-window)
+            (jcs-delete-window-downwind)
           (when (>= (1- jcs-shell--last-selected-shell-index) 0)
             (setq jcs-shell--last-selected-shell-index (1- jcs-shell--last-selected-shell-index)))
           (jcs-shell-select-shell-by-index jcs-shell--last-selected-shell-index)))
