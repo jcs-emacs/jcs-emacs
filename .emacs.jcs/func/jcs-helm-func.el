@@ -31,16 +31,20 @@
 
 (defun jcs-helm-find-files-navigate-forward (orig-fun &rest args)
   "Advice run around `helm-execute-persistent-action' command."
-  (if (and (equal "Find Files" (assoc-default 'name (helm-get-current-source)))
-           (equal args nil)
-           (stringp (helm-get-selection))
-           (not (file-directory-p (helm-get-selection))))
-      (progn
-        (when jcs-helm-ff-other-window
-          (setq jcs-helm-ff-other-window nil)
-          (helm-ff-run-switch-other-window))
-        (helm-maybe-exit-minibuffer))
-    (apply orig-fun args)))
+  (if jcs-file--selecting-file
+      (if (and (stringp (helm-get-selection))
+               (file-directory-p (helm-get-selection)))
+          )
+    (if (and (equal "Find Files" (assoc-default 'name (helm-get-current-source)))
+             (equal args nil)
+             (stringp (helm-get-selection))
+             (not (file-directory-p (helm-get-selection))))
+        (progn
+          (when jcs-helm-ff-other-window
+            (setq jcs-helm-ff-other-window nil)
+            (helm-ff-run-switch-other-window))
+          (helm-maybe-exit-minibuffer))
+      (apply orig-fun args))))
 (advice-add 'helm-execute-persistent-action :around #'jcs-helm-find-files-navigate-forward)
 
 (defun jcs-helm-find-files-navigate-back (orig-fun &rest args)
