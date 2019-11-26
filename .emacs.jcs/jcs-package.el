@@ -263,6 +263,7 @@
 
 (defconst jcs-package-manually-install-list
   '(("define-it" "jcs-elpa/define-it" "github")
+    ("ffmpeg-player" "jcs-elpa/ffmpeg-player" "github")
     ("jayces-mode" "jcs-elpa/jayces-mode" "github")
     ("multi-shell" "jcs-elpa/multi-shell" "github")
     ("reload-emacs" "jcs-elpa/reload-emacs" "github")
