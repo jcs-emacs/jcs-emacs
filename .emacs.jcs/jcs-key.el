@@ -322,6 +322,10 @@
 (define-key global-map "\e:" #'View-back-to-mark)
 (define-key global-map "\e;" #'exchange-point-and-mark)
 
+;;; Media
+(with-eval-after-load 'ffmpeg-player
+  (define-key ffmpeg-player-mode-map (kbd "M-k") #'jcs-media-close-media-window))
+
 ;;; Minimap
 (define-key global-map (kbd "C-k m") #'jcs-toggle-minimap)
 
