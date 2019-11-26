@@ -379,7 +379,8 @@ LST-PR: List of pair."
         (call-interactively #'iedit-mode)
       (when (or (jcs-get-word-at-point) (jcs-get-symbol-at-point))
         (call-interactively #'iedit-mode))))
-  (current-kill 1)  ; Call this function just to update `kill-ring'.
+  ;; Call this function just to update `kill-ring'.
+  (unless iedit-mode (current-kill 1))
   iedit-mode)
 
 ;;----------------------------------------------------------------------------
@@ -440,6 +441,20 @@ LST-PR: List of pair."
     (if (display-graphic-p)
         (jcs-safe-display-line-numbers 1)
       (jcs-safe-display-linum 1))))
+
+;;----------------------------------------------------------------------------
+;; Media
+
+;;;###autoload
+(defun jcs-media-find-file ()
+  "Open the media file."
+  (interactive)
+  (require 'jcs-media)
+  (let ((media-path (jcs-select-file)))
+    (when media-path
+      (save-window-excursion
+        (ffmpeg-player-video media-path))
+      (jcs-media--open-media-window))))
 
 ;;----------------------------------------------------------------------------
 ;; Minimap
