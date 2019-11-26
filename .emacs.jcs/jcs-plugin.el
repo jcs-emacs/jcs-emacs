@@ -175,9 +175,9 @@
 (use-package diminish-buffer
   :defer t
   :init
-  (setq diminish-buffer-list '("*compilation" "*output"
-                               "*helm"
-                               "*shell" "*eshell" "*esup-"))
+  (setq diminish-buffer-list '("[*]helm" "[*]esup-" "[*]quelpa-"
+                               "[*]compilation" "[*]output"
+                               "[*]Async Shell Command[*]:" "[*]shell" "[*]eshell"))
   (with-eval-after-load 'jcs-buffer-menu
     (diminish-buffer-mode 1))
   :config
