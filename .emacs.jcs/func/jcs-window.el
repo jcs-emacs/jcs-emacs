@@ -160,14 +160,12 @@
              (not isearch-mode)
              (not (eq jcs--window-last-command-record last-command)))
     (setq jcs--window-last-command-record last-command)
-    (jcs-buffer-menu-safe-refresh))
-  )
+    (jcs-buffer-menu-safe-refresh)))
 (advice-add 'select-window :after #'jcs--select-window--advice-after)
 
 (defun jcs--delete-window--advice-after (&rest _)
   "Advice run after execute `delete-window' function."
-  (jcs-buffer-menu-safe-refresh)
-  )
+  (jcs-buffer-menu-safe-refresh))
 (advice-add 'delete-window :after #'jcs--delete-window--advice-after)
 
 ;;-----------------------------------------------------------
@@ -179,6 +177,13 @@
   (interactive)
   (delete-window)
   (balance-windows))
+
+;;;###autoload
+(defun jcs-delete-window-downwind ()
+  "Delete window in downwind order."
+  (interactive)
+  (other-window -1)
+  (save-selected-window (other-window 1) (delete-window)))
 
 ;;-----------------------------------------------------------
 ;; Splitting
