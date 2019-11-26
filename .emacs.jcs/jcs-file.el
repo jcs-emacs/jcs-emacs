@@ -77,7 +77,7 @@ NOT-OW : Default is other window, not other window."
       (error "No '%s' file found in the current directory" in-filename))))
 
 (defun jcs-select-find-file-in-project (in-filename in-title)
-  "Find IN-FILENAME in the project with displayed IN-TITLE for `completing-read'.
+  "Find IN-FILENAME in project with displayed IN-TITLE for `completing-read'.
 Version Control directory must exists in order to make it work.
 Return the absolute filepath."
   (require 'f)
@@ -106,12 +106,10 @@ Return the absolute filepath."
       target-filepath)))
 
 (defun jcs-find-file-in-project-and-current-dir (in-filename in-title)
-  "First find the file from the whole project, if not found find it in the \
-current directory then.
-Return full path if found, else error prompt.
-IN-FILENAME : filename to search in project or current directory.
-TITLE : Search uses regexp, meaning it could found multiple files at a time.
-We need a title to present which file to select."
+  "Find the file from project root, if not found find it in current directory.
+Return full path if found, else error prompt.  IN-FILENAME to search in project
+or current directory.  IN-TITLE search uses regexp, meaning it could found
+multiple files at a time.  We need a title to present which file to select."
   (let ((filepath ""))
     (unless (ignore-errors
               (setq filepath (jcs-select-find-file-in-project in-filename
@@ -125,6 +123,28 @@ We need a title to present which file to select."
                in-filename)))
     ;; Return the path.
     filepath))
+
+;;----------------------------------------------------------------------------
+;; Selecting File
+
+(defvar jcs-file--selecting-file nil "Flag to check if selecting file now.")
+
+(defvar jcs-file--selected-file "" "Place to put the selected file.")
+
+;;;###autoload
+(defun jcs-select-file ()
+  "Select the file and return that path."
+  (interactive)
+  (save-window-excursion
+    (let ((jcs-file--selecting-file t)
+          (jcs-file--selected-file "")
+          (kill-ring kill-ring)
+          (path nil))
+      (jcs-mute-apply
+       (lambda ()
+         (call-interactively #'helm-find-files)))
+      (setq path (expand-file-name jcs-file--selected-file))
+      path)))
 
 
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -140,8 +160,7 @@ We need a title to present which file to select."
 OW : Open file other window."
   (interactive)
   (require 'f)
-  (let ((corresponding-file-name "")
-        (found-filepath nil))
+  (let ((corresponding-file-name "") (found-filepath nil))
     ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
     ;; NOTE: Add your corresponding file here.
     ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -180,10 +199,8 @@ OW : Open file other window."
   (interactive)
   (jcs-find-corresponding-file t))
 
-
 ;;-----------------------------------------------------------
 ;; C/C++
-;;-----------------------------------------------------------
 
 (defun jcs-cc-corresponding-file ()
   "Find the corresponding file for C/C++ file."
@@ -213,10 +230,8 @@ OW : Open file other window."
     ;; Return file name.
     corresponding-file-name))
 
-
 ;;-----------------------------------------------------------
 ;; Objective-C
-;;-----------------------------------------------------------
 
 (defun jcs-objc-corresponding-file ()
   "Find the corresponding file for Objective-C related file."
@@ -235,10 +250,8 @@ OW : Open file other window."
     ;; Return file name.
     corresponding-file-name))
 
-
 ;;-----------------------------------------------------------
 ;; Web Related
-;;-----------------------------------------------------------
 
 (defun jcs-web-corresponding-file ()
   "Find the corresponding file for WEB related file."
