@@ -276,9 +276,18 @@
   :config
   (defun jcs-ffmpeg-player-mode-hook ()
     "Hook runs in `ffmpeg-player-mode'."
-    (setq jcs-feebleline-show-coding-system-and-line-endings nil)
-    (setq jcs-feebleline-show-spc/tab-and-width nil)
-    (setq jcs-feebleline-show-line/column nil))
+    (setq-local
+     feebleline-msg-functions
+     '(;;-- Left
+       (jcs--feebleline--symbol-read-only)
+       (jcs--feebleline--major-mode :face font-lock-constant-face)
+       (jcs--feebleline--project-name)
+       ((lambda () "-"))
+       (jcs--feebleline--buffer-name :face font-lock-keyword-face)
+       ;;-- Right
+       (jcs--feebleline--timeline :align right)
+       (jcs--feebleline--pause-mute-volume :align right)
+       (jcs--feebleline--time :align right))))
   (add-hook 'ffmpeg-player-mode-hook 'jcs-ffmpeg-player-mode-hook))
 
 
