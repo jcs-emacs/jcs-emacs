@@ -78,6 +78,31 @@
 
 ;;; Video Player
 
+(defface jcs--feebleline-mute-face
+  '((t (:foreground "#FF0000")))
+  "Video player mute face."
+  :group 'jcs)
+(defvar jcs--feebleline-mute-face 'jcs--feebleline-mute-face)
+
+(defface jcs--feebleline-unmute-face
+  '((t (:foreground "#00FF00")))
+  "Video player unmute face."
+  :group 'jcs)
+(defvar jcs--feebleline-unmute-face 'jcs--feebleline-unmute-face)
+
+(defface jcs--feebleline-pause-face
+  '((t (:foreground "#FF0000")))
+  "Video player pause face."
+  :group 'jcs)
+(defvar jcs--feebleline-pause-face 'jcs--feebleline-pause-face)
+
+(defface jcs--feebleline-unpause-face
+  '((t (:foreground "#00FF00")))
+  "Video player pause face."
+  :group 'jcs)
+(defvar jcs--feebleline-unpause-face 'jcs--feebleline-unpause-face)
+
+
 (defun jcs--feebleline--timeline ()
   "Video Player's timeline."
   (format "[%s-%s]"
@@ -88,11 +113,11 @@
   "Video Player's volume."
   (format "[%s:%s:%s]"
           (if ffmpeg-player--pause
-              (propertize "‼" 'face '((t (:foreground "#FF0000"))))
-            (propertize "►" 'face '((t (:foreground "#00FF00")))))
+              (propertize "‼" 'face jcs--feebleline-pause-face)
+            (propertize "►" 'face jcs--feebleline-unpause-face))
           (if ffmpeg-player--mute
-              (propertize "Ø" 'face '((t (:foreground "#FF0000"))))
-            (propertize "Ö" 'face '((t (:foreground "#00FF00")))))
+              (propertize "Ø" 'face jcs--feebleline-mute-face)
+            (propertize "Ö" 'face jcs--feebleline-unmute-face))
           ffmpeg-player--volume))
 
 
