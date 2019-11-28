@@ -15,11 +15,12 @@
 (defun jcs-media-close-media-window ()
   "Close the media window."
   (interactive)
-  (save-selected-window
-    (when (ignore-errors (jcs-jump-shown-to-buffer "[*]ffmpeg-player[*]: "))
-      (let ((killed (jcs-maybe-kill-this-buffer)))
-        (when killed
-          (jcs-delete-window-downwind))))))
+  (when (ignore-errors (jcs-jump-shown-to-buffer "[*]ffmpeg-player[*]: "))
+    (let ((bot-window nil))
+      (save-selected-window (windmove-down) (setq bot-window (selected-window)))
+      (when (jcs-maybe-kill-this-buffer) (jcs-delete-window-downwind))
+      (select-window bot-window))
+    (balance-windows)))
 
 
 (provide 'jcs-media)
