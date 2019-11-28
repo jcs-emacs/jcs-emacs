@@ -76,6 +76,25 @@
       (format-time-string "[%Y-%m-%d %H:%M:%S]")
     ""))
 
+;;; Video Player
+
+(defun jcs--feebleline--timeline ()
+  "Video Player's timeline."
+  (format "[%s-%s]"
+          (ffmpeg-player--number-to-string-time ffmpeg-player--video-timer)
+          (ffmpeg-player--number-to-string-time ffmpeg-player--current-duration)))
+
+(defun jcs--feebleline--pause-mute-volume ()
+  "Video Player's volume."
+  (format "[%s:%s:%s]"
+          (if ffmpeg-player--pause
+              (propertize "‼" 'face '((t (:foreground "#FF0000"))))
+            (propertize "►" 'face '((t (:foreground "#00FF00")))))
+          (if ffmpeg-player--mute
+              (propertize "Ø" 'face '((t (:foreground "#FF0000"))))
+            (propertize "Ö" 'face '((t (:foreground "#00FF00")))))
+          ffmpeg-player--volume))
+
 
 (provide 'jcs-feebleline-func)
 ;;; jcs-feebleline-func.el ends here
