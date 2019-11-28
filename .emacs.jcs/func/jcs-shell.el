@@ -1,4 +1,4 @@
-;;; jcs-shell.el --- Shell function.  -*- lexical-binding: t -*-
+;;; jcs-shell.el --- Shell functionaitilies.  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -23,7 +23,7 @@
 
 ;;;###autoload
 (defun jcs-show-shell-window ()
-  "Shell Command prompt."
+  "Shell command prompt."
   (interactive)
   (unless (ignore-errors (jcs-jump-shown-to-buffer (multi-shell--prefix-name)))
     (if (multi-shell-live-p)
@@ -34,6 +34,8 @@
           (when (window-full-height-p) (jcs-balance-split-window-vertically))
           (jcs-ensure-switch-to-buffer-other-window sp-name))
       (when (window-full-height-p) (jcs-balance-split-window-vertically))
+      ;; Move this to make next shell bufer inside the bottom window.
+      (progn (other-window -1) (other-window 1))
       (multi-shell))))
 
 ;;;###autoload
