@@ -13,7 +13,7 @@
 (use-package browse-kill-ring
   :defer t
   :init
-  (setq browse-kill-ring-separator ">>> Separator <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+  (setq browse-kill-ring-separator "--- Separator ---------------------------------------------------------------------------")
   (setq browse-kill-ring-separator-face 'font-lock-comment-face))
 
 
@@ -215,25 +215,36 @@
 
 (use-package feebleline
   :defer t
+  :init
+  (defvar-local jcs-feebleline-show-symbol-read-only t
+    "Show read only symbol.")
+  (defvar-local jcs-feebleline-show-major-mode t
+    "Show major mode.")
+  (defvar-local jcs-feebleline-show-project-name t
+    "Show project name.")
+  (defvar-local jcs-feebleline-show-buffer-name t
+    "Show buffer name.")
+  (defvar-local jcs-feebleline-show-coding-system-and-line-endings t
+    "Show coding system and line endings.")
+  (defvar-local jcs-feebleline-show-spc/tab-and-width t
+    "Show space/tab and it's width.")
+  (defvar-local jcs-feebleline-show-line/column t
+    "Show line and column.")
+  (defvar-local jcs-feebleline-show-time t
+    "Show time.")
   :config
-  (require 'show-eol)
-
   (setq feebleline-msg-functions
         '(;;-- Left
           (jcs--feebleline--symbol-read-only)
-          (jcs-current-major-mode :pre "[" :post "]" :face font-lock-constant-face)
-          (jcs--feebleline--project-name :pre " { " :post " } ")
+          (jcs--feebleline--major-mode :face font-lock-constant-face)
+          (jcs--feebleline--project-name)
           ((lambda () "-"))
-          (feebleline-file-modified-star :post " " :face font-lock-constant-face)
-          (buffer-name :post " " :face font-lock-keyword-face)
+          (jcs--feebleline--buffer-name :face font-lock-keyword-face)
           ;;-- Right
-          (jcs--feebleline--coding-system :pre "[" :post "" :align right)
-          (show-eol-get-eol-mark-by-system :pre " : " :post "] " :align right)
-          (jcs--feebleline--spc/tab :pre "[" :post "] " :align right)
-          (feebleline-line-number :pre "[" :align right)
-          (feebleline-column-number :pre " : " :post "] " :align right)
-          (jcs--feebleline--time :align right)
-          ))
+          (jcs--feebleline--coding-system-and-line-endings :align right)
+          (jcs--feebleline--spc/tab-and-width :align right)
+          (jcs--feebleline--line/column :align right)
+          (jcs--feebleline--time :align right)))
 
   (cl-defun jcs--feebleline--insert-func (func &key (face 'default) pre (post " ") (fmt "%s") (align 'left))
     "Overwrite `feebleline--insert-func'."
@@ -258,6 +269,17 @@
        (lambda ()
          (setq mode-line-format feebleline--mode-line-format-previous)))))
   (advice-add 'feebleline-mode :after #'jcs-advice-feebleline-mode-after))
+
+
+(use-package ffmpeg-player
+  :defer t
+  :config
+  (defun jcs-ffmpeg-player-mode-hook ()
+    "Hook runs in `ffmpeg-player-mode'."
+    (setq jcs-feebleline-show-coding-system-and-line-endings nil)
+    (setq jcs-feebleline-show-spc/tab-and-width nil)
+    (setq jcs-feebleline-show-line/column nil))
+  (add-hook 'ffmpeg-player-mode-hook 'jcs-ffmpeg-player-mode-hook))
 
 
 (use-package flycheck-popup-tip
