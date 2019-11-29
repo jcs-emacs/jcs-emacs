@@ -922,6 +922,13 @@ REGEXP : reqular expression use to align."
 ;;----------------------------------------------
 ;; Kill Buffer
 
+(defun jcs-bury-diminished-buffer ()
+  "Bury the diminished buffer."
+  (when (and diminish-buffer-mode
+             (jcs-is-contain-list-string-regexp diminish-buffer-list
+                                                (jcs-buffer-name-or-buffer-file-name)))
+    (jcs-bury-buffer)))
+
 ;;;###autoload
 (defun jcs-bury-buffer ()
   "Bury this buffer."
@@ -933,9 +940,7 @@ REGEXP : reqular expression use to align."
       (jcs-switch-to-previous-buffer)))
   ;; If something that I doesn't want to see, bury it.
   ;; For instance, any `*helm-' buffers.
-  (when (jcs-is-contain-list-string-regexp diminish-buffer-list
-                                           (jcs-buffer-name-or-buffer-file-name))
-    (jcs-bury-buffer)))
+  (jcs-bury-diminished-buffer))
 
 (defun jcs-advice-kill-this-buffer-around (fnc &rest args)
   "Advice around execute `kill-this-buffer' command with FNC and ARGS."
@@ -1018,9 +1023,7 @@ ECP-SAME : Exception for the same buffer."
           (jcs-switch-to-next-buffer-not-nil))))
     ;; If something that I doesn't want to see, bury it.
     ;; For instance, any `*helm-' buffers.
-    (when (jcs-is-contain-list-string-regexp diminish-buffer-list
-                                             (jcs-buffer-name-or-buffer-file-name))
-      (jcs-bury-buffer))
+    (jcs-bury-diminished-buffer)
     is-killed))
 
 ;;;###autoload
