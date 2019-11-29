@@ -213,7 +213,7 @@
   (balance-windows)
   (save-selected-window
     (other-window 1)
-    (bury-buffer)))
+    (jcs-bury-buffer)))
 
 ;;;###autoload
 (defun jcs-balance-split-window-vertically ()
@@ -223,7 +223,7 @@
   (balance-windows)
   (save-selected-window
     (other-window 1)
-    (bury-buffer)))
+    (jcs-bury-buffer)))
 
 
 (defvar jcs-is-enlarge-buffer nil
@@ -293,10 +293,7 @@ i.e. change right window to bottom, or change bottom window to right."
 
 (defun jcs-window-is-larger-in-height-p ()
   "Get the window that are larget than other windows in vertical."
-  (let ((is-larger nil)
-        (cur-win-h (window-height))
-        (next-win-h -1)
-        (prev-win-h -1))
+  (let ((is-larger nil) (cur-win-h (window-height)) (next-win-h -1) (prev-win-h -1))
     (if (window-full-height-p)
         (setq is-larger t)
       (save-selected-window
@@ -305,8 +302,7 @@ i.e. change right window to bottom, or change bottom window to right."
       (save-selected-window
         (other-window -1 t)
         (setq prev-win-h (window-height)))
-      (when (or (>= cur-win-h prev-win-h)
-                (>= cur-win-h next-win-h))
+      (when (or (>= cur-win-h prev-win-h) (>= cur-win-h next-win-h))
         (setq is-larger t)))
     is-larger))
 
@@ -315,8 +311,10 @@ i.e. change right window to bottom, or change bottom window to right."
   "Move to the upmost window by flag NOT-ALL-FRAME."
   (interactive)
   (if not-all-frame
-      (let ((windmove-wrap-around nil))
-        (while (ignore-errors (windmove-up))))
+      (let ((was-wrap-around windmove-wrap-around))
+        (setq windmove-wrap-around nil)
+        (while (ignore-errors (windmove-up)))
+        (setq windmove-wrap-around was-wrap-around))
     (jcs-ace-window-min)))
 
 ;;;###autoload
@@ -324,8 +322,10 @@ i.e. change right window to bottom, or change bottom window to right."
   "Move to the downmost window by flag NOT-ALL-FRAME."
   (interactive)
   (if not-all-frame
-      (let ((windmove-wrap-around nil))
-        (while (ignore-errors (windmove-down))))
+      (let ((was-wrap-around windmove-wrap-around))
+        (setq windmove-wrap-around nil)
+        (while (ignore-errors (windmove-down)))
+        (setq windmove-wrap-around was-wrap-around))
     (jcs-ace-window-max)))
 
 ;;;###autoload
@@ -333,8 +333,10 @@ i.e. change right window to bottom, or change bottom window to right."
   "Move to the leftmost window by flag NOT-ALL-FRAME."
   (interactive)
   (if not-all-frame
-      (let ((windmove-wrap-around nil))
-        (while (ignore-errors (windmove-left))))
+      (let ((was-wrap-around windmove-wrap-around))
+        (setq windmove-wrap-around nil)
+        (while (ignore-errors (windmove-left)))
+        (setq windmove-wrap-around was-wrap-around))
     (jcs-ace-window-min)))
 
 ;;;###autoload
@@ -342,8 +344,10 @@ i.e. change right window to bottom, or change bottom window to right."
   "Move to the rightmost window by flag NOT-ALL-FRAME."
   (interactive)
   (if not-all-frame
-      (let ((windmove-wrap-around nil))
-        (while (ignore-errors (windmove-right))))
+      (let ((was-wrap-around windmove-wrap-around))
+        (setq windmove-wrap-around nil)
+        (while (ignore-errors (windmove-right)))
+        (setq windmove-wrap-around was-wrap-around))
     (jcs-ace-window-max)))
 
 ;;-----------------------------------------------------------
@@ -424,9 +428,7 @@ i.e. change right window to bottom, or change bottom window to right."
 (defun jcs-current-window-id ()
   "Return the current window id."
   (save-selected-window
-    (let ((win-id -1)
-          (cur-wind (selected-window))
-          (index 0))
+    (let ((win-id -1) (cur-wind (selected-window)) (index 0))
       (jcs-ace-window-min)
       (jcs-walk-through-all-windows-once
        (lambda ()
@@ -438,8 +440,7 @@ i.e. change right window to bottom, or change bottom window to right."
 (defun jcs-get-window-id-by-buffer-name (buf-name)
   "Return a list of window id if match the BUF-NAME."
   (save-selected-window
-    (let ((win-id-lst '())
-          (index 0))
+    (let ((win-id-lst '()) (index 0))
       (jcs-ace-window-min)
       (jcs-walk-through-all-windows-once
        (lambda ()
