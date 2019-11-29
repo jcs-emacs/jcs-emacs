@@ -1439,6 +1439,17 @@ IN-VAL : input value to set to IN-VAR."
           (setq index (1+ index)))))))
 
 ;;----------------------------------------------------------------------------
+;; Loop
+
+(defun jcs-loop-times (fnc cnt &optional st)
+  "Do FNC with CNT from ST."
+  (unless st (setq st 0))
+  (let ((index st))
+    (while (< index cnt)
+      (funcall fnc index)
+      (setq index (1+ index)))))
+
+;;----------------------------------------------------------------------------
 ;; Loading
 
 (defun jcs-with-eval-after-load-multiple (files &rest body)
