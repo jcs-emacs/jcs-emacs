@@ -450,10 +450,22 @@ LST-PR: List of pair."
   "Open the media file."
   (interactive)
   (require 'jcs-media)
-  (let ((media-path (jcs-select-file)))
-    (when media-path
-      (save-window-excursion (ffmpeg-player-video media-path))
-      (jcs-media--open-media-window))))
+  (let ((do-play nil) (media-path nil))
+    (if ffmpeg-player--buffer
+        (when  (yes-or-no-p "There is video playing, kill it? ")
+          (jcs-safe-jump-shown-to-buffer
+           "[*]ffmpeg-player[*]: "
+           (lambda () (jcs-media-close-media-window))
+           (lambda ()
+             (with-current-buffer ffmpeg-player--buffer
+               (jcs-media-close-media-window))))
+          (setq do-play t))
+      (setq do-play t))
+    (when do-play
+      (setq media-path (jcs-select-file))
+      (when media-path
+        (save-window-excursion (ffmpeg-player-video media-path))
+        (jcs-media--open-media-window)))))
 
 ;;----------------------------------------------------------------------------
 ;; Minimap
