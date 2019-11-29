@@ -274,6 +274,8 @@
 
 (use-package ffmpeg-player
   :defer t
+  :init
+  (setq ffmpeg-player-no-message t)
   :config
   (defun jcs-ffmpeg-player-mode-hook ()
     "Hook runs in `ffmpeg-player-mode'."
