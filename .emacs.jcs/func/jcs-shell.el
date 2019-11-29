@@ -49,14 +49,6 @@
    (lambda ()
      (user-error (format "No \"%s\" buffer found" (multi-shell--prefix-name))))))
 
-(defun jcs-shell-delete-window ()
-  "Try to delete shell window."
-  (if (or (window-full-height-p)
-          (jcs-window-buffer-on-column-p "[*]ffmpeg-player[*]: "))
-      (jcs-switch-to-previous-buffer)
-    (jcs-delete-window-downwind)
-    (balance-windows)))
-
 ;;;###autoload
 (defun jcs-maybe-kill-shell ()
   "Maybe kill shell behaviour."
@@ -69,7 +61,15 @@
           (when (>= (1- jcs-shell--last-selected-shell-index) 0)
             (setq jcs-shell--last-selected-shell-index (1- jcs-shell--last-selected-shell-index)))
           (jcs-shell-select-shell-by-index jcs-shell--last-selected-shell-index)))
-    (jcs-maybe-kill-this-buffer)))
+    (jcs-bury-buffer)))
+
+(defun jcs-shell-delete-window ()
+  "Try to delete shell window."
+  (if (or (window-full-height-p)
+          (jcs-window-buffer-on-column-p "[*]ffmpeg-player[*]: "))
+      (jcs-bury-buffer)
+    (jcs-delete-window-downwind)
+    (balance-windows)))
 
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 ;; Shell Commands
