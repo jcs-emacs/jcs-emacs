@@ -4,14 +4,19 @@
 
 
 (require 'ffmpeg-player)
+(require 'show-eol)
+(require 'jcs-shell)
 
 
 (defun jcs-media--open-media-window ()
   "Open the media window."
   (when ffmpeg-player--buffer
-    (when (window-full-height-p) (jcs-balance-split-window-vertically))
-    (buf-move-down)
-    (other-window -1)))
+    (when (window-full-height-p)
+      (jcs-balance-split-window-vertically)
+      (buf-move-down))
+    (jcs-move-to-upmost-window t)
+    (switch-to-buffer ffmpeg-player--buffer)
+    (jcs-safe-jump-shown-to-buffer "[*]ffmpeg-player[*]: " )))
 
 (defun jcs-media-close-media-window ()
   "Close the media window."
@@ -19,12 +24,14 @@
   (jcs-safe-jump-shown-to-buffer
    "[*]ffmpeg-player[*]: "
    (lambda ()
-     (if (window-full-height-p)
-         (jcs-maybe-kill-this-buffer)
-       (let ((bot-window nil))
-         (save-selected-window (windmove-down) (setq bot-window (selected-window)))
-         (when (jcs-maybe-kill-this-buffer) (jcs-delete-window-downwind))
-         (select-window bot-window)))
+     (let ((bot-window nil))
+       (save-selected-window
+         (when (ignore-errors (windmove-down)) (setq bot-window (selected-window))))
+       (when (jcs-maybe-kill-this-buffer)
+         (when (and (not (window-full-height-p))
+                    (not (jcs-window-buffer-on-column-p (multi-shell--prefix-name))))
+           (jcs-delete-window-downwind)))
+       (when bot-window (select-window bot-window)))
      (balance-windows))))
 
 
