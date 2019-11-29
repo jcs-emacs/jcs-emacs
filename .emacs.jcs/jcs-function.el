@@ -452,8 +452,7 @@ LST-PR: List of pair."
   (require 'jcs-media)
   (let ((media-path (jcs-select-file)))
     (when media-path
-      (save-window-excursion
-        (ffmpeg-player-video media-path))
+      (save-window-excursion (ffmpeg-player-video media-path))
       (jcs-media--open-media-window))))
 
 ;;----------------------------------------------------------------------------
