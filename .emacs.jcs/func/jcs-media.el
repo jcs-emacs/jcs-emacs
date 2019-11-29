@@ -8,6 +8,10 @@
 (require 'jcs-shell)
 
 
+(defvar jcs-media--shrink-times 6
+  "Times to shrink inside the media window.")
+
+
 (defun jcs-media--open-media-window ()
   "Open the media window."
   (when ffmpeg-player--buffer
@@ -16,7 +20,11 @@
       (buf-move-down))
     (jcs-move-to-upmost-window t)
     (switch-to-buffer ffmpeg-player--buffer)
-    (jcs-safe-jump-shown-to-buffer "[*]ffmpeg-player[*]: " )))
+    (jcs-safe-jump-shown-to-buffer "[*]ffmpeg-player[*]: " )
+    (jcs-loop-times
+     (lambda (_index)
+       (call-interactively #'shrink-window))
+     jcs-media--shrink-times)))
 
 (defun jcs-media-close-media-window ()
   "Close the media window."
@@ -32,7 +40,8 @@
                     (not (jcs-window-buffer-on-column-p (multi-shell--prefix-name))))
            (jcs-delete-window-downwind)))
        (when bot-window (select-window bot-window)))
-     (balance-windows))))
+     (balance-windows)
+     (ffmpeg-player--clean-up))))
 
 
 (provide 'jcs-media)
