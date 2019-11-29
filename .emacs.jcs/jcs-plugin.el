@@ -177,8 +177,7 @@
   :init
   (setq diminish-buffer-list '("[*]helm" "[*]esup-" "[*]quelpa-"
                                "[*]compilation" "[*]output"
-                               "[*]Async Shell Command[*]:" "[*]shell" "[*]eshell"
-                               "[*]ffmpeg-player[*]: "))
+                               "[*]Async Shell Command[*]:" "[*]shell" "[*]eshell"))
   (with-eval-after-load 'jcs-buffer-menu
     (diminish-buffer-mode 1))
   :config
@@ -275,8 +274,15 @@
 (use-package ffmpeg-player
   :defer t
   :init
+  (setq ffmpeg-player-display-width 672)
+  (setq ffmpeg-player-display-height 378)
   (setq ffmpeg-player-no-message t)
   :config
+  (defun jcs--ffmpeg-player-before-insert-image-hook ()
+    "Hook runs before inserting image."
+    (insert "             "))
+  (add-hook 'ffmpeg-player-before-insert-image-hook 'jcs--ffmpeg-player-before-insert-image-hook)
+
   (defun jcs-ffmpeg-player-mode-hook ()
     "Hook runs in `ffmpeg-player-mode'."
     (setq-local
