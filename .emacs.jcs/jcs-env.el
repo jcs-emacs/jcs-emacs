@@ -60,6 +60,10 @@
 (defun nil-bell ())  ; Turn off the bell on Mac OS X
 (setq ring-bell-function 'nil-bell)
 
+;;; Bury Bufferss
+(defconst jcs-bury-buffer-list '("[*]ffmpeg-player[*]: ")
+  "List of buffer that you don't want to show when after exit.")
+
 ;;; Compilation (Output)
 (with-eval-after-load 'compile
   (setq compilation-context-lines t)
