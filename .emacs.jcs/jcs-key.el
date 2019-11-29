@@ -324,7 +324,8 @@
 
 ;;; Media
 (with-eval-after-load 'ffmpeg-player
-  (define-key ffmpeg-player-mode-map (kbd "M-k") #'jcs-media-close-media-window))
+  (define-key ffmpeg-player-mode-map (kbd "M-k") #'jcs-media-close-media-window)
+  (define-key ffmpeg-player-mode-map (kbd "M-K") #'ffmpeg-player-replay))
 
 ;;; Minimap
 (define-key global-map (kbd "C-k m") #'jcs-toggle-minimap)
