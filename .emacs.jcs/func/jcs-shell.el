@@ -45,10 +45,17 @@
   (jcs-safe-jump-shown-to-buffer
    (multi-shell--prefix-name)
    (lambda ()
-     (jcs-delete-window-downwind))
+     (jcs-shell-delete-window))
    (lambda ()
-     (user-error (format "No \"%s\" buffer found" (multi-shell--prefix-name)))))
-  (balance-windows))
+     (user-error (format "No \"%s\" buffer found" (multi-shell--prefix-name))))))
+
+(defun jcs-shell-delete-window ()
+  "Try to delete shell window."
+  (if (or (window-full-height-p)
+          (jcs-window-buffer-on-column-p "[*]ffmpeg-player[*]: "))
+      (jcs-switch-to-previous-buffer)
+    (jcs-delete-window-downwind)
+    (balance-windows)))
 
 ;;;###autoload
 (defun jcs-maybe-kill-shell ()
@@ -58,7 +65,7 @@
       (let ((kill-win (= 1 (length multi-shell--live-shells))))
         (multi-shell-kill)
         (if kill-win
-            (jcs-delete-window-downwind)
+            (jcs-shell-delete-window)
           (when (>= (1- jcs-shell--last-selected-shell-index) 0)
             (setq jcs-shell--last-selected-shell-index (1- jcs-shell--last-selected-shell-index)))
           (jcs-shell-select-shell-by-index jcs-shell--last-selected-shell-index)))
