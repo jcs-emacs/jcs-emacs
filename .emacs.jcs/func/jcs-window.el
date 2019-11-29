@@ -169,6 +169,23 @@
 (advice-add 'delete-window :after #'jcs--delete-window--advice-after)
 
 ;;-----------------------------------------------------------
+;; Column
+
+(defun jcs-window-buffer-list-in-column ()
+  "Return the list of buffer in column."
+  (let ((buf-list '()) (break nil) (windmove-wrap-around nil))
+    (save-selected-window
+      (jcs-move-to-upmost-window t)
+      (while (and (not break))
+        (push (buffer-name) buf-list)
+        (setq break (not (ignore-errors (windmove-down))))))
+    buf-list))
+
+(defun jcs-window-buffer-on-column-p (buf)
+  "Check if BUF on same column."
+  (jcs-is-contain-list-string-regexp (jcs-window-buffer-list-in-column) buf))
+
+;;-----------------------------------------------------------
 ;; Deleting
 
 ;;;###autoload
@@ -243,15 +260,10 @@
 i.e. change right window to bottom, or change bottom window to right."
   (interactive)
   (save-selected-window
-    (let ((win-len (count-windows))
-          (windmove-wrap-around nil))
+    (let ((win-len (count-windows)) (windmove-wrap-around nil))
       (if (= win-len 2)
-          (let ((other-win-buf nil)
-                (split-h-now t)
-                (window-switched nil))
-
-            (when (or (window-in-direction 'above)
-                      (window-in-direction 'below))
+          (let ((other-win-buf nil) (split-h-now t) (window-switched nil))
+            (when (or (window-in-direction 'above) (window-in-direction 'below))
               (setq split-h-now nil))
 
             (if split-h-now
@@ -273,8 +285,7 @@ i.e. change right window to bottom, or change bottom window to right."
             (switch-to-buffer other-win-buf)
 
             ;; If the window is switched, switch back to original window.
-            (when window-switched
-              (other-window 1)))
+            (when window-switched (other-window 1)))
         (error "Cannot toggle vertical/horizontal editor layout with more than 2 window in current frame")))))
 
 ;;-----------------------------------------------------------
@@ -305,8 +316,7 @@ i.e. change right window to bottom, or change bottom window to right."
   (interactive)
   (if not-all-frame
       (let ((windmove-wrap-around nil))
-        (ignore-errors
-          (windmove-up jcs-windmove-max-move-count)))
+        (while (ignore-errors (windmove-up))))
     (jcs-ace-window-min)))
 
 ;;;###autoload
@@ -315,8 +325,7 @@ i.e. change right window to bottom, or change bottom window to right."
   (interactive)
   (if not-all-frame
       (let ((windmove-wrap-around nil))
-        (ignore-errors
-          (windmove-down jcs-windmove-max-move-count)))
+        (while (ignore-errors (windmove-down))))
     (jcs-ace-window-max)))
 
 ;;;###autoload
@@ -325,8 +334,7 @@ i.e. change right window to bottom, or change bottom window to right."
   (interactive)
   (if not-all-frame
       (let ((windmove-wrap-around nil))
-        (ignore-errors
-          (windmove-left jcs-windmove-max-move-count)))
+        (while (ignore-errors (windmove-left))))
     (jcs-ace-window-min)))
 
 ;;;###autoload
@@ -335,8 +343,7 @@ i.e. change right window to bottom, or change bottom window to right."
   (interactive)
   (if not-all-frame
       (let ((windmove-wrap-around nil))
-        (ignore-errors
-          (windmove-right jcs-windmove-max-move-count)))
+        (while (ignore-errors (windmove-right))))
     (jcs-ace-window-max)))
 
 ;;-----------------------------------------------------------
