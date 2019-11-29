@@ -177,7 +177,8 @@
   :init
   (setq diminish-buffer-list '("[*]helm" "[*]esup-" "[*]quelpa-"
                                "[*]compilation" "[*]output"
-                               "[*]Async Shell Command[*]:" "[*]shell" "[*]eshell"))
+                               "[*]Async Shell Command[*]:" "[*]shell" "[*]eshell"
+                               "[*]ffmpeg-player[*]: "))
   (with-eval-after-load 'jcs-buffer-menu
     (diminish-buffer-mode 1))
   :config
@@ -898,9 +899,7 @@
 (use-package windmove
   :defer t
   :init
-  (setq windmove-wrap-around t)
-  (defconst jcs-windmove-max-move-count 25
-    "Possible maximum windows count."))
+  (setq windmove-wrap-around t))
 
 
 (use-package yascroll
