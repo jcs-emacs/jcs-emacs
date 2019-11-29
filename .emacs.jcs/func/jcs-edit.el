@@ -924,9 +924,10 @@ REGEXP : reqular expression use to align."
 
 (defun jcs-bury-diminished-buffer ()
   "Bury the diminished buffer."
-  (when (and diminish-buffer-mode
-             (jcs-is-contain-list-string-regexp diminish-buffer-list
-                                                (jcs-buffer-name-or-buffer-file-name)))
+  (when (and
+         diminish-buffer-mode
+         (jcs-is-contain-list-string-regexp-reverse diminish-buffer-list
+                                                    (jcs-buffer-name-or-buffer-file-name)))
     (jcs-bury-buffer)))
 
 ;;;###autoload

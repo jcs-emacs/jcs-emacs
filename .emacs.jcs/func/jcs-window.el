@@ -13,7 +13,7 @@
       (unless (or (ignore-errors (switch-to-buffer-other-window win-name)))
         (switch-to-buffer-other-window win-name)))))
 
-(defun jcs-safe-jump-shown-to-buffer (in-buffer-name fnc &optional exp-fnc)
+(defun jcs-safe-jump-shown-to-buffer (in-buffer-name &optional fnc exp-fnc)
   "Safely jump to IN-BUFFER-NAME's window and execute FNC with EXP-FNC."
   (save-selected-window
     (let ((fm (selected-frame)))
@@ -183,7 +183,7 @@
 
 (defun jcs-window-buffer-on-column-p (buf)
   "Check if BUF on same column."
-  (jcs-is-contain-list-string-regexp (jcs-window-buffer-list-in-column) buf))
+  (jcs-is-contain-list-string-regexp-reverse (jcs-window-buffer-list-in-column) buf))
 
 ;;-----------------------------------------------------------
 ;; Deleting
