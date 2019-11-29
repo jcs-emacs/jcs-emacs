@@ -554,10 +554,6 @@ the end of the line."
   "Get symbol at current cursor position."
   (thing-at-point 'symbol))
 
-(defun jcs-is-contain-list-symbol (in-list in-symbol)
-  "Check if a symbol IN-SYMBOL contain in any symbol in the symbol list IN-LIST."
-  (cl-some #'(lambda (lb-sub-symbol) (equal lb-sub-symbol in-symbol)) in-list))
-
 (defun jcs-form-p-symbol (lst sym val)
   "Form a plist symbol with LST, SYM, VAL."
   (require 'dash)
@@ -1088,9 +1084,9 @@ For instance,
   "Check if a string IN-STR contain in any string in the string list IN-LIST."
   (cl-some #'(lambda (lb-sub-str) (string-match-p (regexp-quote lb-sub-str) in-str)) in-list))
 
-(defun jcs-is-contain-list-symbol (in-list in-sym)
-  "Check if a symbol IN-STR contain in any symbol in the symbol list IN-LIST."
-  (cl-some #'(lambda (lb-sub-str) (equal lb-sub-str in-sym)) in-list))
+(defun jcs-is-contain-list-symbol (in-list in-symbol)
+  "Check if a symbol IN-SYMBOL contain in any symbol in the symbol list IN-LIST."
+  (cl-some #'(lambda (lb-sub-symbol) (equal lb-sub-symbol in-symbol)) in-list))
 
 (defun jcs-is-contain-list-integer (in-list in-int)
   "Check if an integer IN-STR contain in any integer in the integer list IN-LIST."
