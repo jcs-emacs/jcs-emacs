@@ -32,8 +32,11 @@
             (setq sp-name (jcs-shell-select-shell-by-index
                            jcs-shell--last-selected-shell-index)))
           (when (window-full-height-p) (jcs-balance-split-window-vertically))
-          (jcs-ensure-switch-to-buffer-other-window sp-name))
+          (jcs-move-to-upmost-window t)
+          (other-window 1)
+          (switch-to-buffer sp-name))
       (when (window-full-height-p) (jcs-balance-split-window-vertically))
+      (jcs-move-to-upmost-window t)
       ;; Move this to make next shell bufer inside the bottom window.
       (progn (other-window -1) (other-window 1))
       (multi-shell))))
