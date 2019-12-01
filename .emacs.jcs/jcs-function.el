@@ -380,7 +380,7 @@ LST-PR: List of pair."
       (when (or (jcs-get-word-at-point) (jcs-get-symbol-at-point))
         (call-interactively #'iedit-mode))))
   ;; Call this function just to update `kill-ring'.
-  (unless iedit-mode (current-kill 1))
+  (when (and (not iedit-mode) kill-ring) (current-kill 1))
   iedit-mode)
 
 ;;----------------------------------------------------------------------------
