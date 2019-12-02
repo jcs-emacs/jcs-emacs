@@ -361,9 +361,7 @@
         helm-scroll-amount                    8
         helm-ff-file-name-history-use-recentf t)
 
-  (setq completion-styles (if (version<= "27.1" emacs-version)
-                              '(flex)
-                            '(helm-flex)))
+  (setq completion-styles '(flex))
 
   ;; NOTE: Make Helm window at the bottom WITHOUT using any extra package.
   ;; SOURCE: https://www.reddit.com/r/emacs/comments/345vtl/make_helm_window_at_the_bottom_without_using_any/
