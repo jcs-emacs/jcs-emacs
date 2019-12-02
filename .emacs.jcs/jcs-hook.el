@@ -119,7 +119,7 @@
   (set-language-environment jcs-language-environment)
 
   ;; Font Size
-  (set-face-attribute 'default nil :height jcs-default-font-size)
+  (jcs-set-font-size jcs-default-font-size)
 
   ;; Frame Title
   (setq frame-title-format
