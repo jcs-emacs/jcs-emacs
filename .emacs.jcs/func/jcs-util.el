@@ -1007,6 +1007,11 @@ Return nil, there is no region selected and mark is not active."
 ;;----------------------------------------------------------------------------
 ;; Font
 
+(defun jcs-set-font-size (&optional new-size)
+  "Set the font size to NEW-SIZE."
+  (unless new-size (setq new-size jcs-default-font-size))
+  (set-face-attribute 'default nil :height new-size))
+
 ;;;###autoload
 (defun jcs-list-font-list ()
   "List out all the fonts available."
