@@ -230,7 +230,8 @@ POWER-AC-LST : powerline active list.  POWER-INAC-LST : powerline inactive list.
      (set-background-color bgc)
      (set-cursor-color cc)
      (set-face-background 'hl-line hlc)
-     (jcs-reset-plugins-base-on-theme))))
+     (jcs-reset-plugins-base-on-theme)))
+  (jcs-set-font-size jcs-default-font-size))
 
 ;;;###autoload
 (defun jcs-vs-light-theme ()
@@ -263,6 +264,17 @@ POWER-AC-LST : powerline active list.  POWER-INAC-LST : powerline inactive list.
   "Set default theme color."
   (interactive)
   (jcs-vs-dark-theme))
+
+;;----------------------------------------------------------------------------
+;; Load
+
+(defun jcs--load-theme--advice-after (&rest _)
+  "Advice execute after `load-theme' function."
+  (jcs-set-font-size jcs-default-font-size)
+  (jcs-walk-through-all-frames-once
+   (lambda ()
+     (jcs-reset-plugins-base-on-theme))))
+(advice-add 'enable-theme :after #'jcs--load-theme--advice-after)
 
 
 (provide 'jcs-theme)
