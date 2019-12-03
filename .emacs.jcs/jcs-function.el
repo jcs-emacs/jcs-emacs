@@ -392,7 +392,7 @@ LST-PR: List of pair."
   (interactive)
   (let ((ln-light-color-fg "#2B91AF")
         (ln-light-color-bg "#EEEEEE")
-        (ln-dark-color-fg "#B3B3B3")
+        (ln-dark-color-fg "#2B9181")
         (ln-dark-color-bg "#212121"))
     (if (jcs-is-light-color (face-background 'default))
         (progn
