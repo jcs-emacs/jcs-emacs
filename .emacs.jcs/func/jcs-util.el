@@ -1149,10 +1149,10 @@ The reverse mean the check from regular expression is swapped."
 ;;----------------------------------------------------------------------------
 ;; I/O
 
-(defun jcs-get-string-from-file (filePath)
-  "Return FILEPATH file content."
+(defun jcs-get-string-from-file (path)
+  "Return PATH file content."
   (with-temp-buffer
-    (insert-file-contents filePath)
+    (insert-file-contents path)
     (buffer-string)))
 
 (defun jcs-project-write-file (in-filename in-content)
@@ -1163,13 +1163,11 @@ The reverse mean the check from regular expression is swapped."
                 t  ; Overwrite?
                 ))
 
-(defun jcs-parse-ini (filePath)
-  "Parse a .ini file by FILEPATH."
-  (let ((tmp-ini (jcs-get-string-from-file filePath))
-        (tmp-ini-list '())
-        (tmp-pair-list nil)
-        (tmp-keyword "")
-        (tmp-value "")
+(defun jcs-parse-ini (path)
+  "Parse a .ini file by PATH."
+  (let ((tmp-ini (jcs-get-string-from-file path))
+        (tmp-ini-list '()) (tmp-pair-list nil)
+        (tmp-keyword "") (tmp-value "")
         (count 0))
     (setq tmp-ini (split-string tmp-ini "\n"))
 
@@ -1201,10 +1199,7 @@ The reverse mean the check from regular expression is swapped."
   "Get properties data, searched by key and return value.
 INI-LIST : ini list.  Please use this with/after using `jcs-parse-ini' function.
 IN-KEY : key to search for value."
-  (let ((tmp-index 0)
-        (tmp-key "")
-        (tmp-value "")
-        (returns-value ""))
+  (let ((tmp-index 0) (tmp-key "") (tmp-value "") (returns-value ""))
     (while (< tmp-index (length ini-list))
       ;; Get the key and data value.
       (setq tmp-key (nth tmp-index ini-list))
