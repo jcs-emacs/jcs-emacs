@@ -300,6 +300,12 @@
   (add-hook 'ffmpeg-player-mode-hook 'jcs-ffmpeg-player-mode-hook))
 
 
+(use-package file-header
+  :defer t
+  :init
+  (setq file-header-template-config-filepath "~/.emacs.jcs/template/template_config.properties"))
+
+
 (use-package flycheck-popup-tip
   :defer t
   :init
