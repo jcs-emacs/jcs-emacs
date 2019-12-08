@@ -66,25 +66,20 @@ Return number of the valid buffers."
 ;; Color
 
 (defun jcs-is-hex-code-p (hex-code)
-  "Check if the `hex-code' is valid HEX code.
-HEX-CODE : Color HEX code to check in string."
+  "Check if the HEX-CODE is valid HEX code."
   (or (string-match-p "#[0-9a-fA-F].." hex-code)
       (string-match-p "#[0-9a-fA-F]....." hex-code)))
 
-(defun jcs-is-light-color (hex-code)
-  "Check if the `hex-code' light color.
-HEX-CODE : Color HEX code to check."
-  (let ((is-light nil)
-        (hex-lst '())
+(defun jcs--is-light-color-internal (hex-code)
+  "Check if the HEX-CODE' light color."
+  (let ((is-light nil) (hex-lst '())
         (hex-1 "") (hex-2 "") (hex-3 "")
         ;; 136d = 88h
-        (light-central 136)
-        (s2n-base 16))
-    (when (symbolp hex-code)
-      ;; Convert symbol to string.
-      (setq hex-code (symbol-name hex-code)))
+        (light-central 136) (s2n-base 16))
+    ;; Convert symbol to string.
+    (when (symbolp hex-code) (setq hex-code (symbol-name hex-code)))
     (if (not (jcs-is-hex-code-p hex-code))
-        (error "Hex code to check is invalid")
+        (error "Hex code to check is invalid: %s" hex-code)
       ;; Remove # from `hex-code'.
       (setq hex-code (jcs-replace-string "#" "" hex-code))
       (setq hex-lst (split-string hex-code ""))
@@ -106,10 +101,15 @@ HEX-CODE : Color HEX code to check."
         (setq is-light t)))
     is-light))
 
+(defun jcs-is-light-color (hex-code)
+  "Check if the HEX-CODE' light color."
+  (and (display-graphic-p)
+       (jcs--is-light-color-internal hex-code)))
+
 (defun jcs-is-dark-color (hex-code)
-  "Check if the `hex-code' light color.
-HEX-CODE : Color HEX code to check."
-  (not (jcs-is-light-color hex-code)))
+  "Check if the HEX-CODE dark color."
+  (and (display-graphic-p)
+       (not (jcs-is-light-color hex-code))))
 
 ;;----------------------------------------------------------------------------
 ;; Event
