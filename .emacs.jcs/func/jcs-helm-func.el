@@ -63,8 +63,7 @@
 (defun jcs-helm-find-files-hook ()
   "Hook after `helm-find-files' initialized."
   ;; SEE: `jcs-key.el' file, and `minibuffer-setup-hook'.
-  (setq jcs-helm-find-files-active t)
-  )
+  (setq jcs-helm-find-files-active t))
 (add-hook 'helm-find-files-after-init-hook 'jcs-helm-find-files-hook)
 
 ;;;###autoload
