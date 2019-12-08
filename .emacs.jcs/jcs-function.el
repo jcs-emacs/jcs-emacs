@@ -338,9 +338,15 @@ OW is the other window flag."
   (memq command '(jcs-eldoc-message-now
                   jcs-real-space jcs-smart-space
                   jcs-real-backspace jcs-smart-backspace
+                  previous-line next-line
+                  jcs-previous-line jcs-next-line
                   jcs-smart-indent-up jcs-smart-indent-down
                   jcs-py-indent-up jcs-py-indent-down
-                  left-char right-char)))
+                  left-char right-char
+                  jcs-smart-forward-word jcs-smart-backward-word
+                  jcs-backward-word-capital jcs-forward-word-capital
+                  beginning-of-line end-of-line
+                  jcs-beginning-of-line jcs-end-of-line)))
 (advice-add 'eldoc--message-command-p :override #'jcs-eldoc--message-command-p)
 
 ;;----------------------------------------------------------------------------
