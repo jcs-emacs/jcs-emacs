@@ -404,7 +404,7 @@ and
 * *Theme* - powered by
 [vs-dark-theme](https://github.com/jcs-elpa/vs-dark-theme) and 
 [vs-dark-theme](https://github.com/jcs-elpa/vs-light-theme). 
-(For more info see [here](#themes))
+**(For more info see [here](#themes))**
 * *Todo* - powered by
 [hl-todo](https://github.com/tarsius/hl-todo).
 * *Toggle Mode Line* - powered by
