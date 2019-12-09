@@ -212,11 +212,10 @@ POWER-AC-LST : powerline active list.  POWER-INAC-LST : powerline inactive list.
   (jcs-reset-dashboard-banner-by-theme)
   (jcs-reset-helm-theme-by-theme)
   (jcs-reset-yascroll-color-by-theme)
+  (unless (display-graphic-p) (jcs-reset-common-faces-by-theme))
   (jcs-reload-active-mode)
-  (when highlight-indent-guides-mode
-    (jcs-re-enable-mode 'highlight-indent-guides-mode))
-  (when dimmer-mode
-    (jcs-re-enable-mode 'dimmer-mode)
+  (jcs-re-enable-mode-if-was-enabled 'highlight-indent-guides-mode)
+  (when (jcs-re-enable-mode-if-was-enabled 'dimmer-mode)
     ;; TODO: Weird bug here..
     (dimmer-process-all)))
 
