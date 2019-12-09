@@ -281,7 +281,8 @@
 ;;----------------------------------
 
 (defconst jcs-package-manually-install-list
-  '(("define-it" "jcs-elpa/define-it" "github")
+  '(("company-quickhelp-terminal" "jcs-elpa/company-quickhelp-terminal" "github")
+    ("define-it" "jcs-elpa/define-it" "github")
     ("ffmpeg-player" "jcs-elpa/ffmpeg-player" "github")
     ("file-header" "jcs-elpa/file-header" "github")
     ("jayces-mode" "jcs-elpa/jayces-mode" "github")
