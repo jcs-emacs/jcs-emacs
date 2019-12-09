@@ -288,9 +288,8 @@
     ("multi-shell" "jcs-elpa/multi-shell" "github")
     ("reload-emacs" "jcs-elpa/reload-emacs" "github")
     ("shift-select" "jcs-elpa/shift-select" "github")
-    ;;("vs-dark-theme" "jcs-elpa/vs-dark-theme" "github")
-    ;;("vs-light-theme" "jcs-elpa/vs-light-theme" "github")
-    )
+    ("vs-dark-theme" "jcs-elpa/vs-dark-theme" "github")
+    ("vs-light-theme" "jcs-elpa/vs-light-theme" "github"))
   "List of package that you want to manually installed.")
 
 
