@@ -403,7 +403,7 @@ and
 [org-mode](https://orgmode.org/).
 * *Theme* - powered by
 [vs-dark-theme](https://github.com/jcs-elpa/vs-dark-theme) and 
-[vs-dark-theme](https://github.com/jcs-elpa/vs-light-theme). 
+[vs-light-theme](https://github.com/jcs-elpa/vs-light-theme). 
 **(For more info see [here](#themes))**
 * *Todo* - powered by
 [hl-todo](https://github.com/tarsius/hl-todo).
@@ -484,6 +484,9 @@ variables can be found in that file.
 In common, you can install any theme you want as long it is 
 available on the internet. You can check out the Emacs Theme 
 Gallery site [here](https://pawelbx.github.io/emacs-theme-gallery/).
+For instance, [vs-dark-theme](https://github.com/jcs-elpa/vs-dark-theme) 
+and [vs-light-theme](https://github.com/jcs-elpa/vs-light-theme) 
+are now individual packages built outside from this configuration.
 
 
 ## Font
