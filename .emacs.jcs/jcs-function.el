@@ -393,21 +393,6 @@ LST-PR: List of pair."
 ;; Line Numbers
 
 ;;;###autoload
-(defun jcs-reset-line-number-color-by-theme ()
-  "Reset the line numbers color base on the theme."
-  (interactive)
-  (let ((ln-light-color-fg "#2B91AF")
-        (ln-light-color-bg "#EEEEEE")
-        (ln-dark-color-fg "#2B9181")
-        (ln-dark-color-bg "#212121"))
-    (if (jcs-is-light-color (face-background 'default))
-        (progn
-          (set-face-foreground 'line-number ln-light-color-fg)
-          (set-face-background 'line-number ln-light-color-bg))
-      (set-face-foreground 'line-number ln-dark-color-fg)
-      (set-face-background 'line-number ln-dark-color-bg))))
-
-;;;###autoload
 (defun jcs-update-line-number-each-window ()
   "Update each window's line number mode."
   (interactive)
