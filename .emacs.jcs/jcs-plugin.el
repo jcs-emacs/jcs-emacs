@@ -107,6 +107,12 @@
   (with-eval-after-load 'company
     (company-quickhelp-mode t)))
 
+(use-package company-quickhelp-terminal
+  :defer t
+  :init
+  (with-eval-after-load 'company-quickhelp
+    (require 'company-quickhelp-terminal)))
+
 
 (use-package dashboard
   :defer t
