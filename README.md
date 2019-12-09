@@ -462,6 +462,8 @@ precedence.
 
 ## Themes
 
+### Default
+
 The theme was to design close to
 [Visual Studio IDE](https://visualstudio.microsoft.com/)
 preset light/dark theme. I believed
@@ -476,6 +478,12 @@ variables can be found in that file.
 | Light Theme                               | Dark Theme                               |
 |:------------------------------------------|:-----------------------------------------|
 |<img src="./screenshot/startup-light.png"/>|<img src="./screenshot/startup-dark.png"/>|
+
+### Customization
+
+In common, you can install any theme you want as long it is 
+available on the internet. You can check out the Emacs Theme 
+Gallery site [here](https://pawelbx.github.io/emacs-theme-gallery/),
 
 
 ## Font
