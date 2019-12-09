@@ -317,8 +317,8 @@
   :init
   (defun jcs--flycheck-mode--pos-tip--advice-after (&rest _)
     "Advice runs after `flycheck-mode' function with `flycheck-popup-tip'."
-    (jcs-to-enable-mode 'flycheck-popup-tip-mode
-                        (and (not (display-graphic-p)) flycheck-mode)))
+    (jcs-enable-disable-mode-by-condition 'flycheck-popup-tip-mode
+                                          (and (not (display-graphic-p)) flycheck-mode)))
   (advice-add 'flycheck-mode :after #'jcs--flycheck-mode--pos-tip--advice-after))
 
 
@@ -327,8 +327,8 @@
   :init
   (defun jcs--flycheck-mode--pos-tip--advice-after (&rest _)
     "Advice runs after `flycheck-mode' function with `flycheck-pos-tip'."
-    (jcs-to-enable-mode 'flycheck-pos-tip-mode
-                        (and (display-graphic-p) flycheck-mode)))
+    (jcs-enable-disable-mode-by-condition 'flycheck-pos-tip-mode
+                                          (and (display-graphic-p) flycheck-mode)))
   (advice-add 'flycheck-mode :after #'jcs--flycheck-mode--pos-tip--advice-after))
 
 
