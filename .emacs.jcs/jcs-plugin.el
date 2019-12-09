@@ -627,28 +627,6 @@
   (add-hook 'projectile-after-switch-project-hook #'jcs-dashboard-refresh-buffer))
 
 
-(use-package quelpa
-  :defer t
-  :config
-  (defun jcs--quelpa-upgrade--advice-override ()
-    "Advice override `quelpa-upgrade' command."
-    (interactive)
-    (when (quelpa-setup-p)
-      (let ((jcs-package-installing t)
-            (quelpa-upgrade-p t))
-        (setq quelpa-cache
-              (cl-remove-if (lambda (package)
-                              (or (eq package 'quelpa)
-                                  (not (package-installed-p package))))
-                            quelpa-cache :key #'car))
-        (mapc (lambda (item)
-                (when (package-installed-p (car (quelpa-arg-rcp item)))
-                  (quelpa item)))
-              quelpa-cache))
-      (message "[QUELPA] Done upgrading all packages")))
-  (advice-add 'quelpa-upgrade :override #'jcs--quelpa-upgrade--advice-override))
-
-
 (use-package region-occurrences-highlighter
   :defer t
   :init
