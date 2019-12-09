@@ -1137,12 +1137,17 @@ The reverse mean the check from regular expression is swapped."
   "Check if this minor MODE-OBJ enabled in current buffer/file."
   (bound-and-true-p mode-obj))
 
+(defun jcs-re-enable-mode-if-was-enabled (mode-name)
+  "Re-enable the mode if was enabled."
+  (when (symbol-value mode-name) (jcs-re-enable-mode mode-name))
+  (symbol-value mode-name))
+
 (defun jcs-re-enable-mode (mode-name)
   "Re-enable the mode."
   (funcall mode-name -1)
   (funcall mode-name 1))
 
-(defun jcs-to-enable-mode (mode-name pred)
+(defun jcs-enable-disable-mode-by-condition (mode-name pred)
   "To enable/disable the MODE-NAME by PREDICATE."
   (if pred (funcall mode-name 1) (funcall mode-name -1)))
 
