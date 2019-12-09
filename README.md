@@ -17,6 +17,9 @@
 - [jcs-emacs-init](#jcs-emacs-init)
     - [Philosophy](#philosophy)
     - [News](#news)
+    - [Installation](#installation)
+        - [With Internet](#with-internet)
+        - [Without Internet](#without-internet)
     - [Startup Time](#startup-time)
     - [Features](#features)
     - [Package Archives](#package-archives)
@@ -25,10 +28,9 @@
         - [File Modes](#file-modes)
     - [Key Bindings](#key-bindings)
     - [Themes](#themes)
+        - [Default](#default)
+        - [Customization](#customization)
     - [Font](#font)
-    - [Installation](#installation)
-        - [With Internet](#with-internet)
-        - [Without Internet](#without-internet)
     - [Optimization](#optimization)
     - [Write your own customization](#write-your-own-customization)
     - [Supported Emacs versions](#supported-emacs-versions)
@@ -125,6 +127,56 @@ configuration.
 * `5.8.4` - Start using `quelpa` to manage self dependencies on the fly.
 * `5.8.3` - Corrected key bindings `C-x` to cut and `C-c` to copy.
 * `5.8.1` - Integrating `lsp-mode` and `dap-mode` to this configuration.
+
+
+## Installation
+
+There are two ways to install the configuration on to your
+machine; it depends on if the internet is available to you.
+
+### With Internet
+
+To install, clone this repo and copy the core `files`/`directories`
+to the emacs config directory accordingly. Make sure you backup
+your own configuration before you start the installation.
+
+```bash
+# clone this repo
+$ git clone https://github.com/jcs090218/jcs-emacs-init.git
+
+# change current directory to project directory
+$ cd jcs-emacs-init
+
+# copy init file to home
+$ cp ./.emacs ~/
+
+# copy core directories to home
+$ cp -r ./.emacs.d ~/
+$ cp -r ./.emacs.jcs ~/
+```
+
+Then startup Emacsm then it will start asking you to install
+all necessary packages due to this configuration.
+
+**!! [ATTENTION] !! -- MAKE SURE YOU INSTALLED THE CORRECT
+VERSION OF EMACS!**
+
+### Without Internet
+
+If the internet isn't available to you, just download a copy
+of the configuration from the release tab
+[here](https://github.com/jcs090218/jcs-emacs-init/releases/)
+. You will see these following files, and extract them to your
+`HOME` directory or the directory that Emacs will start loading
+initialize files.
+
+* `.emacs`      [FILE]
+* `.emacs.d`    [DIRECTORY]
+* `.emacs.jcs`  [DIRECTORY]
+
+Install it this way; you wouldn't need to be asked to install
+all necessary packages. So this may be faster or benefits to
+you.
 
 
 ## Startup Time
@@ -506,56 +558,6 @@ font is been set in `(use-package use-ttf)` section.
 * For more details about the font settings in this
 configuration, check out the `use-ttf`package
 [repo](https://github.com/elpa-host/use-ttf).
-
-
-## Installation
-
-There are two ways to install the configuration on to your
-machine; it depends on if the internet is available to you.
-
-### With Internet
-
-To install, clone this repo and copy the core `files`/`directories`
-to the emacs config directory accordingly. Make sure you backup
-your own configuration before you start the installation.
-
-```bash
-# clone this repo
-$ git clone https://github.com/jcs090218/jcs-emacs-init.git
-
-# change current directory to project directory
-$ cd jcs-emacs-init
-
-# copy init file to home
-$ cp ./.emacs ~/
-
-# copy core directories to home
-$ cp -r ./.emacs.d ~/
-$ cp -r ./.emacs.jcs ~/
-```
-
-Then startup Emacsm then it will start asking you to install
-all necessary packages due to this configuration.
-
-**!! [ATTENTION] !! -- MAKE SURE YOU INSTALLED THE CORRECT
-VERSION OF EMACS!**
-
-### Without Internet
-
-If the internet isn't available to you, just download a copy
-of the configuration from the release tab
-[here](https://github.com/jcs090218/jcs-emacs-init/releases/)
-. You will see these following files, and extract them to your
-`HOME` directory or the directory that Emacs will start loading
-initialize files.
-
-* `.emacs`      [FILE]
-* `.emacs.d`    [DIRECTORY]
-* `.emacs.jcs`  [DIRECTORY]
-
-Install it this way; you wouldn't need to be asked to install
-all necessary packages. So this may be faster or benefits to
-you.
 
 
 ## Optimization
