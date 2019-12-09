@@ -483,7 +483,7 @@ variables can be found in that file.
 
 In common, you can install any theme you want as long it is 
 available on the internet. You can check out the Emacs Theme 
-Gallery site [here](https://pawelbx.github.io/emacs-theme-gallery/),
+Gallery site [here](https://pawelbx.github.io/emacs-theme-gallery/).
 
 
 ## Font
