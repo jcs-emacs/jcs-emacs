@@ -196,23 +196,38 @@
     ;; activate installed packages
     (package-initialize)))
 
+(defun jcs-get-package-version (name where)
+  "Get version of the package."
+  (let ((pkg (cadr (assq name where))))
+    (when pkg
+      (package-desc-version pkg))))
+
+(defun jcs-package-get-package-by-name (pkg-name)
+  "Return the package by PKG-NAME."
+  (let (target-pkg)
+    (dolist (pkg (mapcar #'car package-alist))
+      (let ((in-archive (jcs-get-package-version pkg package-alist)))
+        (when (string= pkg-name pkg)
+          (setq target-pkg pkg))))
+    (if (not target-pkg)
+        nil
+      (cadr (assq (package-desc-name
+                   (cadr (assq target-pkg package-alist)))
+                  package-alist)))))
+
 ;;;###autoload
 (defun jcs-package-upgrade-all ()
   "Upgrade all packages automatically without showing *Packages* buffer."
   (interactive)
   (package-refresh-contents)
   (let (upgrades)
-    (cl-flet ((get-version (name where)
-                           (let ((pkg (cadr (assq name where))))
-                             (when pkg
-                               (package-desc-version pkg)))))
-      (dolist (package (mapcar #'car package-alist))
-        (let ((in-archive (get-version package package-archive-contents)))
-          (when (and in-archive
-                     (version-list-< (get-version package package-alist)
-                                     in-archive))
-            (push (cadr (assq package package-archive-contents))
-                  upgrades)))))
+    (dolist (package (mapcar #'car package-alist))
+      (let ((in-archive (jcs-get-package-version package package-archive-contents)))
+        (when (and in-archive
+                   (version-list-< (jcs-get-package-version package package-alist)
+                                   in-archive))
+          (push (cadr (assq package package-archive-contents))
+                upgrades))))
     (if upgrades
         (when (yes-or-no-p
                (message "Upgrade %d package%s (%s)? "
@@ -235,8 +250,10 @@
                         (length upgrades)
                         (if (= (length upgrades) 1) "" "s")
                         (mapconcat (lambda (pkgs) (nth 0 pkgs)) upgrades ", ")))
-          (require 'quelpa)
-          (quelpa-upgrade)
+          ;; Delete all upgrading packages before installation.
+          (dolist (pkg upgrades)
+            (package-delete (jcs-package-get-package-by-name (nth 0 pkg))))
+          (jcs-ensure-manual-package-installed jcs-package-manually-install-list t)
           (message "[QUELPA] Done upgrading all packages"))
       (message "[QUELPA] All packages are up to date"))))
 
@@ -270,7 +287,10 @@
     ("jayces-mode" "jcs-elpa/jayces-mode" "github")
     ("multi-shell" "jcs-elpa/multi-shell" "github")
     ("reload-emacs" "jcs-elpa/reload-emacs" "github")
-    ("shift-select" "jcs-elpa/shift-select" "github"))
+    ("shift-select" "jcs-elpa/shift-select" "github")
+    ;;("vs-dark-theme" "jcs-elpa/vs-dark-theme" "github")
+    ;;("vs-light-theme" "jcs-elpa/vs-light-theme" "github")
+    )
   "List of package that you want to manually installed.")
 
 
