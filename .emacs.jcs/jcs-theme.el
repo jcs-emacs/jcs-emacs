@@ -232,16 +232,14 @@ POWER-AC-LST : powerline active list.  POWER-INAC-LST : powerline inactive list.
 (defun jcs-vs-light-theme ()
   "Visual Studio IDE light theme."
   (interactive)
-  (require 'vs-light-theme)
-  (enable-theme 'vs-light)
+  (load-theme 'vs-light t)
   (jcs-set-theme "midnight blue" "#40FF40"))
 
 ;;;###autoload
 (defun jcs-vs-dark-theme ()
   "Visual Studio IDE dark theme."
   (interactive)
-  (require 'vs-dark-theme)
-  (enable-theme 'vs-dark)
+  (load-theme 'vs-dark t)
   (jcs-set-theme "#40FF40" "midnight blue"))
 
 ;;;###autoload
