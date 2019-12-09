@@ -401,8 +401,10 @@ and
 [gtags](https://www.gnu.org/software/global/).~~
 * *Text Editing* - powered by
 [org-mode](https://orgmode.org/).
-* *Theme* - none, self customized but close to
-[Visual Studio IDE](https://visualstudio.microsoft.com/)'s themes.
+* *Theme* - powered by
+[vs-dark-theme](https://github.com/jcs-elpa/vs-dark-theme) and 
+[vs-dark-theme](https://github.com/jcs-elpa/vs-light-theme). 
+For more info see [here](#themes).
 * *Todo* - powered by
 [hl-todo](https://github.com/tarsius/hl-todo).
 * *Toggle Mode Line* - powered by
