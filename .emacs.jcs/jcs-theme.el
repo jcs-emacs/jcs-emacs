@@ -222,34 +222,29 @@ POWER-AC-LST : powerline active list.  POWER-INAC-LST : powerline inactive list.
     ;; TODO: Weird bug here..
     (dimmer-process-all)))
 
-(defun jcs-set-theme (fgc bgc cc hlc)
-  "Setup the theme to all frames with FGC, BGC, CC and HLC."
+(defun jcs-set-theme (cc hlc)
+  "Setup the theme to all frames with CC and HLC."
   (jcs-walk-through-all-frames-once
    (lambda ()
-     (set-foreground-color fgc)
-     (set-background-color bgc)
      (set-cursor-color cc)
      (set-face-background 'hl-line hlc)
-     (jcs-reset-plugins-base-on-theme)))
-  (jcs-set-font-size jcs-default-font-size))
+     (jcs-reset-plugins-base-on-theme))))
 
 ;;;###autoload
 (defun jcs-vs-light-theme ()
   "Visual Studio IDE light theme."
   (interactive)
-  (jcs-set-theme "#000000"
-                 "#FFFFFF"
-                 "midnight blue"
-                 "#40FF40"))
+  (require 'vs-light-theme)
+  (enable-theme 'vs-light)
+  (jcs-set-theme "midnight blue" "#40FF40"))
 
 ;;;###autoload
 (defun jcs-vs-dark-theme ()
   "Visual Studio IDE dark theme."
   (interactive)
-  (jcs-set-theme "#D2D2D2"
-                 "#161616"
-                 "#40FF40"
-                 "midnight blue"))
+  (require 'vs-dark-theme)
+  (enable-theme 'vs-dark)
+  (jcs-set-theme "#40FF40" "midnight blue"))
 
 ;;;###autoload
 (defun jcs-refresh-theme ()
