@@ -33,7 +33,10 @@
 
 (defun jcs--ivy-previous-line--advice-after (&rest _)
   "Advice execute after `ivy-previous-line' function."
-  (when (= ivy--index -1) (call-interactively #'ivy-previous-line)))
+  (when (and (= ivy--index -1)
+             ;; Only when renaming is accepted.
+             (not (jcs-is-renaming-p)))
+    (call-interactively #'ivy-previous-line)))
 (advice-add 'ivy-previous-line :after #'jcs--ivy-previous-line--advice-after)
 
 ;;;###autoload
