@@ -49,10 +49,10 @@
     (require 'diminish)
     (require 'dimmer)
     (require 'exec-path-from-shell)
-    (require 'helm)
     (require 'highlight-indent-guides)
     (require 'hl-line)
     (require 'hl-todo)
+    (require 'ivy)
     (require 'powerline)
     (require 'preproc-font-lock)
     (require 'region-occurrences-highlighter)
@@ -76,15 +76,12 @@
     (dimmer-mode)
     ;;-------------------------------- `goto-address'
     (goto-address-mode t)
-    ;;-------------------------------- `helm'
-    (helm-mode 1)
-    (helm-autoresize-mode 1)
-    ;;-------------------------------- `helm-projectile'
-    (helm-projectile-on)
     ;;-------------------------------- `hl-line'
     (global-hl-line-mode 1)
     ;;-------------------------------- `hl-todo'
     (global-hl-todo-mode 1)
+    ;;-------------------------------- `ivy'
+    (ivy-mode 1)
     ;;-------------------------------- `powerline'
     (powerline-default-theme)
     ;;-------------------------------- `preproc-font-lock'
@@ -183,14 +180,6 @@
   (progn
     (jcs-gc-cons-threshold t))
 
-  (when (and (not (jcs-current-char-equal-p "/"))
-             ;; SEE: this trigger can be check at `jcs-helm-func.el' file.
-             jcs-helm-find-files-active
-             (file-directory-p (thing-at-point 'line t)))
-    ;; NOTE: This will prevent missing the
-    ;; slash at the end of the search file path.
-    (insert "/"))
-
   ;; Register hook.
   (add-hook 'post-command-hook #'jcs-minibuffer-post-command-hook nil t))
 (add-hook 'minibuffer-setup-hook 'jcs-minibuffer-setup-hook)
@@ -202,9 +191,6 @@
 
 (defun jcs-minibuffer-exit-hook ()
   "Hook when exit minibuffer."
-  ;; NOTE: disable the file after we do close minibuffer.
-  (setq jcs-helm-find-files-active nil)
-
   (jcs-reload-active-mode)
 
   ;; NOTE: Avoid GCs while using `ivy'/`counsel'/`swiper' and `helm', etc.
