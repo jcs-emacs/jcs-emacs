@@ -120,6 +120,7 @@ without having to get used to an new IDE.
 Here is the list of few important and recent changes to this
 configuration.
 
+* `5.9.3` - Switch from `helm` to `ivy` due to `helm`'s instability.
 * `5.9.0` - Implemented video player functionalities.
 * `5.8.8` - Multiple terminal is now working.
 * `5.8.7` - Set `smart-indent` as one option to move previous/next line.
@@ -436,7 +437,7 @@ and
 [shell](https://www.emacswiki.org/emacs/ShellMode) and
 [exec-path-from-shell](https://github.com/purcell/exec-path-from-shell).
 * *Simplify Usage* - powered by
-[helm](https://github.com/emacs-helm/helm).
+[ivy](https://github.com/abo-abo/swiper).
 * *Smooth Scrolling* - none, originally powered by
 ~~[sublimity](https://github.com/zk-phi/sublimity)~~.
 * *Snippet* - powered by
