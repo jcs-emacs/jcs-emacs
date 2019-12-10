@@ -180,6 +180,8 @@
   (progn
     (jcs-gc-cons-threshold t))
 
+  (jcs-dark-blue-mode-line)
+
   ;; Register hook.
   (add-hook 'post-command-hook #'jcs-minibuffer-post-command-hook nil t))
 (add-hook 'minibuffer-setup-hook 'jcs-minibuffer-setup-hook)
