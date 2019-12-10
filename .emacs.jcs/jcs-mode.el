@@ -38,21 +38,6 @@ toggle mode function."
     ;; vice versa, keep on depend mode.
     (jcs-depend-mode)))
 
-
-;;;###autoload
-(defun jcs-helm-do-ag-this-file ()
-  "Handle error for `helm-do-ag-this-file' command by switching
-to the `jcs-cross-mode' in order to use cross mode search instead
-of machine depenedent plugins/packages which is the `jcs-depend-mode'."
-  (interactive)
-  (unless (minibufferp)
-    (unless (ignore-errors (or (helm-do-ag-this-file) t))
-      (jcs-cross-mode)
-      (message "Error: This buffer is not visited file. Switch to cross mode search..")
-      (sleep-for jcs-prompt-message-sleep-delay-time)
-      (call-interactively #'isearch-forward))))
-
-
 (defun jcs-set-tab-width-by-mode (tw)
   "Set the tab width TW for current major mode."
   (cond
@@ -315,8 +300,8 @@ of machine depenedent plugins/packages which is the `jcs-depend-mode'."
   ;; Set 'depend' mode key
 
   ;; search
-  (define-key global-map (kbd "C-f") #'jcs-helm-do-ag-this-file)
-  (define-key global-map (kbd "C-S-f") #'helm-do-ag-project-root)
+  (define-key global-map (kbd "C-f") #'counsel-ag)
+  (define-key global-map (kbd "C-S-f") #'counsel-ag)  ; TODO: Use `ag' across project?
 
   (define-key global-map (kbd "C-r p") #'jcs-ag-project-regexp)
 
