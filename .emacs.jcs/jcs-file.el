@@ -142,7 +142,7 @@ multiple files at a time.  We need a title to present which file to select."
           (path nil))
       (jcs-mute-apply
        (lambda ()
-         (call-interactively #'helm-find-files)))
+         (call-interactively #'counsel-find-file)))
       (setq path (expand-file-name jcs-file--selected-file))
       path)))
 
