@@ -31,6 +31,11 @@
   (setq ivy-exit 'done)
   (exit-minibuffer))
 
+(defun jcs--ivy-previous-line--advice-after (&rest _)
+  "Advice execute after `ivy-previous-line' function."
+  (when (= ivy--index -1) (call-interactively #'ivy-previous-line)))
+(advice-add 'ivy-previous-line :after #'jcs--ivy-previous-line--advice-after)
+
 ;;;###autoload
 (defun jcs-counsel-find-files-slash ()
   "Find files slash key."
