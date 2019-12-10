@@ -898,14 +898,21 @@ REGEXP : reqular expression use to align."
 ;;----------------------------------------------
 ;; Rename file
 
+(defun jcs-is-renaming-p ()
+  "Check if current minibuffer renaming."
+  (if (not (active-minibuffer-window))
+      (user-error "[ERROR] Minibuffer not active to check renaming")
+    (save-selected-window
+      (select-window (active-minibuffer-window))
+      (string-match-p "New name:" (buffer-string)))))
+
 ;;;###autoload
 (defun jcs-rename-current-buffer-file ()
   "Renames current buffer and file it is visiting."
   (interactive)
   ;; SOURCE: https://emacs.stackexchange.com/questions/2849/save-current-file-with-a-slightly-different-name
   ;; URL: http://www.whattheemacsd.com/
-  (let ((name (buffer-name))
-        (filename (buffer-file-name)))
+  (let ((name (buffer-name)) (filename (buffer-file-name)))
     (if (not (and filename (file-exists-p filename)))
         (error "Buffer '%s' is not visiting a file!" name)
       (let ((new-name (read-file-name "New name: " filename)))
