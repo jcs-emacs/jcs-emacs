@@ -88,6 +88,8 @@
         ace-window
         buf-move-left
         buf-move-right
+        counsel-M-x
+        counsel-find-file
         feebleline-mode
         helm-M-x
         helm-find-files
