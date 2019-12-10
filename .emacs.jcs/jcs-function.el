@@ -359,20 +359,6 @@ LST-PR: List of pair."
   (setq-local electric-pair-text-pairs electric-pair-pairs))
 
 ;;----------------------------------------------------------------------------
-;; Helm
-
-;;;###autoload
-(defun jcs-reset-helm-theme-by-theme ()
-  "Set the theme by theme color."
-  (interactive)
-  (set-face-attribute 'helm-source-header nil
-                      :background (face-background 'default)
-                      :foreground "steel blue")
-  (set-face-attribute 'helm-selection nil
-                      :background (face-background 'hl-line)
-                      :foreground (face-background 'cursor)))
-
-;;----------------------------------------------------------------------------
 ;; Iedit
 
 ;;;###autoload
@@ -945,7 +931,7 @@ NO-PROMPT : Don't prompt the overwrap message."
 (jcs-with-eval-after-load-multiple
  '(shell eshell-mode) #'(lambda () (require 'jcs-shell)))
 (with-eval-after-load 'feebleline (require 'jcs-feebleline-func))
-(with-eval-after-load 'helm (require 'jcs-helm-func))
+(with-eval-after-load 'ivy (require 'jcs-ivy-func))
 
 ;; Editing
 (add-hook 'Buffer-menu-mode-hook (lambda () (require 'jcs-buffer-menu)))
