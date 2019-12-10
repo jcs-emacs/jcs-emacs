@@ -138,7 +138,6 @@ multiple files at a time.  We need a title to present which file to select."
   (save-window-excursion
     (let ((jcs-file--selecting-file t)
           (jcs-file--selected-file "")
-          (kill-ring kill-ring)
           (path nil))
       (jcs-mute-apply
        (lambda ()
