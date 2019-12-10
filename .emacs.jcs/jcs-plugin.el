@@ -158,6 +158,7 @@
   (with-eval-after-load 'helm-mode (diminish 'helm-mode))
   (with-eval-after-load 'highlight-indent-guides (diminish 'highlight-indent-guides-mode))
   (with-eval-after-load 'impatient-mode (diminish 'impatient-mode))
+  (with-eval-after-load 'ivy (diminish 'ivy-mode))
   (with-eval-after-load 'line-reminder (diminish 'line-reminder-mode))
   (with-eval-after-load 'indicators (diminish 'indicators-mode))
   (diminish 'outline-minor-mode)
@@ -356,82 +357,6 @@
   (advice-add 'goto-line-preview :after #'jcs-advice-goto-line-preview-after))
 
 
-(use-package helm
-  :defer t
-  :init
-  ;; 禁止自動補全
-  ;;(setq helm-ff-auto-update-initial-value nil)
-
-  ;; Helm search configuration.
-  (setq helm-split-window-inside-p            t
-        helm-move-to-line-cycle-in-source     t
-        helm-ff-search-library-in-sexp        t
-        helm-M-x-fuzzy-match                  t   ; 模糊搜索
-        helm-buffers-fuzzy-matching           t
-        helm-locate-fuzzy-match               t
-        helm-recentf-fuzzy-match              t
-        helm-scroll-amount                    8
-        helm-ff-file-name-history-use-recentf t)
-
-  ;; NOTE: Make Helm window at the bottom WITHOUT using any extra package.
-  ;; SOURCE: https://www.reddit.com/r/emacs/comments/345vtl/make_helm_window_at_the_bottom_without_using_any/
-  (add-to-list 'display-buffer-alist
-               `(,(rx bos "*helm" (* not-newline) "*" eos)
-                 (display-buffer-in-side-window)
-                 (inhibit-same-window . t)
-                 (window-height . 0.4)))
-
-  (with-eval-after-load 'helm-color
-    (define-key helm-color-map (kbd "<return>") #'helm-color-run-insert-name)
-    (define-key helm-color-map (kbd "C-k N") #'helm-color-run-kill-name)
-    (define-key helm-color-map (kbd "C-<return>") #'helm-color-run-insert-rgb)
-    (define-key helm-color-map (kbd "C-k R") #'helm-color-run-kill-rgb)))
-
-(use-package helm-ag
-  :defer t
-  :config
-  (setq helm-source-do-ag
-        (helm-build-async-source "The Silver Searcher"
-          :init 'helm-ag--do-ag-set-command
-          :candidates-process 'helm-ag--do-ag-candidate-process
-          :persistent-action  'helm-ag--persistent-action
-          :action helm-ag--actions
-          :nohighlight t
-          :requires-pattern 2
-          :candidate-number-limit 9999
-          :keymap helm-do-ag-map
-          :follow (and helm-follow-mode-persistent 1))))
-
-(use-package helm-describe-modes
-  :defer t
-  :init
-  (defun jcs--describe-mode--advice-around (fnc &rest args)
-    "Advice execute around `describe-mode' function."
-    (let ((pick (nth 0
-                     (list (completing-read
-                            "Describe major mode: " '("describe-mode (DEFAULT)"
-                                                      "helm-describe-modes"))))))
-      (cond ((string= pick "describe-mode (DEFAULT)")
-             (apply fnc args))
-            ((string= pick "helm-describe-modes")
-             (helm-describe-modes)))))
-  (advice-add 'describe-mode :around #'jcs--describe-mode--advice-around))
-
-(use-package helm-file-preview
-  :defer t
-  :init
-  (with-eval-after-load 'helm
-    (helm-file-preview-mode 1)))
-
-(use-package helm-fuzzy
-  :defer t
-  :init
-  (setq helm-fuzzy-not-allow-fuzzy '("*helm-ag*"
-                                     "*helm grep*"))
-  (with-eval-after-load 'helm
-    (helm-fuzzy-mode 1)))
-
-
 (use-package highlight-indent-guides
   :defer t
   :init
@@ -515,6 +440,32 @@
                                        "build.min/"
                                        "node_modules/"
                                        "res/")))
+
+
+(use-package ivy
+  :defer t
+  :init
+  (use-package counsel
+    :defer t
+    :init
+    (setq counsel-find-file-at-point t))
+  (setq ivy-use-virtual-buffers t)
+  (setq ivy-use-selectable-prompt t)
+  (setq ivy-use-virtual-buffers t)  ; Enable bookmarks and recentf
+  (setq ivy-height 15)
+  (setq ivy-fixed-height-minibuffer t)
+  (setq ivy-count-format "[%d:%d] ")
+  (setq ivy-on-del-error-function nil)
+  (setq ivy-initial-inputs-alist nil)
+  (setq ivy-re-builders-alist
+        '((swiper . ivy--regex-plus)
+          (t      . ivy--regex-fuzzy)))
+  (with-eval-after-load 'projectile
+    (setq projectile-completion-system 'ivy))
+  :config
+  (require 'smex)
+  (setq enable-recursive-minibuffers t)
+  (setq ivy-wrap t))
 
 
 (use-package line-reminder
