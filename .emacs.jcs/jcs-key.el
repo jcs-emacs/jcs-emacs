@@ -241,11 +241,11 @@
 (define-key global-map [tab] #'jcs-tab-key)
 
 ;;; File Files
-(define-key global-map (kbd "M-f") #'helm-find-files)
-(define-key global-map (kbd "C-p") #'helm-find-files)
-(define-key global-map (kbd "M-F") #'jcs-helm-find-files-other-window)
-(define-key global-map (kbd "C-k M-f") #'helm-projectile-find-file)
-(define-key global-map (kbd "C-k M-F") #'jcs-helm-projectile-find-file-other-window)
+(define-key global-map (kbd "M-f") #'counsel-find-file)
+(define-key global-map (kbd "C-p") #'counsel-find-file)
+(define-key global-map (kbd "M-F") #'jcs-counsel-find-files-other-window)
+(define-key global-map (kbd "C-k M-f") #'counsel-projectile-find-file)
+(define-key global-map (kbd "C-k M-F") #'jcs-counsel-projectile-find-file-other-window)
 
 ;;; Folding Settings
 (define-key global-map (kbd "C-k C-0") #'jcs-close-all-nodes)
@@ -273,26 +273,6 @@
 (define-key global-map (kbd "M-g c") #'goto-char-preview)
 (define-key global-map (kbd "M-g l") #'goto-line-preview)
 
-;;; Helm
-(progn
-  (define-key global-map (kbd "M-x") #'helm-M-x)
-  (progn  ; Compatible to VSCode.
-    (define-key global-map (kbd "C-S-p") #'helm-M-x)
-    (define-key global-map (kbd "<f1>") #'helm-M-x))
-  (define-key global-map (kbd "M-y") #'helm-show-kill-ring)
-  (with-eval-after-load 'helm
-    (define-key helm-map (kbd "<right>") #'helm-next-source)
-    (define-key helm-map (kbd "<left>") #'helm-previous-source))
-  ;; NOTE: Match to OS's file explorer's navigation system.
-  (with-eval-after-load 'helm-files
-    (define-key helm-find-files-map (kbd "<backspace>") #'helm-ff-delete-char-backward)
-    (define-key helm-find-files-map (kbd "<return>") #'helm-execute-persistent-action)
-    (define-key helm-find-files-map (kbd "M-<up>") #'helm-find-files-up-one-level)
-    (define-key helm-find-files-map (kbd "M-<left>") #'helm-find-files-up-one-level)
-    (define-key helm-find-files-map (kbd "M-<right>") #'helm-find-files-down-last-level))
-  (with-eval-after-load 'helm-projectile
-    (define-key helm-projectile-find-file-map (kbd "<return>") #'jcs-helm-exit-minibuffer)))
-
 ;;; Help
 (with-eval-after-load 'help-mode
   (define-key help-mode-map (kbd "C-c") #'kill-ring-save))
@@ -300,6 +280,18 @@
 ;;; Impatient Mode
 (define-key global-map (kbd "C-w o") #'jcs-httpd-start)
 (define-key global-map (kbd "C-w p") #'jcs-httpd-stop)
+
+;;; Ivy / Counsel / Swiper
+(progn
+  (define-key global-map (kbd "M-x") #'counsel-M-x)
+  (progn  ; Compatible to VSCode.
+    (define-key global-map (kbd "C-S-p") #'counsel-M-x)
+    (define-key global-map (kbd "<f1>") #'counsel-M-x))
+  (define-key global-map (kbd "M-y") #'counsel-yank-pop)
+  (with-eval-after-load 'counsel
+    (define-key counsel-find-file-map (kbd "<backspace>") #'jcs-counsel-find-files-backspace)
+    (define-key counsel-find-file-map (kbd "<return>") #'jcs-counsel-find-files-enter)
+    (define-key counsel-find-file-map (kbd "/") #'jcs-counsel-find-files-slash)))
 
 ;;; Kill Ring
 (with-eval-after-load 'browse-kill-ring
@@ -440,8 +432,7 @@
   ;; TODO: Implements isearch cursor for these two keys.
   ;;(define-key isearch-mode-map (kbd "C-x") #'jcs-vs-cut-key)
   ;;(define-key isearch-mode-map (kbd "C-c") #'kill-ring-save)
-  (define-key isearch-mode-map (kbd "C-v") #'isearch-yank-pop)
-  )
+  (define-key isearch-mode-map (kbd "C-v") #'isearch-yank-pop))
 
 ;;; Show Hover
 (define-key global-map (kbd "C-k C-i") #'jcs-describe-thing-in-popup)
