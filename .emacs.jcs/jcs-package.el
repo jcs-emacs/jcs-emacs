@@ -51,6 +51,8 @@
     company
     company-fuzzy
     company-quickhelp
+    counsel
+    counsel-projectile
     csharp-mode
     dap-mode
     dart-mode
@@ -86,13 +88,6 @@
     goto-line-preview
     haskell-mode
     haxe-mode
-    helm
-    helm-ag
-    helm-core
-    helm-describe-modes
-    helm-file-preview
-    helm-fuzzy
-    helm-projectile
     highlight-indent-guides
     hl-todo
     htmltagwrap
@@ -100,6 +95,7 @@
     indicators
     ini-mode
     isearch-project
+    ivy
     javadoc-lookup
     js2-mode
     json-mode
@@ -140,8 +136,10 @@
     sr-speedbar
     ssass-mode
     scss-mode
+    smex
     sql-indent
     swift-mode
+    swiper
     togetherly
     typescript-mode
     undo-tree
@@ -153,7 +151,6 @@
     impatient-mode
     web-mode
     wgrep-ag
-    wgrep-helm
     which-key
     wiki-summary
     yaml-mode
