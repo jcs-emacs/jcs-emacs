@@ -271,9 +271,7 @@ OW is the other window flag."
   (jcs-mute-apply
    (lambda ()
      (let ((db-id-lst (jcs-get-window-id-by-buffer-name dashboard-buffer-name))
-           (buf-lns '())
-           (buf-cls '())
-           (index 0))
+           (buf-lns '()) (buf-cls '()) (index 0))
        (save-selected-window
          (dolist (win-id db-id-lst)
            (jcs-ace-select-window win-id)
