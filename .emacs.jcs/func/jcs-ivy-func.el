@@ -40,13 +40,6 @@
 (advice-add 'ivy-previous-line :after #'jcs--ivy-previous-line--advice-after)
 
 ;;;###autoload
-(defun jcs-counsel-find-files-slash ()
-  "Find files slash key."
-  (interactive)
-  (unless (jcs-current-char-equal-p "/")
-    (insert "/")))
-
-;;;###autoload
 (defun jcs-counsel-find-files-backspace ()
   "Find files backspace key."
   (interactive)
