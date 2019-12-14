@@ -290,8 +290,7 @@
   (define-key global-map (kbd "M-y") #'counsel-yank-pop)
   (with-eval-after-load 'counsel
     (define-key counsel-find-file-map (kbd "<backspace>") #'jcs-counsel-find-files-backspace)
-    (define-key counsel-find-file-map (kbd "<return>") #'jcs-counsel-find-files-enter)
-    (define-key counsel-find-file-map (kbd "/") #'jcs-counsel-find-files-slash)))
+    (define-key counsel-find-file-map (kbd "<return>") #'jcs-counsel-find-files-enter)))
 
 ;;; Kill Ring
 (with-eval-after-load 'browse-kill-ring
