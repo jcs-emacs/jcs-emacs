@@ -3,16 +3,9 @@
 ;;; Code:
 
 
-(defun jcs-init-lua-faces ()
-  "Initialize Web mode faces highlihgting."
-  (let ((tmp-lua-modes '(lua-mode)))
-    (dolist (mode tmp-lua-modes)
-      (font-lock-add-keywords
-       mode
-       '(;; NOTE: Fixed comment and string conflict.
-         ("\\(--[^\"\r\n]*\\)[^\"\r\n]" 1 'font-lock-comment-face t)
-         ("[^\"]\\(\"[^\"]*\"\\)[^\"]" 1 'font-lock-string-face t)
-         )'end))))
+(defconst jcs-lua-doc-splitter
+  "-------------------------------------------------------------"
+  "String that inserted around/between docstring.")
 
 
 (defun jcs-lua-comment-prefix-p ()
@@ -61,8 +54,7 @@ comment character on the same line."
   ;;URL: http://lua-users.org/wiki/LuaStyleGuide
   (interactive)
   (insert "-")
-  (let ((active-comment nil)
-        (next-line-not-empty nil))
+  (let ((active-comment nil) (next-line-not-empty nil))
     (save-excursion
       (when (and
              ;; Line can only have Lua comment prefix.
@@ -73,16 +65,13 @@ comment character on the same line."
 
       ;; check if next line empty.
       (jcs-next-line)
-      (when (not (jcs-current-line-empty-p))
-        (setq next-line-not-empty t)))
+      (unless (jcs-current-line-empty-p) (setq next-line-not-empty t)))
 
-
-    (when (and (equal active-comment t)
-               (equal next-line-not-empty t))
-      (insert "-------------------------------------------------------------\n")
+    (when (and active-comment next-line-not-empty)
+      (insert (format "%s\n" jcs-lua-doc-splitter))
       (insert "-- \n")
-      (insert "----------------------------------------------------------------\n")
-      (insert "----------------------------------------------------------------")
+      (insert (format "%s---\n" jcs-lua-doc-splitter))
+      (insert (format "%s---" jcs-lua-doc-splitter))
 
       (jcs-smart-indent-up)
       (jcs-smart-indent-down)
@@ -101,7 +90,7 @@ comment character on the same line."
         (jcs-next-line)
 
         ;; insert comment doc comment string.
-        (jcs-insert-comment-style-by-current-line "[\r\n]")))))
+        (jcs-insert-comment-style-by-current-line ")")))))
 
 
 (provide 'jcs-lua-func)

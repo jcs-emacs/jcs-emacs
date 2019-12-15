@@ -6,69 +6,51 @@
 (require 'python-mode)
 
 
-(defun jcs-init-py-faces ()
-  "Initialize Python mode faces highlighting."
-  (let ((py-missing-modes '(python-mode)))
-    (dolist (mode py-missing-modes)
-      (font-lock-add-keywords
-       mode
-       '(;; NOTE: Fixed comment and string conflict.
-         ("[^\"]\\(#[^\"\r\n]*\\)[^\"]" 1 'font-lock-comment-face t)
-         ("[^\"]\\(\"[^\"]*\"\\)[^\"]" 1 'font-lock-string-face t)
-         )'end))))
-
-;;-----------------------------------------------------------
-;;-----------------------------------------------------------
-
 ;;;###autoload
 (defun jcs-py-indent-region ()
   "Indent region for `python-mode'."
   (interactive)
-  (save-excursion
-    (save-window-excursion
-      (let ((endLineNum (line-number-at-pos))
-            (startLineNum -1)
-            (endLineNum2 -1)
-            (startLineNum2 -1))
-
+  (save-window-excursion
+    (save-excursion
+      (let ((ed-ln-num (line-number-at-pos)) (st-ln-num -1)
+            (ed-ln-num-2 -1) (st-ln-num-2 -1))
         (goto-char (region-beginning))
-        (setq startLineNum (line-number-at-pos))
+        (setq st-ln-num (line-number-at-pos))
 
         (exchange-point-and-mark)
 
         (goto-char (region-end))
-        (setq endLineNum2 (line-number-at-pos))
+        (setq ed-ln-num-2 (line-number-at-pos))
 
         (goto-char (region-beginning))
-        (setq startLineNum2 (line-number-at-pos))
+        (setq st-ln-num-2 (line-number-at-pos))
 
         (deactivate-mark)
 
-        (jcs-goto-line startLineNum)
+        (jcs-goto-line st-ln-num)
         (jcs-previous-line)
 
-        (while (and (<= (line-number-at-pos) endLineNum))
+        (while (and (<= (line-number-at-pos) ed-ln-num))
           (jcs-py-indent-down)
           (end-of-line))
 
-        (jcs-goto-line endLineNum2)
+        (jcs-goto-line ed-ln-num-2)
         (jcs-next-line)
 
-        (while (and (>= (line-number-at-pos) startLineNum2))
+        (while (and (>= (line-number-at-pos) st-ln-num-2))
           (jcs-py-indent-up)
-          (end-of-line))
-        ))))
+          (end-of-line))))))
 
 ;;;###autoload
 (defun jcs-py-format-document ()
   "Indent the whoe document line by line instead of indent it
 once to the whole document. For `python-mode'."
   (interactive)
-  (save-excursion
-    (save-window-excursion
-      (let ((endLineNum (line-number-at-pos (point-max))))
+  (save-window-excursion
+    (save-excursion
+      (let ((ed-ln-num (line-number-at-pos (point-max))))
         (goto-char (point-min))
-        (while (and (<= (line-number-at-pos) endLineNum))
+        (while (and (<= (line-number-at-pos) ed-ln-num))
           (jcs-py-indent-down))))))
 
 ;;;###autoload
@@ -136,12 +118,12 @@ instead of indent the whole file at once."
     is-keyword))
 
 
-(defvar jcs-py-keywords '("class"
-                          "classmethod"
-                          "def"
-                          "from"
-                          "import"
-                          "staticmethod")
+(defconst jcs-py-keywords '("class"
+                            "classmethod"
+                            "def"
+                            "from"
+                            "import"
+                            "staticmethod")
   "List of `python' keyword.")
 
 (defun jcs-py-is-python-keyword (in-keyword)
@@ -224,7 +206,7 @@ on the same line."
         (jcs-move-to-backward-a-word "def")
 
         ;; Insert comment doc comment string.
-        (jcs-insert-comment-style-by-current-line "[\r\n]")))))
+        (jcs-insert-comment-style-by-current-line ")")))))
 
 
 ;;;###autoload
