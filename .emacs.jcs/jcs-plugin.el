@@ -281,6 +281,7 @@
 (use-package ffmpeg-player
   :defer t
   :init
+  (setq ffmpeg-player--volume 75)
   (setq ffmpeg-player-display-width 672)
   (setq ffmpeg-player-display-height 378)
   (setq ffmpeg-player-no-message t)
