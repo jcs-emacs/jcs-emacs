@@ -899,7 +899,14 @@ REGEXP : reqular expression use to align."
   (save-selected-window
     (let ((buf-name (buffer-name)))
       (other-window 1)
+      (unless (jcs-window-is-larger-in-height-p) (other-window 1))
       (switch-to-buffer buf-name))))
+
+(defun jcs-find-file-other-window (fp)
+  "Find file FP in other window with check of larger window height."
+  (find-file fp)
+  (jcs-same-file-other-window)
+  (bury-buffer))
 
 ;;----------------------------------------------
 ;; Rename file
