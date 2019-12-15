@@ -61,8 +61,7 @@ comment character on the same line."
   "Comment block."
   (interactive)
   (let ((last nil)
-        (point-beginning-of-line nil)
-        (point-end-of-line nil)
+        (point-beginning-of-line nil) (point-end-of-line nil)
         (start-of-global-comment-doc nil))
 
     ;; start position
