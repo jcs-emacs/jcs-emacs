@@ -39,7 +39,8 @@
       (jcs-move-to-upmost-window t)
       ;; Move this to make next shell bufer inside the bottom window.
       (progn (other-window -1) (other-window 1))
-      (multi-shell))))
+      (multi-shell))
+    (enlarge-window jcs-windows--enlarge-shrink-times)))
 
 ;;;###autoload
 (defun jcs-hide-shell-window ()
