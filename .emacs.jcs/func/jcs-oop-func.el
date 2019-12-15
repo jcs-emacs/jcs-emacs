@@ -37,7 +37,7 @@
                                nasm-mode
                                php-mode
                                python-mode
-                               ;;typescript-mode
+                               typescript-mode
                                web-mode)))
     (dolist (mode oop-highlight-modes)
       (font-lock-add-keywords
@@ -455,8 +455,7 @@ SEARCH-STRING          : Full content string."
             ((or (jcs-is-current-major-mode-p "typescript-mode"))
              (setq mode-doc-string-func-name (if meet-function-name
                                                  'jcs-ts-mode-doc-string-func
-                                               'jcs-ts-mode-doc-string-others)))
-            )
+                                               'jcs-ts-mode-doc-string-others))))
 
       ;; NOTE: Ensure the `mode-doc-string-func-name'
       ;; is assign to something valid to execute.
@@ -518,12 +517,9 @@ This will works with programming language that define function like
 this `(type-name var-name, type-name var-name)` or with default value
 `(type-name var-name = default-val, type-name var-name = default-val)`.
 SEARCH-STRING : Search raw string."
-  (let ((param-string "")
-        (param-lst '())
-        (param-type-str-lst '())
-        (param-var-str-lst '())
-        (param-type-strings nil)
-        (param-variable-strings nil)
+  (let ((param-string "") (param-lst '())
+        (param-type-str-lst '()) (param-var-str-lst '())
+        (param-type-strings nil) (param-variable-strings nil)
         (result-datas '()))
     (setq param-string (jcs--analyze-param-string search-string))
 
@@ -533,10 +529,8 @@ SEARCH-STRING : Search raw string."
 
     (dolist (param-sec-string param-lst)
       (let ((param-split-str-lst '())
-            (param-split-str-lst-len -1)
-            (param-split-str-lst-len-1 -1 )
-            (param-var-str "")
-            (param-type-str ""))
+            (param-split-str-lst-len -1) (param-split-str-lst-len-1 -1)
+            (param-var-str "") (param-type-str ""))
         (setq param-sec-string (nth 0 (split-string param-sec-string "=")))
         (setq param-split-str-lst (jcs-chop param-sec-string " "))
 
@@ -550,8 +544,7 @@ SEARCH-STRING : Search raw string."
         (setq param-var-str (string-trim (nth param-split-str-lst-len-1 param-split-str-lst)))
 
         ;; Data type name should be the rest except the last element.
-        (let ((index 0)
-              (sep ""))
+        (let ((index 0) (sep ""))
           (while (< index param-split-str-lst-len-1)
             (if (string= param-type-str "") (setq sep "") (setq sep " "))
             (setq param-type-str (concat param-type-str sep (string-trim (nth index param-split-str-lst))))
@@ -572,17 +565,14 @@ SEARCH-STRING : Search raw string."
     result-datas))
 
 (defun jcs-paren-param-list-colon (search-string)
-  "List `jcs-paren-param-list' but handle programming languages that use \
+  "Like `jcs-paren-param-list' but handle programming languages that use \
 colon to separate the type.  Support format like `(var-name : type-name,
 var-name : type-name)` or with default value `(var-name : type-name = default-val,
 var-name : type-name = default-val)`.
 SEARCH-STRING : Search raw string."
-  (let ((param-string "")
-        (param-lst '())
-        (param-type-str-lst '())
-        (param-var-str-lst '())
-        (param-type-strings nil)
-        (param-variable-strings nil)
+  (let ((param-string "") (param-lst '())
+        (param-type-str-lst '()) (param-var-str-lst '())
+        (param-type-strings nil) (param-variable-strings nil)
         (result-datas '()))
     (setq param-string (jcs--analyze-param-string search-string))
 
@@ -592,8 +582,7 @@ SEARCH-STRING : Search raw string."
 
     (dolist (param-sec-string param-lst)
       (let ((param-split-str-lst '())
-            (param-var-str "")
-            (param-type-str ""))
+            (param-var-str "") (param-type-str ""))
         ;; First remove the possible default value.
         (setq param-sec-string (nth 0 (split-string param-sec-string "=[^>]")))
         (setq param-split-str-lst (split-string param-sec-string ":"))
@@ -1236,7 +1225,7 @@ PARAM-TYPE-STRINGS     : Param type strings list.
 PARAM-VARIABLE-STRINGS : Param name strings list.
 SEARCH-STRING          : Search raw string."
 
-  (let ((paren-param-list (jcs-paren-param-list search-string)))
+  (let ((paren-param-list (jcs-paren-param-list-colon search-string)))
     (setq param-type-strings (nth 0 paren-param-list))
     (setq param-variable-strings (nth 1 paren-param-list)))
 
@@ -1326,7 +1315,7 @@ PARAM-TYPE-STRINGS     : Param type strings list.
 PARAM-VARIABLE-STRINGS : Param name strings list.
 SEARCH-STRING          : Search raw string."
 
-  (let ((paren-param-list (jcs-paren-param-list search-string)))
+  (let ((paren-param-list (jcs-paren-param-list-colon search-string)))
     (setq param-type-strings (nth 0 paren-param-list))
     (setq param-variable-strings (nth 1 paren-param-list)))
 
