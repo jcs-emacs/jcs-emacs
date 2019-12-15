@@ -106,17 +106,17 @@
 (defvar jcs-web-mode-html-attr-value-face 'jcs-web-mode-html-attr-value-face)
 
 
+(defface jcs-css-selector-face
+  '((t (:foreground "#17A0FB")))
+  "Highlight CSS selector."
+  :group 'jcs)
+(defvar jcs-css-selector-face 'jcs-css-selector-face)
+
 (defface jcs-css-type-face
   '((t (:foreground "#38EFCA")))
   "Highlight CSS value."
   :group 'jcs)
 (defvar jcs-css-type-face 'jcs-css-type-face)
-
-(defface jcs-css-value-face
-  '((t (:foreground "#D2D2D2")))
-  "Highlight CSS value."
-  :group 'jcs)
-(defvar jcs-css-value-face 'jcs-css-value-face)
 
 (defface jcs-css-id-face
   '((t (:foreground "#D68974")))
@@ -141,6 +141,12 @@
   "Highlight CSS number."
   :group 'jcs)
 (defvar jcs-css-number-face 'jcs-css-number-face)
+
+(defface jcs-css-variable-face
+  '((t (:foreground "#F092FE")))
+  "Highlight CSS variable."
+  :group 'jcs)
+(defvar jcs-css-variable-face 'jcs-css-variable-face)
 
 
 ;;------------------------------------------------------------------------------------------------------
