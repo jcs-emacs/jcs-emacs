@@ -59,7 +59,11 @@
 
 (defun jcs-init-css-faces ()
   "CSS Faces Highlighting."
-  (let ((tmp-css-modes '(css-mode)))
+  (let ((tmp-css-modes '(css-mode
+                         less-css-mode
+                         sass-mode
+                         scss-mode
+                         ssass-mode)))
     (dolist (mode tmp-css-modes)
       (font-lock-add-keywords
        mode
@@ -67,19 +71,10 @@
          ("[ \t]*\\([.][a-zA-Z0-9_-]*\\)[ \t\n]*[(\[*:>+~,{]" 1 'jcs-css-class-face t)
          ("\\([:][a-zA-Z0-9>+~:_-]+\\)[ \t\n]*[,{]" 1 'jcs-css-event-face t)
          ;; Selector
-         ("[ \t\n]+\\([a-zA-Z0-9-.<>?,*'`@\"=_(){}:&^%$#!~]*\\)[ \t\n]*:" 1 'jcs-css-type-face t)
-         ("[ \t\n]*:[ \t\n]*\\([a-zA-Z0-9 \n\t-.<>?,*'`@\"=_(){}:&^%$#!~]*\\)[ \t\n]*;" 1 'jcs-css-value-face t)
+         ("[{;][ \t\n]+\\([a-zA-Z0-9-.<>?,*'`@\"=_(){}:&^%$#!~]*\\)[ \t\n]*:" 1 'jcs-css-type-face t)
+         ("[ \t\n]*:[ \t\n]*\\([a-zA-Z0-9 \n\t-.<>?,*'`@\"=_():&^%$#!~]*\\)[ \t\n]*;" . 'jcs-css-value-face)
          ;; Number
-         ("[ \t;,)]*\\([+-]*[0-9]*[.]*[0-9]+[a-z%]*\\)[ \t\n;,)]" 1 'jcs-css-number-face t)
-         ;; String
-         ("[^\']\\(\'[^\']*\'\\)[^\']" 1 'font-lock-string-face t)
-         ("[^\"]\\(\"[^\"]*\"\\)[^\"]" 1 'font-lock-string-face t)
-         ;; For multi-lines comment.
-         ;; TODO: Only inside the curly bracket.
-         ;; TODO: There is bug if `/' is inside the comment space.
-         ("\\(/\\*[^/]*\\*/\\)" 1 'font-lock-comment-face t)
-         ;; Comment overwrite value face.
-         ("\\(/\\*[a-zA-Z0-9 \n\t-.<>?,*'`@\"=_(){}:;&^%$#!~]*\\*/\\)" 1 'font-lock-comment-face t)
+         ("[ \t;,)]*\\([+-]*[0-9]*[.]*[0-9]+[a-z%]*\\)[ \t\n;,)]" . 'jcs-css-number-face)
          )'end)))
   (set-face-attribute 'css-selector nil
                       :inherit font-lock-function-name-face
