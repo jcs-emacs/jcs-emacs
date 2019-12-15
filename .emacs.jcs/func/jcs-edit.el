@@ -886,6 +886,12 @@ REGEXP : reqular expression use to align."
 ;;----------------------------------------------
 ;; Find file
 
+(defun jcs-is-finding-file-p ()
+  "Check if current minibuffer finding file."
+  (jcs-minibuffer-do-stuff
+   (lambda ()
+     (string-match-p "Find file:" (buffer-string)))))
+
 ;;;###autoload
 (defun jcs-same-file-other-window ()
   "This will allow us open the same file in another window."
@@ -900,11 +906,9 @@ REGEXP : reqular expression use to align."
 
 (defun jcs-is-renaming-p ()
   "Check if current minibuffer renaming."
-  (if (not (active-minibuffer-window))
-      (user-error "[ERROR] Minibuffer not active to check renaming")
-    (save-selected-window
-      (select-window (active-minibuffer-window))
-      (string-match-p "New name:" (buffer-string)))))
+  (jcs-minibuffer-do-stuff
+   (lambda ()
+     (string-match-p "New name:" (buffer-string)))))
 
 ;;;###autoload
 (defun jcs-rename-current-buffer-file ()
