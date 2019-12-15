@@ -455,33 +455,26 @@ Generally you will have to check it four times."
   "Goto the next backward character (not include space/tab).
 BND-PT : limit point."
   (interactive)
-  (let ((real-lmt-pt (point-min)))
-    ;; If no limit point, default as `point-min'.
-    (when bnd-pt
-      (setq real-lmt-pt bnd-pt))
-
-    (unless (jcs-is-beginning-of-buffer-p)
-      (forward-char -1)
-
-      (while (and (>= (point) real-lmt-pt)
-                  (or (jcs-current-whitespace-or-tab-p)
-                      (jcs-is-beginning-of-line-p)))
-        (forward-char -1)))))
+  (unless bnd-pt (setq bnd-pt (point-min)))
+  (unless (jcs-is-beginning-of-buffer-p)
+    (forward-char -1)
+    (while (and (>= (point) bnd-pt)
+                (or (jcs-current-whitespace-or-tab-p)
+                    (jcs-is-beginning-of-line-p)))
+      (forward-char -1))))
 
 ;;;###autoload
 (defun jcs-goto-next-forward-char (&optional bnd-pt)
   "Goto the next forward character (not include space/tab).
 BND-PT : boundary point."
   (interactive)
-  (let ((real-lmt-pt (point-max)))
-    ;; If no limit point, default as `point-max'.
-    (when bnd-pt (setq real-lmt-pt bnd-pt))
-    (unless (jcs-is-end-of-buffer-p)
-      (forward-char 1)
-      (while (and (<= (point) real-lmt-pt)
-                  (or (jcs-current-whitespace-or-tab-p)
-                      (jcs-is-beginning-of-line-p)))
-        (forward-char 1)))))
+  (unless bnd-pt (setq bnd-pt (point-max)))
+  (unless (jcs-is-end-of-buffer-p)
+    (forward-char 1)
+    (while (and (<= (point) bnd-pt)
+                (or (jcs-current-whitespace-or-tab-p)
+                    (jcs-is-beginning-of-line-p)))
+      (forward-char 1))))
 
 (defun jcs-first-backward-char-p (ch)
   "Check the first character on the left/backward is CH or not, limit to the \
@@ -1101,6 +1094,17 @@ The reverse mean the check from regular expression is swapped."
 (defun jcs-is-contain-list-integer (in-list in-int)
   "Check if IN-STR contain in any integer in the IN-LIST."
   (cl-some #'(lambda (lb-sub-int) (= lb-sub-int in-int)) in-list))
+
+;;----------------------------------------------------------------------------
+;; Minibuffer
+
+(defun jcs-minibuffer-do-stuff (fnc &rest args)
+  "Execute FNC and ARGS in minibuffer the safe way."
+  (if (not (active-minibuffer-window))
+      (user-error "[ERROR] Minibuffer not active to do stuff: %s" fnc)
+    (save-selected-window
+      (select-window (active-minibuffer-window))
+      (apply fnc args))))
 
 ;;----------------------------------------------------------------------------
 ;; Mode
