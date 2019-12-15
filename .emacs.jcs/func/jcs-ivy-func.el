@@ -3,6 +3,9 @@
 ;;; Code:
 
 
+(require 'f)
+
+
 (defun jcs-ivy-immediate-done ()
   "Exit the minibuffer return empty input."
   (interactive)
@@ -38,6 +41,15 @@
              (not (jcs-is-renaming-p)))
     (call-interactively #'ivy-previous-line)))
 (advice-add 'ivy-previous-line :after #'jcs--ivy-previous-line--advice-after)
+
+;;;###autoload
+(defun jcs-counsel-find-files-slash ()
+  "Find files slash key."
+  (interactive)
+  ;; NOTE: For some reason, slash does something else so override it.
+  (insert "/")
+  (when (save-excursion (ignore-errors (search-backward "///")))
+    (ivy--cd (f-root))))
 
 ;;;###autoload
 (defun jcs-counsel-find-files-backspace ()
