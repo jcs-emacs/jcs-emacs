@@ -70,15 +70,14 @@
        '(("[ \t]*\\([#][a-zA-Z0-9_-]*\\)[ \t\n]*[(\[*:>+~,{]" 1 'jcs-css-id-face t)
          ("[ \t]*\\([.][a-zA-Z0-9_-]*\\)[ \t\n]*[(\[*:>+~,{]" 1 'jcs-css-class-face t)
          ("\\([:][a-zA-Z0-9>+~:_-]+\\)[ \t\n]*[,{]" 1 'jcs-css-event-face t)
-         ;; Selector
-         ("[{;][ \t\n]+\\([a-zA-Z0-9-.<>?,*'`@\"=_(){}:&^%$#!~]*\\)[ \t\n]*:" 1 'jcs-css-type-face t)
-         ("[ \t\n]*:[ \t\n]*\\([a-zA-Z0-9 \n\t-.<>?,*'`@\"=_():&^%$#!~]*\\)[ \t\n]*;" . 'jcs-css-value-face)
          ;; Number
          ("[ \t;,)]*\\([+-]*[0-9]*[.]*[0-9]+[a-z%]*\\)[ \t\n;,)]" . 'jcs-css-number-face)
+         ;; Variable
+         ("[$@][^ \t\n:;]+" . 'jcs-css-variable-face)
          )'end)))
-  (set-face-attribute 'css-selector nil
-                      :inherit font-lock-function-name-face
-                      :foreground "#17A0FB"))
+  (jcs--set-common-face 'css-selector (face-foreground 'jcs-css-selector-face))
+  (jcs--set-common-face 'font-lock-variable-name-face (face-foreground 'jcs-css-variable-face))
+  (jcs--set-common-face 'css-property (face-foreground 'jcs-css-type-face)))
 
 
 (provide 'jcs-css-func)
