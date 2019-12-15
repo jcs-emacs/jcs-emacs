@@ -3,6 +3,7 @@
 ;;; Code:
 
 
+(require 'css-mode)
 (require 'ssass-mode)
 
 
