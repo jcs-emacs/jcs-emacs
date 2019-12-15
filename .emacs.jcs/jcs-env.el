@@ -261,6 +261,10 @@ can see the error/operation message.")
 (setq uniquify-after-kill-buffer-p t)    ; rename after killing uniquified
 (setq uniquify-ignore-buffers-re "^\\*") ; don't muck with special buffers
 
+;;; Windows
+(defconst jcs-windows--enlarge-shrink-times 6
+  "Times to shrink inside the window.")
+
 
 (provide 'jcs-env)
 ;;; jcs-env.el ends here
