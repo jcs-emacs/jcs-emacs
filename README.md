@@ -194,6 +194,7 @@ around `5` to `15` seconds. Solved this issue by removing
 unnecessary `require` keyword load file and use `:defer` keyword
 with `use-package` package to delay some packages load time.
 
+:pencil:
 *P.S. Here is a great article about
 [Speeding Up Emacs](https://anuragpeshne.github.io/essays/emacsSpeed.html)
  written by
@@ -561,6 +562,7 @@ own `.ttf` file and add the path to
 of the `.ttf` file to `use-ttf-default-ttf-font-name`
 variable.
 
+:pencil:
 P.S.
 * See the file `./.emacs.jcs/jcs-plugin.el` to see how the
 font is been set in `(use-package use-ttf)` section.
