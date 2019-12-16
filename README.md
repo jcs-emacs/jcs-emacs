@@ -207,14 +207,16 @@ to test and optimize the configuration. Call `package-refresh-contents`
 only when package installation is needed. By doing thing, lower
 the startup time from around `4` to `8` seconds.
 
-:pencil: *P.S. Some good hints from one
+:pencil: 
+*P.S. Some good hints from one
 [StackExchange](https://emacs.stackexchange.com/) question,
 [What can I do to speed up my start-up?](https://emacs.stackexchange.com/questions/2286/what-can-i-do-to-speed-up-my-start-up)
 answered by
 [Jordon Biondo](https://github.com/jordonbiondo).*
 
-:pencil: *P.S. The above cases are tested on Windows. Other OS 
-that are not Windows should start up under a second.*
+:pencil: 
+*P.S. The above cases are tested on Windows. Other OS that are 
+not Windows should start up under a second.*
 
 
 ## Features
@@ -326,6 +328,7 @@ MELPA is a growing collection of `package.el`-compatible Emacs Lisp
 packages built automatically on our server from the upstream source
 code using simple recipes.
 
+:pencil:
 *P.S. Here is a good talk comparing all package archives from a
 [StackExchange](https://emacs.stackexchange.com/) question,
 [What are the practical differences between the various Emacs Package Repositories?](https://emacs.stackexchange.com/questions/268/what-are-the-practical-differences-between-the-various-emacs-package-repositorie)
@@ -482,7 +485,7 @@ certain extension.
 
 * [List of modes](./doc/programming_modes.md)
 
-
+:pencil:
 *P.S. The [awesome-emacs](https://github.com/emacs-tw/awesome-emacs)
 is a list of Emacs package that you can choose other
 alternatives to replace any similar packages listed here.
@@ -498,6 +501,7 @@ set can be modified in `./.emacs.jcs/jcs-key.el` file.
 
 * [List of key bindings](./doc/keybindings.md)
 
+:pencil:
 P.S.
 * My work requires me to use
 [Visual Studio IDE](https://visualstudio.microsoft.com/)
