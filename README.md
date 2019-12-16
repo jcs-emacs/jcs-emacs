@@ -207,13 +207,13 @@ to test and optimize the configuration. Call `package-refresh-contents`
 only when package installation is needed. By doing thing, lower
 the startup time from around `4` to `8` seconds.
 
-*P.S. Some good hints from one
+:pencil: *P.S. Some good hints from one
 [StackExchange](https://emacs.stackexchange.com/) question,
 [What can I do to speed up my start-up?](https://emacs.stackexchange.com/questions/2286/what-can-i-do-to-speed-up-my-start-up)
 answered by
 [Jordon Biondo](https://github.com/jordonbiondo).*
-*P.S. The above cases are tested on Windows. Other OS that are 
-not Windows should start up under a second.*
+:pencil: *P.S. The above cases are tested on Windows. Other OS 
+that are not Windows should start up under a second.*
 
 
 ## Features
