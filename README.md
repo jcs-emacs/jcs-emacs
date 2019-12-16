@@ -213,6 +213,9 @@ the startup time from around `4` to `8` seconds.
 answered by
 [Jordon Biondo](https://github.com/jordonbiondo).*
 
+*P.S. The above cases are tested on Windows. Other OS that are 
+not Windows should start up under a second.*
+
 
 ## Features
 
