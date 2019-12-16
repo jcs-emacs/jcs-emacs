@@ -212,7 +212,6 @@ the startup time from around `4` to `8` seconds.
 [What can I do to speed up my start-up?](https://emacs.stackexchange.com/questions/2286/what-can-i-do-to-speed-up-my-start-up)
 answered by
 [Jordon Biondo](https://github.com/jordonbiondo).*
-
 *P.S. The above cases are tested on Windows. Other OS that are 
 not Windows should start up under a second.*
 
