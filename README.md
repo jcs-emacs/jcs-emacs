@@ -16,14 +16,14 @@
 
 - [jcs-emacs-init](#jcs-emacs-init)
     - [Philosophy](#philosophy)
-    - [News](#news)
-    - [Installation](#installation)
+    - [:newspaper: News](#newspaper-news)
+    - [:floppy_disk: Installation](#floppydisk-installation)
         - [With Internet](#with-internet)
         - [Without Internet](#without-internet)
-    - [Startup Time](#startup-time)
-    - [Features](#features)
-    - [Package Archives](#package-archives)
-    - [Powered by](#powered-by)
+    - [:clock3: Startup Time](#clock3-startup-time)
+    - [:trophy: Features](#trophy-features)
+    - [:file_folder: Package Archives](#filefolder-package-archives)
+    - [:trophy: Powered by](#trophy-powered-by)
         - [Functionalities](#functionalities)
         - [File Modes](#file-modes)
     - [Key Bindings](#key-bindings)
@@ -31,9 +31,9 @@
         - [Default](#default)
         - [Customization](#customization)
     - [Font](#font)
-    - [Optimization](#optimization)
+    - [:hammer: Optimization](#hammer-optimization)
     - [Write your own customization](#write-your-own-customization)
-    - [Supported Emacs versions](#supported-emacs-versions)
+    - [:bamboo: Supported Emacs versions](#bamboo-supported-emacs-versions)
 
 <!-- markdown-toc end -->
 
@@ -115,7 +115,7 @@ because it lets me work on different machine efficiently,
 without having to get used to an new IDE.
 
 
-## News
+## :newspaper: News
 
 Here is the list of few important and recent changes to this
 configuration.
@@ -131,7 +131,7 @@ configuration.
 * `5.8.1` - Integrating `lsp-mode` and `dap-mode` to this configuration.
 
 
-## Installation
+## :floppy_disk: Installation
 
 There are two ways to install the configuration on to your
 machine; it depends on if the internet is available to you.
@@ -181,7 +181,7 @@ all necessary packages. So this may be faster or benefits to
 you.
 
 
-## Startup Time
+## :clock3: Startup Time
 
 The average startup time for this configuration is around
 `15` to `25` seconds. You can use command `emacs-init-time`
@@ -220,7 +220,7 @@ answered by
 not Windows should start up under a second.*
 
 
-## Features
+## :trophy: Features
 
 This is the list of features that are built-in to this
 configuration. These features are heavily base on my personal
@@ -315,7 +315,7 @@ VSCode like multiple shell control.
 Visual Studio IDE like navigating between word implementation.
 
 
-## Package Archives
+## :file_folder: Package Archives
 
 A list of package archives that this configuration uses.
 
@@ -337,7 +337,7 @@ answered by
 [Tikhon Jelvis](https://github.com/TikhonJelvis).*
 
 
-## Powered by
+## :trophy: Powered by
 
 Here is the list of all packages that powered and make this
 configuration works. Thanks to all the package maintainers;
@@ -571,7 +571,7 @@ configuration, check out the `use-ttf`package
 [repo](https://github.com/elpa-host/use-ttf).
 
 
-## Optimization
+## :hammer: Optimization
 
 If you would like to optimize the configuration, you can
 run the following command compile all the source code to
@@ -602,7 +602,7 @@ In your `my-init.el` file should look something similar to this.
 ```
 
 
-## Supported Emacs versions
+## :bamboo: Supported Emacs versions
 
 The config should run on Emacs **26.1** or higher, but I will
 recommend to always run on the latest Emacs version available
