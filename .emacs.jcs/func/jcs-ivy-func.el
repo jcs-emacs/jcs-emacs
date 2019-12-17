@@ -83,9 +83,9 @@
         (starting-window (selected-window)))
     (jcs-other-window-next 1 t)
     (setq default-directory record-dd)
-    (setq found-file (counsel-find-file))
-    (unless found-file
-      (select-window starting-window))))
+    (unwind-protect (setq found-file (counsel-find-file))
+      (unless found-file
+        (select-window starting-window)))))
 
 ;;;###autoload
 (defun jcs-counsel-projectile-find-file-other-window ()
@@ -96,9 +96,9 @@
         (starting-window (selected-window)))
     (jcs-other-window-next 1 t)
     (setq default-directory record-dd)
-    (setq found-file (counsel-projectile-find-file))
-    (unless found-file
-      (select-window starting-window))))
+    (unwind-protect (setq found-file (counsel-projectile-find-file))
+      (unless found-file
+        (select-window starting-window)))))
 
 
 (provide 'jcs-ivy-func)
