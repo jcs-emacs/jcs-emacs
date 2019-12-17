@@ -22,6 +22,8 @@
         - [Without Internet](#without-internet)
     - [:clock3: Startup Time](#clock3-startup-time)
     - [:trophy: Features](#trophy-features)
+        - [Highlight](#highlight)
+        - [Details](#details)
     - [:file_folder: Package Archives](#filefolder-package-archives)
     - [:trophy: Powered by](#trophy-powered-by)
         - [Functionalities](#functionalities)
@@ -160,7 +162,7 @@ $ cp -r ./.emacs.jcs ~/
 Then startup Emacsm then it will start asking you to install
 all necessary packages due to this configuration.
 
-**:exclamation::exclamation: [ATTENTION] :exclamation::exclamation: 
+**:exclamation::exclamation: [ATTENTION] :exclamation::exclamation:
 -- MAKE SURE YOU INSTALLED THE CORRECT VERSION OF EMACS!**
 
 ### Without Internet
@@ -208,19 +210,37 @@ to test and optimize the configuration. Call `package-refresh-contents`
 only when package installation is needed. By doing thing, lower
 the startup time from around `4` to `8` seconds.
 
-:pencil: 
+:pencil:
 *P.S. Some good hints from one
 [StackExchange](https://emacs.stackexchange.com/) question,
 [What can I do to speed up my start-up?](https://emacs.stackexchange.com/questions/2286/what-can-i-do-to-speed-up-my-start-up)
 answered by
 [Jordon Biondo](https://github.com/jordonbiondo).*
 
-:pencil: 
-*P.S. The above cases are tested on Windows. Other OS that are 
+:pencil:
+*P.S. The above cases are tested on Windows. Other OS that are
 not Windows should start up under a second.*
 
 
 ## :trophy: Features
+
+### Highlight
+
+Here is the list of the major highlights to this configuration. Hope you would 
+like my taste!
+
+* **Out of the box** - Out of the box anywhere.
+* **Cross Platform** - Work on all operating system including terminal.
+* **Fast Startup** - Lazy loading for all unnecessary packages on startup.
+* **Old-Fashioned** - Doesn't use any beatiful GUI because it may not work in terminal.
+* **Multiple Languages** - Support multiple programming languages.
+* **Consistent** - Having the same coding experience in different major mode.
+* **Easy to use** - Design close to other modern text editors. Shouldn't spend 
+you too much time.
+* **Dual Windows** - Design to people who like multiple windows opened simultaneously.
+* **Keyboard Focused** - You can do everything by using keyboard and mouse are just optional.
+
+### Details
 
 This is the list of features that are built-in to this
 configuration. These features are heavily base on my personal
@@ -412,7 +432,7 @@ and
 * *Multiple Terminal* - powered by
 [multi-shell](https://github.com/jcs-elpa/multi-shell).
 * *Music Player* - powered by
-[ffmpeg-player](https://github.com/jcs-elpa/ffmpeg-player); 
+[ffmpeg-player](https://github.com/jcs-elpa/ffmpeg-player);
 might change to something else.
 * *Navigation/Searcher* - powered by
 [ag](https://github.com/Wilfred/ag.el)
@@ -463,8 +483,8 @@ and
 * *Text Editing* - powered by
 [org-mode](https://orgmode.org/).
 * *Theme* - powered by
-[vs-dark-theme](https://github.com/jcs-elpa/vs-dark-theme) and 
-[vs-light-theme](https://github.com/jcs-elpa/vs-light-theme). 
+[vs-dark-theme](https://github.com/jcs-elpa/vs-dark-theme) and
+[vs-light-theme](https://github.com/jcs-elpa/vs-light-theme).
 **(For more info see [here](#themes))**
 * *Todo* - powered by
 [hl-todo](https://github.com/tarsius/hl-todo).
@@ -543,11 +563,11 @@ variables can be found in that file.
 
 ### Customization
 
-In common, you can install any theme you want as long it is 
-available on the internet. You can check out the Emacs Theme 
+In common, you can install any theme you want as long it is
+available on the internet. You can check out the Emacs Theme
 Gallery site [here](https://pawelbx.github.io/emacs-theme-gallery/).
-For instance, [vs-dark-theme](https://github.com/jcs-elpa/vs-dark-theme) 
-and [vs-light-theme](https://github.com/jcs-elpa/vs-light-theme) 
+For instance, [vs-dark-theme](https://github.com/jcs-elpa/vs-dark-theme)
+and [vs-light-theme](https://github.com/jcs-elpa/vs-light-theme)
 are now individual packages built outside from this configuration.
 
 
