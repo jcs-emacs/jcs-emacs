@@ -82,10 +82,9 @@
         (found-file nil)
         (starting-window (selected-window)))
     (jcs-other-window-next 1 t)
-    (let ((default-directory record-dd))
-      (unwind-protect (setq found-file (counsel-find-file))
-        (unless found-file
-          (select-window starting-window))))))
+    (unwind-protect (setq found-file (counsel-find-file record-dd))
+      (unless found-file
+        (select-window starting-window)))))
 
 ;;;###autoload
 (defun jcs-counsel-projectile-find-file-other-window ()
