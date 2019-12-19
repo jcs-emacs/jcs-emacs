@@ -79,7 +79,7 @@ Return number of the valid buffers."
     ;; Convert symbol to string.
     (when (symbolp hex-code) (setq hex-code (symbol-name hex-code)))
     (if (not (jcs-is-hex-code-p hex-code))
-        (error "Hex code to check is invalid: %s" hex-code)
+        (message "[WARNING] Hex code to check is invalid: %s" hex-code)
       ;; Remove # from `hex-code'.
       (setq hex-code (jcs-replace-string "#" "" hex-code))
       (setq hex-lst (split-string hex-code ""))
@@ -1393,6 +1393,7 @@ IGNORE-ERRORS-T : ignore errors for this function?"
 
 (defun jcs-replace-string (rp-tar rp-str str)
   "Replace a RP-TAR with RP-STR in STR."
+  (require 's)
   (s-replace rp-tar rp-str str))
 
 (defun jcs-parse-bool (in-str)
