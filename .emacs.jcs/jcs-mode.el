@@ -305,8 +305,6 @@ toggle mode function."
 
   (define-key global-map (kbd "C-r p") #'jcs-ag-project-regexp)
 
-  (jcs-global-key-rebind)
-
   (when (get 'jcs-depend-cross-mode-toggle 'state)
     (message "[INFO] Turn into `depend-mode` now"))
 
@@ -331,8 +329,6 @@ toggle mode function."
   ;; search
   (define-key global-map (kbd "C-f") #'isearch-forward)
   (define-key global-map (kbd "C-S-f") #'isearch-project-forward)
-
-  (jcs-global-key-rebind)
 
   (unless (get 'jcs-depend-cross-mode-toggle 'state)
     (message "[INFO] Turn into `cross-mode` now"))
