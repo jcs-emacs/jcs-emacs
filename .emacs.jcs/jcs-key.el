@@ -123,6 +123,9 @@
 (define-key global-map [C-next] #'scroll-other-window)
 (define-key global-map [C-prior] #'scroll-other-window-down)
 
+(bind-key* (kbd "C-r DEL") #'jcs-backward-delete-current-char-repeat)
+(bind-key* (kbd "C-r S-<backspace>") #'jcs-forward-delete-current-char-repeat)
+
 (define-key prog-mode-map (kbd "<backspace>") #'jcs-smart-backspace)
 (define-key global-map (kbd "<backspace>") #'jcs-real-backspace)
 (define-key global-map (kbd "S-<backspace>") #'jcs-real-backspace)
@@ -277,6 +280,9 @@
 (with-eval-after-load 'help-mode
   (define-key help-mode-map (kbd "C-c") #'kill-ring-save))
 
+;;; Iedit
+(bind-key* (kbd "C-r C-r") #'jcs-iedit-mode)
+
 ;;; Impatient Mode
 (define-key global-map (kbd "C-w o") #'jcs-httpd-start)
 (define-key global-map (kbd "C-w p") #'jcs-httpd-stop)
@@ -386,8 +392,14 @@
 ;;; Process
 (define-key global-map (kbd "M-p") #'list-processes)
 
+;;; RE-Builder
+(bind-key* (kbd "C-r b") #'jcs-re-builder)
+
+;;; Read-Only
+(bind-key* (kbd "C-r o") #'read-only-mode)
+
 ;;; Recent Files
-(define-key global-map (kbd "C-r f") #'recentf-open-files)
+(bind-key* (kbd "C-r f") #'recentf-open-files)
 
 ;; Rename file
 (define-key global-map (kbd "M-<f2>") #'jcs-rename-current-buffer-file)
@@ -563,31 +575,6 @@
 
 ;;; Whitespace
 (define-key global-map (kbd "C-k b") #'whitespace-mode)
-
-
-;;-------------------------------------------------------------------
-;; Rebinding
-
-(defun jcs-global-key-rebind ()
-  "Some key are not allow to bind, the solution here is just re-bind
-the key everytime the mode changes."
-
-  ;; re-builder
-  (define-key global-map (kbd "C-r b") #'jcs-re-builder)
-
-  ;; Read-Only toggle.
-  (define-key global-map (kbd "C-r o") #'read-only-mode)
-
-  ;; Replace
-  (define-key global-map (kbd "C-r C-r") #'jcs-iedit-mode)
-
-  ;; Recent Files
-  (define-key global-map (kbd "C-r f") #'recentf-open-files)
-
-  ;; Kill Buffer
-  (define-key global-map (kbd "C-r DEL") #'jcs-backward-delete-current-char-repeat)
-  (define-key global-map (kbd "C-r S-<backspace>") #'jcs-forward-delete-current-char-repeat)
-  )
 
 
 (provide 'jcs-key)
