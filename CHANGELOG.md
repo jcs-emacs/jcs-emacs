@@ -5,6 +5,9 @@ All notable changes to the "jcs-emacs-init" extension will be documented in this
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2019-12-19
+* Fixed `yascroll` wrong arguments error after Emacs version 27. (jcs-emacs-init)
+
 ### 2019-12-17
 
 * Fixed `ivy` switch to buffer other window logic. (jcs-emacs-init)
