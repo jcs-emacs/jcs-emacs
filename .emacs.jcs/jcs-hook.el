@@ -99,7 +99,9 @@
     ;;-------------------------------- `use-ttf'
     (use-ttf-set-default-font)
     ;;-------------------------------- `which-key'
-    (which-key-mode))
+    (which-key-mode)
+    ;;-------------------------------- `yascroll'
+    (global-yascroll-bar-mode 1))
 
   (jcs-setup-default-theme)
   (jcs-command-mode)
