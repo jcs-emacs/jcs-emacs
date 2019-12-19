@@ -858,7 +858,20 @@
   (setq yascroll:delay-to-hide 0.8)
   :config
   (require 'cl)
-  (global-yascroll-bar-mode 1))
+  (when (version<= "27" emacs-version)
+    (defun jcs--yascroll:choose-scroll-bar--advice-override ()
+      "Advice override `yascroll:choose-scroll-bar' function."
+      (when (memq window-system yascroll:enabled-window-systems)
+        (cl-destructuring-bind (left-width right-width outside-margins nil)
+            (window-fringes)
+          (cl-loop for scroll-bar in (yascroll:listify yascroll:scroll-bar)
+                   if (or (eq scroll-bar 'text-area)
+                          (and (eq scroll-bar 'left-fringe)
+                               (> left-width 0))
+                          (and (eq scroll-bar 'right-fringe)
+                               (> right-width 0)))
+                   return scroll-bar))))
+    (advice-add 'yascroll:choose-scroll-bar :override #'jcs--yascroll:choose-scroll-bar--advice-override)))
 
 
 (use-package yasnippet
