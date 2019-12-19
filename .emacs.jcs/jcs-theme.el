@@ -19,7 +19,6 @@
 
 (defun jcs-powerline-set-theme-faces (ac-lst inac-lst)
   "Set `powerline' them faces with AC-LST and INAC-LST."
-  (require 'powerline)
   (progn
     (set-face-foreground 'powerline-active0 (nth 0 ac-lst))
     (set-face-background 'powerline-active0 (nth 1 ac-lst))
