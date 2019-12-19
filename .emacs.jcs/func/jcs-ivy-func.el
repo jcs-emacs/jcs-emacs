@@ -43,10 +43,12 @@
   "Find files on other window."
   (interactive)
   (let ((record-dd default-directory)
+        (path-at-point (ffap-file-at-point))
         (found-file nil)
         (starting-window (selected-window)))
+    (when path-at-point (setq path-at-point (f-dirname path-at-point)))
     (jcs-other-window-next 1 t)
-    (unwind-protect (setq found-file (counsel-find-file record-dd))
+    (unwind-protect (setq found-file (counsel-find-file (if path-at-point path-at-point record-dd)))
       (unless found-file
         (select-window starting-window)))))
 
