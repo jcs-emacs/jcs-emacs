@@ -312,16 +312,9 @@ OW is the other window flag."
       (setq logo-title-fg "#616161")
       (setq heading-fg "#727272")
       (setq wb-fg "#1475B7"))
-    (set-face-attribute 'dashboard-banner-logo-title
-                        nil
-                        :foreground logo-title-fg)
-    (set-face-attribute 'dashboard-heading
-                        nil
-                        :foreground heading-fg)
-    (set-face-attribute 'widget-button
-                        nil
-                        :weight 'normal
-                        :foreground wb-fg))
+    (jcs--set-common-face 'dashboard-banner-logo-title logo-title-fg)
+    (jcs--set-common-face 'dashboard-heading heading-fg)
+    (set-face-attribute 'widget-button nil :weight 'normal :foreground wb-fg))
   (jcs-dashboard-refresh-buffer))
 
 ;;----------------------------------------------------------------------------
@@ -898,6 +891,7 @@ NO-PROMPT : Don't prompt the overwrap message."
 (defun jcs-reset-yascroll-color-by-theme ()
   "Reset yascroll color base on the theme color."
   (interactive)
+  (require 'yascroll)
   (let ((target-color "#424242"))
     (when (jcs-is-light-color (face-background 'default))
       (setq target-color "#C1C1C1"))
