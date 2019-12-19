@@ -127,23 +127,11 @@ multiple files at a time.  We need a title to present which file to select."
 ;;----------------------------------------------------------------------------
 ;; Selecting File
 
-(defvar jcs-file--selecting-file nil "Flag to check if selecting file now.")
-
-(defvar jcs-file--selected-file "" "Place to put the selected file.")
-
 ;;;###autoload
 (defun jcs-select-file ()
   "Select the file and return that path."
   (interactive)
-  (save-window-excursion
-    (let ((jcs-file--selecting-file t)
-          (jcs-file--selected-file "")
-          (path nil))
-      (jcs-mute-apply
-       (lambda ()
-         (call-interactively #'counsel-find-file)))
-      (setq path (expand-file-name jcs-file--selected-file))
-      path)))
+  (let ((ivy-inhibit-action t)) (counsel-find-file)))
 
 
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
