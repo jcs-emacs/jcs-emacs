@@ -500,6 +500,7 @@
   (advice-add 'jcs-next-blank-line :after #'jcs-mc/-cancel-multiple-cursors)
   :config
   (defun jcs--mc/mark-lines (num-lines direction)
+    "Override `mc/mark-lines' function."
     (let ((cur-column (current-column)))
       (dotimes (i (if (= num-lines 0) 1 num-lines))
         (mc/save-excursion
