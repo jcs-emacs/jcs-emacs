@@ -53,6 +53,7 @@
     (require 'hl-line)
     (require 'hl-todo)
     (require 'ivy)
+    (require 'page-break-lines)
     (require 'powerline)
     (require 'preproc-font-lock)
     (require 'region-occurrences-highlighter)
@@ -82,6 +83,8 @@
     (global-hl-todo-mode 1)
     ;;-------------------------------- `ivy'
     (ivy-mode 1)
+    ;;-------------------------------- `page-break-lines'
+    (global-page-break-lines-mode 1)
     ;;-------------------------------- `powerline'
     (powerline-default-theme)
     ;;-------------------------------- `preproc-font-lock'
@@ -176,11 +179,21 @@
 ;; Minibuffer
 ;;-----------------------------------------------------------
 
+(defvar jcs--minibuffer-first-setup nil "Check if minibuffer first setup.")
+
+(defun jcs-minibuffer-first-setup-hook ()
+  "Run when the minibuffer first setup."
+  (unless jcs--minibuffer-first-setup
+    (jcs--page-break-lines--re-add-hook)
+    (setq jcs--minibuffer-first-setup t)))
+
 (defun jcs-minibuffer-setup-hook ()
   "Hook when minibuffer setup."
   ;; NOTE: Avoid GCs while using `ivy'/`counsel'/`swiper' and `helm', etc.
   (progn
     (jcs-gc-cons-threshold t))
+
+  (jcs-minibuffer-first-setup-hook)
 
   (jcs-dark-blue-mode-line)
 
