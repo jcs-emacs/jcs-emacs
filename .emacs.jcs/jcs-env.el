@@ -164,9 +164,13 @@
   "List of modes that you do not want to show line numbers in it.")
 
 ;;; Messages
-(defconst jcs-prompt-message-sleep-delay-time 0.4  ; in seconds
-  "Delay for a time for prompting out the message, so the user
-can see the error/operation message.")
+(defconst jcs-prompt-message-sleep-delay-time 0.4
+  "Delay for a time for prompting out the message in seconds.
+Hence the user can see the error/operation message.")
+
+;;; Multiple Cursors
+(defvar jcs-mc/string-distance-level 6
+  "The standard similarity, the lower require more precision.")
 
 ;;; Previous/Next keys
 (defcustom jcs-prev/next-key-type 'indent
