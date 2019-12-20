@@ -1652,6 +1652,59 @@ CC : Current character at position."
       (unless (> before-unmark-cur-cnt (mc/num-cursors))
         (call-interactively #'mc/mark-next-like-this)))))
 
+(defun jcs-mc/maybe-multiple-cursors-mode ()
+  "Maybe enable `multiple-cursors-mode' depends on the cursor number."
+  (if (> (mc/num-cursors) 1) (multiple-cursors-mode 1) (multiple-cursors-mode 0)))
+
+(defun jcs-mc/to-furthest-cursor-before-point ()
+  "Goto the furthest cursor before point."
+  (when (mc/furthest-cursor-before-point) (goto-char (overlay-end (mc/furthest-cursor-before-point)))))
+
+(defun jcs-mc/to-furthest-cursor-after-point ()
+  "Goto furthest cursor after point."
+  (when (mc/furthest-cursor-after-point) (goto-char (overlay-end (mc/furthest-cursor-after-point)))))
+
+;;;###autoload
+(defun jcs-mc/mark-previous-similar-this ()
+  "Mark previous line similar to this line."
+  (interactive)
+  (require 'multiple-cursors)
+  (save-excursion
+    (let ((cur-line (thing-at-point 'line))
+          (cur-col (current-column))
+          (break nil))
+      (jcs-mc/to-furthest-cursor-before-point)
+      (forward-line -1)
+      (while (and (not break) (not (= (line-number-at-pos (point)) (line-number-at-pos (point-min)))))
+        (forward-line -1)
+        (when (< (string-distance (thing-at-point 'line) cur-line)
+                 jcs-mc/string-distance-level)
+          (move-to-column cur-col)
+          (mc/create-fake-cursor-at-point)
+          (setq break t)))
+      (unless break (user-error "[INFO] no previous similar match"))))
+  (jcs-mc/maybe-multiple-cursors-mode))
+
+;;;###autoload
+(defun jcs-mc/mark-next-similar-this ()
+  "Mark next line similar to this line."
+  (interactive)
+  (require 'multiple-cursors)
+  (save-excursion
+    (let ((cur-line (thing-at-point 'line))
+          (cur-col (current-column))
+          (break nil))
+      (jcs-mc/to-furthest-cursor-after-point)
+      (forward-line 1)
+      (while (and (not break) (not (= (line-number-at-pos (point)) (line-number-at-pos (point-max)))))
+        (forward-line 1)
+        (when (< (string-distance (thing-at-point 'line) cur-line)
+                 jcs-mc/string-distance-level)
+          (move-to-column cur-col)
+          (mc/create-fake-cursor-at-point)
+          (setq break t)))
+      (unless break (user-error "[INFO] no next similar match"))))
+  (jcs-mc/maybe-multiple-cursors-mode))
 
 ;;----------------------------------------------
 ;; Folding / Unfolding
