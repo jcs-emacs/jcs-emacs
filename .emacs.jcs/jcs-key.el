@@ -351,6 +351,8 @@
 ;;; Mutliple Cursors
 (define-key global-map (kbd "C-M-S-<up>") #'jcs-mc/mark-previous-like-this)
 (define-key global-map (kbd "C-M-S-<down>") #'jcs-mc/mark-next-like-this)
+(define-key global-map (kbd "C-M-_") #'jcs-mc/mark-previous-similar-this)
+(define-key global-map (kbd "C-M-+") #'jcs-mc/mark-next-similar-this)
 
 (with-eval-after-load 'multiple-cursors
   (define-key mc/keymap (kbd "<escape>") #'mc/keyboard-quit)
