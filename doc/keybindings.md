@@ -1,5 +1,7 @@
 # List of key bindings
 
+Here is the list of key bindins that defined in this configuration.
+
 ## Global
 
 ### Programming
@@ -22,11 +24,11 @@
   * <kbd>Alt</kbd>+<kbd>backspace</kbd> - Backspace word excluding capital letter.
   * <kbd>Alt</kbd>+<kbd>delete</kbd> - Delete word excluding capital letter.
   * <kbd>Ctrl</kbd>+<kbd>r</kbd>, <kbd>backspace</kbd> -
-  Delete the same character at current cursor's position
-  backward repeatedly util it meet different character.
+  Delete the same character at current cursor's position backward repeatedly
+  util it meet different character.
   * <kbd>Ctrl</kbd>+<kbd>r</kbd>, <kbd>Shift</kbd>+<kbd>backspace</kbd> -
-  Delete the same character at current cursor's position
-  forward repeatedly util it meet different character.
+  Delete the same character at current cursor's position forward repeatedly
+  util it meet different character.
   * <kbd>Alt</kbd>+<kbd>up</kbd> - Move current line `up`.
   * <kbd>Alt</kbd>+<kbd>down</kbd> - Move current line `down`.
   * <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>up</kbd> - Scroll window `up` one line without moving cursor.
@@ -129,6 +131,13 @@
     * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>.</kbd> - Delete everything between two `.`.
     * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>/</kbd> - Delete everything between two `/`.
     * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>?</kbd> - Delete everything between two `?`.
+
+  * **Multiple Cursors**
+
+  * <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>up</kbd> - Mark previous line.
+  * <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>down</kbd> - Mark next line.
+  * <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>=</kbd> - Mark previous line similar to current line.
+  * <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>-</kbd> - Mark next line similar to current line.
 
 * **Debugging**
 
