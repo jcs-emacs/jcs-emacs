@@ -74,6 +74,7 @@
         jcs-web-vs-opening-curly-bracket-key
         jcs-yaml-electric-backspace
         kill-region
+        markdown-enter-key
         markdown-outdent-or-delete
         org-cycle
         org-force-self-insert
@@ -88,6 +89,7 @@
         ace-window
         buf-move-left
         buf-move-right
+        buffer-menu
         counsel-M-x
         counsel-find-file
         feebleline-mode
@@ -109,6 +111,7 @@
         jcs-balance-delete-window
         jcs-balance-split-window-horizontally
         jcs-css-save-buffer
+        jcs-dashboard
         jcs-dashboard-next-blank-line
         jcs-dashboard-previous-blank-line
         jcs-find-corresponding-file-other-window
@@ -117,7 +120,10 @@
         jcs-make-without-asking
         jcs-maybe-kill-this-buffer
         jcs-mc/mark-next-like-this
+        jcs-mc/mark-next-similar-this
         jcs-mc/mark-previous-like-this
+        jcs-mc/mark-previous-similar-this
+        jcs-message-buffer
         jcs-next-blank-line
         jcs-other-window-next
         jcs-other-window-prev
