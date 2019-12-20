@@ -4,6 +4,7 @@
 
 
 (require 'f)
+(require 'ffap)
 
 
 (defun jcs--ivy-previous-line--advice-after (&rest _)
