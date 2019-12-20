@@ -5,6 +5,12 @@ All notable changes to the "jcs-emacs-init" extension will be documented in this
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2019-12-20
+* Fixed `ivy` missing `ffap` dependency. (jcs-emacs-init)
+* Fixed message wouldn't work when `dashboard` is showing inside 
+ window. (jcs-emacs-init)
+* Add minibuffer first setup hook. (jcs-emacs-init)
+
 ### 2019-12-19
 * Fixed `yascroll` wrong arguments error after Emacs version 27. (jcs-emacs-init)
 
