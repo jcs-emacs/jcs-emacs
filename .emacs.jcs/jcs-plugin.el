@@ -197,7 +197,14 @@
 (use-package dimmer
   :defer t
   :init
-  (setq dimmer-fraction 0.2))
+  (setq dimmer-fraction 0.2)
+  :config
+  (defun jcs--dimmer-filtered-buffer-list--advice-around (fnc &rest args)
+    "Advice execute around `dimmer-filtered-buffer-list' function."
+    (let (buffers)
+      (jcs-mute-apply (lambda () (setq buffers (apply fnc args))))
+      buffers))
+  (advice-add 'dimmer-filtered-buffer-list :around #'jcs--dimmer-filtered-buffer-list--advice-around))
 
 
 (use-package dumb-jump
@@ -515,6 +522,30 @@
   :defer t
   :config
   (global-origami-mode t))
+
+
+(use-package page-break-lines
+  :defer t
+  :config
+  (defun jcs--page-break-lines--update-display-tables--advice-override  (&optional frame)
+    "Function called for updating display table in windows of FRAME."
+    (unless (minibufferp)
+      (jcs-mute-apply
+       (lambda ()
+         (mapc 'page-break-lines--update-display-table (window-list frame 'no-minibuffer))))))
+  (advice-add 'page-break-lines--update-display-tables
+              :override
+              #'jcs--page-break-lines--update-display-tables--advice-override)
+
+  (defun jcs--page-break-lines--re-add-hook ()
+    "By removehook then add the hook again."
+    (interactive)
+    (dolist (hook '(window-configuration-change-hook
+                    window-size-change-functions
+                    after-setting-font-hook
+                    display-line-numbers-mode-hook))
+      (remove-hook hook 'page-break-lines--update-display-tables)
+      (add-hook hook 'page-break-lines--update-display-tables))))
 
 
 (use-package popup
