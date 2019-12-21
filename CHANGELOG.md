@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2019-12-21
 
 * Added multiple cursors previous/next similar functions. (jcs-emacs-init)
+* Added simple make frame util function. (jcs-emacs-init)
 
 ### 2019-12-20
 
