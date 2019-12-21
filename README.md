@@ -272,6 +272,11 @@ Utility function to use to view a file on the other window.
 * [*Docstring Completion*](./features/docstring-completion) -
 Some standard docstring completion implementations built-in
 to this configuration.
+* Enhanced Multiple Cursors
+  * [*Similar Multiple Cursors*](./features/similar-multiple-cursors) -
+  Mark with cursor by similarity.
+  * [*VS Multiple Cursors*](./features/vs-multiple-cursors) -
+  VSCode like methods to `mark` and `unmark` multiple cursor.
 * [*Fast Incremental Search*](./features/fast-incremental-search) -
 Fast keys for incremental search forward/backward
 to the cursor is currently pointing.
@@ -327,8 +332,6 @@ Improved the user experience on undoing and redoing by
 showing the `undo-tree-visualizer` at the other window.
 * [*VS Curly Bracket*](./features/vs-curly-bracket) -
 Visual Studio IDE like curly bracket implementation.
-* [*VS Multiple Cursors*](./features/vs-multiple-cursors) -
-VSCode like methods to `mark` and `unmark` multiple cursor.
 * [*VS Multiple Terminal*](./features/vs-multiple-terminal) -
 VSCode like multiple shell control.
 * [*VS Navigate Word*](./features/vs-navigate-word) -
