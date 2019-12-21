@@ -1665,10 +1665,11 @@ CC : Current character at position."
   (when (mc/furthest-cursor-after-point) (goto-char (overlay-end (mc/furthest-cursor-after-point)))))
 
 ;;;###autoload
-(defun jcs-mc/mark-previous-similar-this ()
-  "Mark previous line similar to this line."
+(defun jcs-mc/mark-previous-similar-this (&optional sdl)
+  "Mark previous line similar to this line depends on string distance level (SDL)."
   (interactive)
   (require 'multiple-cursors)
+  (unless sdl (setq sdl jcs-mc/string-distance-level))
   (save-excursion
     (let ((cur-line (thing-at-point 'line))
           (cur-col (current-column))
@@ -1677,8 +1678,7 @@ CC : Current character at position."
       (forward-line -1)
       (while (and (not break) (not (= (line-number-at-pos (point)) (line-number-at-pos (point-min)))))
         (forward-line -1)
-        (when (< (string-distance (thing-at-point 'line) cur-line)
-                 jcs-mc/string-distance-level)
+        (when (< (string-distance (thing-at-point 'line) cur-line) sdl)
           (move-to-column cur-col)
           (mc/create-fake-cursor-at-point)
           (setq break t)))
@@ -1686,10 +1686,11 @@ CC : Current character at position."
   (jcs-mc/maybe-multiple-cursors-mode))
 
 ;;;###autoload
-(defun jcs-mc/mark-next-similar-this ()
-  "Mark next line similar to this line."
+(defun jcs-mc/mark-next-similar-this (&optional sdl)
+  "Mark next line similar to this line depends on string distance level (SDL)."
   (interactive)
   (require 'multiple-cursors)
+  (unless sdl (setq sdl jcs-mc/string-distance-level))
   (save-excursion
     (let ((cur-line (thing-at-point 'line))
           (cur-col (current-column))
@@ -1698,8 +1699,7 @@ CC : Current character at position."
       (forward-line 1)
       (while (and (not break) (not (= (line-number-at-pos (point)) (line-number-at-pos (point-max)))))
         (forward-line 1)
-        (when (< (string-distance (thing-at-point 'line) cur-line)
-                 jcs-mc/string-distance-level)
+        (when (< (string-distance (thing-at-point 'line) cur-line) sdl)
           (move-to-column cur-col)
           (mc/create-fake-cursor-at-point)
           (setq break t)))
