@@ -32,7 +32,7 @@ FNC : Callback apply to each windows."
 
 (defun jcs-make-frame-simple (name width height fnc &rest args)
   "Make frame with a bunch of default variables set.
-You will only have to fill in FNC, NAME, WIDTH and HEIGHT."
+You will only have to fill in NAME, WIDTH, HEIGHT, FNC and ARGS."
   (let ((doc-frame nil) (pixel-x nil) (pixel-y nil) (cp-buf nil)
         (abs-pixel-pos (window-absolute-pixel-position)))
     (setq pixel-x (car abs-pixel-pos))
