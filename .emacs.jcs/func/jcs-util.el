@@ -223,8 +223,7 @@ Return number of the valid buffers."
   (interactive)
   (save-excursion
     (save-restriction
-      (let ((begin-of-line-point nil)
-            (end-of-line-point nil))
+      (let ((begin-of-line-point nil) (end-of-line-point nil))
         ;; Get beginning of line poinrt and end of line point.
         (beginning-of-line)
         (setq begin-of-line-point (point))
@@ -369,6 +368,12 @@ Generally you will have to check it four times."
   "Print out the current point."
   (interactive)
   (message "Current point: %s" (point)))
+
+(defun jcs-column-to-point (column)
+  "Turn the current COLUMN to point."
+  (save-excursion
+    (move-to-column column)
+    (point)))
 
 ;;----------------------------------------------------------------------------
 ;; Character
