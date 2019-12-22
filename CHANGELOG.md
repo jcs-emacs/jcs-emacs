@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2019-12-22
+
+* Make `eldoc` compatible/interact with mouse click. (jcs-emacs-init)
+* Added peek frame util function. (jcs-emacs-init)
+* Fixed `feebleline` works with multiple frames. (jcs-emacs-init)
+
 ### 2019-12-21
 
 * Added multiple cursors previous/next similar functions. (jcs-emacs-init)
