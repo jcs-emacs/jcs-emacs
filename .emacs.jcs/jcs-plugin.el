@@ -246,7 +246,6 @@
     "Show line and column.")
   (defvar-local jcs-feebleline-show-time t
     "Show time.")
-  :config
   (setq feebleline-msg-functions
         '(;;-- Left
           (jcs--feebleline--symbol-read-only)
@@ -259,9 +258,9 @@
           (jcs--feebleline--spc/tab-and-width :align right)
           (jcs--feebleline--line/column :align right)
           (jcs--feebleline--time :align right)))
-
+  :config
   (cl-defun jcs--feebleline--insert-func (func &key (face 'default) pre (post " ") (fmt "%s") (align 'left))
-    "Overwrite `feebleline--insert-func'."
+    "Override `feebleline--insert-func' function."
     (list align
           (let* ((msg (apply func nil))
                  (string (concat pre (format fmt msg) post)))
@@ -271,6 +270,29 @@
                   (propertize string 'face face))
               ""))))
   (advice-add 'feebleline--insert-func :override #'jcs--feebleline--insert-func)
+
+  (defun jcs--feebleline--insert ()
+    "Override `feebleline--insert' function."
+    (unless (current-message)
+      (let ((left-str ()) (right-str ()))
+        (dolist (idx feebleline-msg-functions)
+          (let* ((fragment (apply 'feebleline--insert-func idx))
+                 (align (car fragment))
+                 (string (cadr fragment)))
+            (cl-case align
+              ('left (push string left-str))
+              ('right (push string right-str))
+              (t (push string left-str)))))
+        (with-current-buffer feebleline--minibuf
+          (erase-buffer)
+          (let* ((left-string (string-join (reverse left-str)))
+                 (message-truncate-lines t)
+                 (max-mini-window-height 1)
+                 (right-string (string-join (reverse right-str)))
+                 (free-space (- (jcs-max-frame-width) (length left-string) (length right-string)))
+                 (padding (make-string (max 0 free-space) ?\ )))
+            (insert (concat left-string (if right-string (concat padding right-string)))))))))
+  (advice-add 'feebleline--insert :after #'jcs--feebleline--insert)
 
   (defun jcs-advice-feebleline-mode-after (&rest _)
     "Advice after execute `feebleline-mode'."
