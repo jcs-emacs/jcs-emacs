@@ -227,7 +227,7 @@
                 upgrades))))
     (if upgrades
         (when (yes-or-no-p
-               (message "Upgrade %d package%s (%s)? "
+               (message "[ELPA] Upgrade %d package%s (%s)? "
                         (length upgrades)
                         (if (= (length upgrades) 1) "" "s")
                         (mapconcat #'package-desc-full-name upgrades ", ")))
@@ -243,7 +243,7 @@
   (let ((upgrades jcs-package-manually-install-list))
     (if upgrades
         (when (yes-or-no-p
-               (message "Upgrade %d package%s (%s)? "
+               (message "[QUELPA] Upgrade %d package%s (%s)? "
                         (length upgrades)
                         (if (= (length upgrades) 1) "" "s")
                         (mapconcat (lambda (pkgs) (nth 0 pkgs)) upgrades ", ")))
