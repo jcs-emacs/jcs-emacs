@@ -327,6 +327,7 @@ OW is the other window flag."
   "Advice overwrite `eldoc--message-command-p' COMMAND."
   ;; One can also loop through `eldoc-message-commands' and empty it out
   (memq command '(jcs-eldoc-message-now
+                  mouse-set-point
                   jcs-real-space jcs-smart-space
                   jcs-real-backspace jcs-smart-backspace
                   previous-line next-line
