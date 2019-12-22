@@ -7,7 +7,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ### 2019-12-22
 
-* Make `eldoc` compatible/interact with mouse click. (jcs-emacs-init)
+* Made `eldoc` compatible/interact with mouse click. (jcs-emacs-init)
 * Added peek frame util function. (jcs-emacs-init)
 * Fixed `feebleline` works with multiple frames. (jcs-emacs-init)
 
