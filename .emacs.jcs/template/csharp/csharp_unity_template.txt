@@ -7,7 +7,7 @@ public class #FILE_NAME_NO_EXT# : MonoBehaviour
 {
     /* Variables */
 
-    /* Setter/Getter */
+    /* Setter & Getter */
 
     /* Functions */
 
