@@ -224,25 +224,35 @@ toggle mode function."
 ;;----------------------------------------------
 ;; License
 
-(defun jcs-all-license-type ()
-  "Return the list of license type."
-  (require 'f)
-  (let ((files (directory-files jcs-license-template-path nil "\\.txt$"))
-        (types '()))
-    (dolist (file files) (push (f-no-ext (f-filename file)) types))
-    (sort types #'string-lessp)))
-
 (defun jcs-ask-insert-license-content (in-type)
-  "Insert the license content base on IN-TYPE."
+  "Ask to insert the license content base on IN-TYPE."
   (interactive (list (completing-read
                       "Type of the license: "
-                      (append (list "Default (empty)") (jcs-all-license-type)))))
+                      (append (list "Default (empty)")
+                              (jcs-dir-to-filename jcs-license-template-path ".txt")))))
   (cond ((string= in-type "Default (empty)")
          ;; Do nothing...
          )
         (t
          (file-header-insert-template-by-file-path
           (format "%s%s.txt" jcs-license-template-path in-type)))))
+
+;;----------------------------------------------
+;; Change Log
+
+(defun jcs-ask-insert-changelog-content (in-type)
+  "Ask to insert the changelog content base on IN-TYPE."
+  (interactive
+   (list (completing-read
+          "Type of the changelog: "
+          (append (list "Default (empty)")
+                  (jcs-dir-to-filename jcs-changelog-template-path ".txt")))))
+  (cond ((string= in-type "Default (empty)")
+         ;; Do nothing...
+         )
+        (t
+         (file-header-insert-template-by-file-path
+          (format "%s%s.txt" jcs-changelog-template-path in-type)))))
 
 ;;------------------------------------------------------------------------------------------------------
 ;;; Command Mode & Insert Mode
@@ -396,6 +406,10 @@ toggle mode function."
 
   (jcs-insert-header-if-valid '("\\(/\\|\\`\\)[Ll][Ii][Cc][Ee][Nn][Ss][Ee]")
                               'jcs-ask-insert-license-content
+                              t)
+
+  (jcs-insert-header-if-valid '("\\(/\\|\\`\\)[Cc][Hh][Aa][Nn][Gg][Ee][-_]*[Ll][Oo][Gg]")
+                              'jcs-ask-insert-changelog-content
                               t))
 
 (add-hook 'text-mode-hook 'jcs-text-mode-hook)
