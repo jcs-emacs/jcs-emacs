@@ -158,7 +158,7 @@
       (setq-local jcs-marking-whole-buffer-cmd-count 0)
       (setq-local jcs-marking-whole-buffer nil)))
 
-  (jcs-reload-active-mode-error-handle))
+  (jcs-reload-active-mode-with-error-handle))
 (add-hook 'post-command-hook 'jcs-post-command-hook)
 
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=

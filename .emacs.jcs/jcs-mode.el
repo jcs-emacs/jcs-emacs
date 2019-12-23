@@ -36,7 +36,7 @@ Note this is opposite logic to the toggle mode function."
       (jcs-cross-mode)   ; if state is true keep on cross mode.
     (jcs-depend-mode)))  ; vice versa, keep on depend mode.
 
-(defun jcs-reload-active-mode-error-handle ()
+(defun jcs-reload-active-mode-with-error-handle ()
   "Reload the active by handling the error occurrence."
   (unless (minibufferp)
     (if (jcs-backtrace-occurs-p)
