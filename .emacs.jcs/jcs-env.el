@@ -144,6 +144,10 @@
 ;; Resolve performance issue moving around Unicode Text.
 (setq inhibit-compacting-font-caches t)
 
+;;; License
+(defconst jcs-license-template-path "~/.emacs.jcs/template/__license/"
+  "Path point to all license template files.")
+
 ;;; Line Numbers
 (defconst jcs-line-numbers-ignore-buffers '("[*]+[[:ascii:]]+"
                                             "magit: ")
