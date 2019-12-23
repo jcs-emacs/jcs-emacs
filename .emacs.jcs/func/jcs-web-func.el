@@ -54,9 +54,8 @@ Is the opposite of `jcs-web-toggle-auto-truncate-lines'."
       (jcs-web-enable-auto-truncate-lines)
     (jcs-web-disable-auto-truncate-lines)))
 
-;;---------------------------------------------
+;;----------------------------------------------
 ;; Deletion
-;;---------------------------------------------
 
 ;;;###autoload
 (defun jcs-web-kill-whole-line ()
@@ -112,9 +111,8 @@ Is the opposite of `jcs-web-toggle-auto-truncate-lines'."
              (not (jcs-current-char-equal-p "$")))
     (backward-delete-char 1)))
 
-;;---------------------------------------------
+;;----------------------------------------------
 ;; Indentation
-;;---------------------------------------------
 
 ;;;###autoload
 (defun jcs-web-return-key ()
@@ -150,9 +148,8 @@ Is the opposite of `jcs-web-toggle-auto-truncate-lines'."
     (insert "{}")
     (backward-char 1)))
 
-;;---------------------------------------------
+;;----------------------------------------------
 ;; Impatient Mode
-;;---------------------------------------------
 
 ;;;###autoload
 (defun jcs-httpd-start ()
@@ -170,8 +167,6 @@ Is the opposite of `jcs-web-toggle-auto-truncate-lines'."
   (call-interactively 'httpd-stop)
   (message "Close real time editing with port: %d" httpd-port))
 
-
-;;-----------------------------------------------------------
 ;;-----------------------------------------------------------
 
 ;;;###autoload
@@ -188,7 +183,6 @@ Is the opposite of `jcs-web-toggle-auto-truncate-lines'."
     (put 'jcs-toggle-web-mode-offsetless-elements 'state t)))
 
 ;;-----------------------------------------------------------
-;;-----------------------------------------------------------
 
 ;;;###autoload
 (defun jcs-emmet-expand-line ()
@@ -199,7 +193,6 @@ Is the opposite of `jcs-web-toggle-auto-truncate-lines'."
     (unless (call-interactively #'emmet-expand-line)
       (jcs-ctrl-return-key))))
 
-;;-----------------------------------------------------------
 ;;-----------------------------------------------------------
 
 (defun jcs-init-web-faces ()
