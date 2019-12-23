@@ -64,6 +64,10 @@
 (defconst jcs-bury-buffer-list '("[*]ffmpeg-player[*]: ")
   "List of buffer that you don't want to show when after exit.")
 
+;;; Change Log
+(defconst jcs-changelog-template-path "~/.emacs.jcs/template/__changelog/"
+  "Path point to all changelog template files.")
+
 ;;; Compilation (Output)
 (with-eval-after-load 'compile
   (setq compilation-context-lines t)
