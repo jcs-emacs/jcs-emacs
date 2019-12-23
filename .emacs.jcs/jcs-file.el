@@ -124,8 +124,16 @@ multiple files at a time.  We need a title to present which file to select."
     ;; Return the path.
     filepath))
 
+(defun jcs-dir-to-filename (path ext)
+  "Return list of filename by PATH with EXT."
+  (require 'f)
+  (let ((files (directory-files path nil (format "\\%s$" ext)))
+        (types '()))
+    (dolist (file files) (push (f-no-ext (f-filename file)) types))
+    (sort types #'string-lessp)))
+
 ;;----------------------------------------------------------------------------
-;; Selecting File
+;; Select File
 
 ;;;###autoload
 (defun jcs-select-file ()
