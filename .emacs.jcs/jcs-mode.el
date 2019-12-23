@@ -221,6 +221,28 @@ toggle mode function."
     (make-local-variable 'adaptive-fill-regexp)
     (c-setup-paragraph-variables)))
 
+;;----------------------------------------------
+;; License
+
+(defun jcs-all-license-type ()
+  "Return the list of license type."
+  (require 'f)
+  (let ((files (directory-files jcs-license-template-path nil "\\.txt$"))
+        (types '()))
+    (dolist (file files) (push (f-no-ext (f-filename file)) types))
+    (sort types #'string-lessp)))
+
+(defun jcs-ask-insert-license-content (in-type)
+  "Insert the license content base on IN-TYPE."
+  (interactive (list (completing-read
+                      "Type of the license: "
+                      (append (list "Default (empty)") (jcs-all-license-type)))))
+  (cond ((string= in-type "Default (empty)")
+         ;; Do nothing...
+         )
+        (t
+         (file-header-insert-template-by-file-path
+          (format "%s%s.txt" jcs-license-template-path in-type)))))
 
 ;;------------------------------------------------------------------------------------------------------
 ;;; Command Mode & Insert Mode
@@ -370,7 +392,11 @@ toggle mode function."
 (defun jcs-text-mode-hook ()
   "Text mode hook."
   (auto-highlight-symbol-mode t)
-  (goto-address-mode 1))
+  (goto-address-mode 1)
+
+  (jcs-insert-header-if-valid '("\\(/\\|\\`\\)[Ll][Ii][Cc][Ee][Nn][Ss][Ee]")
+                              'jcs-ask-insert-license-content
+                              t))
 
 (add-hook 'text-mode-hook 'jcs-text-mode-hook)
 
@@ -432,23 +458,6 @@ toggle mode function."
   (define-key lisp-interaction-mode-map (kbd "M-K") #'jcs-scratch-buffer-refresh))
 
 (add-hook 'lisp-interaction-mode-hook 'jcs-lisp-interaction-mode-hook)
-
-;;==============================
-;;          Text
-;;------------------------
-
-(defun jcs-text-mode-hook ()
-  "Text mode hook."
-  (goto-address-mode 1)
-  (auto-highlight-symbol-mode t)
-
-  (jcs-insert-header-if-valid '("[.]txt")
-                              'jcs-insert-text-template)
-
-  ;; Normal
-  (define-key text-mode-map (kbd "<up>") #'jcs-previous-line)
-  (define-key text-mode-map (kbd "<down>") #'jcs-next-line))
-(add-hook 'text-mode-hook 'jcs-text-mode-hook)
 
 
 ;;------------------------------------------------------------------------------------------------------
