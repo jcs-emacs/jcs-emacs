@@ -29,14 +29,19 @@
 
 ;;;###autoload
 (defun jcs-reload-active-mode ()
-  "Reload the active mode.  Note this is opposite logic to the \
-toggle mode function."
+  "Reload the active mode.
+Note this is opposite logic to the toggle mode function."
   (interactive)
   (if (get 'jcs-depend-cross-mode-toggle 'state)
-      ;; if state is true keep on cross mode.
-      (jcs-cross-mode)
-    ;; vice versa, keep on depend mode.
-    (jcs-depend-mode)))
+      (jcs-cross-mode)   ; if state is true keep on cross mode.
+    (jcs-depend-mode)))  ; vice versa, keep on depend mode.
+
+(defun jcs-reload-active-mode-error-handle ()
+  "Reload the active by handling the error occurrence."
+  (unless (minibufferp)
+    (if (jcs-backtrace-occurs-p)
+        (jcs-red-mode-line)  ; When error, use red mode line.
+      (jcs-reload-active-mode))))
 
 (defun jcs-set-tab-width-by-mode (tw)
   "Set the tab width TW for current major mode."
