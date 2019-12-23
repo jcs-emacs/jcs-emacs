@@ -199,7 +199,7 @@ in order to take effect.  Half hot reloading process."
   (file-header-insert-template-by-file-path "~/.emacs.jcs/template/csharp/csharp_template.txt"))
 
 (defun jcs-insert-csharp-unity-template ()
-  "Header for CS header file."
+  "Header for Unity CS header file."
   (file-header-insert-template-by-file-path "~/.emacs.jcs/template/csharp/csharp_unity_template.txt"))
 
 ;;; Clojure
@@ -434,6 +434,10 @@ on language selected."
 (defun jcs-insert-typescript-template ()
   "Header for TypeScript header file."
   (file-header-insert-template-by-file-path "~/.emacs.jcs/template/typescript/typescript_template.txt"))
+
+(defun jcs-insert-typescript-cocos-creator-template ()
+  "Header for Cocos Creator TypeScript header file."
+  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/typescript/typescript_cocos_creator_template.txt"))
 
 ;;; Verilog
 (defun jcs-insert-verilog-template ()
