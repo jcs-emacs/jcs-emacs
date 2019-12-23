@@ -12,6 +12,11 @@
   "When window is not focus.")
 (add-hook 'focus-out-hook 'jcs-focus-out-hook)
 
+(defun jcs-window-size-change-functions (&rest _)
+  "When window changed size."
+  (jcs-ivy-resize-window-once))
+(add-hook 'window-size-change-functions 'jcs-window-size-change-functions)
+
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 (defun jcs-find-file-hook ()
