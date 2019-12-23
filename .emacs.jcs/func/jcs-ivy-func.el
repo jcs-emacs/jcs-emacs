@@ -7,6 +7,14 @@
 (require 'ffap)
 
 
+(defun jcs-ivy-resize-window-once ()
+  "Resize the ivy window once."
+  (when (minibufferp)
+    (jcs-minibuffer-do-stuff
+     (lambda ()
+       (shrink-window (1+ ivy-height))  ; Plus 1 for the input field.
+       (ivy--resize-minibuffer-to-fit)))))
+
 (defun jcs--ivy-previous-line--advice-after (&rest _)
   "Advice execute after `ivy-previous-line' function."
   (when (and (= ivy--index -1)
