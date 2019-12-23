@@ -112,6 +112,17 @@ Return number of the valid buffers."
        (not (jcs-is-light-color hex-code))))
 
 ;;----------------------------------------------------------------------------
+;; Error
+
+(defun jcs-backtrace-occurs-p ()
+  "Check if the backtrace occurs."
+  (let ((bb-name "*Backtrace*") (occurs nil))
+    (when (get-buffer bb-name)
+      (with-current-buffer bb-name
+        (setq occurs (not (string-empty-p (buffer-string))))))
+    occurs))
+
+;;----------------------------------------------------------------------------
 ;; Event
 
 (defun jcs-last-input-event-p (te)
