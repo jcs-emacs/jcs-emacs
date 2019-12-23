@@ -156,7 +156,9 @@
     (when (>= jcs-marking-whole-buffer-cmd-count 2)
       (deactivate-mark)
       (setq-local jcs-marking-whole-buffer-cmd-count 0)
-      (setq-local jcs-marking-whole-buffer nil))))
+      (setq-local jcs-marking-whole-buffer nil)))
+
+  (jcs-reload-active-mode-error-handle))
 (add-hook 'post-command-hook 'jcs-post-command-hook)
 
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
