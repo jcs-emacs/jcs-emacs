@@ -19,7 +19,8 @@
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]ts")
-                              'jcs-insert-typescript-template)
+                              'jcs-typescript-ask-source
+                              t)
 
   ;; Normal
   (define-key typescript-mode-map (kbd "DEL") #'jcs-electric-backspace)
