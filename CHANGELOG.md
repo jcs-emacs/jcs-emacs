@@ -11,7 +11,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Fixed after resized frame ivy window doesn't get resize issue. (jcs-emacs-init)
 * Added `license` template functionalities. (jcs-emacs-init)
 * Added `changelog` template functionalities. (jcs-emacs-init)
-* Added `typescript` tempalte for [Cocos Creator](https://www.cocos.com/en/creator) scripting. (jcs-emacs-inti)
+* Added `typescript` template for [Cocos Creator](https://www.cocos.com/en/creator) scripting. (jcs-emacs-inti)
 
 ### 2019-12-22
 
