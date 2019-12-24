@@ -504,7 +504,16 @@
   (setq lsp-auto-guess-root t)
   (setq lsp-keep-workspace-alive nil)  ; Auto-kill LSP server
   (setq lsp-prefer-flymake nil)        ; Use lsp-ui and flycheck
-  (setq flymake-fringe-indicator-position 'right-fringe))
+  (setq flymake-fringe-indicator-position 'right-fringe)
+  :config
+  (defun jcs--lsp-lv-buffer-alive-p ()
+    "Check if ` *LV*' buffer alive."
+    (get-buffer " *LV*"))
+
+  (defun jcs--lsp-current-last-signature-buffer ()
+    "Check if current buffer last signature buffer."
+    (string-match-p (buffer-name lsp--last-signature-buffer)
+                    (buffer-file-name))))
 
 
 (use-package multi-shell
