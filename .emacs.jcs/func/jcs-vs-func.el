@@ -11,15 +11,14 @@
   (interactive)
   (if (jcs-inside-comment-or-string-p)
       (insert "{")
-    (let ((pretty-it nil)
-          (space-infront nil))
+    (let ((pretty-it nil) (space-infront nil))
       (unless (jcs-current-char-equal-p "{")
         (setq pretty-it t)
-        (unless (jcs-current-whitespace-or-tab-p)
+        (when (and (not (jcs-current-whitespace-or-tab-p))
+                   (not (jcs-current-char-equal-p '("(" "["))))
           (setq space-infront t)))
 
-      (when space-infront
-        (insert " "))
+      (when space-infront (insert " "))
 
       (insert "{ }")
       (backward-char 1)
@@ -38,8 +37,7 @@
   "For programming langauge that need `}`."
   (interactive)
   (insert "}")
-  (let ((ind-beg -1)
-        (ind-end (point)))
+  (let ((ind-beg -1) (ind-end (point)))
     (save-excursion
       (jcs-find-pair-paren "{" "}" 'backward)
       (setq ind-beg (point)))
