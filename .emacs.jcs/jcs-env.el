@@ -110,7 +110,7 @@
 (setq-default
  electric-pair-inhibit-predicate
  (lambda (c)
-   (if (jcs-current-char-equal-p '("\""))
+   (if (jcs-current-char-equal-p '("\"" "'"))
        (electric-pair-default-inhibit c)
      (if (not (jcs-inside-comment-or-string-p))
          (electric-pair-default-inhibit c)
