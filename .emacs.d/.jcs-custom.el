@@ -31,9 +31,6 @@
  '(send-mail-function (quote mailclient-send-it))
  '(version-control nil))
 
-(put 'erase-buffer 'disabled nil)
-(put 'downcase-region 'disabled nil)              ; Enable downcase-region
-(put 'upcase-region 'disabled nil)                ; Enable upcase-region
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -47,3 +44,7 @@
  '(company-tooltip-common ((((type x)) (:inherit company-tooltip :weight bold)) (t (:background "light gray" :foreground "#C00000"))))
  '(company-tooltip-common-selection ((((type x)) (:inherit company-tooltip-selection :weight bold)) (t (:background "steel blue" :foreground "#C00000"))))
  '(company-tooltip-selection ((t (:background "steel blue" :foreground "white")))))
+
+(put 'erase-buffer 'disabled nil)
+(put 'downcase-region 'disabled nil)              ; Enable downcase-region
+(put 'upcase-region 'disabled nil)                ; Enable upcase-region
