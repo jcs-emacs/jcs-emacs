@@ -501,7 +501,10 @@
 (use-package lsp
   :defer t
   :init
-  (setq lsp-auto-guess-root t))
+  (setq lsp-auto-guess-root t)
+  (setq lsp-keep-workspace-alive nil)  ; Auto-kill LSP server
+  (setq lsp-prefer-flymake nil)        ; Use lsp-ui and flycheck
+  (setq flymake-fringe-indicator-position 'right-fringe))
 
 
 (use-package multi-shell
