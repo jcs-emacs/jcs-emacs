@@ -961,9 +961,8 @@ Return nil, there is no region selected and mark is not active."
 (defun jcs-goto-start-of-the-comment ()
   "Go to the start of the comment."
   (interactive)
-  (when (jcs-is-inside-comment-block-p)
-    (backward-char 1)
-    (jcs-goto-start-of-the-comment)))
+  (while (jcs-is-inside-comment-block-p)
+    (re-search-backward comment-start-skip)))
 
 ;;;###autoload
 (defun jcs-goto-end-of-the-comment ()
