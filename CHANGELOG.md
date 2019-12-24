@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2019-12-24
+
+* Applied `*lsp-` related buffer to diminish buffer list. (jcs-emacs-init)
+
 ### 2019-12-23
 
 * Added window size change hook. (jcs-emacs-init)
