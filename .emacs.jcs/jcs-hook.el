@@ -25,7 +25,10 @@
         (save-selected-window
           (select-window jcs--lsp-lv-was-alive--window)
           ;; Ensure the window still selecting this buffer.
-          (when (jcs--lsp-current-last-signature-buffer) (recenter-top-bottom)))
+          (when (jcs--lsp-current-last-signature-buffer)
+            (jcs-walk-through-all-windows-once
+             (lambda ()
+               (recenter-top-bottom)))))
         (setq jcs--lsp-lv-was-alive--window nil)))))
 (add-hook 'window-size-change-functions 'jcs-window-size-change-functions)
 
