@@ -12,18 +12,19 @@
   "When window is not focus.")
 (add-hook 'focus-out-hook 'jcs-focus-out-hook)
 
-(defvar jcs--lsp-lv-was-alive nil
-  "Record down if ` *LV*' buffer was alive.")
+(defvar jcs--lsp-lv-was-alive--window nil
+  "Record down (window) if ` *LV*' buffer was alive.")
 
 (defun jcs-window-size-change-functions (&rest _)
   "When window changed size."
   (jcs-ivy-resize-window-once)
   (when lsp-mode
     (if (get-buffer " *LV*")
-        (setq jcs--lsp-lv-was-alive t)
-      (when jcs--lsp-lv-was-alive
-        (recenter-top-bottom)
-        (setq jcs--lsp-lv-was-alive nil)))))
+        (setq jcs--lsp-lv-was-alive--window (selected-window))
+      (when jcs--lsp-lv-was-alive--window
+        (save-selected-window
+          (select-window jcs--lsp-lv-was-alive--window) (recenter-top-bottom))
+        (setq jcs--lsp-lv-was-alive--window nil)))))
 (add-hook 'window-size-change-functions 'jcs-window-size-change-functions)
 
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
