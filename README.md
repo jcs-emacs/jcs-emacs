@@ -226,7 +226,7 @@ not Windows should start up under a second.*
 
 ### Highlight
 
-Here is the list of the major highlights to this configuration. Hope you would 
+Here is the list of the major highlights to this configuration. Hope you would
 like my taste!
 
 * **Out of the box** - Out of the box anywhere.
@@ -235,7 +235,7 @@ like my taste!
 * **Old-Fashioned** - Doesn't use any beatiful GUI because it may not work in terminal.
 * **Multiple Languages** - Support multiple programming languages.
 * **Consistent** - Having the same coding experience in different major mode.
-* **Easy to use** - Design close to other modern text editors. Shouldn't spend 
+* **Easy to use** - Design close to other modern text editors. Shouldn't spend
 you too much time.
 * **Dual Windows** - Design to people who like multiple windows opened simultaneously.
 * **Keyboard Focused** - You can do everything by using keyboard and mouse are just optional.
@@ -261,6 +261,8 @@ Implementation for executing script for building and running
 the software.
 * [*Capital Word*](./features/capital-word) -
 You can navigate/kill word by seeing capital letter.
+* [*Changelog Helper*](./features/changelog-helper) -
+Help to create changelog while creating `CHANGELOG` file using template.
 * [*Consistent Key Bindings*](./features/consistent-key-bindings) -
 Has consistent key bindings across all modes.
 * [*Curly Bracket Modes*](./curly-bracket-modes) -
@@ -294,6 +296,8 @@ Generic control the indentation level for each mode, for more information see [i
 * [*Line Numbers Modding*](./features/line-numbers-modding) -
 Mixed used of `linum` and `display-line-numbers-mode`
 base on the file usage.
+* [*License Helper*](./features/license-helper) -
+Help to create license while creating `LICENSE` file using template.
 * [*Mini State*](./features/mini-state) -
 Mini mode state use to visually see what backend is the
 config currently running.
