@@ -652,21 +652,15 @@ REGEXP : reqular expression use to align."
 (defun jcs-other-window-next (&optional cnt not-all-frame)
   "Move CNT to the next window with NOT-ALL-FRAME."
   (interactive)
-  (when (or (not cnt) (not (numberp cnt))) (setq cnt 1))
-  (if not-all-frame (other-window cnt nil) (other-window cnt t))
-  (select-frame-set-input-focus (selected-frame))
-  (jcs-update-speedbar-record-after-select-new-window)  ; Update `speedbar'
-  (jcs-buffer-menu-safe-refresh))
+  (unless (numberp cnt) (setq cnt 1))
+  (if not-all-frame (other-window cnt nil) (other-window cnt t)))
 
 ;;;###autoload
 (defun jcs-other-window-prev (&optional cnt not-all-frame)
   "Move CNT to the previous window with NOT-ALL-FRAME."
   (interactive)
-  (when (or (not cnt) (not (numberp cnt))) (setq cnt -1))
-  (if not-all-frame (other-window cnt nil) (other-window cnt t))
-  (select-frame-set-input-focus (selected-frame))
-  (jcs-update-speedbar-record-after-select-new-window)  ; Update `speedbar'
-  (jcs-buffer-menu-safe-refresh))
+  (unless (numberp cnt) (setq cnt 1))
+  (if not-all-frame (other-window cnt nil) (other-window cnt t)))
 
 ;;;###autoload
 (defun jcs-scroll-up-one-line (&optional n)
