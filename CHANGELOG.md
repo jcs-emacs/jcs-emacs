@@ -8,6 +8,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2019-12-24
 
 * Applied `*lsp-` related buffer to diminish buffer list. (jcs-emacs-init)
+* Reverted the message wouldn't work the first time issue from Emacs 27. (jcs-emacs-init)
+* Added completed `lsp` configuration. (jcs-emacs-init)
 
 ### 2019-12-23
 
