@@ -1499,8 +1499,7 @@ REVERSE : t forward, nil backward."
   "Forward delete close pair characters in sequence.
 CC : Current character at position."
   (save-excursion
-    (cond (;; Seq => /**/
-           (string= cc "*")
+    (cond ((string= cc "*")  ; Seq => /**/
            (when (jcs-current-char-equal-p "/")
              (save-excursion
                (forward-char 1)
@@ -1516,20 +1515,18 @@ CC : Current character at position."
   "Backward delete open pair characters in sequence.
 CC : Current character at position."
   (save-excursion
-    (cond (;; Seq => /**/
-           (string= cc "*")
-           (progn
-             (save-excursion
-               (backward-char 1)
-               (when (jcs-current-char-equal-p "/")
+    (cond ((string= cc "*")  ; Seq => /**/
+           (save-excursion
+             (backward-char 1)
+             (when (jcs-current-char-equal-p "/")
+               (forward-char 1)
+               (when (jcs-current-char-equal-p "*")
                  (forward-char 1)
-                 (when (jcs-current-char-equal-p "*")
-                   (forward-char 1)
-                   (when (jcs-current-char-equal-p "/")
-                     ;; Found sequence, delete them!
-                     (backward-delete-char 1)
-                     (backward-delete-char 1)
-                     (backward-delete-char 1))))))))))
+                 (when (jcs-current-char-equal-p "/")
+                   ;; Found sequence, delete them!
+                   (backward-delete-char 1)
+                   (backward-delete-char 1)
+                   (backward-delete-char 1)))))))))
 
 ;;;###autoload
 (defun jcs-electric-delete ()
