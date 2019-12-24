@@ -119,9 +119,10 @@ without having to get used to an new IDE.
 
 ## :newspaper: News
 
-Here is the list of few important and recent changes to this
+Here is the list of few important and recent changes to this 
 configuration.
 
+* `6.0.3` - Started integrating more `lsp-mode` and `dap-mode` details.
 * `6.0.0` - Switched from `helm` to `ivy` due to `helm`'s instability.
 * `5.9.3` - The last version to support `helm`.
 * `5.9.0` - Implemented video player functionalities.
@@ -130,7 +131,6 @@ configuration.
 * `5.8.6` - Use `web-mode` instead of `vue-mode` for editing `.vue` file.
 * `5.8.4` - Start using `quelpa` to manage self dependencies on the fly.
 * `5.8.3` - Corrected key bindings `C-x` to cut and `C-c` to copy.
-* `5.8.1` - Integrating `lsp-mode` and `dap-mode` to this configuration.
 
 
 ## :floppy_disk: Installation
