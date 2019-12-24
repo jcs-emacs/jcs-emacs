@@ -10,6 +10,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Applied `*lsp-` related buffer to diminish buffer list. (jcs-emacs-init)
 * Reverted the message wouldn't work the first time issue from Emacs 27. (jcs-emacs-init)
 * Added completed `lsp` configuration. (jcs-emacs-init)
+* Integrated better `lsp` signature buffer to dual window users/configurations. (jcs-emacs-init)
+* Organized to use `other-window` advice/hook instead of function wrapper. (jcs-emacs-init)
 
 ### 2019-12-23
 
