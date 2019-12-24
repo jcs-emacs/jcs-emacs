@@ -19,11 +19,13 @@
   "When window changed size."
   (jcs-ivy-resize-window-once)
   (when lsp-mode
-    (if (get-buffer " *LV*")
+    (if (jcs--lsp-lv-buffer-alive-p)
         (setq jcs--lsp-lv-was-alive--window (selected-window))
       (when jcs--lsp-lv-was-alive--window
         (save-selected-window
-          (select-window jcs--lsp-lv-was-alive--window) (recenter-top-bottom))
+          (select-window jcs--lsp-lv-was-alive--window)
+          ;; Ensure the window still selecting this buffer.
+          (when (jcs--lsp-current-last-signature-buffer) (recenter-top-bottom)))
         (setq jcs--lsp-lv-was-alive--window nil)))))
 (add-hook 'window-size-change-functions 'jcs-window-size-change-functions)
 
@@ -48,6 +50,14 @@
   "Advice after execute `switch-to-buffer' command."
   (jcs-buffer-menu-safe-refresh))
 (advice-add 'switch-to-buffer :after 'jcs--switch-to-buffer--advice-after)
+
+(defun jcs--other-window--advice-after (&rest _args)
+  "Advice after execute `other-window' command."
+  (select-frame-set-input-focus (selected-frame))
+  (jcs-update-speedbar-record-after-select-new-window)  ; Update `speedbar'
+  (jcs-buffer-menu-safe-refresh)
+  (when (functionp 'lsp-signature-maybe-stop) (lsp-signature-maybe-stop)))
+(advice-add 'other-window :after 'jcs--other-window--advice-after)
 
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
