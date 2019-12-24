@@ -184,7 +184,8 @@
   :init
   (setq diminish-buffer-list '("[*]helm" "[*]esup-" "[*]quelpa-"
                                "[*]compilation" "[*]output"
-                               "[*]Async Shell Command[*]:" "[*]shell" "[*]eshell"))
+                               "[*]Async Shell Command[*]:" "[*]shell" "[*]eshell"
+                               "[*]lsp-"))
   (with-eval-after-load 'jcs-buffer-menu
     (diminish-buffer-mode 1))
   :config
