@@ -36,7 +36,9 @@
 (defun jcs-vs-closing-curly-bracket-key ()
   "For programming langauge that need `}`."
   (interactive)
-  (insert "}")
+  (if (jcs-forward-pos-char-equal-p "}" 1)
+      (forward-char 1)
+    (insert "}"))
   (let ((ind-beg -1) (ind-end (point)))
     (save-excursion
       (jcs-find-pair-paren "{" "}" 'backward)
