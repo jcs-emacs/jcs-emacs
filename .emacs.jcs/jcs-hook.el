@@ -17,7 +17,7 @@
 
 (defun jcs-window-size-change-functions (&rest _)
   "When window changed size."
-  (when lsp-mode
+  (when (and (boundp 'lsp-mode) lsp-mode)
     (if (jcs--lsp-lv-buffer-alive-p)
         (setq jcs--lsp-lv-was-alive--window (selected-window))
       (when jcs--lsp-lv-was-alive--window
