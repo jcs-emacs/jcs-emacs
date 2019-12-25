@@ -28,9 +28,7 @@
 (defun jcs-buffer-name-or-buffer-file-name ()
   "Sometimes `buffer-file-name` is nil, then return `buffer-name` instead.
 Else we just return `buffer-file-name` if available."
-  (if (buffer-file-name)
-      (buffer-file-name)
-    (buffer-name)))
+  (if (buffer-file-name) (buffer-file-name) (buffer-name)))
 
 (defun jcs-buffer-exists-p (buf-name)
   "Check if the buffer BUF-NAME exists."
@@ -161,6 +159,31 @@ Return number of the valid buffers."
     (with-temp-message (or (current-message) nil)
       (let ((inhibit-message t))
         (apply fnc args)))))
+
+;;----------------------------------------------------------------------------
+;; Fuzzy
+
+(defun jcs-flx-sort-candidates-by-regex (candidates regex)
+  "Sort CANDIDATES by REGEX."
+  (require 'flx)
+  (let ((scoring-table (make-hash-table))
+        (scoring-keys '()))
+    (dolist (cand candidates)
+      (let* ((scoring (flx-score cand regex))
+             ;; Ensure score is not `nil'.
+             (score (if scoring (nth 0 scoring) 0)))
+        ;; For first time access score with hash-table.
+        (unless (gethash score scoring-table) (setf (gethash score scoring-table) '()))
+        ;; Push the candidate with the target score to hash-table.
+        (push cand (gethash score scoring-table))))
+    ;; Get all the keys into a list.
+    (maphash (lambda (score-key _cand-lst) (push score-key scoring-keys)) scoring-table)
+    (setq scoring-keys (sort scoring-keys #'>))  ; Sort keys in order.
+    (setq candidates '())  ; Clean up, and ready for final output.
+    (dolist (key scoring-keys)
+      (let ((cands (sort (gethash key scoring-table) #'string-lessp)))
+        (setq candidates (append candidates cands)))))
+  candidates)
 
 ;;----------------------------------------------------------------------------
 ;; Time
