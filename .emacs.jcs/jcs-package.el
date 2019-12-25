@@ -50,6 +50,7 @@
     com-css-sort
     company
     company-fuzzy
+    company-lsp
     company-quickhelp
     counsel
     counsel-projectile
