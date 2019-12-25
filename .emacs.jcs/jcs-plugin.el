@@ -141,6 +141,12 @@
   (dashboard-setup-startup-hook))
 
 
+(use-package define-it
+  :defer t
+  :init
+  (setq define-it-output-choice 'pop))
+
+
 (use-package diminish
   :defer t
   :config
