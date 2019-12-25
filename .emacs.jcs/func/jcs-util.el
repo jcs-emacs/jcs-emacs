@@ -26,8 +26,8 @@
   (jcs-print-current-buffer-file-name))
 
 (defun jcs-buffer-name-or-buffer-file-name ()
-  "Sometimes `buffer-file-name' is nil, then return `buffer-name' instead.
-Else we just return `buffer-file-name' if available."
+  "Sometimes `buffer-file-name` is nil, then return `buffer-name` instead.
+Else we just return `buffer-file-name` if available."
   (if (buffer-file-name)
       (buffer-file-name)
     (buffer-name)))
@@ -156,7 +156,7 @@ Return number of the valid buffers."
 ;; Function
 
 (defun jcs-mute-apply (fnc &rest args)
-  "Execute function without message."
+  "Execute FNC with ARGS without message."
   (let ((message-log-max nil))
     (with-temp-message (or (current-message) nil)
       (let ((inhibit-message t))
@@ -449,6 +449,19 @@ Generally you will have to check it four times."
          (jcs-is-contain-list-string c (jcs-get-current-char-string)))
         (t nil)))
 
+(defun jcs-current-pos-char-equal-p (c pt)
+  "Check PT's character the same as C."
+  (save-excursion
+    (goto-char pt)
+    (jcs-current-char-equal-p c)))
+
+(defun jcs-forward-pos-char-equal-p (c n)
+  "Move point N characters forward (backward if N is negative) then check \
+the character the same as C."
+  (save-excursion
+    (forward-char n)
+    (jcs-current-char-equal-p c)))
+
 (defun jcs-current-char-string-match-p (c)
   "Check the current character string match to C."
   (if (jcs-is-beginning-of-buffer-p)
@@ -728,7 +741,7 @@ Returns nil, the word isn't the same."
   (= (point) (point-max)))
 
 (defun jcs-is-current-file-empty-p (&optional fn)
-  "Check if the file an empty file."
+  "Check if the FN an empty file."
   (if fn
       (with-current-buffer fn
         (and (jcs-is-beginning-of-buffer-p)
@@ -796,7 +809,7 @@ Return nil, vice versa."
   (save-excursion
     (let ((there-is-empty-line nil))
       (when (>= min-pt max-pt)
-        (error "Min point cannot be larger than max point..")
+        (error "Min point cannot be larger than max point")
         ;; Return false.
         (equal there-is-empty-line t))
       (goto-char min-pt)
@@ -991,12 +1004,12 @@ Return nil, there is no region selected and mark is not active."
           (plist-get (text-properties-at pos) 'face)))))
 
 (defun jcs-get-current-point-face (&optional pos)
-  "Get current point's type face as string."
+  "Get current POS's type face as string."
   (unless pos (setq pos (point)))
   (jcs-get-faces pos))
 
 (defun jcs-is-current-point-face (in-face &optional pos)
-  "Check if current face the same face as IN-FACE."
+  "Check if current POS's face the same face as IN-FACE."
   (let ((faces (jcs-get-current-point-face pos)))
     (if (listp faces)
         (if (equal (cl-position in-face faces :test 'string=) nil)
@@ -1007,7 +1020,7 @@ Return nil, there is no region selected and mark is not active."
       (string= in-face faces))))
 
 (defun jcs-is-default-face-p (&optional pos)
-  "Check default face."
+  "Check default face at POS."
   (or (= (length (jcs-get-current-point-face pos)) 0)
       (and (= (length (jcs-get-current-point-face pos)) 1)
            (jcs-is-current-point-face "hl-line"))))
@@ -1107,7 +1120,7 @@ The reverse mean the check from regular expression is swapped."
   (cl-some #'(lambda (lb-sub-symbol) (equal lb-sub-symbol in-symbol)) in-list))
 
 (defun jcs-is-contain-list-integer (in-list in-int)
-  "Check if IN-STR contain in any integer in the IN-LIST."
+  "Check if IN-INT contain in any integer in the IN-LIST."
   (cl-some #'(lambda (lb-sub-int) (= lb-sub-int in-int)) in-list))
 
 ;;----------------------------------------------------------------------------
@@ -1157,18 +1170,18 @@ The reverse mean the check from regular expression is swapped."
   (bound-and-true-p mode-obj))
 
 (defun jcs-re-enable-mode-if-was-enabled (mode-name)
-  "Re-enable the mode if was enabled."
+  "Re-enable the MODE-NAME if was enabled."
   (when (symbol-value mode-name) (jcs-re-enable-mode mode-name))
   (symbol-value mode-name))
 
 (defun jcs-re-enable-mode (mode-name)
-  "Re-enable the mode."
+  "Re-enable the MODE-NAME."
   (funcall mode-name -1)
   (funcall mode-name 1))
 
-(defun jcs-enable-disable-mode-by-condition (mode-name pred)
+(defun jcs-enable-disable-mode-by-condition (mode-name predicate)
   "To enable/disable the MODE-NAME by PREDICATE."
-  (if pred (funcall mode-name 1) (funcall mode-name -1)))
+  (if predicate (funcall mode-name 1) (funcall mode-name -1)))
 
 ;;----------------------------------------------------------------------------
 ;; I/O
@@ -1500,8 +1513,8 @@ IN-VAL : input value to set to IN-VAR."
         (t nil)))
 
 ;;;###autoload
-(defun jcs-ask-line-endings-for-this-sh-script (tp)
-  "Ask the saved line endings for this shell script."
+(defun jcs-ask-line-endings-for-this-sh-script (type)
+  "Ask the saved line endings TYPE for this shell script."
   (require 'show-eol)
   (interactive
    (list
@@ -1512,11 +1525,11 @@ IN-VAL : input value to set to IN-VAR."
        (push (format "=> file: (%s)" (show-eol--get-current-system)) read-lst)
        read-lst))))
   (let ((sys-type nil))
-    (cond ((string= tp "Windows (dos)") (setq sys-type 'dos))
-          ((string= tp "macOS (mac)") (setq sys-type 'mac))
-          ((string= tp "Linux (unix)") (setq sys-type 'unix))
-          ((string-match-p "file" tp) (setq sys-type (show-eol--get-current-system)))
-          ((string-match-p "system" tp) (setq sys-type (jcs-get-current-sysem))))
+    (cond ((string= type "Windows (dos)") (setq sys-type 'dos))
+          ((string= type "macOS (mac)") (setq sys-type 'mac))
+          ((string= type "Linux (unix)") (setq sys-type 'unix))
+          ((string-match-p "file" type) (setq sys-type (show-eol--get-current-system)))
+          ((string-match-p "system" type) (setq sys-type (jcs-get-current-sysem))))
     (set-buffer-file-coding-system sys-type)))
 
 ;;----------------------------------------------------------------------------
