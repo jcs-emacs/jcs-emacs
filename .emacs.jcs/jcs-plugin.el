@@ -99,6 +99,13 @@
   (with-eval-after-load 'company
     (global-company-fuzzy-mode t)))
 
+(use-package company-lsp
+  :defer t
+  :init
+  (setq company-lsp-cache-candidates 'auto)
+  (with-eval-after-load 'lsp
+    (push 'company-lsp company-backends)))
+
 (use-package company-quickhelp
   :defer t
   :init
