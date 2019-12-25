@@ -102,7 +102,7 @@
 (use-package company-lsp
   :defer t
   :init
-  (setq company-lsp-cache-candidates 'auto)
+  (setq company-lsp-cache-candidates nil)
   (with-eval-after-load 'lsp
     (push 'company-lsp company-backends)))
 
