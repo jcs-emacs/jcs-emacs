@@ -104,7 +104,15 @@
   :init
   (setq company-lsp-cache-candidates nil)
   (with-eval-after-load 'lsp
-    (push 'company-lsp company-backends)))
+    (push 'company-lsp company-backends))
+  :config
+  (defun jcs--company-lsp-flx--sort-transformer (candidates)
+    "Flx sort for `company-lsp'."
+    (let ((prefix (company-lsp 'prefix)))
+      (when (listp prefix) (setq prefix (car prefix)))
+      (jcs-flx-sort-candidates-by-regex candidates prefix)))
+  ;; Add it to company's transfomers list.
+  (setq company-transformers (append company-transformers '(jcs--company-lsp-flx--sort-transformer))))
 
 (use-package company-quickhelp
   :defer t
