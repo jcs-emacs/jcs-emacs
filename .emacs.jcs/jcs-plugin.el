@@ -523,7 +523,7 @@
   (defun jcs--lsp-ui-doc-show-safely ()
     "Safe way to show lsp UI document."
     (when (and (boundp 'lsp-ui-mode) lsp-ui-mode)
-      ;;(call-interactively #'lsp-ui-doc-show)
+      ;;(ignore-errors (call-interactively #'lsp-ui-doc-show))
       ))
   :config
   (defun jcs--lsp-lv-buffer-alive-p ()
