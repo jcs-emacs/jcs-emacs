@@ -208,12 +208,6 @@
   (advice-add 'jcs-buffer-menu-refresh-buffer :before #'jcs--diminish-buffer-clean--advice-before))
 
 
-(use-package dimmer
-  :defer t
-  :init
-  (setq dimmer-fraction 0.2))
-
-
 (use-package dumb-jump
   :defer t
   :init
@@ -511,7 +505,7 @@
   (setq line-reminder-show-option (if (display-graphic-p) 'indicators 'linum)))
 
 
-(use-package lsp
+(use-package lsp-mode
   :defer t
   :init
   (setq lsp-auto-guess-root t)
@@ -531,6 +525,26 @@
     "Hook runs after entering or leaving `lsp-mode'."
     (if lsp-mode (company-fuzzy-mode -1) (company-fuzzy-mode 1)))
   (add-hook 'lsp-mode-hook 'jcs--lsp-mode-hook))
+
+(use-package lsp-ui
+  :defer t
+  :init
+  (setq lsp-ui-doc-enable t
+        lsp-ui-doc-use-webkit nil
+        lsp-ui-doc-delay 0.5
+        lsp-ui-doc-include-signature t
+        lsp-ui-doc-position 'at-point
+        lsp-ui-doc-border (face-foreground 'default)
+        lsp-eldoc-enable-hover nil
+        lsp-ui-imenu-enable t
+        lsp-ui-imenu-colors `(,(face-foreground 'font-lock-keyword-face)
+                              ,(face-foreground 'font-lock-string-face)
+                              ,(face-foreground 'font-lock-constant-face)
+                              ,(face-foreground 'font-lock-variable-name-face))
+        lsp-ui-sideline-enable t
+        lsp-ui-sideline-show-hover nil
+        lsp-ui-sideline-show-diagnostics nil
+        lsp-ui-sideline-ignore-duplicate t))
 
 
 (use-package multi-shell
