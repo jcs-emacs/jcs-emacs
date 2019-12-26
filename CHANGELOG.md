@@ -10,6 +10,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * According to [company-lsp/131](https://github.com/tigersoldier/company-lsp/issues/131), 
  revert `flx` support with `company-lsp`. Just set `company-lsp-cache-candidates`
  to `auto`. (jcs-emacs-init)
+* Removed package => `dimmer`. (jcs-emacs-init)
+* Installed new package => `lsp-ui`. (jcs-emacs-init)
 
 ### 2019-12-25
 
