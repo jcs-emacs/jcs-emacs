@@ -512,6 +512,10 @@
   (setq lsp-keep-workspace-alive nil)  ; Auto-kill LSP server
   (setq lsp-prefer-flymake nil)        ; Use lsp-ui and flycheck
   (setq flymake-fringe-indicator-position 'right-fringe)
+
+  (defun jcs--lsp-signature-maybe-stop ()
+    "Maybe stop the signature action."
+    (when (functionp 'lsp-signature-maybe-stop) (lsp-signature-maybe-stop)))
   :config
   (defun jcs--lsp-lv-buffer-alive-p ()
     "Check if ` *LV*' buffer alive."
@@ -544,7 +548,11 @@
         lsp-ui-sideline-enable t
         lsp-ui-sideline-show-hover nil
         lsp-ui-sideline-show-diagnostics nil
-        lsp-ui-sideline-ignore-duplicate t))
+        lsp-ui-sideline-ignore-duplicate t)
+
+  (defun jcs--lsp-ui-doc--delete-frame ()
+    "Delete UI doc if exists."
+    (when (functionp 'lsp-ui-doc--delete-frame) (lsp-ui-doc--delete-frame))))
 
 
 (use-package multi-shell
