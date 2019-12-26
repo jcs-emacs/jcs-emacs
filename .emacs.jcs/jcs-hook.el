@@ -5,11 +5,13 @@
 
 (defun jcs-focus-in-hook ()
   "When window is focus."
-  (jcs-revert-all-file-buffers))
+  (jcs-revert-all-file-buffers)
+  (jcs--lsp-ui-doc-show-safely))
 (add-hook 'focus-in-hook 'jcs-focus-in-hook)
 
 (defun jcs-focus-out-hook ()
-  "When window is not focus.")
+  "When window is not focus."
+  (jcs--lsp-ui-doc-stop-timer))
 (add-hook 'focus-out-hook 'jcs-focus-out-hook)
 
 (defvar jcs--lsp-lv-was-alive nil
@@ -66,7 +68,8 @@
     (select-frame-set-input-focus (selected-frame)))
   (jcs-update-speedbar-record-after-select-new-window)  ; Update `speedbar'
   (jcs-buffer-menu-safe-refresh)
-  (jcs--lsp-signature-maybe-stop))
+  (jcs--lsp-signature-maybe-stop)
+  (jcs--lsp-ui-doc-show-safely))
 (advice-add 'other-window :after 'jcs--other-window--advice-after)
 
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
