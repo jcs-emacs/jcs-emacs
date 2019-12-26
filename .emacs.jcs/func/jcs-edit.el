@@ -657,7 +657,7 @@ REGEXP : reqular expression use to align."
 (defun jcs-other-window-prev (&optional cnt not-all-frame)
   "Move CNT to the previous window with NOT-ALL-FRAME."
   (interactive)
-  (unless (numberp cnt) (setq cnt 1))
+  (unless (numberp cnt) (setq cnt -1))
   (if not-all-frame (other-window cnt nil) (other-window cnt t)))
 
 ;;;###autoload
