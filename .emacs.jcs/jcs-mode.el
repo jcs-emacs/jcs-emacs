@@ -385,7 +385,6 @@ Note this is opposite logic to the toggle mode function."
 
 ;;==============================
 ;;       Compilation
-;;------------------------
 
 (defun jcs-compilation-mode-hook ()
   "Compilation mode hook."
@@ -402,7 +401,6 @@ Note this is opposite logic to the toggle mode function."
 
 ;;==============================
 ;;        Text Mode
-;;------------------------
 
 (defun jcs-text-mode-hook ()
   "Text mode hook."
@@ -421,7 +419,6 @@ Note this is opposite logic to the toggle mode function."
 
 ;;==============================
 ;;    Programming Mode
-;;------------------------
 
 (defun jcs-prog-mode-hook ()
   "Programming language mode hook."
@@ -438,7 +435,6 @@ Note this is opposite logic to the toggle mode function."
 
 ;;==============================
 ;;      Emacs Lisp
-;;------------------------
 
 (defun jcs-emacs-lisp-mode-hook ()
   "Emacs Lisp mode hook."
@@ -451,10 +447,8 @@ Note this is opposite logic to the toggle mode function."
 
 (add-hook 'emacs-lisp-mode-hook 'jcs-emacs-lisp-mode-hook)
 
-
 ;;==============================
 ;;          Lisp
-;;------------------------
 
 (defun jcs-lisp-mode-hook ()
   "Lisp mode hook."
