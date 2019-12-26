@@ -102,17 +102,9 @@
 (use-package company-lsp
   :defer t
   :init
-  (setq company-lsp-cache-candidates nil)
+  (setq company-lsp-cache-candidates 'auto)
   (with-eval-after-load 'lsp
-    (push 'company-lsp company-backends))
-  :config
-  (defun jcs--company-lsp-flx--sort-transformer (candidates)
-    "Flx sort for `company-lsp'."
-    (let ((prefix (company-lsp 'prefix)))
-      (when (listp prefix) (setq prefix (car prefix)))
-      (jcs-flx-sort-candidates-by-regex candidates prefix)))
-  ;; Add it to company's transfomers list.
-  (setq company-transformers (append company-transformers '(jcs--company-lsp-flx--sort-transformer))))
+    (push 'company-lsp company-backends)))
 
 (use-package company-quickhelp
   :defer t
@@ -309,7 +301,7 @@
             (insert (concat left-string (if right-string (concat padding right-string)))))))))
   (advice-add 'feebleline--insert :after #'jcs--feebleline--insert)
 
-  (defun jcs-advice-feebleline-mode-after (&rest _)
+  (defun jcs--feebleline-mode--advice-after (&rest _)
     "Advice after execute `feebleline-mode'."
     (if feebleline-mode
         (jcs-walk-through-all-buffers-once
@@ -319,7 +311,7 @@
       (jcs-walk-through-all-buffers-once
        (lambda ()
          (setq mode-line-format feebleline--mode-line-format-previous)))))
-  (advice-add 'feebleline-mode :after #'jcs-advice-feebleline-mode-after))
+  (advice-add 'feebleline-mode :after #'jcs--feebleline-mode--advice-after))
 
 
 (use-package ffmpeg-player
@@ -533,15 +525,18 @@
 
   (defun jcs--lsp-current-last-signature-buffer ()
     "Check if current buffer last signature buffer."
-    (string-match-p (buffer-name lsp--last-signature-buffer)
-                    (buffer-file-name))))
+    (string-match-p (buffer-name lsp--last-signature-buffer) (buffer-file-name)))
+
+  (defun jcs--lsp-mode-hook ()
+    "Hook runs after entering or leaving `lsp-mode'."
+    (if lsp-mode (company-fuzzy-mode -1) (company-fuzzy-mode 1)))
+  (add-hook 'lsp-mode-hook 'jcs--lsp-mode-hook))
 
 
 (use-package multi-shell
   :defer t
   :init
-  ;; Accept `shell' or `eshll'.
-  (setq multi-shell-prefer-shell-type 'shell))
+  (setq multi-shell-prefer-shell-type 'shell))  ; Accept `shell' or `eshll'.
 
 
 (use-package multiple-cursors
