@@ -12,6 +12,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
  to `auto`. (jcs-emacs-init)
 * Removed package => `dimmer`. (jcs-emacs-init)
 * Installed new package => `lsp-ui`. (jcs-emacs-init)
+* Implemented `record` and `restore` windows status once utility functions. (jcs-emacs-init)
 
 ### 2019-12-25
 
