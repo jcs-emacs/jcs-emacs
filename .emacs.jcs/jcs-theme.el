@@ -213,10 +213,7 @@ POWER-AC-LST : powerline active list.  POWER-INAC-LST : powerline inactive list.
   (jcs-reset-yascroll-color-by-theme)
   (unless (display-graphic-p) (jcs-reset-common-faces-by-theme))
   (jcs-reload-active-mode)
-  (jcs-re-enable-mode-if-was-enabled 'highlight-indent-guides-mode)
-  (when (jcs-re-enable-mode-if-was-enabled 'dimmer-mode)
-    ;; TODO: Weird bug here..
-    (dimmer-process-all)))
+  (jcs-re-enable-mode-if-was-enabled 'highlight-indent-guides-mode))
 
 (defun jcs-set-theme (cc hlc)
   "Setup the theme to all frames with CC and HLC."
