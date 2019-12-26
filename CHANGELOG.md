@@ -16,7 +16,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Installed new package `ivy-resize` manually. (jcs-emacs-init)
 * Added `define-it` config to change default output choice to `pop`. (jcs-emacs-init)
 * Installed new package `company-lsp`. (jcs-emacs-init)
-* Implemented fuzzy match using `flx` with `company-lsp`. (jcs-emacs-init)
+~~* Implemented fuzzy match using `flx` with `company-lsp`. (jcs-emacs-init)~~
 
 ### 2019-12-24
 
