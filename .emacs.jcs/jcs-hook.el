@@ -12,23 +12,25 @@
   "When window is not focus.")
 (add-hook 'focus-out-hook 'jcs-focus-out-hook)
 
-(defvar jcs--lsp-lv-was-alive--window nil
-  "Record down (window) if ` *LV*' buffer was alive.")
+(defvar jcs--lsp-lv-was-alive nil
+  "Record ` *LV*' buffer was alive.")
+
+(defvar jcs--lsp-lv-recording nil
+  "Check if we are recording ")
 
 (defun jcs-window-size-change-functions (&rest _)
   "When window changed size."
   (when (and (boundp 'lsp-mode) lsp-mode)
     (if (jcs--lsp-lv-buffer-alive-p)
-        (setq jcs--lsp-lv-was-alive--window (selected-window))
-      (when jcs--lsp-lv-was-alive--window
-        (save-selected-window
-          (select-window jcs--lsp-lv-was-alive--window)
-          ;; Ensure the window still selecting this buffer.
-          (when (jcs--lsp-current-last-signature-buffer)
-            (jcs-walk-through-all-windows-once
-             (lambda ()
-               (recenter-top-bottom)))))
-        (setq jcs--lsp-lv-was-alive--window nil)))))
+        (setq jcs--lsp-lv-was-alive t)
+      (if jcs--lsp-lv-was-alive
+          (progn
+            (when (jcs--lsp-current-last-signature-buffer)
+              (let ((pt (point)))
+                (jcs-window-restore-once)
+                (goto-char pt)))
+            (setq jcs--lsp-lv-was-alive nil))
+        (let ((jcs--lsp-lv-recording t)) (jcs-window-record-once))))))
 (add-hook 'window-size-change-functions 'jcs-window-size-change-functions)
 
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
