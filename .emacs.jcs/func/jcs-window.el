@@ -450,7 +450,6 @@ i.e. change right window to bottom, or change bottom window to right."
       (setq win-id-lst (reverse win-id-lst))
       win-id-lst)))
 
-
 ;;-----------------------------------------------------------
 ;; Center
 
