@@ -61,7 +61,6 @@
     dashboard
     diminish
     diminish-buffer
-    dimmer
     dockerfile-mode
     dumb-jump
     elisp-def
@@ -103,6 +102,7 @@
     kotlin-mode
     line-reminder
     lsp-mode
+    lsp-ui
     lua-mode
     magit
     markdown-mode
