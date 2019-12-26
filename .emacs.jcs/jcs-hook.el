@@ -58,7 +58,8 @@
   (select-frame-set-input-focus (selected-frame))
   (jcs-update-speedbar-record-after-select-new-window)  ; Update `speedbar'
   (jcs-buffer-menu-safe-refresh)
-  (when (functionp 'lsp-signature-maybe-stop) (lsp-signature-maybe-stop)))
+  (when (functionp 'lsp-signature-maybe-stop) (lsp-signature-maybe-stop))
+  (when (functionp 'lsp-ui-doc--delete-frame) (lsp-ui-doc--delete-frame)))
 (advice-add 'other-window :after 'jcs--other-window--advice-after)
 
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -74,7 +75,6 @@
     (require 'company)
     (require 'dashboard)
     (require 'diminish)
-    (require 'dimmer)
     (require 'exec-path-from-shell)
     (require 'highlight-indent-guides)
     (require 'hl-line)
@@ -101,8 +101,6 @@
     (global-auto-highlight-symbol-mode t)
     ;;-------------------------------- `delete-selection'
     (delete-selection-mode 1)
-    ;;-------------------------------- `dimmer'
-    (dimmer-mode)
     ;;-------------------------------- `goto-address'
     (goto-address-mode t)
     ;;-------------------------------- `hl-line'
