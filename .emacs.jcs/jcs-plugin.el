@@ -516,15 +516,22 @@
   (defun jcs--lsp-signature-maybe-stop ()
     "Maybe stop the signature action."
     (when (functionp 'lsp-signature-maybe-stop) (lsp-signature-maybe-stop)))
+  (defun jcs--lsp-ui-doc-stop-timer ()
+    "Safe way to stop lsp UI document."
+    (when (and (boundp 'lsp-ui-doc--timer) (timerp lsp-ui-doc--timer))
+      (cancel-timer lsp-ui-doc--timer)))
+  (defun jcs--lsp-ui-doc-show-safely ()
+    "Safe way to show lsp UI document."
+    (when (and (boundp 'lsp-ui-mode) lsp-ui-mode)
+      ;;(call-interactively #'lsp-ui-doc-show)
+      ))
   :config
   (defun jcs--lsp-lv-buffer-alive-p ()
     "Check if ` *LV*' buffer alive."
     (get-buffer " *LV*"))
-
   (defun jcs--lsp-current-last-signature-buffer ()
     "Check if current buffer last signature buffer."
     (string-match-p (buffer-name lsp--last-signature-buffer) (buffer-file-name)))
-
   (defun jcs--lsp-mode-hook ()
     "Hook runs after entering or leaving `lsp-mode'."
     (if lsp-mode (company-fuzzy-mode -1) (company-fuzzy-mode 1)))
