@@ -465,5 +465,47 @@ i.e. change right window to bottom, or change bottom window to right."
         (set-window-hscroll (selected-window)
                             (- cur mid)))))
 
+;;-----------------------------------------------------------
+;; Restore Windows Status
+
+(defvar jcs-window--record-buffers '() "Record all windows' buffer.")
+(defvar jcs-window--record-points '() "Record all windows' point.")
+(defvar jcs-window--record-first-visible-lines '()
+  "Record all windows' first visible line.")
+
+(defun jcs-window-record-once ()
+  "Record windows status once."
+  (setq jcs-window--record-points '())
+  (setq jcs-window--record-buffers '())
+  (setq jcs-window--record-first-visible-lines '())
+  ;; Record down all the window information with the same
+  ;; buffer opened.
+  (jcs-walk-through-all-windows-once
+   (lambda ()
+     (push (jcs-buffer-name-or-buffer-file-name) jcs-window--record-buffers)
+     (push (point) jcs-window--record-points)
+     (push (jcs-first-visible-line-in-window) jcs-window--record-first-visible-lines)))
+  ;; Reverse the order to have the information order corresponding
+  ;; to the window order correctly.
+  (setq jcs-window--record-buffers (reverse jcs-window--record-buffers))
+  (setq jcs-window--record-points (reverse jcs-window--record-points))
+  (setq jcs-window--record-first-visible-lines (reverse jcs-window--record-first-visible-lines)))
+
+(defun jcs-window-restore-once ()
+  "Restore windows status once."
+  ;; Restore the window information after, including
+  ;; opening the same buffer.
+  (let ((win-cnt 0) (current-buf nil) (current-pt -1) (current-first-vs-line -1))
+    (jcs-walk-through-all-windows-once
+     (lambda ()
+       (setq current-buf (nth win-cnt jcs-window--record-buffers))
+       (setq current-pt (nth win-cnt jcs-window--record-first-visible-lines))
+       (setq current-first-vs-line (nth win-cnt jcs-window--record-points))
+       (if (get-buffer current-buf) (switch-to-buffer current-buf) (find-file current-buf))
+       (jcs-make-first-visible-line-to current-pt)
+       (goto-char current-first-vs-line)
+       (setq win-cnt (1+ win-cnt))))))
+
+
 (provide 'jcs-window)
 ;;; jcs-window.el ends here
