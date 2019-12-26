@@ -552,7 +552,8 @@
 
   (defun jcs--lsp-ui-doc--delete-frame ()
     "Delete UI doc if exists."
-    (when (functionp 'lsp-ui-doc--delete-frame) (lsp-ui-doc--delete-frame))))
+    (when (and (functionp 'lsp-ui-doc--delete-frame) (not jcs--lsp-lv-recording))
+      (lsp-ui-doc--delete-frame))))
 
 
 (use-package multi-shell
