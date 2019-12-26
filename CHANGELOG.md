@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2019-12-26
+
+* According to [company-lsp/131](https://github.com/tigersoldier/company-lsp/issues/131), 
+ revert `flx` support with `company-lsp`. Just set `company-lsp-cache-candidates`
+ to `auto`. (jcs-emacs-init)
+
 ### 2019-12-25
 
 * Installed new package `ivy-resize` manually. (jcs-emacs-init)
@@ -540,7 +546,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 * Installed new package => `centaur-tabs`. (jcs-emacs-init)
 * Installed new package => `company-statistics`. (jcs-emacs-init)
-* Removed package => `tabbar`. (jcs-emacs-init)
+* Removed package => `tabbar`. (jcs-emacs-init)
 
 ### 2019-07-04
 
