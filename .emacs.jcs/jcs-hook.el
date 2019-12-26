@@ -55,7 +55,7 @@
 
 (defun jcs--other-window--advice-before (&rest _args)
   "Advice execute before `other-window' command."
-  (when (functionp 'lsp-ui-doc--delete-frame) (lsp-ui-doc--delete-frame)))
+  (jcs--lsp-ui-doc--delete-frame))
 (advice-add 'other-window :before 'jcs--other-window--advice-before)
 
 (defun jcs--other-window--advice-after (&rest _args)
@@ -63,7 +63,7 @@
   (select-frame-set-input-focus (selected-frame))
   (jcs-update-speedbar-record-after-select-new-window)  ; Update `speedbar'
   (jcs-buffer-menu-safe-refresh)
-  (when (functionp 'lsp-signature-maybe-stop) (lsp-signature-maybe-stop)))
+  (jcs--lsp-signature-maybe-stop))
 (advice-add 'other-window :after 'jcs--other-window--advice-after)
 
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
