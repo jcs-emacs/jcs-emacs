@@ -517,7 +517,7 @@
 (progn
   ;; TODO: Determine `toggle-frame-fullscreen' key.
   ;;(define-key global-map [f11] #'toggle-frame-fullscreen)
-  (define-key global-map (kbd "C-k n") #'make-frame)
+  (define-key global-map (kbd "C-k n") #'jcs-make-frame)
   (define-key global-map (kbd "C-k d") #'delete-frame)  ; delete the external frame.
   (define-key global-map (kbd "C-k w") #'jcs-balance-delete-window)  ; delete current window.
   (define-key global-map (kbd "C-h h") #'jcs-toggle-window-split-hv)
