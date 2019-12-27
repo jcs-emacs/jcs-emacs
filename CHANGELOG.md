@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2019-12-27
+
+* Fixed `lsp-ui` show prompting error while switching windows. (jcs-emacs-init)
+* Implemented `lsp-ui` show doc anytime functionalities. (jcs-emacs-init)
+* Increase standard string distance level from `8` to `30`. (jcs-emacs-init)
+
 ### 2019-12-26
 
 * According to [company-lsp/131](https://github.com/tigersoldier/company-lsp/issues/131), 
