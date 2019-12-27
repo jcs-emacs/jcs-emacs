@@ -522,18 +522,20 @@
       (cancel-timer lsp-ui-doc--timer)))
   (defun jcs--lsp-ui-doc-show-safely ()
     "Safe way to show lsp UI document."
-    (when (and
-           (boundp 'lsp-ui-mode) lsp-ui-mode
-           (not (jcs-is-command-these-commands this-command
-                                               '(save-buffers-kill-terminal))))
-      (ignore-errors (call-interactively #'lsp-ui-doc-show))))
+    (if (and
+         (boundp 'lsp-ui-mode) lsp-ui-mode
+         (not (jcs-is-command-these-commands this-command
+                                             '(save-buffers-kill-terminal))))
+        (ignore-errors (call-interactively #'lsp-ui-doc-show))
+      (jcs--lsp-current-last-signature-buffer)))
   :config
   (defun jcs--lsp-lv-buffer-alive-p ()
     "Check if ` *LV*' buffer alive."
     (get-buffer " *LV*"))
   (defun jcs--lsp-current-last-signature-buffer ()
     "Check if current buffer last signature buffer."
-    (string-match-p (buffer-name lsp--last-signature-buffer) (buffer-file-name)))
+    (when (boundp 'lsp--last-signature-buffer)
+      (string-match-p (buffer-name lsp--last-signature-buffer) (buffer-file-name))))
   (defun jcs--lsp-mode-hook ()
     "Hook runs after entering or leaving `lsp-mode'."
     (if lsp-mode (company-fuzzy-mode -1) (company-fuzzy-mode 1)))
