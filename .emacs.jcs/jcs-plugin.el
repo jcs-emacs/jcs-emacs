@@ -522,9 +522,11 @@
       (cancel-timer lsp-ui-doc--timer)))
   (defun jcs--lsp-ui-doc-show-safely ()
     "Safe way to show lsp UI document."
-    (when (and (boundp 'lsp-ui-mode) lsp-ui-mode)
-      ;;(ignore-errors (call-interactively #'lsp-ui-doc-show))
-      ))
+    (when (and
+           (boundp 'lsp-ui-mode) lsp-ui-mode
+           (not (jcs-is-command-these-commands this-command
+                                               '(save-buffers-kill-terminal))))
+      (call-interactively #'lsp-ui-doc-show)))
   :config
   (defun jcs--lsp-lv-buffer-alive-p ()
     "Check if ` *LV*' buffer alive."
