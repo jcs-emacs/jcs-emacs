@@ -17,6 +17,13 @@ Return nil, if frame not maximized."
   (cdr (assoc 'fullscreen (frame-parameters))))
 
 ;;;###autoload
+(defun jcs-make-frame ()
+  "Select new frame after make frame."
+  (interactive)
+  (let ((new-frame (call-interactively #'make-frame)))
+    (select-frame-set-input-focus new-frame)))
+
+;;;###autoload
 (defun jcs-walk-through-all-frames-once (&optional fnc)
   "Walk through all the frames once.
 FNC : Callback apply to each windows."
