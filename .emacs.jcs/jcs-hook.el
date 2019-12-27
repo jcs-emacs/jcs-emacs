@@ -66,11 +66,11 @@
 (defun jcs--other-window--advice-after (&rest _args)
   "Advice execute after `other-window' command."
   (unless (frame-parameter (selected-frame) 'parent-frame)
-    (select-frame-set-input-focus (selected-frame)))
-  (jcs-update-speedbar-record-after-select-new-window)  ; Update `speedbar'
-  (jcs-buffer-menu-safe-refresh)
-  (jcs--lsp-signature-maybe-stop)
-  (jcs--lsp-ui-doc-show-safely))
+    (select-frame-set-input-focus (selected-frame))
+    (jcs-update-speedbar-record-after-select-new-window)  ; Update `speedbar'
+    (jcs-buffer-menu-safe-refresh)
+    (jcs--lsp-signature-maybe-stop)
+    (jcs--lsp-ui-doc-show-safely)))
 (advice-add 'other-window :after #'jcs--other-window--advice-after)
 
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
