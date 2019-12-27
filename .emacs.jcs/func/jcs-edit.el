@@ -622,8 +622,8 @@ REGEXP : reqular expression use to align."
     ;; Revert it!
     (revert-buffer :ignore-auto :noconfirm :preserve-modes)
     ;; Revert all the enabled mode.
-    (when was-flycheck (flycheck-mode 1))
-    (when was-readonly (read-only-mode 1))))
+    (if was-flycheck (flycheck-mode 1) (flycheck-mode -1))
+    (if was-readonly (read-only-mode 1) (read-only-mode -1))))
 
 ;;;###autoload
 (defun jcs-revert-all-file-buffers ()
