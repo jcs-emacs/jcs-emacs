@@ -12,6 +12,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Increase standard string distance level from `8` to `20`. (jcs-emacs-init)
 * Enhanced the `multiple-cursors`'s similar functions string comparison algorithm.
  Make improvements for the use of the `multiple-cursors` similar occurrence command. (jcs-emacs-init)
+* Added new make frame for selecting new frame after created. (jcs-emacs-init)
 
 ### 2019-12-26
 
