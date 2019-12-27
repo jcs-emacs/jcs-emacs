@@ -181,7 +181,7 @@
 Hence the user can see the error/operation message.")
 
 ;;; Multiple Cursors
-(defvar jcs-mc/string-distance-level 30
+(defvar jcs-mc/string-distance-level 20
   "The standard similarity, the lower require more precision.")
 
 ;;; Previous/Next keys
