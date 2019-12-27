@@ -789,13 +789,14 @@ delay. HEIGHT of the tooltip that will display."
 (defun jcs-describe-thing-in-popup ()
   "Show current symbol info."
   (interactive)
-  (if lsp-mode
+  (require 'flycheck)
+  (if (and (boundp 'lsp-mode) lsp-mode)
       (ignore-errors (call-interactively #'lsp-ui-doc-show))
-    (if (and (boundp 'flycheck-mode) flycheck-mode)
-        (user-error "[INFO] Describe thing is unused when 'flycheck' is enabled")
+    (let ((was-flycheck flycheck-mode))
       (unless (ignore-errors (jcs-tip-describe-it))
         (require 'define-it)
-        (define-it-at-point)))))
+        (define-it-at-point))
+      (if was-flycheck (flycheck-mode 1) (flycheck-mode -1)))))
 
 ;;----------------------------------------------------------------------------
 ;; Todo
