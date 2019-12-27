@@ -59,6 +59,7 @@
 
 (defun jcs--other-window--advice-before (&rest _args)
   "Advice execute before `other-window' command."
+  (jcs--lsp-ui-doc-stop-timer)
   (jcs--lsp-ui-doc--delete-frame))
 (advice-add 'other-window :before #'jcs--other-window--advice-before)
 
