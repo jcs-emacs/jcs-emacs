@@ -535,7 +535,10 @@
   (defun jcs--lsp-current-last-signature-buffer ()
     "Check if current buffer last signature buffer."
     (when (boundp 'lsp--last-signature-buffer)
-      (string-match-p (buffer-name lsp--last-signature-buffer) (buffer-file-name))))
+      (let ((ls-buf (buffer-name lsp--last-signature-buffer)))
+        (if (and (stringp ls-buf) (stringp (buffer-file-name)))
+            (string-match-p ls-buf (buffer-file-name))
+          nil))))
   (defun jcs--lsp-mode-hook ()
     "Hook runs after entering or leaving `lsp-mode'."
     (if lsp-mode (company-fuzzy-mode -1) (company-fuzzy-mode 1)))
