@@ -790,7 +790,7 @@ delay. HEIGHT of the tooltip that will display."
   "Show current symbol info."
   (interactive)
   (if lsp-mode
-      (call-interactively #'lsp-ui-doc-show)
+      (ignore-errors (call-interactively #'lsp-ui-doc-show))
     (if (and (boundp 'flycheck-mode) flycheck-mode)
         (user-error "[INFO] Describe thing is unused when 'flycheck' is enabled")
       (unless (ignore-errors (jcs-tip-describe-it))

@@ -526,7 +526,7 @@
            (boundp 'lsp-ui-mode) lsp-ui-mode
            (not (jcs-is-command-these-commands this-command
                                                '(save-buffers-kill-terminal))))
-      (call-interactively #'lsp-ui-doc-show)))
+      (ignore-errors (call-interactively #'lsp-ui-doc-show))))
   :config
   (defun jcs--lsp-lv-buffer-alive-p ()
     "Check if ` *LV*' buffer alive."
