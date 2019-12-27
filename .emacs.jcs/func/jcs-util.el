@@ -981,6 +981,14 @@ Return nil, there is no region selected and mark is not active."
   (goto-char st) (call-interactively #'set-mark-command) (goto-char ed))
 
 ;;----------------------------------------------------------------------------
+;; Command
+
+(defun jcs-is-command-these-commands (cmd cmds)
+  "Check if CMD one of these CMDS.
+CMDS should be a list of commands."
+  (memq cmd cmds))
+
+;;----------------------------------------------------------------------------
 ;; Comment
 
 (defun jcs-is-inside-comment-block-p ()
@@ -1192,19 +1200,19 @@ The reverse mean the check from regular expression is swapped."
   "Check if this minor MODE-OBJ enabled in current buffer/file."
   (bound-and-true-p mode-obj))
 
-(defun jcs-re-enable-mode-if-was-enabled (mode-name)
-  "Re-enable the MODE-NAME if was enabled."
-  (when (symbol-value mode-name) (jcs-re-enable-mode mode-name))
-  (symbol-value mode-name))
+(defun jcs-re-enable-mode-if-was-enabled (modename)
+  "Re-enable the MODENAME if was enabled."
+  (when (symbol-value modename) (jcs-re-enable-mode modename))
+  (symbol-value modename))
 
-(defun jcs-re-enable-mode (mode-name)
-  "Re-enable the MODE-NAME."
-  (funcall mode-name -1)
-  (funcall mode-name 1))
+(defun jcs-re-enable-mode (modename)
+  "Re-enable the MODENAME."
+  (funcall modename -1)
+  (funcall modename 1))
 
-(defun jcs-enable-disable-mode-by-condition (mode-name predicate)
-  "To enable/disable the MODE-NAME by PREDICATE."
-  (if predicate (funcall mode-name 1) (funcall mode-name -1)))
+(defun jcs-enable-disable-mode-by-condition (modename predicate)
+  "To enable/disable the MODENAME by PREDICATE."
+  (if predicate (funcall modename 1) (funcall modename -1)))
 
 ;;----------------------------------------------------------------------------
 ;; I/O
