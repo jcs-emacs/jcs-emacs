@@ -11,7 +11,6 @@
 
 (defun jcs-focus-out-hook ()
   "When window is not focus."
-  (jcs--lsp-ui-doc--delete-frame)
   (jcs--lsp-ui-doc-stop-timer))
 (add-hook 'focus-out-hook 'jcs-focus-out-hook)
 
@@ -61,7 +60,7 @@
 (defun jcs--other-window--advice-before (&rest _args)
   "Advice execute before `other-window' command."
   (jcs--lsp-ui-doc-stop-timer)
-  (jcs--lsp-ui-doc--delete-frame))
+  (jcs--lsp-ui-doc--hide-frame))
 (advice-add 'other-window :before #'jcs--other-window--advice-before)
 
 (defun jcs--other-window--advice-after (&rest _args)
@@ -197,6 +196,7 @@
       (setq-local jcs-marking-whole-buffer-cmd-count 0)
       (setq-local jcs-marking-whole-buffer nil)))
 
+  (jcs--lsp-ui-doc--hide-frame)
   (jcs-reload-active-mode-with-error-handle))
 (add-hook 'post-command-hook 'jcs-post-command-hook)
 
