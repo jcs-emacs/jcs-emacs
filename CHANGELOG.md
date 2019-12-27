@@ -13,6 +13,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Enhanced the `multiple-cursors`'s similar functions string comparison algorithm.
  Make improvements for the use of the `multiple-cursors` similar occurrence command. (jcs-emacs-init)
 * Added new make frame for selecting new frame after created. (jcs-emacs-init)
+* Used `hide-frame` instead of `delete-frame` while showing `lsp-ui-doc`, this 
+ should fixed while re-focus back to Emacs' frame issue while jumping away from Emacs. (jcs-emacs-init)
 
 ### 2019-12-26
 
