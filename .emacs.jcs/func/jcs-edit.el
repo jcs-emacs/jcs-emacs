@@ -860,8 +860,8 @@ REGEXP : reqular expression use to align."
     ;; For some mode, broken save.
     (jcs-mute-apply (lambda () (save-excursion (save-buffer))))
     (select-frame-set-input-focus cur-frame)  ; For multi frames.
-    (if (or modified
-            (not readable))
+    (unless readable (lsp-deferred))
+    (if (or modified (not readable))
         (message "Wrote file %s" (buffer-file-name))
       (message "(No changes need to be saved)"))))
 
