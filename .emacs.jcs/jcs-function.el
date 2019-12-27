@@ -326,19 +326,20 @@ OW is the other window flag."
 (defun jcs-eldoc--message-command-p (command)
   "Advice overwrite `eldoc--message-command-p' COMMAND."
   ;; One can also loop through `eldoc-message-commands' and empty it out
-  (memq command '(jcs-eldoc-message-now
-                  mouse-set-point
-                  jcs-real-space jcs-smart-space
-                  jcs-real-backspace jcs-smart-backspace
-                  previous-line next-line
-                  jcs-previous-line jcs-next-line
-                  jcs-smart-indent-up jcs-smart-indent-down
-                  jcs-py-indent-up jcs-py-indent-down
-                  left-char right-char
-                  jcs-smart-forward-word jcs-smart-backward-word
-                  jcs-backward-word-capital jcs-forward-word-capital
-                  beginning-of-line end-of-line
-                  jcs-beginning-of-line jcs-end-of-line)))
+  (jcs-is-command-these-commands
+   command '(jcs-eldoc-message-now
+             mouse-set-point
+             jcs-real-space jcs-smart-space
+             jcs-real-backspace jcs-smart-backspace
+             previous-line next-line
+             jcs-previous-line jcs-next-line
+             jcs-smart-indent-up jcs-smart-indent-down
+             jcs-py-indent-up jcs-py-indent-down
+             left-char right-char
+             jcs-smart-forward-word jcs-smart-backward-word
+             jcs-backward-word-capital jcs-forward-word-capital
+             beginning-of-line end-of-line
+             jcs-beginning-of-line jcs-end-of-line)))
 (advice-add 'eldoc--message-command-p :override #'jcs-eldoc--message-command-p)
 
 ;;----------------------------------------------------------------------------
