@@ -103,7 +103,7 @@ CBF : Current buffer file name."
   "Undo key."
   (interactive)
   (require 'undo-tree)
-  (jcs--lsp-ui-doc--delete-frame)
+  (jcs--lsp-ui-doc--hide-frame)
   (if jcs-use-undo-tree-key
       (save-selected-window
         (let ((jumped-to-utv
@@ -134,7 +134,7 @@ CBF : Current buffer file name."
   "Redo key."
   (interactive)
   (require 'undo-tree)
-  (jcs--lsp-ui-doc--delete-frame)
+  (jcs--lsp-ui-doc--hide-frame)
   (if jcs-use-undo-tree-key
       (save-selected-window
         (let ((jumped-to-utv
