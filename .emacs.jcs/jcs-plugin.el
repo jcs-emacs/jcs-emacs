@@ -151,7 +151,7 @@
 (use-package define-it
   :defer t
   :init
-  (setq define-it-output-choice 'pop))
+  (setq define-it-output-choice 'view))
 
 
 (use-package diminish
