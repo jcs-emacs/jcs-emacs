@@ -447,7 +447,7 @@ LST-PR: List of pair."
   (user-error "Minimap no longer supported in this configuration"))
 
 ;;----------------------------------------------------------------------------
-;; Prettify/Minify
+;; Prettify / Minify
 
 ;;;###autoload
 (defun jcs-prettify-buffer-contents ()
