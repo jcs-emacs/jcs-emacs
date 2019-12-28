@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2019-12-28
+
+* Change default `define-it` to `'view` instead of `'pop`. (jcs-emacs-init)
+
 ### 2019-12-27
 
 * Fixed `lsp-ui` show prompting error while switching windows. (jcs-emacs-init)
