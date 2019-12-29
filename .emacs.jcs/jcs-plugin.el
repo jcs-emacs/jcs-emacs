@@ -151,7 +151,11 @@
 (use-package define-it
   :defer t
   :init
-  (setq define-it-output-choice 'view))
+  (setq define-it-output-choice 'view)
+  (setq define-it-define-word-header "--{{ DEFINE }}--\n\n")
+  (setq define-it-definition-header "\n\n--{{ DICTIONARY }}--\n\n")
+  (setq define-it-translate-header "\n\n--{{ TRANSLATION }}--\n\n")
+  (setq define-it-wiki-summary-header "\n\n--{{ WIKIPEDIA SUMMARY }}--\n\n"))
 
 
 (use-package diminish
