@@ -793,9 +793,6 @@ REGEXP : reqular expression use to align."
 ;;----------------------------------------------
 ;; Save Buffer
 
-(defvar jcs--saving-buffer nil
-  "Flag to check if currently saving the buffer.")
-
 (defun jcs-do-stuff-before-save (&rest _)
   "Do stuff before save command executed."
   ;; NOTE: If company menu currently active, abort it.
@@ -856,7 +853,7 @@ REGEXP : reqular expression use to align."
 (defun jcs-save-buffer ()
   "Save buffer wrapper."
   (interactive)
-  (let ((jcs--saving-buffer t)
+  (let ((jcs--no-advice-other-window t)
         (modified (buffer-modified-p))
         (readable (file-readable-p (buffer-file-name)))
         (cur-frame (selected-frame)))

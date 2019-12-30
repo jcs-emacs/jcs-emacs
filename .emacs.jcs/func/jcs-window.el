@@ -84,9 +84,7 @@
 (defun jcs-buffer-visible-list ()
   "List of buffer that current visible in frame."
   (save-selected-window
-    (let ((win-len (jcs-count-windows))
-          (index 0)
-          (buffers '()))
+    (let ((win-len (jcs-count-windows)) (index 0) (buffers '()))
       (while (> win-len index)
         (push (buffer-name) buffers)
         (other-window 1 t)
@@ -106,7 +104,8 @@
   "Walk through all the windows once and execute callback FNC."
   (interactive)
   (save-selected-window
-    (let ((cur-frame (selected-frame)) (index 0))
+    (let ((jcs--no-advice-other-window t)
+          (cur-frame (selected-frame)) (index 0))
       (while (< index (jcs-count-windows))
         (when fnc (funcall fnc))
         (other-window 1 t)

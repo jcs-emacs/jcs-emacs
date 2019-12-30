@@ -29,7 +29,8 @@ Return nil, if frame not maximized."
 FNC : Callback apply to each windows."
   (interactive)
   (save-selected-window
-    (let ((cur-frame (selected-frame)) (index 0))
+    (let ((jcs--no-advice-other-window t)
+          (cur-frame (selected-frame)) (index 0))
       (while (< index (length (frame-list)))
         (when fnc
           (funcall fnc))
