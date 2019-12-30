@@ -59,14 +59,14 @@
 
 (defun jcs--other-window--advice-before (&rest _args)
   "Advice execute before `other-window' command."
-  (unless jcs--saving-buffer
+  (unless jcs--no-advice-other-window
     (jcs--lsp-ui-doc-stop-timer)
     (jcs--lsp-ui-doc--hide-frame)))
 (advice-add 'other-window :before #'jcs--other-window--advice-before)
 
 (defun jcs--other-window--advice-after (&rest _args)
   "Advice execute after `other-window' command."
-  (when (and (not jcs--saving-buffer)
+  (when (and (not jcs--no-advice-other-window)
              (not (frame-parameter (selected-frame) 'parent-frame)))
     (select-frame-set-input-focus (selected-frame))
     (jcs-update-speedbar-record-after-select-new-window)  ; Update `speedbar'
@@ -167,6 +167,9 @@
   (setq frame-title-format
         (list (format "%s %%S: %%j " (system-name))
               '(buffer-file-name "%f" (dired-directory dired-directory "%b"))))
+
+  ;; Enabled back on.
+  (setq jcs--no-advice-other-window nil)
 
   ;; NOTE: Lower the `GC' back to normal threshold.
   (jcs-gc-cons-threshold nil)
