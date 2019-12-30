@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2019-12-30
+
+* Add no advice other window flag for other function that doesn't want to configure
+ buffer in window while switching window/frame. (jcs-emacs-init)
+
 ### 2019-12-28
 
 * Change default `define-it` to `'view` instead of `'pop`. (jcs-emacs-init)
