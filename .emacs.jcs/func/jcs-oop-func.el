@@ -259,8 +259,7 @@
     (setq jcs-lua-close-type-char (jcs-get-properties tmp-ini-list "LUA_CLOSE_TYPE_CHAR"))
     (setq jcs-py-close-type-char (jcs-get-properties tmp-ini-list "PY_CLOSE_TYPE_CHAR"))
     (setq jcs-php-close-type-char (jcs-get-properties tmp-ini-list "PHP_CLOSE_TYPE_CHAR"))
-    (setq jcs-ts-close-type-char (jcs-get-properties tmp-ini-list "TS_CLOSE_TYPE_CHAR"))
-    ))
+    (setq jcs-ts-close-type-char (jcs-get-properties tmp-ini-list "TS_CLOSE_TYPE_CHAR"))))
 
 
 (defun jcs-insert-jsdoc-type (type-name open-char close-char)
@@ -273,12 +272,16 @@
 (defun jcs-insert-comment-style-by-current-line (sr-op)
   "Read the current line and insert by reading the need from the input line.
 SR-OP is the boundary of the search limit."
+  (require 'flycheck)
   (let ((keyword-strings '()) (datatype-name "") (meet-function-name nil)
         (function-name-string "")
         (param-type-strings '())      ; param type string list.
         (param-variable-strings '())  ; param name string list.
         (there-is-return nil) (return-type-string "") (search-string "")
-        (close-bracket-pt -1))
+        (close-bracket-pt -1)
+        (was-flycheck flycheck-mode))
+
+    (when was-flycheck (flycheck-mode -1))
 
     (save-excursion
       (jcs-move-to-forward-a-char ")")
@@ -385,7 +388,9 @@ SR-OP is the boundary of the search limit."
                                    return-type-string
                                    param-type-strings
                                    param-variable-strings
-                                   search-string)))
+                                   search-string)
+
+    (when was-flycheck (flycheck-mode 1))))
 
 (defun jcs-insert-doc-comment-string (meet-function-name
                                       keyword-strings
@@ -417,45 +422,47 @@ SEARCH-STRING          : Full content string."
       ;; the order.
       (setq param-variable-strings (reverse param-variable-strings))
 
-      (cond ((or (jcs-is-current-major-mode-p "actionscript-mode"))
-             (setq mode-doc-string-func-name (if meet-function-name
-                                                 'jcs-as-mode-doc-string-func
-                                               'jcs-as-mode-doc-string-others)))
-            ((or (jcs-is-current-major-mode-p "c-mode")
-                 (jcs-is-current-major-mode-p "c++-mode"))
-             (setq mode-doc-string-func-name (if meet-function-name
-                                                 'jcs-cc-mode-doc-string-func
-                                               'jcs-cc-mode-doc-string-others)))
-            ((or (jcs-is-current-major-mode-p "csharp-mode"))
-             (setq mode-doc-string-func-name (if meet-function-name
-                                                 'jcs-csharp-mode-doc-string-func
-                                               'jcs-csharp-mode-doc-string-others)))
-            ((or (jcs-is-current-major-mode-p "java-mode")
-                 (jcs-is-current-major-mode-p "jdee-mode"))
-             (setq mode-doc-string-func-name (if meet-function-name
-                                                 'jcs-java-mode-doc-string-func
-                                               'jcs-java-mode-doc-string-others)))
-            ((or (jcs-is-current-major-mode-p "js2-mode"))
-             (setq mode-doc-string-func-name (if meet-function-name
-                                                 'jcs-js-mode-doc-string-func
-                                               'jcs-js-mode-doc-string-others)))
-            ((or (jcs-is-current-major-mode-p "lua-mode"))
-             (setq mode-doc-string-func-name (if meet-function-name
-                                                 'jcs-lua-mode-doc-string-func
-                                               'jcs-lua-mode-doc-string-others)))
-            ((or (jcs-is-current-major-mode-p "python-mode"))
-             (setq mode-doc-string-func-name (if meet-function-name
-                                                 'jcs-py-mode-doc-string-func
-                                               'jcs-py-mode-doc-string-others)))
-            ((or (jcs-is-current-major-mode-p "php-mode")
-                 (jcs-is-current-major-mode-p "web-mode"))
-             (setq mode-doc-string-func-name (if meet-function-name
-                                                 'jcs-php-mode-doc-string-func
-                                               'jcs-php-mode-doc-string-others)))
-            ((or (jcs-is-current-major-mode-p "typescript-mode"))
-             (setq mode-doc-string-func-name (if meet-function-name
-                                                 'jcs-ts-mode-doc-string-func
-                                               'jcs-ts-mode-doc-string-others))))
+      (cond
+       ((jcs-is-current-major-mode-p '("actionscript-mode"))
+        (setq mode-doc-string-func-name (if meet-function-name
+                                            'jcs-as-mode-doc-string-func
+                                          'jcs-as-mode-doc-string-others)))
+       ((jcs-is-current-major-mode-p '("c-mode"
+                                       "c++-mode"))
+        (setq mode-doc-string-func-name (if meet-function-name
+                                            'jcs-cc-mode-doc-string-func
+                                          'jcs-cc-mode-doc-string-others)))
+       ((jcs-is-current-major-mode-p '("csharp-mode"))
+        (setq mode-doc-string-func-name (if meet-function-name
+                                            'jcs-csharp-mode-doc-string-func
+                                          'jcs-csharp-mode-doc-string-others)))
+       ((jcs-is-current-major-mode-p '("java-mode"
+                                       "jdee-mode"))
+        (setq mode-doc-string-func-name (if meet-function-name
+                                            'jcs-java-mode-doc-string-func
+                                          'jcs-java-mode-doc-string-others)))
+       ((jcs-is-current-major-mode-p '("js-mode"
+                                       "js2-mode"
+                                       "js3-mode"))
+        (setq mode-doc-string-func-name (if meet-function-name
+                                            'jcs-js-mode-doc-string-func
+                                          'jcs-js-mode-doc-string-others)))
+       ((jcs-is-current-major-mode-p '("lua-mode"))
+        (setq mode-doc-string-func-name (if meet-function-name
+                                            'jcs-lua-mode-doc-string-func
+                                          'jcs-lua-mode-doc-string-others)))
+       ((jcs-is-current-major-mode-p '("python-mode"))
+        (setq mode-doc-string-func-name (if meet-function-name
+                                            'jcs-py-mode-doc-string-func
+                                          'jcs-py-mode-doc-string-others)))
+       ((jcs-is-current-major-mode-p '("php-mode" "web-mode"))
+        (setq mode-doc-string-func-name (if meet-function-name
+                                            'jcs-php-mode-doc-string-func
+                                          'jcs-php-mode-doc-string-others)))
+       ((jcs-is-current-major-mode-p '("typescript-mode"))
+        (setq mode-doc-string-func-name (if meet-function-name
+                                            'jcs-ts-mode-doc-string-func
+                                          'jcs-ts-mode-doc-string-others))))
 
       ;; NOTE: Ensure the `mode-doc-string-func-name'
       ;; is assign to something valid to execute.
@@ -1140,6 +1147,12 @@ RETURN-TYPE-STRING     : String of the return type.
 PARAM-TYPE-STRINGS     : Param type strings list.
 PARAM-VARIABLE-STRINGS : Param name strings list.
 SEARCH-STRING          : Search raw string."
+
+  (let ((paren-param-list (jcs-paren-param-list search-string)))
+    (setq param-type-strings (nth 0 paren-param-list))
+    (setq param-variable-strings (nth 1 paren-param-list)))
+
+  (message "parma: %s" param-variable-strings)
 
   (let ((param-var-len (length param-variable-strings))
         (param-index 0))
