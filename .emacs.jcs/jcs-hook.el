@@ -11,6 +11,7 @@
 
 (defun jcs-focus-out-hook ()
   "When window is not focus."
+  (jcs--lsp-ui-doc-stop-timer)
   (jcs--lsp-ui-doc--hide-frame))
 (add-hook 'focus-out-hook 'jcs-focus-out-hook)
 
