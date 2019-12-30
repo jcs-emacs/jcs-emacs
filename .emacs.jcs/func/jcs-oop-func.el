@@ -272,16 +272,12 @@
 (defun jcs-insert-comment-style-by-current-line (sr-op)
   "Read the current line and insert by reading the need from the input line.
 SR-OP is the boundary of the search limit."
-  (require 'flycheck)
   (let ((keyword-strings '()) (datatype-name "") (meet-function-name nil)
         (function-name-string "")
         (param-type-strings '())      ; param type string list.
         (param-variable-strings '())  ; param name string list.
         (there-is-return nil) (return-type-string "") (search-string "")
-        (close-bracket-pt -1)
-        (was-flycheck flycheck-mode))
-
-    (when was-flycheck (flycheck-mode -1))
+        (close-bracket-pt -1))
 
     (save-excursion
       (jcs-move-to-forward-a-char ")")
@@ -388,9 +384,7 @@ SR-OP is the boundary of the search limit."
                                    return-type-string
                                    param-type-strings
                                    param-variable-strings
-                                   search-string)
-
-    (when was-flycheck (flycheck-mode 1))))
+                                   search-string)))
 
 (defun jcs-insert-doc-comment-string (meet-function-name
                                       keyword-strings
