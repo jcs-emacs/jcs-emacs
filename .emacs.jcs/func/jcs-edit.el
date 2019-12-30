@@ -793,6 +793,9 @@ REGEXP : reqular expression use to align."
 ;;----------------------------------------------
 ;; Save Buffer
 
+(defvar jcs--saving-buffer nil
+  "Flag to check if currently saving the buffer.")
+
 (defun jcs-do-stuff-before-save (&rest _)
   "Do stuff before save command executed."
   ;; NOTE: If company menu currently active, abort it.
@@ -810,8 +813,7 @@ REGEXP : reqular expression use to align."
 
 (defun jcs-organize-save-buffer (tab-it)
   "Organize save buffer by TAB-IT."
-  (let (deactivate-mark
-        truncate-lines)
+  (let (deactivate-mark truncate-lines)
     (jcs-delete-trailing-whitespace-except-current-line)
     (jcs-remove-trailing-lines-end-buffer)
     (if tab-it (jcs-tabify-buffer) (jcs-untabify-buffer))
@@ -854,7 +856,8 @@ REGEXP : reqular expression use to align."
 (defun jcs-save-buffer ()
   "Save buffer wrapper."
   (interactive)
-  (let ((modified (buffer-modified-p))
+  (let ((jcs--saving-buffer t)
+        (modified (buffer-modified-p))
         (readable (file-readable-p (buffer-file-name)))
         (cur-frame (selected-frame)))
     ;; For some mode, broken save.
