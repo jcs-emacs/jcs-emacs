@@ -185,7 +185,7 @@ Hence the user can see the error/operation message.")
   "The standard similarity, the lower require more precision.")
 
 ;; Navigation
-(defvar jcs--no-advice-other-window t  ; No advice when startup.
+(defvar jcs--no-advice-other-window nil
   "Flag to disable not advising in other window.
 See `jcs-hook.el' file that has apply `advice' on command `other-window'.")
 

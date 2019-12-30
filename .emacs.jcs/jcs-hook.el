@@ -168,9 +168,6 @@
         (list (format "%s %%S: %%j " (system-name))
               '(buffer-file-name "%f" (dired-directory dired-directory "%b"))))
 
-  ;; Enabled back on.
-  (setq jcs--no-advice-other-window nil)
-
   ;; NOTE: Lower the `GC' back to normal threshold.
   (jcs-gc-cons-threshold nil)
   (setq file-name-handler-alist jcs-file-name-handler-alist)
