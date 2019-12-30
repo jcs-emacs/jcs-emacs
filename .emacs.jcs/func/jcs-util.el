@@ -1025,14 +1025,26 @@ CMDS should be a list of commands."
   (interactive)
   (message "Current faces: %s" (jcs-get-current-point-face)))
 
-(defun jcs-get-faces (pos)
-  "Get the font faces at POS."
+(defun jcs-get-faces-internal (pos)
+  "Return the list of faces at this time."
   (jcs-flatten-list
    (remq nil
          (list
           (get-char-property pos 'read-face-name)
           (get-char-property pos 'face)
           (plist-get (text-properties-at pos) 'face)))))
+
+(defun jcs-get-faces (pos)
+  "Get the font faces at POS."
+  (require 'flycheck)
+  (let ((was-flycheck flycheck-mode)
+        (faces nil))
+    (setq faces (jcs-get-faces-internal pos))
+    (when was-flycheck
+      (flycheck-mode -1)
+      (setq faces (append faces (jcs-get-faces-internal pos)))
+      (flycheck-mode 1))
+    faces))
 
 (defun jcs-get-current-point-face (&optional pos)
   "Get current POS's type face as string."
