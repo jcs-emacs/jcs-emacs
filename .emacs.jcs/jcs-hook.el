@@ -11,7 +11,7 @@
 
 (defun jcs-focus-out-hook ()
   "When window is not focus."
-  (jcs--lsp-ui-doc-stop-timer))
+  (jcs--lsp-ui-doc--hide-frame))
 (add-hook 'focus-out-hook 'jcs-focus-out-hook)
 
 (defvar jcs--lsp-lv-was-alive nil
@@ -59,13 +59,15 @@
 
 (defun jcs--other-window--advice-before (&rest _args)
   "Advice execute before `other-window' command."
-  (jcs--lsp-ui-doc-stop-timer)
-  (jcs--lsp-ui-doc--hide-frame))
+  (unless jcs--saving-buffer
+    (jcs--lsp-ui-doc-stop-timer)
+    (jcs--lsp-ui-doc--hide-frame)))
 (advice-add 'other-window :before #'jcs--other-window--advice-before)
 
 (defun jcs--other-window--advice-after (&rest _args)
   "Advice execute after `other-window' command."
-  (unless (frame-parameter (selected-frame) 'parent-frame)
+  (when (and (not jcs--saving-buffer)
+             (not (frame-parameter (selected-frame) 'parent-frame)))
     (select-frame-set-input-focus (selected-frame))
     (jcs-update-speedbar-record-after-select-new-window)  ; Update `speedbar'
     (jcs-buffer-menu-safe-refresh)
@@ -197,6 +199,7 @@
       (setq-local jcs-marking-whole-buffer nil)))
 
   (jcs--lsp-ui-doc--hide-frame)
+  (jcs--lsp-ui-doc-show-safely)
   (jcs-reload-active-mode-with-error-handle))
 (add-hook 'post-command-hook 'jcs-post-command-hook)
 
