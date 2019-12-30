@@ -184,6 +184,11 @@ Hence the user can see the error/operation message.")
 (defvar jcs-mc/string-distance-level 20
   "The standard similarity, the lower require more precision.")
 
+;; Navigation
+(defvar jcs--no-advice-other-window t  ; No advice when startup.
+  "Flag to disable not advising in other window.
+See `jcs-hook.el' file that has apply `advice' on command `other-window'.")
+
 ;;; Previous/Next keys
 (defcustom jcs-prev/next-key-type 'indent
   "Previous or Next key definition."
