@@ -37,10 +37,9 @@
           (setq found t)
         (other-window 1 t))
       (setq index (1+ index)))
-
     ;; If not found, prompt error.
     (unless found
-      (error "'%s' does not shown in any window" in-buffer-name))
+      (user-error "[ERROR] '%s' does not shown in any window" in-buffer-name))
     ;; Nothing happend return the value.
     found))
 
@@ -77,7 +76,8 @@
 
 (defun jcs-count-windows ()
   "Total window count."
-  (let ((count 0))
+  (let ((jcs--no-advice-other-window t)
+        (count 0))
     (dolist (fn (frame-list))
       (setq count (+ (length (window-list fn)) count)))
     count))
@@ -173,19 +173,24 @@ If DO-ADVICE is non-nil then will active advices from `other-window' function."
 ;;-----------------------------------------------------------
 ;; Column
 
-(defun jcs-window-buffer-list-in-column ()
-  "Return the list of buffer in column."
-  (let ((buf-list '()) (break nil) (windmove-wrap-around nil))
+(defun jcs-window-type-list-in-column (type)
+  "Return the list of TYPE in column.
+TYPE can be 'buffer or 'window."
+  (let ((type-list '()) (break nil) (windmove-wrap-around nil))
     (save-selected-window
       (jcs-move-to-upmost-window t)
       (while (and (not break))
-        (push (buffer-name) buf-list)
+        (push
+         (cl-case type
+           ('buffer (buffer-name))
+           ('window (selected-window)))
+         type-list)
         (setq break (not (ignore-errors (windmove-down))))))
-    buf-list))
+    type-list))
 
 (defun jcs-window-buffer-on-column-p (buf)
   "Check if BUF on same column."
-  (jcs-is-contain-list-string-regexp-reverse (jcs-window-buffer-list-in-column) buf))
+  (jcs-is-contain-list-string-regexp-reverse (jcs-window-type-list-in-column 'buffer) buf))
 
 ;;-----------------------------------------------------------
 ;; Deleting
@@ -294,19 +299,12 @@ i.e. change right window to bottom, or change bottom window to right."
 ;; Util
 
 (defun jcs-window-is-larger-in-height-p ()
-  "Get the window that are larget than other windows in vertical."
+  "Get the window that are larget than other windows in vertical/column."
   (let ((jcs--no-advice-other-window t)
-        (is-larger nil) (cur-win-h (window-height)) (next-win-h -1) (prev-win-h -1))
-    (if (window-full-height-p)
-        (setq is-larger t)
-      (save-selected-window
-        (other-window 1 t)
-        (setq next-win-h (window-height)))
-      (save-selected-window
-        (other-window -1 t)
-        (setq prev-win-h (window-height)))
-      (when (or (>= cur-win-h prev-win-h) (>= cur-win-h next-win-h))
-        (setq is-larger t)))
+        (current-height (window-height)) (is-larger t))
+    (dolist (win (jcs-window-type-list-in-column 'window))
+      (when (> (window-height win) current-height)
+        (setq is-larger nil)))
     is-larger))
 
 ;;;###autoload
