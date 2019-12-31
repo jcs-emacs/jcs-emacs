@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2019-12-31
+
+* Added switch to output buffer utility function for development use. (jcs-emacs-init)
+* Added get buffers utility functions by using `regexp` and `string`. (jcs-emacs-init)
+
 ### 2019-12-30
 
 * Add no advice other window flag for other function that doesn't want to configure
