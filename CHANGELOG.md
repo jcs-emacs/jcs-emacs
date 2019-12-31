@@ -12,6 +12,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Change `define-it` package from manually installed to automatically installed 
  using `melpa`. (jcs-emacs-init)
 * Installed new package => `define-it`. (jcs-emacs-init)
+* Fixed `undo`/`redo` logic and work with `lsp-ui`. (jcs-emacs-init)
 
 ### 2019-12-30
 
