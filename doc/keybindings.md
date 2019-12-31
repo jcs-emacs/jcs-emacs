@@ -53,6 +53,7 @@ Here is the list of key bindins that defined in this configuration.
     * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>b</kbd> - Build the program. (`build.linux`/`build.bat`/`build.mac`)
     * <kbd>f5</kbd> - Run the program. (`run.linux`/`run.bat`/`run.mac`)
     * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>u</kbd> - Show output window. (if any)
+    * <kbd>Alt</kbd>+<kbd>o</kbd> - Switch to output buffer.
     * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>=</kbd> - Previous output buffer.
     * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>-</kbd> - Next output buffer.
 
