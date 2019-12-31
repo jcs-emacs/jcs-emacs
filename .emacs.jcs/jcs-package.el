@@ -59,6 +59,7 @@
     dart-mode
     dash
     dashboard
+    define-it
     diminish
     diminish-buffer
     dockerfile-mode
@@ -280,7 +281,6 @@
 
 (defconst jcs-package-manually-install-list
   '(("company-quickhelp-terminal" "jcs-elpa/company-quickhelp-terminal" "github")
-    ("define-it" "jcs-elpa/define-it" "github")
     ("ffmpeg-player" "jcs-elpa/ffmpeg-player" "github")
     ("file-header" "jcs-elpa/file-header" "github")
     ("ivy-resize" "jcs-elpa/ivy-resize" "github")
