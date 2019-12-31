@@ -81,19 +81,18 @@ CBF : Current buffer file name."
           ;; NOTE: We need to go back two windows in
           ;; order to make the undo-tree-visualize
           ;; buffer to display in the next window.
-          (jcs-other-window-prev)
-          (jcs-other-window-prev)
-          (jcs-other-window-next)
+          (progn
+            (jcs-other-window-prev)
+            (jcs-other-window-prev)
+            (jcs-other-window-next))
           (setq found-valid t))
         (setq win-index (1+ win-index)))
       (when found-valid
         (let ((bf-before-switched (buffer-name)))
           (switch-to-buffer rel-cbf)
-          (save-selected-window
-            (undo-tree-visualize))
+          (save-selected-window (undo-tree-visualize))
           (switch-to-buffer bf-before-switched))))
-    (unless found-valid
-      (undo-tree-visualize))))
+    (unless found-valid (undo-tree-visualize))))
 
 
 ;;;###autoload
@@ -102,7 +101,6 @@ CBF : Current buffer file name."
   (interactive)
   (require 'undo-tree)
   (jcs--lsp-ui-doc--hide-frame)
-  (jcs--lsp-signature-stop)
   (if (not jcs-use-undo-tree-key)
       (call-interactively #'undo)
     (save-selected-window
@@ -132,7 +130,6 @@ CBF : Current buffer file name."
   (interactive)
   (require 'undo-tree)
   (jcs--lsp-ui-doc--hide-frame)
-  (jcs--lsp-signature-stop)
   (if (not jcs-use-undo-tree-key)
       ;; In Emacs, undo/redo is the same thing.
       (call-interactively #'undo)
