@@ -24,18 +24,19 @@ Return nil, if frame not maximized."
     (select-frame-set-input-focus new-frame)))
 
 ;;;###autoload
-(defun jcs-walk-through-all-frames-once (&optional fnc)
-  "Walk through all the frames once.
-FNC : Callback apply to each windows."
+(defun jcs-walk-through-all-frames-once (&optional fnc do-advice)
+  "Walk through all the frames once and execute callback FNC.
+If DO-ADVICE is non-nil then will active advices from `other-window' function."
   (interactive)
-  (save-selected-window
-    (let ((cur-frame (selected-frame)) (index 0))
-      (while (< index (length (frame-list)))
-        (when fnc
-          (funcall fnc))
-        (call-interactively #'other-frame)
-        (setq index (+ index 1)))
-      (select-frame-set-input-focus cur-frame))))
+  (let ((jcs--no-advice-other-window (if do-advice nil t)))
+    (save-selected-window
+      (let ((cur-frame (selected-frame)) (index 0))
+        (while (< index (length (frame-list)))
+          (when fnc
+            (funcall fnc))
+          (call-interactively #'other-frame)
+          (setq index (+ index 1)))
+        (select-frame-set-input-focus cur-frame)))))
 
 (defun jcs-max-frame-width ()
   "Find the largest frame width."
