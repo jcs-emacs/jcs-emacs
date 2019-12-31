@@ -9,6 +9,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 * Added switch to output buffer utility function for development use. (jcs-emacs-init)
 * Added get buffers utility functions by using `regexp` and `string`. (jcs-emacs-init)
+* Change `define-it` package from manually installed to automatically installed 
+ using `melpa`. (jcs-emacs-init)
+* Installed new package => `define-it`. (jcs-emacs-init)
 
 ### 2019-12-30
 
