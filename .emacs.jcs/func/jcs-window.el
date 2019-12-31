@@ -486,8 +486,7 @@ i.e. change right window to bottom, or change bottom window to right."
    (lambda ()
      (push (jcs-buffer-name-or-buffer-file-name) jcs-window--record-buffers)
      (push (point) jcs-window--record-points)
-     (push (jcs-first-visible-line-in-window) jcs-window--record-first-visible-lines))
-   t)
+     (push (jcs-first-visible-line-in-window) jcs-window--record-first-visible-lines)))
   ;; Reverse the order to have the information order corresponding
   ;; to the window order correctly.
   (setq jcs-window--record-buffers (reverse jcs-window--record-buffers))
