@@ -26,7 +26,8 @@
 (defun jcs-jump-shown-to-buffer (in-buffer-name)
   "Jump to the IN-BUFFER-NAME if the buffer current shown in the window."
   (interactive "bEnter buffer to jump to: ")
-  (let ((win-len (jcs-count-windows)) (index 0) (found nil))
+  (let ((jcs--no-advice-other-window t)
+        (win-len (jcs-count-windows)) (index 0) (found nil))
     (while (< index win-len)
       ;; NOTE: we use `string-match-p' instead of `string='
       ;; because some buffer cannot be detected in the buffer
@@ -84,7 +85,8 @@
 (defun jcs-buffer-visible-list ()
   "List of buffer that current visible in frame."
   (save-selected-window
-    (let ((win-len (jcs-count-windows)) (index 0) (buffers '()))
+    (let ((jcs--no-advice-other-window t)
+          (win-len (jcs-count-windows)) (index 0) (buffers '()))
       (while (> win-len index)
         (push (buffer-name) buffers)
         (other-window 1 t)
@@ -100,16 +102,18 @@
     displayed-frame-count))
 
 ;;;###autoload
-(defun jcs-walk-through-all-windows-once (&optional fnc)
-  "Walk through all the windows once and execute callback FNC."
+(defun jcs-walk-through-all-windows-once (&optional fnc do-advice)
+  "Walk through all the windows once and execute callback FNC.
+If DO-ADVICE is non-nil then will active advices from `other-window' function."
   (interactive)
-  (save-selected-window
-    (let ((cur-frame (selected-frame)) (index 0))
-      (while (< index (jcs-count-windows))
-        (when fnc (funcall fnc))
-        (other-window 1 t)
-        (setq index (+ index 1)))
-      (select-frame-set-input-focus cur-frame))))
+  (let ((jcs--no-advice-other-window (if do-advice nil t)))
+    (save-selected-window
+      (let ((cur-frame (selected-frame)) (index 0))
+        (while (< index (jcs-count-windows))
+          (when fnc (funcall fnc))
+          (other-window 1 t)
+          (setq index (+ index 1)))
+        (select-frame-set-input-focus cur-frame)))))
 
 ;;========================
 ;; Ace Window
@@ -291,7 +295,8 @@ i.e. change right window to bottom, or change bottom window to right."
 
 (defun jcs-window-is-larger-in-height-p ()
   "Get the window that are larget than other windows in vertical."
-  (let ((is-larger nil) (cur-win-h (window-height)) (next-win-h -1) (prev-win-h -1))
+  (let ((jcs--no-advice-other-window t)
+        (is-larger nil) (cur-win-h (window-height)) (next-win-h -1) (prev-win-h -1))
     (if (window-full-height-p)
         (setq is-larger t)
       (save-selected-window
@@ -481,7 +486,8 @@ i.e. change right window to bottom, or change bottom window to right."
    (lambda ()
      (push (jcs-buffer-name-or-buffer-file-name) jcs-window--record-buffers)
      (push (point) jcs-window--record-points)
-     (push (jcs-first-visible-line-in-window) jcs-window--record-first-visible-lines)))
+     (push (jcs-first-visible-line-in-window) jcs-window--record-first-visible-lines))
+   t)
   ;; Reverse the order to have the information order corresponding
   ;; to the window order correctly.
   (setq jcs-window--record-buffers (reverse jcs-window--record-buffers))
