@@ -518,6 +518,9 @@
   (setq lsp-prefer-flymake nil)        ; Use lsp-ui and flycheck
   (setq flymake-fringe-indicator-position 'right-fringe)
 
+  (defconst jcs--lsp-lv-buffer-name " *LV*"
+    "Help record the ` *LV*' buffer name.")
+
   (defun jcs--lsp-current-last-signature-buffer ()
     "Check if current buffer last signature buffer."
     (when (boundp 'lsp--last-signature-buffer)
@@ -531,7 +534,7 @@
   :config
   (defun jcs--lsp-lv-buffer-alive-p ()
     "Check if ` *LV*' buffer alive."
-    (get-buffer " *LV*"))
+    (get-buffer jcs--lsp-lv-buffer-name))
   (defun jcs--lsp-mode-hook ()
     "Hook runs after entering or leaving `lsp-mode'."
     (if lsp-mode (company-fuzzy-mode -1) (company-fuzzy-mode 1)))
