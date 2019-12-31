@@ -33,7 +33,8 @@
                 (jcs-window-restore-once)
                 (goto-char pt)))
             (setq jcs--lsp-lv-was-alive nil))
-        (let ((jcs--lsp-lv-recording t)) (jcs-window-record-once))))))
+        (let ((jcs--lsp-lv-recording t)) (jcs-window-record-once)))))
+  (jcs--lsp-ui-doc-show-safely))
 (add-hook 'window-size-change-functions 'jcs-window-size-change-functions)
 
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
