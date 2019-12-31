@@ -69,30 +69,41 @@ This will no longer overwrite usual Emacs' undo key."
 
 
 (defun jcs-undo-tree-visualize (&optional cbf)
-  "Call `undo-tree-visualize' only in window that is full height.
+  "Call `undo-tree-visualize' only in window that has higher height.
 CBF : Current buffer file name."
   (let ((jcs--no-advice-other-window t)
-        (win-len (jcs-count-windows)) (win-index 0) (found-valid nil)
-        (rel-cbf (if cbf cbf (buffer-name))))
+        (win-len (jcs-count-windows)) (win-index 0)
+        (target-window nil)
+        (rel-cbf (if cbf cbf (buffer-name)))
+        (current-window (selected-window)))
+    (when (< win-len 2) (jcs-balance-split-window-horizontally))
     (save-selected-window
-      (while (and (< win-index win-len) (not found-valid))
-        (jcs-other-window-next)
-        (when (jcs-window-is-larger-in-height-p)
-          ;; NOTE: We need to go back two windows in
-          ;; order to make the undo-tree-visualize
-          ;; buffer to display in the next window.
-          (progn
-            (jcs-other-window-prev)
-            (jcs-other-window-prev)
-            (jcs-other-window-next))
-          (setq found-valid t))
-        (setq win-index (1+ win-index)))
-      (when found-valid
-        (let ((bf-before-switched (buffer-name)))
-          (switch-to-buffer rel-cbf)
-          (save-selected-window (undo-tree-visualize))
-          (switch-to-buffer bf-before-switched))))
-    (unless found-valid (undo-tree-visualize))))
+      (other-window 1)
+      (jcs-walk-through-all-windows-once
+       (lambda ()
+         (unless target-window
+           (when (and
+                  (not (equal (selected-window) current-window))
+                  (not (string= (buffer-name (current-buffer)) jcs--lsp-lv-buffer-name))
+                  (jcs-window-is-larger-in-height-p))
+             (setq target-window (selected-window))))))
+      (unless target-window
+        (other-window 1)
+        (jcs-walk-through-all-windows-once
+         (lambda ()
+           (unless target-window
+             (when (and
+                    (not (equal (selected-window) current-window))
+                    (not (string= (buffer-name (current-buffer)) jcs--lsp-lv-buffer-name)))
+               (setq target-window (selected-window)))))))
+      (select-window target-window)
+      ;; NOTE: We need to go back two windows in order to make the
+      ;; `undo-tree-visualize' buffer to display in the next window.
+      (progn (other-window -2) (other-window 1))
+      (let ((bf-before-switched (buffer-name)))
+        (switch-to-buffer rel-cbf)
+        (save-selected-window (undo-tree-visualize))
+        (switch-to-buffer bf-before-switched)))))
 
 
 ;;;###autoload
@@ -104,7 +115,8 @@ CBF : Current buffer file name."
   (if (not jcs-use-undo-tree-key)
       (call-interactively #'undo)
     (save-selected-window
-      (let ((jumped-to-utv
+      (let ((record-window (selected-window))
+            (jumped-to-utv
              (ignore-errors
                (jcs-jump-shown-to-buffer undo-tree-visualizer-buffer-name))))
         ;; NOTE: If we do jumped to the `undo-tree-visualizer-buffer-name'
@@ -113,6 +125,7 @@ CBF : Current buffer file name."
         ;; key is way faster than `undo-tree-redo' key.
         (if jumped-to-utv
             (undo-tree-visualize-undo)
+          (select-window record-window)
           (undo-tree-undo)
           (jcs-undo-tree-visualize))
         ;; STUDY: weird that they use word
@@ -134,7 +147,8 @@ CBF : Current buffer file name."
       ;; In Emacs, undo/redo is the same thing.
       (call-interactively #'undo)
     (save-selected-window
-      (let ((jumped-to-utv
+      (let ((record-window (selected-window))
+            (jumped-to-utv
              (ignore-errors
                (jcs-jump-shown-to-buffer undo-tree-visualizer-buffer-name))))
         ;; NOTE: If we do jumped to the `undo-tree-visualizer-buffer-name'
@@ -143,6 +157,7 @@ CBF : Current buffer file name."
         ;; key is way faster than `undo-tree-redo' key.
         (if jumped-to-utv
             (undo-tree-visualize-redo)
+          (select-window record-window)
           (undo-tree-redo)
           (jcs-undo-tree-visualize))
         ;; STUDY: weird that they use word
