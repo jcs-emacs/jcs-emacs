@@ -51,6 +51,26 @@ Return number of the valid buffers."
       (set-buffer bf)
       (when fnc (funcall fnc)))))
 
+(defun jcs-get-buffers (str type)
+  "Return a list of buffers that matches STR.
+TYPE is the return type; can be 'object or 'string."
+  (jcs-get-buffers-regexp (regexp-quote str) type))
+
+(defun jcs-get-buffers-regexp (regexp type)
+  "Return a list of buffers that matches REGEXP.
+TYPE is the return type; can be 'object or 'string."
+  (let ((buf-lst '()))
+    (if (not (stringp regexp))
+        (user-error "[WARNING] Can't get buffers with this string/regexp: %s" regexp)
+      (dolist (buf (buffer-list))
+        (setq buf-name (buffer-name buf))
+        (when (and (stringp buf-name)
+                   (string-match-p regexp buf-name))
+          (cl-case type
+            ('object (push buf buf-lst))
+            ('string (push buf-name buf-lst))))))
+    buf-lst))
+
 ;;----------------------------------------------------------------------------
 ;; Compile
 
