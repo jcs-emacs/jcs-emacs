@@ -75,6 +75,22 @@
 ;;----------------------------------------------------------------------------
 ;; Build & Run
 
+(defun jcs-form-compilation-filename-prefix ()
+  "Form the prefix of the compilation buffer name."
+  (format "*%s*: " jcs-compilation-base-filename))
+
+;;;###autoload
+(defun jcs-dev-switch-to-output-buffer ()
+  "Switch to one of the output buffer."
+  (interactive)
+  (let* ((output-prefix (jcs-form-compilation-filename-prefix))
+         (output-buf-lst (jcs-get-buffers output-prefix 'string))
+         (choice nil))
+    (if (not output-buf-lst)
+        (user-error "[INFO] No output buffer available: %s" output-buf-lst)
+      (setq choice (completing-read "Output buffer: " output-buf-lst))
+      (switch-to-buffer choice))))
+
 ;;;###autoload
 (defun jcs-open-project-file (in-filename title &optional ow)
   "Open the IN-FILENAME from this project with TITLE.
@@ -118,7 +134,7 @@ IN-OP : inpuit operation script."
     (compile in-op)
     (jcs-update-line-number-each-window)
     (with-current-buffer "*compilation*"
-      (rename-buffer (format "*%s*: %s" jcs-compilation-base-filename (f-filename in-op)) t))
+      (rename-buffer (format "%s%s" (jcs-form-compilation-filename-prefix) (f-filename in-op)) t))
     (message "Executing script file: '%s'" in-op)))
 
 
