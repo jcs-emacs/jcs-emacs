@@ -71,13 +71,11 @@ This will no longer overwrite usual Emacs' undo key."
 (defun jcs-undo-tree-visualize (&optional cbf)
   "Call `undo-tree-visualize' only in window that is full height.
 CBF : Current buffer file name."
-  (let ((win-len (jcs-count-windows))
-        (win-index 0)
-        (found-valid nil)
+  (let ((jcs--no-advice-other-window t)
+        (win-len (jcs-count-windows)) (win-index 0) (found-valid nil)
         (rel-cbf (if cbf cbf (buffer-name))))
     (save-selected-window
-      (while (and (< win-index win-len)
-                  (not found-valid))
+      (while (and (< win-index win-len) (not found-valid))
         (jcs-other-window-next)
         (when (jcs-window-is-larger-in-height-p)
           ;; NOTE: We need to go back two windows in
@@ -104,30 +102,29 @@ CBF : Current buffer file name."
   (interactive)
   (require 'undo-tree)
   (jcs--lsp-ui-doc--hide-frame)
-  (if jcs-use-undo-tree-key
-      (save-selected-window
-        (let ((jumped-to-utv
-               (ignore-errors
-                 (jcs-jump-shown-to-buffer undo-tree-visualizer-buffer-name))))
-          ;; NOTE: If we do jumped to the
-          ;; `undo-tree-visualizer-buffer-name' buffer,
-          ;; then we use `undo-tree-visualize-undo' instead
-          ;; of `undo-tree-undo'. Because directly called
-          ;; `undo-tree-visualize-undo' key is way faster than
-          ;; `undo-tree-undo' key.
-          (if jumped-to-utv
-              (undo-tree-visualize-undo)
-            (undo-tree-undo)
-            (jcs-undo-tree-visualize))
-          ;; STUDY: weird that they use word
-          ;; toggle, instead of just set it.
-          ;;
-          ;; Why not?
-          ;;   => `undo-tree-visualizer-show-diff'
-          ;; or
-          ;;   => `undo-tree-visualizer-hide-diff'
-          (when jcs-undo-tree-auto-show-diff (undo-tree-visualizer-toggle-diff))))
-    (call-interactively #'undo)))
+  (jcs--lsp-signature-stop)
+  (if (not jcs-use-undo-tree-key)
+      (call-interactively #'undo)
+    (save-selected-window
+      (let ((jumped-to-utv
+             (ignore-errors
+               (jcs-jump-shown-to-buffer undo-tree-visualizer-buffer-name))))
+        ;; NOTE: If we do jumped to the `undo-tree-visualizer-buffer-name'
+        ;; buffer, then we use `undo-tree-visualize-redo' instead of
+        ;; `undo-tree-redo'. Because directly called `undo-tree-visualize-redo'
+        ;; key is way faster than `undo-tree-redo' key.
+        (if jumped-to-utv
+            (undo-tree-visualize-undo)
+          (undo-tree-undo)
+          (jcs-undo-tree-visualize))
+        ;; STUDY: weird that they use word
+        ;; toggle, instead of just set it.
+        ;;
+        ;; Why not?
+        ;;   => `undo-tree-visualizer-show-diff'
+        ;; or
+        ;;   => `undo-tree-visualizer-hide-diff'
+        (when jcs-undo-tree-auto-show-diff (undo-tree-visualizer-toggle-diff))))))
 
 ;;;###autoload
 (defun jcs-redo ()
@@ -135,31 +132,30 @@ CBF : Current buffer file name."
   (interactive)
   (require 'undo-tree)
   (jcs--lsp-ui-doc--hide-frame)
-  (if jcs-use-undo-tree-key
-      (save-selected-window
-        (let ((jumped-to-utv
-               (ignore-errors
-                 (jcs-jump-shown-to-buffer undo-tree-visualizer-buffer-name))))
-          ;; NOTE: If we do jumped to the
-          ;; `undo-tree-visualizer-buffer-name' buffer,
-          ;; then we use `undo-tree-visualize-redo' instead
-          ;; of `undo-tree-redo'. Because directly called
-          ;; `undo-tree-visualize-redo' key is way faster than
-          ;; `undo-tree-redo' key.
-          (if jumped-to-utv
-              (undo-tree-visualize-redo)
-            (undo-tree-redo)
-            (jcs-undo-tree-visualize))
-          ;; STUDY: weird that they use word
-          ;; toggle, instead of just set it.
-          ;;
-          ;; Why not?
-          ;;   => `undo-tree-visualizer-show-diff'
-          ;; or
-          ;;   => `undo-tree-visualizer-hide-diff'
-          (when jcs-undo-tree-auto-show-diff (undo-tree-visualizer-toggle-diff))))
-    ;; In Emacs, undo/redo is the same thing.
-    (call-interactively #'undo)))
+  (jcs--lsp-signature-stop)
+  (if (not jcs-use-undo-tree-key)
+      ;; In Emacs, undo/redo is the same thing.
+      (call-interactively #'undo)
+    (save-selected-window
+      (let ((jumped-to-utv
+             (ignore-errors
+               (jcs-jump-shown-to-buffer undo-tree-visualizer-buffer-name))))
+        ;; NOTE: If we do jumped to the `undo-tree-visualizer-buffer-name'
+        ;; buffer, then we use `undo-tree-visualize-redo' instead of
+        ;; `undo-tree-redo'. Because directly called `undo-tree-visualize-redo'
+        ;; key is way faster than `undo-tree-redo' key.
+        (if jumped-to-utv
+            (undo-tree-visualize-redo)
+          (undo-tree-redo)
+          (jcs-undo-tree-visualize))
+        ;; STUDY: weird that they use word
+        ;; toggle, instead of just set it.
+        ;;
+        ;; Why not?
+        ;;   => `undo-tree-visualizer-show-diff'
+        ;; or
+        ;;   => `undo-tree-visualizer-hide-diff'
+        (when jcs-undo-tree-auto-show-diff (undo-tree-visualizer-toggle-diff))))))
 
 ;;---------------------------------------------
 ;; Backspace
