@@ -528,6 +528,9 @@
   (defun jcs--lsp-signature-maybe-stop ()
     "Maybe stop the signature action."
     (when (functionp 'lsp-signature-maybe-stop) (lsp-signature-maybe-stop)))
+  (defun jcs--lsp-signature-stop ()
+    "Stop the signature action."
+    (when (functionp 'lsp-signature-stop) (lsp-signature-stop)))
   :config
   (defun jcs--lsp-lv-buffer-alive-p ()
     "Check if ` *LV*' buffer alive."
