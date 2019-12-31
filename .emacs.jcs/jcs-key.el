@@ -420,12 +420,10 @@
 
 ;;; Script Executing (Output)
 (define-key global-map (kbd "C-S-u") #'jcs-output-window)
+(define-key global-map (kbd "M-o") #'jcs-dev-switch-to-output-buffer)
 (progn
-  ;; Run
-  (define-key global-map (kbd "<f5>") #'jcs-run-without-asking)
-
-  ;; Build
-  (define-key global-map (kbd "C-S-b") #'jcs-make-without-asking))
+  (define-key global-map (kbd "<f5>") #'jcs-run-without-asking)     ; Run
+  (define-key global-map (kbd "C-S-b") #'jcs-make-without-asking))  ; Build
 
 ;;; Search Word
 (progn
