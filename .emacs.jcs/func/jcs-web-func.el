@@ -3,9 +3,9 @@
 ;;; Code:
 
 
-;;-----------------------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Truncate lines depends on the Face.
-;;-----------------------------------------------------------
+;;----------------------------------------------------------------------------
 
 (defvar jcs-web-auto-truncate-lines nil
   "Toggle between using automatically truncate lines or not.")
@@ -54,7 +54,7 @@ Is the opposite of `jcs-web-toggle-auto-truncate-lines'."
       (jcs-web-enable-auto-truncate-lines)
     (jcs-web-disable-auto-truncate-lines)))
 
-;;----------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Deletion
 
 ;;;###autoload
@@ -111,7 +111,7 @@ Is the opposite of `jcs-web-toggle-auto-truncate-lines'."
              (not (jcs-current-char-equal-p "$")))
     (backward-delete-char 1)))
 
-;;----------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Indentation
 
 ;;;###autoload
@@ -148,7 +148,7 @@ Is the opposite of `jcs-web-toggle-auto-truncate-lines'."
     (insert "{}")
     (backward-char 1)))
 
-;;----------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Impatient Mode
 
 ;;;###autoload
@@ -167,7 +167,8 @@ Is the opposite of `jcs-web-toggle-auto-truncate-lines'."
   (call-interactively 'httpd-stop)
   (message "Close real time editing with port: %d" httpd-port))
 
-;;-----------------------------------------------------------
+;;----------------------------------------------------------------------------
+;; Other
 
 ;;;###autoload
 (defun jcs-toggle-web-mode-offsetless-elements ()
@@ -182,8 +183,6 @@ Is the opposite of `jcs-web-toggle-auto-truncate-lines'."
       (setq web-mode-offsetless-elements (remove tmp-element web-mode-offsetless-elements)))
     (put 'jcs-toggle-web-mode-offsetless-elements 'state t)))
 
-;;-----------------------------------------------------------
-
 ;;;###autoload
 (defun jcs-emmet-expand-line ()
   "Wrapper of `emmet-expand-line' function."
@@ -192,8 +191,6 @@ Is the opposite of `jcs-web-toggle-auto-truncate-lines'."
       (call-interactively #'goto-address-at-point)
     (unless (call-interactively #'emmet-expand-line)
       (jcs-ctrl-return-key))))
-
-;;-----------------------------------------------------------
 
 (defun jcs-init-web-faces ()
   "Initialize Web mode faces highlihgting."
