@@ -795,7 +795,9 @@ delay. HEIGHT of the tooltip that will display."
     (let ((was-flycheck flycheck-mode))
       (unless (ignore-errors (jcs-tip-describe-it))
         (require 'define-it)
-        (define-it-at-point))
+        (define-it-at-point)
+        ;; In case we are using region, cancel the select region.
+        (deactivate-mark))
       (if was-flycheck (flycheck-mode 1) (flycheck-mode -1)))))
 
 ;;----------------------------------------------------------------------------
