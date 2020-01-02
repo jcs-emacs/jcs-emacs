@@ -162,7 +162,8 @@ If DO-ADVICE is non-nil then will active advices from `other-window' function."
              (not isearch-mode)
              (not (eq jcs--window-last-command-record last-command)))
     (setq jcs--window-last-command-record last-command)
-    (jcs-buffer-menu-safe-refresh)))
+    ;;(jcs-buffer-menu-safe-refresh)
+    ))
 (advice-add 'select-window :after #'jcs--select-window--advice-after)
 
 (defun jcs--delete-window--advice-after (&rest _)
