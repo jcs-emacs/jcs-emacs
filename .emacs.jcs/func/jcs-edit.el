@@ -995,7 +995,7 @@ REGEXP : reqular expression use to align."
   (kill-this-buffer)
 
   ;; Refresh buffer menu once.
-  (jcs-buffer-menu-refresh-buffer)
+  (jcs-buffer-menu-safe-refresh)
 
   ;; If still in the buffer menu, try switch to the
   ;; previous buffer
