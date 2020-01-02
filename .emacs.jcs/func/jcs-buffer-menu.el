@@ -57,7 +57,7 @@ Sorted by (1) visit, (2) buffer, (3) size, (4) time, (5) mode, (6) file."
       (if (ignore-errors (Buffer-menu-this-window))
           (message nil)  ; Use to clear `[Display not ready]'.
         (user-error "No buffer on this line"))
-    (setq jcs-buffer-menu-return-delay t)
+    (setq jcs--buffer-menu-return-delay t)
     (message "[Display not ready]")))
 
 
@@ -81,10 +81,20 @@ From scale 0 to 100.")
 (defun jcs--buffer-menu--header-appearing-p ()
   "Check if header appearing in the buffer."
   (let ((header-now ""))
-    (save-excursion
-      (goto-char (point-min))
-      (setq header-now (thing-at-point 'line)))
-    (string-match-p jcs-buffer-menu-search-title header-now)))
+    (jcs-do-stuff-if-buffer-exists
+     "*Buffer List*"
+     (lambda ()
+       (save-excursion
+         (goto-char (point-min))
+         (setq header-now (thing-at-point 'line)))))
+    (and (stringp header-now)
+         (string-match-p jcs--buffer-menu-search-title header-now))))
+
+(defun jcs--safe-print-fake-header ()
+  "Safe way to print fake header."
+  (when (and (not (jcs--buffer-menu--header-appearing-p))
+             jcs--buffer-menu--fake-header-already-appears)
+    (tabulated-list-print-fake-header)))
 
 (defun jcs--buffer-menu-clean ()
   "Clean all the menu list."
@@ -127,21 +137,22 @@ From scale 0 to 100.")
               (tabulated-list-print-entry (car en) (cdr en))))))
       (jcs-goto-line 2))
     (setq jcs--buffer-menu--done-filtering t)
+    (jcs--safe-print-fake-header)
     ;; Once it is done filtering, we redo return action if needed.
-    (when jcs-buffer-menu-return-delay
+    (when jcs--buffer-menu-return-delay
       (jcs-buffer-menu-return))))
 
-(defun jcs--buffer-menu-trigger-filter (&optional print-header)
+(defun jcs--buffer-menu-trigger-filter ()
   "Trigger the filtering operation, with PRINT-HEADER."
   (tabulated-list-revert)
+  (jcs--safe-print-fake-header)
   ;; NOTE: Ensure title exists.
-  (when (> (length jcs-buffer-menu-search-title) (length tabulated-list--header-string))
-    (setq tabulated-list--header-string jcs-buffer-menu-search-title))
-  (when print-header (tabulated-list-print-fake-header))
+  (when (> (length jcs--buffer-menu-search-title) (length tabulated-list--header-string))
+    (setq tabulated-list--header-string jcs--buffer-menu-search-title))
   (setq jcs--buffer-menu--pattern (substring tabulated-list--header-string
-                                           (length jcs-buffer-menu-search-title)
-                                           (length tabulated-list--header-string)))
-  (unless (string= jcs--buffer-menu--pattern "")
+                                             (length jcs--buffer-menu-search-title)
+                                             (length tabulated-list--header-string)))
+  (unless (string-empty-p jcs--buffer-menu--pattern)
     (when (timerp jcs--buffer-menu--filter-timer)
       (cancel-timer jcs--buffer-menu--filter-timer))
     (setq jcs--buffer-menu--done-filtering nil)
@@ -153,14 +164,14 @@ From scale 0 to 100.")
 (defun jcs--buffer-menu-input (key-input &optional add-del-num)
   "Insert key KEY-INPUT for fake header for search bar.
 ADD-DEL-NUM : Addition or deletion number."
+  (setq jcs--buffer-menu--fake-header-already-appears t)
   (unless add-del-num (setq add-del-num (length key-input)))
   (if (jcs-is-positive add-del-num)
       (setq tabulated-list--header-string
             (concat tabulated-list--header-string key-input))
     (setq tabulated-list--header-string
           (substring tabulated-list--header-string 0 (1- (length tabulated-list--header-string)))))
-  (jcs--buffer-menu-trigger-filter t))
-
+  (jcs--buffer-menu-trigger-filter))
 
 ;;----------------------------------------------------------------------------
 ;; Wrapping
