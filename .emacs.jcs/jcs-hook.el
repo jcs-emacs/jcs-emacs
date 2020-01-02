@@ -73,6 +73,7 @@
         (progn
           (select-frame-set-input-focus (selected-frame))
           (jcs-update-speedbar-record-after-select-new-window)  ; Update `speedbar'
+          (jcs-buffer-menu-safe-refresh)
           (jcs--lsp-signature-maybe-stop)
           (jcs--lsp-ui-doc-show-safely))
       ;; NOTE: This occurs in version `27.0.60'.
