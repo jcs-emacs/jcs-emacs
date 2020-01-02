@@ -159,16 +159,21 @@
 ;;----------------------------------------------------------------------------
 ;; Buffer Menu
 
-(defconst jcs-buffer-menu-search-title "Search: "
+(defconst jcs--buffer-menu-search-title "Search: "
   "Search bar title in `buffer-menu''s buffer.")
 
-(defvar jcs-buffer-menu-return-delay nil
+(defvar jcs--buffer-menu-return-delay nil
   "Record if hit return when display not ready; once it is ready we redo the action.")
+
+(defvar jcs--buffer-menu--fake-header-already-appears nil
+  "Record if fake header already appears.")
 
 (defun jcs--buffer-menu--advice-before (&rest _)
   "Advice before execute `buffer-menu' command."
-  (setq jcs-buffer-menu-return-delay nil)
-  (setq tabulated-list--header-string jcs-buffer-menu-search-title))
+  (setq jcs--buffer-menu-return-delay nil)
+  (unless jcs-buffer-menu-switch-buffer-refreshing
+    (setq jcs--buffer-menu--fake-header-already-appears nil)
+    (setq tabulated-list--header-string jcs--buffer-menu-search-title)))
 (advice-add 'buffer-menu :before #'jcs--buffer-menu--advice-before)
 
 
@@ -181,21 +186,15 @@
   (interactive)
   (unless (string= (jcs-buffer-name-or-buffer-file-name) "*Buffer List*")
     (save-window-excursion
-      (let ((was-fake-header-printed nil) (get-title ""))
-        (when (get-buffer "*Buffer List*")
-          (with-current-buffer "*Buffer List*"
-            (save-excursion
-              (goto-char (point-min))
-              (setq get-title (thing-at-point 'line)))
-            (when get-title
-              (setq was-fake-header-printed (string-match-p jcs-buffer-menu-search-title get-title)))))
-        (let (tabulated-list--header-string) (jcs-mute-apply #'buffer-menu))
-        (when jcs-buffer-menu-switch-buffer-refreshing
-          (jcs--buffer-menu-trigger-filter was-fake-header-printed)))
+      (let (tabulated-list--header-string) (jcs-mute-apply #'buffer-menu))
+      (when jcs-buffer-menu-switch-buffer-refreshing
+        (jcs--buffer-menu-trigger-filter))
       (bury-buffer)))
-  (with-current-buffer "*Buffer List*"
-    (require 'diminish-buffer)
-    (diminish-buffer--refresh-buffer-menu)))
+  (jcs-do-stuff-if-buffer-exists
+   "*Buffer List*"
+   (lambda ()
+     (when (jcs--buffer-menu--header-appearing-p)
+       (jcs-goto-line 2)))))
 
 (defun jcs-buffer-menu-safe-refresh ()
   "Safely refresh `buffer menu`'s buffer."
