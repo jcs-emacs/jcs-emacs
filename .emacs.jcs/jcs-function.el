@@ -22,21 +22,11 @@
 (defun jcs-message-erase-buffer ()
   "Erase the *Messages* buffer."
   (interactive)
-  (let ((is-killed nil))
-    ;; Kill it first.
-    (setq is-killed (jcs-maybe-kill-this-buffer))
-
-    ;; Message one message to retrieve `*Message*' buffer
-    ;; prepare for next use. Or else it some operation
-    ;; might prompt some issue that needed `*Message*'
-    ;; buffer to be exists.
-    (message "Retrieve *Message* buffer..")
-
-    (when is-killed
-      (jcs-safe-jump-shown-to-buffer
-       "*Buffer List*"
-       ;; NOTE: Refresh buffer menu once.
-       (lambda () (buffer-menu))))))
+  (jcs-maybe-kill-this-buffer)
+  ;; Message one message to retrieve `*Message*' buffer prepare for next use.
+  ;; Or else it some operation might prompt some issue that needed `*Message*'
+  ;; buffer to be exists.
+  (message "Retrieve *Message* buffer.."))
 
 ;;;###autoload
 (defun jcs-message-erase-buffer-stay ()
