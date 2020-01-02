@@ -62,23 +62,29 @@
 (define-key Buffer-menu-mode-map (kbd "M-s") #'jcs-scratch-buffer)
 
 (with-eval-after-load 'jcs-buffer-menu
-  (define-key Buffer-menu-mode-map (kbd "M-1") #'jcs-buffer-menu-sort-by-visit)
-  (define-key Buffer-menu-mode-map (kbd "M-2") #'jcs-buffer-menu-sort-by-buffer)
-  (define-key Buffer-menu-mode-map (kbd "M-3") #'jcs-buffer-menu-sort-by-size)
-  (define-key Buffer-menu-mode-map (kbd "M-4") #'jcs-buffer-menu-sort-by-time)
-  (define-key Buffer-menu-mode-map (kbd "M-5") #'jcs-buffer-menu-sort-by-mode)
-  (define-key Buffer-menu-mode-map (kbd "M-6") #'jcs-buffer-menu-sort-by-file)
+  (progn  ; Sort
+    (define-key Buffer-menu-mode-map (kbd "M-1") #'jcs-buffer-menu-sort-by-visit)
+    (define-key Buffer-menu-mode-map (kbd "M-2") #'jcs-buffer-menu-sort-by-buffer)
+    (define-key Buffer-menu-mode-map (kbd "M-3") #'jcs-buffer-menu-sort-by-size)
+    (define-key Buffer-menu-mode-map (kbd "M-4") #'jcs-buffer-menu-sort-by-time)
+    (define-key Buffer-menu-mode-map (kbd "M-5") #'jcs-buffer-menu-sort-by-mode)
+    (define-key Buffer-menu-mode-map (kbd "M-6") #'jcs-buffer-menu-sort-by-file))
 
-  (define-key Buffer-menu-mode-map (kbd "<escape>")
-    (lambda () (interactive) (buffer-menu) (top-level)))
-  (define-key Buffer-menu-mode-map (kbd "<return>") #'jcs-buffer-menu-return)
+  (progn  ; Searching / Filtering
+    (define-key Buffer-menu-mode-map (kbd "<escape>")
+      (lambda () (interactive) (buffer-menu) (top-level)))
+    (define-key Buffer-menu-mode-map (kbd "<return>") #'jcs-buffer-menu-return)
 
-  (dolist (key-str jcs-key-list)
-    (define-key Buffer-menu-mode-map key-str
-      (lambda () (interactive) (jcs--buffer-menu-input key-str))))
+    (dolist (key-str jcs-key-list)
+      (define-key Buffer-menu-mode-map key-str
+        (lambda () (interactive) (jcs--buffer-menu-input key-str))))
 
-  (define-key Buffer-menu-mode-map (kbd "<backspace>")
-    (lambda () (interactive) (jcs--buffer-menu-input "" -1))))
+    (define-key Buffer-menu-mode-map (kbd "<backspace>")
+      (lambda () (interactive) (jcs--buffer-menu-input "" -1))))
+
+  (progn  ; Wrapping
+    (define-key Buffer-menu-mode-map (kbd "<up>") #'jcs--buffer-menu--previous-line)
+    (define-key Buffer-menu-mode-map (kbd "<down>") #'jcs--buffer-menu--next-line)))
 
 ;;; Buffers
 (define-key global-map (kbd "C-a") #'jcs-mark-whole-buffer)
