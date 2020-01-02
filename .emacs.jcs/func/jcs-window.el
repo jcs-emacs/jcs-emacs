@@ -90,7 +90,7 @@
       (while (> win-len index)
         (push (buffer-name) buffers)
         (other-window 1 t)
-        (setq index (+ index 1)))
+        (setq index (1+ index)))
       buffers)))
 
 (defun jcs-buffer-showns (in-buf-name)
