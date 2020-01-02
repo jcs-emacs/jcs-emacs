@@ -71,6 +71,13 @@ TYPE is the return type; can be 'object or 'string."
             ('string (push buf-name buf-lst))))))
     buf-lst))
 
+(defun jcs-do-stuff-if-buffer-exists (buf-or-name fnc)
+  "Execute FNC in the BUF-OR-NAME if exists."
+  (if (get-buffer buf-or-name)
+      (with-current-buffer buf-or-name
+        (funcall fnc))
+    (message "[WARNING] Can't do stuff with this buffer: %s" buf-or-name)))
+
 ;;----------------------------------------------------------------------------
 ;; Compile
 
