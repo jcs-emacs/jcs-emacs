@@ -9,6 +9,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 * Fixed display not ready while `filtering`/`searching` in buffer menu. (jcs-emacs-init)
 * Added wrapping functionality for buffer menu mode. (jcs-emacs-init)
+* Established template default template's naming convention. (jcs-emacs-init)
 
 ### 2019-12-31
 
