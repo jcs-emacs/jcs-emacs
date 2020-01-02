@@ -11,6 +11,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Added wrapping functionality for buffer menu mode. (jcs-emacs-init)
 * Established template default template's naming convention. (jcs-emacs-init)
 * Improved buffer menu `searching`/`filtering` user experience. (jcs-emacs-init)
+* Fixed buffer menu refresh logic after killing. (jcs-emacs-init)
 
 ### 2019-12-31
 
