@@ -117,10 +117,11 @@ From scale 0 to 100.")
                (scoring (flx-score buf-name jcs--buffer-menu--pattern))
                ;; Ensure score is not `nil'.
                (score (if scoring (nth 0 scoring) 0)))
-          ;; For first time access score with hash-table, setup empty array.
-          (unless (gethash score scoring-table) (setf (gethash score scoring-table) '()))
-          ;; Push the candidate with the target score to hash-table.
-          (push (cons id entry) (gethash score scoring-table)))
+          (when (arrayp entry)
+            ;; For first time access score with hash-table, setup empty array.
+            (unless (gethash score scoring-table) (setf (gethash score scoring-table) '()))
+            ;; Push the candidate with the target score to hash-table.
+            (push (cons id entry) (gethash score scoring-table))))
         (forward-line 1))
       ;; Get all the keys into a list.
       (maphash (lambda (score-key _cand-lst) (push score-key scoring-keys)) scoring-table)
