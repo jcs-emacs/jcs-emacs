@@ -159,12 +159,21 @@
   "Record if fake header already appears.")
 
 (defun jcs--buffer-menu--advice-before (&rest _)
-  "Advice before execute `buffer-menu' command."
+  "Advice execute before `buffer-menu' command."
   (setq jcs--buffer-menu-return-delay nil)
   (unless jcs-buffer-menu-switch-buffer-refreshing
     (setq jcs--buffer-menu--fake-header-already-appears nil)
     (setq tabulated-list--header-string jcs--buffer-menu-search-title)))
 (advice-add 'buffer-menu :before #'jcs--buffer-menu--advice-before)
+
+(defun jcs--buffer-menu--advice-around (fnc &rest args)
+  "Advice execute around `buffer-menu' command."
+  (if (and (get-buffer "*Buffer List*")
+           (>= (jcs-buffer-showns "*Buffer List*") 1)
+           (not (string= (buffer-name) "*Buffer List*")))
+      (switch-to-buffer "*Buffer List*")
+    (apply fnc args)))
+(advice-add 'buffer-menu :around #'jcs--buffer-menu--advice-around)
 
 
 (defvar jcs-buffer-menu-switch-buffer-refreshing nil
@@ -180,11 +189,11 @@
       (when jcs-buffer-menu-switch-buffer-refreshing
         (jcs--buffer-menu-trigger-filter))
       (bury-buffer)))
-  (jcs-do-stuff-if-buffer-exists
-   "*Buffer List*"
+  (jcs-walk-through-all-windows-once
    (lambda ()
-     (when (jcs--buffer-menu--header-appearing-p)
-       (jcs-goto-line 2)))))
+     (when (string= "*Buffer List*" (buffer-name))
+       (when (and (jcs--buffer-menu--header-appearing-p) (= (line-number-at-pos) 1))
+         (jcs-goto-line 2))))))
 
 (defun jcs-buffer-menu-safe-refresh ()
   "Safely refresh `buffer menu`'s buffer."
