@@ -802,13 +802,13 @@ REGEXP : reqular expression use to align."
 ;; Save Buffer
 
 (defun jcs-do-stuff-before-save (&rest _)
-  "Do stuff before save command executed."
+  "Do stuff before save command is executed."
   ;; NOTE: If company menu currently active, abort it.
   (company-abort))
 (advice-add 'save-buffer :before #'jcs-do-stuff-before-save)
 
 (defun jcs-do-stuff-after-save (&rest _)
-  "Do stuff after save command executed."
+  "Do stuff after save command is executed."
   ;; NOTE: Is we found `*undo-tree*' buffer, we try to close it.
   (save-selected-window
     (when (ignore-errors (jcs-jump-shown-to-buffer "*undo-tree*"))
