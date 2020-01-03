@@ -1589,8 +1589,7 @@ SEARCH-STRING          : Search raw string."
          (",[ \t]*[a-zA-Z_$0-9[&* \t]* \\([a-zA-Z_$0-9[&* \t]*\\)[ \t]*," 1 'font-lock-variable-name-face t)
          (",[ \t]*[a-zA-Z_$0-9[&* \t]* [a-zA-Z_$0-9[&* \t]* \\([a-zA-Z_$0-9[&* \t]*\\)[ \t]*," 1 'font-lock-variable-name-face t)
          ;; For line break parameter declaration.
-         ("^[ \t] [a-zA-Z_$0-9[&* \t]* [a-zA-Z_$0-9[&* \t]* \\([a-zA-Z_$0-9[&* \t]*\\)[ \t]*[,)]" 1 'font-lock-variable-name-face t)
-         )
+         ("^[ \t] [a-zA-Z_$0-9[&* \t]* [a-zA-Z_$0-9[&* \t]* \\([a-zA-Z_$0-9[&* \t]*\\)[ \t]*[,)]" 1 'font-lock-variable-name-face t))
        'end)))
 
   ;; Font lock for namespace in C++.
@@ -1598,8 +1597,7 @@ SEARCH-STRING          : Search raw string."
     (dolist (mode oop-missing-font-lock-type-face-modes)
       (font-lock-add-keywords
        mode
-       '(("[a-zA-Z0-9_]*::\\([a-zA-Z0-9_]*\\)[ \t]" 1 'font-lock-type-face t)
-         )
+       '(("[a-zA-Z0-9_]*::\\([a-zA-Z0-9_]*\\)[ \t]" 1 'font-lock-type-face t))
        'end)))
 
   ;; Modes to fixed missing type face in programming language using `colon'.
@@ -1611,8 +1609,7 @@ SEARCH-STRING          : Search raw string."
        '(("[|:][ \t\n]*\\([a-zA-Z0-9_-]*\\)[.][a-zA-Z0-9_-]*[ \t\n]*[|=),{]" 1 'font-lock-type-face t)
          ("[|:][ \t\n]*[a-zA-Z0-9_-]*[.]\\([a-zA-Z0-9_-]*\\)[ \t\n]*[|=),{]" 1 'font-lock-type-face t)
          ("[|:][ \t\n]*\\([a-zA-Z0-9_-]*\\)[ \t\n]*[|{]" 1 'font-lock-type-face t)
-         ("[a-zA-Z0-9_-(]+[ \t\n]*[|:]+[ \t\n]*\\([a-zA-Z0-9_-]+\\)[ \t\n]*[=),]" 1 'font-lock-type-face t)
-         )
+         ("[a-zA-Z0-9_-(]+[ \t\n]*[|:]+[ \t\n]*\\([a-zA-Z0-9_-]+\\)[ \t\n]*[=),]" 1 'font-lock-type-face t))
        'end))))
 
 

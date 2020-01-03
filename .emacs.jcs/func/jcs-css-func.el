@@ -73,8 +73,8 @@
          ;; Number
          ("[ \t;,)]*\\([+-]*[0-9]*[.]*[0-9]+[a-z%]*\\)[ \t\n;,)]" . 'jcs-css-number-face)
          ;; Variable
-         ("[$@][^ \t\n:;]+" . 'jcs-css-variable-face)
-         )'end)))
+         ("[$@][^ \t\n:;]+" . 'jcs-css-variable-face))
+       'end)))
   (jcs--set-common-face 'css-selector (face-foreground 'jcs-css-selector-face))
   (jcs--set-common-face 'font-lock-variable-name-face (face-foreground 'jcs-css-variable-face))
   (jcs--set-common-face 'css-property (face-foreground 'jcs-css-type-face)))
