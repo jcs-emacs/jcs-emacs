@@ -191,7 +191,7 @@ ADD-DEL-NUM : Addition or deletion number."
 (defun jcs--buffer-menu--next-line ()
   "Next line in buffer menu mode."
   (interactive)
-  (jcs-next-line)
+  (ignore-errors (jcs-next-line))
   (when (= (line-number-at-pos) (line-number-at-pos (point-max)))
     (if (jcs--buffer-menu--header-appearing-p)
         (jcs-goto-line 2)
