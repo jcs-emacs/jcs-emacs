@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-01-03
+
+* Fixed buffer menu logic fit the `search`/`filtering` when multiple buffer
+ menu buffer exists. (jcs-emacs-init)
+* Fixed buffer menu other window that doesn't goes to line `2` if the header appears. (jcs-emacs-init)
+
 ### 2020-01-02
 
 * Fixed display not ready while `filtering`/`searching` in buffer menu. (jcs-emacs-init)
@@ -12,12 +18,13 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Established template default template's naming convention. (jcs-emacs-init)
 * Improved buffer menu `searching`/`filtering` user experience. (jcs-emacs-init)
 * Fixed buffer menu refresh logic after killing. (jcs-emacs-init)
+* Added wrapping to buffer menu buffer. (jcs-emacs-init)
 
 ### 2019-12-31
 
 * Added switch to output buffer utility function for development use. (jcs-emacs-init)
 * Added get buffers utility functions by using `regexp` and `string`. (jcs-emacs-init)
-* Change `define-it` package from manually installed to automatically installed 
+* Change `define-it` package from manually installed to automatically installed
  using `melpa`. (jcs-emacs-init)
 * Installed new package => `define-it`. (jcs-emacs-init)
 * Fixed `undo`/`redo` logic and work with `lsp-ui`. (jcs-emacs-init)
@@ -39,12 +46,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Enhanced the `multiple-cursors`'s similar functions string comparison algorithm.
  Make improvements for the use of the `multiple-cursors` similar occurrence command. (jcs-emacs-init)
 * Added new make frame for selecting new frame after created. (jcs-emacs-init)
-* Used `hide-frame` instead of `delete-frame` while showing `lsp-ui-doc`, this 
+* Used `hide-frame` instead of `delete-frame` while showing `lsp-ui-doc`, this
  should fixed while re-focus back to Emacs' frame issue while jumping away from Emacs. (jcs-emacs-init)
 
 ### 2019-12-26
 
-* According to [company-lsp/131](https://github.com/tigersoldier/company-lsp/issues/131), 
+* According to [company-lsp/131](https://github.com/tigersoldier/company-lsp/issues/131),
  revert `flx` support with `company-lsp`. Just set `company-lsp-cache-candidates`
  to `auto`. (jcs-emacs-init)
 * Removed package => `dimmer`. (jcs-emacs-init)
@@ -586,7 +593,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 * Installed new package => `centaur-tabs`. (jcs-emacs-init)
 * Installed new package => `company-statistics`. (jcs-emacs-init)
-* Removed package => `tabbar`. (jcs-emacs-init)
+* Removed package => `tabbar`. (jcs-emacs-init)
 
 ### 2019-07-04
 
