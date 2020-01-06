@@ -485,6 +485,7 @@
     :defer t
     :init
     (setq counsel-find-file-at-point t))
+  (setq ivy-auto-shrink-minibuffer t)
   (setq ivy-use-virtual-buffers t)
   (setq ivy-use-selectable-prompt t)
   (setq ivy-use-virtual-buffers t)  ; Enable bookmarks and recentf
