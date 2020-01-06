@@ -101,7 +101,6 @@
     (require 'hl-line)
     (require 'hl-todo)
     (require 'ivy)
-    (require 'ivy-resize)
     (require 'page-break-lines)
     (require 'powerline)
     (require 'preproc-font-lock)
@@ -130,7 +129,6 @@
     (global-hl-todo-mode 1)
     ;;-------------------------------- `ivy'
     (ivy-mode 1)
-    (ivy-resize-mode 1)
     ;;-------------------------------- `page-break-lines'
     (global-page-break-lines-mode 1)
     ;;-------------------------------- `powerline'
