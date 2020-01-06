@@ -9,6 +9,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 * Installed new package => `grammarly`. (jcs-emacs-init)
 * Added title source for package missing prompt. (jcs-emacs-init)
+* Removed manually installed package => `ivy-resize`. (jcs-emacs-init)
 
 ### 2020-01-03
 
