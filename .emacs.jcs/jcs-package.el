@@ -87,6 +87,7 @@
     google-translate
     goto-char-preview
     goto-line-preview
+    grammarly
     haskell-mode
     haxe-mode
     highlight-indent-guides
@@ -187,7 +188,7 @@
   (dolist (package packages)
     (unless (package-installed-p package)
       (if (or without-asking
-              (y-or-n-p (format "Package %s is missing. Install it? " package)))
+              (y-or-n-p (format "[ELPA] Package %s is missing. Install it? " package)))
           (jcs-package-install package)
         package)))
   ;; STUDY: Not sure if you need this?
@@ -313,7 +314,7 @@
                (recipe (jcs--form-recipe pkg-name pkg-repo pkg-fetcher)))
           (unless (package-installed-p (intern pkg-name))
             (when (or without-asking
-                      (y-or-n-p (format "Package %s is missing. Install it? " pkg-name)))
+                      (y-or-n-p (format "[QUELPA] Package %s is missing. Install it? " pkg-name)))
               (require 'quelpa)
               (quelpa recipe))))))))
 
