@@ -486,7 +486,7 @@ This command does not push text to `kill-ring'."
 
 ;;;###autoload
 (defun jcs-smart-indent-up-by-mode ()
-  "Indent line after move up one line."
+  "Like `jcs-smart-indent-up' but indent by mode."
   (interactive)
   (jcs-previous-line)
   (when (jcs-can-do-smart-indent-p)
@@ -502,7 +502,7 @@ This command does not push text to `kill-ring'."
 
 ;;;###autoload
 (defun jcs-smart-indent-down-by-mode ()
-  "Indent line after move down one line."
+  "Like `jcs-smart-indent-down' but indent by mode."
   (interactive)
   (jcs-next-line)
   (when (jcs-can-do-smart-indent-p)
