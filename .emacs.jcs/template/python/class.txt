@@ -2,36 +2,14 @@
 
 
 class #FILE_NAME_NO_EXT#(object):
-
-    """TODO(jenchieh): Class Description here...
+    """TODO(#CREATOR_NAME_ABBREV#): Class Description here...
     """
 
-    #*********************************************#
-    #              Public Variables               #
-    #*********************************************#
+    ## Variables ##
 
-    #*********************************************#
-    #              Private Variables              #
-    #*********************************************#
+    ## Functions ##
 
-    #*********************************************#
-    #              Protected Variables            #
-    #*********************************************#
-
-    #*********************************************#
-    #                Constructor                  #
-    #*********************************************#
     def __init__(self):
         """Constructor."""
 
-    #====================
-    # Public Methods
-
-    #====================
-    # Protected Methods
-
-    #====================
-    # Private Methods
-
-    #====================
-    # setter / getter
+    ## Setter & Getter ##
