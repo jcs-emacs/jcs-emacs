@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-01-07
+
+* Changed python class' template format. (jcs-emacs-init)
+* Added the `keywords` to the template config file. (jcs-emacs-init)
+
 ### 2020-01-06
 
 * Installed new package => `grammarly`. (jcs-emacs-init)
