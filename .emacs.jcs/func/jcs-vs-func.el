@@ -69,14 +69,14 @@
 
 ;;;###autoload
 (defun jcs-own-delete-backward-char ()
-  "This isn't the VS like key action, is more likely to be users own preferences."
+  "This isn't the VS like key action, is more likely to be user's own preferences."
   (interactive)
   (save-excursion
     (when (jcs-current-char-equal-p "{")
-      (forward-char 1)
+      (jcs-safe-forward-char 1)
       (when (and (not (jcs-is-beginning-of-line-p))
                  (jcs-current-char-equal-p " "))
-        (forward-char 1)
+        (jcs-safe-forward-char 1)
         (when (and (not (jcs-is-beginning-of-line-p))
                    (jcs-current-char-equal-p "}"))
           (backward-delete-char 1)))))
