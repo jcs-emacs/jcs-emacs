@@ -839,9 +839,9 @@ REGEXP : reqular expression use to align."
   (interactive)
   (cond
    ((not (buffer-file-name))
-    (user-error "[WARNINGS] Can't save with invalid filename: %s" (buffer-name)))
+    (user-error "[WARNING] Can't save with invalid filename: %s" (buffer-name)))
    (buffer-read-only
-    (user-error "[WARNINGS] Can't save read-only file: %s" buffer-read-only))
+    (user-error "[WARNING] Can't save read-only file: %s" buffer-read-only))
    (t
     (jcs-organize-save-buffer nil))))
 
@@ -851,9 +851,9 @@ REGEXP : reqular expression use to align."
   (interactive)
   (cond
    ((not (buffer-file-name))
-    (user-error "[WARNINGS] Can't save with invalid filename: %s" (buffer-name)))
+    (user-error "[WARNING] Can't save with invalid filename: %s" (buffer-name)))
    (buffer-read-only
-    (user-error "[WARNINGS] Can't save read-only file: %s" buffer-read-only))
+    (user-error "[WARNING] Can't save read-only file: %s" buffer-read-only))
    (t
     (jcs-organize-save-buffer t))))
 
