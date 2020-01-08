@@ -65,16 +65,16 @@ If one of the REG-LST, we execute INSERT-FUNC then, CI means `call-interactively
 If the template configuration file has change, this must be call
 in order to take effect.  Half hot reloading process."
   (interactive)
-  (setq jcs--preload-double-colon-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/d_colon_template.txt"))
-  (setq jcs--preload-double-dash-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/d_dash_template.txt"))
-  (setq jcs--preload-double-quote-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/d_quote_template.txt"))
-  (setq jcs--preload-double-semicolon-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/d_semicolon_template.txt"))
-  (setq jcs--preload-double-slash-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/d_slash_template.txt"))
-  (setq jcs--preload-global-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/global_template.txt"))
-  (setq jcs--preload-semicolon-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/semicolon_template.txt"))
-  (setq jcs--preload-sharp-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/sharp_template.txt"))
-  (setq jcs--preload-single-quote-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/singlequote_template.txt"))
-  (setq jcs--preload-tag-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/tag_template.txt")))
+  (setq jcs--preload-double-colon-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/d_colon.txt"))
+  (setq jcs--preload-double-dash-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/d_dash.txt"))
+  (setq jcs--preload-double-quote-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/d_quote.txt"))
+  (setq jcs--preload-double-semicolon-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/d_semicolon.txt"))
+  (setq jcs--preload-double-slash-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/d_slash.txt"))
+  (setq jcs--preload-global-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/global.txt"))
+  (setq jcs--preload-semicolon-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/semicolon.txt"))
+  (setq jcs--preload-sharp-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/sharp.txt"))
+  (setq jcs--preload-single-quote-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/singlequote.txt"))
+  (setq jcs--preload-tag-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/tag.txt")))
 
 
 ;;---------------------------------------------
