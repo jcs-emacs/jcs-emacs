@@ -142,28 +142,29 @@ multiple files at a time.  We need a title to present which file to select."
   (let ((ivy-inhibit-action t)) (counsel-find-file)))
 
 ;;;###autoload
-(defun jcs-file-exists-at-point ()
-  "Check if the file exists at point."
+(defun jcs-path-info-at-point ()
+  "Get the path info at point
+It tells you the existence of the path."
   (interactive)
   (require 'f)
   (require 'ffap)
-  (let ((path (ffap-file-at-point))
-        (content "") (name nil) (d-or-f nil)
+  (let ((path (ffap-string-at-point))
+        (content "") (name nil) (d-or-f nil) (exists nil)
         (timeout 300))
+    (unless (string-match-p (ffap-file-at-point) path)
+      (setq path nil))
+    (setq exists (jcs-file-directory-exists-p path))
     (when path
-      (cond ((file-exists-p path)
-             (setq name (f-filename path))
-             (setq d-or-f "file"))
-            ((file-directory-p path)
-             (setq name (f-dirname path))
-             (setq d-or-f "directory"))
-            (t (setq name "unknown") (setq d-or-f "unknown")))
+      (setq name (f-filename path))
+      (cond ((f-file-p path) (setq d-or-f "file"))
+            ((f-dir-p path) (setq d-or-f "directory"))
+            (t (setq d-or-f "unknown")))
       (setq content
             (format "%s\n%s\n%s\n%s"
                     (format "[NAME] %s" name)
                     (format "[PATH] %s" (expand-file-name path))
-                    (format "[EXISTENCE] %s" (jcs-file-directory-exists-p path))
-                    (format "[TYPE] %s" d-or-f)))
+                    (format "[EXISTENCE] %s" exists)
+                    (if exists (format "[TYPE] %s" d-or-f) "")))
       (jcs-pop-tooltip content :point (point) :timeout timeout))))
 
 
