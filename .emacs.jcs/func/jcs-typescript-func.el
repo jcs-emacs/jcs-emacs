@@ -13,6 +13,20 @@
   (cond ((string= sc "Default") (jcs-insert-typescript-template))
         ((string= sc "Cocos Creator Scripting") (jcs-insert-typescript-cocos-creator-template))))
 
+;;-----------------------------------------------------------
+;;-----------------------------------------------------------
+
+(defun jcs-init-typescript-faces ()
+  "Initialize TypeScript mode faces highlihgting."
+  (let ((typescript-missing-modes '(typescript-mode)) (case-fold-search t))
+    (dolist (mode typescript-missing-modes)
+      (font-lock-add-keywords
+       mode
+       '(("\\(null\\)" 1 'jcs-font-lock-null-face t)
+         ("\\(undefined\\)" 1 'jcs-font-lock-null-face t)
+         ("\\(void\\)" 1 'jcs-font-lock-null-face t))
+       'end))))
+
 
 (provide 'jcs-typescript-func)
 ;;; jcs-typescript-func.el ends here
