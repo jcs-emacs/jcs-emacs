@@ -8,6 +8,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-01-08
 
 * Fixed some of the regular expression faces in `typescript-mode`. (jcs-emacs-init)
+* Implemented describe path info at point function and embedded to describe thing
+ at point. (jcs-emacs-init)
 
 ### 2020-01-07
 
