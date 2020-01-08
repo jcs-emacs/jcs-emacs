@@ -795,7 +795,7 @@ delay. HEIGHT of the tooltip that will display."
   (if (and (boundp 'lsp-mode) lsp-mode)
       (ignore-errors (call-interactively #'lsp-ui-doc-show))
     (unless (ignore-errors (jcs-tip-describe-it))
-      (unless (ignore-errors (jcs-file-exists-at-point))
+      (unless (ignore-errors (jcs-path-info-at-point))
         (define-it-at-point)))
     ;; In case we are using region, cancel the select region.
     (deactivate-mark)))
