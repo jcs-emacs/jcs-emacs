@@ -37,6 +37,16 @@
 
 
 ;;----------------------------------------------
+;; Common
+
+(defface jcs-font-lock-null-face
+  '((t (:foreground "LightSteelBlue")))
+  "Face for keywords like `null', `void', `nil', `undefined'."
+  :group 'jcs)
+(defvar jcs-font-lock-null-face 'jcs-font-lock-null-face)
+
+
+;;----------------------------------------------
 ;; Object Oriented Programming
 
 (defface jcs-oop-tag-face
@@ -57,7 +67,6 @@
   :group 'jcs)
 (defvar jcs-oop-value-face 'jcs-oop-value-face)
 
-
 ;;----------------------------------------------
 ;; Preprocessor
 
@@ -66,23 +75,6 @@
   "Highlight preprocessor operator."
   :group 'jcs)
 (defvar jcs-preproc-variable-name-face 'jcs-preproc-variable-name-face)
-
-
-;;----------------------------------------------
-;; Java
-
-(defface jcs-font-lock-null-face
-  '((t (:foreground "LightSteelBlue")))
-  "Java null face."
-  :group 'jcs)
-(defvar jcs-font-lock-null-face 'jcs-font-lock-null-face)
-
-(defface jcs-font-lock-void-face
-  '((t (:foreground "LightSteelBlue")))
-  "Java void face."
-  :group 'jcs)
-(defvar jcs-font-lock-void-face 'jcs-font-lock-void-face)
-
 
 ;;----------------------------------------------
 ;; Web
@@ -158,6 +150,7 @@
 (with-eval-after-load 'cc-mode (jcs-init-java-faces))
 (with-eval-after-load 'css-mode (jcs-init-css-faces))
 (with-eval-after-load 'org (jcs-init-org-faces))
+(with-eval-after-load 'typescript-mode (jcs-init-typescript-faces))
 (with-eval-after-load 'web-mode (jcs-init-web-faces))
 
 ;; Load OOP faces.
