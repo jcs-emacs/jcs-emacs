@@ -263,8 +263,7 @@ CBF : Current buffer file name."
 (defun jcs-smart-yank ()
   "Yank and then indent region."
   (interactive)
-  (when (use-region-p)
-    (delete-region (region-beginning) (region-end)))
+  (jcs-delete-region)
   (let ((reg-beg (point)))
     (call-interactively #'yank)
     (indent-region reg-beg (point))))
@@ -334,7 +333,7 @@ CBF : Current buffer file name."
   ;; SOURCE: http://ergoemacs.org/emacs/emacs_kill-ring.html
   (let (kill-ring)
     (if (use-region-p)
-        (delete-region (region-beginning) (region-end))
+        (jcs-delete-region)
       (let (;; Record down the column before
             ;; killing the whole line.
             (before-column-num (current-column)))

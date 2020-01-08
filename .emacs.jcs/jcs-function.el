@@ -209,9 +209,9 @@
   "Eval the arithmetic expression in the region and replace it with the result."
   (interactive)
   (if (not (use-region-p))
-      (message "Trying to use calc eval but with no region selected")
+      (message "[INFO] Trying to use calc eval but with no region selected")
     (let ((val (calc-eval (buffer-substring (region-beginning) (region-end)))))
-      (delete-region (region-beginning) (region-end))
+      (jcs-delete-region)
       (insert val))))
 
 ;;----------------------------------------------

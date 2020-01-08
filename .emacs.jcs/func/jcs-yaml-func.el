@@ -10,7 +10,7 @@
   "Backspace key for editing YAML file."
   (interactive)
   (if (use-region-p)
-      (delete-region (region-beginning) (region-end))
+      (jcs-delete-region)
     (call-interactively #'yaml-electric-backspace)))
 
 

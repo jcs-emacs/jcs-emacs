@@ -1001,7 +1001,7 @@ Return nil, there is no region selected and mark is not active."
 (defun jcs-delete-region ()
   "Delete region by default value."
   (interactive)
-  (delete-region (region-beginning) (region-end)))
+  (when (use-region-p) (delete-region (region-beginning) (region-end))))
 
 (defun jcs-select-region (st ed)
   "Select region from ST and ED."

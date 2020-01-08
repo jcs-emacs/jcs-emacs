@@ -9,6 +9,7 @@
 (defun jcs-vs-opening-curly-bracket-key ()
   "For programming langauge that need `{`."
   (interactive)
+  (jcs-delete-region)
   (if (jcs-inside-comment-or-string-p)
       (insert "{")
     (let ((pretty-it nil) (space-infront nil))
@@ -36,6 +37,7 @@
 (defun jcs-vs-closing-curly-bracket-key ()
   "For programming langauge that need `}`."
   (interactive)
+  (jcs-delete-region)
   (if (jcs-forward-pos-char-equal-p "}" 1)
       (forward-char 1)
     (insert "}"))
@@ -49,6 +51,7 @@
 (defun jcs-vs-semicolon-key ()
   "For programming language that use semicolon as the end operator sign."
   (interactive)
+  (jcs-delete-region)
   (insert ";")
   (save-excursion
     (forward-char 1)
@@ -61,6 +64,7 @@
 (defun jcs-vs-sharp-key ()
   "For programming language that use # as the preprocessor."
   (interactive)
+  (jcs-delete-region)
   (insert "#")
   (backward-char 1)
   (when (jcs-is-infront-first-char-at-line-p)

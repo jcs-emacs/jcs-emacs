@@ -76,12 +76,7 @@ Is the opposite of `jcs-web-toggle-auto-truncate-lines'."
   ;; NOTE: No idea why, yank function just need to get wrap by
   ;; another function...
 
-  ;; if region, delete the region first.
-  (when (use-region-p)
-    ;; NOTE: `kill-region' will copy the word.
-    ;; Use `delete-region' instead, this will not copy
-    ;; the word.
-    (delete-region (region-beginning) (region-end)))
+  (jcs-delete-region)
 
   ;; then paste it.
   (jcs-smart-yank))
