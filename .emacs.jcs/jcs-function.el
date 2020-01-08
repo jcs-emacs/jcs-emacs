@@ -759,12 +759,15 @@ VEC : Either position or negative number."
 
 STRING is the content of the toolip. The location POINT. TIMEOUT for not forever
 delay. HEIGHT of the tooltip that will display."
-  (if (display-graphic-p)
-      (progn
-        (require 'pos-tip)
-        (pos-tip-show string `(,company-quickhelp-color-foreground . ,company-quickhelp-color-background) point nil timeout))
-    (require 'popup)
-    (popup-tip string :point point :around t :height height :scroll-bar t :margin t)))
+  (require 'flycheck)
+  (require 'pos-tip)
+  (require 'popup)
+  (let ((was-flycheck flycheck-mode))
+    (if (display-graphic-p)
+        (pos-tip-show string `(,company-quickhelp-color-foreground . ,company-quickhelp-color-background) point nil timeout)
+      (popup-tip string :point point :around t :height height :scroll-bar t :margin t))
+    (if was-flycheck (flycheck-mode 1) (flycheck-mode -1))
+    t))
 
 (defun jcs--describe-symbol-string ()
   "Return the describe symbol string."
@@ -787,16 +790,15 @@ delay. HEIGHT of the tooltip that will display."
 (defun jcs-describe-thing-in-popup ()
   "Show current symbol info."
   (interactive)
-  (require 'flycheck)
+  (require 'define-it)
+  (require 'ffap)
   (if (and (boundp 'lsp-mode) lsp-mode)
       (ignore-errors (call-interactively #'lsp-ui-doc-show))
-    (let ((was-flycheck flycheck-mode))
-      (unless (ignore-errors (jcs-tip-describe-it))
-        (require 'define-it)
-        (define-it-at-point)
-        ;; In case we are using region, cancel the select region.
-        (deactivate-mark))
-      (if was-flycheck (flycheck-mode 1) (flycheck-mode -1)))))
+    (unless (ignore-errors (jcs-tip-describe-it))
+      (unless (ignore-errors (jcs-file-exists-at-point))
+        (define-it-at-point)))
+    ;; In case we are using region, cancel the select region.
+    (deactivate-mark)))
 
 ;;----------------------------------------------------------------------------
 ;; Todo
