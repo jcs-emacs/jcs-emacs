@@ -353,6 +353,14 @@ this version instead."
 ;;----------------------------------------------
 ;; Character Navigation
 
+(defun jcs-safe-backward-char (n)
+  "Safe way to move backward N characters."
+  (ignore-errors (backward-char n)))
+
+(defun jcs-safe-forward-char (n)
+  "Safe way to move forward N characters."
+  (ignore-errors (forward-char n)))
+
 (defun jcs-move-to-forward-a-char (ch)
   "Move forward to a character CH, can be regular expression."
   (ignore-errors
