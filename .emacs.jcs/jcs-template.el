@@ -246,7 +246,7 @@ in order to take effect.  Half hot reloading process."
 ;;; GLSL
 (defun jcs-insert-glsl-template ()
   "Header for GLSL header file."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/shader/glsl_template.txt"))
+  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/shader/default_glsl.txt"))
 
 ;;; Go
 (defun jcs-insert-go-template ()
@@ -271,7 +271,7 @@ in order to take effect.  Half hot reloading process."
 ;;; HTML
 (defun jcs-insert-html-template ()
   "Template for HTML."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/web/html_template.txt"))
+  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/web/default_html.txt"))
 
 ;;; Java
 (defun jcs-insert-java-template ()
@@ -364,7 +364,7 @@ in order to take effect.  Half hot reloading process."
 ;;; PHP
 (defun jcs-insert-php-template ()
   "Template for PHP."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/web/php_template.txt"))
+  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/web/default_php.txt"))
 
 ;;; Processing
 (defun jcs-insert-processing-template ()
@@ -408,7 +408,7 @@ in order to take effect.  Half hot reloading process."
 ;;; Shader
 (defun jcs-insert-shader-template ()
   "Header for Shader header file."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/shader/shader_template.txt"))
+  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/shader/default_shader.txt"))
 
 ;;; Shell
 (defun jcs-insert-sh-template ()
@@ -437,7 +437,7 @@ in order to take effect.  Half hot reloading process."
 
 (defun jcs-insert-typescript-cocos-creator-template ()
   "Header for Cocos Creator TypeScript header file."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/typescript/cocos_creator_template.txt"))
+  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/typescript/cocos_creator.txt"))
 
 ;;; Verilog
 (defun jcs-insert-verilog-template ()
