@@ -9,6 +9,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 * Update upgrade manually installed package logic. (jcs-emacs-init)
 * Installed new package manually => `tabulated-list-wrap`. (jcs-emacs-init)
+* Fixed visualize `undo-tree` on the other window doesn't work with `lsp-ui-doc`. (jcs-emacs-init)
 
 ### 2020-01-08
 
