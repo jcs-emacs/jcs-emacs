@@ -69,18 +69,17 @@
 (defun jcs--other-window--advice-after (&rest _args)
   "Advice execute after `other-window' command."
   (unless jcs--no-advice-other-window
-    (if (not (string-empty-p (frame-parameter (selected-frame) 'name)))
-        (progn
-          (select-frame-set-input-focus (selected-frame))
-          (jcs-update-speedbar-record-after-select-new-window)  ; Update `speedbar'
-          (jcs-buffer-menu-safe-refresh)
-          (jcs--lsp-signature-maybe-stop)
-          (jcs--lsp-ui-doc-show-safely))
-      ;; NOTE: This occurs in version `27.0.60'.
-      ;; Maybe we don't need this anymore after `27.1' is released!
-      (cl-case this-command
-        ('jcs-other-window-next (jcs-other-window-next))
-        ('jcs-other-window-prev (jcs-other-window-prev))))))
+    (if (jcs-frame-util-p)
+        ;; NOTE: This occurs in version `27.0.60'.
+        ;; Maybe we don't need this anymore after `27.1' is released!
+        (cl-case this-command
+          ('jcs-other-window-next (jcs-other-window-next))
+          ('jcs-other-window-prev (jcs-other-window-prev)))
+      (select-frame-set-input-focus (selected-frame))
+      (jcs-update-speedbar-record-after-select-new-window)  ; Update `speedbar'
+      (jcs-buffer-menu-safe-refresh)
+      (jcs--lsp-signature-maybe-stop)
+      (jcs--lsp-ui-doc-show-safely))))
 (advice-add 'other-window :after #'jcs--other-window--advice-after)
 
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
