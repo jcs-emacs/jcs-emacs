@@ -4,12 +4,17 @@
 
 
 (defun jcs-aftermake-frame-functions-hook (frame)
-  "Resetting the new frame just created."
+  "Resetting the new FRAME just created."
   (jcs-refresh-theme)
   (select-frame frame)
   ;; split the winodw after create the new window
   (split-window-horizontally))
 (add-hook 'after-make-frame-functions 'jcs-aftermake-frame-functions-hook)
+
+(defun jcs-frame-util-p (&optional frame)
+  "Check if FRAME is the utility frame."
+  (unless frame (setq frame (selected-frame)))
+  (string-empty-p (frame-parameter frame 'name)))
 
 (defun jcs-is-frame-maximize-p ()
   "Return non-nil, if frame maximized.
@@ -49,7 +54,7 @@ If DO-ADVICE is non-nil then will active advices from `other-window' function."
 (defun jcs-make-frame-simple (name x y width height fnc &rest)
   "Make frame with a bunch of default variables set.
 You will only have to fill in NAME, X, Y, WIDTH, HEIGHT and FNC."
-  (let ((doc-frame nil) (pixel-x x) (pixel-y y) (cp-buf nil)
+  (let ((doc-frame nil) (pixel-x x) (pixel-y y)
         (abs-pixel-pos (window-absolute-pixel-position)))
     (unless pixel-x (setq pixel-x (car abs-pixel-pos)))
     (unless pixel-y (setq pixel-y (+ (cdr abs-pixel-pos) (frame-char-height))))
