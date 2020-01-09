@@ -49,6 +49,13 @@
     (jcs-active-line-numbers-by-mode)))
 (add-hook 'find-file-hook 'jcs-find-file-hook)
 
+(defun jcs--find-file--advice-before (&rest _args)
+  "Advice execute before `find-file' command."
+  ;; Fixed `css-mode' opening virtual buffer with directory error. You just
+  ;; need to preload this before actually create the virtual buffer.
+  (require 'eww))
+(advice-add 'find-file :before #'jcs--find-file--advice-before)
+
 (defun jcs--find-file--advice-after (&rest _args)
   "Advice execute after `find-file' command."
   (jcs-buffer-menu-safe-refresh))
