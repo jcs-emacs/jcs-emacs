@@ -107,6 +107,7 @@
     (require 'region-occurrences-highlighter)
     (require 'right-click-context)
     (require 'shift-select)
+    (require 'tabulated-list-wrap)
     (require 'use-ttf)
     (require 'which-key)
     (require 'yascroll))
@@ -145,6 +146,8 @@
     ;;-------------------------------- `show-paren'
     ;; NOTE: turn on highlight matching brackets when cursor is on one
     (show-paren-mode t)
+    ;;-------------------------------- `tabulated-list-wrap'
+    (global-tabulated-list-wrap-mode 1)
     ;;-------------------------------- `use-ttf'
     (use-ttf-set-default-font)
     ;;-------------------------------- `which-key'
