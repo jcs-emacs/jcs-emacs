@@ -84,7 +84,8 @@ CBF : Current buffer file name."
          (unless target-window
            (when (and
                   (not (equal (selected-window) current-window))
-                  (not (string= (buffer-name (current-buffer)) jcs--lsp-lv-buffer-name))
+                  (not (jcs-buffer-name-this jcs--lsp-lv-buffer-name))
+                  (not (jcs-frame-util-p))
                   (jcs-window-is-larger-in-height-p))
              (setq target-window (selected-window))))))
       (unless target-window
@@ -94,7 +95,8 @@ CBF : Current buffer file name."
            (unless target-window
              (when (and
                     (not (equal (selected-window) current-window))
-                    (not (string= (buffer-name (current-buffer)) jcs--lsp-lv-buffer-name)))
+                    (not (jcs-buffer-name-this jcs--lsp-lv-buffer-name))
+                    (not (jcs-frame-util-p)))
                (setq target-window (selected-window)))))))
       (select-window target-window)
       ;; NOTE: We need to go back two windows in order to make the
