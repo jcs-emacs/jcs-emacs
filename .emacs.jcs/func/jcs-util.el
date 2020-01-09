@@ -78,6 +78,14 @@ TYPE is the return type; can be 'object or 'string."
         (funcall fnc))
     (message "[WARNING] Can't do stuff with this buffer: %s" buf-or-name)))
 
+(defun jcs-buffer-name-this (name &optional buffer regex)
+  "Check if BUFFER's name the same as NAME.
+If REGEX is non-nil, check by using regular expression."
+  (unless buffer (setq buffer (current-buffer)))
+  (if regex
+      (string-match-p name (buffer-name buffer))
+    (string= name (buffer-name buffer))))
+
 ;;----------------------------------------------------------------------------
 ;; Compile
 
