@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-01-09
+
+* Update upgrade manually installed package logic. (jcs-emacs-init)
+* Installed new package manually => `tabulated-list-wrap`. (jcs-emacs-init)
+
 ### 2020-01-08
 
 * Fixed some of the regular expression faces in `typescript-mode`. (jcs-emacs-init)
