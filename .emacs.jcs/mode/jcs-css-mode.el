@@ -15,9 +15,6 @@
   "Hook for CSS mode."
   (impatient-mode t)
 
-  ;; Treat some character as whitespace character.
-  (modify-syntax-entry ?- "-")
-
   ;; File Header
   (jcs-insert-header-if-valid '("[.]css")
                               'jcs-insert-css-template)
