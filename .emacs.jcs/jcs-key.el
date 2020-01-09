@@ -80,11 +80,7 @@
         (lambda () (interactive) (jcs--buffer-menu-input key-str))))
 
     (define-key Buffer-menu-mode-map (kbd "<backspace>")
-      (lambda () (interactive) (jcs--buffer-menu-input "" -1))))
-
-  (progn  ; Wrapping
-    (define-key Buffer-menu-mode-map (kbd "<up>") #'jcs--buffer-menu--previous-line)
-    (define-key Buffer-menu-mode-map (kbd "<down>") #'jcs--buffer-menu--next-line)))
+      (lambda () (interactive) (jcs--buffer-menu-input "" -1)))))
 
 ;;; Buffers
 (define-key global-map (kbd "C-a") #'jcs-mark-whole-buffer)
