@@ -243,7 +243,7 @@
           (message "[ELPA] Done upgrading all packages"))
       (message "[ELPA] All packages are up to date")))
   ;; NOTE: Upgrade for manually installed packages.
-  (let ((upgrades jcs-package-manually-install-list))
+  (let ((upgrades (jcs--upgrade-list-manually)))
     (if upgrades
         (when (yes-or-no-p
                (message "[QUELPA] Upgrade %d package%s (%s)? "
@@ -253,7 +253,7 @@
           ;; Delete all upgrading packages before installation.
           (dolist (pkg upgrades)
             (package-delete (jcs-package-get-package-by-name (nth 0 pkg))))
-          (jcs-ensure-manual-package-installed jcs-package-manually-install-list t)
+          (jcs-ensure-manual-package-installed upgrades t)
           (message "[QUELPA] Done upgrading all packages"))
       (message "[QUELPA] All packages are up to date"))))
 
@@ -288,10 +288,21 @@
     ("multi-shell" "jcs-elpa/multi-shell" "github")
     ("reload-emacs" "jcs-elpa/reload-emacs" "github")
     ("shift-select" "jcs-elpa/shift-select" "github")
+    ("tabulated-list-wrap" "jcs-elpa/tabulated-list-wrap" "github")
     ("vs-dark-theme" "jcs-elpa/vs-dark-theme" "github")
     ("vs-light-theme" "jcs-elpa/vs-light-theme" "github"))
   "List of package that you want to manually installed.")
 
+
+(defun jcs--upgrade-list-manually ()
+  "List of need to upgrade package from manually installed packages."
+  (let ((upgrade-list '()) (pkg-name nil))
+    (dolist (pkg jcs-package-manually-install-list)
+      (setq pkg-name (nth 0 pkg))
+      ;; TODO: Check version number to filter the needed upgrade packages.
+      (when (package-installed-p (intern pkg-name))
+        (push pkg upgrade-list)))
+    (reverse upgrade-list)))
 
 (defun jcs--form-recipe (name repo fetcher)
   "Create the recipe, with NAME, REPO, FETCHER."
