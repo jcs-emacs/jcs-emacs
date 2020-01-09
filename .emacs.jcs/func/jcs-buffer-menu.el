@@ -80,15 +80,14 @@ From scale 0 to 100.")
 
 (defun jcs--buffer-menu--header-appearing-p ()
   "Check if header appearing in the buffer."
-  (let ((header-now ""))
+  (let ((header-appear nil))
     (jcs-do-stuff-if-buffer-exists
      "*Buffer List*"
      (lambda ()
        (save-excursion
          (goto-char (point-min))
-         (setq header-now (thing-at-point 'line)))))
-    (and (stringp header-now)
-         (string-match-p jcs--buffer-menu-search-title header-now))))
+         (setq header-appear (not (tabulated-list-get-entry))))))
+    header-appear))
 
 (defun jcs--safe-print-fake-header ()
   "Safe way to print fake header."
@@ -173,29 +172,6 @@ ADD-DEL-NUM : Addition or deletion number."
     (setq tabulated-list--header-string
           (substring tabulated-list--header-string 0 (1- (length tabulated-list--header-string)))))
   (jcs--buffer-menu-trigger-filter))
-
-;;----------------------------------------------------------------------------
-;; Wrapping
-
-(defun jcs--buffer-menu--previous-line ()
-  "Previous line in buffer menu mode."
-  (interactive)
-  (let ((line-to-check (if (jcs--buffer-menu--header-appearing-p) 2 1)))
-    (when (= (line-number-at-pos) line-to-check)
-      (jcs-goto-line (line-number-at-pos (point-max)))))
-  (jcs-previous-line)
-  (when (and (jcs--buffer-menu--header-appearing-p)
-             (= (line-number-at-pos) (line-number-at-pos (point-min))))
-    (goto-char (point-max))))
-
-(defun jcs--buffer-menu--next-line ()
-  "Next line in buffer menu mode."
-  (interactive)
-  (ignore-errors (jcs-next-line))
-  (when (= (line-number-at-pos) (line-number-at-pos (point-max)))
-    (if (jcs--buffer-menu--header-appearing-p)
-        (jcs-goto-line 2)
-      (jcs-goto-line 1))))
 
 
 (provide 'jcs-buffer-menu)
