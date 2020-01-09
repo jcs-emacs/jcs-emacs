@@ -522,6 +522,9 @@
   (defconst jcs--lsp-lv-buffer-name " *LV*"
     "Help record the ` *LV*' buffer name.")
 
+  (defvar-local jcs--lsp--executing-command nil
+    "Flag to record if executing a command from `lsp'.")
+
   (defun jcs--lsp-current-last-signature-buffer ()
     "Check if current buffer last signature buffer."
     (when (boundp 'lsp--last-signature-buffer)
@@ -539,7 +542,12 @@
   (defun jcs--lsp-mode-hook ()
     "Hook runs after entering or leaving `lsp-mode'."
     (if lsp-mode (company-fuzzy-mode -1) (company-fuzzy-mode 1)))
-  (add-hook 'lsp-mode-hook 'jcs--lsp-mode-hook))
+  (add-hook 'lsp-mode-hook 'jcs--lsp-mode-hook)
+  (defun jcs--lsp--execute-command--advice-around (fnc &rest args)
+    "Advice execute around `lsp--execute-command'."
+    (let ((jcs--lsp--executing-command t))
+      (apply fnc args)))
+  (advice-add 'lsp--execute-command :around #'jcs--lsp--execute-command--advice-around))
 
 (use-package lsp-ui
   :defer t
@@ -572,6 +580,7 @@
     "Safe way to show lsp UI document."
     (if (and
          (jcs--lsp-ui-mode--enabled-p)
+         (not jcs--lsp--executing-command)
          (not (jcs-is-command-these-commands this-command
                                              '(save-buffers-kill-terminal))))
         (ignore-errors (call-interactively #'lsp-ui-doc-show))
