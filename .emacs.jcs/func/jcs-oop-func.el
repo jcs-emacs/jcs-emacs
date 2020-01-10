@@ -1606,10 +1606,10 @@ SEARCH-STRING          : Search raw string."
     (dolist (mode oop-missing-font-lock-type-face-modes-colon)
       (font-lock-add-keywords
        mode
-       '(("[|:][ \t\n]*\\([a-zA-Z0-9_-]*\\)[.][a-zA-Z0-9_-]*[ \t\n]*[|=),{]" 1 'font-lock-type-face t)
-         ("[|:][ \t\n]*[a-zA-Z0-9_-]*[.]\\([a-zA-Z0-9_-]*\\)[ \t\n]*[|=),{]" 1 'font-lock-type-face t)
-         ("[|:][ \t\n]*\\([a-zA-Z0-9_-]*\\)[ \t\n]*[|{]" 1 'font-lock-type-face t)
-         ("[a-zA-Z0-9_-(]+[ \t\n]*[|:][ \t\n]*\\([a-zA-Z0-9_-]+\\)[ \t\n]*[=),]" 1 'font-lock-type-face t))
+       '(("[|:][ \t\n]*\\([a-zA-Z0-9_-]*\\)[.][a-zA-Z0-9_-]*[ \t\n]*[|=),{]" 1 'font-lock-type-face)
+         ("[|:][ \t\n]*[a-zA-Z0-9_-]*[.]\\([a-zA-Z0-9_-]*\\)[ \t\n]*[|=),{]" 1 'font-lock-type-face)
+         ("[|:][ \t\n]*\\([a-zA-Z0-9_-]*\\)[ \t\n]*[|{]" 1 'font-lock-type-face)
+         ("[a-zA-Z0-9_-(]+[ \t\n]*[|:][ \t\n]*\\([a-zA-Z0-9_-]+\\)[ \t\n]*[=),]" 1 'font-lock-type-face))
        'end))))
 
 
