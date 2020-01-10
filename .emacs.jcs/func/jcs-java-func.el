@@ -134,8 +134,8 @@ Including adding or removing the package path."
        mode
        '(("^[ ]*\\([A-Z][a-zA-Z0-9_-]*\\)[a-zA-Z0-9._-]*\\.[a-zA-Z0-9_-]*[(]" 1 'font-lock-type-face t)
          ("\\([A-Z][a-zA-Z0-9._-]*\\)\\.[a-zA-Z0-9_-]*[),:]" 1 'font-lock-type-face t)
-         ("\\(null\\)" 1 'jcs-font-lock-null-face t)
-         ("\\(void\\)" 1 'jcs-font-lock-null-face t))
+         ("[=][ \t\n]*\\(null\\)" 1 'jcs-font-lock-null-face t)
+         ("[:=][ \t\n]*\\(void\\)" 1 'jcs-font-lock-null-face t))
        'end))))
 
 
