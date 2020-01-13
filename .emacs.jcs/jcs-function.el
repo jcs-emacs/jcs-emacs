@@ -950,6 +950,7 @@ NO-PROMPT : Don't prompt the overwrap message."
 (with-eval-after-load 'css-mode (require 'jcs-css-func))
 (with-eval-after-load 'make-mode (require 'jcs-make-func))
 (with-eval-after-load 'lua-mode (require 'jcs-lua-func))
+(with-eval-after-load 'markdown-mode (require 'jcs-markdown-func))
 (with-eval-after-load 'nasm-mode (require 'jcs-nasm-func))
 (with-eval-after-load 'python-mode (require 'jcs-python-func))
 (with-eval-after-load 'sh-script (require 'jcs-sh-func))
