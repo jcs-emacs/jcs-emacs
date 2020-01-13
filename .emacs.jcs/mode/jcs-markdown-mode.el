@@ -5,6 +5,7 @@
 
 (require 'markdown-mode)
 
+(require 'jcs-markdown-func)
 (require 'jcs-web-func)
 
 
@@ -15,6 +16,7 @@
 
   ;; Normal
   (define-key markdown-mode-map (kbd "<backspace>") #'jcs-real-backspace)
+  (define-key markdown-mode-map (kbd "RET") #'jcs-markdown-return-key)
 
   (define-key markdown-mode-map (kbd "C-s") #'jcs-save-buffer)
 
