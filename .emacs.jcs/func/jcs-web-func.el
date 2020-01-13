@@ -113,8 +113,7 @@ Is the opposite of `jcs-web-toggle-auto-truncate-lines'."
 (defun jcs-web-return-key ()
   "Return key for Web mode."
   (interactive)
-  (let ((did-ret-key nil)
-        (close-tag-found nil))
+  (let ((did-ret-key nil) (close-tag-found nil))
     (when (and (jcs-first-forward-char-in-line-p "<")
                (jcs-first-backward-char-in-line-p ">"))
       ;; Check closing tag.
