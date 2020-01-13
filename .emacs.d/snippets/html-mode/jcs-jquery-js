@@ -3,6 +3,6 @@
 # key: jcs-jquery-js
 # --
 <script
-  src="https://code.jquery.com/jquery-3.4.0.slim.min.js"
-  integrity="sha256-ZaXnYkHGqIhqTbJ6MB4l9Frs/r7U4jlx7ir8PJYBqbI="
+  src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+  integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
   crossorigin="anonymous"></script>$0
