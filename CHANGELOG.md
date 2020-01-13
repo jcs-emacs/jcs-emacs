@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-01-13
+
+* Updated `jQuery` snippet in `html-mode`, not slime use normal minified version. (jcs-emacs-init)
+
 ### 2020-01-10
 
 * Fixed `null` face highlighting regular expression. (jcs-emacs-init)
