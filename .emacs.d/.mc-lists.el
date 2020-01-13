@@ -51,6 +51,7 @@
         jcs-smart-backspace
         jcs-smart-backward-delete-word
         jcs-smart-backward-word
+        jcs-smart-context-line-break
         jcs-smart-delete
         jcs-smart-forward-delete-word
         jcs-smart-forward-word
@@ -80,6 +81,7 @@
         org-force-self-insert
         org-return
         org-self-insert-command
+        typescript-insert-and-indent
         web-mode-tag-match
         yas-expand
         ))
