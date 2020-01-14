@@ -3,6 +3,7 @@
 ;;; Code:
 
 
+(require 'f)
 (require 'ffmpeg-player)
 (require 'show-eol)
 
@@ -49,7 +50,7 @@
       (format "%s%s" (if (feebleline-file-modified-star)
                          (format "%s " (feebleline-file-modified-star))
                        "")
-              (buffer-name))
+              (f-filename (jcs-buffer-name-or-buffer-file-name)))
     ""))
 
 (defun jcs--feebleline--coding-system-and-line-endings ()
