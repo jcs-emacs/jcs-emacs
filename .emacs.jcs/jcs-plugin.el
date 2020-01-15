@@ -203,7 +203,8 @@
                                "[*]compilation" "[*]output"
                                "[*]Async Shell Command[*]:" "[*]shell" "[*]eshell"
                                "[*]lsp-" "[*][a-zA-Z0-9]+-ls"
-                               "[*]company"))
+                               "[*]company"
+                               "[*]SPEEDBAR"))
   (with-eval-after-load 'jcs-buffer-menu
     (diminish-buffer-mode 1))
   :config
@@ -973,21 +974,32 @@
   :init
   (setq yascroll:delay-to-hide 0.8)
   :config
-  (require 'cl)
-  (when (version<= "27" emacs-version)
-    (defun jcs--yascroll:choose-scroll-bar--advice-override ()
-      "Advice override `yascroll:choose-scroll-bar' function."
-      (when (memq window-system yascroll:enabled-window-systems)
-        (cl-destructuring-bind (left-width right-width outside-margins nil)
-            (window-fringes)
-          (cl-loop for scroll-bar in (yascroll:listify yascroll:scroll-bar)
-                   if (or (eq scroll-bar 'text-area)
-                          (and (eq scroll-bar 'left-fringe)
-                               (> left-width 0))
-                          (and (eq scroll-bar 'right-fringe)
-                               (> right-width 0)))
-                   return scroll-bar))))
-    (advice-add 'yascroll:choose-scroll-bar :override #'jcs--yascroll:choose-scroll-bar--advice-override)))
+  ;;;###autoload
+  (defun yascroll:show-scroll-bar ()
+    "Show scroll bar in BUFFER."
+    (interactive)
+    (yascroll:hide-scroll-bar)
+    (let ((scroll-bar (yascroll:choose-scroll-bar)))
+      (when scroll-bar
+        (let ((window-lines (window-height))
+              (buffer-lines (count-lines (point-min) (point-max))))
+          (when (< window-lines buffer-lines)
+            (let* ((scroll-top (count-lines (point-min) (window-start)))
+                   (thumb-window-line (yascroll:compute-thumb-window-line
+                                       window-lines buffer-lines scroll-top))
+                   (thumb-buffer-line (+ scroll-top thumb-window-line))
+                   (thumb-size (yascroll:compute-thumb-size
+                                window-lines buffer-lines))
+                   (make-thumb-overlay
+                    (cl-ecase scroll-bar
+                      (left-fringe 'yascroll:make-thumb-overlay-left-fringe)
+                      (right-fringe 'yascroll:make-thumb-overlay-right-fringe)
+                      (text-area 'yascroll:make-thumb-overlay-text-area))))
+              (when (<= thumb-buffer-line buffer-lines)
+                (yascroll:make-thumb-overlays make-thumb-overlay
+                                              thumb-window-line
+                                              thumb-size)
+                (yascroll:schedule-hide-scroll-bar)))))))))
 
 
 (use-package yasnippet
