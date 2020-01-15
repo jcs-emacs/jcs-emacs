@@ -976,7 +976,7 @@
   :config
   (require 'cl)
   (when (version<= "27" emacs-version)
-  ;;;###autoload
+    ;;;###autoload
     (defun yascroll:show-scroll-bar ()
       "Show scroll bar in BUFFER."
       (interactive)
@@ -1001,7 +1001,18 @@
                   (yascroll:make-thumb-overlays make-thumb-overlay
                                                 thumb-window-line
                                                 thumb-size)
-                  (yascroll:schedule-hide-scroll-bar))))))))))
+                  (yascroll:schedule-hide-scroll-bar))))))))
+    (defun yascroll:choose-scroll-bar ()
+      (when (memq window-system yascroll:enabled-window-systems)
+        (cl-destructuring-bind (left-width right-width outside-margins nil)
+            (window-fringes)
+          (cl-loop for scroll-bar in (yascroll:listify yascroll:scroll-bar)
+                   if (or (eq scroll-bar 'text-area)
+                          (and (eq scroll-bar 'left-fringe)
+                               (> left-width 0))
+                          (and (eq scroll-bar 'right-fringe)
+                               (> right-width 0)))
+                   return scroll-bar))))))
 
 
 (use-package yasnippet
