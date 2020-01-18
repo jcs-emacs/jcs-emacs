@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-01-19
+
+* Ignored `lsp` buffer with weather the dash `-` exists or not. (jcs-emacs-init)
+
 ### 2020-01-14
 
 * Fixed `feebleline` compatbile with `lsp-mode` ignore case issue on `(buffer-name)`
