@@ -42,16 +42,15 @@
     (dolist (mode oop-highlight-modes)
       (font-lock-add-keywords
        mode
-       '(("\\(?:^\\|\\s-\\)\\(@[a-zA-Z0-9_-]*\\)" 1 'jcs-oop-tag-face t)
-         ("@[a-zA-Z0-9_-]*\\(?:^\\|\\s-\\)\\([\\[{].*.[\]}]\\)" 1 'jcs-oop-type-face t)
-
+       '(("\\(?:^\\|\\s-\\)\\(@[^ \t\r\n]+\\)" 1 'jcs-oop-tag-face t)
+         ("@[^ \t\r\n]+\\(?:^\\|\\s-\\)\\([\\[{][^\]}]*.\\)" 1 'jcs-oop-type-face t)
          ;; NOTE: Doc String Style:
          ;; @param { TypeName } `ValueTag' : value tag description..
-         ("@[a-zA-Z0-9_].*[\]\|}][    \t\n]*\\([a-zA-Z0-9[_$*&[]+[]]*\\)[ \t\n]*[:-]" 1 'jcs-oop-value-face t)
+         ("@[^ \t\r\n].*[\]\|}]\\([^\r\n]*\\)[:-]" 1 'jcs-oop-value-face t)
          ;; NOTE: Doc String Style:
          ;; @param `ValueTag' : value tag description..
-         ("@[a-zA-Z0-9_]*[ \t\n]*\\([a-zA-Z0-9_.*&]*\\)[ \t\n]*[{:-]" 1 'jcs-oop-value-face t)
-         )'end))))
+         ("@[^ \t\r\n]*[ \t\n]*\\([a-zA-Z0-9_.*&]*\\)[ \t\n]*[{:-]" 1 'jcs-oop-value-face t))
+       'end))))
 
 
 ;;; Doc string
