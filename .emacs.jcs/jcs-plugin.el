@@ -202,7 +202,7 @@
   (setq diminish-buffer-list '("[*]helm" "[*]esup-" "[*]quelpa-"
                                "[*]compilation" "[*]output"
                                "[*]Async Shell Command[*]:" "[*]shell" "[*]eshell"
-                               "[*]lsp-" "[*][a-zA-Z0-9]+-ls"
+                               "[*]lsp-" "[*][a-zA-Z0-9]+[-]*ls"
                                "[*]company"
                                "[*]SPEEDBAR"))
   (with-eval-after-load 'jcs-buffer-menu
