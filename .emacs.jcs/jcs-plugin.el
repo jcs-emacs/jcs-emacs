@@ -974,7 +974,6 @@
   :init
   (setq yascroll:delay-to-hide 0.8)
   :config
-  (require 'cl)
   (when (version<= "27" emacs-version)
     ;;;###autoload
     (defun yascroll:show-scroll-bar ()
