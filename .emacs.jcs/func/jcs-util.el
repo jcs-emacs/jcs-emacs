@@ -1148,6 +1148,7 @@ CMDS should be a list of commands."
   "Flatten the multiple dimensional array, L to one dimensonal array.
 For instance,
   '(1 2 3 4 (5 6 7 8)) => '(1 2 3 4 5 6 7 8)."
+  (require 'cl)
   (cond ((null l) nil)
         ((atom l) (list l))
         (t (loop for a in l appending (jcs-flatten-list a)))))
