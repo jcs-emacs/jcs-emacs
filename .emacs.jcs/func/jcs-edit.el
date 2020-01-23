@@ -1050,11 +1050,12 @@ ECP-SAME : Exception for the same buffer."
 (defun jcs-reopen-this-buffer ()
   "Kill the current buffer and open it again."
   (interactive)
-  (when (buffer-file-name)
-    (jcs-window-record-once)
-    (jcs-kill-this-buffer)
-    (jcs-window-restore-once)
-    (message "Reopened file => '%s'" (buffer-file-name))))
+  (let ((current-bfn (buffer-file-name)))
+    (when current-bfn
+      (jcs-window-record-once)
+      (jcs-kill-this-buffer)
+      (jcs-window-restore-once)
+      (message "Reopened file => '%s'" current-bfn))))
 
 ;;----------------------------------------------
 ;; Delete Repeatedly
