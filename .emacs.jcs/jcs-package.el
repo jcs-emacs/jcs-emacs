@@ -107,6 +107,7 @@
     lsp-ui
     lua-mode
     magit
+    manage-minor-mode
     markdown-mode
     markdown-toc
     move-text
