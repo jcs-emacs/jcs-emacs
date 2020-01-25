@@ -45,6 +45,7 @@
         jcs-previous-line
         jcs-py-indent-down
         jcs-py-indent-up
+        jcs-py-return
         jcs-real-backspace
         jcs-real-delete
         jcs-real-space
