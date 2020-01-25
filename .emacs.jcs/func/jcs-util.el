@@ -1524,8 +1524,7 @@ IGNORE-ERRORS-T : ignore errors for this function?"
 
 (defun jcs-last-char-in-string (reg str)
   "Find the position in STR using REG from th end."
-  (let ((pos -1)
-        (run-it t))
+  (let ((pos -1) (run-it t))
     (while run-it
       (setq run-it (string-match-p reg str (1+ pos)))
       (when run-it (setq pos run-it)))
