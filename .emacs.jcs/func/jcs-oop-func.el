@@ -271,22 +271,15 @@
 (defun jcs-insert-comment-style-by-current-line (sr-op)
   "Read the current line and insert by reading the need from the input line.
 SR-OP is the boundary of the search limit."
-  (let ((keyword-strings '()) (datatype-name "") (meet-function-name nil)
-        (function-name-string "")
-        (param-type-strings '())      ; param type string list.
-        (param-variable-strings '())  ; param name string list.
-        (there-is-return nil) (return-type-string "") (search-string "")
-        (close-bracket-pt -1))
-
+  (require 's)
+  (let ((search-string "") (close-bracket-pt -1))
     (save-excursion
       (jcs-move-to-forward-a-char ")")
       (setq close-bracket-pt (point)))
 
     (save-excursion
-      (when (not (jcs-current-line-empty-p))
-        (let ((end-function-point nil)
-              (word-index 0))
-
+      (unless (jcs-current-line-empty-p)
+        (let ((end-function-point nil) (word-index 0))
           (save-excursion
             (save-window-excursion
               ;; NOTE: Find closing parenthesis instead
@@ -325,96 +318,17 @@ SR-OP is the boundary of the search limit."
           ;; back to searching point.
           (setq search-string (string-trim (buffer-substring (point) end-function-point)))
           ;; Replace line breaks to space.
-          (setq search-string (s-replace "\n" " " search-string))
-
-
-          (while (< (point) end-function-point)
-            (unless (= word-index 0)
-              (forward-word 1))
-            (forward-word 1)
-            (backward-char 1)
-            (setq word-index (1+ word-index))
-
-            ;; Make sure only process current/one line.
-            (when (<= (point) end-function-point)
-              ;; NOTE: Store all the keyword name.
-              (when (or (jcs-is-current-point-face "font-lock-keyword-face")
-                        (jcs-is-current-point-face "font-lock-preprocessor-face"))
-                (push (thing-at-point 'word) keyword-strings))
-
-              ;; NOTE: Check if meet the function name.
-              (when (or (jcs-is-current-point-face "font-lock-function-name-face")
-                        (jcs-is-current-point-face "web-mode-function-name-face"))
-                (setq function-name-string (thing-at-point 'word))
-                (setq meet-function-name t))
-
-              ;; NOTE: Store all the type name. (include return type name)
-              (when (jcs-is-current-point-face "font-lock-type-face")
-                ;; Just store it.
-                (setq datatype-name (thing-at-point 'word))
-
-                (if (or (not meet-function-name)
-                        (< close-bracket-pt (point)))
-                    (progn
-                      (setq return-type-string (thing-at-point 'word))
-                      (setq there-is-return t))
-                  ;; NOTE: Since Lisp's default list data structure
-                  ;; dose not support duplicate item in the list. Update the
-                  ;; list by setting it to the brand new temporary list, which
-                  ;; make muliple item list doable.
-                  (let ((type-string (thing-at-point 'word))
-                        (temp-list '()))
-                    (push type-string temp-list)
-                    (setq param-type-strings (append param-type-strings temp-list)))))
-
-              ;; NOTE: Store all the variables name.
-              (when (or (jcs-is-current-point-face "font-lock-variable-name-face")
-                        (jcs-is-current-point-face 'js2-function-param)
-                        (jcs-is-current-point-face "web-mode-variable-name-face")
-                        (jcs-is-current-point-face "jcs-preproc-variable-name-face"))
-                (push (thing-at-point 'word) param-variable-strings)))))))
+          (setq search-string (s-replace "\n" " " search-string)))))
 
     ;; Insert document comment string.
-    (jcs-insert-doc-comment-string meet-function-name
-                                   keyword-strings
-                                   datatype-name
-                                   function-name-string
-                                   there-is-return
-                                   return-type-string
-                                   param-type-strings
-                                   param-variable-strings
-                                   search-string)))
+    (jcs-insert-doc-comment-string search-string)))
 
-(defun jcs-insert-doc-comment-string (meet-function-name
-                                      keyword-strings
-                                      datatype-name
-                                      function-name-string
-                                      there-is-return
-                                      return-type-string
-                                      param-type-strings
-                                      param-variable-strings
-                                      search-string)
+(defun jcs-insert-doc-comment-string (search-string)
   "Insert document comment style.
-
-MEET-FUNCTION-NAME     : Meet the function name?
-KEYWORD-STRINGS        : Keyword strings list.
-DATATYPE-NAME          : Data type name, store keyword for struct/class related.
-FUNCTION-NAME-STRING   : Function name.
-THERE-IS-RETURN        : There is return in this function?
-RETURN-TYPE-STRING     : String of the return type.
-PARAM-TYPE-STRINGS     : Param type strings list.
-PARAM-VARIABLE-STRINGS : Param name strings list.
-PAREN-STRING           : Param raw string.
-SEARCH-STRING          : Full content string."
-
+SEARCH-STRING is the raw string that represent the code we want to document."
   (save-excursion
-    (let ((mode-doc-string-func-name nil))
-      ;; NOTE: `push' will push the element at the front
-      ;; queue. `setq' and `append' will push element from
-      ;; the back, so we need to reverse it in order to match
-      ;; the order.
-      (setq param-variable-strings (reverse param-variable-strings))
-
+    (let ((mode-doc-string-func-name nil)
+          (meet-function-name (jcs--function-name search-string)))
       (cond
        ((jcs-is-current-major-mode-p '("actionscript-mode"))
         (setq mode-doc-string-func-name (if meet-function-name
@@ -457,30 +371,57 @@ SEARCH-STRING          : Full content string."
                                             'jcs-ts-mode-doc-string-func
                                           'jcs-ts-mode-doc-string-others))))
 
-      ;; NOTE: Ensure the `mode-doc-string-func-name'
-      ;; is assign to something valid to execute.
+      ;; NOTE: Ensure the `mode-doc-string-func-name' is assign to something
+      ;; valid to execute.
       (when mode-doc-string-func-name
-        (funcall mode-doc-string-func-name
-                 keyword-strings
-                 datatype-name
-                 function-name-string
-                 there-is-return
-                 return-type-string
-                 param-type-strings
-                 param-variable-strings
-                 search-string)))))
+        (funcall mode-doc-string-func-name search-string)))))
 
+
+(defun jcs--next-string-after-keyword (lst kw)
+  "Next string in LST after keyword (KW)."
+  (let ((result nil) (break-it nil) (item nil) (index 0))
+    (while (and (not break-it) (< index (length lst)))
+      (setq item (nth index lst))
+      (when (string-match-p kw item)
+        (setq result (nth (1+ index) lst))
+        (setq break-it t))
+      (setq index (1+ index)))
+    result))
+
+(defun jcs--function-name (search-string)
+  "Analyze SEARCH-STRING to get function name."
+  (let ((function-name-string nil)
+        (pos (jcs-last-char-in-string "(" search-string)))
+    (when pos
+      (setq function-name-string (substring search-string 0 pos))
+      (setq function-name-string (split-string function-name-string " " t))
+      (setq function-name-string (nth (1- (length function-name-string)) function-name-string)))
+    (if (stringp function-name-string)
+        (string-trim function-name-string)
+      nil)))
+
+(defun jcs--return-type (search-string)
+  "Analyze SEARCH-STRING to get return type.
+This is for c-like programming languages."
+  (let ((return-type-string nil)
+        (pos (jcs-last-char-in-string "(" search-string)))
+    (when pos
+      (setq return-type-string (substring search-string 0 pos))
+      (setq return-type-string (split-string return-type-string " " t))
+      (setq return-type-string (nth (- (length return-type-string) 2) return-type-string)))
+    (if (stringp return-type-string)
+        (string-trim return-type-string)
+      nil)))
 
 (defun jcs--return-type-colon (search-string)
-  "Get the return type by colon type of programming languages.  For example, \
-`actionscript', `typescript', etc.
-SEARCH-STRING : string that use to analyze."
-  (let ((return-type-string nil))
-    (setq return-type-string
-          (substring search-string
-                     (jcs-last-char-in-string ")" search-string)
-                     (length search-string)))
-    (setq return-type-string (nth 1 (split-string return-type-string ":")))
+  "Analyze SEARCH-STRING to get return type.
+This is for colon type programming languages.  For example, `actionscript',
+`typescript', etc."
+  (let ((return-type-string nil)
+        (pos (jcs-last-char-in-string ")" search-string)))
+    (when pos
+      (setq return-type-string (substring search-string pos (length search-string)))
+      (setq return-type-string (nth 1 (split-string return-type-string ":"))))
     (if (stringp return-type-string)
         (string-trim return-type-string)
       nil)))
@@ -488,9 +429,7 @@ SEARCH-STRING : string that use to analyze."
 (defun jcs--analyze-param-string (search-string)
   "Get rid of the open and close parentheses, only get the center part.
 SEARCH-STRING : string that use to analyze."
-  (let ((param-string nil)
-        (pos -1)
-        (run-it t))
+  (let ((param-string nil) (pos -1) (run-it t))
     (setq param-string (substring search-string
                                   (1+ (string-match-p "(" search-string))
                                   (length search-string)))
@@ -606,59 +545,28 @@ SEARCH-STRING : Search raw string."
 
 
 
-(defun jcs-as-mode-doc-string-others (keyword-strings
-                                      datatype-name
-                                      function-name-string
-                                      there-is-return
-                                      return-type-string
-                                      param-type-strings
-                                      param-variable-strings
-                                      search-string)
+(defun jcs-as-mode-doc-string-others (search-string)
   "Insert `actionscript-mode' other doc string.
-
-KEYWORD-STRINGS        : Keyword strings list.
-DATATYPE-NAME          : Data type name, store keyword for struct/class related.
-FUNCTION-NAME-STRING   : Function name.
-THERE-IS-RETURN        : There is return in this function?
-RETURN-TYPE-STRING     : String of the return type.
-PARAM-TYPE-STRINGS     : Param type strings list.
-PARAM-VARIABLE-STRINGS : Param name strings list.
-SEARCH-STRING          : Search raw string."
-  (cond ((jcs-is-contain-list-string keyword-strings "class")
-         (progn
-           ;; TODO: implement into ActionScript mode.
-           )))
+SEARCH-STRING is the raw string that represent the code we want to document."
+  (cond
+   ((string-match-p "class" search-string)
+    (progn
+      ;; TODO: implement into ActionScript mode.
+      )))
   )
 
-(defun jcs-as-mode-doc-string-func (keyword-strings
-                                    datatype-name
-                                    function-name-string
-                                    there-is-return
-                                    return-type-string
-                                    param-type-strings
-                                    param-variable-strings
-                                    search-string)
+(defun jcs-as-mode-doc-string-func (search-string)
   "Insert `actionscript-mode' function doc string.
+SEARCH-STRING is the raw string that represent the code we want to document."
 
-KEYWORD-STRINGS        : Keyword strings list.
-DATATYPE-NAME          : Data type name, store keyword for struct/class related.
-FUNCTION-NAME-STRING   : Function name.
-THERE-IS-RETURN        : There is return in this function?
-RETURN-TYPE-STRING     : String of the return type.
-PARAM-TYPE-STRINGS     : Param type strings list.
-PARAM-VARIABLE-STRINGS : Param name strings list.
-SEARCH-STRING          : Search raw string."
-
-  (let ((paren-param-list (jcs-paren-param-list-colon search-string)))
-    (setq param-type-strings (nth 0 paren-param-list))
-    (setq param-variable-strings (nth 1 paren-param-list)))
-
-  ;; Get all return data types.
-  (setq return-type-string (jcs--return-type-colon search-string))
-  (setq there-is-return (not (null return-type-string)))
-
-  (let ((param-var-len (length param-variable-strings))
-        (param-index 0))
+  (let* ((paren-param-list (jcs-paren-param-list-colon search-string))
+         (param-type-strings (nth 0 paren-param-list))
+         (param-variable-strings (nth 1 paren-param-list))
+         (param-var-len (length param-variable-strings))
+         (param-index 0)
+         ;; Get all return data types.
+         (return-type-string (jcs--return-type-colon search-string))
+         (there-is-return (not (null return-type-string))))
     ;; go back to comment line.
     (jcs-previous-line)
     (jcs-previous-line)
@@ -701,122 +609,102 @@ SEARCH-STRING          : Search raw string."
         (indent-for-tab-command)))))
 
 
-(defun jcs-cc-mode-doc-string-others (keyword-strings
-                                      datatype-name
-                                      function-name-string
-                                      there-is-return
-                                      return-type-string
-                                      param-type-strings
-                                      param-variable-strings
-                                      search-string)
+(defun jcs-cc-mode-doc-string-others (search-string)
   "Insert `c-mode' or `c++-mode' other doc string.
+SEARCH-STRING is the raw string that represent the code we want to document."
+  (let ((splitted-search-string (split-string search-string " " t))
+        (defined-keyword ""))
+    (cond
+     ((string-match-p "class" search-string)
+      (progn
+        ;; go back to comment line.
+        (jcs-previous-line)
+        (jcs-previous-line)
+        (end-of-line)
 
-KEYWORD-STRINGS        : Keyword strings list.
-DATATYPE-NAME          : Data type name, store keyword for struct/class related.
-FUNCTION-NAME-STRING   : Function name.
-THERE-IS-RETURN        : There is return in this function?
-RETURN-TYPE-STRING     : String of the return type.
-PARAM-TYPE-STRINGS     : Param type strings list.
-PARAM-VARIABLE-STRINGS : Param name strings list.
-SEARCH-STRING          : Search raw string."
-  (cond ((jcs-is-contain-list-string-regexp keyword-strings "class")
-         (progn
-           ;; go back to comment line.
-           (jcs-previous-line)
-           (jcs-previous-line)
-           (end-of-line)
+        ;; Process class tag.
+        (insert "@class ")
+        (setq defined-keyword
+              (jcs--next-string-after-keyword splitted-search-string "class"))
+        (ignore-errors (insert defined-keyword))
+        (indent-for-tab-command)
 
-           ;; Process class tag.
-           (insert "@class ")
-           (insert datatype-name)
-           (indent-for-tab-command)
+        ;; Process brief tag.
+        (insert "\n")
+        (insert "* @brief ")
+        (insert jcs-class-desc-string)
+        (indent-for-tab-command)))
+     ((string-match-p "struct" search-string)
+      (progn
+        ;; go back to comment line.
+        (jcs-previous-line)
+        (jcs-previous-line)
+        (end-of-line)
 
-           ;; Process brief tag.
-           (insert "\n")
-           (insert "* @brief ")
-           (insert jcs-class-desc-string)
-           (indent-for-tab-command)))
-        ((jcs-is-contain-list-string keyword-strings "struct")
-         (progn
-           ;; go back to comment line.
-           (jcs-previous-line)
-           (jcs-previous-line)
-           (end-of-line)
+        ;; Process class tag.
+        (insert "@struct ")
+        (setq defined-keyword
+              (jcs--next-string-after-keyword splitted-search-string "struct"))
+        (ignore-errors (insert defined-keyword))
+        (indent-for-tab-command)
 
-           ;; Process class tag.
-           (insert "@struct ")
-           (insert datatype-name)
-           (indent-for-tab-command)
+        ;; Process brief tag.
+        (insert "\n")
+        (insert "* @brief ")
+        (insert jcs-struct-desc-string)
+        (indent-for-tab-command)))
+     ((or (string-match-p "define" search-string)
+          (string-match-p "#define" search-string))
+      (progn
+        ;; go back to comment line.
+        (jcs-previous-line)
+        (jcs-previous-line)
+        (end-of-line)
 
-           ;; Process brief tag.
-           (insert "\n")
-           (insert "* @brief ")
-           (insert jcs-struct-desc-string)
-           (indent-for-tab-command)))
-        ((or (jcs-is-contain-list-string keyword-strings "define")
-             (jcs-is-contain-list-string keyword-strings "#define"))
-         (progn
-           ;; go back to comment line.
-           (jcs-previous-line)
-           (jcs-previous-line)
-           (end-of-line)
+        ;; Process define tag.
+        (insert "@def ")
+        (setq defined-keyword (nth 1 (split-string search-string " " t)))
+        (ignore-errors (insert defined-keyword))
+        (indent-for-tab-command)
 
-           ;; Process define tag.
-           (insert "@def ")
-           (insert (nth 0 param-variable-strings))
-           (indent-for-tab-command)
+        ;; Process brief tag.
+        (insert "\n")
+        (insert "* @brief ")
+        (insert jcs-define-desc-string)
+        (indent-for-tab-command)))
+     ((string-match-p "enum" search-string)
+      (progn
+        ;; go back to comment line.
+        (jcs-previous-line)
+        (jcs-previous-line)
+        (end-of-line)
 
-           ;; Process brief tag.
-           (insert "\n")
-           (insert "* @brief ")
-           (insert jcs-define-desc-string)
-           (indent-for-tab-command)))
-        ((jcs-is-contain-list-string keyword-strings "enum")
-         (progn
-           ;; go back to comment line.
-           (jcs-previous-line)
-           (jcs-previous-line)
-           (end-of-line)
+        ;; Process enumerator tag.
+        (insert "@enum ")
+        (setq defined-keyword
+              (jcs--next-string-after-keyword splitted-search-string "enum"))
+        (ignore-errors (insert defined-keyword))
+        (indent-for-tab-command)
 
-           ;; Process enumerator tag.
-           (insert "@enum ")
-           (insert datatype-name)
-           (indent-for-tab-command)
+        ;; Process brief tag.
+        (insert "\n")
+        (insert "* @brief ")
+        (insert jcs-enum-desc-string)
+        (indent-for-tab-command))))))
 
-           ;; Process brief tag.
-           (insert "\n")
-           (insert "* @brief ")
-           (insert jcs-enum-desc-string)
-           (indent-for-tab-command)))))
-
-(defun jcs-cc-mode-doc-string-func (keyword-strings
-                                    datatype-name
-                                    function-name-string
-                                    there-is-return
-                                    return-type-string
-                                    param-type-strings
-                                    param-variable-strings
-                                    search-string)
+(defun jcs-cc-mode-doc-string-func (search-string)
   "Insert `c-mode' or `c++-mode' function doc string.
+SEARCH-STRING is the raw string that represent the code we want to document."
 
-KEYWORD-STRINGS        : Keyword strings list.
-DATATYPE-NAME          : Data type name, store keyword for struct/class related.
-FUNCTION-NAME-STRING   : Function name.
-THERE-IS-RETURN        : There is return in this function?
-RETURN-TYPE-STRING     : String of the return type.
-PARAM-TYPE-STRINGS     : Param type strings list.
-PARAM-VARIABLE-STRINGS : Param name strings list.
-SEARCH-STRING          : Search raw string."
-
-  (let ((paren-param-list (jcs-paren-param-list search-string)))
-    (setq param-type-strings (nth 0 paren-param-list))
-    (setq param-variable-strings (nth 1 paren-param-list)))
-
-  ;; Get the return data type.
-  (setq return-type-string (nth 0 (split-string search-string " ")))
-
-  (let ((param-var-len (length param-variable-strings))
-        (param-index 0))
+  (let* ((paren-param-list (jcs-paren-param-list search-string))
+         (param-type-strings (nth 0 paren-param-list))
+         (param-variable-strings (nth 1 paren-param-list))
+         (param-var-len (length param-variable-strings))
+         (param-index 0)
+         (function-name-string (jcs--function-name search-string))
+         ;; Get the return data type.
+         (return-type-string (jcs--return-type search-string))
+         (there-is-return (not (null return-type-string))))
     ;; go back to comment line.
     (jcs-previous-line)
     (jcs-previous-line)
@@ -871,63 +759,40 @@ SEARCH-STRING          : Search raw string."
                 (indent-for-tab-command)))))))
 
 
-(defun jcs-csharp-mode-doc-string-others (keyword-strings
-                                          datatype-name
-                                          function-name-string
-                                          there-is-return
-                                          return-type-string
-                                          param-type-strings
-                                          param-variable-strings
-                                          search-string)
+(defun jcs-csharp-mode-doc-string-others (search-string)
   "Insert `csharp-mode' other doc string.
+SEARCH-STRING is the raw string that represent the code we want to document."
+  (cond
+   ((string-match-p "class" search-string)
+    (progn
+      ;; STUDY: Don't think that C#
+      ;; doc need one..
+      ))
+   ((string-match-p "struct" search-string)
+    (progn
+      ;; STUDY: Don't think that C#
+      ;; doc need one..
+      ))
+   ((or (string-match-p "define" search-string)
+        (string-match-p "#define" search-string))
+    (progn
+      ;; STUDY: Don't think that C#
+      ;; doc need one..
+      ))))
 
-KEYWORD-STRINGS        : Keyword strings list.
-DATATYPE-NAME          : Data type name, store keyword for struct/class related.
-FUNCTION-NAME-STRING   : Function name.
-THERE-IS-RETURN        : There is return in this function?
-RETURN-TYPE-STRING     : String of the return type.
-PARAM-TYPE-STRINGS     : Param type strings list.
-PARAM-VARIABLE-STRINGS : Param name strings list.
-SEARCH-STRING          : Search raw string."
-  (cond ((jcs-is-contain-list-string keyword-strings "class")
-         (progn
-           ;; STUDY: Don't think that C#
-           ;; doc need one..
-           ))
-        ((jcs-is-contain-list-string keyword-strings "struct")
-         (progn
-           ;; STUDY: Don't think that C#
-           ;; doc need one..
-           ))
-        ((or (jcs-is-contain-list-string keyword-strings "define")
-             (jcs-is-contain-list-string keyword-strings "#define"))
-         (progn
-           ;; STUDY: Don't think that C#
-           ;; doc need one..
-           ))))
-
-(defun jcs-csharp-mode-doc-string-func (keyword-strings
-                                        datatype-name
-                                        function-name-string
-                                        there-is-return
-                                        return-type-string
-                                        param-type-strings
-                                        param-variable-strings
-                                        search-string)
+(defun jcs-csharp-mode-doc-string-func (search-string)
   "Insert `csharp-mode' function doc string.
+SEARCH-STRING is the raw string that represent the code we want to document."
 
-KEYWORD-STRINGS        : Keyword strings list.
-DATATYPE-NAME          : Data type name, store keyword for struct/class related.
-FUNCTION-NAME-STRING   : Function name.
-THERE-IS-RETURN        : There is return in this function?
-RETURN-TYPE-STRING     : String of the return type.
-PARAM-TYPE-STRINGS     : Param type strings list.
-PARAM-VARIABLE-STRINGS : Param name strings list.
-SEARCH-STRING          : Search raw string."
-
-  (let ((param-var-len (length param-variable-strings))
-        (param-index 0)
-        (docstring-type -1))
+  (let* ((paren-param-list (jcs-paren-param-list search-string))
+         (param-type-strings (nth 0 paren-param-list))
+         (param-variable-strings (nth 1 paren-param-list))
+         (param-var-len (length param-variable-strings))
+         (param-index 0)
+         (docstring-type -1)
+         ;; Get the return data type.
+         (return-type-string (jcs--return-type search-string))
+         (there-is-return (not (null return-type-string))))
     ;; go back to comment line.
     (jcs-previous-line)
     (end-of-line)
@@ -1006,56 +871,33 @@ SEARCH-STRING          : Search raw string."
             (indent-for-tab-command))))))))
 
 
-(defun jcs-java-mode-doc-string-others (keyword-strings
-                                        datatype-name
-                                        function-name-string
-                                        there-is-return
-                                        return-type-string
-                                        param-type-strings
-                                        param-variable-strings
-                                        search-string)
+(defun jcs-java-mode-doc-string-others (search-string)
   "Insert `java-mode' other doc string.
+SEARCH-STRING is the raw string that represent the code we want to document."
+  (cond
+   ((string-match-p "class" search-string)
+    (progn
+      ;; STUDY: Don't think that java
+      ;; doc need one..
+      ))
+   ((string-match-p "interface" search-string)
+    (progn
+      ;; STUDY: Don't think that java
+      ;; doc need one..
+      ))))
 
-KEYWORD-STRINGS        : Keyword strings list.
-DATATYPE-NAME          : Data type name, store keyword for struct/class related.
-FUNCTION-NAME-STRING   : Function name.
-THERE-IS-RETURN        : There is return in this function?
-RETURN-TYPE-STRING     : String of the return type.
-PARAM-TYPE-STRINGS     : Param type strings list.
-PARAM-VARIABLE-STRINGS : Param name strings list.
-SEARCH-STRING          : Search raw string."
-  (cond ((jcs-is-contain-list-string keyword-strings "class")
-         (progn
-           ;; STUDY: Don't think that java
-           ;; doc need one..
-           ))
-        ((jcs-is-contain-list-string keyword-strings "interface")
-         (progn
-           ;; STUDY: Don't think that java
-           ;; doc need one..
-           ))))
-
-(defun jcs-java-mode-doc-string-func (keyword-strings
-                                      datatype-name
-                                      function-name-string
-                                      there-is-return
-                                      return-type-string
-                                      param-type-strings
-                                      param-variable-strings
-                                      search-string)
+(defun jcs-java-mode-doc-string-func (search-string)
   "Insert `java-mode' function doc string.
+SEARCH-STRING is the raw string that represent the code we want to document."
 
-KEYWORD-STRINGS        : Keyword strings list.
-DATATYPE-NAME          : Data type name, store keyword for struct/class related.
-FUNCTION-NAME-STRING   : Function name.
-THERE-IS-RETURN        : There is return in this function?
-RETURN-TYPE-STRING     : String of the return type.
-PARAM-TYPE-STRINGS     : Param type strings list.
-PARAM-VARIABLE-STRINGS : Param name strings list.
-SEARCH-STRING          : Search raw string."
-
-  (let ((param-var-len (length param-variable-strings))
-        (param-index 0))
+  (let* ((paren-param-list (jcs-paren-param-list search-string))
+         (param-type-strings (nth 0 paren-param-list))
+         (param-variable-strings (nth 1 paren-param-list))
+         (param-var-len (length param-variable-strings))
+         (param-index 0)
+         ;; Get the return data type.
+         (return-type-string (jcs--return-type search-string))
+         (there-is-return (not (null return-type-string))))
     ;; go back to comment line.
     (jcs-previous-line)
     (jcs-previous-line)
@@ -1098,57 +940,28 @@ SEARCH-STRING          : Search raw string."
         (indent-for-tab-command)))))
 
 
-(defun jcs-js-mode-doc-string-others (keyword-strings
-                                      datatype-name
-                                      function-name-string
-                                      there-is-return
-                                      return-type-string
-                                      param-type-strings
-                                      param-variable-strings
-                                      search-string)
+(defun jcs-js-mode-doc-string-others (search-string)
   "Insert `js2-mode' other doc string.
+SEARCH-STRING is the raw string that represent the code we want to document."
+  (cond
+   ((string-match-p "class" search-string)
+    (progn
+      ;; STUDY: Don't know if javascript
+      ;; need one..
+      ))))
 
-KEYWORD-STRINGS        : Keyword strings list.
-DATATYPE-NAME          : Data type name, store keyword for struct/class related.
-FUNCTION-NAME-STRING   : Function name.
-THERE-IS-RETURN        : There is return in this function?
-RETURN-TYPE-STRING     : String of the return type.
-PARAM-TYPE-STRINGS     : Param type strings list.
-PARAM-VARIABLE-STRINGS : Param name strings list.
-SEARCH-STRING          : Search raw string."
-  (cond ((jcs-is-contain-list-string keyword-strings "class")
-         (progn
-           ;; STUDY: Don't know if javascript
-           ;; need one..
-           ))))
-
-(defun jcs-js-mode-doc-string-func (keyword-strings
-                                    datatype-name
-                                    function-name-string
-                                    there-is-return
-                                    return-type-string
-                                    param-type-strings
-                                    param-variable-strings
-                                    search-string)
+(defun jcs-js-mode-doc-string-func (search-string)
   "Insert `js2-mode' function doc string.
+SEARCH-STRING is the raw string that represent the code we want to document."
 
-KEYWORD-STRINGS        : Keyword strings list.
-DATATYPE-NAME          : Data type name, store keyword for struct/class related.
-FUNCTION-NAME-STRING   : Function name.
-THERE-IS-RETURN        : There is return in this function?
-RETURN-TYPE-STRING     : String of the return type.
-PARAM-TYPE-STRINGS     : Param type strings list.
-PARAM-VARIABLE-STRINGS : Param name strings list.
-SEARCH-STRING          : Search raw string."
-
-  (let ((paren-param-list (jcs-paren-param-list search-string)))
-    (setq param-type-strings (nth 0 paren-param-list))
-    (setq param-variable-strings (nth 1 paren-param-list)))
-
-  (message "parma: %s" param-variable-strings)
-
-  (let ((param-var-len (length param-variable-strings))
-        (param-index 0))
+  (let* ((paren-param-list (jcs-paren-param-list search-string))
+         (param-type-strings (nth 0 paren-param-list))
+         (param-variable-strings (nth 1 paren-param-list))
+         (param-var-len (length param-variable-strings))
+         (param-index 0)
+         ;; Get the return data type.
+         (return-type-string "void")
+         (there-is-return nil))
     ;; go back to comment line.
     (jcs-previous-line)
     (jcs-previous-line)
@@ -1191,52 +1004,24 @@ SEARCH-STRING          : Search raw string."
         (indent-for-tab-command)))))
 
 
-(defun jcs-lua-mode-doc-string-others (keyword-strings
-                                       datatype-name
-                                       function-name-string
-                                       there-is-return
-                                       return-type-string
-                                       param-type-strings
-                                       param-variable-strings
-                                       search-string)
+(defun jcs-lua-mode-doc-string-others (search-string)
   "Insert `lua-mode' other doc string.
-
-KEYWORD-STRINGS        : Keyword strings list.
-DATATYPE-NAME          : Data type name, store keyword for struct/class related.
-FUNCTION-NAME-STRING   : Function name.
-THERE-IS-RETURN        : There is return in this function?
-RETURN-TYPE-STRING     : String of the return type.
-PARAM-TYPE-STRINGS     : Param type strings list.
-PARAM-VARIABLE-STRINGS : Param name strings list.
-SEARCH-STRING          : Search raw string."
+SEARCH-STRING is the raw string that represent the code we want to document."
   ;; NOTE: I don't think Lua have any keywords...
   )
 
-(defun jcs-lua-mode-doc-string-func (keyword-strings
-                                     datatype-name
-                                     function-name-string
-                                     there-is-return
-                                     return-type-string
-                                     param-type-strings
-                                     param-variable-strings
-                                     search-string)
+(defun jcs-lua-mode-doc-string-func (search-string)
   "Insert `lua-mode' function doc string.
+SEARCH-STRING is the raw string that represent the code we want to document."
 
-KEYWORD-STRINGS        : Keyword strings list.
-DATATYPE-NAME          : Data type name, store keyword for struct/class related.
-FUNCTION-NAME-STRING   : Function name.
-THERE-IS-RETURN        : There is return in this function?
-RETURN-TYPE-STRING     : String of the return type.
-PARAM-TYPE-STRINGS     : Param type strings list.
-PARAM-VARIABLE-STRINGS : Param name strings list.
-SEARCH-STRING          : Search raw string."
-
-  (let ((paren-param-list (jcs-paren-param-list-colon search-string)))
-    (setq param-type-strings (nth 0 paren-param-list))
-    (setq param-variable-strings (nth 1 paren-param-list)))
-
-  (let ((param-var-len (length param-variable-strings))
-        (param-index 0))
+  (let* ((paren-param-list (jcs-paren-param-list-colon search-string))
+         (param-type-strings (nth 0 paren-param-list))
+         (param-variable-strings (nth 1 paren-param-list))
+         (param-var-len (length param-variable-strings))
+         (param-index 0)
+         ;; Get the return data type.
+         (return-type-string "void")
+         (there-is-return nil))
     ;; go back to comment line.
     (jcs-previous-line)
     (jcs-previous-line)
@@ -1279,62 +1064,34 @@ SEARCH-STRING          : Search raw string."
         (indent-for-tab-command)))))
 
 
-(defun jcs-py-mode-doc-string-others (keyword-strings
-                                      datatype-name
-                                      function-name-string
-                                      there-is-return
-                                      return-type-string
-                                      param-type-strings
-                                      param-variable-strings
-                                      search-string)
+(defun jcs-py-mode-doc-string-others (search-string)
   "Insert `python-mode' other doc string.
+SEARCH-STRING is the raw string that represent the code we want to document."
+  (cond
+   ((string-match-p "class" search-string)
+    (progn
+      ;; TODO: implement into python mode.
+      ))))
 
-KEYWORD-STRINGS        : Keyword strings list.
-DATATYPE-NAME          : Data type name, store keyword for struct/class related.
-FUNCTION-NAME-STRING   : Function name.
-THERE-IS-RETURN        : There is return in this function?
-RETURN-TYPE-STRING     : String of the return type.
-PARAM-TYPE-STRINGS     : Param type strings list.
-PARAM-VARIABLE-STRINGS : Param name strings list.
-SEARCH-STRING          : Search raw string."
-  (cond ((jcs-is-contain-list-string keyword-strings "class")
-         (progn
-           ;; TODO: implement into python mode.
-           ))))
-
-(defun jcs-py-mode-doc-string-func (keyword-strings
-                                    datatype-name
-                                    function-name-string
-                                    there-is-return
-                                    return-type-string
-                                    param-type-strings
-                                    param-variable-strings
-                                    search-string)
+(defun jcs-py-mode-doc-string-func (search-string)
   "Insert `python-mode' function doc string.
+SEARCH-STRING is the raw string that represent the code we want to document."
 
-KEYWORD-STRINGS        : Keyword strings list.
-DATATYPE-NAME          : Data type name, store keyword for struct/class related.
-FUNCTION-NAME-STRING   : Function name.
-THERE-IS-RETURN        : There is return in this function?
-RETURN-TYPE-STRING     : String of the return type.
-PARAM-TYPE-STRINGS     : Param type strings list.
-PARAM-VARIABLE-STRINGS : Param name strings list.
-SEARCH-STRING          : Search raw string."
-
-  (let ((paren-param-list (jcs-paren-param-list-colon search-string)))
-    (setq param-type-strings (nth 0 paren-param-list))
-    (setq param-variable-strings (nth 1 paren-param-list)))
-
-  (let ((param-var-len (length param-variable-strings))
-        (param-index 0))
+  (let* ((paren-param-list (jcs-paren-param-list-colon search-string))
+         (param-type-strings (nth 0 paren-param-list))
+         (param-variable-strings (nth 1 paren-param-list))
+         (param-var-len (length param-variable-strings))
+         (param-index 0)
+         ;; Get the return data type.
+         (return-type-string "void")
+         (there-is-return nil))
     ;; go back to comment line.
     (jcs-move-to-forward-a-char-recursive "\"")
     (jcs-move-to-forward-a-char-recursive "\"")
     (jcs-move-to-forward-a-char-recursive "\"")
 
-    (when (= jcs-py-doc-string-version 1)
-      ;; OPTION: docstring option..
-      (jcs-next-line))
+    ;; OPTION: docstring option..
+    (when (= jcs-py-doc-string-version 1) (jcs-next-line))
     (end-of-line)
 
     ;; Line break between description and tags.
@@ -1379,54 +1136,27 @@ SEARCH-STRING          : Search raw string."
         (indent-for-tab-command)))))
 
 
-(defun jcs-php-mode-doc-string-others (keyword-strings
-                                       datatype-name
-                                       function-name-string
-                                       there-is-return
-                                       return-type-string
-                                       param-type-strings
-                                       param-variable-strings
-                                       search-string)
+(defun jcs-php-mode-doc-string-others (search-string)
   "Insert `php-mode' other doc string.
+SEARCH-STRING is the raw string that represent the code we want to document."
+  (cond
+   ((string-match-p "class" search-string)
+    (progn
+      ;; TODO: implement into PHP mode.
+      ))))
 
-KEYWORD-STRINGS        : Keyword strings list.
-DATATYPE-NAME          : Data type name, store keyword for struct/class related.
-FUNCTION-NAME-STRING   : Function name.
-THERE-IS-RETURN        : There is return in this function?
-RETURN-TYPE-STRING     : String of the return type.
-PARAM-TYPE-STRINGS     : Param type strings list.
-PARAM-VARIABLE-STRINGS : Param name strings list.
-SEARCH-STRING          : Search raw string."
-  (cond ((jcs-is-contain-list-string keyword-strings "class")
-         (progn
-           ;; TODO: implement into PHP mode.
-           ))))
-
-(defun jcs-php-mode-doc-string-func (keyword-strings
-                                     datatype-name
-                                     function-name-string
-                                     there-is-return
-                                     return-type-string
-                                     param-type-strings
-                                     param-variable-strings
-                                     search-string)
+(defun jcs-php-mode-doc-string-func (search-string)
   "Insert `php-mode' function doc string.
+SEARCH-STRING is the raw string that represent the code we want to document."
 
-KEYWORD-STRINGS        : Keyword strings list.
-DATATYPE-NAME          : Data type name, store keyword for struct/class related.
-FUNCTION-NAME-STRING   : Function name.
-THERE-IS-RETURN        : There is return in this function?
-RETURN-TYPE-STRING     : String of the return type.
-PARAM-TYPE-STRINGS     : Param type strings list.
-PARAM-VARIABLE-STRINGS : Param name strings list.
-SEARCH-STRING          : Search raw string."
-
-  (let ((paren-param-list (jcs-paren-param-list search-string)))
-    (setq param-type-strings (nth 0 paren-param-list))
-    (setq param-variable-strings (nth 1 paren-param-list)))
-
-  (let ((param-var-len (length param-variable-strings))
-        (param-index 0))
+  (let* ((paren-param-list (jcs-paren-param-list search-string))
+         (param-type-strings (nth 0 paren-param-list))
+         (param-variable-strings (nth 1 paren-param-list))
+         (param-var-len (length param-variable-strings))
+         (param-index 0)
+         ;; Get the return data type.
+         (return-type-string "void")
+         (there-is-return nil))
     ;; go back to comment line.
     (jcs-previous-line)
     (jcs-previous-line)
@@ -1469,61 +1199,28 @@ SEARCH-STRING          : Search raw string."
         (indent-for-tab-command)))))
 
 
-(defun jcs-ts-mode-doc-string-others (keyword-strings
-                                      datatype-name
-                                      function-name-string
-                                      there-is-return
-                                      return-type-string
-                                      param-type-strings
-                                      param-variable-strings
-                                      search-string)
+(defun jcs-ts-mode-doc-string-others (search-string)
   "Insert `typescript-mode' other doc string.
+SEARCH-STRING is the raw string that represent the code we want to document."
+  (cond
+   ((string-match-p "class" search-string)
+    (progn
+      ;; TODO: implement into TypeScript mode.
+      ))))
 
-KEYWORD-STRINGS        : Keyword strings list.
-DATATYPE-NAME          : Data type name, store keyword for struct/class related.
-FUNCTION-NAME-STRING   : Function name.
-THERE-IS-RETURN        : There is return in this function?
-RETURN-TYPE-STRING     : String of the return type.
-PARAM-TYPE-STRINGS     : Param type strings list.
-PARAM-VARIABLE-STRINGS : Param name strings list.
-SEARCH-STRING          : Search raw string."
-  (cond ((jcs-is-contain-list-string keyword-strings "class")
-         (progn
-           ;; TODO: implement into TypeScript mode.
-           ))))
-
-(defun jcs-ts-mode-doc-string-func (keyword-strings
-                                    datatype-name
-                                    function-name-string
-                                    there-is-return
-                                    return-type-string
-                                    param-type-strings
-                                    param-variable-strings
-                                    search-string)
+(defun jcs-ts-mode-doc-string-func (search-string)
   "Insert `typescript-mode' function doc string.
+SEARCH-STRING is the raw string that represent the code we want to document."
 
-KEYWORD-STRINGS        : Keyword strings list.
-DATATYPE-NAME          : Data type name, store keyword for struct/class related.
-FUNCTION-NAME-STRING   : Function name.
-THERE-IS-RETURN        : There is return in this function?
-RETURN-TYPE-STRING     : String of the return type.
-PARAM-TYPE-STRINGS     : Param type strings list.
-PARAM-VARIABLE-STRINGS : Param name strings list.
-SEARCH-STRING          : Search raw string."
-
-  (let ((paren-param-list (jcs-paren-param-list-colon search-string)))
-    (setq param-type-strings (nth 0 paren-param-list))
-    (setq param-variable-strings (nth 1 paren-param-list)))
-
-  ;; Get all return data types.
-  (setq return-type-string (jcs--return-type-colon search-string))
-  (setq there-is-return (not (null return-type-string)))
-
-  (let* ((param-var-len (length param-variable-strings))
+  (let* ((paren-param-list (jcs-paren-param-list-colon search-string))
+         (param-type-strings (nth 0 paren-param-list))
+         (param-variable-strings (nth 1 paren-param-list))
+         (param-var-len (length param-variable-strings))
          (param-type-len (length param-type-strings))
-         (keyword-len (length keyword-strings))
          (param-index 0)
-         (func-keyword (nth (1- keyword-len) keyword-strings)))
+         ;; Get all return data types.
+         (return-type-string (jcs--return-type-colon search-string))
+         (there-is-return (not (null return-type-string))))
     ;; go back to comment line.
     (jcs-previous-line)
     (jcs-previous-line)
