@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-01-25
+
+* Reimplemented OOP docstring module, mainly for clean up. (jcs-emacs-init)
+
 ### 2020-01-24
 
 * Fixed buffer/file name prompting error while reopening the file. (jcs-emacs-init)
