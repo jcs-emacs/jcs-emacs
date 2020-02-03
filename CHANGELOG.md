@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-02-03
+
+* Update `go` programming language default template. (jcs-emacs-init)
+
 ### 2020-01-25
 
 * Reimplemented OOP docstring module, mainly for clean up. (jcs-emacs-init)
