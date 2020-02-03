@@ -268,7 +268,7 @@ CBF : Current buffer file name."
   (jcs-delete-region)
   (let ((reg-beg (point)))
     (call-interactively #'yank)
-    (indent-region reg-beg (point))))
+    (ignore-errors (indent-region reg-beg (point)))))
 
 ;;----------------------------------------------
 ;; Tab
