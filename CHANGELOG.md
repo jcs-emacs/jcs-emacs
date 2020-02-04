@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-02-04
+
+* Added own `save-excursion` function. (jcs-emacs-init)
+* Fixed indent error while untabify/tabify buffer in `go-mode`. (jcs-emacs-init)
+
 ### 2020-02-03
 
 * Update `go` programming language default template. (jcs-emacs-init)
