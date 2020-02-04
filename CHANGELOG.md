@@ -9,6 +9,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 * Added own `save-excursion` function. (jcs-emacs-init)
 * Fixed indent error while untabify/tabify buffer in `go-mode`. (jcs-emacs-init)
+* Fixed `company-fuzzy` renable issue with `lsp-mode`. (jcs-emacs-init)
+* Disabled debug on error while LSP server is active. (jcs-emacs-init)
 
 ### 2020-02-03
 
