@@ -4,6 +4,16 @@
 
 
 ;;----------------------------------------------------------------------------
+;; Macro
+
+(defmacro jcs-save-excursion (&rest body)
+  "Reimplementation when `save-excursion' does not work as expected."
+  (let ((ln (line-number-at-pos)) (col (current-column)))
+    `(progn ,@body)
+    (jcs-goto-line ln)
+    (move-to-column col)))
+
+;;----------------------------------------------------------------------------
 ;; Buffer
 
 ;;;###autoload
