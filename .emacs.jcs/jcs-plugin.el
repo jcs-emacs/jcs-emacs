@@ -540,15 +540,32 @@
   (defun jcs--lsp-lv-buffer-alive-p ()
     "Check if ` *LV*' buffer alive."
     (get-buffer jcs--lsp-lv-buffer-name))
-  (defun jcs--lsp-mode-hook ()
-    "Hook runs after entering or leaving `lsp-mode'."
-    (if lsp-mode (company-fuzzy-mode -1) (company-fuzzy-mode 1)))
-  (add-hook 'lsp-mode-hook 'jcs--lsp-mode-hook)
   (defun jcs--lsp--execute-command--advice-around (fnc &rest args)
     "Advice execute around `lsp--execute-command'."
     (let ((jcs--lsp--executing-command t))
       (apply fnc args)))
-  (advice-add 'lsp--execute-command :around #'jcs--lsp--execute-command--advice-around))
+  (advice-add 'lsp--execute-command :around #'jcs--lsp--execute-command--advice-around)
+
+  ;; Enable or Disable for LSP.
+
+  (defun jcs--lsp--stuff-on-enabled ()
+    "Do stuff when lsp is enabled."
+    (setq debug-on-error nil)  ; TODO: Get rid of this after `lsp-mode' is stabled.
+    (company-fuzzy-mode -1))
+
+  (defun jcs--lsp--stuff-on-disabled ()
+    "Do stuff when lsp is disabled."
+    (setq debug-on-error t)  ; TODO: Get rid of this after `lsp-mode' is stabled.
+    (company-fuzzy-mode 1))
+
+  (defun jcs--lsp-managed-mode-hook ()
+    (if (and lsp-mode lsp-managed-mode) (jcs--lsp--stuff-on-enabled) (jcs--lsp--stuff-on-disabled)))
+
+  (defun jcs--lsp-mode-hook ()
+    (if lsp-mode (jcs--lsp--stuff-on-enabled) (jcs--lsp--stuff-on-disabled)))
+
+  (add-hook 'lsp-managed-mode-hook 'jcs--lsp-managed-mode-hook)
+  (add-hook 'lsp-mode-hook 'jcs--lsp-mode-hook))
 
 (use-package lsp-ui
   :defer t
