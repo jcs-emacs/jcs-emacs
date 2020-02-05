@@ -237,6 +237,8 @@
 (use-package feebleline
   :defer t
   :init
+  (defvar-local jcs-feebleline-show-lsp-info t
+    "Show LSP information.")
   (defvar-local jcs-feebleline-show-symbol-read-only t
     "Show read only symbol.")
   (defvar-local jcs-feebleline-show-major-mode t
@@ -255,6 +257,7 @@
     "Show time.")
   (setq feebleline-msg-functions
         '(;;-- Left
+          (jcs--feebleline--lsp-info)
           (jcs--feebleline--symbol-read-only)
           (jcs--feebleline--major-mode :face font-lock-constant-face)
           (jcs--feebleline--project-name)
