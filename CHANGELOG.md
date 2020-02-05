@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-02-05
+
+* Chnaged the constant keywords' face in `go-mode`. (jcs-emacs-init)
+
 ### 2020-02-04
 
 * Added own `save-excursion` function. (jcs-emacs-init)
