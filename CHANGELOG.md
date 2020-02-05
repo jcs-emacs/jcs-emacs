@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-02-05
 
 * Chnaged the constant keywords' face in `go-mode`. (jcs-emacs-init)
+* Implemented LSP information to feebleline. (jcs-emacs-init)
 
 ### 2020-02-04
 
