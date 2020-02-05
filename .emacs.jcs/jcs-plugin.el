@@ -441,8 +441,7 @@
           ("OBSOLETE" . "DarkOrange3")
           ("DEPRECATED" . "DarkOrange3")
           ("TOPIC" . "slate blue")
-          ("SEE" . "slate blue")
-          ))
+          ("SEE" . "slate blue")))
   :config
   (defun jcs--hl-todo--inside-comment-or-string-p ()
     "Redefine `hl-todo--inside-comment-or-string-p', for accurate highlighting."
