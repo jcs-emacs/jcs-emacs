@@ -156,8 +156,15 @@ Here is the list of key bindins that defined in this configuration.
 
 * **Switch Buffer**
 
+  #### Using buffer menu.
+
   * <kbd>Alt</kbd>+<kbd>b</kbd> - Switch to buffer in the current window.
   * <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>b</kbd> - Switch to buffer in the other window.
+
+  #### Using Tab
+
+  * <kbd>Ctrl</kbd>+<kbd>pg-up</kbd> - Switch to the previous buffer in queue.
+  * <kbd>Ctrl</kbd>+<kbd>pg-down</kbd> - Switch to the next buffer in queue.
 
 * **Kill Buffer**
 
