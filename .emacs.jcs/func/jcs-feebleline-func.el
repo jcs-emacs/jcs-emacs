@@ -8,25 +8,52 @@
 (require 'show-eol)
 
 
-(defface jcs--feebleline-read-only--enabled
+(defface jcs--feebleline-read-only--enabled-face
   '((t (:foreground "#FF0000")))
   "Ready only symbol face when active.."
   :group 'jcs)
-(defvar jcs--feebleline-read-only--enabled 'jcs--feebleline-read-only--enabled)
+(defvar jcs--feebleline-read-only--enabled-face 'jcs--feebleline-read-only--enabled-face)
 
-(defface jcs--feebleline-read-only--disabled
+(defface jcs--feebleline-read-only--disabled-face
   '((t (:foreground "#00FF00")))
   "Ready only symbol face when deactive."
   :group 'jcs)
-(defvar jcs--feebleline-read-only--disabled 'jcs--feebleline-read-only--disabled)
+(defvar jcs--feebleline-read-only--disabled-face 'jcs--feebleline-read-only--disabled-face)
 
+(defface jcs--feebleline-lsp--enabled-face
+  '((t (:foreground "#00FF00")))
+  "Face when LSP is active."
+  :group 'jcs)
+(defvar jcs--feebleline-lsp--enabled-face 'jcs--feebleline-lsp--enabled-face)
+
+(defface jcs--feebleline-lsp--disabled-face
+  '((t (:foreground "#FF0000")))
+  "Face when LSP is inactive."
+  :group 'jcs)
+(defvar jcs--feebleline-lsp--disabled-face 'jcs--feebleline-lsp--disabled-face)
+
+
+(defun jcs--feebleline--lsp-info ()
+  "Feebleline LSP information."
+  (if jcs-feebleline-show-lsp-info
+      (let ((lsp-managed-mode (if (boundp 'lsp-managed-mode) lsp-managed-mode nil)))
+        (format " [LSP::%s]"
+                (propertize (if lsp-managed-mode
+                                "connect"
+                              "disconnect")
+                            'face (if lsp-managed-mode
+                                      jcs--feebleline-lsp--enabled-face
+                                    jcs--feebleline-lsp--disabled-face))))
+    ""))
 
 (defun jcs--feebleline--symbol-read-only ()
   "Feebleline read-only symbol."
-  (propertize " ¢"
-              'face (if buffer-read-only
-                        jcs--feebleline-read-only--enabled
-                      jcs--feebleline-read-only--disabled)))
+  (if jcs-feebleline-show-symbol-read-only
+      (propertize "¢"
+                  'face (if buffer-read-only
+                            jcs--feebleline-read-only--enabled-face
+                          jcs--feebleline-read-only--disabled-face))
+    ""))
 
 (defun jcs--feebleline--major-mode ()
   "Feebleline major mode."
