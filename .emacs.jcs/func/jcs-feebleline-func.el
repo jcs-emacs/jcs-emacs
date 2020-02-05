@@ -20,17 +20,17 @@
   :group 'jcs)
 (defvar jcs--feebleline-read-only--disabled-face 'jcs--feebleline-read-only--disabled-face)
 
-(defface jcs--feebleline-lsp--enabled-face
-  '((t (:foreground "#00FF00")))
+(defface jcs--feebleline-lsp--connect-face
+  '((t (:foreground "#6DDE6D")))
   "Face when LSP is active."
   :group 'jcs)
-(defvar jcs--feebleline-lsp--enabled-face 'jcs--feebleline-lsp--enabled-face)
+(defvar jcs--feebleline-lsp--connect-face 'jcs--feebleline-lsp--connect-face)
 
-(defface jcs--feebleline-lsp--disabled-face
-  '((t (:foreground "#FF0000")))
+(defface jcs--feebleline-lsp--disconnect-face
+  '((t (:foreground "#FF7575")))
   "Face when LSP is inactive."
   :group 'jcs)
-(defvar jcs--feebleline-lsp--disabled-face 'jcs--feebleline-lsp--disabled-face)
+(defvar jcs--feebleline-lsp--disconnect-face 'jcs--feebleline-lsp--disconnect-face)
 
 
 (defun jcs--feebleline--lsp-info ()
@@ -42,8 +42,8 @@
                                 "connect"
                               "disconnect")
                             'face (if lsp-managed-mode
-                                      jcs--feebleline-lsp--enabled-face
-                                    jcs--feebleline-lsp--disabled-face))))
+                                      jcs--feebleline-lsp--connect-face
+                                    jcs--feebleline-lsp--disconnect-face))))
     ""))
 
 (defun jcs--feebleline--symbol-read-only ()
