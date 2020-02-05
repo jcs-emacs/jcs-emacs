@@ -180,17 +180,17 @@ Here is the list of key bindins that defined in this configuration.
 
   * <kbd>Alt</kbd>+<kbd>f2</kbd> - Rename current file
 
-* **`*Scratch*`**
+* About **`*Scratch*`**
 
   * <kbd>Alt</kbd>+<kbd>s</kbd> - Open `*scratch*` buffer.
   * <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>s</kbd> - Open `*scratch*` buffer in other window.
 
-* **`*Message*`**
+* About **`*Message*`**
 
   * <kbd>Alt</kbd>+<kbd>m</kbd> - Open `*Message*` buffer.
   * <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>m</kbd> - Open `*Message*` buffer in other window.
 
-* **`*Dashboard*`**
+* About **`*Dashboard*`**
 
   * <kbd>Alt</kbd>+<kbd>d</kbd> - Open `*dashboard*` buffer.
   * <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>d</kbd> - Open `*dashboard*` buffer in other window.
