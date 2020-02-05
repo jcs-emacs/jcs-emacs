@@ -59,12 +59,12 @@
 
 (defun jcs-init-css-faces ()
   "CSS Faces Highlighting."
-  (let ((tmp-css-modes '(css-mode
+  (let ((missing-modes '(css-mode
                          less-css-mode
                          sass-mode
                          scss-mode
                          ssass-mode)))
-    (dolist (mode tmp-css-modes)
+    (dolist (mode missing-modes)
       (font-lock-add-keywords
        mode
        '(("[ \t]*\\([#][a-zA-Z0-9_-]*\\)[ \t\n]*[(\[*:>+~,{]" 1 'jcs-css-id-face t)

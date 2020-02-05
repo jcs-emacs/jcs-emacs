@@ -10,16 +10,18 @@
    (list (completing-read
           "Major source for this TypeScript file: " '("Default"
                                                       "Cocos Creator Scripting"))))
-  (cond ((string= sc "Default") (jcs-insert-typescript-template))
-        ((string= sc "Cocos Creator Scripting") (jcs-insert-typescript-cocos-creator-template))))
+  (cond ((string= sc "Default")
+         (jcs-insert-typescript-template))
+        ((string= sc "Cocos Creator Scripting")
+         (jcs-insert-typescript-cocos-creator-template))))
 
 ;;-----------------------------------------------------------
 ;;-----------------------------------------------------------
 
 (defun jcs-init-typescript-faces ()
   "Initialize TypeScript mode faces highlihgting."
-  (let ((typescript-missing-modes '(typescript-mode)) (case-fold-search t))
-    (dolist (mode typescript-missing-modes)
+  (let ((missing-modes '(typescript-mode)) (case-fold-search t))
+    (dolist (mode missing-modes)
       (font-lock-add-keywords
        mode
        '(("[=][ \t\n]*\\(null\\)" 1 'jcs-font-lock-null-face t)
