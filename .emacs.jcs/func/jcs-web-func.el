@@ -188,8 +188,8 @@ Is the opposite of `jcs-web-toggle-auto-truncate-lines'."
 
 (defun jcs-init-web-faces ()
   "Initialize Web mode faces highlihgting."
-  (let ((web-type-comment-missing-modes '(web-mode)))
-    (dolist (mode web-type-comment-missing-modes)
+  (let ((missing-modes '(web-mode)))
+    (dolist (mode missing-modes)
       (font-lock-add-keywords
        mode
        '(;; For nomral HTML comment.
