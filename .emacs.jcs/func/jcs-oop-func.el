@@ -49,7 +49,7 @@
          ("@[^ \t\r\n].*[\]\|}]\\([^\r\n]*\\)[:-]" 1 'jcs-oop-value-face t)
          ;; NOTE: Doc String Style:
          ;; @param `ValueTag' : value tag description..
-         ("@[^ \t\r\n]*[ \t\n]*\\([a-zA-Z0-9_.*&]*\\)[ \t\n]*[{:-]" 1 'jcs-oop-value-face t))
+         ("@[^ \t\r\n]*[ \t]*\\([a-zA-Z0-9_.*&]*\\)[ \t\n]*[{:-]" 1 'jcs-oop-value-face t))
        'end))))
 
 
