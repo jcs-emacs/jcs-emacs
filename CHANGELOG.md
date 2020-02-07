@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-02-07
+
+* Added expression face for `feebleline` lsp. (jcs-emacs-init)
+* Fixed region delete for smart delete word and capital word. (jcs-emacs-init)
+
 ### 2020-02-05
 
 * Chnaged the constant keywords' face in `go-mode`. (jcs-emacs-init)
