@@ -9,6 +9,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 * Added expression face for `feebleline` lsp. (jcs-emacs-init)
 * Fixed region delete for smart delete word and capital word. (jcs-emacs-init)
+* Indent `yank` in `python-mode` gives weird result, use normal `yank` instead. (jcs-emacs-init)
 
 ### 2020-02-05
 
