@@ -377,7 +377,7 @@ This command does not push text to `kill-ring'."
   "Backward deleteing ARG words."
   (interactive "p")
   (if (use-region-p)
-      (delete-region (region-beginning) (region-end))
+      (jcs-delete-region)
     (jcs-delete-word (- arg))))
 
 ;;;###autoload
@@ -385,68 +385,68 @@ This command does not push text to `kill-ring'."
   "Forward deleteing ARG words."
   (interactive "p")
   (if (use-region-p)
-      (delete-region (region-beginning) (region-end))
+      (jcs-delete-region)
     (jcs-delete-word (+ arg))))
 
 ;;;###autoload
 (defun jcs-smart-backward-delete-word ()
   "Backward deleteing ARG words in the smart way."
   (interactive)
-  (let ((start-pt -1)
-        (end-pt (point))
-        (start-ln-end-pt -1))
-    (save-excursion
-      (jcs-smart-backward-word)
-      (setq start-pt (point))
-      (setq start-ln-end-pt (line-end-position)))
-    (unless (= (line-number-at-pos start-pt) (line-number-at-pos end-pt))
-      (setq start-pt start-ln-end-pt))
-    (delete-region start-pt end-pt)))
+  (if (use-region-p)
+      (jcs-delete-region)
+    (let ((start-pt -1) (end-pt (point)) (start-ln-end-pt -1))
+      (save-excursion
+        (jcs-smart-backward-word)
+        (setq start-pt (point))
+        (setq start-ln-end-pt (line-end-position)))
+      (unless (= (line-number-at-pos start-pt) (line-number-at-pos end-pt))
+        (setq start-pt start-ln-end-pt))
+      (delete-region start-pt end-pt))))
 
 ;;;###autoload
 (defun jcs-smart-forward-delete-word ()
   "Forward deleteing ARG words in the smart way."
   (interactive)
-  (let ((start-pt (point))
-        (end-pt -1)
-        (end-ln-start-pt -1))
-    (save-excursion
-      (jcs-smart-forward-word)
-      (setq end-pt (point))
-      (setq end-ln-start-pt (line-beginning-position)))
-    (unless (= (line-number-at-pos start-pt) (line-number-at-pos end-pt))
-      (setq end-pt end-ln-start-pt))
-    (delete-region start-pt end-pt)))
+  (if (use-region-p)
+      (jcs-delete-region)
+    (let ((start-pt (point)) (end-pt -1) (end-ln-start-pt -1))
+      (save-excursion
+        (jcs-smart-forward-word)
+        (setq end-pt (point))
+        (setq end-ln-start-pt (line-beginning-position)))
+      (unless (= (line-number-at-pos start-pt) (line-number-at-pos end-pt))
+        (setq end-pt end-ln-start-pt))
+      (delete-region start-pt end-pt))))
 
 ;;;###autoload
 (defun jcs-backward-kill-word-capital ()
   "Backward delete the word unitl the word is capital."
   (interactive)
-  (let ((start-pt -1)
-        (end-pt (point))
-        (start-ln-end-pt -1))
-    (save-excursion
-      (jcs-backward-word-capital)
-      (setq start-pt (point))
-      (setq start-ln-end-pt (line-end-position)))
-    (unless (= (line-number-at-pos start-pt) (line-number-at-pos end-pt))
-      (setq start-pt start-ln-end-pt))
-    (delete-region start-pt end-pt)))
+  (if (use-region-p)
+      (jcs-delete-region)
+    (let ((start-pt -1) (end-pt (point)) (start-ln-end-pt -1))
+      (save-excursion
+        (jcs-backward-word-capital)
+        (setq start-pt (point))
+        (setq start-ln-end-pt (line-end-position)))
+      (unless (= (line-number-at-pos start-pt) (line-number-at-pos end-pt))
+        (setq start-pt start-ln-end-pt))
+      (delete-region start-pt end-pt))))
 
 ;;;###autoload
 (defun jcs-forward-kill-word-capital ()
   "Forward delete the word unitl the word is capital."
   (interactive)
-  (let ((start-pt (point))
-        (end-pt -1)
-        (end-ln-start-pt -1))
-    (save-excursion
-      (jcs-forward-word-capital)
-      (setq end-pt (point))
-      (setq end-ln-start-pt (line-beginning-position)))
-    (unless (= (line-number-at-pos start-pt) (line-number-at-pos end-pt))
-      (setq end-pt end-ln-start-pt))
-    (delete-region start-pt end-pt)))
+  (if (use-region-p)
+      (jcs-delete-region)
+    (let ((start-pt (point)) (end-pt -1) (end-ln-start-pt -1))
+      (save-excursion
+        (jcs-forward-word-capital)
+        (setq end-pt (point))
+        (setq end-ln-start-pt (line-beginning-position)))
+      (unless (= (line-number-at-pos start-pt) (line-number-at-pos end-pt))
+        (setq end-pt end-ln-start-pt))
+      (delete-region start-pt end-pt))))
 
 (defun jcs-kill-thing-at-point (thing)
   "Kill the `thing-at-point' for the specified kind of THING."
@@ -1502,7 +1502,7 @@ CC : Current character at position."
   "Electric delete key."
   (interactive)
   (if (use-region-p)
-      (delete-region (region-beginning) (region-end))
+      (jcs-delete-region)
     (let ((cc "")
           (opc ""))
       (save-excursion
@@ -1522,7 +1522,7 @@ CC : Current character at position."
   "Electric backspace key."
   (interactive)
   (if (use-region-p)
-      (delete-region (region-beginning) (region-end))
+      (jcs-delete-region)
     (if (and (jcs-is-inside-string-p)
              (not (jcs-current-char-equal-p "\""))
              (not (jcs-current-char-equal-p "'")))
