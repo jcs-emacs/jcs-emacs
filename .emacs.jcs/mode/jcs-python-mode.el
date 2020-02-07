@@ -37,6 +37,7 @@
   (define-key python-mode-map (kbd "TAB") #'jcs-tab-key)
 
   (define-key python-mode-map (kbd "RET") #'jcs-py-return)
+  (define-key python-mode-map (kbd "C-v") #'yank)
 
   ;; Comment
   (define-key python-mode-map (kbd "\"") #'jcs-py-maybe-insert-codedoc))
