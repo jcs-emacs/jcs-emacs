@@ -466,6 +466,7 @@
   (define-key dashboard-mode-map (kbd "<backspace>")  #'jcs-dashboard-remove-current-item)
   (define-key dashboard-mode-map (kbd "<delete>")  #'jcs-dashboard-remove-current-item)
   (define-key dashboard-mode-map (kbd "d")  #'jcs-dashboard-remove-current-item)
+  (define-key dashboard-mode-map (kbd "g") #'jcs-dashboard-refresh-buffer)
   (define-key dashboard-mode-map "1" #'jcs-dashboard-item-section-1)
   (define-key dashboard-mode-map "2" #'jcs-dashboard-item-section-2)
   (define-key dashboard-mode-map "3" #'jcs-dashboard-item-section-3)
