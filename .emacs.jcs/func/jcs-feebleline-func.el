@@ -32,12 +32,19 @@
   :group 'jcs)
 (defvar jcs--feebleline-lsp--disconnect-face 'jcs--feebleline-lsp--disconnect-face)
 
+(defface jcs--feebleline-lsp--expr-face
+  '((t (:foreground "#858585")))
+  "Face for LSP expression symbol."
+  :group 'jcs)
+(defvar jcs--feebleline-lsp--expr-face 'jcs--feebleline-lsp--expr-face)
+
 
 (defun jcs--feebleline--lsp-info ()
   "Feebleline LSP information."
   (if jcs-feebleline-show-lsp-info
       (let ((lsp-managed-mode (if (boundp 'lsp-managed-mode) lsp-managed-mode nil)))
-        (format " [LSP::%s]"
+        (format " [LSP%s%s]"
+                (propertize "::" 'face jcs--feebleline-lsp--expr-face)
                 (propertize (if lsp-managed-mode
                                 "connect"
                               "disconnect")
