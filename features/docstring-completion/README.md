@@ -28,7 +28,7 @@ supported mode.
 
 | C-like Style | Standards Style |
 |:---|:---|
-|<img src="./go-doc-demo.png"/>|<img src="./go-std-doc-demo.png"/>|
+|<img src="./go-doc-demo.gif"/>|<img src="./go-std-doc-demo.gif"/>|
 
 ### Java
 
