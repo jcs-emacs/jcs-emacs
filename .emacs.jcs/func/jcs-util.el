@@ -1494,15 +1494,18 @@ IGNORE-ERRORS-T : ignore errors for this function?"
     (when pt
       (goto-char pt))
     (let ((ret-str nil) (st-str -1) (ed-str -1))
-      (save-excursion
-        (jcs-goto-start-of-the-string)
-        (setq st-str (point)))
-      (save-excursion
-        (jcs-goto-end-of-the-string)
-        (setq ed-str (point)))
+      (save-excursion (jcs-goto-start-of-the-string) (setq st-str (point)))
+      (save-excursion (jcs-goto-end-of-the-string) (setq ed-str (point)))
       (unless (= st-str ed-str)
         (setq ret-str (buffer-substring-no-properties (1+ st-str) (1- ed-str))))
       ret-str)))
+
+(defun jcs-string-at-line (&optional ln trim)
+  "Return the string at LN.
+If TRIM is non-nil, trim the string before return it."
+  (save-excursion
+    (jcs-goto-line ln)
+    (if trim (string-trim (thing-at-point 'line)) (thing-at-point 'line))))
 
 (defun jcs-remove-string-by-substring (str substr)
   "Remove a STR by a SUBSTR."
