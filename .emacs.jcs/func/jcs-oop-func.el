@@ -516,7 +516,7 @@ SEARCH-STRING : Search raw string."
     (setq result-datas (reverse result-datas))
     result-datas))
 
-(defun jcs-paren-param-list-colon (search-string)
+(defun jcs-paren-param-list-behind (search-string &optional spi-sym)
   "Like `jcs-paren-param-list' but handle programming languages that use \
 colon to separate the type.  Support format like `(var-name : type-name,
 var-name : type-name)` or with default value `(var-name : type-name = default-val,
@@ -537,7 +537,7 @@ SEARCH-STRING : Search raw string."
             (param-var-str "") (param-type-str ""))
         ;; First remove the possible default value.
         (setq param-sec-string (nth 0 (split-string param-sec-string "=[^>]")))
-        (setq param-split-str-lst (split-string param-sec-string ":"))
+        (setq param-split-str-lst (split-string param-sec-string spi-sym))
         (setq param-var-str (string-trim (nth 0 param-split-str-lst)))
         (if (= (length param-split-str-lst) 1)
             ;; Set default type name string here.
@@ -570,7 +570,7 @@ SEARCH-STRING is the raw string that represent the code we want to document."
 (defun jcs--as-mode-doc-string-func (search-string)
   "Insert `actionscript-mode' function doc string.
 SEARCH-STRING is the raw string that represent the code we want to document."
-  (let* ((paren-param-list (jcs-paren-param-list-colon search-string))
+  (let* ((paren-param-list (jcs-paren-param-list-behind search-string ":"))
          (param-type-strings (nth 0 paren-param-list))
          (param-variable-strings (nth 1 paren-param-list))
          (param-var-len (length param-variable-strings))
@@ -887,9 +887,9 @@ SEARCH-STRING is the raw string that represent the code we want to document."
 (defun jcs--go-mode-doc-string-func (search-string)
   "Insert `go-mode' function doc string.
 SEARCH-STRING is the raw string that represent the code we want to document."
-  (let* ((paren-param-list (jcs-paren-param-list search-string))
-         (param-type-strings (nth 1 paren-param-list))
-         (param-variable-strings (nth 0 paren-param-list))
+  (let* ((paren-param-list (jcs-paren-param-list-behind search-string))
+         (param-type-strings (nth 0 paren-param-list))
+         (param-variable-strings (nth 1 paren-param-list))
          (param-var-len (length param-variable-strings))
          (param-index 0)
          (docstring-type -1)
@@ -1132,7 +1132,7 @@ SEARCH-STRING is the raw string that represent the code we want to document."
 (defun jcs--lua-mode-doc-string-func (search-string)
   "Insert `lua-mode' function doc string.
 SEARCH-STRING is the raw string that represent the code we want to document."
-  (let* ((paren-param-list (jcs-paren-param-list-colon search-string))
+  (let* ((paren-param-list (jcs-paren-param-list-behind search-string))
          (param-type-strings (nth 0 paren-param-list))
          (param-variable-strings (nth 1 paren-param-list))
          (param-var-len (length param-variable-strings))
@@ -1194,7 +1194,7 @@ SEARCH-STRING is the raw string that represent the code we want to document."
 (defun jcs--py-mode-doc-string-func (search-string)
   "Insert `python-mode' function doc string.
 SEARCH-STRING is the raw string that represent the code we want to document."
-  (let* ((paren-param-list (jcs-paren-param-list-colon search-string))
+  (let* ((paren-param-list (jcs-paren-param-list-behind search-string))
          (param-type-strings (nth 0 paren-param-list))
          (param-variable-strings (nth 1 paren-param-list))
          (param-var-len (length param-variable-strings))
@@ -1327,7 +1327,7 @@ SEARCH-STRING is the raw string that represent the code we want to document."
 (defun jcs--ts-mode-doc-string-func (search-string)
   "Insert `typescript-mode' function doc string.
 SEARCH-STRING is the raw string that represent the code we want to document."
-  (let* ((paren-param-list (jcs-paren-param-list-colon search-string))
+  (let* ((paren-param-list (jcs-paren-param-list-behind search-string ":"))
          (param-type-strings (nth 0 paren-param-list))
          (param-variable-strings (nth 1 paren-param-list))
          (param-var-len (length param-variable-strings))
