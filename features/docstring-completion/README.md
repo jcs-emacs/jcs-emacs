@@ -20,23 +20,15 @@ supported mode.
 
 ### C#
 
-#### C-like Style
-
-<img src="./csharp-doc-demo.gif"/>
-
-#### Visual Studio Style
-
-<img src="./csharp-vs-doc-demo.gif"/>
+| C-like Style | Standards Style |
+|:---|:---|
+|<img src="./csharp-doc-demo.gif"/>|<img src="./csharp-vs-doc-demo.gif"/>|
 
 ### Go
 
-#### C-like Style
-
-<img src="./go-doc-demo.png"/>
-
-#### Standards Style
-
-<img src="./go-std-doc-demo.png"/>
+| C-like Style | Standards Style |
+|:---|:---|
+|<img src="./go-doc-demo.png"/>|<img src="./go-std-doc-demo.png"/>|
 
 ### Java
 
