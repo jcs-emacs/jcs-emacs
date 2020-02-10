@@ -7,17 +7,52 @@
         c-electric-slash
         electric-pair-delete-pair
         end-of-buffer
+        jcs-align-region-or-document
         jcs-backward-delete-word
         jcs-backward-kill-word-capital
         jcs-backward-word-capital
         jcs-beginning-of-buffer
         jcs-beginning-of-line
         jcs-c-comment-pair
+        jcs-calc-eval-region
+        jcs-capitalize-word-or-region
+        jcs-close-all-nodes
+        jcs-close-node
+        jcs-comment-region-or-line
+        jcs-comment-uncomment-region-or-line
         jcs-csharp-smart-indent-down
         jcs-csharp-smart-indent-up
         jcs-css-smart-indent-down
         jcs-css-smart-indent-up
         jcs-ctrl-return-key
+        jcs-delete-inside-and
+        jcs-delete-inside-asterisk
+        jcs-delete-inside-back-quot
+        jcs-delete-inside-backslash
+        jcs-delete-inside-caret
+        jcs-delete-inside-colon
+        jcs-delete-inside-comma
+        jcs-delete-inside-curly-paren
+        jcs-delete-inside-dash
+        jcs-delete-inside-dollar-sign
+        jcs-delete-inside-double-quot
+        jcs-delete-inside-equal
+        jcs-delete-inside-exclamation-mark
+        jcs-delete-inside-greater-less-sign
+        jcs-delete-inside-less-greater-sign
+        jcs-delete-inside-or
+        jcs-delete-inside-paren
+        jcs-delete-inside-percent-sign
+        jcs-delete-inside-period
+        jcs-delete-inside-plus
+        jcs-delete-inside-question-mark
+        jcs-delete-inside-semicolon
+        jcs-delete-inside-sharp-sign
+        jcs-delete-inside-single-quot
+        jcs-delete-inside-slash
+        jcs-delete-inside-sqr-paren
+        jcs-delete-inside-tilde
+        jcs-delete-inside-underscore
         jcs-downcase-word-or-region
         jcs-duplicate-line
         jcs-electric-backspace
@@ -27,9 +62,15 @@
         jcs-forward-delete-word
         jcs-forward-kill-word-capital
         jcs-forward-word-capital
+        jcs-go-maybe-insert-codedoc
+        jcs-hl-todo-next
+        jcs-hl-todo-previous
+        jcs-iedit-mode
+        jcs-increment-frame-transparent
         jcs-kill-whole-line
         jcs-makefile-newline
         jcs-mark-whole-buffer
+        jcs-markdown-return-key
         jcs-move-backward-comma
         jcs-move-backward-open-sqrParen
         jcs-move-forward-close-sqrParen
@@ -37,6 +78,8 @@
         jcs-nasm-comment
         jcs-nasm-return
         jcs-next-line
+        jcs-open-all-nodes
+        jcs-open-node
         jcs-org-table-down
         jcs-org-table-left
         jcs-org-table-right
@@ -44,6 +87,7 @@
         jcs-overwrite-mode
         jcs-previous-line
         jcs-py-indent-down
+        jcs-py-indent-region
         jcs-py-indent-up
         jcs-py-return
         jcs-real-backspace
@@ -63,6 +107,7 @@
         jcs-smart-space
         jcs-smart-yank
         jcs-tab-key
+        jcs-uncomment-region-or-line
         jcs-upcase-word-or-region
         jcs-vs-closing-curly-bracket-key
         jcs-vs-csharp-maybe-insert-codedoc
@@ -93,8 +138,12 @@
         buf-move-left
         buf-move-right
         buffer-menu
+        buffer-menu-other-window
+        centaur-tabs-backward
+        centaur-tabs-forward
         counsel-M-x
         counsel-find-file
+        emmet-prev-edit-point
         feebleline-mode
         helm-M-x
         helm-find-files
@@ -116,8 +165,15 @@
         jcs-css-save-buffer
         jcs-dashboard
         jcs-dashboard-next-blank-line
+        jcs-dashboard-other-window
         jcs-dashboard-previous-blank-line
+        jcs-dec-tab-width
+        jcs-decrement-frame-transparent
         jcs-find-corresponding-file-other-window
+        jcs-flycheck-mode
+        jcs-goto-definition
+        jcs-goto-definition-other-window
+        jcs-inc-tab-width
         jcs-java-organize-imports
         jcs-java-untabify-save-buffer
         jcs-make-without-asking
@@ -127,29 +183,53 @@
         jcs-mc/mark-previous-like-this
         jcs-mc/mark-previous-similar-this
         jcs-message-buffer
+        jcs-message-buffer-other-window
         jcs-next-blank-line
+        jcs-open-project-todo-file
+        jcs-open-project-update-log-file
         jcs-other-window-next
         jcs-other-window-prev
         jcs-previous-blank-line
+        jcs-py-format-document
+        jcs-re-builder
         jcs-redo
+        jcs-rename-current-buffer-file
+        jcs-reset-zoom
+        jcs-revert-buffer-no-confirm
         jcs-run-without-asking
         jcs-same-file-other-window
         jcs-save-buffer
         jcs-scratch-buffer-maybe-kill
+        jcs-scratch-buffer-other-window
         jcs-scroll-down-one-line
         jcs-scroll-up-one-line
         jcs-sh-untabify-save-buffer
         jcs-tabify-save-buffer
+        jcs-text-scale-decrease
+        jcs-text-scale-increase
+        jcs-toggle-shell-window
         jcs-toggle-sublimity-mode
+        jcs-toggle-tabbar-mode
+        jcs-toggle-transparent-frame
         jcs-undo
         jcs-untabify-save-buffer
+        list-processes
         markdown-shifttab
         mouse-set-region
         move-text-down
         move-text-up
         package-list-packages
+        rainbow-mode
+        read-only-mode
+        recentf-open-files
         reload-emacs
+        restart-emacs
+        reveal-in-folder
+        right-click-context-menu
+        save-buffers-kill-terminal
         scroll-other-window
         scroll-other-window-down
+        set-buffer-file-coding-system
+        toggle-truncate-lines
         whitespace-mode
         ))
