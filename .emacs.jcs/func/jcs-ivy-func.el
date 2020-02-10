@@ -16,22 +16,18 @@
 (advice-add 'ivy-previous-line :after #'jcs--ivy-previous-line--advice-after)
 
 ;;;###autoload
-(defun jcs-counsel-find-files--space ()
-  "Find files space key."
-  (interactive)
-  (insert " ")
-  (when (and (save-excursion (ignore-errors (search-backward "/  ")))
-             (jcs-project-current))
-    (ivy--cd (jcs-project-current))))
-
-;;;###autoload
 (defun jcs-counsel-find-files--slash ()
   "Find files slash key."
   (interactive)
   ;; NOTE: For some reason, slash does something else so override it.
   (insert "/")
-  (when (save-excursion (ignore-errors (search-backward "///")))
-    (ivy--cd (f-root))))
+  (cond ((save-excursion (ignore-errors (search-backward "///")))
+         (ivy--cd (f-root)))
+        ((save-excursion (ignore-errors (search-backward "/!/")))
+         (if (jcs-project-current)
+             (ivy--cd (jcs-project-current))
+           (backward-delete-char 2)
+           (message "[INFO] Project root not defined, return to current directory")))))
 
 ;;;###autoload
 (defun jcs-counsel-find-files-backspace ()
