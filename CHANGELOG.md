@@ -11,6 +11,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Removed manually installed package `vs-dark-theme`. (jcs-emacs-init)
 * Installed new package `vs-light-theme`. (jcs-emacs-init)
 * Installed new package `vs-dark-theme`. (jcs-emacs-init)
+* Implemented docstring for `Go` programming language. (jcs-emacs-init)
 
 ### 2020-02-07
 
