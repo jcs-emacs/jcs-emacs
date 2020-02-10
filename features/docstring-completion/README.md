@@ -7,12 +7,15 @@ supported mode.
 
 
 ### ActionScript
+
 <img src="./as-doc-demo.gif"/>
 
 ### C/C++
+
 <img src="./cc-doc-demo.gif"/>
 
 ### C++ (Others)
+
 <img src="./cpp-doc-demo.gif"/>
 
 ### C#
@@ -26,19 +29,25 @@ supported mode.
 <img src="./csharp-vs-doc-demo.gif"/>
 
 ### Java
+
 <img src="./java-doc-demo.gif"/>
 
 ### JavaScript
+
 <img src="./js-doc-demo.gif"/>
 
 ### Lua
+
 <img src="./lua-doc-demo.gif"/>
 
 ### PHP
+
 <img src="./php-doc-demo.gif"/>
 
 ### Python
+
 <img src="./python-doc-demo.gif"/>
 
 ### TypeScript
+
 <img src="./ts-doc-demo.gif"/>
