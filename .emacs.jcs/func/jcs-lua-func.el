@@ -35,18 +35,13 @@
 comment character on the same line."
   (let ((do-doc-string t))
     (jcs-goto-first-char-in-line)
-
     (while (not (jcs-is-end-of-line-p))
       (forward-char 1)
       (when (and (not (jcs-current-char-equal-p " "))
                  (not (jcs-current-char-equal-p "\t"))
                  (not (jcs-current-char-equal-p "-")))
-        ;; return false.
-        (setq do-doc-string nil)
-        (equal do-doc-string t)))
-
-    ;; return true.
-    (equal do-doc-string t)))
+        (setq do-doc-string nil)))
+    do-doc-string))
 
 ;;;###autoload
 (defun jcs-lua-maybe-insert-codedoc ()
