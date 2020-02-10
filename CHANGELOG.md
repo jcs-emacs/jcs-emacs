@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-02-10
+
+* Removed manually installed package `vs-light-theme`. (jcs-emacs-init)
+* Removed manually installed package `vs-dark-theme`. (jcs-emacs-init)
+* Installed new package `vs-light-theme`. (jcs-emacs-init)
+* Installed new package `vs-dark-theme`. (jcs-emacs-init)
+
 ### 2020-02-07
 
 * Added expression face for `feebleline` lsp. (jcs-emacs-init)
