@@ -151,6 +151,8 @@
     use-ttf
     vimrc-mode
     visual-regexp
+    vs-dark-theme
+    vs-light-theme
     vue-mode
     impatient-mode
     web-mode
