@@ -29,9 +29,7 @@ comment prefix only."
     (let ((only-comment-this-line nil))
       (when (jcs-vs-csharp-comment-prefix-p)
         (jcs-goto-first-char-in-line)
-        (forward-char 1)
-        (forward-char 1)
-        (forward-char 1)
+        (forward-char 3)
         (when (not (jcs-is-there-char-forward-until-end-of-line-p))
           (setq only-comment-this-line t)))
       only-comment-this-line)))
@@ -41,18 +39,15 @@ comment prefix only."
 comment character on the same line."
   (let ((do-doc-string t))
     (jcs-goto-first-char-in-line)
-
     (while (not (jcs-is-end-of-line-p))
       (forward-char 1)
       (when (and (not (jcs-current-char-equal-p " "))
                  (not (jcs-current-char-equal-p "\t"))
                  (not (jcs-current-char-equal-p "/")))
         ;; return false.
-        (setq do-doc-string nil)
-        (equal do-doc-string t)))
-
+        (setq do-doc-string nil)))
     ;; return true.
-    (equal do-doc-string t)))
+    do-doc-string))
 
 ;;;###autoload
 (defun jcs-vs-csharp-maybe-insert-codedoc ()
@@ -60,8 +55,7 @@ comment character on the same line."
   ;; URL: https://github.com/josteink/csharp-mode/issues/123
   (interactive)
   (insert "/")
-  (let ((active-comment nil)
-        (next-line-not-empty nil))
+  (let ((active-comment nil) (next-line-not-empty nil))
     (save-excursion
       (when (and
              ;; Line can only have vs comment prefix.
@@ -72,12 +66,10 @@ comment character on the same line."
 
       ;; check if next line empty.
       (jcs-next-line)
-      (when (not (jcs-current-line-empty-p))
-        (setq next-line-not-empty t)))
+      (unless (jcs-current-line-empty-p) (setq next-line-not-empty t)))
 
 
-    (when (and (equal active-comment t)
-               (equal next-line-not-empty t))
+    (when (and active-comment next-line-not-empty)
       (insert " <summary>\n")
       (insert "/// \n")
       (insert "/// </summary>")
