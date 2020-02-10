@@ -28,6 +28,16 @@ supported mode.
 
 <img src="./csharp-vs-doc-demo.gif"/>
 
+### Go
+
+#### C-like Style
+
+<img src="./go-doc-demo.png"/>
+
+#### Standards Style
+
+<img src="./go-std-doc-demo.png"/>
+
 ### Java
 
 <img src="./java-doc-demo.gif"/>
