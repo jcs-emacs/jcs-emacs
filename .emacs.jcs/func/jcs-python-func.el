@@ -157,9 +157,7 @@ on the same line."
   ;; URL: https://google.github.io/styleguide/pyguide.html
   ;; -- Hitchhiker's
   ;; URL: http://docs.python-guide.org/en/latest/writing/style/
-  (let ((active-comment nil)
-        (previous-line-not-empty nil)
-        (dq-infront 0))
+  (let ((active-comment nil) (previous-line-not-empty nil) (dq-infront 0))
     ;; Count how many double quote infront.
     (save-excursion
       (when (jcs-current-char-equal-p "\"")
@@ -215,12 +213,8 @@ on the same line."
    (list (completing-read
           "Type of the Python template: " '("Class"
                                             "Plain"))))
-  (cond ((string= type "Class")
-         (progn
-           (jcs-insert-python-class-template)))
-        ((string= type "Plain")
-         (progn
-           (jcs-insert-python-template)))))
+  (cond ((string= type "Class") (jcs-insert-python-class-template))
+        ((string= type "Plain") (jcs-insert-python-template))))
 
 
 (provide 'jcs-python-func)
