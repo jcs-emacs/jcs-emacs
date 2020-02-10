@@ -5,21 +5,17 @@
 
 (defun jcs-docstring-modes-p ()
   "Check if current mode support docstring."
-  (or (jcs-is-current-major-mode-p "actionscript-mode")
-      (jcs-is-current-major-mode-p "c-mode")
-      (jcs-is-current-major-mode-p "c++-mode")
-      (jcs-is-current-major-mode-p "java-mode")
-      ;; =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-      ;; TODO: If we decide to use c-type docstirng
-      ;; in `csharp-mode'. Then we need to uncomment
-      ;; the line below.
-      ;; =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-      (jcs-is-current-major-mode-p "csharp-mode")
-      (jcs-is-current-major-mode-p "js-mode")
-      (jcs-is-current-major-mode-p "js2-mode")
-      (jcs-is-current-major-mode-p "php-mode")
-      (jcs-is-current-major-mode-p "typescript-mode")
-      (jcs-is-current-major-mode-p "web-mode")))
+  (or (jcs-is-current-major-mode-p
+       '("actionscript-mode"
+         "c-mode"
+         "c++-mode"
+         "csharp-mode"
+         "go-mode"
+         "java-mode"
+         "js-mode" "js2-mode" "js3-mode"
+         "php-mode"
+         "typescript-mode"
+         "web-mode"))))
 
 
 (defun jcs-oop-reload-faces ()
@@ -29,10 +25,10 @@
                                c-mode
                                c++-mode
                                csharp-mode
+                               go-mode
                                java-mode
                                jayces-mode
-                               js-mode
-                               js2-mode
+                               js-mode js2-mode js3-mode
                                lua-mode
                                nasm-mode
                                php-mode
@@ -54,7 +50,7 @@
 
 
 ;;; Doc string
-(defvar jcs-py-doc-string-version 0
+(defvar jcs--py-doc-string-version 0
   "Document string version.
 
 0 : Description after \"\"\" opening docstring..
@@ -62,118 +58,128 @@
 
 
 ;; All Languages
-(defvar jcs-class-desc-string "" "Class description string.")
-(defvar jcs-struct-desc-string "" "Struct description string.")
-(defvar jcs-define-desc-string "" "Define description string.")
-(defvar jcs-enum-desc-string "" "Enum description string.")
-(defvar jcs-param-desc-string "" "Param description string.")
-(defvar jcs-return-desc-string "" "Return description string.")
+(defvar jcs--class-desc-string "" "Class description string.")
+(defvar jcs--struct-desc-string "" "Struct description string.")
+(defvar jcs--define-desc-string "" "Define description string.")
+(defvar jcs--enum-desc-string "" "Enum description string.")
+(defvar jcs--param-desc-string "" "Param description string.")
+(defvar jcs--return-desc-string "" "Return description string.")
 
-(defvar jcs-default-typename-string "" "Return default type name string.")
+(defvar jcs--default-typename-string "" "Return default type name string.")
 
 
 ;;; Doc string character after value type font.
-(defvar jcs-as-doc-after-value-type-char ""
+(defvar jcs--as-doc--after-value-type-char ""
   "Character after value type been inserted in ActionScript Mode.")
-(defvar jcs-cc-doc-after-value-type-char ""
+(defvar jcs--cc-doc--after-value-type-char ""
   "Character after value type been inserted in C/C++ Mode.")
-(defvar jcs-csharp-doc-after-value-type-char ""
+(defvar jcs--csharp-doc--after-value-type-char ""
   "Character after value type been inserted in CSharp Mode.")
-(defvar jcs-java-doc-after-value-type-char ""
+(defvar jcs--go-doc--after-value-type-char ""
+  "Character after value type been inserted in Go Mode.")
+(defvar jcs--java-doc--after-value-type-char ""
   "Character after value type been inserted in Java Mode.")
-(defvar jcs-js-doc-after-value-type-char ""
+(defvar jcs--js-doc--after-value-type-char ""
   "Character after value type been inserted in JavaScript Mode.")
-(defvar jcs-lua-doc-after-value-type-char ""
+(defvar jcs--lua-doc--after-value-type-char ""
   "Character after value type been inserted in Lua Mode.")
-(defvar jcs-py-doc-after-value-type-char ""
+(defvar jcs--py-doc--after-value-type-char ""
   "Character after value type been inserted in Python Mode.")
-(defvar jcs-php-doc-after-value-type-char ""
+(defvar jcs--php-doc--after-value-type-char ""
   "Character after value type been inserted in PHP Mode.")
-(defvar jcs-ts-doc-after-value-type-char ""
+(defvar jcs--ts-doc--after-value-type-char ""
   "Character after value type been inserted in TypeScript Mode.")
 
 
 ;;; Show typename.
-(defvar jcs-as-doc-show-typename nil
+(defvar jcs--as-doc--show-typename nil
   "Show the typename betweeen the open charachter and close charachter in ActionScript mode.")
-(defvar jcs-cc-doc-show-typename nil
+(defvar jcs--cc-doc--show-typename nil
   "Show the typename betweeen the open charachter and close charachter in C/C++ mode.")
-(defvar jcs-csharp-doc-show-typename nil
+(defvar jcs--csharp-doc--show-typename nil
   "Show the typename betweeen the open charachter and close charachter in CSharp mode.")
-(defvar jcs-java-doc-show-typename nil
+(defvar jcs--go-doc--show-typename nil
+  "Show the typename betweeen the open charachter and close charachter in Go mode.")
+(defvar jcs--java-doc--show-typename nil
   "Show the typename betweeen the open charachter and close charachter in Java mode.")
-(defvar jcs-js-doc-show-typename nil
+(defvar jcs--js-doc--show-typename nil
   "Show the typename betweeen the open charachter and close charachter in JavaScript mode.")
-(defvar jcs-lua-doc-show-typename nil
+(defvar jcs--lua-doc--show-typename nil
   "Show the typename betweeen the open charachter and close charachter in Lua mode.")
-(defvar jcs-py-doc-show-typename nil
+(defvar jcs--py-doc--show-typename nil
   "Show the typename betweeen the open charachter and close charachter in Python mode.")
-(defvar jcs-php-doc-show-typename nil
+(defvar jcs--php-doc--show-typename nil
   "Show the typename betweeen the open charachter and close charachter in PHP mode.")
-(defvar jcs-ts-doc-show-typename nil
+(defvar jcs--ts-doc--show-typename nil
   "Show the typename betweeen the open charachter and close charachter in TypeScript mode.")
 
 
 ;;; Tag strings
-(defvar jcs-as-param-string "" "Parameter string in ActionScript mode.")
-(defvar jcs-as-return-string "" "Returns string in ActionScript mode.")
+(defvar jcs--as--param-string "" "Parameter string in ActionScript mode.")
+(defvar jcs--as--return-string "" "Returns string in ActionScript mode.")
 
-(defvar jcs-cc-param-string "" "Parameter string in C/C++ mode.")
-(defvar jcs-cc-return-string "" "Returns string in C/C++ mode.")
+(defvar jcs--cc--param-string "" "Parameter string in C/C++ mode.")
+(defvar jcs--cc--return-string "" "Returns string in C/C++ mode.")
 
-(defvar jcs-csharp-param-string "" "Parameter string in CSharp mode.")
-(defvar jcs-csharp-return-string "" "Returns string in CSharp mode.")
+(defvar jcs--csharp--param-string "" "Parameter string in CSharp mode.")
+(defvar jcs--csharp--return-string "" "Returns string in CSharp mode.")
 
-(defvar jcs-java-param-string "" "Parameter string in Java mode.")
-(defvar jcs-java-return-string "" "Returns string in Java mode.")
+(defvar jcs--go--param-string "" "Parameter string in Go mode.")
+(defvar jcs--go--return-string "" "Returns string in Go mode.")
 
-(defvar jcs-js-param-string "" "Parameter string in JavaScript mode.")
-(defvar jcs-js-return-string "" "Returns string in JavaScript mode.")
+(defvar jcs--java--param-string "" "Parameter string in Java mode.")
+(defvar jcs--java--return-string "" "Returns string in Java mode.")
 
-(defvar jcs-lua-param-string "" "Parameter string in Lua mode.")
-(defvar jcs-lua-return-string "" "Returns string in Lua mode.")
+(defvar jcs--js--param-string "" "Parameter string in JavaScript mode.")
+(defvar jcs--js--return-string "" "Returns string in JavaScript mode.")
 
-(defvar jcs-py-param-string "" "Parameter string in Pyhon mode.")
-(defvar jcs-py-return-string "" "Returns string in Python mode.")
+(defvar jcs--lua--param-string "" "Parameter string in Lua mode.")
+(defvar jcs--lua--return-string "" "Returns string in Lua mode.")
 
-(defvar jcs-php-param-string "" "Parameter string in PHP mode.")
-(defvar jcs-php-return-string "" "Returns string in PHP mode.")
+(defvar jcs--py--param-string "" "Parameter string in Pyhon mode.")
+(defvar jcs--py--return-string "" "Returns string in Python mode.")
 
-(defvar jcs-ts-param-string "" "Parameter string in TypeScript mode.")
-(defvar jcs-ts-return-string "" "Returns string in TypeScript mode.")
+(defvar jcs--php--param-string "" "Parameter string in PHP mode.")
+(defvar jcs--php--return-string "" "Returns string in PHP mode.")
+
+(defvar jcs--ts--param-string "" "Parameter string in TypeScript mode.")
+(defvar jcs--ts--return-string "" "Returns string in TypeScript mode.")
 
 
 ;;; Brackets
-(defvar jcs-as-open-type-char "" "Character before the typename in ActionScript mode.")
-(defvar jcs-as-close-type-char "" "Character after the typename in ActionScript mode.")
+(defvar jcs--as--open-type-char "" "Character before the typename in ActionScript mode.")
+(defvar jcs--as--close-type-char "" "Character after the typename in ActionScript mode.")
 
-(defvar jcs-cc-open-type-char "" "Character before the typename in C/C++ mode.")
-(defvar jcs-cc-close-type-char "" "Character after the typename in C/C++ mode.")
+(defvar jcs--cc--open-type-char "" "Character before the typename in C/C++ mode.")
+(defvar jcs--cc--close-type-char "" "Character after the typename in C/C++ mode.")
 
-(defvar jcs-csharp-open-type-char "" "Character before the typename in CSharp mode.")
-(defvar jcs-csharp-close-type-char "" "Character after the typename in CSharp mode.")
+(defvar jcs--csharp--open-type-char "" "Character before the typename in CSharp mode.")
+(defvar jcs--csharp--close-type-char "" "Character after the typename in CSharp mode.")
 
-(defvar jcs-java-open-type-char "" "Character before the typename in Java mode.")
-(defvar jcs-java-close-type-char "" "Character after the typename in Java mode.")
+(defvar jcs--go--open-type-char "" "Character before the typename in Go mode.")
+(defvar jcs--go--close-type-char "" "Character after the typename in Go mode.")
 
-(defvar jcs-js-open-type-char "" "Character before the typename in JavaScript mode.")
-(defvar jcs-js-close-type-char "" "Character after the typename in JavaScript mode.")
+(defvar jcs--java--open-type-char "" "Character before the typename in Java mode.")
+(defvar jcs--java--close-type-char "" "Character after the typename in Java mode.")
 
-(defvar jcs-lua-open-type-char "" "Character before the typename in Lua mode.")
-(defvar jcs-lua-close-type-char "" "Character after the typename in Lua mode.")
+(defvar jcs--js--open-type-char "" "Character before the typename in JavaScript mode.")
+(defvar jcs--js--close-type-char "" "Character after the typename in JavaScript mode.")
 
-(defvar jcs-py-open-type-char "" "Character before the typename in Python mode.")
-(defvar jcs-py-close-type-char "" "Character after the typename in Python mode.")
+(defvar jcs--lua--open-type-char "" "Character before the typename in Lua mode.")
+(defvar jcs--lua--close-type-char "" "Character after the typename in Lua mode.")
 
-(defvar jcs-php-open-type-char "" "Character before the typename in PHP mode.")
-(defvar jcs-php-close-type-char "" "Character after the typename in PHP mode.")
+(defvar jcs--py--open-type-char "" "Character before the typename in Python mode.")
+(defvar jcs--py--close-type-char "" "Character after the typename in Python mode.")
 
-(defvar jcs-ts-open-type-char "" "Character before the typename in TypeScript mode.")
-(defvar jcs-ts-close-type-char "" "Character after the typename in TypeScript mode.")
+(defvar jcs--php--open-type-char "" "Character before the typename in PHP mode.")
+(defvar jcs--php--close-type-char "" "Character after the typename in PHP mode.")
+
+(defvar jcs--ts--open-type-char "" "Character before the typename in TypeScript mode.")
+(defvar jcs--ts--close-type-char "" "Character after the typename in TypeScript mode.")
 
 
 
-(defconst jcs-docstring-config-filepath "~/.emacs.jcs/docstring/docstring_config.properties"
+(defconst jcs--docstring-config-filepath "~/.emacs.jcs/docstring/docstring_config.properties"
   "Doc-string properties file.")
 
 
@@ -183,82 +189,88 @@
   (interactive)
   (let ((tmp-ini-list '()))
     ;; Read the doc-string configuration file.
-    (setq tmp-ini-list (jcs-parse-ini jcs-docstring-config-filepath))
+    (setq tmp-ini-list (jcs-parse-ini jcs--docstring-config-filepath))
 
     ;; descriptions
-    (setq jcs-class-desc-string (jcs-get-properties tmp-ini-list "CLASS_DESC_STRING"))
-    (setq jcs-struct-desc-string (jcs-get-properties tmp-ini-list "STRUCT_DESC_STRING"))
-    (setq jcs-define-desc-string (jcs-get-properties tmp-ini-list "DEFINE_DESC_STRING"))
-    (setq jcs-enum-desc-string (jcs-get-properties tmp-ini-list "ENUM_DESC_STRING"))
-    (setq jcs-param-desc-string (jcs-get-properties tmp-ini-list "PARAM_DESC_STRING"))
-    (setq jcs-return-desc-string (jcs-get-properties tmp-ini-list "RETURN_DESC_STRING"))
-    (setq jcs-default-typename-string (jcs-get-properties tmp-ini-list "DEFAULT_TYPENAME_STRING"))
+    (setq jcs--class-desc-string (jcs-get-properties tmp-ini-list "CLASS_DESC_STRING"))
+    (setq jcs--struct-desc-string (jcs-get-properties tmp-ini-list "STRUCT_DESC_STRING"))
+    (setq jcs--define-desc-string (jcs-get-properties tmp-ini-list "DEFINE_DESC_STRING"))
+    (setq jcs--enum-desc-string (jcs-get-properties tmp-ini-list "ENUM_DESC_STRING"))
+    (setq jcs--param-desc-string (jcs-get-properties tmp-ini-list "PARAM_DESC_STRING"))
+    (setq jcs--return-desc-string (jcs-get-properties tmp-ini-list "RETURN_DESC_STRING"))
+    (setq jcs--default-typename-string (jcs-get-properties tmp-ini-list "DEFAULT_TYPENAME_STRING"))
 
     ;; show type name
-    (setq jcs-as-doc-show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "AS_DOC_SHOW_TYPENAME")))
-    (setq jcs-cc-doc-show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "CC_DOC_SHOW_TYPENAME")))
-    (setq jcs-csharp-doc-show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "CSHARP_DOC_SHOW_TYPENAME")))
-    (setq jcs-java-doc-show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "JAVA_DOC_SHOW_TYPENAME")))
-    (setq jcs-js-doc-show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "JS_DOC_SHOW_TYPENAME")))
-    (setq jcs-lua-doc-show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "LUA_DOC_SHOW_TYPENAME")))
-    (setq jcs-py-doc-show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "PY_DOC_SHOW_TYPENAME")))
-    (setq jcs-php-doc-show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "PHP_DOC_SHOW_TYPENAME")))
-    (setq jcs-ts-doc-show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "TS_DOC_SHOW_TYPENAME")))
+    (setq jcs--as-doc--show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "AS_DOC_SHOW_TYPENAME")))
+    (setq jcs--cc-doc--show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "CC_DOC_SHOW_TYPENAME")))
+    (setq jcs--csharp-doc--show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "CSHARP_DOC_SHOW_TYPENAME")))
+    (setq jcs--go-doc--show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "GO_DOC_SHOW_TYPENAME")))
+    (setq jcs--java-doc--show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "JAVA_DOC_SHOW_TYPENAME")))
+    (setq jcs--js-doc--show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "JS_DOC_SHOW_TYPENAME")))
+    (setq jcs--lua-doc--show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "LUA_DOC_SHOW_TYPENAME")))
+    (setq jcs--py-doc--show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "PY_DOC_SHOW_TYPENAME")))
+    (setq jcs--php-doc--show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "PHP_DOC_SHOW_TYPENAME")))
+    (setq jcs--ts-doc--show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "TS_DOC_SHOW_TYPENAME")))
 
     ;; After value type character.
-    (setq jcs-as-doc-after-value-type-char (jcs-get-properties tmp-ini-list "AS_AFTER_VALUE_TYPE"))
-    (setq jcs-cc-doc-after-value-type-char (jcs-get-properties tmp-ini-list "CC_AFTER_VALUE_TYPE"))
-    (setq jcs-csharp-doc-after-value-type-char (jcs-get-properties tmp-ini-list "CSHARP_AFTER_VALUE_TYPE"))
-    (setq jcs-java-doc-after-value-type-char (jcs-get-properties tmp-ini-list "JAVA_AFTER_VALUE_TYPE"))
-    (setq jcs-js-doc-after-value-type-char (jcs-get-properties tmp-ini-list "JS_AFTER_VALUE_TYPE"))
-    (setq jcs-lua-doc-after-value-type-char (jcs-get-properties tmp-ini-list "LUA_AFTER_VALUE_TYPE"))
-    (setq jcs-py-doc-after-value-type-char (jcs-get-properties tmp-ini-list "PY_AFTER_VALUE_TYPE"))
-    (setq jcs-php-doc-after-value-type-char (jcs-get-properties tmp-ini-list "PHP_AFTER_VALUE_TYPE"))
-    (setq jcs-ts-doc-after-value-type-char (jcs-get-properties tmp-ini-list "TS_AFTER_VALUE_TYPE"))
+    (setq jcs--as-doc--after-value-type-char (jcs-get-properties tmp-ini-list "AS_AFTER_VALUE_TYPE"))
+    (setq jcs--cc-doc--after-value-type-char (jcs-get-properties tmp-ini-list "CC_AFTER_VALUE_TYPE"))
+    (setq jcs--csharp-doc--after-value-type-char (jcs-get-properties tmp-ini-list "CSHARP_AFTER_VALUE_TYPE"))
+    (setq jcs--go-doc--after-value-type-char (jcs-get-properties tmp-ini-list "GO_AFTER_VALUE_TYPE"))
+    (setq jcs--java-doc--after-value-type-char (jcs-get-properties tmp-ini-list "JAVA_AFTER_VALUE_TYPE"))
+    (setq jcs--js-doc--after-value-type-char (jcs-get-properties tmp-ini-list "JS_AFTER_VALUE_TYPE"))
+    (setq jcs--lua-doc--after-value-type-char (jcs-get-properties tmp-ini-list "LUA_AFTER_VALUE_TYPE"))
+    (setq jcs--py-doc--after-value-type-char (jcs-get-properties tmp-ini-list "PY_AFTER_VALUE_TYPE"))
+    (setq jcs--php-doc--after-value-type-char (jcs-get-properties tmp-ini-list "PHP_AFTER_VALUE_TYPE"))
+    (setq jcs--ts-doc--after-value-type-char (jcs-get-properties tmp-ini-list "TS_AFTER_VALUE_TYPE"))
 
     ;; param string
-    (setq jcs-as-param-string (jcs-get-properties tmp-ini-list "AS_PARAM_STRING"))
-    (setq jcs-cc-param-string (jcs-get-properties tmp-ini-list "CC_PARAM_STRING"))
-    (setq jcs-csharp-param-string (jcs-get-properties tmp-ini-list "CSHARP_PARAM_STRING"))
-    (setq jcs-java-param-string (jcs-get-properties tmp-ini-list "JAVA_PARAM_STRING"))
-    (setq jcs-js-param-string (jcs-get-properties tmp-ini-list "JS_PARAM_STRING"))
-    (setq jcs-lua-param-string (jcs-get-properties tmp-ini-list "LUA_PARAM_STRING"))
-    (setq jcs-py-param-string (jcs-get-properties tmp-ini-list "PY_PARAM_STRING"))
-    (setq jcs-php-param-string (jcs-get-properties tmp-ini-list "PHP_PARAM_STRING"))
-    (setq jcs-ts-param-string (jcs-get-properties tmp-ini-list "TS_PARAM_STRING"))
+    (setq jcs--as--param-string (jcs-get-properties tmp-ini-list "AS_PARAM_STRING"))
+    (setq jcs--cc--param-string (jcs-get-properties tmp-ini-list "CC_PARAM_STRING"))
+    (setq jcs--csharp--param-string (jcs-get-properties tmp-ini-list "CSHARP_PARAM_STRING"))
+    (setq jcs--go--param-string (jcs-get-properties tmp-ini-list "GO_PARAM_STRING"))
+    (setq jcs--java--param-string (jcs-get-properties tmp-ini-list "JAVA_PARAM_STRING"))
+    (setq jcs--js--param-string (jcs-get-properties tmp-ini-list "JS_PARAM_STRING"))
+    (setq jcs--lua--param-string (jcs-get-properties tmp-ini-list "LUA_PARAM_STRING"))
+    (setq jcs--py--param-string (jcs-get-properties tmp-ini-list "PY_PARAM_STRING"))
+    (setq jcs--php--param-string (jcs-get-properties tmp-ini-list "PHP_PARAM_STRING"))
+    (setq jcs--ts--param-string (jcs-get-properties tmp-ini-list "TS_PARAM_STRING"))
 
     ;; return string
-    (setq jcs-as-return-string (jcs-get-properties tmp-ini-list "AS_RETURN_STRING"))
-    (setq jcs-cc-return-string (jcs-get-properties tmp-ini-list "CC_RETURN_STRING"))
-    (setq jcs-csharp-return-string (jcs-get-properties tmp-ini-list "CSHARP_RETURN_STRING"))
-    (setq jcs-java-return-string (jcs-get-properties tmp-ini-list "JAVA_RETURN_STRING"))
-    (setq jcs-js-return-string (jcs-get-properties tmp-ini-list "JS_RETURN_STRING"))
-    (setq jcs-lua-return-string (jcs-get-properties tmp-ini-list "LUA_RETURN_STRING"))
-    (setq jcs-py-return-string (jcs-get-properties tmp-ini-list "PY_RETURN_STRING"))
-    (setq jcs-php-return-string (jcs-get-properties tmp-ini-list "PHP_RETURN_STRING"))
-    (setq jcs-ts-return-string (jcs-get-properties tmp-ini-list "TS_RETURN_STRING"))
+    (setq jcs--as--return-string (jcs-get-properties tmp-ini-list "AS_RETURN_STRING"))
+    (setq jcs--cc--return-string (jcs-get-properties tmp-ini-list "CC_RETURN_STRING"))
+    (setq jcs--csharp--return-string (jcs-get-properties tmp-ini-list "CSHARP_RETURN_STRING"))
+    (setq jcs--go--return-string (jcs-get-properties tmp-ini-list "GO_RETURN_STRING"))
+    (setq jcs--java--return-string (jcs-get-properties tmp-ini-list "JAVA_RETURN_STRING"))
+    (setq jcs--js--return-string (jcs-get-properties tmp-ini-list "JS_RETURN_STRING"))
+    (setq jcs--lua--return-string (jcs-get-properties tmp-ini-list "LUA_RETURN_STRING"))
+    (setq jcs--py--return-string (jcs-get-properties tmp-ini-list "PY_RETURN_STRING"))
+    (setq jcs--php--return-string (jcs-get-properties tmp-ini-list "PHP_RETURN_STRING"))
+    (setq jcs--ts--return-string (jcs-get-properties tmp-ini-list "TS_RETURN_STRING"))
 
     ;; open type character.
-    (setq jcs-as-open-type-char (jcs-get-properties tmp-ini-list "AS_OPEN_TYPE_CHAR"))
-    (setq jcs-cc-open-type-char (jcs-get-properties tmp-ini-list "CC_OPEN_TYPE_CHAR"))
-    (setq jcs-csharp-open-type-char (jcs-get-properties tmp-ini-list "CSHARP_OPEN_TYPE_CHAR"))
-    (setq jcs-java-open-type-char (jcs-get-properties tmp-ini-list "JAVA_OPEN_TYPE_CHAR"))
-    (setq jcs-js-open-type-char (jcs-get-properties tmp-ini-list "JS_OPEN_TYPE_CHAR"))
-    (setq jcs-lua-open-type-char (jcs-get-properties tmp-ini-list "LUA_OPEN_TYPE_CHAR"))
-    (setq jcs-py-open-type-char (jcs-get-properties tmp-ini-list "PY_OPEN_TYPE_CHAR"))
-    (setq jcs-php-open-type-char (jcs-get-properties tmp-ini-list "PHP_OPEN_TYPE_CHAR"))
-    (setq jcs-ts-open-type-char (jcs-get-properties tmp-ini-list "TS_OPEN_TYPE_CHAR"))
+    (setq jcs--as--open-type-char (jcs-get-properties tmp-ini-list "AS_OPEN_TYPE_CHAR"))
+    (setq jcs--cc--open-type-char (jcs-get-properties tmp-ini-list "CC_OPEN_TYPE_CHAR"))
+    (setq jcs--csharp--open-type-char (jcs-get-properties tmp-ini-list "CSHARP_OPEN_TYPE_CHAR"))
+    (setq jcs--go--open-type-char (jcs-get-properties tmp-ini-list "GO_OPEN_TYPE_CHAR"))
+    (setq jcs--java--open-type-char (jcs-get-properties tmp-ini-list "JAVA_OPEN_TYPE_CHAR"))
+    (setq jcs--js--open-type-char (jcs-get-properties tmp-ini-list "JS_OPEN_TYPE_CHAR"))
+    (setq jcs--lua--open-type-char (jcs-get-properties tmp-ini-list "LUA_OPEN_TYPE_CHAR"))
+    (setq jcs--py--open-type-char (jcs-get-properties tmp-ini-list "PY_OPEN_TYPE_CHAR"))
+    (setq jcs--php--open-type-char (jcs-get-properties tmp-ini-list "PHP_OPEN_TYPE_CHAR"))
+    (setq jcs--ts--open-type-char (jcs-get-properties tmp-ini-list "TS_OPEN_TYPE_CHAR"))
 
     ;; close type character.
-    (setq jcs-as-close-type-char (jcs-get-properties tmp-ini-list "AS_CLOSE_TYPE_CHAR"))
-    (setq jcs-cc-close-type-char (jcs-get-properties tmp-ini-list "CC_CLOSE_TYPE_CHAR"))
-    (setq jcs-csharp-close-type-char (jcs-get-properties tmp-ini-list "CSHARP_CLOSE_TYPE_CHAR"))
-    (setq jcs-java-close-type-char (jcs-get-properties tmp-ini-list "JAVA_CLOSE_TYPE_CHAR"))
-    (setq jcs-js-close-type-char (jcs-get-properties tmp-ini-list "JS_CLOSE_TYPE_CHAR"))
-    (setq jcs-lua-close-type-char (jcs-get-properties tmp-ini-list "LUA_CLOSE_TYPE_CHAR"))
-    (setq jcs-py-close-type-char (jcs-get-properties tmp-ini-list "PY_CLOSE_TYPE_CHAR"))
-    (setq jcs-php-close-type-char (jcs-get-properties tmp-ini-list "PHP_CLOSE_TYPE_CHAR"))
-    (setq jcs-ts-close-type-char (jcs-get-properties tmp-ini-list "TS_CLOSE_TYPE_CHAR"))))
+    (setq jcs--as--close-type-char (jcs-get-properties tmp-ini-list "AS_CLOSE_TYPE_CHAR"))
+    (setq jcs--cc--close-type-char (jcs-get-properties tmp-ini-list "CC_CLOSE_TYPE_CHAR"))
+    (setq jcs--csharp--close-type-char (jcs-get-properties tmp-ini-list "CSHARP_CLOSE_TYPE_CHAR"))
+    (setq jcs--go--close-type-char (jcs-get-properties tmp-ini-list "GO_CLOSE_TYPE_CHAR"))
+    (setq jcs--java--close-type-char (jcs-get-properties tmp-ini-list "JAVA_CLOSE_TYPE_CHAR"))
+    (setq jcs--js--close-type-char (jcs-get-properties tmp-ini-list "JS_CLOSE_TYPE_CHAR"))
+    (setq jcs--lua--close-type-char (jcs-get-properties tmp-ini-list "LUA_CLOSE_TYPE_CHAR"))
+    (setq jcs--py--close-type-char (jcs-get-properties tmp-ini-list "PY_CLOSE_TYPE_CHAR"))
+    (setq jcs--php--close-type-char (jcs-get-properties tmp-ini-list "PHP_CLOSE_TYPE_CHAR"))
+    (setq jcs--ts--close-type-char (jcs-get-properties tmp-ini-list "TS_CLOSE_TYPE_CHAR"))))
 
 
 (defun jcs-insert-jsdoc-type (type-name open-char close-char)
@@ -321,9 +333,9 @@ SR-OP is the boundary of the search limit."
           (setq search-string (s-replace "\n" " " search-string)))))
 
     ;; Insert document comment string.
-    (jcs-insert-doc-comment-string search-string)))
+    (jcs--insert-doc-comment-string search-string)))
 
-(defun jcs-insert-doc-comment-string (search-string)
+(defun jcs--insert-doc-comment-string (search-string)
   "Insert document comment style.
 SEARCH-STRING is the raw string that represent the code we want to document."
   (save-excursion
@@ -332,44 +344,44 @@ SEARCH-STRING is the raw string that represent the code we want to document."
       (cond
        ((jcs-is-current-major-mode-p '("actionscript-mode"))
         (setq mode-doc-string-func-name (if meet-function-name
-                                            'jcs-as-mode-doc-string-func
-                                          'jcs-as-mode-doc-string-others)))
-       ((jcs-is-current-major-mode-p '("c-mode"
-                                       "c++-mode"))
+                                            'jcs--as-mode-doc-string-func
+                                          'jcs--as-mode-doc-string-others)))
+       ((jcs-is-current-major-mode-p '("c-mode" "c++-mode"))
         (setq mode-doc-string-func-name (if meet-function-name
-                                            'jcs-cc-mode-doc-string-func
-                                          'jcs-cc-mode-doc-string-others)))
+                                            'jcs--cc-mode-doc-string-func
+                                          'jcs--cc-mode-doc-string-others)))
        ((jcs-is-current-major-mode-p '("csharp-mode"))
         (setq mode-doc-string-func-name (if meet-function-name
-                                            'jcs-csharp-mode-doc-string-func
-                                          'jcs-csharp-mode-doc-string-others)))
-       ((jcs-is-current-major-mode-p '("java-mode"
-                                       "jdee-mode"))
+                                            'jcs--csharp-mode-doc-string-func
+                                          'jcs--csharp-mode-doc-string-others)))
+       ((jcs-is-current-major-mode-p '("go-mode"))
         (setq mode-doc-string-func-name (if meet-function-name
-                                            'jcs-java-mode-doc-string-func
-                                          'jcs-java-mode-doc-string-others)))
-       ((jcs-is-current-major-mode-p '("js-mode"
-                                       "js2-mode"
-                                       "js3-mode"))
+                                            'jcs--go-mode-doc-string-func
+                                          'jcs--go-mode-doc-string-others)))
+       ((jcs-is-current-major-mode-p '("java-mode" "jdee-mode"))
         (setq mode-doc-string-func-name (if meet-function-name
-                                            'jcs-js-mode-doc-string-func
-                                          'jcs-js-mode-doc-string-others)))
+                                            'jcs--java-mode-doc-string-func
+                                          'jcs--java-mode-doc-string-others)))
+       ((jcs-is-current-major-mode-p '("js-mode" "js2-mode" "js3-mode"))
+        (setq mode-doc-string-func-name (if meet-function-name
+                                            'jcs--js-mode-doc-string-func
+                                          'jcs--js-mode-doc-string-others)))
        ((jcs-is-current-major-mode-p '("lua-mode"))
         (setq mode-doc-string-func-name (if meet-function-name
-                                            'jcs-lua-mode-doc-string-func
-                                          'jcs-lua-mode-doc-string-others)))
+                                            'jcs--lua-mode-doc-string-func
+                                          'jcs--lua-mode-doc-string-others)))
        ((jcs-is-current-major-mode-p '("python-mode"))
         (setq mode-doc-string-func-name (if meet-function-name
-                                            'jcs-py-mode-doc-string-func
-                                          'jcs-py-mode-doc-string-others)))
+                                            'jcs--py-mode-doc-string-func
+                                          'jcs--py-mode-doc-string-others)))
        ((jcs-is-current-major-mode-p '("php-mode" "web-mode"))
         (setq mode-doc-string-func-name (if meet-function-name
-                                            'jcs-php-mode-doc-string-func
-                                          'jcs-php-mode-doc-string-others)))
+                                            'jcs--php-mode-doc-string-func
+                                          'jcs--php-mode-doc-string-others)))
        ((jcs-is-current-major-mode-p '("typescript-mode"))
         (setq mode-doc-string-func-name (if meet-function-name
-                                            'jcs-ts-mode-doc-string-func
-                                          'jcs-ts-mode-doc-string-others))))
+                                            'jcs--ts-mode-doc-string-func
+                                          'jcs--ts-mode-doc-string-others))))
 
       ;; NOTE: Ensure the `mode-doc-string-func-name' is assign to something
       ;; valid to execute.
@@ -413,15 +425,16 @@ This is for c-like programming languages."
         (string-trim return-type-string)
       nil)))
 
-(defun jcs--return-type-colon (search-string)
+(defun jcs--return-type-behind (search-string &optional spi-sym)
   "Analyze SEARCH-STRING to get return type.
 This is for colon type programming languages.  For example, `actionscript',
 `typescript', etc."
   (let ((return-type-string nil)
         (pos (jcs-last-char-in-string ")" search-string)))
     (when pos
-      (setq return-type-string (substring search-string pos (length search-string)))
-      (setq return-type-string (nth 1 (split-string return-type-string ":"))))
+      (setq return-type-string (substring search-string (1+ pos) (length search-string)))
+      (when spi-sym
+        (setq return-type-string (nth 1 (split-string return-type-string spi-sym)))))
     (if (stringp return-type-string)
         (string-trim return-type-string)
       nil)))
@@ -528,7 +541,7 @@ SEARCH-STRING : Search raw string."
         (setq param-var-str (string-trim (nth 0 param-split-str-lst)))
         (if (= (length param-split-str-lst) 1)
             ;; Set default type name string here.
-            (setq param-type-str jcs-default-typename-string)
+            (setq param-type-str jcs--default-typename-string)
           (setq param-type-str (string-trim (nth 1 param-split-str-lst))))
 
         (push param-var-str param-var-str-lst)
@@ -545,27 +558,25 @@ SEARCH-STRING : Search raw string."
 
 
 
-(defun jcs-as-mode-doc-string-others (search-string)
+(defun jcs--as-mode-doc-string-others (search-string)
   "Insert `actionscript-mode' other doc string.
 SEARCH-STRING is the raw string that represent the code we want to document."
   (cond
    ((string-match-p "class" search-string)
     (progn
       ;; TODO: implement into ActionScript mode.
-      )))
-  )
+      ))))
 
-(defun jcs-as-mode-doc-string-func (search-string)
+(defun jcs--as-mode-doc-string-func (search-string)
   "Insert `actionscript-mode' function doc string.
 SEARCH-STRING is the raw string that represent the code we want to document."
-
   (let* ((paren-param-list (jcs-paren-param-list-colon search-string))
          (param-type-strings (nth 0 paren-param-list))
          (param-variable-strings (nth 1 paren-param-list))
          (param-var-len (length param-variable-strings))
          (param-index 0)
          ;; Get all return data types.
-         (return-type-string (jcs--return-type-colon search-string))
+         (return-type-string (jcs--return-type-behind search-string ":"))
          (there-is-return (not (null return-type-string))))
     ;; go back to comment line.
     (jcs-previous-line)
@@ -576,14 +587,14 @@ SEARCH-STRING is the raw string that represent the code we want to document."
     (while (< param-index param-var-len)
       (insert "\n")  ;; start from newline.
       (insert "* @")
-      (insert jcs-as-param-string)
-      (when jcs-as-doc-show-typename
+      (insert jcs--as--param-string)
+      (when jcs--as-doc--show-typename
         (jcs-insert-jsdoc-type (nth param-index param-type-strings)
-                               jcs-as-open-type-char
-                               jcs-as-close-type-char))
+                               jcs--as--open-type-char
+                               jcs--as--close-type-char))
       (insert (nth param-index param-variable-strings))
-      (insert jcs-as-doc-after-value-type-char)
-      (insert jcs-param-desc-string)
+      (insert jcs--as-doc--after-value-type-char)
+      (insert jcs--param-desc-string)
 
       ;; indent once.
       (indent-for-tab-command)
@@ -596,20 +607,20 @@ SEARCH-STRING is the raw string that represent the code we want to document."
       (unless (string= return-type-string "void")
         (insert "\n")
         (insert "* @")
-        (insert jcs-as-return-string)
-        (when jcs-as-doc-show-typename
+        (insert jcs--as--return-string)
+        (when jcs--as-doc--show-typename
           (jcs-insert-jsdoc-type return-type-string
-                                 jcs-as-open-type-char
-                                 jcs-as-close-type-char))
+                                 jcs--as--open-type-char
+                                 jcs--as--close-type-char))
         (backward-delete-char 1)
-        (if jcs-as-doc-show-typename
-            (insert jcs-as-doc-after-value-type-char)
+        (if jcs--as-doc--show-typename
+            (insert jcs--as-doc--after-value-type-char)
           (insert " "))
-        (insert jcs-return-desc-string)
+        (insert jcs--return-desc-string)
         (indent-for-tab-command)))))
 
 
-(defun jcs-cc-mode-doc-string-others (search-string)
+(defun jcs--cc-mode-doc-string-others (search-string)
   "Insert `c-mode' or `c++-mode' other doc string.
 SEARCH-STRING is the raw string that represent the code we want to document."
   (let ((splitted-search-string (split-string search-string " " t))
@@ -632,7 +643,7 @@ SEARCH-STRING is the raw string that represent the code we want to document."
         ;; Process brief tag.
         (insert "\n")
         (insert "* @brief ")
-        (insert jcs-class-desc-string)
+        (insert jcs--class-desc-string)
         (indent-for-tab-command)))
      ((string-match-p "struct" search-string)
       (progn
@@ -651,7 +662,7 @@ SEARCH-STRING is the raw string that represent the code we want to document."
         ;; Process brief tag.
         (insert "\n")
         (insert "* @brief ")
-        (insert jcs-struct-desc-string)
+        (insert jcs--struct-desc-string)
         (indent-for-tab-command)))
      ((or (string-match-p "define" search-string)
           (string-match-p "#define" search-string))
@@ -670,7 +681,7 @@ SEARCH-STRING is the raw string that represent the code we want to document."
         ;; Process brief tag.
         (insert "\n")
         (insert "* @brief ")
-        (insert jcs-define-desc-string)
+        (insert jcs--define-desc-string)
         (indent-for-tab-command)))
      ((string-match-p "enum" search-string)
       (progn
@@ -689,13 +700,12 @@ SEARCH-STRING is the raw string that represent the code we want to document."
         ;; Process brief tag.
         (insert "\n")
         (insert "* @brief ")
-        (insert jcs-enum-desc-string)
+        (insert jcs--enum-desc-string)
         (indent-for-tab-command))))))
 
-(defun jcs-cc-mode-doc-string-func (search-string)
+(defun jcs--cc-mode-doc-string-func (search-string)
   "Insert `c-mode' or `c++-mode' function doc string.
 SEARCH-STRING is the raw string that represent the code we want to document."
-
   (let* ((paren-param-list (jcs-paren-param-list search-string))
          (param-type-strings (nth 0 paren-param-list))
          (param-variable-strings (nth 1 paren-param-list))
@@ -724,14 +734,14 @@ SEARCH-STRING is the raw string that represent the code we want to document."
     (while (< param-index param-var-len)
       (insert "\n")  ;; start from newline.
       (insert "* @")
-      (insert jcs-cc-param-string)
-      (when jcs-cc-doc-show-typename
+      (insert jcs--cc--param-string)
+      (when jcs--cc-doc--show-typename
         (jcs-insert-jsdoc-type (nth param-index param-type-strings)
-                               jcs-cc-open-type-char
-                               jcs-cc-close-type-char))
+                               jcs--cc--open-type-char
+                               jcs--cc--close-type-char))
       (insert (nth param-index param-variable-strings))
-      (insert jcs-cc-doc-after-value-type-char)
-      (insert jcs-param-desc-string)
+      (insert jcs--cc-doc--after-value-type-char)
+      (insert jcs--param-desc-string)
 
       ;; indent once.
       (indent-for-tab-command)
@@ -746,20 +756,20 @@ SEARCH-STRING is the raw string that represent the code we want to document."
               (progn
                 (insert "\n")
                 (insert "* @")
-                (insert jcs-cc-return-string)
-                (if jcs-cc-doc-show-typename
+                (insert jcs--cc--return-string)
+                (if jcs--cc-doc--show-typename
                     (jcs-insert-jsdoc-type return-type-string
-                                           jcs-cc-open-type-char
-                                           jcs-cc-close-type-char))
+                                           jcs--cc--open-type-char
+                                           jcs--cc--close-type-char))
                 (backward-delete-char 1)
-                (if jcs-cc-doc-show-typename
-                    (insert jcs-cc-doc-after-value-type-char)
+                (if jcs--cc-doc--show-typename
+                    (insert jcs--cc-doc--after-value-type-char)
                   (insert " "))
-                (insert jcs-return-desc-string)
+                (insert jcs--return-desc-string)
                 (indent-for-tab-command)))))))
 
 
-(defun jcs-csharp-mode-doc-string-others (search-string)
+(defun jcs--csharp-mode-doc-string-others (search-string)
   "Insert `csharp-mode' other doc string.
 SEARCH-STRING is the raw string that represent the code we want to document."
   (cond
@@ -780,10 +790,9 @@ SEARCH-STRING is the raw string that represent the code we want to document."
       ;; doc need one..
       ))))
 
-(defun jcs-csharp-mode-doc-string-func (search-string)
+(defun jcs--csharp-mode-doc-string-func (search-string)
   "Insert `csharp-mode' function doc string.
 SEARCH-STRING is the raw string that represent the code we want to document."
-
   (let* ((paren-param-list (jcs-paren-param-list search-string))
          (param-type-strings (nth 0 paren-param-list))
          (param-variable-strings (nth 1 paren-param-list))
@@ -838,14 +847,14 @@ SEARCH-STRING is the raw string that represent the code we want to document."
         (while (< param-index param-var-len)
           (insert "\n")  ;; start from newline.
           (insert "* @")
-          (insert jcs-as-param-string)
-          (when jcs-as-doc-show-typename
+          (insert jcs--as--param-string)
+          (when jcs--as-doc--show-typename
             (jcs-insert-jsdoc-type (nth param-index param-type-strings)
-                                   jcs-as-open-type-char
-                                   jcs-as-close-type-char))
+                                   jcs--as--open-type-char
+                                   jcs--as--close-type-char))
           (insert (nth param-index param-variable-strings))
-          (insert jcs-as-doc-after-value-type-char)
-          (insert jcs-param-desc-string)
+          (insert jcs--as-doc--after-value-type-char)
+          (insert jcs--param-desc-string)
 
           ;; indent once.
           (indent-for-tab-command)
@@ -858,20 +867,41 @@ SEARCH-STRING is the raw string that represent the code we want to document."
           (unless (string= return-type-string "void")
             (insert "\n")
             (insert "* @")
-            (insert jcs-as-return-string)
-            (when jcs-as-doc-show-typename
+            (insert jcs--as--return-string)
+            (when jcs--as-doc--show-typename
               (jcs-insert-jsdoc-type return-type-string
-                                     jcs-as-open-type-char
-                                     jcs-as-close-type-char))
+                                     jcs--as--open-type-char
+                                     jcs--as--close-type-char))
             (backward-delete-char 1)
-            (if jcs-as-doc-show-typename
-                (insert jcs-as-doc-after-value-type-char)
+            (if jcs--as-doc--show-typename
+                (insert jcs--as-doc--after-value-type-char)
               (insert " "))
-            (insert jcs-return-desc-string)
+            (insert jcs--return-desc-string)
             (indent-for-tab-command))))))))
 
 
-(defun jcs-java-mode-doc-string-others (search-string)
+(defun jcs--go-mode-doc-string-others (search-string)
+  "Insert `go-mode' other doc string.
+SEARCH-STRING is the raw string that represent the code we want to document."
+  ;; NOTE: I haven't really got deep enough with Go yet.
+  )
+
+(defun jcs--go-mode-doc-string-func (search-string)
+  "Insert `go-mode' function doc string.
+SEARCH-STRING is the raw string that represent the code we want to document."
+  (let* ((paren-param-list (jcs-paren-param-list search-string))
+         (param-type-strings (nth 1 paren-param-list))
+         (param-variable-strings (nth 0 paren-param-list))
+         ;; Get the return data type.
+         (return-type-string (jcs--return-type-behind search-string))
+         (there-is-return (not (null return-type-string))))
+    (message "ts: %s" param-type-strings)
+    (message "vs: %s" param-variable-strings)
+    (message "ss: %s" return-type-string)
+    ))
+
+
+(defun jcs--java-mode-doc-string-others (search-string)
   "Insert `java-mode' other doc string.
 SEARCH-STRING is the raw string that represent the code we want to document."
   (cond
@@ -886,10 +916,9 @@ SEARCH-STRING is the raw string that represent the code we want to document."
       ;; doc need one..
       ))))
 
-(defun jcs-java-mode-doc-string-func (search-string)
+(defun jcs--java-mode-doc-string-func (search-string)
   "Insert `java-mode' function doc string.
 SEARCH-STRING is the raw string that represent the code we want to document."
-
   (let* ((paren-param-list (jcs-paren-param-list search-string))
          (param-type-strings (nth 0 paren-param-list))
          (param-variable-strings (nth 1 paren-param-list))
@@ -907,14 +936,14 @@ SEARCH-STRING is the raw string that represent the code we want to document."
     (while (< param-index param-var-len)
       (insert "\n")  ;; start from newline.
       (insert "* @")
-      (insert jcs-java-param-string)
-      (when jcs-java-doc-show-typename
+      (insert jcs--java--param-string)
+      (when jcs--java-doc--show-typename
         (jcs-insert-jsdoc-type (nth param-index param-type-strings)
-                               jcs-java-open-type-char
-                               jcs-java-close-type-char))
+                               jcs--java--open-type-char
+                               jcs--java--close-type-char))
       (insert (nth param-index param-variable-strings))
-      (insert jcs-java-doc-after-value-type-char)
-      (insert jcs-param-desc-string)
+      (insert jcs--java-doc--after-value-type-char)
+      (insert jcs--param-desc-string)
 
       ;; indent once.
       (indent-for-tab-command)
@@ -927,20 +956,20 @@ SEARCH-STRING is the raw string that represent the code we want to document."
       (unless (string= return-type-string "void")
         (insert "\n")
         (insert "* @")
-        (insert jcs-java-return-string)
-        (when jcs-java-doc-show-typename
+        (insert jcs--java--return-string)
+        (when jcs--java-doc--show-typename
           (jcs-insert-jsdoc-type return-type-string
-                                 jcs-java-open-type-char
-                                 jcs-java-close-type-char))
+                                 jcs--java--open-type-char
+                                 jcs--java--close-type-char))
         (backward-delete-char 1)
-        (if jcs-java-doc-show-typename
-            (insert jcs-java-doc-after-value-type-char)
+        (if jcs--java-doc--show-typename
+            (insert jcs--java-doc--after-value-type-char)
           (insert " "))
-        (insert jcs-return-desc-string)
+        (insert jcs--return-desc-string)
         (indent-for-tab-command)))))
 
 
-(defun jcs-js-mode-doc-string-others (search-string)
+(defun jcs--js-mode-doc-string-others (search-string)
   "Insert `js2-mode' other doc string.
 SEARCH-STRING is the raw string that represent the code we want to document."
   (cond
@@ -950,10 +979,9 @@ SEARCH-STRING is the raw string that represent the code we want to document."
       ;; need one..
       ))))
 
-(defun jcs-js-mode-doc-string-func (search-string)
+(defun jcs--js-mode-doc-string-func (search-string)
   "Insert `js2-mode' function doc string.
 SEARCH-STRING is the raw string that represent the code we want to document."
-
   (let* ((paren-param-list (jcs-paren-param-list search-string))
          (param-type-strings (nth 0 paren-param-list))
          (param-variable-strings (nth 1 paren-param-list))
@@ -971,14 +999,14 @@ SEARCH-STRING is the raw string that represent the code we want to document."
     (while (< param-index param-var-len)
       (insert "\n")  ;; start from newline.
       (insert "* @")
-      (insert jcs-js-param-string)
-      (when jcs-js-doc-show-typename
-        (jcs-insert-jsdoc-type jcs-default-typename-string
-                               jcs-js-open-type-char
-                               jcs-js-close-type-char))
+      (insert jcs--js--param-string)
+      (when jcs--js-doc--show-typename
+        (jcs-insert-jsdoc-type jcs--default-typename-string
+                               jcs--js--open-type-char
+                               jcs--js--close-type-char))
       (insert (nth param-index param-variable-strings))
-      (insert jcs-js-doc-after-value-type-char)
-      (insert jcs-param-desc-string)
+      (insert jcs--js-doc--after-value-type-char)
+      (insert jcs--param-desc-string)
 
       ;; indent once.
       (indent-for-tab-command)
@@ -991,29 +1019,28 @@ SEARCH-STRING is the raw string that represent the code we want to document."
       (unless (string= return-type-string "void")
         (insert "\n")
         (insert "* @")
-        (insert jcs-js-return-string)
-        (when jcs-js-doc-show-typename
+        (insert jcs--js--return-string)
+        (when jcs--js-doc--show-typename
           (jcs-insert-jsdoc-type return-type-string
-                                 jcs-js-open-type-char
-                                 jcs-js-close-type-char))
+                                 jcs--js--open-type-char
+                                 jcs--js--close-type-char))
         (backward-delete-char 1)
-        (if jcs-js-doc-show-typename
-            (insert jcs-js-doc-after-value-type-char)
+        (if jcs--js-doc--show-typename
+            (insert jcs--js-doc--after-value-type-char)
           (insert " "))
-        (insert jcs-return-desc-string)
+        (insert jcs--return-desc-string)
         (indent-for-tab-command)))))
 
 
-(defun jcs-lua-mode-doc-string-others (search-string)
+(defun jcs--lua-mode-doc-string-others (search-string)
   "Insert `lua-mode' other doc string.
 SEARCH-STRING is the raw string that represent the code we want to document."
   ;; NOTE: I don't think Lua have any keywords...
   )
 
-(defun jcs-lua-mode-doc-string-func (search-string)
+(defun jcs--lua-mode-doc-string-func (search-string)
   "Insert `lua-mode' function doc string.
 SEARCH-STRING is the raw string that represent the code we want to document."
-
   (let* ((paren-param-list (jcs-paren-param-list-colon search-string))
          (param-type-strings (nth 0 paren-param-list))
          (param-variable-strings (nth 1 paren-param-list))
@@ -1031,14 +1058,14 @@ SEARCH-STRING is the raw string that represent the code we want to document."
     (while (< param-index param-var-len)
       (insert "\n")  ;; start from newline.
       (insert "-- @")
-      (insert jcs-lua-param-string)
-      (when jcs-lua-doc-show-typename
-        (jcs-insert-jsdoc-type jcs-default-typename-string
-                               jcs-lua-open-type-char
-                               jcs-lua-close-type-char))
+      (insert jcs--lua--param-string)
+      (when jcs--lua-doc--show-typename
+        (jcs-insert-jsdoc-type jcs--default-typename-string
+                               jcs--lua--open-type-char
+                               jcs--lua--close-type-char))
       (insert (nth param-index param-variable-strings))
-      (insert jcs-lua-doc-after-value-type-char)
-      (insert jcs-param-desc-string)
+      (insert jcs--lua-doc--after-value-type-char)
+      (insert jcs--param-desc-string)
 
       ;; indent once.
       (indent-for-tab-command)
@@ -1051,20 +1078,20 @@ SEARCH-STRING is the raw string that represent the code we want to document."
       (unless (string= return-type-string "void")
         (insert "\n")
         (insert "-- @")
-        (insert jcs-lua-return-string)
-        (when jcs-lua-doc-show-typename
+        (insert jcs--lua--return-string)
+        (when jcs--lua-doc--show-typename
           (jcs-insert-jsdoc-type return-type-string
-                                 jcs-lua-open-type-char
-                                 jcs-lua-close-type-char))
+                                 jcs--lua--open-type-char
+                                 jcs--lua--close-type-char))
         (backward-delete-char 1)
-        (if jcs-lua-doc-show-typename
-            (insert jcs-lua-doc-after-value-type-char)
+        (if jcs--lua-doc--show-typename
+            (insert jcs--lua-doc--after-value-type-char)
           (insert " "))
-        (insert jcs-return-desc-string)
+        (insert jcs--return-desc-string)
         (indent-for-tab-command)))))
 
 
-(defun jcs-py-mode-doc-string-others (search-string)
+(defun jcs--py-mode-doc-string-others (search-string)
   "Insert `python-mode' other doc string.
 SEARCH-STRING is the raw string that represent the code we want to document."
   (cond
@@ -1073,10 +1100,9 @@ SEARCH-STRING is the raw string that represent the code we want to document."
       ;; TODO: implement into python mode.
       ))))
 
-(defun jcs-py-mode-doc-string-func (search-string)
+(defun jcs--py-mode-doc-string-func (search-string)
   "Insert `python-mode' function doc string.
 SEARCH-STRING is the raw string that represent the code we want to document."
-
   (let* ((paren-param-list (jcs-paren-param-list-colon search-string))
          (param-type-strings (nth 0 paren-param-list))
          (param-variable-strings (nth 1 paren-param-list))
@@ -1091,7 +1117,7 @@ SEARCH-STRING is the raw string that represent the code we want to document."
     (jcs-move-to-forward-a-char-recursive "\"")
 
     ;; OPTION: docstring option..
-    (when (= jcs-py-doc-string-version 1) (jcs-next-line))
+    (when (= jcs--py-doc-string-version 1) (jcs-next-line))
     (end-of-line)
 
     ;; Line break between description and tags.
@@ -1103,14 +1129,14 @@ SEARCH-STRING is the raw string that represent the code we want to document."
       (unless (string= "self" (nth param-index param-variable-strings))
         (insert "\n")  ;; start from newline.
         (insert "@")
-        (insert jcs-py-param-string)
-        (when jcs-py-doc-show-typename
-          (jcs-insert-jsdoc-type jcs-default-typename-string
-                                 jcs-py-open-type-char
-                                 jcs-py-close-type-char))
+        (insert jcs--py--param-string)
+        (when jcs--py-doc--show-typename
+          (jcs-insert-jsdoc-type jcs--default-typename-string
+                                 jcs--py--open-type-char
+                                 jcs--py--close-type-char))
         (insert (nth param-index param-variable-strings))
-        (insert jcs-py-doc-after-value-type-char)
-        (insert jcs-param-desc-string)
+        (insert jcs--py-doc--after-value-type-char)
+        (insert jcs--param-desc-string)
 
         ;; indent once.
         (indent-for-tab-command))
@@ -1123,20 +1149,20 @@ SEARCH-STRING is the raw string that represent the code we want to document."
       (unless (string= return-type-string "void")
         (insert "\n")
         (insert "@")
-        (insert jcs-py-return-string)
-        (when jcs-py-doc-show-typename
+        (insert jcs--py--return-string)
+        (when jcs--py-doc--show-typename
           (jcs-insert-jsdoc-type return-type-string
-                                 jcs-py-open-type-char
-                                 jcs-py-close-type-char))
+                                 jcs--py--open-type-char
+                                 jcs--py--close-type-char))
         (backward-delete-char 1)
-        (if jcs-py-doc-show-typename
-            (insert jcs-py-doc-after-value-type-char)
+        (if jcs--py-doc--show-typename
+            (insert jcs--py-doc--after-value-type-char)
           (insert " "))
-        (insert jcs-return-desc-string)
+        (insert jcs--return-desc-string)
         (indent-for-tab-command)))))
 
 
-(defun jcs-php-mode-doc-string-others (search-string)
+(defun jcs--php-mode-doc-string-others (search-string)
   "Insert `php-mode' other doc string.
 SEARCH-STRING is the raw string that represent the code we want to document."
   (cond
@@ -1145,10 +1171,9 @@ SEARCH-STRING is the raw string that represent the code we want to document."
       ;; TODO: implement into PHP mode.
       ))))
 
-(defun jcs-php-mode-doc-string-func (search-string)
+(defun jcs--php-mode-doc-string-func (search-string)
   "Insert `php-mode' function doc string.
 SEARCH-STRING is the raw string that represent the code we want to document."
-
   (let* ((paren-param-list (jcs-paren-param-list search-string))
          (param-type-strings (nth 0 paren-param-list))
          (param-variable-strings (nth 1 paren-param-list))
@@ -1166,14 +1191,14 @@ SEARCH-STRING is the raw string that represent the code we want to document."
     (while (< param-index param-var-len)
       (insert "\n")  ;; start from newline.
       (insert "* @")
-      (insert jcs-php-param-string)
-      (when jcs-php-doc-show-typename
-        (jcs-insert-jsdoc-type jcs-default-typename-string
-                               jcs-php-open-type-char
-                               jcs-php-close-type-char))
+      (insert jcs--php--param-string)
+      (when jcs--php-doc--show-typename
+        (jcs-insert-jsdoc-type jcs--default-typename-string
+                               jcs--php--open-type-char
+                               jcs--php--close-type-char))
       (insert (nth param-index param-variable-strings))
-      (insert jcs-php-doc-after-value-type-char)
-      (insert jcs-param-desc-string)
+      (insert jcs--php-doc--after-value-type-char)
+      (insert jcs--param-desc-string)
 
       ;; indent once.
       (indent-for-tab-command)
@@ -1186,20 +1211,20 @@ SEARCH-STRING is the raw string that represent the code we want to document."
       (unless (string= return-type-string "void")
         (insert "\n")
         (insert "* @")
-        (insert jcs-php-return-string)
-        (when jcs-php-doc-show-typename
+        (insert jcs--php--return-string)
+        (when jcs--php-doc--show-typename
           (jcs-insert-jsdoc-type return-type-string
-                                 jcs-php-open-type-char
-                                 jcs-php-close-type-char))
+                                 jcs--php--open-type-char
+                                 jcs--php--close-type-char))
         (backward-delete-char 1)
-        (if jcs-php-doc-show-typename
-            (insert jcs-php-doc-after-value-type-char)
+        (if jcs--php-doc--show-typename
+            (insert jcs--php-doc--after-value-type-char)
           (insert " "))
-        (insert jcs-return-desc-string)
+        (insert jcs--return-desc-string)
         (indent-for-tab-command)))))
 
 
-(defun jcs-ts-mode-doc-string-others (search-string)
+(defun jcs--ts-mode-doc-string-others (search-string)
   "Insert `typescript-mode' other doc string.
 SEARCH-STRING is the raw string that represent the code we want to document."
   (cond
@@ -1208,10 +1233,9 @@ SEARCH-STRING is the raw string that represent the code we want to document."
       ;; TODO: implement into TypeScript mode.
       ))))
 
-(defun jcs-ts-mode-doc-string-func (search-string)
+(defun jcs--ts-mode-doc-string-func (search-string)
   "Insert `typescript-mode' function doc string.
 SEARCH-STRING is the raw string that represent the code we want to document."
-
   (let* ((paren-param-list (jcs-paren-param-list-colon search-string))
          (param-type-strings (nth 0 paren-param-list))
          (param-variable-strings (nth 1 paren-param-list))
@@ -1219,7 +1243,7 @@ SEARCH-STRING is the raw string that represent the code we want to document."
          (param-type-len (length param-type-strings))
          (param-index 0)
          ;; Get all return data types.
-         (return-type-string (jcs--return-type-colon search-string))
+         (return-type-string (jcs--return-type-behind search-string ":"))
          (there-is-return (not (null return-type-string))))
     ;; go back to comment line.
     (jcs-previous-line)
@@ -1233,14 +1257,14 @@ SEARCH-STRING is the raw string that represent the code we want to document."
     (while (< param-index param-var-len)
       (insert "\n")  ;; start from newline.
       (insert "* @")
-      (insert jcs-ts-param-string)
-      (when jcs-ts-doc-show-typename
+      (insert jcs--ts--param-string)
+      (when jcs--ts-doc--show-typename
         (jcs-insert-jsdoc-type (nth param-index param-type-strings)
-                               jcs-ts-open-type-char
-                               jcs-ts-close-type-char))
+                               jcs--ts--open-type-char
+                               jcs--ts--close-type-char))
       (insert (nth param-index param-variable-strings))
-      (insert jcs-ts-doc-after-value-type-char)
-      (insert jcs-param-desc-string)
+      (insert jcs--ts-doc--after-value-type-char)
+      (insert jcs--param-desc-string)
 
       ;; indent once.
       (indent-for-tab-command)
@@ -1253,16 +1277,16 @@ SEARCH-STRING is the raw string that represent the code we want to document."
       (unless (string= return-type-string "void")
         (insert "\n")
         (insert "* @")
-        (insert jcs-ts-return-string)
-        (when jcs-ts-doc-show-typename
+        (insert jcs--ts--return-string)
+        (when jcs--ts-doc--show-typename
           (jcs-insert-jsdoc-type return-type-string
-                                 jcs-ts-open-type-char
-                                 jcs-ts-close-type-char))
+                                 jcs--ts--open-type-char
+                                 jcs--ts--close-type-char))
         (backward-delete-char 1)
-        (if jcs-ts-doc-show-typename
-            (insert jcs-js-doc-after-value-type-char)
+        (if jcs--ts-doc--show-typename
+            (insert jcs--js-doc--after-value-type-char)
           (insert " "))
-        (insert jcs-return-desc-string)
+        (insert jcs--return-desc-string)
         (indent-for-tab-command)))))
 
 
