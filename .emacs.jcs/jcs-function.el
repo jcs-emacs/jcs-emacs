@@ -948,6 +948,7 @@ NO-PROMPT : Don't prompt the overwrap message."
   (require 'jcs-java-func))
 (with-eval-after-load 'csharp-mode (require 'jcs-csharp-func))
 (with-eval-after-load 'css-mode (require 'jcs-css-func))
+(with-eval-after-load 'go-mode (require 'jcs-go-func))
 (with-eval-after-load 'lua-mode (require 'jcs-lua-func))
 (with-eval-after-load 'make-mode (require 'jcs-make-func))
 (with-eval-after-load 'markdown-mode (require 'jcs-markdown-func))
