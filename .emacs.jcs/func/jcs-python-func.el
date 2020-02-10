@@ -189,7 +189,7 @@ on the same line."
 
     (when previous-line-not-empty
       ;; OPTION: docstring option..
-      (when (= jcs-py-doc-string-version 1) (insert "\n"))
+      (when (= jcs--py-doc-string-version 1) (insert "\n"))
       (insert "Description here..\n")
       (insert "\"\"\"")
 
