@@ -12,6 +12,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Installed new package `vs-light-theme`. (jcs-emacs-init)
 * Installed new package `vs-dark-theme`. (jcs-emacs-init)
 * Implemented docstring for `Go` programming language. (jcs-emacs-init)
+* Fixed `ivy` find file logic with regular expression. (jcs-emacs-init)
 
 ### 2020-02-07
 
