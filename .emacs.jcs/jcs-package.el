@@ -289,9 +289,7 @@
     ("multi-shell" "jcs-elpa/multi-shell" "github")
     ("reload-emacs" "jcs-elpa/reload-emacs" "github")
     ("shift-select" "jcs-elpa/shift-select" "github")
-    ("tabulated-list-wrap" "jcs-elpa/tabulated-list-wrap" "github")
-    ("vs-dark-theme" "jcs-elpa/vs-dark-theme" "github")
-    ("vs-light-theme" "jcs-elpa/vs-light-theme" "github"))
+    ("tabulated-list-wrap" "jcs-elpa/tabulated-list-wrap" "github"))
   "List of package that you want to manually installed.")
 
 
