@@ -1299,7 +1299,7 @@ The reverse mean the check from regular expression is swapped."
 
     (dolist (tmp-line tmp-ini)
       ;; check not comment.
-      (when (not (string-match-p "#" tmp-line))
+      (unless (string-match-p "#" tmp-line)
         ;; Split it.
         (setq tmp-pair-list (split-string tmp-line "="))
 
