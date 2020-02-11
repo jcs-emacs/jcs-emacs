@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-02-11
+
+* Fixed return type with empty string in `oop` module. (jcs-emacs-init)
+
 ### 2020-02-10
 
 * Removed manually installed package `vs-light-theme`. (jcs-emacs-init)
