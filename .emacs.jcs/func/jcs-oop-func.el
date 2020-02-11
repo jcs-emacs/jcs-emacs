@@ -435,7 +435,8 @@ This is for colon type programming languages.  For example, `actionscript',
       (setq return-type-string (substring search-string (1+ pos) (length search-string)))
       (when spi-sym
         (setq return-type-string (nth 1 (split-string return-type-string spi-sym)))))
-    (if (stringp return-type-string)
+    (if (and (stringp return-type-string)
+             (not (string-empty-p return-type-string)))
         (string-trim return-type-string)
       nil)))
 
@@ -444,7 +445,7 @@ This is for colon type programming languages.  For example, `actionscript',
 SEARCH-STRING : string that use to analyze."
   (let ((param-string nil) (pos -1) (run-it t))
     (setq param-string (substring search-string
-                                  (1+ (string-match-p "(" search-string))
+                                  (1+ (jcs-last-char-in-string "(" search-string))
                                   (length search-string)))
     (setq pos (jcs-last-char-in-string ")" param-string))
     (setq param-string (substring param-string 0 pos))
