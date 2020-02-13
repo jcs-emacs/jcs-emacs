@@ -14,11 +14,13 @@
    ((jcs-is-current-major-mode-p '("elisp-mode"
                                    "lisp-mode"
                                    "lisp-interaction-mode"))
-    (ignore-errors (elisp-def)))
+    (unless (ignore-errors (elisp-def))
+      (user-error "[INFO] No definition found for current target")))
    ((and lsp-mode
          (or (ignore-errors (lsp-goto-type-definition))
              (ignore-errors (lsp-goto-implementation)))))
-   (t (dumb-jump-go-prefer-external))))
+   (t (dumb-jump-go-prefer-external)))
+  t)
 
 ;;;###autoload
 (defun jcs-goto-definition-other-window ()
