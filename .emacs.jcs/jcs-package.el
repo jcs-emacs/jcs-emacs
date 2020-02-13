@@ -113,6 +113,7 @@
     move-text
     multiple-cursors
     nasm-mode
+    neotree
     nhexl-mode
     org-bullets
     organize-imports-java
@@ -137,7 +138,6 @@
     scala-mode
     shader-mode
     show-eol
-    sr-speedbar
     ssass-mode
     scss-mode
     smex
