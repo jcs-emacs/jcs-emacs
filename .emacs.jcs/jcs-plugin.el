@@ -654,9 +654,29 @@
   (setq neo-show-hidden-files 't)
   (setq neo-window-width 35)
 
+  (defvar jcs--neotree--refresh-delay 0.2
+    "Delay time after start refreshing `neotree'.")
+
+  (defvar jcs--neotree--refresh-timer nil
+    "Timer for refresh `neotree'.")
+
+  (defun jcs--neotree--kill-timer ()
+    "Kill `neotree' refresh timer."
+    (when (timerp jcs--neotree--refresh-timer)
+      (cancel-timer jcs--neotree--refresh-timer)
+      (setq jcs--neotree--refresh-timer nil)))
+
+  (defun jcs--neotree-start-refresh ()
+    "Start the refresh timer for `neotree'."
+    (jcs--neotree--kill-timer)
+    (setq jcs--neotree--refresh-timer
+          (run-with-timer jcs--neotree--refresh-delay nil
+                          #'jcs--neotree-refresh)))
+
   (defun jcs--neotree-refresh ()
     "Safe refresh `neotree'."
-    (when (functionp 'neotree-refresh) (save-selected-window (neotree-refresh)))))
+    (when (and (functionp 'neotree-refresh) (neo-global--window-exists-p))
+      (save-selected-window (neotree-refresh)))))
 
 
 (use-package origami
