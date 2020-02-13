@@ -11,6 +11,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Removed package `sr-speedbar`. (jcs-emacs-init)
 * Installed new package `neotree`. (jcs-emacs-init)
 * Replace config from `sr-speedbar` to `neotree`. (jcs-emacs-init)
+* Implemented automatically refresh `neotree` using timer. (jcs-emacs-init)
 
 ### 2020-02-11
 
