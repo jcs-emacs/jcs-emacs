@@ -239,8 +239,7 @@ TYPE can be 'buffer or 'window."
     (maximize-window)
 
     ;; Set all local enlarge to false.
-    (jcs-setq-all-local-buffer 'jcs-is-enlarge-current-buffer
-                               nil)
+    (jcs-setq-all-local-buffer 'jcs-is-enlarge-current-buffer nil)
 
     ;; Current buffer is enlarge.
     (setq-local jcs-is-enlarge-current-buffer t)
@@ -281,10 +280,21 @@ i.e. change right window to bottom, or change bottom window to right."
 
             ;; If the window is switched, switch back to original window.
             (when window-switched (other-window 1)))
-        (error "Cannot toggle vertical/horizontal editor layout with more than 2 window in current frame")))))
+        (user-error "[WARNING] Can't toggle vertical/horizontal editor layout with more than 2 windows in current frame")))))
 
 ;;-----------------------------------------------------------
 ;; Util
+
+(defun jcs-switch-to-next-window-larger-in-height ()
+  "Return the next window that have larger height in column."
+  (other-window 1 t)
+  (let ((larger-window nil))
+    (jcs-walk-through-all-windows-once
+     (lambda ()
+       (when (and (not larger-window)
+                  (jcs-window-is-larger-in-height-p))
+         (setq larger-window (selected-window)))))
+    larger-window))
 
 (defun jcs-window-is-larger-in-height-p ()
   "Get the window that are larget than other windows in vertical/column."
