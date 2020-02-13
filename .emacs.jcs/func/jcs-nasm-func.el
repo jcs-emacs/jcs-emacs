@@ -59,10 +59,9 @@
 
     (newline-and-indent)
 
-    (when (equal continue-comment t)
+    (when continue-comment
       (insert ";; ")
-      (save-excursion
-        (indent-line-to 0)))))
+      (save-excursion (indent-line-to 0)))))
 
 ;;;###autoload
 (defun jcs-nasm-comment ()
@@ -91,8 +90,7 @@
           ;; Indent it to the very left/beginning of line.
           (indent-line-to 0))))
 
-    (when (and (equal should-indent t)
-               (jcs-is-end-of-line-p))
+    (when (and should-indent (jcs-is-end-of-line-p))
       (insert " "))))
 
 
