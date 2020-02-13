@@ -8,6 +8,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-02-13
 
 * Implemented switch to next window in height utility function in window module. (jcs-emacs-init)
+* Removed package `sr-speedbar`. (jcs-emacs-init)
+* Installed new package `neotree`. (jcs-emacs-init)
+* Replace config from `sr-speedbar` to `neotree`. (jcs-emacs-init)
 
 ### 2020-02-11
 
