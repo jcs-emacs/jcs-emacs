@@ -58,11 +58,13 @@
 
 (defun jcs--find-file--advice-after (&rest _args)
   "Advice execute after `find-file' command."
+  (jcs--neotree-start-refresh)
   (jcs-buffer-menu-safe-refresh))
 (advice-add 'find-file :after #'jcs--find-file--advice-after)
 
 (defun jcs--switch-to-buffer--advice-after (&rest _args)
   "Advice execute after `switch-to-buffer' command."
+  (jcs--neotree-start-refresh)
   (jcs-buffer-menu-safe-refresh))
 (advice-add 'switch-to-buffer :after #'jcs--switch-to-buffer--advice-after)
 
@@ -83,7 +85,7 @@
           ('jcs-other-window-next (jcs-other-window-next))
           ('jcs-other-window-prev (jcs-other-window-prev)))
       (select-frame-set-input-focus (selected-frame))
-      (jcs--neotree-refresh)
+      (jcs--neotree-start-refresh)
       (jcs-buffer-menu-safe-refresh)
       (jcs--lsp-signature-maybe-stop)
       (jcs--lsp-ui-doc-show-safely))))
