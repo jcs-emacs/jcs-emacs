@@ -83,7 +83,7 @@
           ('jcs-other-window-next (jcs-other-window-next))
           ('jcs-other-window-prev (jcs-other-window-prev)))
       (select-frame-set-input-focus (selected-frame))
-      (jcs-update-speedbar-record-after-select-new-window)  ; Update `speedbar'
+      (jcs--neotree-refresh)
       (jcs-buffer-menu-safe-refresh)
       (jcs--lsp-signature-maybe-stop)
       (jcs--lsp-ui-doc-show-safely))))
