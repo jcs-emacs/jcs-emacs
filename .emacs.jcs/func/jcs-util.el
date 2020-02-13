@@ -186,14 +186,19 @@ If REGEX is non-nil, check by using regular expression."
 (defun jcs--record-window-excursion (fnc)
   "Record the info from an excursion, the FNC and ARGS."
   (save-window-excursion
-    (funcall fnc)
-    (list (current-buffer) (line-number-at-pos) (current-column))))
+    (let ((success (funcall fnc)))
+      (if success
+          (list (current-buffer) (line-number-at-pos) (current-column))
+        nil))))
 
 (defun jcs--record-window-excursion-apply (record)
   "Apply the RECORD from `jcs--record-window-excursion'."
-  (switch-to-buffer-other-window (nth 0 record))
-  (jcs-goto-line (nth 1 record))
-  (move-to-column (nth 2 record)))
+  (if (not record)
+      (user-error "[INFO] No definition found for current target")
+    (jcs-switch-to-next-window-larger-in-height)
+    (switch-to-buffer (nth 0 record))
+    (jcs-goto-line (nth 1 record))
+    (move-to-column (nth 2 record))))
 
 ;;----------------------------------------------------------------------------
 ;; Function
