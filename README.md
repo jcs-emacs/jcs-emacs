@@ -399,7 +399,7 @@ maintainer you want.
 * *Execute Commands* - powered by
 [compile](https://www.emacswiki.org/emacs/CompilationMode).
 * *File Explorer* - powered by
-[sr-speedbar](http://cedet.sourceforge.net/speedbar.shtml).
+[neotree](https://github.com/jaypei/emacs-neotree).
 * *File Header* - powered by
 [file-header](https://github.com/alt-elpa/file-header).
 * *Folding/Unfolding* - powered by
