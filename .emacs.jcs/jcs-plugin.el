@@ -647,6 +647,18 @@
   (advice-add 'mc/mark-lines :override #'jcs--mc/mark-lines))
 
 
+(use-package neotree
+  :defer t
+  :init
+  (setq neo-window-position 'right)
+  (setq neo-show-hidden-files 't)
+  (setq neo-window-width 35)
+
+  (defun jcs--neotree-refresh ()
+    "Safe refresh `neotree'."
+    (when (functionp 'neotree-refresh) (save-selected-window (neotree-refresh)))))
+
+
 (use-package origami
   :defer t
   :config
@@ -807,16 +819,6 @@
   ;; n = n * 2 spaces,
   ;; etc.
   (setq sql-indent-offset 1))
-
-
-(use-package sr-speedbar
-  :defer t
-  :init
-  ;;(setq sr-speedbar-auto-refresh nil)
-  (setq speedbar-show-unknown-files t)  ; show all files
-  (setq speedbar-use-images nil)  ; use text for buttons
-  ;;(setq sr-speedbar-right-side nil)  ; put on left side
-  )
 
 
 (use-package undo-tree
