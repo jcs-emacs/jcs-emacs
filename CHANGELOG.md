@@ -8,6 +8,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-02-14
 
 * Tweak `neotree` customizable variables' value. (jcs-emacs-init)
+* Changed `output`/`compilation` buffer maybe kill buffer default action to 
+ change to other output buffer as higher priority. (jcs-emacs-init)
 
 ### 2020-02-13
 
