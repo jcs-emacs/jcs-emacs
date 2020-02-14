@@ -651,10 +651,11 @@
   :defer t
   :init
   (setq neo-window-position 'right)
-  (setq neo-show-hidden-files 't)
+  (setq neo-show-hidden-files t)
   (setq neo-window-width 35)
+  (setq neo-toggle-window-keep-p t)
 
-  (defvar jcs--neotree--refresh-delay 0.2
+  (defvar jcs--neotree--refresh-delay 0.3
     "Delay time after start refreshing `neotree'.")
 
   (defvar jcs--neotree--refresh-timer nil
