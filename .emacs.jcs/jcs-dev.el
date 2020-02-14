@@ -137,6 +137,8 @@ IN-OP : inpuit operation script."
       (rename-buffer (format "%s%s" (jcs-form-compilation-filename-prefix) (f-filename in-op)) t))
     (message "Executing script file: '%s'" in-op)))
 
+;;----------------------------------------------------------------------------
+;; Functions
 
 ;;;###autoload
 (defun jcs-make-without-asking ()
@@ -161,6 +163,19 @@ IN-OP : inpuit operation script."
   "Open the Update Log from this project."
   (interactive)
   (jcs-open-project-file jcs-project-update-log-file "Update Log file: " t))
+
+;;;###autoload
+(defun jcs-output-maybe-kill-buffer ()
+  "Maybe kill buffer action in `output' buffer."
+  (interactive)
+  (let ((output-len (length (jcs-output-list-compilation)))
+        (prev-output-buf nil))
+    (when (< 1 output-len)
+      (save-window-excursion
+        (jcs-output-prev-compilation)
+        (setq prev-output-buf (current-buffer))))
+    (jcs-maybe-kill-this-buffer)  ; Call the regular one.
+    (when prev-output-buf (switch-to-buffer prev-output-buf))))
 
 
 (provide 'jcs-dev)
