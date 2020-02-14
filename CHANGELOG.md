@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-02-14
+
+* Tweak `neotree` customizable variables' value. (jcs-emacs-init)
+
 ### 2020-02-13
 
 * Implemented switch to next window in height utility function in window module. (jcs-emacs-init)
