@@ -394,6 +394,8 @@ Note this is opposite logic to the toggle mode function."
   (setq buffer-face-mode-face '(:height 120))
   (buffer-face-mode)
 
+  (define-key compilation-mode-map (kbd "M-k") #'jcs-output-maybe-kill-buffer)
+
   (define-key compilation-mode-map (kbd "C-_") #'jcs-output-prev-compilation)
   (define-key compilation-mode-map (kbd "C-+") #'jcs-output-next-compilation))
 
