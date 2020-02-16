@@ -653,13 +653,19 @@
   (setq neo-window-position 'right)
   (setq neo-show-hidden-files t)
   (setq neo-window-width 35)
-  (setq neo-toggle-window-keep-p t)
+  (setq neo-toggle-window-keep-p nil)
+  (setq neo-theme 'ascii)
+  (setq neo-hide-cursor t)
+  (setq neo-smart-open t)
 
   (defvar jcs--neotree--refresh-delay 0.3
     "Delay time after start refreshing `neotree'.")
 
   (defvar jcs--neotree--refresh-timer nil
     "Timer for refresh `neotree'.")
+
+  (defvar jcs--neotree--last-window nil
+    "Record last window before leaving `neotree'.")
 
   (defun jcs--neotree--kill-timer ()
     "Kill `neotree' refresh timer."
@@ -677,7 +683,16 @@
   (defun jcs--neotree-refresh ()
     "Safe refresh `neotree'."
     (when (and (functionp 'neotree-refresh) (neo-global--window-exists-p))
-      (save-selected-window (neotree-refresh)))))
+      (save-selected-window (neotree-refresh))))
+
+  (defun jcs--neotree-toggle--advice-around (fnc &rest args)
+    "Advice execute around `neotree-toggle' command."
+    (unless (neo-global--window-exists-p)
+      (setq jcs--neotree--last-window (selected-window)))
+    (apply fnc args)
+    (unless (neo-global--window-exists-p)
+      (select-window jcs--neotree--last-window)))
+  (advice-add 'neotree-toggle :around #'jcs--neotree-toggle--advice-around))
 
 
 (use-package origami
@@ -831,7 +846,7 @@
 
 (use-package sql-indent
   :defer t
-  :config
+  :init
   ;; URL: https://www.emacswiki.org/emacs/SqlIndent
 
   ;; 1 = 2 spaces,
@@ -867,9 +882,7 @@
   ;; Associate an engine
   (setq web-mode-engines-alist
         '(("php"    . "\\.phtml\\'")
-          ("blade"  . "\\.blade\\."))
-        )
-
+          ("blade"  . "\\.blade\\.")))
   (setq web-mode-content-types-alist
         '(("json" . "/some/path/.*\\.api\\'")
           ("xml"  . "/other/path/.*\\.api\\'")
