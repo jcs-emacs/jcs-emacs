@@ -74,6 +74,7 @@
     feebleline
     flx
     flycheck
+    flycheck-grammarly
     flycheck-popup-tip
     flycheck-pos-tip
     focus
