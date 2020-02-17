@@ -73,7 +73,6 @@
     exec-path-from-shell
     feebleline
     flx
-    flycheck
     flycheck-grammarly
     flycheck-popup-tip
     flycheck-pos-tip
@@ -88,7 +87,6 @@
     google-translate
     goto-char-preview
     goto-line-preview
-    grammarly
     haskell-mode
     haxe-mode
     highlight-indent-guides
