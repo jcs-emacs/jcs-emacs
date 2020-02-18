@@ -38,7 +38,7 @@
     (dolist (mode oop-highlight-modes)
       (font-lock-add-keywords
        mode
-       '(("\\(?:^\\|\\s-\\)\\(@[^ \"'\t\r\n]+\\)" 1 'jcs-oop-tag-face t)
+       '(("\\(?:^\\|\\s-\\)\\(@[^ \"'{}()\t\r\n]+\\)" 1 'jcs-oop-tag-face t)
          ("@[^ \t\r\n]+\\(?:^\\|\\s-\\)\\([\\[{][^\]}]*.\\)" 1 'jcs-oop-type-face t)
          ;; NOTE: Doc String Style:
          ;; @param { TypeName } `ValueTag' : value tag description..
