@@ -53,7 +53,7 @@
   "Advice execute before `find-file' command."
   ;; Fixed `css-mode' opening virtual buffer with directory error. You just
   ;; need to preload this before actually create the virtual buffer.
-  (require 'eww))
+  (ignore-errors (require 'eww)))
 (advice-add 'find-file :before #'jcs--find-file--advice-before)
 
 (defun jcs--find-file--advice-after (&rest _args)
