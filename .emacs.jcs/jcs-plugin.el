@@ -141,6 +141,11 @@
   (setq dashboard-set-navigator t)
   (setq dashboard-set-navigator nil)
   :config
+  (defun jcs--dashboard-insert-projects--advice-around (fnc &rest args)
+    "Advice execute around `dashboard-insert-projects' function."
+    (jcs-mute-apply (lambda () (apply fnc args))))
+  (advice-add 'dashboard-insert-projects :around #'jcs--dashboard-insert-projects--advice-around)
+
   (defun jcs--dashboard-get-banner-path (&rest _)
     "Return the full path to banner."
     "~/.emacs.jcs/banner/sink.txt")
