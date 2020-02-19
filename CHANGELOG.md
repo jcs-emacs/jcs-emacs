@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-02-20
+
+* Mute dashboard insert project log. (jcs-emacs-init)
+* Fixed load `eww` issue from emacs version `27.0.60`. (jcs-emacs-init)
+
 ### 2020-02-17
 
 * Installed new package `flycheck-grammarly`. (jcs-emacs-init)
