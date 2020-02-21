@@ -48,6 +48,7 @@
     cmake-mode
     cobol-mode
     com-css-sort
+    command-log-mode
     company
     company-fuzzy
     company-lsp
