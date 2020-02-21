@@ -171,6 +171,7 @@
   (diminish 'auto-fill-mode)
   (with-eval-after-load 'auto-highlight-symbol (diminish 'auto-highlight-symbol-mode))
   (with-eval-after-load 'auto-rename-tag (diminish 'auto-rename-tag-mode))
+  (with-eval-after-load 'command-log-mode (diminish 'command-log-mode))
   (with-eval-after-load 'company (diminish 'company-mode))
   (with-eval-after-load 'company-fuzzy (diminish 'company-fuzzy-mode))
   (diminish 'eldoc-mode)
