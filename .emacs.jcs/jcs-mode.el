@@ -384,15 +384,6 @@ Note this is opposite logic to the toggle mode function."
 ;; So just put all the startup modes' configuration here.
 
 ;;==============================
-;;       Buffer Menu
-
-(defun jcs-tabulated-list-mode-hook ()
-  "Hook for `tabulated-list-mode'."
-  (buffer-wrap-mode 1))
-
-(add-hook 'tabulated-list-mode-hook 'jcs-tabulated-list-mode-hook)
-
-;;==============================
 ;;       Compilation
 
 (defun jcs-compilation-mode-hook ()
@@ -409,6 +400,15 @@ Note this is opposite logic to the toggle mode function."
   (define-key compilation-mode-map (kbd "C-+") #'jcs-output-next-compilation))
 
 (add-hook 'compilation-mode-hook 'jcs-compilation-mode-hook)
+
+;;==============================
+;;       Tabulated List
+
+(defun jcs-tabulated-list-mode-hook ()
+  "Hook for `tabulated-list-mode'."
+  (buffer-wrap-mode 1))
+
+(add-hook 'tabulated-list-mode-hook 'jcs-tabulated-list-mode-hook)
 
 ;;==============================
 ;;        Text Mode
