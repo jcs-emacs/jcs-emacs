@@ -17,6 +17,19 @@
   (setq browse-kill-ring-separator-face 'font-lock-comment-face))
 
 
+(use-package buffer-wrap
+  :defer t
+  :config
+  (defun jcs--buffer-wrap-post-command-hook ()
+    "Buffer Wrap post command hook."
+    (when tabulated-list-format
+      (unless (ignore-errors (tabulated-list-get-entry))
+        (if (> 0 buffer-wrap--delta-lines)
+            (jcs-goto-line (1- (line-number-at-pos (point-max))))
+          (ignore-errors (forward-line 1))))))
+  (add-hook 'buffer-wrap-post-command-hook 'jcs--buffer-wrap-post-command-hook))
+
+
 (use-package centaur-tabs
   :defer t
   :init
@@ -698,7 +711,12 @@
     (apply fnc args)
     (unless (neo-global--window-exists-p)
       (select-window jcs--neotree--last-window)))
-  (advice-add 'neotree-toggle :around #'jcs--neotree-toggle--advice-around))
+  (advice-add 'neotree-toggle :around #'jcs--neotree-toggle--advice-around)
+  :config
+  (defun jcs--neo-after-create-hook (&rest _)
+    "Hooks called after creating the neotree buffer."
+    (buffer-wrap-mode 1))
+  (add-hook 'neo-after-create-hook 'jcs--neo-after-create-hook))
 
 
 (use-package origami
