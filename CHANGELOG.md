@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-02-22
+
+* Installed new package manually `buffer-wrap`. (jcs-emacs-init)
+* Removed package manually `tabulated-list-wrap`. (jcs-emacs-init)
+
 ### 2020-02-21
 
 * Installed new package `command-log-mode`. (jcs-emacs-init)
