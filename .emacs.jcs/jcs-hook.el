@@ -218,8 +218,7 @@
 
 (defun jcs-after-change-major-mode-hook ()
   "Hook run after major mode changes."
-  (unless (jcs-reload-emacs-reloading-p)
-    (jcs-active-line-numbers-by-mode)))
+  (unless (jcs-reload-emacs-reloading-p) (jcs-active-line-numbers-by-mode)))
 (add-hook 'after-change-major-mode-hook 'jcs-after-change-major-mode-hook)
 
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
