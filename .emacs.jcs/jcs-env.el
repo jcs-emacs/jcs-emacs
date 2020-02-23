@@ -20,24 +20,25 @@
   "Is BSD.")
 
 
-(defvar jcs-daily-todo-file "" "Open the daily todo file.")
-(defvar jcs-log-file "" "Log file path, file location.")
+(defconst jcs-daily-todo-file "~/TODO_JenChieh/code/todo.txt" "Open the daily todo file.")
+(defconst jcs-log-file "~/TODO_JenChieh/code/log.txt" "Log file path, file location.")
 
-(defconst jcs-project-todo-file "TODO" "Project TODO file.")
-(defconst jcs-project-update-log-file "Update_Log" "Project Update Log file.")
+(defconst jcs-project-todo-file "TODO[.]*[[:ascii:]]*" "Project TODO file.")
+(defconst jcs-project-update-log-file "CHANGELOG[.]*[[:ascii:]]*" "Project Update Log file.")
 
-(defconst jcs-makescript "[[:ascii:]]*build[[:ascii:]]*.[[:ascii:]]+"
+(defvar jcs-makescript "[[:ascii:]]*build[[:ascii:]]*"
   "Build/Make script's file name.")
-(defconst jcs-runscript "[[:ascii:]]*run[[:ascii:]]*.[[:ascii:]]+"
+(defvar jcs-runscript "[[:ascii:]]*run[[:ascii:]]*"
   "Execute/Run script's file name.")
+
+(defvar jcs-use-sh-p (or jcs-is-mac jcs-is-linux jcs-is-bsd)
+  "Flag if the system use shell script.")
 
 (cond
  (jcs-is-windows
-  (setq jcs-daily-todo-file "C:/TODO_JenChieh/code/todo.txt")
-  (setq jcs-log-file "C:/TODO_JenChieh/code/log.txt"))
+  (setq jcs-makescript (concat jcs-makescript "[.]bat"))
+  (setq jcs-runscript (concat jcs-runscript "[.]bat")))
  (jcs-is-mac
-  (setq jcs-daily-todo-file "/home/TODO_JenChieh/code/todo.txt")
-  (setq jcs-log-file "/home/TODO_JenChieh/code/log.txt")
   (cua-mode 0)
   ;;(osx-key-mode 0)
   (setq mac-command-modifier 'meta)
@@ -49,8 +50,15 @@
   (setq mac-command-key-is-meta t)
   (setq mac-pass-command-to-system nil))
  (jcs-is-linux
-  (setq jcs-daily-todo-file "/home/TODO_JenChieh/code/todo.txt")
-  (setq jcs-log-file "/home/TODO_JenChieh/code/log.txt")))
+  ;; None..
+  )
+ (jcs-is-bsd
+  ;; None..
+  ))
+
+(when jcs-use-sh-p
+  (setq jcs-makescript (concat jcs-makescript "[.]sh"))
+  (setq jcs-runscript (concat jcs-runscript "[.]sh")))
 
 
 ;;; Backup Files
