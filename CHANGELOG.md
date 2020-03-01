@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-03-01
+
+* Switch `ffmpeg-player` from source `quelpa` to `melpa`. (jcs-emacs-init)
+
 ### 2020-02-25
 
 * Removed `dashboard` mute when insert project sections. (jcs-emacs-init)
