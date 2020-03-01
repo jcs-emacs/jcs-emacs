@@ -73,6 +73,7 @@
     esup
     exec-path-from-shell
     feebleline
+    ffmpeg-player
     flx
     flycheck-grammarly
     flycheck-popup-tip
@@ -286,7 +287,6 @@
 (defconst jcs-package-manually-install-list
   '(("buffer-wrap" "jcs-elpa/buffer-wrap" "github")
     ("company-quickhelp-terminal" "jcs-elpa/company-quickhelp-terminal" "github")
-    ("ffmpeg-player" "jcs-elpa/ffmpeg-player" "github")
     ("file-header" "jcs-elpa/file-header" "github")
     ("jayces-mode" "jcs-elpa/jayces-mode" "github")
     ("multi-shell" "jcs-elpa/multi-shell" "github")
