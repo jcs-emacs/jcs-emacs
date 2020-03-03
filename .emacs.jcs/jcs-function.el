@@ -163,7 +163,7 @@
   (setq jcs--buffer-menu-return-delay nil)
   (unless jcs-buffer-menu-switch-buffer-refreshing
     (setq jcs--buffer-menu--fake-header-already-appears nil)
-    (setq tabulated-list--header-string jcs--buffer-menu-search-title)))
+    (setq-local tabulated-list--header-string jcs--buffer-menu-search-title)))
 (advice-add 'buffer-menu :before #'jcs--buffer-menu--advice-before)
 
 (defun jcs--buffer-menu--advice-around (fnc &rest args)

@@ -148,7 +148,7 @@ From scale 0 to 100.")
   (jcs--safe-print-fake-header)
   ;; NOTE: Ensure title exists.
   (when (> (length jcs--buffer-menu-search-title) (length tabulated-list--header-string))
-    (setq tabulated-list--header-string jcs--buffer-menu-search-title))
+    (setq-local tabulated-list--header-string jcs--buffer-menu-search-title))
   (setq jcs--buffer-menu--pattern (substring tabulated-list--header-string
                                              (length jcs--buffer-menu-search-title)
                                              (length tabulated-list--header-string)))
