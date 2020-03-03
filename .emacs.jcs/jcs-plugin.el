@@ -219,6 +219,7 @@
   (setq diminish-buffer-list '("[*]helm" "[*]esup-" "[*]quelpa-"
                                "[*]compilation" "[*]output"
                                "[*]Async Shell Command[*]:" "[*]shell" "[*]eshell"
+                               "[*]emacs[*]"  ; From `async'
                                "[*]lsp-" "[*][a-zA-Z0-9]+[-]*ls"
                                "[*]company"
                                "[*]SPEEDBAR"))
