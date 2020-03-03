@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-03-03
+
+* Use local variable for `tabulated-list`'s header string. (jcs-emacs-init)
+* Diminish mode `buffer-wrap-mode` for `buffer-wrap` package. (jcs-emacs-init)
+
 ### 2020-03-01
 
 * Switch `ffmpeg-player` from source `quelpa` to `melpa`. (jcs-emacs-init)
