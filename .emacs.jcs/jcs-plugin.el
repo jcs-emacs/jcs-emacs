@@ -24,11 +24,14 @@
     "Buffer Wrap post command hook."
     (when tabulated-list-format
       (unless (ignore-errors (tabulated-list-get-entry))
-        (if (< 0 buffer-wrap--delta-lines)
-            (ignore-errors (forward-line 1))
-          (jcs-goto-line (1- (line-number-at-pos (point-max))))
-          (unless (ignore-errors (tabulated-list-get-entry))
-            (ignore-errors (forward-line 1)))))))
+        (cond ((= 0 buffer-wrap--delta-lines)
+               (goto-char (point-min)))
+              ((< 0 buffer-wrap--delta-lines)
+               (ignore-errors (forward-line 1)))
+              (t
+               (jcs-goto-line (1- (line-number-at-pos (point-max))))))
+        (unless (ignore-errors (tabulated-list-get-entry))
+          (ignore-errors (forward-line 1))))))
   (add-hook 'buffer-wrap-post-command-hook 'jcs--buffer-wrap-post-command-hook))
 
 
