@@ -8,6 +8,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-03-05
 
 * Installed new package `emojify`. (jcs-emacs-init)
+* Fixed buffer wrap can't correct goes to corresponding first line 
+ isssue. (jcs-emacs-init)
 
 ### 2020-03-03
 
