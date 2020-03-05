@@ -68,6 +68,7 @@
     elisp-def
     elixir-mode
     emmet-mode
+    emojify
     erlang
     ess
     esup
