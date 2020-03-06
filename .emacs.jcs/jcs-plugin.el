@@ -109,6 +109,13 @@
 
   (global-company-mode t))
 
+(use-package company-emoji
+  :defer t
+  :init
+  (setq emojify-company-tooltips-p t)
+  (with-eval-after-load 'company
+    (add-to-list 'company-backends 'company-emoji)))
+
 (use-package company-fuzzy
   :defer t
   :init
