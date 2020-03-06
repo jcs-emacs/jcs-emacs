@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-03-06
+
+* Installed new package `company-emojify`. (jcs-emacs-init)
+
 ### 2020-03-05
 
 * Installed new package `emojify`. (jcs-emacs-init)
