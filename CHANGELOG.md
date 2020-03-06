@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-03-06
 
 * Installed new package `company-emojify`. (jcs-emacs-init)
+* Installed new package `emoji-github` manually. (jcs-emacs-init)
 
 ### 2020-03-05
 
