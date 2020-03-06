@@ -50,6 +50,7 @@
     com-css-sort
     command-log-mode
     company
+    company-emoji
     company-fuzzy
     company-lsp
     company-quickhelp
