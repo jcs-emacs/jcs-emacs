@@ -11,15 +11,13 @@
   "Check if the current input overlaps with other options.
 Here we only check for the first option because the first option should be the
 closest approach to the current input."
-  (let ((first-candidate (jcs-string-at-line 2 t)))
+  (let ((first-candidate (f-filename (jcs-string-at-line 2 t))))
     (if (string-empty-p ivy-text) nil
-      (string-match-p ivy-text first-candidate))))
+      (not (string-match-p ivy-text first-candidate)))))
 
 (defun jcs--ivy-previous-line--advice-after (&rest _)
   "Advice execute after `ivy-previous-line' function."
-  (when (and (= ivy--index -1)
-             ;; Only when renaming is accepted.
-             (not (jcs--ivy-overlaps-p)))
+  (when (and (= ivy--index -1) (not (jcs--ivy-overlaps-p)))
     (call-interactively #'ivy-previous-line)))
 (advice-add 'ivy-previous-line :after #'jcs--ivy-previous-line--advice-after)
 
