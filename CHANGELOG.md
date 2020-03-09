@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-03-09
 
 * Fixed `ivy` overlap logic. (jcs-emacs-init)
+* Changed using minor mode for `company-quickhelp-terminal` package. (jcs-emacs-init)
 
 ### 2020-03-06
 
