@@ -143,7 +143,7 @@
   :defer t
   :init
   (with-eval-after-load 'company-quickhelp
-    (require 'company-quickhelp-terminal)))
+    (company-quickhelp-terminal-mode 1)))
 
 
 (use-package dashboard
