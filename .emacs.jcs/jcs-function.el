@@ -175,6 +175,12 @@
     (apply fnc args)))
 (advice-add 'buffer-menu :around #'jcs--buffer-menu--advice-around)
 
+(defun jcs--buffer-menu--advice-after (&rest _)
+  "Advice execute after `buffer-menu' command."
+  (unless jcs-buffer-menu-switch-buffer-refreshing
+    (setq-local tabulated-list--header-string jcs--buffer-menu-search-title)))
+(advice-add 'buffer-menu :after #'jcs--buffer-menu--advice-after)
+
 
 (defvar jcs-buffer-menu-switch-buffer-refreshing nil
   "Flag to check if current buffer menu refresing.")
