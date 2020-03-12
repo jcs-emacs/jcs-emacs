@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-03-12
+
+* Changed source for `company-quickhelp-terminal` package from 
+`quelpa` to `melpa`. (jcs-emacs-init)
+
 ### 2020-03-11
 
 * Fixed not refresh issue header string from `buffer-menu`. (jcs-emacs-init)
