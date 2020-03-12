@@ -54,6 +54,7 @@
     company-fuzzy
     company-lsp
     company-quickhelp
+    company-quickhelp-terminal
     counsel
     counsel-projectile
     csharp-mode
@@ -288,7 +289,6 @@
 
 (defconst jcs-package-manually-install-list
   '(("buffer-wrap" "jcs-elpa/buffer-wrap" "github")
-    ("company-quickhelp-terminal" "jcs-elpa/company-quickhelp-terminal" "github")
     ("emoji-github" "jcs-elpa/emoji-github" "github")
     ("file-header" "jcs-elpa/file-header" "github")
     ("jayces-mode" "jcs-elpa/jayces-mode" "github")
