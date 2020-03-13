@@ -114,6 +114,7 @@
     manage-minor-mode
     markdown-mode
     markdown-toc
+    masm-mode
     move-text
     multiple-cursors
     nasm-mode
