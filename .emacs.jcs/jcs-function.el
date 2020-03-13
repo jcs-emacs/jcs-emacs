@@ -834,6 +834,8 @@ NO-PROMPT : Don't prompt the overwrap message."
 (with-eval-after-load 'preproc-font-lock (require 'jcs-preproc-func))
 
 (with-eval-after-load 'org (require 'jcs-org-func))
+(jcs-with-eval-after-load-multiple  ; Assembly Language
+ '(masm-mode nasm-mode) #'(lambda () (require 'jcs-asm-func)))
 (with-eval-after-load 'cc-mode
   (require 'jcs-cc-func)
   (require 'jcs-java-func))
@@ -843,7 +845,6 @@ NO-PROMPT : Don't prompt the overwrap message."
 (with-eval-after-load 'lua-mode (require 'jcs-lua-func))
 (with-eval-after-load 'make-mode (require 'jcs-make-func))
 (with-eval-after-load 'markdown-mode (require 'jcs-markdown-func))
-(with-eval-after-load 'nasm-mode (require 'jcs-nasm-func))
 (with-eval-after-load 'python-mode (require 'jcs-python-func))
 (with-eval-after-load 'sh-script (require 'jcs-sh-func))
 (with-eval-after-load 'typescript-mode (require 'jcs-typescript-func))

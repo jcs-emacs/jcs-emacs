@@ -497,6 +497,8 @@ Note this is opposite logic to the toggle mode function."
 (with-eval-after-load 'yasnippet (require 'jcs-snippet-mode))
 
 (with-eval-after-load 'actionscript-mode (require 'jcs-actionscript-mode))
+(jcs-with-eval-after-load-multiple  ; Assembly Language
+ '(masm-mode nasm-mode) #'(lambda () (require 'jcs-asm-mode)))
 (with-eval-after-load 'basic-mode (require 'jcs-basic-mode))
 (with-eval-after-load 'bat-mode (require 'jcs-batch-mode))
 (with-eval-after-load 'cc-mode
@@ -532,7 +534,8 @@ Note this is opposite logic to the toggle mode function."
 (with-eval-after-load 'lua-mode (require 'jcs-lua-mode))
 (with-eval-after-load 'make-mode (require 'jcs-make-mode))
 (with-eval-after-load 'markdown-mode (require 'jcs-markdown-mode))
-(with-eval-after-load 'nasm-mode (require 'jcs-nasm-mode))
+(with-eval-after-load 'masm-mode (require 'jcs-asm-mode))
+(with-eval-after-load 'nasm-mode (require 'jcs-asm-mode))
 (with-eval-after-load 'nxml-mode (require 'jcs-xml-mode))
 (with-eval-after-load 'opascal (require 'jcs-opascal-mode))
 (with-eval-after-load 'org (require 'jcs-org-mode))
@@ -656,7 +659,10 @@ PR : pair file `regexp' and file mode `symbol'."
   (jcs-add-auto-mode-alist '("\\.mak'?\\'" . makefile-mode))
   (jcs-add-auto-mode-alist '("\\.makfile'?\\'" . makefile-mode))
   (jcs-add-auto-mode-alist '("\\(/\\|\\`\\)[Mm]akefile" . makefile-mode))
-  (jcs-add-auto-mode-alist '("\\.md'?\\'" . markdown-mode)))
+  (jcs-add-auto-mode-alist '("\\.md'?\\'" . markdown-mode))
+
+  (jcs-add-auto-mode-alist '("\\.asm'?\\'" . masm-mode))
+  (jcs-add-auto-mode-alist '("\\.inc'?\\'" . masm-mode)))
 
 ;;; N
 (progn
