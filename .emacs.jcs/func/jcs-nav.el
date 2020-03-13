@@ -50,6 +50,7 @@
                                       "cobol-mode"
                                       "dockerfile-mode"
                                       "makefile-mode"
+                                      "masm-mode"
                                       "nasm-mode"
                                       "python-mode"
                                       "yaml-mode"))
@@ -79,6 +80,7 @@
                                       "cobol-mode"
                                       "dockerfile-mode"
                                       "makefile-mode"
+                                      "masm-mode"
                                       "nasm-mode"
                                       "python-mode"
                                       "yaml-mode"))
