@@ -75,8 +75,8 @@
         jcs-move-backward-open-sqrParen
         jcs-move-forward-close-sqrParen
         jcs-move-forward-comma
-        jcs-nasm-comment
-        jcs-nasm-return
+        jcs-asm-comment
+        jcs-asm-return
         jcs-next-line
         jcs-open-all-nodes
         jcs-open-node
