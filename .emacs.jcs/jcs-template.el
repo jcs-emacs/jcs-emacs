@@ -11,18 +11,19 @@
   "Insert the header if certain conditions met.
 If one of the REG-LST, we execute INSERT-FUNC then, CI means `call-interactively'."
   (require 'f)
-  (when (and buffer-file-name
-             (not (file-exists-p buffer-file-name))
-             (jcs-is-contain-list-string-regexp reg-lst (f-filename buffer-file-name)))
-    (jcs-insert-header-if-empty insert-func ci)))
+  (if (and buffer-file-name
+           (not (file-exists-p buffer-file-name))
+           (jcs-is-contain-list-string-regexp reg-lst (f-filename buffer-file-name)))
+      (jcs-insert-header-if-empty insert-func ci)
+    nil))
 
 (defun jcs-insert-header-if-empty (insert-func &optional ci)
   "Execute INSERT-FUNC if empty, CI means `call-interactively'."
-  (when (jcs-is-current-file-empty-p)
-    (if ci
-        (call-interactively insert-func)
-      (funcall insert-func))
-    (goto-char (point-min))))
+  (if (jcs-is-current-file-empty-p)
+      (progn
+        (if ci (call-interactively insert-func) (funcall insert-func))
+        (goto-char (point-min)))
+    nil))
 
 ;;---------------------------------------------
 ;; Buffer String
@@ -162,9 +163,13 @@ in order to take effect.  Half hot reloading process."
   (file-header-insert-template-by-file-path "~/.emacs.jcs/template/actionscript/default.txt"))
 
 ;; Assembly Language
-(defun jcs-insert-asm-template ()
-  "Header for Assembly Language file."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/assembly/default.txt"))
+(defun jcs-insert-masm-template ()
+  "Header for MASM file."
+  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/assembly/masm.txt"))
+
+(defun jcs-insert-nasm-template ()
+  "Header for NASM file."
+  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/assembly/nasm.txt"))
 
 ;;; BASIC
 (defun jcs-insert-basic-template ()
