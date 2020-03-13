@@ -1,10 +1,37 @@
-;;; jcs-nasm-func.el --- Assembly Language related.  -*- lexical-binding: t -*-
+;;; jcs-asm-func.el --- Assembly Language related.  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
 
 ;; First load the mode to prevent overwrite after.
+(require 'masm-mode)
 (require 'nasm-mode)
+
+
+(defvar jcs-asm--asking-mode nil
+  "Flag for asking the Assembly Language mode.")
+
+;;;###autoload
+(defun jcs-asm-ask-mode (mode)
+  "Ask the MODE to run."
+  (interactive
+   (list (completing-read
+          "Major mode for this Assembly Language file: " '("masm"
+                                                           "nasm"))))
+  (cond ((string= mode "masm") (masm-mode))
+        ((string= mode "nasm") (nasm-mode))))
+
+;;;###autoload
+(defun jcs-asm-ask-source (sc)
+  "Ask the source SC for editing Assembly Language file."
+  (interactive
+   (list (completing-read
+          "Major source for this Assembly Language file: " '("masm"
+                                                             "nasm"))))
+  (let ((jcs-asm--asking-mode t))
+    (cond ((string= sc "masm") (masm-mode) (jcs-insert-masm-template))
+          ((string= sc "nasm") (nasm-mode) (jcs-insert-nasm-template)))))
+
 
 ;;;###autoload
 (defun nasm-indent-line ()
@@ -43,7 +70,7 @@
     do-indent))
 
 ;;;###autoload
-(defun jcs-nasm-return ()
+(defun jcs-asm-return ()
   "Return key for `nasm-mode'."
   (interactive)
   (let ((continue-comment nil))
@@ -64,7 +91,7 @@
       (save-excursion (indent-line-to 0)))))
 
 ;;;###autoload
-(defun jcs-nasm-comment ()
+(defun jcs-asm-comment ()
   "Comment key for `nasm-mode'."
   (interactive)
   ;; Call normal nasm comment function before do our
@@ -94,5 +121,5 @@
       (insert " "))))
 
 
-(provide 'jcs-nasm-func)
-;;; jcs-nasm-func.el ends here
+(provide 'jcs-asm-func)
+;;; jcs-asm-func.el ends here
