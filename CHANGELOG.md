@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-03-16
+
+* Installed new package `manage-minor-mode-table`. (jcs-emacs-init)
+
 ### 2020-03-13
 
 * Installed new package `masm-mode`. (jcs-emacs-init)
