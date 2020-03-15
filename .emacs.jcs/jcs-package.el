@@ -41,6 +41,7 @@
     auto-rename-tag
     basic-mode
     buffer-move
+    buffer-wrap
     browse-kill-ring
     centaur-tabs
     clojure-mode
@@ -290,8 +291,7 @@
 ;;----------------------------------
 
 (defconst jcs-package-manually-install-list
-  '(("buffer-wrap" "jcs-elpa/buffer-wrap" "github")
-    ("emoji-github" "jcs-elpa/emoji-github" "github")
+  '(("emoji-github" "jcs-elpa/emoji-github" "github")
     ("file-header" "jcs-elpa/file-header" "github")
     ("jayces-mode" "jcs-elpa/jayces-mode" "github")
     ("multi-shell" "jcs-elpa/multi-shell" "github")
