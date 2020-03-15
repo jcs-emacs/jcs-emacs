@@ -112,6 +112,7 @@
     lua-mode
     magit
     manage-minor-mode
+    manage-minor-mode-table
     markdown-mode
     markdown-toc
     masm-mode
