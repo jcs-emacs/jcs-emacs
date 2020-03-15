@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-03-16
 
 * Installed new package `manage-minor-mode-table`. (jcs-emacs-init)
+* Installed new package `buffer-wrap`. (jcs-emacs-init)
 
 ### 2020-03-13
 
