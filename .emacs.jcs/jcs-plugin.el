@@ -617,6 +617,9 @@
         lsp-ui-sideline-show-diagnostics nil
         lsp-ui-sideline-ignore-duplicate t)
 
+  (defvar jcs--lsp-ui--doc-timer nil
+    "Self timer to show document.")
+
   (defun jcs--lsp-ui-mode--enabled-p ()
     "Check if `lsp-ui-mode' enabled."
     (and (boundp 'lsp-ui-mode) lsp-ui-mode))
@@ -626,13 +629,20 @@
       (cancel-timer lsp-ui-doc--timer)))
   (defun jcs--lsp-ui-doc-show-safely ()
     "Safe way to show lsp UI document."
-    (if (and
-         (jcs--lsp-ui-mode--enabled-p)
-         (not jcs--lsp--executing-command)
-         (not (jcs-is-command-these-commands this-command
-                                             '(save-buffers-kill-terminal))))
-        (ignore-errors (call-interactively #'lsp-ui-doc-show))
-      (jcs--lsp-current-last-signature-buffer)))
+    (when (timerp jcs--lsp-ui--doc-timer)
+      (cancel-timer jcs--lsp-ui--doc-timer)
+      (setq jcs--lsp-ui--doc-timer nil))
+    (setq jcs--lsp-ui--doc-timer
+          (run-with-idle-timer
+           lsp-ui-doc-delay nil
+           (lambda ()
+             (if (and
+                  (jcs--lsp-ui-mode--enabled-p)
+                  (not jcs--lsp--executing-command)
+                  (not (jcs-is-command-these-commands this-command
+                                                      '(save-buffers-kill-terminal))))
+                 (ignore-errors (call-interactively #'lsp-ui-doc-show))
+               (jcs--lsp-current-last-signature-buffer))))))
   (defun jcs--lsp-ui-doc--hide-frame ()
     "Safe way to call `lsp-ui-doc--hide-frame' function."
     (when (and (functionp 'lsp-ui-doc--hide-frame) (not jcs--lsp-lv-recording))
