@@ -41,7 +41,7 @@
 
 
 # jcs-emacs-init
-> An Emacs configuration bundle.
+> Consistent Emacs configuration for all platforms.
 
 This is Jen-Chieh Shen's emacs configuration. This configuration
 started from [Casey Muratori](https://github.com/cmuratori)'s
