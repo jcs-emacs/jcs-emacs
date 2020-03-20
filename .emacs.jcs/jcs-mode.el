@@ -583,6 +583,10 @@ PR : pair file `regexp' and file mode `symbol'."
   (jcs-add-auto-mode-alist '("\\.cin'?\\'" . c++-mode))
   (jcs-add-auto-mode-alist '("\\.cpp'?\\'" . c++-mode))
   (jcs-add-auto-mode-alist '("\\.hpp'?\\'" . c++-mode))
+  (jcs-add-auto-mode-alist '("\\.inl'?\\'" . c++-mode))
+  (jcs-add-auto-mode-alist '("\\.rdc'?\\'" . c++-mode))
+  (jcs-add-auto-mode-alist '("\\.cc'?\\'" . c++-mode))
+  (jcs-add-auto-mode-alist '("\\.c8'?\\'" . c++-mode))
   ;;(jcs-add-auto-mode-alist '("\\.h'?\\'" . c-mode))
   (jcs-add-auto-mode-alist '("\\.c'?\\'" . c-mode))
   (jcs-add-auto-mode-alist '("\\.clj'?\\'" . clojure-mode))
@@ -611,6 +615,8 @@ PR : pair file `regexp' and file mode `symbol'."
 
 ;;; G
 (progn
+  (jcs-add-auto-mode-alist '("\\.gen'?\\'" . gen-mode))
+
   (jcs-add-auto-mode-alist '("\\.gd'?\\'" . gdscript-mode))
 
   (jcs-add-auto-mode-alist '("\\.gitattributes'?\\'" . gitattributes-mode))
@@ -672,6 +678,7 @@ PR : pair file `regexp' and file mode `symbol'."
 ;;; O
 (progn
   (jcs-add-auto-mode-alist '("\\.m'?\\'" . objc-mode))
+  (jcs-add-auto-mode-alist '("\\.mm'?\\'" . objc-mode))
   (jcs-add-auto-mode-alist '("\\.dpk'?\\'" . opascal-mode))
   (jcs-add-auto-mode-alist '("\\.dpr'?\\'" . opascal-mode))
   (jcs-add-auto-mode-alist '("\\.org'?\\'" . org-mode)))
