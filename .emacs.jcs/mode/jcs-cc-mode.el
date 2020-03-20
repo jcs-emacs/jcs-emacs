@@ -6,28 +6,6 @@
 (require 'cc-mode)
 
 
-;; Accepted file extensions and their appropriate modes
-(setq auto-mode-alist
-      (append
-       '(("\\.cpp$"    . c++-mode)
-         ("\\.hin$"    . c++-mode)
-         ("\\.cin$"    . c++-mode)
-         ("\\.inl$"    . c++-mode)
-         ("\\.rdc$"    . c++-mode)
-         ("\\.h$"    . c++-mode)
-         ("\\.c$"   . c++-mode)
-         ("\\.cc$"   . c++-mode)
-         ("\\.c8$"   . c++-mode)
-         ("\\.h$"    .c++-mode)
-         ("\\.hpp$"    .c++-mode)
-         ("\\.txt$" . indented-text-mode)
-         ("\\.emacs$" . emacs-lisp-mode)
-         ("\\.gen$" . gen-mode)
-         ("\\.ms$" . fundamental-mode)
-         ("\\.m$" . objc-mode)
-         ("\\.mm$" . objc-mode)
-         ) auto-mode-alist))
-
 ;; C++ indentation style
 (defconst jcs-big-fun-cc-style
   '((c-electric-pound-behavior   . nil)
