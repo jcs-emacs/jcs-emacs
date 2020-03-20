@@ -16,8 +16,7 @@
   (define-key c-mode-map [f8] #'jcs-find-corresponding-file)
   (define-key c-mode-map [S-f8] #'jcs-find-corresponding-file-other-window)
 
-  ;; If just want to open the same file, not the
-  ;; corresponding file.
+  ;; If just want to open the same file, not the corresponding file.
   (define-key c-mode-map [f7] #'jcs-same-file-other-window)
 
   (define-key c-mode-map (kbd "DEL") #'jcs-electric-backspace)
