@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-03-20
+
+* Moved more mode autoload from `jcs-cc-mode` to `jcs-mode` file. (jcs-emacs-init)
+
 ### 2020-03-17
 
 * Added the lsp ui doc delay when safely show lsp ui doc tooltip. (jcs-emacs-init)
