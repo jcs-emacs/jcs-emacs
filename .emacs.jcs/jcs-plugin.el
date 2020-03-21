@@ -597,6 +597,11 @@
   (add-hook 'lsp-managed-mode-hook 'jcs--lsp-managed-mode-hook)
   (add-hook 'lsp-mode-hook 'jcs--lsp-mode-hook))
 
+(use-package lsp-origami
+  :defer t
+  :init
+  (add-hook 'origami-mode-hook #'lsp-origami-mode))
+
 (use-package lsp-ui
   :defer t
   :init
