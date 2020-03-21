@@ -581,12 +581,14 @@
   (defun jcs--lsp--stuff-on-enabled ()
     "Do stuff when lsp is enabled."
     (setq debug-on-error nil)  ; TODO: Get rid of this after `lsp-mode' is stabled.
-    (company-fuzzy-mode -1))
+    (company-fuzzy-mode -1)
+    (lsp-origami-mode 1))
 
   (defun jcs--lsp--stuff-on-disabled ()
     "Do stuff when lsp is disabled."
     (setq debug-on-error t)  ; TODO: Get rid of this after `lsp-mode' is stabled.
-    (company-fuzzy-mode 1))
+    (company-fuzzy-mode 1)
+    (lsp-origami-mode -1))
 
   (defun jcs--lsp-managed-mode-hook ()
     (if (and lsp-mode lsp-managed-mode) (jcs--lsp--stuff-on-enabled) (jcs--lsp--stuff-on-disabled)))
@@ -596,11 +598,6 @@
 
   (add-hook 'lsp-managed-mode-hook 'jcs--lsp-managed-mode-hook)
   (add-hook 'lsp-mode-hook 'jcs--lsp-mode-hook))
-
-(use-package lsp-origami
-  :defer t
-  :init
-  (add-hook 'origami-mode-hook #'lsp-origami-mode))
 
 (use-package lsp-ui
   :defer t
