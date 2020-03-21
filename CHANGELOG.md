@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-03-22
+
+* Installed new package `lsp-java`. (jcs-emacs-init)
+* Installed new package `lsp-origami`. (jcs-emacs-init)
+
 ### 2020-03-20
 
 * Moved more mode autoload from `jcs-cc-mode` to `jcs-mode` file. (jcs-emacs-init)
