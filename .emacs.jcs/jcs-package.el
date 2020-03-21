@@ -108,7 +108,9 @@
     json-mode
     kotlin-mode
     line-reminder
+    lsp-java
     lsp-mode
+    lsp-origami
     lsp-ui
     lua-mode
     magit
