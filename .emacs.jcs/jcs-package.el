@@ -71,6 +71,7 @@
     elisp-def
     elixir-mode
     emmet-mode
+    emoji-github
     emojify
     erlang
     ess
@@ -293,8 +294,7 @@
 ;;----------------------------------
 
 (defconst jcs-package-manually-install-list
-  '(("emoji-github" "jcs-elpa/emoji-github" "github")
-    ("file-header" "jcs-elpa/file-header" "github")
+  '(("file-header" "jcs-elpa/file-header" "github")
     ("jayces-mode" "jcs-elpa/jayces-mode" "github")
     ("multi-shell" "jcs-elpa/multi-shell" "github")
     ("reload-emacs" "jcs-elpa/reload-emacs" "github")
