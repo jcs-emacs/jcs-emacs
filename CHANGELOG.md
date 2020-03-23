@@ -7,7 +7,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ### 2020-03-23
 
-* Changed source for package `emoji-github`. (jcs-emacs-init)
+* Changed source for package `emoji-github` from `quelpa` to `melpa`. (jcs-emacs-init)
+* Updated `diminsh-buffer` list for more of the LSP buffer. (jcs-emacs-init)
 
 ### 2020-03-22
 
