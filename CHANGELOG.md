@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-03-23
+
+* Changed source for package `emoji-github`. (jcs-emacs-init)
+
 ### 2020-03-22
 
 * Installed new package `lsp-java`. (jcs-emacs-init)
