@@ -226,13 +226,16 @@
 (use-package diminish-buffer
   :defer t
   :init
-  (setq diminish-buffer-list '("[*]helm" "[*]esup-" "[*]quelpa-"
-                               "[*]compilation" "[*]output"
-                               "[*]Async Shell Command[*]:" "[*]shell" "[*]eshell"
-                               "[*]emacs[*]"  ; From `async'
-                               "[*]lsp-" "[*][a-zA-Z0-9]+[-]*ls"
-                               "[*]company"
-                               "[*]SPEEDBAR"))
+  (setq diminish-buffer-list
+        (append
+         '("[*]helm" "[*]esup-" "[*]quelpa-")
+         '("[*]compilation" "[*]output")
+         '("[*]Async Shell Command[*]:" "[*]shell" "[*]eshell")
+         '("[*]emacs[*]")  ; From `async'
+         '("[*]lsp-" "[*][a-zA-Z0-9]+[-]*ls" "[*][a-zA-Z0-9]+::stderr[*]"
+           "[*]csharp[*]")  ; From `lsp'
+         '("[*]company")
+         '("[*]SPEEDBAR")))
   (with-eval-after-load 'jcs-buffer-menu
     (diminish-buffer-mode 1))
   :config
