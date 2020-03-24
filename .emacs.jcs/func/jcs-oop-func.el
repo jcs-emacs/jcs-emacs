@@ -1146,6 +1146,9 @@ SEARCH-STRING is the raw string that represent the code we want to document."
     (jcs-previous-line)
     (end-of-line)
 
+    (unless (= param-var-len 0)
+      (insert (format "\n%s---" jcs-lua-doc-splitter)))
+
     ;; Process param tag.
     (while (< param-index param-var-len)
       (insert "\n")  ;; start from newline.

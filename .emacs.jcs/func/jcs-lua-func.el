@@ -65,13 +65,11 @@ comment character on the same line."
     (when (and active-comment next-line-not-empty)
       (insert (format "%s\n" jcs-lua-doc-splitter))
       (insert "-- \n")
-      (insert (format "%s---\n" jcs-lua-doc-splitter))
       (insert (format "%s---" jcs-lua-doc-splitter))
 
       (jcs-smart-indent-up)
       (jcs-smart-indent-down)
       (jcs-smart-indent-down)
-      (jcs-smart-indent-up)
       (jcs-smart-indent-up)
       (jcs-smart-indent-up)
       (end-of-line)
@@ -80,7 +78,6 @@ comment character on the same line."
       ;; ex: param, returns, etc.
       (save-excursion
         ;; Goto the function line before insert doc string.
-        (jcs-next-line)
         (jcs-next-line)
         (jcs-next-line)
 
