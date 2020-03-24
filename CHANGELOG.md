@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-03-24
+
+* Fixed OOP docstring functionalitiy when no parameters. (jcs-emacs-init)
+
 ### 2020-03-23
 
 * Changed source for package `emoji-github` from `quelpa` to `melpa`. (jcs-emacs-init)
@@ -31,12 +35,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-03-13
 
 * Installed new package `masm-mode`. (jcs-emacs-init)
-* Implemented `asm` mode behaviour for all Assembly Language 
+* Implemented `asm` mode behaviour for all Assembly Language
  related `major-mode`s. (jcs-emacs-init)
 
 ### 2020-03-12
 
-* Changed source for `company-quickhelp-terminal` package from 
+* Changed source for `company-quickhelp-terminal` package from
 `quelpa` to `melpa`. (jcs-emacs-init)
 
 ### 2020-03-11
@@ -56,7 +60,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-03-05
 
 * Installed new package `emojify`. (jcs-emacs-init)
-* Fixed buffer wrap can't correct goes to corresponding first line 
+* Fixed buffer wrap can't correct goes to corresponding first line
  isssue. (jcs-emacs-init)
 
 ### 2020-03-03
@@ -97,7 +101,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-02-14
 
 * Tweak `neotree` customizable variables' value. (jcs-emacs-init)
-* Changed `output`/`compilation` buffer maybe kill buffer default action to 
+* Changed `output`/`compilation` buffer maybe kill buffer default action to
  change to other output buffer as higher priority. (jcs-emacs-init)
 
 ### 2020-02-13
