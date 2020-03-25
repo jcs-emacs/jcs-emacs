@@ -59,13 +59,15 @@
 (defun jcs--find-file--advice-after (&rest _args)
   "Advice execute after `find-file' command."
   (jcs--neotree-start-refresh)
-  (jcs-buffer-menu-safe-refresh))
+  (jcs-buffer-menu-safe-refresh)
+  (jcs-dashboard-safe-refresh-buffer))
 (advice-add 'find-file :after #'jcs--find-file--advice-after)
 
 (defun jcs--switch-to-buffer--advice-after (&rest _args)
   "Advice execute after `switch-to-buffer' command."
   (jcs--neotree-start-refresh)
-  (jcs-buffer-menu-safe-refresh))
+  (jcs-buffer-menu-safe-refresh)
+  (jcs-dashboard-safe-refresh-buffer))
 (advice-add 'switch-to-buffer :after #'jcs--switch-to-buffer--advice-after)
 
 (defun jcs--other-window--advice-before (&rest _args)
@@ -84,6 +86,7 @@
                (not (string= neo-buffer-name (buffer-name (current-buffer)))))
       (setq jcs--neotree--last-window (selected-window)))
     (jcs-buffer-menu-safe-refresh)
+    (jcs-dashboard-safe-refresh-buffer)
     (jcs--lsp-signature-maybe-stop)
     (jcs--lsp-ui-doc-show-safely)))
 (advice-add 'other-window :after #'jcs--other-window--advice-after)
