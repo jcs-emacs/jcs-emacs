@@ -161,7 +161,7 @@
 (defun jcs--buffer-menu--advice-before (&rest _)
   "Advice execute before `buffer-menu' command."
   (setq jcs--buffer-menu-return-delay nil)
-  (unless jcs-buffer-menu-switch-buffer-refreshing
+  (unless jcs-buffer--menu-switch-buffer-refreshing
     (setq jcs--buffer-menu--fake-header-already-appears nil)
     (setq-local tabulated-list--header-string jcs--buffer-menu-search-title)))
 (advice-add 'buffer-menu :before #'jcs--buffer-menu--advice-before)
@@ -177,12 +177,12 @@
 
 (defun jcs--buffer-menu--advice-after (&rest _)
   "Advice execute after `buffer-menu' command."
-  (unless jcs-buffer-menu-switch-buffer-refreshing
+  (unless jcs-buffer--menu-switch-buffer-refreshing
     (setq-local tabulated-list--header-string jcs--buffer-menu-search-title)))
 (advice-add 'buffer-menu :after #'jcs--buffer-menu--advice-after)
 
 
-(defvar jcs-buffer-menu-switch-buffer-refreshing nil
+(defvar jcs-buffer--menu-switch-buffer-refreshing nil
   "Flag to check if current buffer menu refresing.")
 
 ;;;###autoload
@@ -192,7 +192,7 @@
   (unless (string= (jcs-buffer-name-or-buffer-file-name) "*Buffer List*")
     (save-window-excursion
       (let (tabulated-list--header-string) (jcs-mute-apply #'buffer-menu))
-      (when jcs-buffer-menu-switch-buffer-refreshing
+      (when jcs-buffer--menu-switch-buffer-refreshing
         (jcs--buffer-menu-trigger-filter))
       (bury-buffer)))
   (jcs-walk-through-all-windows-once
@@ -203,8 +203,8 @@
 
 (defun jcs-buffer-menu-safe-refresh ()
   "Safely refresh `buffer menu`'s buffer."
-  (unless jcs-buffer-menu-switch-buffer-refreshing
-    (let ((jcs-buffer-menu-switch-buffer-refreshing t))
+  (unless jcs-buffer--menu-switch-buffer-refreshing
+    (let ((jcs-buffer--menu-switch-buffer-refreshing t))
       (jcs-buffer-menu-refresh-buffer))))
 
 ;;----------------------------------------------------------------------------
@@ -268,6 +268,13 @@ OW is the other window flag."
   (interactive)
   (jcs-dashboard t))
 
+
+(defvar jcs-dashboard--switch-buffer-refreshing nil
+  "Flag to check if current dashboard refresing.")
+
+(defvar jcs-dashboard--last-current-path nil
+  "Record down the last current path.")
+
 ;;;###autoload
 (defun jcs-dashboard-refresh-buffer ()
   "Update dashboard buffer by killing it and start a new one."
@@ -293,6 +300,20 @@ OW is the other window flag."
            (jcs-goto-line (nth index buf-lns))
            (move-to-column (nth index buf-cls))
            (setq index (1+ index))))))))
+
+(defun jcs-dashboard-safe-refresh-buffer ()
+  "Safely refresh the dashboard buffer if needed."
+  (unless jcs-dashboard--switch-buffer-refreshing
+    (let ((jcs-dashboard--switch-buffer-refreshing t)
+          (dashboard-current-path (if (buffer-file-name)
+                                      (f-dirname (buffer-file-name))
+                                    default-directory)))
+      (unless (string= jcs-dashboard--last-current-path dashboard-current-path)
+        (setq jcs-dashboard--last-current-path dashboard-current-path)
+        (jcs-safe-jump-shown-to-buffer
+         dashboard-buffer-name
+         (lambda ()
+           (jcs-dashboard-refresh-buffer)))))))
 
 ;;;###autoload
 (defun jcs-dashboard-maybe-kill-this-buffer ()
