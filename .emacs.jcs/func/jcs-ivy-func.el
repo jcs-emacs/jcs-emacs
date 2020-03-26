@@ -13,7 +13,7 @@ Here we only check for the first option because the first option should be the
 closest approach to the current input."
   (let ((first-candidate (f-filename (jcs-string-at-line 2 t))))
     (if (string-empty-p ivy-text) nil
-      (not (string-match-p ivy-text first-candidate)))))
+      (string-match-p ivy-text first-candidate))))
 
 (defun jcs--ivy-previous-line--advice-after (&rest _)
   "Advice execute after `ivy-previous-line' function."
