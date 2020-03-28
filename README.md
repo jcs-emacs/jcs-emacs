@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./screenshot/logo-shadow.png" width="500" height="253"/>
+  <img src="./etc/logo/logo-shadow.png" width="500" height="253"/>
 </p>
 
 <p align="center">
@@ -567,7 +567,7 @@ variables can be found in that file.
 
 | Light Theme                               | Dark Theme                               |
 |:------------------------------------------|:-----------------------------------------|
-|<img src="./screenshot/startup-light.png"/>|<img src="./screenshot/startup-dark.png"/>|
+|<img src="./etc/screenshot/startup-light.png"/>|<img src="./etc/screenshot/startup-dark.png"/>|
 
 ### Customization
 
