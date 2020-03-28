@@ -83,7 +83,6 @@
     flycheck-grammarly
     flycheck-popup-tip
     flycheck-pos-tip
-    focus
     gdscript-mode
     gitattributes-mode
     gitconfig-mode
