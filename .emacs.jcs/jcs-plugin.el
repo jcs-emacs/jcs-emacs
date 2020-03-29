@@ -166,11 +166,19 @@
   (setq dashboard-set-navigator t)
   (setq dashboard-set-navigator nil)
   :config
+  (require 'dashboard-ls)
   (defun jcs--dashboard-get-banner-path (&rest _)
     "Return the full path to banner."
     "~/.emacs.jcs/banner/sink.txt")
   (advice-add #'dashboard-get-banner-path :override #'jcs--dashboard-get-banner-path)
   (dashboard-setup-startup-hook))
+
+(use-package dashboard-ls
+  :defer t
+  :config
+  (let ((dashboard-lst-items '((ls-directories . 5)
+                               (ls-files . 5))))
+    (setq dashboard-items (append dashboard-lst-items dashboard-items))))
 
 
 (use-package define-it
