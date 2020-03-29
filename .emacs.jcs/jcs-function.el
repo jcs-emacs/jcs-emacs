@@ -305,11 +305,11 @@ OW is the other window flag."
   "Safely refresh the dashboard buffer if needed."
   (unless jcs-dashboard--switch-buffer-refreshing
     (let ((jcs-dashboard--switch-buffer-refreshing t)
-          (dashboard-current-path (if (buffer-file-name)
+          (dashboard-ls-path (if (buffer-file-name)
                                       (f-dirname (buffer-file-name))
                                     default-directory)))
-      (unless (string= jcs-dashboard--last-current-path dashboard-current-path)
-        (setq jcs-dashboard--last-current-path dashboard-current-path)
+      (unless (string= jcs-dashboard--last-current-path dashboard-ls-path)
+        (setq jcs-dashboard--last-current-path dashboard-ls-path)
         (jcs-safe-jump-shown-to-buffer
          dashboard-buffer-name
          (lambda ()
