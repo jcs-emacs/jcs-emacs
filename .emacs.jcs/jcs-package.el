@@ -63,6 +63,7 @@
     dart-mode
     dash
     dashboard
+    dashboard-ls
     define-it
     diminish
     diminish-buffer
