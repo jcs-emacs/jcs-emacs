@@ -1597,7 +1597,7 @@ CC : Current character at position."
 ;; Multiple Cursors
 
 ;;;###autoload
-(defun jcs-mc/mark-previous-like-this ()
+(defun jcs-mc/mark-previous-like-this-line ()
   "Smart marking previous line."
   (interactive)
   (require 'multiple-cursors)
@@ -1608,7 +1608,7 @@ CC : Current character at position."
         (call-interactively #'mc/mark-previous-like-this)))))
 
 ;;;###autoload
-(defun jcs-mc/mark-next-like-this ()
+(defun jcs-mc/mark-next-like-this-line ()
   "Smart marking next line."
   (interactive)
   (require 'multiple-cursors)
@@ -1631,7 +1631,7 @@ CC : Current character at position."
   (when (mc/furthest-cursor-after-point) (goto-char (overlay-end (mc/furthest-cursor-after-point)))))
 
 ;;;###autoload
-(defun jcs-mc/mark-previous-similar-this (&optional sdl)
+(defun jcs-mc/mark-previous-similar-this-line (&optional sdl)
   "Mark previous line similar to this line depends on string distance level (SDL)."
   (interactive)
   (require 'multiple-cursors)
@@ -1655,7 +1655,7 @@ CC : Current character at position."
   (jcs-mc/maybe-multiple-cursors-mode))
 
 ;;;###autoload
-(defun jcs-mc/mark-next-similar-this (&optional sdl)
+(defun jcs-mc/mark-next-similar-this-line (&optional sdl)
   "Mark next line similar to this line depends on string distance level (SDL)."
   (interactive)
   (require 'multiple-cursors)
@@ -1677,6 +1677,20 @@ CC : Current character at position."
         (forward-line 1))
       (unless break (user-error "[INFO] no next similar match"))))
   (jcs-mc/maybe-multiple-cursors-mode))
+
+;;;###autoload
+(defun jcs-mc/inc-string-distance-level ()
+  "Increase the string distance level by 1."
+  (interactive)
+  (setq jcs-mc/string-distance-level (1+ jcs-mc/string-distance-level))
+  (message "[INFO] Current string distance: %s" jcs-mc/string-distance-level))
+
+;;;###autoload
+(defun jcs-mc/dec-string-distance-level ()
+  "Decrease the string distance level by 1."
+  (interactive)
+  (setq jcs-mc/string-distance-level (1- jcs-mc/string-distance-level))
+  (message "[INFO] Current string distance: %s" jcs-mc/string-distance-level))
 
 ;;----------------------------------------------
 ;; Folding / Unfolding
