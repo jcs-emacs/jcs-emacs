@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-04-22
+
+* Implemented `inc`/`dec` string distance level for `multiple-cursors` similarity. (jcs-emacs-init)
+
 ### 2020-03-29
 
 * Installed new package `dashboard-ls`. (jcs-emacs-init)
