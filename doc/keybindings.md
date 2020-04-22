@@ -144,8 +144,8 @@ Here is the list of key bindins that defined in this configuration.
 
     #### Similarity
 
-    * <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>=</kbd> - Increase the string distance level by 1.
-    * <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>-</kbd> - Decrease the string distance level by 1.
+    * <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>=</kbd> - Increase the string distance level by `1`.
+    * <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>-</kbd> - Decrease the string distance level by `1`.
 
 * **Debugging**
 
