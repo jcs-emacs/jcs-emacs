@@ -347,10 +347,13 @@
 (define-key global-map [M-down] #'move-text-down)
 
 ;;; Mutliple Cursors
-(define-key global-map (kbd "C-M-S-<up>") #'jcs-mc/mark-previous-like-this)
-(define-key global-map (kbd "C-M-S-<down>") #'jcs-mc/mark-next-like-this)
-(define-key global-map (kbd "C-M-_") #'jcs-mc/mark-previous-similar-this)
-(define-key global-map (kbd "C-M-+") #'jcs-mc/mark-next-similar-this)
+(define-key global-map (kbd "C-M-S-<up>") #'jcs-mc/mark-previous-like-this-line)
+(define-key global-map (kbd "C-M-S-<down>") #'jcs-mc/mark-next-like-this-line)
+(define-key global-map (kbd "C-M-_") #'jcs-mc/mark-previous-similar-this-line)
+(define-key global-map (kbd "C-M-+") #'jcs-mc/mark-next-similar-this-line)
+
+(define-key global-map (kbd "C-M-=") #'jcs-mc/inc-string-distance-level)
+(define-key global-map (kbd "C-M--") #'jcs-mc/dec-string-distance-level)
 
 (with-eval-after-load 'multiple-cursors
   (define-key mc/keymap (kbd "<escape>") #'mc/keyboard-quit)
