@@ -8,6 +8,8 @@
         electric-pair-delete-pair
         end-of-buffer
         jcs-align-region-or-document
+        jcs-asm-comment
+        jcs-asm-return
         jcs-backward-delete-word
         jcs-backward-kill-word-capital
         jcs-backward-word-capital
@@ -75,8 +77,6 @@
         jcs-move-backward-open-sqrParen
         jcs-move-forward-close-sqrParen
         jcs-move-forward-comma
-        jcs-asm-comment
-        jcs-asm-return
         jcs-next-line
         jcs-open-all-nodes
         jcs-open-node
@@ -178,10 +178,12 @@
         jcs-java-untabify-save-buffer
         jcs-make-without-asking
         jcs-maybe-kill-this-buffer
-        jcs-mc/mark-next-like-this
-        jcs-mc/mark-next-similar-this
-        jcs-mc/mark-previous-like-this
-        jcs-mc/mark-previous-similar-this
+        jcs-mc/dec-string-distance-level
+        jcs-mc/inc-string-distance-level
+        jcs-mc/mark-next-like-this-line
+        jcs-mc/mark-next-similar-this-line
+        jcs-mc/mark-previous-like-this-line
+        jcs-mc/mark-previous-similar-this-line
         jcs-message-buffer
         jcs-message-buffer-other-window
         jcs-next-blank-line
