@@ -171,6 +171,7 @@
         jcs-decrement-frame-transparent
         jcs-find-corresponding-file-other-window
         jcs-flycheck-mode
+        jcs-format-document
         jcs-goto-definition
         jcs-goto-definition-other-window
         jcs-inc-tab-width
