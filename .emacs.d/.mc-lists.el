@@ -7,6 +7,7 @@
         c-electric-slash
         electric-pair-delete-pair
         end-of-buffer
+        indent-region
         jcs-align-region-or-document
         jcs-asm-comment
         jcs-asm-return
