@@ -2,7 +2,6 @@ language: emacs-lisp
 sudo: false
 
 env:
-  - EVM_EMACS=emacs-26.1-travis-linux-xenial
   - EVM_EMACS=emacs-26.3-travis-linux-xenial
   - EVM_EMACS=emacs-git-snapshot-travis-linux-xenial
 
