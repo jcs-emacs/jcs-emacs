@@ -39,7 +39,8 @@ closest approach to the current input."
 (defun jcs-counsel-find-files-backspace ()
   "Find files backspace key."
   (interactive)
-  (if (jcs-current-char-equal-p "/")
+  (if (or (jcs-current-char-equal-p "/")
+          (jcs-current-line-empty-p))  ; Fix for deep directory tree on newline.
       (counsel-up-directory)
     (backward-delete-char 1)))
 
