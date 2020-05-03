@@ -7,7 +7,6 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ### 2020-05-03
 
-* Updated `ivy` config for latest compatibility. (jcs-emacs-init)
 * Fixed deep directory tree when using `counsel` find file action. (jcs-emacs-init)
 
 ### 2020-04-22
