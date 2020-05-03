@@ -207,6 +207,13 @@ Note this is opposite logic to the toggle mode function."
       "SPC"
     "TAB"))
 
+(defun jcs-use-cc-style-comment ()
+  "Use c-style commenting instead of two slashes."
+  (setq-local comment-start "/*")
+  (setq-local comment-start-skip "/\\*+[ \t]*")
+  (setq-local comment-end "*/")
+  (setq-local comment-end-skip "[ \t]*\\*+/"))
+
 (defun jcs-use-cc-mutliline-comment ()
   "Fixed multiline comment."
   (require 'typescript-mode)
