@@ -10,10 +10,7 @@
 (defun jcs-shader-mode-hook ()
   "Shader mode hook."
 
-  (setq-local comment-start "/*")
-  (setq-local comment-start-skip "/\\*+[ \t]*")
-  (setq-local comment-end "*/")
-  (setq-local comment-end-skip "[ \t]*\\*+/")
+  (jcs-use-cc-mutliline-comment)
 
   (modify-syntax-entry ?_ "w")
 
