@@ -590,7 +590,7 @@ This command does not push text to `kill-ring'."
               (setq pnt-min (region-beginning))
               (setq pnt-max (region-end)))
 
-            ;; Align code segment.
+;; Align code segment.
             (jcs-align-region align-regexp-string-code)
 
             (when (> (point) pnt-min)
@@ -781,21 +781,23 @@ REGEXP : reqular expression use to align."
 (defun jcs-untabify-buffer (&optional start end)
   "Untabify the current buffer with region START and END."
   (interactive)
-  (save-excursion
-    (let ((start-pt (if start start (point-min)))
-          (end-pt (if end end (point-max))))
-      (widen)
-      (untabify start-pt end-pt))))
+  (jcs-save-excursion
+   (lambda ()
+     (let ((start-pt (if start start (point-min)))
+           (end-pt (if end end (point-max))))
+       (widen)
+       (untabify start-pt end-pt)))))
 
 ;;;###autoload
 (defun jcs-tabify-buffer (&optional start end)
   "Tabify the current buffer with region START and END."
   (interactive)
-  (save-excursion
-    (let ((start-pt (if start start (point-min)))
-          (end-pt (if end end (point-max))))
-      (widen)
-      (tabify start-pt end-pt))))
+  (jcs-save-excursion
+   (lambda ()
+     (let ((start-pt (if start start (point-min)))
+           (end-pt (if end end (point-max))))
+       (widen)
+       (tabify start-pt end-pt)))))
 
 ;;----------------------------------------------
 ;; Save Buffer
