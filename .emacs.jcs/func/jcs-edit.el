@@ -590,7 +590,7 @@ This command does not push text to `kill-ring'."
               (setq pnt-min (region-beginning))
               (setq pnt-max (region-end)))
 
-;; Align code segment.
+            ;; Align code segment.
             (jcs-align-region align-regexp-string-code)
 
             (when (> (point) pnt-min)
