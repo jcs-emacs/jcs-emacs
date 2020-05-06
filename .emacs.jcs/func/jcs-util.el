@@ -7,7 +7,7 @@
 ;; Macro
 
 (defmacro jcs-save-excursion (&rest body)
-  "Reimplementation when `save-excursion' does not work as expected."
+  "Reimplementation when `save-excursion' when it doesn't work as expected."
   (let ((ln (line-number-at-pos)) (col (current-column)))
     `(progn ,@body)
     (jcs-goto-line ln)
