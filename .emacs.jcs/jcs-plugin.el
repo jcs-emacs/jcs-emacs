@@ -526,6 +526,7 @@
   (use-package counsel
     :defer t
     :init
+    (setq counsel-preselect-current-file t)
     (setq counsel-find-file-at-point t))
   (setq ivy-auto-shrink-minibuffer t)
   (setq ivy-use-virtual-buffers t)
