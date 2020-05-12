@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-05-13
+
+* Config `counsel`'s `find-file` preselect flag. (jcs-emacs-init)
+
 ### 2020-05-03
 
 * Fixed deep directory tree when using `counsel` find file action. (jcs-emacs-init)
