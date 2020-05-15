@@ -40,7 +40,7 @@
                                     (access-label          . -)
                                     (substatement-open     . 0)
                                     (statement-case-intro  . +)
-                                    (statement-block-intro . c-lineup-for)
+                                    (statement-block-intro . +)
                                     (case-label            . 0)
                                     (block-open            . 0)
                                     (inline-open           . 0)
