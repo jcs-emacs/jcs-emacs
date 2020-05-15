@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-05-16
+
+* Implemented find directories ignore directories function. (jcs-emacs-init)
+* Implemented find files ignore directories function. (jcs-emacs-init)
+* Fixed `make`/`run` script find directories/files time spend too 
+ long issue. (jcs-emacs-init)
+
 ### 2020-05-15
 
 * Minor fixed for `cc-mode` indent block settings. (jcs-emacs-init)
