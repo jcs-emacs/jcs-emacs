@@ -2,11 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (require 'json-reformat)
 (require 'json-snatcher)
 (require 'json-mode)
-
 
 (defun jcs-json-format()
   "Format for json file."
@@ -15,7 +13,6 @@
   ;;
   ;; TODO: Might add it later?
   )
-
 
 (defun jcs-json-mode-hook ()
   "JSON mode hook."
@@ -42,7 +39,6 @@
   (define-key json-mode-map (kbd "*") #'jcs-c-comment-pair))
 
 (add-hook 'json-mode-hook 'jcs-json-mode-hook)
-
 
 (provide 'jcs-json-mode)
 ;;; jcs-json-mode.el ends here

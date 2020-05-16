@@ -2,9 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (require 'actionscript-mode)
-
 
 (defun jcs-actionscript-mode-hook ()
   "ActionScript mode hook."
@@ -37,7 +35,6 @@
 
 (add-hook 'actionscript-mode-hook 'jcs-prog-mode-hook)
 (add-hook 'actionscript-mode-hook 'jcs-actionscript-mode-hook)
-
 
 (provide 'jcs-actionscript-mode)
 ;;; jcs-actionscript-mode.el ends here

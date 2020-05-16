@@ -2,9 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (require 'sh-script)
-
 
 (defun jcs-sh-script-hook()
   "Shell Script mode hook."
@@ -21,7 +19,6 @@
   (define-key sh-mode-map (kbd "C-s") #'jcs-sh-untabify-save-buffer))
 
 (add-hook 'sh-mode-hook 'jcs-sh-script-hook)
-
 
 (provide 'jcs-sh-mode)
 ;;; jcs-sh-mode.el ends here

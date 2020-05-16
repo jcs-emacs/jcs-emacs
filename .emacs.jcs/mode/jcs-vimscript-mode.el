@@ -2,9 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (require 'vimrc-mode)
-
 
 (defun jcs-vim-mode-hook ()
   "Vimrc mode hook."
@@ -22,7 +20,6 @@
   (define-key vimrc-mode-map (kbd "C-a") #'jcs-mark-whole-buffer))
 
 (add-hook 'vimrc-mode-hook 'jcs-vim-mode-hook)
-
 
 (provide 'jcs-vimscript-mode)
 ;;; jcs-vimscript-mode.el ends here

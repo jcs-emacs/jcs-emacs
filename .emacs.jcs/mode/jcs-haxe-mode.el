@@ -2,9 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (require 'haxe-mode)
-
 
 (defun jcs-haxe-mode-hook ()
   "Haxe mode hook."
@@ -35,7 +33,6 @@
 
 (add-hook 'haxe-mode-hook 'jcs-prog-mode-hook)
 (add-hook 'haxe-mode-hook 'jcs-haxe-mode-hook)
-
 
 (provide 'jcs-haxe-mode)
 ;;; jcs-haxe-mode.el ends here

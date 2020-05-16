@@ -2,7 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (require 'masm-mode)
 (require 'nasm-mode)
 
@@ -36,7 +35,6 @@
 
 (add-hook 'masm-mode-hook 'jcs-masm-mode-hook)
 
-
 (defun jcs-nasm-mode-hook ()
   "NASM mode hook."
   (electric-pair-mode nil)
@@ -54,7 +52,6 @@
   (define-key nasm-mode-map (kbd ";") #'jcs-asm-comment))
 
 (add-hook 'nasm-mode-hook 'jcs-nasm-mode-hook)
-
 
 (provide 'jcs-asm-mode)
 ;;; jcs-asm-mode.el ends here

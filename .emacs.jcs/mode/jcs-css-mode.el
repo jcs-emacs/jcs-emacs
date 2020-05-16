@@ -2,14 +2,12 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (require 'css-mode)
 (require 'com-css-sort)
 (require 'emmet-mode)
 (require 'rainbow-mode)
 
 (require 'jcs-web-func)
-
 
 (defun jcs-css-mode-hook ()
   "Hook for CSS mode."
@@ -44,7 +42,6 @@
 
 (add-hook 'css-mode-hook 'jcs-css-mode-hook)
 (add-hook 'css-mode-hook 'emmet-mode)
-
 
 (provide 'jcs-css-mode)
 ;;; jcs-css-mode.el ends here

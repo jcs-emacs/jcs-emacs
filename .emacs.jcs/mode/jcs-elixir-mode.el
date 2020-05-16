@@ -2,9 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (require 'elixir-mode)
-
 
 (defun jcs-elixir-mode-hook ()
   "Elixir mode hook."
@@ -19,7 +17,6 @@
                               'jcs-insert-elixir-template))
 
 (add-hook 'elixir-mode-hook 'jcs-elixir-mode-hook)
-
 
 (provide 'jcs-elixir-mode)
 ;;; jcs-elixir-mode.el ends here

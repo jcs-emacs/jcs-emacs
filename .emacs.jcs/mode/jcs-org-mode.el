@@ -2,12 +2,10 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (require 'org)
 (require 'org-bullets)
 
 (add-hook 'org-mode-hook 'org-bullets-mode)
-
 
 (setq org-todo-keywords
       '((sequence "TODO"
@@ -18,7 +16,6 @@
       '(("TODO" :foreground "red")
         ("WAITING" :foreground "yellow")
         ("DONE" :foreground "green")))
-
 
 (defun jcs-org-mode-hook ()
   "Org mode hook."
@@ -44,7 +41,6 @@
   (define-key org-mode-map (kbd "S-<right>") #'jcs-org-table-right))
 
 (add-hook 'org-mode-hook 'jcs-org-mode-hook)
-
 
 (provide 'jcs-org-mode)
 ;;; jcs-org-mode.el ends here

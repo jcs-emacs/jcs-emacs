@@ -2,9 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (require 'kotlin-mode)
-
 
 (defun jcs-kotlin-mode-hook ()
   "Kotlin mode hook."
@@ -15,7 +13,6 @@
                               'jcs-insert-kotlin-template))
 
 (add-hook 'kotlin-mode-hook 'jcs-kotlin-mode-hook)
-
 
 (provide 'jcs-kotlin-mode)
 ;;; jcs-kotlin-mode.el ends here

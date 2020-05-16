@@ -2,9 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (require 'scala-mode)
-
 
 (defun jcs-scala-mode-hook ()
   "Scala mode hook."
@@ -20,7 +18,6 @@
   (define-key scala-mode-map (kbd "*") #'jcs-c-comment-pair))
 
 (add-hook 'scala-mode-hook 'jcs-scala-mode-hook)
-
 
 (provide 'jcs-scala-mode)
 ;;; jcs-scala-mode.el ends here

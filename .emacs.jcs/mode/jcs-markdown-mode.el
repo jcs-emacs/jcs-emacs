@@ -2,12 +2,10 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (require 'markdown-mode)
 
 (require 'jcs-markdown-func)
 (require 'jcs-web-func)
-
 
 (defun jcs-markdown-mode-hook ()
   "Markdown mode hook."
@@ -25,7 +23,6 @@
 
 (add-hook 'markdown-mode-hook 'jcs-markdown-mode-hook)
 (add-hook 'markdown-mode-hook 'emmet-mode)
-
 
 (provide 'jcs-markdown-mode)
 ;;; jcs-markdown-mode.el ends here

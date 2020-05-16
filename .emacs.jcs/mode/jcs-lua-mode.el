@@ -2,9 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (require 'lua-mode)
-
 
 (defun jcs-lua-mode-hook ()
   "Lau mode hook."
@@ -24,7 +22,6 @@
   (define-key lua-mode-map (kbd "RET") #'jcs-smart-context-line-break))
 
 (add-hook 'lua-mode-hook 'jcs-lua-mode-hook)
-
 
 (provide 'jcs-lua-mode)
 ;;; jcs-lua-mode.el ends here

@@ -2,14 +2,12 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (require 'vue-mode)
 
 (require 'css-mode)
 (require 'js2-mode)
 (require 'typescript-mode)
 (require 'web-mode)
-
 
 (defun jcs-vue-mode-hook ()
   "Vue mode hook."
@@ -23,7 +21,6 @@
                               'jcs-insert-vue-template))
 
 (add-hook 'vue-mode-hook 'jcs-vue-mode-hook)
-
 
 (provide 'jcs-vue-mode)
 ;;; jcs-vue-mode.el ends here

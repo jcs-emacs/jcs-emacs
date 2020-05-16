@@ -2,9 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (require 'dart-mode)
-
 
 (defun jcs-dart-mode-hook ()
   "Dart mode hook."
@@ -17,7 +15,6 @@
                               'jcs-insert-dart-template))
 
 (add-hook 'dart-mode-hook 'jcs-dart-mode-hook)
-
 
 (provide 'jcs-dart-mode)
 ;;; jcs-dart-mode.el ends here

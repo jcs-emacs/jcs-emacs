@@ -2,10 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (require 'css-mode)
 (require 'ssass-mode)
-
 
 (defun jcs-sass-mode-hook ()
   "Sass mode hook."
@@ -25,7 +23,6 @@
   (define-key ssass-mode-map (kbd "<down>") (jcs-get-prev/next-key-type 'next)))
 
 (add-hook 'ssass-mode-hook 'jcs-sass-mode-hook)
-
 
 (provide 'jcs-sass-mode)
 ;;; jcs-sass-mode.el ends here

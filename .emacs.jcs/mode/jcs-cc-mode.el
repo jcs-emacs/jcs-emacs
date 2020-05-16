@@ -2,9 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (require 'cc-mode)
-
 
 ;; C++ indentation style
 (defconst jcs-big-fun-cc-style
@@ -54,7 +52,6 @@
   "Casey's Big Fun C/C++ Style")
 
 ;;-----------------------------------------------------------
-;;-----------------------------------------------------------
 
 (defun jcs-c-header-format ()
   "Format the given file as a C header file."
@@ -93,7 +90,6 @@
                               'jcs-c-source-format))
 
 ;;-----------------------------------------------------------
-;;-----------------------------------------------------------
 
 (defun jcs-cc-mode-hook ()
   "C/C++ mode hook."
@@ -110,7 +106,6 @@
   (modify-syntax-entry ?_ "w"))
 
 (add-hook 'c-mode-common-hook 'jcs-cc-mode-hook)
-
 
 (provide 'jcs-cc-mode)
 ;;; jcs-cc-mode.el ends here

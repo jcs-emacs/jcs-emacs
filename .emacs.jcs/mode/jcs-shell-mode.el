@@ -2,9 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (require 'shell)
-
 
 (defun jcs-shell-mode-hook ()
   "Shell mode hook."
@@ -48,7 +46,6 @@
   (define-key shell-mode-map (kbd "C-M-m") #'feebleline-mode))
 
 (add-hook 'shell-mode-hook #'jcs-shell-mode-hook)
-
 
 (provide 'jcs-shell-mode)
 ;;; jcs-shell-mode.el ends here

@@ -2,9 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (require 'rust-mode)
-
 
 (defun jcs-rust-mode-hook ()
   "Rust mode hook."
@@ -17,7 +15,6 @@
                               'jcs-insert-rust-template))
 
 (add-hook 'rust-mode-hook 'jcs-rust-mode-hook)
-
 
 (provide 'jcs-rust-mode)
 ;;; jcs-rust-mode.el ends here

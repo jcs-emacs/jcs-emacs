@@ -2,9 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (require 'gdscript-mode)
-
 
 (defun jcs-gdscript-mode-hook ()
   "Godot Script mode hook."
@@ -17,7 +15,6 @@
                               'jcs-insert-gdscript-template))
 
 (add-hook 'gdscript-mode-hook 'jcs-gdscript-mode-hook)
-
 
 (provide 'jcs-gdscript-mode)
 ;;; jcs-gdscript-mode.el ends here

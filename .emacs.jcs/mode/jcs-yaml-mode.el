@@ -2,12 +2,10 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (require 'yaml-mode)
 
 (require 'jcs-python-func)
 (require 'jcs-yaml-func)
-
 
 (defun jcs-yaml-mode-hook ()
   "YAML mode hook."
@@ -27,7 +25,6 @@
   (define-key yaml-mode-map (kbd "<backspace>") #'jcs-yaml-electric-backspace))
 
 (add-hook 'yaml-mode-hook 'jcs-yaml-mode-hook)
-
 
 (provide 'jcs-yaml-mode)
 ;;; jcs-yaml-mode.el ends here

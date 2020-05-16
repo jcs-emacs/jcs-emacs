@@ -2,11 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (require 'gitattributes-mode)
 (require 'gitconfig-mode)
 (require 'gitignore-mode)
-
 
 (defun jcs-gitattributes-mode-hook ()
   "Gitattributes mode hook."
@@ -19,8 +17,6 @@
   (define-key gitattributes-mode-map (kbd "<down>") (jcs-get-prev/next-key-type 'next)))
 
 (add-hook 'gitattributes-mode-hook 'jcs-gitattributes-mode-hook)
-
-
 
 (defun jcs-gitconfig-mode-hook ()
   "Gitconfig mode hook."
@@ -36,8 +32,6 @@
 
 (add-hook 'gitconfig-mode-hook 'jcs-gitconfig-mode-hook)
 
-
-
 (defun jcs-gitignore-mode-hook ()
   "Gitignore mode hook."
   (electric-pair-mode nil)
@@ -51,7 +45,6 @@
   (define-key gitignore-mode-map (kbd "C-c C-c") #'kill-ring-save))
 
 (add-hook 'gitignore-mode-hook 'jcs-gitignore-mode-hook)
-
 
 (provide 'jcs-git-mode)
 ;;; jcs-git-mode.el ends here

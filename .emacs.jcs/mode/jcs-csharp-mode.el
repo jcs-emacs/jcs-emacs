@@ -2,9 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (require 'csharp-mode)
-
 
 (defun jcs-csharp-mode-hook ()
   "CSharp mode hook."
@@ -40,7 +38,6 @@
   (define-key csharp-mode-map (kbd "M-q") #'jcs-other-window-prev))
 
 (add-hook 'csharp-mode-hook 'jcs-csharp-mode-hook)
-
 
 (provide 'jcs-csharp-mode)
 ;;; jcs-csharp-mode.el ends here

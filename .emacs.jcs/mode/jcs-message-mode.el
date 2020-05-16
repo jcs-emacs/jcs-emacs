@@ -2,9 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (require 'message)
-
 
 (defun jcs-message-mode-hook ()
   "Message mode hook."
@@ -15,7 +13,6 @@
   (define-key message-mode-map (kbd "<down>") (jcs-get-prev/next-key-type 'next)))
 
 (add-hook 'message-mode-hook 'jcs-message-mode-hook)
-
 
 (provide 'jcs-message-mode)
 ;;; jcs-message-mode.el ends here

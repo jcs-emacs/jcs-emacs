@@ -2,9 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (require 'go-mode)
-
 
 (defun jcs-go-mode-hook ()
   "Go mode hook."
@@ -24,7 +22,6 @@
   (define-key go-mode-map (kbd "/") #'jcs-go-maybe-insert-codedoc))
 
 (add-hook 'go-mode-hook 'jcs-go-mode-hook)
-
 
 (provide 'jcs-go-mode)
 ;;; jcs-go-mode.el ends here

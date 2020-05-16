@@ -2,9 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (require 'perl-mode)
-
 
 (defun jcs-perl-mode-hook ()
   "Perl mode hook."
@@ -22,7 +20,6 @@
   (define-key perl-mode-map (kbd ";") #'jcs-vs-semicolon-key))
 
 (add-hook 'perl-mode-hook 'jcs-perl-mode-hook)
-
 
 (provide 'jcs-perl-mode)
 ;;; jcs-perl-mode.el ends here

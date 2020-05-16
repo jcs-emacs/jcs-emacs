@@ -2,10 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (require 'css-mode)
 (require 'scss-mode)
-
 
 (defun jcs-scss-mode-hook ()
   "SCSS mode hook."
@@ -26,7 +24,6 @@
   (define-key scss-mode-map (kbd "C-k d") #'com-css-sort-attributes-document))
 
 (add-hook 'scss-mode-hook 'jcs-scss-mode-hook)
-
 
 (provide 'jcs-scss-mode)
 ;;; jcs-scss-mode.el ends here

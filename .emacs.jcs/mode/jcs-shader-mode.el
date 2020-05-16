@@ -2,10 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (require 'shader-mode)
 (require 'glsl-mode)
-
 
 (defun jcs-shader-mode-hook ()
   "Shader mode hook."
@@ -19,7 +17,6 @@
                               'jcs-insert-shader-template))
 
 (add-hook 'shader-mode-hook 'jcs-shader-mode-hook)
-
 
 (defun jcs-glsl-mode-hook ()
   "GLSL mode hook."
@@ -35,7 +32,6 @@
                               'jcs-insert-glsl-template))
 
 (add-hook 'glsl-mode-hook 'jcs-glsl-mode-hook)
-
 
 (provide 'jcs-shader-mode)
 ;;; jcs-shader-mode.el ends here

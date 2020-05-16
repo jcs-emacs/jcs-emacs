@@ -2,7 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (defun jcs-objc-mode-hook ()
   "Objective-C mode hook."
 
@@ -42,7 +41,6 @@
   (define-key objc-mode-map (kbd "C-y") #'jcs-redo))
 
 (add-hook 'objc-mode-hook 'jcs-objc-mode-hook)
-
 
 (provide 'jcs-objc-mode)
 ;;; jcs-objc-mode.el ends here

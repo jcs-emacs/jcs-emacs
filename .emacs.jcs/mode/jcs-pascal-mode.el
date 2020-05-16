@@ -2,9 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (require 'pascal)
-
 
 (defun jcs-pascal-mode-hook ()
   "Pascal mode hook."
@@ -17,7 +15,6 @@
                               'jcs-insert-pascal-template))
 
 (add-hook 'pascal-mode-hook 'jcs-pascal-mode-hook)
-
 
 (provide 'jcs-pascal-mode)
 ;;; jcs-pascal-mode.el ends here

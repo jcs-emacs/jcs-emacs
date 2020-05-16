@@ -2,9 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (require 'erlang)
-
 
 (defun jcs-erlang-mode-hook ()
   "Erlang mode hook."
@@ -22,7 +20,6 @@
   (define-key erlang-mode-map (kbd "M-q") #'jcs-other-window-prev))
 
 (add-hook 'erlang-mode-hook 'jcs-erlang-mode-hook)
-
 
 (provide 'jcs-erlang-mode)
 ;;; jcs-erlang-mode.el ends here

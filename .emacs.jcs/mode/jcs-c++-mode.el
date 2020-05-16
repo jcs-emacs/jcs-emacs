@@ -2,9 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (require 'jcs-cc-mode)
-
 
 (defun jcs-c++-mode-hook ()
   "C++ mode handling"
@@ -38,7 +36,6 @@
   (define-key c++-mode-map (kbd "C-y") #'jcs-redo))
 
 (add-hook 'c++-mode-hook 'jcs-c++-mode-hook)
-
 
 (provide 'jcs-c++-mode)
 ;;; jcs-c++-mode.el ends here

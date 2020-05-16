@@ -2,9 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (require 'make-mode)
-
 
 (defun jcs-makefile-mode-hook ()
   "Makefile mode hook."
@@ -25,7 +23,6 @@
   (define-key makefile-mode-map (kbd "C-s") #'jcs-tabify-save-buffer))
 
 (add-hook 'makefile-mode-hook 'jcs-makefile-mode-hook)
-
 
 (provide 'jcs-make-mode)
 ;;; jcs-make-mode.el ends here

@@ -2,10 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (require 'javadoc-lookup)
 (require 'organize-imports-java)
-
 
 (defun jcs-java-mode-hook ()
   "Java mode hook."
@@ -42,12 +40,10 @@
 
 (add-hook 'java-mode-hook 'jcs-java-mode-hook)
 
-
 (use-package javadoc-lookup
   :config
   ;; Function used when performing a minibuffer read.
   (setq javadoc-lookup-completing-read-function #'completing-read))
-
 
 (provide 'jcs-java-mode)
 ;;; jcs-java-mode.el ends here

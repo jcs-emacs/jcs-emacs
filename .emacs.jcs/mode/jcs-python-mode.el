@@ -2,10 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (require 'python)
 (require 'python-mode)
-
 
 (defun jcs-python-mode-hook ()
   "Python mode hook."
@@ -43,7 +41,6 @@
   (define-key python-mode-map (kbd "\"") #'jcs-py-maybe-insert-codedoc))
 
 (add-hook 'python-mode-hook 'jcs-python-mode-hook)
-
 
 (provide 'jcs-python-mode)
 ;;; jcs-python-mode.el ends here

@@ -2,7 +2,6 @@
 ;;; Commentary: Including HTML, CSS, PHP, JavaScript, JSON.
 ;;; Code:
 
-
 ;;============================
 ;; Truncate Lines
 ;;URL: https://emacs.stackexchange.com/questions/14589/correct-indentation-for-wrapped-lines
@@ -23,7 +22,6 @@
 ;; Step 2: M-x impatient-mode     (Enabled Impatient Mode)
 
 (require 'impatient-mode)
-
 
 ;;============================
 ;;; Web Dev useful packages.
@@ -91,14 +89,12 @@
 (add-hook 'web-mode-hook  'jcs-web-mode-hook)
 (add-hook 'web-mode-hook 'emmet-mode)
 
-
 (defun jcs-html-mode-hook ()
   "HTML mode hook."
   (define-key html-mode-map (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
   (define-key html-mode-map (kbd "<down>") (jcs-get-prev/next-key-type 'next)))
 
 (add-hook 'html-mode-hook 'jcs-html-mode-hook)
-
 
 (provide 'jcs-web-mode)
 ;;; jcs-web-mode.el ends here

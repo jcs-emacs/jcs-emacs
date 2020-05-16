@@ -2,9 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (require 'clojure-mode)
-
 
 (defun jcs-clojure-mode-hook ()
   "Clojure mode hook."
@@ -17,7 +15,6 @@
                               'jcs-insert-clojure-template))
 
 (add-hook 'clojure-mode-hook 'jcs-clojure-mode-hook)
-
 
 (provide 'jcs-clojure-mode)
 ;;; jcs-clojure-mode.el ends here

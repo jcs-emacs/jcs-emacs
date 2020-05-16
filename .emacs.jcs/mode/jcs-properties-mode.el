@@ -2,7 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (defun jcs-properties-mode-hook ()
   "Properties mode hook."
   (abbrev-mode 1)
@@ -20,7 +19,6 @@
   (define-key conf-javaprop-mode-map (kbd "C-s") #'save-buffer))
 
 (add-hook 'conf-javaprop-mode-hook 'jcs-properties-mode-hook)
-
 
 (provide 'jcs-properties-mode)
 ;;; jcs-properties-mode.el ends here

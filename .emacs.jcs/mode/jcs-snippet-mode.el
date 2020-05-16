@@ -2,9 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (require 'yasnippet)
-
 
 (defun jcs-snippet-mode-hook()
   "Snippet mode hook."
@@ -16,7 +14,6 @@
   (define-key snippet-mode-map (kbd "C-s") #'jcs-save-buffer))
 
 (add-hook 'snippet-mode-hook 'jcs-snippet-mode-hook)
-
 
 (provide 'jcs-snippet-mode)
 ;;; jcs-snippet-mode.el ends here

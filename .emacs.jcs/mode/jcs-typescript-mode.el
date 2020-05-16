@@ -2,9 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (require 'typescript-mode)
-
 
 (defun jcs-typescript-mode-hook ()
   "TypeScript mode hook."
@@ -33,7 +31,6 @@
   (define-key typescript-mode-map (kbd "*") #'jcs-c-comment-pair))
 
 (add-hook 'typescript-mode-hook 'jcs-typescript-mode-hook)
-
 
 (provide 'jcs-typescript-mode)
 ;;; jcs-typescript-mode.el ends here

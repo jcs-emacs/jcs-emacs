@@ -2,11 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (require 'nxml-mode)
 
 (require 'jcs-web-func)
-
 
 (defun jcs-xml-mode-hook ()
   "XML mode hook."
@@ -26,7 +24,6 @@
 ;; which is really weird.
 (add-hook 'nxml-mode-hook 'jcs-xml-mode-hook)
 (add-hook 'nxml-mode-hook 'emmet-mode)
-
 
 (provide 'jcs-xml-mode)
 ;;; jcs-xml-mode.el ends here

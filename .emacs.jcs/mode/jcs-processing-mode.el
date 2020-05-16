@@ -2,9 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (require 'processing-mode)
-
 
 ;;(setq processing-location "/path/to/processing-java")
 ;;(setq processing-application-dir "/path/to/processing-application-dir")
@@ -15,7 +13,6 @@
 ;; output in the current sketch directory. It is also possible
 ;; to set the processing-output-dir to another directory:
 ;;(setq processing-output-dir "/tmp")
-
 
 (defun jcs-processing-mode-hook ()
   "Hook for processing mode."
@@ -35,7 +32,6 @@
   (define-key processing-mode-map (kbd "*") #'jcs-c-comment-pair))
 
 (add-hook 'processing-mode-hook 'jcs-processing-mode-hook)
-
 
 (provide 'jcs-processing-mode)
 ;;; jcs-processing-mode.el ends here

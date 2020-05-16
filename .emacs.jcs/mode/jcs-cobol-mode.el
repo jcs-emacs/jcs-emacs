@@ -2,11 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (require 'cobol-mode)
 
 (require 'jcs-python-func)
-
 
 (defun jcs-cobol-mode-hook ()
   "COBOL mode hook."
@@ -21,7 +19,6 @@
   (define-key cobol-mode-map (kbd "<down>") (jcs-get-prev/next-key-type 'next)))
 
 (add-hook 'cobol-mode-hook 'jcs-cobol-mode-hook)
-
 
 (provide 'jcs-cobol-mode)
 ;;; jcs-cobol-mode.el ends here
