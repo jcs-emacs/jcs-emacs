@@ -71,7 +71,7 @@
 (defun jcs--feebleline--project-name ()
   "Feebleline project name."
   (if jcs-feebleline-show-project-name
-      (let ((project-root (cdr (project-current))))
+      (let ((project-root (jcs-project-current)))
         (format "{ %s }"
                 (if (and project-root (buffer-file-name))
                     (file-name-nondirectory (directory-file-name project-root))
