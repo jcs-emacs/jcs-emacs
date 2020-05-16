@@ -6,6 +6,20 @@
 ;;----------------------------------------------------------------------------
 ;; Macro
 
+(defmacro jcs-with-timer (title &rest forms)
+  "Run the given FORMS, counting the elapsed time.
+A message including the given TITLE and the corresponding elapsed
+time is displayed."
+  (declare (indent 1))
+  (let ((nowvar (make-symbol "now"))
+        (body   `(progn ,@forms)))
+    `(let ((,nowvar (current-time)))
+       (message "%s..." ,title)
+       (prog1 ,body
+         (let ((elapsed
+                (float-time (time-subtract (current-time) ,nowvar))))
+           (message "%s... done (%.3fs)" ,title elapsed))))))
+
 (defun jcs-save-excursion (fnc &rest args)
   "Re-implementation `save-excursion' in FNC with ARGS."
   (let ((ln (line-number-at-pos)) (col (current-column)))
@@ -271,6 +285,16 @@ If REGEX is non-nil, check by using regular expression."
   (message "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
   (message "All version of timestamps printed.")
   (jcs-do-after-log-action))
+
+;;----------------------------------------------------------------------------
+;; Timer
+
+(defun jcs-safe-kill-timer (tmr)
+  "Kill timer (TMR) the safe way."
+  (when (timerp tmr)
+    (cancel-timer tmr)
+    (setf tmr nil)
+    tmr))
 
 ;;----------------------------------------------------------------------------
 ;; Organize Code
@@ -1275,7 +1299,7 @@ The reverse mean the check from regular expression is swapped."
   "Write to IN-FILENAME file path relative to the project root with IN-CONTENT content."
   (write-region in-content  ; Start
                 nil  ; End
-                (concat (cdr (project-current)) in-filename)
+                (concat (jcs-project-current) in-filename)
                 t  ; Overwrite?
                 ))
 
