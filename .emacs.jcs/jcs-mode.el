@@ -81,6 +81,9 @@ Note this is opposite logic to the toggle mode function."
     (setq nxml-child-indent tw))
    ((jcs-is-current-major-mode-p '("python-mode"))
     (setq py-indent-offset tw))
+   ((jcs-is-current-major-mode-p '("rjsx-mode"))
+    (setq js-indent-level tw)
+    (setq sgml-basic-offset tw))
    ((jcs-is-current-major-mode-p '("ruby-mode"))
     (setq ruby-indent-level tw))
    ((jcs-is-current-major-mode-p '("rust-mode"))
@@ -141,6 +144,8 @@ Note this is opposite logic to the toggle mode function."
     nxml-child-indent)
    ((jcs-is-current-major-mode-p '("python-mode"))
     py-indent-offset)
+   ((jcs-is-current-major-mode-p '("rjsx-mode"))
+    js-indent-level)
    ((jcs-is-current-major-mode-p '("ruby-mode"))
     ruby-indent-level)
    ((jcs-is-current-major-mode-p '("rust-mode"))
@@ -550,6 +555,7 @@ Note this is opposite logic to the toggle mode function."
 (with-eval-after-load 'perl-mode (require 'jcs-perl-mode))
 (with-eval-after-load 'processing-mode (require 'jcs-processing-mode))
 (with-eval-after-load 'python-mode (require 'jcs-python-mode))
+(with-eval-after-load 'rjsx-mode (require 'jcs-jsx-mode))
 (with-eval-after-load 'ruby-mode (require 'jcs-ruby-mode))
 (with-eval-after-load 'rust-mode (require 'jcs-rust-mode))
 (with-eval-after-load 'ssass-mode (require 'jcs-sass-mode))
@@ -652,7 +658,8 @@ PR : pair file `regexp' and file mode `symbol'."
   (jcs-add-auto-mode-alist '("\\.jcs'?\\'" . jayces-mode))
   (jcs-add-auto-mode-alist '("\\.jayces'?\\'" . jayces-mode))
   (jcs-add-auto-mode-alist '("\\.js'?\\'" . js2-mode))
-  (jcs-add-auto-mode-alist '("\\.json'?\\'" . json-mode)))
+  (jcs-add-auto-mode-alist '("\\.json'?\\'" . json-mode))
+  (jcs-add-auto-mode-alist '("\\.jsx'?\\'" . rjsx-mode)))
 
 ;;; K
 (progn
