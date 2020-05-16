@@ -35,8 +35,8 @@ comment prefix only."
       only-comment-this-line)))
 
 (defun jcs-vs-csharp-do-doc-string ()
-  "Check if should insert the doc string by checking only \
-comment character on the same line."
+  "Check if should insert the doc string by checking only comment character \
+on the same line."
   (let ((do-doc-string t))
     (jcs-goto-first-char-in-line)
     (while (not (jcs-is-end-of-line-p))
