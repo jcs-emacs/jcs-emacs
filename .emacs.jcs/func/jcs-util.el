@@ -532,7 +532,7 @@ Generally you will have to check it four times."
   "Move point N characters forward (backward if N is negative) then check \
 the character the same as C."
   (save-excursion
-    (forward-char n)
+    (jcs-safe-forward-char n)
     (jcs-current-char-equal-p c)))
 
 (defun jcs-current-char-string-match-p (c)
