@@ -643,9 +643,7 @@
       (cancel-timer lsp-ui-doc--timer)))
   (defun jcs--lsp-ui-doc-show-safely ()
     "Safe way to show lsp UI document."
-    (when (timerp jcs--lsp-ui--doc-timer)
-      (cancel-timer jcs--lsp-ui--doc-timer)
-      (setq jcs--lsp-ui--doc-timer nil))
+    (setq jcs--lsp-ui--doc-timer (jcs-safe-kill-timer jcs--lsp-ui--doc-timer))
     (setq jcs--lsp-ui--doc-timer
           (run-with-idle-timer
            lsp-ui-doc-delay nil
