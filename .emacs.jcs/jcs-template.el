@@ -286,7 +286,12 @@ in order to take effect.  Half hot reloading process."
 ;;; JavaScript
 (defun jcs-insert-js-template ()
   "Template for JavaScript."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/javascript/default.txt"))
+  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/js/default.txt"))
+
+;;; JavaScript XML
+(defun jcs-insert-jsx-template ()
+  "Template for JavaScript XML (JSX)."
+  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/jsx/default.txt"))
 
 ;;; JayCeS
 (defun jcs-insert-jayces-template ()
