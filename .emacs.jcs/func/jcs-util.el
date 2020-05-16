@@ -2,7 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-
 ;;----------------------------------------------------------------------------
 ;; Macro
 
@@ -1365,6 +1364,10 @@ IN-KEY : key to search for value."
       (file-name-nondirectory buffer-file-name)
     (buffer-name)))
 
+(defun jcs-get-file-name-capital ()
+  "Get current file name capital."
+  (capitalize (jcs-get-file-name)))
+
 (defun jcs-get-file-name-uppercase ()
   "Get current file name uppercase."
   (upcase (jcs-get-file-name)))
@@ -1378,6 +1381,10 @@ IN-KEY : key to search for value."
   (if buffer-file-name
       (file-name-sans-extension (jcs-get-file-name))
     (buffer-name)))
+
+(defun jcs-get-file-name-without-extension-capital ()
+  "Get current file name without extension capital."
+  (capitalize (jcs-get-file-name-without-extension)))
 
 (defun jcs-get-file-name-without-extension-uppercase ()
   "Get current file name without extension uppercase."
@@ -1659,7 +1666,6 @@ IN-VAL : input value to set to IN-VAR."
         (funcall fnc 1)
         (cond ((jcs-current-char-equal-p beg-ch) (setq beg-cnt (1+ beg-cnt)))
               ((jcs-current-char-equal-p end-ch) (setq end-cnt (1+ end-cnt))))))))
-
 
 (provide 'jcs-util)
 ;;; jcs-util.el ends here
