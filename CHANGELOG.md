@@ -11,6 +11,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Implemented find files ignore directories function. (jcs-emacs-init)
 * Fixed `make`/`run` script find directories/files time spend too 
  long issue. (jcs-emacs-init)
+* Installed `rjsx-mode` for supporting `jsx` file. (jcs-emacs-init)
 
 ### 2020-05-15
 
