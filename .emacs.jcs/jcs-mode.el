@@ -452,7 +452,7 @@ Note this is opposite logic to the toggle mode function."
   (electric-pair-mode 1)
   (goto-address-mode 1)
   (highlight-indent-guides-mode 1)
-  (when (and (not (string= (buffer-name) "*scratch*"))
+  (when (and (jcs-project-current)
              (ignore-errors (file-readable-p (buffer-file-name))))
     (lsp-deferred)))
 
