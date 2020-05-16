@@ -10,7 +10,6 @@
   <a href="https://www.paypal.me/jcs090218"><img alt="Support me" src="https://img.shields.io/badge/Support%20Me-%F0%9F%92%97-ff69b4.svg"></a>
 </p>
 
-
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
 **Table of Contents**
 
@@ -38,7 +37,6 @@
     - [:bamboo: Supported Emacs versions](#bamboo-supported-emacs-versions)
 
 <!-- markdown-toc end -->
-
 
 # jcs-emacs-init
 > Consistent Emacs configuration for all platforms.
@@ -88,7 +86,6 @@ e.g. [Atom](https://atom.io/), [Brackets](http://brackets.io/),
 [Sublime Text 2](https://www.sublimetext.com/2) or [3](https://www.sublimetext.com/),
 [Visual Studio Code](https://code.visualstudio.com/), etc.
 
-
 ## Philosophy
 
 I have experienced many different kinds of IDEs and text
@@ -116,7 +113,6 @@ having a genuinely portable workspace, which is great
 because it lets me work on different machine efficiently,
 without having to get used to an new IDE.
 
-
 ## :newspaper: News
 
 Here is the list of few important and recent changes to this 
@@ -132,7 +128,6 @@ configuration.
 * `5.8.6` - Use `web-mode` instead of `vue-mode` for editing `.vue` file.
 * `5.8.4` - Start using `quelpa` to manage self dependencies on the fly.
 * `5.8.3` - Corrected key bindings `C-x` to cut and `C-c` to copy.
-
 
 ## :floppy_disk: Installation
 
@@ -183,7 +178,6 @@ Install it this way; you wouldn't need to be asked to install
 all necessary packages. So this may be faster or benefits to
 you.
 
-
 ## :clock3: Startup Time
 
 The average startup time for this configuration is around
@@ -221,7 +215,6 @@ answered by
 :pencil:
 *P.S. The above cases are tested on Windows. Other OS that are
 not Windows should start up under a second.*
-
 
 ## :trophy: Features
 
@@ -342,7 +335,6 @@ VSCode like multiple shell control.
 * [*VS Navigate Word*](./features/vs-navigate-word) -
 Visual Studio IDE like navigating between word implementation.
 
-
 ## :file_folder: Package Archives
 
 A list of package archives that this configuration uses.
@@ -363,7 +355,6 @@ code using simple recipes.
 [What are the practical differences between the various Emacs Package Repositories?](https://emacs.stackexchange.com/questions/268/what-are-the-practical-differences-between-the-various-emacs-package-repositorie)
 answered by
 [Tikhon Jelvis](https://github.com/TikhonJelvis).*
-
 
 ## :trophy: Powered by
 
@@ -520,7 +511,6 @@ is a list of Emacs package that you can choose other
 alternatives to replace any similar packages listed here.
 Is also a good place to seek and learn what's inside Emacs!*
 
-
 ## Key Bindings
 
 This configuration have all modes bind to the same set of
@@ -548,7 +538,6 @@ the `copy` key is `C-c C-c`.~~
 corrected and no longer the hassle to this configuration. Thanks to
 `use-package` again, letting me bind `C-x` and `C-c` keys for higher
 precedence.
-
 
 ## Themes
 
@@ -578,7 +567,6 @@ For instance, [vs-dark-theme](https://github.com/jcs-elpa/vs-dark-theme)
 and [vs-light-theme](https://github.com/jcs-elpa/vs-light-theme)
 are now individual packages built outside from this configuration.
 
-
 ## Font
 
 Font uses `use-ttf` package to keep cross OS consistency.
@@ -598,7 +586,6 @@ font is been set in `(use-package use-ttf)` section.
 configuration, check out the `use-ttf`package
 [repo](https://github.com/elpa-host/use-ttf).
 
-
 ## :hammer: Optimization
 
 If you would like to optimize the configuration, you can
@@ -612,7 +599,6 @@ $ cd ./.emacs.jcs
 # compile all the config source code
 $ emacs --batch --eval "(byte-recompile-directory \"./\" 0)"
 ```
-
 
 ## Write your own customization
 
@@ -628,7 +614,6 @@ In your `my-init.el` file should look something similar to this.
 
 (provide 'my-init)
 ```
-
 
 ## :bamboo: Supported Emacs versions
 
