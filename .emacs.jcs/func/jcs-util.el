@@ -7,7 +7,7 @@
 ;; Macro
 
 (defun jcs-save-excursion (fnc &rest args)
-  "Reimplementation when `save-excursion' when it doesn't work as expected."
+  "Re-implementation `save-excursion' in FNC with ARGS."
   (let ((ln (line-number-at-pos)) (col (current-column)))
     (apply fnc args)
     (jcs-goto-line ln)
@@ -62,20 +62,19 @@ Return number of the valid buffers."
       (when fnc (funcall fnc)))))
 
 (defun jcs-get-buffers (str type)
-  "Return a list of buffers that matches STR.
+  "Return a list of buffers that match STR.
 TYPE is the return type; can be 'object or 'string."
   (jcs-get-buffers-regexp (regexp-quote str) type))
 
 (defun jcs-get-buffers-regexp (regexp type)
-  "Return a list of buffers that matches REGEXP.
+  "Return a list of buffers that match REGEXP.
 TYPE is the return type; can be 'object or 'string."
-  (let ((buf-lst '()))
+  (let ((buf-lst '()) (buf-name nil))
     (if (not (stringp regexp))
         (user-error "[WARNING] Can't get buffers with this string/regexp: %s" regexp)
       (dolist (buf (buffer-list))
         (setq buf-name (buffer-name buf))
-        (when (and (stringp buf-name)
-                   (string-match-p regexp buf-name))
+        (when (and (stringp buf-name) (string-match-p regexp buf-name))
           (cl-case type
             ('object (push buf buf-lst))
             ('string (push buf-name buf-lst))))))
@@ -548,9 +547,7 @@ the character the same as C."
 
 (defun jcs-get-current-char-string ()
   "Get the current character as the 'string'."
-  (if (char-before)
-      (string (char-before))
-    ""))
+  (if (char-before) (string (char-before)) ""))
 
 ;;;###autoload
 (defun jcs-goto-next-backward-char (&optional bnd-pt)
@@ -561,8 +558,7 @@ BND-PT : limit point."
   (unless (jcs-is-beginning-of-buffer-p)
     (forward-char -1)
     (while (and (>= (point) bnd-pt)
-                (or (jcs-current-whitespace-or-tab-p)
-                    (jcs-is-beginning-of-line-p)))
+                (or (jcs-current-whitespace-or-tab-p) (jcs-is-beginning-of-line-p)))
       (forward-char -1))))
 
 ;;;###autoload
@@ -574,40 +570,33 @@ BND-PT : boundary point."
   (unless (jcs-is-end-of-buffer-p)
     (forward-char 1)
     (while (and (<= (point) bnd-pt)
-                (or (jcs-current-whitespace-or-tab-p)
-                    (jcs-is-beginning-of-line-p)))
+                (or (jcs-current-whitespace-or-tab-p) (jcs-is-beginning-of-line-p)))
       (forward-char 1))))
 
 (defun jcs-first-backward-char-p (ch)
-  "Check the first character on the left/backward is CH or not, limit to the \
-whole buffer."
+  "Check the first character on the left is CH or not, limit to the whole buffer."
   (save-excursion
-    ;; NOTE: First fowrad a char and ready to
-    ;; be check for next backward character.
+    ;; NOTE: First fowrad a char and ready to be check for next backward character.
     (forward-char 1)
     (jcs-goto-next-backward-char)
     (string= (jcs-get-current-char-string) ch)))
 
 (defun jcs-first-forward-char-p (ch)
-  "Check the first character on the right/forward is CH or not, limit to the \
-whole buffer."
+  "Check the first character on the right is CH or not, limit to the whole buffer."
   (save-excursion
     (jcs-goto-next-forward-char)
     (string= (jcs-get-current-char-string) ch)))
 
 (defun jcs-first-backward-char-in-line-p (ch)
-  "Check the first character on the left/backward is CH or not, with \
-current line as boundary."
+  "Check the first character on the left is CH or not, with current line as boundary."
   (save-excursion
-    ;; NOTE: First fowrad a char and ready to
-    ;; be check for next backward character.
+    ;; NOTE: First fowrad a char and ready to be check for next backward character.
     (forward-char 1)
     (jcs-goto-next-backward-char (1+ (jcs-get-beginning-of-line-point)))
     (string= (jcs-get-current-char-string) ch)))
 
 (defun jcs-first-forward-char-in-line-p (ch)
-  "Check the first character on the right/forward is CH or not with \
-current line as boundary."
+  "Check the first character on the right is CH or not with current line as boundary."
   (save-excursion
     (jcs-goto-next-forward-char (jcs-get-end-of-line-point))
     (string= (jcs-get-current-char-string) ch)))
@@ -619,21 +608,17 @@ current line as boundary."
     (>= (point) pt)))
 
 (defun jcs-is-there-char-forward-point-p (pt)
-  "Check if there is at least one character forward until \
-the point.
-PT : point."
+  "Check if there is character forward before reachs PT."
   (save-excursion
     (jcs-goto-next-forward-char pt)
     (<= (point) pt)))
 
 (defun jcs-is-there-char-backward-util-beginning-of-line-p ()
-  "Check if there are at least a character on the left until \
-the beginning of the line."
+  "Check if there is character on the left before reaches beginning of line."
   (jcs-is-there-char-backward-point-p (jcs-get-beginning-of-line-point)))
 
 (defun jcs-is-there-char-forward-until-end-of-line-p ()
-  "Check if there are at least a character on the right until \
-the end of the line."
+  "Check if there is character on the right before reaches the end of line."
   (jcs-is-there-char-forward-point-p (jcs-get-end-of-line-point)))
 
 ;;----------------------------------------------------------------------------
@@ -1076,7 +1061,7 @@ CMDS should be a list of commands."
   (message "Current faces: %s" (jcs-get-current-point-face)))
 
 (defun jcs-get-faces-internal (pos)
-  "Return the list of faces at this time."
+  "Return the list of faces at this POS."
   (jcs-flatten-list
    (remq nil
          (list
