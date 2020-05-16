@@ -153,8 +153,7 @@ From scale 0 to 100.")
                                              (length jcs--buffer-menu-search-title)
                                              (length tabulated-list--header-string)))
   (unless (string-empty-p jcs--buffer-menu--pattern)
-    (when (timerp jcs--buffer-menu--filter-timer)
-      (cancel-timer jcs--buffer-menu--filter-timer))
+    (setq jcs--buffer-menu--filter-timer (jcs-safe-kill-timer jcs--buffer-menu--filter-timer))
     (setq jcs--buffer-menu--done-filtering nil)
     (setq jcs--buffer-menu--filter-timer
           (run-with-idle-timer jcs--buffer-menu--filter-delay
