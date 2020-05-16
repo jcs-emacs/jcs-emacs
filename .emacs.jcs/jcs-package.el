@@ -144,6 +144,7 @@
     restart-emacs
     reveal-in-folder
     right-click-context
+    rjsx-mode
     rust-mode
     scala-mode
     shader-mode
