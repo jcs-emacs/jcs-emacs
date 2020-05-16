@@ -1,1 +1,12 @@
 #GLOBAL_FILE_INFO#
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+class #C_FILE_NAME_NO_EXT# extends Component {
+  render () {
+    return <h1>Hello World!~</h1>;
+  }
+}
+
+export default #C_FILE_NAME_NO_EXT#;
