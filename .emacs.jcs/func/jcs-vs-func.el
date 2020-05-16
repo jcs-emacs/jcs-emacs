@@ -38,8 +38,9 @@
   "For programming langauge that need `}`."
   (interactive)
   (jcs-delete-region)
-  (if (jcs-forward-pos-char-equal-p "}" 1)
-      (forward-char 1)
+  (if (and (jcs-forward-pos-char-equal-p "}" 1)
+           (not (jcs-is-end-of-buffer-p)))
+      (jcs-safe-forward-char 1)
     (insert "}"))
   (let ((ind-beg -1) (ind-end (point)))
     (save-excursion
