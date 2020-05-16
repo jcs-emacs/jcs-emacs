@@ -2,9 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 
-
 ;;-------------------------------------------------------------------
 ;; Unset key binding
+
 (global-unset-key (kbd "C-k"))
 (global-unset-key (kbd "C-p"))
 (global-unset-key (kbd "C-r"))
@@ -22,7 +22,6 @@
 
 (define-key isearch-mode-map (kbd "C-s") nil)
 (define-key isearch-mode-map (kbd "C-r") nil)
-
 
 ;;-------------------------------------------------------------------
 ;; Set key bindings
@@ -579,7 +578,6 @@
 
 ;;; Whitespace
 (define-key global-map (kbd "C-k b") #'whitespace-mode)
-
 
 (provide 'jcs-key)
 ;;; jcs-key.el ends here

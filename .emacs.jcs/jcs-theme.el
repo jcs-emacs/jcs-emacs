@@ -2,7 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (defun jcs--set-mode-line-color (ac-lst inac-lst)
   "Set `mode-line' them faces with AC-LST and INAC-LST."
   (progn
@@ -261,7 +260,6 @@ POWER-AC-LST : powerline active list.  POWER-INAC-LST : powerline inactive list.
    (lambda ()
      (jcs-reset-plugins-base-on-theme))))
 (advice-add 'enable-theme :after #'jcs--load-theme--advice-after)
-
 
 (provide 'jcs-theme)
 ;;; jcs-theme.el ends here

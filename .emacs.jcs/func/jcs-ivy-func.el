@@ -2,10 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (require 'f)
 (require 'ffap)
-
 
 (defun jcs--ivy-overlaps-p ()
   "Check if the current input overlaps with other options.
@@ -77,7 +75,6 @@ closest approach to the current input."
       (unwind-protect (setq found-file (counsel-projectile-find-file))
         (unless found-file
           (select-window starting-window))))))
-
 
 (provide 'jcs-ivy-func)
 ;;; jcs-ivy-func.el ends here

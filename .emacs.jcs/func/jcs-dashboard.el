@@ -2,7 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (defun jcs-dashboard-page-break-list ()
   "Get the list of page break position."
   (let ((pb-lst '()))
@@ -140,6 +139,7 @@
   ;; TODO: implements this..
   )
 
+;;----------------------------------------------------------------------------
 
 ;;;###autoload
 (defun jcs-dashboard-goto-item-section (id)
@@ -208,7 +208,6 @@
   "Navigate to item 9."
   (interactive)
   (jcs-dashboard-goto-item-section 9))
-
 
 (provide 'jcs-dashboard)
 ;;; jcs-dashboard.el ends here

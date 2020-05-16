@@ -2,7 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (defun jcs-aftermake-frame-functions-hook (frame)
   "Resetting the new FRAME just created."
   (jcs-refresh-theme)
@@ -107,7 +106,6 @@ You will only have to fill in NAME, X, Y, WIDTH, HEIGHT and FNC."
            (- (car spawn-pt) 4) nil
            (window-width) 15
            fnc))))
-
 
 (provide 'jcs-frame)
 ;;; jcs-frame.el ends here

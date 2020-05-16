@@ -1,22 +1,20 @@
 ;;; .emacs --- Load the full configuration -*- lexical-binding: t -*-
 ;;; Commentary:
 
+;; Author:  Shen, Jen-Chieh <jcs090218@gmail.com>
+;; URL:     https://github.com/jcs090218/jcs-emacs-init
+
 ;; This file bootstraps the configuration, which is divided into
 ;; a number of other files.
 ;;
-;; I barely know how to program LISP, and I know
-;; even less about ELISP.  So take everything in
-;; this file with a grain of salt!
-;;
-;; - JenChieh
+;; I barely know how to program LISP, and I know even less about ELISP.
+;; So take everything in this file with a grain of salt!
 
 ;;; Code:
-
 
 ;; DEBUG: Debug mode?
 ;; Produce backtraces when errors occur.
 (setq debug-on-error t)
-
 
 (defconst jcs-init-gc-cons-threshold (* 1024 1024 128)
   "The `GC' threshold during starting up.")
@@ -32,18 +30,18 @@
 ;; NOTE: Raise the `GC' threshold when starting Emacs.
 (jcs-gc-cons-threshold t)
 
-
 ;;; NOTE: Set custom file.
 (setq-default custom-file (expand-file-name ".jcs-custom.el" user-emacs-directory))
 (when (file-exists-p custom-file)
   (load custom-file))
-
 
 (defconst jcs-file-name-handler-alist file-name-handler-alist
   "Record file name handler alist.")
 
 (setq file-name-handler-alist nil)
 
+;;----------------------------------------------------------------------------
+;;; Version
 
 (defconst jcs-emacs-version-number "6.0.7"
   "JCS-Emacs version.")
@@ -54,32 +52,30 @@
   (interactive)
   (message "JCS-Emacs %s" jcs-emacs-version-number))
 
+;;----------------------------------------------------------------------------
+;;; File Loading
 
 (defun jcs-reload-emacs-reloading-p ()
   "Check if Emacs reloading now."
   (if (boundp 'reload-emacs-reloading) reload-emacs-reloading nil))
-
-;;========================================
-;;      JENCHIEH FILE LOADING
-;;----------------------------------
 
 (unless (jcs-reload-emacs-reloading-p)
   (add-to-list 'load-path "~/.emacs.jcs/")
   (add-to-list 'load-path "~/.emacs.jcs/func/")
   (add-to-list 'load-path "~/.emacs.jcs/mode/"))
 
-;;; Auto install list of packages I want at the startup of Emacs.
-(require 'jcs-package)  ;; Get the list of package dependencies.
+(require 'jcs-package)
 
 ;; Install all packages that this config needs.
-(jcs-ensure-package-installed jcs-package-install-list
-                              (boundp 'jcs-build-test))
-
-(jcs-ensure-manual-package-installed jcs-package-manually-install-list
-                                     (boundp 'jcs-build-test))
+(progn
+  (jcs-ensure-package-installed jcs-package-install-list (boundp 'jcs-build-test))
+  (jcs-ensure-manual-package-installed jcs-package-manually-install-list (boundp 'jcs-build-test)))
 
 (defconst jcs-package-init-time (emacs-init-time)
   "Record down the package initialize time.")
+
+;;----------------------------------------------------------------------------
+;;; Core
 
 ;;; Utilities
 (require 'jcs-log)
@@ -100,7 +96,6 @@
 (require 'jcs-hook)
 (require 'jcs-key)
 (require 'jcs-face)
-
 
 ;; Local Variables:
 ;; coding: utf-8

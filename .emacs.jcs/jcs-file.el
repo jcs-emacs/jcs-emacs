@@ -2,7 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-
 ;;;###autoload
 (defun jcs-html-preview (&optional filepath title not-ow)
   "Preview html FILEPATH other window with TITLE.
@@ -227,7 +226,7 @@ OW : Open file other window."
   (interactive)
   (jcs-find-corresponding-file t))
 
-;;-----------------------------------------------------------
+;;----------------------------------------------------------------------------
 ;; C/C++
 
 (defun jcs-cc-corresponding-file ()
@@ -251,7 +250,7 @@ OW : Open file other window."
     ;; Return file name.
     corresponding-file-name))
 
-;;-----------------------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Objective-C
 
 (defun jcs-objc-corresponding-file ()
@@ -269,7 +268,7 @@ OW : Open file other window."
     ;; Return file name.
     corresponding-file-name))
 
-;;-----------------------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Web Related
 
 (defun jcs-web-corresponding-file ()
@@ -287,7 +286,6 @@ OW : Open file other window."
 
     ;; Return file name.
     corresponding-file-name))
-
 
 (provide 'jcs-file)
 ;;; jcs-file.el ends here

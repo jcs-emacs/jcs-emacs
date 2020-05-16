@@ -2,10 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
-
 ;;----------------------------------------------------------------------------
 ;; Truncate lines depends on the Face.
-;;----------------------------------------------------------------------------
 
 (defvar jcs-web-auto-truncate-lines nil
   "Toggle between using automatically truncate lines or not.")
@@ -186,6 +184,8 @@ Is the opposite of `jcs-web-toggle-auto-truncate-lines'."
     (unless (call-interactively #'emmet-expand-line)
       (jcs-ctrl-return-key))))
 
+;;----------------------------------------------------------------------------
+
 (defun jcs-init-web-faces ()
   "Initialize Web mode faces highlihgting."
   (let ((missing-modes '(web-mode)))
@@ -199,7 +199,6 @@ Is the opposite of `jcs-web-toggle-auto-truncate-lines'."
          ;; For multi-lines comment.
          ("@[ \t\n]*{[[:ascii:]]*\\(/\\*[[:ascii:]]*\\*/\\)[[:ascii:]]*}" 1 'jcs-web-mode-block-comment-face t))
        'end))))
-
 
 (provide 'jcs-web-func)
 ;;; jcs-web-func.el ends here

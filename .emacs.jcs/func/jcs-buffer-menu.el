@@ -2,7 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-
 ;; TOPIC: BufferMenuPlus
 ;; URL: https://www.emacswiki.org/emacs/BufferMenuPlus
 
@@ -171,7 +170,6 @@ ADD-DEL-NUM : Addition or deletion number."
     (setq tabulated-list--header-string
           (substring tabulated-list--header-string 0 (1- (length tabulated-list--header-string)))))
   (jcs--buffer-menu-trigger-filter))
-
 
 (provide 'jcs-buffer-menu)
 ;;; jcs-buffer-menu.el ends here

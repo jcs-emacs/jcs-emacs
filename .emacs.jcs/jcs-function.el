@@ -2,7 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-
 ;;----------------------------------------------------------------------------
 ;; *Messages*
 
@@ -828,7 +827,6 @@ NO-PROMPT : Don't prompt the overwrap message."
   (require 'yasnippet-snippets)
   (call-interactively #'yas-expand))
 
-
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 ;; Load files.
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -872,7 +870,6 @@ NO-PROMPT : Don't prompt the overwrap message."
 (with-eval-after-load 'web-mode (require 'jcs-web-func))
 (with-eval-after-load 'yaml-mode (require 'jcs-yaml-func))
 (require 'jcs-oop-func)
-
 
 (provide 'jcs-function)
 ;;; jcs-function.el ends here

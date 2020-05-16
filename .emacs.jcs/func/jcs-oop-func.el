@@ -2,7 +2,6 @@
 ;;; Commentary: Functions for Object Oriented Programming languages.
 ;;; Code:
 
-
 (defun jcs-docstring-modes-p ()
   "Check if current mode support docstring."
   (or (jcs-is-current-major-mode-p
@@ -1384,9 +1383,7 @@ SEARCH-STRING is the raw string that represent the code we want to document."
         (insert jcs--return-desc-string)
         (indent-for-tab-command)))))
 
-
-;;-----------------------------------------------------------
-;;-----------------------------------------------------------
+;;----------------------------------------------------------------------------
 
 (defun jcs-oop-complete-missing-font ()
   "Complete all the missing font that doesn't work with built-in docstirng."
@@ -1426,7 +1423,6 @@ SEARCH-STRING is the raw string that represent the code we want to document."
          ("[|:][ \t\n]*\\([a-zA-Z0-9_-]*\\)[ \t\n]*[|{]" 1 'font-lock-type-face)
          ("[a-zA-Z0-9_-(]+[ \t\n]*[|:][ \t\n]*\\([a-zA-Z0-9_-]+\\)[ \t\n]*[=),]" 1 'font-lock-type-face))
        'end))))
-
 
 (provide 'jcs-oop-func)
 ;;; jcs-oop-func.el ends here

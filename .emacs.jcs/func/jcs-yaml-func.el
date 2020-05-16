@@ -2,7 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (require 'yaml-mode)
 
 ;;;###autoload
@@ -12,7 +11,6 @@
   (if (use-region-p)
       (jcs-delete-region)
     (call-interactively #'yaml-electric-backspace)))
-
 
 (provide 'jcs-yaml-func)
 ;;; jcs-yaml-func.el ends here

@@ -2,7 +2,6 @@
 ;;; Commentary: When editing the Go related file.
 ;;; Code:
 
-
 ;;;###autoload
 (defun jcs-go-maybe-insert-codedoc ()
   "Insert common Go document/comment string."
@@ -21,7 +20,6 @@
     (when (and active-comment next-line-not-empty)
       (jcs-insert-comment-style-by-current-line "[{]")
       (end-of-line))))
-
 
 (provide 'jcs-go-func)
 ;;; jcs-go-func.el ends here

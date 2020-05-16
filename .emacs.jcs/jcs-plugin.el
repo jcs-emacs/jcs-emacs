@@ -2,20 +2,17 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (use-package auto-highlight-symbol
   :defer t
   :init
   ;; Number of seconds to wait before highlighting symbol.
   (setq ahs-idle-interval 0.3))
 
-
 (use-package browse-kill-ring
   :defer t
   :init
   (setq browse-kill-ring-separator "--- Separator ---------------------------------------------------------------------------")
   (setq browse-kill-ring-separator-face 'font-lock-comment-face))
-
 
 (use-package buffer-wrap
   :defer t
@@ -34,7 +31,6 @@
           (ignore-errors (forward-line 1))))))
   (add-hook 'buffer-wrap-post-command-hook 'jcs--buffer-wrap-post-command-hook))
 
-
 (use-package centaur-tabs
   :defer t
   :init
@@ -42,7 +38,6 @@
   (setq centaur-tabs-style "wave")
   (setq centaur-tabs-set-modified-marker t)
   (setq centaur-tabs-modified-marker "*"))
-
 
 (use-package company
   :defer t
@@ -145,7 +140,6 @@
   (with-eval-after-load 'company-quickhelp
     (company-quickhelp-terminal-mode 1)))
 
-
 (use-package dashboard
   :defer t
   :init
@@ -172,14 +166,12 @@
     "~/.emacs.jcs/banner/sink.txt")
   (advice-add #'dashboard-get-banner-path :override #'jcs--dashboard-get-banner-path)
   (dashboard-setup-startup-hook))
-
 (use-package dashboard-ls
   :defer t
   :config
   (let ((dashboard-lst-items '((ls-directories . 5)
                                (ls-files . 5))))
     (setq dashboard-items (append dashboard-lst-items dashboard-items))))
-
 
 (use-package define-it
   :defer t
@@ -189,7 +181,6 @@
   (setq define-it-definition-header "\n\n--{{ DICTIONARY }}--\n\n")
   (setq define-it-translate-header "\n\n--{{ TRANSLATION }}--\n\n")
   (setq define-it-wiki-summary-header "\n\n--{{ WIKIPEDIA SUMMARY }}--\n\n"))
-
 
 (use-package diminish
   :defer t
@@ -230,7 +221,6 @@
     (diminish 'global-whitespace-newline-mode))
   (with-eval-after-load 'yasnippet (diminish 'yas-minor-mode)))
 
-
 (use-package diminish-buffer
   :defer t
   :init
@@ -252,26 +242,22 @@
     (when diminish-buffer-mode (diminish-buffer-clean)))
   (advice-add 'jcs-buffer-menu-refresh-buffer :before #'jcs--diminish-buffer-clean--advice-before))
 
-
 (use-package dumb-jump
   :defer t
   :init
   (setq dumb-jump-selector 'helm)
   (setq dumb-jump-force-searcher 'ag))
 
-
 (use-package eww
   :defer t
   :init
   (setq eww-search-prefix "https://www.google.com/search?q="))
-
 
 (use-package exec-path-from-shell
   :defer t
   :config
   (when (memq window-system '(mac ns x))
     (exec-path-from-shell-initialize)))
-
 
 (use-package feebleline
   :defer t
@@ -355,7 +341,6 @@
          (setq mode-line-format feebleline--mode-line-format-previous)))))
   (advice-add 'feebleline-mode :after #'jcs--feebleline-mode--advice-after))
 
-
 (use-package ffmpeg-player
   :defer t
   :init
@@ -385,12 +370,10 @@
        (jcs--feebleline--time :align right))))
   (add-hook 'ffmpeg-player-mode-hook 'jcs-ffmpeg-player-mode-hook))
 
-
 (use-package file-header
   :defer t
   :init
   (setq file-header-template-config-filepath "~/.emacs.jcs/template/template_config.properties"))
-
 
 (use-package flycheck-popup-tip
   :defer t
@@ -401,7 +384,6 @@
                                           (and (not (display-graphic-p)) flycheck-mode)))
   (advice-add 'flycheck-mode :after #'jcs--flycheck-mode--pos-tip--advice-after))
 
-
 (use-package flycheck-pos-tip
   :defer t
   :init
@@ -411,13 +393,11 @@
                                           (and (display-graphic-p) flycheck-mode)))
   (advice-add 'flycheck-mode :after #'jcs--flycheck-mode--pos-tip--advice-after))
 
-
 (use-package google-translate
   :defer t
   :init
   (setq google-translate-default-source-language "auto")
   (setq google-translate-default-target-language "zh-TW"))
-
 
 (use-package goto-char-preview
   :defer t
@@ -435,14 +415,12 @@
     (call-interactively #'recenter))
   (advice-add 'goto-line-preview :after #'jcs-advice-goto-line-preview-after))
 
-
 (use-package highlight-indent-guides
   :defer t
   :init
   (setq highlight-indent-guides-method 'character)
   (setq highlight-indent-guides-character ?\|)
   (setq highlight-indent-guides-responsive 'top))
-
 
 (use-package hl-todo
   :defer t
@@ -490,7 +468,6 @@
     (jcs-inside-comment-or-string-p))
   (advice-add #'hl-todo--inside-comment-or-string-p :override #'jcs--hl-todo--inside-comment-or-string-p))
 
-
 (use-package isearch
   :defer t
   :config
@@ -519,7 +496,6 @@
                                        "node_modules/"
                                        "res/")))
 
-
 (use-package ivy
   :defer t
   :init
@@ -547,12 +523,10 @@
   (setq enable-recursive-minibuffers t)
   (setq ivy-wrap t))
 
-
 (use-package line-reminder
   :defer t
   :init
   (setq line-reminder-show-option (if (display-graphic-p) 'indicators 'linum)))
-
 
 (use-package lsp-mode
   :defer t
@@ -660,12 +634,10 @@
     (when (and (functionp 'lsp-ui-doc--hide-frame) (not jcs--lsp-lv-recording))
       (lsp-ui-doc--hide-frame))))
 
-
 (use-package multi-shell
   :defer t
   :init
   (setq multi-shell-prefer-shell-type 'shell))  ; Accept `shell' or `eshll'.
-
 
 (use-package multiple-cursors
   :defer t
@@ -695,7 +667,6 @@
          (move-to-column cur-column)
          (mc/create-fake-cursor-at-point)))))
   (advice-add 'mc/mark-lines :override #'jcs--mc/mark-lines))
-
 
 (use-package neotree
   :defer t
@@ -749,12 +720,10 @@
     (buffer-wrap-mode 1))
   (add-hook 'neo-after-create-hook 'jcs--neo-after-create-hook))
 
-
 (use-package origami
   :defer t
   :config
   (global-origami-mode t))
-
 
 (use-package popup
   :defer t
@@ -791,7 +760,6 @@
       (when do-orig-fun (apply orig-fun args))))
   (advice-add 'popup-draw :around #'jcs-advice-popup-select-around))
 
-
 (use-package powerline
   :defer t
   :init
@@ -803,7 +771,6 @@
   ;; wave, zigzag, utf-8.
   (setq powerline-default-separator 'wave))
 
-
 (use-package preproc-font-lock
   :defer t
   :config
@@ -811,7 +778,6 @@
                       nil
                       :background nil
                       :inherit nil))
-
 
 (use-package projectile
   :defer t
@@ -822,7 +788,6 @@
         (append projectile-globally-ignored-directories
                 '(".vs" ".vscode" "node_modules")))
   (add-hook 'projectile-after-switch-project-hook #'jcs-dashboard-refresh-buffer))
-
 
 (use-package region-occurrences-highlighter
   :defer t
@@ -835,7 +800,6 @@
                       :inverse-video nil)
   (add-hook 'prog-mode-hook #'region-occurrences-highlighter-mode))
 
-
 (use-package reload-emacs
   :defer t
   :init
@@ -847,7 +811,6 @@
     "Hook runs after reload Emacs."
     (jcs-re-enable-mode 'company-fuzzy-mode))
   (add-hook 'reload-emacs-after-hook #'jcs--reload-emacs-after-hook))
-
 
 (use-package right-click-context
   :defer t
@@ -865,7 +828,6 @@
               (call-interactively value t)
             (eval value)))))))
 
-
 (use-package shift-select
   :defer t
   :config
@@ -880,7 +842,6 @@
         (when (jcs-is-contain-list-symbol sym-lst this-command)
           (deactivate-mark)))))
   (advice-add 'shift-select-pre-command-hook :after #'jcs-advice-shift-select-pre-command-hook-after))
-
 
 (use-package show-eol
   :defer t
@@ -898,7 +859,6 @@
     (face-remap-add-relative 'whitespace-newline :inverse-video nil))
   (advice-add 'show-eol-disable :before #'jcs-advice-show-eol-disable-before))
 
-
 (use-package sql-indent
   :defer t
   :init
@@ -911,12 +871,10 @@
   ;; etc.
   (setq sql-indent-offset 1))
 
-
 (use-package undo-tree
   :defer t
   :config
   (global-undo-tree-mode t))
-
 
 (use-package use-ttf
   :defer t
@@ -929,7 +887,6 @@
   ;; Name of the font we want to use as default.
   ;; This you need to check the font name in the system manually.
   (setq use-ttf-default-ttf-font-name "Ubuntu Mono"))
-
 
 (use-package web-mode
   :defer t
@@ -1026,12 +983,10 @@
   (set-face-attribute 'web-mode-comment-face nil :foreground (face-foreground font-lock-comment-face))
   (set-face-attribute 'web-mode-css-property-name-face nil :foreground (face-foreground jcs-css-type-face)))
 
-
 (use-package wgrep
   :defer t
   :init
   (setq wgrep-auto-save-buffer t))
-
 
 (use-package which-key
   :defer t
@@ -1055,7 +1010,6 @@
   ;; zero might cause issues so a non-zero value is recommended.
   (setq which-key-idle-delay 1.0))
 
-
 (use-package whitespace
   :defer t
   :config
@@ -1072,25 +1026,21 @@
                       :background "grey20"
                       :foreground "red"))
 
-
 (use-package windmove
   :defer t
   :init
   (setq windmove-wrap-around t))
-
 
 (use-package yascroll
   :defer t
   :init
   (setq yascroll:delay-to-hide 0.8))
 
-
 (use-package yasnippet
   :defer t
   :config
   (require 'yasnippet-snippets)
   (yas-global-mode 1))
-
 
 (provide 'jcs-plugin)
 ;;; jcs-plugin.el ends here

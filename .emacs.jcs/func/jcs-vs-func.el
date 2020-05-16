@@ -2,7 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-
 ;; DESCRIPTION: For function that simulate the Visual Studio IDE's action.
 
 ;;;###autoload
@@ -107,7 +106,6 @@ If nothing is selected, we cut the current line, else we just delete the region.
     (if (jcs-is-region-selected-p)
         (call-interactively #'kill-region)
       (kill-whole-line))))
-
 
 (provide 'jcs-vs-func)
 ;;; jcs-vs-func.el ends here

@@ -2,11 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 
-
 ;; First load the mode to prevent overwrite after.
 (require 'masm-mode)
 (require 'nasm-mode)
-
 
 (defvar jcs-asm--asking-mode nil
   "Flag for asking the Assembly Language mode.")
@@ -119,7 +117,6 @@
 
     (when (and should-indent (jcs-is-end-of-line-p))
       (insert " "))))
-
 
 (provide 'jcs-asm-func)
 ;;; jcs-asm-func.el ends here

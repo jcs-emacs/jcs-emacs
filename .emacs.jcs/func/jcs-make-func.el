@@ -2,9 +2,7 @@
 ;;; Commentary: Functions for Makefile.
 ;;; Code:
 
-
 (require 'jcs-python-func)
-
 
 ;;;###autoload
 (defun jcs-ask-makefile-language (lan)
@@ -86,14 +84,12 @@ TYPE: type of makefile for Python."
         ((string= type "Library")
          (jcs-insert-makefile-python-lib-template))))
 
-
 ;;;###autoload
 (defun jcs-makefile-newline ()
   "Makefile newline."
   (interactive)
   (insert "\n")
   (py-indent-line-outmost))
-
 
 (provide 'jcs-make-func)
 ;;; jcs-make-func.el ends here

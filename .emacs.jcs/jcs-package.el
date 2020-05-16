@@ -2,7 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-
 ;; ==================
 ;; [IMPORTANT] This should be ontop of all require packages!!!
 
@@ -26,8 +25,7 @@
 ;; initialize package.el
 (package-initialize)
 
-;;-----------------------------------------------------------
-;;-----------------------------------------------------------
+;;----------------------------------------------------------------------------
 
 ;; List of package you want to installed.
 (defconst jcs-package-install-list
@@ -290,9 +288,9 @@
     (package-menu-filter (concat "status:" status))))
 
 
-;;========================================
-;;         Manually Installation
-;;----------------------------------
+;;----------------------------------------------------------------------------
+;; Manually Installation
+
 
 (defconst jcs-package-manually-install-list
   '(("file-header" "jcs-elpa/file-header" "github")
@@ -336,7 +334,6 @@
                       (y-or-n-p (format "[QUELPA] Package %s is missing. Install it? " pkg-name)))
               (require 'quelpa)
               (quelpa recipe))))))))
-
 
 (provide 'jcs-package)
 ;;; jcs-package.el ends here

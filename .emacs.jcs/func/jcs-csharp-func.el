@@ -2,7 +2,6 @@
 ;;; Commentary: When editing the C# related file.
 ;;; Code:
 
-
 ;;;###autoload
 (defun jcs-csharp-ask-source (sc)
   "Ask the source SC for editing CSharp file."
@@ -12,7 +11,6 @@
                                                   "Unity Scripting"))))
   (cond ((string= sc "Default") (jcs-insert-csharp-template))
         ((string= sc "Unity Scripting") (jcs-insert-csharp-unity-template))))
-
 
 (defun jcs-vs-csharp-comment-prefix-p ()
   "Check if current line is a Visual Studio's style comment prefix."
@@ -89,8 +87,7 @@ on the same line."
         ;; insert comment doc comment string.
         (jcs-insert-comment-style-by-current-line "[{;]")))))
 
-;;-----------------------------------------------------------
-;;-----------------------------------------------------------
+;;----------------------------------------------------------------------------
 
 ;;;###autoload
 (defun jcs-csharp-smart-indent-up ()
@@ -111,7 +108,6 @@ on the same line."
              (jcs-current-char-equal-p "/")
              (jcs-vs-csharp-only-vs-comment-prefix-this-line-p))
     (insert " ")))
-
 
 (provide 'jcs-csharp-func)
 ;;; jcs-csharp-func.el ends here

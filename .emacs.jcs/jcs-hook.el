@@ -2,7 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (defun jcs-focus-in-hook ()
   "When window is focus."
   (jcs-revert-all-file-buffers)
@@ -37,7 +36,7 @@
   (jcs--lsp-ui-doc-show-safely))
 (add-hook 'window-size-change-functions 'jcs-window-size-change-functions)
 
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 (defun jcs-find-file-hook ()
   "Find file hook."
@@ -91,7 +90,7 @@
     (jcs--lsp-ui-doc-show-safely)))
 (advice-add 'other-window :after #'jcs--other-window--advice-after)
 
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 (defun jcs-after-init-hook ()
   "Hook run after initialize."
@@ -123,41 +122,41 @@
   ;; NOTE: Enable util modes here.
   ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   (progn
-    ;;-------------------------------- `alt-codes'
+    ;;----------------------------------- `alt-codes'
     (global-alt-codes-mode 1)
-    ;;-------------------------------- `auto-highlight-symbol'
+    ;;----------------------------------- `auto-highlight-symbol'
     (global-auto-highlight-symbol-mode t)
-    ;;-------------------------------- `delete-selection'
+    ;;----------------------------------- `delete-selection'
     (delete-selection-mode 1)
-    ;;-------------------------------- `goto-address'
+    ;;----------------------------------- `goto-address'
     (goto-address-mode t)
-    ;;-------------------------------- `hl-line'
+    ;;----------------------------------- `hl-line'
     (global-hl-line-mode 1)
-    ;;-------------------------------- `hl-todo'
+    ;;----------------------------------- `hl-todo'
     (global-hl-todo-mode 1)
-    ;;-------------------------------- `ivy'
+    ;;----------------------------------- `ivy'
     (ivy-mode 1)
-    ;;-------------------------------- `page-break-lines'
+    ;;----------------------------------- `page-break-lines'
     (global-page-break-lines-mode 1)
-    ;;-------------------------------- `powerline'
+    ;;----------------------------------- `powerline'
     (powerline-default-theme)
-    ;;-------------------------------- `preproc-font-lock'
+    ;;----------------------------------- `preproc-font-lock'
     (preproc-font-lock-global-mode t)
     (preproc-font-lock-mode t)
-    ;;-------------------------------- `projectile'
+    ;;----------------------------------- `projectile'
     (projectile-mode t)
-    ;;-------------------------------- `right-click-context'
+    ;;----------------------------------- `right-click-context'
     (right-click-context-mode 1)
-    ;;-------------------------------- `shift-select'
+    ;;----------------------------------- `shift-select'
     (global-shift-select-mode t)
-    ;;-------------------------------- `show-paren'
+    ;;----------------------------------- `show-paren'
     ;; NOTE: turn on highlight matching brackets when cursor is on one
     (show-paren-mode t)
-    ;;-------------------------------- `use-ttf'
+    ;;----------------------------------- `use-ttf'
     (use-ttf-set-default-font)
-    ;;-------------------------------- `which-key'
+    ;;----------------------------------- `which-key'
     (which-key-mode)
-    ;;-------------------------------- `yascroll'
+    ;;----------------------------------- `yascroll'
     (global-yascroll-bar-mode 1))
 
   (jcs-setup-default-theme)
@@ -193,7 +192,7 @@
                 (string-to-number (emacs-init-time)))))
 (add-hook 'after-init-hook 'jcs-after-init-hook)
 
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 (defun jcs-post-command-hook ()
   "Hook run after every command."
@@ -217,14 +216,14 @@
   (jcs-reload-active-mode-with-error-handle))
 (add-hook 'post-command-hook 'jcs-post-command-hook)
 
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 (defun jcs-after-change-major-mode-hook ()
   "Hook run after major mode changes."
   (unless (jcs-reload-emacs-reloading-p) (jcs-active-line-numbers-by-mode)))
 (add-hook 'after-change-major-mode-hook 'jcs-after-change-major-mode-hook)
 
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 (defun jcs--kill-emacs-hook ()
   "Hook run before Emacs is killed."
@@ -232,9 +231,8 @@
     (ffmpeg-player-clean)))
 (add-hook 'kill-emacs-hook 'jcs--kill-emacs-hook)
 
-;;-----------------------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Minibuffer
-;;-----------------------------------------------------------
 
 (defun jcs-minibuffer-setup-hook ()
   "Hook when minibuffer setup."
@@ -271,7 +269,6 @@
     (garbage-collect)
     (jcs-gc-cons-threshold nil)))
 (add-hook 'minibuffer-exit-hook 'jcs-minibuffer-exit-hook)
-
 
 (provide 'jcs-hook)
 ;;; jcs-hook.el ends here

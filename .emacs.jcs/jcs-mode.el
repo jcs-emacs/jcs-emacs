@@ -2,10 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
-
-;;---------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Trigger between command and insert mode
-;;---------------------------------------------
 
 ;;;###autoload
 (defun jcs-insert-command-mode-toggle()
@@ -238,7 +236,7 @@ Note this is opposite logic to the toggle mode function."
     (make-local-variable 'adaptive-fill-regexp)
     (c-setup-paragraph-variables)))
 
-;;----------------------------------------------
+;;----------------------------------------------------------------------------
 ;; License
 
 (defun jcs-ask-insert-license-content (in-type)
@@ -254,7 +252,7 @@ Note this is opposite logic to the toggle mode function."
          (file-header-insert-template-by-file-path
           (format "%s%s.txt" jcs-license-template-path in-type)))))
 
-;;----------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Change Log
 
 (defun jcs-ask-insert-changelog-content (in-type)
@@ -271,9 +269,8 @@ Note this is opposite logic to the toggle mode function."
          (file-header-insert-template-by-file-path
           (format "%s%s.txt" jcs-changelog-template-path in-type)))))
 
-;;------------------------------------------------------------------------------------------------------
+;;----------------------------------------------------------------------------
 ;;; Command Mode & Insert Mode
-;;------------------------------------------------------------------------------------------------------
 
 ;;;###autoload
 (defun jcs-command-mode()
@@ -329,10 +326,8 @@ Note this is opposite logic to the toggle mode function."
 
 (add-hook 'view-mode-hook 'jcs-view-mode-hook)
 
-
-;;------------------------------------------------------------------------------------------------------
+;;----------------------------------------------------------------------------
 ;;; Local Mode & Online Mode
-;;------------------------------------------------------------------------------------------------------
 
 ;;;###autoload
 (defun jcs-depend-mode ()
@@ -386,9 +381,8 @@ Note this is opposite logic to the toggle mode function."
   (put 'jcs-depend-cross-mode-toggle 'state t))
 
 
-;;------------------------------------------------------------------------------------------------------
+;;----------------------------------------------------------------------------
 ;;; Startup Modes
-;;------------------------------------------------------------------------------------------------------
 
 ;; NOTE: These are modes that will startup immediately, meaning there will
 ;; be no benefits having in the separated files except the modulation.
@@ -498,9 +492,8 @@ Note this is opposite logic to the toggle mode function."
 (add-hook 'lisp-interaction-mode-hook 'jcs-lisp-interaction-mode-hook)
 
 
-;;------------------------------------------------------------------------------------------------------
+;;----------------------------------------------------------------------------
 ;;; Modes
-;;------------------------------------------------------------------------------------------------------
 
 (with-eval-after-load 'message (require 'jcs-message-mode))
 (with-eval-after-load 're-builder (require 'jcs-re-builder-mode))
@@ -763,7 +756,6 @@ PR : pair file `regexp' and file mode `symbol'."
 (progn
   (jcs-add-auto-mode-alist '("\\.yaml'?\\'" . yaml-mode))
   (jcs-add-auto-mode-alist '("\\.yml'?\\'" . yaml-mode)))
-
 
 (provide 'jcs-mode)
 ;;; jcs-mode.el ends here

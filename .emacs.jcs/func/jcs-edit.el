@@ -2,8 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-
-;;----------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Undo / Redo
 
 ;;
@@ -171,7 +170,7 @@ CBF : Current buffer file name."
         ;;   => `undo-tree-visualizer-hide-diff'
         (when jcs-undo-tree-auto-show-diff (undo-tree-visualizer-toggle-diff))))))
 
-;;---------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Backspace
 
 ;;;###autoload
@@ -190,7 +189,7 @@ CBF : Current buffer file name."
       (jcs-backward-delete-spaces-by-tab-width)
     (jcs-real-backspace)))
 
-;;---------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Delete
 
 ;;;###autoload
@@ -208,7 +207,7 @@ CBF : Current buffer file name."
       (jcs-forward-delete-spaces-by-tab-width)
     (jcs-real-delete)))
 
-;;---------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Return
 
 ;;;###autoload
@@ -236,7 +235,7 @@ CBF : Current buffer file name."
           ('org-mode (call-interactively #'org-todo))
           (t (call-interactively (key-binding (kbd "RET")))))))))
 
-;;---------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Space
 
 ;;;###autoload
@@ -258,7 +257,7 @@ CBF : Current buffer file name."
         (jcs-insert-spaces-by-tab-width)
       (jcs-real-space))))
 
-;;----------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Yank
 
 ;;;###autoload
@@ -270,7 +269,7 @@ CBF : Current buffer file name."
     (call-interactively #'yank)
     (ignore-errors (indent-region reg-beg (point)))))
 
-;;----------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Tab
 
 ;;;###autoload
@@ -286,7 +285,7 @@ CBF : Current buffer file name."
             (when (= pt (point)) (jcs-insert-spaces-by-tab-width)))
         (jcs-insert-spaces-by-tab-width)))))
 
-;;----------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Mark
 
 (defvar-local jcs-marking-whole-buffer nil
@@ -303,7 +302,7 @@ CBF : Current buffer file name."
   (setq-local jcs-marking-whole-buffer-cmd-count 0)
   (setq-local jcs-marking-whole-buffer t))
 
-;;----------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Overwrite (Insert toggle)
 
 ;;;###autoload
@@ -325,7 +324,7 @@ CBF : Current buffer file name."
       (setq-local cursor-type 'hbar)
     (setq-local cursor-type 'box)))
 
-;;---------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Kill Line
 
 ;;;###autoload
@@ -468,7 +467,7 @@ This command does not push text to `kill-ring'."
     (yank)
     (move-to-column cur-col)))
 
-;;---------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Indent moving UP or DOWN.
 
 (defun jcs-can-do-smart-indent-p ()
@@ -509,7 +508,7 @@ This command does not push text to `kill-ring'."
   (when (jcs-can-do-smart-indent-p)
     (indent-according-to-mode)))
 
-;;----------------------------------------------
+;;----------------------------------------------------------------------------
 ;;      Format File
 
 ;;;###autoload
@@ -711,7 +710,7 @@ REGEXP : reqular expression use to align."
       (when (< (point-min) begin)
         (delete-trailing-whitespace (point-min) (1- begin))))))
 
-;;----------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Move Current Line Up or Down
 
 ;;;###autoload
@@ -731,7 +730,7 @@ REGEXP : reqular expression use to align."
   (forward-line -1)
   (indent-according-to-mode))
 
-;;----------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Word Case
 
 ;;;###autoload
@@ -758,7 +757,7 @@ REGEXP : reqular expression use to align."
       (capitalize-region (region-beginning) (region-end))
     (call-interactively #'capitalize-word)))
 
-;;----------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Line Ending
 
 ;;;###autoload
@@ -774,7 +773,7 @@ REGEXP : reqular expression use to align."
           (replace-match "" nil nil))
         (message (format "%d ^M removed from buffer." remove-count))))))
 
-;;----------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Tabify / Unabify
 
 ;;;###autoload
@@ -799,7 +798,7 @@ REGEXP : reqular expression use to align."
        (widen)
        (tabify start-pt end-pt)))))
 
-;;----------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Save Buffer
 
 (defun jcs-do-stuff-before-save (&rest _)
@@ -884,7 +883,7 @@ REGEXP : reqular expression use to align."
       (ignore-errors (call-interactively (key-binding (kbd "C-s"))))))
   (message "All buffers are saved"))
 
-;;----------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Find file
 
 (defun jcs-is-finding-file-p ()
@@ -909,7 +908,7 @@ REGEXP : reqular expression use to align."
   (jcs-same-file-other-window)
   (bury-buffer))
 
-;;----------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Rename file
 
 (defun jcs-is-renaming-p ()
@@ -937,8 +936,7 @@ REGEXP : reqular expression use to align."
           (message "File '%s' successfully renamed to '%s'."
                    name (file-name-nondirectory new-name)))))))
 
-
-;;----------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Kill Buffer
 
 (defun jcs-bury-diminished-buffer ()
@@ -1057,7 +1055,7 @@ ECP-SAME : Exception for the same buffer."
       (jcs-window-restore-once)
       (message "Reopened file => '%s'" current-bfn))))
 
-;;----------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Delete Repeatedly
 
 ;;;###autoload
@@ -1090,7 +1088,7 @@ REVERSE : t forward, nil backward."
       (if reverse (delete-char -1) (delete-char 1))
       (jcs-delete-char-repeat char reverse))))
 
-;;----------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Delete inside a Character.
 
 (defun jcs-find-start-char (start-char preserve-point)
@@ -1423,7 +1421,7 @@ REVERSE : t forward, nil backward."
   (interactive)
   (jcs-delete-between-char "?" "?"))
 
-;;----------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Electric Pair
 
 (defun jcs-get-open-pair-char (c)
@@ -1535,7 +1533,7 @@ CC : Current character at position."
         (jcs-forward-delete-close-pair-char cpc)
         (jcs-forward-delete-close-pair-char-seq cc)))))
 
-;;----------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Isearch
 
 ;;;###autoload
@@ -1595,7 +1593,7 @@ CC : Current character at position."
     (save-mark-and-excursion
       (isearch-abort))))
 
-;;----------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Multiple Cursors
 
 ;;;###autoload
@@ -1694,7 +1692,7 @@ CC : Current character at position."
   (setq jcs-mc/string-distance-level (1- jcs-mc/string-distance-level))
   (message "[INFO] Current string distance: %s" jcs-mc/string-distance-level))
 
-;;----------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Folding / Unfolding
 
 ;;;###autoload
@@ -1724,7 +1722,6 @@ CC : Current character at position."
   (interactive)
   (require 'origami)
   (call-interactively #'origami-open-node))
-
 
 (provide 'jcs-edit)
 ;;; jcs-edit.el ends here

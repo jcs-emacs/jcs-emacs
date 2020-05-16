@@ -2,12 +2,10 @@
 ;;; Commentary:
 ;;; Code:
 
-
 ;; Stop Emacs from losing undo information by
 ;; setting very high limits for undo buffers
 (setq undo-limit 20000000)
 (setq undo-strong-limit 40000000)
-
 
 ;; Determine the underlying operating system
 (defconst jcs-is-windows (memq system-type '(cygwin windows-nt ms-dos))
@@ -18,7 +16,6 @@
   "Is Linux.")
 (defconst jcs-is-bsd (or jcs-is-mac (eq system-type 'berkeley-unix))
   "Is BSD.")
-
 
 (defconst jcs-daily-todo-file "~/TODO_JenChieh/code/todo.txt" "Open the daily todo file.")
 (defconst jcs-log-file "~/TODO_JenChieh/code/log.txt" "Log file path, file location.")
@@ -295,7 +292,6 @@ See `jcs-hook.el' file that has apply `advice' on command `other-window'.")
 ;;; Windows
 (defconst jcs-windows--enlarge-shrink-times 6
   "Times to shrink inside the window.")
-
 
 (provide 'jcs-env)
 ;;; jcs-env.el ends here

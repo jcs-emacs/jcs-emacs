@@ -2,7 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-
 ;;;###autoload
 (defun jcs-markdown-return-key ()
   "Return key for Markdown mode."
@@ -25,7 +24,6 @@
     (unless did-ret-key
       (newline)
       (indent-for-tab-command))))
-
 
 (provide 'jcs-markdown-func)
 ;;; jcs-markdown-func.el ends here

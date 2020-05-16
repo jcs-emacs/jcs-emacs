@@ -2,11 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (require 'ffmpeg-player)
 (require 'show-eol)
 (require 'jcs-shell)
-
 
 (defun jcs-media--open-media-window ()
   "Open the media window."
@@ -35,7 +33,6 @@
        (when bot-window (select-window bot-window)))
      (balance-windows)
      (ffmpeg-player--clean-up))))
-
 
 (provide 'jcs-media)
 ;;; jcs-media.el ends here

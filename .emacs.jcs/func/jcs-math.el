@@ -2,7 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (defun jcs-to-positive (in-val)
   "Convert IN-VAL to positive value."
   (when (and in-val
@@ -44,7 +43,6 @@
   "Check if IN-VAL in the range."
   (and (>= in-val in-min)
        (<= in-val in-max)))
-
 
 (provide 'jcs-math)
 ;;; jcs-math.el ends here

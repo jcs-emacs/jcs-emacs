@@ -2,7 +2,6 @@
 ;;; Commentary: Functions for Preprocessor Languages.
 ;;; Code:
 
-
 (defun jcs-init-preproc-faces ()
   "Initialize preprocessor faces highlihgting."
   (let ((preproc-highlight-modes '(cc-mode
@@ -22,9 +21,8 @@
          ("[#%][ \t]*if[ \t]+defined[a-z0-9_$]*[ \t]*\\([a-zA-Z0-9_$]*\\)" 1 'jcs-preproc-variable-name-face t)
          ("[#%][ \t]*if[ \t]+!defined[a-z0-9_$]*[ \t]*\\([a-zA-Z0-9_$]*\\)" 1 'jcs-preproc-variable-name-face t)
          ("[#%][ \t]*if[ \t]+\\([a-zA-Z0-9-.<>?,*'`@\"=_(){}:&^%$#!~ \t]+\\)" 1 'jcs-preproc-variable-name-face t)
-         ("[#%][ \t]*region[ \t]+\\([a-zA-Z0-9-.<>?,*'`@\"=_(){}:&^%$#!~ \t]+\\)" 1 'jcs-preproc-variable-name-face t)
-         )'end))))
-
+         ("[#%][ \t]*region[ \t]+\\([a-zA-Z0-9-.<>?,*'`@\"=_(){}:&^%$#!~ \t]+\\)" 1 'jcs-preproc-variable-name-face t))
+       'end))))
 
 (provide 'jcs-preproc-func)
 ;;; jcs-preproc-func.el ends here

@@ -2,9 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (require 'multi-shell)
-
 
 (defvar jcs-shell--last-selected-shell-index -1
   "Record last selected shell.")
@@ -75,9 +73,8 @@
     (jcs-delete-window-downwind)
     (balance-windows)))
 
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+;;----------------------------------------------------------------------------
 ;; Shell Commands
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 ;;;###autoload
 (defun jcs-shell-clear-command ()
@@ -124,9 +121,8 @@
       ;; Call default return key.
       (comint-send-input)))))
 
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+;;----------------------------------------------------------------------------
 ;; Deletion
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 (defvar jcs-shell-highlight-face-name "comint-highlight-prompt"
   "Face name in shell mode that we do not want to delete.")
@@ -191,9 +187,8 @@
   (when (jcs-shell-is-current-on-command)
     (call-interactively 'jcs-forward-kill-word-capital)))
 
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+;;----------------------------------------------------------------------------
 ;; Navigation
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 ;;;###autoload
 (defun jcs-shell-up-key ()
@@ -217,9 +212,8 @@
   (when (jcs-last-line-in-buffer-p)
     (goto-char (point-max))))
 
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+;;----------------------------------------------------------------------------
 ;; Completion
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 ;;;###autoload
 (defun jcs-company-manual-begin ()
@@ -228,7 +222,6 @@
   (goto-char (point-max))
   ;; Call default completion function.
   (call-interactively #'company-manual-begin))
-
 
 (provide 'jcs-shell)
 ;;; jcs-shell.el ends here

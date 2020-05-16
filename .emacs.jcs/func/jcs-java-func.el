@@ -2,10 +2,8 @@
 ;;; Commentary: When editing the Java related file.
 ;;; Code:
 
-
 (defconst jcs-java-source-dir-name "src"
   "Java source directory name.")
-
 
 (defun jcs-java-insert-package-from-src ()
   "Insert package string from `src' directory."
@@ -123,8 +121,7 @@ Including adding or removing the package path."
     (when first-save
       (organize-imports-java-reload-local-source-paths))))
 
-;;-----------------------------------------------------------
-;;-----------------------------------------------------------
+;;----------------------------------------------------------------------------
 
 (defun jcs-init-java-faces ()
   "Initialize Java mode faces highlihgting."
@@ -137,7 +134,6 @@ Including adding or removing the package path."
          ("[=][ \t\n]*\\(null\\)" 1 'jcs-font-lock-null-face t)
          ("[:=][ \t\n]*\\(void\\)" 1 'jcs-font-lock-null-face t))
        'end))))
-
 
 (provide 'jcs-java-func)
 ;;; jcs-java-func.el ends here

@@ -2,8 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-
-;;----------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Regular Faces
 
 (defun jcs--set-common-face (face color-fg)
@@ -35,8 +34,7 @@
     (jcs--set-common-face 'font-lock-type-face "#38EFCA")
     (jcs--set-common-face 'font-lock-variable-name-face "#D2D2D2")))
 
-
-;;----------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Common
 
 (defface jcs-font-lock-null-face
@@ -45,8 +43,7 @@
   :group 'jcs)
 (defvar jcs-font-lock-null-face 'jcs-font-lock-null-face)
 
-
-;;----------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Object Oriented Programming
 
 (defface jcs-oop-tag-face
@@ -67,7 +64,7 @@
   :group 'jcs)
 (defvar jcs-oop-value-face 'jcs-oop-value-face)
 
-;;----------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Preprocessor
 
 (defface jcs-preproc-variable-name-face
@@ -76,7 +73,7 @@
   :group 'jcs)
 (defvar jcs-preproc-variable-name-face 'jcs-preproc-variable-name-face)
 
-;;----------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Web
 
 (defface jcs-web-mode-block-face
@@ -140,10 +137,8 @@
   :group 'jcs)
 (defvar jcs-css-variable-face 'jcs-css-variable-face)
 
-
-;;------------------------------------------------------------------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Load face order.
-;;------------------------------------------------------------------------------------------------------
 
 (with-eval-after-load 'preproc-font-lock (jcs-init-preproc-faces))
 
@@ -158,7 +153,6 @@
           (lambda ()
             (jcs-oop-reload-faces)
             (jcs-oop-complete-missing-font)))
-
 
 (provide 'jcs-face)
 ;;; jcs-face.el ends here

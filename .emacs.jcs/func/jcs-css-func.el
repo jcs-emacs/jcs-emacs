@@ -2,7 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-
 ;;;###autoload
 (defun jcs-css-smart-indent-up ()
   "CSS smart indent up."
@@ -54,8 +53,7 @@
   ;;(com-css-sort-attributes-document)
   (jcs-untabify-save-buffer))
 
-;;-----------------------------------------------------------
-;;-----------------------------------------------------------
+;;----------------------------------------------------------------------------
 
 (defun jcs-init-css-faces ()
   "CSS Faces Highlighting."
@@ -78,7 +76,6 @@
   (jcs--set-common-face 'css-selector (face-foreground 'jcs-css-selector-face))
   (jcs--set-common-face 'font-lock-variable-name-face (face-foreground 'jcs-css-variable-face))
   (jcs--set-common-face 'css-property (face-foreground 'jcs-css-type-face)))
-
 
 (provide 'jcs-css-func)
 ;;; jcs-css-func.el ends here

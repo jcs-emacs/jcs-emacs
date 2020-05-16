@@ -2,7 +2,6 @@
 ;;; Commentary: Functions for C/C++ common.
 ;;; Code:
 
-
 ;;;###autoload
 (defun jcs-toggle-cc-mode ()
   "Toggle c/c++ mode."
@@ -23,7 +22,6 @@
               comment-end-skip "[ \t]*\\*+/")
       (setq comment-start "// "
             comment-end ""))))
-
 
 (provide 'jcs-cc-func)
 ;;; jcs-cc-func.el ends here

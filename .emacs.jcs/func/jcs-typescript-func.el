@@ -2,7 +2,6 @@
 ;;; Commentary: When editing the TypeScript related file.
 ;;; Code:
 
-
 ;;;###autoload
 (defun jcs-typescript-ask-source (sc)
   "Ask the source SC for editing TypeScript file."
@@ -15,8 +14,7 @@
         ((string= sc "Cocos Creator Scripting")
          (jcs-insert-typescript-cocos-creator-template))))
 
-;;-----------------------------------------------------------
-;;-----------------------------------------------------------
+;;----------------------------------------------------------------------------
 
 (defun jcs-init-typescript-faces ()
   "Initialize TypeScript mode faces highlihgting."
@@ -28,7 +26,6 @@
          ("[=][ \t\n]*\\(undefined\\)" 1 'jcs-font-lock-null-face t)
          ("[:=][ \t\n]*\\(void\\)" 1 'jcs-font-lock-null-face t))
        'end))))
-
 
 (provide 'jcs-typescript-func)
 ;;; jcs-typescript-func.el ends here

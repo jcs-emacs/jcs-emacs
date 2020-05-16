@@ -2,11 +2,9 @@
 ;;; Commentary: When editing the Lua related file.
 ;;; Code:
 
-
 (defconst jcs-lua-doc-splitter
   "-------------------------------------------------------------"
   "String that inserted around/between docstring.")
-
 
 (defun jcs-lua-comment-prefix-p ()
   "Check if current line is a Lua style comment prefix."
@@ -83,7 +81,6 @@ comment character on the same line."
 
         ;; insert comment doc comment string.
         (jcs-insert-comment-style-by-current-line ")")))))
-
 
 (provide 'jcs-lua-func)
 ;;; jcs-lua-func.el ends here

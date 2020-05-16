@@ -2,11 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (require 'f)
 (require 'ffmpeg-player)
 (require 'show-eol)
-
 
 (defface jcs--feebleline-read-only--enabled-face
   '((t (:foreground "#FF0000")))
@@ -154,7 +152,6 @@
               (propertize "Ø" 'face jcs--feebleline-mute-face)
             (propertize "Ö" 'face jcs--feebleline-unmute-face))
           ffmpeg-player--volume))
-
 
 (provide 'jcs-feebleline-func)
 ;;; jcs-feebleline-func.el ends here

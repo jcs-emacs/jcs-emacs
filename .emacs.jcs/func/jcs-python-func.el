@@ -2,9 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (require 'python-mode)
-
 
 ;;;###autoload
 (defun jcs-py-indent-region ()
@@ -206,6 +204,7 @@ on the same line."
         ;; Insert comment doc comment string.
         (jcs-insert-comment-style-by-current-line ")")))))
 
+;;----------------------------------------------------------------------------
 
 ;;;###autoload
 (defun jcs-ask-python-template (type)
@@ -215,7 +214,6 @@ on the same line."
                                             "Plain"))))
   (cond ((string= type "Class") (jcs-insert-python-class-template))
         ((string= type "Plain") (jcs-insert-python-template))))
-
 
 (provide 'jcs-python-func)
 ;;; jcs-python-func.el ends here

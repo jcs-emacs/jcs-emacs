@@ -2,7 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-
 ;;----------------------------------------------------------------------------
 ;; Mark
 
@@ -176,7 +175,6 @@ IN-OP : inpuit operation script."
         (setq prev-output-buf (current-buffer))))
     (jcs-maybe-kill-this-buffer)  ; Call the regular one.
     (when prev-output-buf (switch-to-buffer prev-output-buf))))
-
 
 (provide 'jcs-dev)
 ;;; jcs-dev.el ends here

@@ -7,7 +7,7 @@
 
 (require 'jcs-python-func)
 
-(defun jcs-asm-mode--inti ()
+(defun jcs-asm-mode--init ()
   "Do insert file header and switch major mode picked."
     (when (and (not jcs-asm--asking-mode)
                ;; Insert file header.
@@ -23,7 +23,7 @@
   (electric-pair-mode nil)
   (modify-syntax-entry ?_ "w")
 
-  (jcs-asm-mode--inti)
+  (jcs-asm-mode--init)
 
   ;; Normal
   (define-key masm-mode-map (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
@@ -41,7 +41,7 @@
 
   (modify-syntax-entry ?_ "w")
 
-  (jcs-asm-mode--inti)
+  (jcs-asm-mode--init)
 
   ;; Normal
   (define-key nasm-mode-map (kbd "<up>") (jcs-get-prev/next-key-type 'previous))

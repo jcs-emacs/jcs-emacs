@@ -2,11 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-
-;;----------------------------------------------
-;; Comment
-;;----------------------------------------------
-
 (defun jcs-triple-char-comment-prefix-p (in-char)
   "Check if current line is a triple IN-CHAR style comment prefix.
 For instance, `///', `---', etc.  Those are all triple char style comment prefix.
@@ -301,7 +296,6 @@ Otherwise comment line."
                                        (region-end))
     ;; else we just uncomment one single line.
     (jcs-uncomment-line)))
-
 
 (provide 'jcs-comment)
 ;;; jcs-comment.el ends here

@@ -3,10 +3,9 @@
 ;;; Code:
 
 
-;;
 ;; TOPIC: How to preserve color in *Messages* buffer?
 ;; SOURCE: https://emacs.stackexchange.com/questions/20171/how-to-preserve-color-in-messages-buffer
-;;
+
 (defun jcs-message (fmt &rest args)
   "Log a message with FMT and ARGS.
 Acts like `message' but preserves string properties in the *Messages* buffer."
@@ -73,7 +72,6 @@ IN-VAL-DEL : value delimiter."
                val-del     ; Index and Value Delimiter
                tmp-str)    ; Value in current index
       (setq count (1+ count)))))
-
 
 (provide 'jcs-log)
 ;;; jcs-log.el ends here

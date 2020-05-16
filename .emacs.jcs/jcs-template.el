@@ -2,10 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
-
-;;---------------------------------------------
+;;----------------------------------------------------------------------------
 ;; File Header Insertion
-;;---------------------------------------------
 
 (defun jcs-insert-header-if-valid (reg-lst insert-func &optional ci)
   "Insert the header if certain conditions met.
@@ -25,9 +23,8 @@ If one of the REG-LST, we execute INSERT-FUNC then, CI means `call-interactively
         (goto-char (point-min)))
     nil))
 
-;;---------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Buffer String
-;;---------------------------------------------
 
 (defvar jcs--preload-double-colon-file-info nil
   "Preload the double colon file info template.")
@@ -77,10 +74,8 @@ in order to take effect.  Half hot reloading process."
   (setq jcs--preload-single-quote-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/singlequote.txt"))
   (setq jcs--preload-tag-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/tag.txt")))
 
-
-;;---------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Header
-;;---------------------------------------------
 
 (defun jcs-get-double-colon-file-info ()
   "Return the preloaded double colon file info template."
@@ -152,10 +147,8 @@ in order to take effect.  Half hot reloading process."
   "Tag file header info for tag language."
   (insert (jcs-get-tag-file-info)))
 
-
-;;---------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Other Template
-;;---------------------------------------------
 
 ;;; ActionScript
 (defun jcs-insert-actionscript-template ()
@@ -473,7 +466,6 @@ in order to take effect.  Half hot reloading process."
 (defun jcs-insert-yaml-template ()
   "Header for YAML header file."
   (file-header-insert-template-by-file-path "~/.emacs.jcs/template/yaml/default.txt"))
-
 
 (provide 'jcs-template)
 ;;; jcs-template.el ends here

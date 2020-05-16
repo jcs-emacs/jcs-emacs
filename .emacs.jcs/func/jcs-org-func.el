@@ -2,12 +2,10 @@
 ;;; Commentary:
 ;;; Code:
 
-
 (require 'org)
 
-;;---------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Highlighting
-;;---------------------------------------------
 
 (defun jcs-init-org-faces ()
   "Initialize Org mode faces highlihgting."
@@ -15,12 +13,11 @@
     (dolist (mode org-font-lock-comment-face-modes)
       (font-lock-add-keywords
              mode
-             '(("\\(#[[:blank:][:graph:]]*\\)" 1 'font-lock-comment-face)
-               )'end))))
+             '(("\\(#[[:blank:][:graph:]]*\\)" 1 'font-lock-comment-face))
+             'end))))
 
-;;---------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Table
-;;---------------------------------------------
 
 (defun jcs-is-row-a-dividers ()
   "Check if current row is a dividers row.
@@ -104,7 +101,6 @@
   (interactive)
   ;; NOTE: use built-in.
   (org-cycle))
-
 
 (provide 'jcs-org-func)
 ;;; jcs-org-func.el ends here
