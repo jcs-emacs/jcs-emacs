@@ -148,6 +148,9 @@
 ;;----------------------------------------------------------------------------
 ;; Buffer Menu
 
+(defconst jcs--buffer-menu--buffer-name "*Buffer List*"
+  "Name of the buffer menu's buffer.")
+
 (defconst jcs--buffer-menu-search-title "Search: "
   "Search bar title in `buffer-menu''s buffer.")
 
@@ -167,10 +170,10 @@
 
 (defun jcs--buffer-menu--advice-around (fnc &rest args)
   "Advice execute around `buffer-menu' command."
-  (if (and (get-buffer "*Buffer List*")
-           (>= (jcs-buffer-showns "*Buffer List*") 1)
-           (not (string= (buffer-name) "*Buffer List*")))
-      (switch-to-buffer "*Buffer List*")
+  (if (and (get-buffer jcs--buffer-menu--buffer-name)
+           (jcs-buffer-shown-p jcs--buffer-menu--buffer-name)
+           (not (string= (buffer-name) jcs--buffer-menu--buffer-name)))
+      (switch-to-buffer jcs--buffer-menu--buffer-name)
     (apply fnc args)))
 (advice-add 'buffer-menu :around #'jcs--buffer-menu--advice-around)
 
@@ -278,41 +281,43 @@ OW is the other window flag."
 (defun jcs-dashboard-refresh-buffer ()
   "Update dashboard buffer by killing it and start a new one."
   (interactive)
-  (jcs-mute-apply
-   (lambda ()
-     (let ((db-id-lst (jcs-get-window-id-by-buffer-name dashboard-buffer-name))
-           (buf-lns '()) (buf-cls '()) (index 0))
-       (save-selected-window
-         (dolist (win-id db-id-lst)
-           (jcs-ace-select-window win-id)
-           (push (line-number-at-pos) buf-lns)
-           (push (current-column) buf-cls)))
-       (setq buf-lns (reverse buf-lns))
-       (setq buf-cls (reverse buf-cls))
-       (when (jcs-buffer-exists-p dashboard-buffer-name)
-         (kill-buffer dashboard-buffer-name))
-       (dashboard-insert-startupify-lists)
-       (save-selected-window
-         (dolist (win-id db-id-lst)
-           (jcs-ace-select-window win-id)
-           (switch-to-buffer dashboard-buffer-name)
-           (jcs-goto-line (nth index buf-lns))
-           (move-to-column (nth index buf-cls))
-           (setq index (1+ index))))))))
+  (when (or (not jcs-emacs-ready) (jcs-buffer-shown-p dashboard-buffer-name))
+    (jcs-mute-apply
+     (lambda ()
+       (let ((db-id-lst (jcs-get-window-id-by-buffer-name dashboard-buffer-name))
+             (buf-lns '()) (buf-cls '()) (index 0))
+         (save-selected-window
+           (dolist (win-id db-id-lst)
+             (jcs-ace-select-window win-id)
+             (push (line-number-at-pos) buf-lns)
+             (push (current-column) buf-cls)))
+         (setq buf-lns (reverse buf-lns))
+         (setq buf-cls (reverse buf-cls))
+         (when (jcs-buffer-exists-p dashboard-buffer-name)
+           (kill-buffer dashboard-buffer-name))
+         (dashboard-insert-startupify-lists)
+         (save-selected-window
+           (dolist (win-id db-id-lst)
+             (jcs-ace-select-window win-id)
+             (switch-to-buffer dashboard-buffer-name)
+             (jcs-goto-line (nth index buf-lns))
+             (move-to-column (nth index buf-cls))
+             (setq index (1+ index)))))))))
 
 (defun jcs-dashboard-safe-refresh-buffer ()
   "Safely refresh the dashboard buffer if needed."
-  (unless jcs-dashboard--switch-buffer-refreshing
-    (let ((jcs-dashboard--switch-buffer-refreshing t)
-          (dashboard-ls-path (if (buffer-file-name)
-                                      (f-dirname (buffer-file-name))
-                                    default-directory)))
-      (unless (string= jcs-dashboard--last-current-path dashboard-ls-path)
-        (setq jcs-dashboard--last-current-path dashboard-ls-path)
-        (jcs-safe-jump-shown-to-buffer
-         dashboard-buffer-name
-         (lambda ()
-           (jcs-dashboard-refresh-buffer)))))))
+  (when (jcs-buffer-shown-p dashboard-buffer-name)
+    (unless jcs-dashboard--switch-buffer-refreshing
+      (let ((jcs-dashboard--switch-buffer-refreshing t)
+            (dashboard-ls-path (if (buffer-file-name)
+                                   (f-dirname (buffer-file-name))
+                                 default-directory)))
+        (unless (string= jcs-dashboard--last-current-path dashboard-ls-path)
+          (setq jcs-dashboard--last-current-path dashboard-ls-path)
+          (jcs-safe-jump-shown-to-buffer
+           dashboard-buffer-name
+           (lambda ()
+             (jcs-dashboard-refresh-buffer))))))))
 
 ;;;###autoload
 (defun jcs-dashboard-maybe-kill-this-buffer ()
