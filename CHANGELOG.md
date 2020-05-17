@@ -11,6 +11,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Semi-fixed performance when refresh dashboard. (jcs-emacs-init)
 * Split buffer shown `-count` and `-p` function in window module. (jcs-emacs-init)
 * Fixed `undo-tree` slow response when multiple undo/redo actions. (jcs-emacs-init)
+* Implemented `lsp` connected flag util function. (jcs-emacs-init)
 
 ### 2020-05-16
 
