@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-05-17
+
+* Added safe active LSP util function. (jcs-emacs-init)
+* Semi-fixed performance when refresh dashboard. (jcs-emacs-init)
+* Split buffer shown `-count` and `-p` function in window module. (jcs-emacs-init)
+* Fixed `undo-tree` slow response when multiple undo/redo actions. (jcs-emacs-init)
+
 ### 2020-05-16
 
 * Implemented find directories ignore directories function. (jcs-emacs-init)
