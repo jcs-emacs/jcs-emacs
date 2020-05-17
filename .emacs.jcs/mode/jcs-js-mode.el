@@ -4,6 +4,12 @@
 
 (require 'js2-mode)
 
+(defun jcs--js-to-jsx-mode ()
+  "Switch from JavaScript mode to JSX mode if needed."
+  (when (and (not (jcs-is-current-major-mode-p "rjsx-mode"))
+             (string-match-p "React" (buffer-string)))
+    (rjsx-mode)))
+
 (defun jcs-js-mode-hook ()
   "Mode hook for JavaScript mode."
   (impatient-mode t)
@@ -26,7 +32,9 @@
 
   ;; comment block
   (define-key js2-mode-map (kbd "RET") #'jcs-smart-context-line-break)
-  (define-key js2-mode-map (kbd "*") #'jcs-c-comment-pair))
+  (define-key js2-mode-map (kbd "*") #'jcs-c-comment-pair)
+
+  (jcs--js-to-jsx-mode))
 
 (add-hook 'js-mode-hook 'jcs-js-mode-hook)
 (add-hook 'js2-mode-hook 'jcs-js-mode-hook)
