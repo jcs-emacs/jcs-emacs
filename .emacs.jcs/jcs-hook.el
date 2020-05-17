@@ -231,6 +231,16 @@
     (ffmpeg-player-clean)))
 (add-hook 'kill-emacs-hook 'jcs--kill-emacs-hook)
 
+;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+(defvar jcs-emacs-ready nil
+  "Flag to check if Emacs is ready.")
+
+(defun jcs--emacs-startup-hook ()
+  "Hook run after Emacs is startup."
+  (setq jcs-emacs-ready t))
+(add-hook 'emacs-startup-hook 'jcs--emacs-startup-hook)
+
 ;;----------------------------------------------------------------------------
 ;; Minibuffer
 
