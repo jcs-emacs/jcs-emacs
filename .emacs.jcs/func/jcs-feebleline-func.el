@@ -40,13 +40,13 @@
 (defun jcs--feebleline--lsp-info ()
   "Feebleline LSP information."
   (if jcs-feebleline-show-lsp-info
-      (let ((lsp-managed-mode (if (boundp 'lsp-managed-mode) lsp-managed-mode nil)))
+      (let ((lsp-connected (jcs--lsp-connected-p)))
         (format " [LSP%s%s]"
                 (propertize "::" 'face jcs--feebleline-lsp--expr-face)
-                (propertize (if lsp-managed-mode
+                (propertize (if lsp-connected
                                 "connect"
                               "disconnect")
-                            'face (if lsp-managed-mode
+                            'face (if lsp-connected
                                       jcs--feebleline-lsp--connect-face
                                     jcs--feebleline-lsp--disconnect-face))))
     ""))

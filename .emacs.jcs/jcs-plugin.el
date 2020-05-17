@@ -543,11 +543,15 @@
   (defvar-local jcs--lsp--executing-command nil
     "Flag to record if executing a command from `lsp'.")
 
+  (defun jcs--lsp-connected-p ()
+    "Check if LSP connected."
+    (if (boundp 'lsp-managed-mode) lsp-managed-mode nil))
+
   (defun jcs--safe-lsp-active ()
     "Safe way to active LSP."
     (when (and (jcs-project-current)
                (ignore-errors (file-readable-p (buffer-file-name))))
-      (lsp-deferred)))
+      (unless (jcs--lsp-connected-p) (lsp-deferred))))
 
   (defun jcs--lsp-current-last-signature-buffer ()
     "Check if current buffer last signature buffer."
@@ -584,9 +588,11 @@
     (lsp-origami-mode -1))
 
   (defun jcs--lsp-managed-mode-hook ()
+    "LSP managed mode hook."
     (if (and lsp-mode lsp-managed-mode) (jcs--lsp--stuff-on-enabled) (jcs--lsp--stuff-on-disabled)))
 
   (defun jcs--lsp-mode-hook ()
+    "LSP mode hook."
     (if lsp-mode (jcs--lsp--stuff-on-enabled) (jcs--lsp--stuff-on-disabled)))
 
   (add-hook 'lsp-managed-mode-hook 'jcs--lsp-managed-mode-hook)
