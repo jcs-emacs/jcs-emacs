@@ -166,6 +166,7 @@
     "~/.emacs.jcs/banner/sink.txt")
   (advice-add #'dashboard-get-banner-path :override #'jcs--dashboard-get-banner-path)
   (dashboard-setup-startup-hook))
+
 (use-package dashboard-ls
   :defer t
   :config
@@ -541,6 +542,12 @@
 
   (defvar-local jcs--lsp--executing-command nil
     "Flag to record if executing a command from `lsp'.")
+
+  (defun jcs--safe-lsp-active ()
+    "Safe way to active LSP."
+    (when (and (jcs-project-current)
+               (ignore-errors (file-readable-p (buffer-file-name))))
+      (lsp-deferred)))
 
   (defun jcs--lsp-current-last-signature-buffer ()
     "Check if current buffer last signature buffer."
