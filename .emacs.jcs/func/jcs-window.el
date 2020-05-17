@@ -14,32 +14,33 @@
 
 (defun jcs-safe-jump-shown-to-buffer (in-buffer-name &optional fnc exp-fnc)
   "Safely jump to IN-BUFFER-NAME's window and execute FNC with EXP-FNC."
-  (save-selected-window
-    (let ((fm (selected-frame)))
-      (if (ignore-errors (jcs-jump-shown-to-buffer in-buffer-name))
-          (when fnc (funcall fnc))
-        (when exp-fnc (funcall exp-fnc)))
-      (select-frame-set-input-focus fm))))
+  (when (jcs-buffer-shown-p in-buffer-name)
+    (save-selected-window
+      (let ((fm (selected-frame)))
+        (if (jcs-jump-shown-to-buffer in-buffer-name t)
+            (when fnc (funcall fnc))
+          (when exp-fnc (funcall exp-fnc)))
+        (select-frame-set-input-focus fm)))))
 
 ;;;###autoload
-(defun jcs-jump-shown-to-buffer (in-buffer-name)
+(defun jcs-jump-shown-to-buffer (in-buffer-name &optional no-error)
   "Jump to the IN-BUFFER-NAME if the buffer current shown in the window."
   (interactive "bEnter buffer to jump to: ")
-  (let ((jcs--no-advice-other-window t)
-        (win-len (jcs-count-windows)) (index 0) (found nil))
-    (while (< index win-len)
-      ;; NOTE: we use `string-match-p' instead of `string='
-      ;; because some buffer cannot be detected in the buffer
-      ;; list. For instance, `*undo-tree*' is buffer that cannot
-      ;; be detected for some reason.
-      (if (string-match-p in-buffer-name (jcs-buffer-name-or-buffer-file-name))
-          (setq found t)
-        (other-window 1 t))
-      (setq index (1+ index)))
+  (let ((found nil))
+    (when (jcs-buffer-shown-p in-buffer-name)
+      (let ((jcs--no-advice-other-window t)
+            (win-len (jcs-count-windows)) (index 0))
+        (while (and (< index win-len) (not found))
+          ;; NOTE: we use `string-match-p' instead of `string=' because some
+          ;; buffer cannot be detected in the buffer list. For instance,
+          ;; `*undo-tree*' is buffer that cannot be detected for some reason.
+          (if (string-match-p in-buffer-name (jcs-buffer-name-or-buffer-file-name))
+              (setq found t)
+            (other-window 1 t))
+          (setq index (1+ index)))))
     ;; If not found, prompt error.
-    (unless found
+    (when (and (not found) (not no-error))
       (user-error "[ERROR] '%s' does not shown in any window" in-buffer-name))
-    ;; Nothing happend return the value.
     found))
 
 ;;;###autoload
@@ -92,13 +93,19 @@
         (setq index (1+ index)))
       buffers)))
 
-(defun jcs-buffer-showns (in-buf-name)
-  "Check if IN-BUF-NAME showns in program."
-  (let ((displayed-frame-count 0))
-    (dolist (buf (jcs-buffer-visible-list))
+(defun jcs-buffer-shown-count (in-buf-name)
+  "Check if IN-BUF-NAME showns in program.
+Return the count of the buffer shown."
+  (let ((displayed-frame-count 0)
+        (bv-lst (jcs-buffer-visible-list)))
+    (dolist (buf bv-lst)
       (when (string= buf in-buf-name)
         (setq displayed-frame-count (+ displayed-frame-count 1))))
     displayed-frame-count))
+
+(defun jcs-buffer-shown-p (in-buf-name)
+  "Check if IN-BUF-NAME shown in program."
+  (>= (jcs-buffer-shown-count in-buf-name) 1))
 
 ;;;###autoload
 (defun jcs-walk-through-all-windows-once (&optional fnc do-advice)
