@@ -19,6 +19,9 @@ This variable must be use with `jcs-undo' and `jcs-redo' functions.")
 (defvar jcs-undo-tree-auto-show-diff nil
   "Show the difference code when undo tree minor mode is active.")
 
+(defvar jcs--splits-windows nil
+  "Flag to check if the window splits.")
+
 ;;;###autoload
 (defun jcs-toggle-undo-tree-auto-show-diff ()
   "Toggle auto show diff functionality."
@@ -67,6 +70,17 @@ This will no longer overwrite usual Emacs' undo key."
   (message "Disable undo tree key."))
 
 
+(defun jcs-undo-kill-this-buffer ()
+  "Kill the undo tree buffer."
+  (require 'undo-tree)
+  (jcs-safe-jump-shown-to-buffer
+   undo-tree-visualizer-buffer-name
+   (lambda ()
+     (save-selected-window (undo-tree-visualizer-quit))
+     (when jcs--splits-windows
+       (delete-window)
+       (setq jcs--splits-windows nil)))))
+
 (defun jcs-undo-tree-visualize (&optional cbf)
   "Call `undo-tree-visualize' only in window that has higher height.
 CBF : Current buffer file name."
@@ -75,7 +89,9 @@ CBF : Current buffer file name."
         (target-window nil)
         (rel-cbf (if cbf cbf (buffer-name)))
         (current-window (selected-window)))
-    (when (< win-len 2) (jcs-balance-split-window-horizontally))
+    (when (< win-len 2)
+      (jcs-balance-split-window-horizontally)
+      (setq jcs--splits-windows t))
     (save-selected-window
       (other-window 1)
       (jcs-walk-through-all-windows-once
@@ -107,27 +123,24 @@ CBF : Current buffer file name."
         (switch-to-buffer bf-before-switched)))))
 
 
-;;;###autoload
-(defun jcs-undo ()
-  "Undo key."
-  (interactive)
+(defun jcs--undo-or-redo (ud)
+  "Do undo or redo base on UD.
+If UD is non-nil, do undo.  If UD is nil, do redo."
   (require 'undo-tree)
   (jcs--lsp-ui-doc--hide-frame)
   (if (not jcs-use-undo-tree-key)
-      (call-interactively #'undo)
+      (call-interactively #'undo)  ; In Emacs, undo/redo is the same thing.
     (save-selected-window
       (let ((record-window (selected-window))
-            (jumped-to-utv
-             (ignore-errors
-               (jcs-jump-shown-to-buffer undo-tree-visualizer-buffer-name))))
+            (jumped-to-utv (jcs-jump-shown-to-buffer undo-tree-visualizer-buffer-name t)))
         ;; NOTE: If we do jumped to the `undo-tree-visualizer-buffer-name'
         ;; buffer, then we use `undo-tree-visualize-redo' instead of
         ;; `undo-tree-redo'. Because directly called `undo-tree-visualize-redo'
         ;; key is way faster than `undo-tree-redo' key.
         (if jumped-to-utv
-            (undo-tree-visualize-undo)
+            (if ud (undo-tree-visualize-undo) (undo-tree-visualize-redo))
           (select-window record-window)
-          (undo-tree-undo)
+          (if ud (undo-tree-undo) (undo-tree-redo))
           (jcs-undo-tree-visualize))
         ;; STUDY: weird that they use word
         ;; toggle, instead of just set it.
@@ -139,36 +152,16 @@ CBF : Current buffer file name."
         (when jcs-undo-tree-auto-show-diff (undo-tree-visualizer-toggle-diff))))))
 
 ;;;###autoload
+(defun jcs-undo ()
+  "Undo key."
+  (interactive)
+  (jcs--undo-or-redo t))
+
+;;;###autoload
 (defun jcs-redo ()
   "Redo key."
   (interactive)
-  (require 'undo-tree)
-  (jcs--lsp-ui-doc--hide-frame)
-  (if (not jcs-use-undo-tree-key)
-      ;; In Emacs, undo/redo is the same thing.
-      (call-interactively #'undo)
-    (save-selected-window
-      (let ((record-window (selected-window))
-            (jumped-to-utv
-             (ignore-errors
-               (jcs-jump-shown-to-buffer undo-tree-visualizer-buffer-name))))
-        ;; NOTE: If we do jumped to the `undo-tree-visualizer-buffer-name'
-        ;; buffer, then we use `undo-tree-visualize-redo' instead of
-        ;; `undo-tree-redo'. Because directly called `undo-tree-visualize-redo'
-        ;; key is way faster than `undo-tree-redo' key.
-        (if jumped-to-utv
-            (undo-tree-visualize-redo)
-          (select-window record-window)
-          (undo-tree-redo)
-          (jcs-undo-tree-visualize))
-        ;; STUDY: weird that they use word
-        ;; toggle, instead of just set it.
-        ;;
-        ;; Why not?
-        ;;   => `undo-tree-visualizer-show-diff'
-        ;; or
-        ;;   => `undo-tree-visualizer-hide-diff'
-        (when jcs-undo-tree-auto-show-diff (undo-tree-visualizer-toggle-diff))))))
+  (jcs--undo-or-redo nil))
 
 ;;----------------------------------------------------------------------------
 ;; Backspace
@@ -509,7 +502,7 @@ This command does not push text to `kill-ring'."
     (indent-according-to-mode)))
 
 ;;----------------------------------------------------------------------------
-;;      Format File
+;; Format File
 
 ;;;###autoload
 (defun jcs-format-document ()
@@ -809,10 +802,7 @@ REGEXP : reqular expression use to align."
 
 (defun jcs-do-stuff-after-save (&rest _)
   "Do stuff after save command is executed."
-  ;; NOTE: Is we found `*undo-tree*' buffer, we try to close it.
-  (save-selected-window
-    (when (ignore-errors (jcs-jump-shown-to-buffer "*undo-tree*"))
-      (jcs-maybe-kill-this-buffer t)))
+  (jcs-undo-kill-this-buffer)  ; Try to close `*undo-tree*' buffer.
   (jcs-update-line-number-each-window))
 (advice-add 'save-buffer :after #'jcs-do-stuff-after-save)
 
@@ -868,7 +858,7 @@ REGEXP : reqular expression use to align."
     ;; For some mode, broken save.
     (jcs-mute-apply (lambda () (save-excursion (save-buffer))))
     (select-frame-set-input-focus cur-frame)  ; For multi frames.
-    (unless readable (lsp-deferred))
+    (jcs--safe-lsp-active)
     (if (or modified (not readable))
         (message "Wrote file %s" (buffer-file-name))
       (message "(No changes need to be saved)"))))
@@ -962,13 +952,12 @@ REGEXP : reqular expression use to align."
 
 (defun jcs-advice-kill-this-buffer-around (fnc &rest args)
   "Advice around execute `kill-this-buffer' command with FNC and ARGS."
+  (require 'undo-tree)
   (let ((target-kill-buffer (jcs-buffer-name-or-buffer-file-name))
         (undoing-buffer-name nil)
         (jumped-to-utv nil))
     (save-selected-window
-      (setq jumped-to-utv
-            (ignore-errors
-              (jcs-jump-shown-to-buffer undo-tree-visualizer-buffer-name)))
+      (setq jumped-to-utv (jcs-jump-shown-to-buffer undo-tree-visualizer-buffer-name t))
       (when jumped-to-utv
         (setq undoing-buffer-name (buffer-name undo-tree-visualizer-parent-buffer))))
 
@@ -980,11 +969,7 @@ REGEXP : reqular expression use to align."
                  (string-match-p undoing-buffer-name target-kill-buffer)
                  ;; Only close `undo-tree' when buffer is killed.
                  (not (string= target-kill-buffer (jcs-buffer-name-or-buffer-file-name))))
-        (save-selected-window
-          (jcs-jump-shown-to-buffer undo-tree-visualizer-buffer-name)
-          ;; NOTE: This prompt error, but does not matter.
-          ;; Just force to quite it!
-          (ignore-errors (undo-tree-visualizer-quit)))))))
+        (jcs-undo-kill-this-buffer)))))
 (advice-add 'kill-this-buffer :around #'jcs-advice-kill-this-buffer-around)
 
 ;;;###autoload
@@ -1008,7 +993,7 @@ Otherwise just switch to the previous buffer.
 ECP-SAME : Exception for the same buffer."
   (interactive)
   (let ((is-killed nil))
-    (if (or (>= (jcs-buffer-showns (buffer-name)) 2)
+    (if (or (>= (jcs-buffer-shown-count (buffer-name)) 2)
             ;; NOTE: If you don't want `*Buffer-List*'
             ;; window open in at least two window and get killed
             ;; at the same time. Enable the line under.
@@ -1018,11 +1003,10 @@ ECP-SAME : Exception for the same buffer."
       (jcs-kill-this-buffer)
       (setq is-killed t)
 
-      ;; NOTE: After kill the buffer, if the buffer
-      ;; appear in multiple windows then we do switch to
-      ;; previous buffer again. Hence, it will not show
-      ;; repeated buffer at the same time in different windows.
-      (when (and (>= (jcs-buffer-showns (buffer-name)) 2)
+      ;; NOTE: After kill the buffer, if the buffer appear in multiple
+      ;; windows then we do switch to previous buffer again. Hence, it will
+      ;; not show repeated buffer at the same time in different windows.
+      (when (and (>= (jcs-buffer-shown-count (buffer-name)) 2)
                  (not ecp-same))
         (jcs-bury-buffer)
 
