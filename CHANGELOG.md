@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-05-18
+
+* Added auto install dependencies flag. (jcs-emacs-init)
+* Config now automatically install needed dependencies 
+ after first startup. (jcs-emacs-init)
+
 ### 2020-05-17
 
 * Added safe active LSP util function. (jcs-emacs-init)
