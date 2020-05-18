@@ -8,8 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-05-18
 
 * Added auto install dependencies flag. (jcs-emacs-init)
-* Config now automatically install needed dependencies 
- after first startup. (jcs-emacs-init)
+* Config now automatically install needed dependencies after first startup. (jcs-emacs-init)
 
 ### 2020-05-17
 
@@ -23,8 +22,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 * Implemented find directories ignore directories function. (jcs-emacs-init)
 * Implemented find files ignore directories function. (jcs-emacs-init)
-* Fixed `make`/`run` script find directories/files time spend too 
- long issue. (jcs-emacs-init)
+* Fixed `make`/`run` script find directories/files time spend too long issue. (jcs-emacs-init)
 * Installed `rjsx-mode` for supporting `jsx` file. (jcs-emacs-init)
 * Added JSX default snippets. (jcs-emacs-init)
 * Added condition to limit `lsp-deffered` is called. (jcs-emacs-init)
@@ -112,8 +110,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-03-05
 
 * Installed new package `emojify`. (jcs-emacs-init)
-* Fixed buffer wrap can't correct goes to corresponding first line
- isssue. (jcs-emacs-init)
+* Fixed buffer wrap can't correct goes to corresponding first line isssue. (jcs-emacs-init)
 
 ### 2020-03-03
 
@@ -261,8 +258,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ### 2020-01-03
 
-* Fixed buffer menu logic fit the `search`/`filtering` when multiple buffer
- menu buffer exists. (jcs-emacs-init)
+* Fixed buffer menu logic fit the `search`/`filtering` when multiple buffer menu 
+ buffer exists. (jcs-emacs-init)
 * Fixed buffer menu other window that doesn't goes to line `2` if the header appears. (jcs-emacs-init)
 
 ### 2020-01-02
