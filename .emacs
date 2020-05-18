@@ -68,8 +68,8 @@
 
 ;; Install all packages that this config needs.
 (progn
-  (jcs-ensure-package-installed jcs-package-install-list (boundp 'jcs-build-test))
-  (jcs-ensure-manual-package-installed jcs-package-manually-install-list (boundp 'jcs-build-test)))
+  (jcs-ensure-package-installed jcs-package-install-list t)
+  (jcs-ensure-manual-package-installed jcs-package-manually-install-list t))
 
 (defconst jcs-package-init-time (emacs-init-time)
   "Record down the package initialize time.")
