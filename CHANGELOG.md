@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-05-19
+
+* Improved `JSX` coding experience by supply more helper plugins. (jcs-emacs-init)
+* Fixed performance issue when reload active mode. (jcs-emacs-init)
+* Fixed performance issue when enable/disable truncate lines in `web-mode`. (jcs-emacs-init)
+
 ### 2020-05-18
 
 * Added auto install dependencies flag. (jcs-emacs-init)
