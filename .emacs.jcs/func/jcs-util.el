@@ -1479,6 +1479,11 @@ IGNORE-ERRORS-T : ignore errors for this function?"
   (interactive)
   (message "Current string: %s" (jcs-string-at-point)))
 
+(defun jcs-hash-string (str)
+  "Hash STR using md5."
+  (declare (side-effect-free t))
+  (md5 (replace-regexp-in-string "[[:space:]\n]+" " " str)))
+
 (defun jcs-fill-n-char-seq (ch-seq n)
   "Fill CH-SEQ with N length."
   (let ((ch-out ch-seq))
