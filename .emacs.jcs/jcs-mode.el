@@ -3,43 +3,53 @@
 ;;; Code:
 
 ;;----------------------------------------------------------------------------
-;; Trigger between command and insert mode
+;; Trigger between Modes
+
+(defvar jcs-mode--state nil
+  "Record the state of the current mode.")
+
+(defun jcs-mode-reset-state ()
+  "Reset mode state."
+  (setq jcs-mode--state nil))
 
 ;;;###autoload
-(defun jcs-insert-command-mode-toggle()
+(defun jcs-insert-command-mode-toggle ()
   "Toggle command/insert mode."
   (interactive)
-  (if (get 'jcs-insert-command-mode-toggle 'state)
-      (progn
-        (jcs-command-mode)
-        (put 'jcs-insert-command-mode-toggle 'state nil))
-    (jcs-insert-mode)
-    (put 'jcs-insert-command-mode-toggle 'state t)))
+  (if (equal jcs-mode--state 'insert) (jcs-command-mode) (jcs-insert-mode)))
 
 ;;;###autoload
-(defun jcs-depend-cross-mode-toggle()
+(defun jcs-depend-cross-mode-toggle ()
   "Toggle depend/cross mode."
   (interactive)
   (unless (minibufferp)
-    (if (get 'jcs-depend-cross-mode-toggle 'state)
-        (jcs-depend-mode)
-      (jcs-cross-mode))))
+    (if (equal jcs-mode--state 'cross) (jcs-depend-mode) (jcs-cross-mode))))
 
 ;;;###autoload
 (defun jcs-reload-active-mode ()
   "Reload the active mode.
 Note this is opposite logic to the toggle mode function."
   (interactive)
-  (if (get 'jcs-depend-cross-mode-toggle 'state)
-      (jcs-cross-mode)   ; if state is true keep on cross mode.
-    (jcs-depend-mode)))  ; vice versa, keep on depend mode.
+  (require 'cl-lib)
+  (let ((mode-state jcs-mode--state))
+    (jcs-mode-reset-state)
+    (cl-case mode-state
+      ('cross  (jcs-cross-mode))
+      ('depend (jcs-depend-mode)))))
+
+(defvar jcs-mode--backtrace-occurs-last-command nil
+  "Check if backtrace occurs last command.")
 
 (defun jcs-reload-active-mode-with-error-handle ()
   "Reload the active by handling the error occurrence."
   (unless (minibufferp)
     (if (jcs-backtrace-occurs-p)
-        (jcs-red-mode-line)  ; When error, use red mode line.
-      (jcs-reload-active-mode))))
+        (progn
+          (setq jcs-mode--backtrace-occurs-last-command t)
+          (jcs-red-mode-line))  ; When error, use red mode line.
+      (when jcs-mode--backtrace-occurs-last-command
+        (jcs-reload-active-mode)
+        (setq jcs-mode--backtrace-occurs-last-command nil)))))
 
 (defun jcs-set-tab-width-by-mode (tw)
   "Set the tab width TW for current major mode."
@@ -276,53 +286,62 @@ Note this is opposite logic to the toggle mode function."
 (defun jcs-command-mode()
   "In command mode."
   (interactive)
-  (put 'jcs-insert-command-mode-toggle 'state nil)  ; set trigger
+  (unless (equal jcs-mode--state 'command)
+    ;; switch to view mode
+    ;;(view-mode-enable)
 
-  ;; switch to view mode
-  ;;(view-mode-enable)
+    ;; Customize Mode Line
+    (jcs-gray-mode-line)
 
-  ;; Customize Mode Line
-  (jcs-gray-mode-line)
+    ;; Unset insert mode key
+    ;; NOTE: unset key should be before of set keys
 
-  ;; Unset insert mode key
-  ;; NOTE: unset key should be before of set keys
+    ;; Set command mode key
 
-  ;; Set command mode key
+    ;; Update mode state.
+    (setq jcs-mode--state 'command)
 
-  (message "[INFO] Turn into `command-mode` now"))
+    (message "[INFO] Turn into `command-mode` now")))
 
 ;;;###autoload
 (defun jcs-insert-mode()
   "In insert mode."
   (interactive)
-  (put 'jcs-insert-command-mode-toggle 'state t)  ; set trigger
+  (unless (equal jcs-mode--state 'insert)
+    ;; disable to view mode
+    ;;(view-mode-disable)
 
-  ;; disable to view mode
-  ;;(view-mode-disable)
+    ;; Customize Mode Line
+    (jcs-dark-green-mode-line)
 
-  ;; Customize Mode Line
-  (jcs-dark-green-mode-line)
+    ;; Unset command mode key
+    ;; NOTE: unset key should be before of set keys
 
-  ;; Unset command mode key
-  ;; NOTE: unset key should be before of set keys
+    ;; Set insert mode key
 
-  ;; Set insert mode key
+    ;; Update mode state.
+    (setq jcs-mode--state 'insert)
 
-  (message "[INFO] Turn into `insert-mode` now"))
+    (message "[INFO] Turn into `insert-mode` now")))
 
 (defun jcs-view-mode-hook()
   "In view mode, read only file."
   (require 'view)
+  (unless (equal jcs-mode--state 'view)
+    ;; unset all the key
+    (define-key view-mode-map [tab] nil)
+    (define-key view-mode-map (kbd "RET") nil)
 
-  ;; unset all the key
-  (define-key view-mode-map [tab] nil)
-  (define-key view-mode-map (kbd "RET") nil)
+    (dolist (key-str jcs-key-list)
+      (define-key view-mode-map key-str nil))
 
-  (dolist (key-str jcs-key-list)
-    (define-key view-mode-map key-str nil))
+    ;; just save buffer, don't care about the tab or spaces.
+    (define-key view-mode-map (kbd "C-s") #'save-buffer)
 
-  ;; just save buffer, don't care about the tab or spaces.
-  (define-key view-mode-map (kbd "C-s") #'save-buffer))
+    ;; Update mode state.
+    (setq jcs-mode--state 'view)
+
+    (message "[INFO] Turn into `view-mode` now")))
 
 (add-hook 'view-mode-hook 'jcs-view-mode-hook)
 
@@ -333,52 +352,52 @@ Note this is opposite logic to the toggle mode function."
 (defun jcs-depend-mode ()
   "This mode depend on my own machine. More feature and more control of the editor."
   (interactive)
-  ;; Customize Mode Line
-  (jcs-gray-mode-line)
+  (unless (equal jcs-mode--state 'depend)
+    ;; Customize Mode Line
+    (jcs-gray-mode-line)
 
-  ;; Unset 'depend' mode key
-  ;; NOTE: unset key should be before of set keys
-  (global-unset-key (kbd "C-f"))
-  (global-unset-key (kbd "C-r"))
+    ;; Unset 'depend' mode key
+    ;; NOTE: unset key should be before of set keys
+    (global-unset-key (kbd "C-f"))
+    (global-unset-key (kbd "C-r"))
 
-  ;; Set 'depend' mode key
+    ;; Set 'depend' mode key
 
-  ;; search
-  (define-key global-map (kbd "C-f") #'counsel-ag)
-  (define-key global-map (kbd "C-S-f") #'counsel-ag)  ; TODO: Use `ag' across project?
+    ;; search
+    (define-key global-map (kbd "C-f") #'counsel-ag)
+    (define-key global-map (kbd "C-S-f") #'counsel-ag)  ; TODO: Use `ag' across project?
 
-  (define-key global-map (kbd "C-r p") #'jcs-ag-project-regexp)
+    (define-key global-map (kbd "C-r p") #'jcs-ag-project-regexp)
 
-  (when (get 'jcs-depend-cross-mode-toggle 'state)
-    (message "[INFO] Turn into `depend-mode` now"))
+    ;; Update mode state.
+    (setq jcs-mode--state 'depend)
 
-  ;; set toggle trigger
-  (put 'jcs-depend-cross-mode-toggle 'state nil))
+    (message "[INFO] Turn into `depend-mode` now")))
 
 ;;;###autoload
 (defun jcs-cross-mode ()
   "This mode run anywhere will work, usually less powerful then `jcs-depend-mode'."
   (interactive)
-  ;; Customize Mode Line
-  (jcs-dark-green-mode-line)
+  (unless (equal jcs-mode--state 'cross)
+    ;; Customize Mode Line
+    (jcs-dark-green-mode-line)
 
-  ;; Unset 'cross' mode key
-  ;; NOTE: unset key should be before of set keys
-  (global-unset-key (kbd "C-f"))
-  (global-unset-key (kbd "C-r"))
-  (global-unset-key (kbd "C-r p"))
+    ;; Unset 'cross' mode key
+    ;; NOTE: unset key should be before of set keys
+    (global-unset-key (kbd "C-f"))
+    (global-unset-key (kbd "C-r"))
+    (global-unset-key (kbd "C-r p"))
 
-  ;; Set 'cross' mode key
+    ;; Set 'cross' mode key
 
-  ;; search
-  (define-key global-map (kbd "C-f") #'isearch-forward)
-  (define-key global-map (kbd "C-S-f") #'isearch-project-forward)
+    ;; search
+    (define-key global-map (kbd "C-f") #'isearch-forward)
+    (define-key global-map (kbd "C-S-f") #'isearch-project-forward)
 
-  (unless (get 'jcs-depend-cross-mode-toggle 'state)
-    (message "[INFO] Turn into `cross-mode` now"))
+    ;; Update mode state.
+    (setq jcs-mode--state 'cross)
 
-  ;; set toggle trigger
-  (put 'jcs-depend-cross-mode-toggle 'state t))
+    (message "[INFO] Turn into `cross-mode` now")))
 
 
 ;;----------------------------------------------------------------------------
