@@ -70,9 +70,9 @@
   "Auto install the dependencies packages.")
 
 ;; Install all packages that this config needs.
-(progn
-  (jcs-ensure-package-installed jcs-package-install-list jcs-auto-install-pkgs)
-  (jcs-ensure-manual-package-installed jcs-package-manually-install-list jcs-auto-install-pkgs))
+(let ((install-it (or (boundp 'jcs-build-test) jcs-auto-install-pkgs)))
+  (jcs-ensure-package-installed jcs-package-install-list install-it)
+  (jcs-ensure-manual-package-installed jcs-package-manually-install-list install-it))
 
 (defconst jcs-package-init-time (emacs-init-time)
   "Record down the package initialize time.")
