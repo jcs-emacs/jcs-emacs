@@ -40,13 +40,18 @@ Note this is opposite logic to the toggle mode function."
 (defvar jcs-mode--backtrace-occurs-last-command nil
   "Check if backtrace occurs last command.")
 
+(defun jcs-hit-backtrace ()
+  "Do stuff when backtrace occures."
+  (jcs-red-mode-line)  ; When error, use red mode line.
+  (message "[INFO] Oops, error occurs! Please see backtrace for more information"))
+
 (defun jcs-reload-active-mode-with-error-handle ()
   "Reload the active by handling the error occurrence."
   (unless (minibufferp)
     (if (jcs-backtrace-occurs-p)
         (progn
-          (setq jcs-mode--backtrace-occurs-last-command t)
-          (jcs-red-mode-line))  ; When error, use red mode line.
+          (jcs-hit-backtrace)
+          (setq jcs-mode--backtrace-occurs-last-command t))
       (when jcs-mode--backtrace-occurs-last-command
         (jcs-reload-active-mode)
         (setq jcs-mode--backtrace-occurs-last-command nil)))))
@@ -280,7 +285,7 @@ Note this is opposite logic to the toggle mode function."
           (format "%s%s.txt" jcs-changelog-template-path in-type)))))
 
 ;;----------------------------------------------------------------------------
-;;; Command Mode & Insert Mode
+;;; Special Modes
 
 ;;;###autoload
 (defun jcs-command-mode()
@@ -344,9 +349,6 @@ Note this is opposite logic to the toggle mode function."
     (message "[INFO] Turn into `view-mode` now")))
 
 (add-hook 'view-mode-hook 'jcs-view-mode-hook)
-
-;;----------------------------------------------------------------------------
-;;; Local Mode & Online Mode
 
 ;;;###autoload
 (defun jcs-depend-mode ()
