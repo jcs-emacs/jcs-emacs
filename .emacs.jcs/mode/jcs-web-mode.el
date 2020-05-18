@@ -2,7 +2,7 @@
 ;;; Commentary: Including HTML, CSS, PHP, JavaScript, JSON.
 ;;; Code:
 
-;;============================
+;;----------------------------------------------------------------------------
 ;; Truncate Lines
 ;;URL: https://emacs.stackexchange.com/questions/14589/correct-indentation-for-wrapped-lines
 
@@ -13,8 +13,7 @@
             (adaptive-wrap-prefix-mode +1)
             (diminish 'visual-line-mode)))
 
-
-;;============================
+;;----------------------------------------------------------------------------
 ;; Real time editing mark down (impatient-mode)
 
 ;; Note for "Impatient Mode" (real time editing)
@@ -23,11 +22,15 @@
 
 (require 'impatient-mode)
 
-;;============================
+;;----------------------------------------------------------------------------
 ;;; Web Dev useful packages.
+
 (require 'auto-rename-tag)
 (require 'emmet-mode)
 (require 'htmltagwrap)
+
+;;----------------------------------------------------------------------------
+;; Core
 
 (require 'web-mode)
 
@@ -61,17 +64,16 @@
 
   ;; Normal
   (define-key web-mode-map (kbd "C-v") #'jcs-web-yank)
-
-  (define-key web-mode-map [f8] #'jcs-find-corresponding-file)
-  (define-key web-mode-map [S-f8] #'jcs-find-corresponding-file-other-window)
-
-  ;; Edit
   (define-key web-mode-map (kbd "RET") #'jcs-web-return-key)
 
   (define-key web-mode-map (kbd "DEL") #'jcs-electric-backspace)
   (define-key web-mode-map (kbd "{") #'jcs-web-vs-opening-curly-bracket-key)
   (define-key web-mode-map (kbd "}") #'jcs-vs-closing-curly-bracket-key)
   (define-key web-mode-map (kbd ";") #'jcs-vs-semicolon-key)
+
+  ;; File Corresponding
+  (define-key web-mode-map [f8] #'jcs-find-corresponding-file)
+  (define-key web-mode-map [S-f8] #'jcs-find-corresponding-file-other-window)
 
   ;; comment block
   (define-key web-mode-map (kbd "*") #'jcs-c-comment-pair)
@@ -86,7 +88,7 @@
   (define-key web-mode-map [C-backspace] #'jcs-web-backward-delete-word)
   (define-key web-mode-map (kbd "M-<backspace>") #'jcs-web-backward-delete-word-capital))
 
-(add-hook 'web-mode-hook  'jcs-web-mode-hook)
+(add-hook 'web-mode-hook 'jcs-web-mode-hook)
 (add-hook 'web-mode-hook 'emmet-mode)
 
 (defun jcs-html-mode-hook ()
