@@ -31,11 +31,13 @@
 Note this is opposite logic to the toggle mode function."
   (interactive)
   (require 'cl-lib)
-  (let ((mode-state jcs-mode--state))
-    (jcs-mode-reset-state)
-    (cl-case mode-state
-      ('cross  (jcs-cross-mode))
-      ('depend (jcs-depend-mode)))))
+  (jcs-mute-apply
+   (lambda ()
+     (let ((mode-state jcs-mode--state))
+       (jcs-mode-reset-state)
+       (cl-case mode-state
+         ('cross  (jcs-cross-mode))
+         ('depend (jcs-depend-mode)))))))
 
 (defvar jcs-mode--backtrace-occurs-last-command nil
   "Check if backtrace occurs last command.")
@@ -303,11 +305,10 @@ Note this is opposite logic to the toggle mode function."
 
     ;; Set command mode key
 
-    (when jcs-mode--state
-      (message "[INFO] Turn into `command-mode` now"))
-
     ;; Update mode state.
-    (setq jcs-mode--state 'command)))
+    (setq jcs-mode--state 'command)
+
+    (message "[INFO] Turn into `command-mode` now")))
 
 ;;;###autoload
 (defun jcs-insert-mode()
@@ -325,11 +326,10 @@ Note this is opposite logic to the toggle mode function."
 
     ;; Set insert mode key
 
-    (when jcs-mode--state
-      (message "[INFO] Turn into `insert-mode` now"))
-
     ;; Update mode state.
-    (setq jcs-mode--state 'insert)))
+    (setq jcs-mode--state 'insert)
+
+    (message "[INFO] Turn into `insert-mode` now")))
 
 (defun jcs-view-mode-hook()
   "In view mode, read only file."
@@ -345,11 +345,10 @@ Note this is opposite logic to the toggle mode function."
     ;; just save buffer, don't care about the tab or spaces.
     (define-key view-mode-map (kbd "C-s") #'save-buffer)
 
-    (when jcs-mode--state
-      (message "[INFO] Turn into `view-mode` now"))
-
     ;; Update mode state.
-    (setq jcs-mode--state 'view)))
+    (setq jcs-mode--state 'view)
+
+    (message "[INFO] Turn into `view-mode` now")))
 
 (add-hook 'view-mode-hook 'jcs-view-mode-hook)
 
@@ -374,11 +373,10 @@ Note this is opposite logic to the toggle mode function."
 
     (define-key global-map (kbd "C-r p") #'jcs-ag-project-regexp)
 
-    (when jcs-mode--state
-      (message "[INFO] Turn into `depend-mode` now"))
-
     ;; Update mode state.
-    (setq jcs-mode--state 'depend)))
+    (setq jcs-mode--state 'depend)
+
+    (message "[INFO] Turn into `depend-mode` now")))
 
 ;;;###autoload
 (defun jcs-cross-mode ()
@@ -400,11 +398,10 @@ Note this is opposite logic to the toggle mode function."
     (define-key global-map (kbd "C-f") #'isearch-forward)
     (define-key global-map (kbd "C-S-f") #'isearch-project-forward)
 
-    (when jcs-mode--state
-      (message "[INFO] Turn into `cross-mode` now"))
-
     ;; Update mode state.
-    (setq jcs-mode--state 'cross)))
+    (setq jcs-mode--state 'cross)
+
+    (message "[INFO] Turn into `cross-mode` now")))
 
 
 ;;----------------------------------------------------------------------------
