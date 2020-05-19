@@ -403,7 +403,6 @@ Note this is opposite logic to the toggle mode function."
 
     (message "[INFO] Turn into `cross-mode` now")))
 
-
 ;;----------------------------------------------------------------------------
 ;;; Startup Modes
 
