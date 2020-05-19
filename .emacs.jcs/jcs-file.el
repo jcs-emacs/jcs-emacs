@@ -73,7 +73,7 @@ NOT-OW : Default is other window, not other window."
     (setq target-filepath (concat current-source-dir in-filename))
     (if (file-exists-p target-filepath)
         target-filepath  ;; Return if the target file exists.
-      (error "No '%s' file found in the current directory" in-filename))))
+      (user-error "[ERROR] No '%s' file found in the current directory" in-filename))))
 
 (defun jcs-select-find-file-in-project (in-filename in-title)
   "Find IN-FILENAME in project with displayed IN-TITLE for `completing-read'.
@@ -92,8 +92,8 @@ Return the absolute filepath."
     (let ((target-files-len (length target-files))
           (target-filepath ""))
       (if (= target-files-len 0)
-          (error "No '%s' file found in the project, make sure the project directory exists"
-                 in-filename)
+          (user-error "[ERROR] No '%s' file found in the project, make sure the project directory exists"
+                      in-filename)
         (if (= target-files-len 1)
             ;; If only one file found, just get that file.
             (setq target-filepath (nth 0 target-files))
@@ -164,21 +164,27 @@ It tells you the existence of the path."
                     (if exists (format "[TYPE] %s" d-or-f) "")))
       (jcs-pop-tooltip content :point (point) :timeout timeout))))
 
-(defun jcs-f-directories-ignore-directories (path &optional fn rec)
+(defun jcs-f-directories-ignore-directories (path &optional rec)
   "Find all directories in PATH by ignored common directories with FN and REC."
-  (let ((dirs (f-directories path fn rec))
-        (valid-dirs '()))
+  (let ((dirs (f-directories path))
+        (valid-dirs '())
+        (final-dirs '()))
     (dolist (dir dirs)
       (unless (jcs-is-contain-list-string projectile-globally-ignored-directories dir)
         (push dir valid-dirs)))
-    (reverse valid-dirs)))
+    (when rec
+      (dolist (dir valid-dirs)
+        (push (jcs-f-directories-ignore-directories dir rec) final-dirs)))
+    (setq valid-dirs (reverse valid-dirs))
+    (setq final-dirs (reverse final-dirs))
+    (jcs-flatten-list (append valid-dirs final-dirs))))
 
 (defun jcs-f-files-ignore-directories (path &optional fn rec)
   "Find all files in PATH by ignored common directories with FN and REC."
-  (let ((dirs (jcs-f-directories-ignore-directories path))
+  (let ((dirs (append (list path) (jcs-f-directories-ignore-directories path rec)))
         (files '()))
     (dolist (dir dirs)
-      (push (f-files dir fn rec) files))
+      (push (f-files dir fn) files))
     (jcs-flatten-list (reverse files))))
 
 
