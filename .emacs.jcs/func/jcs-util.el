@@ -786,8 +786,7 @@ Returns nil, the word isn't the same."
   (save-excursion
     (let ((is-comment-line nil))
       (end-of-line)
-      (when (or (jcs-is-inside-comment-block-p)
-                (jcs-current-line-empty-p))
+      (when (or (jcs-inside-comment-block-p) (jcs-current-line-empty-p))
         (setq is-comment-line t))
       is-comment-line)))
 
@@ -1049,28 +1048,31 @@ CMDS should be a list of commands."
 ;;----------------------------------------------------------------------------
 ;; Comment
 
-(defun jcs-is-inside-comment-block-p ()
+(defun jcs-inside-comment-block-p ()
   "Check if current cursor point inside the comment block."
-  (nth 4 (syntax-ppss)))
+  (or (nth 4 (syntax-ppss))
+      (jcs-is-current-point-face "font-lock-comment-face")
+      (jcs-is-current-point-face "hl-todo")))
 
 (defun jcs-inside-comment-or-string-p ()
   "Check if inside comment or stirng."
   (or (nth 8 (syntax-ppss))
       (jcs-is-current-point-face "font-lock-comment-face")
+      (jcs-is-current-point-face "hl-todo")
       (jcs-is-current-point-face "font-lock-string-face")))
 
 ;;;###autoload
 (defun jcs-goto-start-of-the-comment ()
   "Go to the start of the comment."
   (interactive)
-  (while (jcs-is-inside-comment-block-p)
+  (while (jcs-inside-comment-block-p)
     (re-search-backward comment-start-skip)))
 
 ;;;###autoload
 (defun jcs-goto-end-of-the-comment ()
   "Go to the end of the comment."
   (interactive)
-  (when (jcs-is-inside-comment-block-p)
+  (when (jcs-inside-comment-block-p)
     (backward-char -1)
     (jcs-goto-end-of-the-comment)))
 
