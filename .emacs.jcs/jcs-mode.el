@@ -303,10 +303,11 @@ Note this is opposite logic to the toggle mode function."
 
     ;; Set command mode key
 
-    ;; Update mode state.
-    (setq jcs-mode--state 'command)
+    (when jcs-mode--state
+      (message "[INFO] Turn into `command-mode` now"))
 
-    (message "[INFO] Turn into `command-mode` now")))
+    ;; Update mode state.
+    (setq jcs-mode--state 'command)))
 
 ;;;###autoload
 (defun jcs-insert-mode()
@@ -324,10 +325,11 @@ Note this is opposite logic to the toggle mode function."
 
     ;; Set insert mode key
 
-    ;; Update mode state.
-    (setq jcs-mode--state 'insert)
+    (when jcs-mode--state
+      (message "[INFO] Turn into `insert-mode` now"))
 
-    (message "[INFO] Turn into `insert-mode` now")))
+    ;; Update mode state.
+    (setq jcs-mode--state 'insert)))
 
 (defun jcs-view-mode-hook()
   "In view mode, read only file."
@@ -343,10 +345,11 @@ Note this is opposite logic to the toggle mode function."
     ;; just save buffer, don't care about the tab or spaces.
     (define-key view-mode-map (kbd "C-s") #'save-buffer)
 
-    ;; Update mode state.
-    (setq jcs-mode--state 'view)
+    (when jcs-mode--state
+      (message "[INFO] Turn into `view-mode` now"))
 
-    (message "[INFO] Turn into `view-mode` now")))
+    ;; Update mode state.
+    (setq jcs-mode--state 'view)))
 
 (add-hook 'view-mode-hook 'jcs-view-mode-hook)
 
@@ -371,10 +374,11 @@ Note this is opposite logic to the toggle mode function."
 
     (define-key global-map (kbd "C-r p") #'jcs-ag-project-regexp)
 
-    ;; Update mode state.
-    (setq jcs-mode--state 'depend)
+    (when jcs-mode--state
+      (message "[INFO] Turn into `depend-mode` now"))
 
-    (message "[INFO] Turn into `depend-mode` now")))
+    ;; Update mode state.
+    (setq jcs-mode--state 'depend)))
 
 ;;;###autoload
 (defun jcs-cross-mode ()
@@ -396,10 +400,11 @@ Note this is opposite logic to the toggle mode function."
     (define-key global-map (kbd "C-f") #'isearch-forward)
     (define-key global-map (kbd "C-S-f") #'isearch-project-forward)
 
-    ;; Update mode state.
-    (setq jcs-mode--state 'cross)
+    (when jcs-mode--state
+      (message "[INFO] Turn into `cross-mode` now"))
 
-    (message "[INFO] Turn into `cross-mode` now")))
+    ;; Update mode state.
+    (setq jcs-mode--state 'cross)))
 
 
 ;;----------------------------------------------------------------------------
