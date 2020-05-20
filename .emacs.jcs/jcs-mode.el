@@ -331,27 +331,6 @@ Note this is opposite logic to the toggle mode function."
 
     (message "[INFO] Turn into `insert-mode` now")))
 
-(defun jcs-view-mode-hook()
-  "In view mode, read only file."
-  (require 'view)
-  (unless (equal jcs-mode--state 'view)
-    ;; unset all the key
-    (define-key view-mode-map [tab] nil)
-    (define-key view-mode-map (kbd "RET") nil)
-
-    (dolist (key-str jcs-key-list)
-      (define-key view-mode-map key-str nil))
-
-    ;; just save buffer, don't care about the tab or spaces.
-    (define-key view-mode-map (kbd "C-s") #'save-buffer)
-
-    ;; Update mode state.
-    (setq jcs-mode--state 'view)
-
-    (message "[INFO] Turn into `view-mode` now")))
-
-(add-hook 'view-mode-hook 'jcs-view-mode-hook)
-
 ;;;###autoload
 (defun jcs-depend-mode ()
   "This mode depend on my own machine. More feature and more control of the editor."
@@ -510,6 +489,26 @@ Note this is opposite logic to the toggle mode function."
   (define-key lisp-interaction-mode-map (kbd "M-K") #'jcs-scratch-buffer-refresh))
 
 (add-hook 'lisp-interaction-mode-hook 'jcs-lisp-interaction-mode-hook)
+
+;;==============================
+;;     View
+;;------------------------
+
+(defun jcs-view-mode-hook ()
+  "In view mode, read only file."
+  (require 'view)
+  (unless (equal jcs-mode--state 'view)
+    ;; unset all the key
+    (define-key view-mode-map [tab] nil)
+    (define-key view-mode-map (kbd "RET") nil)
+
+    (dolist (key-str jcs-key-list)
+      (define-key view-mode-map key-str nil))
+
+    ;; just save buffer, don't care about the tab or spaces.
+    (define-key view-mode-map (kbd "C-s") #'save-buffer)))
+
+(add-hook 'view-mode-hook 'jcs-view-mode-hook)
 
 
 ;;----------------------------------------------------------------------------
