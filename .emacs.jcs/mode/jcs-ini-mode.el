@@ -10,7 +10,6 @@
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
 
-
   ;; Normal
   (define-key ini-mode-map (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
   (define-key ini-mode-map (kbd "<down>") (jcs-get-prev/next-key-type 'next))
