@@ -12,6 +12,7 @@
 
 (defun jcs-js-mode-hook ()
   "Mode hook for JavaScript mode."
+  (auto-rename-tag-mode 1)
   (impatient-mode t)
   (js2-minor-mode 1)
 

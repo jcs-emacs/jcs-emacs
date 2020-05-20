@@ -36,6 +36,7 @@
 
 (defun jcs-web-mode-hook ()
   "Hooks for Web mode."
+  (auto-rename-tag-mode 1)
   (visual-line-mode t)
   (impatient-mode t)
 

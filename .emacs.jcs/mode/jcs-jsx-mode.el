@@ -1,4 +1,4 @@
-;;; jcs-jsx-mode.el --- JavaScript mode. -*- lexical-binding: t -*-
+;;; jcs-jsx-mode.el --- JavaScript XML mode. -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -8,6 +8,7 @@
 
 (defun jcs-jsx-mode-hook ()
   "Mode hook for JSX mode."
+  (auto-rename-tag-mode 1)
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]jsx$")
