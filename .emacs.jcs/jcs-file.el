@@ -187,7 +187,6 @@ It tells you the existence of the path."
       (push (f-files dir fn) files))
     (jcs-flatten-list (reverse files))))
 
-
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 ;; IMPORTANT: Keep core function at the top of this file.
 ;;
