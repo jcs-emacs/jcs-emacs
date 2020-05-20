@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-05-20
+
+* Enabled `auto-rename-tag` for certain web related modes. (jcs-emacs-init)
+
 ### 2020-05-19
 
 * Improved `JSX` coding experience by supply more helper plugins. (jcs-emacs-init)
