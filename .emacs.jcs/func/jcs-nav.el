@@ -238,35 +238,31 @@ Just use this without remember Emacs Lisp function."
 ;;----------------------------------------------------------------------------
 ;; Move Inside Line
 
+(defun jcs--indentation-point ()
+  "Return the indentation point at the current line."
+  (save-excursion (call-interactively #'back-to-indentation) (point)))
+
 ;;;###autoload
 (defun jcs-back-to-indentation-or-beginning ()
   "Toggle between first character and beginning of line."
   (interactive)
-  ;; SOURCE: https://www.emacswiki.org/emacs/BackToIndentationOrBeginning
-  (if (= (point) (progn (back-to-indentation) (point)))
-      (beginning-of-line)))
+  (if (= (point) (jcs--indentation-point)) (beginning-of-line) (back-to-indentation)))
 
 ;;;###autoload
 (defun jcs-beginning-of-line-or-indentation ()
-  "Move to beginning of line, or indentation
-
-If you rather it go to beginning-of-line
-first and to indentation on the next hit use
-this version instead."
+  "Move to beginning of line, or indentation.
+If you rather it go to beginning-of-line first and to indentation on the
+next hit use this version instead."
   (interactive)
-  (if (bolp)
-      (beginning-of-line)
-    (back-to-indentation)))
+  (if (bolp) (beginning-of-line) (back-to-indentation)))
 
 ;;;###autoload
 (defun jcs-back-to-indentation ()
   "Back to identation by checking first character in the line."
   (interactive)
   (beginning-of-line)
-  (unless (jcs-current-line-totally-empty-p)
-    (forward-char 1))
-  (while (jcs-current-whitespace-or-tab-p)
-    (forward-char 1))
+  (unless (jcs-current-line-totally-empty-p) (forward-char 1))
+  (while (jcs-current-whitespace-or-tab-p) (forward-char 1))
   (backward-char 1))
 
 ;;;###autoload
@@ -326,32 +322,36 @@ this version instead."
 (defun jcs-beginning-of-buffer ()
   "Goto the beginning of buffer."
   (interactive)
-  (jcs-mute-apply #'beginning-of-buffer))
+  (jcs-mute-apply (lambda () (call-interactively #'beginning-of-buffer))))
 
 ;;;###autoload
 (defun jcs-end-of-buffer ()
   "Goto the end of buffer."
   (interactive)
-  (jcs-mute-apply #'end-of-buffer))
+  (jcs-mute-apply (lambda () (call-interactively #'end-of-buffer))))
 
 ;;----------------------------------------------------------------------------
 ;; Navigating Blank Line
+
+(defun jcs-goto-char (pt)
+  "Goto char with interactive flag enabled."
+  (execute-extended-command (- pt (point)) "forward-char"))
 
 ;;;###autoload
 (defun jcs-previous-blank-line ()
   "Move to the previous line containing nothing but whitespaces or tabs."
   (interactive)
-  (unless (ignore-errors (search-backward-regexp "^[ \t]*\n") t)
-    (goto-char (point-min))))
+  (let ((sr-pt (save-excursion (re-search-backward "^[ \t]*\n" nil t))))
+    (jcs-goto-char (if sr-pt sr-pt (point-min)))))
 
 ;;;###autoload
 (defun jcs-next-blank-line ()
   "Move to the next line containing nothing but whitespaces or tabs."
   (interactive)
   (forward-line 1)
-  (if (ignore-errors (search-forward-regexp "^[ \t]*\n") t)
-      (forward-line -1)
-    (goto-char (point-max))))
+  (let ((sr-pt (save-excursion (re-search-forward "^[ \t]*\n" nil t))))
+    (jcs-goto-char (if sr-pt sr-pt (point-max)))
+    (when sr-pt (forward-line -1))))
 
 ;;----------------------------------------------------------------------------
 ;; Character Navigation
