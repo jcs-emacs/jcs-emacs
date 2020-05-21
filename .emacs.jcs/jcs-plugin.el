@@ -841,21 +841,6 @@
               (call-interactively value t)
             (eval value)))))))
 
-(use-package shift-select
-  :defer t
-  :config
-  (defun jcs-advice-shift-select-pre-command-hook-after ()
-    "Advice after execute `shift-select-pre-command-hook'."
-    (when (and shift-select-active
-               (not this-command-keys-shift-translated))
-      (let ((sym-lst '(jcs-smart-indent-up
-                       jcs-smart-indent-down
-                       previous-line
-                       next-line)))
-        (when (jcs-is-contain-list-symbol sym-lst this-command)
-          (deactivate-mark)))))
-  (advice-add 'shift-select-pre-command-hook :after #'jcs-advice-shift-select-pre-command-hook-after))
-
 (use-package show-eol
   :defer t
   :config
