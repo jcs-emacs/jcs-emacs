@@ -221,8 +221,7 @@ See `jcs-hook.el' file that has apply `advice' on command `other-window'.")
   "Find file with these paths, esure read only mode enabled.")
 
 ;;; Shift Select
-;; NOTE: This act weird, does not make it works like other editor.
-(setq shift-select-mode nil)
+(setq shift-select-mode t)
 
 ;;; Smooth scroll
 (setq scroll-step 2)
