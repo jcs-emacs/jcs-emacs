@@ -113,7 +113,6 @@
     (require 'preproc-font-lock)
     (require 'region-occurrences-highlighter)
     (require 'right-click-context)
-    (require 'shift-select)
     (require 'use-ttf)
     (require 'which-key)
     (require 'yascroll))
@@ -147,8 +146,6 @@
     (projectile-mode t)
     ;;----------------------------------- `right-click-context'
     (right-click-context-mode 1)
-    ;;----------------------------------- `shift-select'
-    (global-shift-select-mode t)
     ;;----------------------------------- `show-paren'
     ;; NOTE: turn on highlight matching brackets when cursor is on one
     (show-paren-mode t)
