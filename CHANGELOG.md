@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-05-22
 
 * Removed manually installed package `shift-select`. (jcs-emacs-init)
+* Fixed mark whole buffer action after switching window. (jcs-emacs-init)
 
 ### 2020-05-20
 
