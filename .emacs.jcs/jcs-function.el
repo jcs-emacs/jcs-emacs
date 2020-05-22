@@ -855,8 +855,6 @@ NO-PROMPT : Don't prompt the overwrap message."
 (require 'jcs-vs-func)
 
 ;; For Specific Mode
-(with-eval-after-load 'preproc-font-lock (require 'jcs-preproc-func))
-
 (with-eval-after-load 'org (require 'jcs-org-func))
 (jcs-with-eval-after-load-multiple  ; Assembly Language
  '(masm-mode nasm-mode) #'(lambda () (require 'jcs-asm-func)))
