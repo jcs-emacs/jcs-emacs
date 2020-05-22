@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-05-23
+
+* Removed `preproc` face from `face` module. (jcs-emacs-init)
+* Removed `preproc` function, no longer needed. (jcs-emacs-init)
+* Removed `oop` highlight faces for fixing OOP docstring implementation. (jcs-emacs-init)
+
 ### 2020-05-22
 
 * Removed manually installed package `shift-select`. (jcs-emacs-init)
