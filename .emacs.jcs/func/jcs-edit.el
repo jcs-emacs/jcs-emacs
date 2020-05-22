@@ -281,19 +281,19 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
 ;;----------------------------------------------------------------------------
 ;; Mark
 
-(defvar-local jcs-marking-whole-buffer nil
+(defvar-local jcs--marking-whole-buffer-p nil
   "Marking the whole buffer now?")
 
-(defvar-local jcs-marking-whole-buffer-cmd-count 0
-  "Count up the command used after marking whole buffer.")
+(defvar-local jcs--marking-whole-buffer--curosr-pos -1
+  "Record down the cursor position.")
 
 ;;;###autoload
 (defun jcs-mark-whole-buffer ()
   "Mark the whole buffer."
   (interactive)
   (call-interactively #'mark-whole-buffer)
-  (setq-local jcs-marking-whole-buffer-cmd-count 0)
-  (setq-local jcs-marking-whole-buffer t))
+  (setq jcs--marking-whole-buffer--curosr-pos (point))
+  (setq jcs--marking-whole-buffer-p t))
 
 ;;----------------------------------------------------------------------------
 ;; Overwrite (Insert toggle)

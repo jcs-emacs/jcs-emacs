@@ -191,6 +191,15 @@
 
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+(defun jcs-pre-command-hook ()
+  "Hook run before every command."
+  (when jcs--marking-whole-buffer-p
+    (unless (= jcs--marking-whole-buffer--curosr-pos (point))
+      (deactivate-mark)
+      (setq jcs--marking-whole-buffer--curosr-pos -1)
+      (setq jcs--marking-whole-buffer-p nil))))
+(add-hook 'pre-command-hook 'jcs-pre-command-hook)
+
 (defun jcs-post-command-hook ()
   "Hook run after every command."
   (cond
@@ -199,14 +208,6 @@
    ((jcs-is-current-major-mode-p "web-mode")
     (when jcs-web-auto-truncate-lines
       (jcs-web-truncate-lines-by-face))))
-
-  (when jcs-marking-whole-buffer
-    (setq-local jcs-marking-whole-buffer-cmd-count
-                (1+ jcs-marking-whole-buffer-cmd-count))
-    (when (>= jcs-marking-whole-buffer-cmd-count 2)
-      (deactivate-mark)
-      (setq-local jcs-marking-whole-buffer-cmd-count 0)
-      (setq-local jcs-marking-whole-buffer nil)))
 
   (jcs--lsp-ui-doc--hide-frame)
   (jcs--lsp-ui-doc-show-safely)
