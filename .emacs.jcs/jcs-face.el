@@ -65,15 +65,6 @@
 (defvar jcs-oop-value-face 'jcs-oop-value-face)
 
 ;;----------------------------------------------------------------------------
-;; Preprocessor
-
-(defface jcs-preproc-variable-name-face
-  '((t (:foreground "#B363BE")))
-  "Highlight preprocessor operator."
-  :group 'jcs)
-(defvar jcs-preproc-variable-name-face 'jcs-preproc-variable-name-face)
-
-;;----------------------------------------------------------------------------
 ;; Web
 
 (defface jcs-web-mode-block-face
@@ -140,8 +131,6 @@
 ;;----------------------------------------------------------------------------
 ;; Load face order.
 
-(with-eval-after-load 'preproc-font-lock (jcs-init-preproc-faces))
-
 (with-eval-after-load 'cc-mode (jcs-init-java-faces))
 (with-eval-after-load 'css-mode (jcs-init-css-faces))
 (with-eval-after-load 'org (jcs-init-org-faces))
@@ -149,10 +138,7 @@
 (with-eval-after-load 'web-mode (jcs-init-web-faces))
 
 ;; Load OOP faces.
-(add-hook 'prog-mode-hook
-          (lambda ()
-            (jcs-oop-reload-faces)
-            (jcs-oop-complete-missing-font)))
+(add-hook 'prog-mode-hook (lambda () (jcs-oop-reload-faces)))
 
 (provide 'jcs-face)
 ;;; jcs-face.el ends here
