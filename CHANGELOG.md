@@ -9,6 +9,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 * Removed manually installed package `shift-select`. (jcs-emacs-init)
 * Fixed mark whole buffer action after switching window. (jcs-emacs-init)
+* Fixed `ivy` skipping input selection logic. (jcs-emacs-init)
 
 ### 2020-05-20
 
