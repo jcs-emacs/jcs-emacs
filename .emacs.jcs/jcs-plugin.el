@@ -786,10 +786,13 @@
 
 (use-package preproc-font-lock
   :defer t
+  :init
+  (setq preproc-font-lock-modes '(cc-mode c-mode c++-mode csharp-mode nasm-mode))
   :config
   (set-face-attribute 'preproc-font-lock-preprocessor-background
                       nil
                       :background nil
+                      :foreground "#B363BE"
                       :inherit nil))
 
 (use-package projectile
