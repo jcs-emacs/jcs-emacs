@@ -348,7 +348,7 @@ next hit use this version instead."
 (defun jcs-next-blank-line ()
   "Move to the next line containing nothing but whitespaces or tabs."
   (interactive)
-  (forward-line 1)
+  (when (jcs-current-line-empty-p) (forward-line 1))
   (let ((sr-pt (save-excursion (re-search-forward "^[ \t]*\n" nil t))))
     (jcs-goto-char (if sr-pt sr-pt (point-max)))
     (when sr-pt (forward-line -1))))
