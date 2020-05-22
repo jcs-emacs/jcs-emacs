@@ -1383,46 +1383,5 @@ SEARCH-STRING is the raw string that represent the code we want to document."
         (insert jcs--return-desc-string)
         (indent-for-tab-command)))))
 
-;;----------------------------------------------------------------------------
-
-(defun jcs-oop-complete-missing-font ()
-  "Complete all the missing font that doesn't work with built-in docstirng."
-
-  ;; Modes to fixed missing font lock variable name face in strict
-  ;; programming language.
-  (let ((oop-missing-font-lock-variable-name-modes-strict '(c-mode)))
-    (dolist (mode oop-missing-font-lock-variable-name-modes-strict)
-      (font-lock-add-keywords
-       mode
-       '(("([ \t]*[a-zA-Z_$0-9[&* \t]* \\([a-zA-Z_$0-9[&* \t]*\\)[ \t]*," 1 'font-lock-variable-name-face t)
-         ("([ \t]*[a-zA-Z_$0-9[&* \t]* [a-zA-Z_$0-9[&* \t]* \\([a-zA-Z_$0-9[&* \t]*\\)[ \t]*," 1 'font-lock-variable-name-face t)
-         ;; Require for two word variables.
-         ;; For instance, `const'.
-         (",[ \t]*[a-zA-Z_$0-9[&* \t]* \\([a-zA-Z_$0-9[&* \t]*\\)[ \t]*," 1 'font-lock-variable-name-face t)
-         (",[ \t]*[a-zA-Z_$0-9[&* \t]* [a-zA-Z_$0-9[&* \t]* \\([a-zA-Z_$0-9[&* \t]*\\)[ \t]*," 1 'font-lock-variable-name-face t)
-         ;; For line break parameter declaration.
-         ("^[ \t] [a-zA-Z_$0-9[&* \t]* [a-zA-Z_$0-9[&* \t]* \\([a-zA-Z_$0-9[&* \t]*\\)[ \t]*[,)]" 1 'font-lock-variable-name-face t))
-       'end)))
-
-  ;; Font lock for namespace in C++.
-  (let ((oop-missing-font-lock-type-face-modes '(c++mode)))
-    (dolist (mode oop-missing-font-lock-type-face-modes)
-      (font-lock-add-keywords
-       mode
-       '(("[a-zA-Z0-9_]*::\\([a-zA-Z0-9_]*\\)[ \t]" 1 'font-lock-type-face t))
-       'end)))
-
-  ;; Modes to fixed missing type face in programming language using `colon'.
-  (let ((oop-missing-font-lock-type-face-modes-colon '(actionscript-mode
-                                                       typescript-mode)))
-    (dolist (mode oop-missing-font-lock-type-face-modes-colon)
-      (font-lock-add-keywords
-       mode
-       '(("[|:][ \t\n]*\\([a-zA-Z0-9_-]*\\)[.][a-zA-Z0-9_-]*[ \t\n]*[|=),{]" 1 'font-lock-type-face)
-         ("[|:][ \t\n]*[a-zA-Z0-9_-]*[.]\\([a-zA-Z0-9_-]*\\)[ \t\n]*[|=),{]" 1 'font-lock-type-face)
-         ("[|:][ \t\n]*\\([a-zA-Z0-9_-]*\\)[ \t\n]*[|{]" 1 'font-lock-type-face)
-         ("[a-zA-Z0-9_-(]+[ \t\n]*[|:][ \t\n]*\\([a-zA-Z0-9_-]+\\)[ \t\n]*[=),]" 1 'font-lock-type-face))
-       'end))))
-
 (provide 'jcs-oop-func)
 ;;; jcs-oop-func.el ends here
