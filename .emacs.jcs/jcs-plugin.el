@@ -471,6 +471,9 @@
 
 (use-package isearch
   :defer t
+  :init
+  (setq isearch-lazy-count t)
+  (setq lazy-count-prefix-format "[%s:%s] ")
   :config
   (defun jcs-isearch-mode-hook ()
     "Paste the current symbol when `isearch' enabled."
