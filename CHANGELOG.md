@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-05-25
+
+* Added `isearch` configuration by showing the match count. (jcs-emacs-init)
+
 ### 2020-05-23
 
 * Removed `preproc` face from `face` module. (jcs-emacs-init)
