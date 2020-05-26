@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-05-26
+
+* Added Unreal C++ scripting template files for `header`/`source`. (jcs-emacs-init)
+* Implemented ask for which header insertion in `c++-mode`. (jcs-emacs-init)
+* Declared c/c++ header and source extension list. (jcs-emacs-init)
+
 ### 2020-05-25
 
 * Added `isearch` configuration by showing the match count. (jcs-emacs-init)
