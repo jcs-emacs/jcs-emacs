@@ -10,6 +10,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Added Unreal C++ scripting template files for `header`/`source`. (jcs-emacs-init)
 * Implemented ask for which header insertion in `c++-mode`. (jcs-emacs-init)
 * Declared c/c++ header and source extension list. (jcs-emacs-init)
+* Fixed `counsel`/`counsel-projectile` find file other window logic. (jcs-emacs-init)
 
 ### 2020-05-25
 
