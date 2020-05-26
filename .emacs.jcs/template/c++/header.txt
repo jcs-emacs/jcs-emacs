@@ -2,7 +2,6 @@
 #GLOBAL_FILE_INFO#
 #define __#U_FILE_NAME_NO_EXT#_H__
 
-
 /**
  * @class #FILE_NAME_NO_EXT#
  * @brief Class description...

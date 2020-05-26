@@ -1,0 +1,29 @@
+#GLOBAL_FILE_INFO#
+#pragma once
+
+#include "Components/ActorComponent.h"
+#include "#FILE_NAME_NO_EXT#.generated.h"
+
+/**
+ * @class #FILE_NAME_NO_EXT#
+ * @brief Class description...
+ */
+UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
+class #FILE_NAME_NO_EXT# : public UActorComponent
+{
+private:
+    GENERATED_BODY()
+
+public:
+    #FILE_NAME_NO_EXT#();
+
+    virtual void BeginPlay() override;
+    virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+
+    /* operator */
+
+    /* setter */
+
+    /* getter */
+
+};

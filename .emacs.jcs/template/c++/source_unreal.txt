@@ -1,0 +1,18 @@
+#GLOBAL_FILE_INFO#
+
+#include "#FILE_NAME_NO_EXT#.h"
+
+#FILE_NAME_NO_EXT#::#FILE_NAME_NO_EXT#()
+{
+    PrimaryComponentTick.bCanEverTick = true;
+}
+
+void UJCSUE_RotateAction::BeginPlay()
+{
+    Super::BeginPlay();
+}
+
+void UJCSUE_RotateAction::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
+{
+    Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+}

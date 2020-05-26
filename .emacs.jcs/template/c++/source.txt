@@ -2,7 +2,6 @@
 
 #include "#FILE_NAME_NO_EXT#.h"
 
-
 #FILE_NAME_NO_EXT#::#FILE_NAME_NO_EXT#()
 {
 
