@@ -185,20 +185,28 @@ in order to take effect.  Half hot reloading process."
 
 ;;; C++
 (defun jcs-insert-c++-header-template ()
-  "C++ Default Header Constrcutor and Destructor."
+  "Header for C++ header file."
   (file-header-insert-template-by-file-path "~/.emacs.jcs/template/c++/header.txt"))
 
 (defun jcs-insert-c++-source-template ()
-  "C++ Default Source Constrcutor and Destructor."
+  "Header for C++ source file."
   (file-header-insert-template-by-file-path "~/.emacs.jcs/template/c++/source.txt"))
+
+(defun jcs-insert-c++-unreal-header-template ()
+  "Header for Unreal C++ header file."
+  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/c++/header_unreal.txt"))
+
+(defun jcs-insert-c++-unreal-source-template ()
+  "Header for Unreal C++ source file."
+  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/c++/source_unreal.txt"))
 
 ;;; C#
 (defun jcs-insert-csharp-template ()
-  "Header for CS header file."
+  "Header for C# header file."
   (file-header-insert-template-by-file-path "~/.emacs.jcs/template/csharp/default.txt"))
 
 (defun jcs-insert-csharp-unity-template ()
-  "Header for Unity CS header file."
+  "Header for Unity C# header file."
   (file-header-insert-template-by-file-path "~/.emacs.jcs/template/csharp/unity.txt"))
 
 ;;; Clojure
