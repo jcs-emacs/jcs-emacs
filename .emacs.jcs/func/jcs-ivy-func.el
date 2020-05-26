@@ -57,30 +57,25 @@ Return nil, to NOT to skip the input selection."
 (defun jcs-counsel-find-files-other-window ()
   "Find files on other window."
   (interactive)
-  (let ((record-dd default-directory)
-        (path-at-point (ffap-file-at-point))
-        (found-file nil)
-        (starting-window (selected-window)))
-    (when path-at-point (setq path-at-point (f-dirname path-at-point)))
-    (jcs-other-window-next 1 t)
-    (unwind-protect
-        (setq found-file
-              (counsel-find-file (if path-at-point path-at-point record-dd)))
-      (unless found-file
-        (select-window starting-window)))))
+  (let ((buf (buffer-name)) (found-file nil)
+        (target-buf nil))
+    (unwind-protect (setq found-file (counsel-find-file))
+      (when found-file
+        (setq target-buf found-file)
+        (switch-to-buffer buf)
+        (find-file-other-window target-buf)))))
 
 ;;;###autoload
 (defun jcs-counsel-projectile-find-file-other-window ()
   "Find files in project on other window."
   (interactive)
-  (let ((record-dd default-directory)
-        (found-file nil)
-        (starting-window (selected-window)))
-    (jcs-other-window-next 1 t)
-    (let ((default-directory record-dd))
-      (unwind-protect (setq found-file (counsel-projectile-find-file))
-        (unless found-file
-          (select-window starting-window))))))
+  (let ((buf (buffer-name)) (found-file nil)
+        (target-buf nil))
+    (unwind-protect (setq found-file (counsel-projectile-find-file))
+      (when found-file
+        (setq target-buf (concat (projectile-project-root) found-file))
+        (switch-to-buffer buf)
+        (find-file-other-window target-buf)))))
 
 (provide 'jcs-ivy-func)
 ;;; jcs-ivy-func.el ends here
