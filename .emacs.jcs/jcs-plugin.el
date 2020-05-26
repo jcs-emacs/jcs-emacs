@@ -473,21 +473,7 @@
   :defer t
   :init
   (setq isearch-lazy-count t)
-  (setq lazy-count-prefix-format "[%s:%s] ")
-  :config
-  (defun jcs-isearch-mode-hook ()
-    "Paste the current symbol when `isearch' enabled."
-    (cond ((use-region-p)
-           (progn
-             (deactivate-mark)
-             (ignore-errors
-               (isearch-yank-string (buffer-substring-no-properties (region-beginning) (region-end))))))
-          ((memq this-command '(jcs-isearch-project-backward-symbol-at-point))
-           (when (char-or-string-p isearch-project-thing-at-point)
-             (backward-word 1)
-             (isearch-project-isearch-yank-string isearch-project-thing-at-point)
-             (isearch-repeat-backward)))))
-  (add-hook 'isearch-mode-hook #'jcs-isearch-mode-hook))
+  (setq lazy-count-prefix-format "[%s:%s] "))
 
 (use-package isearch-project
   :defer t
@@ -498,7 +484,21 @@
                                        "build/"
                                        "build.min/"
                                        "node_modules/"
-                                       "res/")))
+                                       "res/"))
+  :config
+  (defun jcs-isearch-mode-hook ()
+    "Paste the current symbol when `isearch' enabled."
+    (cond ((use-region-p)
+           (progn
+             (deactivate-mark)
+             (ignore-errors
+               (isearch-yank-string (buffer-substring-no-properties (region-beginning) (region-end))))))
+          ((memq this-command '(jcs-isearch-project-backward-symbol-at-point))
+           (when (char-or-string-p isearch-project--thing-at-point)
+             (backward-word 1)
+             (isearch-project--isearch-yank-string isearch-project--thing-at-point)
+             (isearch-repeat-backward)))))
+  (add-hook 'isearch-mode-hook #'jcs-isearch-mode-hook))
 
 (use-package ivy
   :defer t
