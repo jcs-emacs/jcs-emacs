@@ -53,6 +53,20 @@
 
 ;;-----------------------------------------------------------
 
+(defconst jcs-c-header-extensions '(".h")
+  "List of C header file extension.")
+
+(defconst jcs-c-source-extensions '(".c")
+  "List of C source file extension.")
+
+(defconst jcs-c++-header-extensions '(".hin" ".hpp")
+  "List of C++ header file extension.")
+
+(defconst jcs-c++-source-extensions '(".cin" ".cpp")
+  "List of C++ source file extension.")
+
+;;-----------------------------------------------------------
+
 (defun jcs-c-header-format ()
   "Format the given file as a C header file."
   (jcs-insert-header-if-empty 'jcs-insert-c-header-template))
@@ -79,15 +93,9 @@
 
 (defun jcs-cc-insert-header ()
   "Insert header for `cc-mode' related modes."
-  (jcs-insert-header-if-valid '("[.]hin"
-                                "[.]hpp"
-                                "[.]h")
-                              'jcs-c++-header-format)
-  (jcs-insert-header-if-valid '("[.]cin"
-                                "[.]cpp")
-                              'jcs-c++-source-format)
-  (jcs-insert-header-if-valid '("[.]c")
-                              'jcs-c-source-format))
+  (jcs-insert-header-if-valid jcs-c++-header-extensions 'jcs-c++-header-format)
+  (jcs-insert-header-if-valid jcs-c++-source-extensions 'jcs-c++-source-format)
+  (jcs-insert-header-if-valid jcs-c-header-extensions 'jcs-c-source-format))
 
 ;;-----------------------------------------------------------
 
