@@ -354,7 +354,8 @@ SEARCH-STRING is the raw string that represent the code we want to document."
         (setq mode-doc-string-func-name (if meet-function-name
                                             'jcs--java-mode-doc-string-func
                                           'jcs--java-mode-doc-string-others)))
-       ((jcs-is-current-major-mode-p '("js-mode" "js2-mode" "js3-mode"))
+       ((jcs-is-current-major-mode-p '("js-mode" "js2-mode" "js3-mode"
+                                       "rjsx-mode"))
         (setq mode-doc-string-func-name (if meet-function-name
                                             'jcs--js-mode-doc-string-func
                                           'jcs--js-mode-doc-string-others)))
