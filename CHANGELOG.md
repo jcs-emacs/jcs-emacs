@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-05-27
+
+* Fixed `cc-mode` docstring with keywords. (jcs-emacs-init)
+* Enabled JSX docstring with `rjsx-mode`. (jcs-emacs-init)
+
 ### 2020-05-26
 
 * Added Unreal C++ scripting template files for `header`/`source`. (jcs-emacs-init)
