@@ -1169,6 +1169,10 @@ CMDS should be a list of commands."
 ;;----------------------------------------------------------------------------
 ;; List
 
+(defun jcs-last-item-in-list (lst)
+  "Return the last item in LST."
+  (nth (1- (length lst)) lst))
+
 (defun jcs-flatten-list (l)
   "Flatten the multiple dimensional array, L to one dimensonal array.
 For instance,
