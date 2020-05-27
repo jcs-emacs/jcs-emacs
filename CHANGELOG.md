@@ -9,6 +9,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 * Fixed `cc-mode` docstring with keywords. (jcs-emacs-init)
 * Enabled JSX docstring with `rjsx-mode`. (jcs-emacs-init)
+* Added Unreal C++ template information functions. (jcs-emacs-init)
 
 ### 2020-05-26
 
