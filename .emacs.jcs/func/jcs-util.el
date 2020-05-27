@@ -1173,6 +1173,23 @@ CMDS should be a list of commands."
   "Return the last item in LST."
   (nth (1- (length lst)) lst))
 
+(defun jcs-find-item-in-list-offset (lst key offset)
+  "Find the item in LST using KEY with OFFSET the index."
+  (require 'cl-lib)
+  (unless offset (setq offset 0))
+  (let ((result nil) (break-it nil) (item nil) (index 0))
+    (while (and (not break-it) (< index (length lst)))
+      (setq item (nth index lst))
+      (when (cl-case (type-of key)
+              ('string (string-match-p key item))
+              ('symbol (equal key item))
+              ('integer (= key item)) ('float (= key item))
+              (t nil))
+        (setq result (nth (+ index offset) lst))
+        (setq break-it t))
+      (setq index (1+ index)))
+    result))
+
 (defun jcs-flatten-list (l)
   "Flatten the multiple dimensional array, L to one dimensonal array.
 For instance,
@@ -1567,7 +1584,7 @@ If TRIM is non-nil, trim the string before return it."
   "Check if the IN-SUB-STR is a string in IN-STR."
   (string-match-p (regexp-quote in-sub-str) in-str))
 
-(defun jcs-last-char-in-string (reg str)
+(defun jcs-last-regex-in-string (reg str)
   "Find the position in STR using REG from th end."
   (let ((pos -1) (run-it t))
     (while run-it
