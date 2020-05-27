@@ -382,32 +382,10 @@ SEARCH-STRING is the raw string that represent the code we want to document."
         (funcall mode-doc-string-func-name search-string)))))
 
 
-(defun jcs--last-string-before-keyword (lst kw)
-  "Last string in LST before keyword (KW)."
-  (let ((result nil) (break-it nil) (item nil) (index 0))
-    (while (and (not break-it) (< index (length lst)))
-      (setq item (nth index lst))
-      (when (string-match-p kw item)
-        (setq result (nth (1- index) lst))
-        (setq break-it t))
-      (setq index (1+ index)))
-    result))
-
-(defun jcs--next-string-after-keyword (lst kw)
-  "Next string in LST after keyword (KW)."
-  (let ((result nil) (break-it nil) (item nil) (index 0))
-    (while (and (not break-it) (< index (length lst)))
-      (setq item (nth index lst))
-      (when (string-match-p kw item)
-        (setq result (nth (1+ index) lst))
-        (setq break-it t))
-      (setq index (1+ index)))
-    result))
-
 (defun jcs--function-name (search-string)
   "Analyze SEARCH-STRING to get function name."
   (let ((function-name-string nil)
-        (pos (jcs-last-char-in-string "(" search-string)))
+        (pos (jcs-last-regex-in-string "(" search-string)))
     (when pos
       (setq function-name-string (substring search-string 0 pos))
       (setq function-name-string (split-string function-name-string " " t))
@@ -420,7 +398,7 @@ SEARCH-STRING is the raw string that represent the code we want to document."
   "Analyze SEARCH-STRING to get return type.
 This is for c-like programming languages."
   (let ((return-type-string nil)
-        (pos (jcs-last-char-in-string "(" search-string)))
+        (pos (jcs-last-regex-in-string "(" search-string)))
     (when pos
       (setq return-type-string (substring search-string 0 pos))
       (setq return-type-string (split-string return-type-string " " t))
@@ -434,7 +412,7 @@ This is for c-like programming languages."
 This is for colon type programming languages.  For example, `actionscript',
 `typescript', etc."
   (let ((return-type-string nil)
-        (pos (jcs-last-char-in-string ")" search-string)))
+        (pos (jcs-last-regex-in-string ")" search-string)))
     (when pos
       (setq return-type-string (substring search-string (1+ pos) (length search-string)))
       (when spi-sym
@@ -449,9 +427,9 @@ This is for colon type programming languages.  For example, `actionscript',
 SEARCH-STRING : string that use to analyze."
   (let ((param-string nil) (pos -1) (run-it t))
     (setq param-string (substring search-string
-                                  (1+ (jcs-last-char-in-string "(" search-string))
+                                  (1+ (jcs-last-regex-in-string "(" search-string))
                                   (length search-string)))
-    (setq pos (jcs-last-char-in-string ")" param-string))
+    (setq pos (jcs-last-regex-in-string ")" param-string))
     (setq param-string (substring param-string 0 pos))
     param-string))
 
@@ -641,7 +619,7 @@ SEARCH-STRING is the raw string that represent the code we want to document."
         ;; Process class tag.
         (insert "@class ")
         (setq defined-keyword
-              (jcs--last-string-before-keyword splitted-search-string "[:{]"))
+              (jcs-find-item-in-list-offset splitted-search-string "[:{]" -1))
         (unless defined-keyword
           (setq defined-keyword (jcs-last-item-in-list splitted-search-string)))
         (ignore-errors (insert defined-keyword))
@@ -662,7 +640,7 @@ SEARCH-STRING is the raw string that represent the code we want to document."
         ;; Process class tag.
         (insert "@struct ")
         (setq defined-keyword
-              (jcs--last-string-before-keyword splitted-search-string "[:{]"))
+              (jcs-find-item-in-list-offset splitted-search-string "[:{]" -1))
         (unless defined-keyword
           (setq defined-keyword (jcs-last-item-in-list splitted-search-string)))
         (ignore-errors (insert defined-keyword))
@@ -702,7 +680,7 @@ SEARCH-STRING is the raw string that represent the code we want to document."
         ;; Process enumerator tag.
         (insert "@enum ")
         (setq defined-keyword
-              (jcs--last-string-before-keyword splitted-search-string "[:{]"))
+              (jcs-find-item-in-list-offset splitted-search-string "[:{]" -1))
         (unless defined-keyword
           (setq defined-keyword (jcs-last-item-in-list splitted-search-string)))
         (ignore-errors (insert defined-keyword))
