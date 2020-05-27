@@ -2,38 +2,31 @@
 ;;; Commentary: Functions for Object Oriented Programming languages.
 ;;; Code:
 
+(defconst jcs-docstring-modes
+  '(actionscript-mode
+    cc-mode c-mode c++-mode
+    csharp-mode
+    go-mode
+    java-mode
+    jayces-mode
+    js-mode js2-mode js3-mode
+    lua-mode
+    nasm-mode
+    php-mode
+    python-mode
+    rjsx-mode
+    typescript-mode
+    web-mode)
+  "List of major modes that supports docstring.")
+
+
 (defun jcs-docstring-modes-p ()
   "Check if current mode support docstring."
-  (or (jcs-is-current-major-mode-p
-       '("actionscript-mode"
-         "c-mode"
-         "c++-mode"
-         "csharp-mode"
-         "go-mode"
-         "java-mode"
-         "js-mode" "js2-mode" "js3-mode"
-         "php-mode"
-         "typescript-mode"
-         "web-mode"))))
-
+  (jcs-is-current-major-mode-p jcs-docstring-modes))
 
 (defun jcs-oop-reload-faces ()
   "Reload the faces once."
-  (let ((oop-highlight-modes '(actionscript-mode
-                               cc-mode
-                               c-mode
-                               c++-mode
-                               csharp-mode
-                               go-mode
-                               java-mode
-                               jayces-mode
-                               js-mode js2-mode js3-mode
-                               lua-mode
-                               nasm-mode
-                               php-mode
-                               python-mode
-                               typescript-mode
-                               web-mode)))
+  (let ((oop-highlight-modes jcs-docstring-modes))
     (dolist (mode oop-highlight-modes)
       (font-lock-add-keywords
        mode
@@ -388,6 +381,17 @@ SEARCH-STRING is the raw string that represent the code we want to document."
         (funcall mode-doc-string-func-name search-string)))))
 
 
+(defun jcs--last-string-before-keyword (lst kw)
+  "Last string in LST before keyword (KW)."
+  (let ((result nil) (break-it nil) (item nil) (index 0))
+    (while (and (not break-it) (< index (length lst)))
+      (setq item (nth index lst))
+      (when (string-match-p kw item)
+        (setq result (nth (1- index) lst))
+        (setq break-it t))
+      (setq index (1+ index)))
+    result))
+
 (defun jcs--next-string-after-keyword (lst kw)
   "Next string in LST after keyword (KW)."
   (let ((result nil) (break-it nil) (item nil) (index 0))
@@ -636,7 +640,9 @@ SEARCH-STRING is the raw string that represent the code we want to document."
         ;; Process class tag.
         (insert "@class ")
         (setq defined-keyword
-              (jcs--next-string-after-keyword splitted-search-string "class"))
+              (jcs--last-string-before-keyword splitted-search-string "[:{]"))
+        (unless defined-keyword
+          (setq defined-keyword (jcs-last-item-in-list splitted-search-string)))
         (ignore-errors (insert defined-keyword))
         (indent-for-tab-command)
 
@@ -655,7 +661,9 @@ SEARCH-STRING is the raw string that represent the code we want to document."
         ;; Process class tag.
         (insert "@struct ")
         (setq defined-keyword
-              (jcs--next-string-after-keyword splitted-search-string "struct"))
+              (jcs--last-string-before-keyword splitted-search-string "[:{]"))
+        (unless defined-keyword
+          (setq defined-keyword (jcs-last-item-in-list splitted-search-string)))
         (ignore-errors (insert defined-keyword))
         (indent-for-tab-command)
 
@@ -693,7 +701,9 @@ SEARCH-STRING is the raw string that represent the code we want to document."
         ;; Process enumerator tag.
         (insert "@enum ")
         (setq defined-keyword
-              (jcs--next-string-after-keyword splitted-search-string "enum"))
+              (jcs--last-string-before-keyword splitted-search-string "[:{]"))
+        (unless defined-keyword
+          (setq defined-keyword (jcs-last-item-in-list splitted-search-string)))
         (ignore-errors (insert defined-keyword))
         (indent-for-tab-command)
 
