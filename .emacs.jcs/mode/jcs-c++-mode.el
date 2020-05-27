@@ -4,6 +4,23 @@
 
 (require 'jcs-cc-mode)
 
+(defun jcs-unreal-c++-api-name ()
+  "Return the name of the Unreal API for current file."
+  (let* ((path (buffer-file-name))
+         (dirs (split-string path "/" t))
+         (api-name (jcs-find-item-in-list-offset dirs "Source" -1)))
+    (concat api-name "_API")))
+
+(defun jcs-unreal-c++-api-name-uppercase ()
+  "Return the uppercase Unreal C++ API name."
+  (upcase (jcs-unreal-c++-api-name)))
+
+(defun jcs-unreal-c++-api-name-lowercase ()
+  "Return the lowercase Unreal C++ API name."
+  (downcase (jcs-unreal-c++-api-name)))
+
+;;----------------------------------------------------------------------------
+
 (defun jcs-c++-unreal-insert-header ()
   "Insert the Unreal C++ header depends on if is a header/source file."
   (let ((header-ext (append jcs-c++-header-extensions jcs-c-header-extensions))
