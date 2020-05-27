@@ -7,12 +7,12 @@
     PrimaryComponentTick.bCanEverTick = true;
 }
 
-void UJCSUE_RotateAction::BeginPlay()
+void #FILE_NAME_NO_EXT#::BeginPlay()
 {
     Super::BeginPlay();
 }
 
-void UJCSUE_RotateAction::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
+void #FILE_NAME_NO_EXT#::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
     Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 }

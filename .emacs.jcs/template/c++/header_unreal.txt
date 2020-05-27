@@ -9,7 +9,7 @@
  * @brief Class description...
  */
 UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
-class #FILE_NAME_NO_EXT# : public UActorComponent
+class #U_UNREAL_API_NAME# #FILE_NAME_NO_EXT# : public UActorComponent
 {
 private:
     GENERATED_BODY()
