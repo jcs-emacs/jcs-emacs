@@ -79,6 +79,14 @@
 (defun jcs--other-window--advice-after (&rest _args)
   "Advice execute after `other-window' command."
   (unless jcs--no-advice-other-window
+    ;;--------------------------------------------------------------------
+    ;; TODO: This occurs in version `27.0.91'.
+    ;; Maybe we don't need this anymore after `27.1' is released!
+    (when (jcs-frame-util-p)
+      (cl-case this-command
+        ('jcs-other-window-next (jcs-other-window-next))
+        ('jcs-other-window-prev (jcs-other-window-prev))))
+    ;;--------------------------------------------------------------------
     (select-frame-set-input-focus (selected-frame))
     (jcs--neotree-start-refresh)
     (when (and (boundp 'neo-buffer-name)
