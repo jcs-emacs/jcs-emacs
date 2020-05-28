@@ -9,6 +9,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 * Fixed window name matching issue in shell module. (jcs-emacs-init)
 * Implemented source control information in `feebleline`. (jcs-emacs-init)
+* Changed `feebleline` using cache for better speed and performance. (jcs-emacs-init)
 
 ### 2020-05-27
 
