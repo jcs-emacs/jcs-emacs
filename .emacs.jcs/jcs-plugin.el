@@ -191,6 +191,7 @@
   (diminish 'auto-fill-mode)
   (with-eval-after-load 'auto-highlight-symbol (diminish 'auto-highlight-symbol-mode))
   (with-eval-after-load 'auto-rename-tag (diminish 'auto-rename-tag-mode))
+  (with-eval-after-load 'autorevert (diminish 'auto-revert-mode))
   (with-eval-after-load 'buffer-wrap (diminish 'buffer-wrap-mode))
   (with-eval-after-load 'command-log-mode (diminish 'command-log-mode))
   (with-eval-after-load 'company (diminish 'company-mode))
@@ -263,32 +264,15 @@
 (use-package feebleline
   :defer t
   :init
-  (defvar-local jcs-feebleline-show-lsp-info t
-    "Show LSP information.")
-  (defvar-local jcs-feebleline-show-symbol-read-only t
-    "Show read only symbol.")
-  (defvar-local jcs-feebleline-show-major-mode t
-    "Show major mode.")
-  (defvar-local jcs-feebleline-show-project-name t
-    "Show project name.")
-  (defvar-local jcs-feebleline-show-buffer-name t
-    "Show buffer name.")
-  (defvar-local jcs-feebleline-show-coding-system-and-line-endings t
-    "Show coding system and line endings.")
-  (defvar-local jcs-feebleline-show-spc/tab-and-width t
-    "Show space/tab and it's width.")
-  (defvar-local jcs-feebleline-show-line/column t
-    "Show line and column.")
-  (defvar-local jcs-feebleline-show-time t
-    "Show time.")
   (setq feebleline-msg-functions
         '(;;-- Left
           (jcs--feebleline--lsp-info)
           (jcs--feebleline--symbol-read-only)
-          (jcs--feebleline--major-mode :face font-lock-constant-face)
+          (jcs--feebleline--major-mode)
           (jcs--feebleline--project-name)
           ((lambda () "-"))
-          (jcs--feebleline--buffer-name :face font-lock-keyword-face)
+          (jcs--feebleline--buffer-name)
+          (jcs--feebleline--vc-info)
           ;;-- Right
           (jcs--feebleline--coding-system-and-line-endings :align right)
           (jcs--feebleline--spc/tab-and-width :align right)
