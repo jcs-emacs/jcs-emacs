@@ -27,6 +27,10 @@
 (defvar jcs-feebleline-show-vc-info t
   "Show version control information.")
 
+;; TODO: When project name changes, update this variable!
+(defvar-local jcs--project-name nil "Record down the project name.")
+;; TODO: When version control changes, update this variable!
+(defvar-local jcs--vc-current-vc-name nil "Record down the current VC name.")
 ;; TODO: When branch changes, update this variable!
 (defvar-local jcs--vc-current-branch-name nil "Record down the branch name.")
 
@@ -67,11 +71,21 @@
 (defvar jcs--feebleline-vc--info-face 'jcs--feebleline-vc--info-face)
 
 
+(defun jcs--feebleline--prepare ()
+  "Initialize variables that use for `feebleline'."
+  (unless jcs--project-name (setq jcs--project-name (jcs-project-current)))
+  (when jcs--project-name
+    (unless jcs--vc-current-vc-name
+      (setq jcs--vc-current-vc-name (vc-responsible-backend (buffer-file-name))))
+    (unless jcs--vc-current-branch-name
+      (setq jcs--vc-current-branch-name (magit-get-current-branch))))
+  "")
+
 (defun jcs--feebleline--lsp-info ()
   "Feebleline LSP information."
   (if jcs-feebleline-show-lsp-info
       (let ((lsp-connected (jcs--lsp-connected-p)))
-        (format " %sLSP%s%s%s"
+        (format "%sLSP%s%s%s"
                 (propertize "[" 'face jcs--feebleline--separator-face)
                 (propertize "::" 'face jcs--feebleline--separator-face)
                 (propertize (if lsp-connected "connect" "disconnect")
@@ -102,11 +116,11 @@
 (defun jcs--feebleline--project-name ()
   "Feebleline project name."
   (if jcs-feebleline-show-project-name
-      (let ((project-root (jcs-project-current)))
+      (progn
         (format "%s %s %s"
                 (propertize "{" 'face jcs--feebleline--separator-face)
-                (if (and project-root (buffer-file-name))
-                    (file-name-nondirectory (directory-file-name project-root))
+                (if (and jcs--project-name (buffer-file-name))
+                    (file-name-nondirectory (directory-file-name jcs--project-name))
                   "¥")
                 (propertize "}" 'face jcs--feebleline--separator-face)))
     ""))
@@ -125,18 +139,15 @@
 
 (defun jcs--feebleline--vc-info ()
   "Version control info."
-  (if (and jcs-feebleline-show-vc-info (jcs-project-current))
-      (let ((backend (vc-backend (buffer-file-name (current-buffer)))))
-        (unless jcs--vc-current-branch-name
-          (setq jcs--vc-current-branch-name (magit-get-current-branch)))
-        (if (and backend jcs--vc-current-branch-name)
-            (format " %s %s%s%s %s"
-                    (propertize "{" 'face jcs--feebleline--separator-face)
-                    (propertize (symbol-name backend) 'face jcs--feebleline-vc--info-face)
-                    (propertize "-" 'face jcs--feebleline--separator-face)
-                    (propertize jcs--vc-current-branch-name 'face jcs--feebleline-vc--info-face)
-                    (propertize "}" 'face jcs--feebleline--separator-face))
-          ""))
+  (if (and jcs-feebleline-show-vc-info jcs--project-name)
+      (if (and jcs--vc-current-vc-name jcs--vc-current-branch-name)
+          (format " %s %s%s%s %s"
+                  (propertize "{" 'face jcs--feebleline--separator-face)
+                  (propertize (symbol-name jcs--vc-current-vc-name) 'face jcs--feebleline-vc--info-face)
+                  (propertize "-" 'face jcs--feebleline--separator-face)
+                  (propertize jcs--vc-current-branch-name 'face jcs--feebleline-vc--info-face)
+                  (propertize "}" 'face jcs--feebleline--separator-face))
+        "")
     ""))
 
 (defun jcs--feebleline--coding-system-and-line-endings ()
