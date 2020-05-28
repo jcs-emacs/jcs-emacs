@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-05-28
+
+* Fixed window name matching issue in shell module. (jcs-emacs-init)
+* Implemented source control information in `feebleline`. (jcs-emacs-init)
+
 ### 2020-05-27
 
 * Fixed `cc-mode` docstring with keywords. (jcs-emacs-init)
@@ -297,7 +302,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ### 2020-01-03
 
-* Fixed buffer menu logic fit the `search`/`filtering` when multiple buffer menu 
+* Fixed buffer menu logic fit the `search`/`filtering` when multiple buffer menu
  buffer exists. (jcs-emacs-init)
 * Fixed buffer menu other window that doesn't goes to line `2` if the header appears. (jcs-emacs-init)
 
