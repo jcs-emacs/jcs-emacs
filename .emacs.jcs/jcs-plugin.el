@@ -266,6 +266,7 @@
   :init
   (setq feebleline-msg-functions
         '(;;-- Left
+          (jcs--feebleline--prepare)
           (jcs--feebleline--lsp-info)
           (jcs--feebleline--symbol-read-only)
           (jcs--feebleline--major-mode)
