@@ -99,7 +99,7 @@ Return the count of the buffer shown."
   (let ((displayed-frame-count 0)
         (bv-lst (jcs-buffer-visible-list)))
     (dolist (buf bv-lst)
-      (when (string= buf in-buf-name)
+      (when (string-match-p in-buf-name buf)
         (setq displayed-frame-count (+ displayed-frame-count 1))))
     displayed-frame-count))
 
