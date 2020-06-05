@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-06-05
+
+* `json-mode` doesn't defined tab-width, use default instead. (jcs-emacs-init)
+
 ### 2020-05-28
 
 * Fixed window name matching issue in shell module. (jcs-emacs-init)
