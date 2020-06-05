@@ -77,8 +77,7 @@ Note this is opposite logic to the toggle mode function."
     (setq css-indent-offset tw))
    ((jcs-is-current-major-mode-p '("ssass-mode"))
     (setq ssass-tab-width tw))
-   ((jcs-is-current-major-mode-p '("js-mode"
-                                   "json-mode"))
+   ((jcs-is-current-major-mode-p '("js-mode"))
     (setq js-indent-level tw))
    ((jcs-is-current-major-mode-p '("js2-mode"))
     (setq js2-basic-offset tw))
@@ -142,8 +141,7 @@ Note this is opposite logic to the toggle mode function."
     css-indent-offset)
    ((jcs-is-current-major-mode-p '("ssass-mode"))
     ssass-tab-width)
-   ((jcs-is-current-major-mode-p '("js-mode"
-                                   "json-mode"))
+   ((jcs-is-current-major-mode-p '("js-mode"))
     js-indent-level)
    ((jcs-is-current-major-mode-p '("js2-mode"))
     js2-basic-offset)
