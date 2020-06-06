@@ -7,6 +7,11 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ### 2020-06-05
 
+* Installed `csproj-mode` for supporting `.csproj` type of file. (jcs-emacs-init)
+* Added auto save config to env module. (jcs-emacs-init)
+
+### 2020-06-05
+
 * `json-mode` doesn't defined tab-width, use default instead. (jcs-emacs-init)
 
 ### 2020-05-28
