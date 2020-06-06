@@ -57,6 +57,7 @@
     counsel
     counsel-projectile
     csharp-mode
+    csproj-mode
     dap-mode
     dart-mode
     dash
