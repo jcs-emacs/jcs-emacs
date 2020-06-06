@@ -58,6 +58,12 @@
   (setq jcs-runscript (concat jcs-runscript "[.]sh")))
 
 
+;;; Audo Saving
+(setq auto-save-default nil)
+(setq auto-save-interval 0)
+(setq auto-save-list-file-prefix nil)
+(setq auto-save-timeout 0)
+
 ;;; Backup Files
 (setq make-backup-files nil)
 
