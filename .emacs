@@ -13,7 +13,7 @@
 ;;; Code:
 
 (defconst jcs-min-require-version "26.3"
-  "Minimum require Emacs version.")
+  "Minimum required Emacs version for `JCS` configuration.")
 
 (when (version< emacs-version jcs-min-require-version)
   (error (format "This requires Emacs %s and above!" jcs-min-require-version)))
