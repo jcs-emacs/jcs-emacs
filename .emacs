@@ -12,6 +12,12 @@
 
 ;;; Code:
 
+(defconst jcs-min-require-version "26.3"
+  "Minimum require Emacs version.")
+
+(when (version< emacs-version jcs-min-require-version)
+  (error (format "This requires Emacs %s and above!" jcs-min-require-version)))
+
 ;; DEBUG: Debug mode?
 ;; Produce backtraces when errors occur.
 (setq debug-on-error t)
