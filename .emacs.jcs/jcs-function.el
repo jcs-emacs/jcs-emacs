@@ -252,14 +252,16 @@
 ;;----------------------------------------------------------------------------
 ;; Dashboard
 
+(defvar jcs-dashboard--going-p nil
+  "Flag to check if doing `jcs-dashboard' command.")
+
 ;;;###autoload
 (defun jcs-dashboard (&optional ow)
   "Jump to the dashboard buffer, if doesn't exists create one.
 OW is the other window flag."
   (interactive)
-  (if ow
-      (switch-to-buffer-other-window dashboard-buffer-name)
-    (switch-to-buffer dashboard-buffer-name))
+  (let ((jcs-dashboard--going-p t))
+    (jcs-switch-to-buffer dashboard-buffer-name ow))
   (unless (jcs-is-current-major-mode-p "dashboard-mode")
     (dashboard-mode))
   (jcs-dashboard-refresh-buffer))
@@ -281,28 +283,15 @@ OW is the other window flag."
 (defun jcs-dashboard-refresh-buffer ()
   "Update dashboard buffer by killing it and start a new one."
   (interactive)
-  (when (or (not jcs-emacs-ready) (jcs-buffer-shown-p dashboard-buffer-name))
+  (when (or (not jcs-emacs-ready-p) (jcs-buffer-shown-p dashboard-buffer-name))
     (jcs-mute-apply
      (lambda ()
-       (let ((db-id-lst (jcs-get-window-id-by-buffer-name dashboard-buffer-name))
-             (buf-lns '()) (buf-cls '()) (index 0))
-         (save-selected-window
-           (dolist (win-id db-id-lst)
-             (jcs-ace-select-window win-id)
-             (push (line-number-at-pos) buf-lns)
-             (push (current-column) buf-cls)))
-         (setq buf-lns (reverse buf-lns))
-         (setq buf-cls (reverse buf-cls))
-         (when (jcs-buffer-exists-p dashboard-buffer-name)
-           (kill-buffer dashboard-buffer-name))
-         (dashboard-insert-startupify-lists)
-         (save-selected-window
-           (dolist (win-id db-id-lst)
-             (jcs-ace-select-window win-id)
-             (switch-to-buffer dashboard-buffer-name)
-             (jcs-goto-line (nth index buf-lns))
-             (move-to-column (nth index buf-cls))
-             (setq index (1+ index)))))))))
+       (jcs-window-record-once)
+       (when (and (jcs-buffer-exists-p dashboard-buffer-name)
+                  (not jcs-dashboard--going-p))
+         (kill-buffer dashboard-buffer-name))
+       (dashboard-insert-startupify-lists)
+       (jcs-window-restore-once)))))
 
 (defun jcs-dashboard-safe-refresh-buffer ()
   "Safely refresh the dashboard buffer if needed."
