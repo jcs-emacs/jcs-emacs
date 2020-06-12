@@ -261,10 +261,10 @@
 OW is the other window flag."
   (interactive)
   (let ((jcs-dashboard--going-p t))
-    (jcs-switch-to-buffer dashboard-buffer-name ow))
-  (unless (jcs-is-current-major-mode-p "dashboard-mode")
-    (dashboard-mode))
-  (jcs-dashboard-refresh-buffer))
+    (jcs-switch-to-buffer dashboard-buffer-name ow)
+    (unless (jcs-is-current-major-mode-p "dashboard-mode")
+      (dashboard-mode))
+    (jcs-dashboard-refresh-buffer)))
 
 ;;;###autoload
 (defun jcs-dashboard-other-window ()
@@ -287,8 +287,7 @@ OW is the other window flag."
     (jcs-mute-apply
      (lambda ()
        (jcs-window-record-once)
-       (when (and (jcs-buffer-exists-p dashboard-buffer-name)
-                  (not jcs-dashboard--going-p))
+       (when (jcs-buffer-exists-p dashboard-buffer-name)
          (kill-buffer dashboard-buffer-name))
        (dashboard-insert-startupify-lists)
        (jcs-window-restore-once)))))

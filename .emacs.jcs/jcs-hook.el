@@ -66,7 +66,8 @@
   "Advice execute after `switch-to-buffer' command."
   (jcs--neotree-start-refresh)
   (jcs-buffer-menu-safe-refresh)
-  (jcs-dashboard-safe-refresh-buffer))
+  (unless jcs-dashboard--going-p
+    (jcs-dashboard-safe-refresh-buffer)))
 (advice-add 'switch-to-buffer :after #'jcs--switch-to-buffer--advice-after)
 
 (defun jcs--other-window--advice-before (&rest _args)
