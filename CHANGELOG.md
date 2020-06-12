@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-06-12
+
+* Fixed goto dashboard command when dashboard buffer already shown issue. (jcs-emacs-init)
+
 ### 2020-06-10
 
 * Added minimum required Emacs version check. (jcs-emacs-init)
