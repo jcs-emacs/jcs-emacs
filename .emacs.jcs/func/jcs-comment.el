@@ -44,32 +44,39 @@ For instance, `///', `---', etc."
       ;; return true.
       do-doc-string)))
 
+(defun jcs-is-global-comment-doc-p (&optional pt)
+  "Check if current comment block a global comment docstring relative to PT.
+Return non-nil, if is a global comment docstring.
+Return nil, if is NOT a global comment docstring."
+  (save-excursion
+    (when pt (goto-char pt))
+    (jcs-goto-start-of-the-comment)
+    (forward-char 2)
+    (jcs-current-char-equal-p "*")))
+
 ;;;###autoload
 (defun jcs-smart-context-line-break ()
   "Comment block."
   (interactive)
-  (let ((start-of-global-comment-doc nil)
-        (able-insert-docstring nil))
+  (let ((start-of-global-comment-doc-p nil) (able-insert-docstring-p nil))
     ;; check if inside the comment block.
     (if (not (jcs-inside-comment-block-p))
         ;; else insert new line
         (newline-and-indent)
 
-      (setq start-of-global-comment-doc nil)
-
-      (setq able-insert-docstring
+      (setq able-insert-docstring-p
             (and (save-excursion (search-backward "/*" (line-beginning-position) t))
                  (save-excursion (search-forward "*/" (line-end-position) t))
                  (jcs-do-doc-string-p)))
 
       ;; check the '/*' and '*/' on the same line?
-      (if (not able-insert-docstring)
+      (if (not able-insert-docstring-p)
           (progn
             (insert "\n")
-            (when (jcs-inside-comment-block-p)
+            (when (and (jcs-inside-comment-block-p) (jcs-is-global-comment-doc-p))
               (insert "* "))
             (indent-for-tab-command))
-        (setq start-of-global-comment-doc t)
+        (setq start-of-global-comment-doc-p t)
 
         (insert "\n* ")
         (indent-for-tab-command)
@@ -87,63 +94,56 @@ For instance, `///', `---', etc."
         ;; goto the end of line
         (end-of-line))
 
-      (unless start-of-global-comment-doc
-        (let ((is-global-comment-doc nil))
-          (save-excursion
-            (jcs-goto-start-of-the-comment)
-            (forward-char 1)
-            (when (jcs-current-char-equal-p "*")
-              (setq is-global-comment-doc t)))
+      (unless start-of-global-comment-doc-p
+        (unless (jcs-is-global-comment-doc-p)
+          (let (;; Check if the next line is the doc string
+                ;; comment line.
+                (is-next-line-doc-string-comment-line nil)
+                ;; When we break a line and there are still
+                ;; some content on the right.
+                (line-have-content-on-right nil))
+            (cond
+             ((jcs-is-current-major-mode-p "csharp-mode")
+              (save-excursion
+                (when (not (jcs-current-line-comment-p))
+                  (setq line-have-content-on-right t)))
 
-          (unless is-global-comment-doc
-            (let (;; Check if the next line is the doc string
-                  ;; comment line.
-                  (is-next-line-doc-string-comment-line nil)
-                  ;; When we break a line and there are still
-                  ;; some content on the right.
-                  (line-have-content-on-right nil))
-              (cond
-               ((jcs-is-current-major-mode-p "csharp-mode")
-                (save-excursion
-                  (when (not (jcs-current-line-comment-p))
-                    (setq line-have-content-on-right t)))
+              (save-excursion
+                (jcs-previous-line)
+                (if (jcs-vs-csharp-only-vs-comment-prefix-this-line-p)
+                    (when line-have-content-on-right
+                      (setq is-next-line-doc-string-comment-line t))
+                  (when (jcs-vs-csharp-comment-prefix-p)
+                    (setq is-next-line-doc-string-comment-line t))))
 
-                (save-excursion
-                  (jcs-previous-line)
-                  (if (jcs-vs-csharp-only-vs-comment-prefix-this-line-p)
-                      (when line-have-content-on-right
-                        (setq is-next-line-doc-string-comment-line t))
+              ;; If we still not sure to insert docstring comment line yet.
+              ;; Then we need to do deeper check.
+              (unless is-next-line-doc-string-comment-line
+                (let ((prev-line-vs-prefix nil) (next-line-vs-prefix nil))
+                  (save-excursion
+                    (jcs-previous-line)
                     (when (jcs-vs-csharp-comment-prefix-p)
-                      (setq is-next-line-doc-string-comment-line t))))
+                      (setq prev-line-vs-prefix t)))
 
-                ;; If we still not sure to insert docstring comment line yet.
-                ;; Then we need to do deeper check.
-                (unless is-next-line-doc-string-comment-line
-                  (let ((prev-line-vs-prefix nil) (next-line-vs-prefix nil))
+                  ;; Only when previous have prefix.
+                  (when prev-line-vs-prefix
                     (save-excursion
-                      (jcs-previous-line)
+                      (jcs-next-line)
                       (when (jcs-vs-csharp-comment-prefix-p)
-                        (setq prev-line-vs-prefix t)))
+                        (setq next-line-vs-prefix t)))
 
-                    ;; Only when previous have prefix.
-                    (when prev-line-vs-prefix
-                      (save-excursion
-                        (jcs-next-line)
-                        (when (jcs-vs-csharp-comment-prefix-p)
-                          (setq next-line-vs-prefix t)))
+                    (when (and prev-line-vs-prefix next-line-vs-prefix)
+                      (setq is-next-line-doc-string-comment-line t)))))
 
-                      (when (and prev-line-vs-prefix next-line-vs-prefix)
-                        (setq is-next-line-doc-string-comment-line t)))))
-
-                ;; Is doc-string comment line. Insert
-                ;; doc-string comment.
-                (when is-next-line-doc-string-comment-line
-                  (insert "/// ")))
-               ((jcs-is-current-major-mode-p "lua-mode")
-                ;; Just insert for Lua.
-                ;; Lua does not have issue like CSharp.
-                (insert "-- ")))
-              (indent-for-tab-command))))))))
+              ;; Is doc-string comment line. Insert
+              ;; doc-string comment.
+              (when is-next-line-doc-string-comment-line
+                (insert "/// ")))
+             ((jcs-is-current-major-mode-p "lua-mode")
+              ;; Just insert for Lua.
+              ;; Lua does not have issue like CSharp.
+              (insert "-- ")))
+            (indent-for-tab-command)))))))
 
 
 ;;;###autoload
