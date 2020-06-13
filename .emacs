@@ -2,7 +2,7 @@
 ;;; Commentary:
 
 ;; Author:  Shen, Jen-Chieh <jcs090218@gmail.com>
-;; URL:     https://github.com/jcs090218/jcs-emacs-init
+;; URL:     https://github.com/jcs090218/jcs-emacs
 
 ;;
 ;;                      ════╦╦╦╦╗
