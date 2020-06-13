@@ -1,6 +1,8 @@
 #GLOBAL_FILE_INFO#
 
-
+/// <summary>
+/// 
+/// </summary>
 public class #FILE_NAME_NO_EXT# {
 
 }

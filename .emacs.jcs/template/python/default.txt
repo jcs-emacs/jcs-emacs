@@ -1,6 +1,5 @@
 #SHARP_FILE_INFO#
 
-
 def main():
     """Program Entry point.
     """

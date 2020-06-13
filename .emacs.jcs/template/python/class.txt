@@ -1,8 +1,7 @@
 #SHARP_FILE_INFO#
 
-
 class #FILE_NAME_NO_EXT#(object):
-    """TODO(#CREATOR_NAME_ABBREV#): Class Description here...
+    """TODO: Class Description here...
     """
 
     ## Variables ##

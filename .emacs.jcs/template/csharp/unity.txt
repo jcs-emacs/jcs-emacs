@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 
+/// </summary>
 public class #FILE_NAME_NO_EXT# : MonoBehaviour
 {
     /* Variables */
