@@ -1022,7 +1022,7 @@ using `jit-lock-register` function.
 
 ### 2019-06-06
 
-* Clean up some compile warningins. (jcs-emacs-init)
+* Clean up some compile warningins.
 
 ### 2019-06-05
 
@@ -2503,10 +2503,11 @@ The implementation can be found in `jcs-helm-do-ag-this-file'` function.
 
 ### 2017-11-10
 
-* Remove some of the web-mode functionalities, seems like the original `web-mode' package had improved. (jcs-emacs-init)
+* Remove some of the web-mode functionalities, seems like the original `web-mode' package had improved.
 * Revert 'web-mode' functionalities because I was wrong with the bug fixed from original package.
 
 ### 2017-11-08
+
 * Remove thought was impatient mode settings.
 
 ### 2017-11-06
@@ -2657,9 +2658,8 @@ The implementation can be found in `jcs-helm-do-ag-this-file'` function.
 
 ### 2017-08-05
 
-* Remove package `dashboard', seems like the package no longer
- working. (jcs-emacs-init)
-* Change the theme color abit. (jcs-emacs-init)
+* Remove package `dashboard', seems like the package no longer working.
+* Change the theme color a bit.
 
 ### 2017-08-04
 
