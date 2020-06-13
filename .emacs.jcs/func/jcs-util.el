@@ -1066,7 +1066,7 @@ CMDS should be a list of commands."
   "Go to the start of the comment."
   (interactive)
   (while (jcs-inside-comment-block-p)
-    (re-search-backward comment-start-skip)))
+    (re-search-backward comment-start-skip nil t)))
 
 ;;;###autoload
 (defun jcs-goto-end-of-the-comment ()
@@ -1075,6 +1075,20 @@ CMDS should be a list of commands."
   (when (jcs-inside-comment-block-p)
     (backward-char -1)
     (jcs-goto-end-of-the-comment)))
+
+(defun jcs-start-of-the-comment-point (&optional pt)
+  "Point at the start of the comment point relative to PT."
+  (save-excursion
+    (when pt (goto-char pt))
+    (jcs-goto-start-of-the-comment)
+    (point)))
+
+(defun jcs-end-of-the-comment-point (&optional pt)
+  "Point at the end of the comment point relative to PT."
+  (save-excursion
+    (when pt (goto-char pt))
+    (jcs-goto-end-of-the-comment)
+    (point)))
 
 ;;----------------------------------------------------------------------------
 ;; Face
