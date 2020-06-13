@@ -3,9 +3,9 @@
 </p>
 
 <p align="center">
-  <a href="https://travis-ci.com/jcs090218/jcs-emacs-init"><img src="https://travis-ci.com/jcs090218/jcs-emacs-init.svg?branch=master" alt="Build Status"></a>
+  <a href="https://travis-ci.com/jcs090218/jcs-emacs"><img src="https://travis-ci.com/jcs090218/jcs-emacs.svg?branch=master" alt="Build Status"></a>
   <a href="https://www.gnu.org/software/emacs/download.html"><img src="https://img.shields.io/badge/Emacs-26.3+-blue.svg" alt="Emacs"></a>
-  <a href="https://github.com/jcs090218/jcs-emacs-init/releases/latest"><img src="https://img.shields.io/github/tag/jcs090218/jcs-emacs-init.svg?label=release" alt="Release Tag"></a>
+  <a href="https://github.com/jcs090218/jcs-emacs/releases/latest"><img src="https://img.shields.io/github/tag/jcs090218/jcs-emacs.svg?label=release" alt="Release Tag"></a>
   <a href="https://opensource.org/licenses/BSD-2-Clause"><img src="https://img.shields.io/badge/License-BSD%202--Clause-orange.svg" alt="License"></a>
   <a href="https://www.paypal.me/jcs090218"><img alt="Support me" src="https://img.shields.io/badge/Support%20Me-%F0%9F%92%97-ff69b4.svg"></a>
 </p>
@@ -13,7 +13,7 @@
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
 **Table of Contents**
 
-- [jcs-emacs-init](#jcs-emacs-init)
+- [jcs-emacs](#jcs-emacs)
     - [Philosophy](#philosophy)
     - [:newspaper: News](#newspaper-news)
     - [:floppy_disk: Installation](#floppydisk-installation)
@@ -38,7 +38,7 @@
 
 <!-- markdown-toc end -->
 
-# jcs-emacs-init
+# jcs-emacs
 > Consistent Emacs configuration for all platforms.
 
 This is Jen-Chieh Shen's emacs configuration. This configuration
@@ -142,10 +142,10 @@ your own configuration before you start the installation.
 
 ```bash
 # clone this repo
-$ git clone https://github.com/jcs090218/jcs-emacs-init.git
+$ git clone https://github.com/jcs090218/jcs-emacs.git
 
 # change current directory to project directory
-$ cd jcs-emacs-init
+$ cd jcs-emacs
 
 # copy init file to home
 $ cp ./.emacs ~/
@@ -165,7 +165,7 @@ all necessary packages due to this configuration.
 
 If the internet isn't available to you, just download a copy
 of the configuration from the release tab
-[here](https://github.com/jcs090218/jcs-emacs-init/releases/)
+[here](https://github.com/jcs090218/jcs-emacs/releases/)
 . You will see these following files, and extract them to your
 `HOME` directory or the directory that Emacs will start loading
 initialize files.
@@ -438,7 +438,7 @@ might change to something else.
 and
 [isearch-project](https://github.com/elpa-host/isearch-project).
 * *Package Archive* - see
-[here](https://github.com/jcs090218/jcs-emacs-init#package-archives).
+[here](https://github.com/jcs090218/jcs-emacs#package-archives).
 * *Package Management* - powered by
 [use-package](https://github.com/jwiegley/use-package)
 and
