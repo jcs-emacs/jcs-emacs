@@ -7,8 +7,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ### 2020-06-13
 
-* Improved certain modes' default template files.
 * Renamed repo to just `jcs-emacs`.
+* Improved certain modes' default template files.
+* Fixed csharp-like mixed c-like comment/docstring return logic.
 
 ### 2020-06-12
 
