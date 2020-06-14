@@ -389,10 +389,23 @@ Note this is opposite logic to the toggle mode function."
 ;; So just put all the startup modes' configuration here.
 
 ;;==============================
+;;         Special
+
+(defun jcs-special-mode-hook ()
+  "Hook for `special-mode'."
+  (goto-address-mode 1)
+  (region-occurrences-highlighter-mode 1))
+
+(add-hook 'special-mode-hook 'jcs-special-mode-hook)
+
+;;==============================
 ;;       Compilation
 
 (defun jcs-compilation-mode-hook ()
   "Compilation mode hook."
+  (goto-address-mode 1)
+  (region-occurrences-highlighter-mode 1)
+
   (jcs-disable-truncate-lines)
 
   ;; NOTE: Set smaller font.
@@ -411,6 +424,7 @@ Note this is opposite logic to the toggle mode function."
 
 (defun jcs-message-buffer-mode-hook ()
   "Hook for `message-buffer-mode'."
+  (goto-address-mode 1)
   (region-occurrences-highlighter-mode 1))
 
 (add-hook 'messages-buffer-mode-hook 'jcs-message-buffer-mode-hook)
@@ -431,6 +445,7 @@ Note this is opposite logic to the toggle mode function."
   "Text mode hook."
   (auto-highlight-symbol-mode t)
   (goto-address-mode 1)
+  (region-occurrences-highlighter-mode 1)
 
   (jcs-insert-header-if-valid '("\\(/\\|\\`\\)[Ll][Ii][Cc][Ee][Nn][Ss][Ee]")
                               'jcs-ask-insert-license-content
