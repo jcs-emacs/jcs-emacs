@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-06-14
+
+* Updated `feebleline` format to better standard/format.
+
 ### 2020-06-13
 
 * Renamed repo to just `jcs-emacs`.
