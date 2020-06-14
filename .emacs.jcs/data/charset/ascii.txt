@@ -6,7 +6,6 @@ Below is the ASCII character table, including descriptions of the first
 and so the descriptions are somewhat obscure and their use is frequently 
 not as intended.
 
-
 |-----------------------------------+-----------+-----------+-----------|
 | Dec   Char                        | Dec  Char | Dec  Char | Dec  Char |
 |-----------------------------------+-----------+-----------+-----------|

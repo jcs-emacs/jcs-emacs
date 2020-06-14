@@ -2,7 +2,6 @@ Alt Codes
 
 The list of all Alt Codes for special characters and symbols.
 
-
 |----------------+----------------+----------------||----------------+----------------+----------------|
 | Symbol AltCode | Symbol AltCode | Symbol AltCode || Symbol AltCode | Symbol AltCode | Symbol AltCode |
 |----------------+----------------+----------------||----------------+----------------+----------------|
