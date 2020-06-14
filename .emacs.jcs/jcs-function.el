@@ -252,7 +252,7 @@
 ;;----------------------------------------------------------------------------
 ;; Dashboard
 
-(defvar jcs-dashboard--going-p nil
+(defvar jcs-dashboard--prevent-refresh-p nil
   "Flag to check if doing `jcs-dashboard' command.")
 
 ;;;###autoload
@@ -260,7 +260,7 @@
   "Jump to the dashboard buffer, if doesn't exists create one.
 OW is the other window flag."
   (interactive)
-  (let ((jcs-dashboard--going-p t))
+  (let ((jcs-dashboard--prevent-refresh-p t))
     (jcs-switch-to-buffer dashboard-buffer-name ow)
     (unless (jcs-is-current-major-mode-p "dashboard-mode")
       (dashboard-mode))
