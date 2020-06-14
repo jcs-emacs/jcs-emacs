@@ -227,20 +227,25 @@
 
 (defun jcs--feebleline--timeline ()
   "Video Player's timeline."
-  (format "[%s-%s]"
+  (format "%s%s%s%s%s"
+          (propertize "[" 'face jcs--feebleline--separator-face)
           (ffmpeg-player--number-to-string-time ffmpeg-player--video-timer)
-          (ffmpeg-player--number-to-string-time ffmpeg-player--current-duration)))
+          (propertize "-" 'face jcs--feebleline--separator-face)
+          (ffmpeg-player--number-to-string-time ffmpeg-player--current-duration)
+          (propertize "]" 'face jcs--feebleline--separator-face)))
 
 (defun jcs--feebleline--pause-mute-volume ()
   "Video Player's volume."
-  (format "[%s:%s:%s]"
+  (format "%s%s:%s:%s%s"
+          (propertize "[" 'face jcs--feebleline--separator-face)
           (if ffmpeg-player--pause
               (propertize "‼" 'face jcs--feebleline-pause-face)
             (propertize "►" 'face jcs--feebleline-unpause-face))
           (if ffmpeg-player--mute
               (propertize "Ø" 'face jcs--feebleline-mute-face)
             (propertize "Ö" 'face jcs--feebleline-unmute-face))
-          ffmpeg-player--volume))
+          ffmpeg-player--volume
+          (propertize "]" 'face jcs--feebleline--separator-face)))
 
 (provide 'jcs-feebleline-func)
 ;;; jcs-feebleline-func.el ends here

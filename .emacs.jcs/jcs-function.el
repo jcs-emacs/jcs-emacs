@@ -252,19 +252,15 @@
 ;;----------------------------------------------------------------------------
 ;; Dashboard
 
-(defvar jcs-dashboard--prevent-refresh-p nil
-  "Flag to check if doing `jcs-dashboard' command.")
-
 ;;;###autoload
 (defun jcs-dashboard (&optional ow)
   "Jump to the dashboard buffer, if doesn't exists create one.
 OW is the other window flag."
   (interactive)
-  (let ((jcs-dashboard--prevent-refresh-p t))
-    (jcs-switch-to-buffer dashboard-buffer-name ow)
-    (unless (jcs-is-current-major-mode-p "dashboard-mode")
-      (dashboard-mode))
-    (jcs-dashboard-refresh-buffer)))
+  (jcs-switch-to-buffer dashboard-buffer-name ow)
+  (unless (jcs-is-current-major-mode-p "dashboard-mode")
+    (dashboard-mode))
+  (jcs-dashboard-refresh-buffer))
 
 ;;;###autoload
 (defun jcs-dashboard-other-window ()

@@ -62,12 +62,17 @@
   (jcs-dashboard-safe-refresh-buffer))
 (advice-add 'find-file :after #'jcs--find-file--advice-after)
 
+(defun jcs--switch-to-buffer--advice-around (fnc &rest args)
+  "Advice execute around `switch-to-buffer' function."
+  (apply fnc args)
+  (unless (jcs-buffer-shown-p dashboard-buffer-name)
+    (jcs-dashboard-safe-refresh-buffer)))
+(advice-add 'switch-to-buffer :around #'jcs--switch-to-buffer--advice-around)
+
 (defun jcs--switch-to-buffer--advice-after (&rest _args)
   "Advice execute after `switch-to-buffer' command."
   (jcs--neotree-start-refresh)
-  (jcs-buffer-menu-safe-refresh)
-  (unless jcs-dashboard--prevent-refresh-p
-    (jcs-dashboard-safe-refresh-buffer)))
+  (jcs-buffer-menu-safe-refresh))
 (advice-add 'switch-to-buffer :after #'jcs--switch-to-buffer--advice-after)
 
 (defun jcs--other-window--advice-before (&rest _args)

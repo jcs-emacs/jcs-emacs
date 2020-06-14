@@ -1040,8 +1040,7 @@ ECP-SAME : Exception for the same buffer."
 (defun jcs-reopen-this-buffer ()
   "Kill the current buffer and open it again."
   (interactive)
-  (let ((current-bfn (buffer-file-name))
-        (jcs-dashboard--prevent-refresh-p t))
+  (let ((current-bfn (buffer-file-name)))
     (when current-bfn
       (jcs-window-record-once)
       (jcs-kill-this-buffer)
