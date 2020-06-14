@@ -407,6 +407,15 @@ Note this is opposite logic to the toggle mode function."
 (add-hook 'compilation-mode-hook 'jcs-compilation-mode-hook)
 
 ;;==============================
+;;       Message Buffer
+
+(defun jcs-message-buffer-mode-hook ()
+  "Hook for `message-buffer-mode'."
+  (region-occurrences-highlighter-mode 1))
+
+(add-hook 'messages-buffer-mode-hook 'jcs-message-buffer-mode-hook)
+
+;;==============================
 ;;       Tabulated List
 
 (defun jcs-tabulated-list-mode-hook ()
@@ -445,6 +454,7 @@ Note this is opposite logic to the toggle mode function."
   (electric-pair-mode 1)
   (goto-address-mode 1)
   (highlight-indent-guides-mode 1)
+  (region-occurrences-highlighter-mode 1)
   (jcs--safe-lsp-active))
 
 (add-hook 'prog-mode-hook 'jcs-prog-mode-hook)
@@ -479,7 +489,6 @@ Note this is opposite logic to the toggle mode function."
 
 ;;==============================
 ;;     Lisp Interaction
-;;------------------------
 
 (defun jcs-lisp-interaction-mode-hook ()
   "Lisp Interaction mode hook."
@@ -490,7 +499,6 @@ Note this is opposite logic to the toggle mode function."
 
 ;;==============================
 ;;     View
-;;------------------------
 
 (defun jcs-view-mode-hook ()
   "In view mode, read only file."
