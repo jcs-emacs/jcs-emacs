@@ -284,13 +284,8 @@
   (cl-defun jcs--feebleline--insert-func (func &key (face 'default) pre (post " ") (fmt "%s") (align 'left))
     "Override `feebleline--insert-func' function."
     (list align
-          (let* ((msg (apply func nil))
-                 (string (concat pre (format fmt msg) post)))
-            (if msg
-                (if (equal face 'default)
-                    string
-                  (propertize string 'face face))
-              ""))))
+          (let* ((msg (apply func nil)) (str (concat pre (format fmt msg) post)))
+            (if msg (if (equal face 'default) str (propertize str 'face face)) ""))))
   (advice-add 'feebleline--insert-func :override #'jcs--feebleline--insert-func)
 
   (defun jcs--feebleline--insert ()
@@ -314,7 +309,7 @@
                  (free-space (- (jcs-max-frame-width) (length left-string) (length right-string)))
                  (padding (make-string (max 0 free-space) ?\ )))
             (insert (concat left-string (if right-string (concat padding right-string)))))))))
-  (advice-add 'feebleline--insert :after #'jcs--feebleline--insert)
+  (advice-add 'feebleline--insert :override #'jcs--feebleline--insert)
 
   (defun jcs--feebleline-mode--advice-after (&rest _)
     "Advice after execute `feebleline-mode'."
