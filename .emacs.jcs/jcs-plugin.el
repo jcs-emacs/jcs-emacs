@@ -802,8 +802,7 @@
   (set-face-attribute 'region-occurrences-highlighter-face
                       nil
                       :background "#113D6F"
-                      :inverse-video nil)
-  (add-hook 'prog-mode-hook #'region-occurrences-highlighter-mode))
+                      :inverse-video nil))
 
 (use-package reload-emacs
   :defer t
