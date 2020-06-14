@@ -145,7 +145,9 @@
   :init
   (setq dashboard-banner-logo-title "[J C S • E M A C S]")
   (setq dashboard-footer-icon "")
-  (setq dashboard-footer-messages '("╬ Copyright © 2015 Shen, Jen-Chieh ╬"))
+  (setq dashboard-footer-messages
+        (list (format "╬ Copyright %s 2015 Shen, Jen-Chieh ╬"
+                      (if (display-graphic-p) "©" "(c)"))))
   (setq dashboard-init-info (format "%d + %d packages loaded in %0.1f seconds"
                                     (length package-activated-list)
                                     (length jcs-package-manually-install-list)
@@ -271,7 +273,6 @@
           (jcs--feebleline--symbol-read-only)
           (jcs--feebleline--major-mode)
           (jcs--feebleline--project-name)
-          ((lambda () "-"))
           (jcs--feebleline--buffer-name)
           (jcs--feebleline--vc-info)
           ;;-- Right
