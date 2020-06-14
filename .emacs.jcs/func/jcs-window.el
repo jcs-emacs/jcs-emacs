@@ -479,32 +479,31 @@ i.e. change right window to bottom, or change bottom window to right."
 
 (defun jcs-window-record-once ()
   "Record windows status once."
-  (setq jcs-window--record-points '())
-  (setq jcs-window--record-buffers '())
-  (setq jcs-window--record-first-visible-lines '())
-  ;; Record down all the window information with the same
-  ;; buffer opened.
-  (jcs-walk-through-all-windows-once
-   (lambda ()
-     (push (jcs-buffer-name-or-buffer-file-name) jcs-window--record-buffers)
-     (push (point) jcs-window--record-points)
-     (push (jcs-first-visible-line-in-window) jcs-window--record-first-visible-lines)))
-  ;; Reverse the order to have the information order corresponding
-  ;; to the window order correctly.
-  (setq jcs-window--record-buffers (reverse jcs-window--record-buffers))
-  (setq jcs-window--record-points (reverse jcs-window--record-points))
-  (setq jcs-window--record-first-visible-lines (reverse jcs-window--record-first-visible-lines)))
+  (let ((bufs '()) (pts '()) (f-lns '()))
+    ;; Record down all the window information with the same buffer opened.
+    (jcs-walk-through-all-windows-once
+     (lambda ()
+       (push (jcs-buffer-name-or-buffer-file-name) bufs)
+       (push (point) pts)
+       (push (jcs-first-visible-line-in-window) f-lns)))
+    ;; Reverse the order to have the information order corresponding to the window
+    ;; order correctly.
+    (setq bufs (reverse bufs)) (setq pts (reverse pts)) (setq f-lns (reverse f-lns))
+    (push bufs jcs-window--record-buffers)
+    (push pts jcs-window--record-points)
+    (push f-lns jcs-window--record-first-visible-lines)))
 
 (defun jcs-window-restore-once ()
   "Restore windows status once."
-  ;; Restore the window information after, including
-  ;; opening the same buffer.
-  (let ((win-cnt 0) (current-buf nil) (current-pt -1) (current-first-vs-line -1))
+  (let* ((bufs (pop jcs-window--record-buffers)) (pts (pop jcs-window--record-points))
+         (f-lns (pop jcs-window--record-first-visible-lines))
+         (win-cnt 0) (current-buf nil) (current-pt -1) (current-first-vs-line -1))
+    ;; Restore the window information after, including opening the same buffer.
     (jcs-walk-through-all-windows-once
      (lambda ()
-       (setq current-buf (nth win-cnt jcs-window--record-buffers))
-       (setq current-pt (nth win-cnt jcs-window--record-first-visible-lines))
-       (setq current-first-vs-line (nth win-cnt jcs-window--record-points))
+       (setq current-buf (nth win-cnt bufs))
+       (setq current-pt (nth win-cnt f-lns))
+       (setq current-first-vs-line (nth win-cnt pts))
        (if (get-buffer current-buf) (switch-to-buffer current-buf) (find-file current-buf))
        (jcs-make-first-visible-line-to current-pt)
        (goto-char current-first-vs-line)
