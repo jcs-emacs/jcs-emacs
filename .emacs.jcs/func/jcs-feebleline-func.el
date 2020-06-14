@@ -122,10 +122,10 @@
 (defun jcs--feebleline--project-name ()
   "Feebleline project name."
   (if jcs-feebleline-show-project-name
-      (progn
-        (format "%s%s%s"
+      (let ((valid-project-name-p (and jcs--project-name (buffer-file-name))))
+        (format (if valid-project-name-p "%s %s %s" "%s%s%s")
                 (propertize "{" 'face jcs--feebleline--separator-face)
-                (if (and jcs--project-name (buffer-file-name))
+                (if valid-project-name-p
                     (file-name-nondirectory (directory-file-name jcs--project-name))
                   jcs-feebleline--project-name-empty-symbol)
                 (propertize "}" 'face jcs--feebleline--separator-face)))
