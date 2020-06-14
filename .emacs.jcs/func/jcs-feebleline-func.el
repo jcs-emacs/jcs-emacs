@@ -6,6 +6,12 @@
 (require 'ffmpeg-player)
 (require 'show-eol)
 
+(defconst jcs-feebleline--project-name-empty-symbol ""
+  "Symbol display when for no project name.")
+
+(defconst jcs-feebleline--read-only-symbol (if (display-graphic-p) "¢" "&")
+  "Symbol display for read-only status.")
+
 (defvar jcs-feebleline-show-lsp-info t
   "Show LSP information.")
 (defvar jcs-feebleline-show-symbol-read-only t
@@ -98,7 +104,7 @@
 (defun jcs--feebleline--symbol-read-only ()
   "Feebleline read-only symbol."
   (if jcs-feebleline-show-symbol-read-only
-      (propertize "¢"
+      (propertize jcs-feebleline--read-only-symbol
                   'face (if buffer-read-only
                             jcs--feebleline-read-only--enabled-face
                           jcs--feebleline-read-only--disabled-face))
@@ -117,11 +123,11 @@
   "Feebleline project name."
   (if jcs-feebleline-show-project-name
       (progn
-        (format "%s %s %s"
+        (format "%s%s%s"
                 (propertize "{" 'face jcs--feebleline--separator-face)
                 (if (and jcs--project-name (buffer-file-name))
                     (file-name-nondirectory (directory-file-name jcs--project-name))
-                  "¥")
+                  jcs-feebleline--project-name-empty-symbol)
                 (propertize "}" 'face jcs--feebleline--separator-face)))
     ""))
 
