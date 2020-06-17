@@ -3,7 +3,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-class #C_FILE_NAME_NO_EXT# extends Component {
+class #C_FILE_NAME_NO_EXT# extends React.Component {
   state = {};
   render () {
     return ();
