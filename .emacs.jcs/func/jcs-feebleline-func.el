@@ -18,20 +18,18 @@
   "Show read only symbol.")
 (defvar jcs-feebleline-show-major-mode t
   "Show major mode.")
-(defvar jcs-feebleline-show-project-name t
-  "Show project name.")
+(defvar jcs-feebleline-show-project-name-&-vc-info t
+  "Show project name and version control information.")
 (defvar jcs-feebleline-show-buffer-name t
   "Show buffer name.")
-(defvar jcs-feebleline-show-coding-system-and-line-endings t
+(defvar jcs-feebleline-show-coding-system-&-line-endings t
   "Show coding system and line endings.")
-(defvar jcs-feebleline-show-spc/tab-and-width t
+(defvar jcs-feebleline-show-spc/tab-&-width t
   "Show space/tab and it's width.")
 (defvar jcs-feebleline-show-line/column t
   "Show line and column.")
 (defvar jcs-feebleline-show-time t
   "Show time.")
-(defvar jcs-feebleline-show-vc-info t
-  "Show version control information.")
 
 ;; TODO: When project name changes, update this variable!
 (defvar-local jcs--project-name nil "Record down the project name.")
@@ -119,18 +117,6 @@
               (propertize "]" 'face jcs--feebleline--separator-face))
     ""))
 
-(defun jcs--feebleline--project-name ()
-  "Feebleline project name."
-  (if jcs-feebleline-show-project-name
-      (let ((valid-project-name-p (and jcs--project-name (buffer-file-name))))
-        (format (if valid-project-name-p "%s %s %s" "%s%s%s")
-                (propertize "{" 'face jcs--feebleline--separator-face)
-                (if valid-project-name-p
-                    (file-name-nondirectory (directory-file-name jcs--project-name))
-                  jcs-feebleline--project-name-empty-symbol)
-                (propertize "}" 'face jcs--feebleline--separator-face)))
-    ""))
-
 (defun jcs--feebleline--buffer-name ()
   "Feebleline buffer name."
   (if jcs-feebleline-show-buffer-name
@@ -143,37 +129,43 @@
                 (propertize fn 'face font-lock-keyword-face)))
     ""))
 
-(defun jcs--feebleline--vc-info ()
-  "Version control info."
-  (if (and jcs-feebleline-show-vc-info jcs--project-name)
-      (if (and jcs--vc-current-vc-name jcs--vc-current-branch-name)
-          (format " %s %s%s%s %s"
-                  (propertize "{" 'face jcs--feebleline--separator-face)
-                  (propertize (symbol-name jcs--vc-current-vc-name) 'face jcs--feebleline-vc--info-face)
-                  (propertize "-" 'face jcs--feebleline--separator-face)
-                  (propertize jcs--vc-current-branch-name 'face jcs--feebleline-vc--info-face)
-                  (propertize "}" 'face jcs--feebleline--separator-face))
-        "")
+(defun jcs--feebleline--project-name-&-vc-info ()
+  "Feebleline project name and version control information."
+  (if jcs-feebleline-show-project-name-&-vc-info
+      (let ((valid-project-name-p (and jcs--project-name (buffer-file-name)))
+            (valid-vc-p (and jcs--vc-current-vc-name jcs--vc-current-branch-name)))
+        (if (and valid-project-name-p valid-vc-p)
+            (format " %s%s%s %s%s%s%s"
+                    ;; Project Name
+                    (propertize "<" 'face jcs--feebleline--separator-face)
+                    (file-name-nondirectory (directory-file-name jcs--project-name))
+                    (propertize "," 'face jcs--feebleline--separator-face)
+                    ;; VC info
+                    (propertize (symbol-name jcs--vc-current-vc-name) 'face jcs--feebleline-vc--info-face)
+                    (propertize "-" 'face jcs--feebleline--separator-face)
+                    (propertize jcs--vc-current-branch-name 'face jcs--feebleline-vc--info-face)
+                    (propertize ">" 'face jcs--feebleline--separator-face))
+          ""))
     ""))
 
-(defun jcs--feebleline--coding-system-and-line-endings ()
+(defun jcs--feebleline--coding-system-&-line-endings ()
   "Feebleline coding system and line endings."
-  (if jcs-feebleline-show-coding-system-and-line-endings
-      (format "%s%s %s %s%s"
+  (if jcs-feebleline-show-coding-system-&-line-endings
+      (format "%s%s%s%s%s"
               (propertize "[" 'face jcs--feebleline--separator-face)
               buffer-file-coding-system
-              (propertize ":" 'face jcs--feebleline--separator-face)
+              (propertize "::" 'face jcs--feebleline--separator-face)
               (show-eol-get-eol-mark-by-system)
               (propertize "]" 'face jcs--feebleline--separator-face))
     ""))
 
-(defun jcs--feebleline--spc/tab-and-width ()
+(defun jcs--feebleline--spc/tab-&-width ()
   "Feebleline spaces or tabs."
-  (if jcs-feebleline-show-spc/tab-and-width
-      (format "%s%s %s %s%s"
+  (if jcs-feebleline-show-spc/tab-&-width
+      (format "%s%s%s%s%s"
               (propertize "[" 'face jcs--feebleline--separator-face)
               (jcs-buffer-spaces-to-tabs)
-              (propertize ":" 'face jcs--feebleline--separator-face)
+              (propertize "::" 'face jcs--feebleline--separator-face)
               (jcs-get-tab-width-by-mode)
               (propertize "]" 'face jcs--feebleline--separator-face))
     ""))
@@ -181,10 +173,10 @@
 (defun jcs--feebleline--line/column ()
   "Feebleline show line numbers and column numbers."
   (if jcs-feebleline-show-line/column
-      (format "%s%s %s %s%s"
+      (format "%s%s%s%s%s"
               (propertize "[" 'face jcs--feebleline--separator-face)
               (feebleline-line-number)
-              (propertize ":" 'face jcs--feebleline--separator-face)
+              (propertize "::" 'face jcs--feebleline--separator-face)
               (feebleline-column-number)
               (propertize "]" 'face jcs--feebleline--separator-face))
     ""))
@@ -194,9 +186,19 @@
   (if jcs-feebleline-show-time
       (format "%s%s%s"
               (propertize "[" 'face jcs--feebleline--separator-face)
-              (format-time-string "%Y-%m-%d %H:%M:%S")
+              (format "%s%s%s%s%s %s%s%s%s%s"
+                      (format-time-string "%Y")
+                      (propertize "-" 'face jcs--feebleline--separator-face)
+                      (format-time-string "%m")
+                      (propertize "-" 'face jcs--feebleline--separator-face)
+                      (format-time-string "%d")
+                      (format-time-string "%H")
+                      (propertize ":" 'face jcs--feebleline--separator-face)
+                      (format-time-string "%M")
+                      (propertize ":" 'face jcs--feebleline--separator-face)
+                      (format-time-string "%S"))
               (propertize "]" 'face jcs--feebleline--separator-face))
-      ""))
+    ""))
 
 ;;; Video Player
 
