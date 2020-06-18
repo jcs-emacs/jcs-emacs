@@ -140,6 +140,12 @@
   (with-eval-after-load 'company-quickhelp
     (company-quickhelp-terminal-mode 1)))
 
+(use-package counsel
+  :defer t
+  :init
+  (setq counsel-preselect-current-file t)
+  (setq counsel-find-file-at-point t))
+
 (use-package dashboard
   :defer t
   :init
@@ -270,14 +276,13 @@
         '(;;-- Left
           (jcs--feebleline--prepare)
           (jcs--feebleline--lsp-info)
-          (jcs--feebleline--symbol-read-only)
           (jcs--feebleline--major-mode)
-          (jcs--feebleline--project-name)
           (jcs--feebleline--buffer-name)
-          (jcs--feebleline--vc-info)
+          (jcs--feebleline--project-name-&-vc-info)
           ;;-- Right
-          (jcs--feebleline--coding-system-and-line-endings :align right)
-          (jcs--feebleline--spc/tab-and-width :align right)
+          (jcs--feebleline--symbol-read-only :align right)
+          (jcs--feebleline--coding-system-&-line-endings :align right)
+          (jcs--feebleline--spc/tab-&-width :align right)
           (jcs--feebleline--line/column :align right)
           (jcs--feebleline--time :align right)))
   :config
@@ -341,12 +346,13 @@
     (setq-local
      feebleline-msg-functions
      '(;;-- Left
-       (jcs--feebleline--symbol-read-only)
-       (jcs--feebleline--major-mode :face font-lock-constant-face)
-       (jcs--feebleline--project-name)
-       ((lambda () "-"))
-       (jcs--feebleline--buffer-name :face font-lock-keyword-face)
+       (jcs--feebleline--prepare)
+       (jcs--feebleline--lsp-info)
+       (jcs--feebleline--major-mode)
+       (jcs--feebleline--buffer-name)
+       (jcs--feebleline--project-name-&-vc-info)
        ;;-- Right
+       (jcs--feebleline--symbol-read-only :align right)
        (jcs--feebleline--timeline :align right)
        (jcs--feebleline--pause-mute-volume :align right)
        (jcs--feebleline--time :align right))))
@@ -484,11 +490,6 @@
 (use-package ivy
   :defer t
   :init
-  (use-package counsel
-    :defer t
-    :init
-    (setq counsel-preselect-current-file t)
-    (setq counsel-find-file-at-point t))
   (setq ivy-auto-shrink-minibuffer t)
   (setq ivy-use-virtual-buffers t)
   (setq ivy-use-selectable-prompt t)
@@ -501,8 +502,6 @@
   (setq ivy-re-builders-alist
         '((swiper . ivy--regex-plus)
           (t      . ivy--regex-fuzzy)))
-  (with-eval-after-load 'projectile
-    (setq projectile-completion-system 'ivy))
   :config
   (require 'smex)
   (setq enable-recursive-minibuffers t)
@@ -782,6 +781,7 @@
 (use-package projectile
   :defer t
   :init
+  (setq projectile-completion-system 'ivy)
   (setq projectile-current-project-on-switch 'keep)
   :config
   (setq projectile-globally-ignored-directories
