@@ -9,24 +9,17 @@
 (defconst jcs-feebleline--read-only-symbol (if (display-graphic-p) "¢" "&")
   "Symbol display for read-only status.")
 
-(defvar jcs-feebleline-show-lsp-info t
-  "Show LSP information.")
-(defvar jcs-feebleline-show-symbol-read-only t
-  "Show read only symbol.")
-(defvar jcs-feebleline-show-major-mode t
-  "Show major mode.")
-(defvar jcs-feebleline-show-project-name-&-vc-info t
-  "Show project name and version control information.")
-(defvar jcs-feebleline-show-buffer-name t
-  "Show buffer name.")
-(defvar jcs-feebleline-show-coding-system-&-line-endings t
-  "Show coding system and line endings.")
-(defvar jcs-feebleline-show-spc/tab-&-width t
-  "Show space/tab and it's width.")
-(defvar jcs-feebleline-show-line/column t
-  "Show line and column.")
-(defvar jcs-feebleline-show-time t
-  "Show time.")
+;;;-- Left --
+(defvar jcs-feebleline-show-lsp-info t "Show LSP information.")
+(defvar jcs-feebleline-show-major-mode t "Show major mode.")
+(defvar jcs-feebleline-show-project-name-&-vc-info t "Show project name and version control information.")
+(defvar jcs-feebleline-show-buffer-name t "Show buffer name.")
+;;;-- Right --
+(defvar jcs-feebleline-show-symbol-read-only t "Show read only symbol.")
+(defvar jcs-feebleline-show-coding-system-&-line-endings t "Show coding system and line endings.")
+(defvar jcs-feebleline-show-spc/tab-&-width t "Show space/tab and it's width.")
+(defvar jcs-feebleline-show-line/column t "Show line and column.")
+(defvar jcs-feebleline-show-time t "Show time.")
 
 ;; TODO: When project name changes, update this variable!
 (defvar-local jcs--project-name nil "Record down the project name.")
