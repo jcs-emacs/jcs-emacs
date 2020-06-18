@@ -11,11 +11,11 @@ package `feebline`. The format is describe as below.
 ### On Left
 
 ```
-buffer-read-only [major-mode] { project-name } - buffer-name
+[lsp::connection] [major-mode] buffer-name <project-name, vc-info>
 ```
 
 ### On Right
 
 ```
-[coding-system : line-ending] [spaces-or-tabs : tab-width] [line : column] [time]
+buffer-read-only [coding-system::line-ending] [spaces-or-tabs::tab-width] [line::column] [time]
 ```
