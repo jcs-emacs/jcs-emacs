@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-06-18
+
+* Updated feebleline for better priority.
+
+### 2020-06-17
+
+* Updated `jsx` default template for React.js.
+
 ### 2020-06-14
 
 * Updated `feebleline` format to better standard/format.
