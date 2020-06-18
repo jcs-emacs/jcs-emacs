@@ -6,9 +6,6 @@
 (require 'ffmpeg-player)
 (require 'show-eol)
 
-(defconst jcs-feebleline--project-name-empty-symbol ""
-  "Symbol display when for no project name.")
-
 (defconst jcs-feebleline--read-only-symbol (if (display-graphic-p) "¢" "&")
   "Symbol display for read-only status.")
 
