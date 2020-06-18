@@ -80,7 +80,7 @@
   (unless jcs--project-name (setq jcs--project-name (jcs-project-current)))
   (when jcs--project-name
     (unless jcs--vc-current-vc-name
-      (setq jcs--vc-current-vc-name (vc-responsible-backend (buffer-file-name))))
+      (setq jcs--vc-current-vc-name (vc-responsible-backend (jcs-buffer-name-or-buffer-file-name))))
     (unless jcs--vc-current-branch-name
       (setq jcs--vc-current-branch-name (magit-get-current-branch))))
   "")
