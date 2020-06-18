@@ -7,7 +7,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ### 2020-06-18
 
-* Updated feebleline for better priority.
+* Fixed `feebleline` string type error from prepare operations.
+* Updated `feebleline` for better priority.
 
 ### 2020-06-17
 
