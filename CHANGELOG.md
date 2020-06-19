@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-06-19
+
+* Fixed ivy skip input line logic.
+
 ### 2020-06-18
 
 * Fixed `feebleline` string type error from prepare operations.
