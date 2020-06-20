@@ -11,11 +11,12 @@ Return non-nil, to skip the input selection.
 Return nil, to NOT to skip the input selection."
   (let ((do-skip nil)
         (first-cand (nth 0 ivy--old-cands)))
-    (cond ((string-empty-p ivy-text)
-           (setq do-skip t))
-          ((and (or (jcs-is-finding-file-p) (jcs-is-renaming-p))
-                (string= (f-filename first-cand) ivy-text))
-           (setq do-skip t)))
+    (when first-cand
+      (cond ((string-empty-p ivy-text)
+             (setq do-skip t))
+            ((and (or (jcs-is-finding-file-p) (jcs-is-renaming-p))
+                  (string= (f-filename first-cand) ivy-text))
+             (setq do-skip t))))
     do-skip))
 
 (defun jcs--ivy-previous-line--advice-after (&rest _)
