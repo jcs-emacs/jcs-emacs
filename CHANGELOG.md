@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-06-21
+
+* Updated diminish buffer list, `*Backtract*`, `*Compile-Log*`, `*Help*`.
+* Cleaned up generic maybe kill this buffer function.
+* Fixed dashboard is missing after maybe kill function is called.
+
 ### 2020-06-19
 
 * Fixed ivy skip input line logic.
