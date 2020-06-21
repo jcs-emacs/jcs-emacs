@@ -107,6 +107,10 @@ Return the count of the buffer shown."
   "Check if IN-BUF-NAME shown in program."
   (>= (jcs-buffer-shown-count in-buf-name) 1))
 
+(defun jcs-buffer-shown-in-multiple-window-p (in-buf-name)
+  "Check if IN-BUF-NAME shown in multiple windows."
+  (>= (jcs-buffer-shown-count in-buf-name) 2))
+
 ;;;###autoload
 (defun jcs-walk-through-all-windows-once (&optional fnc do-advice)
   "Walk through all the windows once and execute callback FNC.
