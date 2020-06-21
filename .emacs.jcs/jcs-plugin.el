@@ -238,7 +238,7 @@
         (append
          '("[*]helm" "[*]esup-" "[*]quelpa-")
          '("[*]compilation" "[*]output")
-         '("[*]Backtrace[*]" "[*]Compile-Log[*]")
+         '("[*]Backtrace[*]" "[*]Compile-Log[*]" "[*]Help[*]")
          '("[*]Async Shell Command[*]:" "[*]shell" "[*]eshell")
          '("[*]emacs[*]")  ; From `async'
          '("[*]lsp-" "[*][a-zA-Z0-9]+[-]*ls" "[*][a-zA-Z0-9]+::stderr[*]"
