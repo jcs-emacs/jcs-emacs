@@ -268,6 +268,8 @@ OW is the other window flag."
   (interactive)
   (jcs-dashboard t))
 
+(defvar jcs-dashboard--force-refresh-p nil
+  "Force refresh dashboard buffer when non-nil.")
 
 (defvar jcs-dashboard--switch-buffer-refreshing nil
   "Flag to check if current dashboard refresing.")
@@ -279,7 +281,9 @@ OW is the other window flag."
 (defun jcs-dashboard-refresh-buffer ()
   "Update dashboard buffer by killing it and start a new one."
   (interactive)
-  (when (or (not jcs-emacs-ready-p) (jcs-buffer-shown-p dashboard-buffer-name))
+  (when (or (not jcs-emacs-ready-p)
+            (jcs-buffer-shown-p dashboard-buffer-name)
+            jcs-dashboard--force-refresh-p)
     (jcs-mute-apply
      (lambda ()
        (jcs-window-record-once)
@@ -308,7 +312,7 @@ OW is the other window flag."
   "Kill the dashboard buffer then open the new one immediately."
   (interactive)
   (jcs-maybe-kill-this-buffer)
-  (jcs-dashboard-refresh-buffer)
+  (let ((jcs-dashboard--force-refresh-p t)) (jcs-dashboard-refresh-buffer))
   (jcs-buffer-menu-refresh-buffer))
 
 ;;;###autoload
