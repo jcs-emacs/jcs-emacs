@@ -1001,38 +1001,11 @@ Otherwise just switch to the previous buffer.
 ECP-SAME : Exception for the same buffer."
   (interactive)
   (let ((is-killed nil))
-    (if (or (>= (jcs-buffer-shown-count (buffer-name)) 2)
-            ;; NOTE: If you don't want `*Buffer-List*'
-            ;; window open in at least two window and get killed
-            ;; at the same time. Enable the line under.
-            ;;(jcs-is-current-major-mode-p "Buffer-menu-mode")
-            )
+    (if (jcs-buffer-shown-in-multiple-window-p (buffer-name))
         (jcs-bury-buffer)
       (jcs-kill-this-buffer)
-      (setq is-killed t)
-
-      ;; NOTE: After kill the buffer, if the buffer appear in multiple
-      ;; windows then we do switch to previous buffer again. Hence, it will
-      ;; not show repeated buffer at the same time in different windows.
-      (when (and (>= (jcs-buffer-shown-count (buffer-name)) 2)
-                 (not ecp-same))
-        (jcs-bury-buffer)
-
-        ;; If is something from default Emacs's buffer,
-        ;; switch back to previous buffer once again.
-        ;;
-        ;; This will solve if there is only one file opened,
-        ;; and switch to none sense buffer issue.
-        ;;
-        ;; None sense buffer or Emacs's default buffer is
-        ;;   -> *GNU Emacs*
-        ;;   -> *scratch*
-        ;;   , etc.
-        (when (and (not (buffer-file-name))
-                   (not (= (jcs-valid-buffers-in-buffer-list) 0)))
-          (jcs-switch-to-next-buffer-not-nil))))
-    ;; If something that I doesn't want to see, bury it.
-    ;; For instance, any `*helm-' buffers.
+      (setq is-killed t))
+    ;; If something that I don't want to see, bury it.
     (jcs-bury-diminished-buffer)
     is-killed))
 
