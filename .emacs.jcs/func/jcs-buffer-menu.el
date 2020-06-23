@@ -53,9 +53,11 @@ Sorted by (1) visit, (2) buffer, (3) size, (4) time, (5) mode, (6) file."
   "Implemenetation for `buffer menu`'s return key."
   (interactive)
   (if jcs--buffer-menu--done-filtering
-      (if (ignore-errors (Buffer-menu-this-window))
-          (message nil)  ; Use to clear `[Display not ready]'.
-        (user-error "No buffer on this line"))
+      (progn
+        (ignore-errors (Buffer-menu-this-window))
+        (if (jcs-is-current-major-mode-p "Buffer-menu-mode")
+            (user-error "No buffer on this line")
+          (message nil)))  ; Use to clear `[Display not ready]'.
     (setq jcs--buffer-menu-return-delay t)
     (message "[Display not ready]")))
 
