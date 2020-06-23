@@ -1005,6 +1005,9 @@ ECP-SAME : Exception for the same buffer."
         (jcs-bury-buffer)
       (jcs-kill-this-buffer)
       (setq is-killed t))
+    (when (and (not (buffer-file-name))
+               (>= (jcs-valid-buffers-in-buffer-list) 2))
+      (jcs-switch-to-prev-buffer-not-nil))
     ;; If something that I don't want to see, bury it.
     (jcs-bury-diminished-buffer)
     is-killed))
