@@ -67,6 +67,10 @@ Return number of the valid buffers."
         (setq cnt (1+ cnt))))
     cnt))
 
+(defun jcs-valid-buffers-exists-p ()
+  "Check to see if any valid buffer exists in buffer list."
+  (> (jcs-valid-buffers-in-buffer-list) 0))
+
 (defun jcs-walk-through-all-buffers-once (fnc)
   "Walk through all the buffers once and execute callback FNC."
   (save-window-excursion
