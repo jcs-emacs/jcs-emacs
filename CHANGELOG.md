@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-06-23
+
+* Added valid buffer boolean check utility function.
+* Updated buffer menu return logic.
+* Updated maybe kill buffer function to switch to valid buffer logic.
+
 ### 2020-06-21
 
 * Updated diminish buffer list, `*Backtract*`, `*Compile-Log*`, `*Help*`.
