@@ -86,6 +86,7 @@
     gdscript-mode
     gitattributes-mode
     gitconfig-mode
+    github-browse-file
     gitignore-mode
     glsl-mode
     go-mode
