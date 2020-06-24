@@ -114,6 +114,9 @@
 ;;; Describe Thing
 (define-key global-map (kbd "C-k C-s") #'describe-bindings)
 
+;;; Diminish Buffer
+(bind-key* (kbd "C-o") #'diminish-buffer-mode)
+
 ;;; Editting
 (define-key global-map [C-right] #'jcs-smart-forward-word)
 (define-key global-map [C-left] #'jcs-smart-backward-word)
