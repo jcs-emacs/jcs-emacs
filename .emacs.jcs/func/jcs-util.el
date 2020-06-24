@@ -57,19 +57,23 @@ Else we just return `buffer-file-name` if available."
   "Check if the buffer BUF-NAME exists."
   (get-buffer buf-name))
 
-(defun jcs-valid-buffers-in-buffer-list ()
-  "See how many valid buffers in the `buffer-list'.
-Excluding buffers like `*GNU Emacs*', `*scratch*', etc.
-Return number of the valid buffers."
-  (let ((cnt 0))
-    (dolist (buf (buffer-list))
+(defun jcs-valid-buffer-list ()
+  "Return a list of valid buffers."
+  (let ((buf-lst (buffer-list)) (lst '()))
+    (dolist (buf buf-lst)
       (when (buffer-file-name buf)
-        (setq cnt (1+ cnt))))
-    cnt))
+        (push buf lst)))
+    (reverse lst)))
+
+(defun jcs-valid-buffers-count ()
+  "See how many valid buffers in the `buffer-list'.
+Including buffers like `*GNU Emacs*', `*scratch*', etc.
+Return number of the valid buffers."
+  (length (jcs-valid-buffer-list)))
 
 (defun jcs-valid-buffers-exists-p ()
   "Check to see if any valid buffer exists in buffer list."
-  (> (jcs-valid-buffers-in-buffer-list) 0))
+  (> (jcs-valid-buffers-count) 0))
 
 (defun jcs-walk-through-all-buffers-once (fnc)
   "Walk through all the buffers once and execute callback FNC."
