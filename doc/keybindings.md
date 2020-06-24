@@ -160,6 +160,7 @@ Here is the list of key bindins that defined in this configuration.
 
   * <kbd>Alt</kbd>+<kbd>b</kbd> - Open buffer menu.
   * <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>b</kbd> - Open buffer menu other window.
+  * <kbd>Ctrl</kbd>+<kbd>o</kbd> - Toggle diminish buffer mode.
 
 * **Switch Buffer**
 
