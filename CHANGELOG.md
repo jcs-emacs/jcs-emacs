@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-06-24
+
+* Fixed maybe kill buffer logic by not using regex for buffer check.
+* Updated buffer check with strict for not using regex check.
+
 ### 2020-06-23
 
 * Added valid buffer boolean check utility function.
