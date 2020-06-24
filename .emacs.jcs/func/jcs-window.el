@@ -56,23 +56,23 @@
 (defun jcs-switch-to-next-buffer-not-nil ()
   "Switch to the previous buffer that are not nil."
   (interactive)
-  (when (<= 1 (jcs-valid-buffers-in-buffer-list))
-    (let ((found-not-nil-buf nil))
-      (while (not found-not-nil-buf)
-        (call-interactively #'switch-to-next-buffer)
-        (when (buffer-file-name)
-          (setq found-not-nil-buf t))))))
+  (when (jcs-valid-buffers-exists-p)
+    (let* ((lst (jcs-valid-buffer-list))
+           (target-index 1)
+           (target-buffer (nth target-index lst)))
+      (unless target-buffer (setq target-buffer (nth 0 lst)))
+      (switch-to-buffer target-buffer))))
 
 ;;;###autoload
 (defun jcs-switch-to-prev-buffer-not-nil ()
   "Switch to the previous buffer that are not nil."
   (interactive)
-  (when (<= 1 (jcs-valid-buffers-in-buffer-list))
-    (let ((found-not-nil-buf nil))
-      (while (not found-not-nil-buf)
-        (call-interactively #'switch-to-prev-buffer)
-        (when (buffer-file-name)
-          (setq found-not-nil-buf t))))))
+  (when (jcs-valid-buffers-exists-p)
+    (let* ((lst (jcs-valid-buffer-list))
+           (target-index (1- (length lst)))
+           (target-buffer (nth target-index lst)))
+      (unless target-buffer (setq target-buffer (nth 0 lst)))
+      (switch-to-buffer target-buffer))))
 
 (defun jcs-count-windows ()
   "Total window count."
@@ -93,23 +93,25 @@
         (setq index (1+ index)))
       buffers)))
 
-(defun jcs-buffer-shown-count (in-buf-name)
+(defun jcs-buffer-shown-count (in-buf-name &optional strict)
   "Check if IN-BUF-NAME showns in program.
 Return the count of the buffer shown."
   (let ((displayed-frame-count 0)
         (bv-lst (jcs-buffer-visible-list)))
     (dolist (buf bv-lst)
-      (when (string-match-p in-buf-name buf)
-        (setq displayed-frame-count (+ displayed-frame-count 1))))
+      (let ((do-action
+             (if strict (string= in-buf-name buf) (string-match-p in-buf-name buf))))
+        (when do-action
+          (setq displayed-frame-count (+ displayed-frame-count 1)))))
     displayed-frame-count))
 
-(defun jcs-buffer-shown-p (in-buf-name)
+(defun jcs-buffer-shown-p (in-buf-name &optional strict)
   "Check if IN-BUF-NAME shown in program."
-  (>= (jcs-buffer-shown-count in-buf-name) 1))
+  (>= (jcs-buffer-shown-count in-buf-name strict) 1))
 
-(defun jcs-buffer-shown-in-multiple-window-p (in-buf-name)
+(defun jcs-buffer-shown-in-multiple-window-p (in-buf-name &optional strict)
   "Check if IN-BUF-NAME shown in multiple windows."
-  (>= (jcs-buffer-shown-count in-buf-name) 2))
+  (>= (jcs-buffer-shown-count in-buf-name strict) 2))
 
 ;;;###autoload
 (defun jcs-walk-through-all-windows-once (&optional fnc do-advice)
