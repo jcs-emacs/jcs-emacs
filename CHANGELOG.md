@@ -9,6 +9,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 * Fixed maybe kill buffer logic by not using regex for buffer check.
 * Updated buffer check with strict for not using regex check.
+* Installed new package `github-browse-file`.
 
 ### 2020-06-23
 
