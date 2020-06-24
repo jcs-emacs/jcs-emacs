@@ -387,7 +387,7 @@ i.e. change right window to bottom, or change bottom window to right."
 (defun jcs-set-transparency (alpha-level)
   "Set the frame transparency by ALPHA-LEVEL."
   (set-frame-parameter nil 'alpha alpha-level)
-  (message (format "Frame alpha level is %d" (frame-parameter nil 'alpha)))
+  (message (format "[INFO] Frame alpha level is %d" (frame-parameter nil 'alpha)))
   (setq jcs-current-frame-transparency alpha-level)
   (unless (= alpha-level 100)
     (setq jcs-record-toggle-frame-transparency alpha-level)))
