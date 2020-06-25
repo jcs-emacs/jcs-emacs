@@ -298,7 +298,8 @@
   '(("file-header" "jcs-elpa/file-header" "github")
     ("jayces-mode" "jcs-elpa/jayces-mode" "github")
     ("multi-shell" "jcs-elpa/multi-shell" "github")
-    ("reload-emacs" "jcs-elpa/reload-emacs" "github"))
+    ("reload-emacs" "jcs-elpa/reload-emacs" "github")
+    ("transwin" "jcs-elpa/transwin" "github"))
   "List of package that you want to manually installed.")
 
 
