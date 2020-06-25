@@ -53,7 +53,7 @@
     (switch-to-buffer (other-buffer (current-buffer) target-cnt))))
 
 ;;;###autoload
-(defun jcs-switch-to-next-buffer-not-nil ()
+(defun jcs-switch-to-next-valid-buffer ()
   "Switch to the previous buffer that are not nil."
   (interactive)
   (when (jcs-valid-buffers-exists-p)
@@ -64,7 +64,7 @@
       (switch-to-buffer target-buffer))))
 
 ;;;###autoload
-(defun jcs-switch-to-prev-buffer-not-nil ()
+(defun jcs-switch-to-prev-valid-buffer ()
   "Switch to the previous buffer that are not nil."
   (interactive)
   (when (jcs-valid-buffers-exists-p)
