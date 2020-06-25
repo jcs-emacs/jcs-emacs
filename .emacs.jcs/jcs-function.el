@@ -21,11 +21,11 @@
 (defun jcs-message-erase-buffer ()
   "Erase the *Messages* buffer."
   (interactive)
-  (jcs-maybe-kill-this-buffer)
-  ;; Message one message to retrieve `*Message*' buffer prepare for next use.
-  ;; Or else it some operation might prompt some issue that needed `*Message*'
-  ;; buffer to be exists.
-  (message "Retrieve *Message* buffer.."))
+  (let ((is-killed (jcs-maybe-kill-this-buffer)))
+    ;; Message one message to retrieve `*Message*' buffer prepare for next use.
+    ;; Or else it some operation might prompt some issue that needed `*Message*'
+    ;; buffer to be exists.
+    (when is-killed (message "Retrieving *Message* buffer.."))))
 
 ;;;###autoload
 (defun jcs-message-erase-buffer-stay ()
@@ -36,6 +36,9 @@
 
 ;;----------------------------------------------------------------------------
 ;; *scratch*
+
+(defvar jcs-scratch--content ""
+  "Record down the scratch content string.")
 
 ;;;###autoload
 (defun jcs-scratch-buffer ()
@@ -55,8 +58,7 @@
   (interactive)
   (jcs-scratch-buffer)
   (erase-buffer)
-  (insert ";; This buffer is for text that is not saved, and for Lisp evaluation.\n")
-  (insert ";; To create a file, visit it with <open> and enter text in its buffer.\n\n")
+  (insert jcs-scratch--content)
   (goto-char (point-min)))
 
 ;;;###autoload
