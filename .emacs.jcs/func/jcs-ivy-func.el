@@ -31,13 +31,13 @@ Return nil, to NOT to skip the input selection."
   (interactive)
   ;; NOTE: For some reason, slash does something else so override it.
   (insert "/")
-  (cond ((save-excursion (ignore-errors (search-backward "///")))
+  (cond ((save-excursion (search-backward "///" nil t))  ; Root
          (ivy--cd (f-root)))
-        ((save-excursion (ignore-errors (search-backward "/!/")))
+        ((save-excursion (search-backward "/!/" nil t))  ; Project
          (if (jcs-project-current)
              (ivy--cd (jcs-project-current))
            (backward-delete-char 2)
-           (message "[INFO] Project root not defined, return to current directory")))))
+           (message "[INFO] Project root not found, return to previous directory")))))
 
 ;;;###autoload
 (defun jcs-counsel-find-files-backspace ()
