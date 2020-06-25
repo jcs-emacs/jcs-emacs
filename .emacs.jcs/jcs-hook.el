@@ -251,6 +251,7 @@
 
 (defun jcs--emacs-startup-hook ()
   "Hook run after Emacs is startup."
+  (with-current-buffer "*scratch*" (setq jcs-scratch--content (buffer-string)))
   (setq jcs-emacs-ready-p t))
 (add-hook 'emacs-startup-hook 'jcs--emacs-startup-hook)
 
