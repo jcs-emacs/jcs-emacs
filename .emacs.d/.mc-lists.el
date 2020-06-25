@@ -69,7 +69,6 @@
         jcs-hl-todo-next
         jcs-hl-todo-previous
         jcs-iedit-mode
-        jcs-increment-frame-transparent
         jcs-kill-whole-line
         jcs-makefile-newline
         jcs-mark-whole-buffer
@@ -169,7 +168,6 @@
         jcs-dashboard-other-window
         jcs-dashboard-previous-blank-line
         jcs-dec-tab-width
-        jcs-decrement-frame-transparent
         jcs-find-corresponding-file-other-window
         jcs-flycheck-mode
         jcs-format-document
@@ -214,7 +212,6 @@
         jcs-toggle-shell-window
         jcs-toggle-sublimity-mode
         jcs-toggle-tabbar-mode
-        jcs-toggle-transparent-frame
         jcs-undo
         jcs-untabify-save-buffer
         list-processes
@@ -235,5 +232,8 @@
         scroll-other-window-down
         set-buffer-file-coding-system
         toggle-truncate-lines
+        transwin-decrement-frame-transparent
+        transwin-increment-frame-transparent
+        transwin-toggle-transparent-frame
         whitespace-mode
         ))
