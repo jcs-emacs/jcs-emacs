@@ -73,6 +73,8 @@ yet there are a bunch of way to navigate through window from this configuration!
 **A:** I use `C-<up>` and `C-<down>` to go to the next/previous blank line. Then use `C-<left>` and `C-<right>` to navigate
 between words/symbols.
 
+---
+
 ## Search & Replace
 
 ---
