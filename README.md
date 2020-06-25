@@ -319,8 +319,9 @@ Fast keys switch between windows quickly.
 * [*Tabify/Untabify Modes*](./features/tabify-untabify-modes) -
 Tabify or Untabify the file depends on the mode you
 currently in.
-* [*Transparent Window*](./features/transparent-window) -
-Keys to increase/decrease the transparency of the frame.
+* ~~[*Transparent Window*](./features/transparent-window) -
+Keys to increase/decrease the transparency of the frame.~~
+(has move to [transwin](https://github.com/jcs-elpa/transwin))
 * [*Trim Trailing Whitespace*](./features/trim-trailing-whitespace) -
 Remove trailing spaces and tabs automatically on save.
 * [*Video Player*](./features/video-player) -
