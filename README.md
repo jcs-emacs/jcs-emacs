@@ -16,14 +16,14 @@
 - [jcs-emacs](#jcs-emacs)
     - [Philosophy](#philosophy)
     - [:newspaper: News](#newspaper-news)
-    - [:floppy_disk: Installation](#floppydisk-installation)
+    - [:floppy_disk: Installation](#floppy_disk-installation)
         - [With Internet](#with-internet)
         - [Without Internet](#without-internet)
     - [:clock3: Startup Time](#clock3-startup-time)
     - [:trophy: Features](#trophy-features)
         - [Highlight](#highlight)
         - [Details](#details)
-    - [:file_folder: Package Archives](#filefolder-package-archives)
+    - [:file_folder: Package Archives](#file_folder-package-archives)
     - [:trophy: Powered by](#trophy-powered-by)
         - [Functionalities](#functionalities)
         - [File Modes](#file-modes)
@@ -35,6 +35,7 @@
     - [:hammer: Optimization](#hammer-optimization)
     - [Write your own customization](#write-your-own-customization)
     - [:bamboo: Supported Emacs versions](#bamboo-supported-emacs-versions)
+    - [:question: FAQ](#question-faq)
 
 <!-- markdown-toc end -->
 
@@ -115,7 +116,7 @@ without having to get used to an new IDE.
 
 ## :newspaper: News
 
-Here is the list of few important and recent changes to this 
+Here is the list of few important and recent changes to this
 configuration.
 
 * `6.1.5` - `feebleline` is now fully compatible to terminal.
@@ -229,8 +230,7 @@ like my taste!
 * **Old-Fashioned** - Doesn't use any beatiful GUI because it may not work in terminal.
 * **Multiple Languages** - Support multiple programming languages.
 * **Consistent** - Having the same coding experience in different major mode.
-* **Easy to use** - Design close to other modern text editors. Shouldn't spend
-you too much time.
+* **Easy to use** - Design close to other modern text editors. Shouldn't spend you too much time.
 * **Dual Windows** - Design to people who like multiple windows opened simultaneously.
 * **Keyboard Focused** - You can do everything by using keyboard and mouse are just optional.
 
@@ -244,15 +244,13 @@ detials make things better and make life smoother.
 * [*Auto Install Package*](./features/auto-install-package) -
 Automatically installs the package that this config relies on.
 * [*Auto Truncate Lines*](./features/auto-truncate-lines) -
-Automatically enable/disable `truncate-lines-mode` depends
-on certain situation. (`web-mode` only)
+Automatically enable/disable `truncate-lines-mode` depends on certain situation. (`web-mode` only)
 * [*Better Dashboard*](./features/better-dashboard) -
 Implementation for improving experiences using dashboard.
 * [*Buffer Menu Search*](./features/buffer-menu-search) -
 Able to search in the `*Buffer List*` buffer.
 * [*Build Run*](./features/build-run) -
-Implementation for executing script for building and running
-the software.
+Implementation for executing script for building and running the software.
 * [*Capital Word*](./features/capital-word) -
 You can navigate/kill word by seeing capital letter.
 * [*Changelog Helper*](./features/changelog-helper) -
@@ -266,16 +264,14 @@ Utility function to use to view a file on the other window.
   * [*Charset Table*](./features/display-file/charset-table) -
   Built-in functions that displays character sets.
 * [*Docstring Completion*](./features/docstring-completion) -
-Some standard docstring completion implementations built-in
-to this configuration.
+Some standard docstring completion implementations built-in to this configuration.
 * Enhanced Multiple Cursors
   * [*Similar Multiple Cursors*](./features/similar-multiple-cursors) -
   Mark with cursor by similarity.
   * [*VS Multiple Cursors*](./features/vs-multiple-cursors) -
   VSCode like methods to `mark` and `unmark` multiple cursor.
 * [*Fast Incremental Search*](./features/fast-incremental-search) -
-Fast keys for incremental search forward/backward
-to the cursor is currently pointing.
+Fast keys for incremental search forward/backward to the cursor is currently pointing.
 * [*Feebleline Design*](./features/feebleline-design) -
 Personal displayed design for `feebleline`.
 * [*Indent Control*](./features/indent-control) -
@@ -288,37 +284,31 @@ Generic control the indentation level for each mode, for more information see [i
   * [*Smart-Move*](./features/smart-move) -
   Smart enough to move cursor to the beginning of the line.
 * [*Line Numbers Modding*](./features/line-numbers-modding) -
-Mixed used of `linum` and `display-line-numbers-mode`
-base on the file usage.
+Mixed used of `linum` and `display-line-numbers-mode` base on the file usage.
 * [*License Helper*](./features/license-helper) -
 Help to create license while creating `LICENSE` file using template.
 * [*Mini State*](./features/mini-state) -
-Mini mode state use to visually see what backend is the
-config currently running.
+Mini mode state use to visually see what backend is the config currently running.
   * [*Auto Switch State*](./features/mini-state/auto-switch-state) -
   Automatcially switch mini state depends on certain circumstances.
 * ~~[*Mode Line Toggle*](./features/mode-line-toggle) -
 Toggle to `show` or `hide` the mode line.~~
 * [*Modern Text Editor*](./features/modern-text-editor) -
-Design to have the preset settings close to modern text
-editors but faster.
+Design to have the preset settings close to modern text editors but faster.
 * [*Multiple Output*](./features/multiple-output) -
 Handle multiple output/compilation buffers.
 * [*Navigate Blank Line*](./features/navigate-blank-line) -
-Use `C-<up>` and `C-<down>` to navigate previous and next
-blank line.
+Use `C-<up>` and `C-<down>` to navigate previous and next blank line.
 * [*Navigate Table*](./features/navigate-table) -
 Navigate `org-mode`'s table easier by using arrow keys.
 * [*Preview HTML*](./features/preview-html) -
 Preview rendered HTML file on the other window.
 * [*Simulate Shell*](./features/simulate-shell) -
-Completely simulate shell behaviors, make better user
-experience when using shell in Emacs.
+Completely simulate shell behaviors, make better user experience when using shell in Emacs.
 * [*Switch Window*](./features/switch-window) -
 Fast keys switch between windows quickly.
 * [*Tabify/Untabify Modes*](./features/tabify-untabify-modes) -
-Tabify or Untabify the file depends on the mode you
-currently in.
+Tabify or Untabify the file depends on the mode you currently in.
 * ~~[*Transparent Window*](./features/transparent-window) -
 Keys to increase/decrease the transparency of the frame.~~
 (has move to [transwin](https://github.com/jcs-elpa/transwin))
@@ -626,3 +616,9 @@ base on the version what I'm currently running on my present
 machine. For each version record, you can check the
 [version_record](./version_record.txt)
 file at the root of the project directory.
+
+## :question: FAQ
+
+Here is the list of *Frequently Asked Questions*.
+
+* [List of FAQ](./doc/FAQ.md)
