@@ -3,13 +3,29 @@
 ;;; Code:
 
 (defun jcs--set-mode-line-color (ac-lst inac-lst)
-  "Set `mode-line' them faces with AC-LST and INAC-LST."
+  "Set `mode-line' theme faces with AC-LST and INAC-LST."
   (progn
     (set-face-foreground 'mode-line (nth 0 ac-lst))
     (set-face-background 'mode-line (nth 1 ac-lst)))
   (progn
     (set-face-foreground 'mode-line-inactive (nth 0 inac-lst))
     (set-face-background 'mode-line-inactive (nth 1 inac-lst))))
+
+(defun jcs--get-mode-line-color ()
+  "Return the current `mode-line' color."
+  (let ((ac-lst (list (face-foreground 'mode-line) (face-background 'mode-line)))
+        (inac-lst (list (face-foreground 'mode-line-inactive) (face-background 'mode-line-inactive))))
+    (cons ac-lst inac-lst)))
+
+(defun jcs--set-mode-line-color--by-feebleline (ac-lst inac-lst)
+  "Like `jcs--set-mode-line-color' but with `feebleline' rule in it.
+AC-LST and INAC-LST are same arguments to `jcs--set-mode-line-color'."
+  (let ((light-theme-p (jcs-is-light-color (face-background 'default))))
+    (setq ac-lst (if light-theme-p (list (nth 0 ac-lst) "#000000")
+                   (list "#000000" (nth 1 ac-lst))))
+    (setq inac-lst (if light-theme-p (list (nth 0 inac-lst) "#000000")
+                     (list "#000000" (nth 1 inac-lst))))
+    (jcs--set-mode-line-color ac-lst inac-lst)))
 
 (defun jcs--set-border-color (color)
   "Set the border color with COLOR."
@@ -45,7 +61,9 @@
 ML-AC-LST : mode-line active list.  ML-INAC-LST : mode-line inactive list.
 BC : border color.
 POWER-AC-LST : powerline active list.  POWER-INAC-LST : powerline inactive list."
-  (jcs--set-mode-line-color ml-ac-lst ml-inac-lst)
+  (if feebleline-mode
+      (jcs--set-mode-line-color--by-feebleline ml-ac-lst ml-inac-lst)
+    (jcs--set-mode-line-color ml-ac-lst ml-inac-lst))
   (jcs--set-border-color bc)
   (jcs-powerline-set-theme-faces power-ac-lst power-inac-lst))
 
