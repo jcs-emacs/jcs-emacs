@@ -1,4 +1,4 @@
-# QA
+# FAQ
 
 Here is a list of question and answer section. Hopefully this document
 would help you figure out something you need to explore this configuration!
