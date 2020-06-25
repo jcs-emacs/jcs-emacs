@@ -512,10 +512,10 @@
   (define-key hl-todo-mode-map [C-f10] #'jcs-hl-todo-previous)
   (define-key hl-todo-mode-map [C-f11] #'jcs-hl-todo-next))
 
-;;; Transparent Window
-(define-key global-map "\e`" #'jcs-toggle-transparent-frame)
-(define-key global-map "\e=" #'jcs-increment-frame-transparent)
-(define-key global-map "\e-" #'jcs-decrement-frame-transparent)
+;;; Transwin
+(define-key global-map "\e`" #'transwin-toggle-transparent-frame)
+(define-key global-map "\e=" #'transwin-increment-frame-transparent)
+(define-key global-map "\e-" #'transwin-decrement-frame-transparent)
 
 ;;; Window
 (progn
