@@ -8,6 +8,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-06-25
 
 * Installed new package manually `transwin`.
+* Fixed `ivy` logic when trying to find files in home directory.
+* Updated `feebleline`'s UX when using terminal for window divider.
 
 ### 2020-06-24
 
