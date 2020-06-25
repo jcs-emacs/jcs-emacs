@@ -71,6 +71,12 @@ you are editing. If you would like the save to be just save without doing these 
 
 ---
 
+**Q:** How do you rename the file?
+
+**A:** I rename buffer by pressing `M-f2`, then I type in the new name. Eventually hits the return to confirm.
+
+---
+
 ## Exit
 
 ---
@@ -80,7 +86,6 @@ you are editing. If you would like the save to be just save without doing these 
 **A:** I exit Emacs with `M-f4`, is default to the same as to the other programs.
 
 ---
-
 
 ## Window & Frame
 
@@ -156,5 +161,23 @@ Otherwise, to fastest way to search is to navigate the cursoe to the position on
 
 If you don't like incremental search, you can use `counsel` package that uses 3rd party software like `grep`, `ag`, `rg`, etc.
 Then the whole of the search result will be place inside ivy minibuffer window!
+
+---
+
+## Packages
+
+---
+
+**Q:** How do you install new package?
+
+**A:** Press `C-k C-p` to open the package list, then you can press `i` to select the package you want to install. 
+Then press `x` to execute install to confirmed install packages.
+
+---
+
+**Q:** How do you uninstall new package?
+
+**A:** Is the same to install. Instead of pressing `i`; press `d` to select as deleting the package. Then you press `x` to
+execute uninstall to confirmed uninstall packages.
 
 ---
