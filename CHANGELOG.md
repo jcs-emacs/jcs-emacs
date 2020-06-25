@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-06-25
+
+* Installed new package manually `transwin`.
+
 ### 2020-06-24
 
 * Fixed maybe kill buffer logic by not using regex for buffer check.
