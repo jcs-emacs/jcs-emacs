@@ -118,6 +118,7 @@ without having to get used to an new IDE.
 Here is the list of few important and recent changes to this 
 configuration.
 
+* `6.1.5` - `feebleline` is now fully compatible to terminal.
 * `6.1.0` - Formatted all configuration code to better standard.
 * `6.0.5` - Replace `sr-speedbar` with `neotree` instead.
 * `6.0.3` - Started integrating more `lsp-mode` and `dap-mode` details.
