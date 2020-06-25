@@ -53,6 +53,35 @@ you are editing. If you would like the save to be just save without doing these 
 
 ---
 
+**Q:** How do you checkout `Dashboard`?
+
+**A:** Press `M-d` to switch to dashboard buffer.
+
+---
+
+**Q:** How do you checkout `Buffer Menu`?
+
+**A:** Press `M-b` to switch to buffer menu buffer.
+
+---
+
+**Q:** How do you checkout `*Message*` buffer?
+
+**A:** Press `M-m` to switch to message buffer.
+
+---
+
+## Exit
+
+---
+
+**Q:** How do you exit Emacs?
+
+**A:** I exit Emacs with `M-f4`, is default to the same as to the other programs.
+
+---
+
+
 ## Window & Frame
 
 ---
@@ -61,6 +90,43 @@ you are editing. If you would like the save to be just save without doing these 
 
 **A:** I switch window using `M-q` and `M-w`. `M-q` goes left and `M-w` goes right. I don't often work with too many windows,
 yet there are a bunch of way to navigate through window from this configuration! Choose one method that best suite you!
+
+---
+
+**Q:** How do you create new window?
+
+**A:** To create new window, you can be using `C-\`.
+
+---
+
+**Q:** How do you delete window?
+
+**A:** To delete window, press `C-k w`.
+
+---
+
+**Q:** How do you create new frame?
+
+**A:** I create new frame with `C-k n` and the shortcut navigating frames are the same as navigating windows.
+
+---
+
+**Q:** How do you delete new frame?
+
+**A:** You can delete the frame by pressing `C-k d`, don't forget to navigate to the frame you want to delete before you press
+the key!
+
+---
+
+**Q:** How do you change the font size?
+
+**A:** By pressing `C--` or `C-=` to scale the text smaller or larger.
+
+---
+
+**Q:** How do you change transparency of the frame?
+
+**A:** You can press `M--` or `M-=` to increase/decrease the alpha level of the frame.
 
 ---
 
