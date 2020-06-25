@@ -10,6 +10,8 @@ depend on my every habit! :smile:*
 
 ## Buffers
 
+---
+
 **Q:** How do you open file?
 
 **A:** I open file by hitting `M-f` which starts `counsel` with `ivy`. You are able to navigate the directory by selecting
@@ -49,14 +51,22 @@ you are editing. If you would like the save to be just save without doing these 
 
 **A:** I hit `S-f8` to open the corresponding file (if exists) to the other window.
 
+---
+
 ## Window & Frame
+
+---
 
 **Q:** How do you switch window?
 
 **A:** I switch window using `M-q` and `M-w`. `M-q` goes left and `M-w` goes right. I don't often work with too many windows,
 yet there are a bunch of way to navigate through window from this configuration! Choose one method that best suite you!
 
+---
+
 ## Navigation
+
+---
 
 **Q:** How do you navigate through file?
 
@@ -64,6 +74,8 @@ yet there are a bunch of way to navigate through window from this configuration!
 between words/symbols.
 
 ## Search & Replace
+
+---
 
 **Q:** How do you search for word?
 
@@ -76,3 +88,5 @@ Otherwise, to fastest way to search is to navigate the cursoe to the position on
 
 If you don't like incremental search, you can use `counsel` package that uses 3rd party software like `grep`, `ag`, `rg`, etc.
 Then the whole of the search result will be place inside ivy minibuffer window!
+
+---
