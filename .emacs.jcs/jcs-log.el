@@ -37,8 +37,7 @@ Acts like `message' but preserves string properties in the *Messages* buffer."
 (defun jcs--log (title clean fmt &rest args)
   "Log a message with TITLE, CLEAN, FMT and ARGS."
   (jcs-do-before-log-action clean)
-  (let ((seq-len (- (window-width) 2)))
-    (jcs-message "╘[%s] %s\n" title (apply 'format fmt args)))
+  (jcs-message "╘[%s] %s\n" title (apply 'format fmt args))
   (jcs-do-after-log-action))
 
 
