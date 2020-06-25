@@ -1,5 +1,8 @@
 # Programming Modes
 
+You are allow to choose different `major-mode` to edit different file. Hence I am
+recording all the `major-mode` I am using corresponding to each file type.
+
 | Language | Mode | Description | Version |
 | --- | --- | --- | --- |
 | ActionScript 2.0 or 3.0 | [actionscript-mode](https://github.com/austinhaas/actionscript-mode) | A simple mode for editing Actionscript 3 files | [![MELPA](https://melpa.org/packages/actionscript-mode-badge.svg)](https://melpa.org/#/actionscript-mode) |
