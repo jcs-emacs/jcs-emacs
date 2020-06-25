@@ -225,7 +225,8 @@
 
   (jcs--lsp-ui-doc--hide-frame)
   (jcs--lsp-ui-doc-show-safely)
-  (jcs-reload-active-mode-with-error-handle))
+  (jcs-reload-active-mode-with-error-handle)
+  (jcs-feebleline-display-mode-line-graphic))
 (add-hook 'post-command-hook 'jcs-post-command-hook)
 
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -271,16 +272,12 @@
 (defun jcs-minibuffer-post-command-hook ()
   "Minibuffer post command hook."
   (when ivy-mode
-    (when (jcs-is-finding-file-p)
-      (save-excursion
-        (beginning-of-line)
-        (unless (jcs-is-end-of-line-p)
-          (forward-char 1)
-          (when (and (jcs-current-char-equal-p "/") (not (jcs-is-end-of-line-p)))
-            (forward-char 1)
-            (unless (jcs-current-char-equal-p "/")  ; Prevent to root directory.
-              (forward-char -1)
-              (call-interactively (key-binding (kbd "<backspace>"))))))))))
+    (cond ((jcs-is-finding-file-p)
+           (when (and (save-excursion (search-backward "~//" nil t))
+                      (not (jcs-current-char-equal-p "/")))
+             (save-excursion
+               (forward-char -1)
+               (backward-delete-char 1)))))))
 
 (defun jcs-minibuffer-exit-hook ()
   "Hook when exit minibuffer."
