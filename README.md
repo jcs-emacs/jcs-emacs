@@ -608,14 +608,12 @@ In your `my-init.el` file should look something similar to this.
 
 ## :bamboo: Supported Emacs versions
 
-The config should run on Emacs **26.1** or higher, but I will
-recommend to always run on the latest Emacs version available
-on your machine. The ultimate goal is to design to have each
-version of config can run on their each according Emacs version
-base on the version what I'm currently running on my present
-machine. For each version record, you can check the
-[version_record](./version_record.txt)
-file at the root of the project directory.
+The config should run on Emacs **26.1** or higher, but I will recommend to always
+run on the latest Emacs version available on your machine. The ultimate goal is to 
+design to have each version of config can run on their each according Emacs version
+base on the version what I'm currently running on my present machine. For each version 
+record, you can check the [version_record](./version_record.txt) file at the root of 
+the project directory.
 
 ## :question: FAQ
 
