@@ -286,6 +286,25 @@
           (jcs--feebleline--spc/tab-&-width :align right)
           (jcs--feebleline--line/column :align right)
           (jcs--feebleline--time :align right)))
+
+  (defun jcs-feebleline-terminal-active-p ()
+    "Flag to check if feebleline active in terminal."
+    (and (not (display-graphic-p)) feebleline-mode))
+
+  (defun jcs-feebleline-display-mode-line-graphic ()
+    "Display feebleline graphic base on the is inside terminal or not."
+    (when (jcs-feebleline-terminal-active-p)
+      (jcs-walk-through-all-buffers-once
+       (lambda ()
+         (jcs-feebleline-revert-terminal-mode-line)
+         (setq mode-line-format
+               (if (display-graphic-p) nil (jcs--feebleline--mode-line-window-width-string)))))))
+
+  (defun jcs-feebleline-revert-terminal-mode-line ()
+    "Revert the terminal mode-line when using feebleline."
+    (let* ((ml-color (jcs--get-mode-line-color))
+           (ac-lst (car ml-color)) (inac-lst (cdr ml-color)))
+      (jcs--set-mode-line-color--by-feebleline ac-lst inac-lst)))
   :config
   (cl-defun jcs--feebleline--insert-func (func &key (face 'default) pre (post " ") (fmt "%s") (align 'left))
     "Override `feebleline--insert-func' function."
@@ -317,12 +336,21 @@
             (insert (concat left-string (if right-string (concat padding right-string)))))))))
   (advice-add 'feebleline--insert :override #'jcs--feebleline--insert)
 
+  (defconst jcs--feebleline--in-case-mode-line-width 10
+    "Mode line width that add up to window width, in case it goes over window width.")
+
+  (defun jcs--feebleline--mode-line-window-width ()
+    "Get the mode line's format width by window width plus in case value."
+    (+ (frame-width) jcs--feebleline--in-case-mode-line-width))
+
+  (defun jcs--feebleline--mode-line-window-width-string ()
+    "Get the mode line's format string by window width plus in case value."
+    (jcs-fill-n-char-seq "_" (jcs--feebleline--mode-line-window-width)))
+
   (defun jcs--feebleline-mode--advice-after (&rest _)
     "Advice after execute `feebleline-mode'."
     (if feebleline-mode
-        (jcs-walk-through-all-buffers-once
-         (lambda ()
-           (setq mode-line-format nil)))
+        (jcs-feebleline-display-mode-line-graphic)
       (window-divider-mode -1)
       (jcs-walk-through-all-buffers-once
        (lambda ()
