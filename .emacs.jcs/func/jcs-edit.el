@@ -1025,7 +1025,7 @@ ECP-SAME : Exception for the same buffer."
         ;;   , etc.
         (when (and (not (buffer-file-name))
                    (>= (jcs-valid-buffers-count) 2))
-          (jcs-switch-to-next-buffer-not-nil))))
+          (jcs-switch-to-next-valid-buffer))))
     ;; If something that I doesn't want to see, bury it.
     ;; For instance, any `*helm-' buffers.
     (jcs-bury-diminished-buffer)
