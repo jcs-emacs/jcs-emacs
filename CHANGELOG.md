@@ -10,6 +10,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Installed new package manually `transwin`.
 * Fixed `ivy` logic when trying to find files in home directory.
 * Updated `feebleline`'s UX when using terminal for window divider.
+* Updated to record `*scratch*` starting content.
+* Fixed retrieve message erase buffer logic.
 
 ### 2020-06-24
 
