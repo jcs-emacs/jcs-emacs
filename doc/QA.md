@@ -17,23 +17,33 @@ the directory in minibuffer and hit return to navigate to the one level deeper t
 to navigate one level back from the directory tree. Once you find the file you want to open, just hit return then the file
 should open as exptected.
 
+---
+
 **Q:** How do you create file?
 
 **A:** Creating the file is the same as opening the file. In Emacs, if you opened the file that doesn't exists; you can press
 `C-s` to save the buffer, then the file will be created.
+
+---
 
 **Q:** How do you save the file?
 
 **A:** Hit `C-s` like other editor. `C-s` will do some magic before saving, like untabify/tabify corresponding to the file type
 you are editing. If you would like the save to be just save without doing these operations; press `M-s` instead.
 
+---
+
 **Q:** How do you switch buffer?
 
 **A:** I switch buffer using `C-b` and call out buffer menu. Then I instantly typed out the name of buffer I want to switch to.
 
+---
+
 **Q:** How do you editing the same file with different window?
 
 **A:** I simply press `S-f7` to open the file to the other window.
+
+---
 
 **Q:** How do you editing the corresponding file with different window? Like `.h` and `.c` file, etc.
 
