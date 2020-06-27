@@ -21,12 +21,24 @@
 
 ;;----------------------------------------------------------------------------
 
-(defun jcs-c++-unreal-insert-header ()
+(defun jcs-c++-unreal-insert-header (type)
   "Insert the Unreal C++ header depends on if is a header/source file."
   (let ((header-ext (append jcs-c++-header-extensions jcs-c-header-extensions))
         (source-ext (append jcs-c++-source-extensions jcs-c-source-extensions)))
-    (jcs-insert-header-if-valid header-ext 'jcs-insert-c++-unreal-header-template)
-    (jcs-insert-header-if-valid source-ext 'jcs-insert-c++-unreal-source-template)))
+    (cond ((string= type "Actor")
+           (jcs-insert-header-if-valid header-ext 'jcs-insert-c++-unreal-header-template--actor)
+           (jcs-insert-header-if-valid source-ext 'jcs-insert-c++-unreal-source-template--actor))
+          ((string= type "Other")
+           (jcs-insert-header-if-valid header-ext 'jcs-insert-c++-unreal-header-template--other)
+           (jcs-insert-header-if-valid source-ext 'jcs-insert-c++-unreal-source-template--other)))))
+
+(defun jcs-c++-ask-unreal-source-type (type)
+  "Ask the source TYPE for Unreal C++ file."
+  (interactive
+   (list (completing-read
+          "Type of Unreal C++ file: " '("Actor"
+                                        "Other"))))
+  (jcs-c++-unreal-insert-header type))
 
 ;;;###autoload
 (defun jcs-c++-ask-source (sc)
@@ -36,7 +48,7 @@
           "Major source for this C++ file: " '("Default"
                                                "Unreal Scripting"))))
   (cond ((string= sc "Default") (jcs-cc-insert-header))
-        ((string= sc "Unreal Scripting") (jcs-c++-unreal-insert-header))))
+        ((string= sc "Unreal Scripting") (call-interactively #'jcs-c++-ask-unreal-source-type))))
 
 ;;----------------------------------------------------------------------------
 
