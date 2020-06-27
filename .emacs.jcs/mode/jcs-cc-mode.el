@@ -53,16 +53,16 @@
 
 ;;-----------------------------------------------------------
 
-(defconst jcs-c-header-extensions '(".h")
+(defconst jcs-c-header-extensions '("[.]h")
   "List of C header file extension.")
 
-(defconst jcs-c-source-extensions '(".c")
+(defconst jcs-c-source-extensions '("[.]c")
   "List of C source file extension.")
 
-(defconst jcs-c++-header-extensions '(".hin" ".hpp")
+(defconst jcs-c++-header-extensions '("[.]hin" "[.]hpp")
   "List of C++ header file extension.")
 
-(defconst jcs-c++-source-extensions '(".cin" ".cpp")
+(defconst jcs-c++-source-extensions '("[.]cin" "[.]cpp")
   "List of C++ source file extension.")
 
 ;;-----------------------------------------------------------
