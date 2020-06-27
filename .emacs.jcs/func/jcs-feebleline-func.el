@@ -34,35 +34,41 @@
   :group 'jcs)
 (defvar jcs--feebleline--separator-face 'jcs--feebleline--separator-face)
 
-(defface jcs--feebleline-read-only--enabled-face
+(defface jcs--feebleline--read-only-enabled-face
   '((t (:foreground "#FF0000")))
   "Ready only symbol face when active.."
   :group 'jcs)
-(defvar jcs--feebleline-read-only--enabled-face 'jcs--feebleline-read-only--enabled-face)
+(defvar jcs--feebleline--read-only-enabled-face 'jcs--feebleline--read-only-enabled-face)
 
-(defface jcs--feebleline-read-only--disabled-face
+(defface jcs--feebleline--read-only-disabled-face
   '((t (:foreground "#00FF00")))
   "Ready only symbol face when deactive."
   :group 'jcs)
-(defvar jcs--feebleline-read-only--disabled-face 'jcs--feebleline-read-only--disabled-face)
+(defvar jcs--feebleline--read-only-disabled-face 'jcs--feebleline--read-only-disabled-face)
 
-(defface jcs--feebleline-lsp--connect-face
+(defface jcs--feebleline--lsp-connect-face
   '((t (:foreground "#6DDE6D")))
   "Face when LSP is active."
   :group 'jcs)
-(defvar jcs--feebleline-lsp--connect-face 'jcs--feebleline-lsp--connect-face)
+(defvar jcs--feebleline--lsp-connect-face 'jcs--feebleline--lsp-connect-face)
 
-(defface jcs--feebleline-lsp--disconnect-face
+(defface jcs--feebleline--lsp-disconnect-face
   '((t (:foreground "#FF7575")))
   "Face when LSP is inactive."
   :group 'jcs)
-(defvar jcs--feebleline-lsp--disconnect-face 'jcs--feebleline-lsp--disconnect-face)
+(defvar jcs--feebleline--lsp-disconnect-face 'jcs--feebleline--lsp-disconnect-face)
 
-(defface jcs--feebleline-vc--info-face
+(defface jcs--feebleline--project-name-face
+  '((t (:foreground "#F26D55")))
+  "Face for project name."
+  :group 'jcs)
+(defvar jcs--feebleline--project-name-face 'jcs--feebleline--project-name-face)
+
+(defface jcs--feebleline--vc-info-face
   '((t (:foreground "#F26D55")))
   "Face for Version Control information."
   :group 'jcs)
-(defvar jcs--feebleline-vc--info-face 'jcs--feebleline-vc--info-face)
+(defvar jcs--feebleline--vc-info-face 'jcs--feebleline--vc-info-face)
 
 
 (defun jcs--feebleline--prepare ()
@@ -84,8 +90,8 @@
                 (propertize "::" 'face jcs--feebleline--separator-face)
                 (propertize (if lsp-connected "connect" "disconnect")
                             'face (if lsp-connected
-                                      jcs--feebleline-lsp--connect-face
-                                    jcs--feebleline-lsp--disconnect-face))
+                                      jcs--feebleline--lsp-connect-face
+                                    jcs--feebleline--lsp-disconnect-face))
                 (propertize "]" 'face jcs--feebleline--separator-face)))
     ""))
 
@@ -94,8 +100,8 @@
   (if jcs-feebleline-show-symbol-read-only
       (propertize jcs-feebleline--read-only-symbol
                   'face (if buffer-read-only
-                            jcs--feebleline-read-only--enabled-face
-                          jcs--feebleline-read-only--disabled-face))
+                            jcs--feebleline--read-only-enabled-face
+                          jcs--feebleline--read-only-disabled-face))
     ""))
 
 (defun jcs--feebleline--major-mode ()
@@ -122,18 +128,21 @@
 (defun jcs--feebleline--project-name-&-vc-info ()
   "Feebleline project name and version control information."
   (if jcs-feebleline-show-project-name-&-vc-info
-      (let ((valid-project-name-p (and jcs--project-name (buffer-file-name)))
-            (valid-vc-p (and jcs--vc-current-vc-name jcs--vc-current-branch-name)))
+      (let* ((valid-project-name-p (and jcs--project-name (buffer-file-name)))
+             (valid-vc-p (and jcs--vc-current-vc-name jcs--vc-current-branch-name))
+             (project-name (if valid-project-name-p
+                               (file-name-nondirectory (directory-file-name jcs--project-name))
+                             "")))
         (if (and valid-project-name-p valid-vc-p)
             (format " %s%s%s %s%s%s%s"
                     ;; Project Name
                     (propertize "<" 'face jcs--feebleline--separator-face)
-                    (file-name-nondirectory (directory-file-name jcs--project-name))
+                    (propertize project-name 'face jcs--feebleline--project-name-face)
                     (propertize "," 'face jcs--feebleline--separator-face)
                     ;; VC info
-                    (propertize (symbol-name jcs--vc-current-vc-name) 'face jcs--feebleline-vc--info-face)
+                    (propertize (symbol-name jcs--vc-current-vc-name) 'face jcs--feebleline--vc-info-face)
                     (propertize "-" 'face jcs--feebleline--separator-face)
-                    (propertize jcs--vc-current-branch-name 'face jcs--feebleline-vc--info-face)
+                    (propertize jcs--vc-current-branch-name 'face jcs--feebleline--vc-info-face)
                     (propertize ">" 'face jcs--feebleline--separator-face))
           ""))
     ""))
