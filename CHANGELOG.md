@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-06-27
+
+* Added more Unreal C++ template files.
+* Added ask for Unreal C++ file type when creating Unreal C++ file in `c++-mode`.
+* Added customize face for `feebleline`'s project name.
+* Fixed `c` and `c++` extension using `regex` constant check.
+
 ### 2020-06-25
 
 * Installed new package manually `transwin`.
