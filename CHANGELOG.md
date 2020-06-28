@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-06-28
+
+* Implemented create parent directory when find file not found.
+* Implemented remove virtual parent directory when killing virtual buffer.
+
 ### 2020-06-27
 
 * Added more Unreal C++ template files.
