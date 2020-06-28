@@ -128,6 +128,47 @@
        t))))
 (electric-pair-mode 1)
 
+;;; Find File
+
+(defvar jcs-current-created-parent-dir-path nil
+  "Globally record the virutally created parent dir path.")
+
+(defvar-local jcs-created-parent-dir-path nil
+  "Record down the created parent directory path.")
+
+(defun jcs--find-starting-not-exists-dir-path (path &optional d-f)
+  "Return the not exists directory path by PATH; D-F is optional default directory."
+  (require 'f) (require 's)
+  (unless d-f (setq d-f default-directory))
+  (let* ((virtual-path (s-replace d-f "" path))
+         (split-paths (f-split virtual-path)) (split-path-item "")
+         (prev-path (f-slash d-f)) (test-path prev-path)
+         (index 0) (break-it nil)
+         (result-path nil))
+    (while (and (< index (length split-paths)) (not break-it))
+      (setq split-path-item (nth index split-paths))
+      (setq test-path (f-slash (f-join test-path split-path-item)))
+      (unless (file-directory-p test-path)
+        (setq result-path prev-path)
+        (setq break-it t))
+      (setq prev-path test-path)
+      (setq index (1+ index)))
+    (unless result-path (setq result-path prev-path))
+    (f-slash result-path)))
+
+(defun jcs-create-non-existent-directory ()
+  "Create the parent directory if not exists."
+  (let* ((current-d-f default-directory)
+         (parent-directory (file-name-directory buffer-file-name))
+         (non-virtual-path (jcs--find-starting-not-exists-dir-path parent-directory))
+         (created-path (s-replace non-virtual-path "" parent-directory)))
+    (when (and (not (file-exists-p parent-directory))
+               (y-or-n-p (format "Directory '%s' does not exist! Create it?" parent-directory)))
+      (make-directory parent-directory t)
+      (setq jcs-current-created-parent-dir-path created-path))))
+
+(add-to-list 'find-file-not-found-functions #'jcs-create-non-existent-directory)
+
 ;;; Font Size
 (defconst jcs-default-font-size 160
   "Default font size, the value is in 1/10pt, so 100 will give you 10pt, etc.")
