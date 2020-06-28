@@ -851,6 +851,7 @@ REGEXP : reqular expression use to align."
 (defun jcs-save-buffer ()
   "Save buffer wrapper."
   (interactive)
+  (setq jcs-created-parent-dir-path nil)
   (let ((jcs--no-advice-other-window t)
         (modified (buffer-modified-p))
         (readable (file-readable-p (buffer-file-name)))
@@ -984,6 +985,13 @@ NO-RECORD and FORCE-SAME-WINDOW are the same as switch to buffer arguments."
 (defun jcs-kill-this-buffer ()
   "Kill this buffer."
   (interactive)
+  (when jcs-created-parent-dir-path  ; Remove virtual parent directory.
+    (let* ((topest-dir (nth 0 (f-split jcs-created-parent-dir-path)))
+           (create-dir (s-replace jcs-created-parent-dir-path "" default-directory))
+           (del-path (f-slash (concat create-dir topest-dir))))
+      (delete-directory del-path)
+      (message "Remove parent directory that were virtual => '%s'" del-path)))
+
   (kill-this-buffer)
 
   ;; Refresh buffer menu once.
