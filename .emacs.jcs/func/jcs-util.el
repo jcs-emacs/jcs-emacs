@@ -701,8 +701,12 @@ BND-PT : boundary point."
   (thing-at-point 'word))
 
 (defun jcs-current-word-equal-p (str)
-  "Check the current word equal to 'STR'."
-  (string= (thing-at-point 'word) str))
+  "Check the current word equal to STR, STR can be a list of string."
+  (cond ((stringp str)
+         (string= (thing-at-point 'word) str))
+        ((listp str)
+         (jcs-is-contain-list-string str (thing-at-point 'word)))
+        (t nil)))
 
 (defun jcs-first-backward-word ()
   "Find out the first backward word from the current cursor position."
