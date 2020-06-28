@@ -8,8 +8,7 @@
 NOT-OW : Default is other window, not other window."
   (interactive)
   (require 'f)
-  (let ((buf-str "")
-        (default-directory default-directory))
+  (let ((buf-str "") (default-directory default-directory))
     (if filepath
         (progn
           (setq buf-str (jcs-get-string-from-file filepath))
@@ -28,14 +27,11 @@ NOT-OW : Default is other window, not other window."
         (unless (jcs-is-end-of-buffer-p)
           (forward-char 2)
           (let ((start-ch (jcs-get-current-char-string))
-                (start-pt (point))
-                (end-pt -1)
+                (start-pt (point)) (end-pt -1)
                 (url-path "")
                 (relative-ulr-path t))
             (save-excursion
-              (when (or (jcs-current-word-equal-p "http")
-                        (jcs-current-word-equal-p "https")
-                        (jcs-current-word-equal-p "file"))
+              (when (jcs-current-word-equal-p '("http" "https" "file"))
                 (setq relative-ulr-path nil)))
             (when relative-ulr-path
               (jcs-move-to-forward-a-char start-ch)
