@@ -57,6 +57,9 @@
 
 (defun jcs--find-file--advice-after (&rest _args)
   "Advice execute after `find-file' command."
+  (when jcs-current-created-parent-dir-path
+    (setq jcs-created-parent-dir-path jcs-current-created-parent-dir-path)
+    (setq jcs-current-created-parent-dir-path nil))
   (jcs--neotree-start-refresh)
   (jcs-buffer-menu-safe-refresh)
   (jcs-dashboard-safe-refresh-buffer))
