@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-06-29
+
+* Relocated Unreal C++ template files.
+
 ### 2020-06-28
 
 * Implemented create parent directory when find file not found.
