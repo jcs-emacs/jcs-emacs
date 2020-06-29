@@ -194,19 +194,19 @@ in order to take effect.  Half hot reloading process."
 
 (defun jcs-insert-c++-unreal-header-template--actor ()
   "Header for Unreal C++ header file with actor type."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/c++/header_unreal_actor.txt"))
+  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/c++/unreal/header_actor.txt"))
 
 (defun jcs-insert-c++-unreal-source-template--actor ()
   "Header for Unreal C++ source file with actor type."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/c++/source_unreal_actor.txt"))
+  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/c++/unreal/source_actor.txt"))
 
 (defun jcs-insert-c++-unreal-header-template--other ()
   "Header for Unreal C++ header file with other type."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/c++/header_unreal_other.txt"))
+  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/c++/unreal/header_other.txt"))
 
 (defun jcs-insert-c++-unreal-source-template--other ()
   "Header for Unreal C++ source file with other type."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/c++/source_unreal_other.txt"))
+  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/c++/unreal/source_other.txt"))
 
 ;;; C#
 (defun jcs-insert-csharp-template ()
