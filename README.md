@@ -1,4 +1,4 @@
-gi<p align="center">
+<p align="center">
   <img src="./etc/logo/logo-shadow.png" width="500" height="253"/>
 </p>
 
