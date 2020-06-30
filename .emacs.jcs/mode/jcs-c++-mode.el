@@ -28,16 +28,16 @@
     (cond ((string= type "Actor")
            (jcs-insert-header-if-valid header-ext 'jcs-insert-c++-unreal-header-template--actor)
            (jcs-insert-header-if-valid source-ext 'jcs-insert-c++-unreal-source-template--actor))
-          ((string= type "Other")
-           (jcs-insert-header-if-valid header-ext 'jcs-insert-c++-unreal-header-template--other)
-           (jcs-insert-header-if-valid source-ext 'jcs-insert-c++-unreal-source-template--other)))))
+          ((string= type "ActorComponent")
+           (jcs-insert-header-if-valid header-ext 'jcs-insert-c++-unreal-header-template--actor-component)
+           (jcs-insert-header-if-valid source-ext 'jcs-insert-c++-unreal-source-template--actor-component)))))
 
 (defun jcs-c++-ask-unreal-source-type (type)
   "Ask the source TYPE for Unreal C++ file."
   (interactive
    (list (completing-read
           "Type of Unreal C++ file: " '("Actor"
-                                        "Other"))))
+                                        "ActorComponent"))))
   (jcs-c++-unreal-insert-header type))
 
 ;;;###autoload
