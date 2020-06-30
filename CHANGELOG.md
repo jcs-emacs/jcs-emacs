@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-06-30
+
+* Ranmed template files with language prefix.
+* Changed `Other` option to `ActorComponent` for proper naming when creating Unreal C++ file.
+
 ### 2020-06-29
 
 * Relocated Unreal C++ template files.
