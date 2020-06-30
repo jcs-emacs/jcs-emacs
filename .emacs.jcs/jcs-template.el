@@ -194,19 +194,19 @@ in order to take effect.  Half hot reloading process."
 
 (defun jcs-insert-c++-unreal-header-template--actor ()
   "Header for Unreal C++ header file with actor type."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/c++/unreal/header_actor.txt"))
+  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/c++/unreal/actor/header.txt"))
 
 (defun jcs-insert-c++-unreal-source-template--actor ()
   "Header for Unreal C++ source file with actor type."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/c++/unreal/source_actor.txt"))
+  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/c++/unreal/actor/source.txt"))
 
-(defun jcs-insert-c++-unreal-header-template--other ()
+(defun jcs-insert-c++-unreal-header-template--actor-component ()
   "Header for Unreal C++ header file with other type."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/c++/unreal/header_other.txt"))
+  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/c++/unreal/actor-component/header.txt"))
 
-(defun jcs-insert-c++-unreal-source-template--other ()
+(defun jcs-insert-c++-unreal-source-template--actor-component ()
   "Header for Unreal C++ source file with other type."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/c++/unreal/source_other.txt"))
+  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/c++/unreal/actor-component/source.txt"))
 
 ;;; C#
 (defun jcs-insert-csharp-template ()
@@ -334,27 +334,27 @@ in order to take effect.  Half hot reloading process."
 
 (defun jcs-insert-makefile-cc-app-template ()
   "Default makefile template for normal application."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/makefile/cc_app.txt"))
+  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/makefile/cc/app.txt"))
 
 (defun jcs-insert-makefile-cc-lib-template ()
   "Library makefile template for static library or shared library."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/makefile/cc_lib.txt"))
+  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/makefile/cc/lib.txt"))
 
 (defun jcs-insert-makefile-java-app-template ()
   "Template for makefile Java application."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/makefile/java_app.txt"))
+  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/makefile/java/app.txt"))
 
 (defun jcs-insert-makefile-java-lib-template ()
   "Template for makefile Java library."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/makefile/java_lib.txt"))
+  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/makefile/java/lib.txt"))
 
 (defun jcs-insert-makefile-python-app-template ()
   "Template for makefile Python application."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/makefile/python_app.txt"))
+  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/makefile/python/app.txt"))
 
 (defun jcs-insert-makefile-python-lib-template ()
   "Template for makefile Python library."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/makefile/python_lib.txt"))
+  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/makefile/python/lib.txt"))
 
 ;;; Object Pascal (Delphi)
 (defun jcs-insert-opascal-template ()
