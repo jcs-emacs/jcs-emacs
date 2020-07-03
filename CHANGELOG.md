@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-07-03
 
 * Added new target to diminish buffer list, `*Apropos*`.
+* Installed new package `ialign`.
 
 ### 2020-06-30
 
