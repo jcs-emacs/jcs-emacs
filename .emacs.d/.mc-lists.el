@@ -143,6 +143,7 @@
         centaur-tabs-forward
         counsel-M-x
         counsel-find-file
+        diminish-buffer-mode
         emmet-prev-edit-point
         feebleline-mode
         helm-M-x
@@ -201,6 +202,7 @@
         jcs-run-without-asking
         jcs-same-file-other-window
         jcs-save-buffer
+        jcs-scratch-buffer
         jcs-scratch-buffer-maybe-kill
         jcs-scratch-buffer-other-window
         jcs-scroll-down-one-line
@@ -219,6 +221,7 @@
         mouse-set-region
         move-text-down
         move-text-up
+        neotree-toggle
         package-list-packages
         rainbow-mode
         read-only-mode
