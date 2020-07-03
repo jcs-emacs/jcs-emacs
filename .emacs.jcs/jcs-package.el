@@ -99,6 +99,7 @@
     highlight-indent-guides
     hl-todo
     htmltagwrap
+    ialign
     iedit
     indicators
     ini-mode
