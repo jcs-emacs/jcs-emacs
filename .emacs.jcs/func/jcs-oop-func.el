@@ -30,14 +30,14 @@
     (dolist (mode oop-highlight-modes)
       (font-lock-add-keywords
        mode
-       '(("\\(?:^\\|\\s-\\)\\(@[^ \"'{}()\t\r\n]+\\)" 1 'jcs-oop-tag-face t)
-         ("@[^ \t\r\n]+\\(?:^\\|\\s-\\)\\([\\[{][^\]}]*.\\)" 1 'jcs-oop-type-face t)
-         ;; NOTE: Doc String Style:
-         ;; @param { TypeName } `ValueTag' : value tag description..
-         ("@[^ \t\r\n].*[\]\|}]\\([^\r\n]*\\)[:-]" 1 'jcs-oop-value-face t)
-         ;; NOTE: Doc String Style:
-         ;; @param `ValueTag' : value tag description..
-         ("@[^ \t\r\n]*[ \t]*\\([a-zA-Z0-9_.*&]*\\)[ \t\n]*[{:-]" 1 'jcs-oop-value-face t))
+       '(;; `@param` { typename } val-tag : value tag description..
+         ("\\(?:^\\|\\s-\\)\\(@[^ \"'{}()\t\r\n]+\\)" 1 'jcs-oop-tag-face t)
+         ;; @param `{ typename }` val-tag : value tag description..
+         ("[ \t]+@[^ \t\r\n]+\\(?:^\\|\\s-\\)\\([\\[{][^\]}]*.\\)" 1 'jcs-oop-type-face t)
+         ;; @param { typename } `val-tag` : value tag description..
+         ("[ \t]+@[^ \t\r\n].*[\]\|}]\\([^\r\n]*\\)[:-]" 1 'jcs-oop-value-face t)
+         ;; @param `val-tag` : value tag description..
+         ("[ \t]+@[^ \t\r\n]*[ \t]*\\([a-zA-Z0-9_.*&]*\\)[ \t\n]*[{:-]" 1 'jcs-oop-value-face t))
        'end))))
 
 
@@ -286,12 +286,11 @@ SR-OP is the boundary of the search limit."
         (let ((end-function-point nil) (word-index 0))
           (save-excursion
             (save-window-excursion
-              ;; NOTE: Find closing parenthesis instead
-              ;; of search for a line will make this support
-              ;; multi-line doc-string.
+              ;; NOTE: Find closing parenthesis instead of search for a line
+              ;; will make this support multi-line doc-string.
               ;;
-              ;; Goto beginning of line to prevent if we miss
-              ;; any closing parenthesis before the point.
+              ;; Goto beginning of line to prevent if we miss any closing
+              ;; parenthesis before the point.
               (beginning-of-line)
 
               (let ((tmp-current-point (point)))
@@ -299,12 +298,10 @@ SR-OP is the boundary of the search limit."
                 (jcs-move-to-forward-a-char sr-op)
 
                 ;; Check if we did move the point?
-                ;; If the recorded point is the same as
-                ;; the current point, which mean the cursor
-                ;; did not move at all.
+                ;; If the recorded point is the same as the current point, which
+                ;; mean the cursor did not move at all.
                 ;;
-                ;; If that is the case, use the default one which
-                ;; is the new line.
+                ;; If that is the case, use the default one which is the new line.
                 (when (or (= tmp-current-point (point))
                           (jcs-empty-line-between-point tmp-current-point (point)))
                   ;; back to where we were.
@@ -312,14 +309,14 @@ SR-OP is the boundary of the search limit."
                   ;; Default to new line.
                   (jcs-move-to-forward-a-char "[\r\n]")))
 
-              ;; After moved to the closing parenthesis, record
-              ;; down the point's position.
+              ;; After moved to the closing parenthesis, record down the point's
+              ;; position.
               (setq end-function-point (1- (point)))))
 
           (beginning-of-line)
 
-          ;; Get the search string after we found `end-function-point' and
-          ;; back to searching point.
+          ;; Get the search string after we found `end-function-point' and back
+          ;; to searching point.
           (setq search-string (string-trim (buffer-substring (point) end-function-point)))
           ;; Replace line breaks to space.
           (setq search-string (s-replace "\n" " " search-string)))))
