@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-07-04
 
 * Updated `transwin` package from `quelpa` to `melpa`.
+* Fixed oop highlighting from docstring type.
 
 ### 2020-07-03
 
