@@ -96,11 +96,9 @@ Return nil, if is NOT a global comment docstring."
 
       (unless start-of-global-comment-doc-p
         (unless (jcs-is-global-comment-doc-p)
-          (let (;; Check if the next line is the doc string
-                ;; comment line.
+          (let (;; Check if the next line is the doc string comment line.
                 (is-next-line-doc-string-comment-line nil)
-                ;; When we break a line and there are still
-                ;; some content on the right.
+                ;; When we break a line and there are still some content on the right.
                 (line-have-content-on-right nil))
             (cond
              ((jcs-is-current-major-mode-p "csharp-mode")
@@ -135,8 +133,7 @@ Return nil, if is NOT a global comment docstring."
                     (when (and prev-line-vs-prefix next-line-vs-prefix)
                       (setq is-next-line-doc-string-comment-line t)))))
 
-              ;; Is doc-string comment line. Insert
-              ;; doc-string comment.
+              ;; Is doc-string comment line. Insert doc-string comment.
               (when is-next-line-doc-string-comment-line
                 (insert "/// ")))
              ((jcs-is-current-major-mode-p "lua-mode")

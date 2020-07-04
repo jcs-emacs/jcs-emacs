@@ -328,8 +328,7 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
   (let (kill-ring)
     (if (use-region-p)
         (jcs-delete-region)
-      (let (;; Record down the column before
-            ;; killing the whole line.
+      (let (;; Record down the column before killing the whole line.
             (before-column-num (current-column)))
 
         ;; Do kill the whole line!
@@ -338,8 +337,8 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
                            (line-end-position)
                          (1+ (line-end-position))))
 
-        ;; Goto the same column as before we do the killing
-        ;; the whole line operations above.
+        ;; Goto the same column as before we do the killing the whole line
+        ;; operations above.
         (move-to-column before-column-num)))))
 
 ;;;###autoload
@@ -547,11 +546,9 @@ This command does not push text to `kill-ring'."
   (interactive)
   (save-excursion
     (let (;; NOTE: this is the most common one.
-          ;; Compatible to all programming languages use equal
-          ;; sign to assign value.
+          ;; Compatible to all programming languages use equal sign to assign value.
           (align-regexp-string-code "\\(\\s-*\\)[=]")
-          ;; NOTE: Default support `//' and `/**/'
-          ;; comment symbols.
+          ;; NOTE: Default support `//' and `/**/' comment symbols.
           (align-regexp-string-comment "\\(\\s-*\\) /[/*]")
           (pnt-min nil)
           (pnt-max nil))
@@ -585,14 +582,12 @@ This command does not push text to `kill-ring'."
             ;; Align code segment.
             (jcs-align-region align-regexp-string-code)
 
-            (when (> (point) pnt-min)
-              (setq pnt-max (point))))
+            (when (> (point) pnt-min) (setq pnt-max (point))))
         ;; NOTE: Align whole document.
         (jcs-align-document align-regexp-string-code)
 
-        ;; NOTE: These assigns does nothing for now.
-        ;; Just in case we dont apply weird value, assign
-        ;; default document info.
+        ;; NOTE: These assigns does nothing for now. Just in case we dont apply
+        ;; weird value, assign default document info.
         (setq pnt-min (point-min))
         (setq pnt-max (point-max)))
 
@@ -633,8 +628,8 @@ REGEXP : reqular expression use to align."
   (save-window-excursion
     (dolist (buf (buffer-list))
       (let ((filename (buffer-file-name buf)))
-        ;; Revert only buffers containing files, which are not modified;
-        ;; do not try to revert non-file buffers like *Messages*.
+        ;; Revert only buffers containing files, which are not modified; do not try
+        ;; to revert non-file buffers like *Messages*.
         (when (and filename
                    (not (buffer-modified-p buf))
                    (not (jcs-is-current-file-empty-p buf)))
@@ -1021,11 +1016,11 @@ ECP-SAME : Exception for the same buffer."
                  (not ecp-same))
         (jcs-bury-buffer)
 
-        ;; If is something from default Emacs's buffer,
-        ;; switch back to previous buffer once again.
+        ;; If is something from default Emacs's buffer, switch back to previous
+        ;; buffer once again.
         ;;
-        ;; This will solve if there is only one file opened,
-        ;; and switch to none sense buffer issue.
+        ;; This will solve if there is only one file opened, and switch to none
+        ;; sense buffer issue.
         ;;
         ;; None sense buffer or Emacs's default buffer is
         ;;   -> *GNU Emacs*
@@ -1055,15 +1050,15 @@ ECP-SAME : Exception for the same buffer."
 
 ;;;###autoload
 (defun jcs-backward-delete-current-char-repeat ()
-  "Delete the current character repeatedly, util it meet the \
-character is not the same as current char.  (Backward)"
+  "Delete the current character repeatedly, util it meet the character is not \
+the same as current char.  (Backward)"
   (interactive)
   (jcs-delete-char-repeat (jcs-get-current-char-string) t))
 
 ;;;###autoload
 (defun jcs-forward-delete-current-char-repeat ()
-  "Delete the current character repeatedly, util it meet the \
-character is not the same as current char.  (Forward)"
+  "Delete the current character repeatedly, util it meet the character is not \
+the same as current char.  (Forward)"
   (interactive)
   (jcs-delete-char-repeat (jcs-get-current-char-string) nil))
 
@@ -1108,8 +1103,7 @@ REVERSE : t forward, nil backward."
 
 (defun jcs-find-end-char (end-char preserve-point)
   "Find the END-CHAR with PRESERVE-POINT."
-  (let ((inhibit-message t)
-        (end-point nil))
+  (let ((inhibit-message t) (end-point nil))
     (jcs-move-to-forward-a-char-do-recursive end-char nil)
 
     ;; If failed search forward end character..
@@ -1158,8 +1152,8 @@ REVERSE : t forward, nil backward."
 
           (forward-char 1))
 
-        ;; If nested level is lower than 0, meaning is not between
-        ;; the nested START-CHAR and END-CHAR.
+        ;; If nested level is lower than 0, meaning is not between the nested
+        ;; START-CHAR and END-CHAR.
         (<= nested-level 0)))))
 
 (defun jcs-delete-between-char (start-char end-char)
@@ -1519,8 +1513,7 @@ CC : Current character at position."
   (if (use-region-p)
       (jcs-delete-region)
     (if (and (jcs-is-inside-string-p)
-             (not (jcs-current-char-equal-p "\""))
-             (not (jcs-current-char-equal-p "'")))
+             (not (jcs-current-char-equal-p '("\"" "'"))))
         (jcs-own-delete-backward-char)
       (let* ((cc (jcs-get-current-char-string))
              (cpc (jcs-get-close-pair-char cc)))

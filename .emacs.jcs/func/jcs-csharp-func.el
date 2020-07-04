@@ -33,15 +33,13 @@ comment prefix only."
       only-comment-this-line)))
 
 (defun jcs-vs-csharp-do-doc-string ()
-  "Check if should insert the doc string by checking only comment character \
+  "Check if should insert the doc string by checking only comment characters \
 on the same line."
   (let ((do-doc-string t))
     (jcs-goto-first-char-in-line)
     (while (not (jcs-is-end-of-line-p))
       (forward-char 1)
-      (when (and (not (jcs-current-char-equal-p " "))
-                 (not (jcs-current-char-equal-p "\t"))
-                 (not (jcs-current-char-equal-p "/")))
+      (unless (jcs-current-char-equal-p '(" " "\t" "/"))
         ;; return false.
         (setq do-doc-string nil)))
     ;; return true.
@@ -65,7 +63,6 @@ on the same line."
       ;; check if next line empty.
       (jcs-next-line)
       (unless (jcs-current-line-empty-p) (setq next-line-not-empty t)))
-
 
     (when (and active-comment next-line-not-empty)
       (insert " <summary>\n")
