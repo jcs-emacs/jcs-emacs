@@ -84,7 +84,6 @@
         jcs-org-table-left
         jcs-org-table-right
         jcs-org-table-up
-        jcs-overwrite-mode
         jcs-previous-line
         jcs-py-indent-down
         jcs-py-indent-region
@@ -222,6 +221,7 @@
         move-text-down
         move-text-up
         neotree-toggle
+        overwrite-mode
         package-list-packages
         rainbow-mode
         read-only-mode
