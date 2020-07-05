@@ -254,13 +254,15 @@ POWER-AC-LST : powerline active list.  POWER-INAC-LST : powerline inactive list.
   (load-theme 'vs-dark t)
   (jcs-set-theme "#40FF40" "midnight blue"))
 
+(defun jcs-is-light-theme-p ()
+  "Check if current theme light theme, or else is dark theme."
+  (jcs-is-light-color (face-background 'default)))
+
 ;;;###autoload
 (defun jcs-refresh-theme ()
   "Refresh theme."
   (interactive)
-  (if (jcs-is-light-color (face-background 'default))
-      (jcs-vs-light-theme)
-    (jcs-vs-dark-theme)))
+  (if (jcs-is-light-theme-p) (jcs-vs-light-theme) (jcs-vs-dark-theme)))
 
 ;;;###autoload
 (defun jcs-setup-default-theme ()
