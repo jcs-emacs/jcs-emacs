@@ -296,26 +296,12 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
   (setq jcs--marking-whole-buffer-p t))
 
 ;;----------------------------------------------------------------------------
-;; Overwrite (Insert toggle)
+;; Overwrite
 
-;;;###autoload
-(defun jcs-overwrite-mode ()
-  "Wrap insert key with cursor changed."
-  (interactive)
-
-  ;; Toggle overwrite mode
-  (call-interactively #'overwrite-mode)
-
-  ;;;
-  ;; Cursor Type
-  ;;   -> box
-  ;;   -> hollow
-  ;;   -> bar
-  ;;   -> hbar
-
-  (if overwrite-mode
-      (setq-local cursor-type 'hbar)
-    (setq-local cursor-type 'box)))
+(defun jcs--overwrite-mode--advice-after (&rest _args)
+  "Advice execute after `overwrite-mode' command."
+  (setq-local cursor-type (if overwrite-mode 'hbar 'box)))
+(advice-add 'overwrite-mode :after #'jcs--overwrite-mode--advice-after)
 
 ;;----------------------------------------------------------------------------
 ;; Kill Line
