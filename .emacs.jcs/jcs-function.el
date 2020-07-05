@@ -141,7 +141,7 @@
 
 (defun jcs-reset-ahs-by-theme ()
   "Reset `auto-highlight-symbol' by theme."
-  (if (jcs-is-light-color (face-background 'default))
+  (if (jcs-is-light-theme-p)
       (jcs--ahs--set-face "#E2E6D6" "#525D68"
                           "#DDE2CD" "#525D68")
     (jcs--ahs--set-face "#123E70" "#525D68"
@@ -320,13 +320,13 @@ OW is the other window flag."
 (defun jcs-reset-dashboard-banner-by-theme ()
   "Reset dashboard banner."
   (interactive)
-  (if (jcs-is-light-color (face-background 'default))
+  (if (jcs-is-light-theme-p)
       (setq dashboard-startup-banner "~/.emacs.jcs/banner/sink_black.png")
     (setq dashboard-startup-banner "~/.emacs.jcs/banner/sink_white.png"))
   (let ((logo-title-fg "cyan1")
         (heading-fg "#17A0FB")
         (wb-fg "light steel blue"))
-    (when (jcs-is-light-color (face-background 'default))
+    (when (jcs-is-light-theme-p)
       (setq logo-title-fg "#616161")
       (setq heading-fg "#727272")
       (setq wb-fg "#1475B7"))
@@ -804,7 +804,7 @@ NO-PROMPT : Don't prompt the overwrap message."
   "Reset yascroll color base on the theme color."
   (interactive)
   (let ((target-color "#424242"))
-    (when (jcs-is-light-color (face-background 'default))
+    (when (jcs-is-light-theme-p)
       (setq target-color "#C1C1C1"))
     (set-face-attribute 'yascroll:thumb-fringe
                         nil
