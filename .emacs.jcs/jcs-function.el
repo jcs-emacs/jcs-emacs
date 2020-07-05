@@ -260,8 +260,7 @@
 OW is the other window flag."
   (interactive)
   (jcs-switch-to-buffer dashboard-buffer-name ow)
-  (unless (jcs-is-current-major-mode-p "dashboard-mode")
-    (dashboard-mode))
+  (unless (jcs-is-current-major-mode-p "dashboard-mode") (dashboard-mode))
   (jcs-dashboard-refresh-buffer))
 
 ;;;###autoload
