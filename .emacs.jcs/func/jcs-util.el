@@ -166,13 +166,11 @@ If REGEX is non-nil, check by using regular expression."
 
 (defun jcs-is-light-color (hex-code)
   "Check if the HEX-CODE' light color."
-  (and (display-graphic-p)
-       (jcs--is-light-color-internal hex-code)))
+  (and (display-graphic-p) (jcs--is-light-color-internal hex-code)))
 
 (defun jcs-is-dark-color (hex-code)
   "Check if the HEX-CODE dark color."
-  (and (display-graphic-p)
-       (not (jcs-is-light-color hex-code))))
+  (and (display-graphic-p) (not (jcs-is-light-color hex-code))))
 
 ;;----------------------------------------------------------------------------
 ;; Error
