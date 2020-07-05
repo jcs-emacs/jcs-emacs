@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-07-05
 
 * Use add advice to `overwrite-mode` instead of function wrapper.
+* Changed `multiple-cursors`'s fake cursors when `overwrite-mode` is on/off.
 
 ### 2020-07-04
 
