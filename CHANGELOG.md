@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-07-05
+
+* Use add advice to `overwrite-mode` instead of function wrapper.
+
 ### 2020-07-04
 
 * Updated `transwin` package from `quelpa` to `melpa`.
