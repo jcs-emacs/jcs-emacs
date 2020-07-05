@@ -11,7 +11,7 @@
 
 (defun jcs-reset-common-faces-by-theme ()
   "Reset comment faces case on the theme."
-  (if (jcs-is-light-color (face-background 'default))
+  (if (jcs-is-light-theme-p)
       (progn
         (jcs--set-common-face 'font-lock-builtin-face "light steel blue")
         (jcs--set-common-face 'font-lock-comment-face "olive drab")
