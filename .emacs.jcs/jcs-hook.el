@@ -41,8 +41,7 @@
 (defun jcs-find-file-hook ()
   "Find file hook."
   (unless (jcs-reload-emacs-reloading-p)
-    (when (and (jcs-is-contain-list-string jcs-find-file-read-only-paths
-                                           (buffer-file-name))
+    (when (and (jcs-is-contain-list-string jcs-find-file-read-only-paths (buffer-file-name))
                (not jcs-package-installing))
       (read-only-mode 1))
     (jcs-active-line-numbers-by-mode)))
