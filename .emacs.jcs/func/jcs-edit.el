@@ -300,7 +300,12 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
 
 (defun jcs--overwrite-mode--advice-after (&rest _args)
   "Advice execute after `overwrite-mode' command."
-  (setq-local cursor-type (if overwrite-mode 'hbar 'box)))
+  (if overwrite-mode
+      (progn
+        (setq-local cursor-type 'hbar)
+        (set-face-attribute 'mc/cursor-face nil :underline t :inverse-video nil))
+    (setq-local cursor-type 'box)
+    (set-face-attribute 'mc/cursor-face nil :underline nil :inverse-video t)))
 (advice-add 'overwrite-mode :after #'jcs--overwrite-mode--advice-after)
 
 ;;----------------------------------------------------------------------------
