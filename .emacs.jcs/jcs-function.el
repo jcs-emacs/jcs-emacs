@@ -193,7 +193,7 @@
 (defun jcs-buffer-menu-refresh-buffer ()
   "Update buffer menu buffer."
   (interactive)
-  (unless (string= (jcs-buffer-name-or-buffer-file-name) "*Buffer List*")
+  (unless (string= (jcs-buffer-name-or-buffer-file-name) jcs--buffer-menu--buffer-name)
     (save-window-excursion
       (let (tabulated-list--header-string) (jcs-mute-apply #'buffer-menu))
       (when jcs-buffer--menu-switch-buffer-refreshing
@@ -201,7 +201,7 @@
       (bury-buffer)))
   (jcs-walk-through-all-windows-once
    (lambda ()
-     (when (string= "*Buffer List*" (buffer-name))
+     (when (string= jcs--buffer-menu--buffer-name (buffer-name))
        (when (and (jcs--buffer-menu--header-appearing-p) (= (line-number-at-pos) 1))
          (jcs-goto-line 2))))))
 
