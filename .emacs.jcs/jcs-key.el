@@ -385,7 +385,7 @@
 (define-key global-map (kbd "C-k u") #'jcs-open-project-update-log-file)
 
 ;;; Overwrite
-(define-key global-map [insert] #'jcs-overwrite-mode)
+(define-key global-map [insert] #'overwrite-mode)
 
 ;;; Packages
 (define-key global-map (kbd "C-k C-p") #'package-list-packages)
