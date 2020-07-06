@@ -108,6 +108,7 @@
     javadoc-lookup
     js2-mode
     json-mode
+    keypression
     kotlin-mode
     line-reminder
     lsp-java
