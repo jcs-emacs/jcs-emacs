@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-07-06
+
+* Bind eval related keys to global key map.
+
 ### 2020-07-05
 
 * Use add advice to `overwrite-mode` instead of function wrapper.
@@ -1422,7 +1426,7 @@ using `jit-lock-register` function.
 ### 2019-03-28
 
 * Implements `typescript-mode` docstring.
-* Added `Startup Time` section in the `README.md` file for describing the 
+* Added `Startup Time` section in the `README.md` file for describing the
 current condition for using this configuration when starting up Emacs.
 
 ### 2019-03-27
