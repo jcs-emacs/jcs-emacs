@@ -5,6 +5,7 @@
 ;;-------------------------------------------------------------------
 ;; Unset key binding
 
+(global-unset-key (kbd "C-e"))
 (global-unset-key (kbd "C-k"))
 (global-unset-key (kbd "C-p"))
 (global-unset-key (kbd "C-r"))
@@ -231,6 +232,10 @@
 (with-eval-after-load 'esup
   (define-key esup-mode-map (kbd "C-z") #'undo-tree-undo)
   (define-key esup-mode-map (kbd "C-y") #'undo-tree-redo))
+
+;;; Eval
+(define-key global-map (kbd "C-e b") #'eval-buffer)
+(define-key global-map (kbd "C-e r") #'eval-region)
 
 ;;; File Explorer
 (define-key global-map (kbd "C-M-l") #'neotree-toggle)  ; Compatible to `Visual Studio'.
