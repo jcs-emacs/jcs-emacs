@@ -354,6 +354,13 @@ Here is the list of key bindins that defined in this configuration.
   * <kbd>Alt</kbd>+<kbd>h</kbd>, <kbd>v</kbd> - Describe variable.
   * <kbd>Alt</kbd>+<kbd>h</kbd>, <kbd>b</kbd> - Describe bindings.
 
+* **Eval**
+
+  * <kbd>Ctrl</kbd>+<kbd>e</kbd>, <kbd>b</kbd> - Eval buffer.
+  * <kbd>Ctrl</kbd>+<kbd>e</kbd>, <kbd>d</kbd> - Eval defined expression.
+  * <kbd>Ctrl</kbd>+<kbd>e</kbd>, <kbd>e</kbd> - Eval expression.
+  * <kbd>Ctrl</kbd>+<kbd>e</kbd>, <kbd>r</kbd> - Eval region.
+
 ## Package Mode
 
 * <kbd>i</kbd> - Select package to install.
