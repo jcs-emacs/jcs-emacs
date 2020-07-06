@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-07-06
 
 * Bind eval related keys to global key map.
+* Installed new package `keypression`.
 
 ### 2020-07-05
 
