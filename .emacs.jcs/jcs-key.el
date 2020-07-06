@@ -235,6 +235,8 @@
 
 ;;; Eval
 (define-key global-map (kbd "C-e b") #'eval-buffer)
+(define-key global-map (kbd "C-e d") #'eval-defun)
+(define-key global-map (kbd "C-e e") #'eval-expression)
 (define-key global-map (kbd "C-e r") #'eval-region)
 
 ;;; File Explorer
