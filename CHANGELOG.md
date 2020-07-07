@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-07-07
+
+* Updated message maximum log limit to 10 times higher than default.
+
 ### 2020-07-06
 
 * Bind eval related keys to global key map.
