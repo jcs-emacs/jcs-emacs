@@ -55,6 +55,12 @@ Note this is opposite logic to the toggle mode function."
   (jcs-red-mode-line)  ; When error, use red mode line.
   (message "[INFO] Oops, error occurs! Please see backtrace for more information"))
 
+(defun jcs-backtrace--ensure-stay-in-buffer ()
+  "Ensure stay in backtrace buffer base on conditions."
+  (let ((backtrace-killed-p (not (get-buffer-window))))
+    (when (or (jcs-backtrace-dedicated-window-p) backtrace-killed-p)
+      (switch-to-buffer "*Backtrace*"))))
+
 (defun jcs-reload-active-mode-with-error-handle ()
   "Reload the active by handling the error occurrence."
   (unless (minibufferp)
@@ -63,9 +69,7 @@ Note this is opposite logic to the toggle mode function."
           (ignore-errors
             (jcs-hit-backtrace)
             (setq jcs-backtrace--occurs-last-command t)
-            (when (or (jcs-backtrace-dedicated-window-p)
-                      (not (get-buffer-window)))
-              (switch-to-buffer "*Backtrace*"))
+            (jcs-backtrace--ensure-stay-in-buffer)
             (unless jcs-backtrace--dedicated-window
               (setq jcs-backtrace--dedicated-window (get-buffer-window "*Backtrace*")))))
       (when jcs-backtrace--occurs-last-command
