@@ -287,18 +287,15 @@
           (jcs--feebleline--line/column :align right)
           (jcs--feebleline--time :align right)))
 
-  (defun jcs-feebleline-terminal-active-p ()
-    "Flag to check if feebleline active in terminal."
-    (and (not (display-graphic-p)) feebleline-mode))
-
   (defun jcs-feebleline-display-mode-line-graphic ()
     "Display feebleline graphic base on the is inside terminal or not."
-    (when (jcs-feebleline-terminal-active-p)
+    (when feebleline-mode
       (jcs-walk-through-all-buffers-once
        (lambda ()
-         (jcs-feebleline-revert-terminal-mode-line)
-         (setq mode-line-format
-               (if (display-graphic-p) nil (jcs--feebleline--mode-line-window-width-string)))))))
+         (if (display-graphic-p)
+             (setq mode-line-format nil)
+           (jcs-feebleline-revert-terminal-mode-line)
+           (setq mode-line-format (jcs--feebleline--mode-line-window-width-string)))))))
 
   (defun jcs-feebleline-revert-terminal-mode-line ()
     "Revert the terminal mode-line when using feebleline."
