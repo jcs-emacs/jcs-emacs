@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-07-07
 
 * Updated message maximum log limit to 10 times higher than default.
+* Added backtrace window/buffer constain rules.
 
 ### 2020-07-06
 
