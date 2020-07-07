@@ -39,8 +39,16 @@ Note this is opposite logic to the toggle mode function."
          ('cross  (jcs-cross-mode))
          ('depend (jcs-depend-mode)))))))
 
-(defvar jcs-mode--backtrace-occurs-last-command nil
+(defvar jcs-backtrace--occurs-last-command nil
   "Check if backtrace occurs last command.")
+
+(defvar jcs-backtrace--dedicated-window nil
+  "Record down backtrace dedicated window.")
+
+(defun jcs-backtrace-dedicated-window-p (&optional win)
+  "Check if WIN the backtrace dedicated window."
+  (unless win (setq win (get-buffer-window)))
+  (equal win jcs-backtrace--dedicated-window))
 
 (defun jcs-hit-backtrace ()
   "Do stuff when backtrace occures."
@@ -52,11 +60,20 @@ Note this is opposite logic to the toggle mode function."
   (unless (minibufferp)
     (if (jcs-backtrace-occurs-p)
         (progn
-          (jcs-hit-backtrace)
-          (setq jcs-mode--backtrace-occurs-last-command t))
-      (when jcs-mode--backtrace-occurs-last-command
+          (ignore-errors
+            (jcs-hit-backtrace)
+            (setq jcs-backtrace--occurs-last-command t)
+            (when (or (jcs-backtrace-dedicated-window-p)
+                      (not (get-buffer-window)))
+              (switch-to-buffer "*Backtrace*"))
+            (unless jcs-backtrace--dedicated-window
+              (setq jcs-backtrace--dedicated-window (get-buffer-window "*Backtrace*")))))
+      (when jcs-backtrace--occurs-last-command
         (jcs-reload-active-mode)
-        (setq jcs-mode--backtrace-occurs-last-command nil)))))
+        (setq jcs-backtrace--occurs-last-command nil)
+        (when (windowp jcs-backtrace--dedicated-window)
+          (ignore-errors (delete-window jcs-backtrace--dedicated-window)))
+        (setq jcs-backtrace--dedicated-window nil)))))
 
 (defun jcs-set-tab-width-by-mode (tw)
   "Set the tab width TW for current major mode."
@@ -388,8 +405,8 @@ Note this is opposite logic to the toggle mode function."
 ;;
 ;; So just put all the startup modes' configuration here.
 
-;;==============================
-;;         Special
+;;============================================================================
+;; Special
 
 (defun jcs-special-mode-hook ()
   "Hook for `special-mode'."
@@ -398,11 +415,11 @@ Note this is opposite logic to the toggle mode function."
 
 (add-hook 'special-mode-hook 'jcs-special-mode-hook)
 
-;;==============================
-;;       Compilation
+;;============================================================================
+;; Compilation
 
 (defun jcs-compilation-mode-hook ()
-  "Compilation mode hook."
+  "Hook for `compilation-mode'."
   (goto-address-mode 1)
   (region-occurrences-highlighter-mode 1)
 
@@ -419,8 +436,8 @@ Note this is opposite logic to the toggle mode function."
 
 (add-hook 'compilation-mode-hook 'jcs-compilation-mode-hook)
 
-;;==============================
-;;       Message Buffer
+;;============================================================================
+;; Message Buffer
 
 (defun jcs-message-buffer-mode-hook ()
   "Hook for `message-buffer-mode'."
@@ -429,8 +446,8 @@ Note this is opposite logic to the toggle mode function."
 
 (add-hook 'messages-buffer-mode-hook 'jcs-message-buffer-mode-hook)
 
-;;==============================
-;;       Tabulated List
+;;============================================================================
+;; Tabulated List
 
 (defun jcs-tabulated-list-mode-hook ()
   "Hook for `tabulated-list-mode'."
@@ -438,8 +455,8 @@ Note this is opposite logic to the toggle mode function."
 
 (add-hook 'tabulated-list-mode-hook 'jcs-tabulated-list-mode-hook)
 
-;;==============================
-;;        Text Mode
+;;============================================================================
+;; Text Mode
 
 (defun jcs-text-mode-hook ()
   "Text mode hook."
@@ -457,8 +474,8 @@ Note this is opposite logic to the toggle mode function."
 
 (add-hook 'text-mode-hook 'jcs-text-mode-hook)
 
-;;==============================
-;;    Programming Mode
+;;============================================================================
+;; Programming Mode
 
 (defun jcs-prog-mode-hook ()
   "Programming language mode hook."
@@ -474,8 +491,8 @@ Note this is opposite logic to the toggle mode function."
 
 (add-hook 'prog-mode-hook 'jcs-prog-mode-hook)
 
-;;==============================
-;;      Emacs Lisp
+;;============================================================================
+;; Emacs Lisp
 
 (defun jcs-emacs-lisp-mode-hook ()
   "Emacs Lisp mode hook."
@@ -488,8 +505,8 @@ Note this is opposite logic to the toggle mode function."
 
 (add-hook 'emacs-lisp-mode-hook 'jcs-emacs-lisp-mode-hook)
 
-;;==============================
-;;          Lisp
+;;============================================================================
+;; Lisp
 
 (defun jcs-lisp-mode-hook ()
   "Lisp mode hook."
@@ -502,8 +519,8 @@ Note this is opposite logic to the toggle mode function."
 
 (add-hook 'lisp-mode-hook 'jcs-lisp-mode-hook)
 
-;;==============================
-;;     Lisp Interaction
+;;============================================================================
+;; Lisp Interaction
 
 (defun jcs-lisp-interaction-mode-hook ()
   "Lisp Interaction mode hook."
@@ -512,8 +529,8 @@ Note this is opposite logic to the toggle mode function."
 
 (add-hook 'lisp-interaction-mode-hook 'jcs-lisp-interaction-mode-hook)
 
-;;==============================
-;;     View
+;;============================================================================
+;; View
 
 (defun jcs-view-mode-hook ()
   "In view mode, read only file."
