@@ -119,13 +119,6 @@
   (with-eval-after-load 'company
     (global-company-fuzzy-mode t)))
 
-(use-package company-lsp
-  :defer t
-  :init
-  (setq company-lsp-cache-candidates 'auto)
-  (with-eval-after-load 'lsp
-    (push 'company-lsp company-backends)))
-
 (use-package company-quickhelp
   :defer t
   :init
@@ -542,6 +535,7 @@
   :defer t
   :init
   (setq lsp-auto-guess-root t)
+  (setq lsp-prefer-capf t)
   (setq lsp-keep-workspace-alive nil)  ; Auto-kill LSP server
   (setq lsp-prefer-flymake nil)        ; Use lsp-ui and flycheck
   (setq flymake-fringe-indicator-position 'right-fringe)
@@ -587,13 +581,11 @@
   (defun jcs--lsp--stuff-on-enabled ()
     "Do stuff when lsp is enabled."
     (setq debug-on-error nil)  ; TODO: Get rid of this after `lsp-mode' is stabled.
-    (company-fuzzy-mode -1)
     (lsp-origami-mode 1))
 
   (defun jcs--lsp--stuff-on-disabled ()
     "Do stuff when lsp is disabled."
     (setq debug-on-error t)  ; TODO: Get rid of this after `lsp-mode' is stabled.
-    (company-fuzzy-mode 1)
     (lsp-origami-mode -1))
 
   (defun jcs--lsp-managed-mode-hook ()
@@ -812,7 +804,7 @@
   :config
   (setq projectile-globally-ignored-directories
         (append projectile-globally-ignored-directories
-                '(".vs" ".vscode" "node_modules")))
+                '(".log" ".vs" ".vscode" "node_modules")))
   (add-hook 'projectile-after-switch-project-hook #'jcs-dashboard-refresh-buffer))
 
 (use-package region-occurrences-highlighter
