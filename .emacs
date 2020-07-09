@@ -68,7 +68,7 @@
 ;;----------------------------------------------------------------------------
 ;;; Version
 
-(defconst jcs-emacs-version-number "6.2.0"
+(defconst jcs-emacs-version-number "6.2.1"
   "JCS-Emacs version.")
 
 ;;;###autoload
