@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-07-10
+
+* Fixed `company-fuzzy` activation in `lsp-mode`.
+
 ### 2020-07-09
 
 * Uninstalled package `company-lsp` due to deprecated reason.
