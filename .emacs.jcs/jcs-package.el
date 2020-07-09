@@ -51,7 +51,6 @@
     company
     company-emoji
     company-fuzzy
-    company-lsp
     company-quickhelp
     company-quickhelp-terminal
     counsel
