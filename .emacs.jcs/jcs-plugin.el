@@ -51,6 +51,7 @@
   :config
   ;; TOPIC: How add company-dabbrev to the Company completion popup?
   ;; URL: https://emacs.stackexchange.com/questions/15246/how-add-company-dabbrev-to-the-company-completion-popup
+  (add-to-list 'company-backends 'company-capf)
   (add-to-list 'company-backends 'company-dabbrev-code)
   (add-to-list 'company-backends 'company-gtags)
   (add-to-list 'company-backends 'company-etags)
@@ -581,6 +582,7 @@
   (defun jcs--lsp--stuff-on-enabled ()
     "Do stuff when lsp is enabled."
     (setq debug-on-error nil)  ; TODO: Get rid of this after `lsp-mode' is stabled.
+    (jcs-re-enable-mode 'company-fuzzy-mode)
     (lsp-origami-mode 1))
 
   (defun jcs--lsp--stuff-on-disabled ()
