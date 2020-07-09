@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-07-09
+
+* Uninstalled package `company-lsp` due to deprecated reason.
+* Removed `company-lsp` config when `lsp-mode` enabled.
+* Replaced `company-lsp` with `company-fuzzy` when `lsp-mode` enabled.
+
 ### 2020-07-07
 
 * Updated message maximum log limit to 10 times higher than default.
