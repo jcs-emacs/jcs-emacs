@@ -8,6 +8,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-07-10
 
 * Fixed `company-fuzzy` activation in `lsp-mode`.
+* Updated re-builder module functions.
+* Updated `company` default minimum prefix length from `2` to `1`.
 
 ### 2020-07-09
 
