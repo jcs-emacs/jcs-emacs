@@ -61,9 +61,8 @@
   ;; URL: https://github.com/company-mode/company-mode/wiki/Switching-from-AC
   (defun jcs-company-ac-setup ()
     "Sets up `company-mode' to behave similarly to `auto-complete-mode'."
-    (setq company-minimum-prefix-length 2)
+    (setq company-minimum-prefix-length 1)
     (setq company-idle-delay 0.1)
-    ;;(setq company-tooltip-idle-delay 0.1)
 
     (setq company-selection-wrap-around 'on)
 
