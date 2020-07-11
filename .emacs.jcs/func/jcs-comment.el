@@ -186,13 +186,13 @@ Otherwise comment line."
 (defun jcs-comment-line ()
   "Comment the current line."
   (interactive)
-  (comment-or-uncomment-region (line-beginning-position) (line-end-position)))
+  (comment-region (line-beginning-position) (line-end-position)))
 
 ;;;###autoload
 (defun jcs-uncomment-line ()
   "Uncomment the current line."
   (interactive)
-  (comment-or-uncomment-region (line-beginning-position) (line-end-position)))
+  (uncomment-region (line-beginning-position) (line-end-position)))
 
 ;;;###autoload
 (defun jcs-comment-region-or-line ()
@@ -201,7 +201,7 @@ Otherwise comment line."
   ;; check if there are region select
   (if (and mark-active
            (/= (point) (mark)))
-      (comment-or-uncomment-region (region-beginning) (region-end))
+      (comment-region (region-beginning) (region-end))
     ;; else we just comment one single line.
     (jcs-comment-line)))
 
@@ -212,7 +212,7 @@ Otherwise comment line."
   ;; check if there are region select
   (if (and mark-active
            (/= (point) (mark)))
-      (comment-or-uncomment-region (region-beginning) (region-end))
+      (uncomment-region (region-beginning) (region-end))
     ;; else we just uncomment one single line.
     (jcs-uncomment-line)))
 
