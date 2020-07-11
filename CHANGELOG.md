@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-07-11
+
+* Removed self customized comment/uncomment function due to `line-reminder` updates.
+* Added more company's backends to default usage.
+
 ### 2020-07-10
 
 * Fixed `company-fuzzy` activation in `lsp-mode`.
