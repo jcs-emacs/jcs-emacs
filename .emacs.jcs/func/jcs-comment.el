@@ -165,37 +165,11 @@ Return nil, if is NOT a global comment docstring."
     ;; insert comment doc comment string.
     (jcs-insert-comment-style-by-current-line "[{;]")))
 
-(defun jcs-comment-or-uncomment-region (fn start end)
-  "Comment or uncomment region, with FN, START and END."
-  (let ((rb start) (re end)
-        (rel (line-number-at-pos end)))
-    (save-excursion
-      (goto-char rb)
-      (while (and (<= (point) re)
-                  (not (jcs-is-end-of-buffer-p)))
-        (when (and (not (jcs-current-line-empty-p))
-                   (not (jcs-is-behind-last-char-at-line-p)))
-          (when (= (line-number-at-pos) rel)
-            (goto-char re))
-          (if (= (line-number-at-pos) rel)
-              (unless (jcs-is-infront-first-char-at-line-p)
-                (push (line-number-at-pos) line-reminder--change-lines))
-            (push (line-number-at-pos) line-reminder--change-lines)))
-        (forward-line 1)
-        (beginning-of-line))))
-
-  (let ((line-reminder--change-lines) (line-reminder--saved-lines))
-    (funcall fn start end))
-
-  (line-reminder--mark-buffer))
-
 ;;;###autoload
 (defun jcs-toggle-comment-on-line ()
   "Comment or uncomment current line."
   (interactive)
-  (jcs-comment-or-uncomment-region 'comment-or-uncomment-region
-                                   (line-beginning-position)
-                                   (line-end-position)))
+  (comment-or-uncomment-region (line-beginning-position) (line-end-position)))
 
 ;;;###autoload
 (defun jcs-comment-uncomment-region-or-line ()
@@ -203,11 +177,8 @@ Return nil, if is NOT a global comment docstring."
 Otherwise comment line."
   (interactive)
   ;; check if there are region select
-  (if (and mark-active
-           (/= (point) (mark)))
-      (jcs-comment-or-uncomment-region 'comment-or-uncomment-region
-                                       (region-beginning)
-                                       (region-end))
+  (if (and mark-active (/= (point) (mark)))
+      (comment-or-uncomment-region (region-beginning) (region-end))
     ;; else we just comment one single line.
     (jcs-toggle-comment-on-line)))
 
@@ -215,17 +186,13 @@ Otherwise comment line."
 (defun jcs-comment-line ()
   "Comment the current line."
   (interactive)
-  (jcs-comment-or-uncomment-region 'comment-region
-                                   (line-beginning-position)
-                                   (line-end-position)))
+  (comment-or-uncomment-region (line-beginning-position) (line-end-position)))
 
 ;;;###autoload
 (defun jcs-uncomment-line ()
   "Uncomment the current line."
   (interactive)
-  (jcs-comment-or-uncomment-region 'uncomment-region
-                                   (line-beginning-position)
-                                   (line-end-position)))
+  (comment-or-uncomment-region (line-beginning-position) (line-end-position)))
 
 ;;;###autoload
 (defun jcs-comment-region-or-line ()
@@ -234,9 +201,7 @@ Otherwise comment line."
   ;; check if there are region select
   (if (and mark-active
            (/= (point) (mark)))
-      (jcs-comment-or-uncomment-region 'comment-region
-                                       (region-beginning)
-                                       (region-end))
+      (comment-or-uncomment-region (region-beginning) (region-end))
     ;; else we just comment one single line.
     (jcs-comment-line)))
 
@@ -247,9 +212,7 @@ Otherwise comment line."
   ;; check if there are region select
   (if (and mark-active
            (/= (point) (mark)))
-      (jcs-comment-or-uncomment-region 'uncomment-region
-                                       (region-beginning)
-                                       (region-end))
+      (comment-or-uncomment-region (region-beginning) (region-end))
     ;; else we just uncomment one single line.
     (jcs-uncomment-line)))
 
