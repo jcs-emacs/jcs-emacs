@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-07-12
+
+* Added kill thing at point util function.
+* Added loading `yasnippet-snippets` entry in `company-mode` activation.
+
 ### 2020-07-11
 
 * Removed self customized comment/uncomment function due to `line-reminder` updates.
