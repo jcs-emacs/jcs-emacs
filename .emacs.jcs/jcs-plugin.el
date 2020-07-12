@@ -116,30 +116,26 @@
   :defer t
   :init
   (setq emojify-company-tooltips-p t)
-  (with-eval-after-load 'company
-    (add-to-list 'company-backends 'company-emoji)))
+  (with-eval-after-load 'company (add-to-list 'company-backends 'company-emoji)))
 
 (use-package company-fuzzy
   :defer t
   :init
   (setq company-fuzzy-sorting-backend 'flx)
   (setq company-fuzzy-prefix-ontop nil)
-  (with-eval-after-load 'company
-    (global-company-fuzzy-mode t)))
+  (with-eval-after-load 'company (global-company-fuzzy-mode t)))
 
 (use-package company-quickhelp
   :defer t
   :init
   (setq company-quickhelp-delay 0.3)
   (setq company-quickhelp-color-background "#FFF08A")
-  (with-eval-after-load 'company
-    (company-quickhelp-mode t)))
+  (with-eval-after-load 'company (company-quickhelp-mode t)))
 
 (use-package company-quickhelp-terminal
   :defer t
   :init
-  (with-eval-after-load 'company-quickhelp
-    (company-quickhelp-terminal-mode 1)))
+  (with-eval-after-load 'company-quickhelp (company-quickhelp-terminal-mode 1)))
 
 (use-package counsel
   :defer t
@@ -245,9 +241,9 @@
          '("[*]lsp-" "[*][a-zA-Z0-9]+[-]*ls" "[*][a-zA-Z0-9]+::stderr[*]"
            "[*]csharp[*]")  ; From `lsp'
          '("[*]company")
-         '("[*]SPEEDBAR")))
-  (with-eval-after-load 'jcs-buffer-menu
-    (diminish-buffer-mode 1))
+         '("[*]SPEEDBAR")
+         '("[*]helpful")))
+  (with-eval-after-load 'jcs-buffer-menu (diminish-buffer-mode 1))
   :config
   (defun jcs--diminish-buffer-clean--advice-before ()
     "Advice do clean buffer."
