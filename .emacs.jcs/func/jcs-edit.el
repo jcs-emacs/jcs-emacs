@@ -176,8 +176,7 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
 (defun jcs-smart-backspace ()
   "Smart backspace."
   (interactive)
-  (if (and (jcs-is-infront-first-char-at-line-p)
-           (not (jcs-is-beginning-of-line-p))
+  (if (and (jcs-is-infront-first-char-at-line-p) (not (jcs-is-beginning-of-line-p))
            (not (use-region-p)))
       (jcs-backward-delete-spaces-by-tab-width)
     (jcs-real-backspace)))
@@ -583,9 +582,7 @@ This command does not push text to `kill-ring'."
         (setq pnt-max (point-max)))
 
       ;; Align comment segment.
-      (jcs-align-region-by-points align-regexp-string-comment
-                                  pnt-min
-                                  pnt-max))))
+      (jcs-align-region-by-points align-regexp-string-comment pnt-min pnt-max))))
 
 ;;;###autoload
 (defun jcs-align-repeat (regexp)
@@ -626,11 +623,9 @@ REGEXP : reqular expression use to align."
                    (not (jcs-is-current-file-empty-p buf)))
           (if (file-readable-p filename)
               ;; If the file exists and is readable, revert the buffer.
-              (with-current-buffer buf
-                (jcs-revert-buffer-no-confirm))
+              (with-current-buffer buf (jcs-revert-buffer-no-confirm))
             ;; Otherwise, kill the buffer.
-            (let (kill-buffer-query-functions)
-              (kill-buffer buf))))))))
+            (let (kill-buffer-query-functions) (kill-buffer buf))))))))
 
 
 ;;;###autoload
@@ -651,15 +646,13 @@ REGEXP : reqular expression use to align."
 (defun jcs-scroll-up-one-line (&optional n)
   "Scroll the text up N line."
   (interactive)
-  (let ((rel-n (if n n 1)))
-    (scroll-up rel-n)))
+  (let ((rel-n (if n n 1))) (scroll-up rel-n)))
 
 ;;;###autoload
 (defun jcs-scroll-down-one-line (&optional n)
   "Scroll the text down N line."
   (interactive)
-  (let ((rel-n (if n n 1)))
-    (scroll-down rel-n)))
+  (let ((rel-n (if n n 1))) (scroll-down rel-n)))
 
 ;;;###autoload
 (defun jcs-remove-trailing-lines-end-buffer ()
@@ -672,8 +665,7 @@ REGEXP : reqular expression use to align."
                (not (= (line-number-at-pos) 1)))
           (forward-line -1)
         (newline))
-      (while (and (jcs-current-line-empty-p)
-                  (< rec-point (point)))
+      (while (and (jcs-current-line-empty-p) (< rec-point (point)))
         (jcs-kill-whole-line)
         (forward-line -1)))))
 
@@ -761,8 +753,7 @@ REGEXP : reqular expression use to align."
   (interactive)
   (jcs-save-excursion
    (lambda ()
-     (let ((start-pt (if start start (point-min)))
-           (end-pt (if end end (point-max))))
+     (let ((start-pt (if start start (point-min))) (end-pt (if end end (point-max))))
        (widen)
        (untabify start-pt end-pt)))))
 
@@ -772,8 +763,7 @@ REGEXP : reqular expression use to align."
   (interactive)
   (jcs-save-excursion
    (lambda ()
-     (let ((start-pt (if start start (point-min)))
-           (end-pt (if end end (point-max))))
+     (let ((start-pt (if start start (point-min))) (end-pt (if end end (point-max))))
        (widen)
        (tabify start-pt end-pt)))))
 
@@ -782,7 +772,6 @@ REGEXP : reqular expression use to align."
 
 (defun jcs-do-stuff-before-save (&rest _)
   "Do stuff before save command is executed."
-  ;; NOTE: If company menu currently active, abort it.
   (company-abort))
 (advice-add 'save-buffer :before #'jcs-do-stuff-before-save)
 
@@ -818,8 +807,7 @@ REGEXP : reqular expression use to align."
     (user-error "[WARNING] Can't save with invalid filename: %s" (buffer-name)))
    (buffer-read-only
     (user-error "[WARNING] Can't save read-only file: %s" buffer-read-only))
-   (t
-    (jcs-organize-save-buffer nil))))
+   (t (jcs-organize-save-buffer nil))))
 
 ;;;###autoload
 (defun jcs-tabify-save-buffer ()
@@ -830,8 +818,7 @@ REGEXP : reqular expression use to align."
     (user-error "[WARNING] Can't save with invalid filename: %s" (buffer-name)))
    (buffer-read-only
     (user-error "[WARNING] Can't save read-only file: %s" buffer-read-only))
-   (t
-    (jcs-organize-save-buffer t))))
+   (t (jcs-organize-save-buffer t))))
 
 ;;;###autoload
 (defun jcs-save-buffer ()
@@ -859,16 +846,14 @@ REGEXP : reqular expression use to align."
     (dolist (buf (buffer-list))
       (switch-to-buffer buf)
       (ignore-errors (call-interactively (key-binding (kbd "C-s"))))))
-  (message "All buffers are saved"))
+  (message "[INFO] All buffers are saved"))
 
 ;;----------------------------------------------------------------------------
 ;; Find file
 
 (defun jcs-is-finding-file-p ()
   "Check if current minibuffer finding file."
-  (jcs-minibuffer-do-stuff
-   (lambda ()
-     (string-match-p "Find file:" (buffer-string)))))
+  (jcs-minibuffer-do-stuff (lambda () (string-match-p "Find file:" (buffer-string)))))
 
 ;;;###autoload
 (defun jcs-same-file-other-window ()
@@ -882,18 +867,14 @@ REGEXP : reqular expression use to align."
 
 (defun jcs-find-file-other-window (fp)
   "Find file FP in other window with check of larger window height."
-  (find-file fp)
-  (jcs-same-file-other-window)
-  (bury-buffer))
+  (find-file fp) (jcs-same-file-other-window) (bury-buffer))
 
 ;;----------------------------------------------------------------------------
 ;; Rename file
 
 (defun jcs-is-renaming-p ()
   "Check if current minibuffer renaming."
-  (jcs-minibuffer-do-stuff
-   (lambda ()
-     (string-match-p "New name:" (buffer-string)))))
+  (jcs-minibuffer-do-stuff (lambda () (string-match-p "New name:" (buffer-string)))))
 
 ;;;###autoload
 (defun jcs-rename-current-buffer-file ()
@@ -1000,11 +981,10 @@ ECP-SAME : Exception for the same buffer."
       (jcs-kill-this-buffer)
       (setq is-killed t)
 
-      ;; NOTE: After kill the buffer, if the buffer appear in multiple
-      ;; windows then we do switch to previous buffer again. Hence, it will
-      ;; not show repeated buffer at the same time in different windows.
-      (when (and (jcs-buffer-shown-in-multiple-window-p (buffer-name) t)
-                 (not ecp-same))
+      ;; NOTE: After kill the buffer, if the buffer appear in multiple windows
+      ;; then we do switch to previous buffer again. Hence, it will not show
+      ;; repeated buffer at the same time in different windows.
+      (when (and (jcs-buffer-shown-in-multiple-window-p (buffer-name) t) (not ecp-same))
         (jcs-bury-buffer)
 
         ;; If is something from default Emacs's buffer, switch back to previous
@@ -1017,8 +997,7 @@ ECP-SAME : Exception for the same buffer."
         ;;   -> *GNU Emacs*
         ;;   -> *scratch*
         ;;   , etc.
-        (when (and (not (buffer-file-name))
-                   (>= (jcs-valid-buffers-count) 2))
+        (when (and (not (buffer-file-name)) (>= (jcs-valid-buffers-count) 2))
           (jcs-switch-to-next-valid-buffer))))
     ;; If something that I doesn't want to see, bury it.
     ;; For instance, any `*helm-' buffers.
@@ -1041,41 +1020,34 @@ ECP-SAME : Exception for the same buffer."
 
 ;;;###autoload
 (defun jcs-backward-delete-current-char-repeat ()
-  "Delete the current character repeatedly, util it meet the character is not \
-the same as current char.  (Backward)"
+  "Backward delete current character repeatedly util it meet different character."
   (interactive)
-  (jcs-delete-char-repeat (jcs-get-current-char-string) t))
+  (jcs-delete-char-repeat (jcs-get-current-char-string) 'backward))
 
 ;;;###autoload
 (defun jcs-forward-delete-current-char-repeat ()
-  "Delete the current character repeatedly, util it meet the character is not \
-the same as current char.  (Forward)"
+  "Forward delete current character repeatedly util it meet different character."
   (interactive)
-  (jcs-delete-char-repeat (jcs-get-current-char-string) nil))
+  (jcs-delete-char-repeat (jcs-get-current-char-string) 'forward))
 
 ;;;###autoload
-(defun jcs-delete-char-repeat (char reverse)
-  "Kill the character repeatedly forward.
-CHAR : character to check to delete.
-REVERSE : t forward, nil backward."
+(defun jcs-delete-char-repeat (char direction)
+  "Forward kill CHAR repeatedly base on DIRECTION."
+  (require 'cl-lib)
   (let ((do-kill-char nil))
     (save-excursion
-      (if reverse (backward-char) (forward-char))
-
-      (when (jcs-current-char-equal-p char)
-        (setq do-kill-char t)))
-
+      (cl-case direction ('forward (forward-char)))
+      (when (jcs-current-char-equal-p char) (setq do-kill-char t)))
     (when do-kill-char
-      (if reverse (delete-char -1) (delete-char 1))
-      (jcs-delete-char-repeat char reverse))))
+      (cl-case direction ('backward (delete-char -1)) ('forward (delete-char 1)))
+      (jcs-delete-char-repeat char direction))))
 
 ;;----------------------------------------------------------------------------
 ;; Delete inside a Character.
 
 (defun jcs-find-start-char (start-char preserve-point)
   "Find the START-CHAR with PRESERVE-POINT."
-  (let ((inhibit-message t)
-        (start-point nil))
+  (let ((inhibit-message t) (start-point nil))
     (jcs-move-to-backward-a-char-do-recursive start-char nil)
 
     ;; If failed search backward start character..
@@ -1114,12 +1086,9 @@ REVERSE : t forward, nil backward."
   "Check if outside the nested START-CHAR and END-CHAR."
   (save-excursion
     (ignore-errors
-      (let ((preserve-point (point))
-            (nested-level 0)
+      (let ((preserve-point (point)) (nested-level 0)
             ;; Is the same char or not?
-            (same-char (string= start-char end-char))
-            (same-char-start-flag nil))
-
+            (same-char (string= start-char end-char)) (same-char-start-flag nil))
         ;; Beginning of the buffer.
         (goto-char (point-min))
 
@@ -1152,7 +1121,6 @@ REVERSE : t forward, nil backward."
   (let* ((preserve-point (point))
          (start-point (jcs-find-start-char start-char preserve-point))
          (end-point nil))
-
     ;; NOTE: Back to preserve point before we search.
     (goto-char preserve-point)
 
@@ -1168,9 +1136,7 @@ REVERSE : t forward, nil backward."
     (unless (string= start-char end-char)
       ;; NOTE: Start to solve the nested character issue.
       (goto-char preserve-point)
-      (let ((nested-count 0)
-            (break-search-nested nil)
-            (nested-counter 0))
+      (let ((nested-count 0) (break-search-nested nil) (nested-counter 0))
         (ignore-errors
           ;; Solve backward nested.
           (while (not break-search-nested)
@@ -1204,12 +1170,11 @@ REVERSE : t forward, nil backward."
               (jcs-find-start-char start-char preserve-point)
               (setq nested-counter (+ nested-counter 1)))
 
-            (if (not (= start-point (point)))
-                (progn
-                  (setq nested-count (+ nested-count 1))
-                  (goto-char end-point)
-                  (setq end-point (jcs-find-end-char end-char preserve-point)))
-              (setq break-search-nested t)))))
+            (if (= start-point (point))
+                (setq break-search-nested t)
+              (setq nested-count (+ nested-count 1))
+              (goto-char end-point)
+              (setq end-point (jcs-find-end-char end-char preserve-point))))))
 
       ;; Go back to original position before do anything.
       (goto-char preserve-point))
@@ -1429,8 +1394,7 @@ REVERSE : t forward, nil backward."
 
 (defun jcs-forward-delete-close-pair-char (cpc)
   "Forward delete close pair characters CPC."
-  (when (and cpc
-             (not (jcs-is-end-of-buffer-p)))
+  (when (and cpc (not (jcs-is-end-of-buffer-p)))
     (save-excursion
       (forward-char 1)
       (when (jcs-current-char-equal-p cpc)
@@ -1438,8 +1402,7 @@ REVERSE : t forward, nil backward."
 
 (defun jcs-backward-delete-open-pair-char (opc)
   "Backward delete open pair characters OPC."
-  (when (and opc
-             (not (jcs-is-beginning-of-buffer-p)))
+  (when (and opc (not (jcs-is-beginning-of-buffer-p)))
     (save-excursion
       (when (jcs-current-char-equal-p opc)
         (backward-delete-char 1)))))
@@ -1456,9 +1419,7 @@ CC : Current character at position."
                  (forward-char 1)
                  (when (jcs-current-char-equal-p "/")
                    ;; Found sequence, delete them!
-                   (backward-delete-char 1)
-                   (backward-delete-char 1)
-                   (backward-delete-char 1)))))))))
+                   (backward-delete-char 3)))))))))
 
 (defun jcs-backward-delete-open-pair-char-seq (cc)
   "Backward delete open pair characters in sequence.
@@ -1473,9 +1434,7 @@ CC : Current character at position."
                  (forward-char 1)
                  (when (jcs-current-char-equal-p "/")
                    ;; Found sequence, delete them!
-                   (backward-delete-char 1)
-                   (backward-delete-char 1)
-                   (backward-delete-char 1)))))))))
+                   (backward-delete-char 3)))))))))
 
 ;;;###autoload
 (defun jcs-electric-delete ()
@@ -1483,8 +1442,7 @@ CC : Current character at position."
   (interactive)
   (if (use-region-p)
       (jcs-delete-region)
-    (let ((cc "")
-          (opc ""))
+    (let ((cc "") (opc ""))
       (save-excursion
         (forward-char 1)
         (setq cc (jcs-get-current-char-string)))
@@ -1506,8 +1464,7 @@ CC : Current character at position."
     (if (and (jcs-is-inside-string-p)
              (not (jcs-current-char-equal-p '("\"" "'"))))
         (jcs-own-delete-backward-char)
-      (let* ((cc (jcs-get-current-char-string))
-             (cpc (jcs-get-close-pair-char cc)))
+      (let* ((cc (jcs-get-current-char-string)) (cpc (jcs-get-close-pair-char cc)))
         (jcs-own-delete-backward-char)
         (jcs-forward-delete-close-pair-char cpc)
         (jcs-forward-delete-close-pair-char-seq cc)))))
