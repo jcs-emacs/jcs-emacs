@@ -60,9 +60,7 @@ Else we just return `buffer-file-name` if available."
 (defun jcs-valid-buffer-list ()
   "Return a list of valid buffers."
   (let ((buf-lst (buffer-list)) (lst '()))
-    (dolist (buf buf-lst)
-      (when (buffer-file-name buf)
-        (push buf lst)))
+    (dolist (buf buf-lst) (when (buffer-file-name buf) (push buf lst)))
     (reverse lst)))
 
 (defun jcs-valid-buffers-count ()
