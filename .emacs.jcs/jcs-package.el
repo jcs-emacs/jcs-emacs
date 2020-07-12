@@ -95,6 +95,7 @@
     goto-line-preview
     haskell-mode
     haxe-mode
+    helpful
     highlight-indent-guides
     hl-todo
     htmltagwrap
