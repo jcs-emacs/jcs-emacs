@@ -663,6 +663,13 @@ BND-PT : boundary point."
   "Get symbol at current cursor position."
   (thing-at-point 'symbol))
 
+(defun jcs-kill-thing-at-point (thing)
+  "Kill the `thing-at-point' for the specified kind of THING."
+  (let ((bounds (bounds-of-thing-at-point thing)))
+    (if bounds
+        (kill-region (car bounds) (cdr bounds))
+      (error "No %s at point" thing))))
+
 (defun jcs-form-p-symbol (lst sym val)
   "Form a plist symbol with LST, SYM, VAL."
   (require 'dash)
