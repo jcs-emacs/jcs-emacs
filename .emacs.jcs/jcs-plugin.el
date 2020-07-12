@@ -104,6 +104,12 @@
       (call-interactively fn)))
   (advice-add 'company-complete-selection :around #'jcs--company-complete-selection--advice-around)
 
+  (defun jcs--company-completion-started-hook (_backend)
+    "Hook bind to `company-completion-started-hook'."
+    (require 'yasnippet-snippets)
+    (remove-hook 'company-completion-started-hook 'jcs--company-completion-started-hook))
+  (add-hook 'company-completion-started-hook 'jcs--company-completion-started-hook)
+
   (global-company-mode t))
 
 (use-package company-emoji
