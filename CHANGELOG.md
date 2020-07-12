@@ -9,6 +9,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 * Added kill thing at point util function.
 * Added loading `yasnippet-snippets` entry in `company-mode` activation.
+* Installed new package `helpful`.
+* Added helpful help/content buffer to default diminish buffer mode list.
 
 ### 2020-07-11
 
