@@ -68,22 +68,22 @@ Return nil, to NOT to skip the input selection."
 (defun jcs-counsel-find-files-other-window ()
   "Find files on other window."
   (interactive)
-  (let ((buf (buffer-name)) (found-file nil) (target-buf nil))
+  (let ((buf (jcs-buffer-name-or-buffer-file-name)) (found-file nil) (target-buf nil))
     (unwind-protect (setq found-file (counsel-find-file))
       (when found-file
         (setq target-buf found-file)
-        (switch-to-buffer buf)
+        (switch-to-buffer (get-buffer buf))
         (find-file-other-window target-buf)))))
 
 ;;;###autoload
 (defun jcs-counsel-projectile-find-file-other-window ()
   "Find files in project on other window."
   (interactive)
-  (let ((buf (buffer-name)) (found-file nil) (target-buf nil))
+  (let ((buf (jcs-buffer-name-or-buffer-file-name)) (found-file nil) (target-buf nil))
     (unwind-protect (setq found-file (counsel-projectile-find-file))
       (when found-file
         (setq target-buf (concat (projectile-project-root) found-file))
-        (switch-to-buffer buf)
+        (switch-to-buffer (get-buffer buf))
         (find-file-other-window target-buf)))))
 
 (provide 'jcs-ivy-func)
