@@ -18,6 +18,8 @@
   "JSON mode hook."
   (js2-minor-mode -1)
 
+  (remove-hook 'after-change-functions 'js2-minor-mode-edit t)
+
   (setq js2-basic-offset 2)
   (setq js2-bounce-indent-p t)
 
