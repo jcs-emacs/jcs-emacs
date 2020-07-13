@@ -777,7 +777,7 @@ REGEXP : reqular expression use to align."
 
 (defun jcs-do-stuff-after-save (&rest _)
   "Do stuff after save command is executed."
-  (jcs-undo-kill-this-buffer)  ; Try to close `*undo-tree*' buffer.
+  (jcs-undo-kill-this-buffer)
   (jcs-update-line-number-each-window))
 (advice-add 'save-buffer :after #'jcs-do-stuff-after-save)
 
