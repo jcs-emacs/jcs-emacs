@@ -100,8 +100,7 @@
 
   (defun jcs--company-complete-selection--advice-around (fn)
     "Advice execute around `company-complete-selection' command."
-    (let ((company-dabbrev-downcase t))
-      (call-interactively fn)))
+    (let ((company-dabbrev-downcase t)) (call-interactively fn)))
   (advice-add 'company-complete-selection :around #'jcs--company-complete-selection--advice-around)
 
   (defun jcs--company-completion-started-hook (_backend)
