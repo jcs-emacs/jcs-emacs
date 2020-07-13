@@ -96,9 +96,7 @@
 OW : Opened it in other window."
   (interactive)
   (let ((filepath (jcs-find-file-in-project-and-current-dir in-filename title)))
-    (if ow
-        (find-file-other-window filepath)
-      (find-file filepath))))
+    (if ow (find-file-other-window filepath) (find-file filepath))))
 
 ;;;###autoload
 (defun jcs-compile-project-file (in-filename title)
