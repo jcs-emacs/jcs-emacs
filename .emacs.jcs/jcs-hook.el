@@ -227,7 +227,7 @@
   (jcs--lsp-ui-doc--hide-frame)
   (jcs--lsp-ui-doc-show-safely)
   (jcs-reload-active-mode-with-error-handle)
-  (jcs-feebleline-display-mode-line-graphic))
+  (unless (display-graphic-p) (jcs-feebleline-display-mode-line-graphic)))
 (add-hook 'post-command-hook 'jcs-post-command-hook)
 
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
