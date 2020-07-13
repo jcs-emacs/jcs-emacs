@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-07-13
 
 * Added `*Warnings*` to default diminish buffer list.
+* Added symbol dash `-` to default syntax table to programming mode.
 
 ### 2020-07-12
 
