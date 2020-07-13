@@ -12,6 +12,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Fixed `feebleline` error handling cause performance issue.
 * Added `counsel` find file command listener for current and up one directory.
 * Removed exit `js2-minor-mode` from global post command hook.
+* Fixed `*scratch*` buffer maybe kill key's logic.
 
 ### 2020-07-12
 
