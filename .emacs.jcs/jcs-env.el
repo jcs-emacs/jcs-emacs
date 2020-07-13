@@ -327,14 +327,17 @@ See `jcs-hook.el' file that has apply `advice' on command `other-window'.")
   "Tab with recrods for all major mode.")
 
 ;;; Uniquify
-;; NOTE: meaningful names for buffers with the same name from prelude.
-;; SOURCE: http://pragmaticemacs.com/emacs/uniquify-your-buffer-names/
-;; URL: https://github.com/bbatsov/prelude
-(require 'uniquify)
-(setq uniquify-buffer-name-style 'forward)
-(setq uniquify-separator "/")
-(setq uniquify-after-kill-buffer-p t)    ; rename after killing uniquified
-(setq uniquify-ignore-buffers-re "^\\*") ; don't muck with special buffers
+(use-package uniquify
+  :defer t
+  :init
+  ;; NOTE: meaningful names for buffers with the same name from prelude.
+  ;;
+  ;; SOURCE: http://pragmaticemacs.com/emacs/uniquify-your-buffer-names/
+  ;; URL: https://github.com/bbatsov/prelude
+  (setq uniquify-buffer-name-style 'forward)
+  (setq uniquify-after-kill-buffer-p t)    ; rename after killing uniquified
+  (setq uniquify-ignore-buffers-re "^\\*") ; don't muck with special buffers
+  (setq uniquify-separator "/"))
 
 ;;; Windows
 (defconst jcs-windows--enlarge-shrink-times 6
