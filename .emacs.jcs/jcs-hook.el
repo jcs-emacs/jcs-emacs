@@ -28,9 +28,7 @@
       (if jcs--lsp-lv-was-alive
           (progn
             (when (jcs--lsp-current-last-signature-buffer)
-              (let ((pt (point)))
-                (jcs-window-restore-once)
-                (goto-char pt)))
+              (let ((pt (point))) (jcs-window-restore-once) (goto-char pt)))
             (setq jcs--lsp-lv-was-alive nil))
         (let ((jcs--lsp-lv-recording t)) (jcs-window-record-once)))))
   (jcs--lsp-ui-doc-show-safely))
