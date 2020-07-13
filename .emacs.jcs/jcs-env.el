@@ -118,14 +118,14 @@
 (electric-indent-mode 1)
 
 ;;; Electric Pair
-(setq-default
- electric-pair-inhibit-predicate
- (lambda (c)
-   (if (jcs-current-char-equal-p '("\"" "'"))
-       (electric-pair-default-inhibit c)
-     (if (not (jcs-inside-comment-or-string-p))
-         (electric-pair-default-inhibit c)
-       t))))
+(defun jcs--electric-pair-inhibit-predicate (c)
+  "Electric pair inhibit predicate with pair character C."
+  (if (jcs-current-char-equal-p '("\"" "'"))
+      (electric-pair-default-inhibit c)
+    (if (not (jcs-inside-comment-or-string-p))
+        (electric-pair-default-inhibit c)
+      t)))
+(setq-default electric-pair-inhibit-predicate 'jcs--electric-pair-inhibit-predicate)
 (electric-pair-mode 1)
 
 ;;; Find File
@@ -255,7 +255,6 @@ See `jcs-hook.el' file that has apply `advice' on command `other-window'.")
 
 ;;; Recent Files
 (setq recentf-max-menu-items 25)
-
 
 (defun jcs--recentf-track-opened-file--advice-after ()
   "Advice execute after `recentf-track-opened-file' function."
