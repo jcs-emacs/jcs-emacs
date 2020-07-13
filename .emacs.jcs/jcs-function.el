@@ -420,10 +420,12 @@ LST-PR: List of pair."
       (progn
         (when line-reminder-mode (line-reminder-mode -1))
         (if (display-graphic-p)
-            (jcs-safe-display-line-numbers -1) (jcs-safe-display-linum -1)))
+            (jcs-safe-display-line-numbers -1)
+          (jcs-safe-display-linum -1)))
     (unless line-reminder-mode (line-reminder-mode 1))
     (if (display-graphic-p)
-        (jcs-safe-display-line-numbers 1) (jcs-safe-display-linum 1))))
+        (jcs-safe-display-line-numbers 1)
+      (jcs-safe-display-linum 1))))
 
 ;;----------------------------------------------------------------------------
 ;; Media
