@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-07-13
+
+* Added `*Warnings*` to default diminish buffer list.
+
 ### 2020-07-12
 
 * Added kill thing at point util function.
