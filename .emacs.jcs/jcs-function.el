@@ -66,7 +66,7 @@
   "Kill buffer scratch."
   (interactive)
   (if (string= (buffer-name) "*scratch*")
-      (jcs-bury-buffer)
+      (progn (jcs-undo-kill-this-buffer) (jcs-bury-buffer))
     (jcs-maybe-kill-this-buffer)))
 
 ;;;###autoload
