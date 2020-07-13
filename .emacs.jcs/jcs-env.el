@@ -59,33 +59,27 @@
 
 
 ;;; Audo Saving
-
 (setq auto-save-default nil)
 (setq auto-save-interval 0)
 (setq auto-save-list-file-prefix nil)
 (setq auto-save-timeout 0)
 
 ;;; Backup Files
-
 (setq make-backup-files nil)
 
 ;;; Bell
-
 (defun nil-bell ())  ; Turn off the bell on Mac OS X
 (setq ring-bell-function 'nil-bell)
 
 ;;; Bury Bufferss
-
 (defconst jcs-bury-buffer-list '("[*]ffmpeg-player[*]: ")
   "List of buffer that you don't want to show when after exit.")
 
 ;;; Change Log
-
 (defconst jcs-changelog-template-path "~/.emacs.jcs/template/__changelog/"
   "Path point to all changelog template files.")
 
 ;;; Compilation (Output)
-
 (with-eval-after-load 'compile
   (setq compilation-context-lines t)
   (setq compilation-error-regexp-alist
@@ -96,7 +90,6 @@
   "Base filename for compilation buffer.")
 
 ;;; Commands
-
 (with-eval-after-load 'grep
   (set-variable 'grep-command "grep -irHn ")
   (when jcs-is-windows
@@ -104,33 +97,27 @@
     (set-variable 'grep-command "findstr -s -n -i -l ")))
 
 ;;; Default Major Mode
-
 (setq-default major-mode 'text-mode)
 
 ;;; Doc View
-
 (when jcs-is-windows
   (setq doc-view-ghostscript-program (executable-find "gswin64c")))
 
 ;;; Ediff
-
 (defun jcs-ediff-setup-windows (buffer-A buffer-B buffer-C control-buffer)
   (ediff-setup-windows-plain buffer-A buffer-B buffer-C control-buffer))
 (setq ediff-window-setup-function 'jcs-ediff-setup-windows)
 (setq ediff-split-window-function 'split-window-horizontally)
 
 ;;; ElDoc
-
 ;; It shows you the argument list of the function call you are currently
 ;; writing in the echo area.
 (global-eldoc-mode 1)
 
 ;;; Electric Indent
-
 (electric-indent-mode 1)
 
 ;;; Electric Pair
-
 (defun jcs--electric-pair-inhibit-predicate (c)
   "Electric pair inhibit predicate with pair character C."
   (if (jcs-current-char-equal-p '("\"" "'"))
@@ -142,7 +129,6 @@
 (electric-pair-mode 1)
 
 ;;; Find File
-
 (defvar jcs-current-created-parent-dir-path nil
   "Globally record the virutally created parent dir path.")
 
@@ -183,21 +169,17 @@
 (add-to-list 'find-file-not-found-functions #'jcs-create-non-existent-directory)
 
 ;;; Font Size
-
 (defconst jcs-default-font-size 160
   "Default font size, the value is in 1/10pt, so 100 will give you 10pt, etc.")
 
 ;; Frame
-
 (set-frame-parameter (selected-frame) 'alpha '(100 . 100))
 (add-to-list 'default-frame-alist '(alpha . (100 . 100)))
 
 ;;; Highlight Select Region
-
 (transient-mark-mode t)
 
 ;;; Key List
-
 (defconst jcs-key-list
   '("a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m"
     "n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z"
@@ -210,7 +192,6 @@
   "List of key to bind.")
 
 ;;; Language Environment
-
 (prefer-coding-system 'utf-8)
 (defconst jcs-language-environment "UTF-8" "Default language environment.")
 (set-default-coding-systems 'utf-8)
@@ -223,12 +204,10 @@
 (setq inhibit-compacting-font-caches t)
 
 ;;; License
-
 (defconst jcs-license-template-path "~/.emacs.jcs/template/__license/"
   "Path point to all license template files.")
 
 ;;; Line Numbers
-
 (defconst jcs-line-numbers-ignore-buffers '("[*]+[[:ascii:]]+"
                                             "magit: ")
   "List of buffers that you do not want to show line numbers in it.")
@@ -248,7 +227,6 @@
   "List of modes that you do not want to show line numbers in it.")
 
 ;;; Messages
-
 (setq message-log-max (* 1000 10))
 
 (defconst jcs-prompt-message-sleep-delay-time 0.4
@@ -256,18 +234,15 @@
 Hence the user can see the error/operation message.")
 
 ;;; Multiple Cursors
-
 (defvar jcs-mc/string-distance-level 20
   "The standard similarity, the lower require more precision.")
 
 ;;; Navigation
-
 (defvar jcs--no-advice-other-window nil
   "Flag to disable not advising in other window.
 See `jcs-hook.el' file that has apply `advice' on command `other-window'.")
 
 ;;; Previous/Next keys
-
 (defcustom jcs-prev/next-key-type 'indent
   "Previous or Next key definition."
   :type '(choice (const :tag "normal" normal)
@@ -275,11 +250,9 @@ See `jcs-hook.el' file that has apply `advice' on command `other-window'.")
                  (const :tag "smart" smart)))
 
 ;;; Process
-
 (setq kill-buffer-query-functions nil)
 
 ;;; Recent Files
-
 (setq recentf-max-menu-items 25)
 
 (defun jcs--recentf-track-opened-file--advice-after ()
@@ -289,27 +262,22 @@ See `jcs-hook.el' file that has apply `advice' on command `other-window'.")
 (advice-add 'recentf-track-opened-file :after #'jcs--recentf-track-opened-file--advice-after)
 
 ;;; Read Only
-
 (defconst jcs-find-file-read-only-paths '("/.emacs.d/elisp/"
                                           "/.emacs.d/elpa/"
                                           "/lisp/")
   "Find file with these paths, esure read only mode enabled.")
 
 ;;; Shift Select
-
 (setq shift-select-mode t)
 
 ;;; Smooth scroll
-
 (setq scroll-step 2)
 
 ;;; So Long
-
 ;; NOTE: (for very long file, like `jquery.min.js', etc)
 (when (version<= "27.1" emacs-version) (global-so-long-mode 1))
 
 ;;; Startup windowing
-
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 (setq next-line-add-newlines nil)
 (setq-default truncate-lines t)
@@ -318,7 +286,6 @@ See `jcs-hook.el' file that has apply `advice' on command `other-window'.")
   (split-window-horizontally))
 
 ;;; Tab / Space
-
 (setq-default indent-tabs-mode nil)          ; Disable inset tabs, insert space only
 (setq-default tab-width 4)
 
@@ -359,7 +326,6 @@ See `jcs-hook.el' file that has apply `advice' on command `other-window'.")
   "Tab with recrods for all major mode.")
 
 ;;; Uniquify
-
 (use-package uniquify
   :defer t
   :init
@@ -373,7 +339,6 @@ See `jcs-hook.el' file that has apply `advice' on command `other-window'.")
   (setq uniquify-separator "/"))
 
 ;;; Windows
-
 (defconst jcs-windows--enlarge-shrink-times 6
   "Times to shrink inside the window.")
 
