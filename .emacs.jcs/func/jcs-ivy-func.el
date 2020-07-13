@@ -9,8 +9,7 @@
   "Decide weather to skip the input selection.
 Return non-nil, to skip the input selection.
 Return nil, to NOT to skip the input selection."
-  (let ((do-skip nil)
-        (first-cand (nth 0 ivy--old-cands)))
+  (let ((do-skip nil) (first-cand (nth 0 ivy--old-cands)))
     (cond ((string-empty-p ivy-text)
            (setq do-skip t))
           ((and (stringp first-cand)
@@ -25,6 +24,12 @@ Return nil, to NOT to skip the input selection."
     (call-interactively #'ivy-previous-line)))
 (advice-add 'ivy-previous-line :after #'jcs--ivy-previous-line--advice-after)
 
+(defun jcs--counsel-up-directory ()
+  "Fixed just calling `counsel-up-directory' wouldn't go anywhere issue."
+  (let ((cur-dir (directory-file-name (expand-file-name ivy--directory))))
+    (ivy--cd cur-dir))
+  (counsel-up-directory))
+
 ;;;###autoload
 (defun jcs-counsel-find-files--slash ()
   "Find files slash key."
@@ -37,7 +42,12 @@ Return nil, to NOT to skip the input selection."
          (if (jcs-project-current)
              (ivy--cd (jcs-project-current))
            (backward-delete-char 2)
-           (message "[INFO] Project root not found, return to previous directory")))))
+           (message "[INFO] Project root not found, return to previous directory")))
+        ((save-excursion (search-backward "/./" nil t))   ; Current
+         (backward-delete-char 2))
+        ((save-excursion (search-backward "/../" nil t))  ; Up one
+         (backward-delete-char 3)
+         (jcs--counsel-up-directory))))
 
 ;;;###autoload
 (defun jcs-counsel-find-files-backspace ()
@@ -52,15 +62,13 @@ Return nil, to NOT to skip the input selection."
 (defun jcs-counsel-find-files-enter ()
   "Find files enter key."
   (interactive)
-  (unless (counsel-down-directory)
-    (ivy-done)))
+  (unless (counsel-down-directory) (ivy-done)))
 
 ;;;###autoload
 (defun jcs-counsel-find-files-other-window ()
   "Find files on other window."
   (interactive)
-  (let ((buf (buffer-name)) (found-file nil)
-        (target-buf nil))
+  (let ((buf (buffer-name)) (found-file nil) (target-buf nil))
     (unwind-protect (setq found-file (counsel-find-file))
       (when found-file
         (setq target-buf found-file)
@@ -71,8 +79,7 @@ Return nil, to NOT to skip the input selection."
 (defun jcs-counsel-projectile-find-file-other-window ()
   "Find files in project on other window."
   (interactive)
-  (let ((buf (buffer-name)) (found-file nil)
-        (target-buf nil))
+  (let ((buf (buffer-name)) (found-file nil) (target-buf nil))
     (unwind-protect (setq found-file (counsel-projectile-find-file))
       (when found-file
         (setq target-buf (concat (projectile-project-root) found-file))
