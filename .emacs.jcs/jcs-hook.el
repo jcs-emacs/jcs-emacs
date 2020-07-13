@@ -217,8 +217,6 @@
 (defun jcs-post-command-hook ()
   "Hook run after every command."
   (cond
-   ((jcs-is-current-major-mode-p "json-mode")
-    (js2-minor-mode-exit))
    ((jcs-is-current-major-mode-p "web-mode")
     (when jcs-web-auto-truncate-lines (jcs-web-truncate-lines-by-face))))
 
