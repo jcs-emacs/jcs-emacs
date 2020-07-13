@@ -76,8 +76,7 @@ NOT-OW : Default is other window, not other window."
 Version Control directory must exists in order to make it work.
 Return the absolute filepath."
   (require 'f)
-  (let ((target-files '())
-        (project-source-dir (jcs-vc-root-dir)))
+  (let ((target-files '()) (project-source-dir (jcs-vc-root-dir)))
     ;; Do the find file only when the project directory exists.
     (unless (string= project-source-dir "")
       (setq target-files
@@ -85,8 +84,7 @@ Return the absolute filepath."
                                             (lambda (file)
                                               (string-match-p in-filename (f-filename file)))
                                             t)))
-    (let ((target-files-len (length target-files))
-          (target-filepath ""))
+    (let ((target-files-len (length target-files)) (target-filepath ""))
       (if (= target-files-len 0)
           (user-error "[ERROR] No '%s' file found in the project, make sure the project directory exists"
                       in-filename)
@@ -109,19 +107,18 @@ multiple files at a time.  We need a title to present which file to select."
                                                               in-title)))
       (unless (ignore-errors
                 (setq filepath (jcs-select-find-file-current-dir in-filename)))
-        (error (concat "Can't find '%s' file either in the project or current "
-                       "directory, make sure the project directory exists or "
-                       "the '%s' file exists in the current directory")
-               in-filename
-               in-filename)))
-    ;; Return the path.
+        (user-error
+         (concat "Can't find '%s' file either in the project or current "
+                 "directory, make sure the project directory exists or "
+                 "the '%s' file exists in the current directory")
+         in-filename
+         in-filename)))
     filepath))
 
 (defun jcs-dir-to-filename (path ext)
   "Return list of filename by PATH with EXT."
   (require 'f)
-  (let ((files (directory-files path nil (format "\\%s$" ext)))
-        (types '()))
+  (let ((files (directory-files path nil (format "\\%s$" ext))) (types '()))
     (dolist (file files) (push (f-no-ext (f-filename file)) types))
     (sort types #'string-lessp)))
 
@@ -216,9 +213,7 @@ OW : Open file other window."
           (setq found-fp
                 (jcs-find-file-in-project-and-current-dir corresponding-file-name
                                                           "Corresponding file: "))
-          (if ow
-              (jcs-find-file-other-window found-fp)
-            (find-file found-fp)))
+          (if ow (jcs-find-file-other-window found-fp) (find-file found-fp)))
       (user-error "[WARNING] Unable to find a corresponding file"))))
 
 ;;;###autoload
@@ -248,7 +243,6 @@ OW : Open file other window."
            (setq corresponding-file-name (concat tmp-base-file-name ".h")))
           ((string-match "\\.c" buffer-file-name)
            (setq corresponding-file-name (concat tmp-base-file-name ".h"))))
-    ;; Return file name.
     corresponding-file-name))
 
 ;;----------------------------------------------------------------------------
@@ -263,7 +257,7 @@ OW : Open file other window."
 
     ;; If Objective-C corresponding file not found, use C/C++ corresponding
     ;; file instead.
-    (when (string= corresponding-file-name "")
+    (when (string-empty-p corresponding-file-name)
       (setq corresponding-file-name (jcs-cc-corresponding-file)))
 
     ;; Return file name.
@@ -282,7 +276,7 @@ OW : Open file other window."
            (setq corresponding-file-name (concat tmp-base-file-name ".aspx.cs"))))
 
     ;; NOTE: If is ASP.NET, just open the current file itself.
-    (when (string= corresponding-file-name "")
+    (when (string-empty-p corresponding-file-name)
       (setq corresponding-file-name buffer-file-name))
 
     ;; Return file name.

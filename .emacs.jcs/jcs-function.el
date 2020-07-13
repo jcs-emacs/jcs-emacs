@@ -305,8 +305,7 @@ OW is the other window flag."
           (setq jcs-dashboard--last-current-path dashboard-ls-path)
           (jcs-safe-jump-shown-to-buffer
            dashboard-buffer-name
-           (lambda ()
-             (jcs-dashboard-refresh-buffer))))))))
+           (lambda () (jcs-dashboard-refresh-buffer))))))))
 
 ;;;###autoload
 (defun jcs-dashboard-maybe-kill-this-buffer ()
@@ -393,9 +392,7 @@ LST-PR: List of pair."
 (defun jcs-update-line-number-each-window ()
   "Update each window's line number mode."
   (interactive)
-  (jcs-walk-through-all-windows-once
-   (lambda ()
-     (jcs-active-line-numbers-by-mode))))
+  (jcs-walk-through-all-windows-once (lambda () (jcs-active-line-numbers-by-mode))))
 
 (defun jcs-safe-display-line-numbers (act)
   "Active `display-line-numbers' by ACT."
@@ -423,12 +420,10 @@ LST-PR: List of pair."
       (progn
         (when line-reminder-mode (line-reminder-mode -1))
         (if (display-graphic-p)
-            (jcs-safe-display-line-numbers -1)
-          (jcs-safe-display-linum -1)))
+            (jcs-safe-display-line-numbers -1) (jcs-safe-display-linum -1)))
     (unless line-reminder-mode (line-reminder-mode 1))
     (if (display-graphic-p)
-        (jcs-safe-display-line-numbers 1)
-      (jcs-safe-display-linum 1))))
+        (jcs-safe-display-line-numbers 1) (jcs-safe-display-linum 1))))
 
 ;;----------------------------------------------------------------------------
 ;; Media
