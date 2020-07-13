@@ -1,4 +1,4 @@
-;;; jcs-js-mode.el --- JSON mode. -*- lexical-binding: t -*-
+;;; jcs-json-mode.el --- JSON mode. -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -6,7 +6,7 @@
 (require 'json-snatcher)
 (require 'json-mode)
 
-(defun jcs-json-format()
+(defun jcs--json-format()
   "Format for json file."
   ;; Empty, cause json should only take data. Even comments will
   ;; be treat as a data too...
@@ -26,7 +26,7 @@
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]json")
-                              'jcs-json-format)
+                              'jcs--json-format)
 
   ;; Normal
   (define-key json-mode-map (kbd "DEL") #'jcs-electric-backspace)
