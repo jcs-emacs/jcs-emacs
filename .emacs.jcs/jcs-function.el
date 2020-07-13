@@ -37,6 +37,9 @@
 ;;----------------------------------------------------------------------------
 ;; *scratch*
 
+(defconst jcs-scratch-buffer-name "*scratch*"
+  "")
+
 (defvar jcs-scratch--content ""
   "Record down the scratch content string.")
 
@@ -44,13 +47,13 @@
 (defun jcs-scratch-buffer ()
   "Start a new scratch buffer."
   (interactive)
-  (switch-to-buffer "*scratch*"))
+  (switch-to-buffer jcs-scratch-buffer-name))
 
 ;;;###autoload
 (defun jcs-scratch-buffer-other-window ()
   "Start a new scratch buffer."
   (interactive)
-  (switch-to-buffer-other-window "*scratch*"))
+  (switch-to-buffer-other-window jcs-scratch-buffer-name))
 
 ;;;###autoload
 (defun jcs-new-scratch-buffer ()
@@ -65,7 +68,7 @@
 (defun jcs-scratch-buffer-maybe-kill ()
   "Kill buffer scratch."
   (interactive)
-  (if (string= (buffer-name) "*scratch*")
+  (if (string= (buffer-name) jcs-scratch-buffer-name)
       (progn (jcs-undo-kill-this-buffer) (jcs-bury-buffer))
     (jcs-maybe-kill-this-buffer)))
 
@@ -73,7 +76,7 @@
 (defun jcs-scratch-buffer-refresh ()
   "Refresh scratch buffer."
   (interactive)
-  (if (string= (buffer-name) "*scratch*")
+  (if (string= (buffer-name) jcs-scratch-buffer-name)
       (jcs-new-scratch-buffer)
     (jcs-reopen-this-buffer)))
 
