@@ -485,6 +485,8 @@ Note this is opposite logic to the toggle mode function."
   "Programming language mode hook."
   (jcs-mute-apply #'jcs-continue-with-tab-width-record)
 
+  (modify-syntax-entry ?- "_")
+
   (abbrev-mode 1)
   (auto-highlight-symbol-mode t)
   (electric-pair-mode 1)
