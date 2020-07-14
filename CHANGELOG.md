@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-07-14
 
 * Fixed find file other window with opening the same filename error.
+* Added `GC` control for `company-mode` and it's activation.
 
 ### 2020-07-13
 
