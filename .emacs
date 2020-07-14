@@ -41,19 +41,21 @@
 ;; Produce backtraces when errors occur.
 (setq debug-on-error t)
 
-(defconst jcs-init-gc-cons-threshold (* 1024 1024 128)
-  "The `GC' threshold during starting up.")
-(defconst jcs-normal-gc-cons-threshold (* 1024 1024 20)
-  "The `GC' threshold during the normal task.")
+(defconst jcs-gc-cons-threshold (* 1024 1024 20)
+  "The default value to use for `gc-cons-threshold'. If you experience freezing,
+decrease this. If you experience stuttering, increase this.")
 
-(defun jcs-gc-cons-threshold (speedup)
-  "Set the `gc-cons-threshold' depends if is SPEEDUP."
+(defconst jcs-gc-cons-upper-limit (* 1024 1024 128)
+  "The temporary value for `gc-cons-threshold' to defer it.")
+
+(defun jcs-gc-cons-threshold-speed-up (speedup)
+  "Set the `gc-cons-threshold' depends on SPEEDUP."
   (if speedup
-      (setq gc-cons-threshold jcs-init-gc-cons-threshold)
-    (setq gc-cons-threshold jcs-normal-gc-cons-threshold)))
+      (setq gc-cons-threshold jcs-gc-cons-upper-limit)
+    (setq gc-cons-threshold jcs-gc-cons-threshold)))
 
 ;; NOTE: Raise the `GC' threshold when starting Emacs.
-(jcs-gc-cons-threshold t)
+(jcs-gc-cons-threshold-speed-up t)
 
 ;;; NOTE: Set custom file.
 (setq-default custom-file (expand-file-name ".jcs-custom.el" user-emacs-directory))
