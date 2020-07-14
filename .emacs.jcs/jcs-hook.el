@@ -193,7 +193,7 @@
               '(buffer-file-name "%f" (dired-directory dired-directory "%b"))))
 
   ;; NOTE: Lower the `GC' back to normal threshold.
-  (jcs-gc-cons-threshold nil)
+  (jcs-gc-cons-threshold-speed-up nil)
   (setq file-name-handler-alist jcs-file-name-handler-alist)
 
   ;; IMPORTANT: This should always be the last thing.
@@ -259,7 +259,7 @@
   "Hook when minibuffer setup."
   ;; NOTE: Avoid GCs while using `ivy'/`counsel'/`swiper' and `helm', etc.
   (progn
-    (jcs-gc-cons-threshold t))
+    (jcs-gc-cons-threshold-speed-up t))
 
   (jcs-dark-blue-mode-line)
 
@@ -284,7 +284,7 @@
   ;; NOTE: Avoid GCs while using `ivy'/`counsel'/`swiper' and `helm', etc.
   (progn
     (garbage-collect)
-    (jcs-gc-cons-threshold nil)))
+    (jcs-gc-cons-threshold-speed-up nil)))
 (add-hook 'minibuffer-exit-hook 'jcs-minibuffer-exit-hook)
 
 (provide 'jcs-hook)
