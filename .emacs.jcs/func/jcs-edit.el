@@ -244,8 +244,7 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
       (let ((pt (point)))
         (indent-for-tab-command)
         (when (= pt (point)) (jcs-real-space)))
-    (if (or (jcs-is-infront-first-char-at-line-p)
-            (jcs-is-beginning-of-line-p))
+    (if (or (jcs-is-infront-first-char-at-line-p) (jcs-is-beginning-of-line-p))
         (jcs-insert-spaces-by-tab-width)
       (jcs-real-space))))
 
@@ -257,9 +256,11 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
   "Yank and then indent region."
   (interactive)
   (jcs-delete-region)
-  (let ((reg-beg (point)))
+  (let ((reg-beg (point)) (was-iedit iedit-mode))
     (call-interactively #'yank)
-    (ignore-errors (indent-region reg-beg (point)))))
+    (ignore-errors (indent-region reg-beg (point)))
+    ;; Just call it twice to reactive `iedit-mode'.
+    (when was-iedit (jcs-iedit-mode) (jcs-iedit-mode))))
 
 ;;----------------------------------------------------------------------------
 ;; Tab
