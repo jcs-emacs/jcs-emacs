@@ -71,16 +71,12 @@
     (custom-set-faces
      ;;--------------------------------------------------------------------
      ;; Preview
-     '(company-preview
-       ((t (:foreground "dark gray" :underline t))))
-     '(company-preview-common
-       ((t (:inherit company-preview))))
+     '(company-preview ((t (:foreground "dark gray" :underline t))))
+     '(company-preview-common ((t (:inherit company-preview))))
      ;;--------------------------------------------------------------------
      ;; Base Selection
-     '(company-tooltip
-       ((t (:background "light gray" :foreground "black"))))
-     '(company-tooltip-selection
-       ((t (:background "steel blue" :foreground "white"))))
+     '(company-tooltip ((t (:background "light gray" :foreground "black"))))
+     '(company-tooltip-selection ((t (:background "steel blue" :foreground "white"))))
      ;;--------------------------------------------------------------------
      ;; Keyword Selection
      '(company-tooltip-common
@@ -91,10 +87,8 @@
         (t (:background "steel blue" :foreground "#C00000"))))
      ;;--------------------------------------------------------------------
      ;; Scroll Bar
-     '(company-scrollbar-fg
-       ((t (:background "black"))))
-     '(company-scrollbar-bg
-       ((t (:background "dark gray"))))))
+     '(company-scrollbar-fg ((t (:background "black"))))
+     '(company-scrollbar-bg ((t (:background "dark gray"))))))
 
   (jcs-company-ac-setup)
 
@@ -105,9 +99,14 @@
 
   (defun jcs--company-completion-started-hook (_backend)
     "Hook bind to `company-completion-started-hook'."
-    (require 'yasnippet-snippets)
-    (remove-hook 'company-completion-started-hook 'jcs--company-completion-started-hook))
+    (jcs-gc-cons-threshold-speed-up t)
+    (require 'yasnippet-snippets))
   (add-hook 'company-completion-started-hook 'jcs--company-completion-started-hook)
+
+  (defun jcs--company-after-completion-hook (&rest _)
+    "Hook bind to `company-after-completion-hook'."
+    (jcs-gc-cons-threshold-speed-up nil))
+  (add-hook 'company-after-completion-hook 'jcs--company-after-completion-hook)
 
   (global-company-mode t))
 
