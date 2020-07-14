@@ -300,6 +300,7 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
 
 (defun jcs--overwrite-mode--advice-after (&rest _args)
   "Advice execute after `overwrite-mode' command."
+  (require 'multiple-cursors)
   (if overwrite-mode
       (progn
         (setq-local cursor-type 'hbar)
