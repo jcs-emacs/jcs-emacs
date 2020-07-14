@@ -10,6 +10,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Fixed find file other window with opening the same filename error.
 * Added `GC` control for `company-mode` and it's activation.
 * Fixed after command `yank` kills `iedit-mode` issue.
+* Fixed missing require when first time `overwrite-mode` activation.
 
 ### 2020-07-13
 
