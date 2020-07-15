@@ -256,6 +256,7 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
   "Yank and then indent region."
   (interactive)
   (jcs-delete-region)
+  (require 'iedit)
   (let ((reg-beg (point)) (was-iedit iedit-mode))
     (call-interactively #'yank)
     (ignore-errors (indent-region reg-beg (point)))
