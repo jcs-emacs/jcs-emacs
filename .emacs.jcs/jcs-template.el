@@ -302,6 +302,14 @@ in order to take effect.  Half hot reloading process."
   "Template for JavaScript XML (JSX)."
   (file-header-insert-template-by-file-path "~/.emacs.jcs/template/jsx/default.txt"))
 
+(defun jcs-insert-jsx-react-js-template ()
+  "Template for React JS JavaScript XML (JSX)."
+  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/jsx/react/js.txt"))
+
+(defun jcs-insert-jsx-react-native-template ()
+  "Template for React Native JavaScript XML (JSX)."
+  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/jsx/react/native.txt"))
+
 ;;; JayCeS
 (defun jcs-insert-jayces-template ()
   "Header for JayCeS header file."
