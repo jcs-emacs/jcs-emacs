@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-07-18
+
+* Added new template branch for JSX and React JS/Native files.
+* Added ask source for `JavaScript` template.
+* Added ask source for `JavaScript XML` template.
+
 ### 2020-07-16
 
 * Fixed missing `iedit` when calling `yank` key.
