@@ -40,7 +40,6 @@
                                         "ActorComponent"))))
   (jcs-c++-unreal-insert-header type))
 
-;;;###autoload
 (defun jcs-c++-ask-source (sc)
   "Ask the source SC for editing C++ file."
   (interactive
