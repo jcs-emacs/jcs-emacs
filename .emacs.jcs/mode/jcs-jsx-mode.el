@@ -6,13 +6,28 @@
 (require 'web-mode)
 (require 'emmet-mode)
 
+(defun jcs-jsx--ask-source (sc)
+  "Ask the source SC for editing JavaScript XML file."
+  (interactive
+   (list (completing-read
+          "Major source for this JavaScript XML file: "
+          '("Default"
+            "ReactJS"
+            "React Native"))))
+  (cond ((string= sc "Default") (jcs-insert-jsx-template))
+        ((string= sc "ReactJS") (jcs-insert-jsx-react-js-template))
+        ((string= sc "React Native") (jcs-insert-jsx-react-native-template))))
+
+;;----------------------------------------------------------------------------
+
 (defun jcs-jsx-mode-hook ()
   "Mode hook for JSX mode."
   (auto-rename-tag-mode 1)
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]jsx$")
-                              'jcs-insert-jsx-template)
+                              'jcs-jsx--ask-source
+                              t)
 
   ;; Normal
   (define-key rjsx-mode-map (kbd "C-v") #'jcs-web-yank)
