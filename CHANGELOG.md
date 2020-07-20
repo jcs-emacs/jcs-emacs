@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-07-20
+
+* Added `*Checkdoc Status*` to diminish buffer list.
+* Added `*Package-Lint*` to diminish buffer list.
+
 ### 2020-07-18
 
 * Added new template branch for JSX and React JS/Native files.
