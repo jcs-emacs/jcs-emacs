@@ -84,7 +84,7 @@ decrease this. If you experience stuttering, increase this.")
 
 (defun jcs-reload-emacs-reloading-p ()
   "Check if Emacs reloading now."
-  (if (boundp 'reload-emacs-reloading) reload-emacs-reloading nil))
+  (if (boundp 'reload-emacs--reloading-p) reload-emacs--reloading-p nil))
 
 (unless (jcs-reload-emacs-reloading-p)
   (add-to-list 'load-path "~/.emacs.jcs/")
