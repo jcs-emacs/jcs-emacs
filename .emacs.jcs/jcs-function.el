@@ -275,7 +275,7 @@ OW is the other window flag."
 (defvar jcs-dashboard--force-refresh-p nil
   "Force refresh dashboard buffer when non-nil.")
 
-(defvar jcs-dashboard--switch-buffer-refreshing nil
+(defvar jcs-dashboard--switch-buffer-refreshing-p nil
   "Flag to check if current dashboard refresing.")
 
 (defvar jcs-dashboard--last-current-path nil
@@ -299,8 +299,8 @@ OW is the other window flag."
 (defun jcs-dashboard-safe-refresh-buffer ()
   "Safely refresh the dashboard buffer if needed."
   (when (jcs-buffer-shown-p dashboard-buffer-name)
-    (unless jcs-dashboard--switch-buffer-refreshing
-      (let ((jcs-dashboard--switch-buffer-refreshing t)
+    (unless jcs-dashboard--switch-buffer-refreshing-p
+      (let ((jcs-dashboard--switch-buffer-refreshing-p t)
             (dashboard-ls-path (if (buffer-file-name)
                                    (f-dirname (buffer-file-name))
                                  default-directory)))
@@ -475,7 +475,7 @@ LST-PR: List of pair."
   (cond ((jcs-is-current-major-mode-p '("json-mode"))
          (json-reformat-region (point-min) (point-max)))
         ((jcs-is-current-major-mode-p '("nxml-mode" "xml-mode"
-                                        "web-mode"))
+                                        "web-mode" "html-mode"))
          (sgml-pretty-print (point-min) (point-max)))
         (t (user-error "[WARNING] No prettify command in this context"))))
 
