@@ -472,10 +472,12 @@ LST-PR: List of pair."
   "Prettify the buffer contents by file type."
   (interactive)
   (require 'sgml-mode)
-  (cl-case major-mode
-    ('json-mode (json-reformat-region (point-min) (point-max)))
-    ('web-mode (sgml-pretty-print (point-min) (point-max)))
-    (t (user-error "No prettify command in this context"))))
+  (cond ((jcs-is-current-major-mode-p '("json-mode"))
+         (json-reformat-region (point-min) (point-max)))
+        ((jcs-is-current-major-mode-p '("nxml-mode" "xml-mode"
+                                        "web-mode"))
+         (sgml-pretty-print (point-min) (point-max)))
+        (t (user-error "[WARNING] No prettify command in this context"))))
 
 ;;;###autoload
 (defun jcs-minify-buffer-contents ()
