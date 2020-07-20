@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-07-21
+
+* Added prettify supports to `xml-mode` related major modes.
+
 ### 2020-07-20
 
 * Added `*Checkdoc Status*` to diminish buffer list.
