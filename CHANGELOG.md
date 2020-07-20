@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-07-21
 
 * Added prettify supports to `xml-mode` related major modes.
+* Added prettify supports to `html-mode` related major modes.
 
 ### 2020-07-20
 
