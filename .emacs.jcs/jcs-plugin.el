@@ -235,6 +235,7 @@
          '("[*]compilation" "[*]output")
          '("[*]Apropos[*]" "[*]Backtrace[*]" "[*]Compile-Log[*]" "[*]Help[*]"
            "[*]Warnings[*]")
+         '("[*]Checkdoc Status[*]" "[*]Package-Lint[*]")
          '("[*]Async Shell Command[*]:" "[*]shell" "[*]eshell")
          '("[*]emacs[*]")  ; From `async'
          '("[*]lsp-" "[*][a-zA-Z0-9]+[-]*ls" "[*][a-zA-Z0-9]+::stderr[*]"
