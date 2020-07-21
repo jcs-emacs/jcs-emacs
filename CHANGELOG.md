@@ -12,6 +12,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Installed new package `gitignore-templates`.
 * Added functionality to ask gitignore template when creating new file in `gitignore-mode-hook`.
 * Updated valid insert header function to keyword base instead of optional base.
+* Installed new package `groovy-mode`.
+* Start supports for programming language `Groovy`.
+* Implemented docstring functionalities to programming language `Groovy`.
 
 ### 2020-07-20
 
