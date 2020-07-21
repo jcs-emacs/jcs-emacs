@@ -470,11 +470,11 @@ Note this is opposite logic to the toggle mode function."
 
   (jcs-insert-header-if-valid '("\\(/\\|\\`\\)[Ll][Ii][Cc][Ee][Nn][Ss][Ee]")
                               'jcs-ask-insert-license-content
-                              t)
+                              :interactive t)
 
   (jcs-insert-header-if-valid '("\\(/\\|\\`\\)[Cc][Hh][Aa][Nn][Gg][Ee][-_]*[Ll][Oo][Gg]")
                               'jcs-ask-insert-changelog-content
-                              t))
+                              :interactive t))
 
 (add-hook 'text-mode-hook 'jcs-text-mode-hook)
 
@@ -591,6 +591,7 @@ Note this is opposite logic to the toggle mode function."
 (with-eval-after-load 'gitignore-mode (require 'jcs-git-mode))
 (with-eval-after-load 'glsl-mode (require 'jcs-shader-mode))
 (with-eval-after-load 'go-mode (require 'jcs-go-mode))
+(with-eval-after-load 'groovy-mode (require 'jcs-groovy-mode))
 (with-eval-after-load 'haskell-mode (require 'jcs-haskell-mode))
 (with-eval-after-load 'haxe-mode (require 'jcs-haxe-mode))
 (with-eval-after-load 'ini-mode (require 'jcs-ini-mode))
@@ -696,7 +697,11 @@ PR : pair file `regexp' and file mode `symbol'."
   (jcs-add-auto-mode-alist '("\\.geom'?\\'" . glsl-mode))
   (jcs-add-auto-mode-alist '("\\.glsl'?\\'" . glsl-mode))
   (jcs-add-auto-mode-alist '("\\.vert'?\\'" . glsl-mode))
-  (jcs-add-auto-mode-alist '("\\.go'?\\'" . go-mode)))
+
+  (jcs-add-auto-mode-alist '("\\.go'?\\'" . go-mode))
+
+  (jcs-add-auto-mode-alist '("\\.groovy'?\\'" . groovy-mode))
+  (jcs-add-auto-mode-alist '("\\.gradle'?\\'" . groovy-mode)))
 
 ;;; H
 (progn
