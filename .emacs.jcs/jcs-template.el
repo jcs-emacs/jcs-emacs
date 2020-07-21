@@ -281,6 +281,11 @@ in order to take effect.  Half hot reloading process."
   "Header for Godot Script header file."
   (file-header-insert-template-by-file-path "~/.emacs.jcs/template/gdscript/default.txt"))
 
+;;; Groovy
+(defun jcs-insert-groovy-template ()
+  "Header for Groovy header file."
+  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/groovy/default.txt"))
+
 ;;; Haskell
 (defun jcs-insert-haskell-template ()
   "Template for Haskell."
