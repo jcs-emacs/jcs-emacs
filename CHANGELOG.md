@@ -9,6 +9,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 * Added prettify supports to `xml-mode` related major modes.
 * Added prettify supports to `html-mode` related major modes.
+* Installed new package `gitignore-templates`.
+* Added functionality to ask gitignore template when creating new file in `gitignore-mode-hook`.
+* Updated valid insert header function to keyword base instead of optional base.
 
 ### 2020-07-20
 
