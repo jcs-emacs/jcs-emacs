@@ -7,6 +7,7 @@
     cc-mode c-mode c++-mode
     csharp-mode
     go-mode
+    groovy-mode
     java-mode
     jayces-mode
     js-mode js2-mode js3-mode
@@ -69,6 +70,8 @@
   "Character after value type been inserted in CSharp Mode.")
 (defvar jcs--go-doc--after-value-type-char ""
   "Character after value type been inserted in Go Mode.")
+(defvar jcs--groovy-doc--after-value-type-char ""
+  "Character after value type been inserted in Groovy Mode.")
 (defvar jcs--java-doc--after-value-type-char ""
   "Character after value type been inserted in Java Mode.")
 (defvar jcs--js-doc--after-value-type-char ""
@@ -92,6 +95,8 @@
   "Show the typename betweeen the open charachter and close charachter in CSharp mode.")
 (defvar jcs--go-doc--show-typename nil
   "Show the typename betweeen the open charachter and close charachter in Go mode.")
+(defvar jcs--groovy-doc--show-typename nil
+  "Show the typename betweeen the open charachter and close charachter in Groovy mode.")
 (defvar jcs--java-doc--show-typename nil
   "Show the typename betweeen the open charachter and close charachter in Java mode.")
 (defvar jcs--js-doc--show-typename nil
@@ -118,6 +123,9 @@
 
 (defvar jcs--go--param-string "" "Parameter string in Go mode.")
 (defvar jcs--go--return-string "" "Returns string in Go mode.")
+
+(defvar jcs--groovy--param-string "" "Parameter string in Groovy mode.")
+(defvar jcs--groovy--return-string "" "Returns string in Groovy mode.")
 
 (defvar jcs--java--param-string "" "Parameter string in Java mode.")
 (defvar jcs--java--return-string "" "Returns string in Java mode.")
@@ -150,6 +158,9 @@
 
 (defvar jcs--go--open-type-char "" "Character before the typename in Go mode.")
 (defvar jcs--go--close-type-char "" "Character after the typename in Go mode.")
+
+(defvar jcs--groovy--open-type-char "" "Character before the typename in Groovy mode.")
+(defvar jcs--groovy--close-type-char "" "Character after the typename in Groovy mode.")
 
 (defvar jcs--java--open-type-char "" "Character before the typename in Java mode.")
 (defvar jcs--java--close-type-char "" "Character after the typename in Java mode.")
@@ -197,6 +208,7 @@
     (setq jcs--cc-doc--show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "CC_DOC_SHOW_TYPENAME")))
     (setq jcs--csharp-doc--show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "CSHARP_DOC_SHOW_TYPENAME")))
     (setq jcs--go-doc--show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "GO_DOC_SHOW_TYPENAME")))
+    (setq jcs--groovy-doc--show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "GROOVY_DOC_SHOW_TYPENAME")))
     (setq jcs--java-doc--show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "JAVA_DOC_SHOW_TYPENAME")))
     (setq jcs--js-doc--show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "JS_DOC_SHOW_TYPENAME")))
     (setq jcs--lua-doc--show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "LUA_DOC_SHOW_TYPENAME")))
@@ -209,6 +221,7 @@
     (setq jcs--cc-doc--after-value-type-char (jcs-get-properties tmp-ini-list "CC_AFTER_VALUE_TYPE"))
     (setq jcs--csharp-doc--after-value-type-char (jcs-get-properties tmp-ini-list "CSHARP_AFTER_VALUE_TYPE"))
     (setq jcs--go-doc--after-value-type-char (jcs-get-properties tmp-ini-list "GO_AFTER_VALUE_TYPE"))
+    (setq jcs--groovy-doc--after-value-type-char (jcs-get-properties tmp-ini-list "GROOVY_AFTER_VALUE_TYPE"))
     (setq jcs--java-doc--after-value-type-char (jcs-get-properties tmp-ini-list "JAVA_AFTER_VALUE_TYPE"))
     (setq jcs--js-doc--after-value-type-char (jcs-get-properties tmp-ini-list "JS_AFTER_VALUE_TYPE"))
     (setq jcs--lua-doc--after-value-type-char (jcs-get-properties tmp-ini-list "LUA_AFTER_VALUE_TYPE"))
@@ -221,6 +234,7 @@
     (setq jcs--cc--param-string (jcs-get-properties tmp-ini-list "CC_PARAM_STRING"))
     (setq jcs--csharp--param-string (jcs-get-properties tmp-ini-list "CSHARP_PARAM_STRING"))
     (setq jcs--go--param-string (jcs-get-properties tmp-ini-list "GO_PARAM_STRING"))
+    (setq jcs--groovy--param-string (jcs-get-properties tmp-ini-list "GROOVY_PARAM_STRING"))
     (setq jcs--java--param-string (jcs-get-properties tmp-ini-list "JAVA_PARAM_STRING"))
     (setq jcs--js--param-string (jcs-get-properties tmp-ini-list "JS_PARAM_STRING"))
     (setq jcs--lua--param-string (jcs-get-properties tmp-ini-list "LUA_PARAM_STRING"))
@@ -233,6 +247,7 @@
     (setq jcs--cc--return-string (jcs-get-properties tmp-ini-list "CC_RETURN_STRING"))
     (setq jcs--csharp--return-string (jcs-get-properties tmp-ini-list "CSHARP_RETURN_STRING"))
     (setq jcs--go--return-string (jcs-get-properties tmp-ini-list "GO_RETURN_STRING"))
+    (setq jcs--groovy--return-string (jcs-get-properties tmp-ini-list "GROOVY_RETURN_STRING"))
     (setq jcs--java--return-string (jcs-get-properties tmp-ini-list "JAVA_RETURN_STRING"))
     (setq jcs--js--return-string (jcs-get-properties tmp-ini-list "JS_RETURN_STRING"))
     (setq jcs--lua--return-string (jcs-get-properties tmp-ini-list "LUA_RETURN_STRING"))
@@ -245,6 +260,7 @@
     (setq jcs--cc--open-type-char (jcs-get-properties tmp-ini-list "CC_OPEN_TYPE_CHAR"))
     (setq jcs--csharp--open-type-char (jcs-get-properties tmp-ini-list "CSHARP_OPEN_TYPE_CHAR"))
     (setq jcs--go--open-type-char (jcs-get-properties tmp-ini-list "GO_OPEN_TYPE_CHAR"))
+    (setq jcs--groovy--open-type-char (jcs-get-properties tmp-ini-list "GROOVY_OPEN_TYPE_CHAR"))
     (setq jcs--java--open-type-char (jcs-get-properties tmp-ini-list "JAVA_OPEN_TYPE_CHAR"))
     (setq jcs--js--open-type-char (jcs-get-properties tmp-ini-list "JS_OPEN_TYPE_CHAR"))
     (setq jcs--lua--open-type-char (jcs-get-properties tmp-ini-list "LUA_OPEN_TYPE_CHAR"))
@@ -257,6 +273,7 @@
     (setq jcs--cc--close-type-char (jcs-get-properties tmp-ini-list "CC_CLOSE_TYPE_CHAR"))
     (setq jcs--csharp--close-type-char (jcs-get-properties tmp-ini-list "CSHARP_CLOSE_TYPE_CHAR"))
     (setq jcs--go--close-type-char (jcs-get-properties tmp-ini-list "GO_CLOSE_TYPE_CHAR"))
+    (setq jcs--groovy--close-type-char (jcs-get-properties tmp-ini-list "GROOVY_CLOSE_TYPE_CHAR"))
     (setq jcs--java--close-type-char (jcs-get-properties tmp-ini-list "JAVA_CLOSE_TYPE_CHAR"))
     (setq jcs--js--close-type-char (jcs-get-properties tmp-ini-list "JS_CLOSE_TYPE_CHAR"))
     (setq jcs--lua--close-type-char (jcs-get-properties tmp-ini-list "LUA_CLOSE_TYPE_CHAR"))
@@ -347,6 +364,10 @@ SEARCH-STRING is the raw string that represent the code we want to document."
         (setq mode-doc-string-func-name (if meet-function-name
                                             'jcs--go-mode-doc-string-func
                                           'jcs--go-mode-doc-string-others)))
+       ((jcs-is-current-major-mode-p '("groovy-mode"))
+        (setq mode-doc-string-func-name (if meet-function-name
+                                            'jcs--groovy-mode-doc-string-func
+                                          'jcs--groovy-mode-doc-string-others)))
        ((jcs-is-current-major-mode-p '("java-mode" "jdee-mode"))
         (setq mode-doc-string-func-name (if meet-function-name
                                             'jcs--java-mode-doc-string-func
@@ -736,23 +757,21 @@ SEARCH-STRING is the raw string that represent the code we want to document."
       (setq param-index (1+ param-index)))
 
     ;; Lastly, process returns tag.
-    (if there-is-return
-        (progn
-          (if (not (string= return-type-string "void"))
-              (progn
-                (insert "\n")
-                (insert "* @")
-                (insert jcs--cc--return-string)
-                (if jcs--cc-doc--show-typename
-                    (jcs-insert-jsdoc-type return-type-string
-                                           jcs--cc--open-type-char
-                                           jcs--cc--close-type-char))
-                (backward-delete-char 1)
-                (if jcs--cc-doc--show-typename
-                    (insert jcs--cc-doc--after-value-type-char)
-                  (insert " "))
-                (insert jcs--return-desc-string)
-                (indent-for-tab-command)))))))
+    (when there-is-return
+      (unless (string= return-type-string "void")
+        (insert "\n")
+        (insert "* @")
+        (insert jcs--cc--return-string)
+        (if jcs--cc-doc--show-typename
+            (jcs-insert-jsdoc-type return-type-string
+                                   jcs--cc--open-type-char
+                                   jcs--cc--close-type-char))
+        (backward-delete-char 1)
+        (if jcs--cc-doc--show-typename
+            (insert jcs--cc-doc--after-value-type-char)
+          (insert " "))
+        (insert jcs--return-desc-string)
+        (indent-for-tab-command)))))
 
 
 (defun jcs--csharp-mode-doc-string-others (search-string)
@@ -761,19 +780,16 @@ SEARCH-STRING is the raw string that represent the code we want to document."
   (cond
    ((string-match-p "class" search-string)
     (progn
-      ;; STUDY: Don't think that C#
-      ;; doc need one..
+      ;; STUDY: Don't think that C# doc need one..
       ))
    ((string-match-p "struct" search-string)
     (progn
-      ;; STUDY: Don't think that C#
-      ;; doc need one..
+      ;; STUDY: Don't think that C# doc need one..
       ))
    ((or (string-match-p "define" search-string)
         (string-match-p "#define" search-string))
     (progn
-      ;; STUDY: Don't think that C#
-      ;; doc need one..
+      ;; STUDY: Don't think that C# doc need one..
       ))))
 
 (defun jcs--csharp-mode-doc-string-func (search-string)
@@ -978,19 +994,76 @@ SEARCH-STRING is the raw string that represent the code we want to document."
             (indent-for-tab-command))))))))
 
 
+(defun jcs--groovy-mode-doc-string-others (search-string)
+  "Insert `groovy-mode' other doc string.
+SEARCH-STRING is the raw string that represent the code we want to document."
+  ;; NOTE: I haven't really got deep enough with Groovy yet.
+  )
+
+(defun jcs--groovy-mode-doc-string-func (search-string)
+  "Insert `groovy-mode' function doc string.
+SEARCH-STRING is the raw string that represent the code we want to document."
+  (let* ((paren-param-list (jcs-paren-param-list search-string))
+         (param-type-strings (nth 0 paren-param-list))
+         (param-variable-strings (nth 1 paren-param-list))
+         (param-var-len (length param-variable-strings))
+         (param-index 0)
+         ;; Get the return data type.
+         (return-type-string (jcs--return-type search-string))
+         (there-is-return (not (null return-type-string))))
+    ;; go back to comment line.
+    (jcs-previous-line)
+    (jcs-previous-line)
+    (end-of-line)
+
+    ;; Process param tag.
+    (while (< param-index param-var-len)
+      (insert "\n")  ;; start from newline.
+      (insert "* @")
+      (insert jcs--groovy--param-string)
+      (when jcs--groovy-doc--show-typename
+        (jcs-insert-jsdoc-type (nth param-index param-type-strings)
+                               jcs--groovy--open-type-char
+                               jcs--groovy--close-type-char))
+      (insert (nth param-index param-variable-strings))
+      (insert jcs--groovy-doc--after-value-type-char)
+      (insert jcs--param-desc-string)
+
+      ;; indent once.
+      (indent-for-tab-command)
+
+      ;; add up counter.
+      (setq param-index (1+ param-index)))
+
+    ;; Lastly, process returns tag.
+    (when there-is-return
+      (unless (string= return-type-string "void")
+        (insert "\n")
+        (insert "* @")
+        (insert jcs--groovy--return-string)
+        (when jcs--groovy-doc--show-typename
+          (jcs-insert-jsdoc-type return-type-string
+                                 jcs--groovy--open-type-char
+                                 jcs--groovy--close-type-char))
+        (backward-delete-char 1)
+        (if jcs--groovy-doc--show-typename
+            (insert jcs--groovy-doc--after-value-type-char)
+          (insert " "))
+        (insert jcs--return-desc-string)
+        (indent-for-tab-command)))))
+
+
 (defun jcs--java-mode-doc-string-others (search-string)
   "Insert `java-mode' other doc string.
 SEARCH-STRING is the raw string that represent the code we want to document."
   (cond
    ((string-match-p "class" search-string)
     (progn
-      ;; STUDY: Don't think that java
-      ;; doc need one..
+      ;; STUDY: Don't think that java doc need one..
       ))
    ((string-match-p "interface" search-string)
     (progn
-      ;; STUDY: Don't think that java
-      ;; doc need one..
+      ;; STUDY: Don't think that java doc need one..
       ))))
 
 (defun jcs--java-mode-doc-string-func (search-string)
@@ -1052,8 +1125,7 @@ SEARCH-STRING is the raw string that represent the code we want to document."
   (cond
    ((string-match-p "class" search-string)
     (progn
-      ;; STUDY: Don't know if javascript
-      ;; need one..
+      ;; STUDY: Don't know if javascript need one..
       ))))
 
 (defun jcs--js-mode-doc-string-func (search-string)
