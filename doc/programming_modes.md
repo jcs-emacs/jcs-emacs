@@ -23,6 +23,7 @@ recording all the `major-mode` I am using corresponding to each file type.
 | GLSL | [glsl-mode](https://github.com/jimhourihan/glsl-mode) | major mode for Open GLSL shader files | [![MELPA](https://melpa.org/packages/glsl-mode-badge.svg)](https://melpa.org/#/glsl-mode) |
 | Go | [go-mode](https://github.com/dominikh/go-mode.el) | Major mode for the Go programming language | [![MELPA](https://melpa.org/packages/go-mode-badge.svg)](https://melpa.org/#/go-mode) |
 | Godot Script | [gdscript-mode](https://github.com/AdamBark/gdscript-mode) | Major mode for editing Godot GDScript files | [![MELPA](https://melpa.org/packages/gdscript-mode-badge.svg)](https://melpa.org/#/gdscript-mode) |
+| Groovy | [groovy-mode](https://github.com/Groovy-Emacs-Modes/groovy-emacs-modes) | Major mode for Groovy source files | [![MELPA](https://melpa.org/packages/groovy-mode-badge.svg)](https://melpa.org/#/groovy-mode) |
 | Haskell | [haskell-mode](https://github.com/haskell/haskell-mode) | A Haskell editing mode | [![MELPA](https://melpa.org/packages/haskell-mode-badge.svg)](https://melpa.org/#/haskell-mode) |
 | Haxe | [haxe-mode](https://www.emacswiki.org/emacs/HaxeMode) | An Emacs major mode for Haxe | [![MELPA](https://melpa.org/packages/haxe-mode-badge.svg)](https://melpa.org/#/haxe-mode) |
 | HTML | [web-mode](https://github.com/fxbois/web-mode) | major mode for editing web templates | [![MELPA](https://melpa.org/packages/web-mode-badge.svg)](https://melpa.org/#/web-mode) |
