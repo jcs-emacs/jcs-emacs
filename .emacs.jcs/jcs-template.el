@@ -5,16 +5,6 @@
 ;;----------------------------------------------------------------------------
 ;; File Header Insertion
 
-(defun jcs-insert-header-if-valid (reg-lst insert-func &optional ci)
-  "Insert the header if certain conditions met.
-If one of the REG-LST, we execute INSERT-FUNC then, CI means `call-interactively'."
-  (require 'f)
-  (if (and buffer-file-name
-           (not (file-exists-p buffer-file-name))
-           (jcs-is-contain-list-string-regexp reg-lst (f-filename buffer-file-name)))
-      (jcs-insert-header-if-empty insert-func ci)
-    nil))
-
 (defun jcs-insert-header-if-empty (insert-func &optional ci)
   "Execute INSERT-FUNC if empty, CI means `call-interactively'."
   (if (jcs-is-current-file-empty-p)
@@ -22,6 +12,25 @@ If one of the REG-LST, we execute INSERT-FUNC then, CI means `call-interactively
         (if ci (call-interactively insert-func) (funcall insert-func))
         (goto-char (point-min)))
     nil))
+
+(cl-defun jcs-insert-header-if-valid (reg-lst insert-func &key interactive success fail)
+  "Insert the header if certain conditions met.
+
+REG-LST is extension list represent by regular expression.
+INSERT-FUNC is the function that will be use to call inserting header content.
+INTERACTIVE is boolean check if called function interactively instead.
+SUCCESS is callback after successfully inserted header content.
+FAILED is callback if does NOT successfully inserted header content."
+  (require 'f)
+  (let ((result nil))
+    (when (and buffer-file-name
+               (not (file-exists-p buffer-file-name))
+               (jcs-is-contain-list-string-regexp reg-lst (f-filename buffer-file-name)))
+      (setq result (jcs-insert-header-if-empty insert-func interactive)))
+    (if result
+        (when (functionp success) (funcall success))
+      (when (functionp fail) (funcall fail)))
+    result))
 
 ;;----------------------------------------------------------------------------
 ;; Buffer String
