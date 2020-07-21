@@ -94,6 +94,7 @@
     google-translate
     goto-char-preview
     goto-line-preview
+    groovy-mode
     haskell-mode
     haxe-mode
     helpful
