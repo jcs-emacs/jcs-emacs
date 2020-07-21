@@ -87,6 +87,7 @@
     gitconfig-mode
     github-browse-file
     gitignore-mode
+    gitignore-templates
     glsl-mode
     go-mode
     google-this
