@@ -13,7 +13,7 @@
   ;; File Header
   (jcs-insert-header-if-valid '("[.]cs")
                               'jcs-csharp-ask-source
-                              t)
+                              :interactive t)
 
   ;; Normal
   (define-key csharp-mode-map (kbd "<up>") (jcs-get-prev/next-key-type 'previous))

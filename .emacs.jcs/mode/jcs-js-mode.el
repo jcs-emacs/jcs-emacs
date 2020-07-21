@@ -46,7 +46,7 @@
   ;; File Header
   (jcs-insert-header-if-valid '("[.]js$")
                               'jcs-js--ask-source
-                              t)
+                              :interactive t)
 
   ;; Normal
   (define-key js2-mode-map (kbd "DEL") #'jcs-electric-backspace)

@@ -14,7 +14,7 @@
   ;; File Header
   (jcs-insert-header-if-valid '("[.]py")
                               'jcs-ask-python-template
-                              t)
+                              :interactive t)
 
   ;; Normal
   (define-key python-mode-map (kbd "<up>") (jcs-get-prev/next-key-type 'previous))

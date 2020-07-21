@@ -57,7 +57,7 @@
   ;; File Header
   (let ((ext-lst (append jcs-c-header-extensions jcs-c-source-extensions
                          jcs-c++-header-extensions jcs-c++-source-extensions)))
-    (jcs-insert-header-if-valid ext-lst 'jcs-c++-ask-source t))
+    (jcs-insert-header-if-valid ext-lst 'jcs-c++-ask-source :interactive t))
 
   ;; Normal
   (define-key c++-mode-map [f8] #'jcs-find-corresponding-file)

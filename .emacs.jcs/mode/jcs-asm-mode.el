@@ -14,7 +14,7 @@
                (not (jcs-insert-header-if-valid '("[.]asm"
                                                   "[.]inc")
                                                 'jcs-asm-ask-source
-                                                t)))
+                                                :interactive t)))
       ;; Switch major mode.
       (let ((jcs-asm--asking-mode t)) (call-interactively #'jcs-asm-ask-mode))))
 

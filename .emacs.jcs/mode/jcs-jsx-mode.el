@@ -27,7 +27,7 @@
   ;; File Header
   (jcs-insert-header-if-valid '("[.]jsx$")
                               'jcs-jsx--ask-source
-                              t)
+                              :interactive t)
 
   ;; Normal
   (define-key rjsx-mode-map (kbd "C-v") #'jcs-web-yank)

@@ -18,7 +18,7 @@
   ;; File Header
   (jcs-insert-header-if-valid '("[.]ts")
                               'jcs-typescript-ask-source
-                              t)
+                              :interactive t)
 
   ;; Normal
   (define-key typescript-mode-map (kbd "DEL") #'jcs-electric-backspace)
