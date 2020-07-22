@@ -36,6 +36,7 @@ recording all the `major-mode` I am using corresponding to each file type.
 | Lisp | [lisp-mode](https://github.com/emacs-mirror/emacs/blob/master/lisp/emacs-lisp/lisp-mode.el) | Major mode for editing Lisp code for Lisps other than GNU Emacs Lisp. | ![Builtin](https://img.shields.io/badge/builtin-depends-blue.svg) |
 | Lua | [lua-mode](https://github.com/immerrr/lua-mode) | a major-mode for editing Lua scripts | [![MELPA](https://melpa.org/packages/lua-mode-badge.svg)](https://melpa.org/#/lua-mode) |
 | Makefile | [makefile-mode](https://www.emacswiki.org/emacs/MakefileMode) | A major mode for editing makefiles. | ![Builtin](https://img.shields.io/badge/builtin-depends-blue.svg) |
+| Nix | [nix-mode](https://github.com/NixOS/nix-mode) | Major mode for editing .nix files | [![MELPA](https://melpa.org/packages/nix-mode-badge.svg)](https://melpa.org/#/nix-mode) |
 | Object Pascal (Delphi) | [opascal-mode](https://github.com/jwiegley/emacs-release/blob/master/lisp/progmodes/opascal.el) | major mode for editing Object Pascal source in Emacs | ![Builtin](https://img.shields.io/badge/builtin-depends-blue.svg) |
 | Objective-C | [objc-mode](https://www.emacswiki.org/emacs/ObjectiveCMode) | Major mode for editing Objective C code. | ![Builtin](https://img.shields.io/badge/builtin-depends-blue.svg) |
 | Pascal | [pascal-mode](https://www.emacswiki.org/emacs/PascalMode) | Major mode for editing Pascal source in Emacs. | ![Builtin](https://img.shields.io/badge/builtin-depends-blue.svg) |
