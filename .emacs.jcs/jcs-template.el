@@ -378,6 +378,11 @@ in order to take effect.  Half hot reloading process."
   "Template for makefile Python library."
   (file-header-insert-template-by-file-path "~/.emacs.jcs/template/makefile/python/lib.txt"))
 
+;;; Nix
+(defun jcs-insert-nix-template ()
+  "Header for Nix header file."
+  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/nix/default.txt"))
+
 ;;; Object Pascal (Delphi)
 (defun jcs-insert-opascal-template ()
   "Header for Object Pascal header file."
