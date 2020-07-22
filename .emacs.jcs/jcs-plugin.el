@@ -5,8 +5,27 @@
 (use-package auto-highlight-symbol
   :defer t
   :init
-  ;; Number of seconds to wait before highlighting symbol.
   (setq ahs-idle-interval 0.3))
+
+(use-package auto-read-only
+  :defer t
+  :config
+  (add-to-list 'auto-read-only-file-regexps "/[.]emacs[.]d/elisp/")
+  (add-to-list 'auto-read-only-file-regexps "/[.]emacs[.]d/elpa/")
+  (add-to-list 'auto-read-only-file-regexps "/lisp/")
+
+  (defun jcs--auto-read-only--hook-find-file ()
+    "Advice wrap `auto-read-only--hook-find-file' function."
+    (unless jcs-package-installing-p (auto-read-only)))
+  (advice-add 'auto-read-only--hook-find-file :override #'jcs--auto-read-only--hook-find-file)
+
+  (define-minor-mode auto-read-only-mode
+    "Minor mode for appply auto-read-only."
+    nil auto-read-only-mode-lighter nil
+    :global t
+    (if auto-read-only-mode
+        (add-hook 'find-file-hook #'auto-read-only--hook-find-file)
+      (remove-hook 'find-file-hook #'auto-read-only--hook-find-file))))
 
 (use-package browse-kill-ring
   :defer t
