@@ -30,6 +30,8 @@
   (visual-line-mode t)
   (impatient-mode t)
 
+  (jcs-enable-truncate-lines)
+
   ;; Docstring Faces
   (face-remap-add-relative 'jcs-oop-tag-face '(:inherit web-mode-block-face))
   (face-remap-add-relative 'jcs-oop-type-face '(:inherit web-mode-block-face))

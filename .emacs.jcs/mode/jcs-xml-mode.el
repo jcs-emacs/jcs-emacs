@@ -12,6 +12,8 @@
   (auto-truncate-lines-mode 1)
   (visual-line-mode t)
 
+  (jcs-enable-truncate-lines)
+
   ;; File Header
   (jcs-insert-header-if-valid '("[.]xml")
                               'jcs-insert-xml-template)
