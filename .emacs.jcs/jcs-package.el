@@ -36,6 +36,7 @@
     alt-codes
     apache-mode
     auto-highlight-symbol
+    auto-read-only
     auto-rename-tag
     basic-mode
     buffer-move
@@ -181,15 +182,15 @@
     yasnippet-snippets)
   "List of packages this config needs.")
 
-(defvar jcs-package-installing nil
+(defvar jcs-package-installing-p nil
   "Is currently upgrading the package.")
 
 
 (defun jcs-advice-package-install-around (ori-func &rest args)
   "Advice around execute `package-install' command."
-  (setq jcs-package-installing t)
+  (setq jcs-package-installing-p t)
   (apply ori-func args)
-  (setq jcs-package-installing nil))
+  (setq jcs-package-installing-p nil))
 (advice-add 'package-install :around #'jcs-advice-package-install-around)
 
 (defun jcs-package-install (pkg)
@@ -329,7 +330,7 @@
 (defun jcs-ensure-manual-package-installed (packages &optional without-asking)
   "Ensure all manually installed PACKAGES are installed, ask WITHOUT-ASKING."
   (unless (jcs-reload-emacs-reloading-p)
-    (let ((jcs-package-installing t))
+    (let ((jcs-package-installing-p t))
       (dolist (pkg-info packages)
         (let* ((pkg-name (nth 0 pkg-info))
                (pkg-repo (nth 1 pkg-info))
