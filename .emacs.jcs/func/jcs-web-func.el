@@ -3,55 +3,6 @@
 ;;; Code:
 
 ;;----------------------------------------------------------------------------
-;; Truncate lines depends on the Face.
-
-(defvar jcs-web-auto-truncate-lines nil
-  "Toggle between using automatically truncate lines or not.")
-
-(defun jcs-web-truncate-lines-by-face ()
-  "Enable/Disable the truncate lines mode depends on the face cursor currently on."
-  (require 'auto-rename-tag)
-  (when (and (not (jcs-current-char-string-match-p "[ \t\r\n]"))
-             (not (jcs-inside-comment-block-p))
-             (not (eolp)))
-    (jcs-mute-apply
-     (lambda ()
-       (if (auto-rename-tag--inside-tag-p)
-           (jcs-enable-truncate-lines)
-         (jcs-disable-truncate-lines))))))
-
-;;;###autoload
-(defun jcs-web-enable-auto-truncate-lines ()
-  "Enable auto trancate lines effect."
-  (interactive)
-  (setq jcs-web-auto-truncate-lines t)
-  (message "Enable auto truncate lines."))
-
-;;;###autoload
-(defun jcs-web-disable-auto-truncate-lines ()
-  "Disable auto trancate lines effect."
-  (interactive)
-  (setq jcs-web-auto-truncate-lines nil)
-  (message "Disable auto truncate lines."))
-
-;;;###autoload
-(defun jcs-web-toggle-auto-truncate-lines ()
-  "Toggle `jcs-web-auto-truncate-lines' variables."
-  (interactive)
-  (if jcs-web-auto-truncate-lines
-      (jcs-web-disable-auto-truncate-lines)
-    (jcs-web-enable-auto-truncate-lines)))
-
-;;;###autoload
-(defun jcs-web-keep-auto-truncate-lines ()
-  "Keep the same trigger for auto truncate mode.
-Is the opposite of `jcs-web-toggle-auto-truncate-lines'."
-  (interactive)
-  (if jcs-web-auto-truncate-lines
-      (jcs-web-enable-auto-truncate-lines)
-    (jcs-web-disable-auto-truncate-lines)))
-
-;;----------------------------------------------------------------------------
 ;; Deletion
 
 ;;;###autoload
