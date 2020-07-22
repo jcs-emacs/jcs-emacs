@@ -130,6 +130,7 @@
     nasm-mode
     neotree
     nhexl-mode
+    nix-mode
     org-bullets
     organize-imports-java
     origami
