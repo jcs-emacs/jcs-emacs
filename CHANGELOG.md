@@ -9,6 +9,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 * Installed new package `auto-read-only`.
 * Removed self-customized auto read only functionality and replace with `auto-read-only` package.
+* Removed built in auto truncate lines functionalities.
+* Installed new package manually `auto-truncate-lines`.
 
 ### 2020-07-21
 
