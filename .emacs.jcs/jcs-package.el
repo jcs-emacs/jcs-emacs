@@ -301,7 +301,8 @@
 
 
 (defconst jcs-package-manually-install-list
-  '(("file-header" "jcs-elpa/file-header" "github")
+  '(("auto-truncate-lines" "jcs-elpa/auto-truncate-lines" "github")
+    ("file-header" "jcs-elpa/file-header" "github")
     ("jayces-mode" "jcs-elpa/jayces-mode" "github")
     ("multi-shell" "jcs-elpa/multi-shell" "github")
     ("reload-emacs" "jcs-elpa/reload-emacs" "github"))
