@@ -98,6 +98,8 @@ Note this is opposite logic to the toggle mode function."
     (setq css-indent-offset tw))
    ((jcs-is-current-major-mode-p '("ssass-mode"))
     (setq ssass-tab-width tw))
+   ((jcs-is-current-major-mode-p '("groovy-mode"))
+    (setq groovy-indent-offset tw))
    ((jcs-is-current-major-mode-p '("js-mode"))
     (setq js-indent-level tw))
    ((jcs-is-current-major-mode-p '("js2-mode"))
@@ -162,6 +164,8 @@ Note this is opposite logic to the toggle mode function."
     css-indent-offset)
    ((jcs-is-current-major-mode-p '("ssass-mode"))
     ssass-tab-width)
+   ((jcs-is-current-major-mode-p '("groovy-mode"))
+    groovy-indent-offset)
    ((jcs-is-current-major-mode-p '("js-mode"))
     js-indent-level)
    ((jcs-is-current-major-mode-p '("js2-mode"))
@@ -605,6 +609,7 @@ Note this is opposite logic to the toggle mode function."
 (with-eval-after-load 'markdown-mode (require 'jcs-markdown-mode))
 (with-eval-after-load 'masm-mode (require 'jcs-asm-mode))
 (with-eval-after-load 'nasm-mode (require 'jcs-asm-mode))
+(with-eval-after-load 'nix-mode (require 'jcs-nix-mode))
 (with-eval-after-load 'nxml-mode (require 'jcs-xml-mode))
 (with-eval-after-load 'opascal (require 'jcs-opascal-mode))
 (with-eval-after-load 'org (require 'jcs-org-mode))
@@ -748,7 +753,9 @@ PR : pair file `regexp' and file mode `symbol'."
 ;;; N
 (progn
   (jcs-add-auto-mode-alist '("\\.asm'?\\'" . nasm-mode))
-  (jcs-add-auto-mode-alist '("\\.inc'?\\'" . nasm-mode)))
+  (jcs-add-auto-mode-alist '("\\.inc'?\\'" . nasm-mode))
+
+  (jcs-add-auto-mode-alist '("\\.nix'?\\'" . nix-mode)))
 
 ;;; O
 (progn
