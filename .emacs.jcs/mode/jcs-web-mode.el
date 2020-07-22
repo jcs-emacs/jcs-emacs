@@ -3,17 +3,6 @@
 ;;; Code:
 
 ;;----------------------------------------------------------------------------
-;; Truncate Lines
-;;URL: https://emacs.stackexchange.com/questions/14589/correct-indentation-for-wrapped-lines
-
-(require 'adaptive-wrap)
-
-(add-hook 'visual-line-mode-hook
-          (lambda ()
-            (adaptive-wrap-prefix-mode +1)
-            (diminish 'visual-line-mode)))
-
-;;----------------------------------------------------------------------------
 ;; Real time editing mark down (impatient-mode)
 
 ;; Note for "Impatient Mode" (real time editing)
@@ -37,11 +26,9 @@
 (defun jcs-web-mode-hook ()
   "Hooks for Web mode."
   (auto-rename-tag-mode 1)
+  (auto-truncate-lines-mode 1)
   (visual-line-mode t)
   (impatient-mode t)
-  
-  (jcs-enable-truncate-lines)  ; truncates lines as default
-  (jcs-web-enable-auto-truncate-lines)
 
   ;; Docstring Faces
   (face-remap-add-relative 'jcs-oop-tag-face '(:inherit web-mode-block-face))
