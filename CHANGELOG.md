@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-07-22
+
+* Installed new package `auto-read-only`.
+* Removed self-customized auto read only functionality and replace with `auto-read-only` package.
+
 ### 2020-07-21
 
 * Added prettify supports to `xml-mode` related major modes.
