@@ -72,6 +72,7 @@ from this configuration.
 * Kotlin
 * LESS / Lisp / Lua
 * Makefile / Markdown
+* Nix
 * Object Pascal (Delphi) / Objective-C
 * Pascal / Perl / PHP / Properties / Python
 * R / Ruby / Rust
