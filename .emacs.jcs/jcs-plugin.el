@@ -2,6 +2,14 @@
 ;;; Commentary:
 ;;; Code:
 
+(use-package adaptive-wrap
+  :defer t
+  :init
+  (add-hook 'visual-line-mode-hook
+            (lambda ()
+              (adaptive-wrap-prefix-mode +1)
+              (diminish 'visual-line-mode))))
+
 (use-package auto-highlight-symbol
   :defer t
   :init
@@ -238,6 +246,7 @@
   (with-eval-after-load 'show-eol (diminish 'show-eol-mode))
   (with-eval-after-load 'undo-tree (diminish 'undo-tree-mode))
   (with-eval-after-load 'view (diminish 'view-mode))
+  (diminish 'visual-line-mode)
   (with-eval-after-load 'which-key (diminish 'which-key-mode))
   (with-eval-after-load 'whitespace
     (diminish 'whitespace-mode)
