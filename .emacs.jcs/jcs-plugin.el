@@ -212,6 +212,7 @@
   (with-eval-after-load 'alt-codes (diminish 'alt-codes-mode))
   (diminish 'auto-fill-mode)
   (with-eval-after-load 'auto-highlight-symbol (diminish 'auto-highlight-symbol-mode))
+  (with-eval-after-load 'auto-read-only (diminish 'auto-read-only-mode))
   (with-eval-after-load 'auto-rename-tag (diminish 'auto-rename-tag-mode))
   (with-eval-after-load 'autorevert (diminish 'auto-revert-mode))
   (with-eval-after-load 'buffer-wrap (diminish 'buffer-wrap-mode))
