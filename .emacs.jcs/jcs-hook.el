@@ -38,11 +38,7 @@
 
 (defun jcs-find-file-hook ()
   "Find file hook."
-  (unless (jcs-reload-emacs-reloading-p)
-    (when (and (jcs-is-contain-list-string jcs-find-file-read-only-paths (buffer-file-name))
-               (not jcs-package-installing))
-      (read-only-mode 1))
-    (jcs-active-line-numbers-by-mode)))
+  (unless (jcs-reload-emacs-reloading-p) (jcs-active-line-numbers-by-mode)))
 (add-hook 'find-file-hook 'jcs-find-file-hook)
 
 (defun jcs--find-file--advice-before (&rest _args)
@@ -114,6 +110,7 @@
   (progn
     (require 'alt-codes)
     (require 'auto-highlight-symbol)
+    (require 'auto-read-only)
     (require 'company)
     (require 'dashboard)
     (require 'diminish)
@@ -139,6 +136,8 @@
     (global-alt-codes-mode 1)
     ;;----------------------------------- `auto-highlight-symbol'
     (global-auto-highlight-symbol-mode t)
+    ;;----------------------------------- `auto-read-only'
+    (auto-read-only-mode 1)
     ;;----------------------------------- `delete-selection'
     (delete-selection-mode 1)
     ;;----------------------------------- `goto-address'
