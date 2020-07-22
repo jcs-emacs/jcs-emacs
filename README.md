@@ -243,8 +243,9 @@ detials make things better and make life smoother.
 
 * [*Auto Install Package*](./features/auto-install-package) -
 Automatically installs the package that this config relies on.
-* [*Auto Truncate Lines*](./features/auto-truncate-lines) -
-Automatically enable/disable `truncate-lines-mode` depends on certain situation. ([markup language](https://en.wikipedia.org/wiki/Markup_language) only)
+* ~~[*Auto Truncate Lines*](./features/auto-truncate-lines) -
+Automatically enable/disable `truncate-lines-mode` depends on certain situation. ([markup language](https://en.wikipedia.org/wiki/Markup_language) only)~~
+(has move to [auto-truncate-lines](https://github.com/jcs-elpa/auto-truncate-lines))
 * [*Better Dashboard*](./features/better-dashboard) -
 Implementation for improving experiences using dashboard.
 * [*Buffer Menu Search*](./features/buffer-menu-search) -
