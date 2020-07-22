@@ -8,6 +8,10 @@
 
 (defun jcs-xml-mode-hook ()
   "XML mode hook."
+  (auto-rename-tag-mode 1)
+
+  (jcs-enable-truncate-lines)  ; truncates lines as default
+  (jcs-web-enable-auto-truncate-lines)
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]xml")
