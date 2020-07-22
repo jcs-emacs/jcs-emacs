@@ -257,15 +257,8 @@ See `jcs-hook.el' file that has apply `advice' on command `other-window'.")
 
 (defun jcs--recentf-track-opened-file--advice-after ()
   "Advice execute after `recentf-track-opened-file' function."
-  (unless jcs-package-installing
-    (jcs-dashboard-refresh-buffer)))
+  (unless jcs-package-installing-p (jcs-dashboard-refresh-buffer)))
 (advice-add 'recentf-track-opened-file :after #'jcs--recentf-track-opened-file--advice-after)
-
-;;; Read Only
-(defconst jcs-find-file-read-only-paths '("/.emacs.d/elisp/"
-                                          "/.emacs.d/elpa/"
-                                          "/lisp/")
-  "Find file with these paths, esure read only mode enabled.")
 
 ;;; Shift Select
 (setq shift-select-mode t)
