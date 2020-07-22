@@ -39,10 +39,8 @@
   (auto-rename-tag-mode 1)
   (visual-line-mode t)
   (impatient-mode t)
-
-  ;; Enable truncates lines as default in `web-mode'.
-  (jcs-enable-truncate-lines)
-
+  
+  (jcs-enable-truncate-lines)  ; truncates lines as default
   (jcs-web-enable-auto-truncate-lines)
 
   ;; Docstring Faces
