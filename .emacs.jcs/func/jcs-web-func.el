@@ -11,13 +11,14 @@
 (defun jcs-web-truncate-lines-by-face ()
   "Enable/Disable the truncate lines mode depends on the face cursor currently on."
   (require 'auto-rename-tag)
-  (when (and (not (jcs-current-char-string-match-p "[ \t\n]"))
-             (not (jcs-inside-comment-block-p)))
+  (when (and (not (jcs-current-char-string-match-p "[ \t\r\n]"))
+             (not (jcs-inside-comment-block-p))
+             (not (eolp)))
     (jcs-mute-apply
      (lambda ()
-       (if (and (not (auto-rename-tag--inside-tag-p)))
-           (jcs-disable-truncate-lines)
-         (jcs-enable-truncate-lines))))))
+       (if (auto-rename-tag--inside-tag-p)
+           (jcs-enable-truncate-lines)
+         (jcs-disable-truncate-lines))))))
 
 ;;;###autoload
 (defun jcs-web-enable-auto-truncate-lines ()
