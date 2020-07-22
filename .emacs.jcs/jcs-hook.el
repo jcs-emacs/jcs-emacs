@@ -215,11 +215,6 @@
 
 (defun jcs-post-command-hook ()
   "Hook run after every command."
-  (cond
-   ((jcs-is-current-major-mode-p '("nxml-mode" "xml-mode"
-                                   "web-mode"))
-    (when jcs-web-auto-truncate-lines (jcs-web-truncate-lines-by-face))))
-
   (jcs--lsp-ui-doc--hide-frame)
   (jcs--lsp-ui-doc-show-safely)
   (jcs-reload-active-mode-with-error-handle)
