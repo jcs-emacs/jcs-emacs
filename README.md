@@ -244,7 +244,7 @@ detials make things better and make life smoother.
 * [*Auto Install Package*](./features/auto-install-package) -
 Automatically installs the package that this config relies on.
 * [*Auto Truncate Lines*](./features/auto-truncate-lines) -
-Automatically enable/disable `truncate-lines-mode` depends on certain situation. (`web-mode` only)
+Automatically enable/disable `truncate-lines-mode` depends on certain situation. ([markup language](https://en.wikipedia.org/wiki/Markup_language) only)
 * [*Better Dashboard*](./features/better-dashboard) -
 Implementation for improving experiences using dashboard.
 * [*Buffer Menu Search*](./features/buffer-menu-search) -
@@ -609,10 +609,10 @@ In your `my-init.el` file should look something similar to this.
 ## :bamboo: Supported Emacs versions
 
 The config should run on Emacs **26.1** or higher, but I will recommend to always
-run on the latest Emacs version available on your machine. The ultimate goal is to 
+run on the latest Emacs version available on your machine. The ultimate goal is to
 design to have each version of config can run on their each according Emacs version
-base on the version what I'm currently running on my present machine. For each version 
-record, you can check the [version_record](./version_record.txt) file at the root of 
+base on the version what I'm currently running on my present machine. For each version
+record, you can check the [version_record](./version_record.txt) file at the root of
 the project directory.
 
 ## :question: FAQ
