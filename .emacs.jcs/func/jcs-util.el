@@ -898,64 +898,31 @@ Return nil, vice versa."
 
 (defun jcs-start-line-in-buffer-p ()
   "Is current line the start line in buffer."
-  (let ((buffer-start-line-num nil)
-        ;; Get the current line number in the shell buffer.
-        (current-line-num (jcs-get-current-line-integer)))
-    ;; Get the last line number in the current shell buffer.
-    (save-excursion
-      (goto-char (point-min))
-      (setq buffer-start-line-num (jcs-get-current-line-integer)))
-    ;; Return it.
-    (= current-line-num buffer-start-line-num)))
+  (= (line-number-at-pos (point) t) (line-number-at-pos (point-min) t)))
 
 (defun jcs-last-line-in-buffer-p ()
   "Is current line the last line in buffer."
-  (let ((buffer-last-line-num nil)
-        ;; Get the current line number in the shell buffer.
-        (current-line-num (jcs-get-current-line-integer)))
-    ;; Get the last line number in the current shell buffer.
-    (save-excursion
-      (goto-char (point-max))
-      (setq buffer-last-line-num (jcs-get-current-line-integer)))
-    ;; Return it.
-    (= current-line-num buffer-last-line-num)))
+  (= (line-number-at-pos (point) t) (line-number-at-pos (point-max) t)))
 
 (defun jcs-first-visible-pos-in-window ()
   "First point in current visible window."
-  (let ((cp (point)))
-    (save-window-excursion
-      (save-excursion
-        (while (and (not (jcs-is-beginning-of-buffer-p))
-                    (pos-visible-in-window-p cp))
-          (beginning-of-line)
-          (unless (jcs-is-beginning-of-buffer-p)
-            (backward-char 1))
-          (setq cp (point)))
-        (when (and (jcs-is-beginning-of-buffer-p)
-                   (pos-visible-in-window-p cp))
-          (setq cp (1- (point))))))
-    (+ cp 1)))
+  (save-excursion
+    (ignore-errors (move-to-window-line 0))
+    (line-beginning-position)))
 
 (defun jcs-last-visible-pos-in-window ()
   "Last point in current visible window."
-  (let ((cp (point)))
-    (save-window-excursion
-      (save-excursion
-        (while (and (not (jcs-is-end-of-buffer-p))
-                    (pos-visible-in-window-p cp))
-          (end-of-line)
-          (unless (jcs-is-end-of-buffer-p)
-            (forward-char 1))
-          (setq cp (point)))))
-    (- cp 1)))
+  (save-excursion
+    (ignore-errors (move-to-window-line -1))
+    (line-beginning-position)))
 
 (defun jcs-first-visible-line-in-window ()
   "First line number in current visible window."
-  (line-number-at-pos (jcs-first-visible-pos-in-window)))
+  (line-number-at-pos (jcs-first-visible-pos-in-window) t))
 
 (defun jcs-last-visible-line-in-window ()
   "Last line number in current visible window."
-  (line-number-at-pos (jcs-last-visible-pos-in-window)))
+  (line-number-at-pos (jcs-last-visible-pos-in-window) t))
 
 (defun jcs-make-first-visible-line-to (ln)
   "Make the first visible line to target line, LN."
