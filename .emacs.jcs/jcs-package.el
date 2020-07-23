@@ -303,6 +303,7 @@
 
 (defconst jcs-package-manually-install-list
   '(("auto-truncate-lines" "jcs-elpa/auto-truncate-lines" "github")
+    ("better-scroll" "jcs-elpa/better-scroll" "github")
     ("file-header" "jcs-elpa/file-header" "github")
     ("jayces-mode" "jcs-elpa/jayces-mode" "github")
     ("multi-shell" "jcs-elpa/multi-shell" "github")
