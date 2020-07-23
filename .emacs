@@ -70,7 +70,7 @@ decrease this. If you experience stuttering, increase this.")
 ;;----------------------------------------------------------------------------
 ;;; Version
 
-(defconst jcs-emacs-version-number "6.2.1"
+(defconst jcs-emacs-version-number "6.2.2"
   "JCS-Emacs version.")
 
 ;;;###autoload
