@@ -125,11 +125,11 @@
 (define-key global-map [C-up] #'jcs-previous-blank-line)
 (define-key global-map [C-down] #'jcs-next-blank-line)
 
-(define-key global-map (kbd "<prior>") #'jcs-scroll-down)
-(define-key global-map (kbd "<next>") #'jcs-scroll-up)
+(define-key global-map (kbd "<prior>") #'better-scroll-down)
+(define-key global-map (kbd "<next>") #'better-scroll-up)
 
-(define-key global-map (kbd "S-<prior>") #'jcs-scroll-down-other-window)
-(define-key global-map (kbd "S-<next>") #'jcs-scroll-up-other-window)
+(define-key global-map (kbd "S-<prior>") #'better-scroll-down-other-window)
+(define-key global-map (kbd "S-<next>") #'better-scroll-up-other-window)
 
 (bind-key* (kbd "C-r DEL") #'jcs-backward-delete-current-char-repeat)
 (bind-key* (kbd "C-r S-<backspace>") #'jcs-forward-delete-current-char-repeat)
