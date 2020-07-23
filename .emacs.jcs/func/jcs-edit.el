@@ -775,7 +775,7 @@ REGEXP : reqular expression use to align."
 
 (defun jcs-do-stuff-before-save (&rest _)
   "Do stuff before save command is executed."
-  (company-abort))
+  (when (fboundp 'company-abort) (company-abort)))
 (advice-add 'save-buffer :before #'jcs-do-stuff-before-save)
 
 (defun jcs-do-stuff-after-save (&rest _)
