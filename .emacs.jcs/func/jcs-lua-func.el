@@ -20,10 +20,8 @@
     (let ((only-comment-this-line nil))
       (when (jcs-lua-comment-prefix-p)
         (jcs-goto-first-char-in-line)
-        (forward-char 1)
-        (forward-char 1)
-        (forward-char 1)
-        (when (not (jcs-is-there-char-forward-until-end-of-line-p))
+        (forward-char 3)
+        (unless (jcs-is-there-char-forward-until-end-of-line-p)
           (setq only-comment-this-line t)))
       only-comment-this-line)))
 
