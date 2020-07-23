@@ -157,7 +157,8 @@
 (use-package company-quickhelp-terminal
   :defer t
   :init
-  (with-eval-after-load 'company-quickhelp (company-quickhelp-terminal-mode 1)))
+  (with-eval-after-load 'company-quickhelp
+    (unless (display-graphic-p) (company-quickhelp-terminal-mode 1))))
 
 (use-package counsel
   :defer t
