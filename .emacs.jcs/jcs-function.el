@@ -465,6 +465,32 @@ LST-PR: List of pair."
   (user-error "Minimap no longer supported in this configuration"))
 
 ;;----------------------------------------------------------------------------
+;; Page
+
+(defun jcs-scroll-down ()
+  "Wrapper for scroll down."
+  (interactive)
+  (scroll-down)
+  (jcs-goto-center-line))
+
+(defun jcs-scroll-up ()
+  "Wrapper for scroll up."
+  (interactive)
+  (scroll-up)
+  (jcs-goto-center-line)
+  (when (jcs-is-end-of-buffer-p) (jcs-recenter-top-bottom 'middle)))
+
+(defun jcs-scroll-down-other-window ()
+  "Wrapper for scroll down for other window."
+  (interactive)
+  (save-selected-window (other-window 1) (jcs-scroll-down)))
+
+(defun jcs-scroll-up-other-window ()
+  "Wrapper for scroll up for other window."
+  (interactive)
+  (save-selected-window (other-window 1) (jcs-scroll-up)))
+
+;;----------------------------------------------------------------------------
 ;; Prettify / Minify
 
 ;;;###autoload
@@ -675,11 +701,11 @@ delay. HEIGHT of the tooltip that will display."
 (defun jcs-tip-describe-it ()
   "Describe symbol at point."
   (let* ((help-xref-following t)
-         (description (jcs--describe-symbol-string))
+         (desc (jcs--describe-symbol-string))
          (timeout 300))
-    (if (string-empty-p description)
+    (if (string-empty-p desc)
         (error "[ERROR] No description at point")
-      (jcs-pop-tooltip description :point (point) :timeout timeout))))
+      (jcs-pop-tooltip desc :point (point) :timeout timeout))))
 
 ;;;###autoload
 (defun jcs-describe-thing-in-popup ()
