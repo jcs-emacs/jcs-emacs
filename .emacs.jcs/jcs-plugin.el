@@ -561,7 +561,10 @@
 (use-package line-reminder
   :defer t
   :init
-  (setq line-reminder-show-option (if (display-graphic-p) 'indicators 'linum)))
+  (setq line-reminder-show-option (if (display-graphic-p) 'indicators 'linum))
+  (unless (display-graphic-p)
+    (setq line-reminder-saved-sign " |")
+    (setq line-reminder-modified-sign " |")))
 
 (use-package lsp-mode
   :defer t
