@@ -13,6 +13,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Implemented scroll up/down goto center line functions including other window's version.
 * Fixed `undo-tree` visualizer not quiting correctly after the parent buffer is killed.
 * Fixed `line-reminder` signs for `linum-mode` when running in terminal.
+* Installed new package manually `better-scroll`.
 
 ### 2020-07-22
 
