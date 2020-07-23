@@ -219,6 +219,11 @@ If REGEX is non-nil, check by using regular expression."
 ;;----------------------------------------------------------------------------
 ;; Function
 
+(defun jcs-unmute-apply (fnc &rest args)
+  "Execute FNC with ARGS without message."
+  (let ((message-log-max jcs-message-log-max) (inhibit-message nil))
+    (apply fnc args)))
+
 (defun jcs-mute-apply (fnc &rest args)
   "Execute FNC with ARGS without message."
   (let ((message-log-max nil))
@@ -765,36 +770,32 @@ Returns nil, the word isn't the same."
   (goto-char (point-min))
   (forward-line (1- ln)))
 
-;;;###autoload
+(defun jcs-goto-center-line ()
+  "Goto the center line base on window's height."
+  (let* ((target-ln (/ (window-height) 2))
+         (first-ln-in-view (jcs-first-visible-line-in-window)))
+    (jcs-goto-line (+ first-ln-in-view target-ln))))
+
 (defun jcs-goto-first-char-in-line ()
   "Goto beginning of line but ignore 'empty characters'(spaces/tabs)."
-  (interactive)
   (jcs-back-to-indentation-or-beginning)
-  (when (jcs-is-beginning-of-line-p)
-    (jcs-back-to-indentation-or-beginning)))
+  (when (jcs-is-beginning-of-line-p) (jcs-back-to-indentation-or-beginning)))
 
 (defun jcs-first-char-in-line-point ()
   "Return point in first character in line."
-  (save-excursion
-    (jcs-goto-first-char-in-line)
-    (point)))
+  (save-excursion (jcs-goto-first-char-in-line) (point)))
 
 (defun jcs-first-char-in-line-column ()
   "Return column in first character in line."
-  (save-excursion
-    (jcs-goto-first-char-in-line)
-    (current-column)))
+  (save-excursion (jcs-goto-first-char-in-line) (current-column)))
 
 (defun jcs-current-line-empty-p ()
   "Current line empty, but accept spaces/tabs in there.  (not absolute)."
-  (save-excursion
-    (beginning-of-line)
-    (looking-at "[[:space:]\t]*$")))
+  (save-excursion (beginning-of-line) (looking-at "[[:space:]\t]*$")))
 
 (defun jcs-current-line-totally-empty-p ()
   "Current line empty with no spaces/tabs in there.  (absolute)."
-  (and (jcs-is-beginning-of-line-p)
-       (jcs-is-end-of-line-p)))
+  (and (jcs-is-beginning-of-line-p) (jcs-is-end-of-line-p)))
 
 (defun jcs-current-line-comment-p ()
   "Check if current line only comment."
@@ -807,17 +808,11 @@ Returns nil, the word isn't the same."
 
 (defun jcs-get-beginning-of-line-point (&optional ln)
   "Return point at beginning of LN."
-  (save-excursion
-    (when ln (jcs-goto-line ln))
-    (beginning-of-line)
-    (point)))
+  (save-excursion (when ln (jcs-goto-line ln)) (beginning-of-line) (point)))
 
 (defun jcs-get-end-of-line-point (&optional ln)
   "Return point at end of LN."
-  (save-excursion
-    (when ln (jcs-goto-line ln))
-    (end-of-line)
-    (point)))
+  (save-excursion (when ln (jcs-goto-line ln)) (end-of-line) (point)))
 
 (defun jcs-is-beginning-of-line-p ()
   "Check if it's at the beginning of line."
@@ -839,10 +834,8 @@ Returns nil, the word isn't the same."
   "Check if the FN an empty file."
   (if fn
       (with-current-buffer fn
-        (and (jcs-is-beginning-of-buffer-p)
-             (jcs-is-end-of-buffer-p)))
-    (and (jcs-is-beginning-of-buffer-p)
-         (jcs-is-end-of-buffer-p))))
+        (and (jcs-is-beginning-of-buffer-p) (jcs-is-end-of-buffer-p)))
+    (and (jcs-is-beginning-of-buffer-p) (jcs-is-end-of-buffer-p))))
 
 (defun jcs-get-current-line-integer ()
   "Get the current line as integer."
@@ -858,13 +851,11 @@ Returns nil, the word isn't the same."
 
 (defun jcs-is-at-start-of-line-p ()
   "Cursor is at the first character of this line?"
-  (let ((current-point nil)
-        (firstCharPoint nil))
+  (let ((current-point nil) (firstCharPoint nil))
     (save-excursion
       (setq current-point (point))
       (back-to-indentation)
       (setq firstCharPoint (point)))
-
     (= firstCharPoint current-point)))
 
 (defun jcs-is-infront-first-char-at-line-p (&optional pt)
@@ -872,17 +863,13 @@ Returns nil, the word isn't the same."
 Return non-nil, infront of first character.
 Return nil, vice versa."
   (save-excursion
-    (let ((is-infront t)
-          (point-to-check nil))
+    (let ((is-infront t) (point-to-check nil))
       (when pt (goto-char pt))
       (setq point-to-check (point))
       (beginning-of-line)
-      (while (and is-infront
-                  (< (point) point-to-check)
-                  (not (jcs-is-end-of-line-p)))
+      (while (and is-infront (< (point) point-to-check) (not (jcs-is-end-of-line-p)))
         (forward-char 1)
-        (unless (jcs-current-whitespace-or-tab-p)
-          (setq is-infront nil)))
+        (unless (jcs-current-whitespace-or-tab-p) (setq is-infront nil)))
       is-infront)))
 
 (defun jcs-is-behind-last-char-at-line-p (&optional pt)
@@ -892,11 +879,9 @@ Return nil, vice versa."
   (save-excursion
     (let ((is-behind t))
       (when pt (goto-char pt))
-      (while (and is-behind
-                  (not (jcs-is-end-of-line-p)))
+      (while (and is-behind (not (jcs-is-end-of-line-p)))
         (forward-char 1)
-        (unless (jcs-current-whitespace-or-tab-p)
-          (setq is-behind nil)))
+        (unless (jcs-current-whitespace-or-tab-p) (setq is-behind nil)))
       is-behind)))
 
 (defun jcs-empty-line-between-point (min-pt max-pt)
