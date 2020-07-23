@@ -121,12 +121,15 @@
 ;;; Editting
 (define-key global-map [C-right] #'jcs-smart-forward-word)
 (define-key global-map [C-left] #'jcs-smart-backward-word)
+
 (define-key global-map [C-up] #'jcs-previous-blank-line)
 (define-key global-map [C-down] #'jcs-next-blank-line)
-(define-key global-map [pgup] #'forward-page)
-(define-key global-map [pgdown] #'backward-page)
-(define-key global-map [C-next] #'scroll-other-window)
-(define-key global-map [C-prior] #'scroll-other-window-down)
+
+(define-key global-map (kbd "<prior>") #'jcs-scroll-down)
+(define-key global-map (kbd "<next>") #'jcs-scroll-up)
+
+(define-key global-map (kbd "S-<prior>") #'jcs-scroll-down-other-window)
+(define-key global-map (kbd "S-<next>") #'jcs-scroll-up-other-window)
 
 (bind-key* (kbd "C-r DEL") #'jcs-backward-delete-current-char-repeat)
 (bind-key* (kbd "C-r S-<backspace>") #'jcs-forward-delete-current-char-repeat)
@@ -184,7 +187,6 @@
   (define-key global-map (kbd "M-,") #'jcs-move-backward-comma)
   (define-key global-map (kbd "C-M-.") #'jcs-move-forward-period)
   (define-key global-map (kbd "C-M-,") #'jcs-move-backward-period))
-
 
 (progn  ; Changing/Deleting inside between Programming Symbols
   (define-key global-map (kbd "C-k i [") #'jcs-delete-inside-sqr-paren)
