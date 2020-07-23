@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-07-24
+
+* Updated the `Line` utility module to use built-in solutions.
+
 ### 2020-07-23
 
 * Installed new package `nix-mode`.
