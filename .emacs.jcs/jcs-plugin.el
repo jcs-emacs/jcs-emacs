@@ -219,6 +219,7 @@
   (with-eval-after-load 'auto-highlight-symbol (diminish 'auto-highlight-symbol-mode))
   (with-eval-after-load 'auto-read-only (diminish 'auto-read-only-mode))
   (with-eval-after-load 'auto-rename-tag (diminish 'auto-rename-tag-mode))
+  (with-eval-after-load 'auto-truncate-lines (diminish 'auto-truncate-lines-mode))
   (with-eval-after-load 'autorevert (diminish 'auto-revert-mode))
   (with-eval-after-load 'buffer-wrap (diminish 'buffer-wrap-mode))
   (with-eval-after-load 'command-log-mode (diminish 'command-log-mode))
