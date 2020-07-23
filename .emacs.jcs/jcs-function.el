@@ -465,32 +465,6 @@ LST-PR: List of pair."
   (user-error "Minimap no longer supported in this configuration"))
 
 ;;----------------------------------------------------------------------------
-;; Page
-
-(defun jcs-scroll-down ()
-  "Wrapper for scroll down."
-  (interactive)
-  (scroll-down)
-  (jcs-goto-center-line))
-
-(defun jcs-scroll-up ()
-  "Wrapper for scroll up."
-  (interactive)
-  (scroll-up)
-  (jcs-goto-center-line)
-  (when (jcs-is-end-of-buffer-p) (jcs-recenter-top-bottom 'middle)))
-
-(defun jcs-scroll-down-other-window ()
-  "Wrapper for scroll down for other window."
-  (interactive)
-  (save-selected-window (other-window 1) (jcs-scroll-down)))
-
-(defun jcs-scroll-up-other-window ()
-  "Wrapper for scroll up for other window."
-  (interactive)
-  (save-selected-window (other-window 1) (jcs-scroll-up)))
-
-;;----------------------------------------------------------------------------
 ;; Prettify / Minify
 
 ;;;###autoload
