@@ -9,6 +9,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 * Installed new package `nix-mode`.
 * Start supports for expression language `Nix`.
+* Applied company abortion after switching window.
+* Implemented scroll up/down goto center line functions including other window's version.
+* Fixed `undo-tree` visualizer not quiting correctly after the parent buffer is killed.
 
 ### 2020-07-22
 
