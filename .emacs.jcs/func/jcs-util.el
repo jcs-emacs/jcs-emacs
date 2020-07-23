@@ -770,12 +770,6 @@ Returns nil, the word isn't the same."
   (goto-char (point-min))
   (forward-line (1- ln)))
 
-(defun jcs-goto-center-line ()
-  "Goto the center line base on window's height."
-  (let* ((target-ln (/ (window-height) 2))
-         (first-ln-in-view (jcs-first-visible-line-in-window)))
-    (jcs-goto-line (+ first-ln-in-view target-ln))))
-
 (defun jcs-goto-first-char-in-line ()
   "Goto beginning of line but ignore 'empty characters'(spaces/tabs)."
   (jcs-back-to-indentation-or-beginning)
@@ -981,6 +975,11 @@ Return nil, vice versa."
   "Recenter the window by TYPE."
   (let ((recenter-positions (jcs--recenter-positions type)))
     (recenter-top-bottom)))
+
+(defun jcs-move-to-window-line-top-bottom (type)
+  "Move to window line by TYPE."
+  (let ((recenter-positions (jcs--recenter-positions type)))
+    (move-to-window-line-top-bottom)))
 
 ;;----------------------------------------------------------------------------
 ;; Move between button.
