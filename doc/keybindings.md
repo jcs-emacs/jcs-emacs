@@ -24,15 +24,11 @@ Here is the list of key bindins that defined in this configuration.
   * <kbd>Alt</kbd>+<kbd>backspace</kbd> - Backspace word excluding capital letter.
   * <kbd>Alt</kbd>+<kbd>delete</kbd> - Delete word excluding capital letter.
   * <kbd>Ctrl</kbd>+<kbd>r</kbd>, <kbd>backspace</kbd> -
-  Delete the same character at current cursor's position backward repeatedly
-  util it meet different character.
+  Delete the same character at current cursor's position backward repeatedly util it meet different character.
   * <kbd>Ctrl</kbd>+<kbd>r</kbd>, <kbd>Shift</kbd>+<kbd>backspace</kbd> -
-  Delete the same character at current cursor's position forward repeatedly
-  util it meet different character.
+  Delete the same character at current cursor's position forward repeatedly util it meet different character.
   * <kbd>Alt</kbd>+<kbd>up</kbd> - Move current line `up`.
   * <kbd>Alt</kbd>+<kbd>down</kbd> - Move current line `down`.
-  * <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>up</kbd> - Scroll window `up` one line without moving cursor.
-  * <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>down</kbd> - Scroll window `down` one line without moving cursor.
   * <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>left</kbd> - Move buffer `left`.
   * <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>right</kbd> - Move buffer `right`.
   * <kbd>Ctrl</kbd>+<kbd>return</kbd> - Complete word or Goto address at point.
@@ -98,6 +94,15 @@ Here is the list of key bindins that defined in this configuration.
   * **Alignment**
 
     * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>a</kbd> - Align region or document.
+
+  * **Scrolling**
+
+    * <kbd>Page Up</kbd> - Scroll window `up` one page.
+    * <kbd>Page Down</kbd> - Scroll window `down` one page.
+    * <kbd>Shift</kbd>+<kbd>Page Up</kbd> - Scroll other window `up` one page.
+    * <kbd>Shift</kbd>+<kbd>Page Down</kbd> - Scroll other window `down` one page.
+    * <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>up</kbd> - Scroll window `up` one line without moving cursor.
+    * <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>down</kbd> - Scroll window `down` one line without moving cursor.
 
   * **Symbol**
 
