@@ -4,15 +4,13 @@
 
 (defun jcs-to-positive (in-val)
   "Convert IN-VAL to positive value."
-  (when (and in-val
-             (< in-val 0))
+  (when (and in-val (< in-val 0))
     (setq in-val (jcs-to-reverse in-val)))
   in-val)
 
 (defun jcs-to-negative (in-val)
   "Convert IN-VAL to negative value."
-  (when (and in-val
-             (> in-val 0))
+  (when (and in-val (> in-val 0))
     (setq in-val (jcs-to-reverse in-val)))
   in-val)
 
@@ -31,6 +29,14 @@
 (defun jcs-to-reciprocal (in-val)
   "Reciprocal value IN-VAL."
   (/ 1 in-val))
+
+(defun jcs-is-odd (in-val)
+  "Check IN-VAL an odd number."
+  (= (% in-val 2) 1))
+
+(defun jcs-is-even (in-val)
+  "Check IN-VAL an even number."
+  (not (jcs-is-odd in-val)))
 
 (defun jcs-clamp-integer (in-val in-min in-max)
   "Make sure the IN-VAL is between IN-MIN and IN-MAX."
