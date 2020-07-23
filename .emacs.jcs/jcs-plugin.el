@@ -32,6 +32,12 @@
         (add-hook 'find-file-hook #'auto-read-only--hook-find-file)
       (remove-hook 'find-file-hook #'auto-read-only--hook-find-file))))
 
+(use-package better-scroll
+  :defer t
+  :init
+  (setq better-scroll-align-type 'relative)
+  (setq better-scroll-allow-boundry-movement t))
+
 (use-package browse-kill-ring
   :defer t
   :init
