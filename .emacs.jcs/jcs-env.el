@@ -227,7 +227,10 @@
   "List of modes that you do not want to show line numbers in it.")
 
 ;;; Messages
-(setq message-log-max (* 1000 10))
+(defconst jcs-message-log-max (* 1000 10)
+  "Default maximum lines for message log.")
+
+(setq message-log-max jcs-message-log-max)
 
 (defconst jcs-prompt-message-sleep-delay-time 0.4
   "Delay for a time for prompting out the message in seconds.
