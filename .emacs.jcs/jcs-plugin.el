@@ -5,10 +5,7 @@
 (use-package adaptive-wrap
   :defer t
   :init
-  (add-hook 'visual-line-mode-hook
-            (lambda ()
-              (adaptive-wrap-prefix-mode +1)
-              (diminish 'visual-line-mode))))
+  (add-hook 'visual-line-mode-hook (lambda () (adaptive-wrap-prefix-mode +1))))
 
 (use-package auto-highlight-symbol
   :defer t
