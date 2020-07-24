@@ -306,6 +306,7 @@
     ("better-scroll" "jcs-elpa/better-scroll" "github")
     ("file-header" "jcs-elpa/file-header" "github")
     ("jayces-mode" "jcs-elpa/jayces-mode" "github")
+    ("license-templates" "jcs-elpa/license-templates" "github")
     ("multi-shell" "jcs-elpa/multi-shell" "github")
     ("reload-emacs" "jcs-elpa/reload-emacs" "github"))
   "List of package that you want to manually installed.")
