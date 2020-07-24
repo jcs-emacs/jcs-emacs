@@ -282,15 +282,21 @@ Note this is opposite logic to the toggle mode function."
 (defun jcs-ask-insert-license-content (in-type)
   "Ask to insert the license content base on IN-TYPE."
   (interactive (list (completing-read
-                      "Type of the license: "
-                      (append (list "Default (empty)")
-                              (jcs-dir-to-filename jcs-license-template-path ".txt")))))
-  (cond ((string= in-type "Default (empty)")
-         ;; Do nothing...
-         )
-        (t
-         (file-header-insert-template-by-file-path
-          (format "%s%s.txt" jcs-license-template-path in-type)))))
+                      (format "Type of the license: "
+                              (progn  ; Preloading for `interactive` function.
+                                (require 'license-templates) (require 'subr-x)))
+                      (delete-dups
+                       (sort (append (list "Default (empty)")
+                                     (license-templates-names)
+                                     (jcs-dir-to-filename jcs-license-template-path ".txt"))
+                             #'string-lessp)))))
+
+  (let ((lice-path (format "%s%s.txt" jcs-license-template-path in-type)))
+    (cond ((string= in-type "Default (empty)") (progn ))
+          ((jcs-is-contain-list-string (license-templates-names) in-type)
+           (license-templates-insert in-type))
+          (t
+           (file-header-insert-template-by-file-path lice-path)))))
 
 ;;----------------------------------------------------------------------------
 ;; Change Log
