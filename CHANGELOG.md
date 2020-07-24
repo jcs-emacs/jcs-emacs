@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-07-24
 
 * Updated the `Line` utility module to use built-in solutions.
+* Installed new package manually `license-templates`.
 
 ### 2020-07-23
 
