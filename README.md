@@ -431,7 +431,7 @@ might change to something else.
 and
 [isearch-project](https://github.com/elpa-host/isearch-project).
 * *Package Archive* - see
-[here](https://github.com/jcs090218/jcs-emacs#package-archives).
+[here](#file_folder-package-archives).
 * *Package Management* - powered by
 [use-package](https://github.com/jwiegley/use-package)
 and
