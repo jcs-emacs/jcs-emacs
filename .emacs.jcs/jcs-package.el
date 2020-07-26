@@ -125,6 +125,7 @@
     markdown-mode
     markdown-toc
     masm-mode
+    most-used-words
     move-text
     multiple-cursors
     nasm-mode
