@@ -309,7 +309,8 @@
     ("jayces-mode" "jcs-elpa/jayces-mode" "github")
     ("license-templates" "jcs-elpa/license-templates" "github")
     ("multi-shell" "jcs-elpa/multi-shell" "github")
-    ("reload-emacs" "jcs-elpa/reload-emacs" "github"))
+    ("reload-emacs" "jcs-elpa/reload-emacs" "github")
+    ("test-sha" "jcs-elpa/test-sha" "github"))
   "List of package that you want to manually installed.")
 
 
