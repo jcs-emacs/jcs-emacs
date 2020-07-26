@@ -22,15 +22,7 @@
   (defun jcs--auto-read-only--hook-find-file ()
     "Advice wrap `auto-read-only--hook-find-file' function."
     (unless jcs-package-installing-p (auto-read-only)))
-  (advice-add 'auto-read-only--hook-find-file :override #'jcs--auto-read-only--hook-find-file)
-
-  (define-minor-mode auto-read-only-mode
-    "Minor mode for appply auto-read-only."
-    nil auto-read-only-mode-lighter nil
-    :global t
-    (if auto-read-only-mode
-        (add-hook 'find-file-hook #'auto-read-only--hook-find-file)
-      (remove-hook 'find-file-hook #'auto-read-only--hook-find-file))))
+  (advice-add 'auto-read-only--hook-find-file :override #'jcs--auto-read-only--hook-find-file))
 
 (use-package better-scroll
   :defer t
@@ -276,7 +268,9 @@
            "[*]csharp[*]")  ; From `lsp'
          '("[*]company")
          '("[*]SPEEDBAR")
-         '("[*]helpful")))
+         '("[*]helpful")
+         '("[*]Most used words[*]")
+         '("[*]Test SHA[*]")))
   (with-eval-after-load 'jcs-buffer-menu (diminish-buffer-mode 1))
   :config
   (defun jcs--diminish-buffer-clean--advice-before ()
