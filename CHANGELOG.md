@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-07-26
+
+* Installed new package `most-used-words`.
+* Installed new package manually `test-sha`.
+
 ### 2020-07-24
 
 * Updated the `Line` utility module to use built-in solutions.
