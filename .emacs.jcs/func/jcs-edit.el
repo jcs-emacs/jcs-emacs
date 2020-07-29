@@ -308,6 +308,7 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
         (set-face-attribute 'mc/cursor-face nil :underline t :inverse-video nil))
     (setq-local cursor-type 'box)
     (set-face-attribute 'mc/cursor-face nil :underline nil :inverse-video t)))
+
 (advice-add 'overwrite-mode :after #'jcs--overwrite-mode--advice-after)
 
 ;;----------------------------------------------------------------------------
@@ -321,15 +322,13 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
   (let (kill-ring)
     (if (use-region-p)
         (jcs-delete-region)
-      (let (;; Record down the column before killing the whole line.
-            (before-column-num (current-column)))
-
+      ;; Record down the column before killing the whole line.
+      (let ((before-column-num (current-column)))
         ;; Do kill the whole line!
         (delete-region (line-beginning-position)
                        (if (= (line-number-at-pos (point)) (line-number-at-pos (point-max)))
                            (line-end-position)
                          (1+ (line-end-position))))
-
         ;; Goto the same column as before we do the killing the whole line
         ;; operations above.
         (move-to-column before-column-num)))))
@@ -360,17 +359,13 @@ This command does not push text to `kill-ring'."
 (defun jcs-backward-delete-word (arg)
   "Backward deleteing ARG words."
   (interactive "p")
-  (if (use-region-p)
-      (jcs-delete-region)
-    (jcs-delete-word (- arg))))
+  (if (use-region-p) (jcs-delete-region) (jcs-delete-word (- arg))))
 
 ;;;###autoload
 (defun jcs-forward-delete-word (arg)
   "Forward deleteing ARG words."
   (interactive "p")
-  (if (use-region-p)
-      (jcs-delete-region)
-    (jcs-delete-word (+ arg))))
+  (if (use-region-p) (jcs-delete-region) (jcs-delete-word (+ arg))))
 
 ;;;###autoload
 (defun jcs-smart-backward-delete-word ()
@@ -466,32 +461,28 @@ This command does not push text to `kill-ring'."
   "Indent line after move up one line."
   (interactive)
   (jcs-previous-line)
-  (when (jcs-can-do-smart-indent-p)
-    (indent-for-tab-command)))
+  (when (jcs-can-do-smart-indent-p) (indent-for-tab-command)))
 
 ;;;###autoload
 (defun jcs-smart-indent-up-by-mode ()
   "Like `jcs-smart-indent-up' but indent by mode."
   (interactive)
   (jcs-previous-line)
-  (when (jcs-can-do-smart-indent-p)
-    (indent-according-to-mode)))
+  (when (jcs-can-do-smart-indent-p) (indent-according-to-mode)))
 
 ;;;###autoload
 (defun jcs-smart-indent-down ()
   "Indent line after move down one line."
   (interactive)
   (jcs-next-line)
-  (when (jcs-can-do-smart-indent-p)
-    (indent-for-tab-command)))
+  (when (jcs-can-do-smart-indent-p) (indent-for-tab-command)))
 
 ;;;###autoload
 (defun jcs-smart-indent-down-by-mode ()
   "Like `jcs-smart-indent-down' but indent by mode."
   (interactive)
   (jcs-next-line)
-  (when (jcs-can-do-smart-indent-p)
-    (indent-according-to-mode)))
+  (when (jcs-can-do-smart-indent-p) (indent-according-to-mode)))
 
 ;;----------------------------------------------------------------------------
 ;; Format File
@@ -545,7 +536,6 @@ This command does not push text to `kill-ring'."
           (align-regexp-string-comment "\\(\\s-*\\) /[/*]")
           (pnt-min nil)
           (pnt-max nil))
-
       ;; Code RegExp String
       (cond ((jcs-is-current-major-mode-p "nasm-mode")
              (setq align-regexp-string-code "\\(\\s-*\\)equ "))
@@ -630,7 +620,6 @@ REGEXP : reqular expression use to align."
             ;; Otherwise, kill the buffer.
             (let (kill-buffer-query-functions) (kill-buffer buf))))))))
 
-
 ;;;###autoload
 (defun jcs-other-window-next (&optional cnt not-all-frame)
   "Move CNT to the next window with NOT-ALL-FRAME."
@@ -676,8 +665,7 @@ REGEXP : reqular expression use to align."
 (defun jcs-delete-trailing-whitespace-except-current-line ()
   "Delete the trailing whitespace for whole document execpt the current line."
   (interactive)
-  (let ((begin (line-beginning-position))
-        (end (line-end-position)))
+  (let ((begin (line-beginning-position)) (end (line-end-position)))
     (save-excursion
       (when (> (point-max) end)
         (delete-trailing-whitespace (1+ end) (point-max)))
@@ -745,30 +733,30 @@ REGEXP : reqular expression use to align."
         (while (re-search-forward (concat (char-to-string 13) "$") (point-max) t)
           (setq remove-count (+ remove-count 1))
           (replace-match "" nil nil))
-        (message (format "%d ^M removed from buffer." remove-count))))))
+        (message "%d ^M removed from buffer." remove-count)))))
 
 ;;----------------------------------------------------------------------------
 ;; Tabify / Unabify
+
+(defun jcs-tabify-or-untabify-buffer (tab-it &optional start end)
+  "Tabify or Untabify current buffer with region START and END."
+  (jcs-save-excursion
+   (lambda ()
+     (let ((start-pt (if start start (point-min))) (end-pt (if end end (point-max))))
+       (widen)
+       (if tab-it (tabify start-pt end-pt) (untabify start-pt end-pt))))))
 
 ;;;###autoload
 (defun jcs-untabify-buffer (&optional start end)
   "Untabify the current buffer with region START and END."
   (interactive)
-  (jcs-save-excursion
-   (lambda ()
-     (let ((start-pt (if start start (point-min))) (end-pt (if end end (point-max))))
-       (widen)
-       (untabify start-pt end-pt)))))
+  (jcs-tabify-or-untabify-buffer nil start end))
 
 ;;;###autoload
 (defun jcs-tabify-buffer (&optional start end)
   "Tabify the current buffer with region START and END."
   (interactive)
-  (jcs-save-excursion
-   (lambda ()
-     (let ((start-pt (if start start (point-min))) (end-pt (if end end (point-max))))
-       (widen)
-       (tabify start-pt end-pt)))))
+  (jcs-tabify-or-untabify-buffer t start end))
 
 ;;----------------------------------------------------------------------------
 ;; Save Buffer
@@ -948,6 +936,7 @@ NO-RECORD and FORCE-SAME-WINDOW are the same as switch to buffer arguments."
                  ;; Only close `undo-tree' when buffer is killed.
                  (not (string= target-kill-buffer (jcs-buffer-name-or-buffer-file-name))))
         (jcs-undo-kill-this-buffer)))))
+
 (advice-add 'kill-this-buffer :around #'jcs-advice-kill-this-buffer-around)
 
 ;;;###autoload
