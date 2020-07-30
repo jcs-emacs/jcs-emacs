@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-07-30
+
+* Removed verbose C/C++/Objective-C insert header template functions.
+* Edited default C source header template.
+
 ### 2020-07-29
 
 * Organized code with less duplicate code.
