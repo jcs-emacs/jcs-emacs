@@ -9,12 +9,12 @@
   (jcs-insert-header-if-valid '("[.]hin"
                                 "[.]hpp"
                                 "[.]h")
-                              'jcs-objc-header-format)
+                              'jcs-insert-objc-header-template)
   (jcs-insert-header-if-valid '("[.]cin"
                                 "[.]cpp"
                                 "[.]c"
                                 "[.]m")
-                              'jcs-objc-source-format)
+                              'jcs-insert-objc-source-template)
 
   ;; Normal
   (define-key objc-mode-map [f8] #'jcs-find-corresponding-file)
