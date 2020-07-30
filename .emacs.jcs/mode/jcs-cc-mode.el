@@ -67,35 +67,12 @@
 
 ;;-----------------------------------------------------------
 
-(defun jcs-c-header-format ()
-  "Format the given file as a C header file."
-  (jcs-insert-header-if-empty 'jcs-insert-c-header-template))
-
-(defun jcs-c-source-format ()
-  "Format the given file as a C source file."
-  (jcs-insert-header-if-empty 'jcs-insert-c-source-template))
-
-(defun jcs-c++-header-format ()
-  "Format the given file as a C++ header file."
-  (jcs-insert-header-if-empty 'jcs-insert-c++-header-template))
-
-(defun jcs-c++-source-format ()
-  "Format the given file as a C++ source file."
-  (jcs-insert-header-if-empty 'jcs-insert-c++-source-template))
-
-(defun jcs-objc-header-format ()
-  "Format the given file as a Objective-C header file."
-  (jcs-insert-header-if-empty 'jcs-insert-objc-header-template))
-
-(defun jcs-objc-source-format ()
-  "Format the given file as a Objective-C source file."
-  (jcs-insert-header-if-empty 'jcs-insert-objc-source-template))
-
 (defun jcs-cc-insert-header ()
   "Insert header for `cc-mode' related modes."
-  (jcs-insert-header-if-valid jcs-c++-header-extensions 'jcs-c++-header-format)
-  (jcs-insert-header-if-valid jcs-c++-source-extensions 'jcs-c++-source-format)
-  (jcs-insert-header-if-valid jcs-c-header-extensions 'jcs-c-source-format))
+  (jcs-insert-header-if-valid jcs-c++-header-extensions 'jcs-insert-c++-header-template)
+  (jcs-insert-header-if-valid jcs-c++-source-extensions 'jcs-insert-c++-source-template)
+  (jcs-insert-header-if-valid jcs-c-header-extensions 'jcs-insert-c-header-template)
+  (jcs-insert-header-if-valid jcs-c-source-extensions 'jcs-insert-c-source-template))
 
 ;;-----------------------------------------------------------
 
