@@ -755,13 +755,13 @@ NO-PROMPT : Don't prompt the overwrap message."
 (defun jcs-enable-truncate-lines ()
   "Enable truncate lines."
   (interactive)
-  (unless truncate-lines (toggle-truncate-lines)))
+  (toggle-truncate-lines 1))
 
 ;;;###autoload
 (defun jcs-disable-truncate-lines ()
   "Disable truncate lines."
   (interactive)
-  (when truncate-lines (toggle-truncate-lines)))
+  (toggle-truncate-lines -1))
 
 ;;----------------------------------------------------------------------------
 ;; wgrep
