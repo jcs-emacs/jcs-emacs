@@ -684,6 +684,12 @@
     (when (and (functionp 'lsp-ui-doc--hide-frame) (not jcs--lsp-lv-recording))
       (lsp-ui-doc--hide-frame))))
 
+(use-package most-used-words
+  :defer t
+  :init
+  (setq most-used-words-display-type 'table)
+  (setq most-used-words-word-display 100))
+
 (use-package multi-shell
   :defer t
   :init
