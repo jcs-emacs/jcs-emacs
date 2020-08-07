@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-08-07
+
+* Added config for package `most-used-words`.
+
 ### 2020-08-02
 
 * Fixed enable/disable truncate lines with `1` and `-1`.
