@@ -39,8 +39,14 @@
 (use-package buffer-wrap
   :defer t
   :config
-  (defun jcs--buffer-wrap-post-command-hook ()
-    "Buffer Wrap post command hook."
+  (defun jcs--buffer-wrap--fixed-window-off ()
+    "Fixed windows is off after wrapping."
+    (let ((max-ln (+ (line-number-at-pos (point-max)) buffer-wrap--relative-max-line)))
+      (when (= max-ln (line-number-at-pos (point)))
+        (jcs-recenter-top-bottom 'bottom))))
+
+  (defun jcs--buffer-wrap--fixed-fake-header ()
+    "Fixed line offset consider fake header calculation."
     (when tabulated-list-format
       (unless (ignore-errors (tabulated-list-get-entry))
         (cond ((= 0 buffer-wrap--delta-lines)
@@ -51,6 +57,11 @@
                (jcs-goto-line (1- (line-number-at-pos (point-max))))))
         (unless (ignore-errors (tabulated-list-get-entry))
           (ignore-errors (forward-line 1))))))
+
+  (defun jcs--buffer-wrap-post-command-hook ()
+    "Buffer Wrap post command hook."
+    (jcs--buffer-wrap--fixed-fake-header)
+    (jcs--buffer-wrap--fixed-window-off))
   (add-hook 'buffer-wrap-post-command-hook 'jcs--buffer-wrap-post-command-hook))
 
 (use-package centaur-tabs
