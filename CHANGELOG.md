@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-08-07
 
 * Added config for package `most-used-words`.
+* Fixed `buffer-wrap` recenters window position to center issue.
 
 ### 2020-08-02
 
