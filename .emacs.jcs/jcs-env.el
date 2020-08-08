@@ -323,6 +323,15 @@ See `jcs-hook.el' file that has apply `advice' on command `other-window'.")
     (yaml-mode             . 2))
   "Tab with recrods for all major mode.")
 
+;;; Tabulated List
+(use-package tabulated-list
+  :defer t
+  :config
+  (defun jcs--tabulated-list-col-sort--advice-around (fnc &rest args)
+    "Advice execute around `tabulated-list-col-sort' function."
+    (save-excursion (apply fnc args)))
+  (advice-add 'tabulated-list-col-sort :around #'jcs--tabulated-list-col-sort--advice-around))
+
 ;;; Uniquify
 (use-package uniquify
   :defer t
