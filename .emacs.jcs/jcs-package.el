@@ -187,7 +187,6 @@
 (defvar jcs-package-installing-p nil
   "Is currently upgrading the package.")
 
-
 (defun jcs-advice-package-install-around (ori-func &rest args)
   "Advice around execute `package-install' command."
   (setq jcs-package-installing-p t)
@@ -220,36 +219,28 @@
 
 (defun jcs-get-package-version (name where)
   "Get version of the package."
-  (let ((pkg (cadr (assq name where))))
-    (when pkg
-      (package-desc-version pkg))))
+  (let ((pkg (cadr (assq name where)))) (when pkg (package-desc-version pkg))))
 
 (defun jcs-package-get-package-by-name (pkg-name)
   "Return the package by PKG-NAME."
   (let (target-pkg)
     (dolist (pkg (mapcar #'car package-alist))
-      (let ((in-archive (jcs-get-package-version pkg package-alist)))
-        (when (string= pkg-name pkg)
-          (setq target-pkg pkg))))
+      (when (string= pkg-name pkg) (setq target-pkg pkg)))
     (if (not target-pkg)
         nil
       (cadr (assq (package-desc-name
                    (cadr (assq target-pkg package-alist)))
                   package-alist)))))
 
-;;;###autoload
-(defun jcs-package-upgrade-all ()
-  "Upgrade all packages automatically without showing *Packages* buffer."
-  (interactive)
-  (package-refresh-contents)
+(defun jcs-package--upgrade-all-elpa ()
+  "Upgrade for archive packages."
   (let (upgrades)
     (dolist (package (mapcar #'car package-alist))
       (let ((in-archive (jcs-get-package-version package package-archive-contents)))
         (when (and in-archive
                    (version-list-< (jcs-get-package-version package package-alist)
                                    in-archive))
-          (push (cadr (assq package package-archive-contents))
-                upgrades))))
+          (push (cadr (assq package package-archive-contents)) upgrades))))
     (if upgrades
         (when (yes-or-no-p
                (message "[ELPA] Upgrade %d package%s (%s)? "
@@ -263,8 +254,10 @@
                 (jcs-package-install package-desc)
                 (package-delete old-package))))
           (message "[ELPA] Done upgrading all packages"))
-      (message "[ELPA] All packages are up to date")))
-  ;; NOTE: Upgrade for manually installed packages.
+      (message "[ELPA] All packages are up to date"))))
+
+(defun jcs-package--upgrade-all-quelpa ()
+  "Upgrade for manually installed packages."
   (let ((upgrades (jcs--upgrade-list-manually)))
     (if upgrades
         (when (yes-or-no-p
@@ -279,6 +272,13 @@
           (message "[QUELPA] Done upgrading all packages"))
       (message "[QUELPA] All packages are up to date"))))
 
+;;;###autoload
+(defun jcs-package-upgrade-all ()
+  "Upgrade all packages automatically without showing *Packages* buffer."
+  (interactive)
+  (package-refresh-contents)
+  (jcs-package--upgrade-all-elpa)
+  (jcs-package--upgrade-all-quelpa))
 
 ;;;###autoload
 (defun jcs-package-menu-filter-by-status (status)
@@ -297,10 +297,8 @@
       (package-list-packages)
     (package-menu-filter (concat "status:" status))))
 
-
 ;;----------------------------------------------------------------------------
 ;; Manually Installation
-
 
 (defconst jcs-package-manually-install-list
   '(("atl-markup" "jcs-elpa/atl-markup" "github")
@@ -313,14 +311,35 @@
     ("test-sha" "jcs-elpa/test-sha" "github"))
   "List of package that you want to manually installed.")
 
+(defun jcs--package-version-by-pkg (pkg)
+  "Return the package version by PKG.
+PKG is a list of recipe components."
+  (progn
+    (message "Contacting host: '%s' from '%s'" (nth 1 pkg) (nth 2 pkg))
+    (sit-for 1.5 t))
+  (let* ((rcp (jcs--form-recipe (nth 0 pkg) (nth 1 pkg) (nth 2 pkg)))
+         (name (car rcp))
+         (build-dir (expand-file-name (symbol-name name) quelpa-build-dir)))
+    (jcs-mute-apply (lambda () (quelpa-checkout rcp build-dir)))))
+
+(defun jcs--ver-string-to-ver-list (ver)
+  "Convert VER string to version recognized list."
+  (let ((ver-lst '())
+        (str-lst (split-string (format "%s" ver) "[.]")))
+    (dolist (ver-str str-lst)
+      (push (string-to-number ver-str) ver-lst))
+    (reverse ver-lst)))
 
 (defun jcs--upgrade-list-manually ()
   "List of need to upgrade package from manually installed packages."
-  (let ((upgrade-list '()) (pkg-name nil))
+  (require 'quelpa)
+  (let ((upgrade-list '()) new-version current-version pkg-name)
     (dolist (pkg jcs-package-manually-install-list)
-      (setq pkg-name (nth 0 pkg))
-      ;; TODO: Check version number to filter the needed upgrade packages.
-      (when (package-installed-p (intern pkg-name))
+      (setq pkg-name (intern (nth 0 pkg)))
+      (setq new-version (jcs--package-version-by-pkg pkg))
+      (setq current-version (jcs-get-package-version pkg-name package-alist))
+      (setq new-version (jcs--ver-string-to-ver-list new-version))
+      (when (version-list-< current-version new-version)
         (push pkg upgrade-list)))
     (reverse upgrade-list)))
 
