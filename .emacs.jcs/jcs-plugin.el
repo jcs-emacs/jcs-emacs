@@ -860,6 +860,12 @@
                 '(".log" ".vs" ".vscode" "node_modules")))
   (add-hook 'projectile-after-switch-project-hook #'jcs-dashboard-refresh-buffer))
 
+(use-package quelpa
+  :defer t
+  :config
+  (add-hook 'quelpa-before-hook (lambda () (setq jcs-package-installing-p t)))
+  (add-hook 'quelpa-after-hook (lambda () (setq jcs-package-installing-p nil))))
+
 (use-package region-occurrences-highlighter
   :defer t
   :init
