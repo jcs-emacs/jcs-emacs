@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-08-09
+
+* Mark `auto-read-only` due to `quelpa`'s activation.
+* Added functionality to check needed upgrade packages to manually installed packages.
+
 ### 2020-08-07
 
 * Added config for package `most-used-words`.
