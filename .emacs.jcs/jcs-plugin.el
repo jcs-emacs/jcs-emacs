@@ -7,6 +7,11 @@
   :init
   (add-hook 'visual-line-mode-hook (lambda () (adaptive-wrap-prefix-mode +1))))
 
+(use-package atl-markup
+  :defer t
+  :init
+  (setq atl-markup-delay 0.0))
+
 (use-package auto-highlight-symbol
   :defer t
   :init
