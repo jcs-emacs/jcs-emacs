@@ -6,30 +6,6 @@
 ;; Deletion
 
 ;;;###autoload
-(defun jcs-web-kill-whole-line ()
-  "Kill whole line in web-mode."
-  (interactive)
-  (jcs-kill-whole-line))
-
-;;;###autoload
-(defun jcs-web-kill-ring-save ()
-  "Kill ring save in web-mode."
-  (interactive)
-  (kill-ring-save (region-beginning) (region-end)))
-
-;;;###autoload
-(defun jcs-web-yank ()
-  "Yank in web-mode."
-  (interactive)
-  ;; NOTE: No idea why, yank function just need to get wrap by
-  ;; another function...
-
-  (jcs-delete-region)
-
-  ;; then paste it.
-  (jcs-smart-yank))
-
-;;;###autoload
 (defun jcs-web-backward-delete-word ()
   "Web backward delete the word, fit PHP variable naming."
   (interactive)
@@ -49,7 +25,6 @@
              (not (jcs-current-char-uppercasep))
              (jcs-current-char-a-wordp))
     (jcs-web-backward-delete-word-capital))
-
   (when (and (jcs-current-char-uppercasep)
              (not (jcs-current-char-equal-p "$")))
     (backward-delete-char 1)))
@@ -69,13 +44,11 @@
         (jcs-move-to-forward-a-char "<")
         (forward-char 1)
         (setq close-tag-found (jcs-current-char-equal-p "/")))
-
       (when close-tag-found
         (newline-and-indent)
         (newline-and-indent)
         (jcs-smart-indent-up)
         (setq did-ret-key t)))
-
     (unless did-ret-key
       (call-interactively #'jcs-smart-context-line-break))))
 
@@ -95,19 +68,22 @@
 
 ;;;###autoload
 (defun jcs-httpd-start ()
-  "Active real time editing with default port (`impatient-mode')."
+  "Start real time editing with default port."
   (interactive)
   (require 'impatient-mode)
   (call-interactively 'httpd-start)
-  (message "Active real time editing with port: %d" httpd-port))
+  (message (concat
+            "[INFO] Start real time editing with port: %d"
+            "\nPlease open browser to 'http://localhost:%s/imp/'")
+           httpd-port httpd-port))
 
 ;;;###autoload
 (defun jcs-httpd-stop ()
-  "Close real time editing with default port. (`impatient-mode')"
+  "Shutdown real time editing with default port."
   (interactive)
   (require 'impatient-mode)
   (call-interactively 'httpd-stop)
-  (message "Close real time editing with port: %d" httpd-port))
+  (message "[INFO] Shutdown real time editing with port: %d" httpd-port))
 
 ;;----------------------------------------------------------------------------
 ;; Other
