@@ -314,12 +314,11 @@
 (defun jcs--package-version-by-pkg (pkg)
   "Return the package version by PKG.
 PKG is a list of recipe components."
-  (progn
-    (message "Contacting host: '%s' from '%s'" (nth 1 pkg) (nth 2 pkg))
-    (sit-for 1.5 t))
+  (message "Contacting host: '%s' from '%s'" (nth 1 pkg) (nth 2 pkg))
   (let* ((rcp (jcs--form-recipe (nth 0 pkg) (nth 1 pkg) (nth 2 pkg)))
          (name (car rcp))
-         (build-dir (expand-file-name (symbol-name name) quelpa-build-dir)))
+         (build-dir (expand-file-name (symbol-name name) quelpa-build-dir))
+         (quelpa-build-verbose nil))
     (jcs-mute-apply (lambda () (quelpa-checkout rcp build-dir)))))
 
 (defun jcs--ver-string-to-ver-list (ver)
