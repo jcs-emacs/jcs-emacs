@@ -14,10 +14,6 @@
 (advice-add 'eval-defun :after #'jcs--deactive-mark--advice-anywhere)
 (advice-add 'eval-region :after #'jcs--deactive-mark--advice-anywhere)
 
-;; Quitting
-(advice-add 'keyboard-quit :before #'jcs--deactive-mark--advice-anywhere)
-(advice-add 'top-level :before #'jcs--deactive-mark--advice-anywhere)
-
 ;;----------------------------------------------------------------------------
 ;; Control Output
 
