@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-08-10
+
+* Added global `quit` command advice.
+* Added global process reporter instance utility functions.
+* Fixed display issue when upgrading packages using `quelpa`.
+
 ### 2020-08-09
 
 * Mark `auto-read-only` due to `quelpa`'s activation.
