@@ -237,6 +237,14 @@
     (ffmpeg-player-clean)))
 (add-hook 'kill-emacs-hook 'jcs--kill-emacs-hook)
 
+(defun jcs--quit-command (&rest _)
+  "Advice for quit command."
+  (deactivate-mark)
+  (jcs-process-reporter-done))
+
+(advice-add 'keyboard-quit :before #'jcs--quit-command)
+(advice-add 'top-level :before #'jcs--quit-command)
+
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 (defvar jcs-emacs-ready-p nil
