@@ -43,7 +43,7 @@
   (jcs-make-electric-pair-pairs-local '((?\" . ?\")))
 
   ;; File Header
-  (jcs-insert-header-if-valid '("[.]html"
+  (jcs-insert-header-if-valid '("[.]htm" "[.]html"
                                 "[.]asp"
                                 "[.]as[cp]x")
                               'jcs-insert-html-template)
@@ -51,7 +51,6 @@
                               'jcs-insert-php-template)
 
   ;; Normal
-  (define-key web-mode-map (kbd "C-v") #'jcs-web-yank)
   (define-key web-mode-map (kbd "RET") #'jcs-web-return-key)
 
   (define-key web-mode-map (kbd "DEL") #'jcs-electric-backspace)

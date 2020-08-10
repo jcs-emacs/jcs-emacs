@@ -30,7 +30,6 @@
                               :interactive t)
 
   ;; Normal
-  (define-key rjsx-mode-map (kbd "C-v") #'jcs-web-yank)
   (define-key rjsx-mode-map (kbd "RET") #'jcs-web-return-key)
 
   (define-key rjsx-mode-map (kbd "{") #'jcs-web-vs-opening-curly-bracket-key)
