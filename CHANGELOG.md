@@ -10,6 +10,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Added global `quit` command advice.
 * Added global process reporter instance utility functions.
 * Fixed display issue when upgrading packages using `quelpa`.
+* Minord fixes for web development environment.
 
 ### 2020-08-09
 
