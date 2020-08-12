@@ -4,7 +4,7 @@
 
 <p align="center">
   <a href="https://travis-ci.com/jcs090218/jcs-emacs"><img src="https://travis-ci.com/jcs090218/jcs-emacs.svg?branch=master" alt="Build Status"></a>
-  <a href="https://www.gnu.org/software/emacs/download.html"><img src="https://img.shields.io/badge/Emacs-26.3+-blue.svg" alt="Emacs"></a>
+  <a href="https://www.gnu.org/software/emacs/download.html"><img src="https://img.shields.io/badge/Emacs-27.1+-blue.svg" alt="Emacs"></a>
   <a href="https://github.com/jcs090218/jcs-emacs/releases/latest"><img src="https://img.shields.io/github/tag/jcs090218/jcs-emacs.svg?label=release" alt="Release Tag"></a>
   <a href="https://opensource.org/licenses/BSD-2-Clause"><img src="https://img.shields.io/badge/License-BSD%202--Clause-orange.svg" alt="License"></a>
   <a href="https://www.paypal.me/jcs090218"><img alt="Support me" src="https://img.shields.io/badge/Support%20Me-%F0%9F%92%97-ff69b4.svg"></a>
@@ -610,7 +610,7 @@ In your `my-init.el` file should look something similar to this.
 
 ## :bamboo: Supported Emacs versions
 
-The config should run on Emacs **26.1** or higher, but I will recommend to always
+The config should run on Emacs **27.1** or higher, but I will recommend to always
 run on the latest Emacs version available on your machine. The ultimate goal is to
 design to have each version of config can run on their each according Emacs version
 base on the version what I'm currently running on my present machine. For each version
