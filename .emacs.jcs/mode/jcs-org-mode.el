@@ -28,8 +28,6 @@
 
   (define-key org-mode-map (kbd "C-y") #'jcs-redo)
 
-  (define-key org-mode-map (kbd "C-s") #'save-buffer)
-
   (define-key org-mode-map [S-tab] #'org-cycle)
   (define-key org-mode-map (kbd "C-k") nil)
   (define-key org-mode-map (kbd "C-<return>") #'jcs-ctrl-return-key)

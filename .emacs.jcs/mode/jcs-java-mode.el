@@ -5,6 +5,13 @@
 (require 'javadoc-lookup)
 (require 'organize-imports-java)
 
+(use-package javadoc-lookup
+  :config
+  ;; Function used when performing a minibuffer read.
+  (setq javadoc-lookup-completing-read-function #'completing-read))
+
+;;----------------------------------------------------------------------------
+
 (defun jcs-java-mode-hook ()
   "Java mode hook."
 
@@ -16,8 +23,6 @@
                               'jcs-insert-java-template)
 
   ;; Normal
-  (define-key java-mode-map (kbd "C-s") #'jcs-java-untabify-save-buffer)
-
   (define-key java-mode-map (kbd "DEL") #'jcs-electric-backspace)
   (define-key java-mode-map (kbd "{") #'jcs-vs-opening-curly-bracket-key)
   (define-key java-mode-map (kbd "}") #'jcs-vs-closing-curly-bracket-key)
@@ -39,11 +44,6 @@
   (define-key java-mode-map (kbd "S-<f2>") #'javadoc-lookup))
 
 (add-hook 'java-mode-hook 'jcs-java-mode-hook)
-
-(use-package javadoc-lookup
-  :config
-  ;; Function used when performing a minibuffer read.
-  (setq javadoc-lookup-completing-read-function #'completing-read))
 
 (provide 'jcs-java-mode)
 ;;; jcs-java-mode.el ends here

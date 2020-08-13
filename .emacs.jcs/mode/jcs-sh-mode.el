@@ -13,10 +13,7 @@
   (jcs-insert-header-if-valid '("[.]sh"
                                 "[.]linux"
                                 "[.]macosx")
-                              'jcs-insert-sh-template)
-
-  ;; Normal
-  (define-key sh-mode-map (kbd "C-s") #'jcs-sh-untabify-save-buffer))
+                              'jcs-insert-sh-template))
 
 (add-hook 'sh-mode-hook 'jcs-sh-script-hook)
 

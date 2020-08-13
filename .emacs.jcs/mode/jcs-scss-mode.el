@@ -12,9 +12,6 @@
   (jcs-insert-header-if-valid '("[.]scss")
                               'jcs-insert-scss-template)
 
-  ;; Normal
-  (define-key css-mode-map (kbd "C-s") #'jcs-css-save-buffer)
-
   ;; comment block
   (define-key scss-mode-map (kbd "RET") #'jcs-smart-context-line-break)
   (define-key scss-mode-map (kbd "*") #'jcs-c-comment-pair)

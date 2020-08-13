@@ -16,8 +16,6 @@
   (define-key markdown-mode-map (kbd "<backspace>") #'jcs-real-backspace)
   (define-key markdown-mode-map (kbd "RET") #'jcs-markdown-return-key)
 
-  (define-key markdown-mode-map (kbd "C-s") #'jcs-save-buffer)
-
   ;; Eemmet
   (define-key emmet-mode-keymap (kbd "C-<return>") #'jcs-emmet-expand-line))
 

@@ -26,9 +26,6 @@
   (define-key css-mode-map (kbd "}") #'jcs-vs-closing-curly-bracket-key)
   (define-key css-mode-map (kbd ";") #'jcs-vs-semicolon-key)
 
-  ;; Save
-  (define-key css-mode-map (kbd "C-s") #'jcs-css-save-buffer)
-
   ;; comment block
   (define-key css-mode-map (kbd "RET") #'jcs-css-return-key)
   (define-key css-mode-map (kbd "*") #'jcs-c-comment-pair)

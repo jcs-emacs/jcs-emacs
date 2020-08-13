@@ -11,16 +11,13 @@
   "CMake mode hook."
 
   ;; File Header
-  (jcs-insert-header-if-valid '("CMakeLists.txt")
+  (jcs-insert-header-if-valid '("CMakeLists[.]txt")
                               'jcs-insert-cmake-template)
 
   ;; Normal
   (define-key cmake-mode-map (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
   (define-key cmake-mode-map (kbd "<down>") (jcs-get-prev/next-key-type 'next))
-  (define-key cmake-mode-map (kbd "RET") #'jcs-makefile-newline)
-
-  ;; tabify save key
-  (define-key cmake-mode-map (kbd "C-s") #'jcs-tabify-save-buffer))
+  (define-key cmake-mode-map (kbd "RET") #'jcs-makefile-newline))
 
 (add-hook 'cmake-mode-hook 'jcs-cmake-mode-hook)
 
