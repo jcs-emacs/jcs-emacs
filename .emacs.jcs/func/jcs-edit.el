@@ -846,7 +846,7 @@ REGEXP : reqular expression use to align."
 (defun jcs-save-all-buffers ()
   "Save all buffers currently opened."
   (interactive)
-  (let ((saved-lst '()) (len -1))
+  (let ((saved-lst '()) (len -1) (info-str ""))
     (save-window-excursion
       (dolist (buf (buffer-list))
         (switch-to-buffer buf)
@@ -856,12 +856,13 @@ REGEXP : reqular expression use to align."
           (push buf saved-lst)
           (message "Saved buffer '%s'" buf))))
     (setq len (length saved-lst))
-    (if (= len 0)
-        (message "[INFO] (No buffers need to be saved)")
-      (message "[INFO] All %s buffer%s are saved: %s"
-               len
-               (if (= len 1) "" "s")
-               (mapconcat (lambda (buf) (format "`%s`" buf)) saved-lst ", ")))))
+    (setq info-str (mapconcat (lambda (buf) (format "`%s`" buf)) saved-lst ", "))
+    (cond ((= len 0)
+           (message "[INFO] (No buffers need to be saved)"))
+          ((= len 1)
+           (message "[INFO] %s buffer saved: %s" len info-str))
+          (t
+           (message "[INFO] All %s buffers are saved: %s" len info-str)))))
 
 ;;;###autoload
 (defun jcs-save-buffer-by-mode ()
