@@ -103,7 +103,7 @@
       ((jcs-is-current-major-mode-p '("shell-mode"))
        'jcs-shell-down-key)
       (t 'jcs-smart-indent-down)))
-    (t (user-error "Please define direction with 'previous' or 'next'"))))
+    (t (user-error "[WARNING] Please define direction with 'previous' or 'next'"))))
 
 (defun jcs-get-prev/next-key-type (direction)
   "Return the prev/next key type by DIRECTION."
@@ -112,13 +112,13 @@
                  ('normal 'previous-line)
                  ('indent (jcs-get-major-mode-prev/next-key-type direction))
                  ('smart 'jcs-smart-previous-line)
-                 (t (user-error "Prev/Next key type not defined"))))
+                 (t (user-error "[WARNING] Prev/Next key type not defined"))))
     ('next (cl-case jcs-prev/next-key-type
              ('normal 'next-line)
              ('indent (jcs-get-major-mode-prev/next-key-type direction))
              ('smart 'jcs-smart-next-line)
-             (t (user-error "Prev/Next key type not defined"))))
-    (t (user-error "Please define direction with 'previous' or 'next'"))))
+             (t (user-error "[WARNING] Prev/Next key type not defined"))))
+    (t (user-error "[WARNING] Please define direction with 'previous' or 'next'"))))
 
 ;;;###autoload
 (defun jcs-previous-line ()
