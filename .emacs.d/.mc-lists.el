@@ -201,6 +201,7 @@
         jcs-run-without-asking
         jcs-same-file-other-window
         jcs-save-buffer
+        jcs-save-buffer-by-mode
         jcs-scratch-buffer
         jcs-scratch-buffer-maybe-kill
         jcs-scratch-buffer-other-window
