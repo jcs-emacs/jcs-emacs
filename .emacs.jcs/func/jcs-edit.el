@@ -778,15 +778,23 @@ REGEXP : reqular expression use to align."
   (cl-case (key-binding (kbd "C-s"))
     ('jcs-untabify-save-buffer (jcs-tabify-save-buffer))
     ('jcs-tabify-save-buffer (jcs-untabify-save-buffer))
-    (t (user-error "[ERROR] Their are no default tab/untab save"))))
+    (t (user-error "[ERROR] There is no default tab/untab save"))))
 
 (defun jcs--organize-save-buffer (tab-it)
-  "Organize save buffer by TAB-IT."
+  "Organize save buffer by TAB-IT type specification."
+  (require 'cl-lib)
   (let (deactivate-mark truncate-lines)
-    (jcs-delete-trailing-whitespace-except-current-line)
-    (jcs-remove-trailing-lines-end-buffer)
-    (if tab-it (jcs-tabify-buffer) (jcs-untabify-buffer))
-    (jcs-mute-apply #'jcs-remove-control-M)
+    (when jcs-on-save-whitespace-cleanup-p
+      (jcs-delete-trailing-whitespace-except-current-line))
+    (when jcs-on-save-end-trailing-lines-cleanup-p
+      (jcs-remove-trailing-lines-end-buffer))
+    (when jcs-on-save-tabify-or-untabify-p
+      (cl-case tab-it
+        ('tabify (jcs-tabify-buffer))
+        ('untabify (jcs-untabify-buffer))
+        (t (error "[ERROR] Undefined tabify type: %s" tab-it))))
+    (when jcs-on-save-remove-control-M-p
+      (jcs-mute-apply #'jcs-remove-control-M))
     (jcs-save-buffer)))
 
 (defun jcs--organize-save-buffer--do-valid (tab-it)
@@ -802,13 +810,13 @@ REGEXP : reqular expression use to align."
 (defun jcs-untabify-save-buffer ()
   "Untabify the file and save the buffer."
   (interactive)
-  (jcs--organize-save-buffer--do-valid nil))
+  (jcs--organize-save-buffer--do-valid 'untabify))
 
 ;;;###autoload
 (defun jcs-tabify-save-buffer ()
   "Tabify the file and save the buffer."
   (interactive)
-  (jcs--organize-save-buffer--do-valid t))
+  (jcs--organize-save-buffer--do-valid 'tabify))
 
 ;;;###autoload
 (defun jcs-save-buffer ()
@@ -829,14 +837,57 @@ REGEXP : reqular expression use to align."
       (message "(No changes need to be saved)"))))
 
 ;;;###autoload
+(defun jcs-save-buffer-default ()
+  "Save buffer with the default configuration's settings."
+  (interactive)
+  (jcs--organize-save-buffer--do-valid jcs-on-save-tabify-type))
+
+;;;###autoload
 (defun jcs-save-all-buffers ()
   "Save all buffers currently opened."
   (interactive)
-  (save-window-excursion
-    (dolist (buf (buffer-list))
-      (switch-to-buffer buf)
-      (ignore-errors (call-interactively (key-binding (kbd "C-s"))))))
-  (message "[INFO] All buffers are saved"))
+  (let ((saved-lst '()) (len -1))
+    (save-window-excursion
+      (dolist (buf (buffer-list))
+        (switch-to-buffer buf)
+        (when (ignore-errors
+                (jcs-mute-apply
+                 (lambda () (call-interactively (key-binding (kbd "C-s"))))))
+          (push buf saved-lst)
+          (message "Saved buffer '%s'" buf))))
+    (setq len (length saved-lst))
+    (if (= len 0)
+        (message "[INFO] (No buffers need to be saved)")
+      (message "[INFO] All %s buffer%s are saved: %s"
+               len
+               (if (= len 1) "" "s")
+               (mapconcat (lambda (buf) (format "`%s`" buf)) saved-lst ", ")))))
+
+;;;###autoload
+(defun jcs-save-buffer-by-mode ()
+  "Save the buffer depends on it's major mode."
+  (interactive)
+  (cond
+   ((jcs-is-current-major-mode-p '("markdown-mode"
+                                   "snippet-mode"))
+    (call-interactively #'jcs-save-buffer))
+   ((jcs-is-current-major-mode-p '("java-mode"))
+    (call-interactively #'jcs-java-untabify-save-buffer))
+   ((jcs-is-current-major-mode-p '("cmake-mode"
+                                   "makefile-mode"))
+    (call-interactively #'jcs-tabify-save-buffer))
+   ((jcs-is-current-major-mode-p '("sh-mode"))
+    (call-interactively #'jcs-sh-untabify-save-buffer))
+   ((jcs-is-current-major-mode-p '("conf-javaprop-mode"
+                                   "ini-mode"
+                                   "org-mode"
+                                   "view-mode"))
+    (call-interactively #'save-buffer))
+   ((jcs-is-current-major-mode-p '("scss-mode"
+                                   "ini-mode"))
+    (call-interactively #'jcs-css-save-buffer))
+   (t
+    (call-interactively #'jcs-save-buffer-default))))
 
 ;;----------------------------------------------------------------------------
 ;; Find file
