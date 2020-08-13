@@ -1,11 +1,13 @@
 #!/bin/sh -e
 
-echo "Attempting startup..."
+echo "Moving core files..."
 
-mv -f ./build.el ~/build.el
-mv -f ./.emacs ~/.emacs
-mv -f ./.emacs.d ~/.emacs.d
-mv -f ./.emacs.jcs ~/.emacs.jcs
+mv -f ../build.el ~/build.el
+mv -f ../.emacs ~/.emacs
+mv -f ../.emacs.d ~/.emacs.d
+mv -f ../.emacs.jcs ~/.emacs.jcs
+
+echo "Attempting startup..."
 
 ${EMACS:=emacs} -nw --batch \
                 --eval '(let ((debug-on-error (>=  emacs-major-version 26))
