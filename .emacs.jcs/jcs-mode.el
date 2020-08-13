@@ -557,10 +557,7 @@ Note this is opposite logic to the toggle mode function."
     (define-key view-mode-map (kbd "RET") nil)
 
     (dolist (key-str jcs-key-list)
-      (define-key view-mode-map key-str nil))
-
-    ;; just save buffer, don't care about the tab or spaces.
-    (define-key view-mode-map (kbd "C-s") #'save-buffer)))
+      (define-key view-mode-map key-str nil))))
 
 (add-hook 'view-mode-hook 'jcs-view-mode-hook)
 
