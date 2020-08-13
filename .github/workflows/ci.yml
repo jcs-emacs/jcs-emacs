@@ -28,5 +28,5 @@ jobs:
         version: ${{ matrix.emacs-version }}
 
     - name: test
-      run: ./scripts/test-startup.sh
+      run: sudo ./scripts/test-startup.sh
    
