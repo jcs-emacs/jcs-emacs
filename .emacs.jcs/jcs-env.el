@@ -263,6 +263,22 @@ See `jcs-hook.el' file that has apply `advice' on command `other-window'.")
   (unless jcs-package-installing-p (jcs-dashboard-refresh-buffer)))
 (advice-add 'recentf-track-opened-file :after #'jcs--recentf-track-opened-file--advice-after)
 
+;;; Save Files
+(defvar jcs-on-save-end-trailing-lines-cleanup-p t
+  "Remove trailing lines at the end of buffer on save.")
+
+(defvar jcs-on-save-whitespace-cleanup-p t
+  "Clean up whitespaces on save.")
+
+(defvar jcs-on-save-remove-control-M-p t
+  "Remove ^M character on save.")
+
+(defvar jcs-on-save-tabify-or-untabify-p t
+  "Tabify or Untabify on save.")
+
+(defvar jcs-on-save-tabify-type 'untabify  ; This takes `tabify' or `untabify' only.
+  "Default untabify or tabify to the buffer.")
+
 ;;; Shift Select
 (setq shift-select-mode t)
 
