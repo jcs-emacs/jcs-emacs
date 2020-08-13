@@ -2,10 +2,10 @@
 
 echo "Moving core files..."
 
-mv -f ../build.el ~/build.el
-mv -f ../.emacs ~/.emacs
-mv -f ../.emacs.d ~/.emacs.d
-mv -f ../.emacs.jcs ~/.emacs.jcs
+mv -f ./build.el ~/build.el
+mv -f ./.emacs ~/.emacs
+mv -f ./.emacs.d ~/.emacs.d
+mv -f ./.emacs.jcs ~/.emacs.jcs
 
 echo "Attempting startup..."
 
