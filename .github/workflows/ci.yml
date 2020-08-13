@@ -26,4 +26,4 @@ jobs:
 
     - uses: actions/checkout@v1
     - name: Check startup
-      run: ../scripts/test-startup.sh
+      run: sh ./scripts/test-startup.sh
