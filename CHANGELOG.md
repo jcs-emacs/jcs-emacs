@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-08-13
 
 * Implemented the default save buffer method depends on major mode.
+* Revised save all buffers method for better user experience.
 
 ### 2020-08-10
 
