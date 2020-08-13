@@ -19,14 +19,11 @@ jobs:
         emacs-version:
           - 27.1
           - snapshot
-
     steps:
-    - uses: actions/checkout@v1
-
     - uses: purcell/setup-emacs@master
       with:
         version: ${{ matrix.emacs-version }}
 
+    - uses: actions/checkout@v1
     - name: test
       run: ./scripts/test-startup.sh
-   
