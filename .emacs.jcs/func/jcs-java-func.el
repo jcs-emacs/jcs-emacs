@@ -67,17 +67,12 @@
   "Insert the package source declaration."
   (interactive)
   (save-excursion
-    ;; Goto the beginning of the buffer.
     (goto-char (point-min))
-
-    ;; Check if the first word package.
     (when (jcs-current-word-equal-p "package")
       ;; kill the old package source declaration.
       (jcs-kill-whole-line))
-
     ;; insert the new one.
     (jcs-java-insert-package-from-src)
-
     (jcs-keep-one-line-between)))
 
 
@@ -86,9 +81,7 @@
   "Organize all the import package.
 Including adding or removing the package path."
   (interactive)
-  ;; first organize package declaration.
-  (jcs-java-insert-package-src)
-  ;; Organize all the imports.
+  (jcs-java-insert-package-src)  ; first organize package declaration.
   (organize-imports-java-do-imports))
 
 
@@ -101,11 +94,10 @@ Including adding or removing the package path."
 (defun jcs-java-untabify-save-buffer ()
   "Java untabify save."
   (interactive)
-  (let ((first-save nil))
+  (let (first-save)
     (unless (jcs-file-directory-exists-p (buffer-file-name))
       (setq first-save t))
-    (ignore-errors
-      (jcs-untabify-save-buffer))
+    (ignore-errors (jcs-untabify-save-buffer))
     (when first-save
       (organize-imports-java-reload-local-source-paths))))
 
@@ -113,11 +105,10 @@ Including adding or removing the package path."
 (defun jcs-java-tabify-save-buffer ()
   "Java tabify save."
   (interactive)
-  (let ((first-save nil))
+  (let (first-save)
     (unless (jcs-file-directory-exists-p (buffer-file-name))
       (setq first-save t))
-    (ignore-errors
-      (jcs-tabify-save-buffer))
+    (ignore-errors (jcs-tabify-save-buffer))
     (when first-save
       (organize-imports-java-reload-local-source-paths))))
 
