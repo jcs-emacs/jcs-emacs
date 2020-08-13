@@ -13,7 +13,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest]
+        os: [ubuntu-latest, windows-latest, macos-latest]
         emacs-version:
           - 27.1
           - snapshot
@@ -26,10 +26,10 @@ jobs:
         version: ${{ matrix.emacs-version }}
 
     - name: test
-      run: 'mv -f ./build.el ~/build.el
-            mv -f ./.emacs ~/.emacs
-            mv -f ./.emacs.d ~/.emacs.d
-            mv -f ./.emacs.jcs ~/.emacs.jcs
+      run: 'mv -f ./build.el ~/build.el;
+            mv -f ./.emacs ~/.emacs;
+            mv -f ./.emacs.d ~/.emacs.d;
+            mv -f ./.emacs.jcs ~/.emacs.jcs;
             emacs -nw --batch --eval \
             "(let ((debug-on-error (>=  emacs-major-version 26))
                    (url-show-status nil)
