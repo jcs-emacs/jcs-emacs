@@ -51,7 +51,7 @@
 (with-eval-after-load 'company
   (define-key company-active-map [tab] #'jcs-tab-key)
   (define-key company-active-map (kbd "TAB") #'jcs-tab-key)
-  (define-key company-active-map (kbd "C-s") #'jcs-untabify-save-buffer))
+  (define-key company-active-map (kbd "C-s") #'jcs-save-buffer-default))
 
 ;;; Buffer Menu
 (define-key global-map (kbd "M-b") #'buffer-menu)
@@ -154,7 +154,7 @@
 (define-key prog-mode-map (kbd "C-v") #'jcs-smart-yank)
 (define-key global-map (kbd "C-v") #'yank)
 
-(define-key global-map (kbd "C-s") #'jcs-untabify-save-buffer)
+(define-key global-map (kbd "C-s") #'jcs-save-buffer-by-mode)
 (define-key global-map (kbd "C-S-s") #'jcs-save-all-buffers)
 (define-key global-map (kbd "C-k s") #'jcs-reverse-tab-untab-save-buffer)
 
