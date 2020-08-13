@@ -25,5 +25,5 @@ jobs:
         version: ${{ matrix.emacs-version }}
 
     - uses: actions/checkout@v1
-    - name: test
-      run: ./scripts/test-startup.sh
+    - name: Check startup
+      run: ../scripts/test-startup.sh
