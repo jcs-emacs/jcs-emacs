@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-08-15
+
+* Ensure no project running when active `auto-read-only`.
+
 ### 2020-08-13
 
 * Implemented the default save buffer method depends on major mode.
