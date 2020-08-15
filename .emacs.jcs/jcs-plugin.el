@@ -26,7 +26,9 @@
 
   (defun jcs--auto-read-only--hook-find-file ()
     "Advice wrap `auto-read-only--hook-find-file' function."
-    (unless jcs-package-installing-p (auto-read-only)))
+    (when (and (not jcs-package-installing-p)
+               (not (jcs-project-current)))
+      (auto-read-only)))
   (advice-add 'auto-read-only--hook-find-file :override #'jcs--auto-read-only--hook-find-file))
 
 (use-package better-scroll
