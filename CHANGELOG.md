@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-08-16
+
+* Replaced `region-occurrences-highlighter` from local to global activation.
+
 ### 2020-08-15
 
 * Ensure no project running when active `auto-read-only`.
