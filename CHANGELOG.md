@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-08-15
 
 * Ensure no project running when active `auto-read-only`.
+* Configured `diff-mode` for patch file editing.
 
 ### 2020-08-13
 
