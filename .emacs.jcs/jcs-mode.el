@@ -430,6 +430,18 @@ Note this is opposite logic to the toggle mode function."
 (add-hook 'special-mode-hook 'jcs-special-mode-hook)
 
 ;;============================================================================
+;; Diff
+
+(defun jcs-diff-mode-hook ()
+  "Hook for `diff-mode'."
+  (region-occurrences-highlighter-mode 1)
+
+  (define-key diff-mode-map (kbd "M-k") #'jcs-maybe-kill-this-buffer)
+  (define-key diff-mode-map (kbd "M-K") #'jcs-reopen-this-buffer))
+
+(add-hook 'diff-mode-hook #'jcs-diff-mode-hook)
+
+;;============================================================================
 ;; Compilation
 
 (defun jcs-compilation-mode-hook ()
