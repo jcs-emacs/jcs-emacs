@@ -158,6 +158,8 @@
     (preproc-font-lock-mode t)
     ;;----------------------------------- `projectile'
     (projectile-mode t)
+    ;;----------------------------------- `region-occurrences-highlighter'
+    (global-region-occurrences-highlighter-mode 1)
     ;;----------------------------------- `right-click-context'
     (right-click-context-mode 1)
     ;;----------------------------------- `show-paren'
