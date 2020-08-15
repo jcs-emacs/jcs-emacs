@@ -576,9 +576,8 @@
 ;;; Undo Tree
 (with-eval-after-load 'undo-tree
   (define-key undo-tree-visualizer-mode-map (kbd "RET") #'undo-tree-visualizer-quit)
-  ;; STUDY: `undo-tree''s minor mode will overwrite
-  ;; the global key map's key bindings. What we need to do
-  ;; is to remap this again...
+  ;; STUDY: `undo-tree''s minor mode will overwrite the global key map's
+  ;; key bindings. What we need to do is to remap this again...
   (define-key undo-tree-map (kbd "C-/") #'jcs-comment-uncomment-region-or-line))
 
 ;;; wgrep
