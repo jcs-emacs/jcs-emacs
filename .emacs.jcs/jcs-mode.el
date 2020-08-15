@@ -424,8 +424,7 @@ Note this is opposite logic to the toggle mode function."
 
 (defun jcs-special-mode-hook ()
   "Hook for `special-mode'."
-  (goto-address-mode 1)
-  (region-occurrences-highlighter-mode 1))
+  (goto-address-mode 1))
 
 (add-hook 'special-mode-hook 'jcs-special-mode-hook)
 
@@ -434,8 +433,6 @@ Note this is opposite logic to the toggle mode function."
 
 (defun jcs-diff-mode-hook ()
   "Hook for `diff-mode'."
-  (region-occurrences-highlighter-mode 1)
-
   (define-key diff-mode-map (kbd "M-k") #'jcs-maybe-kill-this-buffer)
   (define-key diff-mode-map (kbd "M-K") #'jcs-reopen-this-buffer))
 
@@ -447,7 +444,6 @@ Note this is opposite logic to the toggle mode function."
 (defun jcs-compilation-mode-hook ()
   "Hook for `compilation-mode'."
   (goto-address-mode 1)
-  (region-occurrences-highlighter-mode 1)
 
   (jcs-disable-truncate-lines)
 
@@ -467,8 +463,7 @@ Note this is opposite logic to the toggle mode function."
 
 (defun jcs-message-buffer-mode-hook ()
   "Hook for `message-buffer-mode'."
-  (goto-address-mode 1)
-  (region-occurrences-highlighter-mode 1))
+  (goto-address-mode 1))
 
 (add-hook 'messages-buffer-mode-hook 'jcs-message-buffer-mode-hook)
 
@@ -488,7 +483,6 @@ Note this is opposite logic to the toggle mode function."
   "Text mode hook."
   (auto-highlight-symbol-mode t)
   (goto-address-mode 1)
-  (region-occurrences-highlighter-mode 1)
 
   (jcs-insert-header-if-valid '("\\(/\\|\\`\\)[Ll][Ii][Cc][Ee][Nn][Ss][Ee]")
                               'jcs-ask-insert-license-content
@@ -514,7 +508,6 @@ Note this is opposite logic to the toggle mode function."
   (electric-pair-mode 1)
   (goto-address-mode 1)
   (highlight-indent-guides-mode 1)
-  (region-occurrences-highlighter-mode 1)
   (jcs--safe-lsp-active))
 
 (add-hook 'prog-mode-hook 'jcs-prog-mode-hook)
