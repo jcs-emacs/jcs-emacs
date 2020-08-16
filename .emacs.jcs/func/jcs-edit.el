@@ -617,18 +617,18 @@ REGEXP : reqular expression use to align."
             (let (kill-buffer-query-functions) (kill-buffer buf))))))))
 
 ;;;###autoload
-(defun jcs-other-window-next (&optional cnt not-all-frame)
+(defun jcs-other-window-next (&optional cnt not-all-frames)
   "Move CNT to the next window with NOT-ALL-FRAME."
   (interactive)
   (unless (numberp cnt) (setq cnt 1))
-  (if not-all-frame (other-window cnt nil) (other-window cnt t)))
+  (other-window cnt (null not-all-frames)))
 
 ;;;###autoload
-(defun jcs-other-window-prev (&optional cnt not-all-frame)
+(defun jcs-other-window-prev (&optional cnt not-all-frames)
   "Move CNT to the previous window with NOT-ALL-FRAME."
   (interactive)
   (unless (numberp cnt) (setq cnt -1))
-  (if not-all-frame (other-window cnt nil) (other-window cnt t)))
+  (other-window cnt (null not-all-frames)))
 
 ;;;###autoload
 (defun jcs-scroll-up-one-line (&optional n)
