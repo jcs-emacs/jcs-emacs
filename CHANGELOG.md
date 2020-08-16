@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-08-16
 
 * Replaced `region-occurrences-highlighter` from local to global activation.
+* Changed install source from `quelpa` to `melpa` for package `atl-markup`.
 
 ### 2020-08-15
 
