@@ -83,8 +83,7 @@
   "Advice execute after `other-window' command."
   (unless jcs--no-advice-other-window
     ;;--------------------------------------------------------------------
-    ;; TODO: This occurs in version `27.0.91'.
-    ;; Maybe we don't need this anymore after `27.1' is released!
+    ;; NOTE: LSP needs this from stopping me navigate through windows.
     (when (jcs-frame-util-p)
       (cl-case this-command
         ('jcs-other-window-next (jcs-other-window-next))
