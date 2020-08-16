@@ -35,6 +35,7 @@
     ag
     alt-codes
     apache-mode
+    atl-markup
     auto-highlight-symbol
     auto-read-only
     auto-rename-tag
@@ -301,8 +302,7 @@
 ;; Manually Installation
 
 (defconst jcs-package-manually-install-list
-  '(("atl-markup" "jcs-elpa/atl-markup" "github")
-    ("better-scroll" "jcs-elpa/better-scroll" "github")
+  '(("better-scroll" "jcs-elpa/better-scroll" "github")
     ("file-header" "jcs-elpa/file-header" "github")
     ("jayces-mode" "jcs-elpa/jayces-mode" "github")
     ("license-templates" "jcs-elpa/license-templates" "github")
