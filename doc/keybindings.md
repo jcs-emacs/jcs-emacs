@@ -292,9 +292,9 @@ Here is the list of key bindins that defined in this configuration.
 
 ### Windows
 
-* <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>n</kbd> - Create new frame.
-* <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>d</kbd> - Delete current frame.
-* <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>w</kbd> - Delete current window.
+* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>n</kbd> - Create new frame.
+* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>w</kbd> - Delete current frame.
+* <kbd>Ctrl</kbd>+<kbd>f4</kbd> - Delete current window.
 * <kbd>Ctrl</kbd>+<kbd>h</kbd>, <kbd>h</kbd> - Toggle window split between horizontal and vertcial.
 * <kbd>Ctrl</kbd>+<kbd>w</kbd>, <kbd>e</kbd> - Toggle enlarge current selected window.
 * <kbd>Ctrl</kbd>+<kbd>\\</kbd> - Split window horizontally.
@@ -319,7 +319,7 @@ Here is the list of key bindins that defined in this configuration.
 
   * Active minibuffer.
     - <kbd>Alt</kbd>+<kbd>x</kbd> - Active minibuffer.
-    - <kbd>f1</kbd> - Active minibuffer.
+    - <kbd>f1</kbd> - Active minibuffer.
     - <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>p</kbd> - Active minibuffer.
   * <kbd>Alt</kbd>+<kbd>f4</kbd> - Shutdown Emacs.
   * <kbd>Alt</kbd>+<kbd>f5</kbd> - Reload Emacs.
