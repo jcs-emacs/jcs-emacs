@@ -7,7 +7,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ### 2020-08-17
 
-* Set default diminished to `fill-page-mode`
+* Set default diminished to `fill-page-mode`.
+* Fixed `counsel` find file other window by just getting buffer object directly.
 
 ### 2020-08-16
 
