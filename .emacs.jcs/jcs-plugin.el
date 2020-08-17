@@ -812,19 +812,19 @@
     (and jcs-popup-mouse-events-flag
          (not jcs-popup-selected-item-flag)))
 
-  (defun jcs-advice-popup-menu-item-of-mouse-event-after (event)
+  (defun jcs--popup-menu-item-of-mouse-event--advice-after (event)
     "Advice after execute `popup-menu-item-of-mouse-event' command."
     (setq jcs-popup-mouse-events-flag t)
     (setq jcs-popup-selected-item-flag nil))
-  (advice-add 'popup-menu-item-of-mouse-event :after #'jcs-advice-popup-menu-item-of-mouse-event-after)
+  (advice-add 'popup-menu-item-of-mouse-event :after #'jcs--popup-menu-item-of-mouse-event--advice-after)
 
-  (defun jcs-advice-popup-selected-item-after (popup)
+  (defun jcs--popup-selected-item--advice-after (popup)
     "Advice after execute `popup-selected-item' command."
     (setq jcs-popup-selected-item-flag t)
     (setq jcs-popup-selected-item-flag (jcs-last-input-event-p "mouse-1")))
-  (advice-add 'popup-selected-item :after #'jcs-advice-popup-selected-item-after)
+  (advice-add 'popup-selected-item :after #'jcs--popup-selected-item--advice-after)
 
-  (defun jcs-advice-popup-select-around (orig-fun &rest args)
+  (defun jcs--popup-draw--advice-around (orig-fun &rest args)
     "Advice around execute `popup-draw' command."
     (let ((do-orig-fun t))
       (when (and (jcs-last-input-event-p "mouse-1")
@@ -832,7 +832,7 @@
         (keyboard-quit)
         (setq do-orig-fun nil))
       (when do-orig-fun (apply orig-fun args))))
-  (advice-add 'popup-draw :around #'jcs-advice-popup-select-around))
+  (advice-add 'popup-draw :around #'jcs--popup-draw--advice-around))
 
 (use-package powerline
   :defer t
