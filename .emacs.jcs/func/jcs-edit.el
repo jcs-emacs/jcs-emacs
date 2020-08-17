@@ -776,48 +776,61 @@ REGEXP : reqular expression use to align."
     ('jcs-tabify-save-buffer (jcs-untabify-save-buffer))
     (t (user-error "[ERROR] There is no default tab/untab save"))))
 
-(defun jcs--organize-save-buffer (tab-it)
-  "Organize save buffer by TAB-IT type specification."
+(defun jcs--organize-save-buffer ()
+  "Organize save buffer."
   (require 'cl-lib)
   (let (deactivate-mark truncate-lines)
     (when jcs-on-save-whitespace-cleanup-p
       (jcs-delete-trailing-whitespace-except-current-line))
     (when jcs-on-save-end-trailing-lines-cleanup-p
       (jcs-remove-trailing-lines-end-buffer))
-    (when jcs-on-save-tabify-or-untabify-p
-      (cl-case tab-it
-        ('tabify (jcs-tabify-buffer))
-        ('untabify (jcs-untabify-buffer))
-        (t (error "[ERROR] Undefined tabify type: %s" tab-it))))
+    (cl-case jcs-on-save-tabify-type
+      ('tabify (jcs-tabify-buffer))
+      ('untabify (jcs-untabify-buffer))
+      ('nil (progn ))  ; Do nothing here.
+      (t (user-error "[WARNING] Unknown tabify type when on save: %s" jcs-on-save-tabify-type)))
     (when jcs-on-save-remove-control-M-p
       (jcs-mute-apply #'jcs-remove-control-M))
-    (jcs-save-buffer)))
+    (jcs--save-buffer-internal)))
 
-(defun jcs--organize-save-buffer--do-valid (tab-it)
-  "Same with `jcs--organize-save-buffer' and TAB-IT, but with check validity infront."
+(defun jcs--organize-save-buffer--do-valid ()
+  "Same with `jcs--organize-save-buffer', but with validity check infront."
   (cond
    ((not (buffer-file-name))
     (user-error "[WARNING] Can't save with invalid filename: %s" (buffer-name)))
    (buffer-read-only
     (user-error "[WARNING] Can't save read-only file: %s" buffer-read-only))
-   (t (jcs--organize-save-buffer tab-it))))
+   (t (jcs--organize-save-buffer))))
+
+;;;###autoload
+(defun jcs-save-buffer-default ()
+  "Save buffer with the default configuration's settings."
+  (interactive)
+  (jcs--organize-save-buffer--do-valid))
 
 ;;;###autoload
 (defun jcs-untabify-save-buffer ()
-  "Untabify the file and save the buffer."
+  "Untabify file and save the buffer."
   (interactive)
-  (jcs--organize-save-buffer--do-valid 'untabify))
+  (let ((jcs-on-save-tabify-type 'untabify)) (jcs--organize-save-buffer--do-valid)))
 
 ;;;###autoload
 (defun jcs-tabify-save-buffer ()
-  "Tabify the file and save the buffer."
+  "Tabify file and save the buffer."
   (interactive)
-  (jcs--organize-save-buffer--do-valid 'tabify))
+  (let ((jcs-on-save-tabify-type 'tabify)) (jcs--organize-save-buffer--do-valid)))
 
 ;;;###autoload
 (defun jcs-save-buffer ()
   "Save buffer wrapper."
   (interactive)
+  (let (jcs-on-save-tabify-type
+        jcs-on-save-whitespace-cleanup-p
+        jcs-on-save-end-trailing-lines-cleanup-p)
+    (jcs--organize-save-buffer--do-valid)))
+
+(defun jcs--save-buffer-internal ()
+  "Internal core functions for saving buffer."
   (setq jcs-created-parent-dir-path nil)
   (let ((jcs--no-advice-other-window t)
         (modified (buffer-modified-p))
@@ -831,12 +844,6 @@ REGEXP : reqular expression use to align."
     (if (or modified (not readable))
         (message "Wrote file %s" (buffer-file-name))
       (message "(No changes need to be saved)"))))
-
-;;;###autoload
-(defun jcs-save-buffer-default ()
-  "Save buffer with the default configuration's settings."
-  (interactive)
-  (jcs--organize-save-buffer--do-valid jcs-on-save-tabify-type))
 
 ;;;###autoload
 (defun jcs-save-all-buffers ()
