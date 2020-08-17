@@ -245,6 +245,7 @@
   (diminish 'eldoc-mode)
   (with-eval-after-load 'emmet-mode (diminish 'emmet-mode))
   (with-eval-after-load 'face-remap (diminish 'buffer-face-mode))
+  (with-eval-after-load 'fill-page (diminish 'fill-page-mode))
   (with-eval-after-load 'flycheck (diminish 'flycheck-mode))
   (with-eval-after-load 'helm-mode (diminish 'helm-mode))
   (with-eval-after-load 'highlight-indent-guides (diminish 'highlight-indent-guides-mode))
