@@ -1,0 +1,8 @@
+Title: { Your title }
+Credit: written by
+Author: #CREATOR_NAME#
+Copyright: (c) #TIME_YEAR# #COPYRIGHT_INFO#
+
+{ Your screenplay description }
+
+====
