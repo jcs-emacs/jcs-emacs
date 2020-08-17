@@ -9,6 +9,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 * Set default diminished to `fill-page-mode`.
 * Fixed `counsel` find file other window by just getting buffer object directly.
+* Installed new package `fountain-mode`.
+* Added support for Fountain markup language.
 
 ### 2020-08-16
 
