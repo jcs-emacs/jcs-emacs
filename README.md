@@ -90,35 +90,28 @@ e.g. [Atom](https://atom.io/), [Brackets](http://brackets.io/),
 
 ## Philosophy
 
-I have experienced many different kinds of IDEs and text
-editors. But I’ve had a hard time finding the best tool
-to use. I’ve jumped from one working field to another
-trying to find something that suits my needs. So instead
-of struggling with the tool itself, I chose Emacs and
-configured the entire thing from scratch, to suit my needs.
+I have experienced many different kinds of IDEs and text editors. But I’ve had a
+hard time finding the best tool to use. I’ve jumped from one working field to
+another trying to find something that suits my needs. So instead of struggling
+with the tool itself, I chose Emacs and configured the entire thing from scratch,
+to suit my needs.
 
-Here are a few goals that I want this config to
-accomplished.
+Here are a few goals that I want this config to accomplished.
 
-* Having the same set of key bindings across different
-IDEs and text editors as many as possible.
-* Having the same font and theme across different OSs and
-environments.
+* Having the same set of key bindings across different IDEs and text editors as
+many as possible.
+* Having the same font and theme across different OSs and environments.
 * Automating trivial or redundant tasks.
-* Improve user experiences approach to modern text editor
-or IDE.
-* Make compatible to most features work inside terminal
-as well.
+* Improve user experiences approach to modern text editor or IDE.
+* Make compatible to most features work inside terminal as well.
 
-Having these implementations makes my life easier, and
-having a genuinely portable workspace, which is great
-because it lets me work on different machine efficiently,
+Having these implementations makes my life easier, and having a genuinely portable
+workspace, which is great because it lets me work on different machine efficiently,
 without having to get used to an new IDE.
 
 ## :newspaper: News
 
-Here is the list of few important and recent changes to this
-configuration.
+Here is the list of few important and recent changes to this configuration.
 
 * `6.2.2` - Correct upgrade logic for manually installed packages.
 * `6.1.5` - `feebleline` is now fully compatible to terminal.
@@ -133,14 +126,14 @@ configuration.
 
 ## :floppy_disk: Installation
 
-There are two ways to install the configuration on to your
-machine; it depends on if the internet is available to you.
+There are two ways to install the configuration on to your machine; it depends on
+if the internet is available to you.
 
 ### With Internet
 
-To install, clone this repo and copy the core `files`/`directories`
-to the emacs config directory accordingly. Make sure you backup
-your own configuration before you start the installation.
+To install, clone this repo and copy the core `files`/`directories` to the
+emacs config directory accordingly. Make sure you backup your own configuration
+before you start the installation.
 
 ```bash
 # clone this repo
@@ -157,41 +150,37 @@ $ cp -r ./.emacs.d ~/
 $ cp -r ./.emacs.jcs ~/
 ```
 
-Then startup Emacsm then it will start asking you to install
-all necessary packages due to this configuration.
+Then startup Emacsm then it will start asking you to install all necessary
+packages due to this configuration.
 
 **:exclamation::exclamation: [ATTENTION] :exclamation::exclamation:
 -- MAKE SURE YOU INSTALLED THE CORRECT VERSION OF EMACS!**
 
 ### Without Internet
 
-If the internet isn't available to you, just download a copy
-of the configuration from the release tab
-[here](https://github.com/jcs090218/jcs-emacs/releases/)
-. You will see these following files, and extract them to your
-`HOME` directory or the directory that Emacs will start loading
-initialize files.
+If the internet isn't available to you, just download a copy of the configuration
+from the release tab [here](https://github.com/jcs090218/jcs-emacs/releases/)
+. You will see these following files, and extract them to your `HOME` directory
+or the directory that Emacs will start loading initialize files.
 
 * `.emacs`      [FILE]
 * `.emacs.d`    [DIRECTORY]
 * `.emacs.jcs`  [DIRECTORY]
 
-Install it this way; you wouldn't need to be asked to install
-all necessary packages. So this may be faster or benefits to
-you.
+Install it this way; you wouldn't need to be asked to install all necessary 
+packages. So this may be faster or benefits to you.
 
 ## :clock3: Startup Time
 
-The average startup time for this configuration is around
-`15` to `25` seconds. You can use command `emacs-init-time`
-to check the startup time on your machine. Not quite sure what
-causes that much of performance, hopefully, I'm able to lower
+The average startup time for this configuration is around `15` to `25` seconds.
+You can use command `emacs-init-time` to check the startup time on your machine.
+Not quite sure what causes that much of performance, hopefully, I'm able to lower
 the startup time down to `5` to `15` seconds.
 
-**Edit 1:** After version `5.3.2`, the average startup time is
-around `5` to `15` seconds. Solved this issue by removing
-unnecessary `require` keyword load file and use `:defer` keyword
-with `use-package` package to delay some packages load time.
+**Edit 1:** After version `5.3.2`, the average startup time is around `5` to `15`
+seconds. Solved this issue by removing unnecessary `require` keyword load file 
+and use `:defer` keyword with `use-package` package to delay some packages 
+load time.
 
 :pencil:
 *P.S. Here is a great article about
@@ -199,24 +188,24 @@ with `use-package` package to delay some packages load time.
  written by
 [Anurag Peshne](https://github.com/anuragpeshne).*
 
-**Edit 2:** If you compiled the source code then the startup
-time can lower down more from `0.5` to `1.5` seconds.
+**Edit 2:** If you compiled the source code then the startup time can lower down
+more from `0.5` to `1.5` seconds.
 
-**Edit 3:** Using [esup](https://github.com/jschaf/esup) package
-to test and optimize the configuration. Call `package-refresh-contents`
-only when package installation is needed. By doing thing, lower
-the startup time from around `4` to `8` seconds.
+**Edit 3:** Using [esup](https://github.com/jschaf/esup) package to test and 
+optimize the configuration. Call `package-refresh-contents` only when package 
+installation is needed. By doing thing, lower the startup time from around `4` to
+`8` seconds.
 
 :pencil:
-*P.S. Some good hints from one
-[StackExchange](https://emacs.stackexchange.com/) question,
+*P.S. Some good hints from one [StackExchange](https://emacs.stackexchange.com/)
+question,
 [What can I do to speed up my start-up?](https://emacs.stackexchange.com/questions/2286/what-can-i-do-to-speed-up-my-start-up)
 answered by
 [Jordon Biondo](https://github.com/jordonbiondo).*
 
 :pencil:
-*P.S. The above cases are tested on Windows. Other OS that are
-not Windows should start up under a second.*
+*P.S. The above cases are tested on Windows. Other OS that are not Windows should
+start up under a second.*
 
 ## :trophy: Features
 
@@ -237,10 +226,9 @@ like my taste!
 
 ### Details
 
-This is the list of features that are built-in to this
-configuration. These features are heavily base on my personal
-habits, and so these could be very tiny things. But I believed
-detials make things better and make life smoother.
+This is the list of features that are built-in to this configuration. These features
+are heavily base on my personal habits, and so these could be very tiny things. But
+I believed detials make things better and make life smoother.
 
 * [*Auto Install Package*](./features/auto-install-package) -
 Automatically installs the package that this config relies on.
@@ -335,12 +323,11 @@ A list of package archives that this configuration uses.
 * *[elpa](https://elpa.gnu.org/packages/)* -
 The default package repository for GNU Emacs.
 * ~~*[marmalade](https://marmalade-repo.org/)* -
-Marmalade is an ELPA compatible package repository that allowed
-users to upload their own packages.~~
+Marmalade is an ELPA compatible package repository that allowed users to upload 
+their own packages.~~
 * *[melpa](https://melpa.org/#/)* -
-MELPA is a growing collection of `package.el`-compatible Emacs Lisp
-packages built automatically on our server from the upstream source
-code using simple recipes.
+MELPA is a growing collection of `package.el`-compatible Emacs Lisp packages 
+built automatically on our server from the upstream source code using simple recipes.
 
 :pencil:
 *P.S. Here is a good talk comparing all package archives from a
@@ -351,14 +338,12 @@ answered by
 
 ## :trophy: Powered by
 
-Here is the list of all packages that powered and make this
-configuration works. Thanks to all the package maintainers;
-this configuration cannot be made without them, and if you
-wish to support them you can go to this
+Here is the list of all packages that powered and make this configuration works. 
+Thanks to all the package maintainers; this configuration cannot be made without
+them, and if you wish to support them you can go to this
 [elisp-maintainers](https://github.com/tarsius/elisp-maintainers)
-repo/site and search for the maintainer you want to support.
-There should be some kind of methods that you could support the
-maintainer you want.
+repo/site and search for the maintainer you want to support. There should be some
+kind of methods that you could support the maintainer you want.
 
 ### Functionalities
 
@@ -491,25 +476,23 @@ and
 
 ### File Modes
 
-If you want to change the default mode to certain file type,
-you might want to checkout the `./.emacs.jcs/jcs-mode.el` file.
-You will see a list of mode that are opened by default mode to
-certain extension.
+If you want to change the default mode to certain file type, you might want to
+checkout the `./.emacs.jcs/jcs-mode.el` file. You will see a list of mode
+that are opened by default mode to certain extension.
 
 * [List of modes](./doc/programming_modes.md)
 
 :pencil:
 *P.S. The [awesome-emacs](https://github.com/emacs-tw/awesome-emacs)
-is a list of Emacs package that you can choose other
-alternatives to replace any similar packages listed here.
-Is also a good place to seek and learn what's inside Emacs!*
+is a list of Emacs package that you can choose other alternatives to replace any
+similar packages listed here. Is also a good place to seek and learn what's inside
+Emacs!*
 
 ## Key Bindings
 
-This configuration have all modes bind to the same set of
-key bindings. It benefits the developer would not need to change
-their key bindings while after the mode swichted. The key bindings
-set can be modified in `./.emacs.jcs/jcs-key.el` file.
+This configuration have all modes bind to the same set of key bindings. It benefits
+the developer would not need to change their key bindings while after the mode
+swichted. The key bindings set can be modified in `./.emacs.jcs/jcs-key.el` file.
 
 * [List of key bindings](./doc/keybindings.md)
 
@@ -517,74 +500,63 @@ set can be modified in `./.emacs.jcs/jcs-key.el` file.
 P.S.
 * My work requires me to use
 [Visual Studio IDE](https://visualstudio.microsoft.com/)
-that being said the key bindings set are most likely compatible
-to
+that being said the key bindings set are most likely compatible to
 [Visual Studio IDE](https://visualstudio.microsoft.com/).
-* ~~Excepts keys that bind to `C-x` and `C-c`, Emacs are deeply binds
-to these two keys, and many packages also use these two keys
-for there preset keys. As you may know these two keys are often
-`cut` and `copy`, is awkward that I solved this by adding the
-same key stroke once again, hence the `cut` key is `C-x C-x` and
-the `copy` key is `C-c C-c`.~~
+* ~~Excepts keys that bind to `C-x` and `C-c`, Emacs are deeply binds to these
+two keys, and many packages also use these two keys for there preset keys. As
+you may know these two keys are often `cut` and `copy`, is awkward that I solved
+this by adding the same key stroke once again, hence the `cut` key is
+`C-x C-x` and the `copy` key is `C-c C-c`.~~
 
-**Edit 1:** After version `5.8.3`, the `cut` and `copy` keys had been
-corrected and no longer the hassle to this configuration. Thanks to
-`use-package` again, letting me bind `C-x` and `C-c` keys for higher
-precedence.
+**Edit 1:** After version `5.8.3`, the `cut` and `copy` keys had been corrected
+and no longer the hassle to this configuration. Thanks to `use-package` again,
+letting me bind `C-x` and `C-c` keys for higher precedence.
 
 ## Themes
 
 ### Default
 
-The theme was to design close to
-[Visual Studio IDE](https://visualstudio.microsoft.com/)
-preset light/dark theme. I believed
-[Microsoft](https://www.microsoft.com/zh-tw/)
-has a great UI/UX team, since I don't have any experience
-or work related to UI/UX, I would just like to have the
-theme color as close to it as possible. Anyway, if you
-want to customize the theme yourself, then check out the
-`./.emacs.jcs/jcs-theme.el` file. All the theme related
-variables can be found in that file.
+The theme was to design close to [Visual Studio IDE](https://visualstudio.microsoft.com/)
+preset light/dark theme. I believed [Microsoft](https://www.microsoft.com/zh-tw/)
+has a great UI/UX team, since I don't have any experience or work related to UI/UX,
+I would just like to have the theme color as close to it as possible. Anyway, if you
+want to customize the theme yourself, then check out the `./.emacs.jcs/jcs-theme.el`
+file. All the theme related variables can be found in that file.
 
-| Light Theme                               | Dark Theme                               |
-|:------------------------------------------|:-----------------------------------------|
+| Light Theme                                   | Dark Theme                                   |
+|:----------------------------------------------|:---------------------------------------------|
 |<img src="./etc/screenshot/startup-light.png"/>|<img src="./etc/screenshot/startup-dark.png"/>|
 
 ### Customization
 
-In common, you can install any theme you want as long it is
-available on the internet. You can check out the Emacs Theme
-Gallery site [here](https://pawelbx.github.io/emacs-theme-gallery/).
-For instance, [vs-dark-theme](https://github.com/jcs-elpa/vs-dark-theme)
-and [vs-light-theme](https://github.com/jcs-elpa/vs-light-theme)
-are now individual packages built outside from this configuration.
+In common, you can install any theme you want as long it is available on the
+internet. You can check out the Emacs Theme Gallery site [here](https://pawelbx.github.io/emacs-theme-gallery/).
+For instance, [vs-dark-theme](https://github.com/jcs-elpa/vs-dark-theme) and 
+[vs-light-theme](https://github.com/jcs-elpa/vs-light-theme) are now individual
+packages built outside from this configuration.
 
 ## Font
 
-Font uses `use-ttf` package to keep cross OS consistency.
-The default font is `Ubuntu Mono` and loaded by using
-`UbuntuMono-R.ttf` located under `./.emacs.jcs/fonts/`
-folder. If you don't like the this font, you can add your
-own `.ttf` file and add the path to
-`use-ttf-default-ttf-fonts` list. Lastly, set the name
-of the `.ttf` file to `use-ttf-default-ttf-font-name`
+Font uses `use-ttf` package to keep cross OS consistency. The default font is
+`Ubuntu Mono` and loaded by using `UbuntuMono-R.ttf` located under
+`./.emacs.jcs/fonts/` folder. If you don't like the this font, you can add your
+own `.ttf` file and add the path to `use-ttf-default-ttf-fonts` list.
+Lastly, set the name of the `.ttf` file to `use-ttf-default-ttf-font-name`
 variable.
 
 :pencil:
 P.S.
-* See the file `./.emacs.jcs/jcs-plugin.el` to see how the
-font is been set in `(use-package use-ttf)` section.
-* For more details about the font settings in this
-configuration, check out the `use-ttf`package
-[repo](https://github.com/elpa-host/use-ttf).
+* See the file `./.emacs.jcs/jcs-plugin.el` to see how the font is been set
+in `(use-package use-ttf)` section.
+* For more details about the font settings in this configuration, check out the
+`use-ttf`package [repo](https://github.com/elpa-host/use-ttf).
 
 ## :hammer: Optimization
 
-If you would like to optimize the configuration, you can
-run the following command compile all the source code to
-byte code so Emacs can run faster during both `initial time`
-and `run time`.
+If you would like to optimize the configuration, you can run the following command
+compile all the source code to byte code so Emacs can run faster during both
+`initial time` and `run time`.
+
 ```bash
 # change directory to the `jcs` config directory
 $ cd ./.emacs.jcs
