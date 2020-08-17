@@ -246,7 +246,6 @@
 (define-key global-map (kbd "C-b") #'neotree-toggle)    ; Compatible to `VS Code'.
 
 ;;; File editing
-(define-key global-map (kbd "C-<f4>") #'kill-this-buffer)
 (define-key global-map (kbd "M-k") #'jcs-maybe-kill-this-buffer)
 (define-key global-map (kbd "M-K") #'jcs-reopen-this-buffer)
 ;;(define-key global-map (kbd "M-k") #'jcs-kill-this-buffer)
@@ -530,9 +529,9 @@
 (progn
   ;; TODO: Determine `toggle-frame-fullscreen' key.
   ;;(define-key global-map [f11] #'toggle-frame-fullscreen)
-  (define-key global-map (kbd "C-k n") #'jcs-make-frame)
-  (define-key global-map (kbd "C-k d") #'delete-frame)  ; delete the external frame.
-  (define-key global-map (kbd "C-k w") #'jcs-balance-delete-window)  ; delete current window.
+  (define-key global-map (kbd "C-S-n") #'jcs-make-frame)
+  (define-key global-map (kbd "C-S-w") #'delete-frame)  ; delete the external frame.
+  (define-key global-map (kbd "C-<f4>") #'jcs-balance-delete-window)
   (define-key global-map (kbd "C-h h") #'jcs-toggle-window-split-hv)
   (define-key global-map (kbd "C-w e") #'jcs-toggle-enlarge-window-selected)
   (define-key global-map (kbd "C-\\") #'jcs-balance-split-window-horizontally)
