@@ -597,6 +597,7 @@ Note this is opposite logic to the toggle mode function."
 (with-eval-after-load 'dockerfile-mode (require 'jcs-dockerfile-mode))
 (with-eval-after-load 'elixir-mode (require 'jcs-elixir-mode))
 (with-eval-after-load 'erlang (require 'jcs-erlang-mode))
+(with-eval-after-load 'fountain-mode (require 'jcs-fountain-mode))
 (with-eval-after-load 'gdscript-mode (require 'jcs-gdscript-mode))
 (with-eval-after-load 'gitattributes-mode (require 'jcs-git-mode))
 (with-eval-after-load 'gitconfig-mode (require 'jcs-git-mode))
@@ -695,6 +696,10 @@ PR : pair file `regexp' and file mode `symbol'."
   (jcs-add-auto-mode-alist '("\\.el'?\\'" . emacs-lisp-mode))
   (jcs-add-auto-mode-alist '("\\.erl'?\\'" . erlang-mode))
   (jcs-add-auto-mode-alist '("\\.hrl'?\\'" . erlang-mode)))
+
+;;; F
+(progn
+  (jcs-add-auto-mode-alist '("\\.fountain'?\\'" . fountain-mode)))
 
 ;;; G
 (progn
