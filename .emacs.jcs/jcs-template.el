@@ -266,6 +266,11 @@ in order to take effect.  Half hot reloading process."
   "Template for Erlang Lisp."
   (file-header-insert-template-by-file-path "~/.emacs.jcs/template/erlang/default.txt"))
 
+;;; Fountain
+(defun jcs-insert-fountain-template ()
+  "Template for Fountain Lisp."
+  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/fountain/default.txt"))
+
 ;;; GLSL
 (defun jcs-insert-glsl-template ()
   "Header for GLSL header file."
