@@ -84,6 +84,7 @@
     flycheck-grammarly
     flycheck-popup-tip
     flycheck-pos-tip
+    fountain-mode
     gdscript-mode
     gitattributes-mode
     gitconfig-mode
