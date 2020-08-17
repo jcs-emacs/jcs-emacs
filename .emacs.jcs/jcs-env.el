@@ -273,10 +273,7 @@ See `jcs-hook.el' file that has apply `advice' on command `other-window'.")
 (defvar jcs-on-save-remove-control-M-p t
   "Remove ^M character on save.")
 
-(defvar jcs-on-save-tabify-or-untabify-p t
-  "Tabify or Untabify on save.")
-
-(defvar jcs-on-save-tabify-type 'untabify  ; This takes `tabify' or `untabify' only.
+(defvar jcs-on-save-tabify-type 'untabify  ; This takes `nil', `tabify', `untabify'.
   "Default untabify or tabify to the buffer.")
 
 ;;; Shift Select
