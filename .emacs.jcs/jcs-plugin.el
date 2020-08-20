@@ -282,6 +282,7 @@
            "[*]Warnings[*]")
          '("[*]Checkdoc Status[*]" "[*]Package-Lint[*]")
          '("[*]Async Shell Command[*]:" "[*]shell" "[*]eshell")
+         '("[*]ESS[*]")
          '("[*]emacs[*]")  ; From `async'
          '("[*]lsp-" "[*][a-zA-Z0-9]+[-]*ls" "[*][a-zA-Z0-9]+::stderr[*]"
            "[*]csharp[*]")  ; From `lsp'
