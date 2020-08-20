@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-08-20
+
+* Fixed `esup` package initialize issue.
+* Added `*ESS*` to diminish buffer list.
+
 ### 2020-08-17
 
 * Set default diminished to `fill-page-mode`.
