@@ -35,7 +35,7 @@
   :defer t
   :init
   (setq better-scroll-align-type 'relative)
-  (setq better-scroll-allow-boundry-movement t))
+  (setq better-scroll-allow-boundary-movement t))
 
 (use-package browse-kill-ring
   :defer t
