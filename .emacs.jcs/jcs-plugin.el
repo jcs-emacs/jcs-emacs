@@ -804,26 +804,26 @@
 (use-package popup
   :defer t
   :config
-  (defvar jcs-popup-mouse-events-flag nil
+  (defvar jcs-popup-mouse-events-flag-p nil
     "Check if `popup-menu-item-of-mouse-event' is called.")
-  (defvar jcs-popup-selected-item-flag nil
+
+  (defvar jcs-popup-selected-item-flag-p nil
     "Check if `popup-selected-item' is called.")
 
   (defun jcs-popup-clicked-on-menu-p ()
     "Check if the user actually clicked on the `popup' object."
-    (and jcs-popup-mouse-events-flag
-         (not jcs-popup-selected-item-flag)))
+    (and jcs-popup-mouse-events-flag-p
+         (not jcs-popup-selected-item-flag-p)))
 
   (defun jcs--popup-menu-item-of-mouse-event--advice-after (event)
     "Advice after execute `popup-menu-item-of-mouse-event' command."
-    (setq jcs-popup-mouse-events-flag t)
-    (setq jcs-popup-selected-item-flag nil))
+    (setq jcs-popup-mouse-events-flag-p t)
+    (setq jcs-popup-selected-item-flag-p nil))
   (advice-add 'popup-menu-item-of-mouse-event :after #'jcs--popup-menu-item-of-mouse-event--advice-after)
 
   (defun jcs--popup-selected-item--advice-after (popup)
     "Advice after execute `popup-selected-item' command."
-    (setq jcs-popup-selected-item-flag t)
-    (setq jcs-popup-selected-item-flag (jcs-last-input-event-p "mouse-1")))
+    (setq jcs-popup-selected-item-flag-p (jcs-last-input-event-p "mouse-1")))
   (advice-add 'popup-selected-item :after #'jcs--popup-selected-item--advice-after)
 
   (defun jcs--popup-draw--advice-around (orig-fun &rest args)
