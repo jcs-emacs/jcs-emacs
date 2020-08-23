@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-08-23
+
+* Added text file identifier utility function.
+
 ### 2020-08-20
 
 * Fixed `esup` package initialize issue.
