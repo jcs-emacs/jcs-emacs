@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-08-23
 
 * Added text file identifier utility function.
+* Added `*Local Variables*` buffer to diminish buffer list.
 
 ### 2020-08-20
 
