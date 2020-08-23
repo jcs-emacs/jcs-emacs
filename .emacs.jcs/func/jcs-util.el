@@ -1397,6 +1397,12 @@ IN-KEY : key to search for value."
   "Get current file name without extension lowercase."
   (downcase (jcs-get-file-name-without-extension)))
 
+(defun jcs-text-file-p (filename)
+  "Check if FILENAME a text file and not binary."
+  (with-current-buffer (find-file-noselect filename :no-warn)
+    (prog1 (not (eq buffer-file-coding-system 'no-conversion))
+      (kill-buffer))))
+
 ;;----------------------------------------------------------------------------
 ;; Directory
 
