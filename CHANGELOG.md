@@ -7,7 +7,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ### 2020-08-25
 
-* Added sort symbols function as feature functionality.
+* Added sort symbols function as feature enhancement.
 
 ### 2020-08-24
 
