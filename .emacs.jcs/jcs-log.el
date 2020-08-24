@@ -2,7 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-
 ;; TOPIC: How to preserve color in *Messages* buffer?
 ;; SOURCE: https://emacs.stackexchange.com/questions/20171/how-to-preserve-color-in-messages-buffer
 
