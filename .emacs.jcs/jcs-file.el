@@ -163,7 +163,7 @@ It tells you the existence of the path."
         (valid-dirs '())
         (final-dirs '()))
     (dolist (dir dirs)
-      (unless (jcs-is-contain-list-string projectile-globally-ignored-directories dir)
+      (unless (jcs-is-contain-list-string projectile-globally-ignored-directories (f-slash dir))
         (push dir valid-dirs)))
     (when rec
       (dolist (dir valid-dirs)
