@@ -105,6 +105,7 @@
         jcs-smart-previous-line
         jcs-smart-space
         jcs-smart-yank
+        jcs-sort-symbols
         jcs-tab-key
         jcs-uncomment-region-or-line
         jcs-upcase-word-or-region
