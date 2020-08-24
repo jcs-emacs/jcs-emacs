@@ -40,8 +40,14 @@
 (use-package browse-kill-ring
   :defer t
   :init
-  (setq browse-kill-ring-separator "--- Separator ---------------------------------------------------------------------------")
-  (setq browse-kill-ring-separator-face 'font-lock-comment-face))
+  (setq browse-kill-ring-separator (jcs-env-separator))
+  (setq browse-kill-ring-separator-face 'font-lock-comment-face)
+  :config
+  (defun jcs--browse-kill-ring-mode-hook ()
+    "Hook for `browse-kill-ring-mode'."
+    (setq browse-kill-ring-separator (jcs-env-separator))
+    (page-break-lines-mode 1))
+  (add-hook 'browse-kill-ring-mode-hook 'jcs--browse-kill-ring-mode-hook))
 
 (use-package buffer-wrap
   :defer t
@@ -188,8 +194,10 @@
   (setq dashboard-banner-logo-title "[J C S • E M A C S]")
   (setq dashboard-footer-icon "")
   (setq dashboard-footer-messages
-        (list (format "╬ Copyright %s 2015 Shen, Jen-Chieh ╬"
-                      (if (display-graphic-p) "©" "(c)"))))
+        (let ((deco (if (display-graphic-p) "╬" "+"))
+              (copy-right (if (display-graphic-p) "©" "(c)")))
+          (list (format "%s Copyright %s 2015 Shen, Jen-Chieh %s"
+                        deco copy-right deco))))
   (setq dashboard-init-info (format "%d + %d packages loaded in %0.1f seconds"
                                     (length package-activated-list)
                                     (length jcs-package-manually-install-list)
@@ -212,10 +220,7 @@
 
   (defun jcs--dashboard-insert-page-break--advice-before (&rest _)
     "Re-new page separator."
-    (setq dashboard-page-separator
-          (propertize (format "\n%s\n" (if (display-graphic-p) "\f"
-                                         (jcs-fill-n-char-seq "-" (1- (window-width)))))
-                      'face font-lock-comment-face)))
+    (setq dashboard-page-separator (format "\n%s\n" (jcs-env-separator))))
   (advice-add #'dashboard-insert-page-break :before #'jcs--dashboard-insert-page-break--advice-before)
 
   (dashboard-setup-startup-hook))
