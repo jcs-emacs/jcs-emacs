@@ -34,7 +34,6 @@ Here is the list of key bindins that defined in this configuration.
   * <kbd>Ctrl</kbd>+<kbd>return</kbd> - Complete word or Goto address at point.
   * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>Shift</kbd>+<kbd>,</kbd> - Decrement tab size by 2.
   * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>Shift</kbd>+<kbd>.</kbd> - Increment tab size by 2.
-  * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>=</kbd> - Calcualte the region and replace with the result.
   * <kbd>Shift</kbd>+<kbd>f10</kbd> - Right click context menu.
   * <kbd>f12</kbd> - Goto declaration/definition.
   * <kbd>Shift</kbd>+<kbd>f12</kbd> - Goto declaration/definition other window.
@@ -61,6 +60,14 @@ Here is the list of key bindins that defined in this configuration.
     * <kbd>Ctrl</kbd>+<kbd>.</kbd> - Search through file current point. (forward)
     * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>,</kbd> - Search through project current point. (backward)
     * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>.</kbd> - Search through project current point. (forward)
+
+  * **Calculate**
+
+    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>=</kbd> - Calculate the region and replace with the result.
+
+  * **Sort**
+
+    * <kbd>Ctrl</kbd>+<kbd>i</kbd> - Sort symbols in alphabetic order within the region.
 
   * **Todo**
 
