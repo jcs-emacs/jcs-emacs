@@ -227,7 +227,7 @@
       (jcs-delete-region)
       (insert val))))
 
-;;----------------------------------------------
+;;----------------------------------------------------------------------------
 ;; Cheat Sheet
 
 ;;;###autoload
@@ -531,6 +531,16 @@ LST-PR: List of pair."
   "Enable `shift-select-mode'."
   (interactive)
   (setq shift-select-mode nil))
+
+;;----------------------------------------------------------------------------
+;; Sort
+
+;;;###autoload
+(defun jcs-sort-symbols (reverse beg end)
+  "Sort symbols in region alphabetically, in REVERSE if negative.
+See `sort-words'."
+  (interactive "*P\nr")
+  (sort-regexp-fields reverse "\\(\\sw\\|\\s_\\)+" "\\&" beg end))
 
 ;;----------------------------------------------------------------------------
 ;; Syntax Check
