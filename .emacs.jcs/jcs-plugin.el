@@ -304,6 +304,7 @@
          '("[*]Local Variables[*]")
          '("[*]SPEEDBAR")
          '("[*]helpful")
+         '("[*]Kill Ring[*]")  ; From `browse-kill-ring'
          '("[*]Most used words[*]")
          '("[*]Test SHA[*]")))
   (with-eval-after-load 'jcs-buffer-menu (diminish-buffer-mode 1))
