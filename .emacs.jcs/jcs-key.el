@@ -460,6 +460,9 @@
 ;;; Show Hover
 (define-key global-map (kbd "C-k C-i") #'jcs-describe-thing-in-popup)
 
+;;; Sort
+(define-key global-map (kbd "C-i") #'jcs-sort-symbols)
+
 ;;; Source Control
 (define-key global-map (kbd "C-S-g") #'magit-status)
 
