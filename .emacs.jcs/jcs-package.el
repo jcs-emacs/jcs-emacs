@@ -71,6 +71,7 @@
     dockerfile-mode
     dumb-jump
     elisp-def
+    elisp-demos
     elixir-mode
     emmet-mode
     emoji-github
