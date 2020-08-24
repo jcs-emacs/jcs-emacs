@@ -10,6 +10,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Fixed broken `isearch-project` with function name advice changed.
 * Fixed ignore directories issue with `f-slash`.
 * Installed new package `elisp-demos`.
+* Simplify dashbaord nav key functions.
+
 
 ### 2020-08-23
 
