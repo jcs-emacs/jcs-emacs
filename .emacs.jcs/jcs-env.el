@@ -276,6 +276,14 @@ See `jcs-hook.el' file that has apply `advice' on command `other-window'.")
 (defvar jcs-on-save-tabify-type 'untabify  ; This takes `nil', `tabify', `untabify'.
   "Default untabify or tabify to the buffer.")
 
+;;; Separator
+(defun jcs-env-separator ()
+  "Return environment separator."
+  (propertize
+   (if (display-graphic-p) "\f"
+     (jcs-fill-n-char-seq "-" (- (window-total-width) 2)))
+   'face font-lock-comment-face))
+
 ;;; Shift Select
 (setq shift-select-mode t)
 
