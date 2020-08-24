@@ -1531,49 +1531,50 @@ CC : Current character at position."
   (interactive)
   (isearch-project-forward-symbol-at-point))
 
+(defun jcs--use-isearch-project-p ()
+  "Return non-nil is using `isearch-project'.
+Otherwise return nil."
+  (advice-member-p 'isearch-project--advice-isearch-repeat-after 'isearch-repeat))
+
 ;;;###autoload
 (defun jcs-isearch-repeat-backward ()
   "Isearch backward repeating."
   (interactive)
-  (if (not (advice-member-p 'isearch-project-advice-isearch-repeat-after 'isearch-repeat))
+  (if (not (jcs--use-isearch-project-p))
       (isearch-repeat-backward)
-    (message "Exit 'isearch-project' cuz you are trying to use 'isearch'..")
+    (message "Exit 'isearch-project' becuase you are trying to use 'isearch'..")
     (sleep-for jcs-prompt-message-sleep-delay-time)
-    (save-mark-and-excursion
-      (isearch-abort))))
+    (save-mark-and-excursion (isearch-abort))))
 
 ;;;###autoload
 (defun jcs-isearch-repeat-forward ()
   "Isearch forward repeating."
   (interactive)
-  (if (not (advice-member-p 'isearch-project-advice-isearch-repeat-after 'isearch-repeat))
+  (if (not (jcs--use-isearch-project-p))
       (isearch-repeat-forward)
-    (message "Exit 'isearch-project' cuz you are trying to use 'isearch'..")
+    (message "Exit 'isearch-project' because you are trying to use 'isearch'..")
     (sleep-for jcs-prompt-message-sleep-delay-time)
-    (save-mark-and-excursion
-      (isearch-abort))))
+    (save-mark-and-excursion (isearch-abort))))
 
 ;;;###autoload
 (defun jcs-isearch-project-repeat-backward ()
   "Isearch project backward repeating."
   (interactive)
-  (if (advice-member-p 'isearch-project-advice-isearch-repeat-after 'isearch-repeat)
+  (if (jcs--use-isearch-project-p)
       (isearch-repeat-backward)
-    (message "Exit 'isearch' cuz you are trying to use 'isearch-project'..")
+    (message "Exit 'isearch' because you are trying to use 'isearch-project'..")
     (sleep-for jcs-prompt-message-sleep-delay-time)
-    (save-mark-and-excursion
-      (isearch-abort))))
+    (save-mark-and-excursion (isearch-abort))))
 
 ;;;###autoload
 (defun jcs-isearch-project-repeat-forward ()
   "Isearch project forward repeating."
   (interactive)
-  (if (advice-member-p 'isearch-project-advice-isearch-repeat-after 'isearch-repeat)
+  (if (jcs--use-isearch-project-p)
       (isearch-repeat-forward)
-    (message "Exit 'isearch' cuz you are trying to use 'isearch-project'..")
+    (message "Exit 'isearch' because you are trying to use 'isearch-project'..")
     (sleep-for jcs-prompt-message-sleep-delay-time)
-    (save-mark-and-excursion
-      (isearch-abort))))
+    (save-mark-and-excursion (isearch-abort))))
 
 ;;----------------------------------------------------------------------------
 ;; Multiple Cursors
