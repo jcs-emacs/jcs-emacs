@@ -305,6 +305,14 @@
   (setq dumb-jump-selector 'helm)
   (setq dumb-jump-force-searcher 'ag))
 
+(use-package elisp-demos
+  :defer t
+  :init
+  (with-eval-after-load 'help-fns
+    (advice-add 'describe-function-1 :after #'elisp-demos-advice-describe-function-1))
+  (with-eval-after-load 'helpful
+    (advice-add 'helpful-update :after #'elisp-demos-advice-helpful-update)))
+
 (use-package eww
   :defer t
   :init
