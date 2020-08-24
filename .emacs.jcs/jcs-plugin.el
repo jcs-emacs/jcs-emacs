@@ -209,6 +209,15 @@
     "Return the full path to banner."
     "~/.emacs.jcs/banner/sink.txt")
   (advice-add #'dashboard-get-banner-path :override #'jcs--dashboard-get-banner-path)
+
+  (defun jcs--dashboard-insert-page-break--advice-before (&rest _)
+    "Re-new page separator."
+    (setq dashboard-page-separator
+          (propertize (format "\n%s\n" (if (display-graphic-p) "\f"
+                                         (jcs-fill-n-char-seq "-" (1- (window-width)))))
+                      'face font-lock-comment-face)))
+  (advice-add #'dashboard-insert-page-break :before #'jcs--dashboard-insert-page-break--advice-before)
+
   (dashboard-setup-startup-hook))
 
 (use-package dashboard-ls
