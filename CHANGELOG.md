@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-08-24
+
+* Fixed broken `isearch-project` with function name advice changed.
+* Fixed ignore directories issue with `f-slash`.
+
 ### 2020-08-23
 
 * Added text file identifier utility function.
