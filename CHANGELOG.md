@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-08-26
+
+* Fixed switching buffer after quit `undo-tree`'s visualizer with single window.
+
 ### 2020-08-25
 
 * Added sort symbols function as feature enhancement.
