@@ -76,7 +76,7 @@ This will no longer overwrite usual Emacs' undo key."
   (jcs-safe-jump-shown-to-buffer
    undo-tree-visualizer-buffer-name
    (lambda ()
-     (ignore-errors (undo-tree-visualizer-quit))
+     (save-window-excursion (ignore-errors (undo-tree-visualizer-quit)))
      (when jcs--splits-windows
        (delete-window)
        (setq jcs--splits-windows nil)))))
