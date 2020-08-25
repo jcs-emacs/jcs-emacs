@@ -9,6 +9,7 @@
 
 (defun jcs-markdown-mode-hook ()
   "Markdown mode hook."
+  (emojify-mode 1)
 
   (jcs-make-electric-pair-pairs-local '((?\` . ?\`)))
 
