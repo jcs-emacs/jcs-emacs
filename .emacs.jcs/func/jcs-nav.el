@@ -322,13 +322,13 @@ next hit use this version instead."
 (defun jcs-beginning-of-buffer ()
   "Goto the beginning of buffer."
   (interactive)
-  (jcs-mute-apply (lambda () (call-interactively #'beginning-of-buffer))))
+  (jcs-mute-apply (call-interactively #'beginning-of-buffer)))
 
 ;;;###autoload
 (defun jcs-end-of-buffer ()
   "Goto the end of buffer."
   (interactive)
-  (jcs-mute-apply (lambda () (call-interactively #'end-of-buffer))))
+  (jcs-mute-apply (call-interactively #'end-of-buffer)))
 
 ;;----------------------------------------------------------------------------
 ;; Navigating Blank Line

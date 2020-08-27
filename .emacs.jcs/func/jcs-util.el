@@ -219,17 +219,22 @@ If REGEX is non-nil, check by using regular expression."
 ;;----------------------------------------------------------------------------
 ;; Function
 
-(defun jcs-unmute-apply (fnc &rest args)
-  "Execute FNC with ARGS without message."
-  (let ((message-log-max jcs-message-log-max) (inhibit-message nil))
-    (apply fnc args)))
+(defmacro jcs-unmute-apply (&rest body)
+  "Execute BODY with ensuring message log."
+  (declare (indent 0) (debug t))
+  `(let ((message-log-max jcs-message-log-max)) (progn ,@body)))
 
-(defun jcs-mute-apply (fnc &rest args)
-  "Execute FNC with ARGS without message."
-  (let ((message-log-max nil))
-    (with-temp-message (or (current-message) nil)
-      (let ((inhibit-message t))
-        (apply fnc args)))))
+(defmacro jcs-mute-apply (&rest body)
+  "Execute BODY without message."
+  (declare (indent 0) (debug t))
+  `(let ((message-log-max nil))
+     (with-temp-message (or (current-message) nil)
+       (let ((inhibit-message t)) (progn ,@body)))))
+
+(defmacro jcs-no-log-apply (&rest body)
+  "Execute BODY without write it to message buffer."
+  (declare (indent 0) (debug t))
+  `(let ((message-log-max nil)) (progn ,@body)))
 
 ;;----------------------------------------------------------------------------
 ;; Fuzzy
@@ -421,14 +426,13 @@ Generally you will have to check it four times."
   "Delete tab/spaces before the first character in line."
   (interactive)
   (jcs-mute-apply
-   (lambda ()
-     (save-excursion
-       (ignore-errors
-         (jcs-goto-first-char-in-line)
-         (push-mark-command nil)
-         (beginning-of-line)
-         (jcs-delete-region)
-         (deactivate-mark))))))
+   (save-excursion
+     (ignore-errors
+       (jcs-goto-first-char-in-line)
+       (push-mark-command nil)
+       (beginning-of-line)
+       (jcs-delete-region)
+       (deactivate-mark)))))
 
 ;;;###autoload
 (defun jcs-insert-spaces-by-tab-width ()
@@ -1135,16 +1139,14 @@ CMDS should be a list of commands."
 
 (defun jcs-font-existsp (font)
   "Check if FONT exists."
-  (if (string-equal (describe-font font) "No matching font being used")
-      nil
-    t))
+  (not (string-equal (describe-font font) "No matching font being used")))
 
 ;;;###autoload
 (defun jcs-font-lock-fontify-buffer ()
   "Refresh the syntax hightlight for whole buffer."
   (interactive)
   ;; Refresh the syntax hightlight.
-  (jcs-mute-apply (lambda () (call-interactively #'font-lock-fontify-buffer))))
+  (jcs-mute-apply (call-interactively #'font-lock-fontify-buffer)))
 
 ;;----------------------------------------------------------------------------
 ;; List

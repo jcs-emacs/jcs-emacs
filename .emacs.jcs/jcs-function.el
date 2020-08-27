@@ -198,7 +198,7 @@
   (interactive)
   (unless (string= (jcs-buffer-name-or-buffer-file-name) jcs--buffer-menu--buffer-name)
     (save-window-excursion
-      (let (tabulated-list--header-string) (jcs-mute-apply #'buffer-menu))
+      (let (tabulated-list--header-string) (jcs-mute-apply (buffer-menu)))
       (when jcs-buffer--menu-switch-buffer-refreshing
         (jcs--buffer-menu-trigger-filter))
       (bury-buffer)))
@@ -289,12 +289,11 @@ OW is the other window flag."
             (jcs-buffer-shown-p dashboard-buffer-name)
             jcs-dashboard--force-refresh-p)
     (jcs-mute-apply
-     (lambda ()
-       (jcs-window-record-once)
-       (when (jcs-buffer-exists-p dashboard-buffer-name)
-         (kill-buffer dashboard-buffer-name))
-       (dashboard-insert-startupify-lists)
-       (jcs-window-restore-once)))))
+     (jcs-window-record-once)
+     (when (jcs-buffer-exists-p dashboard-buffer-name)
+       (kill-buffer dashboard-buffer-name))
+     (dashboard-insert-startupify-lists)
+     (jcs-window-restore-once))))
 
 (defun jcs-dashboard-safe-refresh-buffer ()
   "Safely refresh the dashboard buffer if needed."
@@ -678,8 +677,7 @@ delay. HEIGHT of the tooltip that will display."
   "Return the describe symbol string."
   (let ((thing (symbol-at-point)))
     (with-temp-buffer
-      (jcs-mute-apply 'help-mode)
-      (jcs-mute-apply 'describe-symbol thing)
+      (jcs-mute-apply (help-mode) (describe-symbol thing))
       (buffer-string))))
 
 (defun jcs-tip-describe-it ()

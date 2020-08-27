@@ -32,12 +32,11 @@ Note this is opposite logic to the toggle mode function."
   (interactive)
   (require 'cl-lib)
   (jcs-mute-apply
-   (lambda ()
-     (let ((mode-state jcs-mode--state))
-       (jcs-mode-reset-state)
-       (cl-case mode-state
-         ('cross  (jcs-cross-mode))
-         ('depend (jcs-depend-mode)))))))
+   (let ((mode-state jcs-mode--state))
+     (jcs-mode-reset-state)
+     (cl-case mode-state
+       ('cross  (jcs-cross-mode))
+       ('depend (jcs-depend-mode))))))
 
 (defvar jcs-backtrace--occurs-last-command nil
   "Check if backtrace occurs last command.")
@@ -499,7 +498,7 @@ Note this is opposite logic to the toggle mode function."
 
 (defun jcs-prog-mode-hook ()
   "Programming language mode hook."
-  (jcs-mute-apply #'jcs-continue-with-tab-width-record)
+  (jcs-mute-apply (jcs-continue-with-tab-width-record))
 
   (modify-syntax-entry ?- "_")
 

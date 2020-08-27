@@ -790,7 +790,7 @@ REGEXP : reqular expression use to align."
       ('nil (progn ))  ; Do nothing here.
       (t (user-error "[WARNING] Unknown tabify type when on save: %s" jcs-on-save-tabify-type)))
     (when jcs-on-save-remove-control-M-p
-      (jcs-mute-apply #'jcs-remove-control-M))
+      (jcs-mute-apply (jcs-remove-control-M)))
     (jcs--save-buffer-internal)))
 
 (defun jcs--organize-save-buffer--do-valid ()
@@ -837,7 +837,7 @@ REGEXP : reqular expression use to align."
         (readable (file-readable-p (buffer-file-name)))
         (cur-frame (selected-frame)))
     ;; For some mode, broken save.
-    (jcs-mute-apply (lambda () (save-excursion (save-buffer))))
+    (jcs-mute-apply (save-excursion (save-buffer)))
     (select-frame-set-input-focus cur-frame)  ; For multi frames.
     ;; If wasn't readable, try to active LSP once if LSP is available.
     (unless readable (jcs--safe-lsp-active))
@@ -854,8 +854,7 @@ REGEXP : reqular expression use to align."
       (dolist (buf (buffer-list))
         (switch-to-buffer buf)
         (when (ignore-errors
-                (jcs-mute-apply
-                 (lambda () (call-interactively (key-binding (kbd "C-s"))))))
+                (jcs-mute-apply (call-interactively (key-binding (kbd "C-s")))))
           (push buf saved-lst)
           (message "Saved buffer '%s'" buf))))
     (setq len (length saved-lst))
