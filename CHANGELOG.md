@@ -8,6 +8,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-08-27
 
 * Fixed minor mode enabled utility function's logic.
+* Implemented no log macro utility function.
+* Converted `mute`/`unmute` apply utility functions to macro.
 
 ### 2020-08-26
 
