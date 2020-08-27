@@ -1272,7 +1272,8 @@ The reverse mean the check from regular expression is swapped."
 
 (defun jcs-is-minor-mode-enabled-p (mode-obj)
   "Check if this minor MODE-OBJ enabled in current buffer/file."
-  (bound-and-true-p mode-obj))
+  (bound-and-true-p mode-obj)
+  (if (fboundp mode-obj) (symbol-value mode-obj) nil))
 
 (defun jcs-re-enable-mode-if-was-enabled (modename)
   "Re-enable the MODENAME if was enabled."
