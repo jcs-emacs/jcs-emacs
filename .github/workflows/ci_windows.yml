@@ -19,7 +19,7 @@ jobs:
         emacs-version:
           - 27.1
     steps:
-    - uses: jcs090218/test-github-action@master
+    - uses: jcs090218/setup-emacs-windows@master
       with:
         version: ${{ matrix.emacs-version }}
 
