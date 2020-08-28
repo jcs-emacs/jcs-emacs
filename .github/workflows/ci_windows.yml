@@ -18,7 +18,6 @@ jobs:
         os: [windows-latest]
         emacs-version:
           - 27.1
-          - snapshot
     steps:
     - uses: jcs090218/test-github-action@master
       with:
