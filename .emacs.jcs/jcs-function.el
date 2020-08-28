@@ -365,8 +365,7 @@ OW is the other window flag."
 ;; Electric Pair
 
 (defun jcs-make-electric-pair-pairs-local (lst-pr)
-  "Append a list of pair to local mode.
-LST-PR: List of pair."
+  "Append a list of pair (LST-PR) to current buffer."
   (setq-local electric-pair-pairs (append electric-pair-pairs lst-pr))
   (setq-local electric-pair-text-pairs electric-pair-pairs))
 
