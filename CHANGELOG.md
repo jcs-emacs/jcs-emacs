@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-08-28
+
+* United indentation level `setter`/`getter` functions.
+
 ### 2020-08-27
 
 * Fixed minor mode enabled utility function's logic.
