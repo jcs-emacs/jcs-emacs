@@ -118,7 +118,7 @@ decrease this. If you experience stuttering, increase this.")
 (require 'jcs-theme)
 (require 'jcs-plugin)
 
-;;; Customize
+;;; Standardize
 (require 'jcs-template)
 (require 'jcs-mode)
 
@@ -126,6 +126,9 @@ decrease this. If you experience stuttering, increase this.")
 (require 'jcs-hook)
 (require 'jcs-key)
 (require 'jcs-face)
+
+;;; Customize
+(require 'jcs-config)
 
 ;; Local Variables:
 ;; coding: utf-8
