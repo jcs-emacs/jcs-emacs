@@ -6,21 +6,8 @@ set CONFIG_PATH=%UserProfile%\AppData\Roaming
 
 move "./build.el" "%CONFIG_PATH%\build.el"
 move "./.emacs" "%CONFIG_PATH%\.emacs"
-
-echo ------------------------------------------------
-pushd %CD%
-
-echo %CONFIG_PATH%
-
-cd %CONFIG_PATH%
-
-dir
-
-popd
-echo ------------------------------------------------
-
-move "./.emacs.d/" "%CONFIG_PATH%\.emacs.d"
-move "./.emacs.jcs/" "%CONFIG_PATH%\.emacs.jcs"
+move "./.emacs.d" "%CONFIG_PATH%\.emacs.d"
+move "./.emacs.jcs" "%CONFIG_PATH%\.emacs.jcs"
 
 echo "Attempting startup..."
 
