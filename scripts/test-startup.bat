@@ -1,4 +1,4 @@
-@echo off
+REM @echo off
 
 echo "Moving core files..."
 
