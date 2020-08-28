@@ -6,6 +6,8 @@ set CONFIG_PATH="%UserProfile%/AppData/Roaming"
 
 move "./build.el" "%CONFIG_PATH%/build.el"
 move "./.emacs" "%CONFIG_PATH%/.emacs"
+mkdir "%CONFIG_PATH%/.emacs.d/"
+mkdir "%CONFIG_PATH%/.emacs.jcs/"
 move "./.emacs.d/" "%CONFIG_PATH%/.emacs.d/"
 move "./.emacs.jcs/" "%CONFIG_PATH%/.emacs.jcs/"
 
