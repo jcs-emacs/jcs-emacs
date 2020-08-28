@@ -168,13 +168,13 @@
         jcs-dashboard-next-blank-line
         jcs-dashboard-other-window
         jcs-dashboard-previous-blank-line
-        jcs-dec-tab-width
+        jcs-dec-indent-level
         jcs-find-corresponding-file-other-window
         jcs-flycheck-mode
         jcs-format-document
         jcs-goto-definition
         jcs-goto-definition-other-window
-        jcs-inc-tab-width
+        jcs-inc-indent-level
         jcs-java-organize-imports
         jcs-java-untabify-save-buffer
         jcs-make-without-asking
