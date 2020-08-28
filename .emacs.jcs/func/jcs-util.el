@@ -329,8 +329,7 @@ If REGEX is non-nil, check by using regular expression."
       (progn
         (jcs-next-line)
         ;; Kill empty line until there is one line.
-        (while (jcs-current-line-empty-p)
-          (jcs-kill-whole-line)))
+        (while (jcs-current-line-empty-p) (jcs-kill-whole-line)))
     ;; Make sure have one empty line between.
     (insert "\n")))
 
@@ -373,18 +372,8 @@ Generally you will have to check it four times."
               (when (jcs-is-good-space-to-convert-to-tab-p)
                 (setq good-to-convert t))))))
       (when good-to-convert
-        (if is-forward
-            (progn
-              (backward-delete-char -1)
-              (backward-delete-char -1)
-              (backward-delete-char -1)
-              (backward-delete-char -1)
-              (insert "\t"))
-          (backward-delete-char 1)
-          (backward-delete-char 1)
-          (backward-delete-char 1)
-          (backward-delete-char 1)
-          (insert "\t"))))))
+        (if is-forward (backward-delete-char -4) (backward-delete-char 4))
+        (insert "\t")))))
 
 ;;;###autoload
 (defun jcs-backward-convert-space-to-tab ()
@@ -402,12 +391,8 @@ Generally you will have to check it four times."
   "Convert tab to space if current point is tab by direction, IS-FORWARD."
   (save-excursion
     (when (jcs-current-char-equal-p "\t")
-      (if (equal is-forward t)
-          (progn
-            (backward-delete-char -1)
-            (insert "    "))
-        (backward-delete-char 1)
-        (insert "    ")))))
+      (if is-forward (backward-delete-char -1) (backward-delete-char 1))
+      (insert "    "))))
 
 ;;;###autoload
 (defun jcs-backward-convert-tab-to-space ()
@@ -426,34 +411,37 @@ Generally you will have to check it four times."
   "Delete tab/spaces before the first character in line."
   (interactive)
   (jcs-mute-apply
-   (save-excursion
-     (ignore-errors
-       (jcs-goto-first-char-in-line)
-       (push-mark-command nil)
-       (beginning-of-line)
-       (jcs-delete-region)
-       (deactivate-mark)))))
+    (save-excursion
+      (ignore-errors
+        (jcs-goto-first-char-in-line)
+        (push-mark-command nil)
+        (beginning-of-line)
+        (jcs-delete-region)
+        (deactivate-mark)))))
+
+;;----------------------------------------------------------------------------
+;; Indentation
 
 ;;;###autoload
-(defun jcs-insert-spaces-by-tab-width ()
-  "Insert spaces depends on tab width configuration."
+(defun jcs-insert-spaces-by-indent-level ()
+  "Insert spaces depends on indentation level configuration."
   (interactive)
   (let* ((tmp-count 0)
-         (tab-width (jcs-get-tab-width-record-by-mode))
-         (remainder (% (current-column) tab-width))
-         (target-width (if (= remainder 0) tab-width (- tab-width remainder))))
+         (indent-lvl (jcs-get-indent-level-record-by-mode))
+         (remainder (% (current-column) indent-lvl))
+         (target-width (if (= remainder 0) indent-lvl (- indent-lvl remainder))))
     (while (< tmp-count target-width)
       (insert " ")
       (setq tmp-count (1+ tmp-count)))))
 
 ;;;###autoload
-(defun jcs-backward-delete-spaces-by-tab-width ()
-  "Backward delete spaces using tab width."
+(defun jcs-backward-delete-spaces-by-indent-level ()
+  "Backward delete spaces using indentation level."
   (interactive)
   (let* ((tmp-count 0)
-         (tab-width (jcs-get-tab-width-record-by-mode))
-         (remainder (% (current-column) tab-width))
-         (target-width (if (= remainder 0) tab-width remainder)))
+         (indent-lvl (jcs-get-indent-level-record-by-mode))
+         (remainder (% (current-column) indent-lvl))
+         (target-width (if (= remainder 0) indent-lvl remainder)))
     (while (and (< tmp-count target-width)
                 (not (jcs-is-beginning-of-line-p))
                 (jcs-current-whitespace-p))
@@ -461,22 +449,19 @@ Generally you will have to check it four times."
       (setq tmp-count (1+ tmp-count)))))
 
 ;;;###autoload
-(defun jcs-forward-delete-spaces-by-tab-width ()
-  "Forward delete spaces using tab width."
+(defun jcs-forward-delete-spaces-by-indent-level ()
+  "Forward delete spaces using indentation level."
   (interactive)
   (let* ((tmp-count 0)
-         (tab-width (jcs-get-tab-width-record-by-mode))
-         (remainder (% (jcs-first-char-in-line-column) tab-width))
-         (target-width (if (= remainder 0) tab-width remainder)))
-    (while (and (< tmp-count target-width)
-                (not (jcs-is-end-of-line-p)))
+         (indent-lvl (jcs-get-indent-level-record-by-mode))
+         (remainder (% (jcs-first-char-in-line-column) indent-lvl))
+         (target-width (if (= remainder 0) indent-lvl remainder)))
+    (while (and (< tmp-count target-width) (not (jcs-is-end-of-line-p)))
       (let ((is-valid nil))
         (save-excursion
           (forward-char 1)
-          (when (jcs-current-whitespace-p)
-            (setq is-valid t)))
-        (when is-valid
-          (backward-delete-char -1)))
+          (when (jcs-current-whitespace-p) (setq is-valid t)))
+        (when is-valid (backward-delete-char -1)))
       (setq tmp-count (1+ tmp-count)))))
 
 ;;----------------------------------------------------------------------------
