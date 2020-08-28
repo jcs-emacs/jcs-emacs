@@ -26,4 +26,4 @@ jobs:
 
     - uses: actions/checkout@v1
     - name: Check startup
-      run: runas ./scripts/test-startup.bat
+      run: ./scripts/test-startup.bat
