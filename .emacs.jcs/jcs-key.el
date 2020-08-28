@@ -510,8 +510,8 @@
 (define-key global-map (kbd "C-<next>") #'centaur-tabs-forward)
 
 ;;; Tab Width
-(define-key global-map (kbd "C-k >") #'jcs-inc-tab-width)
-(define-key global-map (kbd "C-k <") #'jcs-dec-tab-width)
+(define-key global-map (kbd "C-k >") #'jcs-inc-indent-level)
+(define-key global-map (kbd "C-k <") #'jcs-dec-indent-level)
 
 ;;; Zoom
 (define-key global-map (kbd "C-=") #'jcs-text-scale-increase)

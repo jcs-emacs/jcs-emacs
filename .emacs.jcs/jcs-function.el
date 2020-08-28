@@ -387,6 +387,23 @@ OW is the other window flag."
   iedit-mode)
 
 ;;----------------------------------------------------------------------------
+;; Indentation
+
+;;;###autoload
+(defun jcs-inc-indent-level ()
+  "Increase indentation level by 2."
+  (interactive)
+  (jcs-delta-tab-width 2)
+  (indent-for-tab-command))
+
+;;;###autoload
+(defun jcs-dec-indent-level ()
+  "Decrease indentation level by 2."
+  (interactive)
+  (jcs-delta-tab-width -2)
+  (indent-for-tab-command))
+
+;;----------------------------------------------------------------------------
 ;; Line Numbers
 
 ;;;###autoload
@@ -576,23 +593,6 @@ See `sort-words'."
     (centaur-tabs-mode 1))
   ;; Loop through all window so all windows take effect.
   (jcs-buffer-visible-list))
-
-;;----------------------------------------------------------------------------
-;; Tab Width
-
-;;;###autoload
-(defun jcs-inc-tab-width ()
-  "Increase tab width by 2."
-  (interactive)
-  (jcs-delta-tab-width 2)
-  (indent-for-tab-command))
-
-;;;###autoload
-(defun jcs-dec-tab-width ()
-  "Decrease tab width by 2."
-  (interactive)
-  (jcs-delta-tab-width -2)
-  (indent-for-tab-command))
 
 ;;----------------------------------------------------------------------------
 ;; Terminal / Shell

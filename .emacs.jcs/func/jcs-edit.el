@@ -178,7 +178,7 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
   (interactive)
   (if (and (jcs-is-infront-first-char-at-line-p) (not (jcs-is-beginning-of-line-p))
            (not (use-region-p)))
-      (jcs-backward-delete-spaces-by-tab-width)
+      (jcs-backward-delete-spaces-by-indent-level)
     (jcs-real-backspace)))
 
 ;;----------------------------------------------------------------------------
@@ -196,7 +196,7 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
   (interactive)
   (if (and (jcs-is-infront-first-char-at-line-p (1+ (point)))
            (not (jcs-is-end-of-line-p)))
-      (jcs-forward-delete-spaces-by-tab-width)
+      (jcs-forward-delete-spaces-by-indent-level)
     (jcs-real-delete)))
 
 ;;----------------------------------------------------------------------------
@@ -245,7 +245,7 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
         (indent-for-tab-command)
         (when (= pt (point)) (jcs-real-space)))
     (if (or (jcs-is-infront-first-char-at-line-p) (jcs-is-beginning-of-line-p))
-        (jcs-insert-spaces-by-tab-width)
+        (jcs-insert-spaces-by-indent-level)
       (jcs-real-space))))
 
 ;;----------------------------------------------------------------------------
@@ -272,8 +272,8 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
       (if (jcs-current-line-empty-p)
           (let ((pt (point)))
             (indent-for-tab-command)
-            (when (= pt (point)) (jcs-insert-spaces-by-tab-width)))
-        (jcs-insert-spaces-by-tab-width)))))
+            (when (= pt (point)) (jcs-insert-spaces-by-indent-level)))
+        (jcs-insert-spaces-by-indent-level)))))
 
 ;;----------------------------------------------------------------------------
 ;; Mark
