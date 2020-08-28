@@ -568,18 +568,9 @@ $ emacs --batch --eval "(byte-recompile-directory \"./\" 0)"
 
 ## Write your own customization
 
-To add your own customization, create a file `~/.emacs.d/[filename].el`.
-And add `(require '[filename])` to `.emacs` at the very bottom. For example,
-your filename is `my-init.el` then you should add `(require 'my-init)` at the
-very bottom after all other `require`s.
-
-In your `my-init.el` file should look something similar to this.
-
-```el
-;; Your code here..
-
-(provide 'my-init)
-```
+You are able to customize the configuration by editing the file locate at
+`~/.emacs.jcs/jcs-config.el`. You should put all your own customize code there,
+then other than that are the core files.
 
 ## :bamboo: Supported Emacs versions
 
