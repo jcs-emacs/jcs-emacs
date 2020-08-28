@@ -4,8 +4,8 @@ echo "Moving core files..."
 
 move "./build.el" "%UserProfile%/build.el"
 move "./.emacs" "%UserProfile%/.emacs"
-move "./.emacs.d" "%UserProfile%"
-move "./.emacs.jcs" "%UserProfile%"
+move "./.emacs.d/" "%UserProfile%/"
+move "./.emacs.jcs/" "%UserProfile%/"
 
 echo "Attempting startup..."
 
