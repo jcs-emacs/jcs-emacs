@@ -171,26 +171,20 @@ Just use this without remember Emacs Lisp function."
 (defun jcs-smart-backward-word ()
   "Smart backward a word."
   (interactive)
-  (let ((start-pt (point))
-        (start-ln (line-number-at-pos))
+  (let ((start-pt (point)) (start-ln (line-number-at-pos))
         (beg-ln (jcs-is-beginning-of-line-p))
         (infront-first-char (jcs-is-infront-first-char-at-line-p)))
     (jcs-backward-word)
-    (cond ((and infront-first-char
-                (not beg-ln))
-           (progn
-             (goto-char start-pt)
-             (beginning-of-line)))
-          ((and (not (= start-ln (line-number-at-pos)))
-                (not beg-ln))
-           (progn
-             (goto-char start-pt)
-             (jcs-back-to-indentation-or-beginning)))
+    (cond ((and infront-first-char (not beg-ln))
+           (goto-char start-pt)
+           (beginning-of-line))
+          ((and (not (= start-ln (line-number-at-pos))) (not beg-ln))
+           (goto-char start-pt)
+           (jcs-back-to-indentation-or-beginning))
           ((>= (jcs-to-positive (- start-ln (line-number-at-pos))) 2)
-           (progn
-             (goto-char start-pt)
-             (forward-line -1)
-             (end-of-line))))))
+           (goto-char start-pt)
+           (forward-line -1)
+           (end-of-line)))))
 
 ;;;###autoload
 (defun jcs-smart-forward-word ()
@@ -202,14 +196,12 @@ Just use this without remember Emacs Lisp function."
     (jcs-forward-word)
     (cond ((and (not (= start-ln (line-number-at-pos)))
                 (not behind-last-char))
-           (progn
-             (goto-char start-pt)
-             (end-of-line)))
+           (goto-char start-pt)
+           (end-of-line))
           ((>= (jcs-to-positive (- start-ln (line-number-at-pos))) 2)
-           (progn
-             (goto-char start-pt)
-             (forward-line 1)
-             (jcs-back-to-indentation-or-beginning))))))
+           (goto-char start-pt)
+           (forward-line 1)
+           (jcs-back-to-indentation-or-beginning)))))
 
 ;;;###autoload
 (defun jcs-backward-word-capital ()
