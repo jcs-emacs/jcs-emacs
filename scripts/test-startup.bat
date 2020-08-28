@@ -12,8 +12,6 @@ mkdir "%CONFIG_PATH%/.emacs.jcs"
 xcopy /e "./.emacs.d" "%CONFIG_PATH%/.emacs.d"
 xcopy /e "./.emacs.jcs" "%CONFIG_PATH%/.emacs.jcs"
 
-echo %PATH%
-
 echo "Attempting startup..."
 
 emacs --version
