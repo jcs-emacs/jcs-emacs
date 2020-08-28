@@ -9,6 +9,8 @@ move "./.emacs" "%CONFIG_PATH%\\.emacs"
 
 pushd %CD%
 
+echo %CONFIG_PATH%
+
 cd %CONFIG_PATH%
 
 dir
