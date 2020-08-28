@@ -2,7 +2,7 @@ REM @echo off
 
 echo "Moving core files..."
 
-set CONFIG_PATH="%UserProfile%\AppData\Roaming"
+set CONFIG_PATH=%UserProfile%\AppData\Roaming
 
 move "./build.el" "%CONFIG_PATH%\build.el"
 move "./.emacs" "%CONFIG_PATH%\.emacs"
