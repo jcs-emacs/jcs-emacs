@@ -7,7 +7,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ### 2020-08-28
 
-* United indentation level `setter`/`getter` functions.
+* United indentation level `setter`/`getter` functions. 
 
 ### 2020-08-27
 
