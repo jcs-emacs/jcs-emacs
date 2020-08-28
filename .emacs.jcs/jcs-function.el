@@ -38,7 +38,7 @@
 ;; *scratch*
 
 (defconst jcs-scratch-buffer-name "*scratch*"
-  "")
+  "Name of the scratch buffer.")
 
 (defvar jcs-scratch--content ""
   "Record down the scratch content string.")
