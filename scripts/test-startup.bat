@@ -2,10 +2,12 @@
 
 echo "Moving core files..."
 
-move "./build.el" "%UserProfile%/build.el"
-move "./.emacs" "%UserProfile%/.emacs"
-move "./.emacs.d/" "%UserProfile%/"
-move "./.emacs.jcs/" "%UserProfile%/"
+set CONFIG_PATH="%UserProfile%/AppData/Roaming"
+
+move "./build.el" "%CONFIG_PATH%/build.el"
+move "./.emacs" "%CONFIG_PATH%/.emacs"
+move "./.emacs.d/" "%CONFIG_PATH%/.emacs.d/"
+move "./.emacs.jcs/" "%CONFIG_PATH%/.emacs.jcs/"
 
 echo "Attempting startup..."
 
