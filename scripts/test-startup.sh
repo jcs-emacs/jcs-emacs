@@ -9,6 +9,8 @@ mv -f ./.emacs.jcs ~/.emacs.jcs
 
 echo "Attempting startup..."
 
+emacs --version
+
 ${EMACS:=emacs} -nw --batch \
                 --eval '(let ((debug-on-error (>=  emacs-major-version 26))
                               (url-show-status nil)
