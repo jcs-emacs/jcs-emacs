@@ -110,8 +110,6 @@
 (setq ediff-split-window-function 'split-window-horizontally)
 
 ;;; ElDoc
-;; It shows you the argument list of the function call you are currently
-;; writing in the echo area.
 (global-eldoc-mode 1)
 
 ;;; Electric Indent
@@ -120,11 +118,10 @@
 ;;; Electric Pair
 (defun jcs--electric-pair-inhibit-predicate (c)
   "Electric pair inhibit predicate with pair character C."
-  (if (jcs-current-char-equal-p '("\"" "'"))
-      (electric-pair-default-inhibit c)
-    (if (not (jcs-inside-comment-or-string-p))
-        (electric-pair-default-inhibit c)
-      t)))
+  (cond ((or (jcs-current-char-equal-p '("\"" "'"))
+             (not (jcs-inside-comment-or-string-p)))
+         (electric-pair-default-inhibit c))
+        (t t)))
 (setq-default electric-pair-inhibit-predicate 'jcs--electric-pair-inhibit-predicate)
 (electric-pair-mode 1)
 
