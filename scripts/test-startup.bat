@@ -14,12 +14,6 @@ xcopy /e "./.emacs.jcs" "%CONFIG_PATH%/.emacs.jcs"
 
 echo "Attempting startup..."
 
-echo
-emacs --version
-echo
-
-emacs -nw
-
 emacs -nw --batch --eval '(let ((debug-on-error (>=  emacs-major-version 26))
                                 (url-show-status nil)
                                 (user-emacs-directory default-directory)
