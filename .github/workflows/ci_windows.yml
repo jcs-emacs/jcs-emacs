@@ -27,7 +27,7 @@ jobs:
         version: ${{ matrix.emacs-version }}
 
     - name: Echo path
-      run: echo %PATH%
+      run: echo "%PATH%"
 
     - uses: actions/checkout@v2
     - name: Check startup
