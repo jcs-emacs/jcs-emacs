@@ -22,7 +22,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - uses: jcs090218/setup-emacs-windows@v2
+    - uses: jcs090218/setup-emacs-windows@master
       with:
         version: ${{ matrix.emacs-version }}
 
