@@ -23,6 +23,9 @@ jobs:
       with:
         version: ${{ matrix.emacs-version }}
 
+    - name: Echo path
+      run: echo %PATH%
+
     - uses: actions/checkout@v2
     - name: Check startup
       run: ./scripts/test-startup.bat
