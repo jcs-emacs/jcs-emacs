@@ -21,15 +21,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Echo path
-      run: echo "%PATH%"
-
     - uses: jcs090218/setup-emacs-windows@master
       with:
         version: ${{ matrix.emacs-version }}
-
-    - name: Echo path
-      run: echo "%PATH%"
 
     - name: Check startup
       run: ./scripts/test-startup.bat
