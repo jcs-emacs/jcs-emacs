@@ -12,8 +12,6 @@ mkdir "%CONFIG_PATH%/.emacs.jcs"
 robocopy /e "./.emacs.d" "%CONFIG_PATH%/.emacs.d"
 robocopy /e "./.emacs.jcs" "%CONFIG_PATH%/.emacs.jcs"
 
-dir c:\
-
 echo "Attempting startup..."
 
 emacs -nw --batch --eval '(let ((debug-on-error (>=  emacs-major-version 26))
