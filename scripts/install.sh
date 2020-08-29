@@ -8,7 +8,6 @@
 #                   Copyright © 2019 by Shen, Jen-Chieh $
 # ========================================================================
 
-
 # DESCRIPTION: Install this configuration onto this machine.
 
 # To root directory.

@@ -10,7 +10,6 @@
 
 :: DESCRIPTION: Install this configuration onto this machine.
 
-
 set INSTALL_DIR=%userprofile%\AppData\Roaming
 
 :: To root directory.

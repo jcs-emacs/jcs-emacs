@@ -8,10 +8,8 @@
 ::                   Copyright (c) 2017 by Shen, Jen-Chieh $
 :: ========================================================================
 
-
 set EMACS_INIT_PATH=
 set EMACS_PROGRAM_PATH=
-
 
 :: Run emacs with initialize setting file.
 %EMACS_PROGRAM_PATH% %EMACS_INIT_PATH%

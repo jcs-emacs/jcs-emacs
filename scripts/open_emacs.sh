@@ -8,10 +8,8 @@
 #                   Copyright © 2018 by Shen, Jen-Chieh $
 # ========================================================================
 
-
 EMACS_INIT_PATH=
 EMACS_PROGRAM_PATH=
-
 
 # Run emacs with initialize setting file.
 $EMACS_PROGRAM_PATH $EMACS_INIT_PATH
