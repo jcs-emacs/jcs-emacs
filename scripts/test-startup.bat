@@ -9,8 +9,10 @@ move "./.emacs" "%CONFIG_PATH%\.emacs"
 
 mkdir "%CONFIG_PATH%/.emacs.d"
 mkdir "%CONFIG_PATH%/.emacs.jcs"
-xcopy /e "./.emacs.d" "%CONFIG_PATH%/.emacs.d"
-xcopy /e "./.emacs.jcs" "%CONFIG_PATH%/.emacs.jcs"
+robocopy /e "./.emacs.d" "%CONFIG_PATH%/.emacs.d"
+robocopy /e "./.emacs.jcs" "%CONFIG_PATH%/.emacs.jcs"
+
+dir c:\
 
 echo "Attempting startup..."
 
