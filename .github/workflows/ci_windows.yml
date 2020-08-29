@@ -20,7 +20,7 @@ jobs:
           - 27.1
     steps:
     - name: Echo path
-      run: echo %PATH%
+      run: echo "%PATH%"
 
     - uses: jcs090218/setup-emacs-windows@master
       with:
