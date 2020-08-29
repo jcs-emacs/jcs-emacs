@@ -19,14 +19,15 @@ jobs:
         emacs-version:
           - 27.1
     steps:
+    - uses: jcs090218/setup-emacs-windows@master
+      with:
+        version: ${{ matrix.emacs-version }}
+
     - name: Add a fake 'git' to the PATH to force checkout to download zipball instead
       shell: cmd
       run: |
         echo echo hello > git.bat
         echo ::add-path::%CD%
-    - uses: jcs090218/setup-emacs-windows@master
-      with:
-        version: ${{ matrix.emacs-version }}
 
     - uses: actions/checkout@v2
     - name: Check startup
