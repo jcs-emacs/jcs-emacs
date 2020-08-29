@@ -19,6 +19,8 @@ jobs:
         emacs-version:
           - 27.1
     steps:
+    - uses: actions/checkout@v2
+
     - name: Echo path
       run: echo "%PATH%"
 
@@ -29,6 +31,5 @@ jobs:
     - name: Echo path
       run: echo "%PATH%"
 
-    - uses: actions/checkout@v2
     - name: Check startup
       run: ./scripts/test-startup.bat
