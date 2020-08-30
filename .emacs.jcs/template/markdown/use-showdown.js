@@ -14,7 +14,7 @@ converter.setFlavor('github');
 
 var markdownBody = document.getElementById('markdown-body');
 var text = markdownBody.innerHTML;
-var newHTML      = converter.makeHtml(text);
+var newHTML = converter.makeHtml(text);
 
 markdownBody.innerHTML = newHTML;
 
