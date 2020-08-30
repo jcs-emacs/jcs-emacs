@@ -9,6 +9,8 @@
 
 "use strict";
 
+console.log('Loaded.');
+
 var converter = new showdown.Converter();
 converter.setFlavor('github');
 
