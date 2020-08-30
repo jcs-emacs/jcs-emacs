@@ -970,8 +970,15 @@ NO-RECORD and FORCE-SAME-WINDOW are the same as switch to buffer arguments."
   ;; For instance, any `*helm-' buffers.
   (jcs-bury-diminished-buffer))
 
-(defun jcs-advice-kill-this-buffer-around (fnc &rest args)
-  "Advice around execute `kill-this-buffer' command with FNC and ARGS."
+(defun jcs--kill-buffer--advice-before (&rest _)
+  "Advice execute around `kill-buffer' function."
+  (when (and (fboundp 'markdown-preview--stop) (buffer-file-name)
+             markdown-preview--idle-timer)
+    (markdown-preview--stop)))
+(advice-add 'kill-buffer :before #'jcs--kill-buffer--advice-before)
+
+(defun jcs--kill-this-buffer--advice-around (fnc &rest args)
+  "Advice execute around `kill-this-buffer' command with FNC and ARGS."
   (require 'undo-tree)
   (let ((target-kill-buffer (jcs-buffer-name-or-buffer-file-name))
         (undoing-buffer-name nil)
@@ -991,7 +998,7 @@ NO-RECORD and FORCE-SAME-WINDOW are the same as switch to buffer arguments."
                  (not (string= target-kill-buffer (jcs-buffer-name-or-buffer-file-name))))
         (jcs-undo-kill-this-buffer)))))
 
-(advice-add 'kill-this-buffer :around #'jcs-advice-kill-this-buffer-around)
+(advice-add 'kill-this-buffer :around #'jcs--kill-this-buffer--advice-around)
 
 ;;;###autoload
 (defun jcs-kill-this-buffer ()

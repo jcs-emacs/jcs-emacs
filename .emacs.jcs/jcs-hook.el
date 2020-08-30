@@ -234,8 +234,7 @@
 
 (defun jcs--kill-emacs-hook ()
   "Hook run before Emacs is killed."
-  (when (and (boundp 'ffmpeg-player-clean) (functionp 'ffmpeg-player-clean))
-    (ffmpeg-player-clean)))
+  (when (fboundp 'ffmpeg-player-clean) (ffmpeg-player-clean)))
 (add-hook 'kill-emacs-hook 'jcs--kill-emacs-hook)
 
 (defun jcs--quit-command (&rest _)

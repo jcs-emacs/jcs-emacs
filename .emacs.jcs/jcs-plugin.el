@@ -740,8 +740,13 @@
   (defvar-local jcs--markdown-preview--buffer nil
     "Buffer that we are previewing.")
 
+  (defun jcs--markdown-preview--stop-idle-timer--advice-after ()
+    "Advice execute after `markdown-preview--stop-idle-timer' function."
+    (setq markdown-preview--idle-timer nil))
+  (advice-add 'markdown-preview--stop-idle-timer :after #'jcs--markdown-preview--stop-idle-timer--advice-after)
+
   (defun jcs--markdown-preview--read-preview-template--advice-override (preview-uuid preview-file)
-    "Read preview template and writes identified by PREVIEW-UUID rendered copy to PREVIEW-FILE, ready to be open in browser."
+    "Advice execute around `markdown-preview--read-preview-template' function."
     (with-temp-file preview-file
       (insert-file-contents
        (expand-file-name "~/.emacs.jcs/plugins/markdown-preview-mode/preview.html"))
