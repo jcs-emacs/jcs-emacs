@@ -9,6 +9,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 * Installed new package `markdown-preview-mode`.
 * Implemented `showdown` to display github flavor markdown to `markdown-preview-mode`.
+* Fixed not deleting temporary file after web server shutdown from `markdown-preview-mode`.
 
 ### 2020-08-28
 
