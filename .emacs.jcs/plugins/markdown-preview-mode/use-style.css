@@ -1,0 +1,21 @@
+@charset "UTF-8";
+/**
+ * $File: okay.css $
+ * $Date: 2020-08-30 18:19:49 $
+ * $Revision: $
+ * $Creator: Jen-Chieh Shen $
+ * $Notice: See LICENSE.txt for modification and distribution information
+ *                   Copyright c 2020 by Shen, Jen-Chieh $
+ */
+
+body {
+    background-color: #141414;
+}
+
+#markdown-body {
+    background-color: #888;
+    border: 2px solid #AAA;
+    width: 60%;
+    margin: auto;
+    padding: 1%;
+}
