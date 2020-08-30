@@ -20,7 +20,7 @@
                                                       "Default (JSX)"
                                                       "ReactJS"
                                                       "React Native"))))
-  (let ((to-jsx nil))
+  (let (to-jsx)
     (cond ((string= sc "Default (JS)") (jcs-insert-js-template))
           ((string= sc "Default (JSX)") (jcs-insert-jsx-template)
            (setq to-jsx t))
