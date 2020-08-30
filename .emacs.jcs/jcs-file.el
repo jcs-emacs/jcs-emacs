@@ -159,9 +159,7 @@ It tells you the existence of the path."
 
 (defun jcs-f-directories-ignore-directories (path &optional rec)
   "Find all directories in PATH by ignored common directories with FN and REC."
-  (let ((dirs (f-directories path))
-        (valid-dirs '())
-        (final-dirs '()))
+  (let ((dirs (f-directories path)) (valid-dirs '()) (final-dirs '()))
     (dolist (dir dirs)
       (unless (jcs-is-contain-list-string projectile-globally-ignored-directories (f-slash dir))
         (push dir valid-dirs)))
@@ -176,8 +174,7 @@ It tells you the existence of the path."
   "Find all files in PATH by ignored common directories with FN and REC."
   (let ((dirs (append (list path) (jcs-f-directories-ignore-directories path rec)))
         (files '()))
-    (dolist (dir dirs)
-      (push (f-files dir fn) files))
+    (dolist (dir dirs) (push (f-files dir fn) files))
     (jcs-flatten-list (reverse files))))
 
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
