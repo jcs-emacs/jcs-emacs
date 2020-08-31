@@ -268,10 +268,13 @@
                (message "[QUELPA] Upgrade %d package%s (%s)? "
                         (length upgrades)
                         (if (= (length upgrades) 1) "" "s")
-                        (mapconcat (lambda (pkgs) (nth 0 pkgs)) upgrades ", ")))
+                        (mapconcat (lambda (rcp)
+                                     (symbol-name (jcs--recipe-get-info rcp :name)))
+                                   upgrades ", ")))
           ;; Delete all upgrading packages before installation.
-          (dolist (pkg upgrades)
-            (package-delete (jcs-package-get-package-by-name (nth 0 pkg))))
+          (dolist (rcp upgrades)
+            (package-delete
+             (jcs-package-get-package-by-name (jcs--recipe-get-info rcp :name))))
           (jcs-ensure-manual-package-installed upgrades t)
           (message "[QUELPA] Done upgrading all packages"))
       (message "[QUELPA] All packages are up to date"))))
@@ -305,47 +308,16 @@
 ;; Manually Installation
 
 (defconst jcs-package-manually-install-list
-  '(("better-scroll" "jcs-elpa/better-scroll" "github")
-    ("file-header" "jcs-elpa/file-header" "github")
-    ("impatient-showdown" "jcs-elpa/impatient-showdown" "github")
-    ("jayces-mode" "jcs-elpa/jayces-mode" "github")
-    ("license-templates" "jcs-elpa/license-templates" "github")
-    ("multi-shell" "jcs-elpa/multi-shell" "github")
-    ("reload-emacs" "jcs-elpa/reload-emacs" "github")
-    ("test-sha" "jcs-elpa/test-sha" "github"))
+  '((better-scroll :repo "jcs-elpa/better-scroll" :fetcher github)
+    (file-header :repo "jcs-elpa/file-header" :fetcher github)
+    (impatient-showdown :repo "jcs-elpa/impatient-showdown" :fetcher github
+                        :files (:defaults "preview.html"))
+    (jayces-mode :repo "jcs-elpa/jayces-mode" :fetcher github)
+    (license-templates :repo "jcs-elpa/license-templates" :fetcher github)
+    (multi-shell :repo "jcs-elpa/multi-shell" :fetcher github)
+    (reload-emacs :repo "jcs-elpa/reload-emacs" :fetcher github)
+    (test-sha :repo "jcs-elpa/test-sha" :fetcher github))
   "List of package that you want to manually installed.")
-
-(defun jcs--package-version-by-pkg (pkg)
-  "Return the package version by PKG.
-PKG is a list of recipe components."
-  (jcs-no-log-apply
-    (message "Contacting host: '%s' from '%s'" (nth 1 pkg) (nth 2 pkg)))
-  (let* ((rcp (jcs--form-recipe (nth 0 pkg) (nth 1 pkg) (nth 2 pkg)))
-         (name (car rcp))
-         (build-dir (expand-file-name (symbol-name name) quelpa-build-dir))
-         (quelpa-build-verbose nil))
-    (jcs-mute-apply (quelpa-checkout rcp build-dir))))
-
-(defun jcs--ver-string-to-ver-list (ver)
-  "Convert VER string to version recognized list."
-  (let ((ver-lst '())
-        (str-lst (split-string (format "%s" ver) "[.]")))
-    (dolist (ver-str str-lst)
-      (push (string-to-number ver-str) ver-lst))
-    (reverse ver-lst)))
-
-(defun jcs--upgrade-list-manually ()
-  "List of need to upgrade package from manually installed packages."
-  (require 'quelpa)
-  (let ((upgrade-list '()) new-version current-version pkg-name)
-    (dolist (pkg jcs-package-manually-install-list)
-      (setq pkg-name (intern (nth 0 pkg)))
-      (setq new-version (jcs--package-version-by-pkg pkg))
-      (setq current-version (jcs-get-package-version pkg-name package-alist))
-      (setq new-version (jcs--ver-string-to-ver-list new-version))
-      (when (version-list-< current-version new-version)
-        (push pkg upgrade-list)))
-    (reverse upgrade-list)))
 
 (defun jcs--form-recipe (name repo fetcher)
   "Create the recipe, with NAME, REPO, FETCHER."
@@ -356,20 +328,53 @@ PKG is a list of recipe components."
     (require 'dash)
     (-flatten recipe)))
 
+(defun jcs--recipe-get-info (rcp prop)
+  "Get the PROP information from RCP."
+  (let ((plst rcp)) (push :name plst) (plist-get plst prop)))
+
+(defun jcs--package-version-by-recipe (rcp)
+  "Return the package version by PKG.
+PKG is a list of recipe components."
+  (let* ((pkg-name (jcs--recipe-get-info rcp :name))
+         (pkg-repo (jcs--recipe-get-info rcp :repo))
+         (pkg-fetcher (jcs--recipe-get-info rcp :fetcher))
+         (rcp (jcs--form-recipe (symbol-name pkg-name) pkg-repo pkg-fetcher))
+         (name (car rcp))
+         (build-dir (expand-file-name (symbol-name name) quelpa-build-dir))
+         (quelpa-build-verbose nil))
+    (jcs-no-log-apply
+      (message "Contacting host: '%s' from '%s'" pkg-repo pkg-fetcher))
+    (jcs-mute-apply (quelpa-checkout rcp build-dir))))
+
+(defun jcs--ver-string-to-ver-list (ver)
+  "Convert VER string to version recognized list."
+  (let ((ver-lst '()) (str-lst (split-string (format "%s" ver) "[.]")))
+    (dolist (ver-str str-lst) (push (string-to-number ver-str) ver-lst))
+    (reverse ver-lst)))
+
+(defun jcs--upgrade-list-manually ()
+  "List of need to upgrade package from manually installed packages."
+  (require 'quelpa)
+  (let ((upgrade-list '()) new-version current-version pkg-name)
+    (dolist (rcp jcs-package-manually-install-list)
+      (setq pkg-name (jcs--recipe-get-info rcp :name))
+      (setq new-version (jcs--package-version-by-recipe rcp))
+      (setq current-version (jcs-get-package-version pkg-name package-alist))
+      (setq new-version (jcs--ver-string-to-ver-list new-version))
+      (when (version-list-< current-version new-version) (push rcp upgrade-list)))
+    (reverse upgrade-list)))
+
 (defun jcs-ensure-manual-package-installed (packages &optional without-asking)
   "Ensure all manually installed PACKAGES are installed, ask WITHOUT-ASKING."
   (unless (jcs-reload-emacs-reloading-p)
-    (let ((jcs-package-installing-p t))
-      (dolist (pkg-info packages)
-        (let* ((pkg-name (nth 0 pkg-info))
-               (pkg-repo (nth 1 pkg-info))
-               (pkg-fetcher (nth 2 pkg-info))
-               (recipe (jcs--form-recipe pkg-name pkg-repo pkg-fetcher)))
-          (unless (package-installed-p (intern pkg-name))
-            (when (or without-asking
-                      (y-or-n-p (format "[QUELPA] Package %s is missing. Install it? " pkg-name)))
-              (require 'quelpa)
-              (quelpa recipe))))))))
+    (let ((jcs-package-installing-p t) pkg-name)
+      (dolist (rcp packages)
+        (setq pkg-name (jcs--recipe-get-info rcp :name))
+        (unless (package-installed-p pkg-name)
+          (when (or without-asking
+                    (y-or-n-p (format "[QUELPA] Package %s is missing. Install it? " pkg-name)))
+            (require 'quelpa)
+            (quelpa rcp)))))))
 
 (provide 'jcs-package)
 ;;; jcs-package.el ends here
