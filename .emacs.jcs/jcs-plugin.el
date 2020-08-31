@@ -302,9 +302,10 @@
            "[*]csharp[*]")  ; From `lsp'
          '("[*]company")
          '("[*]Local Variables[*]")
-         '("[*]SPEEDBAR")
-         '("[*]helpful")
          '("[*]Kill Ring[*]")  ; From `browse-kill-ring'
+         '("[*]SPEEDBAR")
+         '("[*]httpd[*]")
+         '("[*]helpful")
          '("[*]Most used words[*]")
          '("[*]Test SHA[*]")))
   (with-eval-after-load 'jcs-buffer-menu (diminish-buffer-mode 1))
