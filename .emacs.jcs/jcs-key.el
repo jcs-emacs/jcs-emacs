@@ -337,7 +337,7 @@
 (define-key global-map (kbd "C-k m") #'jcs-toggle-minimap)
 
 ;;; Mode Line
-(define-key global-map (kbd "C-M-m") #'feebleline-mode)
+(bind-key* (kbd "C-M-m") #'feebleline-mode)
 
 ;;; Mode Toggle
 (progn
