@@ -66,23 +66,43 @@
 ;;----------------------------------------------------------------------------
 ;; Impatient Mode
 
+(defconst jcs-impatient--markdown-preview
+  (expand-file-name "~/.emacs.jcs/plugins/impatient-mode/markdown/preview.html")
+  "Markdown preview template for impatient buffer filter.")
+
+(defun jcs-impatient--markdown (buf)
+  "Impatient buffer filter for Markdown file."
+  (princ
+   (with-temp-buffer
+     (set-buffer buf)
+     (let ((preview-str (jcs-get-string-from-file jcs-impatient--markdown-preview)))
+       (format preview-str (buffer-string))))
+   (current-buffer)))
+
+(defun jcs-impatient--filter ()
+  "Set `impatient-mode' buffer filter."
+  (cond ((jcs-is-current-major-mode-p '("markdown-mode"))
+         (imp-set-user-filter 'jcs-impatient--markdown))
+        (t (imp-set-user-filter nil))))
+
 ;;;###autoload
-(defun jcs-httpd-start ()
+(defun jcs-impatient-start ()
   "Start real time editing with default port."
   (interactive)
   (require 'impatient-mode)
-  (call-interactively 'httpd-start)
-  (message (concat
-            "[INFO] Start real time editing with port: %d"
-            "\nPlease open browser to 'http://localhost:%s/imp/'")
-           httpd-port httpd-port))
+  (unless (process-status "httpd") (httpd-start))
+  (impatient-mode 1)
+  (jcs-impatient--filter)
+  (imp-visit-buffer)
+  (message "[INFO] Start real time editing with port: %d" httpd-port httpd-port))
 
 ;;;###autoload
-(defun jcs-httpd-stop ()
+(defun jcs-impatient-stop ()
   "Shutdown real time editing with default port."
   (interactive)
   (require 'impatient-mode)
-  (call-interactively 'httpd-stop)
+  (httpd-stop)
+  (impatient-mode -1)
   (message "[INFO] Shutdown real time editing with port: %d" httpd-port))
 
 ;;----------------------------------------------------------------------------
