@@ -292,8 +292,8 @@
 (bind-key* (kbd "C-r C-r") #'jcs-iedit-mode)
 
 ;;; Impatient Mode
-(define-key global-map (kbd "C-w o") #'jcs-httpd-start)
-(define-key global-map (kbd "C-w p") #'jcs-httpd-stop)
+(define-key global-map (kbd "C-w o") #'jcs-impatient-start)
+(define-key global-map (kbd "C-w p") #'jcs-impatient-stop)
 
 ;;; Ivy / Counsel / Swiper
 (progn
