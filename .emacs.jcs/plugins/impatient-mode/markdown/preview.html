@@ -1,0 +1,36 @@
+<article id="markdown-body">
+  <div>%s</div>
+</article>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js" integrity="sha512-L03kznCrNOfVxOUovR6ESfCz9Gfny7gihUX/huVbQB9zjODtYpxaVtIaAkpetoiyV2eqWbvxMH9fiSv5enX7bw==" crossorigin="anonymous"></script>
+<script>
+  function display() {
+    showdown.setFlavor('github');
+    let converter = new showdown.Converter();
+    converter.setOption('simpleLineBreaks', false);
+
+    let md = document.querySelector('#markdown-body div');
+    if (!md) return;
+
+    let text = md.innerHTML;
+    let newHTML = converter.makeHtml(text);
+
+    md.innerHTML = newHTML;
+  }
+
+  display();
+</script>
+
+<style>
+  body {
+    background-color: #141414;
+  }
+
+  #markdown-body {
+    background-color: #888;
+    border: 2px solid #AAA;
+    width: 800px;
+    margin: auto;
+    padding: 10px;
+  }
+</style>
