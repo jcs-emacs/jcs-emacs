@@ -10,6 +10,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Uninstalled package `markdown-preview-mode`.
 * Implemented markdown preview using `impatient-mode`.
 * Added `*httpd*` to diminish buffer mode list.
+* Installed new package `impatient-showdown` manually.
+* Merged `impatient-showdown` with normal `impatient-mode` activation.
 
 ### 2020-08-30
 
