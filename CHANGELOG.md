@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-08-31
+
+* Uninstalled package `markdown-preview-mode`.
+* Implemented markdown preview using `impatient-mode`.
+
 ### 2020-08-30
 
 * Installed new package `markdown-preview-mode`.
