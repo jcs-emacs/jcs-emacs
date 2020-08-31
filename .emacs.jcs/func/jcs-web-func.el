@@ -66,43 +66,36 @@
 ;;----------------------------------------------------------------------------
 ;; Impatient Mode
 
-(defconst jcs-impatient--markdown-preview
-  (expand-file-name "~/.emacs.jcs/plugins/impatient-mode/markdown/preview.html")
-  "Markdown preview template for impatient buffer filter.")
+(defun jcs-impatient-mode (args)
+  "Default `impatient-mode' function by ARGS."
+  (if (= args 1)
+      (progn
+        (unless (process-status "httpd") (httpd-start))
+        (impatient-mode args)
+        (imp-set-user-filter nil)
+        (imp-visit-buffer))
+    (httpd-stop)
+    (impatient-mode args)))
 
-(defun jcs-impatient--markdown (buf)
-  "Impatient buffer filter for Markdown file."
-  (princ
-   (with-temp-buffer
-     (set-buffer buf)
-     (let ((preview-str (jcs-get-string-from-file jcs-impatient--markdown-preview)))
-       (format preview-str (buffer-string))))
-   (current-buffer)))
-
-(defun jcs-impatient--filter ()
-  "Set `impatient-mode' buffer filter."
+(defun jcs-impatient-by-mode (args)
+  "Enable/Disable `impatient-mode' by ARGS"
+  (require 'impatient-mode)
   (cond ((jcs-is-current-major-mode-p '("markdown-mode"))
-         (imp-set-user-filter 'jcs-impatient--markdown))
-        (t (imp-set-user-filter nil))))
+         (impatient-showdown-mode args))
+        (t (jcs-impatient-mode args))))
 
 ;;;###autoload
 (defun jcs-impatient-start ()
   "Start real time editing with default port."
   (interactive)
-  (require 'impatient-mode)
-  (unless (process-status "httpd") (httpd-start))
-  (impatient-mode 1)
-  (jcs-impatient--filter)
-  (imp-visit-buffer)
+  (jcs-impatient-by-mode 1)
   (message "[INFO] Start real time editing with port: %d" httpd-port httpd-port))
 
 ;;;###autoload
 (defun jcs-impatient-stop ()
   "Shutdown real time editing with default port."
   (interactive)
-  (require 'impatient-mode)
-  (httpd-stop)
-  (impatient-mode -1)
+  (jcs-impatient-by-mode -1)
   (message "[INFO] Shutdown real time editing with port: %d" httpd-port))
 
 ;;----------------------------------------------------------------------------
