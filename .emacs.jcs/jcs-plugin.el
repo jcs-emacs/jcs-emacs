@@ -728,51 +728,6 @@
     (when (and (functionp 'lsp-ui-doc--hide-frame) (not jcs--lsp-lv-recording))
       (lsp-ui-doc--hide-frame))))
 
-(use-package markdown-preview-mode
-  :defer t
-  :init
-  (setq markdown-preview-stylesheets
-        '("http://www.jcs-profile.com/public/jcs-emacs/plugins/markdown-preview-mode/use-style.css"))
-  (setq markdown-preview-javascript
-        '("https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"
-          "http://www.jcs-profile.com/public/jcs-emacs/plugins/markdown-preview-mode/use-showdown.js"))
-  :config
-  (defvar-local jcs--markdown-preview--buffer nil
-    "Buffer that we are previewing.")
-
-  (defun jcs--markdown-preview--stop-idle-timer--advice-after ()
-    "Advice execute after `markdown-preview--stop-idle-timer' function."
-    (setq markdown-preview--idle-timer nil))
-  (advice-add 'markdown-preview--stop-idle-timer :after #'jcs--markdown-preview--stop-idle-timer--advice-after)
-
-  (defun jcs--markdown-preview--read-preview-template--advice-override (preview-uuid preview-file)
-    "Advice execute around `markdown-preview--read-preview-template' function."
-    (with-temp-file preview-file
-      (insert-file-contents
-       (expand-file-name "~/.emacs.jcs/plugins/markdown-preview-mode/preview.html"))
-      (when (search-forward "${MD_STYLE}" nil t) (replace-match (markdown-preview--css) t))
-      (when (search-forward "${MD_JS}" nil t) (replace-match (markdown-preview--scripts) t))
-      (when (search-forward "${WS_HOST}" nil t) (replace-match markdown-preview-host t))
-      (when (search-forward "${WS_PORT}" nil t) (replace-match (format "%s" markdown-preview-ws-port) t))
-      (when (search-forward "${MD_UUID}" nil t) (replace-match (format "%s" preview-uuid) t))
-      (buffer-string)))
-  (advice-add 'markdown-preview--read-preview-template :override #'jcs--markdown-preview--read-preview-template--advice-override)
-
-  (defun jcs--markdown-preview-mode (&rest _)
-    "Advice execute after `markdown-preview-mode' function."
-    (if markdown-preview-mode
-        (setq jcs--markdown-preview--buffer (current-buffer))
-      (setq jcs--markdown-preview--buffer nil)))
-  (advice-add 'markdown-preview-mode :after #'jcs--markdown-preview-mode)
-
-  (defun jcs--markdown-preview--send-preview-to--advice-override (websocket preview-uuid)
-    "Advice override `markdown-preview--send-preview-to' function."
-    (with-current-buffer jcs--markdown-preview--buffer
-      (websocket-send-text websocket
-                           (format "<div>%s</div>"
-                                   (buffer-substring-no-properties (point-min) (point-max))))))
-  (advice-add 'markdown-preview--send-preview-to :override #'jcs--markdown-preview--send-preview-to--advice-override))
-
 (use-package most-used-words
   :defer t
   :init
