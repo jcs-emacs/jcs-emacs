@@ -127,7 +127,6 @@
     manage-minor-mode
     manage-minor-mode-table
     markdown-mode
-    markdown-preview-mode
     markdown-toc
     masm-mode
     most-used-words
