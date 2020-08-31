@@ -552,6 +552,11 @@
     (jcs-inside-comment-or-string-p))
   (advice-add #'hl-todo--inside-comment-or-string-p :override #'jcs--hl-todo--inside-comment-or-string-p))
 
+(use-package impatient-showdown
+  :defer t
+  :init
+  (setq impatient-showdown-flavor 'github))
+
 (use-package isearch
   :defer t
   :init
