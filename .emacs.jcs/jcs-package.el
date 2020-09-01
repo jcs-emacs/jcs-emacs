@@ -361,7 +361,8 @@ PKG is a list of recipe components."
 (defun jcs-ensure-manual-package-installed (packages &optional without-asking)
   "Ensure all manually installed PACKAGES are installed, ask WITHOUT-ASKING."
   (unless (jcs-reload-emacs-reloading-p)
-    (let ((jcs-package-installing-p t) pkg-name pkg-repo pkg-fetcher)
+    (let ((jcs-package-installing-p t) pkg-name pkg-repo pkg-fetcher
+          (quelpa-build-verbose nil))
       (dolist (rcp packages)
         (setq pkg-name (jcs--recipe-get-info rcp :name))
         (setq pkg-repo (jcs--recipe-get-info rcp :repo))
