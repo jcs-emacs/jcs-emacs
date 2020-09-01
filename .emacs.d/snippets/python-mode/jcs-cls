@@ -5,7 +5,7 @@
 # --
 class `(jcs-get-file-name-without-extension)`(object):
 
-    """${1:TODO(jenchieh): Class Description here...}
+    """${1:TODO: Class Description here...}
     """
 
     #*********************************************#
