@@ -319,14 +319,9 @@
     (test-sha :repo "jcs-elpa/test-sha" :fetcher github))
   "List of package that you want to manually installed.")
 
-(defun jcs--form-recipe (name repo fetcher)
-  "Create the recipe, with NAME, REPO, FETCHER."
-  (let ((recipe '()))
-    (push (plist-put nil ':fetcher fetcher) recipe)
-    (push (plist-put nil ':repo repo) recipe)
-    (push (make-symbol name) recipe)
-    (require 'dash)
-    (-flatten recipe)))
+(defun jcs--form-version-recipe (rcp)
+  "Create the RCP for `quelpa' version check."
+  (let ((name (symbol-name (pop rcp)))) (push (make-symbol name) rcp) rcp))
 
 (defun jcs--recipe-get-info (rcp prop)
   "Get the PROP information from RCP."
@@ -335,10 +330,9 @@
 (defun jcs--package-version-by-recipe (rcp)
   "Return the package version by PKG.
 PKG is a list of recipe components."
-  (let* ((pkg-name (jcs--recipe-get-info rcp :name))
-         (pkg-repo (jcs--recipe-get-info rcp :repo))
+  (let* ((pkg-repo (jcs--recipe-get-info rcp :repo))
          (pkg-fetcher (jcs--recipe-get-info rcp :fetcher))
-         (rcp (jcs--form-recipe (symbol-name pkg-name) pkg-repo pkg-fetcher))
+         (rcp (jcs--form-version-recipe rcp))
          (name (car rcp))
          (build-dir (expand-file-name (symbol-name name) quelpa-build-dir))
          (quelpa-build-verbose nil))
