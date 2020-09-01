@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-09-01
 
 * Simplify manually install package system from `quelpa`.
+* Simplify message logging when installing package through `quelpa`.
 
 ### 2020-08-31
 
