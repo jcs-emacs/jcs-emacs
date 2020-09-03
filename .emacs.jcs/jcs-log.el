@@ -27,10 +27,10 @@ Acts like `message' but preserves string properties in the *Messages* buffer."
 (defun jcs-do-after-log-action ()
   "Action do after doing log."
   (save-selected-window
-    (unless (string= (buffer-name) "*Messages*")
+    (if (string= (buffer-name) "*Messages*")
+        (goto-char (point-max))
       (jcs-ensure-switch-to-buffer-other-window "*Messages*"))
-    (when (string= (buffer-name) "*Messages*")
-      (goto-char (point-max)))))
+    (jcs--message-buffer--first-load)))
 
 
 (defun jcs--log (title clean fmt &rest args)
