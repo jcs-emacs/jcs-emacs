@@ -145,10 +145,8 @@
 (defun jcs-reset-ahs-by-theme ()
   "Reset `auto-highlight-symbol' by theme."
   (if (jcs-is-light-theme-p)
-      (jcs--ahs--set-face "#E2E6D6" "#525D68"
-                          "#DDE2CD" "#525D68")
-    (jcs--ahs--set-face "#123E70" "#525D68"
-                        "#113D6F" "#525D68")))
+      (jcs--ahs--set-face "#E2E6D6" "#525D68" "#DDE2CD" "#525D68")
+    (jcs--ahs--set-face "#123E70" "#525D68" "#113D6F" "#525D68")))
 
 ;;----------------------------------------------------------------------------
 ;; Buffer Menu
@@ -588,11 +586,36 @@ See `sort-words'."
 (defun jcs-toggle-tabbar-mode ()
   "Toggle tab bar."
   (interactive)
-  (if centaur-tabs-mode
-      (centaur-tabs-mode -1)
-    (centaur-tabs-mode 1))
+  (if centaur-tabs-mode (centaur-tabs-mode -1) (centaur-tabs-mode 1))
+  (jcs-reset-tabbar-theme)
   ;; Loop through all window so all windows take effect.
   (jcs-buffer-visible-list))
+
+(defun jcs-reset-tabbar-theme ()
+  "Set the tabbar theme to match the current theme color."
+  (when centaur-tabs-mode
+    (let* ((is-light (jcs-is-light-theme-p))
+           (bg-default (if is-light "#D3D3D3" "#1D1D1D"))
+           (bg-tab-unselected (if is-light "#E8E8E8" "#3D3C3D"))
+           (fg-tab-unselected "grey50")
+           (bg-tab-selected (if is-light "#E8E8E8" "#31343E"))
+           (fg-tab-selected (if is-light "black" "white")))
+      (set-face-attribute centaur-tabs-display-line nil :background bg-default
+                          :box nil :overline nil :underline nil)
+      (custom-set-faces
+       `(centaur-tabs-default ((t (:background ,bg-default))))
+       `(centaur-tabs-unselected
+         ((t (:background ,bg-tab-unselected :foreground ,fg-tab-unselected))))
+       `(centaur-tabs-selected
+         ((t (:background ,bg-tab-selected :foreground ,fg-tab-selected))))
+       `(centaur-tabs-unselected-modified
+         ((t (:background ,bg-tab-unselected :foreground ,fg-tab-unselected))))
+       `(centaur-tabs-selected-modified
+         ((t (:background ,bg-tab-selected :foreground ,fg-tab-selected))))
+       `(centaur-tabs-modified-marker-unselected
+         ((t (:background ,bg-tab-unselected :foreground ,fg-tab-unselected))))
+       `(centaur-tabs-modified-marker-selected
+         ((t (:background ,bg-tab-selected :foreground ,fg-tab-selected))))))))
 
 ;;----------------------------------------------------------------------------
 ;; Terminal / Shell
@@ -612,10 +635,7 @@ See `sort-words'."
   (interactive)
   (require 'jcs-shell)
   (if (ignore-errors (jcs-jump-shown-to-buffer (multi-shell--prefix-name)))
-      (progn
-        (other-window -2)
-        (other-window 1)
-        (multi-shell))
+      (progn (other-window -2) (other-window 1) (multi-shell))
     (jcs-show-shell-window)))
 
 ;;----------------------------------------------------------------------------
