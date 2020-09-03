@@ -393,7 +393,8 @@ Note this is opposite logic to the toggle mode function."
 
 (defun jcs-message-buffer-mode-hook ()
   "Hook for `message-buffer-mode'."
-  (goto-address-mode 1))
+  (goto-address-mode 1)
+  (page-break-lines-mode 1))
 
 (add-hook 'messages-buffer-mode-hook 'jcs-message-buffer-mode-hook)
 
