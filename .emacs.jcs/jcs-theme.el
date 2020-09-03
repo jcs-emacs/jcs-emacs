@@ -227,6 +227,7 @@ POWER-AC-LST : powerline active list.  POWER-INAC-LST : powerline inactive list.
   "Reset certain plugins base on the theme."
   (jcs-reset-ahs-by-theme)
   (jcs-reset-dashboard-banner-by-theme)
+  (jcs-reset-tabbar-theme)
   (jcs-reset-yascroll-color-by-theme)
   (unless (display-graphic-p) (jcs-reset-common-faces-by-theme))
   (jcs-reload-active-mode)
