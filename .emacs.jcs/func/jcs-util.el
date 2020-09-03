@@ -133,8 +133,7 @@ If REGEX is non-nil, check by using regular expression."
 
 (defun jcs--is-light-color-internal (hex-code)
   "Check if the HEX-CODE' light color."
-  (let ((is-light nil) (hex-lst '())
-        (hex-1 "") (hex-2 "") (hex-3 "")
+  (let ((is-light nil) (hex-lst '()) (hex-1 "") (hex-2 "") (hex-3 "")
         ;; 136d = 88h
         (light-central 136) (s2n-base 16))
     ;; Convert symbol to string.
@@ -162,13 +161,13 @@ If REGEX is non-nil, check by using regular expression."
         (setq is-light t)))
     is-light))
 
-(defun jcs-is-light-color (hex-code)
+(defun jcs-is-light-color-p (hex-code)
   "Check if the HEX-CODE' light color."
   (and (display-graphic-p) (jcs--is-light-color-internal hex-code)))
 
-(defun jcs-is-dark-color (hex-code)
+(defun jcs-is-dark-color-p (hex-code)
   "Check if the HEX-CODE dark color."
-  (and (display-graphic-p) (not (jcs-is-light-color hex-code))))
+  (and (display-graphic-p) (not (jcs-is-light-color-p hex-code))))
 
 ;;----------------------------------------------------------------------------
 ;; Error
