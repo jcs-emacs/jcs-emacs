@@ -20,7 +20,7 @@
 (defun jcs--set-mode-line-color--by-feebleline (ac-lst inac-lst)
   "Like `jcs--set-mode-line-color' but with `feebleline' rule in it.
 AC-LST and INAC-LST are same arguments to `jcs--set-mode-line-color'."
-  (let ((light-theme-p (jcs-is-light-color (face-background 'default))))
+  (let ((light-theme-p (jcs-is-light-theme-p)))
     (setq ac-lst (if light-theme-p (list (nth 0 ac-lst) "#000000")
                    (list "#000000" (nth 1 ac-lst))))
     (setq inac-lst (if light-theme-p (list (nth 0 inac-lst) "#000000")
@@ -71,157 +71,85 @@ POWER-AC-LST : powerline active list.  POWER-INAC-LST : powerline inactive list.
 (defun jcs-gray-mode-line ()
   "Gray mode line."
   (interactive)
-  (if (jcs-is-light-color (face-background 'default))
+  (if (jcs-is-light-theme-p)
       (jcs--set-mode-line-theme
-       '("#1C1C1C" "#BFBFBF")
-       '("#CCCCCC" "#4D4D4D")
-       "#161616"
-       '("#1C1C1C" "#D8D8D8"
-         "#000000" "#B8B8B8"
-         "#1C1C1C" "#C7C7C7")
-       '("#1C1C1C" "#CCCCCC"
-         "#000000" "#B8B8B8"
-         "#1C1C1C" "#C7C7C7"))
+       '("#1C1C1C" "#BFBFBF") '("#CCCCCC" "#4D4D4D") "#161616"
+       '("#1C1C1C" "#D8D8D8" "#000000" "#B8B8B8" "#1C1C1C" "#C7C7C7")
+       '("#1C1C1C" "#CCCCCC" "#000000" "#B8B8B8" "#1C1C1C" "#C7C7C7"))
     (jcs--set-mode-line-theme
-     '("#1C1C1C" "#BFBFBF")
-     '("#CCCCCC" "#4D4D4D")
-     "#D2D2D2"
-     '("#1C1C1C" "#CCCCCC"
-       "#CCCCCC" "#1C1C1C"
-       "#CCCCCC" "#333333")
-     '("#CCCCCC" "#4D4D4D"
-       "#CCCCCC" "#1C1C1C"
-       "#CCCCCC" "#333333"))))
+     '("#1C1C1C" "#BFBFBF") '("#CCCCCC" "#4D4D4D") "#D2D2D2"
+     '("#1C1C1C" "#CCCCCC" "#CCCCCC" "#1C1C1C" "#CCCCCC" "#333333")
+     '("#CCCCCC" "#4D4D4D" "#CCCCCC" "#1C1C1C" "#CCCCCC" "#333333"))))
 
 ;;;###autoload
 (defun jcs-dark-green-mode-line ()
   "Dark green mode line."
   (interactive)
-  (if (jcs-is-light-color (face-background 'default))
+  (if (jcs-is-light-theme-p)
       (jcs--set-mode-line-theme
-       '("#CCCCCC" "#467E7D")
-       '("#CCCCCC" "#2B4D4D")
-       "#7ED5D5"
-       '("#1C1C1C" "#7ED5D5"
-         "#1C1C1C" "#5B928F"
-         "#1C1C1C" "#68AFAC")
-       '("#1C1C1C" "#75C0C0"
-         "#1C1C1C" "#5B928F"
-         "#1C1C1C" "#68AFAC"))
+       '("#CCCCCC" "#467E7D") '("#CCCCCC" "#2B4D4D") "#7ED5D5"
+       '("#1C1C1C" "#7ED5D5" "#1C1C1C" "#5B928F" "#1C1C1C" "#68AFAC")
+       '("#1C1C1C" "#75C0C0" "#1C1C1C" "#5B928F" "#1C1C1C" "#68AFAC"))
     (jcs--set-mode-line-theme
-     '("#CCCCCC" "#467E7D")
-     '("#CCCCCC" "#2B4D4D")
-     "#467E7D"
-     '("#1C1C1C" "#529191"
-       "#CCCCCC" "#1C2E2D"
-       "#CCCCCC" "#294645")
-     '("#CCCCCC" "#2B4D4D"
-       "#CCCCCC" "#1C2E2D"
-       "#CCCCCC" "#294645"))))
+     '("#CCCCCC" "#467E7D") '("#CCCCCC" "#2B4D4D") "#467E7D"
+     '("#1C1C1C" "#529191" "#CCCCCC" "#1C2E2D" "#CCCCCC" "#294645")
+     '("#CCCCCC" "#2B4D4D" "#CCCCCC" "#1C2E2D" "#CCCCCC" "#294645"))))
 
 ;;;###autoload
 (defun jcs-dark-blue-mode-line ()
   "Dark blue mode line."
   (interactive)
-  (if (jcs-is-light-color (face-background 'default))
+  (if (jcs-is-light-theme-p)
       (jcs--set-mode-line-theme
-       '("#CCCCCC" "#246AAF")
-       '("#CCCCCC" "#0E2944")
-       "#2E84D9"
-       '("#EDEDED" "#2E84D9"
-         "#EDEDED" "#225F9A"
-         "#EDEDED" "#2D7AC4")
-       '("#EDEDED" "#2C7AC6"
-         "#EDEDED" "#225F9A"
-         "#EDEDED" "#2D7AC4"))
+       '("#CCCCCC" "#246AAF") '("#CCCCCC" "#0E2944") "#2E84D9"
+       '("#EDEDED" "#2E84D9" "#EDEDED" "#225F9A" "#EDEDED" "#2D7AC4")
+       '("#EDEDED" "#2C7AC6" "#EDEDED" "#225F9A" "#EDEDED" "#2D7AC4"))
     (jcs--set-mode-line-theme
-     '("#CCCCCC" "#246AAF")
-     '("#CCCCCC" "#0E2944")
-     "#246AAF"
-     '("#1C1C1C" "#246AAF"
-       "#CCCCCC" "#091A2B"
-       "#CCCCCC" "#0E2944")
-     '("#CCCCCC" "#14375B"
-       "#CCCCCC" "#091A2B"
-       "#CCCCCC" "#0E2944"))))
+     '("#CCCCCC" "#246AAF") '("#CCCCCC" "#0E2944") "#246AAF"
+     '("#1C1C1C" "#246AAF" "#CCCCCC" "#091A2B" "#CCCCCC" "#0E2944")
+     '("#CCCCCC" "#14375B" "#CCCCCC" "#091A2B" "#CCCCCC" "#0E2944"))))
 
 ;;;###autoload
 (defun jcs-dark-orange-mode-line ()
   "Dark orange mode line."
   (interactive)
-  (if (jcs-is-light-color (face-background 'default))
+  (if (jcs-is-light-theme-p)
       (jcs--set-mode-line-theme
-       '("#1C1C1C" "#FF6C32")
-       '("#CCCCCC" "#682B12")
-       "#FF6C32"
-       '("#1C1C1C" "#FF6C32"
-         "#CCCCCC" "#682B12"
-         "#CCCCCC" "#9A431F")
-       '("#CCCCCC" "#9A431F"
-         "#CCCCCC" "#682B12"
-         "#CCCCCC" "#883919"))
+       '("#1C1C1C" "#FF6C32") '("#CCCCCC" "#682B12") "#FF6C32"
+       '("#1C1C1C" "#FF6C32" "#CCCCCC" "#682B12" "#CCCCCC" "#9A431F")
+       '("#CCCCCC" "#9A431F" "#CCCCCC" "#682B12" "#CCCCCC" "#883919"))
     (jcs--set-mode-line-theme
-     '("#1C1C1C" "#FF6C32")
-     '("#CCCCCC" "#682B12")
-     "#FF6C32"
-     '("#1C1C1C" "#FF6C32"
-       "#CCCCCC" "#682B12"
-       "#CCCCCC" "#9A431F")
-     '("#CCCCCC" "#9A431F"
-       "#CCCCCC" "#682B12"
-       "#CCCCCC" "#883919"))))
+     '("#1C1C1C" "#FF6C32") '("#CCCCCC" "#682B12") "#FF6C32"
+     '("#1C1C1C" "#FF6C32" "#CCCCCC" "#682B12" "#CCCCCC" "#9A431F")
+     '("#CCCCCC" "#9A431F" "#CCCCCC" "#682B12" "#CCCCCC" "#883919"))))
 
 ;;;###autoload
 (defun jcs-red-mode-line ()
   "Red mode line."
   (interactive)
-  (if (jcs-is-light-color (face-background 'default))
+  (if (jcs-is-light-theme-p)
       (jcs--set-mode-line-theme
-       '("#CCCCCC" "#FF0000")
-       '("#CCCCCC" "#6A0101")
-       "#FF0000"
-       '("#1C1C1C" "#FF0000"
-         "#CCCCCC" "#6A0101"
-         "#CCCCCC" "#920101")
-       '("#CCCCCC" "#920101"
-         "#CCCCCC" "#6A0101"
-         "#CCCCCC" "#970000"))
+       '("#CCCCCC" "#FF0000") '("#CCCCCC" "#6A0101") "#FF0000"
+       '("#1C1C1C" "#FF0000" "#CCCCCC" "#6A0101" "#CCCCCC" "#920101")
+       '("#CCCCCC" "#920101" "#CCCCCC" "#6A0101" "#CCCCCC" "#970000"))
     (jcs--set-mode-line-theme
-     '("#CCCCCC" "#FF0000")
-     '("#CCCCCC" "#6A0101")
-     "#FF0000"
-     '("#1C1C1C" "#FF0000"
-       "#CCCCCC" "#6A0101"
-       "#CCCCCC" "#920101")
-     '("#CCCCCC" "#920101"
-       "#CCCCCC" "#6A0101"
-       "#CCCCCC" "#970000"))))
+     '("#CCCCCC" "#FF0000") '("#CCCCCC" "#6A0101") "#FF0000"
+     '("#1C1C1C" "#FF0000" "#CCCCCC" "#6A0101" "#CCCCCC" "#920101")
+     '("#CCCCCC" "#920101" "#CCCCCC" "#6A0101" "#CCCCCC" "#970000"))))
 
 ;;;###autoload
 (defun jcs-purple-mode-line ()
   "Purple mode line."
   (interactive)
-  (if (jcs-is-light-color (face-background 'default))
+  (if (jcs-is-light-theme-p)
       (jcs--set-mode-line-theme
-       '("#CCCCCC" "#B100EB")
-       '("#CCCCCC" "#650286")
-       "#B100EB"
-       '("#1C1C1C" "#B100EB"
-         "#CCCCCC" "#4B0263"
-         "#CCCCCC" "#69018B")
-       '("#CCCCCC" "#69018B"
-         "#CCCCCC" "#4B0263"
-         "#CCCCCC" "#670188"))
+       '("#CCCCCC" "#B100EB") '("#CCCCCC" "#650286") "#B100EB"
+       '("#1C1C1C" "#B100EB" "#CCCCCC" "#4B0263" "#CCCCCC" "#69018B")
+       '("#CCCCCC" "#69018B" "#CCCCCC" "#4B0263" "#CCCCCC" "#670188"))
     (jcs--set-mode-line-theme
-     '("#CCCCCC" "#B100EB")
-     '("#CCCCCC" "#650286")
-     "#B100EB"
-     '("#1C1C1C" "#B100EB"
-       "#CCCCCC" "#4B0263"
-       "#CCCCCC" "#69018B")
-     '("#CCCCCC" "#69018B"
-       "#CCCCCC" "#4B0263"
-       "#CCCCCC" "#670188"))))
+     '("#CCCCCC" "#B100EB") '("#CCCCCC" "#650286") "#B100EB"
+     '("#1C1C1C" "#B100EB" "#CCCCCC" "#4B0263" "#CCCCCC" "#69018B")
+     '("#CCCCCC" "#69018B" "#CCCCCC" "#4B0263" "#CCCCCC" "#670188"))))
 
 (defun jcs-reset-plugins-base-on-theme ()
   "Reset certain plugins base on the theme."
@@ -256,8 +184,14 @@ POWER-AC-LST : powerline active list.  POWER-INAC-LST : powerline inactive list.
   (jcs-set-theme "#40FF40" "midnight blue"))
 
 (defun jcs-is-light-theme-p ()
-  "Check if current theme light theme, or else is dark theme."
-  (jcs-is-light-color (face-background 'default)))
+  "Return non-nil if current theme light theme.
+Return nil if current theme dark theme."
+  (jcs-is-light-color-p (face-background 'default)))
+
+(defun jcs-is-dark-theme-p ()
+  "Return non-nil if current theme dark theme.
+Return nil if current theme light theme."
+  (not (jcs-is-light-theme-p)))
 
 ;;;###autoload
 (defun jcs-refresh-theme ()
