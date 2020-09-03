@@ -882,11 +882,8 @@
   :init
   (setq preproc-font-lock-modes '(cc-mode c-mode c++-mode csharp-mode nasm-mode))
   :config
-  (set-face-attribute 'preproc-font-lock-preprocessor-background
-                      nil
-                      :background nil
-                      :foreground "#B363BE"
-                      :inherit nil))
+  (set-face-attribute 'preproc-font-lock-preprocessor-background nil
+                      :background nil :foreground "#B363BE" :inherit nil))
 
 (use-package projectile
   :defer t
@@ -910,10 +907,8 @@
   :init
   (setq region-occurrences-highlighter-min-size 1)
   :config
-  (set-face-attribute 'region-occurrences-highlighter-face
-                      nil
-                      :background "#113D6F"
-                      :inverse-video nil))
+  (set-face-attribute 'region-occurrences-highlighter-face nil
+                      :background "#113D6F" :inverse-video nil))
 
 (use-package reload-emacs
   :defer t
@@ -1117,14 +1112,10 @@
   (autoload 'whitespace-toggle-options "whitespace-mode" "Toggle local `whitespace-mode' options." t)
   ;; All the face can be find here.
   ;; URL: https://www.emacswiki.org/emacs/BlankMode
-  (set-face-attribute 'whitespace-indentation
-                      nil
-                      :background "grey20"
-                      :foreground "aquamarine3")
-  (set-face-attribute 'whitespace-trailing
-                      nil
-                      :background "grey20"
-                      :foreground "red"))
+  (set-face-attribute 'whitespace-indentation nil
+                      :background "grey20" :foreground "aquamarine3")
+  (set-face-attribute 'whitespace-trailing nil
+                      :background "grey20" :foreground "red"))
 
 (use-package windmove
   :defer t
