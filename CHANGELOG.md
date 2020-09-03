@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-09-03
 
 * Implemented reset theme for `tabbar`, from `centaur-tabs`.
+* Minor changes to use environment/platform separator in other use case functions.
 
 ### 2020-09-01
 
