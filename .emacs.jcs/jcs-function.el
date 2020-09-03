@@ -5,17 +5,22 @@
 ;;----------------------------------------------------------------------------
 ;; *Messages*
 
+(defvar jcs--message-buffer--first-init-p nil
+  "Flag to check if message buffer first initialized with hook runs.")
+
 ;;;###autoload
 (defun jcs-message-buffer ()
   "Switch to `*Messages*' buffer."
   (interactive)
-  (switch-to-buffer "*Messages*"))
+  (switch-to-buffer "*Messages*")
+  (jcs--message-buffer--first-load))
 
 ;;;###autoload
 (defun jcs-message-buffer-other-window ()
   "Switch to `*Messages*' buffer."
   (interactive)
-  (switch-to-buffer-other-window "*Messages*"))
+  (switch-to-buffer-other-window "*Messages*")
+  (jcs--message-buffer--first-load))
 
 ;;;###autoload
 (defun jcs-message-erase-buffer ()
@@ -33,6 +38,12 @@
   (interactive)
   (jcs-message-erase-buffer)
   (switch-to-buffer "*Messages*"))
+
+(defun jcs--message-buffer--first-load ()
+  "First load message buffer, ensure the hook runs."
+  (unless jcs--message-buffer--first-init-p
+    (messages-buffer-mode)
+    (setq jcs--message-buffer--first-init-p t)))
 
 ;;----------------------------------------------------------------------------
 ;; *scratch*
