@@ -291,11 +291,11 @@ If REGEX is non-nil, check by using regular expression."
 (defun jcs-print-timestamps ()
   "Print out all the timestamps."
   (interactive)
-  (message "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
+  (message (jcs-env-separator))
   (message "=> Ver. 1 %s" (jcs-get-timestamp-ver1))
   (message "=> Ver. 2 %s" (jcs-get-timestamp-ver2))
-  (message "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=")
-  (message "All version of timestamps printed.")
+  (message (jcs-env-separator))
+  (message "[INFO] All version of timestamps printed.")
   (jcs-do-after-log-action))
 
 ;;----------------------------------------------------------------------------
@@ -303,10 +303,7 @@ If REGEX is non-nil, check by using regular expression."
 
 (defun jcs-safe-kill-timer (tmr)
   "Kill timer (TMR) the safe way."
-  (when (timerp tmr)
-    (cancel-timer tmr)
-    (setf tmr nil)
-    tmr))
+  (when (timerp tmr) (cancel-timer tmr) (setf tmr nil) tmr))
 
 ;;----------------------------------------------------------------------------
 ;; Organize Code
