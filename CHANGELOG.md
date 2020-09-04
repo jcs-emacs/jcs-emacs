@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-09-04
+
+* Installed new package `searcher`.
+
 ### 2020-09-03
 
 * Implemented reset theme for `tabbar`, from `centaur-tabs`.
