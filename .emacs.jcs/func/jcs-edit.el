@@ -6,16 +6,15 @@
 ;; Undo / Redo
 
 ;;
-;; NOTE: This is compatible with other text editor
-;; or IDE. Most IDE/text editor have this undo/redo
-;; system as default.
+;; NOTE: This is compatible with other text editor or IDE. Most IDE/text
+;; editor have this undo/redo system as default.
 ;;
 (defvar jcs-use-undo-tree-key t
   "Using the undo tree key in stead of normal Emacs's undo key.
 This variable must be use with `jcs-undo' and `jcs-redo' functions.")
 
-;; NOTE: Active this will cause huge amount of performance,
-;; consider this before active.
+;; NOTE: Active this will cause huge amount of performance, consider this
+;; before active.
 (defvar jcs-undo-tree-auto-show-diff nil
   "Show the difference code when undo tree minor mode is active.")
 
@@ -49,9 +48,7 @@ This variable must be use with `jcs-undo' and `jcs-redo' functions.")
 (defun jcs-toggle-undo-tree-key()
   "Toggle `jcs-use-undo-tree-key' boolean."
   (interactive)
-  (if jcs-use-undo-tree-key
-      (jcs-disable-undo-tree-key)
-    (jcs-enable-undo-tree-key)))
+  (if jcs-use-undo-tree-key (jcs-disable-undo-tree-key) (jcs-enable-undo-tree-key)))
 
 ;;;###autoload
 (defun jcs-enable-undo-tree-key ()
@@ -59,7 +56,7 @@ This variable must be use with `jcs-undo' and `jcs-redo' functions.")
 This will replace usual Emacs' undo key."
   (interactive)
   (setq jcs-use-undo-tree-key t)
-  (message "Enable undo tree key."))
+  (message "Enable undo tree key"))
 
 ;;;###autoload
 (defun jcs-disable-undo-tree-key ()
@@ -67,7 +64,7 @@ This will replace usual Emacs' undo key."
 This will no longer overwrite usual Emacs' undo key."
   (interactive)
   (setq jcs-use-undo-tree-key nil)
-  (message "Disable undo tree key."))
+  (message "Disable undo tree key"))
 
 
 (defun jcs-undo-kill-this-buffer ()
