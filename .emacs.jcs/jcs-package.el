@@ -158,6 +158,7 @@
     rjsx-mode
     rust-mode
     scala-mode
+    searcher
     shader-mode
     show-eol
     ssass-mode
