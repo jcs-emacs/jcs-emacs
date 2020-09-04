@@ -67,16 +67,21 @@ This will no longer overwrite usual Emacs' undo key."
   (message "Disable undo tree key"))
 
 
+(defun jcs--undo-tree-visualizer-quit--advice-after (&rest _)
+  "Advice execute after `undo-tree-visualizer-quit' function."
+  (when jcs--splits-windows
+    (delete-window)
+    (setq jcs--splits-windows nil)
+    (switch-to-buffer undo-tree-visualizer-parent-buffer)))
+
+(advice-add 'undo-tree-visualizer-quit :after #'jcs--undo-tree-visualizer-quit--advice-after)
+
 (defun jcs-undo-kill-this-buffer ()
   "Kill the undo tree buffer."
   (require 'undo-tree)
   (jcs-safe-jump-shown-to-buffer
    undo-tree-visualizer-buffer-name
-   (lambda ()
-     (save-window-excursion (ignore-errors (undo-tree-visualizer-quit)))
-     (when jcs--splits-windows
-       (delete-window)
-       (setq jcs--splits-windows nil)))))
+   (lambda () (save-window-excursion (ignore-errors (undo-tree-visualizer-quit))))))
 
 (defun jcs-undo-tree-visualize (&optional cbf)
   "Call `undo-tree-visualize' only in window that has higher height.
