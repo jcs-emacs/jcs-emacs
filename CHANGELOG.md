@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-09-04
 
 * Installed new package `searcher`.
+* Fixed logic for single window workflow's compatibility with `undo-tree`.
 
 ### 2020-09-03
 
