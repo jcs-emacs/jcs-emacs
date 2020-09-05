@@ -308,8 +308,8 @@ Note this is opposite logic to the toggle mode function."
     ;; Set 'depend' mode key
 
     ;; search
-    (define-key global-map (kbd "C-f") #'counsel-ag)
-    (define-key global-map (kbd "C-S-f") #'counsel-ag)  ; TODO: Use `ag' across project?
+    (define-key global-map (kbd "C-f") #'ivy-searcher-search-file)
+    (define-key global-map (kbd "C-S-f") #'ivy-searcher-search-project)
 
     (define-key global-map (kbd "C-r p") #'jcs-ag-project-regexp)
 
