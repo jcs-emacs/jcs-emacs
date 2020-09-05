@@ -112,6 +112,7 @@
     ini-mode
     isearch-project
     ivy
+    ivy-searcher
     javadoc-lookup
     js2-mode
     json-mode
@@ -158,7 +159,6 @@
     rjsx-mode
     rust-mode
     scala-mode
-    searcher
     shader-mode
     show-eol
     ssass-mode
