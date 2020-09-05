@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-09-06
 
 * Several bug fixed while extracting LSP config to isolated file.
+* Installed new package `ivy-searcher`.
 
 ### 2020-09-05
 
