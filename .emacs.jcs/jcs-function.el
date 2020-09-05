@@ -858,8 +858,9 @@ NO-PROMPT : Don't prompt the overwrap message."
 (require 'jcs-window)
 (jcs-with-eval-after-load-multiple
  '(shell eshell-mode) #'(lambda () (require 'jcs-shell)))
-(with-eval-after-load 'feebleline (require 'jcs-feebleline-func))
-(with-eval-after-load 'ivy (require 'jcs-ivy-func))
+(with-eval-after-load 'feebleline (require 'jcs-feebleline))
+(with-eval-after-load 'ivy (require 'jcs-ivy))
+(with-eval-after-load 'lsp-mode (require 'jcs-lsp))
 
 ;; Editing
 (add-hook 'Buffer-menu-mode-hook (lambda () (require 'jcs-buffer-menu)))
