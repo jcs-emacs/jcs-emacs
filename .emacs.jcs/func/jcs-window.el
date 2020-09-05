@@ -179,7 +179,7 @@ TYPE can be 'buffer or 'window."
   (let ((type-list '()) (break nil) (windmove-wrap-around nil))
     (save-selected-window
       (jcs-move-to-upmost-window t)
-      (while (and (not break))
+      (while (not break)
         (push
          (cl-case type
            ('buffer (buffer-name))
@@ -243,11 +243,8 @@ TYPE can be 'buffer or 'window."
 (defun jcs-toggle-enlarge-window-selected ()
   "Toggle between show the whole buffer and current window state."
   (interactive)
-  (if (and jcs-is-enlarge-current-buffer
-           jcs-is-enlarge-buffer)
-      (progn
-        (balance-windows)
-        (setq jcs-is-enlarge-buffer nil))
+  (if (and jcs-is-enlarge-current-buffer jcs-is-enlarge-buffer)
+      (progn (balance-windows) (setq jcs-is-enlarge-buffer nil))
     (maximize-window)
 
     ;; Set all local enlarge to false.
@@ -303,8 +300,7 @@ i.e. change right window to bottom, or change bottom window to right."
   (let ((larger-window nil))
     (jcs-walk-through-all-windows-once
      (lambda ()
-       (when (and (not larger-window)
-                  (jcs-window-is-larger-in-height-p))
+       (when (and (not larger-window) (jcs-window-is-larger-in-height-p))
          (setq larger-window (selected-window)))))
     larger-window))
 
