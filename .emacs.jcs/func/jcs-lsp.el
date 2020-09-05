@@ -68,6 +68,7 @@
                                                     '(save-buffers-kill-terminal))))
                (ignore-errors (call-interactively #'lsp-ui-doc-show))
              (jcs--lsp-current-last-signature-buffer))))))
+
 (defun jcs--lsp-ui-doc--hide-frame ()
   "Safe way to call `lsp-ui-doc--hide-frame' function."
   (when (and (functionp 'lsp-ui-doc--hide-frame) (not jcs--lsp-lv-recording))

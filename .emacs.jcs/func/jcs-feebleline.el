@@ -165,7 +165,7 @@
               (propertize "[" 'face jcs--feebleline--separator-face)
               (jcs-buffer-spaces-to-tabs)
               (propertize "::" 'face jcs--feebleline--separator-face)
-              (jcs-get-tab-width-by-mode)
+              (jcs-get-indent-level-by-mode)
               (propertize "]" 'face jcs--feebleline--separator-face))
     ""))
 

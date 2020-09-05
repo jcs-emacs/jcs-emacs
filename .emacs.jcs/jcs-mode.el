@@ -116,7 +116,7 @@ Note this is opposite logic to the toggle mode function."
    ((jcs-is-current-major-mode-p '("yaml-mode")) (quote yaml-indent-offset))
    (t (quote tab-width))))
 
-(defun jcs-set-tab-width-by-mode (tw)
+(defun jcs-set-indent-level-by-mode (tw)
   "Set the tab width (TW) for current major mode."
   (let ((var-symbol (jcs--indent-level-by-mode)))
     (cond ((listp var-symbol)
@@ -126,7 +126,7 @@ Note this is opposite logic to the toggle mode function."
     (jcs-set-indent-level-record-by-mode tw)
     (message "Current indent level: %s" tw)))
 
-(defun jcs-get-tab-width-by-mode ()
+(defun jcs-get-indent-level-by-mode ()
   "Get indentation level by mode."
   (let ((var-symbol (jcs--indent-level-by-mode)))
     (when (listp var-symbol) (setq var-symbol (nth 0 var-symbol)))
@@ -138,8 +138,8 @@ Note this is opposite logic to the toggle mode function."
 
 (defun jcs-delta-tab-width (dv)
   "Increase/Decrease tab width by delta value (DV)."
-  (let ((indent-level (jcs-get-tab-width-by-mode)))
-    (jcs-set-tab-width-by-mode
+  (let ((indent-level (jcs-get-indent-level-by-mode)))
+    (jcs-set-indent-level-by-mode
      (jcs--delta-ensure-valid-tab-width indent-level  dv))))
 
 (defun jcs-set-indent-level-record-by-mode (tw &optional mn)
@@ -176,7 +176,7 @@ Note this is opposite logic to the toggle mode function."
 
 (defun jcs-continue-with-tab-width-record ()
   "Keep the tab width the same as last time modified."
-  (jcs-set-tab-width-by-mode (jcs-get-indent-level-record-by-mode)))
+  (jcs-set-indent-level-by-mode (jcs-get-indent-level-record-by-mode)))
 
 (defun jcs-buffer-spaces-to-tabs ()
   "Check if buffer using spaces or tabs."
