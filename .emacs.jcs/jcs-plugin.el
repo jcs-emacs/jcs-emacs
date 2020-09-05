@@ -624,7 +624,6 @@
   (setq lsp-keep-workspace-alive nil)  ; Auto-kill LSP server
   (setq lsp-prefer-flymake nil)        ; Use lsp-ui and flycheck
   (setq flymake-fringe-indicator-position 'right-fringe)
-
   (defconst jcs--lsp-lv-buffer-name " *LV*"
     "Help record the ` *LV*' buffer name.")
 
@@ -648,42 +647,10 @@
         (if (and (stringp ls-buf) (stringp (buffer-file-name)))
             (string-match-p ls-buf (buffer-file-name))
           nil))))
+
   (defun jcs--lsp-signature-maybe-stop ()
     "Maybe stop the signature action."
-    (when (functionp 'lsp-signature-maybe-stop) (lsp-signature-maybe-stop)))
-  :config
-  (defun jcs--lsp-lv-buffer-alive-p ()
-    "Check if ` *LV*' buffer alive."
-    (get-buffer jcs--lsp-lv-buffer-name))
-  (defun jcs--lsp--execute-command--advice-around (fnc &rest args)
-    "Advice execute around `lsp--execute-command'."
-    (let ((jcs--lsp--executing-command t))
-      (apply fnc args)))
-  (advice-add 'lsp--execute-command :around #'jcs--lsp--execute-command--advice-around)
-
-  ;; Enable or Disable for LSP.
-
-  (defun jcs--lsp--stuff-on-enabled ()
-    "Do stuff when lsp is enabled."
-    (setq debug-on-error nil)  ; TODO: Get rid of this after `lsp-mode' is stabled.
-    (jcs-re-enable-mode 'company-fuzzy-mode)
-    (lsp-origami-mode 1))
-
-  (defun jcs--lsp--stuff-on-disabled ()
-    "Do stuff when lsp is disabled."
-    (setq debug-on-error t)  ; TODO: Get rid of this after `lsp-mode' is stabled.
-    (lsp-origami-mode -1))
-
-  (defun jcs--lsp-managed-mode-hook ()
-    "LSP managed mode hook."
-    (if (and lsp-mode lsp-managed-mode) (jcs--lsp--stuff-on-enabled) (jcs--lsp--stuff-on-disabled)))
-
-  (defun jcs--lsp-mode-hook ()
-    "LSP mode hook."
-    (if lsp-mode (jcs--lsp--stuff-on-enabled) (jcs--lsp--stuff-on-disabled)))
-
-  (add-hook 'lsp-managed-mode-hook 'jcs--lsp-managed-mode-hook)
-  (add-hook 'lsp-mode-hook 'jcs--lsp-mode-hook))
+    (when (functionp 'lsp-signature-maybe-stop) (lsp-signature-maybe-stop))))
 
 (use-package lsp-ui
   :defer t
@@ -703,36 +670,7 @@
         lsp-ui-sideline-enable t
         lsp-ui-sideline-show-hover nil
         lsp-ui-sideline-show-diagnostics nil
-        lsp-ui-sideline-ignore-duplicate t)
-
-  (defvar jcs--lsp-ui--doc-timer nil
-    "Self timer to show document.")
-
-  (defun jcs--lsp-ui-mode--enabled-p ()
-    "Check if `lsp-ui-mode' enabled."
-    (and (boundp 'lsp-ui-mode) lsp-ui-mode))
-  (defun jcs--lsp-ui-doc-stop-timer ()
-    "Safe way to stop lsp UI document."
-    (when (and (boundp 'lsp-ui-doc--timer) (timerp lsp-ui-doc--timer))
-      (cancel-timer lsp-ui-doc--timer)))
-  (defun jcs--lsp-ui-doc-show-safely ()
-    "Safe way to show lsp UI document."
-    (setq jcs--lsp-ui--doc-timer (jcs-safe-kill-timer jcs--lsp-ui--doc-timer))
-    (setq jcs--lsp-ui--doc-timer
-          (run-with-idle-timer
-           lsp-ui-doc-delay nil
-           (lambda ()
-             (if (and
-                  (jcs--lsp-ui-mode--enabled-p)
-                  (not jcs--lsp--executing-command)
-                  (not (jcs-is-command-these-commands this-command
-                                                      '(save-buffers-kill-terminal))))
-                 (ignore-errors (call-interactively #'lsp-ui-doc-show))
-               (jcs--lsp-current-last-signature-buffer))))))
-  (defun jcs--lsp-ui-doc--hide-frame ()
-    "Safe way to call `lsp-ui-doc--hide-frame' function."
-    (when (and (functionp 'lsp-ui-doc--hide-frame) (not jcs--lsp-lv-recording))
-      (lsp-ui-doc--hide-frame))))
+        lsp-ui-sideline-ignore-duplicate t))
 
 (use-package most-used-words
   :defer t
