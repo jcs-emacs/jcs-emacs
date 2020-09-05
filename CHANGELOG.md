@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-09-05
+
+* Split up the LSP config to isolated module.
+
 ### 2020-09-04
 
 * Installed new package `searcher`.
