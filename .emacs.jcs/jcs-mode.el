@@ -128,7 +128,9 @@ Note this is opposite logic to the toggle mode function."
 
 (defun jcs-get-tab-width-by-mode ()
   "Get indentation level by mode."
-  (symbol-value (jcs--indent-level-by-mode)))
+  (let ((var-symbol (jcs--indent-level-by-mode)))
+    (when (listp var-symbol) (setq var-symbol (nth 0 var-symbol)))
+    (symbol-value var-symbol)))
 
 (defun jcs--delta-ensure-valid-tab-width (cv dv)
   "Change tab width by current value CV and delta value (DV)."
