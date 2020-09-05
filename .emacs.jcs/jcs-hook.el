@@ -5,13 +5,15 @@
 (defun jcs-focus-in-hook ()
   "When window is focus."
   (jcs-revert-all-file-buffers)
-  (jcs--lsp-ui-doc-show-safely))
+  (progn  ; LSP
+    (jcs--lsp-ui-doc-show-safely)))
 (add-hook 'focus-in-hook 'jcs-focus-in-hook)
 
 (defun jcs-focus-out-hook ()
   "When window is not focus."
-  (jcs--lsp-ui-doc-stop-timer)
-  (jcs--lsp-ui-doc--hide-frame))
+  (progn  ; LSP
+    (jcs--lsp-ui-doc-stop-timer)
+    (jcs--lsp-ui-doc--hide-frame)))
 (add-hook 'focus-out-hook 'jcs-focus-out-hook)
 
 (defvar jcs--lsp-lv-was-alive nil
@@ -22,16 +24,17 @@
 
 (defun jcs-window-size-change-functions (&rest _)
   "When window changed size."
-  (when (and (boundp 'lsp-mode) lsp-mode)
-    (if (jcs--lsp-lv-buffer-alive-p)
-        (setq jcs--lsp-lv-was-alive t)
-      (if jcs--lsp-lv-was-alive
-          (progn
-            (when (jcs--lsp-current-last-signature-buffer)
-              (let ((pt (point))) (jcs-window-restore-once) (goto-char pt)))
-            (setq jcs--lsp-lv-was-alive nil))
-        (let ((jcs--lsp-lv-recording t)) (jcs-window-record-once)))))
-  (jcs--lsp-ui-doc-show-safely))
+  (progn  ; LSP
+    (when (and (boundp 'lsp-mode) lsp-mode)
+      (if (jcs--lsp-lv-buffer-alive-p)
+          (setq jcs--lsp-lv-was-alive t)
+        (if jcs--lsp-lv-was-alive
+            (progn
+              (when (jcs--lsp-current-last-signature-buffer)
+                (let ((pt (point))) (jcs-window-restore-once) (goto-char pt)))
+              (setq jcs--lsp-lv-was-alive nil))
+          (let ((jcs--lsp-lv-recording t)) (jcs-window-record-once)))))
+    (jcs--lsp-ui-doc-show-safely)))
 (add-hook 'window-size-change-functions 'jcs-window-size-change-functions)
 
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -75,8 +78,8 @@
   "Advice execute before `other-window' command."
   (unless jcs--no-advice-other-window
     (when (fboundp 'company-abort) (company-abort))
-    (jcs--lsp-ui-doc-stop-timer)
-    (jcs--lsp-ui-doc--hide-frame)))
+    (progn  ; LSP
+      (jcs--lsp-ui-doc-stop-timer))))
 (advice-add 'other-window :before #'jcs--other-window--advice-before)
 
 (defun jcs--other-window--advice-after (&rest _args)
@@ -84,20 +87,21 @@
   (unless jcs--no-advice-other-window
     ;;--------------------------------------------------------------------
     ;; NOTE: LSP needs this from stopping me navigate through windows.
-    (when (jcs-frame-util-p)
-      (cl-case this-command
-        ('jcs-other-window-next (jcs-other-window-next))
-        ('jcs-other-window-prev (jcs-other-window-prev))))
-    ;;--------------------------------------------------------------------
-    (select-frame-set-input-focus (selected-frame))
-    (jcs--neotree-start-refresh)
-    (when (and (boundp 'neo-buffer-name)
-               (not (string= neo-buffer-name (buffer-name (current-buffer)))))
-      (setq jcs--neotree--last-window (selected-window)))
-    (jcs-buffer-menu-safe-refresh)
-    (jcs-dashboard-safe-refresh-buffer)
-    (jcs--lsp-signature-maybe-stop)
-    (jcs--lsp-ui-doc-show-safely)))
+    (if (jcs-frame-util-p)
+        (cl-case this-command
+          ('jcs-other-window-next (jcs-other-window-next))
+          ('jcs-other-window-prev (jcs-other-window-prev)))
+      ;;--------------------------------------------------------------------
+      (select-frame-set-input-focus (selected-frame))
+      (jcs--neotree-start-refresh)
+      (when (and (boundp 'neo-buffer-name)
+                 (not (string= neo-buffer-name (buffer-name (current-buffer)))))
+        (setq jcs--neotree--last-window (selected-window)))
+      (jcs-buffer-menu-safe-refresh)
+      (jcs-dashboard-safe-refresh-buffer)
+      (progn  ; LSP
+        (jcs--lsp-signature-maybe-stop)
+        (jcs--lsp-ui-doc-show-safely)))))
 (advice-add 'other-window :after #'jcs--other-window--advice-after)
 
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -217,8 +221,9 @@
 
 (defun jcs-post-command-hook ()
   "Hook run after every command."
-  (jcs--lsp-ui-doc--hide-frame)
-  (jcs--lsp-ui-doc-show-safely)
+  (progn  ; LSP
+    (jcs--lsp-ui-doc--hide-frame)
+    (jcs--lsp-ui-doc-show-safely))
   (jcs-reload-active-mode-with-error-handle)
   (unless (display-graphic-p) (jcs-feebleline-display-mode-line-graphic)))
 (add-hook 'post-command-hook 'jcs-post-command-hook)
