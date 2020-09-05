@@ -151,6 +151,8 @@
         iedit-switch-to-mc-mode
         ignore
         indent-new-comment-line
+        ivy-searcher-search-file
+        ivy-searcher-search-project
         javadoc-lookup
         jcs-ace-window-1
         jcs-ace-window-2
