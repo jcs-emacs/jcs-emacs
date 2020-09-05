@@ -624,6 +624,7 @@
   (setq lsp-keep-workspace-alive nil)  ; Auto-kill LSP server
   (setq lsp-prefer-flymake nil)        ; Use lsp-ui and flycheck
   (setq flymake-fringe-indicator-position 'right-fringe)
+
   (defconst jcs--lsp-lv-buffer-name " *LV*"
     "Help record the ` *LV*' buffer name.")
 
@@ -670,7 +671,12 @@
         lsp-ui-sideline-enable t
         lsp-ui-sideline-show-hover nil
         lsp-ui-sideline-show-diagnostics nil
-        lsp-ui-sideline-ignore-duplicate t))
+        lsp-ui-sideline-ignore-duplicate t)
+
+  (defun jcs--lsp-ui-doc--hide-frame ()
+    "Safe way to call `lsp-ui-doc--hide-frame' function."
+    (when (and (functionp 'lsp-ui-doc--hide-frame) (not jcs--lsp-lv-recording))
+      (lsp-ui-doc--hide-frame))))
 
 (use-package most-used-words
   :defer t
