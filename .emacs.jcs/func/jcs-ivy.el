@@ -1,4 +1,4 @@
-;;; jcs-ivy-func.el --- Ivy function related.  -*- lexical-binding: t -*-
+;;; jcs-ivy.el --- Ivy function related.  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -86,5 +86,5 @@ Return nil, to NOT to skip the input selection."
         (switch-to-buffer buf)
         (find-file-other-window target-buf)))))
 
-(provide 'jcs-ivy-func)
-;;; jcs-ivy-func.el ends here
+(provide 'jcs-ivy)
+;;; jcs-ivy.el ends here

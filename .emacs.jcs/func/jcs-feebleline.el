@@ -1,4 +1,4 @@
-;;; jcs-feebleline-func.el --- Feebleline function related.  -*- lexical-binding: t -*-
+;;; jcs-feebleline.el --- Feebleline function related.  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -248,5 +248,5 @@
           ffmpeg-player--volume
           (propertize "]" 'face jcs--feebleline--separator-face)))
 
-(provide 'jcs-feebleline-func)
-;;; jcs-feebleline-func.el ends here
+(provide 'jcs-feebleline)
+;;; jcs-feebleline.el ends here
