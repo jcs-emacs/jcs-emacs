@@ -24,7 +24,8 @@
 
 ;;;###autoload
 (defun jcs-jump-shown-to-buffer (in-buffer-name &optional no-error)
-  "Jump to the IN-BUFFER-NAME if the buffer current shown in the window."
+  "Jump to the IN-BUFFER-NAME if the buffer current shown in the window.
+If NO-ERROR non-nil then it won't treat action as an error."
   (interactive "bEnter buffer to jump to: ")
   (let ((found nil))
     (when (jcs-buffer-shown-p in-buffer-name)
