@@ -10,6 +10,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Changed install source for package `license-templates` from `quelpa` to `melpa`.
 * Removed packages `ag`, `wgrep`, and `wgrep-ag`.
 * Replaced all `ag` and `wgrep` functionalities with `searcher` instead.
+* Changed default `dumb-jump` selector to `ivy` and not `helm`.
 
 ### 2020-09-06
 
