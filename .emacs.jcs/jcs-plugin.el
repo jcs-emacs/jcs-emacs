@@ -607,6 +607,11 @@
   (setq enable-recursive-minibuffers t)
   (setq ivy-wrap t))
 
+(use-package ivy-searcher
+  :defer t
+  :init
+  (setq ivy-searcher-display-info 'line/column))
+
 (use-package line-reminder
   :defer t
   :init
