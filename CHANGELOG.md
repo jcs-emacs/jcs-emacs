@@ -8,6 +8,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-09-07
 
 * Changed install source for package `license-templates` from `quelpa` to `melpa`.
+* Removed package [ag](https://github.com/Wilfred/ag.el).
+* Removed package [wgrep](https://github.com/mhayashi1120/Emacs-wgrep).
+* Removed package [wgrep-ag](https://github.com/mhayashi1120/Emacs-wgrep).
 
 ### 2020-09-06
 
