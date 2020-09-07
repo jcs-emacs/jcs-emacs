@@ -124,7 +124,6 @@ Here is the list of few important and recent changes to this configuration.
 * `5.9.3` - The last version to support `helm`.
 * `5.9.0` - Implemented video player functionalities.
 * `5.8.8` - Multiple terminal is now working.
-* `5.8.7` - Set `smart-indent` as one option to move previous/next line.
 
 ## :floppy_disk: Installation
 
