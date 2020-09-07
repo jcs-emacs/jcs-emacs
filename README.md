@@ -231,91 +231,48 @@ This is the list of features that are built-in to this configuration. These feat
 are heavily base on my personal habits, and so these could be very tiny things. But
 I believed detials make things better and make life smoother.
 
-* [*Auto Install Package*](./features/auto-install-package) -
-Automatically installs the package that this config relies on.
-* ~~[*Auto Truncate Lines*](./features/auto-truncate-lines) -
-Automatically enable/disable `truncate-lines-mode` depends on certain situation. ([markup language](https://en.wikipedia.org/wiki/Markup_language) only)~~
-(has move to [auto-truncate-lines](https://github.com/jcs-elpa/atl-markup))
-* [*Better Dashboard*](./features/better-dashboard) -
-Implementation for improving experiences using dashboard.
-* [*Buffer Menu Search*](./features/buffer-menu-search) -
-Able to search in the `*Buffer List*` buffer.
-* [*Build Run*](./features/build-run) -
-Implementation for executing script for building and running the software.
-* [*Capital Word*](./features/capital-word) -
-You can navigate/kill word by seeing capital letter.
-* [*Changelog Helper*](./features/changelog-helper) -
-Help to create changelog while creating `CHANGELOG` file using template.
-* [*Consistent Key Bindings*](./features/consistent-key-bindings) -
-Has consistent key bindings across all modes.
-* [*Curly Bracket Modes*](./curly-bracket-modes) -
-Use curly bracket depends on different mode.
-* [*Display File*](./features/display-file) -
-Utility function to use to view a file on the other window.
-  * [*Charset Table*](./features/display-file/charset-table) -
-  Built-in functions that displays character sets.
-* [*Docstring Completion*](./features/docstring-completion) -
-Some standard docstring completion implementations built-in to this configuration.
+* [*Auto Install Package*](./features/auto-install-package) - Automatically installs the package that this config relies on.
+* ~~[*Auto Truncate Lines*](./features/auto-truncate-lines) - Automatically enable/disable `truncate-lines-mode` depends on certain situation. ([markup language](https://en.wikipedia.org/wiki/Markup_language) only)~~ (has move to [auto-truncate-lines](https://github.com/jcs-elpa/atl-markup))
+* [*Better Dashboard*](./features/better-dashboard) - Implementation for improving experiences using dashboard.
+* [*Buffer Menu Search*](./features/buffer-menu-search) - Able to search in the `*Buffer List*` buffer.
+* [*Build Run*](./features/build-run) - Implementation for executing script for building and running the software.
+* [*Capital Word*](./features/capital-word) - You can navigate/kill word by seeing capital letter.
+* [*Changelog Helper*](./features/changelog-helper) - Help to create changelog while creating `CHANGELOG` file using template.
+* [*Consistent Key Bindings*](./features/consistent-key-bindings) - Has consistent key bindings across all modes.
+* [*Curly Bracket Modes*](./curly-bracket-modes) - Use curly bracket depends on different mode.
+* [*Display File*](./features/display-file) - Utility function to use to view a file on the other window.
+  * [*Charset Table*](./features/display-file/charset-table) - Built-in functions that displays character sets.
+* [*Docstring Completion*](./features/docstring-completion) - Some standard docstring completion implementations built-in to this configuration.
 * Enhanced Multiple Cursors
-  * [*Similar Multiple Cursors*](./features/similar-multiple-cursors) -
-  Mark with cursor by similarity.
-  * [*VS Multiple Cursors*](./features/vs-multiple-cursors) -
-  VSCode like methods to `mark` and `unmark` multiple cursor.
-* [*Fast Incremental Search*](./features/fast-incremental-search) -
-Fast keys for incremental search forward/backward to the cursor is currently pointing.
-* [*Feebleline Design*](./features/feebleline-design) -
-Personal displayed design for `feebleline`.
-* [*Indent Control*](./features/indent-control) -
-Generic control the indentation level for each mode, for more information see [indent-control](https://github.com/alt-elpa/indent-control).
+  * [*Similar Multiple Cursors*](./features/similar-multiple-cursors) - Mark with cursor by similarity.
+  * [*VS Multiple Cursors*](./features/vs-multiple-cursors) - VSCode like methods to `mark` and `unmark` multiple cursor.
+* [*Fast Incremental Search*](./features/fast-incremental-search) - Fast keys for incremental search forward/backward to the cursor is currently pointing.
+* [*Feebleline Design*](./features/feebleline-design) - Personal displayed design for `feebleline`.
+* [*Indent Control*](./features/indent-control) - Generic control the indentation level for each mode, for more information see [indent-control](https://github.com/alt-elpa/indent-control).
 * Previous/Next Keys
-  * [*Normal Move*]() -
-  Act like other normal editors.
-  * [*Indent Move*](./features/indent-move) -
-  Automatically indent when cursor moves up and down.
-  * [*Smart-Move*](./features/smart-move) -
-  Smart enough to move cursor to the beginning of the line.
-* [*Line Numbers Modding*](./features/line-numbers-modding) -
-Mixed used of `linum` and `display-line-numbers-mode` base on the file usage.
-* [*License Helper*](./features/license-helper) -
-Help to create license while creating `LICENSE` file using template.
-* [*Mini State*](./features/mini-state) -
-Mini mode state use to visually see what backend is the config currently running.
-  * [*Auto Switch State*](./features/mini-state/auto-switch-state) -
-  Automatcially switch mini state depends on certain circumstances.
-* ~~[*Mode Line Toggle*](./features/mode-line-toggle) -
-Toggle to `show` or `hide` the mode line.~~
-* [*Modern Text Editor*](./features/modern-text-editor) -
-Design to have the preset settings close to modern text editors but faster.
-* [*Multiple Output*](./features/multiple-output) -
-Handle multiple output/compilation buffers.
-* [*Navigate Blank Line*](./features/navigate-blank-line) -
-Use `C-<up>` and `C-<down>` to navigate previous and next blank line.
-* [*Navigate Table*](./features/navigate-table) -
-Navigate `org-mode`'s table easier by using arrow keys.
-* [*Preview HTML*](./features/preview-html) -
-Preview rendered HTML file on the other window.
-* [*Simulate Shell*](./features/simulate-shell) -
-Completely simulate shell behaviors, make better user experience when using shell in Emacs.
-* [*Switch Window*](./features/switch-window) -
-Fast keys switch between windows quickly.
-* [*Tabify/Untabify Modes*](./features/tabify-untabify-modes) -
-Tabify or Untabify the file depends on the mode you currently in.
-* ~~[*Transparent Window*](./features/transparent-window) -
-Keys to increase/decrease the transparency of the frame.~~
-(has move to [transwin](https://github.com/jcs-elpa/transwin))
-* [*Trim Trailing Whitespace*](./features/trim-trailing-whitespace) -
-Remove trailing spaces and tabs automatically on save.
-* [*Video Player*](./features/video-player) -
-Play media on the top window.
-* [*Visualize Undo/Redo*](./features/visualize-undo-redo) -
-Improved the user experience on undoing and redoing by
-showing the `undo-tree-visualizer` at the other window.
-* [*VS Curly Bracket*](./features/vs-curly-bracket) -
-Visual Studio IDE like curly bracket implementation.
-* [*VS Multiple Terminal*](./features/vs-multiple-terminal) -
-VSCode like multiple shell control.
-* [*VS Navigate Word*](./features/vs-navigate-word) -
-Visual Studio IDE like navigating between word implementation.
+  * [*Normal Move*]() - Act like other normal editors.
+  * [*Indent Move*](./features/indent-move) - Automatically indent when cursor moves up and down.
+  * [*Smart-Move*](./features/smart-move) - Smart enough to move cursor to the beginning of the line.
+* [*Line Numbers Modding*](./features/line-numbers-modding) - Mixed used of `linum` and `display-line-numbers-mode` base on the file usage.
+* [*License Helper*](./features/license-helper) - Help to create license while creating `LICENSE` file using template.
+* [*Mini State*](./features/mini-state) - Mini mode state use to visually see what backend is the config currently running.
+  * [*Auto Switch State*](./features/mini-state/auto-switch-state) - Automatcially switch mini state depends on certain circumstances.
+* ~~[*Mode Line Toggle*](./features/mode-line-toggle) - Toggle to `show` or `hide` the mode line.~~
+* [*Modern Text Editor*](./features/modern-text-editor) - Design to have the preset settings close to modern text editors but faster.
+* [*Multiple Output*](./features/multiple-output) - Handle multiple output/compilation buffers.
+* [*Navigate Blank Line*](./features/navigate-blank-line) - Use `C-<up>` and `C-<down>` to navigate previous and next blank line.
+* [*Navigate Table*](./features/navigate-table) - Navigate `org-mode`'s table easier by using arrow keys.
+* [*Preview HTML*](./features/preview-html) - Preview rendered HTML file on the other window.
+* [*Simulate Shell*](./features/simulate-shell) - Completely simulate shell behaviors, make better user experience when using shell in Emacs.
+* [*Switch Window*](./features/switch-window) - Fast keys switch between windows quickly.
+* [*Tabify/Untabify Modes*](./features/tabify-untabify-modes) - Tabify or Untabify the file depends on the mode you currently in.
+* ~~[*Transparent Window*](./features/transparent-window) - Keys to increase/decrease the transparency of the frame.~~ (has move to [transwin](https://github.com/jcs-elpa/transwin))
+* [*Trim Trailing Whitespace*](./features/trim-trailing-whitespace) - Remove trailing spaces and tabs automatically on save.
+* [*Video Player*](./features/video-player) - Play media on the top window.
+* [*Visualize Undo/Redo*](./features/visualize-undo-redo) - Improved the user experience on undoing and redoing by showing the `undo-tree-visualizer` at the other window.
+* [*VS Curly Bracket*](./features/vs-curly-bracket) - Visual Studio IDE like curly bracket implementation.
+* [*VS Multiple Terminal*](./features/vs-multiple-terminal) - VSCode like multiple shell control.
+* [*VS Navigate Word*](./features/vs-navigate-word) - Visual Studio IDE like navigating between word implementation.
 
 ## :file_folder: Package Archives
 
@@ -348,132 +305,63 @@ kind of methods that you could support the maintainer you want.
 
 ### Functionalities
 
-* *Abbreivation Definition* - powered by
-[project-abbrev](https://github.com/elpa-host/project-abbrev).
-* *Alt-Codes* - powered by
-[alt-codes](https://github.com/elpa-host/alt-codes).
-* *Auto Completion* - powered by
-[company](https://github.com/company-mode/company-mode).
-* *Auto Highlight Symbol* - powered by
-[auto-highlight-symbol-mode](https://github.com/mhayashi1120/auto-highlight-symbol-mode).
-* *Banner* - powered by
-[dashboard](https://github.com/emacs-dashboard/emacs-dashboard).
-* *Binary/Hex Editor* - powered by
-[nhexl-mode](https://github.com/emacsmirror/nhexl-mode).
-* *Collaborative Editing* - powered by
-[togetherly](https://github.com/zk-phi/togetherly).
-* *Context Menu* - powered by
-[right-click-context](https://github.com/zonuexe/right-click-context).
+* *Abbreivation Definition* - powered by [project-abbrev](https://github.com/elpa-host/project-abbrev).
+* *Alt-Codes* - powered by [alt-codes](https://github.com/elpa-host/alt-codes).
+* *Auto Completion* - powered by [company](https://github.com/company-mode/company-mode).
+* *Auto Highlight Symbol* - powered by [auto-highlight-symbol-mode](https://github.com/mhayashi1120/auto-highlight-symbol-mode).
+* *Banner* - powered by [dashboard](https://github.com/emacs-dashboard/emacs-dashboard).
+* *Binary/Hex Editor* - powered by [nhexl-mode](https://github.com/emacsmirror/nhexl-mode).
+* *Collaborative Editing* - powered by [togetherly](https://github.com/zk-phi/togetherly).
+* *Context Menu* - powered by [right-click-context](https://github.com/zonuexe/right-click-context).
 * *Docstring* - none, built-in to this configuration.
-* *End of Line* - powered by
-[show-eol](https://github.com/elpa-host/show-eol).
-* *Execute Commands* - powered by
-[compile](https://www.emacswiki.org/emacs/CompilationMode).
-* *File Explorer* - powered by
-[neotree](https://github.com/jaypei/emacs-neotree).
-* *File Header* - powered by
-[file-header](https://github.com/alt-elpa/file-header).
-* *Folding/Unfolding* - powered by
-[origami](https://github.com/gregsexton/origami.el).
-* *Font* - powered by
-[use-ttf](https://github.com/elpa-host/use-ttf).
-* *Goto Char* - powered by
-[goto-char-preview](https://github.com/elpa-host/goto-char-preview).
-* *Goto Declaration/Definition* - powered by
-[dumb-jump](https://github.com/jacktasia/dumb-jump).
-* *Goto Line* - powered by
-[goto-line-preview](https://github.com/elpa-host/goto-line-preview).
-* *Highlight Indentation* - powered by
-[highlight-indent-guides](https://github.com/DarthFennec/highlight-indent-guides).
-* *Highlight Matched Pairs* - powered by
-[show-paren-mode](https://www.emacswiki.org/emacs/ShowParenMode).
-* *Highlight Same Region* - powered by
-[region-occurrences-highlighter](https://github.com/alvarogonzalezsotillo/region-occurrences-highlighter).
-* *Indentation Management* - powered by
-[indent-control](https://github.com/alt-elpa/indent-control).
-* *Language Server Protocol* - powered by
-[lsp-mode](https://github.com/emacs-lsp/lsp-mode).
-* *Line Annotation* - powered by
-[line-reminder](https://github.com/elpa-host/line-reminder).
-* *Line Numbers* - powered by
-[display-line-numbers](https://github.com/emacs-mirror/emacs/blob/master/lisp/display-line-numbers.el)
-and
-[linum](https://github.com/emacs-mirror/emacs/blob/master/lisp/linum.el).
-* *Minimap* - none, originally powered by
-~~[sublimity](https://github.com/zk-phi/sublimity)~~.
-* *Mode Line* - powered by
-[powerline](https://github.com/milkypostman/powerline).
-* *Multiple Cursor* - powered by
-[iedit](https://github.com/victorhge/iedit)
-and
-[multiple-cursors](https://github.com/magnars/multiple-cursors.el).
-* *Multiple Terminal* - powered by
-[multi-shell](https://github.com/jcs-elpa/multi-shell).
-* *Music Player* - powered by
-[ffmpeg-player](https://github.com/jcs-elpa/ffmpeg-player);
-might change to something else.
-* *Navigation/Searcher* - powered by
-[searcher](https://github.com/jcs-elpa/searcher)
-and
-[isearch-project](https://github.com/elpa-host/isearch-project).
-* *Package Archive* - see
-[here](#file_folder-package-archives).
-* *Package Management* - powered by
-[use-package](https://github.com/jwiegley/use-package)
-and
-[quelpa](https://framagit.org/steckerhalter/quelpa).
-* *PDF Viewer* - powered by
-[doc-view-mode](https://www.emacswiki.org/emacs/DocViewMode)
-and
-[ghostscript](https://www.ghostscript.com/index.html).
-* *Project Search* - powered by
-[projectile](https://github.com/bbatsov/projectile).
-* *Recent Files* - powered by
-[recentf](https://www.emacswiki.org/emacs/RecentFiles).
-* *Regexp* - powered by
-[re-builder](https://www.emacswiki.org/emacs/ReBuilder) and
-[visual-regexp](https://github.com/benma/visual-regexp.el).
-* *Reload Emacs* - powered by
-[reload-emacs](https://github.com/alt-elpa/reload-emacs).
-* *Restart Emacs* - powered by
-[restart-emacs](https://github.com/iqbalansari/restart-emacs).
-* *Scroll Bar* - powered by
-[yascroll](https://github.com/m2ym/yascroll-el).
-* *Shell* - powered by
-[shell](https://www.emacswiki.org/emacs/ShellMode) and
-[exec-path-from-shell](https://github.com/purcell/exec-path-from-shell).
-* *Simplify Usage* - powered by
-[ivy](https://github.com/abo-abo/swiper).
-* *Smooth Scrolling* - none, originally powered by
-~~[sublimity](https://github.com/zk-phi/sublimity)~~.
-* *Snippet* - powered by
-[yasnippet](https://github.com/joaotavora/yasnippet).
-* *Source Control Management* - powered by
-[magit](https://github.com/magit/magit).
-* *Startup Screen* - powered by
-[dashboard](https://github.com/emacs-dashboard/emacs-dashboard).
-* *Syntax Check* - powered by
-[flycheck](http://www.flycheck.org/en/latest/).
-* *Tab Bar* - powered by
-[centaur-tabs](https://github.com/ema2159/centaur-tabs).
-* ~~*Tags* - powered by
-[gtags](https://www.gnu.org/software/global/).~~
-* *Text Editing* - powered by
-[org-mode](https://orgmode.org/).
-* *Theme* - powered by
-[vs-dark-theme](https://github.com/jcs-elpa/vs-dark-theme) and
-[vs-light-theme](https://github.com/jcs-elpa/vs-light-theme).
+* *End of Line* - powered by [show-eol](https://github.com/elpa-host/show-eol).
+* *Execute Commands* - powered by [compile](https://www.emacswiki.org/emacs/CompilationMode).
+* *File Explorer* - powered by [neotree](https://github.com/jaypei/emacs-neotree).
+* *File Header* - powered by [file-header](https://github.com/alt-elpa/file-header).
+* *Folding/Unfolding* - powered by [origami](https://github.com/gregsexton/origami.el).
+* *Font* - powered by [use-ttf](https://github.com/elpa-host/use-ttf).
+* *Goto Char* - powered by [goto-char-preview](https://github.com/elpa-host/goto-char-preview).
+* *Goto Declaration/Definition* - powered by [dumb-jump](https://github.com/jacktasia/dumb-jump).
+* *Goto Line* - powered by [goto-line-preview](https://github.com/elpa-host/goto-line-preview).
+* *Highlight Indentation* - powered by [highlight-indent-guides](https://github.com/DarthFennec/highlight-indent-guides).
+* *Highlight Matched Pairs* - powered by [show-paren-mode](https://www.emacswiki.org/emacs/ShowParenMode).
+* *Highlight Same Region* - powered by [region-occurrences-highlighter](https://github.com/alvarogonzalezsotillo/region-occurrences-highlighter).
+* *Indentation Management* - powered by [indent-control](https://github.com/alt-elpa/indent-control).
+* *Language Server Protocol* - powered by [lsp-mode](https://github.com/emacs-lsp/lsp-mode).
+* *Line Annotation* - powered by [line-reminder](https://github.com/elpa-host/line-reminder).
+* *Line Numbers* - powered by [display-line-numbers](https://github.com/emacs-mirror/emacs/blob/master/lisp/display-line-numbers.el) and [linum](https://github.com/emacs-mirror/emacs/blob/master/lisp/linum.el).
+* *Minimap* - none, originally powered by ~~[sublimity](https://github.com/zk-phi/sublimity)~~.
+* *Mode Line* - powered by [powerline](https://github.com/milkypostman/powerline).
+* *Multiple Cursor* - powered by [iedit](https://github.com/victorhge/iedit) and [multiple-cursors](https://github.com/magnars/multiple-cursors.el).
+* *Multiple Terminal* - powered by [multi-shell](https://github.com/jcs-elpa/multi-shell).
+* *Music Player* - powered by [ffmpeg-player](https://github.com/jcs-elpa/ffmpeg-player); might change to something else.
+* *Navigation/Searcher* - powered by [searcher](https://github.com/jcs-elpa/searcher) and [isearch-project](https://github.com/elpa-host/isearch-project).
+* *Package Archive* - see [here](#file_folder-package-archives).
+* *Package Management* - powered by [use-package](https://github.com/jwiegley/use-package) and [quelpa](https://framagit.org/steckerhalter/quelpa).
+* *PDF Viewer* - powered by [doc-view-mode](https://www.emacswiki.org/emacs/DocViewMode) and [ghostscript](https://www.ghostscript.com/index.html).
+* *Project Search* - powered by [projectile](https://github.com/bbatsov/projectile).
+* *Recent Files* - powered by [recentf](https://www.emacswiki.org/emacs/RecentFiles).
+* *Regexp* - powered by [re-builder](https://www.emacswiki.org/emacs/ReBuilder) and [visual-regexp](https://github.com/benma/visual-regexp.el).
+* *Reload Emacs* - powered by [reload-emacs](https://github.com/alt-elpa/reload-emacs).
+* *Restart Emacs* - powered by [restart-emacs](https://github.com/iqbalansari/restart-emacs).
+* *Scroll Bar* - powered by [yascroll](https://github.com/m2ym/yascroll-el).
+* *Shell* - powered by [shell](https://www.emacswiki.org/emacs/ShellMode) and [exec-path-from-shell](https://github.com/purcell/exec-path-from-shell).
+* *Simplify Usage* - powered by [ivy](https://github.com/abo-abo/swiper).
+* *Smooth Scrolling* - none, originally powered by ~~[sublimity](https://github.com/zk-phi/sublimity)~~.
+* *Snippet* - powered by [yasnippet](https://github.com/joaotavora/yasnippet).
+* *Source Control Management* - powered by [magit](https://github.com/magit/magit).
+* *Startup Screen* - powered by [dashboard](https://github.com/emacs-dashboard/emacs-dashboard).
+* *Syntax Check* - powered by [flycheck](http://www.flycheck.org/en/latest/).
+* *Tab Bar* - powered by [centaur-tabs](https://github.com/ema2159/centaur-tabs).
+* ~~*Tags* - powered by [gtags](https://www.gnu.org/software/global/).~~
+* *Text Editing* - powered by [org-mode](https://orgmode.org/).
+* *Theme* - powered by [vs-dark-theme](https://github.com/jcs-elpa/vs-dark-theme) and [vs-light-theme](https://github.com/jcs-elpa/vs-light-theme).
 **(For more info see [here](#themes))**
-* *Todo* - powered by
-[hl-todo](https://github.com/tarsius/hl-todo).
-* *Toggle Mode Line* - powered by
-[feebleline](https://github.com/tautologyclub/feebleline).
-* *Undo/Redo* - powered by
-[undo-tree](https://www.emacswiki.org/emacs/UndoTree).
-* *Video Player* - powered by
-[ffmpeg-player](https://github.com/jcs-elpa/ffmpeg-player).
-* *White Space* - powered by
-[whitespace](https://www.emacswiki.org/emacs/WhiteSpace).
+* *Todo* - powered by [hl-todo](https://github.com/tarsius/hl-todo).
+* *Toggle Mode Line* - powered by [feebleline](https://github.com/tautologyclub/feebleline).
+* *Undo/Redo* - powered by [undo-tree](https://www.emacswiki.org/emacs/UndoTree).
+* *Video Player* - powered by [ffmpeg-player](https://github.com/jcs-elpa/ffmpeg-player).
+* *White Space* - powered by [whitespace](https://www.emacswiki.org/emacs/WhiteSpace).
 
 ### File Modes
 
