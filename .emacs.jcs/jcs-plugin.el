@@ -318,8 +318,7 @@
 (use-package dumb-jump
   :defer t
   :init
-  (setq dumb-jump-selector 'helm)
-  (setq dumb-jump-force-searcher 'ag))
+  (setq dumb-jump-selector 'ivy))
 
 (use-package elisp-demos
   :defer t
