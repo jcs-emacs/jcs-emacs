@@ -413,7 +413,7 @@ and
 [ffmpeg-player](https://github.com/jcs-elpa/ffmpeg-player);
 might change to something else.
 * *Navigation/Searcher* - powered by
-[ag](https://github.com/Wilfred/ag.el)
+[searcher](https://github.com/jcs-elpa/searcher)
 and
 [isearch-project](https://github.com/elpa-host/isearch-project).
 * *Package Archive* - see
