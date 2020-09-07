@@ -8,7 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-09-07
 
 * Changed install source for package `license-templates` from `quelpa` to `melpa`.
-* Removed package `ag`, `wgrep`, and `wgrep-ag`.
+* Removed packages `ag`, `wgrep`, and `wgrep-ag`.
 * Replaced all `ag` and `wgrep` functionalities with `searcher` instead.
 
 ### 2020-09-06
