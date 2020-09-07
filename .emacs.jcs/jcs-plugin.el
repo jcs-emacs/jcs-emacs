@@ -1022,11 +1022,6 @@
   (set-face-attribute 'web-mode-comment-face nil :foreground (face-foreground font-lock-comment-face))
   (set-face-attribute 'web-mode-css-property-name-face nil :foreground (face-foreground jcs-css-type-face)))
 
-(use-package wgrep
-  :defer t
-  :init
-  (setq wgrep-auto-save-buffer t))
-
 (use-package which-key
   :defer t
   :init
