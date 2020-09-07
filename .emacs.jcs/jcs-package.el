@@ -118,6 +118,7 @@
     json-mode
     keypression
     kotlin-mode
+    license-templates
     line-reminder
     lsp-java
     lsp-mode
@@ -314,7 +315,6 @@
     (impatient-showdown :repo "jcs-elpa/impatient-showdown" :fetcher github
                         :files (:defaults "preview.html"))
     (jayces-mode :repo "jcs-elpa/jayces-mode" :fetcher github)
-    (license-templates :repo "jcs-elpa/license-templates" :fetcher github)
     (multi-shell :repo "jcs-elpa/multi-shell" :fetcher github)
     (reload-emacs :repo "jcs-elpa/reload-emacs" :fetcher github)
     (test-sha :repo "jcs-elpa/test-sha" :fetcher github))
