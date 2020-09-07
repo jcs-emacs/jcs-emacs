@@ -311,8 +311,6 @@ Note this is opposite logic to the toggle mode function."
     (define-key global-map (kbd "C-f") #'ivy-searcher-search-file)
     (define-key global-map (kbd "C-S-f") #'ivy-searcher-search-project)
 
-    (define-key global-map (kbd "C-r p") #'jcs-ag-project-regexp)
-
     ;; Update mode state.
     (setq jcs-mode--state 'depend)
 
