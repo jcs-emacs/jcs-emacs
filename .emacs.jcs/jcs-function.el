@@ -769,27 +769,6 @@ NO-PROMPT : Don't prompt the overwrap message."
   (toggle-truncate-lines -1))
 
 ;;----------------------------------------------------------------------------
-;; wgrep
-
-;;;###autoload
-(defun jcs-wgrep-finish-edit ()
-  "Wrap `wgrep-finish-edit' command from `wgrep-mode'."
-  (interactive)
-  (save-excursion
-    (wgrep-finish-edit)
-    (wgrep-change-to-wgrep-mode)))
-
-;;;###autoload
-(defun jcs-wgrep-change-to-wgrep-mode ()
-  "Safely switch to `wgrep-mode'."
-  (interactive)
-  ;; NOTE: Here we try to change to `wgrep-mode' until we finally changed.
-  (while (not (ignore-errors (wgrep-change-to-wgrep-mode)))
-    (sleep-for 0.5)
-    (message "Switching to `wgrep-mode'..."))
-  (message "Switched to `wgrep-mode'."))
-
-;;----------------------------------------------------------------------------
 ;; Yascroll
 
 ;;;###autoload
