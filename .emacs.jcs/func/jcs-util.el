@@ -1153,22 +1153,18 @@ CMDS should be a list of commands."
       (setq index (1+ index)))
     result))
 
-(defun jcs-flatten-list (l)
-  "Flatten the multiple dimensional array, L to one dimensonal array.
-For instance,
-  '(1 2 3 4 (5 6 7 8)) => '(1 2 3 4 5 6 7 8)."
-  (require 'cl)
-  (cond ((null l) nil)
-        ((atom l) (list l))
-        (t (loop for a in l appending (jcs-flatten-list a)))))
+(defun jcs-flatten-list (lst)
+  "Flatten the multiple dimensional array, LST to one dimensonal array.
+For instance, '(1 2 3 4 (5 6 7 8)) => '(1 2 3 4 5 6 7 8)."
+  (cond
+   ((null lst) nil)
+   ((atom lst) (list lst))
+   (t (append (jcs-flatten-list (car lst)) (jcs-flatten-list (cdr lst))))))
 
 (defun jcs-remove-nth-element (nth lst)
   "Remove NTH element from the LST and return the list."
-  (if (zerop nth)
-      (cdr lst)
-    (let ((last (nthcdr (1- nth) lst)))
-      (setcdr last (cddr last))
-      lst)))
+  (if (zerop nth) (cdr lst)
+    (let ((last (nthcdr (1- nth) lst))) (setcdr last (cddr last)) lst)))
 
 (defun jcs-chop (string separator)
   "Split a STRING without consuming a SEPARATOR."
