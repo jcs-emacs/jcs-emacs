@@ -33,7 +33,6 @@
   '(ace-window
     actionscript-mode
     adaptive-wrap
-    ag
     alt-codes
     apache-mode
     atl-markup
@@ -181,7 +180,6 @@
     vue-mode
     impatient-mode
     web-mode
-    wgrep-ag
     which-key
     wiki-summary
     yaml-mode
