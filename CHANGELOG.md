@@ -7,7 +7,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ### 2020-09-07
 
-* Changed install source for package `license-templates` frrom `quelpa` to `melpa`.
+* Changed install source for package `license-templates` from `quelpa` to `melpa`.
 
 ### 2020-09-06
 
