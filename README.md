@@ -255,7 +255,7 @@ I believed detials make things better and make life smoother.
   * [*Smart-Move*](./features/smart-move) - Smart enough to move cursor to the beginning of the line.
 * [*Line Numbers Modding*](./features/line-numbers-modding) - Mixed used of `linum` and `display-line-numbers-mode` base on the file usage.
 * [*License Helper*](./features/license-helper) - Help to create license while creating `LICENSE` file using template.
-* [*Mini State*](./features/mini-state) - Mini mode state use to visually see what backend is the config currently running.
+* [*Mini State*](./features/mini-state) - Mini mode state use to visually see what backend is the config currently running. (Deprecated)
   * [*Auto Switch State*](./features/mini-state/auto-switch-state) - Automatcially switch mini state depends on certain circumstances.
 * ~~[*Mode Line Toggle*](./features/mode-line-toggle) - Toggle to `show` or `hide` the mode line.~~
 * [*Modern Text Editor*](./features/modern-text-editor) - Design to have the preset settings close to modern text editors but faster.
