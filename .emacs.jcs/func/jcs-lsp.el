@@ -103,12 +103,6 @@
       (jcs--lsp-ui-doc-show-safely))))
 (advice-add 'other-window :after #'jcs-lsp--other-window--advice-after)
 
-(defun jcs-lsp--post-command-hook ()
-  "Hook run after every command."
-  (jcs--lsp-ui-doc--hide-frame)
-  (jcs--lsp-ui-doc-show-safely))
-(add-hook 'post-command-hook 'jcs-lsp--post-command-hook)
-
 
 (defvar jcs--lsp-lv-was-alive nil
   "Record ` *LV*' buffer was alive.")
