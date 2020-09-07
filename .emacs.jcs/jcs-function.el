@@ -92,39 +92,6 @@
     (jcs-reopen-this-buffer)))
 
 ;;----------------------------------------------------------------------------
-;; ag
-
-(defun jcs-ag-get-search-string-by-current-buffer-name ()
-  "Get the `search-string' by the current `buffer-name'."
-  (let* ((mode-name-splits (split-string (buffer-name) " "))
-         (regexp-str (nth 2 mode-name-splits))
-         (regexp-lst '())
-         (search-string nil))
-    (when regexp-str
-      (setq regexp-lst (split-string regexp-str ":"))
-      (setq search-string (nth 1 regexp-lst)))
-    search-string))
-
-;;;###autoload
-(defun jcs-ag-refresh-search ()
-  "Refresh the search result by searching the `regexp' once again."
-  (interactive)
-  (let ((search-string (jcs-ag-get-search-string-by-current-buffer-name)))
-    (ag-project-regexp search-string)
-    (jcs-wgrep-change-to-wgrep-mode)
-    (message "Refresh search result with regexp: %s" search-string)))
-
-;;;###autoload
-(defun jcs-ag-project-regexp ()
-  "Use `wgrep' to replace the word in the entire project."
-  (interactive)
-  ;; open search result menu.
-  (call-interactively #'ag-project-regexp)
-  (jcs-jump-shown-to-buffer "*ag")
-  ;; Make result menu editable.
-  (jcs-wgrep-change-to-wgrep-mode))
-
-;;----------------------------------------------------------------------------
 ;; Autio Highlight Symbol
 
 (defun jcs--ahs--set-face (pt pt-box ot ot-box)
