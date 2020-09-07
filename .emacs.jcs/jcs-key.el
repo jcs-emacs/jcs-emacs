@@ -43,10 +43,6 @@
 (define-key global-map (kbd "M-<f5>") #'reload-emacs)
 (define-key global-map (kbd "M-<f6>") #'restart-emacs)
 
-;;; ag
-(with-eval-after-load 'ag
-  (define-key ag-mode-map (kbd "M-K") #'jcs-ag-refresh-search))
-
 ;;; Auto Completion
 (with-eval-after-load 'company
   (define-key company-active-map [tab] #'jcs-tab-key)
