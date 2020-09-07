@@ -11,6 +11,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Removed packages `ag`, `wgrep`, and `wgrep-ag`.
 * Replaced all `ag` and `wgrep` functionalities with `searcher` instead.
 * Changed default `dumb-jump` selector to `ivy` and not `helm`.
+* Removed broken `post-command-hook` for `lsp-mode`.
 
 ### 2020-09-06
 
