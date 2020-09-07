@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-09-08
+
+* Reimplemented flatten from utility module.
+* Config package `ivy-searcher`.
+
 ### 2020-09-07
 
 * Changed install source for package `license-templates` from `quelpa` to `melpa`.
