@@ -8,6 +8,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-09-09
 
 * Changed with eval after load multiple to `macro` instead of `function`.
+* Added snippet to `ess-r-mode` for `R`.
+* Added snippet to `powershell-mode` for `PowerShell`.
 
 ### 2020-09-08
 
