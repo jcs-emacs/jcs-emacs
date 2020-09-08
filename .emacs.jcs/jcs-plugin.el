@@ -328,6 +328,12 @@
   (with-eval-after-load 'helpful
     (advice-add 'helpful-update :after #'elisp-demos-advice-helpful-update)))
 
+(use-package eshell-syntax-highlighting
+  :defer t
+  :init
+  (with-eval-after-load 'eshell
+    (eshell-syntax-highlighting-global-mode +1)))
+
 (use-package eww
   :defer t
   :init
