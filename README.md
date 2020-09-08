@@ -75,7 +75,7 @@ from this configuration.
 * Makefile / Markdown
 * Nix
 * Object Pascal (Delphi) / Objective-C
-* Pascal / Perl / PHP / Properties / Python
+* Pascal / Perl / PHP / PowerShell / Properties / Python
 * R / Ruby / Rust
 * Sass / Scala / SCSS / Shader / Shell script / SQL / Swift
 * Text / TypeScript
