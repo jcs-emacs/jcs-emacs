@@ -1,4 +1,4 @@
-;;; jcs-esh-mode.el --- Eshell mode. -*- lexical-binding: t -*-
+;;; jcs-eshell-mode.el --- Eshell mode. -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -11,5 +11,5 @@
 
 (add-hook 'eshell-mode-hook 'jcs-eshell-mode-hook)
 
-(provide 'jcs-esh-mode)
-;;; jcs-esh-mode.el ends here
+(provide 'jcs-eshell-mode)
+;;; jcs-eshell-mode.el ends here
