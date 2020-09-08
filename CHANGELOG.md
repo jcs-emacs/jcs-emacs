@@ -10,6 +10,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Reimplemented flatten from utility module.
 * Config package `ivy-searcher`.
 * Fixed `feebleline` branch not been updating after VC status changed.
+* Installed new package `eshell-syntax-highlighting`.
+* Installed new package `powershell`.
 
 ### 2020-09-07
 
