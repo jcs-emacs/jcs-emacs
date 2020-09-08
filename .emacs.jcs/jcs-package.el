@@ -76,6 +76,7 @@
     emoji-github
     emojify
     erlang
+    eshell-syntax-highlighting
     ess
     esup
     exec-path-from-shell
@@ -144,6 +145,7 @@
     package-lint
     parse-it
     powerline
+    powershell
     preproc-font-lock
     processing-mode
     project-abbrev
