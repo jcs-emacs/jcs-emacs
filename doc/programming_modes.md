@@ -42,6 +42,7 @@ recording all the `major-mode` I am using corresponding to each file type.
 | Pascal | [pascal-mode](https://www.emacswiki.org/emacs/PascalMode) | Major mode for editing Pascal source in Emacs. | ![Builtin](https://img.shields.io/badge/builtin-depends-blue.svg) |
 | Perl | [perl-mode](https://www.emacswiki.org/emacs/PerlMode) | Major mode for editing Perl code. | ![Builtin](https://img.shields.io/badge/builtin-depends-blue.svg) |
 | PHP | [web-mode](https://github.com/fxbois/web-mode) | major mode for editing web templates | [![MELPA](https://melpa.org/packages/web-mode-badge.svg)](https://melpa.org/#/web-mode) |
+| PowerShell | [powershell](https://github.com/jschaf/powershell.el) | Mode for editing PowerShell scripts | [![MELPA](https://melpa.org/packages/powershell-badge.svg)](https://melpa.org/#/powershell) |
 | Properties | [conf-javaprop-mode](http://doc.endlessparentheses.com/Fun/conf-javaprop-mode.html) | Conf Mode starter for Java properties files. | ![Builtin](https://img.shields.io/badge/builtin-depends-blue.svg) |
 | Python | [python-mode](https://github.com/emacsmirror/python-mode) | Python major mode | [![MELPA](https://melpa.org/packages/python-mode-badge.svg)](https://melpa.org/#/python-mode) |
 | Ruby | [ruby-mode](https://www.emacswiki.org/emacs/RubyMode) | Major mode for editing Ruby code. | ![Builtin](https://img.shields.io/badge/builtin-1.2-blue.svg) |
