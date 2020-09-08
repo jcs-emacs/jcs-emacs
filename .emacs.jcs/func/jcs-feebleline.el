@@ -71,6 +71,11 @@
 (defvar jcs--feebleline--vc-info-face 'jcs--feebleline--vc-info-face)
 
 
+(defun jcs--feebleline--reset ()
+  "Reset `feebleline' variables once."
+  (setq jcs--vc-current-vc-name nil)
+  (setq jcs--vc-current-branch-name nil))
+
 (defun jcs--feebleline--prepare ()
   "Initialize variables that use for `feebleline'."
   (unless jcs--project-name (setq jcs--project-name (jcs-project-current)))
