@@ -73,8 +73,10 @@
 
 (defun jcs--feebleline--reset ()
   "Reset `feebleline' variables once."
-  (setq jcs--vc-current-vc-name nil)
-  (setq jcs--vc-current-branch-name nil))
+  (jcs-walk-through-all-buffers-once
+   (lambda ()
+     (setq jcs--vc-current-vc-name nil)
+     (setq jcs--vc-current-branch-name nil))))
 
 (defun jcs--feebleline--prepare ()
   "Initialize variables that use for `feebleline'."
