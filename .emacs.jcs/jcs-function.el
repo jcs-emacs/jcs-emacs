@@ -802,8 +802,7 @@ NO-PROMPT : Don't prompt the overwrap message."
 (require 'jcs-util)
 (require 'jcs-frame)
 (require 'jcs-window)
-(jcs-with-eval-after-load-multiple
- '(shell eshell-mode) #'(lambda () (require 'jcs-shell)))
+(jcs-with-eval-after-load-multiple '(shell eshell) (require 'jcs-shell))
 (with-eval-after-load 'feebleline (require 'jcs-feebleline))
 (with-eval-after-load 'ivy (require 'jcs-ivy))
 (with-eval-after-load 'lsp-mode (require 'jcs-lsp))
@@ -818,11 +817,8 @@ NO-PROMPT : Don't prompt the overwrap message."
 
 ;; For Specific Mode
 (with-eval-after-load 'org (require 'jcs-org-func))
-(jcs-with-eval-after-load-multiple  ; Assembly Language
- '(masm-mode nasm-mode) #'(lambda () (require 'jcs-asm-func)))
-(with-eval-after-load 'cc-mode
-  (require 'jcs-cc-func)
-  (require 'jcs-java-func))
+(jcs-with-eval-after-load-multiple '(masm-mode nasm-mode) (require 'jcs-asm-func))
+(with-eval-after-load 'cc-mode (require 'jcs-cc-func) (require 'jcs-java-func))
 (with-eval-after-load 'csharp-mode (require 'jcs-csharp-func))
 (with-eval-after-load 'css-mode (require 'jcs-css-func))
 (with-eval-after-load 'go-mode (require 'jcs-go-func))

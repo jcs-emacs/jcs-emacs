@@ -504,12 +504,11 @@ Note this is opposite logic to the toggle mode function."
 (with-eval-after-load 'message (require 'jcs-message-mode))
 (with-eval-after-load 're-builder (require 'jcs-re-builder-mode))
 (with-eval-after-load 'shell (require 'jcs-shell-mode))
-(with-eval-after-load 'esh-mode (require 'jcs-esh-mode))
+(with-eval-after-load 'esh-mode (require 'jcs-eshell-mode))
 (with-eval-after-load 'yasnippet (require 'jcs-snippet-mode))
 
 (with-eval-after-load 'actionscript-mode (require 'jcs-actionscript-mode))
-(jcs-with-eval-after-load-multiple  ; Assembly Language
- '(masm-mode nasm-mode) #'(lambda () (require 'jcs-asm-mode)))
+(jcs-with-eval-after-load-multiple '(masm-mode nasm-mode) (require 'jcs-asm-mode))
 (with-eval-after-load 'basic-mode (require 'jcs-basic-mode))
 (with-eval-after-load 'bat-mode (require 'jcs-batch-mode))
 (with-eval-after-load 'cc-mode
