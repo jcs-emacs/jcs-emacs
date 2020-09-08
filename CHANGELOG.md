@@ -9,6 +9,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 * Reimplemented flatten from utility module.
 * Config package `ivy-searcher`.
+* Implemented `feebleline` reset local variables util function.
+* Bind reset `feebleline` to global `focus-in-hook`.
 
 ### 2020-09-07
 
