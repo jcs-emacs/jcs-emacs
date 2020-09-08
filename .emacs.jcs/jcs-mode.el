@@ -556,6 +556,7 @@ Note this is opposite logic to the toggle mode function."
 (with-eval-after-load 'org (require 'jcs-org-mode))
 (with-eval-after-load 'pascal (require 'jcs-pascal-mode))
 (with-eval-after-load 'perl-mode (require 'jcs-perl-mode))
+(with-eval-after-load 'powershell (require 'jcs-powershell-mode))
 (with-eval-after-load 'processing-mode (require 'jcs-processing-mode))
 (with-eval-after-load 'python-mode (require 'jcs-python-mode))
 (with-eval-after-load 'rjsx-mode (require 'jcs-jsx-mode))
@@ -715,6 +716,7 @@ PR : pair file `regexp' and file mode `symbol'."
   (jcs-add-auto-mode-alist '("\\.pas'?\\'" . pascal-mode))
   (jcs-add-auto-mode-alist '("\\.pl'?\\'" . perl-mode))
   (jcs-add-auto-mode-alist '("\\.pde'?\\'" . processing-mode))
+  (jcs-add-auto-mode-alist '("\\.ps1'?\\'" . powershell-mode))
   (jcs-add-auto-mode-alist '("\\.py'?\\'" . python-mode))
   (jcs-add-auto-mode-alist '("\\.pyc'?\\'" . python-mode)))
 
