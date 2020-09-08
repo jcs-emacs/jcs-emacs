@@ -431,6 +431,11 @@ in order to take effect.  Half hot reloading process."
   "Python class template."
   (file-header-insert-template-by-file-path "~/.emacs.jcs/template/python/class.txt"))
 
+;;; R
+(defun jcs-insert-r-template ()
+  "Header for R header file."
+  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/r/default.txt"))
+
 ;;; Ruby
 (defun jcs-insert-ruby-template ()
   "Header for Ruby header file."
