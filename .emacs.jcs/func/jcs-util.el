@@ -1593,16 +1593,15 @@ IN-VAL : input value to set to IN-VAR."
   "Do FNC with CNT from ST."
   (unless st (setq st 0))
   (let ((index st))
-    (while (< index cnt)
-      (funcall fnc index)
-      (setq index (1+ index)))))
+    (while (< index cnt) (funcall fnc index) (setq index (1+ index)))))
 
 ;;----------------------------------------------------------------------------
 ;; Loading
 
-(defun jcs-with-eval-after-load-multiple (files &rest body)
+(defmacro jcs-with-eval-after-load-multiple (files &rest body)
   "Execute BODY after one of the FILES is loaded."
-  (dolist (file files) (with-eval-after-load file (dolist (bd body) (funcall bd)))))
+  (declare (indent 1) (debug t))
+  `(dolist (file ,files) (with-eval-after-load file (progn ,@body))))
 
 ;;----------------------------------------------------------------------------
 ;; System
@@ -1611,16 +1610,11 @@ IN-VAL : input value to set to IN-VAR."
 (defun jcs-print-current-system ()
   "Print out the current system info."
   (interactive)
-  (message "Current system: %s - %s"
-           (jcs-get-current-sysem)
-           (system-name)))
+  (message "Current system: %s - %s" (jcs-get-current-sysem) (system-name)))
 
 (defun jcs-get-current-sysem ()
   "Return the current operating system."
-  (cond (jcs-is-windows 'dos)
-        (jcs-is-bsd 'mac)
-        (jcs-is-linux 'unix)
-        (t nil)))
+  (cond (jcs-is-windows 'dos) (jcs-is-bsd 'mac) (jcs-is-linux 'unix) (t nil)))
 
 ;;----------------------------------------------------------------------------
 ;; Parentheses
