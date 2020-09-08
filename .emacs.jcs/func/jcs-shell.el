@@ -34,9 +34,11 @@
           (other-window 1)
           (switch-to-buffer sp-name))
       (when (window-full-height-p) (jcs-balance-split-window-vertically))
-      (jcs-move-to-upmost-window t)
-      ;; Move this to make next shell buffer inside the bottom window.
-      (progn (other-window -1) (other-window 1))
+      (cl-case multi-shell-prefer-shell-type
+        ('shell (jcs-move-to-upmost-window t)
+                ;; Move this to make next shell buffer inside the bottom window.
+                (progn (other-window -1) (other-window 1)))
+        ('eshell (other-window 1)))
       (multi-shell))
     (enlarge-window jcs-windows--enlarge-shrink-times)))
 
