@@ -417,6 +417,11 @@ in order to take effect.  Half hot reloading process."
   "Template for PHP."
   (file-header-insert-template-by-file-path "~/.emacs.jcs/template/web/default_php.txt"))
 
+;;; PowerShell
+(defun jcs-insert-powershell-template ()
+  "Header for PowerShell header file."
+  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/powershell/default.txt"))
+
 ;;; Processing
 (defun jcs-insert-processing-template ()
   "Header for Processing file."
