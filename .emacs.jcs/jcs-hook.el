@@ -4,7 +4,8 @@
 
 (defun jcs-focus-in-hook ()
   "When window is focus."
-  (jcs-revert-all-file-buffers))
+  (jcs-revert-all-file-buffers)
+  (jcs-funcall-fboundp #'jcs--feebleline--reset))
 (add-hook 'focus-in-hook 'jcs-focus-in-hook)
 
 (defun jcs-focus-out-hook ()
@@ -57,15 +58,14 @@
 
 (defun jcs--other-window--advice-after (&rest _args)
   "Advice execute after `other-window' command."
-  (unless jcs--no-advice-other-window
-    (unless (jcs-frame-util-p)
-      (select-frame-set-input-focus (selected-frame))
-      (jcs--neotree-start-refresh)
-      (when (and (boundp 'neo-buffer-name)
-                 (not (string= neo-buffer-name (buffer-name (current-buffer)))))
-        (setq jcs--neotree--last-window (selected-window)))
-      (jcs-buffer-menu-safe-refresh)
-      (jcs-dashboard-safe-refresh-buffer))))
+  (when (and (not jcs--no-advice-other-window) (not (jcs-frame-util-p)))
+    (select-frame-set-input-focus (selected-frame))
+    (jcs--neotree-start-refresh)
+    (when (and (boundp 'neo-buffer-name)
+               (not (string= neo-buffer-name (buffer-name (current-buffer)))))
+      (setq jcs--neotree--last-window (selected-window)))
+    (jcs-buffer-menu-safe-refresh)
+    (jcs-dashboard-safe-refresh-buffer)))
 (advice-add 'other-window :after #'jcs--other-window--advice-after)
 
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
