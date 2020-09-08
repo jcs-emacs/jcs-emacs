@@ -25,7 +25,7 @@
   (interactive)
   (unless (ignore-errors (jcs-jump-shown-to-buffer (multi-shell--prefix-name)))
     (if (multi-shell-live-p)
-        (let ((sp-name nil))
+        (let (sp-name)
           (save-window-excursion
             (setq sp-name (jcs-shell-select-shell-by-index
                            jcs-shell--last-selected-shell-index)))
@@ -35,7 +35,7 @@
           (switch-to-buffer sp-name))
       (when (window-full-height-p) (jcs-balance-split-window-vertically))
       (jcs-move-to-upmost-window t)
-      ;; Move this to make next shell bufer inside the bottom window.
+      ;; Move this to make next shell buffer inside the bottom window.
       (progn (other-window -1) (other-window 1))
       (multi-shell))
     (enlarge-window jcs-windows--enlarge-shrink-times)))
@@ -46,8 +46,7 @@
   (interactive)
   (jcs-safe-jump-shown-to-buffer
    (multi-shell--prefix-name)
-   (lambda ()
-     (jcs-shell-delete-window))
+   (lambda () (jcs-shell-delete-window))
    (lambda ()
      (user-error (format "No \"%s\" buffer found" (multi-shell--prefix-name))))))
 
