@@ -235,6 +235,10 @@ If REGEX is non-nil, check by using regular expression."
   (declare (indent 0) (debug t))
   `(let ((message-log-max nil)) (progn ,@body)))
 
+(defun jcs-funcall-fboundp (fnc &rest args)
+  "Call FNC with ARGS if exists."
+  (when (fboundp fnc) (if args (funcall fnc args) (funcall fnc))))
+
 ;;----------------------------------------------------------------------------
 ;; Fuzzy
 
