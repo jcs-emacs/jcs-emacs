@@ -2,6 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
+(require 'cl-lib)
 (require 'multi-shell)
 
 (defvar jcs-shell--last-selected-shell-index -1
