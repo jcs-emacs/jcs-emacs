@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-09-10
+
+* Implemented smart version of `org-cycle`.
+
 ### 2020-09-09
 
 * Changed with eval after load multiple to `macro` instead of `function`.
