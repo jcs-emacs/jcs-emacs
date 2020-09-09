@@ -5,10 +5,7 @@
 (require 'javadoc-lookup)
 (require 'organize-imports-java)
 
-(use-package javadoc-lookup
-  :config
-  ;; Function used when performing a minibuffer read.
-  (setq javadoc-lookup-completing-read-function #'completing-read))
+(setq javadoc-lookup-completing-read-function #'completing-read)
 
 ;;----------------------------------------------------------------------------
 
