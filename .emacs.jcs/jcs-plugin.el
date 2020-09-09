@@ -616,24 +616,25 @@
 (use-package ivy-searcher
   :defer t
   :init
-  (setq ivy-searcher-display-info 'line/column))
+  (setq ivy-searcher-display-info 'line/column
+        ivy-searcher-preselect 'next))
 
 (use-package line-reminder
   :defer t
   :init
   (setq line-reminder-show-option (if (display-graphic-p) 'indicators 'linum))
   (unless (display-graphic-p)
-    (setq line-reminder-saved-sign " |")
-    (setq line-reminder-modified-sign " |")))
+    (setq line-reminder-saved-sign " |"
+          line-reminder-modified-sign " |")))
 
 (use-package lsp-mode
   :defer t
   :init
-  (setq lsp-auto-guess-root t)
-  (setq lsp-prefer-capf t)
-  (setq lsp-keep-workspace-alive nil)  ; Auto-kill LSP server
-  (setq lsp-prefer-flymake nil)        ; Use lsp-ui and flycheck
-  (setq flymake-fringe-indicator-position 'right-fringe)
+  (setq lsp-auto-guess-root t
+        lsp-prefer-capf t
+        lsp-keep-workspace-alive nil  ; Auto-kill LSP server
+        lsp-prefer-flymake nil  ; Use lsp-ui and flycheck
+        flymake-fringe-indicator-position 'right-fringe)
 
   (defconst jcs--lsp-lv-buffer-name " *LV*"
     "Help record the ` *LV*' buffer name.")
@@ -731,13 +732,13 @@
 (use-package neotree
   :defer t
   :init
-  (setq neo-window-position 'right)
-  (setq neo-show-hidden-files t)
-  (setq neo-window-width 35)
-  (setq neo-toggle-window-keep-p nil)
-  (setq neo-theme 'ascii)
-  (setq neo-hide-cursor t)
-  (setq neo-smart-open t)
+  (setq neo-window-position 'right
+        neo-show-hidden-files t
+        neo-window-width 35
+        neo-toggle-window-keep-p nil
+        neo-theme 'ascii
+        neo-hide-cursor t
+        neo-smart-open t)
 
   (defvar jcs--neotree--refresh-delay 0.3
     "Delay time after start refreshing `neotree'.")
@@ -842,8 +843,8 @@
 (use-package projectile
   :defer t
   :init
-  (setq projectile-completion-system 'ivy)
-  (setq projectile-current-project-on-switch 'keep)
+  (setq projectile-completion-system 'ivy
+        projectile-current-project-on-switch 'keep)
   :config
   (setq projectile-globally-ignored-directories
         (append projectile-globally-ignored-directories
@@ -886,11 +887,8 @@
     (let ((popup-menu-keymap (copy-sequence popup-menu-keymap)))
       (define-key popup-menu-keymap [mouse-3] #'right-click-context--click-menu-popup)
       (let ((value (popup-cascade-menu (right-click-context--build-menu-for-popup-el (right-click-context--menu-tree) nil))))
-        (when (and (jcs-popup-clicked-on-menu-p)
-                   value)
-          (if (symbolp value)
-              (call-interactively value t)
-            (eval value)))))))
+        (when (and (jcs-popup-clicked-on-menu-p) value)
+          (if (symbolp value) (call-interactively value t) (eval value)))))))
 
 (use-package show-eol
   :defer t
@@ -904,7 +902,6 @@
 
   (defun jcs-advice-show-eol-disable-before ()
     "Advice before execute `show-eol-disable' command."
-
     (face-remap-add-relative 'whitespace-newline :inverse-video nil))
   (advice-add 'show-eol-disable :before #'jcs-advice-show-eol-disable-before))
 
@@ -968,9 +965,9 @@
   (setq web-mode-code-indent-offset 2)
 
   ;; Left padding
-  (setq web-mode-style-padding 2)   ;; For `<style>' tag
-  (setq web-mode-script-padding 2)  ;; For `<script>' tag
-  (setq web-mode-block-padding 0)   ;; For `php', `ruby', `java', `python', `asp', etc.
+  (setq web-mode-style-padding 2  ; For `<style>' tag
+        web-mode-script-padding 2  ; For `<script>' tag
+        web-mode-block-padding 0)  ; For `php', `ruby', `java', `python', `asp', etc.
 
   ;; Offsetless Elements
   ;; NOTE: Do not make these lists to one list.
@@ -1000,12 +997,12 @@
                      ("beg" "end")))))
 
   ;; Enable / disable features
-  (setq web-mode-enable-auto-pairing t)
-  (setq web-mode-enable-css-colorization t)
-  (setq web-mode-enable-block-face t)
-  (setq web-mode-enable-part-face t)
-  (setq web-mode-enable-comment-keywords t)
-  (setq web-mode-enable-heredoc-fontification t)
+  (setq web-mode-enable-auto-pairing t
+        web-mode-enable-css-colorization t
+        web-mode-enable-block-face t
+        web-mode-enable-part-face t
+        web-mode-enable-comment-keywords t
+        web-mode-enable-heredoc-fontification t)
 
   ;; Keywords / Constants
   ;;(setq web-mode-extra-constants '(("php" . ("CONS1" "CONS2"))))
@@ -1035,24 +1032,11 @@
 (use-package which-key
   :defer t
   :init
-  ;; Provide following type: `minibuffer', `side-window', `frame'.
-  (setq which-key-popup-type 'side-window)
-  ;; location of which-key window. valid values: top, bottom, left, right,
-  ;; or a list of any of the two. If it's a list, which-key will always try
-  ;; the first location first. It will go to the second location if there is
-  ;; not enough room to display any keys in the first location
-  (setq which-key-side-window-location 'bottom)
-  ;; max width of which-key window, when displayed at left or right.
-  ;; valid values: number of columns (integer), or percentage out of current
-  ;; frame's width (float larger than 0 and smaller than 1)
-  (setq which-key-side-window-max-width 0.33)
-  ;; max height of which-key window, when displayed at top or bottom.
-  ;; valid values: number of lines (integer), or percentage out of current
-  ;; frame's height (float larger than 0 and smaller than 1)
-  (setq which-key-side-window-max-height 0.25)
-  ;; Set the time delay (in seconds) for the which-key popup to appear. A value of
-  ;; zero might cause issues so a non-zero value is recommended.
-  (setq which-key-idle-delay 1.0))
+  (setq which-key-popup-type 'side-window
+        which-key-side-window-location 'bottom
+        which-key-side-window-max-width 0.33
+        which-key-side-window-max-height 0.25
+        which-key-idle-delay 1.0))
 
 (use-package whitespace
   :defer t
