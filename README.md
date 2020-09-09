@@ -151,7 +151,7 @@ $ cp -r ./.emacs.d ~/
 $ cp -r ./.emacs.jcs ~/
 ```
 
-Then startup Emacsm then it will automatically install all necessary
+Then startup Emacs; it will automatically installs all necessary
 packages due to this configuration.
 
 **:exclamation::exclamation: [ATTENTION] :exclamation::exclamation:
