@@ -816,7 +816,7 @@ NO-PROMPT : Don't prompt the overwrap message."
 (require 'jcs-vs-func)
 
 ;; For Specific Mode
-(with-eval-after-load 'org (require 'jcs-org-func))
+(with-eval-after-load 'org (require 'jcs-org))
 (jcs-with-eval-after-load-multiple '(masm-mode nasm-mode) (require 'jcs-asm-func))
 (with-eval-after-load 'cc-mode (require 'jcs-cc-func) (require 'jcs-java-func))
 (with-eval-after-load 'csharp-mode (require 'jcs-csharp-func))
