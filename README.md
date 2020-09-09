@@ -151,7 +151,7 @@ $ cp -r ./.emacs.d ~/
 $ cp -r ./.emacs.jcs ~/
 ```
 
-Then startup Emacsm then it will start asking you to install all necessary
+Then startup Emacsm then it will automatically install all necessary
 packages due to this configuration.
 
 **:exclamation::exclamation: [ATTENTION] :exclamation::exclamation:
@@ -168,7 +168,7 @@ or the directory that Emacs will start loading initialize files.
 * `.emacs.d`    [DIRECTORY]
 * `.emacs.jcs`  [DIRECTORY]
 
-Install it this way; you wouldn't need to be asked to install all necessary 
+Install it this way; you wouldn't need to be asked to install all necessary
 packages. So this may be faster or benefits to you.
 
 ## :clock3: Startup Time
@@ -180,7 +180,7 @@ the startup time down to `5` to `15` seconds.
 
 **Edit 1:** After version `5.3.2`, the average startup time is around `5` to `15`
 seconds. Solved this issue by removing unnecessary `require` keyword load file 
-and use `:defer` keyword with `use-package` package to delay some packages 
+and use `:defer` keyword with `use-package` package to delay some packages
 load time.
 
 :pencil:
