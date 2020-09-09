@@ -355,8 +355,7 @@ kind of methods that you could support the maintainer you want.
 * *Tab Bar* - powered by [centaur-tabs](https://github.com/ema2159/centaur-tabs).
 * ~~*Tags* - powered by [gtags](https://www.gnu.org/software/global/).~~
 * *Text Editing* - powered by [org-mode](https://orgmode.org/).
-* *Theme* - powered by [vs-dark-theme](https://github.com/jcs-elpa/vs-dark-theme) and [vs-light-theme](https://github.com/jcs-elpa/vs-light-theme).
-**(For more info see [here](#themes))**
+* *Theme* - powered by [vs-dark-theme](https://github.com/jcs-elpa/vs-dark-theme) and [vs-light-theme](https://github.com/jcs-elpa/vs-light-theme). **(For more info see [here](#themes))**
 * *Todo* - powered by [hl-todo](https://github.com/tarsius/hl-todo).
 * *Toggle Mode Line* - powered by [feebleline](https://github.com/tautologyclub/feebleline).
 * *Undo/Redo* - powered by [undo-tree](https://www.emacswiki.org/emacs/UndoTree).
