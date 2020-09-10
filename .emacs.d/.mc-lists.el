@@ -80,6 +80,7 @@
         jcs-next-line
         jcs-open-all-nodes
         jcs-open-node
+        jcs-org-smart-cycle
         jcs-org-table-down
         jcs-org-table-left
         jcs-org-table-right
