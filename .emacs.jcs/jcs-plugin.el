@@ -265,6 +265,7 @@
   (with-eval-after-load 'highlight-indent-guides (diminish 'highlight-indent-guides-mode))
   (with-eval-after-load 'impatient-mode (diminish 'impatient-mode))
   (with-eval-after-load 'ivy (diminish 'ivy-mode))
+  (with-eval-after-load 'keypression (diminish 'keypression-mode))
   (with-eval-after-load 'line-reminder (diminish 'line-reminder-mode))
   (with-eval-after-load 'indicators (diminish 'indicators-mode))
   (diminish 'outline-minor-mode)
