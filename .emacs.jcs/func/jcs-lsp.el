@@ -92,15 +92,8 @@
 (defun jcs-lsp--other-window--advice-after (&rest _args)
   "Advice execute after `other-window' command."
   (unless jcs--no-advice-other-window
-    ;;--------------------------------------------------------------------
-    ;; NOTE: LSP needs this from stopping me navigate through windows.
-    (if (jcs-frame-util-p)
-        (cl-case this-command
-          ('jcs-other-window-next (jcs-other-window-next))
-          ('jcs-other-window-prev (jcs-other-window-prev)))
-      ;;--------------------------------------------------------------------
-      (jcs--lsp-signature-maybe-stop)
-      (jcs--lsp-ui-doc-show-safely))))
+    (jcs--lsp-signature-maybe-stop)
+    (jcs--lsp-ui-doc-show-safely)))
 (advice-add 'other-window :after #'jcs-lsp--other-window--advice-after)
 
 
