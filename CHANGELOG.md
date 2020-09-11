@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-09-11
 
 * Dminished `keypression-mode`'s lighter.
+* Dminished `hi-lock-mode`'s lighter.
 
 ### 2020-09-10
 
