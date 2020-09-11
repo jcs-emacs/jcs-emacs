@@ -58,14 +58,18 @@
 
 (defun jcs--other-window--advice-after (&rest _args)
   "Advice execute after `other-window' command."
-  (when (and (not jcs--no-advice-other-window) (not (jcs-frame-util-p)))
-    (select-frame-set-input-focus (selected-frame))
-    (jcs--neotree-start-refresh)
-    (when (and (boundp 'neo-buffer-name)
-               (not (string= neo-buffer-name (buffer-name (current-buffer)))))
-      (setq jcs--neotree--last-window (selected-window)))
-    (jcs-buffer-menu-safe-refresh)
-    (jcs-dashboard-safe-refresh-buffer)))
+  (unless jcs--no-advice-other-window
+    (if (jcs-frame-util-p)
+        (cl-case this-command
+          ('jcs-other-window-next (jcs-other-window-next))
+          ('jcs-other-window-prev (jcs-other-window-prev)))
+      (select-frame-set-input-focus (selected-frame))
+      (jcs--neotree-start-refresh)
+      (when (and (boundp 'neo-buffer-name)
+                 (not (string= neo-buffer-name (buffer-name (current-buffer)))))
+        (setq jcs--neotree--last-window (selected-window)))
+      (jcs-buffer-menu-safe-refresh)
+      (jcs-dashboard-safe-refresh-buffer))))
 (advice-add 'other-window :after #'jcs--other-window--advice-after)
 
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
