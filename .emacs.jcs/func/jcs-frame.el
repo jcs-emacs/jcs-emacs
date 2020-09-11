@@ -13,7 +13,7 @@
 (defun jcs-frame-util-p (&optional frame)
   "Check if FRAME is the utility frame."
   (unless frame (setq frame (selected-frame)))
-  (string-empty-p (frame-parameter frame 'name)))
+  (frame-parent frame))
 
 (defun jcs-is-frame-maximize-p ()
   "Return non-nil, if frame maximized.
