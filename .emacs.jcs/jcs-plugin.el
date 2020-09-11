@@ -262,6 +262,7 @@
   (with-eval-after-load 'fill-page (diminish 'fill-page-mode))
   (with-eval-after-load 'flycheck (diminish 'flycheck-mode))
   (with-eval-after-load 'helm-mode (diminish 'helm-mode))
+  (with-eval-after-load 'hi-lock (diminish 'hi-lock-mode))
   (with-eval-after-load 'highlight-indent-guides (diminish 'highlight-indent-guides-mode))
   (with-eval-after-load 'impatient-mode (diminish 'impatient-mode))
   (with-eval-after-load 'ivy (diminish 'ivy-mode))
