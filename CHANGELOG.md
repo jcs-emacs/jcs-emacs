@@ -9,6 +9,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 * Dminished `keypression-mode`'s lighter.
 * Dminished `hi-lock-mode`'s lighter.
+* Clean up util frame logic by confirming the parent frame existence.
 
 ### 2020-09-10
 
