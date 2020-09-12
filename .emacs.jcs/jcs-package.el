@@ -312,6 +312,7 @@
 (defconst jcs-package-manually-install-list
   '((better-scroll :repo "jcs-elpa/better-scroll" :fetcher github)
     (file-header :repo "jcs-elpa/file-header" :fetcher github)
+    (fill-page :repo "jcs-elpa/fill-page" :fetcher github)
     (impatient-showdown :repo "jcs-elpa/impatient-showdown" :fetcher github
                         :files (:defaults "preview.html"))
     (ivy-file-preview :repo "jcs-elpa/ivy-file-preview" :fetcher github)
