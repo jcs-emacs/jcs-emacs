@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-09-12
+
+* Installed new package manually `ivy-file-preview`.
+* Enabled `ivy-file-preview-mode` globally by default.
+
 ### 2020-09-11
 
 * Dminished `keypression-mode`'s lighter.
