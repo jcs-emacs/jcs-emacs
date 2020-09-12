@@ -314,6 +314,7 @@
     (file-header :repo "jcs-elpa/file-header" :fetcher github)
     (impatient-showdown :repo "jcs-elpa/impatient-showdown" :fetcher github
                         :files (:defaults "preview.html"))
+    (ivy-file-preview :repo "jcs-elpa/ivy-file-preview" :fetcher github)
     (jayces-mode :repo "jcs-elpa/jayces-mode" :fetcher github)
     (multi-shell :repo "jcs-elpa/multi-shell" :fetcher github)
     (reload-emacs :repo "jcs-elpa/reload-emacs" :fetcher github)
