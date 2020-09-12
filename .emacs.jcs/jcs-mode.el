@@ -52,7 +52,8 @@ Note this is opposite logic to the toggle mode function."
 (defun jcs-hit-backtrace ()
   "Do stuff when backtrace occures."
   (jcs-red-mode-line)  ; When error, use red mode line.
-  (message "[INFO] Oops, error occurs! Please see backtrace for more information"))
+  (jcs-no-log-apply
+    (message "[INFO] Oops, error occurs! Please see backtrace for more information")))
 
 (defun jcs-backtrace--ensure-stay-in-buffer ()
   "Ensure stay in backtrace buffer base on conditions."
