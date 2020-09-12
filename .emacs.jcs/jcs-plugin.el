@@ -34,14 +34,14 @@
 (use-package better-scroll
   :defer t
   :init
-  (setq better-scroll-align-type 'relative)
-  (setq better-scroll-allow-boundary-movement t))
+  (setq better-scroll-align-type 'relative
+        better-scroll-allow-boundary-movement t))
 
 (use-package browse-kill-ring
   :defer t
   :init
-  (setq browse-kill-ring-separator (jcs-env-separator))
-  (setq browse-kill-ring-separator-face 'font-lock-comment-face)
+  (setq browse-kill-ring-separator (jcs-env-separator)
+        browse-kill-ring-separator-face 'font-lock-comment-face)
   :config
   (defun jcs--browse-kill-ring-mode-hook ()
     "Hook for `browse-kill-ring-mode'."
@@ -80,20 +80,20 @@
 (use-package centaur-tabs
   :defer t
   :init
-  (setq centaur-tabs-set-icons nil)
-  (setq centaur-tabs-style "wave")
-  (setq centaur-tabs-set-modified-marker t)
-  (setq centaur-tabs-modified-marker "*"))
+  (setq centaur-tabs-set-icons nil
+        centaur-tabs-style "wave"
+        centaur-tabs-set-modified-marker t
+        centaur-tabs-modified-marker "*"))
 
 (use-package company
   :defer t
   :init
   (setq company-frontends '(company-pseudo-tooltip-frontend
-                            company-echo-metadata-frontend))
-  (setq company-require-match nil)
-  (setq company-tooltip-align-annotations t)
-  (setq company-dabbrev-downcase nil)
-  (setq company-eclim-auto-save nil)
+                            company-echo-metadata-frontend)
+        company-require-match nil
+        company-tooltip-align-annotations t
+        company-dabbrev-downcase nil
+        company-eclim-auto-save nil)
   :config
   ;; TOPIC: How add company-dabbrev to the Company completion popup?
   ;; URL: https://emacs.stackexchange.com/questions/15246/how-add-company-dabbrev-to-the-company-completion-popup
@@ -109,10 +109,9 @@
   ;; URL: https://github.com/company-mode/company-mode/wiki/Switching-from-AC
   (defun jcs-company-ac-setup ()
     "Sets up `company-mode' to behave similarly to `auto-complete-mode'."
-    (setq company-minimum-prefix-length 1)
-    (setq company-idle-delay 0.1)
-
-    (setq company-selection-wrap-around 'on)
+    (setq company-minimum-prefix-length 1
+          company-idle-delay 0.1
+          company-selection-wrap-around 'on)
 
     (custom-set-faces
      ;;--------------------------------------------------------------------
@@ -172,8 +171,8 @@
 (use-package company-quickhelp
   :defer t
   :init
-  (setq company-quickhelp-delay 0.3)
-  (setq company-quickhelp-color-background "#FFF08A")
+  (setq company-quickhelp-delay 0.3
+        company-quickhelp-color-background "#FFF08A")
   (with-eval-after-load 'company (company-quickhelp-mode t)))
 
 (use-package company-quickhelp-terminal
@@ -185,32 +184,31 @@
 (use-package counsel
   :defer t
   :init
-  (setq counsel-preselect-current-file t)
-  (setq counsel-find-file-at-point t))
+  (setq counsel-preselect-current-file t
+        counsel-find-file-at-point t))
 
 (use-package dashboard
   :defer t
   :init
-  (setq dashboard-banner-logo-title "[J C S • E M A C S]")
-  (setq dashboard-footer-icon "")
-  (setq dashboard-footer-messages
+  (setq dashboard-banner-logo-title "[J C S • E M A C S]"
+        dashboard-footer-icon ""
+        dashboard-footer-messages
         (let ((deco (if (display-graphic-p) "╬" "+"))
               (copy-right (if (display-graphic-p) "©" "(c)")))
           (list (format "%s Copyright %s 2015 Shen, Jen-Chieh %s"
-                        deco copy-right deco))))
-  (setq dashboard-init-info (format "%d + %d packages loaded in %0.1f seconds"
+                        deco copy-right deco)))
+        dashboard-init-info (format "%d + %d packages loaded in %0.1f seconds"
                                     (length package-activated-list)
                                     (length jcs-package-manually-install-list)
-                                    (string-to-number jcs-package-init-time)))
-  (setq dashboard-items '((recents  . 10)
+                                    (string-to-number jcs-package-init-time))
+        dashboard-items '((recents  . 10)
                           (projects . 10)
                           ;;(bookmarks . 10)
                           ;;(agenda . 10)
                           ;;(registers . 10)
-                          ))
-  (setq dashboard-center-content t)
-  (setq dashboard-set-navigator t)
-  (setq dashboard-set-navigator nil)
+                          )
+        dashboard-center-content t
+        dashboard-set-navigator nil)
   :config
   (require 'dashboard-ls)
   (defun jcs--dashboard-get-banner-path (&rest _)
@@ -235,11 +233,11 @@
 (use-package define-it
   :defer t
   :init
-  (setq define-it-output-choice 'view)
-  (setq define-it-define-word-header "--{{ DEFINE }}--\n\n")
-  (setq define-it-definition-header "\n\n--{{ DICTIONARY }}--\n\n")
-  (setq define-it-translate-header "\n\n--{{ TRANSLATION }}--\n\n")
-  (setq define-it-wiki-summary-header "\n\n--{{ WIKIPEDIA SUMMARY }}--\n\n"))
+  (setq define-it-output-choice 'view
+        define-it-define-word-header "--{{ DEFINE }}--\n\n"
+        define-it-definition-header "\n\n--{{ DICTIONARY }}--\n\n"
+        define-it-translate-header "\n\n--{{ TRANSLATION }}--\n\n"
+        define-it-wiki-summary-header "\n\n--{{ WIKIPEDIA SUMMARY }}--\n\n"))
 
 (use-package diminish
   :defer t
@@ -434,10 +432,10 @@
 (use-package ffmpeg-player
   :defer t
   :init
-  (setq ffmpeg-player--volume 75)
-  (setq ffmpeg-player-display-width 672)
-  (setq ffmpeg-player-display-height 378)
-  (setq ffmpeg-player-no-message t)
+  (setq ffmpeg-player--volume 75
+        ffmpeg-player-display-width 672
+        ffmpeg-player-display-height 378
+        ffmpeg-player-no-message t)
   :config
   (defun jcs--ffmpeg-player-before-insert-image-hook ()
     "Hook runs before inserting image."
@@ -487,8 +485,8 @@
 (use-package google-translate
   :defer t
   :init
-  (setq google-translate-default-source-language "auto")
-  (setq google-translate-default-target-language "zh-TW"))
+  (setq google-translate-default-source-language "auto"
+        google-translate-default-target-language "zh-TW"))
 
 (use-package goto-char-preview
   :defer t
@@ -509,9 +507,9 @@
 (use-package highlight-indent-guides
   :defer t
   :init
-  (setq highlight-indent-guides-method 'character)
-  (setq highlight-indent-guides-character ?\|)
-  (setq highlight-indent-guides-responsive 'top))
+  (setq highlight-indent-guides-method 'character
+        highlight-indent-guides-character ?\|
+        highlight-indent-guides-responsive 'top))
 
 (use-package hl-todo
   :defer t
@@ -567,8 +565,8 @@
 (use-package isearch
   :defer t
   :init
-  (setq isearch-lazy-count t)
-  (setq lazy-count-prefix-format "[%s:%s] "))
+  (setq isearch-lazy-count t
+        lazy-count-prefix-format "[%s:%s] "))
 
 (use-package isearch-project
   :defer t
