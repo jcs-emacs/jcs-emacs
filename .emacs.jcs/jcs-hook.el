@@ -87,6 +87,7 @@
     (require 'dashboard)
     (require 'diminish)
     (require 'exec-path-from-shell)
+    (require 'fill-page)
     (require 'highlight-indent-guides)
     (require 'hl-line)
     (require 'hl-todo)
@@ -110,6 +111,8 @@
     (global-auto-highlight-symbol-mode t)
     ;;----------------------------------- `auto-read-only'
     (auto-read-only-mode 1)
+    ;;----------------------------------- `fill-page'
+    (global-fill-page-mode)
     ;;----------------------------------- `delete-selection'
     (delete-selection-mode 1)
     ;;----------------------------------- `goto-address'
