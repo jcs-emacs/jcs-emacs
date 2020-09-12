@@ -598,22 +598,25 @@
 (use-package ivy
   :defer t
   :init
-  (setq ivy-auto-shrink-minibuffer t)
-  (setq ivy-use-virtual-buffers t)
-  (setq ivy-use-selectable-prompt t)
-  (setq ivy-use-virtual-buffers t)  ; Enable bookmarks and recentf
-  (setq ivy-height 15)
-  (setq ivy-fixed-height-minibuffer t)
-  (setq ivy-count-format "[%d:%d] ")
-  (setq ivy-on-del-error-function nil)
-  (setq ivy-initial-inputs-alist nil)
-  (setq ivy-re-builders-alist
-        '((swiper . ivy--regex-plus)
-          (t      . ivy--regex-fuzzy)))
+  (setq ivy-auto-shrink-minibuffer t
+        ivy-use-virtual-buffers t  ; Enable bookmarks and recentf
+        ivy-use-selectable-prompt t
+        ivy-height 15
+        ivy-fixed-height-minibuffer t
+        ivy-count-format "[%d:%d] "
+        ivy-on-del-error-function nil
+        ivy-initial-inputs-alist nil
+        ivy-re-builders-alist '((swiper . ivy--regex-plus)
+                                (t      . ivy--regex-fuzzy)))
   :config
   (require 'smex)
   (setq enable-recursive-minibuffers t)
   (setq ivy-wrap t))
+
+(use-package ivy-file-preview
+  :defer t
+  :init
+  (with-eval-after-load 'ivy (ivy-file-preview-mode 1)))
 
 (use-package ivy-searcher
   :defer t
@@ -694,8 +697,8 @@
 (use-package most-used-words
   :defer t
   :init
-  (setq most-used-words-display-type 'table)
-  (setq most-used-words-word-display 100))
+  (setq most-used-words-display-type 'table
+        most-used-words-word-display 100))
 
 (use-package multi-shell
   :defer t
