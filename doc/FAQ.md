@@ -152,14 +152,19 @@ between words/symbols.
 
 **Q:** How do you search for word?
 
-**A:** I search word by hitting `C-f` and type out the word I'm looking for for just inside the current file.
-If I am searching through the while project I use `C-F` to trigger `isearch-project` which incremental search
-through the whole project.
+**A:** There 3 major ways to do this.
 
-Otherwise, to fastest way to search is to navigate the cursoe to the position on top of the word I want, then call 
+**Method 1:** My first option is by hitting `C-f` and type out the word I'm looking for for just inside the
+current file. If I am searching through the while project I use `C-F` to trigger `isearch-project` which incremental
+search through the whole project.
+
+Otherwise, to fastest way to search is to navigate the cursor to the position on top of the word I want, then call 
 `C-,` or `C-.` to trigger incremental search at point. For the whole project, use `C-<` and `C->` instead.
 
-If you don't like incremental search, you can use `counsel` package that uses 3rd party software like `grep`, `ag`, `rg`, etc.
+**Method 2:** My second option is using [ivy-searcher](https://github.com/jcs-elpa/ivy-searcher) that powered by a pure 
+elisp [searcher](https://github.com/jcs-elpa/searcher).
+
+**Method 3:** My last option is using `counsel` package that uses 3rd party software like `grep`, `ag`, `rg`, etc.
 Then the whole of the search result will be place inside ivy minibuffer window!
 
 ---
