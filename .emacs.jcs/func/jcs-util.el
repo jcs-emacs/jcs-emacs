@@ -51,7 +51,7 @@ time is displayed."
 (defun jcs-buffer-name-or-buffer-file-name ()
   "Sometimes `buffer-file-name` is nil, then return `buffer-name` instead.
 Else we just return `buffer-file-name` if available."
-  (if (buffer-file-name) (buffer-file-name) (buffer-name)))
+  (or (buffer-file-name) (buffer-name)))
 
 (defun jcs-buffer-exists-p (buf-name)
   "Check if the buffer BUF-NAME exists."
