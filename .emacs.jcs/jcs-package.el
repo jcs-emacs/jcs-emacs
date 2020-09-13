@@ -279,7 +279,8 @@
              (jcs-package-get-package-by-name (jcs--recipe-get-info rcp :name))))
           (jcs-ensure-manual-package-installed upgrades t)
           (message "[QUELPA] Done upgrading all packages"))
-      (message "[QUELPA] All packages are up to date"))))
+      (message "[QUELPA] All packages are up to date"))
+    (jcs-sit-for)))
 
 ;;;###autoload
 (defun jcs-package-upgrade-all ()
