@@ -40,6 +40,7 @@
     auto-read-only
     auto-rename-tag
     basic-mode
+    better-scroll
     buffer-move
     buffer-wrap
     browse-kill-ring
@@ -311,8 +312,7 @@
 ;; Manually Installation
 
 (defconst jcs-package-manually-install-list
-  '((better-scroll :repo "jcs-elpa/better-scroll" :fetcher github)
-    (file-header :repo "jcs-elpa/file-header" :fetcher github)
+  '((file-header :repo "jcs-elpa/file-header" :fetcher github)
     (fill-page :repo "jcs-elpa/fill-page" :fetcher github)
     (impatient-showdown :repo "jcs-elpa/impatient-showdown" :fetcher github
                         :files (:defaults "preview.html"))
