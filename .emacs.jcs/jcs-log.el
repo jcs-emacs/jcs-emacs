@@ -2,6 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
+;;; Entry
+
 ;; TOPIC: How to preserve color in *Messages* buffer?
 ;; SOURCE: https://emacs.stackexchange.com/questions/20171/how-to-preserve-color-in-messages-buffer
 
@@ -16,30 +18,6 @@ Acts like `message' but preserves string properties in the *Messages* buffer."
       (let ((inhibit-read-only t))
         (insert (apply 'format fmt args))))))
 
-(defun jcs-do-before-log-action (clean)
-  "Action do before doing log."
-  (when clean
-    (save-selected-window
-      (unless (string= (buffer-name) "*Messages*")
-        (jcs-ensure-switch-to-buffer-other-window "*Messages*"))
-      (jcs-message-erase-buffer-stay))))
-
-(defun jcs-do-after-log-action ()
-  "Action do after doing log."
-  (save-selected-window
-    (if (string= (buffer-name) "*Messages*")
-        (goto-char (point-max))
-      (jcs-ensure-switch-to-buffer-other-window "*Messages*"))
-    (jcs--message-buffer--first-load)))
-
-
-(defun jcs--log (title clean fmt &rest args)
-  "Log a message with TITLE, CLEAN, FMT and ARGS."
-  (jcs-do-before-log-action clean)
-  (jcs-message "╘[%s] %s\n" title (apply 'format fmt args))
-  (jcs-do-after-log-action))
-
-
 (defun jcs-log (fmt &rest args)
   "Log a message with FMT and ARGS."
   (apply 'jcs--log "INFO" nil fmt args))
@@ -48,6 +26,7 @@ Acts like `message' but preserves string properties in the *Messages* buffer."
   "Log a message with FMT and ARGS in the clean way."
   (apply 'jcs--log "INFO" t fmt args))
 
+;;; List
 
 (defun jcs-log-list-clean (list &optional in-prefix-msg in-val-del)
   "Log out a LIST in clean *Messages* buffer with IN-PREFIX-MSG and IN-VAL-DEL."
@@ -70,6 +49,39 @@ IN-VAL-DEL : value delimiter."
                val-del     ; Index and Value Delimiter
                tmp-str)    ; Value in current index
       (setq count (1+ count)))))
+
+;;; Hooks
+
+(defun jcs-do-before-log-action (clean)
+  "Action do before doing log."
+  (when clean
+    (save-selected-window
+      (unless (string= (buffer-name) "*Messages*")
+        (jcs-ensure-switch-to-buffer-other-window "*Messages*"))
+      (jcs-message-erase-buffer-stay))))
+
+(defun jcs-do-after-log-action ()
+  "Action do after doing log."
+  (save-selected-window
+    (if (string= (buffer-name) "*Messages*")
+        (goto-char (point-max))
+      (jcs-ensure-switch-to-buffer-other-window "*Messages*"))
+    (jcs--message-buffer--first-load)))
+
+;;; Util
+
+(defun jcs-sit-for (&optional seconds nodisp)
+  "Wrap `sit-for' function with default SECONDS and NODISP."
+  (unless seconds (setq seconds 100))
+  (sit-for seconds nodisp))
+
+;;; Core
+
+(defun jcs--log (title clean fmt &rest args)
+  "Log a message with TITLE, CLEAN, FMT and ARGS."
+  (jcs-do-before-log-action clean)
+  (jcs-message "╘[%s] %s\n" title (apply 'format fmt args))
+  (jcs-do-after-log-action))
 
 (provide 'jcs-log)
 ;;; jcs-log.el ends here
