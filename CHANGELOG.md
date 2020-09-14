@@ -9,6 +9,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 * Installed new package `better-scroll`.
 * Correct configure `auto-highlight-symbol`'s faces.
+* Placed `recipes` folder for manually installed packages.
+* No longer need to specify manually installed packages in the configuration.
 
 ### 2020-09-13
 
