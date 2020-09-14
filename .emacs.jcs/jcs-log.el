@@ -28,27 +28,27 @@ Acts like `message' but preserves string properties in the *Messages* buffer."
 
 ;;; List
 
-(defun jcs-log-list-clean (list &optional in-prefix-msg in-val-del)
-  "Log out a LIST in clean *Messages* buffer with IN-PREFIX-MSG and IN-VAL-DEL."
+(defun jcs-log-list-clean (lst &optional in-prefix-msg in-val-del)
+  "Log out a LST in clean *Messages* buffer with IN-PREFIX-MSG and IN-VAL-DEL."
   (jcs-do-before-log-action t)
-  (apply 'jcs-log-list list in-prefix-msg in-val-del))
+  (apply 'jcs-log-list lst in-prefix-msg in-val-del))
 
-(defun jcs-log-list (list &optional in-prefix-msg in-val-del)
-  "Log out a LIST.
+(defun jcs-log-list (lst &optional in-prefix-msg in-val-del)
+  "Log out a LST.
 IN-PREFIX-MSG : prefix message.
 IN-VAL-DEL : value delimiter."
-  (let ((count 0)
-        (prefix-msg in-prefix-msg)
-        (val-del in-val-del))
-    (unless in-prefix-msg (setq prefix-msg "nth "))  ; Set defult prefix message.
-    (unless in-val-del (setq val-del " => "))  ; Set default delimiter.
-    (dolist (tmp-str list)
-      (jcs-log "%s%s%s`%s`"
-               prefix-msg  ; Prefix Message
-               count       ; Index/Count
-               val-del     ; Index and Value Delimiter
-               tmp-str)    ; Value in current index
-      (setq count (1+ count)))))
+  (if (>= 0 (length lst))
+      (user-error "[WARNING] Can't log list with length lower than 0: %s" lst)
+    (let ((count 0) (prefix-msg in-prefix-msg) (val-del in-val-del))
+      (unless in-prefix-msg (setq prefix-msg "nth "))  ; Set defult prefix message.
+      (unless in-val-del (setq val-del " => "))  ; Set default delimiter.
+      (dolist (tmp-str lst)
+        (jcs-log "%s%s%s`%s`"
+                 prefix-msg  ; Prefix Message
+                 count       ; Index/Count
+                 val-del     ; Index and Value Delimiter
+                 tmp-str)    ; Value in current index
+        (setq count (1+ count))))))
 
 ;;; Hooks
 
