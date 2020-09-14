@@ -10,8 +10,7 @@
 (defun jcs-message (fmt &rest args)
   "Log a message with FMT and ARGS.
 Acts like `message' but preserves string properties in the *Messages* buffer."
-  (let ((message-log-max nil))
-    (apply 'message fmt args))
+  (jcs-no-log-apply (apply 'message fmt args))
   (with-current-buffer (get-buffer "*Messages*")
     (save-excursion
       (goto-char (point-max))
