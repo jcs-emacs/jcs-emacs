@@ -1,0 +1,1 @@
+(jayces-mode :repo "jcs-elpa/jayces-mode" :fetcher github)
