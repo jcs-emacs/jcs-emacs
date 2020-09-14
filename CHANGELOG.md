@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-09-14
 
 * Installed new package `better-scroll`.
+* Correct configure `auto-highlight-symbol`'s faces.
 
 ### 2020-09-13
 
