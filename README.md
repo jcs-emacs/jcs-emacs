@@ -114,6 +114,7 @@ without having to get used to an new IDE.
 
 Here is the list of few important and recent changes to this configuration.
 
+* `6.2.5` - Use `recipes` folder instead to specify manually installed packages in the configuration.
 * `6.2.4` - Replaced [ag](https://github.com/Wilfred/ag.el) silver searcher to [searcher](https://github.com/jcs-elpa/searcher).
 * `6.2.2` - Correct upgrade logic for manually installed packages.
 * `6.1.5` - `feebleline` is now fully compatible to terminal.
