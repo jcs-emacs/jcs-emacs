@@ -1347,8 +1347,8 @@ IN-KEY : key to search for value."
 
 (defun jcs-get-file-name ()
   "Get current file name."
-  (if buffer-file-name
-      (file-name-nondirectory buffer-file-name)
+  (if (buffer-file-name)
+      (file-name-nondirectory (buffer-file-name))
     (buffer-name)))
 
 (defun jcs-get-file-name-capital ()
@@ -1365,7 +1365,7 @@ IN-KEY : key to search for value."
 
 (defun jcs-get-file-name-without-extension ()
   "Get current file name without extension."
-  (if buffer-file-name
+  (if (buffer-file-name)
       (file-name-sans-extension (jcs-get-file-name))
     (buffer-name)))
 
