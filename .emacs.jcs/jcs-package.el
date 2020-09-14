@@ -265,7 +265,7 @@
 
 (defun jcs-package--upgrade-all-quelpa ()
   "Upgrade for manually installed packages."
-  (let ((upgrades (jcs--upgrade-list-manually)))
+  (let ((upgrades (jcs--upgrade-list-manually)) desc)
     (if upgrades
         (when (yes-or-no-p
                (message "[QUELPA] Upgrade %d package%s (%s)? "
@@ -276,8 +276,8 @@
                                    upgrades ", ")))
           ;; Delete all upgrading packages before installation.
           (dolist (rcp upgrades)
-            (package-delete
-             (jcs-package-get-package-by-name (jcs--recipe-get-info rcp :name))))
+            (setq desc (jcs-package-get-package-by-name (jcs--recipe-get-info rcp :name)))
+            (when desc (package-delete desc)))
           (jcs-ensure-manual-package-installed upgrades t)
           (message "[QUELPA] Done upgrading all packages"))
       (message "[QUELPA] All packages are up to date"))
@@ -311,16 +311,22 @@
 ;;----------------------------------------------------------------------------
 ;; Manually Installation
 
-(defconst jcs-package-manually-install-list
-  '((file-header :repo "jcs-elpa/file-header" :fetcher github)
-    (fill-page :repo "jcs-elpa/fill-page" :fetcher github)
-    (impatient-showdown :repo "jcs-elpa/impatient-showdown" :fetcher github
-                        :files (:defaults "preview.html"))
-    (ivy-file-preview :repo "jcs-elpa/ivy-file-preview" :fetcher github)
-    (jayces-mode :repo "jcs-elpa/jayces-mode" :fetcher github)
-    (multi-shell :repo "jcs-elpa/multi-shell" :fetcher github)
-    (reload-emacs :repo "jcs-elpa/reload-emacs" :fetcher github)
-    (test-sha :repo "jcs-elpa/test-sha" :fetcher github))
+(defconst jcs-quelpa-recipes-path (expand-file-name "~/.emacs.jcs/recipes/")
+  "Manually installed recipes path.")
+
+(defun jcs--quelpa-recipes ()
+  "Return all `quela' recipes."
+  (require 'jcs-file) (require 'jcs-util) (require 'thingatpt)
+  (let ((rcps-ff (jcs-dir-to-filename jcs-quelpa-recipes-path nil t))
+        (rcps '()) rcp)
+    (dolist (rcp-file rcps-ff)
+      (setq rcp
+            (eval (read-from-whole-string
+                   (concat "'" (jcs-get-string-from-file rcp-file)))))
+      (push rcp rcps))
+    (reverse rcps)))
+
+(defvar jcs-package-manually-install-list (jcs--quelpa-recipes)
   "List of package that you want to manually installed.")
 
 (defun jcs--form-version-recipe (rcp)
@@ -368,14 +374,13 @@ PKG is a list of recipe components."
     (let ((jcs-package-installing-p t) pkg-name pkg-repo pkg-fetcher
           (quelpa-build-verbose nil))
       (dolist (rcp packages)
-        (setq pkg-name (jcs--recipe-get-info rcp :name))
-        (setq pkg-repo (jcs--recipe-get-info rcp :repo))
-        (setq pkg-fetcher (jcs--recipe-get-info rcp :fetcher))
+        (setq pkg-name (jcs--recipe-get-info rcp :name)
+              pkg-repo (jcs--recipe-get-info rcp :repo)
+              pkg-fetcher (jcs--recipe-get-info rcp :fetcher))
         (unless (package-installed-p pkg-name)
           (when (or without-asking
                     (y-or-n-p (format "[QUELPA] Package %s is missing. Install it? " pkg-name)))
-            (require 'quelpa)
-            (require 'jcs-util)
+            (require 'quelpa) (require 'jcs-util)
             (jcs-no-log-apply
               (message "Installing '%s' from '%s'" pkg-repo pkg-fetcher))
             (jcs-mute-apply (quelpa rcp))))))))
