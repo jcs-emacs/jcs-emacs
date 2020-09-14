@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-09-15
+
+* Fixed `feebleline` incorrect file name issue.
+
 ### 2020-09-14
 
 * Installed new package `better-scroll`.
