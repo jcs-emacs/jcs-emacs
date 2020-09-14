@@ -614,6 +614,7 @@
 (use-package ivy-file-preview
   :defer t
   :init
+  (setq ivy-file-preview-overlay-delay-time 0.2)
   (with-eval-after-load 'ivy (ivy-file-preview-mode 1)))
 
 (use-package ivy-searcher
