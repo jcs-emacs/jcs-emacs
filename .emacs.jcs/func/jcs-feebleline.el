@@ -71,6 +71,10 @@
 (defvar jcs--feebleline--vc-info-face 'jcs--feebleline--vc-info-face)
 
 
+(defun jcs-feebleline--section-error (msg)
+  "Return section error MSG."
+  (format "-- %s --" msg))
+
 (defun jcs--feebleline--reset ()
   "Reset `feebleline' variables once."
   (jcs-walk-through-all-buffers-once
@@ -126,7 +130,8 @@
       (let ((str-star (if (feebleline-file-modified-star)
                           (format "%s " (feebleline-file-modified-star))
                         ""))
-            (fn (f-filename (jcs-buffer-name-or-buffer-file-name))))
+            (fn (ignore-errors (f-filename (jcs-buffer-name-or-buffer-file-name)))))
+        (unless fn (setq fn (jcs-feebleline--section-error "Error: file name invalid")))
         (format "%s%s"
                 (propertize str-star 'face font-lock-keyword-face)
                 (propertize fn 'face font-lock-keyword-face)))
