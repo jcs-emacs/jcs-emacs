@@ -105,20 +105,17 @@
       (set-face-attribute 'ahs-plugin-defalt-face nil
                           :foreground nil
                           :background pt
-                          :box box-face
-                          :underline nil))
+                          :box box-face))
     (setq box-face (jcs-form-p-symbol box-face :color ot-box))
     ;; Other highlight. (Same words in the buffer)
     (set-face-attribute 'ahs-face nil
                         :foreground nil
                         :background ot
-                        :box box-face
-                        :underline nil)
+                        :box box-face)
     (set-face-attribute 'ahs-definition-face nil
                         :foreground nil
                         :background ot
-                        :box box-face
-                        :underline nil)))
+                        :box box-face)))
 
 (defun jcs-reset-ahs-by-theme ()
   "Reset `auto-highlight-symbol' by theme."
