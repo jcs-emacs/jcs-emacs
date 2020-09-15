@@ -315,7 +315,7 @@
   "Manually installed recipes path.")
 
 (defun jcs--quelpa-recipes ()
-  "Return all `quela' recipes."
+  "Return all `quelpa' recipes."
   (require 'jcs-file) (require 'jcs-util) (require 'thingatpt)
   (let ((rcps-ff (jcs-dir-to-filename jcs-quelpa-recipes-path nil t))
         (rcps '()) rcp)
