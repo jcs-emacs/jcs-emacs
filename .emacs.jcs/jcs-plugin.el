@@ -274,6 +274,7 @@
   (with-eval-after-load 'right-click-context (diminish 'right-click-context-mode))
   (with-eval-after-load 'shift-select (diminish 'shift-select-minor-mode))
   (with-eval-after-load 'show-eol (diminish 'show-eol-mode))
+  (with-eval-after-load 'un-mini (diminish 'un-mini-mode))
   (with-eval-after-load 'undo-tree (diminish 'undo-tree-mode))
   (with-eval-after-load 'view (diminish 'view-mode))
   (diminish 'visual-line-mode)
