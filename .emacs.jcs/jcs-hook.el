@@ -87,7 +87,6 @@
     (require 'dashboard)
     (require 'diminish)
     (require 'exec-path-from-shell)
-    (require 'fill-page)
     (require 'highlight-indent-guides)
     (require 'hl-line)
     (require 'hl-todo)
@@ -139,6 +138,8 @@
     ;;----------------------------------- `show-paren'
     ;; NOTE: turn on highlight matching brackets when cursor is on one
     (show-paren-mode t)
+    ;;----------------------------------- `un-mini'
+    (un-mini-mode 1)
     ;;----------------------------------- `use-ttf'
     (use-ttf-set-default-font)
     ;;----------------------------------- `which-key'
