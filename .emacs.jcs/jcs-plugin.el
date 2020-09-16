@@ -922,6 +922,11 @@
   ;; etc.
   (setq sql-indent-offset 1))
 
+(use-package un-mini
+  :defer t
+  :init
+  (setq un-mini-abort-commands '(right-click-context-click-menu)))
+
 (use-package undo-tree
   :defer t
   :config
