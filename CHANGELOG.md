@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-09-16
+
+* Installed new package `un-mini` manually.
+* Enabled `un-mini-mode` as default behaviour.
+
 ### 2020-09-15
 
 * Fixed `feebleline` incorrect file name issue.
