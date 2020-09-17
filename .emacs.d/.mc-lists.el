@@ -210,8 +210,8 @@
         jcs-scratch-buffer
         jcs-scratch-buffer-maybe-kill
         jcs-scratch-buffer-other-window
-        jcs-scroll-down-one-line
-        jcs-scroll-up-one-line
+        jcs-scroll-down-line
+        jcs-scroll-up-line
         jcs-sh-untabify-save-buffer
         jcs-tabify-save-buffer
         jcs-text-scale-decrease
