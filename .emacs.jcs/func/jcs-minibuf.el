@@ -10,7 +10,7 @@
 
   (jcs-dark-blue-mode-line)
 
-  (jcs-minibuf--ivy-setup)
+  (setq jcs-minibuf--setup-for-ivy-p t)
 
   ;; Register hook.
   (add-hook 'post-command-hook #'jcs-minibuffer--post-command nil t))
@@ -37,8 +37,18 @@
   (unless win (setq win (selected-window)))
   (eq win (minibuffer-window)))
 
-
 ;;; Ivy
+
+(defvar jcs-minibuf--setup-for-ivy-p nil
+  "Flag to check if execute setup for `ivy-mode'.")
+
+(defun jcs-ivy--exhibit (fnc &rest args)
+  "Advice execute around `ivy--exhibit' function."
+  (when (and (apply fnc args) jcs-minibuf--setup-for-ivy-p)
+    (setq jcs-minibuf--setup-for-ivy-p nil)
+    (jcs-minibuf--ivy-setup)))
+
+(advice-add 'ivy--exhibit :around #'jcs-ivy--exhibit)
 
 (defun jcs-minibuf--ivy-setup ()
   "Setup hook for Ivy in minibuffer."
