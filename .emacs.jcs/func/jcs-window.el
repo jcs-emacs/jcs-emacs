@@ -123,7 +123,7 @@ If DO-ADVICE is non-nil then will active advices from `other-window' function."
     (save-selected-window
       (let ((cur-frame (selected-frame)) (index 0) (can-execute-p t))
         (while (< index (jcs-count-windows))
-          (cond ((and (not minibuf) (jcs-minibuffer-window-p))
+          (cond ((and (not minibuf) (jcs-minibuf-window-p))
                  (setq can-execute-p nil))
                 (t (setq can-execute-p t)))
           (when (and can-execute-p fnc) (funcall fnc))
