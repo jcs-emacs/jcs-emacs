@@ -313,11 +313,14 @@ See `jcs-hook.el' file that has apply `advice' on command `other-window'.")
   "Default untabify or tabify to the buffer.")
 
 ;;; Separator
+(defconst jcs-env-separator-char "─"
+  "Separator character.")
+
 (defun jcs-env-separator ()
   "Return environment separator."
   (propertize
    (if (display-graphic-p) "\f"
-     (jcs-fill-n-char-seq "-" (- (window-total-width) 2)))
+     (jcs-fill-n-char-seq jcs-env-separator-char (- (window-total-width) 2)))
    'face font-lock-comment-face))
 
 ;;; Shift Select
