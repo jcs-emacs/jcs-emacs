@@ -2,12 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-(defun jcs-minibuffer-window-p (&optional win)
-  "Check if WIN minibuffer window."
-  (unless win (setq win (selected-window)))
-  (eq win (minibuffer-window)))
-
-(defun jcs-minibuffer-setup-hook ()
+(defun jcs-minibuf--setup-hook ()
   "Hook when minibuffer setup."
   ;; NOTE: Avoid GCs while using `ivy'/`counsel'/`swiper' and `helm', etc.
   (progn
@@ -15,6 +10,38 @@
 
   (jcs-dark-blue-mode-line)
 
+  (jcs-minibuf--ivy-setup)
+
+  ;; Register hook.
+  (add-hook 'post-command-hook #'jcs-minibuffer--post-command nil t))
+(add-hook 'minibuffer-setup-hook 'jcs-minibuf--setup-hook)
+
+(defun jcs-minibuf--exit-hook ()
+  "Hook when exit minibuffer."
+  (jcs-reload-active-mode)
+
+  ;; NOTE: Avoid GCs while using `ivy'/`counsel'/`swiper' and `helm', etc.
+  (progn
+    (garbage-collect)
+    (jcs-gc-cons-threshold-speed-up nil)))
+(add-hook 'minibuffer-exit-hook 'jcs-minibuf--exit-hook)
+
+(defun jcs-minibuffer--post-command ()
+  "Minibuffer post command hook."
+  (jcs-minibuf--ivy-post-command))
+
+;;; Util
+
+(defun jcs-minibuf-window-p (&optional win)
+  "Check if WIN minibuffer window."
+  (unless win (setq win (selected-window)))
+  (eq win (minibuffer-window)))
+
+
+;;; Ivy
+
+(defun jcs-minibuf--ivy-setup ()
+  "Setup hook for Ivy in minibuffer."
   (when ivy-mode
     (jcs-walk-through-all-windows-once
      (lambda ()
@@ -26,14 +53,10 @@
                 (visible-win-height (- max-ln first-display-ln)))
            (when (and (<= last-display-ln cur-ln)
                       (<= (window-body-height) visible-win-height))
-             (jcs-recenter-top-bottom 'bottom)))))))
+             (jcs-recenter-top-bottom 'bottom))))))))
 
-  ;; Register hook.
-  (add-hook 'post-command-hook #'jcs-minibuffer--post-command-hook nil t))
-(add-hook 'minibuffer-setup-hook 'jcs-minibuffer-setup-hook)
-
-(defun jcs-minibuffer--post-command-hook ()
-  "Minibuffer post command hook."
+(defun jcs-minibuf--ivy-post-command ()
+  "Post command for Ivy in minibuffer."
   (when ivy-mode
     (cond ((jcs-is-finding-file-p)
            (when (and (save-excursion (search-backward "~//" nil t))
@@ -41,16 +64,6 @@
              (save-excursion
                (forward-char -1)
                (backward-delete-char 1)))))))
-
-(defun jcs-minibuffer-exit-hook ()
-  "Hook when exit minibuffer."
-  (jcs-reload-active-mode)
-
-  ;; NOTE: Avoid GCs while using `ivy'/`counsel'/`swiper' and `helm', etc.
-  (progn
-    (garbage-collect)
-    (jcs-gc-cons-threshold-speed-up nil)))
-(add-hook 'minibuffer-exit-hook 'jcs-minibuffer-exit-hook)
 
 (provide 'jcs-minibuf)
 ;;; jcs-minibuf.el ends here
