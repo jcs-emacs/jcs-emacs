@@ -123,6 +123,7 @@ decrease this. If you experience stuttering, increase this.")
 (require 'jcs-mode)
 
 ;;; Finalize
+(require 'jcs-minibuf)
 (require 'jcs-hook)
 (require 'jcs-key)
 (require 'jcs-face)

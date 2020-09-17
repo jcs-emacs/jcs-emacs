@@ -2,8 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'jcs-minibuf)
-
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 (defun jcs-focus-in-hook ()
