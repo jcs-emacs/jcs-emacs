@@ -36,9 +36,8 @@ If DO-ADVICE is non-nil then will active advices from `other-window' function."
     (save-selected-window
       (let ((cur-frame (selected-frame)) (index 0))
         (while (< index (length (frame-list)))
-          (when fnc
-            (funcall fnc))
-          (call-interactively #'other-frame)
+          (when fnc (funcall fnc))
+          (other-frame 1)
           (setq index (+ index 1)))
         (select-frame-set-input-focus cur-frame)))))
 
