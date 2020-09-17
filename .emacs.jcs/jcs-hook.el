@@ -2,6 +2,10 @@
 ;;; Commentary:
 ;;; Code:
 
+(require 'jcs-minibuf)
+
+;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
 (defun jcs-focus-in-hook ()
   "When window is focus."
   (jcs-revert-all-file-buffers)
@@ -110,8 +114,6 @@
     (global-auto-highlight-symbol-mode t)
     ;;----------------------------------- `auto-read-only'
     (auto-read-only-mode 1)
-    ;;----------------------------------- `fill-page'
-    (global-fill-page-mode)
     ;;----------------------------------- `delete-selection'
     (delete-selection-mode 1)
     ;;----------------------------------- `goto-address'
@@ -138,8 +140,6 @@
     ;;----------------------------------- `show-paren'
     ;; NOTE: turn on highlight matching brackets when cursor is on one
     (show-paren-mode t)
-    ;;----------------------------------- `un-mini'
-    (un-mini-mode 1)
     ;;----------------------------------- `use-ttf'
     (use-ttf-set-default-font)
     ;;----------------------------------- `which-key'
@@ -229,41 +229,6 @@
   (with-current-buffer "*scratch*" (setq jcs-scratch--content (buffer-string)))
   (setq jcs-emacs-ready-p t))
 (add-hook 'emacs-startup-hook 'jcs--emacs-startup-hook)
-
-;;----------------------------------------------------------------------------
-;; Minibuffer
-
-(defun jcs-minibuffer-setup-hook ()
-  "Hook when minibuffer setup."
-  ;; NOTE: Avoid GCs while using `ivy'/`counsel'/`swiper' and `helm', etc.
-  (progn
-    (jcs-gc-cons-threshold-speed-up t))
-
-  (jcs-dark-blue-mode-line)
-
-  ;; Register hook.
-  (add-hook 'post-command-hook #'jcs-minibuffer-post-command-hook nil t))
-(add-hook 'minibuffer-setup-hook 'jcs-minibuffer-setup-hook)
-
-(defun jcs-minibuffer-post-command-hook ()
-  "Minibuffer post command hook."
-  (when ivy-mode
-    (cond ((jcs-is-finding-file-p)
-           (when (and (save-excursion (search-backward "~//" nil t))
-                      (not (jcs-current-char-equal-p "/")))
-             (save-excursion
-               (forward-char -1)
-               (backward-delete-char 1)))))))
-
-(defun jcs-minibuffer-exit-hook ()
-  "Hook when exit minibuffer."
-  (jcs-reload-active-mode)
-
-  ;; NOTE: Avoid GCs while using `ivy'/`counsel'/`swiper' and `helm', etc.
-  (progn
-    (garbage-collect)
-    (jcs-gc-cons-threshold-speed-up nil)))
-(add-hook 'minibuffer-exit-hook 'jcs-minibuffer-exit-hook)
 
 (provide 'jcs-hook)
 ;;; jcs-hook.el ends here
