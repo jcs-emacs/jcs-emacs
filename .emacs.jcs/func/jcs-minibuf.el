@@ -42,13 +42,13 @@
 (defvar jcs-minibuf--setup-for-ivy-p nil
   "Flag to check if execute setup for `ivy-mode'.")
 
-(defun jcs-ivy--exhibit (fnc &rest args)
-  "Advice execute around `ivy--exhibit' function."
-  (when (and (apply fnc args) jcs-minibuf--setup-for-ivy-p)
+(defun jcs-ivy--exhibit ()
+  "Advice execute after `ivy--exhibit' function."
+  (when jcs-minibuf--setup-for-ivy-p
     (setq jcs-minibuf--setup-for-ivy-p nil)
     (jcs-minibuf--ivy-setup)))
 
-(advice-add 'ivy--exhibit :around #'jcs-ivy--exhibit)
+(advice-add 'ivy--exhibit :after #'jcs-ivy--exhibit)
 
 (defun jcs-minibuf--ivy-setup ()
   "Setup hook for Ivy in minibuffer."
