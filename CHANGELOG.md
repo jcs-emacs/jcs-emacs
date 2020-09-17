@@ -11,6 +11,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Removed package `un-mini` from manual installation.
 * Instead of `fill-page`, use adjust scroll instead for `ivy-mode`.
 * Extracted minibuffer configuration to a single file, `jcs-minibuf.el`.
+* Extract environment separator character to a single variable.
 
 ### 2020-09-16
 
