@@ -115,15 +115,18 @@ Return the count of the buffer shown."
   (>= (jcs-buffer-shown-count in-buf-name strict) 2))
 
 ;;;###autoload
-(defun jcs-walk-through-all-windows-once (&optional fnc do-advice)
+(defun jcs-walk-through-all-windows-once (&optional fnc minibuf do-advice)
   "Walk through all the windows once and execute callback FNC.
 If DO-ADVICE is non-nil then will active advices from `other-window' function."
   (interactive)
   (let ((jcs--no-advice-other-window (if do-advice nil t)))
     (save-selected-window
-      (let ((cur-frame (selected-frame)) (index 0))
+      (let ((cur-frame (selected-frame)) (index 0) (can-execute-p t))
         (while (< index (jcs-count-windows))
-          (when fnc (funcall fnc))
+          (cond ((and (not minibuf) (jcs-minibuffer-window-p))
+                 (setq can-execute-p nil))
+                (t (setq can-execute-p t)))
+          (when (and can-execute-p fnc) (funcall fnc))
           (other-window 1 t)
           (setq index (+ index 1)))
         (select-frame-set-input-focus cur-frame)))))
