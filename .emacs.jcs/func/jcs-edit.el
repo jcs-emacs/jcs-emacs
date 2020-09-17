@@ -633,16 +633,16 @@ REGEXP : reqular expression use to align."
   (other-window cnt (null not-all-frames)))
 
 ;;;###autoload
-(defun jcs-scroll-up-one-line (&optional n)
+(defun jcs-scroll-up-line (&optional n)
   "Scroll the text up N line."
   (interactive)
-  (let ((rel-n (if n n 1))) (scroll-up rel-n)))
+  (let ((rel-n (if n n 1))) (ignore-errors (scroll-up rel-n))))
 
 ;;;###autoload
-(defun jcs-scroll-down-one-line (&optional n)
+(defun jcs-scroll-down-line (&optional n)
   "Scroll the text down N line."
   (interactive)
-  (let ((rel-n (if n n 1))) (scroll-down rel-n)))
+  (let ((rel-n (if n n 1))) (ignore-errors (scroll-down rel-n))))
 
 ;;;###autoload
 (defun jcs-remove-trailing-lines-end-buffer ()
