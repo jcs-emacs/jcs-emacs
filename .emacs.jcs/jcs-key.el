@@ -159,8 +159,8 @@
 (define-key prog-mode-map (kbd "<down>") (jcs-get-prev/next-key-type 'next))
 (define-key global-map (kbd "<down>") #'next-line)
 
-(define-key global-map (kbd "C-M-<up>") #'jcs-scroll-down-one-line)
-(define-key global-map (kbd "C-M-<down>") #'jcs-scroll-up-one-line)
+(define-key global-map (kbd "C-M-<up>") #'jcs-scroll-down-line)
+(define-key global-map (kbd "C-M-<down>") #'jcs-scroll-up-line)
 
 (define-key global-map (kbd "C-M-<left>") #'buf-move-left)
 (define-key global-map (kbd "C-M-<right>") #'buf-move-right)

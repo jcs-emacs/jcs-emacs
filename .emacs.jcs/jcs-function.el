@@ -548,9 +548,8 @@ See `sort-words'."
       (save-selected-window
         (when (ignore-errors (jcs-jump-shown-to-buffer flycheck-error-list-buffer))
           (jcs-maybe-kill-this-buffer))))
-    ;; STUDY: For some reason, we need to walk
-    ;; through all windows once in order to display
-    ;; the `flycheck-list-errors' in other window.
+    ;; STUDY: For some reason, we need to walk through all windows once
+    ;; in order to display the `flycheck-list-errors' in other window.
     (jcs-walk-through-all-windows-once))
   flycheck-mode)
 
