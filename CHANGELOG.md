@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-09-17
+
+* Removed package `fill-page` from manual installation.
+* Removed package `un-mini` from manual installation.
+* Instead of `fill-page`, use adjust scroll instead for `ivy-mode`.
+* Extracted minibuffer configuration to a single file, `jcs-minibuf.el`.
+
 ### 2020-09-16
 
 * Installed new package `un-mini` manually.
