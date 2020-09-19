@@ -191,22 +191,80 @@
     yasnippet-snippets)
   "List of packages this config needs.")
 
+;;----------------------------------------------------------------------------
+;; Util
+
+(defun jcs-package--add-selected-packages (pkg-name)
+  "Add PKG-NAME to the selected package list."
+  (unless (memq pkg-name package-selected-packages)
+    (jcs-mute-apply
+      (package--save-selected-packages (cons pkg-name package-selected-packages)))))
+
+(defun jcs-package--remove-selected-packages (pkg-name)
+  "Remove PKG-NAME from the selected package list."
+  (when (memq pkg-name package-selected-packages)
+    (jcs-mute-apply
+      (package--save-selected-packages (remove pkg-name package-selected-packages)))))
+
+(defun jcs-package--package-status (pkg-name)
+  "Get package status by PKG-NAME."
+  (let ((desc (cadr (assq pkg-name package-alist)))) (package-desc-status desc)))
+
+(defun jcs-package--used-elsewhere-p (pkg-name)
+  "Return non-nil if PKG-NAME is used elsewhere."
+  (let ((desc (cadr (assq pkg-name package-alist))))
+    (package--used-elsewhere-p desc nil 'all)))
+
+(defun jcs-package--package-obsolete-p (pkg-name)
+  "Return non-nil if PKG-NAME is obsolete package."
+  (string= (jcs-package--package-status pkg-name) "obsolete"))
+
+(defun jcs-package--package-do-rebuild (pkg-name)
+  "Return non-nil if PKG-NAME suppose to be rebuild."
+  (and (not (jcs-package--package-obsolete-p pkg-name))
+       (not (package-built-in-p pkg-name))))
+
+(defvar jcs-package-rebuild-dependency-p t
+  "Flag to see if able to rebuild dependency graph at the moment.")
+
+(defvar jcs-package--need-rebuild-p nil
+  "Flag to see if we need to rebuild for the next command.")
+
+(defun jcs-package--rebuild-dependency-list ()
+  "Rebuild dependency graph and save to list."
+  (if (not jcs-package-rebuild-dependency-p)
+      (setq jcs-package--need-rebuild-p t)
+    (jcs-process-reporter-start)
+    (let ((new-selected-pkg package-selected-packages))
+      (dolist (pkg-name package-activated-list)
+        (when (jcs-package--package-do-rebuild pkg-name)
+          (jcs-process-reporter-update (format "Building package dependency, `%s`" pkg-name))
+          (if (jcs-package--used-elsewhere-p pkg-name)
+              (setq new-selected-pkg (remove pkg-name new-selected-pkg))
+            (push pkg-name new-selected-pkg))))
+      (delete-dups new-selected-pkg)
+      (package--save-selected-packages new-selected-pkg))
+    (jcs-process-reporter-done "Done rebuild dependency graph")))
+
+;;----------------------------------------------------------------------------
+;; Core Installation
+
 (defvar jcs-package-installing-p nil
   "Is currently upgrading the package.")
 
-(defun jcs-advice-package-install-around (ori-func &rest args)
+(defun jcs--package-install--advice-around (ori-func &rest args)
   "Advice around execute `package-install' command."
   (setq jcs-package-installing-p t)
   (apply ori-func args)
   (setq jcs-package-installing-p nil))
-(advice-add 'package-install :around #'jcs-advice-package-install-around)
+(advice-add 'package-install :around #'jcs--package-install--advice-around)
 
 (defun jcs-package-install (pkg)
   "Install PKG package."
   (unless (get 'jcs-package-install 'state)
     (put 'jcs-package-install 'state t))
-  ;; Don't run `package-refresh-contents' if you don't need to
-  ;; install packages on startup.
+  ;; Don't run `package-refresh-contents' if you don't need to install
+  ;; packages on startup.
   (package-refresh-contents)
   ;; Else we just install the package regularly.
   (package-install pkg))
@@ -219,10 +277,9 @@
               (y-or-n-p (format "[ELPA] Package %s is missing. Install it? " package)))
           (jcs-package-install package)
         package)))
+  (jcs-package--rebuild-dependency-list)
   ;; STUDY: Not sure if you need this?
-  (when (get 'jcs-package-install 'state)
-    ;; activate installed packages
-    (package-initialize)))
+  (when (get 'jcs-package-install 'state) (package-initialize)))
 
 (defun jcs-get-package-version (name where)
   "Get version of the package."
@@ -260,6 +317,7 @@
                                              package-alist))))
                 (jcs-package-install package-desc)
                 (package-delete old-package))))
+          (jcs-package--rebuild-dependency-list)
           (message "[ELPA] Done upgrading all packages"))
       (message "[ELPA] All packages are up to date"))))
 
@@ -283,13 +341,23 @@
       (message "[QUELPA] All packages are up to date"))
     (jcs-sit-for)))
 
+(defun jcs-package-install-all ()
+  "Install all needed packages from this configuration."
+  (let (jcs-package-rebuild-dependency-p jcs-package--need-rebuild-p
+        (install-it (or (boundp 'jcs-build-test) jcs-auto-install-pkgs)))
+    (jcs-ensure-package-installed jcs-package-install-list install-it)
+    (jcs-ensure-manual-package-installed jcs-package-manually-install-list install-it)
+    (when jcs-package--need-rebuild-p (jcs-package--rebuild-dependency-list))))
+
 ;;;###autoload
 (defun jcs-package-upgrade-all ()
   "Upgrade all packages automatically without showing *Packages* buffer."
   (interactive)
   (package-refresh-contents)
-  (jcs-package--upgrade-all-elpa)
-  (jcs-package--upgrade-all-quelpa))
+  (let (jcs-package-rebuild-dependency-p jcs-package--need-rebuild-p)
+    (jcs-package--upgrade-all-elpa)
+    (jcs-package--upgrade-all-quelpa)
+    (when jcs-package--need-rebuild-p (jcs-package--rebuild-dependency-list))))
 
 ;;;###autoload
 (defun jcs-package-menu-filter-by-status (status)
@@ -383,7 +451,8 @@ PKG is a list of recipe components."
             (require 'quelpa) (require 'jcs-util)
             (jcs-no-log-apply
               (message "Installing '%s' from '%s'" pkg-repo pkg-fetcher))
-            (jcs-mute-apply (quelpa rcp))))))))
+            (jcs-mute-apply (quelpa rcp))))))
+    (jcs-package--rebuild-dependency-list)))
 
 (provide 'jcs-package)
 ;;; jcs-package.el ends here
