@@ -1651,27 +1651,29 @@ IN-VAL : input value to set to IN-VAR."
 (defvar jcs-process-reporter-refresh 0.1
   "Process reporter's refresh rate.")
 
-(defun jcs-process-reporter-start (msg)
+(defun jcs-process-reporter-start (&optional msg)
   "Start global process reporter with MSG displayed."
   (jcs-process-reporter-done)
+  (unless msg (setq msg ""))
   (setq jcs-process-reporter (make-progress-reporter msg))
   (setq jcs-process-reporter-timer
         (run-with-timer nil jcs-process-reporter-refresh
                         'jcs-process-reporter-update)))
 
-(defun jcs-process-reporter-update ()
+(defun jcs-process-reporter-update (&optional value suffix)
   "Update global process reporter once."
   (when jcs-process-reporter
-    (progress-reporter-update jcs-process-reporter)))
+    (progress-reporter-update jcs-process-reporter value suffix)))
 
-(defun jcs-process-reporter-done ()
-  "Kill global process reporter when you are done."
+(defun jcs-process-reporter-done (&optional msg)
+  "Kill global process reporter and log MSG when you are done."
   (when jcs-process-reporter
-    (progress-reporter-done jcs-process-reporter)
+    (jcs-no-log-apply (progress-reporter-done jcs-process-reporter))
     (setq jcs-progress-reporter nil))
   (when (timerp jcs-process-reporter-timer)
     (cancel-timer jcs-process-reporter-timer)
-    (setq jcs-process-reporter-timer nil)))
+    (setq jcs-process-reporter-timer nil)
+    (jcs-no-log-apply (message msg))))
 
 (provide 'jcs-util)
 ;;; jcs-util.el ends here
