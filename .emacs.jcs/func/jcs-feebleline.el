@@ -12,8 +12,8 @@
 ;;;-- Left --
 (defvar jcs-feebleline-show-lsp-info t "Show LSP information.")
 (defvar jcs-feebleline-show-major-mode t "Show major mode.")
-(defvar jcs-feebleline-show-project-name-&-vc-info t "Show project name and version control information.")
 (defvar jcs-feebleline-show-buffer-name t "Show buffer name.")
+(defvar jcs-feebleline-show-project-name-&-vc-info t "Show project name and version control information.")
 ;;;-- Right --
 (defvar jcs-feebleline-show-symbol-read-only t "Show read only symbol.")
 (defvar jcs-feebleline-show-coding-system-&-line-endings t "Show coding system and line endings.")
