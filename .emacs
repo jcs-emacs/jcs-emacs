@@ -96,10 +96,7 @@ decrease this. If you experience stuttering, increase this.")
 (defconst jcs-auto-install-pkgs t
   "Auto install the dependencies packages.")
 
-;; Install all packages that this config needs.
-(let ((install-it (or (boundp 'jcs-build-test) jcs-auto-install-pkgs)))
-  (jcs-ensure-package-installed jcs-package-install-list install-it)
-  (jcs-ensure-manual-package-installed jcs-package-manually-install-list install-it))
+(jcs-package-install-all)
 
 (defconst jcs-package-init-time (emacs-init-time)
   "Record down the package initialize time.")
