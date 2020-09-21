@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-09-21
+
+* Bind rebuild dependency graph function to after package execute command.
+
 ### 2020-09-20
 
 * Implemented rebuild dependency graph function for organizing 3rd party packages.
