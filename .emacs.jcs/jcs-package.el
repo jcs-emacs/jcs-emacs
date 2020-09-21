@@ -206,15 +206,19 @@
     (jcs-mute-apply
       (package--save-selected-packages (remove pkg-name package-selected-packages)))))
 
+(defun jcs-package--build-desc (pkg-name)
+  "Build package description by PKG-NAME."
+  (cadr (assq pkg-name package-alist)))
+
 (defun jcs-package--package-status (pkg-name)
   "Get package status by PKG-NAME."
-  (let* ((desc (cadr (assq pkg-name package-alist)))
+  (let* ((desc (jcs-package--build-desc pkg-name))
          (status (ignore-errors (package-desc-status desc))))
-    (if status status "")))
+    (or status "")))
 
 (defun jcs-package--used-elsewhere-p (pkg-name)
   "Return non-nil if PKG-NAME is used elsewhere."
-  (let ((desc (cadr (assq pkg-name package-alist))))
+  (let ((desc (jcs-package--build-desc pkg-name)))
     (ignore-errors (package--used-elsewhere-p desc nil 'all))))
 
 (defun jcs-package--package-status-p (pkg-name status)
@@ -248,7 +252,7 @@
   "Record of `package-selected-packages' for calculation of certain commands.")
 
 (defun jcs-package--get-selected-packages ()
-  ""
+  "Return selected packages base on the execution's condition."
   (or jcs-package--save-selected-packages package-selected-packages))
 
 ;;;###autoload
