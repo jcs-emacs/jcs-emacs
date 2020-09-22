@@ -378,8 +378,8 @@
             (when desc (package-delete desc)))
           (jcs-ensure-manual-package-installed upgrades t)
           (message "[QUELPA] Done upgrading all packages"))
-      (message "[QUELPA] All packages are up to date"))
-    (jcs-sit-for)))
+      (message "[QUELPA] All packages are up to date")
+      (jcs-sit-for))))
 
 ;;;###autoload
 (defun jcs-package-install-all ()
