@@ -81,7 +81,7 @@ This will no longer overwrite usual Emacs' undo key."
   (require 'undo-tree)
   (jcs-safe-jump-shown-to-buffer
    undo-tree-visualizer-buffer-name
-   (lambda () (save-window-excursion (ignore-errors (undo-tree-visualizer-quit))))))
+   (lambda () (bury-buffer))))
 
 (defun jcs-undo-tree-visualize (&optional cbf)
   "Call `undo-tree-visualize' only in window that has higher height.
@@ -144,8 +144,7 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
           (select-window record-window)
           (if ud (undo-tree-undo) (undo-tree-redo))
           (jcs-undo-tree-visualize))
-        ;; STUDY: weird that they use word
-        ;; toggle, instead of just set it.
+        ;; STUDY: weird that they use word toggle, instead of just set it.
         ;;
         ;; Why not?
         ;;   => `undo-tree-visualizer-show-diff'
@@ -953,10 +952,10 @@ NO-RECORD and FORCE-SAME-WINDOW are the same as switch to buffer arguments."
 
 (defun jcs-bury-diminished-buffer ()
   "Bury the diminished buffer."
-  (when (and
-         diminish-buffer-mode
-         (jcs-is-contain-list-string-regexp (append jcs-bury-buffer-list diminish-buffer-list)
-                                            (jcs-buffer-name-or-buffer-file-name)))
+  (when (and diminish-buffer-mode
+             (jcs-is-contain-list-string-regexp
+              (append jcs-bury-buffer-list diminish-buffer-list)
+              (jcs-buffer-name-or-buffer-file-name)))
     (jcs-bury-buffer)))
 
 ;;;###autoload
@@ -1024,35 +1023,15 @@ NO-RECORD and FORCE-SAME-WINDOW are the same as switch to buffer arguments."
     (jcs-switch-to-previous-buffer)))
 
 ;;;###autoload
-(defun jcs-maybe-kill-this-buffer (&optional ecp-same)
+(defun jcs-maybe-kill-this-buffer ()
   "Kill buffer if the current buffer is the only shown in one window.
-Otherwise just switch to the previous buffer to keep the buffer.
-ECP-SAME : Exception for the same buffer."
+Otherwise just switch to the previous buffer to keep the buffer."
   (interactive)
   (let ((is-killed nil))
     (if (jcs-buffer-shown-in-multiple-window-p (buffer-name) t)
         (jcs-bury-buffer)
       (jcs-kill-this-buffer)
-      (setq is-killed t)
-
-      ;; NOTE: After kill the buffer, if the buffer appear in multiple windows
-      ;; then we do switch to previous buffer again. Hence, it will not show
-      ;; repeated buffer at the same time in different windows.
-      (when (and (jcs-buffer-shown-in-multiple-window-p (buffer-name) t) (not ecp-same))
-        (jcs-bury-buffer)
-
-        ;; If is something from default Emacs's buffer, switch back to previous
-        ;; buffer once again.
-        ;;
-        ;; This will solve if there is only one file opened, and switch to none
-        ;; sense buffer issue.
-        ;;
-        ;; None sense buffer or Emacs's default buffer is
-        ;;   -> *GNU Emacs*
-        ;;   -> *scratch*
-        ;;   , etc.
-        (when (and (not (buffer-file-name)) (>= (jcs-valid-buffers-count) 2))
-          (jcs-switch-to-next-valid-buffer))))
+      (setq is-killed t))
     ;; If something that I doesn't want to see, bury it.
     ;; For instance, any `*helm-' buffers.
     (jcs-bury-diminished-buffer)
