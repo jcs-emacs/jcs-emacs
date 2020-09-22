@@ -756,13 +756,17 @@ NO-PROMPT : Don't prompt the overwrap message."
 (defun jcs-enable-truncate-lines ()
   "Enable truncate lines."
   (interactive)
-  (jcs-mute-apply (toggle-truncate-lines 1)))
+  (jcs-mute-apply (toggle-truncate-lines 1))
+  (when (eq this-command 'jcs-enable-truncate-lines)
+    (message "Truncate long lines enabled")))
 
 ;;;###autoload
 (defun jcs-disable-truncate-lines ()
   "Disable truncate lines."
   (interactive)
-  (jcs-mute-apply (toggle-truncate-lines -1)))
+  (jcs-mute-apply (toggle-truncate-lines -1))
+  (when (eq this-command 'jcs-disable-truncate-lines)
+    (message "Truncate long lines disabled")))
 
 ;;----------------------------------------------------------------------------
 ;; Yascroll
