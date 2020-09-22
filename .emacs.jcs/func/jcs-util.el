@@ -1157,6 +1157,20 @@ CMDS should be a list of commands."
       (setq index (1+ index)))
     result))
 
+(defun jcs-list-min (lst)
+  "Find minimum number in LST."
+  (let (min)
+    (dolist (num lst)
+      (if min (when (< num min) (setq min num)) (setq min num)))
+    min))
+
+(defun jcs-list-max (lst)
+  "Find maximum number in LST."
+  (let (max)
+    (dolist (num lst)
+      (if max (when (> num max) (setq max num)) (setq max num)))
+    max))
+
 (defun jcs-flatten-list (lst)
   "Flatten the multiple dimensional array, LST to one dimensonal array.
 For instance, '(1 2 3 4 (5 6 7 8)) => '(1 2 3 4 5 6 7 8)."
