@@ -378,8 +378,7 @@
             (when desc (package-delete desc)))
           (jcs-ensure-manual-package-installed upgrades t)
           (message "[QUELPA] Done upgrading all packages"))
-      (message "[QUELPA] All packages are up to date")
-      (jcs-sit-for))))
+      (message "[QUELPA] All packages are up to date"))))
 
 ;;;###autoload
 (defun jcs-package-install-all ()
@@ -401,7 +400,8 @@
   (let (jcs-package-rebuild-dependency-p jcs-package--need-rebuild-p)
     (jcs-package--upgrade-all-elpa)
     (jcs-package--upgrade-all-quelpa)
-    (when jcs-package--need-rebuild-p
+    (if (not jcs-package--need-rebuild-p)
+        (jcs-sit-for)
       (setq jcs-package-rebuild-dependency-p t)
       (jcs-package-rebuild-dependency-list))))
 
