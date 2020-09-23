@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-09-23
+
+* Make adjust scroll from `ivy` to `window` module.
+* Implemented max/min list utility functions.
+
 ### 2020-09-21
 
 * Bind rebuild dependency graph function to after package execute command.
