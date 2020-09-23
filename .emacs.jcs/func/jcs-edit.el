@@ -78,6 +78,7 @@ This will no longer overwrite usual Emacs' undo key."
 
 (defun jcs-undo-kill-this-buffer ()
   "Kill the undo tree buffer."
+  (interactive)
   (require 'undo-tree)
   (jcs-safe-jump-shown-to-buffer
    undo-tree-visualizer-buffer-name
