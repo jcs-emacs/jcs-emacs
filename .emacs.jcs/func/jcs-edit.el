@@ -1017,8 +1017,7 @@ NO-RECORD and FORCE-SAME-WINDOW are the same as switch to buffer arguments."
   ;; Refresh buffer menu once.
   (jcs-buffer-menu-safe-refresh)
 
-  ;; If still in the buffer menu, try switch to the
-  ;; previous buffer
+  ;; If still in the buffer menu, try switch to the previous buffer.
   (when (jcs-is-current-major-mode-p "Buffer-menu-mode")
     (jcs-switch-to-previous-buffer)))
 
