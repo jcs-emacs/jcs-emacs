@@ -78,7 +78,6 @@
               (visible-win-height (- max-ln first-display-ln)))
          (when (and (<= last-display-ln cur-ln)
                     (<= (window-body-height) visible-win-height))
-           (message "--->> does!! %s %s" (current-buffer) jcs-minibuf--last-window-height)
            (jcs-recenter-top-bottom 'bottom)))))))
 
 ;;; Ivy
