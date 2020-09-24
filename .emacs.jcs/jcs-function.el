@@ -5,6 +5,9 @@
 ;;----------------------------------------------------------------------------
 ;; *Messages*
 
+(defconst jcs-message-buffer-name "*Messages*"
+  "Name of the message buffer.")
+
 (defvar jcs--message-buffer--first-init-p nil
   "Flag to check if message buffer first initialized with hook runs.")
 
@@ -12,14 +15,14 @@
 (defun jcs-message-buffer ()
   "Switch to `*Messages*' buffer."
   (interactive)
-  (switch-to-buffer "*Messages*")
+  (switch-to-buffer jcs-message-buffer-name)
   (jcs--message-buffer--first-load))
 
 ;;;###autoload
 (defun jcs-message-buffer-other-window ()
   "Switch to `*Messages*' buffer."
   (interactive)
-  (switch-to-buffer-other-window "*Messages*")
+  (switch-to-buffer-other-window jcs-message-buffer-name)
   (jcs--message-buffer--first-load))
 
 ;;;###autoload
@@ -30,14 +33,14 @@
     ;; Message one message to retrieve `*Message*' buffer prepare for next use.
     ;; Or else it some operation might prompt some issue that needed `*Message*'
     ;; buffer to be exists.
-    (when is-killed (message "Retrieving *Message* buffer.."))))
+    (when is-killed (message "Retrieving %s buffer.." jcs-message-buffer-name))))
 
 ;;;###autoload
 (defun jcs-message-erase-buffer-stay ()
   "Reopen *Messages* buffer."
   (interactive)
   (jcs-message-erase-buffer)
-  (switch-to-buffer "*Messages*"))
+  (switch-to-buffer jcs-message-buffer-name))
 
 (defun jcs--message-buffer--first-load ()
   "First load message buffer, ensure the hook runs."
@@ -126,7 +129,7 @@
 ;;----------------------------------------------------------------------------
 ;; Buffer Menu
 
-(defconst jcs--buffer-menu--buffer-name "*Buffer List*"
+(defconst jcs-buffer-menu-buffer-name "*Buffer List*"
   "Name of the buffer menu's buffer.")
 
 (defconst jcs--buffer-menu-search-title "Search: "
@@ -148,10 +151,10 @@
 
 (defun jcs--buffer-menu--advice-around (fnc &rest args)
   "Advice execute around `buffer-menu' command."
-  (if (and (get-buffer jcs--buffer-menu--buffer-name)
-           (jcs-buffer-shown-p jcs--buffer-menu--buffer-name)
-           (not (string= (buffer-name) jcs--buffer-menu--buffer-name)))
-      (switch-to-buffer jcs--buffer-menu--buffer-name)
+  (if (and (get-buffer jcs-buffer-menu-buffer-name)
+           (jcs-buffer-shown-p jcs-buffer-menu-buffer-name)
+           (not (string= (buffer-name) jcs-buffer-menu-buffer-name)))
+      (switch-to-buffer jcs-buffer-menu-buffer-name)
     (apply fnc args)))
 (advice-add 'buffer-menu :around #'jcs--buffer-menu--advice-around)
 
@@ -169,7 +172,7 @@
 (defun jcs-buffer-menu-refresh-buffer ()
   "Update buffer menu buffer."
   (interactive)
-  (unless (string= (jcs-buffer-name-or-buffer-file-name) jcs--buffer-menu--buffer-name)
+  (unless (string= (jcs-buffer-name-or-buffer-file-name) jcs-buffer-menu-buffer-name)
     (save-window-excursion
       (let (tabulated-list--header-string) (jcs-mute-apply (buffer-menu)))
       (when jcs-buffer--menu-switch-buffer-refreshing
@@ -177,7 +180,7 @@
       (bury-buffer)))
   (jcs-walk-through-all-windows-once
    (lambda ()
-     (when (string= jcs--buffer-menu--buffer-name (buffer-name))
+     (when (string= jcs-buffer-menu-buffer-name (buffer-name))
        (when (and (jcs--buffer-menu--header-appearing-p) (= (line-number-at-pos) 1))
          (jcs-goto-line 2))))))
 
