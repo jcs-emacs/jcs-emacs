@@ -8,6 +8,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-09-24
 
 * Allowed virtual buffer to be buried instead of killing the buffer.
+* Multiple minor bug fix regarding to variable naming issue.
+* Moved error/backtrace module to generic module, `jcs-function.el`.
 
 ### 2020-09-23
 
