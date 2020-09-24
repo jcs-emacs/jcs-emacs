@@ -42,50 +42,6 @@ Note this is opposite logic to the toggle mode function."
         ('cross  (jcs-cross-mode))
         ('depend (jcs-depend-mode))))))
 
-(defconst jcs-backtrace-buffer-name "*Backtrace*"
-  "Name of the backtrace buffer.")
-
-(defvar jcs-backtrace--occurs-last-command nil
-  "Check if backtrace occurs last command.")
-
-(defvar jcs-backtrace--dedicated-window nil
-  "Record down backtrace dedicated window.")
-
-(defun jcs-backtrace-dedicated-window-p (&optional win)
-  "Check if WIN the backtrace dedicated window."
-  (unless win (setq win (get-buffer-window)))
-  (equal win jcs-backtrace--dedicated-window))
-
-(defun jcs-hit-backtrace ()
-  "Do stuff when backtrace occures."
-  (jcs-red-mode-line)  ; When error, use red mode line.
-  (jcs-no-log-apply
-    (message "[INFO] Oops, error occurs! Please see backtrace for more information")))
-
-(defun jcs-backtrace--ensure-stay-in-buffer ()
-  "Ensure stay in backtrace buffer base on conditions."
-  (let ((backtrace-killed-p (not (get-buffer-window))))
-    (when (or (jcs-backtrace-dedicated-window-p) backtrace-killed-p)
-      (switch-to-buffer jcs-backtrace-buffer-name))))
-
-(defun jcs-reload-active-mode-with-error-handle ()
-  "Reload the active by handling the error occurrence."
-  (unless (minibufferp)
-    (if (jcs-backtrace-occurs-p)
-        (progn
-          (ignore-errors
-            (jcs-hit-backtrace)
-            (setq jcs-backtrace--occurs-last-command t)
-            (jcs-backtrace--ensure-stay-in-buffer)
-            (unless jcs-backtrace--dedicated-window
-              (setq jcs-backtrace--dedicated-window (get-buffer-window jcs-backtrace-buffer-name)))))
-      (when jcs-backtrace--occurs-last-command
-        (jcs-reload-active-mode)
-        (setq jcs-backtrace--occurs-last-command nil)
-        (when (windowp jcs-backtrace--dedicated-window)
-          (ignore-errors (delete-window jcs-backtrace--dedicated-window)))
-        (setq jcs-backtrace--dedicated-window nil)))))
-
 (defun jcs--indent-level-by-mode ()
   "Return indentation level variable as symbol depends on current major mode."
   (cond
