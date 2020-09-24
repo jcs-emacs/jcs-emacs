@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-09-24
+
+* Allowed virtual buffer to be buried instead of killing the buffer.
+
 ### 2020-09-23
 
 * Make adjust scroll from `ivy` to `window` module.
