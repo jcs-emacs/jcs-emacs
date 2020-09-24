@@ -11,6 +11,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Multiple minor bug fix regarding to variable naming issue.
 * Moved error/backtrace module to generic module, `jcs-function.el`.
 * Standardize maybe kill buffer logic by separating exception list.
+* Added default `sleep-for` function for configuration's own use.
 
 ### 2020-09-23
 
