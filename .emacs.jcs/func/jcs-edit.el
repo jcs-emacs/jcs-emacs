@@ -944,6 +944,12 @@ REGEXP : reqular expression use to align."
 ;;----------------------------------------------------------------------------
 ;; Kill Buffer
 
+(defconst jcs-must-kill-buffer-list
+  (list jcs-message-buffer-name
+        jcs-backtrace-buffer-name)
+  "List of buffer name that must be killed when maybe kill.
+Unless it shows up in multiple windows.")
+
 (defun jcs-switch-to-buffer (buffer-or-name &optional ow no-record force-same-window)
   "Switch to buffer wrarpper with other window (OW) option.
 NO-RECORD and FORCE-SAME-WINDOW are the same as switch to buffer arguments."
@@ -1022,19 +1028,13 @@ NO-RECORD and FORCE-SAME-WINDOW are the same as switch to buffer arguments."
   (when (jcs-buffer-menu-p)
     (jcs-switch-to-previous-buffer)))
 
-(defconst jcs-must-kill-buffer-list
-  (list jcs-message-buffer-name
-        jcs-backtrace-buffer-name)
-  "List of buffer name that must be killed when maybe kill.
-Unless it shows up in multiple windows.")
-
 ;;;###autoload
 (defun jcs-maybe-kill-this-buffer (&optional ecp-same)
   "Kill buffer if the current buffer is the only shown in one window.
 Otherwise just switch to the previous buffer to keep the buffer.
 ECP-SAME : Exception for the same buffer."
   (interactive)
-  (let ((is-killed nil))
+  (let (is-killed)
     (if (or (jcs-buffer-shown-in-multiple-window-p (buffer-name) t)
             (and (not (jcs-valid-buffer-p))  ; Virtual
                  (not (jcs-is-contain-list-string jcs-must-kill-buffer-list (buffer-name)))))
@@ -1045,7 +1045,8 @@ ECP-SAME : Exception for the same buffer."
       ;; NOTE: After kill the buffer, if the buffer appear in multiple windows
       ;; then we do switch to previous buffer again. Hence, it will not show
       ;; repeated buffer at the same time in different windows.
-      (when (and (jcs-buffer-shown-in-multiple-window-p (buffer-name) t) (not ecp-same))
+      (when (and (not ecp-same)
+                 (jcs-buffer-shown-in-multiple-window-p (buffer-name) t))
         (jcs-bury-buffer)
 
         ;; If is something from default Emacs's buffer, switch back to previous
