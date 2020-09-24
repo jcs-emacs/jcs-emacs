@@ -69,9 +69,14 @@ IN-VAL-DEL : value delimiter."
 
 ;;; Util
 
+(defun jcs-sleep-for (&optional seconds milliseconds)
+  "Wrap `sleep-for' function width default SECONDS and MILLISECONDS."
+  (unless seconds (setq seconds jcs-sleep-for-seconds))
+  (sleep-for seconds milliseconds))
+
 (defun jcs-sit-for (&optional seconds nodisp)
   "Wrap `sit-for' function with default SECONDS and NODISP."
-  (unless seconds (setq seconds 100))
+  (unless seconds (setq seconds jcs-sit-for-seconds))
   (sit-for seconds nodisp))
 
 ;;; Core
