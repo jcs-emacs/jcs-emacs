@@ -48,6 +48,10 @@ Sorted by (1) visit, (2) buffer, (3) size, (4) time, (5) mode, (6) file."
   (jcs-buffer-menu-sort 6))
 
 
+(defun jcs-buffer-menu-p ()
+  "Check if current major mode `buffer-menu'."
+  (jcs-is-current-major-mode-p "Buffer-menu-mode"))
+
 ;;;###autoload
 (defun jcs-buffer-menu-return ()
   "Implemenetation for `buffer menu`'s return key."
@@ -55,7 +59,7 @@ Sorted by (1) visit, (2) buffer, (3) size, (4) time, (5) mode, (6) file."
   (if jcs--buffer-menu--done-filtering
       (progn
         (ignore-errors (Buffer-menu-this-window))
-        (if (jcs-is-current-major-mode-p "Buffer-menu-mode")
+        (if (jcs-buffer-menu-p)
             (user-error "No buffer on this line")
           (message nil)))  ; Use to clear `[Display not ready]'.
     (setq jcs--buffer-menu-return-delay t)
@@ -83,7 +87,7 @@ From scale 0 to 100.")
   "Check if header appearing in the buffer."
   (let ((header-appear nil))
     (jcs-do-stuff-if-buffer-exists
-     "*Buffer List*"
+     jcs-buffer-menu-buffer-name
      (lambda ()
        (save-excursion
          (goto-char (point-min))
@@ -107,7 +111,7 @@ From scale 0 to 100.")
 (defun jcs--buffer-menu-filter-list ()
   "Do filtering the buffer list."
   (require 'flx)
-  (with-current-buffer "*Buffer List*"
+  (with-current-buffer jcs-buffer-menu-buffer-name
     (let ((scoring-table (make-hash-table))
           (scoring-keys '()))
       (while (< (line-number-at-pos) (line-number-at-pos (point-max)))
