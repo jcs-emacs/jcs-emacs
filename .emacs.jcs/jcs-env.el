@@ -268,9 +268,11 @@
 
 (setq message-log-max jcs-message-log-max)
 
-(defconst jcs-prompt-message-sleep-delay-time 0.4
-  "Delay for a time for prompting out the message in seconds.
-Hence the user can see the error/operation message.")
+(defconst jcs-sleep-for-seconds 0.4
+  "Default sleep for seconds.")
+
+(defconst jcs-sit-for-seconds 100
+  "Default sit for seconds.")
 
 ;;; Multiple Cursors
 (defvar jcs-mc/string-distance-level 20
