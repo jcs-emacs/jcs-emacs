@@ -965,7 +965,7 @@ NO-RECORD and FORCE-SAME-WINDOW are the same as switch to buffer arguments."
   (interactive)
   (let ((bn (jcs-buffer-name-or-buffer-file-name)))
     (bury-buffer)
-    (when (or (jcs-is-current-major-mode-p "Buffer-menu-mode")
+    (when (or (jcs-buffer-menu-p)
               (string= bn (jcs-buffer-name-or-buffer-file-name)))
       (jcs-switch-to-previous-buffer)))
   ;; If something that I doesn't want to see, bury it.
@@ -1019,8 +1019,14 @@ NO-RECORD and FORCE-SAME-WINDOW are the same as switch to buffer arguments."
   (jcs-buffer-menu-safe-refresh)
 
   ;; If still in the buffer menu, try switch to the previous buffer.
-  (when (jcs-is-current-major-mode-p "Buffer-menu-mode")
+  (when (jcs-buffer-menu-p)
     (jcs-switch-to-previous-buffer)))
+
+(defconst jcs-must-kill-buffer-list
+  (list jcs-message-buffer-name
+        jcs-backtrace-buffer-name)
+  "List of buffer name that must be killed when maybe kill.
+Unless it shows up in multiple windows.")
 
 ;;;###autoload
 (defun jcs-maybe-kill-this-buffer (&optional ecp-same)
@@ -1029,8 +1035,9 @@ Otherwise just switch to the previous buffer to keep the buffer.
 ECP-SAME : Exception for the same buffer."
   (interactive)
   (let ((is-killed nil))
-    (if (or (not (jcs-valid-buffer-p))
-            (jcs-buffer-shown-in-multiple-window-p (buffer-name) t))
+    (if (or (jcs-buffer-shown-in-multiple-window-p (buffer-name) t)
+            (and (not (jcs-valid-buffer-p))  ; Virtual
+                 (not (jcs-is-contain-list-string jcs-must-kill-buffer-list (buffer-name)))))
         (jcs-bury-buffer)
       (jcs-kill-this-buffer)
       (setq is-killed t)
@@ -1051,7 +1058,7 @@ ECP-SAME : Exception for the same buffer."
         ;;   -> *GNU Emacs*
         ;;   -> *scratch*
         ;;   , etc.
-        (when (and (not (buffer-file-name)) (>= (jcs-valid-buffers-count) 2))
+        (when (and (not (jcs-valid-buffer-p)) (>= (jcs-valid-buffers-count) 2))
           (jcs-switch-to-next-valid-buffer))))
     ;; If something that I doesn't want to see, bury it.
     ;; For instance, any `*helm-' buffers.
