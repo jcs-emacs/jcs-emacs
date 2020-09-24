@@ -12,18 +12,22 @@
   "Reset mode state."
   (setq jcs-mode--state nil))
 
+(defun jcs-mode-stats-p (state)
+  "Check mode STATE."
+  (equal jcs-mode--state state))
+
 ;;;###autoload
 (defun jcs-insert-command-mode-toggle ()
   "Toggle command/insert mode."
   (interactive)
-  (if (equal jcs-mode--state 'insert) (jcs-command-mode) (jcs-insert-mode)))
+  (if (jcs-mode-stats-p 'insert) (jcs-command-mode) (jcs-insert-mode)))
 
 ;;;###autoload
 (defun jcs-depend-cross-mode-toggle ()
   "Toggle depend/cross mode."
   (interactive)
   (unless (minibufferp)
-    (if (equal jcs-mode--state 'cross) (jcs-depend-mode) (jcs-cross-mode))))
+    (if (jcs-mode-stats-p 'cross) (jcs-depend-mode) (jcs-cross-mode))))
 
 ;;;###autoload
 (defun jcs-reload-active-mode ()
@@ -37,6 +41,9 @@ Note this is opposite logic to the toggle mode function."
       (cl-case mode-state
         ('cross  (jcs-cross-mode))
         ('depend (jcs-depend-mode))))))
+
+(defconst jcs-backtrace-buffer-name "*Backtrace*"
+  "Name of the backtrace buffer.")
 
 (defvar jcs-backtrace--occurs-last-command nil
   "Check if backtrace occurs last command.")
@@ -59,7 +66,7 @@ Note this is opposite logic to the toggle mode function."
   "Ensure stay in backtrace buffer base on conditions."
   (let ((backtrace-killed-p (not (get-buffer-window))))
     (when (or (jcs-backtrace-dedicated-window-p) backtrace-killed-p)
-      (switch-to-buffer "*Backtrace*"))))
+      (switch-to-buffer jcs-backtrace-buffer-name))))
 
 (defun jcs-reload-active-mode-with-error-handle ()
   "Reload the active by handling the error occurrence."
@@ -71,7 +78,7 @@ Note this is opposite logic to the toggle mode function."
             (setq jcs-backtrace--occurs-last-command t)
             (jcs-backtrace--ensure-stay-in-buffer)
             (unless jcs-backtrace--dedicated-window
-              (setq jcs-backtrace--dedicated-window (get-buffer-window "*Backtrace*")))))
+              (setq jcs-backtrace--dedicated-window (get-buffer-window jcs-backtrace-buffer-name)))))
       (when jcs-backtrace--occurs-last-command
         (jcs-reload-active-mode)
         (setq jcs-backtrace--occurs-last-command nil)
@@ -255,7 +262,7 @@ Note this is opposite logic to the toggle mode function."
 (defun jcs-command-mode()
   "In command mode."
   (interactive)
-  (unless (equal jcs-mode--state 'command)
+  (unless (jcs-mode-stats-p 'command)
     ;; switch to view mode
     ;;(view-mode-enable)
 
@@ -276,7 +283,7 @@ Note this is opposite logic to the toggle mode function."
 (defun jcs-insert-mode()
   "In insert mode."
   (interactive)
-  (unless (equal jcs-mode--state 'insert)
+  (unless (jcs-mode-stats-p 'insert)
     ;; disable to view mode
     ;;(view-mode-disable)
 
@@ -297,7 +304,7 @@ Note this is opposite logic to the toggle mode function."
 (defun jcs-depend-mode ()
   "This mode depend on my own machine. More feature and more control of the editor."
   (interactive)
-  (unless (equal jcs-mode--state 'depend)
+  (unless (jcs-mode-stats-p 'depend)
     ;; Customize Mode Line
     (jcs-gray-mode-line)
 
@@ -321,7 +328,7 @@ Note this is opposite logic to the toggle mode function."
 (defun jcs-cross-mode ()
   "This mode run anywhere will work, usually less powerful then `jcs-depend-mode'."
   (interactive)
-  (unless (equal jcs-mode--state 'cross)
+  (unless (jcs-mode-stats-p 'cross)
     ;; Customize Mode Line
     (jcs-dark-green-mode-line)
 
