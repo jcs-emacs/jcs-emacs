@@ -295,6 +295,8 @@
          '("[*]compilation" "[*]output")
          '("[*]Apropos[*]" "[*]Backtrace[*]" "[*]Compile-Log[*]" "[*]Help[*]"
            "[*]Warnings[*]")
+         '("[*]CPU-Profiler-Report" "[*]Memory-Profiler-Report")
+         '("[*]Process List[*]")
          '("[*]Checkdoc Status[*]" "[*]Package-Lint[*]")
          '("[*]Async Shell Command[*]:" "[*]shell" "[*]eshell")
          '("[*]ESS[*]")
