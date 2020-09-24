@@ -57,6 +57,10 @@ Else we just return `buffer-file-name` if available."
   "Check if the buffer BUF-NAME exists."
   (get-buffer buf-name))
 
+(defun jcs-valid-buffer-p (&optional buffer)
+  "Check if the BUFFER a valid buffer."
+  (buffer-file-name buffer))
+
 (defun jcs-valid-buffer-list ()
   "Return a list of valid buffers."
   (let ((buf-lst (buffer-list)) (lst '()))
