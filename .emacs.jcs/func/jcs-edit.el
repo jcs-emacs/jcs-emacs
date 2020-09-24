@@ -1559,7 +1559,7 @@ Otherwise return nil."
   (if (not (jcs--use-isearch-project-p))
       (isearch-repeat-backward)
     (message "Exit 'isearch-project' becuase you are trying to use 'isearch'..")
-    (sleep-for jcs-prompt-message-sleep-delay-time)
+    (jcs-sleep-for)
     (save-mark-and-excursion (isearch-abort))))
 
 ;;;###autoload
@@ -1569,7 +1569,7 @@ Otherwise return nil."
   (if (not (jcs--use-isearch-project-p))
       (isearch-repeat-forward)
     (message "Exit 'isearch-project' because you are trying to use 'isearch'..")
-    (sleep-for jcs-prompt-message-sleep-delay-time)
+    (jcs-sleep-for)
     (save-mark-and-excursion (isearch-abort))))
 
 ;;;###autoload
@@ -1579,7 +1579,7 @@ Otherwise return nil."
   (if (jcs--use-isearch-project-p)
       (isearch-repeat-backward)
     (message "Exit 'isearch' because you are trying to use 'isearch-project'..")
-    (sleep-for jcs-prompt-message-sleep-delay-time)
+    (jcs-sleep-for)
     (save-mark-and-excursion (isearch-abort))))
 
 ;;;###autoload
@@ -1589,7 +1589,7 @@ Otherwise return nil."
   (if (jcs--use-isearch-project-p)
       (isearch-repeat-forward)
     (message "Exit 'isearch' because you are trying to use 'isearch-project'..")
-    (sleep-for jcs-prompt-message-sleep-delay-time)
+    (jcs-sleep-for)
     (save-mark-and-excursion (isearch-abort))))
 
 ;;----------------------------------------------------------------------------
