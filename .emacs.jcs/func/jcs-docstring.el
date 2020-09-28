@@ -1,5 +1,5 @@
-;;; jcs-oop-func.el --- OOP programming language related.
-;;; Commentary: Functions for Object Oriented Programming languages.
+;;; jcs-docstring.el --- Docstring related.  -*- lexical-binding: t -*-
+;;; Commentary:
 ;;; Code:
 
 (defconst jcs-docstring-modes
@@ -25,21 +25,20 @@
   "Check if current mode support docstring."
   (jcs-is-current-major-mode-p jcs-docstring-modes))
 
-(defun jcs-oop-reload-faces ()
+(defun jcs-docstring-reload-faces ()
   "Reload the faces once."
-  (let ((oop-highlight-modes jcs-docstring-modes))
-    (dolist (mode oop-highlight-modes)
-      (font-lock-add-keywords
-       mode
-       '(;; `@param` { typename } val-tag : value tag description..
-         ("\\(?:^\\|\\s-\\)\\(@[^ \"'{}()\t\r\n]+\\)" 1 'jcs-oop-tag-face t)
-         ;; @param `{ typename }` val-tag : value tag description..
-         ("[ \t]+@[^ \t\r\n]+\\(?:^\\|\\s-\\)\\([\\[{][^\]}]*.\\)" 1 'jcs-oop-type-face t)
-         ;; @param { typename } `val-tag` : value tag description..
-         ("[ \t]+@[^ \t\r\n].*[\]\|}]\\([^\r\n]*\\)[:-]" 1 'jcs-oop-value-face t)
-         ;; @param `val-tag` : value tag description..
-         ("[ \t]+@[^ \t\r\n]*[ \t]*\\([a-zA-Z0-9_.*&]*\\)[ \t\n]*[{:-]" 1 'jcs-oop-value-face t))
-       'end))))
+  (dolist (mode jcs-docstring-modes)
+    (font-lock-add-keywords
+     mode
+     '(;; `@param` { typename } val-tag : value tag description..
+       ("\\(?:^\\|\\s-\\)\\(@[^ \"'{}()\t\r\n]+\\)" 1 'jcs-docstring-tag-face t)
+       ;; @param `{ typename }` val-tag : value tag description..
+       ("[ \t]+@[^ \t\r\n]+\\(?:^\\|\\s-\\)\\([\\[{][^\]}]*.\\)" 1 'jcs-docstring-type-face t)
+       ;; @param { typename } `val-tag` : value tag description..
+       ("[ \t]+@[^ \t\r\n].*[\]\|}]\\([^\r\n]*\\)[:-]" 1 'jcs-docstring-value-face t)
+       ;; @param `val-tag` : value tag description..
+       ("[ \t]+@[^ \t\r\n]*[ \t]*\\([a-zA-Z0-9_.*&]*\\)[ \t\n]*[{:-]" 1 'jcs-docstring-value-face t))
+     'end)))
 
 
 ;;; Doc string
@@ -415,8 +414,8 @@ SEARCH-STRING is the raw string that represent the code we want to document."
 (defun jcs--return-type (search-string)
   "Analyze SEARCH-STRING to get return type.
 This is for c-like programming languages."
-  (let ((return-type-string nil)
-        (pos (jcs-last-regex-in-string "(" search-string)))
+  (let ((pos (jcs-last-regex-in-string "(" search-string))
+        return-type-string)
     (when pos
       (setq return-type-string (substring search-string 0 pos))
       (setq return-type-string (split-string return-type-string " " t))
@@ -427,10 +426,13 @@ This is for c-like programming languages."
 
 (defun jcs--return-type-behind (search-string &optional spi-sym)
   "Analyze SEARCH-STRING to get return type.
+
 This is for colon type programming languages.  For example, `actionscript',
-`typescript', etc."
-  (let ((return-type-string nil)
-        (pos (jcs-last-regex-in-string ")" search-string)))
+`typescript', etc.
+
+An optional argument SPI-SYM is the split symbol for return type."
+  (let ((pos (jcs-last-regex-in-string ")" search-string))
+        return-type-string)
     (when pos
       (setq return-type-string (substring search-string (1+ pos) (length search-string)))
       (when spi-sym
@@ -465,11 +467,15 @@ SEARCH-STRING : string that use to analyze."
     is-empty))
 
 (defun jcs-paren-param-list (search-string)
-  "Return parentheses type parameter list.
-This will works with programming language that define function like
-this `(type-name var-name, type-name var-name)` or with default value
-`(type-name var-name = default-val, type-name var-name = default-val)`.
-SEARCH-STRING : Search raw string."
+  "Return parentheses type parameter list using SEARCH-STRING.
+
+This will works with programming language that define function like this
+
+  `(type-name var-name, type-name var-name)`
+
+or with default value
+
+  `(type-name var-name = default-val, type-name var-name = default-val)`."
   (let ((param-string "") (param-lst '())
         (param-type-str-lst '()) (param-var-str-lst '())
         (param-type-strings nil) (param-variable-strings nil)
@@ -518,11 +524,20 @@ SEARCH-STRING : Search raw string."
     result-datas))
 
 (defun jcs-paren-param-list-behind (search-string &optional spi-sym)
-  "Like `jcs-paren-param-list' but handle programming languages that use \
-colon to separate the type.  Support format like `(var-name : type-name,
-var-name : type-name)` or with default value `(var-name : type-name = default-val,
-var-name : type-name = default-val)`.
-SEARCH-STRING : Search raw string."
+  "Like `jcs-paren-param-list' but handle programming languages that use colon \
+to separate the type.
+
+Support format like
+
+  `(var-name : type-name, var-name : type-name)`
+
+or with default value
+
+  `(var-name : type-name = default-val, var-name : type-name = default-val)`.
+
+See `jcs-paren-param-list' function for argument description SEARCH-STRING.
+
+An optional argument SPI-SYM is the split symbol for return type."
   (let ((param-string "") (param-lst '())
         (param-type-str-lst '()) (param-var-str-lst '())
         (param-type-strings nil) (param-variable-strings nil)
@@ -557,7 +572,7 @@ SEARCH-STRING : Search raw string."
     (setq result-datas (reverse result-datas))
     result-datas))
 
-
+;;; ActionScript
 
 (defun jcs--as-mode-doc-string-others (search-string)
   "Insert `actionscript-mode' other doc string.
@@ -620,6 +635,8 @@ SEARCH-STRING is the raw string that represent the code we want to document."
         (insert jcs--return-desc-string)
         (indent-for-tab-command)))))
 
+
+;;; C/C++
 
 (defun jcs--cc-mode-doc-string-others (search-string)
   "Insert `c-mode' or `c++-mode' other doc string.
@@ -773,6 +790,7 @@ SEARCH-STRING is the raw string that represent the code we want to document."
         (insert jcs--return-desc-string)
         (indent-for-tab-command)))))
 
+;;; C#
 
 (defun jcs--csharp-mode-doc-string-others (search-string)
   "Insert `csharp-mode' other doc string.
@@ -879,6 +897,7 @@ SEARCH-STRING is the raw string that represent the code we want to document."
             (insert jcs--return-desc-string)
             (indent-for-tab-command))))))))
 
+;;; Golang
 
 (defun jcs--go-mode-doc-string-others (search-string)
   "Insert `go-mode' other doc string.
@@ -993,6 +1012,7 @@ SEARCH-STRING is the raw string that represent the code we want to document."
             (insert jcs--return-desc-string)
             (indent-for-tab-command))))))))
 
+;;; Groovy
 
 (defun jcs--groovy-mode-doc-string-others (search-string)
   "Insert `groovy-mode' other doc string.
@@ -1052,6 +1072,7 @@ SEARCH-STRING is the raw string that represent the code we want to document."
         (insert jcs--return-desc-string)
         (indent-for-tab-command)))))
 
+;;; Java
 
 (defun jcs--java-mode-doc-string-others (search-string)
   "Insert `java-mode' other doc string.
@@ -1118,6 +1139,7 @@ SEARCH-STRING is the raw string that represent the code we want to document."
         (insert jcs--return-desc-string)
         (indent-for-tab-command)))))
 
+;;; JavaScript
 
 (defun jcs--js-mode-doc-string-others (search-string)
   "Insert `js2-mode' other doc string.
@@ -1180,6 +1202,7 @@ SEARCH-STRING is the raw string that represent the code we want to document."
         (insert jcs--return-desc-string)
         (indent-for-tab-command)))))
 
+;;; Lua
 
 (defun jcs--lua-mode-doc-string-others (search-string)
   "Insert `lua-mode' other doc string.
@@ -1242,6 +1265,7 @@ SEARCH-STRING is the raw string that represent the code we want to document."
         (insert jcs--return-desc-string)
         (indent-for-tab-command)))))
 
+;;; Python
 
 (defun jcs--py-mode-doc-string-others (search-string)
   "Insert `python-mode' other doc string.
@@ -1313,6 +1337,7 @@ SEARCH-STRING is the raw string that represent the code we want to document."
         (insert jcs--return-desc-string)
         (indent-for-tab-command)))))
 
+;;; PHP
 
 (defun jcs--php-mode-doc-string-others (search-string)
   "Insert `php-mode' other doc string.
@@ -1375,6 +1400,7 @@ SEARCH-STRING is the raw string that represent the code we want to document."
         (insert jcs--return-desc-string)
         (indent-for-tab-command)))))
 
+;;; TypeScript
 
 (defun jcs--ts-mode-doc-string-others (search-string)
   "Insert `typescript-mode' other doc string.
@@ -1441,5 +1467,5 @@ SEARCH-STRING is the raw string that represent the code we want to document."
         (insert jcs--return-desc-string)
         (indent-for-tab-command)))))
 
-(provide 'jcs-oop-func)
-;;; jcs-oop-func.el ends here
+(provide 'jcs-docstring)
+;;; jcs-docstring.el ends here
