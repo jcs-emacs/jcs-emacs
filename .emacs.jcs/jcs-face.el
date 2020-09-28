@@ -137,7 +137,7 @@
 (with-eval-after-load 'typescript-mode (jcs-init-typescript-faces))
 (with-eval-after-load 'web-mode (jcs-init-web-faces))
 
-;; Load OOP faces.
+;; Load Docstring faces.
 (add-hook 'prog-mode-hook (lambda () (jcs-docstring-reload-faces)))
 
 (provide 'jcs-face)
