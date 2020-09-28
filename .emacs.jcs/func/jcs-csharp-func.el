@@ -51,7 +51,7 @@ on the same line."
   ;; URL: https://github.com/josteink/csharp-mode/issues/123
   (interactive)
   (insert "/")
-  (let ((active-comment nil) (next-line-not-empty nil))
+  (let (active-comment next-line-not-empty)
     (save-excursion
       (when (and
              ;; Line can only have vs comment prefix.

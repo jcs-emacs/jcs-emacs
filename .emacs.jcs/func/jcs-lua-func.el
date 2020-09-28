@@ -17,7 +17,7 @@
 (defun jcs-only-lua-comment-prefix-this-line-p ()
   "Check if there is only comment in this line."
   (save-excursion
-    (let ((only-comment-this-line nil))
+    (let (only-comment-this-line)
       (when (jcs-lua-comment-prefix-p)
         (jcs-goto-first-char-in-line)
         (forward-char 3)
@@ -27,15 +27,13 @@
 
 
 (defun jcs-lua-do-doc-string ()
-  "Check if should insert the doc string by checking only \
-comment character on the same line."
+  "Check if should insert the doc string by checking only comment character \
+ on the same line."
   (let ((do-doc-string t))
     (jcs-goto-first-char-in-line)
     (while (not (jcs-is-end-of-line-p))
       (forward-char 1)
-      (when (and (not (jcs-current-char-equal-p " "))
-                 (not (jcs-current-char-equal-p "\t"))
-                 (not (jcs-current-char-equal-p "-")))
+      (unless (jcs-current-char-equal-p '(" " "\t" "-"))
         (setq do-doc-string nil)))
     do-doc-string))
 
@@ -45,7 +43,7 @@ comment character on the same line."
   ;;URL: http://lua-users.org/wiki/LuaStyleGuide
   (interactive)
   (insert "-")
-  (let ((active-comment nil) (next-line-not-empty nil))
+  (let (active-comment next-line-not-empty)
     (save-excursion
       (when (and
              ;; Line can only have Lua comment prefix.
