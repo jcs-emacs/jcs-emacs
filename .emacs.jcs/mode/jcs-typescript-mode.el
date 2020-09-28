@@ -7,10 +7,10 @@
 (defun jcs-typescript-mode-hook ()
   "TypeScript mode hook."
 
-  (face-remap-add-relative 'typescript-jsdoc-tag '(:inherit jcs-oop-tag-face))
-  (face-remap-add-relative 'typescript-jsdoc-type '(:inherit jcs-oop-type-face))
-  (face-remap-add-relative 'typescript-jsdoc-value '(:inherit jcs-oop-value-face))
-  (face-remap-add-relative 'typescript-primitive-face '(:inherit font-lock-type-face))
+  (face-remap-add-relative 'typescript-jsdoc-tag '(:inherit jcs-docstring-tag-face))
+  (face-remap-add-relative 'typescript-jsdoc-type '(:inherit jcs-docstring-type-face))
+  (face-remap-add-relative 'typescript-jsdoc-value '(:inherit jcs-docstring-value-face))
+  (face-remap-add-relative 'typescript-primitive-face '(:inherit font-docstring-type-face))
 
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
