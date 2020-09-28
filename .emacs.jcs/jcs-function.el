@@ -880,7 +880,7 @@ NO-PROMPT : Don't prompt the overwrap message."
 (with-eval-after-load 'typescript-mode (require 'jcs-typescript-func))
 (with-eval-after-load 'web-mode (require 'jcs-web-func))
 (with-eval-after-load 'yaml-mode (require 'jcs-yaml-func))
-(require 'jcs-oop-func)
+(require 'jcs-docstring)
 
 (provide 'jcs-function)
 ;;; jcs-function.el ends here
