@@ -155,7 +155,7 @@ on the same line."
   ;; URL: https://google.github.io/styleguide/pyguide.html
   ;; -- Hitchhiker's
   ;; URL: http://docs.python-guide.org/en/latest/writing/style/
-  (let ((active-comment nil) (previous-line-not-empty nil) (dq-infront 0))
+  (let ((dq-infront 0) active-comment previous-line-not-empty)
     ;; Count how many double quote infront.
     (save-excursion
       (when (jcs-current-char-equal-p "\"")
@@ -180,7 +180,7 @@ on the same line."
       (save-excursion
         ;; check if previous line empty.
         (jcs-previous-line)
-        (when (not (jcs-current-line-empty-p))
+        (unless (jcs-current-line-empty-p)
           (setq previous-line-not-empty t))))
 
     (when previous-line-not-empty
