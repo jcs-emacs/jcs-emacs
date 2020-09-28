@@ -739,10 +739,9 @@ REGEXP : reqular expression use to align."
 (defun jcs-tabify-or-untabify-buffer (tab-it &optional start end)
   "Tabify or Untabify current buffer with region START and END."
   (jcs-save-excursion
-   (lambda ()
-     (let ((start-pt (if start start (point-min))) (end-pt (if end end (point-max))))
-       (widen)
-       (if tab-it (tabify start-pt end-pt) (untabify start-pt end-pt))))))
+    (let ((start-pt (or start (point-min))) (end-pt (or end (point-max))))
+      (widen)
+      (if tab-it (tabify start-pt end-pt) (untabify start-pt end-pt)))))
 
 ;;;###autoload
 (defun jcs-untabify-buffer (&optional start end)

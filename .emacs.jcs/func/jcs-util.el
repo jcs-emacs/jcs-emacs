@@ -19,12 +19,13 @@ time is displayed."
                 (float-time (time-subtract (current-time) ,nowvar))))
            (message "%s... done (%.3fs)" ,title elapsed))))))
 
-(defun jcs-save-excursion (fnc &rest args)
+(defmacro jcs-save-excursion (&rest body)
   "Re-implementation `save-excursion' in FNC with ARGS."
-  (let ((ln (line-number-at-pos)) (col (current-column)))
-    (apply fnc args)
-    (jcs-goto-line ln)
-    (move-to-column col)))
+  (declare (indent 0) (debug t))
+  `(let ((ln (line-number-at-pos nil t)) (col (current-column)))
+     (progn ,@body)
+     (jcs-goto-line ln)
+     (move-to-column col)))
 
 ;;----------------------------------------------------------------------------
 ;; Buffer
@@ -376,7 +377,7 @@ Generally you will have to check it four times."
               (when (jcs-is-good-space-to-convert-to-tab-p)
                 (setq good-to-convert t))))))
       (when good-to-convert
-        (if is-forward (backward-delete-char -4) (backward-delete-char 4))
+(if is-forward (backward-delete-char -4) (backward-delete-char 4))
         (insert "\t")))))
 
 ;;;###autoload
@@ -853,7 +854,7 @@ Return nil, vice versa."
     (let ((is-infront t) (point-to-check nil))
       (when pt (goto-char pt))
       (setq point-to-check (point))
-      (beginning-of-line)
+(beginning-of-line)
       (while (and is-infront (< (point) point-to-check) (not (jcs-is-end-of-line-p)))
         (forward-char 1)
         (unless (jcs-current-whitespace-or-tab-p) (setq is-infront nil)))
