@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-09-29
+
+* Changed `jcs-save-excursion` to macro instead of function.
+* Implemented automatically align org table after changes.
+
 ### 2020-09-28
 
 * Renamed `oop` module to `docstring` for better naming.
