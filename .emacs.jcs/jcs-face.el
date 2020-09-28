@@ -44,25 +44,25 @@
 (defvar jcs-font-lock-null-face 'jcs-font-lock-null-face)
 
 ;;----------------------------------------------------------------------------
-;; Object Oriented Programming
+;; Docstring
 
-(defface jcs-oop-tag-face
+(defface jcs-docstring-tag-face
   '((t (:foreground "SlateGray")))
-  "Highlight OOP tag."
+  "Highlighting for Docstring tag."
   :group 'jcs)
-(defvar jcs-oop-tag-face 'jcs-oop-tag-face)
+(defvar jcs-docstring-tag-face 'jcs-docstring-tag-face)
 
-(defface jcs-oop-type-face
+(defface jcs-docstring-type-face
   '((t (:foreground "SteelBlue")))
-  "Highlight OOP type."
+  "Highlighting for Docstring type."
   :group 'jcs)
-(defvar jcs-oop-type-face 'jcs-oop-type-face)
+(defvar jcs-docstring-type-face 'jcs-docstring-type-face)
 
-(defface jcs-oop-value-face
+(defface jcs-docstring-value-face
   '((t (:foreground "gold4")))
-  "Highlight OOP value."
+  "Highlighting for Docstring value."
   :group 'jcs)
-(defvar jcs-oop-value-face 'jcs-oop-value-face)
+(defvar jcs-docstring-value-face 'jcs-docstring-value-face)
 
 ;;----------------------------------------------------------------------------
 ;; Web
@@ -138,7 +138,7 @@
 (with-eval-after-load 'web-mode (jcs-init-web-faces))
 
 ;; Load OOP faces.
-(add-hook 'prog-mode-hook (lambda () (jcs-oop-reload-faces)))
+(add-hook 'prog-mode-hook (lambda () (jcs-docstring-reload-faces)))
 
 (provide 'jcs-face)
 ;;; jcs-face.el ends here
