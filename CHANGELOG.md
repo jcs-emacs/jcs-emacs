@@ -9,6 +9,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 * Changed `jcs-save-excursion` to macro instead of function.
 * Implemented automatically align org table after changes.
+* Reuse process reporter messaging system to title when rebuild dependency graph.
 
 ### 2020-09-28
 
