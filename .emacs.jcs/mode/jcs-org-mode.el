@@ -2,6 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
+(require 's)
+
 (require 'org)
 (require 'org-bullets)
 
