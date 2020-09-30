@@ -900,15 +900,44 @@ REGEXP : reqular expression use to align."
   "Check if current minibuffer finding file."
   (jcs-minibuffer-do-stuff (lambda () (string-match-p "Find file:" (buffer-string)))))
 
+(defvar jcs--same-file--prev-window-data nil
+  "Record the previous window config for going back to original state.")
+
 ;;;###autoload
 (defun jcs-same-file-other-window ()
   "This will allow us open the same file in another window."
   (interactive)
-  (save-selected-window
-    (let ((buf-name (buffer-name)))
-      (other-window 1)
-      (unless (jcs-window-is-larger-in-height-p) (other-window 1))
-      (switch-to-buffer buf-name))))
+  (let* ((cur-buf (current-buffer))
+         (cur-ln (line-number-at-pos nil t))
+         (first-vl (jcs-first-visible-line-in-window))
+         (rel-ln (- cur-ln first-vl))
+         (col (current-column)))
+    (save-selected-window
+      (jcs-switch-to-next-window-larger-in-height)
+      (switch-to-buffer cur-buf)
+      (if (not (eq last-command 'jcs-same-file-other-window))
+          (setq jcs--same-file--prev-window-data nil)
+        (if jcs--same-file--prev-window-data
+            (progn
+              ;; To original window config
+              (setq cur-ln (plist-get jcs--same-file--prev-window-data :line-number)
+                    first-vl (plist-get jcs--same-file--prev-window-data :first-vl)
+                    rel-ln (- cur-ln first-vl)
+                    col (plist-get jcs--same-file--prev-window-data :column))
+              (jcs-goto-line cur-ln)
+              (jcs-recenter-top-bottom 'top)
+              (jcs-scroll-down-line rel-ln)
+              (move-to-column col)
+              (setq jcs--same-file--prev-window-data nil))
+          ;; To exact same window config from current window
+          (setq jcs--same-file--prev-window-data
+                (list :line-number (line-number-at-pos nil t)
+                      :column (current-column)
+                      :first-vl (jcs-first-visible-line-in-window)))
+          (jcs-goto-line cur-ln)
+          (jcs-recenter-top-bottom 'top)
+          (jcs-scroll-down-line rel-ln)
+          (move-to-column col))))))
 
 (defun jcs-find-file-other-window (fp)
   "Find file FP in other window with check of larger window height."
