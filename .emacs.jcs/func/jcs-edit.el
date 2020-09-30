@@ -904,7 +904,7 @@ REGEXP : reqular expression use to align."
   "Record the previous window config for going back to original state.")
 
 (defun jcs--same-file--set-window-config (cur-ln col first-vl)
-  ""
+  "Set window config by CUR-LN, COL and FIRST-VL."
   (jcs-goto-line cur-ln)
   (jcs-recenter-top-bottom 'top)
   (jcs-scroll-down-line (- cur-ln first-vl))
@@ -1054,12 +1054,8 @@ NO-RECORD and FORCE-SAME-WINDOW are the same as switch to buffer arguments."
            (del-path (f-slash (concat create-dir topest-dir))))
       (delete-directory del-path)
       (message "Remove parent directory that were virtual => '%s'" del-path)))
-
   (kill-this-buffer)
-
-  ;; Refresh buffer menu once.
   (jcs-buffer-menu-safe-refresh)
-
   ;; If still in the buffer menu, try switch to the previous buffer.
   (when (jcs-buffer-menu-p) (jcs-switch-to-previous-buffer)))
 
@@ -1067,7 +1063,9 @@ NO-RECORD and FORCE-SAME-WINDOW are the same as switch to buffer arguments."
 (defun jcs-maybe-kill-this-buffer (&optional ecp-same)
   "Kill buffer if the current buffer is the only shown in one window.
 Otherwise just switch to the previous buffer to keep the buffer.
-ECP-SAME : Exception for the same buffer."
+
+If  optional argument ECP-SAME is non-nil then it allows same buffer on the
+other window."
   (interactive)
   (let ((must-kill-buf
          (jcs-is-contain-list-string jcs-must-kill-buffer-list (buffer-name)))
