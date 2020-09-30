@@ -911,12 +911,20 @@ REGEXP : reqular expression use to align."
          (cur-ln (line-number-at-pos nil t))
          (first-vl (jcs-first-visible-line-in-window))
          (rel-ln (- cur-ln first-vl))
-         (col (current-column)))
+         (col (current-column))
+         same-buf-p)
     (save-selected-window
       (jcs-switch-to-next-window-larger-in-height)
-      (switch-to-buffer cur-buf)
+      (if (eq cur-buf (current-buffer)) (setq same-buf-p t)
+        (switch-to-buffer cur-buf))
       (if (not (eq last-command 'jcs-same-file-other-window))
-          (setq jcs--same-file--prev-window-data nil)
+          (progn
+            (setq jcs--same-file--prev-window-data nil)
+            (unless same-buf-p
+              (jcs-goto-line cur-ln)
+              (jcs-recenter-top-bottom 'top)
+              (jcs-scroll-down-line rel-ln)
+              (move-to-column col)))
         (if jcs--same-file--prev-window-data
             (progn
               ;; To original window config
@@ -977,6 +985,9 @@ REGEXP : reqular expression use to align."
         jcs-backtrace-buffer-name)
   "List of buffer name that must be killed when maybe kill.
 Unless it shows up in multiple windows.")
+
+(defvar jcs--maybe-kill--internal-p nil
+  "Flag to check internal maybe kill; to prevent function overflow.")
 
 (defun jcs-switch-to-buffer (buffer-or-name &optional ow no-record force-same-window)
   "Switch to buffer wrarpper with other window (OW) option.
@@ -1053,8 +1064,7 @@ NO-RECORD and FORCE-SAME-WINDOW are the same as switch to buffer arguments."
   (jcs-buffer-menu-safe-refresh)
 
   ;; If still in the buffer menu, try switch to the previous buffer.
-  (when (jcs-buffer-menu-p)
-    (jcs-switch-to-previous-buffer)))
+  (when (jcs-buffer-menu-p) (jcs-switch-to-previous-buffer)))
 
 ;;;###autoload
 (defun jcs-maybe-kill-this-buffer (&optional ecp-same)
@@ -1062,11 +1072,19 @@ NO-RECORD and FORCE-SAME-WINDOW are the same as switch to buffer arguments."
 Otherwise just switch to the previous buffer to keep the buffer.
 ECP-SAME : Exception for the same buffer."
   (interactive)
-  (let (is-killed)
-    (if (or (jcs-buffer-shown-in-multiple-window-p (buffer-name) t)
-            (and (not (jcs-valid-buffer-p))  ; Virtual
-                 (not (jcs-is-contain-list-string jcs-must-kill-buffer-list (buffer-name)))))
-        (jcs-bury-buffer)
+  (let ((must-kill-buf
+         (jcs-is-contain-list-string jcs-must-kill-buffer-list (buffer-name)))
+        (cur-buf (current-buffer))
+        is-killed)
+    (if (and (or (jcs-buffer-shown-in-multiple-window-p (buffer-name) t)
+                 (jcs-virtual-buffer-p))
+             (not jcs--maybe-kill--internal-p))
+        (progn
+          (jcs-bury-buffer)
+          (let ((jcs--maybe-kill--internal-p t))
+            (when must-kill-buf
+              (with-current-buffer cur-buf
+                (call-interactively (key-binding (kbd "M-k")))))))
       (jcs-kill-this-buffer)
       (setq is-killed t)
 
