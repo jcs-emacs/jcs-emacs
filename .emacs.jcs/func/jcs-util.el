@@ -58,6 +58,10 @@ Else we just return `buffer-file-name` if available."
   "Check if the buffer BUF-NAME exists."
   (get-buffer buf-name))
 
+(defun jcs-virtual-buffer-p (&optional buffer)
+  "Check if the BUFFER a virtual buffer."
+  (buffer-name buffer))
+
 (defun jcs-valid-buffer-p (&optional buffer)
   "Check if the BUFFER a valid buffer."
   (buffer-file-name buffer))
