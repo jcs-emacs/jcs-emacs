@@ -165,7 +165,7 @@
   :defer t
   :init
   (setq company-fuzzy-sorting-backend 'flx)
-  (setq company-fuzzy-prefix-ontop nil)
+  (setq company-fuzzy-prefix-on-top nil)
   (with-eval-after-load 'company (global-company-fuzzy-mode t)))
 
 (use-package company-quickhelp
@@ -245,6 +245,7 @@
   (diminish 'abbrev-mode)
   (with-eval-after-load 'alt-codes (diminish 'alt-codes-mode))
   (diminish 'auto-fill-mode)
+  (diminish 'auto-fill-function)
   (with-eval-after-load 'auto-highlight-symbol (diminish 'auto-highlight-symbol-mode))
   (with-eval-after-load 'auto-read-only (diminish 'auto-read-only-mode))
   (with-eval-after-load 'auto-rename-tag (diminish 'auto-rename-tag-mode))
