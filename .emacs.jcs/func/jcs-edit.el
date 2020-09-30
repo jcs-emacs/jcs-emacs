@@ -903,6 +903,13 @@ REGEXP : reqular expression use to align."
 (defvar jcs--same-file--prev-window-data nil
   "Record the previous window config for going back to original state.")
 
+(defun jcs--same-file--set-window-config (cur-ln col first-vl)
+  ""
+  (jcs-goto-line cur-ln)
+  (jcs-recenter-top-bottom 'top)
+  (jcs-scroll-down-line (- cur-ln first-vl))
+  (move-to-column col))
+
 ;;;###autoload
 (defun jcs-same-file-other-window ()
   "This will allow us open the same file in another window."
@@ -910,7 +917,6 @@ REGEXP : reqular expression use to align."
   (let* ((cur-buf (current-buffer))
          (cur-ln (line-number-at-pos nil t))
          (first-vl (jcs-first-visible-line-in-window))
-         (rel-ln (- cur-ln first-vl))
          (col (current-column))
          same-buf-p)
     (save-selected-window
@@ -921,31 +927,22 @@ REGEXP : reqular expression use to align."
           (progn
             (setq jcs--same-file--prev-window-data nil)
             (unless same-buf-p
-              (jcs-goto-line cur-ln)
-              (jcs-recenter-top-bottom 'top)
-              (jcs-scroll-down-line rel-ln)
-              (move-to-column col)))
+              ;; NOTE: To exact same window config from current window
+              (jcs--same-file--set-window-config cur-ln col first-vl)))
         (if jcs--same-file--prev-window-data
             (progn
-              ;; To original window config
+              ;; NOTE: To original window config
               (setq cur-ln (plist-get jcs--same-file--prev-window-data :line-number)
                     first-vl (plist-get jcs--same-file--prev-window-data :first-vl)
-                    rel-ln (- cur-ln first-vl)
                     col (plist-get jcs--same-file--prev-window-data :column))
-              (jcs-goto-line cur-ln)
-              (jcs-recenter-top-bottom 'top)
-              (jcs-scroll-down-line rel-ln)
-              (move-to-column col)
+              (jcs--same-file--set-window-config cur-ln col first-vl)
               (setq jcs--same-file--prev-window-data nil))
-          ;; To exact same window config from current window
+          ;; NOTE: To exact same window config from current window
           (setq jcs--same-file--prev-window-data
                 (list :line-number (line-number-at-pos nil t)
                       :column (current-column)
                       :first-vl (jcs-first-visible-line-in-window)))
-          (jcs-goto-line cur-ln)
-          (jcs-recenter-top-bottom 'top)
-          (jcs-scroll-down-line rel-ln)
-          (move-to-column col))))))
+          (jcs--same-file--set-window-config cur-ln col first-vl))))))
 
 (defun jcs-find-file-other-window (fp)
   "Find file FP in other window with check of larger window height."
