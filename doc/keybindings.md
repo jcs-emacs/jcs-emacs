@@ -94,9 +94,9 @@ Here is the list of key bindins that defined in this configuration.
 
   * **Case**
 
-    * <kbd>Ctrl</kbd>+<kbd>w</kbd>, <kbd>u</kbd> - Uppercase word or region.
-    * <kbd>Ctrl</kbd>+<kbd>w</kbd>, <kbd>d</kbd> - Downcase word or region.
-    * <kbd>Ctrl</kbd>+<kbd>w</kbd>, <kbd>c</kbd> - Capitalize word or region.
+    * <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>u</kbd> - Uppercase word or region.
+    * <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>d</kbd> - Downcase word or region.
+    * <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>c</kbd> - Capitalize word or region.
 
   * **Alignment**
 
