@@ -978,9 +978,10 @@ REGEXP : reqular expression use to align."
 ;; Kill Buffer
 
 (defconst jcs-must-kill-buffer-list
-  (list jcs-message-buffer-name
-        jcs-backtrace-buffer-name
-        jcs-re-builder-buffer-name)
+  (list (regexp-quote jcs-message-buffer-name)
+        (regexp-quote jcs-backtrace-buffer-name)
+        (regexp-quote jcs-re-builder-buffer-name)
+        "[*]ffmpeg-player")
   "List of buffer name that must be killed when maybe kill.
 Unless it shows up in multiple windows.")
 
@@ -1066,7 +1067,7 @@ If  optional argument ECP-SAME is non-nil then it allows same buffer on the
 other window."
   (interactive)
   (let ((must-kill-buf-p
-         (jcs-is-contain-list-string jcs-must-kill-buffer-list (buffer-name)))
+         (jcs-is-contain-list-string-regexp jcs-must-kill-buffer-list (buffer-name)))
         (shown-multiple-p (jcs-buffer-shown-in-multiple-window-p (buffer-name) t))
         (cur-buf (current-buffer))
         is-killed)
