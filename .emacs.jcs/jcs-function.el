@@ -476,21 +476,22 @@ OW is the other window flag."
   "Open the media file."
   (interactive)
   (require 'jcs-media)
-  (let ((do-play nil) (media-path nil))
+  (let (do-play media-path)
     (if ffmpeg-player--buffer
         (when  (yes-or-no-p "There is video playing, kill it? ")
           (jcs-safe-jump-shown-to-buffer
            "[*]ffmpeg-player[*]: "
            (lambda () (jcs-media-close-media-window))
-           (lambda ()
-             (with-current-buffer ffmpeg-player--buffer
-               (jcs-media-close-media-window))))
+           (lambda () (with-current-buffer ffmpeg-player--buffer
+                        (jcs-media-close-media-window))))
           (setq do-play t))
       (setq do-play t))
     (when do-play
       (setq media-path (jcs-select-file))
       (when media-path
+        (jcs-window-record-once)
         (save-window-excursion (ffmpeg-player-video media-path))
+        (jcs-window-restore-once)
         (jcs-media--open-media-window)))))
 
 ;;----------------------------------------------------------------------------
