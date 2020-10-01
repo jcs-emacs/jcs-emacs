@@ -154,6 +154,7 @@
         ignore
         indent-new-comment-line
         isearch-forward-symbol-at-point
+        isearch-project-forward-symbol-at-point
         ivy-searcher-search-file
         ivy-searcher-search-project
         javadoc-lookup
@@ -181,6 +182,10 @@
         jcs-goto-definition-other-window
         jcs-inc-indent-level
         jcs-isearch-backward-symbol-at-point
+        jcs-isearch-project-backward-symbol-at-point
+        jcs-isearch-project-repeat-backward
+        jcs-isearch-project-repeat-forward
+        jcs-isearch-repeat-backward
         jcs-isearch-repeat-forward
         jcs-java-organize-imports
         jcs-java-untabify-save-buffer
