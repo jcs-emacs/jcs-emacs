@@ -711,12 +711,26 @@
 (use-package multiple-cursors
   :defer t
   :init
-  (defun jcs-mc/-cancel-multiple-cursors ()
+  (defconst jcs-mc/cancel-commands
+    (append
+     '(jcs-previous-blank-line jcs-next-blank-line)
+     '(jcs-isearch-backward-symbol-at-point
+       isearch-forward-symbol-at-point
+       jcs-isearch-repeat-backward
+       jcs-isearch-repeat-forward)
+     '(jcs-isearch-project-backward-symbol-at-point
+       isearch-project-forward-symbol-at-point
+       jcs-isearch-project-repeat-backward
+       jcs-isearch-project-repeat-forward))
+    "List of commands that will quite `multiple-cursors' after execution.")
+
+  (defun jcs-mc/cancel-multiple-cursors (&rest _)
     "Cancel the `multiple-cursors' behaviour."
     (when (and (functionp 'mc/num-cursors) (> (mc/num-cursors) 1))
       (mc/keyboard-quit)))
-  (advice-add 'jcs-previous-blank-line :after #'jcs-mc/-cancel-multiple-cursors)
-  (advice-add 'jcs-next-blank-line :after #'jcs-mc/-cancel-multiple-cursors)
+
+  (dolist (cmd jcs-mc/cancel-commands)
+    (advice-add cmd :after #'jcs-mc/cancel-multiple-cursors))
   :config
   (defun jcs--mc/mark-lines (num-lines direction)
     "Override `mc/mark-lines' function."
