@@ -60,7 +60,7 @@ Else we just return `buffer-file-name` if available."
 
 (defun jcs-virtual-buffer-p (&optional buffer)
   "Check if the BUFFER a virtual buffer."
-  (buffer-name buffer))
+  (not (jcs-valid-buffer-p buffer)))
 
 (defun jcs-valid-buffer-p (&optional buffer)
   "Check if the BUFFER a valid buffer."
