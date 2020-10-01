@@ -1675,7 +1675,7 @@ Otherwise return nil."
   (save-excursion
     (let ((cur-line (thing-at-point 'line)) (sim-line nil)
           (cur-col (current-column))
-          (break nil))
+          break)
       (jcs-mc/to-furthest-cursor-before-point)
       (forward-line -1)
       (while (and (not break) (not (= (line-number-at-pos (point)) (line-number-at-pos (point-min)))))
@@ -1699,7 +1699,7 @@ Otherwise return nil."
   (save-excursion
     (let ((cur-line (thing-at-point 'line)) (sim-line nil)
           (cur-col (current-column))
-          (break nil))
+          break)
       (jcs-mc/to-furthest-cursor-after-point)
       (forward-line 1)
       (while (and (not break) (not (= (line-number-at-pos (point)) (line-number-at-pos (point-max)))))
