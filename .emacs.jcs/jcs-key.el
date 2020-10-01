@@ -562,10 +562,10 @@
   (define-key global-map (kbd "C-9") #'jcs-ace-window-9))
 
 ;;; Word Case
-(define-key global-map (kbd "C-w u") #'jcs-upcase-word-or-region)
-(define-key global-map (kbd "C-w d") #'jcs-downcase-word-or-region)
+(define-key global-map (kbd "C-M-u") #'jcs-upcase-word-or-region)
+(define-key global-map (kbd "C-M-d") #'jcs-downcase-word-or-region)
 
-(define-key global-map (kbd "C-w c") #'jcs-capitalize-word-or-region)
+(define-key global-map (kbd "C-M-c") #'jcs-capitalize-word-or-region)
 
 ;;; Undo/Redo
 (define-key global-map (kbd "C-z") #'jcs-undo)
