@@ -10,6 +10,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Implemented mimic window config when doing `jcs-same-file-other-window` command.
 * Implemented same file other window back to original window config functionality.
 * Minor fix for maybe kill function for `must-kill`/`virtual` buffer.
+* Defined `multipe-cursors` cancel command list.
 
 ### 2020-09-30
 
