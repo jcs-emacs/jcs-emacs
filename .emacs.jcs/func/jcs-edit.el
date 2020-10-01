@@ -979,12 +979,10 @@ REGEXP : reqular expression use to align."
 
 (defconst jcs-must-kill-buffer-list
   (list jcs-message-buffer-name
-        jcs-backtrace-buffer-name)
+        jcs-backtrace-buffer-name
+        jcs-re-builder-buffer-name)
   "List of buffer name that must be killed when maybe kill.
 Unless it shows up in multiple windows.")
-
-(defvar jcs--maybe-kill--internal-p nil
-  "Flag to check internal maybe kill; to prevent function overflow.")
 
 (defun jcs-switch-to-buffer (buffer-or-name &optional ow no-record force-same-window)
   "Switch to buffer wrarpper with other window (OW) option.
@@ -1071,15 +1069,13 @@ other window."
          (jcs-is-contain-list-string jcs-must-kill-buffer-list (buffer-name)))
         (cur-buf (current-buffer))
         is-killed)
-    (if (and (or (jcs-buffer-shown-in-multiple-window-p (buffer-name) t)
-                 (jcs-virtual-buffer-p))
-             (not jcs--maybe-kill--internal-p))
+    (if (or (jcs-buffer-shown-in-multiple-window-p (buffer-name) t)
+            (jcs-virtual-buffer-p))
         (progn
           (jcs-bury-buffer)
-          (let ((jcs--maybe-kill--internal-p t))
-            (when must-kill-buf
-              (with-current-buffer cur-buf
-                (call-interactively (key-binding (kbd "M-k")))))))
+          (when must-kill-buf
+            (setq is-killed t)
+            (with-current-buffer cur-buf (kill-this-buffer))))
       (jcs-kill-this-buffer)
       (setq is-killed t)
 
