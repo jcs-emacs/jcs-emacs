@@ -529,11 +529,14 @@ OW is the other window flag."
 ;;----------------------------------------------------------------------------
 ;; Re-Builder
 
+(defconst jcs-re-builder-buffer-name "*RE-Builder*"
+  "Name of the re-builder buffer.")
+
 ;;;###autoload
 (defun jcs-reb-maybe-kill-this-buffer ()
   "Kill this buffer in `re-builder' mode."
   (interactive)
-  (let ((is-killed nil))
+  (let (is-killed)
     (setq is-killed (jcs-maybe-kill-this-buffer))
     (when is-killed (delete-window))))
 
