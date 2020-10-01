@@ -7,7 +7,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ### 2020-10-02
 
-* Diminished buffer menu for `re-builder` buffer.
+* Diminished buffer menu for `re-builder` buffer.c
 
 ### 2020-10-01
 
