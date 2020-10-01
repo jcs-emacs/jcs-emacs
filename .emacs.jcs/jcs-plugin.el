@@ -311,7 +311,8 @@
          '("[*]httpd[*]")
          '("[*]helpful")
          '("[*]Most used words[*]")
-         '("[*]Test SHA[*]")))
+         '("[*]Test SHA[*]")
+         '("[*]RE-Builder")))
   (with-eval-after-load 'jcs-buffer-menu (diminish-buffer-mode 1))
   :config
   (defun jcs--diminish-buffer-clean--advice-before ()
@@ -911,6 +912,12 @@
       (let ((value (popup-cascade-menu (right-click-context--build-menu-for-popup-el (right-click-context--menu-tree) nil))))
         (when (and (jcs-popup-clicked-on-menu-p) value)
           (if (symbolp value) (call-interactively value t) (eval value)))))))
+
+(use-package searcher
+  :defer t
+  :init
+  (setq searcher-search-type 'regex  ; `regex' or `flx'
+        searcher-flx-threshold 25))
 
 (use-package show-eol
   :defer t
