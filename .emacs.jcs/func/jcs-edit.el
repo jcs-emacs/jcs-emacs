@@ -1065,15 +1065,15 @@ Otherwise just switch to the previous buffer to keep the buffer.
 If  optional argument ECP-SAME is non-nil then it allows same buffer on the
 other window."
   (interactive)
-  (let ((must-kill-buf
+  (let ((must-kill-buf-p
          (jcs-is-contain-list-string jcs-must-kill-buffer-list (buffer-name)))
+        (shown-multiple-p (jcs-buffer-shown-in-multiple-window-p (buffer-name) t))
         (cur-buf (current-buffer))
         is-killed)
-    (if (or (jcs-buffer-shown-in-multiple-window-p (buffer-name) t)
-            (jcs-virtual-buffer-p))
+    (if (or shown-multiple-p (jcs-virtual-buffer-p))
         (progn
           (jcs-bury-buffer)
-          (when must-kill-buf
+          (when (and must-kill-buf-p (not shown-multiple-p))
             (setq is-killed t)
             (with-current-buffer cur-buf (kill-this-buffer))))
       (jcs-kill-this-buffer)
