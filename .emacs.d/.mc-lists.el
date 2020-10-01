@@ -144,6 +144,7 @@
         centaur-tabs-forward
         counsel-M-x
         counsel-find-file
+        dashboard-return
         diminish-buffer-mode
         emmet-prev-edit-point
         feebleline-mode
@@ -152,6 +153,7 @@
         iedit-switch-to-mc-mode
         ignore
         indent-new-comment-line
+        isearch-forward-symbol-at-point
         ivy-searcher-search-file
         ivy-searcher-search-project
         javadoc-lookup
@@ -178,6 +180,8 @@
         jcs-goto-definition
         jcs-goto-definition-other-window
         jcs-inc-indent-level
+        jcs-isearch-backward-symbol-at-point
+        jcs-isearch-repeat-forward
         jcs-java-organize-imports
         jcs-java-untabify-save-buffer
         jcs-make-without-asking
