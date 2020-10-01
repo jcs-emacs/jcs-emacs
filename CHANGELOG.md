@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-10-02
+
+* Diminished buffer menu for `re-builder` buffer.
+
 ### 2020-10-01
 
 * Implemented mimic window config when doing `jcs-same-file-other-window` command.
@@ -83,8 +87,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ### 2020-09-11
 
-* Dminished `keypression-mode`'s lighter.
-* Dminished `hi-lock-mode`'s lighter.
+* Diminished `keypression-mode`'s lighter.
+* Diminished `hi-lock-mode`'s lighter.
 * Clean up util frame logic by confirming the parent frame existence.
 
 ### 2020-09-10
