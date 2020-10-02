@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-10-03
+
+* Re-configure `company-backends` to specific major mode.
+
 ### 2020-10-02
 
 * Diminished buffer menu for `re-builder` buffer.
