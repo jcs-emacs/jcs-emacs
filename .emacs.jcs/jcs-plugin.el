@@ -99,12 +99,16 @@
   ;; URL: https://emacs.stackexchange.com/questions/15246/how-add-company-dabbrev-to-the-company-completion-popup
   (setq company-backends
         (append
-         '(company-capf company-semantic )
+         '(company-capf company-semantic)
          '(company-abbrev company-dabbrev company-dabbrev-code)
          '(company-files)
-         '(company-clang company-cmake company-bbdb)
          '(company-etags company-gtags)
-         '(company-keywords company-oddmuse company-yasnippet)))
+         '(company-keywords company-yasnippet)))
+
+  (defun jcs-company-safe-add-backend (backend)
+    "Safe way to add backend."
+    (add-to-list 'company-backends backend)
+    (setq company-backends (delete-dups company-backends)))
 
   ;; TOPIC: Switching from AC
   ;; URL: https://github.com/company-mode/company-mode/wiki/Switching-from-AC
