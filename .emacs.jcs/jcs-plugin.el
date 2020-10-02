@@ -97,19 +97,20 @@
   :config
   ;; TOPIC: How add company-dabbrev to the Company completion popup?
   ;; URL: https://emacs.stackexchange.com/questions/15246/how-add-company-dabbrev-to-the-company-completion-popup
-  (add-to-list 'company-backends 'company-capf)
-  (add-to-list 'company-backends 'company-dabbrev-code)
-  (add-to-list 'company-backends 'company-etags)
-  (add-to-list 'company-backends 'company-files)
-  (add-to-list 'company-backends 'company-gtags)
-  (add-to-list 'company-backends 'company-keywords)
-  (add-to-list 'company-backends 'company-yasnippet)
+  (setq company-backends
+        (append
+         '(company-capf company-semantic )
+         '(company-abbrev company-dabbrev company-dabbrev-code)
+         '(company-files)
+         '(company-clang company-cmake company-bbdb)
+         '(company-etags company-gtags)
+         '(company-keywords company-oddmuse company-yasnippet)))
 
   ;; TOPIC: Switching from AC
   ;; URL: https://github.com/company-mode/company-mode/wiki/Switching-from-AC
   (defun jcs-company-ac-setup ()
     "Sets up `company-mode' to behave similarly to `auto-complete-mode'."
-    (setq company-minimum-prefix-length 1
+    (setq company-minimum-prefix-length 0
           company-idle-delay 0.1
           company-selection-wrap-around 'on)
 
