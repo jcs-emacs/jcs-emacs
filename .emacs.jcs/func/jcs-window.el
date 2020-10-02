@@ -186,8 +186,8 @@ TYPE can be 'buffer or 'window."
       (while (not break)
         (push
          (cl-case type
-           ('buffer (buffer-name))
-           ('window (selected-window)))
+           (buffer (buffer-name))
+           (window (selected-window)))
          type-list)
         (setq break (not (ignore-errors (windmove-down))))))
     type-list))

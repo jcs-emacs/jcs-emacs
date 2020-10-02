@@ -399,8 +399,8 @@
                  (align (car fragment))
                  (string (cadr fragment)))
             (cl-case align
-              ('left (push string left-str))
-              ('right (push string right-str))
+              (left (push string left-str))
+              (right (push string right-str))
               (t (push string left-str)))))
         (with-current-buffer feebleline--minibuf
           (erase-buffer)

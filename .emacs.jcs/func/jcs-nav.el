@@ -43,7 +43,7 @@
 (defun jcs-get-major-mode-prev/next-key-type (direction)
   "Return the major-mode's prev/next key type by DIRECTION."
   (cl-case direction
-    ('previous
+    (previous
      (cond
       ((jcs-is-current-major-mode-p '("cmake-mode"
                                       "cobol-mode"
@@ -73,7 +73,7 @@
       ((jcs-is-current-major-mode-p '("shell-mode"))
        'jcs-shell-up-key)
       (t 'jcs-smart-indent-up)))
-    ('next
+    (next
      (cond
       ((jcs-is-current-major-mode-p '("cmake-mode"
                                       "cobol-mode"
@@ -108,16 +108,16 @@
 (defun jcs-get-prev/next-key-type (direction)
   "Return the prev/next key type by DIRECTION."
   (cl-case direction
-    ('previous (cl-case jcs-prev/next-key-type
-                 ('normal 'previous-line)
-                 ('indent (jcs-get-major-mode-prev/next-key-type direction))
-                 ('smart 'jcs-smart-previous-line)
-                 (t (user-error "[WARNING] Prev/Next key type not defined"))))
-    ('next (cl-case jcs-prev/next-key-type
-             ('normal 'next-line)
-             ('indent (jcs-get-major-mode-prev/next-key-type direction))
-             ('smart 'jcs-smart-next-line)
-             (t (user-error "[WARNING] Prev/Next key type not defined"))))
+    (previous (cl-case jcs-prev/next-key-type
+                (normal 'previous-line)
+                (indent (jcs-get-major-mode-prev/next-key-type direction))
+                (smart 'jcs-smart-previous-line)
+                (t (user-error "[WARNING] Prev/Next key type not defined"))))
+    (next (cl-case jcs-prev/next-key-type
+            (normal 'next-line)
+            (indent (jcs-get-major-mode-prev/next-key-type direction))
+            (smart 'jcs-smart-next-line)
+            (t (user-error "[WARNING] Prev/Next key type not defined"))))
     (t (user-error "[WARNING] Please define direction with 'previous' or 'next'"))))
 
 ;;;###autoload
@@ -417,7 +417,7 @@ as NO-REC : recursive? (Default: do recusrive method)"
 ;;;###autoload
 (defun jcs-forward-symbol (arg)
   (interactive "p")
-(forward-symbol arg))
+  (forward-symbol arg))
 
 ;;----------------------------------------------------------------------------
 ;; Navigating to a Character

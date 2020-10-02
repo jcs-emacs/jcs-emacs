@@ -226,7 +226,7 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
                    (jcs-is-current-point-face 'link (1- (point)))))
           (call-interactively #'goto-address-at-point)
         (cl-case major-mode
-          ('org-mode (call-interactively #'org-todo))
+          (org-mode (call-interactively #'org-todo))
           (t (call-interactively (key-binding (kbd "RET")))))))))
 
 ;;----------------------------------------------------------------------------
@@ -771,10 +771,11 @@ REGEXP : reqular expression use to align."
 
 ;;;###autoload
 (defun jcs-reverse-tab-untab-save-buffer ()
+  "Reverse tabify/untabify save."
   (interactive)
   (cl-case (key-binding (kbd "C-s"))
-    ('jcs-untabify-save-buffer (jcs-tabify-save-buffer))
-    ('jcs-tabify-save-buffer (jcs-untabify-save-buffer))
+    (jcs-untabify-save-buffer (jcs-tabify-save-buffer))
+    (jcs-tabify-save-buffer (jcs-untabify-save-buffer))
     (t (user-error "[ERROR] There is no default tab/untab save"))))
 
 (defun jcs--organize-save-buffer ()
@@ -786,9 +787,9 @@ REGEXP : reqular expression use to align."
     (when jcs-on-save-end-trailing-lines-cleanup-p
       (jcs-remove-trailing-lines-end-buffer))
     (cl-case jcs-on-save-tabify-type
-      ('tabify (jcs-tabify-buffer))
-      ('untabify (jcs-untabify-buffer))
-      ('nil (progn ))  ; Do nothing here.
+      (tabify (jcs-tabify-buffer))
+      (untabify (jcs-untabify-buffer))
+      (nil (progn ))  ; Do nothing here.
       (t (user-error "[WARNING] Unknown tabify type when on save: %s" jcs-on-save-tabify-type)))
     (when jcs-on-save-remove-control-M-p
       (jcs-mute-apply (jcs-remove-control-M)))
@@ -1136,10 +1137,10 @@ other window."
   (require 'cl-lib)
   (let ((do-kill-char nil))
     (save-excursion
-      (cl-case direction ('forward (forward-char)))
+      (cl-case direction (forward (forward-char)))
       (when (jcs-current-char-equal-p char) (setq do-kill-char t)))
     (when do-kill-char
-      (cl-case direction ('backward (delete-char -1)) ('forward (delete-char 1)))
+      (cl-case direction (backward (delete-char -1)) (forward (delete-char 1)))
       (jcs-delete-char-repeat char direction))))
 
 ;;----------------------------------------------------------------------------

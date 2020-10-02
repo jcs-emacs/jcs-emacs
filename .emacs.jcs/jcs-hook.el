@@ -63,8 +63,8 @@
   (unless jcs--no-advice-other-window
     (if (jcs-frame-util-p)
         (cl-case this-command
-          ('jcs-other-window-next (jcs-other-window-next))
-          ('jcs-other-window-prev (jcs-other-window-prev)))
+          (jcs-other-window-next (jcs-other-window-next))
+          (jcs-other-window-prev (jcs-other-window-prev)))
       (select-frame-set-input-focus (selected-frame))
       (jcs--neotree-start-refresh)
       (when (and (boundp 'neo-buffer-name)

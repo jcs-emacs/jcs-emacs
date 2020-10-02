@@ -39,8 +39,8 @@ Note this is opposite logic to the toggle mode function."
     (let ((mode-state jcs-mode--state))
       (jcs-mode-reset-state)
       (cl-case mode-state
-        ('cross  (jcs-cross-mode))
-        ('depend (jcs-depend-mode))))))
+        (cross  (jcs-cross-mode))
+        (depend (jcs-depend-mode))))))
 
 (defun jcs--indent-level-by-mode ()
   "Return indentation level variable as symbol depends on current major mode."

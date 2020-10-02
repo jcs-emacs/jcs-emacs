@@ -104,8 +104,8 @@ TYPE is the return type; can be 'object or 'string."
         (setq buf-name (buffer-name buf))
         (when (and (stringp buf-name) (string-match-p regexp buf-name))
           (cl-case type
-            ('object (push buf buf-lst))
-            ('string (push buf-name buf-lst))))))
+            (object (push buf buf-lst))
+            (string (push buf-name buf-lst))))))
     buf-lst))
 
 (defun jcs-do-stuff-if-buffer-exists (buf-or-name fnc)
@@ -381,7 +381,7 @@ Generally you will have to check it four times."
               (when (jcs-is-good-space-to-convert-to-tab-p)
                 (setq good-to-convert t))))))
       (when good-to-convert
-(if is-forward (backward-delete-char -4) (backward-delete-char 4))
+        (if is-forward (backward-delete-char -4) (backward-delete-char 4))
         (insert "\t")))))
 
 ;;;###autoload
@@ -495,7 +495,7 @@ Generally you will have to check it four times."
 (defun jcs-print-current-char ()
   "Print out the current character."
   (interactive)
-  (message "Current character: %s" (string (char-before))))
+  (message "Current character: %s" (jcs-get-current-char-string)))
 
 ;; TOPIC: Check if a character (not string) is lowercase,
 ;; uppercase, alphanumeric?
@@ -858,7 +858,7 @@ Return nil, vice versa."
     (let ((is-infront t) (point-to-check nil))
       (when pt (goto-char pt))
       (setq point-to-check (point))
-(beginning-of-line)
+      (beginning-of-line)
       (while (and is-infront (< (point) point-to-check) (not (jcs-is-end-of-line-p)))
         (forward-char 1)
         (unless (jcs-current-whitespace-or-tab-p) (setq is-infront nil)))
@@ -1157,9 +1157,9 @@ CMDS should be a list of commands."
     (while (and (not break-it) (< index (length lst)))
       (setq item (nth index lst))
       (when (cl-case (type-of key)
-              ('string (string-match-p key item))
-              ('symbol (equal key item))
-              ('integer (= key item)) ('float (= key item))
+              (string (string-match-p key item))
+              (symbol (equal key item))
+              (integer (= key item)) (float (= key item))
               (t nil))
         (setq result (nth (+ index offset) lst))
         (setq break-it t))
@@ -1646,14 +1646,10 @@ IN-VAL : input value to set to IN-VAR."
   "Find pair parenthese with BEG-CH, END-CH and DIRECTION."
   (let ((beg-cnt 0) (end-cnt 0) (fnc nil) (lim-pt -1))
     (cl-case direction
-      ('backward
-       (setq lim-pt (point-min))
-       (setq end-cnt 1)
-       (setq fnc 'backward-char))
-      ('forward
-       (setq lim-pt (point-max))
-       (setq beg-cnt 1)
-       (setq fnc 'forward-char)))
+      (backward
+       (setq lim-pt (point-min) end-cnt 1 fnc 'backward-char))
+      (forward
+       (setq lim-pt (point-max) beg-cnt 1 fnc 'forward-char)))
     (if (not fnc)
         (user-error "Can't find pair parenthese with this '%s' define" direction)
       (while (and (not (= beg-cnt end-cnt))
