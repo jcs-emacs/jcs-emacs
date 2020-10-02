@@ -610,7 +610,7 @@
         ivy-on-del-error-function nil
         ivy-initial-inputs-alist nil
         ivy-re-builders-alist '((swiper . ivy--regex-plus)
-                                (t      . ivy--regex-fuzzy)))
+                                (t . ivy--regex-fuzzy)))
   :config
   (require 'smex)
   (setq enable-recursive-minibuffers t)
