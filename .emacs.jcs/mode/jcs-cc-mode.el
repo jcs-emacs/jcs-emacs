@@ -79,6 +79,8 @@
 (defun jcs-cc-mode-hook ()
   "C/C++ mode hook."
 
+  (jcs-company-safe-add-backend 'company-clang)
+
   ;; Set my style for the current buffer
   (c-add-style "BigFun" jcs-big-fun-cc-style t)
 

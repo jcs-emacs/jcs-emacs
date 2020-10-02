@@ -10,6 +10,8 @@
 (defun jcs-cmake-mode-hook ()
   "CMake mode hook."
 
+  (jcs-company-safe-add-backend 'company-cmake)
+
   ;; File Header
   (jcs-insert-header-if-valid '("CMakeLists[.]txt")
                               'jcs-insert-cmake-template)
