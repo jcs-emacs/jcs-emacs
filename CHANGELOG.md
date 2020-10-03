@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-10-04
+
+* Make frame/window size respect to `ivy-height`.
+
 ### 2020-10-03
 
 * Re-configure `company-backends` to specific major mode.
