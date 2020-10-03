@@ -15,6 +15,15 @@
   )
 (add-hook 'focus-out-hook 'jcs-focus-out-hook)
 
+(defun jcs-window-size-change-functions (&rest _)
+  "When window changed size."
+  (setq ivy-height (/ (frame-height) 3))
+  (when (and (window-minibuffer-p) (not ivy-exit))
+    (ivy--resize-minibuffer-to-fit)
+    (ivy-shrink-after-dispatching)
+    (ivy--exhibit)))
+(add-hook 'window-size-change-functions 'jcs-window-size-change-functions)
+
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 (defun jcs-find-file-hook ()
