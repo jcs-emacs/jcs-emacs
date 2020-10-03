@@ -559,13 +559,14 @@
   (setq ivy-auto-shrink-minibuffer t
         ivy-use-virtual-buffers t  ; Enable bookmarks and recentf
         ivy-use-selectable-prompt t
-        ivy-height 15
         ivy-fixed-height-minibuffer t
         ivy-count-format "[%d:%d] "
         ivy-on-del-error-function nil
         ivy-initial-inputs-alist nil
         ivy-re-builders-alist '((swiper . ivy--regex-plus)
                                 (t . ivy--regex-fuzzy)))
+  (defvar jcs-ivy-height-ratio 0.3
+    "Ratio that respect `frame-height' by multiply this and `ivy-height'.")
   :config
   (require 'smex)
   (setq enable-recursive-minibuffers t)
