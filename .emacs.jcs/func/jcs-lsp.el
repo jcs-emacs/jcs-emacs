@@ -103,7 +103,7 @@
 (defvar jcs--lsp-lv-recording nil
   "Check if we are recording ")
 
-(defun jcs-window-size-change-functions (&rest _)
+(defun jcs-lsp--window-size-change-functions (&rest _)
   "When window changed size."
   (when (and (boundp 'lsp-mode) lsp-mode)
     (if (jcs--lsp-lv-buffer-alive-p)
@@ -115,7 +115,7 @@
             (setq jcs--lsp-lv-was-alive nil))
         (let ((jcs--lsp-lv-recording t)) (jcs-window-record-once)))))
   (jcs--lsp-ui-doc-show-safely))
-(add-hook 'window-size-change-functions 'jcs-window-size-change-functions)
+(add-hook 'window-size-change-functions 'jcs-lsp--window-size-change-functions)
 
 (provide 'jcs-lsp)
 ;;; jcs-lsp.el ends here
