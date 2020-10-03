@@ -461,7 +461,6 @@ Note this is opposite logic to the toggle mode function."
 
 (add-hook 'view-mode-hook 'jcs-view-mode-hook)
 
-
 ;;----------------------------------------------------------------------------
 ;;; Modes
 
@@ -543,10 +542,11 @@ Note this is opposite logic to the toggle mode function."
 ;;;
 ;; Auto mode Management
 
-(defun jcs-add-auto-mode-alist (pr)
-  "Add mode to alist.
-PR : pair file `regexp' and file mode `symbol'."
-  (add-to-list 'auto-mode-alist pr))
+(defun jcs-add-auto-mode-alist (pr &optional append)
+  "Add a property list to `auto-mode-alist'.
+
+See `add-to-list' function description for argument APPEND."
+  (add-to-list 'auto-mode-alist pr append))
 
 ;;; A
 (progn
@@ -704,7 +704,7 @@ PR : pair file `regexp' and file mode `symbol'."
 ;;; T
 (progn
   (jcs-add-auto-mode-alist '("\\.ts'?\\'" . typescript-mode))
-  (jcs-add-auto-mode-alist '("\\.txt'?\\'" . text-mode)))
+  (jcs-add-auto-mode-alist '("\\.txt'?\\'" . text-mode) t))
 
 ;;; V
 (progn
