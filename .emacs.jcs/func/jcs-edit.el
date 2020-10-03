@@ -789,7 +789,7 @@ REGEXP : reqular expression use to align."
     (cl-case jcs-on-save-tabify-type
       (tabify (jcs-tabify-buffer))
       (untabify (jcs-untabify-buffer))
-      (nil (progn ))  ; Do nothing here.
+      ('nil (progn ))  ; Do nothing here.
       (t (user-error "[WARNING] Unknown tabify type when on save: %s" jcs-on-save-tabify-type)))
     (when jcs-on-save-remove-control-M-p
       (jcs-mute-apply (jcs-remove-control-M)))
