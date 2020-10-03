@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-10-03
 
 * Re-configure `company-backends` to specific major mode.
+* Added `append` argument when modifying `auto-mode-alist`.
 
 ### 2020-10-02
 
