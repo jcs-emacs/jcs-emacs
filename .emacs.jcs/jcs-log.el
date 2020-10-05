@@ -41,13 +41,23 @@ IN-VAL-DEL : value delimiter."
     (let ((count 0) (prefix-msg in-prefix-msg) (val-del in-val-del))
       (unless in-prefix-msg (setq prefix-msg "nth "))  ; Set defult prefix message.
       (unless in-val-del (setq val-del " => "))  ; Set default delimiter.
-      (dolist (tmp-str lst)
-        (jcs-log "%s%s%s`%s`"
-                 prefix-msg  ; Prefix Message
-                 count       ; Index/Count
-                 val-del     ; Index and Value Delimiter
-                 tmp-str)    ; Value in current index
-        (setq count (1+ count))))))
+      (cond ((listp lst)
+             (dolist (tmp-str lst)
+               (jcs-log "%s%s%s`%s`"
+                        prefix-msg  ; Prefix Message
+                        count       ; Index/Count
+                        val-del     ; Index and Value Delimiter
+                        tmp-str)    ; Value in current index
+               (setq count (1+ count))))
+            (t
+             (mapc (lambda (tmp-str)
+                     (jcs-log "%s%s%s`%s`"
+                              prefix-msg  ; Prefix Message
+                              count       ; Index/Count
+                              val-del     ; Index and Value Delimiter
+                              tmp-str)    ; Value in current index
+                     (setq count (1+ count)))
+                   lst))))))
 
 ;;; Hooks
 
