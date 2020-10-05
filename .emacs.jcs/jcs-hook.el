@@ -19,9 +19,10 @@
   "When window changed size."
   (setq ivy-height (round (* (frame-height) jcs-ivy-height-ratio)))
   (when (and (window-minibuffer-p) jcs-ivy-enabled-p)
-    (ivy--resize-minibuffer-to-fit)
-    (ivy-shrink-after-dispatching)
-    (ivy--exhibit)))
+    (jcs-mute-apply
+      (ivy--resize-minibuffer-to-fit)
+      (ivy-shrink-after-dispatching)
+      (ivy--exhibit))))
 (add-hook 'window-size-change-functions 'jcs-window-size-change-functions)
 
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
