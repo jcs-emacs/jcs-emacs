@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-10-06
+
+* Make log list compatible to `array` and `vector` data structure.
+
 ### 2020-10-05
 
 * Added global ivy minibuffer enabled flag for other use.
