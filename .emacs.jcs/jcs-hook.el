@@ -18,7 +18,9 @@
 (defun jcs-window-size-change-functions (&rest _)
   "When window changed size."
   (setq ivy-height (round (* (frame-height) jcs-ivy-height-ratio)))
-  (when (and (window-minibuffer-p) (not ivy-exit))
+  (when (and (window-minibuffer-p)
+             (minibuffer-window-active-p (selected-window))
+             (not ivy-exit))
     (ivy--resize-minibuffer-to-fit)
     (ivy-shrink-after-dispatching)
     (ivy--exhibit)))
