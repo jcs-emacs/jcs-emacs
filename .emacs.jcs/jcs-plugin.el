@@ -564,14 +564,13 @@
         ivy-on-del-error-function nil
         ivy-initial-inputs-alist nil
         ivy-re-builders-alist '((swiper . ivy--regex-plus)
-                                (t . ivy--regex-fuzzy)))
+                                (t . ivy--regex-fuzzy))
+        ivy-wrap t)
   (defvar jcs-ivy-height-ratio 0.3
     "Ratio that respect `frame-height' by multiply this and `ivy-height'.")
   :config
   (require 'smex)
-  (setq enable-recursive-minibuffers t)
-  (setq ivy-wrap t
-        ivy-exit 'done))
+  (setq enable-recursive-minibuffers t))
 
 (use-package ivy-file-preview
   :defer t
