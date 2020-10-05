@@ -36,28 +36,31 @@ Acts like `message' but preserves string properties in the *Messages* buffer."
   "Log out a LST.
 IN-PREFIX-MSG : prefix message.
 IN-VAL-DEL : value delimiter."
-  (if (>= 0 (length lst))
-      (user-error "[WARNING] Can't log list with length lower than 0: %s" lst)
-    (let ((count 0) (prefix-msg in-prefix-msg) (val-del in-val-del))
-      (unless in-prefix-msg (setq prefix-msg "nth "))  ; Set defult prefix message.
-      (unless in-val-del (setq val-del " => "))  ; Set default delimiter.
-      (cond ((listp lst)
-             (dolist (tmp-str lst)
-               (jcs-log "%s%s%s`%s`"
-                        prefix-msg  ; Prefix Message
-                        count       ; Index/Count
-                        val-del     ; Index and Value Delimiter
-                        tmp-str)    ; Value in current index
-               (setq count (1+ count))))
-            (t
-             (mapc (lambda (tmp-str)
-                     (jcs-log "%s%s%s`%s`"
-                              prefix-msg  ; Prefix Message
-                              count       ; Index/Count
-                              val-del     ; Index and Value Delimiter
-                              tmp-str)    ; Value in current index
-                     (setq count (1+ count)))
-                   lst))))))
+  (cond ((and (not (listp lst)) (not (vectorp lst)) (not (arrayp lst)))
+         (user-error "[ERROR] Can't log list with: %s" lst))
+        ((>= 0 (length lst))
+         (user-error "[WARNING] Can't log list with length lower than 0: %s" lst))
+        (t
+         (let ((count 0) (prefix-msg in-prefix-msg) (val-del in-val-del))
+           (unless in-prefix-msg (setq prefix-msg "nth "))  ; Set defult prefix message.
+           (unless in-val-del (setq val-del " => "))  ; Set default delimiter.
+           (cond ((listp lst)
+                  (dolist (tmp-str lst)
+                    (jcs-log "%s%s%s`%s`"
+                             prefix-msg  ; Prefix Message
+                             count       ; Index/Count
+                             val-del     ; Index and Value Delimiter
+                             tmp-str)    ; Value in current index
+                    (setq count (1+ count))))
+                 (t
+                  (mapc (lambda (tmp-str)
+                          (jcs-log "%s%s%s`%s`"
+                                   prefix-msg  ; Prefix Message
+                                   count       ; Index/Count
+                                   val-del     ; Index and Value Delimiter
+                                   tmp-str)    ; Value in current index
+                          (setq count (1+ count)))
+                        lst)))))))
 
 ;;; Hooks
 
