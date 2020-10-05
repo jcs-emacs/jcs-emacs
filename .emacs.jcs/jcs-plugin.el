@@ -570,7 +570,8 @@
   :config
   (require 'smex)
   (setq enable-recursive-minibuffers t)
-  (setq ivy-wrap t))
+  (setq ivy-wrap t
+        ivy-exit 'done))
 
 (use-package ivy-file-preview
   :defer t
