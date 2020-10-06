@@ -586,10 +586,10 @@
 
 (use-package keypression
   :defer t
-  :init
+  :config
   (setq keypression-ignore-mouse-events
         (append keypression-ignore-mouse-events
-                '(switch-frame))))
+                '(switch-frame menu-bar tool-bar tab-bar))))
 
 (use-package line-reminder
   :defer t
