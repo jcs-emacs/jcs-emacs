@@ -6,11 +6,12 @@
 
 (defun jcs--js-to-jsx-mode (&optional force)
   "Switch from JavaScript mode to JSX mode, FORCE will ignore any conditions."
-  (when (or (and (not (jcs-is-current-major-mode-p "rjsx-mode"))
-                 (string-match-p "React" (buffer-string)))
-            force)
-    (message "[INFO] Detect JSX file, change to `rjsx-mode` instead")
-    (rjsx-mode)))
+  (let ((case-fold-search nil))
+    (when (or (and (not (jcs-is-current-major-mode-p "rjsx-mode"))
+                   (string-match-p "React" (buffer-string)))
+              force)
+      (message "[INFO] Detect JSX file, change to `rjsx-mode` instead")
+      (rjsx-mode))))
 
 (defun jcs-js--ask-source (sc)
   "Ask the source SC for editing JavaScript file."
