@@ -36,8 +36,11 @@ Acts like `message' but preserves string properties in the *Messages* buffer."
   "Log out a LST.
 IN-PREFIX-MSG : prefix message.
 IN-VAL-DEL : value delimiter."
-  (cond ((and (not (listp lst)) (not (vectorp lst)) (not (arrayp lst)))
-         (user-error "[ERROR] Can't log list with: %s" lst))
+  (cond ((and (not (listp lst)) (not (vectorp lst)) (not (arrayp lst))
+              (not (hash-table-p lst)))
+         (user-error "[ERROR] Can't log list with this data object: %s" lst))
+        ((hash-table-p lst)
+         (jcs-log (json-encode lst)))
         ((>= 0 (length lst))
          (user-error "[WARNING] Can't log list with length lower than 0: %s" lst))
         (t
