@@ -584,6 +584,13 @@
   (setq ivy-searcher-display-info 'line/column
         ivy-searcher-preselect 'next))
 
+(use-package keypression
+  :defer t
+  :init
+  (setq keypression-ignore-mouse-events
+        (append keypression-ignore-mouse-events
+                '(switch-frame))))
+
 (use-package line-reminder
   :defer t
   :init
