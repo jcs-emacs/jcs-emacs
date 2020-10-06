@@ -379,7 +379,8 @@ Here is the list of key bindins that defined in this configuration.
 * <kbd>d</kbd> - Select package to delete.
 * <kbd>x</kbd> - Execute marked packages.
 * <kbd>s</kbd> - Sort packages in order.
-* <kbd>u</kbd> - Select package to upgrade.
+* <kbd>u</kbd> - Unmark/Mark pacakges.
+* <kbd>Shift</kbd>+<kbd>u</kbd> - Upgrade all packages if available.
 * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>r</kbd>, <kbd>m</kbd> - Auto remove unused pacakges.
 
 ## Org Mode
