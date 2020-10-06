@@ -347,10 +347,10 @@
           (push (cadr (assq package package-archive-contents)) upgrades))))
     (if upgrades
         (when (yes-or-no-p
-               (message "[ELPA] Upgrade %d package%s (%s)? "
-                        (length upgrades)
-                        (if (= (length upgrades) 1) "" "s")
-                        (mapconcat #'package-desc-full-name upgrades ", ")))
+               (format "[ELPA] Upgrade %d package%s (%s)? "
+                       (length upgrades)
+                       (if (= (length upgrades) 1) "" "s")
+                       (mapconcat #'package-desc-full-name upgrades ", ")))
           (save-window-excursion
             (dolist (package-desc upgrades)
               (let ((old-package (cadr (assq (package-desc-name package-desc)
@@ -366,12 +366,12 @@
   (let ((upgrades (jcs--upgrade-list-manually)) desc)
     (if upgrades
         (when (yes-or-no-p
-               (message "[QUELPA] Upgrade %d package%s (%s)? "
-                        (length upgrades)
-                        (if (= (length upgrades) 1) "" "s")
-                        (mapconcat (lambda (rcp)
-                                     (symbol-name (jcs--recipe-get-info rcp :name)))
-                                   upgrades ", ")))
+               (format "[QUELPA] Upgrade %d package%s (%s)? "
+                       (length upgrades)
+                       (if (= (length upgrades) 1) "" "s")
+                       (mapconcat (lambda (rcp)
+                                    (symbol-name (jcs--recipe-get-info rcp :name)))
+                                  upgrades ", ")))
           ;; Delete all upgrading packages before installation.
           (dolist (rcp upgrades)
             (setq desc (jcs-package-get-package-by-name (jcs--recipe-get-info rcp :name)))
