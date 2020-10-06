@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-10-06
 
 * Make log list compatible to `array` and `vector` data structure.
+* Minor configure for package `keypression`; ignore `switch-frame` and other certain commands.
 
 ### 2020-10-05
 
