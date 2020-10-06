@@ -9,6 +9,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 * Make log list compatible to `array` and `vector` data structure.
 * Minor configure for package `keypression`; ignore `switch-frame` and other certain commands.
+* Bind <kbd>Shift</kbd>+<kbd>u</kbd> instead of <kbd>u</kbd> for upgrading all packages key.
 
 ### 2020-10-05
 
