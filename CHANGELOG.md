@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-10-07
+
+* Make generic log list able to log `hash-table`.
+
 ### 2020-10-06
 
 * Make log list compatible to `array` and `vector` data structure.
