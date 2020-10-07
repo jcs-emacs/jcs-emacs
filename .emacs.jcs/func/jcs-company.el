@@ -30,7 +30,7 @@
       (progn
         (add-to-list 'company-fuzzy--backends backend)
         (add-to-list 'company-fuzzy--recorded-backends backend)
-        (setq company-fuzzy-backends (delete-dups company-fuzzy-backends)
+        (setq company-fuzzy--backends (delete-dups company-fuzzy--backends)
               company-fuzzy--recorded-backends (delete-dups company-fuzzy--recorded-backends)))
     (add-to-list 'company-backends backend)
     (setq company-backends (delete-dups company-backends))))
