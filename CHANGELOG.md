@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-10-07
 
 * Make generic log list able to log `hash-table`.
+* Installed new package `company-c-headers`.
 
 ### 2020-10-06
 
