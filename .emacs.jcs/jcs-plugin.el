@@ -110,6 +110,15 @@
   :config
   (with-eval-after-load 'company (require 'jcs-company) (global-company-mode t)))
 
+(use-package company-c-headers
+  :defer t
+  :init
+  (setq company-c-headers-path-user '("."))
+  (setq company-c-headers-path-system
+        (append
+         '("/usr/include/" "/usr/local/include/")
+         '("C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.27.29110/include/"))))
+
 (use-package company-emoji
   :defer t
   :init
