@@ -7,6 +7,8 @@
 (defun jcs-c-mode-hook ()
   "C mode handling"
 
+  (jcs-company-safe-add-backend 'company-c-headers)
+
   ;; File Header
   (jcs-cc-insert-header)
 

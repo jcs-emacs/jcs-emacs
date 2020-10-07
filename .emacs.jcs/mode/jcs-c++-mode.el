@@ -54,6 +54,8 @@
 (defun jcs-c++-mode-hook ()
   "C++ mode handling"
 
+  (jcs-company-safe-add-backend 'company-c-headers)
+
   ;; File Header
   (let ((ext-lst (append jcs-c-header-extensions jcs-c-source-extensions
                          jcs-c++-header-extensions jcs-c++-source-extensions)))

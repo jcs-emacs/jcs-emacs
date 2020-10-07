@@ -5,6 +5,8 @@
 (defun jcs-objc-mode-hook ()
   "Objective-C mode hook."
 
+  (jcs-company-safe-add-backend 'company-c-headers)
+
   ;; File Header
   (jcs-insert-header-if-valid '("[.]hin"
                                 "[.]hpp"
