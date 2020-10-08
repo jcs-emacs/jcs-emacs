@@ -2,7 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 
-;;; Entry
+;;
+;; (@* "Entry" )
+;;
 
 ;; TOPIC: How to preserve color in *Messages* buffer?
 ;; SOURCE: https://emacs.stackexchange.com/questions/20171/how-to-preserve-color-in-messages-buffer
@@ -25,7 +27,9 @@ Acts like `message' but preserves string properties in the *Messages* buffer."
   "Log a message with FMT and ARGS in the clean way."
   (apply 'jcs--log "INFO" t fmt args))
 
-;;; List
+;;
+;; (@* "List" )
+;;
 
 (defun jcs-log-list-clean (lst &optional in-prefix-msg in-val-del)
   "Log out a LST in clean *Messages* buffer with IN-PREFIX-MSG and IN-VAL-DEL."
@@ -65,7 +69,9 @@ IN-VAL-DEL : value delimiter."
                           (setq count (1+ count)))
                         lst)))))))
 
-;;; Hooks
+;;
+;; (@* "Hooks" )
+;;
 
 (defun jcs-do-before-log-action (clean)
   "Action do before doing log."
@@ -83,7 +89,9 @@ IN-VAL-DEL : value delimiter."
       (jcs-ensure-switch-to-buffer-other-window "*Messages*"))
     (jcs--message-buffer--first-load)))
 
-;;; Util
+;;
+;; (@* "Util" )
+;;
 
 (defun jcs-sleep-for (&optional seconds milliseconds)
   "Wrap `sleep-for' function width default SECONDS and MILLISECONDS."
@@ -95,7 +103,9 @@ IN-VAL-DEL : value delimiter."
   (unless seconds (setq seconds jcs-sit-for-seconds))
   (sit-for seconds nodisp))
 
-;;; Core
+;;
+;; (@* "Core" )
+;;
 
 (defun jcs--log (title clean fmt &rest args)
   "Log a message with TITLE, CLEAN, FMT and ARGS."

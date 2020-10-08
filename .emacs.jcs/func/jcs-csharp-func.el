@@ -84,7 +84,9 @@ on the same line."
         ;; insert comment doc comment string.
         (jcs-insert-comment-style-by-current-line "[{;]")))))
 
-;;----------------------------------------------------------------------------
+;;
+;; (@* "Indentation" )
+;;
 
 ;;;###autoload
 (defun jcs-csharp-smart-indent-up ()

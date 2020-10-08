@@ -204,7 +204,9 @@ on the same line."
         ;; Insert comment doc comment string.
         (jcs-insert-comment-style-by-current-line ")")))))
 
-;;----------------------------------------------------------------------------
+;;
+;; (@* "Templates" )
+;;
 
 ;;;###autoload
 (defun jcs-ask-python-template (type)

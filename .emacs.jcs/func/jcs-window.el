@@ -2,8 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 
-;;----------------------------------------------------------------------------
-;; Navigation
+;;
+;; (@* "Navigation" )
+;;
 
 (defun jcs-ensure-switch-to-buffer-other-window (win-name)
   "Ensure switch to buffer, try multiple times with WIN-NAME"
@@ -131,8 +132,9 @@ If DO-ADVICE is non-nil then will active advices from `other-window' function."
           (setq index (+ index 1)))
         (select-frame-set-input-focus cur-frame)))))
 
-;;========================
-;; Ace Window
+;;
+;; (@* "Ace Window" )
+;;
 
 (defun jcs-ace-select-window (win-id)
   "Use `ace-window' to select the window by using window index, WIN-ID."
@@ -166,16 +168,18 @@ If DO-ADVICE is non-nil then will active advices from `other-window' function."
 ;;;###autoload
 (defun jcs-ace-window-9 () "Select window 9." (interactive) (jcs-ace-select-window 8))
 
-;;----------------------------------------------------------------------------
-;; Advices
+;;
+;; (@* "Advices" )
+;;
 
 (defun jcs--delete-window--advice-after (&rest _)
   "Advice run after execute `delete-window' function."
   (jcs-buffer-menu-safe-refresh))
 (advice-add 'delete-window :after #'jcs--delete-window--advice-after)
 
-;;----------------------------------------------------------------------------
-;; Column
+;;
+;; (@* "Column" )
+;;
 
 (defun jcs-window-type-list-in-column (type)
   "Return the list of TYPE in column.
@@ -196,8 +200,9 @@ TYPE can be 'buffer or 'window."
   "Check if BUF on same column."
   (jcs-is-contain-list-string-regexp-reverse (jcs-window-type-list-in-column 'buffer) buf))
 
-;;----------------------------------------------------------------------------
-;; Deleting
+;;
+;; (@* "Deleting" )
+;;
 
 ;;;###autoload
 (defun jcs-balance-delete-window ()
@@ -213,8 +218,9 @@ TYPE can be 'buffer or 'window."
   (other-window -1)
   (save-selected-window (other-window 1) (delete-window)))
 
-;;----------------------------------------------------------------------------
-;; Splitting
+;;
+;; (@* "Splitting" )
+;;
 
 ;;;###autoload
 (defun jcs-balance-split-window-horizontally ()
@@ -295,8 +301,9 @@ i.e. change right window to bottom, or change bottom window to right."
             (when window-switched (other-window 1)))
         (user-error "[WARNING] Can't toggle vertical/horizontal editor layout with more than 2 windows in current frame")))))
 
-;;----------------------------------------------------------------------------
-;; Util
+;;
+;; (@* "Util" )
+;;
 
 (defun jcs-switch-to-next-window-larger-in-height ()
   "Return the next window that have larger height in column."
@@ -361,8 +368,9 @@ i.e. change right window to bottom, or change bottom window to right."
         (setq windmove-wrap-around was-wrap-around))
     (jcs-ace-window-max)))
 
-;;----------------------------------------------------------------------------
-;; Get Window
+;;
+;; (@* "Get Window" )
+;;
 
 (defun jcs-current-window-id ()
   "Return the current window id."
@@ -389,8 +397,9 @@ i.e. change right window to bottom, or change bottom window to right."
       (setq win-id-lst (reverse win-id-lst))
       win-id-lst)))
 
-;;----------------------------------------------------------------------------
-;; Center
+;;
+;; (@* "Center" )
+;;
 
 ;;;###autoload
 (defun jcs-horizontal-recenter ()
@@ -403,8 +412,9 @@ i.e. change right window to bottom, or change bottom window to right."
         (set-window-hscroll (selected-window)
                             (- cur mid)))))
 
-;;----------------------------------------------------------------------------
-;; Restore Windows Status
+;;
+;; (@* "Restore Windows Status" )
+;;
 
 (defvar jcs-window--record-buffers '() "Record all windows' buffer.")
 (defvar jcs-window--record-points '() "Record all windows' point.")

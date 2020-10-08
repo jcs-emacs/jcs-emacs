@@ -42,8 +42,8 @@
             (looking-at "\\[")
             (looking-at ";;+")
             ;;--------------------------------------------------
-            ;; ATTENTION: Self copy this function from source
-            ;; code. Add these rules for my own use.
+            ;; ATTENTION: Self copy this function from source code. Add these
+            ;; rules for my own use.
             (jcs-is-nasm-indent-p)
             ;;--------------------------------------------------
             (looking-at nasm-label-regexp))

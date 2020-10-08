@@ -2,6 +2,10 @@
 ;;; Commentary:
 ;;; Code:
 
+;;
+;; (@* "Util" )
+;;
+
 (defun jcs-dashboard-page-break-list ()
   "Get the list of page break position."
   (let ((pb-lst '()))
@@ -11,6 +15,10 @@
         (push (line-number-at-pos) pb-lst)))
     (setq pb-lst (reverse pb-lst))
     pb-lst))
+
+;;
+;; (@* "Navigation" )
+;;
 
 ;;;###autoload
 (defun jcs-dashboard-previous-blank-line ()
@@ -37,6 +45,10 @@
           (forward-line -2)
           (beginning-of-line))
       (goto-char blank-pt))))
+
+;;
+;; (@* "Remove Items" )
+;;
 
 ;;;###autoload
 (defun jcs-dashboard-remove-current-item ()
@@ -106,7 +118,9 @@
   ;; TODO: implements this..
   )
 
-;;----------------------------------------------------------------------------
+;;
+;; (@* "Functions" )
+;;
 
 ;;;###autoload
 (defun jcs-dashboard-goto-item-section (id)

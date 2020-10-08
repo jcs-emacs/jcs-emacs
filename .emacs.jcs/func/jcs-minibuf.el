@@ -2,7 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 
-;;; Echo Area
+;;
+;; (@* "Echo Area" )
+;;
 
 (defconst jcs-echo-area-buffer-name " *Minibuf-0*"
   "Name of the minibuffer echo area buffer.")
@@ -12,7 +14,9 @@
   (with-current-buffer jcs-echo-area-buffer-name
     (add-hook 'window-size-change-functions #'jcs-minibuf--window-size-change nil t)))
 
-;;; Minibuffer
+;;
+;; (@* "Minibuffer" )
+;;
 
 (defconst jcs-minibuf-buffer-name " *Minibuf-1*"
   "Name of the minibuffer buffer.")
@@ -63,14 +67,18 @@
   "Minibuffer post command hook."
   (jcs-minibuf--ivy-post-command))
 
-;;; Util
+;;
+;; (@* "Util" )
+;;
 
 (defun jcs-minibuf-window-p (&optional win)
   "Check if WIN minibuffer window."
   (unless win (setq win (selected-window)))
   (eq win (minibuffer-window)))
 
-;;; Window
+;;
+;; (@* "Window" )
+;;
 
 (defun jcs-minibuf--window-size-change (&rest _)
   "Hook for echo area when window size changed."
@@ -90,7 +98,9 @@
                     (<= (window-body-height) visible-win-height))
            (jcs-recenter-top-bottom 'bottom)))))))
 
-;;; Ivy
+;;
+;; (@* "Ivy" )
+;;
 
 (defun jcs-minibuf--ivy-post-command ()
   "Post command for Ivy in minibuffer."

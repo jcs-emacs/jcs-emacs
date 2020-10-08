@@ -2,6 +2,10 @@
 ;;; Commentary:
 ;;; Code:
 
+;;
+;; (@* "Mode Line" )
+;;
+
 (defun jcs--set-mode-line-color (ac-lst inac-lst)
   "Set `mode-line' theme faces with AC-LST and INAC-LST."
   (progn
@@ -205,8 +209,9 @@ Return nil if current theme light theme."
   (interactive)
   (jcs-vs-dark-theme))
 
-;;----------------------------------------------------------------------------
-;; Load
+;;
+;; (@* "Load" )
+;;
 
 (defun jcs--load-theme--advice-after (&rest _)
   "Advice execute after `load-theme' function."

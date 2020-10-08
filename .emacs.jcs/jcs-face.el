@@ -2,8 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 
-;;----------------------------------------------------------------------------
-;; Regular Faces
+;;
+;; (@* "Regular Faces" )
+;;
 
 (defun jcs--set-common-face (face color-fg)
   "Set the FACE foreground COLOR-FG."
@@ -34,8 +35,9 @@
     (jcs--set-common-face 'font-lock-type-face "#38EFCA")
     (jcs--set-common-face 'font-lock-variable-name-face "#D2D2D2")))
 
-;;----------------------------------------------------------------------------
-;; Common
+;;
+;; (@* "Common" )
+;;
 
 (defface jcs-font-lock-null-face
   '((t (:foreground "LightSteelBlue")))
@@ -43,8 +45,9 @@
   :group 'jcs)
 (defvar jcs-font-lock-null-face 'jcs-font-lock-null-face)
 
-;;----------------------------------------------------------------------------
-;; Docstring
+;;
+;; (@* "Docstring" )
+;;
 
 (defface jcs-docstring-tag-face
   '((t (:foreground "SlateGray")))
@@ -64,8 +67,9 @@
   :group 'jcs)
 (defvar jcs-docstring-value-face 'jcs-docstring-value-face)
 
-;;----------------------------------------------------------------------------
-;; Web
+;;
+;; (@* "Web" )
+;;
 
 (defface jcs-web-mode-block-face
   '((t (:inherit 'default :background "#000000")))
@@ -84,7 +88,6 @@
   "Highlight HTML value."
   :group 'jcs)
 (defvar jcs-web-mode-html-attr-value-face 'jcs-web-mode-html-attr-value-face)
-
 
 (defface jcs-css-selector-face
   '((t (:foreground "#17A0FB")))
@@ -128,8 +131,9 @@
   :group 'jcs)
 (defvar jcs-css-variable-face 'jcs-css-variable-face)
 
-;;----------------------------------------------------------------------------
-;; Load face order.
+;;
+;; (@* "Load face order" )
+;;
 
 (with-eval-after-load 'cc-mode (jcs-init-java-faces))
 (with-eval-after-load 'css-mode (jcs-init-css-faces))

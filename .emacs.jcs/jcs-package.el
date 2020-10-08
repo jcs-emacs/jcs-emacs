@@ -26,7 +26,9 @@
 (when (or (version< emacs-version "27.1") (featurep 'esup-child))
   (package-initialize))
 
-;;----------------------------------------------------------------------------
+;;
+;; (@* "Packages" )
+;;
 
 ;; List of package you want to installed.
 (defconst jcs-package-install-list
@@ -192,8 +194,9 @@
     yasnippet-snippets)
   "List of packages this config needs.")
 
-;;----------------------------------------------------------------------------
-;; Util
+;;
+;; (@* "Util" )
+;;
 
 (defun jcs-package--add-selected-packages (pkg-name)
   "Add PKG-NAME to the selected package list."
@@ -240,8 +243,9 @@
        (not (package-built-in-p pkg-name))
        (not (jcs-package-incompatible-p pkg-name))))
 
-;;----------------------------------------------------------------------------
-;; Dependency
+;;
+;; (@* "Dependency" )
+;;
 
 (defvar jcs-package-rebuild-dependency-p t
   "Flag to see if able to rebuild dependency graph at the moment.")
@@ -286,8 +290,9 @@
 
 (advice-add 'package-menu-execute :around #'jcs-package--menu-execute--advice-around)
 
-;;----------------------------------------------------------------------------
-;; Core Installation
+;;
+;; (@* "Core Installation" )
+;;
 
 (defvar jcs-package-installing-p nil
   "Is currently upgrading the package.")
@@ -423,8 +428,9 @@
       (package-list-packages)
     (package-menu-filter (concat "status:" status))))
 
-;;----------------------------------------------------------------------------
-;; Manually Installation
+;;
+;; (@* "Manually Installation" )
+;;
 
 (defconst jcs-quelpa-recipes-path (expand-file-name "~/.emacs.jcs/recipes/")
   "Manually installed recipes path.")

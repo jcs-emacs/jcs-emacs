@@ -2,8 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 
-;;----------------------------------------------------------------------------
-;; File Header Insertion
+;;
+;; (@* "File Header Insertion" )
+;;
 
 (defun jcs-insert-header-if-empty (insert-func &optional ci)
   "Execute INSERT-FUNC if empty, CI means `call-interactively'."
@@ -32,8 +33,9 @@ FAILED is callback if does NOT successfully inserted header content."
       (when (functionp fail) (funcall fail)))
     result))
 
-;;----------------------------------------------------------------------------
-;; Buffer String
+;;
+;; (@* "Buffer String" )
+;;
 
 (defvar jcs--preload-double-colon-file-info nil
   "Preload the double colon file info template.")
@@ -83,8 +85,9 @@ in order to take effect.  Half hot reloading process."
   (setq jcs--preload-single-quote-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/singlequote.txt"))
   (setq jcs--preload-tag-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/tag.txt")))
 
-;;----------------------------------------------------------------------------
-;; Header
+;;
+;; (@* "Header" )
+;;
 
 (defun jcs-get-double-colon-file-info ()
   "Return the preloaded double colon file info template."
@@ -156,8 +159,9 @@ in order to take effect.  Half hot reloading process."
   "Tag file header info for tag language."
   (insert (jcs-get-tag-file-info)))
 
-;;----------------------------------------------------------------------------
-;; Other Template
+;;
+;; (@* "Other Templates" )
+;;
 
 ;;; ActionScript
 (defun jcs-insert-actionscript-template ()

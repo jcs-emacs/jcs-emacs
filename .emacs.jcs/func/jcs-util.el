@@ -2,8 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 
-;;----------------------------------------------------------------------------
-;; Macro
+;;
+;; (@* "Macro" )
+;;
 
 (defmacro jcs-with-timer (title &rest forms)
   "Run the given FORMS, counting the elapsed time.
@@ -27,8 +28,9 @@ time is displayed."
      (jcs-goto-line ln)
      (move-to-column col)))
 
-;;----------------------------------------------------------------------------
-;; Buffer
+;;
+;; (@* "Buffer" )
+;;
 
 ;;;###autoload
 (defun jcs-print-current-buffer-name ()
@@ -123,8 +125,9 @@ If REGEX is non-nil, check by using regular expression."
       (string-match-p name (buffer-name buffer))
     (string= name (buffer-name buffer))))
 
-;;----------------------------------------------------------------------------
-;; Compile
+;;
+;; (@* "Compile" )
+;;
 
 ;;;###autoload
 (defun jcs-byte-recompile-directory ()
@@ -132,8 +135,9 @@ If REGEX is non-nil, check by using regular expression."
   (interactive)
   (byte-recompile-directory "./" 0))
 
-;;----------------------------------------------------------------------------
-;; Color
+;;
+;; (@* "Color" )
+;;
 
 (defun jcs-is-hex-code-p (hex-code)
   "Check if the HEX-CODE is valid HEX code."
@@ -178,8 +182,9 @@ If REGEX is non-nil, check by using regular expression."
   "Check if the HEX-CODE dark color."
   (and (display-graphic-p) (not (jcs-is-light-color-p hex-code))))
 
-;;----------------------------------------------------------------------------
-;; Error
+;;
+;; (@* "Error" )
+;;
 
 (defun jcs-backtrace-occurs-p ()
   "Check if the backtrace occurs."
@@ -189,8 +194,9 @@ If REGEX is non-nil, check by using regular expression."
         (setq occurs (not (string-empty-p (buffer-string))))))
     occurs))
 
-;;----------------------------------------------------------------------------
-;; Event
+;;
+;; (@* "Event" )
+;;
 
 (defun jcs-last-input-event-p (te)
   "Check if `last-input-event' a target event, TE."
@@ -204,8 +210,9 @@ If REGEX is non-nil, check by using regular expression."
       (setq is-event t))
     is-event))
 
-;;----------------------------------------------------------------------------
-;; Excursion Record
+;;
+;; (@* "Excursion Record" )
+;;
 
 (defun jcs--record-window-excursion (fnc)
   "Record the info from an excursion, the FNC and ARGS."
@@ -224,8 +231,9 @@ If REGEX is non-nil, check by using regular expression."
     (jcs-goto-line (nth 1 record))
     (move-to-column (nth 2 record))))
 
-;;----------------------------------------------------------------------------
-;; Function
+;;
+;; (@* "Function" )
+;;
 
 (defmacro jcs-unmute-apply (&rest body)
   "Execute BODY with ensuring message log."
@@ -248,8 +256,9 @@ If REGEX is non-nil, check by using regular expression."
   "Call FNC with ARGS if exists."
   (when (fboundp fnc) (if args (funcall fnc args) (funcall fnc))))
 
-;;----------------------------------------------------------------------------
-;; Fuzzy
+;;
+;; (@* "Fuzzy" )
+;;
 
 (defun jcs-flx-sort-candidates-by-regex (candidates regex)
   "Sort CANDIDATES by REGEX."
@@ -273,8 +282,9 @@ If REGEX is non-nil, check by using regular expression."
         (setq candidates (append candidates cands)))))
   candidates)
 
-;;----------------------------------------------------------------------------
-;; Time
+;;
+;; (@* "Time" )
+;;
 
 (defun jcs-get-timestamp-ver1 ()
   "Get timestamp version 1."
@@ -311,15 +321,17 @@ If REGEX is non-nil, check by using regular expression."
   (message "[INFO] All version of timestamps printed.")
   (jcs-do-after-log-action))
 
-;;----------------------------------------------------------------------------
-;; Timer
+;;
+;; (@* "Timer" )
+;;
 
 (defun jcs-safe-kill-timer (tmr)
   "Kill timer (TMR) the safe way."
   (when (timerp tmr) (cancel-timer tmr) (setf tmr nil) tmr))
 
-;;----------------------------------------------------------------------------
-;; Organize Code
+;;
+;; (@* "Organize Code" )
+;;
 
 (defun jcs-keep-n-line-between (n-line)
   "Keep N-LINE between the two line of code."
@@ -342,8 +354,9 @@ If REGEX is non-nil, check by using regular expression."
     ;; Make sure have one empty line between.
     (insert "\n")))
 
-;;----------------------------------------------------------------------------
-;; Tab / Space
+;;
+;; (@* "Tab / Space" )
+;;
 
 ;;;###autoload
 (defun jcs-delete-trailing-whitspace-current-line ()
@@ -428,8 +441,9 @@ Generally you will have to check it four times."
         (jcs-delete-region)
         (deactivate-mark)))))
 
-;;----------------------------------------------------------------------------
-;; Indentation
+;;
+;; (@* "Indentation" )
+;;
 
 ;;;###autoload
 (defun jcs-insert-spaces-by-indent-level ()
@@ -473,8 +487,9 @@ Generally you will have to check it four times."
         (when is-valid (backward-delete-char -1)))
       (setq tmp-count (1+ tmp-count)))))
 
-;;----------------------------------------------------------------------------
-;; Point
+;;
+;; (@* "Point" )
+;;
 
 ;;;###autoload
 (defun jcs-print-current-point ()
@@ -488,8 +503,9 @@ Generally you will have to check it four times."
     (move-to-column column)
     (point)))
 
-;;----------------------------------------------------------------------------
-;; Character
+;;
+;; (@* "Character" )
+;;
 
 ;;;###autoload
 (defun jcs-print-current-char ()
@@ -651,8 +667,9 @@ BND-PT : boundary point."
   "Check if there is character on the right before reaches the end of line."
   (jcs-is-there-char-forward-point-p (jcs-get-end-of-line-point)))
 
-;;----------------------------------------------------------------------------
-;; Symbol
+;;
+;; (@* "Symbol" )
+;;
 
 ;;;###autoload
 (defun jcs-print-current-symbol ()
@@ -693,8 +710,9 @@ BND-PT : boundary point."
       (forward-symbol 1)
       (= (point) cur-pos))))
 
-;;----------------------------------------------------------------------------
-;; Word
+;;
+;; (@* "Word" )
+;;
 
 ;;;###autoload
 (defun jcs-print-current-word ()
@@ -744,8 +762,9 @@ Returns non-nil, the word is the same.
 Returns nil, the word isn't the same."
   (string= w (jcs-first-forward-word)))
 
-;;----------------------------------------------------------------------------
-;; Column
+;;
+;; (@* "Column" )
+;;
 
 (defun jcs-column-at-pos (&optional pt)
   "Column at PT."
@@ -754,8 +773,9 @@ Returns nil, the word isn't the same."
     (goto-char pt)
     (current-column)))
 
-;;----------------------------------------------------------------------------
-;; Line
+;;
+;; (@* "Line" )
+;;
 
 ;;;###autoload
 (defun jcs-print-current-line ()
@@ -946,8 +966,9 @@ Return nil, vice versa."
   (let ((recenter-positions (jcs--recenter-positions type)))
     (move-to-window-line-top-bottom)))
 
-;;----------------------------------------------------------------------------
-;; Move between button.
+;;
+;; (@* "Move between button" )
+;;
 
 ;;;###autoload
 (defun jcs-top-most-line ()
@@ -963,16 +984,18 @@ Return nil, vice versa."
   ;; NOTE: 0 : top-most-line, -1 : bottom-most-line
   (move-to-window-line-top-bottom -1))
 
-;;----------------------------------------------------------------------------
-;; Mark
+;;
+;; (@* "Mark" )
+;;
 
 (defun jcs-is-mark-active-p ()
   "Check if the mark active."
   (and mark-active
        (= (point) (mark))))
 
-;;----------------------------------------------------------------------------
-;; Region
+;;
+;; (@* "Region" )
+;;
 
 (defun jcs-is-region-selected-p ()
   "Check if region active.
@@ -1001,16 +1024,18 @@ Return nil, there is no region selected and mark is not active."
   "Select region from ST and ED."
   (goto-char st) (call-interactively #'set-mark-command) (goto-char ed))
 
-;;----------------------------------------------------------------------------
-;; Command
+;;
+;; (@* "Command" )
+;;
 
 (defun jcs-is-command-these-commands (cmd cmds)
   "Check if CMD one of these CMDS.
 CMDS should be a list of commands."
   (memq cmd cmds))
 
-;;----------------------------------------------------------------------------
-;; Comment
+;;
+;; (@* "Comment" )
+;;
 
 (defun jcs-inside-comment-block-p ()
   "Check if current cursor point inside the comment block."
@@ -1054,8 +1079,9 @@ CMDS should be a list of commands."
     (jcs-goto-end-of-the-comment)
     (point)))
 
-;;----------------------------------------------------------------------------
-;; Face
+;;
+;; (@* "Face" )
+;;
 
 ;;;###autoload
 (defun jcs-print-current-face ()
@@ -1106,8 +1132,9 @@ CMDS should be a list of commands."
       (and (= (length (jcs-get-current-point-face pos)) 1)
            (jcs-is-current-point-face "hl-line"))))
 
-;;----------------------------------------------------------------------------
-;; Font
+;;
+;; (@* "Font" )
+;;
 
 (defun jcs-set-font-size (&optional new-size)
   "Set the font size to NEW-SIZE."
@@ -1142,8 +1169,9 @@ CMDS should be a list of commands."
   ;; Refresh the syntax hightlight.
   (jcs-mute-apply (call-interactively #'font-lock-fontify-buffer)))
 
-;;----------------------------------------------------------------------------
-;; List
+;;
+;; (@* "List" )
+;;
 
 (defun jcs-last-item-in-list (lst)
   "Return the last item in LST."
@@ -1234,8 +1262,9 @@ The reverse mean the check from regular expression is swapped."
   "Check if IN-INT contain in any integer in the IN-LIST."
   (cl-some #'(lambda (lb-sub-int) (= lb-sub-int in-int)) in-list))
 
-;;----------------------------------------------------------------------------
-;; Minibuffer
+;;
+;; (@* "Minibuffer" )
+;;
 
 (defun jcs-minibuffer-do-stuff (fnc &rest args)
   "Execute FNC and ARGS in minibuffer the safe way."
@@ -1245,8 +1274,9 @@ The reverse mean the check from regular expression is swapped."
       (select-window (active-minibuffer-window))
       (apply fnc args))))
 
-;;----------------------------------------------------------------------------
-;; Mode
+;;
+;; (@* "Mode" )
+;;
 
 ;;;###autoload
 (defun jcs-print-current-major-mode ()
@@ -1295,8 +1325,9 @@ The reverse mean the check from regular expression is swapped."
   "To enable/disable the MODENAME by PREDICATE."
   (if predicate (funcall modename 1) (funcall modename -1)))
 
-;;----------------------------------------------------------------------------
-;; I/O
+;;
+;; (@* "I/O" )
+;;
 
 (defun jcs-get-string-from-file (path)
   "Return PATH file content."
@@ -1365,8 +1396,9 @@ IN-KEY : key to search for value."
     ;; Found nothing, return empty string.
     returns-value))
 
-;;----------------------------------------------------------------------------
-;; File
+;;
+;; (@* "File" )
+;;
 
 (defun jcs-get-file-name ()
   "Get current file name."
@@ -1410,8 +1442,9 @@ IN-KEY : key to search for value."
     (prog1 (not (eq buffer-file-coding-system 'no-conversion))
       (kill-buffer))))
 
-;;----------------------------------------------------------------------------
-;; Directory
+;;
+;; (@* "Directory" )
+;;
 
 (defun jcs-get-current-dir ()
   "Return the string of current directory."
@@ -1494,8 +1527,9 @@ IGNORE-ERRORS-T : ignore errors for this function?"
       ;; Return result.
       result-dir-or-file)))
 
-;;----------------------------------------------------------------------------
-;; String
+;;
+;; (@* "String" )
+;;
 
 ;;;###autoload
 (defun jcs-print-current-string ()
@@ -1593,8 +1627,9 @@ If TRIM is non-nil, trim the string before return it."
       (when run-it (setq pos run-it)))
     (if (= pos -1) nil pos)))
 
-;;----------------------------------------------------------------------------
-;; Variable
+;;
+;; (@* "Variable" )
+;;
 
 (defun jcs-setq-all-local-buffer (in-var in-val)
   "Set all the local buffer to some value.
@@ -1617,8 +1652,9 @@ IN-VAL : input value to set to IN-VAR."
           (jcs-other-window-next)
           (setq index (1+ index)))))))
 
-;;----------------------------------------------------------------------------
-;; Loop
+;;
+;; (@* "Loop" )
+;;
 
 (defun jcs-loop-times (fnc cnt &optional st)
   "Do FNC with CNT from ST."
@@ -1626,16 +1662,18 @@ IN-VAL : input value to set to IN-VAR."
   (let ((index st))
     (while (< index cnt) (funcall fnc index) (setq index (1+ index)))))
 
-;;----------------------------------------------------------------------------
-;; Loading
+;;
+;; (@* "Loading" )
+;;
 
 (defmacro jcs-with-eval-after-load-multiple (files &rest body)
   "Execute BODY after one of the FILES is loaded."
   (declare (indent 1) (debug t))
   `(dolist (file ,files) (with-eval-after-load file (progn ,@body))))
 
-;;----------------------------------------------------------------------------
-;; System
+;;
+;; (@* "System" )
+;;
 
 ;;;###autoload
 (defun jcs-print-current-system ()
@@ -1647,8 +1685,9 @@ IN-VAL : input value to set to IN-VAR."
   "Return the current operating system."
   (cond (jcs-is-windows 'dos) (jcs-is-bsd 'mac) (jcs-is-linux 'unix) (t nil)))
 
-;;----------------------------------------------------------------------------
-;; Parentheses
+;;
+;; (@* "Parentheses" )
+;;
 
 (defun jcs-find-pair-paren (beg-ch end-ch direction)
   "Find pair parenthese with BEG-CH, END-CH and DIRECTION."
@@ -1666,8 +1705,9 @@ IN-VAL : input value to set to IN-VAR."
         (cond ((jcs-current-char-equal-p beg-ch) (setq beg-cnt (1+ beg-cnt)))
               ((jcs-current-char-equal-p end-ch) (setq end-cnt (1+ end-cnt))))))))
 
-;;----------------------------------------------------------------------------
-;; Process Reporter
+;;
+;; (@* "Process Reporter" )
+;;
 
 (defvar jcs-process-reporter nil
   "Global instance process reporter.")

@@ -14,7 +14,9 @@
         ((string= sc "Cocos Creator Scripting")
          (jcs-insert-typescript-cocos-creator-template))))
 
-;;----------------------------------------------------------------------------
+;;
+;; (@* "Faces" )
+;;
 
 (defun jcs-init-typescript-faces ()
   "Initialize TypeScript mode faces highlihgting."

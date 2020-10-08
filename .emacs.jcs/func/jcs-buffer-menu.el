@@ -2,6 +2,10 @@
 ;;; Commentary:
 ;;; Code:
 
+;;
+;; (@* "Sorting" )
+;;
+
 ;; TOPIC: BufferMenuPlus
 ;; URL: https://www.emacswiki.org/emacs/BufferMenuPlus
 
@@ -47,6 +51,9 @@ Sorted by (1) visit, (2) buffer, (3) size, (4) time, (5) mode, (6) file."
   (interactive)
   (jcs-buffer-menu-sort 6))
 
+;;
+;; (@* "Search / Filter" )
+;;
 
 (defun jcs-buffer-menu-p ()
   "Check if current major mode `buffer-menu'."

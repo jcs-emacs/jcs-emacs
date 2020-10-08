@@ -2,8 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 
-;;----------------------------------------------------------------------------
-;; Deletion
+;;
+;; (@* "Deletion" )
+;;
 
 ;;;###autoload
 (defun jcs-web-backward-delete-word ()
@@ -29,8 +30,9 @@
              (not (jcs-current-char-equal-p "$")))
     (backward-delete-char 1)))
 
-;;----------------------------------------------------------------------------
-;; Indentation
+;;
+;; (@* "Indentation" )
+;;
 
 ;;;###autoload
 (defun jcs-web-return-key ()
@@ -63,8 +65,9 @@
     (insert "{}")
     (backward-char 1)))
 
-;;----------------------------------------------------------------------------
-;; Impatient Mode
+;;
+;; (@* "Impatient Mode" )
+;;
 
 (defun jcs-impatient-mode (args)
   "Default `impatient-mode' function by ARGS."
@@ -98,8 +101,9 @@
   (jcs-impatient-by-mode -1)
   (message "[INFO] Shutdown real time editing with port: %d" httpd-port))
 
-;;----------------------------------------------------------------------------
-;; Other
+;;
+;; (@* "Other" )
+;;
 
 ;;;###autoload
 (defun jcs-toggle-web-mode-offsetless-elements ()
@@ -123,7 +127,9 @@
     (unless (call-interactively #'emmet-expand-line)
       (jcs-ctrl-return-key))))
 
-;;----------------------------------------------------------------------------
+;;
+;; (@* "Faces" )
+;;
 
 (defun jcs-init-web-faces ()
   "Initialize Web mode faces highlihgting."

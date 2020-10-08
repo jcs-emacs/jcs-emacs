@@ -4,8 +4,9 @@
 
 (require 'org)
 
-;;----------------------------------------------------------------------------
-;; Highlighting
+;;
+;; (@* "Highlighting" )
+;;
 
 (defun jcs-init-org-faces ()
   "Initialize Org mode faces highlihgting."
@@ -16,8 +17,9 @@
        '(("\\(#[[:blank:][:graph:]]*\\)" 1 'font-lock-comment-face))
        'end))))
 
-;;----------------------------------------------------------------------------
-;; Table
+;;
+;; (@* "Table" )
+;;
 
 (defun jcs-org--is-row-a-dividers-p ()
   "Check if current row is a dividers row."

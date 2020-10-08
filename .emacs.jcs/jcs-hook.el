@@ -2,7 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+;;
+;; (@* "Focus In/Out" )
+;;
 
 (defun jcs-focus-in-hook ()
   "When window is focus."
@@ -25,7 +27,9 @@
       (ivy--exhibit))))
 (add-hook 'window-size-change-functions 'jcs-window-size-change-functions)
 
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+;;
+;; (@* "Find Files" )
+;;
 
 (defun jcs-find-file-hook ()
   "Find file hook."
@@ -84,7 +88,9 @@
       (jcs-dashboard-safe-refresh-buffer))))
 (advice-add 'other-window :after #'jcs--other-window--advice-after)
 
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+;;
+;; (@* "Initialization" )
+;;
 
 (defun jcs-after-init-hook ()
   "Hook run after initialize."
@@ -188,7 +194,9 @@
                 (string-to-number (emacs-init-time)))))
 (add-hook 'after-init-hook 'jcs-after-init-hook)
 
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+;;
+;; (@* "Pre/Post Command" )
+;;
 
 (defun jcs-pre-command-hook ()
   "Hook run before every command."
@@ -205,14 +213,18 @@
   (unless (display-graphic-p) (jcs-feebleline-display-mode-line-graphic)))
 (add-hook 'post-command-hook 'jcs-post-command-hook)
 
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+;;
+;; (@* "Major Mode" )
+;;
 
 (defun jcs-after-change-major-mode-hook ()
   "Hook run after major mode changes."
   (unless (jcs-reload-emacs-reloading-p) (jcs-active-line-numbers-by-mode)))
 (add-hook 'after-change-major-mode-hook 'jcs-after-change-major-mode-hook)
 
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+;;
+;; (@* "Quitting" )
+;;
 
 (defun jcs--kill-emacs-hook ()
   "Hook run before Emacs is killed."
@@ -227,7 +239,9 @@
 (advice-add 'keyboard-quit :before #'jcs--quit-command)
 (advice-add 'top-level :before #'jcs--quit-command)
 
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+;;
+;; (@* "Startup" )
+;;
 
 (defvar jcs-emacs-ready-p nil
   "Flag to check if Emacs is ready.")

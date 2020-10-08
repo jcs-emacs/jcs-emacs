@@ -2,8 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 
-;;----------------------------------------------------------------------------
-;; *Backtrace*
+;;
+;; (@* "*Backtrace*" )
+;;
 
 (defconst jcs-backtrace-buffer-name "*Backtrace*"
   "Name of the backtrace buffer.")
@@ -49,8 +50,9 @@
           (ignore-errors (delete-window jcs-backtrace--dedicated-window)))
         (setq jcs-backtrace--dedicated-window nil)))))
 
-;;----------------------------------------------------------------------------
-;; *Messages*
+;;
+;; (@* "*Messages*" )
+;;
 
 (defconst jcs-message-buffer-name "*Messages*"
   "Name of the message buffer.")
@@ -95,8 +97,9 @@
     (messages-buffer-mode)
     (setq jcs--message-buffer--first-init-p t)))
 
-;;----------------------------------------------------------------------------
-;; *scratch*
+;;
+;; (@* "*scratch*" )
+;;
 
 (defconst jcs-scratch-buffer-name "*scratch*"
   "Name of the scratch buffer.")
@@ -141,8 +144,9 @@
       (jcs-new-scratch-buffer)
     (jcs-reopen-this-buffer)))
 
-;;----------------------------------------------------------------------------
-;; Autio Highlight Symbol
+;;
+;; (@* "Autio Highlight Symbol" )
+;;
 
 (defun jcs--ahs--set-face (pt pt-box ot ot-box)
   "Set `auto-highlight-symbol' face's with PT, PT-BOX, OT, OT-BOX."
@@ -173,8 +177,9 @@
       (jcs--ahs--set-face "#E2E6D6" "#525D68" "#DDE2CD" "#525D68")
     (jcs--ahs--set-face "#123E70" "#525D68" "#113D6F" "#525D68")))
 
-;;----------------------------------------------------------------------------
-;; Buffer Menu
+;;
+;; (@* "Buffer Menu" )
+;;
 
 (defconst jcs-buffer-menu-buffer-name "*Buffer List*"
   "Name of the buffer menu's buffer.")
@@ -237,8 +242,9 @@
     (let ((jcs-buffer--menu-switch-buffer-refreshing t))
       (jcs-buffer-menu-refresh-buffer))))
 
-;;----------------------------------------------------------------------------
-;; Calculator
+;;
+;; (@* "Calculator" )
+;;
 
 ;;;###autoload
 (defun jcs-calc-eval-region ()
@@ -250,8 +256,9 @@
       (jcs-delete-region)
       (insert val))))
 
-;;----------------------------------------------------------------------------
-;; Cheat Sheet
+;;
+;; (@* "Cheat Sheet" )
+;;
 
 ;;;###autoload
 (defun jcs-alt-codes-table ()
@@ -277,8 +284,9 @@
   (interactive)
   (jcs-display-file "~/.emacs.jcs/data/data-structure/cheat-sheet.txt" "*Data Structure Cheat Sheet*" nil))
 
-;;----------------------------------------------------------------------------
-;; Dashboard
+;;
+;; (@* "Dashboard" )
+;;
 
 ;;;###autoload
 (defun jcs-dashboard (&optional ow)
@@ -359,8 +367,9 @@ OW is the other window flag."
     (set-face-attribute 'widget-button nil :weight 'normal :foreground wb-fg))
   (jcs-dashboard-refresh-buffer))
 
-;;----------------------------------------------------------------------------
-;; ElDoc
+;;
+;; (@* "ElDoc" )
+;;
 
 ;;;###autoload
 (defun jcs-eldoc-message-now () "Show eldoc message now." (interactive))
@@ -384,16 +393,18 @@ OW is the other window flag."
              jcs-beginning-of-line jcs-end-of-line)))
 (advice-add 'eldoc--message-command-p :override #'jcs-eldoc--message-command-p)
 
-;;----------------------------------------------------------------------------
-;; Electric Pair
+;;
+;; (@* "Electric Pair" )
+;;
 
 (defun jcs-make-electric-pair-pairs-local (lst-pr)
   "Append a list of pair (LST-PR) to current buffer."
   (setq-local electric-pair-pairs (append electric-pair-pairs lst-pr))
   (setq-local electric-pair-text-pairs electric-pair-pairs))
 
-;;----------------------------------------------------------------------------
-;; Iedit
+;;
+;; (@* "Iedit" )
+;;
 
 ;;;###autoload
 (defun jcs-iedit-mode ()
@@ -409,8 +420,9 @@ OW is the other window flag."
   (when (and (not iedit-mode) kill-ring) (current-kill 1))
   iedit-mode)
 
-;;----------------------------------------------------------------------------
-;; Indentation
+;;
+;; (@* "Indentation" )
+;;
 
 ;;;###autoload
 (defun jcs-inc-indent-level ()
@@ -426,8 +438,9 @@ OW is the other window flag."
   (jcs-delta-tab-width -2)
   (indent-for-tab-command))
 
-;;----------------------------------------------------------------------------
-;; Line Numbers
+;;
+;; (@* "Line Numbers" )
+;;
 
 ;;;###autoload
 (defun jcs-update-line-number-each-window ()
@@ -468,8 +481,9 @@ OW is the other window flag."
         (jcs-safe-display-line-numbers 1)
       (jcs-safe-display-linum 1))))
 
-;;----------------------------------------------------------------------------
-;; Media
+;;
+;; (@* "Media" )
+;;
 
 ;;;###autoload
 (defun jcs-media-find-file ()
@@ -494,8 +508,9 @@ OW is the other window flag."
         (jcs-window-restore-once)
         (jcs-media--open-media-window)))))
 
-;;----------------------------------------------------------------------------
-;; Minimap
+;;
+;; (@* "Minimap" )
+;;
 
 ;;;###autoload
 (defun jcs-toggle-minimap ()
@@ -503,8 +518,9 @@ OW is the other window flag."
   (interactive)
   (user-error "Minimap no longer supported in this configuration"))
 
-;;----------------------------------------------------------------------------
-;; Prettify / Minify
+;;
+;; (@* "Prettify / Minify" )
+;;
 
 ;;;###autoload
 (defun jcs-prettify-buffer-contents ()
@@ -527,8 +543,9 @@ OW is the other window flag."
   (goto-char (point-min))
   (while (search-forward "\n" nil t) (replace-match "" nil t)))
 
-;;----------------------------------------------------------------------------
-;; Re-Builder
+;;
+;; (@* "Re-Builder" )
+;;
 
 (defconst jcs-re-builder-buffer-name "*RE-Builder*"
   "Name of the re-builder buffer.")
@@ -551,8 +568,9 @@ OW is the other window flag."
   (let ((case-fold-search (string= type "Case Insensitive")))
     (re-builder)))
 
-;;----------------------------------------------------------------------------
-;; Shift Select
+;;
+;; (@* "Shift Select" )
+;;
 
 ;;;###autoload
 (defun jcs-toggle-shift-select-mode ()
@@ -574,8 +592,9 @@ OW is the other window flag."
   (interactive)
   (setq shift-select-mode nil))
 
-;;----------------------------------------------------------------------------
-;; Sort
+;;
+;; (@* "Sort" )
+;;
 
 ;;;###autoload
 (defun jcs-sort-symbols (reverse beg end)
@@ -584,8 +603,9 @@ See `sort-words'."
   (interactive "*P\nr")
   (sort-regexp-fields reverse "\\(\\sw\\|\\s_\\)+" "\\&" beg end))
 
-;;----------------------------------------------------------------------------
-;; Syntax Check
+;;
+;; (@* "Syntax Check" )
+;;
 
 ;;;###autoload
 (defun jcs-flycheck-mode ()
@@ -607,8 +627,9 @@ See `sort-words'."
     (jcs-walk-through-all-windows-once))
   flycheck-mode)
 
-;;----------------------------------------------------------------------------
-;; Tab Bar
+;;
+;; (@* "Tab Bar" )
+;;
 
 ;;;###autoload
 (defun jcs-toggle-tabbar-mode ()
@@ -645,8 +666,9 @@ See `sort-words'."
        `(centaur-tabs-modified-marker-selected
          ((t (:background ,bg-tab-selected :foreground ,fg-tab-selected))))))))
 
-;;----------------------------------------------------------------------------
-;; Terminal / Shell
+;;
+;; (@* "Terminal / Shell" )
+;;
 
 ;;;###autoload
 (defun jcs-toggle-shell-window ()
@@ -666,8 +688,9 @@ See `sort-words'."
       (progn (other-window -2) (other-window 1) (multi-shell))
     (jcs-show-shell-window)))
 
-;;----------------------------------------------------------------------------
-;; Zoom
+;;
+;; (@* "Zoom" )
+;;
 
 ;;;###autoload
 (defun jcs-reset-zoom ()
@@ -702,8 +725,9 @@ VEC : Either position or negative number."
   (interactive)
   (jcs-text-scale-delta -1))
 
-;;----------------------------------------------------------------------------
-;; Tips
+;;
+;; (@* "Tips" )
+;;
 
 (cl-defun jcs-pop-tooltip (string &key point (timeout 300) (height 30))
   "Pop up an tooltip depends on the graphic used.
@@ -750,8 +774,9 @@ delay. HEIGHT of the tooltip that will display."
     ;; In case we are using region, cancel the select region.
     (deactivate-mark)))
 
-;;----------------------------------------------------------------------------
-;; Todo
+;;
+;; (@* "Todo" )
+;;
 
 (defvar jcs-hl-todo-not-found-prev nil
   "See if found the previous `hl-todo' matches.")
@@ -803,8 +828,9 @@ NO-PROMPT : Don't prompt the overwrap message."
           (message "%s" (propertize "user-error: No more matches :: overwrap"
                                     'face '(:foreground "cyan"))))))))
 
-;;----------------------------------------------------------------------------
-;; Truncate Lines
+;;
+;; (@* "Truncate Lines" )
+;;
 
 ;;;###autoload
 (defun jcs-enable-truncate-lines ()
@@ -822,8 +848,9 @@ NO-PROMPT : Don't prompt the overwrap message."
   (when (eq this-command 'jcs-disable-truncate-lines)
     (message "Truncate long lines disabled")))
 
-;;----------------------------------------------------------------------------
-;; Yascroll
+;;
+;; (@* "Yascroll" )
+;;
 
 ;;;###autoload
 (defun jcs-reset-yascroll-color-by-theme ()
@@ -837,8 +864,9 @@ NO-PROMPT : Don't prompt the overwrap message."
                         :background target-color
                         :foreground target-color)))
 
-;;----------------------------------------------------------------------------
-;; Yasnippet
+;;
+;; (@* "Yasnippet" )
+;;
 
 ;;;###autoload
 (defun jcs-yas-expand ()

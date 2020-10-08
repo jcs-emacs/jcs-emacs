@@ -2,27 +2,31 @@
 ;;; Commentary:
 ;;; Code:
 
+;;
+;; (@* "Faces" )
+;;
+
 (custom-set-faces
- ;;--------------------------------------------------------------------
- ;; Preview
+ ;; --- Preview
  '(company-preview ((t (:foreground "dark gray" :underline t))))
  '(company-preview-common ((t (:inherit company-preview))))
- ;;--------------------------------------------------------------------
- ;; Base Selection
+ ;; --- Base Selection
  '(company-tooltip ((t (:background "light gray" :foreground "black"))))
  '(company-tooltip-selection ((t (:background "steel blue" :foreground "white"))))
- ;;--------------------------------------------------------------------
- ;; Keyword Selection
+ ;; --- Keyword Selection
  '(company-tooltip-common
    ((((type x)) (:inherit company-tooltip :weight bold))
     (t (:background "light gray" :foreground "#C00000"))))
  '(company-tooltip-common-selection
    ((((type x)) (:inherit company-tooltip-selection :weight bold))
     (t (:background "steel blue" :foreground "#C00000"))))
- ;;--------------------------------------------------------------------
- ;; Scroll Bar
+ ;; --- Scroll Bar
  '(company-scrollbar-fg ((t (:background "black"))))
  '(company-scrollbar-bg ((t (:background "dark gray")))))
+
+;;
+;; (@* "Util" )
+;;
 
 (defun jcs-company-safe-add-backend (backend)
   "Safe way to add backend."
@@ -34,6 +38,10 @@
               company-fuzzy--recorded-backends (delete-dups company-fuzzy--recorded-backends)))
     (add-to-list 'company-backends backend)
     (setq company-backends (delete-dups company-backends))))
+
+;;
+;; (@* "Hooks" )
+;;
 
 (defun jcs--company-complete-selection--advice-around (fn)
   "Advice execute around `company-complete-selection' command."

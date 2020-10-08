@@ -2,8 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 
-;;----------------------------------------------------------------------------
-;; Mark
+;;
+;; (@* "Mark" )
+;;
 
 (defun jcs--deactive-mark--advice-anywhere (&rest _)
   "Advice call `deactivate-mark' anywhere."
@@ -14,8 +15,9 @@
 (advice-add 'eval-defun :after #'jcs--deactive-mark--advice-anywhere)
 (advice-add 'eval-region :after #'jcs--deactive-mark--advice-anywhere)
 
-;;----------------------------------------------------------------------------
-;; Control Output
+;;
+;; (@* "Control Output" )
+;;
 
 (defun jcs-output-list-compilation ()
   "Return the list of compilation buffers."
@@ -67,8 +69,9 @@
         (user-error "[INFO] No output compilation exists")
       (jcs-output-set-compilation-index 0 output-lst))))
 
-;;----------------------------------------------------------------------------
-;; Build & Run
+;;
+;; (@* "Build & Run" )
+;;
 
 (defun jcs-form-compilation-filename-prefix ()
   "Form the prefix of the compilation buffer name."
@@ -101,7 +104,6 @@ OW : Opened it in other window."
   (let ((filepath (jcs-find-file-in-project-and-current-dir in-filename title)))
     (jcs-compile filepath)))
 
-
 (defun jcs-compile (in-op)
   "Compile command rewrapper.
 IN-OP : inpuit operation script."
@@ -130,8 +132,9 @@ IN-OP : inpuit operation script."
       (rename-buffer (format "%s%s" (jcs-form-compilation-filename-prefix) (f-filename in-op)) t))
     (message "Executing script file: '%s'" in-op)))
 
-;;----------------------------------------------------------------------------
-;; Functions
+;;
+;; (@* "Functions" )
+;;
 
 ;;;###autoload
 (defun jcs-make-without-asking ()

@@ -2,8 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 
-;;----------------------------------------------------------------------------
-;;; For `lsp-mode'
+;;
+;; (@* "lsp" )
+;;
 
 (defun jcs--lsp-lv-buffer-alive-p ()
   "Check if ` *LV*' buffer alive."
@@ -40,8 +41,9 @@
 (add-hook 'lsp-managed-mode-hook 'jcs--lsp-managed-mode-hook)
 (add-hook 'lsp-mode-hook 'jcs--lsp-mode-hook)
 
-;;----------------------------------------------------------------------------
-;;; For `lsp-ui'
+;;
+;; (@* "lsp-ui" )
+;;
 
 (defvar jcs--lsp-ui--doc-timer nil "Self timer to show document.")
 
@@ -69,8 +71,9 @@
                (ignore-errors (call-interactively #'lsp-ui-doc-show))
              (jcs--lsp-current-last-signature-buffer))))))
 
-;;----------------------------------------------------------------------------
-;;; Global Registery
+;;
+;; (@* "Registry" )
+;;
 
 (defun jcs-lsp--focus-in-hook ()
   "When window is focus."

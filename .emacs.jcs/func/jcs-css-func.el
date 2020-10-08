@@ -39,7 +39,9 @@
   ;;(com-css-sort-attributes-document)
   (jcs-untabify-save-buffer))
 
-;;----------------------------------------------------------------------------
+;;
+;; (@* "Faces" )
+;;
 
 (defun jcs-init-css-faces ()
   "CSS Faces Highlighting."

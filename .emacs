@@ -31,6 +31,10 @@
 
 ;;; Code:
 
+;;
+;; (@* "Startup" )
+;;
+
 (defconst jcs-min-require-version "27.1"
   "Minimum required Emacs version for `JCS` configuration.")
 
@@ -67,8 +71,9 @@ decrease this. If you experience stuttering, increase this.")
 
 (setq file-name-handler-alist nil)
 
-;;----------------------------------------------------------------------------
-;;; Version
+;;
+;; (@* "Version" )
+;;
 
 (defconst jcs-emacs-version-number "6.2.6"
   "JCS-Emacs version.")
@@ -79,8 +84,9 @@ decrease this. If you experience stuttering, increase this.")
   (interactive)
   (message "JCS-Emacs %s" jcs-emacs-version-number))
 
-;;----------------------------------------------------------------------------
-;;; File Loading
+;;
+;; (@* "File Loading" )
+;;
 
 (defun jcs-reload-emacs-reloading-p ()
   "Check if Emacs reloading now."
@@ -101,8 +107,9 @@ decrease this. If you experience stuttering, increase this.")
 (defconst jcs-package-init-time (emacs-init-time)
   "Record down the package initialize time.")
 
-;;----------------------------------------------------------------------------
-;;; Core
+;;
+;; (@* "Core" )
+;;
 
 ;;; Utilities
 (require 'jcs-log)

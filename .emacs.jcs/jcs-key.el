@@ -2,8 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 
-;;-------------------------------------------------------------------
-;; Unset key binding
+;;
+;; (@* "Unset key binding" )
+;;
 
 (global-unset-key (kbd "C-e"))
 (global-unset-key (kbd "C-k"))
@@ -24,8 +25,9 @@
 (define-key isearch-mode-map (kbd "C-s") nil)
 (define-key isearch-mode-map (kbd "C-r") nil)
 
-;;-------------------------------------------------------------------
-;; Set key bindings
+;;
+;; (@* "Set key bindings" )
+;;
 
 ;;; *Messages*
 (define-key global-map (kbd "M-m") #'jcs-message-buffer)

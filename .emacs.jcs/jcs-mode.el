@@ -2,8 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 
-;;----------------------------------------------------------------------------
-;; Trigger between Modes
+;;
+;; (@* "Mode State" )
+;;
 
 (defvar jcs-mode--state nil
   "Record the state of the current mode.")
@@ -172,8 +173,9 @@ Note this is opposite logic to the toggle mode function."
     (make-local-variable 'adaptive-fill-regexp)
     (c-setup-paragraph-variables)))
 
-;;----------------------------------------------------------------------------
-;; License
+;;
+;; (@* "License" )
+;;
 
 (defun jcs-ask-insert-license-content (in-type)
   "Ask to insert the license content base on IN-TYPE."
@@ -194,8 +196,9 @@ Note this is opposite logic to the toggle mode function."
           (t
            (file-header-insert-template-by-file-path lice-path)))))
 
-;;----------------------------------------------------------------------------
-;; Change Log
+;;
+;; (@* "Change Log" )
+;;
 
 (defun jcs-ask-insert-changelog-content (in-type)
   "Ask to insert the changelog content base on IN-TYPE."
@@ -211,8 +214,9 @@ Note this is opposite logic to the toggle mode function."
          (file-header-insert-template-by-file-path
           (format "%s%s.txt" jcs-changelog-template-path in-type)))))
 
-;;----------------------------------------------------------------------------
-;;; Special Modes
+;;
+;; (@* "Special Modes" )
+;;
 
 ;;;###autoload
 (defun jcs-command-mode()

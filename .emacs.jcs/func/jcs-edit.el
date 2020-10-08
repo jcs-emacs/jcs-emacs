@@ -2,8 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 
-;;----------------------------------------------------------------------------
-;; Undo / Redo
+;;
+;; (@* "Undo / Redo" )
+;;
 
 ;;
 ;; NOTE: This is compatible with other text editor or IDE. Most IDE/text
@@ -165,8 +166,9 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
   (interactive)
   (jcs--undo-or-redo nil))
 
-;;----------------------------------------------------------------------------
-;; Backspace
+;;
+;; (@* "Backspace" )
+;;
 
 ;;;###autoload
 (defun jcs-real-backspace ()
@@ -183,8 +185,9 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
       (jcs-backward-delete-spaces-by-indent-level)
     (jcs-real-backspace)))
 
-;;----------------------------------------------------------------------------
-;; Delete
+;;
+;; (@* "Delete" )
+;;
 
 ;;;###autoload
 (defun jcs-real-delete ()
@@ -201,8 +204,9 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
       (jcs-forward-delete-spaces-by-indent-level)
     (jcs-real-delete)))
 
-;;----------------------------------------------------------------------------
-;; Return
+;;
+;; (@* "Return" )
+;;
 
 ;;;###autoload
 (defun jcs-ctrl-return-key ()
@@ -229,8 +233,9 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
           (org-mode (call-interactively #'org-todo))
           (t (call-interactively (key-binding (kbd "RET")))))))))
 
-;;----------------------------------------------------------------------------
-;; Space
+;;
+;; (@* "Space" )
+;;
 
 ;;;###autoload
 (defun jcs-real-space ()
@@ -250,8 +255,9 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
         (jcs-insert-spaces-by-indent-level)
       (jcs-real-space))))
 
-;;----------------------------------------------------------------------------
-;; Yank
+;;
+;; (@* "Yank" )
+;;
 
 ;;;###autoload
 (defun jcs-smart-yank ()
@@ -261,8 +267,9 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
   (call-interactively #'yank)
   (ignore-errors (indent-region reg-beg (point))))
 
-;;----------------------------------------------------------------------------
-;; Tab
+;;
+;; (@* "Tab" )
+;;
 
 ;;;###autoload
 (defun jcs-tab-key ()
@@ -277,8 +284,9 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
             (when (= pt (point)) (jcs-insert-spaces-by-indent-level)))
         (jcs-insert-spaces-by-indent-level)))))
 
-;;----------------------------------------------------------------------------
-;; Mark
+;;
+;; (@* "Mark" )
+;;
 
 (defvar-local jcs--marking-whole-buffer-p nil
   "Marking the whole buffer now?")
@@ -294,8 +302,9 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
   (setq jcs--marking-whole-buffer--curosr-pos (point))
   (setq jcs--marking-whole-buffer-p t))
 
-;;----------------------------------------------------------------------------
-;; Overwrite
+;;
+;; (@* "Overwrite" )
+;;
 
 (defun jcs--overwrite-mode--advice-after (&rest _args)
   "Advice execute after `overwrite-mode' command."
@@ -309,8 +318,9 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
 
 (advice-add 'overwrite-mode :after #'jcs--overwrite-mode--advice-after)
 
-;;----------------------------------------------------------------------------
-;; Kill Line
+;;
+;; (@* "Kill Line" )
+;;
 
 ;;;###autoload
 (defun jcs-kill-whole-line ()
@@ -445,8 +455,9 @@ This command does not push text to `kill-ring'."
     (yank)
     (move-to-column cur-col)))
 
-;;----------------------------------------------------------------------------
-;; Indent moving UP or DOWN.
+;;
+;; (@* "Indent moving UP or DOWN." )
+;;
 
 (defun jcs-can-do-smart-indent-p ()
   "Check smart indent conditions."
@@ -482,8 +493,9 @@ This command does not push text to `kill-ring'."
   (jcs-next-line)
   (when (jcs-can-do-smart-indent-p) (indent-according-to-mode)))
 
-;;----------------------------------------------------------------------------
-;; Format File
+;;
+;; (@* "Format File" )
+;;
 
 ;;;###autoload
 (defun jcs-format-document ()
@@ -670,8 +682,9 @@ REGEXP : reqular expression use to align."
       (when (< (point-min) begin)
         (delete-trailing-whitespace (point-min) (1- begin))))))
 
-;;----------------------------------------------------------------------------
-;; Move Current Line Up or Down
+;;
+;; (@* "Move Current Line Up or Down" )
+;;
 
 ;;;###autoload
 (defun jcs-move-line-up ()
@@ -690,8 +703,9 @@ REGEXP : reqular expression use to align."
   (forward-line -1)
   (indent-according-to-mode))
 
-;;----------------------------------------------------------------------------
-;; Word Case
+;;
+;; (@* "Word Case" )
+;;
 
 ;;;###autoload
 (defun jcs-upcase-word-or-region ()
@@ -717,8 +731,9 @@ REGEXP : reqular expression use to align."
       (capitalize-region (region-beginning) (region-end))
     (call-interactively #'capitalize-word)))
 
-;;----------------------------------------------------------------------------
-;; Line Ending
+;;
+;; (@* "Line Ending" )
+;;
 
 ;;;###autoload
 (defun jcs-remove-control-M ()
@@ -733,8 +748,9 @@ REGEXP : reqular expression use to align."
           (replace-match "" nil nil))
         (message "%d ^M removed from buffer." remove-count)))))
 
-;;----------------------------------------------------------------------------
-;; Tabify / Unabify
+;;
+;; (@* "Tabify / Unabify" )
+;;
 
 (defun jcs-tabify-or-untabify-buffer (tab-it &optional start end)
   "Tabify or Untabify current buffer with region START and END."
@@ -755,8 +771,9 @@ REGEXP : reqular expression use to align."
   (interactive)
   (jcs-tabify-or-untabify-buffer t start end))
 
-;;----------------------------------------------------------------------------
-;; Save Buffer
+;;
+;; (@* "Save Buffer" )
+;;
 
 (defun jcs-do-stuff-before-save (&rest _)
   "Do stuff before save command is executed."
@@ -894,8 +911,9 @@ REGEXP : reqular expression use to align."
    (t
     (call-interactively #'jcs-save-buffer-default))))
 
-;;----------------------------------------------------------------------------
-;; Find file
+;;
+;; (@* "Find file" )
+;;
 
 (defun jcs-is-finding-file-p ()
   "Check if current minibuffer finding file."
@@ -949,8 +967,9 @@ REGEXP : reqular expression use to align."
   "Find file FP in other window with check of larger window height."
   (find-file fp) (jcs-same-file-other-window) (bury-buffer))
 
-;;----------------------------------------------------------------------------
-;; Rename file
+;;
+;; (@* "Rename file" )
+;;
 
 (defun jcs-is-renaming-p ()
   "Check if current minibuffer renaming."
@@ -975,8 +994,9 @@ REGEXP : reqular expression use to align."
           (message "File '%s' successfully renamed to '%s'."
                    name (file-name-nondirectory new-name)))))))
 
-;;----------------------------------------------------------------------------
-;; Kill Buffer
+;;
+;; (@* "Kill Buffer" )
+;;
 
 (defconst jcs-must-kill-buffer-list
   (list (regexp-quote jcs-message-buffer-name)
@@ -1116,8 +1136,9 @@ other window."
       (jcs-window-restore-once)
       (message "Reopened file => '%s'" current-bfn))))
 
-;;----------------------------------------------------------------------------
-;; Delete Repeatedly
+;;
+;; (@* "Delete Repeatedly" )
+;;
 
 ;;;###autoload
 (defun jcs-backward-delete-current-char-repeat ()
@@ -1143,8 +1164,9 @@ other window."
       (cl-case direction (backward (delete-char -1)) (forward (delete-char 1)))
       (jcs-delete-char-repeat char direction))))
 
-;;----------------------------------------------------------------------------
-;; Delete inside a Character.
+;;
+;; (@* "Delete inside a Character" )
+;;
 
 (defun jcs-find-start-char (start-char preserve-point)
   "Find the START-CHAR with PRESERVE-POINT."
@@ -1417,7 +1439,6 @@ other window."
   (interactive)
   (jcs-delete-between-char "+" "+"))
 
-
 ;;;###autoload
 (defun jcs-delete-inside-backslash ()
   "Delete everything between backslash."
@@ -1429,7 +1450,6 @@ other window."
   "Delete everything between or."
   (interactive)
   (jcs-delete-between-char "|" "|"))
-
 
 ;;;###autoload
 (defun jcs-delete-inside-colon ()
@@ -1467,8 +1487,9 @@ other window."
   (interactive)
   (jcs-delete-between-char "?" "?"))
 
-;;----------------------------------------------------------------------------
-;; Electric Pair
+;;
+;; (@* "Electric Pair" )
+;;
 
 (defun jcs-get-open-pair-char (c)
   "Get the open pairing character from C."
@@ -1570,8 +1591,9 @@ CC : Current character at position."
         (jcs-forward-delete-close-pair-char cpc)
         (jcs-forward-delete-close-pair-char-seq cc)))))
 
-;;----------------------------------------------------------------------------
-;; Isearch
+;;
+;; (@* "Isearch" )
+;;
 
 ;;;###autoload
 (defun jcs-isearch-backward-symbol-at-point ()
@@ -1631,8 +1653,9 @@ Otherwise return nil."
     (jcs-sleep-for)
     (save-mark-and-excursion (isearch-abort))))
 
-;;----------------------------------------------------------------------------
-;; Multiple Cursors
+;;
+;; (@* "Multiple Cursors" )
+;;
 
 ;;;###autoload
 (defun jcs-mc/mark-previous-like-this-line ()
@@ -1730,8 +1753,9 @@ Otherwise return nil."
   (setq jcs-mc/string-distance-level (1- jcs-mc/string-distance-level))
   (message "[INFO] Current string distance: %s" jcs-mc/string-distance-level))
 
-;;----------------------------------------------------------------------------
-;; Folding / Unfolding
+;;
+;; (@* "Folding / Unfolding" )
+;;
 
 ;;;###autoload
 (defun jcs-close-all-nodes ()

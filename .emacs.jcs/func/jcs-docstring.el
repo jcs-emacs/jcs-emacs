@@ -2,6 +2,10 @@
 ;;; Commentary:
 ;;; Code:
 
+;;
+;; (@* "Core" )
+;;
+
 (defconst jcs-docstring-modes
   '(actionscript-mode
     cc-mode c-mode c++-mode
@@ -181,7 +185,8 @@
 
 
 
-(defconst jcs--docstring-config-filepath "~/.emacs.jcs/docstring/docstring_config.properties"
+(defconst jcs--docstring-config-filepath
+  (expand-file-name "~/.emacs.jcs/docstring/docstring_config.properties")
   "Doc-string properties file.")
 
 
@@ -194,91 +199,91 @@
     (setq tmp-ini-list (jcs-parse-ini jcs--docstring-config-filepath))
 
     ;; descriptions
-    (setq jcs--class-desc-string (jcs-get-properties tmp-ini-list "CLASS_DESC_STRING"))
-    (setq jcs--struct-desc-string (jcs-get-properties tmp-ini-list "STRUCT_DESC_STRING"))
-    (setq jcs--define-desc-string (jcs-get-properties tmp-ini-list "DEFINE_DESC_STRING"))
-    (setq jcs--enum-desc-string (jcs-get-properties tmp-ini-list "ENUM_DESC_STRING"))
-    (setq jcs--param-desc-string (jcs-get-properties tmp-ini-list "PARAM_DESC_STRING"))
-    (setq jcs--return-desc-string (jcs-get-properties tmp-ini-list "RETURN_DESC_STRING"))
-    (setq jcs--default-typename-string (jcs-get-properties tmp-ini-list "DEFAULT_TYPENAME_STRING"))
+    (setq jcs--class-desc-string (jcs-get-properties tmp-ini-list "CLASS_DESC_STRING")
+          jcs--struct-desc-string (jcs-get-properties tmp-ini-list "STRUCT_DESC_STRING")
+          jcs--define-desc-string (jcs-get-properties tmp-ini-list "DEFINE_DESC_STRING")
+          jcs--enum-desc-string (jcs-get-properties tmp-ini-list "ENUM_DESC_STRING")
+          jcs--param-desc-string (jcs-get-properties tmp-ini-list "PARAM_DESC_STRING")
+          jcs--return-desc-string (jcs-get-properties tmp-ini-list "RETURN_DESC_STRING")
+          jcs--default-typename-string (jcs-get-properties tmp-ini-list "DEFAULT_TYPENAME_STRING"))
 
     ;; show type name
-    (setq jcs--as-doc--show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "AS_DOC_SHOW_TYPENAME")))
-    (setq jcs--cc-doc--show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "CC_DOC_SHOW_TYPENAME")))
-    (setq jcs--csharp-doc--show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "CSHARP_DOC_SHOW_TYPENAME")))
-    (setq jcs--go-doc--show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "GO_DOC_SHOW_TYPENAME")))
-    (setq jcs--groovy-doc--show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "GROOVY_DOC_SHOW_TYPENAME")))
-    (setq jcs--java-doc--show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "JAVA_DOC_SHOW_TYPENAME")))
-    (setq jcs--js-doc--show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "JS_DOC_SHOW_TYPENAME")))
-    (setq jcs--lua-doc--show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "LUA_DOC_SHOW_TYPENAME")))
-    (setq jcs--py-doc--show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "PY_DOC_SHOW_TYPENAME")))
-    (setq jcs--php-doc--show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "PHP_DOC_SHOW_TYPENAME")))
-    (setq jcs--ts-doc--show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "TS_DOC_SHOW_TYPENAME")))
+    (setq jcs--as-doc--show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "AS_DOC_SHOW_TYPENAME"))
+          jcs--cc-doc--show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "CC_DOC_SHOW_TYPENAME"))
+          jcs--csharp-doc--show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "CSHARP_DOC_SHOW_TYPENAME"))
+          jcs--go-doc--show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "GO_DOC_SHOW_TYPENAME"))
+          jcs--groovy-doc--show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "GROOVY_DOC_SHOW_TYPENAME"))
+          jcs--java-doc--show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "JAVA_DOC_SHOW_TYPENAME"))
+          jcs--js-doc--show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "JS_DOC_SHOW_TYPENAME"))
+          jcs--lua-doc--show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "LUA_DOC_SHOW_TYPENAME"))
+          jcs--py-doc--show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "PY_DOC_SHOW_TYPENAME"))
+          jcs--php-doc--show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "PHP_DOC_SHOW_TYPENAME"))
+          jcs--ts-doc--show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "TS_DOC_SHOW_TYPENAME")))
 
     ;; After value type character.
-    (setq jcs--as-doc--after-value-type-char (jcs-get-properties tmp-ini-list "AS_AFTER_VALUE_TYPE"))
-    (setq jcs--cc-doc--after-value-type-char (jcs-get-properties tmp-ini-list "CC_AFTER_VALUE_TYPE"))
-    (setq jcs--csharp-doc--after-value-type-char (jcs-get-properties tmp-ini-list "CSHARP_AFTER_VALUE_TYPE"))
-    (setq jcs--go-doc--after-value-type-char (jcs-get-properties tmp-ini-list "GO_AFTER_VALUE_TYPE"))
-    (setq jcs--groovy-doc--after-value-type-char (jcs-get-properties tmp-ini-list "GROOVY_AFTER_VALUE_TYPE"))
-    (setq jcs--java-doc--after-value-type-char (jcs-get-properties tmp-ini-list "JAVA_AFTER_VALUE_TYPE"))
-    (setq jcs--js-doc--after-value-type-char (jcs-get-properties tmp-ini-list "JS_AFTER_VALUE_TYPE"))
-    (setq jcs--lua-doc--after-value-type-char (jcs-get-properties tmp-ini-list "LUA_AFTER_VALUE_TYPE"))
-    (setq jcs--py-doc--after-value-type-char (jcs-get-properties tmp-ini-list "PY_AFTER_VALUE_TYPE"))
-    (setq jcs--php-doc--after-value-type-char (jcs-get-properties tmp-ini-list "PHP_AFTER_VALUE_TYPE"))
-    (setq jcs--ts-doc--after-value-type-char (jcs-get-properties tmp-ini-list "TS_AFTER_VALUE_TYPE"))
+    (setq jcs--as-doc--after-value-type-char (jcs-get-properties tmp-ini-list "AS_AFTER_VALUE_TYPE")
+          jcs--cc-doc--after-value-type-char (jcs-get-properties tmp-ini-list "CC_AFTER_VALUE_TYPE")
+          jcs--csharp-doc--after-value-type-char (jcs-get-properties tmp-ini-list "CSHARP_AFTER_VALUE_TYPE")
+          jcs--go-doc--after-value-type-char (jcs-get-properties tmp-ini-list "GO_AFTER_VALUE_TYPE")
+          jcs--groovy-doc--after-value-type-char (jcs-get-properties tmp-ini-list "GROOVY_AFTER_VALUE_TYPE")
+          jcs--java-doc--after-value-type-char (jcs-get-properties tmp-ini-list "JAVA_AFTER_VALUE_TYPE")
+          jcs--js-doc--after-value-type-char (jcs-get-properties tmp-ini-list "JS_AFTER_VALUE_TYPE")
+          jcs--lua-doc--after-value-type-char (jcs-get-properties tmp-ini-list "LUA_AFTER_VALUE_TYPE")
+          jcs--py-doc--after-value-type-char (jcs-get-properties tmp-ini-list "PY_AFTER_VALUE_TYPE")
+          jcs--php-doc--after-value-type-char (jcs-get-properties tmp-ini-list "PHP_AFTER_VALUE_TYPE")
+          jcs--ts-doc--after-value-type-char (jcs-get-properties tmp-ini-list "TS_AFTER_VALUE_TYPE"))
 
     ;; param string
-    (setq jcs--as--param-string (jcs-get-properties tmp-ini-list "AS_PARAM_STRING"))
-    (setq jcs--cc--param-string (jcs-get-properties tmp-ini-list "CC_PARAM_STRING"))
-    (setq jcs--csharp--param-string (jcs-get-properties tmp-ini-list "CSHARP_PARAM_STRING"))
-    (setq jcs--go--param-string (jcs-get-properties tmp-ini-list "GO_PARAM_STRING"))
-    (setq jcs--groovy--param-string (jcs-get-properties tmp-ini-list "GROOVY_PARAM_STRING"))
-    (setq jcs--java--param-string (jcs-get-properties tmp-ini-list "JAVA_PARAM_STRING"))
-    (setq jcs--js--param-string (jcs-get-properties tmp-ini-list "JS_PARAM_STRING"))
-    (setq jcs--lua--param-string (jcs-get-properties tmp-ini-list "LUA_PARAM_STRING"))
-    (setq jcs--py--param-string (jcs-get-properties tmp-ini-list "PY_PARAM_STRING"))
-    (setq jcs--php--param-string (jcs-get-properties tmp-ini-list "PHP_PARAM_STRING"))
-    (setq jcs--ts--param-string (jcs-get-properties tmp-ini-list "TS_PARAM_STRING"))
+    (setq jcs--as--param-string (jcs-get-properties tmp-ini-list "AS_PARAM_STRING")
+          jcs--cc--param-string (jcs-get-properties tmp-ini-list "CC_PARAM_STRING")
+          jcs--csharp--param-string (jcs-get-properties tmp-ini-list "CSHARP_PARAM_STRING")
+          jcs--go--param-string (jcs-get-properties tmp-ini-list "GO_PARAM_STRING")
+          jcs--groovy--param-string (jcs-get-properties tmp-ini-list "GROOVY_PARAM_STRING")
+          jcs--java--param-string (jcs-get-properties tmp-ini-list "JAVA_PARAM_STRING")
+          jcs--js--param-string (jcs-get-properties tmp-ini-list "JS_PARAM_STRING")
+          jcs--lua--param-string (jcs-get-properties tmp-ini-list "LUA_PARAM_STRING")
+          jcs--py--param-string (jcs-get-properties tmp-ini-list "PY_PARAM_STRING")
+          jcs--php--param-string (jcs-get-properties tmp-ini-list "PHP_PARAM_STRING")
+          jcs--ts--param-string (jcs-get-properties tmp-ini-list "TS_PARAM_STRING"))
 
     ;; return string
-    (setq jcs--as--return-string (jcs-get-properties tmp-ini-list "AS_RETURN_STRING"))
-    (setq jcs--cc--return-string (jcs-get-properties tmp-ini-list "CC_RETURN_STRING"))
-    (setq jcs--csharp--return-string (jcs-get-properties tmp-ini-list "CSHARP_RETURN_STRING"))
-    (setq jcs--go--return-string (jcs-get-properties tmp-ini-list "GO_RETURN_STRING"))
-    (setq jcs--groovy--return-string (jcs-get-properties tmp-ini-list "GROOVY_RETURN_STRING"))
-    (setq jcs--java--return-string (jcs-get-properties tmp-ini-list "JAVA_RETURN_STRING"))
-    (setq jcs--js--return-string (jcs-get-properties tmp-ini-list "JS_RETURN_STRING"))
-    (setq jcs--lua--return-string (jcs-get-properties tmp-ini-list "LUA_RETURN_STRING"))
-    (setq jcs--py--return-string (jcs-get-properties tmp-ini-list "PY_RETURN_STRING"))
-    (setq jcs--php--return-string (jcs-get-properties tmp-ini-list "PHP_RETURN_STRING"))
-    (setq jcs--ts--return-string (jcs-get-properties tmp-ini-list "TS_RETURN_STRING"))
+    (setq jcs--as--return-string (jcs-get-properties tmp-ini-list "AS_RETURN_STRING")
+          jcs--cc--return-string (jcs-get-properties tmp-ini-list "CC_RETURN_STRING")
+          jcs--csharp--return-string (jcs-get-properties tmp-ini-list "CSHARP_RETURN_STRING")
+          jcs--go--return-string (jcs-get-properties tmp-ini-list "GO_RETURN_STRING")
+          jcs--groovy--return-string (jcs-get-properties tmp-ini-list "GROOVY_RETURN_STRING")
+          jcs--java--return-string (jcs-get-properties tmp-ini-list "JAVA_RETURN_STRING")
+          jcs--js--return-string (jcs-get-properties tmp-ini-list "JS_RETURN_STRING")
+          jcs--lua--return-string (jcs-get-properties tmp-ini-list "LUA_RETURN_STRING")
+          jcs--py--return-string (jcs-get-properties tmp-ini-list "PY_RETURN_STRING")
+          jcs--php--return-string (jcs-get-properties tmp-ini-list "PHP_RETURN_STRING")
+          jcs--ts--return-string (jcs-get-properties tmp-ini-list "TS_RETURN_STRING"))
 
     ;; open type character.
-    (setq jcs--as--open-type-char (jcs-get-properties tmp-ini-list "AS_OPEN_TYPE_CHAR"))
-    (setq jcs--cc--open-type-char (jcs-get-properties tmp-ini-list "CC_OPEN_TYPE_CHAR"))
-    (setq jcs--csharp--open-type-char (jcs-get-properties tmp-ini-list "CSHARP_OPEN_TYPE_CHAR"))
-    (setq jcs--go--open-type-char (jcs-get-properties tmp-ini-list "GO_OPEN_TYPE_CHAR"))
-    (setq jcs--groovy--open-type-char (jcs-get-properties tmp-ini-list "GROOVY_OPEN_TYPE_CHAR"))
-    (setq jcs--java--open-type-char (jcs-get-properties tmp-ini-list "JAVA_OPEN_TYPE_CHAR"))
-    (setq jcs--js--open-type-char (jcs-get-properties tmp-ini-list "JS_OPEN_TYPE_CHAR"))
-    (setq jcs--lua--open-type-char (jcs-get-properties tmp-ini-list "LUA_OPEN_TYPE_CHAR"))
-    (setq jcs--py--open-type-char (jcs-get-properties tmp-ini-list "PY_OPEN_TYPE_CHAR"))
-    (setq jcs--php--open-type-char (jcs-get-properties tmp-ini-list "PHP_OPEN_TYPE_CHAR"))
-    (setq jcs--ts--open-type-char (jcs-get-properties tmp-ini-list "TS_OPEN_TYPE_CHAR"))
+    (setq jcs--as--open-type-char (jcs-get-properties tmp-ini-list "AS_OPEN_TYPE_CHAR")
+          jcs--cc--open-type-char (jcs-get-properties tmp-ini-list "CC_OPEN_TYPE_CHAR")
+          jcs--csharp--open-type-char (jcs-get-properties tmp-ini-list "CSHARP_OPEN_TYPE_CHAR")
+          jcs--go--open-type-char (jcs-get-properties tmp-ini-list "GO_OPEN_TYPE_CHAR")
+          jcs--groovy--open-type-char (jcs-get-properties tmp-ini-list "GROOVY_OPEN_TYPE_CHAR")
+          jcs--java--open-type-char (jcs-get-properties tmp-ini-list "JAVA_OPEN_TYPE_CHAR")
+          jcs--js--open-type-char (jcs-get-properties tmp-ini-list "JS_OPEN_TYPE_CHAR")
+          jcs--lua--open-type-char (jcs-get-properties tmp-ini-list "LUA_OPEN_TYPE_CHAR")
+          jcs--py--open-type-char (jcs-get-properties tmp-ini-list "PY_OPEN_TYPE_CHAR")
+          jcs--php--open-type-char (jcs-get-properties tmp-ini-list "PHP_OPEN_TYPE_CHAR")
+          jcs--ts--open-type-char (jcs-get-properties tmp-ini-list "TS_OPEN_TYPE_CHAR"))
 
     ;; close type character.
-    (setq jcs--as--close-type-char (jcs-get-properties tmp-ini-list "AS_CLOSE_TYPE_CHAR"))
-    (setq jcs--cc--close-type-char (jcs-get-properties tmp-ini-list "CC_CLOSE_TYPE_CHAR"))
-    (setq jcs--csharp--close-type-char (jcs-get-properties tmp-ini-list "CSHARP_CLOSE_TYPE_CHAR"))
-    (setq jcs--go--close-type-char (jcs-get-properties tmp-ini-list "GO_CLOSE_TYPE_CHAR"))
-    (setq jcs--groovy--close-type-char (jcs-get-properties tmp-ini-list "GROOVY_CLOSE_TYPE_CHAR"))
-    (setq jcs--java--close-type-char (jcs-get-properties tmp-ini-list "JAVA_CLOSE_TYPE_CHAR"))
-    (setq jcs--js--close-type-char (jcs-get-properties tmp-ini-list "JS_CLOSE_TYPE_CHAR"))
-    (setq jcs--lua--close-type-char (jcs-get-properties tmp-ini-list "LUA_CLOSE_TYPE_CHAR"))
-    (setq jcs--py--close-type-char (jcs-get-properties tmp-ini-list "PY_CLOSE_TYPE_CHAR"))
-    (setq jcs--php--close-type-char (jcs-get-properties tmp-ini-list "PHP_CLOSE_TYPE_CHAR"))
-    (setq jcs--ts--close-type-char (jcs-get-properties tmp-ini-list "TS_CLOSE_TYPE_CHAR"))))
+    (setq jcs--as--close-type-char (jcs-get-properties tmp-ini-list "AS_CLOSE_TYPE_CHAR")
+          jcs--cc--close-type-char (jcs-get-properties tmp-ini-list "CC_CLOSE_TYPE_CHAR")
+          jcs--csharp--close-type-char (jcs-get-properties tmp-ini-list "CSHARP_CLOSE_TYPE_CHAR")
+          jcs--go--close-type-char (jcs-get-properties tmp-ini-list "GO_CLOSE_TYPE_CHAR")
+          jcs--groovy--close-type-char (jcs-get-properties tmp-ini-list "GROOVY_CLOSE_TYPE_CHAR")
+          jcs--java--close-type-char (jcs-get-properties tmp-ini-list "JAVA_CLOSE_TYPE_CHAR")
+          jcs--js--close-type-char (jcs-get-properties tmp-ini-list "JS_CLOSE_TYPE_CHAR")
+          jcs--lua--close-type-char (jcs-get-properties tmp-ini-list "LUA_CLOSE_TYPE_CHAR")
+          jcs--py--close-type-char (jcs-get-properties tmp-ini-list "PY_CLOSE_TYPE_CHAR")
+          jcs--php--close-type-char (jcs-get-properties tmp-ini-list "PHP_CLOSE_TYPE_CHAR")
+          jcs--ts--close-type-char (jcs-get-properties tmp-ini-list "TS_CLOSE_TYPE_CHAR"))))
 
 
 (defun jcs-insert-jsdoc-type (type-name open-char close-char)
@@ -572,7 +577,9 @@ An optional argument SPI-SYM is the split symbol for return type."
     (setq result-datas (reverse result-datas))
     result-datas))
 
-;;; ActionScript
+;;
+;; (@* "ActionScript" )
+;;
 
 (defun jcs--as-mode-doc-string-others (search-string)
   "Insert `actionscript-mode' other doc string.
@@ -635,8 +642,9 @@ SEARCH-STRING is the raw string that represent the code we want to document."
         (insert jcs--return-desc-string)
         (indent-for-tab-command)))))
 
-
-;;; C/C++
+;;
+;; (@* "C/C++" )
+;;
 
 (defun jcs--cc-mode-doc-string-others (search-string)
   "Insert `c-mode' or `c++-mode' other doc string.
@@ -790,7 +798,9 @@ SEARCH-STRING is the raw string that represent the code we want to document."
         (insert jcs--return-desc-string)
         (indent-for-tab-command)))))
 
-;;; C#
+;;
+;; (@* "C#" )
+;;
 
 (defun jcs--csharp-mode-doc-string-others (search-string)
   "Insert `csharp-mode' other doc string.
@@ -897,7 +907,9 @@ SEARCH-STRING is the raw string that represent the code we want to document."
             (insert jcs--return-desc-string)
             (indent-for-tab-command))))))))
 
-;;; Golang
+;;
+;; (@* "Golang" )
+;;
 
 (defun jcs--go-mode-doc-string-others (search-string)
   "Insert `go-mode' other doc string.
@@ -1012,7 +1024,9 @@ SEARCH-STRING is the raw string that represent the code we want to document."
             (insert jcs--return-desc-string)
             (indent-for-tab-command))))))))
 
-;;; Groovy
+;;
+;; (@* "Groovy" )
+;;
 
 (defun jcs--groovy-mode-doc-string-others (search-string)
   "Insert `groovy-mode' other doc string.
@@ -1072,7 +1086,9 @@ SEARCH-STRING is the raw string that represent the code we want to document."
         (insert jcs--return-desc-string)
         (indent-for-tab-command)))))
 
-;;; Java
+;;
+;; (@* "Java" )
+;;
 
 (defun jcs--java-mode-doc-string-others (search-string)
   "Insert `java-mode' other doc string.
@@ -1139,7 +1155,9 @@ SEARCH-STRING is the raw string that represent the code we want to document."
         (insert jcs--return-desc-string)
         (indent-for-tab-command)))))
 
-;;; JavaScript
+;;
+;; (@* "JavaScript" )
+;;
 
 (defun jcs--js-mode-doc-string-others (search-string)
   "Insert `js2-mode' other doc string.
@@ -1202,7 +1220,9 @@ SEARCH-STRING is the raw string that represent the code we want to document."
         (insert jcs--return-desc-string)
         (indent-for-tab-command)))))
 
-;;; Lua
+;;
+;; (@* "Lua" )
+;;
 
 (defun jcs--lua-mode-doc-string-others (search-string)
   "Insert `lua-mode' other doc string.
@@ -1265,7 +1285,9 @@ SEARCH-STRING is the raw string that represent the code we want to document."
         (insert jcs--return-desc-string)
         (indent-for-tab-command)))))
 
-;;; Python
+;;
+;; (@* "Python" )
+;;
 
 (defun jcs--py-mode-doc-string-others (search-string)
   "Insert `python-mode' other doc string.
@@ -1337,7 +1359,9 @@ SEARCH-STRING is the raw string that represent the code we want to document."
         (insert jcs--return-desc-string)
         (indent-for-tab-command)))))
 
-;;; PHP
+;;
+;; (@* "PHP" )
+;;
 
 (defun jcs--php-mode-doc-string-others (search-string)
   "Insert `php-mode' other doc string.
@@ -1400,7 +1424,9 @@ SEARCH-STRING is the raw string that represent the code we want to document."
         (insert jcs--return-desc-string)
         (indent-for-tab-command)))))
 
-;;; TypeScript
+;;
+;; (@* "TypeScript" )
+;;
 
 (defun jcs--ts-mode-doc-string-others (search-string)
   "Insert `typescript-mode' other doc string.

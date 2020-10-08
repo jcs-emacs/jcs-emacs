@@ -75,8 +75,9 @@
     (jcs-delete-window-downwind)
     (balance-windows)))
 
-;;----------------------------------------------------------------------------
-;; Shell Commands
+;;
+;; (@* "Shell Commands" )
+;;
 
 ;;;###autoload
 (defun jcs-shell-clear-command ()
@@ -123,8 +124,9 @@
       ;; Call default return key.
       (comint-send-input)))))
 
-;;----------------------------------------------------------------------------
-;; Deletion
+;;
+;; (@* "Deletion" )
+;;
 
 (defvar jcs-shell-highlight-face-name "comint-highlight-prompt"
   "Face name in shell mode that we do not want to delete.")
@@ -189,8 +191,9 @@
   (when (jcs-shell-is-current-on-command)
     (call-interactively 'jcs-forward-kill-word-capital)))
 
-;;----------------------------------------------------------------------------
-;; Navigation
+;;
+;; (@* "Navigation" )
+;;
 
 ;;;###autoload
 (defun jcs-shell-up-key ()
@@ -214,8 +217,9 @@
   (when (jcs-last-line-in-buffer-p)
     (goto-char (point-max))))
 
-;;----------------------------------------------------------------------------
-;; Completion
+;;
+;; (@* "Completion" )
+;;
 
 ;;;###autoload
 (defun jcs-company-manual-begin ()

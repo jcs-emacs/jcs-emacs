@@ -6,6 +6,10 @@
 (require 'ffmpeg-player)
 (require 'show-eol)
 
+;;
+;; (@* "Variables" )
+;;
+
 (defconst jcs-feebleline--read-only-symbol (if (display-graphic-p) "¢" "&")
   "Symbol display for read-only status.")
 
@@ -27,6 +31,10 @@
 (defvar-local jcs--vc-current-vc-name nil "Record down the current VC name.")
 ;; TODO: When branch changes, update this variable!
 (defvar-local jcs--vc-current-branch-name nil "Record down the branch name.")
+
+;;
+;; (@* "Faces" )
+;;
 
 (defface jcs--feebleline--separator-face
   '((t (:foreground "#858585")))
@@ -70,6 +78,9 @@
   :group 'jcs)
 (defvar jcs--feebleline--vc-info-face 'jcs--feebleline--vc-info-face)
 
+;;
+;; (@* "Normal" )
+;;
 
 (defun jcs-feebleline--section-error (msg)
   "Return section error MSG."
@@ -211,7 +222,9 @@
               (propertize "]" 'face jcs--feebleline--separator-face))
     ""))
 
-;;; Video Player
+;;
+;; (@* "Video Player" )
+;;
 
 (defface jcs--feebleline-mute-face
   '((t (:foreground "#FF0000")))

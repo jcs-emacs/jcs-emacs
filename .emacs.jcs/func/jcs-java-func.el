@@ -112,7 +112,9 @@ Including adding or removing the package path."
     (when first-save
       (organize-imports-java-reload-local-source-paths))))
 
-;;----------------------------------------------------------------------------
+;;
+;; (@* "Faces" )
+;;
 
 (defun jcs-init-java-faces ()
   "Initialize Java mode faces highlihgting."
