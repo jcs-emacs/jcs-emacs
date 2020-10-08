@@ -113,6 +113,9 @@
 (use-package company-c-headers
   :defer t
   :config
+  (require 'dash)
+  (require 'f)
+
   (defconst jcs--msvc-path
     '("C:/Program Files (x86)/Microsoft Visual Studio/"
       "/Community/VC/Tools/MSVC/"
@@ -126,7 +129,6 @@
 
   (defun jcs--company-c-headers--msvc-paths ()
     "Return possible Visual Studio C/C++ paths."
-    (require 'f)
     (let* ((mvs-0 (nth 0 jcs--msvc-path)) (mvs-1 (nth 1 jcs--msvc-path))
            (mvs-2 (nth 2 jcs--msvc-path))
            (dirs (jcs-dir-to-dirname mvs-0))
@@ -143,7 +145,6 @@
 
   (defun jcs--company-c-headers--windows-kits-paths ()
     "Return possible Visual Studio C/C++ paths."
-    (require 'f)
     (let* ((wk-0 (nth 0 jcs--windows-kits-path)) (wk-1 (nth 1 jcs--windows-kits-path))
            (dirs (jcs-dir-to-dirname wk-0))
            result-0)
@@ -154,11 +155,11 @@
 
   (setq company-c-headers-path-user '(".")
         company-c-headers-path-system
-        (append
-         '("/usr/include/" "/usr/local/include/")
-         (list
-          (jcs--company-c-headers--msvc-paths)
-          (jcs--company-c-headers--windows-kits-paths)))))
+        (-flatten
+         (append
+          '("/usr/include/" "/usr/local/include/")
+          (list (jcs--company-c-headers--msvc-paths)
+                (jcs--company-c-headers--windows-kits-paths))))))
 
 (use-package company-emoji
   :defer t
