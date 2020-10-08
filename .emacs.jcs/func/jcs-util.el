@@ -1417,6 +1417,14 @@ IN-KEY : key to search for value."
   "Return the string of current directory."
   default-directory)
 
+(defun jcs-is-file-p (path)
+  "Check if PATH a file path."
+  (and (file-exists-p path) (not (file-directory-p path))))
+
+(defun jcs-is-directory-p (path)
+  "Check if PATH a directory path."
+  (and (file-exists-p path) (file-directory-p path)))
+
 (defun jcs-file-directory-exists-p (file-path)
   "Check if FILE-PATH exists."
   (or (file-directory-p file-path)
