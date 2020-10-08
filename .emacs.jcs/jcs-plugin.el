@@ -151,7 +151,7 @@
         company-fuzzy-prefix-on-top nil
         company-fuzzy-full-input-backends '(company-files)
         company-fuzzy-no-prefix-backends '(company-yasnippet)
-        company-fuzzy-trigger-symbols '("." "->" "<" "\""))
+        company-fuzzy-trigger-symbols '("." "->" "<" "\"" "'"))
   (with-eval-after-load 'company (global-company-fuzzy-mode t)))
 
 (use-package company-quickhelp
