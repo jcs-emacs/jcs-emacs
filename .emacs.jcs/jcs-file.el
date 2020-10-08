@@ -2,6 +2,10 @@
 ;;; Commentary:
 ;;; Code:
 
+;;
+;; (@* "Display" )
+;;
+
 ;;;###autoload
 (defun jcs-html-preview (&optional filepath title not-ow)
   "Preview html FILEPATH other window with TITLE.
@@ -47,7 +51,6 @@ NOT-OW : Default is other window, not other window."
     (read-only-mode 1)
     (special-mode)))
 
-
 (defun jcs-display-file (filepath title &optional not-ow)
   "Display a file with FILEPATH with TITLE.
 NOT-OW : Default is other window, not other window."
@@ -61,14 +64,17 @@ NOT-OW : Default is other window, not other window."
   (read-only-mode 1)
   (special-mode))
 
+;;
+;; (@* "Project" )
+;;
 
 (defun jcs-select-find-file-current-dir (in-filename)
-  "Find the IN-FILENAME in the current directory.  Return the absolute filepath."
+  "Find the IN-FILENAME in the current directory; it returns in absolute path."
   (let ((target-filepath "")
         (current-source-dir default-directory))
     (setq target-filepath (concat current-source-dir in-filename))
     (if (file-exists-p target-filepath)
-        target-filepath  ;; Return if the target file exists.
+        target-filepath  ; Return if the target file exists.
       (user-error "[ERROR] No '%s' file found in the current directory" in-filename))))
 
 (defun jcs-select-find-file-in-project (in-filename in-title)
@@ -115,6 +121,38 @@ multiple files at a time.  We need a title to present which file to select."
          in-filename)))
     filepath))
 
+;;
+;; (@* "Path" )
+;;
+
+(defun jcs--path-guess (lst predicate &optional last-result)
+  "Guess the path by LST and PREDICATE.
+Optional argument LAST-RESULT is the last output result from recursive function."
+  (require 'f)
+  (let* ((path-current (nth 0 lst)) (path-next (nth 1 lst))
+         (path-next-next (nth 2 lst))
+         (dirs (if last-result "" (jcs-dir-to-dirname path-current)))
+         new-path result)
+    (if last-result
+        (dolist (path last-result)
+          (setq dirs (jcs-dir-to-dirname path))
+          (dolist (dirname dirs)
+            (when (funcall predicate dirname)
+              (setq new-path (f-join (concat path dirname (or path-current "/"))))
+              (push new-path result))))
+      (pop lst)
+      (dolist (dirname dirs)
+        (when (funcall predicate dirname)
+          (setq new-path (f-join (concat path-current dirname (or path-next "/"))))
+          (push new-path result))))
+    (when path-next-next
+      (pop lst) (setq result (jcs--path-guess lst predicate result)))
+    result))
+
+;;
+;; (@* "Util" )
+;;
+
 (defun jcs-dir-to-dirname (path &optional full)
   "Return list of directory by PATH.
 If Optional argument FULL is non-nil; return full path."
@@ -142,9 +180,6 @@ If Optional argument WITH-EXT is non-nil; return path with extension."
           (unless with-ext (setq file (file-name-sans-extension file)))
           (push file types))))
     (sort types #'string-lessp)))
-
-;;----------------------------------------------------------------------------
-;; Util
 
 ;;;###autoload
 (defun jcs-select-file ()
@@ -272,12 +307,10 @@ OW : Open file other window."
         (tmp-base-file-name (file-name-sans-extension buffer-file-name)))
     (cond ((string-match "\\.m" buffer-file-name)
            (setq corresponding-file-name (concat tmp-base-file-name ".h"))))
-
     ;; If Objective-C corresponding file not found, use C/C++ corresponding
     ;; file instead.
     (when (string-empty-p corresponding-file-name)
       (setq corresponding-file-name (jcs-cc-corresponding-file)))
-
     ;; Return file name.
     corresponding-file-name))
 
@@ -292,11 +325,9 @@ OW : Open file other window."
            (setq corresponding-file-name tmp-base-file-name))
           ((string-match "\\.aspx" buffer-file-name)
            (setq corresponding-file-name (concat tmp-base-file-name ".aspx.cs"))))
-
     ;; NOTE: If is ASP.NET, just open the current file itself.
     (when (string-empty-p corresponding-file-name)
       (setq corresponding-file-name buffer-file-name))
-
     ;; Return file name.
     corresponding-file-name))
 
