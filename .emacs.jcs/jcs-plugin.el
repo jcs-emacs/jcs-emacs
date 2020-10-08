@@ -112,12 +112,53 @@
 
 (use-package company-c-headers
   :defer t
-  :init
-  (setq company-c-headers-path-user '("."))
-  (setq company-c-headers-path-system
+  :config
+  (defconst jcs--msvc-path
+    '("C:/Program Files (x86)/Microsoft Visual Studio/"
+      "/Community/VC/Tools/MSVC/"
+      "/include/")
+    "Path for Microsoft Visual Studio.")
+
+  (defconst jcs--windows-kits-path
+    '("C:/Program Files (x86)/Windows Kits/10/Include/"
+      "/ucrt/")
+    "Path for Windows Kits.")
+
+  (defun jcs--company-c-headers--msvc-paths ()
+    "Return possible Visual Studio C/C++ paths."
+    (require 'f)
+    (let* ((mvs-0 (nth 0 jcs--msvc-path)) (mvs-1 (nth 1 jcs--msvc-path))
+           (mvs-2 (nth 2 jcs--msvc-path))
+           (dirs (jcs-dir-to-dirname mvs-0))
+           result-0 result-1)
+      (dolist (mvs-year dirs)
+        (unless (= (string-to-number mvs-year) 0)
+          (push (f-join (concat mvs-0 mvs-year mvs-1)) result-0)))
+      (dolist (path result-0)
+        (setq dirs (jcs-dir-to-dirname path))
+        (dolist (mvs-ver dirs)
+          (unless (= (string-to-number mvs-ver) 0)
+            (push (f-join (concat path mvs-ver mvs-2)) result-1))))
+      result-1))
+
+  (defun jcs--company-c-headers--windows-kits-paths ()
+    "Return possible Visual Studio C/C++ paths."
+    (require 'f)
+    (let* ((wk-0 (nth 0 jcs--windows-kits-path)) (wk-1 (nth 1 jcs--windows-kits-path))
+           (dirs (jcs-dir-to-dirname wk-0))
+           result-0)
+      (dolist (wk-ver dirs)
+        (unless (= (string-to-number wk-ver) 0)
+          (push (f-join (concat wk-0 wk-ver wk-1)) result-0)))
+      result-0))
+
+  (setq company-c-headers-path-user '(".")
+        company-c-headers-path-system
         (append
          '("/usr/include/" "/usr/local/include/")
-         '("C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.27.29110/include/"))))
+         (list
+          (jcs--company-c-headers--msvc-paths)
+          (jcs--company-c-headers--windows-kits-paths)))))
 
 (use-package company-emoji
   :defer t
