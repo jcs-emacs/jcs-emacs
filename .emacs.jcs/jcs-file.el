@@ -115,16 +115,32 @@ multiple files at a time.  We need a title to present which file to select."
          in-filename)))
     filepath))
 
-(defun jcs-dir-to-filename (path &optional ext full with-ext)
-  "Return list of filename by PATH with EXT filter."
-  (let ((types '()) fn
-        (files (directory-files path full (if ext (format "\\%s$" ext) nil))))
+(defun jcs-dir-to-dirname (path &optional full)
+  "Return list of directory by PATH.
+If Optional argument FULL is non-nil; return full path."
+  (let ((types '()) (files (directory-files path t)) fn)
     (dolist (file files)
-      (setq fn (file-name-nondirectory file))
-      (unless (or (string= "." fn) (string= ".." fn))
-        (unless full (setq file fn))
-        (unless with-ext (setq file (file-name-sans-extension file)))
-        (push file types)))
+      (when (jcs-is-directory-p file)
+        (setq fn (file-name-nondirectory file))
+        (unless (or (string= "." fn) (string= ".." fn))
+          (unless full (setq file fn))
+          (push file types))))
+    (sort types #'string-lessp)))
+
+(defun jcs-dir-to-filename (path &optional ext full with-ext)
+  "Return list of filename by PATH.
+Optional argument EXT is the extension filter.
+If Optional argument FULL is non-nil; return full path.
+If Optional argument WITH-EXT is non-nil; return path with extension."
+  (let ((types '()) fn
+        (files (directory-files path t (if ext (format "\\%s$" ext) nil))))
+    (dolist (file files)
+      (when (jcs-is-file-p file)
+        (setq fn (file-name-nondirectory file))
+        (unless (or (string= "." fn) (string= ".." fn))
+          (unless full (setq file fn))
+          (unless with-ext (setq file (file-name-sans-extension file)))
+          (push file types))))
     (sort types #'string-lessp)))
 
 ;;----------------------------------------------------------------------------
