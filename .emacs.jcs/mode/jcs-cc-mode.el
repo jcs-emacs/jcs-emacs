@@ -4,6 +4,8 @@
 
 (require 'cc-mode)
 
+(require 'company-c-headers)
+
 ;; C++ indentation style
 (defconst jcs-big-fun-cc-style
   '((c-electric-pound-behavior   . nil)
