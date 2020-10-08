@@ -623,7 +623,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ### 2020-03-06
 
-* Installed new package `company-emojify`.
+* Installed new package `company-emoji`.
 * Installed new package `emoji-github` manually.
 
 ### 2020-03-05
