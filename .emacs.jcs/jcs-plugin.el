@@ -294,6 +294,7 @@
          '("[*]Local Variables[*]")
          '("[*]Kill Ring[*]")  ; From `browse-kill-ring'
          '("[*]SPEEDBAR")
+         '("[*]Flycheck error")
          '("[*]httpd[*]")
          '("[*]helpful")
          '("[*]Most used words[*]")
