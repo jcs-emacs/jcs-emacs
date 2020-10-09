@@ -10,6 +10,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Implemeneted auto configure for `C/C++` include path on Windows.
 * Organized code with better `@` code separator.
 * Implemented `guess path` for possible auto config environment path utility function.
+* Diminished the buffer `*Flycheck errors` as default behaviour.
 
 ### 2020-10-07
 
