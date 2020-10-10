@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-10-10
+
+* Added `Advices` section for declaring generic advices.
+* Make recenter after all `ivy-searcher` commands.
+
 ### 2020-10-08
 
 * Implemeneted auto configure for `C/C++` include path on Windows.
