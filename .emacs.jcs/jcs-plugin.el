@@ -483,17 +483,11 @@
 (use-package goto-char-preview
   :defer t
   :config
-  (defun jcs--goto-char-preview--advice-after ()
-    "Advice after execute `goto-char-preview' command."
-    (call-interactively #'recenter))
   (advice-add 'goto-char-preview :after #'jcs--recenter--advice-after))
 
 (use-package goto-line-preview
   :defer t
   :config
-  (defun jcs--goto-line-preview--advice-after ()
-    "Advice after execute `goto-line-preview' command."
-    (call-interactively #'recenter))
   (advice-add 'goto-line-preview :after #'jcs--recenter--advice-after))
 
 (use-package highlight-indent-guides
