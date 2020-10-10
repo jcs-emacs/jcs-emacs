@@ -483,18 +483,18 @@
 (use-package goto-char-preview
   :defer t
   :config
-  (defun jcs-advice-goto-char-preview-after ()
+  (defun jcs--goto-char-preview--advice-after ()
     "Advice after execute `goto-char-preview' command."
     (call-interactively #'recenter))
-  (advice-add 'goto-char-preview :after #'jcs-advice-goto-char-preview-after))
+  (advice-add 'goto-char-preview :after #'jcs--recenter--advice-after))
 
 (use-package goto-line-preview
   :defer t
   :config
-  (defun jcs-advice-goto-line-preview-after ()
+  (defun jcs--goto-line-preview--advice-after ()
     "Advice after execute `goto-line-preview' command."
     (call-interactively #'recenter))
-  (advice-add 'goto-line-preview :after #'jcs-advice-goto-line-preview-after))
+  (advice-add 'goto-line-preview :after #'jcs--recenter--advice-after))
 
 (use-package highlight-indent-guides
   :defer t
@@ -614,7 +614,10 @@
   :defer t
   :init
   (setq ivy-searcher-display-info 'line/column
-        ivy-searcher-preselect 'next))
+        ivy-searcher-preselect 'next)
+  :config
+  (advice-add 'ivy-searcher-search-file :after #'jcs--recenter--advice-after)
+  (advice-add 'ivy-searcher-search-project :after #'jcs--recenter--advice-after))
 
 (use-package keypression
   :defer t
