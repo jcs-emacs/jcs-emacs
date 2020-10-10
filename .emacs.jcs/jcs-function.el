@@ -3,6 +3,14 @@
 ;;; Code:
 
 ;;
+;; (@* "Advices" )
+;;
+
+(defun jcs--recenter--advice-after ()
+  "Advice for commands that we do recenter after execution."
+  (call-interactively #'recenter))
+
+;;
 ;; (@* "*Backtrace*" )
 ;;
 
