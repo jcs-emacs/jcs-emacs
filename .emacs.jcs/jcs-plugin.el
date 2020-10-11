@@ -610,6 +610,8 @@
   (setq ivy-searcher-display-info 'line/column
         ivy-searcher-preselect 'next)
   :config
+  (advice-add 'ivy-searcher-replace-file :after #'jcs-revert-all-file-buffers)
+  (advice-add 'ivy-searcher-replace-project :after #'jcs-revert-all-file-buffers)
   (advice-add 'ivy-searcher-search-file :after #'jcs--recenter--advice-after)
   (advice-add 'ivy-searcher-search-project :after #'jcs--recenter--advice-after))
 
