@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-10-11
 
 * Changed source for package `impatient-showdown` from `quelpa` to `melpa`.
+* Make rever all buffers after replace commands.
 
 ### 2020-10-10
 
