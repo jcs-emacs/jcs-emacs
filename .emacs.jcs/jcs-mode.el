@@ -361,6 +361,7 @@ Note this is opposite logic to the toggle mode function."
 
 (defun jcs-message-buffer-mode-hook ()
   "Hook for `message-buffer-mode'."
+  (auto-highlight-symbol-mode 1)
   (goto-address-mode 1)
   (page-break-lines-mode 1))
 
