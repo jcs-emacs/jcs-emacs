@@ -31,6 +31,13 @@
       (auto-read-only)))
   (advice-add 'auto-read-only--hook-find-file :override #'jcs--auto-read-only--hook-find-file))
 
+(use-package auto-rename-tag
+  :defer t
+  :init
+  (setq auto-rename-tag-disabled-commands '(query-replace)
+        auto-rename-tag-disabled-minor-modes '(iedit-mode
+                                               multiple-cursors-mode)))
+
 (use-package better-scroll
   :defer t
   :init
