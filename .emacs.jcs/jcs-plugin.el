@@ -158,6 +158,7 @@
   :init
   (setq company-fuzzy-sorting-backend 'flx
         company-fuzzy-prefix-on-top nil
+        company-fuzzy-history-backends '(company-yasnippet)
         company-fuzzy-trigger-symbols '("." "->" "<" "\"" "'"))
   (with-eval-after-load 'company (global-company-fuzzy-mode t)))
 
