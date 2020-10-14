@@ -106,11 +106,14 @@
   ;; URL: https://emacs.stackexchange.com/questions/15246/how-add-company-dabbrev-to-the-company-completion-popup
   (setq company-backends
         (append
+         ;; --- Internal ---
          '(company-capf company-semantic)
          '(company-abbrev company-dabbrev company-dabbrev-code)
          '(company-files)
          '(company-etags company-gtags)
-         '(company-keywords company-yasnippet)))
+         '(company-keywords company-yasnippet)
+         ;; --- External ---
+         '(company-emoji)))
   (setq company-minimum-prefix-length 0
         company-idle-delay 0.1
         company-selection-wrap-around 'on)
@@ -148,16 +151,13 @@
 (use-package company-emoji
   :defer t
   :init
-  (setq emojify-company-tooltips-p t)
-  (with-eval-after-load 'company (add-to-list 'company-backends 'company-emoji)))
+  (setq emojify-company-tooltips-p t))
 
 (use-package company-fuzzy
   :defer t
   :init
   (setq company-fuzzy-sorting-backend 'flx
         company-fuzzy-prefix-on-top nil
-        company-fuzzy-full-input-backends '(company-files)
-        company-fuzzy-no-prefix-backends '(company-yasnippet)
         company-fuzzy-trigger-symbols '("." "->" "<" "\"" "'"))
   (with-eval-after-load 'company (global-company-fuzzy-mode t)))
 
