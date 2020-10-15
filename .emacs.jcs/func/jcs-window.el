@@ -30,8 +30,7 @@ If NO-ERROR non-nil then it won't treat action as an error."
   (interactive "bEnter buffer to jump to: ")
   (let ((found nil))
     (when (jcs-buffer-shown-p in-buffer-name)
-      (let ((jcs--no-advice-other-window t)
-            (win-len (jcs-count-windows)) (index 0))
+      (let ((jcs--no-advice-other-window t) (win-len (jcs-count-windows)) (index 0))
         (while (and (< index win-len) (not found))
           ;; NOTE: we use `string-match-p' instead of `string=' because some
           ;; buffer cannot be detected in the buffer list. For instance,
@@ -116,20 +115,31 @@ Return the count of the buffer shown."
   (>= (jcs-buffer-shown-count in-buf-name strict) 2))
 
 ;;;###autoload
-(defun jcs-walk-through-all-windows-once (&optional fnc minibuf do-advice)
-  "Walk through all the windows once and execute callback FNC.
-If DO-ADVICE is non-nil then will active advices from `other-window' function."
+(defun jcs-walk-through-all-windows-once (&optional fnc minibuf do-advice util)
+  "Walk through all windows once and execute callback FNC for each moves.
+
+If optional argument DO-ADVICE is non-nil; then will active advices
+from `other-window' function.
+
+If optional argument MINIBUF is non-nil; then FNC will be executed in the
+minibuffer window.
+
+If optional argument UTIL is non-nil; then FNC will be executed even within
+inside the utility frame.  See function `jcs-frame-util-p' for the definition
+of utility frame."
   (interactive)
-  (let ((jcs--no-advice-other-window (if do-advice nil t)))
+  (let ((jcs--no-advice-other-window (not do-advice)))
     (save-selected-window
-      (let ((cur-frame (selected-frame)) (index 0) (can-execute-p t))
-        (while (< index (jcs-count-windows))
-          (cond ((and (not minibuf) (jcs-minibuf-window-p))
-                 (setq can-execute-p nil))
-                (t (setq can-execute-p t)))
-          (when (and can-execute-p fnc) (funcall fnc))
+      (let ((win-len (jcs-count-windows))
+            (cur-frame (selected-frame)) (index 0) can-execute-p)
+        (while (< index win-len)
+          (setq can-execute-p
+                (cond ((and (not minibuf) (jcs-minibuf-window-p)) nil)
+                      (t t)))
+          (when (or util (not (jcs-frame-util-p)))
+            (when (and can-execute-p fnc) (funcall fnc)))
           (other-window 1 t)
-          (setq index (+ index 1)))
+          (setq index (1+ index)))
         (select-frame-set-input-focus cur-frame)))))
 
 ;;
