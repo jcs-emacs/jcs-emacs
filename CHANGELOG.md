@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-10-15
+
+* Implemented `util` argument when walking through windows/frames.
+
 ### 2020-10-12
 
 * Config `auto-rename-tag` package for disabled commands and `minor-mode`s.
