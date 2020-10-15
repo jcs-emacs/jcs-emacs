@@ -74,6 +74,7 @@
 
 (defun jcs--other-window--advice-after (count &rest _)
   "Advice execute after `other-window' command."
+  ;; NOTE: If it's a utility frame; then we skip it immediately.
   (when (jcs-frame-util-p)
     (other-window (if (jcs-is-positive count) 1 -1) t))
   (unless jcs--no-advice-other-window
