@@ -28,15 +28,29 @@ Return nil, if frame not maximized."
     (select-frame-set-input-focus new-frame)))
 
 ;;;###autoload
-(defun jcs-walk-through-all-frames-once (&optional fnc do-advice)
-  "Walk through all the frames once and execute callback FNC.
-If DO-ADVICE is non-nil then will active advices from `other-window' function."
+(defun jcs-walk-through-all-frames-once (&optional fnc minibuf do-advice util)
+  "Walk through all frames once and execute callback FNC for each moves.
+
+If optional argument DO-ADVICE is non-nil; then will active advices
+from `other-window' function.
+
+If optional argument MINIBUF is non-nil; then FNC will be executed in the
+minibuffer window.
+
+If optional argument UTIL is non-nil; then FNC will be executed even within
+inside the utility frame.  See function `jcs-frame-util-p' for the definition
+of utility frame."
   (interactive)
-  (let ((jcs--no-advice-other-window (if do-advice nil t)))
+  (let ((jcs--no-advice-other-window (not do-advice)))
     (save-selected-window
-      (let ((cur-frame (selected-frame)) (index 0))
-        (while (< index (length (frame-list)))
-          (when fnc (funcall fnc))
+      (let ((frame-len (length (frame-list)))
+            (cur-frame (selected-frame)) (index 0) can-execute-p)
+        (while (< index frame-len)
+          (setq can-execute-p
+                (cond ((and (not minibuf) (jcs-minibuf-window-p)) nil)
+                      (t t)))
+          (when (or util (not (jcs-frame-util-p)))
+            (when fnc (funcall fnc)))
           (other-frame 1)
           (setq index (+ index 1)))
         (select-frame-set-input-focus cur-frame)))))
