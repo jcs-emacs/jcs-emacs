@@ -89,12 +89,9 @@ of utility frame."
 (defun jcs-buffer-visible-list ()
   "List of buffer that current visible in frame."
   (save-selected-window
-    (let ((jcs--no-advice-other-window t)
-          (win-len (jcs-count-windows)) (index 0) (buffers '()))
-      (while (> win-len index)
-        (push (buffer-name) buffers)
-        (other-window 1 t)
-        (setq index (1+ index)))
+    (let ((jcs--no-advice-other-window t) (buffers '()))
+      (jcs-walk-through-all-windows-once
+       (lambda () (push (buffer-name) buffers)))
       buffers)))
 
 (defun jcs-buffer-shown-count (in-buf-name &optional strict)
