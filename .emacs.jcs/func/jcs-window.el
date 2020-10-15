@@ -49,8 +49,7 @@ If NO-ERROR non-nil then it won't treat action as an error."
   "Switch to previously open buffer with CNT."
   (interactive)
   (let ((target-cnt 1))  ; Default is 1.
-    (when cnt
-      (setq target-cnt cnt))
+    (when cnt (setq target-cnt cnt))
     (switch-to-buffer (other-buffer (current-buffer) target-cnt))))
 
 ;;;###autoload
@@ -75,12 +74,13 @@ If NO-ERROR non-nil then it won't treat action as an error."
       (unless target-buffer (setq target-buffer (nth 0 lst)))
       (switch-to-buffer target-buffer))))
 
-(defun jcs-count-windows ()
+(defun jcs-count-windows (&optional util)
   "Total window count."
   (let ((jcs--no-advice-other-window t)
         (count 0))
     (dolist (fn (frame-list))
-      (setq count (+ (length (window-list fn)) count)))
+      (when (or util (not (jcs-frame-util-p fn)))
+        (setq count (+ (length (window-list fn)) count))))
     count))
 
 (defun jcs-buffer-visible-list ()
@@ -95,8 +95,10 @@ If NO-ERROR non-nil then it won't treat action as an error."
       buffers)))
 
 (defun jcs-buffer-shown-count (in-buf-name &optional strict)
-  "Check if IN-BUF-NAME showns in program.
-Return the count of the buffer shown."
+  "Return the count of the IN-BUF-NAME shown.
+
+If optional argument STRICT is non-nil; then it will use string comparison
+instead of regular expression comparison."
   (let ((displayed-frame-count 0)
         (bv-lst (jcs-buffer-visible-list)))
     (dolist (buf bv-lst)
@@ -107,11 +109,15 @@ Return the count of the buffer shown."
     displayed-frame-count))
 
 (defun jcs-buffer-shown-p (in-buf-name &optional strict)
-  "Check if IN-BUF-NAME shown in program."
+  "Check if IN-BUF-NAME shown in program.
+
+See function `jcs-buffer-shown-count' description for argument STRICT."
   (>= (jcs-buffer-shown-count in-buf-name strict) 1))
 
 (defun jcs-buffer-shown-in-multiple-window-p (in-buf-name &optional strict)
-  "Check if IN-BUF-NAME shown in multiple windows."
+  "Check if IN-BUF-NAME shown in multiple windows.
+
+See function `jcs-buffer-shown-count' description for argument STRICT."
   (>= (jcs-buffer-shown-count in-buf-name strict) 2))
 
 ;;;###autoload
@@ -318,7 +324,7 @@ i.e. change right window to bottom, or change bottom window to right."
 (defun jcs-switch-to-next-window-larger-in-height ()
   "Return the next window that have larger height in column."
   (other-window 1 t)
-  (let ((larger-window nil))
+  (let (larger-window)
     (jcs-walk-through-all-windows-once
      (lambda ()
        (when (and (not larger-window) (jcs-window-is-larger-in-height-p))
