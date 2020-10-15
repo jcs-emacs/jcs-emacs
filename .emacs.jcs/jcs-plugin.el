@@ -307,7 +307,8 @@
          '("[*]helpful")
          '("[*]Most used words[*]")
          '("[*]Test SHA[*]")
-         '("[*]RE-Builder")))
+         '("[*]RE-Builder")
+         '("[*]preview-it")))
   (with-eval-after-load 'jcs-buffer-menu (diminish-buffer-mode 1))
   :config
   (defun jcs--diminish-buffer-clean--advice-before ()
