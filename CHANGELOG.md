@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-10-15
 
 * Implemented `util` argument when walking through windows/frames.
+* Diminished the buffer `*preview-it` as default behaviour.
 
 ### 2020-10-12
 
