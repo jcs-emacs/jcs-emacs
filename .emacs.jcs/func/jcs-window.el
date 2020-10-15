@@ -75,9 +75,12 @@ If NO-ERROR non-nil then it won't treat action as an error."
       (switch-to-buffer target-buffer))))
 
 (defun jcs-count-windows (&optional util)
-  "Total window count."
-  (let ((jcs--no-advice-other-window t)
-        (count 0))
+  "Total windows count.
+
+If optional argument UTIL is non-nil; then FNC will be executed even within
+inside the utility frame.  See function `jcs-frame-util-p' for the definition
+of utility frame."
+  (let ((jcs--no-advice-other-window t) (count 0))
     (dolist (fn (frame-list))
       (when (or util (not (jcs-frame-util-p fn)))
         (setq count (+ (length (window-list fn)) count))))
