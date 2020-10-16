@@ -9,7 +9,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 * Implemented `util` argument when walking through windows/frames.
 * Diminished the buffer `*preview-it` as default behaviour.
-* Added `impatient-showdown` package to pre-install package list.
+* Changed source for package `impatient-showdown` from `quelpa` to `melpa`.
 
 ### 2020-10-12
 
@@ -17,7 +17,6 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ### 2020-10-11
 
-* Changed source for package `impatient-showdown` from `quelpa` to `melpa`.
 * Make rever all buffers after replace commands.
 
 ### 2020-10-10
