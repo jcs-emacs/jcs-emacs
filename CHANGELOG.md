@@ -9,6 +9,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 * Implemented `util` argument when walking through windows/frames.
 * Diminished the buffer `*preview-it` as default behaviour.
+* Added `impatient-showdown` package to pre-install package list.
 
 ### 2020-10-12
 
