@@ -112,6 +112,7 @@
     htmltagwrap
     ialign
     iedit
+    impatient-showdown
     indicators
     ini-mode
     isearch-project
