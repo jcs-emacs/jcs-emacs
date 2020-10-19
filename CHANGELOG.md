@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-10-19
+
+* Set default to unfold for `org-mode`.
+
 ### 2020-10-16
 
 * Changed source for package `impatient-showdown` from `quelpa` to `melpa`.
