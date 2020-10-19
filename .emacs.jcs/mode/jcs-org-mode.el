@@ -10,11 +10,13 @@
 (add-hook 'org-mode-hook 'org-bullets-mode)
 
 
-(setq org-todo-keywords '((sequence "TODO" "WAITING" "DONE")))
-(setq org-todo-keyword-faces '(("TODO" :foreground "red")
+(setq org-startup-folded nil)
+
+(setq org-todo-keywords '((sequence "TODO" "WAITING" "DONE"))
+      org-todo-keyword-faces '(("TODO" :foreground "red")
                                ("WAITING" :foreground "yellow")
-                               ("DONE" :foreground "green")))
-(setq org-log-done 'time)
+                               ("DONE" :foreground "green"))
+      org-log-done 'time)
 
 (defvar jcs-org-table--timer nil
   "Timer for refreshing org table.")
