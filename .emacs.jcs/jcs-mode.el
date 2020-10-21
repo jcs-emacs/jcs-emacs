@@ -327,6 +327,15 @@ Note this is opposite logic to the toggle mode function."
 (add-hook 'special-mode-hook 'jcs-special-mode-hook)
 
 ;;============================================================================
+;; Backtrace
+
+(defun jcs-backtrace-mode-hook ()
+  "Hook for `backtrace-mode'."
+  (buffer-wrap-mode 1))
+
+(add-hook 'backtrace-mode-hook #'jcs-backtrace-mode-hook)
+
+;;============================================================================
 ;; Diff
 
 (defun jcs-diff-mode-hook ()
