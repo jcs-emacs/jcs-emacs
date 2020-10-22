@@ -5,12 +5,12 @@
 ;;;###autoload
 (defun jcs-ask-line-endings-for-this-sh-script (type)
   "Ask the saved line endings TYPE for this shell script."
-  (require 'show-eol)
   (interactive
    (list
     (completing-read
      (format "Line Endings Type for file `%s`: " (jcs-buffer-name-or-buffer-file-name))
      (let ((read-lst '("Windows (dos)" "macOS (mac)" "Linux (unix)")))
+       (require 'show-eol)
        (push (format "=> system: (%s)" (jcs-get-current-sysem)) read-lst)
        (push (format "=> file: (%s)" (show-eol--get-current-system)) read-lst)
        read-lst))))
