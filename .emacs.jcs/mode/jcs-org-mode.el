@@ -34,13 +34,15 @@
     (let* ((word-start (save-excursion (search-backward " " nil t)))
            (cursor-pt (if word-start (- (point) word-start) nil))
            (field-start (save-excursion (search-backward "|" nil t)))
-           (field-prefix (buffer-substring field-start word-start))
-           (field-prefix-word-cnt (1- (length (s-split " " field-prefix t)))))
-      (ignore-errors (org-table-align))
-      (when (and (numberp field-prefix-word-cnt) (< 0 field-prefix-word-cnt))
-        (forward-symbol field-prefix-word-cnt)
-        (forward-char 1))
-      (when (numberp cursor-pt) (forward-char (1- cursor-pt))))))
+           field-prefix field-prefix-word-cnt)
+      (when field-start
+        (setq field-prefix (buffer-substring field-start word-start)
+              field-prefix-word-cnt (1- (length (s-split " " field-prefix t))))
+        (ignore-errors (org-table-align))
+        (when (and (numberp field-prefix-word-cnt) (< 0 field-prefix-word-cnt))
+          (forward-symbol field-prefix-word-cnt)
+          (forward-char 1))
+        (when (numberp cursor-pt) (forward-char (1- cursor-pt)))))))
 
 (defun jcs-org-table--start-timer ()
   "Start org table refresh timer."
