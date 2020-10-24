@@ -84,6 +84,7 @@
     ess
     esup
     exec-path-from-shell
+    expand-region
     feebleline
     ffmpeg-player
     flx
