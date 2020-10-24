@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-10-24
+
+* Installed new package `expand-region`.
+
 ### 2020-10-22
 
 * Added `backtrace-mode` configuration.
