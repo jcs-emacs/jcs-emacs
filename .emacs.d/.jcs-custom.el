@@ -9,3 +9,16 @@
 (put 'erase-buffer 'disabled nil)
 (put 'downcase-region 'disabled nil)  ; Enable downcase-region
 (put 'upcase-region 'disabled nil)    ; Enable upcase-region
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(company-preview ((t (:foreground "dark gray" :underline t))))
+ '(company-preview-common ((t (:inherit company-preview))))
+ '(company-scrollbar-bg ((t (:background "dark gray"))))
+ '(company-scrollbar-fg ((t (:background "black"))))
+ '(company-tooltip ((t (:background "light gray" :foreground "black"))))
+ '(company-tooltip-common ((((type x)) (:inherit company-tooltip :weight bold)) (t (:background "light gray" :foreground "#C00000"))))
+ '(company-tooltip-common-selection ((((type x)) (:inherit company-tooltip-selection :weight bold)) (t (:background "steel blue" :foreground "#C00000"))))
+ '(company-tooltip-selection ((t (:background "steel blue" :foreground "white")))))
