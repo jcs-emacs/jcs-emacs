@@ -4,6 +4,10 @@
 
 (require 'actionscript-mode)
 
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-actionscript-mode-hook ()
   "ActionScript mode hook."
 

@@ -4,6 +4,10 @@
 
 (require 'haxe-mode)
 
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-haxe-mode-hook ()
   "Haxe mode hook."
 

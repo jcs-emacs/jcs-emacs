@@ -4,6 +4,10 @@
 
 (require 'jayces-mode)
 
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-jayces-mode-hook ()
   "JayCeS mode hook."
 

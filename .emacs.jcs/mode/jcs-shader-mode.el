@@ -5,6 +5,10 @@
 (require 'shader-mode)
 (require 'glsl-mode)
 
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-shader-mode-hook ()
   "Shader mode hook."
 

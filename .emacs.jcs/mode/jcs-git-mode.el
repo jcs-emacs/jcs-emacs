@@ -19,8 +19,9 @@
         (t (insert (gitignore-templates name))))
   (message "[INFO] Insert template `%s`" name))
 
-;;----------------------------------------------------------------------------
-
+;;
+;; (@* "Hook" )
+;;
 
 (defun jcs-gitattributes-mode-hook ()
   "Gitattributes mode hook."

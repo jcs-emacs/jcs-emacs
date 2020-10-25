@@ -4,6 +4,10 @@
 
 (require 'yasnippet)
 
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-snippet-mode-hook()
   "Snippet mode hook."
 

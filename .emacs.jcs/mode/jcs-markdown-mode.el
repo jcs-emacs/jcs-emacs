@@ -7,6 +7,10 @@
 (require 'jcs-markdown-func)
 (require 'jcs-web-func)
 
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-markdown-mode-hook ()
   "Markdown mode hook."
   (emojify-mode 1)

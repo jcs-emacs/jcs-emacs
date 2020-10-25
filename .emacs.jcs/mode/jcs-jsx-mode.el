@@ -18,7 +18,20 @@
         ((string= sc "ReactJS") (jcs-insert-jsx-react-js-template))
         ((string= sc "React Native") (jcs-insert-jsx-react-native-template))))
 
-;;----------------------------------------------------------------------------
+;;
+;; (@* "Faces" )
+;;
+
+(set-face-attribute 'rjsx-tag nil
+                    :inherit 'web-mode-html-tag-bracket-face)
+
+(set-face-attribute 'rjsx-attr nil
+                    :inherit 'web-mode-html-attr-name-face)
+
+
+;;
+;; (@* "Hook" )
+;;
 
 (defun jcs-jsx-mode-hook ()
   "Mode hook for JSX mode."

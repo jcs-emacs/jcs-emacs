@@ -6,6 +6,10 @@
 
 (require 'jcs-python-func)
 
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-cobol-mode-hook ()
   "COBOL mode hook."
   (electric-pair-mode nil)

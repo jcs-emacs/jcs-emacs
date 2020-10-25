@@ -4,6 +4,10 @@
 
 (require 'swift-mode)
 
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-swift-mode-hook ()
   "Swift mode hook."
 

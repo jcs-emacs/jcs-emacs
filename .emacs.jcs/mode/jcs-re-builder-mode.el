@@ -4,6 +4,10 @@
 
 (require 're-builder)
 
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-re-builder-mode-hook ()
   "Mode hook for `RE-Builder-mode'."
 

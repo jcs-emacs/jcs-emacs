@@ -4,6 +4,10 @@
 
 (require 'esh-mode)
 
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-eshell-mode-hook ()
   "Eshell mode hook."
 

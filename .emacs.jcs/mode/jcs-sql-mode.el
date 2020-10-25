@@ -5,6 +5,10 @@
 (require 'sql)
 (require 'sql-indent)
 
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-sql-mode-hook()
   "SQL mode hook."
 

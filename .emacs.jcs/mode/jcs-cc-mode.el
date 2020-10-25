@@ -6,7 +6,10 @@
 
 (require 'company-c-headers)
 
-;; C++ indentation style
+;;
+;; (@* "Style" )
+;;
+
 (defconst jcs-big-fun-cc-style
   '((c-electric-pound-behavior   . nil)
     (c-tab-always-indent         . t)
@@ -53,7 +56,9 @@
     (c-echo-syntactic-information-p . nil))
   "Casey's Big Fun C/C++ Style")
 
-;;-----------------------------------------------------------
+;;
+;; (@* "Header" )
+;;
 
 (defconst jcs-c-header-extensions '("[.]h")
   "List of C header file extension.")
@@ -67,8 +72,6 @@
 (defconst jcs-c++-source-extensions '("[.]cin" "[.]cpp")
   "List of C++ source file extension.")
 
-;;-----------------------------------------------------------
-
 (defun jcs-cc-insert-header ()
   "Insert header for `cc-mode' related modes."
   (jcs-insert-header-if-valid jcs-c++-header-extensions 'jcs-insert-c++-header-template)
@@ -76,7 +79,9 @@
   (jcs-insert-header-if-valid jcs-c-header-extensions 'jcs-insert-c-header-template)
   (jcs-insert-header-if-valid jcs-c-source-extensions 'jcs-insert-c-source-template))
 
-;;-----------------------------------------------------------
+;;
+;; (@* "Hook" )
+;;
 
 (defun jcs-cc-mode-hook ()
   "C/C++ mode hook."

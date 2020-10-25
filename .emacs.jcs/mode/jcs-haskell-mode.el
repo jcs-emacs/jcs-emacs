@@ -4,6 +4,10 @@
 
 (require 'haskell-mode)
 
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-haskell-mode-hook ()
   "Haskell mode hook."
 

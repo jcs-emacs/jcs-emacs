@@ -4,6 +4,10 @@
 
 (require 'groovy-mode)
 
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-groovy-mode-hook ()
   "Hook for `groovy-mode'."
 

@@ -2,6 +2,10 @@
 ;;; Commentary:
 ;;; Code:
 
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-properties-mode-hook ()
   "Properties mode hook."
   (abbrev-mode 1)

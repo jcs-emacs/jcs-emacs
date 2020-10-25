@@ -9,7 +9,6 @@
 
 (add-hook 'org-mode-hook 'org-bullets-mode)
 
-
 (setq org-startup-folded nil)
 
 (setq org-todo-keywords '((sequence "TODO" "WAITING" "DONE"))
@@ -54,7 +53,9 @@
   "Hook for post command in `org-mode'."
   (unless undo-in-progress (jcs-org-table--start-timer)))
 
-;;----------------------------------------------------------------------------
+;;
+;; (@* "Hook" )
+;;
 
 (defun jcs-org-mode-hook ()
   "Org mode hook."

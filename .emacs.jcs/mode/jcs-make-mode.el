@@ -4,6 +4,10 @@
 
 (require 'make-mode)
 
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-makefile-mode-hook ()
   "Makefile mode hook."
   (electric-pair-mode nil)

@@ -4,6 +4,10 @@
 
 (require 'sh-script)
 
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-sh-script-hook()
   "Shell Script mode hook."
 

@@ -4,6 +4,10 @@
 
 (require 'gdscript-mode)
 
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-gdscript-mode-hook ()
   "Godot Script mode hook."
 

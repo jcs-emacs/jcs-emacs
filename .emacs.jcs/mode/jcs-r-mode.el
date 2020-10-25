@@ -4,6 +4,10 @@
 
 (require 'ess-r-mode)
 
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-r-mode-hook ()
   "R mode hook."
 

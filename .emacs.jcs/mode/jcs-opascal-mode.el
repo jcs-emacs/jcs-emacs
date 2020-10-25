@@ -4,6 +4,10 @@
 
 (require 'opascal)
 
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-opascal-mode-hook ()
   "Object Pascal mode hook."
 

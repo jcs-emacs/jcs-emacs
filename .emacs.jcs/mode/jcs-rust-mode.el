@@ -4,6 +4,10 @@
 
 (require 'rust-mode)
 
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-rust-mode-hook ()
   "Rust mode hook."
 

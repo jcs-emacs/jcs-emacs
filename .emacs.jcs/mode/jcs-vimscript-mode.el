@@ -4,6 +4,10 @@
 
 (require 'vimrc-mode)
 
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-vim-mode-hook ()
   "Vimrc mode hook."
 

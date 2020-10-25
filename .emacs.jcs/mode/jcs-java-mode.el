@@ -7,7 +7,9 @@
 
 (setq javadoc-lookup-completing-read-function #'completing-read)
 
-;;----------------------------------------------------------------------------
+;;
+;; (@* "Hook" )
+;;
 
 (defun jcs-java-mode-hook ()
   "Java mode hook."

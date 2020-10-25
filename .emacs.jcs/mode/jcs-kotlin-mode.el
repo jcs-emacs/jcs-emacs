@@ -4,6 +4,10 @@
 
 (require 'kotlin-mode)
 
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-kotlin-mode-hook ()
   "Kotlin mode hook."
   ;; File Header

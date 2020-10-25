@@ -14,6 +14,10 @@
   ;; TODO: Might add it later?
   )
 
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-json-mode-hook ()
   "JSON mode hook."
   (js2-minor-mode -1)

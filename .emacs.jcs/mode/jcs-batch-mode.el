@@ -4,6 +4,10 @@
 
 (require 'bat-mode)
 
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-batch-mode-hook ()
   "Batch mode hook."
 

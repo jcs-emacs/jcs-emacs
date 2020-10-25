@@ -4,6 +4,10 @@
 
 (require 'lua-mode)
 
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-lua-mode-hook ()
   "Lau mode hook."
 

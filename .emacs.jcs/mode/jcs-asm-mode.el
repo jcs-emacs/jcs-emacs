@@ -9,14 +9,18 @@
 
 (defun jcs-asm-mode--init ()
   "Do insert file header and switch major mode picked."
-    (when (and (not jcs-asm--asking-mode)
-               ;; Insert file header.
-               (not (jcs-insert-header-if-valid '("[.]asm"
-                                                  "[.]inc")
-                                                'jcs-asm-ask-source
-                                                :interactive t)))
-      ;; Switch major mode.
-      (let ((jcs-asm--asking-mode t)) (call-interactively #'jcs-asm-ask-mode))))
+  (when (and (not jcs-asm--asking-mode)
+             ;; Insert file header.
+             (not (jcs-insert-header-if-valid '("[.]asm"
+                                                "[.]inc")
+                                              'jcs-asm-ask-source
+                                              :interactive t)))
+    ;; Switch major mode.
+    (let ((jcs-asm--asking-mode t)) (call-interactively #'jcs-asm-ask-mode))))
+
+;;
+;; (@* "Hook" )
+;;
 
 (defun jcs-masm-mode-hook ()
   "MASM mode hook."

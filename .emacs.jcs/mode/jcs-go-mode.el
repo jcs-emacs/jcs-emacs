@@ -4,6 +4,10 @@
 
 (require 'go-mode)
 
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-go-mode-hook ()
   "Go mode hook."
 

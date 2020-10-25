@@ -4,6 +4,10 @@
 
 (require 'message)
 
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-message-mode-hook ()
   "Message mode hook."
   (electric-pair-mode nil)

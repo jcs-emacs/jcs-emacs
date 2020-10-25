@@ -6,6 +6,10 @@
 
 (require 'jcs-web-func)
 
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-xml-mode-hook ()
   "XML mode hook."
   (auto-rename-tag-mode 1)

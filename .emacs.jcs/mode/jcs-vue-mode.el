@@ -9,6 +9,10 @@
 (require 'typescript-mode)
 (require 'web-mode)
 
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-vue-mode-hook ()
   "Vue mode hook."
   (set-face-background 'mmm-default-submode-face "#000000")

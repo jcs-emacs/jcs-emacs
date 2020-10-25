@@ -6,6 +6,10 @@
 
 (require 'jcs-python-func)
 
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-dockerfile-mode-hook ()
   "Dokerfile mode hook."
 

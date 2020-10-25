@@ -5,6 +5,10 @@
 (require 'css-mode)
 (require 'ssass-mode)
 
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-sass-mode-hook ()
   "Sass mode hook."
 

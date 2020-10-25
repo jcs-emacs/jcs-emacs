@@ -4,6 +4,10 @@
 
 (require 'shell)
 
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-shell-mode-hook ()
   "Shell mode hook."
   (company-fuzzy-mode -1)

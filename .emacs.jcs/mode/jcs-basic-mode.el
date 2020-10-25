@@ -4,6 +4,10 @@
 
 (require 'basic-mode)
 
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-basic-mode-hook ()
   "Hook for `basic-mode'."
 

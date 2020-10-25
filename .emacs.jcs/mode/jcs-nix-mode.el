@@ -4,6 +4,10 @@
 
 (require 'nix-mode)
 
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-nix-mode-hook ()
   "Hook for `nix-mode'."
 

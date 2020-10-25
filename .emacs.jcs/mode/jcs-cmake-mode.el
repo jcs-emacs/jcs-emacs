@@ -7,6 +7,10 @@
 
 (require 'jcs-make-func)
 
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-cmake-mode-hook ()
   "CMake mode hook."
 

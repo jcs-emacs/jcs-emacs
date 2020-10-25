@@ -4,6 +4,10 @@
 
 (require 'ruby-mode)
 
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-ruby-mode-hook ()
   "Ruby mode hook."
 

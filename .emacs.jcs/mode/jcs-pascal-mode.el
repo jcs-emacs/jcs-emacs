@@ -4,6 +4,10 @@
 
 (require 'pascal)
 
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-pascal-mode-hook ()
   "Pascal mode hook."
 

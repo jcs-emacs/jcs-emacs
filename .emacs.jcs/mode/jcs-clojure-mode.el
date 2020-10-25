@@ -4,6 +4,10 @@
 
 (require 'clojure-mode)
 
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-clojure-mode-hook ()
   "Clojure mode hook."
 

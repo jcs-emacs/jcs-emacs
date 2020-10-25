@@ -4,6 +4,10 @@
 
 (require 'ini-mode)
 
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-ini-mode-hook ()
   "INI mode hook."
 

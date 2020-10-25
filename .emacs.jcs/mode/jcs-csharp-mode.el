@@ -4,6 +4,10 @@
 
 (require 'csharp-mode)
 
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-csharp-mode-hook ()
   "CSharp mode hook."
   (preproc-font-lock-mode t)

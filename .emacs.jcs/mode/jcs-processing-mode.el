@@ -14,6 +14,10 @@
 ;; to set the processing-output-dir to another directory:
 ;;(setq processing-output-dir "/tmp")
 
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-processing-mode-hook ()
   "Hook for processing mode."
 

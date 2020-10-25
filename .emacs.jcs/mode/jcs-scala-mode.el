@@ -4,6 +4,10 @@
 
 (require 'scala-mode)
 
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-scala-mode-hook ()
   "Scala mode hook."
 

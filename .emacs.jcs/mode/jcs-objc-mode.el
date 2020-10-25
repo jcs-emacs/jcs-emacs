@@ -2,6 +2,10 @@
 ;;; Commentary:
 ;;; Code:
 
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-objc-mode-hook ()
   "Objective-C mode hook."
 

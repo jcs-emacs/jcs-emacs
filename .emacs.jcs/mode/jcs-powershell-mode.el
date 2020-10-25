@@ -4,6 +4,10 @@
 
 (require 'powershell)
 
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-powershell-mode-hook ()
   "PowerShell mode hook."
 

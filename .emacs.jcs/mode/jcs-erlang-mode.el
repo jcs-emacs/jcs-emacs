@@ -4,6 +4,10 @@
 
 (require 'erlang)
 
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-erlang-mode-hook ()
   "Erlang mode hook."
 

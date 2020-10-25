@@ -31,7 +31,9 @@
            (setq to-jsx t)))
     (when to-jsx (jcs--js-to-jsx-mode t))))
 
-;;----------------------------------------------------------------------------
+;;
+;; (@* "Hook" )
+;;
 
 (defun jcs-js-mode-hook ()
   "Mode hook for JavaScript mode."

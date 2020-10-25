@@ -4,6 +4,10 @@
 
 (require 'fountain-mode)
 
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-fountain-mode-hook ()
   "Fountain mode hook."
   ;; File Header

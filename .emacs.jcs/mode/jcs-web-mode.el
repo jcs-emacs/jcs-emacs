@@ -2,8 +2,9 @@
 ;;; Commentary: Including HTML, CSS, PHP, JavaScript, JSON.
 ;;; Code:
 
-;;----------------------------------------------------------------------------
-;; Real time editing mark down (impatient-mode)
+;;
+;; (@* "Real time editing" )
+;;
 
 ;; Note for "Impatient Mode" (real time editing)
 ;; Step 1: M-x httpd-start        (Open the port default: 8080)
@@ -11,15 +12,17 @@
 
 (require 'impatient-mode)
 
-;;----------------------------------------------------------------------------
-;;; Web Dev useful packages.
+;;
+;; (@* "Related Packages" )
+;;
 
 (require 'auto-rename-tag)
 (require 'emmet-mode)
 (require 'htmltagwrap)
 
-;;----------------------------------------------------------------------------
-;; Core
+;;
+;; (@* "Hook" )
+;;
 
 (require 'web-mode)
 

@@ -4,6 +4,10 @@
 
 (require 'typescript-mode)
 
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-typescript-mode-hook ()
   "TypeScript mode hook."
 

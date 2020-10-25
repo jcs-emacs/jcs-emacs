@@ -4,6 +4,10 @@
 
 (require 'verilog-mode)
 
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-verilog-mode-hook ()
   "Verilog mode hook."
 

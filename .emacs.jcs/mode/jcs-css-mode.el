@@ -9,6 +9,10 @@
 
 (require 'jcs-web-func)
 
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-css-mode-hook ()
   "Hook for CSS mode."
   (impatient-mode t)

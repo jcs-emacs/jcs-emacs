@@ -4,6 +4,10 @@
 
 (require 'elixir-mode)
 
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-elixir-mode-hook ()
   "Elixir mode hook."
 

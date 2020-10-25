@@ -4,6 +4,10 @@
 
 (require 'jcs-cc-mode)
 
+;;
+;; (@* "Unreal Engine" )
+;;
+
 (defun jcs-unreal-c++-api-name ()
   "Return the name of the Unreal API for current file."
   (let* ((path (buffer-file-name))
@@ -19,7 +23,9 @@
   "Return the lowercase Unreal C++ API name."
   (downcase (jcs-unreal-c++-api-name)))
 
-;;----------------------------------------------------------------------------
+;;
+;; (@* "Header" )
+;;
 
 (defun jcs-c++-unreal-insert-header (type)
   "Insert the Unreal C++ header depends on if is a header/source file."
@@ -49,7 +55,9 @@
   (cond ((string= sc "Default") (jcs-cc-insert-header))
         ((string= sc "Unreal Scripting") (call-interactively #'jcs-c++-ask-unreal-source-type))))
 
-;;----------------------------------------------------------------------------
+;;
+;; (@* "Hook" )
+;;
 
 (defun jcs-c++-mode-hook ()
   "C++ mode handling"

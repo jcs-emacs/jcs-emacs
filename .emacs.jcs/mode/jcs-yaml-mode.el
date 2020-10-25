@@ -7,6 +7,10 @@
 (require 'jcs-python-func)
 (require 'jcs-yaml-func)
 
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-yaml-mode-hook ()
   "YAML mode hook."
 

@@ -4,6 +4,10 @@
 
 (require 'perl-mode)
 
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-perl-mode-hook ()
   "Perl mode hook."
 

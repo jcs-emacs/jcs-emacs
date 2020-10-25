@@ -5,6 +5,10 @@
 (require 'python)
 (require 'python-mode)
 
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-python-mode-hook ()
   "Python mode hook."
 
