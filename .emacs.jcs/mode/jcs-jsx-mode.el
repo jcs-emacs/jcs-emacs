@@ -22,12 +22,11 @@
 ;; (@* "Faces" )
 ;;
 
-(set-face-attribute 'rjsx-tag nil
-                    :inherit 'web-mode-html-tag-bracket-face)
-
-(set-face-attribute 'rjsx-attr nil
-                    :inherit 'web-mode-html-attr-name-face)
-
+(custom-set-faces
+ '(rjsx-tag ((t (:foreground "#87CEFA"))))
+ '(rjsx-attr ((t (:foreground "#EEDD82"))))
+ '(rjsx-text ((t (:inherit default))))
+ '(rjsx-tag-bracket-face ((t (:inherit 'web-mode-html-attr-name-face)))))
 
 ;;
 ;; (@* "Hook" )
