@@ -38,27 +38,28 @@ AC-LST and INAC-LST are same arguments to `jcs--set-mode-line-color'."
 
 (defun jcs-powerline-set-theme-faces (ac-lst inac-lst)
   "Set `powerline' them faces with AC-LST and INAC-LST."
-  (progn
-    (set-face-foreground 'powerline-active0 (nth 0 ac-lst))
-    (set-face-background 'powerline-active0 (nth 1 ac-lst))
+  (when (featurep 'powerline)
+    (progn
+      (set-face-foreground 'powerline-active0 (nth 0 ac-lst))
+      (set-face-background 'powerline-active0 (nth 1 ac-lst))
 
-    (set-face-foreground 'powerline-active1 (nth 2 ac-lst))
-    (set-face-background 'powerline-active1 (nth 3 ac-lst))
+      (set-face-foreground 'powerline-active1 (nth 2 ac-lst))
+      (set-face-background 'powerline-active1 (nth 3 ac-lst))
 
-    (set-face-foreground 'powerline-active2 (nth 4 ac-lst))
-    (set-face-background 'powerline-active2 (nth 5 ac-lst)))
+      (set-face-foreground 'powerline-active2 (nth 4 ac-lst))
+      (set-face-background 'powerline-active2 (nth 5 ac-lst)))
 
-  (progn
-    (set-face-foreground 'powerline-inactive0 (nth 0 inac-lst))
-    (set-face-background 'powerline-inactive0 (nth 1 inac-lst))
+    (progn
+      (set-face-foreground 'powerline-inactive0 (nth 0 inac-lst))
+      (set-face-background 'powerline-inactive0 (nth 1 inac-lst))
 
-    (set-face-foreground 'powerline-inactive1 (nth 2 inac-lst))
-    (set-face-background 'powerline-inactive1 (nth 3 inac-lst))
+      (set-face-foreground 'powerline-inactive1 (nth 2 inac-lst))
+      (set-face-background 'powerline-inactive1 (nth 3 inac-lst))
 
-    (set-face-foreground 'powerline-inactive2 (nth 4 inac-lst))
-    (set-face-background 'powerline-inactive2 (nth 5 inac-lst)))
+      (set-face-foreground 'powerline-inactive2 (nth 4 inac-lst))
+      (set-face-background 'powerline-inactive2 (nth 5 inac-lst)))
 
-  (powerline-reset))
+    (powerline-reset)))
 
 (defun jcs--set-mode-line-theme (ml-ac-lst ml-inac-lst bc power-ac-lst power-inac-lst)
   "Set the mode line theme.
