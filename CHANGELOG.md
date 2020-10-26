@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-10-26
+
+* Fixed marking whole buffer logic bug.
+* Bind `expand-region` keys to global key map as common use.
+
 ### 2020-10-25
 
 * Customize `rjsx-mode`'s highlight faces.
