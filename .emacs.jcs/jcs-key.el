@@ -239,6 +239,10 @@
 (define-key global-map (kbd "C-e e") #'eval-expression)
 (define-key global-map (kbd "C-e r") #'eval-region)
 
+;;; Expand Region
+(define-key global-map (kbd "C-+") #'er/expand-region)
+(define-key global-map (kbd "C-_") #'jcs-er/contract-region)
+
 ;;; File Explorer
 (define-key global-map (kbd "C-M-l") #'neotree-toggle)  ; Compatible to `Visual Studio'.
 (define-key global-map (kbd "C-b") #'neotree-toggle)    ; Compatible to `VS Code'.
