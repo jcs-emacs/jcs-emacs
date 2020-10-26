@@ -1536,12 +1536,23 @@ IGNORE-ERRORS-T : ignore errors for this function?"
   (interactive)
   (message "Current string: %s" (jcs-string-at-point)))
 
-(defun jcs-string-compare-p (regexp str &optional strict)
-  "Compare STR with REGEXP.
+(defun jcs-string-compare-p (regexp str type &optional ignore-case)
+  "Compare STR with REGEXP by TYPE.
 
-If optional argument is non-nil, we use operator `string=' instead of
-function `string-match-p'."
-  (if strict (string= regexp str) (string-match-p regexp str)))
+Argument TYPE can be on of the following symbol.
+  - regex (default) - uses function `string-match-p'.
+  - strict - uses function `string='.
+  - prefix - uses function `string-prefix-p'.
+  - suffix - uses function `string-suffix-p'.
+
+Optional argument IGNORE-CASE is only uses when TYPE is either symbol `prefix' 
+or `suffix'."
+  (require 'cl-lib)
+  (cl-case type
+    (strict (string= regexp str))
+    (prefix (string-prefix-p regexp str ignore-case))
+    (suffix (string-suffix-p regexp str ignore-case))
+    (t (string-match-p regexp str))))
 
 (defun jcs-hash-string (str)
   "Hash STR using md5."
