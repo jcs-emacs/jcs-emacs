@@ -199,15 +199,12 @@
 
 (defun jcs-pre-command-hook ()
   "Hook run before every command."
-  (when jcs--marking-whole-buffer-p
-    (unless (= jcs--marking-whole-buffer--curosr-pos (point))
-      (deactivate-mark)
-      (setq jcs--marking-whole-buffer--curosr-pos -1)
-      (setq jcs--marking-whole-buffer-p nil))))
+  )
 (add-hook 'pre-command-hook 'jcs-pre-command-hook)
 
 (defun jcs-post-command-hook ()
   "Hook run after every command."
+  (jcs--mark-whole-buffer-resolve)
   (jcs-reload-active-mode-with-error-handle)
   (unless (display-graphic-p) (jcs-feebleline-display-mode-line-graphic)))
 (add-hook 'post-command-hook 'jcs-post-command-hook)
