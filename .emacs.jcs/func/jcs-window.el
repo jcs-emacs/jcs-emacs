@@ -101,31 +101,27 @@ of utility frame."
        (lambda () (push (buffer-name) buffers)))
       buffers)))
 
-(defun jcs-buffer-shown-count (in-buf-name &optional strict)
+(defun jcs-buffer-shown-count (in-buf-name &optional type)
   "Return the count of the IN-BUF-NAME shown.
 
-If optional argument STRICT is non-nil; then it will use string comparison
-instead of regular expression comparison."
-  (let ((displayed-frame-count 0)
-        (bv-lst (jcs-buffer-visible-list)))
+For argument TYPE; see function `jcs-string-compare-p' for description."
+  (let ((bv-lst (jcs-buffer-visible-list)) (cnt 0))
     (dolist (buf bv-lst)
-      (let ((do-action
-             (if strict (string= in-buf-name buf) (string-match-p in-buf-name buf))))
-        (when do-action
-          (setq displayed-frame-count (+ displayed-frame-count 1)))))
-    displayed-frame-count))
+      (when (jcs-string-compare-p in-buf-name buf type)
+        (setq cnt (1+ cnt))))
+    cnt))
 
-(defun jcs-buffer-shown-p (in-buf-name &optional strict)
+(defun jcs-buffer-shown-p (in-buf-name &optional type)
   "Check if IN-BUF-NAME shown in program.
 
-See function `jcs-buffer-shown-count' description for argument STRICT."
-  (>= (jcs-buffer-shown-count in-buf-name strict) 1))
+For argument TYPE; see function `jcs-string-compare-p' for description."
+  (>= (jcs-buffer-shown-count in-buf-name type) 1))
 
-(defun jcs-buffer-shown-in-multiple-window-p (in-buf-name &optional strict)
+(defun jcs-buffer-shown-in-multiple-window-p (in-buf-name &optional type)
   "Check if IN-BUF-NAME shown in multiple windows.
 
-See function `jcs-buffer-shown-count' description for argument STRICT."
-  (>= (jcs-buffer-shown-count in-buf-name strict) 2))
+For argument TYPE; see function `jcs-string-compare-p' for description."
+  (>= (jcs-buffer-shown-count in-buf-name type) 2))
 
 ;;;###autoload
 (defun jcs-walk-through-all-windows-once (&optional fnc minibuf do-advice util)
