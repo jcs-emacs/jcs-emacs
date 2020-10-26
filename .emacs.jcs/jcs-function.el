@@ -345,6 +345,7 @@ OW is the other window flag."
           (setq jcs-dashboard--last-current-path dashboard-ls-path)
           (jcs-safe-jump-shown-to-buffer
            dashboard-buffer-name
+           :type 'strict
            :success (lambda () (jcs-dashboard-refresh-buffer))))))))
 
 ;;;###autoload
