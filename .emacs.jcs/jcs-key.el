@@ -164,8 +164,8 @@
 (define-key global-map (kbd "C-M-<up>") #'jcs-scroll-down-line)
 (define-key global-map (kbd "C-M-<down>") #'jcs-scroll-up-line)
 
-(define-key global-map (kbd "C-M-<left>") #'buf-move-left)
-(define-key global-map (kbd "C-M-<right>") #'buf-move-right)
+(bind-key* (kbd "C-M-<left>") #'buf-move-left)
+(bind-key* (kbd "C-M-<right>") #'buf-move-right)
 
 (progn  ; Navigating General Programming Symbols
   (define-key global-map (kbd "M-)") #'jcs-move-forward-close-paren)
