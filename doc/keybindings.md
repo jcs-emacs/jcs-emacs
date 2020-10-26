@@ -92,6 +92,11 @@ Here is the list of key bindins that defined in this configuration.
     * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>[</kbd> - Collapse current folding.
     * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>]</kbd> - Expand current folding.
 
+  * **Expand Region**
+
+    * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>=</kbd> - Expand region from current point.
+    * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>-</kbd> - Contract region from current point.
+
   * **Case**
 
     * <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>u</kbd> - Uppercase word or region.
