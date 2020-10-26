@@ -13,20 +13,29 @@
       (unless (or (ignore-errors (switch-to-buffer-other-window win-name)))
         (switch-to-buffer-other-window win-name)))))
 
-(defun jcs-safe-jump-shown-to-buffer (in-buffer-name &optional fnc exp-fnc)
-  "Safely jump to IN-BUFFER-NAME's window and execute FNC with EXP-FNC."
+(cl-defun jcs-safe-jump-shown-to-buffer (in-buffer-name &key success error strict)
+  "Safely jump to IN-BUFFER-NAME's window and execute FNC.
+
+If IN-BUFFER-NAME isn't showing; then execute EXP-FNC instead.
+
+If argument STRICT is non-nil; we compare string stricly instead comparing it as
+regular expression."
   (when (jcs-buffer-shown-p in-buffer-name)
     (save-selected-window
       (let ((fm (selected-frame)))
-        (if (jcs-jump-shown-to-buffer in-buffer-name t)
-            (when fnc (funcall fnc))
-          (when exp-fnc (funcall exp-fnc)))
+        (if (jcs-jump-shown-to-buffer in-buffer-name t strict)
+            (when success (funcall success))
+          (when error (funcall error)))
         (select-frame-set-input-focus fm)))))
 
 ;;;###autoload
-(defun jcs-jump-shown-to-buffer (in-buffer-name &optional no-error)
+(defun jcs-jump-shown-to-buffer (in-buffer-name &optional no-error strict)
   "Jump to the IN-BUFFER-NAME if the buffer current shown in the window.
-If NO-ERROR non-nil then it won't treat action as an error."
+
+If optional argument NO-ERROR is non-nil; then it won't trigger error.
+
+If optional argument STRICT is non-nil; we compare string stricly instead comparing
+it as regular expression."
   (interactive "bEnter buffer to jump to: ")
   (let ((found nil))
     (when (jcs-buffer-shown-p in-buffer-name)
@@ -35,7 +44,7 @@ If NO-ERROR non-nil then it won't treat action as an error."
           ;; NOTE: we use `string-match-p' instead of `string=' because some
           ;; buffer cannot be detected in the buffer list. For instance,
           ;; `*undo-tree*' is buffer that cannot be detected for some reason.
-          (if (string-match-p in-buffer-name (jcs-buffer-name-or-buffer-file-name))
+          (if (jcs-string-compare-p in-buffer-name (jcs-buffer-name-or-buffer-file-name) strict)
               (setq found t)
             (other-window 1 t))
           (setq index (1+ index)))))
