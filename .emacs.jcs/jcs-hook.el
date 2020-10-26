@@ -56,7 +56,7 @@
 (defun jcs--switch-to-buffer--advice-around (fnc &rest args)
   "Advice execute around `switch-to-buffer' function."
   (apply fnc args)
-  (unless (jcs-buffer-shown-p dashboard-buffer-name)
+  (unless (jcs-buffer-shown-p dashboard-buffer-name 'strict)
     (jcs-dashboard-safe-refresh-buffer)))
 (advice-add 'switch-to-buffer :around #'jcs--switch-to-buffer--advice-around)
 

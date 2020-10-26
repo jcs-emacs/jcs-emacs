@@ -1101,7 +1101,7 @@ other window."
   (interactive)
   (let ((must-kill-buf-p
          (jcs-is-contain-list-string-regexp jcs-must-kill-buffer-list (buffer-name)))
-        (shown-multiple-p (jcs-buffer-shown-in-multiple-window-p (buffer-name) t))
+        (shown-multiple-p (jcs-buffer-shown-in-multiple-window-p (buffer-name) 'strict))
         (cur-buf (current-buffer))
         is-killed)
     (if (or shown-multiple-p (jcs-virtual-buffer-p))
@@ -1117,7 +1117,7 @@ other window."
       ;; then we do switch to previous buffer again. Hence, it will not show
       ;; repeated buffer at the same time in different windows.
       (when (and (not ecp-same)
-                 (jcs-buffer-shown-in-multiple-window-p (buffer-name) t))
+                 (jcs-buffer-shown-in-multiple-window-p (buffer-name) 'strict))
         (jcs-bury-buffer)
 
         ;; If is something from default Emacs's buffer, switch back to previous

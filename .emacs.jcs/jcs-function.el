@@ -212,7 +212,7 @@
 (defun jcs--buffer-menu--advice-around (fnc &rest args)
   "Advice execute around `buffer-menu' command."
   (if (and (get-buffer jcs-buffer-menu-buffer-name)
-           (jcs-buffer-shown-p jcs-buffer-menu-buffer-name)
+           (jcs-buffer-shown-p jcs-buffer-menu-buffer-name 'strict)
            (not (string= (buffer-name) jcs-buffer-menu-buffer-name)))
       (switch-to-buffer jcs-buffer-menu-buffer-name)
     (apply fnc args)))
@@ -324,7 +324,7 @@ OW is the other window flag."
   "Update dashboard buffer by killing it and start a new one."
   (interactive)
   (when (or (not jcs-emacs-ready-p)
-            (jcs-buffer-shown-p dashboard-buffer-name)
+            (jcs-buffer-shown-p dashboard-buffer-name 'strict)
             jcs-dashboard--force-refresh-p)
     (jcs-mute-apply
       (jcs-window-record-once)
@@ -335,7 +335,7 @@ OW is the other window flag."
 
 (defun jcs-dashboard-safe-refresh-buffer ()
   "Safely refresh the dashboard buffer if needed."
-  (when (jcs-buffer-shown-p dashboard-buffer-name)
+  (when (jcs-buffer-shown-p dashboard-buffer-name 'strict)
     (unless jcs-dashboard--switch-buffer-refreshing-p
       (let ((jcs-dashboard--switch-buffer-refreshing-p t)
             (dashboard-ls-path (if (buffer-file-name)
