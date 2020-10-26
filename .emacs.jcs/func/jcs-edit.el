@@ -290,10 +290,18 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
 ;;
 
 (defvar-local jcs--marking-whole-buffer-p nil
-  "Marking the whole buffer now?")
+  "Flag to see if currently marking the whole buffer.")
 
 (defvar-local jcs--marking-whole-buffer--curosr-pos -1
   "Record down the cursor position.")
+
+(defun jcs--mark-whole-buffer-resolve ()
+  "Resolve while marking the whole buffer."
+  (when jcs--marking-whole-buffer-p
+    (unless (= jcs--marking-whole-buffer--curosr-pos (point))
+      (deactivate-mark)
+      (setq jcs--marking-whole-buffer--curosr-pos -1)
+      (setq jcs--marking-whole-buffer-p nil))))
 
 ;;;###autoload
 (defun jcs-mark-whole-buffer ()
