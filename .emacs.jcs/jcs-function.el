@@ -327,11 +327,11 @@ OW is the other window flag."
             (jcs-buffer-shown-p dashboard-buffer-name)
             jcs-dashboard--force-refresh-p)
     (jcs-mute-apply
-     (jcs-window-record-once)
-     (when (jcs-buffer-exists-p dashboard-buffer-name)
-       (kill-buffer dashboard-buffer-name))
-     (dashboard-insert-startupify-lists)
-     (jcs-window-restore-once))))
+      (jcs-window-record-once)
+      (when (jcs-buffer-exists-p dashboard-buffer-name)
+        (kill-buffer dashboard-buffer-name))
+      (dashboard-insert-startupify-lists)
+      (jcs-window-restore-once))))
 
 (defun jcs-dashboard-safe-refresh-buffer ()
   "Safely refresh the dashboard buffer if needed."
@@ -419,6 +419,17 @@ OW is the other window flag."
   (interactive)
   (require 'expand-region)
   (er/contract-region 1))
+
+(defvar-local jcs--er/marking-p nil
+  "Resolve marking for `expand-region'.")
+
+(defun jcs--er/resolve-region ()
+  "Resolve marking while no longer expanding region."
+  (if (memq this-command '(er/expand-region er/contract-region jcs-er/contract-region))
+      (setq jcs--er/marking-p t)
+    (when jcs--er/marking-p
+      (setq jcs--er/marking-p nil)
+      (deactivate-mark))))
 
 ;;
 ;; (@* "Iedit" )
