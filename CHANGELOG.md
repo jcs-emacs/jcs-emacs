@@ -9,6 +9,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 * Fixed marking whole buffer logic bug.
 * Bind `expand-region` keys to global key map as common use.
+* Added resolve expand region makring after operation commands.
 
 ### 2020-10-25
 
