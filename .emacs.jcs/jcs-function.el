@@ -224,7 +224,6 @@
     (setq-local tabulated-list--header-string jcs--buffer-menu-search-title)))
 (advice-add 'buffer-menu :after #'jcs--buffer-menu--advice-after)
 
-
 (defvar jcs-buffer--menu-switch-buffer-refreshing nil
   "Flag to check if current buffer menu refresing.")
 
@@ -409,6 +408,17 @@ OW is the other window flag."
   "Append a list of pair (LST-PR) to current buffer."
   (setq-local electric-pair-pairs (append electric-pair-pairs lst-pr))
   (setq-local electric-pair-text-pairs electric-pair-pairs))
+
+;;
+;; (@* "Expand Region" )
+;;
+
+;;;###autoload
+(defun jcs-er/contract-region ()
+  "Wrapper for function `er/contract-region' from `expand-region'."
+  (interactive)
+  (require 'expand-region)
+  (er/contract-region 1))
 
 ;;
 ;; (@* "Iedit" )
