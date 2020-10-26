@@ -379,9 +379,8 @@
 ;;; Open same file in other window.
 (progn
   (define-key global-map (kbd "<f7>") #'jcs-same-file-other-window)
-  ;; NOTE: If there are corresponding file, then
-  ;; key <f8> should be replace by find corresponding file
-  ;; interactive function call.
+  ;; NOTE: If there are corresponding file, then key <f8> should be replace
+  ;; by find corresponding file interactive function call.
   (define-key global-map (kbd "<f8>") #'jcs-same-file-other-window))
 
 ;;; Open TODO file.
