@@ -246,7 +246,6 @@
 ;;; File editing
 (define-key global-map (kbd "M-k") #'jcs-maybe-kill-this-buffer)
 (define-key global-map (kbd "M-K") #'jcs-reopen-this-buffer)
-;;(define-key global-map (kbd "M-k") #'jcs-kill-this-buffer)
 (define-key global-map [tab] #'jcs-tab-key)
 
 ;;; File Files
