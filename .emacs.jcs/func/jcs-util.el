@@ -1536,6 +1536,13 @@ IGNORE-ERRORS-T : ignore errors for this function?"
   (interactive)
   (message "Current string: %s" (jcs-string-at-point)))
 
+(defun jcs-string-compare-p (regexp str &optional strict)
+  "Compare STR with REGEXP.
+
+If optional argument is non-nil, we use operator `string=' instead of
+function `string-match-p'."
+  (if strict (string= regexp str) (string-match-p regexp str)))
+
 (defun jcs-hash-string (str)
   "Hash STR using md5."
   (declare (side-effect-free t))
