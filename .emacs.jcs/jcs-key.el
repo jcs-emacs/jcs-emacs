@@ -580,7 +580,11 @@
   (define-key undo-tree-visualizer-mode-map (kbd "RET") #'undo-tree-visualizer-quit)
   ;; STUDY: `undo-tree''s minor mode will overwrite the global key map's
   ;; key bindings. What we need to do is to remap this again...
-  (define-key undo-tree-map (kbd "C-/") #'jcs-comment-uncomment-region-or-line))
+  (define-key undo-tree-map (kbd "C-/") #'jcs-comment-uncomment-region-or-line)
+  (define-key undo-tree-map (kbd "C-/") nil)
+  (define-key undo-tree-map "\C-_" nil)
+  (define-key undo-tree-map (kbd "C-?") nil)
+  (define-key undo-tree-map (kbd "M-_") nil))
 
 ;;; Whitespace
 (define-key global-map (kbd "C-k b") #'whitespace-mode)
