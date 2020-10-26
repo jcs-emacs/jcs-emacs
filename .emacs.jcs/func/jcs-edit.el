@@ -83,7 +83,8 @@ This will no longer overwrite usual Emacs' undo key."
   (require 'undo-tree)
   (jcs-safe-jump-shown-to-buffer
    undo-tree-visualizer-buffer-name
-   (lambda () (bury-buffer))))
+   :strict t
+   :success (lambda () (bury-buffer))))
 
 (defun jcs-undo-tree-visualize (&optional cbf)
   "Call `undo-tree-visualize' only in window that has higher height.
@@ -136,7 +137,7 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
       (call-interactively #'undo)  ; In Emacs, undo/redo is the same thing.
     (save-selected-window
       (let ((record-window (selected-window))
-            (jumped-to-utv (jcs-jump-shown-to-buffer undo-tree-visualizer-buffer-name t)))
+            (jumped-to-utv (jcs-jump-shown-to-buffer undo-tree-visualizer-buffer-name t t)))
         ;; NOTE: If we do jumped to the `undo-tree-visualizer-buffer-name'
         ;; buffer, then we use `undo-tree-visualize-redo' instead of
         ;; `undo-tree-redo'. Because directly called `undo-tree-visualize-redo'
@@ -1057,7 +1058,7 @@ NO-RECORD and FORCE-SAME-WINDOW are the same as switch to buffer arguments."
         (undoing-buffer-name nil)
         (jumped-to-utv nil))
     (save-selected-window
-      (setq jumped-to-utv (jcs-jump-shown-to-buffer undo-tree-visualizer-buffer-name t))
+      (setq jumped-to-utv (jcs-jump-shown-to-buffer undo-tree-visualizer-buffer-name t t))
       (when jumped-to-utv
         (setq undoing-buffer-name (buffer-name undo-tree-visualizer-parent-buffer))))
 

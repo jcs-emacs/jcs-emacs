@@ -345,7 +345,7 @@ OW is the other window flag."
           (setq jcs-dashboard--last-current-path dashboard-ls-path)
           (jcs-safe-jump-shown-to-buffer
            dashboard-buffer-name
-           (lambda () (jcs-dashboard-refresh-buffer))))))))
+           :success (lambda () (jcs-dashboard-refresh-buffer))))))))
 
 ;;;###autoload
 (defun jcs-dashboard-maybe-kill-this-buffer ()
@@ -524,9 +524,9 @@ OW is the other window flag."
         (when  (yes-or-no-p "There is video playing, kill it? ")
           (jcs-safe-jump-shown-to-buffer
            "[*]ffmpeg-player[*]: "
-           (lambda () (jcs-media-close-media-window))
-           (lambda () (with-current-buffer ffmpeg-player--buffer
-                        (jcs-media-close-media-window))))
+           :success (lambda () (jcs-media-close-media-window))
+           :error (lambda () (with-current-buffer ffmpeg-player--buffer
+                               (jcs-media-close-media-window))))
           (setq do-play t))
       (setq do-play t))
     (when do-play

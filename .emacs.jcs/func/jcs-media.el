@@ -14,14 +14,18 @@
       (buf-move-down))
     (jcs-move-to-upmost-window t)
     (switch-to-buffer ffmpeg-player--buffer)
-    (jcs-safe-jump-shown-to-buffer "[*]ffmpeg-player[*]: " )
-    (shrink-window jcs-windows--enlarge-shrink-times)))
+    (jcs-safe-jump-shown-to-buffer
+     "[*]ffmpeg-player[*]: "
+     :success
+     (lambda ()
+       (shrink-window jcs-windows--enlarge-shrink-times)))))
 
 (defun jcs-media-close-media-window ()
   "Close the media window."
   (interactive)
   (jcs-safe-jump-shown-to-buffer
    "[*]ffmpeg-player[*]: "
+   :success
    (lambda ()
      (let ((bot-window nil))
        (save-selected-window
