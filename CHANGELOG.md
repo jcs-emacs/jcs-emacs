@@ -10,7 +10,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Fixed marking whole buffer logic bug.
 * Bind `expand-region` keys to global key map as common use.
 * Added resolve expand region makring after operation commands.
-* Added strict compare string utility function.
+* Added `type` compare string utility function.
+* Changed from `strict` to `type` when counting shown buffer.
 
 ### 2020-10-25
 
