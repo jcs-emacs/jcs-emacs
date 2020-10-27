@@ -156,7 +156,9 @@ Optional argument LAST-RESULT is the last output result from recursive function.
 (defun jcs-dir-to-dirname (path &optional full)
   "Return list of directory by PATH.
 If Optional argument FULL is non-nil; return full path."
-  (let ((types '()) (files (directory-files path t)) fn)
+  (let ((types '())
+        (files (ignore-errors (directory-files path t)))
+        fn)
     (dolist (file files)
       (when (jcs-is-directory-p file)
         (setq fn (file-name-nondirectory file))
@@ -171,7 +173,8 @@ Optional argument EXT is the extension filter.
 If Optional argument FULL is non-nil; return full path.
 If Optional argument WITH-EXT is non-nil; return path with extension."
   (let ((types '()) fn
-        (files (directory-files path t (if ext (format "\\%s$" ext) nil))))
+        (files (ignore-errors
+                 (directory-files path t (if ext (format "\\%s$" ext) nil)))))
     (dolist (file files)
       (when (jcs-is-file-p file)
         (setq fn (file-name-nondirectory file))
