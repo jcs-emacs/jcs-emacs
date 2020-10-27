@@ -49,6 +49,7 @@
   (interactive)
   (jcs-safe-jump-shown-to-buffer
    (multi-shell--prefix-name)
+   :type 'prefix
    :success (lambda () (jcs-shell-delete-window))
    :error (lambda ()
             (user-error (format "No \"%s\" buffer found" (multi-shell--prefix-name))))))
