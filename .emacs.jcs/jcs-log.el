@@ -11,7 +11,8 @@
 
 (defun jcs-message (fmt &rest args)
   "Log a message with FMT and ARGS.
-Acts like `message' but preserves string properties in the *Messages* buffer."
+
+Acts like `message' but preserves text properties in the *Messages* buffer."
   (jcs-no-log-apply (apply 'message fmt args))
   (with-current-buffer (get-buffer "*Messages*")
     (save-excursion
@@ -32,14 +33,21 @@ Acts like `message' but preserves string properties in the *Messages* buffer."
 ;;
 
 (defun jcs-log-list-clean (lst &optional in-prefix-msg in-val-del)
-  "Log out a LST in clean *Messages* buffer with IN-PREFIX-MSG and IN-VAL-DEL."
+  "Log out a LST in a clean way.
+
+For arguments IN-PREFIX-MSG and IN-VAL-DEL; see function `jcs-log-list'
+for description."
   (jcs-do-before-log-action t)
   (apply 'jcs-log-list lst in-prefix-msg in-val-del))
 
 (defun jcs-log-list (lst &optional in-prefix-msg in-val-del)
-  "Log out a LST.
-IN-PREFIX-MSG : prefix message.
-IN-VAL-DEL : value delimiter."
+  "Log out the LST.
+
+The LST object can either be list, vector, array, or hast-table.
+
+Optional argument IN-PREFIX-MSG is the string added before each item.
+
+Optional argument IN-VAL-DEL is string that point to item."
   (cond ((and (not (listp lst)) (not (vectorp lst)) (not (arrayp lst))
               (not (hash-table-p lst)))
          (user-error "[ERROR] Can't log list with this data object: %s" lst))
