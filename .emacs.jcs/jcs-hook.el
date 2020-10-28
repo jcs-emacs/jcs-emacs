@@ -199,7 +199,7 @@
 
 (defun jcs-pre-command-hook ()
   "Hook run before every command."
-  )
+  (jcs--er/record-history))
 (add-hook 'pre-command-hook 'jcs-pre-command-hook)
 
 (defun jcs-post-command-hook ()
