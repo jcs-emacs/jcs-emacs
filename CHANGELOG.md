@@ -9,6 +9,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 * Diminished the buffer `*VC-history*` as default behaviour.
 * Improved better default face for `markdown-mode`.
+* Installed new package `0xc`.
 
 ### 2020-10-27
 
