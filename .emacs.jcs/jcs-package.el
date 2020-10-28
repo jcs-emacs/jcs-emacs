@@ -54,19 +54,16 @@
     cobol-mode
     com-css-sort
     command-log-mode
-    company
     company-c-headers
     company-emoji
     company-fuzzy
     company-quickhelp
     company-quickhelp-terminal
-    counsel
     counsel-projectile
     csharp-mode
     csproj-mode
     dap-mode
     dart-mode
-    dash
     dashboard
     dashboard-ls
     define-it
@@ -118,7 +115,6 @@
     indicators
     ini-mode
     isearch-project
-    ivy
     ivy-searcher
     javadoc-lookup
     js2-mode
@@ -133,7 +129,6 @@
     lsp-ui
     lua-mode
     magit
-    manage-minor-mode
     manage-minor-mode-table
     markdown-mode
     markdown-toc
@@ -161,7 +156,6 @@
     quelpa
     rainbow-mode
     region-occurrences-highlighter
-    request
     restart-emacs
     reveal-in-folder
     right-click-context
@@ -190,10 +184,8 @@
     impatient-mode
     web-mode
     which-key
-    wiki-summary
     yaml-mode
     yascroll
-    yasnippet
     yasnippet-snippets)
   "List of packages this config needs.")
 
