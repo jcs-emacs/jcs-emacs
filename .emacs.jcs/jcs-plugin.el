@@ -290,6 +290,7 @@
          '("[*]compilation" "[*]output")
          '("[*]Apropos[*]" "[*]Backtrace[*]" "[*]Compile-Log[*]" "[*]Help[*]"
            "[*]Warnings[*]")
+         '("[*]VC-history[*]")
          '("[*]CPU-Profiler-Report" "[*]Memory-Profiler-Report")
          '("[*]Process List[*]")
          '("[*]Checkdoc Status[*]" "[*]Package-Lint[*]")
