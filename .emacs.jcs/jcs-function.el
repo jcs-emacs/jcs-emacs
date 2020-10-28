@@ -424,10 +424,15 @@ OW is the other window flag."
 (defvar-local jcs--er/marking-p nil
   "Resolve marking for `expand-region'.")
 
+(defun jcs--er/prepare-command ()
+  "Preparation for each `expand-region' command."
+  (setq web-mode-expand-previous-state nil))
+
 (defun jcs--er/resolve-region ()
   "Resolve marking while no longer expanding region."
   (if (memq this-command '(er/expand-region er/contract-region jcs-er/contract-region))
       (progn
+        (unless jcs--er/marking-p (jcs--er/prepare-command))
         (setq jcs--er/marking-p t)
         (when (and (not (use-region-p)) jcs--er/history-last)
           (let ((start (car jcs--er/history-last))
