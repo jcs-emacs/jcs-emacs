@@ -427,10 +427,24 @@ OW is the other window flag."
 (defun jcs--er/resolve-region ()
   "Resolve marking while no longer expanding region."
   (if (memq this-command '(er/expand-region er/contract-region jcs-er/contract-region))
-      (setq jcs--er/marking-p t)
+      (progn
+        (setq jcs--er/marking-p t)
+        (when (and (not (use-region-p)) jcs--er/history-last)
+          (let ((start (car jcs--er/history-last))
+                (end (cdr jcs--er/history-last)))
+            (unless (= start end)
+              (goto-char start)
+              (set-mark end)))))
     (when jcs--er/marking-p
       (setq jcs--er/marking-p nil)
       (deactivate-mark))))
+
+(defvar-local jcs--er/history-last nil
+  "Record the last item from er/history.")
+
+(defun jcs--er/record-history ()
+  "Record the last item from variable `er/history'."
+  (setq jcs--er/history-last (nth 0 er/history)))
 
 ;;
 ;; (@* "Iedit" )
