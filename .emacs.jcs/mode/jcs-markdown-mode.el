@@ -3,6 +3,7 @@
 ;;; Code:
 
 (require 'markdown-mode)
+(require 'web-mode)
 
 (require 'jcs-markdown-func)
 (require 'jcs-web-func)
@@ -14,6 +15,8 @@
 (defun jcs-markdown-mode-hook ()
   "Markdown mode hook."
   (emojify-mode 1)
+
+  (jcs-safe-er/expand-list '(web-mode-mark-and-expand) t)
 
   (jcs-make-electric-pair-pairs-local '((?\` . ?\`)))
 
