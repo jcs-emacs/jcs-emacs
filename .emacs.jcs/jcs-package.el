@@ -32,7 +32,8 @@
 
 ;; List of package you want to installed.
 (defconst jcs-package-install-list
-  '(ace-window
+  '(0xc
+    ace-window
     actionscript-mode
     adaptive-wrap
     alt-codes
