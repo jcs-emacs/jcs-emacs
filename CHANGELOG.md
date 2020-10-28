@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-10-28
 
 * Diminished the buffer `*VC-history*` as default behaviour.
+* Improved better default face for `markdown-mode`.
 
 ### 2020-10-27
 
