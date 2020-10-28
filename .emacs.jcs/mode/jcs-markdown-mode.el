@@ -16,6 +16,14 @@
   "Markdown mode hook."
   (emojify-mode 1)
 
+  (set-face-attribute 'markdown-code-face nil
+                      :inherit nil
+                      :foreground (face-foreground 'default)
+                      :background "#2B2B2B"
+                      :extend t)
+  (set-face-attribute 'markdown-markup-face nil
+                      :background (face-background 'default))
+
   (jcs-safe-er/expand-list '(web-mode-mark-and-expand) t)
 
   (jcs-make-electric-pair-pairs-local '((?\` . ?\`)))
