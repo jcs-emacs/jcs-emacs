@@ -421,6 +421,10 @@ OW is the other window flag."
   (require 'expand-region)
   (er/contract-region 1))
 
+(defconst jcs--er/commands
+  '(er/expand-region er/contract-region jcs-er/contract-region)
+  "List of commands that active `expand-region'.")
+
 (defvar-local jcs--er/marking-p nil
   "Resolve marking for `expand-region'.")
 
@@ -430,7 +434,7 @@ OW is the other window flag."
 
 (defun jcs--er/resolve-region ()
   "Resolve marking while no longer expanding region."
-  (if (memq this-command '(er/expand-region er/contract-region jcs-er/contract-region))
+  (if (memq this-command jcs--er/commands)
       (progn
         (unless jcs--er/marking-p (jcs--er/prepare-command))
         (setq jcs--er/marking-p t)
@@ -449,7 +453,17 @@ OW is the other window flag."
 
 (defun jcs--er/record-history ()
   "Record the last item from variable `er/history'."
-  (setq jcs--er/history-last (nth 0 er/history)))
+  (when (featurep 'expand-region)
+    (setq jcs--er/history-last (nth 0 er/history))))
+
+(defun jcs-safe-er/expand-list (data &optional append)
+  "Safe way to modify expand list from `expand-region'."
+  (require 'expand-region)
+  (unless (listp data) (setq data (list data)))
+  (if append
+      (setq er/try-expand-list (append data er/try-expand-list))
+    (setq er/try-expand-list data))
+  (delete-dups er/try-expand-list))
 
 ;;
 ;; (@* "Iedit" )
