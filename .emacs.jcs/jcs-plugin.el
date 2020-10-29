@@ -205,11 +205,6 @@
         dashboard-set-navigator nil)
   :config
   (require 'dashboard-ls)
-  (defun jcs--dashboard-get-banner-path (&rest _)
-    "Return the full path to banner."
-    "~/.emacs.jcs/banner/sink.txt")
-  (advice-add #'dashboard-get-banner-path :override #'jcs--dashboard-get-banner-path)
-
   (defun jcs--dashboard-insert-page-break--advice-before (&rest _)
     "Re-new page separator."
     (setq dashboard-page-separator (format "\n%s\n" (jcs-env-separator))))
