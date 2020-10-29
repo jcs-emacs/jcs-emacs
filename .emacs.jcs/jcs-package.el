@@ -44,9 +44,9 @@
     auto-rename-tag
     basic-mode
     better-scroll
+    browse-kill-ring
     buffer-move
     buffer-wrap
-    browse-kill-ring
     centaur-tabs
     clojure-mode
     cmake-font-lock
@@ -99,7 +99,6 @@
     glsl-mode
     go-mode
     google-this
-    google-translate
     goto-char-preview
     goto-line-preview
     groovy-mode
@@ -112,7 +111,6 @@
     ialign
     iedit
     impatient-showdown
-    indicators
     ini-mode
     isearch-project
     ivy-searcher
@@ -162,11 +160,11 @@
     rjsx-mode
     rust-mode
     scala-mode
+    scss-mode
     shader-mode
     show-eol
-    ssass-mode
-    scss-mode
     smex
+    ssass-mode
     sql-indent
     swift-mode
     swiper
