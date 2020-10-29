@@ -356,13 +356,19 @@ OW is the other window flag."
   (let ((jcs-dashboard--force-refresh-p t)) (jcs-dashboard-refresh-buffer))
   (jcs-buffer-menu-refresh-buffer))
 
+(defun jcs-dashboard--get-banner-path ()
+  "Return the path of the banner."
+  (cond ((display-graphic-p)
+         (if (jcs-is-light-theme-p)
+             "~/.emacs.jcs/banner/sink_black.png"
+           "~/.emacs.jcs/banner/sink_white.png"))
+        (t "~/.emacs.jcs/banner/sink.txt")))
+
 ;;;###autoload
 (defun jcs-reset-dashboard-banner-by-theme ()
   "Reset dashboard banner."
   (interactive)
-  (if (jcs-is-light-theme-p)
-      (setq dashboard-startup-banner "~/.emacs.jcs/banner/sink_black.png")
-    (setq dashboard-startup-banner "~/.emacs.jcs/banner/sink_white.png"))
+  (setq dashboard-startup-banner (jcs-dashboard--get-banner-path))
   (let ((logo-title-fg "cyan1")
         (heading-fg "#17A0FB")
         (wb-fg "light steel blue"))
