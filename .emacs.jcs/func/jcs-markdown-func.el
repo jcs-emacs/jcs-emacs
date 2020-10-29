@@ -6,7 +6,7 @@
 (defun jcs-markdown-return-key ()
   "Return key for Markdown mode."
   (interactive)
-  (let ((did-ret-key nil) (close-tag-found nil))
+  (let (did-ret-key close-tag-found)
     (when (and (jcs-first-forward-char-in-line-p "<")
                (jcs-first-backward-char-in-line-p ">"))
       ;; Check closing tag.
@@ -24,6 +24,23 @@
     (unless did-ret-key
       (newline)
       (indent-for-tab-command))))
+
+;;
+;; (@* "Faces" )
+;;
+
+(defun jcs-init-markdown-faces ()
+  "Customize face for `markdown-mode'."
+  (set-face-attribute 'markdown-code-face nil
+                      :inherit nil
+                      :foreground (face-foreground 'default)
+                      :background "#2B2B2B"
+                      :extend t)
+  (set-face-attribute 'markdown-markup-face nil
+                      :background (face-background 'default))
+  (set-face-attribute 'markdown-table-face nil
+                      :foreground "#87CEFA"
+                      :background (face-background 'default)))
 
 (provide 'jcs-markdown-func)
 ;;; jcs-markdown-func.el ends here
