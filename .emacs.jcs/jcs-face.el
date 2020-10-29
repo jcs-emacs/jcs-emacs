@@ -137,6 +137,7 @@
 
 (with-eval-after-load 'cc-mode (jcs-init-java-faces))
 (with-eval-after-load 'css-mode (jcs-init-css-faces))
+(with-eval-after-load 'markdown-mode (jcs-init-markdown-faces))
 (with-eval-after-load 'org (jcs-init-org-faces))
 (with-eval-after-load 'typescript-mode (jcs-init-typescript-faces))
 (with-eval-after-load 'web-mode (jcs-init-web-faces))
