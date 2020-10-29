@@ -9,6 +9,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 * Removed `org-mode`'s refresh table functionality.
 * Added customize faces entry for `markdown-mode`.
+* Changed text banner customization for package `dashboard`.
 
 ### 2020-10-28
 
