@@ -201,6 +201,13 @@
                           ;;(agenda . 10)
                           ;;(registers . 10)
                           )
+        dashboard-item-shortcuts '((recents . "r")
+                                   (bookmarks . "m")
+                                   (projects . "p")
+                                   (agenda . "a")
+                                   (registers . "e")
+                                   (ls-directories . "d")
+                                   (ls-files . "f"))
         dashboard-center-content t
         dashboard-set-navigator nil)
   :config
