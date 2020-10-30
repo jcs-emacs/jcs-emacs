@@ -3,8 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/jcs090218/jcs-emacs/actions"><img src="https://github.com/jcs090218/jcs-emacs/workflows/CI-nix/badge.svg" alt="CI-nix"></a>
-  <a href="https://github.com/jcs090218/jcs-emacs/actions"><img src="https://github.com/jcs090218/jcs-emacs/workflows/CI-windows/badge.svg" alt="CI-windows"></a>
+  <a href="https://github.com/jcs090218/jcs-emacs/actions"><img src="https://github.com/jcs090218/jcs-emacs/workflows/CI/badge.svg" alt="CI"></a>
   <a href="https://www.gnu.org/software/emacs/download.html"><img src="https://img.shields.io/badge/Emacs-27.1+-blue.svg" alt="Emacs"></a>
   <a href="https://github.com/jcs090218/jcs-emacs/releases/latest"><img src="https://img.shields.io/github/tag/jcs090218/jcs-emacs.svg?label=release" alt="Release Tag"></a>
   <a href="https://opensource.org/licenses/BSD-2-Clause"><img src="https://img.shields.io/badge/License-BSD%202--Clause-orange.svg" alt="License"></a>
