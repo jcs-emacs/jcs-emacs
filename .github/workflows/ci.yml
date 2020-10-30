@@ -1,4 +1,4 @@
-name: CI-windows
+name: CI
 
 on:
   push:
@@ -11,7 +11,24 @@ on:
     - '**.md'
 
 jobs:
-  build:
+  test-unix:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        emacs-version:
+          - 27.1
+          - snapshot
+    steps:
+    - uses: purcell/setup-emacs@master
+      with:
+        version: ${{ matrix.emacs-version }}
+
+    - uses: actions/checkout@v2
+    - name: Check startup
+      run: sh ./scripts/test-startup.sh
+
+  test-windows:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
