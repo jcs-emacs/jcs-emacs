@@ -417,6 +417,7 @@ Note this is opposite logic to the toggle mode function."
   (electric-pair-mode 1)
   (goto-address-mode 1)
   (highlight-indent-guides-mode 1)
+  (highlight-numbers-mode 1)
   (jcs--safe-lsp-active))
 
 (add-hook 'prog-mode-hook 'jcs-prog-mode-hook)
