@@ -106,6 +106,7 @@
     haxe-mode
     helpful
     highlight-indent-guides
+    highlight-numbers
     hl-todo
     htmltagwrap
     ialign
