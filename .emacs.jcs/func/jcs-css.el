@@ -62,7 +62,6 @@
          ("[$@][^ \t\n:;]+" . 'jcs-css-variable-face))
        'end)))
   (jcs--set-common-face 'css-selector (face-foreground 'jcs-css-selector-face))
-  (jcs--set-common-face 'font-lock-variable-name-face (face-foreground 'jcs-css-variable-face))
   (jcs--set-common-face 'css-property (face-foreground 'jcs-css-type-face)))
 
 (provide 'jcs-css)

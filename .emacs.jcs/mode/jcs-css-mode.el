@@ -17,6 +17,9 @@
   "Hook for CSS mode."
   (impatient-mode t)
 
+  (face-remap-add-relative 'font-lock-variable-name-face
+                           `(:foreground ,(face-foreground 'jcs-css-variable-face)))
+
   ;; File Header
   (jcs-insert-header-if-valid '("[.]css")
                               'jcs-insert-css-template)
