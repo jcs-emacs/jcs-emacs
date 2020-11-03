@@ -1,4 +1,4 @@
-;;; jcs-python-func.el --- Python related.  -*- lexical-binding: t -*-
+;;; jcs-python.el --- Python related.  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -217,5 +217,5 @@ on the same line."
   (cond ((string= type "Class") (jcs-insert-python-class-template))
         ((string= type "Plain") (jcs-insert-python-template))))
 
-(provide 'jcs-python-func)
-;;; jcs-python-func.el ends here
+(provide 'jcs-python)
+;;; jcs-python.el ends here

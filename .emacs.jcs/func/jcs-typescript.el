@@ -1,4 +1,4 @@
-;;; jcs-typescript-func.el --- TypeScript related.  -*- lexical-binding: t -*-
+;;; jcs-typescript.el --- TypeScript related.  -*- lexical-binding: t -*-
 ;;; Commentary: When editing the TypeScript related file.
 ;;; Code:
 
@@ -29,5 +29,5 @@
          ("[:=][ \t\n]*\\(void\\)" 1 'jcs-font-lock-null-face t))
        'end))))
 
-(provide 'jcs-typescript-func)
-;;; jcs-typescript-func.el ends here
+(provide 'jcs-typescript)
+;;; jcs-typescript.el ends here

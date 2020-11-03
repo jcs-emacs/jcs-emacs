@@ -1,4 +1,4 @@
-;;; jcs-make-func.el --- Makfile related.  -*- lexical-binding: t -*-
+;;; jcs-make.el --- Makfile related.  -*- lexical-binding: t -*-
 ;;; Commentary: Functions for Makefile.
 ;;; Code:
 
@@ -91,5 +91,5 @@ TYPE: type of makefile for Python."
   (insert "\n")
   (py-indent-line-outmost))
 
-(provide 'jcs-make-func)
-;;; jcs-make-func.el ends here
+(provide 'jcs-make)
+;;; jcs-make.el ends here

@@ -1,4 +1,4 @@
-;;; jcs-css-func.el --- CSS related.  -*- lexical-binding: t -*-
+;;; jcs-css.el --- CSS related.  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -65,5 +65,5 @@
   (jcs--set-common-face 'font-lock-variable-name-face (face-foreground 'jcs-css-variable-face))
   (jcs--set-common-face 'css-property (face-foreground 'jcs-css-type-face)))
 
-(provide 'jcs-css-func)
-;;; jcs-css-func.el ends here
+(provide 'jcs-css)
+;;; jcs-css.el ends here

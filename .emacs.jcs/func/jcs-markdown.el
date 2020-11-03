@@ -1,4 +1,4 @@
-;;; jcs-markdown-func.el --- Markdown related.  -*- lexical-binding: t -*-
+;;; jcs-markdown.el --- Markdown related.  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -54,5 +54,5 @@
   (set-face-attribute 'markdown-header-delimiter-face nil
                       :foreground "#B5CCEB"))
 
-(provide 'jcs-markdown-func)
-;;; jcs-markdown-func.el ends here
+(provide 'jcs-markdown)
+;;; jcs-markdown.el ends here

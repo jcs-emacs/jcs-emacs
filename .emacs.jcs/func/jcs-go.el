@@ -1,4 +1,4 @@
-;;; jcs-go-func.el --- Go related.  -*- lexical-binding: t -*-
+;;; jcs-go.el --- Go related.  -*- lexical-binding: t -*-
 ;;; Commentary: When editing the Go related file.
 ;;; Code:
 
@@ -21,5 +21,5 @@
       (jcs-insert-comment-style-by-current-line "[{]")
       (end-of-line))))
 
-(provide 'jcs-go-func)
-;;; jcs-go-func.el ends here
+(provide 'jcs-go)
+;;; jcs-go.el ends here

@@ -1,4 +1,4 @@
-;;; jcs-web-func.el --- Web Development related.  -*- lexical-binding: t -*-
+;;; jcs-web.el --- Web Development related.  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -145,5 +145,5 @@
          ("@[ \t\n]*{[[:ascii:]]*\\(/\\*[[:ascii:]]*\\*/\\)[[:ascii:]]*}" 1 'jcs-web-mode-block-comment-face t))
        'end))))
 
-(provide 'jcs-web-func)
-;;; jcs-web-func.el ends here
+(provide 'jcs-web)
+;;; jcs-web.el ends here

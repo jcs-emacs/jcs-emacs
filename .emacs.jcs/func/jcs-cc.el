@@ -1,4 +1,4 @@
-;;; jcs-cc-func.el --- C/C++ related.  -*- lexical-binding: t -*-
+;;; jcs-cc.el --- C/C++ related.  -*- lexical-binding: t -*-
 ;;; Commentary: Functions for C/C++ common.
 ;;; Code:
 
@@ -23,5 +23,5 @@
       (setq comment-start "// "
             comment-end ""))))
 
-(provide 'jcs-cc-func)
-;;; jcs-cc-func.el ends here
+(provide 'jcs-cc)
+;;; jcs-cc.el ends here

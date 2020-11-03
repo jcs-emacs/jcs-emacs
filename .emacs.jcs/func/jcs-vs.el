@@ -1,4 +1,4 @@
-;;; jcs-vs-func.el --- Visual Studio function related.  -*- lexical-binding: t -*-
+;;; jcs-vs.el --- Visual Studio function related.  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -107,5 +107,5 @@ If nothing is selected, we cut the current line, else we just delete the region.
         (call-interactively #'kill-region)
       (kill-whole-line))))
 
-(provide 'jcs-vs-func)
-;;; jcs-vs-func.el ends here
+(provide 'jcs-vs)
+;;; jcs-vs.el ends here

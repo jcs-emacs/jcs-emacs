@@ -1,4 +1,4 @@
-;;; jcs-lua-func.el --- Lua related.  -*- lexical-binding: t -*-
+;;; jcs-lua.el --- Lua related.  -*- lexical-binding: t -*-
 ;;; Commentary: When editing the Lua related file.
 ;;; Code:
 
@@ -78,5 +78,5 @@
         ;; insert comment doc comment string.
         (jcs-insert-comment-style-by-current-line ")")))))
 
-(provide 'jcs-lua-func)
-;;; jcs-lua-func.el ends here
+(provide 'jcs-lua)
+;;; jcs-lua.el ends here

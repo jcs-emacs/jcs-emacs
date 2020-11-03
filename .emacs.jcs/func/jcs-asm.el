@@ -1,4 +1,4 @@
-;;; jcs-asm-func.el --- Assembly Language related.  -*- lexical-binding: t -*-
+;;; jcs-asm.el --- Assembly Language related.  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -118,5 +118,5 @@
     (when (and should-indent (jcs-is-end-of-line-p))
       (insert " "))))
 
-(provide 'jcs-asm-func)
-;;; jcs-asm-func.el ends here
+(provide 'jcs-asm)
+;;; jcs-asm.el ends here

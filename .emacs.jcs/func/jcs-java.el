@@ -1,4 +1,4 @@
-;;; jcs-java-func.el --- Java related.  -*- lexical-binding: t -*-
+;;; jcs-java.el --- Java related.  -*- lexical-binding: t -*-
 ;;; Commentary: When editing the Java related file.
 ;;; Code:
 
@@ -128,5 +128,5 @@ Including adding or removing the package path."
          ("[:=][ \t\n]*\\(void\\)" 1 'jcs-font-lock-null-face t))
        'end))))
 
-(provide 'jcs-java-func)
-;;; jcs-java-func.el ends here
+(provide 'jcs-java)
+;;; jcs-java.el ends here

@@ -1,4 +1,4 @@
-;;; jcs-yaml-func.el --- Self defines function.  -*- lexical-binding: t -*-
+;;; jcs-yaml.el --- Self defines function.  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -12,5 +12,5 @@
       (jcs-delete-region)
     (call-interactively #'yaml-electric-backspace)))
 
-(provide 'jcs-yaml-func)
-;;; jcs-yaml-func.el ends here
+(provide 'jcs-yaml)
+;;; jcs-yaml.el ends here

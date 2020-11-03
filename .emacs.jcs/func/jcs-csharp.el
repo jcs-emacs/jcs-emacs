@@ -1,4 +1,4 @@
-;;; jcs-csharp-func.el --- C Sharp related.  -*- lexical-binding: t -*-
+;;; jcs-csharp.el --- C Sharp related.  -*- lexical-binding: t -*-
 ;;; Commentary: When editing the C# related file.
 ;;; Code:
 
@@ -108,5 +108,5 @@ on the same line."
              (jcs-vs-csharp-only-vs-comment-prefix-this-line-p))
     (insert " ")))
 
-(provide 'jcs-csharp-func)
-;;; jcs-csharp-func.el ends here
+(provide 'jcs-csharp)
+;;; jcs-csharp.el ends here
