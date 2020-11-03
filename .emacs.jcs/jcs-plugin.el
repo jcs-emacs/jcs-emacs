@@ -509,6 +509,12 @@
         highlight-indent-guides-character ?\|
         highlight-indent-guides-responsive 'top))
 
+(use-package highlight-numbers
+  :defer t
+  :config
+  (set-face-attribute 'highlight-numbers-number nil
+                      :foreground "#9BCEA3"))
+
 (use-package hl-todo
   :defer t
   :init
