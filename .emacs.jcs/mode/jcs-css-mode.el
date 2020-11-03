@@ -7,7 +7,7 @@
 (require 'emmet-mode)
 (require 'rainbow-mode)
 
-(require 'jcs-web-func)
+(require 'jcs-web)
 
 ;;
 ;; (@* "Hook" )

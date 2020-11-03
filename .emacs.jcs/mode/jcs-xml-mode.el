@@ -4,7 +4,7 @@
 
 (require 'nxml-mode)
 
-(require 'jcs-web-func)
+(require 'jcs-web)
 
 ;;
 ;; (@* "Hook" )

@@ -5,8 +5,8 @@
 (require 'markdown-mode)
 (require 'web-mode)
 
-(require 'jcs-markdown-func)
-(require 'jcs-web-func)
+(require 'jcs-markdown)
+(require 'jcs-web)
 
 ;;
 ;; (@* "Hook" )
@@ -23,6 +23,8 @@
   ;; Normal
   (define-key markdown-mode-map (kbd "<backspace>") #'jcs-real-backspace)
   (define-key markdown-mode-map (kbd "RET") #'jcs-markdown-return-key)
+
+  (define-key markdown-mode-map [S-tab] #'markdown-cycle)
 
   ;; Eemmet
   (define-key emmet-mode-keymap (kbd "C-<return>") #'jcs-emmet-expand-line))

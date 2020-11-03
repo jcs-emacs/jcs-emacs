@@ -5,7 +5,7 @@
 (require 'masm-mode)
 (require 'nasm-mode)
 
-(require 'jcs-python-func)
+(require 'jcs-python)
 
 (defun jcs-asm-mode--init ()
   "Do insert file header and switch major mode picked."

@@ -4,8 +4,8 @@
 
 (require 'yaml-mode)
 
-(require 'jcs-python-func)
-(require 'jcs-yaml-func)
+(require 'jcs-python)
+(require 'jcs-yaml)
 
 ;;
 ;; (@* "Hook" )

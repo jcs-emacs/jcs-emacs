@@ -2,7 +2,7 @@
 ;;; Commentary: Functions for Makefile.
 ;;; Code:
 
-(require 'jcs-python-func)
+(require 'jcs-python)
 
 ;;;###autoload
 (defun jcs-ask-makefile-language (lan)
