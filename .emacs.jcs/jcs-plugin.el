@@ -239,59 +239,69 @@
   :defer t
   :config
   (defun jcs-diminish-type (type)
-    "Diminsh TYPE."
+    "Diminsh TYPE.
+
+Argument TYPE can either be a list or a symbol."
     (cond ((listp type) (dolist (sym type) (diminish sym)))
-          (t (diminish type))))
+          ((symbolp type) (diminish type))
+          (t (user-error "Invalid diminish symbol, %s" type))))
 
   (defun jcs-diminish (mode-sym &optional load-sym)
-    "Simplify version of function `diminish'."
+    "Diminish MODE-SYM.
+
+If argument LOAD-SYM is a symbol; then it will diminish after it's module
+is loaded using macro `with-eval-after-load'."
     (if load-sym (with-eval-after-load load-sym(jcs-diminish-type mode-sym))
       (jcs-diminish-type mode-sym)))
 
-  (jcs-diminish 'abbrev-mode)
-  (jcs-diminish 'alt-codes-mode 'alt-codes)
-  (jcs-diminish 'auto-fill-mode)
-  (jcs-diminish 'auto-fill-function)
-  (jcs-diminish 'auto-highlight-symbol-mode 'auto-highlight-symbol)
-  (jcs-diminish 'auto-read-only-mode 'auto-read-only)
-  (jcs-diminish 'auto-rename-tag-mode 'auto-rename-tag)
-  (jcs-diminish 'atl-markup-mode 'atl-markup)
-  (jcs-diminish 'auto-revert-mode 'autorevert)
-  (jcs-diminish 'buffer-wrap-mode 'buffer-wrap)
-  (jcs-diminish 'command-log-mode 'command-log-mode)
-  (jcs-diminish 'company-mode 'company)
-  (jcs-diminish 'company-fuzzy-mode 'company-fuzzy)
-  (jcs-diminish 'eldoc-mode)
-  (jcs-diminish 'emmet-mode 'emmet-mode)
-  (jcs-diminish 'buffer-face-mode 'face-remap)
-  (jcs-diminish 'fill-page-mode 'fill-page)
-  (jcs-diminish 'flycheck-mode 'flycheck)
-  (jcs-diminish 'helm-mode 'helm-mode)
-  (jcs-diminish 'hi-lock-mode 'hi-lock)
-  (jcs-diminish 'highlight-indent-guides-mode 'highlight-indent-guides)
-  (jcs-diminish 'impatient-mode 'impatient-mode)
-  (jcs-diminish 'ivy-mode 'ivy)
-  (jcs-diminish 'keypression-mode 'keypression)
-  (jcs-diminish 'line-reminder-mode 'line-reminder)
-  (jcs-diminish 'indicators-mode 'indicators)
-  (jcs-diminish 'outline-minor-mode)
-  (jcs-diminish 'overwrite-mode)
-  (jcs-diminish 'page-break-lines-mode 'page-break-lines)
-  (jcs-diminish 'projectile-mode 'projectile)
-  (jcs-diminish 'right-click-context-mode 'right-click-context)
-  (jcs-diminish 'shift-select-minor-mode 'shift-select)
-  (jcs-diminish 'show-eol-mode 'show-eol)
-  (jcs-diminish 'un-mini-mode 'un-mini)
-  (jcs-diminish 'undo-tree-mode 'undo-tree)
-  (jcs-diminish 'view-mode 'view)
-  (jcs-diminish 'visual-line-mode)
-  (jcs-diminish 'which-key-mode 'which-key)
-  (jcs-diminish '(whitespace-mode
-                  whitespace-newline-mode
-                  global-whitespace-mode
-                  global-whitespace-newline-mode)
-                'whitespace)
-  (jcs-diminish 'yas-minor-mode 'yasnippet))
+  (defun jcs-diminish-do-alist (alst)
+    "Diminish the whole ALST."
+    (dolist (type alst) (jcs-diminish (car type) (cdr type))))
+
+  (defvar jcs-diminish-alist
+    `((abbrev-mode)
+      (alt-codes-mode . alt-codes)
+      (auto-fill-mode)
+      (auto-fill-function)
+      (auto-highlight-symbol-mode . auto-highlight-symbol)
+      (auto-read-only-mode . auto-read-only)
+      (auto-rename-tag-mode . auto-rename-tag)
+      (atl-markup-mode . atl-markup)
+      (auto-revert-mode . autorevert)
+      (buffer-wrap-mode . buffer-wrap)
+      (command-log-mode . command-log-mode)
+      (company-mode . company)
+      (company-fuzzy-mode . company-fuzzy)
+      (eldoc-mode)
+      (emmet-mode . emmet-mode)
+      (buffer-face-mode . face-remap)
+      (fill-page-mode . fill-page)
+      (flycheck-mode . flycheck)
+      (helm-mode . helm-mode)
+      (hi-lock-mode . hi-lock)
+      (highlight-indent-guides-mode . highlight-indent-guides)
+      (impatient-mode . impatient-mode)
+      (ivy-mode . ivy)
+      (keypression-mode . keypression)
+      (line-reminder-mode . line-reminder)
+      (indicators-mode . indicators)
+      (outline-minor-mode)
+      (overwrite-mode)
+      (page-break-lines-mode . page-break-lines)
+      (projectile-mode . projectile)
+      (right-click-context-mode . right-click-context)
+      (shift-select-minor-mode . shift-select)
+      (show-eol-mode . show-eol)
+      (un-mini-mode . un-mini)
+      (undo-tree-mode . undo-tree)
+      (view-mode . view)
+      (visual-line-mode)
+      (which-key-mode . which-key)
+      ((whitespace-mode whitespace-newline-mode) . whitespace)
+      (yas-minor-mode . yasnippet))
+    "List of diminish associated list.")
+
+  (jcs-diminish-do-alist jcs-diminish-alist))
 
 (use-package diminish-buffer
   :defer t
