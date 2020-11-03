@@ -69,7 +69,7 @@ from this configuration.
 * GLSL / Go / Godot Script / Groovy
 * Haskell / Haxe / HTML
 * INI
-* Java / JavaScript / JSON /JSX
+* Java / JavaScript / JSON / JSX
 * Kotlin
 * LESS / Lisp / Lua
 * Makefile / Markdown
