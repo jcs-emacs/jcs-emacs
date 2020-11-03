@@ -9,6 +9,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 * Renamed all `-func` suffix module to it's name.
 * Customized `origami` folding face.
+* Fixed `css` variable name face applied globally issue.
 
 ### 2020-10-30
 
