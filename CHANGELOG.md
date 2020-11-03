@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-11-03
+
+* Renamed all `-func` suffix module to it's name.
+* Customized `origami` folding face.
+
 ### 2020-10-30
 
 * Added configuration for `dashboard` shortcuts.
