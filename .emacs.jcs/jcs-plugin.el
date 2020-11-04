@@ -181,6 +181,11 @@
   (setq counsel-preselect-current-file t
         counsel-find-file-at-point t))
 
+(use-package csharp-mode
+  :defer t
+  :init
+  (setq csharp-codedoc-tag-face 'font-lock-doc-face))
+
 (use-package dashboard
   :defer t
   :init
