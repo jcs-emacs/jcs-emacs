@@ -194,8 +194,8 @@
         dashboard-footer-messages
         (let ((deco (if (display-graphic-p) "╬" "+"))
               (copy-right (if (display-graphic-p) "©" "(c)")))
-          (list (format "%s Copyright %s 2015 Shen, Jen-Chieh %s"
-                        deco copy-right deco)))
+          (list (format "%s Copyright %s %s Shen, Jen-Chieh %s"
+                        deco copy-right (jcs-get-year-only) deco)))
         dashboard-init-info (format "%d + %d packages loaded in %0.1f seconds"
                                     (length package-activated-list)
                                     (length jcs-package-manually-install-list)
