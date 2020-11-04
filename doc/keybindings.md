@@ -116,6 +116,10 @@ Here is the list of key bindins that defined in this configuration.
     * <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>up</kbd> - Scroll window `up` one line without moving cursor.
     * <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>down</kbd> - Scroll window `down` one line without moving cursor.
 
+  * **Balanced Expression**
+
+    * <kbd>Alt</kbd>+<kbd>/</kbd> - Move to pair balanced expresssion (sexp).
+
   * **Symbol**
 
     * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>[</kbd> - Delete everything between `[` and `]`.
