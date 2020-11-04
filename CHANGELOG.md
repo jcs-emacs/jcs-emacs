@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-11-04
 
 * Configure `csharp-mode` for `c-markup` highlighting.
+* Removed self declared `c-style` for C related programming languages.
 
 ### 2020-11-03
 
