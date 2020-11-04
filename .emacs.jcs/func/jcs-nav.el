@@ -580,6 +580,20 @@ CH : character we target to move toward."
                              'face '(:foreground "cyan")))))))
 
 ;;
+;; (@* "Balanced Expression (sexp)" )
+;;
+
+(defun jcs-toggle-move-to-sexp ()
+  "Move to the balance expression if any."
+  (interactive)
+  (cond ((save-excursion
+           (forward-char 1)
+           (jcs-current-char-equal-p '("(" "{" "`" "\"" "'" "[")))
+         (forward-sexp))
+        ((jcs-current-char-equal-p '(")" "}" "`" "\"" "'" "]"))
+         (backward-sexp))))
+
+;;
 ;; (@* "Move toggle Open and Close all kind of parenthesis" )
 ;;
 
