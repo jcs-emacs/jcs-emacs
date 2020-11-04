@@ -192,7 +192,7 @@
   (setq dashboard-banner-logo-title "[J C S • E M A C S]"
         dashboard-footer-icon ""
         dashboard-footer-messages
-        (list (format "╬ Copyright (c) %s Shen, Jen-Chieh ╬" (jcs-get-year-only)))
+        `(,(format "╬ Copyright (c) %s Shen, Jen-Chieh ╬" (jcs-get-year-only)))
         dashboard-init-info (format "%d + %d packages loaded in %0.1f seconds"
                                     (length package-activated-list)
                                     (length jcs-package-manually-install-list)
