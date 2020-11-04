@@ -38,6 +38,7 @@
     adaptive-wrap
     alt-codes
     apache-mode
+    atl-long-lines
     atl-markup
     auto-highlight-symbol
     auto-read-only
