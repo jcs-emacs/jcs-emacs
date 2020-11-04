@@ -10,6 +10,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Configure `csharp-mode` for `c-markup` highlighting.
 * Removed self declared `c-style` for `C` related programming languages.
 * Installed new package `atl-long-lines`.
+* Added toggle move to balanced expression (sexp).
 
 ### 2020-11-03
 
