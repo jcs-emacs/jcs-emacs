@@ -7,56 +7,6 @@
 (require 'company-c-headers)
 
 ;;
-;; (@* "Style" )
-;;
-
-(defconst jcs-big-fun-cc-style
-  '((c-electric-pound-behavior   . nil)
-    (c-tab-always-indent         . t)
-    (c-comment-only-line-offset  . 0)
-    (c-hanging-braces-alist      . ((class-open)
-                                    (class-close)
-                                    (defun-open)
-                                    (defun-close)
-                                    (inline-open)
-                                    (inline-close)
-                                    (brace-list-open)
-                                    (brace-list-close)
-                                    (brace-list-intro)
-                                    (brace-list-entry)
-                                    (block-open)
-                                    (block-close)
-                                    (substatement-open)
-                                    (statement-case-open)
-                                    (class-open)))
-    (c-hanging-colons-alist      . ((inher-intro)
-                                    (case-label)
-                                    (label)
-                                    (access-label)
-                                    (access-key)
-                                    (member-init-intro)))
-    (c-cleanup-list              . (scope-operator
-                                    list-close-comma
-                                    defun-close-semi))
-    (c-offsets-alist             . ((arglist-close         . c-lineup-arglist)
-                                    (label                 . -)
-                                    (access-label          . -)
-                                    (substatement-open     . 0)
-                                    (statement-case-intro  . +)
-                                    (statement-block-intro . +)
-                                    (case-label            . 0)
-                                    (block-open            . 0)
-                                    (inline-open           . 0)
-                                    (inlambda              . 0)
-                                    (topmost-intro-cont    . 0)
-                                    (knr-argdecl-intro     . -)
-                                    (brace-list-open       . 0)
-                                    (brace-list-intro      . +)))
-    ;; NOTE: no more echo.
-    (c-echo-syntactic-information-p . nil))
-  "Casey's Big Fun C/C++ Style")
-
-;;
 ;; (@* "Header" )
 ;;
 
@@ -87,9 +37,6 @@
   "C/C++ mode hook."
 
   (jcs-company-safe-add-backend 'company-clang)
-
-  ;; Set my style for the current buffer
-  (c-add-style "BigFun" jcs-big-fun-cc-style t)
 
   ;; Additional style stuff
   (c-set-offset 'member-init-intro '++)
