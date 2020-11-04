@@ -51,6 +51,9 @@
   (define-key company-active-map (kbd "TAB") #'jcs-tab-key)
   (define-key company-active-map (kbd "C-s") #'jcs-save-buffer-default))
 
+;;; Balanced Expression
+(define-key global-map (kbd "M-/") #'jcs-toggle-move-to-sexp)
+
 ;;; Buffer Menu
 (define-key global-map (kbd "M-b") #'buffer-menu)
 (define-key global-map (kbd "M-B") #'buffer-menu-other-window)
