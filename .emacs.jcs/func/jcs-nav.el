@@ -583,14 +583,23 @@ CH : character we target to move toward."
 ;; (@* "Balanced Expression (sexp)" )
 ;;
 
+(defvar jcs-sexp-open-chars '("(" "{" "`" "\"" "'" "[")
+  "List of open balanced expression.")
+
+(defvar jcs-sexp-close-chars '(")" "}" "`" "\"" "'" "]")
+  "List of close balanced expression.")
+
 (defun jcs-toggle-move-to-sexp ()
   "Move to the balance expression if any."
   (interactive)
-  (cond ((save-excursion
-           (forward-char 1)
-           (jcs-current-char-equal-p '("(" "{" "`" "\"" "'" "[")))
+  (cond ((jcs-current-char-equal-p jcs-sexp-open-chars)
+         (forward-char -1)
          (forward-sexp))
-        ((jcs-current-char-equal-p '(")" "}" "`" "\"" "'" "]"))
+        ((save-excursion
+           (forward-char 1)
+           (jcs-current-char-equal-p jcs-sexp-open-chars))
+         (forward-sexp))
+        ((jcs-current-char-equal-p jcs-sexp-close-chars)
          (backward-sexp))))
 
 ;;
