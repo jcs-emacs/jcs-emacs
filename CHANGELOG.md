@@ -9,6 +9,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 * Extract open and close balanced expression to list.
 * Fixed toggle move to balanced expression logic for next character point.
+* Installed new package `fill-page`.
+* Added line number at pos relative utility function.
+* Revised to improve UX when folding using `origami`.
 
 ### 2020-11-04
 
