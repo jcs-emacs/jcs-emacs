@@ -382,93 +382,88 @@ SR-OP is the boundary of the search limit."
   "Insert document comment style.
 SEARCH-STRING is the raw string that represent the code we want to document."
   (save-excursion
-    (let ((mode-doc-string-func-name nil)
-          (meet-function-name (jcs--function-name search-string)))
+    (let ((meet-function-name (jcs--function-name search-string))
+          mode-doc-str-fn)
       (cond
        ((jcs-is-current-major-mode-p '("actionscript-mode"))
-        (setq mode-doc-string-func-name (if meet-function-name
-                                            'jcs--as-mode-doc-string-func
-                                          'jcs--as-mode-doc-string-others)))
+        (setq mode-doc-str-fn (if meet-function-name
+                                  'jcs--as-mode-doc-string-func
+                                'jcs--as-mode-doc-string-others)))
        ((jcs-is-current-major-mode-p '("c-mode" "c++-mode"))
-        (setq mode-doc-string-func-name (if meet-function-name
-                                            'jcs--cc-mode-doc-string-func
-                                          'jcs--cc-mode-doc-string-others)))
+        (setq mode-doc-str-fn (if meet-function-name
+                                  'jcs--cc-mode-doc-string-func
+                                'jcs--cc-mode-doc-string-others)))
        ((jcs-is-current-major-mode-p '("csharp-mode"))
-        (setq mode-doc-string-func-name (if meet-function-name
-                                            'jcs--csharp-mode-doc-string-func
-                                          'jcs--csharp-mode-doc-string-others)))
+        (setq mode-doc-str-fn (if meet-function-name
+                                  'jcs--csharp-mode-doc-string-func
+                                'jcs--csharp-mode-doc-string-others)))
        ((jcs-is-current-major-mode-p '("go-mode"))
-        (setq mode-doc-string-func-name (if meet-function-name
-                                            'jcs--go-mode-doc-string-func
-                                          'jcs--go-mode-doc-string-others)))
+        (setq mode-doc-str-fn (if meet-function-name
+                                  'jcs--go-mode-doc-string-func
+                                'jcs--go-mode-doc-string-others)))
        ((jcs-is-current-major-mode-p '("groovy-mode"))
-        (setq mode-doc-string-func-name (if meet-function-name
-                                            'jcs--groovy-mode-doc-string-func
-                                          'jcs--groovy-mode-doc-string-others)))
+        (setq mode-doc-str-fn (if meet-function-name
+                                  'jcs--groovy-mode-doc-string-func
+                                'jcs--groovy-mode-doc-string-others)))
        ((jcs-is-current-major-mode-p '("java-mode" "jdee-mode"))
-        (setq mode-doc-string-func-name (if meet-function-name
-                                            'jcs--java-mode-doc-string-func
-                                          'jcs--java-mode-doc-string-others)))
+        (setq mode-doc-str-fn (if meet-function-name
+                                  'jcs--java-mode-doc-string-func
+                                'jcs--java-mode-doc-string-others)))
        ((jcs-is-current-major-mode-p '("js-mode" "js2-mode" "js3-mode"
                                        "rjsx-mode"))
-        (setq mode-doc-string-func-name (if meet-function-name
-                                            'jcs--js-mode-doc-string-func
-                                          'jcs--js-mode-doc-string-others)))
+        (setq mode-doc-str-fn (if meet-function-name
+                                  'jcs--js-mode-doc-string-func
+                                'jcs--js-mode-doc-string-others)))
        ((jcs-is-current-major-mode-p '("lua-mode"))
-        (setq mode-doc-string-func-name (if meet-function-name
-                                            'jcs--lua-mode-doc-string-func
-                                          'jcs--lua-mode-doc-string-others)))
+        (setq mode-doc-str-fn (if meet-function-name
+                                  'jcs--lua-mode-doc-string-func
+                                'jcs--lua-mode-doc-string-others)))
        ((jcs-is-current-major-mode-p '("python-mode"))
-        (setq mode-doc-string-func-name (if meet-function-name
-                                            'jcs--py-mode-doc-string-func
-                                          'jcs--py-mode-doc-string-others)))
+        (setq mode-doc-str-fn (if meet-function-name
+                                  'jcs--py-mode-doc-string-func
+                                'jcs--py-mode-doc-string-others)))
        ((jcs-is-current-major-mode-p '("php-mode" "web-mode"))
-        (setq mode-doc-string-func-name (if meet-function-name
-                                            'jcs--php-mode-doc-string-func
-                                          'jcs--php-mode-doc-string-others)))
+        (setq mode-doc-str-fn (if meet-function-name
+                                  'jcs--php-mode-doc-string-func
+                                'jcs--php-mode-doc-string-others)))
        ((jcs-is-current-major-mode-p '("rust-mode"))
-        (setq mode-doc-string-func-name (if meet-function-name
-                                            'jcs--rust-mode-doc-string-func
-                                          'jcs--rust-mode-doc-string-others)))
+        (setq mode-doc-str-fn (if meet-function-name
+                                  'jcs--rust-mode-doc-string-func
+                                'jcs--rust-mode-doc-string-others)))
        ((jcs-is-current-major-mode-p '("scala-mode"))
-        (setq mode-doc-string-func-name (if meet-function-name
-                                            'jcs--scala-mode-doc-string-func
-                                          'jcs--scala-mode-doc-string-others)))
+        (setq mode-doc-str-fn (if meet-function-name
+                                  'jcs--scala-mode-doc-string-func
+                                'jcs--scala-mode-doc-string-others)))
        ((jcs-is-current-major-mode-p '("typescript-mode"))
-        (setq mode-doc-string-func-name (if meet-function-name
-                                            'jcs--ts-mode-doc-string-func
-                                          'jcs--ts-mode-doc-string-others))))
+        (setq mode-doc-str-fn (if meet-function-name
+                                  'jcs--ts-mode-doc-string-func
+                                'jcs--ts-mode-doc-string-others))))
 
-      ;; NOTE: Ensure the `mode-doc-string-func-name' is assign to something
+      ;; NOTE: Ensure the `mode-doc-str-fn' is assign to something
       ;; valid to execute.
-      (when mode-doc-string-func-name
-        (funcall mode-doc-string-func-name search-string)))))
+      (when mode-doc-str-fn
+        (funcall mode-doc-str-fn search-string)))))
 
 
 (defun jcs--function-name (search-string)
   "Analyze SEARCH-STRING to get function name."
-  (let ((function-name-string nil)
-        (pos (jcs-last-regex-in-string "(" search-string)))
+  (let ((pos (jcs-last-regex-in-string "(" search-string)) fn-str)
     (when pos
-      (setq function-name-string (substring search-string 0 pos))
-      (setq function-name-string (split-string function-name-string " " t))
-      (setq function-name-string (nth (1- (length function-name-string)) function-name-string)))
-    (if (stringp function-name-string)
-        (string-trim function-name-string)
-      nil)))
+      (setq fn-str (substring search-string 0 pos)
+            fn-str (split-string fn-str " " t)
+            fn-str (nth (1- (length fn-str)) fn-str)))
+    (if (stringp fn-str) (string-trim fn-str) nil)))
 
 (defun jcs--return-type (search-string)
   "Analyze SEARCH-STRING to get return type.
 This is for c-like programming languages."
   (let ((pos (jcs-last-regex-in-string "(" search-string))
-        return-type-string)
+        return-type-str)
     (when pos
-      (setq return-type-string (substring search-string 0 pos))
-      (setq return-type-string (split-string return-type-string " " t))
-      (setq return-type-string (nth (- (length return-type-string) 2) return-type-string)))
-    (if (stringp return-type-string)
-        (string-trim return-type-string)
-      nil)))
+      (setq return-type-str (substring search-string 0 pos)
+            return-type-str (split-string return-type-str " " t)
+            return-type-str (nth (- (length return-type-str) 2) return-type-str)))
+    (if (stringp return-type-str) (string-trim return-type-str) nil)))
 
 (defun jcs--return-type-behind (search-string &optional spi-sym)
   "Analyze SEARCH-STRING to get return type.
@@ -478,35 +473,32 @@ This is for colon type programming languages.  For example, `actionscript',
 
 An optional argument SPI-SYM is the split symbol for return type."
   (let ((pos (jcs-last-regex-in-string ")" search-string))
-        return-type-string)
+        return-type-str)
     (when pos
-      (setq return-type-string (substring search-string (1+ pos) (length search-string)))
+      (setq return-type-str (substring search-string (1+ pos) (length search-string)))
       (when spi-sym
-        (setq return-type-string (nth 1 (split-string return-type-string spi-sym)))))
-    (if (and (stringp return-type-string)
-             (not (string-empty-p return-type-string)))
-        (string-trim return-type-string)
+        (setq return-type-str (nth 1 (split-string return-type-str spi-sym)))))
+    (if (and (stringp return-type-str)
+             (not (string-empty-p return-type-str)))
+        (string-trim return-type-str)
       nil)))
 
 (defun jcs--analyze-param-string (search-string)
   "Get rid of the open and close parentheses, only get the center part.
 SEARCH-STRING : string that use to analyze."
-  (let ((param-string nil) (pos -1) (run-it t))
+  (let (pos param-string)
     (setq param-string (substring search-string
                                   (1+ (jcs-last-regex-in-string "(" search-string))
-                                  (length search-string)))
-    (setq pos (jcs-last-regex-in-string ")" param-string))
-    (setq param-string (substring param-string 0 pos))
+                                  (length search-string))
+          pos (jcs-last-regex-in-string ")" param-string)
+          param-string (substring param-string 0 pos))
     param-string))
 
 (defun jcs--param-empty-p (param-lst)
   "Check if the full PARAM-LST empty."
-  (let ((index 0)
-        (break-it nil)
-        (is-empty t)
-        (param-lst-len (length param-lst)))
-    (while (and (< index param-lst-len)
-                is-empty)
+  (let ((param-lst-len (length param-lst))
+        (index 0) (is-empty t))
+    (while (and (< index param-lst-len) is-empty)
       (unless (string= "" (string-trim (nth index param-lst)))
         (setq is-empty nil))
       (setq index (1+ index)))
@@ -648,8 +640,8 @@ SEARCH-STRING is the raw string that represent the code we want to document."
          (param-var-len (length param-variable-strings))
          (param-index 0)
          ;; Get all return data types.
-         (return-type-string (jcs--return-type-behind search-string ":"))
-         (there-is-return (not (null return-type-string))))
+         (return-type-str (jcs--return-type-behind search-string ":"))
+         (there-is-return (not (null return-type-str))))
     ;; go back to comment line.
     (jcs-previous-line)
     (jcs-previous-line)
@@ -676,12 +668,12 @@ SEARCH-STRING is the raw string that represent the code we want to document."
 
     ;; Lastly, process returns tag.
     (when there-is-return
-      (unless (string= return-type-string "void")
+      (unless (string= return-type-str "void")
         (insert "\n")
         (insert "* @")
         (insert jcs--as--return-string)
         (when jcs--as-doc--show-typename
-          (jcs-insert-jsdoc-type return-type-string
+          (jcs-insert-jsdoc-type return-type-str
                                  jcs--as--open-type-char
                                  jcs--as--close-type-char))
         (backward-delete-char 1)
@@ -792,10 +784,10 @@ SEARCH-STRING is the raw string that represent the code we want to document."
          (param-variable-strings (nth 1 paren-param-list))
          (param-var-len (length param-variable-strings))
          (param-index 0)
-         (function-name-string (jcs--function-name search-string))
+         (fn-str (jcs--function-name search-string))
          ;; Get the return data type.
-         (return-type-string (jcs--return-type search-string))
-         (there-is-return (not (null return-type-string))))
+         (return-type-str (jcs--return-type search-string))
+         (there-is-return (not (null return-type-str))))
     ;; go back to comment line.
     (jcs-previous-line)
     (jcs-previous-line)
@@ -803,7 +795,7 @@ SEARCH-STRING is the raw string that represent the code we want to document."
 
     ;; Process Function name.
     (insert "@func ")
-    (insert function-name-string)
+    (insert fn-str)
     (indent-for-tab-command)
 
     ;; Process Breif description.
@@ -832,12 +824,12 @@ SEARCH-STRING is the raw string that represent the code we want to document."
 
     ;; Lastly, process returns tag.
     (when there-is-return
-      (unless (string= return-type-string "void")
+      (unless (string= return-type-str "void")
         (insert "\n")
         (insert "* @")
         (insert jcs--cc--return-string)
         (if jcs--cc-doc--show-typename
-            (jcs-insert-jsdoc-type return-type-string
+            (jcs-insert-jsdoc-type return-type-str
                                    jcs--cc--open-type-char
                                    jcs--cc--close-type-char))
         (backward-delete-char 1)
@@ -879,8 +871,8 @@ SEARCH-STRING is the raw string that represent the code we want to document."
          (param-index 0)
          (docstring-type -1)
          ;; Get the return data type.
-         (return-type-string (jcs--return-type search-string))
-         (there-is-return (not (null return-type-string))))
+         (return-type-str (jcs--return-type search-string))
+         (there-is-return (not (null return-type-str))))
     ;; go back to comment line.
     (jcs-previous-line)
     (end-of-line)
@@ -909,7 +901,7 @@ SEARCH-STRING is the raw string that represent the code we want to document."
 
         ;; Lastly, process returns tag.
         (when there-is-return
-          (unless (string= return-type-string "void")
+          (unless (string= return-type-str "void")
             (insert "\n")
             (insert "/// <returns></returns>")
             (indent-for-tab-command)))))
@@ -940,12 +932,12 @@ SEARCH-STRING is the raw string that represent the code we want to document."
 
         ;; Lastly, process returns tag.
         (when there-is-return
-          (unless (string= return-type-string "void")
+          (unless (string= return-type-str "void")
             (insert "\n")
             (insert "* @")
             (insert jcs--as--return-string)
             (when jcs--as-doc--show-typename
-              (jcs-insert-jsdoc-type return-type-string
+              (jcs-insert-jsdoc-type return-type-str
                                      jcs--as--open-type-char
                                      jcs--as--close-type-char))
             (backward-delete-char 1)
@@ -975,8 +967,8 @@ SEARCH-STRING is the raw string that represent the code we want to document."
          (param-index 0)
          (docstring-type -1)
          ;; Get the return data type.
-         (return-type-string (jcs--return-type-behind search-string))
-         (there-is-return (not (null return-type-string))))
+         (return-type-str (jcs--return-type-behind search-string))
+         (there-is-return (not (null return-type-str))))
     ;; go back to comment line.
     (jcs-previous-line)
     (end-of-line)
@@ -1016,12 +1008,12 @@ SEARCH-STRING is the raw string that represent the code we want to document."
 
         ;; Lastly, process returns tag.
         (when there-is-return
-          (unless (string= return-type-string "void")
+          (unless (string= return-type-str "void")
             (insert "\n")
             (insert "// @")
             (insert jcs--go--return-string)
             (when jcs--go-doc--show-typename
-              (jcs-insert-jsdoc-type return-type-string
+              (jcs-insert-jsdoc-type return-type-str
                                      jcs--go--open-type-char
                                      jcs--go--close-type-char))
             (backward-delete-char 1)
@@ -1057,12 +1049,12 @@ SEARCH-STRING is the raw string that represent the code we want to document."
 
         ;; Lastly, process returns tag.
         (when there-is-return
-          (unless (string= return-type-string "void")
+          (unless (string= return-type-str "void")
             (insert "\n")
             (insert "* @")
             (insert jcs--go--return-string)
             (when jcs--go-doc--show-typename
-              (jcs-insert-jsdoc-type return-type-string
+              (jcs-insert-jsdoc-type return-type-str
                                      jcs--go--open-type-char
                                      jcs--go--close-type-char))
             (backward-delete-char 1)
@@ -1091,8 +1083,8 @@ SEARCH-STRING is the raw string that represent the code we want to document."
          (param-var-len (length param-variable-strings))
          (param-index 0)
          ;; Get the return data type.
-         (return-type-string (jcs--return-type search-string))
-         (there-is-return (not (null return-type-string))))
+         (return-type-str (jcs--return-type search-string))
+         (there-is-return (not (null return-type-str))))
     ;; go back to comment line.
     (jcs-previous-line)
     (jcs-previous-line)
@@ -1119,12 +1111,12 @@ SEARCH-STRING is the raw string that represent the code we want to document."
 
     ;; Lastly, process returns tag.
     (when there-is-return
-      (unless (string= return-type-string "void")
+      (unless (string= return-type-str "void")
         (insert "\n")
         (insert "* @")
         (insert jcs--groovy--return-string)
         (when jcs--groovy-doc--show-typename
-          (jcs-insert-jsdoc-type return-type-string
+          (jcs-insert-jsdoc-type return-type-str
                                  jcs--groovy--open-type-char
                                  jcs--groovy--close-type-char))
         (backward-delete-char 1)
@@ -1160,8 +1152,8 @@ SEARCH-STRING is the raw string that represent the code we want to document."
          (param-var-len (length param-variable-strings))
          (param-index 0)
          ;; Get the return data type.
-         (return-type-string (jcs--return-type search-string))
-         (there-is-return (not (null return-type-string))))
+         (return-type-str (jcs--return-type search-string))
+         (there-is-return (not (null return-type-str))))
     ;; go back to comment line.
     (jcs-previous-line)
     (jcs-previous-line)
@@ -1188,12 +1180,12 @@ SEARCH-STRING is the raw string that represent the code we want to document."
 
     ;; Lastly, process returns tag.
     (when there-is-return
-      (unless (string= return-type-string "void")
+      (unless (string= return-type-str "void")
         (insert "\n")
         (insert "* @")
         (insert jcs--java--return-string)
         (when jcs--java-doc--show-typename
-          (jcs-insert-jsdoc-type return-type-string
+          (jcs-insert-jsdoc-type return-type-str
                                  jcs--java--open-type-char
                                  jcs--java--close-type-char))
         (backward-delete-char 1)
@@ -1225,7 +1217,7 @@ SEARCH-STRING is the raw string that represent the code we want to document."
          (param-var-len (length param-variable-strings))
          (param-index 0)
          ;; Get the return data type.
-         (return-type-string "void")
+         (return-type-str "void")
          (there-is-return nil))
     ;; go back to comment line.
     (jcs-previous-line)
@@ -1253,12 +1245,12 @@ SEARCH-STRING is the raw string that represent the code we want to document."
 
     ;; Lastly, process returns tag.
     (when there-is-return
-      (unless (string= return-type-string "void")
+      (unless (string= return-type-str "void")
         (insert "\n")
         (insert "* @")
         (insert jcs--js--return-string)
         (when jcs--js-doc--show-typename
-          (jcs-insert-jsdoc-type return-type-string
+          (jcs-insert-jsdoc-type return-type-str
                                  jcs--js--open-type-char
                                  jcs--js--close-type-char))
         (backward-delete-char 1)
@@ -1287,7 +1279,7 @@ SEARCH-STRING is the raw string that represent the code we want to document."
          (param-var-len (length param-variable-strings))
          (param-index 0)
          ;; Get the return data type.
-         (return-type-string "void")
+         (return-type-str "void")
          (there-is-return nil))
     ;; go back to comment line.
     (jcs-previous-line)
@@ -1318,12 +1310,12 @@ SEARCH-STRING is the raw string that represent the code we want to document."
 
     ;; Lastly, process returns tag.
     (when there-is-return
-      (unless (string= return-type-string "void")
+      (unless (string= return-type-str "void")
         (insert "\n")
         (insert "-- @")
         (insert jcs--lua--return-string)
         (when jcs--lua-doc--show-typename
-          (jcs-insert-jsdoc-type return-type-string
+          (jcs-insert-jsdoc-type return-type-str
                                  jcs--lua--open-type-char
                                  jcs--lua--close-type-char))
         (backward-delete-char 1)
@@ -1355,7 +1347,7 @@ SEARCH-STRING is the raw string that represent the code we want to document."
          (param-var-len (length param-variable-strings))
          (param-index 0)
          ;; Get the return data type.
-         (return-type-string "void")
+         (return-type-str "void")
          (there-is-return nil))
     ;; go back to comment line.
     (jcs-move-to-forward-a-char-recursive "\"")
@@ -1392,12 +1384,12 @@ SEARCH-STRING is the raw string that represent the code we want to document."
 
     ;; Lastly, process returns tag.
     (when there-is-return
-      (unless (string= return-type-string "void")
+      (unless (string= return-type-str "void")
         (insert "\n")
         (insert "@")
         (insert jcs--py--return-string)
         (when jcs--py-doc--show-typename
-          (jcs-insert-jsdoc-type return-type-string
+          (jcs-insert-jsdoc-type return-type-str
                                  jcs--py--open-type-char
                                  jcs--py--close-type-char))
         (backward-delete-char 1)
@@ -1429,7 +1421,7 @@ SEARCH-STRING is the raw string that represent the code we want to document."
          (param-var-len (length param-variable-strings))
          (param-index 0)
          ;; Get the return data type.
-         (return-type-string "void")
+         (return-type-str "void")
          (there-is-return nil))
     ;; go back to comment line.
     (jcs-previous-line)
@@ -1457,12 +1449,12 @@ SEARCH-STRING is the raw string that represent the code we want to document."
 
     ;; Lastly, process returns tag.
     (when there-is-return
-      (unless (string= return-type-string "void")
+      (unless (string= return-type-str "void")
         (insert "\n")
         (insert "* @")
         (insert jcs--php--return-string)
         (when jcs--php-doc--show-typename
-          (jcs-insert-jsdoc-type return-type-string
+          (jcs-insert-jsdoc-type return-type-str
                                  jcs--php--open-type-char
                                  jcs--php--close-type-char))
         (backward-delete-char 1)
@@ -1495,8 +1487,8 @@ SEARCH-STRING is the raw string that represent the code we want to document."
          (param-type-len (length param-type-strings))
          (param-index 0)
          ;; Get all return data types.
-         (return-type-string (jcs--return-type-behind search-string ":"))
-         (there-is-return (not (null return-type-string))))
+         (return-type-str (jcs--return-type-behind search-string ":"))
+         (there-is-return (not (null return-type-str))))
     ;; go back to comment line.
     (jcs-previous-line)
     (jcs-previous-line)
@@ -1523,12 +1515,12 @@ SEARCH-STRING is the raw string that represent the code we want to document."
 
     ;; Lastly, process returns tag.
     (when there-is-return
-      (unless (string= return-type-string "void")
+      (unless (string= return-type-str "void")
         (insert "\n")
         (insert "* @")
         (insert jcs--rust--return-string)
         (when jcs--rust-doc--show-typename
-          (jcs-insert-jsdoc-type return-type-string
+          (jcs-insert-jsdoc-type return-type-str
                                  jcs--rust--open-type-char
                                  jcs--rust--close-type-char))
         (backward-delete-char 1)
@@ -1561,8 +1553,8 @@ SEARCH-STRING is the raw string that represent the code we want to document."
          (param-type-len (length param-type-strings))
          (param-index 0)
          ;; Get all return data types.
-         (return-type-string (jcs--return-type-behind search-string ":"))
-         (there-is-return (not (null return-type-string))))
+         (return-type-str (jcs--return-type-behind search-string ":"))
+         (there-is-return (not (null return-type-str))))
     ;; go back to comment line.
     (jcs-previous-line)
     (jcs-previous-line)
@@ -1589,12 +1581,12 @@ SEARCH-STRING is the raw string that represent the code we want to document."
 
     ;; Lastly, process returns tag.
     (when there-is-return
-      (unless (string= return-type-string "void")
+      (unless (string= return-type-str "void")
         (insert "\n")
         (insert "* @")
         (insert jcs--scala--return-string)
         (when jcs--scala-doc--show-typename
-          (jcs-insert-jsdoc-type return-type-string
+          (jcs-insert-jsdoc-type return-type-str
                                  jcs--scala--open-type-char
                                  jcs--scala--close-type-char))
         (backward-delete-char 1)
@@ -1627,8 +1619,8 @@ SEARCH-STRING is the raw string that represent the code we want to document."
          (param-type-len (length param-type-strings))
          (param-index 0)
          ;; Get all return data types.
-         (return-type-string (jcs--return-type-behind search-string ":"))
-         (there-is-return (not (null return-type-string))))
+         (return-type-str (jcs--return-type-behind search-string ":"))
+         (there-is-return (not (null return-type-str))))
     ;; go back to comment line.
     (jcs-previous-line)
     (jcs-previous-line)
@@ -1658,12 +1650,12 @@ SEARCH-STRING is the raw string that represent the code we want to document."
 
     ;; Lastly, process returns tag.
     (when there-is-return
-      (unless (string= return-type-string "void")
+      (unless (string= return-type-str "void")
         (insert "\n")
         (insert "* @")
         (insert jcs--ts--return-string)
         (when jcs--ts-doc--show-typename
-          (jcs-insert-jsdoc-type return-type-string
+          (jcs-insert-jsdoc-type return-type-str
                                  jcs--ts--open-type-char
                                  jcs--ts--close-type-char))
         (backward-delete-char 1)
