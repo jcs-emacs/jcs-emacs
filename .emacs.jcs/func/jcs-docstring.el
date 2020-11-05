@@ -1449,7 +1449,7 @@ SEARCH-STRING is the raw string that represent the code we want to document."
 ;;
 
 (defun jcs--scala-mode-doc-string-others (search-string)
-  "Insert `php-mode' other doc string.
+  "Insert `scala-mode' other doc string.
 SEARCH-STRING is the raw string that represent the code we want to document."
   (cond
    ((string-match-p "class" search-string)
@@ -1458,9 +1458,60 @@ SEARCH-STRING is the raw string that represent the code we want to document."
       ))))
 
 (defun jcs--scala-mode-doc-string-func (search-string)
-  "Insert `php-mode' function doc string.
+  "Insert `scala-mode' function doc string.
 SEARCH-STRING is the raw string that represent the code we want to document."
-  (user-error "[INFO] There is no document string support for Scala yet"))
+  (let* ((paren-param-list (jcs-paren-param-list-behind search-string ":"))
+         (param-type-strings (nth 0 paren-param-list))
+         (param-variable-strings (nth 1 paren-param-list))
+         (param-var-len (length param-variable-strings))
+         (param-type-len (length param-type-strings))
+         (param-index 0)
+         ;; Get all return data types.
+         (return-type-string (jcs--return-type-behind search-string ":"))
+         (there-is-return (not (null return-type-string))))
+    ;; go back to comment line.
+    (jcs-previous-line)
+    (jcs-previous-line)
+    (end-of-line)
+
+    (insert "@desc ")
+    (indent-for-tab-command)
+
+    ;; Process param tag.
+    (while (< param-index param-var-len)
+      (insert "\n")  ;; start from newline.
+      (insert "* @")
+      (insert jcs--scala--param-string)
+      (when jcs--scala-doc--show-typename
+        (jcs-insert-jsdoc-type (nth param-index param-type-strings)
+                               jcs--scala--open-type-char
+                               jcs--scala--close-type-char))
+      (insert (nth param-index param-variable-strings))
+      (insert jcs--scala-doc--after-value-type-char)
+      (insert jcs--param-desc-string)
+
+      ;; indent once.
+      (indent-for-tab-command)
+
+      ;; add up counter.
+      (setq param-index (1+ param-index)))
+
+    ;; Lastly, process returns tag.
+    (when there-is-return
+      (unless (string= return-type-string "void")
+        (insert "\n")
+        (insert "* @")
+        (insert jcs--scala--return-string)
+        (when jcs--scala-doc--show-typename
+          (jcs-insert-jsdoc-type return-type-string
+                                 jcs--scala--open-type-char
+                                 jcs--scala--close-type-char))
+        (backward-delete-char 1)
+        (if jcs--scala-doc--show-typename
+            (insert jcs--scala-doc--after-value-type-char)
+          (insert " "))
+        (insert jcs--return-desc-string)
+        (indent-for-tab-command)))))
 
 ;;
 ;; (@* "TypeScript" )
@@ -1526,7 +1577,7 @@ SEARCH-STRING is the raw string that represent the code we want to document."
                                  jcs--ts--close-type-char))
         (backward-delete-char 1)
         (if jcs--ts-doc--show-typename
-            (insert jcs--js-doc--after-value-type-char)
+            (insert jcs--ts-doc--after-value-type-char)
           (insert " "))
         (insert jcs--return-desc-string)
         (indent-for-tab-command)))))
