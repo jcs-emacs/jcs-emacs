@@ -14,6 +14,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Revised to improve UX when folding using `origami`.
 * Fixed the startup error triggered by evaluating `web-mode`.
 * Fixed `lua-mode` highlighting issue, see [lua-mode/172](https://github.com/immerrr/lua-mode/issues/172).
+* Support programming language `Scala` document string.
+* Support programming language `Rust` document string.
 
 ### 2020-11-04
 
