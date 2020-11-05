@@ -340,8 +340,7 @@ See `jcs-hook.el' file that has apply `advice' on command `other-window'.")
 (setq next-line-add-newlines nil)
 (setq-default truncate-lines t)
 (setq truncate-partial-width-windows nil)
-(unless (boundp 'jcs-build-test)
-  (split-window-horizontally))
+(unless (boundp 'jcs-build-test) (ignore-errors (split-window-horizontally)))
 
 ;;; Tab / Space
 (setq-default indent-tabs-mode nil)          ; Disable inset tabs, insert space only
