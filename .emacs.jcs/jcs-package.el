@@ -86,6 +86,7 @@
     expand-region
     feebleline
     ffmpeg-player
+    fill-page
     flx
     flycheck-grammarly
     flycheck-popup-tip
