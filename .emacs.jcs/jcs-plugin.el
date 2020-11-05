@@ -1082,23 +1082,7 @@ is loaded using macro `with-eval-after-load'."
   (setq web-mode-enable-current-element-highlight t)
 
   ;; You can also highlight the current column with
-  (setq web-mode-enable-current-column-highlight t)
-
-  :config
-  ;; Associate a content type
-  (add-to-list 'auto-mode-alist '("\\.api\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("/some/react/path/.*\\.js[x]?\\'" . web-mode))
-
-  (add-to-list 'web-mode-indentation-params '("lineup-args" . nil))
-  (add-to-list 'web-mode-indentation-params '("lineup-calls" . nil))
-  (add-to-list 'web-mode-indentation-params '("lineup-concats" . nil))
-  (add-to-list 'web-mode-indentation-params '("lineup-ternary" . nil))
-
-  ;; Syntax Highlighting
-  (set-face-attribute 'web-mode-doctype-face nil :foreground "Pink3")
-  (set-face-attribute 'web-mode-block-comment-face nil :foreground (face-foreground font-lock-comment-face))
-  (set-face-attribute 'web-mode-comment-face nil :foreground (face-foreground font-lock-comment-face))
-  (set-face-attribute 'web-mode-css-property-name-face nil :foreground (face-foreground jcs-css-type-face)))
+  (setq web-mode-enable-current-column-highlight t))
 
 (use-package which-key
   :defer t
