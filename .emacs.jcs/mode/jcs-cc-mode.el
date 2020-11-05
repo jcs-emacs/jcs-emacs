@@ -35,6 +35,7 @@
 
 (defun jcs-cc-mode-hook ()
   "C/C++ mode hook."
+  (jcs-use-cc-mutliline-comment)
 
   (jcs-company-safe-add-backend 'company-clang)
 
