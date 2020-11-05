@@ -16,7 +16,11 @@
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]rs")
-                              'jcs-insert-rust-template))
+                              'jcs-insert-rust-template)
+
+  ;; Comment Block
+  (define-key rust-mode-map (kbd "RET") #'jcs-smart-context-line-break)
+  (define-key rust-mode-map (kbd "*") #'jcs-c-comment-pair))
 
 (add-hook 'rust-mode-hook 'jcs-rust-mode-hook)
 
