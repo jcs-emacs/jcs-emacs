@@ -12,6 +12,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Installed new package `fill-page`.
 * Added line number at pos relative utility function.
 * Revised to improve UX when folding using `origami`.
+* Fixed the startup error triggered by evaluating `web-mode`.
 
 ### 2020-11-04
 
