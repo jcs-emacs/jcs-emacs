@@ -11,7 +11,6 @@
 
 (defun jcs-shader-mode-hook ()
   "Shader mode hook."
-
   (jcs-use-cc-mutliline-comment)
 
   (modify-syntax-entry ?_ "w")

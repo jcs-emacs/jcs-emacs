@@ -10,7 +10,6 @@
 
 (defun jcs-go-mode-hook ()
   "Go mode hook."
-
   (jcs-use-cc-mutliline-comment)
 
   (face-remap-add-relative 'font-lock-constant-face '(:inherit jcs-font-lock-null-face))
