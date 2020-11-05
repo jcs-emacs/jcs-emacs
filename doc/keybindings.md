@@ -118,7 +118,7 @@ Here is the list of key bindins that defined in this configuration.
 
   * **Balanced Expression**
 
-    * <kbd>Alt</kbd>+<kbd>/</kbd> - Move to pair balanced expresssion (sexp).
+    * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>/</kbd> - Move to pair balanced expresssion (sexp).
 
   * **Symbol**
 
