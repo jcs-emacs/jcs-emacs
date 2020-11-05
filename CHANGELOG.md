@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-11-05
+
+* Extract open and close balanced expression to list.
+* Fixed toggle move to balanced expression logic for next character point.
+
 ### 2020-11-04
 
 * Configure `csharp-mode` for `c-markup` highlighting.
