@@ -13,6 +13,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Added line number at pos relative utility function.
 * Revised to improve UX when folding using `origami`.
 * Fixed the startup error triggered by evaluating `web-mode`.
+* Fixed `lua-mode` highlighting issue, see [lua-mode/172](https://github.com/immerrr/lua-mode/issues/172).
 
 ### 2020-11-04
 
