@@ -406,11 +406,15 @@ Note this is opposite logic to the toggle mode function."
 ;;============================================================================
 ;; Programming Mode
 
+(defconst jcs-non-generic-syntax-modes '(lua-mode)
+  "List of modes that do not accept modify generic syntax entry.")
+
 (defun jcs-prog-mode-hook ()
   "Programming language mode hook."
   (jcs-mute-apply (jcs-continue-with-tab-width-record))
 
-  (modify-syntax-entry ?- "_")
+  (unless (jcs-is-current-major-mode-p jcs-non-generic-syntax-modes)
+    (modify-syntax-entry ?- "_"))
 
   (abbrev-mode 1)
   (auto-highlight-symbol-mode t)
