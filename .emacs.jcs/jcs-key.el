@@ -52,7 +52,7 @@
   (define-key company-active-map (kbd "C-s") #'jcs-save-buffer-default))
 
 ;;; Balanced Expression
-(define-key global-map (kbd "M-/") #'jcs-toggle-move-to-sexp)
+(define-key global-map (kbd "C-?") #'jcs-toggle-move-to-sexp)
 
 ;;; Buffer Menu
 (define-key global-map (kbd "M-b") #'buffer-menu)
