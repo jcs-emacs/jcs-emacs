@@ -20,6 +20,7 @@
     php-mode
     python-mode
     rjsx-mode
+    scala-mode
     typescript-mode
     web-mode)
   "List of major modes that supports docstring.")
@@ -44,14 +45,15 @@
        ("[ \t]+@[^ \t\r\n]*[ \t]*\\([a-zA-Z0-9_.*&]*\\)[ \t\n]*[{:-]" 1 'jcs-docstring-value-face t))
      'end)))
 
+;;
+;; (@* "Document String" )
+;;
 
-;;; Doc string
 (defvar jcs--py-doc-string-version 0
   "Document string version.
 
 0 : Description after \"\"\" opening docstring..
 1 : Line break description \"\"\" opening docstring.")
-
 
 ;; All Languages
 (defvar jcs--class-desc-string "" "Class description string.")
@@ -62,7 +64,6 @@
 (defvar jcs--return-desc-string "" "Return description string.")
 
 (defvar jcs--default-typename-string "" "Return default type name string.")
-
 
 ;;; Doc string character after value type font.
 (defvar jcs--as-doc--after-value-type-char ""
@@ -85,33 +86,36 @@
   "Character after value type been inserted in Python Mode.")
 (defvar jcs--php-doc--after-value-type-char ""
   "Character after value type been inserted in PHP Mode.")
+(defvar jcs--scala-doc--after-value-type-char ""
+  "Character after value type been inserted in Scala Mode.")
 (defvar jcs--ts-doc--after-value-type-char ""
   "Character after value type been inserted in TypeScript Mode.")
 
-
 ;;; Show typename.
 (defvar jcs--as-doc--show-typename nil
-  "Show the typename betweeen the open charachter and close charachter in ActionScript mode.")
+  "Show the typename betweeen the open and close charachter in ActionScript mode.")
 (defvar jcs--cc-doc--show-typename nil
-  "Show the typename betweeen the open charachter and close charachter in C/C++ mode.")
+  "Show the typename betweeen the open and close charachter in C/C++ mode.")
 (defvar jcs--csharp-doc--show-typename nil
-  "Show the typename betweeen the open charachter and close charachter in CSharp mode.")
+  "Show the typename betweeen the open and close charachter in CSharp mode.")
 (defvar jcs--go-doc--show-typename nil
-  "Show the typename betweeen the open charachter and close charachter in Go mode.")
+  "Show the typename betweeen the open and close charachter in Go mode.")
 (defvar jcs--groovy-doc--show-typename nil
-  "Show the typename betweeen the open charachter and close charachter in Groovy mode.")
+  "Show the typename betweeen the open and close charachter in Groovy mode.")
 (defvar jcs--java-doc--show-typename nil
-  "Show the typename betweeen the open charachter and close charachter in Java mode.")
+  "Show the typename betweeen the open and close charachter in Java mode.")
 (defvar jcs--js-doc--show-typename nil
-  "Show the typename betweeen the open charachter and close charachter in JavaScript mode.")
+  "Show the typename betweeen the open and close charachter in JavaScript mode.")
 (defvar jcs--lua-doc--show-typename nil
-  "Show the typename betweeen the open charachter and close charachter in Lua mode.")
+  "Show the typename betweeen the open and close charachter in Lua mode.")
 (defvar jcs--py-doc--show-typename nil
-  "Show the typename betweeen the open charachter and close charachter in Python mode.")
+  "Show the typename betweeen the open and close charachter in Python mode.")
 (defvar jcs--php-doc--show-typename nil
-  "Show the typename betweeen the open charachter and close charachter in PHP mode.")
+  "Show the typename betweeen the open and close charachter in PHP mode.")
+(defvar jcs--scala-doc--show-typename nil
+  "Show the typename betweeen the open and close charachter in Scala mode.")
 (defvar jcs--ts-doc--show-typename nil
-  "Show the typename betweeen the open charachter and close charachter in TypeScript mode.")
+  "Show the typename betweeen the open and close charachter in TypeScript mode.")
 
 
 ;;; Tag strings
@@ -144,6 +148,9 @@
 
 (defvar jcs--php--param-string "" "Parameter string in PHP mode.")
 (defvar jcs--php--return-string "" "Returns string in PHP mode.")
+
+(defvar jcs--scala--param-string "" "Parameter string in Scala mode.")
+(defvar jcs--scala--return-string "" "Returns string in Scala mode.")
 
 (defvar jcs--ts--param-string "" "Parameter string in TypeScript mode.")
 (defvar jcs--ts--return-string "" "Returns string in TypeScript mode.")
@@ -179,6 +186,9 @@
 
 (defvar jcs--php--open-type-char "" "Character before the typename in PHP mode.")
 (defvar jcs--php--close-type-char "" "Character after the typename in PHP mode.")
+
+(defvar jcs--scala--open-type-char "" "Character before the typename in Scala mode.")
+(defvar jcs--scala--close-type-char "" "Character after the typename in Scala mode.")
 
 (defvar jcs--ts--open-type-char "" "Character before the typename in TypeScript mode.")
 (defvar jcs--ts--close-type-char "" "Character after the typename in TypeScript mode.")
@@ -218,6 +228,7 @@
           jcs--lua-doc--show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "LUA_DOC_SHOW_TYPENAME"))
           jcs--py-doc--show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "PY_DOC_SHOW_TYPENAME"))
           jcs--php-doc--show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "PHP_DOC_SHOW_TYPENAME"))
+          jcs--scala-doc--show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "SCALA_DOC_SHOW_TYPENAME"))
           jcs--ts-doc--show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "TS_DOC_SHOW_TYPENAME")))
 
     ;; After value type character.
@@ -231,6 +242,7 @@
           jcs--lua-doc--after-value-type-char (jcs-get-properties tmp-ini-list "LUA_AFTER_VALUE_TYPE")
           jcs--py-doc--after-value-type-char (jcs-get-properties tmp-ini-list "PY_AFTER_VALUE_TYPE")
           jcs--php-doc--after-value-type-char (jcs-get-properties tmp-ini-list "PHP_AFTER_VALUE_TYPE")
+          jcs--scala-doc--after-value-type-char (jcs-get-properties tmp-ini-list "SCALA_AFTER_VALUE_TYPE")
           jcs--ts-doc--after-value-type-char (jcs-get-properties tmp-ini-list "TS_AFTER_VALUE_TYPE"))
 
     ;; param string
@@ -244,6 +256,7 @@
           jcs--lua--param-string (jcs-get-properties tmp-ini-list "LUA_PARAM_STRING")
           jcs--py--param-string (jcs-get-properties tmp-ini-list "PY_PARAM_STRING")
           jcs--php--param-string (jcs-get-properties tmp-ini-list "PHP_PARAM_STRING")
+          jcs--scala--param-string (jcs-get-properties tmp-ini-list "SCALA_PARAM_STRING")
           jcs--ts--param-string (jcs-get-properties tmp-ini-list "TS_PARAM_STRING"))
 
     ;; return string
@@ -257,6 +270,7 @@
           jcs--lua--return-string (jcs-get-properties tmp-ini-list "LUA_RETURN_STRING")
           jcs--py--return-string (jcs-get-properties tmp-ini-list "PY_RETURN_STRING")
           jcs--php--return-string (jcs-get-properties tmp-ini-list "PHP_RETURN_STRING")
+          jcs--scala--return-string (jcs-get-properties tmp-ini-list "SCALA_RETURN_STRING")
           jcs--ts--return-string (jcs-get-properties tmp-ini-list "TS_RETURN_STRING"))
 
     ;; open type character.
@@ -270,6 +284,7 @@
           jcs--lua--open-type-char (jcs-get-properties tmp-ini-list "LUA_OPEN_TYPE_CHAR")
           jcs--py--open-type-char (jcs-get-properties tmp-ini-list "PY_OPEN_TYPE_CHAR")
           jcs--php--open-type-char (jcs-get-properties tmp-ini-list "PHP_OPEN_TYPE_CHAR")
+          jcs--scala--open-type-char (jcs-get-properties tmp-ini-list "SCALA_OPEN_TYPE_CHAR")
           jcs--ts--open-type-char (jcs-get-properties tmp-ini-list "TS_OPEN_TYPE_CHAR"))
 
     ;; close type character.
@@ -283,6 +298,7 @@
           jcs--lua--close-type-char (jcs-get-properties tmp-ini-list "LUA_CLOSE_TYPE_CHAR")
           jcs--py--close-type-char (jcs-get-properties tmp-ini-list "PY_CLOSE_TYPE_CHAR")
           jcs--php--close-type-char (jcs-get-properties tmp-ini-list "PHP_CLOSE_TYPE_CHAR")
+          jcs--scala--close-type-char (jcs-get-properties tmp-ini-list "SCALA_CLOSE_TYPE_CHAR")
           jcs--ts--close-type-char (jcs-get-properties tmp-ini-list "TS_CLOSE_TYPE_CHAR"))))
 
 
@@ -393,6 +409,10 @@ SEARCH-STRING is the raw string that represent the code we want to document."
         (setq mode-doc-string-func-name (if meet-function-name
                                             'jcs--php-mode-doc-string-func
                                           'jcs--php-mode-doc-string-others)))
+       ((jcs-is-current-major-mode-p '("scala-mode"))
+        (setq mode-doc-string-func-name (if meet-function-name
+                                            'jcs--scala-mode-doc-string-func
+                                          'jcs--scala-mode-doc-string-others)))
        ((jcs-is-current-major-mode-p '("typescript-mode"))
         (setq mode-doc-string-func-name (if meet-function-name
                                             'jcs--ts-mode-doc-string-func
@@ -1423,6 +1443,24 @@ SEARCH-STRING is the raw string that represent the code we want to document."
           (insert " "))
         (insert jcs--return-desc-string)
         (indent-for-tab-command)))))
+
+;;
+;; (@* "Scala" )
+;;
+
+(defun jcs--scala-mode-doc-string-others (search-string)
+  "Insert `php-mode' other doc string.
+SEARCH-STRING is the raw string that represent the code we want to document."
+  (cond
+   ((string-match-p "class" search-string)
+    (progn
+      ;; TODO: implement into PHP mode.
+      ))))
+
+(defun jcs--scala-mode-doc-string-func (search-string)
+  "Insert `php-mode' function doc string.
+SEARCH-STRING is the raw string that represent the code we want to document."
+  (user-error "[INFO] There is no document string support for Scala yet"))
 
 ;;
 ;; (@* "TypeScript" )
