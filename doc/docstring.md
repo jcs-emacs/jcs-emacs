@@ -12,6 +12,7 @@ Here is a list of languages that this configuration supports.
 - [x] Java
 - [x] JavaScript
 - [x] JSX
+- [ ] Kotlin
 - [x] Lua
 - [x] PHP
 - [x] Python
