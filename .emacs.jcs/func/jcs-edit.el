@@ -1788,7 +1788,12 @@ Otherwise return nil."
   "Close the current scope of the node."
   (interactive)
   (require 'origami)
-  (call-interactively #'origami-close-node))
+  (let ((diff-lines-before (jcs-line-number-at-pos-relative))
+        diff-lines-after)
+    (call-interactively #'origami-close-node)
+    (setq diff-lines-after (jcs-line-number-at-pos-relative))
+    (save-excursion
+      (jcs-scroll-down-line (- diff-lines-after diff-lines-before)))))
 
 ;;;###autoload
 (defun jcs-open-node ()
