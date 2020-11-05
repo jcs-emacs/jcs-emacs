@@ -15,8 +15,6 @@
   (jcs-insert-header-if-valid '("[.]scala")
                               'jcs-insert-scala-template)
 
-  ;; Normal
-
   ;; Comment Block
   (define-key scala-mode-map (kbd "RET") #'jcs-smart-context-line-break)
   (define-key scala-mode-map (kbd "*") #'jcs-c-comment-pair))
