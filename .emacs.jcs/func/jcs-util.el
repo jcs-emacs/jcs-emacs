@@ -942,6 +942,13 @@ Return nil, vice versa."
   "Last line number in current visible window."
   (line-number-at-pos (jcs-last-visible-pos-in-window) t))
 
+(defun jcs-line-number-at-pos-relative (&optional pos rel-line)
+  "Return line number relative to REL-LINE from POS.
+
+If optional argument REL-LINE is nil; we will use first visible line instead."
+  (unless rel-line (setq rel-line (jcs-first-visible-line-in-window)))
+  (1+ (- (line-number-at-pos pos t) rel-line)))
+
 (defun jcs-make-first-visible-line-to (ln)
   "Make the first visible line to target line, LN."
   (jcs-goto-line ln)
@@ -1545,7 +1552,7 @@ Argument TYPE can be on of the following symbol.
   - prefix - uses function `string-prefix-p'.
   - suffix - uses function `string-suffix-p'.
 
-Optional argument IGNORE-CASE is only uses when TYPE is either symbol `prefix' 
+Optional argument IGNORE-CASE is only uses when TYPE is either symbol `prefix'
 or `suffix'."
   (require 'cl-lib)
   (cl-case type
