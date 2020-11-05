@@ -14,9 +14,9 @@
     groovy-mode
     java-mode
     jayces-mode
-    js-mode js2-mode js3-mode
+    javascript-mode js-mode js2-mode js3-mode
     lua-mode
-    nasm-mode
+    masm-mode nasm-mode
     php-mode
     python-mode
     rjsx-mode
