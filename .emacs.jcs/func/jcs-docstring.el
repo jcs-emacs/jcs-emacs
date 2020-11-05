@@ -548,7 +548,7 @@ or with default value
     (setq result-datas (reverse result-datas))
     result-datas))
 
-(defun jcs-paren-param-list-behind (search-string &optional spi-sym)
+(defun jcs-paren-param-list-behind (search-string &optional spi-sym last-word)
   "Like `jcs-paren-param-list' but handle programming languages that use colon \
 to separate the type.
 
@@ -562,7 +562,11 @@ or with default value
 
 See `jcs-paren-param-list' function for argument description SEARCH-STRING.
 
-An optional argument SPI-SYM is the split symbol for return type."
+An optional argument SPI-SYM is the split symbol for return type.  In most cases,
+this symbol often will be a 'colon'.
+
+If optional argument LAST-WORD is non-nil; then limit the variable name to the
+last word only."
   (let ((param-string "") (param-lst '())
         (param-type-str-lst '()) (param-var-str-lst '())
         (param-type-strings nil) (param-variable-strings nil)
@@ -584,6 +588,10 @@ An optional argument SPI-SYM is the split symbol for return type."
             ;; Set default type name string here.
             (setq param-type-str jcs--default-typename-string)
           (setq param-type-str (string-trim (nth 1 param-split-str-lst))))
+
+        (when last-word
+          (setq param-var-str (split-string param-var-str " " t)
+                param-var-str (nth (1- (length param-var-str)) param-var-str)))
 
         (push param-var-str param-var-str-lst)
         (push param-type-str param-type-str-lst)))
@@ -1460,7 +1468,7 @@ SEARCH-STRING is the raw string that represent the code we want to document."
 (defun jcs--scala-mode-doc-string-func (search-string)
   "Insert `scala-mode' function doc string.
 SEARCH-STRING is the raw string that represent the code we want to document."
-  (let* ((paren-param-list (jcs-paren-param-list-behind search-string ":"))
+  (let* ((paren-param-list (jcs-paren-param-list-behind search-string ":" t))
          (param-type-strings (nth 0 paren-param-list))
          (param-variable-strings (nth 1 paren-param-list))
          (param-var-len (length param-variable-strings))
