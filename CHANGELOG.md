@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-11-06
+
+* Fixed `daemon` startup issue.
+
 ### 2020-11-05
 
 * Extract open and close balanced expression to list.
