@@ -20,6 +20,7 @@
     php-mode
     python-mode
     rjsx-mode
+    rust-mode
     scala-mode
     typescript-mode
     web-mode)
@@ -38,7 +39,7 @@
      '(;; `@param` { typename } val-tag : value tag description..
        ("\\(?:^\\|\\s-\\)\\(@[^ \"'{}()\t\r\n]+\\)" 1 'jcs-docstring-tag-face t)
        ;; @param `{ typename }` val-tag : value tag description..
-       ("[ \t]+@[^ \t\r\n]+\\(?:^\\|\\s-\\)\\([\\[{][^\]}]*.\\)" 1 'jcs-docstring-type-face t)
+       ("[ \t]+@[^ \t\r\n]+\\(?:^\\|\\s-\\)\\([\\[{][^}]*.\\)" 1 'jcs-docstring-type-face t)
        ;; @param { typename } `val-tag` : value tag description..
        ("[ \t]+@[^ \t\r\n].*[\]\|}]\\([^\r\n]*\\)[:-]" 1 'jcs-docstring-value-face t)
        ;; @param `val-tag` : value tag description..
@@ -86,6 +87,8 @@
   "Character after value type been inserted in Python Mode.")
 (defvar jcs--php-doc--after-value-type-char ""
   "Character after value type been inserted in PHP Mode.")
+(defvar jcs--rust-doc--after-value-type-char ""
+  "Character after value type been inserted in Rust Mode.")
 (defvar jcs--scala-doc--after-value-type-char ""
   "Character after value type been inserted in Scala Mode.")
 (defvar jcs--ts-doc--after-value-type-char ""
@@ -114,6 +117,8 @@
   "Show the typename betweeen the open and close charachter in PHP mode.")
 (defvar jcs--scala-doc--show-typename nil
   "Show the typename betweeen the open and close charachter in Scala mode.")
+(defvar jcs--rust-doc--show-typename nil
+  "Show the typename betweeen the open and close charachter in Rust mode.")
 (defvar jcs--ts-doc--show-typename nil
   "Show the typename betweeen the open and close charachter in TypeScript mode.")
 
@@ -148,6 +153,9 @@
 
 (defvar jcs--php--param-string "" "Parameter string in PHP mode.")
 (defvar jcs--php--return-string "" "Returns string in PHP mode.")
+
+(defvar jcs--rust--param-string "" "Parameter string in Rust mode.")
+(defvar jcs--rust--return-string "" "Returns string in Rust mode.")
 
 (defvar jcs--scala--param-string "" "Parameter string in Scala mode.")
 (defvar jcs--scala--return-string "" "Returns string in Scala mode.")
@@ -186,6 +194,9 @@
 
 (defvar jcs--php--open-type-char "" "Character before the typename in PHP mode.")
 (defvar jcs--php--close-type-char "" "Character after the typename in PHP mode.")
+
+(defvar jcs--rust--open-type-char "" "Character before the typename in Rust mode.")
+(defvar jcs--rust--close-type-char "" "Character after the typename in Rust mode.")
 
 (defvar jcs--scala--open-type-char "" "Character before the typename in Scala mode.")
 (defvar jcs--scala--close-type-char "" "Character after the typename in Scala mode.")
@@ -228,6 +239,7 @@
           jcs--lua-doc--show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "LUA_DOC_SHOW_TYPENAME"))
           jcs--py-doc--show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "PY_DOC_SHOW_TYPENAME"))
           jcs--php-doc--show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "PHP_DOC_SHOW_TYPENAME"))
+          jcs--rust-doc--show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "RUST_DOC_SHOW_TYPENAME"))
           jcs--scala-doc--show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "SCALA_DOC_SHOW_TYPENAME"))
           jcs--ts-doc--show-typename (jcs-parse-bool (jcs-get-properties tmp-ini-list "TS_DOC_SHOW_TYPENAME")))
 
@@ -242,6 +254,7 @@
           jcs--lua-doc--after-value-type-char (jcs-get-properties tmp-ini-list "LUA_AFTER_VALUE_TYPE")
           jcs--py-doc--after-value-type-char (jcs-get-properties tmp-ini-list "PY_AFTER_VALUE_TYPE")
           jcs--php-doc--after-value-type-char (jcs-get-properties tmp-ini-list "PHP_AFTER_VALUE_TYPE")
+          jcs--rust-doc--after-value-type-char (jcs-get-properties tmp-ini-list "RUST_AFTER_VALUE_TYPE")
           jcs--scala-doc--after-value-type-char (jcs-get-properties tmp-ini-list "SCALA_AFTER_VALUE_TYPE")
           jcs--ts-doc--after-value-type-char (jcs-get-properties tmp-ini-list "TS_AFTER_VALUE_TYPE"))
 
@@ -256,6 +269,7 @@
           jcs--lua--param-string (jcs-get-properties tmp-ini-list "LUA_PARAM_STRING")
           jcs--py--param-string (jcs-get-properties tmp-ini-list "PY_PARAM_STRING")
           jcs--php--param-string (jcs-get-properties tmp-ini-list "PHP_PARAM_STRING")
+          jcs--rust--param-string (jcs-get-properties tmp-ini-list "RUST_PARAM_STRING")
           jcs--scala--param-string (jcs-get-properties tmp-ini-list "SCALA_PARAM_STRING")
           jcs--ts--param-string (jcs-get-properties tmp-ini-list "TS_PARAM_STRING"))
 
@@ -270,6 +284,7 @@
           jcs--lua--return-string (jcs-get-properties tmp-ini-list "LUA_RETURN_STRING")
           jcs--py--return-string (jcs-get-properties tmp-ini-list "PY_RETURN_STRING")
           jcs--php--return-string (jcs-get-properties tmp-ini-list "PHP_RETURN_STRING")
+          jcs--rust--return-string (jcs-get-properties tmp-ini-list "RUST_RETURN_STRING")
           jcs--scala--return-string (jcs-get-properties tmp-ini-list "SCALA_RETURN_STRING")
           jcs--ts--return-string (jcs-get-properties tmp-ini-list "TS_RETURN_STRING"))
 
@@ -284,6 +299,7 @@
           jcs--lua--open-type-char (jcs-get-properties tmp-ini-list "LUA_OPEN_TYPE_CHAR")
           jcs--py--open-type-char (jcs-get-properties tmp-ini-list "PY_OPEN_TYPE_CHAR")
           jcs--php--open-type-char (jcs-get-properties tmp-ini-list "PHP_OPEN_TYPE_CHAR")
+          jcs--rust--open-type-char (jcs-get-properties tmp-ini-list "RUST_OPEN_TYPE_CHAR")
           jcs--scala--open-type-char (jcs-get-properties tmp-ini-list "SCALA_OPEN_TYPE_CHAR")
           jcs--ts--open-type-char (jcs-get-properties tmp-ini-list "TS_OPEN_TYPE_CHAR"))
 
@@ -298,6 +314,7 @@
           jcs--lua--close-type-char (jcs-get-properties tmp-ini-list "LUA_CLOSE_TYPE_CHAR")
           jcs--py--close-type-char (jcs-get-properties tmp-ini-list "PY_CLOSE_TYPE_CHAR")
           jcs--php--close-type-char (jcs-get-properties tmp-ini-list "PHP_CLOSE_TYPE_CHAR")
+          jcs--rust--close-type-char (jcs-get-properties tmp-ini-list "RUST_CLOSE_TYPE_CHAR")
           jcs--scala--close-type-char (jcs-get-properties tmp-ini-list "SCALA_CLOSE_TYPE_CHAR")
           jcs--ts--close-type-char (jcs-get-properties tmp-ini-list "TS_CLOSE_TYPE_CHAR"))))
 
@@ -409,6 +426,10 @@ SEARCH-STRING is the raw string that represent the code we want to document."
         (setq mode-doc-string-func-name (if meet-function-name
                                             'jcs--php-mode-doc-string-func
                                           'jcs--php-mode-doc-string-others)))
+       ((jcs-is-current-major-mode-p '("rust-mode"))
+        (setq mode-doc-string-func-name (if meet-function-name
+                                            'jcs--rust-mode-doc-string-func
+                                          'jcs--rust-mode-doc-string-others)))
        ((jcs-is-current-major-mode-p '("scala-mode"))
         (setq mode-doc-string-func-name (if meet-function-name
                                             'jcs--scala-mode-doc-string-func
@@ -636,7 +657,7 @@ SEARCH-STRING is the raw string that represent the code we want to document."
 
     ;; Process param tag.
     (while (< param-index param-var-len)
-      (insert "\n")  ;; start from newline.
+      (insert "\n")  ; start from newline.
       (insert "* @")
       (insert jcs--as--param-string)
       (when jcs--as-doc--show-typename
@@ -792,7 +813,7 @@ SEARCH-STRING is the raw string that represent the code we want to document."
 
     ;; Process param tag.
     (while (< param-index param-var-len)
-      (insert "\n")  ;; start from newline.
+      (insert "\n")  ; start from newline.
       (insert "* @")
       (insert jcs--cc--param-string)
       (when jcs--cc-doc--show-typename
@@ -875,7 +896,7 @@ SEARCH-STRING is the raw string that represent the code we want to document."
       (progn
         ;; First process param tag.
         (while (< param-index param-var-len)
-          (insert "\n")  ;; start from newline.
+          (insert "\n")  ; start from newline.
           (insert "/// <param name=\"")
           (insert (nth param-index param-variable-strings))
           (insert "\"></param>")
@@ -894,14 +915,13 @@ SEARCH-STRING is the raw string that represent the code we want to document."
             (indent-for-tab-command)))))
      ((= docstring-type 1)
       (progn
-        ;; NOTE: This type of docstring, comment
-        ;; line is one more line above!
+        ;; NOTE: This type of docstring, comment line is one more line above!
         (jcs-previous-line)
         (end-of-line)
 
         ;; Process param tag.
         (while (< param-index param-var-len)
-          (insert "\n")  ;; start from newline.
+          (insert "\n")  ; start from newline.
           (insert "* @")
           (insert jcs--as--param-string)
           (when jcs--as-doc--show-typename
@@ -977,7 +997,7 @@ SEARCH-STRING is the raw string that represent the code we want to document."
 
         ;; Process param tag.
         (while (< param-index param-var-len)
-          (insert "\n")  ;; start from newline.
+          (insert "\n")  ; start from newline.
           (insert "// @")
           (insert jcs--go--param-string)
           (when jcs--go-doc--show-typename
@@ -1018,7 +1038,7 @@ SEARCH-STRING is the raw string that represent the code we want to document."
 
         ;; Process param tag.
         (while (< param-index param-var-len)
-          (insert "\n")  ;; start from newline.
+          (insert "\n")  ; start from newline.
           (insert "* @")
           (insert jcs--go--param-string)
           (when jcs--go-doc--show-typename
@@ -1080,7 +1100,7 @@ SEARCH-STRING is the raw string that represent the code we want to document."
 
     ;; Process param tag.
     (while (< param-index param-var-len)
-      (insert "\n")  ;; start from newline.
+      (insert "\n")  ; start from newline.
       (insert "* @")
       (insert jcs--groovy--param-string)
       (when jcs--groovy-doc--show-typename
@@ -1149,7 +1169,7 @@ SEARCH-STRING is the raw string that represent the code we want to document."
 
     ;; Process param tag.
     (while (< param-index param-var-len)
-      (insert "\n")  ;; start from newline.
+      (insert "\n")  ; start from newline.
       (insert "* @")
       (insert jcs--java--param-string)
       (when jcs--java-doc--show-typename
@@ -1214,7 +1234,7 @@ SEARCH-STRING is the raw string that represent the code we want to document."
 
     ;; Process param tag.
     (while (< param-index param-var-len)
-      (insert "\n")  ;; start from newline.
+      (insert "\n")  ; start from newline.
       (insert "* @")
       (insert jcs--js--param-string)
       (when jcs--js-doc--show-typename
@@ -1279,7 +1299,7 @@ SEARCH-STRING is the raw string that represent the code we want to document."
 
     ;; Process param tag.
     (while (< param-index param-var-len)
-      (insert "\n")  ;; start from newline.
+      (insert "\n")  ; start from newline.
       (insert "-- @")
       (insert jcs--lua--param-string)
       (when jcs--lua-doc--show-typename
@@ -1353,7 +1373,7 @@ SEARCH-STRING is the raw string that represent the code we want to document."
 
     (while (< param-index param-var-len)
       (unless (string= "self" (nth param-index param-variable-strings))
-        (insert "\n")  ;; start from newline.
+        (insert "\n")  ; start from newline.
         (insert "@")
         (insert jcs--py--param-string)
         (when jcs--py-doc--show-typename
@@ -1418,7 +1438,7 @@ SEARCH-STRING is the raw string that represent the code we want to document."
 
     ;; Process param tag.
     (while (< param-index param-var-len)
-      (insert "\n")  ;; start from newline.
+      (insert "\n")  ; start from newline.
       (insert "* @")
       (insert jcs--php--param-string)
       (when jcs--php-doc--show-typename
@@ -1453,6 +1473,72 @@ SEARCH-STRING is the raw string that represent the code we want to document."
         (indent-for-tab-command)))))
 
 ;;
+;; (@* "Rust" )
+;;
+
+(defun jcs--rust-mode-doc-string-others (search-string)
+  "Insert `rust-mode' other doc string.
+SEARCH-STRING is the raw string that represent the code we want to document."
+  (cond
+   ((string-match-p "struct" search-string)
+    (progn
+      ;; TODO: implement into Rust mode.
+      ))))
+
+(defun jcs--rust-mode-doc-string-func (search-string)
+  "Insert `rust-mode' function doc string.
+SEARCH-STRING is the raw string that represent the code we want to document."
+  (let* ((paren-param-list (jcs-paren-param-list-behind search-string ":" t))
+         (param-type-strings (nth 0 paren-param-list))
+         (param-variable-strings (nth 1 paren-param-list))
+         (param-var-len (length param-variable-strings))
+         (param-type-len (length param-type-strings))
+         (param-index 0)
+         ;; Get all return data types.
+         (return-type-string (jcs--return-type-behind search-string ":"))
+         (there-is-return (not (null return-type-string))))
+    ;; go back to comment line.
+    (jcs-previous-line)
+    (jcs-previous-line)
+    (end-of-line)
+
+    ;; Process param tag.
+    (while (< param-index param-var-len)
+      (insert "\n")  ; start from newline.
+      (insert "* @")
+      (insert jcs--rust--param-string)
+      (when jcs--rust-doc--show-typename
+        (jcs-insert-jsdoc-type (nth param-index param-type-strings)
+                               jcs--rust--open-type-char
+                               jcs--rust--close-type-char))
+      (insert (nth param-index param-variable-strings))
+      (insert jcs--rust-doc--after-value-type-char)
+      (insert jcs--param-desc-string)
+
+      ;; indent once.
+      (indent-for-tab-command)
+
+      ;; add up counter.
+      (setq param-index (1+ param-index)))
+
+    ;; Lastly, process returns tag.
+    (when there-is-return
+      (unless (string= return-type-string "void")
+        (insert "\n")
+        (insert "* @")
+        (insert jcs--rust--return-string)
+        (when jcs--rust-doc--show-typename
+          (jcs-insert-jsdoc-type return-type-string
+                                 jcs--rust--open-type-char
+                                 jcs--rust--close-type-char))
+        (backward-delete-char 1)
+        (if jcs--rust-doc--show-typename
+            (insert jcs--rust-doc--after-value-type-char)
+          (insert " "))
+        (insert jcs--return-desc-string)
+        (indent-for-tab-command)))))
+
+;;
 ;; (@* "Scala" )
 ;;
 
@@ -1462,7 +1548,7 @@ SEARCH-STRING is the raw string that represent the code we want to document."
   (cond
    ((string-match-p "class" search-string)
     (progn
-      ;; TODO: implement into PHP mode.
+      ;; TODO: implement into Scala mode.
       ))))
 
 (defun jcs--scala-mode-doc-string-func (search-string)
@@ -1482,12 +1568,9 @@ SEARCH-STRING is the raw string that represent the code we want to document."
     (jcs-previous-line)
     (end-of-line)
 
-    (insert "@desc ")
-    (indent-for-tab-command)
-
     ;; Process param tag.
     (while (< param-index param-var-len)
-      (insert "\n")  ;; start from newline.
+      (insert "\n")  ; start from newline.
       (insert "* @")
       (insert jcs--scala--param-string)
       (when jcs--scala-doc--show-typename
@@ -1556,7 +1639,7 @@ SEARCH-STRING is the raw string that represent the code we want to document."
 
     ;; Process param tag.
     (while (< param-index param-var-len)
-      (insert "\n")  ;; start from newline.
+      (insert "\n")  ; start from newline.
       (insert "* @")
       (insert jcs--ts--param-string)
       (when jcs--ts-doc--show-typename
