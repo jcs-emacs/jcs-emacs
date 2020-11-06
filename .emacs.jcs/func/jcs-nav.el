@@ -442,17 +442,19 @@ CH : character we target to move toward."
     (when jcs-search-trigger-forward-char
       (goto-char (point-min)))
 
-    (setq jcs-search-trigger-backward-char nil)
-    (setq jcs-search-trigger-forward-char nil)
-    (setq start-pt (point))
+    (setq jcs-search-trigger-backward-char nil
+          jcs-search-trigger-forward-char nil
+          start-pt (point))
     (jcs-move-to-forward-a-char ch)
 
     (when (jcs-is-end-of-buffer-p)
       (setq jcs-search-trigger-forward-char t)
       (goto-char start-pt)
-      (message "%s"
-               (propertize (concat "Failing overwrap jcs-move-to-forward-a-char-recursive: " ch)
-                           'face '(:foreground "cyan"))))))
+      (message "%s %s"
+               (propertize
+                "Failing overwrap jcs-move-to-forward-a-char-recursive:"
+                'face '(:foreground "cyan"))
+               ch))))
 
 (defun jcs-move-to-backward-a-char-recursive (ch)
   "Move backward to a character.
@@ -461,18 +463,19 @@ CH : character we target to move toward."
     (when jcs-search-trigger-backward-char
       (goto-char (point-max)))
 
-    (setq jcs-search-trigger-backward-char nil)
-    (setq jcs-search-trigger-forward-char nil)
-    (setq start-pt (point))
+    (setq jcs-search-trigger-backward-char nil
+          jcs-search-trigger-forward-char nil
+          start-pt (point))
     (jcs-move-to-backward-a-char ch)
 
     (when (jcs-is-beginning-of-buffer-p)
       (setq jcs-search-trigger-backward-char t)
       (goto-char start-pt)
-      (message "%s"
-               (propertize (concat "Failing overwrap jcs-move-to-backward-a-char-recursive: " ch)
-                           'face '(:foreground "cyan"))))))
-
+      (message "%s %s"
+               (propertize
+                "Failing overwrap jcs-move-to-backward-a-char-recursive:"
+                'face '(:foreground "cyan"))
+               ch))))
 
 ;;
 ;; (@* "Move toggle Open and Close all kind of character" )
@@ -527,9 +530,13 @@ CH : character we target to move toward."
                  (= point-after-look-close-char point-end-of-buffer))
         (goto-char point-before-do-anything)
         (setq jcs-search-trigger-forward-open-close-char 1)
-        (message "%s"
-                 (propertize (concat "Failing overwrap jcs-move-forward-open-close-epair: '" openChar "' and '" closeChar "'")
-                             'face '(:foreground "cyan")))))))
+        (message "%s %s %s %s"
+                 (propertize
+                  "Failing overwrap jcs-move-forward-open-close-epair:"
+                  'face '(:foreground "cyan"))
+                 openChar
+                 (propertize "and" 'face '(:foreground "cyan"))
+                 closeChar)))))
 
 (defun jcs-move-backward-open-close-epair (openChar closeChar)
   "Move backward to a open/close parenthesis."
@@ -575,22 +582,42 @@ CH : character we target to move toward."
                  (= point-after-look-close-char point-beginning-of-buffer))
         (goto-char point-before-do-anything)
         (setq jcs-search-trigger-backward-open-close-char 1)
-        (message "%s"
-                 (propertize (concat "Failing overwrap jcs-move-forward-open-close-epair: '" openChar "' and '" closeChar "'")
-                             'face '(:foreground "cyan")))))))
+        (message "%s %s %s %s"
+                 (propertize
+                  "Failing overwrap jcs-move-backward-open-close-epair:"
+                  'face '(:foreground "cyan"))
+                 openChar
+                 (propertize "and" 'face '(:foreground "cyan"))
+                 closeChar)))))
 
 ;;
 ;; (@* "Balanced Expression (sexp)" )
 ;;
 
-(defvar jcs-sexp-open-chars '("(" "{" "`" "\"" "'" "[")
+(defvar jcs-sexp-open-chars '("(" "{" "`" "\"" "'" "[" "<")
   "List of open balanced expression.")
 
-(defvar jcs-sexp-close-chars '(")" "}" "`" "\"" "'" "]")
+(defvar jcs-sexp-close-chars '(")" "}" "`" "\"" "'" "]" ">")
   "List of close balanced expression.")
 
-(defun jcs-toggle-move-to-sexp ()
-  "Move to the balance expression if any."
+(defun jcs-toggle-backward-forward-sexp ()
+  "Move to balance expression in backward/forward direction if any."
+  (interactive)
+  (jcs-mute-apply (when (jcs-backward-sexp) (jcs-forward-sexp))))
+
+(defun jcs-backward-sexp ()
+  "Wrapper for function `backward-sexp'."
+  (interactive)
+  (cond ((jcs-current-char-equal-p jcs-sexp-close-chars)
+         (backward-sexp))
+        (t (message "%s %s %s"
+                    (propertize "[INFO] You are at the end of"
+                                'face '(:foreground "cyan"))
+                    "backward"
+                    (propertize "sexp" 'face '(:foreground "cyan"))))))
+
+(defun jcs-forward-sexp ()
+  "Wrapper for function `forward-sexp'."
   (interactive)
   (cond ((jcs-current-char-equal-p jcs-sexp-open-chars)
          (forward-char -1)
@@ -599,8 +626,11 @@ CH : character we target to move toward."
            (forward-char 1)
            (jcs-current-char-equal-p jcs-sexp-open-chars))
          (forward-sexp))
-        ((jcs-current-char-equal-p jcs-sexp-close-chars)
-         (backward-sexp))))
+        (t (message "%s %s %s"
+                    (propertize "[INFO] You are at the end of"
+                                'face '(:foreground "cyan"))
+                    "forward"
+                    (propertize "sexp" 'face '(:foreground "cyan"))))))
 
 ;;
 ;; (@* "Move toggle Open and Close all kind of parenthesis" )
@@ -885,14 +915,14 @@ as NO-REC : recursive? (Default: do recusrive method)"
   "Move forward to a period.
 as NO-REC : recursive? (Default: do recusrive method)"
   (interactive)
-  (jcs-move-to-forward-a-char-do-recursive "." no-rec))
+  (jcs-move-to-forward-a-char-do-recursive "[.]" no-rec))
 
 ;;;###autoload
 (defun jcs-move-backward-period (&optional no-rec)
   "Move backward to a period.
 as NO-REC : recursive? (Default: do recusrive method)"
   (interactive)
-  (jcs-move-to-backward-a-char-do-recursive "." no-rec))
+  (jcs-move-to-backward-a-char-do-recursive "[.]" no-rec))
 
 (provide 'jcs-nav)
 ;;; jcs-nav.el ends here
