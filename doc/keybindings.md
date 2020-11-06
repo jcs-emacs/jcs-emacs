@@ -118,7 +118,11 @@ Here is the list of key bindins that defined in this configuration.
 
   * **Balanced Expression**
 
-    * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>/</kbd> - Move to pair balanced expresssion (sexp).
+    * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>/</kbd> - Move backward/forward balanced expresssion (sexp).
+    * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>;</kbd> - Move backward balanced expresssion (sexp) with only deep one level.
+    * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>'</kbd> - Move forward balanced expresssion (sexp) with only deep one level.
+    * <kbd>Ctrl</kbd>+<kbd>;</kbd> - Move backward balanced expresssion (sexp) with unlimited levels.
+    * <kbd>Ctrl</kbd>+<kbd>'</kbd> - Move forward balanced expresssion (sexp) with unlimited levels.
 
   * **Symbol**
 
