@@ -52,7 +52,11 @@
   (define-key company-active-map (kbd "C-s") #'jcs-save-buffer-default))
 
 ;;; Balanced Expression
-(define-key global-map (kbd "C-?") #'jcs-toggle-move-to-sexp)
+(define-key global-map (kbd "C-?") #'jcs-toggle-backward-forward-sexp)
+(define-key global-map (kbd "C-:") #'jcs-backward-sexp)
+(define-key global-map (kbd "C-\"") #'jcs-forward-sexp)
+(define-key global-map (kbd "C-;") #'backward-sexp)
+(define-key global-map (kbd "C-'") #'forward-sexp)
 
 ;;; Buffer Menu
 (define-key global-map (kbd "M-b") #'buffer-menu)
@@ -372,7 +376,9 @@
 (with-eval-after-load 'multiple-cursors
   (define-key mc/keymap (kbd "<escape>") #'mc/keyboard-quit)
   (define-key mc/keymap (kbd "<return>") nil)
-  (define-key mc/keymap (kbd "C-v") #'jcs-smart-yank))
+  (define-key mc/keymap (kbd "C-v") #'jcs-smart-yank)
+  (define-key mc/keymap (kbd "C-:") nil)
+  (define-key mc/keymap (kbd "C-'") nil))
 
 ;;; Navigation
 (define-key global-map (kbd "C-<home>") #'jcs-beginning-of-buffer)
