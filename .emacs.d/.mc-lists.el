@@ -3,16 +3,19 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        backward-sexp
         beginning-of-buffer
         c-electric-slash
         electric-pair-delete-pair
         end-of-buffer
+        forward-sexp
         indent-region
         jcs-align-region-or-document
         jcs-asm-comment
         jcs-asm-return
         jcs-backward-delete-word
         jcs-backward-kill-word-capital
+        jcs-backward-sexp
         jcs-backward-word-capital
         jcs-beginning-of-buffer
         jcs-beginning-of-line
@@ -64,6 +67,7 @@
         jcs-end-of-line
         jcs-forward-delete-word
         jcs-forward-kill-word-capital
+        jcs-forward-sexp
         jcs-forward-word-capital
         jcs-go-maybe-insert-codedoc
         jcs-hl-todo-next
@@ -108,6 +112,7 @@
         jcs-smart-yank
         jcs-sort-symbols
         jcs-tab-key
+        jcs-toggle-backward-forward-sexp
         jcs-uncomment-region-or-line
         jcs-upcase-word-or-region
         jcs-vs-closing-curly-bracket-key
