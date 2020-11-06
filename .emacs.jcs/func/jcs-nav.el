@@ -610,6 +610,11 @@ CH : character we target to move toward."
   (interactive)
   (cond ((jcs-current-char-equal-p jcs-sexp-close-chars)
          (backward-sexp))
+        ((save-excursion
+           (forward-char 1)
+           (jcs-current-char-equal-p jcs-sexp-close-chars))
+         (forward-char 1)
+         (backward-sexp))
         (t (message "%s %s %s"
                     (propertize "[INFO] You are at the end of"
                                 'face '(:foreground "cyan"))
@@ -619,12 +624,12 @@ CH : character we target to move toward."
 (defun jcs-forward-sexp ()
   "Wrapper for function `forward-sexp'."
   (interactive)
-  (cond ((jcs-current-char-equal-p jcs-sexp-open-chars)
-         (forward-char -1)
-         (forward-sexp))
-        ((save-excursion
+  (cond ((save-excursion
            (forward-char 1)
            (jcs-current-char-equal-p jcs-sexp-open-chars))
+         (forward-sexp))
+        ((jcs-current-char-equal-p jcs-sexp-open-chars)
+         (forward-char -1)
          (forward-sexp))
         (t (message "%s %s %s"
                     (propertize "[INFO] You are at the end of"
