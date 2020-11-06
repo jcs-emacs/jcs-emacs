@@ -8,6 +8,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-11-06
 
 * Fixed `daemon` startup issue.
+* Added `backward`/`forward` deep 1 level sexp.
+* Bind `backward`/`forward` deep 1 level sexp to global key map.
+* Bind `backward`/`forward` unlimited levels sexp to global key map.
 
 ### 2020-11-05
 
