@@ -28,6 +28,11 @@ time is displayed."
      (jcs-goto-line ln)
      (move-to-column col)))
 
+(defmacro jcs-point-at-pos (&rest body)
+  "Execute BODY when return point."
+  (declare (indent 0) (debug t))
+  `(save-excursion (progn ,@body) (point)))
+
 ;;
 ;; (@* "Buffer" )
 ;;
@@ -947,7 +952,7 @@ Return nil, vice versa."
 
 If optional argument REL-LINE is nil; we will use first visible line instead."
   (unless rel-line (setq rel-line (jcs-first-visible-line-in-window)))
-  (1+ (- (line-number-at-pos pos t) rel-line)))
+  (- (line-number-at-pos pos t) rel-line))
 
 (defun jcs-make-first-visible-line-to (ln)
   "Make the first visible line to target line, LN."
