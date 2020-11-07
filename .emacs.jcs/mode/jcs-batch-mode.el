@@ -11,6 +11,8 @@
 (defun jcs-batch-mode-hook ()
   "Batch mode hook."
 
+  (setq comment-start "::")
+
   (modify-syntax-entry ?_ "w")
 
   ;; File Header
