@@ -256,6 +256,12 @@
   "Return selected packages base on the execution's condition."
   (or jcs-package--save-selected-packages package-selected-packages))
 
+(defun jcs-package-installed-list ()
+  "Return full installed package list, including builtins."
+  (let (builtins)
+    (dolist (pkg-desc package--builtins) (push (nth 0 pkg-desc) builtins))
+    (delete-dups (append builtins package-activated-list))))
+
 ;;;###autoload
 (defun jcs-package-rebuild-dependency-list ()
   "Rebuild dependency graph and save to list."
@@ -263,15 +269,17 @@
   (if (not jcs-package-rebuild-dependency-p)
       (setq jcs-package--need-rebuild-p t)
     (jcs-process-reporter-start "Building dependency graph...")
-    (let ((new-selected-pkg (jcs-package--get-selected-packages)))
-      (dolist (pkg-name package-activated-list)
-        (if (not (package-installed-p pkg-name))
-            (setq new-selected-pkg (remove pkg-name new-selected-pkg))
-          (when (jcs-package--package-do-rebuild pkg-name)
-            (jcs-process-reporter-update (format "Build for package `%s`" pkg-name))
-            (if (jcs-package--used-elsewhere-p pkg-name)
-                (setq new-selected-pkg (remove pkg-name new-selected-pkg))
-              (push pkg-name new-selected-pkg)))))
+    (let ((new-selected-pkg (jcs-package--get-selected-packages))
+          (installed-list (jcs-package-installed-list)))
+      (dolist (pkg-name installed-list)
+        ;;(message "%s -> %s" pkg-name (package-installed-p pkg-name))
+        (if (equal t (package-installed-p pkg-name))
+            (when (jcs-package--package-do-rebuild pkg-name)
+              (jcs-process-reporter-update (format "Build for package `%s`" pkg-name))
+              (if (jcs-package--used-elsewhere-p pkg-name)
+                  (setq new-selected-pkg (remove pkg-name new-selected-pkg))
+                (push pkg-name new-selected-pkg)))
+          (setq new-selected-pkg (remove pkg-name new-selected-pkg))))
       (delete-dups new-selected-pkg)
       (setq new-selected-pkg (sort new-selected-pkg #'string-lessp))
       (if (equal new-selected-pkg (jcs-package--get-selected-packages))
