@@ -9,6 +9,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 * Changed comment style from `REM` to `::` in `bat-mode`.
 * Updated re-build dependency graph logic.
+* Updated folding/unfolding logic using `origami`.
 
 ### 2020-11-06
 
