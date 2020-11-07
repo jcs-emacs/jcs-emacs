@@ -211,7 +211,8 @@
                                    (ls-directories . "d")
                                    (ls-files . "f"))
         dashboard-center-content t
-        dashboard-set-navigator nil)
+        dashboard-set-navigator nil
+        dashboard-projects-backend 'projectile)
   :config
   (require 'dashboard-ls)
   (defun jcs--dashboard-insert-page-break--advice-before (&rest _)
