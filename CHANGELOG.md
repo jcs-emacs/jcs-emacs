@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-11-07
 
 * Changed comment style from `REM` to `::` in `bat-mode`.
+* Updated re-build dependency graph logic.
 
 ### 2020-11-06
 
