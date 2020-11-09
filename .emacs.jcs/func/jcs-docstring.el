@@ -337,7 +337,7 @@ SR-OP is the boundary of the search limit."
 
     (save-excursion
       (unless (jcs-current-line-empty-p)
-        (let ((end-function-point nil) (word-index 0))
+        (let ((word-index 0) end-function-point)
           (save-excursion
             (save-window-excursion
               ;; NOTE: Find closing parenthesis instead of search for a line
