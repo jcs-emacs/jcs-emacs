@@ -378,67 +378,48 @@ SR-OP is the boundary of the search limit."
     ;; Insert document comment string.
     (jcs--insert-doc-comment-string search-string)))
 
+(defconst jcs-docstring--writer-alist
+  `(((actionscript-mode)                   . as)
+    ((c-mode c++-mode)                     . cc)
+    ((csharp-mode)                         . csharp)
+    ((go-mode)                             . go)
+    ((groovy-mode)                         . groovy)
+    ((java-mode jdee-mode)                 . java)
+    ((js-mode js2-mode js3-mode rjsx-mode) . js)
+    ((lua-mode)                            . lua)
+    ((php-mode web-mode)                   . php)
+    ((rust-mode)                           . rust)
+    ((scala-mode)                          . scala)
+    ((typescript-mode)                     . ts))
+  "List of writers according to each `major-mode'.")
+
+(defun jcs-docstring--get-writer-key ()
+  "Return writer from current `major-mode'."
+  (require 'cl-lib)
+  (let (key)
+    (cl-some
+     (lambda (modes)
+       (when (jcs-is-current-major-mode-p (car modes))
+         (setq key (cdr modes)))
+       key)
+     jcs-docstring--writer-alist)))
+
+(defun jcs-docstring--form-writer (meet-function-name)
+  "Form the writer function by MEET-FUNCTION-NAME."
+  (let ((key (jcs-docstring--get-writer-key)) writer)
+    (when key
+      (setq writer
+            (if meet-function-name
+                (format "jcs--%s-mode-doc-string-func" key)
+              (format "jcs--%s-mode-doc-string-others" key))))
+    (if writer (intern writer) nil)))
+
 (defun jcs--insert-doc-comment-string (search-string)
   "Insert document comment style.
 SEARCH-STRING is the raw string that represent the code we want to document."
   (save-excursion
-    (let ((meet-function-name (jcs--function-name search-string))
-          mode-doc-str-fn)
-      (cond
-       ((jcs-is-current-major-mode-p '("actionscript-mode"))
-        (setq mode-doc-str-fn (if meet-function-name
-                                  'jcs--as-mode-doc-string-func
-                                'jcs--as-mode-doc-string-others)))
-       ((jcs-is-current-major-mode-p '("c-mode" "c++-mode"))
-        (setq mode-doc-str-fn (if meet-function-name
-                                  'jcs--cc-mode-doc-string-func
-                                'jcs--cc-mode-doc-string-others)))
-       ((jcs-is-current-major-mode-p '("csharp-mode"))
-        (setq mode-doc-str-fn (if meet-function-name
-                                  'jcs--csharp-mode-doc-string-func
-                                'jcs--csharp-mode-doc-string-others)))
-       ((jcs-is-current-major-mode-p '("go-mode"))
-        (setq mode-doc-str-fn (if meet-function-name
-                                  'jcs--go-mode-doc-string-func
-                                'jcs--go-mode-doc-string-others)))
-       ((jcs-is-current-major-mode-p '("groovy-mode"))
-        (setq mode-doc-str-fn (if meet-function-name
-                                  'jcs--groovy-mode-doc-string-func
-                                'jcs--groovy-mode-doc-string-others)))
-       ((jcs-is-current-major-mode-p '("java-mode" "jdee-mode"))
-        (setq mode-doc-str-fn (if meet-function-name
-                                  'jcs--java-mode-doc-string-func
-                                'jcs--java-mode-doc-string-others)))
-       ((jcs-is-current-major-mode-p '("js-mode" "js2-mode" "js3-mode"
-                                       "rjsx-mode"))
-        (setq mode-doc-str-fn (if meet-function-name
-                                  'jcs--js-mode-doc-string-func
-                                'jcs--js-mode-doc-string-others)))
-       ((jcs-is-current-major-mode-p '("lua-mode"))
-        (setq mode-doc-str-fn (if meet-function-name
-                                  'jcs--lua-mode-doc-string-func
-                                'jcs--lua-mode-doc-string-others)))
-       ((jcs-is-current-major-mode-p '("python-mode"))
-        (setq mode-doc-str-fn (if meet-function-name
-                                  'jcs--py-mode-doc-string-func
-                                'jcs--py-mode-doc-string-others)))
-       ((jcs-is-current-major-mode-p '("php-mode" "web-mode"))
-        (setq mode-doc-str-fn (if meet-function-name
-                                  'jcs--php-mode-doc-string-func
-                                'jcs--php-mode-doc-string-others)))
-       ((jcs-is-current-major-mode-p '("rust-mode"))
-        (setq mode-doc-str-fn (if meet-function-name
-                                  'jcs--rust-mode-doc-string-func
-                                'jcs--rust-mode-doc-string-others)))
-       ((jcs-is-current-major-mode-p '("scala-mode"))
-        (setq mode-doc-str-fn (if meet-function-name
-                                  'jcs--scala-mode-doc-string-func
-                                'jcs--scala-mode-doc-string-others)))
-       ((jcs-is-current-major-mode-p '("typescript-mode"))
-        (setq mode-doc-str-fn (if meet-function-name
-                                  'jcs--ts-mode-doc-string-func
-                                'jcs--ts-mode-doc-string-others))))
-
+    (let* ((meet-function-name (jcs--function-name search-string))
+           (mode-doc-str-fn (jcs-docstring--form-writer meet-function-name)))
       ;; NOTE: Ensure the `mode-doc-str-fn' is assign to something
       ;; valid to execute.
       (when mode-doc-str-fn
