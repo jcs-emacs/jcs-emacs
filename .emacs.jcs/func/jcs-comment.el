@@ -58,7 +58,7 @@ Return nil, if is NOT a global comment docstring."
 (defun jcs-smart-context-line-break ()
   "Comment block."
   (interactive)
-  (let ((start-of-global-comment-doc-p nil) (able-insert-docstring-p nil))
+  (let (start-of-global-comment-doc-p able-insert-docstring-p)
     ;; check if inside the comment block.
     (if (not (jcs-inside-comment-block-p))
         ;; else insert new line
