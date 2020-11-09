@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-11-09
+
+* Simplify document string module.
+
 ### 2020-11-07
 
 * Changed comment style from `REM` to `::` in `bat-mode`.
