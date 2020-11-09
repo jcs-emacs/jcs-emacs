@@ -127,6 +127,7 @@
         jcs-web-vs-opening-curly-bracket-key
         jcs-yaml-electric-backspace
         kill-region
+        markdown-cycle
         markdown-enter-key
         markdown-outdent-or-delete
         org-cycle
