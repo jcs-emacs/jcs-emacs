@@ -284,8 +284,17 @@
 See `jcs-hook.el' file that has apply `advice' on command `other-window'.")
 
 ;;; Previous/Next keys
-(defcustom jcs-prev/next-key-type 'normal
-  "Previous or Next key definition."
+(defcustom jcs-prev/next-key-type 'smart
+  "Key definition for previous and next line.
+
+The variable can be set one of the following value.
+
+  - normal : The default behaviour from Emacs.
+  - indent : Indent every movement.
+  - smart : Move to the code line if available.
+
+P.S. You may find out `indent' may be too annoying, yet it's a good practice
+and it forces you to indent every lines."
   :type '(choice (const :tag "normal" normal)
                  (const :tag "indent" indent)
                  (const :tag "smart" smart))
