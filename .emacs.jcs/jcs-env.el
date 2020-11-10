@@ -293,8 +293,7 @@ The variable can be set one of the following value.
   - indent : Indent every movement.
   - smart : Move to the code line if available.
 
-P.S. You may find out `indent' may be too annoying, yet it's a good practice
-and it forces you to indent every lines."
+P.S. You would need to restart Emacs to take effect from this variable."
   :type '(choice (const :tag "normal" normal)
                  (const :tag "indent" indent)
                  (const :tag "smart" smart))
