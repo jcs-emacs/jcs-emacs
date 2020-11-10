@@ -109,6 +109,7 @@
 
 (defun jcs-get-prev/next-key-type (direction)
   "Return the prev/next key type by DIRECTION."
+  (require 'cl-lib)
   (cl-case direction
     (previous (cl-case jcs-prev/next-key-type
                 (normal 'previous-line)
@@ -141,18 +142,16 @@ Just use this without remember Emacs Lisp function."
   "Smart way to navigate to previous line."
   (interactive)
   (jcs-previous-line)
-  (when (jcs-is-infront-first-char-at-line-p)
-    (end-of-line)
-    (jcs-beginning-of-line)))
+  (when (re-search-forward "[^[:space:]\t]" (line-end-position) t)
+    (forward-char -1)))
 
 ;;;###autoload
 (defun jcs-smart-next-line ()
   "Smart way to navigate to next line."
   (interactive)
   (jcs-next-line)
-  (when (jcs-is-infront-first-char-at-line-p)
-    (end-of-line)
-    (jcs-beginning-of-line)))
+  (when (re-search-forward "[^[:space:]\t]" (line-end-position) t)
+    (forward-char -1)))
 
 ;;
 ;; (@* "Move Between Word (Wrapper)" )
