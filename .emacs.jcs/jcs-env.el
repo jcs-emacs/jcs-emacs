@@ -284,11 +284,12 @@
 See `jcs-hook.el' file that has apply `advice' on command `other-window'.")
 
 ;;; Previous/Next keys
-(defcustom jcs-prev/next-key-type 'indent
+(defcustom jcs-prev/next-key-type 'normal
   "Previous or Next key definition."
   :type '(choice (const :tag "normal" normal)
                  (const :tag "indent" indent)
-                 (const :tag "smart" smart)))
+                 (const :tag "smart" smart))
+  :group 'jcs)
 
 ;;; Process
 (setq kill-buffer-query-functions nil)
