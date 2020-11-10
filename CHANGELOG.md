@@ -9,6 +9,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 * Changed previous/next line type from `indent` to `smart`.
 * Updated smart previous/next line logic.
+* Add `newline` advice for smart indent return.
 
 ### 2020-11-09
 
