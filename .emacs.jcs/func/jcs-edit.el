@@ -1788,9 +1788,7 @@ Otherwise return nil."
   "Close the current scope of the node."
   (interactive)
   (require 'origami)
-  (call-interactively #'origami-close-node)
-  (beginning-of-visual-line)
-  (end-of-line))
+  (call-interactively #'origami-close-node))
 
 ;;;###autoload
 (defun jcs-open-node ()
