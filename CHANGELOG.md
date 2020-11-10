@@ -7,7 +7,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ### 2020-11-10
 
-* Changed prev/next line type from `indent` to `normal`.
+* Changed prev/next line type from `indent` to `smart`.
 
 ### 2020-11-09
 
