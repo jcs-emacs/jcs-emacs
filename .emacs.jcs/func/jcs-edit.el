@@ -210,6 +210,17 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
 ;; (@* "Return" )
 ;;
 
+(defun jcs--newline--advice-around (fnc &rest args)
+  "Advice execute around function `newline'."
+  (when (jcs-current-line-totally-empty-p) (indent-for-tab-command))
+  (let ((ln-cur (buffer-substring (line-beginning-position) (point))))
+    (apply fnc args)
+    (save-excursion
+      (forward-line -1)
+      (when (jcs-current-line-totally-empty-p) (insert ln-cur)))))
+
+(advice-add 'newline :around #'jcs--newline--advice-around)
+
 ;;;###autoload
 (defun jcs-ctrl-return-key ()
   "Global Ctrl-Return key."

@@ -142,16 +142,18 @@ Just use this without remember Emacs Lisp function."
   "Smart way to navigate to previous line."
   (interactive)
   (jcs-previous-line)
-  (when (re-search-forward "[^[:space:]\t]" (line-end-position) t)
-    (forward-char -1)))
+  (if (re-search-forward "[^[:space:]\t]" (line-end-position) t)
+      (forward-char -1)
+    (end-of-line)))
 
 ;;;###autoload
 (defun jcs-smart-next-line ()
   "Smart way to navigate to next line."
   (interactive)
   (jcs-next-line)
-  (when (re-search-forward "[^[:space:]\t]" (line-end-position) t)
-    (forward-char -1)))
+  (if (re-search-forward "[^[:space:]\t]" (line-end-position) t)
+      (forward-char -1)
+    (end-of-line)))
 
 ;;
 ;; (@* "Move Between Word (Wrapper)" )
