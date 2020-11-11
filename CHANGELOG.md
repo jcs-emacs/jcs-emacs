@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-11-11
+
+* Minor clean up for `utility` module.
+
 ### 2020-11-10
 
 * Changed previous/next line type from `indent` to `smart`.
