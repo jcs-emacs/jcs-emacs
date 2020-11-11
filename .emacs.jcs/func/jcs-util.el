@@ -1254,24 +1254,24 @@ For instance, '(1 2 3 4 (5 6 7 8)) => '(1 2 3 4 5 6 7 8)."
 
 (defun jcs-is-contain-list-string-regexp (in-list in-str)
   "Check if IN-STR contain in any string in the IN-LIST."
-  (cl-some #'(lambda (lb-sub-str) (string-match-p lb-sub-str in-str)) in-list))
+  (cl-some (lambda (lb-sub-str) (string-match-p lb-sub-str in-str)) in-list))
 
 (defun jcs-is-contain-list-string-regexp-reverse (in-list in-str)
   "Check if IN-STR contain in any string in the IN-LIST.
 The reverse mean the check from regular expression is swapped."
-  (cl-some #'(lambda (lb-sub-str) (string-match-p in-str lb-sub-str)) in-list))
+  (cl-some (lambda (lb-sub-str) (string-match-p in-str lb-sub-str)) in-list))
 
 (defun jcs-is-contain-list-string (in-list in-str)
   "Check if IN-STR contain in any string in the IN-LIST."
-  (cl-some #'(lambda (lb-sub-str) (string-match-p (regexp-quote lb-sub-str) in-str)) in-list))
+  (cl-some (lambda (lb-sub-str) (string-match-p (regexp-quote lb-sub-str) in-str)) in-list))
 
 (defun jcs-is-contain-list-symbol (in-list in-symbol)
   "Check if IN-SYMBOL contain in any symbol in the IN-LIST."
-  (cl-some #'(lambda (lb-sub-symbol) (equal lb-sub-symbol in-symbol)) in-list))
+  (cl-some (lambda (lb-sub-symbol) (equal lb-sub-symbol in-symbol)) in-list))
 
 (defun jcs-is-contain-list-integer (in-list in-int)
   "Check if IN-INT contain in any integer in the IN-LIST."
-  (cl-some #'(lambda (lb-sub-int) (= lb-sub-int in-int)) in-list))
+  (cl-some (lambda (lb-sub-int) (= lb-sub-int in-int)) in-list))
 
 ;;
 ;; (@* "Minibuffer" )
