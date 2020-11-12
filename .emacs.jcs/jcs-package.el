@@ -446,7 +446,7 @@
         (rcps '()) rcp)
     (dolist (rcp-file rcps-ff)
       (setq rcp
-            (eval (read-from-whole-string
+            (eval (thing-at-point--read-from-whole-string
                    (concat "'" (jcs-get-string-from-file rcp-file)))))
       (push rcp rcps))
     (reverse rcps)))
