@@ -114,6 +114,7 @@ without having to get used to an new IDE.
 
 Here is the list of few important and recent changes to this configuration.
 
+* `6.3.1` - Replaced `docstring` module to external `docstr` package.
 * `6.2.5` - Use `recipes` folder instead to specify manually installed packages in the configuration.
 * `6.2.4` - Replaced [ag](https://github.com/Wilfred/ag.el) silver searcher to [searcher](https://github.com/jcs-elpa/searcher).
 * `6.2.2` - Correct upgrade logic for manually installed packages.
@@ -123,7 +124,6 @@ Here is the list of few important and recent changes to this configuration.
 * `6.0.3` - Started integrating more `lsp-mode` and `dap-mode` details.
 * `6.0.0` - Switched from `helm` to `ivy` due to `helm`'s instability.
 * `5.9.3` - The last version to support `helm`.
-* `5.9.0` - Implemented video player functionalities.
 
 ## :floppy_disk: Installation
 
@@ -313,7 +313,7 @@ kind of methods that you could support the maintainer you want.
 * *Binary/Hex Editor* - powered by [nhexl-mode](https://github.com/emacsmirror/nhexl-mode).
 * *Collaborative Editing* - powered by [togetherly](https://github.com/zk-phi/togetherly).
 * *Context Menu* - powered by [right-click-context](https://github.com/zonuexe/right-click-context).
-* *Docstring* - none, built-in to this configuration.
+* *Docstring* - powered by [docstr](https://github.com/jcs-elpa/docstr).
 * *End of Line* - powered by [show-eol](https://github.com/elpa-host/show-eol).
 * *Execute Commands* - powered by [compile](https://www.emacswiki.org/emacs/CompilationMode).
 * *File Explorer* - powered by [neotree](https://github.com/jaypei/emacs-neotree).
