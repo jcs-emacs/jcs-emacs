@@ -244,7 +244,7 @@
   (defun jcs-diminish-type (type)
     "Diminsh TYPE.
 
-Argument TYPE can either be a list or a symbol."
+  Argument TYPE can either be a list or a symbol."
     (cond ((listp type) (dolist (sym type) (diminish sym)))
           ((symbolp type) (diminish type))
           (t (user-error "Invalid diminish symbol, %s" type))))
@@ -252,8 +252,8 @@ Argument TYPE can either be a list or a symbol."
   (defun jcs-diminish (mode-sym &optional load-sym)
     "Diminish MODE-SYM.
 
-If argument LOAD-SYM is a symbol; then it will diminish after it's module
-is loaded using macro `with-eval-after-load'."
+  If argument LOAD-SYM is a symbol; then it will diminish after it's module
+  is loaded using macro `with-eval-after-load'."
     (if load-sym (with-eval-after-load load-sym(jcs-diminish-type mode-sym))
       (jcs-diminish-type mode-sym)))
 
@@ -275,6 +275,7 @@ is loaded using macro `with-eval-after-load'."
       (command-log-mode . command-log-mode)
       (company-mode . company)
       (company-fuzzy-mode . company-fuzzy)
+      (docstr-mode . docstr)
       (eldoc-mode)
       (emmet-mode . emmet-mode)
       (buffer-face-mode . face-remap)

@@ -972,8 +972,6 @@ NO-PROMPT : Don't prompt the overwrap message."
 (with-eval-after-load 'cc-mode (require 'jcs-cc) (require 'jcs-java))
 (with-eval-after-load 'csharp-mode (require 'jcs-csharp))
 (with-eval-after-load 'css-mode (require 'jcs-css))
-(with-eval-after-load 'go-mode (require 'jcs-go))
-(with-eval-after-load 'lua-mode (require 'jcs-lua))
 (with-eval-after-load 'make-mode (require 'jcs-make))
 (with-eval-after-load 'markdown-mode (require 'jcs-markdown))
 (with-eval-after-load 'python-mode (require 'jcs-python))
@@ -981,7 +979,6 @@ NO-PROMPT : Don't prompt the overwrap message."
 (with-eval-after-load 'typescript-mode (require 'jcs-typescript))
 (with-eval-after-load 'web-mode (require 'jcs-web))
 (with-eval-after-load 'yaml-mode (require 'jcs-yaml))
-(require 'jcs-docstring)
 
 (provide 'jcs-function)
 ;;; jcs-function.el ends here

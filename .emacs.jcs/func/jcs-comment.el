@@ -87,10 +87,6 @@ Return nil, if is NOT a global comment docstring."
         ;; back one line up
         (jcs-previous-line)
 
-        ;; Insert comment string here..
-        (when (and (functionp 'jcs-docstring-modes-p) (jcs-docstring-modes-p))
-          (jcs-insert-comment-string))
-
         ;; goto the end of line
         (end-of-line))
 
@@ -103,7 +99,7 @@ Return nil, if is NOT a global comment docstring."
             (cond
              ((jcs-is-current-major-mode-p "csharp-mode")
               (save-excursion
-                (when (not (jcs-current-line-comment-p))
+                (unless (jcs-current-line-comment-p)
                   (setq line-have-content-on-right t)))
 
               (save-excursion
@@ -154,16 +150,6 @@ Return nil, if is NOT a global comment docstring."
     (save-excursion
       (when (and insert-pair (jcs-is-behind-last-char-at-line-p))
         (insert "*/")))))
-
-(defun jcs-insert-comment-string ()
-  "Insert comment document string."
-  (save-excursion
-    ;; Goto the function line before insert doc string.
-    (jcs-next-line)
-    (jcs-next-line)
-
-    ;; insert comment doc comment string.
-    (jcs-insert-comment-style-by-current-line "[{;]")))
 
 ;;;###autoload
 (defun jcs-toggle-comment-on-line ()

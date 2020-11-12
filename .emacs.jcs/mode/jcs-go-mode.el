@@ -12,6 +12,8 @@
   "Go mode hook."
   (jcs-use-cc-mutliline-comment)
 
+  (setq-local docstr-show-type-name nil)
+
   (face-remap-add-relative 'font-lock-constant-face '(:inherit jcs-font-lock-null-face))
 
   ;; File Header
@@ -20,9 +22,7 @@
 
   ;; comment block
   (define-key go-mode-map (kbd "RET") #'jcs-smart-context-line-break)
-  (define-key go-mode-map (kbd "*") #'jcs-c-comment-pair)
-
-  (define-key go-mode-map (kbd "/") #'jcs-go-maybe-insert-codedoc))
+  (define-key go-mode-map (kbd "*") #'jcs-c-comment-pair))
 
 (add-hook 'go-mode-hook 'jcs-go-mode-hook)
 

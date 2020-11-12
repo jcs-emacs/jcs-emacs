@@ -129,6 +129,8 @@
     (auto-read-only-mode 1)
     ;;----------------------------------- `delete-selection'
     (delete-selection-mode 1)
+    ;;----------------------------------- `docstr'
+    (global-docstr-mode 1)
     ;;----------------------------------- `goto-address'
     (goto-address-mode t)
     ;;----------------------------------- `hl-line'
@@ -165,7 +167,6 @@
   (jcs-depend-mode)
 
   (jcs-reload-file-info)
-  (jcs-reload-docstring-info)
 
   (menu-bar-mode -1)
   (when (display-graphic-p) (scroll-bar-mode -1))

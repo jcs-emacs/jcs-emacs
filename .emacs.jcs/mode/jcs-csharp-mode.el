@@ -12,6 +12,8 @@
   "CSharp mode hook."
   (preproc-font-lock-mode t)
 
+  (setq-local docstr-show-type-name nil)
+
   (modify-syntax-entry ?_ "w")
 
   ;; File Header
@@ -34,8 +36,6 @@
   ;; comment block
   (define-key csharp-mode-map (kbd "RET") #'jcs-smart-context-line-break)
   (define-key csharp-mode-map (kbd "*") #'jcs-c-comment-pair)
-
-  (define-key csharp-mode-map (kbd "/") #'jcs-vs-csharp-maybe-insert-codedoc)
 
   (define-key csharp-mode-map (kbd "#") #'jcs-vs-sharp-key)
 

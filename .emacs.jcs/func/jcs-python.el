@@ -128,81 +128,13 @@ instead of indent the whole file at once."
   "Check if the current word is in the `python-keyword-list'."
   (jcs-is-contain-list-string jcs-py-keywords in-keyword))
 
+;;
+;; (@* "Document String" )
+;;
 
-(defun jcs-py-do-doc-string ()
-  "Check if should insert the doc string by checking only the comment character \
-on the same line."
-  (let ((do-doc-string t))
-    (jcs-goto-first-char-in-line)
-
-    (while (not (jcs-is-end-of-line-p))
-      (forward-char 1)
-
-      (when (and (not (jcs-current-whitespace-or-tab-p))
-                 (not (jcs-current-char-equal-p "\"")))
-        ;; return false.
-        (setq do-doc-string nil)))
-
-    ;; return true.
-    do-doc-string))
-
-(defun jcs-py-maybe-insert-codedoc ()
-  "Insert common Python document/comment string."
-  (interactive)
-  ;; -- Officual
-  ;; URL: https://www.python.org/dev/peps/pep-0008/
-  ;; -- Google
-  ;; URL: https://google.github.io/styleguide/pyguide.html
-  ;; -- Hitchhiker's
-  ;; URL: http://docs.python-guide.org/en/latest/writing/style/
-  (let ((dq-infront 0) active-comment previous-line-not-empty)
-    ;; Count how many double quote infront.
-    (save-excursion
-      (when (jcs-current-char-equal-p "\"")
-        (setq dq-infront (1+ dq-infront))
-        (backward-char 1)
-        (when (jcs-current-char-equal-p "\"")
-          (setq dq-infront (1+ dq-infront)))))
-
-    (cond ((= dq-infront 2)
-           (insert "\"")
-           (when (jcs-py-do-doc-string) (setq active-comment t)))
-          ((= dq-infront 1)
-           (let ((between-dq nil))
-             (save-excursion
-               (forward-char 1)
-               (when (jcs-current-char-equal-p "\"")
-                 (setq between-dq t)))
-             (if between-dq (forward-char 1) (insert "\""))))
-          (t (insert "\"\"") (backward-char 1)))
-
-    (when active-comment
-      (save-excursion
-        ;; check if previous line empty.
-        (jcs-previous-line)
-        (unless (jcs-current-line-empty-p)
-          (setq previous-line-not-empty t))))
-
-    (when previous-line-not-empty
-      ;; OPTION: docstring option..
-      (when (= jcs--py-doc-string-version 1) (insert "\n"))
-      (insert "Description here..\n")
-      (insert "\"\"\"")
-
-      (jcs-smart-indent-up)
-      (jcs-smart-indent-down)
-      (jcs-smart-indent-up)
-      (end-of-line)
-
-      ;; Check other comment type.
-      ;; ex: param, returns, etc.
-      (save-excursion
-        ;; Move to `def' keyword in order to search all
-        ;; the necessary info before inserting doc string.
-        (jcs-move-to-backward-a-word "def")
-
-        ;; Insert comment doc comment string.
-        (jcs-insert-comment-style-by-current-line ")")))))
+(defun jcs-python--docstr-before (_search-string)
+  "Local hook `docstr-before-insert-hook' for Python."
+  (insert "Description here.."))
 
 ;;
 ;; (@* "Templates" )

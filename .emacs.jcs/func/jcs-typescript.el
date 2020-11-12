@@ -15,6 +15,14 @@
          (jcs-insert-typescript-cocos-creator-template))))
 
 ;;
+;; (@* "Document String" )
+;;
+
+(defun jcs-typescript--docstr-before (_search-string)
+  "Local hook `docstr-before-insert-hook' for TypeScript."
+  (insert "@desc "))
+
+;;
 ;; (@* "Faces" )
 ;;
 

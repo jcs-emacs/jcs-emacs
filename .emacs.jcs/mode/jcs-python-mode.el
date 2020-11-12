@@ -12,6 +12,8 @@
 (defun jcs-python-mode-hook ()
   "Python mode hook."
 
+  (add-hook 'docstr-before-insert-hook 'jcs-python--docstr-before nil t)
+
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
 
@@ -39,10 +41,7 @@
   (define-key python-mode-map (kbd "TAB") #'jcs-tab-key)
 
   (define-key python-mode-map (kbd "RET") #'jcs-py-return)
-  (define-key python-mode-map (kbd "C-v") #'yank)
-
-  ;; Comment
-  (define-key python-mode-map (kbd "\"") #'jcs-py-maybe-insert-codedoc))
+  (define-key python-mode-map (kbd "C-v") #'yank))
 
 (add-hook 'python-mode-hook 'jcs-python-mode-hook)
 

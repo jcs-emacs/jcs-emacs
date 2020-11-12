@@ -46,28 +46,6 @@
 (defvar jcs-font-lock-null-face 'jcs-font-lock-null-face)
 
 ;;
-;; (@* "Docstring" )
-;;
-
-(defface jcs-docstring-tag-face
-  '((t (:foreground "SlateGray")))
-  "Highlighting for Docstring tag."
-  :group 'jcs)
-(defvar jcs-docstring-tag-face 'jcs-docstring-tag-face)
-
-(defface jcs-docstring-type-face
-  '((t (:foreground "SteelBlue")))
-  "Highlighting for Docstring type."
-  :group 'jcs)
-(defvar jcs-docstring-type-face 'jcs-docstring-type-face)
-
-(defface jcs-docstring-value-face
-  '((t (:foreground "gold4")))
-  "Highlighting for Docstring value."
-  :group 'jcs)
-(defvar jcs-docstring-value-face 'jcs-docstring-value-face)
-
-;;
 ;; (@* "Web" )
 ;;
 
@@ -143,7 +121,7 @@
 (with-eval-after-load 'web-mode (jcs-init-web-faces))
 
 ;; Load Docstring faces.
-(add-hook 'prog-mode-hook (lambda () (jcs-docstring-reload-faces)))
+(add-hook 'prog-mode-hook (lambda () (docstr-faces-apply)))
 
 (provide 'jcs-face)
 ;;; jcs-face.el ends here

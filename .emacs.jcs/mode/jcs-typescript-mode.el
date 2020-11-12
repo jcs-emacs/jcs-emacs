@@ -11,9 +11,11 @@
 (defun jcs-typescript-mode-hook ()
   "TypeScript mode hook."
 
-  (face-remap-add-relative 'typescript-jsdoc-tag '(:inherit jcs-docstring-tag-face))
-  (face-remap-add-relative 'typescript-jsdoc-type '(:inherit jcs-docstring-type-face))
-  (face-remap-add-relative 'typescript-jsdoc-value '(:inherit jcs-docstring-value-face))
+  (add-hook 'docstr-before-insert-hook 'jcs-typescript--docstr-before nil t)
+
+  (face-remap-add-relative 'typescript-jsdoc-tag '(:inherit docstr-faces-tag-face))
+  (face-remap-add-relative 'typescript-jsdoc-type '(:inherit docstr-faces-type-face))
+  (face-remap-add-relative 'typescript-jsdoc-value '(:inherit docstr-faces-value-face))
   (face-remap-add-relative 'typescript-primitive-face '(:inherit font-lock-type-face))
 
   ;; Treat underscore as word.

@@ -14,6 +14,8 @@
 (defun jcs-java-mode-hook ()
   "Java mode hook."
 
+  (setq-local docstr-show-type-name nil)
+
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
 

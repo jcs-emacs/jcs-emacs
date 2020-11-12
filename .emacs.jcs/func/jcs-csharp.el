@@ -16,10 +16,6 @@
   "Check if current line is a Visual Studio's style comment prefix."
   (jcs-triple-char-comment-prefix-p "/"))
 
-(defun jcs-vs-csharp-comment-prefix-at-current-point-p ()
-  "Check if the current point is Visaul Studio's style comment prefix."
-  (jcs-tripple-char-comment-prefix-at-current-point-p "/"))
-
 (defun jcs-vs-csharp-only-vs-comment-prefix-this-line-p ()
   "Check if there is only comment in this line and is Visaul Studio \
 comment prefix only."
@@ -44,45 +40,6 @@ on the same line."
         (setq do-doc-string nil)))
     ;; return true.
     do-doc-string))
-
-;;;###autoload
-(defun jcs-vs-csharp-maybe-insert-codedoc ()
-  "Insert comment like Visual Studio comment style."
-  ;; URL: https://github.com/josteink/csharp-mode/issues/123
-  (interactive)
-  (insert "/")
-  (let (active-comment next-line-not-empty)
-    (save-excursion
-      (when (and
-             ;; Line can only have vs comment prefix.
-             (jcs-vs-csharp-only-vs-comment-prefix-this-line-p)
-             ;; Current point match vs comment prefix.
-             (jcs-vs-csharp-comment-prefix-at-current-point-p))
-        (setq active-comment t))
-
-      ;; check if next line empty.
-      (jcs-next-line)
-      (unless (jcs-current-line-empty-p) (setq next-line-not-empty t)))
-
-    (when (and active-comment next-line-not-empty)
-      (insert " <summary>\n")
-      (insert "/// \n")
-      (insert "/// </summary>")
-
-      (jcs-smart-indent-up)
-      (jcs-smart-indent-down)
-      (jcs-smart-indent-up)
-      (end-of-line)
-
-      ;; Check other comment type.
-      ;; ex: param, returns, etc.
-      (save-excursion
-        ;; Goto the function line before insert doc string.
-        (jcs-next-line)
-        (jcs-next-line)
-
-        ;; insert comment doc comment string.
-        (jcs-insert-comment-style-by-current-line "[{;]")))))
 
 ;;
 ;; (@* "Indentation" )

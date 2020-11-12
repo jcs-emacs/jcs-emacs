@@ -19,9 +19,6 @@
                                 "[.]luac")
                               'jcs-insert-lua-template)
 
-  ;; Comment
-  (define-key lua-mode-map (kbd "-") #'jcs-lua-maybe-insert-codedoc)
-
   ;; comment block
   (define-key lua-mode-map (kbd "RET") #'jcs-smart-context-line-break))
 

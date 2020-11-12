@@ -11,6 +11,8 @@
 (defun jcs-groovy-mode-hook ()
   "Hook for `groovy-mode'."
 
+  (setq-local docstr-show-type-name nil)
+
   ;; File Header
   (jcs-insert-header-if-valid '("[.]groovy"
                                 "[.]gradle")

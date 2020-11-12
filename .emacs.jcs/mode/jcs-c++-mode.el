@@ -61,6 +61,7 @@
 
 (defun jcs-c++-mode-hook ()
   "C++ mode handling"
+  (add-hook 'docstr-before-insert-hook 'jcs-c++--docstr-before nil t)
 
   (jcs-company-safe-add-backend 'company-c-headers)
 
