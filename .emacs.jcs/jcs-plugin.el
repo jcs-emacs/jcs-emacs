@@ -491,6 +491,11 @@ is loaded using macro `with-eval-after-load'."
   :init
   (setq file-header-template-config-filepath "~/.emacs.jcs/template/template_config.properties"))
 
+(use-package flycheck-grammarly
+  :defer t
+  :init
+  (with-eval-after-load 'flycheck (require 'flycheck-grammarly)))
+
 (use-package flycheck-popup-tip
   :defer t
   :init
