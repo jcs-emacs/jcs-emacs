@@ -24,6 +24,7 @@
 
   (define-key actionscript-mode-map (kbd "<backspace>") #'jcs-smart-backspace)
   (define-key actionscript-mode-map (kbd "<delete>") #'jcs-smart-delete)
+  (define-key actionscript-mode-map (kbd "SPC") #'jcs-smart-space)
 
   (define-key actionscript-mode-map (kbd "DEL") #'jcs-electric-backspace)
   (define-key actionscript-mode-map (kbd "{") #'jcs-vs-opening-curly-bracket-key)
