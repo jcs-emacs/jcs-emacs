@@ -37,8 +37,8 @@
 (defvar jcs--enum-desc-string "Enum description here.."
   "Enum description string.")
 
-(defun jcs-c++--docstr-before (search-string)
-  "Local hook `docstr-before-insert-hook' for C++."
+(defun jcs-c++--docstr-after (search-string)
+  "Local hook `docstr-after-insert-hook' for C++."
   (let ((splitted-search-string (split-string search-string " " t))
         (defined-keyword ""))
     (cond
@@ -70,8 +70,7 @@
       (insert "\n* @brief ")
       (insert jcs--struct-desc-string)
       (indent-for-tab-command))
-     ((or (string-match-p "define" search-string)
-          (string-match-p "#define" search-string))
+     ((string-match-p "#define" search-string)
       ;; Process define tag.
       (insert "@def ")
       (setq defined-keyword (nth 1 (split-string search-string " " t)))
