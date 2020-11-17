@@ -396,6 +396,11 @@ Here is the list of key bindins that defined in this configuration.
 * <kbd>Shift</kbd>+<kbd>u</kbd> - Upgrade all packages if available.
 * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>r</kbd>, <kbd>m</kbd> - Auto remove unused pacakges.
 
+## `tabulated-list` Mode
+
+* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>=</kbd> - Widen column width.
+* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>-</kbd> - Narrow column width.
+
 ## Org Mode
 
 * <kbd>Shift</kbd>+<kbd>up</kbd> - Move cursor `up` one row table.
