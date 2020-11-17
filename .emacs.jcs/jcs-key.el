@@ -522,10 +522,9 @@
 (define-key global-map (kbd "C-k >") #'jcs-inc-indent-level)
 (define-key global-map (kbd "C-k <") #'jcs-dec-indent-level)
 
-;;; Zoom
-(define-key global-map (kbd "C-=") #'jcs-text-scale-increase)
-(define-key global-map (kbd "C--") #'jcs-text-scale-decrease)
-(define-key global-map (kbd "C-<kp-0>") #'jcs-reset-zoom)
+;;; Tabulated-List
+(define-key tabulated-list-mode-map (kbd "C-+") #'tabulated-list-widen-current-column)
+(define-key tabulated-list-mode-map (kbd "C-_") #'tabulated-list-narrow-current-column)
 
 ;;; Todo
 (with-eval-after-load 'hl-todo
@@ -597,6 +596,11 @@
 
 ;;; Whitespace
 (define-key global-map (kbd "C-k b") #'whitespace-mode)
+
+;;; Zoom
+(define-key global-map (kbd "C-=") #'jcs-text-scale-increase)
+(define-key global-map (kbd "C--") #'jcs-text-scale-decrease)
+(define-key global-map (kbd "C-<kp-0>") #'jcs-reset-zoom)
 
 (provide 'jcs-key)
 ;;; jcs-key.el ends here
