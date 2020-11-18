@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-11-18
 
 * Diminished the buffer `*Flymake log*` as default behaviour.
+* Diminished the buffer `*wclock*` as default behaviour.
 
 ### 2020-11-17
 
