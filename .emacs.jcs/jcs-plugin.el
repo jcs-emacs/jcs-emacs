@@ -329,7 +329,7 @@
          '("[*]Local Variables[*]")
          '("[*]Kill Ring[*]")  ; From `browse-kill-ring'
          '("[*]SPEEDBAR")
-         '("[*]Flycheck error")
+         '("[*]Flycheck error" "[*]Flymake log[*]")
          '("[*]httpd[*]")
          '("[*]helpful")
          '("[*]Most used words[*]")
