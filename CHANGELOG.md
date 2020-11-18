@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-11-18
+
+* Diminished the buffer `*Flymake log*` as default behaviour.
+
 ### 2020-11-17
 
 * Added `wident`/`narrow` `tabulated-list` column default key bindings.
