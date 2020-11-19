@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-11-19
 
 * Moved `company-keywords` backend into a much prior place.
+* Installed new package `jenkinsfile-mode`.
 
 ### 2020-11-18
 
