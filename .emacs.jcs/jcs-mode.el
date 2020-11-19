@@ -651,6 +651,7 @@ See `add-to-list' function description for argument APPEND."
   (jcs-add-auto-mode-alist '("\\.java'?\\'" . java-mode))
   (jcs-add-auto-mode-alist '("\\.jcs'?\\'" . jayces-mode))
   (jcs-add-auto-mode-alist '("\\.jayces'?\\'" . jayces-mode))
+  (jcs-add-auto-mode-alist '("Jenkinsfile\\'" . jenkinsfile-mode))
   (jcs-add-auto-mode-alist '("\\.js'?\\'" . js2-mode))
   (jcs-add-auto-mode-alist '("\\.json'?\\'" . json-mode))
   (jcs-add-auto-mode-alist '("\\.jsx'?\\'" . rjsx-mode)))
