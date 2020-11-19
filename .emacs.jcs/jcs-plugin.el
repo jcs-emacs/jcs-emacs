@@ -108,10 +108,11 @@
         (append
          ;; --- Internal ---
          '(company-capf company-semantic)
+         '(company-keywords)
          '(company-abbrev company-dabbrev company-dabbrev-code)
          '(company-files)
          '(company-etags company-gtags)
-         '(company-keywords company-yasnippet)
+         '(company-yasnippet)
          ;; --- External ---
          '(company-emoji)))
   (setq company-minimum-prefix-length 0
