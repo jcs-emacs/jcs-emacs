@@ -338,6 +338,11 @@ in order to take effect.  Half hot reloading process."
   "Header for JayCeS header file."
   (file-header-insert-template-by-file-path "~/.emacs.jcs/template/jayces/default.txt"))
 
+;;; Jenkins
+(defun jcs-insert-jenkinsfile-template ()
+  "Header for Jenkinsfile."
+  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/jenkins/default.txt"))
+
 ;;; Kotlin
 (defun jcs-insert-kotlin-template ()
   "Header for Kotlin header file."
