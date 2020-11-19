@@ -118,6 +118,7 @@
     isearch-project
     ivy-searcher
     javadoc-lookup
+    jenkinsfile-mode
     js2-mode
     json-mode
     keypression
