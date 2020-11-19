@@ -522,6 +522,7 @@ Note this is opposite logic to the toggle mode function."
 (with-eval-after-load 'haxe-mode (require 'jcs-haxe-mode))
 (with-eval-after-load 'ini-mode (require 'jcs-ini-mode))
 (with-eval-after-load 'jayces-mode (require 'jcs-jayces-mode))
+(with-eval-after-load 'jenkinsfile-mode (require 'jcs-jenkinsfile-mode))
 (with-eval-after-load 'js2-mode (require 'jcs-js-mode))
 (with-eval-after-load 'json-mode (require 'jcs-json-mode))
 (with-eval-after-load 'kotlin-mode (require 'jcs-kotlin-mode))
