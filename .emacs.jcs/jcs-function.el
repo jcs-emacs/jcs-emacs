@@ -159,25 +159,19 @@
 (defun jcs--ahs--set-face (pt pt-box ot ot-box)
   "Set `auto-highlight-symbol' face's with PT, PT-BOX, OT, OT-BOX."
   (let ((box-face '()))
-    (setq box-face (jcs-form-p-symbol box-face :line-width -1))
-    (setq box-face (jcs-form-p-symbol box-face :style 'pressed-button))
+    (setq box-face (jcs-form-p-symbol box-face :line-width -1)
+          box-face (jcs-form-p-symbol box-face :style 'pressed-button))
     (let ((box-face box-face))
       (setq box-face (jcs-form-p-symbol box-face :color pt-box))
       ;; Current highlight. (Cursor point currently on.)
       (set-face-attribute 'ahs-plugin-defalt-face nil
-                          :foreground nil
-                          :background pt
-                          :box box-face))
+                          :foreground nil :background pt :box box-face))
     (setq box-face (jcs-form-p-symbol box-face :color ot-box))
     ;; Other highlight. (Same words in the buffer)
     (set-face-attribute 'ahs-face nil
-                        :foreground nil
-                        :background ot
-                        :box box-face)
+                        :foreground nil :background ot :box box-face)
     (set-face-attribute 'ahs-definition-face nil
-                        :foreground nil
-                        :background ot
-                        :box box-face)))
+                        :foreground nil :background ot :box box-face)))
 
 (defun jcs-reset-ahs-by-theme ()
   "Reset `auto-highlight-symbol' by theme."
