@@ -47,7 +47,7 @@
 
 (defun jcs-in-range-p (in-val in-min in-max)
   "Check to see if IN-VAL is between IN-MIN and IN-MAX."
-  (and (>= in-val in-min) (<= in-val in-max)))
+  (and (<= in-min in-val) (<= in-val in-max)))
 
 (provide 'jcs-math)
 ;;; jcs-math.el ends here
