@@ -747,6 +747,14 @@
   (setq most-used-words-display-type 'table
         most-used-words-word-display 100))
 
+(use-package modablist
+  :defer t
+  :config
+  (set-face-attribute 'modablist-select-face nil
+                      :box '(:line-width -1 :color "#65A7E2" :style nil))
+  (set-face-attribute 'modablist-insert-face nil :background "#565136"
+                      :box '(:line-width -1 :color "#65A7E2" :style nil)))
+
 (use-package multi-shell
   :defer t
   :init
