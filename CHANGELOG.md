@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-11-27
 
 * Add `modablist` package's configuration.
+* Add limitation to use `buffer-wrap` for certain `major-mode`s.
 
 ### 2020-11-19
 
