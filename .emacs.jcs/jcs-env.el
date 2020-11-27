@@ -33,19 +33,19 @@
 
 (cond
  (jcs-is-windows
-  (setq jcs-makescript (concat jcs-makescript "[.]bat"))
-  (setq jcs-runscript (concat jcs-runscript "[.]bat")))
+  (setq jcs-makescript (concat jcs-makescript "[.]bat")
+        jcs-runscript (concat jcs-runscript "[.]bat")))
  (jcs-is-mac
   (cua-mode 0)
   ;;(osx-key-mode 0)
-  (setq mac-command-modifier 'meta)
-  (setq select-enable-clipboard t)
-  (setq aquamacs-save-options-on-quit 0)
-  (setq special-display-regexps nil)
-  (setq special-display-buffer-names nil)
+  (setq mac-command-modifier 'meta
+        select-enable-clipboard t
+        aquamacs-save-options-on-quit 0
+        special-display-regexps nil
+        special-display-buffer-names nil)
   (define-key function-key-map [return] [13])
-  (setq mac-command-key-is-meta t)
-  (setq mac-pass-command-to-system nil))
+  (setq mac-command-key-is-meta t
+        mac-pass-command-to-system nil))
  (jcs-is-linux
   ;; None..
   )
@@ -54,15 +54,15 @@
   ))
 
 (when jcs-use-sh-p
-  (setq jcs-makescript (concat jcs-makescript "[.]sh"))
-  (setq jcs-runscript (concat jcs-runscript "[.]sh")))
+  (setq jcs-makescript (concat jcs-makescript "[.]sh")
+        jcs-runscript (concat jcs-runscript "[.]sh")))
 
 
 ;;; Audo Saving
-(setq auto-save-default nil)
-(setq auto-save-interval 0)
-(setq auto-save-list-file-prefix nil)
-(setq auto-save-timeout 0)
+(setq auto-save-default nil
+      auto-save-interval 0
+      auto-save-list-file-prefix nil
+      auto-save-timeout 0)
 
 ;;; Backup Files
 (setq make-backup-files nil)
@@ -105,9 +105,11 @@
 
 ;;; Ediff
 (defun jcs-ediff-setup-windows (buffer-A buffer-B buffer-C control-buffer)
+  "Set up windows for `ediff'."
   (ediff-setup-windows-plain buffer-A buffer-B buffer-C control-buffer))
-(setq ediff-window-setup-function 'jcs-ediff-setup-windows)
-(setq ediff-split-window-function 'split-window-horizontally)
+
+(setq ediff-window-setup-function 'jcs-ediff-setup-windows
+      ediff-split-window-function 'split-window-horizontally)
 
 ;;; ElDoc
 (global-eldoc-mode 1)
@@ -142,13 +144,12 @@
          (index 0) (break-it nil)
          (result-path nil))
     (while (and (< index (length split-paths)) (not break-it))
-      (setq split-path-item (nth index split-paths))
-      (setq test-path (f-slash (f-join test-path split-path-item)))
+      (setq split-path-item (nth index split-paths)
+            test-path (f-slash (f-join test-path split-path-item)))
       (unless (file-directory-p test-path)
-        (setq result-path prev-path)
-        (setq break-it t))
-      (setq prev-path test-path)
-      (setq index (1+ index)))
+        (setq result-path prev-path break-it t))
+      (setq prev-path test-path
+            index (1+ index)))
     (unless result-path (setq result-path prev-path))
     (f-slash result-path)))
 
@@ -372,10 +373,10 @@ P.S. You would need to restart Emacs to take effect from this variable."
   ;;
   ;; SOURCE: http://pragmaticemacs.com/emacs/uniquify-your-buffer-names/
   ;; URL: https://github.com/bbatsov/prelude
-  (setq uniquify-buffer-name-style 'forward)
-  (setq uniquify-after-kill-buffer-p t)    ; rename after killing uniquified
-  (setq uniquify-ignore-buffers-re "^\\*") ; don't muck with special buffers
-  (setq uniquify-separator "/"))
+  (setq uniquify-buffer-name-style 'forward
+        uniquify-after-kill-buffer-p t  ; rename after killing uniquified
+        uniquify-ignore-buffers-re "^\\*"  ; don't muck with special buffers
+        uniquify-separator "/"))
 
 ;;; Windows
 (defconst jcs-windows--enlarge-shrink-times 6
