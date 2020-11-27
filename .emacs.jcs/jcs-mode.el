@@ -381,7 +381,8 @@ Note this is opposite logic to the toggle mode function."
 
 (defun jcs-tabulated-list-mode-hook ()
   "Hook for `tabulated-list-mode'."
-  (buffer-wrap-mode 1))
+  (when (memq major-mode '(Buffer-menu-mode package-menu-mode))
+    (buffer-wrap-mode 1)))
 
 (add-hook 'tabulated-list-mode-hook 'jcs-tabulated-list-mode-hook)
 
