@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-12-01
+
+* Installed new package `lsp-dart`.
+* Installed new package `lsp-docker`.
+* Installed new package `lsp-haskell`.
+* Installed new package `lsp-latex`.
+* Installed new package `lsp-mssql`.
+* Installed new package `lsp-pascal`.
+* Installed new package `lsp-python-ms`.
+
 ### 2020-11-27
 
 * Add `modablist` package's configuration.
