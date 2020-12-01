@@ -125,9 +125,15 @@
     kotlin-mode
     license-templates
     line-reminder
+    lsp-dart
+    lsp-docker
+    lsp-haskell
     lsp-java
-    lsp-mode
+    lsp-latex
+    lsp-mssql
     lsp-origami
+    lsp-pascal
+    lsp-python-ms
     lsp-ui
     lua-mode
     magit
