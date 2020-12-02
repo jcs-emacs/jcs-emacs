@@ -1,4 +1,4 @@
-;;; jcs-yaml.el --- Self defines function.  -*- lexical-binding: t -*-
+;;; jcs-yaml.el --- YAML related  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

@@ -1,4 +1,4 @@
-;;; jcs-opascal-mode.el --- Object Pascal mode. -*- lexical-binding: t -*-
+;;; jcs-opascal-mode.el --- Object Pascal mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

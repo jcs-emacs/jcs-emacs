@@ -1,4 +1,4 @@
-;;; jcs-key.el --- Global Key Definition.  -*- lexical-binding: t -*-
+;;; jcs-key.el --- Global Key Definition  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

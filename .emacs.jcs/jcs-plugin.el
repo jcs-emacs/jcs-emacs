@@ -1,4 +1,4 @@
-;;; jcs-plugin.el --- Plugin Configurations.  -*- lexical-binding: t -*-
+;;; jcs-plugin.el --- Plugin Configurations  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

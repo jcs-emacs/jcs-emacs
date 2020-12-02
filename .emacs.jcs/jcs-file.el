@@ -1,4 +1,4 @@
-;;; jcs-file.el --- File handle.  -*- lexical-binding: t -*-
+;;; jcs-file.el --- File handle  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

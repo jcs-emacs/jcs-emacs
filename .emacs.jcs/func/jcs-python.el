@@ -1,4 +1,4 @@
-;;; jcs-python.el --- Python related.  -*- lexical-binding: t -*-
+;;; jcs-python.el --- Python related  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

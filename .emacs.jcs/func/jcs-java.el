@@ -1,4 +1,4 @@
-;;; jcs-java.el --- Java related.  -*- lexical-binding: t -*-
+;;; jcs-java.el --- Java related  -*- lexical-binding: t -*-
 ;;; Commentary: When editing the Java related file.
 ;;; Code:
 

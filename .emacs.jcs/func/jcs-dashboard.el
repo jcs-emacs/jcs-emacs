@@ -1,4 +1,4 @@
-;;; jcs-dashboard.el --- Functions in dashboard-mode. (*Buffer List*).  -*- lexical-binding: t -*-
+;;; jcs-dashboard.el --- Functions in dashboard-mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

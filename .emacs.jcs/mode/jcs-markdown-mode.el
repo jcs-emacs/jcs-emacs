@@ -1,4 +1,4 @@
-;;; jcs-markdown-mode.el --- Markdown mode. -*- lexical-binding: t -*-
+;;; jcs-markdown-mode.el --- Markdown mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

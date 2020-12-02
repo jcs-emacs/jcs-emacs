@@ -1,4 +1,4 @@
-;;; jcs-batch-mode.el --- Batch Mode -*- lexical-binding: t -*-
+;;; jcs-batch-mode.el --- Batch mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

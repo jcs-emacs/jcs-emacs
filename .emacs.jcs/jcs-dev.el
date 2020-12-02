@@ -1,4 +1,4 @@
-;;; jcs-dev.el --- Development related.  -*- lexical-binding: t -*-
+;;; jcs-dev.el --- Development related  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

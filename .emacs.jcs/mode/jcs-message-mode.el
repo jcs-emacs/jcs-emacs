@@ -1,4 +1,4 @@
-;;; jcs-message-mode.el --- Message mode. -*- lexical-binding: t -*-
+;;; jcs-message-mode.el --- Message mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

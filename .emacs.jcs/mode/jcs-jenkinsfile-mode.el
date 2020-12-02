@@ -1,4 +1,4 @@
-;;; jcs-jenkinsfile-mode.el --- Jenkinsfile mode. -*- lexical-binding: t -*-
+;;; jcs-jenkinsfile-mode.el --- Jenkinsfile mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

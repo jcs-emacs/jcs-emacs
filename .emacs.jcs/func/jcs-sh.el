@@ -1,4 +1,4 @@
-;;; jcs-sh.el --- ShellScript related.  -*- lexical-binding: t -*-
+;;; jcs-sh.el --- ShellScript related  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

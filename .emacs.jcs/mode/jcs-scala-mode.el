@@ -1,4 +1,4 @@
-;;; jcs-scala-mode.el --- Scala mode. -*- lexical-binding: t -*-
+;;; jcs-scala-mode.el --- Scala mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

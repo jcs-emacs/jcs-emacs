@@ -1,4 +1,4 @@
-;;; jcs-objc-mode.el --- Objective-C mode. -*- lexical-binding: t -*-
+;;; jcs-objc-mode.el --- Objective-C mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

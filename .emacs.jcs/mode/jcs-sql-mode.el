@@ -1,4 +1,4 @@
-;;; jcs-sql-mode.el --- SQL mode. -*- lexical-binding: t -*-
+;;; jcs-sql-mode.el --- SQL mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

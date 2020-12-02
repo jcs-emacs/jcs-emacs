@@ -1,4 +1,4 @@
-;;; jcs-yaml-mode.el --- YAML mode. -*- lexical-binding: t -*-
+;;; jcs-yaml-mode.el --- YAML mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

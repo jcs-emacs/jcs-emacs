@@ -1,4 +1,4 @@
-;;; jcs-eshell-mode.el --- Eshell mode. -*- lexical-binding: t -*-
+;;; jcs-eshell-mode.el --- Eshell mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

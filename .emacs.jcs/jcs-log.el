@@ -1,4 +1,4 @@
-;;; jcs-log.el --- Debug Utils.  -*- lexical-binding: t -*-
+;;; jcs-log.el --- Debug Utils  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

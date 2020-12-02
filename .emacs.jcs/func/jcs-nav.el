@@ -1,4 +1,4 @@
-;;; jcs-nav.el --- Nagivation in file.  -*- lexical-binding: t -*-
+;;; jcs-nav.el --- Nagivation in file  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

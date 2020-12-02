@@ -1,4 +1,4 @@
-;;; jcs-elixir-mode.el --- Elixir Mode -*- lexical-binding: t -*-
+;;; jcs-elixir-mode.el --- Elixir mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

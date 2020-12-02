@@ -1,4 +1,4 @@
-;;; jcs-go-mode.el --- GO mode. -*- lexical-binding: t -*-
+;;; jcs-go-mode.el --- GO mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

@@ -1,4 +1,4 @@
-;;; jcs-mode.el --- Self mode defines.  -*- lexical-binding: t -*-
+;;; jcs-mode.el --- Self mode defines  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

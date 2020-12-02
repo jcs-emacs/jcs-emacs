@@ -1,4 +1,4 @@
-;;; jcs-actionscript-mode.el --- ActionScript 3.0 mode. -*- lexical-binding: t -*-
+;;; jcs-actionscript-mode.el --- ActionScript mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

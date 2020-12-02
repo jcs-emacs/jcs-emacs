@@ -1,4 +1,4 @@
-;;; jcs-function.el --- Self defines function.  -*- lexical-binding: t -*-
+;;; jcs-function.el --- Self defines function  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

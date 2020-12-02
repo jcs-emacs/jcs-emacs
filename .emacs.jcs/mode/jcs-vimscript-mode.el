@@ -1,4 +1,4 @@
-;;; jcs-vimscript-mode.el --- VimScript mode. -*- lexical-binding: t -*-
+;;; jcs-vimscript-mode.el --- VimScript mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

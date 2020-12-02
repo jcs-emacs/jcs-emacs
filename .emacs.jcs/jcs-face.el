@@ -1,4 +1,4 @@
-;;; jcs-face.el --- Face related.  -*- lexical-binding: t -*-
+;;; jcs-face.el --- Face related  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

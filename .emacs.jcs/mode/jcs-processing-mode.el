@@ -1,4 +1,4 @@
-;;; jcs-processing-mode.el --- Processing mode. -*- lexical-binding: t -*-
+;;; jcs-processing-mode.el --- Processing mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

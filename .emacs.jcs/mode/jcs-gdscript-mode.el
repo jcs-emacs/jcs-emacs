@@ -1,4 +1,4 @@
-;;; jcs-gdscript-mode.el --- Godot Script mode. -*- lexical-binding: t -*-
+;;; jcs-gdscript-mode.el --- Godot Script mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

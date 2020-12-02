@@ -1,4 +1,4 @@
-;;; jcs-css.el --- CSS related.  -*- lexical-binding: t -*-
+;;; jcs-css.el --- CSS related  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

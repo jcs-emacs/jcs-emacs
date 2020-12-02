@@ -1,4 +1,4 @@
-;;; jcs-media.el --- Process media, like audio/video.  -*- lexical-binding: t -*-
+;;; jcs-media.el --- Process media, like audio/video  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

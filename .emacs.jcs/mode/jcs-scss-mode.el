@@ -1,4 +1,4 @@
-;;; jcs-scss-mode.el --- SCSS mode. -*- lexical-binding: t -*-
+;;; jcs-scss-mode.el --- SCSS mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

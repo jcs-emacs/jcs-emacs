@@ -1,4 +1,4 @@
-;;; jcs-shell-mode.el --- Shell/Terminal mode. -*- lexical-binding: t -*-
+;;; jcs-shell-mode.el --- Shell/Terminal mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

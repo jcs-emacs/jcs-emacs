@@ -1,4 +1,4 @@
-;;; jcs-pascal-mode.el --- Pascal mode. -*- lexical-binding: t -*-
+;;; jcs-pascal-mode.el --- Pascal mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

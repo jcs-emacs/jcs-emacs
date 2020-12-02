@@ -1,4 +1,4 @@
-;;; jcs-csharp.el --- C Sharp related.  -*- lexical-binding: t -*-
+;;; jcs-csharp.el --- C# related  -*- lexical-binding: t -*-
 ;;; Commentary: When editing the C# related file.
 ;;; Code:
 

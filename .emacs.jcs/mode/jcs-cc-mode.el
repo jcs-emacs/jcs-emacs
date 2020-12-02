@@ -1,4 +1,4 @@
-;;; jcs-cc-mode.el --- C/C++ Common mode. -*- lexical-binding: t -*-
+;;; jcs-cc-mode.el --- C like programming language modes  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

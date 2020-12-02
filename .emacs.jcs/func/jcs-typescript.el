@@ -1,4 +1,4 @@
-;;; jcs-typescript.el --- TypeScript related.  -*- lexical-binding: t -*-
+;;; jcs-typescript.el --- TypeScript related  -*- lexical-binding: t -*-
 ;;; Commentary: When editing the TypeScript related file.
 ;;; Code:
 

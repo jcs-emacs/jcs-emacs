@@ -1,4 +1,4 @@
-;;; jcs-xml-mode.el --- XML mode. -*- lexical-binding: t -*-
+;;; jcs-xml-mode.el --- XML mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

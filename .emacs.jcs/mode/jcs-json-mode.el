@@ -1,4 +1,4 @@
-;;; jcs-json-mode.el --- JSON mode. -*- lexical-binding: t -*-
+;;; jcs-json-mode.el --- JSON mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

@@ -1,4 +1,4 @@
-;;; jcs-snippet-mode.el --- Snippet mode. -*- lexical-binding: t -*-
+;;; jcs-snippet-mode.el --- Snippet mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

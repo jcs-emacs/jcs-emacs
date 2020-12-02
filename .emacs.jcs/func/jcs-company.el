@@ -1,4 +1,4 @@
-;;; jcs-company.el --- Company related configuration.  -*- lexical-binding: t -*-
+;;; jcs-company.el --- Company related configuration  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

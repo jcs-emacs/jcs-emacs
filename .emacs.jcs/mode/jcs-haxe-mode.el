@@ -1,4 +1,4 @@
-;;; jcs-haxe-mode.el --- Haxe mode. -*- lexical-binding: t -*-
+;;; jcs-haxe-mode.el --- Haxe mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

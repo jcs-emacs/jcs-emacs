@@ -1,4 +1,4 @@
-;;; jcs-asm.el --- Assembly Language related.  -*- lexical-binding: t -*-
+;;; jcs-asm.el --- Assembly Language related  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

@@ -1,4 +1,4 @@
-;;; jcs-c-mode.el --- C mode. -*- lexical-binding: t -*-
+;;; jcs-c-mode.el --- C mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

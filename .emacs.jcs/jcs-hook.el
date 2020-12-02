@@ -1,4 +1,4 @@
-;;; jcs-hook.el --- All the hook event do here.  -*- lexical-binding: t -*-
+;;; jcs-hook.el --- All the hook event do here  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

@@ -1,4 +1,4 @@
-;;; jcs-ivy.el --- Ivy function related.  -*- lexical-binding: t -*-
+;;; jcs-ivy.el --- Ivy function related  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

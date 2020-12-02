@@ -1,4 +1,4 @@
-;;; jcs-css-mode.el --- CSS mode. -*- lexical-binding: t -*-
+;;; jcs-css-mode.el --- CSS mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

@@ -1,4 +1,4 @@
-;;; jcs-minibuf.el --- Minibuffer related settings.  -*- lexical-binding: t -*-
+;;; jcs-minibuf.el --- Minibuffer related settings  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

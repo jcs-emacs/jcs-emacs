@@ -1,4 +1,4 @@
-;;; jcs-window.el --- Window related.  -*- lexical-binding: t -*-
+;;; jcs-window.el --- Window related  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

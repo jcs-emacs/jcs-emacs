@@ -1,4 +1,4 @@
-;;; jcs-sass-mode.el --- Sass mode. -*- lexical-binding: t -*-
+;;; jcs-sass-mode.el --- Sass mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

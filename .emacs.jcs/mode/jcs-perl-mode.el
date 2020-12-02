@@ -1,4 +1,4 @@
-;;; jcs-perl-mode.el --- Perl mode. -*- lexical-binding: t -*-
+;;; jcs-perl-mode.el --- Perl mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

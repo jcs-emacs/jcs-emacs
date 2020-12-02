@@ -1,4 +1,4 @@
-;;; jcs-ini-mode.el --- INI mode. -*- lexical-binding: t -*-
+;;; jcs-ini-mode.el --- INI mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

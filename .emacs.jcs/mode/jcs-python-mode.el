@@ -1,4 +1,4 @@
-;;; jcs-python-mode.el --- Python mode. -*- lexical-binding: t -*-
+;;; jcs-python-mode.el --- Python mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

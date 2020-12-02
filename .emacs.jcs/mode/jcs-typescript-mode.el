@@ -1,4 +1,4 @@
-;;; jcs-typescript-mode.el --- TypeScript mode. -*- lexical-binding: t -*-
+;;; jcs-typescript-mode.el --- TypeScript mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

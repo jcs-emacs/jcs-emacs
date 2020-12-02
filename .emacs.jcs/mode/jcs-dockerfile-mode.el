@@ -1,4 +1,4 @@
-;;; jcs-dockerfile-mode.el --- Dokerfile mode. -*- lexical-binding: t -*-
+;;; jcs-dockerfile-mode.el --- Dokerfile mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

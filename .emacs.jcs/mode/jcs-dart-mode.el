@@ -1,4 +1,4 @@
-;;; jcs-dart-mode.el --- Dart mode. -*- lexical-binding: t -*-
+;;; jcs-dart-mode.el --- Dart mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

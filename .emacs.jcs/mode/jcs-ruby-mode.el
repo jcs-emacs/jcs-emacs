@@ -1,4 +1,4 @@
-;;; jcs-ruby-mode.el --- Ruby mode. -*- lexical-binding: t -*-
+;;; jcs-ruby-mode.el --- Ruby mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

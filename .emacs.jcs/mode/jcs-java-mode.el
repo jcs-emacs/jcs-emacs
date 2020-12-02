@@ -1,4 +1,4 @@
-;;; jcs-java-mode.el --- Java mode. -*- lexical-binding: t -*-
+;;; jcs-java-mode.el --- Java mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

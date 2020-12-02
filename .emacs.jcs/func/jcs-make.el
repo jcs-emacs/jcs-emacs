@@ -1,4 +1,4 @@
-;;; jcs-make.el --- Makfile related.  -*- lexical-binding: t -*-
+;;; jcs-make.el --- Makfile related  -*- lexical-binding: t -*-
 ;;; Commentary: Functions for Makefile.
 ;;; Code:
 

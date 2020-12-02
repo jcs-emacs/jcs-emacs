@@ -1,4 +1,4 @@
-;;; jcs-kotlin-mode.el --- Kotlin mode. -*- lexical-binding: t -*-
+;;; jcs-kotlin-mode.el --- Kotlin mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

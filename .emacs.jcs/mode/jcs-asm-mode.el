@@ -1,4 +1,4 @@
-;;; jcs-asm-mode.el --- Assembly Language Mode -*- lexical-binding: t -*-
+;;; jcs-asm-mode.el --- Assembly Language related modes  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

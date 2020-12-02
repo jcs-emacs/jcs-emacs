@@ -1,4 +1,4 @@
-;;; jcs-properties-mode.el --- Properties mode. -*- lexical-binding: t -*-
+;;; jcs-properties-mode.el --- Properties mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

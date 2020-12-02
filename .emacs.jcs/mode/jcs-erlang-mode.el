@@ -1,4 +1,4 @@
-;;; jcs-erlang-mode.el --- Erlang Mode -*- lexical-binding: t -*-
+;;; jcs-erlang-mode.el --- Erlang mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

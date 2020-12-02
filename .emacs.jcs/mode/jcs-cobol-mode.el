@@ -1,4 +1,4 @@
-;;; jcs-cobol-mode.el --- COBOL mode. -*- lexical-binding: t -*-
+;;; jcs-cobol-mode.el --- COBOL mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

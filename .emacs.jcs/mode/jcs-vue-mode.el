@@ -1,4 +1,4 @@
-;;; jcs-vue-mode.el --- Vue mode. -*- lexical-binding: t -*-
+;;; jcs-vue-mode.el --- Vue mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

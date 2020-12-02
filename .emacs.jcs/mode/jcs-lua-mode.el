@@ -1,4 +1,4 @@
-;;; jcs-lua-mode.el --- Lua mode. -*- lexical-binding: t -*-
+;;; jcs-lua-mode.el --- Lua mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

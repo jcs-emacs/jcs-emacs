@@ -1,4 +1,4 @@
-;;; jcs-org.el --- Org mode functionalities.  -*- lexical-binding: t -*-
+;;; jcs-org.el --- Org mode functionalities  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

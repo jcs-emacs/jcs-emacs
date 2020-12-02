@@ -1,4 +1,4 @@
-;;; jcs-markdown.el --- Markdown related.  -*- lexical-binding: t -*-
+;;; jcs-markdown.el --- Markdown related  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

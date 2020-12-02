@@ -1,4 +1,4 @@
-;;; jcs-frame.el --- Frame related.  -*- lexical-binding: t -*-
+;;; jcs-frame.el --- Frame related  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

@@ -1,4 +1,4 @@
-;;; jcs-vs.el --- Visual Studio function related.  -*- lexical-binding: t -*-
+;;; jcs-vs.el --- Visual Studio function related  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

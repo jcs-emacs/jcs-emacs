@@ -1,4 +1,4 @@
-;;; jcs-haskell-mode.el --- Haskell mode. -*- lexical-binding: t -*-
+;;; jcs-haskell-mode.el --- Haskell mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

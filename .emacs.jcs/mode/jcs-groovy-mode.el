@@ -1,4 +1,4 @@
-;;; jcs-groovy-mode.el --- Groovy mode. -*- lexical-binding: t -*-
+;;; jcs-groovy-mode.el --- Groovy mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

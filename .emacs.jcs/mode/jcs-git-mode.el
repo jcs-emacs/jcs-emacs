@@ -1,4 +1,4 @@
-;;; jcs-git-mode.el --- Git related modes. -*- lexical-binding: t -*-
+;;; jcs-git-mode.el --- Git related modes  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

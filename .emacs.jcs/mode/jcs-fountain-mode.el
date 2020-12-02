@@ -1,4 +1,4 @@
-;;; jcs-fountain-mode.el --- Fountain mode. -*- lexical-binding: t -*-
+;;; jcs-fountain-mode.el --- Fountain mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

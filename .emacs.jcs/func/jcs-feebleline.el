@@ -1,4 +1,4 @@
-;;; jcs-feebleline.el --- Feebleline function related.  -*- lexical-binding: t -*-
+;;; jcs-feebleline.el --- Feebleline function related  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

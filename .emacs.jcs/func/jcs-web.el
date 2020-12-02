@@ -1,4 +1,4 @@
-;;; jcs-web.el --- Web Development related.  -*- lexical-binding: t -*-
+;;; jcs-web.el --- Web Development related  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

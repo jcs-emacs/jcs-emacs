@@ -1,4 +1,4 @@
-;;; jcs-cc.el --- C/C++ related.  -*- lexical-binding: t -*-
+;;; jcs-cc.el --- C/C++ related  -*- lexical-binding: t -*-
 ;;; Commentary: Functions for C/C++ common.
 ;;; Code:
 

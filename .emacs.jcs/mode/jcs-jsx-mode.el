@@ -1,4 +1,4 @@
-;;; jcs-jsx-mode.el --- JavaScript XML mode. -*- lexical-binding: t -*-
+;;; jcs-jsx-mode.el --- JavaScript XML mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

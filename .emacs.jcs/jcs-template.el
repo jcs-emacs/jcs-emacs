@@ -1,4 +1,4 @@
-;;; jcs-template.el --- Template format.  -*- lexical-binding: t -*-
+;;; jcs-template.el --- Template format  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

@@ -1,4 +1,4 @@
-;;; jcs-lsp.el --- LSP function related.  -*- lexical-binding: t -*-
+;;; jcs-lsp.el --- LSP function related  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

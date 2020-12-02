@@ -1,4 +1,4 @@
-;;; jcs-js-mode.el --- JavaScript mode. -*- lexical-binding: t -*-
+;;; jcs-js-mode.el --- JavaScript mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

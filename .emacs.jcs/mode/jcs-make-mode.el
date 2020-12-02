@@ -1,4 +1,4 @@
-;;; jcs-make-mode.el --- Makefile mode. -*- lexical-binding: t -*-
+;;; jcs-make-mode.el --- Makefile mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

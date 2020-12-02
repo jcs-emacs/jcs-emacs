@@ -1,4 +1,4 @@
-;;; jcs-config.el --- Your own configuration.  -*- lexical-binding: t -*-
+;;; jcs-config.el --- Your own configuration  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

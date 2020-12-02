@@ -1,4 +1,4 @@
-;;; jcs-csharp-mode.el --- C# Mode -*- lexical-binding: t -*-
+;;; jcs-csharp-mode.el --- C# Mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

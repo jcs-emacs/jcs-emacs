@@ -1,4 +1,4 @@
-;;; jcs-util.el --- All utilities put here.  -*- lexical-binding: t -*-
+;;; jcs-util.el --- All utilities put here  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

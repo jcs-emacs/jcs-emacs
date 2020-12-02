@@ -1,4 +1,4 @@
-;;; jcs-comment.el --- Comment related.  -*- lexical-binding: t -*-
+;;; jcs-comment.el --- Comment related  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

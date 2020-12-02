@@ -1,4 +1,4 @@
-;;; jcs-sh-mode.el --- Shell Mode -*- lexical-binding: t -*-
+;;; jcs-sh-mode.el --- Shell mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

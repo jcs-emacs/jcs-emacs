@@ -1,4 +1,4 @@
-;;; jcs-jayces-mode.el --- JayCeS mode. -*- lexical-binding: t -*-
+;;; jcs-jayces-mode.el --- JayCeS mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

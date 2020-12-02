@@ -1,4 +1,4 @@
-;;; jcs-edit.el --- When editing the file.  -*- lexical-binding: t -*-
+;;; jcs-edit.el --- When editing the file  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

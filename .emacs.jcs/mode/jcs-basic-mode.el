@@ -1,4 +1,4 @@
-;;; jcs-basic-mode.el --- BASIC mode. -*- lexical-binding: t -*-
+;;; jcs-basic-mode.el --- BASIC mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

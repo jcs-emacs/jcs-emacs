@@ -1,4 +1,4 @@
-;;; jcs-theme.el --- Theme.  -*- lexical-binding: t -*-
+;;; jcs-theme.el --- Theme definition  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

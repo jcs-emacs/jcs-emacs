@@ -1,4 +1,4 @@
-;;; jcs-cmake-mode.el --- CMake mode. -*- lexical-binding: t -*-
+;;; jcs-cmake-mode.el --- CMake mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

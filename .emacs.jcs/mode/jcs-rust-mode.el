@@ -1,4 +1,4 @@
-;;; jcs-rust-mode.el --- Rust mode. -*- lexical-binding: t -*-
+;;; jcs-rust-mode.el --- Rust mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

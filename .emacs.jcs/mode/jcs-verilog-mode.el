@@ -1,4 +1,4 @@
-;;; jcs-verilog-mode.el --- Verilog mode. -*- lexical-binding: t -*-
+;;; jcs-verilog-mode.el --- Verilog mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

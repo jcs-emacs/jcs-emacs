@@ -1,4 +1,4 @@
-;;; jcs-shader-mode.el --- Shader mode. -*- lexical-binding: t -*-
+;;; jcs-shader-mode.el --- Shader mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

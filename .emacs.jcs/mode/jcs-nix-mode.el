@@ -1,4 +1,4 @@
-;;; jcs-nix-mode.el --- Nix Expressions. -*- lexical-binding: t -*-
+;;; jcs-nix-mode.el --- Nix Expressions  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

@@ -1,4 +1,4 @@
-;;; jcs-web-mode.el --- Web Development mode. -*- lexical-binding: t -*-
+;;; jcs-web-mode.el --- Web Development mode  -*- lexical-binding: t -*-
 ;;; Commentary: Including HTML, CSS, PHP, JavaScript, JSON.
 ;;; Code:
 

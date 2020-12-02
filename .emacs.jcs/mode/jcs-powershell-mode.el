@@ -1,4 +1,4 @@
-;;; jcs-powershell-mode.el --- R programming language mode. -*- lexical-binding: t -*-
+;;; jcs-powershell-mode.el --- R programming language mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

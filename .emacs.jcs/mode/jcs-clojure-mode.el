@@ -1,4 +1,4 @@
-;;; jcs-clojure-mode.el --- Clojure mode. -*- lexical-binding: t -*-
+;;; jcs-clojure-mode.el --- Clojure mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

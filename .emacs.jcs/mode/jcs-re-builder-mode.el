@@ -1,4 +1,4 @@
-;;; jcs-re-builder-mode.el --- RE-Builder mode. -*- lexical-binding: t -*-
+;;; jcs-re-builder-mode.el --- RE-Builder mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

@@ -1,4 +1,4 @@
-;;; jcs-shell.el --- Shell related functions.  -*- lexical-binding: t -*-
+;;; jcs-shell.el --- Shell related functions  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 

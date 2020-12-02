@@ -1,4 +1,4 @@
-;;; jcs-swift-mode.el --- Swift mode. -*- lexical-binding: t -*-
+;;; jcs-swift-mode.el --- Swift mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
