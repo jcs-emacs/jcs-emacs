@@ -1,4 +1,4 @@
-;;; jcs-env.el --- Environment Settings.  -*- lexical-binding: t -*-
+;;; jcs-env.el --- Environment Settings  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -98,6 +98,9 @@
 
 ;;; Default Major Mode
 (setq-default major-mode 'text-mode)
+
+;;;  Deletion
+(setq delete-by-moving-to-trash t)
 
 ;;; Doc View
 (when jcs-is-windows
@@ -347,14 +350,14 @@ P.S. You would need to restart Emacs to take effect from this variable."
 
 ;;; Startup windowing
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
-(setq next-line-add-newlines nil)
 (setq-default truncate-lines t)
-(setq truncate-partial-width-windows nil)
+(setq next-line-add-newlines nil
+      truncate-partial-width-windows nil)
 (unless (boundp 'jcs-build-test) (ignore-errors (split-window-horizontally)))
 
 ;;; Tab / Space
-(setq-default indent-tabs-mode nil)          ; Disable inset tabs, insert space only
-(setq-default tab-width 4)
+(setq-default indent-tabs-mode nil  ; Disable inset tabs, insert space only
+              tab-width 4)
 
 ;;; Tabulated List
 (use-package tabulated-list
