@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-12-06
+
+* Make refresh exhibit find file while entering `./` present directory.
+* Configured `diminish-buffer` mode list.
+
 ### 2020-12-03
 
 * Add `early-init` module for Emacs version after `27.1`.
