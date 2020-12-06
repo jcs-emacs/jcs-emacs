@@ -337,7 +337,10 @@
          '("[*]Test SHA[*]")
          '("[*]RE-Builder")
          '("[*]preview-it")
-         '("[*]wclock[*]")))
+         '("[*]wclock[*]"))
+        diminish-buffer-mode-list
+        (append
+         '("Dired by name")))
   (with-eval-after-load 'jcs-buffer-menu (diminish-buffer-mode 1))
   :config
   (defun jcs--diminish-buffer-clean--advice-before ()
