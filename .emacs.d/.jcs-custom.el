@@ -11,6 +11,13 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(centaur-tabs-default ((t (:background "#1D1D1D"))))
+ '(centaur-tabs-modified-marker-selected ((t (:background "#31343E" :foreground "white"))))
+ '(centaur-tabs-modified-marker-unselected ((t (:background "#3D3C3D" :foreground "grey50"))))
+ '(centaur-tabs-selected ((t (:background "#31343E" :foreground "white"))))
+ '(centaur-tabs-selected-modified ((t (:background "#31343E" :foreground "white"))))
+ '(centaur-tabs-unselected ((t (:background "#3D3C3D" :foreground "grey50"))))
+ '(centaur-tabs-unselected-modified ((t (:background "#3D3C3D" :foreground "grey50"))))
  '(company-preview ((t (:foreground "dark gray" :underline t))))
  '(company-preview-common ((t (:inherit company-preview))))
  '(company-scrollbar-bg ((t (:background "dark gray"))))
