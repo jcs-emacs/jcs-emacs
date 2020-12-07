@@ -190,7 +190,8 @@
 (use-package dashboard
   :defer t
   :init
-  (setq dashboard-banner-logo-title "[J C S • E M A C S]"
+  (setq initial-buffer-choice (lambda () (get-buffer dashboard-buffer-name))
+        dashboard-banner-logo-title "[J C S • E M A C S]"
         dashboard-footer-icon ""
         dashboard-footer-messages
         `(,(format "╬ Copyright (c) %s Shen, Jen-Chieh ╬" (jcs-get-year-only)))
