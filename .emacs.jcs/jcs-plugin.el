@@ -338,8 +338,8 @@
          '("[*]Test SHA[*]")
          '("[*]RE-Builder")
          '("[*]preview-it")
-         '("[*]wclock[*]"))
-        diminish-buffer-mode-list
+         '("[*]wclock[*]")))
+  (setq diminish-buffer-mode-list
         (append
          '("Dired by name")))
   (with-eval-after-load 'jcs-buffer-menu (diminish-buffer-mode 1))
