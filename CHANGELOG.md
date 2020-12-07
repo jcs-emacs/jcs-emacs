@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-12-07
 
 * Unbind `up`/`down` keys in `dashboard` buffer and it's mode.
+* Set initial buffer for Emacs daemon.
 
 ### 2020-12-06
 
