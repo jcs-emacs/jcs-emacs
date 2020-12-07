@@ -6,6 +6,8 @@
         backward-sexp
         beginning-of-buffer
         c-electric-slash
+        dashboard-next-line
+        dashboard-previous-line
         electric-pair-delete-pair
         end-of-buffer
         forward-sexp
