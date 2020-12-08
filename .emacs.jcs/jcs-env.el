@@ -24,9 +24,9 @@
 (defconst jcs-project-update-log-file "CHANGELOG[.]*[[:ascii:]]*" "Project Update Log file.")
 
 (defvar jcs-makescript "[[:ascii:]]*build[[:ascii:]]*"
-  "Build/Make script's file name.")
+  "Name of the build/make file script.")
 (defvar jcs-runscript "[[:ascii:]]*run[[:ascii:]]*"
-  "Execute/Run script's file name.")
+  "Name of the execute/run file script.")
 
 (defvar jcs-use-sh-p (or jcs-is-mac jcs-is-linux jcs-is-bsd)
   "Flag if the system use shell script.")
@@ -68,8 +68,9 @@
 (setq make-backup-files nil)
 
 ;;; Bell
-(defun nil-bell ())  ; Turn off the bell on Mac OS X
-(setq ring-bell-function 'nil-bell)
+(defun nil-bell ())  ; Turn off the bell on macOS
+(setq visible-bell nil
+      ring-bell-function 'nil-bell)
 
 ;;; Bury Bufferss
 (defconst jcs-bury-buffer-list '("[*]ffmpeg-player[*]: ")
@@ -342,7 +343,9 @@ P.S. You would need to restart Emacs to take effect from this variable."
 (setq shift-select-mode t)
 
 ;;; Smooth scroll
-(setq scroll-step 2)
+(setq scroll-step 1
+      scroll-margin 0
+      scroll-conservatively 100000)
 
 ;;; So Long
 ;; NOTE: (for very long file, like `jquery.min.js', etc)
