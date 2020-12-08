@@ -180,7 +180,6 @@
     transwin
     typescript-mode
     undo-tree
-    use-package
     use-ttf
     vimrc-mode
     visual-regexp
