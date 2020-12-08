@@ -4,18 +4,18 @@
 
 ;; Stop Emacs from losing undo information by
 ;; setting very high limits for undo buffers
-(setq undo-limit 20000000)
-(setq undo-strong-limit 40000000)
+(setq undo-limit 20000000
+      undo-strong-limit 40000000)
 
 ;; Determine the underlying operating system
 (defconst jcs-is-windows (memq system-type '(cygwin windows-nt ms-dos))
-  "Is Microsoft Windows.")
+  "This value is non-nil; if current operating system on Microsoft Windows.")
 (defconst jcs-is-mac (eq system-type 'darwin)
-  "Is Mac OS X.")
+  "This value is non-nil; if current operating system on macOS.")
 (defconst jcs-is-linux (eq system-type 'gnu/linux)
-  "Is Linux.")
+  "This value is non-nil; if current operating system on Linux.")
 (defconst jcs-is-bsd (or jcs-is-mac (eq system-type 'berkeley-unix))
-  "Is BSD.")
+  "This value is non-nil; if current operating system on BSD.")
 
 (defconst jcs-daily-todo-file "~/TODO_JenChieh/code/todo.txt" "Open the daily todo file.")
 (defconst jcs-log-file "~/TODO_JenChieh/code/log.txt" "Log file path, file location.")
