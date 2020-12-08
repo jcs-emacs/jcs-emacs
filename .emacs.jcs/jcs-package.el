@@ -159,7 +159,6 @@
     project-abbrev
     projectile
     python-mode
-    quelpa
     quelpa-use-package
     rainbow-mode
     region-occurrences-highlighter
