@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-12-09
 
 * Added [celpa](https://celpa.conao3.com/) to package archives list.
+* Installed new package `quelpa-use-package`.
 
 ### 2020-12-07
 
