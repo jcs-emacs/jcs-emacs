@@ -278,10 +278,10 @@ I believed detials make things better and make life smoother.
 
 A list of package archives that this configuration uses.
 
-* *[CELPA](https://celpa.conao3.com/)* - Conao3’s Emacs Lisp Package Archive
-* *[ELPA](https://elpa.gnu.org/packages/)* - Emacs Lisp Package Archive. This is the GNU standard repository.
-* ~~*[Marmalade](https://marmalade-repo.org/)* - where users upload their own packages~~
-* *[MELPA](https://melpa.org/#/)* - Milkypostman’s Emacs Lisp Package Archive
+* *[CELPA](https://celpa.conao3.com/)* - Conao3’s Emacs Lisp Package Archive (nonstandard)
+* *[ELPA](https://elpa.gnu.org/packages/)* - Emacs Lisp Package Archive (standard)
+* ~~*[Marmalade](https://marmalade-repo.org/)* - where users upload their own packages (nonstandard)~~
+* *[MELPA](https://melpa.org/#/)* - Milkypostman’s Emacs Lisp Package Archive (nonstandard)
 
 :pencil:
 *P.S. Here is a good talk comparing all package archives from a
