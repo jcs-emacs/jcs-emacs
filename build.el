@@ -1,4 +1,4 @@
-;;; build.el --- Test the configuration.  -*- lexical-binding: t -*-
+;;; build.el --- Test the configuration  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
