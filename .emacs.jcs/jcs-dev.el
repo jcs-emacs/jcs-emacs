@@ -30,17 +30,15 @@
 
 (defun jcs-output-set-compilation-index (index lst)
   "Set compilation buffer with INDEX and LST."
-  (cond
-   ((< index 0) (setq index (1- (length lst))))
-   ((>= index (length lst)) (setq index 0)))
+  (cond ((< index 0) (setq index (1- (length lst))))
+        ((>= index (length lst)) (setq index 0)))
   (switch-to-buffer (nth index lst)))
 
 ;;;###autoload
 (defun jcs-output-prev-compilation ()
   "Select the previous compilation buffer."
   (interactive)
-  (let ((output-lst (jcs-output-list-compilation))
-        (break nil) (index 0))
+  (let ((output-lst (jcs-output-list-compilation)) (index 0) break)
     (while (and (< index (length output-lst)) (not break))
       (when (equal (current-buffer) (nth index output-lst))
         (bury-buffer)
@@ -83,7 +81,7 @@
   (interactive)
   (let* ((output-prefix (jcs-form-compilation-filename-prefix))
          (output-buf-lst (jcs-get-buffers output-prefix 'string))
-         (choice nil))
+         choice)
     (if (not output-buf-lst)
         (user-error "[INFO] No output buffer available: %s" output-buf-lst)
       (setq choice (completing-read "Output buffer: " output-buf-lst))
