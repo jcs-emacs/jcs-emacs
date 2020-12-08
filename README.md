@@ -309,7 +309,7 @@ kind of methods that you could support the maintainer you want.
 * *Binary/Hex Editor* - powered by [nhexl-mode](https://github.com/emacsmirror/nhexl-mode).
 * *Collaborative Editing* - powered by [togetherly](https://github.com/zk-phi/togetherly).
 * *Context Menu* - powered by [right-click-context](https://github.com/zonuexe/right-click-context).
-* *Docstring* - powered by [docstr](https://github.com/jcs-elpa/docstr).
+* *Document String* - powered by [docstr](https://github.com/jcs-elpa/docstr).
 * *End of Line* - powered by [show-eol](https://github.com/elpa-host/show-eol).
 * *Execute Commands* - powered by [compile](https://www.emacswiki.org/emacs/CompilationMode).
 * *File Explorer* - powered by [neotree](https://github.com/jaypei/emacs-neotree).
