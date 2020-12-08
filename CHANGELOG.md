@@ -9,6 +9,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 * Added [celpa](https://celpa.conao3.com/) to package archives list.
 * Installed new package `quelpa-use-package`.
+* Added mouse scroll configuration for better mouse scrolling user experience.
 
 ### 2020-12-07
 
