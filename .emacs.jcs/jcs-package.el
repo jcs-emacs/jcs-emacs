@@ -160,6 +160,7 @@
     projectile
     python-mode
     quelpa
+    quelpa-use-package
     rainbow-mode
     region-occurrences-highlighter
     restart-emacs
