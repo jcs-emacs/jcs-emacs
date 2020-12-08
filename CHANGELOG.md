@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-12-09
+
+* Added [celpa](https://celpa.conao3.com/) to package archives list.
+
 ### 2020-12-07
 
 * Unbind `up`/`down` keys in `dashboard` buffer and it's mode.
