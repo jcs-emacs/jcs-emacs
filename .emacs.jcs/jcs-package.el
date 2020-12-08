@@ -149,7 +149,6 @@
     nix-mode
     org-bullets
     organize-imports-java
-    origami
     package-build
     package-lint
     parse-it
@@ -492,10 +491,10 @@ PKG is a list of recipe components."
   (require 'quelpa)
   (let ((upgrade-list '()) new-version current-version pkg-name)
     (dolist (rcp jcs-package-manually-install-list)
-      (setq pkg-name (jcs--recipe-get-info rcp :name))
-      (setq new-version (jcs--package-version-by-recipe rcp))
-      (setq current-version (jcs-get-package-version pkg-name package-alist))
-      (setq new-version (jcs--ver-string-to-ver-list new-version))
+      (setq pkg-name (jcs--recipe-get-info rcp :name)
+            new-version (jcs--package-version-by-recipe rcp)
+            current-version (jcs-get-package-version pkg-name package-alist)
+            new-version (jcs--ver-string-to-ver-list new-version))
       (when (version-list-< current-version new-version) (push rcp upgrade-list)))
     (reverse upgrade-list)))
 
