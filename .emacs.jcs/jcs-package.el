@@ -9,11 +9,11 @@
 (require 'package)
 
 ;; NOTE: Add `GNU', `MELPA', `Marmalade', `ELPA' to repository list
-(progn
-  ;;(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
-  ;;(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
-  (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-  )
+(setq package-archives
+      '(("celpa" . "https://celpa.conao3.com/packages/")
+        ("gnu" . "http://elpa.gnu.org/packages/")
+        ;;("marmalade" . "http://marmalade-repo.org/packages/")
+        ("melpa" . "http://melpa.org/packages/")))
 
 ;; To avoid initializing twice
 (setq package-enable-at-startup nil)
