@@ -162,8 +162,7 @@ IN-OP : inpuit operation script."
 (defun jcs-output-maybe-kill-buffer ()
   "Maybe kill buffer action in `output' buffer."
   (interactive)
-  (let ((output-len (length (jcs-output-list-compilation)))
-        (prev-output-buf nil))
+  (let ((output-len (length (jcs-output-list-compilation))) prev-output-buf)
     (when (< 1 output-len)
       (save-window-excursion
         (jcs-output-prev-compilation)
