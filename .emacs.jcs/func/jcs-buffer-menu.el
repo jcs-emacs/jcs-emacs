@@ -92,7 +92,7 @@ From scale 0 to 100.")
 
 (defun jcs--buffer-menu--header-appearing-p ()
   "Check if header appearing in the buffer."
-  (let ((header-appear nil))
+  (let (header-appear)
     (jcs-do-stuff-if-buffer-exists
      jcs-buffer-menu-buffer-name
      (lambda ()
@@ -111,16 +111,13 @@ From scale 0 to 100.")
   "Clean all the menu list."
   (goto-char (point-min))
   (while (< (line-number-at-pos) (line-number-at-pos (point-max)))
-    (if (tabulated-list-get-id)
-        (tabulated-list-delete-entry)
-      (forward-line 1))))
+    (if (tabulated-list-get-id) (tabulated-list-delete-entry) (forward-line 1))))
 
 (defun jcs--buffer-menu-filter-list ()
   "Do filtering the buffer list."
   (require 'flx)
   (with-current-buffer jcs-buffer-menu-buffer-name
-    (let ((scoring-table (make-hash-table))
-          (scoring-keys '()))
+    (let ((scoring-table (make-hash-table)) (scoring-keys '()))
       (while (< (line-number-at-pos) (line-number-at-pos (point-max)))
         (let* ((id (tabulated-list-get-id))
                (entry (tabulated-list-get-entry))
@@ -165,12 +162,11 @@ From scale 0 to 100.")
                                              (length jcs--buffer-menu-search-title)
                                              (length tabulated-list--header-string)))
   (unless (string-empty-p jcs--buffer-menu--pattern)
-    (setq jcs--buffer-menu--filter-timer (jcs-safe-kill-timer jcs--buffer-menu--filter-timer))
-    (setq jcs--buffer-menu--done-filtering nil)
-    (setq jcs--buffer-menu--filter-timer
+    (setq jcs--buffer-menu--filter-timer (jcs-safe-kill-timer jcs--buffer-menu--filter-timer)
+          jcs--buffer-menu--done-filtering nil
+          jcs--buffer-menu--filter-timer
           (run-with-idle-timer jcs--buffer-menu--filter-delay
-                               nil
-                               'jcs--buffer-menu-filter-list))))
+                               nil 'jcs--buffer-menu-filter-list))))
 
 (defun jcs--buffer-menu-input (key-input &optional add-del-num)
   "Insert key KEY-INPUT for fake header for search bar.
