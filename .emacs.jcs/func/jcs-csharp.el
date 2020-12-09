@@ -13,14 +13,13 @@
         ((string= sc "Unity Scripting") (jcs-insert-csharp-unity-template))))
 
 (defun jcs-vs-csharp-comment-prefix-p ()
-  "Check if current line is a Visual Studio's style comment prefix."
+  "Return non-nil if current line is Visual Studio's style comment prefix."
   (jcs-triple-char-comment-prefix-p "/"))
 
 (defun jcs-vs-csharp-only-vs-comment-prefix-this-line-p ()
-  "Check if there is only comment in this line and is Visaul Studio \
-comment prefix only."
+  "Return non-nil if only comment this line."
   (save-excursion
-    (let ((only-comment-this-line nil))
+    (let (only-comment-this-line)
       (when (jcs-vs-csharp-comment-prefix-p)
         (jcs-goto-first-char-in-line)
         (forward-char 3)
@@ -29,16 +28,13 @@ comment prefix only."
       only-comment-this-line)))
 
 (defun jcs-vs-csharp-do-doc-string ()
-  "Check if should insert the doc string by checking only comment characters \
-on the same line."
+  "Return non-nil if able to insert document string."
   (let ((do-doc-string t))
     (jcs-goto-first-char-in-line)
     (while (not (jcs-is-end-of-line-p))
       (forward-char 1)
       (unless (jcs-current-char-equal-p '(" " "\t" "/"))
-        ;; return false.
         (setq do-doc-string nil)))
-    ;; return true.
     do-doc-string))
 
 ;;
