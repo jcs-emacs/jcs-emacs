@@ -6,7 +6,7 @@
   "Check if current line is a triple IN-CHAR style comment prefix.
 For instance, `///', `---', etc."
   (save-excursion
-    (let ((is-comment-prefix nil))
+    (let (is-comment-prefix)
       (jcs-goto-first-char-in-line)
       (forward-char 1)
       (when (jcs-current-char-equal-p in-char)
@@ -21,7 +21,7 @@ For instance, `///', `---', etc."
   "Check if the current point is triple IN-CHAR style comment prefix.
 For instance, `///', `---', etc."
   (save-excursion
-    (let ((is-comment-prefix-at-point nil))
+    (let (is-comment-prefix-at-point)
       (when (jcs-current-char-equal-p in-char)
         (backward-char 1)
         (when (jcs-current-char-equal-p in-char)
