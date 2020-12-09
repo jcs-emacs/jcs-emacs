@@ -14,8 +14,8 @@
   "Ask the MODE to run."
   (interactive
    (list (completing-read
-          "Major mode for this Assembly Language file: " '("masm"
-                                                           "nasm"))))
+          "Major mode for this Assembly Language file: "
+          '("masm" "nasm"))))
   (cond ((string= mode "masm") (masm-mode))
         ((string= mode "nasm") (nasm-mode))))
 
@@ -24,8 +24,8 @@
   "Ask the source SC for editing Assembly Language file."
   (interactive
    (list (completing-read
-          "Major source for this Assembly Language file: " '("masm"
-                                                             "nasm"))))
+          "Major source for this Assembly Language file: "
+          '("masm" "nasm"))))
   (let ((jcs-asm--asking-mode t))
     (cond ((string= sc "masm") (masm-mode) (jcs-insert-masm-template))
           ((string= sc "nasm") (nasm-mode) (jcs-insert-nasm-template)))))
@@ -55,7 +55,7 @@
 (defun jcs-is-nasm-indent-p ()
   "JayCeS's own indent nasm rules.
 @return boolean : true - do indent, false - vice versa."
-  (let ((do-indent nil))
+  (let (do-indent)
     (save-excursion
       ;; Goto the first character of current line.
       (jcs-back-to-indentation-or-beginning)
@@ -71,7 +71,7 @@
 (defun jcs-asm-return ()
   "Return key for `nasm-mode'."
   (interactive)
-  (let ((continue-comment nil))
+  (let (continue-comment)
     (save-excursion
       (ignore-errors
         (jcs-goto-first-char-in-line)
@@ -96,7 +96,7 @@
   ;; own nasm comment.
   (call-interactively 'nasm-comment)
 
-  (let ((should-indent nil))
+  (let (should-indent)
     (save-excursion
       (backward-char 1)
       (when (jcs-current-char-equal-p ";")
