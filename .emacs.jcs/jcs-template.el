@@ -72,16 +72,16 @@ FAILED is callback if does NOT successfully inserted header content."
 If the template configuration file has change, this must be call
 in order to take effect.  Half hot reloading process."
   (interactive)
-  (setq jcs--preload-double-colon-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/d_colon.txt"))
-  (setq jcs--preload-double-dash-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/d_dash.txt"))
-  (setq jcs--preload-double-quote-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/d_quote.txt"))
-  (setq jcs--preload-double-semicolon-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/d_semicolon.txt"))
-  (setq jcs--preload-double-slash-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/d_slash.txt"))
-  (setq jcs--preload-global-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/global.txt"))
-  (setq jcs--preload-semicolon-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/semicolon.txt"))
-  (setq jcs--preload-sharp-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/sharp.txt"))
-  (setq jcs--preload-single-quote-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/singlequote.txt"))
-  (setq jcs--preload-tag-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/tag.txt")))
+  (setq jcs--preload-double-colon-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/d_colon.txt")
+        jcs--preload-double-dash-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/d_dash.txt")
+        jcs--preload-double-quote-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/d_quote.txt")
+        jcs--preload-double-semicolon-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/d_semicolon.txt")
+        jcs--preload-double-slash-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/d_slash.txt")
+        jcs--preload-global-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/global.txt")
+        jcs--preload-semicolon-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/semicolon.txt")
+        jcs--preload-sharp-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/sharp.txt")
+        jcs--preload-single-quote-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/singlequote.txt")
+        jcs--preload-tag-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/tag.txt")))
 
 ;;
 ;; (@* "Header" )
