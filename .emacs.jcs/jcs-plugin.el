@@ -227,8 +227,7 @@
 (use-package dashboard-ls
   :defer t
   :config
-  (let ((dashboard-lst-items '((ls-directories . 5)
-                               (ls-files . 5))))
+  (let ((dashboard-lst-items '((ls-directories . 5) (ls-files . 5))))
     (setq dashboard-items (append dashboard-lst-items dashboard-items))))
 
 (use-package define-it
