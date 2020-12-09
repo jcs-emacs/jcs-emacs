@@ -1721,9 +1721,8 @@ Otherwise return nil."
   (require 'multiple-cursors)
   (unless sdl (setq sdl jcs-mc/string-distance-level))
   (save-excursion
-    (let ((cur-line (thing-at-point 'line)) (sim-line nil)
-          (cur-col (current-column))
-          break)
+    (let ((cur-line (thing-at-point 'line)) (cur-col (current-column))
+          sim-line break)
       (jcs-mc/to-furthest-cursor-before-point)
       (forward-line -1)
       (while (and (not break) (not (= (line-number-at-pos (point)) (line-number-at-pos (point-min)))))
@@ -1745,9 +1744,8 @@ Otherwise return nil."
   (require 'multiple-cursors)
   (unless sdl (setq sdl jcs-mc/string-distance-level))
   (save-excursion
-    (let ((cur-line (thing-at-point 'line)) (sim-line nil)
-          (cur-col (current-column))
-          break)
+    (let ((cur-line (thing-at-point 'line)) (cur-col (current-column))
+          sim-line break)
       (jcs-mc/to-furthest-cursor-after-point)
       (forward-line 1)
       (while (and (not break) (not (= (line-number-at-pos (point)) (line-number-at-pos (point-max)))))
@@ -1784,28 +1782,24 @@ Otherwise return nil."
 (defun jcs-close-all-nodes ()
   "Close all nodes in current file."
   (interactive)
-  (require 'origami)
   (call-interactively #'origami-close-all-nodes))
 
 ;;;###autoload
 (defun jcs-open-all-nodes ()
   "Open all nodes in current file."
   (interactive)
-  (require 'origami)
   (call-interactively #'origami-open-all-nodes))
 
 ;;;###autoload
 (defun jcs-close-node ()
   "Close the current scope of the node."
   (interactive)
-  (require 'origami)
   (call-interactively #'origami-close-node))
 
 ;;;###autoload
 (defun jcs-open-node ()
   "Open the current scope of the node."
   (interactive)
-  (require 'origami)
   (let ((before-pt (jcs-point-at-pos (beginning-of-visual-line)))
         after-pt)
     (call-interactively #'origami-open-node)
