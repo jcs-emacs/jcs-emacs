@@ -8,11 +8,9 @@
 
 (defun jcs-insert-header-if-empty (insert-func &optional ci)
   "Execute INSERT-FUNC if empty, CI means `call-interactively'."
-  (if (jcs-is-current-file-empty-p)
-      (progn
-        (if ci (call-interactively insert-func) (funcall insert-func))
-        (goto-char (point-min)))
-    nil))
+  (when (jcs-is-current-file-empty-p)
+    (if ci (call-interactively insert-func) (funcall insert-func))
+    (goto-char (point-min))))
 
 (cl-defun jcs-insert-header-if-valid (reg-lst insert-func &key interactive success fail)
   "Insert the header if certain conditions met.
@@ -23,7 +21,7 @@ INTERACTIVE is boolean check if called function interactively instead.
 SUCCESS is callback after successfully inserted header content.
 FAILED is callback if does NOT successfully inserted header content."
   (require 'f)
-  (let ((result nil))
+  (let (result)
     (when (and buffer-file-name
                (not (file-exists-p buffer-file-name))
                (jcs-is-contain-list-string-regexp reg-lst (f-filename buffer-file-name)))
