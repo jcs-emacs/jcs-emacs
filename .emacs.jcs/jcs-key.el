@@ -497,6 +497,8 @@
   (define-key dashboard-mode-map "7" #'jcs-dashboard-item-section-7)
   (define-key dashboard-mode-map "8" #'jcs-dashboard-item-section-8)
   (define-key dashboard-mode-map "9" #'jcs-dashboard-item-section-9)
+  (define-key dashboard-mode-map (kbd "<up>") #'jcs-previous-line)
+  (define-key dashboard-mode-map (kbd "<down>") #'jcs-next-line)
   (define-key dashboard-mode-map (kbd "C-<up>") #'jcs-dashboard-previous-blank-line)
   (define-key dashboard-mode-map (kbd "C-<down>") #'jcs-dashboard-next-blank-line)
   (define-key dashboard-mode-map (kbd "C-k C-p") #'package-list-packages)
