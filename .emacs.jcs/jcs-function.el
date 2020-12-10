@@ -353,8 +353,7 @@ OW is the other window flag."
 (defun jcs-dashboard--get-banner-path ()
   "Return the path of the banner."
   (cond ((display-graphic-p)
-         (if (jcs-is-light-theme-p)
-             "~/.emacs.jcs/banner/sink_black.png"
+         (if (jcs-is-light-theme-p) "~/.emacs.jcs/banner/sink_black.png"
            "~/.emacs.jcs/banner/sink_white.png"))
         (t "~/.emacs.jcs/banner/sink.txt")))
 
@@ -363,13 +362,11 @@ OW is the other window flag."
   "Reset dashboard banner."
   (interactive)
   (setq dashboard-startup-banner (jcs-dashboard--get-banner-path))
-  (let ((logo-title-fg "cyan1")
-        (heading-fg "#17A0FB")
-        (wb-fg "light steel blue"))
+  (let ((logo-title-fg "cyan1") (heading-fg "#17A0FB") (wb-fg "light steel blue"))
     (when (jcs-is-light-theme-p)
-      (setq logo-title-fg "#616161")
-      (setq heading-fg "#727272")
-      (setq wb-fg "#1475B7"))
+      (setq logo-title-fg "#616161"
+            heading-fg "#727272"
+            wb-fg "#1475B7"))
     (jcs--set-common-face 'dashboard-banner-logo-title logo-title-fg)
     (jcs--set-common-face 'dashboard-heading heading-fg)
     (set-face-attribute 'widget-button nil :weight 'normal :foreground wb-fg))
@@ -407,8 +404,8 @@ OW is the other window flag."
 
 (defun jcs-make-electric-pair-pairs-local (lst-pr)
   "Append a list of pair (LST-PR) to current buffer."
-  (setq-local electric-pair-pairs (append electric-pair-pairs lst-pr))
-  (setq-local electric-pair-text-pairs electric-pair-pairs))
+  (setq-local electric-pair-pairs (append electric-pair-pairs lst-pr)
+              electric-pair-text-pairs electric-pair-pairs))
 
 ;;
 ;; (@* "Expand Region" )
@@ -521,9 +518,13 @@ OW is the other window flag."
 (defun jcs-safe-display-linum (act)
   "Active `linum' by ACT."
   (require 'linum)
-  (if (and (numberp act) (>= act 1))
-      (unless linum-mode (linum-mode 1))
+  (if (and (numberp act) (>= act 1)) (unless linum-mode (linum-mode 1))
     (when linum-mode (linum-mode -1))))
+
+(defun jcs-safe-line-numbers-active (act)
+  "Safe way to active (ACT) line numbers."
+  (if (display-graphic-p) (jcs-safe-display-line-numbers act)
+    (jcs-safe-display-linum act)))
 
 ;;;###autoload
 (defun jcs-active-line-numbers-by-mode ()
@@ -536,13 +537,9 @@ OW is the other window flag."
           (jcs-is-contain-list-string jcs-line-numbers-ignore-modes (symbol-name major-mode)))
       (progn
         (when line-reminder-mode (line-reminder-mode -1))
-        (if (display-graphic-p)
-            (jcs-safe-display-line-numbers -1)
-          (jcs-safe-display-linum -1)))
+        (jcs-safe-line-numbers-active -1))
     (unless line-reminder-mode (line-reminder-mode 1))
-    (if (display-graphic-p)
-        (jcs-safe-display-line-numbers 1)
-      (jcs-safe-display-linum 1))))
+    (jcs-safe-line-numbers-active 1)))
 
 ;;
 ;; (@* "Media" )
