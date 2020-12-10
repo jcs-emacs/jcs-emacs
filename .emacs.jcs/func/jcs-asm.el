@@ -92,8 +92,7 @@
 (defun jcs-asm-comment ()
   "Comment key for `nasm-mode'."
   (interactive)
-  ;; Call normal nasm comment function before do our
-  ;; own nasm comment.
+  ;; Call normal nasm comment function before do our own nasm comment.
   (call-interactively 'nasm-comment)
 
   (let (should-indent)
@@ -108,7 +107,7 @@
 
     (save-excursion
       ;; If search backward failed, try forward.
-      (when (equal should-indent nil)
+      (unless should-indent
         (forward-char 1)
         (when (jcs-current-char-equal-p ";")
           (setq should-indent t)
