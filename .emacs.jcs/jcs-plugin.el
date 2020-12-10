@@ -524,7 +524,12 @@
   :defer t
   :init
   (setq google-translate-default-source-language "auto"
-        google-translate-default-target-language "zh-TW"))
+        google-translate-default-target-language "zh-TW")
+  :config
+  (defun jcs--google-translate--search-tkk ()
+    "Search TKK."
+    (list 430675 2721866130))
+  (advice-add 'google-translate--search-tkk :override #'jcs--google-translate--search-tkk))
 
 (use-package goto-char-preview
   :defer t
