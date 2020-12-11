@@ -335,7 +335,7 @@ kind of methods that you could support the maintainer you want.
 * *Package Archive* - see [here](#file_folder-package-archives).
 * *Package Management* - powered by [use-package](https://github.com/jwiegley/use-package) and [quelpa](https://framagit.org/steckerhalter/quelpa).
 * *PDF Viewer* - powered by [doc-view-mode](https://www.emacswiki.org/emacs/DocViewMode) and [ghostscript](https://www.ghostscript.com/index.html).
-* *Project Search* - powered by [projectile](https://github.com/bbatsov/projectile).
+* *Project Management* - powered by [project](https://elpa.gnu.org/packages/project.html).
 * *Recent Files* - powered by [recentf](https://www.emacswiki.org/emacs/RecentFiles).
 * *Regexp* - powered by [re-builder](https://www.emacswiki.org/emacs/ReBuilder) and [visual-regexp](https://github.com/benma/visual-regexp.el).
 * *Reload Emacs* - powered by [reload-emacs](https://github.com/alt-elpa/reload-emacs).
