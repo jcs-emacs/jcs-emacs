@@ -47,6 +47,14 @@
       (goto-char blank-pt))))
 
 ;;
+;; (@* "Revert" )
+;;
+
+(defun jcs-dashboard-revert (&rest _)
+  "Revert for dashboard buffer."
+  (dashboard-refresh-buffer))
+
+;;
 ;; (@* "Remove Items" )
 ;;
 
@@ -90,11 +98,11 @@
 
 ;;;###autoload
 (defun jcs-dashboard-remove-projects-item ()
-  "Remove a path from `projectile-known-projects'."
+  "Remove a path from `project--list'."
   (interactive)
-  (when (boundp 'projectile-known-projects)
+  (when (boundp 'project--list)
     (let ((path (string-trim (thing-at-point 'line t))))
-      (setq projectile-known-projects (delete path projectile-known-projects)))
+      (jcs-project-remove path))
     (jcs-dashboard-refresh-buffer)))
 
 ;;;###autoload
