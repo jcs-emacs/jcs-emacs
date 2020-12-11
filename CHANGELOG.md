@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-12-11
+
+* Removed package `projectile.`
+* Removed package `counsel-projectile.`
+* Installed new package `project`.
+* Switched dashboard project support from `projectile` to `project`.
+
 ### 2020-12-09
 
 * Added [celpa](https://celpa.conao3.com/) to package archives list.
