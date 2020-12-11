@@ -2,6 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
+(require 'project)
+
 (defun jcs-project-remember (&optional dir)
   "Remeber the project from DIR.
 
