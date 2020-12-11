@@ -73,6 +73,12 @@ Else we just return `buffer-file-name` if available."
   "Check if the BUFFER a valid buffer."
   (buffer-file-name buffer))
 
+(defun jcs-virtual-buffer-list ()
+  "Return a list of virtual buffers."
+  (let ((buf-lst (buffer-list)) (lst '()))
+    (dolist (buf buf-lst) (when (jcs-virtual-buffer-p buf) (push buf lst)))
+    (reverse lst)))
+
 (defun jcs-valid-buffer-list ()
   "Return a list of valid buffers."
   (let ((buf-lst (buffer-list)) (lst '()))
