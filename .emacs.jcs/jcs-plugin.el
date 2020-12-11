@@ -222,6 +222,17 @@
     (setq dashboard-page-separator (format "\n%s\n" (jcs-env-separator))))
   (advice-add #'dashboard-insert-page-break :before #'jcs--dashboard-insert-page-break--advice-before)
 
+  (defun jcs-dashboard-before-setup ()
+    "Execution before dashboard setup."
+    (jcs-project-list-clean))
+  (advice-add 'dashboard-insert-startupify-lists :before #'jcs-dashboard-before-setup)
+
+  (defun jcs-dashboard-after-setup ()
+    "Execution after dashboard setup."
+    (with-current-buffer dashboard-buffer-name
+      (setq-local revert-buffer-function 'jcs-dashboard-revert)))
+  (advice-add 'dashboard-insert-startupify-lists :after #'jcs-dashboard-after-setup)
+
   (dashboard-setup-startup-hook))
 
 (use-package dashboard-ls
@@ -925,16 +936,18 @@
   (set-face-attribute 'preproc-font-lock-preprocessor-background nil
                       :background nil :foreground "#B363BE" :inherit nil))
 
-(use-package projectile
+(use-package project
   :defer t
-  :init
-  (setq projectile-completion-system 'ivy
-        projectile-current-project-on-switch 'keep)
   :config
-  (setq projectile-globally-ignored-directories
-        (append projectile-globally-ignored-directories
-                '(".log" ".vs" ".vscode" "node_modules")))
-  (add-hook 'projectile-after-switch-project-hook #'jcs-dashboard-refresh-buffer))
+  (setq project-vc-ignores
+        (append project-vc-ignores
+                '(".idea" ".vscode"
+                  ".ensime_cache" ".eunit"
+                  ".git" ".hg" ".fslckout"
+                  "_FOSSIL_" ".bzr" "_darcs"
+                  ".tox" ".svn"
+                  ".stack-work" ".ccls-cache" ".cache" ".clangd")
+                '(".log" ".vs" "node_modules"))))
 
 (use-package quelpa
   :defer t
