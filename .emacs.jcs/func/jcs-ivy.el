@@ -65,27 +65,5 @@ Return nil, to NOT to skip the input selection."
   (if (string= (nth ivy--index ivy--old-cands) "./") (ivy--exhibit)
     (unless (counsel-down-directory) (ivy-done))))
 
-;;;###autoload
-(defun jcs-counsel-find-files-other-window ()
-  "Find files on other window."
-  (interactive)
-  (let ((buf (current-buffer)) found-file target-buf)
-    (unwind-protect (setq found-file (counsel-find-file))
-      (when found-file
-        (setq target-buf found-file)
-        (switch-to-buffer buf)
-        (find-file-other-window target-buf)))))
-
-;;;###autoload
-(defun jcs-counsel-projectile-find-file-other-window ()
-  "Find files in project on other window."
-  (interactive)
-  (let ((buf (current-buffer)) found-file target-buf)
-    (unwind-protect (setq found-file (counsel-projectile-find-file))
-      (when found-file
-        (setq target-buf (concat (projectile-project-root) found-file))
-        (switch-to-buffer buf)
-        (find-file-other-window target-buf)))))
-
 (provide 'jcs-ivy)
 ;;; jcs-ivy.el ends here
