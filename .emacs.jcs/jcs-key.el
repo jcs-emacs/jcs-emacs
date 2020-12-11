@@ -263,8 +263,8 @@
 (define-key global-map (kbd "M-f") #'counsel-find-file)
 (define-key global-map (kbd "C-p") #'counsel-find-file)
 (define-key global-map (kbd "M-F") #'jcs-counsel-find-files-other-window)
-(define-key global-map (kbd "C-k M-f") #'counsel-projectile-find-file)
-(define-key global-map (kbd "C-k M-F") #'jcs-counsel-projectile-find-file-other-window)
+(define-key global-map (kbd "C-k M-f") #'project-find-file)
+(define-key global-map (kbd "C-k M-F") #'jcs-project-find-file-other-window)
 
 ;;; Folding Settings
 (define-key global-map (kbd "C-k C-0") #'jcs-close-all-nodes)
