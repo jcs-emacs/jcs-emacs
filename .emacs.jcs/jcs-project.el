@@ -17,10 +17,8 @@ If optional argument DIR is nil, use variable `default-directory' instead."
   (let (pr-lst)
     (dolist (pr project--list)
       (when (jcs-file-directory-exists-p (nth 0 pr)) (push pr pr-lst)))
-    ;; Check if we need to update cache.
-    (unless (= (length project--list) (length pr-lst))
-      (setq project--list (reverse pr-lst))
-      (project--write-project-list))))
+    (setq project--list (reverse pr-lst))
+    (project--write-project-list)))
 
 (defun jcs-project-remove (dir)
   "Remove project by project DIR."
