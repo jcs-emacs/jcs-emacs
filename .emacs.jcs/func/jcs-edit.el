@@ -614,11 +614,11 @@ This command does not push text to `kill-ring'."
   "Repeat alignment with respect to the given regular expression.
 REGEXP : reqular expression use to align."
   (interactive "r\nsAlign regexp: ")
-  (if (jcs-is-region-selected-p)
-      (align-regexp (region-beginning) (region-end)
-                    (concat "\\(\\s-*\\)" regexp) 1 1 t)
-    (align-regexp (point-min) (point-max)
-                  (concat "\\(\\s-*\\)" regexp) 1 1 t)))
+  (let (beg end)
+    (if (jcs-is-region-selected-p)
+        (setq beg (region-beginning) end (region-end))
+      (setq beg (point-min) end (point-max)))
+    (align-regexp beg end (concat "\\(\\s-*\\)" regexp) 1 1 t)))
 
 ;;;###autoload
 (defun jcs-revert-buffer-no-confirm ()
@@ -629,7 +629,7 @@ REGEXP : reqular expression use to align."
   ;; remain enabled after revert the file.
   (let ((was-flycheck flycheck-mode) (was-readonly buffer-read-only))
     ;; Revert it!
-    (revert-buffer :ignore-auto :noconfirm :preserve-modes)
+    (ignore-errors (revert-buffer :ignore-auto :noconfirm :preserve-modes))
     ;; Revert all the enabled mode.
     (if was-flycheck (flycheck-mode 1) (flycheck-mode -1))
     (if was-readonly (read-only-mode 1) (read-only-mode -1))))
@@ -638,19 +638,26 @@ REGEXP : reqular expression use to align."
 (defun jcs-revert-all-file-buffers ()
   "Refresh all open file buffers without confirmation."
   (interactive)
-  (save-window-excursion
-    (dolist (buf (buffer-list))
-      (let ((filename (buffer-file-name buf)))
-        ;; Revert only buffers containing files, which are not modified; do not try
-        ;; to revert non-file buffers like *Messages*.
-        (when (and filename
-                   (not (buffer-modified-p buf))
-                   (not (jcs-is-current-file-empty-p buf)))
+  (jcs-window-record-once)
+  (let ((buf-lst (buffer-list)) filename normal-buffer-p do-revert-p)
+    (dolist (buf buf-lst)
+      (setq filename (buffer-file-name buf)
+            normal-buffer-p (and filename
+                                 (not (buffer-modified-p buf))
+                                 (not (jcs-is-current-file-empty-p buf)))
+            do-revert-p nil)
+      ;; Revert only buffers containing files, which are not modified; do not try
+      ;; to revert non-file buffers like *Messages*.
+      (if normal-buffer-p
           (if (file-readable-p filename)
               ;; If the file exists and is readable, revert the buffer.
-              (with-current-buffer buf (jcs-revert-buffer-no-confirm))
+              (setq do-revert-p t)
             ;; Otherwise, kill the buffer.
-            (let (kill-buffer-query-functions) (kill-buffer buf))))))))
+            (let (kill-buffer-query-functions) (kill-buffer buf)))
+        (setq do-revert-p t))
+      (when (and do-revert-p (buffer-name buf))
+        (with-current-buffer buf (jcs-revert-buffer-no-confirm)))))
+  (jcs-window-restore-once))
 
 ;;;###autoload
 (defun jcs-other-window-next (&optional cnt not-all-frames)
