@@ -125,6 +125,7 @@ decrease this. If you experience stuttering, increase this.")
 ;;; Standardize
 (require 'jcs-template)
 (require 'jcs-mode)
+(require 'jcs-project)
 
 ;;; Finalize
 (require 'jcs-minibuf)
