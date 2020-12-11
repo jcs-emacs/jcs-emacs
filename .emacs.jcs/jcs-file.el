@@ -251,8 +251,8 @@ It tells you the existence of the path."
     (when rec
       (dolist (dir valid-dirs)
         (push (jcs-f-directories-ignore-directories dir rec) final-dirs)))
-    (setq valid-dirs (reverse valid-dirs))
-    (setq final-dirs (reverse final-dirs))
+    (setq valid-dirs (reverse valid-dirs)
+          final-dirs (reverse final-dirs))
     (jcs-flatten-list (append valid-dirs final-dirs))))
 
 (defun jcs-f-files-ignore-directories (path &optional fn rec)
