@@ -33,7 +33,9 @@
 
 (defun jcs-find-file-hook ()
   "Find file hook."
-  (unless (jcs-reload-emacs-reloading-p) (jcs-active-line-numbers-by-mode)))
+  (unless (jcs-reload-emacs-reloading-p)
+    (jcs-active-line-numbers-by-mode)
+    (jcs-project-remember)))
 (add-hook 'find-file-hook 'jcs-find-file-hook)
 
 (defun jcs--find-file--advice-before (&rest _)
@@ -46,8 +48,8 @@
 (defun jcs--find-file--advice-after (&rest _)
   "Advice execute after `find-file' command."
   (when jcs-current-created-parent-dir-path
-    (setq jcs-created-parent-dir-path jcs-current-created-parent-dir-path)
-    (setq jcs-current-created-parent-dir-path nil))
+    (setq jcs-created-parent-dir-path jcs-current-created-parent-dir-path
+          jcs-current-created-parent-dir-path nil))
   (jcs--neotree-start-refresh)
   (jcs-buffer-menu-safe-refresh)
   (jcs-dashboard-safe-refresh-buffer))
@@ -146,8 +148,6 @@
     ;;----------------------------------- `preproc-font-lock'
     (preproc-font-lock-global-mode t)
     (preproc-font-lock-mode t)
-    ;;----------------------------------- `projectile'
-    (projectile-mode t)
     ;;----------------------------------- `region-occurrences-highlighter'
     (global-region-occurrences-highlighter-mode 1)
     ;;----------------------------------- `right-click-context'
