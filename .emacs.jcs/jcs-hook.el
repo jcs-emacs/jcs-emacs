@@ -13,7 +13,7 @@
   "When window is focus."
   (if (not jcs-foucs-after-first-p)
       (setq jcs-foucs-after-first-p t)
-    (jcs-revert-all-file-buffers)
+    (jcs-safe-revert-all-buffers)
     (jcs-funcall-fboundp #'jcs--feebleline--reset)))
 (add-hook 'focus-in-hook 'jcs-focus-in-hook)
 
