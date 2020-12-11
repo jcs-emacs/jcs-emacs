@@ -59,7 +59,6 @@
     company-fuzzy
     company-quickhelp
     company-quickhelp-terminal
-    counsel-projectile
     csharp-mode
     csproj-mode
     dap-mode
@@ -157,7 +156,7 @@
     preproc-font-lock
     processing-mode
     project-abbrev
-    projectile
+    project
     python-mode
     quelpa-use-package
     rainbow-mode
