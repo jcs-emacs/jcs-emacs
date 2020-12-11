@@ -56,6 +56,10 @@ time is displayed."
   (jcs-print-current-buffer-name)
   (jcs-print-current-buffer-file-name))
 
+(defun jcs-get-string-from-buffer (buf)
+  "Return buffer string from BUF."
+  (with-current-buffer buf (buffer-string)))
+
 (defun jcs-buffer-name-or-buffer-file-name ()
   "Sometimes `buffer-file-name` is nil, then return `buffer-name` instead.
 Else we just return `buffer-file-name` if available."
@@ -123,17 +127,14 @@ TYPE is the return type; can be 'object or 'string."
 
 (defun jcs-do-stuff-if-buffer-exists (buf-or-name fnc)
   "Execute FNC in the BUF-OR-NAME if exists."
-  (if (get-buffer buf-or-name)
-      (with-current-buffer buf-or-name
-        (funcall fnc))
+  (if (get-buffer buf-or-name) (with-current-buffer buf-or-name (funcall fnc))
     (message "[WARNING] Can't do stuff with this buffer: %s" buf-or-name)))
 
 (defun jcs-buffer-name-this (name &optional buffer regex)
   "Check if BUFFER's name the same as NAME.
 If REGEX is non-nil, check by using regular expression."
   (unless buffer (setq buffer (current-buffer)))
-  (if regex
-      (string-match-p name (buffer-name buffer))
+  (if regex (string-match-p name (buffer-name buffer))
     (string= name (buffer-name buffer))))
 
 ;;
@@ -199,7 +200,7 @@ If REGEX is non-nil, check by using regular expression."
 
 (defun jcs-backtrace-occurs-p ()
   "Check if the backtrace occurs."
-  (let ((bb-name "*Backtrace*") (occurs nil))
+  (let ((bb-name "*Backtrace*") occurs)
     (when (get-buffer bb-name)
       (with-current-buffer bb-name
         (setq occurs (not (string-empty-p (buffer-string))))))
@@ -211,7 +212,7 @@ If REGEX is non-nil, check by using regular expression."
 
 (defun jcs-last-input-event-p (te)
   "Check if `last-input-event' a target event, TE."
-  (let ((is-event nil))
+  (let (is-event)
     (when (listp last-input-event)
       (let ((kn (nth 0 last-input-event)))
         (when (string-match-p te (symbol-name kn))
@@ -229,9 +230,7 @@ If REGEX is non-nil, check by using regular expression."
   "Record the info from an excursion, the FNC and ARGS."
   (save-window-excursion
     (let ((success (funcall fnc)))
-      (if success
-          (list (current-buffer) (line-number-at-pos) (current-column))
-        nil))))
+      (when success (list (current-buffer) (line-number-at-pos) (current-column))))))
 
 (defun jcs--record-window-excursion-apply (record)
   "Apply the RECORD from `jcs--record-window-excursion'."
