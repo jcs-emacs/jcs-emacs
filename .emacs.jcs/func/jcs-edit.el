@@ -620,6 +620,15 @@ REGEXP : reqular expression use to align."
       (setq beg (point-min) end (point-max)))
     (align-regexp beg end (concat "\\(\\s-*\\)" regexp) 1 1 t)))
 
+;;
+;; (@* "Revert" )
+;;
+
+(defcustom jcs-revert-default-buffers '("[*]dashboard[*]")
+  "List of default buffer to revert."
+  :type 'list
+  :group 'jcs)
+
 ;;;###autoload
 (defun jcs-revert-buffer-no-confirm ()
   "Revert buffer without confirmation."
@@ -634,29 +643,46 @@ REGEXP : reqular expression use to align."
     (if was-flycheck (flycheck-mode 1) (flycheck-mode -1))
     (if was-readonly (read-only-mode 1) (read-only-mode -1))))
 
+(defun jcs-revert-buffer-p (buf type)
+  "Return non-nil if the BUF can be revert.
+
+Argument TYPE can either be the following value.
+
+  * list - List of buffer name you would want to revert for virtual buffer.
+  * boolean - If it's non-nil, revert all virtual buffers."
+  (cond ((listp type)
+         (jcs-is-contain-list-string-regexp type (buffer-name buf)))
+        (t type)))
+
+(defun jcs-revert-all-virtual-buffers (type)
+  "Revert all virtual buffers."
+  (let ((buf-lst (jcs-virtual-buffer-list)))
+    (dolist (buf buf-lst)
+      (when (and (buffer-name buf) (jcs-revert-buffer-p buf type))
+        (with-current-buffer buf (jcs-revert-buffer-no-confirm))))))
+
+(defun jcs-revert-all-valid-buffers (type)
+  "Revert all valid buffers."
+  (let ((buf-lst (jcs-valid-buffer-list)) filename normal-buffer-p do-revert-p)
+    (dolist (buf buf-lst)
+      (setq filename (buffer-file-name buf)
+            normal-buffer-p (and filename
+                                 (not (buffer-modified-p buf))
+                                 (not (jcs-is-current-file-empty-p buf))))
+      (when normal-buffer-p
+        (if (file-readable-p filename)
+            (setq do-revert-p t)
+          (let (kill-buffer-query-functions) (kill-buffer buf))))
+      (when (and (buffer-name buf) (jcs-revert-buffer-p buf type))
+        (with-current-buffer buf (jcs-revert-buffer-no-confirm))))))
+
 ;;;###autoload
 (defun jcs-revert-all-file-buffers ()
   "Refresh all open file buffers without confirmation."
   (interactive)
   (jcs-window-record-once)
-  (let ((buf-lst (buffer-list)) filename normal-buffer-p do-revert-p)
-    (dolist (buf buf-lst)
-      (setq filename (buffer-file-name buf)
-            normal-buffer-p (and filename
-                                 (not (buffer-modified-p buf))
-                                 (not (jcs-is-current-file-empty-p buf)))
-            do-revert-p nil)
-      ;; Revert only buffers containing files, which are not modified; do not try
-      ;; to revert non-file buffers like *Messages*.
-      (if normal-buffer-p
-          (if (file-readable-p filename)
-              ;; If the file exists and is readable, revert the buffer.
-              (setq do-revert-p t)
-            ;; Otherwise, kill the buffer.
-            (let (kill-buffer-query-functions) (kill-buffer buf)))
-        (setq do-revert-p t))
-      (when (and do-revert-p (buffer-name buf))
-        (with-current-buffer buf (jcs-revert-buffer-no-confirm)))))
+  (jcs-revert-all-virtual-buffers jcs-revert-default-buffers)
+  (jcs-revert-all-valid-buffers t)
   (jcs-window-restore-once))
 
 ;;;###autoload
