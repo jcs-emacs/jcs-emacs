@@ -6,10 +6,15 @@
 ;; (@* "Focus In/Out" )
 ;;
 
+(defvar jcs-foucs-after-first-p nil
+  "Flag to see if after first focus.")
+
 (defun jcs-focus-in-hook ()
   "When window is focus."
-  (jcs-revert-all-file-buffers)
-  (jcs-funcall-fboundp #'jcs--feebleline--reset))
+  (if (not jcs-foucs-after-first-p)
+      (setq jcs-foucs-after-first-p t)
+    (jcs-revert-all-file-buffers)
+    (jcs-funcall-fboundp #'jcs--feebleline--reset)))
 (add-hook 'focus-in-hook 'jcs-focus-in-hook)
 
 (defun jcs-focus-out-hook ()
