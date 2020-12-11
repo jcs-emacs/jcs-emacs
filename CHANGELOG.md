@@ -11,6 +11,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Removed package `counsel-projectile.`
 * Installed new package `project`.
 * Switched dashboard project support from `projectile` to `project`.
+* Added virtual buffer list utility function.
 
 ### 2020-12-09
 
