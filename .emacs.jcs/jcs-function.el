@@ -314,7 +314,7 @@ OW is the other window flag."
   "Record down the last current path.")
 
 ;;;###autoload
-(defun jcs-dashboard-refresh-buffer (&rest _)
+(defun jcs-dashboard-refresh-buffer ()
   "Update dashboard buffer by killing it and start a new one."
   (interactive)
   (when (or (not jcs-emacs-ready-p)
@@ -324,7 +324,6 @@ OW is the other window flag."
       (jcs-window-record-once)
       (when (jcs-buffer-exists-p dashboard-buffer-name)
         (kill-buffer dashboard-buffer-name))
-      (jcs-project-list-clean)
       (dashboard-insert-startupify-lists)
       (jcs-window-restore-once))))
 
