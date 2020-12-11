@@ -3,6 +3,32 @@
 ;;; Code:
 
 ;;
+;; (@* "Find files" )
+;;
+
+;;;###autoload
+(defun jcs-counsel-find-files-other-window ()
+  "Find files on other window."
+  (interactive)
+  (let ((buf (current-buffer)) found-file target-buf)
+    (unwind-protect (setq found-file (counsel-find-file))
+      (when found-file
+        (setq target-buf found-file)
+        (switch-to-buffer buf)
+        (find-file-other-window target-buf)))))
+
+;;;###autoload
+(defun jcs-project-find-file-other-window ()
+  "Find files in project on other window."
+  (interactive)
+  (let ((buf (current-buffer)) found-file target-buf)
+    (unwind-protect (setq found-file (project-find-file))
+      (when found-file
+        (setq target-buf (concat (cdr (project-current)) (buffer-name found-file)))
+        (switch-to-buffer buf)
+        (find-file-other-window target-buf)))))
+
+;;
 ;; (@* "Display" )
 ;;
 
@@ -220,7 +246,7 @@ It tells you the existence of the path."
   "Find all directories in PATH by ignored common directories with FN and REC."
   (let ((dirs (f-directories path)) (valid-dirs '()) (final-dirs '()))
     (dolist (dir dirs)
-      (unless (jcs-is-contain-list-string projectile-globally-ignored-directories (f-slash dir))
+      (unless (jcs-is-contain-list-string project-vc-ignores (f-slash dir))
         (push dir valid-dirs)))
     (when rec
       (dolist (dir valid-dirs)
