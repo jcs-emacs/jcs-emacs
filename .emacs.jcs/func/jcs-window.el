@@ -435,39 +435,41 @@ i.e. change right window to bottom, or change bottom window to right."
 ;; (@* "Restore Windows Status" )
 ;;
 
-(defvar jcs-window--record-buffers '() "Record all windows' buffer.")
+(defvar jcs-window--record-buffer-names '() "Record all windows' buffer.")
 (defvar jcs-window--record-points '() "Record all windows' point.")
 (defvar jcs-window--record-first-visible-lines '()
   "Record all windows' first visible line.")
 
 (defun jcs-window-record-once ()
   "Record windows status once."
-  (let ((bufs '()) (pts '()) (f-lns '()))
+  (let (buf-names pts f-lns)
     ;; Record down all the window information with the same buffer opened.
     (jcs-walk-through-all-windows-once
      (lambda ()
-       (push (jcs-buffer-name-or-buffer-file-name) bufs)
+       (push (jcs-buffer-name-or-buffer-file-name) buf-names)  ; Record as string!
        (push (point) pts)
        (push (jcs-first-visible-line-in-window) f-lns)))
     ;; Reverse the order to have the information order corresponding to the window
     ;; order correctly.
-    (setq bufs (reverse bufs)) (setq pts (reverse pts)) (setq f-lns (reverse f-lns))
-    (push bufs jcs-window--record-buffers)
+    (setq buf-names (reverse buf-names) pts (reverse pts) f-lns (reverse f-lns))
+    (push buf-names jcs-window--record-buffer-names)
     (push pts jcs-window--record-points)
     (push f-lns jcs-window--record-first-visible-lines)))
 
 (defun jcs-window-restore-once ()
   "Restore windows status once."
-  (let* ((bufs (pop jcs-window--record-buffers)) (pts (pop jcs-window--record-points))
+  (let* ((buf-names (pop jcs-window--record-buffer-names)) (pts (pop jcs-window--record-points))
          (f-lns (pop jcs-window--record-first-visible-lines))
-         (win-cnt 0) (current-buf nil) (current-pt -1) (current-first-vs-line -1))
+         (win-cnt 0) buf-name (current-pt -1) (current-first-vs-line -1)
+         actual-buf)
     ;; Restore the window information after, including opening the same buffer.
     (jcs-walk-through-all-windows-once
      (lambda ()
-       (setq current-buf (nth win-cnt bufs))
-       (setq current-pt (nth win-cnt f-lns))
-       (setq current-first-vs-line (nth win-cnt pts))
-       (if (get-buffer current-buf) (switch-to-buffer current-buf) (find-file current-buf))
+       (setq buf-name (nth win-cnt buf-names)
+             current-pt (nth win-cnt f-lns)
+             current-first-vs-line (nth win-cnt pts)
+             actual-buf (jcs-get-buffer-by-path buf-name))
+       (if actual-buf (switch-to-buffer actual-buf) (find-file buf-name))
        (jcs-make-first-visible-line-to current-pt)
        (goto-char current-first-vs-line)
        (setq win-cnt (1+ win-cnt))))))
