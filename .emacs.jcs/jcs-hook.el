@@ -39,6 +39,7 @@
 (defun jcs-find-file-hook ()
   "Find file hook."
   (unless (jcs-reload-emacs-reloading-p)
+    (jcs-update-buffer-save-string)
     (jcs-active-line-numbers-by-mode)
     (jcs-project-remember)))
 (add-hook 'find-file-hook 'jcs-find-file-hook)
