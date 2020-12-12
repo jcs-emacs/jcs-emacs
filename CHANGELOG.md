@@ -8,6 +8,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-12-12
 
 * Added safe way to revert all buffers when on focus.
+* Added return buffer by using file path in utility module.
+* Fixed windows state record/restore functionality by using get buffer by path.
+* Added check for reverting buffers using file edited externally strategy.
 
 ### 2020-12-11
 
