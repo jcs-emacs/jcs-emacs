@@ -60,10 +60,9 @@ time is displayed."
   "Return buffer string from BUF."
   (with-current-buffer buf (buffer-string)))
 
-(defun jcs-buffer-name-or-buffer-file-name ()
-  "Sometimes `buffer-file-name` is nil, then return `buffer-name` instead.
-Else we just return `buffer-file-name` if available."
-  (or (buffer-file-name) (buffer-name)))
+(defun jcs-buffer-name-or-buffer-file-name (&optional buf)
+  "Return BUF's `buffer-file-name' or `buffer-name' respectively."
+  (or (buffer-file-name buf) (buffer-name buf)))
 
 (defun jcs-buffer-exists-p (buf-name)
   "Check if the buffer BUF-NAME exists."
@@ -79,7 +78,7 @@ Else we just return `buffer-file-name` if available."
 
 (defun jcs-virtual-buffer-list ()
   "Return a list of virtual buffers."
-  (let ((buf-lst (buffer-list)) (lst '()))
+  (let ((buf-lst (buffer-list)) lst)
     (dolist (buf buf-lst) (when (jcs-virtual-buffer-p buf) (push buf lst)))
     (reverse lst)))
 
@@ -102,9 +101,7 @@ Return number of the valid buffers."
 (defun jcs-walk-through-all-buffers-once (fnc)
   "Walk through all the buffers once and execute callback FNC."
   (save-window-excursion
-    (dolist (bf (buffer-list))
-      (set-buffer bf)
-      (when fnc (funcall fnc)))))
+    (dolist (bf (buffer-list)) (set-buffer bf) (when fnc (funcall fnc)))))
 
 (defun jcs-get-buffers (str type)
   "Return a list of buffers that match STR.
@@ -114,7 +111,7 @@ TYPE is the return type; can be 'object or 'string."
 (defun jcs-get-buffers-regexp (regexp type)
   "Return a list of buffers that match REGEXP.
 TYPE is the return type; can be 'object or 'string."
-  (let ((buf-lst '()) (buf-name nil))
+  (let (buf-lst buf-name)
     (if (not (stringp regexp))
         (user-error "[WARNING] Can't get buffers with this string/regexp: %s" regexp)
       (dolist (buf (buffer-list))
@@ -131,11 +128,23 @@ TYPE is the return type; can be 'object or 'string."
     (message "[WARNING] Can't do stuff with this buffer: %s" buf-or-name)))
 
 (defun jcs-buffer-name-this (name &optional buffer regex)
-  "Check if BUFFER's name the same as NAME.
-If REGEX is non-nil, check by using regular expression."
+  "Return non-nil if BUFFER's name is the same as NAME.
+
+If optional argument is non-nil, check by using regular expression instead."
   (unless buffer (setq buffer (current-buffer)))
   (if regex (string-match-p name (buffer-name buffer))
     (string= name (buffer-name buffer))))
+
+(defun jcs-get-buffer-by-path (path)
+  "Return the buffer by file PATH.
+
+Notice PATH can either be `buffer-name' or `buffer-file-name'."
+  (let ((buf-lst (buffer-list)) target-buf)
+    (when (cl-some (lambda (buf)
+                     (setq target-buf buf)
+                     (string= (jcs-buffer-name-or-buffer-file-name buf) path))
+                   buf-lst)
+      target-buf)))
 
 ;;
 ;; (@* "Compile" )
