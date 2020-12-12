@@ -636,13 +636,19 @@ REGEXP : reqular expression use to align."
   (require 'flycheck)
   ;; Record all the enabled mode that you want to remain enabled after
   ;; revert the file.
-  (let ((was-flycheck flycheck-mode) (was-readonly buffer-read-only))
+  (let ((was-flycheck (if flycheck-mode 1 -1))
+        (was-readonly (if buffer-read-only 1 -1))
+        (was-g-hl-line (if global-hl-line-mode 1 -1))
+        (was-page-lines (if page-break-lines-mode 1 -1)))
     ;; Revert it!
     (ignore-errors (revert-buffer :ignore-auto :noconfirm :preserve-modes))
+    (jcs-update-buffer-save-string)
     (when (featurep 'line-reminder) (line-reminder-clear-reminder-lines-sign))
     ;; Revert all the enabled mode.
-    (if was-flycheck (flycheck-mode 1) (flycheck-mode -1))
-    (if was-readonly (read-only-mode 1) (read-only-mode -1))))
+    (flycheck-mode was-flycheck)
+    (read-only-mode was-readonly)
+    (global-hl-line-mode was-g-hl-line)
+    (page-break-lines-mode was-page-lines)))
 
 (defun jcs-revert-buffer-p (buf type)
   "Return non-nil if the BUF can be revert.
@@ -712,17 +718,33 @@ Do you want to reload it and lose the changes made in this source editor?")
             ;; Does nothing, exit.
             ((string= answer "No to All"))))))
 
+(defun jcs-buffer-edit-externally-p (&optional buf)
+  "Return non-nil if BUF is edited externally."
+  (unless buf (setq buf (current-buffer)))
+  (let* ((path (buffer-file-name buf))
+         (buffer-saved-md5 (with-current-buffer buf jcs-buffer-save-string-md5))
+         (file-content (jcs-get-string-from-file path))
+         (file-content-md5 (md5 file-content)))
+    (not (string= file-content-md5 buffer-saved-md5))))
+
+(defun jcs-un-save-buffer-edit-externally-p (&optional buf)
+  "Return non-nil if BUF is edit externally and is unsaved.
+This function is used to check for lose changes from source editor."
+  (unless buf (setq buf (current-buffer)))
+  (and (buffer-modified-p buf) (jcs-buffer-edit-externally-p buf)))
+
 (defun jcs-un-save-modified-buffers ()
   "Return non-nil if there is un-save modified buffer."
   (let ((buf-lst (jcs-valid-buffer-list)) un-save-buf-lst)
     (dolist (buf buf-lst)
-      (when (buffer-modified-p buf) (push buf un-save-buf-lst)))
+      (when (jcs-un-save-buffer-edit-externally-p buf) (push buf un-save-buf-lst)))
     (reverse un-save-buf-lst)))
 
 (defun jcs-safe-revert-all-buffers ()
   "Revert buffers in the safe way."
   (let ((un-save-buf-lst (jcs-un-save-modified-buffers)))
-    (when un-save-buf-lst (jcs-ask-revert-all un-save-buf-lst))))
+    (if un-save-buf-lst (jcs-ask-revert-all un-save-buf-lst)
+      (jcs-revert-all-buffers))))
 
 ;;
 ;; (@* "Windows" )
@@ -873,6 +895,14 @@ Do you want to reload it and lose the changes made in this source editor?")
 ;; (@* "Save Buffer" )
 ;;
 
+(defvar-local jcs-buffer-save-string-md5 nil
+  "Buffer string when buffer is saved; this value encrypted with md5 algorithm.
+This variable is used to check if file are edited externally.")
+
+(defun jcs-update-buffer-save-string ()
+  "Update variable `jcs-buffer-save-string-md5' once."
+  (setq jcs-buffer-save-string-md5 (md5 (buffer-string))))
+
 (defun jcs-do-stuff-before-save (&rest _)
   "Do stuff before save command is executed."
   (when (fboundp 'company-abort) (company-abort)))
@@ -880,6 +910,7 @@ Do you want to reload it and lose the changes made in this source editor?")
 
 (defun jcs-do-stuff-after-save (&rest _)
   "Do stuff after save command is executed."
+  (jcs-update-buffer-save-string)
   (jcs-undo-kill-this-buffer)
   (jcs-update-line-number-each-window))
 (advice-add 'save-buffer :after #'jcs-do-stuff-after-save)
