@@ -348,8 +348,23 @@ P.S. You would need to restart Emacs to take effect from this variable."
         mouse-wheel-progressive-speed t))
 
 (setq scroll-step 1
-      scroll-margin 0
-      scroll-conservatively 100000)
+      scroll-margin 0)
+
+(defun jcs-toggle-scroll-conservatively (act)
+  "Enable variable `scroll-conservatively' base on ACT.
+
+If ACT is non-nil; then make scroll less jumpy."
+  (setq scroll-conservatively (if act 100000 0)))
+
+(defun jcs-scroll-conservatively-enable ()
+  "Make scroll less jumpy."
+  (jcs-toggle-scroll-conservatively t))
+
+(defun jcs-scroll-conservatively-disable ()
+  "Revert scroll to default value."
+  (jcs-toggle-scroll-conservatively nil))
+
+(jcs-scroll-conservatively-enable)
 
 ;;; So Long
 ;; NOTE: (for very long file, like `jquery.min.js', etc)
