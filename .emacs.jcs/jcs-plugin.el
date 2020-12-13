@@ -190,8 +190,6 @@
 (use-package dashboard
   :defer t
   :init
-  (when (featurep 'dashboard)
-    (setq initial-buffer-choice (lambda () (get-buffer dashboard-buffer-name))))
   (setq dashboard-banner-logo-title "[J C S • E M A C S]"
         dashboard-footer-icon ""
         dashboard-footer-messages
@@ -217,6 +215,8 @@
         dashboard-set-navigator nil
         dashboard-projects-backend 'project-el)
   :config
+  (setq initial-buffer-choice (lambda () (get-buffer dashboard-buffer-name)))
+
   (require 'dashboard-ls)
   (defun jcs--dashboard-insert-page-break--advice-before (&rest _)
     "Re-new page separator."
