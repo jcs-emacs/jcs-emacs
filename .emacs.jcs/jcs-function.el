@@ -464,9 +464,6 @@ OW is the other window flag."
 ;; (@* "Iedit" )
 ;;
 
-(add-hook 'isearch-mode-hook #'jcs-scroll-conservatively-disable)
-(add-hook 'isearch-mode-end-hook #'jcs-scroll-conservatively-enable)
-
 ;;;###autoload
 (defun jcs-iedit-mode ()
   "Enable Iedit mode in the safe way."

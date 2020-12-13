@@ -620,7 +620,10 @@
   :defer t
   :init
   (setq isearch-lazy-count t
-        lazy-count-prefix-format "[%s:%s] "))
+        lazy-count-prefix-format "[%s:%s] ")
+  :config
+  (add-hook 'isearch-mode-hook #'jcs-scroll-conservatively-disable)
+  (add-hook 'isearch-mode-end-hook #'jcs-scroll-conservatively-enable))
 
 (use-package isearch-project
   :defer t
