@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-12-13
+
+* Fixed isearch not recenter issue.
+* Fixed push button from `*Help*` buffer not recenter issue.
+
 ### 2020-12-12
 
 * Added safe way to revert all buffers when on focus.
