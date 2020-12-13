@@ -630,8 +630,10 @@ REGEXP : reqular expression use to align."
   :group 'jcs)
 
 ;;;###autoload
-(defun jcs-revert-buffer-no-confirm ()
-  "Revert buffer without confirmation."
+(defun jcs-revert-buffer-no-confirm (&optional clean-lr)
+  "Revert buffer without confirmation.
+
+If optional argument CLEAN-LR is non-nil, remove all sign from `line-reminder'."
   (interactive)
   (require 'flycheck)
   ;; Record all the enabled mode that you want to remain enabled after
@@ -643,7 +645,8 @@ REGEXP : reqular expression use to align."
     ;; Revert it!
     (ignore-errors (revert-buffer :ignore-auto :noconfirm :preserve-modes))
     (jcs-update-buffer-save-string)
-    (when (featurep 'line-reminder) (line-reminder-clear-reminder-lines-sign))
+    (when (and (featurep 'line-reminder) clean-lr)
+      (line-reminder-clear-reminder-lines-sign))
     ;; Revert all the enabled mode.
     (flycheck-mode was-flycheck)
     (read-only-mode was-readonly)
@@ -661,14 +664,14 @@ Argument TYPE can either be the following value.
          (jcs-is-contain-list-string-regexp type (buffer-name buf)))
         (t type)))
 
-(defun jcs-revert-all-virtual-buffers (type)
+(defun jcs-revert-all-virtual-buffers (type &optional clean-lr)
   "Revert all virtual buffers."
   (let ((buf-lst (jcs-virtual-buffer-list)))
     (dolist (buf buf-lst)
       (when (and (buffer-name buf) (jcs-revert-buffer-p buf type))
-        (with-current-buffer buf (jcs-revert-buffer-no-confirm))))))
+        (with-current-buffer buf (jcs-revert-buffer-no-confirm clean-lr))))))
 
-(defun jcs-revert-all-valid-buffers (type)
+(defun jcs-revert-all-valid-buffers (type &optional clean-lr)
   "Revert all valid buffers."
   (let ((buf-lst (jcs-valid-buffer-list)) filename normal-buffer-p do-revert-p)
     (dolist (buf buf-lst)
@@ -681,7 +684,7 @@ Argument TYPE can either be the following value.
             (setq do-revert-p t)
           (let (kill-buffer-query-functions) (kill-buffer buf))))
       (when (and (buffer-name buf) (or (jcs-revert-buffer-p buf type) do-revert-p))
-        (with-current-buffer buf (jcs-revert-buffer-no-confirm))))))
+        (with-current-buffer buf (jcs-revert-buffer-no-confirm clean-lr))))))
 
 ;;;###autoload
 (defun jcs-revert-all-buffers ()
@@ -711,9 +714,9 @@ Do you want to reload it and lose the changes made in this source editor?")
             answer (completing-read prompt '("Yes" "Yes to All" "No" "No to All"))
             index (1+ index))
       (cond ((string= answer "Yes")
-             (with-current-buffer buf (jcs-revert-buffer-no-confirm))
+             (with-current-buffer buf (jcs-revert-buffer-no-confirm t))
              (jcs-ask-revert-all bufs index))
-            ((string= answer "Yes to All") (jcs-revert-all-valid-buffers t))
+            ((string= answer "Yes to All") (jcs-revert-all-valid-buffers t t))
             ((string= answer "No") (jcs-ask-revert-all bufs index))
             ;; Does nothing, exit.
             ((string= answer "No to All"))))))
