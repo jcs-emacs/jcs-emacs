@@ -457,14 +457,15 @@ OW is the other window flag."
   "Safe way to modify expand list from `expand-region'."
   (require 'expand-region)
   (unless (listp data) (setq data (list data)))
-  (if append
-      (setq er/try-expand-list (append data er/try-expand-list))
-    (setq er/try-expand-list data))
+  (setq er/try-expand-list (if append (append data er/try-expand-list)) data)
   (delete-dups er/try-expand-list))
 
 ;;
 ;; (@* "Iedit" )
 ;;
+
+(add-hook 'isearch-mode-hook #'jcs-scroll-conservatively-disable)
+(add-hook 'isearch-mode-end-hook #'jcs-scroll-conservatively-enable)
 
 ;;;###autoload
 (defun jcs-iedit-mode ()
