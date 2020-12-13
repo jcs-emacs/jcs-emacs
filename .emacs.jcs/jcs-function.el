@@ -244,6 +244,19 @@
       (jcs-buffer-menu-refresh-buffer))))
 
 ;;
+;; (@* "Buttons" )
+;;
+
+(defun jcs--push-button--advice-around (fnc &rest args)
+  "Exection bind around function `push-button'."
+  (let ((prev-buf (current-buffer)))
+    (apply fnc args)
+    (unless (eq prev-buf (current-buffer))  ; Different button, recenter it.
+      (jcs-recenter-top-bottom 'middle))))
+
+(advice-add 'push-button :around #'jcs--push-button--advice-around)
+
+;;
 ;; (@* "Calculator" )
 ;;
 
@@ -457,7 +470,7 @@ OW is the other window flag."
   "Safe way to modify expand list from `expand-region'."
   (require 'expand-region)
   (unless (listp data) (setq data (list data)))
-  (setq er/try-expand-list (if append (append data er/try-expand-list)) data)
+  (setq er/try-expand-list (if append (append data er/try-expand-list) data))
   (delete-dups er/try-expand-list))
 
 ;;
