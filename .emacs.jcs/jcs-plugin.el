@@ -251,6 +251,11 @@
         define-it-translate-header "\n\n--{{ TRANSLATION }}--\n\n"
         define-it-wiki-summary-header "\n\n--{{ WIKIPEDIA SUMMARY }}--\n\n"))
 
+(use-package diff-hl
+  :defer t
+  :init
+  (setq diff-hl-side 'right))
+
 (use-package diminish
   :defer t
   :config
