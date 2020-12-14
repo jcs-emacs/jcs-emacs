@@ -276,10 +276,11 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
 (defun jcs-smart-yank ()
   "Yank and then indent region."
   (interactive)
-  (jcs-delete-region)
-  (let ((reg-beg (point)))
-    (call-interactively #'yank)
-    (ignore-errors (indent-region reg-beg (point)))))
+  (jcs-mute-apply
+    (jcs-delete-region)
+    (let ((reg-beg (point)))
+      (call-interactively #'yank)
+      (ignore-errors (indent-region reg-beg (point))))))
 
 ;;
 ;; (@* "Tab" )
