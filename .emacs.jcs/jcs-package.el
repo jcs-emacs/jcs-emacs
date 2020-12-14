@@ -6,7 +6,7 @@
 ;; [IMPORTANT] This should be ontop of all require packages!!!
 
 ;; start package.el with emacs
-(require 'package)
+;;(require 'package)
 
 ;; NOTE: Add `GNU', `MELPA', `Marmalade', `ELPA' to repository list
 (setq package-archives
@@ -66,6 +66,7 @@
     dashboard
     dashboard-ls
     define-it
+    diff-hl
     diminish
     diminish-buffer
     dockerfile-mode
@@ -277,7 +278,7 @@
     (let ((new-selected-pkg (jcs-package--get-selected-packages))
           (installed-list (jcs-package-installed-list)))
       (dolist (pkg-name installed-list)
-        (if (equal t (package-installed-p pkg-name))
+        (if (package-installed-p pkg-name)
             (when (jcs-package--package-do-rebuild pkg-name)
               (jcs-process-reporter-update (format "Build for package `%s`" pkg-name))
               (if (jcs-package--used-elsewhere-p pkg-name)
