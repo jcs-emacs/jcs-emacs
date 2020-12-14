@@ -6,7 +6,7 @@
 ;; [IMPORTANT] This should be ontop of all require packages!!!
 
 ;; start package.el with emacs
-;;(require 'package)
+(require 'package)
 
 ;; NOTE: Add `GNU', `MELPA', `Marmalade', `ELPA' to repository list
 (setq package-archives
