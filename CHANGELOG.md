@@ -9,6 +9,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 * Changed archive source for `ivy-file-preview` from `quelpa` to `melpa`.
 * Installed new package `diff-hl`.
+* Disabled message log when `yank`.
 
 ### 2020-12-13
 
