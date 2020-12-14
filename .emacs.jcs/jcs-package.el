@@ -114,6 +114,7 @@
     impatient-showdown
     ini-mode
     isearch-project
+    ivy-file-preview
     ivy-searcher
     javadoc-lookup
     jenkinsfile-mode
