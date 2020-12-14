@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-12-14
 
 * Changed archive source for `ivy-file-preview` from `quelpa` to `melpa`.
+* Installed new package `diff-hl`.
 
 ### 2020-12-13
 
