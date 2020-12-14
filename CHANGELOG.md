@@ -10,6 +10,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Changed archive source for `ivy-file-preview` from `quelpa` to `melpa`.
 * Installed new package `diff-hl`.
 * Disabled message log when `yank`.
+* Installed new package `highlight-escape-sequences`.
 
 ### 2020-12-13
 
