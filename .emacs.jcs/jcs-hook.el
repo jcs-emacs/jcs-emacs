@@ -137,6 +137,8 @@
     (auto-read-only-mode 1)
     ;;----------------------------------- `delete-selection'
     (delete-selection-mode 1)
+    ;;----------------------------------- `diff-hl'
+    (global-diff-hl-mode 1)
     ;;----------------------------------- `docstr'
     (global-docstr-mode 1)
     ;;----------------------------------- `goto-address'
