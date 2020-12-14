@@ -106,6 +106,7 @@
     haskell-mode
     haxe-mode
     helpful
+    highlight-escape-sequences
     highlight-indent-guides
     highlight-numbers
     hl-todo
