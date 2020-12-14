@@ -100,12 +100,15 @@
 ;;; Default Major Mode
 (setq-default major-mode 'text-mode)
 
-;;;  Deletion
+;;; Deletion
 (setq delete-by-moving-to-trash t)
 
 ;;; Doc View
 (when jcs-is-windows
   (setq doc-view-ghostscript-program (executable-find "gswin64c")))
+
+;;; Drag & Drop
+(setq mouse-drag-and-drop-region t)
 
 ;;; Ediff
 (defun jcs-ediff-setup-windows (buffer-A buffer-B buffer-C control-buffer)
@@ -342,7 +345,7 @@ P.S. You would need to restart Emacs to take effect from this variable."
 ;;; Shift Select
 (setq shift-select-mode t)
 
-;;; Smooth scroll
+;;; Scroll
 (when (display-graphic-p)
   (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))
         mouse-wheel-progressive-speed t))
