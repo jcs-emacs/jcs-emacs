@@ -171,14 +171,9 @@
     (global-yascroll-bar-mode 1))
 
   (jcs-setup-default-theme)
-  (jcs-command-mode)
-  (jcs-depend-mode)
+  (jcs-command-mode) (jcs-depend-mode)
 
   (jcs-reload-file-info)
-
-  (menu-bar-mode -1)
-  (when (display-graphic-p) (scroll-bar-mode -1))
-  (tool-bar-mode -1)
 
   ;; Language Environment
   (set-language-environment jcs-language-environment)
@@ -196,10 +191,7 @@
   (setq file-name-handler-alist jcs-file-name-handler-alist)
 
   ;; IMPORTANT: This should always be the last thing.
-  (setq dashboard-init-info
-        (format "[ %s ] [ Total took %0.1f seconds ]"
-                dashboard-init-info
-                (string-to-number (emacs-init-time)))))
+  (jcs-dashboard-init-info))
 (add-hook 'after-init-hook 'jcs-after-init-hook)
 
 ;;
@@ -254,7 +246,8 @@
 
 (defun jcs--emacs-startup-hook ()
   "Hook run after Emacs is startup."
-  (with-current-buffer "*scratch*" (setq jcs-scratch--content (buffer-string)))
+  (with-current-buffer jcs-scratch-buffer-name
+    (setq jcs-scratch--content (buffer-string)))
   (setq jcs-emacs-ready-p t))
 (add-hook 'emacs-startup-hook 'jcs--emacs-startup-hook)
 
