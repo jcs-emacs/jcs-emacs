@@ -217,6 +217,13 @@
   :config
   (setq initial-buffer-choice (lambda () (get-buffer dashboard-buffer-name)))
 
+  (defun jcs-dashboard-init-info ()
+    "Initialize startup information for variable `dashboard-init-info'."
+    (setq dashboard-init-info
+          (format "[ %s ] [ Total took %0.1f seconds ]"
+                  dashboard-init-info
+                  (string-to-number (emacs-init-time)))))
+
   (require 'dashboard-ls)
   (defun jcs--dashboard-insert-page-break--advice-before (&rest _)
     "Re-new page separator."
