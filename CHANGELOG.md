@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-12-14
+
+* Changed archive source for `ivy-file-preview` from `quelpa` to `melpa`.
+
 ### 2020-12-13
 
 * Fixed isearch not recenter issue.
