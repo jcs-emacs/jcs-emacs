@@ -11,6 +11,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Installed new package `diff-hl`.
 * Disabled message log when `yank`.
 * Installed new package `highlight-escape-sequences`.
+* Enabled drag and drop region as default behaviour.
 
 ### 2020-12-13
 
