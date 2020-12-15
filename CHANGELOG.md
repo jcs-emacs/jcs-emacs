@@ -8,6 +8,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-12-15
 
 * Added under project utility function in `project` module.
+* Installed new package `indent-control`.
+* Moved indent level management to external package `indent-control`.
 
 ### 2020-12-14
 
