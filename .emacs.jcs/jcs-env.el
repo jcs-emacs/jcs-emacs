@@ -184,45 +184,6 @@
 ;;; Highlight Select Region
 (transient-mark-mode t)
 
-;;; Indentation
-(defvar jcs-indent-level-records
-  '((actionscript-mode     . 4)
-    (c-mode                . 4)
-    (c++-mode              . 4)
-    (csharp-mode           . 4)
-    (css-mode              . 2)
-    (dockerfile-mode       . 2)
-    (elisp-mode            . 2)
-    (emacs-lisp-mode       . 2)
-    (go-mode               . 4)
-    (groovy-mode           . 4)
-    (java-mode             . 4)
-    (jayces-mode           . 4)
-    (js-mode               . 2)
-    (js2-mode              . 2)
-    (json-mode             . 2)
-    (kotlin-mode           . 4)
-    (less-css-mode         . 2)
-    (lisp-mode             . 2)
-    (lisp-interaction-mode . 2)
-    (lua-mode              . 4)
-    (nasm-mode             . 4)
-    (nix-mode              . 2)
-    (nxml-mode             . 2)
-    (objc-mode             . 4)
-    (python-mode           . 4)
-    (rjsx-mode             . 2)
-    (ruby-mode             . 4)
-    (rust-mode             . 4)
-    (scss-mode             . 2)
-    (shader-mode           . 4)
-    (ssass-mode            . 2)
-    (sql-mode              . 1)
-    (typescript-mode       . 4)
-    (web-mode              . 2)
-    (yaml-mode             . 2))
-  "Tab with recrods for all major mode.")
-
 ;;; Key List
 (defconst jcs-key-list
   '("a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m"
