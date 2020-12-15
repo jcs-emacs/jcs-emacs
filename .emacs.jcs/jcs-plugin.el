@@ -735,17 +735,15 @@
 
   (defun jcs--safe-lsp-active ()
     "Safe way to active LSP."
-    (when (and (jcs-project-current)
-               (ignore-errors (file-readable-p (buffer-file-name))))
-      (unless (jcs--lsp-connected-p) (lsp-deferred))))
+    (when (and (jcs-project-under-p) (not (jcs--lsp-connected-p)))
+      (lsp-deferred)))
 
   (defun jcs--lsp-current-last-signature-buffer ()
     "Check if current buffer last signature buffer."
     (when (boundp 'lsp--last-signature-buffer)
       (let ((ls-buf (buffer-name lsp--last-signature-buffer)))
-        (if (and (stringp ls-buf) (stringp (buffer-file-name)))
-            (string-match-p ls-buf (buffer-file-name))
-          nil))))
+        (when (and (stringp ls-buf) (stringp (buffer-file-name)))
+          (string-match-p ls-buf (buffer-file-name))))))
 
   (defun jcs--lsp-signature-maybe-stop ()
     "Maybe stop the signature action."
