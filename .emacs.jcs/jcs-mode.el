@@ -43,106 +43,6 @@ Note this is opposite logic to the toggle mode function."
         (cross  (jcs-cross-mode))
         (depend (jcs-depend-mode))))))
 
-(defun jcs--indent-level-by-mode ()
-  "Return indentation level variable as symbol depends on current major mode."
-  (cond
-   ((jcs-is-current-major-mode-p '("actionscript-mode")) (quote actionscript-indent-level))
-   ((jcs-is-current-major-mode-p '("cc-mode"
-                                   "c-mode"
-                                   "c++-mode"
-                                   "csharp-mode"
-                                   "java-mode"
-                                   "jayces-mode"
-                                   "objc-mode")) (quote c-basic-offset))
-   ((jcs-is-current-major-mode-p '("css-mode"
-                                   "less-css-mode"
-                                   "scss-mode")) (quote css-indent-offset))
-   ((jcs-is-current-major-mode-p '("ssass-mode")) (quote ssass-tab-width))
-   ((jcs-is-current-major-mode-p '("groovy-mode")) (quote groovy-indent-offset))
-   ((jcs-is-current-major-mode-p '("js-mode")) (quote js-indent-level))
-   ((jcs-is-current-major-mode-p '("js2-mode")) (quote js2-basic-offset))
-   ((jcs-is-current-major-mode-p '("lisp-mode"
-                                   "lisp-interaction-mode"
-                                   "emacs-lisp-mode")) (quote lisp-body-indent))
-   ((jcs-is-current-major-mode-p '("lua-mode")) (quote lua-indent-level))
-   ((jcs-is-current-major-mode-p '("nasm-mode")) (quote nasm-basic-offset))
-   ((jcs-is-current-major-mode-p '("nxml-mode")) (quote nxml-child-indent))
-   ((jcs-is-current-major-mode-p '("python-mode")) (quote py-indent-offset))
-   ((jcs-is-current-major-mode-p '("rjsx-mode")) (quote js-indent-level))
-   ((jcs-is-current-major-mode-p '("ruby-mode")) (quote ruby-indent-level))
-   ((jcs-is-current-major-mode-p '("rust-mode")) (quote rust-indent-offset))
-   ((jcs-is-current-major-mode-p '("shader-mode")) (quote shader-indent-offset))
-   ((jcs-is-current-major-mode-p '("sql-mode")) (quote sql-indent-offset))
-   ((jcs-is-current-major-mode-p '("typescript-mode")) (quote typescript-indent-level))
-   ((jcs-is-current-major-mode-p '("web-mode"))
-    (quote (web-mode-markup-indent-offset
-            web-mode-css-indent-offset
-            web-mode-code-indent-offset)))
-   ((jcs-is-current-major-mode-p '("yaml-mode")) (quote yaml-indent-offset))
-   (t (quote tab-width))))
-
-(defun jcs-set-indent-level-by-mode (tw)
-  "Set the tab width (TW) for current major mode."
-  (let ((var-symbol (jcs--indent-level-by-mode)))
-    (cond ((listp var-symbol)
-           (dolist (indent-var var-symbol) (set indent-var tw)))
-          (t (set var-symbol tw))))
-  (when (integerp tw)
-    (jcs-set-indent-level-record-by-mode tw)
-    (message "Current indent level: %s" tw)))
-
-(defun jcs-get-indent-level-by-mode ()
-  "Get indentation level by mode."
-  (let ((var-symbol (jcs--indent-level-by-mode)))
-    (when (listp var-symbol) (setq var-symbol (nth 0 var-symbol)))
-    (symbol-value var-symbol)))
-
-(defun jcs--delta-ensure-valid-tab-width (cv dv)
-  "Change tab width by current value CV and delta value (DV)."
-  (jcs-clamp-integer (+ cv dv) 0 8))
-
-(defun jcs-delta-tab-width (dv)
-  "Increase/Decrease tab width by delta value (DV)."
-  (let ((indent-level (jcs-get-indent-level-by-mode)))
-    (jcs-set-indent-level-by-mode
-     (jcs--delta-ensure-valid-tab-width indent-level  dv))))
-
-(defun jcs-set-indent-level-record-by-mode (tw &optional mn)
-  "Set the tab width record by mode-name MN with tab width TW."
-  (unless mn (setq mn (jcs-current-major-mode)))
-  (let ((index 0)
-        (break-it nil))
-    (while (and (< index (length jcs-indent-level-records))
-                (not break-it))
-      (let ((record-mode-name (car (nth index jcs-indent-level-records))))
-        (when (equal mn record-mode-name)
-          (setf (cdr (nth index jcs-indent-level-records)) tw)
-          (setq break-it t)))
-      (setq index (1+ index)))
-    (unless break-it
-      (message "[WARNING] Indentation level record not found: %s" mn))))
-
-(defun jcs-get-indent-level-record-by-mode (&optional mn)
-  "Get the tab width record by mode name, MN."
-  (unless mn (setq mn (jcs-current-major-mode)))
-  (let ((index 0)
-        (break-it nil)
-        ;; Have default to `tab-width'.
-        (target-tab-width tab-width))
-    (while (and (< index (length jcs-indent-level-records))
-                (not break-it))
-      (let ((record-mode-name (car (nth index jcs-indent-level-records)))
-            (record-tab-width (cdr (nth index jcs-indent-level-records))))
-        (when (equal mn record-mode-name)
-          (setq target-tab-width record-tab-width)
-          (setq break-it t)))
-      (setq index (1+ index)))
-    target-tab-width))
-
-(defun jcs-continue-with-tab-width-record ()
-  "Keep the tab width the same as last time modified."
-  (jcs-set-indent-level-by-mode (jcs-get-indent-level-record-by-mode)))
-
 (defun jcs-buffer-spaces-to-tabs ()
   "Check if buffer using spaces or tabs."
   (if (= (how-many "^\t" (point-min) (point-max)) 0) "SPC" "TAB"))
@@ -412,8 +312,6 @@ Note this is opposite logic to the toggle mode function."
 
 (defun jcs-prog-mode-hook ()
   "Programming language mode hook."
-  (jcs-mute-apply (jcs-continue-with-tab-width-record))
-
   (unless (jcs-is-current-major-mode-p jcs-non-generic-syntax-modes)
     (modify-syntax-entry ?- "_"))
 
