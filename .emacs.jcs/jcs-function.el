@@ -492,24 +492,6 @@ OW is the other window flag."
   iedit-mode)
 
 ;;
-;; (@* "Indentation" )
-;;
-
-;;;###autoload
-(defun jcs-inc-indent-level ()
-  "Increase indentation level by 2."
-  (interactive)
-  (jcs-delta-tab-width 2)
-  (indent-for-tab-command))
-
-;;;###autoload
-(defun jcs-dec-indent-level ()
-  "Decrease indentation level by 2."
-  (interactive)
-  (jcs-delta-tab-width -2)
-  (indent-for-tab-command))
-
-;;
 ;; (@* "Line Numbers" )
 ;;
 
