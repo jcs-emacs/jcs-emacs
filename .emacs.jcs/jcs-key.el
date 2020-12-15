@@ -519,8 +519,8 @@
 (define-key global-map (kbd "C-<next>") #'centaur-tabs-forward)
 
 ;;; Tab Width
-(define-key global-map (kbd "C-k >") #'jcs-inc-indent-level)
-(define-key global-map (kbd "C-k <") #'jcs-dec-indent-level)
+(define-key global-map (kbd "C-k >") #'indent-control-inc-indent-level)
+(define-key global-map (kbd "C-k <") #'indent-control-dec-indent-level)
 
 ;;; Tabulated-List
 (define-key tabulated-list-mode-map (kbd "C-+") #'tabulated-list-widen-current-column)
