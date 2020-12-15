@@ -759,7 +759,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Fixed `make`/`run` script find directories/files time spend too long issue.
 * Installed `rjsx-mode` for supporting `jsx` file.
 * Added JSX default snippets.
-* Added condition to limit `lsp-deffered` is called.
+* Added condition to limit `lsp-deferred` is called.
 
 ### 2020-05-15
 
