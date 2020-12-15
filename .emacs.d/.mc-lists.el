@@ -160,6 +160,8 @@
         helm-find-files
         iedit-switch-to-mc-mode
         ignore
+        indent-control-dec-indent-level
+        indent-control-inc-indent-level
         indent-new-comment-line
         isearch-forward-symbol-at-point
         isearch-project-forward-symbol-at-point
@@ -182,13 +184,11 @@
         jcs-dashboard-next-blank-line
         jcs-dashboard-other-window
         jcs-dashboard-previous-blank-line
-        jcs-dec-indent-level
         jcs-find-corresponding-file-other-window
         jcs-flycheck-mode
         jcs-format-document
         jcs-goto-definition
         jcs-goto-definition-other-window
-        jcs-inc-indent-level
         jcs-isearch-backward-symbol-at-point
         jcs-isearch-project-backward-symbol-at-point
         jcs-isearch-project-repeat-backward
