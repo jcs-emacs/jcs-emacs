@@ -4,6 +4,19 @@
 
 (require 'project)
 
+;;
+;; (@* "Util" )
+;;
+
+(defun jcs-project-under-p ()
+  "Return non-nil if current file is under a project."
+  (and (jcs-project-current)
+       (ignore-errors (file-readable-p (buffer-file-name)))))
+
+;;
+;; (@* "Core" )
+;;
+
 (defun jcs-project-remember (&optional dir)
   "Remeber the project from DIR.
 
