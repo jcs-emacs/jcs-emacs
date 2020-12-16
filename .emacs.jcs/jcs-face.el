@@ -120,8 +120,5 @@
 (with-eval-after-load 'typescript-mode (jcs-init-typescript-faces))
 (with-eval-after-load 'web-mode (jcs-init-web-faces))
 
-;; Load Docstring faces.
-(add-hook 'prog-mode-hook (lambda () (docstr-faces-apply)))
-
 (provide 'jcs-face)
 ;;; jcs-face.el ends here
