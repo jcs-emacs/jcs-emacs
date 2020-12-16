@@ -4,6 +4,7 @@
 
 (require 'f)
 (require 'ffmpeg-player)
+(require 'indent-control)
 (require 'show-eol)
 
 ;;
@@ -188,7 +189,7 @@
               (propertize "[" 'face jcs--feebleline--separator-face)
               (jcs-buffer-spaces-to-tabs)
               (propertize "::" 'face jcs--feebleline--separator-face)
-              (jcs-get-indent-level-by-mode)
+              (indent-control-get-indent-level-by-mode)
               (propertize "]" 'face jcs--feebleline--separator-face))
     ""))
 
