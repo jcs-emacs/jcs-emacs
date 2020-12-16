@@ -315,6 +315,9 @@ Note this is opposite logic to the toggle mode function."
   (unless (jcs-is-current-major-mode-p jcs-non-generic-syntax-modes)
     (modify-syntax-entry ?- "_"))
 
+  ;; Load Docstring faces.
+  (docstr-faces-apply)
+
   (abbrev-mode 1)
   (auto-highlight-symbol-mode t)
   (electric-pair-mode 1)
