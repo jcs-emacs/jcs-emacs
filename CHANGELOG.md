@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-12-16
+
+* Fixed feebleline getting indentation level.
+
 ### 2020-12-15
 
 * Added under project utility function in `project` module.
