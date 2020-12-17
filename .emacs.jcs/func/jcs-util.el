@@ -469,7 +469,7 @@ Generally you will have to check it four times."
   "Insert spaces depends on indentation level configuration."
   (interactive)
   (let* ((tmp-count 0)
-         (indent-lvl (jcs-get-indent-level-record-by-mode))
+         (indent-lvl (indent-control--get-indent-level-record-by-mode))
          (remainder (% (current-column) indent-lvl))
          (target-width (if (= remainder 0) indent-lvl (- indent-lvl remainder))))
     (while (< tmp-count target-width)
@@ -481,7 +481,7 @@ Generally you will have to check it four times."
   "Backward delete spaces using indentation level."
   (interactive)
   (let* ((tmp-count 0)
-         (indent-lvl (jcs-get-indent-level-record-by-mode))
+         (indent-lvl (indent-control--get-indent-level-record-by-mode))
          (remainder (% (current-column) indent-lvl))
          (target-width (if (= remainder 0) indent-lvl remainder)))
     (while (and (< tmp-count target-width)
@@ -495,7 +495,7 @@ Generally you will have to check it four times."
   "Forward delete spaces using indentation level."
   (interactive)
   (let* ((tmp-count 0)
-         (indent-lvl (jcs-get-indent-level-record-by-mode))
+         (indent-lvl (indent-control--get-indent-level-record-by-mode))
          (remainder (% (jcs-first-char-in-line-column) indent-lvl))
          (target-width (if (= remainder 0) indent-lvl remainder)))
     (while (and (< tmp-count target-width) (not (jcs-is-end-of-line-p)))
