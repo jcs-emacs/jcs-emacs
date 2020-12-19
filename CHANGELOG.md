@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-12-19
+
+* Removed self-customized `docstr` configuration.
+
 ### 2020-12-17
 
 * Fixed logic for insert/delete spaces by indent level.
