@@ -252,6 +252,10 @@
   "Flag to disable not advising in other window.
 See `jcs-hook.el' file that has apply `advice' on command `other-window'.")
 
+;;; Package
+(setq use-package-always-defer t
+      use-package-expand-minimally t)
+
 ;;; Previous/Next keys
 (defcustom jcs-prev/next-key-type 'smart
   "Key definition for previous and next line.
