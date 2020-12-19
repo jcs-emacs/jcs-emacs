@@ -12,8 +12,6 @@
 (defun jcs-python-mode-hook ()
   "Python mode hook."
 
-  (add-hook 'docstr-before-insert-hook 'jcs-python--docstr-before nil t)
-
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
 

@@ -129,14 +129,6 @@ instead of indent the whole file at once."
   (jcs-is-contain-list-string jcs-py-keywords in-keyword))
 
 ;;
-;; (@* "Document String" )
-;;
-
-(defun jcs-python--docstr-before (_search-string)
-  "Local hook `docstr-before-insert-hook' for Python."
-  (insert "Description here.."))
-
-;;
 ;; (@* "Templates" )
 ;;
 
