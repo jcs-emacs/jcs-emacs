@@ -3,22 +3,18 @@
 ;;; Code:
 
 (use-package adaptive-wrap
-  :defer t
   :init
   (add-hook 'visual-line-mode-hook (lambda () (adaptive-wrap-prefix-mode +1))))
 
 (use-package atl-markup
-  :defer t
   :init
   (setq atl-markup-delay 0.0))
 
 (use-package auto-highlight-symbol
-  :defer t
   :init
   (setq ahs-idle-interval 0.3))
 
 (use-package auto-read-only
-  :defer t
   :config
   (add-to-list 'auto-read-only-file-regexps "/[.]emacs[.]d/elisp/")
   (add-to-list 'auto-read-only-file-regexps "/[.]emacs[.]d/elpa/")
@@ -32,20 +28,17 @@
   (advice-add 'auto-read-only--hook-find-file :override #'jcs--auto-read-only--hook-find-file))
 
 (use-package auto-rename-tag
-  :defer t
   :init
   (setq auto-rename-tag-disabled-commands '(query-replace)
         auto-rename-tag-disabled-minor-modes '(iedit-mode
                                                multiple-cursors-mode)))
 
 (use-package better-scroll
-  :defer t
   :init
   (setq better-scroll-align-type 'relative
         better-scroll-allow-boundary-movement t))
 
 (use-package browse-kill-ring
-  :defer t
   :init
   (setq browse-kill-ring-separator (jcs-env-separator)
         browse-kill-ring-separator-face 'font-lock-comment-face)
@@ -57,7 +50,6 @@
   (add-hook 'browse-kill-ring-mode-hook 'jcs--browse-kill-ring-mode-hook))
 
 (use-package buffer-wrap
-  :defer t
   :config
   (defun jcs--buffer-wrap--fixed-window-off ()
     "Fixed windows is off after wrapping."
@@ -85,7 +77,6 @@
   (add-hook 'buffer-wrap-post-command-hook 'jcs--buffer-wrap-post-command-hook))
 
 (use-package centaur-tabs
-  :defer t
   :init
   (setq centaur-tabs-set-icons nil
         centaur-tabs-style "wave"
@@ -93,7 +84,6 @@
         centaur-tabs-modified-marker "*"))
 
 (use-package company
-  :defer t
   :init
   (setq company-frontends '(company-pseudo-tooltip-frontend
                             company-echo-metadata-frontend)
@@ -122,7 +112,6 @@
   (with-eval-after-load 'company (require 'jcs-company) (global-company-mode t)))
 
 (use-package company-c-headers
-  :defer t
   :config
   (require 'dash)
 
@@ -150,12 +139,10 @@
                                    (not (= (string-to-number dirname) 0)))))))))
 
 (use-package company-emoji
-  :defer t
   :init
   (setq emojify-company-tooltips-p t))
 
 (use-package company-fuzzy
-  :defer t
   :init
   (setq company-fuzzy-sorting-backend 'flx
         company-fuzzy-prefix-on-top nil
@@ -164,31 +151,26 @@
   (with-eval-after-load 'company (global-company-fuzzy-mode t)))
 
 (use-package company-quickhelp
-  :defer t
   :init
   (setq company-quickhelp-delay 0.3
         company-quickhelp-color-background "#FFF08A")
   (with-eval-after-load 'company (company-quickhelp-mode t)))
 
 (use-package company-quickhelp-terminal
-  :defer t
   :init
   (with-eval-after-load 'company-quickhelp
     (unless (display-graphic-p) (company-quickhelp-terminal-mode 1))))
 
 (use-package counsel
-  :defer t
   :init
   (setq counsel-preselect-current-file t
         counsel-find-file-at-point t))
 
 (use-package csharp-mode
-  :defer t
   :init
   (setq csharp-codedoc-tag-face 'font-lock-doc-face))
 
 (use-package dashboard
-  :defer t
   :init
   (setq dashboard-banner-logo-title "[J C S • E M A C S]"
         dashboard-footer-icon ""
@@ -244,13 +226,11 @@
   (dashboard-setup-startup-hook))
 
 (use-package dashboard-ls
-  :defer t
   :config
   (let ((dashboard-lst-items '((ls-directories . 5) (ls-files . 5))))
     (setq dashboard-items (append dashboard-lst-items dashboard-items))))
 
 (use-package define-it
-  :defer t
   :init
   (setq define-it-output-choice 'view
         define-it-define-word-header "--{{ DEFINE }}--\n\n"
@@ -259,12 +239,10 @@
         define-it-wiki-summary-header "\n\n--{{ WIKIPEDIA SUMMARY }}--\n\n"))
 
 (use-package diff-hl
-  :defer t
   :init
   (setq diff-hl-side 'right))
 
 (use-package diminish
-  :defer t
   :config
   (defun jcs-diminish-type (type)
     "Diminsh TYPE.
@@ -333,7 +311,6 @@
   (jcs-diminish-do-alist jcs-diminish-alist))
 
 (use-package diminish-buffer
-  :defer t
   :init
   (setq diminish-buffer-list
         (append
@@ -372,13 +349,15 @@
     (when diminish-buffer-mode (diminish-buffer-clean)))
   (advice-add 'jcs-buffer-menu-refresh-buffer :before #'jcs--diminish-buffer-clean--advice-before))
 
+(use-package docstr
+  :init
+  (setq docstr-desc-summary ""))
+
 (use-package dumb-jump
-  :defer t
   :init
   (setq dumb-jump-selector 'ivy))
 
 (use-package elisp-demos
-  :defer t
   :init
   (with-eval-after-load 'help-fns
     (advice-add 'describe-function-1 :after #'elisp-demos-advice-describe-function-1))
@@ -386,24 +365,20 @@
     (advice-add 'helpful-update :after #'elisp-demos-advice-helpful-update)))
 
 (use-package eshell-syntax-highlighting
-  :defer t
   :init
   (with-eval-after-load 'eshell
     (eshell-syntax-highlighting-global-mode +1)))
 
 (use-package eww
-  :defer t
   :init
   (setq eww-search-prefix "https://www.google.com/search?q="))
 
 (use-package exec-path-from-shell
-  :defer t
   :config
   (when (memq window-system '(mac ns x))
     (exec-path-from-shell-initialize)))
 
 (use-package feebleline
-  :defer t
   :init
   (setq feebleline-msg-functions
         '(;;-- Left
@@ -487,7 +462,6 @@
   (advice-add 'feebleline-mode :after #'jcs--feebleline-mode--advice-after))
 
 (use-package ffmpeg-player
-  :defer t
   :init
   (setq ffmpeg-player--volume 75
         ffmpeg-player-display-width 672
@@ -517,17 +491,14 @@
   (add-hook 'ffmpeg-player-mode-hook 'jcs-ffmpeg-player-mode-hook))
 
 (use-package file-header
-  :defer t
   :init
   (setq file-header-template-config-filepath "~/.emacs.jcs/template/template_config.properties"))
 
 (use-package flycheck-grammarly
-  :defer t
   :init
   (with-eval-after-load 'flycheck (require 'flycheck-grammarly)))
 
 (use-package flycheck-popup-tip
-  :defer t
   :init
   (defun jcs--flycheck-mode--pos-tip--advice-after (&rest _)
     "Advice runs after `flycheck-mode' function with `flycheck-popup-tip'."
@@ -536,7 +507,6 @@
   (advice-add 'flycheck-mode :after #'jcs--flycheck-mode--pos-tip--advice-after))
 
 (use-package flycheck-pos-tip
-  :defer t
   :init
   (defun jcs--flycheck-mode--pos-tip--advice-after (&rest _)
     "Advice runs after `flycheck-mode' function with `flycheck-pos-tip'."
@@ -545,7 +515,6 @@
   (advice-add 'flycheck-mode :after #'jcs--flycheck-mode--pos-tip--advice-after))
 
 (use-package google-translate
-  :defer t
   :init
   (setq google-translate-default-source-language "auto"
         google-translate-default-target-language "zh-TW")
@@ -556,30 +525,25 @@
   (advice-add 'google-translate--search-tkk :override #'jcs--google-translate--search-tkk))
 
 (use-package goto-char-preview
-  :defer t
   :config
   (advice-add 'goto-char-preview :after #'jcs--recenter--advice-after))
 
 (use-package goto-line-preview
-  :defer t
   :config
   (advice-add 'goto-line-preview :after #'jcs--recenter--advice-after))
 
 (use-package highlight-indent-guides
-  :defer t
   :init
   (setq highlight-indent-guides-method 'character
         highlight-indent-guides-character ?\|
         highlight-indent-guides-responsive 'top))
 
 (use-package highlight-numbers
-  :defer t
   :config
   (set-face-attribute 'highlight-numbers-number nil
                       :foreground "#9BCEA3"))
 
 (use-package hl-todo
-  :defer t
   :init
   (setq hl-todo-highlight-punctuation "")
   (setq hl-todo-keyword-faces
@@ -625,12 +589,10 @@
   (advice-add #'hl-todo--inside-comment-or-string-p :override #'jcs--hl-todo--inside-comment-or-string-p))
 
 (use-package impatient-showdown
-  :defer t
   :init
   (setq impatient-showdown-flavor 'github))
 
 (use-package indent-control
-  :defer t
   :init
   (setq indent-control-records
         '((actionscript-mode     . 4)
@@ -670,7 +632,6 @@
           (yaml-mode             . 2))))
 
 (use-package isearch
-  :defer t
   :init
   (setq isearch-lazy-count t
         lazy-count-prefix-format "[%s:%s] ")
@@ -679,7 +640,6 @@
   (add-hook 'isearch-mode-end-hook #'jcs-scroll-conservatively-enable))
 
 (use-package isearch-project
-  :defer t
   :init
   (setq isearch-project-ignore-paths '(".vs/"
                                        ".vscode/"
@@ -704,7 +664,6 @@
   (add-hook 'isearch-mode-hook #'jcs-isearch-mode-hook))
 
 (use-package ivy
-  :defer t
   :init
   (setq ivy-auto-shrink-minibuffer t
         ivy-use-virtual-buffers t  ; Enable bookmarks and recentf
@@ -723,13 +682,11 @@
   (setq enable-recursive-minibuffers t))
 
 (use-package ivy-file-preview
-  :defer t
   :init
   (setq ivy-file-preview-overlay-delay-time 0.2)
   (with-eval-after-load 'ivy (ivy-file-preview-mode 1)))
 
 (use-package ivy-searcher
-  :defer t
   :init
   (setq ivy-searcher-display-info 'line/column
         ivy-searcher-preselect 'next)
@@ -740,14 +697,12 @@
   (advice-add 'ivy-searcher-search-project :after #'jcs--recenter--advice-after))
 
 (use-package keypression
-  :defer t
   :config
   (setq keypression-ignore-mouse-events
         (append keypression-ignore-mouse-events
                 '(switch-frame menu-bar tool-bar tab-bar))))
 
 (use-package line-reminder
-  :defer t
   :init
   (setq line-reminder-show-option (if (display-graphic-p) 'indicators 'linum))
   (unless (display-graphic-p)
@@ -755,7 +710,6 @@
           line-reminder-modified-sign " |")))
 
 (use-package lsp-mode
-  :defer t
   :init
   (setq lsp-auto-guess-root t
         lsp-prefer-capf t
@@ -775,6 +729,7 @@
 
   (defun jcs--safe-lsp-active ()
     "Safe way to active LSP."
+    (require 'jcs-project)
     (when (and (jcs-project-under-p) (not (jcs--lsp-connected-p)))
       (lsp-deferred)))
 
@@ -790,7 +745,6 @@
     (when (functionp 'lsp-signature-maybe-stop) (lsp-signature-maybe-stop))))
 
 (use-package lsp-ui
-  :defer t
   :init
   (setq lsp-ui-doc-enable t
         lsp-ui-doc-use-webkit nil
@@ -815,13 +769,11 @@
       (lsp-ui-doc--hide-frame))))
 
 (use-package most-used-words
-  :defer t
   :init
   (setq most-used-words-display-type 'table
         most-used-words-word-display 100))
 
 (use-package modablist
-  :defer t
   :config
   (set-face-attribute 'modablist-select-face nil
                       :box '(:line-width -1 :color "#65A7E2" :style nil))
@@ -829,12 +781,10 @@
                       :box '(:line-width -1 :color "#65A7E2" :style nil)))
 
 (use-package multi-shell
-  :defer t
   :init
   (setq multi-shell-prefer-shell-type 'shell))  ; Accept `shell' or `eshll'.
 
 (use-package multiple-cursors
-  :defer t
   :init
   (defconst jcs-mc/cancel-commands
     (append
@@ -877,7 +827,6 @@
   (advice-add 'mc/mark-lines :override #'jcs--mc/mark-lines))
 
 (use-package neotree
-  :defer t
   :init
   (setq neo-window-position 'right
         neo-show-hidden-files t
@@ -929,7 +878,6 @@
   (add-hook 'neo-after-create-hook 'jcs--neo-after-create-hook))
 
 (use-package origami
-  :defer t
   :config
   (set-face-attribute 'origami-fold-replacement-face nil
                       :foreground "#808080"
@@ -937,7 +885,6 @@
   (global-origami-mode t))
 
 (use-package popup
-  :defer t
   :config
   (defvar jcs-popup-mouse-events-flag-p nil
     "Check if `popup-menu-item-of-mouse-event' is called.")
@@ -972,7 +919,6 @@
   (advice-add 'popup-draw :around #'jcs--popup-draw--advice-around))
 
 (use-package powerline
-  :defer t
   :init
   ;; NOTE:
   ;; The separator to use for the default theme.
@@ -983,7 +929,6 @@
   (setq powerline-default-separator 'wave))
 
 (use-package preproc-font-lock
-  :defer t
   :init
   (setq preproc-font-lock-modes '(cc-mode c-mode c++-mode csharp-mode nasm-mode))
   :config
@@ -991,7 +936,6 @@
                       :background nil :foreground "#B363BE" :inherit nil))
 
 (use-package project
-  :defer t
   :config
   (setq project-vc-ignores
         (append project-vc-ignores
@@ -1004,13 +948,11 @@
                 '(".log" ".vs" "node_modules"))))
 
 (use-package quelpa
-  :defer t
   :config
   (add-hook 'quelpa-before-hook (lambda () (setq jcs-package-installing-p t)))
   (add-hook 'quelpa-after-hook (lambda () (setq jcs-package-installing-p nil))))
 
 (use-package region-occurrences-highlighter
-  :defer t
   :init
   (setq region-occurrences-highlighter-min-size 1)
   :config
@@ -1018,7 +960,6 @@
                       :background "#113D6F" :inverse-video nil))
 
 (use-package reload-emacs
-  :defer t
   :init
   (setq reload-emacs-load-path '("~/.emacs.jcs/"
                                  "~/.emacs.jcs/func/"
@@ -1030,7 +971,6 @@
   (add-hook 'reload-emacs-after-hook #'jcs--reload-emacs-after-hook))
 
 (use-package right-click-context
-  :defer t
   :config
   ;;;###autoload
   (defun right-click-context-menu ()
@@ -1043,13 +983,11 @@
           (if (symbolp value) (call-interactively value t) (eval value)))))))
 
 (use-package searcher
-  :defer t
   :init
   (setq searcher-search-type 'regex  ; `regex' or `flx'
         searcher-flx-threshold 25))
 
 (use-package show-eol
-  :defer t
   :config
   (show-eol-set-mark-with-string 'newline-mark "¶")
 
@@ -1064,7 +1002,6 @@
   (advice-add 'show-eol-disable :before #'jcs-advice-show-eol-disable-before))
 
 (use-package sql-indent
-  :defer t
   :init
   ;; URL: https://www.emacswiki.org/emacs/SqlIndent
 
@@ -1076,17 +1013,14 @@
   (setq sql-indent-offset 1))
 
 (use-package un-mini
-  :defer t
   :init
   (setq un-mini-abort-commands '(right-click-context-click-menu)))
 
 (use-package undo-tree
-  :defer t
   :config
   (global-undo-tree-mode t))
 
 (use-package use-ttf
-  :defer t
   :init
   ;; List of TTF fonts you want to use in the currnet OS.
   (setq use-ttf-default-ttf-fonts '(;; >> Classic Console <<
@@ -1098,7 +1032,6 @@
   (setq use-ttf-default-ttf-font-name "Ubuntu Mono"))
 
 (use-package web-mode
-  :defer t
   :init
   ;; Associate an engine
   (setq web-mode-engines-alist
@@ -1177,7 +1110,6 @@
   (setq web-mode-enable-current-column-highlight t))
 
 (use-package which-key
-  :defer t
   :init
   (setq which-key-popup-type 'side-window
         which-key-side-window-location 'bottom
@@ -1186,7 +1118,6 @@
         which-key-idle-delay 1.0))
 
 (use-package whitespace
-  :defer t
   :config
   (autoload 'whitespace-mode "whitespace-mode" "Toggle whitespace visualization." t)
   (autoload 'whitespace-toggle-options "whitespace-mode" "Toggle local `whitespace-mode' options." t)
@@ -1198,17 +1129,14 @@
                       :background "grey20" :foreground "red"))
 
 (use-package windmove
-  :defer t
   :init
   (setq windmove-wrap-around t))
 
 (use-package yascroll
-  :defer t
   :init
   (setq yascroll:delay-to-hide 0.8))
 
 (use-package yasnippet
-  :defer t
   :config
   (require 'yasnippet-snippets)
   (yas-global-mode 1))
