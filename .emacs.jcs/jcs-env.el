@@ -341,7 +341,7 @@ If ACT is non-nil; then make scroll less jumpy."
 ;; NOTE: (for very long file, like `jquery.min.js', etc)
 (when (version<= "27.1" emacs-version) (global-so-long-mode 1))
 
-;;; Startup windowing
+;;; Startup
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 (setq-default truncate-lines t)
 (setq next-line-add-newlines nil
