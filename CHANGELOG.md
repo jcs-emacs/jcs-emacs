@@ -9,6 +9,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 * Enabled always defer from `use-package` as default behaviour.
 * Add configuration for package `docstr`.
+* Fixed refresh dashboard logic when switching buffer including killing buffer.
 
 ### 2020-12-19
 
