@@ -1210,6 +1210,7 @@ NO-RECORD and FORCE-SAME-WINDOW are the same as switch to buffer arguments."
       (message "Remove parent directory that were virtual => '%s'" del-path)))
   (kill-this-buffer)
   (jcs-buffer-menu-safe-refresh)
+  (jcs-dashboard-safe-refresh-buffer)
   ;; If still in the buffer menu, try switch to the previous buffer.
   (when (jcs-buffer-menu-p) (jcs-switch-to-previous-buffer)))
 
