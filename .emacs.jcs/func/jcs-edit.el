@@ -1168,14 +1168,19 @@ NO-RECORD and FORCE-SAME-WINDOW are the same as switch to buffer arguments."
   (jcs-bury-diminished-buffer))
 
 (defun jcs--kill-buffer--advice-before (&rest _)
-  "Advice execute around `kill-buffer' function."
+  "Advice execute before function `kill-buffer'."
   (when (and (fboundp 'markdown-preview--stop) (buffer-file-name)
              markdown-preview--idle-timer)
     (markdown-preview--stop)))
 (advice-add 'kill-buffer :before #'jcs--kill-buffer--advice-before)
 
+(defun jcs--kill-buffer--advice-after (&rest _)
+  "Advice execute after function `kill-buffer'."
+  (jcs-dashboard-safe-refresh-buffer))
+(advice-add 'kill-buffer :after #'jcs--kill-buffer--advice-after)
+
 (defun jcs--kill-this-buffer--advice-around (fnc &rest args)
-  "Advice execute around `kill-this-buffer' command with FNC and ARGS."
+  "Advice execute around command `kill-this-buffer' with FNC and ARGS."
   (require 'undo-tree)
   (let ((target-kill-buffer (jcs-buffer-name-or-buffer-file-name))
         (undoing-buffer-name nil)
@@ -1195,7 +1200,6 @@ NO-RECORD and FORCE-SAME-WINDOW are the same as switch to buffer arguments."
                  ;; Only close `undo-tree' when buffer is killed.
                  (not (string= target-kill-buffer (jcs-buffer-name-or-buffer-file-name))))
         (jcs-undo-kill-this-buffer)))))
-
 (advice-add 'kill-this-buffer :around #'jcs--kill-this-buffer--advice-around)
 
 ;;;###autoload
@@ -1210,7 +1214,6 @@ NO-RECORD and FORCE-SAME-WINDOW are the same as switch to buffer arguments."
       (message "Remove parent directory that were virtual => '%s'" del-path)))
   (kill-this-buffer)
   (jcs-buffer-menu-safe-refresh)
-  (jcs-dashboard-safe-refresh-buffer)
   ;; If still in the buffer menu, try switch to the previous buffer.
   (when (jcs-buffer-menu-p) (jcs-switch-to-previous-buffer)))
 
