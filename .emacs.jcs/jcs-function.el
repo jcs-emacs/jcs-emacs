@@ -342,7 +342,8 @@ OW is the other window flag."
 
 (defun jcs-dashboard-safe-refresh-buffer ()
   "Safely refresh the dashboard buffer if needed."
-  (when (jcs-buffer-shown-p dashboard-buffer-name 'strict)
+  (when (and (jcs-valid-buffer-p)
+             (jcs-buffer-shown-p dashboard-buffer-name 'strict))
     (unless jcs-dashboard--switch-buffer-refreshing-p
       (let ((jcs-dashboard--switch-buffer-refreshing-p t)
             (dashboard-ls-path (if (buffer-file-name)
