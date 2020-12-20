@@ -253,8 +253,11 @@
 See `jcs-hook.el' file that has apply `advice' on command `other-window'.")
 
 ;;; Package
-(setq use-package-always-defer t
-      use-package-expand-minimally t)
+(use-package use-package
+  :defer t
+  :init
+  (setq use-package-always-defer t
+        use-package-expand-minimally t))
 
 ;;; Previous/Next keys
 (defcustom jcs-prev/next-key-type 'smart
@@ -351,7 +354,6 @@ If ACT is non-nil; then make scroll less jumpy."
 
 ;;; Tabulated List
 (use-package tabulated-list
-  :defer t
   :config
   (defun jcs--tabulated-list-col-sort--advice-around (fnc &rest args)
     "Advice execute around `tabulated-list-col-sort' function."
@@ -360,7 +362,6 @@ If ACT is non-nil; then make scroll less jumpy."
 
 ;;; Uniquify
 (use-package uniquify
-  :defer t
   :init
   ;; NOTE: meaningful names for buffers with the same name from prelude.
   ;;
