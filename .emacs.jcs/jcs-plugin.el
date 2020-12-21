@@ -180,7 +180,7 @@
                                     (length package-activated-list)
                                     (length jcs-package-manually-install-list)
                                     (string-to-number jcs-package-init-time))
-        dashboard-items '((recents  . 10)
+        dashboard-items '((recents . 10)
                           (projects . 10)
                           ;;(bookmarks . 10)
                           ;;(agenda . 10)
