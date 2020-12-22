@@ -309,9 +309,7 @@
 
 (defun jcs--package-install--advice-around (ori-func &rest args)
   "Advice around execute `package-install' command."
-  (setq jcs-package-installing-p t)
-  (apply ori-func args)
-  (setq jcs-package-installing-p nil))
+  (let ((jcs-package-installing-p t)) (apply ori-func args)))
 (advice-add 'package-install :around #'jcs--package-install--advice-around)
 
 (defun jcs-package-install (pkg)
