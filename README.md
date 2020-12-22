@@ -114,7 +114,7 @@ without having to get used to an new IDE.
 
 Here is the list of few important and recent changes to this configuration.
 
-* `6.3.2` - Switched from `projectile` to built-in `project` for project management.
+* `6.4.0` - Switched from `projectile` to built-in `project` for project management.
 * `6.3.1` - Replaced `docstring` module to external `docstr` package.
 * `6.2.5` - Use `recipes` folder instead to specify manually installed packages in the configuration.
 * `6.2.4` - Replaced [ag](https://github.com/Wilfred/ag.el) silver searcher to [searcher](https://github.com/jcs-elpa/searcher).
