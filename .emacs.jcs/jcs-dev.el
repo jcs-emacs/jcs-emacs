@@ -3,6 +3,20 @@
 ;;; Code:
 
 ;;
+;; (@* "Elisp Project" )
+;;
+
+(defun jcs-project-add-load-path ()
+  "Add the whole project to load path."
+  (interactive)
+  (let ((project-root (jcs-project-current)))
+    (if project-root
+        (let ((dirs (jcs-f-directories-ignore-directories project-root t)))
+          (dolist (dir dirs) (add-to-list 'load-path dir))
+          (message "[INFO] Added project to load path: %s" project-root))
+      (user-error "[WARNINGS] Undefined project root for project load path"))))
+
+;;
 ;; (@* "Mark" )
 ;;
 
@@ -21,12 +35,7 @@
 
 (defun jcs-output-list-compilation ()
   "Return the list of compilation buffers."
-  (let ((file-regexp (format "[*]%s[*]: " jcs-compilation-base-filename))
-        (lst '()))
-    (dolist (buf (buffer-list))
-      (when (string-match-p file-regexp (buffer-name buf))
-        (push buf lst)))
-    lst))
+  (jcs-buffer-filter (format "[*]%s[*]: " jcs-compilation-base-filename) 'regex))
 
 (defun jcs-output-set-compilation-index (index lst)
   "Set compilation buffer with INDEX and LST."
@@ -50,8 +59,7 @@
 (defun jcs-output-next-compilation ()
   "Select the next compilation buffer."
   (interactive)
-  (let ((output-lst (jcs-output-list-compilation))
-        (break nil) (index 0))
+  (let ((output-lst (jcs-output-list-compilation)) (index 0) break)
     (while (and (< index (length output-lst)) (not break))
       (when (equal (current-buffer) (nth index output-lst))
         (jcs-output-set-compilation-index (1+ index) output-lst)
