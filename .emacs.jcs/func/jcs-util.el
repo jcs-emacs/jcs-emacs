@@ -146,6 +146,16 @@ Notice PATH can either be `buffer-name' or `buffer-file-name'."
                    buf-lst)
       target-buf)))
 
+(defun jcs-buffer-filter (name &optional type)
+  "Return a list of buffers with NAME.
+
+See function `jcs-string-compare-p' for argument TYPE."
+  (let (lst)
+    (dolist (buf (buffer-list))
+      (when (jcs-string-compare-p name (buffer-name buf) type)
+        (push buf lst)))
+    lst))
+
 ;;
 ;; (@* "Compile" )
 ;;
@@ -1559,10 +1569,11 @@ IGNORE-ERRORS-T : ignore errors for this function?"
   "Compare STR with REGEXP by TYPE.
 
 Argument TYPE can be on of the following symbol.
-  - regex (default) - uses function `string-match-p'.
-  - strict - uses function `string='.
-  - prefix - uses function `string-prefix-p'.
-  - suffix - uses function `string-suffix-p'.
+
+  * regex - uses function `string-match-p'.  (default)
+  * strict - uses function `string='.
+  * prefix - uses function `string-prefix-p'.
+  * suffix - uses function `string-suffix-p'.
 
 Optional argument IGNORE-CASE is only uses when TYPE is either symbol `prefix'
 or `suffix'."
