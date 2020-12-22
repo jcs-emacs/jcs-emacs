@@ -8,6 +8,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-12-22
 
 * Fixed recording recent files while installing issue. (#23)
+* Added generic buffer list filter utility function.
+* Added Emacs Lisp project load path for future Emacs Lisp Project Development.
 
 ### 2020-12-20
 
