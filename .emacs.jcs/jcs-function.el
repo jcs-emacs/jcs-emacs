@@ -134,7 +134,8 @@
   (jcs-scratch-buffer)
   (erase-buffer)
   (insert jcs-scratch--content)
-  (goto-char (point-min)))
+  (goto-char (point-min))
+  (lisp-interaction-mode))
 
 ;;;###autoload
 (defun jcs-scratch-buffer-maybe-kill ()
@@ -323,8 +324,14 @@ OW is the other window flag."
 (defvar jcs-dashboard--switch-buffer-refreshing-p nil
   "Flag to check if current dashboard refresing.")
 
-(defvar jcs-dashboard--last-current-path nil
+(defvar jcs-dashboard--last-ls-path nil
   "Record down the last current path.")
+
+(defun jcs-dashboard--get-max-align-length ()
+  "Return the maximum align length."
+  ;; TODO: This currently only calculates the `recentf' and `projects' sections.
+  (max (dashboard--get-align-length dashboard-recentf-alist)
+       (dashboard--get-align-length dashboard-projects-alist t)))
 
 ;;;###autoload
 (defun jcs-dashboard-refresh-buffer ()
@@ -337,7 +344,8 @@ OW is the other window flag."
       (jcs-window-record-once)
       (when (jcs-buffer-exists-p dashboard-buffer-name)
         (kill-buffer dashboard-buffer-name))
-      (let ((dashboard-ls-path (jcs-last-default-directory)))
+      (let ((dashboard-ls-path (jcs-last-default-directory))
+            (dashboard-path-max-length (jcs-dasbhoard--get-path-length)))
         (dashboard-insert-startupify-lists))
       (jcs-window-restore-once))))
 
@@ -349,8 +357,8 @@ OW is the other window flag."
     (unless jcs-dashboard--switch-buffer-refreshing-p
       (let ((jcs-dashboard--switch-buffer-refreshing-p t)
             (ls-path (jcs-last-default-directory)))
-        (unless (string= jcs-dashboard--last-current-path ls-path)
-          (setq jcs-dashboard--last-current-path ls-path)
+        (unless (string= jcs-dashboard--last-ls-path ls-path)
+          (setq jcs-dashboard--last-ls-path ls-path)
           (jcs-safe-jump-shown-to-buffer
            dashboard-buffer-name
            :type 'strict
