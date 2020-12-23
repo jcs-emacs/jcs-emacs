@@ -197,7 +197,7 @@
   (jcs-dashboard-goto-item-section 9))
 
 ;;
-;; (@* "Registry" )
+;; (@* "Centering" )
 ;;
 
 (defcustom jcs-dashboard-buffer-border 15
@@ -211,6 +211,12 @@ it by two to get the border from one side."
 (defvar jcs-dashboard--last-window-width -1
   "Record the last window width from dashbord buffer.")
 
+(defun jcs-dashboard--get-max-align-length ()
+  "Return the maximum align length."
+  ;; TODO: This currently only calculates the `recentf' and `projects' sections.
+  (max (dashboard--get-align-length dashboard-recentf-alist)
+       (dashboard--get-align-length dashboard-projects-alist t)))
+
 (defun jcs-dashboard--window-width ()
   "Return dashboard buffer's window width."
   (let (ww)
@@ -223,6 +229,10 @@ it by two to get the border from one side."
   "Return the valid path length for resizing the dashboard buffer."
   (- (window-width) (jcs-dashboard--get-max-align-length)
      jcs-dashboard-buffer-border))
+
+;;
+;; (@* "Registry" )
+;;
 
 (defun jcs-dashboard--size-change-functions (&rest _)
   "When window changed size."
