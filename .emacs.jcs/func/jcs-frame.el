@@ -2,13 +2,13 @@
 ;;; Commentary:
 ;;; Code:
 
-(defun jcs-aftermake-frame-functions-hook (frame)
+(defun jcs-after-make-frame-functions-hook (frame)
   "Resetting the new FRAME just created."
   (jcs-refresh-theme)
   (select-frame frame)
   ;; split the winodw after create the new window
   (split-window-horizontally))
-(add-hook 'after-make-frame-functions 'jcs-aftermake-frame-functions-hook)
+(add-hook 'after-make-frame-functions 'jcs-after-make-frame-functions-hook)
 
 (defun jcs-frame-util-p (&optional frame)
   "Check if FRAME is the utility frame."
@@ -28,11 +28,8 @@ Return nil, if frame not maximized."
     (select-frame-set-input-focus new-frame)))
 
 ;;;###autoload
-(defun jcs-walk-through-all-frames-once (&optional fnc minibuf do-advice util)
+(defun jcs-walk-through-all-frames-once (&optional fnc minibuf util)
   "Walk through all frames once and execute callback FNC for each moves.
-
-If optional argument DO-ADVICE is non-nil; then will active advices
-from `other-window' function.
 
 If optional argument MINIBUF is non-nil; then FNC will be executed in the
 minibuffer window.
@@ -41,10 +38,9 @@ If optional argument UTIL is non-nil; then FNC will be executed even within
 inside the utility frame.  See function `jcs-frame-util-p' for the definition
 of utility frame."
   (interactive)
-  (let ((jcs--no-advice-other-window (not do-advice)))
+  (let ((jcs-walking-through-windows-p t))
     (save-selected-window
-      (let ((frame-len (length (frame-list)))
-            (cur-frame (selected-frame)) (index 0) can-execute-p)
+      (let ((frame-len (length (frame-list))) (index 0) can-execute-p)
         (while (< index frame-len)
           (setq can-execute-p
                 (cond ((and (not minibuf) (jcs-minibuf-window-p)) nil)
@@ -52,8 +48,7 @@ of utility frame."
           (when (or util (not (jcs-frame-util-p)))
             (when fnc (funcall fnc)))
           (other-frame 1)
-          (setq index (+ index 1)))
-        (select-frame-set-input-focus cur-frame)))))
+          (setq index (+ index 1)))))))
 
 (defun jcs-max-frame-width ()
   "Find the largest frame width."

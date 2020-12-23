@@ -89,7 +89,7 @@ This will no longer overwrite usual Emacs' undo key."
 (defun jcs-undo-tree-visualize (&optional cbf)
   "Call `undo-tree-visualize' only in window that has higher height.
 CBF : Current buffer file name."
-  (let ((jcs--no-advice-other-window t)
+  (let ((jcs-walking-through-windows-p t)
         (win-len (jcs-count-windows)) (win-index 0)
         (target-window nil)
         (rel-cbf (if cbf cbf (buffer-name)))
@@ -984,7 +984,7 @@ This variable is used to check if file are edited externally.")
 (defun jcs--save-buffer-internal ()
   "Internal core functions for saving buffer."
   (setq jcs-created-parent-dir-path nil)
-  (let ((jcs--no-advice-other-window t)
+  (let ((jcs-walking-through-windows-p t)
         (modified (buffer-modified-p))
         (readable (file-readable-p (buffer-file-name)))
         (cur-frame (selected-frame)))

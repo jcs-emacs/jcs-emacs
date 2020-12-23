@@ -88,13 +88,13 @@
 
 (defun jcs-lsp--other-window--advice-before (&rest _args)
   "Advice execute before `other-window' command."
-  (unless jcs--no-advice-other-window
+  (unless jcs-walking-through-windows-p
     (jcs--lsp-ui-doc-stop-timer)))
 (advice-add 'other-window :before #'jcs-lsp--other-window--advice-before)
 
 (defun jcs-lsp--other-window--advice-after (&rest _args)
   "Advice execute after `other-window' command."
-  (unless jcs--no-advice-other-window
+  (unless jcs-walking-through-windows-p
     (jcs--lsp-signature-maybe-stop)
     (jcs--lsp-ui-doc-show-safely)))
 (advice-add 'other-window :after #'jcs-lsp--other-window--advice-after)
