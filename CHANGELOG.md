@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2020-12-23
 
 * Fixed dashboard refresh, respect to last visisted valid buffer.
+* Ensure `dashboard-ls` will respect the the dedicated default directory path.
 
 ### 2020-12-22
 
