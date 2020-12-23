@@ -327,12 +327,6 @@ OW is the other window flag."
 (defvar jcs-dashboard--last-ls-path nil
   "Record down the last current path.")
 
-(defun jcs-dashboard--get-max-align-length ()
-  "Return the maximum align length."
-  ;; TODO: This currently only calculates the `recentf' and `projects' sections.
-  (max (dashboard--get-align-length dashboard-recentf-alist)
-       (dashboard--get-align-length dashboard-projects-alist t)))
-
 ;;;###autoload
 (defun jcs-dashboard-refresh-buffer ()
   "Update dashboard buffer by killing it and start a new one."
