@@ -195,7 +195,12 @@
                                    (ls-files . "f"))
         dashboard-center-content t
         dashboard-set-navigator nil
-        dashboard-projects-backend 'project-el)
+        dashboard-projects-backend 'project-el
+        ;; Truncate style
+        dashboard-path-style nil
+        dashboard-path-max-length (- (window-width) 10)
+        dashboard-recentf-show-base 'align
+        dashboard-projects-show-base 'align)
   :config
   (setq initial-buffer-choice (lambda () (get-buffer dashboard-buffer-name)))
 
