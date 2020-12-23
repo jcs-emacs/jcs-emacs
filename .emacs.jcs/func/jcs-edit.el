@@ -1167,13 +1167,6 @@ NO-RECORD and FORCE-SAME-WINDOW are the same as switch to buffer arguments."
   ;; For instance, any `*helm-' buffers.
   (jcs-bury-diminished-buffer))
 
-(defun jcs--kill-buffer--advice-before (&rest _)
-  "Advice execute before function `kill-buffer'."
-  (when (and (fboundp 'markdown-preview--stop) (buffer-file-name)
-             markdown-preview--idle-timer)
-    (markdown-preview--stop)))
-(advice-add 'kill-buffer :before #'jcs--kill-buffer--advice-before)
-
 (defun jcs--kill-buffer--advice-after (&rest _)
   "Advice execute after function `kill-buffer'."
   (jcs-dashboard-safe-refresh-buffer))
