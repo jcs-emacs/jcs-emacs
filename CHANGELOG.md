@@ -9,6 +9,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 * Fixed dashboard refresh, respect to last visisted valid buffer.
 * Ensure `dashboard-ls` will respect the the dedicated default directory path.
+* Added centering the `dasboard` buffer width window resize hook.
 
 ### 2020-12-22
 
