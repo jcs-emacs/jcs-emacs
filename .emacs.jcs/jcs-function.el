@@ -337,7 +337,8 @@ OW is the other window flag."
       (jcs-window-record-once)
       (when (jcs-buffer-exists-p dashboard-buffer-name)
         (kill-buffer dashboard-buffer-name))
-      (dashboard-insert-startupify-lists)
+      (let ((dashboard-ls-path (jcs-last-default-directory)))
+        (dashboard-insert-startupify-lists))
       (jcs-window-restore-once))))
 
 (defun jcs-dashboard-safe-refresh-buffer ()
@@ -346,13 +347,10 @@ OW is the other window flag."
              (boundp 'dashboard-buffer-name)
              (jcs-buffer-shown-p dashboard-buffer-name 'strict))
     (unless jcs-dashboard--switch-buffer-refreshing-p
-      (let* ((jcs-dashboard--switch-buffer-refreshing-p t)
-             (last-valid-buffer (nth 0 (jcs-valid-buffer-list)))
-             (dashboard-ls-path (if last-valid-buffer
-                                    (f-dirname (buffer-file-name last-valid-buffer))
-                                  default-directory)))
-        (unless (string= jcs-dashboard--last-current-path dashboard-ls-path)
-          (setq jcs-dashboard--last-current-path dashboard-ls-path)
+      (let ((jcs-dashboard--switch-buffer-refreshing-p t)
+            (ls-path (jcs-last-default-directory)))
+        (unless (string= jcs-dashboard--last-current-path ls-path)
+          (setq jcs-dashboard--last-current-path ls-path)
           (jcs-safe-jump-shown-to-buffer
            dashboard-buffer-name
            :type 'strict
