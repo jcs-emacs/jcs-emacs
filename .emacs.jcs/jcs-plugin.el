@@ -197,8 +197,7 @@
         dashboard-set-navigator nil
         dashboard-projects-backend 'project-el
         ;; Truncate style
-        dashboard-path-style nil
-        dashboard-path-max-length (- (window-width) 10)
+        dashboard-path-style 'truncate-middle
         dashboard-recentf-show-base 'align
         dashboard-projects-show-base 'align)
   :config
