@@ -196,5 +196,41 @@
   (interactive)
   (jcs-dashboard-goto-item-section 9))
 
+;;
+;; (@* "Registry" )
+;;
+
+(defcustom jcs-dashboard-buffer-border 15
+  "Border around dashboard buffer for calculation.
+
+This length includes the left and riight border.  You would need to divide
+it by two to get the border from one side."
+  :type 'integer
+  :group 'jcs)
+
+(defvar jcs-dashboard--last-window-width -1
+  "Record the last window width from dashbord buffer.")
+
+(defun jcs-dashboard--window-width ()
+  "Return dashboard buffer's window width."
+  (let (ww)
+    (jcs-safe-jump-shown-to-buffer
+     dashboard-buffer-name :type 'strict
+     :success (lambda () (setq ww (window-width))))
+    ww))
+
+(defun jcs-dasbhoard--get-path-length ()
+  "Return the valid path length for resizing the dashboard buffer."
+  (- (window-width) (jcs-dashboard--get-max-align-length)
+     jcs-dashboard-buffer-border))
+
+(defun jcs-dashboard--size-change-functions (&rest _)
+  "When window changed size."
+  (let ((new-ww (jcs-dashboard--window-width)))
+    (unless (= new-ww jcs-dashboard--last-window-width)
+      (setq jcs-dashboard--last-window-width new-ww)
+      (jcs-dashboard-refresh-buffer))))
+(add-hook 'window-size-change-functions 'jcs-dashboard--size-change-functions)
+
 (provide 'jcs-dashboard)
 ;;; jcs-dashboard.el ends here
