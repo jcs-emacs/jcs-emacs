@@ -37,7 +37,7 @@ For argument TYPE; see function `jcs-string-compare-p' for description."
   (interactive "bEnter buffer to jump to: ")
   (let ((found nil))
     (when (jcs-buffer-shown-p in-buffer-name)
-      (let ((jcs--no-advice-other-window t) (win-len (jcs-count-windows)) (index 0))
+      (let ((jcs-walking-through-windows-p t) (win-len (jcs-count-windows)) (index 0))
         (while (and (< index win-len) (not found))
           ;; NOTE: we use `string-match-p' instead of `string=' because some
           ;; buffer cannot be detected in the buffer list. For instance,
@@ -87,7 +87,7 @@ For argument TYPE; see function `jcs-string-compare-p' for description."
 If optional argument UTIL is non-nil; then FNC will be executed even within
 inside the utility frame.  See function `jcs-frame-util-p' for the definition
 of utility frame."
-  (let ((jcs--no-advice-other-window t) (count 0))
+  (let ((jcs-walking-through-windows-p t) (count 0))
     (dolist (fn (frame-list))
       (when (or util (not (jcs-frame-util-p fn)))
         (setq count (+ (length (window-list fn)) count))))
@@ -96,7 +96,7 @@ of utility frame."
 (defun jcs-buffer-visible-list ()
   "List of buffer that current visible in frame."
   (save-selected-window
-    (let ((jcs--no-advice-other-window t) (buffers '()))
+    (let ((jcs-walking-through-windows-p t) (buffers '()))
       (jcs-walk-through-all-windows-once
        (lambda () (push (buffer-name) buffers)))
       buffers)))
@@ -123,12 +123,12 @@ For argument TYPE; see function `jcs-string-compare-p' for description."
 For argument TYPE; see function `jcs-string-compare-p' for description."
   (>= (jcs-buffer-shown-count in-buf-name type) 2))
 
-;;;###autoload
-(defun jcs-walk-through-all-windows-once (&optional fnc minibuf do-advice util)
-  "Walk through all windows once and execute callback FNC for each moves.
+(defvar jcs-walking-through-windows-p nil
+  "Flag to see if currently walking through windows.")
 
-If optional argument DO-ADVICE is non-nil; then will active advices
-from `other-window' function.
+;;;###autoload
+(defun jcs-walk-through-all-windows-once (&optional fnc minibuf util)
+  "Walk through all windows once and execute callback FNC for each moves.
 
 If optional argument MINIBUF is non-nil; then FNC will be executed in the
 minibuffer window.
@@ -137,10 +137,9 @@ If optional argument UTIL is non-nil; then FNC will be executed even within
 inside the utility frame.  See function `jcs-frame-util-p' for the definition
 of utility frame."
   (interactive)
-  (let ((jcs--no-advice-other-window (not do-advice)))
+  (let ((jcs-walking-through-windows-p t))
     (save-selected-window
-      (let ((win-len (jcs-count-windows))
-            (cur-frame (selected-frame)) (index 0) can-execute-p)
+      (let ((win-len (jcs-count-windows)) (index 0) can-execute-p)
         (while (< index win-len)
           (setq can-execute-p
                 (cond ((and (not minibuf) (jcs-minibuf-window-p)) nil)
@@ -148,8 +147,7 @@ of utility frame."
           (when (or util (not (jcs-frame-util-p)))
             (when (and can-execute-p fnc) (funcall fnc)))
           (other-window 1 t)
-          (setq index (1+ index)))
-        (select-frame-set-input-focus cur-frame)))))
+          (setq index (1+ index)))))))
 
 ;;
 ;; (@* "Ace Window" )
@@ -336,7 +334,7 @@ i.e. change right window to bottom, or change bottom window to right."
 
 (defun jcs-window-is-larger-in-height-p ()
   "Get the window that are larget than other windows in vertical/column."
-  (let ((jcs--no-advice-other-window t)
+  (let ((jcs-walking-through-windows-p t)
         (current-height (window-height)) (is-larger t))
     (dolist (win (jcs-window-type-list-in-column 'window))
       (when (> (window-height win) current-height)
