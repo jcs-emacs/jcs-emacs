@@ -52,7 +52,7 @@
 
 (defun jcs-dashboard-revert (&rest _)
   "Revert for dashboard buffer."
-  (dashboard-refresh-buffer))
+  (jcs-dashboard-safe-refresh-buffer))
 
 ;;
 ;; (@* "Remove Items" )
