@@ -227,8 +227,8 @@ it by two to get the border from one side."
 
 (defun jcs-dasbhoard--get-path-length ()
   "Return the valid path length for resizing the dashboard buffer."
-  (- (window-width) (jcs-dashboard--get-max-align-length)
-     jcs-dashboard-buffer-border))
+  (let ((ww (or (jcs-dashboard--window-width) (window-width))))
+    (- ww (jcs-dashboard--get-max-align-length) jcs-dashboard-buffer-border)))
 
 ;;
 ;; (@* "Registry" )
@@ -237,7 +237,7 @@ it by two to get the border from one side."
 (defun jcs-dashboard--size-change-functions (&rest _)
   "When window changed size."
   (let ((new-ww (jcs-dashboard--window-width)))
-    (unless (= new-ww jcs-dashboard--last-window-width)
+    (when (and new-ww (not (= new-ww jcs-dashboard--last-window-width)))
       (setq jcs-dashboard--last-window-width new-ww)
       (jcs-dashboard-refresh-buffer))))
 (add-hook 'window-size-change-functions 'jcs-dashboard--size-change-functions)
