@@ -75,7 +75,7 @@
 
 (defun jcs--other-window--advice-before (&rest _)
   "Advice execute before `other-window' command."
-  (unless jcs--no-advice-other-window
+  (unless jcs-walking-through-windows-p
     (when (fboundp 'company-abort) (company-abort))))
 (advice-add 'other-window :before #'jcs--other-window--advice-before)
 
@@ -84,7 +84,7 @@
   ;; NOTE: If it's a utility frame; then we skip it immediately.
   (when (jcs-frame-util-p)
     (other-window (if (jcs-is-positive count) 1 -1) t))
-  (unless jcs--no-advice-other-window
+  (unless jcs-walking-through-windows-p
     (select-frame-set-input-focus (selected-frame))
     (jcs--neotree-start-refresh)
     (when (and (boundp 'neo-buffer-name)
