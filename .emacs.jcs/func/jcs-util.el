@@ -1491,6 +1491,14 @@ IN-KEY : key to search for value."
   (or (file-directory-p file-path)
       (file-exists-p file-path)))
 
+(defun jcs-last-default-directory ()
+  "Return a dedicated default directory."
+  (require 'f)
+  (let ((last-valid-buffer (nth 0 (jcs-valid-buffer-list))))
+    (if last-valid-buffer
+        (f-dirname (buffer-file-name last-valid-buffer))
+      jcs-emacs-startup-directory)))
+
 (defun jcs-is-vc-dir-p (dir-path)
   "Check if DIR-PATH a version control directory."
   (let ((tmp-is-vc-dir nil))
