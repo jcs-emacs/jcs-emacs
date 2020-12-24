@@ -230,7 +230,10 @@ to check for ID."
     (jcs-is-current-point-face 'dashboard-items-face)))
 
 (defun jcs--ffap-guesser--advice-around (fnc &rest args)
-  "Advice execution around function `ffap-guesser'."
+  "Advice execution around function `ffap-guesser'.
+
+This advice is used when function `counsel--preselect-file' trying to
+get the truncate path from dashboard buffer (ffap)."
   (if (jcs-dashboard--on-path-item-p)
       (jcs-dashboard-get-path-alist (jcs-dashboard-path-id))
     (apply fnc args)))
