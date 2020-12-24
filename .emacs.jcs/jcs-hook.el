@@ -45,14 +45,14 @@
 (add-hook 'find-file-hook 'jcs-find-file-hook)
 
 (defun jcs--find-file--advice-before (&rest _)
-  "Advice execute before `find-file' command."
+  "Advice execute before command `find-file'."
   ;; Fixed `css-mode' opening virtual buffer with directory error. You just
   ;; need to preload this before actually create the virtual buffer.
   (ignore-errors (require 'eww)))
 (advice-add 'find-file :before #'jcs--find-file--advice-before)
 
 (defun jcs--find-file--advice-after (&rest _)
-  "Advice execute after `find-file' command."
+  "Advice execute after command `find-file'."
   (when jcs-current-created-parent-dir-path
     (setq jcs-created-parent-dir-path jcs-current-created-parent-dir-path
           jcs-current-created-parent-dir-path nil))
@@ -62,13 +62,13 @@
 (advice-add 'find-file :after #'jcs--find-file--advice-after)
 
 (defun jcs--switch-to-buffer--advice-around (fnc &rest args)
-  "Advice execute around `switch-to-buffer' function."
+  "Advice execute around function `switch-to-buffer'."
   (apply fnc args)
   (jcs-dashboard-safe-refresh-buffer))
 (advice-add 'switch-to-buffer :around #'jcs--switch-to-buffer--advice-around)
 
 (defun jcs--switch-to-buffer--advice-after (&rest _)
-  "Advice execute after `switch-to-buffer' command."
+  "Advice execute after command `switch-to-buffer'."
   (jcs--neotree-start-refresh)
   (jcs-buffer-menu-safe-refresh))
 (advice-add 'switch-to-buffer :after #'jcs--switch-to-buffer--advice-after)
@@ -80,7 +80,7 @@
 (advice-add 'other-window :before #'jcs--other-window--advice-before)
 
 (defun jcs--other-window--advice-after (count &rest _)
-  "Advice execute after `other-window' command."
+  "Advice execute after command `other-window'."
   ;; NOTE: If it's a utility frame; then we skip it immediately.
   (when (jcs-frame-util-p)
     (other-window (if (jcs-is-positive count) 1 -1) t))
