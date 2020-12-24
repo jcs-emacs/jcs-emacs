@@ -1170,6 +1170,11 @@ NO-RECORD and FORCE-SAME-WINDOW are the same as switch to buffer arguments."
 
 (defun jcs--kill-buffer--advice-after (&rest _)
   "Advice execute after function `kill-buffer'."
+  (when (and (boundp 'dashboard-buffer-name)
+             (string= (buffer-name) dashboard-buffer-name))
+    ;; TODO: not working correctly...
+    ;;(setq jcs-dashboard--last-ls-path nil)
+    )
   (jcs-dashboard-safe-refresh-buffer))
 (advice-add 'kill-buffer :after #'jcs--kill-buffer--advice-after)
 
