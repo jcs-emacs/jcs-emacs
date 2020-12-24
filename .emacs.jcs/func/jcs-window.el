@@ -14,17 +14,17 @@
         (switch-to-buffer-other-window win-name)))))
 
 (cl-defun jcs-safe-jump-shown-to-buffer (in-buffer-name &key success error type)
-  "Safely jump to IN-BUFFER-NAME's window and execute FNC.
+  "Safely jump to IN-BUFFER-NAME's window and execute SUCCESS operations.
 
-If IN-BUFFER-NAME isn't showing; then execute EXP-FNC instead.
+If IN-BUFFER-NAME isn't showing; then execute ERROR operations instead.
 
 For argument TYPE; see function `jcs-string-compare-p' for description."
-  (when (jcs-buffer-shown-p in-buffer-name)
+  (if (not (jcs-buffer-shown-p in-buffer-name))
+      (when error (funcall error))
     (save-selected-window
       (let ((fm (selected-frame)))
-        (if (jcs-jump-shown-to-buffer in-buffer-name t type)
-            (when success (funcall success))
-          (when error (funcall error)))
+        (when (and (jcs-jump-shown-to-buffer in-buffer-name t type) success)
+          (funcall success))
         (select-frame-set-input-focus fm)))))
 
 ;;;###autoload
@@ -35,7 +35,7 @@ If optional argument NO-ERROR is non-nil; then it won't trigger error.
 
 For argument TYPE; see function `jcs-string-compare-p' for description."
   (interactive "bEnter buffer to jump to: ")
-  (let ((found nil))
+  (let (found)
     (when (jcs-buffer-shown-p in-buffer-name)
       (let ((jcs-walking-through-windows-p t) (win-len (jcs-count-windows)) (index 0))
         (while (and (< index win-len) (not found))
