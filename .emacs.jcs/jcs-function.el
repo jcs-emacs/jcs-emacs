@@ -358,14 +358,6 @@ OW is the other window flag."
            :type 'strict
            :success (lambda () (jcs-dashboard-refresh-buffer))))))))
 
-;;;###autoload
-(defun jcs-dashboard-maybe-kill-this-buffer ()
-  "Kill the dashboard buffer then open the new one immediately."
-  (interactive)
-  (jcs-maybe-kill-this-buffer)
-  (let ((jcs-dashboard--force-refresh-p t)) (jcs-dashboard-refresh-buffer))
-  (jcs-buffer-menu-refresh-buffer))
-
 (defun jcs-dashboard--get-banner-path ()
   "Return the path of the banner."
   (cond ((display-graphic-p)
