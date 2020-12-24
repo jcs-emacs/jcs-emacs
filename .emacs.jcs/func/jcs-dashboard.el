@@ -197,6 +197,46 @@
   (jcs-dashboard-goto-item-section 9))
 
 ;;
+;; (@* "Truncate" )
+;;
+
+(defun jcs-dashboard--real-path-alist (id alist)
+  "Return real path by ID from dahsboard path ALIST.
+
+Notice this is not percise because we are using function `string-match-p'
+to check for ID."
+  (cl-some (lambda (item) (when (string-match-p id (car item)) (cdr item))) alist))
+
+(defun jcs-dashboard-get-path-alist (id)
+  "Return path that matches the ID from all alists possible from dashboard."
+  (or (jcs-dashboard--real-path-alist id dashboard-recentf-alist)
+      (jcs-dashboard--real-path-alist id dashboard-projects-alist)))
+
+(defun jcs-dashboard-path-id (&optional pos)
+  "Return the id from POS."
+  (require 's)
+  (save-excursion
+    (when pos (goto-char pos))
+    (let ((line (thing-at-point 'line)) start)
+      (setq line (s-replace "\n" "" line)
+            line (string-trim line)
+            start (string-match-p "/" line))
+      (substring line start))))
+
+(defun jcs-dashboard--on-path-item-p ()
+  "Return non-nil if current point is on the item path from dashboard."
+  (save-excursion
+    (when (jcs-is-end-of-line-p) (ignore-errors (forward-char -1)))
+    (jcs-is-current-point-face 'dashboard-items-face)))
+
+(defun jcs--ffap-guesser--advice-around (fnc &rest args)
+  "Advice execution around function `ffap-guesser'."
+  (if (jcs-dashboard--on-path-item-p)
+      (jcs-dashboard-get-path-alist (jcs-dashboard-path-id))
+    (apply fnc args)))
+(advice-add 'ffap-guesser :around #'jcs--ffap-guesser--advice-around)
+
+;;
 ;; (@* "Centering" )
 ;;
 
