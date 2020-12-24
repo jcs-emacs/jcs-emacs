@@ -303,6 +303,8 @@
 ;; (@* "Dashboard" )
 ;;
 
+(defvar dashboard-buffer-name "")
+
 ;;;###autoload
 (defun jcs-dashboard (&optional ow)
   "Jump to the dashboard buffer, if doesn't exists create one.
@@ -321,7 +323,7 @@ OW is the other window flag."
 (defvar jcs-dashboard--force-refresh-p nil
   "Force refresh dashboard buffer when non-nil.")
 
-(defvar jcs-dashboard--switch-buffer-refreshing-p nil
+(defvar jcs-dashboard--refreshing-p nil
   "Flag to check if current dashboard refresing.")
 
 (defvar jcs-dashboard--last-ls-path nil
@@ -336,11 +338,9 @@ OW is the other window flag."
             jcs-dashboard--force-refresh-p)
     (jcs-mute-apply
       (jcs-window-record-once)
-      (when (jcs-buffer-exists-p dashboard-buffer-name)
-        (kill-buffer dashboard-buffer-name))
       (let ((dashboard-ls-path (jcs-last-default-directory))
             (dashboard-path-max-length (jcs-dasbhoard--get-path-length)))
-        (dashboard-insert-startupify-lists))
+        (dashboard-refresh-buffer))
       (jcs-window-restore-once))))
 
 (defun jcs-dashboard-safe-refresh-buffer ()
@@ -348,8 +348,8 @@ OW is the other window flag."
   (when (and (bound-and-true-p jcs-emacs-ready-p)
              (boundp 'dashboard-buffer-name)
              (jcs-buffer-shown-p dashboard-buffer-name 'strict))
-    (unless jcs-dashboard--switch-buffer-refreshing-p
-      (let ((jcs-dashboard--switch-buffer-refreshing-p t)
+    (unless jcs-dashboard--refreshing-p
+      (let ((jcs-dashboard--refreshing-p t)
             (ls-path (jcs-last-default-directory)))
         (unless (string= jcs-dashboard--last-ls-path ls-path)
           (setq jcs-dashboard--last-ls-path ls-path)
