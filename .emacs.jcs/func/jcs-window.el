@@ -22,10 +22,8 @@ For argument TYPE; see function `jcs-string-compare-p' for description."
   (if (not (jcs-buffer-shown-p in-buffer-name))
       (when error (funcall error))
     (save-selected-window
-      (let ((fm (selected-frame)))
-        (when (and (jcs-jump-shown-to-buffer in-buffer-name t type) success)
-          (funcall success))
-        (select-frame-set-input-focus fm)))))
+      (when (and (jcs-jump-shown-to-buffer in-buffer-name t type) success)
+        (funcall success)))))
 
 ;;;###autoload
 (defun jcs-jump-shown-to-buffer (in-buffer-name &optional no-error type)
