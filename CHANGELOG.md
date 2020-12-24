@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-12-24
+
+* Added reveal truncate path from dashboard when using ivy.
+
 ### 2020-12-23
 
 * Fixed dashboard refresh, respect to last visisted valid buffer.
