@@ -21,7 +21,7 @@
   (add-to-list 'auto-read-only-file-regexps "/lisp/")
 
   (defun jcs--auto-read-only--hook-find-file ()
-    "Advice wrap `auto-read-only--hook-find-file' function."
+    "Advice override function `auto-read-only--hook-find-file'."
     (when (and (not jcs-package-installing-p)
                (not (jcs-project-current)))
       (auto-read-only)))
