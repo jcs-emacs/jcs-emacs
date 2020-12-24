@@ -1165,7 +1165,8 @@ NO-RECORD and FORCE-SAME-WINDOW are the same as switch to buffer arguments."
       (jcs-switch-to-previous-buffer)))
   ;; If something that I doesn't want to see, bury it.
   ;; For instance, any `*helm-' buffers.
-  (jcs-bury-diminished-buffer))
+  (jcs-bury-diminished-buffer)
+  (jcs-buffer-menu-safe-refresh))
 
 (defun jcs--kill-buffer--advice-after (&rest _)
   "Advice execute after function `kill-buffer'."
