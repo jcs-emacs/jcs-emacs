@@ -135,26 +135,26 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
   (jcs--lsp-ui-doc--hide-frame)
   (if (not jcs-use-undo-tree-key)
       (call-interactively #'undo)  ; In Emacs, undo/redo is the same thing.
-    (save-selected-window
-      (let ((record-window (selected-window))
-            (jumped-to-utv (jcs-jump-shown-to-buffer undo-tree-visualizer-buffer-name
-                                                     t 'strict)))
-        ;; NOTE: If we do jumped to the `undo-tree-visualizer-buffer-name'
-        ;; buffer, then we use `undo-tree-visualize-redo' instead of
-        ;; `undo-tree-redo'. Because directly called `undo-tree-visualize-redo'
-        ;; key is way faster than `undo-tree-redo' key.
-        (if jumped-to-utv
-            (if ud (undo-tree-visualize-undo) (undo-tree-visualize-redo))
-          (select-window record-window)
-          (if ud (undo-tree-undo) (undo-tree-redo))
-          (jcs-undo-tree-visualize))
-        ;; STUDY: weird that they use word toggle, instead of just set it.
-        ;;
-        ;; Why not?
-        ;;   => `undo-tree-visualizer-show-diff'
-        ;; or
-        ;;   => `undo-tree-visualizer-hide-diff'
-        (when jcs-undo-tree-auto-show-diff (undo-tree-visualizer-toggle-diff))))))
+    ;; NOTE: If we do jumped to the `undo-tree-visualizer-buffer-name'
+    ;; buffer, then we use `undo-tree-visualize-redo' instead of
+    ;; `undo-tree-redo'. Because directly called `undo-tree-visualize-redo'
+    ;; key is way faster than `undo-tree-redo' key.
+    (jcs-safe-jump-shown-to-buffer
+     undo-tree-visualizer-buffer-name :type 'strict
+     :success
+     (lambda ()
+       (if ud (undo-tree-visualize-undo) (undo-tree-visualize-redo)))
+     :error
+     (lambda ()
+       (if ud (undo-tree-undo) (undo-tree-redo))
+       (jcs-undo-tree-visualize)))
+    ;; STUDY: weird that they use word toggle, instead of just set it.
+    ;;
+    ;; Why not?
+    ;;   => `undo-tree-visualizer-show-diff'
+    ;; or
+    ;;   => `undo-tree-visualizer-hide-diff'
+    (when jcs-undo-tree-auto-show-diff (undo-tree-visualizer-toggle-diff))))
 
 ;;;###autoload
 (defun jcs-undo ()
@@ -1182,23 +1182,22 @@ NO-RECORD and FORCE-SAME-WINDOW are the same as switch to buffer arguments."
   "Advice execute around command `kill-this-buffer' with FNC and ARGS."
   (require 'undo-tree)
   (let ((target-kill-buffer (jcs-buffer-name-or-buffer-file-name))
-        (undoing-buffer-name nil)
-        (jumped-to-utv nil))
-    (save-selected-window
-      (setq jumped-to-utv (jcs-jump-shown-to-buffer undo-tree-visualizer-buffer-name
-                                                    t 'strict))
-      (when jumped-to-utv
-        (setq undoing-buffer-name (buffer-name undo-tree-visualizer-parent-buffer))))
+        undoing-buffer-name)
+    (jcs-safe-jump-shown-to-buffer
+     undo-tree-visualizer-buffer-name :type 'strict
+     :success
+     (lambda ()
+       (setq undoing-buffer-name
+             (buffer-name undo-tree-visualizer-parent-buffer))))
 
     (apply fnc args)
 
     ;; If `undo-tree' visualizer exists, kill it too.
-    (when jumped-to-utv
-      (when (and undoing-buffer-name
-                 (string-match-p undoing-buffer-name target-kill-buffer)
-                 ;; Only close `undo-tree' when buffer is killed.
-                 (not (string= target-kill-buffer (jcs-buffer-name-or-buffer-file-name))))
-        (jcs-undo-kill-this-buffer)))))
+    (when (and undoing-buffer-name
+               (string-match-p undoing-buffer-name target-kill-buffer)
+               ;; Only close `undo-tree' when buffer is killed.
+               (not (string= target-kill-buffer (jcs-buffer-name-or-buffer-file-name))))
+      (jcs-undo-kill-this-buffer))))
 (advice-add 'kill-this-buffer :around #'jcs--kill-this-buffer--advice-around)
 
 ;;;###autoload
