@@ -200,28 +200,32 @@
 ;; (@* "Truncate" )
 ;;
 
-(defun jcs-dashboard--real-path-alist (id alist)
-  "Return real path by ID from dahsboard path ALIST.
+(defun jcs-dashboard--real-path-alist (index alist)
+  "Return real path by INDEX from dahsboard path ALIST."
+  (cdr (nth index (reverse alist))))
 
-Notice this is not percise because we are using function `string-match-p'
-to check for ID."
-  (cl-some (lambda (item) (when (string-match-p id (car item)) (cdr item))) alist))
+(defun jcs-dashboard-get-path-alist ()
+  "Return path from current point."
+  (or (jcs-dashboard--real-path-alist
+       (jcs-dashboard-path-index 'recents) dashboard-recentf-alist)
+      (jcs-dashboard--real-path-alist
+       (jcs-dashboard-path-index 'projects) dashboard-projects-alist)))
 
-(defun jcs-dashboard-get-path-alist (id)
-  "Return path that matches the ID from all alists possible from dashboard."
-  (or (jcs-dashboard--real-path-alist id dashboard-recentf-alist)
-      (jcs-dashboard--real-path-alist id dashboard-projects-alist)))
+(defun jcs-dashboard--goto-section (name)
+  "Move to section NAME declares in variable `dashboard-item-shortcuts'."
+  (let ((key (cdr (assoc name dashboard-item-shortcuts))))
+    (when key (execute-kbd-macro (kbd key)))))
 
-(defun jcs-dashboard-path-id (&optional pos)
-  "Return the id from POS."
-  (require 's)
-  (save-excursion
-    (when pos (goto-char pos))
-    (let ((line (thing-at-point 'line)) start)
-      (setq line (s-replace "\n" "" line)
-            line (string-trim line)
-            start (string-match-p "/" line))
-      (substring line start))))
+(defun jcs-dashboard-path-index (name &optional pos)
+  "Return the idex by NAME from POS."
+  (let (target-ln section-line)
+    (save-excursion
+      (when pos (goto-char pos))
+      (setq target-ln (line-number-at-pos))
+      (jcs-dashboard--goto-section name)
+      (setq section-line (line-number-at-pos)))
+    (global-hl-line-mode 1)
+    (- target-ln section-line)))
 
 (defun jcs-dashboard--on-path-item-p ()
   "Return non-nil if current point is on the item path from dashboard."
@@ -235,7 +239,7 @@ to check for ID."
 This advice is used when function `counsel--preselect-file' trying to
 get the truncate path from dashboard buffer (ffap)."
   (if (jcs-dashboard--on-path-item-p)
-      (jcs-dashboard-get-path-alist (jcs-dashboard-path-id))
+      (jcs-dashboard-get-path-alist)
     (apply fnc args)))
 (advice-add 'ffap-guesser :around #'jcs--ffap-guesser--advice-around)
 
