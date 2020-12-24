@@ -7,7 +7,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ### 2020-12-24
 
-* Added reveal truncate path from dashboard when using ivy.
+* Added reveal truncate path from dashboard when using counsel.
 
 ### 2020-12-23
 
