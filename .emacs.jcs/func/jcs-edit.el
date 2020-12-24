@@ -19,7 +19,7 @@ This variable must be use with `jcs-undo' and `jcs-redo' functions.")
 (defvar jcs-undo-tree-auto-show-diff nil
   "Show the difference code when undo tree minor mode is active.")
 
-(defvar jcs--splits-windows nil
+(defvar jcs--undo-splits-windows nil
   "Flag to check if the window splits.")
 
 ;;;###autoload
@@ -70,9 +70,9 @@ This will no longer overwrite usual Emacs' undo key."
 
 (defun jcs--undo-tree-visualizer-quit--advice-after (&rest _)
   "Advice execute after `undo-tree-visualizer-quit' function."
-  (when jcs--splits-windows
+  (when jcs--undo-splits-windows
     (delete-window)
-    (setq jcs--splits-windows nil)
+    (setq jcs--undo-splits-windows nil)
     (switch-to-buffer undo-tree-visualizer-parent-buffer)))
 
 (advice-add 'undo-tree-visualizer-quit :after #'jcs--undo-tree-visualizer-quit--advice-after)
@@ -96,7 +96,7 @@ CBF : Current buffer file name."
         (current-window (selected-window)))
     (when (< win-len 2)
       (jcs-balance-split-window-horizontally)
-      (setq jcs--splits-windows t))
+      (setq jcs--undo-splits-windows t))
     (save-selected-window
       (other-window 1)
       (jcs-walk-through-all-windows-once
