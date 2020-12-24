@@ -1168,16 +1168,6 @@ NO-RECORD and FORCE-SAME-WINDOW are the same as switch to buffer arguments."
   (jcs-bury-diminished-buffer)
   (jcs-buffer-menu-safe-refresh))
 
-(defun jcs--kill-buffer--advice-after (&rest _)
-  "Advice execute after function `kill-buffer'."
-  (when (and (boundp 'dashboard-buffer-name)
-             (string= (buffer-name) dashboard-buffer-name))
-    ;; TODO: not working correctly...
-    ;;(setq jcs-dashboard--last-ls-path nil)
-    )
-  (jcs-dashboard-safe-refresh-buffer))
-(advice-add 'kill-buffer :after #'jcs--kill-buffer--advice-after)
-
 (defun jcs--kill-this-buffer--advice-around (fnc &rest args)
   "Advice execute around command `kill-this-buffer' with FNC and ARGS."
   (require 'undo-tree)
@@ -1212,6 +1202,7 @@ NO-RECORD and FORCE-SAME-WINDOW are the same as switch to buffer arguments."
       (message "Remove parent directory that were virtual => '%s'" del-path)))
   (kill-this-buffer)
   (jcs-buffer-menu-safe-refresh)
+  (jcs-dashboard-refresh-buffer)
   ;; If still in the buffer menu, try switch to the previous buffer.
   (when (jcs-buffer-menu-p) (jcs-switch-to-previous-buffer)))
 
