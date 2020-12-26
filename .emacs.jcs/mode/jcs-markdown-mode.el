@@ -10,8 +10,9 @@
 
 (setq markdown-fontify-code-blocks-natively t)
 
-(add-to-list 'markdown-code-lang-modes '("el" . emacs-lisp-mode))
 (add-to-list 'markdown-code-lang-modes '("cs" . csharp-mode))
+(add-to-list 'markdown-code-lang-modes '("el" . emacs-lisp-mode))
+(add-to-list 'markdown-code-lang-modes '("cl" . lisp-mode))
 
 ;;
 ;; (@* "Hook" )
