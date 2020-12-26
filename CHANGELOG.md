@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-12-26
+
+* Enabled fontify code blocks natively for `markdown-mode` as default behaviour.
+
 ### 2020-12-24
 
 * Added reveal truncate path from dashboard when using counsel.
