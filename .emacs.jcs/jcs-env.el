@@ -372,6 +372,9 @@ If ACT is non-nil; then make scroll less jumpy."
         uniquify-ignore-buffers-re "^\\*"  ; don't muck with special buffers
         uniquify-separator "/"))
 
+;;; Variables
+(setq enable-local-variables nil)
+
 ;;; Windows
 (defconst jcs-windows--enlarge-shrink-times 6
   "Times to shrink inside the window.")
