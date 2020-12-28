@@ -138,7 +138,7 @@ Just use this without remember Emacs Lisp function."
   (call-interactively #'next-line))
 
 (defun jcs-nav--after-smart-move-line ()
-  "Do stuff after smar move line."
+  "Do stuff after smart move line."
   (cond ((jcs-current-line-empty-p)
          (end-of-line))
         ((and (jcs-is-infront-first-char-at-line-p)
