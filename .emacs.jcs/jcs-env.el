@@ -373,7 +373,7 @@ If ACT is non-nil; then make scroll less jumpy."
         uniquify-separator "/"))
 
 ;;; Variables
-(setq enable-local-variables nil)
+(setq enable-local-variables :safe)
 
 ;;; Windows
 (defconst jcs-windows--enlarge-shrink-times 6
