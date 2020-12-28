@@ -15,7 +15,22 @@
       (font-lock-add-keywords
        mode
        '(("\\(#[[:blank:][:graph:]]*\\)" 1 'font-lock-comment-face))
-       'end))))
+       'end)))
+  ;; Code Block
+  (set-face-attribute 'org-block nil
+                      :inherit nil
+                      :foreground (face-foreground 'default)
+                      :background "#2B2B2B"
+                      :extend t)
+  ;; Header
+  (set-face-attribute 'org-level-1 nil :foreground "#B5CCEB")
+  (set-face-attribute 'org-level-2 nil :foreground "#B5CCEB")
+  (set-face-attribute 'org-level-3 nil :foreground "#B5CCEB")
+  (set-face-attribute 'org-level-4 nil :foreground "#B5CCEB")
+  (set-face-attribute 'org-level-5 nil :foreground "#B5CCEB")
+  (set-face-attribute 'org-level-6 nil :foreground "#B5CCEB")
+  (set-face-attribute 'org-level-7 nil :foreground "#B5CCEB")
+  (set-face-attribute 'org-level-8 nil :foreground "#B5CCEB"))
 
 ;;
 ;; (@* "Table" )
