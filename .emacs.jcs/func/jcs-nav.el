@@ -137,23 +137,27 @@ Just use this without remember Emacs Lisp function."
   (interactive)
   (call-interactively #'next-line))
 
+(defun jcs-nav--after-smart-move-line ()
+  "Do stuff after smar move line."
+  (cond ((jcs-current-line-empty-p)
+         (end-of-line))
+        ((and (jcs-is-infront-first-char-at-line-p)
+              (re-search-forward "[^[:space:]\t]" (line-end-position) t))
+         (forward-char -1))))
+
 ;;;###autoload
 (defun jcs-smart-previous-line ()
   "Smart way to navigate to previous line."
   (interactive)
   (jcs-previous-line)
-  (if (re-search-forward "[^[:space:]\t]" (line-end-position) t)
-      (forward-char -1)
-    (end-of-line)))
+  (jcs-nav--after-smart-move-line))
 
 ;;;###autoload
 (defun jcs-smart-next-line ()
   "Smart way to navigate to next line."
   (interactive)
   (jcs-next-line)
-  (if (re-search-forward "[^[:space:]\t]" (line-end-position) t)
-      (forward-char -1)
-    (end-of-line)))
+  (jcs-nav--after-smart-move-line))
 
 ;;
 ;; (@* "Move Between Word (Wrapper)" )
