@@ -336,7 +336,6 @@ OW is the other window flag."
   (when (or (not jcs-emacs-ready-p)
             (jcs-buffer-shown-p dashboard-buffer-name 'strict)
             jcs-dashboard--force-refresh-p)
-    (jcs-dashboard-init-info)
     (jcs-mute-apply
       (jcs-window-record-once)
       (let ((dashboard-ls-path (jcs-last-default-directory))
