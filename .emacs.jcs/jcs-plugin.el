@@ -175,7 +175,7 @@
   (setq dashboard-banner-logo-title "[J C S • E M A C S]"
         dashboard-footer-icon ""
         dashboard-footer-messages
-        `(,(format "╬ Copyright (c) %s Shen, Jen-Chieh ╬" (jcs-get-year-only)))
+        `(,(format "Copyright (c) %s Shen, Jen-Chieh" (jcs-get-year-only)))
         dashboard-init-info (format "%d + %d packages loaded in %0.1f seconds"
                                     (length package-activated-list)
                                     (length jcs-package-manually-install-list)
@@ -202,13 +202,6 @@
         dashboard-projects-show-base 'align)
   :config
   (setq initial-buffer-choice (lambda () (get-buffer dashboard-buffer-name)))
-
-  (defun jcs-dashboard-init-info ()
-    "Initialize startup information for variable `dashboard-init-info'."
-    (setq dashboard-init-info
-          (format "[ %s ] [ Total took %0.1f seconds ]"
-                  dashboard-init-info
-                  (string-to-number (emacs-init-time)))))
 
   (require 'dashboard-ls)
   (defun jcs--dashboard-insert-page-break--advice-before (&rest _)
