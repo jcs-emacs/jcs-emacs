@@ -22,7 +22,7 @@
 (setq package-check-signature nil)
 
 ;; initialize package.el
-(when (or (version< emacs-version "27.1") (featurep 'esup-child))
+(when (featurep 'esup-child)
   (package-initialize))
 
 ;;
