@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-12-29
+
+* Simplify the dashboard startup info.
+
 ### 2020-12-28
 
 * Fixed smart previous/next line logic while during line.
