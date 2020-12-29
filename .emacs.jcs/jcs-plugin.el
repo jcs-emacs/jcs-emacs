@@ -176,10 +176,6 @@
         dashboard-footer-icon ""
         dashboard-footer-messages
         `(,(format "Copyright (c) %s Shen, Jen-Chieh" (jcs-get-year-only)))
-        dashboard-init-info (format "%d + %d packages loaded in %0.1f seconds"
-                                    (length package-activated-list)
-                                    (length jcs-package-manually-install-list)
-                                    (string-to-number jcs-package-init-time))
         dashboard-items '((recents . 10)
                           (projects . 10)
                           ;;(bookmarks . 10)
@@ -208,17 +204,6 @@
     "Re-new page separator."
     (setq dashboard-page-separator (format "\n%s\n" (jcs-env-separator))))
   (advice-add #'dashboard-insert-page-break :before #'jcs--dashboard-insert-page-break--advice-before)
-
-  (defun jcs-dashboard-before-setup ()
-    "Execution before dashboard setup."
-    (jcs-project-list-clean))
-  (advice-add 'dashboard-insert-startupify-lists :before #'jcs-dashboard-before-setup)
-
-  (defun jcs-dashboard-after-setup ()
-    "Execution after dashboard setup."
-    (with-current-buffer dashboard-buffer-name
-      (setq-local revert-buffer-function 'jcs-dashboard-revert)))
-  (advice-add 'dashboard-insert-startupify-lists :after #'jcs-dashboard-after-setup)
 
   (dashboard-setup-startup-hook))
 
