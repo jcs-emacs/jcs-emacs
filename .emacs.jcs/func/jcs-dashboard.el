@@ -50,10 +50,22 @@
 ;; (@* "Refresh" )
 ;;
 
+(defun jcs-dashboard-before-setup ()
+  "Execution before dashboard setup."
+  (jcs-dashboard-init-info)
+  (jcs-project-list-clean))
+(advice-add 'dashboard-insert-startupify-lists :before #'jcs-dashboard-before-setup)
+
+(defun jcs-dashboard-after-setup ()
+  "Execution after dashboard setup."
+  (with-current-buffer dashboard-buffer-name
+    (setq-local revert-buffer-function 'jcs-dashboard-revert)))
+(advice-add 'dashboard-insert-startupify-lists :after #'jcs-dashboard-after-setup)
+
 (defun jcs-dashboard-init-info ()
   "Initialize startup information for variable `dashboard-init-info'."
   (setq dashboard-init-info
-        (format "%s packages loaded in %s seconds"
+        (format "%s packages loaded in %0.1f seconds"
                 (length package-activated-list)
                 (string-to-number (emacs-init-time)))))
 
