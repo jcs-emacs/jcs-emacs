@@ -47,8 +47,15 @@
       (goto-char blank-pt))))
 
 ;;
-;; (@* "Revert" )
+;; (@* "Refresh" )
 ;;
+
+(defun jcs-dashboard-init-info ()
+  "Initialize startup information for variable `dashboard-init-info'."
+  (setq dashboard-init-info
+        (format "%s packages loaded in %s seconds"
+                (length package-activated-list)
+                (string-to-number (emacs-init-time)))))
 
 (defun jcs-dashboard-revert (&rest _)
   "Revert for dashboard buffer."
