@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2020-12-31
+
+* Added save scroll conservatively macro.
+* Added save window layout/settings macro.
+* Fixed recentering redisplay issue while upgrading packages.
+
 ### 2020-12-29
 
 * Simplify the dashboard startup info.
