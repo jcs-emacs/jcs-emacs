@@ -11,13 +11,11 @@
 A message including the given TITLE and the corresponding elapsed
 time is displayed."
   (declare (indent 1))
-  (let ((nowvar (make-symbol "now"))
-        (body   `(progn ,@forms)))
+  (let ((nowvar (make-symbol "now")) (body `(progn ,@forms)))
     `(let ((,nowvar (current-time)))
        (message "%s..." ,title)
        (prog1 ,body
-         (let ((elapsed
-                (float-time (time-subtract (current-time) ,nowvar))))
+         (let ((elapsed (float-time (time-subtract (current-time) ,nowvar))))
            (message "%s... done (%.3fs)" ,title elapsed))))))
 
 (defmacro jcs-save-excursion (&rest body)
@@ -32,6 +30,22 @@ time is displayed."
   "Execute BODY when return point."
   (declare (indent 0) (debug t))
   `(save-excursion (progn ,@body) (point)))
+
+(defmacro jcs-save-scroll-conservatively (&rest body)
+  "Execute BODY by saving value of variable `scroll-conservatively'."
+  (declare (indent 0) (debug t))
+  `(progn
+     (jcs-scroll-conservatively-enable)
+     (progn ,@body)
+     (jcs-scroll-conservatively-disable)))
+
+(defmacro jcs-save-window-excursion (&rest body)
+  "Execute BODY without touching window's layout/settings."
+  (declare (indent 0) (debug t))
+  `(progn
+     (jcs-window-record-once)
+     (progn ,@body)
+     (jcs-window-restore-once)))
 
 ;;
 ;; (@* "Buffer" )
@@ -993,7 +1007,7 @@ If optional argument REL-LINE is nil; we will use first visible line instead."
 (defun jcs-recenter-top-bottom (type)
   "Recenter the window by TYPE."
   (let ((recenter-positions (jcs--recenter-positions type)))
-    (recenter-top-bottom)))
+    (ignore-errors (recenter-top-bottom))))
 
 (defun jcs-move-to-window-line-top-bottom (type)
   "Move to window line by TYPE."
