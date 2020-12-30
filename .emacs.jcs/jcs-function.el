@@ -337,11 +337,10 @@ OW is the other window flag."
             (jcs-buffer-shown-p dashboard-buffer-name 'strict)
             jcs-dashboard--force-refresh-p)
     (jcs-mute-apply
-      (jcs-window-record-once)
-      (let ((dashboard-ls-path (jcs-last-default-directory))
-            (dashboard-path-max-length (jcs-dasbhoard--get-path-length)))
-        (dashboard-refresh-buffer))
-      (jcs-window-restore-once))))
+      (jcs-save-window-excursion
+        (let ((dashboard-ls-path (jcs-last-default-directory))
+              (dashboard-path-max-length (jcs-dasbhoard--get-path-length)))
+          (dashboard-refresh-buffer))))))
 
 (defun jcs-dashboard-safe-refresh-buffer ()
   "Safely refresh the dashboard buffer if needed."
@@ -551,9 +550,8 @@ OW is the other window flag."
     (when do-play
       (setq media-path (jcs-select-file))
       (when media-path
-        (jcs-window-record-once)
-        (save-window-excursion (ffmpeg-player-video media-path))
-        (jcs-window-restore-once)
+        (jcs-save-window-excursion
+          (save-window-excursion (ffmpeg-player-video media-path)))
         (jcs-media--open-media-window)))))
 
 ;;
