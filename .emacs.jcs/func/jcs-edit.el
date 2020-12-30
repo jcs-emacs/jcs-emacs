@@ -133,28 +133,29 @@ CBF : Current buffer file name."
 If UD is non-nil, do undo.  If UD is nil, do redo."
   (require 'undo-tree)
   (jcs--lsp-ui-doc--hide-frame)
-  (if (not jcs-use-undo-tree-key)
-      (call-interactively #'undo)  ; In Emacs, undo/redo is the same thing.
-    ;; NOTE: If we do jumped to the `undo-tree-visualizer-buffer-name'
-    ;; buffer, then we use `undo-tree-visualize-redo' instead of
-    ;; `undo-tree-redo'. Because directly called `undo-tree-visualize-redo'
-    ;; key is way faster than `undo-tree-redo' key.
-    (jcs-safe-jump-shown-to-buffer
-     undo-tree-visualizer-buffer-name :type 'strict
-     :success
-     (lambda ()
-       (if ud (undo-tree-visualize-undo) (undo-tree-visualize-redo)))
-     :error
-     (lambda ()
-       (if ud (undo-tree-undo) (undo-tree-redo))
-       (jcs-undo-tree-visualize)))
-    ;; STUDY: weird that they use word toggle, instead of just set it.
-    ;;
-    ;; Why not?
-    ;;   => `undo-tree-visualizer-show-diff'
-    ;; or
-    ;;   => `undo-tree-visualizer-hide-diff'
-    (when jcs-undo-tree-auto-show-diff (undo-tree-visualizer-toggle-diff))))
+  (jcs-save-scroll-conservatively
+    (if (not jcs-use-undo-tree-key)
+        (call-interactively #'undo)  ; In Emacs, undo/redo is the same thing.
+      ;; NOTE: If we do jumped to the `undo-tree-visualizer-buffer-name'
+      ;; buffer, then we use `undo-tree-visualize-redo' instead of
+      ;; `undo-tree-redo'. Because directly called `undo-tree-visualize-redo'
+      ;; key is way faster than `undo-tree-redo' key.
+      (jcs-safe-jump-shown-to-buffer
+       undo-tree-visualizer-buffer-name :type 'strict
+       :success
+       (lambda ()
+         (if ud (undo-tree-visualize-undo) (undo-tree-visualize-redo)))
+       :error
+       (lambda ()
+         (if ud (undo-tree-undo) (undo-tree-redo))
+         (jcs-undo-tree-visualize)))
+      ;; STUDY: weird that they use word toggle, instead of just set it.
+      ;;
+      ;; Why not?
+      ;;   => `undo-tree-visualizer-show-diff'
+      ;; or
+      ;;   => `undo-tree-visualizer-hide-diff'
+      (when jcs-undo-tree-auto-show-diff (undo-tree-visualizer-toggle-diff)))))
 
 ;;;###autoload
 (defun jcs-undo ()
@@ -691,9 +692,8 @@ Argument TYPE can either be the following value.
 (defun jcs-revert-all-buffers ()
   "Refresh all open file buffers without confirmation."
   (interactive)
-  (jcs-window-record-once)
-  (save-window-excursion (jcs-revert-all-virtual-buffers jcs-revert-default-buffers))
-  (jcs-window-restore-once)
+  (jcs-save-window-excursion
+    (save-window-excursion (jcs-revert-all-virtual-buffers jcs-revert-default-buffers)))
   (save-window-excursion (jcs-revert-all-valid-buffers nil)))
 
 (defun jcs-ask-revert-all (bufs &optional index)
