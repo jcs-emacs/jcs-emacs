@@ -10,6 +10,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Added save scroll conservatively macro.
 * Added save window layout/settings macro.
 * Fixed recentering redisplay issue while upgrading packages.
+* Start with `tree-sitter` support.
 
 ### 2020-12-29
 
