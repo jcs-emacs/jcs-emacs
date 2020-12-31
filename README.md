@@ -114,6 +114,7 @@ without having to get used to an new IDE.
 
 Here is the list of few important and recent changes to this configuration.
 
+* `6.4.1` - Start with `tree-sitter` support.
 * `6.4.0` - Switched from `projectile` to built-in `project` for project management.
 * `6.3.1` - Replaced `docstring` module to external `docstr` package.
 * `6.2.5` - Use `recipes` folder instead to specify manually installed packages in the configuration.
