@@ -180,6 +180,8 @@
     swiper
     togetherly
     transwin
+    tree-sitter-indent
+    tree-sitter-langs
     typescript-mode
     undo-tree
     use-ttf
