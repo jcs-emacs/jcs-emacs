@@ -125,7 +125,6 @@ Here is the list of few important and recent changes to this configuration.
 * `6.0.5` - Replace `sr-speedbar` with `neotree` instead.
 * `6.0.3` - Started integrating more `lsp-mode` and `dap-mode` details.
 * `6.0.0` - Switched from `helm` to `ivy` due to `helm`'s instability.
-* `5.9.3` - The last version to support `helm`.
 
 ## :floppy_disk: Installation
 
