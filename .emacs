@@ -54,9 +54,7 @@ decrease this. If you experience stuttering, increase this.")
 
 (defun jcs-gc-cons-threshold-speed-up (speedup)
   "Set the `gc-cons-threshold' depends on SPEEDUP."
-  (if speedup
-      (setq gc-cons-threshold jcs-gc-cons-upper-limit)
-    (setq gc-cons-threshold jcs-gc-cons-threshold)))
+  (setq gc-cons-threshold (if speedup jcs-gc-cons-upper-limit jcs-gc-cons-threshold)))
 
 ;; NOTE: Raise the `GC' threshold when starting Emacs.
 (jcs-gc-cons-threshold-speed-up t)
