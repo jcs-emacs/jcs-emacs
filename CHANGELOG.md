@@ -11,6 +11,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Added save window layout/settings macro.
 * Fixed recentering redisplay issue while upgrading packages.
 * Start with `tree-sitter` support.
+* Fixed dashboard not reverting while on `focus-in-hook`.
+* Fixed jumpy dashboard while visiting it's buffer.
 
 ### 2020-12-29
 
