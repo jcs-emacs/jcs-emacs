@@ -49,10 +49,10 @@ Note this is opposite logic to the toggle mode function."
 
 (defun jcs-use-cc-style-comment ()
   "Use c-style commenting instead of two slashes."
-  (setq-local comment-start "/*")
-  (setq-local comment-start-skip "/\\*+[ \t]*")
-  (setq-local comment-end "*/")
-  (setq-local comment-end-skip "[ \t]*\\*+/"))
+  (setq-local comment-start "/*"
+              comment-start-skip "/\\*+[ \t]*"
+              comment-end "*/"
+              comment-end-skip "[ \t]*\\*+/"))
 
 (defun jcs-use-cc-mutliline-comment ()
   "Fixed multiline comment."
