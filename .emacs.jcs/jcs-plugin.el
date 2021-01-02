@@ -603,7 +603,7 @@
           (objc-mode             . 4)
           (python-mode           . 4)
           (rjsx-mode             . 2)
-          (ruby-mode             . 4)
+          (ruby-mode             . 2)
           (rust-mode             . 4)
           (scss-mode             . 2)
           (shader-mode           . 4)
