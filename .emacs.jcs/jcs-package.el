@@ -91,6 +91,7 @@
     flycheck-popup-tip
     flycheck-pos-tip
     fountain-mode
+    fsharp-mode
     gdscript-mode
     gitattributes-mode
     gitconfig-mode
