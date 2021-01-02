@@ -413,6 +413,7 @@ Note this is opposite logic to the toggle mode function."
 (with-eval-after-load 'erlang (require 'jcs-erlang-mode))
 (with-eval-after-load 'ess-r-mode (require 'jcs-r-mode))
 (with-eval-after-load 'fountain-mode (require 'jcs-fountain-mode))
+(with-eval-after-load 'fsharp-mode (require 'jcs-fsharp-mode))
 (with-eval-after-load 'gdscript-mode (require 'jcs-gdscript-mode))
 (with-eval-after-load 'gitattributes-mode (require 'jcs-git-mode))
 (with-eval-after-load 'gitconfig-mode (require 'jcs-git-mode))
@@ -517,7 +518,8 @@ See `add-to-list' function description for argument APPEND."
 
 ;;; F
 (progn
-  (jcs-add-auto-mode-alist '("\\.fountain'?\\'" . fountain-mode)))
+  (jcs-add-auto-mode-alist '("\\.fountain'?\\'" . fountain-mode))
+  (jcs-add-auto-mode-alist '("\\.fs'?\\'" . fsharp-mode)))
 
 ;;; G
 (progn
