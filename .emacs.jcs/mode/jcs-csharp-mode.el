@@ -9,7 +9,7 @@
 ;;
 
 (defun jcs-csharp-mode-hook ()
-  "CSharp mode hook."
+  "Hook for C# mode."
   (preproc-font-lock-mode t)
 
   (setq-local docstr-show-type-name nil)
