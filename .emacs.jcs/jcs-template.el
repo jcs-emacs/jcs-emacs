@@ -50,6 +50,9 @@ FAILED is callback if does NOT successfully inserted header content."
 (defvar jcs--preload-double-slash-file-info nil
   "Preload the double slash file info template.")
 
+(defvar jcs--preload-triple-slash-file-info nil
+  "Preload the triple slash file info template.")
+
 (defvar jcs--preload-global-file-info nil
   "Preload the global file info template.")
 
@@ -77,6 +80,7 @@ in order to take effect.  Half hot reloading process."
         jcs--preload-double-quote-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/d_quote.txt")
         jcs--preload-double-semicolon-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/d_semicolon.txt")
         jcs--preload-double-slash-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/d_slash.txt")
+        jcs--preload-triple-slash-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/t_slash.txt")
         jcs--preload-global-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/global.txt")
         jcs--preload-semicolon-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/semicolon.txt")
         jcs--preload-sharp-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/sharp.txt")
@@ -121,6 +125,13 @@ in order to take effect.  Half hot reloading process."
 (defun jcs-insert-double-slash-file-info ()
   "Specific header format for double slash."
   (insert (jcs-get-double-slash-file-info)))
+
+(defun jcs-get-triple-slash-file-info ()
+  "Return the preloaded triple slash file info template."
+  (file-header-swap-keyword-template jcs--preload-triple-slash-file-info))
+(defun jcs-insert-triple-slash-file-info ()
+  "Specific header format for triple slash."
+  (insert (jcs-get-triple-slash-file-info)))
 
 (defun jcs-get-global-file-info ()
   "Return the preloaded global file info template."
@@ -272,6 +283,11 @@ in order to take effect.  Half hot reloading process."
 (defun jcs-insert-fountain-template ()
   "Template for Fountain Lisp."
   (file-header-insert-template-by-file-path "~/.emacs.jcs/template/fountain/default.txt"))
+
+;;; F#
+(defun jcs-insert-fsharp-template ()
+  "Header for F# header file."
+  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/fsharp/default.txt"))
 
 ;;; GLSL
 (defun jcs-insert-glsl-template ()
