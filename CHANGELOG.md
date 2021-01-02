@@ -9,6 +9,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 * Added triple slash header template.
 * Started programming language F# support.
+* Ensured `tree-sitter` properly installed when `prog-mode-hook`.
 
 ### 2021-01-02
 
