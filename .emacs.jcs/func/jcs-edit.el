@@ -263,7 +263,7 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
   (interactive)
   (if (jcs-current-line-empty-p)
       (let ((pt (point)))
-        (indent-for-tab-command)
+        (ignore-errors (indent-for-tab-command))
         (when (= pt (point)) (jcs-real-space)))
     (if (or (jcs-is-infront-first-char-at-line-p) (jcs-is-beginning-of-line-p))
         (jcs-insert-spaces-by-indent-level)
