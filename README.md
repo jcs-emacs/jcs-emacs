@@ -65,7 +65,7 @@ from this configuration.
 * C / C++ / C# / Clojure / CMake / COBOL / CSS
 * Dart / Dockerfile
 * Elixir / Emacs Lisp / Erlang
-* Fountain
+* F# / Fountain
 * GLSL / Go / Godot Script / Groovy
 * Haskell / Haxe / HTML
 * INI
