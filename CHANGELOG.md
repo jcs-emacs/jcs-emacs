@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2021-01-03
+
+* Added triple slash header template.
+* Started programming language F# support.
+
 ### 2021-01-02
 
 * Fixed indent issue for langauges that do not have indentation level definition.
