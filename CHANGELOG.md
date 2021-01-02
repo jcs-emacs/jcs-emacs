@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2021-01-02
+
+* Fixed indent issue for langauges that do not have indentation level definition.
+* Set default indentation level for `ruby-mode` to `2`.
+
 ### 2021-01-01
 
 * Simplify `setq-local` operator within each module.
