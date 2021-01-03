@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2021-01-04
+
+* Enabled `tree-sitter` as default behaviour.
+
 ### 2021-01-03
 
 * Added triple slash header template.
