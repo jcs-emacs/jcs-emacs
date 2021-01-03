@@ -315,8 +315,6 @@ Note this is opposite logic to the toggle mode function."
   (unless (jcs-is-current-major-mode-p jcs-non-generic-syntax-modes)
     (modify-syntax-entry ?- "_"))
 
-  (require 'tree-sitter-langs)
-
   ;; Load Docstring faces.
   (docstr-faces-apply)
 
