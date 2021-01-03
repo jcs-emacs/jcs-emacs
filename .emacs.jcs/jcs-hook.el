@@ -162,6 +162,8 @@
     ;;----------------------------------- `show-paren'
     ;; NOTE: turn on highlight matching brackets when cursor is on one
     (show-paren-mode t)
+    ;;----------------------------------- `tree-sitter'
+    (global-tree-sitter-mode 1)
     ;;----------------------------------- `use-ttf'
     (use-ttf-set-default-font)
     ;;----------------------------------- `which-key'
