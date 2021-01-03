@@ -170,6 +170,15 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
   (jcs--undo-or-redo nil))
 
 ;;
+;; (@* "Indentation" )
+;;
+
+(defun jcs--indent-line-to--advice-before (&rest _)
+  "Advice execute before function `indent-line-to'."
+  (indent-control-ensure-tab-width))
+(advice-add 'indent-line-to :before #'jcs--indent-line-to--advice-before)
+
+;;
 ;; (@* "Backspace" )
 ;;
 
