@@ -281,6 +281,7 @@
       (right-click-context-mode . right-click-context)
       (shift-select-minor-mode . shift-select)
       (show-eol-mode . show-eol)
+      (tree-sitter-mode . tree-sitter)
       (un-mini-mode . un-mini)
       (undo-tree-mode . undo-tree)
       (view-mode . view)
@@ -993,6 +994,10 @@
   ;; n = n * 2 spaces,
   ;; etc.
   (setq sql-indent-offset 1))
+
+(use-package tree-sitter
+  :init
+  (with-eval-after-load 'tree-sitter (require 'tree-sitter-langs)))
 
 (use-package un-mini
   :init
