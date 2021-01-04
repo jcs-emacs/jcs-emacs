@@ -882,8 +882,8 @@
 
   (defun jcs--popup-menu-item-of-mouse-event--advice-after (event)
     "Advice after execute `popup-menu-item-of-mouse-event' command."
-    (setq jcs-popup-mouse-events-flag-p t)
-    (setq jcs-popup-selected-item-flag-p nil))
+    (setq jcs-popup-mouse-events-flag-p t
+          jcs-popup-selected-item-flag-p nil))
   (advice-add 'popup-menu-item-of-mouse-event :after #'jcs--popup-menu-item-of-mouse-event--advice-after)
 
   (defun jcs--popup-selected-item--advice-after (popup)
