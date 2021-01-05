@@ -337,10 +337,11 @@ OW is the other window flag."
             (jcs-buffer-shown-p dashboard-buffer-name 'strict)
             jcs-dashboard--force-refresh-p)
     (jcs-mute-apply
-      (jcs-save-window-excursion
-        (let ((dashboard-ls-path (jcs-last-default-directory))
-              (dashboard-path-max-length (jcs-dasbhoard--get-path-length)))
-          (dashboard-refresh-buffer))))))
+      (jcs-save-scroll-conservatively
+        (jcs-save-window-excursion
+          (let ((dashboard-ls-path (jcs-last-default-directory))
+                (dashboard-path-max-length (jcs-dasbhoard--get-path-length)))
+            (dashboard-refresh-buffer)))))))
 
 (defun jcs-dashboard-safe-refresh-buffer ()
   "Safely refresh the dashboard buffer if needed."
