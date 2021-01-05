@@ -71,6 +71,11 @@
                (ignore-errors (call-interactively #'lsp-ui-doc-show))
              (jcs--lsp-current-last-signature-buffer))))))
 
+(defun jcs--lsp-ui-doc-resize ()
+  "Reset the size of the UI document frame."
+  (setq lsp-ui-doc-max-width (window-width)
+        lsp-ui-doc-max-height (window-height)))
+
 ;;
 ;; (@* "Registry" )
 ;;
@@ -108,6 +113,7 @@
 
 (defun jcs-lsp--window-size-change-functions (&rest _)
   "When window changed size."
+  (jcs--lsp-ui-doc-resize)
   (when (and (boundp 'lsp-mode) lsp-mode)
     (if (jcs--lsp-lv-buffer-alive-p)
         (setq jcs--lsp-lv-was-alive t)
