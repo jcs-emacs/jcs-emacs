@@ -213,8 +213,10 @@
   "Path point to all license template files.")
 
 ;;; Line Numbers
-(defconst jcs-line-numbers-ignore-buffers '("[*]+[[:ascii:]]+"
-                                            "magit: ")
+(defconst jcs-line-numbers-ignore-buffers
+  '("[*]+[[:ascii:]]+"
+    "magit: "
+    "tree-sitter-tree:")
   "List of buffers that you do not want to show line numbers in it.")
 
 (defconst jcs-line-numbers-ignore-buffer-exceptions '("*scratch*")
