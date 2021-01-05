@@ -32,9 +32,11 @@
     (dolist (mode missing-modes)
       (font-lock-add-keywords
        mode
-       '(("[=][ \t\n]*\\(null\\)" 1 'jcs-font-lock-null-face t)
-         ("[=][ \t\n]*\\(undefined\\)" 1 'jcs-font-lock-null-face t)
-         ("[:=][ \t\n]*\\(void\\)" 1 'jcs-font-lock-null-face t))
+       '(("[=][ \t\n]+\\(null\\)" 1 'jcs-font-lock-null-face t)
+         ("[=][ \t\n]+\\(undefined\\)" 1 'jcs-font-lock-null-face t)
+         ("[:=][ \t\n]+\\(void\\)" 1 'jcs-font-lock-null-face t)
+         ("return[ \t\n]+\\(null\\)" 1 'jcs-font-lock-null-face t)
+         ("return[ \t\n]+\\(void\\)" 1 'jcs-font-lock-null-face t))
        'end))))
 
 (provide 'jcs-typescript)
