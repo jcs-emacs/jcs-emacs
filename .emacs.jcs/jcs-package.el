@@ -157,7 +157,6 @@
     parse-it
     powerline
     powershell
-    preproc-font-lock
     processing-mode
     project-abbrev
     project
