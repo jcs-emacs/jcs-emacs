@@ -911,10 +911,6 @@
   ;; wave, zigzag, utf-8.
   (setq powerline-default-separator 'wave))
 
-(use-package preproc-font-lock
-  :init
-  (setq preproc-font-lock-modes '(cc-mode c-mode c++-mode csharp-mode nasm-mode)))
-
 (use-package project
   :config
   (setq project-vc-ignores
