@@ -220,15 +220,16 @@
 (defconst jcs-line-numbers-ignore-buffer-exceptions '("*scratch*")
   "These buffers wouldn't be ignored line numbers mode.")
 
-(defconst jcs-line-numbers-ignore-modes '("Custom-mode"
-                                          "dired-mode"
-                                          "doc-view-mode"
-                                          "eww-mode"
-                                          "help-mode"
-                                          "image-mode"
-                                          "message-mode"
-                                          "outline-mode"
-                                          "package-menu-mode")
+(defconst jcs-line-numbers-ignore-modes
+  '("Custom-mode"
+    "dired-mode"
+    "doc-view-mode"
+    "eww-mode"
+    "help-mode"
+    "image-mode"
+    "message-mode"
+    "outline-mode"
+    "package-menu-mode")
   "List of modes that you do not want to show line numbers in it.")
 
 ;;; Messages
@@ -253,6 +254,11 @@
   :init
   (setq use-package-always-defer t
         use-package-expand-minimally t))
+
+;;; Preprocessor
+(defconst jcs-preproc-modes
+  '(cc-mode c-mode c++-mode csharp-mode objc-mode masm-mode nasm-mode)
+  "List of preprocessor `major-mode'.")
 
 ;;; Previous/Next keys
 (defcustom jcs-prev/next-key-type 'smart
