@@ -9,6 +9,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 * Enabled `tree-sitter-hl-mode` as default behaviour.
 * Configured `tree-sitter-hl` faces for `light` and `dark` theme.
+* Removed package `preproc-font-lcok` and it's configuration.
+* Implements self-wrap preprocessor font lock implementation.
 
 ### 2021-01-04
 
