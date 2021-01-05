@@ -49,8 +49,7 @@
             (jcs--set-common-face 'tree-sitter-hl-face:operator "#020000")
             (jcs--set-common-face 'tree-sitter-hl-face:number "black")
             (jcs--set-common-face 'tree-sitter-hl-face:constant "#6F008A")
-            (jcs--set-common-face 'tree-sitter-hl-face:variable.special "#6F008A")
-            )
+            (jcs--set-common-face 'tree-sitter-hl-face:variable.special "#6F008A"))
         (jcs--set-common-face 'tree-sitter-hl-face:type.builtin "#38EFCA")
         (jcs--set-common-face 'tree-sitter-hl-face:type "#38EFCA")
         (jcs--set-common-face 'tree-sitter-hl-face:function "#D2D2D2")
@@ -61,8 +60,7 @@
         (jcs--set-common-face 'tree-sitter-hl-face:operator "#B4B4B3")
         (jcs--set-common-face 'tree-sitter-hl-face:number "#B5CEA8")
         (jcs--set-common-face 'tree-sitter-hl-face:constant "#B363BE")
-        (jcs--set-common-face 'tree-sitter-hl-face:variable.special "#B363BE")
-        ))))
+        (jcs--set-common-face 'tree-sitter-hl-face:variable.special "#B363BE")))))
 
 ;;
 ;; (@* "Common" )
@@ -73,6 +71,22 @@
   "Face for keywords like `null', `void', `nil', `undefined'."
   :group 'jcs)
 (defvar jcs-font-lock-null-face 'jcs-font-lock-null-face)
+
+;;
+;; (@* "Preprocessor" )
+;;
+
+(defface jcs-preproc-comment-face
+  '((default :inherit font-lock-preprocessor-face))
+  "Face for preprocessor comment."
+  :group 'jcs)
+(defvar jcs-preproc-comment-face 'jcs-preproc-comment-face)
+
+(defface jcs-preproc-comment-type-face
+  '((default :inherit font-lock-preprocessor-face))
+  "Face for preprocessor comment type."
+  :group 'jcs)
+(defvar jcs-preproc-comment-type-face 'jcs-preproc-comment-type-face)
 
 ;;
 ;; (@* "Web" )
@@ -142,7 +156,9 @@
 ;; (@* "Load face order" )
 ;;
 
-(with-eval-after-load 'cc-mode (jcs-init-java-faces))
+(with-eval-after-load 'cc-mode
+  (require 'jcs-preproc) (jcs-init-preproc-faces)
+  (jcs-init-java-faces))
 (with-eval-after-load 'css-mode (jcs-init-css-faces))
 (with-eval-after-load 'markdown-mode (jcs-init-markdown-faces))
 (with-eval-after-load 'org (jcs-init-org-faces))
