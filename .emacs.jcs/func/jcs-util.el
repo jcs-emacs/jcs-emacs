@@ -35,9 +35,9 @@ time is displayed."
   "Execute BODY by saving value of variable `scroll-conservatively'."
   (declare (indent 0) (debug t))
   `(progn
-     (jcs-scroll-conservatively-enable)
+     (jcs-scroll-conservatively-disable)
      (progn ,@body)
-     (jcs-scroll-conservatively-disable)))
+     (jcs-scroll-conservatively-enable)))
 
 (defmacro jcs-save-window-excursion (&rest body)
   "Execute BODY without touching window's layout/settings."
