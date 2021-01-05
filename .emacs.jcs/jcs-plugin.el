@@ -310,6 +310,7 @@
          '("[*]emacs[*]")  ; From `async'
          '("[*]lsp-" "[*][a-zA-Z0-9]+[-]*ls" "[*][a-zA-Z0-9]+::stderr[*]"
            "[*]csharp[*]")  ; From `lsp'
+         '("tree-sitter-tree:")
          '("[*]company")
          '("[*]Local Variables[*]")
          '("[*]Kill Ring[*]")  ; From `browse-kill-ring'
@@ -992,7 +993,7 @@
   :config
   (require 'tree-sitter-langs)
   (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
-  (jcs-reset-common-faces-by-theme))
+  (jcs-funcall-fboundp 'jcs-reset-common-faces-by-theme))
 
 (use-package un-mini
   :init
