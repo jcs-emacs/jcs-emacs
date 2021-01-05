@@ -5,9 +5,14 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2021-01-05
+
+* Enabled `tree-sitter-hl-mode` as default behaviour.
+* Configured `tree-sitter-hl` faces for `light` and `dark` theme.
+
 ### 2021-01-04
 
-* Enabled `tree-sitter` as default behaviour.
+* Enabled `tree-sitter-mode` as default behaviour.
 
 ### 2021-01-03
 
