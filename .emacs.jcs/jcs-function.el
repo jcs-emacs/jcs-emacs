@@ -565,6 +565,17 @@ OW is the other window flag."
   (user-error "Minimap no longer supported in this configuration"))
 
 ;;
+;; (@* "Preprocessor" )
+;;
+
+(defun jcs-reset-preproc-font-lock-by-theme ()
+  "Reset preprocessor's face by theme color."
+  (when (featurep 'preproc-font-lock)
+    (let ((fg (if (jcs-is-light-theme-p) "#6F008A" "#B363BE")))
+      (set-face-attribute 'preproc-font-lock-preprocessor-background nil
+                          :background nil :foreground fg :inherit nil))))
+
+;;
 ;; (@* "Prettify / Minify" )
 ;;
 
