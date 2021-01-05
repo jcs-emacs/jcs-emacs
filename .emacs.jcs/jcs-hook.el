@@ -117,7 +117,6 @@
     (require 'ivy)
     (require 'page-break-lines)
     (require 'powerline)
-    (require 'preproc-font-lock)
     (require 'region-occurrences-highlighter)
     (require 'right-click-context)
     (require 'use-ttf)
@@ -152,9 +151,6 @@
     (global-page-break-lines-mode 1)
     ;;----------------------------------- `powerline'
     (powerline-default-theme)
-    ;;----------------------------------- `preproc-font-lock'
-    (preproc-font-lock-global-mode t)
-    (preproc-font-lock-mode t)
     ;;----------------------------------- `region-occurrences-highlighter'
     (global-region-occurrences-highlighter-mode 1)
     ;;----------------------------------- `right-click-context'
