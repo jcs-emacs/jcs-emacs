@@ -255,11 +255,6 @@
   (setq use-package-always-defer t
         use-package-expand-minimally t))
 
-;;; Preprocessor
-(defconst jcs-preproc-modes
-  '(cc-mode c-mode c++-mode csharp-mode objc-mode masm-mode nasm-mode)
-  "List of preprocessor `major-mode'.")
-
 ;;; Previous/Next keys
 (defcustom jcs-prev/next-key-type 'smart
   "Key definition for previous and next line.

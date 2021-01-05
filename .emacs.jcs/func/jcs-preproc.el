@@ -6,6 +6,10 @@
 ;; (@* "Faces" )
 ;;
 
+(defconst jcs-preproc-modes
+  '(cc-mode c-mode c++-mode csharp-mode objc-mode masm-mode nasm-mode)
+  "List of preprocessor `major-mode'.")
+
 (defun jcs-init-preproc-faces ()
   "Initialize preprocessor mode faces highlihgting."
   (let ((case-fold-search t))
