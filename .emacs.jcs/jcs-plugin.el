@@ -913,10 +913,7 @@
 
 (use-package preproc-font-lock
   :init
-  (setq preproc-font-lock-modes '(cc-mode c-mode c++-mode csharp-mode nasm-mode))
-  :config
-  (set-face-attribute 'preproc-font-lock-preprocessor-background nil
-                      :background nil :foreground "#B363BE" :inherit nil))
+  (setq preproc-font-lock-modes '(cc-mode c-mode c++-mode csharp-mode nasm-mode)))
 
 (use-package project
   :config
@@ -996,8 +993,10 @@
   (setq sql-indent-offset 1))
 
 (use-package tree-sitter
-  :init
-  (with-eval-after-load 'tree-sitter (require 'tree-sitter-langs)))
+  :config
+  (require 'tree-sitter-langs)
+  (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
+  (jcs-reset-common-faces-by-theme))
 
 (use-package un-mini
   :init
