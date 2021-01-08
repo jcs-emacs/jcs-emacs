@@ -1209,6 +1209,7 @@ NO-RECORD and FORCE-SAME-WINDOW are the same as switch to buffer arguments."
            (del-path (f-slash (concat create-dir topest-dir))))
       (delete-directory del-path)
       (message "Remove parent directory that were virtual => '%s'" del-path)))
+  (when (featurep 'lsp-mode) (lsp-disconnect))
   (kill-this-buffer)
   (jcs-buffer-menu-safe-refresh)
   (jcs-dashboard-refresh-buffer)
@@ -1267,9 +1268,7 @@ other window."
   (interactive)
   (let ((current-bfn (buffer-file-name)))
     (when current-bfn
-      (jcs-window-record-once)
-      (jcs-kill-this-buffer)
-      (jcs-window-restore-once)
+      (jcs-save-window-excursion (jcs-kill-this-buffer))
       (message "Reopened file => '%s'" current-bfn))))
 
 ;;
