@@ -74,7 +74,6 @@ This will no longer overwrite usual Emacs' undo key."
     (delete-window)
     (setq jcs--undo-splits-windows nil)
     (switch-to-buffer undo-tree-visualizer-parent-buffer)))
-
 (advice-add 'undo-tree-visualizer-quit :after #'jcs--undo-tree-visualizer-quit--advice-after)
 
 (defun jcs-undo-kill-this-buffer ()
@@ -228,7 +227,6 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
     (save-excursion
       (forward-line -1)
       (when (jcs-current-line-totally-empty-p) (insert ln-cur)))))
-
 (advice-add 'newline :around #'jcs--newline--advice-around)
 
 ;;;###autoload
@@ -348,7 +346,6 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
         (set-face-attribute 'mc/cursor-face nil :underline t :inverse-video nil))
     (setq-local cursor-type 'box)
     (set-face-attribute 'mc/cursor-face nil :underline nil :inverse-video t)))
-
 (advice-add 'overwrite-mode :after #'jcs--overwrite-mode--advice-after)
 
 ;;
@@ -916,17 +913,17 @@ This variable is used to check if file are edited externally.")
   "Update variable `jcs-buffer-save-string-md5' once."
   (setq jcs-buffer-save-string-md5 (md5 (buffer-string))))
 
-(defun jcs-do-stuff-before-save (&rest _)
-  "Do stuff before save command is executed."
+(defun jcs--save-buffer--advice-before (&rest _)
+  "Execution before function `save-buffer'."
   (when (fboundp 'company-abort) (company-abort)))
-(advice-add 'save-buffer :before #'jcs-do-stuff-before-save)
+(advice-add 'save-buffer :before #'jcs--save-buffer--advice-before)
 
-(defun jcs-do-stuff-after-save (&rest _)
-  "Do stuff after save command is executed."
+(defun jcs--save-buffer--advice-after (&rest _)
+  "Execution after function `save-buffer'."
   (jcs-update-buffer-save-string)
   (jcs-undo-kill-this-buffer)
   (jcs-update-line-number-each-window))
-(advice-add 'save-buffer :after #'jcs-do-stuff-after-save)
+(advice-add 'save-buffer :after #'jcs--save-buffer--advice-after)
 
 ;;;###autoload
 (defun jcs-reverse-tab-untab-save-buffer ()
@@ -1209,7 +1206,8 @@ NO-RECORD and FORCE-SAME-WINDOW are the same as switch to buffer arguments."
            (del-path (f-slash (concat create-dir topest-dir))))
       (delete-directory del-path)
       (message "Remove parent directory that were virtual => '%s'" del-path)))
-  (when (featurep 'lsp-mode) (lsp-disconnect))
+  (when (and (featurep 'lsp-mode) (jcs--lsp-connected-p))
+    (lsp-disconnect))
   (kill-this-buffer)
   (jcs-buffer-menu-safe-refresh)
   (jcs-dashboard-refresh-buffer)
