@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2021-01-08
+
+* Fixed issue LSP not restart after reopening buffer.
+
 ### 2021-01-05
 
 * Enabled `tree-sitter-hl-mode` as default behaviour.
