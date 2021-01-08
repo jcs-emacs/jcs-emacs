@@ -7,7 +7,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ### 2021-01-08
 
-* Fixed issue LSP not restart after reopening buffer.
+* Fixed issue LSP not restart after reopening the buffer.
 
 ### 2021-01-05
 
