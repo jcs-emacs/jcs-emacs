@@ -102,9 +102,6 @@ decrease this. If you experience stuttering, increase this.")
 
 (jcs-package-install-all)
 
-(defconst jcs-package-init-time (emacs-init-time)
-  "Record down the package initialize time.")
-
 ;;
 ;; (@* "Core" )
 ;;
