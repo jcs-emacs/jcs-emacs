@@ -37,6 +37,7 @@ time is displayed."
   `(progn
      (jcs-scroll-conservatively-disable)
      (progn ,@body)
+     (redisplay)
      (jcs-scroll-conservatively-enable)))
 
 (defmacro jcs-save-window-excursion (&rest body)
@@ -259,9 +260,12 @@ See function `jcs-string-compare-p' for argument TYPE."
 
 (defun jcs--record-window-excursion (fnc)
   "Record the info from an excursion, the FNC and ARGS."
-  (save-window-excursion
-    (let ((success (funcall fnc)))
-      (when success (list (current-buffer) (line-number-at-pos) (current-column))))))
+  (save-excursion
+    (save-window-excursion
+      (let ((success (funcall fnc)))
+        (when success
+          (list (current-buffer) (line-number-at-pos) (current-column)
+                (jcs-first-visible-line-in-window)))))))
 
 (defun jcs--record-window-excursion-apply (record)
   "Apply the RECORD from `jcs--record-window-excursion'."
@@ -269,6 +273,7 @@ See function `jcs-string-compare-p' for argument TYPE."
       (user-error "[INFO] No definition found for current target")
     (jcs-switch-to-next-window-larger-in-height)
     (switch-to-buffer (nth 0 record))
+    (jcs-make-first-visible-line-to (nth 3 record))
     (jcs-goto-line (nth 1 record))
     (move-to-column (nth 2 record))))
 
