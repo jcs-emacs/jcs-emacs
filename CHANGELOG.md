@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2021-01-11
 
 * Installed new package `scrollable-quick-peek`.
+* Implemented peek definition functionality.
 
 ### 2021-01-08
 
