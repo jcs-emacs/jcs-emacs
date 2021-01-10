@@ -212,6 +212,7 @@
         jcs-open-project-update-log-file
         jcs-other-window-next
         jcs-other-window-prev
+        jcs-peek-definition
         jcs-previous-blank-line
         jcs-py-format-document
         jcs-re-builder
