@@ -3,7 +3,7 @@
 ;;; Code:
 
 ;;
-;; (@* "Goto Definition" )
+;; (@* "Definition" )
 ;;
 
 ;;;###autoload
@@ -11,12 +11,12 @@
   "Move to definition."
   (interactive)
   (cond
-   ((jcs-is-current-major-mode-p '("elisp-mode"
-                                   "lisp-mode"
-                                   "lisp-interaction-mode"))
-    (unless (ignore-errors (elisp-def))
+   ((jcs-is-current-major-mode-p
+     '("emacs-lisp-mode" "lisp-mode" "lisp-interaction-mode"))
+    (if (ignore-errors (call-interactively #'elisp-def))
+        (jcs-recenter-top-bottom 'middle)
       (user-error "[INFO] No definition found for current target")))
-   ((and lsp-mode
+   ((and (jcs--lsp-connected-p)
          (or (ignore-errors (lsp-goto-type-definition))
              (ignore-errors (lsp-goto-implementation)))))
    (t (dumb-jump-go-prefer-external)))
@@ -26,17 +26,25 @@
 (defun jcs-goto-definition-other-window ()
   "Move to definition other window."
   (interactive)
-  (let ((fnc nil))
+  (let (fnc)
     (cond
-     ((or
-       (jcs-is-current-major-mode-p '("elisp-mode"
-                                      "lisp-mode"
-                                      "lisp-interaction-mode"))
-       lsp-mode)
+     ((or (jcs-is-current-major-mode-p
+           '("emacs-lisp-mode" "lisp-mode" "lisp-interaction-mode"))
+          (jcs--lsp-connected-p))
       (setq fnc #'jcs-goto-definition))
      (t (dumb-jump-go-prefer-external-other-window)))
     (when fnc  ; Open it on the other window.
       (jcs--record-window-excursion-apply (jcs--record-window-excursion fnc)))))
+
+;;;###autoload
+(defun jcs-peek-definition ()
+  "Peek definition."
+  (interactive)
+  (let ((record (jcs--record-window-excursion #'jcs-goto-definition)))
+    (when record
+      (scrollable-quick-peek-show (with-current-buffer (nth 0 record) (buffer-string)))
+      (setq scrollable-quick-peek-scroll-offset (- (nth 1 record) 2))
+      (scrollable-quick-peek-scroll-down))))
 
 ;;
 ;; (@* "Move Between Line (Wrapper)" )
