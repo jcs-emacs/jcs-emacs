@@ -170,6 +170,7 @@
     rjsx-mode
     rust-mode
     scala-mode
+    scrollable-quick-peek
     scss-mode
     shader-mode
     show-eol
