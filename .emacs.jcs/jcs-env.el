@@ -318,17 +318,19 @@ P.S. You would need to restart Emacs to take effect from this variable."
 
 ;;; Scroll
 (when (display-graphic-p)
-  (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))
-        mouse-wheel-progressive-speed t))
+  (setq mouse-wheel-scroll-amount '(5 ((shift) . 2))
+        mouse-wheel-progressive-speed nil))
 
 (setq scroll-step 1
-      scroll-margin 0)
+      scroll-margin 0
+      scroll-preserve-screen-position t
+      auto-window-vscroll nil)
 
 (defun jcs-toggle-scroll-conservatively (act)
   "Enable variable `scroll-conservatively' base on ACT.
 
 If ACT is non-nil; then make scroll less jumpy."
-  (setq scroll-conservatively (if act 100000 0)))
+  (setq scroll-conservatively (if act 101 0)))
 
 (defun jcs-scroll-conservatively-enable ()
   "Make scroll less jumpy."
