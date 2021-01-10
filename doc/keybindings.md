@@ -37,6 +37,7 @@ Here is the list of key bindins that defined in this configuration.
   * <kbd>Shift</kbd>+<kbd>f10</kbd> - Right click context menu.
   * <kbd>f12</kbd> - Goto declaration/definition.
   * <kbd>Shift</kbd>+<kbd>f12</kbd> - Goto declaration/definition other window.
+  * <kbd>Alt</kbd>+<kbd>f12</kbd> - Peek declaration/definition.
   * <kbd>f7</kbd> - Open same file other window.
   * <kbd>f8</kbd> - Open corresponding file other window, if not found open same file instead.
   * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>Ctrl</kbd>+<kbd>e</kbd> - Switch file coding system.
