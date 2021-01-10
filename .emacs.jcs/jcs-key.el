@@ -117,6 +117,17 @@
 ;;; Debug
 (define-key global-map (kbd "C-S-d") #'dap-mode)
 
+;;; Declaration / Definition
+(define-key global-map [f12] #'jcs-goto-definition)
+(define-key global-map [S-f12] #'jcs-goto-definition-other-window)
+(define-key global-map [M-f12] #'jcs-peek-definition)
+
+(with-eval-after-load 'scrollable-quick-peek
+  (define-key scrollable-quick-peek-keymap (kbd "<down>") nil)
+  (define-key scrollable-quick-peek-keymap (kbd "<up>") nil)
+  (define-key scrollable-quick-peek-keymap (kbd "S-<down>") #'scrollable-quick-peek-scroll-down)
+  (define-key scrollable-quick-peek-keymap (kbd "S-<up>") #'scrollable-quick-peek-scroll-up))
+
 ;;; Describe Thing
 (define-key global-map (kbd "C-k C-s") #'describe-bindings)
 
@@ -283,10 +294,6 @@
 ;;; Goto Address
 (with-eval-after-load 'goto-addr
   (define-key goto-address-highlight-keymap (kbd "C-c") nil))
-
-;;; Goto Definition
-(define-key global-map [f12] #'jcs-goto-definition)
-(define-key global-map [S-f12] #'jcs-goto-definition-other-window)
 
 ;;; Goto Thing
 (define-key global-map (kbd "M-g c") #'goto-char-preview)
