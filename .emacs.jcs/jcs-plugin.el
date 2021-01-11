@@ -341,6 +341,11 @@
   :init
   (setq dumb-jump-selector 'ivy))
 
+(use-package elisp-def
+  :init
+  (defvar jcs-elisp-def-modes '(emacs-lisp-mode lisp-mode lisp-interaction-mode)
+    "List of `major-mode' that works with `elisp-def'."))
+
 (use-package elisp-demos
   :init
   (with-eval-after-load 'help-fns
@@ -882,18 +887,18 @@
          (not jcs-popup-selected-item-flag-p)))
 
   (defun jcs--popup-menu-item-of-mouse-event--advice-after (event)
-    "Advice after execute `popup-menu-item-of-mouse-event' command."
+    "Advice after execute command `popup-menu-item-of-mouse-event'."
     (setq jcs-popup-mouse-events-flag-p t
           jcs-popup-selected-item-flag-p nil))
   (advice-add 'popup-menu-item-of-mouse-event :after #'jcs--popup-menu-item-of-mouse-event--advice-after)
 
   (defun jcs--popup-selected-item--advice-after (popup)
-    "Advice after execute `popup-selected-item' command."
+    "Advice after execute command `popup-selected-item'."
     (setq jcs-popup-selected-item-flag-p (jcs-last-input-event-p "mouse-1")))
   (advice-add 'popup-selected-item :after #'jcs--popup-selected-item--advice-after)
 
   (defun jcs--popup-draw--advice-around (orig-fun &rest args)
-    "Advice around execute `popup-draw' command."
+    "Advice around execute command `popup-draw'."
     (let ((do-orig-fun t))
       (when (and (jcs-last-input-event-p "mouse-1")
                  (not (jcs-popup-clicked-on-menu-p)))
@@ -928,6 +933,38 @@
   :config
   (add-hook 'quelpa-before-hook (lambda () (setq jcs-package-installing-p t)))
   (add-hook 'quelpa-after-hook (lambda () (setq jcs-package-installing-p nil))))
+
+(use-package quick-peek
+  :init
+  (defun jcs-quick-peek--form-face (fg &optional weight)
+    "Form `quick-peek' face with FG."
+    (unless weight (setq weight 'normal))
+    (let ((color (or (face-attribute 'highlight :background) "black")))
+      `(:background ,color :foreground ,fg :inherit quick-peek-border-face :weight ,weight)))
+
+  (defun jcs-set-quick-peek-spacers (buf ln)
+    "Prepare quick peek header and footer."
+    (let ((default-face (jcs-quick-peek--form-face "white")))
+      (setq jcs-quick-peek--spacer-header
+            (concat
+             (propertize " " 'face default-face)
+             (propertize (buffer-name buf) 'face (jcs-quick-peek--form-face "black" 'bold))
+             (propertize " " 'face default-face)
+             (propertize (buffer-file-name buf) 'face (jcs-quick-peek--form-face "#222"))
+             (propertize "\n" 'face default-face))
+            jcs-quick-peek--spacer-footer
+            (propertize (jcs-env-separator) 'face default-face))))
+  :config
+  (defvar jcs-quick-peek--spacer-header nil
+    "Header string for `quick-peek'")
+  (defvar jcs-quick-peek--spacer-footer nil
+    "Footer string for `quick-peek'.")
+  (defun jcs--quick-peek--insert-spacer--advice-override (pos str-before str-after)
+    "Advice exection override function `quick-peek--insert-spacer'."
+    (let ((str (if (= pos (point-min)) jcs-quick-peek--spacer-header
+                 jcs-quick-peek--spacer-footer)))
+      (save-excursion (goto-char pos) (insert str))))
+  (advice-add 'quick-peek--insert-spacer :override #'jcs--quick-peek--insert-spacer--advice-override))
 
 (use-package region-occurrences-highlighter
   :init
