@@ -947,13 +947,25 @@
     (let ((default-face (jcs-quick-peek--form-face "white")))
       (setq jcs-quick-peek--spacer-header
             (concat
+             (if (jcs-last-line-in-buffer-p) "\n" "")
              (propertize " " 'face default-face)
              (propertize (buffer-name buf) 'face (jcs-quick-peek--form-face "black" 'bold))
              (propertize " " 'face default-face)
              (propertize (buffer-file-name buf) 'face (jcs-quick-peek--form-face "#222"))
              (propertize "\n" 'face default-face))
             jcs-quick-peek--spacer-footer
-            (propertize (jcs-env-separator) 'face default-face))))
+            (propertize (concat (jcs-env-separator)
+                                (if (eq quick-peek-position 'below) "" "\n"))
+                        'face default-face))))
+
+  (defun jcs-quick-peek--scroll-to-see ()
+    "Scroll buffer in order to see the full `quick-peek' content."
+    (let ((default-max-h 16) (ln-current (line-number-at-pos)) lvl ln-diff)
+      (when (eq quick-peek-position 'below)
+        (setq lvl (jcs-last-visible-line-in-window)
+              ln-diff (- lvl ln-current))
+        (when (< ln-diff default-max-h)
+          (jcs-scroll-up-line (- default-max-h ln-diff))))))
   :config
   (defvar jcs-quick-peek--spacer-header nil
     "Header string for `quick-peek'")
