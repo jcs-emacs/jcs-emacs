@@ -11,8 +11,7 @@
   "Move to definition."
   (interactive)
   (cond
-   ((jcs-is-current-major-mode-p
-     '("emacs-lisp-mode" "lisp-mode" "lisp-interaction-mode"))
+   ((jcs-is-current-major-mode-p jcs-elisp-def-modes)
     (if (ignore-errors (call-interactively #'elisp-def))
         (jcs-recenter-top-bottom 'middle)
       (user-error "[INFO] No definition found for current target")))
@@ -28,8 +27,7 @@
   (interactive)
   (let (fnc)
     (cond
-     ((or (jcs-is-current-major-mode-p
-           '("emacs-lisp-mode" "lisp-mode" "lisp-interaction-mode"))
+     ((or (jcs-is-current-major-mode-p jcs-elisp-def-modes)
           (jcs--lsp-connected-p))
       (setq fnc #'jcs-goto-definition))
      (t (dumb-jump-go-prefer-external-other-window)))
@@ -40,11 +38,16 @@
 (defun jcs-peek-definition ()
   "Peek definition."
   (interactive)
-  (let ((record (jcs--record-window-excursion #'jcs-goto-definition)))
+  (let* ((buf-list (buffer-list))
+         (record (jcs--record-window-excursion #'jcs-goto-definition))
+         (buf (nth 0 record)) (ln (nth 1 record)))
     (when record
-      (scrollable-quick-peek-show (with-current-buffer (nth 0 record) (buffer-string)))
-      (setq scrollable-quick-peek-scroll-offset (- (nth 1 record) 2))
-      (scrollable-quick-peek-scroll-down))))
+      (jcs-set-quick-peek-spacers buf ln)
+      (scrollable-quick-peek-show (with-current-buffer buf (buffer-string)))
+      (setq scrollable-quick-peek-scroll-offset (- ln 3))
+      (scrollable-quick-peek-scroll-down)
+      ;; If does open the new file to peek, kill the buffer afterward.
+      (unless (equal buf-list (buffer-list)) (kill-buffer buf)))))
 
 ;;
 ;; (@* "Move Between Line (Wrapper)" )
