@@ -38,10 +38,12 @@
 (defun jcs-peek-definition ()
   "Peek definition."
   (interactive)
+  (require 'scrollable-quick-peek)
   (let* ((buf-list (buffer-list))
          (record (jcs--record-window-excursion #'jcs-goto-definition))
          (buf (nth 0 record)) (ln (nth 1 record)))
     (when record
+      (jcs-quick-peek--scroll-to-see)
       (jcs-set-quick-peek-spacers buf ln)
       (scrollable-quick-peek-show (with-current-buffer buf (buffer-string)))
       (setq scrollable-quick-peek-scroll-offset (- ln 3))
