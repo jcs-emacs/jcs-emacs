@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2021-01-12
+
+* Fixed conflict from `neotree` to `dashboard`.
+* Fixed error by passing not-exists path when getting file content.
+
 ### 2021-01-11
 
 * Installed new package `scrollable-quick-peek`.
