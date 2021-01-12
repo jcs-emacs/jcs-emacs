@@ -340,7 +340,10 @@ OW is the other window flag."
       (jcs-save-window-excursion
         (let ((dashboard-ls-path (jcs-last-default-directory))
               (dashboard-path-max-length (jcs-dasbhoard--get-path-length)))
-          (dashboard-refresh-buffer))))))
+          ;; You can't use function `dashboard-refresh-buffer' or else
+          ;; `neotree' gives weird action.
+          (when (get-buffer dashboard-buffer-name) (kill-buffer dashboard-buffer-name))
+          (dashboard-insert-startupify-lists))))))
 
 (defun jcs-dashboard-safe-refresh-buffer ()
   "Safely refresh the dashboard buffer if needed."
