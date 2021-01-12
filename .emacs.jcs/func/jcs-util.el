@@ -1378,9 +1378,9 @@ The reverse mean the check from regular expression is swapped."
 
 (defun jcs-get-string-from-file (path)
   "Return PATH file content."
-  (with-temp-buffer
-    (insert-file-contents path)
-    (buffer-string)))
+  (if (file-exists-p path)
+      (with-temp-buffer (insert-file-contents path) (buffer-string))
+    ""))
 
 (defun jcs-project-write-file (in-filename in-content)
   "Write to IN-FILENAME file path relative to the project root with IN-CONTENT content."
