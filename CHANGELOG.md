@@ -8,7 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2021-01-12
 
 * Fixed conflict from `neotree` to `dashboard`.
-* Fixed error by passing not-exists path when getting file content.
+* Fixed error by passing not existing path when getting file content.
 
 ### 2021-01-11
 
