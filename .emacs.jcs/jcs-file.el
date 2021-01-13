@@ -94,57 +94,69 @@ NOT-OW : Default is other window, not other window."
 ;; (@* "Project" )
 ;;
 
-(defun jcs-select-find-file-current-dir (in-filename)
-  "Find the IN-FILENAME in the current directory; it returns in absolute path."
-  (let ((target-filepath "")
-        (current-source-dir default-directory))
-    (setq target-filepath (concat current-source-dir in-filename))
-    (if (file-exists-p target-filepath)
-        target-filepath  ; Return if the target file exists.
-      (user-error "[ERROR] No '%s' file found in the current directory" in-filename))))
+(defun jcs-select-find-file-current-dir (in-filename in-title)
+  "Find IN-FILENAME in current directory.
+
+Argument IN-FILENAME accept regular expression string.
+
+Argument IN-TITLE is a string used when there are more than one matches."
+  (require 'f)
+  (let* ((target-files
+          (jcs-f-files-ignore-directories default-directory
+                                          (lambda (file)
+                                            (string-match-p in-filename (f-filename file)))))
+         (target-files-len (length target-files)) (target-filepath ""))
+    (when (zerop target-files-len)
+      (user-error "[ERROR] No '%s' file found in the current directory" in-filename))
+    (if (= target-files-len 1)
+        ;; If only one file found, just get that file.
+        (nth 0 target-files)
+      ;; Get the selected file.
+      (completing-read in-title target-files))))
 
 (defun jcs-select-find-file-in-project (in-filename in-title)
-  "Find IN-FILENAME in project with displayed IN-TITLE for `completing-read'.
-Version Control directory must exists in order to make it work.
-Return the absolute filepath."
+  "Find IN-FILENAME in current project.
+
+Argument IN-FILENAME accept regular expression string.
+
+Argument IN-TITLE is a string used when there are more than one matches."
   (require 'f)
-  (let ((target-files '()) (project-source-dir (jcs-vc-root-dir)))
+  (let ((project-dir (jcs-project-current)) target-files target-files-len)
     ;; Do the find file only when the project directory exists.
-    (unless (string= project-source-dir "")
+    (when project-dir
       (setq target-files
-            (jcs-f-files-ignore-directories project-source-dir
+            (jcs-f-files-ignore-directories project-dir
                                             (lambda (file)
                                               (string-match-p in-filename (f-filename file)))
                                             t)))
-    (let ((target-files-len (length target-files)) (target-filepath ""))
-      (if (= target-files-len 0)
-          (user-error "[ERROR] No '%s' file found in the project, make sure the project directory exists"
-                      in-filename)
-        (if (= target-files-len 1)
-            ;; If only one file found, just get that file.
-            (setq target-filepath (nth 0 target-files))
-          ;; Get the selected file.
-          (setq target-filepath (completing-read
-                                 in-title target-files))))
-      target-filepath)))
+    (when target-files (setq target-files-len (length target-files)))
+    (unless target-files-len
+      (user-error (concat
+                   "[ERROR] No '%s' file found in the project, make sure "
+                   "the project directory exists")
+                  in-filename))
+    (if (= target-files-len 1)
+        ;; If only one file found, just get that file.
+        (nth 0 target-files)
+      ;; Get the selected file.
+      (completing-read in-title target-files))))
 
 (defun jcs-find-file-in-project-and-current-dir (in-filename in-title)
   "Find the file from project root, if not found find it in current directory.
 Return full path if found, else error prompt.  IN-FILENAME to search in project
 or current directory.  IN-TITLE search uses regexp, meaning it could found
 multiple files at a time.  We need a title to present which file to select."
-  (let ((filepath ""))
-    (unless (ignore-errors
-              (setq filepath (jcs-select-find-file-in-project in-filename
-                                                              in-title)))
-      (unless (ignore-errors
-                (setq filepath (jcs-select-find-file-current-dir in-filename)))
-        (user-error
-         (concat "Can't find '%s' file either in the project or current "
-                 "directory, make sure the project directory exists or "
-                 "the '%s' file exists in the current directory")
-         in-filename
-         in-filename)))
+  (let ((filepath
+         (or (ignore-errors (jcs-select-find-file-current-dir in-filename in-title))
+             ;;(ignore-errors (jcs-select-find-file-in-project in-filename in-title))
+             )))
+    (unless filepath
+      (user-error
+       (concat "Can't find '%s' file either in the project or current "
+               "directory, make sure the project directory exists or "
+               "the '%s' file exists in the current directory")
+       in-filename
+       in-filename))
     filepath))
 
 ;;
@@ -221,14 +233,11 @@ If optional argument WITH-EXT is non-nil; return path with extension."
 
 ;;;###autoload
 (defun jcs-path-info-at-point ()
-  "Get the path info at point
-It tells you the existence of the path."
+  "Return the current path info at point."
   (interactive)
   (require 'f)
   (require 'ffap)
-  (let ((path (ffap-string-at-point))
-        (content "") (name nil) (d-or-f nil) (exists nil)
-        (timeout 300))
+  (let ((path (ffap-string-at-point)) content name d-or-f exists (timeout 300))
     (unless (string-match-p (ffap-file-at-point) path)
       (setq path nil))
     (setq exists (jcs-file-directory-exists-p path))
