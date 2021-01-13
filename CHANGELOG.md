@@ -8,6 +8,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2021-01-13
 
 * Improved message information while file renaming.
+* Set default `.dockerignore` major mode to `gitignore-mode`.
+* Set default `.npmignore` major mode to `gitignore-mode`.
 
 ### 2021-01-12
 
