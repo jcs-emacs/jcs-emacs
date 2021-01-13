@@ -146,7 +146,7 @@ IN-OP : inpuit operation script."
 (defun jcs-make-without-asking ()
   "Make the current build."
   (interactive)
-  (jcs-compile-project-file jcs-makescript "Make script: "))
+  (jcs-compile-project-file jcs-makescript "Build script: "))
 
 ;;;###autoload
 (defun jcs-run-without-asking ()
