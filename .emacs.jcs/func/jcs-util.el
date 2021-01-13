@@ -1533,24 +1533,6 @@ IN-KEY : key to search for value."
   (string-match "\\(.*\\)/" dir-path)  ; Remove the last directory in the path.
   (match-string 1 dir-path))
 
-(defun jcs-vc-root-dir ()
-  "Check if version control directory."
-  (let ((tmp-current-dir (jcs-get-current-dir))
-        (tmp-result-dir ""))
-    (while (jcs-contain-string "/" tmp-current-dir)
-      (when (jcs-is-vc-dir-p tmp-current-dir)
-        ;; Return the result, which is the version control path
-        ;; or failed to find the version control path.
-        (setq tmp-result-dir tmp-current-dir))
-      ;; go up one directory.
-      (setq tmp-current-dir (jcs-up-one-dir-string tmp-current-dir)))
-
-    (if (string= tmp-result-dir "")
-        ""  ;; Not found, return empty string.
-      ;; NOTE: if you do not like `/' at the end remove
-      ;; concat slash function.
-      (concat tmp-result-dir "/"))))
-
 (defun jcs-project-current ()
   "Return project directory path."
   (cdr (project-current)))
