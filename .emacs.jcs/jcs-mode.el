@@ -530,6 +530,8 @@ See `add-to-list' function description for argument APPEND."
   (jcs-add-auto-mode-alist '("\\.gitattributes'?\\'" . gitattributes-mode))
   (jcs-add-auto-mode-alist '("\\.gitconfig'?\\'" . gitconfig-mode))
   (jcs-add-auto-mode-alist '("\\.gitignore'?\\'" . gitignore-mode))
+  (jcs-add-auto-mode-alist '("\\.dockerignore'?\\'" . gitignore-mode))
+  (jcs-add-auto-mode-alist '("\\.npmignore'?\\'" . gitignore-mode))
 
   (jcs-add-auto-mode-alist '("\\.frag'?\\'" . glsl-mode))
   (jcs-add-auto-mode-alist '("\\.geom'?\\'" . glsl-mode))
