@@ -148,8 +148,7 @@ or current directory.  IN-TITLE search uses regexp, meaning it could found
 multiple files at a time.  We need a title to present which file to select."
   (let ((filepath
          (or (ignore-errors (jcs-select-find-file-current-dir in-filename in-title))
-             ;;(ignore-errors (jcs-select-find-file-in-project in-filename in-title))
-             )))
+             (ignore-errors (jcs-select-find-file-in-project in-filename in-title)))))
     (unless filepath
       (user-error
        (concat "Can't find '%s' file either in the project or current "
