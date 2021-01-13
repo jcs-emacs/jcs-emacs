@@ -10,6 +10,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Improved message information while file renaming.
 * Set default `.dockerignore` major mode to `gitignore-mode`.
 * Set default `.npmignore` major mode to `gitignore-mode`.
+* Fixed logic for select multiple files in current directory.
 
 ### 2021-01-12
 
