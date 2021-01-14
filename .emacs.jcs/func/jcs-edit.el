@@ -886,7 +886,9 @@ This function is used to check for lose changes from source editor."
   (jcs-save-excursion
     (let ((start-pt (or start (point-min))) (end-pt (or end (point-max))))
       (widen)
-      (if tab-it (tabify start-pt end-pt) (untabify start-pt end-pt)))))
+      ;; For some reason, CMake file will complains this.
+      (ignore-errors
+        (if tab-it (tabify start-pt end-pt) (untabify start-pt end-pt))))))
 
 ;;;###autoload
 (defun jcs-untabify-buffer (&optional start end)
