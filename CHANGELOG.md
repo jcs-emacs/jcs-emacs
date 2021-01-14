@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2021-01-14
+
+* Set default `.unityignore` major mode to `gitignore-mode`.
+
 ### 2021-01-13
 
 * Improved message information while file renaming.
