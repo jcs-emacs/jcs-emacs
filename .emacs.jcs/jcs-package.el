@@ -115,6 +115,7 @@
     ialign
     iedit
     impatient-showdown
+    indent-control
     ini-mode
     isearch-project
     ivy-file-preview
