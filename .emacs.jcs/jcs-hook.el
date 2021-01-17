@@ -145,6 +145,8 @@
     (global-hl-line-mode 1)
     ;;----------------------------------- `hl-todo'
     (global-hl-todo-mode 1)
+    ;;----------------------------------- `indent-control'
+    (indent-control-mode 1)
     ;;----------------------------------- `ivy'
     (ivy-mode 1)
     ;;----------------------------------- `page-break-lines'
