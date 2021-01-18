@@ -318,6 +318,7 @@
          '("[*]Flycheck error" "[*]Flymake log[*]")
          '("[*]httpd[*]")
          '("[*]helpful")
+         '("[*]ert[*]")  ; Emacs Lisp Regression Testing
          '("[*]Most used words[*]")
          '("[*]Test SHA[*]")
          '("[*]RE-Builder")
