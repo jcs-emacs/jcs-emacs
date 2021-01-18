@@ -59,6 +59,7 @@
     company-fuzzy
     company-quickhelp
     company-quickhelp-terminal
+    counsel
     csharp-mode
     csproj-mode
     dap-mode
@@ -203,6 +204,17 @@
 ;;
 ;; (@* "Util" )
 ;;
+
+(defun jcs-package-unused-packages ()
+  "Return a list of unused packages."
+  (let ((installed-pkgs (jcs-package--get-selected-packages))
+        (pkg-install-lst (append jcs-package-install-list
+                                 (jcs-package-manual-install-packages)))
+        unused-lst)
+    (dolist (pkg installed-pkgs)
+      (unless (jcs-is-contain-list-symbol pkg-install-lst pkg)
+        (push pkg unused-lst)))
+    (reverse unused-lst)))
 
 (defun jcs-package--add-selected-packages (pkg-name)
   "Add PKG-NAME to the selected package list."
@@ -405,7 +417,7 @@
   (let ((install-it (or (boundp 'jcs-build-test) jcs-auto-install-pkgs))
         jcs-package-rebuild-dependency-p jcs-package--need-rebuild-p)
     (jcs-ensure-package-installed jcs-package-install-list install-it)
-    (jcs-ensure-manual-package-installed jcs-package-manually-install-list install-it)
+    (jcs-ensure-manual-package-installed jcs-package-manual-install-list install-it)
     (when jcs-package--need-rebuild-p
       (setq jcs-package-rebuild-dependency-p t)
       (jcs-package-rebuild-dependency-list))))
@@ -422,6 +434,22 @@
         (jcs-sit-for)
       (setq jcs-package-rebuild-dependency-p t)
       (jcs-package-rebuild-dependency-list))))
+
+;;;###autoload
+(defun jcs-package-autoremove ()
+  "Remove packages that are no longer needed."
+  (interactive)
+  (let ((removable (jcs-package-unused-packages)))
+    (if removable
+        (when (y-or-n-p
+               (format "Packages to delete: %d (%s), proceed? "
+                       (length removable)
+                       (mapconcat #'symbol-name removable " ")))
+          (mapc (lambda (p)
+                  (package-delete (cadr (assq p package-alist)) t))
+                removable)
+          (jcs-package-rebuild-dependency-list))
+      (message "Nothing to autoremove"))))
 
 ;;;###autoload
 (defun jcs-package-menu-filter-by-status (status)
@@ -441,7 +469,7 @@
     (package-menu-filter (concat "status:" status))))
 
 ;;
-;; (@* "Manually Installation" )
+;; (@* "Manual Installation" )
 ;;
 
 (defconst jcs-quelpa-recipes-path (expand-file-name "~/.emacs.jcs/recipes/")
@@ -459,8 +487,15 @@
       (push rcp rcps))
     (reverse rcps)))
 
-(defvar jcs-package-manually-install-list (jcs--quelpa-recipes)
+(defvar jcs-package-manual-install-list (jcs--quelpa-recipes)
   "List of package that you want to manually installed.")
+
+(defun jcs-package-manual-install-packages ()
+  "Return a list of manuall install packages."
+  (let (mi-lst)
+    (dolist (rcp jcs-package-manual-install-list)
+      (push (nth 0 rcp) mi-lst))
+    (reverse mi-lst)))
 
 (defun jcs--form-version-recipe (rcp)
   "Create the RCP for `quelpa' version check."
@@ -493,7 +528,7 @@ PKG is a list of recipe components."
   "List of need to upgrade package from manually installed packages."
   (require 'quelpa)
   (let ((upgrade-list '()) new-version current-version pkg-name)
-    (dolist (rcp jcs-package-manually-install-list)
+    (dolist (rcp jcs-package-manual-install-list)
       (setq pkg-name (jcs--recipe-get-info rcp :name)
             new-version (jcs--package-version-by-recipe rcp)
             current-version (jcs-get-package-version pkg-name package-alist)
