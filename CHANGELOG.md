@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2021-01-18
 
 * Diminished the buffer `*ert*` as default behaviour.
+* Implemented package autoremove for configuration's dependency graph.
 
 ### 2021-01-17
 
