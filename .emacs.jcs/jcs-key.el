@@ -416,7 +416,7 @@
 (define-key global-map (kbd "C-S-x") #'package-list-packages)
 (define-key package-menu-mode-map (kbd "s") #'jcs-package-menu-filter-by-status)
 (define-key package-menu-mode-map (kbd "U") #'jcs-package-upgrade-all)
-(define-key package-menu-mode-map (kbd "C-k r m") #'package-autoremove)
+(define-key package-menu-mode-map (kbd "C-k r m") #'jcs-package-autoremove)
 
 ;;; Process
 (define-key global-map (kbd "M-p") #'list-processes)
