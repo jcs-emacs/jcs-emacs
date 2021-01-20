@@ -138,6 +138,7 @@
     lsp-origami
     lsp-pascal
     lsp-python-ms
+    lsp-sourcekit
     lsp-ui
     lua-mode
     magit
