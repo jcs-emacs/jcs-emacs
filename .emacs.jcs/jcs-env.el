@@ -202,6 +202,11 @@
 (set-default-coding-systems 'utf-8)
 (unless (jcs-reload-emacs-reloading-p) (set-terminal-coding-system 'utf-8))
 (set-keyboard-coding-system 'utf-8)
+(set-selection-coding-system 'utf-8)
+(set-file-name-coding-system 'utf-8)
+(set-clipboard-coding-system 'utf-8)
+(set-w32-system-coding-system 'utf-8)
+(set-buffer-file-coding-system 'utf-8)
 
 (setq locale-coding-system 'utf-8)
 
