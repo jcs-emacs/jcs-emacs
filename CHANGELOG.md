@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2021-01-20
+
+* Installed new package `lsp-sourcekit` for LSP Swift support.
+
 ### 2021-01-18
 
 * Diminished the buffer `*ert*` as default behaviour.
