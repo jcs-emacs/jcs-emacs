@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2021-01-23
+
+* Ensure all programming major mode has valid variable `tab-width` defined.
+* Add character `!` as word entry for `rust-mode`.
+
 ### 2021-01-22
 
 * Added TOML file configuration with `conf-toml-mode`.
