@@ -78,7 +78,7 @@ from this configuration.
 * Pascal / Perl / PHP / PowerShell / Properties / Python
 * R / Ruby / Rust
 * Sass / Scala / SCSS / Shader / Shell script / SQL / Swift
-* Text / TypeScript
+* Text / TOML / TypeScript
 * Verilog / Vim script / Vue
 * XML
 * YAML
