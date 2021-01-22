@@ -318,6 +318,9 @@ Note this is opposite logic to the toggle mode function."
   ;; Load Docstring faces.
   (docstr-faces-apply)
 
+  ;; Ensure indentation level is available
+  (indent-control-ensure-tab-width)
+
   (abbrev-mode 1)
   (auto-highlight-symbol-mode t)
   (electric-pair-mode 1)
