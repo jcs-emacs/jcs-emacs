@@ -13,6 +13,7 @@
 
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
+  (modify-syntax-entry ?! "w")
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]rs")
