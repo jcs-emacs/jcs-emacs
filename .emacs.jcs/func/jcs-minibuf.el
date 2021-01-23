@@ -57,7 +57,7 @@
 
   (setq jcs-minibuf-enabled-p nil)
 
-  (jcs-dashboard-safe-refresh-buffer t)
+  (jcs-dashboard-refresh-buffer)
 
   ;; NOTE: Avoid GCs while using `ivy'/`counsel'/`swiper' and `helm', etc.
   (progn
@@ -72,6 +72,10 @@
 ;;
 ;; (@* "Util" )
 ;;
+
+(defun jcs-minibuf-prompt-p ()
+  "Return non-nil if current state is asking user for input."
+  (string= (buffer-name) jcs-minibuf-buffer-name))
 
 (defun jcs-minibuf-window-p (&optional win)
   "Check if WIN minibuffer window."
