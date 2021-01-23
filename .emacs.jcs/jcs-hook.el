@@ -29,7 +29,7 @@
     (jcs-mute-apply
       (ivy--resize-minibuffer-to-fit)
       (ivy-shrink-after-dispatching)
-      (ivy--exhibit))))
+      (ignore-errors (ivy--exhibit)))))
 (add-hook 'window-size-change-functions 'jcs-window-size-change-functions)
 
 ;;
