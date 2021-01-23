@@ -10,6 +10,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Ensure all programming major mode has valid variable `tab-width` defined.
 * Add character `!` as word entry for `rust-mode`.
 * Removed customize module `jcs-yaml` file.
+* Improved package delete without complaining miss dependencies. 
 
 ### 2021-01-22
 
