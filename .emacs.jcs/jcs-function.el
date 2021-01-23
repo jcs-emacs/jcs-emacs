@@ -303,7 +303,7 @@
 ;; (@* "Dashboard" )
 ;;
 
-(defvar dashboard-buffer-name "")
+(defvar dashboard-buffer-name)
 
 ;;;###autoload
 (defun jcs-dashboard (&optional ow)
@@ -345,18 +345,22 @@ OW is the other window flag."
         (let ((dashboard-ls-path (jcs-last-default-directory))
               (dashboard-path-max-length (jcs-dasbhoard--get-path-length)))
           (unless (or jcs-minibuf-enabled-p
+                      (active-minibuffer-window)
                       (jcs-is-contain-list-string-regexp jcs-dashboard-inhibit-refresh-buffer-list (buffer-name)))
-            (dashboard-refresh-buffer)))))))
+            ;; Force refresh once
+            (let (dashboard-buffer-last-width) (dashboard-insert-startupify-lists))))))))
 
-(defun jcs-dashboard-safe-refresh-buffer ()
-  "Safely refresh the dashboard buffer if needed."
+(defun jcs-dashboard-safe-refresh-buffer (&optional force)
+  "Safely refresh the dashboard buffer if needed.
+
+If optional argument FORCE is non-nil, force refresh it."
   (when (and (bound-and-true-p jcs-emacs-ready-p)
              (boundp 'dashboard-buffer-name)
              (jcs-buffer-shown-p dashboard-buffer-name 'strict))
     (unless jcs-dashboard--refreshing-p
       (let ((jcs-dashboard--refreshing-p t)
             (ls-path (jcs-last-default-directory)))
-        (unless (string= jcs-dashboard--last-ls-path ls-path)
+        (when (or force (not (string= jcs-dashboard--last-ls-path ls-path)))
           (setq jcs-dashboard--last-ls-path ls-path)
           (jcs-safe-jump-shown-to-buffer
            dashboard-buffer-name
