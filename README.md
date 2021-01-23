@@ -114,6 +114,7 @@ without having to get used to an new IDE.
 
 Here is the list of few important and recent changes to this configuration.
 
+* `6.4.2` - You can now resolve package dependency graph while deleting package.
 * `6.4.1` - Start with `tree-sitter` support.
 * `6.4.0` - Switched from `projectile` to built-in `project` for project management.
 * `6.3.1` - Replaced `docstring` module to external `docstr` package.
@@ -123,7 +124,6 @@ Here is the list of few important and recent changes to this configuration.
 * `6.1.5` - `feebleline` is now fully compatible to terminal.
 * `6.1.0` - Formatted all configuration code to better standard.
 * `6.0.5` - Replace `sr-speedbar` with `neotree` instead.
-* `6.0.3` - Started integrating more `lsp-mode` and `dap-mode` details.
 
 ## :floppy_disk: Installation
 
