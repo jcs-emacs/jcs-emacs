@@ -961,7 +961,6 @@ NO-PROMPT : Don't prompt the overwrap message."
 (with-eval-after-load 'sh-script (require 'jcs-sh))
 (with-eval-after-load 'typescript-mode (require 'jcs-typescript))
 (with-eval-after-load 'web-mode (require 'jcs-web))
-(with-eval-after-load 'yaml-mode (require 'jcs-yaml))
 
 (provide 'jcs-function)
 ;;; jcs-function.el ends here
