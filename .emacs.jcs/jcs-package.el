@@ -233,6 +233,10 @@
   "Build package description by PKG-NAME."
   (cadr (assq pkg-name package-alist)))
 
+(defun jcs-package--package-name (pkg-desc)
+  "Return package name from PKG-DESC."
+  (when (package-desc-p pkg-desc) (aref pkg-desc 1)))
+
 (defun jcs-package--package-status (pkg-name)
   "Get package status by PKG-NAME."
   (let* ((desc (jcs-package--build-desc pkg-name))
@@ -312,7 +316,8 @@
 
 (defun jcs-package--menu-execute--advice-around (fnc &rest args)
   "Advice execute around `package-menu-execute' function."
-  (let ((jcs-package--save-selected-packages package-selected-packages))
+  (let ((jcs-package--save-selected-packages package-selected-packages)
+        (jcs-package-use-real-delete-p nil))
     (when (apply fnc args) (jcs-package-rebuild-dependency-list))))
 
 (advice-add 'package-menu-execute :around #'jcs-package--menu-execute--advice-around)
@@ -321,12 +326,35 @@
 ;; (@* "Core Installation" )
 ;;
 
+(defvar jcs-package-use-real-delete-p t
+  "Flag to check if we are reallyg deleting a package.")
+
+(defun jcs-package-delete (pkg-name &optional dep)
+  "Safe way to remove PKG-NAME."
+  (let ((used-elsewhere (jcs-package--used-elsewhere-p pkg-name))
+        (pkg-desc-current (jcs-package--build-desc pkg-name)))
+    (dolist (pkg-desc used-elsewhere)
+      (jcs-package-delete (jcs-package--package-name pkg-desc) pkg-name))
+    (when pkg-desc-current
+      (let ((jcs-package-use-real-delete-p t))
+        (jcs-mute-apply (package-delete pkg-desc-current)))
+      (if dep (message "Delete package `%s` that is rely on package `%s`" pkg-name dep)
+        (message "Package `%s` deleted." pkg-name)))))
+
+(defun jcs--package-delete--advice-around (fnc &rest args)
+  "Execution runs around function `package-delete'."
+  (if jcs-package-use-real-delete-p (apply fnc args)
+    (jcs-package-delete (jcs-package--package-name (nth 0 args)))))
+
+(advice-add 'package-delete :around #'jcs--package-delete--advice-around)
+
 (defvar jcs-package-installing-p nil
   "Is currently upgrading the package.")
 
 (defun jcs--package-install--advice-around (ori-func &rest args)
   "Advice around execute `package-install' command."
   (let ((jcs-package-installing-p t)) (apply ori-func args)))
+
 (advice-add 'package-install :around #'jcs--package-install--advice-around)
 
 (defun jcs-package-install (pkg)
