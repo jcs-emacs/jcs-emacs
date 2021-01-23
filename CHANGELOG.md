@@ -12,6 +12,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Removed customize module `jcs-yaml` file.
 * Improved package delete without complaining miss dependencies.
 * Inhibit `dashboard` refresh process while minibuffer is active.
+* Refresh `dashboard` after minibuffer is exited.
 
 ### 2021-01-22
 
