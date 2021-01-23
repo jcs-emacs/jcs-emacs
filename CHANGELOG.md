@@ -13,6 +13,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Improved package delete without complaining miss dependencies.
 * Inhibit `dashboard` refresh process while minibuffer is active.
 * Refresh `dashboard` after minibuffer is exited.
+* Added utility function for checking minibuffer is prompting.
 
 ### 2021-01-22
 
