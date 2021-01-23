@@ -344,9 +344,10 @@ OW is the other window flag."
       (jcs-save-window-excursion
         (let ((dashboard-ls-path (jcs-last-default-directory))
               (dashboard-path-max-length (jcs-dasbhoard--get-path-length)))
-          (unless (or jcs-minibuf-enabled-p
-                      (active-minibuffer-window)
-                      (jcs-is-contain-list-string-regexp jcs-dashboard-inhibit-refresh-buffer-list (buffer-name)))
+          (when (and (or (not (active-minibuffer-window))
+                         (and (not jcs-minibuf-enabled-p) (not (jcs-minibuf-prompt-p))))
+                     (not (jcs-is-contain-list-string-regexp
+                           jcs-dashboard-inhibit-refresh-buffer-list (buffer-name))))
             ;; Force refresh once
             (let (dashboard-buffer-last-width) (dashboard-insert-startupify-lists))))))))
 
