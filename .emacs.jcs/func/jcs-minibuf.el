@@ -57,7 +57,7 @@
 
   (setq jcs-minibuf-enabled-p nil)
 
-  (jcs-dashboard-refresh-buffer)
+  (jcs-dashboard-safe-refresh-buffer t)
 
   ;; NOTE: Avoid GCs while using `ivy'/`counsel'/`swiper' and `helm', etc.
   (progn
