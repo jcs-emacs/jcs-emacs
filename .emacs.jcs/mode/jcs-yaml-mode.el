@@ -5,7 +5,6 @@
 (require 'yaml-mode)
 
 (require 'jcs-python)
-(require 'jcs-yaml)
 
 ;;
 ;; (@* "Hook" )
@@ -26,7 +25,8 @@
   (define-key yaml-mode-map (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
   (define-key yaml-mode-map (kbd "<down>") (jcs-get-prev/next-key-type 'next))
 
-  (define-key yaml-mode-map (kbd "<backspace>") #'jcs-yaml-electric-backspace))
+  (define-key yaml-mode-map (kbd "SPC") #'jcs-smart-space)
+  (define-key yaml-mode-map (kbd "<backspace>") #'jcs-smart-backspace))
 
 (add-hook 'yaml-mode-hook 'jcs-yaml-mode-hook)
 
