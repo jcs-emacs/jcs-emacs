@@ -54,6 +54,7 @@ once to the whole document. For `python-mode'."
 ;;;###autoload
 (defun jcs-py-format-region-or-document ()
   "Format the document if there are no region apply.
+
 For `python-mode' we specificlly indent through the file line by line \
 instead of indent the whole file at once."
   (interactive)
@@ -116,12 +117,13 @@ instead of indent the whole file at once."
     is-keyword))
 
 
-(defconst jcs-py-keywords '("class"
-                            "classmethod"
-                            "def"
-                            "from"
-                            "import"
-                            "staticmethod")
+(defconst jcs-py-keywords
+  '("class"
+    "classmethod"
+    "def"
+    "from"
+    "import"
+    "staticmethod")
   "List of `python' keyword.")
 
 (defun jcs-py-is-python-keyword (in-keyword)
