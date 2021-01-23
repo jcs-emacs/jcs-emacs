@@ -15,6 +15,8 @@
   (modify-syntax-entry ?_ "w")
   (modify-syntax-entry ?! "w")
 
+  (jcs-make-electric-pair-pairs-local '((?\' . ?\')))
+
   ;; File Header
   (jcs-insert-header-if-valid '("[.]rs")
                               'jcs-insert-rust-template)
