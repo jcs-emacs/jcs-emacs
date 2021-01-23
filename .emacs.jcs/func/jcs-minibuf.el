@@ -21,8 +21,8 @@
 (defconst jcs-minibuf-buffer-name " *Minibuf-1*"
   "Name of the minibuffer buffer.")
 
-(defvar jcs-ivy-enabled-p nil
-  "Flag to check if ivy is enabled.")
+(defvar jcs-minibuf-enabled-p nil
+  "Flag to see if minibuffer is enabled.")
 
 (defun jcs-minibuf--init ()
   "Initialize minibuffer."
@@ -31,7 +31,7 @@
 
 (defun jcs--ivy--minibuffer-setup ()
   "Ivy minibuffer setup hook."
-  (setq jcs-ivy-enabled-p t))
+  (setq jcs-minibuf-enabled-p t))
 (advice-add 'ivy--minibuffer-setup :after #'jcs--ivy--minibuffer-setup)
 
 (defun jcs-minibuf--setup-hook ()
@@ -55,7 +55,9 @@
   "Hook when exit minibuffer."
   (jcs-reload-active-mode)
 
-  (setq jcs-ivy-enabled-p nil)
+  (setq jcs-minibuf-enabled-p nil)
+
+  (jcs-dashboard-refresh-buffer)
 
   ;; NOTE: Avoid GCs while using `ivy'/`counsel'/`swiper' and `helm', etc.
   (progn
