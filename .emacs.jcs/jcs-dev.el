@@ -30,6 +30,20 @@
 (advice-add 'eval-region :after #'jcs--deactive-mark--advice-anywhere)
 
 ;;
+;; (@* "Navigate to Error" )
+;;
+
+(defun jcs--goto-file-point--advice-anywhere (fnc &rest args)
+  "Exection runs after navigate buffer that is different than the caller."
+  (let ((prev-buf (current-buffer)))
+    (apply fnc args)
+    (unless (eq prev-buf (current-buffer))  ; Different button, recenter it.
+      (jcs-recenter-top-bottom 'middle))))
+
+(advice-add 'push-button :around #'jcs--goto-file-point--advice-anywhere)
+(advice-add 'compile-goto-error :around #'jcs--goto-file-point--advice-anywhere)
+
+;;
 ;; (@* "Control Output" )
 ;;
 
