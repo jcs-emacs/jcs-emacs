@@ -245,19 +245,6 @@
       (jcs-buffer-menu-refresh-buffer))))
 
 ;;
-;; (@* "Buttons" )
-;;
-
-(defun jcs--push-button--advice-around (fnc &rest args)
-  "Exection bind around function `push-button'."
-  (let ((prev-buf (current-buffer)))
-    (apply fnc args)
-    (unless (eq prev-buf (current-buffer))  ; Different button, recenter it.
-      (jcs-recenter-top-bottom 'middle))))
-
-(advice-add 'push-button :around #'jcs--push-button--advice-around)
-
-;;
 ;; (@* "Calculator" )
 ;;
 
