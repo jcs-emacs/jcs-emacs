@@ -321,6 +321,10 @@ Note this is opposite logic to the toggle mode function."
   ;; Ensure indentation level is available
   (indent-control-ensure-tab-width)
 
+  ;; Smart Parenthesis
+  (dolist (key jcs-smart-closing-parens)
+    (jcs-key-advice-add key :around #'jcs-smart-closing))
+
   (abbrev-mode 1)
   (auto-highlight-symbol-mode t)
   (electric-pair-mode 1)
