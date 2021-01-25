@@ -11,7 +11,7 @@
   (jcs-delete-region)
   (if (jcs-inside-comment-or-string-p)
       (insert "{")
-    (let ((pretty-it nil) (space-infront nil))
+    (let (pretty-it space-infront)
       (unless (jcs-current-char-equal-p "{")
         (setq pretty-it t)
         (when (and (not (jcs-current-whitespace-or-tab-p))
@@ -26,26 +26,11 @@
 
       (when pretty-it
         (save-excursion
-          (forward-char 2)
+          (jcs-safe-forward-char 2)
           (when (and (not (jcs-is-beginning-of-line-p))
                      (jcs-current-char-equal-p "}"))
             (backward-char 1)
             (insert " ")))))))
-
-;;;###autoload
-(defun jcs-vs-closing-curly-bracket-key ()
-  "For programming langauge that need `}`."
-  (interactive)
-  (jcs-delete-region)
-  (if (and (jcs-forward-pos-char-equal-p "}" 1)
-           (not (jcs-is-end-of-buffer-p)))
-      (jcs-safe-forward-char 1)
-    (insert "}"))
-  (let ((ind-beg -1) (ind-end (point)))
-    (save-excursion
-      (jcs-find-pair-paren "{" "}" 'backward)
-      (setq ind-beg (point)))
-    (indent-region ind-beg ind-end)))
 
 ;;;###autoload
 (defun jcs-vs-semicolon-key ()
