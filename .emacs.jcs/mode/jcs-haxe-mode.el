@@ -26,7 +26,6 @@
 
   (define-key haxe-mode-map (kbd "DEL") #'jcs-electric-backspace)
   (define-key haxe-mode-map (kbd "{") #'jcs-vs-opening-curly-bracket-key)
-  (define-key haxe-mode-map (kbd "}") #'jcs-vs-closing-curly-bracket-key)
   (define-key haxe-mode-map (kbd ";") #'jcs-vs-semicolon-key)
 
   (define-key haxe-mode-map (kbd "C-v") #'jcs-smart-yank)

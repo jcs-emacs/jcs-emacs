@@ -26,7 +26,6 @@
   ;; Normal
   (define-key java-mode-map (kbd "DEL") #'jcs-electric-backspace)
   (define-key java-mode-map (kbd "{") #'jcs-vs-opening-curly-bracket-key)
-  (define-key java-mode-map (kbd "}") #'jcs-vs-closing-curly-bracket-key)
   (define-key java-mode-map (kbd ";") #'jcs-vs-semicolon-key)
 
   ;; comment block

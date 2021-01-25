@@ -54,7 +54,6 @@
   ;; Normal
   (define-key js2-mode-map (kbd "DEL") #'jcs-electric-backspace)
   (define-key js2-mode-map (kbd "{") #'jcs-vs-opening-curly-bracket-key)
-  (define-key js2-mode-map (kbd "}") #'jcs-vs-closing-curly-bracket-key)
   (define-key js2-mode-map (kbd ";") #'jcs-vs-semicolon-key)
 
   ;; comment block

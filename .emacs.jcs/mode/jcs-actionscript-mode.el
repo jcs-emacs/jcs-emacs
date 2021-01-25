@@ -30,7 +30,6 @@
 
   (define-key actionscript-mode-map (kbd "DEL") #'jcs-electric-backspace)
   (define-key actionscript-mode-map (kbd "{") #'jcs-vs-opening-curly-bracket-key)
-  (define-key actionscript-mode-map (kbd "}") #'jcs-vs-closing-curly-bracket-key)
   (define-key actionscript-mode-map (kbd ";") #'jcs-vs-semicolon-key)
 
   (define-key actionscript-mode-map (kbd "C-v") #'jcs-smart-yank)

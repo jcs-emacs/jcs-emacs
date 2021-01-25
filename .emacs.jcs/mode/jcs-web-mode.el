@@ -58,7 +58,6 @@
 
   (define-key web-mode-map (kbd "DEL") #'jcs-electric-backspace)
   (define-key web-mode-map (kbd "{") #'jcs-web-vs-opening-curly-bracket-key)
-  (define-key web-mode-map (kbd "}") #'jcs-vs-closing-curly-bracket-key)
   (define-key web-mode-map (kbd ";") #'jcs-vs-semicolon-key)
 
   ;; File Corresponding

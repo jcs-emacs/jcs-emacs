@@ -37,7 +37,6 @@
   ;; Normal
   (define-key json-mode-map (kbd "DEL") #'jcs-electric-backspace)
   (define-key json-mode-map (kbd "{") #'jcs-vs-opening-curly-bracket-key)
-  (define-key json-mode-map (kbd "}") #'jcs-vs-closing-curly-bracket-key)
   (define-key json-mode-map (kbd ";") #'jcs-vs-semicolon-key)
 
   ;; comment block

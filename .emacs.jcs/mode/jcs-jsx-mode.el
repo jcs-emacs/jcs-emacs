@@ -45,7 +45,6 @@
   (define-key rjsx-mode-map (kbd "RET") #'jcs-web-return-key)
 
   (define-key rjsx-mode-map (kbd "{") #'jcs-web-vs-opening-curly-bracket-key)
-  (define-key rjsx-mode-map (kbd "}") #'jcs-vs-closing-curly-bracket-key)
   (define-key rjsx-mode-map (kbd ";") #'jcs-vs-semicolon-key)
 
   ;; Emmet
