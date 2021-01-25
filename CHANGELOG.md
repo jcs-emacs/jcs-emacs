@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2021-01-25
+
+* Changed VS-like closing curly parenthesis action to all generic closing parenthesis.
+* Add key advice add/remove utility functions.
+
 ### 2021-01-23
 
 * Ensure all programming major mode has valid variable `tab-width` defined.
