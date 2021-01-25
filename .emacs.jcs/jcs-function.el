@@ -335,8 +335,7 @@ OW is the other window flag."
                          (and (not jcs-minibuf-enabled-p) (not (jcs-minibuf-prompt-p))))
                      (not (jcs-is-contain-list-string-regexp
                            jcs-dashboard-inhibit-refresh-buffer-list (buffer-name))))
-            ;; Force refresh once
-            (let (dashboard-buffer-last-width) (dashboard-insert-startupify-lists))))))))
+            (dashboard-refresh-buffer)))))))
 
 (defun jcs-dashboard-safe-refresh-buffer (&optional force)
   "Safely refresh the dashboard buffer if needed.
