@@ -49,6 +49,20 @@ time is displayed."
      (jcs-window-restore-once)))
 
 ;;
+;; (@* "Advice" )
+;;
+
+(defun jcs-key-advice-add (key where fnc)
+  "Safe add advice KEY with FNC at WHERE."
+  (let ((key-fnc (key-binding (kbd key))))
+    (when (symbolp key-fnc) (advice-add key-fnc where fnc))))
+
+(defun jcs-key-advice-remove (key fnc)
+  "Safe remove advice KEY with FNC."
+  (let ((key-fnc (key-binding (kbd key))))
+    (when (symbolp key-fnc) (advice-remove key-fnc fnc))))
+
+;;
 ;; (@* "Buffer" )
 ;;
 
@@ -1740,26 +1754,6 @@ IN-VAL : input value to set to IN-VAR."
 (defun jcs-get-current-sysem ()
   "Return the current operating system."
   (cond (jcs-is-windows 'dos) (jcs-is-bsd 'mac) (jcs-is-linux 'unix) (t nil)))
-
-;;
-;; (@* "Parentheses" )
-;;
-
-(defun jcs-find-pair-paren (beg-ch end-ch direction)
-  "Find pair parenthese with BEG-CH, END-CH and DIRECTION."
-  (let ((beg-cnt 0) (end-cnt 0) (fnc nil) (lim-pt -1))
-    (cl-case direction
-      (backward
-       (setq lim-pt (point-min) end-cnt 1 fnc 'backward-char))
-      (forward
-       (setq lim-pt (point-max) beg-cnt 1 fnc 'forward-char)))
-    (if (not fnc)
-        (user-error "Can't find pair parenthese with this '%s' define" direction)
-      (while (and (not (= beg-cnt end-cnt))
-                  (not (= (point) lim-pt)))
-        (funcall fnc 1)
-        (cond ((jcs-current-char-equal-p beg-ch) (setq beg-cnt (1+ beg-cnt)))
-              ((jcs-current-char-equal-p end-ch) (setq end-cnt (1+ end-cnt))))))))
 
 ;;
 ;; (@* "Process Reporter" )
