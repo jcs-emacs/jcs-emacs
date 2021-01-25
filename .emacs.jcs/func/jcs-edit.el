@@ -209,8 +209,8 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
 (defun jcs-smart-delete ()
   "Smart backspace."
   (interactive)
-  (if (and (jcs-is-infront-first-char-at-line-p (1+ (point)))
-           (not (jcs-is-end-of-line-p)))
+  (if (and (not (eobp))
+           (jcs-is-infront-first-char-at-line-p (1+ (point))))
       (jcs-forward-delete-spaces-by-indent-level)
     (jcs-real-delete)))
 
@@ -1630,7 +1630,7 @@ other window."
 
 (defun jcs-get-open-pair-char (c)
   "Get the open pairing character from C."
-  (let ((pair-char nil))
+  (let (pair-char)
     (cond ((string= c "\"") (setq pair-char '("\"")))
           ((string= c "'") (setq pair-char '("'" "`")))
           ((string= c ")") (setq pair-char '("(")))
@@ -1641,7 +1641,7 @@ other window."
 
 (defun jcs-get-close-pair-char (c)
   "Get the list of close pairing character from C."
-  (let ((pair-char nil))
+  (let (pair-char)
     (cond ((string= c "\"") (setq pair-char '("\"")))
           ((string= c "'") (setq pair-char '("'")))
           ((string= c "(") (setq pair-char '(")")))
@@ -1699,11 +1699,10 @@ CC : Current character at position."
 (defun jcs-electric-delete ()
   "Electric delete key."
   (interactive)
-  (if (use-region-p)
-      (jcs-delete-region)
+  (if (use-region-p) (jcs-delete-region)
     (let ((cc "") (opc ""))
       (save-excursion
-        (forward-char 1)
+        (jcs-safe-forward-char 1)
         (setq cc (jcs-get-current-char-string)))
       (setq opc (jcs-get-open-pair-char cc))
       (if (and (jcs-is-inside-string-p)
@@ -1727,6 +1726,17 @@ CC : Current character at position."
         (jcs-own-delete-backward-char)
         (jcs-forward-delete-close-pair-char cpc)
         (jcs-forward-delete-close-pair-char-seq cc)))))
+
+(defconst jcs-smart-closing-parens '("}" ")" "]")
+  "List of closing parenthesis.")
+
+(defun jcs-smart-closing (fnc &rest args)
+  "Smart way to indent region by closing up parenthesis."
+  (apply fnc args)
+  (jcs-mute-apply
+    (let ((ind-end (point))
+          (ind-beg (save-excursion (ignore-errors (jcs-backward-sexp)) (point))))
+      (indent-region ind-beg ind-end))))
 
 ;;
 ;; (@* "Isearch" )
