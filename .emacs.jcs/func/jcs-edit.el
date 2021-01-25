@@ -1733,11 +1733,12 @@ CC : Current character at position."
 (defun jcs-smart-closing (fnc &rest args)
   "Smart way to indent region by closing up parenthesis."
   (apply fnc args)
-  (jcs-mute-apply
-    (let ((ind-end (point))
-          (ind-beg (save-excursion (ignore-errors (jcs-backward-sexp)) (point))))
-      (unless (= ind-beg ind-end)
-        (indent-region ind-beg ind-end)))))
+  (when (jcs-current-char-equal-p jcs-smart-closing-parens)
+    (jcs-mute-apply
+      (let ((ind-end (point))
+            (ind-beg (save-excursion (ignore-errors (jcs-backward-sexp)) (point))))
+        (unless (= ind-beg ind-end)
+          (indent-region ind-beg ind-end))))))
 
 ;;
 ;; (@* "Isearch" )
