@@ -4,6 +4,7 @@
 
 (require 'cl-lib)
 (require 'multi-shell)
+(require 'yasnippet)  ; Prevent buffer jumps after loading `company'
 
 (defvar jcs-shell--last-selected-shell-index -1
   "Record last selected shell.")
