@@ -1736,7 +1736,8 @@ CC : Current character at position."
   (jcs-mute-apply
     (let ((ind-end (point))
           (ind-beg (save-excursion (ignore-errors (jcs-backward-sexp)) (point))))
-      (indent-region ind-beg ind-end))))
+      (unless (= ind-beg ind-end)
+        (indent-region ind-beg ind-end)))))
 
 ;;
 ;; (@* "Isearch" )
