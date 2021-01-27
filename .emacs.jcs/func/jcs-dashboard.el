@@ -300,13 +300,12 @@ it by two to get the border from one side."
 ;; (@* "Registry" )
 ;;
 
-(defun jcs-dashboard--size-change-functions (&rest _)
-  "When window changed size."
+(defun jcs-dashboard--window-size-change ()
+  "`window-size-change-functions' for `dashboard'."
   (let ((new-ww (jcs-dashboard--window-width)))
     (when (and new-ww (not (= new-ww jcs-dashboard--last-window-width)))
       (setq jcs-dashboard--last-window-width new-ww)
       (jcs-dashboard-refresh-buffer))))
-(add-hook 'window-size-change-functions 'jcs-dashboard--size-change-functions)
 
 (provide 'jcs-dashboard)
 ;;; jcs-dashboard.el ends here
