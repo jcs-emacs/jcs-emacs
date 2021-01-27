@@ -72,7 +72,8 @@ For instance, `///', `---', etc."
           ;; be gone.
           (insert "\n") (indent-for-tab-command))
         (jcs-previous-line)
-        (end-of-line)))))
+        (end-of-line)))
+    able-insert-docstring-p))
 
 
 ;;;###autoload
