@@ -61,5 +61,54 @@
              (jcs-vs-csharp-only-vs-comment-prefix-this-line-p))
     (insert " ")))
 
+;;
+;; (@* "Document String" )
+;;
+
+;;;###autoload
+(defun jcs-csharp-return ()
+  "Return key for `csharp-mode'."
+  (interactive)
+  (jcs-smart-context-line-break)
+  (let (;; Check if the next line is the doc string comment line.
+        is-next-line-doc-string-comment-line
+        ;; When we break a line and there are still some content on the right.
+        line-have-content-on-right)
+    (save-excursion
+      (unless (jcs-current-line-comment-p)
+        (setq line-have-content-on-right t)))
+
+    (save-excursion
+      (jcs-previous-line)
+      (if (jcs-vs-csharp-only-vs-comment-prefix-this-line-p)
+          (when line-have-content-on-right
+            (setq is-next-line-doc-string-comment-line t))
+        (when (jcs-vs-csharp-comment-prefix-p)
+          (setq is-next-line-doc-string-comment-line t))))
+
+    ;; If we still not sure to insert docstring comment line yet.
+    ;; Then we need to do deeper check.
+    (unless is-next-line-doc-string-comment-line
+      (let ((prev-line-vs-prefix nil) (next-line-vs-prefix nil))
+        (save-excursion
+          (jcs-previous-line)
+          (when (jcs-vs-csharp-comment-prefix-p)
+            (setq prev-line-vs-prefix t)))
+
+        ;; Only when previous have prefix.
+        (when prev-line-vs-prefix
+          (save-excursion
+            (jcs-next-line)
+            (when (jcs-vs-csharp-comment-prefix-p)
+              (setq next-line-vs-prefix t)))
+
+          (when (and prev-line-vs-prefix next-line-vs-prefix)
+            (setq is-next-line-doc-string-comment-line t)))))
+
+    ;; Is doc-string comment line. Insert doc-string comment.
+    (when is-next-line-doc-string-comment-line
+      (insert "/// ")))
+  (indent-for-tab-command))
+
 (provide 'jcs-csharp)
 ;;; jcs-csharp.el ends here
