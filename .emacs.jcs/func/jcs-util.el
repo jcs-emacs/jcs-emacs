@@ -1108,43 +1108,60 @@ CMDS should be a list of commands."
   "Check if current cursor point inside the comment block."
   (or (nth 4 (syntax-ppss))
       (jcs-is-current-point-face "font-lock-comment-face")
+      (jcs-is-current-point-face "tree-sitter-hl-face:comment")
+      (jcs-is-current-point-face "tree-sitter-hl-face:doc")
       (jcs-is-current-point-face "hl-todo")))
 
 (defun jcs-inside-comment-or-string-p ()
   "Check if inside comment or stirng."
-  (or (nth 8 (syntax-ppss))
-      (jcs-is-current-point-face "font-lock-comment-face")
-      (jcs-is-current-point-face "hl-todo")
+  (or (jcs-inside-comment-block-p)
+      (nth 8 (syntax-ppss))
       (jcs-is-current-point-face "font-lock-string-face")))
 
 ;;;###autoload
-(defun jcs-goto-start-of-the-comment ()
+(defun jcs-goto-start-comment ()
   "Go to the start of the comment."
   (interactive)
-  (while (jcs-inside-comment-block-p)
+  (when (jcs-inside-comment-block-p)
     (re-search-backward comment-start-skip nil t)))
 
 ;;;###autoload
-(defun jcs-goto-end-of-the-comment ()
+(defun jcs-goto-end-comment ()
   "Go to the end of the comment."
   (interactive)
   (when (jcs-inside-comment-block-p)
-    (backward-char -1)
-    (jcs-goto-end-of-the-comment)))
+    (forward-char 1)
+    (jcs-goto-end-comment)))
 
-(defun jcs-start-of-the-comment-point (&optional pt)
+(defun jcs-start-comment-point (&optional pt)
   "Point at the start of the comment point relative to PT."
-  (save-excursion
-    (when pt (goto-char pt))
-    (jcs-goto-start-of-the-comment)
-    (point)))
+  (save-excursion (when pt (goto-char pt)) (jcs-goto-start-comment) (point)))
 
-(defun jcs-end-of-the-comment-point (&optional pt)
+(defun jcs-end-comment-point (&optional pt)
   "Point at the end of the comment point relative to PT."
-  (save-excursion
-    (when pt (goto-char pt))
-    (jcs-goto-end-of-the-comment)
-    (point)))
+  (save-excursion (when pt (goto-char pt)) (jcs-goto-end-comment) (point)))
+
+(defun jcs-start-comment-symbol (&optional pt)
+  "Return the starting comment symbol form the given PT."
+  (let (start-pt)
+    (save-excursion
+      (when pt (goto-char pt))
+      (jcs-goto-start-comment)
+      (setq start-pt (point))
+      (re-search-forward "[ \t\r\n]" (1+ (line-end-position)) t)
+      (if (= start-pt (point)) nil
+        (string-trim (buffer-substring start-pt (point)))))))
+
+(defun jcs-end-comment-symbol (&optional pt)
+  "Return the ending comment symbol form the given PT."
+  (let (end-pt)
+    (save-excursion
+      (when pt (goto-char pt))
+      (jcs-goto-end-comment)
+      (setq end-pt (point))
+      (re-search-backward "[ \t\r\n]" (1- (line-beginning-position)) t)
+      (if (= end-pt (point)) nil
+        (string-trim (buffer-substring (point) end-pt))))))
 
 ;;
 ;; (@* "Face" )
