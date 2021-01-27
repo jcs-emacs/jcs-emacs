@@ -316,10 +316,6 @@ OW is the other window flag."
 (defvar jcs-dashboard--last-ls-path nil
   "Record down the last current path.")
 
-(defconst jcs-dashboard-inhibit-refresh-buffer-list
-  '("[*]NeoTree[*]")
-  "List of buffer name that are inhibit to refresh `dashboard' buffer.")
-
 ;;;###autoload
 (defun jcs-dashboard-refresh-buffer ()
   "Update dashboard buffer by killing it and start a new one."
@@ -332,10 +328,8 @@ OW is the other window flag."
         (let ((dashboard-ls-path (jcs-last-default-directory))
               (dashboard-path-max-length (jcs-dasbhoard--get-path-length)))
           (when (and (or (not (active-minibuffer-window))
-                         (and (not jcs-minibuf-enabled-p) (not (jcs-minibuf-prompt-p))))
-                     (not (jcs-is-contain-list-string-regexp
-                           jcs-dashboard-inhibit-refresh-buffer-list (buffer-name))))
-            (dashboard-refresh-buffer)))))))
+                         (and (not jcs-minibuf-enabled-p) (not (jcs-minibuf-prompt-p)))))
+            (save-window-excursion (dashboard-refresh-buffer))))))))
 
 (defun jcs-dashboard-safe-refresh-buffer (&optional force)
   "Safely refresh the dashboard buffer if needed.
