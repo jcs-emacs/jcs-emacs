@@ -32,7 +32,7 @@
   (define-key csharp-mode-map [S-f8] #'jcs-find-corresponding-file-other-window)
 
   ;; comment block
-  (define-key csharp-mode-map (kbd "RET") #'jcs-smart-context-line-break)
+  (define-key csharp-mode-map (kbd "RET") #'jcs-csharp-return)
   (define-key csharp-mode-map (kbd "*") #'jcs-c-comment-pair)
 
   (define-key csharp-mode-map (kbd "#") #'jcs-vs-sharp-key)
