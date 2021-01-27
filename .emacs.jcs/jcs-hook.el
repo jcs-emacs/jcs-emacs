@@ -24,12 +24,9 @@
 
 (defun jcs-window-size-change-functions (&rest _)
   "When window changed size."
-  (setq ivy-height (round (* (frame-height) jcs-ivy-height-ratio)))
-  (when (and (window-minibuffer-p) jcs-minibuf-enabled-p)
-    (jcs-mute-apply
-      (ivy--resize-minibuffer-to-fit)
-      (ivy-shrink-after-dispatching)
-      (ignore-errors (ivy--exhibit)))))
+  (jcs-dashboard--window-size-change)
+  (when (featurep 'jcs-ivy) (jcs-ivy--window-size-change))
+  (when (featurep 'neotree) (jcs-neotree--window-size-change)))
 (add-hook 'window-size-change-functions 'jcs-window-size-change-functions)
 
 ;;
