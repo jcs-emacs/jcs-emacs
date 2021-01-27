@@ -666,7 +666,7 @@
                                 (t . ivy--regex-fuzzy))
         ivy-wrap t)
   (defvar jcs-ivy-height-ratio 0.3
-    "Ratio that respect `frame-height' by multiply this and `ivy-height'.")
+    "Ratio that respect to `frame-height' and `ivy-height'.")
   :config
   (require 'smex)
   (setq enable-recursive-minibuffers t))
@@ -820,11 +820,13 @@
   :init
   (setq neo-window-position 'right
         neo-show-hidden-files t
-        neo-window-width 35
         neo-toggle-window-keep-p nil
         neo-theme 'ascii
         neo-hide-cursor t
         neo-smart-open t)
+
+  (defvar jcs-neotree-width-ratio 0.15
+    "Ratio that respect to `frame-width' and `neo-window-width'.")
 
   (defvar jcs--neotree--refresh-delay 0.3
     "Delay time after start refreshing `neotree'.")
@@ -865,7 +867,16 @@
   (defun jcs--neo-after-create-hook (&rest _)
     "Hooks called after creating the neotree buffer."
     (buffer-wrap-mode 1))
-  (add-hook 'neo-after-create-hook 'jcs--neo-after-create-hook))
+  (add-hook 'neo-after-create-hook 'jcs--neo-after-create-hook)
+
+  (defun jcs-neotree-refresh ()
+    "Refresh neotree by toggle twice."
+    (neotree-toggle) (neotree-toggle))
+
+  (defun jcs-neotree--window-size-change ()
+    "`window-size-change-functions' for `neotree','"
+    (setq neo-window-width (round (* (frame-width) jcs-neotree-width-ratio)))
+    (when (neo-global--window-exists-p) (jcs-neotree-refresh))))
 
 (use-package origami
   :config
