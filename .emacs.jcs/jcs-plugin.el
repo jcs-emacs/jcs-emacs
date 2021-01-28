@@ -336,7 +336,8 @@
 
 (use-package docstr
   :init
-  (setq docstr-desc-summary ""))
+  (setq docstr-key-support t
+        docstr-desc-summary ""))
 
 (use-package dumb-jump
   :init
