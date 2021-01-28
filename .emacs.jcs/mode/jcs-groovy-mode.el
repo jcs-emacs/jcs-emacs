@@ -19,8 +19,7 @@
                               'jcs-insert-groovy-template)
 
   ;; comment block
-  (define-key groovy-mode-map (kbd "RET") #'jcs-smart-context-line-break)
-  (define-key groovy-mode-map (kbd "*") #'jcs-c-comment-pair))
+  (define-key groovy-mode-map (kbd "RET") #'jcs-smart-context-line-break))
 
 (add-hook 'groovy-mode-hook 'jcs-groovy-mode-hook)
 

@@ -40,8 +40,7 @@
   (define-key json-mode-map (kbd ";") #'jcs-vs-semicolon-key)
 
   ;; comment block
-  (define-key json-mode-map (kbd "RET") #'jcs-smart-context-line-break)
-  (define-key json-mode-map (kbd "*") #'jcs-c-comment-pair))
+  (define-key json-mode-map (kbd "RET") #'jcs-smart-context-line-break))
 
 (add-hook 'json-mode-hook 'jcs-json-mode-hook)
 

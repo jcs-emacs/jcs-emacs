@@ -58,7 +58,6 @@
 
   ;; comment block
   (define-key js2-mode-map (kbd "RET") #'jcs-smart-context-line-break)
-  (define-key js2-mode-map (kbd "*") #'jcs-c-comment-pair)
 
   (jcs--js-to-jsx-mode))
 

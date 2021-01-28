@@ -36,7 +36,6 @@
 
   ;; Comment Block.
   (define-key objc-mode-map (kbd "RET") #'jcs-smart-context-line-break)
-  (define-key objc-mode-map (kbd "*") #'jcs-c-comment-pair)
 
   ;; Comement
   (define-key objc-mode-map (kbd "C-k s") #'jcs-toggle-c-comment-style)

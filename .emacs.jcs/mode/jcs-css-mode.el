@@ -34,7 +34,6 @@
 
   ;; comment block
   (define-key css-mode-map (kbd "RET") #'jcs-css-return-key)
-  (define-key css-mode-map (kbd "*") #'jcs-c-comment-pair)
 
   ;; sort attribute in order => `com-css-sort' package.
   (define-key css-mode-map (kbd "C-k s") #'com-css-sort-attributes-block)

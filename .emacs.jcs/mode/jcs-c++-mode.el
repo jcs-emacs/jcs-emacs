@@ -83,7 +83,6 @@
 
   ;; Comment Block.
   (define-key c++-mode-map (kbd "RET") #'jcs-smart-context-line-break)
-  (define-key c++-mode-map (kbd "*") #'jcs-c-comment-pair)
 
   ;; Comement
   (define-key c++-mode-map (kbd "C-k s") #'jcs-toggle-c-comment-style)

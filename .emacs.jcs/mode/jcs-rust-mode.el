@@ -25,8 +25,7 @@
   (define-key rust-mode-map (kbd "}") #'jcs-vs-closing-curly-bracket-key)
 
   ;; Comment Block
-  (define-key rust-mode-map (kbd "RET") #'jcs-smart-context-line-break)
-  (define-key rust-mode-map (kbd "*") #'jcs-c-comment-pair))
+  (define-key rust-mode-map (kbd "RET") #'jcs-smart-context-line-break))
 
 (add-hook 'rust-mode-hook 'jcs-rust-mode-hook)
 

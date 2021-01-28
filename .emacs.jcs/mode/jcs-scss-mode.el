@@ -18,7 +18,6 @@
 
   ;; comment block
   (define-key scss-mode-map (kbd "RET") #'jcs-smart-context-line-break)
-  (define-key scss-mode-map (kbd "*") #'jcs-c-comment-pair)
 
   ;; sort attribute in order => `com-css-sort' package.
   (define-key scss-mode-map (kbd "C-k s") #'com-css-sort-attributes-block)

@@ -35,8 +35,7 @@
   (define-key actionscript-mode-map (kbd "C-v") #'jcs-smart-yank)
 
   ;; comment block
-  (define-key actionscript-mode-map (kbd "RET") #'jcs-smart-context-line-break)
-  (define-key actionscript-mode-map (kbd "*") #'jcs-c-comment-pair))
+  (define-key actionscript-mode-map (kbd "RET") #'jcs-smart-context-line-break))
 
 (add-hook 'actionscript-mode-hook 'jcs-prog-mode-hook)
 (add-hook 'actionscript-mode-hook 'jcs-actionscript-mode-hook)

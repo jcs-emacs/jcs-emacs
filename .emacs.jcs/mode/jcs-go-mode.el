@@ -21,8 +21,7 @@
                               'jcs-insert-go-template)
 
   ;; comment block
-  (define-key go-mode-map (kbd "RET") #'jcs-smart-context-line-break)
-  (define-key go-mode-map (kbd "*") #'jcs-c-comment-pair))
+  (define-key go-mode-map (kbd "RET") #'jcs-smart-context-line-break))
 
 (add-hook 'go-mode-hook 'jcs-go-mode-hook)
 

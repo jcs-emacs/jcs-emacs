@@ -64,9 +64,6 @@
   (define-key web-mode-map [f8] #'jcs-find-corresponding-file)
   (define-key web-mode-map [S-f8] #'jcs-find-corresponding-file-other-window)
 
-  ;; comment block
-  (define-key web-mode-map (kbd "*") #'jcs-c-comment-pair)
-
   ;; Shortcuts
   (define-key web-mode-map (kbd "C-n") #'web-mode-tag-match)
 

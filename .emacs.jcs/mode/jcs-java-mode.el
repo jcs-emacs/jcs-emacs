@@ -30,7 +30,6 @@
 
   ;; comment block
   (define-key java-mode-map (kbd "RET") #'jcs-smart-context-line-break)
-  (define-key java-mode-map (kbd "*") #'jcs-c-comment-pair)
 
   ;; switch window
   (define-key java-mode-map "\ew" #'jcs-other-window-next)

@@ -20,7 +20,6 @@
 
   ;; Comment Block
   (define-key ssass-mode-map (kbd "RET") #'jcs-smart-context-line-break)
-  (define-key ssass-mode-map (kbd "*") #'jcs-c-comment-pair)
 
   ;; Edit
   (define-key ssass-mode-map (kbd "<up>") (jcs-get-prev/next-key-type 'previous))

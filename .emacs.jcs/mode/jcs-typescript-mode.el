@@ -32,8 +32,7 @@
   (define-key typescript-mode-map (kbd ";") #'jcs-vs-semicolon-key)
 
   ;; comment block
-  (define-key typescript-mode-map (kbd "RET") #'jcs-smart-context-line-break)
-  (define-key typescript-mode-map (kbd "*") #'jcs-c-comment-pair))
+  (define-key typescript-mode-map (kbd "RET") #'jcs-smart-context-line-break))
 
 (add-hook 'typescript-mode-hook 'jcs-typescript-mode-hook)
 
