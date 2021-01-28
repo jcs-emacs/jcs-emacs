@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2021-01-28
+
+* Moved complicated document string asterisk module to external package `docstr`.
+* Moved compilcated document string module to external package `docstr`.
+* Enhanced grabbing symbol on both comment `start` and comment `end`.
+
 ### 2021-01-27
 
 * Removed dashbaord refresh limitation due to buffer shown.
