@@ -931,30 +931,16 @@ Returns nil, the word isn't the same."
     (= firstCharPoint current-point)))
 
 (defun jcs-is-infront-first-char-at-line-p (&optional pt)
-  "Check current cursor PT is before the first character at the current line.
-Return non-nil, infront of first character.
-Return nil, vice versa."
+  "Return non-nil if there is nothing infront of the right from the PT."
   (save-excursion
-    (let ((is-infront t) (point-to-check nil))
-      (when pt (goto-char pt))
-      (setq point-to-check (point))
-      (beginning-of-line)
-      (while (and is-infront (< (point) point-to-check) (not (jcs-is-end-of-line-p)))
-        (forward-char 1)
-        (unless (jcs-current-whitespace-or-tab-p) (setq is-infront nil)))
-      is-infront)))
+    (when pt (goto-char pt))
+    (null (re-search-backward "[^ \t]" (line-beginning-position) t))))
 
 (defun jcs-is-behind-last-char-at-line-p (&optional pt)
-  "Check current cursor PT is after the last character at the current line.
-Return non-nil, behind the last character.
-Return nil, vice versa."
+  "Return non-nil if there is nothing behind of the right from the PT."
   (save-excursion
-    (let ((is-behind t))
-      (when pt (goto-char pt))
-      (while (and is-behind (not (jcs-is-end-of-line-p)))
-        (forward-char 1)
-        (unless (jcs-current-whitespace-or-tab-p) (setq is-behind nil)))
-      is-behind)))
+    (when pt (goto-char pt))
+    (null (re-search-forward "[^ \t]" (line-end-position) t))))
 
 (defun jcs-empty-line-between-point (min-pt max-pt)
   "Check if there is empty line between two point, MIN-PT and MAX-PT."
