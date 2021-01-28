@@ -1108,7 +1108,7 @@ CMDS should be a list of commands."
 (defun jcs-goto-start-comment ()
   "Go to the start of the comment."
   (interactive)
-  (when (jcs-inside-comment-block-p)
+  (while (jcs-inside-comment-block-p)
     (re-search-backward comment-start-skip nil t)))
 
 ;;;###autoload
@@ -1129,25 +1129,30 @@ CMDS should be a list of commands."
 
 (defun jcs-start-comment-symbol (&optional pt)
   "Return the starting comment symbol form the given PT."
-  (let (start-pt)
-    (save-excursion
-      (when pt (goto-char pt))
-      (jcs-goto-start-comment)
-      (setq start-pt (point))
-      (re-search-forward "[ \t\r\n]" (1+ (line-end-position)) t)
-      (if (= start-pt (point)) nil
-        (string-trim (buffer-substring start-pt (point)))))))
+  (when (jcs-inside-comment-block-p)
+    (let (start-pt)
+      (save-excursion
+        (when pt (goto-char pt))
+        (jcs-goto-start-comment)
+        (progn  ; Make sure to go outside of symbol
+          (re-search-backward "[ \t\r\n]" nil t)
+          (forward-char 1))
+        (setq start-pt (point))
+        (re-search-forward "[ \t\r\n]" (1+ (line-end-position)) t)
+        (if (= start-pt (point)) nil
+          (string-trim (buffer-substring start-pt (point))))))))
 
 (defun jcs-end-comment-symbol (&optional pt)
   "Return the ending comment symbol form the given PT."
-  (let (end-pt)
-    (save-excursion
-      (when pt (goto-char pt))
-      (jcs-goto-end-comment)
-      (setq end-pt (point))
-      (re-search-backward "[ \t\r\n]" (1- (line-beginning-position)) t)
-      (if (= end-pt (point)) nil
-        (string-trim (buffer-substring (point) end-pt))))))
+  (when (jcs-inside-comment-block-p)
+    (let (end-pt)
+      (save-excursion
+        (when pt (goto-char pt))
+        (jcs-goto-end-comment)
+        (setq end-pt (point))
+        (re-search-backward "[ \t\r\n]" (1- (line-beginning-position)) t)
+        (if (= end-pt (point)) nil
+          (string-trim (buffer-substring (point) end-pt)))))))
 
 ;;
 ;; (@* "Face" )
