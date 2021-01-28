@@ -77,18 +77,6 @@ For instance, `///', `---', etc."
 
 
 ;;;###autoload
-(defun jcs-c-comment-pair ()
-  "Auto pair c style comment block."
-  (interactive)
-  (let ((insert-pair nil))
-    (when (jcs-current-char-equal-p "/")
-      (setq insert-pair t))
-    (insert "*")
-    (save-excursion
-      (when (and insert-pair (jcs-is-behind-last-char-at-line-p))
-        (insert "*/")))))
-
-;;;###autoload
 (defun jcs-toggle-comment-on-line ()
   "Comment or uncomment current line."
   (interactive)
