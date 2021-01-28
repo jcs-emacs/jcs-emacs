@@ -30,36 +30,6 @@ For instance, `///', `---', etc."
             (setq is-comment-prefix-at-point t))))
       is-comment-prefix-at-point)))
 
-(defun jcs-is-global-comment-doc-p (&optional pt)
-  "Return non-nil, if is a global comment docstring."
-  (string-match-p "/[*]" (jcs-start-comment-symbol)))
-
-;;;###autoload
-(defun jcs-smart-context-line-break ()
-  "Comment block."
-  (interactive)
-  (let (able-insert-docstring-p)
-    ;; check if inside the comment block.
-    (if (not (jcs-inside-comment-block-p)) (newline-and-indent)
-      (setq able-insert-docstring-p
-            (and (save-excursion (search-backward "/*" (line-beginning-position) t))
-                 (save-excursion (search-forward "*/" (line-end-position) t))))
-
-      ;; check the '/*' and '*/' on the same line?
-      (if (not able-insert-docstring-p)
-          (progn
-            (insert "\n")
-            (when (jcs-is-global-comment-doc-p) (insert "* "))
-            (indent-for-tab-command))
-        (insert "\n* ") (indent-for-tab-command)
-        (progn
-          ;; We can't use `newline-and-indent' here, or else the space will
-          ;; be gone.
-          (insert "\n") (indent-for-tab-command))
-        (jcs-previous-line)
-        (end-of-line)))
-    able-insert-docstring-p))
-
 
 ;;;###autoload
 (defun jcs-toggle-comment-on-line ()

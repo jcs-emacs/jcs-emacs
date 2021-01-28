@@ -24,9 +24,8 @@
 (defun jcs-css-return-key ()
   "CSS return key."
   (interactive)
-  (if (jcs-is-end-of-line-p)
-      (call-interactively #'jcs-smart-context-line-break)
-    (newline-and-indent)
+  (newline-and-indent)(newline-and-indent)
+  (unless (jcs-is-end-of-line-p)
     (jcs-beginning-of-line)
     (when (jcs-is-infront-first-char-at-line-p) (indent-for-tab-command))))
 
