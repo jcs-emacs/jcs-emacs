@@ -30,20 +30,6 @@ For instance, `///', `---', etc."
             (setq is-comment-prefix-at-point t))))
       is-comment-prefix-at-point)))
 
-(defun jcs-do-doc-string-p ()
-  "Check if able to insert docstring by checking current line with only comments."
-  (save-excursion
-    (let ((do-doc-string t))
-      (jcs-goto-first-char-in-line)
-      (while (not (jcs-is-end-of-line-p))
-        (forward-char 1)
-        (unless (jcs-current-char-string-match-p "[ \t*/]")
-          ;; return false.
-          (setq do-doc-string nil)
-          do-doc-string))
-      ;; return true.
-      do-doc-string)))
-
 (defun jcs-is-global-comment-doc-p (&optional pt)
   "Return non-nil, if is a global comment docstring."
   (string-match-p "/[*]" (jcs-start-comment-symbol)))
@@ -57,8 +43,7 @@ For instance, `///', `---', etc."
     (if (not (jcs-inside-comment-block-p)) (newline-and-indent)
       (setq able-insert-docstring-p
             (and (save-excursion (search-backward "/*" (line-beginning-position) t))
-                 (save-excursion (search-forward "*/" (line-end-position) t))
-                 (jcs-do-doc-string-p)))
+                 (save-excursion (search-forward "*/" (line-end-position) t))))
 
       ;; check the '/*' and '*/' on the same line?
       (if (not able-insert-docstring-p)

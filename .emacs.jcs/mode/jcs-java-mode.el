@@ -28,9 +28,6 @@
   (define-key java-mode-map (kbd "{") #'jcs-vs-opening-curly-bracket-key)
   (define-key java-mode-map (kbd ";") #'jcs-vs-semicolon-key)
 
-  ;; comment block
-  (define-key java-mode-map (kbd "RET") #'jcs-smart-context-line-break)
-
   ;; switch window
   (define-key java-mode-map "\ew" #'jcs-other-window-next)
   (define-key java-mode-map (kbd "M-q") #'jcs-other-window-prev)
