@@ -29,10 +29,7 @@
   ;; Normal
   (define-key typescript-mode-map (kbd "DEL") #'jcs-electric-backspace)
   (define-key typescript-mode-map (kbd "{") #'jcs-vs-opening-curly-bracket-key)
-  (define-key typescript-mode-map (kbd ";") #'jcs-vs-semicolon-key)
-
-  ;; comment block
-  (define-key typescript-mode-map (kbd "RET") #'jcs-smart-context-line-break))
+  (define-key typescript-mode-map (kbd ";") #'jcs-vs-semicolon-key))
 
 (add-hook 'typescript-mode-hook 'jcs-typescript-mode-hook)
 

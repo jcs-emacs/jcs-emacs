@@ -13,10 +13,7 @@
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]scala")
-                              'jcs-insert-scala-template)
-
-  ;; Comment Block
-  (define-key scala-mode-map (kbd "RET") #'jcs-smart-context-line-break))
+                              'jcs-insert-scala-template))
 
 (add-hook 'scala-mode-hook 'jcs-scala-mode-hook)
 

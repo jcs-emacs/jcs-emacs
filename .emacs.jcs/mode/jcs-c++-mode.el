@@ -81,9 +81,6 @@
   (define-key c++-mode-map (kbd "{") #'jcs-vs-opening-curly-bracket-key)
   (define-key c++-mode-map (kbd ";") #'jcs-vs-semicolon-key)
 
-  ;; Comment Block.
-  (define-key c++-mode-map (kbd "RET") #'jcs-smart-context-line-break)
-
   ;; Comement
   (define-key c++-mode-map (kbd "C-k s") #'jcs-toggle-c-comment-style)
 

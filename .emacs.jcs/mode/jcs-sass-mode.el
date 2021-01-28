@@ -18,9 +18,6 @@
 
   ;; Normal
 
-  ;; Comment Block
-  (define-key ssass-mode-map (kbd "RET") #'jcs-smart-context-line-break)
-
   ;; Edit
   (define-key ssass-mode-map (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
   (define-key ssass-mode-map (kbd "<down>") (jcs-get-prev/next-key-type 'next)))

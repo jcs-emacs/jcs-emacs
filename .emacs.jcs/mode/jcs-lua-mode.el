@@ -10,20 +10,6 @@
       (electric-pair-default-inhibit c)
     (jcs--electric-pair-inhibit-predicate c)))
 
-(defun jcs-lua-return ()
-  "Return key for `lua-mode'."
-  (interactive)
-  (let (able-insert-docstring-p)
-    (if (not (jcs-inside-comment-block-p)) (newline-and-indent)
-      (setq able-insert-docstring-p
-            (and (save-excursion (search-backward "--[[" (line-beginning-position) t))
-                 (save-excursion (search-forward "]]" (line-end-position) t))))
-      (newline-and-indent)
-      (when able-insert-docstring-p
-        (end-of-line))
-      (unless (string= "--[[" (jcs-start-comment-symbol))
-        (insert "-- ")))))
-
 ;;
 ;; (@* "Hook" )
 ;;
@@ -40,10 +26,7 @@
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]lua" "[.]luac")
-                              'jcs-insert-lua-template)
-
-  ;; comment block
-  (define-key lua-mode-map (kbd "RET") #'jcs-lua-return))
+                              'jcs-insert-lua-template))
 
 (add-hook 'lua-mode-hook 'jcs-lua-mode-hook)
 

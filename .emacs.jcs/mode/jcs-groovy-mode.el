@@ -16,10 +16,7 @@
   ;; File Header
   (jcs-insert-header-if-valid '("[.]groovy"
                                 "[.]gradle")
-                              'jcs-insert-groovy-template)
-
-  ;; comment block
-  (define-key groovy-mode-map (kbd "RET") #'jcs-smart-context-line-break))
+                              'jcs-insert-groovy-template))
 
 (add-hook 'groovy-mode-hook 'jcs-groovy-mode-hook)
 

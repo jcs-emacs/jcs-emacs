@@ -56,9 +56,6 @@
   (define-key js2-mode-map (kbd "{") #'jcs-vs-opening-curly-bracket-key)
   (define-key js2-mode-map (kbd ";") #'jcs-vs-semicolon-key)
 
-  ;; comment block
-  (define-key js2-mode-map (kbd "RET") #'jcs-smart-context-line-break)
-
   (jcs--js-to-jsx-mode))
 
 (add-hook 'js-mode-hook 'jcs-js-mode-hook)

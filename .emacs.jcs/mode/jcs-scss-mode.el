@@ -16,9 +16,6 @@
   (jcs-insert-header-if-valid '("[.]scss")
                               'jcs-insert-scss-template)
 
-  ;; comment block
-  (define-key scss-mode-map (kbd "RET") #'jcs-smart-context-line-break)
-
   ;; sort attribute in order => `com-css-sort' package.
   (define-key scss-mode-map (kbd "C-k s") #'com-css-sort-attributes-block)
   (define-key scss-mode-map (kbd "C-k d") #'com-css-sort-attributes-document))

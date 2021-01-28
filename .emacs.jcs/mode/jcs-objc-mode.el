@@ -34,9 +34,6 @@
   (define-key objc-mode-map (kbd "{") #'jcs-vs-opening-curly-bracket-key)
   (define-key objc-mode-map (kbd ";") #'jcs-vs-semicolon-key)
 
-  ;; Comment Block.
-  (define-key objc-mode-map (kbd "RET") #'jcs-smart-context-line-break)
-
   ;; Comement
   (define-key objc-mode-map (kbd "C-k s") #'jcs-toggle-c-comment-style)
 

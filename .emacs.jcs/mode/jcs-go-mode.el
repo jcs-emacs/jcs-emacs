@@ -18,10 +18,7 @@
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]go")
-                              'jcs-insert-go-template)
-
-  ;; comment block
-  (define-key go-mode-map (kbd "RET") #'jcs-smart-context-line-break))
+                              'jcs-insert-go-template))
 
 (add-hook 'go-mode-hook 'jcs-go-mode-hook)
 
