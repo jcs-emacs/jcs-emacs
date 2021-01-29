@@ -221,7 +221,7 @@
 
 (defun jcs-dashboard--real-path-alist (index alist)
   "Return real path by INDEX from dahsboard path ALIST."
-  (cdr (nth index (reverse alist))))
+  (when (<= 0 index) (cdr (nth index (reverse alist)))))
 
 (defun jcs-dashboard-get-path-alist ()
   "Return path from current point."
@@ -258,7 +258,10 @@
 This advice is used when function `counsel--preselect-file' trying to
 get the truncate path from dashboard buffer (ffap)."
   (if (jcs-dashboard--on-path-item-p)
-      (jcs-dashboard-get-path-alist)
+      (or (jcs-dashboard-get-path-alist)
+          (let ((ls-path (f-join jcs-dashboard--last-ls-path (ffap-string-at-point))))
+            (when (file-exists-p ls-path) ls-path))
+          (apply fnc args))
     (apply fnc args)))
 (advice-add 'ffap-guesser :around #'jcs--ffap-guesser--advice-around)
 
