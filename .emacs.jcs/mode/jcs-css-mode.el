@@ -32,9 +32,6 @@
   (define-key css-mode-map (kbd "{") #'jcs-vs-opening-curly-bracket-key)
   (define-key css-mode-map (kbd ";") #'jcs-vs-semicolon-key)
 
-  ;; comment block
-  (define-key css-mode-map (kbd "RET") #'jcs-css-return-key)
-
   ;; sort attribute in order => `com-css-sort' package.
   (define-key css-mode-map (kbd "C-k s") #'com-css-sort-attributes-block)
   (define-key css-mode-map (kbd "C-k d") #'com-css-sort-attributes-document)
