@@ -35,24 +35,6 @@
 ;;
 
 ;;;###autoload
-(defun jcs-web-return-key ()
-  "Return key for Web mode."
-  (interactive)
-  (let (did-ret-key close-tag-found)
-    (when (and (jcs-first-forward-char-in-line-p "<")
-               (jcs-first-backward-char-in-line-p ">"))
-      ;; Check closing tag.
-      (save-excursion
-        (jcs-move-to-forward-a-char "<")
-        (forward-char 1)
-        (setq close-tag-found (jcs-current-char-equal-p "/")))
-      (when close-tag-found
-        (newline-and-indent)
-        (newline-and-indent)
-        (jcs-smart-indent-up)
-        (setq did-ret-key t)))))
-
-;;;###autoload
 (defun jcs-web-vs-opening-curly-bracket-key ()
   "Web mode front curly bracket key."
   (interactive)
