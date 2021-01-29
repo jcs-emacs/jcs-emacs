@@ -1428,7 +1428,7 @@ This function wrapped IN-STR with function `regexp-quote'."
 (defun jcs-parse-ini (path)
   "Parse a .ini file by PATH."
   (let ((tmp-ini (jcs-get-string-from-file path))
-        (tmp-ini-list '()) (tmp-pair-list nil)
+        tmp-ini-list tmp-pair-list
         (tmp-keyword "") (tmp-value "")
         (count 0))
     (setq tmp-ini (split-string tmp-ini "\n"))
@@ -1440,12 +1440,11 @@ This function wrapped IN-STR with function `regexp-quote'."
         (setq tmp-pair-list (split-string tmp-line "="))
 
         ;; Assign to temporary variables.
-        (setq tmp-keyword (nth 0 tmp-pair-list))
-        (setq tmp-value (nth 1 tmp-pair-list))
+        (setq tmp-keyword (nth 0 tmp-pair-list)
+              tmp-value (nth 1 tmp-pair-list))
 
         ;; Check empty value.
-        (when (and (not (string= tmp-keyword ""))
-                   (not (equal tmp-value nil)))
+        (when (and (not (string-empty-p tmp-keyword)) tmp-value)
           (let ((tmp-list '()))
             (push tmp-keyword tmp-list)
             (setq tmp-ini-list (append tmp-ini-list tmp-list)))
@@ -1459,8 +1458,11 @@ This function wrapped IN-STR with function `regexp-quote'."
 
 (defun jcs-get-properties (ini-list in-key)
   "Get properties data, searched by key and return value.
-  INI-LIST : ini list.  Please use this with/after using `jcs-parse-ini' function.
-  IN-KEY : key to search for value."
+
+Argument INI-LIST is properties file; please use this with/after using
+function `jcs-parse-ini'.
+
+Argument IN-KEY is key use to search for value."
   (let ((tmp-index 0) (tmp-key "") (tmp-value "") (returns-value ""))
     (while (< tmp-index (length ini-list))
       ;; Get the key and data value.
@@ -1533,15 +1535,15 @@ This function wrapped IN-STR with function `regexp-quote'."
   default-directory)
 
 (defun jcs-is-file-p (path)
-  "Check if PATH a file path."
+  "Return non-nil if PATH is a file path."
   (and (file-exists-p path) (not (file-directory-p path))))
 
 (defun jcs-is-directory-p (path)
-  "Check if PATH a directory path."
+  "Return non-nil if PATH is a directory path."
   (and (file-exists-p path) (file-directory-p path)))
 
 (defun jcs-file-directory-exists-p (file-path)
-  "Check if FILE-PATH exists."
+  "Return non-nil if FILE-PATH does exists."
   (or (file-directory-p file-path)
       (file-exists-p file-path)))
 
@@ -1554,13 +1556,12 @@ This function wrapped IN-STR with function `regexp-quote'."
       jcs-emacs-startup-directory)))
 
 (defun jcs-is-vc-dir-p (dir-path)
-  "Check if DIR-PATH a version control directory."
-  (let ((tmp-is-vc-dir nil))
+  "Return non-nil if DIR-PATH is version control directory."
+  (let (tmp-is-vc-dir)
     (dolist (tmp-vc-type grep-find-ignored-directories)
       (let ((tmp-check-dir (concat dir-path "/" tmp-vc-type)))
         (when (jcs-file-directory-exists-p tmp-check-dir)
           (setq tmp-is-vc-dir t))))
-    ;; Return retult.
     tmp-is-vc-dir))
 
 (defun jcs-up-one-dir-string (dir-path)
@@ -1572,12 +1573,9 @@ This function wrapped IN-STR with function `regexp-quote'."
   "Return project directory path."
   (cdr (project-current)))
 
-(defun jcs-get-file-name-or-last-dir-fromt-path (in-path &optional ignore-errors-t)
-  "Get the either the file name or last directory from the IN-PATH.
-  IN-PATH : input path.
-  IGNORE-ERRORS-T : ignore errors for this function?"
-  (if (and (not (jcs-file-directory-exists-p in-path))
-           (not ignore-errors-t))
+(defun jcs-get-file-name-or-last-dir-from-path (in-path &optional noerror)
+  "Get the either the file name or last directory from the IN-PATH."
+  (if (and (not (jcs-file-directory-exists-p in-path)) (not noerror))
       (error "Directory/File you trying get does not exists")
     (let ((result-dir-or-file nil)
           (split-dir-file-list '())
@@ -1612,15 +1610,15 @@ This function wrapped IN-STR with function `regexp-quote'."
 (defun jcs-string-compare-p (regexp str type &optional ignore-case)
   "Compare STR with REGEXP by TYPE.
 
-  Argument TYPE can be on of the following symbol.
+Argument TYPE can be on of the following symbol.
 
   * regex - uses function `string-match-p'.  (default)
   * strict - uses function `string='.
   * prefix - uses function `string-prefix-p'.
   * suffix - uses function `string-suffix-p'.
 
-  Optional argument IGNORE-CASE is only uses when TYPE is either symbol `prefix'
-  or `suffix'."
+Optional argument IGNORE-CASE is only uses when TYPE is either symbol `prefix'
+or `suffix'."
   (require 'cl-lib)
   (cl-case type
     (strict (string= regexp str))
@@ -1677,7 +1675,8 @@ This function wrapped IN-STR with function `regexp-quote'."
 
 (defun jcs-string-at-line (&optional ln trim)
   "Return the string at LN.
-  If TRIM is non-nil, trim the string before return it."
+
+If TRIM is non-nil, trim the string before return it."
   (save-excursion
     (jcs-goto-line ln)
     (if trim (string-trim (thing-at-point 'line)) (thing-at-point 'line))))
@@ -1724,12 +1723,13 @@ This function wrapped IN-STR with function `regexp-quote'."
 
 (defun jcs-setq-all-local-buffer (in-var in-val)
   "Set all the local buffer to some value.
-  IN-VAR : input variable name.
-  IN-VAL : input value to set to IN-VAR."
+
+Argument IN-VAR is input variable name as symbol.
+
+Argument IN-VAL is input value to set to IN-VAR."
   (save-window-excursion
     (save-selected-window
-      (let ((win-len (length (window-list)))
-            (index 0))
+      (let ((win-len (length (window-list))) (index 0))
         (while (< index win-len)
           (with-current-buffer (buffer-name)
             ;; NOTE: this will actually set whatever the
