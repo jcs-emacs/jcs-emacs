@@ -434,6 +434,7 @@
 (define-key global-map (kbd "M-<f2>") #'jcs-rename-current-buffer-file)
 
 ;;; Return
+(define-key global-map (kbd "RET") #'newline-and-indent)
 (define-key global-map (kbd "C-<return>") #'jcs-ctrl-return-key)
 
 ;;; Reveal In Folder
