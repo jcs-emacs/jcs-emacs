@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2021-01-30
+
+* Remove `css` return key and it's binding.
+* Remove `web` return key and it's binding.
+* Bind function `newline-and-indent` to default return key.
+
 ### 2021-01-28
 
 * Moved complicated document string asterisk module to external package `docstr`.
