@@ -21,8 +21,7 @@
   (jcs-insert-header-if-valid '("[.]rs")
                               'jcs-insert-rust-template)
 
-  (define-key rust-mode-map (kbd "{") #'jcs-vs-opening-curly-bracket-key)
-  (define-key rust-mode-map (kbd "}") #'jcs-vs-closing-curly-bracket-key))
+  (define-key rust-mode-map (kbd "{") #'jcs-vs-opening-curly-bracket-key))
 
 (add-hook 'rust-mode-hook 'jcs-rust-mode-hook)
 
