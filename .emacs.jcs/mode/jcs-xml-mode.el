@@ -27,10 +27,7 @@
   (define-key nxml-mode-map (kbd "<down>") (jcs-get-prev/next-key-type 'next))
 
   (define-key nxml-mode-map (kbd "SPC") #'jcs-smart-space)
-  (define-key nxml-mode-map (kbd "<backspace>") #'jcs-smart-backspace)
-
-  ;; Edit
-  (define-key nxml-mode-map (kbd "RET") #'jcs-web-return-key))
+  (define-key nxml-mode-map (kbd "<backspace>") #'jcs-smart-backspace))
 
 ;; STUDY: they ae using nxml-mode instead of xml-mode
 ;; which is really weird.
