@@ -21,15 +21,6 @@
   (when (jcs-current-line-empty-p) (end-of-line)))
 
 ;;;###autoload
-(defun jcs-css-return-key ()
-  "CSS return key."
-  (interactive)
-  (newline-and-indent)(newline-and-indent)
-  (unless (jcs-is-end-of-line-p)
-    (jcs-beginning-of-line)
-    (when (jcs-is-infront-first-char-at-line-p) (indent-for-tab-command))))
-
-;;;###autoload
 (defun jcs-css-save-buffer ()
   "Save buffer in `css-mode'."
   (interactive)
