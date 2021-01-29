@@ -1316,25 +1316,38 @@ For instance, '(1 2 3 4 (5 6 7 8)) => '(1 2 3 4 5 6 7 8)."
     full-str))
 
 (defun jcs-is-contain-list-string-regexp (in-list in-str)
-  "Check if IN-STR contain in any string in the IN-LIST."
-  (cl-some (lambda (lb-sub-str) (string-match-p lb-sub-str in-str)) in-list))
+  "Return non-nil if IN-STR is listed in IN-LIST.
+
+This function uses `string-match-p'."
+  (cl-some (lambda (elm) (string-match-p elm in-str)) in-list))
 
 (defun jcs-is-contain-list-string-regexp-reverse (in-list in-str)
-  "Check if IN-STR contain in any string in the IN-LIST.
+  "Return non-nil if IN-STR is listed in IN-LIST.
+
 The reverse mean the check from regular expression is swapped."
-  (cl-some (lambda (lb-sub-str) (string-match-p in-str lb-sub-str)) in-list))
+  (cl-some (lambda (elm) (string-match-p in-str elm)) in-list))
 
 (defun jcs-is-contain-list-string (in-list in-str)
-  "Check if IN-STR contain in any string in the IN-LIST."
-  (cl-some (lambda (lb-sub-str) (string-match-p (regexp-quote lb-sub-str) in-str)) in-list))
+  "Return non-nil if IN-STR is listed in IN-LIST.
+
+This function uses `string-match-p'.
+This function wrapped IN-STR with function `regexp-quote'."
+  (cl-some (lambda (elm) (string-match-p (regexp-quote elm) in-str)) in-list))
+
+(defun docstr-util-is-contain-list-string= (in-list in-str)
+  "Return non-nil if IN-STR is listed in IN-LIST.
+
+This function uses `string='.
+This function wrapped IN-STR with function `regexp-quote'."
+  (cl-some (lambda (str) (string= (regexp-quote str) in-str)) in-list))
 
 (defun jcs-is-contain-list-symbol (in-list in-symbol)
-  "Check if IN-SYMBOL contain in any symbol in the IN-LIST."
-  (cl-some (lambda (lb-sub-symbol) (equal lb-sub-symbol in-symbol)) in-list))
+  "Return non-nil if IN-SYMBOL is listed in IN-LIST."
+  (cl-some (lambda (elm) (equal elm in-symbol)) in-list))
 
 (defun jcs-is-contain-list-integer (in-list in-int)
-  "Check if IN-INT contain in any integer in the IN-LIST."
-  (cl-some (lambda (lb-sub-int) (= lb-sub-int in-int)) in-list))
+  "Return non-nil if IN-INT is listed in IN-LIST."
+  (cl-some (lambda (elm) (= elm in-int)) in-list))
 
 ;;
 ;; (@* "Minibuffer" )
@@ -1446,8 +1459,8 @@ The reverse mean the check from regular expression is swapped."
 
 (defun jcs-get-properties (ini-list in-key)
   "Get properties data, searched by key and return value.
-INI-LIST : ini list.  Please use this with/after using `jcs-parse-ini' function.
-IN-KEY : key to search for value."
+  INI-LIST : ini list.  Please use this with/after using `jcs-parse-ini' function.
+  IN-KEY : key to search for value."
   (let ((tmp-index 0) (tmp-key "") (tmp-value "") (returns-value ""))
     (while (< tmp-index (length ini-list))
       ;; Get the key and data value.
@@ -1561,8 +1574,8 @@ IN-KEY : key to search for value."
 
 (defun jcs-get-file-name-or-last-dir-fromt-path (in-path &optional ignore-errors-t)
   "Get the either the file name or last directory from the IN-PATH.
-IN-PATH : input path.
-IGNORE-ERRORS-T : ignore errors for this function?"
+  IN-PATH : input path.
+  IGNORE-ERRORS-T : ignore errors for this function?"
   (if (and (not (jcs-file-directory-exists-p in-path))
            (not ignore-errors-t))
       (error "Directory/File you trying get does not exists")
@@ -1599,15 +1612,15 @@ IGNORE-ERRORS-T : ignore errors for this function?"
 (defun jcs-string-compare-p (regexp str type &optional ignore-case)
   "Compare STR with REGEXP by TYPE.
 
-Argument TYPE can be on of the following symbol.
+  Argument TYPE can be on of the following symbol.
 
   * regex - uses function `string-match-p'.  (default)
   * strict - uses function `string='.
   * prefix - uses function `string-prefix-p'.
   * suffix - uses function `string-suffix-p'.
 
-Optional argument IGNORE-CASE is only uses when TYPE is either symbol `prefix'
-or `suffix'."
+  Optional argument IGNORE-CASE is only uses when TYPE is either symbol `prefix'
+  or `suffix'."
   (require 'cl-lib)
   (cl-case type
     (strict (string= regexp str))
@@ -1664,7 +1677,7 @@ or `suffix'."
 
 (defun jcs-string-at-line (&optional ln trim)
   "Return the string at LN.
-If TRIM is non-nil, trim the string before return it."
+  If TRIM is non-nil, trim the string before return it."
   (save-excursion
     (jcs-goto-line ln)
     (if trim (string-trim (thing-at-point 'line)) (thing-at-point 'line))))
@@ -1711,8 +1724,8 @@ If TRIM is non-nil, trim the string before return it."
 
 (defun jcs-setq-all-local-buffer (in-var in-val)
   "Set all the local buffer to some value.
-IN-VAR : input variable name.
-IN-VAL : input value to set to IN-VAR."
+  IN-VAR : input variable name.
+  IN-VAL : input value to set to IN-VAR."
   (save-window-excursion
     (save-selected-window
       (let ((win-len (length (window-list)))
