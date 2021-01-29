@@ -10,6 +10,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Remove `css` return key and it's binding.
 * Remove `web` return key and it's binding.
 * Bind function `newline-and-indent` to default return key.
+* Fixed `ffap-guesser` logic while using `dashboard`.
 
 ### 2021-01-28
 
