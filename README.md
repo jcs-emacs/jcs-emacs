@@ -127,11 +127,6 @@ Here is the list of few important and recent changes to this configuration.
 
 ## :floppy_disk: Installation
 
-There are two ways to install the configuration on to your machine; it depends on
-if the internet is available to you.
-
-### With Internet
-
 To install, clone this repo and copy the core `files`/`directories` to the
 emacs config directory accordingly. Make sure you backup your own configuration
 before you start the installation.
@@ -156,20 +151,6 @@ packages due to this configuration.
 
 **:exclamation::exclamation: [ATTENTION] :exclamation::exclamation:
 -- MAKE SURE YOU INSTALLED THE CORRECT VERSION OF EMACS!**
-
-### Without Internet
-
-If the internet isn't available to you, just download a copy of the configuration
-from the release tab [here](https://github.com/jcs090218/jcs-emacs/releases/)
-. You will see these following files, and extract them to your `HOME` directory
-or the directory that Emacs will start loading initialize files.
-
-* `.emacs`      [FILE]
-* `.emacs.d`    [DIRECTORY]
-* `.emacs.jcs`  [DIRECTORY]
-
-Install it this way; you wouldn't need to be asked to install all necessary
-packages. So this may be faster or benefits to you.
 
 ## :clock3: Startup Time
 
