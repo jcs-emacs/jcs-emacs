@@ -1025,31 +1025,34 @@ This variable is used to check if file are edited externally.")
           (t
            (message "[INFO] All %s buffers are saved: %s" len info-str)))))
 
-;;;###autoload
-(defun jcs-save-buffer-by-mode ()
-  "Save the buffer depends on it's major mode."
-  (interactive)
+(defun jcs-save-buffer-function ()
+  "Return save buffer function by mode."
   (cond
    ((jcs-is-current-major-mode-p '("markdown-mode"
                                    "snippet-mode"))
-    (call-interactively #'jcs-save-buffer))
+    #'jcs-save-buffer)
    ((jcs-is-current-major-mode-p '("java-mode"))
-    (call-interactively #'jcs-java-untabify-save-buffer))
+    #'jcs-java-untabify-save-buffer)
    ((jcs-is-current-major-mode-p '("cmake-mode"
                                    "makefile-mode"))
-    (call-interactively #'jcs-tabify-save-buffer))
+    #'jcs-tabify-save-buffer)
    ((jcs-is-current-major-mode-p '("sh-mode"))
-    (call-interactively #'jcs-sh-untabify-save-buffer))
+    #'jcs-sh-untabify-save-buffer)
    ((jcs-is-current-major-mode-p '("conf-javaprop-mode"
                                    "ini-mode"
                                    "org-mode"
                                    "view-mode"))
-    (call-interactively #'save-buffer))
+    #'save-buffer)
    ((jcs-is-current-major-mode-p '("scss-mode"
                                    "ini-mode"))
-    (call-interactively #'jcs-css-save-buffer))
-   (t
-    (call-interactively #'jcs-save-buffer-default))))
+    #'jcs-css-save-buffer)
+   (t #'jcs-save-buffer-default)))
+
+;;;###autoload
+(defun jcs-save-buffer-by-mode ()
+  "Save the buffer depends on it's major mode."
+  (interactive)
+  (call-interactively (jcs-save-buffer-function)))
 
 ;;
 ;; (@* "Find file" )
