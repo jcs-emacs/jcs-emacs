@@ -49,7 +49,7 @@
 (with-eval-after-load 'company
   (define-key company-active-map [tab] #'jcs-tab-key)
   (define-key company-active-map (kbd "TAB") #'jcs-tab-key)
-  (define-key company-active-map (kbd "C-s") #'jcs-save-buffer-default))
+  (define-key company-active-map (kbd "C-s") #'jcs-save-buffer-by-mode))
 
 ;;; Balanced Expression
 (define-key global-map (kbd "C-?") #'jcs-toggle-backward-forward-sexp)
