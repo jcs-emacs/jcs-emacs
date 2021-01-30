@@ -11,6 +11,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Remove `web` return key and it's binding.
 * Bind function `newline-and-indent` to default return key.
 * Fixed `ffap-guesser` logic while using `dashboard`.
+* Fixed incorrect `save-buffer` function from `company-mode`.
 
 ### 2021-01-28
 
