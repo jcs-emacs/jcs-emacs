@@ -17,8 +17,6 @@
     - [Philosophy](#philosophy)
     - [:newspaper: News](#newspaper-news)
     - [:floppy_disk: Installation](#floppy_disk-installation)
-        - [With Internet](#with-internet)
-        - [Without Internet](#without-internet)
     - [:clock3: Startup Time](#clock3-startup-time)
     - [:trophy: Features](#trophy-features)
         - [Highlight](#highlight)
