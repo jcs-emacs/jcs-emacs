@@ -1736,7 +1736,8 @@ CC : Current character at position."
 (defun jcs-smart-closing (fnc &rest args)
   "Smart way to indent region by closing up parenthesis."
   (apply fnc args)
-  (when (jcs-current-char-equal-p jcs-smart-closing-parens)
+  (when (and (jcs-current-char-equal-p jcs-smart-closing-parens)
+             (not (jcs-inside-comment-or-string-p)))
     (jcs-mute-apply
       (let ((ind-end (point))
             (ind-beg (save-excursion (ignore-errors (jcs-backward-sexp)) (point))))
