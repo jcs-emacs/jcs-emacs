@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2021-02-01
+
+* Added creator environment settings.
+* Fixed closing parenthesis still get indent issue.
+
 ### 2021-01-30
 
 * Remove `css` return key and it's binding.
