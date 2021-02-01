@@ -510,9 +510,9 @@ If optional argument FORCE is non-nil, force refresh it."
   (interactive)
   (require 'line-reminder)
   (if (or (minibufferp)
-          (and (jcs-is-contain-list-string-regexp jcs-line-numbers-ignore-buffers (buffer-name))
-               (not (jcs-is-contain-list-string jcs-line-numbers-ignore-buffer-exceptions (buffer-name))))
-          (jcs-is-contain-list-string jcs-line-numbers-ignore-modes (symbol-name major-mode)))
+          (and (jcs-contain-list-string-regexp jcs-line-numbers-ignore-buffers (buffer-name))
+               (not (jcs-contain-list-string jcs-line-numbers-ignore-buffer-exceptions (buffer-name))))
+          (jcs-contain-list-string jcs-line-numbers-ignore-modes (symbol-name major-mode)))
       (progn
         (when line-reminder-mode (line-reminder-mode -1))
         (jcs-safe-line-numbers-active -1))

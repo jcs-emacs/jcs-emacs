@@ -107,12 +107,12 @@
   "Try current cycle at point if available."
   (interactive)
   (cond
-   ((jcs-is-contain-list-symbol (jcs-flatten-list org-todo-keywords)
-                                (thing-at-point 'word))
+   ((jcs-contain-list-symbol (jcs-flatten-list org-todo-keywords)
+                             (thing-at-point 'word))
     (org-todo)
     (forward-char 1)
-    (unless (jcs-is-contain-list-symbol (jcs-flatten-list org-todo-keywords)
-                                        (thing-at-point 'word))
+    (unless (jcs-contain-list-symbol (jcs-flatten-list org-todo-keywords)
+                                     (thing-at-point 'word))
       (org-todo)
       (forward-word -1)))
    (t (org-cycle))))

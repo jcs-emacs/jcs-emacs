@@ -213,7 +213,7 @@
                                  (jcs-package-manual-install-packages)))
         unused-lst)
     (dolist (pkg installed-pkgs)
-      (unless (jcs-is-contain-list-symbol pkg-install-lst pkg)
+      (unless (jcs-contain-list-symbol pkg-install-lst pkg)
         (push pkg unused-lst)))
     (reverse unused-lst)))
 

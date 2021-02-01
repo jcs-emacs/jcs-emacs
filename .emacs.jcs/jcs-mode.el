@@ -91,7 +91,7 @@ Note this is opposite logic to the toggle mode function."
                  #'string-lessp)))))
   (let ((lice-path (format "%s%s.txt" jcs-license-template-path in-type)))
     (cond ((string= in-type "Default (empty)") (progn ))
-          ((jcs-is-contain-list-string (license-templates-names) in-type)
+          ((jcs-contain-list-string (license-templates-names) in-type)
            (license-templates-insert in-type))
           (t
            (file-header-insert-template-by-file-path lice-path)))))

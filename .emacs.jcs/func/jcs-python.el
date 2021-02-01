@@ -128,7 +128,7 @@ instead of indent the whole file at once."
 
 (defun jcs-py-is-python-keyword (in-keyword)
   "Check if the current word is in the `python-keyword-list'."
-  (jcs-is-contain-list-string jcs-py-keywords in-keyword))
+  (jcs-contain-list-string jcs-py-keywords in-keyword))
 
 ;;
 ;; (@* "Templates" )

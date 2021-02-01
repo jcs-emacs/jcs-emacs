@@ -668,7 +668,7 @@ Argument TYPE can either be the following value.
   * list - List of buffer name you would want to revert for virtual buffer.
   * boolean - If it's non-nil, revert all virtual buffers."
   (cond ((listp type)
-         (jcs-is-contain-list-string-regexp type (buffer-name buf)))
+         (jcs-contain-list-string-regexp type (buffer-name buf)))
         (t type)))
 
 (defun jcs-revert-all-virtual-buffers (type &optional clean-lr)
@@ -1162,7 +1162,7 @@ NO-RECORD and FORCE-SAME-WINDOW are the same as switch to buffer arguments."
 (defun jcs-bury-diminished-buffer ()
   "Bury the diminished buffer."
   (when (and diminish-buffer-mode
-             (jcs-is-contain-list-string-regexp
+             (jcs-contain-list-string-regexp
               (append jcs-bury-buffer-list diminish-buffer-list)
               (jcs-buffer-name-or-buffer-file-name)))
     (jcs-bury-buffer)))
@@ -1230,7 +1230,7 @@ If  optional argument ECP-SAME is non-nil then it allows same buffer on the
 other window."
   (interactive)
   (let ((must-kill-buf-p
-         (jcs-is-contain-list-string-regexp jcs-must-kill-buffer-list (buffer-name)))
+         (jcs-contain-list-string-regexp jcs-must-kill-buffer-list (buffer-name)))
         (shown-multiple-p (jcs-buffer-shown-in-multiple-window-p (buffer-name) 'strict))
         (cur-buf (current-buffer))
         is-killed)
