@@ -624,7 +624,7 @@ Generally you will have to check it four times."
               (stringp (jcs-get-current-char-string)))
          (string= (jcs-get-current-char-string) c))
         ((listp c)
-         (jcs-is-contain-list-string c (jcs-get-current-char-string)))
+         (jcs-contain-list-string c (jcs-get-current-char-string)))
         (t nil)))
 
 (defun jcs-current-pos-char-equal-p (c pt)
@@ -789,7 +789,7 @@ BND-PT : boundary point."
   (cond ((stringp str)
          (string= (thing-at-point 'word) str))
         ((listp str)
-         (jcs-is-contain-list-string str (thing-at-point 'word)))
+         (jcs-contain-list-string str (thing-at-point 'word)))
         (t nil)))
 
 (defun jcs-first-backward-word ()
@@ -1138,7 +1138,7 @@ CMDS should be a list of commands."
           (re-search-backward "[ \t\r\n]" nil t)
           (forward-char 1))
         (setq start-pt (point))
-        (re-search-forward "[ \t\r\n]" (1+ (line-end-position)) t)
+        (re-search-forward comment-start-skip (1+ (line-end-position)) t)
         (if (= start-pt (point)) nil
           (string-trim (buffer-substring start-pt (point))))))))
 
@@ -1315,39 +1315,38 @@ For instance, '(1 2 3 4 (5 6 7 8)) => '(1 2 3 4 5 6 7 8)."
       (setq full-str (concat full-str s)))
     full-str))
 
-(defun jcs-is-contain-list-string-regexp (in-list in-str)
+(defun jcs-contain-list-string-regexp (in-list in-str)
   "Return non-nil if IN-STR is listed in IN-LIST.
 
 This function uses `string-match-p'."
   (cl-some (lambda (elm) (string-match-p elm in-str)) in-list))
 
-(defun jcs-is-contain-list-string-regexp-reverse (in-list in-str)
+(defun jcs-contain-list-string-regexp-reverse (in-list in-str)
   "Return non-nil if IN-STR is listed in IN-LIST.
 
 The reverse mean the check from regular expression is swapped."
   (cl-some (lambda (elm) (string-match-p in-str elm)) in-list))
 
-(defun jcs-is-contain-list-string (in-list in-str)
+(defun jcs-contain-list-string (in-list in-str)
   "Return non-nil if IN-STR is listed in IN-LIST.
 
 This function uses `string-match-p'.
 This function wrapped IN-STR with function `regexp-quote'."
   (cl-some (lambda (elm) (string-match-p (regexp-quote elm) in-str)) in-list))
 
-(defun docstr-util-is-contain-list-string= (in-list in-str)
-  "Return non-nil if IN-STR is listed in IN-LIST.
-
-This function uses `string='.
-This function wrapped IN-STR with function `regexp-quote'."
-  (cl-some (lambda (str) (string= (regexp-quote str) in-str)) in-list))
-
-(defun jcs-is-contain-list-symbol (in-list in-symbol)
+(defun jcs-contain-list-symbol (in-list in-symbol)
   "Return non-nil if IN-SYMBOL is listed in IN-LIST."
   (cl-some (lambda (elm) (equal elm in-symbol)) in-list))
 
-(defun jcs-is-contain-list-integer (in-list in-int)
+(defun jcs-contain-list-integer (in-list in-int)
   "Return non-nil if IN-INT is listed in IN-LIST."
   (cl-some (lambda (elm) (= elm in-int)) in-list))
+
+(defun jcs-contain-list-type-str (in-list in-str type)
+  "Return non-nil if IN-STR is listed in IN-LIST.
+
+Argument TYPE see function `jcs-string-compare-p' for more information."
+  (cl-some (lambda (elm) (jcs-string-compare-p elm in-str type)) in-list))
 
 ;;
 ;; (@* "Minibuffer" )
