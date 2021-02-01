@@ -27,7 +27,8 @@
       (when pretty-it
         (save-excursion
           (jcs-safe-forward-char 2)
-          (when (and (not (jcs-is-beginning-of-line-p))
+          (when (and (not (eobp))
+                     (not (jcs-is-beginning-of-line-p))
                      (jcs-current-char-equal-p "}"))
             (backward-char 1)
             (insert " ")))))))
