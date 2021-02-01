@@ -97,6 +97,10 @@
     (setq grep-use-null-device t)
     (set-variable 'grep-command "findstr -s -n -i -l ")))
 
+;;; Creator
+(defun jcs-creator-name () "Name of the creator." "Jen-Chieh Shen")
+(defun jcs-copyright-info () "Copyright information." "Shen, Jen-Chieh")
+
 ;;; Default Major Mode
 (setq-default major-mode 'text-mode)
 
