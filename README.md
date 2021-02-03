@@ -1,39 +1,39 @@
 <p align="center">
-  <img src="./etc/logo/logo-shadow.png" width="500" height="253"/>
+<img src="./etc/logo/logo-shadow.png" width="500" height="253"/>
 </p>
 
 <p align="center">
-  <a href="https://github.com/jcs090218/jcs-emacs/actions"><img src="https://github.com/jcs090218/jcs-emacs/workflows/CI/badge.svg" alt="CI"></a>
-  <a href="https://www.gnu.org/software/emacs/download.html"><img src="https://img.shields.io/badge/Emacs-27.1+-blue.svg" alt="Emacs"></a>
-  <a href="https://github.com/jcs090218/jcs-emacs/releases/latest"><img src="https://img.shields.io/github/tag/jcs090218/jcs-emacs.svg?label=release" alt="Release Tag"></a>
-  <a href="https://opensource.org/licenses/BSD-2-Clause"><img src="https://img.shields.io/badge/License-BSD%202--Clause-orange.svg" alt="License"></a>
-  <a href="https://www.paypal.me/jcs090218"><img alt="Support me" src="https://img.shields.io/badge/Support%20Me-%F0%9F%92%97-ff69b4.svg"></a>
+<a href="https://github.com/jcs090218/jcs-emacs/actions"><img src="https://github.com/jcs090218/jcs-emacs/workflows/CI/badge.svg" alt="CI"></a>
+<a href="https://www.gnu.org/software/emacs/download.html"><img src="https://img.shields.io/badge/Emacs-27.1+-blue.svg" alt="Emacs"></a>
+<a href="https://github.com/jcs090218/jcs-emacs/releases/latest"><img src="https://img.shields.io/github/tag/jcs090218/jcs-emacs.svg?label=release" alt="Release Tag"></a>
+<a href="https://opensource.org/licenses/BSD-2-Clause"><img src="https://img.shields.io/badge/License-BSD%202--Clause-orange.svg" alt="License"></a>
+<a href="https://www.paypal.me/jcs090218"><img alt="Support me" src="https://img.shields.io/badge/Support%20Me-%F0%9F%92%97-ff69b4.svg"></a>
 </p>
 
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
 **Table of Contents**
 
 - [jcs-emacs](#jcs-emacs)
-    - [Philosophy](#philosophy)
-    - [:newspaper: News](#newspaper-news)
-    - [:floppy_disk: Installation](#floppy_disk-installation)
-    - [:clock3: Startup Time](#clock3-startup-time)
-    - [:trophy: Features](#trophy-features)
-        - [Highlight](#highlight)
-        - [Details](#details)
-    - [:file_folder: Package Archives](#file_folder-package-archives)
-    - [:trophy: Powered by](#trophy-powered-by)
-        - [Functionalities](#functionalities)
-        - [File Modes](#file-modes)
-    - [Key Bindings](#key-bindings)
-    - [Themes](#themes)
-        - [Default](#default)
-        - [Customization](#customization)
-    - [Font](#font)
-    - [:hammer: Optimization](#hammer-optimization)
-    - [Write your own customization](#write-your-own-customization)
-    - [:bamboo: Supported Emacs versions](#bamboo-supported-emacs-versions)
-    - [:question: FAQ](#question-faq)
+- [Philosophy](#philosophy)
+- [:newspaper: News](#newspaper-news)
+- [:floppy_disk: Installation](#floppy_disk-installation)
+- [:clock3: Startup Time](#clock3-startup-time)
+- [:trophy: Features](#trophy-features)
+- [Highlight](#highlight)
+- [Details](#details)
+- [:file_folder: Package Archives](#file_folder-package-archives)
+- [:trophy: Powered by](#trophy-powered-by)
+- [Functionalities](#functionalities)
+- [File Modes](#file-modes)
+- [Key Bindings](#key-bindings)
+- [Themes](#themes)
+- [Default](#default)
+- [Customization](#customization)
+- [Font](#font)
+- [:hammer: Optimization](#hammer-optimization)
+- [Write your own customization](#write-your-own-customization)
+- [:bamboo: Supported Emacs versions](#bamboo-supported-emacs-versions)
+- [:question: FAQ](#question-faq)
 
 <!-- markdown-toc end -->
 
@@ -121,6 +121,7 @@ Here is the list of few important and recent changes to this configuration.
 * `6.2.2` - Correct upgrade logic for manually installed packages.
 * `6.1.5` - `feebleline` is now fully compatible to terminal.
 * `6.1.0` - Formatted all configuration code to better standard.
+* `6.0.5` - Replace `sr-speedbar` with `neotree` instead.
 
 ## :floppy_disk: Installation
 
@@ -164,7 +165,7 @@ load time.
 :pencil:
 *P.S. Here is a great article about
 [Speeding Up Emacs](https://anuragpeshne.github.io/essays/emacsSpeed.html)
- written by
+written by
 [Anurag Peshne](https://github.com/anuragpeshne).*
 
 **Edit 2:** If you compiled the source code then the startup time can lower down
@@ -219,22 +220,22 @@ I believed detials make things better and make life smoother.
 * [*Consistent Key Bindings*](./features/consistent-key-bindings) - Has consistent key bindings across all modes.
 * [*Curly Bracket Modes*](./curly-bracket-modes) - Use curly bracket depends on different mode.
 * [*Display File*](./features/display-file) - Utility function to use to view a file on the other window.
-  * [*Charset Table*](./features/display-file/charset-table) - Built-in functions that displays character sets.
+* [*Charset Table*](./features/display-file/charset-table) - Built-in functions that displays character sets.
 * ~~[*Docstring Completion*](./features/docstring-completion) - Some standard docstring completion implementations built-in to this configuration.~~ (has move to [docstr](https://github.com/jcs-elpa/docstr))
 * Enhanced Multiple Cursors
-  * [*Similar Multiple Cursors*](./features/similar-multiple-cursors) - Mark with cursor by similarity.
-  * [*VS Multiple Cursors*](./features/vs-multiple-cursors) - VSCode like methods to `mark` and `unmark` multiple cursor.
+* [*Similar Multiple Cursors*](./features/similar-multiple-cursors) - Mark with cursor by similarity.
+* [*VS Multiple Cursors*](./features/vs-multiple-cursors) - VSCode like methods to `mark` and `unmark` multiple cursor.
 * [*Fast Incremental Search*](./features/fast-incremental-search) - Fast keys for incremental search forward/backward to the cursor is currently pointing.
 * [*Feebleline Design*](./features/feebleline-design) - Personal displayed design for `feebleline`.
 * [*Indent Control*](./features/indent-control) - Generic control the indentation level for each mode, for more information see [indent-control](https://github.com/alt-elpa/indent-control).
 * Previous/Next Keys
-  * [*Normal Move*]() - Act like other normal editors.
-  * [*Indent Move*](./features/indent-move) - Automatically indent when cursor moves up and down.
-  * [*Smart-Move*](./features/smart-move) - Smart enough to move cursor to the beginning of the line.
+* [*Normal Move*]() - Act like other normal editors.
+* [*Indent Move*](./features/indent-move) - Automatically indent when cursor moves up and down.
+* [*Smart-Move*](./features/smart-move) - Smart enough to move cursor to the beginning of the line.
 * [*Line Numbers Modding*](./features/line-numbers-modding) - Mixed used of `linum` and `display-line-numbers-mode` base on the file usage.
 * [*License Helper*](./features/license-helper) - Help to create license while creating `LICENSE` file using template.
 * [*Mini State*](./features/mini-state) - Mini mode state use to visually see what backend is the config currently running. (Deprecated)
-  * [*Auto Switch State*](./features/mini-state/auto-switch-state) - Automatcially switch mini state depends on certain circumstances.
+* [*Auto Switch State*](./features/mini-state/auto-switch-state) - Automatcially switch mini state depends on certain circumstances.
 * ~~[*Mode Line Toggle*](./features/mode-line-toggle) - Toggle to `show` or `hide` the mode line.~~
 * [*Modern Text Editor*](./features/modern-text-editor) - Design to have the preset settings close to modern text editors but faster.
 * [*Multiple Output*](./features/multiple-output) - Handle multiple output/compilation buffers.
