@@ -308,7 +308,8 @@
          '("[*]Async Shell Command[*]" "[*]shell" "[*]eshell")
          '("[*]ESS[*]")
          '("[*]emacs[*]")  ; From `async'
-         '("[*]lsp-" "[*][a-zA-Z0-9]+[-]*ls" "[*][a-zA-Z0-9]+::stderr[*]"
+         '("[*]lsp-" "[*]LSP[ ]+"
+           "[*][a-zA-Z0-9]+[-]*ls" "[*][a-zA-Z0-9]+::stderr[*]"
            "[*]csharp[*]")  ; From `lsp'
          '("tree-sitter-tree:")
          '("[*]company")
@@ -323,7 +324,8 @@
          '("[*]Test SHA[*]")
          '("[*]RE-Builder")
          '("[*]preview-it")
-         '("[*]wclock[*]")))
+         '("[*]wclock[*]")
+         '("[*]Clippy[*]")))
   (setq diminish-buffer-mode-list
         (append
          '("Dired by name")))
@@ -817,68 +819,6 @@
          (mc/create-fake-cursor-at-point)))))
   (advice-add 'mc/mark-lines :override #'jcs--mc/mark-lines))
 
-(use-package neotree
-  :init
-  (setq neo-window-position 'right
-        neo-show-hidden-files t
-        neo-toggle-window-keep-p nil
-        neo-theme 'ascii
-        neo-hide-cursor t
-        neo-smart-open t)
-
-  (defvar jcs-neotree-width-ratio 0.15
-    "Ratio that respect to `frame-width' and `neo-window-width'.")
-
-  (defvar jcs--neotree--refresh-delay 0.3
-    "Delay time after start refreshing `neotree'.")
-
-  (defvar jcs--neotree--refresh-timer nil
-    "Timer for refresh `neotree'.")
-
-  (defvar jcs--neotree--last-window nil
-    "Record last window before leaving `neotree'.")
-
-  (defun jcs--neotree--kill-timer ()
-    "Kill `neotree' refresh timer."
-    (when (timerp jcs--neotree--refresh-timer)
-      (cancel-timer jcs--neotree--refresh-timer)
-      (setq jcs--neotree--refresh-timer nil)))
-
-  (defun jcs--neotree-start-refresh ()
-    "Start the refresh timer for `neotree'."
-    (jcs--neotree--kill-timer)
-    (setq jcs--neotree--refresh-timer
-          (run-with-timer jcs--neotree--refresh-delay nil
-                          #'jcs--neotree-refresh)))
-
-  (defun jcs--neotree-refresh ()
-    "Safe refresh `neotree'."
-    (when (and (functionp 'neotree-refresh) (neo-global--window-exists-p))
-      (save-selected-window (neotree-refresh))))
-
-  (defun jcs--neotree-toggle--advice-around (fnc &rest args)
-    "Advice execute around `neotree-toggle' command."
-    (unless (neo-global--window-exists-p)
-      (setq jcs--neotree--last-window (selected-window)))
-    (apply fnc args)
-    (unless (neo-global--window-exists-p)
-      (select-window jcs--neotree--last-window)))
-  (advice-add 'neotree-toggle :around #'jcs--neotree-toggle--advice-around)
-  :config
-  (defun jcs--neo-after-create-hook (&rest _)
-    "Hooks called after creating the neotree buffer."
-    (buffer-wrap-mode 1))
-  (add-hook 'neo-after-create-hook 'jcs--neo-after-create-hook)
-
-  (defun jcs-neotree-refresh ()
-    "Refresh neotree by toggle twice."
-    (neotree-toggle) (neotree-toggle))
-
-  (defun jcs-neotree--window-size-change ()
-    "`window-size-change-functions' for `neotree','"
-    (setq neo-window-width (round (* (frame-width) jcs-neotree-width-ratio)))
-    (when (neo-global--window-exists-p) (jcs-neotree-refresh))))
-
 (use-package origami
   :config
   (set-face-attribute 'origami-fold-replacement-face nil
@@ -1056,6 +996,29 @@
   (require 'tree-sitter-langs)
   (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
   (jcs-funcall-fboundp 'jcs-reset-common-faces-by-theme))
+
+(use-package treemacs
+  :init
+  (setq treemacs-position 'right
+        treemacs-missing-project-action 'remove
+        treemacs-sorting 'alphabetic-asc
+        treemacs-follow-after-init t
+        treemacs-no-png-images t)
+  :config
+  (treemacs-follow-mode t)
+  (treemacs-filewatch-mode t)
+
+  (defvar jcs-treemacs-width-ratio 0.15
+    "Ratio that respect to `frame-width' and `neo-window-width'.")
+
+  (defun jcs-treemacs-toggle-refresh ()
+    "Refresh `treemacs' by toggle twice."
+    (save-selected-window (treemacs) (treemacs)))
+
+  (defun jcs-treemacs--window-size-change ()
+    "`window-size-change-functions' for `neotree','"
+    (setq treemacs-width (round (* (frame-width) jcs-treemacs-width-ratio)))
+    (when (treemacs-get-local-window) (jcs-treemacs-toggle-refresh))))
 
 (use-package un-mini
   :init
