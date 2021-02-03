@@ -262,8 +262,8 @@
 (define-key global-map (kbd "C-_") #'jcs-er/contract-region)
 
 ;;; File Explorer
-(define-key global-map (kbd "C-M-l") #'neotree-toggle)  ; Compatible to `Visual Studio'.
-(define-key global-map (kbd "C-b") #'neotree-toggle)    ; Compatible to `VS Code'.
+(define-key global-map (kbd "C-M-l") #'treemacs)  ; Compatible to `Visual Studio'.
+(define-key global-map (kbd "C-b") #'treemacs)    ; Compatible to `VS Code'.
 
 ;;; File editing
 (define-key global-map (kbd "M-k") #'jcs-maybe-kill-this-buffer)
