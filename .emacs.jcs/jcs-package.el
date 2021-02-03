@@ -150,7 +150,6 @@
     move-text
     multiple-cursors
     nasm-mode
-    neotree
     nhexl-mode
     nix-mode
     org-bullets
