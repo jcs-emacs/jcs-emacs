@@ -8,11 +8,12 @@
 (defun jcs-ivy--window-size-change ()
   "`window-size-change-functions' for `ivy-mode'."
   (setq ivy-height (round (* (frame-height) jcs-ivy-height-ratio)))
-  (when (and (window-minibuffer-p) jcs-minibuf-enabled-p)
-    (jcs-mute-apply
-      (ivy--resize-minibuffer-to-fit)
-      (ivy-shrink-after-dispatching)
-      (ignore-errors (ivy--exhibit)))))
+  (when jcs-minibuf-enabled-p
+    (with-minibuffer-selected-window
+      (jcs-mute-apply
+        (ivy--resize-minibuffer-to-fit)
+        (ivy-shrink-after-dispatching)
+        (ignore-errors (ivy--exhibit))))))
 
 (defun jcs--ivy-skip-input-selection-p ()
   "Decide weather to skip the input selection.
