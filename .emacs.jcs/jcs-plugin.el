@@ -1016,7 +1016,7 @@
     (save-selected-window (treemacs) (treemacs)))
 
   (defun jcs-treemacs--window-size-change ()
-    "`window-size-change-functions' for `neotree','"
+    "`window-size-change-functions' for `treemacs'."
     (setq treemacs-width (round (* (frame-width) jcs-treemacs-width-ratio)))
     (when (treemacs-get-local-window) (jcs-treemacs-toggle-refresh)))
 
