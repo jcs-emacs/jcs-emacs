@@ -26,7 +26,7 @@
   "When window changed size."
   (jcs-dashboard--window-size-change)
   (when (featurep 'jcs-ivy) (jcs-ivy--window-size-change))
-  (when (featurep 'neotree) (jcs-neotree--window-size-change)))
+  (when (featurep 'treemacs) (jcs-treemacs--window-size-change)))
 (add-hook 'window-size-change-functions 'jcs-window-size-change-functions)
 
 ;;
@@ -53,7 +53,6 @@
   (when jcs-current-created-parent-dir-path
     (setq jcs-created-parent-dir-path jcs-current-created-parent-dir-path
           jcs-current-created-parent-dir-path nil))
-  (jcs--neotree-start-refresh)
   (jcs-buffer-menu-safe-refresh)
   (jcs-dashboard-safe-refresh-buffer))
 (advice-add 'find-file :after #'jcs--find-file--advice-after)
@@ -66,7 +65,6 @@
 
 (defun jcs--switch-to-buffer--advice-after (&rest _)
   "Advice execute after command `switch-to-buffer'."
-  (jcs--neotree-start-refresh)
   (jcs-buffer-menu-safe-refresh))
 (advice-add 'switch-to-buffer :after #'jcs--switch-to-buffer--advice-after)
 
@@ -83,10 +81,6 @@
     (other-window (if (jcs-is-positive count) 1 -1) t))
   (unless jcs-walking-through-windows-p
     (select-frame-set-input-focus (selected-frame))
-    (jcs--neotree-start-refresh)
-    (when (and (boundp 'neo-buffer-name)
-               (not (string= neo-buffer-name (buffer-name (current-buffer)))))
-      (setq jcs--neotree--last-window (selected-window)))
     (jcs-buffer-menu-safe-refresh)
     (jcs-dashboard-safe-refresh-buffer)))
 (advice-add 'other-window :after #'jcs--other-window--advice-after)
