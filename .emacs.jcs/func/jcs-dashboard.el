@@ -308,7 +308,7 @@ it by two to get the border from one side."
   (let ((new-ww (jcs-dashboard--window-width)))
     (when (and new-ww (not (= new-ww jcs-dashboard--last-window-width)))
       (setq jcs-dashboard--last-window-width new-ww)
-      (jcs-dashboard-refresh-buffer))))
+      (jcs-dashboard-safe-refresh-buffer t))))
 
 (provide 'jcs-dashboard)
 ;;; jcs-dashboard.el ends here
