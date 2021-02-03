@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2021-02-03
+
+* Removed package `neotree`.
+* Use package `treemacs` instead of `neotree`.
+
 ### 2021-02-02
 
 * Fixed getting the starting comment symbol from point.
