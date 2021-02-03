@@ -112,17 +112,17 @@ without having to get used to an new IDE.
 
 Here is the list of few important and recent changes to this configuration.
 
-* `6.4.2` - 
+* `6.4.2`
   - You can now resolve package dependency graph while deleting package.
   - Replace `neotree` with `treemacs` instead.
-* `6.4.1` - Start with `tree-sitter` support.
-* `6.4.0` - Switched from `projectile` to built-in `project` for project management.
-* `6.3.1` - Replaced `docstring` module to external `docstr` package.
-* `6.2.5` - Use `recipes` folder instead to specify manually installed packages in the configuration.
-* `6.2.4` - Replaced [ag](https://github.com/Wilfred/ag.el) silver searcher to [searcher](https://github.com/jcs-elpa/searcher).
-* `6.2.2` - Correct upgrade logic for manually installed packages.
-* `6.1.5` - `feebleline` is now fully compatible to terminal.
-* `6.1.0` - Formatted all configuration code to better standard.
+* `6.4.1` Start with `tree-sitter` support.
+* `6.4.0` Switched from `projectile` to built-in `project` for project management.
+* `6.3.1` Replaced `docstring` module to external `docstr` package.
+* `6.2.5` Use `recipes` folder instead to specify manually installed packages in the configuration.
+* `6.2.4` Replaced [ag](https://github.com/Wilfred/ag.el) silver searcher to [searcher](https://github.com/jcs-elpa/searcher).
+* `6.2.2` Correct upgrade logic for manually installed packages.
+* `6.1.5` `feebleline` is now fully compatible to terminal.
+* `6.1.0` Formatted all configuration code to better standard.
 
 ## :floppy_disk: Installation
 
