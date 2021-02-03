@@ -1018,7 +1018,13 @@
   (defun jcs-treemacs--window-size-change ()
     "`window-size-change-functions' for `neotree','"
     (setq treemacs-width (round (* (frame-width) jcs-treemacs-width-ratio)))
-    (when (treemacs-get-local-window) (jcs-treemacs-toggle-refresh))))
+    (when (treemacs-get-local-window) (jcs-treemacs-toggle-refresh)))
+
+  (defun jcs--treemacs-mode-hook ()
+    "Hook for `treemacs-mode'."
+    (setq buffer-wrap--relative-max-line 0)
+    (buffer-wrap-mode 1))
+  (add-hook 'treemacs-mode-hook #'jcs--treemacs-mode-hook))
 
 (use-package un-mini
   :init
