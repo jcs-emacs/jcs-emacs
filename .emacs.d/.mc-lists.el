@@ -262,5 +262,6 @@
         transwin-decrement-frame-transparent
         transwin-increment-frame-transparent
         transwin-toggle-transparent-frame
+        treemacs
         whitespace-mode
         ))
