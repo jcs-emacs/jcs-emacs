@@ -112,7 +112,9 @@ without having to get used to an new IDE.
 
 Here is the list of few important and recent changes to this configuration.
 
-* `6.4.2` - You can now resolve package dependency graph while deleting package.
+* `6.4.2` - 
+  - You can now resolve package dependency graph while deleting package.
+  - Replace `neotree` with `treemacs` instead.
 * `6.4.1` - Start with `tree-sitter` support.
 * `6.4.0` - Switched from `projectile` to built-in `project` for project management.
 * `6.3.1` - Replaced `docstring` module to external `docstr` package.
@@ -121,7 +123,6 @@ Here is the list of few important and recent changes to this configuration.
 * `6.2.2` - Correct upgrade logic for manually installed packages.
 * `6.1.5` - `feebleline` is now fully compatible to terminal.
 * `6.1.0` - Formatted all configuration code to better standard.
-* `6.0.5` - Replace `sr-speedbar` with `neotree` instead.
 
 ## :floppy_disk: Installation
 
@@ -291,7 +292,7 @@ kind of methods that you could support the maintainer you want.
 * *Document String* - powered by [docstr](https://github.com/jcs-elpa/docstr).
 * *End of Line* - powered by [show-eol](https://github.com/elpa-host/show-eol).
 * *Execute Commands* - powered by [compile](https://www.emacswiki.org/emacs/CompilationMode).
-* *File Explorer* - powered by [neotree](https://github.com/jaypei/emacs-neotree).
+* *File Explorer* - powered by [treemacs](https://github.com/Alexander-Miller/treemacs).
 * *File Header* - powered by [file-header](https://github.com/alt-elpa/file-header).
 * *Folding/Unfolding* - powered by [origami](https://github.com/gregsexton/origami.el).
 * *Font* - powered by [use-ttf](https://github.com/elpa-host/use-ttf).
