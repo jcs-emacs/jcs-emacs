@@ -240,7 +240,8 @@
     "image-mode"
     "message-mode"
     "outline-mode"
-    "package-menu-mode")
+    "package-menu-mode"
+    "treemacs-mode")
   "List of modes that you do not want to show line numbers in it.")
 
 ;;; Messages
