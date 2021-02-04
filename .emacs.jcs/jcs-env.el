@@ -2,8 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
-;; Stop Emacs from losing undo information by
-;; setting very high limits for undo buffers
+;; Stop Emacs from losing undo information by  setting very high
+;; limits for undo buffers
 (setq undo-limit 20000000
       undo-strong-limit 40000000)
 
@@ -389,6 +389,9 @@ If ACT is non-nil; then make scroll less jumpy."
 
 ;;; Variables
 (setq enable-local-variables :safe)
+
+;;; Warnings
+(setq warning-minimum-level :emergency)
 
 ;;; Windows
 (defconst jcs-windows--enlarge-shrink-times 6
