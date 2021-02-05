@@ -1640,6 +1640,17 @@ or `suffix'."
         (setq ch-out (concat ch-out ch-seq))))
     (if ch-out (substring ch-out 0 n) nil)))
 
+(defun jcs-string-repeat (str n &optional separator)
+  "Return repeated STR in N times.
+
+Optional argument SEPARATOR can be join between the STR."
+  (unless separator (setq separator ""))
+  (let ((output ""))
+    (while (jcs-is-positive n)
+      (setq output (concat output str (if (= n 1) "" separator))
+            n (1- n)))
+    output))
+
 (defun jcs-is-inside-string-p ()
   "Check if current cursor point inside the string."
   (nth 3 (syntax-ppss)))
