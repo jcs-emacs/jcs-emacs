@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2021-02-05
 
 * Set variable `warning-minimum-level` default to `:emergency`.
+* Revert remove trailing spaces `save-buffer` function in `markdown-mode`.
 
 ### 2021-02-03
 
