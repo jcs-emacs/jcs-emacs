@@ -1028,8 +1028,7 @@ This variable is used to check if file are edited externally.")
 (defun jcs-save-buffer-function ()
   "Return save buffer function by mode."
   (cond
-   ((jcs-is-current-major-mode-p '("markdown-mode"
-                                   "snippet-mode"))
+   ((jcs-is-current-major-mode-p '("snippet-mode"))
     #'jcs-save-buffer)
    ((jcs-is-current-major-mode-p '("java-mode"))
     #'jcs-java-untabify-save-buffer)
