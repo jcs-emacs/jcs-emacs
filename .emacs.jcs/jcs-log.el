@@ -28,6 +28,10 @@ Acts like `message' but preserves text properties in the *Messages* buffer."
   "Log a message with FMT and ARGS in the clean way."
   (apply 'jcs--log "INFO" t fmt args))
 
+(defun jcs-print (&rest args)
+  "Message out anything from ARGS."
+  (apply 'message (jcs-string-repeat "%s" (length args) " ") args))
+
 ;;
 ;; (@* "List" )
 ;;
