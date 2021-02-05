@@ -158,7 +158,7 @@ Not quite sure what causes that much of performance, hopefully, I'm able to lowe
 the startup time down to `5` to `15` seconds.
 
 **Edit 1:** After version `5.3.2`, the average startup time is around `5` to `15`
-seconds. Solved this issue by removing unnecessary `require` keyword load file 
+seconds. Solved this issue by removing unnecessary `require` keyword load file
 and use `:defer` keyword with `use-package` package to delay some packages
 load time.
 
@@ -171,8 +171,8 @@ written by
 **Edit 2:** If you compiled the source code then the startup time can lower down
 more from `0.5` to `1.5` seconds.
 
-**Edit 3:** Using [esup](https://github.com/jschaf/esup) package to test and 
-optimize the configuration. Call `package-refresh-contents` only when package 
+**Edit 3:** Using [esup](https://github.com/jschaf/esup) package to test and
+optimize the configuration. Call `package-refresh-contents` only when package
 installation is needed. By doing thing, lower the startup time from around `4` to
 `8` seconds.
 
@@ -271,7 +271,7 @@ answered by
 
 ## :trophy: Powered by
 
-Here is the list of all packages that powered and make this configuration works. 
+Here is the list of all packages that powered and make this configuration works.
 Thanks to all the package maintainers; this configuration cannot be made without
 them, and if you wish to support them you can go to this
 [elisp-maintainers](https://github.com/tarsius/elisp-maintainers)
@@ -394,7 +394,7 @@ file. All the theme related variables can be found in that file.
 
 In common, you can install any theme you want as long it is available on the
 internet. You can check out the Emacs Theme Gallery site [here](https://pawelbx.github.io/emacs-theme-gallery/).
-For instance, [vs-dark-theme](https://github.com/jcs-elpa/vs-dark-theme) and 
+For instance, [vs-dark-theme](https://github.com/jcs-elpa/vs-dark-theme) and
 [vs-light-theme](https://github.com/jcs-elpa/vs-light-theme) are now individual
 packages built outside from this configuration.
 
