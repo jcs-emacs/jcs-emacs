@@ -1056,7 +1056,6 @@
           ("xml"  . "/other/path/.*\\.api\\'")
           ("jsx"  . "/some/react/path/.*\\.js[x]?\\'")))
 
-
   ;; Quotation Mark
   (setq web-mode-auto-quote-style 1)  ; 1, for double quotes; 2, for single quotes
 
