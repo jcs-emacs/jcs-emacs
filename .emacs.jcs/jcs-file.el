@@ -286,7 +286,7 @@ If optional argument WITH-EXT is non-nil; return path with extension."
 OW : Open file other window."
   (interactive)
   (require 'f)
-  (let ((corresponding-file-name "") (found-fp nil))
+  (let (corresponding-file-name found-fp)
     ;; NOTE: Add your corresponding file here.
     (cond ((jcs-is-current-major-mode-p
             '("c-mode"
@@ -320,8 +320,8 @@ OW : Open file other window."
 
 (defun jcs-cc-corresponding-file ()
   "Find the corresponding file for C/C++ file."
-  (let ((corresponding-file-name "")
-        (tmp-base-file-name (f-filename (file-name-sans-extension (buffer-name)))))
+  (let ((tmp-base-file-name (f-filename (file-name-sans-extension (buffer-name))))
+        corresponding-file-name)
     (cond ((string-match "\\.hin" buffer-file-name)
            (setq corresponding-file-name (concat tmp-base-file-name ".cin")))
           ((string-match "\\.hpp" buffer-file-name)
@@ -343,8 +343,8 @@ OW : Open file other window."
 
 (defun jcs-objc-corresponding-file ()
   "Find the corresponding file for Objective-C related file."
-  (let ((corresponding-file-name "")
-        (tmp-base-file-name (file-name-sans-extension buffer-file-name)))
+  (let ((tmp-base-file-name (file-name-sans-extension buffer-file-name))
+        corresponding-file-name)
     (cond ((string-match "\\.m" buffer-file-name)
            (setq corresponding-file-name (concat tmp-base-file-name ".h"))))
     ;; If Objective-C corresponding file not found, use C/C++ corresponding
@@ -359,8 +359,8 @@ OW : Open file other window."
 
 (defun jcs-web-corresponding-file ()
   "Find the corresponding file for WEB related file."
-  (let ((corresponding-file-name "")
-        (tmp-base-file-name (file-name-sans-extension buffer-file-name)))
+  (let ((tmp-base-file-name (file-name-sans-extension buffer-file-name))
+        corresponding-file-name)
     (cond ((string-match "\\.aspx.cs" buffer-file-name)
            (setq corresponding-file-name tmp-base-file-name))
           ((string-match "\\.aspx" buffer-file-name)
