@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2021-02-10
+
+* Install new package `el-mock`.
+* Install new package `ert-runner`.
+* Install new package `undercover`.
+
 ### 2021-02-06
 
 * Added function `jcs-print` for general printing purpose.
