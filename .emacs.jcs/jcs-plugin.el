@@ -311,7 +311,7 @@
          '("[*]lsp-" "[*]LSP[ ]+"
            "[*][a-zA-Z0-9]+[-]*ls" "[*][a-zA-Z0-9]+::stderr[*]"
            "[*]csharp[*]")  ; From `lsp'
-         '("tree-sitter-tree:")
+         '("[*]tree-sitter" "tree-sitter-tree:")
          '("[*]company")
          '("[*]Local Variables[*]")
          '("[*]Kill Ring[*]")  ; From `browse-kill-ring'
