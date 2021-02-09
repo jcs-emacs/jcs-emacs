@@ -72,6 +72,7 @@
     diminish-buffer
     dockerfile-mode
     dumb-jump
+    el-mock
     elisp-def
     elisp-demos
     elixir-mode
@@ -79,6 +80,7 @@
     emoji-github
     emojify
     erlang
+    ert-runner
     eshell-syntax-highlighting
     ess
     esup
@@ -115,6 +117,7 @@
     htmltagwrap
     ialign
     iedit
+    impatient-mode
     impatient-showdown
     indent-control
     ini-mode
@@ -160,8 +163,8 @@
     powerline
     powershell
     processing-mode
-    project-abbrev
     project
+    project-abbrev
     python-mode
     quelpa-use-package
     rainbow-mode
@@ -177,8 +180,8 @@
     shader-mode
     show-eol
     smex
-    ssass-mode
     sql-indent
+    ssass-mode
     swift-mode
     swiper
     togetherly
@@ -186,6 +189,7 @@
     tree-sitter-indent
     tree-sitter-langs
     typescript-mode
+    undercover
     undo-tree
     use-ttf
     vimrc-mode
@@ -193,7 +197,6 @@
     vs-dark-theme
     vs-light-theme
     vue-mode
-    impatient-mode
     web-mode
     which-key
     yaml-mode
