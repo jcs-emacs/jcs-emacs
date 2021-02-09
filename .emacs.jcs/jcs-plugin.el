@@ -316,7 +316,7 @@
          '("[*]Local Variables[*]")
          '("[*]Kill Ring[*]")  ; From `browse-kill-ring'
          '("[*]SPEEDBAR")
-         '("[*]Flycheck error" "[*]Flymake log[*]")
+         '("[*]Flycheck" "[*]Flymake log[*]")
          '("[*]httpd[*]")
          '("[*]helpful")
          '("[*]ert[*]")  ; Emacs Lisp Regression Testing
