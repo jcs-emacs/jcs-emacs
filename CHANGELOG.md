@@ -10,6 +10,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Install new package `el-mock`.
 * Install new package `ert-runner`.
 * Install new package `undercover`.
+* Changed `lsp-python-ms` to `lsp-pyright` for default python's language server.
 
 ### 2021-02-06
 
