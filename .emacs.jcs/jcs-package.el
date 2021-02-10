@@ -140,7 +140,7 @@
     lsp-mssql
     lsp-origami
     lsp-pascal
-    lsp-python-ms
+    lsp-pyright
     lsp-sourcekit
     lsp-ui
     lua-mode
