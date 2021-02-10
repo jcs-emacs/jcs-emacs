@@ -2,6 +2,16 @@
 ;;; Commentary:
 ;;; Code:
 
+(require 'lsp-dart)
+(require 'lsp-docker)
+(require 'lsp-haskell)
+(require 'lsp-java)
+(require 'lsp-latex)
+(require 'lsp-mssql)
+(require 'lsp-pascal)
+(require 'lsp-pyright)
+(require 'lsp-sourcekit)
+
 ;;
 ;; (@* "lsp" )
 ;;
