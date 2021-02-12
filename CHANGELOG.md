@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2021-02-13
+
+* Add my own `tree-sitter` queries files for highlighting support.
+
 ### 2021-02-10
 
 * Install new package `el-mock`.
