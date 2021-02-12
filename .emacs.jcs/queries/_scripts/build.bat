@@ -3,17 +3,9 @@
 cd ..
 SET temp="./_temp/"
 
-SET NAME="c-sharp"
-git clone https://github.com/tree-sitter/tree-sitter-%NAME% %temp%
-robocopy "%temp%queries/" "./%NAME%"
-rmdir %temp% /S /Q
+SET target=("c-sharp" "css" "javascript")
 
-SET NAME="css"
-git clone https://github.com/tree-sitter/tree-sitter-%NAME% %temp%
-robocopy "%temp%queries/" "./%NAME%"
-rmdir %temp% /S /Q
-
-SET NAME="javascript"
-git clone https://github.com/tree-sitter/tree-sitter-%NAME% %temp%
-robocopy "%temp%queries/" "./%NAME%"
-rmdir %temp% /S /Q
+FOR %%n IN %target% DO (
+git clone https://github.com/tree-sitter/tree-sitter-%%n %temp%
+robocopy "%temp%queries/" "./%%n"
+rmdir %temp% /S /Q)
