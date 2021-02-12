@@ -1000,15 +1000,6 @@
   (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
   (jcs-funcall-fboundp 'jcs-reset-common-faces-by-theme)
 
-  (defun jcs--tree-sitter-langs--query-conversion (query)
-    "Convert QUERY so it matches the core `emacs-tree-sitter' engine."
-    (require 's)
-    (when (stringp query)
-      (setq query (s-replace "#match?" ".match?" query)
-            query (s-replace "#eq?" ".eq?" query)
-            query (s-replace "#is-not?" ".is-not?" query)))
-    query)
-
   (defun jcs--tree-sitter-langs--hl-query-path (lang-symbol)
     "Advice override function `tree-sitter-langs--hl-query-path'."
     (setq lang-symbol (symbol-name lang-symbol))
@@ -1019,6 +1010,15 @@
       ;;(if (file-directory-p own) own default)
       ))
   (advice-add 'tree-sitter-langs--hl-query-path :override #'jcs--tree-sitter-langs--hl-query-path)
+
+  (defun jcs--tree-sitter-langs--query-conversion (query)
+    "Convert QUERY so it matches the core `emacs-tree-sitter' engine."
+    (require 's)
+    (when (stringp query)
+      (setq query (s-replace "#match?" ".match?" query)
+            query (s-replace "#eq?" ".eq?" query)
+            query (s-replace "#is-not?" ".is-not?" query)))
+    query)
 
   (defun jcs--tree-sitter-langs--hl-default-patterns (fnc &rest args)
     "Advice override function `tree-sitter-langs--hl-default-patterns'."
