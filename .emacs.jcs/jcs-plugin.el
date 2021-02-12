@@ -992,10 +992,38 @@
   (setq sql-indent-offset 1))
 
 (use-package tree-sitter
+  :init
+  (defconst jcs-tree-sitter-queries-dir "~/.emacs.jcs/queries/"
+    "Path points to your own tree-sitter query files.")
   :config
   (require 'tree-sitter-langs)
   (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
-  (jcs-funcall-fboundp 'jcs-reset-common-faces-by-theme))
+  (jcs-funcall-fboundp 'jcs-reset-common-faces-by-theme)
+
+  (defun jcs--tree-sitter-langs--query-conversion (query)
+    "Convert QUERY so it matches the core `emacs-tree-sitter' engine."
+    (require 's)
+    (when (stringp query)
+      (setq query (s-replace "#match?" ".match?" query)
+            query (s-replace "#eq?" ".eq?" query)
+            query (s-replace "#is-not?" ".is-not?" query)))
+    query)
+
+  (defun jcs--tree-sitter-langs--hl-query-path (lang-symbol)
+    "Advice override function `tree-sitter-langs--hl-query-path'."
+    (setq lang-symbol (symbol-name lang-symbol))
+    (let ((own (file-name-as-directory (concat jcs-tree-sitter-queries-dir lang-symbol)))
+          (default (file-name-as-directory (concat tree-sitter-langs--queries-dir lang-symbol))))
+      ;; TODO: If local query is supported, swap the line below.
+      (concat (if (file-directory-p own) own default) "highlights.scm")
+      ;;(if (file-directory-p own) own default)
+      ))
+  (advice-add 'tree-sitter-langs--hl-query-path :override #'jcs--tree-sitter-langs--hl-query-path)
+
+  (defun jcs--tree-sitter-langs--hl-default-patterns (fnc &rest args)
+    "Advice override function `tree-sitter-langs--hl-default-patterns'."
+    (jcs--tree-sitter-langs--query-conversion (apply fnc args)))
+  (advice-add 'tree-sitter-langs--hl-default-patterns :around #'jcs--tree-sitter-langs--hl-default-patterns))
 
 (use-package treemacs
   :init
