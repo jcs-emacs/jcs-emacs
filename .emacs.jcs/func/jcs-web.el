@@ -126,8 +126,7 @@
        'end)))
   (set-face-attribute 'web-mode-doctype-face nil :foreground "Pink3")
   (set-face-attribute 'web-mode-block-comment-face nil :foreground (face-foreground font-lock-comment-face))
-  (set-face-attribute 'web-mode-comment-face nil :foreground (face-foreground font-lock-comment-face))
-  (set-face-attribute 'web-mode-css-property-name-face nil :foreground (face-foreground jcs-css-type-face)))
+  (set-face-attribute 'web-mode-comment-face nil :foreground (face-foreground font-lock-comment-face)))
 
 (provide 'jcs-web)
 ;;; jcs-web.el ends here
