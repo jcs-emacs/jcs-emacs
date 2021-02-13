@@ -10,67 +10,52 @@
   "Set the FACE foreground COLOR-FG."
   (set-face-attribute face nil :foreground color-fg))
 
+(defun jcs--apply-face-map (face-map)
+  "Apply FACE-MAP with function `jcs--set-common-face'."
+  (let ((light-theme-p (jcs-is-light-theme-p)))
+    (dolist (face-data face-map)
+      (let ((face (car face-data)) (color (cdr face-data)))
+        (setq color
+              (cond ((listp color)
+                     (if (= (length color) 1) (nth 0 color)
+                       (if light-theme-p (nth 0 color) (nth 1 color))))
+                    (t color)))
+        (jcs--set-common-face face color)))))
+
 (defun jcs-reset-common-faces-by-theme ()
   "Reset comment faces case on the theme."
-  (let ((light-theme-p (jcs-is-light-theme-p)))
-    (if light-theme-p
-        (progn
-          (jcs--set-common-face 'font-lock-builtin-face "light steel blue")
-          (jcs--set-common-face 'font-lock-comment-face "olive drab")
-          (jcs--set-common-face 'font-lock-constant-face "#2B91AF")
-          (jcs--set-common-face 'font-lock-doc-face "olive drab")
-          (jcs--set-common-face 'font-lock-function-name-face "#74534B")
-          (jcs--set-common-face 'font-lock-keyword-face "#0000FF")
-          (jcs--set-common-face 'font-lock-preprocessor-face "#808080")
-          (jcs--set-common-face 'font-lock-string-face "#B21515")
-          (jcs--set-common-face 'font-lock-type-face "#2B91AF")
-          (jcs--set-common-face 'font-lock-variable-name-face "#000000"))
-      (jcs--set-common-face 'font-lock-builtin-face "light steel blue")
-      (jcs--set-common-face 'font-lock-comment-face "olive drab")
-      (jcs--set-common-face 'font-lock-constant-face "#38EFCA")
-      (jcs--set-common-face 'font-lock-doc-face "olive drab")
-      (jcs--set-common-face 'font-lock-function-name-face "#D2D2D2")
-      (jcs--set-common-face 'font-lock-keyword-face "#17A0FB")
-      (jcs--set-common-face 'font-lock-preprocessor-face "#8D9B99")
-      (jcs--set-common-face 'font-lock-string-face "#D69D78")
-      (jcs--set-common-face 'font-lock-type-face "#38EFCA")
-      (jcs--set-common-face 'font-lock-variable-name-face "#D2D2D2"))
+  (let ((face-map
+         `((font-lock-builtin-face . ("light steel blue"))
+           (font-lock-comment-face . ("olive drab"))
+           (font-lock-constant-face . ("#2B91AF" "#38EFCA"))
+           (font-lock-doc-face . ("olive drab"))
+           (font-lock-function-name-face . ("#74534B" "#D2D2D2"))
+           (font-lock-keyword-face . ("#0000FF" "#17A0FB"))
+           (font-lock-preprocessor-face . ("#808080" "#8D9B99"))
+           (font-lock-string-face . ("#B21515" "#D69D78"))
+           (font-lock-type-face . ("#2B91AF" "#38EFCA"))
+           (font-lock-variable-name-face . ("#000000" "#D2D2D2")))))
+    (jcs--apply-face-map face-map))
 
-    (when (featurep 'tree-sitter-hl)
-      (if light-theme-p
-          (progn
-            (jcs--set-common-face 'tree-sitter-hl-face:tag "#900022")
-            (jcs--set-common-face 'tree-sitter-hl-face:type.builtin "#0000FF")
-            (jcs--set-common-face 'tree-sitter-hl-face:type "#2B91AF")
-            (jcs--set-common-face 'tree-sitter-hl-face:function "black")
-            (jcs--set-common-face 'tree-sitter-hl-face:function.call "black")
-            (jcs--set-common-face 'tree-sitter-hl-face:variable.parameter "#808080")
-            (jcs--set-common-face 'tree-sitter-hl-face:property "#2F4F4F")
-            (jcs--set-common-face 'tree-sitter-hl-face:property.definition "#2F4F4F")
-            (jcs--set-common-face 'tree-sitter-hl-face:punctuation "#020000")
-            (jcs--set-common-face 'tree-sitter-hl-face:operator "#020000")
-            (jcs--set-common-face 'tree-sitter-hl-face:number "black")
-            (jcs--set-common-face 'tree-sitter-hl-face:constant "#6F008A")
-            (jcs--set-common-face 'tree-sitter-hl-face:constant.builtin "#0000FF")
-            (jcs--set-common-face 'tree-sitter-hl-face:keyword "#0000FF")
-            (jcs--set-common-face 'tree-sitter-hl-face:variable "#000000")
-            (jcs--set-common-face 'tree-sitter-hl-face:variable.special "#6F008A"))
-        (jcs--set-common-face 'tree-sitter-hl-face:tag "#D7A552")
-        (jcs--set-common-face 'tree-sitter-hl-face:type.builtin "#17A0FB")
-        (jcs--set-common-face 'tree-sitter-hl-face:type "#38EFCA")
-        (jcs--set-common-face 'tree-sitter-hl-face:function "#D2D2D2")
-        (jcs--set-common-face 'tree-sitter-hl-face:function.call "#D2D2D2")
-        (jcs--set-common-face 'tree-sitter-hl-face:variable.parameter "#7F7F7F")
-        (jcs--set-common-face 'tree-sitter-hl-face:property "#B5CEA8")
-        (jcs--set-common-face 'tree-sitter-hl-face:property.definition "#B5CEA8")
-        (jcs--set-common-face 'tree-sitter-hl-face:punctuation "#B4B4B3")
-        (jcs--set-common-face 'tree-sitter-hl-face:operator "#B4B4B3")
-        (jcs--set-common-face 'tree-sitter-hl-face:number "#B5CEA8")
-        (jcs--set-common-face 'tree-sitter-hl-face:constant "#B363BE")
-        (jcs--set-common-face 'tree-sitter-hl-face:constant.builtin "#17A0FB")
-        (jcs--set-common-face 'tree-sitter-hl-face:keyword "#17A0FB")
-        (jcs--set-common-face 'tree-sitter-hl-face:variable "#D2D2D2")
-        (jcs--set-common-face 'tree-sitter-hl-face:variable.special "#B363BE")))))
+  (when (featurep 'tree-sitter-hl)
+    (let ((face-map
+           `((tree-sitter-hl-face:tag . ("#900022" "#D7A552"))
+             (tree-sitter-hl-face:type.builtin . ("#0000FF" "#17A0FB"))
+             (tree-sitter-hl-face:type . ("#2B91AF" "#38EFCA"))
+             (tree-sitter-hl-face:function . ("black" "#D2D2D2"))
+             (tree-sitter-hl-face:function.call . ("black" "#D2D2D2"))
+             (tree-sitter-hl-face:variable.parameter . ("#808080" "#7F7F7F"))
+             (tree-sitter-hl-face:property . ("#2F4F4F" "#B5CEA8"))
+             (tree-sitter-hl-face:property.definition . ("#2F4F4F" "#B5CEA8"))
+             (tree-sitter-hl-face:punctuation . ("#020000" "#B4B4B3"))
+             (tree-sitter-hl-face:operator . ("#020000" "#B4B4B3"))
+             (tree-sitter-hl-face:number . ("black" "#B5CEA8"))
+             (tree-sitter-hl-face:constant . ("#6F008A" "#B363BE"))
+             (tree-sitter-hl-face:constant.builtin . ("#0000FF" "#17A0FB"))
+             (tree-sitter-hl-face:keyword . ("#0000FF" "#17A0FB"))
+             (tree-sitter-hl-face:variable . ("#000000" "#D2D2D2"))
+             (tree-sitter-hl-face:variable.special . ("#6F008A" "#B363BE")))))
+      (jcs--apply-face-map face-map))))
 
 ;;
 ;; (@* "Common" )
@@ -120,48 +105,6 @@
   :group 'jcs)
 (defvar jcs-web-mode-html-attr-value-face 'jcs-web-mode-html-attr-value-face)
 
-(defface jcs-css-selector-face
-  '((t (:foreground "#17A0FB")))
-  "Highlight CSS selector."
-  :group 'jcs)
-(defvar jcs-css-selector-face 'jcs-css-selector-face)
-
-(defface jcs-css-type-face
-  '((t (:foreground "#38EFCA")))
-  "Highlight CSS value."
-  :group 'jcs)
-(defvar jcs-css-type-face 'jcs-css-type-face)
-
-(defface jcs-css-id-face
-  '((t (:foreground "#D68974")))
-  "Highlight CSS id."
-  :group 'jcs)
-(defvar jcs-css-id-face 'jcs-css-id-face)
-
-(defface jcs-css-class-face
-  '((t (:foreground "#FAD42D")))
-  "Highlight CSS class."
-  :group 'jcs)
-(defvar jcs-css-class-face 'jcs-css-class-face)
-
-(defface jcs-css-event-face
-  '((t (:foreground "#B592EA")))
-  "Highlight CSS event."
-  :group 'jcs)
-(defvar jcs-css-event-face 'jcs-css-event-face)
-
-(defface jcs-css-number-face
-  '((t (:foreground "#B5CE89")))
-  "Highlight CSS number."
-  :group 'jcs)
-(defvar jcs-css-number-face 'jcs-css-number-face)
-
-(defface jcs-css-variable-face
-  '((t (:foreground "#F092FE")))
-  "Highlight CSS variable."
-  :group 'jcs)
-(defvar jcs-css-variable-face 'jcs-css-variable-face)
-
 ;;
 ;; (@* "Load face order" )
 ;;
@@ -169,7 +112,6 @@
 (with-eval-after-load 'cc-mode
   (require 'jcs-preproc) (jcs-init-preproc-faces)
   (jcs-init-java-faces))
-(with-eval-after-load 'css-mode (jcs-init-css-faces))
 (with-eval-after-load 'markdown-mode (jcs-init-markdown-faces))
 (with-eval-after-load 'org (jcs-init-org-faces))
 (with-eval-after-load 'typescript-mode (jcs-init-typescript-faces))

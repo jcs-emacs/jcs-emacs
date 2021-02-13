@@ -29,30 +29,5 @@
   ;;(com-css-sort-attributes-document)
   (jcs-untabify-save-buffer))
 
-;;
-;; (@* "Faces" )
-;;
-
-(defun jcs-init-css-faces ()
-  "CSS Faces Highlighting."
-  (let ((missing-modes '(css-mode
-                         less-css-mode
-                         sass-mode
-                         scss-mode
-                         ssass-mode)))
-    (dolist (mode missing-modes)
-      (font-lock-add-keywords
-       mode
-       '(("[ \t]*\\([#][a-zA-Z0-9_-]*\\)[ \t\n]*[(\[*:>+~,{]" 1 'jcs-css-id-face t)
-         ("[ \t]*\\([.][a-zA-Z0-9_-]*\\)[ \t\n]*[(\[*:>+~,{]" 1 'jcs-css-class-face t)
-         ("\\([:][a-zA-Z0-9>+~:_-]+\\)[ \t\n]*[,{]" 1 'jcs-css-event-face t)
-         ;; Number
-         ("[ \t;,)]*\\([+-]*[0-9]*[.]*[0-9]+[a-z%]*\\)[ \t\n;,)]" . 'jcs-css-number-face)
-         ;; Variable
-         ("[$@][^ \t\n:;]+" . 'jcs-css-variable-face))
-       'end)))
-  (jcs--set-common-face 'css-selector (face-foreground 'jcs-css-selector-face))
-  (jcs--set-common-face 'css-property (face-foreground 'jcs-css-type-face)))
-
 (provide 'jcs-css)
 ;;; jcs-css.el ends here
