@@ -26,8 +26,8 @@
 (pseudo_element_selector (tag_name) @attribute)
 (pseudo_class_selector (class_name) @attribute)
 
-(class_name) @property
-(id_name) @property
+(class_name) @css.class
+(id_name) @css.id
 (namespace_name) @property
 (property_name) @property
 (feature_name) @property

@@ -3,7 +3,7 @@
 cd ..
 temp="./_temp/"
 
-target=("c-sharp" "css" "javascript")
+target=("c-sharp" "css" "javascript" "typescript")
 
 for out in "${target[@]}"
 do
