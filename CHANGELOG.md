@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2021-02-13
 
 * Add my own `tree-sitter` queries files for highlighting support.
+* Remove css face customization and replace with `tree-sitter` highlighting.
 
 ### 2021-02-10
 
