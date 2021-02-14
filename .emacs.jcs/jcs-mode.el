@@ -342,8 +342,6 @@ Note this is opposite logic to the toggle mode function."
   "Emacs Lisp mode hook."
   (modify-syntax-entry ?_ "w")  ; Treat underscore as word.
 
-  (jcs-make-electric-pair-pairs-local '((?\` . ?\')))
-
   (jcs-insert-header-if-valid '("[.]el")
                               'jcs-insert-emacs-lisp-template))
 
@@ -355,8 +353,6 @@ Note this is opposite logic to the toggle mode function."
 (defun jcs-lisp-mode-hook ()
   "Lisp mode hook."
   (modify-syntax-entry ?_ "w")  ; Treat underscore as word.
-
-  (jcs-make-electric-pair-pairs-local '((?\` . ?\')))
 
   (jcs-insert-header-if-valid '("[.]lisp")
                               'jcs-insert-lisp-template))
