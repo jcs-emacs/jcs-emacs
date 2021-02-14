@@ -1651,15 +1651,19 @@ Optional argument SEPARATOR can be join between the STR."
             n (1- n)))
     output))
 
-(defun jcs-is-inside-string-p ()
-  "Check if current cursor point inside the string."
-  (nth 3 (syntax-ppss)))
+(defun jcs-inside-string-p (&optional pos)
+  "Return non-nil if POS inside a string."
+  (save-excursion
+    (when pos (goto-char pos))
+    (and (nth 3 (syntax-ppss))
+         (or (jcs-is-current-point-face 'font-lock-string-face)
+             (jcs-is-current-point-face 'tree-sitter-hl-face:string)))))
 
 ;;;###autoload
 (defun jcs-goto-start-of-the-string ()
   "Go to the start of the string."
   (interactive)
-  (when (jcs-is-inside-string-p)
+  (when (jcs-inside-string-p)
     (backward-char 1)
     (jcs-goto-start-of-the-string)))
 
@@ -1667,7 +1671,7 @@ Optional argument SEPARATOR can be join between the STR."
 (defun jcs-goto-end-of-the-string ()
   "Go to the start of the string."
   (interactive)
-  (when (jcs-is-inside-string-p)
+  (when (jcs-inside-string-p)
     (forward-char 1)
     (jcs-goto-end-of-the-string)))
 
