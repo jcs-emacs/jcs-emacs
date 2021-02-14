@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2021-02-14
+
+* Stop tracking recent files from peeking definition.
+* Fix utility function's logic for inside the string block.
+
 ### 2021-02-13
 
 * Add my own `tree-sitter` queries files for highlighting support.
