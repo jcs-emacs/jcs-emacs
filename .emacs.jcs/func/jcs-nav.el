@@ -39,7 +39,8 @@
   "Peek definition."
   (interactive)
   (require 'scrollable-quick-peek)
-  (let* ((buf-list (buffer-list))
+  (let* (jcs-recentf-tracking-p
+         (buf-list (buffer-list))
          (record (jcs--record-window-excursion #'jcs-goto-definition))
          (buf (nth 0 record)) (ln (nth 1 record)))
     (when record
