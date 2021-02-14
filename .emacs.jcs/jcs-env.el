@@ -289,14 +289,21 @@ P.S. You would need to restart Emacs to take effect from this variable."
 ;;; Recent Files
 (setq recentf-max-menu-items 25)
 
+(defvar jcs-recentf-tracking-p t
+  "If non-nil, track the opened file.")
+
+(defun jcs-recentf-track-opened-file-p ()
+  "Return non-nil if we should track opened file."
+  (and jcs-recentf-tracking-p (not jcs-package-installing-p)))
+
 (defun jcs--recentf-track-opened-file--advice-after ()
   "Advice execute after function `recentf-track-opened-file'."
-  (unless jcs-package-installing-p (jcs-dashboard-safe-refresh-buffer)))
+  (when (jcs-recentf-track-opened-file-p) (jcs-dashboard-safe-refresh-buffer)))
 (advice-add 'recentf-track-opened-file :after #'jcs--recentf-track-opened-file--advice-after)
 
 (defun jcs--recentf-track-opened-file--advice-around (fnc &rest args)
   "Advice execute around function `recentf-track-opened-file'."
-  (unless jcs-package-installing-p (apply fnc args)))
+  (when (jcs-recentf-track-opened-file-p) (apply fnc args)))
 (advice-add 'recentf-track-opened-file :around #'jcs--recentf-track-opened-file--advice-around)
 
 ;;; Save Files
