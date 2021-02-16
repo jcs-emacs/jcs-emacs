@@ -601,8 +601,19 @@
   (define-key undo-tree-map (kbd "C-?") nil)
   (define-key undo-tree-map (kbd "M-_") nil))
 
+;;; Version Control
+(with-eval-after-load 'magit
+  (define-key magit-mode-map (kbd "M-w") nil)
+  (define-key magit-mode-map [S-tab] #'magit-section-toggle))
+
 ;;; Whitespace
 (define-key global-map (kbd "C-k b") #'whitespace-mode)
+
+;;; With Editor
+(with-eval-after-load 'with-editor
+  (define-key with-editor-mode-map (kbd "C-s") #'with-editor-finish)
+  (define-key with-editor-mode-map (kbd "C-g") #'with-editor-cancel)
+  (define-key with-editor-mode-map (kbd "<escape>") #'with-editor-cancel))
 
 ;;; Zoom
 (define-key global-map (kbd "C-=") #'jcs-text-scale-increase)
