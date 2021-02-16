@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2021-02-16
 
 * Add more support on package `magit`.
+* Fix not readable character from `lsp-modeline`.
 
 ### 2021-02-14
 
