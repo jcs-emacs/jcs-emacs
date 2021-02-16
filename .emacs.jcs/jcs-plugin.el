@@ -246,7 +246,7 @@
     "Diminish the whole ALST."
     (dolist (type alst) (jcs-diminish (car type) (cdr type))))
 
-  (defvar jcs-diminish-alist
+  (defconst jcs-diminish-alist
     `((abbrev-mode)
       (alt-codes-mode . alt-codes)
       (auto-fill-mode)
@@ -288,6 +288,7 @@
       (visual-line-mode)
       (which-key-mode . which-key)
       ((whitespace-mode whitespace-newline-mode) . whitespace)
+      (with-editor-mode . with-editor)
       (yas-minor-mode . yasnippet))
     "List of diminish associated list.")
 
@@ -320,6 +321,7 @@
          '("[*]httpd[*]")
          '("[*]helpful")
          '("[*]ert[*]")  ; Emacs Lisp Regression Testing
+         '("magit[-]*[[:ascii:]]*[:]")  ; From `magit'
          '("[*]Most used words[*]")
          '("[*]Test SHA[*]")
          '("[*]RE-Builder")
@@ -760,6 +762,10 @@
     "Safe way to call `lsp-ui-doc--hide-frame' function."
     (when (and (functionp 'lsp-ui-doc--hide-frame) (not jcs--lsp-lv-recording))
       (lsp-ui-doc--hide-frame))))
+
+(use-package magit
+  :init
+  (setq magit-diff-refine-hunk t))
 
 (use-package most-used-words
   :init
