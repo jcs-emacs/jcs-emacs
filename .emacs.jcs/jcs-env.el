@@ -224,7 +224,7 @@
 ;;; Line Numbers
 (defconst jcs-line-numbers-ignore-buffers
   '("[*]+[[:ascii:]]+"
-    "magit: "
+    "magit[-]*[[:ascii:]]*[:]"
     "tree-sitter-tree:")
   "List of buffers that you do not want to show line numbers in it.")
 
