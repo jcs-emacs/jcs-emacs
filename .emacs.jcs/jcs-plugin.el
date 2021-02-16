@@ -91,9 +91,10 @@
         company-tooltip-align-annotations t
         company-dabbrev-downcase nil
         company-dabbrev-ignore-case nil
-        company-eclim-auto-save nil)
-  ;; TOPIC: How add company-dabbrev to the Company completion popup?
-  ;; URL: https://emacs.stackexchange.com/questions/15246/how-add-company-dabbrev-to-the-company-completion-popup
+        company-eclim-auto-save nil
+        company-minimum-prefix-length 0
+        company-idle-delay 0.1
+        company-selection-wrap-around 'on)
   (setq company-backends
         (append
          ;; --- Internal ---
@@ -105,9 +106,6 @@
          '(company-yasnippet)
          ;; --- External ---
          '(company-emoji)))
-  (setq company-minimum-prefix-length 0
-        company-idle-delay 0.1
-        company-selection-wrap-around 'on)
   :config
   (with-eval-after-load 'company (require 'jcs-company) (global-company-mode t)))
 
@@ -709,6 +707,7 @@
   (setq lsp-auto-guess-root t
         lsp-prefer-capf t
         lsp-keep-workspace-alive nil  ; Auto-kill LSP server
+        lsp-modeline-code-action-fallback-icon "|Œ|"
         lsp-prefer-flymake nil  ; Use lsp-ui and flycheck
         flymake-fringe-indicator-position 'right-fringe)
 
