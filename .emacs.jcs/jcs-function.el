@@ -491,7 +491,7 @@ If optional argument FORCE is non-nil, force refresh it."
   (require 'display-line-numbers)
   (if (and (numberp act) (>= act 1))
       (unless display-line-numbers-mode (display-line-numbers-mode 1))
-    (when display-line-numbers-mode (display-line-numbers-mode ac-1))))
+    (when display-line-numbers-mode (display-line-numbers-mode -1))))
 
 (defun jcs-safe-display-linum (act)
   "Active `linum' by ACT."
