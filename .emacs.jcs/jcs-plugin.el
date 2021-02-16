@@ -22,8 +22,7 @@
 
   (defun jcs--auto-read-only--hook-find-file ()
     "Advice override function `auto-read-only--hook-find-file'."
-    (when (and (not jcs-package-installing-p)
-               (not (jcs-project-current)))
+    (when (and (not jcs-package-installing-p) (not (jcs-project-current)))
       (auto-read-only)))
   (advice-add 'auto-read-only--hook-find-file :override #'jcs--auto-read-only--hook-find-file))
 
