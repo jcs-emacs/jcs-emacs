@@ -997,7 +997,9 @@
 
 (use-package tree-sitter
   :config
-  (require 'jcs-tree-sitter))
+  (require 'tree-sitter-langs)
+  (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
+  (jcs-funcall-fboundp 'jcs-reset-common-faces-by-theme))
 
 (use-package treemacs
   :init
