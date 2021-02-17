@@ -7,12 +7,11 @@
   "Ask the source SC for editing TypeScript file."
   (interactive
    (list (completing-read
-          "Major source for this TypeScript file: " '("Default"
-                                                      "Cocos Creator Scripting"))))
-  (cond ((string= sc "Default")
-         (jcs-insert-typescript-template))
-        ((string= sc "Cocos Creator Scripting")
-         (jcs-insert-typescript-cocos-creator-template))))
+          "Major source for this TypeScript file: "
+          '("Default" "Cocos Creator Scripting"))))
+  (pcase sc
+    ("Default" (jcs-insert-typescript-template))
+    ("Cocos Creator Scripting" (jcs-insert-typescript-cocos-creator-template))))
 
 ;;
 ;; (@* "Document String" )

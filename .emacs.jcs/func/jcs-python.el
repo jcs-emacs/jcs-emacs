@@ -138,10 +138,10 @@ instead of indent the whole file at once."
 (defun jcs-ask-python-template (type)
   (interactive
    (list (completing-read
-          "Type of the Python template: " '("Class"
-                                            "Plain"))))
-  (cond ((string= type "Class") (jcs-insert-python-class-template))
-        ((string= type "Plain") (jcs-insert-python-template))))
+          "Type of the Python template: " '("Class" "Plain"))))
+  (pcase type
+    ("Class" (jcs-insert-python-class-template))
+    ("Plain" (jcs-insert-python-template))))
 
 (provide 'jcs-python)
 ;;; jcs-python.el ends here

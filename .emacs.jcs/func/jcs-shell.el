@@ -113,18 +113,13 @@
          ;; Get the string start from command to end of command.
          (command-string (buffer-substring command-start-point (point-max))))
     ;; Execute the command.
-    (cond
-     ((string= command-string "exit")
+    (pcase command-string
       ;; Here toggle, actually close the terminal itself.
-      (jcs-maybe-kill-shell))
-     ((or (string= command-string "clear")
-          (string= command-string "cls"))
+      ("exit" (jcs-maybe-kill-shell))
       ;; Clear the terminal once.
-      (jcs-shell-clear-command))
-     ;; Else just send the command to terminal.
-     (t
-      ;; Call default return key.
-      (comint-send-input)))))
+      ((or "clear" "cls") (jcs-shell-clear-command))
+      ;; Else just send the command to terminal.
+      (_ (comint-send-input)))))
 
 ;;
 ;; (@* "Deletion" )

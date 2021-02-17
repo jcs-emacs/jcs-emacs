@@ -16,8 +16,9 @@
    (list (completing-read
           "Major mode for this Assembly Language file: "
           '("masm" "nasm"))))
-  (cond ((string= mode "masm") (masm-mode))
-        ((string= mode "nasm") (nasm-mode))))
+  (pcase mode
+    ("masm" (masm-mode))
+    ("nasm" (nasm-mode))))
 
 ;;;###autoload
 (defun jcs-asm-ask-source (sc)
@@ -27,8 +28,9 @@
           "Major source for this Assembly Language file: "
           '("masm" "nasm"))))
   (let ((jcs-asm--asking-mode t))
-    (cond ((string= sc "masm") (masm-mode) (jcs-insert-masm-template))
-          ((string= sc "nasm") (nasm-mode) (jcs-insert-nasm-template)))))
+    (pcase sc
+      ("masm" (masm-mode) (jcs-insert-masm-template))
+      ("nasm" (nasm-mode) (jcs-insert-nasm-template)))))
 
 
 ;;;###autoload

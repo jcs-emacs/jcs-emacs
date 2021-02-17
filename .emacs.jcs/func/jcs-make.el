@@ -15,21 +15,13 @@
                                                 "C++"
                                                 "Java"
                                                 "Python"))))
-
-  (cond ((string= lan "Default (empty)")
-         (progn
-           ;; Empty..
-           ))
-        ((string= lan "Assembly")
-         (call-interactively 'jcs-ask-makefile-cc-template))
-        ((string= lan "C")
-         (call-interactively 'jcs-ask-makefile-cc-template))
-        ((string= lan "C++")
-         (call-interactively 'jcs-ask-makefile-cc-template))
-        ((string= lan "Java")
-         (call-interactively 'jcs-ask-makefile-java-template))
-        ((string= lan "Python")
-         (call-interactively 'jcs-ask-makefile-python-template))))
+  (pcase lan
+    ("Default (empty)")  ; Does nothing
+    ("Assembly" (call-interactively 'jcs-ask-makefile-cc-template))
+    ("C" (call-interactively 'jcs-ask-makefile-cc-template))
+    ("C++" (call-interactively 'jcs-ask-makefile-cc-template))
+    ("Java" (call-interactively 'jcs-ask-makefile-java-template))
+    ("Python" (call-interactively 'jcs-ask-makefile-python-template))))
 
 ;;;###autoload
 (defun jcs-ask-makefile-cc-template (type)
@@ -40,13 +32,10 @@ TYPE: type of makefile for Assembly and C/C++."
           "Type of makefile: " '(".."
                                  "Application"
                                  "Library"))))
-
-  (cond ((string= type "..")
-         (call-interactively 'jcs-ask-makefile-language))
-        ((string= type "Application")
-         (jcs-insert-makefile-cc-app-template))
-        ((string= type "Library")
-         (jcs-insert-makefile-cc-lib-template))))
+  (pcase type
+    (".." (call-interactively 'jcs-ask-makefile-language))
+    ("Application" (jcs-insert-makefile-cc-app-template))
+    ("Library" (jcs-insert-makefile-cc-lib-template))))
 
 
 ;;;###autoload
@@ -58,13 +47,10 @@ TYPE: type of makefile for Java."
           "Type of makefile: " '(".."
                                  "Application"
                                  "Library"))))
-
-  (cond ((string= type "..")
-         (call-interactively 'jcs-ask-makefile-language))
-        ((string= type "Application")
-         (jcs-insert-makefile-java-app-template))
-        ((string= type "Library")
-         (jcs-insert-makefile-java-lib-template))))
+  (pcase type
+    (".." (call-interactively 'jcs-ask-makefile-language))
+    ("Application" (jcs-insert-makefile-java-app-template))
+    ("Library" (jcs-insert-makefile-java-lib-template))))
 
 
 ;;;###autoload
@@ -76,13 +62,10 @@ TYPE: type of makefile for Python."
           "Type of makefile: " '(".."
                                  "Application"
                                  "Library"))))
-
-  (cond ((string= type "..")
-         (call-interactively 'jcs-ask-makefile-language))
-        ((string= type "Application")
-         (jcs-insert-makefile-python-app-template))
-        ((string= type "Library")
-         (jcs-insert-makefile-python-lib-template))))
+  (pcase type
+    (".." (call-interactively 'jcs-ask-makefile-language))
+    ("Application" (jcs-insert-makefile-python-app-template))
+    ("Library" (jcs-insert-makefile-python-lib-template))))
 
 ;;;###autoload
 (defun jcs-makefile-newline ()

@@ -719,13 +719,16 @@ The file has unsaved changes inside this editor and has been changed externally.
 Do you want to reload it and lose the changes made in this source editor?")
             answer (completing-read prompt '("Yes" "Yes to All" "No" "No to All"))
             index (1+ index))
-      (cond ((string= answer "Yes")
-             (with-current-buffer buf (jcs-revert-buffer-no-confirm t))
-             (jcs-ask-revert-all bufs index))
-            ((string= answer "Yes to All") (jcs-revert-all-valid-buffers t t))
-            ((string= answer "No") (jcs-ask-revert-all bufs index))
-            ;; Does nothing, exit.
-            ((string= answer "No to All"))))))
+      (pcase answer
+        ("Yes"
+         (with-current-buffer buf (jcs-revert-buffer-no-confirm t))
+         (jcs-ask-revert-all bufs index))
+        ("Yes to All"
+         (jcs-revert-all-valid-buffers t t))
+        ("No"
+         (jcs-ask-revert-all bufs index))
+        ;; Does nothing, exit.
+        ("No to All")))))
 
 (defun jcs-buffer-edit-externally-p (&optional buf)
   "Return non-nil if BUF is edited externally."
