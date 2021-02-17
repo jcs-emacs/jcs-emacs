@@ -604,7 +604,8 @@
 ;;; Version Control
 (with-eval-after-load 'magit
   (define-key magit-mode-map (kbd "M-w") nil)
-  (define-key magit-mode-map [S-tab] #'magit-section-toggle))
+  (define-key magit-mode-map [S-tab] #'magit-section-toggle)
+  (define-key magit-mode-map (kbd "M-K") #'magit-refresh))
 
 ;;; Whitespace
 (define-key global-map (kbd "C-k b") #'whitespace-mode)
