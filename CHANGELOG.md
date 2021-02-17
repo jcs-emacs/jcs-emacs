@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2021-02-17
 
 * Bindy magit refresh for configuration generic reopen key.
+* Revert `tree-sitter` highlighting queries' customization.
 
 ### 2021-02-16
 
