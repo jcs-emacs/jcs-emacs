@@ -287,6 +287,13 @@ Note this is opposite logic to the toggle mode function."
 (add-hook 'tabulated-list-mode-hook 'jcs-tabulated-list-mode-hook)
 
 ;;============================================================================
+;; LSP
+
+(defun jcs-active-lsp-mode-hook ()
+  "Hook that safely active package `lsp-mode'."
+  (jcs--safe-lsp-active))
+
+;;============================================================================
 ;; Text Mode
 
 (defun jcs-text-mode-hook ()
@@ -303,6 +310,7 @@ Note this is opposite logic to the toggle mode function."
                               :interactive t))
 
 (add-hook 'text-mode-hook 'jcs-text-mode-hook)
+(add-hook 'text-mode-hook 'jcs-active-lsp-mode-hook)
 
 ;;============================================================================
 ;; Programming Mode
@@ -330,10 +338,10 @@ Note this is opposite logic to the toggle mode function."
   (electric-pair-mode 1)
   (goto-address-mode 1)
   (highlight-indent-guides-mode 1)
-  (highlight-numbers-mode 1)
-  (jcs--safe-lsp-active))
+  (highlight-numbers-mode 1))
 
 (add-hook 'prog-mode-hook 'jcs-prog-mode-hook)
+(add-hook 'prog-mode-hook 'jcs-active-lsp-mode-hook)
 
 ;;============================================================================
 ;; Emacs Lisp
@@ -536,6 +544,7 @@ See `add-to-list' function description for argument APPEND."
   (jcs-add-auto-mode-alist '("\\.dockerignore'?\\'" . gitignore-mode))
   (jcs-add-auto-mode-alist '("\\.npmignore'?\\'" . gitignore-mode))
   (jcs-add-auto-mode-alist '("\\.unityignore'?\\'" . gitignore-mode))
+  (jcs-add-auto-mode-alist '("\\.vscodeignore'?\\'" . gitignore-mode))
 
   (jcs-add-auto-mode-alist '("\\.frag'?\\'" . glsl-mode))
   (jcs-add-auto-mode-alist '("\\.geom'?\\'" . glsl-mode))
