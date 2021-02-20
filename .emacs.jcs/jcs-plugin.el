@@ -755,11 +755,12 @@
         lsp-ui-sideline-show-hover nil
         lsp-ui-sideline-show-diagnostics nil
         lsp-ui-sideline-ignore-duplicate t)
-
   (defun jcs--lsp-ui-doc--hide-frame ()
     "Safe way to call `lsp-ui-doc--hide-frame' function."
     (when (and (functionp 'lsp-ui-doc--hide-frame) (not jcs--lsp-lv-recording))
-      (lsp-ui-doc--hide-frame))))
+      (lsp-ui-doc--hide-frame)))
+  :config
+  (lsp-ui-sideline-set-default-icon))
 
 (use-package magit
   :init
