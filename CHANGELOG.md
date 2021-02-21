@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2021-02-22
+
+* Change source for package `docstr` from [quelpa]() to [melpa]().
+
 ### 2021-02-20
 
 * Ensure lightblub image loaded for module `lsp-ui-sideline`.
