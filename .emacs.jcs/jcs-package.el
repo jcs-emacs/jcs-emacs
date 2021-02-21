@@ -71,6 +71,7 @@
     diminish
     diminish-buffer
     dockerfile-mode
+    docstr
     dumb-jump
     el-mock
     elisp-def
