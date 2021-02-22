@@ -874,7 +874,7 @@ Returns nil, the word isn't the same."
   (save-excursion
     (let ((is-comment-line nil))
       (end-of-line)
-      (when (or (jcs-inside-comment-block-p) (jcs-current-line-empty-p))
+      (when (or (jcs-inside-comment-p) (jcs-current-line-empty-p))
         (setq is-comment-line t))
       is-comment-line)))
 
@@ -892,7 +892,7 @@ Returns nil, the word isn't the same."
 
 (defun jcs-is-beginning-of-buffer-p ()
   "Check if it's at the beginning of buffer."
-  (= (point) (point-min)))
+  (bobp))
 
 (defun jcs-is-end-of-line-p ()
   "Check if it's at the end of line."
@@ -904,9 +904,8 @@ Returns nil, the word isn't the same."
 
 (defun jcs-is-current-file-empty-p (&optional fn)
   "Check if the FN an empty file."
-  (if fn
-      (with-current-buffer fn
-        (and (jcs-is-beginning-of-buffer-p) (jcs-is-end-of-buffer-p)))
+  (if fn (with-current-buffer fn
+           (and (jcs-is-beginning-of-buffer-p) (jcs-is-end-of-buffer-p)))
     (and (jcs-is-beginning-of-buffer-p) (jcs-is-end-of-buffer-p))))
 
 (defun jcs-get-current-line-integer ()
@@ -945,11 +944,10 @@ Returns nil, the word isn't the same."
 (defun jcs-empty-line-between-point (min-pt max-pt)
   "Check if there is empty line between two point, MIN-PT and MAX-PT."
   (save-excursion
-    (let ((there-is-empty-line nil))
+    (let (there-is-empty-line)
       (when (>= min-pt max-pt)
         (error "Min point cannot be larger than max point")
-        ;; Return false.
-        (equal there-is-empty-line t))
+        there-is-empty-line)
       (goto-char min-pt)
       (while (< (point) max-pt)
         (when (jcs-current-line-empty-p)
@@ -1082,40 +1080,39 @@ Return nil, there is no region selected and mark is not active."
 ;;
 
 (defun jcs-is-command-these-commands (cmd cmds)
-  "Check if CMD one of these CMDS.
-CMDS should be a list of commands."
+  "Return non-nil if CMD is in CMDS."
   (memq cmd cmds))
 
 ;;
 ;; (@* "Comment" )
 ;;
 
-(defun jcs-inside-comment-block-p ()
-  "Check if current cursor point inside the comment block."
+(defun jcs-inside-comment-p ()
+  "Return non-nil if is inside comment."
   (or (nth 4 (syntax-ppss))
-      (jcs-is-current-point-face "font-lock-comment-face")
-      (jcs-is-current-point-face "tree-sitter-hl-face:comment")
-      (jcs-is-current-point-face "tree-sitter-hl-face:doc")
-      (jcs-is-current-point-face "hl-todo")))
+      (jcs-is-current-point-face '(font-lock-comment-face
+                                   tree-sitter-hl-face:comment
+                                   tree-sitter-hl-face:doc
+                                   hl-todo))))
 
 (defun jcs-inside-comment-or-string-p ()
-  "Check if inside comment or stirng."
-  (or (jcs-inside-comment-block-p)
+  "Return non-nil if is inside string."
+  (or (jcs-inside-comment-p)
       (nth 8 (syntax-ppss))
-      (jcs-is-current-point-face "font-lock-string-face")))
+      (jcs-is-current-point-face 'font-lock-string-face)))
 
 ;;;###autoload
 (defun jcs-goto-start-comment ()
   "Go to the start of the comment."
   (interactive)
-  (while (jcs-inside-comment-block-p)
+  (while (jcs-inside-comment-p)
     (re-search-backward comment-start-skip nil t)))
 
 ;;;###autoload
 (defun jcs-goto-end-comment ()
   "Go to the end of the comment."
   (interactive)
-  (when (jcs-inside-comment-block-p)
+  (when (jcs-inside-comment-p)
     (forward-char 1)
     (jcs-goto-end-comment)))
 
@@ -1129,7 +1126,7 @@ CMDS should be a list of commands."
 
 (defun jcs-start-comment-symbol (&optional pt)
   "Return the starting comment symbol form the given PT."
-  (when (jcs-inside-comment-block-p)
+  (when (jcs-inside-comment-p)
     (let (start-pt)
       (save-excursion
         (when pt (goto-char pt))
@@ -1144,7 +1141,7 @@ CMDS should be a list of commands."
 
 (defun jcs-end-comment-symbol (&optional pt)
   "Return the ending comment symbol form the given PT."
-  (when (jcs-inside-comment-block-p)
+  (when (jcs-inside-comment-p)
     (let (end-pt)
       (save-excursion
         (when pt (goto-char pt))
@@ -1191,20 +1188,19 @@ CMDS should be a list of commands."
 
 (defun jcs-is-current-point-face (in-face &optional pos)
   "Check if current POS's face the same face as IN-FACE."
+  (require 'cl-lib)
   (let ((faces (jcs-get-current-point-face pos)))
-    (if (listp faces)
-        (if (equal (cl-position in-face faces :test 'string=) nil)
-            ;; If return nil, mean not found in the `faces' list.
-            nil
-          ;; If have position, meaning the face exists.
-          t)
-      (string= in-face faces))))
+    (cond ((listp faces)
+           (if (listp in-face)
+               (cl-some (lambda (fc) (cl-position fc faces :test 'string=)) in-face)
+             (cl-position in-face faces :test 'string=)))
+          (t (string= in-face faces)))))
 
 (defun jcs-is-default-face-p (&optional pos)
   "Check default face at POS."
   (or (= (length (jcs-get-current-point-face pos)) 0)
       (and (= (length (jcs-get-current-point-face pos)) 1)
-           (jcs-is-current-point-face "hl-line"))))
+           (jcs-is-current-point-face 'hl-line))))
 
 ;;
 ;; (@* "Font" )
@@ -1656,8 +1652,8 @@ Optional argument SEPARATOR can be join between the STR."
   (save-excursion
     (when pos (goto-char pos))
     (and (nth 3 (syntax-ppss))
-         (or (jcs-is-current-point-face 'font-lock-string-face)
-             (jcs-is-current-point-face 'tree-sitter-hl-face:string)))))
+         (jcs-is-current-point-face '(font-lock-string-face
+                                      tree-sitter-hl-face:string)))))
 
 ;;;###autoload
 (defun jcs-goto-start-of-the-string ()
