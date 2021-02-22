@@ -38,9 +38,9 @@
 (defun jcs-web-vs-opening-curly-bracket-key ()
   "Web mode front curly bracket key."
   (interactive)
-  (if (or (jcs-is-current-point-face "web-mode-script-face")
-          (jcs-is-current-point-face "web-mode-block-face")
-          (jcs-is-current-point-face "web-mode-style-face"))
+  (if (jcs-is-current-point-face '(web-mode-script-face
+                                   web-mode-block-face
+                                   web-mode-style-face))
       (call-interactively #'jcs-vs-opening-curly-bracket-key)
     (insert "{}")
     (backward-char 1)))
@@ -102,7 +102,7 @@
 (defun jcs-emmet-expand-line ()
   "Wrapper of `emmet-expand-line' function."
   (interactive)
-  (if (jcs-is-current-point-face "link")
+  (if (jcs-is-current-point-face 'link)
       (call-interactively #'goto-address-at-point)
     (unless (call-interactively #'emmet-expand-line)
       (jcs-ctrl-return-key))))

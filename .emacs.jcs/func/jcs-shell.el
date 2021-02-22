@@ -95,11 +95,9 @@
   ;; Goto the end of the command line.
   (goto-char (point-max))
 
-  ;; STUDY: This actually does not goes to the
-  ;; beginning of line. It actually goto the
-  ;; start of the command prompt. Which mean
-  ;; we do not have to code ourselves to the
-  ;; start of command line.
+  ;; STUDY: This actually does not goes to the beginning of line. It actually
+  ;; goto the start of the command prompt. Which mean we do not have to code
+  ;; ourselves to the start of command line.
   ;;
   ;; >>> Image: <<<
   ;;                             ┌─ It will jump to this point.
@@ -130,7 +128,7 @@
 
 (defun jcs-shell-is-current-on-command ()
   "Return non-nil if current on command line."
-  (let ((is-shell-prompt-char nil))
+  (let (is-shell-prompt-char)
     (save-excursion
       (backward-char 1)
       (setq is-shell-prompt-char
@@ -144,8 +142,7 @@
   "Backspace key in shell mode."
   (interactive)
   ;; Only the last line of buffer can do deletion.
-  (when (jcs-shell-is-current-on-command)
-    (backward-delete-char 1)))
+  (when (jcs-shell-is-current-on-command) (backward-delete-char 1)))
 
 ;;;###autoload
 (defun jcs-shell-kill-whole-line ()
