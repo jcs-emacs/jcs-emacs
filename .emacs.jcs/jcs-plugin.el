@@ -1031,6 +1031,10 @@
     (buffer-wrap-mode 1))
   (add-hook 'treemacs-mode-hook #'jcs--treemacs-mode-hook))
 
+(use-package turbo-log
+  :init
+  (setq turbo-log-no-ask t))
+
 (use-package un-mini
   :init
   (setq un-mini-abort-commands '(right-click-context-click-menu)))
