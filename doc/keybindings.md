@@ -180,6 +180,9 @@ Here is the list of key bindins that defined in this configuration.
   * <kbd>f10</kbd> - Goto previous error.
   * <kbd>f11</kbd> - Goto next error.
 
+  * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>d</kbd> - Enable `dap-mode`. (Debug Adapter Protocol)
+  * <kbd>Alt</kbd>+<kbd>1</kbd> - Turbo log the current region selection.
+
 ### Buffer
 
 * **Buffer Menu**
