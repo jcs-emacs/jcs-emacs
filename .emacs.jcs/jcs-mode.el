@@ -484,7 +484,10 @@ See `add-to-list' function description for argument APPEND."
 
 ;;; A
 (progn
-  (jcs-add-auto-mode-alist '("\\.as'?\\'" . actionscript-mode)))
+  (jcs-add-auto-mode-alist '("\\.as'?\\'" . actionscript-mode))
+  (jcs-add-auto-mode-alist '("\\.applescript'?\\'" . applescript-mode))
+  (jcs-add-auto-mode-alist '("\\.scpt'?\\'" . applescript-mode))
+  (jcs-add-auto-mode-alist '("\\.scptd'?\\'" . applescript-mode)))
 
 ;;; B
 (progn
