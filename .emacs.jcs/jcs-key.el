@@ -116,6 +116,7 @@
 
 ;;; Debug
 (define-key global-map (kbd "C-S-d") #'dap-mode)
+(define-key global-map (kbd "M-1") #'turbo-log)
 
 ;;; Declaration / Definition
 (define-key global-map [f12] #'jcs-goto-definition)
