@@ -136,6 +136,7 @@
         org-force-self-insert
         org-return
         org-self-insert-command
+        turbo-log
         typescript-insert-and-indent
         web-mode-tag-match
         yas-expand
