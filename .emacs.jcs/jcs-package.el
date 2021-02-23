@@ -37,6 +37,7 @@
     adaptive-wrap
     alt-codes
     apache-mode
+    applescript-mode
     atl-long-lines
     atl-markup
     auto-highlight-symbol
