@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2021-02-23
 
 * Install new package `applescript-mode`.
+* Install new package `turbo-log`.
 
 ### 2021-02-22
 
