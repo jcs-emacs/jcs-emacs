@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2021-02-25
+
+* Remove package `reload-emacs`.
+* Remove package `test-sha`.
+* Add template and basic configuration for AppleScript file.
+
 ### 2021-02-23
 
 * Install new package `applescript-mode`.
