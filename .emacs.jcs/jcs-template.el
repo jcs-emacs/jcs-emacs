@@ -177,6 +177,11 @@ in order to take effect.  Half hot reloading process."
   "Template for ActionScript."
   (file-header-insert-template-by-file-path "~/.emacs.jcs/template/actionscript/default.txt"))
 
+;;; AppleScript
+(defun jcs-insert-applescript-template ()
+  "Template for AppleScript."
+  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/applescript/default.txt"))
+
 ;; Assembly Language
 (defun jcs-insert-masm-template ()
   "Header for MASM file."
