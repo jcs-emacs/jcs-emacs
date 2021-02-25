@@ -1,1 +1,0 @@
-(test-sha :repo "jcs-elpa/test-sha" :fetcher github)
