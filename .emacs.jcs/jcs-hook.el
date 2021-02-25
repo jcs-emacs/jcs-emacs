@@ -35,10 +35,9 @@
 
 (defun jcs-find-file-hook ()
   "Find file hook."
-  (unless (jcs-reload-emacs-reloading-p)
-    (jcs-update-buffer-save-string)
-    (jcs-active-line-numbers-by-mode)
-    (jcs-project-remember)))
+  (jcs-update-buffer-save-string)
+  (jcs-active-line-numbers-by-mode)
+  (jcs-project-remember))
 (add-hook 'find-file-hook 'jcs-find-file-hook)
 
 (defun jcs--find-file--advice-before (&rest _)
@@ -207,7 +206,7 @@
 
 (defun jcs-after-change-major-mode-hook ()
   "Hook run after major mode changes."
-  (unless (jcs-reload-emacs-reloading-p) (jcs-active-line-numbers-by-mode)))
+  (jcs-active-line-numbers-by-mode))
 (add-hook 'after-change-major-mode-hook 'jcs-after-change-major-mode-hook)
 
 ;;
