@@ -403,6 +403,7 @@ Note this is opposite logic to the toggle mode function."
 (with-eval-after-load 'yasnippet (require 'jcs-snippet-mode))
 
 (with-eval-after-load 'actionscript-mode (require 'jcs-actionscript-mode))
+(with-eval-after-load 'applescript-mode (require 'jcs-applescript-mode))
 (jcs-with-eval-after-load-multiple '(masm-mode nasm-mode) (require 'jcs-asm-mode))
 (with-eval-after-load 'basic-mode (require 'jcs-basic-mode))
 (with-eval-after-load 'bat-mode (require 'jcs-batch-mode))
