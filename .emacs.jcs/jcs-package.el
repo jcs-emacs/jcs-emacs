@@ -48,6 +48,7 @@
     browse-kill-ring
     buffer-move
     buffer-wrap
+    cask-mode
     centaur-tabs
     clojure-mode
     cmake-font-lock
@@ -477,7 +478,7 @@
         (when (y-or-n-p
                (format "Packages to delete: %d (%s), proceed? "
                        (length removable)
-                       (mapconcat #'symbol-name removable " ")))
+                       (mapconcat #'symbol-name removable ", ")))
           (mapc (lambda (p)
                   (package-delete (cadr (assq p package-alist)) t))
                 removable)
