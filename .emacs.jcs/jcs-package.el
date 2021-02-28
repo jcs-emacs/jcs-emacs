@@ -137,6 +137,7 @@
     line-reminder
     lsp-dart
     lsp-docker
+    lsp-grammarly
     lsp-haskell
     lsp-java
     lsp-latex
