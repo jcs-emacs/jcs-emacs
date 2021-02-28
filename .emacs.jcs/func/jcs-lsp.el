@@ -4,6 +4,7 @@
 
 (require 'lsp-dart)
 (require 'lsp-docker)
+(require 'lsp-grammarly)
 (require 'lsp-haskell)
 (require 'lsp-java)
 (require 'lsp-latex)
