@@ -1727,6 +1727,19 @@ If TRIM is non-nil, trim the string before return it."
       (when run-it (setq pos run-it)))
     (if (= pos -1) nil pos)))
 
+(defun jcs-s-replace-displayable (str &optional rep)
+  "Replace non-displayable character from STR.
+
+Optional argument REP is the replacement string of non-displayable character."
+  (unless rep (setq rep ""))
+  (let ((result ""))
+    (mapcar (lambda (ch)
+              (setq result (concat result
+                                   (if (char-displayable-p ch) (string ch)
+                                     rep))))
+            str)
+    result))
+
 ;;
 ;; (@* "Variable" )
 ;;
