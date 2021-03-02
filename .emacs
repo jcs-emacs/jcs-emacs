@@ -41,10 +41,6 @@
 (when (version< emacs-version jcs-min-require-version)
   (error (format "This requires Emacs %s and above!" jcs-min-require-version)))
 
-;; DEBUG: Debug mode?
-;; Produce backtraces when errors occur.
-(setq debug-on-error t)
-
 (defconst jcs-gc-cons-threshold (* 1024 1024 20)
   "The default value to use for `gc-cons-threshold'. If you experience freezing,
 decrease this. If you experience stuttering, increase this.")
