@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2021-03-02
 
 * Use `vc-mode` instead of `magit` while updating `feebleline`.
+* Add utility function replace non-displayable character.
 
 ### 2021-02-28
 
