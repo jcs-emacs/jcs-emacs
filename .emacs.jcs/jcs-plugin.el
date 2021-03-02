@@ -867,13 +867,16 @@
 
 (use-package powerline
   :init
-  ;; NOTE:
-  ;; The separator to use for the default theme.
-  ;;
-  ;; Valid Values: alternate, arrow, arrow-fade, bar, box,
-  ;; brace, butt, chamfer, contour, curve, rounded, roundstub,
-  ;; wave, zigzag, utf-8.
-  (setq powerline-default-separator 'wave))
+  (setq powerline-default-separator 'wave)
+  :config
+  (defun jcs--powerline-raw--advice-around (fnc &rest args)
+    "Advice execute around function `powerline-raw'."
+    (let ((str (nth 0 args)))
+      (when (stringp str)
+        (setq str (jcs-s-replace-displayable str))
+        (setf (nth 0 args) str)))
+    (apply fnc args))
+  (advice-add 'powerline-raw :around #'jcs--powerline-raw--advice-around))
 
 (use-package project
   :config
