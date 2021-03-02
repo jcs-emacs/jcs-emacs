@@ -95,8 +95,8 @@
   (when (and jcs--project-name (null jcs--vc-status))
     (when-let* ((vc-status (powerline-vc))
                 (split (split-string vc-status ":"))
-                (name (string-trim (nth 0 split)))
-                (branch (string-trim (nth 1 split))))
+                (name (string-trim (jcs-s-replace-displayable (nth 0 split))))
+                (branch (string-trim (jcs-s-replace-displayable (nth 1 split)))))
       (setq jcs--vc-status (cons name branch))))
   "")
 
