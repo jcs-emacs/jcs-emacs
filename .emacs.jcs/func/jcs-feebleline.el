@@ -5,6 +5,7 @@
 (require 'f)
 (require 'ffmpeg-player)
 (require 'indent-control)
+(require 'powerline)
 (require 'show-eol)
 
 ;;
@@ -26,12 +27,9 @@
 (defvar jcs-feebleline-show-line/column t "Show line and column.")
 (defvar jcs-feebleline-show-time t "Show time.")
 
-;; TODO: When project name changes, update this variable!
+;;; Version Control
 (defvar-local jcs--project-name nil "Record down the project name.")
-;; TODO: When version control changes, update this variable!
-(defvar-local jcs--vc-current-vc-name nil "Record down the current VC name.")
-;; TODO: When branch changes, update this variable!
-(defvar-local jcs--vc-current-branch-name nil "Record down the branch name.")
+(defvar-local jcs--vc-status nil "Record down the VC status form by (name . branch).")
 
 ;;
 ;; (@* "Faces" )
@@ -89,19 +87,17 @@
 
 (defun jcs--feebleline--reset ()
   "Reset `feebleline' variables once."
-  (jcs-walk-through-all-buffers-once
-   (lambda ()
-     (setq jcs--vc-current-vc-name nil)
-     (setq jcs--vc-current-branch-name nil))))
+  (jcs-walk-through-all-buffers-once (lambda () (setq jcs--vc-status nil))))
 
 (defun jcs--feebleline--prepare ()
   "Initialize variables that use for `feebleline'."
   (unless jcs--project-name (setq jcs--project-name (jcs-project-current)))
-  (when jcs--project-name
-    (unless jcs--vc-current-vc-name
-      (setq jcs--vc-current-vc-name (vc-responsible-backend (jcs-buffer-name-or-buffer-file-name))))
-    (unless jcs--vc-current-branch-name
-      (setq jcs--vc-current-branch-name (magit-get-current-branch))))
+  (when (and jcs--project-name (null jcs--vc-status))
+    (when-let* ((vc-status (powerline-vc))
+                (split (split-string vc-status ":"))
+                (name (string-trim (nth 0 split)))
+                (branch (string-trim (nth 1 split))))
+      (setq jcs--vc-status (cons name branch))))
   "")
 
 (defun jcs--feebleline--lsp-info ()
@@ -153,20 +149,19 @@
   "Feebleline project name and version control information."
   (if jcs-feebleline-show-project-name-&-vc-info
       (let* ((valid-project-name-p (and jcs--project-name (buffer-file-name)))
-             (valid-vc-p (and jcs--vc-current-vc-name jcs--vc-current-branch-name))
              (project-name (if valid-project-name-p
                                (file-name-nondirectory (directory-file-name jcs--project-name))
                              "")))
-        (if (and valid-project-name-p valid-vc-p)
+        (if (and valid-project-name-p jcs--vc-status)
             (format " %s%s%s %s%s%s%s"
                     ;; Project Name
                     (propertize "<" 'face jcs--feebleline--separator-face)
                     (propertize project-name 'face jcs--feebleline--project-name-face)
                     (propertize "," 'face jcs--feebleline--separator-face)
                     ;; VC info
-                    (propertize (symbol-name jcs--vc-current-vc-name) 'face jcs--feebleline--vc-info-face)
+                    (propertize (car jcs--vc-status) 'face jcs--feebleline--vc-info-face)
                     (propertize "-" 'face jcs--feebleline--separator-face)
-                    (propertize jcs--vc-current-branch-name 'face jcs--feebleline--vc-info-face)
+                    (propertize (cdr jcs--vc-status) 'face jcs--feebleline--vc-info-face)
                     (propertize ">" 'face jcs--feebleline--separator-face))
           ""))
     ""))
