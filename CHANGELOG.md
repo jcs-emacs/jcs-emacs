@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2021-03-02
+
+* Use `vc-mode` instead of `magit` while updating `feebleline`.
+
 ### 2021-02-28
 
 * Add new package `lsp-grammarly`.
