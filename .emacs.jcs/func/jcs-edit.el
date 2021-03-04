@@ -642,10 +642,9 @@ REGEXP : reqular expression use to align."
 
 If optional argument CLEAN-LR is non-nil, remove all sign from `line-reminder'."
   (interactive)
-  (require 'flycheck)
   ;; Record all the enabled mode that you want to remain enabled after
   ;; revert the file.
-  (let ((was-flycheck (if flycheck-mode 1 -1))
+  (let ((was-flycheck (if (and (featurep 'flycheck) flycheck-mode) 1 -1))
         (was-readonly (if buffer-read-only 1 -1))
         (was-g-hl-line (if global-hl-line-mode 1 -1))
         (was-page-lines (if page-break-lines-mode 1 -1)))
@@ -672,14 +671,22 @@ Argument TYPE can either be the following value.
         (t type)))
 
 (defun jcs-revert-all-virtual-buffers (type &optional clean-lr)
-  "Revert all virtual buffers."
+  "Revert all virtual buffers.
+
+Argument TYPE see function `jcs-revert-buffer-p' description.
+
+Argument CLEAN-LR see function `jcs-revert-buffer-no-confirm' description."
   (let ((buf-lst (jcs-virtual-buffer-list)))
     (dolist (buf buf-lst)
       (when (and (buffer-name buf) (jcs-revert-buffer-p buf type))
         (with-current-buffer buf (jcs-revert-buffer-no-confirm clean-lr))))))
 
 (defun jcs-revert-all-valid-buffers (type &optional clean-lr)
-  "Revert all valid buffers."
+  "Revert all valid buffers.
+
+Argument TYPE see function `jcs-revert-buffer-p' description.
+
+Argument CLEAN-LR see function `jcs-revert-buffer-no-confirm' description."
   (let ((buf-lst (jcs-valid-buffer-list)) filename normal-buffer-p do-revert-p)
     (dolist (buf buf-lst)
       (setq filename (buffer-file-name buf)
@@ -687,19 +694,27 @@ Argument TYPE can either be the following value.
                                  (not (buffer-modified-p buf))
                                  (not (jcs-is-current-file-empty-p buf))))
       (when normal-buffer-p
-        (if (file-readable-p filename)
-            (setq do-revert-p t)
+        (if (file-readable-p filename) (setq do-revert-p t)
           (let (kill-buffer-query-functions) (kill-buffer buf))))
       (when (and (buffer-name buf) (or (jcs-revert-buffer-p buf type) do-revert-p))
         (with-current-buffer buf (jcs-revert-buffer-no-confirm clean-lr))))))
+
+(defun jcs-revert-all-virtual-buffers--internal ()
+  "Internal function to revert all vritual buffers."
+  (jcs-save-window-excursion
+    (save-window-excursion
+      (jcs-revert-all-virtual-buffers jcs-revert-default-buffers))))
+
+(defun jcs-revert-all-valid-buffers--internal ()
+  "Internal function to revert all valid buffers."
+  (save-window-excursion (jcs-revert-all-valid-buffers nil)))
 
 ;;;###autoload
 (defun jcs-revert-all-buffers ()
   "Refresh all open file buffers without confirmation."
   (interactive)
-  (jcs-save-window-excursion
-    (save-window-excursion (jcs-revert-all-virtual-buffers jcs-revert-default-buffers)))
-  (save-window-excursion (jcs-revert-all-valid-buffers nil)))
+  (jcs-revert-all-virtual-buffers--internal)
+  (jcs-revert-all-valid-buffers--internal))
 
 (defun jcs-ask-revert-all (bufs &optional index)
   "Ask to revert all buffers decided by ANSWER.
@@ -724,7 +739,7 @@ Do you want to reload it and lose the changes made in this source editor?")
          (with-current-buffer buf (jcs-revert-buffer-no-confirm t))
          (jcs-ask-revert-all bufs index))
         ("Yes to All"
-         (jcs-revert-all-valid-buffers t t))
+         (jcs-revert-all-valid-buffers--internal))
         ("No"
          (jcs-ask-revert-all bufs index))
         ;; Does nothing, exit.
@@ -755,8 +770,9 @@ This function is used to check for lose changes from source editor."
 (defun jcs-safe-revert-all-buffers ()
   "Revert buffers in the safe way."
   (let ((un-save-buf-lst (jcs-un-save-modified-buffers)))
-    (if un-save-buf-lst (jcs-ask-revert-all un-save-buf-lst)
-      (jcs-revert-all-buffers))))
+    (when un-save-buf-lst (jcs-ask-revert-all un-save-buf-lst))
+    (when (jcs-buffer-list-shown-p jcs-revert-default-buffers 'regex)
+      (jcs-revert-all-virtual-buffers--internal))))
 
 ;;
 ;; (@* "Windows" )
