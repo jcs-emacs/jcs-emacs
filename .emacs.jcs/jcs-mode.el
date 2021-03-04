@@ -648,6 +648,7 @@ See `add-to-list' function description for argument APPEND."
 ;;; T
 (progn
   (jcs-add-auto-mode-alist '("\\.ts'?\\'" . typescript-mode))
+  (jcs-add-auto-mode-alist '("\\.tsx'?\\'" . typescript-mode))
   (jcs-add-auto-mode-alist '("\\.toml'?\\'" . conf-toml-mode))
   (jcs-add-auto-mode-alist '("\\.txt'?\\'" . text-mode) t))
 
