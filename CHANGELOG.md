@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2021-03-05
+
+* Add utility function buffer show in list.
+* Only revert necessary buffers to save performance on `focus-in` event.
+
 ### 2021-03-02
 
 * Use `vc-mode` instead of `magit` while updating `feebleline`.
