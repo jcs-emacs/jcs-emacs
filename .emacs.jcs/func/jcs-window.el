@@ -109,8 +109,15 @@ For argument TYPE; see function `jcs-string-compare-p' for description."
         (setq cnt (1+ cnt))))
     cnt))
 
+(defun jcs-buffer-list-shown-p (buf-lst &optional type)
+  "Return non-nil if BUF-LST shown in the program.
+
+For argument TYPE; see function `jcs-string-compare-p' for description."
+  (require 'cl-lib)
+  (cl-some (lambda (buf) (jcs-buffer-shown-p buf type)) buf-lst))
+
 (defun jcs-buffer-shown-p (in-buf-name &optional type)
-  "Check if IN-BUF-NAME shown in program.
+  "Return non-nil if IN-BUF-NAME shown in the program.
 
 For argument TYPE; see function `jcs-string-compare-p' for description."
   (>= (jcs-buffer-shown-count in-buf-name type) 1))
