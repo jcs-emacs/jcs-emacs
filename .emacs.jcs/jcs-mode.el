@@ -300,6 +300,7 @@ Note this is opposite logic to the toggle mode function."
   "Text mode hook."
   (auto-highlight-symbol-mode t)
   (goto-address-mode 1)
+  (highlight-indent-guides-mode 1)
 
   (jcs-insert-header-if-valid '("\\(/\\|\\`\\)[Ll][Ii][Cc][Ee][Nn][Ss][Ee]")
                               'jcs-ask-insert-license-content
