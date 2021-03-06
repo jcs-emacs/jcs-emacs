@@ -542,14 +542,16 @@ Generally you will have to check it four times."
   (let* ((tmp-count 0)
          (indent-lvl (indent-control-get-indent-level-by-mode))
          (remainder (% (jcs-first-char-in-line-column) indent-lvl))
-         (target-width (if (= remainder 0) indent-lvl remainder)))
+         (target-width (if (= remainder 0) indent-lvl remainder))
+         success)
     (while (and (< tmp-count target-width) (not (jcs-is-end-of-line-p)))
       (let ((is-valid nil))
         (save-excursion
           (forward-char 1)
           (when (jcs-current-whitespace-p) (setq is-valid t)))
-        (when is-valid (backward-delete-char -1)))
-      (setq tmp-count (1+ tmp-count)))))
+        (when is-valid (backward-delete-char -1) (setq success t)))
+      (setq tmp-count (1+ tmp-count)))
+    success))
 
 ;;
 ;; (@* "Point" )
