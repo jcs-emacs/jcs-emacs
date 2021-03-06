@@ -362,6 +362,7 @@
   (let ((jcs-package-installing-p t)) (apply ori-func args)))
 
 (advice-add 'package-install :around #'jcs--package-install--advice-around)
+(advice-add 'package-install-from-buffer :around #'jcs--package-install--advice-around)
 
 (defun jcs-package-install (pkg)
   "Install PKG package."
@@ -387,7 +388,9 @@
     (package-initialize)))
 
 (defun jcs-get-package-version (name where)
-  "Get version of the package."
+  "Get version of the package by NAME.
+
+Argument WHERE is the alist of package information."
   (let ((pkg (cadr (assq name where)))) (when pkg (package-desc-version pkg))))
 
 (defun jcs-package-get-package-by-name (pkg-name)
