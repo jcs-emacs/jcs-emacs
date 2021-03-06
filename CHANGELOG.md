@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2021-03-06
+
+* Fix not correct backspace/delete indent level.
+* Ensure `highlight-indent-guides-mode` for `.yaml` and `.xml` file.
+
 ### 2021-03-05
 
 * Add utility function buffer show in list.
