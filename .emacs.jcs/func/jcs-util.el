@@ -103,7 +103,8 @@ time is displayed."
 
 (defun jcs-valid-buffer-p (&optional buffer)
   "Return non-nil if buffer does exists on disk."
-  (buffer-file-name buffer))
+  (let ((bfn (buffer-file-name buffer)))
+    (and bfn (file-exists-p bfn))))
 
 (defun jcs-virtual-buffer-list ()
   "Return a list of virtual buffers."
@@ -524,12 +525,15 @@ Generally you will have to check it four times."
   (let* ((tmp-count 0)
          (indent-lvl (indent-control-get-indent-level-by-mode))
          (remainder (% (current-column) indent-lvl))
-         (target-width (if (= remainder 0) indent-lvl remainder)))
+         (target-width (if (= remainder 0) indent-lvl remainder))
+         success)
     (while (and (< tmp-count target-width)
                 (not (jcs-is-beginning-of-line-p))
                 (jcs-current-whitespace-p))
       (backward-delete-char 1)
-      (setq tmp-count (1+ tmp-count)))))
+      (setq success t
+            tmp-count (1+ tmp-count)))
+    success))
 
 ;;;###autoload
 (defun jcs-forward-delete-spaces-by-indent-level ()

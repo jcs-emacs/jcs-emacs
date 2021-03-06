@@ -190,10 +190,10 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
 (defun jcs-smart-backspace ()
   "Smart backspace."
   (interactive)
-  (if (and (jcs-is-infront-first-char-at-line-p) (not (jcs-is-beginning-of-line-p))
-           (not (use-region-p)))
-      (jcs-backward-delete-spaces-by-indent-level)
-    (jcs-real-backspace)))
+  (or (and (jcs-is-infront-first-char-at-line-p) (not (jcs-is-beginning-of-line-p))
+           (not (use-region-p))
+           (jcs-backward-delete-spaces-by-indent-level))
+      (jcs-real-backspace)))
 
 ;;
 ;; (@* "Delete" )
