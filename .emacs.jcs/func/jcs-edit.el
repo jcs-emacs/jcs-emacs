@@ -770,7 +770,8 @@ This function is used to check for lose changes from source editor."
 (defun jcs-safe-revert-all-buffers ()
   "Revert buffers in the safe way."
   (let ((un-save-buf-lst (jcs-un-save-modified-buffers)))
-    (when un-save-buf-lst (jcs-ask-revert-all un-save-buf-lst))
+    (if un-save-buf-lst (jcs-ask-revert-all un-save-buf-lst)
+      (jcs-revert-all-valid-buffers--internal))
     (when (jcs-buffer-list-shown-p jcs-revert-default-buffers 'regex)
       (jcs-revert-all-virtual-buffers--internal))))
 
