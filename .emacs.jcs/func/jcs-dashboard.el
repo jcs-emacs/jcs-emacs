@@ -225,10 +225,16 @@
 
 (defun jcs-dashboard-get-path-alist ()
   "Return path from current point."
-  (or (jcs-dashboard--real-path-alist
-       (jcs-dashboard-path-index 'recents) dashboard-recentf-alist)
-      (jcs-dashboard--real-path-alist
-       (jcs-dashboard-path-index 'projects) dashboard-projects-alist)))
+  (or (when-let* ((items (assoc 'recents dashboard-items))
+                  (cnt (cdr items))
+                  (index (jcs-dashboard-path-index 'recents)))
+        (when (< index cnt)
+          (jcs-dashboard--real-path-alist index dashboard-recentf-alist)))
+      (when-let* ((items (assoc 'projects dashboard-items))
+                  (cnt (cdr items))
+                  (index (jcs-dashboard-path-index 'projects)))
+        (when (< index cnt)
+          (jcs-dashboard--real-path-alist index dashboard-projects-alist)))))
 
 (defun jcs-dashboard--goto-section (name)
   "Move to section NAME declares in variable `dashboard-item-shortcuts'."
