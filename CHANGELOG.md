@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2021-03-10
+
+* Remove indent level configuration from `json-mode`.
+
 ### 2021-03-07
 
 * Fix guess path logic from dashboard item alists.
