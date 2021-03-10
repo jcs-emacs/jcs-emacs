@@ -21,14 +21,9 @@
 (defun jcs-json-mode-hook ()
   "JSON mode hook."
   (js2-minor-mode -1)
-
   (remove-hook 'after-change-functions 'js2-minor-mode-edit t)
 
-  (setq js2-basic-offset 2)
   (setq js2-bounce-indent-p t)
-
-  (make-local-variable 'js-indent-level)
-  (setq js-indent-level 2)
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]json")
