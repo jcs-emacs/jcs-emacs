@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2021-03-15
+
+* Fix the calculation of the active package list.
+
 ### 2021-03-10
 
 * Remove indent level configuration from `json-mode`.
