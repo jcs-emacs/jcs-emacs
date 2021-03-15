@@ -283,18 +283,21 @@
 (defvar jcs-package--need-rebuild-p nil
   "Flag to see if we need to rebuild for the next command.")
 
-(defvar jcs-package--save-selected-packages '()
-  "Record of `package-selected-packages' for calculation of certain commands.")
+(defun jcs-package--filter-installed (lst)
+  "Remove package from LST if not installed."
+  (require 'cl-lib)
+  (cl-remove-if-not (lambda (elm) (package-installed-p elm)) lst))
 
 (defun jcs-package--get-selected-packages ()
   "Return selected packages base on the execution's condition."
-  (or jcs-package--save-selected-packages package-selected-packages))
+  (jcs-package--filter-installed package-selected-packages))
 
 (defun jcs-package-installed-list ()
   "Return full installed package list, including builtins."
   (let (builtins)
+    (setq package-activated-list (jcs-package--filter-installed package-activated-list))
     (dolist (pkg-desc package--builtins) (push (nth 0 pkg-desc) builtins))
-    (delete-dups (append builtins package-activated-list))))
+    (cl-delete-duplicates (append builtins package-activated-list))))
 
 ;;;###autoload
 (defun jcs-package-rebuild-dependency-list ()
@@ -316,16 +319,17 @@
           (setq new-selected-pkg (remove pkg-name new-selected-pkg))))
       (delete-dups new-selected-pkg)
       (setq new-selected-pkg (sort new-selected-pkg #'string-lessp))
-      (if (equal new-selected-pkg (jcs-package--get-selected-packages))
+      (if (equal new-selected-pkg package-selected-packages)
           (jcs-process-reporter-done "No need to update dependency graph")
         (package--save-selected-packages new-selected-pkg)
         (jcs-process-reporter-done "Done rebuild dependency graph")))))
 
 (defun jcs-package--menu-execute--advice-around (fnc &rest args)
   "Advice execute around `package-menu-execute' function."
-  (let ((jcs-package--save-selected-packages package-selected-packages)
-        (jcs-package-use-real-delete-p nil))
-    (when (apply fnc args) (jcs-package-rebuild-dependency-list))))
+  (let ((jcs-package-use-real-delete-p nil))
+    (when (apply fnc args)
+      (jcs-package-rebuild-dependency-list)
+      (jcs-dashboard-safe-refresh-buffer t))))
 
 (advice-add 'package-menu-execute :around #'jcs-package--menu-execute--advice-around)
 
@@ -334,7 +338,7 @@
 ;;
 
 (defvar jcs-package-use-real-delete-p t
-  "Flag to check if we are reallyg deleting a package.")
+  "Flag to check if we are really deleting a package.")
 
 (defun jcs-package-delete (pkg-name &optional dep)
   "Safe way to remove PKG-NAME."
