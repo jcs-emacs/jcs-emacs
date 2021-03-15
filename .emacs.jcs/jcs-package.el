@@ -48,6 +48,7 @@
     browse-kill-ring
     buffer-move
     buffer-wrap
+    cask
     cask-mode
     centaur-tabs
     clojure-mode
