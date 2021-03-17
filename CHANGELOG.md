@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2021-03-17
 
 * Fix issue project item not removing from `dashboard`.
+* Add new package `logview`.
 
 ### 2021-03-15
 
