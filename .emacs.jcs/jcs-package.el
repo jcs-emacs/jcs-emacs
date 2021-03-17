@@ -32,7 +32,6 @@
 ;; List of package you want to installed.
 (defconst jcs-package-install-list
   '(0xc
-    ace-window
     actionscript-mode
     adaptive-wrap
     alt-codes
@@ -67,7 +66,6 @@
     csproj-mode
     dap-mode
     dart-mode
-    dashboard
     dashboard-ls
     define-it
     diff-hl
@@ -136,6 +134,7 @@
     kotlin-mode
     license-templates
     line-reminder
+    logview
     lsp-dart
     lsp-docker
     lsp-grammarly
