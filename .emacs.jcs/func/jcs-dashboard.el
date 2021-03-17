@@ -120,8 +120,7 @@
   "Remove a path from `project--list'."
   (interactive)
   (when (boundp 'project--list)
-    (let ((path (string-trim (thing-at-point 'line t))))
-      (jcs-project-remove path))
+    (jcs-project-remove (ffap-guesser))
     (jcs-dashboard-refresh-buffer)))
 
 ;;;###autoload
