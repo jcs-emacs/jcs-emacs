@@ -87,10 +87,6 @@ decrease this. If you experience stuttering, increase this.")
 (add-to-list 'load-path "~/.emacs.jcs/mode/")
 
 (require 'jcs-package)
-
-(defconst jcs-auto-install-pkgs t
-  "Auto install the dependencies packages.")
-
 (jcs-package-install-all)
 
 ;;
