@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2021-03-22
+
+* Make sure to install missing dependency while on start-up.
+
 ### 2021-03-17
 
 * Fix issue project item not removing from `dashboard`.
