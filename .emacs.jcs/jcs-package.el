@@ -212,16 +212,36 @@
 ;; (@* "Util" )
 ;;
 
+(defun jcs-package-dependency (pkg)
+  "Return list of dependency from a PKG."
+  (require 'cl-lib)
+  (let (result (deps (jcs-package--get-reqs pkg)) dep-name)
+    (dolist (dep deps)
+      (setq dep-name (car dep))
+      (push dep-name result)
+      (setq result (append result (jcs-package-dependency dep-name))))
+    (cl-remove 'emacs result)))
+
+(defun jcs-package-dependency-list (lst)
+  "Return full dependency list from lst of package."
+  (let (result)
+    (dolist (pkg lst)
+      (setq result (append result (jcs-package-dependency pkg))))
+    (reverse (delete-dups result))))
+
 (defun jcs-package-unused-packages ()
   "Return a list of unused packages."
-  (let ((installed-pkgs (jcs-package--get-selected-packages))
-        (pkg-install-lst (append jcs-package-install-list
-                                 (jcs-package-manual-install-packages)))
-        unused-lst)
+  (require 'cl-lib)
+  (let* ((installed-pkgs (jcs-package--get-selected-packages))
+         (pkg-install-lst (append jcs-package-install-list
+                                  (jcs-package-manual-install-packages)))
+         (deps (jcs-package-dependency-list pkg-install-lst))
+         (full-pkgs (delete-dups (append pkg-install-lst deps)))
+         unused-lst)
     (dolist (pkg installed-pkgs)
-      (unless (jcs-contain-list-symbol pkg-install-lst pkg)
+      (unless (jcs-contain-list-symbol full-pkgs pkg)
         (push pkg unused-lst)))
-    (reverse unused-lst)))
+    (cl-remove 'emacs (reverse unused-lst))))
 
 (defun jcs-package--add-selected-packages (pkg-name)
   "Add PKG-NAME to the selected package list."
@@ -237,7 +257,16 @@
 
 (defun jcs-package--build-desc (pkg-name)
   "Build package description by PKG-NAME."
-  (cadr (assq pkg-name package-alist)))
+  (or (cadr (assq pkg-name package-alist))
+      (cadr (assq pkg-name package-archive-contents))))
+
+(defun jcs-package--get-reqs (name)
+  "Return requires from package NAME."
+  (ignore-errors (package-desc-reqs (jcs-package--build-desc name))))
+
+(defun jcs-package--get-req (key name)
+  "Return KEY requires from package NAME."
+  (ignore-errors (assoc key (jcs-package--get-reqs name))))
 
 (defun jcs-package--package-name (pkg-desc)
   "Return package name from PKG-DESC."
@@ -285,11 +314,11 @@
 (defun jcs-package--filter-installed (lst)
   "Remove package from LST if not installed."
   (require 'cl-lib)
-  (cl-remove-if-not (lambda (elm) (package-installed-p elm)) lst))
+  (cl-remove-if-not (lambda (elm) (jcs-package-installed-p elm)) lst))
 
 (defun jcs-package--get-selected-packages ()
   "Return selected packages base on the execution's condition."
-  (jcs-package--filter-installed package-selected-packages))
+  (jcs-package--filter-installed package-activated-list))
 
 (defun jcs-package-installed-list ()
   "Return full installed package list, including builtins."
@@ -368,26 +397,31 @@
 (advice-add 'package-install :around #'jcs--package-install--advice-around)
 (advice-add 'package-install-from-buffer :around #'jcs--package-install--advice-around)
 
+(defvar jcs-package--install-on-start-up nil
+  "Return non-nil if installation occurs on start-up.")
+
+(defun jcs-package-installed-p (pkg)
+  "Return non-nil if PKG is already installed."
+  (or (package-installed-p pkg) (package-built-in-p pkg)))
+
 (defun jcs-package-install (pkg)
   "Install PKG package."
-  (unless (get 'jcs-package-install 'state)
-    (put 'jcs-package-install 'state t))
-  ;; Don't run `package-refresh-contents' if you don't need to install
-  ;; packages on startup.
-  (package-refresh-contents)
-  ;; Else we just install the package regularly.
-  (package-install pkg))
+  (if (jcs-package-installed-p pkg)
+      (let ((deps (jcs-package-dependency pkg)))
+        (dolist (dep deps) (jcs-package-install dep)))
+    (setq jcs-package--install-on-start-up t)
+    ;; Don't run `package-refresh-contents' if you don't need to install
+    ;; packages on startup.
+    (package-refresh-contents)
+    ;; Else we just install the package regularly.
+    (message "╘[TL] pkg: %s" pkg)
+    (package-install pkg)))
 
-(defun jcs-ensure-package-installed (packages &optional without-asking)
-  "Assure every PACKAGES is installed, ask WITHOUT-ASKING."
-  (dolist (package packages)
-    (unless (package-installed-p package)
-      (if (or without-asking
-              (y-or-n-p (format "[ELPA] Package %s is missing. Install it? " package)))
-          (jcs-package-install package)
-        package)))
+(defun jcs-ensure-package-installed (packages)
+  "Assure every PACKAGES is installed."
+  (dolist (pkg packages) (jcs-package-install pkg))
   ;; STUDY: Not sure if you need this?
-  (when (get 'jcs-package-install 'state)
+  (when jcs-package--install-on-start-up
     (jcs-package-rebuild-dependency-list)
     (package-initialize)))
 
@@ -402,8 +436,7 @@ Argument WHERE is the alist of package information."
   (let (target-pkg)
     (dolist (pkg (mapcar #'car package-alist))
       (when (string= pkg-name pkg) (setq target-pkg pkg)))
-    (if (not target-pkg)
-        nil
+    (if (not target-pkg) nil
       (cadr (assq (package-desc-name
                    (cadr (assq target-pkg package-alist)))
                   package-alist)))))
@@ -411,12 +444,12 @@ Argument WHERE is the alist of package information."
 (defun jcs-package--upgrade-all-elpa ()
   "Upgrade for archive packages."
   (let (upgrades)
-    (dolist (package (mapcar #'car package-alist))
-      (let ((in-archive (jcs-get-package-version package package-archive-contents)))
+    (dolist (pkg (mapcar #'car package-alist))
+      (let ((in-archive (jcs-get-package-version pkg package-archive-contents)))
         (when (and in-archive
-                   (version-list-< (jcs-get-package-version package package-alist)
+                   (version-list-< (jcs-get-package-version pkg package-alist)
                                    in-archive))
-          (push (cadr (assq package package-archive-contents)) upgrades))))
+          (push (cadr (assq pkg package-archive-contents)) upgrades))))
     (if upgrades
         (when (yes-or-no-p
                (format "[ELPA] Upgrade %d package%s (%s)? "
@@ -448,7 +481,7 @@ Argument WHERE is the alist of package information."
           (dolist (rcp upgrades)
             (setq desc (jcs-package-get-package-by-name (jcs--recipe-get-info rcp :name)))
             (when desc (package-delete desc)))
-          (jcs-ensure-manual-package-installed upgrades t)
+          (jcs-ensure-manual-package-installed upgrades)
           (message "[QUELPA] Done upgrading all packages"))
       (message "[QUELPA] All packages are up to date"))))
 
@@ -456,10 +489,9 @@ Argument WHERE is the alist of package information."
 (defun jcs-package-install-all ()
   "Install all needed packages from this configuration."
   (interactive)
-  (let ((install-it (or (boundp 'jcs-build-test) jcs-auto-install-pkgs))
-        jcs-package-rebuild-dependency-p jcs-package--need-rebuild-p)
-    (jcs-ensure-package-installed jcs-package-install-list install-it)
-    (jcs-ensure-manual-package-installed jcs-package-manual-install-list install-it)
+  (let (jcs-package-rebuild-dependency-p jcs-package--need-rebuild-p)
+    (jcs-ensure-package-installed jcs-package-install-list)
+    (jcs-ensure-manual-package-installed jcs-package-manual-install-list)
     (when jcs-package--need-rebuild-p
       (setq jcs-package-rebuild-dependency-p t)
       (jcs-package-rebuild-dependency-list))))
@@ -578,8 +610,8 @@ PKG is a list of recipe components."
       (when (version-list-< current-version new-version) (push rcp upgrade-list)))
     (reverse upgrade-list)))
 
-(defun jcs-ensure-manual-package-installed (packages &optional without-asking)
-  "Ensure all manually installed PACKAGES are installed, ask WITHOUT-ASKING."
+(defun jcs-ensure-manual-package-installed (packages)
+  "Ensure all manually installed PACKAGES are installed."
   (let ((jcs-package-installing-p t) pkg-name pkg-repo pkg-fetcher
         (quelpa-build-verbose nil)
         pkg-installed-p)
@@ -587,14 +619,12 @@ PKG is a list of recipe components."
       (setq pkg-name (jcs--recipe-get-info rcp :name)
             pkg-repo (jcs--recipe-get-info rcp :repo)
             pkg-fetcher (jcs--recipe-get-info rcp :fetcher))
-      (unless (package-installed-p pkg-name)
-        (when (or without-asking
-                  (y-or-n-p (format "[QUELPA] Package %s is missing. Install it? " pkg-name)))
-          (require 'quelpa) (require 'jcs-util)
-          (jcs-no-log-apply
-            (message "Installing '%s' from '%s'" pkg-repo pkg-fetcher))
-          (quelpa rcp)
-          (setq pkg-installed-p t))))
+      (unless (jcs-package-installed-p pkg-name)
+        (require 'quelpa) (require 'jcs-util)
+        (jcs-no-log-apply
+          (message "Installing '%s' from '%s'" pkg-repo pkg-fetcher))
+        (quelpa rcp)
+        (setq pkg-installed-p t)))
     (when pkg-installed-p (jcs-package-rebuild-dependency-list))))
 
 (provide 'jcs-package)
