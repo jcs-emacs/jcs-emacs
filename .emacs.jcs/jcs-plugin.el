@@ -160,8 +160,13 @@
 
 (use-package counsel
   :init
+  (defvar jcs-counsel-find-file-ignore '("[.]meta$" "/node_modules/")
+    "List of find file ignore regexp string.")
   (setq counsel-preselect-current-file t
-        counsel-find-file-at-point t))
+        counsel-find-file-at-point t
+        counsel-find-file-ignore-regexp (mapconcat
+                                         (lambda (elm) (concat "\\(" elm "\\)"))
+                                         jcs-counsel-find-file-ignore "\\|")))
 
 (use-package csharp-mode
   :init
