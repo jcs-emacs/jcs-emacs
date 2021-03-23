@@ -408,8 +408,7 @@
   "Install PKG package."
   (if (jcs-package-installed-p pkg)
       (let ((deps (jcs-package-dependency pkg)))
-        (dolist (dep deps)
-          (jcs-package-install dep)))
+        (dolist (dep deps) (jcs-package-install dep)))
     (setq jcs-package--install-on-start-up t)
     ;; Don't run `package-refresh-contents' if you don't need to install
     ;; packages on startup.
