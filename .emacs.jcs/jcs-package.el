@@ -398,7 +398,7 @@
 (advice-add 'package-install-from-buffer :around #'jcs--package-install--advice-around)
 
 (defvar jcs-package--install-on-start-up nil
-  "Return non-nil if installation occurs on start-up.")
+  "Return non-nil if installation is occurred on start-up.")
 
 (defun jcs-package-installed-p (pkg)
   "Return non-nil if PKG is already installed."
