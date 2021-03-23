@@ -414,7 +414,6 @@
     ;; packages on startup.
     (package-refresh-contents)
     ;; Else we just install the package regularly.
-    (message "╘[TL] pkg: %s" pkg)
     (package-install pkg)))
 
 (defun jcs-ensure-package-installed (packages)
