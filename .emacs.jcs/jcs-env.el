@@ -343,6 +343,9 @@ P.S. You would need to restart Emacs to take effect from this variable."
       scroll-preserve-screen-position t
       auto-window-vscroll nil)
 
+(setq hscroll-margin 2
+      hscroll-step 1)
+
 (defun jcs-toggle-scroll-conservatively (act)
   "Enable variable `scroll-conservatively' base on ACT.
 
