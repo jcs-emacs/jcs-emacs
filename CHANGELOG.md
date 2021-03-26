@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2021-03-26
+
+* Replace focus in/out hook to `after-focus-change-function`.
+
 ### 2021-03-24
 
 * Configure horizontal scroll variables.
