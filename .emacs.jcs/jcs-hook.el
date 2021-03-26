@@ -15,12 +15,15 @@
       (setq jcs-foucs-after-first-p t)
     (jcs-safe-revert-all-buffers)
     (jcs-funcall-fboundp #'jcs--feebleline--reset)))
-(add-hook 'focus-in-hook 'jcs-focus-in-hook)
 
 (defun jcs-focus-out-hook ()
   "When window is not focus."
   )
-(add-hook 'focus-out-hook 'jcs-focus-out-hook)
+
+(defun jcs-after-focus-change-function ()
+  "Focus in/out function."
+  (if (frame-focus-state) (jcs-focus-in-hook) (jcs-focus-out-hook)))
+(add-function :after after-focus-change-function #'jcs-after-focus-change-function)
 
 (defun jcs-window-size-change-functions (&rest _)
   "When window changed size."
