@@ -11,6 +11,7 @@
         electric-pair-delete-pair
         end-of-buffer
         forward-sexp
+        indent-for-tab-command
         indent-region
         jcs-align-region-or-document
         jcs-asm-comment
