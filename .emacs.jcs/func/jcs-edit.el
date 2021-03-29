@@ -35,14 +35,14 @@ This variable must be use with `jcs-undo' and `jcs-redo' functions.")
   "Enable undo tree auto show diff effect."
   (interactive)
   (setq jcs-undo-tree-auto-show-diff t)
-  (message "Enable undo tree auto show diff."))
+  (message "Enable undo tree auto show diff"))
 
 ;;;###autoload
 (defun jcs-disable-undo-tree-auto-show-diff ()
   "Disable undo tree auto show diff effect."
   (interactive)
   (setq jcs-undo-tree-auto-show-diff nil)
-  (message "Disable undo tree auto show diff."))
+  (message "Disable undo tree auto show diff"))
 
 
 ;;;###autoload
@@ -126,6 +126,15 @@ CBF : Current buffer file name."
         (save-selected-window (undo-tree-visualize))
         (switch-to-buffer bf-before-switched)))))
 
+(defun jcs--undo-tree-visualizer--do-diff ()
+  "Do show/hide diff for `undo-tree'."
+  ;; STUDY: weird that they use word toggle, instead of just set it.
+  ;;
+  ;; Why not?
+  ;;   => `undo-tree-visualizer-show-diff'
+  ;; or
+  ;;   => `undo-tree-visualizer-hide-diff'
+  (when jcs-undo-tree-auto-show-diff (undo-tree-visualizer-toggle-diff)))
 
 (defun jcs--undo-or-redo (ud)
   "Do undo or redo base on UD.
@@ -142,18 +151,13 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
      undo-tree-visualizer-buffer-name :type 'strict
      :success
      (lambda ()
-       (if ud (undo-tree-visualize-undo) (undo-tree-visualize-redo)))
+       (if ud (undo-tree-visualize-undo) (undo-tree-visualize-redo))
+       (jcs--undo-tree-visualizer--do-diff))
      :error
      (lambda ()
        (if ud (undo-tree-undo) (undo-tree-redo))
-       (jcs-undo-tree-visualize)))
-    ;; STUDY: weird that they use word toggle, instead of just set it.
-    ;;
-    ;; Why not?
-    ;;   => `undo-tree-visualizer-show-diff'
-    ;; or
-    ;;   => `undo-tree-visualizer-hide-diff'
-    (when jcs-undo-tree-auto-show-diff (undo-tree-visualizer-toggle-diff))))
+       (jcs-undo-tree-visualize)
+       (jcs--undo-tree-visualizer--do-diff)))))
 
 ;;;###autoload
 (defun jcs-undo ()
