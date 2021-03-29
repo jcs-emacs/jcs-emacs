@@ -292,7 +292,7 @@
 
 ;;;###autoload
 (defun jcs-reset-company-by-theme ()
-  "Reset dashboard banner."
+  "Reset theme for package `company'."
   (interactive)
   (setq company-format-margin-function
         (if (jcs-is-light-theme-p) #'company-vscode-light-icons-margin
