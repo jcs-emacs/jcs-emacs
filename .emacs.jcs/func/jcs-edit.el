@@ -361,8 +361,8 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
   (interactive)
   ;; SOURCE: http://ergoemacs.org/emacs/emacs_kill-ring.html
   (let (kill-ring)
-    (if (use-region-p)
-        (jcs-delete-region)
+    (if (use-region-p) (jcs-delete-region)
+      (company-abort)
       ;; Record down the column before killing the whole line.
       (let ((before-column-num (current-column)))
         ;; Do kill the whole line!
