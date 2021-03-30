@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2021-03-30
+
+* Install new package `keytar`.
+* Configure company icon margin function base on theme color.
+
 ### 2021-03-29
 
 * Fix `undo-tree` visualizer buffer triggers in incorrect buffer.
