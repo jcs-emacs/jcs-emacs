@@ -131,6 +131,7 @@
     js2-mode
     json-mode
     keypression
+    keytar
     kotlin-mode
     license-templates
     line-reminder
