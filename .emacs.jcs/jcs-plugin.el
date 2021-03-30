@@ -149,8 +149,7 @@
 
 (use-package company-quickhelp
   :init
-  (setq company-quickhelp-delay 0.3
-        company-quickhelp-color-background "#FFF08A")
+  (setq company-quickhelp-delay 0.3)
   (with-eval-after-load 'company (company-quickhelp-mode t)))
 
 (use-package company-quickhelp-terminal
@@ -1008,7 +1007,7 @@
   :config
   (require 'tree-sitter-langs)
   (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
-  (jcs-funcall-fboundp 'jcs-reset-common-faces-by-theme))
+  (jcs-funcall-fboundp #'jcs-reset-common-faces-by-theme))
 
 (use-package treemacs
   :init
