@@ -9,6 +9,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 * Install new package `keytar`.
 * Configure company icon margin function base on theme color.
+* Add theme customization for `company-mode`.
 
 ### 2021-03-29
 
