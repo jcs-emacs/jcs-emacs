@@ -93,7 +93,8 @@
         company-eclim-auto-save nil
         company-minimum-prefix-length 0
         company-idle-delay 0.1
-        company-selection-wrap-around 'on)
+        company-selection-wrap-around 'on
+        company-format-margin-function #'company-detect-icons-margin)
   (setq company-backends
         (append
          ;; --- Internal ---
