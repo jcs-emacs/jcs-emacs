@@ -287,21 +287,6 @@
   (jcs-display-file "~/.emacs.jcs/data/data-structure/cheat-sheet.txt" "*Data Structure Cheat Sheet*" nil))
 
 ;;
-;; (@* "Company" )
-;;
-
-;;;###autoload
-(defun jcs-reset-company-by-theme ()
-  "Reset theme for package `company'."
-  (interactive)
-  (setq company-format-margin-function
-        (if (display-graphic-p)
-            (if (jcs-is-light-theme-p) #'company-vscode-light-icons-margin
-              #'company-vscode-dark-icons-margin)
-          nil))
-  (jcs-funcall-fboundp #'jcs-company-default-theme))
-
-;;
 ;; (@* "Dashboard" )
 ;;
 
