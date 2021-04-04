@@ -78,6 +78,7 @@
     elisp-def
     elisp-demos
     elixir-mode
+    elm-mode
     emmet-mode
     emoji-github
     emojify
