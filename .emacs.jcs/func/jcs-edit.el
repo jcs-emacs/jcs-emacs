@@ -650,6 +650,7 @@ If optional argument CLEAN-LR is non-nil, remove all sign from `line-reminder'."
   ;; revert the file.
   (let ((was-flycheck (if (and (featurep 'flycheck) flycheck-mode) 1 -1))
         (was-flycheck-pos-tip (if (and (featurep 'flycheck-pos-tip) flycheck-pos-tip-mode) 1 -1))
+        (was-flycheck-popup-tip (if (and (featurep 'flycheck-popup-tip) flycheck-popup-tip-mode) 1 -1))
         (was-readonly (if buffer-read-only 1 -1))
         (was-g-hl-line (if global-hl-line-mode 1 -1))
         (was-page-lines (if page-break-lines-mode 1 -1)))
@@ -661,6 +662,7 @@ If optional argument CLEAN-LR is non-nil, remove all sign from `line-reminder'."
     ;; Revert all the enabled mode.
     (flycheck-mode was-flycheck)
     (flycheck-pos-tip-mode was-flycheck-pos-tip)
+    (flycheck-popup-tip-mode was-flycheck-popup-tip)
     (read-only-mode was-readonly)
     (global-hl-line-mode was-g-hl-line)
     (page-break-lines-mode was-page-lines)))
