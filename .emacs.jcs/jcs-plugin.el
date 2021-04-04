@@ -264,6 +264,7 @@
       (company-fuzzy-mode . company-fuzzy)
       (docstr-mode . docstr)
       (eldoc-mode)
+      (elm-indent-mode . elm-mode)
       (emmet-mode . emmet-mode)
       (buffer-face-mode . face-remap)
       (fill-page-mode . fill-page)
