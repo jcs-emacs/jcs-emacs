@@ -316,12 +316,14 @@ Note this is opposite logic to the toggle mode function."
 ;;============================================================================
 ;; Programming Mode
 
-(defconst jcs-non-generic-syntax-modes '(lua-mode)
-  "List of modes that do not accept modify generic syntax entry.")
+(defconst jcs-mode--dash-major-modes '(elm-mode lua-mode)
+  "List of major modes that use dash for commenting.
+
+To avoid syntax highlighting error for comment.")
 
 (defun jcs-prog-mode-hook ()
   "Programming language mode hook."
-  (unless (jcs-is-current-major-mode-p jcs-non-generic-syntax-modes)
+  (unless (jcs-is-current-major-mode-p jcs-mode--dash-major-modes)
     (modify-syntax-entry ?- "_"))
 
   ;; Load Docstring faces.
@@ -423,6 +425,7 @@ Note this is opposite logic to the toggle mode function."
 (with-eval-after-load 'dart-mode (require 'jcs-dart-mode))
 (with-eval-after-load 'dockerfile-mode (require 'jcs-dockerfile-mode))
 (with-eval-after-load 'elixir-mode (require 'jcs-elixir-mode))
+(with-eval-after-load 'elm-mode (require 'jcs-elm-mode))
 (with-eval-after-load 'erlang (require 'jcs-erlang-mode))
 (with-eval-after-load 'ess-r-mode (require 'jcs-r-mode))
 (with-eval-after-load 'fountain-mode (require 'jcs-fountain-mode))
