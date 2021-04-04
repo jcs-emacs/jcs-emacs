@@ -62,7 +62,7 @@ from this configuration.
 * BASIC / Batchfile
 * C / C++ / C# / Clojure / CMake / COBOL / CSS
 * Dart / Dockerfile
-* Elixir / Emacs Lisp / Erlang
+* Elixir / Elm / Emacs Lisp / Erlang
 * F# / Fountain
 * GLSL / Go / Godot Script / Groovy
 * Haskell / Haxe / HTML
