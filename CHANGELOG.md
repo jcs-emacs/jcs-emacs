@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2021-04-04
+
+* Install new package `elm-mode`.
+
 ### 2021-03-30
 
 * Install new package `keytar`.
