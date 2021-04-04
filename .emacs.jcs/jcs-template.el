@@ -274,6 +274,11 @@ in order to take effect.  Half hot reloading process."
   "Template for Elixir."
   (file-header-insert-template-by-file-path "~/.emacs.jcs/template/elixir/default.txt"))
 
+;;; Elm
+(defun jcs-insert-elm-template ()
+  "Template for Elm."
+  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/elm/default.txt"))
+
 ;;; Emacs Lisp
 (defun jcs-insert-emacs-lisp-template ()
   "Template for Emacs Lisp."
