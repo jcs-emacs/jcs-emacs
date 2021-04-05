@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2021-04-05
+
+* Avoid tracking recent files when trigger goto definition.
+* Support full line when removing item from `dashboard`.
+
 ### 2021-04-04
 
 * Install new package `elm-mode`.
