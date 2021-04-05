@@ -39,6 +39,7 @@
     applescript-mode
     atl-long-lines
     atl-markup
+    auth-source-keytar
     auto-highlight-symbol
     auto-read-only
     auto-rename-tag
@@ -132,7 +133,6 @@
     js2-mode
     json-mode
     keypression
-    keytar
     kotlin-mode
     license-templates
     line-reminder
