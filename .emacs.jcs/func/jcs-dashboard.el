@@ -111,7 +111,7 @@
   "Remove a file from `recentf-list'."
   (interactive)
   (when (boundp 'recentf-list)
-    (let ((path (expand-file-name (string-trim (thing-at-point 'line t)))))
+    (let ((path (save-excursion (end-of-line) (ffap-guesser))))
       (setq recentf-list (delete path recentf-list)))
     (jcs-dashboard-refresh-buffer)))
 
@@ -120,7 +120,8 @@
   "Remove a path from `project--list'."
   (interactive)
   (when (boundp 'project--list)
-    (jcs-project-remove (ffap-guesser))
+    (let ((path (save-excursion (end-of-line) (ffap-guesser))))
+      (jcs-project-remove path))
     (jcs-dashboard-refresh-buffer)))
 
 ;;;###autoload
