@@ -10,22 +10,22 @@
 (defun jcs-goto-definition ()
   "Move to definition."
   (interactive)
-  (cond
-   ((jcs-is-current-major-mode-p jcs-elisp-def-modes)
-    (if (ignore-errors (call-interactively #'elisp-def))
-        (jcs-recenter-top-bottom 'middle)
-      (user-error "[INFO] No definition found for current target")))
-   ((and (jcs--lsp-connected-p)
-         (or (ignore-errors (lsp-goto-type-definition))
-             (ignore-errors (lsp-goto-implementation)))))
-   (t (dumb-jump-go-prefer-external)))
-  t)
+  (let (jcs-recentf-tracking-p)
+    (cond
+     ((jcs-is-current-major-mode-p jcs-elisp-def-modes)
+      (if (ignore-errors (call-interactively #'elisp-def))
+          (jcs-recenter-top-bottom 'middle)
+        (user-error "[INFO] No definition found for current target")))
+     ((and (jcs--lsp-connected-p)
+           (or (ignore-errors (lsp-goto-type-definition))
+               (ignore-errors (lsp-goto-implementation)))))
+     (t (dumb-jump-go-prefer-external))))t)
 
 ;;;###autoload
 (defun jcs-goto-definition-other-window ()
   "Move to definition other window."
   (interactive)
-  (let (fnc)
+  (let (jcs-recentf-tracking-p fnc)
     (cond
      ((or (jcs-is-current-major-mode-p jcs-elisp-def-modes)
           (jcs--lsp-connected-p))
