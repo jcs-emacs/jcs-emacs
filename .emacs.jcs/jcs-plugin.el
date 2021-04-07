@@ -341,6 +341,12 @@
     (when diminish-buffer-mode (diminish-buffer-clean)))
   (advice-add 'jcs-buffer-menu-refresh-buffer :before #'jcs--diminish-buffer-clean--advice-before))
 
+(use-package display-fill-column-indicator
+  :init
+  (setq-default display-fill-column-indicator-column 80)
+  :config
+  (jcs--set-common-face 'fill-column-indicator "#AA4242"))
+
 (use-package docstr
   :init
   (setq docstr-key-support t
@@ -538,8 +544,7 @@
 
 (use-package highlight-numbers
   :config
-  (set-face-attribute 'highlight-numbers-number nil
-                      :foreground "#9BCEA3"))
+  (jcs--set-common-face 'highlight-numbers-number "#9BCEA3"))
 
 (use-package hl-todo
   :init
