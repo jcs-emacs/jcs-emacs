@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2021-04-07
+
+* Enable `display-fill-column-indicator-mode` as default behaviour.
+
 ### 2021-04-05
 
 * Avoid tracking recent files when trigger goto definition.
