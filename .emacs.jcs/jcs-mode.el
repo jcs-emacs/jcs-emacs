@@ -338,6 +338,7 @@ To avoid syntax highlighting error for comment.")
 
   (abbrev-mode 1)
   (auto-highlight-symbol-mode t)
+  (display-fill-column-indicator-mode 1)
   (electric-pair-mode 1)
   (goto-address-mode 1)
   (highlight-indent-guides-mode 1)
