@@ -1261,7 +1261,8 @@ other window."
         (shown-multiple-p (jcs-buffer-shown-in-multiple-window-p (buffer-name) 'strict))
         (cur-buf (current-buffer))
         is-killed)
-    (if (or shown-multiple-p (jcs-virtual-buffer-p))
+    (if (or shown-multiple-p
+            (and (jcs-virtual-buffer-p) (not (jcs-invalid-buffer-p))))
         (progn
           (jcs-bury-buffer)
           (when (and must-kill-buf-p (not shown-multiple-p))
