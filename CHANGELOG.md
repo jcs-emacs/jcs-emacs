@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2021-04-20
+
+* Add utility function for identify a invalid buffer.
+* Ensure kill invalid buffer occurs unless shown in multiple windows.
+
 ### 2021-04-07
 
 * Enable `display-fill-column-indicator-mode` as default behaviour.
