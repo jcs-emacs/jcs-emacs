@@ -94,7 +94,7 @@ time is displayed."
   (or (buffer-file-name buf) (buffer-name buf)))
 
 (defun jcs-buffer-exists-p (buf-name)
-  "Check if the buffer BUF-NAME exists."
+  "Return non-nil if the buffer BUF-NAME exists."
   (get-buffer buf-name))
 
 (defun jcs-virtual-buffer-p (&optional buffer)
@@ -105,6 +105,11 @@ time is displayed."
   "Return non-nil if buffer does exists on disk."
   (let ((bfn (buffer-file-name buffer)))
     (and bfn (file-exists-p bfn))))
+
+(defun jcs-invalid-buffer-p (&optional buffer)
+  "Return non-nil if buffer does't exists on disk but has a valid file path."
+  (let ((bfn (buffer-file-name buffer)))
+    (and bfn (not (file-exists-p bfn)))))
 
 (defun jcs-virtual-buffer-list ()
   "Return a list of virtual buffers."
