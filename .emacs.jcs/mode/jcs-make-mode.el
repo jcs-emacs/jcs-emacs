@@ -21,7 +21,8 @@
   ;; Normal
   (define-key makefile-mode-map (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
   (define-key makefile-mode-map (kbd "<down>") (jcs-get-prev/next-key-type 'next))
-  (define-key makefile-mode-map (kbd "RET") #'jcs-makefile-newline))
+  (define-key makefile-mode-map (kbd "RET") #'jcs-makefile-newline)
+  (define-key makefile-mode-map (kbd "C-v") #'yank))
 
 (add-hook 'makefile-mode-hook 'jcs-makefile-mode-hook)
 
