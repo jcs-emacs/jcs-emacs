@@ -69,7 +69,7 @@ TYPE: type of makefile for Python."
 
 ;;;###autoload
 (defun jcs-makefile-newline ()
-  "Makefile newline."
+  "Newline key for `makefile-mode'."
   (interactive)
   (insert "\n")
   (py-indent-line-outmost))
