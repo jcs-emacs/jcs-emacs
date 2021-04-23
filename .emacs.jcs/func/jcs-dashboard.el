@@ -275,22 +275,8 @@ get the truncate path from dashboard buffer (ffap)."
 ;; (@* "Centering" )
 ;;
 
-(defcustom jcs-dashboard-buffer-border 15
-  "Border around dashboard buffer for calculation.
-
-This length includes the left and riight border.  You would need to divide
-it by two to get the border from one side."
-  :type 'integer
-  :group 'jcs)
-
 (defvar jcs-dashboard--last-window-width -1
   "Record the last window width from dashbord buffer.")
-
-(defun jcs-dashboard--get-max-align-length ()
-  "Return the maximum align length."
-  ;; TODO: This currently only calculates the `recentf' and `projects' sections.
-  (max (dashboard--get-align-length dashboard-recentf-alist)
-       (dashboard--get-align-length dashboard-projects-alist t)))
 
 (defun jcs-dashboard--window-width ()
   "Return dashboard buffer's window width."
@@ -299,11 +285,6 @@ it by two to get the border from one side."
      dashboard-buffer-name :type 'strict
      :success (lambda () (setq ww (window-width))))
     ww))
-
-(defun jcs-dasbhoard--get-path-length ()
-  "Return the valid path length for resizing the dashboard buffer."
-  (let ((ww (or (jcs-dashboard--window-width) (window-width))))
-    (- ww (jcs-dashboard--get-max-align-length) jcs-dashboard-buffer-border)))
 
 ;;
 ;; (@* "Registry" )
