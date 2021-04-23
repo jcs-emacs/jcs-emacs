@@ -197,7 +197,9 @@
         ;; Truncate style
         dashboard-path-style 'truncate-middle
         dashboard-recentf-show-base 'align
-        dashboard-projects-show-base 'align)
+        dashboard-projects-show-base 'align
+        dashboard-shorten-by-window-width t
+        dashboard-shorten-path-offset 15)
   :config
   (setq initial-buffer-choice (lambda () (get-buffer dashboard-buffer-name)))
 
