@@ -199,7 +199,7 @@
         dashboard-recentf-show-base 'align
         dashboard-projects-show-base 'align
         dashboard-bookmarks-show-base 'align
-        dashboard-bookmark-item-format "%s  %s"
+        dashboard-bookmarks-item-format "%s  %s"
         dashboard-shorten-by-window-width t
         dashboard-shorten-path-offset 15)
   :config
