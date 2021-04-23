@@ -325,8 +325,7 @@ OW is the other window flag."
             jcs-dashboard--force-refresh-p)
     (jcs-mute-apply
       (jcs-save-window-excursion
-        (let ((dashboard-ls-path (jcs-last-default-directory))
-              (dashboard-path-max-length (jcs-dasbhoard--get-path-length)))
+        (let ((dashboard-ls-path (jcs-last-default-directory)))
           (when (and (or (not (active-minibuffer-window))
                          (and (not jcs-minibuf-enabled-p) (not (jcs-minibuf-prompt-p)))))
             (save-window-excursion (dashboard-refresh-buffer))))))))
