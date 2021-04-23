@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2021-04-23
+
+* Config dashboard for `bookmarks` support.
+
 ### 2021-04-22
 
 * Apply yank workaround for `makefile-mode`.
