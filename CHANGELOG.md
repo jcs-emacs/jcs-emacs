@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2021-04-23
 
 * Config dashboard for `bookmarks` support.
+* Remove package `magit`.
 
 ### 2021-04-22
 
