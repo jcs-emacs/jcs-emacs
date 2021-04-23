@@ -481,9 +481,6 @@
 ;;; Sort
 (define-key global-map (kbd "C-i") #'jcs-sort-symbols)
 
-;;; Source Control
-(define-key global-map (kbd "C-S-g") #'magit-status)
-
 ;;; Special
 (define-key special-mode-map (kbd "<up>") #'previous-line)
 (define-key special-mode-map (kbd "<down>") #'next-line)
@@ -601,12 +598,6 @@
   (define-key undo-tree-map "\C-_" nil)
   (define-key undo-tree-map (kbd "C-?") nil)
   (define-key undo-tree-map (kbd "M-_") nil))
-
-;;; Version Control
-(with-eval-after-load 'magit
-  (define-key magit-mode-map (kbd "M-w") nil)
-  (define-key magit-mode-map [S-tab] #'magit-section-toggle)
-  (define-key magit-mode-map (kbd "M-K") #'magit-refresh))
 
 ;;; Whitespace
 (define-key global-map (kbd "C-k b") #'whitespace-mode)

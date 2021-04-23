@@ -777,10 +777,6 @@
   :config
   (lsp-ui-sideline-set-default-icon))
 
-(use-package magit
-  :init
-  (setq magit-diff-refine-hunk t))
-
 (use-package most-used-words
   :init
   (setq most-used-words-display-type 'table

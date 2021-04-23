@@ -150,7 +150,6 @@
     lsp-sourcekit
     lsp-ui
     lua-mode
-    magit
     manage-minor-mode-table
     markdown-mode
     markdown-toc
