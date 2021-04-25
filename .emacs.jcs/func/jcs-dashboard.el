@@ -219,29 +219,44 @@
 ;; (@* "Truncate" )
 ;;
 
-(defun jcs-dashboard--real-path-alist (index alist)
-  "Return real path by INDEX from dahsboard path ALIST."
-  (when (<= 0 index) (cdr (nth index (reverse alist)))))
+(defun jcs-dashboard-current-section ()
+  "Return section symbol in dashboard."
+  (save-excursion
+    (if (and (search-backward dashboard-page-separator nil t)
+             (search-forward dashboard-page-separator nil t))
+        (let ((ln (thing-at-point 'line)))
+          (cond ((string-match-p "Recent Files: " ln) 'recents)
+                ((string-match-p "Bookmarks: " ln) 'bookmarks)
+                ((string-match-p "Projects: " ln) 'projects)
+                ((string-match-p "Current Directories: " ln) 'ls-directories)
+                ((string-match-p "Current Files: " ln) 'ls-files)
+                (t (user-error "Unknown section from dashboard"))))
+      (user-error "Failed searching dashboard section"))))
 
-(defun jcs-dashboard-get-path-alist ()
-  "Return path from current point."
-  (or (when-let* ((items (assoc 'recents dashboard-items))
-                  (cnt (cdr items))
-                  (index (jcs-dashboard-path-index 'recents)))
-        (when (< index cnt)
-          (jcs-dashboard--real-path-alist index dashboard-recentf-alist)))
-      (when-let* ((items (assoc 'projects dashboard-items))
-                  (cnt (cdr items))
-                  (index (jcs-dashboard-path-index 'projects)))
-        (when (< index cnt)
-          (jcs-dashboard--real-path-alist index dashboard-projects-alist)))))
+(defun jcs-dashboard-current-list (name)
+  "Return the list of current dashboard by NAME."
+  (cl-case name
+    (recents recentf-list)
+    (bookmarks (bookmark-all-names))
+    (projects (dashboard-projects-backend-load-projects))
+    (t (user-error "Unknown section for search: %s" name))))
+
+(defun jcs-dashboard-current-item-in-path ()
+  "Return the path from current dashboard section in path."
+  (when-let* ((section (jcs-dashboard-current-section))
+              (lst (jcs-dashboard-current-list section))
+              (index (jcs-dashboard-current-index section))
+              (path (nth index lst)))
+    (when (eq section 'bookmarks)
+      (setq path (bookmark-get-filename path)))
+    path))
 
 (defun jcs-dashboard--goto-section (name)
   "Move to section NAME declares in variable `dashboard-item-shortcuts'."
   (let ((key (cdr (assoc name dashboard-item-shortcuts))))
     (when key (execute-kbd-macro (kbd key)))))
 
-(defun jcs-dashboard-path-index (name &optional pos)
+(defun jcs-dashboard-current-index (name &optional pos)
   "Return the idex by NAME from POS."
   (let (target-ln section-line)
     (save-excursion
@@ -264,7 +279,7 @@
 This advice is used when function `counsel--preselect-file' trying to
 get the truncate path from dashboard buffer (ffap)."
   (if (jcs-dashboard--on-path-item-p)
-      (or (jcs-dashboard-get-path-alist)
+      (or (jcs-dashboard-current-item-in-path)
           (let ((ls-path (f-join jcs-dashboard--last-ls-path (ffap-string-at-point))))
             (when (file-exists-p ls-path) ls-path))
           (apply fnc args))
