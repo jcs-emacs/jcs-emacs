@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2021-04-26
+
+* Enable `yascroll` scroll bar as default behaviour.
+
 ### 2021-04-25
 
 * Make improvement for `dashboard` utility functions.
