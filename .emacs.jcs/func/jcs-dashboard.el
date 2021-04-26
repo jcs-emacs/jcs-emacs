@@ -2,6 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
+(require 'cl-lib)
+
 ;;
 ;; (@* "Util" )
 ;;
