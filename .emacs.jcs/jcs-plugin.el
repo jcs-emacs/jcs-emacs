@@ -1087,13 +1087,8 @@
   (setq web-mode-markup-indent-offset 2)
   ;; NOTE: CSS offset indentation
   (setq web-mode-css-indent-offset 2)
-  ;; NOTE: Script/code offset indentation (for JavaScript,
-  ;;                                           Java,
-  ;;                                           PHP,
-  ;;                                           Ruby,
-  ;;                                           Go,
-  ;;                                           VBScript,
-  ;;                                           Python, etc.)
+  ;; NOTE: Script/code offset indentation (for JavaScript, Java, PHP, Ruby,
+  ;; Go, VBScript, Python, etc.)
   (setq web-mode-code-indent-offset 2)
 
   ;; Left padding
@@ -1136,9 +1131,6 @@
         web-mode-enable-comment-keywords t
         web-mode-enable-heredoc-fontification t)
 
-  ;; Keywords / Constants
-  ;;(setq web-mode-extra-constants '(("php" . ("CONS1" "CONS2"))))
-
   ;; Highlight current HTML element
   (setq web-mode-enable-current-element-highlight t)
 
@@ -1170,7 +1162,7 @@
 
 (use-package yascroll
   :init
-  (setq yascroll:delay-to-hide 0.8))
+  (setq yascroll:delay-to-hide nil))
 
 (use-package yasnippet
   :config
