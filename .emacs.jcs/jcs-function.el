@@ -893,8 +893,7 @@ NO-PROMPT : Don't prompt the overwrap message."
   "Reset yascroll color base on the theme color."
   (interactive)
   (let ((target-color (if (jcs-is-light-theme-p) "#C2C3C9" "#686868")))
-    (set-face-attribute 'yascroll:thumb-fringe
-                        nil
+    (set-face-attribute 'yascroll:thumb-fringe nil
                         :background target-color
                         :foreground target-color)))
 
