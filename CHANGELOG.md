@@ -10,10 +10,6 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add `region` face customization for theme configuration.
 * Customize theme face so it's closer to Visual Studio IDE's theme.
 
-### 2021-04-26
-
-* Enable `yascroll` scroll bar as default behaviour.
-
 ### 2021-04-25
 
 * Make improvement for `dashboard` utility functions.
