@@ -179,11 +179,8 @@ Arguments stand for these explanation,
    (lambda ()
      (set-cursor-color cc)
      (set-face-background 'hl-line hlc)
-     (set-face-attribute 'hl-line nil
-                         :background (face-background 'default)
-                         :box `(:line-width -1 :color ,hlc :style nil))
-     (set-face-attribute 'region nil :background rc)
-     (set-face-attribute 'fringe nil :background frc)
+     (set-face-background 'region rc)
+     (set-face-background 'fringe frc)
      (jcs-reset-plugins-base-on-theme))))
 
 ;;;###autoload
@@ -191,14 +188,14 @@ Arguments stand for these explanation,
   "Visual Studio IDE light theme."
   (interactive)
   (load-theme 'vs-light t)
-  (jcs-set-theme "#EAEAF2" "#666666" "#99C9EF" "#E6E7E8"))
+  (jcs-set-theme "#909090" "#E6E6E6" "#99C9EF" "#E6E7E8"))
 
 ;;;###autoload
 (defun jcs-vs-dark-theme ()
   "Visual Studio IDE dark theme."
   (interactive)
   (load-theme 'vs-dark t)
-  (jcs-set-theme "#909090" "#414141" "#264F78" "#3E3E42"))
+  (jcs-set-theme "#909090" "#2E2E2E" "#264F78" "#333333"))
 
 (defun jcs-is-light-theme-p ()
   "Return non-nil if current theme light theme.
