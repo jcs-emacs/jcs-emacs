@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2021-04-27
 
 * Add `region` face customization for theme configuration.
+* Customize theme face so it's closer to Visual Studio IDE's theme.
 
 ### 2021-04-26
 
