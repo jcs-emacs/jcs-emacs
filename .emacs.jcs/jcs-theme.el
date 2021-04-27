@@ -166,22 +166,24 @@ POWER-AC-LST : powerline active list.  POWER-INAC-LST : powerline inactive list.
   (jcs-reload-active-mode)
   (jcs-re-enable-mode-if-was-enabled 'highlight-indent-guides-mode))
 
-(defun jcs-set-theme (cc hlc rc)
+(defun jcs-set-theme (cc hlc rc frc)
   "Setup the theme to all frames.
 
 Arguments stand for these explanation,
 
   * CC - cursor color.
   * HLC - highlight line color.
-  * RC - region color."
+  * RC - region color.
+  * FRC - fringe color."
   (jcs-walk-through-all-frames-once
    (lambda ()
      (set-cursor-color cc)
      (set-face-background 'hl-line hlc)
      (set-face-attribute 'hl-line nil
                          :background (face-background 'default)
-                         :box `(:line-width -2 :color ,hlc :style nil))
+                         :box `(:line-width -1 :color ,hlc :style nil))
      (set-face-attribute 'region nil :background rc)
+     (set-face-attribute 'fringe nil :background frc)
      (jcs-reset-plugins-base-on-theme))))
 
 ;;;###autoload
@@ -189,14 +191,14 @@ Arguments stand for these explanation,
   "Visual Studio IDE light theme."
   (interactive)
   (load-theme 'vs-light t)
-  (jcs-set-theme "#EAEAF2" "#666666" "#99C9EF"))
+  (jcs-set-theme "#EAEAF2" "#666666" "#99C9EF" "#E6E7E8"))
 
 ;;;###autoload
 (defun jcs-vs-dark-theme ()
   "Visual Studio IDE dark theme."
   (interactive)
   (load-theme 'vs-dark t)
-  (jcs-set-theme "#909090" "#414141" "#264F78"))
+  (jcs-set-theme "#909090" "#414141" "#264F78" "#3E3E42"))
 
 (defun jcs-is-light-theme-p ()
   "Return non-nil if current theme light theme.
