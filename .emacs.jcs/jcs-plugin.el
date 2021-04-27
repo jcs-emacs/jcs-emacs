@@ -838,16 +838,19 @@
 (use-package origami
   :init
   (setq origami-indicators 'left-fringe
+        origami-indicators-time 0.2
         origami-indicators-face-function #'jcs--origami-indicators-face-function)
   :config
+  (require 'line-reminder)
   (defun jcs--origami-indicators-face-function (pos &rest _)
     "Return the face of it's function."
-    (cond
-     ((jcs-contain-list-integer line-reminder--saved-lines (line-number-at-pos pos))
-      'line-reminder-saved-sign-face)
-     ((jcs-contain-list-integer line-reminder--change-lines (line-number-at-pos pos))
-      'line-reminder-modified-sign-face)
-     (t nil)))
+    (let ((ln (line-number-at-pos pos)))
+      (cond
+       ((jcs-contain-list-integer line-reminder--change-lines ln)
+        'line-reminder-modified-sign-face)
+       ((jcs-contain-list-integer line-reminder--saved-lines ln)
+        'line-reminder-saved-sign-face)
+       (t nil))))
   (set-face-attribute 'origami-fold-replacement-face nil
                       :foreground "#808080"
                       :box '(:line-width -1 :style 'pressed-button))
