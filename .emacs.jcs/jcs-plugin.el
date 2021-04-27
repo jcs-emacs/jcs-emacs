@@ -1162,7 +1162,7 @@
 
 (use-package yascroll
   :init
-  (setq yascroll:delay-to-hide nil))
+  (setq yascroll:delay-to-hide 0.8))
 
 (use-package yasnippet
   :config
