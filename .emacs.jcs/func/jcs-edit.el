@@ -739,7 +739,7 @@ Optional argument INDEX is used to loop through BUFS."
             prompt (concat
                     path "\n
 The file has unsaved changes inside this editor and has been changed externally.
-Do you want to reload it and lose the changes made in this source editor?")
+Do you want to reload it and lose the changes made in this source editor? ")
             answer (completing-read prompt '("Yes" "Yes to All" "No" "No to All"))
             index (1+ index))
       (pcase answer
