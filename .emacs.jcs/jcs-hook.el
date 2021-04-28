@@ -142,6 +142,8 @@
     (indent-control-mode 1)
     ;;----------------------------------- `ivy'
     (ivy-mode 1)
+    ;;----------------------------------- `origami'
+    (global-origami-mode 1)
     ;;----------------------------------- `page-break-lines'
     (global-page-break-lines-mode 1)
     ;;----------------------------------- `powerline'
