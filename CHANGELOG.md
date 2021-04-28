@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2021-04-28
+
+* Enable package `origami` by default.
+
 ### 2021-04-27
 
 * Add `region` face customization for theme configuration.
