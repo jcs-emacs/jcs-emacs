@@ -151,7 +151,6 @@
     lsp-ui
     lua-mode
     manage-minor-mode-table
-    markdown-mode
     markdown-toc
     masm-mode
     most-used-words
@@ -209,6 +208,10 @@
     yasnippet-snippets)
   "List of packages this config needs.")
 
+(defconst jcs-package-pinned
+  '((origami . melpa))
+  "List of pinned packages to a specific source.")
+
 ;;
 ;; (@* "Util" )
 ;;
@@ -224,7 +227,7 @@
     (cl-remove 'emacs result)))
 
 (defun jcs-package-dependency-list (lst)
-  "Return full dependency list from lst of package."
+  "Return full dependency list from LST of package."
   (let (result)
     (dolist (pkg lst)
       (setq result (append result (jcs-package-dependency pkg))))
@@ -354,7 +357,7 @@
         (jcs-process-reporter-done "Done rebuild dependency graph")))))
 
 (defun jcs-package--menu-execute--advice-around (fnc &rest args)
-  "Advice execute around `package-menu-execute' function."
+  "Advice execute around function `package-menu-execute' with FNC and ARGS."
   (let ((jcs-package-use-real-delete-p nil))
     (when (apply fnc args)
       (jcs-package-rebuild-dependency-list)
@@ -370,7 +373,7 @@
   "Flag to check if we are really deleting a package.")
 
 (defun jcs-package-delete (pkg-name &optional dep)
-  "Safe way to remove PKG-NAME."
+  "Safe way to remove PKG-NAME and it's DEP."
   (let ((used-elsewhere (jcs-package--used-elsewhere-p pkg-name))
         (pkg-desc-current (jcs-package--build-desc pkg-name)))
     (dolist (pkg-desc used-elsewhere)
@@ -382,7 +385,7 @@
         (message "Package `%s` deleted." pkg-name)))))
 
 (defun jcs--package-delete--advice-around (fnc &rest args)
-  "Execution runs around function `package-delete'."
+  "Execution run around function `package-delete' with FNC and ARGS."
   (if jcs-package-use-real-delete-p (apply fnc args)
     (jcs-package-delete (jcs-package--package-name (nth 0 args)))))
 
@@ -391,9 +394,9 @@
 (defvar jcs-package-installing-p nil
   "Is currently upgrading the package.")
 
-(defun jcs--package-install--advice-around (ori-func &rest args)
-  "Advice around execute `package-install' command."
-  (let ((jcs-package-installing-p t)) (apply ori-func args)))
+(defun jcs--package-install--advice-around (fnc &rest args)
+  "Advice around execute `package-install' command with FNC and ARGS."
+  (let ((jcs-package-installing-p t)) (apply fnc args)))
 
 (advice-add 'package-install :around #'jcs--package-install--advice-around)
 (advice-add 'package-install-from-buffer :around #'jcs--package-install--advice-around)
@@ -405,17 +408,37 @@
   "Return non-nil if PKG is already installed."
   (or (package-installed-p pkg) (package-built-in-p pkg)))
 
-(defun jcs-package-install (pkg)
-  "Install PKG package."
-  (if (jcs-package-installed-p pkg)
-      (let ((deps (jcs-package-dependency pkg)))
-        (dolist (dep deps) (jcs-package-install dep)))
-    (setq jcs-package--install-on-start-up t)
+(defun jcs-package--pinned-p (pkg)
+  "Return non-nil if PKG is pinned."
+  (require 'cl-lib)
+  (cl-some (lambda (pin-pkg) (when (eq (car pin-pkg) pkg) pin-pkg)) jcs-package-pinned))
+
+(defun jcs-package--desc-by-archive (pkg archive)
+  "Return package-desc by PKG and ARCHIVE."
+  (require 'cl-lib)
+  (cl-some
+   (lambda (desc)
+     (when (eq archive (ignore-errors (intern (package-desc-archive desc))))
+       desc))
+   (assq pkg package-archive-contents)))
+
+(defun jcs-package-install--internel (pkg)
+  "Insall PKG by source."
+  (let ((pin (jcs-package--pinned-p pkg)))
     ;; Don't run `package-refresh-contents' if you don't need to install
     ;; packages on startup.
     (package-refresh-contents)
     ;; Else we just install the package regularly.
-    (package-install pkg)))
+    (if pin (package-install-from-archive (jcs-package--desc-by-archive pkg (cdr pin)))
+      (package-install pkg))))
+
+(defun jcs-package-install (pkg)
+  "Install PKG package."
+  (let ((deps (jcs-package-dependency pkg)))
+    (dolist (dep deps) (jcs-package-install dep)))
+  (unless (jcs-package-installed-p pkg)
+    (setq jcs-package--install-on-start-up t)
+    (jcs-package-install--internel pkg)))
 
 (defun jcs-ensure-package-installed (packages)
   "Assure every PACKAGES is installed."
@@ -527,7 +550,7 @@ Argument WHERE is the alist of package information."
 
 ;;;###autoload
 (defun jcs-package-menu-filter-by-status (status)
-  "Filter the *Packages* buffer by status."
+  "Filter the *Packages* buffer by STATUS."
   (interactive
    (list (completing-read
           "Status: " '(".."
@@ -580,8 +603,7 @@ Argument WHERE is the alist of package information."
   (let ((plst rcp)) (push :name plst) (plist-get plst prop)))
 
 (defun jcs--package-version-by-recipe (rcp)
-  "Return the package version by PKG.
-PKG is a list of recipe components."
+  "Return the package version by recipe (RCP)."
   (let* ((pkg-repo (jcs--recipe-get-info rcp :repo))
          (pkg-fetcher (jcs--recipe-get-info rcp :fetcher))
          (rcp (jcs--form-version-recipe rcp))
