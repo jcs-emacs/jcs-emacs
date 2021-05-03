@@ -112,6 +112,7 @@ without having to get used to an new IDE.
 
 Here is the list of few important and recent changes to this configuration.
 
+* `6.5.0` - Add pinned archive feature to package module.
 * `6.4.2` - You can now resolve package dependency graph while deleting package.
 * `6.4.1` - Start with `tree-sitter` support.
 * `6.4.0` - Switched from `projectile` to built-in `project` for project management.
