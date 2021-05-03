@@ -357,13 +357,22 @@
         (jcs-process-reporter-done "Done rebuild dependency graph")))))
 
 (defun jcs-package--menu-execute--advice-around (fnc &rest args)
-  "Advice execute around function `package-menu-execute' with FNC and ARGS."
+  "Execution around function `package-menu-execute' with FNC and ARGS."
   (let ((jcs-package-use-real-delete-p nil))
     (when (apply fnc args)
       (jcs-package-rebuild-dependency-list)
       (jcs-dashboard-safe-refresh-buffer t))))
 
 (advice-add 'package-menu-execute :around #'jcs-package--menu-execute--advice-around)
+
+(defun jcs-package--desc-priority-version--advice-around (fnc &rest args)
+  "Execution around function `package-desc-priority-version' with FNC and ARGS."
+  (let ((pkg (package-desc-name (nth 0 args))))
+    (if (jcs-package--pinned-p pkg)
+        (jcs-package-version pkg package-archive-contents)
+      (apply fnc args))))
+
+(advice-add 'package-desc-priority-version :around #'jcs-package--desc-priority-version--advice-around)
 
 ;;
 ;; (@* "Core Installation" )
@@ -448,11 +457,14 @@
     (jcs-package-rebuild-dependency-list)
     (package-initialize)))
 
-(defun jcs-get-package-version (name where)
+(defun jcs-package-version (name where)
   "Get version of the package by NAME.
 
 Argument WHERE is the alist of package information."
-  (let ((pkg (cadr (assq name where)))) (when pkg (package-desc-version pkg))))
+  (let* ((pin (jcs-package--pinned-p name))
+         (pkg (if pin (jcs-package--desc-by-archive name (cdr pin))
+                (cadr (assq name where)))))
+    (when pkg (package-desc-version pkg))))
 
 (defun jcs-package-get-package-by-name (pkg-name)
   "Return the package by PKG-NAME."
@@ -468,9 +480,9 @@ Argument WHERE is the alist of package information."
   "Upgrade for archive packages."
   (let (upgrades)
     (dolist (pkg (mapcar #'car package-alist))
-      (let ((in-archive (jcs-get-package-version pkg package-archive-contents)))
+      (let ((in-archive (jcs-package-version pkg package-archive-contents)))
         (when (and in-archive
-                   (version-list-< (jcs-get-package-version pkg package-alist)
+                   (version-list-< (jcs-package-version pkg package-alist)
                                    in-archive))
           (push (cadr (assq pkg package-archive-contents)) upgrades))))
     (if upgrades
@@ -627,7 +639,7 @@ Argument WHERE is the alist of package information."
     (dolist (rcp jcs-package-manual-install-list)
       (setq pkg-name (jcs--recipe-get-info rcp :name)
             new-version (jcs--package-version-by-recipe rcp)
-            current-version (jcs-get-package-version pkg-name package-alist)
+            current-version (jcs-package-version pkg-name package-alist)
             new-version (jcs--ver-string-to-ver-list new-version))
       (when (version-list-< current-version new-version) (push rcp upgrade-list)))
     (reverse upgrade-list)))
