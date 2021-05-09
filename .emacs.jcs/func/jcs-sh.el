@@ -17,12 +17,11 @@
   (let (sys-type)
     (cond ((string-match-p "file" type)
            (setq sys-type (show-eol--get-current-system)))
-          ((string-match-p "system" type)
+          ((string-match-p "system" type)))
     (pcase type
       ("Windows (dos)" (setq sys-type 'dos))
       ("macOS (mac)" (setq sys-type 'mac))
       ("Linux (unix)" (setq sys-type 'unix)))
-
     (set-buffer-file-coding-system sys-type)))
 
 ;;;###autoload
