@@ -257,7 +257,7 @@ If optional argument WITH-EXT is non-nil; return path with extension."
   "Find all directories in PATH by ignored common directories with FN and REC."
   (let ((dirs (f-directories path)) (valid-dirs '()) (final-dirs '()))
     (dolist (dir dirs)
-      (unless (jcs-contain-list-string project-vc-ignores (f-slash dir))
+      (unless (jcs-contain-list-string project-vc-ignores (f-filename (f-slash dir)))
         (push dir valid-dirs)))
     (when rec
       (dolist (dir valid-dirs)
