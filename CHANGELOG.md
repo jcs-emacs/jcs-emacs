@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2021-05-10
 
 * Fix project unsearchable issue when projct contains sensitive keywords.
+* Select line endings will only ask once for `.sh` files.
 
 ### 2021-05-03
 
