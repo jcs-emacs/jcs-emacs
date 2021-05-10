@@ -8,7 +8,7 @@
 
 (use-package atl-markup
   :init
-  (setq atl-markup-delay 0.0))
+  (setq atl-markup-delay 0.2))
 
 (use-package auto-highlight-symbol
   :init
