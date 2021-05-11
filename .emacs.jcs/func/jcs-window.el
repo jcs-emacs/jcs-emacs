@@ -89,11 +89,11 @@ See function `jcs-frame-util-p' for the definition of utility frame."
 
 (defun jcs-buffer-visible-list ()
   "List of buffer that current visible in frame."
-  (let ((buf-lst (buffer-list)) buffers)
-    (dolist (buf buf-lst)
-      (when (get-buffer-window buf 't)
-        (push (buffer-name buf) buffers)))
-    buffers))
+  (save-selected-window
+    (let ((jcs-walking-through-windows-p t) (buffers '()))
+      (jcs-walk-through-all-windows-once
+       (lambda () (push (buffer-name) buffers)))
+      buffers)))
 
 (defun jcs-buffer-shown-count (in-buf-name &optional type)
   "Return the count of the IN-BUF-NAME shown.
