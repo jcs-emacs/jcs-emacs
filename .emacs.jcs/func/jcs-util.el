@@ -48,6 +48,14 @@ time is displayed."
      (progn ,@body)
      (jcs-window-restore-once)))
 
+(defmacro jcs-try-run (repetitions &rest body)
+  "Try execute BODY with REPETITIONS of times."
+  (declare (indent 1) (debug t))
+  `(let ((cnt 0) break)
+     (while (and (null break) (not (ignore-errors (progn ,@body))))
+       (setq cnt (1+ cnt)
+             break (<= ,repetitions cnt)))))
+
 ;;
 ;; (@* "Advice" )
 ;;
