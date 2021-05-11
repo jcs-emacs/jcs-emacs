@@ -8,10 +8,7 @@
 
 (defun jcs-ensure-switch-to-buffer-other-window (win-name)
   "Ensure switch to buffer, try multiple times with WIN-NAME"
-  (let ((test 4) break (cnt 0))
-    (while (and (null break) (not (ignore-errors (switch-to-buffer-other-window win-name))))
-      (setq cnt (1+ cnt)
-            break (<= test cnt)))))
+  (jcs-try-run 4 (switch-to-buffer-other-window win-name)))
 
 (cl-defun jcs-safe-jump-shown-to-buffer (in-buffer-name &key success error type)
   "Safely jump to IN-BUFFER-NAME's window and execute SUCCESS operations.
