@@ -8,10 +8,10 @@
 
 (defun jcs-ensure-switch-to-buffer-other-window (win-name)
   "Ensure switch to buffer, try multiple times with WIN-NAME"
-  (unless (or (ignore-errors (switch-to-buffer-other-window win-name)))
-    (unless (or (ignore-errors (switch-to-buffer-other-window win-name)))
-      (unless (or (ignore-errors (switch-to-buffer-other-window win-name)))
-        (switch-to-buffer-other-window win-name)))))
+  (let ((test 4) break (cnt 0))
+    (while (and (null break) (not (ignore-errors (switch-to-buffer-other-window win-name))))
+      (setq cnt (1+ cnt)
+            break (<= test cnt)))))
 
 (cl-defun jcs-safe-jump-shown-to-buffer (in-buffer-name &key success error type)
   "Safely jump to IN-BUFFER-NAME's window and execute SUCCESS operations.
@@ -19,11 +19,11 @@
 If IN-BUFFER-NAME isn't showing; then execute ERROR operations instead.
 
 For argument TYPE; see function `jcs-string-compare-p' for description."
-  (if (not (jcs-buffer-shown-p in-buffer-name))
-      (when error (funcall error))
-    (save-selected-window
-      (when (and (jcs-jump-shown-to-buffer in-buffer-name t type) success)
-        (funcall success)))))
+  (if (jcs-buffer-shown-p in-buffer-name type)
+      (save-selected-window
+        (when (and success (jcs-jump-shown-to-buffer in-buffer-name t type))
+          (funcall success)))
+    (when error (funcall error))))
 
 ;;;###autoload
 (defun jcs-jump-shown-to-buffer (in-buffer-name &optional no-error type)
@@ -34,7 +34,7 @@ If optional argument NO-ERROR is non-nil; then it won't trigger error.
 For argument TYPE; see function `jcs-string-compare-p' for description."
   (interactive "bEnter buffer to jump to: ")
   (let (found)
-    (when (jcs-buffer-shown-p in-buffer-name)
+    (when (jcs-buffer-shown-p in-buffer-name type)
       (let ((jcs-walking-through-windows-p t) (win-len (jcs-count-windows)) (index 0))
         (while (and (< index win-len) (not found))
           ;; NOTE: we use `string-match-p' instead of `string=' because some
@@ -82,9 +82,8 @@ For argument TYPE; see function `jcs-string-compare-p' for description."
 (defun jcs-count-windows (&optional util)
   "Total windows count.
 
-If optional argument UTIL is non-nil; then FNC will be executed even within
-inside the utility frame.  See function `jcs-frame-util-p' for the definition
-of utility frame."
+If optional argument UTIL is non-nil; it would count utility frame.
+See function `jcs-frame-util-p' for the definition of utility frame."
   (let ((jcs-walking-through-windows-p t) (count 0))
     (dolist (fn (frame-list))
       (when (or util (not (jcs-frame-util-p fn)))
@@ -93,11 +92,11 @@ of utility frame."
 
 (defun jcs-buffer-visible-list ()
   "List of buffer that current visible in frame."
-  (save-selected-window
-    (let ((jcs-walking-through-windows-p t) (buffers '()))
-      (jcs-walk-through-all-windows-once
-       (lambda () (push (buffer-name) buffers)))
-      buffers)))
+  (let ((buf-lst (buffer-list)) buffers)
+    (dolist (buf buf-lst)
+      (when (get-buffer-window buf 't)
+        (push (buffer-name buf) buffers)))
+    buffers))
 
 (defun jcs-buffer-shown-count (in-buf-name &optional type)
   "Return the count of the IN-BUF-NAME shown.
