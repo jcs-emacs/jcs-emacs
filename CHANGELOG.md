@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2021-05-11
+
+* Optimize performance for window utility functions.
+
 ### 2021-05-10
 
 * Fix project unsearchable issue when projct contains sensitive keywords.
