@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### 2021-05-11
 
 * Optimize performance for window utility functions.
+* Add new utility macro, try run/execute in repetitions.
 
 ### 2021-05-10
 
