@@ -259,10 +259,20 @@
     (jcs-mute-apply
       (package--save-selected-packages (remove pkg-name package-selected-packages)))))
 
-(defun jcs-package--build-desc (pkg-name)
+(defun jcs-package---build-desc-by-archive (pkg archive)
+  "Return package-desc by PKG and ARCHIVE."
+  (require 'cl-lib)
+  (cl-some
+   (lambda (desc)
+     (when (eq archive (ignore-errors (intern (package-desc-archive desc))))
+       desc))
+   (assq pkg package-archive-contents)))
+
+(defun jcs-package--build-desc (pkg-name &optional archive)
   "Build package description by PKG-NAME."
-  (or (cadr (assq pkg-name package-alist))
-      (cadr (assq pkg-name package-archive-contents))))
+  (if archive (jcs-package---build-desc-by-archive pkg-name archive)
+    (or (cadr (assq pkg-name package-alist))
+        (cadr (assq pkg-name package-archive-contents)))))
 
 (defun jcs-package--get-reqs (name)
   "Return requires from package NAME."
@@ -426,32 +436,28 @@
   (require 'cl-lib)
   (cl-some (lambda (pin-pkg) (when (eq (car pin-pkg) pkg) pin-pkg)) jcs-package-pinned))
 
-(defun jcs-package--desc-by-archive (pkg archive)
-  "Return package-desc by PKG and ARCHIVE."
-  (require 'cl-lib)
-  (cl-some
-   (lambda (desc)
-     (when (eq archive (ignore-errors (intern (package-desc-archive desc))))
-       desc))
-   (assq pkg package-archive-contents)))
+(defun jcs--package-download-transaction--advice-before (pkgs)
+  "Execution runs before function `package-download-transaction', PKGS."
+  (let ((index 0) name pin)
+    (dolist (pkg pkgs)
+      (setq name (jcs-package--package-name pkg)
+            pin (jcs-package--pinned-p name))
+      (when pin
+        (setf (nth index pkgs) (jcs-package--build-desc name (cdr pin))))
+      (setq index (1+ index))))
+  pkgs)
 
-(defun jcs-package-install--internel (pkg)
-  "Insall PKG by source."
-  (let ((pin (jcs-package--pinned-p pkg)))
+(advice-add 'package-download-transaction :before #'jcs--package-download-transaction--advice-before)
+
+(defun jcs-package-install (pkg)
+  "Install PKG package."
+  (unless (jcs-package-installed-p pkg)
+    (setq jcs-package--install-on-start-up t)
     ;; Don't run `package-refresh-contents' if you don't need to install
     ;; packages on startup.
     (package-refresh-contents)
     ;; Else we just install the package regularly.
-    (if pin (package-install-from-archive (jcs-package--desc-by-archive pkg (cdr pin)))
-      (package-install pkg))))
-
-(defun jcs-package-install (pkg)
-  "Install PKG package."
-  (let ((deps (jcs-package-dependency pkg)))
-    (dolist (dep deps) (jcs-package-install dep)))
-  (unless (jcs-package-installed-p pkg)
-    (setq jcs-package--install-on-start-up t)
-    (jcs-package-install--internel pkg)))
+    (package-install pkg)))
 
 (defun jcs-ensure-package-installed (packages)
   "Assure every PACKAGES is installed."
@@ -468,7 +474,7 @@ Argument WHERE is the alist of package information."
   (let* ((pin (jcs-package--pinned-p name))
          (local-p (equal where package-alist))
          (pkg (if (and pin (not local-p))
-                  (jcs-package--desc-by-archive name (cdr pin))
+                  (jcs-package--build-desc name (cdr pin))
                 (cadr (assq name where)))))
     (when pkg (package-desc-version pkg))))
 
@@ -491,7 +497,7 @@ Argument WHERE is the alist of package information."
         (when (and in-archive
                    (version-list-< (jcs-package-version pkg package-alist)
                                    in-archive))
-          (push (if pin (jcs-package--desc-by-archive pkg (cdr pin))
+          (push (if pin (jcs-package--build-desc pkg (cdr pin))
                   (cadr (assq pkg package-archive-contents)))
                 upgrades))))
     (if upgrades
