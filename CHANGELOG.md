@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2021-05-20
+
+* Fix logic while installing pinned packages as dependency.
+* Suppress warning message while checking light/dark theme in `after-init-hook`.
+
 ### 2021-05-11
 
 * Optimize performance for window utility functions.
