@@ -200,7 +200,7 @@ Arguments stand for these explanation,
 (defun jcs-is-light-theme-p ()
   "Return non-nil if current theme light theme.
 Return nil if current theme dark theme."
-  (jcs-is-light-color-p (face-background 'default)))
+  (ignore-errors (jcs-is-light-color-p (face-background 'default))))
 
 (defun jcs-is-dark-theme-p ()
   "Return non-nil if current theme dark theme.
@@ -226,9 +226,7 @@ Return nil if current theme light theme."
 (defun jcs--load-theme--advice-after (&rest _)
   "Advice execute after `load-theme' function."
   (jcs-set-font-size jcs-default-font-size)
-  (jcs-walk-through-all-frames-once
-   (lambda ()
-     (jcs-reset-plugins-base-on-theme))))
+  (jcs-walk-through-all-frames-once (lambda () (jcs-reset-plugins-base-on-theme))))
 (advice-add 'enable-theme :after #'jcs--load-theme--advice-after)
 
 (provide 'jcs-theme)

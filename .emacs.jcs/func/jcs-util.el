@@ -226,7 +226,7 @@ See function `jcs-string-compare-p' for argument TYPE."
     ;; Convert symbol to string.
     (when (symbolp hex-code) (setq hex-code (symbol-name hex-code)))
     (if (not (jcs-is-hex-code-p hex-code))
-        (message "[WARNING] Hex code to check is invalid: %s" hex-code)
+        (user-error "[WARNING] Hex code to check is invalid: %s" hex-code)
       ;; Remove # from `hex-code'.
       (setq hex-code (jcs-replace-string "#" "" hex-code)
             hex-lst (split-string hex-code "")
