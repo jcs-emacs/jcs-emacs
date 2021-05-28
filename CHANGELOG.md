@@ -5,7 +5,8 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
-### 6.4.3
+## 6.4.3 (Unreleased)
+> Released N/A
 
 * Use default `undo` when `undo-tree` not enabled.
 * Fix logic while installing pinned packages as dependency.
@@ -53,7 +54,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Remove package `test-sha`.
 * Add template and basic configuration for AppleScript file.
 
-### 6.4.2
+## 6.4.2
+> Released Feb 24, 2021
 
 * Install new package `applescript-mode`.
 * Install new package `turbo-log`.
@@ -111,7 +113,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Fixed conflict from `neotree` to `dashboard`.
 * Fixed error by passing not existing path when getting file content.
 
-### 6.4.1
+## 6.4.1
+> Released Jan 12, 2021
 
 * Installed new package `scrollable-quick-peek`.
 * Implemented peek definition functionality.
@@ -141,7 +144,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Ensure `dashboard-ls` will respect the the dedicated default directory path.
 * Added centering the `dasboard` buffer width window resize hook.
 
-### 6.4.0
+## 6.4.0
+> Released Dec 22, 2020
 
 * Fixed recording recent files while installing issue. (#23)
 * Added generic buffer list filter utility function.
@@ -173,7 +177,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Switched dashboard project support from `projectile` to `project`.
 * Added virtual buffer list utility function.
 
-### 6.3.1
+## 6.3.1
+> Released Dec 9, 2020
 
 * Added [celpa](https://celpa.conao3.com/) to package archives list.
 * Installed new package `quelpa-use-package`.
@@ -214,7 +219,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Bind `backward`/`forward` deep 1 level sexp to global key map.
 * Bind `backward`/`forward` unlimited levels sexp to global key map.
 
-### 6.3.0
+## 6.3.0
+> Released Nov 5, 2020
 
 * Extract open and close balanced expression to list.
 * Fixed toggle move to balanced expression logic for next character point.
@@ -254,7 +260,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Implemented `util` argument when walking through windows/frames.
 * Diminished the buffer `*preview-it` as default behaviour.
 
-### 6.2.6
+## 6.2.6
+> Released Oct 14, 2020
 
 * Config `auto-rename-tag` package for disabled commands and `minor-mode`s.
 * Make rever all buffers after replace commands.
@@ -284,7 +291,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Reuse process reporter messaging system to title when rebuild dependency graph.
 * Renamed `oop` module to `docstring` for better naming.
 
-### 6.2.5
+## 6.2.5
+> Released Sep 24, 2020
 
 * Allowed virtual buffer to be buried instead of killing the buffer.
 * Multiple minor bug fix regarding to variable naming issue.
@@ -312,7 +320,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Installed new package manually `ivy-file-preview`.
 * Enabled `ivy-file-preview-mode` globally by default.
 
-### 6.2.4
+## 6.2.4
+> Released Sep 11, 2020
 
 * Diminished `keypression-mode`'s lighter.
 * Diminished `hi-lock-mode`'s lighter.
@@ -353,7 +362,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Implemented no log macro utility function.
 * Converted `mute`/`unmute` apply utility functions to macro.
 
-### 6.2.3
+## 6.2.3
+> Released Aug 26, 2020
 
 * Fixed switching buffer after quit `undo-tree`'s visualizer with single window.
 * Added sort symbols function as feature enhancement.
@@ -379,7 +389,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Implemented the default save buffer method depends on major mode.
 * Revised save all buffers method for better user experience.
 
-### 6.2.2
+## 6.2.2
+> Released Aug 13, 2020
 
 * Added global `quit` command advice.
 * Added global process reporter instance utility functions.
@@ -400,7 +411,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Updated the `Line` utility module to use built-in solutions.
 * Installed new package manually `license-templates`.
 
-### 6.2.1
+## 6.2.1
+> Released Jul 23, 2020
 
 * Installed new package `nix-mode`.
 * Start supports for expression language `Nix`.
@@ -445,7 +457,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Removed self customized comment/uncomment function due to `line-reminder` updates.
 * Added more company's backends to default usage.
 
-### 6.2.0
+## 6.2.0
+> Released Jul 10, 2020
 
 * Fixed `company-fuzzy` activation in `lsp-mode`.
 * Updated re-builder module functions.
@@ -467,7 +480,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Changed `Other` option to `ActorComponent` for proper naming when creating Unreal C++ file.
 * Relocated Unreal C++ template files.
 
-### 6.1.5
+## 6.1.5
+> Released Jun 28, 2020
 
 * Implemented create parent directory when find file not found.
 * Implemented remove virtual parent directory when killing virtual buffer.
@@ -481,7 +495,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Updated to record `*scratch*` starting content.
 * Fixed retrieve message erase buffer logic.
 
-### 6.1.4
+## 6.1.4
+> Released Jun 25, 2020
 
 * Fixed maybe kill buffer logic by not using regex for buffer check.
 * Updated buffer check with strict for not using regex check.
@@ -498,14 +513,16 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Updated `feebleline` for better priority.
 * Updated `jsx` default template for React.js.
 
-### 6.1.3
+## 6.1.3
+> Released Jun 14, 2020
 
 * Updated `feebleline` format to better standard/format.
 * Renamed repo to just `jcs-emacs`.
 * Improved certain modes' default template files.
 * Fixed csharp-like mixed c-like comment/docstring return logic.
 
-### 6.1.1
+## 6.1.1
+> Released Jun 12, 2020
 
 * Fixed goto dashboard command when dashboard buffer already shown issue.
 * Added minimum required Emacs version check.
@@ -541,7 +558,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Fixed `undo-tree` slow response when multiple undo/redo actions.
 * Implemented `lsp` connected flag util function.
 
-### 6.1.0
+## 6.1.0
+> Released May 16, 2020
 
 * Implemented find directories ignore directories function.
 * Implemented find files ignore directories function.
@@ -558,7 +576,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Implemented safe refresh `dashboard` functionality.
 * Fixed OOP docstring functionalitiy when no parameters.
 
-### 6.0.6
+## 6.0.6
+> Released Mar 23, 2020
 
 * Changed source for package `emoji-github` from `quelpa` to `melpa`.
 * Updated `diminsh-buffer` list for more of the LSP buffer.
@@ -589,7 +608,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Fixed load `eww` issue from emacs version `27.0.60`.
 * Installed new package `flycheck-grammarly`.
 
-### 6.0.5
+## 6.0.5
+> Released Feb 16, 2020
 
 * Implemented `neotree` recording the last window.
 * Tweak `neotree` customizable variables' value.
@@ -629,7 +649,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Updated `jQuery` snippet in `html-mode`, not slime use normal minified version.
 * Fixed `null` face highlighting regular expression.
 
-### 6.0.4
+## 6.0.4
+> Released Jan 9, 2020
 
 * Update upgrade manually installed package logic.
 * Installed new package manually => `tabulated-list-wrap`.
@@ -659,7 +680,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Added no advice other window flag for other function that doesn't want to configure
  buffer in window while switching window/frame.
 
-### 6.0.3
+## 6.0.3
+> Released Dec 28, 2019
 
 * Change default `define-it` to `'view` instead of `'pop`.
 * Fixed `lsp-ui` show prompting error while switching windows.
@@ -686,7 +708,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Integrated better `lsp` signature buffer to dual window users/configurations.
 * Organized to use `other-window` advice/hook instead of function wrapper.
 
-### 6.0.2
+## 6.0.2
+> Released Dec 23, 2019
 
 * Added window size change hook.
 * Fixed after resized frame ivy window doesn't get resize issue.
@@ -705,7 +728,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Fixed `ivy` switch to buffer other window logic.
 * Match enlarge/shrink windows times to `media` and `shell` windows.
 
-### 6.0.1
+## 6.0.1
+> Released Dec 15, 2019
 
 * Implemented new way to complete path using `ivy`.
 * Implemented auto resize in `ivy` minibuffer window.
@@ -714,12 +738,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Minor fixed for renaming inside minibuffer using `ivy`.
 * Installed new package => `company-quickhelp-terminal` manually.
 
-### 6.0.0
+## 6.0.0
+> Released Dec 10, 2019
 
 * Switched from `helm` to `ivy` due to `helm`'s instability.
-
-### 5.9.3
-
 * Removed manually installed package => `reveal-in-folder`.
 * Installed new package => `reveal-in-folder`.
 * Installed new package => `parse-it`.
@@ -732,17 +754,16 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Added more commands to eldoc activation trigger list.
 * Fixed Visual Studio dark theme color from line numbers.
 
-### 5.9.2
+## 5.9.2
+> Released Dec 2, 2019
 
 * Quick fixed for `helm` incompatible `completion-styles`.
 * Revert `helm` incompatible `completion-styles` changes.
 * Implemented set font util function.
-
-### 5.9.1
-
 * Minor fixed for iedit command when no kill ring.
 
-### 5.9.0
+## 5.9.0
+> Released Nov 29, 2019
 
 * Minor fixed for bury buffer function, it active only when `diminsh-buffer-mode` is on.
 * Fixed media window logic.
@@ -754,7 +775,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Implemented video player feature.
 * Fixed isearch not showing with the first two characters.
 
-### 5.8.9
+## 5.8.9
+> Released Nov 15, 2019
 
 * Implemented switch `output`/`compilation` buffer keys.
 * Make mode-line's color compatible to light theme.
@@ -768,7 +790,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Installed new package => `helm-describe-modes`.
 * Fixed `multi-shell` maybe shell buffer logic.
 
-### 5.8.8
+## 5.8.8
+> Released Nov 1, 2019
 
 * Defined goto definition functions.
 * Installed new package => `elisp-def`.
@@ -786,7 +809,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Fixed C-ret not doing anything with default.
 * Installed new package => `wiki-summary`.
 
-### 5.8.7
+## 5.8.7
+> Released Oct 22, 2019
 
 * Removed useless hl keyword => `OR`.
 * Instanlled new package => `visual-regexp`.
@@ -798,7 +822,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Start supported language => `Dockerfile`.
 * Set `smart-indent` as one option to move previous/next line.
 
-### 5.8.6
+## 5.8.6
+> Released Oct 5, 2019
 
 * Minor bug fixed - first window line pos inaccurate.
 * Minor bug fixed - avoid enable/disable line number mode if not needed because is quite expensive.
@@ -824,7 +849,8 @@ using `jit-lock-register` function.
 * Fixed `typescript-mode`'s highlighting.
 * Fixed empty param issue list.
 
-### 5.8.5
+## 5.8.5
+> Released Sep 24, 2019
 
 * Implemented ask line endings to set coding system interactive util function.
 * Added managed full test case for CI.
@@ -840,14 +866,16 @@ using `jit-lock-register` function.
 * Redesign comment faces with light/dark theme consideration.
 * Installed new package => `org-bullets`.
 
-### 5.8.4
+## 5.8.4
+> Released Sep 16, 2019
 
 * Fixed smart backspace/delete word key behaviour.
 * Installed new package => `quelpa`.
 * Fixed refresh buffer menu bug when switch buffer.
 * Fixed shell mode key bindings.
 
-### 5.8.3
+## 5.8.3
+> Released Sep 10, 2019
 
 * Implemented `buffer-menu` filtering with `flx`.
 * Implemented `mute-apply` util function.
@@ -857,7 +885,8 @@ using `jit-lock-register` function.
 * Fixed helm scrolling with window line height.
 * Fixed keys `C-c` and `C-x`.
 
-### 5.8.2
+## 5.8.2
+> Released Sep 3, 2019
 
 * Removed package `helm-flx`.
 * Installed new package => `helm-fuzzy`.
@@ -866,7 +895,8 @@ using `jit-lock-register` function.
 * Rearrange key specify by mode.
 * Clean up unused code from `jcs-buffer-menu.el` file.
 
-### 5.8.1
+## 5.8.1
+> Released Aug 25, 2019
 
 * Update buffer menu list when navigating through windows.
 * Installed new package => `helm-flx`.
@@ -879,7 +909,8 @@ using `jit-lock-register` function.
 * Diminish `emmet-mode`.
 * Diminish `company-fuzzy-mode`.
 
-### 5.8.0
+## 5.8.0
+> Released Aug 17, 2019
 
 * Complete key bindings document.
 * Installed new package => `flx`.
@@ -904,14 +935,12 @@ using `jit-lock-register` function.
 * Customize `feebleline` with system spaces or tabs displayed.
 * Customize `feebleline` with tab size displayed.
 
-### 5.7.3
+## 5.7.0
+> Released Jul 23, 2019
 
 * Complete more preprocessor highlighting.
 * Enabled `so-long-mode` as default.
 * Implemented `buffer menu`'s return key.
-
-### 5.7.1
-
 * Implemented realtime updating buffer menu.
 * Implemented filter functionality to buffer menu.
 * Customize `snippet-mode` by adding `jcs-snippet-mode.el` file.
@@ -922,9 +951,6 @@ using `jit-lock-register` function.
 * Fixed deletetion logic with tab width.
 * Prevent loggin when refreshing dashboard, too verbose loggnig.
 * Update `feebleline` customization.
-
-### 5.6.9
-
 * Installed new package => `feebleline`.
 * Customize `feebleline` for default mode-line toggle.
 * Implemented electric delete key.
@@ -932,43 +958,25 @@ using `jit-lock-register` function.
   - c-mode
   - c++-mode
   - csharp-mode
-
-### 5.6.7
-
 * Reverted package => `line-reminder`.
 * Removed manually installed package => `line-indicators`.
 * Set use linum when inside terminal for `line-reminder` package.
-
-### 5.6.5
-
 * Manually installed new package => `line-indicators`.
 * Removed package => `line-reminder`.
 * Installed new package => `centaur-tabs`.
 * Installed new package => `company-statistics`.
 * Removed package => `tabbar`.
-
-### 5.6.3
-
 * Fixed certain modes that does not apply `highlight-indent-guides` minor mode.
 * Rename backward/forward capitcal word keys, much better naming.
 * Fixed certain modes require error.
-
-### 5.6.1
-
 * Bind `package-list-packages` to `C-x C-p` instead of `C-p`.
 * Fixed iedit-mode logic.
 * Removed inconsistent key bindings for `c-mode` and `c++-mode`.
 * Added unity snippets => `csharp-mode`.
-
-### 5.5.7
-
 * Install new package => `highlight-indent-guides`.
 * Fixed `oop-func`'s built in docstring autoload.
 * Installed new package => `alt-codes`.
 * Implemented scratch other window function.
-
-### 5.5.5
-
 * Installed new package => `helm-file-preview`.
 * Fixed multiple with-eval-after-load function.
 * Implemented maybe kill `*scratch*` buffer function.
@@ -977,6 +985,7 @@ using `jit-lock-register` function.
 * Implemented multiple with-eval-after-load function.
 
 ### 5.5.3
+> Released Jun 25, 2019
 
 * Implemeneted cheat sheet functions.
 * Use regexp to ignore line numbers mode.
@@ -991,6 +1000,7 @@ using `jit-lock-register` function.
 * Implemented html preview function.
 
 ### 5.5.1
+> Released Jun 23, 2019
 
 * Clean up code for better load speed.
 * Fixed `helm-file-files` inserting `/` logic.
@@ -1005,6 +1015,7 @@ using `jit-lock-register` function.
 * Implemented autoloads functionalities to manually installed packages.
 
 ### 5.4.9
+> Released Jun 19, 2019
 
 * Implemented better dashboard buffer controlling util functions.
 * Clean up customizes code section to => `~/.emacs.d/.jcs-custom.el` file.
@@ -1013,6 +1024,7 @@ using `jit-lock-register` function.
 * Use `dumb-jump` replacing `helm-gtags` functionalities.
 
 ### 5.4.7
+> Released Jun 16, 2019
 
 * Fixed focus in, refresh dashboard buffer hanging issue.
 * Clean up log code.
@@ -1030,6 +1042,7 @@ using `jit-lock-register` function.
 * Added customize `yascroll` face by theme color function.
 
 ### 5.4.5
+> Released Jun 8, 2019
 
 * Fixed `helm-projectile` return key not exiting minibuffer issue.
 * Re-implements `helm-files` related functions. For find files other windows.
@@ -1039,11 +1052,13 @@ using `jit-lock-register` function.
 * Added more `helm` find files keymap to match OS's file explorer's navigation system.
 
 ### 5.4.3
+> Released Jun 2, 2019
 
 * Installed new pacakge => `esup`.
 * Clean package initialization using `require` keyword.
 
 ### 5.4.1
+> Released May 30, 2019
 
 * Fixed `50%` of config compile issues.
 * Enable compile version of this config.
@@ -1059,6 +1074,7 @@ using `jit-lock-register` function.
 * Fixed `compilation-mode-hook` from `jcs-env.el` file.
 
 ### 5.3.9
+> Released May 20, 2019
 
 * Reduced duplicated code in `jcs-comment.el` file.
 * Removed manually installed package => `show-eol`.
@@ -1103,6 +1119,7 @@ using `jit-lock-register` function.
 * Minor fixed with some typo.
 
 ### 5.3.7
+> Released Apr 22, 2019
 
 * Installed new pacakge => `goto-char-preview`.
 * Added new snippet for `react.js` in html.
@@ -1132,6 +1149,7 @@ using `jit-lock-register` function.
 * Complete set of manual install package section.
 
 ### 5.3.5
+> Released Apr 15, 2019
 
 * Implements selecting windows by using windows' index.
 * Removed `elpy` package.
@@ -1152,12 +1170,14 @@ using `jit-lock-register` function.
 * Added `jcs-properties-mode.el` for supporting java properties file.
 
 ### 5.3.3
+> Released Apr 12, 2019
 
 * Installed new pacakge => `dashboard`.
 * Installed new pacakge => `beacon`.
 * Minor fixed from version `5.3.2`.
 
 ### 5.3.2
+> Released Apr 11, 2019
 
 * Added `gitconfig` configurations.
 * Use `with-eval-after-load` macro to speed up startup time.
@@ -1167,6 +1187,7 @@ using `jit-lock-register` function.
 * Added `show hover` function related to VSCode `Show Hover` key.
 
 ### 5.3.1
+> Released Apr 9, 2019
 
 * Kill `undo-tree-visualizer` when killing undoing buffer.
 * Start adding own snippets using `yasnippet`.
@@ -1206,6 +1227,7 @@ using `jit-lock-register` function.
 * Simplify code in `jcs-oop.el` file.
 
 ### 5.2.9
+> Released Mar 28, 2019
 
 * Implements `typescript-mode` docstring.
 * Added `Startup Time` section in the `README.md` file for describing the
@@ -1245,6 +1267,7 @@ file that uses `line-reminder` mode use `linum-mode`.  Other we use `display-lin
 * Fixed check `truncate-lines`, this isn't minor-mode is actually a variable with t or nil.
 
 ### 5.2.5
+> Released Mar 11, 2019
 
 * Installed new pacakge => `indicators`.
 * Implements toggle transparency window that will record dowwn
@@ -1259,6 +1282,7 @@ variable instead of fiddle method of fixing this issue.
 * Revert part of the code, fixed indentation incorrect when doing docstring comment style.
 
 ### 5.2.4
+> Released Mar 6, 2019
 
 * Added screen config section => `jcs-env.el` file.
 * Added goto-line-preview section and configurations.
@@ -1304,6 +1328,7 @@ on the second window in the current frame. Notice this is only a temporary fixed
 * Load set init face in js2-mode.
 
 ### 5.2.2
+> Released Feb 6, 2019
 
 * Manually update manual packages.
 * Fixed readme description.
@@ -1324,6 +1349,7 @@ on the second window in the current frame. Notice this is only a temporary fixed
 * Fixed python insert docstring function, for second situation, between two double quotes.
 
 ### 5.2.1
+> Released Jan 2, 2019
 
 * Remove history, is no longer needed.
 * Added load face order, and just reload instead of operate the list functions.
@@ -1364,6 +1390,7 @@ on the second window in the current frame. Notice this is only a temporary fixed
  => jcs-buffer-showns function in jcs-window.el file.
 
 ### 5.1.9
+> Released Dec 3, 2018
 
 * Bug fixed, make percise return key for web-mode => jcs-web-return-key.
 * Added gitattribute custom mode hook.
@@ -1392,6 +1419,7 @@ missing when editing file using web-mode.
 * Fixed weird insert header file format's function description in each mode file.
 
 ### 5.1.7
+> Released Oct 11, 2018
 
 * Start support TypeScript file, install major mode typescript-mode.
 * Added typescript header format template.
@@ -1418,6 +1446,7 @@ missing when editing file using web-mode.
 * Change the `default-directory' variable when compiling a script to the directory the current script is currently at.
 
 ### 5.1.5
+> Released Sep 26, 2018
 
 * Implement the following three util functions..
    => jcs-current-whitespace-p
@@ -1450,6 +1479,7 @@ specific mode that needed to have vs like function key bindings in it.
 * Rearrange package dependencies package list.
 
 ### 5.1.3
+> Released Jul 20, 2018
 
 * Added 'use-package' package to pre-install package list.
 * Update license and prorject version to 5.1.3.
@@ -1480,6 +1510,7 @@ specific mode that needed to have vs like function key bindings in it.
 * Bind save buffer key with set file coding system functionality in `sh-mode`.
 
 ### 5.1.0
+> Released Jun 16, 2018
 
 * Added # to all interactive function operative and add new key binding toggle enlarge window selected key.
 * Added few balance window functions and enlarget current selected window function.
@@ -1540,6 +1571,7 @@ for `jcs-select-find-file-in-project' function.
 * Package 'organize-imports-java' is on melpa, no longer need to manually install the package.
 
 ### 5.0.0
+> Released May 25, 2018
 
 * Update 'use-ttf' package manually to 20180525.
 * Trasnfer data from `.emacs.d' to `.emacs.jcs'.
@@ -1586,6 +1618,7 @@ pretty well.
 * Added `jcs-shell-mode.el` file for shell mode managing.
 
 ### 4.8.1
+> Released May 12, 2018
 
 * Complete all naming convention to `jcs`.
 * Make one history => ### 2018-05-11.
@@ -1611,6 +1644,7 @@ check on the first character.
 * Added web-mode rewrapper function for future handy use.
 
 ### 4.7.4
+> Released May 4, 2018
 
 * Check end of line trigger enable/disable auto truncate lines effect.
 * Remove unuse readme file -> README.txt.
@@ -1648,6 +1682,7 @@ The implementation can be found in `jcs-helm-do-ag-this-file'` function.
 * Added empty line between two lines of code functionalities.
 
 ### 4.7.1
+> Released Apr 4, 2018
 
 * Added `which-key` package to pre-install list.
 * Added `which-key` config.
