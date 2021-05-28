@@ -360,11 +360,11 @@ See function `jcs-string-compare-p' for argument TYPE."
 ;; (@* "Time" )
 ;;
 
-(defun jcs-get-timestamp-ver1 ()
+(defun jcs-timestamp-ver1 ()
   "Get timestamp version 1."
   (format-time-string "%Y-%m-%d %H:%M:%S"))
 
-(defun jcs-get-timestamp-ver2 ()
+(defun jcs-timestamp-ver2 ()
   "Get timestamp version 2."
   (format-time-string "%Y/%m/%d %H:%M:%S"))
 
@@ -376,15 +376,19 @@ See function `jcs-string-compare-p' for argument TYPE."
   "Get date buffer in string type - version 2."
   (format-time-string "%Y/%m/%d"))
 
-(defun jcs-get-month-only-abbrev ()
+(defun jcs-month-only ()
+  "Get Month buffer in string type."
+  (format-time-string "%B"))
+
+(defun jcs-month-only-abbrev ()
   "Get Month buffer in string type."
   (format-time-string "%b"))
 
-(defun jcs-get-day-only ()
+(defun jcs-day-only ()
   "Get day buffer in string type."
   (format-time-string "%d"))
 
-(defun jcs-get-year-only ()
+(defun jcs-year-only ()
   "Get Year buffer in string type."
   (format-time-string "%Y"))
 
@@ -397,8 +401,8 @@ See function `jcs-string-compare-p' for argument TYPE."
   "Print out all the timestamps."
   (interactive)
   (message (jcs-env-separator))
-  (message "=> Ver. 1 %s" (jcs-get-timestamp-ver1))
-  (message "=> Ver. 2 %s" (jcs-get-timestamp-ver2))
+  (message "=> Ver. 1 %s" (jcs-timestamp-ver1))
+  (message "=> Ver. 2 %s" (jcs-timestamp-ver2))
   (message (jcs-env-separator))
   (message "[INFO] All version of timestamps printed.")
   (jcs-do-after-log-action))
