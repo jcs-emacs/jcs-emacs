@@ -177,7 +177,7 @@
   (setq dashboard-banner-logo-title "[J C S • E M A C S]"
         dashboard-footer-icon ""
         dashboard-footer-messages
-        `(,(format "Copyright (c) %s %s" (jcs-get-year-only) (jcs-copyright-info)))
+        `(,(format "Copyright (c) %s %s" (jcs-year-only) (jcs-copyright-info)))
         dashboard-items '((recents . 10)
                           (projects . 10)
                           ;;(bookmarks . 10)
