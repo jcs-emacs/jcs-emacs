@@ -5,7 +5,7 @@
 ;;; `(jcs-get-file-name)` --- $1  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) `(jcs-year-only)`  Shen, Jen-Chieh
-;; Created date `(jcs-get-timestamp-ver1)`
+;; Created date `(jcs-timestamp-ver1)`
 
 ;; Author: Shen, Jen-Chieh <jcs090218@gmail.com>
 ;; Description: $2
