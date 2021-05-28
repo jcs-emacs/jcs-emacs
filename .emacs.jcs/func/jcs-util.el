@@ -376,6 +376,14 @@ See function `jcs-string-compare-p' for argument TYPE."
   "Get date buffer in string type - version 2."
   (format-time-string "%Y/%m/%d"))
 
+(defun jcs-get-month-only-abbrev ()
+  "Get Month buffer in string type."
+  (format-time-string "%b"))
+
+(defun jcs-get-day-only ()
+  "Get day buffer in string type."
+  (format-time-string "%d"))
+
 (defun jcs-get-year-only ()
   "Get Year buffer in string type."
   (format-time-string "%Y"))
