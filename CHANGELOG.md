@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
+### 2021-05-28
+
+* Use default `undo` when `undo-tree` not enabled.
+
 ### 2021-05-20
 
 * Fix logic while installing pinned packages as dependency.
