@@ -5,7 +5,7 @@
 Title: ${1:YOUR_TITLE}
 Credit: written by
 Author: ${2:CREATOR_NAME}
-Copyright: (c) `(jcs-get-year-only)` ${3:COPYRIGHT_INFO}
+Copyright: (c) `(jcs-year-only)` ${3:COPYRIGHT_INFO}
 
 ${4:SCRRENPLAY_DESCRIPTION}
 

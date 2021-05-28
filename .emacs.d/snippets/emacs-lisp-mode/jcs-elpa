@@ -4,7 +4,7 @@
 # --
 ;;; `(jcs-get-file-name)` --- $1  -*- lexical-binding: t; -*-
 
-;; Copyright (C) `(jcs-get-year-only)`  Shen, Jen-Chieh
+;; Copyright (C) `(jcs-year-only)`  Shen, Jen-Chieh
 
 ;; Author: Shen, Jen-Chieh <jcs090218@gmail.com>
 ;; Maintainer: Shen, Jen-Chieh <jcs090218@gmail.com>

@@ -15,5 +15,5 @@ Target Server Type    : $server_type$
 Target Server Version : $server_version$
 File Encoding         : $file_encoding$
 
-Date: `(jcs-get-timestamp-ver1)`
+Date: `(jcs-timestamp-ver1)`
 */
