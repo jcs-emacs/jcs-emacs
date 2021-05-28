@@ -960,13 +960,10 @@ using `jit-lock-register` function.
 * Removed inconsistent key bindings for `c-mode` and `c++-mode`.
 * Added unity snippets => `csharp-mode`.
 
-### 5.5.9
+### 5.5.7
 
 * Install new package => `highlight-indent-guides`.
 * Fixed `oop-func`'s built in docstring autoload.
-
-### 5.5.7
-
 * Installed new package => `alt-codes`.
 * Implemented scratch other window function.
 
