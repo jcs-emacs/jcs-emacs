@@ -163,13 +163,15 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
 (defun jcs-undo ()
   "Undo key."
   (interactive)
-  (jcs--undo-or-redo t))
+  (unless (ignore-errors (jcs--undo-or-redo t))
+    (call-interactively #'undo)))
 
 ;;;###autoload
 (defun jcs-redo ()
   "Redo key."
   (interactive)
-  (jcs--undo-or-redo nil))
+  (unless (ignore-errors (jcs--undo-or-redo nil))
+    (call-interactively #'undo)))
 
 ;;
 ;; (@* "Indentation" )
