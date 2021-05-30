@@ -759,7 +759,6 @@
         lsp-ui-doc-delay 0.6
         lsp-ui-doc-include-signature t
         lsp-ui-doc-position 'at-point
-        lsp-ui-doc-border (face-foreground 'default)
         lsp-eldoc-enable-hover nil
         lsp-ui-imenu-enable t
         lsp-ui-imenu-colors `(,(face-foreground 'font-lock-keyword-face)
@@ -775,6 +774,7 @@
     (when (and (functionp 'lsp-ui-doc--hide-frame) (not jcs--lsp-lv-recording))
       (lsp-ui-doc--hide-frame)))
   :config
+  (setq lsp-ui-doc-border (face-foreground 'font-lock-comment-face))
   (lsp-ui-sideline-set-default-icon))
 
 (use-package most-used-words
