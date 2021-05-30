@@ -853,8 +853,7 @@
        (t nil))))
   (set-face-attribute 'origami-fold-replacement-face nil
                       :foreground "#808080"
-                      :box '(:line-width -1 :style 'pressed-button))
-  (global-origami-mode t))
+                      :box '(:line-width -1 :style 'pressed-button)))
 
 (use-package popup
   :config
