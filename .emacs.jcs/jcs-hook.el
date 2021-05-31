@@ -142,6 +142,8 @@
     (indent-control-mode 1)
     ;;----------------------------------- `ivy'
     (ivy-mode 1)
+    ;;----------------------------------- `origami'
+    (global-origami-mode 1)
     ;;----------------------------------- `page-break-lines'
     (global-page-break-lines-mode 1)
     ;;----------------------------------- `powerline'
@@ -185,16 +187,6 @@
   ;; IMPORTANT: This should always be the last thing.
   (jcs-dashboard-init-info))
 (add-hook 'after-init-hook 'jcs-after-init-hook)
-
-;;
-;; (@* "Before/After Changes" )
-;;
-
-(defun jcs-before-change-functions (&rest _)
-  "Hook run before changes."
-  (when (and (featurep 'origami) origami-mode)
-    (ignore-errors (jcs-open-node))))
-(add-hook 'before-change-functions 'jcs-before-change-functions)
 
 ;;
 ;; (@* "Pre/Post Command" )
