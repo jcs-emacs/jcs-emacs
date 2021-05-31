@@ -301,6 +301,7 @@ Note this is opposite logic to the toggle mode function."
   (auto-highlight-symbol-mode t)
   (goto-address-mode 1)
   (highlight-indent-guides-mode 1)
+  (origami-mode 1)
 
   (jcs-insert-header-if-valid '("\\(/\\|\\`\\)[Ll][Ii][Cc][Ee][Nn][Ss][Ee]")
                               'jcs-ask-insert-license-content
@@ -342,7 +343,8 @@ To avoid syntax highlighting error for comment.")
   (electric-pair-mode 1)
   (goto-address-mode 1)
   (highlight-indent-guides-mode 1)
-  (highlight-numbers-mode 1))
+  (highlight-numbers-mode 1)
+  (origami-mode 1))
 
 (add-hook 'prog-mode-hook 'jcs-prog-mode-hook)
 (add-hook 'prog-mode-hook 'jcs-active-lsp-mode-hook)
