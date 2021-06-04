@@ -10,7 +10,7 @@
           "Major source for this CSharp file: " '("Default" "Unity Scripting"))))
   (pcase sc
     ("Default" (jcs-insert-csharp-template))
-    ("Unity Scripting") (jcs-insert-csharp-unity-template)))
+    ("Unity Scripting" (jcs-insert-csharp-unity-template))))
 
 (defun jcs-vs-csharp-comment-prefix-p ()
   "Return non-nil if current line is Visual Studio's style comment prefix."
