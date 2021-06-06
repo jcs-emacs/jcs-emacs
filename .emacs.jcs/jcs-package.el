@@ -143,6 +143,7 @@
     lsp-haskell
     lsp-java
     lsp-latex
+    lsp-ltex
     lsp-mssql
     lsp-origami
     lsp-pascal
