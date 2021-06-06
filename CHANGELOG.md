@@ -53,6 +53,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Remove package `reload-emacs`.
 * Remove package `test-sha`.
 * Add template and basic configuration for AppleScript file.
+* Install new package `lsp-ltex`.
+* Stop guessing indent level for python file.
 
 ## 6.4.2
 > Released Feb 24, 2021
