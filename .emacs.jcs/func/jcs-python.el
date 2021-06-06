@@ -4,6 +4,8 @@
 
 (require 'python-mode)
 
+(setq python-indent-guess-indent-offset nil)
+
 ;;;###autoload
 (defun jcs-py-indent-region ()
   "Indent region for `python-mode'."
