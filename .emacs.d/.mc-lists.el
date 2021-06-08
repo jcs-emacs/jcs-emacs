@@ -158,6 +158,7 @@
         diminish-buffer-mode
         emmet-prev-edit-point
         feebleline-mode
+        handle-switch-frame
         helm-M-x
         helm-find-files
         iedit-switch-to-mc-mode
