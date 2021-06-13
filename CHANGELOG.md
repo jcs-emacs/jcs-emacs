@@ -55,6 +55,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add template and basic configuration for AppleScript file.
 * Install new package `lsp-ltex`.
 * Stop guessing indent level for python file.
+* Install new package `flycheck-languagetool`.
 
 ## 6.4.2
 > Released Feb 24, 2021
