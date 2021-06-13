@@ -95,6 +95,7 @@
     fill-page
     flx
     flycheck-grammarly
+    flycheck-languagetool
     flycheck-popup-tip
     flycheck-pos-tip
     fountain-mode
