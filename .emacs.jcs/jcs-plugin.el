@@ -889,6 +889,10 @@
       (when do-orig-fun (apply orig-fun args))))
   (advice-add 'popup-draw :around #'jcs--popup-draw--advice-around))
 
+(use-package pos-tip
+  :init
+  (setq pos-tip-internal-border-width 5))
+
 (use-package powerline
   :init
   (setq powerline-default-separator 'wave)
