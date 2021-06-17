@@ -50,9 +50,11 @@
                       :background (face-background 'default))
   ;; Header
   (set-face-attribute 'markdown-header-face nil
-                      :foreground "#B5CCEB")
+                      :foreground "#B5CCEB"
+                      :background (face-background 'default))
   (set-face-attribute 'markdown-header-delimiter-face nil
-                      :foreground "#B5CCEB"))
+                      :foreground "#B5CCEB"
+                      :background (face-background 'default)))
 
 (provide 'jcs-markdown)
 ;;; jcs-markdown.el ends here
