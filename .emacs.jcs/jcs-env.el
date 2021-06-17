@@ -284,7 +284,8 @@ P.S. You would need to restart Emacs to take effect from this variable."
   :group 'jcs)
 
 ;;; Process
-(setq kill-buffer-query-functions nil)
+(setq kill-buffer-query-functions nil
+      read-process-output-max (* 1024 1024))  ; 1MB
 
 ;;; Recent Files
 (setq recentf-max-menu-items 25)
