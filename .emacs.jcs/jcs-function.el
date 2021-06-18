@@ -770,9 +770,7 @@ VEC : Either position or negative number."
 
 STRING is the content of the toolip. The location POINT. TIMEOUT for not forever
 delay. HEIGHT of the tooltip that will display."
-  (require 'flycheck)
-  (require 'pos-tip)
-  (require 'popup)
+  (require 'flycheck) (require 'pos-tip) (require 'popup)
   (let ((was-flycheck flycheck-mode))
     (if (display-graphic-p)
         (pos-tip-show string `(,company-quickhelp-color-foreground . ,company-quickhelp-color-background) point nil timeout)
@@ -893,9 +891,11 @@ NO-PROMPT : Don't prompt the overwrap message."
   "Reset yascroll color base on the theme color."
   (interactive)
   (let ((target-color (if (jcs-is-light-theme-p) "#C2C3C9" "#686868")))
-    (set-face-attribute 'yascroll:thumb-fringe nil
-                        :background target-color
-                        :foreground target-color)))
+    (if (display-graphic-p)
+        (set-face-attribute 'yascroll:thumb-fringe nil
+                            :background target-color :foreground target-color)
+      (set-face-attribute 'yascroll:thumb-text-area nil
+                          :background target-color :foreground target-color))))
 
 ;;
 ;; (@* "Yasnippet" )
