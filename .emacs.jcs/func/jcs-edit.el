@@ -689,13 +689,13 @@ Argument CLEAN-LR see function `jcs-revert-buffer-no-confirm' description."
       (when (and (buffer-name buf) (jcs-revert-buffer-p buf type))
         (with-current-buffer buf (jcs-revert-buffer-no-confirm clean-lr))))))
 
-(defun jcs-revert-all-valid-buffers (type &optional clean-lr)
+(defun jcs-revert-all-valid-invalid-buffers (buf-lst type &optional clean-lr)
   "Revert all valid buffers.
 
 Argument TYPE see function `jcs-revert-buffer-p' description.
 
 Argument CLEAN-LR see function `jcs-revert-buffer-no-confirm' description."
-  (let ((buf-lst (jcs-valid-buffer-list)) filename normal-buffer-p do-revert-p)
+  (let (filename normal-buffer-p do-revert-p)
     (dolist (buf buf-lst)
       (setq filename (buffer-file-name buf)
             normal-buffer-p (and filename
@@ -715,14 +715,21 @@ Argument CLEAN-LR see function `jcs-revert-buffer-no-confirm' description."
 
 (defun jcs-revert-all-valid-buffers--internal ()
   "Internal function to revert all valid buffers."
-  (save-window-excursion (jcs-revert-all-valid-buffers nil)))
+  (save-window-excursion
+    (jcs-revert-all-valid-invalid-buffers (jcs-invalid-buffer-list) nil)))
+
+(defun jcs-revert-all-invalid-buffers--internal ()
+  "Internal function to revert all valid buffers."
+  (save-window-excursion
+    (jcs-revert-all-valid-invalid-buffers (jcs-ininvalid-buffer-list) nil)))
 
 ;;;###autoload
 (defun jcs-revert-all-buffers ()
   "Refresh all open file buffers without confirmation."
   (interactive)
   (jcs-revert-all-virtual-buffers--internal)
-  (jcs-revert-all-valid-buffers--internal))
+  (jcs-revert-all-valid-buffers--internal)
+  (jcs-revert-all-invalid-buffers--internal))
 
 (defun jcs-ask-revert-all (bufs &optional index)
   "Ask to revert all buffers decided by ANSWER.
