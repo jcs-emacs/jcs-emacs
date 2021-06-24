@@ -115,7 +115,8 @@ time is displayed."
     (and bfn (file-exists-p bfn))))
 
 (defun jcs-invalid-buffer-p (&optional buffer)
-  "Return non-nil if buffer does't exists on disk but has a valid file path."
+  "Return non-nil if buffer does't exists on disk but has a valid file path.
+This occurs when file was opened but has moved to somewhere else externally."
   (let ((bfn (buffer-file-name buffer)))
     (and bfn (not (file-exists-p bfn)))))
 
@@ -131,11 +132,19 @@ time is displayed."
     (dolist (buf buf-lst) (when (jcs-valid-buffer-p buf) (push buf lst)))
     (reverse lst)))
 
+(defun jcs-invalid-buffer-list ()
+  "Return a list of invalid buffers."
+  (let ((buf-lst (buffer-list)) (lst '()))
+    (dolist (buf buf-lst) (when (jcs-invalid-buffer-p buf) (push buf lst)))
+    (reverse lst)))
+
 (defun jcs-valid-buffers-count ()
-  "See how many valid buffers in the `buffer-list'.
-Including buffers like `*GNU Emacs*', `*scratch*', etc.
-Return number of the valid buffers."
+  "Return number of the valid buffers."
   (length (jcs-valid-buffer-list)))
+
+(defun jcs-invalid-buffers-count ()
+  "Return number of the invalid buffers."
+  (length (jcs-invalid-buffer-list)))
 
 (defun jcs-valid-buffers-exists-p ()
   "Check to see if any valid buffer exists in buffer list."
