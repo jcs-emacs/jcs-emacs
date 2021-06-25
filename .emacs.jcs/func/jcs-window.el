@@ -202,7 +202,7 @@ of utility frame."
 (defun jcs-window-type-list-in-column (type)
   "Return the list of TYPE in column.
 TYPE can be 'buffer or 'window."
-  (let ((type-list '()) (break nil) (windmove-wrap-around nil))
+  (let ((type-list '()) break windmove-wrap-around)
     (save-selected-window
       (jcs-move-to-upmost-window t)
       (while (not break)
@@ -291,7 +291,7 @@ TYPE can be 'buffer or 'window."
 i.e. change right window to bottom, or change bottom window to right."
   (interactive)
   (save-selected-window
-    (let ((win-len (count-windows)) (windmove-wrap-around nil))
+    (let ((win-len (count-windows)) windmove-wrap-around)
       (if (= win-len 2)
           (let ((other-win-buf nil) (split-h-now t) (window-switched nil))
             (when (or (window-in-direction 'above) (window-in-direction 'below))
@@ -327,30 +327,29 @@ i.e. change right window to bottom, or change bottom window to right."
   "Return the next window that have larger height in column."
   (other-window 1 t)
   (let (larger-window)
-    (jcs-walk-through-all-windows-once
-     (lambda ()
-       (when (and (not larger-window) (jcs-window-is-larger-in-height-p))
+    (walk-windows
+     (lambda (win)
+       (when (and (not larger-window) (jcs-window-is-larger-in-height-p win))
          (setq larger-window (selected-window)))))
     larger-window))
 
-(defun jcs-window-is-larger-in-height-p ()
+(defun jcs-window-is-larger-in-height-p (&optional window)
   "Get the window that are larget than other windows in vertical/column."
-  (let ((jcs-walking-through-windows-p t)
-        (current-height (window-height)) (is-larger t))
-    (dolist (win (jcs-window-type-list-in-column 'window))
-      (when (> (window-height win) current-height)
-        (setq is-larger nil)))
-    is-larger))
+  (unless window (setq window (selected-window)))
+  (with-selected-window window
+    (let ((jcs-walking-through-windows-p t)
+          (current-height (window-height)) (is-larger t))
+      (dolist (win (jcs-window-type-list-in-column 'window))
+        (when (> (window-height win) current-height)
+          (setq is-larger nil)))
+      is-larger)))
 
 ;;;###autoload
 (defun jcs-move-to-upmost-window (&optional not-all-frame)
   "Move to the upmost window by flag NOT-ALL-FRAME."
   (interactive)
   (if not-all-frame
-      (let ((was-wrap-around windmove-wrap-around))
-        (setq windmove-wrap-around nil)
-        (while (ignore-errors (windmove-up)))
-        (setq windmove-wrap-around was-wrap-around))
+      (let (windmove-wrap-around) (while (ignore-errors (windmove-up))))
     (jcs-ace-window-min)))
 
 ;;;###autoload
@@ -358,10 +357,7 @@ i.e. change right window to bottom, or change bottom window to right."
   "Move to the downmost window by flag NOT-ALL-FRAME."
   (interactive)
   (if not-all-frame
-      (let ((was-wrap-around windmove-wrap-around))
-        (setq windmove-wrap-around nil)
-        (while (ignore-errors (windmove-down)))
-        (setq windmove-wrap-around was-wrap-around))
+      (let (windmove-wrap-around) (while (ignore-errors (windmove-down))))
     (jcs-ace-window-max)))
 
 ;;;###autoload
@@ -369,10 +365,7 @@ i.e. change right window to bottom, or change bottom window to right."
   "Move to the leftmost window by flag NOT-ALL-FRAME."
   (interactive)
   (if not-all-frame
-      (let ((was-wrap-around windmove-wrap-around))
-        (setq windmove-wrap-around nil)
-        (while (ignore-errors (windmove-left)))
-        (setq windmove-wrap-around was-wrap-around))
+      (let (windmove-wrap-around) (while (ignore-errors (windmove-left))))
     (jcs-ace-window-min)))
 
 ;;;###autoload
@@ -380,10 +373,7 @@ i.e. change right window to bottom, or change bottom window to right."
   "Move to the rightmost window by flag NOT-ALL-FRAME."
   (interactive)
   (if not-all-frame
-      (let ((was-wrap-around windmove-wrap-around))
-        (setq windmove-wrap-around nil)
-        (while (ignore-errors (windmove-right)))
-        (setq windmove-wrap-around was-wrap-around))
+      (let (windmove-wrap-around) (while (ignore-errors (windmove-right))))
     (jcs-ace-window-max)))
 
 ;;
