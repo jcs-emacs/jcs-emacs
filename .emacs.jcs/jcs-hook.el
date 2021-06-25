@@ -73,7 +73,7 @@
 (defun jcs--other-window--advice-before (&rest _)
   "Advice execute before `other-window' command."
   (unless jcs-walking-through-windows-p
-    (when (fboundp 'company-abort) (company-abort))))
+    (jcs-funcall-fboundp 'company-abort)))
 (advice-add 'other-window :before #'jcs--other-window--advice-before)
 
 (defun jcs--other-window--advice-after (count &rest _)
