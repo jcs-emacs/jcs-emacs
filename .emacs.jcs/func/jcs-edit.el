@@ -87,8 +87,7 @@ This will no longer overwrite usual Emacs' undo key."
 
 (defun jcs-undo-tree-visualize ()
   "Call `undo-tree-visualize' only in window that has higher height."
-  (let ((win-len (jcs-count-windows)) (win-index 0)
-        (current-window (selected-window))
+  (let ((win-len (jcs-count-windows)) (current-window (selected-window))
         target-window)
     (when (< win-len 2)
       (jcs-balance-split-window-horizontally)
