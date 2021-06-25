@@ -85,46 +85,30 @@ This will no longer overwrite usual Emacs' undo key."
    :type 'strict
    :success (lambda () (bury-buffer))))
 
-(defun jcs-undo-tree-visualize (&optional cbf)
-  "Call `undo-tree-visualize' only in window that has higher height.
-CBF : Current buffer file name."
+(defun jcs-undo-tree-visualize ()
+  "Call `undo-tree-visualize' only in window that has higher height."
   (let ((jcs-walking-through-windows-p t)
         (win-len (jcs-count-windows)) (win-index 0)
-        (target-window nil)
-        (rel-cbf (if cbf cbf (buffer-name)))
-        (current-window (selected-window)))
+        (current-window (selected-window))
+        target-window)
     (when (< win-len 2)
       (jcs-balance-split-window-horizontally)
       (setq jcs--undo-splits-windows t))
     (save-selected-window
       (other-window 1)
-      (jcs-walk-through-all-windows-once
-       (lambda ()
+      (walk-windows
+       (lambda (win)
          (unless target-window
-           (when (and
-                  (not (equal (selected-window) current-window))
-                  (not (jcs-buffer-name-this jcs--lsp-lv-buffer-name))
-                  (not (jcs-frame-util-p))
-                  (jcs-window-is-larger-in-height-p))
-             (setq target-window (selected-window))))))
-      (unless target-window
-        (other-window 1)
-        (jcs-walk-through-all-windows-once
-         (lambda ()
-           (unless target-window
+           (with-selected-window win
              (when (and
-                    (not (equal (selected-window) current-window))
+                    (not (eq (selected-window) current-window))
                     (not (jcs-buffer-name-this jcs--lsp-lv-buffer-name))
-                    (not (jcs-frame-util-p)))
-               (setq target-window (selected-window)))))))
-      (select-window target-window)
-      ;; NOTE: We need to go back two windows in order to make the
-      ;; `undo-tree-visualize' buffer to display in the next window.
-      (progn (other-window -2) (other-window 1))
-      (let ((bf-before-switched (buffer-name)))
-        (switch-to-buffer rel-cbf)
-        (save-selected-window (undo-tree-visualize))
-        (switch-to-buffer bf-before-switched)))))
+                    (not (jcs-frame-util-p))
+                    (jcs-window-is-larger-in-height-p))
+               (setq target-window (selected-window))))))))
+    (save-window-excursion (undo-tree-visualize))
+    (with-selected-window target-window
+      (switch-to-buffer undo-tree-visualizer-buffer-name))))
 
 (defun jcs--undo-tree-visualizer--do-diff ()
   "Do show/hide diff for `undo-tree'."
@@ -155,7 +139,7 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
        (jcs--undo-tree-visualizer--do-diff))
      :error
      (lambda ()
-       (if ud (undo-tree-undo) (undo-tree-redo))
+       (save-selected-window (if ud (undo-tree-undo) (undo-tree-redo)))
        (jcs-undo-tree-visualize)
        (jcs--undo-tree-visualizer--do-diff)))))
 
@@ -716,12 +700,12 @@ Argument CLEAN-LR see function `jcs-revert-buffer-no-confirm' description."
 (defun jcs-revert-all-valid-buffers--internal ()
   "Internal function to revert all valid buffers."
   (save-window-excursion
-    (jcs-revert-all-valid-invalid-buffers (jcs-invalid-buffer-list) nil)))
+    (jcs-revert-all-valid-invalid-buffers (jcs-valid-buffer-list) nil)))
 
 (defun jcs-revert-all-invalid-buffers--internal ()
   "Internal function to revert all valid buffers."
   (save-window-excursion
-    (jcs-revert-all-valid-invalid-buffers (jcs-ininvalid-buffer-list) nil)))
+    (jcs-revert-all-valid-invalid-buffers (jcs-invalid-buffer-list) nil)))
 
 ;;;###autoload
 (defun jcs-revert-all-buffers ()
@@ -754,7 +738,8 @@ Do you want to reload it and lose the changes made in this source editor? ")
          (with-current-buffer buf (jcs-revert-buffer-no-confirm t))
          (jcs-ask-revert-all bufs index))
         ("Yes to All"
-         (jcs-revert-all-valid-buffers--internal))
+         (jcs-revert-all-valid-buffers--internal)
+         (jcs-revert-all-invalid-buffers--internal))
         ("No"
          (jcs-ask-revert-all bufs index))
         ;; Does nothing, exit.
@@ -777,16 +762,18 @@ This function is used to check for lose changes from source editor."
 
 (defun jcs-un-save-modified-buffers ()
   "Return non-nil if there is un-save modified buffer."
-  (let ((buf-lst (jcs-valid-buffer-list)) un-save-buf-lst)
+  (let ((buf-lst (jcs-valid-buffer-list))
+        un-save-buf-lst)
     (dolist (buf buf-lst)
-      (when (jcs-un-save-buffer-edit-externally-p buf) (push buf un-save-buf-lst)))
+      (when (jcs-un-save-buffer-edit-externally-p (get-buffer buf)) (push buf un-save-buf-lst)))
     (reverse un-save-buf-lst)))
 
 (defun jcs-safe-revert-all-buffers ()
   "Revert buffers in the safe way."
   (let ((un-save-buf-lst (jcs-un-save-modified-buffers)))
     (if un-save-buf-lst (jcs-ask-revert-all un-save-buf-lst)
-      (jcs-revert-all-valid-buffers--internal))
+      (jcs-revert-all-valid-buffers--internal)
+      (jcs-revert-all-invalid-buffers--internal))
     (when (jcs-buffer-list-shown-p jcs-revert-default-buffers 'regex)
       (jcs-revert-all-virtual-buffers--internal))))
 
@@ -951,7 +938,7 @@ This variable is used to check if file are edited externally.")
 
 (defun jcs--save-buffer--advice-before (&rest _)
   "Execution before function `save-buffer'."
-  (when (fboundp 'company-abort) (company-abort)))
+  (jcs-funcall-fboundp 'company-abort))
 (advice-add 'save-buffer :before #'jcs--save-buffer--advice-before)
 
 (defun jcs--save-buffer--advice-after (&rest _)
