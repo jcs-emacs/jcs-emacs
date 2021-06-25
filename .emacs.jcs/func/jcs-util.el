@@ -1777,11 +1777,11 @@ If TRIM is non-nil, trim the string before return it."
 Optional argument REP is the replacement string of non-displayable character."
   (unless rep (setq rep ""))
   (let ((result ""))
-    (mapcar (lambda (ch)
-              (setq result (concat result
-                                   (if (char-displayable-p ch) (string ch)
-                                     rep))))
-            str)
+    (mapc (lambda (ch)
+            (setq result (concat result
+                                 (if (char-displayable-p ch) (string ch)
+                                   rep))))
+          str)
     result))
 
 ;;
