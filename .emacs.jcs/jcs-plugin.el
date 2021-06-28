@@ -12,7 +12,7 @@
 
 (use-package auto-highlight-symbol
   :init
-  (setq ahs-idle-interval 0.3))
+  (setq ahs-idle-interval 0.2))
 
 (use-package auto-read-only
   :config
