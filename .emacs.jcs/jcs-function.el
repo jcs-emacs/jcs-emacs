@@ -555,6 +555,16 @@ If optional argument FORCE is non-nil, force refresh it."
   (user-error "Minimap no longer supported in this configuration"))
 
 ;;
+;; (@* "Parentheses" )
+;;
+
+(defun jcs-reset-show-paren-by-theme ()
+  "Reset `paren' by theme."
+  (require 'paren)
+  (let ((color (if (jcs-is-light-theme-p) "#C6E370" "#113D6F")))
+    (set-face-background 'show-paren-match color)))
+
+;;
 ;; (@* "Prettify / Minify" )
 ;;
 
