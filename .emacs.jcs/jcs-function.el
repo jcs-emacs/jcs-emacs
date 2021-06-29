@@ -168,8 +168,8 @@
   (let* ((light-p (jcs-is-light-theme-p))
          (focused-color (if light-p "#E2E6D6" "#123E70"))
          (unfocused-color (if light-p "#F1F2EE" "#0E3056")))
-    (jcs--ahs--set-face 'ahs-plugin-defalt-face focused-color)
-    (jcs--ahs--set-face 'ahs-plugin-defalt-face-unfocused unfocused-color)
+    (jcs--ahs--set-face 'ahs-plugin-default-face focused-color)
+    (jcs--ahs--set-face 'ahs-plugin-default-face-unfocused unfocused-color)
     (if light-p
         (progn
           (jcs--ahs--set-face 'ahs-face focused-color)
