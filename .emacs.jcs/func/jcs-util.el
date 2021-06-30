@@ -1132,7 +1132,7 @@ Return nil, there is no region selected and mark is not active."
 ;;
 
 (defun jcs-inside-comment-p ()
-  "Return non-nil if is inside comment."
+  "Return non-nil if it's inside comment."
   (or (nth 4 (syntax-ppss))
       (jcs-is-current-point-face '(font-lock-comment-face
                                    tree-sitter-hl-face:comment
@@ -1140,7 +1140,7 @@ Return nil, there is no region selected and mark is not active."
                                    hl-todo))))
 
 (defun jcs-inside-comment-or-string-p ()
-  "Return non-nil if is inside string."
+  "Return non-nil if it's inside comment or string."
   (or (jcs-inside-comment-p)
       (nth 8 (syntax-ppss))
       (jcs-is-current-point-face 'font-lock-string-face)))
