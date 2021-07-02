@@ -506,6 +506,10 @@
   :init
   (with-eval-after-load 'flycheck (require 'flycheck-grammarly)))
 
+(use-package flycheck-languagetool
+  :init
+  (with-eval-after-load 'flycheck (require 'flycheck-languagetool)))
+
 (use-package flycheck-popup-tip
   :init
   (defun jcs--flycheck-mode--pos-tip--advice-after (&rest _)
