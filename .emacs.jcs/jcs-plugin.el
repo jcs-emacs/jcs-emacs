@@ -276,6 +276,7 @@
       (helm-mode . helm-mode)
       (hi-lock-mode . hi-lock)
       (highlight-indent-guides-mode . highlight-indent-guides)
+      (hl-preproc-mode . hl-preproc)
       (impatient-mode . impatient-mode)
       (ivy-mode . ivy)
       (keypression-mode . keypression)
