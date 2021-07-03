@@ -334,7 +334,8 @@
          '("[*]RE-Builder")
          '("[*]preview-it")
          '("[*]wclock[*]")
-         '("[*]Clippy[*]")))
+         '("[*]Clippy[*]")
+         '("[*]CMake Temporary[*]")))
   (setq diminish-buffer-mode-list
         (append
          '("Dired by name")))
