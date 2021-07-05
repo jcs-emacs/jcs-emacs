@@ -857,6 +857,12 @@
        ((jcs-contain-list-integer line-reminder--saved-lines ln)
         'line-reminder-saved-sign-face)
        (t nil))))
+
+  (defun jcs--origami-indicators--refresh ()
+    "Refresh indicators for package `origmai'."
+    (when origami-mode (origami-indicators--refresh (current-buffer))))
+  (advice-add 'line-reminder-transfer-to-saved-lines :after #'jcs--origami-indicators--refresh)
+
   (set-face-attribute 'origami-fold-replacement-face nil
                       :foreground "#808080"
                       :box '(:line-width -1 :style 'pressed-button)))
