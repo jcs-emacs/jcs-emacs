@@ -364,8 +364,14 @@ If ACT is non-nil; then make scroll less jumpy."
 (jcs-scroll-conservatively-enable)
 
 ;;; So Long
-;; NOTE: (for very long file, like `jquery.min.js', etc)
 (global-so-long-mode 1)
+(use-package so-long
+  :init
+  (defconst jcs-so-long-minor-modes
+    '(line-reminder-mode
+      origami-mode)
+    "List of disabled minor modes for `so-long' buffer.")
+  (setq so-long-minor-modes (append so-long-minor-modes jcs-so-long-minor-modes)))
 
 ;;; Startup
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
