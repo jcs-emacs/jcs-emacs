@@ -57,6 +57,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Stop guessing indent level for python file.
 * Install new package `flycheck-languagetool`.
 * Make internal border wider for package `pos-tip`.
+* Configure `so-long`, disabled minor mode list.
 
 ## 6.4.2
 > Released Feb 24, 2021
