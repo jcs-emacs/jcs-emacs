@@ -106,7 +106,8 @@ This will no longer overwrite usual Emacs' undo key."
                (setq target-window (selected-window))))))))
     (save-window-excursion (undo-tree-visualize))
     (with-selected-window target-window
-      (switch-to-buffer undo-tree-visualizer-buffer-name))))
+      (switch-to-buffer undo-tree-visualizer-buffer-name)
+      (jcs-recenter-top-bottom 'middle))))
 
 (defun jcs--undo-tree-visualizer--do-diff ()
   "Do show/hide diff for `undo-tree'."
