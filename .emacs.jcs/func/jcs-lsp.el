@@ -85,7 +85,7 @@
 
 (defun jcs--lsp-ui-doc-resize ()
   "Reset the size of the UI document frame."
-  (setq lsp-ui-doc-max-width (window-width)
+  (setq lsp-ui-doc-max-width (round (* (frame-width) 0.4))
         lsp-ui-doc-max-height (window-height)))
 
 ;;
