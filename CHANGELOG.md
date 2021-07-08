@@ -58,6 +58,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Install new package `flycheck-languagetool`.
 * Make internal border wider for package `pos-tip`.
 * Configure `so-long`, disabled minor mode list.
+* Add `evaluate`/`byte-compile`/`load-file` utility functions for elisp development.
 
 ## 6.4.2
 > Released Feb 24, 2021
