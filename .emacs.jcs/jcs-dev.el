@@ -17,7 +17,7 @@
       (user-error "[WARNINGS] Undefined project root for project load path"))))
 
 ;;
-;; (@* "Mark" )
+;; (@* "Eval" )
 ;;
 
 (defun jcs--deactive-mark--advice-anywhere (&rest _)
@@ -28,6 +28,21 @@
 (advice-add 'eval-buffer :after #'jcs--deactive-mark--advice-anywhere)
 (advice-add 'eval-defun :after #'jcs--deactive-mark--advice-anywhere)
 (advice-add 'eval-region :after #'jcs--deactive-mark--advice-anywhere)
+
+(defun jcs-eval-buffer ()
+  "Like function `eval-buffer' but will not stop when error occurs."
+  (interactive)
+  (save-excursion
+    (goto-char (point-min))
+    (while (not (eobp))
+      (let ((start (point)))
+        (forward-sexp)
+        (ignore-errors (eval-region start (point)))))))
+
+(defun jcs-eval-region-or-buffer ()
+  "Like function `eval-region' but will evaluate buffer if no region defined."
+  (interactive)
+  (if (use-region-p) (call-interactively #'eval-region) (jcs-eval-buffer)))
 
 ;;
 ;; (@* "Navigate to Error" )
