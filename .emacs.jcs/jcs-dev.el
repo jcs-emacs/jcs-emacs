@@ -49,8 +49,10 @@
   (interactive)
   (let ((buf (buffer-file-name)))
     (unless buf (user-error "[WARNING] Can't byte compile load file, %s" buf))
-    (byte-compile-file (buffer-file-name))
-    (load-file (buffer-file-name))))
+    (jcs-mute-apply
+      (byte-compile-file (buffer-file-name))
+      (load-file (buffer-file-name)))
+    (message "Wrote and loading %s (source)...done" buf)))
 
 ;;
 ;; (@* "Navigate to Error" )
