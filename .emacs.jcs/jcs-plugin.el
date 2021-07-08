@@ -761,6 +761,7 @@
 (use-package lsp-ui
   :init
   (setq lsp-ui-doc-enable t
+        lsp-ui-doc-text-scale-level -1
         lsp-ui-doc-use-webkit nil
         lsp-ui-doc-delay 0.6
         lsp-ui-doc-include-signature t
