@@ -784,6 +784,13 @@
   (setq lsp-ui-doc-border (face-foreground 'font-lock-comment-face))
   (lsp-ui-sideline-set-default-icon))
 
+(use-package meta-view
+  :config
+  (defun jcs--meta-view-after-insert-hook ()
+    "Hook runs after meta-view buffer insertion."
+    (csharp-mode))
+  (add-hook 'meta-view-after-insert-hook #'jcs--meta-view-after-insert-hook))
+
 (use-package most-used-words
   :init
   (setq most-used-words-display-type 'table
