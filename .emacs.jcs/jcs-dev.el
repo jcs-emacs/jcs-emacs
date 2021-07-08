@@ -29,9 +29,15 @@
 (advice-add 'eval-defun :after #'jcs--deactive-mark--advice-anywhere)
 (advice-add 'eval-region :after #'jcs--deactive-mark--advice-anywhere)
 
+(defun jcs--eval-valid-p ()
+  "Report error, if current major-mode is not allow to evaluate."
+  (unless (memq major-mode '(emacs-lisp-mode lisp-mode lisp-interaction-mode))
+    (user-error "Invalid major-mode to evaluate lisp expression: %s" major-mode)))
+
 (defun jcs-eval-buffer ()
   "Like function `eval-buffer' but will not stop when error occurs."
   (interactive)
+  (jcs--eval-valid-p)
   (save-excursion
     (goto-char (point-min))
     (while (not (eobp))
@@ -42,11 +48,13 @@
 (defun jcs-eval-region-or-buffer ()
   "Like function `eval-region' but will evaluate buffer if no region defined."
   (interactive)
+  (jcs--eval-valid-p)
   (if (use-region-p) (call-interactively #'eval-region) (jcs-eval-buffer)))
 
 (defun jcs-byte-compile-load-file ()
   "Compile, then load file."
   (interactive)
+  (jcs--eval-valid-p)
   (let ((buf (buffer-file-name)))
     (unless buf (user-error "[WARNING] Can't byte compile load file, %s" buf))
     (jcs-mute-apply
