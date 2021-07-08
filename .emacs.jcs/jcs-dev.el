@@ -44,6 +44,14 @@
   (interactive)
   (if (use-region-p) (call-interactively #'eval-region) (jcs-eval-buffer)))
 
+(defun jcs-byte-compile-load-file ()
+  "Compile, then load file."
+  (interactive)
+  (let ((buf (buffer-file-name)))
+    (unless buf (user-error "[WARNING] Can't byte compile load file, %s" buf))
+    (byte-compile-file (buffer-file-name))
+    (load-file (buffer-file-name))))
+
 ;;
 ;; (@* "Navigate to Error" )
 ;;
