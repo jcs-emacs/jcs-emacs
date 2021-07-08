@@ -33,13 +33,11 @@
 
 (defun jcs--lsp--stuff-on-enabled ()
   "Do stuff when lsp is enabled."
-  (setq debug-on-error nil)  ; TODO: Get rid of this after `lsp-mode' is stabled.
   (jcs-re-enable-mode 'company-fuzzy-mode)
   (lsp-origami-mode 1))
 
 (defun jcs--lsp--stuff-on-disabled ()
   "Do stuff when lsp is disabled."
-  (setq debug-on-error t)  ; TODO: Get rid of this after `lsp-mode' is stabled.
   (lsp-origami-mode -1))
 
 (defun jcs--lsp-managed-mode-hook ()
