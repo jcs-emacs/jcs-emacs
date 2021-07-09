@@ -788,7 +788,22 @@
   :config
   (defun jcs--meta-view-after-insert-hook ()
     "Hook runs after meta-view buffer insertion."
-    (csharp-mode))
+    (jcs-prog-mode-hook)
+    (display-line-numbers-mode 1)
+    (setq-local origami-show-summary nil)
+    (jcs-save-excursion  ; fold all comments
+      (goto-char (point-min))
+      (call-interactively #'origami-close-node)
+      (let (continuation)
+        (while (not (eobp))
+          (forward-line 1)
+          (end-of-line)
+          (if (jcs-inside-comment-p)
+              (unless continuation
+                (jcs-print (point))
+                (call-interactively #'origami-close-node)
+                (setq continuation t))
+            (setq continuation nil))))))
   (add-hook 'meta-view-after-insert-hook #'jcs--meta-view-after-insert-hook))
 
 (use-package most-used-words
