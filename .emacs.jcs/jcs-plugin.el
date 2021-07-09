@@ -800,7 +800,6 @@
           (end-of-line)
           (if (jcs-inside-comment-p)
               (unless continuation
-                (jcs-print (point))
                 (call-interactively #'origami-close-node)
                 (setq continuation t))
             (setq continuation nil))))))
