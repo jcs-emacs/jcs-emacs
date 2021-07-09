@@ -12,27 +12,25 @@
   (interactive)
   (let (jcs-recentf-tracking-p)
     (cond
+     ((and (jcs--lsp-connected-p)
+           (not (or (ignore-errors (lsp-goto-type-definition))
+                    (ignore-errors (lsp-goto-implementation)))))
+      t)
      ((jcs-is-current-major-mode-p jcs-elisp-def-modes)
       (if (ignore-errors (call-interactively #'elisp-def))
-          (jcs-recenter-top-bottom 'middle)
+          (progn (jcs-recenter-top-bottom 'middle) t)
         (user-error "[INFO] No definition found for current target")))
-     ((and (jcs--lsp-connected-p)
-           (or (ignore-errors (lsp-goto-type-definition))
-               (ignore-errors (lsp-goto-implementation)))))
-     (t (dumb-jump-go-prefer-external))))t)
+     ((ignore-errors (meta-view-at-point)))
+     (t (dumb-jump-go-prefer-external)))))
 
 ;;;###autoload
 (defun jcs-goto-definition-other-window ()
   "Move to definition other window."
   (interactive)
-  (let (jcs-recentf-tracking-p fnc)
-    (cond
-     ((or (jcs-is-current-major-mode-p jcs-elisp-def-modes)
-          (jcs--lsp-connected-p))
-      (setq fnc #'jcs-goto-definition))
-     (t (dumb-jump-go-prefer-external-other-window)))
-    (when fnc  ; Open it on the other window.
-      (jcs--record-window-excursion-apply (jcs--record-window-excursion fnc)))))
+  (let ((meta-view-display-function #'switch-to-buffer-other-window)
+        jcs-recentf-tracking-p)
+    (jcs--record-window-excursion-apply
+     (jcs--record-window-excursion #'jcs-goto-definition))))
 
 ;;;###autoload
 (defun jcs-peek-definition ()
