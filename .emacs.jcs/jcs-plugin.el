@@ -726,9 +726,9 @@
   :init
   (setq lsp-auto-guess-root t
         lsp-prefer-capf t
-        lsp-keep-workspace-alive nil  ; Auto-kill LSP server
+        lsp-keep-workspace-alive nil                   ; Auto-kill LSP server
         lsp-modeline-code-action-fallback-icon "|Œ|"
-        lsp-prefer-flymake nil  ; Use lsp-ui and flycheck
+        lsp-prefer-flymake nil                         ; Use lsp-ui and flycheck
         flymake-fringe-indicator-position 'right-fringe)
 
   (defconst jcs--lsp-lv-buffer-name " *LV*"
