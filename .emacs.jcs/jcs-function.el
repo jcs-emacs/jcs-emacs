@@ -382,9 +382,8 @@ If optional argument FORCE is non-nil, force refresh it."
   ;; One can also loop through `eldoc-message-commands' and empty it out
   (memq command
         '(jcs-eldoc-message-now
+          self-insert-command
           mouse-set-point
-          jcs-real-space jcs-smart-space
-          jcs-real-backspace jcs-smart-backspace
           previous-line next-line
           jcs-previous-line jcs-next-line
           jcs-smart-indent-up jcs-smart-indent-down
