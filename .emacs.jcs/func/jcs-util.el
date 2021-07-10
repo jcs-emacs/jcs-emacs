@@ -1121,14 +1121,6 @@ Return nil, there is no region selected and mark is not active."
   (goto-char st) (call-interactively #'set-mark-command) (goto-char ed))
 
 ;;
-;; (@* "Command" )
-;;
-
-(defun jcs-is-command-these-commands (cmd cmds)
-  "Return non-nil if CMD is in CMDS."
-  (memq cmd cmds))
-
-;;
 ;; (@* "Comment" )
 ;;
 
