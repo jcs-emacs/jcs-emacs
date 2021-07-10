@@ -92,17 +92,18 @@
 
 (defun jcs-minibuf--window-setup ()
   "Resize window for minibuffer and echo area."
-  (jcs-walk-through-all-windows-once
-   (lambda ()
-     (save-excursion
-       (let* ((cur-ln (line-number-at-pos (point) t))
-              (last-display-ln (jcs-last-visible-line-in-window))
-              (first-display-ln (jcs-first-visible-line-in-window))
-              (max-ln (line-number-at-pos (point-max) t))
-              (visible-win-height (- max-ln first-display-ln)))
-         (when (and (<= last-display-ln cur-ln)
-                    (<= (window-body-height) visible-win-height))
-           (jcs-recenter-top-bottom 'bottom)))))))
+  (walk-windows
+   (lambda (win)
+     (with-selected-window win
+       (save-excursion
+         (let* ((cur-ln (line-number-at-pos (point) t))
+                (last-display-ln (jcs-last-visible-line-in-window))
+                (first-display-ln (jcs-first-visible-line-in-window))
+                (max-ln (line-number-at-pos (point-max) t))
+                (visible-win-height (- max-ln first-display-ln)))
+           (when (and (<= last-display-ln cur-ln)
+                      (<= (window-body-height) visible-win-height))
+             (jcs-recenter-top-bottom 'bottom))))))))
 
 ;;
 ;; (@* "Ivy" )
