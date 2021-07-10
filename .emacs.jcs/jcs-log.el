@@ -30,7 +30,8 @@ Acts like `message' but preserves text properties in the *Messages* buffer."
 
 (defun jcs-print (&rest args)
   "Message out anything from ARGS."
-  (apply 'message (jcs-string-repeat "%s" (length args) " ") args))
+  (jcs-unmute-apply
+    (apply 'message (jcs-string-repeat "%s" (length args) " ") args)))
 
 ;;
 ;; (@* "List" )
