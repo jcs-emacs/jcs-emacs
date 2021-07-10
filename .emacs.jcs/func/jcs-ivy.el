@@ -9,7 +9,7 @@
   "`window-size-change-functions' for `ivy-mode'."
   (setq ivy-height (round (* (frame-height) jcs-ivy-height-ratio)))
   (when jcs-minibuf-enabled-p
-    (with-minibuffer-selected-window
+    (with-selected-window (minibuffer-window)
       (jcs-mute-apply
         (ivy--resize-minibuffer-to-fit)
         (ivy-shrink-after-dispatching)
