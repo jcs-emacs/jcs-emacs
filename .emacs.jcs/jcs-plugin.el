@@ -865,7 +865,7 @@
 
 (use-package origami
   :init
-  (setq origami-indicators 'left-fringe
+  (setq origami-indicators-fringe 'left-fringe
         origami-indicators-time 0.2
         origami-indicators-face-function #'jcs--origami-indicators-face-function)
   :config
@@ -882,7 +882,7 @@
 
   (defun jcs--origami-indicators--refresh ()
     "Refresh indicators for package `origmai'."
-    (when origami-mode (origami-indicators--refresh (current-buffer))))
+    (when origami-indicators-mode (origami-indicators--refresh (current-buffer))))
   (advice-add 'line-reminder-transfer-to-saved-lines :after #'jcs--origami-indicators--refresh)
 
   (set-face-attribute 'origami-fold-replacement-face nil
