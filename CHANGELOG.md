@@ -59,6 +59,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Make internal border wider for package `pos-tip`.
 * Configure `so-long`, disabled minor mode list.
 * Add `evaluate`/`byte-compile`/`load-file` utility functions for elisp development.
+* Remove redundant lsp customization about [lv](https://melpa.org/#/lv) package.
 
 ## 6.4.2
 > Released Feb 24, 2021
