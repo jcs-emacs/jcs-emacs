@@ -55,8 +55,6 @@
 ;; (@* "lsp-ui" )
 ;;
 
-(defvar jcs--lsp-ui--doc-timer nil "Self timer to show document.")
-
 (defun jcs--lsp-ui-mode--enabled-p ()
   "Check if `lsp-ui-mode' enabled."
   (and (boundp 'lsp-ui-mode) lsp-ui-mode))
@@ -68,18 +66,8 @@
 
 (defun jcs--lsp-ui-doc-show-safely ()
   "Safe way to show lsp UI document."
-  (setq jcs--lsp-ui--doc-timer (jcs-safe-kill-timer jcs--lsp-ui--doc-timer))
-  (setq jcs--lsp-ui--doc-timer
-        (run-with-idle-timer
-         lsp-ui-doc-delay nil
-         (lambda ()
-           (if (and
-                (jcs--lsp-ui-mode--enabled-p)
-                (not jcs--lsp--executing-command)
-                (not (jcs-is-command-these-commands this-command
-                                                    '(save-buffers-kill-terminal))))
-               (ignore-errors (call-interactively #'lsp-ui-doc-show))
-             (jcs--lsp-current-last-signature-buffer))))))
+  (when (jcs--lsp-ui-mode--enabled-p)
+    (let (lsp-ui-doc--bounds) (lsp-ui-doc--make-request))))
 
 (defun jcs--lsp-ui-doc-resize ()
   "Reset the size of the UI document frame."
@@ -114,6 +102,11 @@
     (jcs--lsp-ui-doc-show-safely)))
 (advice-add 'other-window :after #'jcs-lsp--other-window--advice-after)
 
+(defun jcs-lsp--minibuffer-setup-hook ()
+  "When enter minibuffer."
+  (jcs--lsp-ui-doc-stop-timer)
+  (jcs--lsp-ui-doc--hide-frame))
+(add-hook 'minibuffer-setup-hook 'jcs-lsp--minibuffer-setup-hook)
 
 (defvar jcs--lsp-lv-was-alive nil
   "Record ` *LV*' buffer was alive.")
