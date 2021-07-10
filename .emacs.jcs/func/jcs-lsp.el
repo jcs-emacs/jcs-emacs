@@ -64,12 +64,16 @@
   (when (and (boundp 'lsp-ui-doc--timer) (timerp lsp-ui-doc--timer))
     (cancel-timer lsp-ui-doc--timer)))
 
+(defun jcs--lsp-ui-doc--inhibit-frame ()
+  "Stop ui-doc frame from being pop up."
+  (jcs--lsp-ui-doc-stop-timer)
+  (jcs--lsp-ui-doc--hide-frame))
+
 (defun jcs--lsp-ui-doc-show-safely ()
   "Safe way to show lsp UI document."
   (if (jcs--lsp-ui-mode--enabled-p)
       (let (lsp-ui-doc--bounds) (lsp-ui-doc--make-request))
-    (jcs--lsp-ui-doc-stop-timer)
-    (jcs--lsp-ui-doc--hide-frame)))
+    (jcs--lsp-ui-doc--inhibit-frame)))
 
 (defun jcs--lsp-ui-doc-resize ()
   "Reset the size of the UI document frame."
@@ -87,14 +91,13 @@
 
 (defun jcs-lsp--focus-out-hook ()
   "When window is not focus."
-  (jcs--lsp-ui-doc-stop-timer)
-  (jcs--lsp-ui-doc--hide-frame))
+  (jcs--lsp-ui-doc--inhibit-frame))
 (add-hook 'focus-out-hook 'jcs-lsp--focus-out-hook)
 
 (defun jcs-lsp--other-window--advice-before (&rest _args)
   "Advice execute before `other-window' command."
   (unless jcs-walking-through-windows-p
-    (jcs--lsp-ui-doc-stop-timer)))
+    (jcs--lsp-ui-doc--inhibit-frame)))
 (advice-add 'other-window :before #'jcs-lsp--other-window--advice-before)
 
 (defun jcs-lsp--other-window--advice-after (&rest _args)
