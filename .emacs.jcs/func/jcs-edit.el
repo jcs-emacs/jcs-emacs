@@ -100,7 +100,6 @@ This will no longer overwrite usual Emacs' undo key."
            (with-selected-window win
              (when (and
                     (not (eq (selected-window) current-window))
-                    (not (jcs-buffer-name-this jcs--lsp-lv-buffer-name))
                     (not (jcs-frame-util-p))
                     (jcs-window-is-larger-in-height-p))
                (setq target-window (selected-window))))))))

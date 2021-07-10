@@ -731,12 +731,6 @@
         lsp-prefer-flymake nil                         ; Use lsp-ui and flycheck
         flymake-fringe-indicator-position 'right-fringe)
 
-  (defconst jcs--lsp-lv-buffer-name " *LV*"
-    "Help record the ` *LV*' buffer name.")
-
-  (defvar-local jcs--lsp--executing-command nil
-    "Flag to record if executing a command from `lsp'.")
-
   (defun jcs--lsp-connected-p ()
     "Check if LSP connected."
     (if (boundp 'lsp-managed-mode) lsp-managed-mode nil))
@@ -745,18 +739,7 @@
     "Safe way to active LSP."
     (require 'jcs-project)
     (when (and (jcs-project-under-p) (not (jcs--lsp-connected-p)))
-      (lsp-deferred)))
-
-  (defun jcs--lsp-current-last-signature-buffer ()
-    "Check if current buffer last signature buffer."
-    (when (boundp 'lsp--last-signature-buffer)
-      (let ((ls-buf (buffer-name lsp--last-signature-buffer)))
-        (when (and (stringp ls-buf) (stringp (buffer-file-name)))
-          (string-match-p ls-buf (buffer-file-name))))))
-
-  (defun jcs--lsp-signature-maybe-stop ()
-    "Maybe stop the signature action."
-    (when (functionp 'lsp-signature-maybe-stop) (lsp-signature-maybe-stop))))
+      (lsp-deferred))))
 
 (use-package lsp-ui
   :init
@@ -778,8 +761,7 @@
         lsp-ui-sideline-ignore-duplicate t)
   (defun jcs--lsp-ui-doc--hide-frame ()
     "Safe way to call `lsp-ui-doc--hide-frame' function."
-    (when (and (functionp 'lsp-ui-doc--hide-frame) (not jcs--lsp-lv-recording))
-      (lsp-ui-doc--hide-frame)))
+    (when (functionp 'lsp-ui-doc--hide-frame) (lsp-ui-doc--hide-frame)))
   :config
   (setq lsp-ui-doc-border (face-foreground 'font-lock-comment-face))
   (lsp-ui-sideline-set-default-icon))

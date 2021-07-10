@@ -18,17 +18,6 @@
 ;; (@* "lsp" )
 ;;
 
-(defun jcs--lsp-lv-buffer-alive-p ()
-  "Check if ` *LV*' buffer alive."
-  (get-buffer jcs--lsp-lv-buffer-name))
-
-(defun jcs--lsp--execute-command--advice-around (fnc &rest args)
-  "Advice execute around `lsp--execute-command'."
-  (let ((jcs--lsp--executing-command t))
-    (apply fnc args)))
-
-(advice-add 'lsp--execute-command :around #'jcs--lsp--execute-command--advice-around)
-
 ;; Enable or Disable for LSP.
 
 (defun jcs--lsp--stuff-on-enabled ()
@@ -100,32 +89,9 @@
     (jcs--lsp-ui-doc--inhibit-frame)))
 (advice-add 'other-window :before #'jcs-lsp--other-window--advice-before)
 
-(defun jcs-lsp--other-window--advice-after (&rest _args)
-  "Advice execute after `other-window' command."
-  (unless jcs-walking-through-windows-p
-    (jcs--lsp-signature-maybe-stop)
-    (jcs--lsp-ui-doc-show-safely)))
-(advice-add 'other-window :after #'jcs-lsp--other-window--advice-after)
-
-(defvar jcs--lsp-lv-was-alive nil
-  "Record ` *LV*' buffer was alive.")
-
-(defvar jcs--lsp-lv-recording nil
-  "Check if we are recording ")
-
 (defun jcs-lsp--window-size-change-functions (&rest _)
   "When window changed size."
-  (jcs--lsp-ui-doc-resize)
-  (when (and (boundp 'lsp-mode) lsp-mode)
-    (if (jcs--lsp-lv-buffer-alive-p)
-        (setq jcs--lsp-lv-was-alive t)
-      (if jcs--lsp-lv-was-alive
-          (progn
-            (when (jcs--lsp-current-last-signature-buffer)
-              (let ((pt (point))) (jcs-window-restore-once) (goto-char pt)))
-            (setq jcs--lsp-lv-was-alive nil))
-        (let ((jcs--lsp-lv-recording t)) (jcs-window-record-once)))))
-  (jcs--lsp-ui-doc-show-safely))
+  (jcs--lsp-ui-doc-resize))
 (add-hook 'window-size-change-functions 'jcs-lsp--window-size-change-functions)
 
 (provide 'jcs-lsp)
