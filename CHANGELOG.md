@@ -60,6 +60,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Configure `so-long`, disabled minor mode list.
 * Add `evaluate`/`byte-compile`/`load-file` utility functions for elisp development.
 * Remove redundant lsp customization about [lv](https://melpa.org/#/lv) package.
+* Add new feature, install custom `tree-sitter` queries.
 
 ## 6.4.2
 > Released Feb 24, 2021
