@@ -1047,7 +1047,44 @@
   :config
   (require 'tree-sitter-langs)
   (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
-  (jcs-funcall-fboundp #'jcs-reset-common-faces-by-theme))
+  (jcs-funcall-fboundp #'jcs-reset-common-faces-by-theme)
+
+  (defconst jcs--tree-sitter-langs--query-repo
+    "https://github.com/jcs090218/emacs-tree-sitter-queries"
+    "Repository URL where stores all tree-sitter highlight queries.")
+
+  (defun jcs--tree-sitter-grab-queries ()
+    "Download all custom queries to the `tree-sitter-langs' queries folder."
+    (require 'find-func)
+    (let* ((default-directory (file-name-directory (find-library-name "tree-sitter-langs")))
+           (repo-url (shell-quote-argument jcs--tree-sitter-langs--query-repo))
+           (dirname (file-name-base jcs--tree-sitter-langs--query-repo))
+           (clone-dir (expand-file-name dirname))
+           (clone-queries (expand-file-name "queries" clone-dir))
+           (dest-queries (expand-file-name "queries" default-directory))
+           lang-dirs)
+      (ignore-errors (delete-directory (expand-file-name dirname default-directory) t))
+      (when (= 0 (shell-command (format "git clone %s" repo-url)))
+        (setq lang-dirs (directory-files clone-queries))
+        (pop lang-dirs) (pop lang-dirs)  ; remove . and ..
+        (message "Installing custom tree-sitter query...")
+        (dolist (lang-dir lang-dirs)
+          (message "  - %s" lang-dir)
+          (ignore-errors
+            (delete-directory (expand-file-name lang-dir clone-queries)))
+          (ignore-errors
+            (copy-directory (expand-file-name lang-dir clone-queries)
+                            (expand-file-name lang-dir dest-queries)
+                            nil nil t)))
+        (delete-directory clone-dir t)
+        (message "Done install custom tree-sitter queries"))))
+
+  (defun jcs--tree-sitter-hl-mode-hook ()
+    "Hook for `tree-sitter-hl-mode'."
+    (remove-hook 'tree-sitter-hl-mode-hook #'jcs--tree-sitter-hl-mode-hook)
+    (jcs--tree-sitter-grab-queries)
+    (tree-sitter-hl-mode 1))  ; re-enable it once
+  (add-hook 'tree-sitter-hl-mode-hook #'jcs--tree-sitter-hl-mode-hook))
 
 (use-package treemacs
   :init
