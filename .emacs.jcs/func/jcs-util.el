@@ -1855,8 +1855,7 @@ Argument IN-VAL is input value to set to IN-VAR."
   (unless msg (setq msg ""))
   (setq jcs-process-reporter (make-progress-reporter msg))
   (setq jcs-process-reporter-timer
-        (run-with-timer nil jcs-process-reporter-refresh
-                        'jcs-process-reporter-update)))
+        (run-with-timer nil jcs-process-reporter-refresh #'jcs-process-reporter-update)))
 
 (defun jcs-process-reporter-update (&optional value suffix)
   "Update global process reporter once."
