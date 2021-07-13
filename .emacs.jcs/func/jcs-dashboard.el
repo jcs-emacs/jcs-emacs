@@ -8,13 +8,30 @@
 ;; (@* "Util" )
 ;;
 
-(defun jcs-dashboard-page-break-list ()
-  "Get the list of page break position."
-  (let ((pb-lst '()))
+(defun jcs-dashboard-current-section ()
+  "Return section symbol in dashboard."
+  (save-excursion
+    (if (and (search-backward dashboard-page-separator nil t)
+             (search-forward dashboard-page-separator nil t))
+        (let ((ln (thing-at-point 'line)))
+          (cond ((string-match-p "Recent Files:" ln)        'recents)
+                ((string-match-p "Bookmarks:" ln)           'bookmarks)
+                ((string-match-p "Projects:" ln)            'projects)
+                ((string-match-p "Agenda for " ln)          'agenda)
+                ((string-match-p "Registers:" ln)           'registers)
+                ((string-match-p "Current Directories:" ln) 'ls-directories)
+                ((string-match-p "Current Files:" ln)       'ls-files)
+                (t (user-error "Unknown section from dashboard"))))
+      (user-error "Failed searching dashboard section"))))
+
+(defun jcs-dashboard--section-lines ()
+  "Return a list of integer represent the starting line number of each section."
+  (let (pb-lst)
     (save-excursion
       (goto-char (point-min))
       (while (search-forward dashboard-page-separator nil t)
-        (push (line-number-at-pos) pb-lst)))
+        (when (ignore-errors (jcs-dashboard-current-section))
+          (push (line-number-at-pos) pb-lst))))
     (setq pb-lst (reverse pb-lst))
     pb-lst))
 
@@ -83,30 +100,13 @@
 (defun jcs-dashboard-remove-current-item ()
   "Remove a item from the current item section."
   (interactive)
-  (let ((pg-lst (jcs-dashboard-page-break-list))
-        (index 0) (is-id -1) (item-title ""))
-    (while (< index (1- (length pg-lst)))
-      (let ((min-pg-ln (nth index pg-lst))
-            (max-pg-ln (nth (1+ index) pg-lst)))
-        (when (jcs-in-range-p (line-number-at-pos) min-pg-ln max-pg-ln)
-          (setq is-id (1+ index))))
-      (setq index (1+ index)))
-    (unless (= is-id -1)
-      (save-excursion
-        (jcs-dashboard-goto-item-section is-id)
-        (setq item-title (string-trim (thing-at-point 'line t))))
-      (cond ((string-match-p "Recent Files:" item-title)
-             (jcs-dashboard-remove-recent-files-item))
-            ((string-match-p "Projects:" item-title)
-             (jcs-dashboard-remove-projects-item))
-            ((string-match-p "Bookmarks:" item-title)
-             (jcs-dashboard-remove-bookmarks-item))
-            ((string-match-p "Agenda for today:" item-title)
-             (jcs-dashboard-remove-agenda-item))
-            ((string-match-p  "Registers:" item-title)
-             (jcs-dashboard-remove-registers-item))
-            (t
-             (user-error "[INFO] Can't remove item at current line: %s" item-title))))))
+  (let ((current-section (jcs-dashboard-current-section)))
+    (cl-case current-section
+      (recents (jcs-dashboard-remove-recent-files-item))
+      (bookmarks (jcs-dashboard-remove-bookmarks-item))
+      (projects (jcs-dashboard-remove-projects-item))
+      (agenda (jcs-dashboard-remove-agenda-item))
+      (registers (jcs-dashboard-remove-registers-item)))))
 
 ;;;###autoload
 (defun jcs-dashboard-remove-recent-files-item ()
@@ -155,13 +155,12 @@
 (defun jcs-dashboard-goto-item-section (id)
   "Navigate to item section by ID."
   (interactive)
-  (let* ((pg-lst (jcs-dashboard-page-break-list))
+  (let* ((pg-lst (jcs-dashboard--section-lines))
          (items-id (1- id))
          (items-pg (nth items-id pg-lst))
-         (items-len (- (length pg-lst) 2)))
-    (when (and items-pg (<= items-id items-len))
-      (jcs-goto-line items-pg)
-      (call-interactively #'recenter))))
+         (items-len (length pg-lst)))
+    (when (and items-pg (< items-id items-len))
+      (jcs-goto-line items-pg))))
 
 ;;;###autoload
 (defun jcs-dashboard-item-section-1 ()
@@ -220,20 +219,6 @@
 ;;
 ;; (@* "Truncate" )
 ;;
-
-(defun jcs-dashboard-current-section ()
-  "Return section symbol in dashboard."
-  (save-excursion
-    (if (and (search-backward dashboard-page-separator nil t)
-             (search-forward dashboard-page-separator nil t))
-        (let ((ln (thing-at-point 'line)))
-          (cond ((string-match-p "Recent Files: " ln) 'recents)
-                ((string-match-p "Bookmarks: " ln) 'bookmarks)
-                ((string-match-p "Projects: " ln) 'projects)
-                ((string-match-p "Current Directories: " ln) 'ls-directories)
-                ((string-match-p "Current Files: " ln) 'ls-files)
-                (t (user-error "Unknown section from dashboard"))))
-      (user-error "Failed searching dashboard section"))))
 
 (defun jcs-dashboard-current-list (name)
   "Return the list of current dashboard by NAME."
