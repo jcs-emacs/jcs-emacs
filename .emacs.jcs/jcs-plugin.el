@@ -97,17 +97,32 @@
         company-format-margin-function #'company-detect-icons-margin)
   (setq company-backends
         (append
+         ;; --- External ---
+         '(company-emojify)
          ;; --- Internal ---
          '(company-capf company-semantic)
          '(company-keywords)
          '(company-abbrev company-dabbrev company-dabbrev-code)
          '(company-files)
          '(company-etags company-gtags)
-         '(company-yasnippet)
-         ;; --- External ---
-         '(company-emojify)))
+         '(company-yasnippet)))
   :config
   (with-eval-after-load 'company (require 'jcs-company) (global-company-mode t)))
+
+(use-package company-box
+  :hook (company-mode . company-box-mode)
+  :init
+  (setq company-box-backends-colors nil
+        company-box-doc-delay 0.3
+        company-box-frame-behavior 'point)
+  (defvar company-box-doc-frame-parameters
+    '((border-width . 1)
+      (internal-border-width . 5)))
+  :config
+  (defun jcs--company-box-doc--set-frame-position (frame &rest _)
+    "Execution runs before function `company-box-doc--set-frame-position'."
+    (set-face-background 'border-color (face-foreground 'font-lock-comment-face) frame))
+  (advice-add 'company-box-doc--set-frame-position :before #'jcs--company-box-doc--set-frame-position))
 
 (use-package company-c-headers
   :config
@@ -147,16 +162,6 @@
         company-fuzzy-history-backends '(company-yasnippet)
         company-fuzzy-trigger-symbols '("." "->" "<" "\"" "'"))
   (with-eval-after-load 'company (global-company-fuzzy-mode t)))
-
-(use-package company-quickhelp
-  :init
-  (setq company-quickhelp-delay 0.3)
-  (with-eval-after-load 'company (company-quickhelp-mode t)))
-
-(use-package company-quickhelp-terminal
-  :init
-  (with-eval-after-load 'company-quickhelp
-    (unless (display-graphic-p) (company-quickhelp-terminal-mode 1))))
 
 (use-package counsel
   :init
@@ -265,6 +270,7 @@
       (buffer-wrap-mode . buffer-wrap)
       (command-log-mode . command-log-mode)
       (company-mode . company)
+      (company-box-mode . company-box)
       (company-fuzzy-mode . company-fuzzy)
       (docstr-mode . docstr)
       (eldoc-mode)
