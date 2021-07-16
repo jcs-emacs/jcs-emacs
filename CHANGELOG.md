@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
-## 6.4.3 (Unreleased)
+## 6.5.0 (Unreleased)
 > Released N/A
 
 * Use default `undo` when `undo-tree` not enabled.
@@ -61,6 +61,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add `evaluate`/`byte-compile`/`load-file` utility functions for elisp development.
 * Remove redundant lsp customization about [lv](https://melpa.org/#/lv) package.
 * Add new feature, install custom `tree-sitter` queries.
+* Remove package `company-quickhelp`.
+* Install new package `company-box`.
 
 ## 6.4.2
 > Released Feb 24, 2021
