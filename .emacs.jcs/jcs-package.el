@@ -58,7 +58,6 @@
     com-css-sort
     command-log-mode
     company-c-headers
-    company-emoji
     company-fuzzy
     company-quickhelp
     company-quickhelp-terminal
