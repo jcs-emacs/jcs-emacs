@@ -138,7 +138,7 @@
 
 (use-package company-emojify
   :init
-  (setq company-emojify-display 'image))
+  (setq company-emojify-annotation 'image))
 
 (use-package company-fuzzy
   :init
