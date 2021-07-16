@@ -105,7 +105,7 @@
          '(company-etags company-gtags)
          '(company-yasnippet)
          ;; --- External ---
-         '(company-emoji)))
+         '(company-emojify)))
   :config
   (with-eval-after-load 'company (require 'jcs-company) (global-company-mode t)))
 
@@ -136,9 +136,9 @@
                                  (lambda (dirname)
                                    (not (= (string-to-number dirname) 0)))))))))
 
-(use-package company-emoji
+(use-package company-emojify
   :init
-  (setq emojify-company-tooltips-p t))
+  (setq company-emojify-display 'image))
 
 (use-package company-fuzzy
   :init
@@ -373,6 +373,10 @@
     (advice-add 'describe-function-1 :after #'elisp-demos-advice-describe-function-1))
   (with-eval-after-load 'helpful
     (advice-add 'helpful-update :after #'elisp-demos-advice-helpful-update)))
+
+(use-package emojify
+  :init
+  (setq emojify-company-tooltips-p t))
 
 (use-package eshell-syntax-highlighting
   :init
