@@ -5,8 +5,13 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
-## 6.5.0 (Unreleased)
+## 6.5.1 (Unreleased)
 > Released N/A
+
+* Configure `company-box` so it's compatible to old `company-quickhelp` configuration.
+
+## 6.5.0
+> Released Jul 17, 2021
 
 * Use default `undo` when `undo-tree` not enabled.
 * Fix logic while installing pinned packages as dependency.
