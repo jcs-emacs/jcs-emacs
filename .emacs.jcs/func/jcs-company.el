@@ -3,6 +3,7 @@
 ;;; Code:
 
 (require 'cl-lib)
+(require 'company-box)
 
 ;;
 ;; (@* "Faces" )
@@ -40,8 +41,8 @@
    `(company-scrollbar-fg ((t (:background ,(cdr scrollbar)))))
    ;; --- Tooltip
    `(popup-tip-face ((t (:background ,(car quickhelp) :foreground ,(cdr quickhelp))))))
-  (setq company-quickhelp-color-background (car quickhelp)
-        company-quickhelp-color-foreground (cdr quickhelp)))
+  (add-to-list 'company-box-doc-frame-parameters `(background . ,(car quickhelp)))
+  (add-to-list 'company-box-doc-frame-parameters `(foreground . ,(cdr quickhelp))))
 
 (defun jcs-company-auto-complete-theme ()
   "Auto-Complete theme for `company-mode'."
