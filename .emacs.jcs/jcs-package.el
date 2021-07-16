@@ -57,10 +57,9 @@
     cobol-mode
     com-css-sort
     command-log-mode
+    company-box
     company-c-headers
     company-fuzzy
-    company-quickhelp
-    company-quickhelp-terminal
     counsel
     csharp-mode
     csproj-mode
