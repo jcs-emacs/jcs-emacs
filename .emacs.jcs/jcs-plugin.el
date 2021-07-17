@@ -127,7 +127,10 @@
 
   (defun jcs--company-box-doc--set-frame-position (frame &rest _)
     "Execution runs before function `company-box-doc--set-frame-position'."
-    (set-face-background 'border (face-foreground 'font-lock-comment-face) frame))
+    (let ((border-color (face-foreground 'font-lock-comment-face)))
+      (set-face-background 'border border-color frame)
+      (when (facep 'child-frame-border)
+        (set-face-background 'child-frame-border border-color posframe--frame))))
   (advice-add 'company-box-doc--set-frame-position :before #'jcs--company-box-doc--set-frame-position))
 
 (use-package company-c-headers
