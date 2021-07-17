@@ -783,8 +783,8 @@ STRING is the content of the toolip. The location POINT. TIMEOUT for not forever
 delay. HEIGHT of the tooltip that will display."
   (require 'flycheck) (require 'pos-tip) (require 'popup)
   (let ((was-flycheck (if flycheck-mode 1 -1))
-        (bg (cdr (assoc 'background company-box-doc-frame-parameters)))
-        (fg (cdr (assoc 'foreground company-box-doc-frame-parameters))))
+        (bg (cdr (assoc 'background-color company-box-doc-frame-parameters)))
+        (fg (cdr (assoc 'foreground-color company-box-doc-frame-parameters))))
     (if (display-graphic-p)
         (pos-tip-show string `(,fg . ,bg) point nil timeout)
       (popup-tip string :point point :around t :height height :scroll-bar t :margin t))
