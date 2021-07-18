@@ -112,6 +112,7 @@ without having to get used to an new IDE.
 
 Here is the list of few important and recent changes to this configuration.
 
+* `6.5.1` - Switch from [quickhelp](https://github.com/company-mode/company-quickhelp) to [box](https://github.com/sebastiencs/company-box) for company frontend.
 * `6.5.0` - Add pinned archive feature to package module.
 * `6.4.2` - You can now resolve package dependency graph while deleting package.
 * `6.4.1` - Start with `tree-sitter` support.
@@ -121,8 +122,6 @@ Here is the list of few important and recent changes to this configuration.
 * `6.2.4` - Replaced [ag](https://github.com/Wilfred/ag.el) silver searcher to [searcher](https://github.com/jcs-elpa/searcher).
 * `6.2.2` - Correct upgrade logic for manually installed packages.
 * `6.1.5` - `feebleline` is now fully compatible to terminal.
-* `6.1.0` - Formatted all configuration code to better standard.
-* `6.0.5` - Replace `sr-speedbar` with `neotree` instead.
 
 ## :floppy_disk: Installation
 
