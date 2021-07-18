@@ -135,6 +135,7 @@
     kotlin-mode
     license-templates
     line-reminder
+    logms
     logview
     lsp-dart
     lsp-docker
