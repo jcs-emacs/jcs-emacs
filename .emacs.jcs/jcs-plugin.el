@@ -107,7 +107,6 @@
   (with-eval-after-load 'company (require 'jcs-company) (global-company-mode t)))
 
 (use-package company-box
-  :hook (company-mode . company-box-mode)
   :init
   (setq company-box-backends-colors nil
         company-box-doc-delay 0.3
