@@ -97,9 +97,6 @@
         company-format-margin-function #'company-detect-icons-margin)
   (setq company-backends
         (append
-         ;; --- External ---
-         '(company-emojify)
-         ;; --- Internal ---
          '(company-capf company-semantic)
          '(company-keywords)
          '(company-abbrev company-dabbrev company-dabbrev-code)
@@ -162,7 +159,8 @@
 
 (use-package company-emojify
   :init
-  (setq company-emojify-annotation 'image))
+  (setq company-emojify-annotation 'image
+        company-emojify-emoji-styles '(github)))
 
 (use-package company-fuzzy
   :init
@@ -391,7 +389,8 @@
 
 (use-package emojify
   :init
-  (setq emojify-company-tooltips-p t))
+  (setq emojify-emoji-styles '(github)
+        emojify-company-tooltips-p t))
 
 (use-package eshell-syntax-highlighting
   :init

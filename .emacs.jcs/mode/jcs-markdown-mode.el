@@ -26,6 +26,8 @@
 
   (jcs-make-electric-pair-pairs-local '((?\` . ?\`)))
 
+  (jcs-company-safe-add-backend 'company-emojify)
+
   ;; Normal
   (define-key markdown-mode-map (kbd "<backspace>") #'jcs-real-backspace)
   (define-key markdown-mode-map (kbd "RET") #'jcs-markdown-return-key)
