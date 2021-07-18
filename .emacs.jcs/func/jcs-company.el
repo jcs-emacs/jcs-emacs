@@ -119,7 +119,9 @@
 (defun jcs--company-completion-started-hook (_backend)
   "Hook bind to `company-completion-started-hook'."
   (jcs-gc-cons-threshold-speed-up t)
-  (unless jcs--company-first-load (jcs--company-first-load-function)))
+  (unless jcs--company-first-load
+    (jcs--company-first-load-function)
+    (setq jcs--company-first-load t)))
 (add-hook 'company-completion-started-hook 'jcs--company-completion-started-hook)
 
 (defun jcs--company-after-completion-hook (&rest _)
