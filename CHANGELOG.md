@@ -9,6 +9,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 > Released N/A
 
 * Configure `company-box` so it's compatible to old `company-quickhelp` configuration.
+* Install new package `logms`.
 
 ## 6.5.0
 > Released Jul 17, 2021
