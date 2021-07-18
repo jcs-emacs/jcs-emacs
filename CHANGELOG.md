@@ -10,6 +10,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 * Configure `company-box` so it's compatible to old `company-quickhelp` configuration.
 * Install new package `logms`.
+* Move emoji company backend fo just `markdown-mode`.
 
 ## 6.5.0
 > Released Jul 17, 2021
