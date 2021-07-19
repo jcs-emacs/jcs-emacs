@@ -211,7 +211,8 @@
   "List of packages this config needs.")
 
 (defconst jcs-package-pinned
-  '((origami . celpa))
+  '((company-box . celpa)
+    (origami     . celpa))
   "List of pinned packages to a specific source.")
 
 ;;
