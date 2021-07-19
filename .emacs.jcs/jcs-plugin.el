@@ -116,12 +116,6 @@
     '((border-width . 1)
       (internal-border-width . 5)))
   :config
-  ;; Remove after, https://github.com/sebastiencs/company-box/pull/171
-  (defun jcs--company-box-doc--fetch-doc-buffer (fnc &rest args)
-    "Execution runs around function `company-box-doc--fetch-doc-buffer'."
-    (jcs-mute-apply (apply fnc args)))
-  (advice-add 'company-box-doc--fetch-doc-buffer :around #'jcs--company-box-doc--fetch-doc-buffer)
-
   (defun jcs--company-box-doc--set-frame-position (frame &rest _)
     "Execution runs before function `company-box-doc--set-frame-position'."
     (let ((border-color (face-foreground 'font-lock-comment-face)))
