@@ -108,20 +108,10 @@
   (let ((company-dabbrev-downcase t)) (call-interactively fn)))
 (advice-add 'company-complete-selection :around #'jcs--company-complete-selection--advice-around)
 
-(defvar-local jcs--company-first-load nil
-  "Flag to ensure some execution is executed when `company-mode' is enabled.")
-
-(defun jcs--company-first-load-function ()
-  "Execution after `company-mode' is enabled."
-  (require 'yasnippet-snippets)
-  (unless company-box-mode (company-box-mode 1)))
-
 (defun jcs--company-completion-started-hook (_backend)
   "Hook bind to `company-completion-started-hook'."
   (jcs-gc-cons-threshold-speed-up t)
-  (unless jcs--company-first-load
-    (jcs--company-first-load-function)
-    (setq jcs--company-first-load t)))
+  (require 'yasnippet-snippets))
 (add-hook 'company-completion-started-hook 'jcs--company-completion-started-hook)
 
 (defun jcs--company-after-completion-hook (&rest _)
