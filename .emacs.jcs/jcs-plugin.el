@@ -111,18 +111,7 @@
   :init
   (setq company-box-backends-colors nil
         company-box-doc-delay 0.3
-        company-box-frame-behavior 'point)
-  (defvar company-box-doc-frame-parameters
-    '((border-width . 1)
-      (internal-border-width . 5)))
-  :config
-  (defun jcs--company-box-doc--set-frame-position (frame &rest _)
-    "Execution runs before function `company-box-doc--set-frame-position'."
-    (let ((border-color (face-foreground 'font-lock-comment-face)))
-      (set-face-background 'border border-color frame)
-      (when (facep 'child-frame-border)
-        (set-face-background 'child-frame-border border-color posframe--frame))))
-  (advice-add 'company-box-doc--set-frame-position :before #'jcs--company-box-doc--set-frame-position))
+        company-box-frame-behavior 'point))
 
 (use-package company-c-headers
   :config
