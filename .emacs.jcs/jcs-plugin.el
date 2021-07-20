@@ -110,8 +110,9 @@
   :hook (company-mode . company-box-mode)
   :init
   (setq company-box-backends-colors nil
+        company-box-frame-behavior 'point
         company-box-doc-delay 0.3
-        company-box-frame-behavior 'point))
+        company-box-doc-text-scale-level -2))
 
 (use-package company-c-headers
   :config
