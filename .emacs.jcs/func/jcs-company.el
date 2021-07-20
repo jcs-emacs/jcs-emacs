@@ -73,7 +73,7 @@
      :tooltip-common '("#252526" . "#0096FA")
      :tooltip-common-selection '("#062F4A" . "#0096FA")
      :scrollbar '("#3E3E42" . "#686868")
-     :quickhelp '("#2F2F2F" . "#F1F1F1"))))
+     :quickhelp '("#2A2D38" . "#F1F1F1"))))
 
 (defun jcs-company-default-theme ()
   "Default theme for `company-mode'."
