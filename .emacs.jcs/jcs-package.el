@@ -378,19 +378,6 @@
 
 (advice-add 'package-menu-execute :around #'jcs-package--menu-execute--advice-around)
 
-(defun jcs-package--desc-priority-version--advice-around (fnc &rest args)
-  "Execution around function `package-desc-priority-version' with FNC and ARGS."
-  (let* ((desc (nth 0 args))
-         (pkg (package-desc-name desc))
-         (pin (jcs-package--pinned-p pkg))
-         (archive (package-desc-archive desc))
-         (local-p (null archive)))
-    (if pin
-        (jcs-package-version pkg package-archive-contents)
-      (apply fnc args))))
-
-(advice-add 'package-desc-priority-version :around #'jcs-package--desc-priority-version--advice-around)
-
 ;;
 ;; (@* "Core Installation" )
 ;;
