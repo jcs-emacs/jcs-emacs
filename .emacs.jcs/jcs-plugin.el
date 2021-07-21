@@ -724,6 +724,10 @@
     (setq line-reminder-saved-sign " |"
           line-reminder-modified-sign " |")))
 
+(use-package logms
+  :config
+  (logms-mode 1))
+
 (use-package lsp-mode
   :init
   (setq lsp-auto-guess-root t
