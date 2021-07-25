@@ -12,6 +12,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Install new package `logms`.
 * Move emoji company backend fo just `markdown-mode`.
 * Remove unnecessary package version calculation.
+* Install new package `company-emojify`.
 
 ## 6.5.0
 > Released Jul 17, 2021
