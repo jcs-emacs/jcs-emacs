@@ -59,6 +59,7 @@
     command-log-mode
     company-box
     company-c-headers
+    company-emojify
     company-fuzzy
     counsel
     csharp-mode
