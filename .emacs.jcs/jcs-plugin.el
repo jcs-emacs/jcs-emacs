@@ -216,11 +216,7 @@
 
 (use-package define-it
   :init
-  (setq define-it-output-choice 'view
-        define-it-define-word-header "--{{ DEFINE }}--\n\n"
-        define-it-definition-header "\n\n--{{ DICTIONARY }}--\n\n"
-        define-it-translate-header "\n\n--{{ TRANSLATION }}--\n\n"
-        define-it-wiki-summary-header "\n\n--{{ WIKIPEDIA SUMMARY }}--\n\n"))
+  (setq define-it-output-choice 'view))
 
 (use-package diff-hl
   :init
