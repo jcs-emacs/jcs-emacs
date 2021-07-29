@@ -71,6 +71,17 @@ time is displayed."
     (when (symbolp key-fnc) (advice-remove key-fnc fnc))))
 
 ;;
+;; (@* "Association List" )
+;;
+
+(defun jcs-set-alist (alist key value)
+  "Update ALIST with KEY and VALUE."
+  (if (assoc key alist)
+      (setf (cdr (assoc key alist)) value)
+    (push (cons key value) alist))
+  alist)
+
+;;
 ;; (@* "Buffer" )
 ;;
 
