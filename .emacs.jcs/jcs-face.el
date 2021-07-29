@@ -25,7 +25,7 @@
 (defun jcs-reset-common-faces-by-theme ()
   "Reset comment faces case on the theme."
   (let ((face-map
-         `((font-lock-builtin-face . ("light steel blue"))
+         `((font-lock-builtin-face . ("#0C6EEF" "light steel blue"))
            (font-lock-comment-face . ("olive drab"))
            (font-lock-constant-face . ("#2B91AF" "#38EFCA"))
            (font-lock-doc-face . ("olive drab"))
