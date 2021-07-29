@@ -159,6 +159,7 @@ POWER-AC-LST : powerline active list.  POWER-INAC-LST : powerline inactive list.
 (defun jcs-reset-plugins-base-on-theme ()
   "Reset certain plugins base on the theme."
   (jcs-reset-ahs-by-theme)
+  (jcs-company-default-theme)
   (jcs-reset-dashboard-banner-by-theme)
   (jcs-reset-show-paren-by-theme)
   (jcs-reset-tabbar-theme)
@@ -224,11 +225,11 @@ Return nil if current theme light theme."
 ;; (@* "Load" )
 ;;
 
-(defun jcs--load-theme--advice-after (&rest _)
+(defun jcs--enable-theme--advice-after (&rest _)
   "Advice execute after `load-theme' function."
   (jcs-set-font-size jcs-default-font-size)
   (jcs-walk-through-all-frames-once (lambda () (jcs-reset-plugins-base-on-theme))))
-(advice-add 'enable-theme :after #'jcs--load-theme--advice-after)
+(advice-add 'enable-theme :after #'jcs--enable-theme--advice-after)
 
 (provide 'jcs-theme)
 ;;; jcs-theme.el ends here
