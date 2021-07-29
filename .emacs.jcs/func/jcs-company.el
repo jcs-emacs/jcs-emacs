@@ -41,8 +41,10 @@
    `(company-scrollbar-fg ((t (:background ,(cdr scrollbar)))))
    ;; --- Tooltip
    `(popup-tip-face ((t (:background ,(car quickhelp) :foreground ,(cdr quickhelp))))))
-  (add-to-list 'company-box-doc-frame-parameters `(background-color . ,(car quickhelp)))
-  (add-to-list 'company-box-doc-frame-parameters `(foreground-color . ,(cdr quickhelp))))
+  (setq company-box-doc-frame-parameters
+        (jcs-set-alist company-box-doc-frame-parameters 'background-color (car quickhelp))
+        company-box-doc-frame-parameters
+        (jcs-set-alist company-box-doc-frame-parameters 'foreground-color (cdr quickhelp))))
 
 (defun jcs-company-auto-complete-theme ()
   "Auto-Complete theme for `company-mode'."
@@ -65,7 +67,7 @@
        :tooltip-common '("#F5F5F5" . "#0066BF")
        :tooltip-common-selection '("#D6EBFF" . "#0066BF")
        :scrollbar '("#F5F5F5" . "#C2C3C9")
-       :quickhelp '("#F6F6F6" . "#1E1E1E"))
+       :quickhelp '("#E9EAED" . "#1E1E1E"))
     (jcs-company-set-face
      :annotation '("#96A2AA" . "#7BABCA")
      :tooltip '("#252526" . "#BEBEBF")
