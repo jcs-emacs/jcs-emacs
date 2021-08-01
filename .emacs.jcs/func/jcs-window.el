@@ -6,10 +6,6 @@
 ;; (@* "Navigation" )
 ;;
 
-(defun jcs-ensure-switch-to-buffer-other-window (win-name)
-  "Ensure switch to buffer, try multiple times with WIN-NAME"
-  (jcs-try-run 4 (switch-to-buffer-other-window win-name)))
-
 (cl-defun jcs-safe-jump-shown-to-buffer (in-buffer-name &key success error type)
   "Safely jump to IN-BUFFER-NAME's window and execute SUCCESS operations.
 
@@ -45,6 +41,15 @@ For argument TYPE; see function `jcs-string-compare-p' for description."
     (when (and (not found) (not no-error))
       (user-error "[ERROR] '%s' does not shown in any window" in-buffer-name))
     found))
+
+(defun jcs-switch-to-buffer-other-window (buffer-or-name &optional norecord)
+  "Same with function `switch-to-buffer-other-window' but also consider
+larger window height in the calculation.
+
+See function `switch-to-buffer-other-window' description for arguments
+BUFFER-OR-NAME and NORECORD."
+  (jcs-switch-to-next-window-larger-in-height)
+  (pop-to-buffer-same-window buffer-or-name norecord))
 
 ;;;###autoload
 (defun jcs-switch-to-previous-buffer (&optional cnt)
@@ -324,14 +329,14 @@ i.e. change right window to bottom, or change bottom window to right."
 ;;
 
 (defun jcs-switch-to-next-window-larger-in-height ()
-  "Return the next window that have larger height in column."
-  (other-window 1 t)
-  (let (larger-window)
+  "Switch to next larger window in current column."
+  (let ((current-window (selected-window)) larger-window)
     (walk-windows
      (lambda (win)
-       (when (and (not larger-window) (jcs-window-is-larger-in-height-p win))
-         (setq larger-window (selected-window)))))
-    larger-window))
+       (when (and (not larger-window) (not (eq current-window win))
+                  (jcs-window-is-larger-in-height-p win))
+         (setq larger-window win))))
+    (select-window larger-window)))
 
 (defun jcs-window-is-larger-in-height-p (&optional window)
   "Get the window that are larget than other windows in vertical/column."
