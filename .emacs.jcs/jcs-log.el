@@ -89,18 +89,22 @@ Optional argument IN-VAL-DEL is string that point to item."
 (defun jcs-do-before-log-action (clean)
   "Action do before doing log."
   (when clean
-    (save-selected-window
-      (unless (string= (buffer-name) "*Messages*")
-        (jcs-ensure-switch-to-buffer-other-window "*Messages*"))
-      (jcs-message-erase-buffer-stay))))
+    (jcs-safe-jump-shown-to-buffer
+     "*Messages*"
+     :success #'jcs-message-erase-buffer-stay
+     :error (lambda ()
+              (save-selected-window
+                (jcs-message-buffer-other-window)
+                (jcs-message-erase-buffer-stay))))))
 
 (defun jcs-do-after-log-action ()
   "Action do after doing log."
   (save-selected-window
-    (if (string= (buffer-name) "*Messages*")
-        (goto-char (point-max))
-      (jcs-ensure-switch-to-buffer-other-window "*Messages*"))
-    (jcs--message-buffer--first-load)))
+    (jcs-safe-jump-shown-to-buffer
+     "*Messages*"
+     :success (lambda ()
+                (goto-char (point-max))
+                (jcs--message-buffer--first-load)))))
 
 ;;
 ;; (@* "Util" )
