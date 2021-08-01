@@ -27,7 +27,7 @@
 (defun jcs-goto-definition-other-window ()
   "Move to definition other window."
   (interactive)
-  (let ((meta-view-display-function #'switch-to-buffer-other-window)
+  (let ((meta-view-display-function #'jcs-switch-to-buffer-other-window)
         jcs-recentf-tracking-p)
     (jcs--record-window-excursion-apply
      (jcs--record-window-excursion #'jcs-goto-definition))))

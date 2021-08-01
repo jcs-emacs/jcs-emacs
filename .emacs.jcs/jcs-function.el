@@ -79,7 +79,7 @@
 (defun jcs-message-buffer-other-window ()
   "Switch to `*Messages*' buffer."
   (interactive)
-  (switch-to-buffer-other-window jcs-message-buffer-name)
+  (jcs-switch-to-buffer-other-window jcs-message-buffer-name)
   (jcs--message-buffer--first-load))
 
 ;;;###autoload
@@ -125,7 +125,7 @@
 (defun jcs-scratch-buffer-other-window ()
   "Start a new scratch buffer."
   (interactive)
-  (switch-to-buffer-other-window jcs-scratch-buffer-name))
+  (jcs-switch-to-buffer-other-window jcs-scratch-buffer-name))
 
 ;;;###autoload
 (defun jcs-new-scratch-buffer ()

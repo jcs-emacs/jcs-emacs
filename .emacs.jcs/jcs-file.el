@@ -45,7 +45,7 @@ NOT-OW : Default is other window, not other window."
           (setq default-directory (f-dirname filepath)))
       (setq buf-str (buffer-string)))
     (unless title (setq title (format "*html-preview - %s*" (buffer-name))))
-    (if not-ow (switch-to-buffer title) (switch-to-buffer-other-window title))
+    (jcs-switch-to-buffer title (not not-ow))
     (read-only-mode -1)
     (erase-buffer)
     (save-excursion
@@ -80,7 +80,7 @@ NOT-OW : Default is other window, not other window."
 (defun jcs-display-file (filepath title &optional not-ow)
   "Display a file with FILEPATH with TITLE.
 NOT-OW : Default is other window, not other window."
-  (if not-ow (switch-to-buffer title) (switch-to-buffer-other-window title))
+  (jcs-switch-to-buffer title (not not-ow))
   (read-only-mode -1)
   (erase-buffer)
   (save-excursion
