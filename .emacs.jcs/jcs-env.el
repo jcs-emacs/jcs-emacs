@@ -85,7 +85,14 @@
   (setq compilation-context-lines t)
   (setq compilation-error-regexp-alist
         (cons '("^\\([0-9]+>\\)?\\(\\(?:[a-zA-Z]:\\)?[^:(\t\n]+\\)(\\([0-9]+\\)) : \\(?:fatal error\\|warnin\\(g\\)\\) C[0-9]+:" 2 3 nil (4))
-              compilation-error-regexp-alist)))
+              compilation-error-regexp-alist))
+
+  (require 'ansi-color)
+  (defun jcs--colorize-compilation-buffer ()
+    "Support for ANSI-escape coloring."
+    (let (buffer-read-only)
+      (ansi-color-apply-on-region compilation-filter-start (point))))
+  (add-hook 'compilation-filter-hook 'jcs--colorize-compilation-buffer))
 
 (defconst jcs-compilation-base-filename "output"
   "Base filename for compilation buffer.")
