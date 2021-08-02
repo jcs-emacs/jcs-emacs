@@ -1,5 +1,4 @@
 #GLOBAL_FILE_INFO#
-
 import React from 'react';
 import ReactNative from 'react-native';
 
