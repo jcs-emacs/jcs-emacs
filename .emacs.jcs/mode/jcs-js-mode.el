@@ -22,13 +22,11 @@
                                                       "ReactJS"
                                                       "React Native"))))
   (let (to-jsx)
-    (cond ((string= sc "Default (JS)") (jcs-insert-js-template))
-          ((string= sc "Default (JSX)") (jcs-insert-jsx-template)
-           (setq to-jsx t))
-          ((string= sc "ReactJS") (jcs-insert-jsx-react-js-template)
-           (setq to-jsx t))
-          ((string= sc "React Native") (jcs-insert-jsx-react-native-template)
-           (setq to-jsx t)))
+    (pcase sc
+      ("Default (JS)" (jcs-insert-js-template))
+      ("Default (JSX)" (jcs-insert-jsx-template) (setq to-jsx t))
+      ("ReactJS" (jcs-insert-jsx-react-js-template) (setq to-jsx t))
+      ("React Native" (jcs-insert-jsx-react-native-template) (setq to-jsx t)))
     (when to-jsx (jcs--js-to-jsx-mode t))))
 
 ;;
