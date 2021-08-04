@@ -16,6 +16,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Remove legacy code from `logging` module.
 * Add improvements for `ReactJS` and `React Native`'s default templates.
 * Add ansi color support for compilation buffer.
+* Enhance rule for `rjsx-mode` detection for JavaScript major modes.
 
 ## 6.5.0
 > Released Jul 17, 2021
