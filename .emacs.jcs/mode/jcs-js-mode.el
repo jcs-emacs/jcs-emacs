@@ -4,10 +4,13 @@
 
 (require 'js2-mode)
 
+(defconst jcs-javascript-modes '(javascript-mode js-mode js2-mode js3-mode)
+  "List of all JavaScript major modes.")
+
 (defun jcs--js-to-jsx-mode (&optional force)
   "Switch from JavaScript mode to JSX mode, FORCE will ignore any conditions."
   (let ((case-fold-search nil))
-    (when (or (and (not (jcs-is-current-major-mode-p "rjsx-mode"))
+    (when (or (and (jcs-is-current-major-mode-p jcs-javascript-modes)
                    (string-match-p "React" (buffer-string)))
               force)
       (message "[INFO] Detect JSX file, change to `rjsx-mode` instead")
