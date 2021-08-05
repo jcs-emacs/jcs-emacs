@@ -17,6 +17,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add improvements for `ReactJS` and `React Native`'s default templates.
 * Add ansi color support for compilation buffer.
 * Enhance rule for `rjsx-mode` detection for JavaScript major modes.
+* Fix url browsing functionality with key <kbd>Ctrl</kbd>+<kbd>Enter</kbd>.
 
 ## 6.5.0
 > Released Jul 17, 2021
