@@ -230,15 +230,13 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
   ;; 2. `yas-expand'
   ;; 3. `goto-address-at-point'
   ;;
-  (unless (ignore-errors (call-interactively #'project-abbrev-complete-word))
-    (unless (ignore-errors (call-interactively #'jcs-yas-expand))
-      (if (or (jcs-is-current-point-face 'link)
-              (and (jcs-is-end-of-symbol-p)
-                   (jcs-is-current-point-face 'link (1- (point)))))
-          (call-interactively #'goto-address-at-point)
-        (cl-case major-mode
-          (org-mode (call-interactively #'org-todo))
-          (t (call-interactively (key-binding (kbd "RET")))))))))
+  (cond ((ignore-errors (call-interactively #'project-abbrev-complete-word)))
+        ((ignore-errors (call-interactively #'jcs-yas-expand)))
+        ((ffap-url-at-point) (call-interactively #'goto-address-at-point))
+        (t
+         (cl-case major-mode
+           (org-mode (call-interactively #'org-todo))
+           (t (call-interactively (key-binding (kbd "RET"))))))))
 
 ;;
 ;; (@* "Space" )
