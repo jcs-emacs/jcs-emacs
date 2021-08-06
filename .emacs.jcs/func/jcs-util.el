@@ -1131,6 +1131,11 @@ Return nil, there is no region selected and mark is not active."
   "Select region from ST and ED."
   (goto-char st) (call-interactively #'set-mark-command) (goto-char ed))
 
+(defun jcs-region-bound ()
+  "Return region boundary, else default to min/max."
+  (if (use-region-p) (cons (region-beginning) (region-end))
+    (cons (point-min) (point-max))))
+
 ;;
 ;; (@* "Comment" )
 ;;
