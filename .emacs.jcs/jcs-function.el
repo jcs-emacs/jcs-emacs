@@ -570,25 +570,30 @@ If optional argument FORCE is non-nil, force refresh it."
 ;;
 
 ;;;###autoload
-(defun jcs-prettify-buffer-contents ()
-  "Prettify the buffer contents by file type."
+(defun jcs-prettify-contents ()
+  "Prettify contents by file type."
   (interactive)
   (require 'sgml-mode)
-  (cond ((jcs-is-current-major-mode-p '("json-mode"))
-         (json-reformat-region (point-min) (point-max)))
-        ((jcs-is-current-major-mode-p '("nxml-mode" "xml-mode"
-                                        "web-mode" "html-mode"))
-         (sgml-pretty-print (point-min) (point-max)))
-        (t (user-error "[WARNING] No prettify command in this context"))))
+  (let* ((inhibit-modification-hooks t)
+         (bound (jcs-region-bound))
+         (start (car bound)) (end (cdr bound)))
+    (cond ((jcs-is-current-major-mode-p '("json-mode"))
+           (json-reformat-region start end))
+          ((jcs-is-current-major-mode-p '("nxml-mode" "xml-mode"
+                                          "web-mode" "html-mode"))
+           (sgml-pretty-print start end))
+          (t (user-error "[WARNING] No prettify command in this context")))))
 
 ;;;###autoload
-(defun jcs-minify-buffer-contents ()
-  "Minifies the buffer contents by removing whitespaces."
+(defun jcs-minify-contents ()
+  "Minify contents by removing newlines and whitespaces."
   (interactive)
-  (delete-whitespace-rectangle (point-min) (point-max))
-  (mark-whole-buffer)
-  (goto-char (point-min))
-  (while (search-forward "\n" nil t) (replace-match "" nil t)))
+  (let* ((inhibit-modification-hooks t)
+         (bound (jcs-region-bound))
+         (start (car bound)) (end (cdr bound)))
+    (delete-whitespace-rectangle start end)
+    (goto-char start)
+    (while (search-forward "\n" nil t) (replace-match "" nil t))))
 
 ;;
 ;; (@* "Re-Builder" )
