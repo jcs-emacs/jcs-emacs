@@ -260,6 +260,7 @@
       (company-box-mode . company-box)
       (company-fuzzy-mode . company-fuzzy)
       (docstr-mode . docstr)
+      (editorconfig-mode . editorconfig)
       (eldoc-mode)
       (elm-indent-mode . elm-mode)
       (emmet-mode . emmet-mode)
