@@ -74,6 +74,7 @@
     dockerfile-mode
     docstr
     dumb-jump
+    editorconfig
     el-mock
     elisp-def
     elisp-demos
