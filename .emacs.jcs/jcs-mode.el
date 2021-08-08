@@ -287,11 +287,13 @@ Note this is opposite logic to the toggle mode function."
 (add-hook 'tabulated-list-mode-hook 'jcs-tabulated-list-mode-hook)
 
 ;;============================================================================
-;; LSP
+;; Project
 
-(defun jcs-active-lsp-mode-hook ()
-  "Hook that safely active package `lsp-mode'."
-  (jcs--safe-lsp-active))
+(defun jcs-active-project-mode-hook ()
+  "Hook runs when there is valid project root."
+  (when (jcs-project-under-p)
+    (jcs--safe-lsp-active)
+    (editorconfig-mode 1)))
 
 ;;============================================================================
 ;; Text Mode
@@ -312,7 +314,7 @@ Note this is opposite logic to the toggle mode function."
                               :interactive t))
 
 (add-hook 'text-mode-hook 'jcs-text-mode-hook)
-(add-hook 'text-mode-hook 'jcs-active-lsp-mode-hook)
+(add-hook 'text-mode-hook 'jcs-active-project-mode-hook)
 
 ;;============================================================================
 ;; Programming Mode
@@ -347,7 +349,7 @@ To avoid syntax highlighting error for comment.")
   (origami-indicators-mode 1))
 
 (add-hook 'prog-mode-hook 'jcs-prog-mode-hook)
-(add-hook 'prog-mode-hook 'jcs-active-lsp-mode-hook)
+(add-hook 'prog-mode-hook 'jcs-active-project-mode-hook)
 
 ;;============================================================================
 ;; Emacs Lisp
