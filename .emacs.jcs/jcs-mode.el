@@ -292,8 +292,8 @@ Note this is opposite logic to the toggle mode function."
 (defun jcs-active-project-mode-hook ()
   "Hook runs when there is valid project root."
   (when (jcs-project-under-p)
-    (jcs--safe-lsp-active)
-    (editorconfig-mode 1)))
+    (editorconfig-mode 1)
+    (jcs--safe-lsp-active)))
 
 ;;============================================================================
 ;; Text Mode
