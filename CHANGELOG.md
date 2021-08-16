@@ -21,6 +21,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Revise minify and prettify contents with region.
 * Remove `elisp` directory from `.emacs.d`, replace with [quelpa](https://github.com/quelpa/quelpa).
 * Install new package `editorconfig`.
+* Add `Project` to buffer menu list.
+* Add function to track the opened projects.
 
 ## 6.5.0
 > Released Jul 17, 2021
