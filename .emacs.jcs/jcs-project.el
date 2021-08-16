@@ -18,10 +18,10 @@
        (ignore-errors (file-readable-p (buffer-file-name)))))
 
 (defvar jcs-project--cache-opened-projects nil
-  "Cache for opened projects.")
+  "Cache to track down list of opened projects.")
 
-(defun jcs-project--record-open-projects ()
-  ""
+(defun jcs-project--track-open-projects ()
+  "Track the opened projects once."
   (setq jcs-project--cache-opened-projects (jcs-project-opened-projects)))
 
 (defun jcs-project-opened-projects (&optional refresh)
