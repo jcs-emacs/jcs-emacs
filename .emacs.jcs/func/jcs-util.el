@@ -104,10 +104,6 @@ time is displayed."
   (jcs-print-current-buffer-name)
   (jcs-print-current-buffer-file-name))
 
-(defun jcs-get-string-from-buffer (buf)
-  "Return buffer string from BUF."
-  (with-current-buffer buf (buffer-string)))
-
 (defun jcs-buffer-name-or-buffer-file-name (&optional buf)
   "Return BUF's `buffer-file-name' or `buffer-name' respectively."
   (or (buffer-file-name buf) (buffer-name buf)))
@@ -1317,10 +1313,17 @@ Return nil, there is no region selected and mark is not active."
       (setq index (1+ index)))
     result))
 
+(defun jcs-length (obj)
+  "Return an integer value represent the length of OBJ."
+  (cond ((stringp obj) (length (string-trim obj)))
+        ((bufferp obj) (length (string-trim (buffer-name obj))))
+        (t obj)))
+
 (defun jcs-list-min (lst)
   "Find minimum number in LST."
   (let (min)
     (dolist (num lst)
+      (setq min (jcs-length min) num (jcs-length num))
       (if min (when (< num min) (setq min num)) (setq min num)))
     min))
 
@@ -1328,6 +1331,7 @@ Return nil, there is no region selected and mark is not active."
   "Find maximum number in LST."
   (let (max)
     (dolist (num lst)
+      (setq max (jcs-length max) num (jcs-length num))
       (if max (when (> num max) (setq max num)) (setq max num)))
     max))
 
@@ -1617,17 +1621,11 @@ Argument IN-KEY is key use to search for value."
   (string-match "\\(.*\\)/" dir-path)  ; Remove the last directory in the path.
   (match-string 1 dir-path))
 
-(defun jcs-project-current ()
-  "Return project directory path."
-  (cdr (project-current)))
-
 (defun jcs-get-file-name-or-last-dir-from-path (in-path &optional noerror)
   "Get the either the file name or last directory from the IN-PATH."
   (if (and (not (jcs-file-directory-exists-p in-path)) (not noerror))
       (error "Directory/File you trying get does not exists")
-    (let ((result-dir-or-file nil)
-          (split-dir-file-list '())
-          (split-dir-file-list-len 0))
+    (let ((split-dir-file-list-len 0) result-dir-or-file split-dir-file-list)
 
       (cond ((string-match-p "/" in-path)
              (setq split-dir-file-list (split-string in-path "/")))
