@@ -1233,6 +1233,7 @@ NO-RECORD and FORCE-SAME-WINDOW are the same as switch to buffer arguments."
   (when (and (featurep 'lsp-mode) (jcs--lsp-connected-p))
     (lsp-disconnect))
   (kill-this-buffer)
+  (jcs-project--track-open-projects)
   (jcs-buffer-menu-safe-refresh)
   (jcs-dashboard-refresh-buffer)
   ;; If still in the buffer menu, try switch to the previous buffer.
