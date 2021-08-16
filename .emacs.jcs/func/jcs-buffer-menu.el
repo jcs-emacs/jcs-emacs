@@ -52,6 +52,127 @@ Sorted by (1) visit, (2) buffer, (3) size, (4) time, (5) mode, (6) file."
   (jcs-buffer-menu-sort 6))
 
 ;;
+;; (@* "Buffer List" )
+;;
+
+(defvar jcs-buffer-menu-diminish-list
+  (append
+   '("[*]Minibuf-" "[*]Buffer List[*]" "[*]Echo Area"
+     "[*]http"
+     "[*]code-conversion-work[*]" "[*]code-converting-work[*]"
+     "[*]company-"
+     "[*]tip[*]"
+     "[*]diff-hl"))
+  "List of buffers that are diminished by default.")
+
+(defun jcs-buffer-menu--buffer-list ()
+  "Return a list of buffers that only shows in buffer menu."
+  (require 'cl-lib)
+  (cl-remove-if
+   (lambda (buf)
+     (jcs-contain-list-string-regexp jcs-buffer-menu-diminish-list (buffer-name buf)))
+   (buffer-list)))
+
+(defun jcs-buffer-menu--diminish-buffer-list ()
+  "Return a list of diminished buffer."
+  (require 'cl-lib)
+  (cl-remove-if
+   (lambda (buf)
+     (jcs-contain-list-string-regexp diminish-buffer-list (buffer-name buf)))
+   (jcs-buffer-menu--buffer-list)))
+
+;;
+;; (@* "Customization" )
+;;
+
+(defun jcs-buffer-menu--name-width ()
+  "Return max buffer name width."
+  (jcs-buffer-menu--header-width
+   "Buffer " (if diminish-buffer-mode (jcs-buffer-menu--diminish-buffer-list)
+               (jcs-buffer-menu--buffer-list))
+   2))
+
+(defun jcs-buffer-menu--project-width ()
+  "Return max project width."
+  (require 'f)
+  (jcs-buffer-menu--header-width "Project " (f-uniquify (jcs-project-opened-projects))))
+
+(defun jcs-buffer-menu--size-width ()
+  "Return max buffer size width."
+  (jcs-buffer-menu--header-width "Size " (let (sizes)
+                                           (dolist ( buf (buffer-list))
+                                             (push (number-to-string (buffer-size buf)) sizes))
+                                           sizes)))
+
+(defun jcs-buffer-menu--header-width (name lst &optional extra)
+  "Return the width by NAME and LST."
+  (unless extra (setq extra 0))
+  (let ((min-size (length name)))
+    (+ (max min-size (or (jcs-list-max lst) min-size)) extra)))
+
+(defun jcs--list-buffers--refresh (&optional buffer-list old-buffer &rest _)
+  "Override function `list-buffers--refresh'."
+  (let ((name-width (jcs-buffer-menu--name-width))
+        (size-width (jcs-buffer-menu--size-width))
+        (marked-buffers (Buffer-menu-marked-buffers))
+        (buffer-menu-buffer (current-buffer))
+        (show-non-file (not Buffer-menu-files-only))
+        (opened-projects (jcs-project-opened-projects))
+        entries)
+    ;; Handle obsolete variable:
+    (if Buffer-menu-buffer+size-width
+        (setq name-width (- Buffer-menu-buffer+size-width size-width)))
+    (setq tabulated-list-format
+          (vector '("C" 1 t :pad-right 0)
+                  '("R" 1 t :pad-right 0)
+                  '("M" 1 t)
+                  `("Buffer" ,name-width t)
+                  (when opened-projects
+                    `("Project" ,(jcs-buffer-menu--project-width) t))
+                  `("Size" ,size-width tabulated-list-entry-size-> :right-align t)
+                  `("Mode" ,Buffer-menu-mode-width t)
+                  '("File" 1 t))
+          tabulated-list-format (cl-remove-if #'null tabulated-list-format))
+    (setq tabulated-list-use-header-line Buffer-menu-use-header-line)
+    ;; Collect info for each buffer we're interested in.
+    (dolist (buffer (or buffer-list
+                        (buffer-list (if Buffer-menu-use-frame-buffer-list
+                                         (selected-frame)))))
+      (with-current-buffer buffer
+        (let* ((name (buffer-name))
+               (file buffer-file-name))
+          (when (and (buffer-live-p buffer)
+                     (or buffer-list
+                         (and (or (not (string= (substring name 0 1) " "))
+                                  file)
+                              (not (eq buffer buffer-menu-buffer))
+                              (or file show-non-file))))
+            (push (list buffer
+                        (cl-remove-if
+                         #'null
+                         (vector (cond
+                                  ((eq buffer old-buffer) ".")
+                                  ((member buffer marked-buffers) ">")
+                                  (t " "))
+                                 (if buffer-read-only "%" " ")
+                                 (if (buffer-modified-p) "*" " ")
+                                 (Buffer-menu--pretty-name name)
+                                 (when opened-projects
+                                   (or (jcs-project-current-uniquify) ""))
+                                 (number-to-string (buffer-size))
+                                 (concat (format-mode-line mode-name
+                                                           nil nil buffer)
+                                         (if mode-line-process
+                                             (format-mode-line mode-line-process
+                                                               nil nil buffer)))
+                                 (Buffer-menu--pretty-file-name file))))
+                  entries)))))
+    (setq tabulated-list-entries (nreverse entries)))
+  (tabulated-list-init-header))
+
+(advice-add 'list-buffers--refresh :override #'jcs--list-buffers--refresh)
+
+;;
 ;; (@* "Search / Filter" )
 ;;
 
