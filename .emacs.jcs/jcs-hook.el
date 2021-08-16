@@ -40,7 +40,8 @@
   "Find file hook."
   (jcs-update-buffer-save-string)
   (jcs-active-line-numbers-by-mode)
-  (jcs-project-remember))
+  (jcs-project-remember)
+  (jcs-project--record-open-projects))
 (add-hook 'find-file-hook 'jcs-find-file-hook)
 
 (defun jcs--find-file--advice-before (&rest _)
