@@ -81,5 +81,44 @@ If optional argument DIR is nil, use variable `default-directory' instead."
     (setq project--list (reverse pr-lst))
     (project--write-project-list)))
 
+;;
+;; (@* "Version Control" )
+;;
+
+(defun jcs-vc-info ()
+  "Return vc-mode information."
+  (format-mode-line '(vc-mode vc-mode)))
+
+(defun jcs-vc-status ()
+  "Return version control status."
+  (require 'subr-x) (require 'f)
+  (when-let* ((project-name (jcs-project-current))
+              (info (jcs-vc-info))
+              (split (split-string info ":"))
+              (name (string-trim (jcs-s-replace-displayable (nth 0 split))))
+              (branch (string-trim (jcs-s-replace-displayable (nth 1 split)))))
+    (list (f-base project-name) name branch)))
+
+(defun jcs-vc-project ()
+  "Return the project name."
+  (nth 0 (jcs-vc-status)))
+
+(defun jcs-vc-system ()
+  "Return the system name."
+  (nth 1 (jcs-vc-status)))
+
+(defun jcs-vc-branch ()
+  "Return the branch name."
+  (nth 2 (jcs-vc-status)))
+
+(defun jcs-vc-dir-p (dir-path)
+  "Return non-nil if DIR-PATH is version control directory."
+  (let (tmp-is-vc-dir)
+    (dolist (tmp-vc-type grep-find-ignored-directories)
+      (let ((tmp-check-dir (concat dir-path "/" tmp-vc-type)))
+        (when (jcs-file-directory-exists-p tmp-check-dir)
+          (setq tmp-is-vc-dir t))))
+    tmp-is-vc-dir))
+
 (provide 'jcs-project)
 ;;; jcs-project.el ends here
