@@ -923,7 +923,12 @@
         (setq str (jcs-s-replace-displayable str))
         (setf (nth 0 args) str)))
     (apply fnc args))
-  (advice-add 'powerline-raw :around #'jcs--powerline-raw--advice-around))
+  (advice-add 'powerline-raw :around #'jcs--powerline-raw--advice-around)
+
+  ;; Override
+  (defpowerline powerline-vc
+    (when (jcs-vc-status)
+      (format " %s%s" (jcs-vc-project) (jcs-vc-info)))))
 
 (use-package project
   :config
