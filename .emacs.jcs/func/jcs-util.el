@@ -1607,15 +1607,6 @@ Argument IN-KEY is key use to search for value."
         (f-dirname (buffer-file-name last-valid-buffer))
       jcs-emacs-startup-directory)))
 
-(defun jcs-is-vc-dir-p (dir-path)
-  "Return non-nil if DIR-PATH is version control directory."
-  (let (tmp-is-vc-dir)
-    (dolist (tmp-vc-type grep-find-ignored-directories)
-      (let ((tmp-check-dir (concat dir-path "/" tmp-vc-type)))
-        (when (jcs-file-directory-exists-p tmp-check-dir)
-          (setq tmp-is-vc-dir t))))
-    tmp-is-vc-dir))
-
 (defun jcs-up-one-dir-string (dir-path)
   "Go up one directory from DIR-PATH and return it directory string."
   (string-match "\\(.*\\)/" dir-path)  ; Remove the last directory in the path.
