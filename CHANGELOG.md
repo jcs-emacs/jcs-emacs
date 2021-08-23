@@ -23,6 +23,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Install new package `editorconfig`.
 * Add `Project` to buffer menu list.
 * Add function to track the opened projects.
+* Add capability to show project name wiht `powerline`.
 
 ## 6.5.0
 > Released Jul 17, 2021
