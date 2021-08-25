@@ -194,31 +194,16 @@
 (defvar jcs--buffer-menu-return-delay nil
   "Record if hit return when display not ready; once it is ready we redo the action.")
 
-(defvar jcs--buffer-menu--fake-header-already-appears nil
+(defvar jcs--buffer-menu--first-enter nil
   "Record if fake header already appears.")
 
-(defun jcs--buffer-menu--advice-before (&rest _)
-  "Advice execute before `buffer-menu' command."
+(defun jcs--buffer-menu--advice-after (&rest _)
+  "Advice execute after `list-buffers-noselect' command."
   (setq jcs--buffer-menu-return-delay nil)
   (unless jcs-buffer--menu-switch-buffer-refreshing
-    (setq jcs--buffer-menu--fake-header-already-appears nil)
+    (setq jcs--buffer-menu--first-enter nil)
     (setq-local tabulated-list--header-string jcs--buffer-menu-search-title)))
-(advice-add 'buffer-menu :before #'jcs--buffer-menu--advice-before)
-
-(defun jcs--buffer-menu--advice-around (fnc &rest args)
-  "Advice execute around `buffer-menu' command."
-  (if (and (get-buffer jcs-buffer-menu-buffer-name)
-           (jcs-buffer-shown-p jcs-buffer-menu-buffer-name 'strict)
-           (not (string= (buffer-name) jcs-buffer-menu-buffer-name)))
-      (switch-to-buffer jcs-buffer-menu-buffer-name)
-    (apply fnc args)))
-(advice-add 'buffer-menu :around #'jcs--buffer-menu--advice-around)
-
-(defun jcs--buffer-menu--advice-after (&rest _)
-  "Advice execute after `buffer-menu' command."
-  (unless jcs-buffer--menu-switch-buffer-refreshing
-    (setq-local tabulated-list--header-string jcs--buffer-menu-search-title)))
-(advice-add 'buffer-menu :after #'jcs--buffer-menu--advice-after)
+(advice-add 'list-buffers-noselect :after #'jcs--buffer-menu--advice-after)
 
 (defvar jcs-buffer--menu-switch-buffer-refreshing nil
   "Flag to check if current buffer menu refresing.")
@@ -236,7 +221,7 @@
   (jcs-walk-through-all-windows-once
    (lambda ()
      (when (string= jcs-buffer-menu-buffer-name (buffer-name))
-       (when (and (jcs--buffer-menu--header-appearing-p) (= (line-number-at-pos) 1))
+       (when (and (tabulated-list-header-overlay-p) (= (line-number-at-pos) 1))
          (jcs-goto-line 2))))))
 
 (defun jcs-buffer-menu-safe-refresh ()
