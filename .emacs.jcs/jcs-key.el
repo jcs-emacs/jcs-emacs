@@ -61,6 +61,8 @@
 ;;; Buffer Menu
 (define-key global-map (kbd "M-b") #'buffer-menu)
 (define-key global-map (kbd "M-B") #'buffer-menu-other-window)
+(define-key global-map (kbd "C-M-b") #'jcs-buffer-menu-project)
+(define-key global-map (kbd "C-S-M-b") #'jcs-buffer-menu-project-other-window)
 
 (define-key Buffer-menu-mode-map (kbd "M-K") #'buffer-menu)
 (define-key Buffer-menu-mode-map (kbd "C-k C-s") #'describe-bindings)
