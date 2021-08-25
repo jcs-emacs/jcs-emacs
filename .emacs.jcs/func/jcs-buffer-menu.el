@@ -97,7 +97,7 @@ If optional argument BUFFER-LIST is non-nil, use this buffer list instead."
 
 (defun jcs-buffer-menu--project-buffer ()
   "Return buffer menu buffer for current project buffer."
-  (let ((buffers (jcs-project-buffers)) (name (jcs-vc-project)))
+  (let ((buffers (jcs-project-buffer-list)) (name (jcs-vc-project)))
     (with-current-buffer (list-buffers-noselect nil buffers)
       (setq jcs-buffer-menu--project-name name
             jcs-buffer-menu--project-buffer-list buffers)
