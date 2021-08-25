@@ -1,4 +1,4 @@
-;;; jcs-buffer-menu.el --- Functions in buffer menu mode (*Buffer List*).  -*- lexical-binding: t -*-
+;;; jcs-buffer-menu.el --- Functions in buffer menu mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -65,31 +65,64 @@ Sorted by (1) visit, (2) buffer, (3) size, (4) time, (5) mode, (6) file."
      "[*]diff-hl"))
   "List of buffers that are diminished by default.")
 
-(defun jcs-buffer-menu--buffer-list ()
-  "Return a list of buffers that only shows in buffer menu."
+(defun jcs-buffer-menu--buffer-list (&optional buffer-list)
+  "Return a list of buffers that only shows in buffer menu.
+
+If optional argument BUFFER-LIST is non-nil, use this buffer list instead."
   (require 'cl-lib)
   (cl-remove-if
    (lambda (buf)
      (jcs-contain-list-string-regexp jcs-buffer-menu-diminish-list (buffer-name buf)))
-   (buffer-list)))
+   (or buffer-list (buffer-list))))
 
-(defun jcs-buffer-menu--diminish-buffer-list ()
-  "Return a list of diminished buffer."
+(defun jcs-buffer-menu--diminish-buffer-list (&optional buffer-list)
+  "Return a list of diminished buffer.
+
+If optional argument BUFFER-LIST is non-nil, use this buffer list instead."
   (require 'cl-lib)
   (cl-remove-if
    (lambda (buf)
      (jcs-contain-list-string-regexp diminish-buffer-list (buffer-name buf)))
-   (jcs-buffer-menu--buffer-list)))
+   (jcs-buffer-menu--buffer-list buffer-list)))
+
+;;
+;; (@* "Project" )
+;;
+
+(defvar-local jcs-buffer-menu--project-name nil
+  "Record the project name for refreshing.")
+
+(defvar-local jcs-buffer-menu--project-buffer-list nil
+  "Record a list of project buffers for refreshing.")
+
+(defun jcs-buffer-menu--project-buffer ()
+  "Return buffer menu buffer for current project buffer."
+  (let ((buffers (jcs-project-buffers)) (name (jcs-vc-project)))
+    (with-current-buffer (list-buffers-noselect nil buffers)
+      (setq jcs-buffer-menu--project-name name
+            jcs-buffer-menu--project-buffer-list buffers)
+      (current-buffer))))
+
+(defun jcs-buffer-menu-project ()
+  "Same with command `buffer-menu' but show only project buffers."
+  (interactive)
+  (switch-to-buffer (jcs-buffer-menu--project-buffer)))
+
+(defun jcs-buffer-menu-project-other-window ()
+  "Same with command `buffer-menu-other-window' but show only project buffers."
+  (interactive)
+  (jcs-switch-to-buffer-other-window (jcs-buffer-menu--project-buffer)))
 
 ;;
 ;; (@* "Customization" )
 ;;
 
-(defun jcs-buffer-menu--name-width ()
-  "Return max buffer name width."
+(defun jcs-buffer-menu--name-width (&optional buffer-list)
+  "Return max buffer name width by BUFFER-LIST."
   (jcs-buffer-menu--header-width
-   "Buffer " (if diminish-buffer-mode (jcs-buffer-menu--diminish-buffer-list)
-               (jcs-buffer-menu--buffer-list))
+   "Buffer " (if diminish-buffer-mode
+                 (jcs-buffer-menu--diminish-buffer-list buffer-list)
+               (jcs-buffer-menu--buffer-list buffer-list))
    2))
 
 (defun jcs-buffer-menu--project-width ()
@@ -97,10 +130,10 @@ Sorted by (1) visit, (2) buffer, (3) size, (4) time, (5) mode, (6) file."
   (require 'f)
   (jcs-buffer-menu--header-width "Project " (f-uniquify (jcs-project-opened-projects))))
 
-(defun jcs-buffer-menu--size-width ()
-  "Return max buffer size width."
+(defun jcs-buffer-menu--size-width (buffer-list)
+  "Return max buffer size width by BUFFER-LIST."
   (jcs-buffer-menu--header-width "Size " (let (sizes)
-                                           (dolist ( buf (buffer-list))
+                                           (dolist ( buf (or buffer-list (buffer-list)))
                                              (push (number-to-string (buffer-size buf)) sizes))
                                            sizes)))
 
@@ -112,8 +145,10 @@ Sorted by (1) visit, (2) buffer, (3) size, (4) time, (5) mode, (6) file."
 
 (defun jcs--list-buffers--refresh (&optional buffer-list old-buffer &rest _)
   "Override function `list-buffers--refresh'."
-  (let ((name-width (jcs-buffer-menu--name-width))
-        (size-width (jcs-buffer-menu--size-width))
+  (when jcs-buffer-menu--project-buffer-list
+    (setq buffer-list jcs-buffer-menu--project-buffer-list))
+  (let ((name-width (jcs-buffer-menu--name-width buffer-list))
+        (size-width (jcs-buffer-menu--size-width buffer-list))
         (marked-buffers (Buffer-menu-marked-buffers))
         (buffer-menu-buffer (current-buffer))
         (show-non-file (not Buffer-menu-files-only))
@@ -211,21 +246,9 @@ From scale 0 to 100.")
   "Search pattern.")
 
 
-(defun jcs--buffer-menu--header-appearing-p ()
-  "Check if header appearing in the buffer."
-  (let (header-appear)
-    (jcs-do-stuff-if-buffer-exists
-     jcs-buffer-menu-buffer-name
-     (lambda ()
-       (save-excursion
-         (goto-char (point-min))
-         (setq header-appear (not (tabulated-list-get-entry))))))
-    header-appear))
-
 (defun jcs--safe-print-fake-header ()
   "Safe way to print fake header."
-  (when (and (not (jcs--buffer-menu--header-appearing-p))
-             jcs--buffer-menu--fake-header-already-appears)
+  (unless (tabulated-list-header-overlay-p)
     (tabulated-list-print-fake-header)))
 
 (defun jcs--buffer-menu-clean ()
@@ -272,16 +295,23 @@ From scale 0 to 100.")
     (when jcs--buffer-menu-return-delay
       (jcs-buffer-menu-return))))
 
+(defun jcs--buffer-menu--update-header-string ()
+  "Update the header string."
+  (let ((title jcs--buffer-menu-search-title))
+    (when jcs-buffer-menu--project-name
+      (setq title (concat "[%s] " title)
+            title (format title jcs-buffer-menu--project-name)))
+    (when (> (length title) (length tabulated-list--header-string))
+      (setq-local tabulated-list--header-string title))
+    (setq jcs--buffer-menu--pattern (substring tabulated-list--header-string
+                                               (length title)
+                                               (length tabulated-list--header-string)))))
+
 (defun jcs--buffer-menu-trigger-filter ()
   "Trigger the filtering operation, with PRINT-HEADER."
   (tabulated-list-revert)
+  (jcs--buffer-menu--update-header-string)
   (jcs--safe-print-fake-header)
-  ;; NOTE: Ensure title exists.
-  (when (> (length jcs--buffer-menu-search-title) (length tabulated-list--header-string))
-    (setq-local tabulated-list--header-string jcs--buffer-menu-search-title))
-  (setq jcs--buffer-menu--pattern (substring tabulated-list--header-string
-                                             (length jcs--buffer-menu-search-title)
-                                             (length tabulated-list--header-string)))
   (unless (string-empty-p jcs--buffer-menu--pattern)
     (setq jcs--buffer-menu--filter-timer (jcs-safe-kill-timer jcs--buffer-menu--filter-timer)
           jcs--buffer-menu--done-filtering nil
@@ -292,7 +322,9 @@ From scale 0 to 100.")
 (defun jcs--buffer-menu-input (key-input &optional add-del-num)
   "Insert key KEY-INPUT for fake header for search bar.
 ADD-DEL-NUM : Addition or deletion number."
-  (setq jcs--buffer-menu--fake-header-already-appears t)
+  (unless jcs--buffer-menu--first-enter
+    (jcs--buffer-menu--update-header-string)
+    (setq jcs--buffer-menu--first-enter t))
   (unless add-del-num (setq add-del-num (length key-input)))
   (if (jcs-is-positive add-del-num)
       (setq tabulated-list--header-string
