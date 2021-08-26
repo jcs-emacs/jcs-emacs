@@ -117,6 +117,9 @@ If optional argument BUFFER-LIST is non-nil, use this buffer list instead."
 ;; (@* "Customization" )
 ;;
 
+(defconst jcs-buffer-menu--default-project-value ""
+  "Default value for project column.")
+
 (defun jcs-buffer-menu--name-width (&optional buffer-list)
   "Return max buffer name width by BUFFER-LIST."
   (jcs-buffer-menu--header-width
@@ -128,7 +131,8 @@ If optional argument BUFFER-LIST is non-nil, use this buffer list instead."
 (defun jcs-buffer-menu--project-width ()
   "Return max project width."
   (require 'f)
-  (jcs-buffer-menu--header-width "Project " (f-uniquify (jcs-project-opened-projects))))
+  (max (length jcs-buffer-menu--default-project-value)
+       (jcs-buffer-menu--header-width "Project " (f-uniquify (jcs-project-opened-projects)))))
 
 (defun jcs-buffer-menu--size-width (buffer-list)
   "Return max buffer size width by BUFFER-LIST."
@@ -193,7 +197,7 @@ If optional argument BUFFER-LIST is non-nil, use this buffer list instead."
                                  (if (buffer-modified-p) "*" " ")
                                  (Buffer-menu--pretty-name name)
                                  (when opened-projects
-                                   (or (jcs-project-current-uniquify) ""))
+                                   (or (jcs-project-current-uniquify) jcs-buffer-menu--default-project-value))
                                  (number-to-string (buffer-size))
                                  (concat (format-mode-line mode-name
                                                            nil nil buffer)
