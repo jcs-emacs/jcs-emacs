@@ -62,7 +62,9 @@ Sorted by (1) visit, (2) buffer, (3) size, (4) time, (5) mode, (6) file."
      "[*]code-conversion-work[*]" "[*]code-converting-work[*]"
      "[*]company-"
      "[*]tip[*]"
-     "[*]diff-hl"))
+     "[*]diff-hl"
+     "[*]Treemacs-Scoped-Buffer"
+     "[*]pfuture stderr"))
   "List of buffers that are diminished by default.")
 
 (defun jcs-buffer-menu--buffer-list (&optional buffer-list)
