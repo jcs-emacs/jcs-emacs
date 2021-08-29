@@ -330,7 +330,8 @@
          '("[*]preview-it")
          '("[*]wclock[*]")
          '("[*]Clippy[*]")
-         '("[*]CMake Temporary[*]")))
+         '("[*]CMake Temporary[*]")
+         '("[*]org-src-fontification")))
   (setq diminish-buffer-mode-list
         (append
          '("Dired by name")))
