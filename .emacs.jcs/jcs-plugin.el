@@ -2,20 +2,20 @@
 ;;; Commentary:
 ;;; Code:
 
-(use-package adaptive-wrap
+(leaf adaptive-wrap
   :init
   (add-hook 'visual-line-mode-hook (lambda () (adaptive-wrap-prefix-mode +1))))
 
-(use-package atl-markup
+(leaf atl-markup
   :init
   (setq atl-markup-delay 0.2))
 
-(use-package auto-highlight-symbol
+(leaf auto-highlight-symbol
   :init
   (setq ahs-idle-interval 0.15))
 
-(use-package auto-read-only
-  :config
+(leaf auto-read-only
+  :defer-config
   (add-to-list 'auto-read-only-file-regexps "/[.]emacs[.]d/elisp/")
   (add-to-list 'auto-read-only-file-regexps "/[.]emacs[.]d/elpa/")
   (add-to-list 'auto-read-only-file-regexps "/lisp/")
@@ -26,30 +26,30 @@
       (auto-read-only)))
   (advice-add 'auto-read-only--hook-find-file :override #'jcs--auto-read-only--hook-find-file))
 
-(use-package auto-rename-tag
+(leaf auto-rename-tag
   :init
   (setq auto-rename-tag-disabled-commands '(query-replace)
         auto-rename-tag-disabled-minor-modes '(iedit-mode
                                                multiple-cursors-mode)))
 
-(use-package better-scroll
+(leaf better-scroll
   :init
   (setq better-scroll-align-type 'relative
         better-scroll-allow-boundary-movement t))
 
-(use-package browse-kill-ring
+(leaf browse-kill-ring
   :init
   (setq browse-kill-ring-separator (jcs-env-separator)
         browse-kill-ring-separator-face 'font-lock-comment-face)
-  :config
+  :defer-config
   (defun jcs--browse-kill-ring-mode-hook ()
     "Hook for `browse-kill-ring-mode'."
     (setq browse-kill-ring-separator (jcs-env-separator))
     (page-break-lines-mode 1))
   (add-hook 'browse-kill-ring-mode-hook 'jcs--browse-kill-ring-mode-hook))
 
-(use-package buffer-wrap
-  :config
+(leaf buffer-wrap
+  :defer-config
   (defun jcs--buffer-wrap--fixed-window-off ()
     "Fixed windows is off after wrapping."
     (let ((max-ln (+ (line-number-at-pos (point-max)) buffer-wrap--relative-max-line)))
@@ -75,14 +75,14 @@
     (jcs--buffer-wrap--fixed-window-off))
   (add-hook 'buffer-wrap-post-command-hook 'jcs--buffer-wrap-post-command-hook))
 
-(use-package centaur-tabs
+(leaf centaur-tabs
   :init
   (setq centaur-tabs-set-icons nil
         centaur-tabs-style "wave"
         centaur-tabs-set-modified-marker t
         centaur-tabs-modified-marker "*"))
 
-(use-package company
+(leaf company
   :init
   (setq company-frontends '(company-pseudo-tooltip-frontend
                             company-echo-metadata-frontend)
@@ -103,10 +103,10 @@
          '(company-files)
          '(company-etags company-gtags)
          '(company-yasnippet)))
-  :config
+  :defer-config
   (with-eval-after-load 'company (require 'jcs-company) (global-company-mode t)))
 
-(use-package company-box
+(leaf company-box
   :init
   (setq company-box-backends-colors nil
         company-box-frame-behavior 'point
@@ -115,8 +115,8 @@
   (with-eval-after-load 'company
     (add-hook 'company-mode-hook 'company-box-mode)))
 
-(use-package company-c-headers
-  :config
+(leaf company-c-headers
+  :defer-config
   (require 'dash)
 
   (defconst jcs--msvc-path
@@ -142,12 +142,12 @@
                                  (lambda (dirname)
                                    (not (= (string-to-number dirname) 0)))))))))
 
-(use-package company-emojify
+(leaf company-emojify
   :init
   (setq company-emojify-annotation 'image
         company-emojify-emoji-styles '(github)))
 
-(use-package company-fuzzy
+(leaf company-fuzzy
   :init
   (setq company-fuzzy-sorting-backend 'flx
         company-fuzzy-prefix-on-top nil
@@ -155,7 +155,7 @@
         company-fuzzy-trigger-symbols '("." "->" "<" "\"" "'"))
   (with-eval-after-load 'company (global-company-fuzzy-mode t)))
 
-(use-package counsel
+(leaf counsel
   :init
   (defvar jcs-counsel-find-file-ignore '("[.]meta$" "/node_modules/")
     "List of find file ignore regexp string.")
@@ -165,11 +165,11 @@
                                          (lambda (elm) (concat "\\(" elm "\\)"))
                                          jcs-counsel-find-file-ignore "\\|")))
 
-(use-package csharp-mode
+(leaf csharp-mode
   :init
   (setq csharp-codedoc-tag-face 'font-lock-doc-face))
 
-(use-package dashboard
+(leaf dashboard
   :init
   (setq dashboard-banner-logo-title "[J C S • E M A C S]"
         dashboard-footer-icon ""
@@ -199,7 +199,7 @@
         dashboard-bookmarks-item-format "%s  %s"
         dashboard-shorten-by-window-width t
         dashboard-shorten-path-offset 15)
-  :config
+  :defer-config
   (setq initial-buffer-choice (lambda () (get-buffer dashboard-buffer-name)))
 
   (require 'dashboard-ls)
@@ -210,21 +210,21 @@
 
   (dashboard-setup-startup-hook))
 
-(use-package dashboard-ls
-  :config
+(leaf dashboard-ls
+  :defer-config
   (let ((dashboard-lst-items '((ls-directories . 5) (ls-files . 5))))
     (setq dashboard-items (append dashboard-lst-items dashboard-items))))
 
-(use-package define-it
+(leaf define-it
   :init
   (setq define-it-output-choice 'view))
 
-(use-package diff-hl
+(leaf diff-hl
   :init
   (setq diff-hl-side 'right))
 
-(use-package diminish
-  :config
+(leaf diminish
+  :defer-config
   (defun jcs-diminish-type (type)
     "Diminsh TYPE.
 
@@ -297,7 +297,7 @@
 
   (jcs-diminish-do-alist jcs-diminish-alist))
 
-(use-package diminish-buffer
+(leaf diminish-buffer
   :init
   (setq diminish-buffer-list
         (append
@@ -337,59 +337,59 @@
         (append
          '("Dired by name")))
   (with-eval-after-load 'jcs-buffer-menu (diminish-buffer-mode 1))
-  :config
+  :defer-config
   (defun jcs--diminish-buffer-clean--advice-before ()
     "Advice do clean buffer."
     (when diminish-buffer-mode (diminish-buffer-clean)))
   (advice-add 'jcs-buffer-menu-refresh-buffer :before #'jcs--diminish-buffer-clean--advice-before))
 
-(use-package display-fill-column-indicator
+(leaf display-fill-column-indicator
   :init
   (setq-default display-fill-column-indicator-column 80)
-  :config
+  :defer-config
   (jcs--set-common-face 'fill-column-indicator "#AA4242"))
 
-(use-package docstr
+(leaf docstr
   :init
   (setq docstr-key-support t
         docstr-desc-summary ""))
 
-(use-package dumb-jump
+(leaf dumb-jump
   :init
   (setq dumb-jump-selector 'ivy))
 
-(use-package elisp-def
+(leaf elisp-def
   :init
   (defvar jcs-elisp-def-modes '(emacs-lisp-mode lisp-mode lisp-interaction-mode)
     "List of `major-mode' that works with `elisp-def'."))
 
-(use-package elisp-demos
+(leaf elisp-demos
   :init
   (with-eval-after-load 'help-fns
     (advice-add 'describe-function-1 :after #'elisp-demos-advice-describe-function-1))
   (with-eval-after-load 'helpful
     (advice-add 'helpful-update :after #'elisp-demos-advice-helpful-update)))
 
-(use-package emojify
+(leaf emojify
   :init
   (setq emojify-emoji-styles '(github)
         emojify-company-tooltips-p t))
 
-(use-package eshell-syntax-highlighting
+(leaf eshell-syntax-highlighting
   :init
   (with-eval-after-load 'eshell
     (eshell-syntax-highlighting-global-mode +1)))
 
-(use-package eww
+(leaf eww
   :init
   (setq eww-search-prefix "https://www.google.com/search?q="))
 
-(use-package exec-path-from-shell
-  :config
+(leaf exec-path-from-shell
+  :defer-config
   (when (memq window-system '(mac ns x))
     (exec-path-from-shell-initialize)))
 
-(use-package feebleline
+(leaf feebleline
   :init
   (setq feebleline-msg-functions
         '(;;-- Left
@@ -420,7 +420,7 @@
     (let* ((ml-color (jcs--get-mode-line-color))
            (ac-lst (car ml-color)) (inac-lst (cdr ml-color)))
       (jcs--set-mode-line-color--by-feebleline ac-lst inac-lst)))
-  :config
+  :defer-config
   (cl-defun jcs--feebleline--insert-func (func &key (face 'default) pre (post " ") (fmt "%s") (align 'left))
     "Override `feebleline--insert-func' function."
     (list align
@@ -472,13 +472,13 @@
          (setq mode-line-format feebleline--mode-line-format-previous)))))
   (advice-add 'feebleline-mode :after #'jcs--feebleline-mode--advice-after))
 
-(use-package ffmpeg-player
+(leaf ffmpeg-player
   :init
   (setq ffmpeg-player--volume 75
         ffmpeg-player-display-width 672
         ffmpeg-player-display-height 378
         ffmpeg-player-no-message t)
-  :config
+  :defer-config
   (defun jcs--ffmpeg-player-before-insert-image-hook ()
     "Hook runs before inserting image."
     (insert "             "))
@@ -501,19 +501,19 @@
        (jcs--feebleline--time :align right))))
   (add-hook 'ffmpeg-player-mode-hook 'jcs-ffmpeg-player-mode-hook))
 
-(use-package file-header
+(leaf file-header
   :init
   (setq file-header-template-config-filepath "~/.emacs.jcs/template/template_config.properties"))
 
-(use-package flycheck-grammarly
+(leaf flycheck-grammarly
   :init
   (with-eval-after-load 'flycheck (require 'flycheck-grammarly)))
 
-(use-package flycheck-languagetool
+(leaf flycheck-languagetool
   :init
   (with-eval-after-load 'flycheck (require 'flycheck-languagetool)))
 
-(use-package flycheck-popup-tip
+(leaf flycheck-popup-tip
   :init
   (defun jcs--flycheck-mode--pos-tip--advice-after (&rest _)
     "Advice runs after `flycheck-mode' function with `flycheck-popup-tip'."
@@ -521,7 +521,7 @@
                                           (and (not (display-graphic-p)) flycheck-mode)))
   (advice-add 'flycheck-mode :after #'jcs--flycheck-mode--pos-tip--advice-after))
 
-(use-package flycheck-pos-tip
+(leaf flycheck-pos-tip
   :init
   (defun jcs--flycheck-mode--pos-tip--advice-after (&rest _)
     "Advice runs after `flycheck-mode' function with `flycheck-pos-tip'."
@@ -529,35 +529,35 @@
                                           (and (display-graphic-p) flycheck-mode)))
   (advice-add 'flycheck-mode :after #'jcs--flycheck-mode--pos-tip--advice-after))
 
-(use-package google-translate
+(leaf google-translate
   :init
   (setq google-translate-default-source-language "auto"
         google-translate-default-target-language "zh-TW")
-  :config
+  :defer-config
   (defun jcs--google-translate--search-tkk ()
     "Search TKK."
     (list 430675 2721866130))
   (advice-add 'google-translate--search-tkk :override #'jcs--google-translate--search-tkk))
 
-(use-package goto-char-preview
-  :config
+(leaf goto-char-preview
+  :defer-config
   (advice-add 'goto-char-preview :after #'jcs--recenter--advice-after))
 
-(use-package goto-line-preview
-  :config
+(leaf goto-line-preview
+  :defer-config
   (advice-add 'goto-line-preview :after #'jcs--recenter--advice-after))
 
-(use-package highlight-indent-guides
+(leaf highlight-indent-guides
   :init
   (setq highlight-indent-guides-method 'character
         highlight-indent-guides-character ?\|
         highlight-indent-guides-responsive 'top))
 
-(use-package highlight-numbers
-  :config
+(leaf highlight-numbers
+  :defer-config
   (jcs--set-common-face 'highlight-numbers-number "#9BCEA3"))
 
-(use-package hl-todo
+(leaf hl-todo
   :init
   (setq hl-todo-highlight-punctuation "")
   (setq hl-todo-keyword-faces
@@ -596,17 +596,17 @@
           ("DEPRECATED" . "DarkOrange3")
           ("TOPIC" . "slate blue")
           ("SEE" . "slate blue")))
-  :config
+  :defer-config
   (defun jcs--hl-todo--inside-comment-or-string-p ()
     "Redefine `hl-todo--inside-comment-or-string-p', for accurate highlighting."
     (jcs-inside-comment-or-string-p))
   (advice-add #'hl-todo--inside-comment-or-string-p :override #'jcs--hl-todo--inside-comment-or-string-p))
 
-(use-package impatient-showdown
+(leaf impatient-showdown
   :init
   (setq impatient-showdown-flavor 'github))
 
-(use-package indent-control
+(leaf indent-control
   :init
   (setq indent-control-records
         '((actionscript-mode     . 4)
@@ -645,15 +645,15 @@
           (web-mode              . 2)
           (yaml-mode             . 2))))
 
-(use-package isearch
+(leaf isearch
   :init
   (setq isearch-lazy-count t
         lazy-count-prefix-format "[%s:%s] ")
-  :config
+  :defer-config
   (add-hook 'isearch-mode-hook #'jcs-scroll-conservatively-disable)
   (add-hook 'isearch-mode-end-hook #'jcs-scroll-conservatively-enable))
 
-(use-package isearch-project
+(leaf isearch-project
   :init
   (setq isearch-project-ignore-paths '(".vs/"
                                        ".vscode/"
@@ -662,7 +662,7 @@
                                        "build.min/"
                                        "node_modules/"
                                        "res/"))
-  :config
+  :defer-config
   (defun jcs-isearch-mode-hook ()
     "Paste the current symbol when `isearch' enabled."
     (cond ((use-region-p)
@@ -677,7 +677,7 @@
              (isearch-repeat-backward)))))
   (add-hook 'isearch-mode-hook #'jcs-isearch-mode-hook))
 
-(use-package ivy
+(leaf ivy
   :init
   (setq ivy-auto-shrink-minibuffer t
         ivy-use-virtual-buffers t  ; Enable bookmarks and recentf
@@ -691,43 +691,43 @@
         ivy-wrap t)
   (defvar jcs-ivy-height-ratio 0.3
     "Ratio that respect to `frame-height' and `ivy-height'.")
-  :config
+  :defer-config
   (require 'smex)
   (setq enable-recursive-minibuffers t))
 
-(use-package ivy-file-preview
+(leaf ivy-file-preview
   :init
   (setq ivy-file-preview-overlay-delay-time 0.2)
   (with-eval-after-load 'ivy (ivy-file-preview-mode 1)))
 
-(use-package ivy-searcher
+(leaf ivy-searcher
   :init
   (setq ivy-searcher-display-info 'line/column
         ivy-searcher-preselect 'next)
-  :config
+  :defer-config
   (advice-add 'ivy-searcher-replace-file :after #'jcs-revert-all-buffers)
   (advice-add 'ivy-searcher-replace-project :after #'jcs-revert-all-buffers)
   (advice-add 'ivy-searcher-search-file :after #'jcs--recenter--advice-after)
   (advice-add 'ivy-searcher-search-project :after #'jcs--recenter--advice-after))
 
-(use-package keypression
-  :config
+(leaf keypression
+  :defer-config
   (setq keypression-ignore-mouse-events
         (append keypression-ignore-mouse-events
                 '(switch-frame menu-bar tool-bar tab-bar))))
 
-(use-package line-reminder
+(leaf line-reminder
   :init
   (setq line-reminder-show-option (if (display-graphic-p) 'indicators 'linum))
   (unless (display-graphic-p)
     (setq line-reminder-saved-sign " |"
           line-reminder-modified-sign " |")))
 
-(use-package logms
-  :config
+(leaf logms
+  :defer-config
   (logms-mode 1))
 
-(use-package lsp-mode
+(leaf lsp-mode
   :init
   (setq lsp-auto-guess-root t
         lsp-prefer-capf t
@@ -746,7 +746,7 @@
     (when (and (jcs-project-under-p) (not (jcs--lsp-connected-p)))
       (lsp-deferred))))
 
-(use-package lsp-ui
+(leaf lsp-ui
   :init
   (setq lsp-ui-doc-enable t
         lsp-ui-doc-text-scale-level -1
@@ -767,12 +767,12 @@
   (defun jcs--lsp-ui-doc--hide-frame ()
     "Safe way to call `lsp-ui-doc--hide-frame' function."
     (when (functionp 'lsp-ui-doc--hide-frame) (lsp-ui-doc--hide-frame)))
-  :config
+  :defer-config
   (setq lsp-ui-doc-border (face-foreground 'font-lock-comment-face))
   (lsp-ui-sideline-set-default-icon))
 
-(use-package meta-view
-  :config
+(leaf meta-view
+  :defer-config
   (defun jcs--meta-view-after-insert-hook ()
     "Hook runs after meta-view buffer insertion."
     (jcs-prog-mode-hook)
@@ -792,23 +792,23 @@
             (setq continuation nil))))))
   (add-hook 'meta-view-after-insert-hook #'jcs--meta-view-after-insert-hook))
 
-(use-package most-used-words
+(leaf most-used-words
   :init
   (setq most-used-words-display-type 'table
         most-used-words-word-display 100))
 
-(use-package modablist
-  :config
+(leaf modablist
+  :defer-config
   (set-face-attribute 'modablist-select-face nil
                       :box '(:line-width -1 :color "#65A7E2" :style nil))
   (set-face-attribute 'modablist-insert-face nil :background "#565136"
                       :box '(:line-width -1 :color "#65A7E2" :style nil)))
 
-(use-package multi-shell
+(leaf multi-shell
   :init
   (setq multi-shell-prefer-shell-type 'shell))  ; Accept `shell' or `eshll'.
 
-(use-package multiple-cursors
+(leaf multiple-cursors
   :init
   (defconst jcs-mc/cancel-commands
     (append
@@ -830,7 +830,7 @@
 
   (dolist (cmd jcs-mc/cancel-commands)
     (advice-add cmd :after #'jcs-mc/cancel-multiple-cursors))
-  :config
+  :defer-config
   (defun jcs--mc/mark-lines (num-lines direction)
     "Override `mc/mark-lines' function."
     (let ((cur-column (current-column)))
@@ -850,12 +850,12 @@
          (mc/create-fake-cursor-at-point)))))
   (advice-add 'mc/mark-lines :override #'jcs--mc/mark-lines))
 
-(use-package origami
+(leaf origami
   :init
   (setq origami-indicators-fringe 'left-fringe
         origami-indicators-time 0.2
         origami-indicators-face-function #'jcs--origami-indicators-face-function)
-  :config
+  :defer-config
   (require 'line-reminder)
   (defun jcs--origami-indicators-face-function (pos &rest _)
     "Return the face of it's function."
@@ -876,8 +876,8 @@
                       :foreground "#808080"
                       :box '(:line-width -1 :style 'pressed-button)))
 
-(use-package popup
-  :config
+(leaf popup
+  :defer-config
   (defvar jcs-popup-mouse-events-flag-p nil
     "Check if `popup-menu-item-of-mouse-event' is called.")
 
@@ -910,14 +910,14 @@
       (when do-orig-fun (apply orig-fun args))))
   (advice-add 'popup-draw :around #'jcs--popup-draw--advice-around))
 
-(use-package pos-tip
+(leaf pos-tip
   :init
   (setq pos-tip-internal-border-width 5))
 
-(use-package powerline
+(leaf powerline
   :init
   (setq powerline-default-separator 'wave)
-  :config
+  :defer-config
   (defun jcs--powerline-raw--advice-around (fnc &rest args)
     "Advice execute around function `powerline-raw'."
     (let ((str (nth 0 args)))
@@ -932,8 +932,8 @@
     (when (jcs-vc-status)
       (format " %s%s" (jcs-vc-project) (jcs-vc-info)))))
 
-(use-package project
-  :config
+(leaf project
+  :defer-config
   (setq project-vc-ignores
         (append project-vc-ignores
                 '(".idea" ".vscode"
@@ -944,12 +944,12 @@
                   ".stack-work" ".ccls-cache" ".cache" ".clangd")
                 '(".log" ".vs" "node_modules"))))
 
-(use-package quelpa
-  :config
+(leaf quelpa
+  :defer-config
   (add-hook 'quelpa-before-hook (lambda () (setq jcs-package-installing-p t)))
   (add-hook 'quelpa-after-hook (lambda () (setq jcs-package-installing-p nil))))
 
-(use-package quick-peek
+(leaf quick-peek
   :init
   (defun jcs-quick-peek--form-face (fg &optional weight)
     "Form `quick-peek' face with FG."
@@ -981,7 +981,7 @@
               ln-diff (- lvl ln-current))
         (when (< ln-diff default-max-h)
           (jcs-scroll-up-line (- default-max-h ln-diff))))))
-  :config
+  :defer-config
   (defvar jcs-quick-peek--spacer-header nil
     "Header string for `quick-peek'")
   (defvar jcs-quick-peek--spacer-footer nil
@@ -993,26 +993,26 @@
       (save-excursion (goto-char pos) (insert str))))
   (advice-add 'quick-peek--insert-spacer :override #'jcs--quick-peek--insert-spacer--advice-override))
 
-(use-package region-occurrences-highlighter
+(leaf region-occurrences-highlighter
   :init
   (setq region-occurrences-highlighter-min-size 1)
-  :config
+  :defer-config
   (set-face-attribute 'region-occurrences-highlighter-face nil
                       :background "#113D6F" :inverse-video nil))
 
-(use-package reload-emacs
+(leaf reload-emacs
   :init
   (setq reload-emacs-load-path '("~/.emacs.jcs/"
                                  "~/.emacs.jcs/func/"
                                  "~/.emacs.jcs/mode/"))
-  :config
+  :defer-config
   (defun jcs--reload-emacs-after-hook ()
     "Hook runs after reload Emacs."
     (jcs-re-enable-mode 'company-fuzzy-mode))
   (add-hook 'reload-emacs-after-hook #'jcs--reload-emacs-after-hook))
 
-(use-package right-click-context
-  :config
+(leaf right-click-context
+  :defer-config
   ;;;###autoload
   (defun right-click-context-menu ()
     "Open Right Click Context menu."
@@ -1023,13 +1023,13 @@
         (when (and (jcs-popup-clicked-on-menu-p) value)
           (if (symbolp value) (call-interactively value t) (eval value)))))))
 
-(use-package searcher
+(leaf searcher
   :init
   (setq searcher-search-type 'regex  ; `regex' or `flx'
         searcher-flx-threshold 25))
 
-(use-package show-eol
-  :config
+(leaf show-eol
+  :defer-config
   (show-eol-set-mark-with-string 'newline-mark "¶")
 
   (defun jcs-advice-show-eol-enable-before ()
@@ -1042,7 +1042,7 @@
     (face-remap-add-relative 'whitespace-newline :inverse-video nil))
   (advice-add 'show-eol-disable :before #'jcs-advice-show-eol-disable-before))
 
-(use-package sql-indent
+(leaf sql-indent
   :init
   ;; URL: https://www.emacswiki.org/emacs/SqlIndent
 
@@ -1053,8 +1053,8 @@
   ;; etc.
   (setq sql-indent-offset 1))
 
-(use-package tree-sitter
-  :config
+(leaf tree-sitter
+  :defer-config
   (require 'tree-sitter-langs)
   (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
   (jcs-funcall-fboundp #'jcs-reset-common-faces-by-theme)
@@ -1096,14 +1096,14 @@
     (tree-sitter-hl-mode 1))  ; re-enable it once
   (add-hook 'tree-sitter-hl-mode-hook #'jcs--tree-sitter-hl-mode-hook))
 
-(use-package treemacs
+(leaf treemacs
   :init
   (setq treemacs-position 'right
         treemacs-missing-project-action 'remove
         treemacs-sorting 'alphabetic-asc
         treemacs-follow-after-init t
         treemacs-no-png-images t)
-  :config
+  :defer-config
   (treemacs-follow-mode t)
   (treemacs-filewatch-mode t)
 
@@ -1125,19 +1125,19 @@
     (buffer-wrap-mode 1))
   (add-hook 'treemacs-mode-hook #'jcs--treemacs-mode-hook))
 
-(use-package turbo-log
+(leaf turbo-log
   :init
   (setq turbo-log-no-ask t))
 
-(use-package un-mini
+(leaf un-mini
   :init
   (setq un-mini-abort-commands '(right-click-context-click-menu)))
 
-(use-package undo-tree
-  :config
+(leaf undo-tree
+  :defer-config
   (global-undo-tree-mode t))
 
-(use-package use-ttf
+(leaf use-ttf
   :init
   ;; List of TTF fonts you want to use in the currnet OS.
   (setq use-ttf-default-ttf-fonts '(;; >> Classic Console <<
@@ -1148,7 +1148,7 @@
   ;; This you need to check the font name in the system manually.
   (setq use-ttf-default-ttf-font-name "Ubuntu Mono"))
 
-(use-package web-mode
+(leaf web-mode
   :init
   ;; Associate an engine
   (setq web-mode-engines-alist
@@ -1217,7 +1217,7 @@
   ;; You can also highlight the current column with
   (setq web-mode-enable-current-column-highlight t))
 
-(use-package which-key
+(leaf which-key
   :init
   (setq which-key-popup-type 'side-window
         which-key-side-window-location 'bottom
@@ -1225,8 +1225,8 @@
         which-key-side-window-max-height 0.25
         which-key-idle-delay 1.0))
 
-(use-package whitespace
-  :config
+(leaf whitespace
+  :defer-config
   (autoload 'whitespace-mode "whitespace-mode" "Toggle whitespace visualization." t)
   (autoload 'whitespace-toggle-options "whitespace-mode" "Toggle local `whitespace-mode' options." t)
   ;; All the face can be find here.
@@ -1236,16 +1236,16 @@
   (set-face-attribute 'whitespace-trailing nil
                       :background "grey20" :foreground "red"))
 
-(use-package windmove
+(leaf windmove
   :init
   (setq windmove-wrap-around t))
 
-(use-package yascroll
+(leaf yascroll
   :init
   (setq yascroll:delay-to-hide 0.8))
 
-(use-package yasnippet
-  :config
+(leaf yasnippet
+  :defer-config
   (require 'yasnippet-snippets)
   (yas-global-mode 1))
 

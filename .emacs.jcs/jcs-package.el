@@ -174,7 +174,7 @@
     project
     project-abbrev
     python-mode
-    quelpa-use-package
+    quelpa-leaf
     rainbow-mode
     region-occurrences-highlighter
     restart-emacs

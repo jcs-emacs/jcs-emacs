@@ -135,7 +135,7 @@
 (define-key global-map (kbd "C-k C-s") #'describe-bindings)
 
 ;;; Diminish Buffer
-(bind-key* (kbd "C-o") #'diminish-buffer-mode)
+(leaf-key* (kbd "C-o") #'diminish-buffer-mode)
 
 ;;; Editting
 (define-key global-map [C-right] #'jcs-smart-forward-word)
@@ -150,8 +150,8 @@
 (define-key global-map (kbd "S-<prior>") #'better-scroll-down-other-window)
 (define-key global-map (kbd "S-<next>") #'better-scroll-up-other-window)
 
-(bind-key* (kbd "C-r DEL") #'jcs-backward-delete-current-char-repeat)
-(bind-key* (kbd "C-r S-<backspace>") #'jcs-forward-delete-current-char-repeat)
+(leaf-key* (kbd "C-r DEL") #'jcs-backward-delete-current-char-repeat)
+(leaf-key* (kbd "C-r S-<backspace>") #'jcs-forward-delete-current-char-repeat)
 
 (define-key prog-mode-map (kbd "<backspace>") #'jcs-smart-backspace)
 (define-key global-map (kbd "<backspace>") #'jcs-real-backspace)
@@ -166,10 +166,10 @@
 (define-key global-map (kbd "S-SPC") #'jcs-real-space)
 
 (define-key global-map (kbd "C-S-d") #'jcs-duplicate-line)
-(bind-key* (kbd "C-d") #'jcs-kill-whole-line)
+(leaf-key* (kbd "C-d") #'jcs-kill-whole-line)
 
-(bind-key* (kbd "C-x") #'jcs-vs-cut-key)
-(bind-key* (kbd "C-c") #'kill-ring-save)
+(leaf-key* (kbd "C-x") #'jcs-vs-cut-key)
+(leaf-key* (kbd "C-c") #'kill-ring-save)
 (define-key prog-mode-map (kbd "C-v") #'jcs-smart-yank)
 (define-key global-map (kbd "C-v") #'yank)
 
@@ -185,8 +185,8 @@
 (define-key global-map (kbd "C-M-<up>") #'jcs-scroll-down-line)
 (define-key global-map (kbd "C-M-<down>") #'jcs-scroll-up-line)
 
-(bind-key* (kbd "C-M-<left>") #'buf-move-left)
-(bind-key* (kbd "C-M-<right>") #'buf-move-right)
+(leaf-key* (kbd "C-M-<left>") #'buf-move-left)
+(leaf-key* (kbd "C-M-<right>") #'buf-move-right)
 
 (progn  ; Navigating General Programming Symbols
   (define-key global-map (kbd "M-)") #'jcs-move-forward-close-paren)
@@ -307,7 +307,7 @@
   (define-key help-mode-map (kbd "C-c") #'kill-ring-save))
 
 ;;; Iedit
-(bind-key* (kbd "C-r C-r") #'jcs-iedit-mode)
+(leaf-key* (kbd "C-r C-r") #'jcs-iedit-mode)
 
 ;;; Impatient Mode
 (define-key global-map (kbd "C-w o") #'jcs-impatient-start)
@@ -355,7 +355,7 @@
 (define-key global-map (kbd "C-k m") #'jcs-toggle-minimap)
 
 ;;; Mode Line
-(bind-key* (kbd "C-M-m") #'feebleline-mode)
+(leaf-key* (kbd "C-M-m") #'feebleline-mode)
 
 ;;; Mode Toggle
 (progn
@@ -395,8 +395,8 @@
 (define-key global-map (kbd "C-<end>") #'jcs-end-of-buffer)
 (define-key global-map [home] #'jcs-beginning-of-line)
 (define-key global-map [end] #'jcs-end-of-line)
-(bind-key* (kbd "M-<left>") #'jcs-backward-word-capital)
-(bind-key* (kbd "M-<right>") #'jcs-forward-word-capital)
+(leaf-key* (kbd "M-<left>") #'jcs-backward-word-capital)
+(leaf-key* (kbd "M-<right>") #'jcs-forward-word-capital)
 
 ;;; Open same file in other window.
 (progn
@@ -425,13 +425,13 @@
 (define-key global-map (kbd "M-p") #'list-processes)
 
 ;;; RE-Builder
-(bind-key* (kbd "C-r b") #'jcs-re-builder)
+(leaf-key* (kbd "C-r b") #'jcs-re-builder)
 
 ;;; Read-Only
-(bind-key* (kbd "C-r o") #'read-only-mode)
+(leaf-key* (kbd "C-r o") #'read-only-mode)
 
 ;;; Recent Files
-(bind-key* (kbd "C-r f") #'recentf-open-files)
+(leaf-key* (kbd "C-r f") #'recentf-open-files)
 
 ;; Rename file
 (define-key global-map (kbd "M-<f2>") #'jcs-rename-current-buffer-file)
@@ -520,8 +520,8 @@
 
 ;;; Tab Bar
 (define-key global-map (kbd "C-t") #'jcs-toggle-tabbar-mode)
-(bind-key* [C-S-tab] #'centaur-tabs-backward)
-(bind-key* [C-tab] #'centaur-tabs-forward)
+(leaf-key* [C-S-tab] #'centaur-tabs-backward)
+(leaf-key* [C-tab] #'centaur-tabs-forward)
 (define-key global-map (kbd "C-<prior>") #'centaur-tabs-backward)
 (define-key global-map (kbd "C-<next>") #'centaur-tabs-forward)
 

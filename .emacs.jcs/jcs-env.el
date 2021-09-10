@@ -266,13 +266,6 @@
 (defvar jcs-mc/string-distance-level 20
   "The standard similarity, the lower require more precision.")
 
-;;; Package
-(use-package use-package
-  :defer t
-  :init
-  (setq use-package-always-defer t
-        use-package-expand-minimally t))
-
 ;;; Previous/Next keys
 (defcustom jcs-prev/next-key-type 'smart
   "Key definition for previous and next line.
@@ -371,7 +364,7 @@ If ACT is non-nil; then make scroll less jumpy."
 
 ;;; So Long
 (global-so-long-mode 1)
-(use-package so-long
+(leaf so-long
   :init
   (defconst jcs-so-long-minor-modes
     '(line-reminder-mode
@@ -391,15 +384,15 @@ If ACT is non-nil; then make scroll less jumpy."
               tab-width 4)
 
 ;;; Tabulated List
-(use-package tabulated-list
-  :config
+(leaf tabulated-list
+  :defer-config
   (defun jcs--tabulated-list-col-sort--advice-around (fnc &rest args)
     "Advice execute around `tabulated-list-col-sort' function."
     (save-excursion (apply fnc args)))
   (advice-add 'tabulated-list-col-sort :around #'jcs--tabulated-list-col-sort--advice-around))
 
 ;;; Uniquify
-(use-package uniquify
+(leaf uniquify
   :init
   ;; NOTE: meaningful names for buffers with the same name from prelude.
   ;;
