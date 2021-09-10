@@ -312,7 +312,7 @@ kind of methods that you could support the maintainer you want.
 * *Music Player* - powered by [ffmpeg-player](https://github.com/jcs-elpa/ffmpeg-player); might change to something else.
 * *Navigation/Searcher* - powered by [searcher](https://github.com/jcs-elpa/searcher) and [isearch-project](https://github.com/elpa-host/isearch-project).
 * *Package Archive* - see [here](#file_folder-package-archives).
-* *Package Management* - powered by [use-package](https://github.com/jwiegley/use-package) and [quelpa](https://framagit.org/steckerhalter/quelpa).
+* *Package Management* - powered by [leaf](https://github.com/conao3/leaf.el) and [quelpa](https://framagit.org/steckerhalter/quelpa).
 * *PDF Viewer* - powered by [doc-view-mode](https://www.emacswiki.org/emacs/DocViewMode) and [ghostscript](https://www.ghostscript.com/index.html).
 * *Project Management* - powered by [project](https://elpa.gnu.org/packages/project.html).
 * *Recent Files* - powered by [recentf](https://www.emacswiki.org/emacs/RecentFiles).
