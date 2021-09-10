@@ -409,7 +409,7 @@ variable.
 :pencil:
 P.S.
 * See the file `./.emacs.jcs/jcs-plugin.el` to see how the font is been set
-in `(use-package use-ttf)` section.
+in `(leaf use-ttf)` section.
 * For more details about the font settings in this configuration, check out the
 `use-ttf`package [repo](https://github.com/elpa-host/use-ttf).
 
