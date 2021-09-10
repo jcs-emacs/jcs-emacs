@@ -25,6 +25,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add function to track the opened projects.
 * Add capability to show project name wiht `powerline`.
 * Improve `buffer-menu` module with project capability.
+* Replace `use-package` with `leaf`.
 
 ## 6.5.0
 > Released Jul 17, 2021
