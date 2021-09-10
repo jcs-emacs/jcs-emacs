@@ -50,6 +50,7 @@
     buffer-wrap
     cask
     cask-mode
+    ccls
     centaur-tabs
     clojure-mode
     cmake-font-lock
@@ -82,7 +83,6 @@
     elm-mode
     emmet-mode
     emoji-github
-    emojify
     erlang
     ert-runner
     eshell-syntax-highlighting
