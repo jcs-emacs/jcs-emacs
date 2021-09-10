@@ -2,6 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
+(require 'ccls)
 (require 'lsp-dart)
 (require 'lsp-docker)
 (require 'lsp-grammarly)
