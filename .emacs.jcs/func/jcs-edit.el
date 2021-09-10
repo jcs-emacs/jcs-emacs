@@ -1653,23 +1653,25 @@ other window."
 (defun jcs-get-open-pair-char (c)
   "Get the open pairing character from C."
   (let (pair-char)
-    (cond ((string= c "\"") (setq pair-char '("\"")))
-          ((string= c "'") (setq pair-char '("'" "`")))
-          ((string= c ")") (setq pair-char '("(")))
-          ((string= c "]") (setq pair-char '("[")))
-          ((string= c "}") (setq pair-char '("{")))
-          ((string= c "`") (setq pair-char '("`"))))
+    (pcase c
+      ("\"" (setq pair-char '("\"")))
+      ("'" (setq pair-char '("'" "`")))
+      (")" (setq pair-char '("(")))
+      ("]" (setq pair-char '("[")))
+      ("}" (setq pair-char '("{")))
+      ("`" (setq pair-char '("`"))))
     pair-char))
 
 (defun jcs-get-close-pair-char (c)
   "Get the list of close pairing character from C."
   (let (pair-char)
-    (cond ((string= c "\"") (setq pair-char '("\"")))
-          ((string= c "'") (setq pair-char '("'")))
-          ((string= c "(") (setq pair-char '(")")))
-          ((string= c "[") (setq pair-char '("]")))
-          ((string= c "{") (setq pair-char '("}")))
-          ((string= c "`") (setq pair-char '("`" "'"))))
+    (pcase c
+      ("\"" (setq pair-char '("\"")))
+      ("'" (setq pair-char '("'")))
+      ("(" (setq pair-char '(")")))
+      ("[" (setq pair-char '("]")))
+      ("{" (setq pair-char '("}")))
+      ("`" (setq pair-char '("`" "'"))))
     pair-char))
 
 
