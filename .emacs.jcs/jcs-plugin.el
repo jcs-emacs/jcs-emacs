@@ -107,12 +107,13 @@
   (with-eval-after-load 'company (require 'jcs-company) (global-company-mode t)))
 
 (use-package company-box
-  :hook (company-mode . company-box-mode)
   :init
   (setq company-box-backends-colors nil
         company-box-frame-behavior 'point
         company-box-doc-delay 0.3
-        company-box-doc-text-scale-level -2))
+        company-box-doc-text-scale-level -2)
+  (with-eval-after-load 'company
+    (add-hook 'company-mode-hook 'company-box-mode)))
 
 (use-package company-c-headers
   :config
