@@ -296,15 +296,25 @@ Note this is opposite logic to the toggle mode function."
     (jcs--safe-lsp-active)))
 
 ;;============================================================================
-;; Text Mode
+;; Base Mode
 
-(defun jcs-text-mode-hook ()
-  "Text mode hook."
+(defun jcs-base-mode-hook ()
+  "Major mode hook for every major mode."
   (auto-highlight-symbol-mode t)
   (goto-address-mode 1)
   (highlight-indent-guides-mode 1)
   (origami-indicators-mode 1)
 
+  (jcs-active-project-mode-hook))
+
+(add-hook 'text-mode-hook 'jcs-base-mode-hook)
+(add-hook 'fundamental-mode 'jcs-base-mode-hook)
+
+;;============================================================================
+;; Text Mode
+
+(defun jcs-text-mode-hook ()
+  "Text mode hook."
   (jcs-insert-header-if-valid '("\\(/\\|\\`\\)[Ll][Ii][Cc][Ee][Nn][Ss][Ee]")
                               'jcs-ask-insert-license-content
                               :interactive t)
@@ -314,7 +324,6 @@ Note this is opposite logic to the toggle mode function."
                               :interactive t))
 
 (add-hook 'text-mode-hook 'jcs-text-mode-hook)
-(add-hook 'text-mode-hook 'jcs-active-project-mode-hook)
 
 ;;============================================================================
 ;; Programming Mode
@@ -340,16 +349,11 @@ To avoid syntax highlighting error for comment.")
     (jcs-key-advice-add key :around #'jcs-smart-closing))
 
   (abbrev-mode 1)
-  (auto-highlight-symbol-mode t)
   (display-fill-column-indicator-mode 1)
   (electric-pair-mode 1)
-  (goto-address-mode 1)
-  (highlight-indent-guides-mode 1)
-  (highlight-numbers-mode 1)
-  (origami-indicators-mode 1))
+  (highlight-numbers-mode 1))
 
 (add-hook 'prog-mode-hook 'jcs-prog-mode-hook)
-(add-hook 'prog-mode-hook 'jcs-active-project-mode-hook)
 
 ;;============================================================================
 ;; Emacs Lisp

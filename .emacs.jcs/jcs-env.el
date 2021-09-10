@@ -143,7 +143,6 @@
          (electric-pair-default-inhibit c))
         (t t)))
 (setq-default electric-pair-inhibit-predicate 'jcs--electric-pair-inhibit-predicate)
-(electric-pair-mode 1)
 
 ;;; Find File
 (defvar jcs-current-created-parent-dir-path nil
