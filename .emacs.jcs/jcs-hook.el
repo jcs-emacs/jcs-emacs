@@ -44,13 +44,6 @@
   (jcs-project--track-open-projects))
 (add-hook 'find-file-hook 'jcs-find-file-hook)
 
-(defun jcs--find-file--advice-before (&rest _)
-  "Advice execute before command `find-file'."
-  ;; Fixed `css-mode' opening virtual buffer with directory error. You just
-  ;; need to preload this before actually create the virtual buffer.
-  (ignore-errors (require 'eww)))
-(advice-add 'find-file :before #'jcs--find-file--advice-before)
-
 (defun jcs--find-file--advice-after (&rest _)
   "Advice execute after command `find-file'."
   (when jcs-current-created-parent-dir-path
@@ -87,6 +80,20 @@
     (jcs-buffer-menu-safe-refresh)
     (jcs-dashboard-safe-refresh-buffer)))
 (advice-add 'other-window :after #'jcs--other-window--advice-after)
+
+;;
+;; (@* "First load" )
+;;
+
+(defun jcs--find-file--advice-before (&rest _)
+  "Advice execute before command `find-file'."
+  ;; Fixed `css-mode' opening virtual buffer with directory error. You just
+  ;; need to preload this before actually create the virtual buffer.
+  (require 'eww nil t)
+  (global-so-long-mode 1)
+  (advice-remove 'find-file #'jcs--find-file--advice-before))
+
+(advice-add 'find-file :before #'jcs--find-file--advice-before)
 
 ;;
 ;; (@* "Initialization" )
