@@ -175,9 +175,6 @@
 
   (jcs-reload-file-info)
 
-  ;; Language Environment
-  (set-language-environment jcs-language-environment)
-
   ;; Font Size
   (jcs-set-font-size jcs-default-font-size)
 
