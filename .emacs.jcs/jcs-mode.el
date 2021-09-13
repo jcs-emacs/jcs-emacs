@@ -240,8 +240,8 @@ Note this is opposite logic to the toggle mode function."
 
 (defun jcs-diff-mode-hook ()
   "Hook for `diff-mode'."
-  (define-key diff-mode-map (kbd "M-k") #'jcs-maybe-kill-this-buffer)
-  (define-key diff-mode-map (kbd "M-K") #'jcs-reopen-this-buffer))
+  (jcs-bind-key (kbd "M-k") #'jcs-maybe-kill-this-buffer)
+  (jcs-bind-key (kbd "M-K") #'jcs-reopen-this-buffer))
 
 (add-hook 'diff-mode-hook #'jcs-diff-mode-hook)
 
@@ -384,8 +384,8 @@ To avoid syntax highlighting error for comment.")
 
 (defun jcs-lisp-interaction-mode-hook ()
   "Lisp Interaction mode hook."
-  (define-key lisp-interaction-mode-map (kbd "M-k") #'jcs-scratch-buffer-maybe-kill)
-  (define-key lisp-interaction-mode-map (kbd "M-K") #'jcs-scratch-buffer-refresh))
+  (jcs-bind-key (kbd "M-k") #'jcs-scratch-buffer-maybe-kill)
+  (jcs-bind-key (kbd "M-K") #'jcs-scratch-buffer-refresh))
 
 (add-hook 'lisp-interaction-mode-hook 'jcs-lisp-interaction-mode-hook)
 
