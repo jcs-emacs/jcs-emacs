@@ -1222,17 +1222,6 @@
         which-key-side-window-max-height 0.25
         which-key-idle-delay 1.0))
 
-(leaf whitespace
-  :defer-config
-  (autoload 'whitespace-mode "whitespace-mode" "Toggle whitespace visualization." t)
-  (autoload 'whitespace-toggle-options "whitespace-mode" "Toggle local `whitespace-mode' options." t)
-  ;; All the face can be find here.
-  ;; URL: https://www.emacswiki.org/emacs/BlankMode
-  (set-face-attribute 'whitespace-indentation nil
-                      :background "grey20" :foreground "aquamarine3")
-  (set-face-attribute 'whitespace-trailing nil
-                      :background "grey20" :foreground "red"))
-
 (leaf windmove
   :init
   (setq windmove-wrap-around t))
