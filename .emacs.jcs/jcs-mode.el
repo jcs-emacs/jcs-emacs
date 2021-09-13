@@ -251,6 +251,7 @@ Note this is opposite logic to the toggle mode function."
 (defun jcs-compilation-mode-hook ()
   "Hook for `compilation-mode'."
   (goto-address-mode 1)
+  (buffer-disable-undo)
 
   (jcs-disable-truncate-lines)
 
@@ -264,6 +265,7 @@ Note this is opposite logic to the toggle mode function."
   (define-key compilation-mode-map (kbd "C-+") #'jcs-output-next-compilation))
 
 (add-hook 'compilation-mode-hook 'jcs-compilation-mode-hook)
+(add-hook 'comint-mode-hook 'jcs-compilation-mode-hook)
 
 ;;============================================================================
 ;; Message Buffer
