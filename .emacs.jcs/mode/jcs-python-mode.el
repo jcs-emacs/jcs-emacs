@@ -21,25 +21,25 @@
                               :interactive t)
 
   ;; Normal
-  (define-key python-mode-map (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
-  (define-key python-mode-map (kbd "<down>") (jcs-get-prev/next-key-type 'next))
+  (jcs-bind-key (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
+  (jcs-bind-key (kbd "<down>") (jcs-get-prev/next-key-type 'next))
 
-  (define-key python-mode-map (kbd "<backspace>") #'jcs-smart-backspace)
-  (define-key python-mode-map [C-backspace] #'jcs-backward-delete-word)
+  (jcs-bind-key (kbd "<backspace>") #'jcs-smart-backspace)
+  (jcs-bind-key [C-backspace] #'jcs-backward-delete-word)
 
-  (define-key python-mode-map [M-up] #'jcs-previous-blank-line)
-  (define-key python-mode-map [M-down] #'jcs-next-blank-line)
+  (jcs-bind-key [M-up] #'jcs-previous-blank-line)
+  (jcs-bind-key [M-down] #'jcs-next-blank-line)
 
-  (define-key python-mode-map (kbd "C-k C-f") #'jcs-py-indent-region)
-  (define-key python-mode-map (kbd "C-k C-d") #'jcs-py-format-document)
-  (define-key python-mode-map (kbd "C-S-f") #'jcs-py-format-region-or-document)
+  (jcs-bind-key (kbd "C-k C-f") #'jcs-py-indent-region)
+  (jcs-bind-key (kbd "C-k C-d") #'jcs-py-format-document)
+  (jcs-bind-key (kbd "C-S-f") #'jcs-py-format-region-or-document)
 
   ;; Edit
-  (define-key python-mode-map (kbd "<delete>") #'jcs-smart-delete)
-  (define-key python-mode-map (kbd "TAB") #'jcs-tab-key)
+  (jcs-bind-key (kbd "<delete>") #'jcs-smart-delete)
+  (jcs-bind-key (kbd "TAB") #'jcs-tab-key)
 
-  (define-key python-mode-map (kbd "RET") #'jcs-py-return)
-  (define-key python-mode-map (kbd "C-v") #'yank))
+  (jcs-bind-key (kbd "RET") #'jcs-py-return)
+  (jcs-bind-key (kbd "C-v") #'yank))
 
 (add-hook 'python-mode-hook 'jcs-python-mode-hook)
 

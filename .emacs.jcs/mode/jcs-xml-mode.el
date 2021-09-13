@@ -23,11 +23,11 @@
                               'jcs-insert-xml-template)
 
   ;; Normal
-  (define-key nxml-mode-map (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
-  (define-key nxml-mode-map (kbd "<down>") (jcs-get-prev/next-key-type 'next))
+  (jcs-bind-key (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
+  (jcs-bind-key (kbd "<down>") (jcs-get-prev/next-key-type 'next))
 
-  (define-key nxml-mode-map (kbd "SPC") #'jcs-smart-space)
-  (define-key nxml-mode-map (kbd "<backspace>") #'jcs-smart-backspace))
+  (jcs-bind-key (kbd "SPC") #'jcs-smart-space)
+  (jcs-bind-key (kbd "<backspace>") #'jcs-smart-backspace))
 
 ;; STUDY: they ae using nxml-mode instead of xml-mode
 ;; which is really weird.

@@ -21,19 +21,19 @@
                               :interactive t)
 
   ;; Normal
-  (define-key csharp-mode-map (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
-  (define-key csharp-mode-map (kbd "<down>") (jcs-get-prev/next-key-type 'next))
+  (jcs-bind-key (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
+  (jcs-bind-key (kbd "<down>") (jcs-get-prev/next-key-type 'next))
 
-  (define-key csharp-mode-map (kbd "DEL") #'jcs-electric-backspace)
-  (define-key csharp-mode-map (kbd "{") #'jcs-vs-opening-curly-bracket-key)
-  (define-key csharp-mode-map (kbd ";") #'jcs-vs-semicolon-key)
+  (jcs-bind-key (kbd "DEL") #'jcs-electric-backspace)
+  (jcs-bind-key (kbd "{") #'jcs-vs-opening-curly-bracket-key)
+  (jcs-bind-key (kbd ";") #'jcs-vs-semicolon-key)
 
-  (define-key csharp-mode-map [f8] #'jcs-find-corresponding-file)
-  (define-key csharp-mode-map [S-f8] #'jcs-find-corresponding-file-other-window)
+  (jcs-bind-key [f8] #'jcs-find-corresponding-file)
+  (jcs-bind-key [S-f8] #'jcs-find-corresponding-file-other-window)
 
-  (define-key csharp-mode-map (kbd "#") #'jcs-vs-sharp-key)
+  (jcs-bind-key (kbd "#") #'jcs-vs-sharp-key)
 
-  (define-key csharp-mode-map (kbd "M-q") #'jcs-other-window-prev))
+  (jcs-bind-key (kbd "M-q") #'jcs-other-window-prev))
 
 (add-hook 'csharp-mode-hook 'jcs-csharp-mode-hook)
 

@@ -24,20 +24,20 @@
                               'jcs-insert-java-template)
 
   ;; Normal
-  (define-key java-mode-map (kbd "DEL") #'jcs-electric-backspace)
-  (define-key java-mode-map (kbd "{") #'jcs-vs-opening-curly-bracket-key)
-  (define-key java-mode-map (kbd ";") #'jcs-vs-semicolon-key)
+  (jcs-bind-key (kbd "DEL") #'jcs-electric-backspace)
+  (jcs-bind-key (kbd "{") #'jcs-vs-opening-curly-bracket-key)
+  (jcs-bind-key (kbd ";") #'jcs-vs-semicolon-key)
 
   ;; switch window
-  (define-key java-mode-map "\ew" #'jcs-other-window-next)
-  (define-key java-mode-map (kbd "M-q") #'jcs-other-window-prev)
+  (jcs-bind-key "\ew" #'jcs-other-window-next)
+  (jcs-bind-key (kbd "M-q") #'jcs-other-window-prev)
 
   ;; imports/package declaration.
-  (define-key java-mode-map (kbd "C-S-o") #'jcs-java-organize-imports)
+  (jcs-bind-key (kbd "C-S-o") #'jcs-java-organize-imports)
 
   ;; javadoc
-  (define-key java-mode-map (kbd "<f2>") #'javadoc-lookup)
-  (define-key java-mode-map (kbd "S-<f2>") #'javadoc-lookup))
+  (jcs-bind-key (kbd "<f2>") #'javadoc-lookup)
+  (jcs-bind-key (kbd "S-<f2>") #'javadoc-lookup))
 
 (add-hook 'java-mode-hook 'jcs-java-mode-hook)
 

@@ -29,7 +29,7 @@
                               'jcs-insert-processing-template)
 
   ;; Normal
-  (define-key processing-mode-map (kbd "DEL") #'jcs-electric-backspace))
+  (jcs-bind-key (kbd "DEL") #'jcs-electric-backspace))
 
 (add-hook 'processing-mode-hook 'jcs-processing-mode-hook)
 

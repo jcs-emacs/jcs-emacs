@@ -21,18 +21,18 @@
                               'jcs-insert-actionscript-template)
 
   ;; Normal
-  (define-key actionscript-mode-map (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
-  (define-key actionscript-mode-map (kbd "<down>") (jcs-get-prev/next-key-type 'next))
+  (jcs-bind-key (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
+  (jcs-bind-key (kbd "<down>") (jcs-get-prev/next-key-type 'next))
 
-  (define-key actionscript-mode-map (kbd "<backspace>") #'jcs-smart-backspace)
-  (define-key actionscript-mode-map (kbd "<delete>") #'jcs-smart-delete)
-  (define-key actionscript-mode-map (kbd "SPC") #'jcs-smart-space)
+  (jcs-bind-key (kbd "<backspace>") #'jcs-smart-backspace)
+  (jcs-bind-key (kbd "<delete>") #'jcs-smart-delete)
+  (jcs-bind-key (kbd "SPC") #'jcs-smart-space)
 
-  (define-key actionscript-mode-map (kbd "DEL") #'jcs-electric-backspace)
-  (define-key actionscript-mode-map (kbd "{") #'jcs-vs-opening-curly-bracket-key)
-  (define-key actionscript-mode-map (kbd ";") #'jcs-vs-semicolon-key)
+  (jcs-bind-key (kbd "DEL") #'jcs-electric-backspace)
+  (jcs-bind-key (kbd "{") #'jcs-vs-opening-curly-bracket-key)
+  (jcs-bind-key (kbd ";") #'jcs-vs-semicolon-key)
 
-  (define-key actionscript-mode-map (kbd "C-v") #'jcs-smart-yank))
+  (jcs-bind-key (kbd "C-v") #'jcs-smart-yank))
 
 (add-hook 'actionscript-mode-hook 'jcs-prog-mode-hook)
 (add-hook 'actionscript-mode-hook 'jcs-actionscript-mode-hook)

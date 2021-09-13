@@ -23,24 +23,21 @@
 
 (defun jcs-org-mode-hook ()
   "Org mode hook."
-  (goto-address-mode 1)
-  (auto-highlight-symbol-mode t)
-
   ;; Normal
-  (define-key org-mode-map (kbd "C-a") #'jcs-mark-whole-buffer)
-  (define-key org-mode-map [tab] #'jcs-tab-key)
+  (jcs-bind-key (kbd "C-a") #'jcs-mark-whole-buffer)
+  (jcs-bind-key [tab] #'jcs-tab-key)
 
-  (define-key org-mode-map (kbd "C-y") #'jcs-redo)
+  (jcs-bind-key (kbd "C-y") #'jcs-redo)
 
-  (define-key org-mode-map [S-tab] #'jcs-org-smart-cycle)
-  (define-key org-mode-map (kbd "C-k") nil)
-  (define-key org-mode-map (kbd "C-<return>") #'jcs-ctrl-return-key)
+  (jcs-bind-key [S-tab] #'jcs-org-smart-cycle)
+  (jcs-bind-key (kbd "C-k") nil)
+  (jcs-bind-key (kbd "C-<return>") #'jcs-ctrl-return-key)
 
   ;; `org-nav'
-  (define-key org-mode-map (kbd "S-<up>") #'jcs-org-table-up)
-  (define-key org-mode-map (kbd "S-<down>") #'jcs-org-table-down)
-  (define-key org-mode-map (kbd "S-<left>") #'jcs-org-table-left)
-  (define-key org-mode-map (kbd "S-<right>") #'jcs-org-table-right))
+  (jcs-bind-key (kbd "S-<up>") #'jcs-org-table-up)
+  (jcs-bind-key (kbd "S-<down>") #'jcs-org-table-down)
+  (jcs-bind-key (kbd "S-<left>") #'jcs-org-table-left)
+  (jcs-bind-key (kbd "S-<right>") #'jcs-org-table-right))
 
 (add-hook 'org-mode-hook 'jcs-org-mode-hook)
 

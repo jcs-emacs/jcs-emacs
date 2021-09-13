@@ -27,9 +27,9 @@
                               :interactive t)
 
   ;; Normal
-  (define-key typescript-mode-map (kbd "DEL") #'jcs-electric-backspace)
-  (define-key typescript-mode-map (kbd "{") #'jcs-vs-opening-curly-bracket-key)
-  (define-key typescript-mode-map (kbd ";") #'jcs-vs-semicolon-key))
+  (jcs-bind-key (kbd "DEL") #'jcs-electric-backspace)
+  (jcs-bind-key (kbd "{") #'jcs-vs-opening-curly-bracket-key)
+  (jcs-bind-key (kbd ";") #'jcs-vs-semicolon-key))
 
 (add-hook 'typescript-mode-hook 'jcs-typescript-mode-hook)
 

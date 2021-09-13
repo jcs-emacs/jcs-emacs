@@ -15,8 +15,8 @@
   (modify-syntax-entry ?_ "w")
 
   ;; Normal
-  (define-key ini-mode-map (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
-  (define-key ini-mode-map (kbd "<down>") (jcs-get-prev/next-key-type 'next)))
+  (jcs-bind-key (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
+  (jcs-bind-key (kbd "<down>") (jcs-get-prev/next-key-type 'next)))
 
 (add-hook 'ini-mode-hook 'jcs-ini-mode-hook)
 

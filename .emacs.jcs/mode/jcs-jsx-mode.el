@@ -42,8 +42,8 @@
                               :interactive t)
 
   ;; Normal
-  (define-key rjsx-mode-map (kbd "{") #'jcs-web-vs-opening-curly-bracket-key)
-  (define-key rjsx-mode-map (kbd ";") #'jcs-vs-semicolon-key)
+  (jcs-bind-key (kbd "{") #'jcs-web-vs-opening-curly-bracket-key)
+  (jcs-bind-key (kbd ";") #'jcs-vs-semicolon-key)
 
   ;; Emmet
   (define-key emmet-mode-keymap (kbd "C-<return>") #'jcs-emmet-expand-line))

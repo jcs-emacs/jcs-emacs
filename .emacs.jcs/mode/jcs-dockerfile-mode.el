@@ -14,8 +14,8 @@
   "Dokerfile mode hook."
 
   ;; Normal
-  (define-key dockerfile-mode-map (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
-  (define-key dockerfile-mode-map (kbd "<down>") (jcs-get-prev/next-key-type 'next)))
+  (jcs-bind-key (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
+  (jcs-bind-key (kbd "<down>") (jcs-get-prev/next-key-type 'next)))
 
 (add-hook 'dockerfile-mode-hook 'jcs-dockerfile-mode-hook)
 

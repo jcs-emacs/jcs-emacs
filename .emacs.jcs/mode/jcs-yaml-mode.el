@@ -22,11 +22,11 @@
                               'jcs-insert-yaml-template)
 
   ;; Normal
-  (define-key yaml-mode-map (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
-  (define-key yaml-mode-map (kbd "<down>") (jcs-get-prev/next-key-type 'next))
+  (jcs-bind-key (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
+  (jcs-bind-key (kbd "<down>") (jcs-get-prev/next-key-type 'next))
 
-  (define-key yaml-mode-map (kbd "SPC") #'jcs-smart-space)
-  (define-key yaml-mode-map (kbd "<backspace>") #'jcs-smart-backspace))
+  (jcs-bind-key (kbd "SPC") #'jcs-smart-space)
+  (jcs-bind-key (kbd "<backspace>") #'jcs-smart-backspace))
 
 (add-hook 'yaml-mode-hook 'jcs-yaml-mode-hook)
 

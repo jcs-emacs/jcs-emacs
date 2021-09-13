@@ -18,21 +18,21 @@
                               'jcs-insert-haxe-template)
 
   ;; Normal
-  (define-key haxe-mode-map (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
-  (define-key haxe-mode-map (kbd "<down>") (jcs-get-prev/next-key-type 'next))
+  (jcs-bind-key (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
+  (jcs-bind-key (kbd "<down>") (jcs-get-prev/next-key-type 'next))
 
-  (define-key haxe-mode-map (kbd "<backspace>") #'jcs-smart-backspace)
-  (define-key haxe-mode-map (kbd "<delete>") #'jcs-smart-delete)
+  (jcs-bind-key (kbd "<backspace>") #'jcs-smart-backspace)
+  (jcs-bind-key (kbd "<delete>") #'jcs-smart-delete)
 
-  (define-key haxe-mode-map (kbd "DEL") #'jcs-electric-backspace)
-  (define-key haxe-mode-map (kbd "{") #'jcs-vs-opening-curly-bracket-key)
-  (define-key haxe-mode-map (kbd ";") #'jcs-vs-semicolon-key)
+  (jcs-bind-key (kbd "DEL") #'jcs-electric-backspace)
+  (jcs-bind-key (kbd "{") #'jcs-vs-opening-curly-bracket-key)
+  (jcs-bind-key (kbd ";") #'jcs-vs-semicolon-key)
 
-  (define-key haxe-mode-map (kbd "C-v") #'jcs-smart-yank)
+  (jcs-bind-key (kbd "C-v") #'jcs-smart-yank)
 
   ;; switch frame.
-  (define-key haxe-mode-map (kbd "M-w") #'jcs-other-window-next)
-  (define-key haxe-mode-map (kbd "M-q") #'jcs-other-window-prev))
+  (jcs-bind-key (kbd "M-w") #'jcs-other-window-next)
+  (jcs-bind-key (kbd "M-q") #'jcs-other-window-prev))
 
 (add-hook 'haxe-mode-hook 'jcs-prog-mode-hook)
 (add-hook 'haxe-mode-hook 'jcs-haxe-mode-hook)

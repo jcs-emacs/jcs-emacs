@@ -18,9 +18,9 @@
                               'jcs-insert-perl-template)
 
   ;; Normal
-  (define-key perl-mode-map (kbd "DEL") #'jcs-electric-backspace)
-  (define-key perl-mode-map (kbd "{") #'jcs-vs-opening-curly-bracket-key)
-  (define-key perl-mode-map (kbd ";") #'jcs-vs-semicolon-key))
+  (jcs-bind-key (kbd "DEL") #'jcs-electric-backspace)
+  (jcs-bind-key (kbd "{") #'jcs-vs-opening-curly-bracket-key)
+  (jcs-bind-key (kbd ";") #'jcs-vs-semicolon-key))
 
 (add-hook 'perl-mode-hook 'jcs-perl-mode-hook)
 

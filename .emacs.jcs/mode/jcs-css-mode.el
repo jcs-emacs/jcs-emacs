@@ -22,16 +22,16 @@
                               'jcs-insert-css-template)
 
   ;; Normal
-  (define-key css-mode-map (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
-  (define-key css-mode-map (kbd "<down>") (jcs-get-prev/next-key-type 'next))
+  (jcs-bind-key (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
+  (jcs-bind-key (kbd "<down>") (jcs-get-prev/next-key-type 'next))
 
-  (define-key css-mode-map (kbd "DEL") #'jcs-electric-backspace)
-  (define-key css-mode-map (kbd "{") #'jcs-vs-opening-curly-bracket-key)
-  (define-key css-mode-map (kbd ";") #'jcs-vs-semicolon-key)
+  (jcs-bind-key (kbd "DEL") #'jcs-electric-backspace)
+  (jcs-bind-key (kbd "{") #'jcs-vs-opening-curly-bracket-key)
+  (jcs-bind-key (kbd ";") #'jcs-vs-semicolon-key)
 
   ;; sort attribute in order => `com-css-sort' package.
-  (define-key css-mode-map (kbd "C-k s") #'com-css-sort-attributes-block)
-  (define-key css-mode-map (kbd "C-k d") #'com-css-sort-attributes-document)
+  (jcs-bind-key (kbd "C-k s") #'com-css-sort-attributes-block)
+  (jcs-bind-key (kbd "C-k d") #'com-css-sort-attributes-document)
 
   ;; Eemmet
   (define-key emmet-mode-keymap (kbd "C-<return>") #'jcs-emmet-expand-line))

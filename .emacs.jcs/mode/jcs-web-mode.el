@@ -54,31 +54,31 @@
                               'jcs-insert-php-template)
 
   ;; Normal
-  (define-key web-mode-map (kbd "DEL") #'jcs-electric-backspace)
-  (define-key web-mode-map (kbd "{") #'jcs-web-vs-opening-curly-bracket-key)
-  (define-key web-mode-map (kbd ";") #'jcs-vs-semicolon-key)
+  (jcs-bind-key (kbd "DEL") #'jcs-electric-backspace)
+  (jcs-bind-key (kbd "{") #'jcs-web-vs-opening-curly-bracket-key)
+  (jcs-bind-key (kbd ";") #'jcs-vs-semicolon-key)
 
   ;; File Corresponding
-  (define-key web-mode-map [f8] #'jcs-find-corresponding-file)
-  (define-key web-mode-map [S-f8] #'jcs-find-corresponding-file-other-window)
+  (jcs-bind-key [f8] #'jcs-find-corresponding-file)
+  (jcs-bind-key [S-f8] #'jcs-find-corresponding-file-other-window)
 
   ;; Shortcuts
-  (define-key web-mode-map (kbd "C-n") #'web-mode-tag-match)
+  (jcs-bind-key (kbd "C-n") #'web-mode-tag-match)
 
   ;; Emmet
   (define-key emmet-mode-keymap (kbd "C-<return>") #'jcs-emmet-expand-line)
 
   ;; PHP
-  (define-key web-mode-map [C-backspace] #'jcs-web-backward-delete-word)
-  (define-key web-mode-map (kbd "M-<backspace>") #'jcs-web-backward-delete-word-capital))
+  (jcs-bind-key [C-backspace] #'jcs-web-backward-delete-word)
+  (jcs-bind-key (kbd "M-<backspace>") #'jcs-web-backward-delete-word-capital))
 
 (add-hook 'web-mode-hook 'jcs-web-mode-hook)
 (add-hook 'web-mode-hook 'emmet-mode)
 
 (defun jcs-html-mode-hook ()
   "HTML mode hook."
-  (define-key html-mode-map (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
-  (define-key html-mode-map (kbd "<down>") (jcs-get-prev/next-key-type 'next)))
+  (jcs-bind-key (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
+  (jcs-bind-key (kbd "<down>") (jcs-get-prev/next-key-type 'next)))
 
 (add-hook 'html-mode-hook 'jcs-html-mode-hook)
 

@@ -23,23 +23,22 @@
                               'jcs-insert-objc-source-template)
 
   ;; Normal
-  (define-key objc-mode-map [f8] #'jcs-find-corresponding-file)
-  (define-key objc-mode-map [S-f8] #'jcs-find-corresponding-file-other-window)
+  (jcs-bind-key [f8] #'jcs-find-corresponding-file)
+  (jcs-bind-key [S-f8] #'jcs-find-corresponding-file-other-window)
 
-  ;; If just want to open the same file, not the
-  ;; corresponding file.
-  (define-key objc-mode-map [f7] #'jcs-same-file-other-window)
+  ;; If just want to open the same file, not the corresponding file.
+  (jcs-bind-key [f7] #'jcs-same-file-other-window)
 
-  (define-key objc-mode-map (kbd "DEL") #'jcs-electric-backspace)
-  (define-key objc-mode-map (kbd "{") #'jcs-vs-opening-curly-bracket-key)
-  (define-key objc-mode-map (kbd ";") #'jcs-vs-semicolon-key)
+  (jcs-bind-key (kbd "DEL") #'jcs-electric-backspace)
+  (jcs-bind-key (kbd "{") #'jcs-vs-opening-curly-bracket-key)
+  (jcs-bind-key (kbd ";") #'jcs-vs-semicolon-key)
 
   ;; Comement
-  (define-key objc-mode-map (kbd "C-k s") #'jcs-toggle-c-comment-style)
+  (jcs-bind-key (kbd "C-k s") #'jcs-toggle-c-comment-style)
 
   ;; Undo/Redo
-  (define-key objc-mode-map (kbd "C-z") #'jcs-undo)
-  (define-key objc-mode-map (kbd "C-y") #'jcs-redo))
+  (jcs-bind-key (kbd "C-z") #'jcs-undo)
+  (jcs-bind-key (kbd "C-y") #'jcs-redo))
 
 (add-hook 'objc-mode-hook 'jcs-objc-mode-hook)
 

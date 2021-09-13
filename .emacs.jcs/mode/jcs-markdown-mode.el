@@ -29,10 +29,10 @@
   (jcs-company-safe-add-backend 'company-emojify)
 
   ;; Normal
-  (define-key markdown-mode-map (kbd "<backspace>") #'jcs-real-backspace)
-  (define-key markdown-mode-map (kbd "RET") #'jcs-markdown-return-key)
+  (jcs-bind-key (kbd "<backspace>") #'jcs-real-backspace)
+  (jcs-bind-key (kbd "RET") #'jcs-markdown-return-key)
 
-  (define-key markdown-mode-map [S-tab] #'markdown-cycle)
+  (jcs-bind-key [S-tab] #'markdown-cycle)
 
   ;; Eemmet
   (define-key emmet-mode-keymap (kbd "C-<return>") #'jcs-emmet-expand-line))

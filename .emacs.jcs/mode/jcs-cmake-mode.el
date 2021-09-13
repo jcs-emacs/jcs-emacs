@@ -21,9 +21,9 @@
                               'jcs-insert-cmake-template)
 
   ;; Normal
-  (define-key cmake-mode-map (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
-  (define-key cmake-mode-map (kbd "<down>") (jcs-get-prev/next-key-type 'next))
-  (define-key cmake-mode-map (kbd "RET") #'jcs-makefile-newline))
+  (jcs-bind-key (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
+  (jcs-bind-key (kbd "<down>") (jcs-get-prev/next-key-type 'next))
+  (jcs-bind-key (kbd "RET") #'jcs-makefile-newline))
 
 (add-hook 'cmake-mode-hook 'jcs-cmake-mode-hook)
 

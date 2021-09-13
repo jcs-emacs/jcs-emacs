@@ -53,9 +53,9 @@
                               :interactive t)
 
   ;; Normal
-  (define-key js2-mode-map (kbd "DEL") #'jcs-electric-backspace)
-  (define-key js2-mode-map (kbd "{") #'jcs-vs-opening-curly-bracket-key)
-  (define-key js2-mode-map (kbd ";") #'jcs-vs-semicolon-key)
+  (jcs-bind-key (kbd "DEL") #'jcs-electric-backspace)
+  (jcs-bind-key (kbd "{") #'jcs-vs-opening-curly-bracket-key)
+  (jcs-bind-key (kbd ";") #'jcs-vs-semicolon-key)
 
   (jcs--js-to-jsx-mode))
 

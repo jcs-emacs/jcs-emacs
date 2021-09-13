@@ -12,8 +12,8 @@
   "Snippet mode hook."
 
   ;; Normal
-  (define-key snippet-mode-map (kbd "<up>") #'previous-line)
-  (define-key snippet-mode-map (kbd "<down>") #'next-line))
+  (jcs-bind-key (kbd "<up>") #'previous-line)
+  (jcs-bind-key (kbd "<down>") #'next-line))
 
 (add-hook 'snippet-mode-hook 'jcs-snippet-mode-hook)
 

@@ -30,12 +30,12 @@
   (jcs-asm-mode--init)
 
   ;; Normal
-  (define-key masm-mode-map (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
-  (define-key masm-mode-map (kbd "<down>") (jcs-get-prev/next-key-type 'next))
+  (jcs-bind-key (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
+  (jcs-bind-key (kbd "<down>") (jcs-get-prev/next-key-type 'next))
 
   ;; Comment
-  (define-key masm-mode-map (kbd "RET") #'jcs-asm-return)
-  (define-key masm-mode-map (kbd ";") #'jcs-asm-comment))
+  (jcs-bind-key (kbd "RET") #'jcs-asm-return)
+  (jcs-bind-key (kbd ";") #'jcs-asm-comment))
 
 (add-hook 'masm-mode-hook 'jcs-masm-mode-hook)
 
@@ -48,12 +48,12 @@
   (jcs-asm-mode--init)
 
   ;; Normal
-  (define-key nasm-mode-map (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
-  (define-key nasm-mode-map (kbd "<down>") (jcs-get-prev/next-key-type 'next))
+  (jcs-bind-key (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
+  (jcs-bind-key (kbd "<down>") (jcs-get-prev/next-key-type 'next))
 
   ;; Comment
-  (define-key nasm-mode-map (kbd "RET") #'jcs-asm-return)
-  (define-key nasm-mode-map (kbd ";") #'jcs-asm-comment))
+  (jcs-bind-key (kbd "RET") #'jcs-asm-return)
+  (jcs-bind-key (kbd ";") #'jcs-asm-comment))
 
 (add-hook 'nasm-mode-hook 'jcs-nasm-mode-hook)
 
