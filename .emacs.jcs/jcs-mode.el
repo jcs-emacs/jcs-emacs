@@ -250,19 +250,17 @@ Note this is opposite logic to the toggle mode function."
 
 (defun jcs-compilation-mode-hook ()
   "Hook for `compilation-mode'."
-  (goto-address-mode 1)
   (buffer-disable-undo)
-
+  (goto-address-mode 1)
   (jcs-disable-truncate-lines)
 
   ;; NOTE: Set smaller font.
   (setq buffer-face-mode-face '(:height 120))
   (buffer-face-mode)
 
-  (define-key compilation-mode-map (kbd "M-k") #'jcs-output-maybe-kill-buffer)
-
-  (define-key compilation-mode-map (kbd "C-_") #'jcs-output-prev-compilation)
-  (define-key compilation-mode-map (kbd "C-+") #'jcs-output-next-compilation))
+  (jcs-bind-key (kbd "M-k") #'jcs-output-maybe-kill-buffer)
+  (jcs-bind-key (kbd "C-_") #'jcs-output-prev-compilation)
+  (jcs-bind-key (kbd "C-+") #'jcs-output-next-compilation))
 
 (add-hook 'compilation-mode-hook 'jcs-compilation-mode-hook)
 (add-hook 'comint-mode-hook 'jcs-compilation-mode-hook)
@@ -303,6 +301,7 @@ Note this is opposite logic to the toggle mode function."
 (defun jcs-base-mode-hook ()
   "Major mode hook for every major mode."
   (auto-highlight-symbol-mode t)
+  (electric-pair-mode 1)
   (goto-address-mode 1)
   (highlight-indent-guides-mode 1)
   (origami-indicators-mode 1)
@@ -310,7 +309,7 @@ Note this is opposite logic to the toggle mode function."
   (jcs-active-project-mode-hook))
 
 (add-hook 'text-mode-hook 'jcs-base-mode-hook)
-(add-hook 'fundamental-mode 'jcs-base-mode-hook)
+(add-hook 'prog-mode-hook 'jcs-base-mode-hook)
 
 ;;============================================================================
 ;; Text Mode
@@ -352,7 +351,6 @@ To avoid syntax highlighting error for comment.")
 
   (abbrev-mode 1)
   (display-fill-column-indicator-mode 1)
-  (electric-pair-mode 1)
   (highlight-numbers-mode 1))
 
 (add-hook 'prog-mode-hook 'jcs-prog-mode-hook)
