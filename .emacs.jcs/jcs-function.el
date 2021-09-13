@@ -387,6 +387,7 @@ If optional argument FORCE is non-nil, force refresh it."
 
 (defun jcs-make-electric-pair-pairs-local (lst-pr)
   "Append a list of pair (LST-PR) to current buffer."
+  (require 'elec-pair)
   (setq-local electric-pair-pairs (append electric-pair-pairs lst-pr)
               electric-pair-text-pairs electric-pair-pairs))
 
