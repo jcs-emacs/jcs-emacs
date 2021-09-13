@@ -81,18 +81,26 @@
   "Path point to all changelog template files.")
 
 ;;; Compilation (Output)
-(with-eval-after-load 'compile
-  (setq compilation-context-lines t)
-  (setq compilation-error-regexp-alist
+(leaf compile
+  :init
+  (setq compilation-context-lines t
+        compilation-error-regexp-alist
         (cons '("^\\([0-9]+>\\)?\\(\\(?:[a-zA-Z]:\\)?[^:(\t\n]+\\)(\\([0-9]+\\)) : \\(?:fatal error\\|warnin\\(g\\)\\) C[0-9]+:" 2 3 nil (4))
               compilation-error-regexp-alist))
-
+  :defer-config
   (require 'ansi-color)
   (defun jcs--colorize-compilation-buffer ()
     "Support for ANSI-escape coloring."
     (let (buffer-read-only)
       (ansi-color-apply-on-region compilation-filter-start (point))))
   (add-hook 'compilation-filter-hook 'jcs--colorize-compilation-buffer))
+
+(leaf comint
+  :init
+  (setq comint-prompt-read-only t
+        comint-process-echoes t
+        comint-scroll-to-bottom-on-input t
+        comint-move-point-for-output t))
 
 (defconst jcs-compilation-base-filename "output"
   "Base filename for compilation buffer.")
@@ -407,6 +415,18 @@ If ACT is non-nil; then make scroll less jumpy."
 
 ;;; Warnings
 (setq warning-minimum-level :emergency)
+
+;;; Whitespace
+(leaf whitespace
+  :defer-config
+  (autoload 'whitespace-mode "whitespace-mode" "Toggle whitespace visualization." t)
+  (autoload 'whitespace-toggle-options "whitespace-mode" "Toggle local `whitespace-mode' options." t)
+  ;; All the face can be find here.
+  ;; URL: https://www.emacswiki.org/emacs/BlankMode
+  (set-face-attribute 'whitespace-indentation nil
+                      :background "grey20" :foreground "aquamarine3")
+  (set-face-attribute 'whitespace-trailing nil
+                      :background "grey20" :foreground "red"))
 
 ;;; Windows
 (defconst jcs-windows--enlarge-shrink-times 6
