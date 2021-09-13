@@ -107,13 +107,12 @@
   (with-eval-after-load 'company (require 'jcs-company) (global-company-mode t)))
 
 (leaf company-box
+  :hook (company-mode-hook . company-box-mode)
   :init
   (setq company-box-backends-colors nil
         company-box-frame-behavior 'point
         company-box-doc-delay 0.3
-        company-box-doc-text-scale-level -2)
-  (with-eval-after-load 'company
-    (add-hook 'company-mode-hook 'company-box-mode)))
+        company-box-doc-text-scale-level -2))
 
 (leaf company-c-headers
   :defer-config
@@ -148,12 +147,12 @@
         company-emojify-emoji-styles '(github)))
 
 (leaf company-fuzzy
+  :hook (company-mode-hook . company-fuzzy-mode)
   :init
   (setq company-fuzzy-sorting-backend 'flx
         company-fuzzy-prefix-on-top nil
         company-fuzzy-history-backends '(company-yasnippet)
-        company-fuzzy-trigger-symbols '("." "->" "<" "\"" "'"))
-  (with-eval-after-load 'company (global-company-fuzzy-mode t)))
+        company-fuzzy-trigger-symbols '("." "->" "<" "\"" "'")))
 
 (leaf counsel
   :init
@@ -238,7 +237,7 @@
 
   If argument LOAD-SYM is a symbol; then it will diminish after it's module
   is loaded using macro `with-eval-after-load'."
-    (if load-sym (with-eval-after-load load-sym(jcs-diminish-type mode-sym))
+    (if load-sym (with-eval-after-load load-sym (jcs-diminish-type mode-sym))
       (jcs-diminish-type mode-sym)))
 
   (defun jcs-diminish-do-alist (alst)
@@ -506,12 +505,10 @@
   (setq file-header-template-config-filepath "~/.emacs.jcs/template/template_config.properties"))
 
 (leaf flycheck-grammarly
-  :init
-  (with-eval-after-load 'flycheck (require 'flycheck-grammarly)))
+  :hook (flycheck-mode-hook . (lambda () (require 'flycheck-grammarly))))
 
 (leaf flycheck-languagetool
-  :init
-  (with-eval-after-load 'flycheck (require 'flycheck-languagetool)))
+  :hook (flycheck-mode-hook . (lambda () (require 'flycheck-languagetool))))
 
 (leaf flycheck-popup-tip
   :init
@@ -696,9 +693,9 @@
   (setq enable-recursive-minibuffers t))
 
 (leaf ivy-file-preview
+  :hook (ivy-mode-hook . ivy-file-preview-mode)
   :init
-  (setq ivy-file-preview-overlay-delay-time 0.2)
-  (with-eval-after-load 'ivy (ivy-file-preview-mode 1)))
+  (setq ivy-file-preview-overlay-delay-time 0.2))
 
 (leaf ivy-searcher
   :init
