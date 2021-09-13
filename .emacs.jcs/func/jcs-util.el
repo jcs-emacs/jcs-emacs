@@ -85,19 +85,16 @@ time is displayed."
 ;; (@* "Buffer" )
 ;;
 
-;;;###autoload
 (defun jcs-print-current-buffer-name ()
   "Message out what current window's buffer name."
   (interactive)
-  (message "Current buffer name: %s" (buffer-name)))
+  (message "[INFO] Current buffer name: %s" (buffer-name)))
 
-;;;###autoload
 (defun jcs-print-current-buffer-file-name ()
   "Message out what current window's buffer file name."
   (interactive)
-  (message "Current buffer file name: %s" (buffer-file-name)))
+  (message "[INFO] Current buffer file name: %s" (buffer-file-name)))
 
-;;;###autoload
 (defun jcs-print-current-buffer-status ()
   "Print current buffer related status."
   (interactive)
@@ -374,6 +371,36 @@ See function `jcs-string-compare-p' for argument TYPE."
   candidates)
 
 ;;
+;; (@* "Key" )
+;;
+
+(defun jcs-print-current-keymap ()
+  "Message out what current keymap."
+  (interactive)
+  (message "[INFO] Current keymap: %s" (jcs-current-keymap)))
+
+(defun jcs-keymap-symbol (keymap)
+  "Return the symbol to which KEYMAP is bound, or nil if no such symbol exists."
+  (catch 'gotit
+    (mapatoms (lambda (sym)
+                (and (boundp sym)
+                     (eq (symbol-value sym) keymap)
+                     (not (eq sym 'keymap))
+                     (throw 'gotit sym))))))
+
+(defun jcs-current-keymap ()
+  "Return SYMBOL represent the keymap."
+  (jcs-keymap-symbol (current-local-map)))
+
+(defun jcs-bind-key (key def &optional keymap)
+  "Like `define-key' but default to current KEYMAP.
+
+See description from function `define-key' for arguments KEY, DEF and KEYMAP."
+  (let* ((mode-map (symbol-value (jcs-current-keymap)))
+         (keymap (or keymap mode-map)))
+    (define-key keymap key def)))
+
+;;
 ;; (@* "Time" )
 ;;
 
@@ -607,7 +634,7 @@ Generally you will have to check it four times."
 (defun jcs-print-current-point ()
   "Print out the current point."
   (interactive)
-  (message "Current point: %s" (point)))
+  (message "[INFO] Current point: %s" (point)))
 
 (defun jcs-column-to-point (column)
   "Turn the current COLUMN to point."
@@ -623,7 +650,7 @@ Generally you will have to check it four times."
 (defun jcs-print-current-char ()
   "Print out the current character."
   (interactive)
-  (message "Current character: %s" (jcs-get-current-char-string)))
+  (message "[INFO] Current character: %s" (jcs-get-current-char-string)))
 
 ;; TOPIC: Check if a character (not string) is lowercase,
 ;; uppercase, alphanumeric?
@@ -787,7 +814,7 @@ BND-PT : boundary point."
 (defun jcs-print-current-symbol ()
   "Print out the current symbol."
   (interactive)
-  (message "Current symbol: %s" (jcs-get-symbol-at-point)))
+  (message "[INFO] Current symbol: %s" (jcs-get-symbol-at-point)))
 
 (defun jcs-get-symbol-at-point ()
   "Get symbol at current cursor position."
@@ -830,7 +857,7 @@ BND-PT : boundary point."
 (defun jcs-print-current-word ()
   "Print out the current word."
   (interactive)
-  (message "Current word: %s" (jcs-get-word-at-point)))
+  (message "[INFO] Current word: %s" (jcs-get-word-at-point)))
 
 (defun jcs-get-word-at-point ()
   "Get word at current cursor position."
@@ -893,7 +920,7 @@ Returns nil, the word isn't the same."
 (defun jcs-print-current-line ()
   "Print out the current line."
   (interactive)
-  (message "Current line: %s" (jcs-get-current-line-string)))
+  (message "[INFO] Current line: %s" (jcs-get-current-line-string)))
 
 (defun jcs-goto-line (ln)
   "Goto LN line number."
@@ -1208,7 +1235,7 @@ Return nil, there is no region selected and mark is not active."
 (defun jcs-print-current-face ()
   "Print out all the faces the current cursor on."
   (interactive)
-  (message "Current faces: %s" (jcs-get-current-point-face)))
+  (message "[INFO] Current faces: %s" (jcs-get-current-point-face)))
 
 (defun jcs-get-faces-internal (pos)
   "Return the list of faces at this POS."
@@ -1417,11 +1444,10 @@ Argument TYPE see function `jcs-string-compare-p' for more information."
 ;; (@* "Mode" )
 ;;
 
-;;;###autoload
 (defun jcs-print-current-major-mode ()
   "Print out the current major mode."
   (interactive)
-  (message "Current major mode: %s" (symbol-name major-mode)))
+  (message "[INFO] Current major mode: %s" (symbol-name major-mode)))
 
 (defun jcs-current-major-mode ()
   "Get current major mode."
@@ -1638,11 +1664,10 @@ Argument IN-KEY is key use to search for value."
 ;; (@* "String" )
 ;;
 
-;;;###autoload
 (defun jcs-print-current-string ()
   "Print out the current string at current point."
   (interactive)
-  (message "Current string: %s" (jcs-string-at-point)))
+  (message "[INFO] Current string: %s" (jcs-string-at-point)))
 
 (defun jcs-string-compare-p (regexp str type &optional ignore-case)
   "Compare STR with REGEXP by TYPE.
@@ -1831,11 +1856,10 @@ Argument IN-VAL is input value to set to IN-VAR."
 ;; (@* "System" )
 ;;
 
-;;;###autoload
 (defun jcs-print-current-system ()
   "Print out the current system info."
   (interactive)
-  (message "Current system: %s - %s" (jcs-get-current-sysem) (system-name)))
+  (message "[INFO] Current system: %s - %s" (jcs-get-current-sysem) (system-name)))
 
 (defun jcs-get-current-sysem ()
   "Return the current operating system."
