@@ -179,7 +179,7 @@ IN-OP : inpuit operation script."
          ;; Then your `default-directory' became `usr/home/project'. Hurray!
          (default-directory script-dir))
     ;; Compile/Execute the target script.
-    (compile in-op)
+    (compile in-op t)
     (jcs-update-line-number-each-window)
     (with-current-buffer "*compilation*"
       (rename-buffer (format "%s%s" (jcs-form-compilation-filename-prefix) (f-filename in-op)) t))
