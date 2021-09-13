@@ -27,6 +27,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Improve `buffer-menu` module with project capability.
 * Replace `use-package` with `leaf`.
 * Improve for built-in package, `comint` related to `compilation-mode`'s input.
+* Add custom bind key function.
 
 ## 6.5.0
 > Released Jul 17, 2021
