@@ -612,6 +612,7 @@ See `add-to-list' function description for argument APPEND."
   (jcs-add-auto-mode-alist '("\\.makfile'?\\'" . makefile-mode))
   (jcs-add-auto-mode-alist '("\\(/\\|\\`\\)[Mm]akefile" . makefile-mode))
   (jcs-add-auto-mode-alist '("\\.md'?\\'" . markdown-mode))
+  (jcs-add-auto-mode-alist '("\\.markdown'?\\'" . markdown-mode))
 
   (jcs-add-auto-mode-alist '("\\.asm'?\\'" . masm-mode))
   (jcs-add-auto-mode-alist '("\\.inc'?\\'" . masm-mode)))
