@@ -52,9 +52,6 @@ decrease this. If you experience stuttering, increase this.")
   "Set the `gc-cons-threshold' depends on SPEEDUP."
   (setq gc-cons-threshold (if speedup jcs-gc-cons-upper-limit jcs-gc-cons-threshold)))
 
-;; NOTE: Raise the `GC' threshold when starting Emacs.
-(jcs-gc-cons-threshold-speed-up t)
-
 ;;; NOTE: Set custom file.
 (setq-default custom-file (expand-file-name ".jcs-custom.el" user-emacs-directory))
 (when (file-exists-p custom-file)
