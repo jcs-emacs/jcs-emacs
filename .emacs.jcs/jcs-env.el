@@ -123,8 +123,10 @@
 (setq delete-by-moving-to-trash t)
 
 ;;; Doc View
-(when jcs-is-windows
-  (setq doc-view-ghostscript-program (executable-find "gswin64c")))
+(leaf doc-view
+  :defer-config
+  (when jcs-is-windows
+    (setq doc-view-ghostscript-program (executable-find "gswin64c"))))
 
 ;;; Drag & Drop
 (setq mouse-drag-and-drop-region t)
