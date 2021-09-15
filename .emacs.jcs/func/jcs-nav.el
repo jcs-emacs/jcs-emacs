@@ -700,14 +700,14 @@ CH : character we target to move toward."
 ;;
 
 ;;;###autoload
-(defun jcs-move-forward-single-quot (&optional no-rec)
+(defun jcs-move-forward-single-quote (&optional no-rec)
   "Move forward to a single quotation mark.
 as NO-REC : recursive? (Default: do recusrive method)"
   (interactive)
   (jcs-move-to-forward-a-char-do-recursive "'" no-rec))
 
 ;;;###autoload
-(defun jcs-move-backward-single-quot (&optional no-rec)
+(defun jcs-move-backward-single-quote (&optional no-rec)
   "Move backward to a single quotation mark.
 as NO-REC : recursive? (Default: do recusrive method)"
   (interactive)
@@ -718,14 +718,14 @@ as NO-REC : recursive? (Default: do recusrive method)"
 ;;
 
 ;;;###autoload
-(defun jcs-move-forward-double-quot (&optional no-rec)
+(defun jcs-move-forward-double-quote (&optional no-rec)
   "Move forward to a double quotation mark.
 as NO-REC : recursive? (Default: do recusrive method)"
   (interactive)
   (jcs-move-to-forward-a-char-do-recursive "\"" no-rec))
 
 ;;;###autoload
-(defun jcs-move-backward-double-quot (&optional no-rec)
+(defun jcs-move-backward-double-quote (&optional no-rec)
   "Move backward to a double quotation mark.
 as NO-REC : recursive? (Default: do recusrive method)"
   (interactive)

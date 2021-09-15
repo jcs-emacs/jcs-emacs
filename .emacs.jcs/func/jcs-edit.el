@@ -1491,13 +1491,13 @@ other window."
   (jcs-delete-between-char "{" "}"))
 
 ;;;###autoload
-(defun jcs-delete-inside-single-quot ()
+(defun jcs-delete-inside-single-quote ()
   "Delete everything between single quotation mark."
   (interactive)
   (jcs-delete-between-char "'" "'"))
 
 ;;;###autoload
-(defun jcs-delete-inside-double-quot ()
+(defun jcs-delete-inside-double-quote ()
   "Delete everything between double quotation mark."
   (interactive)
   (jcs-delete-between-char "\"" "\""))
@@ -1515,7 +1515,7 @@ other window."
   (jcs-delete-between-char ">" "<"))
 
 ;;;###autoload
-(defun jcs-delete-inside-back-quot ()
+(defun jcs-delete-inside-back-quote ()
   "Delete everything between back quote."
   (interactive)
   (jcs-delete-between-char "`" "`"))
