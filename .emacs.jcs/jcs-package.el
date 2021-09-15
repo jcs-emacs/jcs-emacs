@@ -580,22 +580,21 @@ Argument WHERE is the alist of package information."
                        "installed"
                        "new"
                        "obsolete"))))
-  (if (string= status "..")
-      (package-list-packages)
-    (package-menu-filter (concat "status:" status))))
+  (pcase status
+    (".." (package-list-packages))
+    (_ (package-menu-filter (concat "status:" status)))))
 
 ;;
 ;; (@* "Manual Installation" )
 ;;
 
-(defconst jcs-quelpa-recipes-path (expand-file-name "~/.emacs.jcs/recipes/")
+(defconst jcs-quelpa-recipes-dir (expand-file-name "~/.emacs.jcs/recipes/")
   "Manually installed recipes path.")
 
 (defun jcs--quelpa-recipes ()
   "Return all `quelpa' recipes."
   (require 'jcs-file) (require 'jcs-util) (require 'thingatpt)
-  (let ((rcps-ff (jcs-dir-to-filename jcs-quelpa-recipes-path nil t))
-        (rcps '()) rcp)
+  (let ((rcps-ff (jcs-dir-to-filename jcs-quelpa-recipes-dir nil t)) rcps rcp)
     (dolist (rcp-file rcps-ff)
       (setq rcp
             (eval (thing-at-point--read-from-whole-string
@@ -628,21 +627,21 @@ Argument WHERE is the alist of package information."
          (rcp (jcs--form-version-recipe rcp))
          (name (car rcp))
          (build-dir (expand-file-name (symbol-name name) quelpa-build-dir))
-         (quelpa-build-verbose nil))
+         quelpa-build-verbose)
     (jcs-no-log-apply
       (message "Contacting host: '%s' from '%s'" pkg-repo pkg-fetcher))
     (jcs-mute-apply (quelpa-checkout rcp build-dir))))
 
 (defun jcs--ver-string-to-ver-list (ver)
   "Convert VER string to version recognized list."
-  (let ((ver-lst '()) (str-lst (split-string (format "%s" ver) "[.]")))
+  (let ((str-lst (split-string (format "%s" ver) "[.]")) ver-lst)
     (dolist (ver-str str-lst) (push (string-to-number ver-str) ver-lst))
     (reverse ver-lst)))
 
 (defun jcs--upgrade-list-manually ()
   "List of need to upgrade package from manually installed packages."
   (require 'quelpa)
-  (let ((upgrade-list '()) new-version current-version pkg-name)
+  (let (upgrade-list new-version current-version pkg-name)
     (dolist (rcp jcs-package-manual-install-list)
       (setq pkg-name (jcs--recipe-get-info rcp :name)
             new-version (jcs--package-version-by-recipe rcp)
@@ -654,8 +653,7 @@ Argument WHERE is the alist of package information."
 (defun jcs-ensure-manual-package-installed (packages)
   "Ensure all manually installed PACKAGES are installed."
   (let ((jcs-package-installing-p t) pkg-name pkg-repo pkg-fetcher
-        (quelpa-build-verbose nil)
-        pkg-installed-p)
+        quelpa-build-verbose pkg-installed-p)
     (dolist (rcp packages)
       (setq pkg-name (jcs--recipe-get-info rcp :name)
             pkg-repo (jcs--recipe-get-info rcp :repo)
