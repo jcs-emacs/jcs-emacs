@@ -88,6 +88,9 @@ decrease this. If you experience stuttering, increase this.")
 (setq frame-inhibit-implied-resize t
       frame-resize-pixelwise t)
 
+;; Emacs "updates" its ui more often than it needs to, so slow it down slightly
+(setq idle-update-delay 1.0)  ; default is 0.5
+
 ;; Font compacting can be terribly expensive, especially for rendering icon
 ;; fonts on Windows. Whether disabling it has a notable affect on Linux and Mac
 ;; hasn't been determined, but do it there anyway, just in case. This increases
@@ -101,6 +104,12 @@ decrease this. If you experience stuttering, increase this.")
 ;; Introduced in Emacs HEAD (b2f8c9f), this inhibits fontification while
 ;; receiving input, which should help a little with scrolling performance.
 (setq redisplay-skip-fontification-on-input t)
+
+;; Reduce *Message* noise at startup. An empty scratch buffer (or the dashboard)
+;; is more than enough.
+(setq inhibit-startup-message t
+      inhibit-startup-echo-area-message user-login-name
+      inhibit-default-init t)
 
 ;;
 ;; (@* "Version" )
