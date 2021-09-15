@@ -28,6 +28,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Replace `use-package` with `leaf`.
 * Improve for built-in package, `comint` related to `compilation-mode`'s input.
 * Add custom bind key function.
+* Remove config for package, `reload-emacs`.
 
 ## 6.5.0
 > Released Jul 17, 2021
