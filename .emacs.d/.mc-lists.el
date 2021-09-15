@@ -8,6 +8,7 @@
         c-electric-slash
         dashboard-next-line
         dashboard-previous-line
+        delete-horizontal-space
         electric-pair-delete-pair
         end-of-buffer
         forward-sexp
@@ -36,7 +37,7 @@
         jcs-ctrl-return-key
         jcs-delete-inside-and
         jcs-delete-inside-asterisk
-        jcs-delete-inside-back-quot
+        jcs-delete-inside-back-quote
         jcs-delete-inside-backslash
         jcs-delete-inside-caret
         jcs-delete-inside-colon
@@ -44,7 +45,7 @@
         jcs-delete-inside-curly-paren
         jcs-delete-inside-dash
         jcs-delete-inside-dollar-sign
-        jcs-delete-inside-double-quot
+        jcs-delete-inside-double-quote
         jcs-delete-inside-equal
         jcs-delete-inside-exclamation-mark
         jcs-delete-inside-greater-less-sign
@@ -57,7 +58,7 @@
         jcs-delete-inside-question-mark
         jcs-delete-inside-semicolon
         jcs-delete-inside-sharp-sign
-        jcs-delete-inside-single-quot
+        jcs-delete-inside-single-quote
         jcs-delete-inside-slash
         jcs-delete-inside-sqr-paren
         jcs-delete-inside-tilde
@@ -81,10 +82,15 @@
         jcs-mark-whole-buffer
         jcs-markdown-return-key
         jcs-move-backward-comma
+        jcs-move-backward-less-than-sign
+        jcs-move-backward-open-curly-paren
         jcs-move-backward-open-paren
         jcs-move-backward-open-sqrParen
+        jcs-move-forward-close-curly-paren
         jcs-move-forward-close-sqrParen
         jcs-move-forward-comma
+        jcs-move-forward-double-quote
+        jcs-move-forward-greater-than-sign
         jcs-next-line
         jcs-open-all-nodes
         jcs-open-node
