@@ -28,6 +28,10 @@
 
   (jcs-company-safe-add-backend 'company-emojify)
 
+  ;; File Header
+  (jcs-insert-header-if-valid '("[.]md" "[.]markdown")
+                              'jcs-insert-markdown-template)
+
   ;; Normal
   (jcs-bind-key (kbd "<backspace>") #'jcs-real-backspace)
   (jcs-bind-key (kbd "RET") #'jcs-markdown-return-key)
