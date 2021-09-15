@@ -2,6 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 
+(defconst jcs-template-dir "~/.emacs.jcs/template/"
+  "Template directory path for file headers.")
+
 ;;
 ;; (@* "File Header Insertion" )
 ;;
@@ -69,23 +72,28 @@ FAILED is callback if does NOT successfully inserted header content."
   "Preload the tag file info template.")
 
 
+(defun jcs-template-as-string (path)
+  "Read template from PATH to string."
+  (require 'f)
+  (jcs-get-string-from-file (f-join jcs-template-dir path)))
+
 ;;;###autoload
 (defun jcs-reload-file-info ()
   "Reload the template once.
 If the template configuration file has change, this must be call
 in order to take effect.  Half hot reloading process."
   (interactive)
-  (setq jcs--preload-double-colon-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/d_colon.txt")
-        jcs--preload-double-dash-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/d_dash.txt")
-        jcs--preload-double-quote-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/d_quote.txt")
-        jcs--preload-double-semicolon-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/d_semicolon.txt")
-        jcs--preload-double-slash-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/d_slash.txt")
-        jcs--preload-triple-slash-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/t_slash.txt")
-        jcs--preload-global-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/global.txt")
-        jcs--preload-semicolon-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/semicolon.txt")
-        jcs--preload-sharp-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/sharp.txt")
-        jcs--preload-single-quote-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/singlequote.txt")
-        jcs--preload-tag-file-info (jcs-get-string-from-file "~/.emacs.jcs/template/__header/tag.txt")))
+  (setq jcs--preload-double-colon-file-info (jcs-template-as-string "__header/d_colon.txt")
+        jcs--preload-double-dash-file-info (jcs-template-as-string "__header/d_dash.txt")
+        jcs--preload-double-quote-file-info (jcs-template-as-string "__header/d_quote.txt")
+        jcs--preload-double-semicolon-file-info (jcs-template-as-string "__header/d_semicolon.txt")
+        jcs--preload-double-slash-file-info (jcs-template-as-string "__header/d_slash.txt")
+        jcs--preload-triple-slash-file-info (jcs-template-as-string "__header/t_slash.txt")
+        jcs--preload-global-file-info (jcs-template-as-string "__header/global.txt")
+        jcs--preload-semicolon-file-info (jcs-template-as-string "__header/semicolon.txt")
+        jcs--preload-sharp-file-info (jcs-template-as-string "__header/sharp.txt")
+        jcs--preload-single-quote-file-info (jcs-template-as-string "__header/singlequote.txt")
+        jcs--preload-tag-file-info (jcs-template-as-string "__header/tag.txt")))
 
 ;;
 ;; (@* "Header" )
@@ -172,220 +180,225 @@ in order to take effect.  Half hot reloading process."
 ;; (@* "Other Templates" )
 ;;
 
+(defun jcs--file-header--insert (lang file)
+  "Insert file header by language (LANG) and it's path (FILE)."
+  (require 'f)
+  (file-header-insert-template-by-file-path (f-join jcs-template-dir lang file)))
+
 ;;; ActionScript
 (defun jcs-insert-actionscript-template ()
   "Template for ActionScript."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/actionscript/default.txt"))
+  (jcs--file-header--insert "actionscript" "default.txt"))
 
 ;;; AppleScript
 (defun jcs-insert-applescript-template ()
   "Template for AppleScript."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/applescript/default.txt"))
+  (jcs--file-header--insert "applescript" "default.txt"))
 
 ;; Assembly Language
 (defun jcs-insert-masm-template ()
   "Header for MASM file."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/assembly/masm.txt"))
+  (jcs--file-header--insert "assembly" "masm.txt"))
 
 (defun jcs-insert-nasm-template ()
   "Header for NASM file."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/assembly/nasm.txt"))
+  (jcs--file-header--insert "assembly" "nasm.txt"))
 
 ;;; BASIC
 (defun jcs-insert-basic-template ()
   "Header format for BASIC file."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/basic/default.txt"))
+  (jcs--file-header--insert "basic" "default.txt"))
 
 ;;; Batch
 (defun jcs-insert-batch-template ()
   "Header format for batch file."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/batch/default.txt"))
+  (jcs--file-header--insert "batch" "default.txt"))
 
 ;;; C
 (defun jcs-insert-c-header-template ()
   "Header for C header file."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/c/header.txt"))
+  (jcs--file-header--insert "c" "header.txt"))
 
 (defun jcs-insert-c-source-template ()
   "Header for C source file."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/c/source.txt"))
+  (jcs--file-header--insert "c" "source.txt"))
 
 ;;; C++
 (defun jcs-insert-c++-header-template ()
   "Header for C++ header file."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/c++/header.txt"))
+  (jcs--file-header--insert "c++" "header.txt"))
 
 (defun jcs-insert-c++-source-template ()
   "Header for C++ source file."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/c++/source.txt"))
+  (jcs--file-header--insert "c++" "source.txt"))
 
 (defun jcs-insert-c++-unreal-header-template--actor ()
   "Header for Unreal C++ header file with actor type."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/c++/unreal/actor/header.txt"))
+  (jcs--file-header--insert "c++" "unreal/actor/header.txt"))
 
 (defun jcs-insert-c++-unreal-source-template--actor ()
   "Header for Unreal C++ source file with actor type."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/c++/unreal/actor/source.txt"))
+  (jcs--file-header--insert "c++" "unreal/actor/source.txt"))
 
 (defun jcs-insert-c++-unreal-header-template--actor-component ()
   "Header for Unreal C++ header file with other type."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/c++/unreal/actor-component/header.txt"))
+  (jcs--file-header--insert "c++" "unreal/actor-component/header.txt"))
 
 (defun jcs-insert-c++-unreal-source-template--actor-component ()
   "Header for Unreal C++ source file with other type."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/c++/unreal/actor-component/source.txt"))
+  (jcs--file-header--insert "c++" "unreal/actor-component/source.txt"))
 
 ;;; C#
 (defun jcs-insert-csharp-template ()
   "Header for C# header file."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/csharp/default.txt"))
+  (jcs--file-header--insert "csharp" "default.txt"))
 
 (defun jcs-insert-csharp-unity-template ()
   "Header for Unity C# header file."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/csharp/unity.txt"))
+  (jcs--file-header--insert "csharp" "unity.txt"))
 
 ;;; Clojure
 (defun jcs-insert-clojure-template ()
   "Header for Clojure header file."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/clojure/default.txt"))
+  (jcs--file-header--insert "clojure" "default.txt"))
 
 ;;; CMake
 (defun jcs-insert-cmake-template ()
   "CMake file format info."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/cmake/default.txt"))
+  (jcs--file-header--insert "cmake" "default.txt"))
 
 ;;; COBOL
 (defun jcs-insert-cobol-template ()
   "Template for COBOL."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/cobol/default.txt"))
+  (jcs--file-header--insert "cobol" "default.txt"))
 
 ;;; CSS
 (defun jcs-insert-css-template ()
   "Template for CSS."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/css/default.txt"))
+  (jcs--file-header--insert "css" "default.txt"))
 
 ;;; Dart
 (defun jcs-insert-dart-template ()
   "Template for Dart."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/dart/default.txt"))
+  (jcs--file-header--insert "dart" "default.txt"))
 
 ;;; Elixir
 (defun jcs-insert-elixir-template ()
   "Template for Elixir."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/elixir/default.txt"))
+  (jcs--file-header--insert "elixir" "default.txt"))
 
 ;;; Elm
 (defun jcs-insert-elm-template ()
   "Template for Elm."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/elm/default.txt"))
+  (jcs--file-header--insert "elm" "default.txt"))
 
 ;;; Emacs Lisp
 (defun jcs-insert-emacs-lisp-template ()
   "Template for Emacs Lisp."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/elisp/default.txt"))
+  (jcs--file-header--insert "elisp" "default.txt"))
 
 ;;; Erlang
 (defun jcs-insert-erlang-template ()
   "Template for Erlang Lisp."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/erlang/default.txt"))
+  (jcs--file-header--insert "erlang" "default.txt"))
 
 ;;; Fountain
 (defun jcs-insert-fountain-template ()
   "Template for Fountain Lisp."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/fountain/default.txt"))
+  (jcs--file-header--insert "fountain" "default.txt"))
 
 ;;; F#
 (defun jcs-insert-fsharp-template ()
   "Header for F# header file."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/fsharp/default.txt"))
+  (jcs--file-header--insert "fsharp" "default.txt"))
 
 ;;; GLSL
 (defun jcs-insert-glsl-template ()
   "Header for GLSL header file."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/shader/default_glsl.txt"))
+  (jcs--file-header--insert "shader" "default_glsl.txt"))
 
 ;;; Go
 (defun jcs-insert-go-template ()
   "Header for Go header file."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/go/default.txt"))
+  (jcs--file-header--insert "go" "default.txt"))
 
 ;;; Godot Script
 (defun jcs-insert-gdscript-template ()
   "Header for Godot Script header file."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/gdscript/default.txt"))
+  (jcs--file-header--insert "gdscript" "default.txt"))
 
 ;;; Groovy
 (defun jcs-insert-groovy-template ()
   "Header for Groovy header file."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/groovy/default.txt"))
+  (jcs--file-header--insert "groovy" "default.txt"))
 
 ;;; Haskell
 (defun jcs-insert-haskell-template ()
   "Template for Haskell."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/haskell/default.txt"))
+  (jcs--file-header--insert "haskell" "default.txt"))
 
 ;;; Haxe
 (defun jcs-insert-haxe-template ()
   "Template for Haxe."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/haxe/default.txt"))
+  (jcs--file-header--insert "haxe" "default.txt"))
 
 ;;; HTML
 (defun jcs-insert-html-template ()
   "Template for HTML."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/web/default_html.txt"))
+  (jcs--file-header--insert "web" "default_html.txt"))
 
 ;;; Java
 (defun jcs-insert-java-template ()
   "Header for Java header file."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/java/default.txt"))
+  (jcs--file-header--insert "java" "default.txt"))
 
 ;;; JavaScript
 (defun jcs-insert-js-template ()
   "Template for JavaScript."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/js/default.txt"))
+  (jcs--file-header--insert "js" "default.txt"))
 
 ;;; JavaScript XML
 (defun jcs-insert-jsx-template ()
   "Template for JavaScript XML (JSX)."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/jsx/default.txt"))
+  (jcs--file-header--insert "jsx" "default.txt"))
 
 (defun jcs-insert-jsx-react-js-template ()
   "Template for React JS JavaScript XML (JSX)."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/jsx/react/js.txt"))
+  (jcs--file-header--insert "jsx" "react/js.txt"))
 
 (defun jcs-insert-jsx-react-native-template ()
   "Template for React Native JavaScript XML (JSX)."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/jsx/react/native.txt"))
+  (jcs--file-header--insert "jsx" "react/native.txt"))
 
 ;;; JayCeS
 (defun jcs-insert-jayces-template ()
   "Header for JayCeS header file."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/jayces/default.txt"))
+  (jcs--file-header--insert "jayces" "default.txt"))
 
 ;;; Jenkins
 (defun jcs-insert-jenkinsfile-template ()
   "Header for Jenkinsfile."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/jenkins/default.txt"))
+  (jcs--file-header--insert "jenkins" "default.txt"))
 
 ;;; Kotlin
 (defun jcs-insert-kotlin-template ()
   "Header for Kotlin header file."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/kotlin/default.txt"))
+  (jcs--file-header--insert "kotlin" "default.txt"))
 
 ;;; LESS
 (defun jcs-insert-less-template ()
   "Header for LESS header file."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/less/default.txt"))
+  (jcs--file-header--insert "less" "default.txt"))
 
 ;;; Lisp
 (defun jcs-insert-lisp-template ()
   "Lisp file header format."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/lisp/default.txt"))
+  (jcs--file-header--insert "lisp" "default.txt"))
 
 ;;; Lua
 (defun jcs-insert-lua-template ()
   "Lua file header format."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/lua/default.txt"))
+  (jcs--file-header--insert "lua" "default.txt"))
 
 ;;; Makefile
 (defun jcs-makefile-format-info ()
@@ -394,169 +407,174 @@ in order to take effect.  Half hot reloading process."
 
 (defun jcs-insert-makefile-cc-app-template ()
   "Default makefile template for normal application."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/makefile/cc/app.txt"))
+  (jcs--file-header--insert "makefile" "cc/app.txt"))
 
 (defun jcs-insert-makefile-cc-lib-template ()
   "Library makefile template for static library or shared library."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/makefile/cc/lib.txt"))
+  (jcs--file-header--insert "makefile" "cc/lib.txt"))
 
 (defun jcs-insert-makefile-java-app-template ()
   "Template for makefile Java application."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/makefile/java/app.txt"))
+  (jcs--file-header--insert "makefile" "java/app.txt"))
 
 (defun jcs-insert-makefile-java-lib-template ()
   "Template for makefile Java library."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/makefile/java/lib.txt"))
+  (jcs--file-header--insert "makefile" "java/lib.txt"))
 
 (defun jcs-insert-makefile-python-app-template ()
   "Template for makefile Python application."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/makefile/python/app.txt"))
+  (jcs--file-header--insert "makefile" "python/app.txt"))
 
 (defun jcs-insert-makefile-python-lib-template ()
   "Template for makefile Python library."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/makefile/python/lib.txt"))
+  (jcs--file-header--insert "makefile" "python/lib.txt"))
+
+;;; Markdown
+(defun jcs-insert-markdown-template ()
+  "Header for Markdown header file."
+  (jcs--file-header--insert "markdown" "default.txt"))
 
 ;;; Nix
 (defun jcs-insert-nix-template ()
   "Header for Nix header file."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/nix/default.txt"))
+  (jcs--file-header--insert "nix" "default.txt"))
 
 ;;; Object Pascal (Delphi)
 (defun jcs-insert-opascal-template ()
   "Header for Object Pascal header file."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/opascal/default.txt"))
+  (jcs--file-header--insert "opascal" "default.txt"))
 
 ;;; Objective-C
 (defun jcs-insert-objc-header-template ()
   "Header for Objective-C header file."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/objc/header.txt"))
+  (jcs--file-header--insert "objc" "header.txt"))
 
 (defun jcs-insert-objc-source-template ()
   "Header for Objective-C source file."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/objc/source.txt"))
+  (jcs--file-header--insert "objc" "source.txt"))
 
 ;;; Pascal
 (defun jcs-insert-pascal-template ()
   "Header for Pascal header file."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/pascal/default.txt"))
+  (jcs--file-header--insert "pascal" "default.txt"))
 
 ;;; Perl
 (defun jcs-insert-perl-template ()
   "Header for Perl header file."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/perl/default.txt"))
+  (jcs--file-header--insert "perl" "default.txt"))
 
 ;;; PHP
 (defun jcs-insert-php-template ()
   "Template for PHP."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/web/default_php.txt"))
+  (jcs--file-header--insert "web" "default_php.txt"))
 
 ;;; PowerShell
 (defun jcs-insert-powershell-template ()
   "Header for PowerShell header file."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/powershell/default.txt"))
+  (jcs--file-header--insert "powershell" "default.txt"))
 
 ;;; Processing
 (defun jcs-insert-processing-template ()
   "Header for Processing file."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/processing/default.txt"))
+  (jcs--file-header--insert "processing" "default.txt"))
 
 ;;; Python
 (defun jcs-insert-python-template ()
   "Python template."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/python/default.txt"))
+  (jcs--file-header--insert "python" "default.txt"))
 
 (defun jcs-insert-python-class-template ()
   "Python class template."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/python/class.txt"))
+  (jcs--file-header--insert "python" "class.txt"))
 
 ;;; R
 (defun jcs-insert-r-template ()
   "Header for R header file."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/r/default.txt"))
+  (jcs--file-header--insert "r" "default.txt"))
 
 ;;; Ruby
 (defun jcs-insert-ruby-template ()
   "Header for Ruby header file."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/ruby/default.txt"))
+  (jcs--file-header--insert "ruby" "default.txt"))
 
 ;;; Rust
 (defun jcs-insert-rust-template ()
   "Header for Rust header file."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/rust/default.txt"))
+  (jcs--file-header--insert "rust" "default.txt"))
 
 ;;; Sass
 (defun jcs-insert-sass-template ()
   "Header for SASS header file."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/sass/default.txt"))
+  (jcs--file-header--insert "sass" "default.txt"))
 
 ;;; Scala
 (defun jcs-insert-scala-template ()
   "Header for Scala header file."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/scala/default.txt"))
+  (jcs--file-header--insert "scala" "default.txt"))
 
 ;;; SCSS
 (defun jcs-insert-scss-template ()
   "Header for SCSS header file."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/scss/default.txt"))
+  (jcs--file-header--insert "scss" "default.txt"))
 
 ;;; Shader
 (defun jcs-insert-shader-template ()
   "Header for Shader header file."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/shader/default_shader.txt"))
+  (jcs--file-header--insert "shader" "default_shader.txt"))
 
 ;;; Shell
 (defun jcs-insert-sh-template ()
   "Header for Shell header file."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/sh/default.txt"))
+  (jcs--file-header--insert "sh" "default.txt"))
 
 ;;; SQL
 (defun jcs-insert-sql-template ()
   "Header for SQL header file."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/sql/default.txt"))
+  (jcs--file-header--insert "sql" "default.txt"))
 
 ;;; Swift
 (defun jcs-insert-swift-template ()
   "Header for Swift header file."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/swift/default.txt"))
+  (jcs--file-header--insert "swift" "default.txt"))
 
 ;;; Text
 (defun jcs-insert-text-template ()
   "Header for Text header file."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/text/default.txt"))
+  (jcs--file-header--insert "text" "default.txt"))
 
 ;;; TypeScript
 (defun jcs-insert-typescript-template ()
   "Header for TypeScript header file."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/typescript/default.txt"))
+  (jcs--file-header--insert "typescript" "default.txt"))
 
 (defun jcs-insert-typescript-cocos-creator-template ()
   "Header for Cocos Creator TypeScript header file."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/typescript/cocos_creator.txt"))
+  (jcs--file-header--insert "typescript" "cocos_creator.txt"))
 
 ;;; Verilog
 (defun jcs-insert-verilog-template ()
   "Header for Verilog header file."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/verilog/default.txt"))
+  (jcs--file-header--insert "verilog" "default.txt"))
 
 ;;; Vim script
 (defun jcs-insert-vimscript-template ()
   "Header for Vimscript header file."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/vimscript/default.txt"))
+  (jcs--file-header--insert "vimscript" "default.txt"))
 
 ;;; Vue
 (defun jcs-insert-vue-template ()
   "Header for Vue header file."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/vue/default.txt"))
+  (jcs--file-header--insert "vue" "default.txt"))
 
 ;;; XML
 (defun jcs-insert-xml-template ()
   "Header for XML header file."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/xml/default.txt"))
+  (jcs--file-header--insert "xml" "default.txt"))
 
 ;;; YAML
 (defun jcs-insert-yaml-template ()
   "Header for YAML header file."
-  (file-header-insert-template-by-file-path "~/.emacs.jcs/template/yaml/default.txt"))
+  (jcs--file-header--insert "yaml" "default.txt"))
 
 (provide 'jcs-template)
 ;;; jcs-template.el ends here
