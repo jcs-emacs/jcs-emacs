@@ -997,17 +997,6 @@
   (set-face-attribute 'region-occurrences-highlighter-face nil
                       :background "#113D6F" :inverse-video nil))
 
-(leaf reload-emacs
-  :init
-  (setq reload-emacs-load-path '("~/.emacs.jcs/"
-                                 "~/.emacs.jcs/func/"
-                                 "~/.emacs.jcs/mode/"))
-  :defer-config
-  (defun jcs--reload-emacs-after-hook ()
-    "Hook runs after reload Emacs."
-    (jcs-re-enable-mode 'company-fuzzy-mode))
-  (add-hook 'reload-emacs-after-hook #'jcs--reload-emacs-after-hook))
-
 (leaf right-click-context
   :defer-config
   ;;;###autoload
