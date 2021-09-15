@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: jcs-header
+# key: jcs-header
+# --
+---
+title: `(jcs-get-file-name)`
+date: `(jcs-timestamp-ver1)`
+description: 
+---
+
+$0
