@@ -81,6 +81,7 @@
         jcs-mark-whole-buffer
         jcs-markdown-return-key
         jcs-move-backward-comma
+        jcs-move-backward-open-paren
         jcs-move-backward-open-sqrParen
         jcs-move-forward-close-sqrParen
         jcs-move-forward-comma
