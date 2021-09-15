@@ -4,7 +4,7 @@
 
 <p align="center">
 <a href="https://opensource.org/licenses/BSD-2-Clause"><img src="https://img.shields.io/badge/License-BSD%202--Clause-orange.svg" alt="License"></a>
-<a href="https://www.gnu.org/software/emacs/download.html"><img src="https://img.shields.io/badge/Emacs-27.1+-7F5AB6.svg?logo=gnu%20emacs" alt="Emacs"></a>
+<a href="https://www.gnu.org/software/emacs/download.html"><img src="https://img.shields.io/badge/Emacs-27.1+-7F5AB6.svg?logo=gnu%20emacs&logoColor=white" alt="Emacs"></a>
 <a href="https://github.com/jcs090218/jcs-emacs/releases/latest"><img src="https://img.shields.io/github/tag/jcs090218/jcs-emacs.svg?label=release&logo=github" alt="Release Tag"></a>
 <a href="https://www.paypal.me/jcs090218"><img alt="Support me" src="https://img.shields.io/badge/Support%20Me-%F0%9F%92%97-ff69b4.svg"></a>
 <a href="https://github.com/jcs090218/jcs-emacs/actions"><img src="https://github.com/jcs090218/jcs-emacs/workflows/CI/badge.svg" alt="CI"></a>
