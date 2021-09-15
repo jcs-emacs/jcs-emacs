@@ -234,7 +234,7 @@
 (setq inhibit-compacting-font-caches t)
 
 ;;; License
-(defconst jcs-license-template-path "~/.emacs.jcs/template/__license/"
+(defconst jcs-license-template-dir "~/.emacs.jcs/template/__license/"
   "Path point to all license template files.")
 
 ;;; Line Numbers
@@ -293,8 +293,7 @@ P.S. You would need to restart Emacs to take effect from this variable."
   :group 'jcs)
 
 ;;; Process
-(setq kill-buffer-query-functions nil
-      read-process-output-max (* 1024 1024))  ; 1MB
+(setq kill-buffer-query-functions nil)
 
 ;;; Recent Files
 (setq recentf-max-menu-items 25)
