@@ -28,9 +28,9 @@ jobs:
     - uses: actions/checkout@v2
     - name: Check startup
       run: sh ./scripts/copy-config.sh
-      
+
     - name: Check startup
-      run: emacs -nw
+      run: emacs
 
   test-windows:
     runs-on: ${{ matrix.os }}
@@ -51,4 +51,4 @@ jobs:
       run: ./scripts/copy-config.bat
 
     - name: Check startup
-      run: emacs -nw
+      run: emacs
