@@ -20,4 +20,4 @@ INIT="(progn															 \
   (jcs-emacs-version))"
 
 startup:
-	@$(EMACS) -Q --batch --eval $(INIT)
+	@$(EMACS) -Q --insecure --batch --eval $(INIT)
