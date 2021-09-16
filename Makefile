@@ -5,7 +5,8 @@ CASK ?= cask
 
 .PHONY: startup
 
-INIT="(progn															 \
+# Turn off `debug-on-error` due to error `Failed to download ‘melpa’ archive.`
+ENTRY="(progn															 \
 																		 \
 (require 'url-vars)														 \
 																		 \
@@ -20,4 +21,4 @@ INIT="(progn															 \
   (jcs-emacs-version))"
 
 startup:
-	@$(EMACS) -nw --batch --eval $(INIT)
+	@$(EMACS) -nw --batch --eval $(ENTRY)
