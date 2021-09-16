@@ -16,7 +16,8 @@ INIT="(progn															 \
 	  (load-path (delq default-directory load-path)))					 \
   (load-file user-init-file)											 \
   (run-hooks (quote after-init-hook))									 \
-  (run-hooks (quote emacs-startup-hook))))"
+  (run-hooks (quote emacs-startup-hook)))								 \
+  (jcs-emacs-version))"
 
 startup:
 	@echo "Test..."
