@@ -1,5 +1,3 @@
-@echo off
-
 SETLOCAL EnableDelayedExpansion
 
 echo "Copying core files..."
