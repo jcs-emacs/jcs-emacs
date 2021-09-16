@@ -8,12 +8,8 @@
 ;; start package.el with emacs
 (require 'package)
 
-;; NOTE: Add `GNU', `MELPA', `Marmalade', `ELPA' to repository list
-(setq package-archives
-      '(("celpa" . "https://celpa.conao3.com/packages/")
-        ("gnu" . "http://elpa.gnu.org/packages/")
-        ;;("marmalade" . "http://marmalade-repo.org/packages/")
-        ("melpa" . "http://melpa.org/packages/")))
+(add-to-list 'package-archives '( "celpa" . "https://celpa.conao3.com/packages/") t)
+(add-to-list 'package-archives '( "melpa" . "https://melpa.org/packages/") t)
 
 ;; To avoid initializing twice
 (setq package-enable-at-startup nil)
@@ -446,7 +442,7 @@
     (setq jcs-package--install-on-start-up t)
     ;; Don't run `package-refresh-contents' if you don't need to install
     ;; packages on startup.
-    (ignore-errors (package-refresh-contents))
+    (package-refresh-contents)
     ;; Else we just install the package regularly.
     (package-install pkg)))
 
