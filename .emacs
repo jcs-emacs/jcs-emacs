@@ -121,8 +121,7 @@ decrease this. If you experience stuttering, increase this.")
       gnutls-algorithm-priority
       (when (boundp 'libgnutls-version)
         (concat "SECURE128:+SECURE192:-VERS-ALL"
-                (if (and (not IS-WINDOWS)
-                         (>= libgnutls-version 30605))
+                (if (and (>= libgnutls-version 30605))
                     ":+VERS-TLS1.3")
                 ":+VERS-TLS1.2"))
       ;; `gnutls-min-prime-bits' is set based on recommendations from
