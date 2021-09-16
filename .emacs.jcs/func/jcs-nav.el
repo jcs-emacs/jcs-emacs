@@ -669,14 +669,12 @@ CH : character we target to move toward."
 ;;
 
 (defun jcs-move-forward-single-quote (&optional no-rec)
-  "Move forward to a single quotation mark.
-as NO-REC : recursive? (Default: do recusrive method)"
+  "Move forward to a single quotation mark."
   (interactive)
   (jcs-move-to-forward-a-char-do-recursive "'" no-rec))
 
 (defun jcs-move-backward-single-quote (&optional no-rec)
-  "Move backward to a single quotation mark.
-as NO-REC : recursive? (Default: do recusrive method)"
+  "Move backward to a single quotation mark."
   (interactive)
   (jcs-move-to-backward-a-char-do-recursive "'" no-rec))
 
@@ -685,14 +683,12 @@ as NO-REC : recursive? (Default: do recusrive method)"
 ;;
 
 (defun jcs-move-forward-double-quote (&optional no-rec)
-  "Move forward to a double quotation mark.
-as NO-REC : recursive? (Default: do recusrive method)"
+  "Move forward to a double quotation mark."
   (interactive)
   (jcs-move-to-forward-a-char-do-recursive "\"" no-rec))
 
 (defun jcs-move-backward-double-quote (&optional no-rec)
-  "Move backward to a double quotation mark.
-as NO-REC : recursive? (Default: do recusrive method)"
+  "Move backward to a double quotation mark."
   (interactive)
   (jcs-move-to-backward-a-char-do-recursive "\"" no-rec))
 
@@ -701,14 +697,12 @@ as NO-REC : recursive? (Default: do recusrive method)"
 ;;
 
 (defun jcs-move-forward-open-paren (&optional no-rec)
-  "Move forward to a open parenthesis.
-as NO-REC : recursive? (Default: do recusrive method)"
+  "Move forward to a open parenthesis."
   (interactive)
   (jcs-move-to-forward-a-char-do-recursive "(" no-rec))
 
 (defun jcs-move-backward-open-paren (&optional no-rec)
-  "Move backward to a open parenthesis.
-as NO-REC : recursive? (Default: do recusrive method)"
+  "Move backward to a open parenthesis."
   (interactive)
   (jcs-move-to-backward-a-char-do-recursive "(" no-rec))
 
@@ -717,14 +711,12 @@ as NO-REC : recursive? (Default: do recusrive method)"
 ;;
 
 (defun jcs-move-forward-close-paren (&optional no-rec)
-  "Move forward to a close parenthesis.
-as NO-REC : recursive? (Default: do recusrive method)"
+  "Move forward to a close parenthesis."
   (interactive)
   (jcs-move-to-forward-a-char-do-recursive ")" no-rec))
 
 (defun jcs-move-backward-close-paren (&optional no-rec)
-  "Move backward to a close parenthesis.
-as NO-REC : recursive? (Default: do recusrive method)"
+  "Move backward to a close parenthesis."
   (interactive)
   (jcs-move-to-backward-a-char-do-recursive ")" no-rec))
 
@@ -733,14 +725,12 @@ as NO-REC : recursive? (Default: do recusrive method)"
 ;;
 
 (defun jcs-move-forward-open-sqr-paren (&optional no-rec)
-  "Move forward to a open square parenthesis.
-as NO-REC : recursive? (Default: do recusrive method)"
+  "Move forward to a open square parenthesis."
   (interactive)
   (jcs-move-to-forward-a-char-do-recursive "[" no-rec))
 
 (defun jcs-move-backward-open-sqr-paren (&optional no-rec)
-  "Move backward to a open square parenthesis.
-as NO-REC : recursive? (Default: do recusrive method)"
+  "Move backward to a open square parenthesis."
   (interactive)
   (jcs-move-to-backward-a-char-do-recursive "[" no-rec))
 
@@ -749,14 +739,12 @@ as NO-REC : recursive? (Default: do recusrive method)"
 ;;
 
 (defun jcs-move-forward-close-sqr-paren (&optional no-rec)
-  "Move forward to a close square parenthesis.
-as NO-REC : recursive? (Default: do recusrive method)"
+  "Move forward to a close square parenthesis."
   (interactive)
   (jcs-move-to-forward-a-char-do-recursive "]" no-rec))
 
 (defun jcs-move-backward-close-sqr-paren (&optional no-rec)
-  "Move backward to a close square parenthesis.
-as NO-REC : recursive? (Default: do recusrive method)"
+  "Move backward to a close square parenthesis."
   (interactive)
   (jcs-move-to-backward-a-char-do-recursive "]" no-rec))
 
@@ -765,14 +753,12 @@ as NO-REC : recursive? (Default: do recusrive method)"
 ;;
 
 (defun jcs-move-forward-open-curly-paren (&optional no-rec)
-  "Move forward to a open curly parenthesis.
-as NO-REC : recursive? (Default: do recusrive method)"
+  "Move forward to a open curly parenthesis."
   (interactive)
   (jcs-move-to-forward-a-char-do-recursive "{" no-rec))
 
 (defun jcs-move-backward-open-curly-paren (&optional no-rec)
-  "Move backward to a open curly parenthesis.
-as NO-REC : recursive? (Default: do recusrive method)"
+  "Move backward to a open curly parenthesis."
   (interactive)
   (jcs-move-to-backward-a-char-do-recursive "{" no-rec))
 
@@ -781,14 +767,12 @@ as NO-REC : recursive? (Default: do recusrive method)"
 ;;
 
 (defun jcs-move-forward-close-curly-paren (&optional no-rec)
-  "Move forward to a close curly parenthesis.
-as NO-REC : recursive? (Default: do recusrive method)"
+  "Move forward to a close curly parenthesis."
   (interactive)
   (jcs-move-to-forward-a-char-do-recursive "}" no-rec))
 
 (defun jcs-move-backward-close-curly-paren (&optional no-rec)
-  "Move backward to a close curly parenthesis.
-as NO-REC : recursive? (Default: do recusrive method)"
+  "Move backward to a close curly parenthesis."
   (interactive)
   (jcs-move-to-backward-a-char-do-recursive "}" no-rec))
 
@@ -797,14 +781,12 @@ as NO-REC : recursive? (Default: do recusrive method)"
 ;;
 
 (defun jcs-move-forward-colon (&optional no-rec)
-  "Move forward to a colon.
-as NO-REC : recursive? (Default: do recusrive method)"
+  "Move forward to a colon."
   (interactive)
   (jcs-move-to-forward-a-char-do-recursive ":" no-rec))
 
 (defun jcs-move-backward-colon (&optional no-rec)
-  "Move backward to a colon.
-as NO-REC : recursive? (Default: do recusrive method)"
+  "Move backward to a colon."
   (interactive)
   (jcs-move-to-backward-a-char-do-recursive ":" no-rec))
 
@@ -813,14 +795,12 @@ as NO-REC : recursive? (Default: do recusrive method)"
 ;;
 
 (defun jcs-move-forward-semicolon (&optional no-rec)
-  "Move forward to a semicolon.
-as NO-REC : recursive? (Default: do recusrive method)"
+  "Move forward to a semicolon."
   (interactive)
   (jcs-move-to-forward-a-char-do-recursive ";" no-rec))
 
 (defun jcs-move-backward-semicolon (&optional no-rec)
-  "Move backward to a semicolon.
-as NO-REC : recursive? (Default: do recusrive method)"
+  "Move backward to a semicolon."
   (interactive)
   (jcs-move-to-backward-a-char-do-recursive ";" no-rec))
 
@@ -829,14 +809,12 @@ as NO-REC : recursive? (Default: do recusrive method)"
 ;;
 
 (defun jcs-move-forward-greater-than-sign (&optional no-rec)
-  "Move forward to a greater than sign.
-as NO-REC : recursive? (Default: do recusrive method)"
+  "Move forward to a greater than sign."
   (interactive)
   (jcs-move-to-forward-a-char-do-recursive ">" no-rec))
 
 (defun jcs-move-backward-greater-than-sign (&optional no-rec)
-  "Move backward to a greater than sign.
-as NO-REC : recursive? (Default: do recusrive method)"
+  "Move backward to a greater than sign."
   (interactive)
   (jcs-move-to-backward-a-char-do-recursive ">" no-rec))
 
@@ -845,14 +823,12 @@ as NO-REC : recursive? (Default: do recusrive method)"
 ;;
 
 (defun jcs-move-forward-less-than-sign (&optional no-rec)
-  "Move forward to a less than sign.
-as NO-REC : recursive? (Default: do recusrive method)"
+  "Move forward to a less than sign."
   (interactive)
   (jcs-move-to-forward-a-char-do-recursive "<" no-rec))
 
 (defun jcs-move-backward-less-than-sign (&optional no-rec)
-  "Move backward to a less than sign.
-as NO-REC : recursive? (Default: do recusrive method)"
+  "Move backward to a less than sign."
   (interactive)
   (jcs-move-to-backward-a-char-do-recursive "<" no-rec))
 
@@ -861,14 +837,12 @@ as NO-REC : recursive? (Default: do recusrive method)"
 ;;
 
 (defun jcs-move-forward-comma (&optional no-rec)
-  "Move forward to a comma.
-as NO-REC : recursive? (Default: do recusrive method)"
+  "Move forward to a comma."
   (interactive)
   (jcs-move-to-forward-a-char-do-recursive "," no-rec))
 
 (defun jcs-move-backward-comma (&optional no-rec)
-  "Move backward to a comma.
-as NO-REC : recursive? (Default: do recusrive method)"
+  "Move backward to a comma."
   (interactive)
   (jcs-move-to-backward-a-char-do-recursive "," no-rec))
 
@@ -877,14 +851,12 @@ as NO-REC : recursive? (Default: do recusrive method)"
 ;;
 
 (defun jcs-move-forward-period (&optional no-rec)
-  "Move forward to a period.
-as NO-REC : recursive? (Default: do recusrive method)"
+  "Move forward to a period."
   (interactive)
   (jcs-move-to-forward-a-char-do-recursive "[.]" no-rec))
 
 (defun jcs-move-backward-period (&optional no-rec)
-  "Move backward to a period.
-as NO-REC : recursive? (Default: do recusrive method)"
+  "Move backward to a period."
   (interactive)
   (jcs-move-to-backward-a-char-do-recursive "[.]" no-rec))
 
