@@ -446,11 +446,9 @@
     (setq jcs-package--install-on-start-up t)
     ;; Don't run `package-refresh-contents' if you don't need to install
     ;; packages on startup.
-    (package-refresh-contents)
+    (ignore-errors (package-refresh-contents))
     ;; Else we just install the package regularly.
-    (package-install pkg)
-    ;; Ensure it is installed.
-    (jcs-package-install pkg)))
+    (package-install pkg)))
 
 (defun jcs-ensure-package-installed (packages)
   "Assure every PACKAGES is installed."
