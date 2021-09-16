@@ -2,8 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
-(defconst jcs-build-test t
-  "Define for build testing.")
+(defconst jcs-ci t
+  "Flag for CI testing.")
 
 ;; Start regular Emacs file.
 (load-file (expand-file-name "~/.emacs"))
