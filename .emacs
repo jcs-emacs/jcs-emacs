@@ -122,43 +122,6 @@ decrease this. If you experience stuttering, increase this.")
   (interactive)
   (message "JCS-Emacs %s" jcs-emacs-version-number))
 
-;;
-;; (@* "Load Core" )
-;;
-
-(add-to-list 'load-path "~/.emacs.jcs/")
-(add-to-list 'load-path "~/.emacs.jcs/func/")
-(add-to-list 'load-path "~/.emacs.jcs/mode/")
-
-;;; Initialize
-(require 'jcs-package)
-(jcs-package-install-all)
-
-;;; Utilities
-(require 'jcs-log)
-(require 'jcs-function)
-
-;;; Environment
-(require 'jcs-file)
-(require 'jcs-dev)
-(require 'jcs-env)
-(require 'jcs-theme)
-(require 'jcs-plugin)
-
-;;; Standardize
-(require 'jcs-template)
-(require 'jcs-mode)
-(require 'jcs-project)
-
-;;; Finalize
-(require 'jcs-minibuf)
-(require 'jcs-hook)
-(require 'jcs-key)
-(require 'jcs-face)
-
-;;; Customize
-(require 'jcs-config)
-
 ;; Local Variables:
 ;; coding: utf-8
 ;; no-byte-compile: t
