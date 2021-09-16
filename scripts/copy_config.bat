@@ -4,7 +4,7 @@ SETLOCAL EnableDelayedExpansion
 
 echo "Copying core files..."
 
-set CONFIG_PATH=%UserProfile%\AppData\Roaming\
+set CONFIG_PATH=%UserProfile%
 
 echo %CONFIG_PATH%
 
