@@ -26,7 +26,7 @@ jobs:
         version: ${{ matrix.emacs-version }}
 
     - uses: actions/checkout@v2
-    - name: Check startup
+    - name: Copy configuration files
       run:
         make unix-copy-config
 
