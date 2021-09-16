@@ -10,7 +10,7 @@ ENTRY="(progn															 \
 																		 \
 (require 'url-vars)														 \
 																		 \
-(let ((debug-on-error nil)												 \
+(let ((debug-on-error nil)		;										 \
 	  (url-show-status nil)												 \
 	  (user-emacs-directory default-directory)							 \
 	  (user-init-file (expand-file-name \"~/build.el\"))				 \
