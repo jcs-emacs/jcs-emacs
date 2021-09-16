@@ -593,13 +593,10 @@ Argument WHERE is the alist of package information."
       (push rcp rcps))
     (reverse rcps)))
 
+(defvar quelpa-build-verbose)
+
 (defvar jcs-package-manual-install-list (jcs--quelpa-recipes)
   "List of package that you want to manually installed.")
-
-(defmacro jcs-quelpa-quite (&rest body)
-  "Execute BODY without quelpa's verbose message."
-  (declare (indent 0) (debug t))
-  `(progn (require 'quelpa) (let (quelpa-build-verbose) (progn ,@body))))
 
 (defun jcs-package-manual-install-packages ()
   "Return a list of manuall install packages."
@@ -622,10 +619,10 @@ Argument WHERE is the alist of package information."
          (pkg-fetcher (jcs--recipe-get-info rcp :fetcher))
          (rcp (jcs--form-version-recipe rcp))
          (name (car rcp))
-         (build-dir (expand-file-name (symbol-name name) quelpa-build-dir)))
-    (jcs-quelpa-quite
-      (jcs-no-log-apply
-        (message "Contacting host: '%s' from '%s'" pkg-repo pkg-fetcher)))
+         (build-dir (expand-file-name (symbol-name name) quelpa-build-dir))
+         quelpa-build-verbose)
+    (jcs-no-log-apply
+      (message "Contacting host: '%s' from '%s'" pkg-repo pkg-fetcher))
     (jcs-mute-apply (quelpa-checkout rcp build-dir))))
 
 (defun jcs--ver-string-to-ver-list (ver)
@@ -656,9 +653,8 @@ Argument WHERE is the alist of package information."
             pkg-fetcher (jcs--recipe-get-info rcp :fetcher))
       (unless (package-installed-p pkg-name)
         (require 'quelpa) (require 'jcs-util)
-        (jcs-quelpa-quite
-          (jcs-no-log-apply
-            (message "Installing '%s' from '%s'" pkg-repo pkg-fetcher)))
+        (jcs-no-log-apply
+          (message "Installing '%s' from '%s'" pkg-repo pkg-fetcher))
         (quelpa rcp)
         (setq pkg-installed-p t)))
     (when pkg-installed-p (jcs-package-rebuild-dependency-list))))
