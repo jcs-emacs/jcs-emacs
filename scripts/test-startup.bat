@@ -16,15 +16,21 @@ robocopy /e "./.emacs.jcs" "%CONFIG_PATH%/.emacs.jcs"
 
 echo "Attempting startup..."
 
-set L_1="(let ((debug-on-error (>= emacs-major-version 26))
-set L_2=       (url-show-status nil)
-set L_3=       (user-emacs-directory default-directory)
-set L_4=       (user-init-file (expand-file-name \"~/build.el\"))
-set L_5=       (load-path (delq default-directory load-path)))
-set L_6=         (load-file user-init-file)
-set L_7=         (run-hooks (quote after-init-hook))
-set L_8=         (run-hooks (quote emacs-startup-hook)))"
 
-emacs -nw --batch --eval %L_1%%L_2%%L_3%%L_4%%L_5%%L_6%%L_7%%L_8%
+
+set L_01="(progn
+set L_02=(require (quote url-vars))
+set L_03=(let ((debug-on-error (>= emacs-major-version 26))
+set L_04=      (url-show-status nil)
+set L_05=      (user-emacs-directory default-directory)
+set L_06=      (user-init-file (expand-file-name \"~/build.el\"))
+set L_07=      (load-path (delq default-directory load-path)))
+set L_08=   (load-file user-init-file)
+set L_09=   (run-hooks (quote after-init-hook))
+set L_10=   (run-hooks (quote emacs-startup-hook))
+set L_11=   (jcs-emacs-version)))"
+
+
+emacs -nw --batch --eval %L_01%%L_02%%L_03%%L_04%%L_05%%L_06%%L_07%%L_08%%L_09%%L_10%%L_11%
 
 echo "Startup successful"

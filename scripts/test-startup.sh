@@ -10,13 +10,18 @@ mv -f ./.emacs.jcs ~/.emacs.jcs
 echo "Attempting startup..."
 
 ${EMACS:=emacs} -nw --batch \
-                --eval '(let ((debug-on-error (>=  emacs-major-version 26))
-                              (url-show-status nil)
-                              (user-emacs-directory default-directory)
-                              (user-init-file (expand-file-name "~/build.el"))
-                              (load-path (delq default-directory load-path)))
-                           (load-file user-init-file)
-                           (run-hooks (quote after-init-hook))
-                           (run-hooks (quote emacs-startup-hook)))'
+                --eval '(progn
+
+(require (quote url-vars))
+
+(let ((debug-on-error t)
+      (url-show-status nil)
+      (user-emacs-directory default-directory)
+      (user-init-file (expand-file-name "~/build.el"))
+      (load-path (delq default-directory load-path)))
+   (load-file user-init-file)
+   (run-hooks (quote after-init-hook))
+   (run-hooks (quote emacs-startup-hook))
+   (jcs-emacs-version))'
 
 echo "Startup successful"
