@@ -26,12 +26,8 @@ jobs:
         version: ${{ matrix.emacs-version }}
 
     - uses: actions/checkout@v2
-    - name: Copy configuration files
-      run: sh ./scripts/copy_config.sh
-
     - name: Check startup
-      run:
-        make startup
+      run: sh ./scripts/test-startup.sh
 
   test-windows:
     runs-on: ${{ matrix.os }}
@@ -48,9 +44,5 @@ jobs:
         version: ${{ matrix.emacs-version }}
 
     - uses: actions/checkout@v2
-    - name: Copy configuration files
-      run: ./scripts/copy_config.bat
-
     - name: Check startup
-      run:
-        make startup
+      run: ./scripts/test-startup.bat
