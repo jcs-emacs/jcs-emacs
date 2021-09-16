@@ -8,8 +8,8 @@ set CONFIG_PATH=%UserProfile%\AppData\Roaming\
 
 echo %CONFIG_PATH%
 
-xcopy /s "./build.el" "%CONFIG_PATH%\build.el"
-xcopy /s "./.emacs" "%CONFIG_PATH%\.emacs"
+xcopy /s "./build.el" "%CONFIG_PATH%"
+xcopy /s "./.emacs" "%CONFIG_PATH%"
 
 mkdir "%CONFIG_PATH%/.emacs.d"
 mkdir "%CONFIG_PATH%/.emacs.jcs"
