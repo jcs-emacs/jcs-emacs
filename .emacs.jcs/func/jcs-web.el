@@ -6,7 +6,6 @@
 ;; (@* "Deletion" )
 ;;
 
-;;;###autoload
 (defun jcs-web-backward-delete-word ()
   "Web backward delete the word, fit PHP variable naming."
   (interactive)
@@ -16,7 +15,6 @@
              (jcs-current-char-a-wordp))
     (jcs-web-backward-delete-word)))
 
-;;;###autoload
 (defun jcs-web-backward-delete-word-capital ()
   "Web backward delete word capital, fit PHP variable naming."
   (interactive)
@@ -34,7 +32,6 @@
 ;; (@* "Indentation" )
 ;;
 
-;;;###autoload
 (defun jcs-web-vs-opening-curly-bracket-key ()
   "Web mode front curly bracket key."
   (interactive)
@@ -67,14 +64,12 @@
          (impatient-showdown-mode args))
         (t (jcs-impatient-mode args))))
 
-;;;###autoload
 (defun jcs-impatient-start ()
   "Start real time editing with default port."
   (interactive)
   (jcs-impatient-by-mode 1)
   (message "[INFO] Start real time editing with port: %d" httpd-port httpd-port))
 
-;;;###autoload
 (defun jcs-impatient-stop ()
   "Shutdown real time editing with default port."
   (interactive)
@@ -85,7 +80,6 @@
 ;; (@* "Other" )
 ;;
 
-;;;###autoload
 (defun jcs-toggle-web-mode-offsetless-elements ()
   "Toggle between indent with html tag or not to."
   (interactive)
@@ -98,7 +92,6 @@
       (setq web-mode-offsetless-elements (remove tmp-element web-mode-offsetless-elements)))
     (put 'jcs-toggle-web-mode-offsetless-elements 'state t)))
 
-;;;###autoload
 (defun jcs-emmet-expand-line ()
   "Wrapper of `emmet-expand-line' function."
   (interactive)

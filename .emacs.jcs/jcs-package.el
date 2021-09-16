@@ -346,7 +346,6 @@
     (dolist (pkg-desc package--builtins) (push (nth 0 pkg-desc) builtins))
     (cl-delete-duplicates (append builtins package-activated-list))))
 
-;;;###autoload
 (defun jcs-package-rebuild-dependency-list ()
   "Rebuild dependency graph and save to list."
   (interactive)
@@ -527,7 +526,6 @@ Argument WHERE is the alist of package information."
           (message "[QUELPA] Done upgrading all packages"))
       (message "[QUELPA] All packages are up to date"))))
 
-;;;###autoload
 (defun jcs-package-install-all ()
   "Install all needed packages from this configuration."
   (interactive)
@@ -538,7 +536,6 @@ Argument WHERE is the alist of package information."
       (setq jcs-package-rebuild-dependency-p t)
       (jcs-package-rebuild-dependency-list))))
 
-;;;###autoload
 (defun jcs-package-upgrade-all ()
   "Upgrade all packages automatically without showing *Packages* buffer."
   (interactive)
@@ -551,7 +548,6 @@ Argument WHERE is the alist of package information."
       (setq jcs-package-rebuild-dependency-p t)
       (jcs-package-rebuild-dependency-list))))
 
-;;;###autoload
 (defun jcs-package-autoremove ()
   "Remove packages that are no longer needed."
   (interactive)
@@ -567,7 +563,6 @@ Argument WHERE is the alist of package information."
           (jcs-package-rebuild-dependency-list))
       (message "Nothing to autoremove"))))
 
-;;;###autoload
 (defun jcs-package-menu-filter-by-status (status)
   "Filter the *Packages* buffer by STATUS."
   (interactive

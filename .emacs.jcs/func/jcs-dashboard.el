@@ -39,7 +39,6 @@
 ;; (@* "Navigation" )
 ;;
 
-;;;###autoload
 (defun jcs-dashboard-previous-blank-line ()
   "Dashboard previous blank line key."
   (interactive)
@@ -52,7 +51,6 @@
           (beginning-of-line))
       (goto-char blank-pt))))
 
-;;;###autoload
 (defun jcs-dashboard-next-blank-line ()
   "Dashboard next blank line key."
   (interactive)
@@ -96,7 +94,6 @@
 ;; (@* "Remove Items" )
 ;;
 
-;;;###autoload
 (defun jcs-dashboard-remove-current-item ()
   "Remove a item from the current item section."
   (interactive)
@@ -108,7 +105,6 @@
       (agenda (jcs-dashboard-remove-agenda-item))
       (registers (jcs-dashboard-remove-registers-item)))))
 
-;;;###autoload
 (defun jcs-dashboard-remove-recent-files-item ()
   "Remove a file from `recentf-list'."
   (interactive)
@@ -117,7 +113,6 @@
       (setq recentf-list (delete path recentf-list)))
     (jcs-dashboard-refresh-buffer)))
 
-;;;###autoload
 (defun jcs-dashboard-remove-projects-item ()
   "Remove a path from `project--list'."
   (interactive)
@@ -126,21 +121,18 @@
       (jcs-project-remove path))
     (jcs-dashboard-refresh-buffer)))
 
-;;;###autoload
 (defun jcs-dashboard-remove-bookmarks-item ()
   "Remove a bookmarks from `bookmark-alist'."
   (interactive)
   ;; TODO: implements this..
   )
 
-;;;###autoload
 (defun jcs-dashboard-remove-agenda-item ()
   "Remove an agenda from `org-agenda-files'."
   (interactive)
   ;; TODO: implements this..
   )
 
-;;;###autoload
 (defun jcs-dashboard-remove-registers-item ()
   "Remove a registers from `register-alist'."
   (interactive)
@@ -151,7 +143,6 @@
 ;; (@* "Functions" )
 ;;
 
-;;;###autoload
 (defun jcs-dashboard-goto-item-section (id)
   "Navigate to item section by ID."
   (interactive)
@@ -162,55 +153,46 @@
     (when (and items-pg (< items-id items-len))
       (jcs-goto-line items-pg))))
 
-;;;###autoload
 (defun jcs-dashboard-item-section-1 ()
   "Navigate to item 1."
   (interactive)
   (jcs-dashboard-goto-item-section 1))
 
-;;;###autoload
 (defun jcs-dashboard-item-section-2 ()
   "Navigate to item 2."
   (interactive)
   (jcs-dashboard-goto-item-section 2))
 
-;;;###autoload
 (defun jcs-dashboard-item-section-3 ()
   "Navigate to item 3."
   (interactive)
   (jcs-dashboard-goto-item-section 3))
 
-;;;###autoload
 (defun jcs-dashboard-item-section-4 ()
   "Navigate to item 4."
   (interactive)
   (jcs-dashboard-goto-item-section 4))
 
-;;;###autoload
 (defun jcs-dashboard-item-section-5 ()
   "Navigate to item 5."
   (interactive)
   (jcs-dashboard-goto-item-section 5))
 
-;;;###autoload
 (defun jcs-dashboard-item-section-6 ()
   "Navigate to item 6."
   (interactive)
   (jcs-dashboard-goto-item-section 6))
 
-;;;###autoload
 (defun jcs-dashboard-item-section-7 ()
   "Navigate to item 7."
   (interactive)
   (jcs-dashboard-goto-item-section 7))
 
-;;;###autoload
 (defun jcs-dashboard-item-section-8 ()
   "Navigate to item 8."
   (interactive)
   (jcs-dashboard-goto-item-section 8))
 
-;;;###autoload
 (defun jcs-dashboard-item-section-9 ()
   "Navigate to item 9."
   (interactive)

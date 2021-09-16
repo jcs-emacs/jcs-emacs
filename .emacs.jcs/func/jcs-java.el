@@ -62,7 +62,6 @@
         (insert tmp-insert-package-path-string)
         (insert "\n")))))
 
-;;;###autoload
 (defun jcs-java-insert-package-src ()
   "Insert the package source declaration."
   (interactive)
@@ -76,7 +75,6 @@
     (jcs-keep-one-line-between)))
 
 
-;;;###autoload
 (defun jcs-java-organize-imports ()
   "Organize all the import package.
 Including adding or removing the package path."
@@ -90,7 +88,6 @@ Including adding or removing the package path."
   (when (jcs-file-directory-exists-p (buffer-file-name))
     (organize-imports-java-reload-local-source-paths)))
 
-;;;###autoload
 (defun jcs-java-untabify-save-buffer ()
   "Java untabify save."
   (interactive)
@@ -101,7 +98,6 @@ Including adding or removing the package path."
     (when first-save
       (organize-imports-java-reload-local-source-paths))))
 
-;;;###autoload
 (defun jcs-java-tabify-save-buffer ()
   "Java tabify save."
   (interactive)

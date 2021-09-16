@@ -21,7 +21,6 @@
 (advice-add 'multi-shell-prev :after #'jcs-shell--multi-shell-new-select--advice-after)
 (advice-add 'multi-shell-next :after #'jcs-shell--multi-shell-new-select--advice-after)
 
-;;;###autoload
 (defun jcs-show-shell-window ()
   "Shell command prompt."
   (interactive)
@@ -44,7 +43,6 @@
       (multi-shell))
     (enlarge-window jcs-windows--enlarge-shrink-times)))
 
-;;;###autoload
 (defun jcs-hide-shell-window ()
   "Kill process prompt."
   (interactive)
@@ -55,7 +53,6 @@
    :error (lambda ()
             (user-error (format "No \"%s\" buffer found" (multi-shell--prefix-name))))))
 
-;;;###autoload
 (defun jcs-maybe-kill-shell ()
   "Maybe kill shell behaviour."
   (interactive)
@@ -81,14 +78,12 @@
 ;; (@* "Shell Commands" )
 ;;
 
-;;;###autoload
 (defun jcs-shell-clear-command ()
   "Clear buffer and make new command prompt."
   (interactive)
   (erase-buffer)
   (comint-send-input))
 
-;;;###autoload
 (defun jcs-shell-return ()
   "Shell mode's return key."
   (interactive)
@@ -137,14 +132,12 @@
          (not (jcs-is-beginning-of-line-p))
          (not is-shell-prompt-char))))
 
-;;;###autoload
 (defun jcs-shell-backspace ()
   "Backspace key in shell mode."
   (interactive)
   ;; Only the last line of buffer can do deletion.
   (when (jcs-shell-is-current-on-command) (backward-delete-char 1)))
 
-;;;###autoload
 (defun jcs-shell-kill-whole-line ()
   "Kill whole line in shell mode."
   (interactive)
@@ -156,14 +149,12 @@
     (backward-delete-char 1)))
 
 
-;;;###autoload
 (defun jcs-shell-backward-delete-word ()
   "Shell mode's version of backward delete word."
   (interactive)
   (when (jcs-shell-is-current-on-command)
     (call-interactively 'jcs-backward-delete-word)))
 
-;;;###autoload
 (defun jcs-shell-forward-delete-word ()
   "Shell mode's version of forward delete word."
   (interactive)
@@ -171,14 +162,12 @@
     (call-interactively 'jcs-forward-delete-word)))
 
 
-;;;###autoload
 (defun jcs-shell-backward-kill-word-capital ()
   "Shell mode's version of forward delete word."
   (interactive)
   (when (jcs-shell-is-current-on-command)
     (call-interactively 'jcs-backward-kill-word-capital)))
 
-;;;###autoload
 (defun jcs-shell-forward-kill-word-capital ()
   "Shell mode's version of forward delete word."
   (interactive)
@@ -189,7 +178,6 @@
 ;; (@* "Navigation" )
 ;;
 
-;;;###autoload
 (defun jcs-shell-up-key ()
   "Shell mode up key."
   (interactive)
@@ -200,7 +188,6 @@
   (when (jcs-last-line-in-buffer-p)
     (goto-char (point-max))))
 
-;;;###autoload
 (defun jcs-shell-down-key ()
   "Shell mode down key."
   (interactive)
@@ -215,7 +202,6 @@
 ;; (@* "Completion" )
 ;;
 
-;;;###autoload
 (defun jcs-company-manual-begin ()
   "Completion for the shell command."
   (interactive)

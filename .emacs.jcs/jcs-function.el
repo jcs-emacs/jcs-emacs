@@ -68,21 +68,18 @@
 (defvar jcs--message-buffer--first-init-p nil
   "Flag to check if message buffer first initialized with hook runs.")
 
-;;;###autoload
 (defun jcs-message-buffer ()
   "Switch to `*Messages*' buffer."
   (interactive)
   (switch-to-buffer jcs-message-buffer-name)
   (jcs--message-buffer--first-load))
 
-;;;###autoload
 (defun jcs-message-buffer-other-window ()
   "Switch to `*Messages*' buffer."
   (interactive)
   (jcs-switch-to-buffer-other-window jcs-message-buffer-name)
   (jcs--message-buffer--first-load))
 
-;;;###autoload
 (defun jcs-message-erase-buffer ()
   "Erase the *Messages* buffer."
   (interactive)
@@ -92,7 +89,6 @@
     ;; buffer to be exists.
     (when is-killed (message "Retrieving %s buffer.." jcs-message-buffer-name))))
 
-;;;###autoload
 (defun jcs-message-erase-buffer-stay ()
   "Reopen *Messages* buffer."
   (interactive)
@@ -115,19 +111,16 @@
 (defvar jcs-scratch--content ""
   "Record down the scratch content string.")
 
-;;;###autoload
 (defun jcs-scratch-buffer ()
   "Start a new scratch buffer."
   (interactive)
   (switch-to-buffer jcs-scratch-buffer-name))
 
-;;;###autoload
 (defun jcs-scratch-buffer-other-window ()
   "Start a new scratch buffer."
   (interactive)
   (jcs-switch-to-buffer-other-window jcs-scratch-buffer-name))
 
-;;;###autoload
 (defun jcs-new-scratch-buffer ()
   "Start a new scratch buffer."
   (interactive)
@@ -137,7 +130,6 @@
   (goto-char (point-min))
   (lisp-interaction-mode))
 
-;;;###autoload
 (defun jcs-scratch-buffer-maybe-kill ()
   "Kill buffer scratch."
   (interactive)
@@ -145,7 +137,6 @@
       (progn (jcs-undo-kill-this-buffer) (jcs-bury-buffer))
     (jcs-maybe-kill-this-buffer)))
 
-;;;###autoload
 (defun jcs-scratch-buffer-refresh ()
   "Refresh scratch buffer."
   (interactive)
@@ -208,7 +199,6 @@
 (defvar jcs-buffer--menu-switch-buffer-refreshing nil
   "Flag to check if current buffer menu refresing.")
 
-;;;###autoload
 (defun jcs-buffer-menu-refresh-buffer ()
   "Update buffer menu buffer."
   (interactive)
@@ -234,7 +224,6 @@
 ;; (@* "Calculator" )
 ;;
 
-;;;###autoload
 (defun jcs-calc-eval-region ()
   "Eval the arithmetic expression in the region and replace it with the result."
   (interactive)
@@ -248,25 +237,21 @@
 ;; (@* "Cheat Sheet" )
 ;;
 
-;;;###autoload
 (defun jcs-alt-codes-table ()
   "Display basic Alt-Codes table."
   (interactive)
   (jcs-display-file "~/.emacs.jcs/data/charset/alt-code.txt" "*Alt Codes*" nil))
 
-;;;###autoload
 (defun jcs-ascii-table ()
   "Display basic ASCII table."
   (interactive)
   (jcs-display-file "~/.emacs.jcs/data/charset/ascii.txt" "*ASCII*" nil))
 
-;;;###autoload
 (defun jcs-algorithm-cheat-sheet ()
   "Display basic Alt-Codes table."
   (interactive)
   (jcs-html-preview "~/.emacs.jcs/data/algorithm/cheat-sheet.html" "*Algorithm Cheat Sheet*" nil))
 
-;;;###autoload
 (defun jcs-data-structure-cheat-sheet ()
   "Display basic Alt-Codes table."
   (interactive)
@@ -278,7 +263,6 @@
 
 (defvar dashboard-buffer-name)
 
-;;;###autoload
 (defun jcs-dashboard (&optional ow)
   "Jump to the dashboard buffer, if doesn't exists create one.
 OW is the other window flag."
@@ -287,7 +271,6 @@ OW is the other window flag."
   (unless (jcs-is-current-major-mode-p "dashboard-mode") (dashboard-mode))
   (jcs-dashboard-refresh-buffer))
 
-;;;###autoload
 (defun jcs-dashboard-other-window ()
   "Just like `jcs-dashboard', but open on the other window."
   (interactive)
@@ -302,7 +285,6 @@ OW is the other window flag."
 (defvar jcs-dashboard--last-ls-path nil
   "Record down the last current path.")
 
-;;;###autoload
 (defun jcs-dashboard-refresh-buffer ()
   "Update dashboard buffer by killing it and start a new one."
   (interactive)
@@ -340,7 +322,6 @@ If optional argument FORCE is non-nil, force refresh it."
            "~/.emacs.jcs/banner/sink_white.png"))
         (t "~/.emacs.jcs/banner/sink.txt")))
 
-;;;###autoload
 (defun jcs-reset-dashboard-banner-by-theme ()
   "Reset dashboard banner."
   (interactive)
@@ -359,7 +340,6 @@ If optional argument FORCE is non-nil, force refresh it."
 ;; (@* "ElDoc" )
 ;;
 
-;;;###autoload
 (defun jcs-eldoc-message-now () "Show eldoc message now." (interactive))
 
 (defun jcs-eldoc--message-command-p (command)
@@ -395,7 +375,6 @@ If optional argument FORCE is non-nil, force refresh it."
 ;; (@* "Expand Region" )
 ;;
 
-;;;###autoload
 (defun jcs-er/contract-region ()
   "Wrapper for function `er/contract-region' from `expand-region'."
   (interactive)
@@ -448,7 +427,6 @@ If optional argument FORCE is non-nil, force refresh it."
 ;; (@* "Iedit" )
 ;;
 
-;;;###autoload
 (defun jcs-iedit-mode ()
   "Enable Iedit mode in the safe way."
   (interactive)
@@ -466,7 +444,6 @@ If optional argument FORCE is non-nil, force refresh it."
 ;; (@* "Line Numbers" )
 ;;
 
-;;;###autoload
 (defun jcs-update-line-number-each-window ()
   "Update each window's line number mode."
   (interactive)
@@ -490,7 +467,6 @@ If optional argument FORCE is non-nil, force refresh it."
   (if (display-graphic-p) (jcs-safe-display-line-numbers act)
     (jcs-safe-display-linum act)))
 
-;;;###autoload
 (defun jcs-active-line-numbers-by-mode ()
   "Active line number by mode."
   (interactive)
@@ -509,7 +485,6 @@ If optional argument FORCE is non-nil, force refresh it."
 ;; (@* "Media" )
 ;;
 
-;;;###autoload
 (defun jcs-media-find-file ()
   "Open the media file."
   (interactive)
@@ -535,7 +510,6 @@ If optional argument FORCE is non-nil, force refresh it."
 ;; (@* "Minimap" )
 ;;
 
-;;;###autoload
 (defun jcs-toggle-minimap ()
   "Toggle minimap."
   (interactive)
@@ -555,7 +529,6 @@ If optional argument FORCE is non-nil, force refresh it."
 ;; (@* "Prettify / Minify" )
 ;;
 
-;;;###autoload
 (defun jcs-prettify-contents ()
   "Prettify contents by file type."
   (interactive)
@@ -570,7 +543,6 @@ If optional argument FORCE is non-nil, force refresh it."
            (sgml-pretty-print start end))
           (t (user-error "[WARNING] No prettify command in this context")))))
 
-;;;###autoload
 (defun jcs-minify-contents ()
   "Minify contents by removing newlines and whitespaces."
   (interactive)
@@ -588,7 +560,6 @@ If optional argument FORCE is non-nil, force refresh it."
 (defconst jcs-re-builder-buffer-name "*RE-Builder*"
   "Name of the re-builder buffer.")
 
-;;;###autoload
 (defun jcs-reb-maybe-kill-this-buffer ()
   "Kill this buffer in `re-builder' mode."
   (interactive)
@@ -596,7 +567,6 @@ If optional argument FORCE is non-nil, force refresh it."
     (setq is-killed (jcs-maybe-kill-this-buffer))
     (when is-killed (delete-window))))
 
-;;;###autoload
 (defun jcs-re-builder (type)
   "Rewrap `re-builder' function to ask search case TYPE."
   (interactive
@@ -610,7 +580,6 @@ If optional argument FORCE is non-nil, force refresh it."
 ;; (@* "Shift Select" )
 ;;
 
-;;;###autoload
 (defun jcs-toggle-shift-select-mode ()
   "Toggle `shift-select-mode'."
   (interactive)
@@ -618,13 +587,11 @@ If optional argument FORCE is non-nil, force refresh it."
       (jcs-disable-shift-select-mode)
     (jcs-enable-shift-select-mode)))
 
-;;;###autoload
 (defun jcs-enable-shift-select-mode ()
   "Enable `shift-select-mode'."
   (interactive)
   (setq shift-select-mode t))
 
-;;;###autoload
 (defun jcs-disable-shift-select-mode ()
   "Enable `shift-select-mode'."
   (interactive)
@@ -634,7 +601,6 @@ If optional argument FORCE is non-nil, force refresh it."
 ;; (@* "Sort" )
 ;;
 
-;;;###autoload
 (defun jcs-sort-symbols (reverse beg end)
   "Sort symbols in region alphabetically, in REVERSE if negative.
 See `sort-words'."
@@ -645,7 +611,6 @@ See `sort-words'."
 ;; (@* "Syntax Check" )
 ;;
 
-;;;###autoload
 (defun jcs-flycheck-mode ()
   "Flycheck mode toggle."
   (interactive)
@@ -669,7 +634,6 @@ See `sort-words'."
 ;; (@* "Tab Bar" )
 ;;
 
-;;;###autoload
 (defun jcs-toggle-tabbar-mode ()
   "Toggle tab bar."
   (interactive)
@@ -708,7 +672,6 @@ See `sort-words'."
 ;; (@* "Terminal / Shell" )
 ;;
 
-;;;###autoload
 (defun jcs-toggle-shell-window ()
   "Toggle Shell Command prompt."
   (interactive)
@@ -717,7 +680,6 @@ See `sort-words'."
       (jcs-hide-shell-window)
     (jcs-show-shell-window)))
 
-;;;###autoload
 (defun jcs-shell-new-shell ()
   "Create a new shell window."
   (interactive)
@@ -730,7 +692,6 @@ See `sort-words'."
 ;; (@* "Zoom" )
 ;;
 
-;;;###autoload
 (defun jcs-reset-zoom ()
   "Reset zoom level."
   (interactive)
@@ -751,13 +712,11 @@ VEC : Either position or negative number."
     ;; Renable line number mode.
     (when was-dln (display-line-numbers-mode 1))))
 
-;;;###autoload
 (defun jcs-text-scale-increase ()
   "Scale the text up."
   (interactive)
   (jcs-text-scale-delta 1))
 
-;;;###autoload
 (defun jcs-text-scale-decrease ()
   "Scale the text down."
   (interactive)
@@ -798,7 +757,6 @@ delay. HEIGHT of the tooltip that will display."
         (error "[ERROR] No description at point")
       (jcs-pop-tooltip desc :point (point) :timeout timeout))))
 
-;;;###autoload
 (defun jcs-describe-thing-in-popup ()
   "Show current symbol info."
   (interactive)
@@ -822,7 +780,6 @@ delay. HEIGHT of the tooltip that will display."
 (defvar jcs-hl-todo-not-found-next nil
   "See if found the next `hl-todo' matches.")
 
-;;;###autoload
 (defun jcs-hl-todo-previous (&optional no-prompt)
   "Around `hl-todo-previous' command.
 NO-PROMPT : Don't prompt the overwrap message."
@@ -844,7 +801,6 @@ NO-PROMPT : Don't prompt the overwrap message."
           (message "%s" (propertize "user-error: No more matches :: overwrap"
                                     'face '(:foreground "cyan"))))))))
 
-;;;###autoload
 (defun jcs-hl-todo-next (&optional no-prompt)
   "Around `hl-todo-next' command.
 NO-PROMPT : Don't prompt the overwrap message."
@@ -870,7 +826,6 @@ NO-PROMPT : Don't prompt the overwrap message."
 ;; (@* "Truncate Lines" )
 ;;
 
-;;;###autoload
 (defun jcs-enable-truncate-lines ()
   "Enable truncate lines."
   (interactive)
@@ -878,7 +833,6 @@ NO-PROMPT : Don't prompt the overwrap message."
   (when (eq this-command 'jcs-enable-truncate-lines)
     (message "Truncate long lines enabled")))
 
-;;;###autoload
 (defun jcs-disable-truncate-lines ()
   "Disable truncate lines."
   (interactive)
@@ -890,7 +844,6 @@ NO-PROMPT : Don't prompt the overwrap message."
 ;; (@* "Yascroll" )
 ;;
 
-;;;###autoload
 (defun jcs-reset-yascroll-color-by-theme ()
   "Reset yascroll color base on the theme color."
   (interactive)
@@ -905,7 +858,6 @@ NO-PROMPT : Don't prompt the overwrap message."
 ;; (@* "Yasnippet" )
 ;;
 
-;;;###autoload
 (defun jcs-yas-expand ()
   "Yasnippet expand current point."
   (interactive)

@@ -2,7 +2,6 @@
 ;;; Commentary: When editing the TypeScript related file.
 ;;; Code:
 
-;;;###autoload
 (defun jcs-typescript-ask-source (sc)
   "Ask the source SC for editing TypeScript file."
   (interactive

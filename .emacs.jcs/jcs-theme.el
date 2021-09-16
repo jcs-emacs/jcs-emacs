@@ -72,7 +72,6 @@ POWER-AC-LST : powerline active list.  POWER-INAC-LST : powerline inactive list.
   (jcs--set-border-color bc)
   (jcs-powerline-set-theme-faces power-ac-lst power-inac-lst))
 
-;;;###autoload
 (defun jcs-gray-mode-line ()
   "Gray mode line."
   (interactive)
@@ -86,7 +85,6 @@ POWER-AC-LST : powerline active list.  POWER-INAC-LST : powerline inactive list.
      '("#1C1C1C" "#CCCCCC" "#CCCCCC" "#1C1C1C" "#CCCCCC" "#333333")
      '("#CCCCCC" "#4D4D4D" "#CCCCCC" "#1C1C1C" "#CCCCCC" "#333333"))))
 
-;;;###autoload
 (defun jcs-dark-green-mode-line ()
   "Dark green mode line."
   (interactive)
@@ -100,7 +98,6 @@ POWER-AC-LST : powerline active list.  POWER-INAC-LST : powerline inactive list.
      '("#1C1C1C" "#529191" "#CCCCCC" "#1C2E2D" "#CCCCCC" "#294645")
      '("#CCCCCC" "#2B4D4D" "#CCCCCC" "#1C2E2D" "#CCCCCC" "#294645"))))
 
-;;;###autoload
 (defun jcs-dark-blue-mode-line ()
   "Dark blue mode line."
   (interactive)
@@ -114,7 +111,6 @@ POWER-AC-LST : powerline active list.  POWER-INAC-LST : powerline inactive list.
      '("#1C1C1C" "#246AAF" "#CCCCCC" "#091A2B" "#CCCCCC" "#0E2944")
      '("#CCCCCC" "#14375B" "#CCCCCC" "#091A2B" "#CCCCCC" "#0E2944"))))
 
-;;;###autoload
 (defun jcs-dark-orange-mode-line ()
   "Dark orange mode line."
   (interactive)
@@ -128,7 +124,6 @@ POWER-AC-LST : powerline active list.  POWER-INAC-LST : powerline inactive list.
      '("#1C1C1C" "#FF6C32" "#CCCCCC" "#682B12" "#CCCCCC" "#9A431F")
      '("#CCCCCC" "#9A431F" "#CCCCCC" "#682B12" "#CCCCCC" "#883919"))))
 
-;;;###autoload
 (defun jcs-red-mode-line ()
   "Red mode line."
   (interactive)
@@ -142,7 +137,6 @@ POWER-AC-LST : powerline active list.  POWER-INAC-LST : powerline inactive list.
      '("#1C1C1C" "#FF0000" "#CCCCCC" "#6A0101" "#CCCCCC" "#920101")
      '("#CCCCCC" "#920101" "#CCCCCC" "#6A0101" "#CCCCCC" "#970000"))))
 
-;;;###autoload
 (defun jcs-purple-mode-line ()
   "Purple mode line."
   (interactive)
@@ -185,14 +179,12 @@ Arguments stand for these explanation,
      (set-face-background 'fringe frc)
      (jcs-reset-plugins-base-on-theme))))
 
-;;;###autoload
 (defun jcs-vs-light-theme ()
   "Visual Studio IDE light theme."
   (interactive)
   (load-theme 'vs-light t)
   (jcs-set-theme "#909090" "#E6E6E6" "#99C9EF" "#E6E7E8"))
 
-;;;###autoload
 (defun jcs-vs-dark-theme ()
   "Visual Studio IDE dark theme."
   (interactive)
@@ -209,13 +201,11 @@ Return nil if current theme dark theme."
 Return nil if current theme light theme."
   (not (jcs-is-light-theme-p)))
 
-;;;###autoload
 (defun jcs-refresh-theme ()
   "Refresh theme."
   (interactive)
   (if (jcs-is-light-theme-p) (jcs-vs-light-theme) (jcs-vs-dark-theme)))
 
-;;;###autoload
 (defun jcs-setup-default-theme ()
   "Set default theme color."
   (interactive)

@@ -5,7 +5,6 @@
 (defvar-local jcs-sh-buffer-eol nil
   "Record of buffer's line endings type.")
 
-;;;###autoload
 (defun jcs-ask-line-endings-for-this-sh-script (type)
   "Ask the saved line endings TYPE for this shell script."
   (interactive
@@ -33,14 +32,12 @@
   (if jcs-sh-buffer-eol (set-buffer-file-coding-system jcs-sh-buffer-eol)
     (call-interactively #'jcs-ask-line-endings-for-this-sh-script)))
 
-;;;###autoload
 (defun jcs-sh-untabify-save-buffer ()
   "ShellScript save buffer function."
   (interactive)
   (jcs-sh-before-save)
   (jcs-untabify-save-buffer))
 
-;;;###autoload
 (defun jcs-sh-tabify-save-buffer ()
   "ShellScript save buffer function."
   (interactive)

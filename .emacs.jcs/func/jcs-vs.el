@@ -4,7 +4,6 @@
 
 ;; DESCRIPTION: For function that simulate the Visual Studio IDE's action.
 
-;;;###autoload
 (defun jcs-vs-opening-curly-bracket-key ()
   "For programming langauge that need `{`."
   (interactive)
@@ -33,7 +32,6 @@
             (backward-char 1)
             (insert " ")))))))
 
-;;;###autoload
 (defun jcs-vs-semicolon-key ()
   "For programming language that use semicolon as the end operator sign."
   (interactive)
@@ -46,7 +44,6 @@
       (backward-char 1)
       (insert " "))))
 
-;;;###autoload
 (defun jcs-vs-sharp-key ()
   "For programming language that use # as the preprocessor."
   (interactive)
@@ -57,7 +54,6 @@
     (kill-region (line-beginning-position) (point)))
   (forward-char 1))
 
-;;;###autoload
 (defun jcs-own-delete-backward-char ()
   "This isn't the VS like key action, is more likely to be user's own preferences."
   (interactive)
@@ -82,7 +78,6 @@
           (backward-char 1)
           (backward-delete-char 1))))))
 
-;;;###autoload
 (defun jcs-vs-cut-key ()
   "VS like cut key action.
 If nothing is selected, we cut the current line, else we just delete the region."

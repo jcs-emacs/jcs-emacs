@@ -9,7 +9,6 @@
 (defvar jcs-asm--asking-mode nil
   "Flag for asking the Assembly Language mode.")
 
-;;;###autoload
 (defun jcs-asm-ask-mode (mode)
   "Ask the MODE to run."
   (interactive
@@ -20,7 +19,6 @@
     ("masm" (masm-mode))
     ("nasm" (nasm-mode))))
 
-;;;###autoload
 (defun jcs-asm-ask-source (sc)
   "Ask the source SC for editing Assembly Language file."
   (interactive
@@ -33,7 +31,6 @@
       ("nasm" (nasm-mode) (jcs-insert-nasm-template)))))
 
 
-;;;###autoload
 (defun nasm-indent-line ()
   "Indent current line as NASM assembly code."
   (interactive)
@@ -69,7 +66,6 @@
         (setq do-indent t)))
     do-indent))
 
-;;;###autoload
 (defun jcs-asm-return ()
   "Return key for `nasm-mode'."
   (interactive)
@@ -90,7 +86,6 @@
       (insert ";; ")
       (save-excursion (indent-line-to 0)))))
 
-;;;###autoload
 (defun jcs-asm-comment ()
   "Comment key for `nasm-mode'."
   (interactive)

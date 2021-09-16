@@ -40,7 +40,6 @@ Return nil, to NOT to skip the input selection."
     (ivy--cd cur-dir))
   (counsel-up-directory))
 
-;;;###autoload
 (defun jcs-counsel-find-files--slash ()
   "Find files slash key."
   (interactive)
@@ -59,7 +58,6 @@ Return nil, to NOT to skip the input selection."
          (backward-delete-char 3)
          (jcs--counsel-up-directory))))
 
-;;;###autoload
 (defun jcs-counsel-find-files-backspace ()
   "Find files backspace key."
   (interactive)
@@ -68,7 +66,6 @@ Return nil, to NOT to skip the input selection."
       (counsel-up-directory)
     (backward-delete-char 1)))
 
-;;;###autoload
 (defun jcs-counsel-find-files-enter ()
   "Find files enter key."
   (interactive)

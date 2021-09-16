@@ -77,7 +77,6 @@ FAILED is callback if does NOT successfully inserted header content."
   (require 'f)
   (jcs-get-string-from-file (f-join jcs-template-dir path)))
 
-;;;###autoload
 (defun jcs-reload-file-info ()
   "Reload the template once.
 If the template configuration file has change, this must be call

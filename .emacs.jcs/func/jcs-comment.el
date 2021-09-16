@@ -31,13 +31,11 @@ For instance, `///', `---', etc."
       is-comment-prefix-at-point)))
 
 
-;;;###autoload
 (defun jcs-toggle-comment-on-line ()
   "Comment or uncomment current line."
   (interactive)
   (comment-or-uncomment-region (line-beginning-position) (line-end-position)))
 
-;;;###autoload
 (defun jcs-comment-uncomment-region-or-line ()
   "Comment line or region, if there are region select then just comment region.
 Otherwise comment line."
@@ -48,19 +46,16 @@ Otherwise comment line."
     ;; else we just comment one single line.
     (jcs-toggle-comment-on-line)))
 
-;;;###autoload
 (defun jcs-comment-line ()
   "Comment the current line."
   (interactive)
   (comment-region (line-beginning-position) (line-end-position)))
 
-;;;###autoload
 (defun jcs-uncomment-line ()
   "Uncomment the current line."
   (interactive)
   (uncomment-region (line-beginning-position) (line-end-position)))
 
-;;;###autoload
 (defun jcs-comment-region-or-line ()
   "If no region selected then just comment the line."
   (interactive)
@@ -71,7 +66,6 @@ Otherwise comment line."
     ;; else we just comment one single line.
     (jcs-comment-line)))
 
-;;;###autoload
 (defun jcs-uncomment-region-or-line ()
   "If no region selected then just comment the line."
   (interactive)

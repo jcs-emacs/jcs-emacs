@@ -18,7 +18,6 @@ For argument TYPE; see function `jcs-string-compare-p' for description."
           (funcall success)))
     (when error (funcall error))))
 
-;;;###autoload
 (defun jcs-jump-shown-to-buffer (in-buffer-name &optional no-error type)
   "Jump to the IN-BUFFER-NAME if the buffer current shown in the window.
 
@@ -51,7 +50,6 @@ BUFFER-OR-NAME and NORECORD."
   (jcs-switch-to-next-window-larger-in-height)
   (pop-to-buffer-same-window buffer-or-name norecord))
 
-;;;###autoload
 (defun jcs-switch-to-previous-buffer (&optional cnt)
   "Switch to previously open buffer with CNT."
   (interactive)
@@ -59,7 +57,6 @@ BUFFER-OR-NAME and NORECORD."
     (when cnt (setq target-cnt cnt))
     (switch-to-buffer (other-buffer (current-buffer) target-cnt))))
 
-;;;###autoload
 (defun jcs-switch-to-next-valid-buffer ()
   "Switch to the previous buffer that are not nil."
   (interactive)
@@ -70,7 +67,6 @@ BUFFER-OR-NAME and NORECORD."
       (unless target-buffer (setq target-buffer (nth 0 lst)))
       (switch-to-buffer target-buffer))))
 
-;;;###autoload
 (defun jcs-switch-to-prev-valid-buffer ()
   "Switch to the previous buffer that are not nil."
   (interactive)
@@ -132,7 +128,6 @@ For argument TYPE; see function `jcs-string-compare-p' for description."
 (defvar jcs-walking-through-windows-p nil
   "Flag to see if currently walking through windows.")
 
-;;;###autoload
 (defun jcs-walk-through-all-windows-once (&optional fnc minibuf util)
   "Walk through all windows once and execute callback FNC for each moves.
 
@@ -167,28 +162,17 @@ of utility frame."
       (select-window wnd)
       (select-frame-set-input-focus (selected-frame)))))
 
-;;;###autoload
 (defun jcs-ace-window-min () "Select window min." (interactive) (jcs-ace-select-window 0))
-;;;###autoload
 (defun jcs-ace-window-max () "Select window max." (interactive) (jcs-ace-select-window (1- (length (aw-window-list)))))
 
-;;;###autoload
 (defun jcs-ace-window-1 () "Select window 1." (interactive) (jcs-ace-window-min))
-;;;###autoload
 (defun jcs-ace-window-2 () "Select window 2." (interactive) (jcs-ace-select-window 1))
-;;;###autoload
 (defun jcs-ace-window-3 () "Select window 3." (interactive) (jcs-ace-select-window 2))
-;;;###autoload
 (defun jcs-ace-window-4 () "Select window 4." (interactive) (jcs-ace-select-window 3))
-;;;###autoload
 (defun jcs-ace-window-5 () "Select window 5." (interactive) (jcs-ace-select-window 4))
-;;;###autoload
 (defun jcs-ace-window-6 () "Select window 6." (interactive) (jcs-ace-select-window 5))
-;;;###autoload
 (defun jcs-ace-window-7 () "Select window 7." (interactive) (jcs-ace-select-window 6))
-;;;###autoload
 (defun jcs-ace-window-8 () "Select window 8." (interactive) (jcs-ace-select-window 7))
-;;;###autoload
 (defun jcs-ace-window-9 () "Select window 9." (interactive) (jcs-ace-select-window 8))
 
 ;;
@@ -227,14 +211,12 @@ TYPE can be 'buffer or 'window."
 ;; (@* "Deleting" )
 ;;
 
-;;;###autoload
 (defun jcs-balance-delete-window ()
   "Balance windows after deleting a window."
   (interactive)
   (delete-window)
   (balance-windows))
 
-;;;###autoload
 (defun jcs-delete-window-downwind ()
   "Delete window in downwind order."
   (interactive)
@@ -245,7 +227,6 @@ TYPE can be 'buffer or 'window."
 ;; (@* "Splitting" )
 ;;
 
-;;;###autoload
 (defun jcs-balance-split-window-horizontally ()
   "Balance windows after split window horizontally."
   (interactive)
@@ -255,7 +236,6 @@ TYPE can be 'buffer or 'window."
     (other-window 1)
     (jcs-bury-buffer)))
 
-;;;###autoload
 (defun jcs-balance-split-window-vertically ()
   "Balance windows after split window vertically."
   (interactive)
@@ -272,7 +252,6 @@ TYPE can be 'buffer or 'window."
 (defvar-local jcs-is-enlarge-current-buffer nil
   "Is the current buffer enlarge already?")
 
-;;;###autoload
 (defun jcs-toggle-enlarge-window-selected ()
   "Toggle between show the whole buffer and current window state."
   (interactive)
@@ -290,7 +269,6 @@ TYPE can be 'buffer or 'window."
     (setq jcs-is-enlarge-buffer t)))
 
 
-;;;###autoload
 (defun jcs-toggle-window-split-hv ()
   "Switch window split from horizontally to vertically, or vice versa.
 i.e. change right window to bottom, or change bottom window to right."
@@ -349,7 +327,6 @@ i.e. change right window to bottom, or change bottom window to right."
           (setq is-larger nil)))
       is-larger)))
 
-;;;###autoload
 (defun jcs-move-to-upmost-window (&optional not-all-frame)
   "Move to the upmost window by flag NOT-ALL-FRAME."
   (interactive)
@@ -357,7 +334,6 @@ i.e. change right window to bottom, or change bottom window to right."
       (let (windmove-wrap-around) (while (ignore-errors (windmove-up))))
     (jcs-ace-window-min)))
 
-;;;###autoload
 (defun jcs-move-to-downmost-window (&optional not-all-frame)
   "Move to the downmost window by flag NOT-ALL-FRAME."
   (interactive)
@@ -365,7 +341,6 @@ i.e. change right window to bottom, or change bottom window to right."
       (let (windmove-wrap-around) (while (ignore-errors (windmove-down))))
     (jcs-ace-window-max)))
 
-;;;###autoload
 (defun jcs-move-to-leftmost-window (&optional not-all-frame)
   "Move to the leftmost window by flag NOT-ALL-FRAME."
   (interactive)
@@ -373,7 +348,6 @@ i.e. change right window to bottom, or change bottom window to right."
       (let (windmove-wrap-around) (while (ignore-errors (windmove-left))))
     (jcs-ace-window-min)))
 
-;;;###autoload
 (defun jcs-move-to-rightmost-window (&optional not-all-frame)
   "Move to the rightmost window by flag NOT-ALL-FRAME."
   (interactive)
@@ -414,7 +388,6 @@ i.e. change right window to bottom, or change bottom window to right."
 ;; (@* "Center" )
 ;;
 
-;;;###autoload
 (defun jcs-horizontal-recenter ()
   "Make the point horizontally centered in the window."
   (interactive)

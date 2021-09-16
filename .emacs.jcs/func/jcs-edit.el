@@ -22,7 +22,6 @@ This variable must be use with `jcs-undo' and `jcs-redo' functions.")
 (defvar jcs--undo-splits-windows nil
   "Flag to check if the window splits.")
 
-;;;###autoload
 (defun jcs-toggle-undo-tree-auto-show-diff ()
   "Toggle auto show diff functionality."
   (interactive)
@@ -30,14 +29,12 @@ This variable must be use with `jcs-undo' and `jcs-redo' functions.")
       (jcs-disable-undo-tree-auto-show-diff)
     (jcs-enable-undo-tree-auto-show-diff)))
 
-;;;###autoload
 (defun jcs-enable-undo-tree-auto-show-diff ()
   "Enable undo tree auto show diff effect."
   (interactive)
   (setq jcs-undo-tree-auto-show-diff t)
   (message "Enable undo tree auto show diff"))
 
-;;;###autoload
 (defun jcs-disable-undo-tree-auto-show-diff ()
   "Disable undo tree auto show diff effect."
   (interactive)
@@ -45,13 +42,11 @@ This variable must be use with `jcs-undo' and `jcs-redo' functions.")
   (message "Disable undo tree auto show diff"))
 
 
-;;;###autoload
 (defun jcs-toggle-undo-tree-key()
   "Toggle `jcs-use-undo-tree-key' boolean."
   (interactive)
   (if jcs-use-undo-tree-key (jcs-disable-undo-tree-key) (jcs-enable-undo-tree-key)))
 
-;;;###autoload
 (defun jcs-enable-undo-tree-key ()
   "Enable undo tree key.
 This will replace usual Emacs' undo key."
@@ -59,7 +54,6 @@ This will replace usual Emacs' undo key."
   (setq jcs-use-undo-tree-key t)
   (message "Enable undo tree key"))
 
-;;;###autoload
 (defun jcs-disable-undo-tree-key ()
   "Disable undo tree key.
 This will no longer overwrite usual Emacs' undo key."
@@ -142,13 +136,11 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
        (jcs-undo-tree-visualize)
        (jcs--undo-tree-visualizer--do-diff)))))
 
-;;;###autoload
 (defun jcs-undo ()
   "Undo key."
   (interactive)
   (jcs--undo-or-redo t))
 
-;;;###autoload
 (defun jcs-redo ()
   "Redo key."
   (interactive)
@@ -167,13 +159,11 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
 ;; (@* "Backspace" )
 ;;
 
-;;;###autoload
 (defun jcs-real-backspace ()
   "Just backspace a char."
   (interactive)
   (jcs-electric-backspace))
 
-;;;###autoload
 (defun jcs-smart-backspace ()
   "Smart backspace."
   (interactive)
@@ -186,13 +176,11 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
 ;; (@* "Delete" )
 ;;
 
-;;;###autoload
 (defun jcs-real-delete ()
   "Just delete a char."
   (interactive)
   (jcs-electric-delete))
 
-;;;###autoload
 (defun jcs-smart-delete ()
   "Smart backspace."
   (interactive)
@@ -215,7 +203,6 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
       (when (jcs-current-line-totally-empty-p) (insert ln-cur)))))
 (advice-add 'newline :around #'jcs--newline--advice-around)
 
-;;;###autoload
 (defun jcs-ctrl-return-key ()
   "Global Ctrl-Return key."
   (interactive)
@@ -242,13 +229,11 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
 ;; (@* "Space" )
 ;;
 
-;;;###autoload
 (defun jcs-real-space ()
   "Just insert a space."
   (interactive)
   (insert " "))
 
-;;;###autoload
 (defun jcs-smart-space ()
   "Smart way of inserting space."
   (interactive)
@@ -264,7 +249,6 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
 ;; (@* "Yank" )
 ;;
 
-;;;###autoload
 (defun jcs-smart-yank ()
   "Yank and then indent region."
   (interactive)
@@ -278,7 +262,6 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
 ;; (@* "Tab" )
 ;;
 
-;;;###autoload
 (defun jcs-tab-key ()
   "Global TAB key."
   (interactive)
@@ -309,7 +292,6 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
       (setq jcs--marking-whole-buffer--curosr-pos -1)
       (setq jcs--marking-whole-buffer-p nil))))
 
-;;;###autoload
 (defun jcs-mark-whole-buffer ()
   "Mark the whole buffer."
   (interactive)
@@ -336,7 +318,6 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
 ;; (@* "Kill Line" )
 ;;
 
-;;;###autoload
 (defun jcs-kill-whole-line ()
   "Deletes a line, but does not put it in the `kill-ring'."
   (interactive)
@@ -355,21 +336,18 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
         ;; operations above.
         (move-to-column before-column-num)))))
 
-;;;###autoload
 (defun jcs-backward-kill-line (arg)
   "Kill ARG lines backward, but does not put it in the `kill-ring'."
   (interactive "p")
   (kill-line (- 1 arg))
   (setq kill-ring (cdr kill-ring)))
 
-;;;###autoload
 (defun jcs-delete-line-backward ()
   "Delete text between the beginning of the line to the cursor position.
 This command does not push text to `kill-ring'."
   (interactive)
   (delete-region (line-beginning-position) (point)))
 
-;;;###autoload
 (defun jcs-delete-word (arg)
   "Delete characters forward until encountering the end of a word.
 With ARG, do this that many times.
@@ -377,19 +355,16 @@ This command does not push text to `kill-ring'."
   (interactive "p")
   (delete-region (point) (progn (forward-word arg) (point))))
 
-;;;###autoload
 (defun jcs-backward-delete-word (arg)
   "Backward deleteing ARG words."
   (interactive "p")
   (if (use-region-p) (jcs-delete-region) (jcs-delete-word (- arg))))
 
-;;;###autoload
 (defun jcs-forward-delete-word (arg)
   "Forward deleteing ARG words."
   (interactive "p")
   (if (use-region-p) (jcs-delete-region) (jcs-delete-word (+ arg))))
 
-;;;###autoload
 (defun jcs-smart-backward-delete-word ()
   "Backward deleteing ARG words in the smart way."
   (interactive)
@@ -404,7 +379,6 @@ This command does not push text to `kill-ring'."
         (setq start-pt start-ln-end-pt))
       (delete-region start-pt end-pt))))
 
-;;;###autoload
 (defun jcs-smart-forward-delete-word ()
   "Forward deleteing ARG words in the smart way."
   (interactive)
@@ -419,7 +393,6 @@ This command does not push text to `kill-ring'."
         (setq end-pt end-ln-start-pt))
       (delete-region start-pt end-pt))))
 
-;;;###autoload
 (defun jcs-backward-kill-word-capital ()
   "Backward delete the word unitl the word is capital."
   (interactive)
@@ -434,7 +407,6 @@ This command does not push text to `kill-ring'."
         (setq start-pt start-ln-end-pt))
       (delete-region start-pt end-pt))))
 
-;;;###autoload
 (defun jcs-forward-kill-word-capital ()
   "Forward delete the word unitl the word is capital."
   (interactive)
@@ -456,7 +428,6 @@ This command does not push text to `kill-ring'."
         (kill-region (car bounds) (cdr bounds))
       (error "No %s at point" thing))))
 
-;;;###autoload
 (defun jcs-duplicate-line ()
   "Duplicate the line."
   (interactive)
@@ -479,28 +450,24 @@ This command does not push text to `kill-ring'."
        (jcs-buffer-name-or-buffer-file-name)
        (not buffer-read-only)))
 
-;;;###autoload
 (defun jcs-smart-indent-up ()
   "Indent line after move up one line."
   (interactive)
   (jcs-previous-line)
   (when (jcs-can-do-smart-indent-p) (indent-for-tab-command)))
 
-;;;###autoload
 (defun jcs-smart-indent-up-by-mode ()
   "Like `jcs-smart-indent-up' but indent by mode."
   (interactive)
   (jcs-previous-line)
   (when (jcs-can-do-smart-indent-p) (indent-according-to-mode)))
 
-;;;###autoload
 (defun jcs-smart-indent-down ()
   "Indent line after move down one line."
   (interactive)
   (jcs-next-line)
   (when (jcs-can-do-smart-indent-p) (indent-for-tab-command)))
 
-;;;###autoload
 (defun jcs-smart-indent-down-by-mode ()
   "Like `jcs-smart-indent-down' but indent by mode."
   (interactive)
@@ -511,13 +478,11 @@ This command does not push text to `kill-ring'."
 ;; (@* "Format File" )
 ;;
 
-;;;###autoload
 (defun jcs-format-document ()
   "Format current document."
   (interactive)
   (indent-region (point-min) (point-max)))
 
-;;;###autoload
 (defun jcs-format-region-or-document ()
   "Format the document if there are no region apply."
   (interactive)
@@ -525,14 +490,12 @@ This command does not push text to `kill-ring'."
       (indent-region (region-beginning) (region-end))
     (jcs-format-document)))
 
-;;;###autoload
 (defun jcs-align-region-by-points (regexp pnt-min pnt-max)
   "Align current selected region with REGEXP, PNT-MIN and PNT-MAX."
   (interactive)
   (align pnt-min pnt-max)
   (align-regexp pnt-min pnt-max regexp 1 1 t))
 
-;;;###autoload
 (defun jcs-align-region (regexp)
   "Align current selected region REGEXP."
   (interactive)
@@ -540,7 +503,6 @@ This command does not push text to `kill-ring'."
   ;; Deactive region no matter what.
   (deactivate-mark))
 
-;;;###autoload
 (defun jcs-align-document (regexp)
   "Align current document with REGEXP."
   (interactive)
@@ -548,7 +510,6 @@ This command does not push text to `kill-ring'."
   ;; align the whole doc.
   (jcs-align-region-by-points regexp (point-min) (point-max)))
 
-;;;###autoload
 (defun jcs-align-region-or-document ()
   "Either align the region or document depend on if there is region selected."
   (interactive)
@@ -601,7 +562,6 @@ This command does not push text to `kill-ring'."
       ;; Align comment segment.
       (jcs-align-region-by-points align-regexp-string-comment pnt-min pnt-max))))
 
-;;;###autoload
 (defun jcs-align-repeat (regexp)
   "Repeat alignment with respect to the given regular expression.
 REGEXP : reqular expression use to align."
@@ -621,7 +581,6 @@ REGEXP : reqular expression use to align."
   :type 'list
   :group 'jcs)
 
-;;;###autoload
 (defun jcs-revert-buffer-no-confirm (&optional clean-lr)
   "Revert buffer without confirmation.
 
@@ -704,7 +663,6 @@ Argument CLEAN-LR see function `jcs-revert-buffer-no-confirm' description."
   (save-window-excursion
     (jcs-revert-all-valid-invalid-buffers (jcs-invalid-buffer-list) nil)))
 
-;;;###autoload
 (defun jcs-revert-all-buffers ()
   "Refresh all open file buffers without confirmation."
   (interactive)
@@ -778,33 +736,28 @@ This function is used to check for lose changes from source editor."
 ;; (@* "Windows" )
 ;;
 
-;;;###autoload
 (defun jcs-other-window-next (&optional cnt not-all-frames)
   "Move CNT to the next window with NOT-ALL-FRAME."
   (interactive)
   (unless (numberp cnt) (setq cnt 1))
   (other-window cnt (null not-all-frames)))
 
-;;;###autoload
 (defun jcs-other-window-prev (&optional cnt not-all-frames)
   "Move CNT to the previous window with NOT-ALL-FRAME."
   (interactive)
   (unless (numberp cnt) (setq cnt -1))
   (other-window cnt (null not-all-frames)))
 
-;;;###autoload
 (defun jcs-scroll-up-line (&optional n)
   "Scroll the text up N line."
   (interactive)
   (let ((rel-n (if n n 1))) (ignore-errors (scroll-up rel-n))))
 
-;;;###autoload
 (defun jcs-scroll-down-line (&optional n)
   "Scroll the text down N line."
   (interactive)
   (let ((rel-n (if n n 1))) (ignore-errors (scroll-down rel-n))))
 
-;;;###autoload
 (defun jcs-remove-trailing-lines-end-buffer ()
   "Delete trailing line at the end of the buffer, leave only one line."
   (interactive)
@@ -819,7 +772,6 @@ This function is used to check for lose changes from source editor."
         (jcs-kill-whole-line)
         (forward-line -1)))))
 
-;;;###autoload
 (defun jcs-delete-trailing-whitespace-except-current-line ()
   "Delete the trailing whitespace for whole document execpt the current line."
   (interactive)
@@ -834,7 +786,6 @@ This function is used to check for lose changes from source editor."
 ;; (@* "Move Current Line Up or Down" )
 ;;
 
-;;;###autoload
 (defun jcs-move-line-up ()
   "Move up the current line."
   (interactive)
@@ -842,7 +793,6 @@ This function is used to check for lose changes from source editor."
   (forward-line -2)
   (indent-according-to-mode))
 
-;;;###autoload
 (defun jcs-move-line-down ()
   "Move down the current line."
   (interactive)
@@ -855,7 +805,6 @@ This function is used to check for lose changes from source editor."
 ;; (@* "Word Case" )
 ;;
 
-;;;###autoload
 (defun jcs-upcase-word-or-region ()
   "Uppercase the word or region."
   (interactive)
@@ -863,7 +812,6 @@ This function is used to check for lose changes from source editor."
       (upcase-region (region-beginning) (region-end))
     (call-interactively #'upcase-word)))
 
-;;;###autoload
 (defun jcs-downcase-word-or-region ()
   "Lowercase the word or region."
   (interactive)
@@ -871,7 +819,6 @@ This function is used to check for lose changes from source editor."
       (downcase-region (region-beginning) (region-end))
     (call-interactively #'downcase-word)))
 
-;;;###autoload
 (defun jcs-capitalize-word-or-region ()
   "Capitalize the word or region."
   (interactive)
@@ -883,7 +830,6 @@ This function is used to check for lose changes from source editor."
 ;; (@* "Line Ending" )
 ;;
 
-;;;###autoload
 (defun jcs-remove-control-M ()
   "Remove ^M at end of line in the whole buffer."
   (interactive)
@@ -909,13 +855,11 @@ This function is used to check for lose changes from source editor."
       (ignore-errors
         (if tab-it (tabify start-pt end-pt) (untabify start-pt end-pt))))))
 
-;;;###autoload
 (defun jcs-untabify-buffer (&optional start end)
   "Untabify the current buffer with region START and END."
   (interactive)
   (jcs-tabify-or-untabify-buffer nil start end))
 
-;;;###autoload
 (defun jcs-tabify-buffer (&optional start end)
   "Tabify the current buffer with region START and END."
   (interactive)
@@ -945,7 +889,6 @@ This variable is used to check if file are edited externally.")
   (jcs-update-line-number-each-window))
 (advice-add 'save-buffer :after #'jcs--save-buffer--advice-after)
 
-;;;###autoload
 (defun jcs-reverse-tab-untab-save-buffer ()
   "Reverse tabify/untabify save."
   (interactive)
@@ -980,25 +923,21 @@ This variable is used to check if file are edited externally.")
     (user-error "[WARNING] Can't save read-only file: %s" buffer-read-only))
    (t (jcs--organize-save-buffer))))
 
-;;;###autoload
 (defun jcs-save-buffer-default ()
   "Save buffer with the default configuration's settings."
   (interactive)
   (jcs--organize-save-buffer--do-valid))
 
-;;;###autoload
 (defun jcs-untabify-save-buffer ()
   "Untabify file and save the buffer."
   (interactive)
   (let ((jcs-on-save-tabify-type 'untabify)) (jcs--organize-save-buffer--do-valid)))
 
-;;;###autoload
 (defun jcs-tabify-save-buffer ()
   "Tabify file and save the buffer."
   (interactive)
   (let ((jcs-on-save-tabify-type 'tabify)) (jcs--organize-save-buffer--do-valid)))
 
-;;;###autoload
 (defun jcs-save-buffer ()
   "Save buffer wrapper."
   (interactive)
@@ -1023,7 +962,6 @@ This variable is used to check if file are edited externally.")
         (message "Wrote file %s" (buffer-file-name))
       (message "(No changes need to be saved)"))))
 
-;;;###autoload
 (defun jcs-save-all-buffers ()
   "Save all buffers currently opened."
   (interactive)
@@ -1066,7 +1004,6 @@ This variable is used to check if file are edited externally.")
     #'jcs-css-save-buffer)
    (t #'jcs-save-buffer-default)))
 
-;;;###autoload
 (defun jcs-save-buffer-by-mode ()
   "Save the buffer depends on it's major mode."
   (interactive)
@@ -1090,7 +1027,6 @@ This variable is used to check if file are edited externally.")
   (jcs-scroll-down-line (- cur-ln first-vl))
   (move-to-column col))
 
-;;;###autoload
 (defun jcs-same-file-other-window ()
   "This will allow us open the same file in another window."
   (interactive)
@@ -1136,7 +1072,6 @@ This variable is used to check if file are edited externally.")
   "Check if current minibuffer renaming."
   (jcs-minibuffer-do-stuff (lambda () (string-match-p "New name:" (buffer-string)))))
 
-;;;###autoload
 (defun jcs-rename-current-buffer-file ()
   "Renames current buffer and file it is visiting."
   (interactive)
@@ -1184,7 +1119,6 @@ NO-RECORD and FORCE-SAME-WINDOW are the same as switch to buffer arguments."
               (jcs-buffer-name-or-buffer-file-name)))
     (jcs-bury-buffer)))
 
-;;;###autoload
 (defun jcs-bury-buffer ()
   "Bury this buffer."
   (interactive)
@@ -1220,7 +1154,6 @@ NO-RECORD and FORCE-SAME-WINDOW are the same as switch to buffer arguments."
       (jcs-undo-kill-this-buffer))))
 (advice-add 'kill-this-buffer :around #'jcs--kill-this-buffer--advice-around)
 
-;;;###autoload
 (defun jcs-kill-this-buffer ()
   "Kill this buffer."
   (interactive)
@@ -1239,7 +1172,6 @@ NO-RECORD and FORCE-SAME-WINDOW are the same as switch to buffer arguments."
   ;; If still in the buffer menu, try switch to the previous buffer.
   (when (jcs-buffer-menu-p) (jcs-switch-to-previous-buffer)))
 
-;;;###autoload
 (defun jcs-maybe-kill-this-buffer (&optional ecp-same)
   "Kill buffer if the current buffer is the only shown in one window.
 Otherwise just switch to the previous buffer to keep the buffer.
@@ -1286,7 +1218,6 @@ other window."
     (jcs-bury-diminished-buffer)
     is-killed))
 
-;;;###autoload
 (defun jcs-reopen-this-buffer ()
   "Kill the current buffer and open it again."
   (interactive)
@@ -1299,19 +1230,16 @@ other window."
 ;; (@* "Delete Repeatedly" )
 ;;
 
-;;;###autoload
 (defun jcs-backward-delete-current-char-repeat ()
   "Backward delete current character repeatedly util it meet different character."
   (interactive)
   (jcs-delete-char-repeat (jcs-get-current-char-string) 'backward))
 
-;;;###autoload
 (defun jcs-forward-delete-current-char-repeat ()
   "Forward delete current character repeatedly util it meet different character."
   (interactive)
   (jcs-delete-char-repeat (jcs-get-current-char-string) 'forward))
 
-;;;###autoload
 (defun jcs-delete-char-repeat (char direction)
   "Forward kill CHAR repeatedly base on DIRECTION."
   (require 'cl-lib)
@@ -1472,175 +1400,146 @@ other window."
       (goto-char preserve-point)
       (error "You are not between %s and %s" start-char end-char))))
 
-;;;###autoload
 (defun jcs-delete-inside-paren ()
   "Delete everything inside open parenthesis and close parenthesis."
   (interactive)
   (jcs-delete-between-char "(" ")"))
 
-;;;###autoload
 (defun jcs-delete-inside-sqr-paren ()
   "Delete everything between open square parenthesis and close square parenthesis."
   (interactive)
   (jcs-delete-between-char "[[]" "]"))
 
-;;;###autoload
 (defun jcs-delete-inside-curly-paren ()
   "Delete everything between open curly parenthesis and close curly parenthesis."
   (interactive)
   (jcs-delete-between-char "{" "}"))
 
-;;;###autoload
 (defun jcs-delete-inside-single-quote ()
   "Delete everything between single quotation mark."
   (interactive)
   (jcs-delete-between-char "'" "'"))
 
-;;;###autoload
 (defun jcs-delete-inside-double-quote ()
   "Delete everything between double quotation mark."
   (interactive)
   (jcs-delete-between-char "\"" "\""))
 
-;;;###autoload
 (defun jcs-delete-inside-greater-less-sign ()
   "Delete everything between greater than sign and less than sign."
   (interactive)
   (jcs-delete-between-char "<" ">"))
 
-;;;###autoload
 (defun jcs-delete-inside-less-greater-sign ()
   "Delete everything between less than sign and greater than sign."
   (interactive)
   (jcs-delete-between-char ">" "<"))
 
-;;;###autoload
 (defun jcs-delete-inside-back-quote ()
   "Delete everything between back quote."
   (interactive)
   (jcs-delete-between-char "`" "`"))
 
-;;;###autoload
 (defun jcs-delete-inside-tilde ()
   "Delete everything between back quote."
   (interactive)
   (jcs-delete-between-char "~" "~"))
 
-;;;###autoload
 (defun jcs-delete-inside-exclamation-mark ()
   "Delete everything between exclamation mark."
   (interactive)
   (jcs-delete-between-char "!" "!"))
 
-;;;###autoload
 (defun jcs-delete-inside-at-sign ()
   "Delete everything between at sign."
   (interactive)
   (jcs-delete-between-char "@" "@"))
 
-;;;###autoload
 (defun jcs-delete-inside-sharp-sign ()
   "Delete everything between sharp sign."
   (interactive)
   (jcs-delete-between-char "#" "#"))
 
-;;;###autoload
 (defun jcs-delete-inside-dollar-sign ()
   "Delete everything between dollar sign."
   (interactive)
   (jcs-delete-between-char "[$]" "[$]"))
 
-;;;###autoload
 (defun jcs-delete-inside-percent-sign ()
   "Delete everything between percent sign."
   (interactive)
   (jcs-delete-between-char "%" "%"))
 
-;;;###autoload
 (defun jcs-delete-inside-caret ()
   "Delete everything between caret."
   (interactive)
   (jcs-delete-between-char "[|^]" "[|^]"))
 
-;;;###autoload
 (defun jcs-delete-inside-and ()
   "Delete everything between and."
   (interactive)
   (jcs-delete-between-char "&" "&"))
 
-;;;###autoload
 (defun jcs-delete-inside-asterisk ()
   "Delete everything between asterisk."
   (interactive)
   (jcs-delete-between-char "*" "*"))
 
-;;;###autoload
 (defun jcs-delete-inside-dash ()
   "Delete everything between dash."
   (interactive)
   (jcs-delete-between-char "-" "-"))
 
-;;;###autoload
 (defun jcs-delete-inside-underscore ()
   "Delete everything between underscore."
   (interactive)
   (jcs-delete-between-char "_" "_"))
 
-;;;###autoload
 (defun jcs-delete-inside-equal ()
   "Delete everything between equal."
   (interactive)
   (jcs-delete-between-char "=" "="))
 
-;;;###autoload
 (defun jcs-delete-inside-plus ()
   "Delete everything between plus."
   (interactive)
   (jcs-delete-between-char "+" "+"))
 
-;;;###autoload
 (defun jcs-delete-inside-backslash ()
   "Delete everything between backslash."
   (interactive)
   (jcs-delete-between-char "[\\]" "[\\]"))
 
-;;;###autoload
 (defun jcs-delete-inside-or ()
   "Delete everything between or."
   (interactive)
   (jcs-delete-between-char "|" "|"))
 
-;;;###autoload
 (defun jcs-delete-inside-colon ()
   "Delete everything between colon."
   (interactive)
   (jcs-delete-between-char ":" ":"))
 
-;;;###autoload
 (defun jcs-delete-inside-semicolon ()
   "Delete everything between semicolon."
   (interactive)
   (jcs-delete-between-char ";" ";"))
 
-;;;###autoload
 (defun jcs-delete-inside-comma ()
   "Delete everything between comma."
   (interactive)
   (jcs-delete-between-char "," ","))
 
-;;;###autoload
 (defun jcs-delete-inside-period ()
   "Delete everything between period."
   (interactive)
   (jcs-delete-between-char "[.]" "[.]"))
 
-;;;###autoload
 (defun jcs-delete-inside-slash ()
   "Delete everything between slash."
   (interactive)
   (jcs-delete-between-char "/" "/"))
 
-;;;###autoload
 (defun jcs-delete-inside-question-mark ()
   "Delete everything between question mark."
   (interactive)
@@ -1719,7 +1618,6 @@ CC : Current character at position."
                    ;; Found sequence, delete them!
                    (backward-delete-char 3)))))))))
 
-;;;###autoload
 (defun jcs-electric-delete ()
   "Electric delete key."
   (interactive)
@@ -1737,7 +1635,6 @@ CC : Current character at position."
         (jcs-backward-delete-open-pair-char opc)
         (jcs-backward-delete-open-pair-char-seq cc)))))
 
-;;;###autoload
 (defun jcs-electric-backspace ()
   "Electric backspace key."
   (interactive)
@@ -1768,14 +1665,12 @@ CC : Current character at position."
 ;; (@* "Isearch" )
 ;;
 
-;;;###autoload
 (defun jcs-isearch-backward-symbol-at-point ()
   "Isearch backward symbol at point."
   (interactive)
   (isearch-forward-symbol-at-point)
   (isearch-repeat-backward))
 
-;;;###autoload
 (defun jcs-isearch-project-backward-symbol-at-point ()
   "Isearch project backward symbol at point."
   (interactive)
@@ -1786,7 +1681,6 @@ CC : Current character at position."
 Otherwise return nil."
   (advice-member-p 'isearch-project--advice-isearch-repeat-after 'isearch-repeat))
 
-;;;###autoload
 (defun jcs-isearch-repeat-backward ()
   "Isearch backward repeating."
   (interactive)
@@ -1796,7 +1690,6 @@ Otherwise return nil."
     (jcs-sleep-for)
     (save-mark-and-excursion (isearch-abort))))
 
-;;;###autoload
 (defun jcs-isearch-repeat-forward ()
   "Isearch forward repeating."
   (interactive)
@@ -1806,7 +1699,6 @@ Otherwise return nil."
     (jcs-sleep-for)
     (save-mark-and-excursion (isearch-abort))))
 
-;;;###autoload
 (defun jcs-isearch-project-repeat-backward ()
   "Isearch project backward repeating."
   (interactive)
@@ -1816,7 +1708,6 @@ Otherwise return nil."
     (jcs-sleep-for)
     (save-mark-and-excursion (isearch-abort))))
 
-;;;###autoload
 (defun jcs-isearch-project-repeat-forward ()
   "Isearch project forward repeating."
   (interactive)
@@ -1830,7 +1721,6 @@ Otherwise return nil."
 ;; (@* "Multiple Cursors" )
 ;;
 
-;;;###autoload
 (defun jcs-mc/mark-previous-like-this-line ()
   "Smart marking previous line."
   (interactive)
@@ -1841,7 +1731,6 @@ Otherwise return nil."
       (unless (> before-unmark-cur-cnt (mc/num-cursors))
         (call-interactively #'mc/mark-previous-like-this)))))
 
-;;;###autoload
 (defun jcs-mc/mark-next-like-this-line ()
   "Smart marking next line."
   (interactive)
@@ -1864,7 +1753,6 @@ Otherwise return nil."
   "Goto furthest cursor after point."
   (when (mc/furthest-cursor-after-point) (goto-char (overlay-end (mc/furthest-cursor-after-point)))))
 
-;;;###autoload
 (defun jcs-mc/mark-previous-similar-this-line (&optional sdl)
   "Mark previous line similar to this line depends on string distance level (SDL)."
   (interactive)
@@ -1887,7 +1775,6 @@ Otherwise return nil."
       (unless break (user-error "[INFO] no previous similar match"))))
   (jcs-mc/maybe-multiple-cursors-mode))
 
-;;;###autoload
 (defun jcs-mc/mark-next-similar-this-line (&optional sdl)
   "Mark next line similar to this line depends on string distance level (SDL)."
   (interactive)
@@ -1910,14 +1797,12 @@ Otherwise return nil."
       (unless break (user-error "[INFO] no next similar match"))))
   (jcs-mc/maybe-multiple-cursors-mode))
 
-;;;###autoload
 (defun jcs-mc/inc-string-distance-level ()
   "Increase the string distance level by 1."
   (interactive)
   (setq jcs-mc/string-distance-level (1+ jcs-mc/string-distance-level))
   (message "[INFO] Current string distance: %s" jcs-mc/string-distance-level))
 
-;;;###autoload
 (defun jcs-mc/dec-string-distance-level ()
   "Decrease the string distance level by 1."
   (interactive)
@@ -1928,25 +1813,21 @@ Otherwise return nil."
 ;; (@* "Folding / Unfolding" )
 ;;
 
-;;;###autoload
 (defun jcs-close-all-nodes ()
   "Close all nodes in current file."
   (interactive)
   (call-interactively #'origami-close-all-nodes))
 
-;;;###autoload
 (defun jcs-open-all-nodes ()
   "Open all nodes in current file."
   (interactive)
   (call-interactively #'origami-open-all-nodes))
 
-;;;###autoload
 (defun jcs-close-node ()
   "Close the current scope of the node."
   (interactive)
   (call-interactively #'origami-close-node))
 
-;;;###autoload
 (defun jcs-open-node ()
   "Open the current scope of the node."
   (interactive)

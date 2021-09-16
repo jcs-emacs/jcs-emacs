@@ -216,7 +216,6 @@ See function `jcs-string-compare-p' for argument TYPE."
 ;; (@* "Compile" )
 ;;
 
-;;;###autoload
 (defun jcs-byte-recompile-directory ()
   "Recompile the current directory."
   (interactive)
@@ -444,7 +443,6 @@ See description from function `define-key' for arguments KEY, DEF and KEYMAP."
   "Get time buffer in string type."
   (format-time-string "%H:%M:%S"))
 
-;;;###autoload
 (defun jcs-print-timestamps ()
   "Print out all the timestamps."
   (interactive)
@@ -476,7 +474,6 @@ See description from function `define-key' for arguments KEY, DEF and KEYMAP."
         ;; increament one.
         (setq index (1+ index))))))
 
-;;;###autoload
 (defun jcs-keep-one-line-between ()
   "Keep one line between the two line of code."
   (interactive)
@@ -492,7 +489,6 @@ See description from function `define-key' for arguments KEY, DEF and KEYMAP."
 ;; (@* "Tab / Space" )
 ;;
 
-;;;###autoload
 (defun jcs-delete-trailing-whitspace-current-line ()
   "Delete the trailing whitespace exist in current line."
   (interactive)
@@ -531,13 +527,11 @@ Generally you will have to check it four times."
         (if is-forward (backward-delete-char -4) (backward-delete-char 4))
         (insert "\t")))))
 
-;;;###autoload
 (defun jcs-backward-convert-space-to-tab ()
   "Convert space to tab backward at point."
   (interactive)
   (jcs-convert-space-to-tab nil))
 
-;;;###autoload
 (defun jcs-forward-convert-space-to-tab ()
   "Convert space to tab forward at point."
   (interactive)
@@ -550,19 +544,16 @@ Generally you will have to check it four times."
       (if is-forward (backward-delete-char -1) (backward-delete-char 1))
       (insert "    "))))
 
-;;;###autoload
 (defun jcs-backward-convert-tab-to-space ()
   "Convert tab to space backward at point."
   (interactive)
   (jcs-convert-tab-to-space nil))
 
-;;;###autoload
 (defun jcs-forward-convert-tab-to-space ()
   "Convert tab to space forward at point."
   (interactive)
   (jcs-convert-tab-to-space t))
 
-;;;###autoload
 (defun jcs-delete-space-infront-of-line ()
   "Delete tab/spaces before the first character in line."
   (interactive)
@@ -579,7 +570,6 @@ Generally you will have to check it four times."
 ;; (@* "Indentation" )
 ;;
 
-;;;###autoload
 (defun jcs-insert-spaces-by-indent-level ()
   "Insert spaces depends on indentation level configuration."
   (interactive)
@@ -591,7 +581,6 @@ Generally you will have to check it four times."
       (insert " ")
       (setq tmp-count (1+ tmp-count)))))
 
-;;;###autoload
 (defun jcs-backward-delete-spaces-by-indent-level ()
   "Backward delete spaces using indentation level."
   (interactive)
@@ -608,7 +597,6 @@ Generally you will have to check it four times."
             tmp-count (1+ tmp-count)))
     success))
 
-;;;###autoload
 (defun jcs-forward-delete-spaces-by-indent-level ()
   "Forward delete spaces using indentation level."
   (interactive)
@@ -630,7 +618,6 @@ Generally you will have to check it four times."
 ;; (@* "Point" )
 ;;
 
-;;;###autoload
 (defun jcs-print-current-point ()
   "Print out the current point."
   (interactive)
@@ -646,7 +633,6 @@ Generally you will have to check it four times."
 ;; (@* "Character" )
 ;;
 
-;;;###autoload
 (defun jcs-print-current-char ()
   "Print out the current character."
   (interactive)
@@ -734,7 +720,6 @@ the character the same as C."
   "Get the current character as the 'string'."
   (if (char-before) (string (char-before)) ""))
 
-;;;###autoload
 (defun jcs-goto-next-backward-char (&optional bnd-pt)
   "Goto the next backward character (not include space/tab).
 BND-PT : limit point."
@@ -746,7 +731,6 @@ BND-PT : limit point."
                 (or (jcs-current-whitespace-or-tab-p) (jcs-is-beginning-of-line-p)))
       (forward-char -1))))
 
-;;;###autoload
 (defun jcs-goto-next-forward-char (&optional bnd-pt)
   "Goto the next forward character (not include space/tab).
 BND-PT : boundary point."
@@ -810,7 +794,6 @@ BND-PT : boundary point."
 ;; (@* "Symbol" )
 ;;
 
-;;;###autoload
 (defun jcs-print-current-symbol ()
   "Print out the current symbol."
   (interactive)
@@ -823,8 +806,7 @@ BND-PT : boundary point."
 (defun jcs-kill-thing-at-point (thing)
   "Kill the `thing-at-point' for the specified kind of THING."
   (let ((bounds (bounds-of-thing-at-point thing)))
-    (if bounds
-        (kill-region (car bounds) (cdr bounds))
+    (if bounds (kill-region (car bounds) (cdr bounds))
       (error "No %s at point" thing))))
 
 (defun jcs-form-p-symbol (lst sym val)
@@ -853,7 +835,6 @@ BND-PT : boundary point."
 ;; (@* "Word" )
 ;;
 
-;;;###autoload
 (defun jcs-print-current-word ()
   "Print out the current word."
   (interactive)
@@ -916,7 +897,6 @@ Returns nil, the word isn't the same."
 ;; (@* "Line" )
 ;;
 
-;;;###autoload
 (defun jcs-print-current-line ()
   "Print out the current line."
   (interactive)
@@ -1100,14 +1080,12 @@ If optional argument REL-LINE is nil; we will use first visible line instead."
 ;; (@* "Move between button" )
 ;;
 
-;;;###autoload
 (defun jcs-top-most-line ()
   "Move to top of the buffer."
   (interactive)
   ;; NOTE: 0 : top-most-line, -1 : bottom-most-line
   (move-to-window-line-top-bottom 0))
 
-;;;###autoload
 (defun jcs-bottom-most-line()
   "Move to bottom of the buffer."
   (interactive)
@@ -1144,7 +1122,6 @@ Return nil, there is no region selected and mark is not active."
   (or (jcs-is-region-selected-p)
       (jcs-is-mark-active-p)))
 
-;;;###autoload
 (defun jcs-delete-region ()
   "Delete region by default value."
   (interactive)
@@ -1177,14 +1154,12 @@ Return nil, there is no region selected and mark is not active."
       (nth 8 (syntax-ppss))
       (jcs-is-current-point-face 'font-lock-string-face)))
 
-;;;###autoload
 (defun jcs-goto-start-comment ()
   "Go to the start of the comment."
   (interactive)
   (while (jcs-inside-comment-p)
     (re-search-backward comment-start-skip nil t)))
 
-;;;###autoload
 (defun jcs-goto-end-comment ()
   "Go to the end of the comment."
   (interactive)
@@ -1231,7 +1206,6 @@ Return nil, there is no region selected and mark is not active."
 ;; (@* "Face" )
 ;;
 
-;;;###autoload
 (defun jcs-print-current-face ()
   "Print out all the faces the current cursor on."
   (interactive)
@@ -1287,13 +1261,11 @@ Return nil, there is no region selected and mark is not active."
   (unless new-size (setq new-size jcs-default-font-size))
   (set-face-attribute 'default nil :height new-size))
 
-;;;###autoload
 (defun jcs-list-font-list ()
   "List out all the fonts available."
   (interactive)
   (jcs-log-list (font-family-list)))
 
-;;;###autoload
 (defun jcs-change-font (in-font)
   "Choose a font, IN-FONT and change that to the current font."
   (interactive
@@ -1308,7 +1280,6 @@ Return nil, there is no region selected and mark is not active."
   "Check if FONT exists."
   (not (string-equal (describe-font font) "No matching font being used")))
 
-;;;###autoload
 (defun jcs-font-lock-fontify-buffer ()
   "Refresh the syntax hightlight for whole buffer."
   (interactive)
@@ -1722,7 +1693,6 @@ Optional argument SEPARATOR can be join between the STR."
          (jcs-is-current-point-face '(font-lock-string-face
                                       tree-sitter-hl-face:string)))))
 
-;;;###autoload
 (defun jcs-goto-start-of-the-string ()
   "Go to the start of the string."
   (interactive)
@@ -1730,7 +1700,6 @@ Optional argument SEPARATOR can be join between the STR."
     (backward-char 1)
     (jcs-goto-start-of-the-string)))
 
-;;;###autoload
 (defun jcs-goto-end-of-the-string ()
   "Go to the start of the string."
   (interactive)

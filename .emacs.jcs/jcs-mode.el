@@ -17,20 +17,17 @@
   "Check mode STATE."
   (equal jcs-mode--state state))
 
-;;;###autoload
 (defun jcs-insert-command-mode-toggle ()
   "Toggle command/insert mode."
   (interactive)
   (if (jcs-mode-stats-p 'insert) (jcs-command-mode) (jcs-insert-mode)))
 
-;;;###autoload
 (defun jcs-depend-cross-mode-toggle ()
   "Toggle depend/cross mode."
   (interactive)
   (unless (minibufferp)
     (if (jcs-mode-stats-p 'cross) (jcs-depend-mode) (jcs-cross-mode))))
 
-;;;###autoload
 (defun jcs-reload-active-mode ()
   "Reload the active mode.
 Note this is opposite logic to the toggle mode function."
@@ -118,7 +115,6 @@ Note this is opposite logic to the toggle mode function."
 ;; (@* "Special Modes" )
 ;;
 
-;;;###autoload
 (defun jcs-command-mode()
   "In command mode."
   (interactive)
@@ -139,7 +135,6 @@ Note this is opposite logic to the toggle mode function."
 
     (message "[INFO] Turn into `command-mode` now")))
 
-;;;###autoload
 (defun jcs-insert-mode()
   "In insert mode."
   (interactive)
@@ -160,7 +155,6 @@ Note this is opposite logic to the toggle mode function."
 
     (message "[INFO] Turn into `insert-mode` now")))
 
-;;;###autoload
 (defun jcs-depend-mode ()
   "This mode depend on my own machine. More feature and more control of the editor."
   (interactive)
@@ -184,7 +178,6 @@ Note this is opposite logic to the toggle mode function."
 
     (message "[INFO] Turn into `depend-mode` now")))
 
-;;;###autoload
 (defun jcs-cross-mode ()
   "This mode run anywhere will work, usually less powerful then `jcs-depend-mode'."
   (interactive)

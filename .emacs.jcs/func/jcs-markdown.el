@@ -2,7 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-;;;###autoload
 (defun jcs-markdown-return-key ()
   "Return key for Markdown mode."
   (interactive)

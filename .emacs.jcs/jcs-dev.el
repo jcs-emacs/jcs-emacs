@@ -90,7 +90,6 @@
         ((>= index (length lst)) (setq index 0)))
   (switch-to-buffer (nth index lst)))
 
-;;;###autoload
 (defun jcs-output-prev-compilation ()
   "Select the previous compilation buffer."
   (interactive)
@@ -102,7 +101,6 @@
         (setq break t))
       (setq index (1+ index)))))
 
-;;;###autoload
 (defun jcs-output-next-compilation ()
   "Select the next compilation buffer."
   (interactive)
@@ -113,7 +111,6 @@
         (setq break t))
       (setq index (1+ index)))))
 
-;;;###autoload
 (defun jcs-output-window ()
   "Show output window."
   (interactive)
@@ -130,7 +127,6 @@
   "Form the prefix of the compilation buffer name."
   (format "*%s*: " jcs-compilation-base-filename))
 
-;;;###autoload
 (defun jcs-dev-switch-to-output-buffer ()
   "Switch to one of the output buffer."
   (interactive)
@@ -142,7 +138,6 @@
       (setq choice (completing-read "Output buffer: " output-buf-lst))
       (switch-to-buffer choice))))
 
-;;;###autoload
 (defun jcs-open-project-file (in-filename title &optional ow)
   "Open the IN-FILENAME from this project with TITLE.
 OW : Opened it in other window."
@@ -150,7 +145,6 @@ OW : Opened it in other window."
   (let ((filepath (jcs-find-file-in-project-and-current-dir in-filename title)))
     (if ow (find-file-other-window filepath) (find-file filepath))))
 
-;;;###autoload
 (defun jcs-compile-project-file (in-filename title)
   "Compile IN-FILENAME from the project"
   (interactive)
@@ -189,31 +183,26 @@ IN-OP : inpuit operation script."
 ;; (@* "Functions" )
 ;;
 
-;;;###autoload
 (defun jcs-make-without-asking ()
   "Make the current build."
   (interactive)
   (jcs-compile-project-file jcs-makescript "Build script: "))
 
-;;;###autoload
 (defun jcs-run-without-asking ()
   "Run the current build program."
   (interactive)
   (jcs-compile-project-file jcs-runscript "Run script: "))
 
-;;;###autoload
 (defun jcs-open-project-todo-file ()
   "Open the TODO list from this project."
   (interactive)
   (jcs-open-project-file jcs-project-todo-file "TODO file: " t))
 
-;;;###autoload
 (defun jcs-open-project-update-log-file ()
   "Open the Update Log from this project."
   (interactive)
   (jcs-open-project-file jcs-project-update-log-file "Update Log file: " t))
 
-;;;###autoload
 (defun jcs-output-maybe-kill-buffer ()
   "Maybe kill buffer action in `output' buffer."
   (interactive)

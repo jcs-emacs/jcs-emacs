@@ -20,14 +20,12 @@
 Return nil, if frame not maximized."
   (cdr (assoc 'fullscreen (frame-parameters))))
 
-;;;###autoload
 (defun jcs-make-frame ()
   "Select new frame after make frame."
   (interactive)
   (let ((new-frame (call-interactively #'make-frame)))
     (select-frame-set-input-focus new-frame)))
 
-;;;###autoload
 (defun jcs-walk-through-all-frames-once (&optional fnc minibuf util)
   "Walk through all frames once and execute callback FNC for each moves.
 
@@ -61,7 +59,7 @@ of utility frame."
 (defun jcs-make-frame-simple (name x y width height fnc &rest)
   "Make frame with a bunch of default variables set.
 You will only have to fill in NAME, X, Y, WIDTH, HEIGHT and FNC."
-  (let ((doc-frame nil) (pixel-x x) (pixel-y y)
+  (let ((pixel-x x) (pixel-y y) doc-frame
         (abs-pixel-pos (window-absolute-pixel-position)))
     (unless pixel-x (setq pixel-x (car abs-pixel-pos)))
     (unless pixel-y (setq pixel-y (+ (cdr abs-pixel-pos) (frame-char-height))))

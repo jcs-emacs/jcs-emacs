@@ -999,7 +999,6 @@
 
 (leaf right-click-context
   :defer-config
-  ;;;###autoload
   (defun right-click-context-menu ()
     "Open Right Click Context menu."
     (interactive)

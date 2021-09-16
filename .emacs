@@ -117,7 +117,6 @@ decrease this. If you experience stuttering, increase this.")
 (defconst jcs-emacs-version-number "6.5.1"
   "JCS-Emacs version.")
 
-;;;###autoload
 (defun jcs-emacs-version ()
   "Show JCS-Emacs version info."
   (interactive)

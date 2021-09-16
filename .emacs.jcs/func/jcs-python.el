@@ -6,7 +6,6 @@
 
 (setq python-indent-guess-indent-offset nil)
 
-;;;###autoload
 (defun jcs-py-indent-region ()
   "Indent region for `python-mode'."
   (interactive)
@@ -41,7 +40,6 @@
           (jcs-py-indent-up)
           (end-of-line))))))
 
-;;;###autoload
 (defun jcs-py-format-document ()
   "Indent the whoe document line by line instead of indent it
 once to the whole document. For `python-mode'."
@@ -53,7 +51,6 @@ once to the whole document. For `python-mode'."
         (while (and (<= (line-number-at-pos) ed-ln-num))
           (jcs-py-indent-down))))))
 
-;;;###autoload
 (defun jcs-py-format-region-or-document ()
   "Format the document if there are no region apply.
 
@@ -64,7 +61,6 @@ instead of indent the whole file at once."
       (call-interactively 'jcs-py-indent-region)
     (call-interactively 'jcs-py-format-document)))
 
-;;;###autoload
 (defun jcs-py-indent-up ()
   "Move to previous line and indent for `python-mode'."
   (interactive)
@@ -75,7 +71,6 @@ instead of indent the whole file at once."
     (when (jcs-is-infront-first-char-at-line-p)
       (back-to-indentation))))
 
-;;;###autoload
 (defun jcs-py-indent-down ()
   "Move to next line and indent for `python-mode'."
   (interactive)
@@ -86,7 +81,6 @@ instead of indent the whole file at once."
     (when (jcs-is-infront-first-char-at-line-p)
       (back-to-indentation))))
 
-;;;###autoload
 (defun jcs-py-return ()
   "Return key for `python-mode'."
   (interactive)
@@ -136,7 +130,6 @@ instead of indent the whole file at once."
 ;; (@* "Templates" )
 ;;
 
-;;;###autoload
 (defun jcs-ask-python-template (type)
   (interactive
    (list (completing-read

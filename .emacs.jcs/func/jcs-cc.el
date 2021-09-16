@@ -4,13 +4,11 @@
 
 (require 'cl-lib)
 
-;;;###autoload
 (defun jcs-toggle-cc-mode ()
   "Toggle c/c++ mode."
   (interactive)
   (cl-case major-mode (c-mode (c++-mode)) (c++mode (c-mode))))
 
-;;;###autoload
 (defun jcs-toggle-c-comment-style ()
   "Toggle comment style between /* */ and //."
   (interactive)

@@ -2,7 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-;;;###autoload
 (defun jcs-css-smart-indent-up ()
   "CSS smart indent up."
   (interactive)
@@ -11,7 +10,6 @@
   (when (jcs-is-infront-first-char-at-line-p) (jcs-goto-first-char-in-line))
   (when (jcs-current-line-empty-p) (end-of-line)))
 
-;;;###autoload
 (defun jcs-css-smart-indent-down ()
   "CSS smart indent down."
   (interactive)
@@ -20,7 +18,6 @@
   (when (jcs-is-infront-first-char-at-line-p) (jcs-goto-first-char-in-line))
   (when (jcs-current-line-empty-p) (end-of-line)))
 
-;;;###autoload
 (defun jcs-css-save-buffer ()
   "Save buffer in `css-mode'."
   (interactive)

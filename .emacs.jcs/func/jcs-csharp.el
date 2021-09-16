@@ -2,7 +2,6 @@
 ;;; Commentary: When editing the C# related file.
 ;;; Code:
 
-;;;###autoload
 (defun jcs-csharp-ask-source (sc)
   "Ask the source SC for editing CSharp file."
   (interactive
@@ -41,7 +40,6 @@
 ;; (@* "Indentation" )
 ;;
 
-;;;###autoload
 (defun jcs-csharp-smart-indent-up ()
   "CSharp mode smart indent up."
   (interactive)
@@ -51,7 +49,6 @@
              (jcs-vs-csharp-only-vs-comment-prefix-this-line-p))
     (insert " ")))
 
-;;;###autoload
 (defun jcs-csharp-smart-indent-down ()
   "CSharp mode smart indent down."
   (interactive)

@@ -4,7 +4,6 @@
 
 (require 'jcs-python)
 
-;;;###autoload
 (defun jcs-ask-makefile-language (lan)
   "Ask make file language LAN type."
   (interactive
@@ -23,7 +22,6 @@
     ("Java" (call-interactively 'jcs-ask-makefile-java-template))
     ("Python" (call-interactively 'jcs-ask-makefile-python-template))))
 
-;;;###autoload
 (defun jcs-ask-makefile-cc-template (type)
   "Ask makefile template type in Assembly, C, C++.
 TYPE: type of makefile for Assembly and C/C++."
@@ -38,7 +36,6 @@ TYPE: type of makefile for Assembly and C/C++."
     ("Library" (jcs-insert-makefile-cc-lib-template))))
 
 
-;;;###autoload
 (defun jcs-ask-makefile-java-template (type)
   "Ask makefile template type in Java.
 TYPE: type of makefile for Java."
@@ -53,7 +50,6 @@ TYPE: type of makefile for Java."
     ("Library" (jcs-insert-makefile-java-lib-template))))
 
 
-;;;###autoload
 (defun jcs-ask-makefile-python-template (type)
   "Ask makefile template type in Python.
 TYPE: type of makefile for Python."
@@ -67,7 +63,6 @@ TYPE: type of makefile for Python."
     ("Application" (jcs-insert-makefile-python-app-template))
     ("Library" (jcs-insert-makefile-python-lib-template))))
 
-;;;###autoload
 (defun jcs-makefile-newline ()
   "Newline key for `makefile-mode'."
   (interactive)

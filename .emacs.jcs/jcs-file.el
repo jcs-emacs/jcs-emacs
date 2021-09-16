@@ -6,7 +6,6 @@
 ;; (@* "Find files" )
 ;;
 
-;;;###autoload
 (defun jcs-counsel-find-files-other-window ()
   "Find files on other window."
   (interactive)
@@ -17,7 +16,6 @@
         (switch-to-buffer buf)
         (find-file-other-window target-buf)))))
 
-;;;###autoload
 (defun jcs-project-find-file-other-window ()
   "Find files in project on other window."
   (interactive)
@@ -32,7 +30,6 @@
 ;; (@* "Display" )
 ;;
 
-;;;###autoload
 (defun jcs-html-preview (&optional filepath title not-ow)
   "Preview html FILEPATH other window with TITLE.
 NOT-OW : Default is other window, not other window."
@@ -224,13 +221,11 @@ If optional argument WITH-EXT is non-nil; return path with extension."
           (push file types))))
     (sort types #'string-lessp)))
 
-;;;###autoload
 (defun jcs-select-file ()
   "Select the file and return that path."
   (interactive)
   (let ((ivy-inhibit-action t)) (counsel-find-file)))
 
-;;;###autoload
 (defun jcs-path-info-at-point ()
   "Return the current path info at point."
   (interactive)
@@ -280,7 +275,6 @@ If optional argument WITH-EXT is non-nil; return path with extension."
 ;;   * `jcs-find-corresponding-file-other-window'
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-;;;###autoload
 (defun jcs-find-corresponding-file (&optional ow)
   "Find the file that corresponds to this one.
 OW : Open file other window."
@@ -309,7 +303,6 @@ OW : Open file other window."
           (if ow (jcs-find-file-other-window found-fp) (find-file found-fp)))
       (user-error "[WARNING] Unable to find a corresponding file"))))
 
-;;;###autoload
 (defun jcs-find-corresponding-file-other-window ()
   "Find the file that corresponds to this one."
   (interactive)

@@ -70,7 +70,6 @@
           (forward-char 1)))
       tmp-column-count)))
 
-;;;###autoload
 (defun jcs-org-table-up ()
   "Move cursor up one row if in the table."
   (interactive)
@@ -80,7 +79,6 @@
       (jcs-org-table-left)
       (setq cycle-counter (1+ cycle-counter)))))
 
-;;;###autoload
 (defun jcs-org-table-down ()
   "Move cursor down one row if in the table."
   (interactive)
@@ -90,19 +88,16 @@
       (jcs-org-table-right)
       (setq cycle-counter (1+ cycle-counter)))))
 
-;;;###autoload
 (defun jcs-org-table-left ()
   "Move cursor left one column if in the table."
   (interactive)
   (org-shifttab))
 
-;;;###autoload
 (defun jcs-org-table-right ()
   "Move cursor right one column if in the table."
   (interactive)
   (org-cycle))
 
-;;;###autoload
 (defun jcs-org-smart-cycle ()
   "Try current cycle at point if available."
   (interactive)
