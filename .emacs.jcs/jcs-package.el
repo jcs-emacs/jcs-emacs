@@ -333,7 +333,7 @@
 (defun jcs-package--filter-installed (lst)
   "Remove package from LST if not installed."
   (require 'cl-lib)
-  (cl-remove-if-not (lambda (elm) (jcs-package-installed-p elm)) lst))
+  (cl-remove-if-not (lambda (elm) (package-installed-p elm)) lst))
 
 (defun jcs-package--get-selected-packages ()
   "Return selected packages base on the execution's condition."
@@ -418,10 +418,6 @@
 (defvar jcs-package--install-on-start-up nil
   "Return non-nil if installation is occurred on start-up.")
 
-(defun jcs-package-installed-p (pkg)
-  "Return non-nil if PKG is already installed."
-  (package-installed-p pkg))
-
 (defun jcs-package--pinned-p (pkg)
   "Return non-nil if PKG is pinned."
   (require 'cl-lib)
@@ -442,7 +438,7 @@
 
 (defun jcs-package-install (pkg)
   "Install PKG package."
-  (unless (jcs-package-installed-p pkg)
+  (unless (package-installed-p pkg)
     (setq jcs-package--install-on-start-up t)
     ;; Don't run `package-refresh-contents' if you don't need to install
     ;; packages on startup.
@@ -653,7 +649,7 @@ Argument WHERE is the alist of package information."
       (setq pkg-name (jcs--recipe-get-info rcp :name)
             pkg-repo (jcs--recipe-get-info rcp :repo)
             pkg-fetcher (jcs--recipe-get-info rcp :fetcher))
-      (unless (jcs-package-installed-p pkg-name)
+      (unless (package-installed-p pkg-name)
         (require 'quelpa) (require 'jcs-util)
         (jcs-no-log-apply
           (message "Installing '%s' from '%s'" pkg-repo pkg-fetcher))
