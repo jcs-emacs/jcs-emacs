@@ -15,10 +15,10 @@ INIT="(let ((debug-on-error (>= emacs-major-version 26)) \
 		(run-hooks (quote emacs-startup-hook)))"
 
 unix-copy-config:
-	sh ./scripts/copy-config.sh
+	sh './scripts/copy-config.sh'
 
 windows-copy-config:
-	./scripts/copy-config.bat
+	start './scripts/copy-config.bat'
 
 startup:
 	@$(EMACS) -Q --batch --eval $(INIT)
