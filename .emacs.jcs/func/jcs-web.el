@@ -3,46 +3,6 @@
 ;;; Code:
 
 ;;
-;; (@* "Deletion" )
-;;
-
-(defun jcs-web-backward-delete-word ()
-  "Web backward delete the word, fit PHP variable naming."
-  (interactive)
-  (backward-delete-char 1)
-  (when (and (not (jcs-current-whitespace-or-tab-p))
-             (not (jcs-current-char-equal-p "$"))
-             (jcs-current-char-a-wordp))
-    (jcs-web-backward-delete-word)))
-
-(defun jcs-web-backward-delete-word-capital ()
-  "Web backward delete word capital, fit PHP variable naming."
-  (interactive)
-  (backward-delete-char 1)
-  (when (and (not (jcs-current-whitespace-or-tab-p))
-             (not (jcs-current-char-equal-p "$"))
-             (not (jcs-current-char-uppercasep))
-             (jcs-current-char-a-wordp))
-    (jcs-web-backward-delete-word-capital))
-  (when (and (jcs-current-char-uppercasep)
-             (not (jcs-current-char-equal-p "$")))
-    (backward-delete-char 1)))
-
-;;
-;; (@* "Indentation" )
-;;
-
-(defun jcs-web-vs-opening-curly-bracket-key ()
-  "Web mode front curly bracket key."
-  (interactive)
-  (if (jcs-is-current-point-face '(web-mode-script-face
-                                   web-mode-block-face
-                                   web-mode-style-face))
-      (call-interactively #'jcs-vs-opening-curly-bracket-key)
-    (insert "{}")
-    (backward-char 1)))
-
-;;
 ;; (@* "Impatient Mode" )
 ;;
 
@@ -99,27 +59,6 @@
       (call-interactively #'goto-address-at-point)
     (unless (call-interactively #'emmet-expand-line)
       (jcs-ctrl-return-key))))
-
-;;
-;; (@* "Faces" )
-;;
-
-(defun jcs-init-web-faces ()
-  "Initialize Web mode faces highlihgting."
-  (let ((missing-modes '(web-mode)))
-    (dolist (mode missing-modes)
-      (font-lock-add-keywords
-       mode
-       '(;; For nomral HTML comment.
-         ("\\(<!--[a-zA-Z0-9 \n\t-.<>?,*'`@\"=_(){}:;&^%$#!~]*-->\\)" 1 'font-lock-comment-face t)
-         ("\\(@[ \t\n]*{[[:ascii:]]*\\)/\\*[[:ascii:]]*\\*/[[:ascii:]]*}" 1 'jcs-web-mode-block-face t)
-         ("@[ \t\n]*{[[:ascii:]]*/\\*[[:ascii:]]*\\*/\\([[:ascii:]]*}\\)" 1 'jcs-web-mode-block-face t)
-         ;; For multi-lines comment.
-         ("@[ \t\n]*{[[:ascii:]]*\\(/\\*[[:ascii:]]*\\*/\\)[[:ascii:]]*}" 1 'jcs-web-mode-block-comment-face t))
-       'end)))
-  (set-face-attribute 'web-mode-doctype-face nil :foreground "Pink3")
-  (set-face-attribute 'web-mode-block-comment-face nil :foreground (face-foreground font-lock-comment-face))
-  (set-face-attribute 'web-mode-comment-face nil :foreground (face-foreground font-lock-comment-face)))
 
 (provide 'jcs-web)
 ;;; jcs-web.el ends here

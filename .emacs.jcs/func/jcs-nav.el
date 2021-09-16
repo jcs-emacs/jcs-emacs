@@ -54,6 +54,7 @@
 (defun jcs-get-major-mode-prev/next-key-type (direction)
   "Return the major-mode's prev/next key type by DIRECTION."
   (require 'cl-lib)
+  (require 'jcs-python-mode)
   (cl-case direction
     (previous
      (cond
