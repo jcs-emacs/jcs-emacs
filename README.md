@@ -19,7 +19,7 @@
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
 **Table of Contents**
 
-- [jcs-emacs](#jcs-emacs)x
+- [jcs-emacs](#jcs-emacs)
 - [Philosophy](#philosophy)
 - [:newspaper: News](#newspaper-news)
 - [:floppy_disk: Installation](#floppy_disk-installation)
