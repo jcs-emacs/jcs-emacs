@@ -67,13 +67,12 @@ If optional argument DIR is nil, use variable `default-directory' instead."
 
 (defun jcs-project-list-clean ()
   "Clean up the project list if the project no longer exists."
-  (when (featurep 'project)
-    (project--ensure-read-project-list)
-    (let (pr-lst)
-      (dolist (pr project--list)
-        (when (jcs-file-directory-exists-p (nth 0 pr)) (push pr pr-lst)))
-      (setq project--list (reverse pr-lst))
-      (project--write-project-list))))
+  (project--ensure-read-project-list)
+  (let (pr-lst)
+    (dolist (pr project--list)
+      (when (jcs-file-directory-exists-p (nth 0 pr)) (push pr pr-lst)))
+    (setq project--list (reverse pr-lst))
+    (project--write-project-list)))
 
 (defun jcs-project-remove (dir)
   "Remove project by project DIR."

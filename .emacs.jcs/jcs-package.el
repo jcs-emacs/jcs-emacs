@@ -420,7 +420,7 @@
 
 (defun jcs-package-installed-p (pkg)
   "Return non-nil if PKG is already installed."
-  (or (package-installed-p pkg) (package-built-in-p pkg)))
+  (package-installed-p pkg))
 
 (defun jcs-package--pinned-p (pkg)
   "Return non-nil if PKG is pinned."
