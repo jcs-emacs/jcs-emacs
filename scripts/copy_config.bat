@@ -4,10 +4,10 @@ SETLOCAL EnableDelayedExpansion
 
 echo "Copying core files..."
 
-set CONFIG_PATH=%UserProfile%\AppData\Roaming
+set CONFIG_PATH=%UserProfile%\AppData\Roaming\
 
-robocopy /e "./build.el" "%CONFIG_PATH%\build.el"
-robocopy /e "./.emacs" "%CONFIG_PATH%\.emacs"
+move "./build.el" "%CONFIG_PATH%\build.el"
+move "./.emacs" "%CONFIG_PATH%\.emacs"
 
 mkdir "%CONFIG_PATH%/.emacs.d"
 mkdir "%CONFIG_PATH%/.emacs.jcs"
