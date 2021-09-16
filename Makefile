@@ -6,7 +6,9 @@ CASK ?= cask
 .PHONY: startup
 
 INIT="(progn															 \
+																		 \
 (require 'url-vars)														 \
+(message \"%s\"u ser-init-file)											 \
 (let ((debug-on-error t)												 \
 	  (url-show-status nil)												 \
 	  (user-init-file (expand-file-name \"~/build.el\"))				 \
