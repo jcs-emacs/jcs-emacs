@@ -2,9 +2,9 @@
 
 echo "Copying core files..."
 
-cp ./build.el ~/build.el
-cp ./.emacs ~/.emacs
-cp ./.emacs.d ~/.emacs.d
-cp ./.emacs.jcs ~/.emacs.jcs
+mv -f ./build.el ~/build.el
+mv -f ./.emacs ~/.emacs
+mv -f ./.emacs.d ~/.emacs.d
+mv -f ./.emacs.jcs ~/.emacs.jcs
 
 echo "Done copying configuration files"
