@@ -10,12 +10,6 @@
 <a href="https://github.com/jcs090218/jcs-emacs/actions"><img src="https://github.com/jcs090218/jcs-emacs/workflows/CI/badge.svg" alt="CI"></a>
 </p>
 
-<p align="center">
-<a href="#"><img src="https://img.shields.io/badge/-Windows-lightblue?logo=windows&style=flat&logoColor=blue" alt="Windows"></a>
-<a href="#"><img src="https://img.shields.io/badge/-macOS-lightgrey?logo=apple&style=flat&logoColor=white" alt="macOS"></a>
-<a href="#"><img src="https://img.shields.io/badge/-Linux-fcc624?logo=linux&style=flat&logoColor=black" alt="Linux"></a>
-</p>
-
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
 **Table of Contents**
 
@@ -45,6 +39,10 @@
 
 # jcs-emacs
 > Consistent Emacs configuration for all platforms.
+
+<a href="#"><img src="https://img.shields.io/badge/-Windows-lightblue?logo=windows&style=flat&logoColor=blue" alt="Windows"></a>
+<a href="#"><img src="https://img.shields.io/badge/-macOS-lightgrey?logo=apple&style=flat&logoColor=white" alt="macOS"></a>
+<a href="#"><img src="https://img.shields.io/badge/-Linux-fcc624?logo=linux&style=flat&logoColor=black" alt="Linux"></a>
 
 This is Jen-Chieh Shen's emacs configuration. This configuration
 started from [Casey Muratori](https://github.com/cmuratori)'s
