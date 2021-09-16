@@ -2,6 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
+(setq debug-on-error t)
+
 (defconst jcs-build-test t
   "Define for build testing.")
 
