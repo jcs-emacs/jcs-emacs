@@ -448,7 +448,7 @@
     ;; packages on startup.
     (package-refresh-contents)
     ;; Else we just install the package regularly.
-    (package-install pkg)))
+    (while (not (ignore-errors (package-install pkg))))))
 
 (defun jcs-ensure-package-installed (packages)
   "Assure every PACKAGES is installed."
