@@ -30,7 +30,8 @@ jobs:
       run: sh ./scripts/copy-config.sh
 
     - name: Check startup
-      run: emacs
+      run:
+        make startup
 
   test-windows:
     runs-on: ${{ matrix.os }}
@@ -51,4 +52,5 @@ jobs:
       run: ./scripts/copy-config.bat
 
     - name: Check startup
-      run: emacs
+      run:
+        make startup
