@@ -16,4 +16,4 @@ INIT="(let ((debug-on-error t) \
 
 startup:
 	@echo "Test..."
-	@$(EMACS) -Q --batch --eval $(INIT)
+	@$(EMACS)
