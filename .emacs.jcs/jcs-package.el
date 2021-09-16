@@ -41,7 +41,6 @@
     atl-markup
     auth-source-keytar
     auto-highlight-symbol
-    auto-read-only
     auto-rename-tag
     basic-mode
     better-scroll
