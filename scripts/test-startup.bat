@@ -16,7 +16,7 @@ robocopy /e "./.emacs.jcs" "%CONFIG_PATH%/.emacs.jcs"
 
 echo "Attempting startup..."
 
-set L_1="(let ((debug-on-error (>= emacs-major-version 26))
+set L_1="(let ((debug-on-error t)
 set L_2=       (url-show-status nil)
 set L_3=       (user-emacs-directory default-directory)
 set L_4=       (user-init-file (expand-file-name \"~/build.el\"))

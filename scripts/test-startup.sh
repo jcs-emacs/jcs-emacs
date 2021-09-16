@@ -10,7 +10,7 @@ mv -f ./.emacs.jcs ~/.emacs.jcs
 echo "Attempting startup..."
 
 ${EMACS:=emacs} -nw --batch \
-                --eval '(let ((debug-on-error (>=  emacs-major-version 26))
+                --eval '(let ((debug-on-error t)
                               (url-show-status nil)
                               (user-emacs-directory default-directory)
                               (user-init-file (expand-file-name "~/build.el"))
