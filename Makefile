@@ -20,5 +20,4 @@ INIT="(progn															 \
   (jcs-emacs-version))"
 
 startup:
-	@echo "Test..."
 	@$(EMACS) -Q --batch --eval $(INIT)
