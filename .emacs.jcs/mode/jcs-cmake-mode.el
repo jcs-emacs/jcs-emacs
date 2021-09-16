@@ -5,7 +5,7 @@
 (require 'cmake-mode)
 (require 'cmake-font-lock)
 
-(require 'jcs-make)
+(require 'make-mode)
 
 ;;
 ;; (@* "Hook" )

@@ -4,8 +4,6 @@
 
 (require 'cobol-mode)
 
-(require 'jcs-python)
-
 ;;
 ;; (@* "Hook" )
 ;;

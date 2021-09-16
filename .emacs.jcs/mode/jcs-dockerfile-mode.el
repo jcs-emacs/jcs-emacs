@@ -4,8 +4,6 @@
 
 (require 'dockerfile-mode)
 
-(require 'jcs-python)
-
 ;;
 ;; (@* "Hook" )
 ;;

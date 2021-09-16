@@ -887,16 +887,6 @@ NO-PROMPT : Don't prompt the overwrap message."
 (require 'jcs-vs)
 
 ;; For Specific Mode
-(with-eval-after-load 'org (require 'jcs-org))
-(jcs-with-eval-after-load-multiple '(masm-mode nasm-mode) (require 'jcs-asm))
-(with-eval-after-load 'cc-mode (require 'jcs-cc) (require 'jcs-java))
-(with-eval-after-load 'csharp-mode (require 'jcs-csharp))
-(with-eval-after-load 'css-mode (require 'jcs-css))
-(with-eval-after-load 'make-mode (require 'jcs-make))
-(with-eval-after-load 'markdown-mode (require 'jcs-markdown))
-(with-eval-after-load 'python-mode (require 'jcs-python))
-(with-eval-after-load 'sh-script (require 'jcs-sh))
-(with-eval-after-load 'typescript-mode (require 'jcs-typescript))
 (with-eval-after-load 'web-mode (require 'jcs-web))
 
 (provide 'jcs-function)

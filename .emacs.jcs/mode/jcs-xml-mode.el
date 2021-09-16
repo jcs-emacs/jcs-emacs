@@ -3,8 +3,7 @@
 ;;; Code:
 
 (require 'nxml-mode)
-
-(require 'jcs-web)
+(require 'web-mode)
 
 ;;
 ;; (@* "Hook" )
