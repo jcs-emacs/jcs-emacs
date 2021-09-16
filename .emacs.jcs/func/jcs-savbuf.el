@@ -1,6 +1,9 @@
-;;; jcs-savbuf.el --- Undo/Redo module  -*- lexical-binding: t -*-
+;;; jcs-savbuf.el --- Save buffer module  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
+
+(require 'cl-lib)
+(require 'jcs-undo)
 
 (defvar-local jcs-buffer-save-string-md5 nil
   "Buffer string when buffer is saved; this value encrypted with md5 algorithm.
@@ -17,7 +20,6 @@ This variable is used to check if file are edited externally.")
 
 (defun jcs--save-buffer--advice-after (&rest _)
   "Execution after function `save-buffer'."
-  (require 'jcs-undo)
   (jcs-update-buffer-save-string)
   (jcs-undo-kill-this-buffer)
   (jcs-update-line-number-each-window))
@@ -25,7 +27,7 @@ This variable is used to check if file are edited externally.")
 
 (defun jcs--organize-save-buffer ()
   "Organize save buffer."
-  (require 'cl-lib)
+
   (let (deactivate-mark truncate-lines)
     (when jcs-on-save-whitespace-cleanup-p
       (jcs-delete-trailing-whitespace-except-current-line))
