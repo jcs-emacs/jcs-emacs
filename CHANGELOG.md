@@ -30,6 +30,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add custom bind key function.
 * Remove config for package, `reload-emacs`.
 * Improve a bit of startup time.
+* Reconstruct function modules to speed up startup time.
 
 ## 6.5.0
 > Released Jul 17, 2021
