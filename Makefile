@@ -5,13 +5,16 @@ CASK ?= cask
 
 .PHONY: startup
 
-INIT="(let ((debug-on-error t) \
-			(url-show-status nil) \
-			(user-init-file (expand-file-name \"~/build.el\")) \
-			(load-path (delq default-directory load-path))) \
-		(load-file user-init-file) \
-		(run-hooks (quote after-init-hook)) \
-		(run-hooks (quote emacs-startup-hook)))"
+INIT=" \
+(require 'url-vars) \
+(let ((debug-on-error t) \
+	  (url-show-status nil) \
+	  (user-emacs-directory default-directory) \
+	  (user-init-file (expand-file-name \"~/build.el\")) \
+	  (load-path (delq default-directory load-path))) \
+	(load-file user-init-file) \
+	(run-hooks (quote after-init-hook)) \
+	(run-hooks (quote emacs-startup-hook)))"
 
 startup:
 	@echo "Test..."
