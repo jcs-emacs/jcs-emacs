@@ -12,7 +12,7 @@ INIT="(progn															 \
 (let ((debug-on-error t)												 \
 	  (url-show-status nil)												 \
 	  (user-emacs-directory default-directory)							 \
-	  (user-init-file (expand-file-name \"~/build.el\"))				 \
+	  (user-init-file (expand-file-name \"~/AppData/Roaming/build.el\"))				 \
 	  (load-path (delq default-directory load-path)))					 \
   (load-file user-init-file)											 \
   (run-hooks (quote after-init-hook))									 \
@@ -21,5 +21,4 @@ INIT="(progn															 \
 
 startup:
 	@echo "Test..."
-	cd ~/AppData/Roaming/
 	@$(EMACS) -Q --batch --eval $(INIT)
