@@ -31,7 +31,7 @@ jobs:
 
     - name: Check startup
       run:
-        make startup
+        make unix-startup
 
   test-windows:
     runs-on: ${{ matrix.os }}
@@ -53,4 +53,4 @@ jobs:
 
     - name: Check startup
       run:
-        make startup
+        make windows-startup
