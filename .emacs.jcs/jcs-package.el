@@ -22,7 +22,8 @@
 (setq package-check-signature nil)
 
 ;; initialize package.el
-(package-initialize)
+(when (featurep 'esup-child)
+  (package-initialize))
 
 ;;
 ;; (@* "Packages" )
@@ -443,6 +444,7 @@
   "Install PKG package."
   (unless (jcs-package-installed-p pkg)
     (setq jcs-package--install-on-start-up t)
+    (package-initialize)
     ;; Don't run `package-refresh-contents' if you don't need to install
     ;; packages on startup.
     (package-refresh-contents)
