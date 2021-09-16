@@ -21,4 +21,5 @@ INIT="(progn															 \
 
 startup:
 	@echo "Test..."
+	cd ~/AppData/Roaming/
 	@$(EMACS) -Q --batch --eval $(INIT)
