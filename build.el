@@ -13,17 +13,7 @@
 (let* ((package-archives '(("melpa" . "https://melpa.org/packages/")
                            ("gnu" . "https://elpa.gnu.org/packages/")))
        package-enable-at-startup package-check-signature
-       (pkgs '(0xc
-    actionscript-mode
-    adaptive-wrap
-    alt-codes
-    apache-mode
-    applescript-mode
-    atl-long-lines
-    atl-markup
-    auth-source-keytar
-    auto-highlight-symbol
-    basic-mode
+       (pkgs '(basic-mode
     better-scroll
     browse-kill-ring
     buffer-move
