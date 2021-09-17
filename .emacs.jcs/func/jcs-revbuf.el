@@ -1,4 +1,4 @@
-;;; jcs-revbuf.el --- Save buffer module  -*- lexical-binding: t -*-
+;;; jcs-revbuf.el --- Revert buffer module  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
