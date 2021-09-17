@@ -379,7 +379,9 @@ See function `jcs-string-compare-p' for argument TYPE."
 
 (defun jcs-current-keymap ()
   "Return SYMBOL represent the keymap."
-  (jcs-keymap-symbol (current-local-map)))
+  (or (jcs-keymap-symbol (current-local-map))
+      ;; We try to guess the possible keymap by their major-mode name
+      (intern (concat (symbol-name major-mode) "-map"))))
 
 (defun jcs-bind-key (key def &optional keymap)
   "Like `define-key' but default to current KEYMAP.
@@ -387,7 +389,8 @@ See function `jcs-string-compare-p' for argument TYPE."
 See description from function `define-key' for arguments KEY, DEF and KEYMAP."
   (let* ((mode-map (symbol-value (jcs-current-keymap)))
          (keymap (or keymap mode-map)))
-    (define-key keymap key def)))
+    (if (keymapp keymap) (define-key keymap key def)
+      (user-error "[WARNING] Failed to bind key `%s`, `%s`, `%s`" keymap key def))))
 
 ;;
 ;; (@* "Time" )
