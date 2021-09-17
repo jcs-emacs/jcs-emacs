@@ -85,21 +85,11 @@ time is displayed."
 ;; (@* "Buffer" )
 ;;
 
-(defun jcs-print-current-buffer-name ()
+(defun jcs-print-current-buffer-info ()
   "Message out what current window's buffer name."
   (interactive)
-  (message "[INFO] Current buffer name: %s" (buffer-name)))
-
-(defun jcs-print-current-buffer-file-name ()
-  "Message out what current window's buffer file name."
-  (interactive)
-  (message "[INFO] Current buffer file name: %s" (buffer-file-name)))
-
-(defun jcs-print-current-buffer-status ()
-  "Print current buffer related status."
-  (interactive)
-  (jcs-print-current-buffer-name)
-  (jcs-print-current-buffer-file-name))
+  (message "[INFO] Name: %s" (buffer-name))
+  (message "[INFO] Filename: %s" (buffer-file-name)))
 
 (defun jcs-buffer-name-or-buffer-file-name (&optional buf)
   "Return BUF's `buffer-file-name' or `buffer-name' respectively."
@@ -1384,10 +1374,6 @@ The reverse mean the check from regular expression is swapped."
 This function uses `string-match-p'.
 This function wrapped IN-STR with function `regexp-quote'."
   (cl-some (lambda (elm) (string-match-p (regexp-quote elm) in-str)) in-list))
-
-(defun jcs-contain-list-symbol (in-list in-symbol)
-  "Return non-nil if IN-SYMBOL is listed in IN-LIST."
-  (cl-some (lambda (elm) (equal elm in-symbol)) in-list))
 
 (defun jcs-contain-list-integer (in-list in-int)
   "Return non-nil if IN-INT is listed in IN-LIST."
