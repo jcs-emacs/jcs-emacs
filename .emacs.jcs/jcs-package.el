@@ -248,7 +248,7 @@
          (full-pkgs (delete-dups (append pkg-install-lst deps)))
          unused-lst)
     (dolist (pkg installed-pkgs)
-      (unless (jcs-contain-list-symbol full-pkgs pkg)
+      (unless (memq pkg full-pkgs)
         (push pkg unused-lst)))
     (cl-remove 'emacs (reverse unused-lst))))
 

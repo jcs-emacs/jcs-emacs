@@ -113,16 +113,15 @@
 (defun jcs-org-smart-cycle ()
   "Try current cycle at point if available."
   (interactive)
-  (cond
-   ((jcs-contain-list-symbol (jcs-flatten-list org-todo-keywords)
-                             (thing-at-point 'word))
-    (org-todo)
-    (forward-char 1)
-    (unless (jcs-contain-list-symbol (jcs-flatten-list org-todo-keywords)
-                                     (thing-at-point 'word))
+  (let ((keywords (jcs-flatten-list org-todo-keywords)))
+    (cond
+     ((memq (thing-at-point 'word) keywords)
       (org-todo)
-      (forward-word -1)))
-   (t (org-cycle))))
+      (forward-char 1)
+      (unless (memq (thing-at-point 'word) keywords)
+        (org-todo)
+        (forward-word -1)))
+     (t (org-cycle)))))
 
 ;;
 ;; (@* "Hook" )
