@@ -24,10 +24,12 @@
 (defun jcs--lsp--stuff-on-enabled ()
   "Do stuff when lsp is enabled."
   (jcs-re-enable-mode 'company-fuzzy-mode)
+  (setq-local company-fuzzy-passthrough-backends '(company-capf))  ; enable semantic meaning
   (lsp-origami-mode 1))
 
 (defun jcs--lsp--stuff-on-disabled ()
   "Do stuff when lsp is disabled."
+  (setq-local company-fuzzy-passthrough-backends nil)
   (lsp-origami-mode -1))
 
 (defun jcs--lsp-managed-mode-hook ()
