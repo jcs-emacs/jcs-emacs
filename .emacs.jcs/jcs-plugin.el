@@ -200,13 +200,7 @@
         dashboard-shorten-path-offset 15)
   :defer-config
   (setq initial-buffer-choice (lambda () (get-buffer dashboard-buffer-name)))
-
   (require 'dashboard-ls)
-  (defun jcs--dashboard-insert-page-break--advice-before (&rest _)
-    "Re-new page separator."
-    (setq dashboard-page-separator (format "\n%s\n" (jcs-env-separator))))
-  (advice-add #'dashboard-insert-page-break :before #'jcs--dashboard-insert-page-break--advice-before)
-
   (dashboard-setup-startup-hook))
 
 (leaf dashboard-ls
