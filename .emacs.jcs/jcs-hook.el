@@ -140,8 +140,6 @@
     (global-diff-hl-mode 1)
     ;;----------------------------------- `docstr'
     (global-docstr-mode 1)
-    ;;----------------------------------- `goto-address'
-    (goto-address-mode t)
     ;;----------------------------------- `hl-line'
     (global-hl-line-mode 1)
     ;;----------------------------------- `hl-todo'
