@@ -39,8 +39,7 @@
 
 (leaf browse-kill-ring
   :init
-  (setq browse-kill-ring-separator (jcs-env-separator)
-        browse-kill-ring-separator-face 'font-lock-comment-face)
+  (setq browse-kill-ring-separator-face 'font-lock-comment-face)
   :defer-config
   (defun jcs--browse-kill-ring-mode-hook ()
     "Hook for `browse-kill-ring-mode'."
