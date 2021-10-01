@@ -11,7 +11,7 @@
 ;; NOTE: Add `GNU', `MELPA', `Marmalade', `ELPA' to repository list
 (setq package-archives
       '(("celpa" . "https://celpa.conao3.com/packages/")
-        ("gnu" . "http://elpa.gnu.org/packages/")
+        ("gnu" . "https://elpa.gnu.org/packages/")
         ;;("marmalade" . "http://marmalade-repo.org/packages/")
         ("melpa" . "https://melpa.org/packages/")))
 
