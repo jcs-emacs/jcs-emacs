@@ -13,7 +13,7 @@
       '(("celpa" . "https://celpa.conao3.com/packages/")
         ("gnu" . "http://elpa.gnu.org/packages/")
         ;;("marmalade" . "http://marmalade-repo.org/packages/")
-        ("melpa" . "http://melpa.org/packages/")))
+        ("melpa" . "https://melpa.org/packages/")))
 
 ;; To avoid initializing twice
 (setq package-enable-at-startup nil)
