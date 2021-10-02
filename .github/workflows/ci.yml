@@ -51,6 +51,9 @@ jobs:
     - name: Copy configuration files
       run: ./scripts/copy_config.bat
 
+    - name: Check ability to connect to MELPA
+      run: curl -i https://melpa.org/packages/archive-contents
+
     - name: Check startup
       run:
         make startup
