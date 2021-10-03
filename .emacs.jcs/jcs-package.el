@@ -21,8 +21,6 @@
 ;; Disable check signature while installing packages.
 (setq package-check-signature nil)
 
-(setq network-security-level 'low)
-
 ;; initialize package.el
 (when (featurep 'esup-child)
   (package-initialize))
