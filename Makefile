@@ -15,11 +15,11 @@ ENTRY="(progn															 \
 	  (user-emacs-directory default-directory)							 \
 	  (user-init-file (expand-file-name \"~/build.el\"))				 \
 	  (load-path (delq default-directory load-path))					 \
-	  (network-security-level 'low))									 \
+	  (network-security-level (quote low)))								 \
   (load-file user-init-file)											 \
   (run-hooks (quote after-init-hook))									 \
-  (run-hooks (quote emacs-startup-hook)))								 \
-  (jcs-emacs-version))"
+  (run-hooks (quote emacs-startup-hook))								 \
+  (jcs-emacs-version)))"
 
 startup:
 	@$(EMACS) -nw --batch --eval $(ENTRY)
