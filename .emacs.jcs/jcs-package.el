@@ -147,7 +147,6 @@
     lsp-latex
     lsp-ltex
     lsp-mssql
-    lsp-origami
     lsp-pascal
     lsp-pyright
     lsp-sourcekit
@@ -213,8 +212,7 @@
   "List of packages this config needs.")
 
 (defconst jcs-package-pinned
-  '((company-box . celpa)
-    (origami     . celpa))
+  '((company-box . celpa))
   "List of pinned packages to a specific source.")
 
 ;;
