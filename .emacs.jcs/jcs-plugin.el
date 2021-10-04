@@ -277,6 +277,7 @@
       (shift-select-minor-mode . shift-select)
       (show-eol-mode . show-eol)
       (tree-sitter-mode . tree-sitter)
+      (tree-sitter-fold-mode . tree-sitter-fold)
       (un-mini-mode . un-mini)
       (undo-tree-mode . undo-tree)
       (view-mode . view)
@@ -767,17 +768,17 @@
     "Hook runs after meta-view buffer insertion."
     (jcs-prog-mode-hook)
     (display-line-numbers-mode 1)
-    (setq-local origami-show-summary nil)
+    (setq-local tree-sitter-fold-summary-show nil)
     (jcs-save-excursion  ; fold all comments
       (goto-char (point-min))
-      (call-interactively #'origami-close-node)
+      (call-interactively #'tree-sitter-fold-close)
       (let (continuation)
         (while (not (eobp))
           (forward-line 1)
           (end-of-line)
           (if (jcs-inside-comment-p)
               (unless continuation
-                (call-interactively #'origami-close-node)
+                (call-interactively #'tree-sitter-fold-close)
                 (setq continuation t))
             (setq continuation nil))))))
   (add-hook 'meta-view-after-insert-hook #'jcs--meta-view-after-insert-hook))
@@ -839,32 +840,6 @@
          (move-to-column cur-column)
          (mc/create-fake-cursor-at-point)))))
   (advice-add 'mc/mark-lines :override #'jcs--mc/mark-lines))
-
-(leaf origami
-  :init
-  (setq origami-indicators-fringe 'left-fringe
-        origami-indicators-time 0.2
-        origami-indicators-face-function #'jcs--origami-indicators-face-function)
-  :defer-config
-  (require 'line-reminder)
-  (defun jcs--origami-indicators-face-function (pos &rest _)
-    "Return the face of it's function."
-    (let ((ln (line-number-at-pos pos)))
-      (cond
-       ((jcs-contain-list-integer line-reminder--change-lines ln)
-        'line-reminder-modified-sign-face)
-       ((jcs-contain-list-integer line-reminder--saved-lines ln)
-        'line-reminder-saved-sign-face)
-       (t nil))))
-
-  (defun jcs--origami-indicators--refresh ()
-    "Refresh indicators for package `origmai'."
-    (when origami-indicators-mode (origami-indicators--refresh (current-buffer))))
-  (advice-add 'line-reminder-transfer-to-saved-lines :after #'jcs--origami-indicators--refresh)
-
-  (set-face-attribute 'origami-fold-replacement-face nil
-                      :foreground "#808080"
-                      :box '(:line-width -1 :style 'pressed-button)))
 
 (leaf popup
   :defer-config
@@ -1031,10 +1006,9 @@
   ;; etc.
   (setq sql-indent-offset 1))
 
-(leaf tree-sitter
+(leaf tree-sitter-langs
+  :hook (tree-sitter-after-on-hook . tree-sitter-hl-mode)
   :defer-config
-  (require 'tree-sitter-langs)
-  (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
   (jcs-funcall-fboundp #'jcs-reset-common-faces-by-theme)
 
   (defconst jcs--tree-sitter-langs--query-repo
@@ -1073,6 +1047,32 @@
     (jcs--tree-sitter-grab-queries)
     (tree-sitter-hl-mode 1))  ; re-enable it once
   (add-hook 'tree-sitter-hl-mode-hook #'jcs--tree-sitter-hl-mode-hook))
+
+(leaf tree-sitter-fold
+  :hook (tree-sitter-after-on-hook . tree-sitter-fold-indicators-mode)
+  :init
+  (setq tree-sitter-fold-indicators-fringe 'left-fringe
+        tree-sitter-fold-indicators-face-function #'jcs--tree-sitter-fold-indicators-face-function)
+  :defer-config
+  (require 'line-reminder)
+  (defun jcs--tree-sitter-fold-indicators-face-function (pos &rest _)
+    "Return the face of it's function."
+    (let ((ln (line-number-at-pos pos)))
+      (cond
+       ((jcs-contain-list-integer line-reminder--change-lines ln)
+        'line-reminder-modified-sign-face)
+       ((jcs-contain-list-integer line-reminder--saved-lines ln)
+        'line-reminder-saved-sign-face)
+       (t nil))))
+
+  (defun jcs--tree-sitter-fold-indicators--refresh ()
+    "Refresh indicators for package `tree-sitter-fold'."
+    (tree-sitter-fold-indicators-refresh))
+  (advice-add 'line-reminder-transfer-to-saved-lines :after #'jcs--tree-sitter-fold-indicators--refresh)
+
+  (set-face-attribute 'tree-sitter-fold-replacement-face nil
+                      :foreground "#808080"
+                      :box '(:line-width -1 :style 'pressed-button)))
 
 (leaf treemacs
   :init
