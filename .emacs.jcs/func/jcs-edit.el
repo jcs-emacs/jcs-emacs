@@ -1441,24 +1441,24 @@ Otherwise return nil."
 (defun jcs-close-all-nodes ()
   "Close all nodes in current file."
   (interactive)
-  (call-interactively #'origami-close-all-nodes))
+  (call-interactively #'tree-sitter-fold-close-all))
 
 (defun jcs-open-all-nodes ()
   "Open all nodes in current file."
   (interactive)
-  (call-interactively #'origami-open-all-nodes))
+  (call-interactively #'tree-sitter-fold-open-all))
 
 (defun jcs-close-node ()
   "Close the current scope of the node."
   (interactive)
-  (call-interactively #'origami-close-node))
+  (call-interactively #'tree-sitter-fold-close))
 
 (defun jcs-open-node ()
   "Open the current scope of the node."
   (interactive)
   (let ((before-pt (jcs-point-at-pos (beginning-of-visual-line)))
         after-pt)
-    (call-interactively #'origami-open-node)
+    (call-interactively #'tree-sitter-fold-open)
     (setq after-pt (jcs-point-at-pos (beginning-of-visual-line)))
     (unless (= after-pt before-pt)
       (goto-char before-pt)
