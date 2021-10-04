@@ -700,7 +700,7 @@ the character the same as C."
 
 (defun jcs-current-char-string-match-p (c)
   "Check the current character string match to C."
-  (if (jcs-is-beginning-of-buffer-p)
+  (if (bobp)
       ;; No character at the beginning of the buffer, just return `nil'.
       nil
     (string-match-p c (jcs-get-current-char-string))))
@@ -718,7 +718,7 @@ the character the same as C."
 BND-PT : limit point."
   (interactive)
   (unless bnd-pt (setq bnd-pt (point-min)))
-  (unless (jcs-is-beginning-of-buffer-p)
+  (unless (bobp)
     (forward-char -1)
     (while (and (>= (point) bnd-pt)
                 (or (jcs-current-whitespace-or-tab-p) (jcs-is-beginning-of-line-p)))
@@ -942,10 +942,6 @@ Returns nil, the word isn't the same."
   "Check if it's at the beginning of line."
   (= (current-column) 0))
 
-(defun jcs-is-beginning-of-buffer-p ()
-  "Check if it's at the beginning of buffer."
-  (bobp))
-
 (defun jcs-is-end-of-line-p ()
   "Check if it's at the end of line."
   (= (point) (jcs-get-end-of-line-point)))
@@ -957,8 +953,8 @@ Returns nil, the word isn't the same."
 (defun jcs-is-current-file-empty-p (&optional fn)
   "Check if the FN an empty file."
   (if fn (with-current-buffer fn
-           (and (jcs-is-beginning-of-buffer-p) (jcs-is-end-of-buffer-p)))
-    (and (jcs-is-beginning-of-buffer-p) (jcs-is-end-of-buffer-p))))
+           (and (bobp) (jcs-is-end-of-buffer-p)))
+    (and (bobp) (jcs-is-end-of-buffer-p))))
 
 (defun jcs-get-current-line-integer ()
   "Get the current line as integer."
@@ -1177,7 +1173,7 @@ Return nil, there is no region selected and mark is not active."
         (jcs-goto-start-comment)
         (progn  ; Make sure to go outside of symbol
           (re-search-backward "[ \t\r\n]" nil t)
-          (unless (jcs-is-beginning-of-buffer-p) (forward-char 1)))
+          (unless (bobp) (forward-char 1)))
         (setq start-pt (point))
         (re-search-forward comment-start-skip (1+ (line-end-position)) t)
         (if (= start-pt (point)) nil

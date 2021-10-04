@@ -1209,7 +1209,7 @@ other window."
 
 (defun jcs-backward-delete-open-pair-char (opc)
   "Backward delete open pair characters OPC."
-  (when (and opc (not (jcs-is-beginning-of-buffer-p)))
+  (when (and opc (not (bobp)))
     (save-excursion
       (when (jcs-current-char-equal-p opc)
         (backward-delete-char 1)))))

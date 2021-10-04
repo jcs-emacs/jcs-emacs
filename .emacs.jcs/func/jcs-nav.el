@@ -219,7 +219,7 @@ Just use this without remember Emacs Lisp function."
   (interactive)
   (let ((max-pt -1))
     (save-excursion (jcs-smart-backward-word) (setq max-pt (1+ (point))))
-    (while (and (not (jcs-is-beginning-of-buffer-p))
+    (while (and (not (bobp))
                 (not (jcs-current-char-uppercasep))
                 (> (point) max-pt))
       (backward-char 1))
@@ -369,7 +369,7 @@ next hit use this version instead."
   "Move backward to a character CH, can be regular expression."
   (ignore-errors
     (while (and (not (string-match-p ch (jcs-get-current-char-string)))
-                (not (jcs-is-beginning-of-buffer-p)))
+                (not (bobp)))
       (backward-char 1))
     (backward-char 1)))
 
@@ -384,7 +384,7 @@ next hit use this version instead."
   "Move backward to a WORD."
   (backward-word 1)
   (while (and (not (jcs-current-word-equal-p word))
-              (not (jcs-is-beginning-of-buffer-p)))
+              (not (bobp)))
     (backward-word 1)))
 
 ;; TODO: The naming logic here is very weird..
@@ -461,7 +461,7 @@ CH : character we target to move toward."
           start-pt (point))
     (jcs-move-to-backward-a-char ch)
 
-    (when (jcs-is-beginning-of-buffer-p)
+    (when (bobp)
       (setq jcs-search-trigger-backward-char t)
       (goto-char start-pt)
       (message "%s %s"
