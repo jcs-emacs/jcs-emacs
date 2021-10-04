@@ -374,8 +374,7 @@ If ACT is non-nil; then make scroll less jumpy."
 (leaf so-long
   :defer-config
   (defconst jcs-so-long-minor-modes
-    '(line-reminder-mode
-      origami-mode)
+    '(line-reminder-mode)
     "List of disabled minor modes for `so-long' buffer.")
   (setq so-long-minor-modes (append so-long-minor-modes jcs-so-long-minor-modes)))
 
