@@ -729,7 +729,7 @@ BND-PT : limit point."
 BND-PT : boundary point."
   (interactive)
   (unless bnd-pt (setq bnd-pt (point-max)))
-  (unless (jcs-is-end-of-buffer-p)
+  (unless (eobp)
     (forward-char 1)
     (while (and (<= (point) bnd-pt)
                 (or (jcs-current-whitespace-or-tab-p) (jcs-is-beginning-of-line-p)))
@@ -946,15 +946,11 @@ Returns nil, the word isn't the same."
   "Check if it's at the end of line."
   (= (point) (jcs-get-end-of-line-point)))
 
-(defun jcs-is-end-of-buffer-p ()
-  "Check if it's at the end of buffer."
-  (= (point) (point-max)))
-
 (defun jcs-is-current-file-empty-p (&optional fn)
   "Check if the FN an empty file."
   (if fn (with-current-buffer fn
-           (and (bobp) (jcs-is-end-of-buffer-p)))
-    (and (bobp) (jcs-is-end-of-buffer-p))))
+           (and (bobp) (eobp)))
+    (and (bobp) (eobp))))
 
 (defun jcs-get-current-line-integer ()
   "Get the current line as integer."

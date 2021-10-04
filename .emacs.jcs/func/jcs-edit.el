@@ -1201,7 +1201,7 @@ other window."
 
 (defun jcs-forward-delete-close-pair-char (cpc)
   "Forward delete close pair characters CPC."
-  (when (and cpc (not (jcs-is-end-of-buffer-p)))
+  (when (and cpc (not (eobp)))
     (save-excursion
       (forward-char 1)
       (when (jcs-current-char-equal-p cpc)

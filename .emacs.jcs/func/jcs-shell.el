@@ -181,8 +181,7 @@
 (defun jcs-shell-up-key ()
   "Shell mode up key."
   (interactive)
-  (if (or (jcs-shell-is-current-on-command)
-          (jcs-is-end-of-buffer-p))
+  (if (or (jcs-shell-is-current-on-command) (eobp))
       (comint-previous-input 1)
     (jcs-previous-line))
   (when (jcs-last-line-in-buffer-p)
@@ -191,8 +190,7 @@
 (defun jcs-shell-down-key ()
   "Shell mode down key."
   (interactive)
-  (if (or (jcs-shell-is-current-on-command)
-          (jcs-is-end-of-buffer-p))
+  (if (or (jcs-shell-is-current-on-command) (eobp))
       (comint-next-input 1)
     (jcs-next-line))
   (when (jcs-last-line-in-buffer-p)

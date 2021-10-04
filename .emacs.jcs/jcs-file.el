@@ -49,9 +49,9 @@ NOT-OW : Default is other window, not other window."
       (insert buf-str)
       ;; NOTE: Start swapping html:src url path.
       (goto-char (point-min))
-      (while (not (jcs-is-end-of-buffer-p))
+      (while (not (eobp))
         (jcs-move-to-forward-a-word "src")
-        (unless (jcs-is-end-of-buffer-p)
+        (unless (eobp)
           (forward-char 2)
           (let ((start-ch (jcs-get-current-char-string))
                 (start-pt (point)) (end-pt -1)

@@ -231,7 +231,7 @@ Just use this without remember Emacs Lisp function."
   (let ((max-pt -1))
     (save-excursion (jcs-smart-forward-word) (setq max-pt (point)))
     (forward-char 1)
-    (while (and (not (jcs-is-end-of-buffer-p))
+    (while (and (not (eobp))
                 (not (jcs-current-char-uppercasep))
                 (< (point) max-pt))
       (forward-char 1))))
@@ -362,7 +362,7 @@ next hit use this version instead."
   (ignore-errors
     (forward-char 1)
     (while (and (not (string-match-p ch (jcs-get-current-char-string)))
-                (not (jcs-is-end-of-buffer-p)))
+                (not (eobp)))
       (forward-char 1))))
 
 (defun jcs-move-to-backward-a-char (ch)
@@ -377,7 +377,7 @@ next hit use this version instead."
   "Move forward to a WORD."
   (forward-word 1)
   (while (and (not (jcs-current-word-equal-p word))
-              (not (jcs-is-end-of-buffer-p)))
+              (not (eobp)))
     (forward-word 1)))
 
 (defun jcs-move-to-backward-a-word (word)
@@ -440,7 +440,7 @@ CH : character we target to move toward."
           start-pt (point))
     (jcs-move-to-forward-a-char ch)
 
-    (when (jcs-is-end-of-buffer-p)
+    (when (eobp)
       (setq jcs-search-trigger-forward-char t)
       (goto-char start-pt)
       (message "%s %s"
