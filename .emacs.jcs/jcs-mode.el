@@ -297,7 +297,6 @@ Note this is opposite logic to the toggle mode function."
   (electric-pair-mode 1)
   (goto-address-mode 1)
   (highlight-indent-guides-mode 1)
-  (origami-indicators-mode 1)
 
   (jcs-active-project-mode-hook))
 
