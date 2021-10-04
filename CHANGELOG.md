@@ -32,6 +32,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Improve a bit of startup time.
 * Reconstruct function modules to speed up startup time.
 * Customize `dashboard` so it no longer using `page-break-lines` to show separators.
+* Removed package `origami.el`.
+* Installed new package `tree-sitter-fold`.
 
 ## 6.5.0
 > Released Jul 17, 2021
