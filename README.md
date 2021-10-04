@@ -299,7 +299,7 @@ kind of methods that you could support the maintainer you want.
 * *Execute Commands* - powered by [compile](https://www.emacswiki.org/emacs/CompilationMode).
 * *File Explorer* - powered by [treemacs](https://github.com/Alexander-Miller/treemacs).
 * *File Header* - powered by [file-header](https://github.com/alt-elpa/file-header).
-* *Folding/Unfolding* - powered by [origami](https://github.com/gregsexton/origami.el).
+* *Folding/Unfolding* - powered by [tree-sitter-fold](https://github.com/jcs090218/tree-sitter-foldl).
 * *Font* - powered by [use-ttf](https://github.com/elpa-host/use-ttf).
 * *Goto Char* - powered by [goto-char-preview](https://github.com/elpa-host/goto-char-preview).
 * *Goto Declaration/Definition* - powered by [dumb-jump](https://github.com/jacktasia/dumb-jump).
