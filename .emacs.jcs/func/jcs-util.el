@@ -1169,7 +1169,7 @@ Return nil, there is no region selected and mark is not active."
         (jcs-goto-start-comment)
         (progn  ; Make sure to go outside of symbol
           (re-search-backward "[ \t\r\n]" nil t)
-          (unless (bobp) (forward-char 1)))
+          (when (= (point) (line-end-position)) (forward-char 1)))
         (setq start-pt (point))
         (re-search-forward comment-start-skip (1+ (line-end-position)) t)
         (if (= start-pt (point)) nil
