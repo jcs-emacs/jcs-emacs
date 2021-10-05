@@ -1451,18 +1451,24 @@ Otherwise return nil."
 (defun jcs-close-node ()
   "Close the current scope of the node."
   (interactive)
-  (call-interactively #'tree-sitter-fold-close))
+  (save-excursion
+    (end-of-line)
+    (when (jcs-inside-comment-p) (back-to-indentation))
+    (call-interactively #'tree-sitter-fold-close)))
 
 (defun jcs-open-node ()
   "Open the current scope of the node."
   (interactive)
-  (let ((before-pt (jcs-point-at-pos (beginning-of-visual-line)))
-        after-pt)
-    (call-interactively #'tree-sitter-fold-open)
-    (setq after-pt (jcs-point-at-pos (beginning-of-visual-line)))
-    (unless (= after-pt before-pt)
-      (goto-char before-pt)
-      (end-of-line))))
+  (save-excursion
+    (end-of-line)
+    (when (jcs-inside-comment-p) (back-to-indentation))
+    (let ((before-pt (jcs-point-at-pos (beginning-of-visual-line)))
+          after-pt)
+      (call-interactively #'tree-sitter-fold-open)
+      (setq after-pt (jcs-point-at-pos (beginning-of-visual-line)))
+      (unless (= after-pt before-pt)
+        (goto-char before-pt)
+        (end-of-line)))))
 
 (provide 'jcs-edit)
 ;;; jcs-edit.el ends here
