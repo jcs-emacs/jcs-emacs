@@ -189,6 +189,11 @@ in order to take effect.  Half hot reloading process."
   "Template for ActionScript."
   (jcs--file-header--insert "actionscript" "default.txt"))
 
+;;; Agda
+(defun jcs-insert-agda-template ()
+  "Template for Agda."
+  (jcs--file-header--insert "agda" "default.txt"))
+
 ;;; AppleScript
 (defun jcs-insert-applescript-template ()
   "Template for AppleScript."
