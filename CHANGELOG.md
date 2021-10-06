@@ -34,6 +34,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Customize `dashboard` so it no longer using `page-break-lines` to show separators.
 * Removed package `origami.el`.
 * Installed new package `tree-sitter-fold`.
+* Installed new package `agda2-mode`.
 
 ## 6.5.0
 > Released Jul 17, 2021
