@@ -1441,34 +1441,42 @@ Otherwise return nil."
 (defun jcs-close-all-nodes ()
   "Close all nodes in current file."
   (interactive)
-  (call-interactively #'tree-sitter-fold-close-all))
+  (tree-sitter-fold-close-all))
 
 (defun jcs-open-all-nodes ()
   "Open all nodes in current file."
   (interactive)
-  (call-interactively #'tree-sitter-fold-open-all))
+  (tree-sitter-fold-open-all))
 
-(defun jcs-close-node ()
-  "Close the current scope of the node."
-  (interactive)
+(defun jcs-vs-close-node ()
+  "Close node at the end of line, inspired from Visual Studio."
   (save-excursion
     (end-of-line)
     (when (jcs-inside-comment-p) (back-to-indentation))
-    (call-interactively #'tree-sitter-fold-close)))
+    (tree-sitter-fold-close)))
 
-(defun jcs-open-node ()
-  "Open the current scope of the node."
-  (interactive)
+(defun jcs-vs-open-node ()
+  "Open node at the end of line, inspired from Visual Studio."
   (save-excursion
     (end-of-line)
     (when (jcs-inside-comment-p) (back-to-indentation))
     (let ((before-pt (jcs-point-at-pos (beginning-of-visual-line)))
           after-pt)
-      (call-interactively #'tree-sitter-fold-open)
+      (tree-sitter-fold-open)
       (setq after-pt (jcs-point-at-pos (beginning-of-visual-line)))
       (unless (= after-pt before-pt)
         (goto-char before-pt)
         (end-of-line)))))
+
+(defun jcs-close-node ()
+  "Close the current scope of the node."
+  (interactive)
+  (or (jcs-vs-close-node) (tree-sitter-fold-close)))
+
+(defun jcs-open-node ()
+  "Open the current scope of the node."
+  (interactive)
+  (or (jcs-vs-open-node) (tree-sitter-fold-open)))
 
 (provide 'jcs-edit)
 ;;; jcs-edit.el ends here
