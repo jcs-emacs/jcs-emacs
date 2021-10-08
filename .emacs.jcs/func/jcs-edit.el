@@ -849,6 +849,7 @@ other window."
   (let ((current-bfn (buffer-file-name)))
     (when current-bfn
       (jcs-save-window-excursion (jcs-kill-this-buffer))
+      (jcs-undo-kill-this-buffer)
       (message "Reopened file => '%s'" current-bfn))))
 
 ;;
