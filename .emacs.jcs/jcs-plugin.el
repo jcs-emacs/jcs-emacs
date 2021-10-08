@@ -1059,10 +1059,8 @@
     "Return the face of it's function."
     (let ((ln (line-number-at-pos pos)))
       (cond
-       ((jcs-contain-list-integer line-reminder--change-lines ln)
-        'line-reminder-modified-sign-face)
-       ((jcs-contain-list-integer line-reminder--saved-lines ln)
-        'line-reminder-saved-sign-face)
+       ((memq ln line-reminder--change-lines) 'line-reminder-modified-sign-face)
+       ((memq ln line-reminder--saved-lines) 'line-reminder-saved-sign-face)
        (t nil))))
 
   (defun jcs--tree-sitter-fold-indicators--refresh ()
