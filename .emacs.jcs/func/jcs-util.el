@@ -1370,10 +1370,6 @@ This function uses `string-match-p'.
 This function wrapped IN-STR with function `regexp-quote'."
   (cl-some (lambda (elm) (string-match-p (regexp-quote elm) in-str)) in-list))
 
-(defun jcs-contain-list-integer (in-list in-int)
-  "Return non-nil if IN-INT is listed in IN-LIST."
-  (cl-some (lambda (elm) (= elm in-int)) in-list))
-
 (defun jcs-contain-list-type-str (in-list in-str type)
   "Return non-nil if IN-STR is listed in IN-LIST.
 
