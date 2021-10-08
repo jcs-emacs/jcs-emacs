@@ -34,7 +34,6 @@
   '(0xc
     actionscript-mode
     adaptive-wrap
-    agda2-mode
     alt-codes
     apache-mode
     applescript-mode
