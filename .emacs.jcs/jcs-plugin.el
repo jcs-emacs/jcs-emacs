@@ -102,6 +102,8 @@
          '(company-etags company-gtags)
          '(company-yasnippet)))
   :defer-config
+  (unless (display-graphic-p)
+    (push 'company-echo-metadata-frontend company-frontends))
   (with-eval-after-load 'company (require 'jcs-company) (global-company-mode t)))
 
 (leaf company-box
