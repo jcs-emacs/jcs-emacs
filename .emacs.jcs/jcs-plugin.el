@@ -83,8 +83,7 @@
 
 (leaf company
   :init
-  (setq company-frontends '(company-pseudo-tooltip-frontend
-                            company-echo-metadata-frontend)
+  (setq company-frontends '(company-pseudo-tooltip-frontend)
         company-require-match nil
         company-tooltip-align-annotations t
         company-dabbrev-downcase nil
