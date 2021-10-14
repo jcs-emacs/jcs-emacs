@@ -1208,7 +1208,8 @@
 
 (leaf yascroll
   :init
-  (setq yascroll:delay-to-hide 0.8))
+  (setq yascroll:delay-to-hide 0.8
+        yascroll:priority 50))
 
 (leaf yasnippet
   :defer-config
