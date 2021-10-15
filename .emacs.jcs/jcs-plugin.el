@@ -710,7 +710,8 @@
 
 (leaf line-reminder
   :init
-  (setq line-reminder-show-option (if (display-graphic-p) 'indicators 'linum))
+  (setq line-reminder-show-option (if (display-graphic-p) 'indicators 'linum)
+        line-reminder-thumbnail t)
   (unless (display-graphic-p)
     (setq line-reminder-saved-sign " |"
           line-reminder-modified-sign " |")))
@@ -1058,11 +1059,7 @@
   (require 'line-reminder)
   (defun jcs--tree-sitter-fold-indicators-face-function (pos &rest _)
     "Return the face of it's function."
-    (let ((ln (line-number-at-pos pos)))
-      (cond
-       ((memq ln line-reminder--change-lines) 'line-reminder-modified-sign-face)
-       ((memq ln line-reminder--saved-lines) 'line-reminder-saved-sign-face)
-       (t nil))))
+    (let ((line (line-number-at-pos pos t))) (line-reminder--get-face line)))
 
   (defun jcs--tree-sitter-fold-indicators--refresh ()
     "Refresh indicators for package `tree-sitter-fold'."
