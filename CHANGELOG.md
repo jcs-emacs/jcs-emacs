@@ -35,8 +35,6 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Removed package `origami.el`.
 * Installed new package `tree-sitter-fold`.
 * Terminate `undo-tree` visualizer buffer after reopening the buffer.
-* Installed new package `sublime-fuzzy`.
-* Change company fuzzy backend to `sublime-fuzzy` instead of `flx`.
 
 ## 6.5.0
 > Released Jul 17, 2021
