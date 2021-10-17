@@ -886,13 +886,18 @@
   (setq powerline-default-separator 'wave)
   :defer-config
   (defun jcs--powerline-raw--advice-around (fnc &rest args)
-    "Advice execute around function `powerline-raw'."
+    "Execute around function `powerline-raw'."
     (let ((str (nth 0 args)))
       (when (stringp str)
         (setq str (jcs-s-replace-displayable str))
         (setf (nth 0 args) str)))
     (apply fnc args))
   (advice-add 'powerline-raw :around #'jcs--powerline-raw--advice-around)
+
+  (defun jcs--powerline-set-selected-window--advice-around (fnc &rest args)
+    "Execute around function `powerline-set-selected-window'."
+    (when mode-line-format (apply fnc args)))
+  (advice-add 'powerline-set-selected-window :around #'jcs--powerline-set-selected-window--advice-around)
 
   ;; Override
   (defpowerline powerline-vc
