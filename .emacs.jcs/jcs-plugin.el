@@ -308,7 +308,8 @@
          '("[*]emacs[*]")  ; From `async'
          '("[*]lsp-" "[*]LSP[ ]+"
            "[*][a-zA-Z0-9]+[-]*ls" "[*][a-zA-Z0-9]+::stderr[*]"
-           "[*]csharp[*]")  ; From `lsp'
+           "[*]csharp[*]"
+           "[*]rust-analyzer[*:]")  ; From `lsp'
          '("[*]tree-sitter" "tree-sitter-tree:")
          '("[*]company")
          '("[*]Local Variables[*]")
