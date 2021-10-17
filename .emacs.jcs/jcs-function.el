@@ -49,7 +49,10 @@
             (jcs-hit-backtrace)
             (setq jcs-backtrace--occurs-last-command t)
             (jcs-backtrace--ensure-stay-in-buffer)
-            (unless jcs-backtrace--dedicated-window
+            (if jcs-backtrace--dedicated-window
+                (when (and (not (eq (selected-window) jcs-backtrace--dedicated-window))
+                           (jcs-buffer-shown-in-multiple-window-p jcs-backtrace-buffer-name))
+                  (jcs-maybe-kill-this-buffer))
               (setq jcs-backtrace--dedicated-window (get-buffer-window jcs-backtrace-buffer-name)))))
       (when jcs-backtrace--occurs-last-command
         (jcs-reload-active-mode)
