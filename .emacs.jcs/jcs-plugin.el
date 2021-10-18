@@ -278,7 +278,7 @@
       (shift-select-minor-mode . shift-select)
       (show-eol-mode . show-eol)
       (tree-sitter-mode . tree-sitter)
-      (tree-sitter-fold-mode . tree-sitter-fold)
+      (ts-fold-mode . ts-fold)
       (un-mini-mode . un-mini)
       (undo-tree-mode . undo-tree)
       (view-mode . view)
@@ -771,17 +771,17 @@
     "Hook runs after meta-view buffer insertion."
     (jcs-prog-mode-hook)
     (display-line-numbers-mode 1)
-    (setq-local tree-sitter-fold-summary-show nil)
+    (setq-local ts-fold-summary-show nil)
     (jcs-save-excursion  ; fold all comments
       (goto-char (point-min))
-      (call-interactively #'tree-sitter-fold-close)
+      (call-interactively #'ts-fold-close)
       (let (continuation)
         (while (not (eobp))
           (forward-line 1)
           (end-of-line)
           (if (jcs-inside-comment-p)
               (unless continuation
-                (call-interactively #'tree-sitter-fold-close)
+                (call-interactively #'ts-fold-close)
                 (setq continuation t))
             (setq continuation nil))))))
   (add-hook 'meta-view-after-insert-hook #'jcs--meta-view-after-insert-hook))
@@ -1056,23 +1056,23 @@
     (tree-sitter-hl-mode 1))  ; re-enable it once
   (add-hook 'tree-sitter-hl-mode-hook #'jcs--tree-sitter-hl-mode-hook))
 
-(leaf tree-sitter-fold
-  :hook (tree-sitter-after-on-hook . tree-sitter-fold-indicators-mode)
+(leaf ts-fold
+  :hook (tree-sitter-after-on-hook . ts-fold-indicators-mode)
   :init
-  (setq tree-sitter-fold-indicators-fringe 'left-fringe
-        tree-sitter-fold-indicators-face-function #'jcs--tree-sitter-fold-indicators-face-function)
+  (setq ts-fold-indicators-fringe 'left-fringe
+        ts-fold-indicators-face-function #'jcs--ts-fold-indicators-face-function)
   :defer-config
   (require 'line-reminder)
-  (defun jcs--tree-sitter-fold-indicators-face-function (pos &rest _)
+  (defun jcs--ts-fold-indicators-face-function (pos &rest _)
     "Return the face of it's function."
     (let ((line (line-number-at-pos pos t))) (line-reminder--get-face line)))
 
-  (defun jcs--tree-sitter-fold-indicators--refresh ()
-    "Refresh indicators for package `tree-sitter-fold'."
-    (tree-sitter-fold-indicators-refresh))
-  (advice-add 'line-reminder-transfer-to-saved-lines :after #'jcs--tree-sitter-fold-indicators--refresh)
+  (defun jcs--ts-fold-indicators--refresh ()
+    "Refresh indicators for package `ts-fold'."
+    (ts-fold-indicators-refresh))
+  (advice-add 'line-reminder-transfer-to-saved-lines :after #'jcs--ts-fold-indicators--refresh)
 
-  (set-face-attribute 'tree-sitter-fold-replacement-face nil
+  (set-face-attribute 'ts-fold-replacement-face nil
                       :foreground "#808080"
                       :box '(:line-width -1 :style 'pressed-button)))
 
