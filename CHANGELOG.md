@@ -33,7 +33,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Reconstruct function modules to speed up startup time.
 * Customize `dashboard` so it no longer using `page-break-lines` to show separators.
 * Removed package `origami.el`.
-* Installed new package `tree-sitter-fold`.
+* Installed new package `ts-fold`.
 * Terminate `undo-tree` visualizer buffer after reopening the buffer.
 * Limit `powerline` to apply only for the valid `mode-line-format` variable.
 
