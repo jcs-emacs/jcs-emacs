@@ -250,6 +250,7 @@ If optional argument WITH-EXT is non-nil; return path with extension."
 
 (defun jcs-f-directories-ignore-directories (path &optional rec)
   "Find all directories in PATH by ignored common directories with FN and REC."
+  (require 'dash)
   (let ((dirs (f-directories path)) (valid-dirs '()) (final-dirs '()))
     (dolist (dir dirs)
       (unless (jcs-contain-list-string project-vc-ignores (f-filename (f-slash dir)))
@@ -259,14 +260,15 @@ If optional argument WITH-EXT is non-nil; return path with extension."
         (push (jcs-f-directories-ignore-directories dir rec) final-dirs)))
     (setq valid-dirs (reverse valid-dirs)
           final-dirs (reverse final-dirs))
-    (jcs-flatten-list (append valid-dirs final-dirs))))
+    (-flatten (append valid-dirs final-dirs))))
 
 (defun jcs-f-files-ignore-directories (path &optional fn rec)
   "Find all files in PATH by ignored common directories with FN and REC."
+  (require 'dash)
   (let ((dirs (append (list path) (jcs-f-directories-ignore-directories path rec)))
         (files '()))
     (dolist (dir dirs) (push (f-files dir fn) files))
-    (jcs-flatten-list (reverse files))))
+    (-flatten (reverse files))))
 
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 ;; IMPORTANT: Keep core function at the top of this file.

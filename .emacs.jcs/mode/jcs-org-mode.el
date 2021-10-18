@@ -2,6 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
+(require'dash)
 (require 's)
 (require 'org)
 (require 'org-bullets)
@@ -113,7 +114,7 @@
 (defun jcs-org-smart-cycle ()
   "Try current cycle at point if available."
   (interactive)
-  (let ((keywords (jcs-flatten-list org-todo-keywords)))
+  (let ((keywords (-flatten org-todo-keywords)))
     (cond
      ((memq (thing-at-point 'word) keywords)
       (org-todo)

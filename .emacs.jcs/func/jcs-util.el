@@ -1198,8 +1198,9 @@ Return nil, there is no region selected and mark is not active."
 
 (defun jcs-get-faces-internal (pos)
   "Return the list of faces at this POS."
+  (require 'dash)
   (delete-dups
-   (jcs-flatten-list
+   (-flatten
     (remq nil
           (list
            (get-char-property pos 'read-face-name)
@@ -1317,14 +1318,6 @@ Return nil, there is no region selected and mark is not active."
       (setq max (jcs-length max) num (jcs-length num))
       (if max (when (> num max) (setq max num)) (setq max num)))
     max))
-
-(defun jcs-flatten-list (lst)
-  "Flatten the multiple dimensional array, LST to one dimensonal array.
-For instance, '(1 2 3 4 (5 6 7 8)) => '(1 2 3 4 5 6 7 8)."
-  (cond
-   ((null lst) nil)
-   ((atom lst) (list lst))
-   (t (append (jcs-flatten-list (car lst)) (jcs-flatten-list (cdr lst))))))
 
 (defun jcs-remove-nth-element (nth lst)
   "Remove NTH element from the LST and return the list."
