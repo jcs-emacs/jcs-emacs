@@ -92,6 +92,7 @@
     expand-region
     feebleline
     ffmpeg-player
+    file-header
     fill-page
     flx
     flycheck-grammarly
@@ -157,6 +158,7 @@
     masm-mode
     most-used-words
     move-text
+    multi-shell
     multiple-cursors
     nasm-mode
     nhexl-mode
@@ -195,6 +197,7 @@
     transwin
     tree-sitter-indent
     tree-sitter-langs
+    turbo-log
     typescript-mode
     undercover
     undo-tree
