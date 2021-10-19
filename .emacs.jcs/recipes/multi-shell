@@ -1,1 +1,0 @@
-(multi-shell :repo "jcs-elpa/multi-shell" :fetcher github)
