@@ -62,6 +62,7 @@
     company-c-headers
     company-emojify
     company-fuzzy
+    company-meta-net
     counsel
     csharp-mode
     csproj-mode
@@ -77,6 +78,7 @@
     dumb-jump
     editorconfig
     el-mock
+    eldoc-meta-net
     elisp-def
     elisp-demos
     elixir-mode
@@ -119,6 +121,7 @@
     highlight-escape-sequences
     highlight-indent-guides
     highlight-numbers
+    hl-preproc
     hl-todo
     htmltagwrap
     ialign
