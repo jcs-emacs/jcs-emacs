@@ -36,6 +36,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Installed new package `ts-fold`.
 * Terminate `undo-tree` visualizer buffer after reopening the buffer.
 * Limit `powerline` to apply only for the valid `mode-line-format` variable.
+* Installed new package `meta-view`.
+* Installed new package `eldoc-meta-net`.
+* Installed new package `company-meta-net`.
+* Installed new package `hl-preproc`.
 
 ## 6.5.0
 > Released Jul 17, 2021
