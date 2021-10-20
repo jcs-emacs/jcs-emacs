@@ -156,6 +156,7 @@
     manage-minor-mode-table
     markdown-toc
     masm-mode
+    meta-view
     most-used-words
     move-text
     multi-shell
