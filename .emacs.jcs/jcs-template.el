@@ -24,6 +24,7 @@ INTERACTIVE is boolean check if called function interactively instead.
 SUCCESS is callback after successfully inserted header content.
 FAILED is callback if does NOT successfully inserted header content."
   (require 'f)
+  (jcs-reload-file-info)
   (let (result)
     (when (and buffer-file-name
                (not (file-exists-p buffer-file-name))
@@ -38,38 +39,41 @@ FAILED is callback if does NOT successfully inserted header content."
 ;; (@* "Buffer String" )
 ;;
 
-(defvar jcs--preload-double-colon-file-info nil
+(defvar jcs-template--header-double-colon nil
   "Preload the double colon file info template.")
 
-(defvar jcs--preload-double-dash-file-info nil
+(defvar jcs-template--header-double-dash nil
   "Preload the double dash file info template.")
 
-(defvar jcs--preload-double-quote-file-info nil
+(defvar jcs-template--header-double-quote nil
   "Preload the double quote file info template.")
 
-(defvar jcs--preload-double-semicolon-file-info nil
+(defvar jcs-template--header-double-semicolon nil
   "Preload the double semicolon file info template.")
 
-(defvar jcs--preload-double-slash-file-info nil
+(defvar jcs-template--header-double-slash nil
   "Preload the double slash file info template.")
 
-(defvar jcs--preload-triple-slash-file-info nil
+(defvar jcs-template--header-triple-slash nil
   "Preload the triple slash file info template.")
 
-(defvar jcs--preload-global-file-info nil
+(defvar jcs-template--header-global nil
   "Preload the global file info template.")
 
-(defvar jcs--preload-sharp-file-info nil
+(defvar jcs-template--header-sharp nil
   "Preload the sharp file info template.")
 
-(defvar jcs--preload-semicolon-file-info nil
+(defvar jcs-template--header-semicolon nil
   "Preload the semicolon file info template.")
 
-(defvar jcs--preload-single-quote-file-info nil
+(defvar jcs-template--header-single-quote nil
   "Preload the single quote file info template.")
 
-(defvar jcs--preload-tag-file-info nil
+(defvar jcs-template--header-tag nil
   "Preload the tag file info template.")
+
+(defvar jcs-template--headers-loaded-p nil
+  "Return non-nil, if headers are loaded as cache.")
 
 
 (defun jcs-template-as-string (path)
@@ -77,103 +81,72 @@ FAILED is callback if does NOT successfully inserted header content."
   (require 'f)
   (jcs-get-string-from-file (f-join jcs-template-dir path)))
 
-(defun jcs-reload-file-info ()
-  "Reload the template once.
-If the template configuration file has change, this must be call
-in order to take effect.  Half hot reloading process."
+(defun jcs-reload-file-info (&optional force)
+  "Reload the header templates once.
+
+If optional argument FORCE is non-nil, refresh cache once."
   (interactive)
-  (setq jcs--preload-double-colon-file-info (jcs-template-as-string "__header/d_colon.txt")
-        jcs--preload-double-dash-file-info (jcs-template-as-string "__header/d_dash.txt")
-        jcs--preload-double-quote-file-info (jcs-template-as-string "__header/d_quote.txt")
-        jcs--preload-double-semicolon-file-info (jcs-template-as-string "__header/d_semicolon.txt")
-        jcs--preload-double-slash-file-info (jcs-template-as-string "__header/d_slash.txt")
-        jcs--preload-triple-slash-file-info (jcs-template-as-string "__header/t_slash.txt")
-        jcs--preload-global-file-info (jcs-template-as-string "__header/global.txt")
-        jcs--preload-semicolon-file-info (jcs-template-as-string "__header/semicolon.txt")
-        jcs--preload-sharp-file-info (jcs-template-as-string "__header/sharp.txt")
-        jcs--preload-single-quote-file-info (jcs-template-as-string "__header/singlequote.txt")
-        jcs--preload-tag-file-info (jcs-template-as-string "__header/tag.txt")))
+  (when (or force (null jcs-template--headers-loaded-p))
+    (setq jcs-template--header-double-colon (jcs-template-as-string "__header/d_colon.txt")
+          jcs-template--header-double-dash (jcs-template-as-string "__header/d_dash.txt")
+          jcs-template--header-double-quote (jcs-template-as-string "__header/d_quote.txt")
+          jcs-template--header-double-semicolon (jcs-template-as-string "__header/d_semicolon.txt")
+          jcs-template--header-double-slash (jcs-template-as-string "__header/d_slash.txt")
+          jcs-template--header-triple-slash (jcs-template-as-string "__header/t_slash.txt")
+          jcs-template--header-global (jcs-template-as-string "__header/global.txt")
+          jcs-template--header-semicolon (jcs-template-as-string "__header/semicolon.txt")
+          jcs-template--header-sharp (jcs-template-as-string "__header/sharp.txt")
+          jcs-template--header-single-quote (jcs-template-as-string "__header/singlequote.txt")
+          jcs-template--header-tag (jcs-template-as-string "__header/tag.txt")
+          jcs-template--headers-loaded-p t)))
 
 ;;
 ;; (@* "Header" )
 ;;
 
-(defun jcs-get-double-colon-file-info ()
+(defun jcs-template-header-double-colon ()
   "Return the preloaded double colon file info template."
-  (file-header-swap-keyword-template jcs--preload-double-colon-file-info))
-(defun jcs-insert-double-colon-file-info ()
-  "Specific header format for double semi-colon."
-  (insert (jcs-get-double-colon-file-info)))
+  (file-header-swap-keyword-template jcs-template--header-double-colon))
 
-(defun jcs-get-double-dash-file-info ()
+(defun jcs-template-header-double-dash ()
   "Return the preloaded double dash file info template."
-  (file-header-swap-keyword-template jcs--preload-double-dash-file-info))
-(defun jcs-insert-double-dash-file-info ()
-  "Specific header format for double dash."
-  (insert (jcs-get-double-dash-file-info)))
+  (file-header-swap-keyword-template jcs-template--header-double-dash))
 
-(defun jcs-get-double-quote-file-info ()
+(defun jcs-template-header-double-quote ()
   "Return the preloaded double quote file info template."
-  (file-header-swap-keyword-template jcs--preload-double-quote-file-info))
-(defun jcs-insert-double-quote-file-info ()
-  "Specific header format for double quote."
-  (insert (jcs-get-double-quote-file-info)))
+  (file-header-swap-keyword-template jcs-template--header-double-quote))
 
-(defun jcs-get-double-semicolon-file-info ()
+(defun jcs-template-header-double-semicolon ()
   "Return the preloaded double semicolon file info template."
-  (file-header-swap-keyword-template jcs--preload-double-semicolon-file-info))
-(defun jcs-insert-double-semicolon-file-info ()
-  "Specific header format for double semicolon."
-  (insert (jcs-get-double-semicolon-file-info)))
+  (file-header-swap-keyword-template jcs-template--header-double-semicolon))
 
-(defun jcs-get-double-slash-file-info ()
+(defun jcs-template-header-double-slash ()
   "Return the preloaded double slash file info template."
-  (file-header-swap-keyword-template jcs--preload-double-slash-file-info))
-(defun jcs-insert-double-slash-file-info ()
-  "Specific header format for double slash."
-  (insert (jcs-get-double-slash-file-info)))
+  (file-header-swap-keyword-template jcs-template--header-double-slash))
 
-(defun jcs-get-triple-slash-file-info ()
+(defun jcs-template-header-triple-slash ()
   "Return the preloaded triple slash file info template."
-  (file-header-swap-keyword-template jcs--preload-triple-slash-file-info))
-(defun jcs-insert-triple-slash-file-info ()
-  "Specific header format for triple slash."
-  (insert (jcs-get-triple-slash-file-info)))
+  (file-header-swap-keyword-template jcs-template--header-triple-slash))
 
-(defun jcs-get-global-file-info ()
+(defun jcs-template-header-global ()
   "Return the preloaded global file info template."
-  (file-header-swap-keyword-template jcs--preload-global-file-info))
-(defun jcs-insert-global-file-info ()
-  "Using '/*' '*/' for commenting programming languages."
-  (insert (jcs-get-global-file-info)))
+  (file-header-swap-keyword-template jcs-template--header-global))
 
-(defun jcs-get-semicolon-file-info ()
+(defun jcs-template-header-semicolon ()
   "Return the preloaded semicolon file info template."
-  (file-header-swap-keyword-template jcs--preload-semicolon-file-info))
-(defun jcs-insert-semicolon-file-info ()
-  "Specific header format for semicolon."
-  (insert (jcs-get-semicolon-file-info)))
+  (file-header-swap-keyword-template jcs-template--header-semicolon))
 
-(defun jcs-get-sharp-file-info ()
+(defun jcs-template-header-sharp ()
   "Return the preloaded sharp file info template."
-  (file-header-swap-keyword-template jcs--preload-sharp-file-info))
-(defun jcs-insert-sharp-file-info ()
-  "Specific header format for sharp."
-  (insert (jcs-get-sharp-file-info)))
+  (file-header-swap-keyword-template jcs-template--header-sharp))
 
-(defun jcs-get-single-quote-file-info ()
+(defun jcs-template-header-single-quote ()
   "Return the preloaded single quote file info template."
-  (file-header-swap-keyword-template jcs--preload-single-quote-file-info))
-(defun jcs-insert-single-quote-file-info ()
-  "Specific header format for single qoute."
-  (insert (jcs-get-single-quote-file-info)))
+  (file-header-swap-keyword-template jcs-template--header-single-quote))
 
-(defun jcs-get-tag-file-info ()
+(defun jcs-template-header-tag ()
   "Return the preloaded tag file info template."
-  (file-header-swap-keyword-template jcs--preload-tag-file-info))
-(defun jcs-insert-tag-file-info ()
-  "Tag file header info for tag language."
-  (insert (jcs-get-tag-file-info)))
+  (file-header-swap-keyword-template jcs-template--header-tag))
 
 ;;
 ;; (@* "Other Templates" )
