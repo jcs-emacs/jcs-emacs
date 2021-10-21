@@ -17,5 +17,12 @@
 (when (featurep 'ns)
   (push '(ns-transparent-titlebar . t) default-frame-alist))
 
+;;
+;;; Bootstrap
+
+;; Contrary to what many Emacs users have in their configs, you don't need
+;; more than this to make UTF-8 the default coding system:
+(set-language-environment "UTF-8")
+
 (provide 'early-init)
 ;;; early-init.el ends here
