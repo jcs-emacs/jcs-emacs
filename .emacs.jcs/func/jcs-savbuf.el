@@ -77,8 +77,7 @@ This variable is used to check if file are edited externally.")
 (defun jcs--save-buffer-internal ()
   "Internal core functions for saving buffer."
   (setq jcs-created-parent-dir-path nil)
-  (let ((jcs-walking-through-windows-p t)
-        (modified (buffer-modified-p))
+  (let ((modified (buffer-modified-p))
         (readable (file-readable-p (buffer-file-name)))
         (cur-frame (selected-frame)))
     ;; For some mode, broken save.

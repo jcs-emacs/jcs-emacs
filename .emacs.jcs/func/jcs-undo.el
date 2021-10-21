@@ -85,15 +85,14 @@ This will no longer overwrite usual Emacs' undo key."
       (setq jcs--undo-splits-windows t))
     (save-selected-window
       (other-window 1)
-      (walk-windows
-       (lambda (win)
+      (jcs-walk-windows
+       (lambda ()
          (unless target-window
-           (with-selected-window win
-             (when (and
-                    (not (eq (selected-window) current-window))
-                    (not (jcs-frame-util-p))
-                    (jcs-window-is-larger-in-height-p))
-               (setq target-window (selected-window))))))))
+           (when (and
+                  (not (eq (selected-window) current-window))
+                  (not (jcs-frame-util-p))
+                  (jcs-window-is-larger-in-height-p))
+             (setq target-window (selected-window)))))))
     (save-window-excursion (undo-tree-visualize))
     (with-selected-window target-window
       (switch-to-buffer undo-tree-visualizer-buffer-name)

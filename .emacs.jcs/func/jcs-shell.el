@@ -24,24 +24,27 @@
 (defun jcs-show-shell-window ()
   "Shell command prompt."
   (interactive)
-  (unless (ignore-errors (jcs-jump-shown-to-buffer (multi-shell--prefix-name)))
-    (if (multi-shell-live-p)
-        (let (sp-name)
-          (save-window-excursion
-            (setq sp-name (jcs-shell-select-shell-by-index
-                           jcs-shell--last-selected-shell-index)))
-          (when (window-full-height-p) (jcs-balance-split-window-vertically))
-          (jcs-move-to-upmost-window t)
-          (other-window 1)
-          (switch-to-buffer sp-name))
-      (when (window-full-height-p) (jcs-balance-split-window-vertically))
-      (cl-case multi-shell-prefer-shell-type
-        (shell (jcs-move-to-upmost-window t)
-               ;; Move this to make next shell buffer inside the bottom window.
-               (progn (other-window -1) (other-window 1)))
-        (eshell (other-window 1)))
-      (multi-shell))
-    (enlarge-window jcs-windows--enlarge-shrink-times)))
+  (jcs-safe-jump-shown-to-buffer
+   (multi-shell--prefix-name)
+   :error
+   (lambda ()
+     (if (multi-shell-live-p)
+         (let (sp-name)
+           (jcs-save-window-excursion
+             (setq sp-name (jcs-shell-select-shell-by-index
+                            jcs-shell--last-selected-shell-index)))
+           (when (window-full-height-p) (jcs-balance-split-window-vertically))
+           (jcs-move-to-upmost-window t)
+           (other-window 1)
+           (switch-to-buffer sp-name))
+       (when (window-full-height-p) (jcs-balance-split-window-vertically))
+       (cl-case multi-shell-prefer-shell-type
+         (`shell (jcs-move-to-upmost-window t)
+                 ;; Move this to make next shell buffer inside the bottom window.
+                 (progn (other-window -1) (other-window 1)))
+         (`eshell (other-window 1)))
+       (multi-shell))
+     (enlarge-window jcs-windows--enlarge-shrink-times))))
 
 (defun jcs-hide-shell-window ()
   "Kill process prompt."
@@ -49,22 +52,25 @@
   (jcs-safe-jump-shown-to-buffer
    (multi-shell--prefix-name)
    :type 'prefix
-   :success (lambda () (jcs-shell-delete-window))
+   :success #'jcs-shell-delete-window
    :error (lambda ()
             (user-error (format "No \"%s\" buffer found" (multi-shell--prefix-name))))))
 
 (defun jcs-maybe-kill-shell ()
   "Maybe kill shell behaviour."
   (interactive)
-  (if (ignore-errors (jcs-jump-shown-to-buffer (multi-shell--prefix-name)))
-      (let ((kill-win (= 1 (length multi-shell--live-shells))))
-        (multi-shell-kill)
-        (if kill-win
-            (jcs-shell-delete-window)
-          (when (>= (1- jcs-shell--last-selected-shell-index) 0)
-            (setq jcs-shell--last-selected-shell-index (1- jcs-shell--last-selected-shell-index)))
-          (jcs-shell-select-shell-by-index jcs-shell--last-selected-shell-index)))
-    (jcs-bury-buffer)))
+  (jcs-safe-jump-shown-to-buffer
+   (multi-shell--prefix-name)
+   :success
+   (lambda ()
+     (let ((kill-win (= 1 (length multi-shell--live-shells))))
+       (multi-shell-kill)
+       (if kill-win
+           (jcs-shell-delete-window)
+         (when (>= (1- jcs-shell--last-selected-shell-index) 0)
+           (setq jcs-shell--last-selected-shell-index (1- jcs-shell--last-selected-shell-index)))
+         (jcs-shell-select-shell-by-index jcs-shell--last-selected-shell-index))))
+   :error #'jcs-bury-buffer))
 
 (defun jcs-shell-delete-window ()
   "Try to delete shell window."

@@ -27,7 +27,7 @@ For argument TYPE; see function `jcs-string-compare-p' for description."
   (interactive "bEnter buffer to jump to: ")
   (let (found)
     (when (jcs-buffer-shown-p in-buffer-name type)
-      (let ((jcs-walking-through-windows-p t) (win-len (jcs-count-windows)) (index 0))
+      (let ((win-len (jcs-count-windows)) (index 0))
         (while (and (< index win-len) (not found))
           ;; NOTE: we use `string-match-p' instead of `string=' because some
           ;; buffer cannot be detected in the buffer list. For instance,
@@ -82,7 +82,7 @@ BUFFER-OR-NAME and NORECORD."
 
 If optional argument UTIL is non-nil; it would count utility frame.
 See function `jcs-frame-util-p' for the definition of utility frame."
-  (let ((jcs-walking-through-windows-p t) (count 0))
+  (let ((count 0))
     (dolist (fn (frame-list))
       (when (or util (not (jcs-frame-util-p fn)))
         (setq count (+ (length (window-list fn)) count))))
@@ -91,9 +91,8 @@ See function `jcs-frame-util-p' for the definition of utility frame."
 (defun jcs-buffer-visible-list ()
   "List of buffer that current visible in frame."
   (save-selected-window
-    (let ((jcs-walking-through-windows-p t) (buffers '()))
-      (jcs-walk-through-all-windows-once
-       (lambda () (push (buffer-name) buffers)))
+    (let (buffers)
+      (jcs-walk-windows (lambda () (push (buffer-name) buffers)) nil t)
       buffers)))
 
 (defun jcs-buffer-shown-count (in-buf-name &optional type)
@@ -125,30 +124,19 @@ For argument TYPE; see function `jcs-string-compare-p' for description."
 For argument TYPE; see function `jcs-string-compare-p' for description."
   (>= (jcs-buffer-shown-count in-buf-name type) 2))
 
-(defvar jcs-walking-through-windows-p nil
-  "Flag to see if currently walking through windows.")
-
-(defun jcs-walk-through-all-windows-once (&optional fnc minibuf util)
-  "Walk through all windows once and execute callback FNC for each moves.
-
-If optional argument MINIBUF is non-nil; then FNC will be executed in the
-minibuffer window.
-
-If optional argument UTIL is non-nil; then FNC will be executed even within
-inside the utility frame.  See function `jcs-frame-util-p' for the definition
-of utility frame."
-  (interactive)
-  (let ((jcs-walking-through-windows-p t))
-    (save-selected-window
-      (let ((win-len (jcs-count-windows)) (index 0) can-execute-p)
-        (while (< index win-len)
-          (setq can-execute-p
-                (cond ((and (not minibuf) (jcs-minibuf-window-p)) nil)
-                      (t t)))
-          (when (or util (not (jcs-frame-util-p)))
-            (when (and can-execute-p fnc) (funcall fnc)))
-          (other-window 1 t)
-          (setq index (1+ index)))))))
+(defun jcs-walk-windows (fun &optional minibuf all-frames)
+  "See function `walk-windows' description for arguments FUN, MINIBUF and
+ALL-FRAMES."
+  (let ((inhibit-redisplay t)
+        buffer-list-update-hook
+        window-configuration-change-hook
+        after-focus-change-function)
+    (walk-windows
+     (lambda (win)
+       (unless (jcs-frame-util-p (window-frame win))
+         (with-selected-window win
+           (funcall fun))))
+     minibuf all-frames)))
 
 ;;
 ;; (@* "Ace Window" )
@@ -191,14 +179,14 @@ of utility frame."
 (defun jcs-window-type-list-in-column (type)
   "Return the list of TYPE in column.
 TYPE can be 'buffer or 'window."
-  (let ((type-list '()) break windmove-wrap-around)
+  (let (type-list break windmove-wrap-around)
     (save-selected-window
       (jcs-move-to-upmost-window t)
       (while (not break)
         (push
          (cl-case type
-           (buffer (buffer-name))
-           (window (selected-window)))
+           (`buffer (buffer-name))
+           (`window (selected-window)))
          type-list)
         (setq break (not (ignore-errors (windmove-down))))))
     type-list))
@@ -214,14 +202,12 @@ TYPE can be 'buffer or 'window."
 (defun jcs-balance-delete-window ()
   "Balance windows after deleting a window."
   (interactive)
-  (delete-window)
-  (balance-windows))
+  (delete-window) (balance-windows))
 
 (defun jcs-delete-window-downwind ()
   "Delete window in downwind order."
   (interactive)
-  (other-window -1)
-  (save-selected-window (other-window 1) (delete-window)))
+  (other-window -1) (save-selected-window (other-window 1) (delete-window)))
 
 ;;
 ;; (@* "Splitting" )
@@ -308,9 +294,10 @@ i.e. change right window to bottom, or change bottom window to right."
 
 (defun jcs-switch-to-next-window-larger-in-height ()
   "Switch to next larger window in current column."
-  (let ((current-window (selected-window)) larger-window)
-    (walk-windows
-     (lambda (win)
+  (let ((current-window (selected-window)) larger-window win)
+    (jcs-walk-windows
+     (lambda ()
+       (setq win (selected-window))
        (when (and (not larger-window) (not (eq current-window win))
                   (jcs-window-is-larger-in-height-p win))
          (setq larger-window win))))
@@ -320,8 +307,7 @@ i.e. change right window to bottom, or change bottom window to right."
   "Get the window that are larget than other windows in vertical/column."
   (unless window (setq window (selected-window)))
   (with-selected-window window
-    (let ((jcs-walking-through-windows-p t)
-          (current-height (window-height)) (is-larger t))
+    (let ((current-height (window-height)) (is-larger t))
       (dolist (win (jcs-window-type-list-in-column 'window))
         (when (> (window-height win) current-height)
           (setq is-larger nil)))
@@ -364,23 +350,24 @@ i.e. change right window to bottom, or change bottom window to right."
   (save-selected-window
     (let ((win-id -1) (cur-wind (selected-window)) (index 0))
       (jcs-ace-window-min)
-      (jcs-walk-through-all-windows-once
+      (jcs-walk-windows
        (lambda ()
-         (when (eq cur-wind (selected-window))
-           (setq win-id index))
-         (setq index (1+ index))))
+         (when (eq cur-wind (selected-window)) (setq win-id index))
+         (setq index (1+ index)))
+       nil t)
       win-id)))
 
 (defun jcs-get-window-id-by-buffer-name (buf-name)
   "Return a list of window id if match the BUF-NAME."
   (save-selected-window
-    (let ((win-id-lst '()) (index 0))
+    (let ((index 0) win-id-lst)
       (jcs-ace-window-min)
-      (jcs-walk-through-all-windows-once
+      (jcs-walk-windows
        (lambda ()
          (when (string= buf-name (jcs-buffer-name-or-buffer-file-name))
            (push index win-id-lst))
-         (setq index (1+ index))))
+         (setq index (1+ index)))
+       nil t)
       (setq win-id-lst (reverse win-id-lst))
       win-id-lst)))
 
@@ -402,20 +389,21 @@ i.e. change right window to bottom, or change bottom window to right."
 ;; (@* "Restore Windows Status" )
 ;;
 
-(defvar jcs-window--record-buffer-names '() "Record all windows' buffer.")
-(defvar jcs-window--record-points '() "Record all windows' point.")
-(defvar jcs-window--record-first-visible-lines '()
+(defvar jcs-window--record-buffer-names nil "Record all windows' buffer.")
+(defvar jcs-window--record-points nil "Record all windows' point.")
+(defvar jcs-window--record-first-visible-lines nil
   "Record all windows' first visible line.")
 
 (defun jcs-window-record-once ()
   "Record windows status once."
   (let (buf-names pts f-lns)
     ;; Record down all the window information with the same buffer opened.
-    (jcs-walk-through-all-windows-once
+    (jcs-walk-windows
      (lambda ()
        (push (jcs-buffer-name-or-buffer-file-name) buf-names)  ; Record as string!
        (push (point) pts)
-       (push (jcs-first-visible-line-in-window) f-lns)))
+       (push (jcs-first-visible-line-in-window) f-lns))
+     nil t)
     ;; Reverse the order to have the information order corresponding to the window
     ;; order correctly.
     (setq buf-names (reverse buf-names) pts (reverse pts) f-lns (reverse f-lns))
@@ -430,7 +418,7 @@ i.e. change right window to bottom, or change bottom window to right."
          (win-cnt 0) buf-name (current-pt -1) (current-first-vs-line -1)
          actual-buf)
     ;; Restore the window information after, including opening the same buffer.
-    (jcs-walk-through-all-windows-once
+    (jcs-walk-windows
      (lambda ()
        (setq buf-name (nth win-cnt buf-names)
              current-pt (nth win-cnt f-lns)
@@ -439,7 +427,8 @@ i.e. change right window to bottom, or change bottom window to right."
        (if actual-buf (switch-to-buffer actual-buf) (find-file buf-name))
        (jcs-make-first-visible-line-to current-pt)
        (goto-char current-first-vs-line)
-       (setq win-cnt (1+ win-cnt))))))
+       (setq win-cnt (1+ win-cnt)))
+     nil t)))
 
 (provide 'jcs-window)
 ;;; jcs-window.el ends here

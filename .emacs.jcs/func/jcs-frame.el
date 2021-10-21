@@ -26,27 +26,18 @@ Return nil, if frame not maximized."
   (let ((new-frame (call-interactively #'make-frame)))
     (select-frame-set-input-focus new-frame)))
 
-(defun jcs-walk-through-all-frames-once (&optional fnc minibuf util)
-  "Walk through all frames once and execute callback FNC for each moves.
+(defun jcs-walk-frames (fun &optional minibuf)
+  "Like `walk-windows', but only for frames.
 
-If optional argument MINIBUF is non-nil; then FNC will be executed in the
-minibuffer window.
-
-If optional argument UTIL is non-nil; then FNC will be executed even within
-inside the utility frame.  See function `jcs-frame-util-p' for the definition
-of utility frame."
-  (interactive)
-  (let ((jcs-walking-through-windows-p t))
-    (save-selected-window
-      (let ((frame-len (length (frame-list))) (index 0) can-execute-p)
-        (while (< index frame-len)
-          (setq can-execute-p
-                (cond ((and (not minibuf) (jcs-minibuf-window-p)) nil)
-                      (t t)))
-          (when (or util (not (jcs-frame-util-p)))
-            (when fnc (funcall fnc)))
-          (other-frame 1)
-          (setq index (+ index 1)))))))
+See function `walk-windows' description for arguments FUN and MINIBUF."
+  (let (last-frame cur-frame)
+    (walk-windows
+     (lambda (win)
+       (setq cur-frame (window-frame win))
+       (unless (equal last-frame cur-frame)
+         (setq last-frame cur-frame)
+         (with-selected-frame cur-frame (funcall fun))))
+     minibuf t)))
 
 (defun jcs-max-frame-width ()
   "Find the largest frame width."

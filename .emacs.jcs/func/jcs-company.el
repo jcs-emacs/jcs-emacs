@@ -106,20 +106,25 @@
 ;;
 
 (defun jcs--company-complete-selection--advice-around (fn)
-  "Advice execute around `company-complete-selection' command."
+  "Exection around `company-complete-selection' command."
   (let ((company-dabbrev-downcase t)) (call-interactively fn)))
 (advice-add 'company-complete-selection :around #'jcs--company-complete-selection--advice-around)
 
-(defun jcs--company-completion-started-hook (_backend)
-  "Hook bind to `company-completion-started-hook'."
-  (jcs-gc-cons-threshold-speed-up t)
-  (require 'yasnippet-snippets))
-(add-hook 'company-completion-started-hook 'jcs--company-completion-started-hook)
+(defun jcs-company--first-completion-started (_backend)
+  "Run before company's completion once."
+  (require 'yasnippet-snippets)
+  (remove-hook 'company-completion-started-hook 'jcs-company--first-completion-started))
+(add-hook 'company-completion-started-hook 'jcs-company--first-completion-started)
 
-(defun jcs--company-after-completion-hook (&rest _)
-  "Hook bind to `company-after-completion-hook'."
+(defun jcs-company--completion-started (_backend)
+  "Run before company's completion."
+  (jcs-gc-cons-threshold-speed-up t))
+(add-hook 'company-completion-started-hook 'jcs-company--completion-started)
+
+(defun jcs-company--after-completion (&rest _)
+  "Run after company's completion."
   (jcs-gc-cons-threshold-speed-up nil))
-(add-hook 'company-after-completion-hook 'jcs--company-after-completion-hook)
+(add-hook 'company-after-completion-hook 'jcs-company--after-completion)
 
 (provide 'jcs-company)
 ;;; jcs-company.el ends here

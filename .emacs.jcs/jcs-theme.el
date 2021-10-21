@@ -171,7 +171,7 @@ Arguments stand for these explanation,
   * HLC - highlight line color.
   * RC - region color.
   * FRC - fringe color."
-  (jcs-walk-through-all-frames-once
+  (jcs-walk-frames
    (lambda ()
      (set-cursor-color cc)
      (set-face-background 'hl-line hlc)
@@ -218,7 +218,7 @@ Return nil if current theme light theme."
 (defun jcs--enable-theme--advice-after (&rest _)
   "Advice execute after `load-theme' function."
   (jcs-set-font-size jcs-default-font-size)
-  (jcs-walk-through-all-frames-once (lambda () (jcs-reset-plugins-base-on-theme))))
+  (jcs-walk-frames (lambda () (jcs-reset-plugins-base-on-theme))))
 (advice-add 'enable-theme :after #'jcs--enable-theme--advice-after)
 
 (provide 'jcs-theme)

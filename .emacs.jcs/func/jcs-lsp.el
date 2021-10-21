@@ -87,8 +87,7 @@
 
 (defun jcs-lsp--other-window--advice-before (&rest _args)
   "Advice execute before `other-window' command."
-  (unless jcs-walking-through-windows-p
-    (jcs--lsp-ui-doc--inhibit-frame)))
+  (jcs--lsp-ui-doc--inhibit-frame))
 (advice-add 'other-window :before #'jcs-lsp--other-window--advice-before)
 
 (defun jcs-lsp--window-size-change-functions (&rest _)

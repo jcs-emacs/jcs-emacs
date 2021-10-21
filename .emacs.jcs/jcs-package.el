@@ -107,6 +107,7 @@
     gitattributes-mode
     gitconfig-mode
     github-browse-file
+    github-tags
     gitignore-mode
     gitignore-templates
     glsl-mode
@@ -201,6 +202,7 @@
     transwin
     tree-sitter-indent
     tree-sitter-langs
+    ts
     turbo-log
     typescript-mode
     undercover

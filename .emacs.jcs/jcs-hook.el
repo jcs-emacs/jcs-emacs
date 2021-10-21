@@ -9,20 +9,20 @@
 (defvar jcs-foucs-after-first-p nil
   "Flag to see if after first focus.")
 
-(defun jcs-focus-in-hook ()
+(defun jcs-hook--focus-in ()
   "When window is focus."
   (if (not jcs-foucs-after-first-p)
       (setq jcs-foucs-after-first-p t)
     (jcs-safe-revert-all-buffers)
     (jcs-funcall-fboundp #'jcs--feebleline--reset)))
 
-(defun jcs-focus-out-hook ()
+(defun jcs-hook--focus-out ()
   "When window is not focus."
   )
 
 (defun jcs-after-focus-change-function ()
   "Focus in/out function."
-  (if (frame-focus-state) (jcs-focus-in-hook) (jcs-focus-out-hook)))
+  (if (frame-focus-state) (jcs-hook--focus-in) (jcs-hook--focus-out)))
 (add-function :after after-focus-change-function #'jcs-after-focus-change-function)
 
 (defun jcs-window-size-change-functions (&rest _)
@@ -36,13 +36,13 @@
 ;; (@* "Find Files" )
 ;;
 
-(defun jcs-find-file-hook ()
+(defun jcs-hook--find-file ()
   "Find file hook."
   (jcs-update-buffer-save-string)
   (jcs-active-line-numbers-by-mode)
   (jcs-project-remember)
   (jcs-project--track-open-projects))
-(add-hook 'find-file-hook 'jcs-find-file-hook)
+(add-hook 'find-file-hook 'jcs-hook--find-file)
 
 (defun jcs--find-file--advice-after (&rest _)
   "Advice execute after command `find-file'."
@@ -66,7 +66,7 @@
 
 (defun jcs--other-window--advice-before (&rest _)
   "Advice execute before `other-window' command."
-  (unless jcs-walking-through-windows-p
+  (when (memq this-command '(other-window jcs-other-window-prev jcs-other-window-next))
     (jcs-funcall-fboundp 'company-abort)))
 (advice-add 'other-window :before #'jcs--other-window--advice-before)
 
@@ -75,7 +75,7 @@
   ;; NOTE: If it's a utility frame; then we skip it immediately.
   (when (jcs-frame-util-p)
     (other-window (if (jcs-is-positive count) 1 -1) t))
-  (unless jcs-walking-through-windows-p
+  (when (memq this-command '(other-window jcs-other-window-prev jcs-other-window-next))
     (select-frame-set-input-focus (selected-frame))
     (jcs-buffer-menu-safe-refresh)
     (jcs-dashboard-safe-refresh-buffer)))
@@ -99,79 +99,43 @@
 ;; (@* "Initialization" )
 ;;
 
-(defun jcs-after-init-hook ()
+(defun jcs-hook--after-init ()
   "Hook run after initialize."
   ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   ;; NOTE: Load required packages here.
   ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   (progn
-    (require 'alt-codes)
-    (require 'auto-highlight-symbol)
-    (require 'auto-read-only)
     (require 'company)
     (require 'dashboard)
     (require 'diminish)
     (require 'exec-path-from-shell)
     (require 'highlight-indent-guides)
-    (require 'hl-line)
-    (require 'hl-todo)
     (require 'ivy)
-    (require 'page-break-lines)
-    (require 'powerline)
-    (require 'region-occurrences-highlighter)
-    (require 'right-click-context)
-    (require 'use-ttf)
-    (require 'which-key)
     (require 'yascroll))
 
   ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   ;; NOTE: Enable util modes here.
   ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   (progn
-    ;;----------------------------------- `alt-codes'
-    (global-alt-codes-mode 1)
     ;;----------------------------------- `auto-highlight-symbol'
     (global-auto-highlight-symbol-mode t)
-    ;;----------------------------------- `auto-read-only'
-    (auto-read-only-mode 1)
-    ;;----------------------------------- `delete-selection'
-    (delete-selection-mode 1)
-    ;;----------------------------------- `diff-hl'
-    (global-diff-hl-mode 1)
-    ;;----------------------------------- `docstr'
-    (global-docstr-mode 1)
     ;;----------------------------------- `hl-line'
     (global-hl-line-mode 1)
-    ;;----------------------------------- `hl-todo'
-    (global-hl-todo-mode 1)
     ;;----------------------------------- `indent-control'
     (indent-control-mode 1)
     ;;----------------------------------- `ivy'
     (ivy-mode 1)
-    ;;----------------------------------- `page-break-lines'
-    (global-page-break-lines-mode 1)
     ;;----------------------------------- `powerline'
     (powerline-default-theme)
-    ;;----------------------------------- `region-occurrences-highlighter'
-    (global-region-occurrences-highlighter-mode 1)
-    ;;----------------------------------- `right-click-context'
-    (right-click-context-mode 1)
-    ;;----------------------------------- `show-paren'
-    ;; NOTE: turn on highlight matching brackets when cursor is on one
-    (show-paren-mode t)
     ;;----------------------------------- `tree-sitter'
     (global-tree-sitter-mode 1)
     ;;----------------------------------- `use-ttf'
     (use-ttf-set-default-font)
-    ;;----------------------------------- `which-key'
-    (which-key-mode)
     ;;----------------------------------- `yascroll'
     (global-yascroll-bar-mode 1))
 
   (jcs-setup-default-theme)
   (jcs-command-mode) (jcs-depend-mode)
-
-  (jcs-reload-file-info)
 
   ;; Font Size
   (jcs-set-font-size jcs-default-font-size)
@@ -187,42 +151,57 @@
 
   ;; IMPORTANT: This should always be the last thing.
   (jcs-dashboard-init-info))
-(add-hook 'after-init-hook 'jcs-after-init-hook)
+(add-hook 'after-init-hook 'jcs-hook--after-init)
 
 ;;
 ;; (@* "Pre/Post Command" )
 ;;
 
-(defun jcs-pre-command-hook ()
+(defun jcs-hook--pre-command ()
   "Hook run before every command."
   (jcs--er/record-history))
-(add-hook 'pre-command-hook 'jcs-pre-command-hook)
+(add-hook 'pre-command-hook 'jcs-hook--pre-command)
 
-(defun jcs-post-command-hook ()
+(defun jcs-hook--post-command ()
   "Hook run after every command."
   (jcs--er/resolve-region)
   (jcs--mark-whole-buffer-resolve)
   (jcs-reload-active-mode-with-error-handle)
   (unless (display-graphic-p) (jcs-feebleline-display-mode-line-graphic)))
-(add-hook 'post-command-hook 'jcs-post-command-hook)
+(add-hook 'post-command-hook 'jcs-hook--post-command)
+
+(defun jcs-hook--first-pre-command ()
+  "Pre command that only run once."
+  (global-alt-codes-mode 1)
+  (auto-read-only-mode 1)
+  (delete-selection-mode 1)
+  (global-docstr-mode 1)
+  (global-hl-todo-mode 1)
+  (global-page-break-lines-mode 1)
+  (global-region-occurrences-highlighter-mode 1)
+  (right-click-context-mode 1)
+  (show-paren-mode t)
+  (which-key-mode)
+  (remove-hook 'pre-command-hook 'jcs-hook--first-pre-command))
+(add-hook 'pre-command-hook 'jcs-hook--first-pre-command)
 
 ;;
 ;; (@* "Major Mode" )
 ;;
 
-(defun jcs-after-change-major-mode-hook ()
+(defun jcs-hook--after-change-major-mode ()
   "Hook run after major mode changes."
   (jcs-active-line-numbers-by-mode))
-(add-hook 'after-change-major-mode-hook 'jcs-after-change-major-mode-hook)
+(add-hook 'after-change-major-mode-hook 'jcs-hook--after-change-major-mode)
 
 ;;
 ;; (@* "Quitting" )
 ;;
 
-(defun jcs--kill-emacs-hook ()
+(defun jcs-hook--kill-emacs ()
   "Hook run before Emacs is killed."
   (when (featurep 'ffmpeg-player) (ignore-errors (ffmpeg-player-clean))))
-(add-hook 'kill-emacs-hook 'jcs--kill-emacs-hook)
+(add-hook 'kill-emacs-hook 'jcs-hook--kill-emacs)
 
 (defun jcs--quit-command (&rest _)
   "Advice for quit command."
@@ -242,13 +221,13 @@
 (defvar jcs-emacs-startup-directory nil
   "Record the startup directory.")
 
-(defun jcs--emacs-startup-hook ()
+(defun jcs-hook--emacs-startup ()
   "Hook run after Emacs is startup."
   (with-current-buffer jcs-scratch-buffer-name
     (setq jcs-scratch--content (buffer-string)))
   (setq jcs-emacs-ready-p t
         jcs-emacs-startup-directory default-directory))
-(add-hook 'emacs-startup-hook 'jcs--emacs-startup-hook)
+(add-hook 'emacs-startup-hook 'jcs-hook--emacs-startup)
 
 (provide 'jcs-hook)
 ;;; jcs-hook.el ends here

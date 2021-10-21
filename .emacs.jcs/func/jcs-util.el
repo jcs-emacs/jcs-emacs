@@ -398,43 +398,53 @@ See description from function `define-key' for arguments KEY, DEF and KEYMAP."
 
 (defun jcs-timestamp-ver1 ()
   "Get timestamp version 1."
-  (format-time-string "%Y-%m-%d %H:%M:%S"))
+  (require 'ts)
+  (ts-format "%Y-%m-%d %H:%M:%S"))
 
 (defun jcs-timestamp-ver2 ()
   "Get timestamp version 2."
-  (format-time-string "%Y/%m/%d %H:%M:%S"))
+  (require 'ts)
+  (ts-format "%Y/%m/%d %H:%M:%S"))
 
 (defun jcs-get-date-ver1 ()
   "Get date buffer in string type - version 1."
-  (format-time-string "%Y-%m-%d"))
+  (require 'ts)
+  (ts-format "%Y-%m-%d"))
 
 (defun jcs-get-date-ver2 ()
   "Get date buffer in string type - version 2."
-  (format-time-string "%Y/%m/%d"))
+  (require 'ts)
+  (ts-format "%Y/%m/%d"))
 
 (defun jcs-month-name ()
   "Get Month name in string type."
-  (format-time-string "%B"))
+  (require 'ts)
+  (ts-format "%B"))
 
 (defun jcs-month-name-abbrev ()
   "Get Month name abbreviation in string type."
-  (format-time-string "%b"))
+  (require 'ts)
+  (ts-format "%b"))
 
 (defun jcs-day-only ()
   "Get Day in string type."
-  (format-time-string "%d"))
+  (require 'ts)
+  (ts-format "%d"))
 
 (defun jcs-month-only ()
   "Get Month in string type."
-  (format-time-string "%m"))
+  (require 'ts)
+  (ts-format "%m"))
 
 (defun jcs-year-only ()
   "Get Year in string type."
-  (format-time-string "%Y"))
+  (require 'ts)
+  (ts-format "%Y"))
 
 (defun jcs-get-time ()
   "Get time buffer in string type."
-  (format-time-string "%H:%M:%S"))
+  (require 'ts)
+  (ts-format "%H:%M:%S"))
 
 (defun jcs-print-timestamps ()
   "Print out all the timestamps."
@@ -1419,8 +1429,7 @@ Argument TYPE see function `jcs-string-compare-p' for more information."
 
 (defun jcs-re-enable-mode (modename)
   "Re-enable the MODENAME."
-  (funcall modename -1)
-  (funcall modename 1))
+  (funcall modename -1) (funcall modename 1))
 
 (defun jcs-enable-disable-mode-by-condition (modename predicate)
   "To enable/disable the MODENAME by PREDICATE."
@@ -1624,9 +1633,9 @@ Optional argument IGNORE-CASE is only uses when TYPE is either symbol `prefix'
 or `suffix'."
   (require 'cl-lib)
   (cl-case type
-    (strict (string= regexp str))
-    (prefix (string-prefix-p regexp str ignore-case))
-    (suffix (string-suffix-p regexp str ignore-case))
+    (`strict (string= regexp str))
+    (`prefix (string-prefix-p regexp str ignore-case))
+    (`suffix (string-suffix-p regexp str ignore-case))
     (t (string-match-p regexp str))))
 
 (defun jcs-hash-string (str)

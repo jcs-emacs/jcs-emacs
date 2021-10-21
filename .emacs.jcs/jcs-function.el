@@ -211,11 +211,12 @@
       (when jcs-buffer--menu-switch-buffer-refreshing
         (jcs--buffer-menu-trigger-filter))
       (bury-buffer)))
-  (jcs-walk-through-all-windows-once
+  (jcs-safe-jump-shown-to-buffer
+   jcs-buffer-menu-buffer-name
+   :success
    (lambda ()
-     (when (string= jcs-buffer-menu-buffer-name (buffer-name))
-       (when (and (tabulated-list-header-overlay-p) (= (line-number-at-pos) 1))
-         (jcs-goto-line 2))))))
+     (when (and (tabulated-list-header-overlay-p) (= (line-number-at-pos) 1))
+       (jcs-goto-line 2)))))
 
 (defun jcs-buffer-menu-safe-refresh ()
   "Safely refresh `buffer menu`'s buffer."
@@ -450,7 +451,7 @@ If optional argument FORCE is non-nil, force refresh it."
 (defun jcs-update-line-number-each-window ()
   "Update each window's line number mode."
   (interactive)
-  (jcs-walk-through-all-windows-once (lambda () (jcs-active-line-numbers-by-mode))))
+  (jcs-walk-windows #'jcs-active-line-numbers-by-mode nil t))
 
 (defun jcs-safe-display-line-numbers (act)
   "Active `display-line-numbers' by ACT."
@@ -611,7 +612,7 @@ See `sort-words'."
   (sort-regexp-fields reverse "\\(\\sw\\|\\s_\\)+" "\\&" beg end))
 
 ;;
-;; (@* "Syntax Check" )
+;; (@* "Syntax Checker" )
 ;;
 
 (defun jcs-flycheck-mode ()
@@ -619,18 +620,20 @@ See `sort-words'."
   (interactive)
   (require 'flycheck)
   (if (string= (buffer-name) flycheck-error-list-buffer)
-      (if (ignore-errors (jcs-jump-shown-to-buffer (buffer-name flycheck-error-list-source-buffer)))
-          (jcs-flycheck-mode)
-        (jcs-maybe-kill-this-buffer))
+      (jcs-safe-jump-shown-to-buffer
+       (buffer-name flycheck-error-list-source-buffer)
+       :success #'jcs-flycheck-mode
+       :error #'jcs-maybe-kill-this-buffer)
     (call-interactively #'flycheck-mode)
     (if flycheck-mode
-        (call-interactively #'flycheck-list-errors)
-      (save-selected-window
-        (when (ignore-errors (jcs-jump-shown-to-buffer flycheck-error-list-buffer))
-          (jcs-maybe-kill-this-buffer))))
-    ;; STUDY: For some reason, we need to walk through all windows once
-    ;; in order to display the `flycheck-list-errors' in other window.
-    (jcs-walk-through-all-windows-once))
+        (progn
+          (save-window-excursion (call-interactively #'flycheck-list-errors))
+          (save-selected-window
+            (jcs-switch-to-next-window-larger-in-height)
+            (switch-to-buffer flycheck-error-list-buffer)))
+      (jcs-safe-jump-shown-to-buffer
+       flycheck-error-list-buffer
+       :success #'jcs-maybe-kill-this-buffer)))
   flycheck-mode)
 
 ;;
@@ -640,7 +643,7 @@ See `sort-words'."
 (defun jcs-toggle-tabbar-mode ()
   "Toggle tab bar."
   (interactive)
-  (if centaur-tabs-mode (centaur-tabs-mode -1) (centaur-tabs-mode 1))
+  (jcs-enable-disable-mode-by-condition 'centaur-tabs-mode (not centaur-tabs-mode))
   (jcs-reset-tabbar-theme)
   ;; Loop through all window so all windows take effect.
   (jcs-buffer-visible-list))
@@ -679,17 +682,19 @@ See `sort-words'."
   "Toggle Shell Command prompt."
   (interactive)
   (require 'jcs-shell)
-  (if (ignore-errors (jcs-jump-shown-to-buffer (multi-shell--prefix-name)))
-      (jcs-hide-shell-window)
-    (jcs-show-shell-window)))
+  (jcs-safe-jump-shown-to-buffer
+   (multi-shell--prefix-name)
+   :success #'jcs-hide-shell-window
+   :error #'jcs-show-shell-window))
 
 (defun jcs-shell-new-shell ()
   "Create a new shell window."
   (interactive)
   (require 'jcs-shell)
-  (if (ignore-errors (jcs-jump-shown-to-buffer (multi-shell--prefix-name)))
-      (progn (other-window -2) (other-window 1) (multi-shell))
-    (jcs-show-shell-window)))
+  (jcs-safe-jump-shown-to-buffer
+   (multi-shell--prefix-name)
+   :success (lambda () (other-window -2) (other-window 1) (multi-shell))
+   :error #'jcs-show-shell-window))
 
 ;;
 ;; (@* "Zoom" )
