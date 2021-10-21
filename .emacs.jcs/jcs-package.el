@@ -106,11 +106,7 @@
     gdscript-mode
     git-modes
     github-browse-file
-<<<<<<< HEAD
     github-tags
-    gitignore-mode
-=======
->>>>>>> 785585b526b3af8510dfbf881ce5a3a02fbc6ab3
     gitignore-templates
     glsl-mode
     go-mode
