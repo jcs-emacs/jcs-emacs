@@ -104,10 +104,8 @@
     fountain-mode
     fsharp-mode
     gdscript-mode
-    gitattributes-mode
-    gitconfig-mode
+    git-modes
     github-browse-file
-    gitignore-mode
     gitignore-templates
     glsl-mode
     go-mode
