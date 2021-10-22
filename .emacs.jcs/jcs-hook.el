@@ -64,21 +64,25 @@
   (jcs-buffer-menu-safe-refresh))
 (advice-add 'switch-to-buffer :after #'jcs--switch-to-buffer--advice-after)
 
+(defun jcs-hook--other-window-interactively-p ()
+  "Return non-nil, if executing `other-window'."
+  (memq this-command '(other-window jcs-other-window-prev jcs-other-window-next)))
+
 (defun jcs--other-window--advice-before (&rest _)
   "Advice execute before `other-window' command."
-  (when (memq this-command '(other-window jcs-other-window-prev jcs-other-window-next))
+  (when (jcs-hook--other-window-interactively-p)
     (jcs-funcall-fboundp 'company-abort)))
 (advice-add 'other-window :before #'jcs--other-window--advice-before)
 
 (defun jcs--other-window--advice-after (count &rest _)
   "Advice execute after command `other-window'."
   ;; NOTE: If it's a utility frame; then we skip it immediately.
-  (when (jcs-frame-util-p)
-    (other-window (if (jcs-is-positive count) 1 -1) t))
-  (when (memq this-command '(other-window jcs-other-window-prev jcs-other-window-next))
-    (select-frame-set-input-focus (selected-frame))
-    (jcs-buffer-menu-safe-refresh)
-    (jcs-dashboard-safe-refresh-buffer)))
+  (cond ((jcs-frame-util-p)
+         (other-window (if (jcs-is-positive count) 1 -1) t))
+        ((jcs-hook--other-window-interactively-p)
+         (select-frame-set-input-focus (selected-frame))
+         (jcs-buffer-menu-safe-refresh)
+         (jcs-dashboard-safe-refresh-buffer))))
 (advice-add 'other-window :after #'jcs--other-window--advice-after)
 
 ;;
@@ -90,7 +94,6 @@
   ;; Fixed `css-mode' opening virtual buffer with directory error. You just
   ;; need to preload this before actually create the virtual buffer.
   (require 'eww nil t)
-  (global-so-long-mode 1)
   (advice-remove 'find-file #'jcs--fl--find-file--advice-before))
 
 (advice-add 'find-file :before #'jcs--fl--find-file--advice-before)
@@ -181,6 +184,7 @@
   (global-region-occurrences-highlighter-mode 1)
   (right-click-context-mode 1)
   (show-paren-mode t)
+  (global-so-long-mode 1)
   (which-key-mode)
   (remove-hook 'pre-command-hook 'jcs-hook--first-pre-command))
 (add-hook 'pre-command-hook 'jcs-hook--first-pre-command)
