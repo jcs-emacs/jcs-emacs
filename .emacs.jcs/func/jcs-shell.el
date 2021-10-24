@@ -3,8 +3,8 @@
 ;;; Code:
 
 (require 'cl-lib)
+(require 'exec-path-from-shell)
 (require 'multi-shell)
-(require 'yasnippet)  ; Prevent buffer jumps after loading `company'
 
 (defvar jcs-shell--last-selected-shell-index -1
   "Record last selected shell.")
@@ -38,11 +38,7 @@
            (other-window 1)
            (switch-to-buffer sp-name))
        (when (window-full-height-p) (jcs-balance-split-window-vertically))
-       (cl-case multi-shell-prefer-shell-type
-         (`shell (jcs-move-to-upmost-window t)
-                 ;; Move this to make next shell buffer inside the bottom window.
-                 (progn (other-window -1) (other-window 1)))
-         (`eshell (other-window 1)))
+       (windmove-down 1)
        (multi-shell))
      (enlarge-window jcs-windows--enlarge-shrink-times))))
 
@@ -87,8 +83,8 @@
 (defun jcs-shell-clear-command ()
   "Clear buffer and make new command prompt."
   (interactive)
-  (erase-buffer)
-  (comint-send-input))
+  (comint-clear-buffer)
+  (comint-delete-input))
 
 (defun jcs-shell-return ()
   "Shell mode's return key."
