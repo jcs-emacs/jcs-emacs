@@ -111,7 +111,6 @@
     (require 'company)
     (require 'dashboard)
     (require 'diminish)
-    (require 'exec-path-from-shell)
     (require 'highlight-indent-guides)
     (require 'ivy)
     (require 'yascroll))
