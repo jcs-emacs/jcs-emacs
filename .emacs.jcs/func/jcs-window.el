@@ -164,15 +164,6 @@ ALL-FRAMES."
 (defun jcs-ace-window-9 () "Select window 9." (interactive) (jcs-ace-select-window 8))
 
 ;;
-;; (@* "Advices" )
-;;
-
-(defun jcs--delete-window--advice-after (&rest _)
-  "Advice run after execute `delete-window' function."
-  (jcs-buffer-menu-safe-refresh))
-(advice-add 'delete-window :after #'jcs--delete-window--advice-after)
-
-;;
 ;; (@* "Column" )
 ;;
 
