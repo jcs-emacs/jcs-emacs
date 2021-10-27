@@ -2,6 +2,11 @@
 ;;; Commentary:
 ;;; Code:
 
+(defcustom jcs-log t
+  "If non-nil, log out message."
+  :type 'boolean
+  :group 'jcs)
+
 ;;
 ;; (@* "Entry" )
 ;;
@@ -13,12 +18,13 @@
   "Log a message with FMT and ARGS.
 
 Acts like `message' but preserves text properties in the *Messages* buffer."
-  (jcs-no-log-apply (apply 'message fmt args))
-  (with-current-buffer (get-buffer "*Messages*")
-    (save-excursion
-      (goto-char (point-max))
-      (let ((inhibit-read-only t))
-        (insert (apply 'format fmt args))))))
+  (when jcs-log
+    (jcs-no-log-apply (apply 'message fmt args))
+    (with-current-buffer (get-buffer jcs-message-buffer-name)
+      (save-excursion
+        (goto-char (point-max))
+        (let ((inhibit-read-only t))
+          (insert (apply 'format fmt args)))))))
 
 (defun jcs-log (fmt &rest args)
   "Log a message with FMT and ARGS."
@@ -30,29 +36,29 @@ Acts like `message' but preserves text properties in the *Messages* buffer."
 
 (defun jcs-print (&rest args)
   "Message out anything from ARGS."
-  (jcs-unmute-apply
-    (apply 'message (jcs-string-repeat "%s" (length args) " ") args)))
+  (when jcs-log
+    (jcs-unmute-apply
+      (apply 'message (jcs-string-repeat "%s" (length args) " ") args))))
 
 ;;
 ;; (@* "List" )
 ;;
 
-(defun jcs-log-list-clean (lst &optional in-prefix-msg in-val-del)
+(defun jcs-log-list-clean (lst &optional prefix val-del)
   "Log out a LST in a clean way.
 
-For arguments IN-PREFIX-MSG and IN-VAL-DEL; see function `jcs-log-list'
-for description."
-  (jcs-do-before-log-action t)
-  (apply 'jcs-log-list lst in-prefix-msg in-val-del))
+For arguments PREFIX and VAL-DEL; see function `jcs-log-list' for description."
+  (jcs-log--before t)
+  (apply 'jcs-log-list lst prefix val-del))
 
-(defun jcs-log-list (lst &optional in-prefix-msg in-val-del)
+(defun jcs-log-list (lst &optional prefix val-del)
   "Log out the LST.
 
 The LST object can either be list, vector, array, or hast-table.
 
-Optional argument IN-PREFIX-MSG is the string added before each item.
+Optional argument PREFIX is the string added before each item.
 
-Optional argument IN-VAL-DEL is string that point to item."
+Optional argument VAL-DEL is string that point to item."
   (cond ((and (not (listp lst)) (not (vectorp lst)) (not (arrayp lst))
               (not (hash-table-p lst)))
          (user-error "[ERROR] Can't log list with this data object: %s" lst))
@@ -61,13 +67,13 @@ Optional argument IN-VAL-DEL is string that point to item."
         ((>= 0 (length lst))
          (user-error "[WARNING] Can't log list with length lower than 0: %s" lst))
         (t
-         (let ((count 0) (prefix-msg in-prefix-msg) (val-del in-val-del))
-           (unless in-prefix-msg (setq prefix-msg "nth "))  ; Set defult prefix message.
-           (unless in-val-del (setq val-del " => "))  ; Set default delimiter.
+         (let ((prefix (or prefix "nth "))
+               (val-del (or val-del " => "))
+               (count 0))
            (cond ((listp lst)
                   (dolist (tmp-str lst)
                     (jcs-log "%s%s%s`%s`"
-                             prefix-msg  ; Prefix Message
+                             prefix  ; Prefix Message
                              count       ; Index/Count
                              val-del     ; Index and Value Delimiter
                              tmp-str)    ; Value in current index
@@ -75,7 +81,7 @@ Optional argument IN-VAL-DEL is string that point to item."
                  (t
                   (mapc (lambda (tmp-str)
                           (jcs-log "%s%s%s`%s`"
-                                   prefix-msg  ; Prefix Message
+                                   prefix  ; Prefix Message
                                    count       ; Index/Count
                                    val-del     ; Index and Value Delimiter
                                    tmp-str)    ; Value in current index
@@ -86,25 +92,23 @@ Optional argument IN-VAL-DEL is string that point to item."
 ;; (@* "Hooks" )
 ;;
 
-(defun jcs-do-before-log-action (clean)
+(defun jcs-log--before (clean)
   "Action do before doing log."
   (when clean
     (jcs-safe-jump-shown-to-buffer
-     "*Messages*"
+     jcs-message-buffer-name
      :success #'jcs-message-erase-buffer-stay
      :error (lambda ()
               (save-selected-window
                 (jcs-message-buffer-other-window)
                 (jcs-message-erase-buffer-stay))))))
 
-(defun jcs-do-after-log-action ()
+(defun jcs-log--after ()
   "Action do after doing log."
   (save-selected-window
     (jcs-safe-jump-shown-to-buffer
-     "*Messages*"
-     :success (lambda ()
-                (goto-char (point-max))
-                (jcs--message-buffer--first-load)))))
+     jcs-message-buffer-name
+     :success (lambda () (goto-char (point-max))))))
 
 ;;
 ;; (@* "Util" )
@@ -126,9 +130,10 @@ Optional argument IN-VAL-DEL is string that point to item."
 
 (defun jcs--log (title clean fmt &rest args)
   "Log a message with TITLE, CLEAN, FMT and ARGS."
-  (jcs-do-before-log-action clean)
-  (jcs-message "╘[%s] %s\n" title (apply 'format fmt args))
-  (jcs-do-after-log-action))
+  (when jcs-log
+    (jcs-log--before clean)
+    (jcs-message "╘[%s] %s\n" title (apply 'format fmt args))
+    (jcs-log--after)))
 
 (provide 'jcs-log)
 ;;; jcs-log.el ends here
