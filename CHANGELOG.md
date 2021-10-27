@@ -8,97 +8,98 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 6.5.1 (Unreleased)
 > Released N/A
 
-* Configure `company-box` so it's compatible to old `company-quickhelp` configuration.
-* Install new package `logms`.
-* Move emoji company backend fo just `markdown-mode`.
-* Remove unnecessary package version calculation.
-* Install new package `company-emojify`.
-* Remove legacy code from `logging` module.
-* Add improvements for `ReactJS` and `React Native`'s default templates.
-* Add ansi color support for compilation buffer.
+* Configured `company-box` so it's compatible to old `company-quickhelp` configuration.
+* Installed new package `logms`.
+* Moved emoji company backend fo just `markdown-mode`.
+* Removed unnecessary package version calculation.
+* Installed new package `company-emojify`.
+* Removed legacy code from `logging` module.
+* Added improvements for `ReactJS` and `React Native`'s default templates.
+* Added ansi color support for compilation buffer.
 * Enhance rule for `rjsx-mode` detection for JavaScript major modes.
 * Fix url browsing functionality with key <kbd>Ctrl</kbd>+<kbd>Enter</kbd>.
-* Revise minify and prettify contents with region.
-* Remove `elisp` directory from `.emacs.d`, replace with [quelpa](https://github.com/quelpa/quelpa).
-* Install new package `editorconfig`.
-* Add `Project` to buffer menu list.
-* Add function to track the opened projects.
-* Add capability to show project name wiht `powerline`.
-* Improve `buffer-menu` module with project capability.
-* Replace `use-package` with `leaf`.
-* Improve for built-in package, `comint` related to `compilation-mode`'s input.
-* Add custom bind key function.
-* Remove config for package, `reload-emacs`.
-* Improve a bit of startup time.
-* Reconstruct function modules to speed up startup time.
-* Customize `dashboard` so it no longer using `page-break-lines` to show separators.
+* Revised minify and prettify contents with region.
+* Removed `elisp` directory from `.emacs.d`, replace with [quelpa](https://github.com/quelpa/quelpa).
+* Installed new package `editorconfig`.
+* Added `Project` to buffer menu list.
+* Added function to track the opened projects.
+* Added capability to show project name wiht `powerline`.
+* Improved `buffer-menu` module with project capability.
+* Replaced `use-package` with `leaf`.
+* Improved for built-in package, `comint` related to `compilation-mode`'s input.
+* Added custom bind key function.
+* Removed config for package, `reload-emacs`.
+* Improved a bit of startup time.
+* Reconstructed function modules to speed up startup time.
+* Customized `dashboard` so it no longer using `page-break-lines` to show separators.
 * Removed package `origami.el`.
 * Installed new package `ts-fold`.
-* Terminate `undo-tree` visualizer buffer after reopening the buffer.
-* Limit `powerline` to apply only for the valid `mode-line-format` variable.
+* Terminated `undo-tree` visualizer buffer after reopening the buffer.
+* Limited `powerline` to apply only for the valid `mode-line-format` variable.
 * Installed new package `meta-view`.
 * Installed new package `eldoc-meta-net`.
 * Installed new package `company-meta-net`.
 * Installed new package `hl-preproc`.
+* Introduce new variable `jcs-log` for controlling the logger module.
 
 ## 6.5.0
 > Released Jul 17, 2021
 
-* Use default `undo` when `undo-tree` not enabled.
-* Fix logic while installing pinned packages as dependency.
-* Suppress warning message while checking light/dark theme in `after-init-hook`.
-* Optimize performance for window utility functions.
-* Add new utility macro, try run/execute in repetitions.
-* Fix project unsearchable issue when projct contains sensitive keywords.
-* Select line endings will only ask once for `.sh` files.
-* Add pinned package list for archive source binding.
+* Used default `undo` when `undo-tree` not enabled.
+* Fixed logic while installing pinned packages as dependency.
+* Suppressed warning message while checking light/dark theme in `after-init-hook`.
+* Optimized performance for window utility functions.
+* Added new utility macro, try run/execute in repetitions.
+* Fixed project unsearchable issue when projct contains sensitive keywords.
+* Selected line endings will only ask once for `.sh` files.
+* Added pinned package list for archive source binding.
 * Enable package `origami` by default.
-* Add `region` face customization for theme configuration.
-* Customize theme face so it's closer to Visual Studio IDE's theme.
-* Make improvement for `dashboard` utility functions.
+* Added `region` face customization for theme configuration.
+* Customized theme face so it's closer to Visual Studio IDE's theme.
+* Made improvement for `dashboard` utility functions.
 * Config dashboard for `bookmarks` support.
-* Remove package `magit`.
-* Apply yank workaround for `makefile-mode`.
-* Add utility function for identify a invalid buffer.
+* Removed package `magit`.
+* Applied yank workaround for `makefile-mode`.
+* Added utility function for identify a invalid buffer.
 * Ensure kill invalid buffer occurs unless shown in multiple windows.
-* Enable `display-fill-column-indicator-mode` as default behaviour.
+* Enabled `display-fill-column-indicator-mode` as default behaviour.
 * Avoid tracking recent files when trigger goto definition.
 * Support full line when removing item from `dashboard`.
-* Install new package `elm-mode`.
-* Install new package `keytar`.
+* Installed new package `elm-mode`.
+* Installed new package `keytar`.
 * Configure company icon margin function base on theme color.
-* Add theme customization for `company-mode`.
-* Fix `undo-tree` visualizer buffer triggers in incorrect buffer.
-* Abort `company-mode` while kill whole line command.
-* Replace focus in/out hook to `after-focus-change-function`.
+* Added theme customization for `company-mode`.
+* Fixed `undo-tree` visualizer buffer triggers in incorrect buffer.
+* Aborted `company-mode` while kill whole line command.
+* Replaced focus in/out hook to `after-focus-change-function`.
 * Configure horizontal scroll variables.
 * Make sure to install missing dependency while on start-up.
-* Fix issue project item not removing from `dashboard`.
-* Add new package `logview`.
-* Fix the calculation of the active package list.
-* Remove indent level configuration from `json-mode`.
-* Fix guess path logic from dashboard item alists.
-* Fix not correct backspace/delete indent level.
+* Fixed issue project item not removing from `dashboard`.
+* Added new package `logview`.
+* Fixed the calculation of the active package list.
+* Removee indent level configuration from `json-mode`.
+* Fixed guess path logic from dashboard item alists.
+* Fixed not correct backspace/delete indent level.
 * Ensure `highlight-indent-guides-mode` for `.yaml` and `.xml` file.
-* Add utility function buffer show in list.
+* Added utility function buffer show in list.
 * Only revert necessary buffers to save performance on `focus-in` event.
-* Use `vc-mode` instead of `magit` while updating `feebleline`.
-* Add utility function replace non-displayable character.
-* Add new package `lsp-grammarly`.
-* Fix missing comma prompt from command `jcs-package-autoremove`.
-* Remove package `reload-emacs`.
-* Remove package `test-sha`.
-* Add template and basic configuration for AppleScript file.
-* Install new package `lsp-ltex`.
-* Stop guessing indent level for python file.
-* Install new package `flycheck-languagetool`.
+* Used `vc-mode` instead of `magit` while updating `feebleline`.
+* Added utility function replace non-displayable character.
+* Added new package `lsp-grammarly`.
+* Fixed missing comma prompt from command `jcs-package-autoremove`.
+* Removed package `reload-emacs`.
+* Removed package `test-sha`.
+* Added template and basic configuration for AppleScript file.
+* Installed new package `lsp-ltex`.
+* Stopped guessing indent level for python file.
+* Installed new package `flycheck-languagetool`.
 * Make internal border wider for package `pos-tip`.
 * Configure `so-long`, disabled minor mode list.
-* Add `evaluate`/`byte-compile`/`load-file` utility functions for elisp development.
-* Remove redundant lsp customization about [lv](https://melpa.org/#/lv) package.
-* Add new feature, install custom `tree-sitter` queries.
-* Remove package `company-quickhelp`.
-* Install new package `company-box`.
+* Added `evaluate`/`byte-compile`/`load-file` utility functions for elisp development.
+* Removed redundant lsp customization about [lv](https://melpa.org/#/lv) package.
+* Added new feature, install custom `tree-sitter` queries.
+* Removed package `company-quickhelp`.
+* Installed new package `company-box`.
 
 ## 6.4.2
 > Released Feb 24, 2021
