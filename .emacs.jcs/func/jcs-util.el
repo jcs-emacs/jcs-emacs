@@ -6,6 +6,15 @@
 ;; (@* "Macro" )
 ;;
 
+(defmacro jcs-with-no-redisplay (&rest body)
+  "Execute BODY without any redisplay execution."
+  (declare (indent 0) (debug t))
+  `(let ((inhibit-redisplay t)
+         buffer-list-update-hook
+         window-configuration-change-hook
+         after-focus-change-function)
+     (progn ,@body)))
+
 (defmacro jcs-with-timer (title &rest forms)
   "Run the given FORMS, counting the elapsed time.
 A message including the given TITLE and the corresponding elapsed
@@ -43,7 +52,7 @@ time is displayed."
 (defmacro jcs-save-window-excursion (&rest body)
   "Execute BODY without touching window's layout/settings."
   (declare (indent 0) (debug t))
-  `(progn
+  `(jcs-with-no-redisplay
      (jcs-window-record-once)
      (progn ,@body)
      (jcs-window-restore-once)))
