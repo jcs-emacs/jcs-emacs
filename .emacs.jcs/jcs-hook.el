@@ -106,9 +106,7 @@
     (require 'company)
     (require 'dashboard)
     (require 'diminish)
-    (require 'highlight-indent-guides)
-    (require 'ivy)
-    (require 'yascroll))
+    (require 'highlight-indent-guides))
 
   ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   ;; NOTE: Enable util modes here.
@@ -180,6 +178,7 @@
   (show-paren-mode t)
   (global-so-long-mode 1)
   (which-key-mode)
+  (with-current-buffer jcs-message-buffer-name (messages-buffer-mode))
   (remove-hook 'pre-command-hook 'jcs-hook--first-pre-command))
 (add-hook 'pre-command-hook 'jcs-hook--first-pre-command)
 
