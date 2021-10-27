@@ -136,6 +136,7 @@
 (defun jcs-scratch-buffer-maybe-kill ()
   "Kill buffer scratch."
   (interactive)
+  (require 'jcs-undo)
   (if (string= (buffer-name) jcs-scratch-buffer-name)
       (progn (jcs-undo-kill-this-buffer) (jcs-bury-buffer))
     (jcs-maybe-kill-this-buffer)))
