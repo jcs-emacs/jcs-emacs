@@ -897,7 +897,7 @@
 
   (defun jcs--powerline-set-selected-window--advice-around (fnc &rest args)
     "Execute around function `powerline-set-selected-window'."
-    (when mode-line-format (apply fnc args)))
+    (when (and mode-line-format (not inhibit-redisplay)) (apply fnc args)))
   (advice-add 'powerline-set-selected-window :around #'jcs--powerline-set-selected-window--advice-around)
 
   ;; Override
