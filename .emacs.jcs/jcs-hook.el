@@ -53,14 +53,9 @@
   (jcs-dashboard-safe-refresh-buffer))
 (advice-add 'find-file :after #'jcs--find-file--advice-after)
 
-(defun jcs--switch-to-buffer--advice-around (fnc &rest args)
-  "Advice execute around function `switch-to-buffer'."
-  (apply fnc args)
-  (jcs-dashboard-safe-refresh-buffer))
-(advice-add 'switch-to-buffer :around #'jcs--switch-to-buffer--advice-around)
-
 (defun jcs--switch-to-buffer--advice-after (&rest _)
   "Advice execute after command `switch-to-buffer'."
+  (jcs-dashboard-safe-refresh-buffer)
   (jcs-buffer-menu-safe-refresh))
 (advice-add 'switch-to-buffer :after #'jcs--switch-to-buffer--advice-after)
 
