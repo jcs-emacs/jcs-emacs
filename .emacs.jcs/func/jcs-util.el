@@ -463,7 +463,7 @@ See description from function `define-key' for arguments KEY, DEF and KEYMAP."
   (message "=> Ver. 2 %s" (jcs-timestamp-ver2))
   (message (jcs-env-separator))
   (message "[INFO] All version of timestamps printed.")
-  (jcs-do-after-log-action))
+  (jcs-log--after))
 
 ;;
 ;; (@* "Timer" )
