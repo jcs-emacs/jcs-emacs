@@ -12,11 +12,12 @@
 If IN-BUFFER-NAME isn't showing; then execute ERROR operations instead.
 
 For argument TYPE; see function `jcs-string-compare-p' for description."
-  (if (jcs-buffer-shown-p in-buffer-name type)
-      (save-selected-window
-        (when (and success (jcs-jump-shown-to-buffer in-buffer-name t type))
-          (funcall success)))
-    (when error (funcall error))))
+  (jcs-with-no-redisplay
+    (if (jcs-buffer-shown-p in-buffer-name type)
+        (save-selected-window
+          (when (and success (jcs-jump-shown-to-buffer in-buffer-name t type))
+            (funcall success)))
+      (when error (funcall error)))))
 
 (defun jcs-jump-shown-to-buffer (in-buffer-name &optional no-error type)
   "Jump to the IN-BUFFER-NAME if the buffer current shown in the window.
@@ -63,8 +64,7 @@ BUFFER-OR-NAME and NORECORD."
   (when (jcs-valid-buffers-exists-p)
     (let* ((lst (jcs-valid-buffer-list))
            (target-index 1)
-           (target-buffer (nth target-index lst)))
-      (unless target-buffer (setq target-buffer (nth 0 lst)))
+           (target-buffer (or (nth target-index lst) (nth 0 lst))))
       (switch-to-buffer target-buffer))))
 
 (defun jcs-switch-to-prev-valid-buffer ()
@@ -73,8 +73,7 @@ BUFFER-OR-NAME and NORECORD."
   (when (jcs-valid-buffers-exists-p)
     (let* ((lst (jcs-valid-buffer-list))
            (target-index (1- (length lst)))
-           (target-buffer (nth target-index lst)))
-      (unless target-buffer (setq target-buffer (nth 0 lst)))
+           (target-buffer (or (nth target-index lst) (nth 0 lst))))
       (switch-to-buffer target-buffer))))
 
 (defun jcs-count-windows (&optional util)
@@ -127,15 +126,11 @@ For argument TYPE; see function `jcs-string-compare-p' for description."
 (defun jcs-walk-windows (fun &optional minibuf all-frames)
   "See function `walk-windows' description for arguments FUN, MINIBUF and
 ALL-FRAMES."
-  (let ((inhibit-redisplay t)
-        buffer-list-update-hook
-        window-configuration-change-hook
-        after-focus-change-function)
+  (jcs-with-no-redisplay
     (walk-windows
      (lambda (win)
        (unless (jcs-frame-util-p (window-frame win))
-         (with-selected-window win
-           (funcall fun))))
+         (with-selected-window win (funcall fun))))
      minibuf all-frames)))
 
 ;;
