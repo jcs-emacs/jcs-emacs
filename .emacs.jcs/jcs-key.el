@@ -141,8 +141,8 @@
 (define-key global-map [C-right] #'jcs-smart-forward-word)
 (define-key global-map [C-left] #'jcs-smart-backward-word)
 
-(define-key global-map [C-up] #'jcs-previous-blank-line)
-(define-key global-map [C-down] #'jcs-next-blank-line)
+(leaf-key* [C-up] #'jcs-previous-blank-line)
+(leaf-key* [C-down] #'jcs-next-blank-line)
 
 (define-key global-map (kbd "<prior>") #'better-scroll-down)
 (define-key global-map (kbd "<next>") #'better-scroll-up)
