@@ -41,6 +41,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Installed new package `company-meta-net`.
 * Installed new package `hl-preproc`.
 * Introduce new variable `jcs-log` for controlling the logger module.
+* Installed new package `flx-rs`.
+* Switched company fuzzy sorting backend to `flx-rs` instead of `flx`.
 
 ## 6.5.0
 > Released Jul 17, 2021
