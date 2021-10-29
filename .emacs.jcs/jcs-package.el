@@ -97,6 +97,7 @@
     file-header
     fill-page
     flx
+    flx-rs
     flycheck-grammarly
     flycheck-languagetool
     flycheck-popup-tip
