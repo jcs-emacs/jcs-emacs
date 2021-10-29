@@ -149,7 +149,7 @@
 (leaf company-fuzzy
   :hook (company-mode-hook . company-fuzzy-mode)
   :init
-  (setq company-fuzzy-sorting-backend 'flx
+  (setq company-fuzzy-sorting-backend 'flx-rs
         company-fuzzy-prefix-on-top nil
         company-fuzzy-history-backends '(company-yasnippet)
         company-fuzzy-trigger-symbols '("." "->" "<" "\"" "'")))
