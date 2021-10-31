@@ -407,53 +407,43 @@ See description from function `define-key' for arguments KEY, DEF and KEYMAP."
 
 (defun jcs-timestamp-ver1 ()
   "Get timestamp version 1."
-  (require 'ts)
-  (ts-format "%Y-%m-%d %H:%M:%S"))
+  (require 'ts) (ts-format "%Y-%m-%d %H:%M:%S"))
 
 (defun jcs-timestamp-ver2 ()
   "Get timestamp version 2."
-  (require 'ts)
-  (ts-format "%Y/%m/%d %H:%M:%S"))
+  (require 'ts) (ts-format "%Y/%m/%d %H:%M:%S"))
 
 (defun jcs-get-date-ver1 ()
   "Get date buffer in string type - version 1."
-  (require 'ts)
-  (ts-format "%Y-%m-%d"))
+  (require 'ts) (ts-format "%Y-%m-%d"))
 
 (defun jcs-get-date-ver2 ()
   "Get date buffer in string type - version 2."
-  (require 'ts)
-  (ts-format "%Y/%m/%d"))
+  (require 'ts) (ts-format "%Y/%m/%d"))
 
 (defun jcs-month-name ()
   "Get Month name in string type."
-  (require 'ts)
-  (ts-format "%B"))
+  (require 'ts) (ts-format "%B"))
 
 (defun jcs-month-name-abbrev ()
   "Get Month name abbreviation in string type."
-  (require 'ts)
-  (ts-format "%b"))
+  (require 'ts) (ts-format "%b"))
 
 (defun jcs-day-only ()
   "Get Day in string type."
-  (require 'ts)
-  (ts-format "%d"))
+  (require 'ts) (ts-format "%d"))
 
 (defun jcs-month-only ()
   "Get Month in string type."
-  (require 'ts)
-  (ts-format "%m"))
+  (require 'ts) (ts-format "%m"))
 
 (defun jcs-year-only ()
   "Get Year in string type."
-  (require 'ts)
-  (ts-format "%Y"))
+  (require 'ts) (ts-format "%Y"))
 
 (defun jcs-get-time ()
   "Get time buffer in string type."
-  (require 'ts)
-  (ts-format "%H:%M:%S"))
+  (require 'ts) (ts-format "%H:%M:%S"))
 
 (defun jcs-print-timestamps ()
   "Print out all the timestamps."
