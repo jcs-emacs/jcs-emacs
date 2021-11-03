@@ -406,7 +406,7 @@
   (defun jcs-feebleline-display-mode-line-graphic ()
     "Display feebleline graphic base on the is inside terminal or not."
     (when feebleline-mode
-      (jcs-walk-through-all-buffers-once
+      (jcs-walk-buffers
        (lambda ()
          (if (display-graphic-p)
              (setq mode-line-format nil)
@@ -465,7 +465,7 @@
     (if feebleline-mode
         (jcs-feebleline-display-mode-line-graphic)
       (window-divider-mode -1)
-      (jcs-walk-through-all-buffers-once
+      (jcs-walk-buffers
        (lambda ()
          (setq mode-line-format feebleline--mode-line-format-previous)))))
   (advice-add 'feebleline-mode :after #'jcs--feebleline-mode--advice-after))

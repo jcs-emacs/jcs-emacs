@@ -153,7 +153,7 @@ This occurs when file was opened but has moved to somewhere else externally."
   "Check to see if any valid buffer exists in buffer list."
   (> (jcs-valid-buffers-count) 0))
 
-(defun jcs-walk-through-all-buffers-once (fnc)
+(defun jcs-walk-buffers (fnc)
   "Walk through all the buffers once and execute callback FNC."
   (save-window-excursion
     (dolist (bf (buffer-list)) (set-buffer bf) (when fnc (funcall fnc)))))
