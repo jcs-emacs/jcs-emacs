@@ -118,8 +118,6 @@
     (global-hl-line-mode 1)
     ;;----------------------------------- `indent-control'
     (indent-control-mode 1)
-    ;;----------------------------------- `ivy'
-    (ivy-mode 1)
     ;;----------------------------------- `powerline'
     (powerline-default-theme)
     ;;----------------------------------- `tree-sitter'
@@ -173,6 +171,7 @@
   (delete-selection-mode 1)
   (global-docstr-mode 1)
   (global-hl-todo-mode 1)
+  (ivy-mode 1)
   (global-page-break-lines-mode 1)
   (global-region-occurrences-highlighter-mode 1)
   (right-click-context-mode 1)
