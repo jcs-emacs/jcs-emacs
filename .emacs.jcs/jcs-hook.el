@@ -169,6 +169,7 @@
   "Pre command that only run once."
   (global-alt-codes-mode 1)
   (auto-read-only-mode 1)
+  (global-company-mode t)
   (delete-selection-mode 1)
   (global-docstr-mode 1)
   (global-hl-todo-mode 1)

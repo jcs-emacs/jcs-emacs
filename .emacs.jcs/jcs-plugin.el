@@ -104,7 +104,7 @@
   :defer-config
   (unless (display-graphic-p)
     (push 'company-echo-metadata-frontend company-frontends))
-  (with-eval-after-load 'company (require 'jcs-company) (global-company-mode t)))
+  (with-eval-after-load 'company (require 'jcs-company)))
 
 (leaf company-box
   :hook (company-mode-hook . company-box-mode)
@@ -502,6 +502,12 @@
 (leaf file-header
   :init
   (setq file-header-template-config-filepath "~/.emacs.jcs/template/template_config.properties"))
+
+(leaf flx-rs
+  :init
+  (with-eval-after-load 'flx (flx-rs-load-dyn))
+  :defer-config
+  (advice-add 'flx-score :override #'flx-rs-score))
 
 (leaf flycheck-grammarly
   :hook (flycheck-mode-hook . (lambda () (require 'flycheck-grammarly))))
