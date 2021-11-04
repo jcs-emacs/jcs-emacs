@@ -505,9 +505,9 @@
 
 (leaf flx-rs
   :init
-  (with-eval-after-load 'flx (flx-rs-load-dyn))
-  :defer-config
-  (advice-add 'flx-score :override #'flx-rs-score))
+  (with-eval-after-load 'flx
+    (flx-rs-load-dyn)
+    (advice-add 'flx-score :override #'flx-rs-score)))
 
 (leaf flycheck-grammarly
   :hook (flycheck-mode-hook . (lambda () (require 'flycheck-grammarly))))
