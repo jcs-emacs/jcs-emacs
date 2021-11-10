@@ -43,6 +43,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Introduce new variable `jcs-log` for controlling the logger module.
 * Installed new package `flx-rs`.
 * Switched company fuzzy sorting backend to `flx-rs` instead of `flx`.
+* Added support to delete dynamic module packages.
 
 ## 6.5.0
 > Released Jul 17, 2021
