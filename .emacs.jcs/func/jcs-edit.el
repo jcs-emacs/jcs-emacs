@@ -403,7 +403,7 @@ This command does not push text to `kill-ring'."
       (cond ((jcs-is-current-major-mode-p "nasm-mode")
              (setq align-regexp-string-comment "\\(\\s-*\\)               [;]")))
 
-      (if (jcs-is-region-selected-p)
+      (if (use-region-p)
           ;; NOTE: Align region only.
           (progn
             ;; First get region info.
@@ -438,7 +438,7 @@ This command does not push text to `kill-ring'."
   "Repeat alignment with respect to the given REGEXP."
   (interactive "r\nsAlign regexp: ")
   (let (beg end)
-    (if (jcs-is-region-selected-p)
+    (if (use-region-p)
         (setq beg (region-beginning) end (region-end))
       (setq beg (point-min) end (point-max)))
     (align-regexp beg end (concat "\\(\\s-*\\)" regexp) 1 1 t)))

@@ -84,7 +84,7 @@ If nothing is selected, we cut the current line, else we just delete the region.
   (interactive)
   (if buffer-read-only
       (call-interactively #'kill-ring-save)
-    (if (jcs-is-region-selected-p)
+    (if (use-region-p)
         (call-interactively #'kill-region)
       (kill-whole-line))))
 

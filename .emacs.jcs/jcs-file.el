@@ -191,9 +191,7 @@ Optional argument LAST-RESULT is the last output result from recursive function.
   "Return list of directory by PATH.
 
 If optional argument FULL is non-nil; return full path."
-  (let ((types '())
-        (files (ignore-errors (directory-files path t)))
-        fn)
+  (let ((files (ignore-errors (directory-files path t))) types fn)
     (dolist (file files)
       (when (jcs-is-directory-p file)
         (setq fn (file-name-nondirectory file))
@@ -209,9 +207,9 @@ Optional argument EXT is the extension filter.
 
 If optional argument FULL is non-nil; return full path.
 If optional argument WITH-EXT is non-nil; return path with extension."
-  (let ((types '()) fn
-        (files (ignore-errors
-                 (directory-files path t (if ext (format "\\%s$" ext) nil)))))
+  (let ((files (ignore-errors
+                 (directory-files path t (if ext (format "\\%s$" ext) nil))))
+        types fn)
     (dolist (file files)
       (when (jcs-is-file-p file)
         (setq fn (file-name-nondirectory file))
@@ -251,7 +249,7 @@ If optional argument WITH-EXT is non-nil; return path with extension."
 (defun jcs-f-directories-ignore-directories (path &optional rec)
   "Find all directories in PATH by ignored common directories with FN and REC."
   (require 'dash)
-  (let ((dirs (f-directories path)) (valid-dirs '()) (final-dirs '()))
+  (let ((dirs (f-directories path)) valid-dirs final-dirs)
     (dolist (dir dirs)
       (unless (jcs-contain-list-string project-vc-ignores (f-filename (f-slash dir)))
         (push dir valid-dirs)))
@@ -266,7 +264,7 @@ If optional argument WITH-EXT is non-nil; return path with extension."
   "Find all files in PATH by ignored common directories with FN and REC."
   (require 'dash)
   (let ((dirs (append (list path) (jcs-f-directories-ignore-directories path rec)))
-        (files '()))
+        files)
     (dolist (dir dirs) (push (f-files dir fn) files))
     (-flatten (reverse files))))
 
