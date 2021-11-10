@@ -17,11 +17,6 @@
   "Check mode STATE."
   (equal jcs-mode--state state))
 
-(defun jcs-insert-command-mode-toggle ()
-  "Toggle command/insert mode."
-  (interactive)
-  (if (jcs-mode-stats-p 'insert) (jcs-command-mode) (jcs-insert-mode)))
-
 (defun jcs-depend-cross-mode-toggle ()
   "Toggle depend/cross mode."
   (interactive)
@@ -32,13 +27,12 @@
   "Reload the active mode.
 Note this is opposite logic to the toggle mode function."
   (interactive)
-  (require 'cl-lib)
   (jcs-mute-apply
     (let ((mode-state jcs-mode--state))
       (jcs-mode-reset-state)
       (cl-case mode-state
-        (cross  (jcs-cross-mode))
-        (depend (jcs-depend-mode))))))
+        (`cross  (jcs-cross-mode))
+        (`depend (jcs-depend-mode))))))
 
 (defun jcs-buffer-spaces-to-tabs ()
   "Check if buffer using spaces or tabs."
@@ -114,46 +108,6 @@ Note this is opposite logic to the toggle mode function."
 ;;
 ;; (@* "Special Modes" )
 ;;
-
-(defun jcs-command-mode()
-  "In command mode."
-  (interactive)
-  (unless (jcs-mode-stats-p 'command)
-    ;; switch to view mode
-    ;;(view-mode-enable)
-
-    ;; Customize Mode Line
-    (jcs-gray-mode-line)
-
-    ;; Unset insert mode key
-    ;; NOTE: unset key should be before of set keys
-
-    ;; Set command mode key
-
-    ;; Update mode state.
-    (setq jcs-mode--state 'command)
-
-    (message "[INFO] Turn into `command-mode` now")))
-
-(defun jcs-insert-mode()
-  "In insert mode."
-  (interactive)
-  (unless (jcs-mode-stats-p 'insert)
-    ;; disable to view mode
-    ;;(view-mode-disable)
-
-    ;; Customize Mode Line
-    (jcs-dark-green-mode-line)
-
-    ;; Unset command mode key
-    ;; NOTE: unset key should be before of set keys
-
-    ;; Set insert mode key
-
-    ;; Update mode state.
-    (setq jcs-mode--state 'insert)
-
-    (message "[INFO] Turn into `insert-mode` now")))
 
 (defun jcs-depend-mode ()
   "This mode depend on my own machine. More feature and more control of the editor."

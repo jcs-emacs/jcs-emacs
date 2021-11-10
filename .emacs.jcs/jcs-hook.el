@@ -128,7 +128,7 @@
     (global-yascroll-bar-mode 1))
 
   (jcs-setup-default-theme)
-  (jcs-command-mode) (jcs-depend-mode)
+  (jcs-depend-mode)
 
   ;; Font Size
   (jcs-set-font-size jcs-default-font-size)
