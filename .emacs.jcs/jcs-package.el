@@ -229,7 +229,6 @@
 
 (defun jcs-package-dependency (pkg)
   "Return list of dependency from a PKG."
-  (require 'cl-lib)
   (let (result (deps (jcs-package--get-reqs pkg)) dep-name)
     (dolist (dep deps)
       (setq dep-name (car dep))
@@ -246,7 +245,6 @@
 
 (defun jcs-package-unused-packages ()
   "Return a list of unused packages."
-  (require 'cl-lib)
   (let* ((installed-pkgs (jcs-package--get-selected-packages))
          (pkg-install-lst (append jcs-package-install-list
                                   (jcs-package-manual-install-packages)))
@@ -272,7 +270,6 @@
 
 (defun jcs-package---build-desc-by-archive (pkg archive)
   "Return package-desc by PKG and ARCHIVE."
-  (require 'cl-lib)
   (cl-some
    (lambda (desc)
      (when (eq archive (ignore-errors (intern (package-desc-archive desc))))
@@ -338,7 +335,6 @@
 
 (defun jcs-package--filter-installed (lst)
   "Remove package from LST if not installed."
-  (require 'cl-lib)
   (cl-remove-if-not (lambda (elm) (package-installed-p elm)) lst))
 
 (defun jcs-package--get-selected-packages ()
@@ -378,7 +374,7 @@
 
 (defun jcs-package--menu-execute--advice-around (fnc &rest args)
   "Execution around function `package-menu-execute' with FNC and ARGS."
-  (let ((jcs-package-use-real-delete-p nil))
+  (let (jcs-package-use-real-delete-p)
     (when (apply fnc args)
       (jcs-package-rebuild-dependency-list)
       (jcs-dashboard-safe-refresh-buffer t))))
@@ -388,6 +384,11 @@
 ;;
 ;; (@* "Core Installation" )
 ;;
+
+(defconst jcs-package--elpa-temp-dir (expand-file-name "~/.emacs.d/elpa/.temp/")
+  "Temporary directory to mark packages so it can be deleted afterward.")
+
+(ignore-errors (delete-directory jcs-package--elpa-temp-dir t))
 
 (defvar jcs-package-use-real-delete-p t
   "Flag to check if we are really deleting a package.")
@@ -406,8 +407,15 @@
 
 (defun jcs--package-delete--advice-around (fnc &rest args)
   "Execution run around function `package-delete' with FNC and ARGS."
-  (if jcs-package-use-real-delete-p (apply fnc args)
-    (jcs-package-delete (jcs-package--package-name (nth 0 args)))))
+  (let ((pkg-desc (nth 0 args)))
+    (if jcs-package-use-real-delete-p
+        (unless (ignore-errors (apply fnc args))
+          (when-let ((pkg-dir (package-desc-dir pkg-desc))
+                     (pkg-name (package-desc-name pkg-name)))
+            (jcs-move-path pkg-dir jcs-package--elpa-temp-dir)
+            (message "Can't delete package `%s`, move `%s` to temporary directory"
+                     pkg-name pkg-dir)))
+      (jcs-package-delete (jcs-package--package-name pkg-desc)))))
 
 (advice-add 'package-delete :around #'jcs--package-delete--advice-around)
 
@@ -426,7 +434,6 @@
 
 (defun jcs-package--pinned-p (pkg)
   "Return non-nil if PKG is pinned."
-  (require 'cl-lib)
   (cl-some (lambda (pin-pkg) (when (eq (car pin-pkg) pkg) pin-pkg)) jcs-package-pinned))
 
 (defun jcs--package-download-transaction--advice-before (pkgs)
