@@ -17,11 +17,21 @@
 (defconst jcs-is-bsd (or jcs-is-mac (eq system-type 'berkeley-unix))
   "This value is non-nil; if current operating system on BSD.")
 
-(defconst jcs-daily-todo-file "~/TODO_JenChieh/code/todo.txt" "Open the daily todo file.")
-(defconst jcs-log-file "~/TODO_JenChieh/code/log.txt" "Log file path, file location.")
+(defconst jcs-system-type
+  (cond (jcs-is-windows 'dos)
+        (jcs-is-bsd 'mac)
+        (jcs-is-linux 'unix))
+  "Return current OS type.")
 
-(defconst jcs-project-todo-file "TODO[.]*[[:ascii:]]*" "Project TODO file.")
-(defconst jcs-project-update-log-file "CHANGELOG[.]*[[:ascii:]]*" "Project Update Log file.")
+(defconst jcs-daily-todo-file "~/TODO_JenChieh/code/todo.txt"
+  "Open the daily todo file.")
+(defconst jcs-log-file "~/TODO_JenChieh/code/log.txt"
+  "Log file path, file location.")
+
+(defconst jcs-project-todo-file "TODO[.]*[[:ascii:]]*"
+  "Project TODO file.")
+(defconst jcs-project-update-log-file "CHANGELOG[.]*[[:ascii:]]*"
+  "Project Update Log file.")
 
 (defvar jcs-makescript "[[:ascii:]]*build[[:ascii:]]*"
   "Name of the build/make file script.")
@@ -31,27 +41,21 @@
 (defvar jcs-use-sh-p (or jcs-is-mac jcs-is-linux jcs-is-bsd)
   "Flag if the system use shell script.")
 
-(cond
- (jcs-is-windows
-  (setq jcs-makescript (concat jcs-makescript "[.]bat")
-        jcs-runscript (concat jcs-runscript "[.]bat")))
- (jcs-is-mac
-  (cua-mode 0)
-  ;;(osx-key-mode 0)
-  (setq mac-command-modifier 'meta
-        select-enable-clipboard t
-        aquamacs-save-options-on-quit 0
-        special-display-regexps nil
-        special-display-buffer-names nil)
-  (define-key function-key-map [return] [13])
-  (setq mac-command-key-is-meta t
-        mac-pass-command-to-system nil))
- (jcs-is-linux
-  ;; None..
-  )
- (jcs-is-bsd
-  ;; None..
-  ))
+(pcase jcs-system-type
+  (`dos
+   (setq jcs-makescript (concat jcs-makescript "[.]bat")
+         jcs-runscript (concat jcs-runscript "[.]bat")))
+  (`mac
+   (cua-mode 0)
+   ;;(osx-key-mode 0)
+   (setq mac-command-modifier 'meta
+         select-enable-clipboard t
+         aquamacs-save-options-on-quit 0
+         special-display-regexps nil
+         special-display-buffer-names nil)
+   (define-key function-key-map [return] [13])
+   (setq mac-command-key-is-meta t
+         mac-pass-command-to-system nil)))
 
 (when jcs-use-sh-p
   (setq jcs-makescript (concat jcs-makescript "[.]sh")
