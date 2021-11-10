@@ -186,7 +186,7 @@
          (parent-directory (file-name-directory buffer-file-name))
          (non-virtual-path (jcs--find-starting-not-exists-dir-path parent-directory))
          (created-path (s-replace non-virtual-path "" parent-directory)))
-    (when (and (not (file-exists-p parent-directory))
+    (when (and (not (jcs-is-directory-p parent-directory))
                (y-or-n-p (format "Directory '%s' does not exist! Create it?" parent-directory)))
       (make-directory parent-directory t)
       (setq jcs-current-created-parent-dir-path created-path))))
