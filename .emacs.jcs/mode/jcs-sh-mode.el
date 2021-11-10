@@ -15,7 +15,7 @@
      (format "Line Endings Type for file `%s`: " (jcs-buffer-name-or-buffer-file-name))
      (let ((read-lst '("Windows (dos)" "macOS (mac)" "Linux (unix)")))
        (require 'show-eol)
-       (push (format "=> system: (%s)" (jcs-get-current-sysem)) read-lst)
+       (push (format "=> system: (%s)" jcs-system-type) read-lst)
        (push (format "=> file: (%s)" (show-eol--get-current-system)) read-lst)
        read-lst))))
   (let (sys-type)
