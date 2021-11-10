@@ -266,6 +266,17 @@ See function `jcs-string-compare-p' for argument TYPE."
   (and (display-graphic-p) (not (jcs-is-light-color-p hex-code))))
 
 ;;
+;; (@* "Command" )
+;;
+
+(defun jcs-shell-execute (cmd &rest args)
+  "Return non-nil if CMD executed succesfully with ARGS."
+  (save-window-excursion
+    (jcs-mute-apply
+      (= 0 (shell-command (concat cmd " "
+                                  (mapconcat #'shell-quote-argument args " ")))))))
+
+;;
 ;; (@* "Error" )
 ;;
 
@@ -1263,9 +1274,7 @@ Return nil, there is no region selected and mark is not active."
 
 (defun jcs-change-font (in-font)
   "Choose a font, IN-FONT and change that to the current font."
-  (interactive
-   (list (completing-read
-          "Fonts: " (font-family-list))))
+  (interactive (list (completing-read "Fonts: " (font-family-list))))
   ;; Change the font and keep the size.
   (if (jcs-font-existsp in-font)
       (set-frame-font in-font t)
@@ -1301,8 +1310,8 @@ Return nil, there is no region selected and mark is not active."
               (symbol (equal key item))
               (integer (= key item)) (float (= key item))
               (t nil))
-        (setq result (nth (+ index offset) lst))
-        (setq break-it t))
+        (setq result (nth (+ index offset) lst)
+              break-it t))
       (setq index (1+ index)))
     result))
 
@@ -1452,60 +1461,14 @@ Argument TYPE see function `jcs-string-compare-p' for more information."
                 t  ; Overwrite?
                 ))
 
-(defun jcs-parse-ini (path)
-  "Parse a .ini file by PATH."
-  (let ((tmp-ini (jcs-get-string-from-file path))
-        tmp-ini-list tmp-pair-list
-        (tmp-keyword "") (tmp-value "")
-        (count 0))
-    (setq tmp-ini (split-string tmp-ini "\n"))
+(defun jcs-create-path-if-not-exists (path)
+  "Create PATH if it doesn't exist."
+  (unless (jcs-is-directory-p path) (make-directory path t)))
 
-    (dolist (tmp-line tmp-ini)
-      ;; check not comment.
-      (unless (string-match-p "#" tmp-line)
-        ;; Split it.
-        (setq tmp-pair-list (split-string tmp-line "="))
-
-        ;; Assign to temporary variables.
-        (setq tmp-keyword (nth 0 tmp-pair-list)
-              tmp-value (nth 1 tmp-pair-list))
-
-        ;; Check empty value.
-        (when (and (not (string-empty-p tmp-keyword)) tmp-value)
-          (let ((tmp-list '()))
-            (push tmp-keyword tmp-list)
-            (setq tmp-ini-list (append tmp-ini-list tmp-list)))
-          (let ((tmp-list '()))
-            (push tmp-value tmp-list)
-            (setq tmp-ini-list (append tmp-ini-list tmp-list)))))
-      (setq count (1+ count)))
-
-    ;; return list.
-    tmp-ini-list))
-
-(defun jcs-get-properties (ini-list in-key)
-  "Get properties data, searched by key and return value.
-
-Argument INI-LIST is properties file; please use this with/after using
-function `jcs-parse-ini'.
-
-Argument IN-KEY is key use to search for value."
-  (let ((tmp-index 0) (tmp-key "") (tmp-value "") (returns-value ""))
-    (while (< tmp-index (length ini-list))
-      ;; Get the key and data value.
-      (setq tmp-key (nth tmp-index ini-list))
-      (setq tmp-value (nth (1+ tmp-index) ini-list))
-
-      ;; Find the match.
-      (when (string= tmp-key in-key)
-        ;; return data value.
-        (setq returns-value tmp-value))
-
-      ;; Search for next key word.
-      (setq tmp-index (+ tmp-index 2)))
-
-    ;; Found nothing, return empty string.
-    returns-value))
+(defun jcs-move-path (path dest)
+  "Move PATH to DEST."
+  (jcs-create-path-if-not-exists dest)
+  (jcs-shell-execute (if jcs-is-windows "move" "mv") path dest))
 
 ;;
 ;; (@* "File" )
@@ -1557,10 +1520,6 @@ Argument IN-KEY is key use to search for value."
 ;; (@* "Directory" )
 ;;
 
-(defun jcs-get-current-dir ()
-  "Return the string of current directory."
-  default-directory)
-
 (defun jcs-is-file-p (path)
   "Return non-nil if PATH is a file path."
   (and (file-exists-p path) (not (file-directory-p path))))
@@ -1571,8 +1530,7 @@ Argument IN-KEY is key use to search for value."
 
 (defun jcs-file-directory-exists-p (file-path)
   "Return non-nil if FILE-PATH does exists."
-  (or (file-directory-p file-path)
-      (file-exists-p file-path)))
+  (or (file-directory-p file-path) (file-exists-p file-path)))
 
 (defun jcs-last-default-directory ()
   "Return a dedicated default directory."
