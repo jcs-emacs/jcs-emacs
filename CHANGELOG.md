@@ -44,6 +44,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Installed new package `flx-rs`.
 * Switched company fuzzy sorting backend to `flx-rs` instead of `flx`.
 * Added support to delete dynamic module packages.
+* Installed new package `csv-mode`.
 
 ## 6.5.0
 > Released Jul 17, 2021
