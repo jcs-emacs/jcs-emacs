@@ -66,6 +66,7 @@
     counsel
     csharp-mode
     csproj-mode
+    csv-mode
     dap-mode
     dart-mode
     dashboard-ls
