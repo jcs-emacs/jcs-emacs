@@ -59,15 +59,15 @@ For `python-mode' we specificlly indent through the file line by line \
 instead of indent the whole file at once."
   (interactive)
   (if (use-region-p)
-      (call-interactively 'jcs-py-indent-region)
-    (call-interactively 'jcs-py-format-document)))
+      (call-interactively #'jcs-py-indent-region)
+    (call-interactively #'jcs-py-format-document)))
 
 (defun jcs-py-indent-up ()
   "Move to previous line and indent for `python-mode'."
   (interactive)
   (jcs-previous-line)
   (if (jcs-current-line-empty-p)
-      (when (not (jcs-is-mark-active-or-region-selected-p))
+      (unless (jcs-is-mark-active-or-region-selected-p)
         (py-indent-line-outmost))
     (when (jcs-is-infront-first-char-at-line-p)
       (back-to-indentation))))
@@ -77,7 +77,7 @@ instead of indent the whole file at once."
   (interactive)
   (jcs-next-line)
   (if (jcs-current-line-empty-p)
-      (when (not (jcs-is-mark-active-or-region-selected-p))
+      (unless (jcs-is-mark-active-or-region-selected-p)
         (py-indent-line-outmost))
     (when (jcs-is-infront-first-char-at-line-p)
       (back-to-indentation))))
@@ -103,7 +103,7 @@ instead of indent the whole file at once."
 
 (defun jcs-py-check-first-char-of-line-is-keyword-p ()
   "Check the first character of the current line the keyword line."
-  (let ((is-keyword nil))
+  (let (is-keyword)
     (save-excursion
       (back-to-indentation)
       (forward-char 1)

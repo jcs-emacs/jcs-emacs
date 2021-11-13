@@ -94,19 +94,9 @@ time is displayed."
 ;; (@* "Buffer" )
 ;;
 
-(defun jcs-print-current-buffer-info ()
-  "Message out what current window's buffer name."
-  (interactive)
-  (message "[INFO] Name: %s" (buffer-name))
-  (message "[INFO] Filename: %s" (buffer-file-name)))
-
 (defun jcs-buffer-name-or-buffer-file-name (&optional buf)
   "Return BUF's `buffer-file-name' or `buffer-name' respectively."
   (or (buffer-file-name buf) (buffer-name buf)))
-
-(defun jcs-buffer-exists-p (buf-name)
-  "Return non-nil if the buffer BUF-NAME exists."
-  (get-buffer buf-name))
 
 (defun jcs-virtual-buffer-p (&optional buffer)
   "Return non-nil if buffer doesn't exists on disk."
@@ -1126,11 +1116,6 @@ Return nil, there is no region selected and mark is not active."
   (unless new-size (setq new-size jcs-default-font-size))
   (set-face-attribute 'default nil :height new-size))
 
-(defun jcs-list-font-list ()
-  "List out all the fonts available."
-  (interactive)
-  (jcs-log-list (font-family-list)))
-
 (defun jcs-change-font (in-font)
   "Choose a font, IN-FONT and change that to the current font."
   (interactive (list (completing-read "Fonts: " (font-family-list))))
@@ -1141,13 +1126,8 @@ Return nil, there is no region selected and mark is not active."
 
 (defun jcs-font-existsp (font)
   "Check if FONT exists."
-  (not (string-equal (describe-font font) "No matching font being used")))
-
-(defun jcs-font-lock-fontify-buffer ()
-  "Refresh the syntax hightlight for whole buffer."
-  (interactive)
-  ;; Refresh the syntax hightlight.
-  (jcs-mute-apply (call-interactively #'font-lock-fontify-buffer)))
+  (save-window-excursion
+    (not (string-equal (describe-font font) "No matching font being used"))))
 
 ;;
 ;; (@* "List" )
@@ -1194,30 +1174,6 @@ Return nil, there is no region selected and mark is not active."
       (setq max (jcs-length max) num (jcs-length num))
       (if max (when (> num max) (setq max num)) (setq max num)))
     max))
-
-(defun jcs-remove-nth-element (nth lst)
-  "Remove NTH element from the LST and return the list."
-  (if (zerop nth) (cdr lst)
-    (let ((last (nthcdr (1- nth) lst))) (setcdr last (cddr last)) lst)))
-
-(defun jcs-chop (string separator)
-  "Split a STRING without consuming a SEPARATOR."
-  ;; SOURCE: https://emacs.stackexchange.com/questions/5729/split-a-string-without-consuming-separators
-  (cl-loop with seplen = (length separator)
-           with len = (length string)
-           with start = 0
-           with next = seplen
-           for end = (or (cl-search separator string :start2 next) len)
-           for chunk = (substring string start end)
-           collect chunk
-           while (< end len)
-           do (setf start end next (+ seplen end))))
-
-(defun jcs-concat-string-list (lst-str)
-  "Convert list of string, LST-STR to one string."
-  (let ((full-str ""))
-    (dolist (s lst-str) (setq full-str (concat full-str s)))
-    full-str))
 
 (defun jcs-contain-list-string-regexp (in-list in-str)
   "Return non-nil if IN-STR is listed in IN-LIST.
