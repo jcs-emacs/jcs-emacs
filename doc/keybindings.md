@@ -13,7 +13,8 @@ Here is the list of key bindins that defined in this configuration.
   * <kbd>Ctrl</kbd>+<kbd>v</kbd> - Paste
   * <kbd>Ctrl</kbd>+<kbd>z</kbd> - Undo
   * <kbd>Ctrl</kbd>+<kbd>y</kbd> - Redo
-  * <kbd>TAB</kbd> - Mimic the normal text editor preset behavior.
+  * <kbd>TAB</kbd> - If region, indent block. Else we expand it.
+  * <kbd>Shift</kbd>+<kbd>TAB</kbd> - If region, outdent block. Else we expand it.
   * <kbd>Ctrl</kbd>+<kbd>TAB</kbd> - Reindent block.
   * <kbd>Ctrl</kbd>+<kbd>r</kbd>, <kbd>Ctrl</kbd>+<kbd>r</kbd> - Rename the whole text with the same name.
   * <kbd>Ctrl</kbd>+<kbd>a</kbd> - Mark whole buffer. (Select All)
@@ -125,40 +126,6 @@ Here is the list of key bindins that defined in this configuration.
     * <kbd>Ctrl</kbd>+<kbd>;</kbd> - Move backward balanced expresssion (sexp) with unlimited levels.
     * <kbd>Ctrl</kbd>+<kbd>'</kbd> - Move forward balanced expresssion (sexp) with unlimited levels.
 
-  * **Symbol**
-
-    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>[</kbd> - Delete everything between `[` and `]`.
-    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>]</kbd> - Delete everything between `[` and `]`.
-    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>(</kbd> - Delete everything between `(` and `)`.
-    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>)</kbd> - Delete everything between `(` and `)`.
-    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>{</kbd> - Delete everything between `{` and `}`.
-    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>}</kbd> - Delete everything between `{` and `}`.
-    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>'</kbd> - Delete everything between two `'`.
-    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>"</kbd> - Delete everything between two `"`.
-    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd><</kbd> - Delete everything between `<` and `>`.
-    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>></kbd> - Delete everything between `>` and `<`.
-    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>`` ` ``</kbd> - Delete everything between two `` ` ``.
-    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>~</kbd> - Delete everything between two `~`.
-    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>@</kbd> - Delete everything between two `@`.
-    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>#</kbd> - Delete everything between two `#`.
-    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>$</kbd> - Delete everything between two `$`.
-    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>%</kbd> - Delete everything between two `%`.
-    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>^</kbd> - Delete everything between two `^`.
-    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>&</kbd> - Delete everything between two `&`.
-    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>*</kbd> - Delete everything between two `*`.
-    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>-</kbd> - Delete everything between two `-`.
-    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>_</kbd> - Delete everything between two `_`.
-    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>=</kbd> - Delete everything between two `=`.
-    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>+</kbd> - Delete everything between two `+`.
-    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>`\`</kbd> - Delete everything between two `\`.
-    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>|</kbd> - Delete everything between two `|`.
-    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>:</kbd> - Delete everything between two `:`.
-    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>;</kbd> - Delete everything between two `;`.
-    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>,</kbd> - Delete everything between two `,`.
-    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>.</kbd> - Delete everything between two `.`.
-    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>/</kbd> - Delete everything between two `/`.
-    * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>i</kbd>, <kbd>?</kbd> - Delete everything between two `?`.
-
   * **Multiple Cursors**
 
     #### Marking
@@ -264,13 +231,6 @@ Here is the list of key bindins that defined in this configuration.
   * <kbd>Alt</kbd>+<kbd>w</kbd> - Switch to the `next` window.
   * <kbd>Alt</kbd>+<kbd>q</kbd> - Switch to the `previous` window.
 
-  * **Vim like**
-
-    * <kbd>Ctrl</kbd>+<kbd>w</kbd>, <kbd>up</kbd> - Switch to `up` window.
-    * <kbd>Ctrl</kbd>+<kbd>w</kbd>, <kbd>down</kbd> - Switch to `down` window.
-    * <kbd>Ctrl</kbd>+<kbd>w</kbd>, <kbd>right</kbd> - Switch to `right` window.
-    * <kbd>Ctrl</kbd>+<kbd>w</kbd>, <kbd>left</kbd> - Switch to `left` window.
-
   * **Ace Windows**
 
     * <kbd>Alt</kbd>+<kbd>e</kbd> - Aced window. (advanced way to switch window)
@@ -318,6 +278,7 @@ Here is the list of key bindins that defined in this configuration.
 
 ### Windows
 
+* <kbd>Alt</kbd>+<kbd>f11</kbd> - Toggle full screen.
 * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>n</kbd> - Create new frame.
 * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>w</kbd> - Delete current frame.
 * <kbd>Ctrl</kbd>+<kbd>f4</kbd> - Delete current window.
