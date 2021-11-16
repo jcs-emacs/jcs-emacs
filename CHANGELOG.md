@@ -5,8 +5,13 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
-## 6.5.1 (Unreleased)
+## 6.5.2 (Unreleased)
 > Released N/A
+
+* N/A
+
+## 6.5.1
+> Released Nov 17, 2021
 
 * Configured `company-box` so it's compatible to old `company-quickhelp` configuration.
 * Installed new package `logms`.
@@ -42,7 +47,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Installed new package `hl-preproc`.
 * Introduce new variable `jcs-log` for controlling the logger module.
 * Installed new package `flx-rs`.
-* Switched company fuzzy sorting backend to `flx-rs` instead of `flx`.
+* Replaced scoring algorithm from `flx` to `flx-rs`.
 * Added support to delete dynamic module packages.
 * Installed new package `csv-mode`.
 * Removed `indent` support for next/previous key types.
