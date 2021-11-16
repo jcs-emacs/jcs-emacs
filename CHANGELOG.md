@@ -45,6 +45,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Switched company fuzzy sorting backend to `flx-rs` instead of `flx`.
 * Added support to delete dynamic module packages.
 * Installed new package `csv-mode`.
+* Removed `indent` support for next/previous key types.
+* Added Notepad++ style indent block commands.
 
 ## 6.5.0
 > Released Jul 17, 2021
