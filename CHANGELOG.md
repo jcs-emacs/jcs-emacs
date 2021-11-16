@@ -47,6 +47,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Installed new package `csv-mode`.
 * Removed `indent` support for next/previous key types.
 * Added Notepad++ style indent block commands.
+* Removed unused vim layer.
 
 ## 6.5.0
 > Released Jul 17, 2021
