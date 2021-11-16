@@ -21,7 +21,6 @@
         jcs-backward-kill-word-capital
         jcs-backward-sexp
         jcs-backward-word-capital
-        jcs-beginning-of-buffer
         jcs-beginning-of-line
         jcs-c-comment-pair
         jcs-calc-eval-region
@@ -67,7 +66,6 @@
         jcs-duplicate-line
         jcs-electric-backspace
         jcs-emmet-expand-line
-        jcs-end-of-buffer
         jcs-end-of-line
         jcs-forward-delete-word
         jcs-forward-kill-word-capital
@@ -91,7 +89,6 @@
         jcs-move-forward-comma
         jcs-move-forward-double-quote
         jcs-move-forward-greater-than-sign
-        jcs-next-line
         jcs-open-all-nodes
         jcs-open-node
         jcs-org-smart-cycle
@@ -99,7 +96,6 @@
         jcs-org-table-left
         jcs-org-table-right
         jcs-org-table-up
-        jcs-previous-line
         jcs-py-indent-down
         jcs-py-indent-region
         jcs-py-indent-up
