@@ -29,10 +29,6 @@
         jcs-close-node
         jcs-comment-region-or-line
         jcs-comment-uncomment-region-or-line
-        jcs-csharp-smart-indent-down
-        jcs-csharp-smart-indent-up
-        jcs-css-smart-indent-down
-        jcs-css-smart-indent-up
         jcs-ctrl-return-key
         jcs-delete-inside-and
         jcs-delete-inside-asterisk
@@ -96,9 +92,7 @@
         jcs-org-table-left
         jcs-org-table-right
         jcs-org-table-up
-        jcs-py-indent-down
         jcs-py-indent-region
-        jcs-py-indent-up
         jcs-py-return
         jcs-real-backspace
         jcs-real-delete
@@ -110,8 +104,6 @@
         jcs-smart-delete
         jcs-smart-forward-delete-word
         jcs-smart-forward-word
-        jcs-smart-indent-down
-        jcs-smart-indent-up
         jcs-smart-next-line
         jcs-smart-previous-line
         jcs-smart-space
