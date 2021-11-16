@@ -7,87 +7,11 @@
 
 (setq python-indent-guess-indent-offset nil)
 
-(defun jcs-py-indent-region ()
-  "Indent region for `python-mode'."
-  (interactive)
-  (save-window-excursion
-    (save-excursion
-      (let ((ed-ln-num (line-number-at-pos)) (st-ln-num -1)
-            (ed-ln-num-2 -1) (st-ln-num-2 -1))
-        (goto-char (region-beginning))
-        (setq st-ln-num (line-number-at-pos))
-
-        (exchange-point-and-mark)
-
-        (goto-char (region-end))
-        (setq ed-ln-num-2 (line-number-at-pos))
-
-        (goto-char (region-beginning))
-        (setq st-ln-num-2 (line-number-at-pos))
-
-        (deactivate-mark)
-
-        (jcs-goto-line st-ln-num)
-        (forward-line -1)
-
-        (while (and (<= (line-number-at-pos) ed-ln-num))
-          (jcs-py-indent-down)
-          (goto-char (point-max)))
-
-        (jcs-goto-line ed-ln-num-2)
-        (forward-line 1)
-
-        (while (and (>= (line-number-at-pos) st-ln-num-2))
-          (jcs-py-indent-up)
-          (goto-char (point-max)))))))
-
-(defun jcs-py-format-document ()
-  "Indent the whoe document line by line instead of indent it
-once to the whole document. For `python-mode'."
-  (interactive)
-  (save-window-excursion
-    (save-excursion
-      (let ((ed-ln-num (line-number-at-pos (point-max))))
-        (goto-char (point-min))
-        (while (and (<= (line-number-at-pos) ed-ln-num))
-          (jcs-py-indent-down))))))
-
-(defun jcs-py-format-region-or-document ()
-  "Format the document if there are no region apply.
-
-For `python-mode' we specificlly indent through the file line by line \
-instead of indent the whole file at once."
-  (interactive)
-  (if (use-region-p)
-      (call-interactively #'jcs-py-indent-region)
-    (call-interactively #'jcs-py-format-document)))
-
-(defun jcs-py-indent-up ()
-  "Move to previous line and indent for `python-mode'."
-  (interactive)
-  (call-interactively #'previous-line)
-  (if (jcs-current-line-empty-p)
-      (unless (jcs-is-mark-active-or-region-selected-p)
-        (py-indent-line-outmost))
-    (when (jcs-is-infront-first-char-at-line-p)
-      (back-to-indentation))))
-
-(defun jcs-py-indent-down ()
-  "Move to next line and indent for `python-mode'."
-  (interactive)
-  (call-interactively #'next-line)
-  (if (jcs-current-line-empty-p)
-      (unless (jcs-is-mark-active-or-region-selected-p)
-        (py-indent-line-outmost))
-    (when (jcs-is-infront-first-char-at-line-p)
-      (back-to-indentation))))
-
 (defun jcs-py-return ()
   "Return key for `python-mode'."
   (interactive)
   (call-interactively #'newline)
   (py-indent-line-outmost))
-
 
 (defun jcs-py-safe-backward-delete-char ()
   "Backward delete char safely in `python-mode'."
@@ -163,10 +87,6 @@ instead of indent the whole file at once."
 
   (jcs-bind-key [M-up] #'jcs-previous-blank-line)
   (jcs-bind-key [M-down] #'jcs-next-blank-line)
-
-  (jcs-bind-key (kbd "C-k C-f") #'jcs-py-indent-region)
-  (jcs-bind-key (kbd "C-k C-d") #'jcs-py-format-document)
-  (jcs-bind-key (kbd "C-S-f") #'jcs-py-format-region-or-document)
 
   ;; Edit
   (jcs-bind-key (kbd "<delete>") #'jcs-smart-delete)

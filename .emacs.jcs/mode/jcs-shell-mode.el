@@ -3,6 +3,7 @@
 ;;; Code:
 
 (require 'shell)
+(require 'esh-mode)
 
 ;;
 ;; (@* "Hook" )
@@ -49,6 +50,7 @@
   (jcs-bind-key (kbd "C-M-m") #'feebleline-mode))
 
 (add-hook 'shell-mode-hook #'jcs-shell-mode-hook)
+(add-hook 'eshell-mode-hook 'jcs-shell-mode-hook)
 
 (provide 'jcs-shell-mode)
 ;;; jcs-shell-mode.el ends here

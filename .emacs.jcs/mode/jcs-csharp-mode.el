@@ -39,28 +39,6 @@
     do-doc-string))
 
 ;;
-;; (@* "Indentation" )
-;;
-
-(defun jcs-csharp-smart-indent-up ()
-  "CSharp mode smart indent up."
-  (interactive)
-  (jcs-smart-indent-up)
-  (when (and (jcs-is-end-of-line-p)
-             (jcs-current-char-equal-p "/")
-             (jcs-vs-csharp-only-vs-comment-prefix-this-line-p))
-    (insert " ")))
-
-(defun jcs-csharp-smart-indent-down ()
-  "CSharp mode smart indent down."
-  (interactive)
-  (jcs-smart-indent-down)
-  (when (and (jcs-is-end-of-line-p)
-             (jcs-current-char-equal-p "/")
-             (jcs-vs-csharp-only-vs-comment-prefix-this-line-p))
-    (insert " ")))
-
-;;
 ;; (@* "Hook" )
 ;;
 

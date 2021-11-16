@@ -48,89 +48,33 @@
       (unless (equal buf-list (buffer-list)) (kill-buffer buf)))))
 
 ;;
-;; (@* "Move Between Line (Wrapper)" )
+;; (@* "Move in lines" )
 ;;
 
-(defun jcs-get-major-mode-prev/next-key-type (direction)
-  "Return the major-mode's prev/next key type by DIRECTION."
-  (require 'jcs-python-mode)
-  (cl-case direction
-    (`previous
-     (cond
-      ((jcs-is-current-major-mode-p '("cmake-mode"
-                                      "cobol-mode"
-                                      "dockerfile-mode"
-                                      "makefile-mode"
-                                      "masm-mode"
-                                      "nasm-mode"
-                                      "python-mode"
-                                      "yaml-mode"))
-       'jcs-py-indent-up)
-      ((jcs-is-current-major-mode-p '("bat-mode"
-                                      "conf-javaprop-mode"
-                                      "gitattributes-mode"
-                                      "gitconfig-mode"
-                                      "gitignore-mode"
-                                      "ini-mode"
-                                      "message-mode"
-                                      "reb-mode"
-                                      "ssass-mode"
-                                      "sql-mode"
-                                      "vimrc-mode"))
-       'previous-line)
-      ((jcs-is-current-major-mode-p '("csharp-mode"))
-       'jcs-csharp-smart-indent-up)
-      ((jcs-is-current-major-mode-p '("css-mode"))
-       'jcs-css-smart-indent-up)
-      ((jcs-is-current-major-mode-p '("shell-mode"))
-       'jcs-shell-up-key)
-      (t 'jcs-smart-indent-up)))
-    (`next
-     (cond
-      ((jcs-is-current-major-mode-p '("cmake-mode"
-                                      "cobol-mode"
-                                      "dockerfile-mode"
-                                      "makefile-mode"
-                                      "masm-mode"
-                                      "nasm-mode"
-                                      "python-mode"
-                                      "yaml-mode"))
-       'jcs-py-indent-down)
-      ((jcs-is-current-major-mode-p '("bat-mode"
-                                      "conf-javaprop-mode"
-                                      "gitattributes-mode"
-                                      "gitconfig-mode"
-                                      "gitignore-mode"
-                                      "ini-mode"
-                                      "message-mode"
-                                      "reb-mode"
-                                      "ssass-mode"
-                                      "sql-mode"
-                                      "vimrc-mode"))
-       'next-line)
-      ((jcs-is-current-major-mode-p '("csharp-mode"))
-       'jcs-csharp-smart-indent-down)
-      ((jcs-is-current-major-mode-p '("css-mode"))
-       'jcs-css-smart-indent-down)
-      ((jcs-is-current-major-mode-p '("shell-mode"))
-       'jcs-shell-down-key)
-      (t 'jcs-smart-indent-down)))
-    (t (user-error "[WARNING] Please define direction with 'previous' or 'next'"))))
+(defmacro jcs--define-prev/next-key (direction body-prev &rest body-next)
+  "Execute BODY without any redisplay execution."
+  (declare (indent 0) (debug t))
+  `(cl-case ,direction
+     (`previous (progn ,body-prev))
+     (`next (progn ,@body-next))
+     (t (user-error "[WARNING] Please define direction with 'previous' or 'next'"))))
 
 (defun jcs-get-prev/next-key-type (direction)
   "Return the prev/next key type by DIRECTION."
-  (cl-case direction
-    (`previous (cl-case jcs-prev/next-key-type
-                 (`normal 'previous-line)
-                 (`indent (jcs-get-major-mode-prev/next-key-type direction))
-                 (`smart 'jcs-smart-previous-line)
-                 (t (user-error "[WARNING] Prev/Next key type not defined"))))
-    (`next (cl-case jcs-prev/next-key-type
-             (`normal 'next-line)
-             (`indent (jcs-get-major-mode-prev/next-key-type direction))
-             (`smart 'jcs-smart-next-line)
-             (t (user-error "[WARNING] Prev/Next key type not defined"))))
-    (t (user-error "[WARNING] Please define direction with 'previous' or 'next'"))))
+  (cl-case major-mode
+    (`shell-mode
+     (jcs--define-prev/next-key direction #'jcs-shell-up-key #'jcs-shell-down-key))
+    (t
+     (jcs--define-prev/next-key
+       direction
+       (cl-case jcs-prev/next-key-type
+         (`normal 'previous-line)
+         (`smart 'jcs-smart-previous-line)
+         (t (user-error "[WARNING] Prev/Next key type not defined")))
+       (cl-case jcs-prev/next-key-type
+         (`normal 'next-line)
+         (`smart 'jcs-smart-next-line)
+         (t (user-error "[WARNING] Prev/Next key type not defined")))))))
 
 (defun jcs-nav--after-smart-move-line ()
   "Do stuff after smart move line."

@@ -9,22 +9,6 @@
 (require 'emmet-mode)
 (require 'rainbow-mode)
 
-(defun jcs-css-smart-indent-up ()
-  "CSS smart indent up."
-  (interactive)
-  (call-interactively #'previous-line)
-  (let (deactivate-mark) (save-excursion (indent-for-tab-command)))
-  (when (jcs-is-infront-first-char-at-line-p) (jcs-goto-first-char-in-line))
-  (when (jcs-current-line-empty-p) (end-of-line)))
-
-(defun jcs-css-smart-indent-down ()
-  "CSS smart indent down."
-  (interactive)
-  (call-interactively #'next-line)
-  (let (deactivate-mark) (save-excursion (indent-for-tab-command)))
-  (when (jcs-is-infront-first-char-at-line-p) (jcs-goto-first-char-in-line))
-  (when (jcs-current-line-empty-p) (end-of-line)))
-
 (defun jcs-css-save-buffer ()
   "Save buffer in `css-mode'."
   (interactive)
