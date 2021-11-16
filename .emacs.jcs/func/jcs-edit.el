@@ -137,14 +137,30 @@
 (defun jcs-tab-key ()
   "Global TAB key."
   (interactive)
-  (unless (ignore-errors (call-interactively #'jcs-yas-expand))
-    (if (company--active-p)
-        (call-interactively #'company-complete-selection)
-      (if (jcs-current-line-empty-p)
-          (let ((pt (point)))
-            (indent-for-tab-command)
-            (when (= pt (point)) (jcs-insert-spaces-by-indent-level)))
-        (jcs-insert-spaces-by-indent-level)))))
+  (if (use-region-p)
+      (jcs-lines-in-region
+       (lambda ()
+         (back-to-indentation)
+         (jcs-insert-spaces-by-indent-level)))
+    (unless (ignore-errors (call-interactively #'jcs-yas-expand))
+      (if (company--active-p)
+          (call-interactively #'company-complete-selection)
+        (if (jcs-current-line-empty-p)
+            (let ((pt (point)))
+              (indent-for-tab-command)
+              (when (= pt (point)) (jcs-insert-spaces-by-indent-level)))
+          (jcs-insert-spaces-by-indent-level))))))
+
+(defun jcs-shift-tab-key ()
+  "Global Shift+TAB key."
+  (interactive)
+  (if (use-region-p)
+      (jcs-lines-in-region
+       (lambda ()
+         (back-to-indentation)
+         (let (delete-active-region)
+           (jcs-backward-delete-spaces-by-indent-level))))
+    (indent-for-tab-command)))
 
 ;;
 ;; (@* "Mark" )
@@ -311,40 +327,6 @@ This command does not push text to `kill-ring'."
     (forward-line 1)
     (yank)
     (move-to-column cur-col)))
-
-;;
-;; (@* "Indent moving UP or DOWN." )
-;;
-
-(defun jcs--can-do-smart-indent-p ()
-  "Check smart indent conditions."
-  (and (not mark-active)
-       (jcs-buffer-name-or-buffer-file-name)
-       (not buffer-read-only)))
-
-(defun jcs-smart-indent-up ()
-  "Indent line after move up one line."
-  (interactive)
-  (call-interactively #'previous-line)
-  (when (jcs--can-do-smart-indent-p) (indent-for-tab-command)))
-
-(defun jcs-smart-indent-up-by-mode ()
-  "Like `jcs-smart-indent-up' but indent by mode."
-  (interactive)
-  (call-interactively #'previous-line)
-  (when (jcs--can-do-smart-indent-p) (indent-according-to-mode)))
-
-(defun jcs-smart-indent-down ()
-  "Indent line after move down one line."
-  (interactive)
-  (call-interactively #'next-line)
-  (when (jcs--can-do-smart-indent-p) (indent-for-tab-command)))
-
-(defun jcs-smart-indent-down-by-mode ()
-  "Like `jcs-smart-indent-down' but indent by mode."
-  (interactive)
-  (call-interactively #'next-line)
-  (when (jcs--can-do-smart-indent-p) (indent-according-to-mode)))
 
 ;;
 ;; (@* "Format File" )

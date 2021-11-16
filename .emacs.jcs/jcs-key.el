@@ -93,10 +93,6 @@
 (define-key global-map (kbd "C-a") #'jcs-mark-whole-buffer)
 (define-key global-map (kbd "M-r") #'revert-buffer)
 
-(define-key global-map [S-tab] #'indent-for-tab-command)
-(define-key global-map [backtab] #'indent-for-tab-command)
-(define-key global-map (kbd "C-y") #'indent-for-tab-command)
-
 ;;; Binary/Hex Editor
 (with-eval-after-load 'nhexl-mode
   (define-key nhexl-mode-map (kbd "<up>") #'previous-line)
@@ -271,7 +267,10 @@
 ;;; File editing
 (define-key global-map (kbd "M-k") #'jcs-maybe-kill-this-buffer)
 (define-key global-map (kbd "M-K") #'jcs-reopen-this-buffer)
+
 (define-key global-map [tab] #'jcs-tab-key)
+(define-key global-map [S-tab] #'jcs-shift-tab-key)
+(define-key global-map [backtab] #'jcs-shift-tab-key)
 
 ;;; File Files
 (define-key global-map (kbd "M-f") #'counsel-find-file)

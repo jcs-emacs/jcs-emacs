@@ -262,7 +262,11 @@
 
 ;;; Mute
 (defvar jcs-mute-commands
-  '(previous-line next-line beginning-of-buffer end-of-buffer)
+  (append '(previous-line next-line)
+          '(beginning-of-buffer end-of-buffer)
+          '(set-mark-command)
+          '(jcs-beginning-of-line jcs-end-of-line)
+          '(jcs-mark-whole-buffer))
   "List of commands to mute it's action warnings message.")
 
 (defun jcs--mute-command--advice-around (fnc &rest args)
@@ -286,12 +290,10 @@
 The variable can be set one of the following value.
 
   - normal : The default behaviour from Emacs.
-  - indent : Indent every movement.
   - smart : Move to the code line if available.
 
 P.S. You would need to restart Emacs to take effect from this variable."
   :type '(choice (const :tag "normal" normal)
-                 (const :tag "indent" indent)
                  (const :tag "smart" smart))
   :group 'jcs)
 

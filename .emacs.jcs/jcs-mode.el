@@ -357,8 +357,7 @@ To avoid syntax highlighting error for comment.")
 
 (with-eval-after-load 'message (require 'jcs-message-mode))
 (with-eval-after-load 're-builder (require 'jcs-re-builder-mode))
-(with-eval-after-load 'shell (require 'jcs-shell-mode))
-(with-eval-after-load 'esh-mode (require 'jcs-eshell-mode))
+(jcs-with-eval-after-load-multiple '(shell esh-mode) (require 'jcs-shell-mode))
 (with-eval-after-load 'yasnippet (require 'jcs-snippet-mode))
 
 (with-eval-after-load 'actionscript-mode (require 'jcs-actionscript-mode))
