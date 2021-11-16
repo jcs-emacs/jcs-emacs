@@ -170,7 +170,6 @@
     nix-mode
     org-bullets
     organize-imports-java
-    package-build
     package-lint
     page-break-lines
     parse-it
