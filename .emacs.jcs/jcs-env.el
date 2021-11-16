@@ -110,7 +110,8 @@
   "Base filename for compilation buffer.")
 
 ;;; Commands
-(with-eval-after-load 'grep
+(leaf grep
+  :defer-config
   (set-variable 'grep-command "grep -irHn ")
   (when jcs-is-windows
     (setq grep-use-null-device t)
@@ -201,13 +202,6 @@
 (defconst jcs-default-font-size 160
   "Default font size, the value is in 1/10pt, so 100 will give you 10pt, etc.")
 
-;;; Frame
-(set-frame-parameter (selected-frame) 'alpha '(100 . 100))
-(add-to-list 'default-frame-alist '(alpha . (100 . 100)))
-
-;;; Highlight Select Region
-(transient-mark-mode t)
-
 ;;; Key List
 (defconst jcs-key-list
   '("a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m"
@@ -265,6 +259,25 @@
 ;;; Multiple Cursors
 (defvar jcs-mc/string-distance-level 20
   "The standard similarity, the lower require more precision.")
+
+;;; Mute
+(defvar jcs-mute-commands
+  '(previous-line next-line beginning-of-buffer end-of-buffer)
+  "List of commands to mute it's action warnings message.")
+
+(defun jcs--mute-command--advice-around (fnc &rest args)
+  "Mute any commands."
+  (jcs-mute-apply (apply fnc args)))
+
+(dolist (command jcs-mute-commands)
+  (advice-add command :around #'jcs--mute-command--advice-around))
+
+(defun jcs--command-error-function (data context caller)
+  "Ignore signals for certain commands; pass the rest to the default handler."
+  (unless (memq (car data) jcs-mute-commands)
+    (command-error-default-function data context caller)))
+
+(setq command-error-function #'jcs--command-error-function)
 
 ;;; Previous/Next keys
 (defcustom jcs-prev/next-key-type 'smart
