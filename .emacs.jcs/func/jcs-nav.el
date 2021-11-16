@@ -53,10 +53,9 @@
 
 (defun jcs-get-major-mode-prev/next-key-type (direction)
   "Return the major-mode's prev/next key type by DIRECTION."
-  (require 'cl-lib)
   (require 'jcs-python-mode)
   (cl-case direction
-    (previous
+    (`previous
      (cond
       ((jcs-is-current-major-mode-p '("cmake-mode"
                                       "cobol-mode"
@@ -86,7 +85,7 @@
       ((jcs-is-current-major-mode-p '("shell-mode"))
        'jcs-shell-up-key)
       (t 'jcs-smart-indent-up)))
-    (next
+    (`next
      (cond
       ((jcs-is-current-major-mode-p '("cmake-mode"
                                       "cobol-mode"
@@ -120,31 +119,18 @@
 
 (defun jcs-get-prev/next-key-type (direction)
   "Return the prev/next key type by DIRECTION."
-  (require 'cl-lib)
   (cl-case direction
-    (previous (cl-case jcs-prev/next-key-type
-                (normal 'previous-line)
-                (indent (jcs-get-major-mode-prev/next-key-type direction))
-                (smart 'jcs-smart-previous-line)
-                (t (user-error "[WARNING] Prev/Next key type not defined"))))
-    (next (cl-case jcs-prev/next-key-type
-            (normal 'next-line)
-            (indent (jcs-get-major-mode-prev/next-key-type direction))
-            (smart 'jcs-smart-next-line)
-            (t (user-error "[WARNING] Prev/Next key type not defined"))))
+    (`previous (cl-case jcs-prev/next-key-type
+                 (`normal 'previous-line)
+                 (`indent (jcs-get-major-mode-prev/next-key-type direction))
+                 (`smart 'jcs-smart-previous-line)
+                 (t (user-error "[WARNING] Prev/Next key type not defined"))))
+    (`next (cl-case jcs-prev/next-key-type
+             (`normal 'next-line)
+             (`indent (jcs-get-major-mode-prev/next-key-type direction))
+             (`smart 'jcs-smart-next-line)
+             (t (user-error "[WARNING] Prev/Next key type not defined"))))
     (t (user-error "[WARNING] Please define direction with 'previous' or 'next'"))))
-
-(defun jcs-previous-line ()
-  "Calling `previous-line' does not execute.
-Just use this without remember Emacs Lisp function."
-  (interactive)
-  (call-interactively #'previous-line))
-
-(defun jcs-next-line ()
-  "Calling `next-line' does not execute.
-Just use this without remember Emacs Lisp function."
-  (interactive)
-  (call-interactively #'next-line))
 
 (defun jcs-nav--after-smart-move-line ()
   "Do stuff after smart move line."
@@ -157,13 +143,13 @@ Just use this without remember Emacs Lisp function."
 (defun jcs-smart-previous-line ()
   "Smart way to navigate to previous line."
   (interactive)
-  (jcs-previous-line)
+  (call-interactively #'previous-line)
   (jcs-nav--after-smart-move-line))
 
 (defun jcs-smart-next-line ()
   "Smart way to navigate to next line."
   (interactive)
-  (jcs-next-line)
+  (call-interactively #'next-line)
   (jcs-nav--after-smart-move-line))
 
 ;;
@@ -312,16 +298,6 @@ next hit use this version instead."
   (if truncate-lines
       (call-interactively #'end-of-line)
     (call-interactively #'jcs-end-of-visual-line)))
-
-(defun jcs-beginning-of-buffer ()
-  "Goto the beginning of buffer."
-  (interactive)
-  (jcs-mute-apply (call-interactively #'beginning-of-buffer)))
-
-(defun jcs-end-of-buffer ()
-  "Goto the end of buffer."
-  (interactive)
-  (jcs-mute-apply (call-interactively #'end-of-buffer)))
 
 ;;
 ;; (@* "Navigating Blank Line" )

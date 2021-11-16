@@ -4,12 +4,6 @@
 
 (require 'cc-mode)
 (require 'company-c-headers)
-(require 'cl-lib)
-
-(defun jcs-toggle-cc-mode ()
-  "Toggle c/c++ mode."
-  (interactive)
-  (cl-case major-mode (c-mode (c++-mode)) (c++mode (c-mode))))
 
 (defun jcs-toggle-c-comment-style ()
   "Toggle comment style between /* */ and //."

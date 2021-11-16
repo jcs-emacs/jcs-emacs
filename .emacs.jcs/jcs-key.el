@@ -364,7 +364,6 @@
   (define-key global-map (kbd "C-~") #'jcs-shell-new-shell)
   (define-key global-map (kbd "C-`") #'jcs-toggle-shell-window))
 (progn
-  (define-key global-map (kbd "C-k c") #'jcs-toggle-cc-mode)
   (define-key global-map (kbd "C-k r") #'rainbow-mode))
 
 ;;; Mouse
@@ -391,8 +390,8 @@
   (define-key mc/keymap (kbd "C-'") nil))
 
 ;;; Navigation
-(define-key global-map (kbd "C-<home>") #'jcs-beginning-of-buffer)
-(define-key global-map (kbd "C-<end>") #'jcs-end-of-buffer)
+(define-key global-map (kbd "C-<home>") #'beginning-of-buffer)
+(define-key global-map (kbd "C-<end>") #'end-of-buffer)
 (define-key global-map [home] #'jcs-beginning-of-line)
 (define-key global-map [end] #'jcs-end-of-line)
 (leaf-key* (kbd "M-<left>") #'jcs-backward-word-capital)
@@ -505,8 +504,8 @@
   (define-key dashboard-mode-map "7" #'jcs-dashboard-item-section-7)
   (define-key dashboard-mode-map "8" #'jcs-dashboard-item-section-8)
   (define-key dashboard-mode-map "9" #'jcs-dashboard-item-section-9)
-  (define-key dashboard-mode-map (kbd "<up>") #'jcs-previous-line)
-  (define-key dashboard-mode-map (kbd "<down>") #'jcs-next-line)
+  (define-key dashboard-mode-map (kbd "<up>") #'previous-line)
+  (define-key dashboard-mode-map (kbd "<down>") #'next-line)
   (define-key dashboard-mode-map (kbd "C-<up>") #'jcs-dashboard-previous-blank-line)
   (define-key dashboard-mode-map (kbd "C-<down>") #'jcs-dashboard-next-blank-line)
   (define-key dashboard-mode-map (kbd "C-k C-p") #'package-list-packages)

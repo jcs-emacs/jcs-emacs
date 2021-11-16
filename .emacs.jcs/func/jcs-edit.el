@@ -94,7 +94,7 @@
         ((ffap-url-at-point) (call-interactively #'goto-address-at-point))
         (t
          (cl-case major-mode
-           (org-mode (call-interactively #'org-todo))
+           (`org-mode (call-interactively #'org-todo))
            (t (call-interactively (key-binding (kbd "RET"))))))))
 
 ;;
@@ -325,25 +325,25 @@ This command does not push text to `kill-ring'."
 (defun jcs-smart-indent-up ()
   "Indent line after move up one line."
   (interactive)
-  (jcs-previous-line)
+  (call-interactively #'previous-line)
   (when (jcs--can-do-smart-indent-p) (indent-for-tab-command)))
 
 (defun jcs-smart-indent-up-by-mode ()
   "Like `jcs-smart-indent-up' but indent by mode."
   (interactive)
-  (jcs-previous-line)
+  (call-interactively #'previous-line)
   (when (jcs--can-do-smart-indent-p) (indent-according-to-mode)))
 
 (defun jcs-smart-indent-down ()
   "Indent line after move down one line."
   (interactive)
-  (jcs-next-line)
+  (call-interactively #'next-line)
   (when (jcs--can-do-smart-indent-p) (indent-for-tab-command)))
 
 (defun jcs-smart-indent-down-by-mode ()
   "Like `jcs-smart-indent-down' but indent by mode."
   (interactive)
-  (jcs-next-line)
+  (call-interactively #'next-line)
   (when (jcs--can-do-smart-indent-p) (indent-according-to-mode)))
 
 ;;
@@ -624,8 +624,8 @@ If optional argument CLEAN-LR is non-nil, remove all sign from `line-reminder'."
   (interactive)
   (require 'jcs-savbuf)
   (cl-case (key-binding (kbd "C-s"))
-    (jcs-untabify-save-buffer (jcs-tabify-save-buffer))
-    (jcs-tabify-save-buffer (jcs-untabify-save-buffer))
+    (`jcs-untabify-save-buffer (jcs-tabify-save-buffer))
+    (`jcs-tabify-save-buffer (jcs-untabify-save-buffer))
     (t (user-error "[ERROR] There is no default tab/untab save"))))
 
 (defun jcs-save-buffer-by-mode ()
@@ -871,10 +871,10 @@ other window."
   (require 'cl-lib)
   (let ((do-kill-char nil))
     (save-excursion
-      (cl-case direction (forward (forward-char)))
+      (cl-case direction (`forward (forward-char)))
       (when (jcs-current-char-equal-p char) (setq do-kill-char t)))
     (when do-kill-char
-      (cl-case direction (backward (delete-char -1)) (forward (delete-char 1)))
+      (cl-case direction (`backward (delete-char -1)) (`forward (delete-char 1)))
       (jcs-delete-char-repeat char direction))))
 
 ;;

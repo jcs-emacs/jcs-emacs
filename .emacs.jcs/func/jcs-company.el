@@ -2,7 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'cl-lib)
 (require 'company-box)
 
 ;;
@@ -80,8 +79,8 @@
 (defun jcs-company-default-theme ()
   "Default theme for `company-mode'."
   (cl-case jcs-company-theme
-    (auto-complete (jcs-company-auto-complete-theme))
-    (vs (jcs-company-vs-theme))
+    (`auto-complete (jcs-company-auto-complete-theme))
+    (`vs (jcs-company-vs-theme))
     (t (user-error "Unknown `company-mode` theme type: %s" jcs-company-theme))))
 
 (jcs-company-default-theme)

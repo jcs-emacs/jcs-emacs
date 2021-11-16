@@ -28,18 +28,18 @@
         (deactivate-mark)
 
         (jcs-goto-line st-ln-num)
-        (jcs-previous-line)
+        (forward-line -1)
 
         (while (and (<= (line-number-at-pos) ed-ln-num))
           (jcs-py-indent-down)
-          (end-of-line))
+          (goto-char (point-max)))
 
         (jcs-goto-line ed-ln-num-2)
-        (jcs-next-line)
+        (forward-line 1)
 
         (while (and (>= (line-number-at-pos) st-ln-num-2))
           (jcs-py-indent-up)
-          (end-of-line))))))
+          (goto-char (point-max)))))))
 
 (defun jcs-py-format-document ()
   "Indent the whoe document line by line instead of indent it
@@ -65,7 +65,7 @@ instead of indent the whole file at once."
 (defun jcs-py-indent-up ()
   "Move to previous line and indent for `python-mode'."
   (interactive)
-  (jcs-previous-line)
+  (call-interactively #'previous-line)
   (if (jcs-current-line-empty-p)
       (unless (jcs-is-mark-active-or-region-selected-p)
         (py-indent-line-outmost))
@@ -75,7 +75,7 @@ instead of indent the whole file at once."
 (defun jcs-py-indent-down ()
   "Move to next line and indent for `python-mode'."
   (interactive)
-  (jcs-next-line)
+  (call-interactively #'next-line)
   (if (jcs-current-line-empty-p)
       (unless (jcs-is-mark-active-or-region-selected-p)
         (py-indent-line-outmost))

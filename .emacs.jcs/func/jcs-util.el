@@ -163,8 +163,8 @@ TYPE is the return type; can be 'object or 'string."
         (setq buf-name (buffer-name buf))
         (when (and (stringp buf-name) (string-match-p regexp buf-name))
           (cl-case type
-            (object (push buf buf-lst))
-            (string (push buf-name buf-lst))))))
+            (`object (push buf buf-lst))
+            (`string (push buf-name buf-lst))))))
     buf-lst))
 
 (defun jcs-do-stuff-if-buffer-exists (buf-or-name fnc)
@@ -331,14 +331,14 @@ See function `jcs-string-compare-p' for argument TYPE."
 (defmacro jcs-mute-apply (&rest body)
   "Execute BODY without message."
   (declare (indent 0) (debug t))
-  `(let ((message-log-max nil))
+  `(let (message-log-max)
      (with-temp-message (or (current-message) nil)
        (let ((inhibit-message t)) (progn ,@body)))))
 
 (defmacro jcs-no-log-apply (&rest body)
   "Execute BODY without write it to message buffer."
   (declare (indent 0) (debug t))
-  `(let ((message-log-max nil)) (progn ,@body)))
+  `(let (message-log-max) (progn ,@body)))
 
 (defun jcs-funcall-fboundp (fnc &rest args)
   "Call FNC with ARGS if exists."
@@ -448,7 +448,7 @@ See description from function `define-key' for arguments KEY, DEF and KEYMAP."
   (interactive)
   (if (jcs-current-line-empty-p)
       (progn
-        (jcs-next-line)
+        (forward-line 1)
         ;; Kill empty line until there is one line.
         (while (jcs-current-line-empty-p) (jcs-kill-whole-line)))
     ;; Make sure have one empty line between.
@@ -934,7 +934,7 @@ If optional argument REL-LINE is nil; we will use first visible line instead."
 
 (defun jcs--recenter-positions (type)
   "Return the recenter position value by TYPE."
-  (cl-case type (top '(top)) (middle '(middle)) (bottom '(bottom))))
+  (cl-case type (`top '(top)) (`middle '(middle)) (`bottom '(bottom))))
 
 (defun jcs-recenter-top-bottom (type)
   "Recenter the window by TYPE."

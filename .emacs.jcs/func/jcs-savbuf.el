@@ -27,16 +27,15 @@ This variable is used to check if file are edited externally.")
 
 (defun jcs--organize-save-buffer ()
   "Organize save buffer."
-
   (let (deactivate-mark truncate-lines)
     (when jcs-on-save-whitespace-cleanup-p
       (jcs-delete-trailing-whitespace-except-current-line))
     (when jcs-on-save-end-trailing-lines-cleanup-p
       (jcs-remove-trailing-lines-end-buffer))
     (cl-case jcs-on-save-tabify-type
-      (tabify (jcs-tabify-buffer))
-      (untabify (jcs-untabify-buffer))
-      ('nil (progn ))  ; Do nothing here.
+      (`tabify (jcs-tabify-buffer))
+      (`untabify (jcs-untabify-buffer))
+      (`nil (progn ))  ; Do nothing here.
       (t (user-error "[WARNING] Unknown tabify type when on save: %s" jcs-on-save-tabify-type)))
     (when jcs-on-save-remove-control-M-p
       (jcs-mute-apply (jcs-remove-control-M)))
@@ -100,8 +99,8 @@ This variable is used to check if file are edited externally.")
                 (jcs-mute-apply (call-interactively (key-binding (kbd "C-s")))))
           (push buf saved-lst)
           (message "Saved buffer '%s'" buf))))
-    (setq len (length saved-lst))
-    (setq info-str (mapconcat (lambda (buf) (format "`%s`" buf)) saved-lst ", "))
+    (setq len (length saved-lst)
+          info-str (mapconcat (lambda (buf) (format "`%s`" buf)) saved-lst ", "))
     (pcase len
       (0 (message "[INFO] (No buffers need to be saved)"))
       (1 (message "[INFO] %s buffer saved: %s" len info-str))

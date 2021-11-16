@@ -435,8 +435,8 @@
                  (align (car fragment))
                  (string (cadr fragment)))
             (cl-case align
-              (left (push string left-str))
-              (right (push string right-str))
+              (`left (push string left-str))
+              (`right (push string right-str))
               (t (push string left-str)))))
         (with-current-buffer feebleline--minibuf
           (erase-buffer)
@@ -877,14 +877,14 @@
     (setq jcs-popup-selected-item-flag-p (jcs-last-input-event-p "mouse-1")))
   (advice-add 'popup-selected-item :after #'jcs--popup-selected-item--advice-after)
 
-  (defun jcs--popup-draw--advice-around (orig-fun &rest args)
+  (defun jcs--popup-draw--advice-around (fnc &rest args)
     "Advice around execute command `popup-draw'."
     (let ((do-orig-fun t))
       (when (and (jcs-last-input-event-p "mouse-1")
                  (not (jcs-popup-clicked-on-menu-p)))
         (keyboard-quit)
         (setq do-orig-fun nil))
-      (when do-orig-fun (apply orig-fun args))))
+      (when do-orig-fun (apply fnc args))))
   (advice-add 'popup-draw :around #'jcs--popup-draw--advice-around))
 
 (leaf pos-tip

@@ -177,6 +177,7 @@
   (right-click-context-mode 1)
   (show-paren-mode t)
   (global-so-long-mode 1)
+  (transient-mark-mode t)
   (which-key-mode)
   (with-current-buffer jcs-message-buffer-name (messages-buffer-mode))
   (remove-hook 'pre-command-hook 'jcs-hook--first-pre-command))

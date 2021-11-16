@@ -99,11 +99,11 @@
   (interactive)
   (let ((current-section (jcs-dashboard-current-section)))
     (cl-case current-section
-      (recents (jcs-dashboard-remove-recent-files-item))
-      (bookmarks (jcs-dashboard-remove-bookmarks-item))
-      (projects (jcs-dashboard-remove-projects-item))
-      (agenda (jcs-dashboard-remove-agenda-item))
-      (registers (jcs-dashboard-remove-registers-item)))))
+      (`recents (jcs-dashboard-remove-recent-files-item))
+      (`bookmarks (jcs-dashboard-remove-bookmarks-item))
+      (`projects (jcs-dashboard-remove-projects-item))
+      (`agenda (jcs-dashboard-remove-agenda-item))
+      (`registers (jcs-dashboard-remove-registers-item)))))
 
 (defun jcs-dashboard-remove-recent-files-item ()
   "Remove a file from `recentf-list'."
@@ -205,9 +205,9 @@
 (defun jcs-dashboard-current-list (name)
   "Return the list of current dashboard by NAME."
   (cl-case name
-    (recents recentf-list)
-    (bookmarks (bookmark-all-names))
-    (projects (dashboard-projects-backend-load-projects))
+    (`recents recentf-list)
+    (`bookmarks (bookmark-all-names))
+    (`projects (dashboard-projects-backend-load-projects))
     (t (user-error "Unknown section for search: %s" name))))
 
 (defun jcs-dashboard-current-item-in-path ()

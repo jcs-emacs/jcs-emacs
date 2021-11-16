@@ -108,7 +108,6 @@ For argument TYPE; see function `jcs-string-compare-p' for description."
   "Return non-nil if BUF-LST shown in the program.
 
 For argument TYPE; see function `jcs-string-compare-p' for description."
-  (require 'cl-lib)
   (cl-some (lambda (buf) (jcs-buffer-shown-p buf type)) buf-lst))
 
 (defun jcs-buffer-shown-p (in-buf-name &optional type)

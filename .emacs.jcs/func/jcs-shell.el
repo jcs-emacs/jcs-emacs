@@ -185,7 +185,7 @@
   (interactive)
   (if (or (jcs-shell-is-current-on-command) (eobp))
       (comint-previous-input 1)
-    (jcs-previous-line))
+    (call-interactively #'previous-line))
   (when (jcs-last-line-in-buffer-p)
     (goto-char (point-max))))
 
@@ -194,7 +194,7 @@
   (interactive)
   (if (or (jcs-shell-is-current-on-command) (eobp))
       (comint-next-input 1)
-    (jcs-next-line))
+    (call-interactively #'next-line))
   (when (jcs-last-line-in-buffer-p)
     (goto-char (point-max))))
 
