@@ -127,7 +127,7 @@
   (define-key scrollable-quick-peek-keymap (kbd "S-<down>") #'scrollable-quick-peek-scroll-down)
   (define-key scrollable-quick-peek-keymap (kbd "S-<up>") #'scrollable-quick-peek-scroll-up))
 
-;;; Describe Thing
+;;; Describe Things
 (define-key global-map (kbd "C-k C-s") #'describe-bindings)
 
 ;;; Diminish Buffer
@@ -202,43 +202,6 @@
   (define-key global-map (kbd "M-,") #'jcs-move-backward-comma)
   (define-key global-map (kbd "C-M-.") #'jcs-move-forward-period)
   (define-key global-map (kbd "C-M-,") #'jcs-move-backward-period))
-
-(progn  ; Changing/Deleting inside between Programming Symbols
-  (define-key global-map (kbd "C-k i [") #'jcs-delete-inside-sqr-paren)
-  (define-key global-map (kbd "C-k i ]") #'jcs-delete-inside-sqr-paren)
-  (define-key global-map (kbd "C-k i (") #'jcs-delete-inside-paren)
-  (define-key global-map (kbd "C-k i )") #'jcs-delete-inside-paren)
-  (define-key global-map (kbd "C-k i {") #'jcs-delete-inside-curly-paren)
-  (define-key global-map (kbd "C-k i }") #'jcs-delete-inside-curly-paren)
-  (define-key global-map (kbd "C-k i '") #'jcs-delete-inside-single-quote)
-  (define-key global-map (kbd "C-k i \"") #'jcs-delete-inside-double-quote)
-  (define-key global-map (kbd "C-k i <") #'jcs-delete-inside-greater-less-sign)
-  (define-key global-map (kbd "C-k i >") #'jcs-delete-inside-less-greater-sign)
-
-  (define-key global-map (kbd "C-k i `") #'jcs-delete-inside-back-quote)
-  (define-key global-map (kbd "C-k i ~") #'jcs-delete-inside-tilde)
-  (define-key global-map (kbd "C-k i !") #'jcs-delete-inside-exclamation-mark)
-  (define-key global-map (kbd "C-k i @") #'jcs-delete-inside-at-sign)
-  (define-key global-map (kbd "C-k i #") #'jcs-delete-inside-sharp-sign)
-  (define-key global-map (kbd "C-k i $") #'jcs-delete-inside-dollar-sign)
-  (define-key global-map (kbd "C-k i %") #'jcs-delete-inside-percent-sign)
-  (define-key global-map (kbd "C-k i ^") #'jcs-delete-inside-caret)
-  (define-key global-map (kbd "C-k i &") #'jcs-delete-inside-and)
-  (define-key global-map (kbd "C-k i *") #'jcs-delete-inside-asterisk)
-  (define-key global-map (kbd "C-k i -") #'jcs-delete-inside-dash)
-  (define-key global-map (kbd "C-k i _") #'jcs-delete-inside-underscore)
-  (define-key global-map (kbd "C-k i =") #'jcs-delete-inside-equal)
-  (define-key global-map (kbd "C-k i +") #'jcs-delete-inside-plus)
-
-  (define-key global-map (kbd "C-k i \\") #'jcs-delete-inside-backslash)
-  (define-key global-map (kbd "C-k i |") #'jcs-delete-inside-or)
-
-  (define-key global-map (kbd "C-k i :") #'jcs-delete-inside-colon)
-  (define-key global-map (kbd "C-k i ;") #'jcs-delete-inside-semicolon)
-  (define-key global-map (kbd "C-k i ,") #'jcs-delete-inside-comma)
-  (define-key global-map (kbd "C-k i .") #'jcs-delete-inside-period)
-  (define-key global-map (kbd "C-k i /") #'jcs-delete-inside-slash)
-  (define-key global-map (kbd "C-k i ?") #'jcs-delete-inside-question-mark))
 
 ;;; Error
 (define-key global-map [f9] #'first-error)
@@ -543,8 +506,7 @@
 
 ;;; Window
 (progn
-  ;; TODO: Determine `toggle-frame-fullscreen' key.
-  ;;(define-key global-map [f11] #'toggle-frame-fullscreen)
+  (define-key global-map [M-f11] #'toggle-frame-fullscreen)
   (define-key global-map (kbd "C-S-n") #'jcs-make-frame)
   (define-key global-map (kbd "C-S-w") #'delete-frame)  ; delete the external frame.
   (define-key global-map (kbd "C-<f4>") #'jcs-balance-delete-window)
@@ -557,13 +519,6 @@
 (progn
   (define-key global-map "\ew" #'jcs-other-window-next)
   (define-key global-map "\eq" #'jcs-other-window-prev))
-
-(progn
-  ;; NOTE: Make compatible to Vim.
-  (define-key global-map (kbd "C-w <up>") #'windmove-up)
-  (define-key global-map (kbd "C-w <down>") #'windmove-down)
-  (define-key global-map (kbd "C-w <left>") #'windmove-left)
-  (define-key global-map (kbd "C-w <right>") #'windmove-right))
 
 (progn
   (define-key global-map (kbd "M-e") #'ace-window)
