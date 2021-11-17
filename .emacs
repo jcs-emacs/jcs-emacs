@@ -114,7 +114,7 @@ decrease this. If you experience stuttering, increase this.")
 ;; (@* "Version" )
 ;;
 
-(defconst jcs-emacs-version-number "6.5.2"
+(defconst jcs-emacs-version-number "7.0.1"
   "JCS-Emacs version.")
 
 (defun jcs-emacs-version ()
