@@ -118,7 +118,7 @@ without having to get used to an new IDE.
 
 Here is the list of few important and recent changes to this configuration.
 
-* `6.5.1` - Switch from [quickhelp](https://github.com/company-mode/company-quickhelp) to [box](https://github.com/sebastiencs/company-box) for company frontend.
+* `7.0.0` - Switch from [quickhelp](https://github.com/company-mode/company-quickhelp) to [box](https://github.com/sebastiencs/company-box) for company frontend.
 * `6.5.0` - Add pinned archive feature to package module.
 * `6.4.2` - You can now resolve package dependency graph while deleting package.
 * `6.4.1` - Start with `tree-sitter` support.
