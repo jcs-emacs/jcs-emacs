@@ -5,12 +5,12 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
-## 6.5.2 (Unreleased)
+## 7.0.1 (Unreleased)
 > Released N/A
 
 * N/A
 
-## 6.5.1
+## 7.0.0
 > Released Nov 17, 2021
 
 * Configured `company-box` so it's compatible to old `company-quickhelp` configuration.
