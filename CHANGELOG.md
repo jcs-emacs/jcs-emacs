@@ -8,7 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 7.0.1 (Unreleased)
 > Released N/A
 
-* N/A
+* Installed new package `asoc`.
 
 ## 7.0.0
 > Released Nov 17, 2021
