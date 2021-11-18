@@ -561,43 +561,42 @@
 
 (leaf hl-todo
   :init
-  (setq hl-todo-highlight-punctuation "")
-  (setq hl-todo-keyword-faces
-        '(("HOLD" . "#d0bf8f")
-          ("TODO" . "red")
-          ("NEXT" . "#dca3a3")
-          ("THEM" . "#dc8cc3")
-          ("PROG" . "#7cb8bb")
-          ("OKAY" . "#7cb8bb")
-          ("DONT" . "#5f7f5f")
-          ("FAIL" . "#8c5353")
-          ("DONE" . "#afd8af")
-          ("NOTE"   . "dark green")
-          ("KLUDGE" . "#d0bf8f")
-          ("HACK"   . "#d0bf8f")
-          ("TEMP"   . "turquoise")
-          ("FIXME"  . "red")
-          ("XXX+"   . "#cc9393")
-          ("\\?\\?\\?+" . "#cc9393")
-
-          ("ATTENTION" . "red")
-          ("STUDY" . "yellow")
-          ("IMPORTANT" . "yellow")
-          ("CAUTION" . "yellow")
-          ("OPTIMIZE" . "yellow")
+  (setq hl-todo-highlight-punctuation ""
+        hl-todo-keyword-faces
+        '(("HOLD"        . "#d0bf8f")
+          ("TODO"        . "red")
+          ("NEXT"        . "#dca3a3")
+          ("THEM"        . "#dc8cc3")
+          ("PROG"        . "#7cb8bb")
+          ("OKAY"        . "#7cb8bb")
+          ("DONT"        . "#5f7f5f")
+          ("FAIL"        . "#8c5353")
+          ("DONE"        . "#afd8af")
+          ("NOTE"        . "dark green")
+          ("KLUDGE"      . "#d0bf8f")
+          ("HACK"        . "#d0bf8f")
+          ("TEMP"        . "turquoise")
+          ("FIXME"       . "red")
+          ("XXX+"        . "#cc9393")
+          ("\\?\\?\\?+"  . "#cc9393")
+          ("ATTENTION"   . "red")
+          ("STUDY"       . "yellow")
+          ("IMPORTANT"   . "yellow")
+          ("CAUTION"     . "yellow")
+          ("OPTIMIZE"    . "yellow")
           ("DESCRIPTION" . "dark green")
-          ("TAG" . "dark green")
-          ("OPTION" . "dark green")
-          ("DEBUG" . "turquoise")
-          ("DEBUGGING" . "turquoise")
-          ("TEMPORARY" . "turquoise")
-          ("SOURCE" . "PaleTurquoise2")
-          ("URL" . "PaleTurquoise2")
-          ("IDEA" . "green yellow")
-          ("OBSOLETE" . "DarkOrange3")
-          ("DEPRECATED" . "DarkOrange3")
-          ("TOPIC" . "slate blue")
-          ("SEE" . "slate blue")))
+          ("TAG"         . "dark green")
+          ("OPTION"      . "dark green")
+          ("DEBUG"       . "turquoise")
+          ("DEBUGGING"   . "turquoise")
+          ("TEMPORARY"   . "turquoise")
+          ("SOURCE"      . "PaleTurquoise2")
+          ("URL"         . "PaleTurquoise2")
+          ("IDEA"        . "green yellow")
+          ("OBSOLETE"    . "DarkOrange3")
+          ("DEPRECATED"  . "DarkOrange3")
+          ("TOPIC"       . "slate blue")
+          ("SEE"         . "slate blue")))
   :defer-config
   (defun jcs--hl-todo--inside-comment-or-string-p ()
     "Redefine `hl-todo--inside-comment-or-string-p', for accurate highlighting."
@@ -1129,39 +1128,22 @@
 (leaf use-ttf
   :init
   ;; List of TTF fonts you want to use in the currnet OS.
-  (setq use-ttf-default-ttf-fonts '(;; >> Classic Console <<
-                                    "/.emacs.jcs/fonts/clacon.ttf"
-                                    ;; >> Ubuntu Mono <<
-                                    "/.emacs.jcs/fonts/UbuntuMono-R.ttf"))
+  (setq use-ttf-default-ttf-fonts
+        '("/.emacs.jcs/fonts/clacon.ttf"
+          "/.emacs.jcs/fonts/UbuntuMono-R.ttf"))
   ;; Name of the font we want to use as default.
   ;; This you need to check the font name in the system manually.
   (setq use-ttf-default-ttf-font-name "Ubuntu Mono"))
 
 (leaf web-mode
   :init
-  ;; Associate an engine
-  (setq web-mode-engines-alist
-        '(("php"    . "\\.phtml\\'")
-          ("blade"  . "\\.blade\\.")))
-  (setq web-mode-content-types-alist
-        '(("json" . "/some/path/.*\\.api\\'")
-          ("xml"  . "/other/path/.*\\.api\\'")
-          ("jsx"  . "/some/react/path/.*\\.js[x]?\\'")))
-
-  ;; Quotation Mark
-  (setq web-mode-auto-quote-style 1)  ; 1, for double quotes; 2, for single quotes
-
   ;; Indentation
-  ;; NOTE: HTML element offset indentation
-  (setq web-mode-markup-indent-offset 2)
-  ;; NOTE: CSS offset indentation
-  (setq web-mode-css-indent-offset 2)
-  ;; NOTE: Script/code offset indentation (for JavaScript, Java, PHP, Ruby,
-  ;; Go, VBScript, Python, etc.)
-  (setq web-mode-code-indent-offset 2)
+  (setq web-mode-markup-indent-offset 2  ; html
+        web-mode-css-indent-offset 2     ; css
+        web-mode-code-indent-offset 2)   ; script
 
   ;; Left padding
-  (setq web-mode-style-padding 2  ; For `<style>' tag
+  (setq web-mode-style-padding 2   ; For `<style>' tag
         web-mode-script-padding 2  ; For `<script>' tag
         web-mode-block-padding 0)  ; For `php', `ruby', `java', `python', `asp', etc.
 
@@ -1175,36 +1157,7 @@
   ;; They are totally different list.
   (defvar jcs-web-mode-offsetless-elements-toggle '("html")
     "List of HTML elements you want to be toggable to the
-`wen-mode-offsetless-elements' list in Web mode.")
-
-  ;; Comments
-  ;;(setq web-mode-comment-style 2)
-
-  ;; Snippets
-  (setq web-mode-extra-snippets
-        '(("erb" . (("toto" . ("<% toto | %>\n\n<% end %>"))))
-          ("php" . (("dowhile" . ("<?php do { ?>\n\n<?php } while (|); ?>"))
-                    ("debug" . ("<?php error_log(__LINE__); ?>"))))))
-
-  ;; Auto-pairs
-  (setq web-mode-extra-auto-pairs
-        '(("erb"  . (("beg" "end")))
-          ("php"  . (("beg" "end")
-                     ("beg" "end")))))
-
-  ;; Enable / disable features
-  (setq web-mode-enable-auto-pairing t
-        web-mode-enable-css-colorization t
-        web-mode-enable-block-face t
-        web-mode-enable-part-face t
-        web-mode-enable-comment-keywords t
-        web-mode-enable-heredoc-fontification t)
-
-  ;; Highlight current HTML element
-  (setq web-mode-enable-current-element-highlight t)
-
-  ;; You can also highlight the current column with
-  (setq web-mode-enable-current-column-highlight t))
+`wen-mode-offsetless-elements' list in Web mode."))
 
 (leaf which-key
   :init
