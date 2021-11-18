@@ -80,17 +80,6 @@ time is displayed."
     (when (symbolp key-fnc) (advice-remove key-fnc fnc))))
 
 ;;
-;; (@* "Association List" )
-;;
-
-(defun jcs-set-alist (alist key value)
-  "Update ALIST with KEY and VALUE."
-  (if (assoc key alist)
-      (setf (cdr (assoc key alist)) value)
-    (push (cons key value) alist))
-  alist)
-
-;;
 ;; (@* "Buffer" )
 ;;
 
@@ -1270,8 +1259,9 @@ Argument TYPE see function `jcs-string-compare-p' for more information."
 
 (defun jcs-re-enable-mode-if-was-enabled (modename)
   "Re-enable the MODENAME if was enabled."
-  (when (symbol-value modename) (jcs-re-enable-mode modename))
-  (symbol-value modename))
+  (when (boundp modename)
+    (when (symbol-value modename) (jcs-re-enable-mode modename))
+    (symbol-value modename)))
 
 (defun jcs-re-enable-mode (modename)
   "Re-enable the MODENAME."

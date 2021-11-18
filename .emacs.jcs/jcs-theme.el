@@ -24,7 +24,7 @@
 (defun jcs--set-mode-line-color--by-feebleline (ac-lst inac-lst)
   "Like `jcs--set-mode-line-color' but with `feebleline' rule in it.
 AC-LST and INAC-LST are same arguments to `jcs--set-mode-line-color'."
-  (let ((light-theme-p (jcs-is-light-theme-p)))
+  (let ((light-theme-p (jcs-light-theme-p)))
     (setq ac-lst (if light-theme-p (list (nth 0 ac-lst) "#000000")
                    (list "#000000" (nth 1 ac-lst))))
     (setq inac-lst (if light-theme-p (list (nth 0 inac-lst) "#000000")
@@ -75,7 +75,7 @@ POWER-AC-LST : powerline active list.  POWER-INAC-LST : powerline inactive list.
 (defun jcs-gray-mode-line ()
   "Gray mode line."
   (interactive)
-  (if (jcs-is-light-theme-p)
+  (if (jcs-light-theme-p)
       (jcs--set-mode-line-theme
        '("#1C1C1C" "#BFBFBF") '("#CCCCCC" "#4D4D4D") "#161616"
        '("#1C1C1C" "#D8D8D8" "#000000" "#B8B8B8" "#1C1C1C" "#C7C7C7")
@@ -88,7 +88,7 @@ POWER-AC-LST : powerline active list.  POWER-INAC-LST : powerline inactive list.
 (defun jcs-dark-green-mode-line ()
   "Dark green mode line."
   (interactive)
-  (if (jcs-is-light-theme-p)
+  (if (jcs-light-theme-p)
       (jcs--set-mode-line-theme
        '("#CCCCCC" "#467E7D") '("#CCCCCC" "#2B4D4D") "#7ED5D5"
        '("#1C1C1C" "#7ED5D5" "#1C1C1C" "#5B928F" "#1C1C1C" "#68AFAC")
@@ -101,7 +101,7 @@ POWER-AC-LST : powerline active list.  POWER-INAC-LST : powerline inactive list.
 (defun jcs-dark-blue-mode-line ()
   "Dark blue mode line."
   (interactive)
-  (if (jcs-is-light-theme-p)
+  (if (jcs-light-theme-p)
       (jcs--set-mode-line-theme
        '("#CCCCCC" "#246AAF") '("#CCCCCC" "#0E2944") "#2E84D9"
        '("#EDEDED" "#2E84D9" "#EDEDED" "#225F9A" "#EDEDED" "#2D7AC4")
@@ -114,7 +114,7 @@ POWER-AC-LST : powerline active list.  POWER-INAC-LST : powerline inactive list.
 (defun jcs-dark-orange-mode-line ()
   "Dark orange mode line."
   (interactive)
-  (if (jcs-is-light-theme-p)
+  (if (jcs-light-theme-p)
       (jcs--set-mode-line-theme
        '("#1C1C1C" "#FF6C32") '("#CCCCCC" "#682B12") "#FF6C32"
        '("#1C1C1C" "#FF6C32" "#CCCCCC" "#682B12" "#CCCCCC" "#9A431F")
@@ -127,7 +127,7 @@ POWER-AC-LST : powerline active list.  POWER-INAC-LST : powerline inactive list.
 (defun jcs-red-mode-line ()
   "Red mode line."
   (interactive)
-  (if (jcs-is-light-theme-p)
+  (if (jcs-light-theme-p)
       (jcs--set-mode-line-theme
        '("#CCCCCC" "#FF0000") '("#CCCCCC" "#6A0101") "#FF0000"
        '("#1C1C1C" "#FF0000" "#CCCCCC" "#6A0101" "#CCCCCC" "#920101")
@@ -140,7 +140,7 @@ POWER-AC-LST : powerline active list.  POWER-INAC-LST : powerline inactive list.
 (defun jcs-purple-mode-line ()
   "Purple mode line."
   (interactive)
-  (if (jcs-is-light-theme-p)
+  (if (jcs-light-theme-p)
       (jcs--set-mode-line-theme
        '("#CCCCCC" "#B100EB") '("#CCCCCC" "#650286") "#B100EB"
        '("#1C1C1C" "#B100EB" "#CCCCCC" "#4B0263" "#CCCCCC" "#69018B")
@@ -153,7 +153,7 @@ POWER-AC-LST : powerline active list.  POWER-INAC-LST : powerline inactive list.
 (defun jcs-reset-plugins-base-on-theme ()
   "Reset certain plugins base on the theme."
   (jcs-reset-ahs-by-theme)
-  (jcs-company-default-theme)
+  (jcs-funcall-fboundp #'jcs-company-default-theme)
   (jcs-reset-dashboard-banner-by-theme)
   (jcs-reset-show-paren-by-theme)
   (jcs-reset-tabbar-theme)
@@ -191,20 +191,18 @@ Arguments stand for these explanation,
   (load-theme 'vs-dark t)
   (jcs-set-theme "#909090" "#2E2E2E" "#264F78" "#333333"))
 
-(defun jcs-is-light-theme-p ()
-  "Return non-nil if current theme light theme.
-Return nil if current theme dark theme."
+(defun jcs-light-theme-p ()
+  "Return non-nil if current theme is light theme."
   (ignore-errors (jcs-is-light-color-p (face-background 'default))))
 
-(defun jcs-is-dark-theme-p ()
-  "Return non-nil if current theme dark theme.
-Return nil if current theme light theme."
-  (not (jcs-is-light-theme-p)))
+(defun jcs-dark-theme-p ()
+  "Return non-nil if current theme is dark theme."
+  (not (jcs-light-theme-p)))
 
 (defun jcs-refresh-theme ()
   "Refresh theme."
   (interactive)
-  (if (jcs-is-light-theme-p) (jcs-vs-light-theme) (jcs-vs-dark-theme)))
+  (if (jcs-light-theme-p) (jcs-vs-light-theme) (jcs-vs-dark-theme)))
 
 (defun jcs-setup-default-theme ()
   "Set default theme color."

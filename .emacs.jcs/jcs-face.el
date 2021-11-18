@@ -12,7 +12,7 @@
 
 (defun jcs--apply-face-map (face-map)
   "Apply FACE-MAP with function `jcs--set-common-face'."
-  (let ((light-theme-p (jcs-is-light-theme-p)))
+  (let ((light-theme-p (jcs-light-theme-p)))
     (dolist (face-data face-map)
       (let ((face (car face-data)) (color (cdr face-data)))
         (setq color

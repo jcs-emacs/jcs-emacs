@@ -143,27 +143,27 @@
 
 (defun jcs--ahs--set-face (face bg)
   "Set FACE with BG and BOX for `auto-highlight-symbol'."
-  (when (boundp face)
-    (set-face-attribute face nil :foreground nil :background bg
-                        :box `(:line-width -1 :style pressed-button :color "#525D68"))))
+  (set-face-attribute face nil :foreground nil :background bg
+                      :box `(:line-width -1 :style pressed-button :color "#525D68")))
 
 (defun jcs-reset-ahs-by-theme ()
   "Reset `auto-highlight-symbol' by theme."
-  (let* ((light-p (jcs-is-light-theme-p))
-         (focused-color (if light-p "#E2E6D6" "#123E70"))
-         (unfocused-color (if light-p "#F1F2EE" "#0E3056")))
-    (jcs--ahs--set-face 'ahs-plugin-default-face focused-color)
-    (jcs--ahs--set-face 'ahs-plugin-default-face-unfocused unfocused-color)
-    (if light-p
-        (progn
-          (jcs--ahs--set-face 'ahs-face focused-color)
-          (jcs--ahs--set-face 'ahs-definition-face focused-color)
-          (jcs--ahs--set-face 'ahs-face-unfocused unfocused-color)
-          (jcs--ahs--set-face 'ahs-definition-face-unfocused unfocused-color))
-      (jcs--ahs--set-face 'ahs-face focused-color)
-      (jcs--ahs--set-face 'ahs-definition-face focused-color)
-      (jcs--ahs--set-face 'ahs-face-unfocused unfocused-color)
-      (jcs--ahs--set-face 'ahs-definition-face-unfocused unfocused-color))))
+  (with-eval-after-load 'auto-highlight-symbol
+    (let* ((light-p (jcs-light-theme-p))
+           (focused-color (if light-p "#E2E6D6" "#123E70"))
+           (unfocused-color (if light-p "#F1F2EE" "#0E3056")))
+      (jcs--ahs--set-face 'ahs-plugin-default-face focused-color)
+      (jcs--ahs--set-face 'ahs-plugin-default-face-unfocused unfocused-color)
+      (if light-p
+          (progn
+            (jcs--ahs--set-face 'ahs-face focused-color)
+            (jcs--ahs--set-face 'ahs-definition-face focused-color)
+            (jcs--ahs--set-face 'ahs-face-unfocused unfocused-color)
+            (jcs--ahs--set-face 'ahs-definition-face-unfocused unfocused-color))
+        (jcs--ahs--set-face 'ahs-face focused-color)
+        (jcs--ahs--set-face 'ahs-definition-face focused-color)
+        (jcs--ahs--set-face 'ahs-face-unfocused unfocused-color)
+        (jcs--ahs--set-face 'ahs-definition-face-unfocused unfocused-color)))))
 
 ;;
 ;; (@* "Buffer Menu" )
@@ -312,7 +312,7 @@ If optional argument FORCE is non-nil, force refresh it."
 (defun jcs-dashboard--get-banner-path ()
   "Return the path of the banner."
   (cond ((display-graphic-p)
-         (if (jcs-is-light-theme-p) "~/.emacs.jcs/banner/sink_black.png"
+         (if (jcs-light-theme-p) "~/.emacs.jcs/banner/sink_black.png"
            "~/.emacs.jcs/banner/sink_white.png"))
         (t "~/.emacs.jcs/banner/sink.txt")))
 
@@ -321,7 +321,7 @@ If optional argument FORCE is non-nil, force refresh it."
   (interactive)
   (setq dashboard-startup-banner (jcs-dashboard--get-banner-path))
   (let ((logo-title-fg "cyan1") (heading-fg "#17A0FB") (wb-fg "light steel blue"))
-    (when (jcs-is-light-theme-p)
+    (when (jcs-light-theme-p)
       (setq logo-title-fg "#616161"
             heading-fg "#727272"
             wb-fg "#1475B7"))
@@ -515,7 +515,7 @@ If optional argument FORCE is non-nil, force refresh it."
 (defun jcs-reset-show-paren-by-theme ()
   "Reset `paren' by theme."
   (require 'paren)
-  (let ((color (if (jcs-is-light-theme-p) "#C6E370" "#113D6F")))
+  (let ((color (if (jcs-light-theme-p) "#C6E370" "#113D6F")))
     (set-face-background 'show-paren-match color)))
 
 ;;
@@ -640,7 +640,7 @@ See `sort-words'."
 (defun jcs-reset-tabbar-theme ()
   "Set the tabbar theme to match the current theme color."
   (when centaur-tabs-mode
-    (let* ((is-light (jcs-is-light-theme-p))
+    (let* ((is-light (jcs-light-theme-p))
            (bg-default (if is-light "#D3D3D3" "#1D1D1D"))
            (bg-tab-unselected (if is-light "#E8E8E8" "#3D3C3D"))
            (fg-tab-unselected "grey50")
@@ -844,11 +844,11 @@ NO-PROMPT : Don't prompt the overwrap message."
 (defun jcs-reset-yascroll-color-by-theme ()
   "Reset yascroll color base on the theme color."
   (interactive)
-  (let ((target-color (if (jcs-is-light-theme-p) "#C2C3C9" "#686868")))
-    (if (display-graphic-p)
-        (set-face-attribute 'yascroll:thumb-fringe nil
-                            :background target-color :foreground target-color)
-      (set-face-attribute 'yascroll:thumb-text-area nil
+  (with-eval-after-load 'yascroll
+    (let ((target-color (if (jcs-light-theme-p) "#C2C3C9" "#686868")))
+      (set-face-attribute (if (display-graphic-p) 'yascroll:thumb-fringe
+                            'yascroll:thumb-text-area)
+                          nil
                           :background target-color :foreground target-color))))
 
 ;;

@@ -103,17 +103,13 @@
   ;; NOTE: Load required packages here.
   ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   (progn
-    (require 'company)
     (require 'dashboard)
-    (require 'diminish)
-    (require 'highlight-indent-guides))
+    (require 'diminish))
 
   ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   ;; NOTE: Enable util modes here.
   ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   (progn
-    ;;----------------------------------- `auto-highlight-symbol'
-    (global-auto-highlight-symbol-mode t)
     ;;----------------------------------- `hl-line'
     (global-hl-line-mode 1)
     ;;----------------------------------- `indent-control'
@@ -123,9 +119,7 @@
     ;;----------------------------------- `tree-sitter'
     (global-tree-sitter-mode 1)
     ;;----------------------------------- `use-ttf'
-    (use-ttf-set-default-font)
-    ;;----------------------------------- `yascroll'
-    (global-yascroll-bar-mode 1))
+    (use-ttf-set-default-font))
 
   (jcs-setup-default-theme)
   (jcs-depend-mode)
@@ -166,6 +160,7 @@
 (defun jcs-hook--first-pre-command ()
   "Pre command that only run once."
   (global-alt-codes-mode 1)
+  (global-auto-highlight-symbol-mode t)
   (auto-read-only-mode 1)
   (global-company-mode t)
   (delete-selection-mode 1)
@@ -179,6 +174,7 @@
   (global-so-long-mode 1)
   (transient-mark-mode t)
   (which-key-mode)
+  (global-yascroll-bar-mode 1)
   (with-current-buffer jcs-message-buffer-name (messages-buffer-mode))
   (remove-hook 'pre-command-hook 'jcs-hook--first-pre-command))
 (add-hook 'pre-command-hook 'jcs-hook--first-pre-command)
