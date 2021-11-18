@@ -1,0 +1,1 @@
+(asoc :repo "troyp/asoc.el" :fetcher github)
