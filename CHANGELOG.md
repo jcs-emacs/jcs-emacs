@@ -9,6 +9,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 > Released N/A
 
 * Installed new package `asoc`.
+* Replaced `quelpa` with `github-elpa`.
+* Removed package `leaf-quelpa`.
 
 ## 7.0.0
 > Released Nov 17, 2021
