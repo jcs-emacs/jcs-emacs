@@ -20,26 +20,26 @@
 **Table of Contents**
 
 - [jcs-emacs](#jcs-emacs)
-- [Philosophy](#philosophy)
-- [:newspaper: News](#newspaper-news)
-- [:floppy_disk: Installation](#floppy_disk-installation)
-- [:clock3: Startup Time](#clock3-startup-time)
-- [:trophy: Features](#trophy-features)
-- [Highlight](#highlight)
-- [Details](#details)
-- [:file_folder: Package Archives](#file_folder-package-archives)
-- [:trophy: Powered by](#trophy-powered-by)
-- [Functionalities](#functionalities)
-- [File Modes](#file-modes)
-- [Key Bindings](#key-bindings)
-- [Themes](#themes)
-- [Default](#default)
-- [Customization](#customization)
-- [Font](#font)
-- [:hammer: Optimization](#hammer-optimization)
-- [Write your own customization](#write-your-own-customization)
-- [:bamboo: Supported Emacs versions](#bamboo-supported-emacs-versions)
-- [:question: FAQ](#question-faq)
+    - [Philosophy](#philosophy)
+    - [📰 News](#📰-news)
+    - [💾 Installation](#💾-installation)
+    - [🕒 Startup Time](#🕒-startup-time)
+    - [🏆 Features](#🏆-features)
+        - [Highlight](#highlight)
+        - [Details](#details)
+    - [📁 Package Archives](#📁-package-archives)
+    - [🏆 Powered by](#🏆-powered-by)
+        - [Functionalities](#functionalities)
+        - [File Modes](#file-modes)
+    - [Key Bindings](#key-bindings)
+    - [Themes](#themes)
+        - [Default](#default)
+        - [Customization](#customization)
+    - [Font](#font)
+    - [🔨 Optimization](#🔨-optimization)
+    - [Write your own customization](#write-your-own-customization)
+    - [🎍 Supported Emacs versions](#🎍-supported-emacs-versions)
+    - [❓ FAQ](#❓-faq)
 
 <!-- markdown-toc end -->
 
@@ -114,10 +114,11 @@ Having these implementations makes my life easier, and having a genuinely portab
 workspace, which is great because it lets me work on different machine efficiently,
 without having to get used to an new IDE.
 
-## :newspaper: News
+## 📰 News
 
 Here is the list of few important and recent changes to this configuration.
 
+* `7.0.1` - Replace `quelpa` with `github-elpa`.
 * `7.0.0` - Switch from [quickhelp](https://github.com/company-mode/company-quickhelp) to [box](https://github.com/sebastiencs/company-box) for company frontend.
 * `6.5.0` - Add pinned archive feature to package module.
 * `6.4.2` - You can now resolve package dependency graph while deleting package.
@@ -127,9 +128,8 @@ Here is the list of few important and recent changes to this configuration.
 * `6.2.5` - Use `recipes` folder instead to specify manually installed packages in the configuration.
 * `6.2.4` - Replaced [ag](https://github.com/Wilfred/ag.el) silver searcher to [searcher](https://github.com/jcs-elpa/searcher).
 * `6.2.2` - Correct upgrade logic for manually installed packages.
-* `6.1.5` - `feebleline` is now fully compatible to terminal.
 
-## :floppy_disk: Installation
+## 💾 Installation
 
 To install, clone this repo and copy the core `files`/`directories` to the
 emacs config directory accordingly. Make sure you backup your own configuration
@@ -153,10 +153,9 @@ $ cp -r ./.emacs.jcs ~/
 Then startup Emacs; it will automatically installs all necessary
 packages due to this configuration.
 
-**:exclamation::exclamation: [ATTENTION] :exclamation::exclamation:
--- MAKE SURE YOU INSTALLED THE CORRECT VERSION OF EMACS!**
+**❗❗ [ATTENTION] ❗❗ -- MAKE SURE YOU INSTALLED THE CORRECT VERSION OF EMACS!**
 
-## :clock3: Startup Time
+## 🕒 Startup Time
 
 The average startup time for this configuration is around `15` to `25` seconds.
 You can use command `emacs-init-time` to check the startup time on your machine.
@@ -168,8 +167,7 @@ seconds. Solved this issue by removing unnecessary `require` keyword load file
 and use `:defer` keyword with `use-package` package to delay some packages
 load time.
 
-:pencil:
-*P.S. Here is a great article about
+📝 *P.S. Here is a great article about
 [Speeding Up Emacs](https://anuragpeshne.github.io/essays/emacsSpeed.html)
 written by
 [Anurag Peshne](https://github.com/anuragpeshne).*
@@ -182,18 +180,16 @@ optimize the configuration. Call `package-refresh-contents` only when package
 installation is needed. By doing thing, lower the startup time from around `4` to
 `8` seconds.
 
-:pencil:
-*P.S. Some good hints from one [StackExchange](https://emacs.stackexchange.com/)
+📝 *P.S. Some good hints from one [StackExchange](https://emacs.stackexchange.com/)
 question,
 [What can I do to speed up my start-up?](https://emacs.stackexchange.com/questions/2286/what-can-i-do-to-speed-up-my-start-up)
 answered by
 [Jordon Biondo](https://github.com/jordonbiondo).*
 
-:pencil:
-*P.S. The above cases are tested on Windows. Other OS that are not Windows should
+📝 *P.S. The above cases are tested on Windows. Other OS that are not Windows should
 start up under a second.*
 
-## :trophy: Features
+## 🏆 Features
 
 ### Highlight
 
@@ -259,7 +255,7 @@ I believed detials make things better and make life smoother.
 * [*VS Multiple Terminal*](./features/vs-multiple-terminal) - VSCode like multiple shell control.
 * [*VS Navigate Word*](./features/vs-navigate-word) - Visual Studio IDE like navigating between word implementation.
 
-## :file_folder: Package Archives
+## 📁 Package Archives
 
 A list of package archives that this configuration uses.
 
@@ -268,14 +264,13 @@ A list of package archives that this configuration uses.
 * ~~*[Marmalade](https://marmalade-repo.org/)* - where users upload their own packages (Nonstandard)~~
 * *[MELPA](https://melpa.org/#/)* - Milkypostman’s Emacs Lisp Package Archive (Nonstandard)
 
-:pencil:
-*P.S. Here is a good talk comparing all package archives from a
+📝 *P.S. Here is a good talk comparing all package archives from a
 [StackExchange](https://emacs.stackexchange.com/) question,
 [What are the practical differences between the various Emacs Package Repositories?](https://emacs.stackexchange.com/questions/268/what-are-the-practical-differences-between-the-various-emacs-package-repositorie)
 answered by
 [Tikhon Jelvis](https://github.com/TikhonJelvis).*
 
-## :trophy: Powered by
+## 🏆 Powered by
 
 Here is the list of all packages that powered and make this configuration works.
 Thanks to all the package maintainers; this configuration cannot be made without
@@ -350,8 +345,7 @@ that are opened by default mode to certain extension.
 
 * [List of modes](./doc/programming_modes.md)
 
-:pencil:
-*P.S. The [awesome-emacs](https://github.com/emacs-tw/awesome-emacs)
+📝 *P.S. The [awesome-emacs](https://github.com/emacs-tw/awesome-emacs)
 is a list of Emacs package that you can choose other alternatives to replace any
 similar packages listed here. Is also a good place to seek and learn what's inside
 Emacs!*
@@ -364,9 +358,7 @@ swichted. The key bindings set can be modified in `./.emacs.jcs/jcs-key.el` file
 
 * [List of key bindings](./doc/keybindings.md)
 
-:pencil:
-P.S.
-* My work requires me to use
+📝 P.S. * My work requires me to use
 [Visual Studio IDE](https://visualstudio.microsoft.com/)
 that being said the key bindings set are most likely compatible to
 [Visual Studio IDE](https://visualstudio.microsoft.com/).
@@ -412,14 +404,14 @@ own `.ttf` file and add the path to `use-ttf-default-ttf-fonts` list.
 Lastly, set the name of the `.ttf` file to `use-ttf-default-ttf-font-name`
 variable.
 
-:pencil:
+📝
 P.S.
 * See the file `./.emacs.jcs/jcs-plugin.el` to see how the font is been set
 in `(leaf use-ttf)` section.
 * For more details about the font settings in this configuration, check out the
 `use-ttf`package [repo](https://github.com/elpa-host/use-ttf).
 
-## :hammer: Optimization
+## 🔨 Optimization
 
 If you would like to optimize the configuration, you can run the following command
 compile all the source code to byte code so Emacs can run faster during both
@@ -439,7 +431,7 @@ You are able to customize the configuration by editing the file locate at
 `~/.emacs.jcs/jcs-config.el`. You should put all your own customize code there,
 then other than that are the core files.
 
-## :bamboo: Supported Emacs versions
+## 🎍 Supported Emacs versions
 
 The config should run on Emacs **27.1** or higher, but I will recommend to always
 run on the latest Emacs version available on your machine. The ultimate goal is to
@@ -448,7 +440,7 @@ base on the version what I'm currently running on my present machine. For each v
 record, you can check the [version_record](./version_record.txt) file at the root of
 the project directory.
 
-## :question: FAQ
+## ❓ FAQ
 
 Here is the list of *Frequently Asked Questions*.
 
