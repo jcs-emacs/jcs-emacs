@@ -225,8 +225,8 @@ I believed detials make things better and make life smoother.
 * [*Charset Table*](./features/display-file/charset-table) - Built-in functions that displays character sets.
 * ~~[*Docstring Completion*](./features/docstring-completion) - Some standard docstring completion implementations built-in to this configuration.~~ (has move to [docstr](https://github.com/jcs-elpa/docstr))
 * Enhanced Multiple Cursors
-* [*Similar Multiple Cursors*](./features/similar-multiple-cursors) - Mark with cursor by similarity.
-* [*VS Multiple Cursors*](./features/vs-multiple-cursors) - VSCode like methods to `mark` and `unmark` multiple cursor.
+  * [*Similar Multiple Cursors*](./features/similar-multiple-cursors) - Mark with cursor by similarity.
+  * [*VS Multiple Cursors*](./features/vs-multiple-cursors) - VSCode like methods to `mark` and `unmark` multiple cursor.
 * [*Fast Incremental Search*](./features/fast-incremental-search) - Fast keys for incremental search forward/backward to the cursor is currently pointing.
 * [*Feebleline Design*](./features/feebleline-design) - Personal displayed design for `feebleline`.
 * [*Indent Control*](./features/indent-control) - Generic control the indentation level for each mode, for more information see [indent-control](https://github.com/alt-elpa/indent-control).
