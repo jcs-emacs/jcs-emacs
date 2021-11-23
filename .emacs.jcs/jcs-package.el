@@ -14,7 +14,7 @@
         ("gnu" . "http://elpa.gnu.org/packages/")
         ;;("marmalade" . "http://marmalade-repo.org/packages/")
         ("melpa" . "http://melpa.org/packages/")
-        ("jcs090218" . "https://jcs090218.github.io/elpa/elpa/")))
+        ("jcs" . "https://jcs-emacs.github.io/elpa/elpa/")))
 
 ;; To avoid initializing twice
 (setq package-enable-at-startup nil)
