@@ -1,1 +1,0 @@
-(ts-fold :repo "jcs090218/ts-fold" :fetcher github)
