@@ -1028,7 +1028,7 @@
   (jcs-funcall-fboundp #'jcs-reset-common-faces-by-theme)
 
   (defconst jcs--tree-sitter-langs--query-repo
-    "https://github.com/jcs090218/tree-sitter-queries"
+    "https://github.com/jcs-emacs/tree-sitter-queries"
     "Repository URL where stores all tree-sitter highlight queries.")
 
   (defun jcs--tree-sitter-grab-queries ()
