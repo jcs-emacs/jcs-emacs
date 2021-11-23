@@ -13,7 +13,8 @@
       '(("celpa" . "https://celpa.conao3.com/packages/")
         ("gnu" . "http://elpa.gnu.org/packages/")
         ;;("marmalade" . "http://marmalade-repo.org/packages/")
-        ("melpa" . "http://melpa.org/packages/")))
+        ("melpa" . "http://melpa.org/packages/")
+        ("jcs090218" . "https://jcs090218.github.io/elpa/elpa/")))
 
 ;; To avoid initializing twice
 (setq package-enable-at-startup nil)
@@ -136,11 +137,13 @@
     ivy-file-preview
     ivy-searcher
     javadoc-lookup
+    jayces-mode
     jenkinsfile-mode
     js2-mode
     json-mode
     keypression
     kotlin-mode
+    leaf
     license-templates
     line-reminder
     logms
@@ -180,7 +183,6 @@
     project
     project-abbrev
     python-mode
-    quelpa-leaf
     rainbow-mode
     region-occurrences-highlighter
     restart-emacs
@@ -203,6 +205,7 @@
     tree-sitter-indent
     tree-sitter-langs
     ts
+    ts-fold
     turbo-log
     typescript-mode
     undercover
@@ -247,8 +250,7 @@
 (defun jcs-package-unused-packages ()
   "Return a list of unused packages."
   (let* ((installed-pkgs (jcs-package--get-selected-packages))
-         (pkg-install-lst (append jcs-package-install-list
-                                  (jcs-package-manual-install-packages)))
+         (pkg-install-lst jcs-package-install-list)
          (deps (jcs-package-dependency-list pkg-install-lst))
          (full-pkgs (delete-dups (append pkg-install-lst deps)))
          unused-lst)
@@ -352,6 +354,7 @@
 (defun jcs-package-rebuild-dependency-list ()
   "Rebuild dependency graph and save to list."
   (interactive)
+  (require 'jcs-util)
   (package-initialize)
   (if (not jcs-package-rebuild-dependency-p)
       (setq jcs-package--need-rebuild-p t)
@@ -503,7 +506,7 @@ Argument WHERE is the alist of package information."
                 upgrades))))
     (if upgrades
         (when (yes-or-no-p
-               (format "[ELPA] Upgrade %d package%s (%s)? "
+               (format "Upgrade %d package%s (%s)? "
                        (length upgrades)
                        (if (= (length upgrades) 1) "" "s")
                        (mapconcat #'package-desc-full-name upgrades ", ")))
@@ -514,34 +517,14 @@ Argument WHERE is the alist of package information."
                 (jcs-package-install package-desc)
                 (package-delete old-package))))
           (jcs-package-rebuild-dependency-list)
-          (message "[ELPA] Done upgrading all packages"))
-      (message "[ELPA] All packages are up to date"))))
-
-(defun jcs-package--upgrade-all-quelpa ()
-  "Upgrade for manually installed packages."
-  (let ((upgrades (jcs--upgrade-list-manually)) desc)
-    (if upgrades
-        (when (yes-or-no-p
-               (format "[QUELPA] Upgrade %d package%s (%s)? "
-                       (length upgrades)
-                       (if (= (length upgrades) 1) "" "s")
-                       (mapconcat (lambda (rcp)
-                                    (symbol-name (jcs--recipe-get-info rcp :name)))
-                                  upgrades ", ")))
-          ;; Delete all upgrading packages before installation.
-          (dolist (rcp upgrades)
-            (setq desc (jcs-package-get-package-by-name (jcs--recipe-get-info rcp :name)))
-            (when desc (package-delete desc)))
-          (jcs-ensure-manual-package-installed upgrades)
-          (message "[QUELPA] Done upgrading all packages"))
-      (message "[QUELPA] All packages are up to date"))))
+          (message "Done upgrading all packages"))
+      (message "All packages are up to date"))))
 
 (defun jcs-package-install-all ()
   "Install all needed packages from this configuration."
   (interactive)
   (let (jcs-package-rebuild-dependency-p jcs-package--need-rebuild-p)
     (jcs-ensure-package-installed jcs-package-install-list)
-    (jcs-ensure-manual-package-installed jcs-package-manual-install-list)
     (when jcs-package--need-rebuild-p
       (setq jcs-package-rebuild-dependency-p t)
       (jcs-package-rebuild-dependency-list))))
@@ -552,7 +535,6 @@ Argument WHERE is the alist of package information."
   (package-refresh-contents)
   (let (jcs-package-rebuild-dependency-p jcs-package--need-rebuild-p)
     (jcs-package--upgrade-all-elpa)
-    (jcs-package--upgrade-all-quelpa)
     (if (not jcs-package--need-rebuild-p)
         (jcs-sit-for)
       (setq jcs-package-rebuild-dependency-p t)
@@ -588,90 +570,6 @@ Argument WHERE is the alist of package information."
   (pcase status
     (".." (package-list-packages))
     (_ (package-menu-filter (concat "status:" status)))))
-
-;;
-;; (@* "Manual Installation" )
-;;
-
-(defconst jcs-quelpa-recipes-dir (expand-file-name "~/.emacs.jcs/recipes/")
-  "Manually installed recipes path.")
-
-(defun jcs--quelpa-recipes ()
-  "Return all `quelpa' recipes."
-  (require 'jcs-file) (require 'jcs-util) (require 'thingatpt)
-  (let ((rcps-ff (jcs-dir-to-filename jcs-quelpa-recipes-dir nil t)) rcps rcp)
-    (dolist (rcp-file rcps-ff)
-      (setq rcp
-            (eval (thing-at-point--read-from-whole-string
-                   (concat "'" (jcs-get-string-from-file rcp-file)))))
-      (push rcp rcps))
-    (reverse rcps)))
-
-(defvar quelpa-build-verbose)
-
-(defvar jcs-package-manual-install-list (jcs--quelpa-recipes)
-  "List of package that you want to manually installed.")
-
-(defun jcs-package-manual-install-packages ()
-  "Return a list of manuall install packages."
-  (let (mi-lst)
-    (dolist (rcp jcs-package-manual-install-list)
-      (push (nth 0 rcp) mi-lst))
-    (reverse mi-lst)))
-
-(defun jcs--form-version-recipe (rcp)
-  "Create the RCP for `quelpa' version check."
-  (let ((name (symbol-name (pop rcp)))) (push (make-symbol name) rcp) rcp))
-
-(defun jcs--recipe-get-info (rcp prop)
-  "Get the PROP information from RCP."
-  (let ((plst rcp)) (push :name plst) (plist-get plst prop)))
-
-(defun jcs--package-version-by-recipe (rcp)
-  "Return the package version by recipe (RCP)."
-  (let* ((pkg-repo (jcs--recipe-get-info rcp :repo))
-         (pkg-fetcher (jcs--recipe-get-info rcp :fetcher))
-         (rcp (jcs--form-version-recipe rcp))
-         (name (car rcp))
-         (build-dir (expand-file-name (symbol-name name) quelpa-build-dir))
-         quelpa-build-verbose)
-    (jcs-no-log-apply
-      (message "Contacting host: '%s' from '%s'" pkg-repo pkg-fetcher))
-    (jcs-mute-apply (quelpa-checkout rcp build-dir))))
-
-(defun jcs--ver-string-to-ver-list (ver)
-  "Convert VER string to version recognized list."
-  (let ((str-lst (split-string (format "%s" ver) "[.]")) ver-lst)
-    (dolist (ver-str str-lst) (push (string-to-number ver-str) ver-lst))
-    (reverse ver-lst)))
-
-(defun jcs--upgrade-list-manually ()
-  "List of need to upgrade package from manually installed packages."
-  (require 'quelpa)
-  (let (upgrade-list new-version current-version pkg-name)
-    (dolist (rcp jcs-package-manual-install-list)
-      (setq pkg-name (jcs--recipe-get-info rcp :name)
-            new-version (jcs--package-version-by-recipe rcp)
-            current-version (jcs-package-version pkg-name package-alist)
-            new-version (jcs--ver-string-to-ver-list new-version))
-      (when (version-list-< current-version new-version) (push rcp upgrade-list)))
-    (reverse upgrade-list)))
-
-(defun jcs-ensure-manual-package-installed (packages)
-  "Ensure all manually installed PACKAGES are installed."
-  (let ((jcs-package-installing-p t) pkg-name pkg-repo pkg-fetcher
-        quelpa-build-verbose pkg-installed-p)
-    (dolist (rcp packages)
-      (setq pkg-name (jcs--recipe-get-info rcp :name)
-            pkg-repo (jcs--recipe-get-info rcp :repo)
-            pkg-fetcher (jcs--recipe-get-info rcp :fetcher))
-      (unless (package-installed-p pkg-name)
-        (require 'quelpa) (require 'jcs-util)
-        (jcs-no-log-apply
-          (message "Installing '%s' from '%s'" pkg-repo pkg-fetcher))
-        (quelpa rcp)
-        (setq pkg-installed-p t)))
-    (when pkg-installed-p (jcs-package-rebuild-dependency-list))))
 
 (provide 'jcs-package)
 ;;; jcs-package.el ends here
