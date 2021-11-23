@@ -38,7 +38,7 @@ Acts like `message' but preserves text properties in the *Messages* buffer."
   "Message out anything from ARGS."
   (when jcs-log
     (jcs-unmute-apply
-      (apply 'message (jcs-string-repeat "%s" (length args) " ") args))))
+      (message (mapconcat (lambda (str) (format "%s" str)) args " ")))))
 
 ;;
 ;; (@* "List" )
