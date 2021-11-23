@@ -231,9 +231,9 @@ I believed detials make things better and make life smoother.
 * [*Feebleline Design*](./features/feebleline-design) - Personal displayed design for `feebleline`.
 * [*Indent Control*](./features/indent-control) - Generic control the indentation level for each mode, for more information see [indent-control](https://github.com/alt-elpa/indent-control).
 * Previous/Next Keys
-* [*Normal Move*]() - Act like other normal editors.
-* [*Indent Move*](./features/indent-move) - Automatically indent when cursor moves up and down.
-* [*Smart-Move*](./features/smart-move) - Smart enough to move cursor to the beginning of the line.
+  * [*Normal Move*]() - Act like other normal editors.
+  * ~~[*Indent Move*](./features/indent-move) - Automatically indent when cursor moves up and down.~~
+  * [*Smart-Move*](./features/smart-move) - Smart enough to move cursor to the beginning of the line.
 * [*Line Numbers Modding*](./features/line-numbers-modding) - Mixed used of `linum` and `display-line-numbers-mode` base on the file usage.
 * [*License Helper*](./features/license-helper) - Help to create license while creating `LICENSE` file using template.
 * [*Mini State*](./features/mini-state) - Mini mode state use to visually see what backend is the config currently running. (Deprecated)
@@ -313,7 +313,7 @@ kind of methods that you could support the maintainer you want.
 * *Music Player* - powered by [ffmpeg-player](https://github.com/jcs-elpa/ffmpeg-player); might change to something else.
 * *Navigation/Searcher* - powered by [searcher](https://github.com/jcs-elpa/searcher) and [isearch-project](https://github.com/elpa-host/isearch-project).
 * *Package Archive* - see [here](#file_folder-package-archives).
-* *Package Management* - powered by [leaf](https://github.com/conao3/leaf.el) and [quelpa](https://framagit.org/steckerhalter/quelpa).
+* *Package Management* - powered by [leaf](https://github.com/conao3/leaf.el) and [github-elpa](https://github.com/10sr/github-elpa).
 * *PDF Viewer* - powered by [doc-view-mode](https://www.emacswiki.org/emacs/DocViewMode) and [ghostscript](https://www.ghostscript.com/index.html).
 * *Project Management* - powered by [project](https://elpa.gnu.org/packages/project.html).
 * *Recent Files* - powered by [recentf](https://www.emacswiki.org/emacs/RecentFiles).
