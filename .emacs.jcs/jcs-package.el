@@ -373,8 +373,11 @@
       (setq new-selected-pkg (sort new-selected-pkg #'string-lessp))
       (if (equal new-selected-pkg package-selected-packages)
           (jcs-process-reporter-done "No need to update dependency graph")
-        (let ((after-init-time t))
-          (package--save-selected-packages new-selected-pkg))
+        (if after-init-time
+            (package--save-selected-packages new-selected-pkg)
+          (add-hook 'after-init-hook
+                    (lambda (&rest _)
+                      (package--save-selected-packages new-selected-pkg))))
         (jcs-process-reporter-done "Done rebuild dependency graph")))))
 
 (defun jcs-package--menu-execute--advice-around (fnc &rest args)
