@@ -83,7 +83,7 @@ from this configuration.
 * R / Ruby / Rust
 * Sass / Scala / SCSS / Shader / Shell script / SQL / Swift
 * Text / TOML / TSX / TypeScript
-* Verilog / Vim script / Vue
+* Verilog / Vimscript / Vue
 * XML
 * YAML
 
