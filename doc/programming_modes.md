@@ -1,6 +1,6 @@
 # Programming Modes
 
-You are allow to choose different `major-mode` to edit different file. Hence I am
+You are allowed to choose different `major-mode` to edit different file. Hence, I am
 recording all the `major-mode` I am using corresponding to each file type.
 
 | Language                | Mode                                                                                            | Description                                                                           | Version                                                                                                   |
@@ -61,7 +61,7 @@ recording all the `major-mode` I am using corresponding to each file type.
 | Swift                   | [swift-mode](https://github.com/swift-emacs/swift-mode)                                         | Major-mode for Apple's Swift programming language.                                    | [![MELPA](https://melpa.org/packages/swift-mode-badge.svg)](https://melpa.org/#/swift-mode)               |
 | TypeScript              | [typescript-mode](https://github.com/emacs-typescript/typescript.el)                            | Major mode for editing typescript                                                     | [![MELPA](https://melpa.org/packages/typescript-mode-badge.svg)](https://melpa.org/#/typescript-mode)     |
 | Verilog                 | [verilog-mode](https://github.com/veripool/verilog-mode)                                        | Major mode for editing Verilog code.                                                  | ![Builtin](https://img.shields.io/badge/builtin-depends-blue.svg)                                         |
-| Vim script              | [vimrc-mode](https://github.com/mcandre/vimrc-mode)                                             | Major mode for vimrc files                                                            | [![MELPA](https://melpa.org/packages/vimrc-mode-badge.svg)](https://melpa.org/#/vimrc-mode)               |
+| Vimscript               | [vimrc-mode](https://github.com/mcandre/vimrc-mode)                                             | Major mode for vimrc files                                                            | [![MELPA](https://melpa.org/packages/vimrc-mode-badge.svg)](https://melpa.org/#/vimrc-mode)               |
 | XML                     | [nxml-mode](https://www.emacswiki.org/emacs/NxmlMode)                                           | Major mode for editing XML.                                                           | ![Builtin](https://img.shields.io/badge/builtin-depends-blue.svg)                                         |
 | YAML                    | [yaml-mode](https://www.emacswiki.org/emacs/YamlMode)                                           | Simple mode to edit YAML.                                                             | [![MELPA](https://melpa.org/packages/yaml-mode-badge.svg)](https://melpa.org/#/yaml-mode)                 |
 
@@ -74,4 +74,5 @@ recording all the `major-mode` I am using corresponding to each file type.
 | gitconfig     | [gitconfig-mode](https://github.com/magit/git-modes)          | Major mode for editing .gitconfig files      | [![MELPA](https://melpa.org/packages/gitconfig-mode-badge.svg)](https://melpa.org/#/gitconfig-mode)         |
 | gitignore     | [gitignore-mode](https://github.com/magit/git-modes)          | Major mode for editing .gitignore files      | [![MELPA](https://melpa.org/packages/gitignore-mode-badge.svg)](https://melpa.org/#/gitignore-mode)         |
 | Markdown      | [markdown-mode](https://github.com/jrblevin/markdown-mode)    | Major mode for Markdown-formatted text       | [![MELPA](https://melpa.org/packages/markdown-mode-badge.svg)](https://melpa.org/#/markdown-mode)           |
+| Nginx         | [nginx-mode](https://github.com/ajc/nginx-mode)               | major mode for editing nginx config files    | [![MELPA](https://melpa.org/packages/nginx-mode-badge.svg)](https://melpa.org/#/nginx-mode)                 |
 | Org           | [org-mode](https://orgmode.org/)                              | Outline-based notes management and organizer | ![Builtin](https://img.shields.io/badge/builtin-9.1.9-blue.svg)                                             |
