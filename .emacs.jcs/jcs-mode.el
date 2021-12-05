@@ -98,12 +98,11 @@ Note this is opposite logic to the toggle mode function."
           "Type of the changelog: "
           (append (list "Default (empty)")
                   (jcs-dir-to-filename jcs-changelog-template-path ".txt")))))
-  (cond ((string= in-type "Default (empty)")
-         ;; Do nothing...
-         )
-        (t
-         (file-header-insert-template-by-file-path
-          (format "%s%s.txt" jcs-changelog-template-path in-type)))))
+  (pcase in-type
+    ("Default (empty)" )  ; Do nothing...
+    (_
+     (file-header-insert-template-by-file-path
+      (format "%s%s.txt" jcs-changelog-template-path in-type)))))
 
 ;;
 ;; (@* "Special Modes" )
@@ -407,6 +406,7 @@ To avoid syntax highlighting error for comment.")
 (with-eval-after-load 'markdown-mode (require 'jcs-markdown-mode))
 (with-eval-after-load 'masm-mode (require 'jcs-asm-mode))
 (with-eval-after-load 'nasm-mode (require 'jcs-asm-mode))
+(with-eval-after-load 'nginx-mode (require 'jcs-nginx-mode))
 (with-eval-after-load 'nix-mode (require 'jcs-nix-mode))
 (with-eval-after-load 'nxml-mode (require 'jcs-xml-mode))
 (with-eval-after-load 'opascal (require 'jcs-opascal-mode))
