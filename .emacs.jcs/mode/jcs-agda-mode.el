@@ -5,6 +5,14 @@
 (require 'agda2-mode)
 
 ;;
+;; (@* "Templates" )
+;;
+
+(defun jcs-insert-agda-template ()
+  "Template for Agda."
+  (jcs--file-header--insert "agda" "default.txt"))
+
+;;
 ;; (@* "Hook" )
 ;;
 

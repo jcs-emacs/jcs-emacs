@@ -5,6 +5,14 @@
 (require 'actionscript-mode)
 
 ;;
+;; (@* "Templates" )
+;;
+
+(defun jcs-insert-actionscript-template ()
+  "Template for ActionScript."
+  (jcs--file-header--insert "actionscript" "default.txt"))
+
+;;
 ;; (@* "Hook" )
 ;;
 

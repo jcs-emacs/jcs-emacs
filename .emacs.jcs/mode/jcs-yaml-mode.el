@@ -5,6 +5,14 @@
 (require 'yaml-mode)
 
 ;;
+;; (@* "Templates" )
+;;
+
+(defun jcs-insert-yaml-template ()
+  "Header for YAML header file."
+  (jcs--file-header--insert "yaml" "default.txt"))
+
+;;
 ;; (@* "Hook" )
 ;;
 

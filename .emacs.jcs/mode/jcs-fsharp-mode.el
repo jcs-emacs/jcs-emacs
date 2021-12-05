@@ -5,6 +5,14 @@
 (require 'fsharp-mode)
 
 ;;
+;; (@* "Templates" )
+;;
+
+(defun jcs-insert-fsharp-template ()
+  "Header for F# header file."
+  (jcs--file-header--insert "fsharp" "default.txt"))
+
+;;
 ;; (@* "Hook" )
 ;;
 

@@ -5,6 +5,14 @@
 (require 'jayces-mode)
 
 ;;
+;; (@* "Templates" )
+;;
+
+(defun jcs-insert-jayces-template ()
+  "Header for JayCeS header file."
+  (jcs--file-header--insert "jayces" "default.txt"))
+
+;;
 ;; (@* "Hook" )
 ;;
 

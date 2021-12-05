@@ -5,6 +5,14 @@
 (require 'applescript-mode)
 
 ;;
+;; (@* "Templates" )
+;;
+
+(defun jcs-insert-applescript-template ()
+  "Template for AppleScript."
+  (jcs--file-header--insert "applescript" "default.txt"))
+
+;;
 ;; (@* "Hook" )
 ;;
 

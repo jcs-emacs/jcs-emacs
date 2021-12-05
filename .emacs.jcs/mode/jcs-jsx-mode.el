@@ -29,6 +29,22 @@
  '(rjsx-tag-bracket-face ((t (:inherit 'web-mode-html-attr-name-face)))))
 
 ;;
+;; (@* "Templates" )
+;;
+
+(defun jcs-insert-jsx-template ()
+  "Template for JavaScript XML (JSX)."
+  (jcs--file-header--insert "jsx" "default.txt"))
+
+(defun jcs-insert-jsx-react-js-template ()
+  "Template for React JS JavaScript XML (JSX)."
+  (jcs--file-header--insert "jsx" "react/js.txt"))
+
+(defun jcs-insert-jsx-react-native-template ()
+  "Template for React Native JavaScript XML (JSX)."
+  (jcs--file-header--insert "jsx" "react/native.txt"))
+
+;;
 ;; (@* "Hook" )
 ;;
 

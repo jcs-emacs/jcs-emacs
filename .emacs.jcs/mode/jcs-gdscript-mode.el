@@ -5,6 +5,13 @@
 (require 'gdscript-mode)
 
 ;;
+;; (@* "Templates" )
+;;
+(defun jcs-insert-gdscript-template ()
+  "Header for Godot Script header file."
+  (jcs--file-header--insert "gdscript" "default.txt"))
+
+;;
 ;; (@* "Hook" )
 ;;
 

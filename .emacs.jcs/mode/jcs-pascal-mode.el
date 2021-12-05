@@ -5,6 +5,14 @@
 (require 'pascal)
 
 ;;
+;; (@* "Templates" )
+;;
+
+(defun jcs-insert-pascal-template ()
+  "Header for Pascal header file."
+  (jcs--file-header--insert "pascal" "default.txt"))
+
+;;
 ;; (@* "Hook" )
 ;;
 

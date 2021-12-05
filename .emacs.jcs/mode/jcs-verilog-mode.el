@@ -5,6 +5,14 @@
 (require 'verilog-mode)
 
 ;;
+;; (@* "Templates" )
+;;
+
+(defun jcs-insert-verilog-template ()
+  "Header for Verilog header file."
+  (jcs--file-header--insert "verilog" "default.txt"))
+
+;;
 ;; (@* "Hook" )
 ;;
 

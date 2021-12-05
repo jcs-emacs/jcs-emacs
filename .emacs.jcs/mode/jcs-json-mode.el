@@ -2,7 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'json-reformat)
 (require 'json-snatcher)
 (require 'json-mode)
 

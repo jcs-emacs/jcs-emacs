@@ -18,6 +18,14 @@
   (jcs-untabify-save-buffer))
 
 ;;
+;; (@* "Templates" )
+;;
+
+(defun jcs-insert-css-template ()
+  "Template for CSS."
+  (jcs--file-header--insert "css" "default.txt"))
+
+;;
 ;; (@* "Hook" )
 ;;
 

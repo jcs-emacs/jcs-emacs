@@ -5,6 +5,14 @@
 (require 'powershell)
 
 ;;
+;; (@* "Templates" )
+;;
+
+(defun jcs-insert-powershell-template ()
+  "Header for PowerShell header file."
+  (jcs--file-header--insert "powershell" "default.txt"))
+
+;;
 ;; (@* "Hook" )
 ;;
 

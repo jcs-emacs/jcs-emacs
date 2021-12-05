@@ -6,6 +6,14 @@
 (require 'sql-indent)
 
 ;;
+;; (@* "Templates" )
+;;
+
+(defun jcs-insert-sql-template ()
+  "Header for SQL header file."
+  (jcs--file-header--insert "sql" "default.txt"))
+
+;;
 ;; (@* "Hook" )
 ;;
 

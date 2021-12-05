@@ -5,6 +5,14 @@
 (require 'kotlin-mode)
 
 ;;
+;; (@* "Templates" )
+;;
+
+(defun jcs-insert-kotlin-template ()
+  "Header for Kotlin header file."
+  (jcs--file-header--insert "kotlin" "default.txt"))
+
+;;
 ;; (@* "Hook" )
 ;;
 

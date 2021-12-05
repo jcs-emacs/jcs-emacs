@@ -5,6 +5,14 @@
 (require 'opascal)
 
 ;;
+;; (@* "Templates" )
+;;
+
+(defun jcs-insert-opascal-template ()
+  "Header for Object Pascal header file."
+  (jcs--file-header--insert "opascal" "default.txt"))
+
+;;
 ;; (@* "Hook" )
 ;;
 

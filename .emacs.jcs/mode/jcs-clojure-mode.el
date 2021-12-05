@@ -5,6 +5,14 @@
 (require 'clojure-mode)
 
 ;;
+;; (@* "Templates" )
+;;
+
+(defun jcs-insert-clojure-template ()
+  "Header for Clojure header file."
+  (jcs--file-header--insert "clojure" "default.txt"))
+
+;;
 ;; (@* "Hook" )
 ;;
 

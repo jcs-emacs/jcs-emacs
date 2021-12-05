@@ -82,6 +82,18 @@
   (set-face-attribute 'web-mode-comment-face nil :foreground (face-foreground font-lock-comment-face)))
 
 ;;
+;; (@* "Templates" )
+;;
+
+(defun jcs-insert-html-template ()
+  "Template for HTML."
+  (jcs--file-header--insert "web" "default_html.txt"))
+
+(defun jcs-insert-php-template ()
+  "Template for PHP."
+  (jcs--file-header--insert "web" "default_php.txt"))
+
+;;
 ;; (@* "Hook" )
 ;;
 

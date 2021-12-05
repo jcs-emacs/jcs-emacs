@@ -4,15 +4,13 @@
 
 (require 'processing-mode)
 
-;;(setq processing-location "/path/to/processing-java")
-;;(setq processing-application-dir "/path/to/processing-application-dir")
-;;(setq processing-sketchbook-dir "/path/to/processing-sketchbook-dir")
+;;
+;; (@* "Templates" )
+;;
 
-;; NOTE: Usually when you run a processing sketch,
-;; the build files are generated in a sub-directory called
-;; output in the current sketch directory. It is also possible
-;; to set the processing-output-dir to another directory:
-;;(setq processing-output-dir "/tmp")
+(defun jcs-insert-processing-template ()
+  "Header for Processing file."
+  (jcs--file-header--insert "processing" "default.txt"))
 
 ;;
 ;; (@* "Hook" )

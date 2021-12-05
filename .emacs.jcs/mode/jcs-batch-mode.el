@@ -5,6 +5,14 @@
 (require 'bat-mode)
 
 ;;
+;; (@* "Templates" )
+;;
+
+(defun jcs-insert-batch-template ()
+  "Header format for batch file."
+  (jcs--file-header--insert "batch" "default.txt"))
+
+;;
 ;; (@* "Hook" )
 ;;
 

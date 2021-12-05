@@ -5,6 +5,14 @@
 (require 'vimrc-mode)
 
 ;;
+;; (@* "Templates" )
+;;
+
+(defun jcs-insert-vimscript-template ()
+  "Header for Vimscript header file."
+  (jcs--file-header--insert "vimscript" "default.txt"))
+
+;;
 ;; (@* "Hook" )
 ;;
 

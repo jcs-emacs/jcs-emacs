@@ -33,6 +33,14 @@
     (when to-jsx (jcs--js-to-jsx-mode t))))
 
 ;;
+;; (@* "Templates" )
+;;
+
+(defun jcs-insert-js-template ()
+  "Template for JavaScript."
+  (jcs--file-header--insert "js" "default.txt"))
+
+;;
 ;; (@* "Hook" )
 ;;
 

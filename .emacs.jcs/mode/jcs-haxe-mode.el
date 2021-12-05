@@ -5,6 +5,14 @@
 (require 'haxe-mode)
 
 ;;
+;; (@* "Templates" )
+;;
+
+(defun jcs-insert-haxe-template ()
+  "Template for Haxe."
+  (jcs--file-header--insert "haxe" "default.txt"))
+
+;;
 ;; (@* "Hook" )
 ;;
 

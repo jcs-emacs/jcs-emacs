@@ -5,6 +5,14 @@
 (require 'dart-mode)
 
 ;;
+;; (@* "Templates" )
+;;
+
+(defun jcs-insert-dart-template ()
+  "Template for Dart."
+  (jcs--file-header--insert "dart" "default.txt"))
+
+;;
 ;; (@* "Hook" )
 ;;
 

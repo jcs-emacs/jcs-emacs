@@ -39,6 +39,18 @@
     do-doc-string))
 
 ;;
+;; (@* "Templates" )
+;;
+
+(defun jcs-insert-csharp-template ()
+  "Header for C# header file."
+  (jcs--file-header--insert "csharp" "default.txt"))
+
+(defun jcs-insert-csharp-unity-template ()
+  "Header for Unity C# header file."
+  (jcs--file-header--insert "csharp" "unity.txt"))
+
+;;
 ;; (@* "Hook" )
 ;;
 

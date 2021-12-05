@@ -5,6 +5,14 @@
 (require 'perl-mode)
 
 ;;
+;; (@* "Templates" )
+;;
+
+(defun jcs-insert-perl-template ()
+  "Header for Perl header file."
+  (jcs--file-header--insert "perl" "default.txt"))
+
+;;
 ;; (@* "Hook" )
 ;;
 

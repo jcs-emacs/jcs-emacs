@@ -5,6 +5,14 @@
 (require 'elixir-mode)
 
 ;;
+;; (@* "Templates" )
+;;
+
+(defun jcs-insert-elixir-template ()
+  "Template for Elixir."
+  (jcs--file-header--insert "elixir" "default.txt"))
+
+;;
 ;; (@* "Hook" )
 ;;
 

@@ -5,6 +5,14 @@
 (require 'nix-mode)
 
 ;;
+;; (@* "Templates" )
+;;
+
+(defun jcs-insert-nix-template ()
+  "Header for Nix header file."
+  (jcs--file-header--insert "nix" "default.txt"))
+
+;;
 ;; (@* "Hook" )
 ;;
 

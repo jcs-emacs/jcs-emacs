@@ -5,6 +5,14 @@
 (require 'swift-mode)
 
 ;;
+;; (@* "Templates" )
+;;
+
+(defun jcs-insert-swift-template ()
+  "Header for Swift header file."
+  (jcs--file-header--insert "swift" "default.txt"))
+
+;;
 ;; (@* "Hook" )
 ;;
 

@@ -47,6 +47,14 @@
   (jcs-tabify-save-buffer))
 
 ;;
+;; (@* "Templates" )
+;;
+
+(defun jcs-insert-sh-template ()
+  "Header for Shell header file."
+  (jcs--file-header--insert "sh" "default.txt"))
+
+;;
 ;; (@* "Hook" )
 ;;
 

@@ -125,6 +125,18 @@
     (let ((jcs-asm--asking-mode t)) (call-interactively #'jcs-asm-ask-mode))))
 
 ;;
+;; (@* "Templates" )
+;;
+
+(defun jcs-insert-masm-template ()
+  "Header for MASM file."
+  (jcs--file-header--insert "assembly" "masm.txt"))
+
+(defun jcs-insert-nasm-template ()
+  "Header for NASM file."
+  (jcs--file-header--insert "assembly" "nasm.txt"))
+
+;;
 ;; (@* "Hook" )
 ;;
 

@@ -3,6 +3,18 @@
 ;;; Code:
 
 ;;
+;; (@* "Templates" )
+;;
+
+(defun jcs-insert-objc-header-template ()
+  "Header for Objective-C header file."
+  (jcs--file-header--insert "objc" "header.txt"))
+
+(defun jcs-insert-objc-source-template ()
+  "Header for Objective-C source file."
+  (jcs--file-header--insert "objc" "source.txt"))
+
+;;
 ;; (@* "Hook" )
 ;;
 

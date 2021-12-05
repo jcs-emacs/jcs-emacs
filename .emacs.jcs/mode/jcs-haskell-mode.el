@@ -5,6 +5,14 @@
 (require 'haskell-mode)
 
 ;;
+;; (@* "Templates" )
+;;
+
+(defun jcs-insert-haskell-template ()
+  "Template for Haskell."
+  (jcs--file-header--insert "haskell" "default.txt"))
+
+;;
 ;; (@* "Hook" )
 ;;
 

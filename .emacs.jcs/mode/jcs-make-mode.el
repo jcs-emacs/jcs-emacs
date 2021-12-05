@@ -70,6 +70,38 @@ TYPE: type of makefile for Python."
   (py-indent-line-outmost))
 
 ;;
+;; (@* "Templates" )
+;;
+
+(defun jcs-makefile-format-info ()
+  "File header format specific for makefile depends on language selected."
+  (call-interactively 'jcs-ask-makefile-language))
+
+(defun jcs-insert-makefile-cc-app-template ()
+  "Default makefile template for normal application."
+  (jcs--file-header--insert "makefile" "cc/app.txt"))
+
+(defun jcs-insert-makefile-cc-lib-template ()
+  "Library makefile template for static library or shared library."
+  (jcs--file-header--insert "makefile" "cc/lib.txt"))
+
+(defun jcs-insert-makefile-java-app-template ()
+  "Template for makefile Java application."
+  (jcs--file-header--insert "makefile" "java/app.txt"))
+
+(defun jcs-insert-makefile-java-lib-template ()
+  "Template for makefile Java library."
+  (jcs--file-header--insert "makefile" "java/lib.txt"))
+
+(defun jcs-insert-makefile-python-app-template ()
+  "Template for makefile Python application."
+  (jcs--file-header--insert "makefile" "python/app.txt"))
+
+(defun jcs-insert-makefile-python-lib-template ()
+  "Template for makefile Python library."
+  (jcs--file-header--insert "makefile" "python/lib.txt"))
+
+;;
 ;; (@* "Hook" )
 ;;
 

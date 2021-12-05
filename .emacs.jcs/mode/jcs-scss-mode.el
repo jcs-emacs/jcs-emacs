@@ -6,6 +6,14 @@
 (require 'scss-mode)
 
 ;;
+;; (@* "Templates" )
+;;
+
+(defun jcs-insert-scss-template ()
+  "Header for SCSS header file."
+  (jcs--file-header--insert "scss" "default.txt"))
+
+;;
 ;; (@* "Hook" )
 ;;
 

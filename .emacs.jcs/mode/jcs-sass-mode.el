@@ -6,6 +6,14 @@
 (require 'ssass-mode)
 
 ;;
+;; (@* "Templates" )
+;;
+
+(defun jcs-insert-sass-template ()
+  "Header for SASS header file."
+  (jcs--file-header--insert "sass" "default.txt"))
+
+;;
 ;; (@* "Hook" )
 ;;
 

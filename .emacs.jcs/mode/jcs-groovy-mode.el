@@ -5,6 +5,14 @@
 (require 'groovy-mode)
 
 ;;
+;; (@* "Templates" )
+;;
+
+(defun jcs-insert-groovy-template ()
+  "Header for Groovy header file."
+  (jcs--file-header--insert "groovy" "default.txt"))
+
+;;
 ;; (@* "Hook" )
 ;;
 

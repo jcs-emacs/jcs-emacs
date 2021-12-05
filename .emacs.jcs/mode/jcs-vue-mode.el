@@ -10,6 +10,14 @@
 (require 'web-mode)
 
 ;;
+;; (@* "Templates" )
+;;
+
+(defun jcs-insert-vue-template ()
+  "Header for Vue header file."
+  (jcs--file-header--insert "vue" "default.txt"))
+
+;;
 ;; (@* "Hook" )
 ;;
 

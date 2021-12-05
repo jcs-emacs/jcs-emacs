@@ -65,6 +65,14 @@
                       :background (face-background 'default)))
 
 ;;
+;; (@* "Templates" )
+;;
+
+(defun jcs-insert-markdown-template ()
+  "Header for Markdown header file."
+  (jcs--file-header--insert "markdown" "default.txt"))
+
+;;
 ;; (@* "Hook" )
 ;;
 

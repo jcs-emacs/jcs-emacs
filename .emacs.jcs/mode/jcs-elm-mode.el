@@ -5,6 +5,14 @@
 (require 'elm-mode)
 
 ;;
+;; (@* "Templates" )
+;;
+
+(defun jcs-insert-elm-template ()
+  "Template for Elm."
+  (jcs--file-header--insert "elm" "default.txt"))
+
+;;
 ;; (@* "Hook" )
 ;;
 

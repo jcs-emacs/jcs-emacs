@@ -4,6 +4,22 @@
 
 (require 'jcs-cc-mode)
 
+;;
+;; (@* "Templates" )
+;;
+
+(defun jcs-insert-c-header-template ()
+  "Header for C header file."
+  (jcs--file-header--insert "c" "header.txt"))
+
+(defun jcs-insert-c-source-template ()
+  "Header for C source file."
+  (jcs--file-header--insert "c" "source.txt"))
+
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-c-mode-hook ()
   "C mode handling"
 

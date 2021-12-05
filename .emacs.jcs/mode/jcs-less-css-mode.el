@@ -6,6 +6,14 @@
 (require 'less-css-mode)
 
 ;;
+;; (@* "Templates" )
+;;
+
+(defun jcs-insert-less-template ()
+  "Header for LESS header file."
+  (jcs--file-header--insert "less" "default.txt"))
+
+;;
 ;; (@* "Hook" )
 ;;
 

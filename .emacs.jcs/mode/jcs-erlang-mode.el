@@ -5,6 +5,14 @@
 (require 'erlang)
 
 ;;
+;; (@* "Templates" )
+;;
+
+(defun jcs-insert-erlang-template ()
+  "Template for Erlang Lisp."
+  (jcs--file-header--insert "erlang" "default.txt"))
+
+;;
 ;; (@* "Hook" )
 ;;
 

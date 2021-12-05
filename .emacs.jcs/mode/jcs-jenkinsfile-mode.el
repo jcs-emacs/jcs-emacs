@@ -4,6 +4,18 @@
 
 (require 'jenkinsfile-mode)
 
+;;
+;; (@* "Templates" )
+;;
+
+(defun jcs-insert-jenkinsfile-template ()
+  "Header for Jenkinsfile."
+  (jcs--file-header--insert "jenkins" "default.txt"))
+
+;;
+;; (@* "Hook" )
+;;
+
 (defun jcs-jenkinsfile-mode-hook ()
   "Jenkinsfile mode hook."
   (jcs-insert-header-if-valid '("Jenkinsfile")

@@ -5,6 +5,14 @@
 (require 'cobol-mode)
 
 ;;
+;; (@* "Templates" )
+;;
+
+(defun jcs-insert-cobol-template ()
+  "Template for COBOL."
+  (jcs--file-header--insert "cobol" "default.txt"))
+
+;;
 ;; (@* "Hook" )
 ;;
 

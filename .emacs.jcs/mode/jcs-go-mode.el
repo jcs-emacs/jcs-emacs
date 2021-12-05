@@ -5,6 +5,14 @@
 (require 'go-mode)
 
 ;;
+;; (@* "Templates" )
+;;
+
+(defun jcs-insert-go-template ()
+  "Header for Go header file."
+  (jcs--file-header--insert "go" "default.txt"))
+
+;;
 ;; (@* "Hook" )
 ;;
 

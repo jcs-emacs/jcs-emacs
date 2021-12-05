@@ -6,6 +6,18 @@
 (require 'glsl-mode)
 
 ;;
+;; (@* "Templates" )
+;;
+
+(defun jcs-insert-shader-template ()
+  "Header for Shader header file."
+  (jcs--file-header--insert "shader" "default_shader.txt"))
+
+(defun jcs-insert-glsl-template ()
+  "Header for GLSL header file."
+  (jcs--file-header--insert "shader" "default_glsl.txt"))
+
+;;
 ;; (@* "Hook" )
 ;;
 

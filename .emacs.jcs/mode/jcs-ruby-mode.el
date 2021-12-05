@@ -5,6 +5,14 @@
 (require 'ruby-mode)
 
 ;;
+;; (@* "Templates" )
+;;
+
+(defun jcs-insert-ruby-template ()
+  "Header for Ruby header file."
+  (jcs--file-header--insert "ruby" "default.txt"))
+
+;;
 ;; (@* "Hook" )
 ;;
 

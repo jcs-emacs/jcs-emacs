@@ -52,7 +52,7 @@
   (jcs-contain-list-string jcs-py-keywords in-keyword))
 
 ;;
-;; (@* "Templates" )
+;; (@* "Header" )
 ;;
 
 (defun jcs-ask-python-template (type)
@@ -62,6 +62,18 @@
   (pcase type
     ("Class" (jcs-insert-python-class-template))
     ("Plain" (jcs-insert-python-template))))
+
+;;
+;; (@* "Templates" )
+;;
+
+(defun jcs-insert-python-template ()
+  "Python template."
+  (jcs--file-header--insert "python" "default.txt"))
+
+(defun jcs-insert-python-class-template ()
+  "Python class template."
+  (jcs--file-header--insert "python" "class.txt"))
 
 ;;
 ;; (@* "Hook" )

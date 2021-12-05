@@ -5,6 +5,14 @@
 (require 'fountain-mode)
 
 ;;
+;; (@* "Templates" )
+;;
+
+(defun jcs-insert-fountain-template ()
+  "Template for Fountain Lisp."
+  (jcs--file-header--insert "fountain" "default.txt"))
+
+;;
 ;; (@* "Hook" )
 ;;
 

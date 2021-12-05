@@ -8,6 +8,14 @@
 (require 'make-mode)
 
 ;;
+;; (@* "Templates" )
+;;
+
+(defun jcs-insert-cmake-template ()
+  "CMake file format info."
+  (jcs--file-header--insert "cmake" "default.txt"))
+
+;;
 ;; (@* "Hook" )
 ;;
 

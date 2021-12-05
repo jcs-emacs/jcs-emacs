@@ -6,6 +6,14 @@
 (require 'web-mode)
 
 ;;
+;; (@* "Templates" )
+;;
+
+(defun jcs-insert-xml-template ()
+  "Header for XML header file."
+  (jcs--file-header--insert "xml" "default.txt"))
+
+;;
 ;; (@* "Hook" )
 ;;
 

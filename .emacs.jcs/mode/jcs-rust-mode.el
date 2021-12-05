@@ -5,6 +5,14 @@
 (require 'rust-mode)
 
 ;;
+;; (@* "Templates" )
+;;
+
+(defun jcs-insert-rust-template ()
+  "Header for Rust header file."
+  (jcs--file-header--insert "rust" "default.txt"))
+
+;;
 ;; (@* "Hook" )
 ;;
 

@@ -5,6 +5,14 @@
 (require 'scala-mode)
 
 ;;
+;; (@* "Templates" )
+;;
+
+(defun jcs-insert-scala-template ()
+  "Header for Scala header file."
+  (jcs--file-header--insert "scala" "default.txt"))
+
+;;
 ;; (@* "Hook" )
 ;;
 

@@ -130,6 +130,14 @@ Including adding or removing the package path."
        'end))))
 
 ;;
+;; (@* "Templates" )
+;;
+
+(defun jcs-insert-java-template ()
+  "Header for Java header file."
+  (jcs--file-header--insert "java" "default.txt"))
+
+;;
 ;; (@* "Hook" )
 ;;
 

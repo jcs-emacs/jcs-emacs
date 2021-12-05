@@ -5,6 +5,14 @@
 (require 'ess-r-mode)
 
 ;;
+;; (@* "Templates" )
+;;
+
+(defun jcs-insert-r-template ()
+  "Header for R header file."
+  (jcs--file-header--insert "r" "default.txt"))
+
+;;
 ;; (@* "Hook" )
 ;;
 

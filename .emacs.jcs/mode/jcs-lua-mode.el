@@ -11,6 +11,15 @@
     (jcs--electric-pair-inhibit-predicate c)))
 
 ;;
+;; (@* "Templates" )
+;;
+
+;;; Lua
+(defun jcs-insert-lua-template ()
+  "Lua file header format."
+  (jcs--file-header--insert "lua" "default.txt"))
+
+;;
 ;; (@* "Hook" )
 ;;
 
