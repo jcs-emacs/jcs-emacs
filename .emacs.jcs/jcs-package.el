@@ -65,6 +65,7 @@
     company-emojify
     company-fuzzy
     company-meta-net
+    company-nginx
     counsel
     csharp-mode
     csproj-mode
@@ -170,6 +171,7 @@
     multi-shell
     multiple-cursors
     nasm-mode
+    nginx-mode
     nhexl-mode
     nix-mode
     org-bullets
