@@ -12,6 +12,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Replaced `quelpa` with `github-elpa`.
 * Removed package `leaf-quelpa`.
 * Inhibited building the dependency graph before init time.
+* Installed new package `nginx-mode`.
+* Installed new package `company-nginx`.
 
 ## 7.0.0
 > Released Nov 17, 2021
