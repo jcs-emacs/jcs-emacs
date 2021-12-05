@@ -92,11 +92,11 @@
   "Safe way to add backend."
   (if company-fuzzy-mode
       (progn
-        (add-to-list 'company-fuzzy--backends backend)
-        (add-to-list 'company-fuzzy--recorded-backends backend)
+        (add-to-list 'company-fuzzy--backends backend t)
+        (add-to-list 'company-fuzzy--recorded-backends backend t)
         (setq company-fuzzy--backends (delete-dups company-fuzzy--backends)
               company-fuzzy--recorded-backends (delete-dups company-fuzzy--recorded-backends)))
-    (add-to-list 'company-backends backend)
+    (add-to-list 'company-backends backend t)
     (setq company-backends (delete-dups company-backends))))
 
 ;;
