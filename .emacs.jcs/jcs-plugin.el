@@ -203,6 +203,7 @@
         dashboard-shorten-path-offset 15)
   :defer-config
   (setq initial-buffer-choice (lambda () (get-buffer dashboard-buffer-name)))
+  (require 'jcs-dashboard)
   (require 'dashboard-ls)
   (dashboard-setup-startup-hook))
 
@@ -419,6 +420,8 @@
            (ac-lst (car ml-color)) (inac-lst (cdr ml-color)))
       (jcs--set-mode-line-color--by-feebleline ac-lst inac-lst)))
   :defer-config
+  (require 'jcs-feebleline)
+
   (cl-defun jcs--feebleline--insert-func (func &key (face 'default) pre (post " ") (fmt "%s") (align 'left))
     "Override `feebleline--insert-func' function."
     (list align
@@ -684,7 +687,7 @@
   (defvar jcs-ivy-height-ratio 0.3
     "Ratio that respect to `frame-height' and `ivy-height'.")
   :defer-config
-  (require 'smex)
+  (require 'jcs-ivy)
   (setq enable-recursive-minibuffers t))
 
 (leaf ivy-file-preview
@@ -737,7 +740,9 @@
     "Safe way to active LSP."
     (require 'jcs-project)
     (when (and (jcs-project-under-p) (not (jcs--lsp-connected-p)))
-      (lsp-deferred))))
+      (lsp-deferred)))
+  :defer-config
+  (require 'jcs-lsp))
 
 (leaf lsp-ui
   :init

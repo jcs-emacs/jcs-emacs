@@ -4,6 +4,7 @@
 
 (require 'f)
 (require 'ffap)
+(require 'smex)
 
 (defun jcs-ivy--window-size-change ()
   "`window-size-change-functions' for `ivy-mode'."

@@ -376,6 +376,9 @@ If ACT is non-nil; then make scroll less jumpy."
 
 (jcs-scroll-conservatively-enable)
 
+;;; Shell
+(jcs-with-eval-after-load-multiple '(shell eshell) (require 'jcs-shell))
+
 ;;; So Long
 (leaf so-long
   :defer-config

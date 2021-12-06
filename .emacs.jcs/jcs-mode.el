@@ -163,37 +163,22 @@ Note this is opposite logic to the toggle mode function."
 ;;
 ;; So just put all the startup modes' configuration here.
 
-;;============================================================================
-;; Special
+;;; Special
+(add-hook 'special-mode-hook (lambda () (goto-address-mode 1)))
 
-(defun jcs-special-mode-hook ()
-  "Hook for `special-mode'."
-  (goto-address-mode 1))
+;;; Backtrace
+(add-hook 'backtrace-mode-hook (lambda () (buffer-wrap-mode 1)))
 
-(add-hook 'special-mode-hook 'jcs-special-mode-hook)
+;;; Buffer Menu
+(add-hook 'Buffer-menu-mode-hook (lambda () (require 'jcs-buffer-menu)))
 
-;;============================================================================
-;; Backtrace
+;;; Diff
+(add-hook 'diff-mode-hook
+          (lambda ()
+            (jcs-bind-key (kbd "M-k") #'jcs-maybe-kill-this-buffer)
+            (jcs-bind-key (kbd "M-K") #'jcs-reopen-this-buffer)))
 
-(defun jcs-backtrace-mode-hook ()
-  "Hook for `backtrace-mode'."
-  (buffer-wrap-mode 1))
-
-(add-hook 'backtrace-mode-hook #'jcs-backtrace-mode-hook)
-
-;;============================================================================
-;; Diff
-
-(defun jcs-diff-mode-hook ()
-  "Hook for `diff-mode'."
-  (jcs-bind-key (kbd "M-k") #'jcs-maybe-kill-this-buffer)
-  (jcs-bind-key (kbd "M-K") #'jcs-reopen-this-buffer))
-
-(add-hook 'diff-mode-hook #'jcs-diff-mode-hook)
-
-;;============================================================================
-;; Compilation
-
+;;; Compilation
 (defun jcs-compilation-mode-hook ()
   "Hook for `compilation-mode'."
   (buffer-disable-undo)
@@ -211,26 +196,18 @@ Note this is opposite logic to the toggle mode function."
 (add-hook 'compilation-mode-hook 'jcs-compilation-mode-hook)
 (add-hook 'comint-mode-hook 'jcs-compilation-mode-hook)
 
-;;============================================================================
-;; Message Buffer
+;;; Message Buffer
+(add-hook 'messages-buffer-mode-hook
+          (lambda ()
+            (auto-highlight-symbol-mode 1)
+            (goto-address-mode 1)
+            (page-break-lines-mode 1)))
 
-(defun jcs-message-buffer-mode-hook ()
-  "Hook for `message-buffer-mode'."
-  (auto-highlight-symbol-mode 1)
-  (goto-address-mode 1)
-  (page-break-lines-mode 1))
-
-(add-hook 'messages-buffer-mode-hook 'jcs-message-buffer-mode-hook)
-
-;;============================================================================
-;; Tabulated List
-
-(defun jcs-tabulated-list-mode-hook ()
-  "Hook for `tabulated-list-mode'."
-  (when (memq major-mode '(Buffer-menu-mode package-menu-mode))
-    (buffer-wrap-mode 1)))
-
-(add-hook 'tabulated-list-mode-hook 'jcs-tabulated-list-mode-hook)
+;;; Tabulated List
+(add-hook 'tabulated-list-mode-hook
+          (lambda ()
+            (when (memq major-mode '(Buffer-menu-mode package-menu-mode))
+              (buffer-wrap-mode 1))))
 
 ;;============================================================================
 ;; Project
@@ -257,9 +234,7 @@ Note this is opposite logic to the toggle mode function."
 (add-hook 'text-mode-hook 'jcs-base-mode-hook)
 (add-hook 'prog-mode-hook 'jcs-base-mode-hook)
 
-;;============================================================================
-;; Text Mode
-
+;;; Text
 (defun jcs-text-mode-hook ()
   "Text mode hook."
   (jcs-insert-header-if-valid '("\\(/\\|\\`\\)[Ll][Ii][Cc][Ee][Nn][Ss][Ee]")
@@ -301,9 +276,7 @@ To avoid syntax highlighting error for comment.")
 
 (add-hook 'prog-mode-hook 'jcs-prog-mode-hook)
 
-;;============================================================================
-;; Emacs Lisp
-
+;;; Emacs Lisp
 (defun jcs-emacs-lisp-mode-hook ()
   "Emacs Lisp mode hook."
   (modify-syntax-entry ?_ "w")  ; Treat underscore as word.
@@ -313,9 +286,7 @@ To avoid syntax highlighting error for comment.")
 
 (add-hook 'emacs-lisp-mode-hook 'jcs-emacs-lisp-mode-hook)
 
-;;============================================================================
-;; Lisp
-
+;;; Lisp
 (defun jcs-lisp-mode-hook ()
   "Lisp mode hook."
   (modify-syntax-entry ?_ "w")  ; Treat underscore as word.
@@ -325,9 +296,7 @@ To avoid syntax highlighting error for comment.")
 
 (add-hook 'lisp-mode-hook 'jcs-lisp-mode-hook)
 
-;;============================================================================
-;; Lisp Interaction
-
+;;; Lisp Interaction
 (defun jcs-lisp-interaction-mode-hook ()
   "Lisp Interaction mode hook."
   (jcs-bind-key (kbd "M-k") #'jcs-scratch-buffer-maybe-kill)
