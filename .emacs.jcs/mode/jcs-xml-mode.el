@@ -23,7 +23,7 @@
   (atl-markup-mode 1)
   (visual-line-mode t)
 
-  (jcs-enable-truncate-lines)
+  (toggle-truncate-lines 1)
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]xml")

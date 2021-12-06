@@ -96,7 +96,7 @@
   (visual-line-mode t)
   (impatient-mode t)
 
-  (jcs-enable-truncate-lines)
+  (toggle-truncate-lines 1)
 
   ;; Docstring Faces
   (face-remap-add-relative 'docstr-faces-tag-face '(:inherit web-mode-block-face))
