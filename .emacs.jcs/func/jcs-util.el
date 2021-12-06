@@ -1419,7 +1419,7 @@ or `suffix'."
   (let ((ch-out ch-seq))
     (if (not (stringp ch-out))
         (setq ch-out nil)
-      (unless (or (numberp n) (jcs-is-positive n)) (setq n 1))
+      (unless (or (numberp n) (> n 0)) (setq n 1))
       (while (< (length ch-out) n)
         (setq ch-out (concat ch-out ch-seq))))
     (if ch-out (substring ch-out 0 n) nil)))

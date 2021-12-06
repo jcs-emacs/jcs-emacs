@@ -73,7 +73,7 @@
   "Advice execute after command `other-window'."
   ;; NOTE: If it's a utility frame; then we skip it immediately.
   (cond ((jcs-frame-util-p)
-         (other-window (if (jcs-is-positive count) 1 -1) t))
+         (other-window (if (> count 0) 1 -1) t))
         ((jcs-hook--other-window-interactively-p)
          (select-frame-set-input-focus (selected-frame))
          (jcs-buffer-menu-safe-refresh)
@@ -142,6 +142,9 @@
 (defun jcs-hook--first-pre-command ()
   "Pre command that only run once."
   (unless (eq this-command 'save-buffers-kill-terminal)  ; first command is kill emacs
+    (require 'jcs-nav)
+    (require 'jcs-comment)
+    (require 'jcs-vs)
     (global-alt-codes-mode 1)
     (global-auto-highlight-symbol-mode t)
     (auto-read-only-mode 1)

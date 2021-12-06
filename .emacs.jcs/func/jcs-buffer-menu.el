@@ -325,7 +325,7 @@ ADD-DEL-NUM : Addition or deletion number."
     (jcs--buffer-menu--update-header-string)
     (setq jcs--buffer-menu--first-enter t))
   (unless add-del-num (setq add-del-num (length key-input)))
-  (if (jcs-is-positive add-del-num)
+  (if (> add-del-num 0)
       (setq tabulated-list--header-string
             (concat tabulated-list--header-string key-input))
     (setq tabulated-list--header-string

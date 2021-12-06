@@ -136,6 +136,7 @@ decrease this. If you experience stuttering, increase this.")
 
 ;;; Utilities
 (require 'jcs-log)
+(require 'jcs-face)
 (require 'jcs-function)
 
 ;;; Environment
@@ -154,7 +155,6 @@ decrease this. If you experience stuttering, increase this.")
 (require 'jcs-minibuf)
 (require 'jcs-hook)
 (require 'jcs-key)
-(require 'jcs-face)
 
 ;;; Customize
 (require 'jcs-config)

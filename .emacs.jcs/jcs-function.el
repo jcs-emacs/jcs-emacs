@@ -703,7 +703,7 @@ VEC : Either position or negative number."
     ;; `linum-mode'. Disable it before ruining it, to
     ;; avoid the bug.
     (when was-dln (display-line-numbers-mode -1))
-    (if (jcs-is-positive vec)
+    (if (> vec 0)
         (call-interactively #'text-scale-increase)
       (call-interactively #'text-scale-decrease))
     ;; Renable line number mode.
@@ -866,7 +866,6 @@ NO-PROMPT : Don't prompt the overwrap message."
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 ;; Utilities
-(require 'jcs-math)
 (require 'jcs-util)
 (require 'jcs-frame)
 (require 'jcs-window)
@@ -878,10 +877,7 @@ NO-PROMPT : Don't prompt the overwrap message."
 ;; Editing
 (add-hook 'Buffer-menu-mode-hook (lambda () (require 'jcs-buffer-menu)))
 (with-eval-after-load 'dashboard (require 'jcs-dashboard))
-(require 'jcs-nav)
 (require 'jcs-edit)
-(require 'jcs-comment)
-(require 'jcs-vs)
 
 ;; For Specific Mode
 (with-eval-after-load 'web-mode (require 'jcs-web))
