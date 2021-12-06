@@ -34,6 +34,7 @@
 (defconst jcs-package-install-list
   '(0xc
     actionscript-mode
+    ada-mode
     adaptive-wrap
     alt-codes
     apache-mode

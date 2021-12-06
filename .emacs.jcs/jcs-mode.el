@@ -360,6 +360,7 @@ To avoid syntax highlighting error for comment.")
 (with-eval-after-load 'yasnippet (require 'jcs-snippet-mode))
 
 (with-eval-after-load 'actionscript-mode (require 'jcs-actionscript-mode))
+(with-eval-after-load 'ada-mode (require 'jcs-ada-mode))
 (with-eval-after-load 'agda-mode (require 'jcs-agda-mode))
 (with-eval-after-load 'applescript-mode (require 'jcs-applescript-mode))
 (jcs-with-eval-after-load-multiple '(masm-mode nasm-mode) (require 'jcs-asm-mode))
@@ -445,16 +446,7 @@ See `add-to-list' function description for argument APPEND."
 
 ;;; A
 (progn
-  (jcs-add-auto-mode-alist '("\\.as'?\\'" . actionscript-mode))
-  (jcs-add-auto-mode-alist '("\\.agda'?\\'" . agda-mode))
-  (jcs-add-auto-mode-alist '("\\.applescript'?\\'" . applescript-mode))
-  (jcs-add-auto-mode-alist '("\\.scpt'?\\'" . applescript-mode))
-  (jcs-add-auto-mode-alist '("\\.scptd'?\\'" . applescript-mode)))
-
-;;; B
-(progn
-  (jcs-add-auto-mode-alist '("\\.bas'\\'" . basic-mode))
-  (jcs-add-auto-mode-alist '("\\.bat'?\\'" . bat-mode)))
+  (jcs-add-auto-mode-alist '("\\.agda'?\\'" . agda-mode)))
 
 ;;; C
 (progn
@@ -482,7 +474,7 @@ See `add-to-list' function description for argument APPEND."
 ;;; D
 (progn
   (jcs-add-auto-mode-alist '("\\.dart'?" . dart-mode))
-  (jcs-add-auto-mode-alist '("\\(/\\|\\`\\)Dokerfile" . dockerfile-mode )))
+  (jcs-add-auto-mode-alist '("\\(/\\|\\`\\)Dokerfile" . dockerfile-mode)))
 
 ;;; E
 (progn

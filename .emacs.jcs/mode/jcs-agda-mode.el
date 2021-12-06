@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'agda2-mode)
+(require 'agda-mode)
 
 ;;
 ;; (@* "Templates" )
