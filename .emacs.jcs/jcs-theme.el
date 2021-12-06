@@ -174,7 +174,7 @@ Arguments stand for these explanation,
   (jcs-walk-frames
    (lambda ()
      (set-cursor-color cc)
-     (set-face-background 'hl-line hlc)
+     (with-eval-after-load 'hl-line (set-face-background 'hl-line hlc))
      (set-face-background 'region rc)
      (set-face-background 'fringe frc)
      (jcs-reset-plugins-base-on-theme))))

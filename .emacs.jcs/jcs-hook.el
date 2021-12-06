@@ -99,27 +99,9 @@
 
 (defun jcs-hook--after-init ()
   "Hook run after initialize."
-  ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-  ;; NOTE: Load required packages here.
-  ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-  (progn
-    (require 'dashboard)
-    (require 'diminish))
-
-  ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-  ;; NOTE: Enable util modes here.
-  ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-  (progn
-    ;;----------------------------------- `hl-line'
-    (global-hl-line-mode 1)
-    ;;----------------------------------- `indent-control'
-    (indent-control-mode 1)
-    ;;----------------------------------- `powerline'
-    (powerline-default-theme)
-    ;;----------------------------------- `tree-sitter'
-    (global-tree-sitter-mode 1)
-    ;;----------------------------------- `use-ttf'
-    (use-ttf-set-default-font))
+  (require 'dashboard) (require 'diminish)
+  (powerline-default-theme)
+  (use-ttf-set-default-font)
 
   (jcs-setup-default-theme)
   (jcs-depend-mode)
@@ -159,24 +141,28 @@
 
 (defun jcs-hook--first-pre-command ()
   "Pre command that only run once."
-  (global-alt-codes-mode 1)
-  (global-auto-highlight-symbol-mode t)
-  (auto-read-only-mode 1)
-  (global-company-mode t)
-  (delete-selection-mode 1)
-  (global-docstr-mode 1)
-  (global-hl-todo-mode 1)
-  (ivy-mode 1)
-  (global-page-break-lines-mode 1)
-  (global-region-occurrences-highlighter-mode 1)
-  (right-click-context-mode 1)
-  (show-paren-mode t)
-  (global-so-long-mode 1)
-  (transient-mark-mode t)
-  (which-key-mode)
-  (global-yascroll-bar-mode 1)
-  (with-current-buffer jcs-message-buffer-name (messages-buffer-mode))
-  (remove-hook 'pre-command-hook 'jcs-hook--first-pre-command))
+  (unless (eq this-command 'save-buffers-kill-terminal)  ; first command is kill emacs
+    (global-alt-codes-mode 1)
+    (global-auto-highlight-symbol-mode t)
+    (auto-read-only-mode 1)
+    (global-company-mode t)
+    (delete-selection-mode 1)
+    (global-docstr-mode 1)
+    (global-hl-line-mode 1)
+    (global-hl-todo-mode 1)
+    (indent-control-mode 1)
+    (ivy-mode 1)
+    (global-page-break-lines-mode 1)
+    (global-region-occurrences-highlighter-mode 1)
+    (right-click-context-mode 1)
+    (show-paren-mode t)
+    (global-so-long-mode 1)
+    (transient-mark-mode t)
+    (global-tree-sitter-mode 1)
+    (which-key-mode)
+    (global-yascroll-bar-mode 1)
+    (with-current-buffer jcs-message-buffer-name (messages-buffer-mode))
+    (remove-hook 'pre-command-hook 'jcs-hook--first-pre-command)))
 (add-hook 'pre-command-hook 'jcs-hook--first-pre-command)
 
 ;;
