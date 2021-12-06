@@ -110,8 +110,8 @@
 ;;
 
 (with-eval-after-load 'cc-mode
-  (require 'jcs-preproc) (jcs-init-preproc-faces)
-  (jcs-init-java-faces))
+  (require 'jcs-preproc) (jcs-init-preproc-faces))
+(with-eval-after-load 'java-mode (jcs-init-java-faces))
 (with-eval-after-load 'markdown-mode (jcs-init-markdown-faces))
 (with-eval-after-load 'org (jcs-init-org-faces))
 (with-eval-after-load 'typescript-mode (jcs-init-typescript-faces))
