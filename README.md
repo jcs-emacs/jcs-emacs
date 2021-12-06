@@ -64,7 +64,7 @@ numerous technologies, incorporate hardware, firmware and software.
 Here is the list of programming languages I know and are extended
 from this configuration.
 
-* ActionScript 2.0 or 3.0 / Agda / AppleScript / Assembly Language
+* ActionScript 2.0 or 3.0 / Ada / Agda / AppleScript / Assembly Language
 * BASIC / Batchfile
 * C / C++ / C# / Clojure / CMake / COBOL / CSS
 * Dart / Dockerfile
