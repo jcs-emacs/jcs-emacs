@@ -5,6 +5,17 @@
 (require 're-builder)
 
 ;;
+;; (@* "Functions" )
+;;
+
+(defun jcs-reb-maybe-kill-this-buffer ()
+  "Kill this buffer in `re-builder' mode."
+  (interactive)
+  (let (is-killed)
+    (setq is-killed (jcs-maybe-kill-this-buffer))
+    (when is-killed (delete-window))))
+
+;;
 ;; (@* "Hook" )
 ;;
 
