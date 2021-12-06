@@ -14,6 +14,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Inhibited building the dependency graph before init time.
 * Installed new package `nginx-mode`.
 * Installed new package `company-nginx`.
+* Installed new package `ada-mode`.
 
 ## 7.0.0
 > Released Nov 17, 2021
