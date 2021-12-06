@@ -423,8 +423,8 @@ If optional argument FORCE is non-nil, force refresh it."
 (defun jcs-iedit-mode ()
   "Enable Iedit mode in the safe way."
   (interactive)
+  (require 'iedit)
   (let ((kill-ring kill-ring))
-    (require 'iedit)
     (if iedit-mode
         (call-interactively #'iedit-mode)
       (when (or (jcs-get-word-at-point) (jcs-get-symbol-at-point))
@@ -553,13 +553,6 @@ If optional argument FORCE is non-nil, force refresh it."
 (defconst jcs-re-builder-buffer-name "*RE-Builder*"
   "Name of the re-builder buffer.")
 
-(defun jcs-reb-maybe-kill-this-buffer ()
-  "Kill this buffer in `re-builder' mode."
-  (interactive)
-  (let (is-killed)
-    (setq is-killed (jcs-maybe-kill-this-buffer))
-    (when is-killed (delete-window))))
-
 (defun jcs-re-builder (type)
   "Rewrap `re-builder' function to ask search case TYPE."
   (interactive
@@ -568,27 +561,6 @@ If optional argument FORCE is non-nil, force refresh it."
                                      "Case Insensitive"))))
   (let ((case-fold-search (string= type "Case Insensitive")))
     (re-builder)))
-
-;;
-;; (@* "Shift Select" )
-;;
-
-(defun jcs-toggle-shift-select-mode ()
-  "Toggle `shift-select-mode'."
-  (interactive)
-  (if shift-select-mode
-      (jcs-disable-shift-select-mode)
-    (jcs-enable-shift-select-mode)))
-
-(defun jcs-enable-shift-select-mode ()
-  "Enable `shift-select-mode'."
-  (interactive)
-  (setq shift-select-mode t))
-
-(defun jcs-disable-shift-select-mode ()
-  "Enable `shift-select-mode'."
-  (interactive)
-  (setq shift-select-mode nil))
 
 ;;
 ;; (@* "Sort" )
@@ -820,24 +792,6 @@ NO-PROMPT : Don't prompt the overwrap message."
                                     'face '(:foreground "cyan"))))))))
 
 ;;
-;; (@* "Truncate Lines" )
-;;
-
-(defun jcs-enable-truncate-lines ()
-  "Enable truncate lines."
-  (interactive)
-  (jcs-mute-apply (toggle-truncate-lines 1))
-  (when (eq this-command 'jcs-enable-truncate-lines)
-    (message "Truncate long lines enabled")))
-
-(defun jcs-disable-truncate-lines ()
-  "Disable truncate lines."
-  (interactive)
-  (jcs-mute-apply (toggle-truncate-lines -1))
-  (when (eq this-command 'jcs-disable-truncate-lines)
-    (message "Truncate long lines disabled")))
-
-;;
 ;; (@* "Yascroll" )
 ;;
 
@@ -862,7 +816,7 @@ NO-PROMPT : Don't prompt the overwrap message."
   (call-interactively #'yas-expand))
 
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-;; Load files.
+;; Load files
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 ;; Utilities
@@ -872,7 +826,6 @@ NO-PROMPT : Don't prompt the overwrap message."
 
 ;; Editing
 (require 'jcs-nav)
-(require 'jcs-edit)
 
 (provide 'jcs-function)
 ;;; jcs-function.el ends here
