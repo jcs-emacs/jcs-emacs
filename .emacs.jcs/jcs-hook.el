@@ -142,7 +142,6 @@
 (defun jcs-hook--first-pre-command ()
   "Pre command that only run once."
   (unless (eq this-command 'save-buffers-kill-terminal)  ; first command is kill emacs
-    (require 'jcs-nav)
     (require 'jcs-comment)
     (require 'jcs-vs)
     (global-alt-codes-mode 1)

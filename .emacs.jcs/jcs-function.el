@@ -877,6 +877,7 @@ NO-PROMPT : Don't prompt the overwrap message."
 ;; Editing
 (add-hook 'Buffer-menu-mode-hook (lambda () (require 'jcs-buffer-menu)))
 (with-eval-after-load 'dashboard (require 'jcs-dashboard))
+(require 'jcs-nav)
 (require 'jcs-edit)
 
 ;; For Specific Mode
