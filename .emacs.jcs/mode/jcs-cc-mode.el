@@ -107,6 +107,8 @@
          ("#pragma[ \t]+comment[ \t]*([ \t]*\\([a-z-A-Z]+\\)[,)]" 1 'jcs-preproc-comment-type-face t))
        'end))))
 
+(jcs-init-preproc-faces)
+
 ;;
 ;; (@* "Header" )
 ;;
