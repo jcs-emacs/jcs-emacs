@@ -159,6 +159,9 @@
         (t t)))
 (setq-default electric-pair-inhibit-predicate 'jcs--electric-pair-inhibit-predicate)
 
+(defconst jcs-smart-closing-parens '("}" ")" "]")
+  "List of closing parenthesis.")
+
 ;;; Find File
 (defvar jcs-current-created-parent-dir-path nil
   "Globally record the virutally created parent dir path.")

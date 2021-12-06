@@ -967,9 +967,6 @@ CC : Current character at position."
         (jcs-forward-delete-close-pair-char cpc)
         (jcs-forward-delete-close-pair-char-seq cc)))))
 
-(defconst jcs-smart-closing-parens '("}" ")" "]")
-  "List of closing parenthesis.")
-
 (defun jcs-smart-closing (fnc &rest args)
   "Smart way to indent region by closing up parenthesis."
   (apply fnc args)
