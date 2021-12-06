@@ -105,17 +105,5 @@
   :group 'jcs)
 (defvar jcs-web-mode-html-attr-value-face 'jcs-web-mode-html-attr-value-face)
 
-;;
-;; (@* "Load face order" )
-;;
-
-(with-eval-after-load 'cc-mode
-  (require 'jcs-preproc) (jcs-init-preproc-faces))
-(with-eval-after-load 'java-mode (jcs-init-java-faces))
-(with-eval-after-load 'markdown-mode (jcs-init-markdown-faces))
-(with-eval-after-load 'org (jcs-init-org-faces))
-(with-eval-after-load 'typescript-mode (jcs-init-typescript-faces))
-(with-eval-after-load 'web-mode (jcs-init-web-faces))
-
 (provide 'jcs-face)
 ;;; jcs-face.el ends here

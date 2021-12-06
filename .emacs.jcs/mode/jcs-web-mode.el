@@ -2,20 +2,8 @@
 ;;; Commentary: Including HTML, CSS, PHP, JavaScript, JSON.
 ;;; Code:
 
-;;
-;; (@* "Real time editing" )
-;;
-
-;; Note for "Impatient Mode" (real time editing)
-;; Step 1: M-x httpd-start        (Open the port default: 8080)
-;; Step 2: M-x impatient-mode     (Enabled Impatient Mode)
-
+(require 'jcs-web)
 (require 'impatient-mode)
-
-;;
-;; (@* "Related Packages" )
-;;
-
 (require 'auto-rename-tag)
 (require 'emmet-mode)
 (require 'htmltagwrap)
@@ -80,6 +68,8 @@
   (set-face-attribute 'web-mode-doctype-face nil :foreground "Pink3")
   (set-face-attribute 'web-mode-block-comment-face nil :foreground (face-foreground font-lock-comment-face))
   (set-face-attribute 'web-mode-comment-face nil :foreground (face-foreground font-lock-comment-face)))
+
+(jcs-init-web-faces)
 
 ;;
 ;; (@* "Templates" )

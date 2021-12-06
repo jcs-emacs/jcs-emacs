@@ -64,6 +64,8 @@
                       :foreground "#B5CCEB"
                       :background (face-background 'default)))
 
+(jcs-init-markdown-faces)
+
 ;;
 ;; (@* "Templates" )
 ;;

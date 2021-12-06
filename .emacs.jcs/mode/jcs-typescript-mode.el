@@ -38,6 +38,8 @@
          ("return[ \t\n]+\\(null\\)" 1 'jcs-font-lock-null-face t))
        'end))))
 
+(jcs-init-typescript-faces)
+
 ;;
 ;; (@* "Templates" )
 ;;

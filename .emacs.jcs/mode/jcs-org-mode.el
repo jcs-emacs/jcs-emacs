@@ -45,6 +45,8 @@
   (set-face-attribute 'org-level-7 nil :foreground "#B5CCEB")
   (set-face-attribute 'org-level-8 nil :foreground "#B5CCEB"))
 
+(jcs-init-org-faces)
+
 ;;
 ;; (@* "Table" )
 ;;
