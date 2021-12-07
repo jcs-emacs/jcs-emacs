@@ -15,6 +15,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Installed new package `nginx-mode`.
 * Installed new package `company-nginx`.
 * Installed new package `ada-mode`.
+* Removed functionality to open update log in project.
+* Removed functionality to open todo file in project.
 
 ## 7.0.0
 > Released Nov 17, 2021
