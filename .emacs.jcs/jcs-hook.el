@@ -103,6 +103,8 @@
   (powerline-default-theme)
   (use-ttf-set-default-font)
 
+  (run-with-idle-timer 0 nil #'jcs-hook--init-delay)
+
   (jcs-setup-default-theme)
   (jcs-depend-mode)
 
@@ -122,26 +124,9 @@
   (jcs-dashboard-init-info))
 (add-hook 'after-init-hook 'jcs-hook--after-init)
 
-;;
-;; (@* "Pre/Post Command" )
-;;
-
-(defun jcs-hook--pre-command ()
-  "Hook run before every command."
-  (jcs--er/record-history))
-(add-hook 'pre-command-hook 'jcs-hook--pre-command)
-
-(defun jcs-hook--post-command ()
-  "Hook run after every command."
-  (jcs--er/resolve-region)
-  (jcs-funcall-fboundp #'jcs--mark-whole-buffer-resolve)
-  (jcs-reload-active-mode-with-error-handle)
-  (unless (display-graphic-p) (jcs-feebleline-display-mode-line-graphic)))
-(add-hook 'post-command-hook 'jcs-hook--post-command)
-
-(defun jcs-hook--first-pre-command ()
-  "Pre command that only run once."
-  (unless (eq this-command 'save-buffers-kill-terminal)  ; first command is kill emacs
+(defun jcs-hook--init-delay ()
+  "Delay some executions for faster speed."
+  (jcs-with-gc-speed-up
     (require 'jcs-edit)
     (require 'jcs-comment)
     (require 'jcs-vs)
@@ -164,9 +149,25 @@
     (global-tree-sitter-mode 1)
     (which-key-mode)
     (global-yascroll-bar-mode 1)
-    (with-current-buffer jcs-message-buffer-name (messages-buffer-mode))
-    (remove-hook 'pre-command-hook 'jcs-hook--first-pre-command)))
-(add-hook 'pre-command-hook 'jcs-hook--first-pre-command)
+    (with-current-buffer jcs-message-buffer-name (messages-buffer-mode)))
+  (message nil))  ; mute at the very end!
+
+;;
+;; (@* "Pre/Post Command" )
+;;
+
+(defun jcs-hook--pre-command ()
+  "Hook run before every command."
+  (jcs--er/record-history))
+(add-hook 'pre-command-hook 'jcs-hook--pre-command)
+
+(defun jcs-hook--post-command ()
+  "Hook run after every command."
+  (jcs--er/resolve-region)
+  (jcs-funcall-fboundp #'jcs--mark-whole-buffer-resolve)
+  (jcs-reload-active-mode-with-error-handle)
+  (unless (display-graphic-p) (jcs-feebleline-display-mode-line-graphic)))
+(add-hook 'post-command-hook 'jcs-hook--post-command)
 
 ;;
 ;; (@* "Major Mode" )
