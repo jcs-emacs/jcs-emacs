@@ -49,16 +49,14 @@ decrease this. If you experience stuttering, increase this.")
   "The temporary value for `gc-cons-threshold' to defer it.")
 
 (defun jcs-gc-cons-threshold-speed-up (speedup)
-  "Set the `gc-cons-threshold' depends on SPEEDUP."
+  "Raise/Lower GC threshold by SPEEDUP."
   (setq gc-cons-threshold (if speedup jcs-gc-cons-upper-limit jcs-gc-cons-threshold)))
 
-;; NOTE: Raise the `GC' threshold when starting Emacs.
-(jcs-gc-cons-threshold-speed-up t)
+(jcs-gc-cons-threshold-speed-up t)  ; Raise GC when starting Emacs!
 
-;;; NOTE: Set custom file.
+;; NOTE: Set custom file.
 (setq-default custom-file (expand-file-name ".jcs-custom.el" user-emacs-directory))
-(when (file-exists-p custom-file)
-  (load custom-file))
+(when (file-exists-p custom-file) (load custom-file))
 
 (defconst jcs-file-name-handler-alist file-name-handler-alist
   "Record file name handler alist.")
