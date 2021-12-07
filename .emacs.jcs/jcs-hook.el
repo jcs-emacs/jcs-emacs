@@ -134,7 +134,7 @@
 (defun jcs-hook--post-command ()
   "Hook run after every command."
   (jcs--er/resolve-region)
-  (jcs--mark-whole-buffer-resolve)
+  (jcs-funcall-fboundp #'jcs--mark-whole-buffer-resolve)
   (jcs-reload-active-mode-with-error-handle)
   (unless (display-graphic-p) (jcs-feebleline-display-mode-line-graphic)))
 (add-hook 'post-command-hook 'jcs-hook--post-command)
