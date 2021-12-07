@@ -366,12 +366,6 @@
   ;; by find corresponding file interactive function call.
   (define-key global-map (kbd "<f8>") #'jcs-same-file-other-window))
 
-;;; Open TODO file.
-(define-key global-map (kbd "C-k t") #'jcs-open-project-todo-file)
-
-;;; Open Log file.
-(define-key global-map (kbd "C-k u") #'jcs-open-project-update-log-file)
-
 ;;; Overwrite
 (define-key global-map [insert] #'overwrite-mode)
 

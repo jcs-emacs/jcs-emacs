@@ -140,8 +140,7 @@
 
 (defun jcs-open-project-file (in-filename title &optional ow)
   "Open the IN-FILENAME from this project with TITLE.
-OW : Opened it in other window."
-  (interactive)
+OW : Open it in other window."
   (let ((filepath (jcs-find-file-in-project-and-current-dir in-filename title)))
     (if ow (find-file-other-window filepath) (find-file filepath))))
 
@@ -192,16 +191,6 @@ IN-OP : inpuit operation script."
   "Run the current build program."
   (interactive)
   (jcs-compile-project-file jcs-runscript "Run script: "))
-
-(defun jcs-open-project-todo-file ()
-  "Open the TODO list from this project."
-  (interactive)
-  (jcs-open-project-file jcs-project-todo-file "TODO file: " t))
-
-(defun jcs-open-project-update-log-file ()
-  "Open the Update Log from this project."
-  (interactive)
-  (jcs-open-project-file jcs-project-update-log-file "Update Log file: " t))
 
 (defun jcs-output-maybe-kill-buffer ()
   "Maybe kill buffer action in `output' buffer."

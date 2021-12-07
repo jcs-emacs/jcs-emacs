@@ -2,36 +2,22 @@
 ;;; Commentary:
 ;;; Code:
 
-;; Stop Emacs from losing undo information by  setting very high
-;; limits for undo buffers
-(setq undo-limit 20000000
-      undo-strong-limit 40000000)
-
 ;; Determine the underlying operating system
 (defconst jcs-is-windows (memq system-type '(cygwin windows-nt ms-dos))
-  "This value is non-nil; if current operating system on Microsoft Windows.")
+  "Non-nil when Microsoft Windows.")
 (defconst jcs-is-mac (eq system-type 'darwin)
-  "This value is non-nil; if current operating system on macOS.")
+  "Non-nil when macOS.")
 (defconst jcs-is-linux (eq system-type 'gnu/linux)
-  "This value is non-nil; if current operating system on Linux.")
+  "Non-nil when Linux.")
 (defconst jcs-is-bsd (or jcs-is-mac (eq system-type 'berkeley-unix))
-  "This value is non-nil; if current operating system on BSD.")
+  "Non-nil when BSD.")
 
 (defconst jcs-system-type
   (cond (jcs-is-windows 'dos)
-        (jcs-is-bsd 'mac)
-        (jcs-is-linux 'unix))
+        (jcs-is-bsd     'mac)
+        (jcs-is-linux   'unix)
+        (t              'unknown))
   "Return current OS type.")
-
-(defconst jcs-daily-todo-file "~/TODO_JenChieh/code/todo.txt"
-  "Open the daily todo file.")
-(defconst jcs-log-file "~/TODO_JenChieh/code/log.txt"
-  "Log file path, file location.")
-
-(defconst jcs-project-todo-file "TODO[.]*[[:ascii:]]*"
-  "Project TODO file.")
-(defconst jcs-project-update-log-file "CHANGELOG[.]*[[:ascii:]]*"
-  "Project Update Log file.")
 
 (defvar jcs-makescript "[[:ascii:]]*build[[:ascii:]]*"
   "Name of the build/make file script.")
@@ -41,21 +27,21 @@
 (defvar jcs-use-sh-p (or jcs-is-mac jcs-is-linux jcs-is-bsd)
   "Flag if the system use shell script.")
 
-(pcase jcs-system-type
-  (`dos
-   (setq jcs-makescript (concat jcs-makescript "[.]bat")
-         jcs-runscript (concat jcs-runscript "[.]bat")))
-  (`mac
-   (cua-mode 0)
-   ;;(osx-key-mode 0)
-   (setq mac-command-modifier 'meta
-         select-enable-clipboard t
-         aquamacs-save-options-on-quit 0
-         special-display-regexps nil
-         special-display-buffer-names nil)
-   (define-key function-key-map [return] [13])
-   (setq mac-command-key-is-meta t
-         mac-pass-command-to-system nil)))
+(cond
+ (jcs-is-windows
+  (setq jcs-makescript (concat jcs-makescript "[.]bat")
+        jcs-runscript (concat jcs-runscript "[.]bat")))
+ (jcs-is-bsd
+  (cua-mode 0)
+  ;;(osx-key-mode 0)
+  (setq mac-command-modifier 'meta
+        select-enable-clipboard t
+        aquamacs-save-options-on-quit 0
+        special-display-regexps nil
+        special-display-buffer-names nil)
+  (define-key function-key-map [return] [13])
+  (setq mac-command-key-is-meta t
+        mac-pass-command-to-system nil)))
 
 (when jcs-use-sh-p
   (setq jcs-makescript (concat jcs-makescript "[.]sh")
@@ -118,7 +104,7 @@
     (set-variable 'grep-command "findstr -s -n -i -l ")))
 
 ;;; Creator
-(defun jcs-creator-name () "Name of the creator." "Jen-Chieh Shen")
+(defun jcs-creator-name () "Name of the creator." user-full-name)
 (defun jcs-copyright-info () "Copyright information." "Shen, Jen-Chieh")
 
 ;;; Default Major Mode
@@ -408,6 +394,10 @@ If ACT is non-nil; then make scroll less jumpy."
     "Advice execute around `tabulated-list-col-sort' function."
     (save-excursion (apply fnc args)))
   (advice-add 'tabulated-list-col-sort :around #'jcs--tabulated-list-col-sort--advice-around))
+
+;;; Undo
+(setq undo-limit 20000000
+      undo-strong-limit 40000000)
 
 ;;; Uniquify
 (leaf uniquify
