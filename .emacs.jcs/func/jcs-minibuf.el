@@ -37,8 +37,7 @@
 (defun jcs-minibuf--setup-hook ()
   "Hook when minibuffer setup."
   ;; NOTE: Avoid GCs while using `ivy'/`counsel'/`swiper' and `helm', etc.
-  (progn
-    (jcs-gc-cons-threshold-speed-up t))
+  (jcs-gc-cons-threshold-speed-up t)
 
   (jcs-dark-blue-mode-line)
 
@@ -60,9 +59,8 @@
   (jcs-dashboard-refresh-buffer)
 
   ;; NOTE: Avoid GCs while using `ivy'/`counsel'/`swiper' and `helm', etc.
-  (progn
-    (garbage-collect)
-    (jcs-gc-cons-threshold-speed-up nil)))
+  (garbage-collect)
+  (jcs-gc-cons-threshold-speed-up nil))
 (add-hook 'minibuffer-exit-hook 'jcs-minibuf--exit-hook)
 
 (defun jcs-minibuffer--post-command ()
