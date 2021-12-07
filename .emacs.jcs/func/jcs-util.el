@@ -6,6 +6,14 @@
 ;; (@* "Macro" )
 ;;
 
+(defmacro jcs-with-gc-speed-up (&rest body)
+  "Execute BODY with higher GC threshold."
+  (declare (indent 0) (debug t))
+  `(progn
+     (jcs-gc-cons-threshold-speed-up t)
+     ,@body
+     (jcs-gc-cons-threshold-speed-up nil)))
+
 (defmacro jcs-with-no-redisplay (&rest body)
   "Execute BODY without any redisplay execution."
   (declare (indent 0) (debug t))
@@ -13,7 +21,7 @@
          buffer-list-update-hook
          window-configuration-change-hook
          after-focus-change-function)
-     (progn ,@body)))
+     ,@body))
 
 (defmacro jcs-with-timer (title &rest forms)
   "Run the given FORMS, counting the elapsed time.
@@ -31,21 +39,21 @@ time is displayed."
   "Re-implementation `save-excursion' in FNC with ARGS."
   (declare (indent 0) (debug t))
   `(let ((ln (line-number-at-pos nil t)) (col (current-column)))
-     (progn ,@body)
+     ,@body
      (jcs-goto-line ln)
      (move-to-column col)))
 
 (defmacro jcs-point-at-pos (&rest body)
   "Execute BODY when return point."
   (declare (indent 0) (debug t))
-  `(save-excursion (progn ,@body) (point)))
+  `(save-excursion ,@body (point)))
 
 (defmacro jcs-save-scroll-conservatively (&rest body)
   "Execute BODY by saving value of variable `scroll-conservatively'."
   (declare (indent 0) (debug t))
   `(progn
      (jcs-scroll-conservatively-disable)
-     (progn ,@body)
+     ,@body
      (redisplay)
      (jcs-scroll-conservatively-enable)))
 
@@ -54,14 +62,14 @@ time is displayed."
   (declare (indent 0) (debug t))
   `(jcs-with-no-redisplay
      (jcs-window-record-once)
-     (progn ,@body)
+     ,@body
      (jcs-window-restore-once)))
 
 (defmacro jcs-try-run (repetitions &rest body)
   "Try execute BODY with REPETITIONS of times."
   (declare (indent 1) (debug t))
   `(let ((cnt 0) break)
-     (while (and (null break) (not (ignore-errors (progn ,@body))))
+     (while (and (null break) (not (ignore-errors ,@body)))
        (setq cnt (1+ cnt)
              break (<= ,repetitions cnt)))))
 
@@ -315,19 +323,19 @@ See function `jcs-string-compare-p' for argument TYPE."
 (defmacro jcs-unmute-apply (&rest body)
   "Execute BODY with ensuring message log."
   (declare (indent 0) (debug t))
-  `(let ((message-log-max jcs-message-log-max)) (progn ,@body)))
+  `(let ((message-log-max jcs-message-log-max)) ,@body))
 
 (defmacro jcs-mute-apply (&rest body)
   "Execute BODY without message."
   (declare (indent 0) (debug t))
   `(let (message-log-max)
      (with-temp-message (or (current-message) nil)
-       (let ((inhibit-message t)) (progn ,@body)))))
+       (let ((inhibit-message t)) ,@body))))
 
 (defmacro jcs-no-log-apply (&rest body)
   "Execute BODY without write it to message buffer."
   (declare (indent 0) (debug t))
-  `(let (message-log-max) (progn ,@body)))
+  `(let (message-log-max) ,@body))
 
 (defun jcs-funcall-fboundp (fnc &rest args)
   "Call FNC with ARGS if exists."
@@ -1496,7 +1504,7 @@ Argument IN-VAL is input value to set to IN-VAR."
 (defmacro jcs-with-eval-after-load-multiple (files &rest body)
   "Execute BODY after one of the FILES is loaded."
   (declare (indent 1) (debug t))
-  `(dolist (file ,files) (with-eval-after-load file (progn ,@body))))
+  `(dolist (file ,files) (with-eval-after-load file ,@body)))
 
 ;;
 ;; (@* "Process Reporter" )
