@@ -17,6 +17,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Installed new package `ada-mode`.
 * Removed functionality to open update log in project.
 * Removed functionality to open todo file in project.
+* Delay init instead of registering in the first pre-command hook.
 
 ## 7.0.0
 > Released Nov 17, 2021
