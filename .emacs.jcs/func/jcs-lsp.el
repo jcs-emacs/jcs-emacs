@@ -3,7 +3,7 @@
 ;;; Code:
 
 ;;
-;; (@* "lsp" )
+;; (@* "lsp-mode" )
 ;;
 
 ;; Enable or Disable for LSP.
