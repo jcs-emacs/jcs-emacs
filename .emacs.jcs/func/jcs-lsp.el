@@ -10,10 +10,13 @@
 (require 'lsp-java)
 (require 'lsp-latex)
 (require 'lsp-ltex)
+(require 'lsp-metals)
 (require 'lsp-mssql)
 (require 'lsp-pascal)
 (require 'lsp-pyright)
 (require 'lsp-sourcekit)
+(require 'lsp-sonarlint)
+(require 'lsp-tailwindcss)
 
 ;;
 ;; (@* "lsp" )

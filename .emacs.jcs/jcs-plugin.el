@@ -738,7 +738,6 @@
 
   (defun jcs--safe-lsp-active ()
     "Safe way to active LSP."
-    (require 'jcs-project)
     (when (and (jcs-project-under-p) (not (jcs--lsp-connected-p)))
       (lsp-deferred)))
   :defer-config

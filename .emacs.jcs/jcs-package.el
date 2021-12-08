@@ -157,10 +157,13 @@
     lsp-java
     lsp-latex
     lsp-ltex
+    lsp-metals
     lsp-mssql
     lsp-pascal
     lsp-pyright
+    lsp-sonarlint
     lsp-sourcekit
+    lsp-tailwindcss
     lsp-ui
     lua-mode
     manage-minor-mode-table
