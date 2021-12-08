@@ -18,6 +18,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Removed functionality to open update log in project.
 * Removed functionality to open todo file in project.
 * Delay init instead of registering in the first pre-command hook.
+* Installed new package `lsp-metals`.
+* Installed new package `lsp-sonarlint`.
+* Installed new package `lsp-tailwindcss`.
 
 ## 7.0.0
 > Released Nov 17, 2021
