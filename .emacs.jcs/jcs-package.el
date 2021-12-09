@@ -396,7 +396,7 @@
 (advice-add 'package-menu-execute :around #'jcs-package--menu-execute--advice-around)
 
 ;;
-;; (@* "Core Installation" )
+;; (@* "Installation" )
 ;;
 
 (defconst jcs-package--elpa-temp-dir (expand-file-name "~/.emacs.d/elpa/.temp/")
@@ -407,30 +407,29 @@
 (defvar jcs-package-use-real-delete-p t
   "Flag to check if we are really deleting a package.")
 
-(defun jcs-package-delete (pkg-name &optional dep)
-  "Safe way to remove PKG-NAME and it's DEP."
-  (let ((used-elsewhere (jcs-package--used-elsewhere-p pkg-name))
-        (pkg-desc-current (jcs-package--build-desc pkg-name)))
-    (dolist (pkg-desc used-elsewhere)
-      (jcs-package-delete (jcs-package--package-name pkg-desc) pkg-name))
-    (when pkg-desc-current
+(defun jcs-package-delete (pkg-desc &optional dep)
+  "Safe way to remove package and it's DEP using PKG-DESC."
+  (let ((pkg-name (package-desc-name pkg-desc))
+        (used-elsewhere (package--used-elsewhere-p pkg-desc nil 'all)))
+    (dolist (desc used-elsewhere) (jcs-package-delete desc pkg-name))
+    (when pkg-desc
       (let ((jcs-package-use-real-delete-p t))
-        (jcs-mute-apply (package-delete pkg-desc-current)))
-      (if dep (message "Delete package `%s` that is rely on package `%s`" pkg-name dep)
-        (message "Package `%s` deleted." pkg-name)))))
+        (when (jcs-mute-apply (package-delete pkg-desc))
+          (if dep (message "Delete package `%s` that is rely on package `%s`" pkg-name dep)
+            (message "Package `%s` deleted." pkg-name)))))))
 
 (defun jcs--package-delete--advice-around (fnc &rest args)
   "Execution run around function `package-delete' with FNC and ARGS."
-  (let ((pkg-desc (nth 0 args)))
+  (let ((pkg-desc (nth 0 args)) result)
     (if jcs-package-use-real-delete-p
-        (unless (ignore-errors (apply fnc args))
-          (when-let ((pkg-dir (file-name-nondirectory (package-desc-dir pkg-desc)))
+        (if-let ((result (ignore-errors (apply fnc args)))) result
+          (when-let ((pkg-dir (package-desc-dir pkg-desc))
                      (pkg-name (package-desc-name pkg-desc)))
-            (jcs-move-path pkg-dir jcs-package--elpa-temp-dir)
-            (jcs-unmute-apply
-              (message "[INFO] Package `%s` in used, mark `%s` for later deletion"
-                       pkg-name pkg-dir))))
-      (jcs-package-delete (jcs-package--package-name pkg-desc)))))
+            (when (jcs-move-path pkg-dir jcs-package--elpa-temp-dir)
+              (jcs-unmute-apply
+                (message "[INFO] Package `%s` in used, mark `%s` for later deletion"
+                         pkg-name (file-name-nondirectory pkg-dir))))))
+      (jcs-package-delete pkg-desc))))
 
 (advice-add 'package-delete :around #'jcs--package-delete--advice-around)
 
