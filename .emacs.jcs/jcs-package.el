@@ -424,11 +424,12 @@
   (let ((pkg-desc (nth 0 args)))
     (if jcs-package-use-real-delete-p
         (unless (ignore-errors (apply fnc args))
-          (when-let ((pkg-dir (package-desc-dir pkg-desc))
-                     (pkg-name (package-desc-name pkg-name)))
+          (when-let ((pkg-dir (file-name-nondirectory (package-desc-dir pkg-desc)))
+                     (pkg-name (package-desc-name pkg-desc)))
             (jcs-move-path pkg-dir jcs-package--elpa-temp-dir)
-            (message "Can't delete package `%s`, move `%s` to temporary directory"
-                     pkg-name pkg-dir)))
+            (jcs-unmute-apply
+              (message "[INFO] Package `%s` in used, mark `%s` for later deletion"
+                       pkg-name pkg-dir))))
       (jcs-package-delete (jcs-package--package-name pkg-desc)))))
 
 (advice-add 'package-delete :around #'jcs--package-delete--advice-around)
