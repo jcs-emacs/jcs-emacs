@@ -2,7 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'cl-lib)
 (require 'jcs-undo)
 
 (defvar-local jcs-buffer-save-string-md5 nil
