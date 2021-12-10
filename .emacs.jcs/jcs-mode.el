@@ -77,15 +77,11 @@ Note this is opposite logic to the toggle mode function."
                     (require 'license-templates) (require 'subr-x)))
           (delete-dups
            (sort (append (list "Default (empty)")
-                         (license-templates-names)
-                         (jcs-dir-to-filename jcs-license-template-dir ".txt"))
+                         (license-templates-names))
                  #'string-lessp)))))
-  (let ((lice-path (format "%s%s.txt" jcs-license-template-dir in-type)))
-    (cond ((string= in-type "Default (empty)") (progn ))
-          ((jcs-contain-list-string (license-templates-names) in-type)
-           (license-templates-insert in-type))
-          (t
-           (file-header-insert-template-by-file-path lice-path)))))
+  (cond ((string= in-type "Default (empty)") (progn ))
+        ((jcs-contain-list-string (license-templates-names) in-type)
+         (license-templates-insert in-type))))
 
 ;;
 ;; (@* "Change Log" )
@@ -97,12 +93,12 @@ Note this is opposite logic to the toggle mode function."
    (list (completing-read
           "Type of the changelog: "
           (append (list "Default (empty)")
-                  (jcs-dir-to-filename jcs-changelog-template-path ".txt")))))
+                  (jcs-dir-to-filename jcs-changelog-template-dir ".txt")))))
   (pcase in-type
     ("Default (empty)" )  ; Do nothing...
     (_
      (file-header-insert-template-by-file-path
-      (format "%s%s.txt" jcs-changelog-template-path in-type)))))
+      (format "%s%s.txt" jcs-changelog-template-dir in-type)))))
 
 ;;
 ;; (@* "Special Modes" )
