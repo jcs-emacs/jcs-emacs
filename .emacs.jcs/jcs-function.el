@@ -475,31 +475,6 @@ If optional argument FORCE is non-nil, force refresh it."
     (jcs-safe-line-numbers-active 1)))
 
 ;;
-;; (@* "Media" )
-;;
-
-(defun jcs-media-find-file ()
-  "Open the media file."
-  (interactive)
-  (require 'jcs-media)
-  (let (do-play media-path)
-    (if ffmpeg-player--buffer
-        (when  (yes-or-no-p "There is video playing, kill it? ")
-          (jcs-safe-jump-shown-to-buffer
-           "[*]ffmpeg-player[*]: "
-           :success (lambda () (jcs-media-close-media-window))
-           :error (lambda () (with-current-buffer ffmpeg-player--buffer
-                               (jcs-media-close-media-window))))
-          (setq do-play t))
-      (setq do-play t))
-    (when do-play
-      (setq media-path (jcs-select-file))
-      (when media-path
-        (jcs-save-window-excursion
-          (save-window-excursion (ffmpeg-player-video media-path)))
-        (jcs-media--open-media-window)))))
-
-;;
 ;; (@* "Minimap" )
 ;;
 

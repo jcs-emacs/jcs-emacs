@@ -714,7 +714,6 @@ If optional argument CLEAN-LR is non-nil, remove all sign from `line-reminder'."
   (list (regexp-quote jcs-message-buffer-name)
         (regexp-quote jcs-backtrace-buffer-name)
         (regexp-quote jcs-re-builder-buffer-name)
-        "[*]ffmpeg-player"
         "[*]compilation" "[*]output")
   "List of buffer name that must be killed when maybe kill.
 Unless it shows up in multiple windows.")

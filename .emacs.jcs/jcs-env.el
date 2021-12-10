@@ -63,11 +63,11 @@
       ring-bell-function 'nil-bell)
 
 ;;; Bury Bufferss
-(defconst jcs-bury-buffer-list '("[*]ffmpeg-player[*]: ")
+(defconst jcs-bury-buffer-list '()
   "List of buffer that you don't want to show when after exit.")
 
 ;;; Change Log
-(defconst jcs-changelog-template-path "~/.emacs.jcs/template/__changelog/"
+(defconst jcs-changelog-template-dir "~/.emacs.jcs/template/__changelog/"
   "Path point to all changelog template files.")
 
 ;;; Compilation (Output)
@@ -205,10 +205,6 @@
 
 ;; Resolve performance issue moving around Unicode Text.
 (setq inhibit-compacting-font-caches t)
-
-;;; License
-(defconst jcs-license-template-dir "~/.emacs.jcs/template/__license/"
-  "Path point to all license template files.")
 
 ;;; Line Numbers
 (defconst jcs-line-numbers-ignore-buffers

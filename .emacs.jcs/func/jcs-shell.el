@@ -2,7 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'cl-lib)
 (require 'exec-path-from-shell)
 (require 'multi-shell)
 
@@ -70,8 +69,7 @@
 
 (defun jcs-shell-delete-window ()
   "Try to delete shell window."
-  (if (or (window-full-height-p)
-          (jcs-window-buffer-on-column-p "[*]ffmpeg-player[*]: "))
+  (if (window-full-height-p)
       (jcs-bury-buffer)
     (jcs-delete-window-downwind)
     (balance-windows)))

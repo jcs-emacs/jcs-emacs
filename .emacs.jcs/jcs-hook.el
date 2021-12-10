@@ -182,11 +182,6 @@
 ;; (@* "Quitting" )
 ;;
 
-(defun jcs-hook--kill-emacs ()
-  "Hook run before Emacs is killed."
-  (when (featurep 'ffmpeg-player) (ignore-errors (ffmpeg-player-clean))))
-(add-hook 'kill-emacs-hook 'jcs-hook--kill-emacs)
-
 (defun jcs--quit-command (&rest _)
   "Advice for quit command."
   (deactivate-mark)

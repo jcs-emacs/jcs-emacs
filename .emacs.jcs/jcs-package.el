@@ -97,8 +97,6 @@
     esup
     exec-path-from-shell
     expand-region
-    feebleline
-    ffmpeg-player
     file-header
     fill-page
     flx

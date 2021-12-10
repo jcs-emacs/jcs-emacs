@@ -308,16 +308,8 @@
 (define-key global-map "\e:" #'View-back-to-mark)
 (define-key global-map "\e;" #'exchange-point-and-mark)
 
-;;; Media
-(with-eval-after-load 'ffmpeg-player
-  (define-key ffmpeg-player-mode-map (kbd "M-k") #'jcs-media-close-media-window)
-  (define-key ffmpeg-player-mode-map (kbd "M-K") #'ffmpeg-player-replay))
-
 ;;; Minimap
 (define-key global-map (kbd "C-k m") #'jcs-toggle-minimap)
-
-;;; Mode Line
-(leaf-key* (kbd "C-M-m") #'feebleline-mode)
 
 ;;; Mode Toggle
 (progn
