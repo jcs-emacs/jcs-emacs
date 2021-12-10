@@ -237,7 +237,7 @@ I believed detials make things better and make life smoother.
 * [*Line Numbers Modding*](./features/line-numbers-modding) - Mixed used of `linum` and `display-line-numbers-mode` base on the file usage.
 * [*License Helper*](./features/license-helper) - Help to create license while creating `LICENSE` file using template.
 * [*Mini State*](./features/mini-state) - Mini mode state use to visually see what backend is the config currently running. (Deprecated)
-* [*Auto Switch State*](./features/mini-state/auto-switch-state) - Automatcially switch mini state depends on certain circumstances.
+  * [*Explicit States*](./features/mini-state/explicit-states) - Automatcially switch mini state depends on certain circumstances.
 * ~~[*Mode Line Toggle*](./features/mode-line-toggle) - Toggle to `show` or `hide` the mode line.~~
 * [*Modern Text Editor*](./features/modern-text-editor) - Design to have the preset settings close to modern text editors but faster.
 * [*Multiple Output*](./features/multiple-output) - Handle multiple output/compilation buffers.
@@ -249,7 +249,7 @@ I believed detials make things better and make life smoother.
 * [*Tabify/Untabify Modes*](./features/tabify-untabify-modes) - Tabify or Untabify the file depends on the mode you currently in.
 * ~~[*Transparent Window*](./features/transparent-window) - Keys to increase/decrease the transparency of the frame.~~ (has move to [transwin](https://github.com/jcs-elpa/transwin))
 * [*Trim Trailing Whitespace*](./features/trim-trailing-whitespace) - Remove trailing spaces and tabs automatically on save.
-* [*Video Player*](./features/video-player) - Play media on the top window.
+* ~~[*Video Player*](./features/video-player) - Play media on the top window.~~
 * [*Visualize Undo/Redo*](./features/visualize-undo-redo) - Improved the user experience on undoing and redoing by showing the `undo-tree-visualizer` at the other window.
 * [*VS Curly Bracket*](./features/vs-curly-bracket) - Visual Studio IDE like curly bracket implementation.
 * [*VS Multiple Terminal*](./features/vs-multiple-terminal) - VSCode like multiple shell control.
@@ -310,7 +310,7 @@ kind of methods that you could support the maintainer you want.
 * *Mode Line* - powered by [powerline](https://github.com/milkypostman/powerline).
 * *Multiple Cursor* - powered by [iedit](https://github.com/victorhge/iedit) and [multiple-cursors](https://github.com/magnars/multiple-cursors.el).
 * *Multiple Terminal* - powered by [multi-shell](https://github.com/jcs-elpa/multi-shell).
-* *Music Player* - powered by [ffmpeg-player](https://github.com/jcs-elpa/ffmpeg-player); might change to something else.
+* *Music Player* - none.
 * *Navigation/Searcher* - powered by [searcher](https://github.com/jcs-elpa/searcher) and [isearch-project](https://github.com/elpa-host/isearch-project).
 * *Package Archive* - see [here](#file_folder-package-archives).
 * *Package Management* - powered by [leaf](https://github.com/conao3/leaf.el) and [github-elpa](https://github.com/10sr/github-elpa).
@@ -334,7 +334,7 @@ kind of methods that you could support the maintainer you want.
 * *Todo* - powered by [hl-todo](https://github.com/tarsius/hl-todo).
 * *Toggle Mode Line* - powered by [feebleline](https://github.com/tautologyclub/feebleline).
 * *Undo/Redo* - powered by [undo-tree](https://www.emacswiki.org/emacs/UndoTree).
-* *Video Player* - powered by [ffmpeg-player](https://github.com/jcs-elpa/ffmpeg-player).
+* *Video Player* - none.
 * *White Space* - powered by [whitespace](https://www.emacswiki.org/emacs/WhiteSpace).
 
 ### File Modes
