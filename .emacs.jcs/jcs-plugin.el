@@ -892,7 +892,10 @@
 
 (leaf powerline
   :init
-  (setq powerline-default-separator 'wave)
+  (setq powerline-default-separator 'wave
+        powerline-display-buffer-size nil
+        powerline-display-mule-info nil
+        powerline-display-hud nil)
   :defer-config
   (defun jcs--powerline-raw--advice-around (fnc &rest args)
     "Execute around function `powerline-raw'."
