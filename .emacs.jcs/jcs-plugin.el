@@ -783,6 +783,8 @@
         powerline-display-mule-info nil
         powerline-display-hud nil)
   :defer-config
+  (require 'jcs-mode-line)
+
   (defun jcs--powerline-raw--advice-around (fnc &rest args)
     "Execute around function `powerline-raw'."
     (let ((str (nth 0 args)))
