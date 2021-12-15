@@ -34,7 +34,7 @@
 ;;
 
 (defun jcs--lsp-ui-mode--enabled-p ()
-  "Check if `lsp-ui-mode' enabled."
+  "Return non-nil if lsp-ui is enabled."
   (and (boundp 'lsp-ui-mode) lsp-ui-mode))
 
 (defun jcs--lsp-ui-doc-stop-timer ()
