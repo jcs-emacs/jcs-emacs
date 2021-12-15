@@ -538,16 +538,6 @@ If optional argument FORCE is non-nil, force refresh it."
     (re-builder)))
 
 ;;
-;; (@* "Sort" )
-;;
-
-(defun jcs-sort-symbols (reverse beg end)
-  "Sort symbols in region alphabetically, in REVERSE if negative.
-See `sort-words'."
-  (interactive "*P\nr")
-  (sort-regexp-fields reverse "\\(\\sw\\|\\s_\\)+" "\\&" beg end))
-
-;;
 ;; (@* "Syntax Checker" )
 ;;
 
@@ -675,10 +665,12 @@ VEC : Either position or negative number."
 
 STRING is the content of the toolip. The location POINT. TIMEOUT for not forever
 delay. HEIGHT of the tooltip that will display."
-  (require 'flycheck) (require 'pos-tip) (require 'popup)
+  (require 'asoc)
+  (require 'flycheck)
+  (require 'pos-tip) (require 'popup)
   (let ((was-flycheck (if flycheck-mode 1 -1))
-        (bg (cdr (assoc 'background-color company-box-doc-frame-parameters)))
-        (fg (cdr (assoc 'foreground-color company-box-doc-frame-parameters))))
+        (bg (asoc-get company-box-doc-frame-parameters 'background-color))
+        (fg (asoc-get company-box-doc-frame-parameters 'foreground-color)))
     (if (display-graphic-p)
         (pos-tip-show string `(,fg . ,bg) point nil timeout)
       (popup-tip string :point point :around t :height height :scroll-bar t :margin t))
@@ -706,8 +698,9 @@ delay. HEIGHT of the tooltip that will display."
   (interactive)
   (require 'define-it)
   (require 'ffap)
-  (if (and (boundp 'lsp-mode) lsp-mode)
-      (ignore-errors (call-interactively #'lsp-ui-doc-show))
+  (require 'lsp-ui)
+  (if (jcs--lsp-connected-p)
+      (ignore-errors (call-interactively #'lsp-ui-doc-glance))
     (unless (ignore-errors (jcs-tip-describe-it))
       (unless (ignore-errors (jcs-path-info-at-point))
         (define-it-at-point)))
