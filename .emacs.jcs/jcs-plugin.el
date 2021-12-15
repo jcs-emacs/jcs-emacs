@@ -632,7 +632,8 @@
 
 (leaf lsp-tailwindcss
   :init
-  (setq lsp-tailwindcss-add-on-mode t))
+  (setq lsp-tailwindcss-add-on-mode t
+        lsp-tailwindcss-emmet-completions t))
 
 (leaf lsp-ui
   :init
