@@ -22,6 +22,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Installed new package `lsp-sonarlint`.
 * Installed new package `lsp-tailwindcss`.
 * Disable display `HUD`, `MULE` and `buffer-size` information in mode line by default.
+* Installed new package `sort-words`.
 
 ## 7.0.0
 > Released Nov 17, 2021
