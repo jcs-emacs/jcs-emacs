@@ -620,8 +620,8 @@
         flymake-fringe-indicator-position 'right-fringe)
 
   (defun jcs--lsp-connected-p ()
-    "Check if LSP connected."
-    (if (boundp 'lsp-managed-mode) lsp-managed-mode nil))
+    "Return non-nil if LSP connected."
+    (bound-and-true-p lsp-managed-mode))
 
   (defun jcs--safe-lsp-active ()
     "Safe way to active LSP."
