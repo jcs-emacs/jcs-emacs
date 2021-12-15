@@ -428,7 +428,7 @@
 (define-key global-map (kbd "C-k C-i") #'jcs-describe-thing-in-popup)
 
 ;;; Sort
-(define-key global-map (kbd "C-i") #'jcs-sort-symbols)
+(define-key global-map (kbd "C-i") #'sort-words)
 
 ;;; Special
 (define-key special-mode-map (kbd "<up>") #'previous-line)
