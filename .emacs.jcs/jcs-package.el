@@ -200,6 +200,7 @@
     shader-mode
     show-eol
     smex
+    sort-words
     sql-indent
     ssass-mode
     swift-mode
