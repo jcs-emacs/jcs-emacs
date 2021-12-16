@@ -38,7 +38,7 @@
 
 (defun jcs-hook--find-file ()
   "Find file hook."
-  (jcs-update-buffer-save-string)
+  (jcs-funcall-fboundp #'jcs-update-buffer-save-string)
   (jcs-active-line-numbers-by-mode)
   (jcs-project-remember)
   (jcs-project--track-open-projects))
