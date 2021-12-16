@@ -696,9 +696,7 @@ delay. HEIGHT of the tooltip that will display."
 (defun jcs-describe-thing-in-popup ()
   "Show current symbol info."
   (interactive)
-  (require 'define-it)
-  (require 'ffap)
-  (require 'lsp-ui)
+  (require 'define-it) (require 'lsp-ui)
   (if (jcs--lsp-connected-p)
       (ignore-errors (call-interactively #'lsp-ui-doc-glance))
     (unless (ignore-errors (jcs-tip-describe-it))
