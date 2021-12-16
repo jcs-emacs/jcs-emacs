@@ -24,5 +24,10 @@
 ;; more than this to make UTF-8 the default coding system:
 (set-language-environment "UTF-8")
 
+;;
+;;; Set Custom file
+(setq-default custom-file (expand-file-name ".jcs-custom.el" user-emacs-directory))
+(when (file-exists-p custom-file) (load custom-file))
+
 (provide 'early-init)
 ;;; early-init.el ends here

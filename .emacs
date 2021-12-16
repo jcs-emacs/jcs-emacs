@@ -54,10 +54,6 @@ decrease this. If you experience stuttering, increase this.")
 
 (jcs-gc-cons-threshold-speed-up t)  ; Raise GC when starting Emacs!
 
-;; NOTE: Set custom file.
-(setq-default custom-file (expand-file-name ".jcs-custom.el" user-emacs-directory))
-(when (file-exists-p custom-file) (load custom-file))
-
 (defconst jcs-file-name-handler-alist file-name-handler-alist
   "Record file name handler alist.")
 
