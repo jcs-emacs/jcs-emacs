@@ -20,7 +20,6 @@
 (defun jcs-xml-mode-hook ()
   "XML mode hook."
   (auto-rename-tag-mode 1)
-  (atl-markup-mode 1)
   (visual-line-mode t)
 
   (toggle-truncate-lines 1)
