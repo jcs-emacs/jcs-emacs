@@ -6,10 +6,6 @@
   :init
   (add-hook 'visual-line-mode-hook (lambda () (adaptive-wrap-prefix-mode +1))))
 
-(leaf atl-markup
-  :init
-  (setq atl-markup-delay 0.2))
-
 (leaf auto-highlight-symbol
   :init
   (setq ahs-idle-interval 0.15))
@@ -177,19 +173,19 @@
                    (if (bound-and-true-p jcs-emacs-ready-p) (jcs-year-only)
                      (format-time-string "%Y"))
                    (jcs-copyright-info)))
-        dashboard-items '((recents . 10)
-                          (projects . 10)
+        dashboard-items '((recents   . 10)
+                          (projects  . 10)
                           ;;(bookmarks . 10)
-                          ;;(agenda . 10)
+                          ;;(agenda    . 10)
                           ;;(registers . 10)
                           )
-        dashboard-item-shortcuts '((recents . "r")
-                                   (bookmarks . "m")
-                                   (projects . "p")
-                                   (agenda . "a")
-                                   (registers . "e")
+        dashboard-item-shortcuts '((recents        . "r")
+                                   (bookmarks      . "m")
+                                   (projects       . "p")
+                                   (agenda         . "a")
+                                   (registers      . "e")
                                    (ls-directories . "d")
-                                   (ls-files . "f"))
+                                   (ls-files       . "f"))
         dashboard-center-content t
         dashboard-set-navigator nil
         dashboard-projects-backend 'project-el
@@ -250,7 +246,6 @@
       (auto-highlight-symbol-mode . auto-highlight-symbol)
       (auto-read-only-mode . auto-read-only)
       (auto-rename-tag-mode . auto-rename-tag)
-      (atl-markup-mode . atl-markup)
       (auto-revert-mode . autorevert)
       (buffer-wrap-mode . buffer-wrap)
       (command-log-mode . command-log-mode)
@@ -426,10 +421,7 @@
   (setq google-translate-default-source-language "auto"
         google-translate-default-target-language "zh-TW")
   :defer-config
-  (defun jcs--google-translate--search-tkk ()
-    "Search TKK."
-    (list 430675 2721866130))
-  (advice-add 'google-translate--search-tkk :override #'jcs--google-translate--search-tkk))
+  (advice-add 'google-translate--search-tkk :override (lambda () (list 430675 2721866130))))
 
 (leaf goto-char-preview
   :defer-config
@@ -479,10 +471,7 @@
            ("DEPRECATED"  . "DarkOrange3")
            ("TOPIC"       . "slate blue")
            ("SEE"         . "slate blue"))))
-  (defun jcs--hl-todo--inside-comment-or-string-p ()
-    "Redefine `hl-todo--inside-comment-or-string-p', for accurate highlighting."
-    (jcs-inside-comment-or-string-p))
-  (advice-add #'hl-todo--inside-comment-or-string-p :override #'jcs--hl-todo--inside-comment-or-string-p))
+  (advice-add #'hl-todo--inside-comment-or-string-p :override #'jcs-inside-comment-or-string-p))
 
 (leaf impatient-showdown
   :init
@@ -1069,6 +1058,8 @@
         yascroll:priority 50))
 
 (leaf yasnippet
+  :init
+  (setq yas-verbosity 0)
   :defer-config
   (require 'yasnippet-snippets)
   (yas-global-mode 1))
