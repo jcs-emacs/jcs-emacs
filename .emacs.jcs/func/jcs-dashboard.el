@@ -2,8 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'cl-lib)
-
 ;;
 ;; (@* "Util" )
 ;;
@@ -222,7 +220,8 @@
 
 (defun jcs-dashboard--goto-section (name)
   "Move to section NAME declares in variable `dashboard-item-shortcuts'."
-  (let ((key (cdr (assoc name dashboard-item-shortcuts))))
+  (require 'asoc)
+  (let ((key (asoc-get dashboard-item-shortcuts name)))
     (when key (execute-kbd-macro (kbd key)))))
 
 (defun jcs-dashboard-current-index (name &optional pos)

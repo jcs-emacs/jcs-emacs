@@ -11,14 +11,14 @@
 (add-hook 'after-make-frame-functions 'jcs-after-make-frame-functions-hook)
 
 (defun jcs-frame-util-p (&optional frame)
-  "Check if FRAME is the utility frame."
+  "Return non-nil if FRAME is an utility frame."
   (unless frame (setq frame (selected-frame)))
   (frame-parent frame))
 
 (defun jcs-is-frame-maximize-p ()
-  "Return non-nil, if frame maximized.
-Return nil, if frame not maximized."
-  (cdr (assoc 'fullscreen (frame-parameters))))
+  "Return nil, if frame is not maximized."
+  (require 'asoc)
+  (asoc-get (frame-parameters) 'fullscreen))
 
 (defun jcs-make-frame ()
   "Select new frame after make frame."
