@@ -213,7 +213,6 @@ are heavily base on my personal habits, and so these could be very tiny things. 
 I believed detials make things better and make life smoother.
 
 * [*Auto Install Package*](./features/auto-install-package) - Automatically installs the package that this config relies on.
-* ~~[*Auto Truncate Lines*](./features/auto-truncate-lines) - Automatically enable/disable `truncate-lines-mode` depends on certain situation. ([markup language](https://en.wikipedia.org/wiki/Markup_language) only)~~ (has move to [atl-markup](https://github.com/jcs-elpa/atl-markup))
 * [*Better Dashboard*](./features/better-dashboard) - Implementation for improving experiences using dashboard.
 * [*Buffer Menu Search*](./features/buffer-menu-search) - Able to search in the `*Buffer List*` buffer.
 * [*Build Run*](./features/build-run) - Implementation for executing script for building and running the software.
