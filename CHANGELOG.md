@@ -23,6 +23,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Installed new package `lsp-tailwindcss`.
 * Disable display `HUD`, `MULE` and `buffer-size` information in mode line by default.
 * Installed new package `sort-words`.
+* Removed package `atl-markup`.
+* Removed package `atl-long-lines`.
 
 ## 7.0.0
 > Released Nov 17, 2021
