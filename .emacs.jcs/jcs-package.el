@@ -40,8 +40,6 @@
     apache-mode
     applescript-mode
     asoc
-    atl-long-lines
-    atl-markup
     auth-source-keytar
     auto-highlight-symbol
     auto-read-only
