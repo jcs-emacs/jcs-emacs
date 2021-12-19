@@ -223,7 +223,7 @@ Note this is opposite logic to the toggle mode function."
   (auto-highlight-symbol-mode t)
   (electric-pair-mode 1)
   (goto-address-mode 1)
-  (highlight-indent-guides-mode 1)
+  (when (display-graphic-p) (highlight-indent-guides-mode 1))
 
   (jcs-active-project-mode-hook))
 
