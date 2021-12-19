@@ -75,7 +75,7 @@
      :scrollbar '("#3E3E42" . "#686868")
      :quickhelp '("#2A2D38" . "#F1F1F1"))))
 
-(defun jcs-company-default-theme ()
+(defun jcs-company-default-theme (&rest _)
   "Default theme for `company-mode'."
   (cl-case jcs-company-theme
     (`auto-complete (jcs-company-auto-complete-theme))
@@ -83,6 +83,7 @@
     (t (user-error "Unknown `company-mode` theme type: %s" jcs-company-theme))))
 
 (jcs-company-default-theme)
+(add-hook 'jcs-after-load-theme-hook #'jcs-company-default-theme)
 
 ;;
 ;; (@* "Util" )

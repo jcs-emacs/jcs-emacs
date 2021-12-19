@@ -193,7 +193,7 @@ Optional argument LAST-RESULT is the last output result from recursive function.
 If optional argument FULL is non-nil; return full path."
   (let ((files (ignore-errors (directory-files path t))) types fn)
     (dolist (file files)
-      (when (jcs-is-directory-p file)
+      (when (jcs-directory-p file)
         (setq fn (file-name-nondirectory file))
         (unless (or (string= "." fn) (string= ".." fn))
           (unless full (setq file fn))
@@ -211,7 +211,7 @@ If optional argument WITH-EXT is non-nil; return path with extension."
                  (directory-files path t (if ext (format "\\%s$" ext) nil))))
         types fn)
     (dolist (file files)
-      (when (jcs-is-file-p file)
+      (when (jcs-file-p file)
         (setq fn (file-name-nondirectory file))
         (unless (or (string= "." fn) (string= ".." fn))
           (unless full (setq file fn))

@@ -6,12 +6,12 @@
 ;; (@* "Regular Faces" )
 ;;
 
-(defun jcs--set-common-face (face color-fg)
-  "Set the FACE foreground COLOR-FG."
-  (set-face-attribute face nil :foreground color-fg))
+(defun jcs-face-fg (face fg)
+  "Set the FACE foreground FG."
+  (set-face-attribute face nil :foreground fg))
 
 (defun jcs--apply-face-map (face-map)
-  "Apply FACE-MAP with function `jcs--set-common-face'."
+  "Apply FACE-MAP with function `jcs-face-fg'."
   (let ((light-theme-p (jcs-light-theme-p)))
     (dolist (face-data face-map)
       (let ((face (car face-data)) (color (cdr face-data)))
@@ -20,7 +20,7 @@
                      (if (= (length color) 1) (nth 0 color)
                        (if light-theme-p (nth 0 color) (nth 1 color))))
                     (t color)))
-        (jcs--set-common-face face color)))))
+        (jcs-face-fg face color)))))
 
 (defun jcs-reset-common-faces-by-theme ()
   "Reset comment faces case on the theme."

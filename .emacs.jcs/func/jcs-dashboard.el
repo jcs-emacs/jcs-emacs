@@ -238,8 +238,8 @@
 (defun jcs-dashboard--on-path-item-p ()
   "Return non-nil if current point is on the item path from dashboard."
   (save-excursion
-    (when (jcs-is-end-of-line-p) (ignore-errors (forward-char -1)))
-    (jcs-is-current-point-face 'dashboard-items-face)))
+    (when (jcs-end-of-line-p) (ignore-errors (forward-char -1)))
+    (jcs-current-point-face 'dashboard-items-face)))
 
 (defun jcs--ffap-guesser--advice-around (fnc &rest args)
   "Advice execution around function `ffap-guesser'.

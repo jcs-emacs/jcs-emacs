@@ -127,9 +127,9 @@
     (save-excursion
       (backward-char 1)
       (setq is-shell-prompt-char
-            (jcs-is-current-point-face jcs-shell-highlight-face-name)))
+            (jcs-current-point-face jcs-shell-highlight-face-name)))
     (and (jcs-last-line-in-buffer-p)
-         (not (jcs-is-beginning-of-line-p))
+         (not (jcs-beginning-of-line-p))
          (not is-shell-prompt-char))))
 
 (defun jcs-shell-backspace ()
@@ -144,8 +144,8 @@
   ;; Directly jump to the end of the buffer.
   (goto-char (point-max))
   ;; Delete eveything from current command line.
-  (while (and (not (jcs-is-current-point-face jcs-shell-highlight-face-name))
-              (not (jcs-is-beginning-of-line-p)))
+  (while (and (not (jcs-current-point-face jcs-shell-highlight-face-name))
+              (not (jcs-beginning-of-line-p)))
     (backward-delete-char 1)))
 
 

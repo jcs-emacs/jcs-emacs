@@ -211,47 +211,16 @@ See function `jcs-string-compare-p' for argument TYPE."
 ;; (@* "Color" )
 ;;
 
-(defun jcs-is-hex-code-p (hex-code)
-  "Check if the HEX-CODE is valid HEX code."
-  (or (string-match-p "#[0-9a-fA-F].." hex-code)
-      (string-match-p "#[0-9a-fA-F]....." hex-code)))
+(defun jcs-light-color-p (hex-code)
+  "Return non-nil if HEX-CODE is in light tone."
+  (when (display-graphic-p)
+    (let ((gray (nth 0 (color-values "gray")))
+          (color (nth 0 (color-values hex-code))))
+      (< gray color))))
 
-(defun jcs--is-light-color-internal (hex-code)
-  "Check if the HEX-CODE' light color."
-  (require 's)
-  (let ((hex-1 "") (hex-2 "") (hex-3 "") hex-lst is-light
-        ;; 136d = 88h
-        (light-central 136) (s2n-base 16))
-    ;; Convert symbol to string.
-    (when (symbolp hex-code) (setq hex-code (symbol-name hex-code)))
-    (if (not (jcs-is-hex-code-p hex-code))
-        (user-error "[WARNING] Hex code to check is invalid: %s" hex-code)
-      ;; Remove # from `hex-code'.
-      (setq hex-code (s-replace "#" "" hex-code)
-            hex-lst (split-string hex-code "")
-            hex-lst (delete "" hex-lst))
-      (if (= (length hex-lst) 6)
-          (setq hex-1 (concat (nth 0 hex-lst) (nth 1 hex-lst))
-                hex-2 (concat (nth 2 hex-lst) (nth 3 hex-lst))
-                hex-3 (concat (nth 4 hex-lst) (nth 5 hex-lst)))
-        (setq hex-1 (nth 0 hex-lst)
-              hex-2 (nth 1 hex-lst)
-              hex-3 (nth 2 hex-lst)))
-      (setq hex-1 (string-to-number hex-1 s2n-base)
-            hex-2 (string-to-number hex-2 s2n-base)
-            hex-3 (string-to-number hex-3 s2n-base))
-      (when (or (> hex-1 light-central) (> hex-2 light-central)
-                (> hex-3 light-central))
-        (setq is-light t)))
-    is-light))
-
-(defun jcs-is-light-color-p (hex-code)
-  "Check if the HEX-CODE' light color."
-  (and (display-graphic-p) (jcs--is-light-color-internal hex-code)))
-
-(defun jcs-is-dark-color-p (hex-code)
-  "Check if the HEX-CODE dark color."
-  (and (display-graphic-p) (not (jcs-is-light-color-p hex-code))))
+(defun jcs-dark-color-p (hex-code)
+  "Return non-nil if HEX-CODE is in dark tone."
+  (not (jcs-light-color-p hex-code)))
 
 ;;
 ;; (@* "Command" )
@@ -386,11 +355,11 @@ See description from function `define-key' for arguments KEY, DEF and KEYMAP."
   "Get timestamp version 2."
   (require 'ts) (ts-format "%Y/%m/%d %H:%M:%S"))
 
-(defun jcs-get-date-ver1 ()
+(defun jcs-date-ver1 ()
   "Get date buffer in string type - version 1."
   (require 'ts) (ts-format "%Y-%m-%d"))
 
-(defun jcs-get-date-ver2 ()
+(defun jcs-date-ver2 ()
   "Get date buffer in string type - version 2."
   (require 'ts) (ts-format "%Y/%m/%d"))
 
@@ -458,7 +427,7 @@ See description from function `define-key' for arguments KEY, DEF and KEYMAP."
 (defun jcs-is-good-space-to-convert-to-tab-p ()
   "Check if current point a good space to convert for tab.
 Generally you will have to check it four times."
-  (and (not (jcs-is-beginning-of-line-p))
+  (and (not (jcs-beginning-of-line-p))
        (jcs-current-char-equal-p " ")))
 
 (defun jcs-convert-space-to-tab (is-forward)
@@ -541,7 +510,7 @@ Generally you will have to check it four times."
          (target-width (if (= remainder 0) indent-lvl remainder))
          success)
     (while (and (< tmp-count target-width)
-                (not (jcs-is-beginning-of-line-p))
+                (not (jcs-beginning-of-line-p))
                 (jcs-current-whitespace-p))
       (backward-delete-char 1)
       (setq success t
@@ -556,7 +525,7 @@ Generally you will have to check it four times."
          (remainder (% (jcs-first-char-in-line-column) indent-lvl))
          (target-width (if (= remainder 0) indent-lvl remainder))
          success)
-    (while (and (< tmp-count target-width) (not (jcs-is-end-of-line-p)))
+    (while (and (< tmp-count target-width) (not (jcs-end-of-line-p)))
       (let ((is-valid nil))
         (save-excursion
           (forward-char 1)
@@ -679,7 +648,7 @@ BND-PT : limit point."
   (unless (bobp)
     (forward-char -1)
     (while (and (>= (point) bnd-pt)
-                (or (jcs-current-whitespace-or-tab-p) (jcs-is-beginning-of-line-p)))
+                (or (jcs-current-whitespace-or-tab-p) (jcs-beginning-of-line-p)))
       (forward-char -1))))
 
 (defun jcs-goto-next-forward-char (&optional bnd-pt)
@@ -690,7 +659,7 @@ BND-PT : boundary point."
   (unless (eobp)
     (forward-char 1)
     (while (and (<= (point) bnd-pt)
-                (or (jcs-current-whitespace-or-tab-p) (jcs-is-beginning-of-line-p)))
+                (or (jcs-current-whitespace-or-tab-p) (jcs-beginning-of-line-p)))
       (forward-char 1))))
 
 (defun jcs-first-backward-char-p (ch)
@@ -712,13 +681,13 @@ BND-PT : boundary point."
   (save-excursion
     ;; NOTE: First fowrad a char and ready to be check for next backward character.
     (forward-char 1)
-    (jcs-goto-next-backward-char (1+ (jcs-get-beginning-of-line-point)))
+    (jcs-goto-next-backward-char (1+ (line-beginning-position)))
     (string= (jcs-get-current-char-string) ch)))
 
 (defun jcs-first-forward-char-in-line-p (ch)
   "Check the first character on the right is CH or not with current line as boundary."
   (save-excursion
-    (jcs-goto-next-forward-char (jcs-get-end-of-line-point))
+    (jcs-goto-next-forward-char (line-end-position))
     (string= (jcs-get-current-char-string) ch)))
 
 (defun jcs-is-there-char-backward-point-p (pt)
@@ -735,11 +704,11 @@ BND-PT : boundary point."
 
 (defun jcs-is-there-char-backward-util-beginning-of-line-p ()
   "Check if there is character on the left before reaches beginning of line."
-  (jcs-is-there-char-backward-point-p (jcs-get-beginning-of-line-point)))
+  (jcs-is-there-char-backward-point-p (line-beginning-position)))
 
 (defun jcs-is-there-char-forward-until-end-of-line-p ()
   "Check if there is character on the right before reaches the end of line."
-  (jcs-is-there-char-forward-point-p (jcs-get-end-of-line-point)))
+  (jcs-is-there-char-forward-point-p (line-end-position)))
 
 ;;
 ;; (@* "Symbol" )
@@ -837,7 +806,7 @@ BND-PT : boundary point."
 (defun jcs-goto-first-char-in-line ()
   "Goto beginning of line but ignore 'empty characters'(spaces/tabs)."
   (jcs-back-to-indentation-or-beginning)
-  (when (jcs-is-beginning-of-line-p) (jcs-back-to-indentation-or-beginning)))
+  (when (jcs-beginning-of-line-p) (jcs-back-to-indentation-or-beginning)))
 
 (defun jcs-first-char-in-line-point ()
   "Return point in first character in line."
@@ -853,7 +822,7 @@ BND-PT : boundary point."
 
 (defun jcs-current-line-totally-empty-p ()
   "Current line empty with no spaces/tabs in there.  (absolute)."
-  (and (jcs-is-beginning-of-line-p) (jcs-is-end-of-line-p)))
+  (and (jcs-beginning-of-line-p) (jcs-end-of-line-p)))
 
 (defun jcs-current-line-comment-p ()
   "Check if current line only comment."
@@ -864,23 +833,15 @@ BND-PT : boundary point."
         (setq is-comment-line t))
       is-comment-line)))
 
-(defun jcs-get-beginning-of-line-point (&optional ln)
-  "Return point at beginning of LN."
-  (save-excursion (when ln (jcs-goto-line ln)) (beginning-of-line) (point)))
-
-(defun jcs-get-end-of-line-point (&optional ln)
-  "Return point at end of LN."
-  (save-excursion (when ln (jcs-goto-line ln)) (end-of-line) (point)))
-
-(defun jcs-is-beginning-of-line-p ()
-  "Check if it's at the beginning of line."
+(defun jcs-beginning-of-line-p ()
+  "Return non-nil if beginning of line."
   (= (current-column) 0))
 
-(defun jcs-is-end-of-line-p ()
-  "Check if it's at the end of line."
-  (= (point) (jcs-get-end-of-line-point)))
+(defun jcs-end-of-line-p ()
+  "Return non-nil if end of line."
+  (= (point) (line-end-position)))
 
-(defun jcs-is-current-file-empty-p (&optional fn)
+(defun jcs-current-file-empty-p (&optional fn)
   "Check if the FN an empty file."
   (if fn (with-current-buffer fn (and (bobp) (eobp)))
     (and (bobp) (eobp))))
@@ -1020,16 +981,16 @@ Return nil, there is no region selected and mark is not active."
 (defun jcs-inside-comment-p ()
   "Return non-nil if it's inside comment."
   (or (nth 4 (syntax-ppss))
-      (jcs-is-current-point-face '(font-lock-comment-face
-                                   tree-sitter-hl-face:comment
-                                   tree-sitter-hl-face:doc
-                                   hl-todo))))
+      (jcs-current-point-face '(font-lock-comment-face
+                                tree-sitter-hl-face:comment
+                                tree-sitter-hl-face:doc
+                                hl-todo))))
 
 (defun jcs-inside-comment-or-string-p ()
   "Return non-nil if it's inside comment or string."
   (or (jcs-inside-comment-p)
       (nth 8 (syntax-ppss))
-      (jcs-is-current-point-face 'font-lock-string-face)))
+      (jcs-current-point-face 'font-lock-string-face)))
 
 (defun jcs-goto-start-comment ()
   "Go to the start of the comment."
@@ -1114,7 +1075,7 @@ Return nil, there is no region selected and mark is not active."
   (unless pos (setq pos (point)))
   (jcs-get-faces pos))
 
-(defun jcs-is-current-point-face (in-face &optional pos)
+(defun jcs-current-point-face (in-face &optional pos)
   "Check if current POS's face the same face as IN-FACE."
   (let ((faces (jcs-get-current-point-face pos)))
     (cond ((listp faces)
@@ -1127,7 +1088,7 @@ Return nil, there is no region selected and mark is not active."
   "Check default face at POS."
   (or (= (length (jcs-get-current-point-face pos)) 0)
       (and (= (length (jcs-get-current-point-face pos)) 1)
-           (jcs-is-current-point-face 'hl-line))))
+           (jcs-current-point-face 'hl-line))))
 
 ;;
 ;; (@* "Font" )
@@ -1243,10 +1204,6 @@ Argument TYPE see function `jcs-string-compare-p' for more information."
   (interactive)
   (message "[INFO] Current major mode: %s" (symbol-name major-mode)))
 
-(defun jcs-current-major-mode ()
-  "Get current major mode."
-  major-mode)
-
 (defun jcs-is-current-major-mode-p (mns)
   "Check if this major modes MNS."
   (cond ((stringp mns) (string= (symbol-name major-mode) mns))
@@ -1260,11 +1217,6 @@ Argument TYPE see function `jcs-string-compare-p' for more information."
         ((symbolp mns) (equal major-mode mns))
         (t nil)))
 
-(defun jcs-is-minor-mode-enabled-p (mode-obj)
-  "Check if this minor MODE-OBJ enabled in current buffer/file."
-  (bound-and-true-p mode-obj)
-  (if (fboundp mode-obj) (symbol-value mode-obj) nil))
-
 (defun jcs-re-enable-mode-if-was-enabled (modename)
   "Re-enable the MODENAME if was enabled."
   (when (boundp modename)
@@ -1275,7 +1227,7 @@ Argument TYPE see function `jcs-string-compare-p' for more information."
   "Re-enable the MODENAME."
   (funcall modename -1) (funcall modename 1))
 
-(defun jcs-enable-disable-mode-by-condition (modename predicate)
+(defun jcs-enable-disable-mode-if (modename predicate)
   "To enable/disable the MODENAME by PREDICATE."
   (if predicate (funcall modename 1) (funcall modename -1)))
 
@@ -1291,7 +1243,7 @@ Argument TYPE see function `jcs-string-compare-p' for more information."
 
 (defun jcs-create-path-if-not-exists (path)
   "Create PATH if it doesn't exist."
-  (unless (jcs-is-directory-p path) (make-directory path t)))
+  (unless (jcs-directory-p path) (make-directory path t)))
 
 (defun jcs-move-path (path dest)
   "Move PATH to DEST."
@@ -1302,44 +1254,44 @@ Argument TYPE see function `jcs-string-compare-p' for more information."
 ;; (@* "File" )
 ;;
 
-(defun jcs-get-file-name ()
+(defun jcs-file-name ()
   "Get current file name."
   (if (buffer-file-name)
       (file-name-nondirectory (buffer-file-name))
     (buffer-name)))
 
-(defun jcs-get-file-name-capital ()
+(defun jcs-file-name-capital ()
   "Get current file name capital."
-  (capitalize (jcs-get-file-name)))
+  (capitalize (jcs-file-name)))
 
-(defun jcs-get-file-name-uppercase ()
+(defun jcs-file-name-uppercase ()
   "Get current file name uppercase."
-  (upcase (jcs-get-file-name)))
+  (upcase (jcs-file-name)))
 
-(defun jcs-get-file-name-lowercase ()
+(defun jcs-file-name-lowercase ()
   "Get current file name uppercase."
-  (downcase (jcs-get-file-name)))
+  (downcase (jcs-file-name)))
 
-(defun jcs-get-file-name-without-extension ()
+(defun jcs-file-name-without-extension ()
   "Get current file name without extension."
   (if (buffer-file-name)
-      (file-name-sans-extension (jcs-get-file-name))
+      (file-name-sans-extension (jcs-file-name))
     (buffer-name)))
 
-(defun jcs-get-file-name-without-extension-capital ()
+(defun jcs-file-name-without-extension-capital ()
   "Get current file name without extension capital."
-  (capitalize (jcs-get-file-name-without-extension)))
+  (capitalize (jcs-file-name-without-extension)))
 
-(defun jcs-get-file-name-without-extension-uppercase ()
+(defun jcs-file-name-without-extension-uppercase ()
   "Get current file name without extension uppercase."
-  (upcase (jcs-get-file-name-without-extension)))
+  (upcase (jcs-file-name-without-extension)))
 
-(defun jcs-get-file-name-without-extension-lowercase ()
+(defun jcs-file-name-without-extension-lowercase ()
   "Get current file name without extension lowercase."
-  (downcase (jcs-get-file-name-without-extension)))
+  (downcase (jcs-file-name-without-extension)))
 
 (defun jcs-text-file-p (filename)
-  "Check if FILENAME a text file and not binary."
+  "Return non-nil if FILENAME is a text file and not binary."
   (with-current-buffer (find-file-noselect filename :no-warn)
     (prog1 (not (eq buffer-file-coding-system 'no-conversion))
       (kill-buffer))))
@@ -1348,11 +1300,11 @@ Argument TYPE see function `jcs-string-compare-p' for more information."
 ;; (@* "Directory" )
 ;;
 
-(defun jcs-is-file-p (path)
+(defun jcs-file-p (path)
   "Return non-nil if PATH is a file path."
   (and (file-exists-p path) (not (file-directory-p path))))
 
-(defun jcs-is-directory-p (path)
+(defun jcs-directory-p (path)
   "Return non-nil if PATH is a directory path."
   (and (file-exists-p path) (file-directory-p path)))
 
@@ -1372,28 +1324,6 @@ Argument TYPE see function `jcs-string-compare-p' for more information."
   "Go up one directory from DIR-PATH and return it directory string."
   (string-match "\\(.*\\)/" dir-path)  ; Remove the last directory in the path.
   (match-string 1 dir-path))
-
-(defun jcs-get-file-name-or-last-dir-from-path (in-path &optional noerror)
-  "Get the either the file name or last directory from the IN-PATH."
-  (if (and (not (jcs-file-directory-exists-p in-path)) (not noerror))
-      (error "Directory/File you trying get does not exists")
-    (let ((split-dir-file-list-len 0) result-dir-or-file split-dir-file-list)
-
-      (cond ((string-match-p "/" in-path)
-             (setq split-dir-file-list (split-string in-path "/")))
-            ((string-match-p "\\" in-path)
-             (setq split-dir-file-list (split-string in-path "\\")))
-            ((string-match-p "\\\\" in-path)
-             (setq split-dir-file-list (split-string in-path "\\\\"))))
-
-      ;; Get the last element/item in the list.
-      (setq split-dir-file-list-len (1- (length split-dir-file-list)))
-
-      ;; Result is alwasy the last item in the list.
-      (setq result-dir-or-file (nth split-dir-file-list-len split-dir-file-list))
-
-      ;; Return result.
-      result-dir-or-file)))
 
 ;;
 ;; (@* "String" )
@@ -1437,8 +1367,8 @@ or `suffix'."
   (save-excursion
     (when pos (goto-char pos))
     (and (nth 3 (syntax-ppss))
-         (jcs-is-current-point-face '(font-lock-string-face
-                                      tree-sitter-hl-face:string)))))
+         (jcs-current-point-face '(font-lock-string-face
+                                   tree-sitter-hl-face:string)))))
 
 (defun jcs-last-regex-in-string (reg str)
   "Find the position in STR using REG from th end."
@@ -1452,8 +1382,7 @@ or `suffix'."
   "Replace non-displayable character from STR.
 
 Optional argument REP is the replacement string of non-displayable character."
-  (unless rep (setq rep ""))
-  (let ((result ""))
+  (let ((result "") (rep (or rep "")))
     (mapc (lambda (ch)
             (setq result (concat result
                                  (if (char-displayable-p ch) (string ch)
@@ -1476,8 +1405,8 @@ Argument IN-VAL is input value to set to IN-VAR."
       (let ((win-len (length (window-list))) (index 0))
         (while (< index win-len)
           (with-current-buffer (buffer-name)
-            ;; NOTE: this will actually set whatever the
-            ;; variable are. Either global or local variable will work.
+            ;; NOTE: this will actually set whatever the variable are. Either
+            ;; global or local variable will work.
             ;;
             ;; TOPIC: Variable references in lisp
             ;; URL: https://stackoverflow.com/questions/1249991/variable-references-in-lisp
@@ -1485,7 +1414,7 @@ Argument IN-VAL is input value to set to IN-VAR."
 
           ;; To next window.
           (jcs-other-window-next)
-          (setq index (1+ index)))))))
+          (cl-incf index))))))
 
 ;;
 ;; (@* "Loop" )
@@ -1493,8 +1422,7 @@ Argument IN-VAL is input value to set to IN-VAR."
 
 (defun jcs-loop-times (fnc cnt &optional st)
   "Do FNC with CNT from ST."
-  (unless st (setq st 0))
-  (let ((index st))
+  (let ((index (or st 0)))
     (while (< index cnt) (funcall fnc index) (setq index (1+ index)))))
 
 ;;
@@ -1523,9 +1451,8 @@ Argument IN-VAL is input value to set to IN-VAR."
   "Start global process reporter with MSG displayed."
   (jcs-process-reporter-done)
   (unless msg (setq msg ""))
-  (setq jcs-process-reporter (make-progress-reporter msg))
-  (setq jcs-process-reporter-timer
-        (run-with-timer nil jcs-process-reporter-refresh #'jcs-process-reporter-update)))
+  (setq jcs-process-reporter (make-progress-reporter msg)
+        jcs-process-reporter-timer (run-with-timer nil jcs-process-reporter-refresh #'jcs-process-reporter-update)))
 
 (defun jcs-process-reporter-update (&optional value suffix)
   "Update global process reporter once."

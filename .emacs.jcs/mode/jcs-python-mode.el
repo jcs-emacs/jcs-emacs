@@ -20,7 +20,7 @@
 
 (defun jcs-py-check-backward-delete-space ()
   "Check able to backward delete the space."
-  (and (not (jcs-is-beginning-of-line-p))
+  (and (not (jcs-beginning-of-line-p))
        ;; Make sure is not a tab.
        (jcs-current-char-equal-p " ")))
 

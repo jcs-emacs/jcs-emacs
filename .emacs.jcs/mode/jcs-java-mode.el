@@ -35,7 +35,7 @@
 
       ;; Now we remove the file name from last part of path..
       (setq tmp-insert-package-path-string
-            (s-replace (jcs-get-file-name) "" tmp-insert-package-path-string))
+            (s-replace (jcs-file-name) "" tmp-insert-package-path-string))
 
       ;; NOTE: If the string is less than two. Meaning the
       ;; file is directly under `default package'/`src' directory.

@@ -57,7 +57,7 @@
     (save-excursion
       ;; Goto the first character of current line.
       (jcs-back-to-indentation-or-beginning)
-      (when (jcs-is-beginning-of-line-p)
+      (when (jcs-beginning-of-line-p)
         (jcs-back-to-indentation-or-beginning))
       (forward-char 1)
       ;; Check rule here..
@@ -110,7 +110,7 @@
           ;; Indent it to the very left/beginning of line.
           (indent-line-to 0))))
 
-    (when (and should-indent (jcs-is-end-of-line-p))
+    (when (and should-indent (jcs-end-of-line-p))
       (insert " "))))
 
 (defun jcs-asm-mode--init ()

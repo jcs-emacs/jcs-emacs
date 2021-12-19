@@ -37,7 +37,7 @@ Argument CLEAN-LR see function `jcs-revert-buffer-no-confirm' description."
       (setq filename (buffer-file-name buf)
             normal-buffer-p (and filename
                                  (not (buffer-modified-p buf))
-                                 (not (jcs-is-current-file-empty-p buf))))
+                                 (not (jcs-current-file-empty-p buf))))
       (when normal-buffer-p
         (if (file-readable-p filename) (setq do-revert-p t)
           (let (kill-buffer-query-functions) (kill-buffer buf))))

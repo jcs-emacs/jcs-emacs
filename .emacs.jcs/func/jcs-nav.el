@@ -114,7 +114,7 @@
   "Smart backward a word."
   (interactive)
   (let ((start-pt (point)) (start-ln (line-number-at-pos))
-        (beg-ln (jcs-is-beginning-of-line-p))
+        (beg-ln (jcs-beginning-of-line-p))
         (infront-first-char (jcs-is-infront-first-char-at-line-p)))
     (jcs-backward-word)
     (cond ((and infront-first-char (not beg-ln))

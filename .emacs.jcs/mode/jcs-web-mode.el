@@ -41,9 +41,9 @@
 (defun jcs-web-vs-opening-curly-bracket-key ()
   "Web mode front curly bracket key."
   (interactive)
-  (if (jcs-is-current-point-face '(web-mode-script-face
-                                   web-mode-block-face
-                                   web-mode-style-face))
+  (if (jcs-current-point-face '(web-mode-script-face
+                                web-mode-block-face
+                                web-mode-style-face))
       (call-interactively #'jcs-vs-opening-curly-bracket-key)
     (insert "{}")
     (backward-char 1)))

@@ -32,7 +32,7 @@
   "Return non-nil if able to insert document string."
   (let ((do-doc-string t))
     (jcs-goto-first-char-in-line)
-    (while (not (jcs-is-end-of-line-p))
+    (while (not (jcs-end-of-line-p))
       (forward-char 1)
       (unless (jcs-current-char-equal-p '(" " "\t" "/"))
         (setq do-doc-string nil)))

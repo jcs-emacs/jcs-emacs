@@ -39,7 +39,7 @@
 (defun jcs-smart-backspace ()
   "Smart backspace."
   (interactive)
-  (or (and (jcs-is-infront-first-char-at-line-p) (not (jcs-is-beginning-of-line-p))
+  (or (and (jcs-is-infront-first-char-at-line-p) (not (jcs-beginning-of-line-p))
            (not (use-region-p))
            (jcs-backward-delete-spaces-by-indent-level))
       (jcs-real-backspace)))
@@ -113,7 +113,7 @@
       (let ((pt (point)))
         (ignore-errors (indent-for-tab-command))
         (when (= pt (point)) (jcs-real-space)))
-    (if (or (jcs-is-infront-first-char-at-line-p) (jcs-is-beginning-of-line-p))
+    (if (or (jcs-is-infront-first-char-at-line-p) (jcs-beginning-of-line-p))
         (jcs-insert-spaces-by-indent-level)
       (jcs-real-space))))
 
