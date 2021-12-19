@@ -219,11 +219,13 @@
         dashboard-footer-icon ""
         dashboard-footer-messages
         `(,(format "Copyright (c) %s %s" (format-time-string "%Y") (jcs-copyright-info)))
-        dashboard-items '((recents   . 10)
-                          (projects  . 10)
-                          ;;(bookmarks . 10)
-                          ;;(agenda    . 10)
-                          ;;(registers . 10)
+        dashboard-items '((ls-directories . 5)
+                          (ls-files       . 5)
+                          (recents        . 5)
+                          (projects       . 5)
+                          ;;(bookmarks      . 5)
+                          ;;(agenda         . 5)
+                          ;;(registers      . 5)
                           )
         dashboard-item-shortcuts '((recents        . "r")
                                    (bookmarks      . "m")
@@ -261,11 +263,6 @@
     (jcs-dashboard-refresh-buffer))
   (jcs--dashboard--theme (jcs-light-theme-p))
   (add-hook 'jcs-after-load-theme-hook #'jcs--dashboard--theme))
-
-(leaf dashboard-ls
-  :defer-config
-  (let ((dashboard-lst-items '((ls-directories . 5) (ls-files . 5))))
-    (setq dashboard-items (append dashboard-lst-items dashboard-items))))
 
 (leaf define-it
   :init
