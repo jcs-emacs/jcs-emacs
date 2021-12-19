@@ -11,7 +11,11 @@
 
 (load-file (expand-file-name "~/.emacs"))  ; Start regular Emacs file
 
-(add-hook 'after-init-hook (lambda () (message "[INFO] %s" dashboard-init-info)))  ; Log out init info
+;; Log out init info
+(add-hook 'after-init-hook
+          (lambda ()
+            (jcs-dashboard-init-info)
+            (message "[INFO] %s" dashboard-init-info)))
 
 ;; Local Variables:
 ;; coding: utf-8
