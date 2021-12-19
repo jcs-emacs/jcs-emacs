@@ -25,6 +25,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Installed new package `sort-words`.
 * Removed package `atl-markup`.
 * Removed package `atl-long-lines`.
+* Installed new package `calfw`.
+* Simplify templates/snippets utility function names.
+* Added new hook, when after theme loaded.
 
 ## 7.0.0
 > Released Nov 17, 2021
