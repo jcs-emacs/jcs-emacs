@@ -93,10 +93,6 @@
     (jcs--buffer-wrap--fixed-window-off))
   (add-hook 'buffer-wrap-post-command-hook 'jcs--buffer-wrap-post-command-hook))
 
-(leaf calfw
-  :defer-config
-  (jcs-face-fg ))
-
 (leaf centaur-tabs
   :init
   (setq centaur-tabs-set-icons nil
