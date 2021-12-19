@@ -218,10 +218,7 @@
   (setq dashboard-banner-logo-title "[J C S • E M A C S]"
         dashboard-footer-icon ""
         dashboard-footer-messages
-        (list (format "Copyright (c) %s %s"
-                      (if (bound-and-true-p jcs-emacs-ready-p) (jcs-year-only)
-                        (format-time-string "%Y"))
-                      (jcs-copyright-info)))
+        `(,(format "Copyright (c) %s %s" (format-time-string "%Y") (jcs-copyright-info)))
         dashboard-items '((recents   . 10)
                           (projects  . 10)
                           ;;(bookmarks . 10)
@@ -247,9 +244,7 @@
         dashboard-shorten-by-window-width t
         dashboard-shorten-path-offset 15)
   :defer-config
-  (setq initial-buffer-choice (lambda () (get-buffer dashboard-buffer-name)))
-  (require 'jcs-dashboard)
-  (require 'dashboard-ls)
+  (require 'jcs-dashboard) (require 'dashboard-ls)
   (dashboard-setup-startup-hook)
 
   (defun jcs--dashboard--theme (light-p)
