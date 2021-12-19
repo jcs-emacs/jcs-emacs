@@ -11,7 +11,7 @@
 
 (defun jcs-insert-header-if-empty (insert-func &optional ci)
   "Execute INSERT-FUNC if empty, CI means `call-interactively'."
-  (when (jcs-is-current-file-empty-p)
+  (when (jcs-current-file-empty-p)
     (if ci (call-interactively insert-func) (funcall insert-func))
     (goto-char (point-min))))
 
