@@ -16,11 +16,8 @@
         ("melpa" . "http://melpa.org/packages/")
         ("jcs" . "https://jcs-emacs.github.io/elpa/elpa/")))
 
-;; To avoid initializing twice
-(setq package-enable-at-startup nil)
-
-;; Disable check signature while installing packages.
-(setq package-check-signature nil)
+(setq package-enable-at-startup nil  ; To avoid initializing twice
+      package-check-signature nil)   ; Disable check signature while installing packages
 
 ;; initialize package.el
 (when (featurep 'esup-child)
@@ -30,7 +27,6 @@
 ;; (@* "Packages" )
 ;;
 
-;; List of package you want to installed.
 (defconst jcs-package-install-list
   '(0xc
     actionscript-mode
@@ -49,6 +45,7 @@
     browse-kill-ring
     buffer-move
     buffer-wrap
+    calfw
     cask
     cask-mode
     ccls
