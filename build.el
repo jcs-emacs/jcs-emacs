@@ -5,12 +5,13 @@
 (defconst jcs-ci t
   "Flag for CI testing.")
 
-;; Workaround for Windows CI.
+;; Workaround for Windows CI
 ;; See https://github.com/jcs090218/setup-emacs-windows/issues/156#issuecomment-932956432
 (setq network-security-level 'low)
 
-;; Start regular Emacs file.
-(load-file (expand-file-name "~/.emacs"))
+(load-file (expand-file-name "~/.emacs"))  ; Start regular Emacs file
+
+(message "%s" dashboard-init-info)  ; Log out init info
 
 ;; Local Variables:
 ;; coding: utf-8
