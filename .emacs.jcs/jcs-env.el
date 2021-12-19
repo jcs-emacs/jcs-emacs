@@ -180,7 +180,7 @@
          (parent-directory (file-name-directory buffer-file-name))
          (non-virtual-path (jcs--find-starting-not-exists-dir-path parent-directory))
          (created-path (s-replace non-virtual-path "" parent-directory)))
-    (when (and (not (jcs-is-directory-p parent-directory))
+    (when (and (not (jcs-directory-p parent-directory))
                (y-or-n-p (format "Directory '%s' does not exist! Create it?" parent-directory)))
       (make-directory parent-directory t)
       (setq jcs-current-created-parent-dir-path created-path))))
@@ -267,6 +267,15 @@
     (command-error-default-function data context caller)))
 
 (setq command-error-function #'jcs--command-error-function)
+
+;;; Parentheses
+(leaf paren
+  :init
+  (add-hook 'jcs-after-load-theme-hook
+            (lambda (light-p)
+              (require 'paren)
+              (let ((color (if light-p "#C6E370" "#113D6F")))
+                (set-face-background 'show-paren-match color)))))
 
 ;;; Previous/Next keys
 (defcustom jcs-prev/next-key-type 'smart
@@ -390,6 +399,10 @@ If ACT is non-nil; then make scroll less jumpy."
     "Advice execute around `tabulated-list-col-sort' function."
     (save-excursion (apply fnc args)))
   (advice-add 'tabulated-list-col-sort :around #'jcs--tabulated-list-col-sort--advice-around))
+
+;;; Theme
+(defconst jcs-theme-default 'vs-dark
+  "Default theme name for this config.")
 
 ;;; Undo
 (setq undo-limit 20000000

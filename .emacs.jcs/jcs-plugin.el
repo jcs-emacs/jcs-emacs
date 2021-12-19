@@ -8,7 +8,30 @@
 
 (leaf auto-highlight-symbol
   :init
-  (setq ahs-idle-interval 0.15))
+  (setq ahs-idle-interval 0.15)
+  :defer-config
+  (defun jcs--ahs--set-face (face bg)
+    "Set FACE with BG and BOX for `auto-highlight-symbol'."
+    (set-face-attribute face nil :foreground nil :background bg
+                        :box `(:line-width -1 :style pressed-button :color "#525D68")))
+  (defun jcs--ahs--theme (light-p)
+    "Update theme for `auto-highlight-symbol'."
+    (let ((focused-color (if light-p "#E2E6D6" "#123E70"))
+          (unfocused-color (if light-p "#F1F2EE" "#0E3056")))
+      (jcs--ahs--set-face 'ahs-plugin-default-face focused-color)
+      (jcs--ahs--set-face 'ahs-plugin-default-face-unfocused unfocused-color)
+      (if light-p
+          (progn
+            (jcs--ahs--set-face 'ahs-face focused-color)
+            (jcs--ahs--set-face 'ahs-definition-face focused-color)
+            (jcs--ahs--set-face 'ahs-face-unfocused unfocused-color)
+            (jcs--ahs--set-face 'ahs-definition-face-unfocused unfocused-color))
+        (jcs--ahs--set-face 'ahs-face focused-color)
+        (jcs--ahs--set-face 'ahs-definition-face focused-color)
+        (jcs--ahs--set-face 'ahs-face-unfocused unfocused-color)
+        (jcs--ahs--set-face 'ahs-definition-face-unfocused unfocused-color))))
+  (jcs--ahs--theme (jcs-light-theme-p))
+  (add-hook 'jcs-after-load-theme-hook #'jcs--ahs--theme))
 
 (leaf auto-read-only
   :defer-config
@@ -70,12 +93,42 @@
     (jcs--buffer-wrap--fixed-window-off))
   (add-hook 'buffer-wrap-post-command-hook 'jcs--buffer-wrap-post-command-hook))
 
+(leaf calfw
+  :defer-config
+  (jcs-face-fg ))
+
 (leaf centaur-tabs
   :init
   (setq centaur-tabs-set-icons nil
         centaur-tabs-style "wave"
         centaur-tabs-set-modified-marker t
-        centaur-tabs-modified-marker "*"))
+        centaur-tabs-modified-marker "*")
+  :defer-config
+  (defun jcs--centaur-tabs--theme (light-p)
+    "Update theme for `centaur-tabs'."
+    (let ((bg-default (if light-p "#D3D3D3" "#1D1D1D"))
+          (bg-tab-unselected (if light-p "#E8E8E8" "#3D3C3D"))
+          (fg-tab-unselected "grey50")
+          (bg-tab-selected (if light-p "#E8E8E8" "#31343E"))
+          (fg-tab-selected (if light-p "black" "white")))
+      (set-face-attribute centaur-tabs-display-line nil :background bg-default
+                          :box nil :overline nil :underline nil)
+      (custom-set-faces
+       `(centaur-tabs-default ((t (:background ,bg-default))))
+       `(centaur-tabs-unselected
+         ((t (:background ,bg-tab-unselected :foreground ,fg-tab-unselected))))
+       `(centaur-tabs-selected
+         ((t (:background ,bg-tab-selected :foreground ,fg-tab-selected))))
+       `(centaur-tabs-unselected-modified
+         ((t (:background ,bg-tab-unselected :foreground ,fg-tab-unselected))))
+       `(centaur-tabs-selected-modified
+         ((t (:background ,bg-tab-selected :foreground ,fg-tab-selected))))
+       `(centaur-tabs-modified-marker-unselected
+         ((t (:background ,bg-tab-unselected :foreground ,fg-tab-unselected))))
+       `(centaur-tabs-modified-marker-selected
+         ((t (:background ,bg-tab-selected :foreground ,fg-tab-selected)))))))
+  (jcs--centaur-tabs--theme (jcs-light-theme-p))
+  (add-hook 'jcs-after-load-theme-hook #'jcs--centaur-tabs--theme))
 
 (leaf company
   :init
@@ -201,7 +254,22 @@
   (setq initial-buffer-choice (lambda () (get-buffer dashboard-buffer-name)))
   (require 'jcs-dashboard)
   (require 'dashboard-ls)
-  (dashboard-setup-startup-hook))
+  (dashboard-setup-startup-hook)
+
+  (defun jcs--dashboard--theme (light-p)
+    "Update theme for `dashboard'."
+    (setq dashboard-startup-banner (jcs-dashboard--get-banner-path))
+    (let ((logo-title-fg "cyan1") (heading-fg "#17A0FB") (wb-fg "light steel blue"))
+      (when light-p
+        (setq logo-title-fg "#616161"
+              heading-fg "#727272"
+              wb-fg "#1475B7"))
+      (jcs-face-fg 'dashboard-banner-logo-title logo-title-fg)
+      (jcs-face-fg 'dashboard-heading heading-fg)
+      (set-face-attribute 'widget-button nil :weight 'normal :foreground wb-fg))
+    (jcs-dashboard-refresh-buffer))
+  (jcs--dashboard--theme (jcs-light-theme-p))
+  (add-hook 'jcs-after-load-theme-hook #'jcs--dashboard--theme))
 
 (leaf dashboard-ls
   :defer-config
@@ -240,52 +308,52 @@
 
   (defconst jcs-diminish-alist
     `((abbrev-mode)
-      (alt-codes-mode . alt-codes)
+      (alt-codes-mode                            . alt-codes)
       (auto-fill-mode)
       (auto-fill-function)
-      (auto-highlight-symbol-mode . auto-highlight-symbol)
-      (auto-read-only-mode . auto-read-only)
-      (auto-rename-tag-mode . auto-rename-tag)
-      (auto-revert-mode . autorevert)
-      (buffer-wrap-mode . buffer-wrap)
-      (command-log-mode . command-log-mode)
-      (company-mode . company)
-      (company-box-mode . company-box)
-      (company-fuzzy-mode . company-fuzzy)
-      (docstr-mode . docstr)
-      (editorconfig-mode . editorconfig)
+      (auto-highlight-symbol-mode                . auto-highlight-symbol)
+      (auto-read-only-mode                       . auto-read-only)
+      (auto-rename-tag-mode                      . auto-rename-tag)
+      (auto-revert-mode                          . autorevert)
+      (buffer-wrap-mode                          . buffer-wrap)
+      (command-log-mode                          . command-log-mode)
+      (company-mode                              . company)
+      (company-box-mode                          . company-box)
+      (company-fuzzy-mode                        . company-fuzzy)
+      (docstr-mode                               . docstr)
+      (editorconfig-mode                         . editorconfig)
       (eldoc-mode)
-      (elm-indent-mode . elm-mode)
-      (emmet-mode . emmet-mode)
-      (buffer-face-mode . face-remap)
-      (fill-page-mode . fill-page)
-      (flycheck-mode . flycheck)
-      (helm-mode . helm-mode)
-      (hi-lock-mode . hi-lock)
-      (highlight-indent-guides-mode . highlight-indent-guides)
-      (hl-preproc-mode . hl-preproc)
-      (impatient-mode . impatient-mode)
-      (ivy-mode . ivy)
-      (keypression-mode . keypression)
-      (line-reminder-mode . line-reminder)
-      (indicators-mode . indicators)
+      (elm-indent-mode                           . elm-mode)
+      (emmet-mode                                . emmet-mode)
+      (buffer-face-mode                          . face-remap)
+      (fill-page-mode                            . fill-page)
+      (flycheck-mode                             . flycheck)
+      (helm-mode                                 . helm-mode)
+      (hi-lock-mode                              . hi-lock)
+      (highlight-indent-guides-mode              . highlight-indent-guides)
+      (hl-preproc-mode                           . hl-preproc)
+      (impatient-mode                            . impatient-mode)
+      (ivy-mode                                  . ivy)
+      (keypression-mode                          . keypression)
+      (line-reminder-mode                        . line-reminder)
+      (indicators-mode                           . indicators)
       (outline-minor-mode)
       (overwrite-mode)
-      (page-break-lines-mode . page-break-lines)
-      (projectile-mode . projectile)
-      (right-click-context-mode . right-click-context)
-      (shift-select-minor-mode . shift-select)
-      (show-eol-mode . show-eol)
-      (tree-sitter-mode . tree-sitter)
-      (ts-fold-mode . ts-fold)
-      (un-mini-mode . un-mini)
-      (undo-tree-mode . undo-tree)
-      (view-mode . view)
+      (page-break-lines-mode                     . page-break-lines)
+      (projectile-mode                           . projectile)
+      (right-click-context-mode                  . right-click-context)
+      (shift-select-minor-mode                   . shift-select)
+      (show-eol-mode                             . show-eol)
+      (tree-sitter-mode                          . tree-sitter)
+      (ts-fold-mode                              . ts-fold)
+      (un-mini-mode                              . un-mini)
+      (undo-tree-mode                            . undo-tree)
+      (view-mode                                 . view)
       (visual-line-mode)
-      (which-key-mode . which-key)
+      (which-key-mode                            . which-key)
       ((whitespace-mode whitespace-newline-mode) . whitespace)
-      (with-editor-mode . with-editor)
-      (yas-minor-mode . yasnippet))
+      (with-editor-mode                          . with-editor)
+      (yas-minor-mode                            . yasnippet))
     "List of diminish associated list.")
 
   (jcs-diminish-do-alist jcs-diminish-alist))
@@ -342,7 +410,7 @@
   :init
   (setq-default display-fill-column-indicator-column 80)
   :defer-config
-  (jcs--set-common-face 'fill-column-indicator "#AA4242"))
+  (jcs-face-fg 'fill-column-indicator "#AA4242"))
 
 (leaf docstr
   :init
@@ -404,16 +472,16 @@
   :init
   (defun jcs--flycheck-mode--pos-tip--advice-after (&rest _)
     "Advice runs after `flycheck-mode' function with `flycheck-popup-tip'."
-    (jcs-enable-disable-mode-by-condition 'flycheck-popup-tip-mode
-                                          (and (not (display-graphic-p)) flycheck-mode)))
+    (jcs-enable-disable-mode-if 'flycheck-popup-tip-mode
+                                (and (not (display-graphic-p)) flycheck-mode)))
   (advice-add 'flycheck-mode :after #'jcs--flycheck-mode--pos-tip--advice-after))
 
 (leaf flycheck-pos-tip
   :init
   (defun jcs--flycheck-mode--pos-tip--advice-after (&rest _)
     "Advice runs after `flycheck-mode' function with `flycheck-pos-tip'."
-    (jcs-enable-disable-mode-by-condition 'flycheck-pos-tip-mode
-                                          (and (display-graphic-p) flycheck-mode)))
+    (jcs-enable-disable-mode-if 'flycheck-pos-tip-mode
+                                (and (display-graphic-p) flycheck-mode)))
   (advice-add 'flycheck-mode :after #'jcs--flycheck-mode--pos-tip--advice-after))
 
 (leaf google-translate
@@ -439,7 +507,7 @@
 
 (leaf highlight-numbers
   :defer-config
-  (jcs--set-common-face 'highlight-numbers-number "#9BCEA3"))
+  (jcs-face-fg 'highlight-numbers-number "#9BCEA3"))
 
 (leaf hl-todo
   :init
@@ -1055,7 +1123,17 @@
 (leaf yascroll
   :init
   (setq yascroll:delay-to-hide 0.8
-        yascroll:priority 50))
+        yascroll:priority 50)
+  :defer-config
+  (defun jcs--yascroll--theme (light-p)
+    "Update theme for `yascroll'."
+    (let ((target-color (if (jcs-light-theme-p) "#C2C3C9" "#686868")))
+      (set-face-attribute (if (display-graphic-p) 'yascroll:thumb-fringe
+                            'yascroll:thumb-text-area)
+                          nil
+                          :background target-color :foreground target-color)))
+  (jcs--yascroll--theme (jcs-light-theme-p))
+  (add-hook 'jcs-after-load-theme-hook #'jcs--yascroll--theme))
 
 (leaf yasnippet
   :init

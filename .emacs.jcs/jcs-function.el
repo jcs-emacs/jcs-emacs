@@ -138,34 +138,6 @@
     (jcs-reopen-this-buffer)))
 
 ;;
-;; (@* "Autio Highlight Symbol" )
-;;
-
-(defun jcs--ahs--set-face (face bg)
-  "Set FACE with BG and BOX for `auto-highlight-symbol'."
-  (set-face-attribute face nil :foreground nil :background bg
-                      :box `(:line-width -1 :style pressed-button :color "#525D68")))
-
-(defun jcs-reset-ahs-by-theme ()
-  "Reset `auto-highlight-symbol' by theme."
-  (with-eval-after-load 'auto-highlight-symbol
-    (let* ((light-p (jcs-light-theme-p))
-           (focused-color (if light-p "#E2E6D6" "#123E70"))
-           (unfocused-color (if light-p "#F1F2EE" "#0E3056")))
-      (jcs--ahs--set-face 'ahs-plugin-default-face focused-color)
-      (jcs--ahs--set-face 'ahs-plugin-default-face-unfocused unfocused-color)
-      (if light-p
-          (progn
-            (jcs--ahs--set-face 'ahs-face focused-color)
-            (jcs--ahs--set-face 'ahs-definition-face focused-color)
-            (jcs--ahs--set-face 'ahs-face-unfocused unfocused-color)
-            (jcs--ahs--set-face 'ahs-definition-face-unfocused unfocused-color))
-        (jcs--ahs--set-face 'ahs-face focused-color)
-        (jcs--ahs--set-face 'ahs-definition-face focused-color)
-        (jcs--ahs--set-face 'ahs-face-unfocused unfocused-color)
-        (jcs--ahs--set-face 'ahs-definition-face-unfocused unfocused-color)))))
-
-;;
 ;; (@* "Buffer Menu" )
 ;;
 
@@ -315,20 +287,6 @@ If optional argument FORCE is non-nil, force refresh it."
          (if (jcs-light-theme-p) "~/.emacs.jcs/banner/sink_black.png"
            "~/.emacs.jcs/banner/sink_white.png"))
         (t "~/.emacs.jcs/banner/sink.txt")))
-
-(defun jcs-reset-dashboard-banner-by-theme ()
-  "Reset dashboard banner."
-  (interactive)
-  (setq dashboard-startup-banner (jcs-dashboard--get-banner-path))
-  (let ((logo-title-fg "cyan1") (heading-fg "#17A0FB") (wb-fg "light steel blue"))
-    (when (jcs-light-theme-p)
-      (setq logo-title-fg "#616161"
-            heading-fg "#727272"
-            wb-fg "#1475B7"))
-    (jcs--set-common-face 'dashboard-banner-logo-title logo-title-fg)
-    (jcs--set-common-face 'dashboard-heading heading-fg)
-    (set-face-attribute 'widget-button nil :weight 'normal :foreground wb-fg))
-  (jcs-dashboard-refresh-buffer))
 
 ;;
 ;; (@* "ElDoc" )
@@ -484,16 +442,6 @@ If optional argument FORCE is non-nil, force refresh it."
   (user-error "Minimap no longer supported in this configuration"))
 
 ;;
-;; (@* "Parentheses" )
-;;
-
-(defun jcs-reset-show-paren-by-theme ()
-  "Reset `paren' by theme."
-  (require 'paren)
-  (let ((color (if (jcs-light-theme-p) "#C6E370" "#113D6F")))
-    (set-face-background 'show-paren-match color)))
-
-;;
 ;; (@* "Prettify / Minify" )
 ;;
 
@@ -569,36 +517,13 @@ If optional argument FORCE is non-nil, force refresh it."
 (defun jcs-toggle-tabbar-mode ()
   "Toggle tab bar."
   (interactive)
-  (jcs-enable-disable-mode-by-condition 'centaur-tabs-mode (not centaur-tabs-mode))
-  (jcs-reset-tabbar-theme)
+  (jcs-enable-disable-mode-if 'centaur-tabs-mode (not centaur-tabs-mode))  ; toggle
+  (jcs-walk-windows
+   (lambda ()  ; insist with new result
+     (jcs-enable-disable-mode-if 'centaur-tabs-mode centaur-tabs-mode))
+   nil t)
   ;; Loop through all window so all windows take effect.
   (jcs-buffer-visible-list))
-
-(defun jcs-reset-tabbar-theme ()
-  "Set the tabbar theme to match the current theme color."
-  (when centaur-tabs-mode
-    (let* ((is-light (jcs-light-theme-p))
-           (bg-default (if is-light "#D3D3D3" "#1D1D1D"))
-           (bg-tab-unselected (if is-light "#E8E8E8" "#3D3C3D"))
-           (fg-tab-unselected "grey50")
-           (bg-tab-selected (if is-light "#E8E8E8" "#31343E"))
-           (fg-tab-selected (if is-light "black" "white")))
-      (set-face-attribute centaur-tabs-display-line nil :background bg-default
-                          :box nil :overline nil :underline nil)
-      (custom-set-faces
-       `(centaur-tabs-default ((t (:background ,bg-default))))
-       `(centaur-tabs-unselected
-         ((t (:background ,bg-tab-unselected :foreground ,fg-tab-unselected))))
-       `(centaur-tabs-selected
-         ((t (:background ,bg-tab-selected :foreground ,fg-tab-selected))))
-       `(centaur-tabs-unselected-modified
-         ((t (:background ,bg-tab-unselected :foreground ,fg-tab-unselected))))
-       `(centaur-tabs-selected-modified
-         ((t (:background ,bg-tab-selected :foreground ,fg-tab-selected))))
-       `(centaur-tabs-modified-marker-unselected
-         ((t (:background ,bg-tab-unselected :foreground ,fg-tab-unselected))))
-       `(centaur-tabs-modified-marker-selected
-         ((t (:background ,bg-tab-selected :foreground ,fg-tab-selected))))))))
 
 ;;
 ;; (@* "Terminal / Shell" )
@@ -635,10 +560,8 @@ If optional argument FORCE is non-nil, force refresh it."
   "Scale the text by passing `vec' value.
 VEC : Either position or negative number."
   (let ((was-dln display-line-numbers-mode))
-    ;; NOTE: Known `text-scale-increase' and
-    ;; `text-scale-decrease' ruin the margin of the
-    ;; `linum-mode'. Disable it before ruining it, to
-    ;; avoid the bug.
+    ;; NOTE: Known `text-scale-increase' and `text-scale-decrease' ruin the
+    ;; margin of the `linum-mode'. Disable it before ruining it, to avoid the bug.
     (when was-dln (display-line-numbers-mode -1))
     (if (> vec 0)
         (call-interactively #'text-scale-increase)
@@ -666,15 +589,12 @@ VEC : Either position or negative number."
 STRING is the content of the toolip. The location POINT. TIMEOUT for not forever
 delay. HEIGHT of the tooltip that will display."
   (require 'asoc)
-  (require 'flycheck)
   (require 'pos-tip) (require 'popup)
-  (let ((was-flycheck (if flycheck-mode 1 -1))
-        (bg (asoc-get company-box-doc-frame-parameters 'background-color))
+  (let ((bg (asoc-get company-box-doc-frame-parameters 'background-color))
         (fg (asoc-get company-box-doc-frame-parameters 'foreground-color)))
     (if (display-graphic-p)
         (pos-tip-show string `(,fg . ,bg) point nil timeout)
       (popup-tip string :point point :around t :height height :scroll-bar t :margin t))
-    (flycheck-mode was-flycheck)
     t))
 
 (defun jcs--describe-symbol-string ()
@@ -756,20 +676,6 @@ NO-PROMPT : Don't prompt the overwrap message."
             (jcs-hl-todo-next)
           (message "%s" (propertize "user-error: No more matches :: overwrap"
                                     'face '(:foreground "cyan"))))))))
-
-;;
-;; (@* "Yascroll" )
-;;
-
-(defun jcs-reset-yascroll-color-by-theme ()
-  "Reset yascroll color base on the theme color."
-  (interactive)
-  (with-eval-after-load 'yascroll
-    (let ((target-color (if (jcs-light-theme-p) "#C2C3C9" "#686868")))
-      (set-face-attribute (if (display-graphic-p) 'yascroll:thumb-fringe
-                            'yascroll:thumb-text-area)
-                          nil
-                          :background target-color :foreground target-color))))
 
 ;;
 ;; (@* "Yasnippet" )
