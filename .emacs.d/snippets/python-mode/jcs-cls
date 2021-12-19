@@ -3,7 +3,7 @@
 # key: jcs-cls
 # group: object oriented
 # --
-class `(jcs-get-file-name-without-extension)`(object):
+class `(jcs-file-name-without-extension)`(object):
 
     """${1:TODO: Class Description here...}
     """

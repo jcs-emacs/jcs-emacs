@@ -2,13 +2,13 @@
 # name: jcs-elpa
 # key: jcs-elpa
 # --
-;;; `(jcs-get-file-name)` --- $1  -*- lexical-binding: t; -*-
+;;; `(jcs-file-name)` --- $1  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) `(jcs-year-only)`  Shen, Jen-Chieh
 
 ;; Author: Shen, Jen-Chieh <jcs090218@gmail.com>
 ;; Maintainer: Shen, Jen-Chieh <jcs090218@gmail.com>
-;; URL: https://github.com/jcs090218/`(jcs-get-file-name-without-extension)`
+;; URL: https://github.com/jcs090218/`(jcs-file-name-without-extension)`
 ;; Version: 0.0.1
 ;; Package-Requires: ((emacs "24.3"))
 ;; Keywords: $2
@@ -37,5 +37,5 @@
 
 $0
 
-(provide '`(jcs-get-file-name-without-extension)`)
-;;; `(jcs-get-file-name)` ends here
+(provide '`(jcs-file-name-without-extension)`)
+;;; `(jcs-file-name)` ends here

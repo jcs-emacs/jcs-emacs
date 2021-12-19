@@ -3,7 +3,7 @@
 # key: jcs-header
 # --
 ---
-title: `(jcs-get-file-name)`
+title: `(jcs-file-name)`
 date: `(jcs-timestamp-ver1)`
 description: 
 ---

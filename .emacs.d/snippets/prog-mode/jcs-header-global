@@ -3,7 +3,7 @@
 # key: jcs-header-global
 # --
 /**
- * $File: `(jcs-get-file-name)` $
+ * $File: `(jcs-file-name)` $
  * $Date: `(jcs-timestamp-ver1)` $
  * $Revision: $
  * $Creator: ${1:CREATOR_NAME} $
