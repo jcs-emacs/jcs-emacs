@@ -28,6 +28,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Installed new package `calfw`.
 * Simplify templates/snippets utility function names.
 * Added new hook, when after theme loaded.
+* Disabled `highlight-indent-guides` by default inside terminal.
 
 ## 7.0.0
 > Released Nov 17, 2021
