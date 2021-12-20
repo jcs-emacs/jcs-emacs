@@ -185,7 +185,7 @@
       (make-directory parent-directory t)
       (setq jcs-current-created-parent-dir-path created-path))))
 
-(add-to-list 'find-file-not-found-functions #'jcs-create-non-existent-directory)
+(push #'jcs-create-non-existent-directory find-file-not-found-functions)
 
 ;;; Font Size
 (defconst jcs-default-font-size 160
@@ -379,10 +379,10 @@ If ACT is non-nil; then make scroll less jumpy."
   (defconst jcs-so-long-minor-modes
     '(line-reminder-mode)
     "List of disabled minor modes for `so-long' buffer.")
-  (setq so-long-minor-modes (append so-long-minor-modes jcs-so-long-minor-modes)))
+  (nconc so-long-minor-modes jcs-so-long-minor-modes))
 
 ;;; Startup
-(add-to-list 'default-frame-alist '(fullscreen . maximized))
+(push '(fullscreen . maximized) default-frame-alist)
 (setq-default truncate-lines t)
 (setq next-line-add-newlines nil
       truncate-partial-width-windows nil)

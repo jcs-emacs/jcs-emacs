@@ -3,20 +3,6 @@
 ;;; Code:
 
 ;;
-;; (@* "Elisp Project" )
-;;
-
-(defun jcs-project-add-load-path ()
-  "Add the whole project to load path."
-  (interactive)
-  (let ((project-root (jcs-project-current)))
-    (if project-root
-        (let ((dirs (jcs-f-directories-ignore-directories project-root t)))
-          (dolist (dir dirs) (add-to-list 'load-path dir))
-          (message "[INFO] Added project to load path: %s" project-root))
-      (user-error "[WARNINGS] Undefined project root for project load path"))))
-
-;;
 ;; (@* "Eval" )
 ;;
 

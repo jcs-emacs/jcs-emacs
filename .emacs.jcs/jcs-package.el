@@ -237,7 +237,7 @@
     (dolist (dep deps)
       (setq dep-name (car dep))
       (push dep-name result)
-      (setq result (append result (jcs-package-dependency dep-name))))
+      (nconc result (jcs-package-dependency dep-name)))
     (cl-remove 'emacs result)))
 
 (defun jcs-package-dependency-list (lst)
@@ -255,8 +255,7 @@
          (full-pkgs (delete-dups (append pkg-install-lst deps)))
          unused-lst)
     (dolist (pkg installed-pkgs)
-      (unless (memq pkg full-pkgs)
-        (push pkg unused-lst)))
+      (unless (memq pkg full-pkgs) (push pkg unused-lst)))
     (cl-remove 'emacs (reverse unused-lst))))
 
 (defun jcs-package--add-selected-packages (pkg-name)
