@@ -26,7 +26,7 @@
 (defun jcs-lua-mode-hook ()
   "Lau mode hook."
 
-  (jcs-make-electric-pair-pairs-local '((?\[ . ?\])))
+  (jcs-elec-pair-add '((?\[ . ?\])))
 
   (setq-local electric-pair-inhibit-predicate 'jcs-lua--electric-pair-inhibit-predicate)
 

@@ -7,9 +7,9 @@
 
 (setq markdown-fontify-code-blocks-natively t)
 
-(add-to-list 'markdown-code-lang-modes '("cs" . csharp-mode))
-(add-to-list 'markdown-code-lang-modes '("el" . emacs-lisp-mode))
-(add-to-list 'markdown-code-lang-modes '("cl" . lisp-mode))
+(nconc markdown-code-lang-modes'(("cs" . csharp-mode)
+                                 ("el" . emacs-lisp-mode)
+                                 ("cl" . lisp-mode)))
 
 (defun jcs-markdown-return-key ()
   "Return key for Markdown mode."
@@ -84,7 +84,7 @@
 
   (jcs-safe-er/expand-list '(web-mode-mark-and-expand) t)
 
-  (jcs-make-electric-pair-pairs-local '((?\` . ?\`)))
+  (jcs-elec-pair-add '((?\` . ?\`)))
 
   (jcs-company-safe-add-backend 'company-emojify)
 

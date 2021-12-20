@@ -19,7 +19,7 @@
 
 (defun jcs-sql-mode-hook()
   "SQL mode hook."
-  (jcs-make-electric-pair-pairs-local '((?\` . ?\`)))
+  (jcs-elec-pair-add '((?\` . ?\`)))
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]sql")

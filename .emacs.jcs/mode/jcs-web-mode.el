@@ -104,8 +104,8 @@
   (face-remap-add-relative 'web-mode-block-string-face '(font-lock-string-face))
   (face-remap-add-relative 'web-mode-html-attr-value-face '(jcs-web-mode-html-attr-value-face))
 
-  (jcs-make-electric-pair-pairs-local '((?\' . ?\')))
-  (jcs-make-electric-pair-pairs-local '((?\" . ?\")))
+  (jcs-elec-pair-add '((?\' . ?\')))
+  (jcs-elec-pair-add '((?\" . ?\")))
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]htm" "[.]html"
