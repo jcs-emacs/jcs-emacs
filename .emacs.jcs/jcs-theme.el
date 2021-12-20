@@ -6,6 +6,10 @@
 ;; (@* "Core" )
 ;;
 
+(defun jcs-theme-call (fnc)
+  "Execute FNC with default arguments."
+  (funcall fnc (jcs-light-theme-p)))
+
 (defun jcs-theme-reapply ()
   "Reset certain plugins base on the theme."
   (jcs-reset-common-faces-by-theme)

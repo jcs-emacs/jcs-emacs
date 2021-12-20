@@ -44,7 +44,7 @@
   (asoc-put! company-box-doc-frame-parameters 'background-color (car quickhelp) t)
   (asoc-put! company-box-doc-frame-parameters 'foreground-color (cdr quickhelp) t))
 
-(defun jcs-company-auto-complete-theme ()
+(defun jcs-company-auto-complete-theme (light-p)
   "Auto-Complete theme for `company-mode'."
   (jcs-company-set-face
    :annotation '("red4" . "red4")
@@ -55,9 +55,9 @@
    :scrollbar '("dark gray" . "black")
    :quickhelp '("#FFF08A" . "black")))
 
-(defun jcs-company-vs-theme ()
+(defun jcs-company-vs-theme (light-p)
   "Auto-Complete theme for `company-mode'."
-  (if (jcs-light-theme-p)
+  (if light-p
       (jcs-company-set-face
        :annotation '("#41474D" . "#5E85AB")
        :tooltip '("#F5F5F5" . "black")
@@ -75,14 +75,14 @@
      :scrollbar '("#3E3E42" . "#686868")
      :quickhelp '("#2A2D38" . "#F1F1F1"))))
 
-(defun jcs-company-default-theme (&rest _)
+(defun jcs-company-default-theme (light-p)
   "Default theme for `company-mode'."
   (cl-case jcs-company-theme
-    (`auto-complete (jcs-company-auto-complete-theme))
-    (`vs (jcs-company-vs-theme))
+    (`auto-complete (jcs-company-auto-complete-theme light-p))
+    (`vs (jcs-company-vs-theme light-p))
     (t (user-error "Unknown `company-mode` theme type: %s" jcs-company-theme))))
 
-(jcs-company-default-theme)
+(jcs-theme-call #'jcs-company-default-theme)
 (add-hook 'jcs-after-load-theme-hook #'jcs-company-default-theme)
 
 ;;

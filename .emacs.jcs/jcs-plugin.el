@@ -30,15 +30,14 @@
         (jcs--ahs--set-face 'ahs-definition-face focused-color)
         (jcs--ahs--set-face 'ahs-face-unfocused unfocused-color)
         (jcs--ahs--set-face 'ahs-definition-face-unfocused unfocused-color))))
-  (jcs--ahs--theme (jcs-light-theme-p))
+  (jcs-theme-call #'jcs--ahs--theme)
   (add-hook 'jcs-after-load-theme-hook #'jcs--ahs--theme))
 
 (leaf auto-read-only
   :defer-config
-  (add-to-list 'auto-read-only-file-regexps "/[.]emacs[.]d/elisp/")
-  (add-to-list 'auto-read-only-file-regexps "/[.]emacs[.]d/elpa/")
-  (add-to-list 'auto-read-only-file-regexps "/lisp/")
-
+  (nconc auto-read-only-file-regexps '("/[.]emacs[.]d/elisp/"
+                                       "/[.]emacs[.]d/elpa/"
+                                       "/lisp/"))
   (defun jcs--auto-read-only--hook-find-file ()
     "Advice override function `auto-read-only--hook-find-file'."
     (when (and (not jcs-package-installing-p) (not (jcs-project-current)))
@@ -123,7 +122,7 @@
          ((t (:background ,bg-tab-unselected :foreground ,fg-tab-unselected))))
        `(centaur-tabs-modified-marker-selected
          ((t (:background ,bg-tab-selected :foreground ,fg-tab-selected)))))))
-  (jcs--centaur-tabs--theme (jcs-light-theme-p))
+  (jcs-theme-call #'jcs--centaur-tabs--theme)
   (add-hook 'jcs-after-load-theme-hook #'jcs--centaur-tabs--theme))
 
 (leaf company
@@ -261,7 +260,7 @@
       (jcs-face-fg 'dashboard-heading heading-fg)
       (set-face-attribute 'widget-button nil :weight 'normal :foreground wb-fg))
     (jcs-dashboard-refresh-buffer))
-  (jcs--dashboard--theme (jcs-light-theme-p))
+  (jcs-theme-call #'jcs--dashboard--theme)
   (add-hook 'jcs-after-load-theme-hook #'jcs--dashboard--theme))
 
 (leaf define-it
@@ -506,9 +505,7 @@
   (asoc-put! hl-todo-keyword-faces "NOTE" "dark green" t)
   (asoc-put! hl-todo-keyword-faces "TEMP" "turquoise" t)
   (asoc-put! hl-todo-keyword-faces "FIXME" "red" t)
-  (setq hl-todo-keyword-faces
-        (append
-         hl-todo-keyword-faces
+  (nconc hl-todo-keyword-faces
          '(("ATTENTION"   . "red")
            ("STUDY"       . "yellow")
            ("IMPORTANT"   . "yellow")
@@ -526,7 +523,7 @@
            ("OBSOLETE"    . "DarkOrange3")
            ("DEPRECATED"  . "DarkOrange3")
            ("TOPIC"       . "slate blue")
-           ("SEE"         . "slate blue"))))
+           ("SEE"         . "slate blue")))
   (advice-add #'hl-todo--inside-comment-or-string-p :override #'jcs-inside-comment-or-string-p))
 
 (leaf impatient-showdown
@@ -1120,7 +1117,7 @@
                             'yascroll:thumb-text-area)
                           nil
                           :background target-color :foreground target-color)))
-  (jcs--yascroll--theme (jcs-light-theme-p))
+  (jcs-theme-call #'jcs--yascroll--theme)
   (add-hook 'jcs-after-load-theme-hook #'jcs--yascroll--theme))
 
 (leaf yasnippet
