@@ -316,7 +316,7 @@ If optional argument FORCE is non-nil, force refresh it."
 ;; (@* "Electric Pair" )
 ;;
 
-(defun jcs-make-electric-pair-pairs-local (lst-pr)
+(defun jcs-elec-pair-add (lst-pr)
   "Append a list of pair (LST-PR) to current buffer."
   (require 'elec-pair)
   (setq-local electric-pair-pairs (append electric-pair-pairs lst-pr)
@@ -616,66 +616,15 @@ delay. HEIGHT of the tooltip that will display."
 (defun jcs-describe-thing-in-popup ()
   "Show current symbol info."
   (interactive)
-  (require 'define-it) (require 'lsp-ui)
+  (require 'define-it)
   (if (jcs--lsp-connected-p)
-      (ignore-errors (call-interactively #'lsp-ui-doc-glance))
+      (progn (require 'lsp-ui)
+             (ignore-errors (call-interactively #'lsp-ui-doc-glance)))
     (unless (ignore-errors (jcs-tip-describe-it))
       (unless (ignore-errors (jcs-path-info-at-point))
         (define-it-at-point)))
     ;; In case we are using region, cancel the select region.
     (deactivate-mark)))
-
-;;
-;; (@* "Todo" )
-;;
-
-(defvar jcs-hl-todo-not-found-prev nil
-  "See if found the previous `hl-todo' matches.")
-
-(defvar jcs-hl-todo-not-found-next nil
-  "See if found the next `hl-todo' matches.")
-
-(defun jcs-hl-todo-previous (&optional no-prompt)
-  "Around `hl-todo-previous' command.
-NO-PROMPT : Don't prompt the overwrap message."
-  (interactive)
-  (require 'hl-todo)
-  (setq jcs-hl-todo-not-found-next nil)
-  (if jcs-hl-todo-not-found-prev
-      (progn
-        (setq jcs-hl-todo-not-found-prev nil)
-        (goto-char (point-max))
-        (call-interactively #'hl-todo-previous))
-    (let ((before-pt (point)))
-      (ignore-errors (call-interactively #'hl-todo-previous))
-      (if (not (= (point) before-pt))
-          (setq jcs-hl-todo-not-found-prev nil)
-        (setq jcs-hl-todo-not-found-prev t)
-        (if no-prompt
-            (jcs-hl-todo-previous)
-          (message "%s" (propertize "user-error: No more matches :: overwrap"
-                                    'face '(:foreground "cyan"))))))))
-
-(defun jcs-hl-todo-next (&optional no-prompt)
-  "Around `hl-todo-next' command.
-NO-PROMPT : Don't prompt the overwrap message."
-  (interactive)
-  (require 'hl-todo)
-  (setq jcs-hl-todo-not-found-prev nil)
-  (if jcs-hl-todo-not-found-next
-      (progn
-        (setq jcs-hl-todo-not-found-next nil)
-        (goto-char (point-min))
-        (call-interactively #'hl-todo-next))
-    (let ((before-pt (point)))
-      (ignore-errors (call-interactively #'hl-todo-next))
-      (if (not (= (point) before-pt))
-          (setq jcs-hl-todo-not-found-next nil)
-        (setq jcs-hl-todo-not-found-next t)
-        (if no-prompt
-            (jcs-hl-todo-next)
-          (message "%s" (propertize "user-error: No more matches :: overwrap"
-                                    'face '(:foreground "cyan"))))))))
 
 ;;
 ;; (@* "Yasnippet" )
