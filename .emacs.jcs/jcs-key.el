@@ -483,8 +483,8 @@
 
 ;;; Todo
 (with-eval-after-load 'hl-todo
-  (define-key hl-todo-mode-map [C-f10] #'jcs-hl-todo-previous)
-  (define-key hl-todo-mode-map [C-f11] #'jcs-hl-todo-next))
+  (define-key hl-todo-mode-map [C-f10] #'hl-todo-previous)
+  (define-key hl-todo-mode-map [C-f11] #'hl-todo-next))
 
 ;;; Transwin
 (define-key global-map "\e`" #'transwin-toggle-transparent-frame)
