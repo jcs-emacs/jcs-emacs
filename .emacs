@@ -120,9 +120,9 @@ decrease this. If you experience stuttering, increase this.")
 ;; (@* "Load Core" )
 ;;
 
-(add-to-list 'load-path "~/.emacs.jcs/")
-(add-to-list 'load-path "~/.emacs.jcs/func/")
-(add-to-list 'load-path "~/.emacs.jcs/mode/")
+(push "~/.emacs.jcs/" load-path)
+(push "~/.emacs.jcs/func/" load-path)
+(push "~/.emacs.jcs/mode/" load-path)
 
 ;;; Initialize
 (require 'jcs-package)
