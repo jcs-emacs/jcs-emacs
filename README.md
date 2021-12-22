@@ -6,7 +6,6 @@
 <a href="https://opensource.org/licenses/BSD-2-Clause"><img src="https://img.shields.io/badge/License-BSD%202--Clause-orange.svg" alt="License"></a>
 <a href="https://www.gnu.org/software/emacs/download.html"><img src="https://img.shields.io/badge/Emacs-27.1+-7F5AB6.svg?logo=gnu%20emacs&logoColor=white" alt="Emacs"></a>
 <a href="https://github.com/jcs090218/jcs-emacs/releases/latest"><img src="https://img.shields.io/github/tag/jcs090218/jcs-emacs.svg?label=release&logo=github" alt="Release Tag"></a>
-<a href="https://www.paypal.me/jcs090218"><img alt="Support me" src="https://img.shields.io/badge/Support%20Me-%F0%9F%92%97-ff69b4.svg"></a>
 <a href="https://github.com/jcs090218/jcs-emacs/actions"><img src="https://github.com/jcs090218/jcs-emacs/workflows/CI/badge.svg" alt="CI"></a>
 </p>
 
@@ -40,6 +39,7 @@
     - [Write your own customization](#write-your-own-customization)
     - [🎍 Supported Emacs versions](#🎍-supported-emacs-versions)
     - [❓ FAQ](#❓-faq)
+    - [Contribute](#contribute)
 
 <!-- markdown-toc end -->
 
@@ -435,12 +435,22 @@ then other than that are the core files.
 The config should run on Emacs **27.1** or higher, but I will recommend to always
 run on the latest Emacs version available on your machine. The ultimate goal is to
 design to have each version of config can run on their each according Emacs version
-base on the version what I'm currently running on my present machine. For each version
-record, you can check the [version_record](./version_record.txt) file at the root of
-the project directory.
+base on the version what I'm currently running on my present machine. For each
+version record, you can check the [version_record](./version_record.txt) file at
+the root of the project directory.
 
 ## ❓ FAQ
 
 Here is the list of *Frequently Asked Questions*.
 
 * [List of FAQ](./doc/FAQ.md)
+
+## Contribute
+
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
+[![Elisp styleguide](https://img.shields.io/badge/elisp-style%20guide-purple)](https://github.com/bbatsov/emacs-lisp-style-guide)
+[![Donate on paypal](https://img.shields.io/badge/paypal-donate-1?logo=paypal&color=blue)](https://www.paypal.me/jcs090218)
+
+If you would like to contribute to this project, you may either clone and make pull
+requests to this repository. Or you can clone the project and establish your own
+branch of this tool. Any methods are welcome!
