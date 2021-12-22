@@ -2,7 +2,7 @@
 ;;; Commentary:
 
 ;; Author:  Shen, Jen-Chieh <jcs090218@gmail.com>
-;; URL:     https://github.com/jcs090218/jcs-emacs
+;; URL:     https://github.com/jcs-emacs/jcs-emacs
 
 ;;
 ;;                      ════╦╦╦╦╗
@@ -15,7 +15,6 @@
 ;;            ║   ╔══ ╔╗╔╗ ╔═╗ ╔═╕ ╔═╕   ║
 ;;            ║   ╠═  ║╙╜║ ╟─╢ ║   ╚═╗   ║
 ;;            ║   ╚══ ╨  ╨ ╨ ╨ ╚═╛ ╘═╝   ║
-;;             \            _  _         /
 ;;              \═══════════╣  ╠════════/
 ;;                 ═════════╝  ║
 ;;                 ════════════╝
@@ -23,11 +22,10 @@
 ;;                [J C S - E M A C S]
 ;;
 
-;; This file bootstraps the configuration, which is divided into
-;; a number of other files.
+;; This file bootstraps the configuration, which is divided into a number of
+;; other files.
 ;;
-;; I barely know how to program LISP, and I know even less about ELISP.
-;; So take everything in this file with a grain of salt!
+;; License: BSD-2-Clause
 
 ;;; Code:
 
