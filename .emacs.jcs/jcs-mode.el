@@ -403,219 +403,162 @@ To avoid syntax highlighting error for comment.")
 ;;;
 ;; Auto mode Management
 
-(defun jcs-add-auto-mode-alist (pr &optional append)
-  "Add a property list to `auto-mode-alist'.
-
-See `add-to-list' function description for argument APPEND."
-  (add-to-list 'auto-mode-alist pr append))
-
+(setq
+ auto-mode-alist
+ (append
+  '(
 ;;; A
-(progn
-  (jcs-add-auto-mode-alist '("\\.as'?\\'" . actionscript-mode))
-  (jcs-add-auto-mode-alist '("\\.agda'?\\'" . agda-mode))
-  (jcs-add-auto-mode-alist '("\\.applescript'?\\'" . applescript-mode))
-  (jcs-add-auto-mode-alist '("\\.scpt'?\\'" . applescript-mode))
-  (jcs-add-auto-mode-alist '("\\.scptd'?\\'" . applescript-mode)))
-
+    ("\\.as'?\\'"                  . actionscript-mode)
+    ("\\.agda'?\\'"                . agda-mode)
+    ("\\.applescript'?\\'"         . applescript-mode)
+    ("\\.scpt'?\\'"                . applescript-mode)
+    ("\\.scptd'?\\'"               . applescript-mode)
 ;;; B
-(progn
-  (jcs-add-auto-mode-alist '("\\.bas'\\'" . basic-mode))
-  (jcs-add-auto-mode-alist '("\\.bat'?\\'" . bat-mode)))
-
+    ("\\.bas'\\'"                  . basic-mode)
+    ("\\.bat'?\\'"                 . bat-mode)
 ;;; C
-(progn
-  (jcs-add-auto-mode-alist '("\\.hin'?\\'" . c++-mode))
-  (jcs-add-auto-mode-alist '("\\.cin'?\\'" . c++-mode))
-  (jcs-add-auto-mode-alist '("\\.cpp'?\\'" . c++-mode))
-  (jcs-add-auto-mode-alist '("\\.hpp'?\\'" . c++-mode))
-  (jcs-add-auto-mode-alist '("\\.inl'?\\'" . c++-mode))
-  (jcs-add-auto-mode-alist '("\\.rdc'?\\'" . c++-mode))
-  (jcs-add-auto-mode-alist '("\\.cc'?\\'" . c++-mode))
-  (jcs-add-auto-mode-alist '("\\.c8'?\\'" . c++-mode))
-  (jcs-add-auto-mode-alist '("\\.h'?\\'" . c++-mode))
-  (jcs-add-auto-mode-alist '("\\.c'?\\'" . c++-mode))
-  (jcs-add-auto-mode-alist '("\\.clj'?\\'" . clojure-mode))
-  (jcs-add-auto-mode-alist '("\\.cljs'?\\'" . clojure-mode))
-  (jcs-add-auto-mode-alist '("\\.cljc'?\\'" . clojure-mode))
-  (jcs-add-auto-mode-alist '("\\(/\\|\\`\\)CMakeLists.txt" . cmake-mode))
-  ;; NOTE: For autotools, autoconf, automake.
-  (jcs-add-auto-mode-alist '("\\.ac'?\\'" . cmake-mode))
-  (jcs-add-auto-mode-alist '("\\.cbl'?\\'" . cobol-mode))
-  (jcs-add-auto-mode-alist '("\\.properties'?\\'" . conf-javaprop-mode))
-  (jcs-add-auto-mode-alist '("\\.cs'?\\'" . csharp-mode))
-  (jcs-add-auto-mode-alist '("\\.css'?" . css-mode)))
-
+    ("\\.hin'?\\'"                 . c++-mode)
+    ("\\.cin'?\\'"                 . c++-mode)
+    ("\\.cpp'?\\'"                 . c++-mode)
+    ("\\.hpp'?\\'"                 . c++-mode)
+    ("\\.inl'?\\'"                 . c++-mode)
+    ("\\.rdc'?\\'"                 . c++-mode)
+    ("\\.cc'?\\'"                  . c++-mode)
+    ("\\.c8'?\\'"                  . c++-mode)
+    ("\\.h'?\\'"                   . c++-mode)
+    ("\\.c'?\\'"                   . c++-mode)
+    ("\\.clj'?\\'"                 . clojure-mode)
+    ("\\.cljs'?\\'"                . clojure-mode)
+    ("\\.cljc'?\\'"                . clojure-mode)
+    ("\\(/\\|\\`\\)CMakeLists.txt" . cmake-mode)
+    ("\\.ac'?\\'"                  . cmake-mode)
+    ("\\.cbl'?\\'"                 . cobol-mode)
+    ("\\.properties'?\\'"          . conf-javaprop-mode)
+    ("\\.cs'?\\'"                  . csharp-mode)
+    ("\\.css'?"                    . css-mode)
 ;;; D
-(progn
-  (jcs-add-auto-mode-alist '("\\.dart'?" . dart-mode))
-  (jcs-add-auto-mode-alist '("\\(/\\|\\`\\)Dokerfile" . dockerfile-mode)))
-
+    ("\\.dart'?"                   . dart-mode)
+    ("\\(/\\|\\`\\)Dokerfile"      . dockerfile-mode)
 ;;; E
-(progn
-  (jcs-add-auto-mode-alist '("\\.ex'?\\'" . elixir-mode))
-  (jcs-add-auto-mode-alist '("\\.exs'?\\'" . elixir-mode))
-  (jcs-add-auto-mode-alist '("\\.el'?\\'" . emacs-lisp-mode))
-  (jcs-add-auto-mode-alist '("\\.erl'?\\'" . erlang-mode))
-  (jcs-add-auto-mode-alist '("\\.hrl'?\\'" . erlang-mode)))
-
+    ("\\.ex'?\\'"                  . elixir-mode)
+    ("\\.exs'?\\'"                 . elixir-mode)
+    ("\\.el'?\\'"                  . emacs-lisp-mode)
+    ("\\.erl'?\\'"                 . erlang-mode)
+    ("\\.hrl'?\\'"                 . erlang-mode)
 ;;; F
-(progn
-  (jcs-add-auto-mode-alist '("\\.fountain'?\\'" . fountain-mode))
-  (jcs-add-auto-mode-alist '("\\.fs'?\\'" . fsharp-mode)))
-
+    ("\\.fountain'?\\'"            . fountain-mode)
+    ("\\.fs'?\\'"                  . fsharp-mode)
 ;;; G
-(progn
-  (jcs-add-auto-mode-alist '("\\.gen'?\\'" . gen-mode))
-
-  (jcs-add-auto-mode-alist '("\\.gd'?\\'" . gdscript-mode))
-
-  (jcs-add-auto-mode-alist '("\\.gitattributes'?\\'" . gitattributes-mode))
-  (jcs-add-auto-mode-alist '("\\.gitconfig'?\\'" . gitconfig-mode))
-  (jcs-add-auto-mode-alist '("\\.gitignore'?\\'" . gitignore-mode))
-  (jcs-add-auto-mode-alist '("\\.dockerignore'?\\'" . gitignore-mode))
-  (jcs-add-auto-mode-alist '("\\.npmignore'?\\'" . gitignore-mode))
-  (jcs-add-auto-mode-alist '("\\.unityignore'?\\'" . gitignore-mode))
-  (jcs-add-auto-mode-alist '("\\.vscodeignore'?\\'" . gitignore-mode))
-
-  (jcs-add-auto-mode-alist '("\\.frag'?\\'" . glsl-mode))
-  (jcs-add-auto-mode-alist '("\\.geom'?\\'" . glsl-mode))
-  (jcs-add-auto-mode-alist '("\\.glsl'?\\'" . glsl-mode))
-  (jcs-add-auto-mode-alist '("\\.vert'?\\'" . glsl-mode))
-
-  (jcs-add-auto-mode-alist '("\\.go'?\\'" . go-mode))
-
-  (jcs-add-auto-mode-alist '("\\.groovy'?\\'" . groovy-mode))
-  (jcs-add-auto-mode-alist '("\\.gradle'?\\'" . groovy-mode)))
-
+    ("\\.gen'?\\'"                 . gen-mode)
+    ("\\.gd'?\\'"                  . gdscript-mode)
+    ("\\.gitattributes'?\\'"       . gitattributes-mode)
+    ("\\.gitconfig'?\\'"           . gitconfig-mode)
+    ("\\.gitignore'?\\'"           . gitignore-mode)
+    ("\\.dockerignore'?\\'"        . gitignore-mode)
+    ("\\.npmignore'?\\'"           . gitignore-mode)
+    ("\\.unityignore'?\\'"         . gitignore-mode)
+    ("\\.vscodeignore'?\\'"        . gitignore-mode)
+    ("\\.frag'?\\'"                . glsl-mode)
+    ("\\.geom'?\\'"                . glsl-mode)
+    ("\\.glsl'?\\'"                . glsl-mode)
+    ("\\.vert'?\\'"                . glsl-mode)
+    ("\\.go'?\\'"                  . go-mode)
+    ("\\.groovy'?\\'"              . groovy-mode)
+    ("\\.gradle'?\\'"              . groovy-mode)
 ;;; H
-(progn
-  (jcs-add-auto-mode-alist '("\\.hs'?\\'" . haskell-mode))
-  (jcs-add-auto-mode-alist '("\\.hx'?\\'" . haxe-mode))
-  (jcs-add-auto-mode-alist '("\\.hxml'?\\'" . haxe-mode)))
-
+    ("\\.hs'?\\'"                  . haskell-mode)
+    ("\\.hx'?\\'"                  . haxe-mode)
+    ("\\.hxml'?\\'"                . haxe-mode)
 ;;; I
-(progn
-  (jcs-add-auto-mode-alist '("\\.ini'?\\'" . ini-mode)))
-
+    ("\\.ini'?\\'"                 . ini-mode)
 ;;; J
-(progn
-  (jcs-add-auto-mode-alist '("\\.java'?\\'" . java-mode))
-  (jcs-add-auto-mode-alist '("\\.jcs'?\\'" . jayces-mode))
-  (jcs-add-auto-mode-alist '("\\.jayces'?\\'" . jayces-mode))
-  (jcs-add-auto-mode-alist '("Jenkinsfile\\'" . jenkinsfile-mode))
-  (jcs-add-auto-mode-alist '("\\.js'?\\'" . js2-mode))
-  (jcs-add-auto-mode-alist '("\\.json'?\\'" . json-mode))
-  (jcs-add-auto-mode-alist '("\\.jsx'?\\'" . rjsx-mode)))
-
+    ("\\.java'?\\'"                . java-mode)
+    ("\\.jcs'?\\'"                 . jayces-mode)
+    ("\\.jayces'?\\'"              . jayces-mode)
+    ("Jenkinsfile\\'"              . jenkinsfile-mode)
+    ("\\.js'?\\'"                  . js2-mode)
+    ("\\.json'?\\'"                . json-mode)
+    ("\\.jsx'?\\'"                 . rjsx-mode)
 ;;; K
-(progn
-  (jcs-add-auto-mode-alist '("\\.kt'?\\'" . kotlin-mode))
-  (jcs-add-auto-mode-alist '("\\.ktm'?\\'" . kotlin-mode))
-  (jcs-add-auto-mode-alist '("\\.kts'?\\'" . kotlin-mode)))
-
+    ("\\.kt'?\\'"                  . kotlin-mode)
+    ("\\.ktm'?\\'"                 . kotlin-mode)
+    ("\\.kts'?\\'"                 . kotlin-mode)
 ;;; L
-(progn
-  (jcs-add-auto-mode-alist '("\\.less'?\\'" . less-css-mode))
-  (jcs-add-auto-mode-alist '("\\.lisp'?\\'" . lisp-mode))
-  (jcs-add-auto-mode-alist '("\\.lua'?\\'" . lua-mode))
-  (jcs-add-auto-mode-alist '("\\.luac'?\\'" . lua-mode)))
-
+    ("\\.less'?\\'"                . less-css-mode)
+    ("\\.lisp'?\\'"                . lisp-mode)
+    ("\\.lua'?\\'"                 . lua-mode)
+    ("\\.luac'?\\'"                . lua-mode)
 ;;; M
-(progn
-  (jcs-add-auto-mode-alist '("\\.mak'?\\'" . makefile-mode))
-  (jcs-add-auto-mode-alist '("\\.makfile'?\\'" . makefile-mode))
-  (jcs-add-auto-mode-alist '("\\(/\\|\\`\\)[Mm]akefile" . makefile-mode))
-  (jcs-add-auto-mode-alist '("\\.md'?\\'" . markdown-mode))
-  (jcs-add-auto-mode-alist '("\\.markdown'?\\'" . markdown-mode))
-
-  (jcs-add-auto-mode-alist '("\\.asm'?\\'" . masm-mode))
-  (jcs-add-auto-mode-alist '("\\.inc'?\\'" . masm-mode)))
-
+    ("\\.mak'?\\'"                 . makefile-mode)
+    ("\\.makfile'?\\'"             . makefile-mode)
+    ("\\(/\\|\\`\\)[Mm]akefile"    . makefile-mode)
+    ("\\.md'?\\'"                  . markdown-mode)
+    ("\\.markdown'?\\'"            . markdown-mode)
+    ("\\.asm'?\\'"                 . masm-mode)
+    ("\\.inc'?\\'"                 . masm-mode)
 ;;; N
-(progn
-  (jcs-add-auto-mode-alist '("\\.asm'?\\'" . nasm-mode))
-  (jcs-add-auto-mode-alist '("\\.inc'?\\'" . nasm-mode))
-
-  (jcs-add-auto-mode-alist '("\\.nix'?\\'" . nix-mode)))
-
+    ("\\.asm'?\\'"                 . nasm-mode)
+    ("\\.inc'?\\'"                 . nasm-mode)
+    ("\\.nix'?\\'"                 . nix-mode)
 ;;; O
-(progn
-  (jcs-add-auto-mode-alist '("\\.m'?\\'" . objc-mode))
-  (jcs-add-auto-mode-alist '("\\.mm'?\\'" . objc-mode))
-  (jcs-add-auto-mode-alist '("\\.dpk'?\\'" . opascal-mode))
-  (jcs-add-auto-mode-alist '("\\.dpr'?\\'" . opascal-mode))
-  (jcs-add-auto-mode-alist '("\\.org'?\\'" . org-mode)))
-
+    ("\\.m'?\\'"                   . objc-mode)
+    ("\\.mm'?\\'"                  . objc-mode)
+    ("\\.dpk'?\\'"                 . opascal-mode)
+    ("\\.dpr'?\\'"                 . opascal-mode)
+    ("\\.org'?\\'"                 . org-mode)
 ;;; P
-(progn
-  (jcs-add-auto-mode-alist '("\\.pas'?\\'" . pascal-mode))
-  (jcs-add-auto-mode-alist '("\\.pl'?\\'" . perl-mode))
-  (jcs-add-auto-mode-alist '("\\.pde'?\\'" . processing-mode))
-  (jcs-add-auto-mode-alist '("\\.ps1'?\\'" . powershell-mode))
-  (jcs-add-auto-mode-alist '("\\.py'?\\'" . python-mode))
-  (jcs-add-auto-mode-alist '("\\.pyc'?\\'" . python-mode)))
-
+    ("\\.pas'?\\'"                 . pascal-mode)
+    ("\\.pl'?\\'"                  . perl-mode)
+    ("\\.pde'?\\'"                 . processing-mode)
+    ("\\.ps1'?\\'"                 . powershell-mode)
+    ("\\.py'?\\'"                  . python-mode)
+    ("\\.pyc'?\\'"                 . python-mode)
 ;;; R
-(progn
-  (jcs-add-auto-mode-alist '("\\.r'?\\'" . ess-r-mode))
-  (jcs-add-auto-mode-alist '("\\.rb'?\\'" . ruby-mode))
-  (jcs-add-auto-mode-alist '("\\.rs'?\\'" . rust-mode)))
-
+    ("\\.r'?\\'"                   . ess-r-mode)
+    ("\\.rb'?\\'"                  . ruby-mode)
+    ("\\.rs'?\\'"                  . rust-mode)
 ;;; S
-(progn
-  (jcs-add-auto-mode-alist '("\\.sass'?\\'" . ssass-mode))
-  (jcs-add-auto-mode-alist '("\\.scala'?\\'" . scala-mode))
-  (jcs-add-auto-mode-alist '("\\.scss?\\'" . scss-mode))
-  (jcs-add-auto-mode-alist '("\\.sh'?\\'" . sh-mode))
-  (jcs-add-auto-mode-alist '("\\.linux'?\\'" . sh-mode))
-  (jcs-add-auto-mode-alist '("\\.macosx'?\\'" . sh-mode))
-  (jcs-add-auto-mode-alist '("\\.shader'?\\'" . shader-mode))
-  (jcs-add-auto-mode-alist '("\\.sql'?\\'" . sql-mode))
-  (jcs-add-auto-mode-alist '("\\.swift'?\\'" . swift-mode)))
-
+    ("\\.sass'?\\'"                . ssass-mode)
+    ("\\.scala'?\\'"               . scala-mode)
+    ("\\.scss?\\'"                 . scss-mode)
+    ("\\.sh'?\\'"                  . sh-mode)
+    ("\\.linux'?\\'"               . sh-mode)
+    ("\\.macosx'?\\'"              . sh-mode)
+    ("\\.shader'?\\'"              . shader-mode)
+    ("\\.sql'?\\'"                 . sql-mode)
+    ("\\.swift'?\\'"               . swift-mode)
 ;;; T
-(progn
-  (jcs-add-auto-mode-alist '("\\.ts'?\\'" . typescript-mode))
-  (jcs-add-auto-mode-alist '("\\.tsx'?\\'" . typescript-mode))
-  (jcs-add-auto-mode-alist '("\\.toml'?\\'" . conf-toml-mode))
-  (jcs-add-auto-mode-alist '("\\.txt'?\\'" . text-mode) t))
-
+    ("\\.ts'?\\'"                  . typescript-mode)
+    ("\\.tsx'?\\'"                 . typescript-mode)
+    ("\\.toml'?\\'"                . conf-toml-mode)
+    ("\\.txt'?\\'"                 . text-mode)
 ;;; V
-(progn
-  (jcs-add-auto-mode-alist '("\\.v'?\\'" . verilog-mode))
-  (jcs-add-auto-mode-alist '("\\.vim\\(rc\\)'?\\'" . vimrc-mode))
-  (jcs-add-auto-mode-alist '("\\(/\\|\\`\\)_vimrc" . vimrc-mode))
-  ;; ATTENTION: I think `vue-mode' using `mmm-mode' isn't
-  ;; ready for the development yet. So I'm currently using
-  ;; `web-mode' instead.
-  (progn
-    ;;(jcs-add-auto-mode-alist '("\\.vue'?\\'" . vue-mode))
-    (jcs-add-auto-mode-alist '("\\.vue'?\\'" . web-mode))))
-
+    ("\\.v'?\\'"                   . verilog-mode)
+    ("\\.vim\\(rc\\)'?\\'"         . vimrc-mode)
+    ("\\(/\\|\\`\\)_vimrc"         . vimrc-mode)
+    ;;
+    ;;
+    ;;(
+    ("\\.vue'?\\'"                 . web-mode)
 ;;; W
-(progn
-  (jcs-add-auto-mode-alist '("\\.phtml\\'" . web-mode))
-  (jcs-add-auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
-  (jcs-add-auto-mode-alist '("\\.erb\\'" . web-mode))
-  (jcs-add-auto-mode-alist '("\\.mustache\\'" . web-mode))
-  (jcs-add-auto-mode-alist '("\\.djhtml\\'" . web-mode))
-  (jcs-add-auto-mode-alist '("\\.html?\\'" . web-mode))
-  (jcs-add-auto-mode-alist '("\\.php?\\'" . web-mode))
-  (jcs-add-auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
-
-  ;; ASP .NET
-  (jcs-add-auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
-  (jcs-add-auto-mode-alist '("\\.cshtml\\'" . web-mode))
-  (jcs-add-auto-mode-alist '("\\.[Mm]aster\\'" . web-mode)))
-
+    ("\\.phtml\\'"                 . web-mode)
+    ("\\.tpl\\.php\\'"             . web-mode)
+    ("\\.erb\\'"                   . web-mode)
+    ("\\.mustache\\'"              . web-mode)
+    ("\\.djhtml\\'"                . web-mode)
+    ("\\.html?\\'"                 . web-mode)
+    ("\\.php?\\'"                  . web-mode)
+    ("\\.[agj]sp\\'"               . web-mode)
+    ;;
+    ("\\.as[cp]x\\'"               . web-mode)
+    ("\\.cshtml\\'"                . web-mode)
+    ("\\.[Mm]aster\\'"             . web-mode)
 ;;; X
-(progn
-  (jcs-add-auto-mode-alist '("\\.xml'?\\'" . nxml-mode)))
-
+    ("\\.xml'?\\'"                 . nxml-mode)
 ;;; Y
-(progn
-  (jcs-add-auto-mode-alist '("\\.yaml'?\\'" . yaml-mode))
-  (jcs-add-auto-mode-alist '("\\.yml'?\\'" . yaml-mode)))
+    ("\\.yaml'?\\'"                . yaml-mode)
+    ("\\.yml'?\\'"                 . yaml-mode))
+  auto-mode-alist))
 
 (provide 'jcs-mode)
 ;;; jcs-mode.el ends here
