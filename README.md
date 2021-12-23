@@ -70,7 +70,7 @@ from this configuration.
 * Dart / Dockerfile
 * Elixir / Elm / Emacs Lisp / Erlang
 * F# / Fountain
-* GLSL / Go / Godot Script / Groovy
+* GLSL / Go / GDScript / Groovy
 * Haskell / Haxe / HTML
 * INI
 * Java / JavaScript / JSON / JSX
