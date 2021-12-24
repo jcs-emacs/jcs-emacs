@@ -2,9 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'gitattributes-mode)
-(require 'gitconfig-mode)
-(require 'gitignore-mode)
+(require 'git-modes)
 
 (require 'gitignore-templates)
 
