@@ -254,7 +254,7 @@ OW is the other window flag."
 (defun jcs-dashboard-refresh-buffer ()
   "Update dashboard buffer by killing it and start a new one."
   (interactive)
-  (when (or (not jcs-emacs-ready-p)
+  (when (or (not after-init-time)
             (jcs-buffer-shown-p dashboard-buffer-name 'strict)
             jcs-dashboard--force-refresh-p)
     (jcs-mute-apply
@@ -268,7 +268,7 @@ OW is the other window flag."
   "Safely refresh the dashboard buffer if needed.
 
 If optional argument FORCE is non-nil, force refresh it."
-  (when (and (bound-and-true-p jcs-emacs-ready-p)
+  (when (and (bound-and-true-p after-init-time)
              (boundp 'dashboard-buffer-name)
              (jcs-buffer-shown-p dashboard-buffer-name 'strict))
     (unless jcs-dashboard--refreshing-p

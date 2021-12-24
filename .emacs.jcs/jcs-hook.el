@@ -194,9 +194,6 @@
 ;; (@* "Startup" )
 ;;
 
-(defvar jcs-emacs-ready-p nil
-  "Flag to check if Emacs is ready.")
-
 (defvar jcs-emacs-startup-directory nil
   "Record the startup directory.")
 
@@ -204,8 +201,7 @@
   "Hook run after Emacs is startup."
   (with-current-buffer jcs-scratch-buffer-name
     (setq jcs-scratch--content (buffer-string)))
-  (setq jcs-emacs-ready-p t
-        jcs-emacs-startup-directory default-directory))
+  (setq jcs-emacs-startup-directory default-directory))
 (add-hook 'emacs-startup-hook 'jcs-hook--emacs-startup)
 
 (provide 'jcs-hook)
