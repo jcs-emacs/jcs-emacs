@@ -10,9 +10,7 @@
 
 ;; NOTE: Add `GNU', `MELPA', `Marmalade', `ELPA' to repository list
 (setq package-archives
-      '(("celpa" . "https://celpa.conao3.com/packages/")
-        ("gnu" . "http://elpa.gnu.org/packages/")
-        ;;("marmalade" . "http://marmalade-repo.org/packages/")
+      '(("gnu" . "http://elpa.gnu.org/packages/")
         ("melpa" . "http://melpa.org/packages/")
         ("jcs" . "https://jcs-emacs.github.io/elpa/elpa/")))
 
@@ -224,7 +222,7 @@
   "List of packages this config needs.")
 
 (defconst jcs-package-pinned
-  '((company-box . celpa))
+  '((company-box . jcs))
   "List of pinned packages to a specific source.")
 
 ;;
