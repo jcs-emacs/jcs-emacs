@@ -74,6 +74,15 @@ time is displayed."
              break (<= ,repetitions cnt)))))
 
 ;;
+;; (@* "Module" )
+;;
+
+(defmacro jcs-with-eval-after-load-multiple (files &rest body)
+  "Execute BODY after one of the FILES is loaded."
+  (declare (indent 1) (debug t))
+  `(dolist (file ,files) (with-eval-after-load file ,@body)))
+
+;;
 ;; (@* "Advice" )
 ;;
 
@@ -1424,15 +1433,6 @@ Argument IN-VAL is input value to set to IN-VAR."
   "Do FNC with CNT from ST."
   (let ((index (or st 0)))
     (while (< index cnt) (funcall fnc index) (setq index (1+ index)))))
-
-;;
-;; (@* "Loading" )
-;;
-
-(defmacro jcs-with-eval-after-load-multiple (files &rest body)
-  "Execute BODY after one of the FILES is loaded."
-  (declare (indent 1) (debug t))
-  `(dolist (file ,files) (with-eval-after-load file ,@body)))
 
 ;;
 ;; (@* "Process Reporter" )
