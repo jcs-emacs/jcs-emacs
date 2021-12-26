@@ -77,6 +77,13 @@ time is displayed."
 ;; (@* "Module" )
 ;;
 
+(defmacro jcs-require (feature &optional filename noerror)
+  "Require FEATURE; it can be a list."
+  (declare (indent -1))
+  `(cond ((listp ,feature) (dolist (module ,feature) (require module ,filename ,noerror)))
+         ((symbolp ,feature) (require ,feature ,filename ,noerror))
+         (t (user-error "Unknown type to require %s" (type-of ,feature)))))
+
 (defmacro jcs-with-eval-after-load-multiple (files &rest body)
   "Execute BODY after one of the FILES is loaded."
   (declare (indent 1) (debug t))

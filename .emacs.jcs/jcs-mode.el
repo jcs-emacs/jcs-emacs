@@ -399,21 +399,15 @@ To avoid syntax highlighting error for comment.")
     (yaml-mode))
   "Alist of config modules to load.")
 
-(defun jcs-mode--require-module (mod)
-  "Require MOD; it can be a list."
-  (cond ((listp mod) (dolist (module mod) (require module)))
-        (t (require mod))))
-
 (defun jcs-mode-load-requires ()
   "Evaluate through `jcs-mode-load-alist' for all required modules."
   (dolist (data jcs-mode-load-alist)
     (let ((mode (car data)) (modules (cdr data)))
       (cond ((listp mode)
-             (jcs-with-eval-after-load-multiple mode
-               (jcs-mode--require-module modules)))
+             (jcs-with-eval-after-load-multiple mode (jcs-require modules)))
             (t
              (unless modules (setq modules (intern (format "jcs-%s" mode))))
-             (with-eval-after-load mode (jcs-mode--require-module modules)))))))
+             (with-eval-after-load mode (jcs-require modules)))))))
 
 ;;;
 ;; Auto mode Management
