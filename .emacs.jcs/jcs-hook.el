@@ -127,9 +127,8 @@
 (defun jcs-hook--init-delay ()
   "Delay some executions for faster speed."
   (jcs-with-gc-speed-up
-    (require 'jcs-edit)
-    (require 'jcs-comment)
-    (require 'jcs-vs)
+    (jcs-mode-load-requires)
+    (require 'jcs-edit) (require 'jcs-comment) (require 'jcs-vs)
     (global-alt-codes-mode 1)
     (global-auto-highlight-symbol-mode t)
     (auto-read-only-mode 1)
