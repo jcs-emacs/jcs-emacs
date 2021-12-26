@@ -99,7 +99,7 @@
 
 (defun jcs-hook--after-init ()
   "Hook run after initialize."
-  (require 'dashboard) (require 'diminish)
+  (jcs-require '(dashboard diminish))
   (powerline-default-theme)
   (use-ttf-set-default-font)
 
@@ -128,7 +128,7 @@
   "Delay some executions for faster speed."
   (jcs-with-gc-speed-up
     (jcs-mode-load-requires)
-    (require 'jcs-edit) (require 'jcs-comment) (require 'jcs-vs)
+    (jcs-require '(jcs-edit jcs-comment jcs-vs))
     (global-alt-codes-mode 1)
     (global-auto-highlight-symbol-mode t)
     (auto-read-only-mode 1)
