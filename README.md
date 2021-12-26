@@ -258,9 +258,7 @@ I believed detials make things better and make life smoother.
 
 A list of package archives that this configuration uses.
 
-* *[CELPA](https://celpa.conao3.com/)* - Conao3’s Emacs Lisp Package Archive
 * *[ELPA](https://elpa.gnu.org/packages/)* - Emacs Lisp Package Archive
-* ~~*[Marmalade](https://marmalade-repo.org/)* - where users upload their own packages~~
 * *[MELPA](https://melpa.org/#/)* - Milkypostman’s Emacs Lisp Package Archive
 * *[elpa (jcs)](https://github.com/jcs-emacs/elpa)* - Emacs Lisp Package Archive for this configuration
 
