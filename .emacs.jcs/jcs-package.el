@@ -44,6 +44,7 @@
     buffer-move
     buffer-wrap
     calfw
+    cargo-mode
     cask
     cask-mode
     ccls
