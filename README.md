@@ -118,7 +118,7 @@ without having to get used to an new IDE.
 
 Here is the list of few important and recent changes to this configuration.
 
-* `7.0.1` - Replace `quelpa` with `github-elpa`.
+* `7.1.0` - Replace `quelpa` with `github-elpa`.
 * `7.0.0` - Switch from [quickhelp](https://github.com/company-mode/company-quickhelp) to [box](https://github.com/sebastiencs/company-box) for company frontend.
 * `6.5.0` - Add pinned archive feature to package module.
 * `6.4.2` - You can now resolve package dependency graph while deleting package.
