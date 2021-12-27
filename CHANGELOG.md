@@ -30,6 +30,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Added new hook, when after theme loaded.
 * Disabled `highlight-indent-guides` by default inside terminal.
 * Replaced `jcs-emacs-ready-p` flag with `after-init-time` instead.
+* Installed new package `cargo-mode`.
 
 ## 7.0.0
 > Released Nov 17, 2021
