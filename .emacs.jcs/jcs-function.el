@@ -234,7 +234,7 @@
 OW is the other window flag."
   (interactive)
   (jcs-switch-to-buffer dashboard-buffer-name ow)
-  (unless (jcs-is-current-major-mode-p "dashboard-mode") (dashboard-mode))
+  (unless (eq major-mode dashboard-mode) (dashboard-mode))
   (jcs-dashboard-refresh-buffer))
 
 (defun jcs-dashboard-other-window ()
@@ -452,12 +452,10 @@ If optional argument FORCE is non-nil, force refresh it."
   (let* ((inhibit-modification-hooks t)
          (bound (jcs-region-bound))
          (start (car bound)) (end (cdr bound)))
-    (cond ((jcs-is-current-major-mode-p '("json-mode"))
-           (json-reformat-region start end))
-          ((jcs-is-current-major-mode-p '("nxml-mode" "xml-mode"
-                                          "web-mode" "html-mode"))
-           (sgml-pretty-print start end))
-          (t (user-error "[WARNING] No prettify command in this context")))))
+    (cl-case major-mode
+      (`json-mode (json-reformat-region start end))
+      ((or nxml-mode xml-mode web-mode html-mode) (sgml-pretty-print start end))
+      (t (user-error "[WARNING] No prettify command in this context")))))
 
 (defun jcs-minify-contents ()
   "Minify contents by removing newlines and whitespaces."

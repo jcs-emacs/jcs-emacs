@@ -253,7 +253,7 @@ To avoid syntax highlighting error for comment.")
 
 (defun jcs-prog-mode-hook ()
   "Programming language mode hook."
-  (unless (jcs-is-current-major-mode-p jcs-mode--dash-major-modes)
+  (unless (memq major-mode jcs-mode--dash-major-modes)
     (modify-syntax-entry ?- "_"))
 
   ;; Load Docstring faces.

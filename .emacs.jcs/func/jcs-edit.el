@@ -184,15 +184,15 @@
   (when jcs--marking-whole-buffer-p
     (unless (= jcs--marking-whole-buffer--curosr-pos (point))
       (deactivate-mark)
-      (setq jcs--marking-whole-buffer--curosr-pos -1)
-      (setq jcs--marking-whole-buffer-p nil))))
+      (setq jcs--marking-whole-buffer--curosr-pos -1
+            jcs--marking-whole-buffer-p nil))))
 
 (defun jcs-mark-whole-buffer ()
   "Mark the whole buffer."
   (interactive)
   (call-interactively #'mark-whole-buffer)
-  (setq jcs--marking-whole-buffer--curosr-pos (point))
-  (setq jcs--marking-whole-buffer-p t))
+  (setq jcs--marking-whole-buffer--curosr-pos (point)
+        jcs--marking-whole-buffer-p t))
 
 ;;
 ;; (@* "Overwrite" )
@@ -377,21 +377,15 @@ This command does not push text to `kill-ring'."
   (save-excursion
     (let (;; NOTE: this is the most common one.
           ;; Compatible to all programming languages use equal sign to assign value.
-          (align-regexp-string-code "\\(\\s-*\\)[=]")
+          (align-regexp-string-code (cl-case major-mode
+                                      (`nasm-mode "\\(\\s-*\\)equ ")
+                                      (`go-mode "\\(\\s-*\\) := ")
+                                      (t "\\(\\s-*\\)[=]")))
           ;; NOTE: Default support `//' and `/**/' comment symbols.
-          (align-regexp-string-comment "\\(\\s-*\\) /[/*]")
-          (pnt-min nil)
-          (pnt-max nil))
-      ;; Code RegExp String
-      (cond ((jcs-is-current-major-mode-p "nasm-mode")
-             (setq align-regexp-string-code "\\(\\s-*\\)equ "))
-            ((jcs-is-current-major-mode-p "go-mode")
-             (setq align-regexp-string-code "\\(\\s-*\\) := ")))
-
-      ;; Comment RegExp String
-      (cond ((jcs-is-current-major-mode-p "nasm-mode")
-             (setq align-regexp-string-comment "\\(\\s-*\\)               [;]")))
-
+          (align-regexp-string-comment (cl-case major-mode
+                                         (`nasm-mode "\\(\\s-*\\)               [;]")
+                                         (t "\\(\\s-*\\) /[/*]")))
+          pnt-min pnt-max)
       (if (use-region-p)
           ;; NOTE: Align region only.
           (progn
@@ -870,28 +864,23 @@ other window."
 
 (defun jcs-get-open-pair-char (c)
   "Get the open pairing character from C."
-  (let (pair-char)
-    (pcase c
-      ("\"" (setq pair-char '("\"")))
-      ("'" (setq pair-char '("'" "`")))
-      (")" (setq pair-char '("(")))
-      ("]" (setq pair-char '("[")))
-      ("}" (setq pair-char '("{")))
-      ("`" (setq pair-char '("`"))))
-    pair-char))
+  (pcase c
+    ("\"" '("\""))
+    ("'" '("'" "`"))
+    (")" '("("))
+    ("]" '("["))
+    ("}" '("{"))
+    ("`" '("`"))))
 
 (defun jcs-get-close-pair-char (c)
   "Get the list of close pairing character from C."
-  (let (pair-char)
-    (pcase c
-      ("\"" (setq pair-char '("\"")))
-      ("'" (setq pair-char '("'")))
-      ("(" (setq pair-char '(")")))
-      ("[" (setq pair-char '("]")))
-      ("{" (setq pair-char '("}")))
-      ("`" (setq pair-char '("`" "'"))))
-    pair-char))
-
+  (pcase c
+    ("\"" '("\""))
+    ("'" '("'"))
+    ("(" '(")"))
+    ("[" '("]"))
+    ("{" '("}"))
+    ("`" '("`" "'"))))
 
 (defun jcs-forward-delete-close-pair-char (cpc)
   "Forward delete close pair characters CPC."
@@ -993,8 +982,7 @@ CC : Current character at position."
   (isearch-project-forward-symbol-at-point))
 
 (defun jcs--use-isearch-project-p ()
-  "Return non-nil is using `isearch-project'.
-Otherwise return nil."
+  "Return non-nil is using `isearch-project'."
   (advice-member-p 'isearch-project--advice-isearch-repeat-after 'isearch-repeat))
 
 (defun jcs-isearch-repeat-backward ()

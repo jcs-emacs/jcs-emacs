@@ -277,31 +277,22 @@ If optional argument WITH-EXT is non-nil; return path with extension."
 
 (defun jcs-find-corresponding-file (&optional ow)
   "Find the file that corresponds to this one.
-OW : Open file other window."
+If OW is non-nil, open it in other window"
   (interactive)
-  (require 'f)
-  (let (corresponding-file-name found-fp)
-    ;; NOTE: Add your corresponding file here.
-    (cond ((jcs-is-current-major-mode-p
-            '("c-mode"
-              "c++-mode"))
-           (setq corresponding-file-name (jcs-cc-corresponding-file)))
-          ((jcs-is-current-major-mode-p
-            '("objc-mode"))
-           (setq corresponding-file-name (jcs-objc-corresponding-file)))
-          ((jcs-is-current-major-mode-p
-            '("csharp-mode"  ; For ASP.NET -> [file-name].aspx.cs
-              "web-mode"))   ; For ASP.NET -> [file-name].aspx
-           (setq corresponding-file-name (jcs-web-corresponding-file))))
-
-    ;; Error check before return it value.
-    (if corresponding-file-name
-        (progn
-          (setq found-fp
-                (jcs-find-file-in-project-and-current-dir corresponding-file-name
-                                                          "Corresponding file: "))
-          (if ow (jcs-find-file-other-window found-fp) (find-file found-fp)))
-      (user-error "[WARNING] Unable to find a corresponding file"))))
+  (require 'f) (require 'subr-x)
+  (if-let* ((corresponding-file-name
+             ;; NOTE: Add your corresponding file here.
+             (cl-case major-mode
+               ((or c-mode c++-mode) (jcs-cc-corresponding-file))
+               (`objc-mode (jcs-objc-corresponding-file))
+               ((or csharp-mode  ; For ASP.NET -> [file-name].aspx.cs
+                    web-mode)    ; For ASP.NET -> [file-name].aspx
+                (jcs-web-corresponding-file))))
+            (found-fp (jcs-find-file-in-project-and-current-dir
+                       corresponding-file-name "Corresponding file: "))
+            (fnc (if ow #'jcs-find-file-other-window #'find-file)))
+      (funcall fnc found-fp)
+    (user-error "[WARNING] Unable to find a corresponding file")))
 
 (defun jcs-find-corresponding-file-other-window ()
   "Find the file that corresponds to this one."
@@ -313,22 +304,22 @@ OW : Open file other window."
 
 (defun jcs-cc-corresponding-file ()
   "Find the corresponding file for C/C++ file."
-  (let ((tmp-base-file-name (f-filename (file-name-sans-extension (buffer-name))))
+  (let ((tbfn (f-filename (file-name-sans-extension (buffer-name))))
         corresponding-file-name)
     (cond ((string-match "\\.hin" buffer-file-name)
-           (setq corresponding-file-name (concat tmp-base-file-name ".cin")))
+           (setq corresponding-file-name (concat tbfn ".cin")))
           ((string-match "\\.hpp" buffer-file-name)
-           (setq corresponding-file-name (concat tmp-base-file-name ".cpp")))
+           (setq corresponding-file-name (concat tbfn ".cpp")))
           ((string-match "\\.h" buffer-file-name)
-           (if (file-exists-p (concat tmp-base-file-name ".c"))
-               (setq corresponding-file-name (concat tmp-base-file-name ".c"))
-             (setq corresponding-file-name (concat tmp-base-file-name ".cpp"))))
+           (if (file-exists-p (concat tbfn ".c"))
+               (setq corresponding-file-name (concat tbfn ".c"))
+             (setq corresponding-file-name (concat tbfn ".cpp"))))
           ((string-match "\\.cin" buffer-file-name)
-           (setq corresponding-file-name (concat tmp-base-file-name ".hin")))
+           (setq corresponding-file-name (concat tbfn ".hin")))
           ((string-match "\\.cpp" buffer-file-name)
-           (setq corresponding-file-name (concat tmp-base-file-name ".h")))
+           (setq corresponding-file-name (concat tbfn ".h")))
           ((string-match "\\.c" buffer-file-name)
-           (setq corresponding-file-name (concat tmp-base-file-name ".h"))))
+           (setq corresponding-file-name (concat tbfn ".h"))))
     corresponding-file-name))
 
 ;;----------------------------------------------------------------------------
@@ -336,10 +327,10 @@ OW : Open file other window."
 
 (defun jcs-objc-corresponding-file ()
   "Find the corresponding file for Objective-C related file."
-  (let ((tmp-base-file-name (file-name-sans-extension buffer-file-name))
+  (let ((tbfn (file-name-sans-extension buffer-file-name))
         corresponding-file-name)
     (cond ((string-match "\\.m" buffer-file-name)
-           (setq corresponding-file-name (concat tmp-base-file-name ".h"))))
+           (setq corresponding-file-name (concat tbfn ".h"))))
     ;; If Objective-C corresponding file not found, use C/C++ corresponding
     ;; file instead.
     (when (string-empty-p corresponding-file-name)
@@ -352,12 +343,12 @@ OW : Open file other window."
 
 (defun jcs-web-corresponding-file ()
   "Find the corresponding file for WEB related file."
-  (let ((tmp-base-file-name (file-name-sans-extension buffer-file-name))
+  (let ((tbfn (file-name-sans-extension buffer-file-name))
         corresponding-file-name)
     (cond ((string-match "\\.aspx.cs" buffer-file-name)
-           (setq corresponding-file-name tmp-base-file-name))
+           (setq corresponding-file-name tbfn))
           ((string-match "\\.aspx" buffer-file-name)
-           (setq corresponding-file-name (concat tmp-base-file-name ".aspx.cs"))))
+           (setq corresponding-file-name (concat tbfn ".aspx.cs"))))
     ;; NOTE: If is ASP.NET, just open the current file itself.
     (when (string-empty-p corresponding-file-name)
       (setq corresponding-file-name buffer-file-name))

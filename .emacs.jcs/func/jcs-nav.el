@@ -15,7 +15,7 @@
            (not (or (ignore-errors (lsp-goto-type-definition))
                     (ignore-errors (lsp-goto-implementation)))))
       t)
-     ((jcs-is-current-major-mode-p jcs-elisp-def-modes)
+     ((memq major-mode jcs-elisp-def-modes)
       (if (ignore-errors (call-interactively #'elisp-def))
           (progn (jcs-recenter-top-bottom 'middle) t)
         (user-error "[INFO] No definition found for current target")))

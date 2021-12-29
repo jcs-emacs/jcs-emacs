@@ -46,7 +46,7 @@
   (jcs-bind-key (kbd "C-d") #'jcs-shell-kill-whole-line)
   (jcs-bind-key (kbd "<backspace>") #'jcs-shell-backspace))
 
-(add-hook 'shell-mode-hook #'jcs-shell-mode-hook)
+(add-hook 'shell-mode-hook 'jcs-shell-mode-hook)
 (add-hook 'eshell-mode-hook 'jcs-shell-mode-hook)
 
 (provide 'jcs-shell-mode)

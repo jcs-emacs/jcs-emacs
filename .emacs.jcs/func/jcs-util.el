@@ -1218,20 +1218,7 @@ Argument TYPE see function `jcs-string-compare-p' for more information."
 (defun jcs-print-current-major-mode ()
   "Print out the current major mode."
   (interactive)
-  (message "[INFO] Current major mode: %s" (symbol-name major-mode)))
-
-(defun jcs-is-current-major-mode-p (mns)
-  "Check if this major modes MNS."
-  (cond ((stringp mns) (string= (symbol-name major-mode) mns))
-        ((listp mns)
-         (let ((index 0) (len (length mns)) current-mode-name found)
-           (while (and (< index len) (not found))
-             (setq current-mode-name (nth index mns)
-                   found (jcs-is-current-major-mode-p current-mode-name)
-                   index (1+ index)))
-           found))
-        ((symbolp mns) (equal major-mode mns))
-        (t nil)))
+  (message "[INFO] Current major mode: %s" major-mode))
 
 (defun jcs-re-enable-mode-if-was-enabled (modename)
   "Re-enable the MODENAME if was enabled."

@@ -14,13 +14,16 @@
                                                 "C++"
                                                 "Java"
                                                 "Python"))))
-  (pcase lan
-    ("Default (empty)")  ; Does nothing
-    ("Assembly" (call-interactively 'jcs-ask-makefile-cc-template))
-    ("C" (call-interactively 'jcs-ask-makefile-cc-template))
-    ("C++" (call-interactively 'jcs-ask-makefile-cc-template))
-    ("Java" (call-interactively 'jcs-ask-makefile-java-template))
-    ("Python" (call-interactively 'jcs-ask-makefile-python-template))))
+  (when-let
+      ((fnc
+        (pcase lan
+          ("Default (empty)")  ; Does nothing
+          ("Assembly" #'jcs-ask-makefile-cc-template)
+          ("C" #'jcs-ask-makefile-cc-template)
+          ("C++" #'jcs-ask-makefile-cc-template)
+          ("Java" #'jcs-ask-makefile-java-template)
+          ("Python" #'jcs-ask-makefile-python-template))))
+    (call-interactively fnc)))
 
 (defun jcs-ask-makefile-cc-template (type)
   "Ask makefile template type in Assembly, C, C++.

@@ -20,9 +20,9 @@
 (defun jcs-impatient-by-mode (args)
   "Enable/Disable `impatient-mode' by ARGS"
   (require 'impatient-mode)
-  (cond ((jcs-is-current-major-mode-p '("markdown-mode"))
-         (impatient-showdown-mode args))
-        (t (jcs-impatient-mode args))))
+  (cl-case major-mode
+    (`markdown-mode (impatient-showdown-mode args))
+    (t (jcs-impatient-mode args))))
 
 (defun jcs-impatient-start ()
   "Start real time editing with default port."

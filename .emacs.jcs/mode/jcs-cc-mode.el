@@ -8,7 +8,7 @@
 (defun jcs-toggle-c-comment-style ()
   "Toggle comment style between /* */ and //."
   (interactive)
-  (when (jcs-is-current-major-mode-p '("c-mode" "c++-mode"))
+  (when (memq major-mode '(c-mode c++-mode))
     (if (string= comment-start "// ")
         (setq comment-start "/*"
               comment-start-skip "/\\*+[ \t]*"
