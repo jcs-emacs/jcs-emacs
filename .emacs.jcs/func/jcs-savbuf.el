@@ -107,25 +107,15 @@ This variable is used to check if file are edited externally.")
 
 (defun jcs-save-buffer-function ()
   "Return save buffer function by mode."
-  (cond
-   ((jcs-is-current-major-mode-p '("snippet-mode"))
-    #'jcs-save-buffer)
-   ((jcs-is-current-major-mode-p '("java-mode"))
-    #'jcs-java-untabify-save-buffer)
-   ((jcs-is-current-major-mode-p '("cmake-mode"
-                                   "makefile-mode"))
-    #'jcs-tabify-save-buffer)
-   ((jcs-is-current-major-mode-p '("sh-mode"))
-    #'jcs-sh-untabify-save-buffer)
-   ((jcs-is-current-major-mode-p '("conf-javaprop-mode"
-                                   "ini-mode"
-                                   "org-mode"
-                                   "view-mode"))
-    #'save-buffer)
-   ((jcs-is-current-major-mode-p '("scss-mode"
-                                   "ini-mode"))
-    #'jcs-css-save-buffer)
-   (t #'jcs-save-buffer-default)))
+  (cl-case major-mode
+    (`snippet-mode #'jcs-save-buffer)
+    (`java-mode #'jcs-java-untabify-save-buffer)
+    ((or cmake-mode makefile-mode) #'jcs-tabify-save-buffer)
+    (`sh-mode #'jcs-sh-untabify-save-buffer)
+    ((or conf-javaprop-mode ini-mode org-mode view-mode diff-mode)
+     #'save-buffer)
+    ((or scss-mode css-mode))
+    (t #'jcs-save-buffer-default)))
 
 (provide 'jcs-savbuf)
 ;;; jcs-savbuf.el ends here
