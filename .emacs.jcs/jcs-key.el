@@ -299,7 +299,8 @@
 (define-key global-map (kbd "M-<delete>") #'jcs-forward-kill-word-capital)
 
 ;;; Line Endings
-(define-key global-map (kbd "C-k C-e") #'set-buffer-file-coding-system)
+(define-key global-map (kbd "M-i") #'show-eol-mode)
+(define-key global-map (kbd "M-I") #'set-buffer-file-coding-system)
 
 ;;; Mark
 (define-key global-map "\e " #'set-mark-command)

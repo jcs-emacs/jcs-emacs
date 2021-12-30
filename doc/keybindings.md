@@ -41,7 +41,7 @@ Here is the list of key bindins that defined in this configuration.
   * <kbd>Alt</kbd>+<kbd>f12</kbd> - Peek declaration/definition.
   * <kbd>f7</kbd> - Open same file other window.
   * <kbd>f8</kbd> - Open corresponding file other window, if not found open same file instead.
-  * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>Ctrl</kbd>+<kbd>e</kbd> - Switch file coding system.
+  * <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>i</kbd> - Change file coding system.
   * <kbd>Ctrl</kbd>+<kbd>r</kbd>, <kbd>b</kbd> - Open RE-Builder mode window.
   * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>r</kbd> - Reveal file in folder.
 
@@ -275,6 +275,7 @@ Here is the list of key bindins that defined in this configuration.
 * <kbd>Alt</kbd>+<kbd>-</kbd> - Frame transparent decrease.
 * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>f</kbd> - Change font style.
 * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>m</kbd> - Toggle minimap.
+* <kbd>Alt</kbd>+<kbd>i</kbd> - Show End of Line.
 
 ### Windows
 

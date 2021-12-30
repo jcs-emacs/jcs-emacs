@@ -439,7 +439,7 @@ If optional argument FORCE is non-nil, force refresh it."
 (defun jcs-toggle-minimap ()
   "Toggle minimap."
   (interactive)
-  (user-error "Minimap no longer supported in this configuration"))
+  (user-error "[INFO] Minimap no longer supported in this configuration"))
 
 ;;
 ;; (@* "Prettify / Minify" )
