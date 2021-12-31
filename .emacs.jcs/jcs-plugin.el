@@ -148,7 +148,7 @@
   :defer-config
   (unless (display-graphic-p)
     (push 'company-echo-metadata-frontend company-frontends))
-  (with-eval-after-load 'company (require 'jcs-company)))
+  (require 'jcs-company))
 
 (leaf company-box
   :hook (company-mode-hook . company-box-mode)
@@ -429,10 +429,6 @@
   :init
   (with-eval-after-load 'eshell
     (eshell-syntax-highlighting-global-mode +1)))
-
-(leaf eww
-  :init
-  (setq eww-search-prefix "https://www.google.com/search?q="))
 
 (leaf exec-path-from-shell
   :defer-config
