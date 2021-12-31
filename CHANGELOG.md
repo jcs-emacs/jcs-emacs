@@ -8,7 +8,11 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 7.1.1 (Unreleased)
 > Released N/A
 
-* N/A
+* Correct save buffer logic for `css-mode`.
+* Update EOL related key bindings.
+* Remove all "is" major mode logic.
+* Add `inhibit-modification-hooks` to with no redisplay macro.
+* Add `display-buffer-alist` to with no redisplay macro.
 
 ## 7.1.0
 > Released Dec 27, 2021
