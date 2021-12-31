@@ -234,7 +234,7 @@
 OW is the other window flag."
   (interactive)
   (jcs-switch-to-buffer dashboard-buffer-name ow)
-  (unless (eq major-mode dashboard-mode) (dashboard-mode))
+  (unless (eq major-mode 'dashboard-mode) (dashboard-mode))
   (jcs-dashboard-refresh-buffer))
 
 (defun jcs-dashboard-other-window ()
