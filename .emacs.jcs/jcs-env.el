@@ -149,6 +149,11 @@
 (defconst jcs-smart-closing-parens '("}" ")" "]")
   "List of closing parenthesis.")
 
+;;; Web Wowser
+(leaf eww
+  :init
+  (setq eww-search-prefix "https://www.google.com/search?q="))
+
 ;;; Find File
 (defvar jcs-current-created-parent-dir-path nil
   "Globally record the virutally created parent dir path.")
@@ -163,8 +168,7 @@
   (let* ((virtual-path (s-replace d-f "" path))
          (split-paths (f-split virtual-path)) (split-path-item "")
          (prev-path (f-slash d-f)) (test-path prev-path)
-         (index 0) (break-it nil)
-         (result-path nil))
+         (index 0) break-it result-path)
     (while (and (< index (length split-paths)) (not break-it))
       (setq split-path-item (nth index split-paths)
             test-path (f-slash (f-join test-path split-path-item)))
@@ -218,17 +222,17 @@
   "These buffers wouldn't be ignored line numbers mode.")
 
 (defconst jcs-line-numbers-ignore-modes
-  '("Custom-mode"
-    "dired-mode"
-    "doc-view-mode"
-    "eww-mode"
-    "help-mode"
-    "image-mode"
-    "message-mode"
-    "outline-mode"
-    "package-menu-mode"
-    "treemacs-mode")
-  "List of modes that you do not want to show line numbers in it.")
+  '(Custom-mode
+    dired-mode
+    doc-view-mode
+    eww-mode
+    help-mode
+    image-mode
+    message-mode
+    outline-mode
+    package-menu-mode
+    treemacs-mode)
+  "List of modes that you do not want to show line numbers.")
 
 ;;; Messages
 (defconst jcs-message-log-max (* 1000 10)
