@@ -8,30 +8,7 @@
 
 (leaf auto-highlight-symbol
   :init
-  (setq ahs-idle-interval 0.15)
-  :defer-config
-  (defun jcs--ahs--set-face (face bg)
-    "Set FACE with BG and BOX for `auto-highlight-symbol'."
-    (set-face-attribute face nil :foreground nil :background bg
-                        :box `(:line-width -1 :style pressed-button :color "#525D68")))
-  (defun jcs--ahs--theme (light-p)
-    "Update theme for `auto-highlight-symbol'."
-    (let ((focused-color (if light-p "#E2E6D6" "#123E70"))
-          (unfocused-color (if light-p "#F1F2EE" "#0E3056")))
-      (jcs--ahs--set-face 'ahs-plugin-default-face focused-color)
-      (jcs--ahs--set-face 'ahs-plugin-default-face-unfocused unfocused-color)
-      (if light-p
-          (progn
-            (jcs--ahs--set-face 'ahs-face focused-color)
-            (jcs--ahs--set-face 'ahs-definition-face focused-color)
-            (jcs--ahs--set-face 'ahs-face-unfocused unfocused-color)
-            (jcs--ahs--set-face 'ahs-definition-face-unfocused unfocused-color))
-        (jcs--ahs--set-face 'ahs-face focused-color)
-        (jcs--ahs--set-face 'ahs-definition-face focused-color)
-        (jcs--ahs--set-face 'ahs-face-unfocused unfocused-color)
-        (jcs--ahs--set-face 'ahs-definition-face-unfocused unfocused-color))))
-  (jcs-theme-call #'jcs--ahs--theme)
-  (add-hook 'jcs-after-load-theme-hook #'jcs--ahs--theme))
+  (setq ahs-idle-interval 0.15))
 
 (leaf auto-read-only
   :defer-config
@@ -97,33 +74,7 @@
   (setq centaur-tabs-set-icons nil
         centaur-tabs-style "wave"
         centaur-tabs-set-modified-marker t
-        centaur-tabs-modified-marker "*")
-  :defer-config
-  (defun jcs--centaur-tabs--theme (light-p)
-    "Update theme for `centaur-tabs'."
-    (let ((bg-default (if light-p "#D3D3D3" "#1D1D1D"))
-          (bg-tab-unselected (if light-p "#E8E8E8" "#3D3C3D"))
-          (fg-tab-unselected "grey50")
-          (bg-tab-selected (if light-p "#E8E8E8" "#31343E"))
-          (fg-tab-selected (if light-p "black" "white")))
-      (set-face-attribute centaur-tabs-display-line nil :background bg-default
-                          :box nil :overline nil :underline nil)
-      (custom-set-faces
-       `(centaur-tabs-default ((t (:background ,bg-default))))
-       `(centaur-tabs-unselected
-         ((t (:background ,bg-tab-unselected :foreground ,fg-tab-unselected))))
-       `(centaur-tabs-selected
-         ((t (:background ,bg-tab-selected :foreground ,fg-tab-selected))))
-       `(centaur-tabs-unselected-modified
-         ((t (:background ,bg-tab-unselected :foreground ,fg-tab-unselected))))
-       `(centaur-tabs-selected-modified
-         ((t (:background ,bg-tab-selected :foreground ,fg-tab-selected))))
-       `(centaur-tabs-modified-marker-unselected
-         ((t (:background ,bg-tab-unselected :foreground ,fg-tab-unselected))))
-       `(centaur-tabs-modified-marker-selected
-         ((t (:background ,bg-tab-selected :foreground ,fg-tab-selected)))))))
-  (jcs-theme-call #'jcs--centaur-tabs--theme)
-  (add-hook 'jcs-after-load-theme-hook #'jcs--centaur-tabs--theme))
+        centaur-tabs-modified-marker "*"))
 
 (leaf company
   :init
@@ -248,17 +199,9 @@
   (require 'jcs-dashboard) (require 'dashboard-ls)
   (dashboard-setup-startup-hook)
 
-  (defun jcs--dashboard--theme (light-p)
+  (defun jcs--dashboard--theme (&rest _)
     "Update theme for `dashboard'."
     (setq dashboard-startup-banner (jcs-dashboard--get-banner-path))
-    (let ((logo-title-fg "cyan1") (heading-fg "#17A0FB") (wb-fg "light steel blue"))
-      (when light-p
-        (setq logo-title-fg "#616161"
-              heading-fg "#727272"
-              wb-fg "#1475B7"))
-      (jcs-face-fg 'dashboard-banner-logo-title logo-title-fg)
-      (jcs-face-fg 'dashboard-heading heading-fg)
-      (set-face-attribute 'widget-button nil :weight 'normal :foreground wb-fg))
     (jcs-dashboard-refresh-buffer))
   (jcs-theme-call #'jcs--dashboard--theme)
   (add-hook 'jcs-after-load-theme-hook #'jcs--dashboard--theme))
@@ -955,8 +898,6 @@
 (leaf tree-sitter-langs
   :hook (tree-sitter-after-on-hook . tree-sitter-hl-mode)
   :defer-config
-  (jcs-funcall-fboundp #'jcs-reset-common-faces-by-theme)
-
   (defconst jcs--tree-sitter-langs--query-repo
     "https://github.com/jcs-emacs/tree-sitter-queries"
     "Repository URL where stores all tree-sitter highlight queries.")
@@ -1104,17 +1045,7 @@
 (leaf yascroll
   :init
   (setq yascroll:delay-to-hide 0.8
-        yascroll:priority 50)
-  :defer-config
-  (defun jcs--yascroll--theme (light-p)
-    "Update theme for `yascroll'."
-    (let ((target-color (if (jcs-light-theme-p) "#C2C3C9" "#686868")))
-      (set-face-attribute (if (display-graphic-p) 'yascroll:thumb-fringe
-                            'yascroll:thumb-text-area)
-                          nil
-                          :background target-color :foreground target-color)))
-  (jcs-theme-call #'jcs--yascroll--theme)
-  (add-hook 'jcs-after-load-theme-hook #'jcs--yascroll--theme))
+        yascroll:priority 50))
 
 (leaf yasnippet
   :init

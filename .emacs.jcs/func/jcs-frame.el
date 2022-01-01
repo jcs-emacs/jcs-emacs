@@ -4,7 +4,7 @@
 
 (defun jcs-after-make-frame-functions-hook (frame)
   "Resetting the new FRAME just created."
-  (jcs-refresh-theme)
+  (jcs-theme-refresh)
   (select-frame frame)
   ;; split the winodw after create the new window
   (split-window-horizontally))

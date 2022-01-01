@@ -273,15 +273,6 @@
 
 (setq command-error-function #'jcs--command-error-function)
 
-;;; Parentheses
-(leaf paren
-  :init
-  (add-hook 'jcs-after-load-theme-hook
-            (lambda (light-p)
-              (require 'paren)
-              (let ((color (if light-p "#C6E370" "#113D6F")))
-                (set-face-background 'show-paren-match color)))))
-
 ;;; Previous/Next keys
 (defcustom jcs-prev/next-key-type 'smart
   "Key definition for previous and next line.

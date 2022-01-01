@@ -3,63 +3,12 @@
 ;;; Code:
 
 ;;
-;; (@* "Regular Faces" )
+;; (@* "Common" )
 ;;
 
 (defun jcs-face-fg (face fg)
   "Set the FACE foreground FG."
   (set-face-attribute face nil :foreground fg))
-
-(defun jcs--apply-face-map (face-map)
-  "Apply FACE-MAP with function `jcs-face-fg'."
-  (let ((light-theme-p (jcs-light-theme-p)))
-    (dolist (face-data face-map)
-      (let ((face (car face-data)) (color (cdr face-data)))
-        (setq color
-              (cond ((listp color)
-                     (if (= (length color) 1) (nth 0 color)
-                       (if light-theme-p (nth 0 color) (nth 1 color))))
-                    (t color)))
-        (jcs-face-fg face color)))))
-
-(defun jcs-reset-common-faces-by-theme ()
-  "Reset comment faces case on the theme."
-  (let ((face-map
-         `((font-lock-builtin-face . ("#0C6EEF" "light steel blue"))
-           (font-lock-comment-face . ("olive drab"))
-           (font-lock-constant-face . ("#2B91AF" "#38EFCA"))
-           (font-lock-doc-face . ("olive drab"))
-           (font-lock-function-name-face . ("#74534B" "#D2D2D2"))
-           (font-lock-keyword-face . ("#0000FF" "#17A0FB"))
-           (font-lock-preprocessor-face . ("#808080" "#8D9B99"))
-           (font-lock-string-face . ("#B21515" "#D69D78"))
-           (font-lock-type-face . ("#2B91AF" "#38EFCA"))
-           (font-lock-variable-name-face . ("#000000" "#D2D2D2")))))
-    (jcs--apply-face-map face-map))
-
-  (when (featurep 'tree-sitter-hl)
-    (let ((face-map
-           `((tree-sitter-hl-face:tag . ("#900022" "#D7A552"))
-             (tree-sitter-hl-face:type.builtin . ("#0000FF" "#17A0FB"))
-             (tree-sitter-hl-face:type . ("#2B91AF" "#38EFCA"))
-             (tree-sitter-hl-face:function . ("black" "#D2D2D2"))
-             (tree-sitter-hl-face:function.call . ("black" "#D2D2D2"))
-             (tree-sitter-hl-face:variable.parameter . ("#808080" "#7F7F7F"))
-             (tree-sitter-hl-face:property . ("#2F4F4F" "#B5CEA8"))
-             (tree-sitter-hl-face:property.definition . ("#2F4F4F" "#B5CEA8"))
-             (tree-sitter-hl-face:punctuation . ("#020000" "#B4B4B3"))
-             (tree-sitter-hl-face:operator . ("#020000" "#B4B4B3"))
-             (tree-sitter-hl-face:number . ("black" "#B5CEA8"))
-             (tree-sitter-hl-face:constant . ("#6F008A" "#B363BE"))
-             (tree-sitter-hl-face:constant.builtin . ("#0000FF" "#17A0FB"))
-             (tree-sitter-hl-face:keyword . ("#0000FF" "#17A0FB"))
-             (tree-sitter-hl-face:variable . ("#000000" "#D2D2D2"))
-             (tree-sitter-hl-face:variable.special . ("#6F008A" "#B363BE")))))
-      (jcs--apply-face-map face-map))))
-
-;;
-;; (@* "Common" )
-;;
 
 (defface jcs-font-lock-null-face
   '((t (:foreground "LightSteelBlue")))
