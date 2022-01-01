@@ -282,7 +282,7 @@ If optional argument FORCE is non-nil, force refresh it."
            :success (lambda () (jcs-dashboard-refresh-buffer))))))))
 
 (defun jcs-dashboard--get-banner-path ()
-  "Return the path of the banner."
+  "Return banner path."
   (cond ((display-graphic-p)
          (if (jcs-light-theme-p) "~/.emacs.jcs/banner/sink_black.png"
            "~/.emacs.jcs/banner/sink_white.png"))
