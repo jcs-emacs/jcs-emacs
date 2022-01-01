@@ -13,6 +13,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Remove all "is" major mode logic.
 * Add `inhibit-modification-hooks` to with no redisplay macro.
 * Add `display-buffer-alist` to with no redisplay macro.
+* Move exteneral theme setitings to default theme packages, [vs-light](https://github.com/emacs-vs/vs-light-theme) and [vs-dark](https://github.com/emacs-vs/vs-dark-theme).
 
 ## 7.1.0
 > Released Dec 27, 2021
