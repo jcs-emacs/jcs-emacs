@@ -388,27 +388,16 @@
     (flx-rs-load-dyn)
     (advice-add 'flx-score :override #'flx-rs-score)))
 
+(leaf flycheck
+  :defer-config
+  (advice-add 'flycheck-display-error-messages
+              :around (lambda (fnc &rest args) (jcs-no-log-apply (apply fnc args)))))
+
 (leaf flycheck-grammarly
   :hook (flycheck-mode-hook . (lambda () (require 'flycheck-grammarly))))
 
 (leaf flycheck-languagetool
   :hook (flycheck-mode-hook . (lambda () (require 'flycheck-languagetool))))
-
-(leaf flycheck-popup-tip
-  :init
-  (defun jcs--flycheck-mode--pos-tip--advice-after (&rest _)
-    "Advice runs after `flycheck-mode' function with `flycheck-popup-tip'."
-    (jcs-enable-disable-mode-if 'flycheck-popup-tip-mode
-                                (and (not (display-graphic-p)) flycheck-mode)))
-  (advice-add 'flycheck-mode :after #'jcs--flycheck-mode--pos-tip--advice-after))
-
-(leaf flycheck-pos-tip
-  :init
-  (defun jcs--flycheck-mode--pos-tip--advice-after (&rest _)
-    "Advice runs after `flycheck-mode' function with `flycheck-pos-tip'."
-    (jcs-enable-disable-mode-if 'flycheck-pos-tip-mode
-                                (and (display-graphic-p) flycheck-mode)))
-  (advice-add 'flycheck-mode :after #'jcs--flycheck-mode--pos-tip--advice-after))
 
 (leaf google-translate
   :init
