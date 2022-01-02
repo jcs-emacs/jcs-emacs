@@ -16,6 +16,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Move exteneral theme setitings to default theme packages, [vs-light](https://github.com/emacs-vs/vs-light-theme) and [vs-dark](https://github.com/emacs-vs/vs-dark-theme).
 * Add `@` symbol as one of the company trigger symbol.
 * Fix issue when add company backend will effect across all buffers.
+* Remove package `flycheck-popup-tip`.
+* Remove package `flycheck-pos-tip`.
+* Disable logging when printing out error messages from `flycheck`.
 
 ## 7.1.0
 > Released Dec 27, 2021
