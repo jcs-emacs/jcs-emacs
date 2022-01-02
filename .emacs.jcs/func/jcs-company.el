@@ -33,6 +33,7 @@
         (add-to-list 'company-fuzzy--recorded-backends backend t)
         (setq company-fuzzy--backends (delete-dups company-fuzzy--backends)
               company-fuzzy--recorded-backends (delete-dups company-fuzzy--recorded-backends)))
+    (make-local-variable 'company-backends)
     (add-to-list 'company-backends backend t)
     (setq company-backends (delete-dups company-backends))))
 
