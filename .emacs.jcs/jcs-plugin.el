@@ -632,6 +632,7 @@
                               ,(face-foreground 'font-lock-variable-name-face))
         lsp-ui-sideline-enable t
         lsp-ui-sideline-show-hover nil
+        lsp-ui-sideline-show-code-actions t
         lsp-ui-sideline-show-diagnostics nil
         lsp-ui-sideline-ignore-duplicate t)
   (defun jcs--lsp-ui-doc--hide-frame ()
