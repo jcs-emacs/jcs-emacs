@@ -97,8 +97,6 @@
     flx-rs
     flycheck-grammarly
     flycheck-languagetool
-    flycheck-popup-tip
-    flycheck-pos-tip
     fountain-mode
     fsharp-mode
     gdscript-mode
