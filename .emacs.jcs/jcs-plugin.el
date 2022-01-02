@@ -147,7 +147,7 @@
   (setq company-fuzzy-sorting-backend 'flx
         company-fuzzy-prefix-on-top nil
         company-fuzzy-history-backends '(company-yasnippet)
-        company-fuzzy-trigger-symbols '("." "->" "<" "\"" "'")))
+        company-fuzzy-trigger-symbols '("." "->" "<" "\"" "'" "@")))
 
 (leaf counsel
   :init
