@@ -18,7 +18,6 @@
   "Execute BODY without any redisplay execution."
   (declare (indent 0) (debug t))
   `(let ((inhibit-redisplay t)
-         (inhibit-modification-hooks t)
          buffer-list-update-hook
          display-buffer-alist
          window-configuration-change-hook
