@@ -774,7 +774,12 @@
   ;; Override
   (defpowerline powerline-vc
     (when (jcs-vc-status)
-      (format " %s%s" (jcs-vc-project) (jcs-vc-info)))))
+      (format " %s%s" (jcs-vc-project) (jcs-vc-info))))
+
+  (defun jcs--powerline--theme (&rest _)
+    "Update theme for `powerline'."
+    (jcs-reload-active-mode))
+  (add-hook 'jcs-after-load-theme-hook #'jcs--powerline--theme))
 
 (leaf project
   :defer-config
