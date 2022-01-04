@@ -64,8 +64,8 @@ POWER-AC-LST : powerline active list.  POWER-INAC-LST : powerline inactive list.
   (if (jcs-light-theme-p)
       (jcs--set-mode-line-theme
        '("#1C1C1C" "#BFBFBF") '("#CCCCCC" "#4D4D4D") "#161616"
-       '("#1C1C1C" "#D8D8D8" "#000000" "#B8B8B8" "#1C1C1C" "#C7C7C7")
-       '("#1C1C1C" "#CCCCCC" "#000000" "#B8B8B8" "#1C1C1C" "#C7C7C7"))
+       '("#1C1C1C" "#EBEBEB" "#000000" "#B8B8B8" "#1C1C1C" "#C7C7C7")
+       '("#1C1C1C" "#DEDEDE" "#000000" "#B8B8B8" "#1C1C1C" "#C7C7C7"))
     (jcs--set-mode-line-theme
      '("#1C1C1C" "#BFBFBF") '("#CCCCCC" "#4D4D4D") "#D2D2D2"
      '("#1C1C1C" "#CCCCCC" "#CCCCCC" "#1C1C1C" "#CCCCCC" "#333333")
