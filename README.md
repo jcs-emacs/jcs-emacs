@@ -286,6 +286,7 @@ kind of methods that you could support the maintainer you want.
 * *Banner* - powered by [dashboard](https://github.com/emacs-dashboard/emacs-dashboard).
 * *Binary/Hex Editor* - powered by [nhexl-mode](https://github.com/emacsmirror/nhexl-mode).
 * *Collaborative Editing* - powered by [togetherly](https://github.com/zk-phi/togetherly).
+* *Completion Frontend* - powered by [ivy](https://github.com/abo-abo/swiper).
 * *Context Menu* - powered by [right-click-context](https://github.com/zonuexe/right-click-context).
 * *Document String* - powered by [docstr](https://github.com/jcs-elpa/docstr).
 * *End of Line* - powered by [show-eol](https://github.com/elpa-host/show-eol).
@@ -294,9 +295,7 @@ kind of methods that you could support the maintainer you want.
 * *File Header* - powered by [file-header](https://github.com/alt-elpa/file-header).
 * *Folding/Unfolding* - powered by [ts-fold](https://github.com/jcs090218/ts-fold).
 * *Font* - powered by [use-ttf](https://github.com/elpa-host/use-ttf).
-* *Goto Char* - powered by [goto-char-preview](https://github.com/elpa-host/goto-char-preview).
 * *Goto Declaration/Definition* - powered by [dumb-jump](https://github.com/jacktasia/dumb-jump).
-* *Goto Line* - powered by [goto-line-preview](https://github.com/elpa-host/goto-line-preview).
 * *Highlight Indentation* - powered by [highlight-indent-guides](https://github.com/DarthFennec/highlight-indent-guides).
 * *Highlight Matched Pairs* - powered by [show-paren-mode](https://www.emacswiki.org/emacs/ShowParenMode).
 * *Highlight Same Region* - powered by [region-occurrences-highlighter](https://github.com/alvarogonzalezsotillo/region-occurrences-highlighter).
@@ -319,7 +318,6 @@ kind of methods that you could support the maintainer you want.
 * *Restart Emacs* - powered by [restart-emacs](https://github.com/iqbalansari/restart-emacs).
 * *Scroll Bar* - powered by [yascroll](https://github.com/m2ym/yascroll-el).
 * *Shell* - powered by [shell](https://www.emacswiki.org/emacs/ShellMode) and [exec-path-from-shell](https://github.com/purcell/exec-path-from-shell).
-* *Completion Frontend* - powered by [ivy](https://github.com/abo-abo/swiper).
 * *Smooth Scrolling* - none, originally powered by ~~[sublimity](https://github.com/zk-phi/sublimity)~~.
 * *Snippet* - powered by [yasnippet](https://github.com/joaotavora/yasnippet).
 * *Source Control Management* - powered by [magit](https://github.com/magit/magit).
