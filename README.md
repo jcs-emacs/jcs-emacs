@@ -319,7 +319,7 @@ kind of methods that you could support the maintainer you want.
 * *Restart Emacs* - powered by [restart-emacs](https://github.com/iqbalansari/restart-emacs).
 * *Scroll Bar* - powered by [yascroll](https://github.com/m2ym/yascroll-el).
 * *Shell* - powered by [shell](https://www.emacswiki.org/emacs/ShellMode) and [exec-path-from-shell](https://github.com/purcell/exec-path-from-shell).
-* *Simplify Usage* - powered by [ivy](https://github.com/abo-abo/swiper).
+* *Completion Frontend* - powered by [ivy](https://github.com/abo-abo/swiper).
 * *Smooth Scrolling* - none, originally powered by ~~[sublimity](https://github.com/zk-phi/sublimity)~~.
 * *Snippet* - powered by [yasnippet](https://github.com/joaotavora/yasnippet).
 * *Source Control Management* - powered by [magit](https://github.com/magit/magit).
