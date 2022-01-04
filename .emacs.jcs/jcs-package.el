@@ -179,6 +179,7 @@
     project
     project-abbrev
     python-mode
+    quelpa
     rainbow-mode
     region-occurrences-highlighter
     restart-emacs
