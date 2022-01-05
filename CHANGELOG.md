@@ -5,8 +5,13 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
-## 8.0.0 (Unreleased)
+## 8.0.1 (Unreleased)
 > Released N/A
+
+* N/A
+
+## 8.0.0
+> Released Jan 6, 2022
 
 * Correct save buffer logic for `css-mode`.
 * Update EOL related key bindings.
