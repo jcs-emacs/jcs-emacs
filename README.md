@@ -122,7 +122,7 @@ without having to get used to an new IDE.
 
 Here is the list of few important and recent changes to this configuration.
 
-* `8.0.0` - Move everything to `.emacs.d`. (#32)
+* `8.0.0` - Move everything to `.emacs.d`. ([#32](https://github.com/jcs-emacs/jcs-emacs/pull/32))
 * `7.1.0` - Replace `quelpa` with `github-elpa`.
 * `7.0.0` - Switch from [quickhelp](https://github.com/company-mode/company-quickhelp) to [box](https://github.com/sebastiencs/company-box) for company frontend.
 * `6.5.0` - Add pinned archive feature to package module.
@@ -132,7 +132,6 @@ Here is the list of few important and recent changes to this configuration.
 * `6.3.1` - Replaced `docstring` module to external `docstr` package.
 * `6.2.5` - Use `recipes` folder instead to specify manually installed packages in the configuration.
 * `6.2.4` - Replaced [ag](https://github.com/Wilfred/ag.el) silver searcher to [searcher](https://github.com/jcs-elpa/searcher).
-* `6.2.2` - Correct upgrade logic for manually installed packages.
 
 ## 💾 Installation
 
