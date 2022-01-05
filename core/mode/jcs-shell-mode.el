@@ -9,9 +9,6 @@
 ;; (@* "Hook" )
 ;;
 
-(add-hook ' 'jcs-shell-mode-hook)
-(add-hook 'eshell-mode-hook 'jcs-shell-mode-hook)
-
 (jcs-add-hook '(shell-mode-hook eshell-mode-hook)
   (company-fuzzy-mode -1)
 
