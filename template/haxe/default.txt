@@ -1,6 +1,0 @@
-#GLOBAL_FILE_INFO#
-
-
-class #FILE_NAME_NO_EXT# {
-
-}

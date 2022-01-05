@@ -1,3 +1,0 @@
-#SHARP_FILE_INFO#
-
-### Library Makefile Template (Python) ###

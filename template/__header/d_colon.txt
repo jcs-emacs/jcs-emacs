@@ -1,8 +1,0 @@
-:: ========================================================================
-:: $File: #FILE_NAME# $
-:: $Date: #TIME_STAMP_VER1# $
-:: $Revision: $
-:: $Creator: #CREATOR_NAME# $
-:: $Notice: See LICENSE.txt for modification and distribution information
-::                   Copyright © #TIME_YEAR# by #COPYRIGHT_INFO# $
-:: ========================================================================
