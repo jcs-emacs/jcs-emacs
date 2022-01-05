@@ -206,22 +206,22 @@
 (defun jcs-alt-codes-table ()
   "Display basic Alt-Codes table."
   (interactive)
-  (jcs-display-file "~/.emacs.jcs/data/charset/alt-code.txt" "*Alt Codes*" nil))
+  (jcs-display-file "~/.emacs.d/data/charset/alt-code.txt" "*Alt Codes*" nil))
 
 (defun jcs-ascii-table ()
   "Display basic ASCII table."
   (interactive)
-  (jcs-display-file "~/.emacs.jcs/data/charset/ascii.txt" "*ASCII*" nil))
+  (jcs-display-file "~/.emacs.d/data/charset/ascii.txt" "*ASCII*" nil))
 
 (defun jcs-algorithm-cheat-sheet ()
   "Display basic Alt-Codes table."
   (interactive)
-  (jcs-html-preview "~/.emacs.jcs/data/algorithm/cheat-sheet.html" "*Algorithm Cheat Sheet*" nil))
+  (jcs-html-preview "~/.emacs.d/data/algorithm/cheat-sheet.html" "*Algorithm Cheat Sheet*" nil))
 
 (defun jcs-data-structure-cheat-sheet ()
   "Display basic Alt-Codes table."
   (interactive)
-  (jcs-display-file "~/.emacs.jcs/data/data-structure/cheat-sheet.txt" "*Data Structure Cheat Sheet*" nil))
+  (jcs-display-file "~/.emacs.d/data/data-structure/cheat-sheet.txt" "*Data Structure Cheat Sheet*" nil))
 
 ;;
 ;; (@* "Dashboard" )
@@ -283,10 +283,11 @@ If optional argument FORCE is non-nil, force refresh it."
 
 (defun jcs-dashboard--get-banner-path ()
   "Return banner path."
-  (cond ((display-graphic-p)
-         (if (jcs-light-theme-p) "~/.emacs.jcs/banner/sink_black.png"
-           "~/.emacs.jcs/banner/sink_white.png"))
-        (t "~/.emacs.jcs/banner/sink.txt")))
+  (concat user-emacs-directory
+          (cond ((display-graphic-p)
+                 (if (jcs-light-theme-p) "banners/sink_black.png"
+                   "banners/sink_white.png"))
+                (t "banners/sink.txt"))))
 
 ;;
 ;; (@* "ElDoc" )

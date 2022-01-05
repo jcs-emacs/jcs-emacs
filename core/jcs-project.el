@@ -67,7 +67,7 @@ If optional argument DIR is nil, use variable `default-directory' instead."
 
 (defun jcs-project-list-clean ()
   "Clean up the project list if the project no longer exists."
-  (unless (bound-and-true-p jcs-ci)
+  (when after-init-time
     (project--ensure-read-project-list)
     (let (pr-lst)
       (dolist (pr project--list)

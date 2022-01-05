@@ -380,7 +380,7 @@
 
 (leaf file-header
   :init
-  (setq file-header-template-config-filepath "~/.emacs.jcs/template/template_config.properties"))
+  (setq file-header-template-config-filepath "~/.emacs.d/template/config.properties"))
 
 (leaf flx-rs
   :init
@@ -995,8 +995,8 @@
   :init
   ;; List of TTF fonts you want to use in the currnet OS.
   (setq use-ttf-default-ttf-fonts
-        '("/.emacs.jcs/fonts/clacon.ttf"
-          "/.emacs.jcs/fonts/UbuntuMono-R.ttf"))
+        '("/.emacs.d/fonts/clacon.ttf"
+          "/.emacs.d/fonts/UbuntuMono-R.ttf"))
   ;; Name of the font we want to use as default.
   ;; This you need to check the font name in the system manually.
   (setq use-ttf-default-ttf-font-name "Ubuntu Mono"))
