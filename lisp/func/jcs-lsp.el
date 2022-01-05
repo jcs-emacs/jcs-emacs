@@ -18,16 +18,12 @@
   "Do stuff when lsp is disabled."
   (setq-local company-fuzzy-passthrough-backends nil))
 
-(defun jcs--lsp-managed-mode-hook ()
-  "LSP managed mode hook."
-  (if (and lsp-mode lsp-managed-mode) (jcs--lsp--stuff-on-enabled) (jcs--lsp--stuff-on-disabled)))
+(jcs-add-hook 'lsp-managed-mode-hook
+  (if (and lsp-mode lsp-managed-mode) (jcs--lsp--stuff-on-enabled)
+    (jcs--lsp--stuff-on-disabled)))
 
-(defun jcs--lsp-mode-hook ()
-  "LSP mode hook."
+(jcs-add-hook 'lsp-mode-hook
   (if lsp-mode (jcs--lsp--stuff-on-enabled) (jcs--lsp--stuff-on-disabled)))
-
-(add-hook 'lsp-managed-mode-hook 'jcs--lsp-managed-mode-hook)
-(add-hook 'lsp-mode-hook 'jcs--lsp-mode-hook)
 
 ;;
 ;; (@* "lsp-ui" )
@@ -62,25 +58,26 @@
 ;; (@* "Registry" )
 ;;
 
-(defun jcs-lsp--focus-in-hook ()
+(defun jcs-lsp--focus-in ()
   "When window is focus."
   (jcs--lsp-ui-doc-show-safely))
-(add-hook 'focus-in-hook 'jcs-lsp--focus-in-hook)
 
-(defun jcs-lsp--focus-out-hook ()
+(defun jcs-lsp--focus-out ()
   "When window is not focus."
   (jcs--lsp-ui-doc--inhibit-frame))
-(add-hook 'focus-out-hook 'jcs-lsp--focus-out-hook)
+
+(defun jcs-lsp--after-focus-change-function ()
+  "Focus in/out function."
+  (if (frame-focus-state) (jcs-lsp--focus-in) (jcs-lsp--focus-out)))
+
+(add-function :after after-focus-change-function #'jcs-lsp--after-focus-change-function)
 
 (defun jcs-lsp--other-window--advice-before (&rest _args)
   "Advice execute before `other-window' command."
   (jcs--lsp-ui-doc--inhibit-frame))
 (advice-add 'other-window :before #'jcs-lsp--other-window--advice-before)
 
-(defun jcs-lsp--window-size-change-functions (&rest _)
-  "When window changed size."
-  (jcs--lsp-ui-doc-resize))
-(add-hook 'window-size-change-functions 'jcs-lsp--window-size-change-functions)
+(jcs-add-hook 'window-size-change-functions (jcs--lsp-ui-doc-resize))
 
 (provide 'jcs-lsp)
 ;;; jcs-lsp.el ends here

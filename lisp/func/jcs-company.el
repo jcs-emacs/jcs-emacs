@@ -52,15 +52,8 @@
   (remove-hook 'company-completion-started-hook 'jcs-company--first-completion-started))
 (add-hook 'company-completion-started-hook 'jcs-company--first-completion-started)
 
-(defun jcs-company--completion-started (_backend)
-  "Run before company's completion."
-  (jcs-gc-cons-threshold-speed-up t))
-(add-hook 'company-completion-started-hook 'jcs-company--completion-started)
-
-(defun jcs-company--after-completion (&rest _)
-  "Run after company's completion."
-  (jcs-gc-cons-threshold-speed-up nil))
-(add-hook 'company-after-completion-hook 'jcs-company--after-completion)
+(jcs-add-hook 'company-completion-started-hook (jcs-gc-cons-threshold-speed-up t))
+(jcs-add-hook 'company-after-completion-hook (jcs-gc-cons-threshold-speed-up nil))
 
 (provide 'jcs-company)
 ;;; jcs-company.el ends here

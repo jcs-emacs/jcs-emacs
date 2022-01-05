@@ -372,9 +372,8 @@
           (jcs-process-reporter-done "No need to update dependency graph")
         (if after-init-time
             (package--save-selected-packages new-selected-pkg)
-          (add-hook 'after-init-hook
-                    (lambda (&rest _)
-                      (package--save-selected-packages new-selected-pkg))))
+          (jcs-add-hook 'after-init-hook
+            (package--save-selected-packages new-selected-pkg)))
         (jcs-process-reporter-done "Done rebuild dependency graph")))))
 
 (defun jcs-package--menu-execute--advice-around (fnc &rest args)

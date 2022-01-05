@@ -34,8 +34,7 @@
   (setq jcs-minibuf-enabled-p t))
 (advice-add 'ivy--minibuffer-setup :after #'jcs--ivy--minibuffer-setup)
 
-(defun jcs-minibuf--setup-hook ()
-  "Hook when minibuffer setup."
+(jcs-add-hook 'minibuffer-setup-hook
   ;; NOTE: Avoid GCs while using `ivy'/`counsel'/`swiper' and `helm', etc.
   (jcs-gc-cons-threshold-speed-up t)
 
@@ -48,10 +47,8 @@
 
   ;; Register hook.
   (add-hook 'post-command-hook #'jcs-minibuffer--post-command nil t))
-(add-hook 'minibuffer-setup-hook 'jcs-minibuf--setup-hook)
 
-(defun jcs-minibuf--exit-hook ()
-  "Hook when exit minibuffer."
+(jcs-add-hook 'minibuffer-exit-hook
   (jcs-reload-active-mode)
 
   (setq jcs-minibuf-enabled-p nil)
@@ -61,7 +58,6 @@
   ;; NOTE: Avoid GCs while using `ivy'/`counsel'/`swiper' and `helm', etc.
   (garbage-collect)
   (jcs-gc-cons-threshold-speed-up nil))
-(add-hook 'minibuffer-exit-hook 'jcs-minibuf--exit-hook)
 
 (defun jcs-minibuffer--post-command ()
   "Minibuffer post command hook."

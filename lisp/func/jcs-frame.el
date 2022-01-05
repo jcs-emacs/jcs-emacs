@@ -2,13 +2,11 @@
 ;;; Commentary:
 ;;; Code:
 
-(defun jcs-after-make-frame-functions-hook (frame)
-  "Resetting the new FRAME just created."
+(jcs-add-hook 'after-make-frame-functions
   (jcs-theme-refresh)
   (select-frame frame)
   ;; split the winodw after create the new window
   (split-window-horizontally))
-(add-hook 'after-make-frame-functions 'jcs-after-make-frame-functions-hook)
 
 (defun jcs-frame-util-p (&optional frame)
   "Return non-nil if FRAME is an utility frame."
