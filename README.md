@@ -114,6 +114,10 @@ Having these implementations makes my life easier, and having a genuinely portab
 workspace, which is great because it lets me work on different machine efficiently,
 without having to get used to an new IDE.
 
+| Light Theme                                   | Dark Theme                                   |
+|:----------------------------------------------|:---------------------------------------------|
+|<img src="./etc/screenshot/startup-light.png"/>|<img src="./etc/screenshot/startup-dark.png"/>|
+
 ## 📰 News
 
 Here is the list of few important and recent changes to this configuration.
@@ -321,94 +325,6 @@ kind of methods that you could support the maintainer you want.
 * *Undo/Redo* - powered by [undo-tree](https://www.emacswiki.org/emacs/UndoTree).
 * *Video Player* - none.
 * *White Space* - powered by [whitespace](https://www.emacswiki.org/emacs/WhiteSpace).
-
-### File Modes
-
-If you want to change the default mode to certain file type, you might want to
-checkout the `./.emacs.jcs/jcs-mode.el` file. You will see a list of mode
-that are opened by default mode to certain extension.
-
-* [List of modes](./doc/programming_modes.md)
-
-📝 *P.S. The [awesome-emacs](https://github.com/emacs-tw/awesome-emacs)
-is a list of Emacs package that you can choose other alternatives to replace any
-similar packages listed here. Is also a good place to seek and learn what's inside
-Emacs!*
-
-## Key Bindings
-
-This configuration have all modes bind to the same set of key bindings. It benefits
-the developer would not need to change their key bindings while after the mode
-swichted. The key bindings set can be modified in `./.emacs.jcs/jcs-key.el` file.
-
-* [List of key bindings](./doc/keybindings.md)
-
-📝 P.S. * My work requires me to use
-[Visual Studio IDE](https://visualstudio.microsoft.com/)
-that being said the key bindings set are most likely compatible to
-[Visual Studio IDE](https://visualstudio.microsoft.com/).
-* ~~Excepts keys that bind to `C-x` and `C-c`, Emacs are deeply binds to these
-two keys, and many packages also use these two keys for there preset keys. As
-you may know these two keys are often `cut` and `copy`, is awkward that I solved
-this by adding the same key stroke once again, hence the `cut` key is
-`C-x C-x` and the `copy` key is `C-c C-c`.~~
-
-**Edit 1:** After version `5.8.3`, the `cut` and `copy` keys had been corrected
-and no longer the hassle to this configuration. Thanks to `use-package` again,
-letting me bind `C-x` and `C-c` keys for higher precedence.
-
-## Themes
-
-### Default
-
-The theme was to design close to [Visual Studio IDE](https://visualstudio.microsoft.com/)
-preset light/dark theme. I believed [Microsoft](https://www.microsoft.com/zh-tw/)
-has a great UI/UX team, since I don't have any experience or work related to UI/UX,
-I would just like to have the theme color as close to it as possible. Anyway, if you
-want to customize the theme yourself, then check out the `./.emacs.jcs/jcs-theme.el`
-file. All the theme related variables can be found in that file.
-
-| Light Theme                                   | Dark Theme                                   |
-|:----------------------------------------------|:---------------------------------------------|
-|<img src="./etc/screenshot/startup-light.png"/>|<img src="./etc/screenshot/startup-dark.png"/>|
-
-### Customization
-
-In common, you can install any theme you want as long it is available on the
-internet. You can check out the Emacs Theme Gallery site [here](https://pawelbx.github.io/emacs-theme-gallery/).
-For instance, [vs-dark-theme](https://github.com/jcs-elpa/vs-dark-theme) and
-[vs-light-theme](https://github.com/jcs-elpa/vs-light-theme) are now individual
-packages built outside from this configuration.
-
-## Font
-
-Font uses `use-ttf` package to keep cross OS consistency. The default font is
-`Ubuntu Mono` and loaded by using `UbuntuMono-R.ttf` located under
-`./.emacs.jcs/fonts/` folder. If you don't like the this font, you can add your
-own `.ttf` file and add the path to `use-ttf-default-ttf-fonts` list.
-Lastly, set the name of the `.ttf` file to `use-ttf-default-ttf-font-name`
-variable.
-
-📝
-P.S.
-* See the file `./.emacs.jcs/jcs-plugin.el` to see how the font is been set
-in `(leaf use-ttf)` section.
-* For more details about the font settings in this configuration, check out the
-`use-ttf`package [repo](https://github.com/elpa-host/use-ttf).
-
-## 🔨 Optimization
-
-If you would like to optimize the configuration, you can run the following command
-compile all the source code to byte code so Emacs can run faster during both
-`initial time` and `run time`.
-
-```bash
-# change directory to the `jcs` config directory
-$ cd ./.emacs.jcs
-
-# compile all the config source code
-$ emacs --batch --eval "(byte-recompile-directory \"./\" 0)"
-```
 
 ## Write your own customization
 
