@@ -1,3 +1,7 @@
+# settings
+/custom.el
+README.html
+
 *.bak
 *.data
 *.db
@@ -25,19 +29,11 @@
 /.pdf-view-restore
 /.persistent-scratch
 /.rgignore
-
-# tags
-/GPATH
-/GRTAGS
-/GTAGS
-/TAGS
-
 /ac-comphist.dat
 /amx-items
 /bookmarks
 /company-statistics-cache.el
 /custom-post.el
-/custom.el
 /history
 /nov-places
 /package-quickstart.el
@@ -49,7 +45,6 @@
 /scratch
 /smex-items
 /tramp
-README.html
 anaconda-mode/
 auto-save-list/
 cnfonts/
@@ -88,3 +83,9 @@ tutorial/
 url/
 var/
 workspace/
+
+# tags
+/GPATH
+/GRTAGS
+/GTAGS
+/TAGS

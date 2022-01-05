@@ -244,7 +244,7 @@ OW is the other window flag."
   "Safely refresh the dashboard buffer if needed.
 
 If optional argument FORCE is non-nil, force refresh it."
-  (when (and (bound-and-true-p after-init-time)
+  (when (and after-init-time
              (boundp 'dashboard-buffer-name)
              (jcs-buffer-shown-p dashboard-buffer-name 'strict))
     (unless jcs-dashboard--refreshing-p
