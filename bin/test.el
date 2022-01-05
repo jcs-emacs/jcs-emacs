@@ -11,6 +11,8 @@
 (defconst jcs-ci t
   "Flag for CI testing.")
 
+(message "Testing...")
+
 (let (debug-on-error
       url-show-status
       (user-emacs-directory default-directory)
