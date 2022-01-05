@@ -27,7 +27,7 @@
 
 (add-hook
  'window-size-change-functions
- (lambda ()
+ (lambda (&rest _)
    (jcs-dashboard--window-size-change)
    (when (featurep 'jcs-ivy) (jcs-ivy--window-size-change))
    (when (featurep 'treemacs) (jcs-treemacs--window-size-change))))
