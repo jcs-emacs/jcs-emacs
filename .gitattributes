@@ -1,5 +1,0 @@
-# Auto detect text files
-* text=auto
-
-# line endings
-*.sh text eol=lf
