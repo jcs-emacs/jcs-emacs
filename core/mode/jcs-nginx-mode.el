@@ -16,16 +16,12 @@
 ;; (@* "Hook" )
 ;;
 
-(defun jcs-nginx-mode-hook ()
-  "Hook for `nginx-mode'."
-
+(jcs-add-hook 'nginx-mode-hook
   (jcs-company-safe-add-backend 'company-nginx)
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]conf")
                               'jcs-insert-nginx-template))
-
-(add-hook 'nginx-mode-hook 'jcs-nginx-mode-hook)
 
 (provide 'jcs-nginx-mode)
 ;;; jcs-nginx-mode.el ends here

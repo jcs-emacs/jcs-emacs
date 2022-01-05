@@ -17,14 +17,10 @@
 ;; (@* "Hook" )
 ;;
 
-(defun jcs-less-css-mode-hook ()
-  "LESS CSS mode hook."
-
+(jcs-add-hook 'less-css-mode-hook
   ;; File Header
   (jcs-insert-header-if-valid '("[.]less")
                               'jcs-insert-less-template))
-
-(add-hook 'less-css-mode-hook 'jcs-less-css-mode-hook)
 
 (provide 'jcs-less-css-mode)
 ;;; jcs-less-css-mode.el ends here

@@ -16,8 +16,9 @@
 ;; (@* "Hook" )
 ;;
 
-(defun jcs-actionscript-mode-hook ()
-  "ActionScript mode hook."
+(add-hook 'actionscript-mode-hook 'jcs-prog-mode-hook)
+
+(jcs-add-hook 'actionscript-mode-hook
   (jcs-use-cc-mutliline-comment)
 
   (setq-local docstr-show-type-name nil)
@@ -41,9 +42,6 @@
   (jcs-bind-key (kbd ";") #'jcs-vs-semicolon-key)
 
   (jcs-bind-key (kbd "C-v") #'jcs-smart-yank))
-
-(add-hook 'actionscript-mode-hook 'jcs-prog-mode-hook)
-(add-hook 'actionscript-mode-hook 'jcs-actionscript-mode-hook)
 
 (provide 'jcs-actionscript-mode)
 ;;; jcs-actionscript-mode.el ends here

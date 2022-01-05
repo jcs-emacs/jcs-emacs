@@ -17,8 +17,7 @@
 ;; (@* "Hook" )
 ;;
 
-(defun jcs-json-mode-hook ()
-  "JSON mode hook."
+(jcs-add-hook 'json-mode-hook
   (js2-minor-mode -1)
   (remove-hook 'after-change-functions 'js2-minor-mode-edit t)
 
@@ -32,8 +31,6 @@
   (jcs-bind-key (kbd "DEL") #'jcs-electric-backspace)
   (jcs-bind-key (kbd "{") #'jcs-vs-opening-curly-bracket-key)
   (jcs-bind-key (kbd ";") #'jcs-vs-semicolon-key))
-
-(add-hook 'json-mode-hook 'jcs-json-mode-hook)
 
 (provide 'jcs-json-mode)
 ;;; jcs-json-mode.el ends here

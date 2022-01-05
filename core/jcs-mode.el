@@ -160,23 +160,21 @@ Note this is opposite logic to the toggle mode function."
 ;; So just put all the startup modes' configuration here.
 
 ;;; Special
-(add-hook 'special-mode-hook (lambda () (goto-address-mode 1)))
+(jcs-add-hook 'special-mode-hook (goto-address-mode 1))
 
 ;;; Backtrace
-(add-hook 'backtrace-mode-hook (lambda () (buffer-wrap-mode 1)))
+(jcs-add-hook 'backtrace-mode-hook (buffer-wrap-mode 1))
 
 ;;; Buffer Menu
-(add-hook 'Buffer-menu-mode-hook (lambda () (require 'jcs-buffer-menu)))
+(jcs-add-hook 'Buffer-menu-mode-hook (require 'jcs-buffer-menu))
 
 ;;; Diff
-(add-hook 'diff-mode-hook
-          (lambda ()
-            (jcs-bind-key (kbd "M-k") #'jcs-maybe-kill-this-buffer)
-            (jcs-bind-key (kbd "M-K") #'jcs-reopen-this-buffer)))
+(jcs-add-hook 'diff-mode-hook
+  (jcs-bind-key (kbd "M-k") #'jcs-maybe-kill-this-buffer)
+  (jcs-bind-key (kbd "M-K") #'jcs-reopen-this-buffer))
 
 ;;; Compilation
-(defun jcs-compilation-mode-hook ()
-  "Hook for `compilation-mode'."
+(jcs-add-hook '(compilation-mode-hook comint-mode-hook)
   (buffer-disable-undo)
   (goto-address-mode 1)
   (toggle-truncate-lines -1)
@@ -189,21 +187,16 @@ Note this is opposite logic to the toggle mode function."
   (jcs-bind-key (kbd "C-_") #'jcs-output-prev-compilation)
   (jcs-bind-key (kbd "C-+") #'jcs-output-next-compilation))
 
-(add-hook 'compilation-mode-hook 'jcs-compilation-mode-hook)
-(add-hook 'comint-mode-hook 'jcs-compilation-mode-hook)
-
 ;;; Message Buffer
-(add-hook 'messages-buffer-mode-hook
-          (lambda ()
-            (auto-highlight-symbol-mode 1)
-            (goto-address-mode 1)
-            (page-break-lines-mode 1)))
+(jcs-add-hook 'messages-buffer-mode-hook
+  (auto-highlight-symbol-mode 1)
+  (goto-address-mode 1)
+  (page-break-lines-mode 1))
 
 ;;; Tabulated List
-(add-hook 'tabulated-list-mode-hook
-          (lambda ()
-            (when (memq major-mode '(Buffer-menu-mode package-menu-mode))
-              (buffer-wrap-mode 1))))
+(jcs-add-hook 'tabulated-list-mode-hook
+  (when (memq major-mode '(Buffer-menu-mode package-menu-mode))
+    (buffer-wrap-mode 1)))
 
 ;;============================================================================
 ;; Project
@@ -218,8 +211,7 @@ Note this is opposite logic to the toggle mode function."
 ;;============================================================================
 ;; Base Mode
 
-(defun jcs-base-mode-hook ()
-  "Major mode hook for every major mode."
+(jcs-add-hook '(text-mode-hook prog-mode-hook)
   (auto-highlight-symbol-mode t)
   (electric-pair-mode 1)
   (goto-address-mode 1)
@@ -227,21 +219,14 @@ Note this is opposite logic to the toggle mode function."
 
   (jcs-active-project-mode-hook))
 
-(add-hook 'text-mode-hook 'jcs-base-mode-hook)
-(add-hook 'prog-mode-hook 'jcs-base-mode-hook)
-
 ;;; Text
-(defun jcs-text-mode-hook ()
-  "Text mode hook."
+(jcs-add-hook 'text-mode-hook
   (jcs-insert-header-if-valid '("\\(/\\|\\`\\)[Ll][Ii][Cc][Ee][Nn][Ss][Ee]")
                               'jcs-ask-insert-license-content
                               :interactive t)
-
   (jcs-insert-header-if-valid '("\\(/\\|\\`\\)[Cc][Hh][Aa][Nn][Gg][Ee][-_]*[Ll][Oo][Gg]")
                               'jcs-ask-insert-changelog-content
                               :interactive t))
-
-(add-hook 'text-mode-hook 'jcs-text-mode-hook)
 
 ;;============================================================================
 ;; Programming Mode
@@ -251,8 +236,7 @@ Note this is opposite logic to the toggle mode function."
 
 To avoid syntax highlighting error for comment.")
 
-(defun jcs-prog-mode-hook ()
-  "Programming language mode hook."
+(jcs-add-hook 'prog-mode-hook
   (unless (memq major-mode jcs-mode--dash-major-modes)
     (modify-syntax-entry ?- "_"))
 
@@ -270,41 +254,27 @@ To avoid syntax highlighting error for comment.")
   (display-fill-column-indicator-mode 1)
   (highlight-numbers-mode 1))
 
-(add-hook 'prog-mode-hook 'jcs-prog-mode-hook)
-
 ;;; Emacs Lisp
-(defun jcs-emacs-lisp-mode-hook ()
-  "Emacs Lisp mode hook."
+(jcs-add-hook 'emacs-lisp-mode-hook
   (modify-syntax-entry ?_ "w")  ; Treat underscore as word.
-
   (jcs-insert-header-if-valid '("[.]el")
                               'jcs-insert-emacs-lisp-template))
 
-(add-hook 'emacs-lisp-mode-hook 'jcs-emacs-lisp-mode-hook)
-
 ;;; Lisp
-(defun jcs-lisp-mode-hook ()
-  "Lisp mode hook."
+(jcs-add-hook 'lisp-mode-hook
   (modify-syntax-entry ?_ "w")  ; Treat underscore as word.
-
   (jcs-insert-header-if-valid '("[.]lisp")
                               'jcs-insert-lisp-template))
 
-(add-hook 'lisp-mode-hook 'jcs-lisp-mode-hook)
-
 ;;; Lisp Interaction
-(defun jcs-lisp-interaction-mode-hook ()
-  "Lisp Interaction mode hook."
+(jcs-add-hook 'lisp-interaction-mode-hook
   (jcs-bind-key (kbd "M-k") #'jcs-scratch-buffer-maybe-kill)
   (jcs-bind-key (kbd "M-K") #'jcs-scratch-buffer-refresh))
-
-(add-hook 'lisp-interaction-mode-hook 'jcs-lisp-interaction-mode-hook)
 
 ;;============================================================================
 ;; View
 
-(defun jcs-view-mode-hook ()
-  "In view mode, read only file."
+(jcs-add-hook 'view-mode-hook
   (require 'view)
   (unless (equal jcs-mode--state 'view)
     ;; unset all the key
@@ -313,8 +283,6 @@ To avoid syntax highlighting error for comment.")
 
     (dolist (key-str jcs-key-list)
       (define-key view-mode-map key-str nil))))
-
-(add-hook 'view-mode-hook 'jcs-view-mode-hook)
 
 ;;----------------------------------------------------------------------------
 ;;; Modes

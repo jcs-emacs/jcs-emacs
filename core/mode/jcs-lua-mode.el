@@ -23,9 +23,7 @@
 ;; (@* "Hook" )
 ;;
 
-(defun jcs-lua-mode-hook ()
-  "Lau mode hook."
-
+(jcs-add-hook 'lua-mode-hook
   (jcs-elec-pair-add '((?\[ . ?\])))
 
   (setq-local electric-pair-inhibit-predicate 'jcs-lua--electric-pair-inhibit-predicate)
@@ -36,8 +34,6 @@
   ;; File Header
   (jcs-insert-header-if-valid '("[.]lua" "[.]luac")
                               'jcs-insert-lua-template))
-
-(add-hook 'lua-mode-hook 'jcs-lua-mode-hook)
 
 (provide 'jcs-lua-mode)
 ;;; jcs-lua-mode.el ends here

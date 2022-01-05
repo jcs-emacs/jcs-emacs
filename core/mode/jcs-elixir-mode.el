@@ -16,9 +16,7 @@
 ;; (@* "Hook" )
 ;;
 
-(defun jcs-elixir-mode-hook ()
-  "Elixir mode hook."
-
+(jcs-add-hook 'elixir-mode-hook
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
 
@@ -27,8 +25,6 @@
   (jcs-insert-header-if-valid '("[.]ex"
                                 "[.]exs")
                               'jcs-insert-elixir-template))
-
-(add-hook 'elixir-mode-hook 'jcs-elixir-mode-hook)
 
 (provide 'jcs-elixir-mode)
 ;;; jcs-elixir-mode.el ends here

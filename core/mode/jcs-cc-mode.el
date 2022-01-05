@@ -136,8 +136,7 @@
 ;; (@* "Hook" )
 ;;
 
-(defun jcs-cc-mode-hook ()
-  "C/C++ mode hook."
+(jcs-add-hook 'c-mode-common-hook
   (jcs-use-cc-mutliline-comment)
 
   (jcs-company-safe-add-backend 'company-clang)
@@ -149,8 +148,6 @@
   (c-toggle-auto-hungry-state -1)
 
   (modify-syntax-entry ?_ "w"))
-
-(add-hook 'c-mode-common-hook 'jcs-cc-mode-hook)
 
 (provide 'jcs-cc-mode)
 ;;; jcs-cc-mode.el ends here

@@ -16,14 +16,10 @@
 ;; (@* "Hook" )
 ;;
 
-(defun jcs-verilog-mode-hook ()
-  "Verilog mode hook."
-
+(jcs-add-hook 'verilog-mode-hook
   ;; File Header
   (jcs-insert-header-if-valid '("[.]v")
                               'jcs-insert-verilog-template))
-
-(add-hook 'verilog-mode-hook 'jcs-verilog-mode-hook)
 
 (provide 'jcs-verilog-mode)
 ;;; jcs-verilog-mode.el ends here

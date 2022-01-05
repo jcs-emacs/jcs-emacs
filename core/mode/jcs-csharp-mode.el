@@ -54,9 +54,7 @@
 ;; (@* "Hook" )
 ;;
 
-(defun jcs-csharp-mode-hook ()
-  "Hook for C# mode."
-
+(jcs-add-hook 'csharp-mode-hook
   (setq-local docstr-show-type-name nil)
 
   (modify-syntax-entry ?_ "w")
@@ -80,8 +78,6 @@
   (jcs-bind-key (kbd "#") #'jcs-vs-sharp-key)
 
   (jcs-bind-key (kbd "M-q") #'jcs-other-window-prev))
-
-(add-hook 'csharp-mode-hook 'jcs-csharp-mode-hook)
 
 (provide 'jcs-csharp-mode)
 ;;; jcs-csharp-mode.el ends here

@@ -48,8 +48,9 @@
 ;; (@* "Hook" )
 ;;
 
-(defun jcs-jsx-mode-hook ()
-  "Mode hook for JSX mode."
+(add-hook 'rjsx-mode-hook 'emmet-mode)
+
+(jcs-add-hook 'rjsx-mode-hook
   (auto-rename-tag-mode 1)
 
   ;; File Header
@@ -64,8 +65,6 @@
   ;; Emmet
   (define-key emmet-mode-keymap (kbd "C-<return>") #'jcs-emmet-expand-line))
 
-(add-hook 'rjsx-mode-hook 'jcs-jsx-mode-hook)
-(add-hook 'rjsx-mode-hook 'emmet-mode)
 
 (provide 'jcs-jsx-mode)
 ;;; jcs-jsx-mode.el ends here

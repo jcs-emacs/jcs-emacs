@@ -16,14 +16,10 @@
 ;; (@* "Hook" )
 ;;
 
-(defun jcs-scala-mode-hook ()
-  "Scala mode hook."
-
+(jcs-add-hook 'scala-mode-hook
   ;; File Header
   (jcs-insert-header-if-valid '("[.]scala")
                               'jcs-insert-scala-template))
-
-(add-hook 'scala-mode-hook 'jcs-scala-mode-hook)
 
 (provide 'jcs-scala-mode)
 ;;; jcs-scala-mode.el ends here

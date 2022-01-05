@@ -16,9 +16,7 @@
 ;; (@* "Hook" )
 ;;
 
-(defun jcs-erlang-mode-hook ()
-  "Erlang mode hook."
-
+(jcs-add-hook 'erlang-mode-hook
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
 
@@ -30,8 +28,6 @@
   ;; switch window
   (jcs-bind-key (kbd "M-w") #'jcs-other-window-next)
   (jcs-bind-key (kbd "M-q") #'jcs-other-window-prev))
-
-(add-hook 'erlang-mode-hook 'jcs-erlang-mode-hook)
 
 (provide 'jcs-erlang-mode)
 ;;; jcs-erlang-mode.el ends here

@@ -16,8 +16,7 @@
 ;; (@* "Hook" )
 ;;
 
-(defun jcs-cobol-mode-hook ()
-  "COBOL mode hook."
+(jcs-add-hook 'cobol-mode-hook
   (electric-pair-mode nil)
 
   ;; File Header
@@ -27,8 +26,6 @@
   ;; Normal
   (jcs-bind-key (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
   (jcs-bind-key (kbd "<down>") (jcs-get-prev/next-key-type 'next)))
-
-(add-hook 'cobol-mode-hook 'jcs-cobol-mode-hook)
 
 (provide 'jcs-cobol-mode)
 ;;; jcs-cobol-mode.el ends here

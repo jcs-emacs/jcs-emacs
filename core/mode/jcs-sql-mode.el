@@ -17,8 +17,7 @@
 ;; (@* "Hook" )
 ;;
 
-(defun jcs-sql-mode-hook()
-  "SQL mode hook."
+(jcs-add-hook 'sql-mode-hook
   (jcs-elec-pair-add '((?\` . ?\`)))
 
   ;; File Header
@@ -28,8 +27,6 @@
   ;; Normal
   (jcs-bind-key (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
   (jcs-bind-key (kbd "<down>") (jcs-get-prev/next-key-type 'next)))
-
-(add-hook 'sql-mode-hook 'jcs-sql-mode-hook)
 
 (provide 'jcs-sql-mode)
 ;;; jcs-sql-mode.el ends here

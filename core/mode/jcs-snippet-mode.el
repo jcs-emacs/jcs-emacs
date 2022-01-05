@@ -8,14 +8,10 @@
 ;; (@* "Hook" )
 ;;
 
-(defun jcs-snippet-mode-hook()
-  "Snippet mode hook."
-
+(jcs-add-hook 'snippet-mode-hook
   ;; Normal
   (jcs-bind-key (kbd "<up>") #'previous-line)
   (jcs-bind-key (kbd "<down>") #'next-line))
-
-(add-hook 'snippet-mode-hook 'jcs-snippet-mode-hook)
 
 (provide 'jcs-snippet-mode)
 ;;; jcs-snippet-mode.el ends here

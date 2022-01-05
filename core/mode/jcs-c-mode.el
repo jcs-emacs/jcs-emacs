@@ -20,9 +20,7 @@
 ;; (@* "Hook" )
 ;;
 
-(defun jcs-c-mode-hook ()
-  "C mode handling"
-
+(jcs-add-hook 'c-mode-hook
   (jcs-company-safe-add-backend 'company-c-headers)
 
   ;; File Header
@@ -47,8 +45,6 @@
   ;; Undo/Redo
   (jcs-bind-key (kbd "C-z") #'jcs-undo)
   (jcs-bind-key (kbd "C-y") #'jcs-redo))
-
-(add-hook 'c-mode-hook 'jcs-c-mode-hook)
 
 (provide 'jcs-c-mode)
 ;;; jcs-c-mode.el ends here

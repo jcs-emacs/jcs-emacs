@@ -78,8 +78,13 @@
 ;; (@* "Hook" )
 ;;
 
+(add-hook 'markdown-mode-hook 'emmet-mode)
+
 (defun jcs-markdown-mode-hook ()
   "Markdown mode hook."
+  )
+
+(jcs-add-hook 'markdown-mode-hook
   (emojify-mode 1)
 
   (jcs-safe-er/expand-list '(web-mode-mark-and-expand) t)
@@ -101,8 +106,6 @@
   ;; Eemmet
   (define-key emmet-mode-keymap (kbd "C-<return>") #'jcs-emmet-expand-line))
 
-(add-hook 'markdown-mode-hook 'jcs-markdown-mode-hook)
-(add-hook 'markdown-mode-hook 'emmet-mode)
 
 (provide 'jcs-markdown-mode)
 ;;; jcs-markdown-mode.el ends here

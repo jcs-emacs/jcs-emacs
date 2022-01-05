@@ -58,9 +58,7 @@
 ;; (@* "Hook" )
 ;;
 
-(defun jcs-sh-script-hook()
-  "Shell Script mode hook."
-
+(jcs-add-hook 'sh-mode-hook
   (modify-syntax-entry ?_ "w")
 
   ;; File Header
@@ -68,8 +66,6 @@
                                 "[.]linux"
                                 "[.]macosx")
                               'jcs-insert-sh-template))
-
-(add-hook 'sh-mode-hook 'jcs-sh-script-hook)
 
 (provide 'jcs-sh-mode)
 ;;; jcs-sh-mode.el ends here

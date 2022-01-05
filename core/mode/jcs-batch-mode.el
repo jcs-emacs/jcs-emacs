@@ -16,9 +16,7 @@
 ;; (@* "Hook" )
 ;;
 
-(defun jcs-batch-mode-hook ()
-  "Batch mode hook."
-
+(jcs-add-hook 'bat-mode-hook
   (setq comment-start "::")
 
   (modify-syntax-entry ?_ "w")
@@ -30,8 +28,6 @@
   ;; Normal
   (jcs-bind-key (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
   (jcs-bind-key (kbd "<down>") (jcs-get-prev/next-key-type 'next)))
-
-(add-hook 'bat-mode-hook 'jcs-batch-mode-hook)
 
 (provide 'jcs-batch-mode)
 ;;; jcs-batch-mode.el ends here

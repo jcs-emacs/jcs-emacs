@@ -29,8 +29,9 @@
 ;; (@* "Hook" )
 ;;
 
-(defun jcs-css-mode-hook ()
-  "Hook for CSS mode."
+(add-hook 'css-mode-hook 'emmet-mode)
+
+(jcs-add-hook 'css-mode-hook
   (impatient-mode t)
 
   ;; File Header
@@ -51,9 +52,6 @@
 
   ;; Eemmet
   (define-key emmet-mode-keymap (kbd "C-<return>") #'jcs-emmet-expand-line))
-
-(add-hook 'css-mode-hook 'jcs-css-mode-hook)
-(add-hook 'css-mode-hook 'emmet-mode)
 
 (provide 'jcs-css-mode)
 ;;; jcs-css-mode.el ends here

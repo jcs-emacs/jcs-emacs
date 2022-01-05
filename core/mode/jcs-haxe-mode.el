@@ -16,9 +16,9 @@
 ;; (@* "Hook" )
 ;;
 
-(defun jcs-haxe-mode-hook ()
-  "Haxe mode hook."
+(add-hook 'haxe-mode-hook 'jcs-prog-mode-hook)
 
+(jcs-add-hook 'haxe-mode-hook
   (modify-syntax-entry ?_ "w")
 
   ;; File Header
@@ -41,9 +41,6 @@
   ;; switch frame.
   (jcs-bind-key (kbd "M-w") #'jcs-other-window-next)
   (jcs-bind-key (kbd "M-q") #'jcs-other-window-prev))
-
-(add-hook 'haxe-mode-hook 'jcs-prog-mode-hook)
-(add-hook 'haxe-mode-hook 'jcs-haxe-mode-hook)
 
 (provide 'jcs-haxe-mode)
 ;;; jcs-haxe-mode.el ends here

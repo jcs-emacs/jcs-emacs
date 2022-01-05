@@ -16,9 +16,7 @@
 ;; (@* "Hook" )
 ;;
 
-(defun jcs-swift-mode-hook ()
-  "Swift mode hook."
-
+(jcs-add-hook 'swift-mode-hook
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
 
@@ -28,8 +26,6 @@
 
   ;; Normal
   (jcs-bind-key (kbd "M-k") #'jcs-maybe-kill-this-buffer))
-
-(add-hook 'swift-mode-hook 'jcs-swift-mode-hook)
 
 (provide 'jcs-swift-mode)
 ;;; jcs-swift-mode.el ends here

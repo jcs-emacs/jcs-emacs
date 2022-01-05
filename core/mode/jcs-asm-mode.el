@@ -140,8 +140,7 @@
 ;; (@* "Hook" )
 ;;
 
-(defun jcs-masm-mode-hook ()
-  "MASM mode hook."
+(jcs-add-hook 'masm-mode-hook
   (electric-pair-mode nil)
   (modify-syntax-entry ?_ "w")
 
@@ -155,10 +154,7 @@
   (jcs-bind-key (kbd "RET") #'jcs-asm-return)
   (jcs-bind-key (kbd ";") #'jcs-asm-comment))
 
-(add-hook 'masm-mode-hook 'jcs-masm-mode-hook)
-
-(defun jcs-nasm-mode-hook ()
-  "NASM mode hook."
+(jcs-add-hook 'nasm-mode-hook
   (electric-pair-mode nil)
 
   (modify-syntax-entry ?_ "w")
@@ -172,8 +168,6 @@
   ;; Comment
   (jcs-bind-key (kbd "RET") #'jcs-asm-return)
   (jcs-bind-key (kbd ";") #'jcs-asm-comment))
-
-(add-hook 'nasm-mode-hook 'jcs-nasm-mode-hook)
 
 (provide 'jcs-asm-mode)
 ;;; jcs-asm-mode.el ends here

@@ -6,10 +6,12 @@
 ;; (@* "Macro" )
 ;;
 
-(defmacro jcs-add-hook (hook &rest body)
+(defmacro jcs-add-hook (hooks &rest body)
   "Global add-hook utility."
   (declare (indent 1))
-  `(add-hook ,hook (lambda (&rest _) ,@body)))
+  `(cond ((listp ,hooks)
+          (dolist (hook ,hooks) (add-hook hook (lambda (&rest _) ,@body))))
+         (t (add-hook ,hooks (lambda (&rest _) ,@body)))))
 
 (defmacro jcs-with-gc-speed-up (&rest body)
   "Execute BODY with higher GC threshold."

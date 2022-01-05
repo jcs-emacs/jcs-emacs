@@ -16,9 +16,7 @@
 ;; (@* "Hook" )
 ;;
 
-(defun jcs-yaml-mode-hook ()
-  "YAML mode hook."
-
+(jcs-add-hook 'yaml-mode-hook
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
 
@@ -33,8 +31,6 @@
 
   (jcs-bind-key (kbd "SPC") #'jcs-smart-space)
   (jcs-bind-key (kbd "<backspace>") #'jcs-smart-backspace))
-
-(add-hook 'yaml-mode-hook 'jcs-yaml-mode-hook)
 
 (provide 'jcs-yaml-mode)
 ;;; jcs-yaml-mode.el ends here

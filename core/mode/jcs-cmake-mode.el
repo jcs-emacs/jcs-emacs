@@ -19,9 +19,7 @@
 ;; (@* "Hook" )
 ;;
 
-(defun jcs-cmake-mode-hook ()
-  "CMake mode hook."
-
+(jcs-add-hook 'cmake-mode-hook
   (jcs-company-safe-add-backend 'company-cmake)
 
   ;; File Header
@@ -32,8 +30,6 @@
   (jcs-bind-key (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
   (jcs-bind-key (kbd "<down>") (jcs-get-prev/next-key-type 'next))
   (jcs-bind-key (kbd "RET") #'jcs-makefile-newline))
-
-(add-hook 'cmake-mode-hook 'jcs-cmake-mode-hook)
 
 (provide 'jcs-cmake-mode)
 ;;; jcs-cmake-mode.el ends here

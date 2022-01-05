@@ -143,9 +143,7 @@ Including adding or removing the package path."
 ;; (@* "Hook" )
 ;;
 
-(defun jcs-java-mode-hook ()
-  "Java mode hook."
-
+(jcs-add-hook 'java-mode-hook
   (setq-local docstr-show-type-name nil)
 
   ;; Treat underscore as word.
@@ -170,8 +168,6 @@ Including adding or removing the package path."
   ;; javadoc
   (jcs-bind-key (kbd "<f2>") #'javadoc-lookup)
   (jcs-bind-key (kbd "S-<f2>") #'javadoc-lookup))
-
-(add-hook 'java-mode-hook 'jcs-java-mode-hook)
 
 (provide 'jcs-java-mode)
 ;;; jcs-java-mode.el ends here

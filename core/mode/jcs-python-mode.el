@@ -79,9 +79,7 @@
 ;; (@* "Hook" )
 ;;
 
-(defun jcs-python-mode-hook ()
-  "Python mode hook."
-
+(jcs-add-hook 'python-mode-hook
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
 
@@ -106,8 +104,6 @@
 
   (jcs-bind-key (kbd "RET") #'jcs-py-return)
   (jcs-bind-key (kbd "C-v") #'yank))
-
-(add-hook 'python-mode-hook 'jcs-python-mode-hook)
 
 (provide 'jcs-python-mode)
 ;;; jcs-python-mode.el ends here

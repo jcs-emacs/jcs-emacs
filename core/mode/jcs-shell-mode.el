@@ -9,8 +9,10 @@
 ;; (@* "Hook" )
 ;;
 
-(defun jcs-shell-mode-hook ()
-  "Shell mode hook."
+(add-hook ' 'jcs-shell-mode-hook)
+(add-hook 'eshell-mode-hook 'jcs-shell-mode-hook)
+
+(jcs-add-hook '(shell-mode-hook eshell-mode-hook)
   (company-fuzzy-mode -1)
 
   ;; Normal
@@ -45,9 +47,6 @@
 
   (jcs-bind-key (kbd "C-d") #'jcs-shell-kill-whole-line)
   (jcs-bind-key (kbd "<backspace>") #'jcs-shell-backspace))
-
-(add-hook 'shell-mode-hook 'jcs-shell-mode-hook)
-(add-hook 'eshell-mode-hook 'jcs-shell-mode-hook)
 
 (provide 'jcs-shell-mode)
 ;;; jcs-shell-mode.el ends here

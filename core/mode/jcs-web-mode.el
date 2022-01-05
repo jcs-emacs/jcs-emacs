@@ -2,6 +2,8 @@
 ;;; Commentary: Including HTML, CSS, PHP, JavaScript, JSON.
 ;;; Code:
 
+(require 'web-mode)
+
 (require 'jcs-web)
 (require 'impatient-mode)
 (require 'auto-rename-tag)
@@ -87,10 +89,9 @@
 ;; (@* "Hook" )
 ;;
 
-(require 'web-mode)
+(add-hook 'web-mode-hook 'emmet-mode)
 
-(defun jcs-web-mode-hook ()
-  "Hooks for Web mode."
+(jcs-add-hook 'web-mode-hook
   (auto-rename-tag-mode 1)
   (visual-line-mode t)
   (impatient-mode t)
@@ -134,15 +135,9 @@
   (jcs-bind-key [C-backspace] #'jcs-web-backward-delete-word)
   (jcs-bind-key (kbd "M-<backspace>") #'jcs-web-backward-delete-word-capital))
 
-(add-hook 'web-mode-hook 'jcs-web-mode-hook)
-(add-hook 'web-mode-hook 'emmet-mode)
-
-(defun jcs-html-mode-hook ()
-  "HTML mode hook."
+(jcs-add-hook 'html-mode-hook
   (jcs-bind-key (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
   (jcs-bind-key (kbd "<down>") (jcs-get-prev/next-key-type 'next)))
-
-(add-hook 'html-mode-hook 'jcs-html-mode-hook)
 
 (provide 'jcs-web-mode)
 ;;; jcs-web-mode.el ends here

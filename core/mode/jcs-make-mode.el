@@ -108,8 +108,7 @@ TYPE: type of makefile for Python."
 ;; (@* "Hook" )
 ;;
 
-(defun jcs-makefile-mode-hook ()
-  "Makefile mode hook."
+(jcs-add-hook 'makefile-mode-hook
   (electric-pair-mode nil)
 
   ;; File Header
@@ -123,8 +122,6 @@ TYPE: type of makefile for Python."
   (jcs-bind-key (kbd "<down>") (jcs-get-prev/next-key-type 'next))
   (jcs-bind-key (kbd "RET") #'jcs-makefile-newline)
   (jcs-bind-key (kbd "C-v") #'yank))
-
-(add-hook 'makefile-mode-hook 'jcs-makefile-mode-hook)
 
 (provide 'jcs-make-mode)
 ;;; jcs-make-mode.el ends here

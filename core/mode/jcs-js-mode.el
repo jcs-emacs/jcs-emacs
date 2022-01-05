@@ -44,8 +44,7 @@
 ;; (@* "Hook" )
 ;;
 
-(defun jcs-js-mode-hook ()
-  "Mode hook for JavaScript mode."
+(jcs-add-hook '(js-mode-hook js2-mode-hook)
   (auto-rename-tag-mode 1)
   (impatient-mode t)
   (js2-minor-mode 1)
@@ -66,9 +65,6 @@
   (jcs-bind-key (kbd ";") #'jcs-vs-semicolon-key)
 
   (jcs--js-to-jsx-mode))
-
-(add-hook 'js-mode-hook 'jcs-js-mode-hook)
-(add-hook 'js2-mode-hook 'jcs-js-mode-hook)
 
 (provide 'jcs-js-mode)
 ;;; jcs-js-mode.el ends here

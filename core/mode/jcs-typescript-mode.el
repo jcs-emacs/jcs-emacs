@@ -56,9 +56,7 @@
 ;; (@* "Hook" )
 ;;
 
-(defun jcs-typescript-mode-hook ()
-  "TypeScript mode hook."
-
+(jcs-add-hook 'typescript-mode-hook
   (add-hook 'docstr-before-insert-hook 'jcs-typescript--docstr-before nil t)
 
   (face-remap-add-relative 'typescript-jsdoc-tag '(:inherit docstr-faces-tag-face))
@@ -78,8 +76,6 @@
   (jcs-bind-key (kbd "DEL") #'jcs-electric-backspace)
   (jcs-bind-key (kbd "{") #'jcs-vs-opening-curly-bracket-key)
   (jcs-bind-key (kbd ";") #'jcs-vs-semicolon-key))
-
-(add-hook 'typescript-mode-hook 'jcs-typescript-mode-hook)
 
 (provide 'jcs-typescript-mode)
 ;;; jcs-typescript-mode.el ends here

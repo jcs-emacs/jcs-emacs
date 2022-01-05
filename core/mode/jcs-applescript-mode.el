@@ -16,13 +16,10 @@
 ;; (@* "Hook" )
 ;;
 
-(defun jcs-applescript-mode-hook ()
-  "Hook for AppleScript."
+(jcs-add-hook 'applescript-mode-hook
   ;; File Header
   (jcs-insert-header-if-valid '("[.]applescript" "[.]scpt" "[.]scptd")
                               'jcs-insert-applescript-template))
-
-(add-hook 'applescript-mode-hook 'jcs-applescript-mode-hook)
 
 (provide 'jcs-applescript-mode)
 ;;; jcs-applescript-mode.el ends here

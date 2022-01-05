@@ -16,9 +16,7 @@
 ;; (@* "Hook" )
 ;;
 
-(defun jcs-rust-mode-hook ()
-  "Rust mode hook."
-
+(jcs-add-hook 'rust-mode-hook
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
   (modify-syntax-entry ?! "w")
@@ -30,8 +28,6 @@
                               'jcs-insert-rust-template)
 
   (jcs-bind-key (kbd "{") #'jcs-vs-opening-curly-bracket-key))
-
-(add-hook 'rust-mode-hook 'jcs-rust-mode-hook)
 
 (provide 'jcs-rust-mode)
 ;;; jcs-rust-mode.el ends here

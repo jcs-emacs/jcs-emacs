@@ -17,8 +17,9 @@
 ;; (@* "Hook" )
 ;;
 
-(defun jcs-xml-mode-hook ()
-  "XML mode hook."
+(add-hook 'nxml-mode-hook 'emmet-mode)
+
+(jcs-add-hook 'nxml-mode-hook
   (auto-rename-tag-mode 1)
   (visual-line-mode t)
 
@@ -35,10 +36,6 @@
   (jcs-bind-key (kbd "SPC") #'jcs-smart-space)
   (jcs-bind-key (kbd "<backspace>") #'jcs-smart-backspace))
 
-;; STUDY: they ae using nxml-mode instead of xml-mode
-;; which is really weird.
-(add-hook 'nxml-mode-hook 'jcs-xml-mode-hook)
-(add-hook 'nxml-mode-hook 'emmet-mode)
 
 (provide 'jcs-xml-mode)
 ;;; jcs-xml-mode.el ends here

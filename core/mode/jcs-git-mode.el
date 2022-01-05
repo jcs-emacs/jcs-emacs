@@ -22,18 +22,14 @@
 ;; (@* "Hook" )
 ;;
 
-(defun jcs-gitattributes-mode-hook ()
-  "Gitattributes mode hook."
+(jcs-add-hook 'gitattributes-mode-hook
   (electric-pair-mode nil)
 
   ;; Normal
   (jcs-bind-key (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
   (jcs-bind-key (kbd "<down>") (jcs-get-prev/next-key-type 'next)))
 
-(add-hook 'gitattributes-mode-hook 'jcs-gitattributes-mode-hook)
-
-(defun jcs-gitconfig-mode-hook ()
-  "Gitconfig mode hook."
+(jcs-add-hook 'gitconfig-mode-hook
   (electric-pair-mode nil)
 
   ;; Normal
@@ -42,10 +38,7 @@
   (jcs-bind-key (kbd "C-d") #'jcs-kill-whole-line)
   (jcs-bind-key (kbd "C-c C-c") #'kill-ring-save))
 
-(add-hook 'gitconfig-mode-hook 'jcs-gitconfig-mode-hook)
-
-(defun jcs-gitignore-mode-hook ()
-  "Gitignore mode hook."
+(jcs-add-hook 'gitignore-mode-hook
   (electric-pair-mode nil)
 
   (jcs-insert-header-if-valid '("[.]gitignore")
@@ -61,8 +54,6 @@
   (jcs-bind-key (kbd "<down>") (jcs-get-prev/next-key-type 'next))
   (jcs-bind-key (kbd "C-d") #'jcs-kill-whole-line)
   (jcs-bind-key (kbd "C-c C-c") #'kill-ring-save))
-
-(add-hook 'gitignore-mode-hook 'jcs-gitignore-mode-hook)
 
 (provide 'jcs-git-mode)
 ;;; jcs-git-mode.el ends here

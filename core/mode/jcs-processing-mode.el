@@ -16,8 +16,7 @@
 ;; (@* "Hook" )
 ;;
 
-(defun jcs-processing-mode-hook ()
-  "Hook for processing mode."
+(jcs-add-hook 'processing-mode-hook
 
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
@@ -28,8 +27,6 @@
 
   ;; Normal
   (jcs-bind-key (kbd "DEL") #'jcs-electric-backspace))
-
-(add-hook 'processing-mode-hook 'jcs-processing-mode-hook)
 
 (provide 'jcs-processing-mode)
 ;;; jcs-processing-mode.el ends here

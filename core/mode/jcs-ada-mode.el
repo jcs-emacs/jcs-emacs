@@ -16,13 +16,10 @@
 ;; (@* "Hook" )
 ;;
 
-(defun jcs-ada-mode-hook ()
-  "Ada mode hook."
+(jcs-add-hook 'ada-mode-hook
   ;; File Header
   (jcs-insert-header-if-valid '("[.]ads")
                               'jcs-insert-ada-template))
-
-(add-hook 'ada-mode-hook 'jcs-ada-mode-hook)
 
 (provide 'jcs-ada-mode)
 ;;; jcs-ada-mode.el ends here

@@ -16,8 +16,7 @@
 ;; (@* "Hook" )
 ;;
 
-(defun jcs-go-mode-hook ()
-  "Go mode hook."
+(jcs-add-hook 'go-mode-hook
   (jcs-use-cc-mutliline-comment)
 
   (setq-local docstr-show-type-name nil)
@@ -27,8 +26,6 @@
   ;; File Header
   (jcs-insert-header-if-valid '("[.]go")
                               'jcs-insert-go-template))
-
-(add-hook 'go-mode-hook 'jcs-go-mode-hook)
 
 (provide 'jcs-go-mode)
 ;;; jcs-go-mode.el ends here

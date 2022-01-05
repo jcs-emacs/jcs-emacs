@@ -18,9 +18,7 @@
 ;; (@* "Hook" )
 ;;
 
-(defun jcs-objc-mode-hook ()
-  "Objective-C mode hook."
-
+(jcs-add-hook 'objc-mode-hook
   (jcs-company-safe-add-backend 'company-c-headers)
 
   ;; File Header
@@ -51,8 +49,6 @@
   ;; Undo/Redo
   (jcs-bind-key (kbd "C-z") #'jcs-undo)
   (jcs-bind-key (kbd "C-y") #'jcs-redo))
-
-(add-hook 'objc-mode-hook 'jcs-objc-mode-hook)
 
 (provide 'jcs-objc-mode)
 ;;; jcs-objc-mode.el ends here
