@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
-## 7.1.1 (Unreleased)
+## 8.0.0 (Unreleased)
 > Released N/A
 
 * Correct save buffer logic for `css-mode`.
