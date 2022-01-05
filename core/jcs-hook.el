@@ -25,24 +25,24 @@
   (if (frame-focus-state) (jcs-hook--focus-in) (jcs-hook--focus-out)))
 (add-function :after after-focus-change-function #'jcs-after-focus-change-function)
 
-(defun jcs-window-size-change-functions (&rest _)
-  "When window changed size."
-  (jcs-dashboard--window-size-change)
-  (when (featurep 'jcs-ivy) (jcs-ivy--window-size-change))
-  (when (featurep 'treemacs) (jcs-treemacs--window-size-change)))
-(add-hook 'window-size-change-functions 'jcs-window-size-change-functions)
+(add-hook
+ 'window-size-change-functions
+ (lambda ()
+   (jcs-dashboard--window-size-change)
+   (when (featurep 'jcs-ivy) (jcs-ivy--window-size-change))
+   (when (featurep 'treemacs) (jcs-treemacs--window-size-change))))
 
 ;;
 ;; (@* "Find Files" )
 ;;
 
-(defun jcs-hook--find-file ()
-  "Find file hook."
-  (jcs-funcall-fboundp #'jcs-update-buffer-save-string)
-  (jcs-active-line-numbers-by-mode)
-  (jcs-project-remember)
-  (jcs-project--track-open-projects))
-(add-hook 'find-file-hook 'jcs-hook--find-file)
+(add-hook
+ 'find-file-hook
+ (lambda ()
+   (jcs-funcall-fboundp #'jcs-update-buffer-save-string)
+   (jcs-active-line-numbers-by-mode)
+   (jcs-project-remember)
+   (jcs-project--track-open-projects)))
 
 (defun jcs--find-file--advice-after (&rest _)
   "Advice execute after command `find-file'."
@@ -81,48 +81,35 @@
 (advice-add 'other-window :after #'jcs--other-window--advice-after)
 
 ;;
-;; (@* "First load" )
-;;
-
-(defun jcs--fl--find-file--advice-before (&rest _)
-  "Advice execute before command `find-file'."
-  ;; Fixed `css-mode' opening virtual buffer with directory error. You just
-  ;; need to preload this before actually create the virtual buffer.
-  (require 'eww nil t)
-  (advice-remove 'find-file #'jcs--fl--find-file--advice-before))
-
-(advice-add 'find-file :before #'jcs--fl--find-file--advice-before)
-
-;;
 ;; (@* "Initialization" )
 ;;
 
-(defun jcs-hook--after-init ()
-  "Hook run after initialize."
-  (jcs-require '(dashboard diminish))
-  (powerline-default-theme)
-  (use-ttf-set-default-font)
+(add-hook
+ 'after-init-hook
+ (lambda ()
+   (jcs-require '(dashboard diminish))
+   (powerline-default-theme)
+   (use-ttf-set-default-font)
 
-  (run-with-idle-timer 0 nil #'jcs-hook--init-delay)
+   (run-with-idle-timer 0 nil #'jcs-hook--init-delay)
 
-  (jcs-setup-default-theme)
-  (jcs-depend-mode)
+   (jcs-setup-default-theme)
+   (jcs-depend-mode)
 
-  ;; Font Size
-  (jcs-set-font-size jcs-default-font-size)
+   ;; Font Size
+   (jcs-set-font-size jcs-default-font-size)
 
-  ;; Frame Title
-  (setq frame-title-format
-        (list (format "%s %%S: %%j " (system-name))
-              '(buffer-file-name "%f" (dired-directory dired-directory "%b"))))
+   ;; Frame Title
+   (setq frame-title-format
+         (list (format "%s %%S: %%j " (system-name))
+               '(buffer-file-name "%f" (dired-directory dired-directory "%b"))))
 
-  ;; NOTE: Lower the `GC' back to normal threshold.
-  (jcs-gc-cons-threshold-speed-up nil)
-  (setq file-name-handler-alist jcs-file-name-handler-alist)
+   ;; NOTE: Lower the `GC' back to normal threshold.
+   (jcs-gc-cons-threshold-speed-up nil)
+   (setq file-name-handler-alist jcs-file-name-handler-alist)
 
-  ;; IMPORTANT: This should always be the last thing.
-  (jcs-dashboard-init-info))
-(add-hook 'after-init-hook 'jcs-hook--after-init)
+   ;; IMPORTANT: This should always be the last thing.
+   (jcs-dashboard-init-info)))
 
 (defun jcs-hook--init-delay ()
   "Delay some executions for faster speed."
@@ -155,26 +142,26 @@
 ;; (@* "Pre/Post Command" )
 ;;
 
-(defun jcs-hook--pre-command ()
-  "Hook run before every command."
-  (jcs--er/record-history))
-(add-hook 'pre-command-hook 'jcs-hook--pre-command)
+(add-hook
+ 'pre-command-hook
+ (lambda ()
+   (jcs--er/record-history)))
 
-(defun jcs-hook--post-command ()
-  "Hook run after every command."
-  (jcs--er/resolve-region)
-  (jcs-funcall-fboundp #'jcs--mark-whole-buffer-resolve)
-  (jcs-reload-active-mode-with-error-handle))
-(add-hook 'post-command-hook 'jcs-hook--post-command)
+(add-hook
+ 'post-command-hook
+ (lambda ()
+   (jcs--er/resolve-region)
+   (jcs-funcall-fboundp #'jcs--mark-whole-buffer-resolve)
+   (jcs-reload-active-mode-with-error-handle)))
 
 ;;
 ;; (@* "Major Mode" )
 ;;
 
-(defun jcs-hook--after-change-major-mode ()
-  "Hook run after major mode changes."
-  (jcs-active-line-numbers-by-mode))
-(add-hook 'after-change-major-mode-hook 'jcs-hook--after-change-major-mode)
+(add-hook
+ 'after-change-major-mode-hook
+ (lambda ()
+   (jcs-active-line-numbers-by-mode)))
 
 ;;
 ;; (@* "Quitting" )
@@ -195,12 +182,12 @@
 (defvar jcs-emacs-startup-directory nil
   "Record the startup directory.")
 
-(defun jcs-hook--emacs-startup ()
-  "Hook run after Emacs is startup."
-  (with-current-buffer jcs-scratch-buffer-name
-    (setq jcs-scratch--content (buffer-string)))
-  (setq jcs-emacs-startup-directory default-directory))
-(add-hook 'emacs-startup-hook 'jcs-hook--emacs-startup)
+(add-hook
+ 'emacs-startup-hook
+ (lambda ()
+   (with-current-buffer jcs-scratch-buffer-name
+     (setq jcs-scratch--content (buffer-string)))
+   (setq jcs-emacs-startup-directory default-directory)))
 
 (provide 'jcs-hook)
 ;;; jcs-hook.el ends here
