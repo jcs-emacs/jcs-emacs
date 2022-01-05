@@ -136,18 +136,7 @@ emacs config directory accordingly. Make sure you backup your own configuration
 before you start the installation.
 
 ```bash
-# clone this repo
-$ git clone https://github.com/jcs-emacs/jcs-emacs.git
-
-# change current directory to project directory
-$ cd jcs-emacs
-
-# copy init file to home
-$ cp ./.emacs ~/
-
-# copy core directories to home
-$ cp -r ./.emacs.d ~/
-$ cp -r ./.emacs.jcs ~/
+git clone https://github.com/jcs-emacs/jcs-emacs ~/.emacs.d
 ```
 
 Then startup Emacs; it will automatically installs all necessary
