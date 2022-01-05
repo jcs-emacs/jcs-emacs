@@ -259,11 +259,11 @@ If optional argument FORCE is non-nil, force refresh it."
 
 (defun jcs-dashboard--get-banner-path ()
   "Return banner path."
-  (concat user-emacs-directory
-          (cond ((display-graphic-p)
-                 (if (jcs-light-theme-p) "banners/sink_black.png"
-                   "banners/sink_white.png"))
-                (t "banners/sink.txt"))))
+  (locate-user-emacs-file
+   (cond ((display-graphic-p)
+          (if (jcs-light-theme-p) "banners/sink_black.png"
+            "banners/sink_white.png"))
+         (t "banners/sink.txt"))))
 
 ;;
 ;; (@* "ElDoc" )
