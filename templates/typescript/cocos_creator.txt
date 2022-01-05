@@ -1,0 +1,12 @@
+#GLOBAL_FILE_INFO#
+const { ccclass, property, requireComponent } = cc._decorator;
+
+@ccclass
+export default class #FILE_NAME_NO_EXT# extends cc.Component {
+    /* Variables */
+
+    /* Setter & Getter */
+
+    /* Functions */
+
+}

@@ -1,0 +1,29 @@
+#GLOBAL_FILE_INFO#
+#pragma once
+
+#include "GameFramework/Actor.h"
+#include "#FILE_NAME_NO_EXT#.generated.h"
+
+/**
+ * @class A#FILE_NAME_NO_EXT#
+ * @brief Class description...
+ */
+UCLASS()
+class #U_UNREAL_API_NAME# A#FILE_NAME_NO_EXT# : public AActor
+{
+private:
+    GENERATED_BODY()
+
+public:
+    A#FILE_NAME_NO_EXT#();
+
+    virtual void BeginPlay() override;
+    virtual void Tick(float DeltaSeconds) override;
+
+    /* operator */
+
+    /* setter */
+
+    /* getter */
+
+};

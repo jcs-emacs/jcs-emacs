@@ -1,0 +1,14 @@
+#SHARP_FILE_INFO#
+
+class #FILE_NAME_NO_EXT#(object):
+    """TODO: Class Description here...
+    """
+
+    ## Variables ##
+
+    ## Functions ##
+
+    def __init__(self):
+        """Constructor."""
+
+    ## Setter & Getter ##

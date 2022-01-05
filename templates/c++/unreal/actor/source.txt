@@ -1,0 +1,18 @@
+#GLOBAL_FILE_INFO#
+
+#include "#FILE_NAME_NO_EXT#.h"
+
+A#FILE_NAME_NO_EXT#::A#FILE_NAME_NO_EXT#()
+{
+    PrimaryActorTick.bCanEverTick = true;
+}
+
+void A#FILE_NAME_NO_EXT#::BeginPlay()
+{
+    Super::BeginPlay();
+}
+
+void A#FILE_NAME_NO_EXT#::Tick(float DeltaSeconds)
+{
+    Super::Tick(DeltaTime);
+}

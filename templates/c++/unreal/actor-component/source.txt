@@ -1,0 +1,18 @@
+#GLOBAL_FILE_INFO#
+
+#include "#FILE_NAME_NO_EXT#.h"
+
+U#FILE_NAME_NO_EXT#::U#FILE_NAME_NO_EXT#()
+{
+    PrimaryComponentTick.bCanEverTick = true;
+}
+
+void U#FILE_NAME_NO_EXT#::BeginPlay()
+{
+    Super::BeginPlay();
+}
+
+void U#FILE_NAME_NO_EXT#::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
+{
+    Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+}

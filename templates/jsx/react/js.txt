@@ -1,0 +1,11 @@
+#GLOBAL_FILE_INFO#
+import React from 'react';
+
+class #C_FILE_NAME_NO_EXT# extends React.Component {
+  state = {};
+  render () {
+    return (<></>);
+  }
+}
+
+export default #C_FILE_NAME_NO_EXT#;

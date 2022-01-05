@@ -1,0 +1,10 @@
+server {
+    listen       80;
+    server_name  localhost;
+
+    index index.html;
+
+    location / {
+        root   /home/ubuntu/project-source/company/entry;
+    }
+}

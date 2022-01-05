@@ -1,0 +1,13 @@
+#GLOBAL_FILE_INFO#
+import React from 'react';
+import ReactNative from 'react-native';
+
+function #C_FILE_NAME_NO_EXT#(props) {
+  return (
+    <div>
+
+    </div>
+  );
+}
+
+export default #C_FILE_NAME_NO_EXT#;

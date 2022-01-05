@@ -1,0 +1,6 @@
+---
+title: #FILE_NAME#
+date: #TIME_STAMP_VER1#
+description: 
+---
+
