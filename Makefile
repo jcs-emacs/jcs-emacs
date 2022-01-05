@@ -13,7 +13,7 @@ ENTRY="(progn															 \
 (let ((debug-on-error nil)												 \
 	  (url-show-status nil)												 \
 	  (user-emacs-directory default-directory)							 \
-	  (user-init-file (expand-file-name \"~/.emacs.d/bin/build.el\"))				 \
+	  (user-init-file (expand-file-name \"~/.emacs.d/bin/build.el\"))	 \
 	  (load-path (delq default-directory load-path)))					 \
   (load-file user-init-file)											 \
   (run-hooks (quote after-init-hook))									 \
