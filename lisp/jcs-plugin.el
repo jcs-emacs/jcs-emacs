@@ -376,7 +376,7 @@
 
 (leaf file-header
   :init
-  (setq file-header-template-config-filepath "~/.emacs.d/template/config.properties"))
+  (setq file-header-template-config-filepath (concat user-emacs-directory "templates/config.properties")))
 
 (leaf flx-rs
   :init
