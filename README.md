@@ -46,8 +46,7 @@
 # jcs-emacs
 > Consistent Emacs configuration for all platforms.
 
-This is Jen-Chieh Shen's emacs configuration. This configuration
-started from [Casey Muratori](https://github.com/cmuratori)'s
+This is Jen-Chieh Shen's emacs configuration started from [Casey Muratori](https://github.com/cmuratori)'s
 Emacs configuration. It has been repeatedly utilized and modified
 since 2015 and is now very different to his configuration.
 
