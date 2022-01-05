@@ -114,9 +114,7 @@ Having these implementations makes my life easier, and having a genuinely portab
 workspace, which is great because it lets me work on different machine efficiently,
 without having to get used to an new IDE.
 
-| Light Theme                                  | Dark Theme                                  |
-|:---------------------------------------------|:--------------------------------------------|
-| ![](./docs/etc/screenshot/startup-light.png) | ![](./docs/etc/screenshot/startup-dark.png) |
+![](./docs/etc/screenshot/startup-dark.png)
 
 ## 📰 News
 
