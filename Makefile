@@ -6,4 +6,4 @@ CASK ?= cask
 .PHONY: startup
 
 startup:
-	@$(EMACS) -nw --batch --l "~/.emacs.d/bin/build.el"
+	@$(EMACS) -nw --batch -l "~/.emacs.d/bin/build.el"
