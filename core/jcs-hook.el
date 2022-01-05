@@ -80,15 +80,6 @@
 ;;
 
 (jcs-add-hook 'after-init-hook
-  (jcs-require '(dashboard diminish))
-  (powerline-default-theme)
-  (use-ttf-set-default-font)
-
-  (run-with-idle-timer 0 nil #'jcs-hook--init-delay)
-
-  (jcs-setup-default-theme)
-  (jcs-depend-mode)
-
   )
 
 (defun jcs-hook--init-delay ()
