@@ -9,7 +9,7 @@
 ;; See https://github.com/jcs090218/setup-emacs-windows/issues/156#issuecomment-932956432
 (setq network-security-level 'low)
 
-(load-file (expand-file-name "~/.emacs.d/init.el"))  ; Start regular Emacs file
+(load-file (locate-user-emacs-file "init.el"))  ; Start regular Emacs file
 
 ;; Local Variables:
 ;; coding: utf-8
