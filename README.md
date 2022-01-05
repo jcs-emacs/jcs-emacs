@@ -1,5 +1,5 @@
 <p align="center">
-<img src="./etc/logo/logo-shadow.png" width="500" height="253"/>
+<img src="./docs/etc/logo/logo-shadow.png" width="500" height="253"/>
 </p>
 
 <p align="center">
@@ -114,6 +114,10 @@ Having these implementations makes my life easier, and having a genuinely portab
 workspace, which is great because it lets me work on different machine efficiently,
 without having to get used to an new IDE.
 
+| Light Theme                                  | Dark Theme                                  |
+|:---------------------------------------------|:--------------------------------------------|
+| ![](./docs/etc/screenshot/startup-light.png) | ![](./docs/etc/screenshot/startup-dark.png) |
+
 ## 📰 News
 
 Here is the list of few important and recent changes to this configuration.
@@ -136,18 +140,7 @@ emacs config directory accordingly. Make sure you backup your own configuration
 before you start the installation.
 
 ```bash
-# clone this repo
-$ git clone https://github.com/jcs-emacs/jcs-emacs.git
-
-# change current directory to project directory
-$ cd jcs-emacs
-
-# copy init file to home
-$ cp ./.emacs ~/
-
-# copy core directories to home
-$ cp -r ./.emacs.d ~/
-$ cp -r ./.emacs.jcs ~/
+git clone https://github.com/jcs-emacs/jcs-emacs ~/.emacs.d
 ```
 
 Then startup Emacs; it will automatically installs all necessary
@@ -212,47 +205,47 @@ This is the list of features that are built-in to this configuration. These feat
 are heavily base on my personal habits, and so these could be very tiny things. But
 I believed detials make things better and make life smoother.
 
-* [*Auto Install Package*](./features/auto-install-package) - Automatically installs the package that this config relies on.
-* [*Better Dashboard*](./features/better-dashboard) - Implementation for improving experiences using dashboard.
-* [*Buffer Menu Search*](./features/buffer-menu-search) - Able to search in the `*Buffer List*` buffer.
-* [*Build Run*](./features/build-run) - Implementation for executing script for building and running the software.
-* [*Capital Word*](./features/capital-word) - You can navigate/kill word by seeing capital letter.
-* [*Changelog Helper*](./features/changelog-helper) - Help to create changelog while creating `CHANGELOG` file using template.
-* [*Consistent Key Bindings*](./features/consistent-key-bindings) - Has consistent key bindings across all modes.
+* [*Auto Install Package*](./docs/features/auto-install-package) - Automatically installs the package that this config relies on.
+* [*Better Dashboard*](./docs/features/better-dashboard) - Implementation for improving experiences using dashboard.
+* [*Buffer Menu Search*](./docs/features/buffer-menu-search) - Able to search in the `*Buffer List*` buffer.
+* [*Build Run*](./docs/features/build-run) - Implementation for executing script for building and running the software.
+* [*Capital Word*](./docs/features/capital-word) - You can navigate/kill word by seeing capital letter.
+* [*Changelog Helper*](./docs/features/changelog-helper) - Help to create changelog while creating `CHANGELOG` file using template.
+* [*Consistent Key Bindings*](./docs/features/consistent-key-bindings) - Has consistent key bindings across all modes.
 * [*Curly Bracket Modes*](./curly-bracket-modes) - Use curly bracket depends on different mode.
-* [*Display File*](./features/display-file) - Utility function to use to view a file on the other window.
-* [*Charset Table*](./features/display-file/charset-table) - Built-in functions that displays character sets.
-* ~~[*Docstring Completion*](./features/docstring-completion) - Some standard docstring completion implementations built-in to this configuration.~~ (has move to [docstr](https://github.com/jcs-elpa/docstr))
+* [*Display File*](./docs/features/display-file) - Utility function to use to view a file on the other window.
+* [*Charset Table*](./docs/features/display-file/charset-table) - Built-in functions that displays character sets.
+* ~~[*Docstring Completion*](./docs/features/docstring-completion) - Some standard docstring completion implementations built-in to this configuration.~~ (has move to [docstr](https://github.com/jcs-elpa/docstr))
 * Enhanced Multiple Cursors
-  * [*Similar Multiple Cursors*](./features/similar-multiple-cursors) - Mark with cursor by similarity.
-  * [*VS Multiple Cursors*](./features/vs-multiple-cursors) - VSCode like methods to `mark` and `unmark` multiple cursor.
-* [*Fast Incremental Search*](./features/fast-incremental-search) - Fast keys for incremental search forward/backward to the cursor is currently pointing.
-* [*Feebleline Design*](./features/feebleline-design) - Personal displayed design for `feebleline`.
-* [*Indent Control*](./features/indent-control) - Generic control the indentation level for each mode, for more information see [indent-control](https://github.com/alt-elpa/indent-control).
+  * [*Similar Multiple Cursors*](./docs/features/similar-multiple-cursors) - Mark with cursor by similarity.
+  * [*VS Multiple Cursors*](./docs/features/vs-multiple-cursors) - VSCode like methods to `mark` and `unmark` multiple cursor.
+* [*Fast Incremental Search*](./docs/features/fast-incremental-search) - Fast keys for incremental search forward/backward to the cursor is currently pointing.
+* [*Feebleline Design*](./docs/features/feebleline-design) - Personal displayed design for `feebleline`.
+* [*Indent Control*](./docs/features/indent-control) - Generic control the indentation level for each mode, for more information see [indent-control](https://github.com/alt-elpa/indent-control).
 * Previous/Next Keys
   * [*Normal Move*]() - Act like other normal editors.
-  * ~~[*Indent Move*](./features/indent-move) - Automatically indent when cursor moves up and down.~~
-  * [*Smart-Move*](./features/smart-move) - Smart enough to move cursor to the beginning of the line.
-* [*Line Numbers Modding*](./features/line-numbers-modding) - Mixed used of `linum` and `display-line-numbers-mode` base on the file usage.
-* [*License Helper*](./features/license-helper) - Help to create license while creating `LICENSE` file using template.
-* [*Mini State*](./features/mini-state) - Mini mode state use to visually see what backend is the config currently running. (Deprecated)
-  * [*Explicit States*](./features/mini-state/explicit-states) - Automatcially switch mini state depends on certain circumstances.
-* ~~[*Mode Line Toggle*](./features/mode-line-toggle) - Toggle to `show` or `hide` the mode line.~~
-* [*Modern Text Editor*](./features/modern-text-editor) - Design to have the preset settings close to modern text editors but faster.
-* [*Multiple Output*](./features/multiple-output) - Handle multiple output/compilation buffers.
-* [*Navigate Blank Line*](./features/navigate-blank-line) - Use `C-<up>` and `C-<down>` to navigate previous and next blank line.
-* [*Navigate Table*](./features/navigate-table) - Navigate `org-mode`'s table easier by using arrow keys.
-* [*Preview HTML*](./features/preview-html) - Preview rendered HTML file on the other window.
-* [*Simulate Shell*](./features/simulate-shell) - Completely simulate shell behaviors, make better user experience when using shell in Emacs.
-* [*Switch Window*](./features/switch-window) - Fast keys switch between windows quickly.
-* [*Tabify/Untabify Modes*](./features/tabify-untabify-modes) - Tabify or Untabify the file depends on the mode you currently in.
-* ~~[*Transparent Window*](./features/transparent-window) - Keys to increase/decrease the transparency of the frame.~~ (has move to [transwin](https://github.com/jcs-elpa/transwin))
-* [*Trim Trailing Whitespace*](./features/trim-trailing-whitespace) - Remove trailing spaces and tabs automatically on save.
-* ~~[*Video Player*](./features/video-player) - Play media on the top window.~~
-* [*Visualize Undo/Redo*](./features/visualize-undo-redo) - Improved the user experience on undoing and redoing by showing the `undo-tree-visualizer` at the other window.
-* [*VS Curly Bracket*](./features/vs-curly-bracket) - Visual Studio IDE like curly bracket implementation.
-* [*VS Multiple Terminal*](./features/vs-multiple-terminal) - VSCode like multiple shell control.
-* [*VS Navigate Word*](./features/vs-navigate-word) - Visual Studio IDE like navigating between word implementation.
+  * ~~[*Indent Move*](./docs/features/indent-move) - Automatically indent when cursor moves up and down.~~
+  * [*Smart-Move*](./docs/features/smart-move) - Smart enough to move cursor to the beginning of the line.
+* [*Line Numbers Modding*](./docs/features/line-numbers-modding) - Mixed used of `linum` and `display-line-numbers-mode` base on the file usage.
+* [*License Helper*](./docs/features/license-helper) - Help to create license while creating `LICENSE` file using template.
+* [*Mini State*](./docs/features/mini-state) - Mini mode state use to visually see what backend is the config currently running. (Deprecated)
+  * [*Explicit States*](./docs/features/mini-state/explicit-states) - Automatcially switch mini state depends on certain circumstances.
+* ~~[*Mode Line Toggle*](./docs/features/mode-line-toggle) - Toggle to `show` or `hide` the mode line.~~
+* [*Modern Text Editor*](./docs/features/modern-text-editor) - Design to have the preset settings close to modern text editors but faster.
+* [*Multiple Output*](./docs/features/multiple-output) - Handle multiple output/compilation buffers.
+* [*Navigate Blank Line*](./docs/features/navigate-blank-line) - Use `C-<up>` and `C-<down>` to navigate previous and next blank line.
+* [*Navigate Table*](./docs/features/navigate-table) - Navigate `org-mode`'s table easier by using arrow keys.
+* [*Preview HTML*](./docs/features/preview-html) - Preview rendered HTML file on the other window.
+* [*Simulate Shell*](./docs/features/simulate-shell) - Completely simulate shell behaviors, make better user experience when using shell in Emacs.
+* [*Switch Window*](./docs/features/switch-window) - Fast keys switch between windows quickly.
+* [*Tabify/Untabify Modes*](./docs/features/tabify-untabify-modes) - Tabify or Untabify the file depends on the mode you currently in.
+* ~~[*Transparent Window*](./docs/features/transparent-window) - Keys to increase/decrease the transparency of the frame.~~ (has move to [transwin](https://github.com/jcs-elpa/transwin))
+* [*Trim Trailing Whitespace*](./docs/features/trim-trailing-whitespace) - Remove trailing spaces and tabs automatically on save.
+* ~~[*Video Player*](./docs/features/video-player) - Play media on the top window.~~
+* [*Visualize Undo/Redo*](./docs/features/visualize-undo-redo) - Improved the user experience on undoing and redoing by showing the `undo-tree-visualizer` at the other window.
+* [*VS Curly Bracket*](./docs/features/vs-curly-bracket) - Visual Studio IDE like curly bracket implementation.
+* [*VS Multiple Terminal*](./docs/features/vs-multiple-terminal) - VSCode like multiple shell control.
+* [*VS Navigate Word*](./docs/features/vs-navigate-word) - Visual Studio IDE like navigating between word implementation.
 
 ## 📁 Package Archives
 
@@ -332,94 +325,6 @@ kind of methods that you could support the maintainer you want.
 * *Undo/Redo* - powered by [undo-tree](https://www.emacswiki.org/emacs/UndoTree).
 * *Video Player* - none.
 * *White Space* - powered by [whitespace](https://www.emacswiki.org/emacs/WhiteSpace).
-
-### File Modes
-
-If you want to change the default mode to certain file type, you might want to
-checkout the `./.emacs.jcs/jcs-mode.el` file. You will see a list of mode
-that are opened by default mode to certain extension.
-
-* [List of modes](./doc/programming_modes.md)
-
-📝 *P.S. The [awesome-emacs](https://github.com/emacs-tw/awesome-emacs)
-is a list of Emacs package that you can choose other alternatives to replace any
-similar packages listed here. Is also a good place to seek and learn what's inside
-Emacs!*
-
-## Key Bindings
-
-This configuration have all modes bind to the same set of key bindings. It benefits
-the developer would not need to change their key bindings while after the mode
-swichted. The key bindings set can be modified in `./.emacs.jcs/jcs-key.el` file.
-
-* [List of key bindings](./doc/keybindings.md)
-
-📝 P.S. * My work requires me to use
-[Visual Studio IDE](https://visualstudio.microsoft.com/)
-that being said the key bindings set are most likely compatible to
-[Visual Studio IDE](https://visualstudio.microsoft.com/).
-* ~~Excepts keys that bind to `C-x` and `C-c`, Emacs are deeply binds to these
-two keys, and many packages also use these two keys for there preset keys. As
-you may know these two keys are often `cut` and `copy`, is awkward that I solved
-this by adding the same key stroke once again, hence the `cut` key is
-`C-x C-x` and the `copy` key is `C-c C-c`.~~
-
-**Edit 1:** After version `5.8.3`, the `cut` and `copy` keys had been corrected
-and no longer the hassle to this configuration. Thanks to `use-package` again,
-letting me bind `C-x` and `C-c` keys for higher precedence.
-
-## Themes
-
-### Default
-
-The theme was to design close to [Visual Studio IDE](https://visualstudio.microsoft.com/)
-preset light/dark theme. I believed [Microsoft](https://www.microsoft.com/zh-tw/)
-has a great UI/UX team, since I don't have any experience or work related to UI/UX,
-I would just like to have the theme color as close to it as possible. Anyway, if you
-want to customize the theme yourself, then check out the `./.emacs.jcs/jcs-theme.el`
-file. All the theme related variables can be found in that file.
-
-| Light Theme                                   | Dark Theme                                   |
-|:----------------------------------------------|:---------------------------------------------|
-|<img src="./etc/screenshot/startup-light.png"/>|<img src="./etc/screenshot/startup-dark.png"/>|
-
-### Customization
-
-In common, you can install any theme you want as long it is available on the
-internet. You can check out the Emacs Theme Gallery site [here](https://pawelbx.github.io/emacs-theme-gallery/).
-For instance, [vs-dark-theme](https://github.com/jcs-elpa/vs-dark-theme) and
-[vs-light-theme](https://github.com/jcs-elpa/vs-light-theme) are now individual
-packages built outside from this configuration.
-
-## Font
-
-Font uses `use-ttf` package to keep cross OS consistency. The default font is
-`Ubuntu Mono` and loaded by using `UbuntuMono-R.ttf` located under
-`./.emacs.jcs/fonts/` folder. If you don't like the this font, you can add your
-own `.ttf` file and add the path to `use-ttf-default-ttf-fonts` list.
-Lastly, set the name of the `.ttf` file to `use-ttf-default-ttf-font-name`
-variable.
-
-📝
-P.S.
-* See the file `./.emacs.jcs/jcs-plugin.el` to see how the font is been set
-in `(leaf use-ttf)` section.
-* For more details about the font settings in this configuration, check out the
-`use-ttf`package [repo](https://github.com/elpa-host/use-ttf).
-
-## 🔨 Optimization
-
-If you would like to optimize the configuration, you can run the following command
-compile all the source code to byte code so Emacs can run faster during both
-`initial time` and `run time`.
-
-```bash
-# change directory to the `jcs` config directory
-$ cd ./.emacs.jcs
-
-# compile all the config source code
-$ emacs --batch --eval "(byte-recompile-directory \"./\" 0)"
-```
 
 ## Write your own customization
 

@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: jcs-normalize-css
-# key: jcs-normalize-css
-# --
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">$0

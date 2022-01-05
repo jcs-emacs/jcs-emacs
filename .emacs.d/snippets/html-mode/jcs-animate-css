@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: jcs-animate-css
-# key: jcs-animate-css
-# --
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">$0

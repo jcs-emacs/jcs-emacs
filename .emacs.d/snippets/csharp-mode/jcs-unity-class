@@ -1,8 +1,0 @@
-# -*- mode: snippet -*-
-# name: jcs-unity-class
-# key: jcs-unity-class
-# --
-public class `(jcs-file-name-without-extension)` : MonoBehaviour
-{
-    $0
-}
