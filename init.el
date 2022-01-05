@@ -1,4 +1,4 @@
-;;; .emacs --- Load the full configuration -*- lexical-binding: t -*-
+;;; init.el --- Load the full configuration  -*- lexical-binding: t -*-
 ;;; Commentary:
 
 ;; Author:  Shen, Jen-Chieh <jcs090218@gmail.com>
@@ -118,9 +118,9 @@ decrease this. If you experience stuttering, increase this.")
 ;; (@* "Load Core" )
 ;;
 
-(setq load-path (append '("~/.emacs.jcs/"
-                          "~/.emacs.jcs/func/"
-                          "~/.emacs.jcs/mode/")
+(setq load-path (append '("~/.emacs.d/core/"
+                          "~/.emacs.d/core/func/"
+                          "~/.emacs.d/core/mode/")
                         load-path))
 
 ;;; Initialize
@@ -156,4 +156,4 @@ decrease this. If you experience stuttering, increase this.")
 ;; coding: utf-8
 ;; no-byte-compile: t
 ;; End:
-;;; .emacs ends here
+;;; init.el ends here
