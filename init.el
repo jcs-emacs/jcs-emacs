@@ -118,9 +118,9 @@ decrease this. If you experience stuttering, increase this.")
 ;; (@* "Load Core" )
 ;;
 
-(setq load-path (append '("~/.emacs.d/core/"
-                          "~/.emacs.d/core/func/"
-                          "~/.emacs.d/core/mode/")
+(setq load-path (append '("~/.emacs.d/lisp/"
+                          "~/.emacs.d/lisp/func/"
+                          "~/.emacs.d/lisp/mode/")
                         load-path))
 
 ;;; Initialize

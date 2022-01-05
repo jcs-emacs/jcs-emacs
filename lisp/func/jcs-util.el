@@ -6,9 +6,9 @@
 ;; (@* "Macro" )
 ;;
 
-(defmacro jcs-add-hook (hooks &rest body)
+(defmacro jcs-add-hook (hooks &optional docstring &rest body)
   "Global add-hook utility."
-  (declare (indent 1))
+  (declare (doc-string 2) (indent 1))
   `(cond ((listp ,hooks)
           (dolist (hook ,hooks) (add-hook hook (lambda (&rest _) ,@body))))
          (t (add-hook ,hooks (lambda (&rest _) ,@body)))))

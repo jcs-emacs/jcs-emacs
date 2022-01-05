@@ -65,7 +65,6 @@ Sorted by (1) visit, (2) buffer, (3) size, (4) time, (5) mode, (6) file."
   "Return a list of buffers that only shows in buffer menu.
 
 If optional argument BUFFER-LIST is non-nil, use this buffer list instead."
-  (require 'cl-lib)
   (cl-remove-if
    (lambda (buf)
      (jcs-contain-list-string-regexp jcs-buffer-menu-diminish-list (buffer-name buf)))
@@ -75,7 +74,6 @@ If optional argument BUFFER-LIST is non-nil, use this buffer list instead."
   "Return a list of diminished buffer.
 
 If optional argument BUFFER-LIST is non-nil, use this buffer list instead."
-  (require 'cl-lib)
   (cl-remove-if
    (lambda (buf)
      (jcs-contain-list-string-regexp diminish-buffer-list (buffer-name buf)))

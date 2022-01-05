@@ -4,7 +4,7 @@
 
 (leaf adaptive-wrap
   :init
-  (add-hook 'visual-line-mode-hook (lambda () (adaptive-wrap-prefix-mode +1))))
+  (jcs-add-hook 'visual-line-mode-hook (adaptive-wrap-prefix-mode +1)))
 
 (leaf auto-highlight-symbol
   :init
@@ -12,9 +12,9 @@
 
 (leaf auto-read-only
   :defer-config
-  (nconc auto-read-only-file-regexps '("/[.]emacs[.]d/elisp/"
-                                       "/[.]emacs[.]d/elpa/"
-                                       "/lisp/"))
+  (nconc auto-read-only-file-regexps
+         '("emacs/.*/lisp/"
+           "/[.]emacs[.]d/elpa/"))
   (defun jcs--auto-read-only--hook-find-file ()
     "Advice override function `auto-read-only--hook-find-file'."
     (when (and (not jcs-package-installing-p) (not (jcs-project-current)))
@@ -36,11 +36,9 @@
   :init
   (setq browse-kill-ring-separator-face 'font-lock-comment-face)
   :defer-config
-  (defun jcs--browse-kill-ring-mode-hook ()
-    "Hook for `browse-kill-ring-mode'."
+  (jcs-add-hook 'browse-kill-ring-mode-hook
     (setq browse-kill-ring-separator (jcs-env-separator))
-    (page-break-lines-mode 1))
-  (add-hook 'browse-kill-ring-mode-hook 'jcs--browse-kill-ring-mode-hook))
+    (page-break-lines-mode 1)))
 
 (leaf buffer-wrap
   :defer-config
@@ -63,11 +61,9 @@
         (unless (ignore-errors (tabulated-list-get-entry))
           (ignore-errors (forward-line 1))))))
 
-  (defun jcs--buffer-wrap-post-command-hook ()
-    "Buffer Wrap post command hook."
+  (jcs-add-hook 'buffer-wrap-post-command-hook
     (jcs--buffer-wrap--fixed-fake-header)
-    (jcs--buffer-wrap--fixed-window-off))
-  (add-hook 'buffer-wrap-post-command-hook 'jcs--buffer-wrap-post-command-hook))
+    (jcs--buffer-wrap--fixed-window-off)))
 
 (leaf centaur-tabs
   :init
@@ -515,7 +511,7 @@
                                        "node_modules/"
                                        "res/"))
   :defer-config
-  (defun jcs-isearch-mode-hook ()
+  (jcs-add-hook 'isearch-mode-hook
     "Paste the current symbol when `isearch' enabled."
     (cond ((use-region-p)
            (progn
@@ -526,8 +522,7 @@
            (when (char-or-string-p isearch-project--thing-at-point)
              (backward-word 1)
              (isearch-project--isearch-yank-string isearch-project--thing-at-point)
-             (isearch-repeat-backward)))))
-  (add-hook 'isearch-mode-hook #'jcs-isearch-mode-hook))
+             (isearch-repeat-backward))))))
 
 (leaf ivy
   :init
@@ -633,7 +628,7 @@
 
 (leaf meta-view
   :defer-config
-  (defun jcs--meta-view-after-insert-hook ()
+  (jcs-add-hook 'meta-view-after-insert-hook
     "Hook runs after meta-view buffer insertion."
     (jcs-prog-mode-hook)
     (display-line-numbers-mode 1)
@@ -649,8 +644,7 @@
               (unless continuation
                 (call-interactively #'ts-fold-close)
                 (setq continuation t))
-            (setq continuation nil))))))
-  (add-hook 'meta-view-after-insert-hook #'jcs--meta-view-after-insert-hook))
+            (setq continuation nil)))))))
 
 (leaf most-used-words
   :init
@@ -776,10 +770,9 @@
     (when (jcs-vc-status)
       (format " %s%s" (jcs-vc-project) (jcs-vc-info))))
 
-  (defun jcs--powerline--theme (&rest _)
+  (jcs-add-hook 'jcs-after-load-theme-hook
     "Update theme for `powerline'."
-    (jcs-reload-active-mode))
-  (add-hook 'jcs-after-load-theme-hook #'jcs--powerline--theme))
+    (jcs-reload-active-mode)))
 
 (leaf project
   :defer-config
@@ -795,8 +788,8 @@
 
 (leaf quelpa
   :defer-config
-  (add-hook 'quelpa-before-hook (lambda () (setq jcs-package-installing-p t)))
-  (add-hook 'quelpa-after-hook (lambda () (setq jcs-package-installing-p nil))))
+  (jcs-add-hook 'quelpa-before-hook (setq jcs-package-installing-p t))
+  (jcs-add-hook 'quelpa-after-hook (setq jcs-package-installing-p nil)))
 
 (leaf quick-peek
   :init
@@ -973,11 +966,9 @@
     (setq treemacs-width (round (* (frame-width) jcs-treemacs-width-ratio)))
     (when (treemacs-get-local-window) (jcs-treemacs-toggle-refresh)))
 
-  (defun jcs--treemacs-mode-hook ()
-    "Hook for `treemacs-mode'."
+  (jcs-add-hook 'treemacs-mode-hook
     (setq buffer-wrap--relative-max-line 0)
-    (buffer-wrap-mode 1))
-  (add-hook 'treemacs-mode-hook #'jcs--treemacs-mode-hook))
+    (buffer-wrap-mode 1)))
 
 (leaf turbo-log
   :init

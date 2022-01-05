@@ -80,11 +80,9 @@
         compilation-scroll-output t)
   :defer-config
   (require 'ansi-color)
-  (defun jcs--colorize-compilation-buffer ()
-    "Support for ANSI-escape coloring."
+  (jcs-add-hook 'compilation-filter-hook
     (let (buffer-read-only)
-      (ansi-color-apply-on-region compilation-filter-start (point))))
-  (add-hook 'compilation-filter-hook 'jcs--colorize-compilation-buffer))
+      (ansi-color-apply-on-region compilation-filter-start (point)))))
 
 (leaf comint
   :init
