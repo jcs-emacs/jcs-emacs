@@ -19,7 +19,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Remove package `flycheck-popup-tip`.
 * Remove package `flycheck-pos-tip`.
 * Disable logging when printing out error messages from `flycheck`.
-* Move entire directory to `.emacs.d`. (#34)
+* Move entire directory to `.emacs.d`. (#32)
 
 ## 7.1.0
 > Released Dec 27, 2021
