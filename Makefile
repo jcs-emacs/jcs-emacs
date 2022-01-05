@@ -5,22 +5,18 @@ CASK ?= cask
 
 .PHONY: startup
 
-# Turn off `debug-on-error` due to error `Failed to download ‘melpa’ archive.`
-ENTRY="(progn													   \
-																   \
-(require 'url-vars)												   \
-																   \
-(let ((debug-on-error nil)										   \
-	  (url-show-status nil)										   \
-	  (user-emacs-directory default-directory)					   \
+# Turn off `debug-on-error` due to error `Failed to download 'melpa' archive.`
+ENTRY="(progn															\
+																		\
+(require 'url-vars)														\
+																		\
+(let ((debug-on-error nil)												\
+	  (url-show-status nil)												\
+	  (user-emacs-directory default-directory)							\
 	  (early-init-file (expand-file-name \"~/.emacs.d/early-init.el\")) \
-	  (user-init-file (expand-file-name \"~/.emacs.d/init.el\")))	   \
-	  (load-path (delq default-directory load-path)))			   \
-  (load early-init-file)										   \
-  (load user-init-file)											   \
-  (run-hooks after-init-hook)									   \
-  (run-hooks emacs-startup-hook))								   \
-  (jcs-emacs-version))"
+	  (user-init-file (expand-file-name \"~/.emacs.d/init.el\")))		\
+	  (load-path (delq default-directory load-path)))					\
+)"
 
 startup:
 	@$(EMACS) -nw --batch --eval $(ENTRY)
