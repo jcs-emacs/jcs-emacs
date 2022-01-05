@@ -1,8 +1,0 @@
-# -*- mode: snippet -*-
-# name: jcs-unity-start
-# key: jcs-unity-start
-# --
-private void Start()
-{
-    $0
-}

@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: jcs-vue
-# key: jcs-vue
-# --
-new Vue({
-  $0
-});

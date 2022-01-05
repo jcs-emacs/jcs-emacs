@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: jcs-three-js
-# key: jcs-three-js
-# --
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/103/three.min.js"></script>$0

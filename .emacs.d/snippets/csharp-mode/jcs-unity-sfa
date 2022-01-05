@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: jcs-unity-sfa
-# key: jcs-unity-sfa
-# --
-[SerializeField]$0
