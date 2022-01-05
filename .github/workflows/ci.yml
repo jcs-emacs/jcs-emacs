@@ -27,7 +27,7 @@ jobs:
 
     - uses: actions/checkout@v2
     - name: Copy configuration files
-      run: sh ./scripts/copy_config.sh
+      run: sh ./bin/copy_config.sh
 
     - name: Check startup
       run:
@@ -49,7 +49,7 @@ jobs:
 
     - uses: actions/checkout@v2
     - name: Copy configuration files
-      run: ./scripts/copy_config.bat
+      run: ./bin/copy_config.bat
 
     - name: Check startup
       run:
