@@ -18,8 +18,6 @@
       (user-emacs-directory default-directory)
       (early-init-file (locate-user-emacs-file "early-init.el"))
       (user-init-file (locate-user-emacs-file "init.el")))
-  (message "Early Exist: %s" (file-exists-p early-init-file))
-  (message "Exist: %s" (file-exists-p user-init-file))
   (load early-init-file)
   (load user-init-file)  ; Start regular Emacs file
   (run-hooks after-init-hook)
