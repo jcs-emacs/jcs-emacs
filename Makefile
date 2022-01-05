@@ -7,3 +7,4 @@ CASK ?= cask
 
 startup:
 	@echo "What..."
+	@$(EMACS) -nw --batch -l "~/.emacs.d/bin/test.el"

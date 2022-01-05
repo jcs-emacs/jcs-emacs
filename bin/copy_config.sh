@@ -2,6 +2,6 @@
 
 echo "Copying core files..."
 
-mv -f ../jcs-emacs ~/.emacs.d
+cp -R ../jcs-emacs ~/.emacs.d
 
 echo "Done copying configuration files"
