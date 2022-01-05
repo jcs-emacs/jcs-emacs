@@ -44,7 +44,7 @@
 <!-- markdown-toc end -->
 
 # jcs-emacs
-> Consistent Emacs configuration for all platforms.
+> Emacs configuration works across all OSs
 
 This is Jen-Chieh Shen's emacs configuration started from [Casey Muratori](https://github.com/cmuratori)'s
 Emacs configuration. It has been repeatedly utilized and modified
