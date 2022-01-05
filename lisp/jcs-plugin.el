@@ -629,7 +629,7 @@
 (leaf meta-view
   :defer-config
   (jcs-add-hook 'meta-view-after-insert-hook
-    "Hook runs after meta-view buffer insertion."
+    ;; Hook runs after meta-view buffer insertion.
     (jcs-prog-mode-hook)
     (display-line-numbers-mode 1)
     (setq-local ts-fold-summary-show nil)
@@ -771,7 +771,7 @@
       (format " %s%s" (jcs-vc-project) (jcs-vc-info))))
 
   (jcs-add-hook 'jcs-after-load-theme-hook
-    "Update theme for `powerline'."
+    ;; Update theme for `powerline'.
     (jcs-reload-active-mode)))
 
 (leaf project

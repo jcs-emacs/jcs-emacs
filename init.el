@@ -120,7 +120,8 @@ decrease this. If you experience stuttering, increase this.")
 
 (setq load-path (append '("~/.emacs.d/lisp/"
                           "~/.emacs.d/lisp/func/"
-                          "~/.emacs.d/lisp/mode/")
+                          "~/.emacs.d/lisp/mode/"
+                          "~/.emacs.d/site-lisp/")
                         load-path))
 
 ;;; Initialize
