@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-(defconst jcs-template-dir "~/.emacs.d/template/"
+(defconst jcs-template-dir (concat user-emacs-directory "template/")
   "Template directory path for file headers.")
 
 ;;

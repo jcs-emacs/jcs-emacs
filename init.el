@@ -34,7 +34,7 @@
 ;;
 
 (defconst jcs-min-require-version "27.1"
-  "Minimum required Emacs version for `JCS` configuration.")
+  "Minimum required Emacs version.")
 
 (when (version< emacs-version jcs-min-require-version)
   (error (format "This requires Emacs %s and above!" jcs-min-require-version)))
@@ -106,23 +106,26 @@ decrease this. If you experience stuttering, increase this.")
 ;; (@* "Version" )
 ;;
 
-(defconst jcs-emacs-version-number "8.0.0"
+(defconst jcs-emacs-version-no "8.0.0"
   "JCS-Emacs version.")
 
 (defun jcs-emacs-version ()
   "Show JCS-Emacs version info."
   (interactive)
-  (message "JCS-Emacs %s" jcs-emacs-version-number))
+  (message "JCS-Emacs %s" jcs-emacs-version-no))
 
 ;;
 ;; (@* "Load Core" )
 ;;
 
-(setq load-path (append '("~/.emacs.d/lisp/"
-                          "~/.emacs.d/lisp/func/"
-                          "~/.emacs.d/lisp/mode/"
-                          "~/.emacs.d/site-lisp/")
-                        load-path))
+(setq load-path
+      (append (mapcar
+               (lambda (dir) (concat user-emacs-directory dir))
+               '("lisp/"
+                 "lisp/func/"
+                 "lisp/mode/"
+                 "site-lisp/"))
+              load-path))
 
 ;;; Initialize
 (require 'jcs-package)

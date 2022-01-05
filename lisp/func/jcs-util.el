@@ -1325,10 +1325,9 @@ Argument TYPE see function `jcs-string-compare-p' for more information."
 
 (defun jcs-last-default-directory ()
   "Return a dedicated default directory."
-  (require 'f)
   (let ((last-valid-buffer (nth 0 (jcs-valid-buffer-list))))
     (if last-valid-buffer
-        (f-dirname (buffer-file-name last-valid-buffer))
+        (file-name-directory (buffer-file-name last-valid-buffer))
       jcs-emacs-startup-directory)))
 
 (defun jcs-up-one-dir-string (dir-path)
