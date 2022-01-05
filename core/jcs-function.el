@@ -200,30 +200,6 @@
       (insert val))))
 
 ;;
-;; (@* "Cheat Sheet" )
-;;
-
-(defun jcs-alt-codes-table ()
-  "Display basic Alt-Codes table."
-  (interactive)
-  (jcs-display-file "~/.emacs.d/data/charset/alt-code.txt" "*Alt Codes*" nil))
-
-(defun jcs-ascii-table ()
-  "Display basic ASCII table."
-  (interactive)
-  (jcs-display-file "~/.emacs.d/data/charset/ascii.txt" "*ASCII*" nil))
-
-(defun jcs-algorithm-cheat-sheet ()
-  "Display basic Alt-Codes table."
-  (interactive)
-  (jcs-html-preview "~/.emacs.d/data/algorithm/cheat-sheet.html" "*Algorithm Cheat Sheet*" nil))
-
-(defun jcs-data-structure-cheat-sheet ()
-  "Display basic Alt-Codes table."
-  (interactive)
-  (jcs-display-file "~/.emacs.d/data/data-structure/cheat-sheet.txt" "*Data Structure Cheat Sheet*" nil))
-
-;;
 ;; (@* "Dashboard" )
 ;;
 
