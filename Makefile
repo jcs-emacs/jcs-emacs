@@ -13,10 +13,11 @@ ENTRY="(progn													   \
 (let ((debug-on-error nil)										   \
 	  (url-show-status nil)										   \
 	  (user-emacs-directory default-directory)					   \
-	  (early-init-file (locate-user-emacs-file \"early-init.el\")) \
-	  (user-init-file (locate-user-emacs-file \"init.el\")))	   \
+	  (early-init-file (expand-file-name \"~/.emacs.d/early-init.el\")) \
+	  (user-init-file (expand-file-name \"~/.emacs.d/init.el\")))	   \
 	  (load-path (delq default-directory load-path)))			   \
-  (load-file user-init-file)									   \
+  (load early-init-file)										   \
+  (load user-init-file)											   \
   (run-hooks after-init-hook)									   \
   (run-hooks emacs-startup-hook))								   \
   (jcs-emacs-version))"
