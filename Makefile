@@ -14,7 +14,7 @@ ENTRY="(progn													   \
 	  (url-show-status nil)										   \
 	  (user-emacs-directory default-directory)					   \
 	  (early-init-file (locate-user-emacs-file \"early-init.el\")) \
-	  (user-init-file (locate-user-emacs-file \"init.el\")))	   \
+	  (user-init-file (locate-user-emacs-file \"bin/build.el\")))	   \
   (load early-init-file)										   \
   (load user-init-file)											   \
   (run-hooks after-init-hook)									   \
