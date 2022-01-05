@@ -16,7 +16,11 @@ ENTRY="(progn															\
 	  (early-init-file (expand-file-name \"~/.emacs.d/early-init.el\")) \
 	  (user-init-file (expand-file-name \"~/.emacs.d/init.el\")))		\
 	  (load-path (delq default-directory load-path)))					\
-)"
+  (load early-init-file)												\
+  (load user-init-file)													\
+  (run-hooks after-init-hook)											\
+  (run-hooks emacs-startup-hook))										\
+  (jcs-emacs-version))"
 
 startup:
 	@$(EMACS) -nw --batch --eval $(ENTRY)

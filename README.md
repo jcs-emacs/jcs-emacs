@@ -212,47 +212,47 @@ This is the list of features that are built-in to this configuration. These feat
 are heavily base on my personal habits, and so these could be very tiny things. But
 I believed detials make things better and make life smoother.
 
-* [*Auto Install Package*](./features/auto-install-package) - Automatically installs the package that this config relies on.
-* [*Better Dashboard*](./features/better-dashboard) - Implementation for improving experiences using dashboard.
-* [*Buffer Menu Search*](./features/buffer-menu-search) - Able to search in the `*Buffer List*` buffer.
-* [*Build Run*](./features/build-run) - Implementation for executing script for building and running the software.
-* [*Capital Word*](./features/capital-word) - You can navigate/kill word by seeing capital letter.
-* [*Changelog Helper*](./features/changelog-helper) - Help to create changelog while creating `CHANGELOG` file using template.
-* [*Consistent Key Bindings*](./features/consistent-key-bindings) - Has consistent key bindings across all modes.
+* [*Auto Install Package*](./docs/features/auto-install-package) - Automatically installs the package that this config relies on.
+* [*Better Dashboard*](./docs/features/better-dashboard) - Implementation for improving experiences using dashboard.
+* [*Buffer Menu Search*](./docs/features/buffer-menu-search) - Able to search in the `*Buffer List*` buffer.
+* [*Build Run*](./docs/features/build-run) - Implementation for executing script for building and running the software.
+* [*Capital Word*](./docs/features/capital-word) - You can navigate/kill word by seeing capital letter.
+* [*Changelog Helper*](./docs/features/changelog-helper) - Help to create changelog while creating `CHANGELOG` file using template.
+* [*Consistent Key Bindings*](./docs/features/consistent-key-bindings) - Has consistent key bindings across all modes.
 * [*Curly Bracket Modes*](./curly-bracket-modes) - Use curly bracket depends on different mode.
-* [*Display File*](./features/display-file) - Utility function to use to view a file on the other window.
-* [*Charset Table*](./features/display-file/charset-table) - Built-in functions that displays character sets.
-* ~~[*Docstring Completion*](./features/docstring-completion) - Some standard docstring completion implementations built-in to this configuration.~~ (has move to [docstr](https://github.com/jcs-elpa/docstr))
+* [*Display File*](./docs/features/display-file) - Utility function to use to view a file on the other window.
+* [*Charset Table*](./docs/features/display-file/charset-table) - Built-in functions that displays character sets.
+* ~~[*Docstring Completion*](./docs/features/docstring-completion) - Some standard docstring completion implementations built-in to this configuration.~~ (has move to [docstr](https://github.com/jcs-elpa/docstr))
 * Enhanced Multiple Cursors
-  * [*Similar Multiple Cursors*](./features/similar-multiple-cursors) - Mark with cursor by similarity.
-  * [*VS Multiple Cursors*](./features/vs-multiple-cursors) - VSCode like methods to `mark` and `unmark` multiple cursor.
-* [*Fast Incremental Search*](./features/fast-incremental-search) - Fast keys for incremental search forward/backward to the cursor is currently pointing.
-* [*Feebleline Design*](./features/feebleline-design) - Personal displayed design for `feebleline`.
-* [*Indent Control*](./features/indent-control) - Generic control the indentation level for each mode, for more information see [indent-control](https://github.com/alt-elpa/indent-control).
+  * [*Similar Multiple Cursors*](./docs/features/similar-multiple-cursors) - Mark with cursor by similarity.
+  * [*VS Multiple Cursors*](./docs/features/vs-multiple-cursors) - VSCode like methods to `mark` and `unmark` multiple cursor.
+* [*Fast Incremental Search*](./docs/features/fast-incremental-search) - Fast keys for incremental search forward/backward to the cursor is currently pointing.
+* [*Feebleline Design*](./docs/features/feebleline-design) - Personal displayed design for `feebleline`.
+* [*Indent Control*](./docs/features/indent-control) - Generic control the indentation level for each mode, for more information see [indent-control](https://github.com/alt-elpa/indent-control).
 * Previous/Next Keys
   * [*Normal Move*]() - Act like other normal editors.
-  * ~~[*Indent Move*](./features/indent-move) - Automatically indent when cursor moves up and down.~~
-  * [*Smart-Move*](./features/smart-move) - Smart enough to move cursor to the beginning of the line.
-* [*Line Numbers Modding*](./features/line-numbers-modding) - Mixed used of `linum` and `display-line-numbers-mode` base on the file usage.
-* [*License Helper*](./features/license-helper) - Help to create license while creating `LICENSE` file using template.
-* [*Mini State*](./features/mini-state) - Mini mode state use to visually see what backend is the config currently running. (Deprecated)
-  * [*Explicit States*](./features/mini-state/explicit-states) - Automatcially switch mini state depends on certain circumstances.
-* ~~[*Mode Line Toggle*](./features/mode-line-toggle) - Toggle to `show` or `hide` the mode line.~~
-* [*Modern Text Editor*](./features/modern-text-editor) - Design to have the preset settings close to modern text editors but faster.
-* [*Multiple Output*](./features/multiple-output) - Handle multiple output/compilation buffers.
-* [*Navigate Blank Line*](./features/navigate-blank-line) - Use `C-<up>` and `C-<down>` to navigate previous and next blank line.
-* [*Navigate Table*](./features/navigate-table) - Navigate `org-mode`'s table easier by using arrow keys.
-* [*Preview HTML*](./features/preview-html) - Preview rendered HTML file on the other window.
-* [*Simulate Shell*](./features/simulate-shell) - Completely simulate shell behaviors, make better user experience when using shell in Emacs.
-* [*Switch Window*](./features/switch-window) - Fast keys switch between windows quickly.
-* [*Tabify/Untabify Modes*](./features/tabify-untabify-modes) - Tabify or Untabify the file depends on the mode you currently in.
-* ~~[*Transparent Window*](./features/transparent-window) - Keys to increase/decrease the transparency of the frame.~~ (has move to [transwin](https://github.com/jcs-elpa/transwin))
-* [*Trim Trailing Whitespace*](./features/trim-trailing-whitespace) - Remove trailing spaces and tabs automatically on save.
-* ~~[*Video Player*](./features/video-player) - Play media on the top window.~~
-* [*Visualize Undo/Redo*](./features/visualize-undo-redo) - Improved the user experience on undoing and redoing by showing the `undo-tree-visualizer` at the other window.
-* [*VS Curly Bracket*](./features/vs-curly-bracket) - Visual Studio IDE like curly bracket implementation.
-* [*VS Multiple Terminal*](./features/vs-multiple-terminal) - VSCode like multiple shell control.
-* [*VS Navigate Word*](./features/vs-navigate-word) - Visual Studio IDE like navigating between word implementation.
+  * ~~[*Indent Move*](./docs/features/indent-move) - Automatically indent when cursor moves up and down.~~
+  * [*Smart-Move*](./docs/features/smart-move) - Smart enough to move cursor to the beginning of the line.
+* [*Line Numbers Modding*](./docs/features/line-numbers-modding) - Mixed used of `linum` and `display-line-numbers-mode` base on the file usage.
+* [*License Helper*](./docs/features/license-helper) - Help to create license while creating `LICENSE` file using template.
+* [*Mini State*](./docs/features/mini-state) - Mini mode state use to visually see what backend is the config currently running. (Deprecated)
+  * [*Explicit States*](./docs/features/mini-state/explicit-states) - Automatcially switch mini state depends on certain circumstances.
+* ~~[*Mode Line Toggle*](./docs/features/mode-line-toggle) - Toggle to `show` or `hide` the mode line.~~
+* [*Modern Text Editor*](./docs/features/modern-text-editor) - Design to have the preset settings close to modern text editors but faster.
+* [*Multiple Output*](./docs/features/multiple-output) - Handle multiple output/compilation buffers.
+* [*Navigate Blank Line*](./docs/features/navigate-blank-line) - Use `C-<up>` and `C-<down>` to navigate previous and next blank line.
+* [*Navigate Table*](./docs/features/navigate-table) - Navigate `org-mode`'s table easier by using arrow keys.
+* [*Preview HTML*](./docs/features/preview-html) - Preview rendered HTML file on the other window.
+* [*Simulate Shell*](./docs/features/simulate-shell) - Completely simulate shell behaviors, make better user experience when using shell in Emacs.
+* [*Switch Window*](./docs/features/switch-window) - Fast keys switch between windows quickly.
+* [*Tabify/Untabify Modes*](./docs/features/tabify-untabify-modes) - Tabify or Untabify the file depends on the mode you currently in.
+* ~~[*Transparent Window*](./docs/features/transparent-window) - Keys to increase/decrease the transparency of the frame.~~ (has move to [transwin](https://github.com/jcs-elpa/transwin))
+* [*Trim Trailing Whitespace*](./docs/features/trim-trailing-whitespace) - Remove trailing spaces and tabs automatically on save.
+* ~~[*Video Player*](./docs/features/video-player) - Play media on the top window.~~
+* [*Visualize Undo/Redo*](./docs/features/visualize-undo-redo) - Improved the user experience on undoing and redoing by showing the `undo-tree-visualizer` at the other window.
+* [*VS Curly Bracket*](./docs/features/vs-curly-bracket) - Visual Studio IDE like curly bracket implementation.
+* [*VS Multiple Terminal*](./docs/features/vs-multiple-terminal) - VSCode like multiple shell control.
+* [*VS Navigate Word*](./docs/features/vs-navigate-word) - Visual Studio IDE like navigating between word implementation.
 
 ## 📁 Package Archives
 
