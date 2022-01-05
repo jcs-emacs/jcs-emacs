@@ -133,16 +133,15 @@ Here is the list of few important and recent changes to this configuration.
 
 ## 💾 Installation
 
-To install, clone this repo and copy the core `files`/`directories` to the
-emacs config directory accordingly. Make sure you backup your own configuration
-before you start the installation.
+To install, clone this repo to `~/.emacs.d`, i.e. ensure that the `init.el`
+contained in this repo ends up at ~/.emacs.d/init.el:
 
 ```bash
 git clone https://github.com/jcs-emacs/jcs-emacs ~/.emacs.d
 ```
 
-Then startup Emacs; it will automatically installs all necessary
-packages due to this configuration.
+Then startup Emacs; it will automatically installs all necessary packages due
+to this configuration.
 
 **❗❗ [ATTENTION] ❗❗ -- MAKE SURE YOU INSTALLED THE CORRECT VERSION OF EMACS!**
 
@@ -327,7 +326,7 @@ kind of methods that you could support the maintainer you want.
 ## Write your own customization
 
 You are able to customize the configuration by editing the file locate at
-`~/.emacs.jcs/jcs-config.el`. You should put all your own customize code there,
+`~/.emacs.d/site-lisp/jcs-config.el`. You should put all your own customize code there,
 then other than that are the core files.
 
 ## 🎍 Supported Emacs versions
