@@ -984,32 +984,23 @@
 
 (leaf use-ttf
   :init
-  ;; List of TTF fonts you want to use in the currnet OS.
   (setq use-ttf-default-ttf-fonts
-        '("/.emacs.d/fonts/clacon.ttf"
-          "/.emacs.d/fonts/UbuntuMono-R.ttf"))
-  ;; Name of the font we want to use as default.
-  ;; This you need to check the font name in the system manually.
-  (setq use-ttf-default-ttf-font-name "Ubuntu Mono"))
+        (mapcar (lambda (file) (concat user-emacs-directory file))
+                '("fonts/clacon.ttf"
+                  "fonts/UbuntuMono-R.ttf"))
+        use-ttf-default-ttf-font-name "Ubuntu Mono"))
 
 (leaf web-mode
   :init
   ;; Indentation
   (setq web-mode-markup-indent-offset 2  ; html
         web-mode-css-indent-offset 2     ; css
-        web-mode-code-indent-offset 2)   ; script
-
-  ;; Left padding
-  (setq web-mode-style-padding 2   ; For `<style>' tag
+        web-mode-code-indent-offset 2    ; script
+        web-mode-style-padding 2   ; For `<style>' tag
         web-mode-script-padding 2  ; For `<script>' tag
-        web-mode-block-padding 0)  ; For `php', `ruby', `java', `python', `asp', etc.
-
-  ;; Offsetless Elements
-  ;; NOTE: Do not make these lists to one list.
-  ;; They are totally different list.
-  ;; NOTE: This variable is from `web-mode' itself.
-  (setq web-mode-offsetless-elements '("html"))
-
+        web-mode-block-padding 0   ; For `php', `ruby', `java', `python', `asp', etc.
+        web-mode-offsetless-elements '("html"))
+  :defer-config
   ;; NOTE: Do not make these lists to one list.
   ;; They are totally different list.
   (defvar jcs-web-mode-offsetless-elements-toggle '("html")
