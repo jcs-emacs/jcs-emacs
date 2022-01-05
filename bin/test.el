@@ -23,7 +23,7 @@
   (run-hooks after-init-hook)
   (run-hooks emacs-startup-hook))
 
-;;(jcs-emacs-version)
+(jcs-emacs-version)
 
 ;; Local Variables:
 ;; coding: utf-8
