@@ -6,7 +6,23 @@
 ;; (@* "lsp-mode" )
 ;;
 
-;; Enable or Disable for LSP.
+(diminish
+ 'lsp-mode
+ '(" LSP["
+   (lsp--buffer-workspaces
+    (:eval (mapconcat #'jcs--lsp--workspace-print lsp--buffer-workspaces "]["))
+    (:propertize "Disconnected" face warning))
+   "]"))
+
+;; NOTE: Borrow from lsp-mode directly
+(defun jcs--lsp--workspace-print (workspace)
+  "Visual representation WORKSPACE."
+  (let* ((proc (lsp--workspace-cmd-proc workspace))
+         (status (lsp--workspace-status workspace))
+         (server-id (-> workspace lsp--workspace-client lsp--client-server-id symbol-name)))
+    (if (eq 'initialized status)
+        (format "%s" server-id)
+      (format "%s/%s" server-id status))))
 
 (defun jcs--lsp--stuff-on-enabled ()
   "Do stuff when lsp is enabled."
