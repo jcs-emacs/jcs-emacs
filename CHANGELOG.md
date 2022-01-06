@@ -8,7 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 8.0.1 (Unreleased)
 > Released N/A
 
-* N/A
+* Hide PID from `lsp-mode` lighter.
 
 ## 8.0.0
 > Released Jan 6, 2022
