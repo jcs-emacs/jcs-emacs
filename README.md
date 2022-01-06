@@ -29,15 +29,7 @@
     - [📁 Package Archives](#📁-package-archives)
     - [🏆 Powered by](#🏆-powered-by)
         - [Functionalities](#functionalities)
-        - [File Modes](#file-modes)
-    - [Key Bindings](#key-bindings)
-    - [Themes](#themes)
-        - [Default](#default)
-        - [Customization](#customization)
-    - [Font](#font)
-    - [🔨 Optimization](#🔨-optimization)
     - [Write your own customization](#write-your-own-customization)
-    - [🎍 Supported Emacs versions](#🎍-supported-emacs-versions)
     - [❓ FAQ](#❓-faq)
     - [Contribute](#contribute)
 
@@ -48,18 +40,18 @@
 
 This is Jen-Chieh Shen's emacs configuration started from [Casey Muratori](https://github.com/cmuratori)'s
 Emacs configuration. It has been repeatedly utilized and modified
-since 2015 and is now very different to his configuration.
+since 2015 and is now very different from his configuration.
 
 I wouldn't claim this is the best Emacs config, but this is the
 best config to myself. If you wish to learn Emacs, this could be
 a good start, because this configuration has been rewritten
 basically from scratch. Hopefully, this config will help someone
 who is new or struggle to Emacs. This configuration should work
-on most OSs, indicates Windows, macOS, and Linux.
+on most OSs, indicating Windows, macOS, and Linux.
 
 Emacs itself supports multiple programming languages. I managed
 all the programming languages I personally used. I dabble in
-numerous technologies, incorporate hardware, firmware and software.
+numerous technologies, incorporating hardware, firmware, and software.
 Here is the list of programming languages I know and are extended
 from this configuration.
 
@@ -172,8 +164,8 @@ question,
 answered by
 [Jordon Biondo](https://github.com/jordonbiondo).*
 
-📝 *P.S. The above cases are tested on Windows. Other OS that are not Windows should
-startup under a second.*
+📝 *P.S. The above cases are tested on Windows. Other OSs are not Windows should
+start within a second.*
 
 ## 🏆 Features
 
