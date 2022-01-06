@@ -100,24 +100,24 @@ another trying to find something that suits my needs. So instead of struggling
 with the tool itself, I chose Emacs and configured the entire thing from scratch,
 to suit my needs.
 
-Here are a few goals that I want this config to accomplished.
+Here are a few goals that I want this config to accomplish.
 
 * Having the same set of key bindings across different IDEs and text editors as
 many as possible.
 * Having the same font and theme across different OSs and environments.
 * Automating trivial or redundant tasks.
 * Improve user experiences approach to modern text editor or IDE.
-* Make compatible to most features work inside terminal as well.
+* Make compatible with most features work inside the terminal as well.
 
 Having these implementations makes my life easier, and having a genuinely portable
-workspace, which is great because it lets me work on different machine efficiently,
-without having to get used to an new IDE.
+workspace, which is great because it lets me work on different machines efficiently,
+without having to get used to a new IDE.
 
 ![](./docs/etc/screenshot/startup-dark.png)
 
 ## 📰 News
 
-Here is the list of few important and recent changes to this configuration.
+Here is the list of few essential and recent changes to this configuration.
 
 * `8.0.0` - Move everything to `.emacs.d`. ([#32](https://github.com/jcs-emacs/jcs-emacs/pull/32))
 * `7.1.0` - Replace `quelpa` with `github-elpa`.
@@ -139,7 +139,7 @@ contained in this repo ends up at ~/.emacs.d/init.el:
 git clone https://github.com/jcs-emacs/jcs-emacs ~/.emacs.d
 ```
 
-Then startup Emacs; it will automatically installs all necessary packages due
+Then startup Emacs; will automatically install all necessary packages due
 to this configuration.
 
 **❗❗ [ATTENTION] ❗❗ -- MAKE SURE YOU INSTALLED THE CORRECT VERSION OF EMACS!**
@@ -147,13 +147,13 @@ to this configuration.
 ## 🕒 Startup Time
 
 The average startup time for this configuration is around `15` to `25` seconds.
-You can use command `emacs-init-time` to check the startup time on your machine.
-Not quite sure what causes that much of performance, hopefully, I'm able to lower
+You can use the command `emacs-init-time` to check the startup time on your machine.
+Not quite sure what causes that much performance, hopefully, I'm able to lower
 the startup time down to `5` to `15` seconds.
 
 **Edit 1:** After version `5.3.2`, the average startup time is around `5` to `15`
-seconds. Solved this issue by removing unnecessary `require` keyword load file
-and use `:defer` keyword with `use-package` package to delay some packages
+seconds. Solved this issue by removing the unnecessary `require` keyword load file
+and using `:defer` keyword with `use-package` package to delay some packages
 load time.
 
 📝 *P.S. Here is a great article about
@@ -161,13 +161,10 @@ load time.
 written by
 [Anurag Peshne](https://github.com/anuragpeshne).*
 
-**Edit 2:** If you compiled the source code then the startup time can lower down
-more from `0.5` to `1.5` seconds.
-
-**Edit 3:** Using [esup](https://github.com/jschaf/esup) package to test and
+**Edit 2:** Using [esup](https://github.com/jschaf/esup) package to test and
 optimize the configuration. Call `package-refresh-contents` only when package
-installation is needed. By doing thing, lower the startup time from around `4` to
-`8` seconds.
+installation is needed. By doing the thing, lower the startup time from around
+`4` to `8` seconds.
 
 📝 *P.S. Some good hints from one [StackExchange](https://emacs.stackexchange.com/)
 question,
@@ -176,30 +173,30 @@ answered by
 [Jordon Biondo](https://github.com/jordonbiondo).*
 
 📝 *P.S. The above cases are tested on Windows. Other OS that are not Windows should
-start up under a second.*
+startup under a second.*
 
 ## 🏆 Features
 
 ### Highlight
 
-Here is the list of the major highlights to this configuration. Hope you would
+Here is the list of the major highlights of this configuration. Hope you would
 like my taste!
 
 * **Out of the box** - Out of the box anywhere.
-* **Cross Platform** - Work on all operating system including terminal.
+* **Cross Platform** - Work on all operating systems, including terminal.
 * **Fast Startup** - Lazy loading for all unnecessary packages on startup.
-* **Old-Fashioned** - Doesn't use any beatiful GUI because it may not work in terminal.
+* **Old-Fashioned** - Doesn't use any beautiful GUI because it may not work in the terminal.
 * **Multiple Languages** - Support multiple programming languages.
-* **Consistent** - Having the same coding experience in different major mode.
-* **Easy to use** - Design close to other modern text editors. Shouldn't spend you too much time.
+* **Consistent** - Having the same coding experience in different major modes.
+* **Easy to use** - Design close to other modern text editors. It shouldn't spend you too much time.
 * **Dual Windows** - Design to people who like multiple windows opened simultaneously.
 * **Keyboard Focused** - You can do everything by using keyboard and mouse are just optional.
 
 ### Details
 
 This is the list of features that are built-in to this configuration. These features
-are heavily base on my personal habits, and so these could be very tiny things. But
-I believed detials make things better and make life smoother.
+are heavily based on my personal habits, and so these could be very tiny things. But
+I believe details make things better and make life smoother.
 
 * [*Auto Install Package*](./docs/features/auto-install-package) - Automatically installs the package that this config relies on.
 * [*Better Dashboard*](./docs/features/better-dashboard) - Implementation for improving experiences using dashboard.
@@ -258,12 +255,12 @@ answered by
 
 ## 🏆 Powered by
 
-Here is the list of all packages that powered and make this configuration works.
+Here is the list of all packages that powered and made this configuration works.
 Thanks to all the package maintainers; this configuration cannot be made without
-them, and if you wish to support them you can go to this
+them, and if you wish to support them, you can go to this
 [elisp-maintainers](https://github.com/tarsius/elisp-maintainers)
 repo/site and search for the maintainer you want to support. There should be some
-kind of methods that you could support the maintainer you want.
+kind of methods to support the maintainer you wish to.
 
 ### Functionalities
 
@@ -323,18 +320,9 @@ kind of methods that you could support the maintainer you want.
 
 ## Write your own customization
 
-You are able to customize the configuration by editing the file locate at
-`~/.emacs.d/site-lisp/jcs-config.el`. You should put all your own customize code there,
-then other than that are the core files.
-
-## 🎍 Supported Emacs versions
-
-The config should run on Emacs **27.1** or higher, but I will recommend to always
-run on the latest Emacs version available on your machine. The ultimate goal is to
-design to have each version of config can run on their each according Emacs version
-base on the version what I'm currently running on my present machine. For each
-version record, you can check the [version_record](./version_record.txt) file at
-the root of the project directory.
+You can customize the configuration by editing the file located at
+`~/.emacs.d/site-lisp/jcs-config.el`. You should put all your own customize code
+there, then other than that are the core files.
 
 ## ❓ FAQ
 
@@ -348,6 +336,6 @@ Here is the list of *Frequently Asked Questions*.
 [![Elisp styleguide](https://img.shields.io/badge/elisp-style%20guide-purple)](https://github.com/bbatsov/emacs-lisp-style-guide)
 [![Donate on paypal](https://img.shields.io/badge/paypal-donate-1?logo=paypal&color=blue)](https://www.paypal.me/jcs090218)
 
-If you would like to contribute to this project, you may either clone and make pull
+If you would like to contribute to this project, you may clone and make pull
 requests to this repository. Or you can clone the project and establish your own
 branch of this tool. Any methods are welcome!
