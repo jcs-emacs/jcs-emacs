@@ -1,5 +1,5 @@
 <p align="center">
-<img src="./docs/etc/logo/logo-shadow.png" width="500" height="253"/>
+<img src="./docs/etc/logo/logo-shadow.png" width="62.5%"/>
 </p>
 
 <p align="center">
