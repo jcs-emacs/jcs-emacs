@@ -9,6 +9,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 > Released N/A
 
 * Hide PID from `lsp-mode` lighter.
+* Add shorten lighter capability for `lsp-mode`.
 
 ## 8.0.0
 > Released Jan 6, 2022
