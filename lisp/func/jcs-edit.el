@@ -22,10 +22,7 @@
 ;; (@* "Indentation" )
 ;;
 
-(defun jcs--indent-line-to--advice-before (&rest _)
-  "Advice execute before function `indent-line-to'."
-  (indent-control-ensure-tab-width))
-(advice-add 'indent-line-to :before #'jcs--indent-line-to--advice-before)
+(jcs-advice-add 'indent-line-to :before (indent-control-ensure-tab-width))
 
 ;;
 ;; (@* "Backspace" )
@@ -198,8 +195,7 @@
 ;; (@* "Overwrite" )
 ;;
 
-(defun jcs--overwrite-mode--advice-after (&rest _args)
-  "Advice execute after `overwrite-mode' command."
+(jcs-advice-add 'overwrite-mode :after
   (require 'multiple-cursors)
   (if overwrite-mode
       (progn
@@ -207,7 +203,6 @@
         (set-face-attribute 'mc/cursor-face nil :underline t :inverse-video nil))
     (setq-local cursor-type 'box)
     (set-face-attribute 'mc/cursor-face nil :underline nil :inverse-video t)))
-(advice-add 'overwrite-mode :after #'jcs--overwrite-mode--advice-after)
 
 ;;
 ;; (@* "Kill Line" )

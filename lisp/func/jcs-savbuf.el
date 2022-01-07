@@ -12,17 +12,13 @@ This variable is used to check if file are edited externally.")
   "Update variable `jcs-buffer-save-string-md5' once."
   (setq jcs-buffer-save-string-md5 (md5 (buffer-string))))
 
-(defun jcs--save-buffer--advice-before (&rest _)
-  "Execution before function `save-buffer'."
+(jcs-advice-add 'save-buffer :before
   (jcs-funcall-fboundp 'company-abort))
-(advice-add 'save-buffer :before #'jcs--save-buffer--advice-before)
 
-(defun jcs--save-buffer--advice-after (&rest _)
-  "Execution after function `save-buffer'."
+(jcs-advice-add 'save-buffer :after
   (jcs-update-buffer-save-string)
   (jcs-undo-kill-this-buffer)
   (jcs-update-line-number-each-window))
-(advice-add 'save-buffer :after #'jcs--save-buffer--advice-after)
 
 (defun jcs--organize-save-buffer ()
   "Organize save buffer."
@@ -114,7 +110,7 @@ This variable is used to check if file are edited externally.")
     (`sh-mode #'jcs-sh-untabify-save-buffer)
     ((or conf-javaprop-mode ini-mode org-mode view-mode diff-mode)
      #'save-buffer)
-    ((or scss-mode css-mode))
+    ((or scss-mode css-mode) #'jcs-css-save-buffer)
     (t #'jcs-save-buffer-default)))
 
 (provide 'jcs-savbuf)
