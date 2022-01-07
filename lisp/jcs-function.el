@@ -2,6 +2,11 @@
 ;;; Commentary:
 ;;; Code:
 
+(require 'jcs-util)
+(require 'jcs-frame)
+(require 'jcs-window)
+(require 'jcs-nav)
+
 ;;
 ;; (@* "Advices" )
 ;;
@@ -153,13 +158,11 @@
 (defvar jcs--buffer-menu--first-enter nil
   "Record if fake header already appears.")
 
-(defun jcs--buffer-menu--advice-after (&rest _)
-  "Advice execute after `list-buffers-noselect' command."
+(jcs-advice-add 'list-buffers-noselect :after
   (setq jcs--buffer-menu-return-delay nil)
   (unless jcs-buffer--menu-switch-buffer-refreshing
     (setq jcs--buffer-menu--first-enter nil)
     (setq-local tabulated-list--header-string jcs--buffer-menu-search-title)))
-(advice-add 'list-buffers-noselect :after #'jcs--buffer-menu--advice-after)
 
 (defvar jcs-buffer--menu-switch-buffer-refreshing nil
   "Flag to check if current buffer menu refresing.")
@@ -610,18 +613,6 @@ delay. HEIGHT of the tooltip that will display."
   (interactive)
   (require 'yasnippet-snippets)
   (call-interactively #'yas-expand))
-
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-;; Load files
-;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-
-;; Utilities
-(require 'jcs-util)
-(require 'jcs-frame)
-(require 'jcs-window)
-
-;; Editing
-(require 'jcs-nav)
 
 (provide 'jcs-function)
 ;;; jcs-function.el ends here

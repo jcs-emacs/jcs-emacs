@@ -6,6 +6,13 @@
 ;; (@* "Macro" )
 ;;
 
+(defmacro jcs-advice-add (symbols where &rest body)
+  "Global advice-add utility."
+  (declare (indent 2))
+  `(cond ((listp ,symbols)
+          (dolist (symbol ,symbols) (advice-add symbol ,where (lambda (&rest _) ,@body))))
+         (t (advice-add ,symbols ,where (lambda (&rest _) ,@body)))))
+
 (defmacro jcs-add-hook (hooks &rest body)
   "Global add-hook utility."
   (declare (indent 1))
@@ -25,10 +32,12 @@
   "Execute BODY without any redisplay execution."
   (declare (indent 0) (debug t))
   `(let ((inhibit-redisplay t)
+         after-focus-change-function
          buffer-list-update-hook
          display-buffer-alist
          window-configuration-change-hook
-         after-focus-change-function)
+         window-size-change-functions
+         window-state-change-hook)
      ,@body))
 
 (defmacro jcs-with-timer (title &rest forms)
@@ -115,6 +124,13 @@ time is displayed."
 ;; (@* "Buffer" )
 ;;
 
+
+(defmacro jcs-with-current-buffer (buffer-or-name &rest body)
+  "Safe `with-current-buffer'."
+  (declare (indent 1) (debug t))
+  `(when (buffer-live-p ,buffer-or-name)
+     (with-current-buffer ,buffer-or-name ,@body)))
+
 (defun jcs-buffer-name-or-buffer-file-name (&optional buf)
   "Return BUF's `buffer-file-name' or `buffer-name' respectively."
   (or (buffer-file-name buf) (buffer-name buf)))
@@ -187,19 +203,6 @@ TYPE is the return type; can be 'object or 'string."
             (`object (push buf buf-lst))
             (`string (push buf-name buf-lst))))))
     buf-lst))
-
-(defun jcs-do-stuff-if-buffer-exists (buf-or-name fnc)
-  "Execute FNC in the BUF-OR-NAME if exists."
-  (if (get-buffer buf-or-name) (with-current-buffer buf-or-name (funcall fnc))
-    (message "[WARNING] Can't do stuff with this buffer: %s" buf-or-name)))
-
-(defun jcs-buffer-name-this (name &optional buffer regex)
-  "Return non-nil if BUFFER's name is the same as NAME.
-
-If optional argument is non-nil, check by using regular expression instead."
-  (unless buffer (setq buffer (current-buffer)))
-  (if regex (string-match-p name (buffer-name buffer))
-    (string= name (buffer-name buffer))))
 
 (defun jcs-get-buffer-by-path (path)
   "Return the buffer by file PATH.
@@ -1329,11 +1332,6 @@ Argument TYPE see function `jcs-string-compare-p' for more information."
     (if last-valid-buffer
         (file-name-directory (buffer-file-name last-valid-buffer))
       jcs-emacs-startup-directory)))
-
-(defun jcs-up-one-dir-string (dir-path)
-  "Go up one directory from DIR-PATH and return it directory string."
-  (string-match "\\(.*\\)/" dir-path)  ; Remove the last directory in the path.
-  (match-string 1 dir-path))
 
 ;;
 ;; (@* "String" )

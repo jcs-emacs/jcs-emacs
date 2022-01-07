@@ -29,10 +29,9 @@
   (with-current-buffer jcs-minibuf-buffer-name
     (add-hook 'window-size-change-functions #'jcs-minibuf--window-size-change nil t)))
 
-(defun jcs--ivy--minibuffer-setup ()
-  "Ivy minibuffer setup hook."
+(jcs-advice-add 'ivy--minibuffer-setup :after
+  ;; Ivy minibuffer setup hook.
   (setq jcs-minibuf-enabled-p t))
-(advice-add 'ivy--minibuffer-setup :after #'jcs--ivy--minibuffer-setup)
 
 (jcs-add-hook 'minibuffer-setup-hook
   ;; NOTE: Avoid GCs while using `ivy'/`counsel'/`swiper' and `helm', etc.

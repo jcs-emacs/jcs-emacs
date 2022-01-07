@@ -59,14 +59,11 @@ This will no longer overwrite usual Emacs' undo key."
   (setq jcs-use-undo-tree-key nil)
   (message "Disable undo tree key"))
 
-
-(defun jcs--undo-tree-visualizer-quit--advice-after (&rest _)
-  "Advice execute after `undo-tree-visualizer-quit' function."
+(jcs-advice-add 'undo-tree-visualizer-quit :after
   (when jcs--undo-splits-windows
     (delete-window)
     (setq jcs--undo-splits-windows nil)
     (switch-to-buffer undo-tree-visualizer-parent-buffer)))
-(advice-add 'undo-tree-visualizer-quit :after #'jcs--undo-tree-visualizer-quit--advice-after)
 
 (defun jcs-undo-kill-this-buffer ()
   "Kill the undo tree buffer."

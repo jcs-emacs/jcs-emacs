@@ -35,12 +35,10 @@
 (defvar jcs-after-load-theme-hook nil
   "Hook run after a color theme is loaded using `load-theme'.")
 
-(defun jcs--enable-theme--advice-after (&rest _)
-  "Advice execute after `load-theme' function."
+(jcs-advice-add 'enable-theme :after
   (jcs-set-font-size jcs-default-font-size)
   (jcs-walk-frames
    (lambda () (run-hook-with-args 'jcs-after-load-theme-hook (jcs-theme-current)))))
-(advice-add 'enable-theme :after #'jcs--enable-theme--advice-after)
 
 (provide 'jcs-theme)
 ;;; jcs-theme.el ends here

@@ -15,11 +15,9 @@
   (nconc auto-read-only-file-regexps
          '("emacs/.*/lisp/"
            "/[.]emacs[.]d/elpa/"))
-  (defun jcs--auto-read-only--hook-find-file ()
-    "Advice override function `auto-read-only--hook-find-file'."
+  (jcs-advice-add 'auto-read-only--hook-find-file :override
     (when (and (not jcs-package-installing-p) (not (jcs-project-current)))
-      (auto-read-only)))
-  (advice-add 'auto-read-only--hook-find-file :override #'jcs--auto-read-only--hook-find-file))
+      (auto-read-only))))
 
 (leaf auto-rename-tag
   :init
@@ -327,10 +325,8 @@
          '("Dired by name")))
   (with-eval-after-load 'jcs-buffer-menu (diminish-buffer-mode 1))
   :defer-config
-  (defun jcs--diminish-buffer-clean--advice-before ()
-    "Advice do clean buffer."
-    (when diminish-buffer-mode (diminish-buffer-clean)))
-  (advice-add 'jcs-buffer-menu-refresh-buffer :before #'jcs--diminish-buffer-clean--advice-before))
+  (jcs-advice-add 'jcs-buffer-menu-refresh-buffer :before
+    (when diminish-buffer-mode (diminish-buffer-clean))))
 
 (leaf display-fill-column-indicator
   :init
@@ -400,7 +396,7 @@
   (setq google-translate-default-source-language "auto"
         google-translate-default-target-language "zh-TW")
   :defer-config
-  (advice-add 'google-translate--search-tkk :override (lambda () (list 430675 2721866130))))
+  (jcs-advice-add 'google-translate--search-tkk :override (list 430675 2721866130)))
 
 (leaf goto-char-preview
   :defer-config
@@ -580,9 +576,12 @@
   (setq lsp-auto-guess-root t
         lsp-prefer-capf t
         lsp-keep-workspace-alive nil                   ; Auto-kill LSP server
-        lsp-modeline-code-action-fallback-icon "|Œ|"
+        lsp-modeline-code-action-fallback-icon "Œ"
         lsp-prefer-flymake nil                         ; Use lsp-ui and flycheck
         flymake-fringe-indicator-position 'right-fringe)
+
+  (defvar jcs-lsp-lighter-delay 3.0
+    "Shorten lighter after this amount of time.")
 
   (defun jcs--lsp-connected-p ()
     "Return non-nil if LSP connected."

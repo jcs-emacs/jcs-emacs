@@ -29,11 +29,9 @@ Return nil, to NOT to skip the input selection."
            (setq do-skip t)))
     do-skip))
 
-(defun jcs--ivy-previous-line--advice-after (&rest _)
-  "Advice execute after `ivy-previous-line' function."
+(jcs-advice-add 'ivy-previous-line :after
   (when (and (= ivy--index -1) (jcs--ivy-skip-input-selection-p))
     (call-interactively #'ivy-previous-line)))
-(advice-add 'ivy-previous-line :after #'jcs--ivy-previous-line--advice-after)
 
 (defun jcs--counsel-up-directory ()
   "Fixed just calling `counsel-up-directory' wouldn't go anywhere issue."
