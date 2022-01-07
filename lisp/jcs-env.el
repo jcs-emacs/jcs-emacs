@@ -250,11 +250,11 @@
 
 ;;; Mute
 (defvar jcs-mute-commands
-  (append '(previous-line next-line)
-          '(beginning-of-buffer end-of-buffer)
-          '(set-mark-command)
-          '(jcs-beginning-of-line jcs-end-of-line)
-          '(jcs-mark-whole-buffer))
+  '(set-mark-command
+    previous-line next-line
+    beginning-of-buffer jcs-beginning-of-line
+    end-of-buffer jcs-end-of-line
+    jcs-mark-whole-buffer)
   "List of commands to mute it's action warnings message.")
 
 (defun jcs--mute-command--advice-around (fnc &rest args)
@@ -298,15 +298,13 @@ P.S. You would need to restart Emacs to take effect from this variable."
   "Return non-nil if we should track opened file."
   (and jcs-recentf-tracking-p (not jcs-package-installing-p)))
 
-(defun jcs--recentf-track-opened-file--advice-after ()
-  "Advice execute after function `recentf-track-opened-file'."
+(jcs-advice-add 'recentf-track-opened-file :after
   (when (jcs-recentf-track-opened-file-p) (jcs-dashboard-safe-refresh-buffer)))
-(advice-add 'recentf-track-opened-file :after #'jcs--recentf-track-opened-file--advice-after)
 
-(defun jcs--recentf-track-opened-file--advice-around (fnc &rest args)
-  "Advice execute around function `recentf-track-opened-file'."
-  (when (jcs-recentf-track-opened-file-p) (apply fnc args)))
-(advice-add 'recentf-track-opened-file :around #'jcs--recentf-track-opened-file--advice-around)
+(advice-add
+ 'recentf-track-opened-file :around
+ (lambda (fnc &rest args)
+   (when (jcs-recentf-track-opened-file-p) (apply fnc args))))
 
 ;;; Save Files
 (defvar jcs-on-save-end-trailing-lines-cleanup-p t
@@ -336,9 +334,8 @@ P.S. You would need to restart Emacs to take effect from this variable."
 (setq shift-select-mode t)
 
 ;;; Scroll
-(when (display-graphic-p)
-  (setq mouse-wheel-scroll-amount '(5 ((shift) . 2))
-        mouse-wheel-progressive-speed nil))
+(setq mouse-wheel-scroll-amount '(5 ((shift) . 2))
+      mouse-wheel-progressive-speed nil)
 
 (setq scroll-step 1
       scroll-margin 0

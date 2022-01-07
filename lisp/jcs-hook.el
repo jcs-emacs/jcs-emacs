@@ -19,10 +19,9 @@
   "When window is not focus."
   )
 
-(defun jcs-after-focus-change-function ()
-  "Focus in/out function."
-  (if (frame-focus-state) (jcs-hook--focus-in) (jcs-hook--focus-out)))
-(add-function :after after-focus-change-function #'jcs-after-focus-change-function)
+(add-function
+ :after after-focus-change-function
+ (lambda () (if (frame-focus-state) (jcs-hook--focus-in) (jcs-hook--focus-out))))
 
 (jcs-add-hook 'window-size-change-functions
   (jcs-dashboard--window-size-change)
@@ -39,30 +38,24 @@
   (jcs-project-remember)
   (jcs-project--track-open-projects))
 
-(defun jcs--find-file--advice-after (&rest _)
-  "Advice execute after command `find-file'."
+(jcs-advice-add 'find-file :after
   (when jcs-current-created-parent-dir-path
     (setq jcs-created-parent-dir-path jcs-current-created-parent-dir-path
           jcs-current-created-parent-dir-path nil))
   (jcs-buffer-menu-safe-refresh)
   (jcs-dashboard-safe-refresh-buffer))
-(advice-add 'find-file :after #'jcs--find-file--advice-after)
 
-(defun jcs--switch-to-buffer--advice-after (&rest _)
-  "Advice execute after command `switch-to-buffer'."
-  (jcs-dashboard-safe-refresh-buffer)
-  (jcs-buffer-menu-safe-refresh))
-(advice-add 'switch-to-buffer :after #'jcs--switch-to-buffer--advice-after)
+(jcs-advice-add 'switch-to-buffer :after
+  (jcs-buffer-menu-safe-refresh)
+  (jcs-dashboard-safe-refresh-buffer))
 
 (defun jcs-hook--other-window-interactively-p ()
   "Return non-nil, if executing `other-window'."
   (memq this-command '(other-window jcs-other-window-prev jcs-other-window-next)))
 
-(defun jcs--other-window--advice-before (&rest _)
-  "Advice execute before `other-window' command."
+(jcs-advice-add 'other-window :before
   (when (jcs-hook--other-window-interactively-p)
-    (jcs-funcall-fboundp 'company-abort)))
-(advice-add 'other-window :before #'jcs--other-window--advice-before)
+    (jcs-funcall-fboundp #'company-abort)))
 
 (defun jcs--other-window--advice-after (count &rest _)
   "Advice execute after command `other-window'."
