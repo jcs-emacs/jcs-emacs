@@ -750,23 +750,7 @@ BND-PT : boundary point."
 (defun jcs-print-current-symbol ()
   "Print out the current symbol."
   (interactive)
-  (message "[INFO] Current symbol: %s" (jcs-get-symbol-at-point)))
-
-(defun jcs-get-symbol-at-point ()
-  "Get symbol at current cursor position."
-  (thing-at-point 'symbol))
-
-(defun jcs-kill-thing-at-point (thing)
-  "Kill the `thing-at-point' for the specified kind of THING."
-  (let ((bounds (bounds-of-thing-at-point thing)))
-    (if bounds (kill-region (car bounds) (cdr bounds))
-      (error "No %s at point" thing))))
-
-(defun jcs-form-p-symbol (lst sym val)
-  "Form a plist symbol with LST, SYM, VAL."
-  (require 'dash)
-  (push (plist-put nil sym val) lst)
-  (-flatten lst))
+  (message "[INFO] Current symbol: %s" (symbol-at-point)))
 
 (defun jcs-is-start-of-symbol-p ()
   "Check if position end of the symbol."
@@ -791,11 +775,7 @@ BND-PT : boundary point."
 (defun jcs-print-current-word ()
   "Print out the current word."
   (interactive)
-  (message "[INFO] Current word: %s" (jcs-get-word-at-point)))
-
-(defun jcs-get-word-at-point ()
-  "Get word at current cursor position."
-  (thing-at-point 'word))
+  (message "[INFO] Current word: %s" (word-at-point)))
 
 (defun jcs-current-word-equal-p (str)
   "Check the current word equal to STR, STR can be a list of string."
@@ -820,8 +800,7 @@ BND-PT : boundary point."
 
 (defun jcs-goto-line (ln)
   "Goto LN line number."
-  (goto-char (point-min))
-  (forward-line (1- ln)))
+  (goto-char (point-min)) (forward-line (1- ln)))
 
 (defun jcs-lines-in-region (fnc &optional beg end)
   "Execute FNC each line in region BEG to END."
@@ -1425,41 +1404,6 @@ Argument IN-VAL is input value to set to IN-VAR."
   "Do FNC with CNT from ST."
   (let ((index (or st 0)))
     (while (< index cnt) (funcall fnc index) (setq index (1+ index)))))
-
-;;
-;; (@* "Process Reporter" )
-;;
-
-(defvar jcs-process-reporter nil
-  "Global instance process reporter.")
-
-(defvar jcs-process-reporter-timer nil
-  "Timer for process reporter.")
-
-(defvar jcs-process-reporter-refresh 0.1
-  "Process reporter's refresh rate.")
-
-(defun jcs-process-reporter-start (&optional msg)
-  "Start global process reporter with MSG displayed."
-  (jcs-process-reporter-done)
-  (unless msg (setq msg ""))
-  (setq jcs-process-reporter (make-progress-reporter msg)
-        jcs-process-reporter-timer (run-with-timer nil jcs-process-reporter-refresh #'jcs-process-reporter-update)))
-
-(defun jcs-process-reporter-update (&optional value suffix)
-  "Update global process reporter once."
-  (when jcs-process-reporter
-    (progress-reporter-update jcs-process-reporter value suffix)))
-
-(defun jcs-process-reporter-done (&optional msg)
-  "Kill global process reporter and log MSG when you are done."
-  (when jcs-process-reporter
-    (jcs-no-log-apply (progress-reporter-done jcs-process-reporter))
-    (setq jcs-progress-reporter nil))
-  (when (timerp jcs-process-reporter-timer)
-    (cancel-timer jcs-process-reporter-timer)
-    (setq jcs-process-reporter-timer nil)
-    (jcs-no-log-apply (message msg))))
 
 (provide 'jcs-util)
 ;;; jcs-util.el ends here

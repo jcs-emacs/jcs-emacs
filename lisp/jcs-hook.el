@@ -105,6 +105,7 @@
     (global-alt-codes-mode 1)
     (global-auto-highlight-symbol-mode t)
     (auto-read-only-mode 1)
+    (balanced-windows-mode 1)
     (global-company-mode t)
     (delete-selection-mode 1)
     (global-docstr-mode 1)
@@ -150,7 +151,7 @@
 (defun jcs--quit-command (&rest _)
   "Advice for quit command."
   (deactivate-mark)
-  (jcs-process-reporter-done))
+  (jcs-funcall-fboundp #'jcs-process-reporter-done))
 
 (advice-add 'keyboard-quit :before #'jcs--quit-command)
 (advice-add 'top-level :before #'jcs--quit-command)
