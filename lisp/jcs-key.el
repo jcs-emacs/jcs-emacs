@@ -179,9 +179,6 @@
 (leaf-key* [C-up] #'jcs-previous-blank-line)
 (leaf-key* [C-down] #'jcs-next-blank-line)
 
-(leaf-key* (kbd "C-r DEL") #'jcs-backward-delete-current-char-repeat)
-(leaf-key* (kbd "C-r S-<backspace>") #'jcs-forward-delete-current-char-repeat)
-
 (leaf-key* (kbd "C-d") #'jcs-kill-whole-line)
 (leaf-key* (kbd "C-x") #'jcs-vs-cut-key)
 (leaf-key* (kbd "C-c") #'kill-ring-save)
@@ -530,11 +527,11 @@
   `(([M-f11]        . toggle-frame-fullscreen)
     ((kbd "C-S-n")  . jcs-make-frame)
     ((kbd "C-S-w")  . delete-frame)  ; delete the external frame.
-    ((kbd "C-<f4>") . jcs-balance-delete-window)
+    ((kbd "C-<f4>") . delete-window)
     ((kbd "C-h h")  . jcs-toggle-window-split-hv)
     ((kbd "C-w e")  . jcs-toggle-enlarge-window-selected)
-    ((kbd "C-\\")   . jcs-balance-split-window-horizontally)
-    ((kbd "C-|")    . jcs-balance-split-window-vertically)))
+    ((kbd "C-\\")   . split-window-horizontally)
+    ((kbd "C-|")    . split-window-vertically)))
 
 ;;; Window Navigation
 (jcs-key global-map
