@@ -90,11 +90,11 @@
         (list (format "%s %%S: %%j " (system-name))
               '(buffer-file-name "%f" (dired-directory dired-directory "%b"))))
 
-  ;; NOTE: Lower the `GC' back to normal threshold.
+  ;; Lower the `GC' back to normal threshold
   (jcs-gc-cons-threshold-speed-up nil)
   (setq file-name-handler-alist jcs-file-name-handler-alist)
 
-  ;; IMPORTANT: This should always be the last thing.
+  ;; This should always be the last thing
   (jcs-dashboard-init-info))
 
 (defun jcs-hook--init-delay ()

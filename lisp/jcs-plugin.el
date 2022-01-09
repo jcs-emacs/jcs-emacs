@@ -716,16 +716,12 @@
     (and jcs-popup-mouse-events-flag-p
          (not jcs-popup-selected-item-flag-p)))
 
-  (defun jcs--popup-menu-item-of-mouse-event--advice-after (event)
-    "Advice after execute command `popup-menu-item-of-mouse-event'."
+  (jcs-advice-add 'popup-menu-item-of-mouse-event :after
     (setq jcs-popup-mouse-events-flag-p t
           jcs-popup-selected-item-flag-p nil))
-  (advice-add 'popup-menu-item-of-mouse-event :after #'jcs--popup-menu-item-of-mouse-event--advice-after)
 
-  (defun jcs--popup-selected-item--advice-after (popup)
-    "Advice after execute command `popup-selected-item'."
+  (jcs-advice-add 'popup-selected-item :after
     (setq jcs-popup-selected-item-flag-p (jcs-last-input-event-p "mouse-1")))
-  (advice-add 'popup-selected-item :after #'jcs--popup-selected-item--advice-after)
 
   (defun jcs--popup-draw--advice-around (fnc &rest args)
     "Advice around execute command `popup-draw'."
@@ -821,7 +817,7 @@
         (setq lvl (jcs-last-visible-line-in-window)
               ln-diff (- lvl ln-current))
         (when (< ln-diff default-max-h)
-          (jcs-scroll-up-line (- default-max-h ln-diff))))))
+          (scroll-up-line (- default-max-h ln-diff))))))
   :defer-config
   (defvar jcs-quick-peek--spacer-header nil
     "Header string for `quick-peek'")
@@ -860,16 +856,10 @@
 (leaf show-eol
   :defer-config
   (show-eol-set-mark-with-string 'newline-mark "¶")
-
-  (defun jcs-advice-show-eol-enable-before ()
-    "Advice before execute `show-eol-enable' command."
+  (jcs-advice-add 'show-eol-enable :before
     (face-remap-add-relative 'whitespace-newline :inverse-video t))
-  (advice-add 'show-eol-enable :before #'jcs-advice-show-eol-enable-before)
-
-  (defun jcs-advice-show-eol-disable-before ()
-    "Advice before execute `show-eol-disable' command."
-    (face-remap-add-relative 'whitespace-newline :inverse-video nil))
-  (advice-add 'show-eol-disable :before #'jcs-advice-show-eol-disable-before))
+  (jcs-advice-add 'show-eol-disable :before
+    (face-remap-add-relative 'whitespace-newline :inverse-video nil)))
 
 (leaf sql-indent
   :init
@@ -933,10 +923,9 @@
     "Return the face of it's function."
     (let ((line (line-number-at-pos pos t))) (line-reminder--get-face line)))
 
-  (defun jcs--ts-fold-indicators--refresh ()
-    "Refresh indicators for package `ts-fold'."
+  (jcs-advice-add 'line-reminder-transfer-to-saved-lines :after
+    ;; Refresh indicators for package `ts-fold'.
     (ts-fold-indicators-refresh))
-  (advice-add 'line-reminder-transfer-to-saved-lines :after #'jcs--ts-fold-indicators--refresh)
 
   (set-face-attribute 'ts-fold-replacement-face nil
                       :foreground "#808080"
