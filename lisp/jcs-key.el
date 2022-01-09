@@ -92,7 +92,7 @@
 
 ;;; Buffers
 (jcs-key global-map
-  '(((kbd "C-a") . jcs-mark-whole-buffer)
+  `(((kbd "C-a") . jcs-mark-whole-buffer)
     ((kbd "M-r") . revert-buffer)))
 
 ;;; Binary/Hex Editor
@@ -138,7 +138,7 @@
 
 ;;; Describe Things
 (jcs-key global-map
-  '(((kbd "C-k C-s") . describe-bindings)))
+  `(((kbd "C-k C-s") . describe-bindings)))
 
 ;;; Diminish Buffer
 (leaf-key* (kbd "C-o") #'diminish-buffer-mode)
@@ -258,7 +258,7 @@
 
 ;;; Goto Thing
 (jcs-key global-map
-  '(((kbd "M-g c") . goto-char-preview)
+  `(((kbd "M-g c") . goto-char-preview)
     ((kbd "M-g l") . goto-line-preview)))
 
 ;;; Help
