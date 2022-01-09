@@ -558,8 +558,7 @@ If optional argument CLEAN-LR is non-nil, remove all sign from `line-reminder'."
     (let ((start (or start (point-min))) (end (or end (point-max))))
       (widen)
       ;; For some reason, CMake file will complains this.
-      (ignore-errors
-        (if tab-it (tabify start end) (untabify start end))))))
+      (ignore-errors (if tab-it (tabify start end) (untabify start end))))))
 
 (defun jcs-untabify-buffer (&optional start end)
   "Untabify the current buffer with region START and END."
