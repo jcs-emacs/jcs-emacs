@@ -6,20 +6,21 @@
 ;; (@* "Unset key binding" )
 ;;
 
-(global-unset-key (kbd "C-e"))
-(global-unset-key (kbd "C-k"))
-(global-unset-key (kbd "C-p"))
-(global-unset-key (kbd "C-r"))
-(global-unset-key (kbd "C-w"))
-(global-unset-key (kbd "C-x w"))
+(jcs-key global-map
+  `(((kbd "C-e"))
+    ((kbd "C-k"))
+    ((kbd "C-p"))
+    ((kbd "C-r"))
+    ((kbd "C-w"))
+    ((kbd "C-x w"))))
 
 (with-eval-after-load 'auto-highlight-symbol
   (jcs-key auto-highlight-symbol-mode-map
-    `(((kbd "M-S-<right>") . nil)
-      ((kbd "M-S-<left>")  . nil)
-      ((kbd "M--")         . nil)
-      ((kbd "M-<left>")    . nil)
-      ((kbd "M-<right>")   . nil))))
+    `(((kbd "M-S-<right>"))
+      ((kbd "M-S-<left>"))
+      ((kbd "M--"))
+      ((kbd "M-<left>"))
+      ((kbd "M-<right>")))))
 
 ;;
 ;; (@* "Set key bindings" )
@@ -68,7 +69,7 @@
 
 (with-eval-after-load 'jcs-buffer-menu
   (jcs-key Buffer-menu-mode-map
-    `(((kbd "C-k")     . nil)
+    `(((kbd "C-k"))
       ((kbd "M-K")     . buffer-menu)
       ((kbd "C-k C-s") . describe-bindings)
       ((kbd "M-s")     . jcs-scratch-buffer)
@@ -131,8 +132,8 @@
 
 (with-eval-after-load 'scrollable-quick-peek
   (jcs-key scrollable-quick-peek-keymap
-    `(((kbd "<down>")   . nil)
-      ((kbd "<up>")     . nil)
+    `(((kbd "<down>"))
+      ((kbd "<up>"))
       ((kbd "S-<down>") . scrollable-quick-peek-scroll-down)
       ((kbd "S-<up>")   . scrollable-quick-peek-scroll-up))))
 
@@ -254,7 +255,7 @@
 ;;; Goto Address
 (with-eval-after-load 'goto-addr
   (jcs-key goto-address-highlight-keymap
-    `(((kbd "C-c") . nil))))
+    `(((kbd "C-c")))))
 
 ;;; Goto Thing
 (jcs-key global-map
@@ -409,10 +410,10 @@
 (with-eval-after-load 'multiple-cursors
   (jcs-key mc/keymap
     `(((kbd "<escape>") . mc/keyboard-quit)
-      ((kbd "<return>") . nil)
+      ((kbd "<return>"))
       ((kbd "C-v")      . jcs-smart-yank)
-      ((kbd "C-:")      . nil)
-      (kbd "C-'")       . nil)))
+      ((kbd "C-:"))
+      ((kbd "C-'")))))
 
 (leaf-key* (kbd "M-<left>") #'jcs-backward-word-capital)
 (leaf-key* (kbd "M-<right>") #'jcs-forward-word-capital)
@@ -433,8 +434,8 @@
 (leaf-key* (kbd "C-r f") #'recentf-open-files)
 
 (jcs-key isearch-mode-map
-  `(((kbd "C-s") . nil)
-    ((kbd "C-r") . nil)
+  `(((kbd "C-s"))
+    ((kbd "C-r"))
     ((kbd "C-,") . jcs-isearch-repeat-backward)
     ((kbd "C-.") . jcs-isearch-repeat-forward)
     ((kbd "C-<") . jcs-isearch-project-repeat-backward)
@@ -464,7 +465,7 @@
 
 (with-eval-after-load 'dashboard
   (jcs-key dashboard-mode-map
-    `(((kbd "SPC")         . nil)
+    `(((kbd "SPC"))
       ((kbd "<backspace>") . jcs-dashboard-remove-current-item)
       ((kbd "<delete>")    . jcs-dashboard-remove-current-item)
       ((kbd "d")           . jcs-dashboard-remove-current-item)
@@ -569,10 +570,10 @@
   ;; key bindings. What we need to do is to remap this again...
   (jcs-key undo-tree-map
     `(((kbd "C-/") . jcs-comment-uncomment-region-or-line)
-      ((kbd "C-/") . nil)
-      ("\C-_"      . nil)
-      ((kbd "C-?") . nil)
-      ((kbd "M-_") . nil))))
+      ((kbd "C-/"))
+      ("\C-_")
+      ((kbd "C-?"))
+      ((kbd "M-_")))))
 
 ;;; Whitespace
 (jcs-key global-map

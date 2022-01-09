@@ -111,13 +111,6 @@ Note this is opposite logic to the toggle mode function."
     ;; Customize Mode Line
     (jcs-gray-mode-line)
 
-    ;; Unset 'depend' mode key
-    ;; NOTE: unset key should be before of set keys
-    (global-unset-key (kbd "C-f"))
-    (global-unset-key (kbd "C-r"))
-
-    ;; Set 'depend' mode key
-
     ;; search
     (jcs-key global-map
       `(((kbd "C-f")   . ivy-searcher-search-file)
@@ -125,7 +118,6 @@ Note this is opposite logic to the toggle mode function."
 
     ;; Update mode state.
     (setq jcs-mode--state 'depend)
-
     (message "[INFO] Turn into `depend-mode` now")))
 
 (defun jcs-cross-mode ()
@@ -135,14 +127,6 @@ Note this is opposite logic to the toggle mode function."
     ;; Customize Mode Line
     (jcs-dark-green-mode-line)
 
-    ;; Unset 'cross' mode key
-    ;; NOTE: unset key should be before of set keys
-    (global-unset-key (kbd "C-f"))
-    (global-unset-key (kbd "C-r"))
-    (global-unset-key (kbd "C-r p"))
-
-    ;; Set 'cross' mode key
-
     ;; search
     (jcs-key global-map
       `(((kbd "C-f")   . isearch-forward)
@@ -150,7 +134,6 @@ Note this is opposite logic to the toggle mode function."
 
     ;; Update mode state.
     (setq jcs-mode--state 'cross)
-
     (message "[INFO] Turn into `cross-mode` now")))
 
 ;;----------------------------------------------------------------------------
@@ -287,8 +270,8 @@ To avoid syntax highlighting error for comment.")
   (unless (equal jcs-mode--state 'view)
     ;; unset all the key
     (jcs-key view-mode-map
-      `(([tab] . nil)
-        ((kbd "RET") . nil)))
+      `(([tab])
+        ((kbd "RET"))))
 
     (dolist (key-str jcs-key-list)
       (define-key view-mode-map key-str nil))))
