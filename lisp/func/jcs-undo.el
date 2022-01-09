@@ -78,7 +78,7 @@ This will no longer overwrite usual Emacs' undo key."
   (let ((win-len (jcs-count-windows)) (current-window (selected-window))
         target-window)
     (when (< win-len 2)
-      (jcs-balance-split-window-horizontally)
+      (split-window-horizontally)
       (setq jcs--undo-splits-windows t))
     (save-selected-window
       (other-window 1)

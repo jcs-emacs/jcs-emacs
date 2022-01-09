@@ -32,11 +32,11 @@
            (jcs-save-window-excursion
              (setq sp-name (jcs-shell-select-shell-by-index
                             jcs-shell--last-selected-shell-index)))
-           (when (window-full-height-p) (jcs-balance-split-window-vertically))
+           (when (window-full-height-p) (split-window-vertically))
            (jcs-move-to-upmost-window t)
            (other-window 1)
            (switch-to-buffer sp-name))
-       (when (window-full-height-p) (jcs-balance-split-window-vertically))
+       (when (window-full-height-p) (split-window-vertically))
        (windmove-down 1)
        (multi-shell))
      (enlarge-window jcs-windows--enlarge-shrink-times))))
@@ -69,8 +69,7 @@
 
 (defun jcs-shell-delete-window ()
   "Try to delete shell window."
-  (if (window-full-height-p)
-      (jcs-bury-buffer)
+  (if (window-full-height-p) (jcs-bury-buffer)
     (jcs-delete-window-downwind)
     (balance-windows)))
 
@@ -81,8 +80,7 @@
 (defun jcs-shell-clear-command ()
   "Clear buffer and make new command prompt."
   (interactive)
-  (comint-clear-buffer)
-  (comint-delete-input))
+  (comint-clear-buffer) (comint-delete-input))
 
 (defun jcs-shell-return ()
   "Shell mode's return key."
@@ -148,31 +146,29 @@
               (not (jcs-beginning-of-line-p)))
     (backward-delete-char 1)))
 
-
 (defun jcs-shell-backward-delete-word ()
   "Shell mode's version of backward delete word."
   (interactive)
   (when (jcs-shell-is-current-on-command)
-    (call-interactively 'jcs-backward-delete-word)))
+    (call-interactively #'jcs-backward-delete-word)))
 
 (defun jcs-shell-forward-delete-word ()
   "Shell mode's version of forward delete word."
   (interactive)
   (when (jcs-shell-is-current-on-command)
-    (call-interactively 'jcs-forward-delete-word)))
-
+    (call-interactively #'jcs-forward-delete-word)))
 
 (defun jcs-shell-backward-kill-word-capital ()
   "Shell mode's version of forward delete word."
   (interactive)
   (when (jcs-shell-is-current-on-command)
-    (call-interactively 'jcs-backward-kill-word-capital)))
+    (jcs-backward-kill-word-capital)))
 
 (defun jcs-shell-forward-kill-word-capital ()
   "Shell mode's version of forward delete word."
   (interactive)
   (when (jcs-shell-is-current-on-command)
-    (call-interactively 'jcs-forward-kill-word-capital)))
+    (jcs-forward-kill-word-capital)))
 
 ;;
 ;; (@* "Navigation" )
