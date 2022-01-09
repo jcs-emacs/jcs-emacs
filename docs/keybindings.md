@@ -247,25 +247,6 @@ Here is the list of key bindins that defined in this configuration.
     * <kbd>Ctrl</kbd>+<kbd>8</kbd> - Select window 8.
     * <kbd>Ctrl</kbd>+<kbd>9</kbd> - Select window 9.
 
-* **Navigate Symbol**
-
-  * <kbd>Alt</kbd>+<kbd>)</kbd> - Search forward next `)`.
-  * <kbd>Alt</kbd>+<kbd>(</kbd> - Search backward next `(`.
-  * <kbd>Alt</kbd>+<kbd>]</kbd> - Search forward next `]`.
-  * <kbd>Alt</kbd>+<kbd>[</kbd> - Search backward next `[`.
-  * <kbd>Alt</kbd>+<kbd>}</kbd> - Search forward next `}`.
-  * <kbd>Alt</kbd>+<kbd>{</kbd> - Search backward next `{`.
-  * <kbd>Alt</kbd>+<kbd>'</kbd> - Search forward next `'`. (single quotation mark)
-  * <kbd>Alt</kbd>+<kbd>;</kbd> - Search backward next `'`. (single quotation mark)
-  * <kbd>Alt</kbd>+<kbd>"</kbd> - Search forward next `"`. (double quotation mark)
-  * <kbd>Alt</kbd>+<kbd>:</kbd> - Search backward next `"`. (double quotation mark)
-  * <kbd>Alt</kbd>+<kbd>></kbd> - Search forward next `>`. (Greater than sign)
-  * <kbd>Alt</kbd>+<kbd><</kbd> - Search backward next `<`. (Less than sign)
-  * <kbd>Alt</kbd>+<kbd>.</kbd> - Search forward next `,`. (comma)
-  * <kbd>Alt</kbd>+<kbd>,</kbd> - Search backward next `,`. (comma)
-  * <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>.</kbd> - Search forward next `.`. (period)
-  * <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>,</kbd> - Search backward next `.`. (period)
-
 ### Visualization
 
 * <kbd>Ctrl</kbd>+<kbd>=</kbd> - Text scale increase (Zoom in).
