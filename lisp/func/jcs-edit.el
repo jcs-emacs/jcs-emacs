@@ -9,14 +9,12 @@
 (defun jcs-undo ()
   "Undo key."
   (interactive)
-  (require 'jcs-undo)
-  (jcs--undo-or-redo t))
+  (require 'jcs-undo) (jcs--undo-or-redo t))
 
 (defun jcs-redo ()
   "Redo key."
   (interactive)
-  (require 'jcs-undo)
-  (jcs--undo-or-redo nil))
+  (require 'jcs-undo) (jcs--undo-or-redo nil))
 
 ;;
 ;; (@* "Indentation" )
@@ -232,12 +230,6 @@
   (kill-line (- 1 arg))
   (setq kill-ring (cdr kill-ring)))
 
-(defun jcs-delete-line-backward ()
-  "Delete text between the beginning of the line to the cursor position.
-This command does not push text to `kill-ring'."
-  (interactive)
-  (delete-region (line-beginning-position) (point)))
-
 (defun jcs-delete-word (arg)
   "Delete characters forward until encountering the end of a word.
 With ARG, do this that many times.
@@ -310,13 +302,6 @@ This command does not push text to `kill-ring'."
       (unless (= (line-number-at-pos start-pt) (line-number-at-pos end-pt))
         (setq end-pt end-ln-start-pt))
       (delete-region start-pt end-pt))))
-
-(defun jcs-kill-thing-at-point (thing)
-  "Kill the `thing-at-point' for the specified kind of THING."
-  (let ((bounds (bounds-of-thing-at-point thing)))
-    (if bounds
-        (kill-region (car bounds) (cdr bounds))
-      (error "No %s at point" thing))))
 
 (defun jcs-duplicate-line ()
   "Duplicate the line."
@@ -747,8 +732,7 @@ NO-RECORD and FORCE-SAME-WINDOW are the same as switch to buffer arguments."
            (del-path (f-slash (concat create-dir topest-dir))))
       (delete-directory del-path)
       (message "Remove parent directory that were virtual => '%s'" del-path)))
-  (when (and (featurep 'lsp-mode) (jcs--lsp-connected-p))
-    (lsp-disconnect))
+  (when (and (featurep 'lsp-mode) (jcs--lsp-connected-p)) (lsp-disconnect))
   (kill-this-buffer)
   (jcs-project--track-open-projects)
   (jcs-buffer-menu-safe-refresh)
@@ -810,30 +794,6 @@ other window."
       (jcs-save-window-excursion (jcs-kill-this-buffer))
       (jcs-undo-kill-this-buffer)
       (message "Reopened file => '%s'" current-bfn))))
-
-;;
-;; (@* "Delete Repeatedly" )
-;;
-
-(defun jcs-backward-delete-current-char-repeat ()
-  "Backward delete current character repeatedly util it meet different character."
-  (interactive)
-  (jcs-delete-char-repeat (jcs-get-current-char-string) 'backward))
-
-(defun jcs-forward-delete-current-char-repeat ()
-  "Forward delete current character repeatedly util it meet different character."
-  (interactive)
-  (jcs-delete-char-repeat (jcs-get-current-char-string) 'forward))
-
-(defun jcs-delete-char-repeat (char direction)
-  "Forward kill CHAR repeatedly base on DIRECTION."
-  (let (do-kill-char)
-    (save-excursion
-      (cl-case direction (`forward (forward-char)))
-      (when (jcs-current-char-equal-p char) (setq do-kill-char t)))
-    (when do-kill-char
-      (cl-case direction (`backward (delete-char -1)) (`forward (delete-char 1)))
-      (jcs-delete-char-repeat char direction))))
 
 ;;
 ;; (@* "Electric Pair" )

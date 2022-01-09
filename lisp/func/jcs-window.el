@@ -214,11 +214,6 @@ TYPE can be 'buffer or 'window."
 ;; (@* "Deleting" )
 ;;
 
-(defun jcs-balance-delete-window ()
-  "Balance windows after deleting a window."
-  (interactive)
-  (delete-window) (balance-windows))
-
 (defun jcs-delete-window-downwind ()
   "Delete window in downwind order."
   (interactive)
@@ -227,25 +222,6 @@ TYPE can be 'buffer or 'window."
 ;;
 ;; (@* "Splitting" )
 ;;
-
-(defun jcs-balance-split-window-horizontally ()
-  "Balance windows after split window horizontally."
-  (interactive)
-  (split-window-horizontally)
-  (balance-windows)
-  (save-selected-window
-    (other-window 1)
-    (jcs-bury-buffer)))
-
-(defun jcs-balance-split-window-vertically ()
-  "Balance windows after split window vertically."
-  (interactive)
-  (split-window-vertically)
-  (balance-windows)
-  (save-selected-window
-    (other-window 1)
-    (jcs-bury-buffer)))
-
 
 (defvar jcs-is-enlarge-buffer nil
   "Is any buffer in the frame enlarge already?")
@@ -259,16 +235,12 @@ TYPE can be 'buffer or 'window."
   (if (and jcs-is-enlarge-current-buffer jcs-is-enlarge-buffer)
       (progn (balance-windows) (setq jcs-is-enlarge-buffer nil))
     (maximize-window)
-
-    ;; Set all local enlarge to false.
+    ;; Set all local enlarge to false
     (jcs-setq-all-local-buffer 'jcs-is-enlarge-current-buffer nil)
-
-    ;; Current buffer is enlarge.
+    ;; Current buffer is enlarge
     (setq-local jcs-is-enlarge-current-buffer t)
-
-    ;; One buffer in the frame is enlarge.
+    ;; One buffer in the frame is enlarge
     (setq jcs-is-enlarge-buffer t)))
-
 
 (defun jcs-toggle-window-split-hv ()
   "Switch window split from horizontally to vertically, or vice versa.
@@ -385,20 +357,6 @@ i.e. change right window to bottom, or change bottom window to right."
        nil t)
       (setq win-id-lst (reverse win-id-lst))
       win-id-lst)))
-
-;;
-;; (@* "Center" )
-;;
-
-(defun jcs-horizontal-recenter ()
-  "Make the point horizontally centered in the window."
-  (interactive)
-  (let ((mid (/ (window-width) 2))
-        (line-len (save-excursion (end-of-line) (current-column)))
-        (cur (current-column)))
-    (if (< mid cur)
-        (set-window-hscroll (selected-window)
-                            (- cur mid)))))
 
 ;;
 ;; (@* "Restore Windows Status" )
