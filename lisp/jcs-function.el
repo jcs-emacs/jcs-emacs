@@ -3,7 +3,6 @@
 ;;; Code:
 
 (require 'jcs-util)
-(require 'jcs-frame)
 (require 'jcs-window)
 (require 'jcs-nav)
 
