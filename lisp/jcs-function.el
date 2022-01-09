@@ -364,7 +364,7 @@ If optional argument FORCE is non-nil, force refresh it."
   (let ((kill-ring kill-ring))
     (if iedit-mode
         (call-interactively #'iedit-mode)
-      (when (or (jcs-get-word-at-point) (jcs-get-symbol-at-point))
+      (when (or (word-at-point) (symbol-at-point))
         (call-interactively #'iedit-mode))))
   ;; Call this function just to update `kill-ring'.
   (when (and (not iedit-mode) kill-ring) (current-kill 1))
