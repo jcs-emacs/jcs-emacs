@@ -119,8 +119,9 @@ Note this is opposite logic to the toggle mode function."
     ;; Set 'depend' mode key
 
     ;; search
-    (define-key global-map (kbd "C-f") #'ivy-searcher-search-file)
-    (define-key global-map (kbd "C-S-f") #'ivy-searcher-search-project)
+    (jcs-key global-map
+      `(((kbd "C-f")   . ivy-searcher-search-file)
+        ((kbd "C-S-f") . ivy-searcher-search-project)))
 
     ;; Update mode state.
     (setq jcs-mode--state 'depend)
@@ -143,8 +144,9 @@ Note this is opposite logic to the toggle mode function."
     ;; Set 'cross' mode key
 
     ;; search
-    (define-key global-map (kbd "C-f") #'isearch-forward)
-    (define-key global-map (kbd "C-S-f") #'isearch-project-forward)
+    (jcs-key global-map
+      `(((kbd "C-f")   . isearch-forward)
+        ((kbd "C-S-f") . isearch-project-forward)))
 
     ;; Update mode state.
     (setq jcs-mode--state 'cross)
@@ -170,8 +172,9 @@ Note this is opposite logic to the toggle mode function."
 
 ;;; Diff
 (jcs-add-hook 'diff-mode-hook
-  (jcs-bind-key (kbd "M-k") #'jcs-maybe-kill-this-buffer)
-  (jcs-bind-key (kbd "M-K") #'jcs-reopen-this-buffer))
+  (jcs-key-local
+    `(((kbd "M-k") . jcs-maybe-kill-this-buffer)
+      ((kbd "M-K") . jcs-reopen-this-buffer))))
 
 ;;; Compilation
 (jcs-add-hook '(compilation-mode-hook comint-mode-hook)
@@ -183,9 +186,10 @@ Note this is opposite logic to the toggle mode function."
   (setq buffer-face-mode-face '(:height 120))
   (buffer-face-mode)
 
-  (jcs-bind-key (kbd "M-k") #'jcs-output-maybe-kill-buffer)
-  (jcs-bind-key (kbd "C-_") #'jcs-output-prev-compilation)
-  (jcs-bind-key (kbd "C-+") #'jcs-output-next-compilation))
+  (jcs-key-local
+    `(((kbd "M-k") . jcs-output-maybe-kill-buffer)
+      ((kbd "C-_") . jcs-output-prev-compilation)
+      ((kbd "C-+") . jcs-output-next-compilation))))
 
 ;;; Message Buffer
 (jcs-add-hook 'messages-buffer-mode-hook
@@ -236,7 +240,8 @@ Note this is opposite logic to the toggle mode function."
 
 To avoid syntax highlighting error for comment.")
 
-(jcs-add-hook 'prog-mode-hook
+(defun jcs-prog-mode-hook ()
+  "Programming mode hook."
   (unless (memq major-mode jcs-mode--dash-major-modes)
     (modify-syntax-entry ?- "_"))
 
@@ -254,6 +259,8 @@ To avoid syntax highlighting error for comment.")
   (display-fill-column-indicator-mode 1)
   (highlight-numbers-mode 1))
 
+(add-hook 'prog-mode-hook #'jcs-prog-mode-hook)
+
 ;;; Emacs Lisp
 (jcs-add-hook 'emacs-lisp-mode-hook
   (modify-syntax-entry ?_ "w")  ; Treat underscore as word.
@@ -268,8 +275,9 @@ To avoid syntax highlighting error for comment.")
 
 ;;; Lisp Interaction
 (jcs-add-hook 'lisp-interaction-mode-hook
-  (jcs-bind-key (kbd "M-k") #'jcs-scratch-buffer-maybe-kill)
-  (jcs-bind-key (kbd "M-K") #'jcs-scratch-buffer-refresh))
+  (jcs-key-local
+    `(((kbd "M-k") . jcs-scratch-buffer-maybe-kill)
+      ((kbd "M-K") . jcs-scratch-buffer-refresh))))
 
 ;;============================================================================
 ;; View
@@ -278,8 +286,9 @@ To avoid syntax highlighting error for comment.")
   (require 'view)
   (unless (equal jcs-mode--state 'view)
     ;; unset all the key
-    (define-key view-mode-map [tab] nil)
-    (define-key view-mode-map (kbd "RET") nil)
+    (jcs-key view-mode-map
+      `(([tab] . nil)
+        ((kbd "RET") . nil)))
 
     (dolist (key-str jcs-key-list)
       (define-key view-mode-map key-str nil))))
