@@ -33,24 +33,14 @@
 ;; (@* "Startup" )
 ;;
 
-(defconst jcs-min-require-version "27.1"
-  "Minimum required Emacs version.")
-
-(when (version< emacs-version jcs-min-require-version)
-  (error (format "This requires Emacs %s and above!" jcs-min-require-version)))
-
-(defconst jcs-gc-cons-threshold (* 1024 1024 20)
-  "The default value to use for `gc-cons-threshold'. If you experience freezing,
-decrease this. If you experience stuttering, increase this.")
-
-(defconst jcs-gc-cons-upper-limit (* 1024 1024 128)
-  "The temporary value for `gc-cons-threshold' to defer it.")
+(when (version< emacs-version "27.1")
+  (error "This requires Emacs 27.1 and above!"))
 
 (defun jcs-gc-cons-threshold-speed-up (speedup)
   "Raise/Lower GC threshold by SPEEDUP."
-  (setq gc-cons-threshold (if speedup jcs-gc-cons-upper-limit jcs-gc-cons-threshold)))
+  (setq gc-cons-threshold (if speedup most-positive-fixnum (* 1024 1024 20))))
 
-(jcs-gc-cons-threshold-speed-up t)  ; Raise GC when starting Emacs!
+(when (featurep 'esup-child) (jcs-gc-cons-threshold-speed-up t))
 
 (defconst jcs-file-name-handler-alist file-name-handler-alist
   "Record file name handler alist.")
