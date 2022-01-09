@@ -12,38 +12,34 @@
 (jcs-add-hook '(shell-mode-hook eshell-mode-hook)
   (company-fuzzy-mode -1)
 
-  ;; Normal
-  (jcs-bind-key (kbd "DEL") #'jcs-electric-backspace)
-  (jcs-bind-key (kbd "{") #'jcs-vs-opening-curly-bracket-key)
-  (jcs-bind-key (kbd ";") #'jcs-vs-semicolon-key)
+  (jcs-key-local
+    `(((kbd "DEL") . jcs-electric-backspace)
+      ((kbd "{") . jcs-vs-opening-curly-bracket-key)
+      ((kbd ";") . jcs-vs-semicolon-key)
+      ((kbd "M-k") . jcs-maybe-kill-shell)  ; Close it
 
-  (jcs-bind-key (kbd "M-k") #'jcs-maybe-kill-shell)  ; Close it.
+      ([tab]       . jcs-company-manual-begin)
+      ((kbd "RET") . jcs-shell-return)
 
-  ;; Completion
-  (jcs-bind-key [tab] #'jcs-company-manual-begin)
+      ;; Navigation
+      ((kbd "<up>")   . ,(jcs-get-prev/next-key-type 'previous))
+      ((kbd "<down>") . ,(jcs-get-prev/next-key-type 'next))
+      ([C-up]         . jcs-previous-blank-line)
+      ([C-down]       . jcs-next-blank-line)
 
-  ;; Command Input
-  (jcs-bind-key (kbd "RET") #'jcs-shell-return)
+      ((kbd "C-~") . jcs-shell-new-shell)
 
-  ;; Navigation
-  (jcs-bind-key (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
-  (jcs-bind-key (kbd "<down>") (jcs-get-prev/next-key-type 'next))
-  (jcs-bind-key [C-up] #'jcs-previous-blank-line)
-  (jcs-bind-key [C-down] #'jcs-next-blank-line)
+      ((kbd "C-_") . multi-shell-prev)
+      ((kbd "C-+") . multi-shell-next)
 
-  (jcs-bind-key (kbd "C-~") #'jcs-shell-new-shell)
+      ;; Deletion
+      ((kbd "C-<backspace>")   . jcs-shell-backward-delete-word)
+      ((kbd "C-S-<backspace>") . jcs-shell-forward-delete-word)
+      ((kbd "M-<backspace>")   . jcs-shell-backward-kill-word-capital)
+      ((kbd "M-S-<backspace>") . jcs-shell-forward-kill-word-capital)
 
-  (jcs-bind-key (kbd "C-_") #'multi-shell-prev)
-  (jcs-bind-key (kbd "C-+") #'multi-shell-next)
-
-  ;; Deletion
-  (jcs-bind-key (kbd "C-<backspace>") #'jcs-shell-backward-delete-word)
-  (jcs-bind-key (kbd "C-S-<backspace>") #'jcs-shell-forward-delete-word)
-  (jcs-bind-key (kbd "M-<backspace>") #'jcs-shell-backward-kill-word-capital)
-  (jcs-bind-key (kbd "M-S-<backspace>") #'jcs-shell-forward-kill-word-capital)
-
-  (jcs-bind-key (kbd "C-d") #'jcs-shell-kill-whole-line)
-  (jcs-bind-key (kbd "<backspace>") #'jcs-shell-backspace))
+      ((kbd "C-d")         . jcs-shell-kill-whole-line)
+      ((kbd "<backspace>") . jcs-shell-backspace))))
 
 (provide 'jcs-shell-mode)
 ;;; jcs-shell-mode.el ends here

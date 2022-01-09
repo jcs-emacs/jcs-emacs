@@ -88,22 +88,18 @@
                               'jcs-ask-python-template
                               :interactive t)
 
-  ;; Normal
-  (jcs-bind-key (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
-  (jcs-bind-key (kbd "<down>") (jcs-get-prev/next-key-type 'next))
-
-  (jcs-bind-key (kbd "<backspace>") #'jcs-smart-backspace)
-  (jcs-bind-key [C-backspace] #'jcs-backward-delete-word)
-
-  (jcs-bind-key [M-up] #'jcs-previous-blank-line)
-  (jcs-bind-key [M-down] #'jcs-next-blank-line)
-
-  ;; Edit
-  (jcs-bind-key (kbd "<delete>") #'jcs-smart-delete)
-  (jcs-bind-key (kbd "TAB") #'jcs-tab-key)
-
-  (jcs-bind-key (kbd "RET") #'jcs-py-return)
-  (jcs-bind-key (kbd "C-v") #'yank))
+  (jcs-key-local
+    `(((kbd "<up>")   . ,(jcs-get-prev/next-key-type 'previous))
+      ((kbd "<down>") . ,(jcs-get-prev/next-key-type 'next))
+      ((kbd "<backspace>") . jcs-smart-backspace)
+      ([C-backspace]       . jcs-backward-delete-word)
+      ([M-up]   . jcs-previous-blank-line)
+      ([M-down] . jcs-next-blank-line)
+      ;; Edit
+      ((kbd "<delete>") . jcs-smart-delete)
+      ((kbd "TAB")      . jcs-tab-key)
+      ((kbd "RET") . jcs-py-return)
+      ((kbd "C-v") . yank))))
 
 (provide 'jcs-python-mode)
 ;;; jcs-python-mode.el ends here

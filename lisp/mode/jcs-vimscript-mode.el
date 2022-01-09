@@ -23,11 +23,10 @@
                                 "_vimrc")
                               'jcs-insert-vimscript-template)
 
-  ;; Normal
-  (jcs-bind-key (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
-  (jcs-bind-key (kbd "<down>") (jcs-get-prev/next-key-type 'next))
-
-  (jcs-bind-key (kbd "C-a") #'jcs-mark-whole-buffer))
+  (jcs-key-local
+    `(((kbd "<up>")   . ,(jcs-get-prev/next-key-type 'previous))
+      ((kbd "<down>") . ,(jcs-get-prev/next-key-type 'next))
+      ((kbd "C-a")    . jcs-mark-whole-buffer))))
 
 (provide 'jcs-vimscript-mode)
 ;;; jcs-vimscript-mode.el ends here

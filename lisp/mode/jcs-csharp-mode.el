@@ -64,20 +64,20 @@
                               'jcs-csharp-ask-source
                               :interactive t)
 
-  ;; Normal
-  (jcs-bind-key (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
-  (jcs-bind-key (kbd "<down>") (jcs-get-prev/next-key-type 'next))
+  (jcs-key-local
+    `(((kbd "<up>")   . ,(jcs-get-prev/next-key-type 'previous))
+      ((kbd "<down>") . ,(jcs-get-prev/next-key-type 'next))
 
-  (jcs-bind-key (kbd "DEL") #'jcs-electric-backspace)
-  (jcs-bind-key (kbd "{") #'jcs-vs-opening-curly-bracket-key)
-  (jcs-bind-key (kbd ";") #'jcs-vs-semicolon-key)
+      ((kbd "DEL") . jcs-electric-backspace)
+      ((kbd "{") . jcs-vs-opening-curly-bracket-key)
+      ((kbd ";") . jcs-vs-semicolon-key)
 
-  (jcs-bind-key [f8] #'jcs-find-corresponding-file)
-  (jcs-bind-key [S-f8] #'jcs-find-corresponding-file-other-window)
+      ([f8] . jcs-find-corresponding-file)
+      ([S-f8] . jcs-find-corresponding-file-other-window)
 
-  (jcs-bind-key (kbd "#") #'jcs-vs-sharp-key)
+      ((kbd "#") . jcs-vs-sharp-key)
 
-  (jcs-bind-key (kbd "M-q") #'jcs-other-window-prev))
+      ((kbd "M-q") . jcs-other-window-prev))))
 
 (provide 'jcs-csharp-mode)
 ;;; jcs-csharp-mode.el ends here

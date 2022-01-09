@@ -27,10 +27,10 @@
   (jcs-insert-header-if-valid '("[.]json")
                               'jcs--json-format)
 
-  ;; Normal
-  (jcs-bind-key (kbd "DEL") #'jcs-electric-backspace)
-  (jcs-bind-key (kbd "{") #'jcs-vs-opening-curly-bracket-key)
-  (jcs-bind-key (kbd ";") #'jcs-vs-semicolon-key))
+  (jcs-key-local
+    `(((kbd "DEL") . jcs-electric-backspace)
+      ((kbd "{") . jcs-vs-opening-curly-bracket-key)
+      ((kbd ";") . jcs-vs-semicolon-key))))
 
 (provide 'jcs-json-mode)
 ;;; jcs-json-mode.el ends here

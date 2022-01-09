@@ -29,19 +29,19 @@
   (jcs-insert-header-if-valid '("[.]as")
                               'jcs-insert-actionscript-template)
 
-  ;; Normal
-  (jcs-bind-key (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
-  (jcs-bind-key (kbd "<down>") (jcs-get-prev/next-key-type 'next))
+  (jcs-key-local
+    `(((kbd "<up>")   . ,(jcs-get-prev/next-key-type 'previous))
+      ((kbd "<down>") . ,(jcs-get-prev/next-key-type 'next))
 
-  (jcs-bind-key (kbd "<backspace>") #'jcs-smart-backspace)
-  (jcs-bind-key (kbd "<delete>") #'jcs-smart-delete)
-  (jcs-bind-key (kbd "SPC") #'jcs-smart-space)
+      ((kbd "<backspace>") . jcs-smart-backspace)
+      ((kbd "<delete>")    . jcs-smart-delete)
+      ((kbd "SPC")         . jcs-smart-space)
 
-  (jcs-bind-key (kbd "DEL") #'jcs-electric-backspace)
-  (jcs-bind-key (kbd "{") #'jcs-vs-opening-curly-bracket-key)
-  (jcs-bind-key (kbd ";") #'jcs-vs-semicolon-key)
+      ((kbd "DEL") . jcs-electric-backspace)
+      ((kbd "{") . jcs-vs-opening-curly-bracket-key)
+      ((kbd ";") . jcs-vs-semicolon-key)
 
-  (jcs-bind-key (kbd "C-v") #'jcs-smart-yank))
+      ((kbd "C-v") . jcs-smart-yank))))
 
 (provide 'jcs-actionscript-mode)
 ;;; jcs-actionscript-mode.el ends here

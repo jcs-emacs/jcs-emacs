@@ -25,9 +25,9 @@
                                 "[.]hrl")
                               'jcs-insert-erlang-template)
 
-  ;; switch window
-  (jcs-bind-key (kbd "M-w") #'jcs-other-window-next)
-  (jcs-bind-key (kbd "M-q") #'jcs-other-window-prev))
+  (jcs-key-local
+    `(((kbd "M-w") . jcs-other-window-next)
+      ((kbd "M-q") . jcs-other-window-prev))))
 
 (provide 'jcs-erlang-mode)
 ;;; jcs-erlang-mode.el ends here

@@ -143,31 +143,22 @@
 (jcs-add-hook 'masm-mode-hook
   (electric-pair-mode nil)
   (modify-syntax-entry ?_ "w")
-
   (jcs-asm-mode--init)
-
-  ;; Normal
-  (jcs-bind-key (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
-  (jcs-bind-key (kbd "<down>") (jcs-get-prev/next-key-type 'next))
-
-  ;; Comment
-  (jcs-bind-key (kbd "RET") #'jcs-asm-return)
-  (jcs-bind-key (kbd ";") #'jcs-asm-comment))
+  (jcs-key-local
+    `(((kbd "<up>")   . ,(jcs-get-prev/next-key-type 'previous))
+      ((kbd "<down>") . ,(jcs-get-prev/next-key-type 'next))
+      ((kbd "RET") . jcs-asm-return)
+      ((kbd ";") . jcs-asm-comment))))
 
 (jcs-add-hook 'nasm-mode-hook
   (electric-pair-mode nil)
-
   (modify-syntax-entry ?_ "w")
-
   (jcs-asm-mode--init)
-
-  ;; Normal
-  (jcs-bind-key (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
-  (jcs-bind-key (kbd "<down>") (jcs-get-prev/next-key-type 'next))
-
-  ;; Comment
-  (jcs-bind-key (kbd "RET") #'jcs-asm-return)
-  (jcs-bind-key (kbd ";") #'jcs-asm-comment))
+  (jcs-key-local
+    `(((kbd "<up>")   . ,(jcs-get-prev/next-key-type 'previous))
+      ((kbd "<down>") . ,(jcs-get-prev/next-key-type 'next))
+      ((kbd "RET") . jcs-asm-return)
+      ((kbd ";") . jcs-asm-comment))))
 
 (provide 'jcs-asm-mode)
 ;;; jcs-asm-mode.el ends here

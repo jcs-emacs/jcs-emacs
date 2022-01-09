@@ -25,8 +25,8 @@
   (jcs-insert-header-if-valid '("[.]pde")
                               'jcs-insert-processing-template)
 
-  ;; Normal
-  (jcs-bind-key (kbd "DEL") #'jcs-electric-backspace))
+  (jcs-key-local
+    `(((kbd "DEL") . jcs-electric-backspace))))
 
 (provide 'jcs-processing-mode)
 ;;; jcs-processing-mode.el ends here

@@ -12,9 +12,9 @@
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
 
-  ;; Normal
-  (jcs-bind-key (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
-  (jcs-bind-key (kbd "<down>") (jcs-get-prev/next-key-type 'next)))
+  (jcs-key-local
+    `(((kbd "<up>") . ,(jcs-get-prev/next-key-type 'previous))
+      ((kbd "<down>") . ,(jcs-get-prev/next-key-type 'next)))))
 
 (provide 'jcs-ini-mode)
 ;;; jcs-ini-mode.el ends here

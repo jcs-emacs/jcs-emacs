@@ -25,12 +25,11 @@
                                 "[.]yml")
                               'jcs-insert-yaml-template)
 
-  ;; Normal
-  (jcs-bind-key (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
-  (jcs-bind-key (kbd "<down>") (jcs-get-prev/next-key-type 'next))
-
-  (jcs-bind-key (kbd "SPC") #'jcs-smart-space)
-  (jcs-bind-key (kbd "<backspace>") #'jcs-smart-backspace))
+  (jcs-key-local
+    `(((kbd "<up>")        . ,(jcs-get-prev/next-key-type 'previous))
+      ((kbd "<down>")      . ,(jcs-get-prev/next-key-type 'next))
+      ((kbd "SPC")         . jcs-smart-space)
+      ((kbd "<backspace>") . jcs-smart-backspace))))
 
 (provide 'jcs-yaml-mode)
 ;;; jcs-yaml-mode.el ends here

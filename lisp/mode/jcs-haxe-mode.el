@@ -26,21 +26,22 @@
                               'jcs-insert-haxe-template)
 
   ;; Normal
-  (jcs-bind-key (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
-  (jcs-bind-key (kbd "<down>") (jcs-get-prev/next-key-type 'next))
+  (jcs-key-local
+    `(((kbd "<up>")   . ,(jcs-get-prev/next-key-type 'previous))
+      ((kbd "<down>") . ,(jcs-get-prev/next-key-type 'next))
 
-  (jcs-bind-key (kbd "<backspace>") #'jcs-smart-backspace)
-  (jcs-bind-key (kbd "<delete>") #'jcs-smart-delete)
+      ((kbd "<backspace>") . jcs-smart-backspace)
+      ((kbd "<delete>")    . jcs-smart-delete)
 
-  (jcs-bind-key (kbd "DEL") #'jcs-electric-backspace)
-  (jcs-bind-key (kbd "{") #'jcs-vs-opening-curly-bracket-key)
-  (jcs-bind-key (kbd ";") #'jcs-vs-semicolon-key)
+      ((kbd "DEL") . jcs-electric-backspace)
+      ((kbd "{") . jcs-vs-opening-curly-bracket-key)
+      ((kbd ";") . jcs-vs-semicolon-key)
 
-  (jcs-bind-key (kbd "C-v") #'jcs-smart-yank)
+      ((kbd "C-v") . jcs-smart-yank)
 
-  ;; switch frame.
-  (jcs-bind-key (kbd "M-w") #'jcs-other-window-next)
-  (jcs-bind-key (kbd "M-q") #'jcs-other-window-prev))
+      ;; switch frame.
+      ((kbd "M-w") . jcs-other-window-next)
+      ((kbd "M-q") . jcs-other-window-prev))))
 
 (provide 'jcs-haxe-mode)
 ;;; jcs-haxe-mode.el ends here

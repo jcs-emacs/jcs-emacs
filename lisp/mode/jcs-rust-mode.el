@@ -27,7 +27,8 @@
   (jcs-insert-header-if-valid '("[.]rs")
                               'jcs-insert-rust-template)
 
-  (jcs-bind-key (kbd "{") #'jcs-vs-opening-curly-bracket-key))
+  (jcs-key-local
+    `(((kbd "{") . jcs-vs-opening-curly-bracket-key))))
 
 (provide 'jcs-rust-mode)
 ;;; jcs-rust-mode.el ends here

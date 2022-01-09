@@ -25,8 +25,8 @@
                                 "[.]dpr")
                               'jcs-insert-opascal-template)
 
-  ;; Normal
-  (jcs-bind-key (kbd "M-q") #'jcs-other-window-prev))
+  (jcs-key-local
+    `(((kbd "M-q") . jcs-other-window-prev))))
 
 (provide 'jcs-opascal-mode)
 ;;; jcs-opascal-mode.el ends here

@@ -95,7 +95,6 @@
   (auto-rename-tag-mode 1)
   (visual-line-mode t)
   (impatient-mode t)
-
   (toggle-truncate-lines 1)
 
   ;; Docstring Faces
@@ -116,28 +115,30 @@
   (jcs-insert-header-if-valid '("[.]php")
                               'jcs-insert-php-template)
 
-  ;; Normal
-  (jcs-bind-key (kbd "DEL") #'jcs-electric-backspace)
-  (jcs-bind-key (kbd "{") #'jcs-web-vs-opening-curly-bracket-key)
-  (jcs-bind-key (kbd ";") #'jcs-vs-semicolon-key)
+  (jcs-key-local
+    `(((kbd "DEL") . jcs-electric-backspace)
+      ((kbd "{") . jcs-web-vs-opening-curly-bracket-key)
+      ((kbd ";") . jcs-vs-semicolon-key)
 
-  ;; File Corresponding
-  (jcs-bind-key [f8] #'jcs-find-corresponding-file)
-  (jcs-bind-key [S-f8] #'jcs-find-corresponding-file-other-window)
+      ;; File Corresponding
+      ([f8]   . jcs-find-corresponding-file)
+      ([S-f8] . jcs-find-corresponding-file-other-window)
 
-  ;; Shortcuts
-  (jcs-bind-key (kbd "C-n") #'web-mode-tag-match)
+      ;; Shortcuts
+      ((kbd "C-n") . web-mode-tag-match)
+
+      ;; PHP
+      ([C-backspace]         . jcs-web-backward-delete-word)
+      ((kbd "M-<backspace>") . jcs-web-backward-delete-word-capital)))
 
   ;; Emmet
-  (define-key emmet-mode-keymap (kbd "C-<return>") #'jcs-emmet-expand-line)
-
-  ;; PHP
-  (jcs-bind-key [C-backspace] #'jcs-web-backward-delete-word)
-  (jcs-bind-key (kbd "M-<backspace>") #'jcs-web-backward-delete-word-capital))
+  (jcs-key emmet-mode-keymap
+    `((kbd "C-<return>") . jcs-emmet-expand-line)))
 
 (jcs-add-hook 'html-mode-hook
-  (jcs-bind-key (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
-  (jcs-bind-key (kbd "<down>") (jcs-get-prev/next-key-type 'next)))
+  (jcs-key-local
+    `(((kbd "<up>")   . ,(jcs-get-prev/next-key-type 'previous))
+      ((kbd "<down>") . ,(jcs-get-prev/next-key-type 'next)))))
 
 (provide 'jcs-web-mode)
 ;;; jcs-web-mode.el ends here

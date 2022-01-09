@@ -97,14 +97,14 @@
   (jcs-insert-header-if-valid '("[.]md" "[.]markdown")
                               'jcs-insert-markdown-template)
 
-  ;; Normal
-  (jcs-bind-key (kbd "<backspace>") #'jcs-real-backspace)
-  (jcs-bind-key (kbd "RET") #'jcs-markdown-return-key)
-
-  (jcs-bind-key [S-tab] #'markdown-cycle)
+  (jcs-key-local
+    `(((kbd "<backspace>") . jcs-real-backspace)
+      ((kbd "RET")         . jcs-markdown-return-key)
+      ([S-tab]             . markdown-cycle)))
 
   ;; Eemmet
-  (define-key emmet-mode-keymap (kbd "C-<return>") #'jcs-emmet-expand-line))
+  (jcs-key emmet-mode-keymap
+    `(((kbd "C-<return>") . jcs-emmet-expand-line))))
 
 
 (provide 'jcs-markdown-mode)

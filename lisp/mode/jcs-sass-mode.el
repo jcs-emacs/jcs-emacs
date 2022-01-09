@@ -22,11 +22,9 @@
   (jcs-insert-header-if-valid '("[.]sass")
                               'jcs-insert-sass-template)
 
-  ;; Normal
-
-  ;; Edit
-  (jcs-bind-key (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
-  (jcs-bind-key (kbd "<down>") (jcs-get-prev/next-key-type 'next)))
+  (jcs-key-local
+    `(((kbd "<up>")   . ,(jcs-get-prev/next-key-type 'previous))
+      ((kbd "<down>") . ,(jcs-get-prev/next-key-type 'next)))))
 
 (provide 'jcs-sass-mode)
 ;;; jcs-sass-mode.el ends here

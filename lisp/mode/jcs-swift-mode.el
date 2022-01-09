@@ -24,8 +24,8 @@
   (jcs-insert-header-if-valid '("[.]swift")
                               'jcs-insert-swift-template)
 
-  ;; Normal
-  (jcs-bind-key (kbd "M-k") #'jcs-maybe-kill-this-buffer))
+  (jcs-key-local
+    `(((kbd "M-k") . jcs-maybe-kill-this-buffer))))
 
 (provide 'jcs-swift-mode)
 ;;; jcs-swift-mode.el ends here

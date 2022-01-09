@@ -25,18 +25,17 @@
 (jcs-add-hook 'gitattributes-mode-hook
   (electric-pair-mode nil)
 
-  ;; Normal
-  (jcs-bind-key (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
-  (jcs-bind-key (kbd "<down>") (jcs-get-prev/next-key-type 'next)))
+  (jcs-key-local
+    `(((kbd "<up>")   . ,(jcs-get-prev/next-key-type 'previous))
+      ((kbd "<down>") . ,(jcs-get-prev/next-key-type 'next)))))
 
 (jcs-add-hook 'gitconfig-mode-hook
   (electric-pair-mode nil)
 
-  ;; Normal
-  (jcs-bind-key (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
-  (jcs-bind-key (kbd "<down>") (jcs-get-prev/next-key-type 'next))
-  (jcs-bind-key (kbd "C-d") #'jcs-kill-whole-line)
-  (jcs-bind-key (kbd "C-c C-c") #'kill-ring-save))
+  (jcs-key-local
+    `(((kbd "<up>")    . ,(jcs-get-prev/next-key-type 'previous))
+      ((kbd "<down>")  . ,(jcs-get-prev/next-key-type 'next))
+      ((kbd "C-d")     . jcs-kill-whole-line))))
 
 (jcs-add-hook 'gitignore-mode-hook
   (electric-pair-mode nil)
@@ -49,11 +48,10 @@
                                 (when (jcs-current-line-empty-p)
                                   (jcs-kill-whole-line))))
 
-  ;; Normal
-  (jcs-bind-key (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
-  (jcs-bind-key (kbd "<down>") (jcs-get-prev/next-key-type 'next))
-  (jcs-bind-key (kbd "C-d") #'jcs-kill-whole-line)
-  (jcs-bind-key (kbd "C-c C-c") #'kill-ring-save))
+  (jcs-key-local
+    `(((kbd "<up>")   . ,(jcs-get-prev/next-key-type 'previous))
+      ((kbd "<down>") . ,(jcs-get-prev/next-key-type 'next))
+      ((kbd "C-d")    . jcs-kill-whole-line))))
 
 (provide 'jcs-git-mode)
 ;;; jcs-git-mode.el ends here

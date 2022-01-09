@@ -117,11 +117,11 @@ TYPE: type of makefile for Python."
                                 "[.]mak")
                               'jcs-makefile-format-info)
 
-  ;; Normal
-  (jcs-bind-key (kbd "<up>") (jcs-get-prev/next-key-type 'previous))
-  (jcs-bind-key (kbd "<down>") (jcs-get-prev/next-key-type 'next))
-  (jcs-bind-key (kbd "RET") #'jcs-makefile-newline)
-  (jcs-bind-key (kbd "C-v") #'yank))
+  (jcs-key-local
+    `(((kbd "<up>")   . ,(jcs-get-prev/next-key-type 'previous))
+      ((kbd "<down>") . ,(jcs-get-prev/next-key-type 'next))
+      ((kbd "RET")    . jcs-makefile-newline)
+      ((kbd "C-v")    . yank))))
 
 (provide 'jcs-make-mode)
 ;;; jcs-make-mode.el ends here

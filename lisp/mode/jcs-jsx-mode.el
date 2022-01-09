@@ -58,12 +58,12 @@
                               'jcs-jsx--ask-source
                               :interactive t)
 
-  ;; Normal
-  (jcs-bind-key (kbd "{") #'jcs-web-vs-opening-curly-bracket-key)
-  (jcs-bind-key (kbd ";") #'jcs-vs-semicolon-key)
+  (jcs-key-local
+    `(((kbd "{") . jcs-web-vs-opening-curly-bracket-key)
+      ((kbd ";") . jcs-vs-semicolon-key)))
 
-  ;; Emmet
-  (define-key emmet-mode-keymap (kbd "C-<return>") #'jcs-emmet-expand-line))
+  (jcs-key emmet-mode-keymap
+    `(((kbd "C-<return>") . jcs-emmet-expand-line))))
 
 
 (provide 'jcs-jsx-mode)

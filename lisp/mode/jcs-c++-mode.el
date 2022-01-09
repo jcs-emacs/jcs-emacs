@@ -99,25 +99,25 @@
                          jcs-c++-header-extensions jcs-c++-source-extensions)))
     (jcs-insert-header-if-valid ext-lst 'jcs-c++-ask-source :interactive t))
 
-  ;; Normal
-  (jcs-bind-key [f8] #'jcs-find-corresponding-file)
-  (jcs-bind-key [S-f8] #'jcs-find-corresponding-file-other-window)
+  (jcs-key-local
+    `(([f8]   . jcs-find-corresponding-file)
+      ([S-f8] . jcs-find-corresponding-file-other-window)
 
-  ;; If just want to open the same file, not the corresponding file.
-  (jcs-bind-key [f7] #'jcs-same-file-other-window)
+      ;; If just want to open the same file, not the corresponding file.
+      ([f7] . jcs-same-file-other-window)
 
-  (jcs-bind-key (kbd "DEL") #'jcs-electric-backspace)
-  (jcs-bind-key (kbd "{") #'jcs-vs-opening-curly-bracket-key)
-  (jcs-bind-key (kbd ";") #'jcs-vs-semicolon-key)
+      ((kbd "DEL") . jcs-electric-backspace)
+      ((kbd "{") . jcs-vs-opening-curly-bracket-key)
+      ((kbd ";") . jcs-vs-semicolon-key)
 
-  ;; Comement
-  (jcs-bind-key (kbd "C-k s") #'jcs-toggle-c-comment-style)
+      ;; Comement
+      ((kbd "C-k s") . jcs-toggle-c-comment-style)
 
-  (jcs-bind-key (kbd "#") #'jcs-vs-sharp-key)
+      ((kbd "#") . jcs-vs-sharp-key)
 
-  ;; Undo/Redo
-  (jcs-bind-key (kbd "C-z") #'jcs-undo)
-  (jcs-bind-key (kbd "C-y") #'jcs-redo))
+      ;; Undo/Redo
+      ((kbd "C-z") . jcs-undo)
+      ((kbd "C-y") . jcs-redo))))
 
 (provide 'jcs-c++-mode)
 ;;; jcs-c++-mode.el ends here
