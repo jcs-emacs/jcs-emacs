@@ -18,8 +18,7 @@
       package-check-signature nil)   ; Disable check signature while installing packages
 
 ;; initialize package.el
-(when (featurep 'esup-child)
-  (package-initialize))
+(when (featurep 'esup-child) (package-initialize))
 
 ;;
 ;; (@* "Packages" )
