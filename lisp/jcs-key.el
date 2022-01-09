@@ -184,25 +184,6 @@
 (leaf-key* (kbd "C-M-<left>") #'buf-move-left)
 (leaf-key* (kbd "C-M-<right>") #'buf-move-right)
 
-(progn  ; Navigating General Programming Symbols
-  (define-key global-map (kbd "M-)") #'jcs-move-forward-close-paren)
-  (define-key global-map (kbd "M-(") #'jcs-move-backward-open-paren)
-  (define-key global-map (kbd "M-]") #'jcs-move-forward-close-sqr-paren)
-  (define-key global-map (kbd "M-[") #'jcs-move-backward-open-sqr-paren)
-  (define-key global-map (kbd "M-}") #'jcs-move-forward-close-curly-paren)
-  (define-key global-map (kbd "M-{") #'jcs-move-backward-open-curly-paren)
-  (define-key global-map (kbd "M-'") #'jcs-move-forward-single-quote)
-  (define-key global-map (kbd "M-;") #'jcs-move-backward-single-quote)
-  (define-key global-map (kbd "M-\"") #'jcs-move-forward-double-quote)
-  (define-key global-map (kbd "M-:") #'jcs-move-backward-double-quote)
-  (define-key global-map (kbd "M->") #'jcs-move-forward-greater-than-sign)
-  (define-key global-map (kbd "M-<") #'jcs-move-backward-less-than-sign)
-
-  (define-key global-map (kbd "M-.") #'jcs-move-forward-comma)
-  (define-key global-map (kbd "M-,") #'jcs-move-backward-comma)
-  (define-key global-map (kbd "C-M-.") #'jcs-move-forward-period)
-  (define-key global-map (kbd "C-M-,") #'jcs-move-backward-period))
-
 ;;; Error
 (define-key global-map [f9] #'first-error)
 (define-key global-map [f10] #'previous-error)
