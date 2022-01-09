@@ -33,7 +33,7 @@
       (forward-char 1)
       (when (jcs-current-char-equal-p "@")
         (forward-char 1))
-      (when (jcs-py-is-python-keyword (jcs-get-word-at-point))
+      (when (jcs-py-is-python-keyword (word-at-point))
         (setq is-keyword t)))
     is-keyword))
 
