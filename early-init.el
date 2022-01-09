@@ -32,7 +32,7 @@
 
 ;;
 ;;; Set Custom file
-(setq-default custom-file (expand-file-name ".jcs-custom.el" user-emacs-directory))
+(setq-default custom-file (concat user-emacs-directory ".jcs-custom.el"))
 (when (file-exists-p custom-file) (load custom-file))
 
 (provide 'early-init)
