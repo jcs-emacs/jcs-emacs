@@ -250,8 +250,7 @@ This command does not push text to `kill-ring'."
 (defun jcs-smart-backward-delete-word ()
   "Backward deleteing ARG words in the smart way."
   (interactive)
-  (if (use-region-p)
-      (jcs-delete-region)
+  (if (use-region-p) (jcs-delete-region)
     (let ((start-pt -1) (end-pt (point)) (start-ln-end-pt -1))
       (save-excursion
         (jcs-smart-backward-word)
@@ -264,8 +263,7 @@ This command does not push text to `kill-ring'."
 (defun jcs-smart-forward-delete-word ()
   "Forward deleteing ARG words in the smart way."
   (interactive)
-  (if (use-region-p)
-      (jcs-delete-region)
+  (if (use-region-p) (jcs-delete-region)
     (let ((start-pt (point)) (end-pt -1) (end-ln-start-pt -1))
       (save-excursion
         (jcs-smart-forward-word)
@@ -278,8 +276,7 @@ This command does not push text to `kill-ring'."
 (defun jcs-backward-kill-word-capital ()
   "Backward delete the word unitl the word is capital."
   (interactive)
-  (if (use-region-p)
-      (jcs-delete-region)
+  (if (use-region-p) (jcs-delete-region)
     (let ((start-pt -1) (end-pt (point)) (start-ln-end-pt -1))
       (save-excursion
         (jcs-backward-word-capital)
@@ -292,8 +289,7 @@ This command does not push text to `kill-ring'."
 (defun jcs-forward-kill-word-capital ()
   "Forward delete the word unitl the word is capital."
   (interactive)
-  (if (use-region-p)
-      (jcs-delete-region)
+  (if (use-region-p) (jcs-delete-region)
     (let ((start-pt (point)) (end-pt -1) (end-ln-start-pt -1))
       (save-excursion
         (jcs-forward-word-capital)

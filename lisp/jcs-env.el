@@ -383,10 +383,9 @@ If ACT is non-nil; then make scroll less jumpy."
 ;;; Tabulated List
 (leaf tabulated-list
   :defer-config
-  (defun jcs--tabulated-list-col-sort--advice-around (fnc &rest args)
-    "Advice execute around `tabulated-list-col-sort' function."
-    (save-excursion (apply fnc args)))
-  (advice-add 'tabulated-list-col-sort :around #'jcs--tabulated-list-col-sort--advice-around))
+  (advice-add
+   'tabulated-list-col-sort :around
+   (lambda (fnc &rest args) (save-excursion (apply fnc args)))))
 
 ;;; Theme
 (defconst jcs-theme-default 'vs-dark
@@ -417,14 +416,10 @@ If ACT is non-nil; then make scroll less jumpy."
 ;;; Whitespace
 (leaf whitespace
   :defer-config
-  (autoload 'whitespace-mode "whitespace-mode" "Toggle whitespace visualization." t)
-  (autoload 'whitespace-toggle-options "whitespace-mode" "Toggle local `whitespace-mode' options." t)
   ;; All the face can be find here.
   ;; URL: https://www.emacswiki.org/emacs/BlankMode
-  (set-face-attribute 'whitespace-indentation nil
-                      :background "grey20" :foreground "aquamarine3")
-  (set-face-attribute 'whitespace-trailing nil
-                      :background "grey20" :foreground "red"))
+  (set-face-attribute 'whitespace-indentation nil :background "grey20" :foreground "aquamarine3")
+  (set-face-attribute 'whitespace-trailing nil :background "grey20" :foreground "red"))
 
 ;;; Windows
 (defconst jcs-windows--enlarge-shrink-times 6
