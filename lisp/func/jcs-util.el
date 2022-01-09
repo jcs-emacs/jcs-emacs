@@ -1355,11 +1355,6 @@ or `suffix'."
     (`suffix (string-suffix-p regexp str ignore-case))
     (t (string-match-p regexp str))))
 
-(defun jcs-hash-string (str)
-  "Hash STR using md5."
-  (declare (side-effect-free t))
-  (md5 (replace-regexp-in-string "[[:space:]\n]+" " " str)))
-
 (defun jcs-fill-n-char-seq (ch-seq n)
   "Fill CH-SEQ with N length."
   (let ((ch-out ch-seq))
@@ -1377,14 +1372,6 @@ or `suffix'."
     (and (nth 3 (syntax-ppss))
          (jcs-current-point-face '(font-lock-string-face
                                    tree-sitter-hl-face:string)))))
-
-(defun jcs-last-regex-in-string (reg str)
-  "Find the position in STR using REG from th end."
-  (let ((pos -1) (run-it t))
-    (while run-it
-      (setq run-it (string-match-p reg str (1+ pos)))
-      (when run-it (setq pos run-it)))
-    (if (= pos -1) nil pos)))
 
 (defun jcs-s-replace-displayable (str &optional rep)
   "Replace non-displayable character from STR.
