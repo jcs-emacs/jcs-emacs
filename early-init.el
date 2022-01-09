@@ -27,6 +27,9 @@
 ;; more than this to make UTF-8 the default coding system:
 (set-language-environment "UTF-8")
 
+;; set-language-enviornment sets default-input-method, which is unwanted
+(setq default-input-method nil)
+
 ;;
 ;;; Set Custom file
 (setq-default custom-file (expand-file-name ".jcs-custom.el" user-emacs-directory))
