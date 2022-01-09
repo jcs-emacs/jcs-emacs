@@ -24,10 +24,6 @@ Here is the list of key bindins that defined in this configuration.
   * <kbd>Ctrl</kbd>+<kbd>delete</kbd> - Delete word.
   * <kbd>Alt</kbd>+<kbd>backspace</kbd> - Backspace word excluding capital letter.
   * <kbd>Alt</kbd>+<kbd>delete</kbd> - Delete word excluding capital letter.
-  * <kbd>Ctrl</kbd>+<kbd>r</kbd>, <kbd>backspace</kbd> -
-  Delete the same character at current cursor's position backward repeatedly util it meet different character.
-  * <kbd>Ctrl</kbd>+<kbd>r</kbd>, <kbd>Shift</kbd>+<kbd>backspace</kbd> -
-  Delete the same character at current cursor's position forward repeatedly util it meet different character.
   * <kbd>Alt</kbd>+<kbd>up</kbd> - Move current line `up`.
   * <kbd>Alt</kbd>+<kbd>down</kbd> - Move current line `down`.
   * <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>left</kbd> - Move buffer `left`.
