@@ -10,6 +10,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 * Hide PID from `lsp-mode` lighter.
 * Add shorten lighter capability for `lsp-mode`.
+* Remove unused symbol navigation functionalities.
+* Move `jcs-frame.el` to `jcs-window.el` to speed up start up time.
 
 ## 8.0.0
 > Released Jan 6, 2022
