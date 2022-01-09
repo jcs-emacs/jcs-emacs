@@ -126,6 +126,7 @@ See function `jcs-frame-util-p' for the definition of utility frame."
 
 (defun jcs-buffer-shown-count (in-buf-name &optional type)
   "Return the count of the IN-BUF-NAME shown.
+
 For argument TYPE; see function `jcs-string-compare-p' for description."
   (let ((bv-lst (jcs-buffer-visible-list)) (cnt 0))
     (dolist (buf bv-lst)
