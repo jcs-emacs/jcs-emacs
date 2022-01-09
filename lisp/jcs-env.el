@@ -70,13 +70,10 @@
 (defconst jcs-changelog-template-dir (concat user-emacs-directory "templates/__changelog/")
   "Path point to all changelog template files.")
 
-;;; Compilation (Output)
+;;; Compilation
 (leaf compile
   :init
   (setq compilation-context-lines t
-        compilation-error-regexp-alist
-        (cons '("^\\([0-9]+>\\)?\\(\\(?:[a-zA-Z]:\\)?[^:(\t\n]+\\)(\\([0-9]+\\)) : \\(?:fatal error\\|warnin\\(g\\)\\) C[0-9]+:" 2 3 nil (4))
-              compilation-error-regexp-alist)
         compilation-scroll-output t)
   :defer-config
   (require 'ansi-color)
