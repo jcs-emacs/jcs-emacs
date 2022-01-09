@@ -12,6 +12,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add shorten lighter capability for `lsp-mode`.
 * Remove unused symbol navigation functionalities.
 * Move `jcs-frame.el` to `jcs-window.el` to speed up start up time.
+* Replace function `jcs-bind-key` with macro `jcs-key-local`.
+* Update `define-key` with new macro `jcs-key`.
 
 ## 8.0.0
 > Released Jan 6, 2022
