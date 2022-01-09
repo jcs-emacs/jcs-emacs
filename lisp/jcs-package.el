@@ -37,6 +37,7 @@
     auto-highlight-symbol
     auto-read-only
     auto-rename-tag
+    balanced-windows
     basic-mode
     better-scroll
     browse-kill-ring
@@ -350,7 +351,7 @@
 (defun jcs-package-rebuild-dependency-list ()
   "Rebuild dependency graph and save to list."
   (interactive)
-  (require 'jcs-util)
+  (require 'jcs-util) (require 'jcs-reporter)
   (package-initialize)
   (if (not jcs-package-rebuild-dependency-p)
       (setq jcs-package--need-rebuild-p t)
@@ -388,7 +389,7 @@
 ;; (@* "Installation" )
 ;;
 
-(defconst jcs-package--elpa-temp-dir (expand-file-name "~/.emacs.d/elpa/.temp/")
+(defconst jcs-package--elpa-temp-dir (concat user-emacs-directory "elpa/.temp/")
   "Temporary directory to mark packages so it can be deleted afterward.")
 
 (ignore-errors (delete-directory jcs-package--elpa-temp-dir t))
