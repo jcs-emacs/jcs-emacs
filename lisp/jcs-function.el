@@ -498,9 +498,7 @@ If optional argument FORCE is non-nil, force refresh it."
   (jcs-walk-windows
    (lambda ()  ; insist with new result
      (jcs-enable-disable-mode-if 'centaur-tabs-mode centaur-tabs-mode))
-   nil t)
-  ;; Loop through all window so all windows take effect.
-  (jcs-buffer-visible-list))
+   nil t))
 
 ;;
 ;; (@* "Terminal / Shell" )

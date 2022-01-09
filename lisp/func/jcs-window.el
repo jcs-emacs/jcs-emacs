@@ -126,7 +126,6 @@ See function `jcs-frame-util-p' for the definition of utility frame."
 
 (defun jcs-buffer-shown-count (in-buf-name &optional type)
   "Return the count of the IN-BUF-NAME shown.
-
 For argument TYPE; see function `jcs-string-compare-p' for description."
   (let ((bv-lst (jcs-buffer-visible-list)) (cnt 0))
     (dolist (buf bv-lst)
@@ -169,10 +168,9 @@ ALL-FRAMES."
 (defun jcs-ace-select-window (win-id)
   "Use `ace-window' to select the window by using window index, WIN-ID."
   (require 'ace-window)
-  (let ((wnd (nth win-id (aw-window-list))))
-    (when wnd
-      (select-window wnd)
-      (select-frame-set-input-focus (selected-frame)))))
+  (when-let ((wnd (nth win-id (aw-window-list))))
+    (select-window wnd)
+    (select-frame-set-input-focus (selected-frame))))
 
 (defun jcs-ace-window-min () "Select window min." (interactive) (jcs-ace-select-window 0))
 (defun jcs-ace-window-max () "Select window max." (interactive) (jcs-ace-select-window (1- (length (aw-window-list)))))
