@@ -14,6 +14,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Move `jcs-frame.el` to `jcs-window.el` to speed up start up time.
 * Replace function `jcs-bind-key` with macro `jcs-key-local`.
 * Update `define-key` with new macro `jcs-key`.
+* Installed new package `balanced-windows`.
 
 ## 8.0.0
 > Released Jan 6, 2022
