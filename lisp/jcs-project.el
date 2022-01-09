@@ -2,8 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'project)
-
 ;;
 ;; (@* "Util" )
 ;;
@@ -29,9 +27,7 @@
 
 If UNIQUIFY is non-nil, refresh the cache once."
   (when (or refresh (not jcs-project--cache-opened-projects))
-    (require 'cl-lib)
-    (require 'subr-x)
-    (require 'f)
+    (jcs-require '(subr-x f))
     (let (project-lst)
       (dolist (buf (jcs-valid-buffer-list))
         (with-current-buffer buf
@@ -43,8 +39,7 @@ If UNIQUIFY is non-nil, refresh the cache once."
 
 (defun jcs-project-current-uniquify (&optional buffer)
   "Return a shorten uniquify name from BUFFER."
-  (require 'subr-x)
-  (require 'f)
+  (jcs-require '(subr-x f))
   (unless buffer (setq buffer (current-buffer)))
   (with-current-buffer buffer
     (when-let ((default-directory (buffer-file-name buffer))
@@ -105,7 +100,7 @@ If optional argument DIR is nil, use variable `default-directory' instead."
 
 (defun jcs-vc-status ()
   "Return version control status."
-  (require 'subr-x) (require 'f)
+  (jcs-require '(subr-x f))
   (when-let* ((project-name (jcs-project-current))
               (info (jcs-vc-info))
               (split (split-string info ":"))
