@@ -361,14 +361,20 @@ See function `jcs-string-compare-p' for argument TYPE."
       ;; We try to guess the possible keymap by their major-mode name
       (intern (concat (symbol-name major-mode) "-map"))))
 
-(defun jcs-bind-key (key def &optional keymap)
-  "Like `define-key' but default to current KEYMAP.
+(defmacro jcs-key (keymap alist)
+  "Bind ALIST to KEYMAP."
+  (declare (indent 1))
+  `(dolist (data ,alist)
+     (let ((key (car data)) (def (cdr data)))
+       (if (keymapp ,keymap)
+           (cond ((consp key) (define-key ,keymap (eval key) def))
+                 (t (define-key ,keymap key def)))
+         (user-error "[WARNING] Issue bind key `%s`, `%s`, `%s`" ,keymap key def)))))
 
-See description from function `define-key' for arguments KEY, DEF and KEYMAP."
-  (let* ((mode-map (symbol-value (jcs-current-keymap)))
-         (keymap (or keymap mode-map)))
-    (if (keymapp keymap) (define-key keymap key def)
-      (user-error "[WARNING] Failed to bind key `%s`, `%s`, `%s`" keymap key def))))
+(defmacro jcs-key-local (alist &optional keymap)
+  "Bind ALIST to local KEYMAP."
+  (declare (indent 0))
+  `(jcs-key (or ,keymap (symbol-value (jcs-current-keymap))) ,alist))
 
 ;;
 ;; (@* "Time" )
