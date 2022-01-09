@@ -263,8 +263,8 @@ This command does not push text to `kill-ring'."
     (let ((start-pt -1) (end-pt (point)) (start-ln-end-pt -1))
       (save-excursion
         (jcs-smart-backward-word)
-        (setq start-pt (point))
-        (setq start-ln-end-pt (line-end-position)))
+        (setq start-pt (point)
+              start-ln-end-pt (line-end-position)))
       (unless (= (line-number-at-pos start-pt) (line-number-at-pos end-pt))
         (setq start-pt start-ln-end-pt))
       (delete-region start-pt end-pt))))
@@ -277,8 +277,8 @@ This command does not push text to `kill-ring'."
     (let ((start-pt (point)) (end-pt -1) (end-ln-start-pt -1))
       (save-excursion
         (jcs-smart-forward-word)
-        (setq end-pt (point))
-        (setq end-ln-start-pt (line-beginning-position)))
+        (setq end-pt (point)
+              end-ln-start-pt (line-beginning-position)))
       (unless (= (line-number-at-pos start-pt) (line-number-at-pos end-pt))
         (setq end-pt end-ln-start-pt))
       (delete-region start-pt end-pt))))
@@ -291,8 +291,8 @@ This command does not push text to `kill-ring'."
     (let ((start-pt -1) (end-pt (point)) (start-ln-end-pt -1))
       (save-excursion
         (jcs-backward-word-capital)
-        (setq start-pt (point))
-        (setq start-ln-end-pt (line-end-position)))
+        (setq start-pt (point)
+              start-ln-end-pt (line-end-position)))
       (unless (= (line-number-at-pos start-pt) (line-number-at-pos end-pt))
         (setq start-pt start-ln-end-pt))
       (delete-region start-pt end-pt))))
@@ -305,8 +305,8 @@ This command does not push text to `kill-ring'."
     (let ((start-pt (point)) (end-pt -1) (end-ln-start-pt -1))
       (save-excursion
         (jcs-forward-word-capital)
-        (setq end-pt (point))
-        (setq end-ln-start-pt (line-beginning-position)))
+        (setq end-pt (point)
+              end-ln-start-pt (line-beginning-position)))
       (unless (= (line-number-at-pos start-pt) (line-number-at-pos end-pt))
         (setq end-pt end-ln-start-pt))
       (delete-region start-pt end-pt))))
@@ -356,14 +356,11 @@ This command does not push text to `kill-ring'."
   "Align current selected region REGEXP."
   (interactive)
   (jcs-align-region-by-points regexp (region-beginning) (region-end))
-  ;; Deactive region no matter what.
   (deactivate-mark))
 
 (defun jcs-align-document (regexp)
   "Align current document with REGEXP."
   (interactive)
-  ;; URL: https://www.emacswiki.org/emacs/AlignCommands
-  ;; align the whole doc.
   (jcs-align-region-by-points regexp (point-min) (point-max)))
 
 (defun jcs-align-region-or-document ()
@@ -486,16 +483,6 @@ If optional argument CLEAN-LR is non-nil, remove all sign from `line-reminder'."
   (unless (numberp cnt) (setq cnt -1))
   (other-window cnt (null not-all-frames)))
 
-(defun jcs-scroll-up-line (&optional n)
-  "Scroll the text up N line."
-  (interactive)
-  (let ((rel-n (if n n 1))) (ignore-errors (scroll-up rel-n))))
-
-(defun jcs-scroll-down-line (&optional n)
-  "Scroll the text down N line."
-  (interactive)
-  (let ((rel-n (if n n 1))) (ignore-errors (scroll-down rel-n))))
-
 (defun jcs-remove-trailing-lines-end-buffer ()
   "Delete trailing line at the end of the buffer, leave only one line."
   (interactive)
@@ -568,11 +555,11 @@ If optional argument CLEAN-LR is non-nil, remove all sign from `line-reminder'."
 (defun jcs-tabify-or-untabify-buffer (tab-it &optional start end)
   "Tabify or Untabify current buffer with region START and END."
   (jcs-save-excursion
-    (let ((start-pt (or start (point-min))) (end-pt (or end (point-max))))
+    (let ((start (or start (point-min))) (end (or end (point-max))))
       (widen)
       ;; For some reason, CMake file will complains this.
       (ignore-errors
-        (if tab-it (tabify start-pt end-pt) (untabify start-pt end-pt))))))
+        (if tab-it (tabify start end) (untabify start end))))))
 
 (defun jcs-untabify-buffer (&optional start end)
   "Untabify the current buffer with region START and END."
@@ -623,7 +610,7 @@ If optional argument CLEAN-LR is non-nil, remove all sign from `line-reminder'."
   "Set window config by CUR-LN, COL and FIRST-VL."
   (jcs-goto-line cur-ln)
   (jcs-recenter-top-bottom 'top)
-  (jcs-scroll-down-line (- cur-ln first-vl))
+  (scroll-down-line (- cur-ln first-vl))
   (move-to-column col))
 
 (defun jcs-same-file-other-window ()
