@@ -412,16 +412,15 @@ If ACT is non-nil; then make scroll less jumpy."
 (setq warning-minimum-level :emergency)
 
 ;;; Whitespace
-(leaf whitespace
-  :defer-config
-  ;; All the face can be find here.
-  ;; URL: https://www.emacswiki.org/emacs/BlankMode
-  (set-face-attribute 'whitespace-indentation nil :background "grey20" :foreground "aquamarine3")
-  (set-face-attribute 'whitespace-trailing nil :background "grey20" :foreground "red"))
+(leaf whitespace :defer-config (require 'show-eol))
 
 ;;; Windows
 (defconst jcs-windows--enlarge-shrink-times 6
   "Times to shrink inside the window.")
+
+(leaf windmove
+  :init
+  (setq windmove-wrap-around t))
 
 (provide 'jcs-env)
 ;;; jcs-env.el ends here

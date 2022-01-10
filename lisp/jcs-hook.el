@@ -82,9 +82,6 @@
   (jcs-setup-default-theme)
   (jcs-depend-mode)
 
-  ;; Font Size
-  (jcs-set-font-size jcs-default-font-size)
-
   ;; Frame Title
   (setq frame-title-format
         (list (format "%s %%S: %%j " (system-name))
@@ -101,7 +98,7 @@
   "Delay some executions for faster speed."
   (jcs-with-gc-speed-up
     (jcs-mode-load-requires)
-    (jcs-require '(jcs-edit jcs-comment jcs-vs jcs-nav jcs-window))
+    (jcs-require '(jcs-edit jcs-comment jcs-vs jcs-nav))
     (global-alt-codes-mode 1)
     (global-auto-highlight-symbol-mode t)
     (auto-read-only-mode 1)
@@ -135,7 +132,7 @@
 (jcs-add-hook 'post-command-hook
   (jcs--er/resolve-region)
   (jcs-funcall-fboundp #'jcs--mark-whole-buffer-resolve)
-  (jcs-funcall-fboundp #'jcs-reload-active-mode-with-error-handle))
+  (jcs-reload-active-mode-with-error-handle))
 
 ;;
 ;; (@* "Major Mode" )

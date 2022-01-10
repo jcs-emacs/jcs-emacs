@@ -830,10 +830,7 @@
 
 (leaf region-occurrences-highlighter
   :init
-  (setq region-occurrences-highlighter-min-size 1)
-  :defer-config
-  (set-face-attribute 'region-occurrences-highlighter-face nil
-                      :background "#113D6F" :inverse-video nil))
+  (setq region-occurrences-highlighter-min-size 1))
 
 (leaf right-click-context
   :defer-config
@@ -1000,10 +997,6 @@
         which-key-side-window-max-width 0.33
         which-key-side-window-max-height 0.25
         which-key-idle-delay 1.0))
-
-(leaf windmove
-  :init
-  (setq windmove-wrap-around t))
 
 (leaf yascroll
   :init
