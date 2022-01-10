@@ -372,6 +372,14 @@ See function `jcs-string-compare-p' for argument TYPE."
   (declare (indent 0))
   `(jcs-key (or ,keymap (symbol-value (jcs-current-keymap))) ,alist))
 
+(defmacro jcs-leaf-key* (alist)
+  "Bind key with ALIST using `leaf-key*'."
+  (declare (indent 0))
+  `(progn
+     (defvar data)
+     (dolist (data ,alist)
+       (eval `(leaf-key* (eval (car data)) (cdr data))))))
+
 ;;
 ;; (@* "Time" )
 ;;
