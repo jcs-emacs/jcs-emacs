@@ -9,4 +9,4 @@ startup:
 	@$(EMACS) -nw --batch -l "~/.emacs.d/bin/test-startup.el"
 
 speed:
-	@$(EMACS) -nw --batch -l "~/.emacs.d/bin/test-speed.el"
+	@$(EMACS) -nw -l "~/.emacs.d/bin/test-speed.el"

@@ -2,8 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(load (concat user-emacs-directory "bin/test-startup.el"))
-
 (message "Speed testing...")
 
 (message "[INFO] %s" dashboard-init-info)
