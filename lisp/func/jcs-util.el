@@ -646,8 +646,7 @@ Generally you will have to check it four times."
               (stringp (jcs-get-current-char-string)))
          (string= (jcs-get-current-char-string) c))
         ((listp c)
-         (jcs-contain-list-string c (jcs-get-current-char-string)))
-        (t nil)))
+         (member (jcs-get-current-char-string) c))))
 
 (defun jcs-current-pos-char-equal-p (c pt)
   "Check PT's character the same as C."
@@ -786,7 +785,7 @@ BND-PT : boundary point."
   (cond ((stringp str)
          (string= (thing-at-point 'word) str))
         ((listp str)
-         (jcs-contain-list-string str (thing-at-point 'word)))
+         (member (thing-at-point 'word) str))
         (t nil)))
 
 ;;
@@ -1145,8 +1144,7 @@ Return nil, there is no region selected and mark is not active."
       (when (cl-case (type-of key)
               (`string (string-match-p key item))
               (`symbol (equal key item))
-              (`integer (= key item)) (float (= key item))
-              (t nil))
+              (`integer (= key item)) (float (= key item)))
         (setq result (nth (+ index offset) lst)
               break-it t))
       (setq index (1+ index)))
@@ -1185,13 +1183,6 @@ This function uses `string-match-p'."
 
 The reverse mean the check from regular expression is swapped."
   (cl-some (lambda (elm) (string-match-p in-str elm)) in-list))
-
-(defun jcs-contain-list-string (in-list in-str)
-  "Return non-nil if IN-STR is listed in IN-LIST.
-
-This function uses `string-match-p'.
-This function wrapped IN-STR with function `regexp-quote'."
-  (cl-some (lambda (elm) (string-match-p (regexp-quote elm) in-str)) in-list))
 
 (defun jcs-contain-list-type-str (in-list in-str type)
   "Return non-nil if IN-STR is listed in IN-LIST.

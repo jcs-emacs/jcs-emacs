@@ -80,7 +80,7 @@ Note this is opposite logic to the toggle mode function."
                          (license-templates-names))
                  #'string-lessp)))))
   (cond ((string= in-type "Default (empty)") (progn ))
-        ((jcs-contain-list-string (license-templates-names) in-type)
+        ((member in-type (license-templates-names))
          (license-templates-insert in-type))))
 
 ;;

@@ -251,7 +251,7 @@ If optional argument WITH-EXT is non-nil; return path with extension."
   (require 'dash)
   (let ((dirs (f-directories path)) valid-dirs final-dirs)
     (dolist (dir dirs)
-      (unless (jcs-contain-list-string project-vc-ignores (f-filename (f-slash dir)))
+      (unless (member (f-filename (f-slash dir)) project-vc-ignores)
         (push dir valid-dirs)))
     (when rec
       (dolist (dir valid-dirs)

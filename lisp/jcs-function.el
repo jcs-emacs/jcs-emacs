@@ -402,7 +402,7 @@ If optional argument FORCE is non-nil, force refresh it."
   (require 'line-reminder)
   (if (or (minibufferp)
           (and (jcs-contain-list-string-regexp jcs-line-numbers-ignore-buffers (buffer-name))
-               (not (jcs-contain-list-string jcs-line-numbers-ignore-buffer-exceptions (buffer-name))))
+               (not (member (buffer-name) jcs-line-numbers-ignore-buffer-exceptions)))
           (memq major-mode jcs-line-numbers-ignore-modes))
       (progn
         (when line-reminder-mode (line-reminder-mode -1))

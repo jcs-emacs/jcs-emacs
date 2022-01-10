@@ -49,7 +49,7 @@
 
 (defun jcs-py-is-python-keyword (in-keyword)
   "Check if the current word is in the `python-keyword-list'."
-  (jcs-contain-list-string jcs-py-keywords in-keyword))
+  (member in-keyword jcs-py-keywords))
 
 ;;
 ;; (@* "Header" )
