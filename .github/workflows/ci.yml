@@ -29,10 +29,11 @@ jobs:
     - name: Copy configuration files
       run: sh ./bin/copy_config.sh
 
-    - name: Check startup
-      run: |
-        make startup
-        make speed
+    - name: Test startup
+      run: make startup
+
+    - name: Test speed
+      run: make speed
 
   test-windows:
     runs-on: ${{ matrix.os }}
@@ -52,7 +53,8 @@ jobs:
     - name: Copy configuration files
       run: ./bin/copy_config.bat
 
-    - name: Check startup
-      run: |
-        make startup
-        make speed
+    - name: Test startup
+      run: make startup
+
+    - name: Test speed
+      run: make speed
