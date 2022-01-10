@@ -364,20 +364,13 @@ See function `jcs-string-compare-p' for argument TYPE."
   (declare (indent 1))
   `(dolist (data ,alist)
      (let ((key (car data)) (def (cdr data)))
-       (if (keymapp ,keymap)
-           (cond ((consp key) (define-key ,keymap (eval key) def))
-                 (t (define-key ,keymap key def)))
+       (if (keymapp ,keymap) (define-key ,keymap (eval key) def)
          (user-error "[WARNING] Issue bind key `%s`, `%s`, `%s`" ,keymap key def)))))
 
 (defmacro jcs-key-local (alist &optional keymap)
   "Bind ALIST to local KEYMAP."
   (declare (indent 0))
   `(jcs-key (or ,keymap (symbol-value (jcs-current-keymap))) ,alist))
-
-(defmacro jcs-leaf-key* (alist)
-  "Bind key with ALIST using `leaf-key*'."
-  (declare (indent 0))
-  `(dolist (data ,alist) `(leaf-key* (car ,data) (cdr ,data))))
 
 ;;
 ;; (@* "Time" )

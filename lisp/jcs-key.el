@@ -316,24 +316,23 @@
     ((kbd "<up>")        . ,(jcs-get-prev/next-key-type 'previous))
     ((kbd "<down>")      . ,(jcs-get-prev/next-key-type 'next))))
 
-(jcs-leaf-key*
-  `(([C-up]              . jcs-previous-blank-line)
-    ([C-down]            . jcs-next-blank-line)
-    ((kbd "C-d")         . jcs-kill-whole-line)
-    ((kbd "C-x")         . jcs-vs-cut-key)
-    ((kbd "C-c")         . kill-ring-save)
-    ((kbd "C-M-<left>")  . buf-move-left)
-    ((kbd "C-M-<right>") . buf-move-right)
-    ((kbd "M-<left>")    . jcs-backward-word-capital)
-    ((kbd "M-<right>")   . jcs-forward-word-capital)
-    ((kbd "C-o")         . diminish-buffer-mode)  ; Diminish Buffer
-    ((kbd "C-r C-r")     . jcs-iedit-mode)        ; Iedit
-    ((kbd "C-r b")       . jcs-re-builder)        ; RE-Builder
-    ((kbd "C-r o")       . read-only-mode)        ; Read-Only
-    ((kbd "C-r f")       . recentf-open-files)    ; Recent Files
+(leaf-key* [C-up]              #'jcs-previous-blank-line)
+(leaf-key* [C-down]            #'jcs-next-blank-line)
+(leaf-key* (kbd "C-d")         #'jcs-kill-whole-line)
+(leaf-key* (kbd "C-x")         #'jcs-vs-cut-key)
+(leaf-key* (kbd "C-c")         #'kill-ring-save)
+(leaf-key* (kbd "C-M-<left>")  #'buf-move-left)
+(leaf-key* (kbd "C-M-<right>") #'buf-move-right)
+(leaf-key* (kbd "M-<left>")    #'jcs-backward-word-capital)
+(leaf-key* (kbd "M-<right>")   #'jcs-forward-word-capital)
+(leaf-key* (kbd "C-o")         #'diminish-buffer-mode)  ; Diminish Buffer
+(leaf-key* (kbd "C-r C-r")     #'jcs-iedit-mode)        ; Iedit
+(leaf-key* (kbd "C-r b")       #'jcs-re-builder)        ; RE-Builder
+(leaf-key* (kbd "C-r o")       #'read-only-mode)        ; Read-Only
+(leaf-key* (kbd "C-r f")       #'recentf-open-files)    ; Recent Files
 
-    ([C-S-tab] . centaur-tabs-backward)
-    ([C-tab]   . centaur-tabs-forward)))
+(leaf-key* [C-S-tab] #'centaur-tabs-backward)
+(leaf-key* [C-tab]   #'centaur-tabs-forward)
 
 ;; ---
 
