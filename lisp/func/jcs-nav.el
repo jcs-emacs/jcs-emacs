@@ -137,8 +137,7 @@
 (defun jcs-backward-word-capital ()
   "Backward search capital character and set the cursor to the point."
   (interactive)
-  (let ((max-pt -1))
-    (save-excursion (jcs-smart-backward-word) (setq max-pt (1+ (point))))
+  (let ((max-pt (save-excursion (jcs-smart-backward-word) (1+ (point)))))
     (while (and (not (bobp))
                 (not (jcs-current-char-uppercasep))
                 (> (point) max-pt))
@@ -148,8 +147,7 @@
 (defun jcs-forward-word-capital ()
   "Forward search capital character and set the cursor to the point."
   (interactive)
-  (let ((max-pt -1))
-    (save-excursion (jcs-smart-forward-word) (setq max-pt (point)))
+  (let ((max-pt (save-excursion (jcs-smart-forward-word) (point))))
     (forward-char 1)
     (while (and (not (eobp))
                 (not (jcs-current-char-uppercasep))
@@ -232,22 +230,18 @@ next hit use this version instead."
 ;; (@* "Navigating Blank Line" )
 ;;
 
-(defun jcs-goto-char (pt)
-  "Goto char with interactive flag enabled."
-  (execute-extended-command (- pt (point)) "forward-char"))
-
 (defun jcs-previous-blank-line ()
   "Move to the previous line containing nothing but whitespaces or tabs."
   (interactive)
   (let ((sr-pt (save-excursion (re-search-backward "^[ \t]*\n" nil t))))
-    (jcs-goto-char (if sr-pt sr-pt (point-min)))))
+    (goto-char (or sr-pt (point-min)))))
 
 (defun jcs-next-blank-line ()
   "Move to the next line containing nothing but whitespaces or tabs."
   (interactive)
   (when (jcs-current-line-empty-p) (forward-line 1))
   (let ((sr-pt (save-excursion (re-search-forward "^[ \t]*\n" nil t))))
-    (jcs-goto-char (if sr-pt sr-pt (point-max)))
+    (goto-char (or sr-pt (point-max)))
     (when sr-pt (forward-line -1))))
 
 ;;
@@ -291,18 +285,6 @@ next hit use this version instead."
   (while (and (not (jcs-current-word-equal-p word))
               (not (bobp)))
     (backward-word 1)))
-
-;;
-;; (@* "Symbol Navigation" )
-;;
-
-(defun jcs-backward-symbol (arg)
-  (interactive "p")
-  (forward-symbol (- arg)))
-
-(defun jcs-forward-symbol (arg)
-  (interactive "p")
-  (forward-symbol arg))
 
 ;;
 ;; (@* "Balanced Expression (sexp)" )
