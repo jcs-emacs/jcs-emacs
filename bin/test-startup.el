@@ -1,4 +1,4 @@
-;;; test.el --- Test the configuration  -*- lexical-binding: t -*-
+;;; test-startup.el --- Test the configuration  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -29,4 +29,4 @@
 ;; coding: utf-8
 ;; no-byte-compile: t
 ;; End:
-;;; test.el ends here
+;;; test-startup.el ends here
