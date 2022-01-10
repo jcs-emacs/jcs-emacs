@@ -124,7 +124,6 @@ time is displayed."
 ;; (@* "Buffer" )
 ;;
 
-
 (defmacro jcs-with-current-buffer (buffer-or-name &rest body)
   "Safe `with-current-buffer'."
   (declare (indent 1) (debug t))
@@ -304,8 +303,7 @@ See function `jcs-string-compare-p' for argument TYPE."
 
 (defun jcs--record-window-excursion-apply (record)
   "Apply the RECORD from `jcs--record-window-excursion'."
-  (if (not record)
-      (user-error "[INFO] No definition found for current target")
+  (if (not record) (user-error "[INFO] No definition found for current target")
     (jcs-switch-to-next-window-larger-in-height)
     (switch-to-buffer (nth 0 record))
     (jcs-make-first-visible-line-to (nth 3 record))
@@ -375,6 +373,11 @@ See function `jcs-string-compare-p' for argument TYPE."
   "Bind ALIST to local KEYMAP."
   (declare (indent 0))
   `(jcs-key (or ,keymap (symbol-value (jcs-current-keymap))) ,alist))
+
+(defmacro jcs-leaf-key* (alist)
+  "Bind key with ALIST using `leaf-key*'."
+  (declare (indent 0))
+  `(dolist (data ,alist) `(leaf-key* (car ,data) (cdr ,data))))
 
 ;;
 ;; (@* "Time" )
