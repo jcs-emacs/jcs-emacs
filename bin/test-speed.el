@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-(load (concat user-emacs-directory "test-startup.el"))
+(load (concat user-emacs-directory "bin/test-startup.el"))
 
 (message "[INFO] %s" dashboard-init-info)
 
