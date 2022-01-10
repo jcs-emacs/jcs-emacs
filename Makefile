@@ -6,7 +6,9 @@ CASK ?= cask
 .PHONY: startup
 
 startup:
+	@echo "Testing..."
 	@$(EMACS) -nw --batch -l "~/.emacs.d/bin/test-startup.el"
 
 speed:
-	@$(EMACS) -nw -l "~/.emacs.d/bin/test-speed.el"
+	@echo "Speed testing..."
+	@$(EMACS) -nw --batch -l "~/.emacs.d/bin/test-speed.el"
