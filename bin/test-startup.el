@@ -13,7 +13,6 @@
 
 (let (debug-on-error
       url-show-status
-      (user-emacs-directory default-directory)
       (early-init-file (locate-user-emacs-file "early-init.el"))
       (user-init-file (locate-user-emacs-file "init.el")))
   (load early-init-file)
