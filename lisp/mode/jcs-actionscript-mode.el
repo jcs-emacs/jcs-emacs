@@ -30,18 +30,15 @@
                               'jcs-insert-actionscript-template)
 
   (jcs-key-local
-    `(((kbd "<up>")   . ,(jcs-get-prev/next-key-type 'previous))
-      ((kbd "<down>") . ,(jcs-get-prev/next-key-type 'next))
-
+    `(((kbd "<up>")        . ,(jcs-get-prev/next-key-type 'previous))
+      ((kbd "<down>")      . ,(jcs-get-prev/next-key-type 'next))
       ((kbd "<backspace>") . jcs-smart-backspace)
       ((kbd "<delete>")    . jcs-smart-delete)
       ((kbd "SPC")         . jcs-smart-space)
-
-      ((kbd "DEL") . jcs-electric-backspace)
-      ((kbd "{") . jcs-vs-opening-curly-bracket-key)
-      ((kbd ";") . jcs-vs-semicolon-key)
-
-      ((kbd "C-v") . jcs-smart-yank))))
+      ((kbd "DEL")         . jcs-electric-backspace)
+      ((kbd "{")           . jcs-vs-opening-curly-bracket-key)
+      ((kbd ";")           . jcs-vs-semicolon-key)
+      ((kbd "C-v")         . jcs-smart-yank))))
 
 (provide 'jcs-actionscript-mode)
 ;;; jcs-actionscript-mode.el ends here

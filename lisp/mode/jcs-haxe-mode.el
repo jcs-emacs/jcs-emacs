@@ -27,21 +27,19 @@
 
   ;; Normal
   (jcs-key-local
-    `(((kbd "<up>")   . ,(jcs-get-prev/next-key-type 'previous))
-      ((kbd "<down>") . ,(jcs-get-prev/next-key-type 'next))
-
+    `(((kbd "<up>")        . ,(jcs-get-prev/next-key-type 'previous))
+      ((kbd "<down>")      . ,(jcs-get-prev/next-key-type 'next))
       ((kbd "<backspace>") . jcs-smart-backspace)
       ((kbd "<delete>")    . jcs-smart-delete)
 
-      ((kbd "DEL") . jcs-electric-backspace)
-      ((kbd "{") . jcs-vs-opening-curly-bracket-key)
-      ((kbd ";") . jcs-vs-semicolon-key)
+      ((kbd "DEL")         . jcs-electric-backspace)
+      ((kbd "{")           . jcs-vs-opening-curly-bracket-key)
+      ((kbd ";")           . jcs-vs-semicolon-key)
 
-      ((kbd "C-v") . jcs-smart-yank)
+      ((kbd "C-v")         . jcs-smart-yank)
 
-      ;; switch frame.
-      ((kbd "M-w") . jcs-other-window-next)
-      ((kbd "M-q") . jcs-other-window-prev))))
+      ((kbd "M-w")         . jcs-other-window-next)
+      ((kbd "M-q")         . jcs-other-window-prev))))
 
 (provide 'jcs-haxe-mode)
 ;;; jcs-haxe-mode.el ends here

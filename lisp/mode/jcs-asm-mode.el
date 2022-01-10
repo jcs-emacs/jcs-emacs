@@ -147,8 +147,8 @@
   (jcs-key-local
     `(((kbd "<up>")   . ,(jcs-get-prev/next-key-type 'previous))
       ((kbd "<down>") . ,(jcs-get-prev/next-key-type 'next))
-      ((kbd "RET") . jcs-asm-return)
-      ((kbd ";") . jcs-asm-comment))))
+      ((kbd "RET")    . jcs-asm-return)
+      ((kbd ";")      . jcs-asm-comment))))
 
 (jcs-add-hook 'nasm-mode-hook
   (electric-pair-mode nil)
@@ -157,8 +157,8 @@
   (jcs-key-local
     `(((kbd "<up>")   . ,(jcs-get-prev/next-key-type 'previous))
       ((kbd "<down>") . ,(jcs-get-prev/next-key-type 'next))
-      ((kbd "RET") . jcs-asm-return)
-      ((kbd ";") . jcs-asm-comment))))
+      ((kbd "RET")    . jcs-asm-return)
+      ((kbd ";")      . jcs-asm-comment))))
 
 (provide 'jcs-asm-mode)
 ;;; jcs-asm-mode.el ends here

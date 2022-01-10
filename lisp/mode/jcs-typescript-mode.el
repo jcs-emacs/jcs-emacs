@@ -74,8 +74,8 @@
 
   (jcs-key-local
     `(((kbd "DEL") . jcs-electric-backspace)
-      ((kbd "{") . jcs-vs-opening-curly-bracket-key)
-      ((kbd ";") . jcs-vs-semicolon-key))))
+      ((kbd "{")   . jcs-vs-opening-curly-bracket-key)
+      ((kbd ";")   . jcs-vs-semicolon-key))))
 
 (provide 'jcs-typescript-mode)
 ;;; jcs-typescript-mode.el ends here

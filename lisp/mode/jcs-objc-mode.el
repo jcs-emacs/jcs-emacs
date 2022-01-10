@@ -33,22 +33,15 @@
                               'jcs-insert-objc-source-template)
 
   (jcs-key-local
-    `(([f8]   . jcs-find-corresponding-file)
-      ([S-f8] . jcs-find-corresponding-file-other-window)
-
-      ;; If just want to open the same file, not the corresponding file.
-      ([f7] . jcs-same-file-other-window)
-
-      ((kbd "DEL") . jcs-electric-backspace)
-      ((kbd "{") . jcs-vs-opening-curly-bracket-key)
-      ((kbd ";") . jcs-vs-semicolon-key)
-
-      ;; Comement
+    `(([f8]          . jcs-find-corresponding-file)
+      ([S-f8]        . jcs-find-corresponding-file-other-window)
+      ([f7]          . jcs-same-file-other-window)  ; not the corresponding file
+      ((kbd "DEL")   . jcs-electric-backspace)
+      ((kbd "{")     . jcs-vs-opening-curly-bracket-key)
+      ((kbd ";")     . jcs-vs-semicolon-key)
       ((kbd "C-k s") . jcs-toggle-c-comment-style)
-
-      ;; Undo/Redo
-      ((kbd "C-z") . jcs-undo)
-      ((kbd "C-y") . jcs-redo))))
+      ((kbd "C-z")   . jcs-undo)
+      ((kbd "C-y")   . jcs-redo))))
 
 (provide 'jcs-objc-mode)
 ;;; jcs-objc-mode.el ends here

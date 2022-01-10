@@ -117,8 +117,8 @@
 
   (jcs-key-local
     `(((kbd "DEL") . jcs-electric-backspace)
-      ((kbd "{") . jcs-web-vs-opening-curly-bracket-key)
-      ((kbd ";") . jcs-vs-semicolon-key)
+      ((kbd "{")   . jcs-web-vs-opening-curly-bracket-key)
+      ((kbd ";")   . jcs-vs-semicolon-key)
 
       ;; File Corresponding
       ([f8]   . jcs-find-corresponding-file)

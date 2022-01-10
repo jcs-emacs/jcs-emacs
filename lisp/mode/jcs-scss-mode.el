@@ -23,8 +23,7 @@
                               'jcs-insert-scss-template)
 
   (jcs-key-local
-    `(;; sort attribute in order => `com-css-sort' package.
-      ((kbd "C-k s") . com-css-sort-attributes-block)
+    `(((kbd "C-k s") . com-css-sort-attributes-block)
       ((kbd "C-k d") . com-css-sort-attributes-document))))
 
 (provide 'jcs-scss-mode)

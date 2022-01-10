@@ -132,20 +132,16 @@
 
 (jcs-add-hook 'org-mode-hook
   (jcs-key-local
-    `(((kbd "C-a") . jcs-mark-whole-buffer)
-      ([tab]       . jcs-tab-key)
-
-      ((kbd "C-y") . jcs-redo)
-
+    `(((kbd "C-a")        . jcs-mark-whole-buffer)
+      ([tab]              . jcs-tab-key)
+      ((kbd "C-y")        . jcs-redo)
       ([S-tab]            . jcs-org-smart-cycle)
-      ((kbd "C-k")        . nil)
+      ((kbd "C-k"))
       ((kbd "C-<return>") . jcs-ctrl-return-key)
-
-      ;; `org-nav'
-      ((kbd "S-<up>")    . jcs-org-table-up)
-      ((kbd "S-<down>")  . jcs-org-table-down)
-      ((kbd "S-<left>")  . jcs-org-table-left)
-      ((kbd "S-<right>") . jcs-org-table-right))))
+      ((kbd "S-<up>")     . jcs-org-table-up)  ; `org-nav'
+      ((kbd "S-<down>")   . jcs-org-table-down)
+      ((kbd "S-<left>")   . jcs-org-table-left)
+      ((kbd "S-<right>")  . jcs-org-table-right))))
 
 (provide 'jcs-org-mode)
 ;;; jcs-org-mode.el ends here
