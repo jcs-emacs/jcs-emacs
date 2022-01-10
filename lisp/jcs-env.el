@@ -93,11 +93,9 @@
 
 ;;; Commands
 (leaf grep
-  :defer-config
-  (set-variable 'grep-command "grep -irHn ")
-  (when jcs-is-windows
-    (setq grep-use-null-device t)
-    (set-variable 'grep-command "findstr -s -n -i -l ")))
+  :init
+  (setq grep-command (if jcs-is-windows "findstr -s -n -i -l " "grep -irHn ")
+        grep-use-null-device (when jcs-is-windows t)))
 
 ;;; Creator
 (defun jcs-creator-name () "Name of the creator." user-full-name)

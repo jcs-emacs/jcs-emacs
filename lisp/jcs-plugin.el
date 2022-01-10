@@ -191,14 +191,12 @@
         dashboard-shorten-path-offset 15)
   :defer-config
   (require 'jcs-dashboard) (require 'dashboard-ls)
-  (dashboard-setup-startup-hook)
 
-  (defun jcs--dashboard--theme (&rest _)
-    "Update theme for `dashboard'."
+  (jcs-add-hook 'jcs-after-load-theme-hook
     (setq dashboard-startup-banner (jcs-dashboard--get-banner-path))
     (jcs-dashboard-refresh-buffer))
-  (jcs-theme-call #'jcs--dashboard--theme)
-  (add-hook 'jcs-after-load-theme-hook #'jcs--dashboard--theme))
+
+  (dashboard-setup-startup-hook))
 
 (leaf define-it
   :init
