@@ -323,8 +323,7 @@ This command does not push text to `kill-ring'."
 (defun jcs-format-region-or-document ()
   "Format the document if there are no region apply."
   (interactive)
-  (if (use-region-p)
-      (indent-region (region-beginning) (region-end))
+  (if (use-region-p) (indent-region (region-beginning) (region-end))
     (jcs-format-document)))
 
 (defun jcs-align-region-by-points (regexp pnt-min pnt-max)
@@ -350,14 +349,17 @@ This command does not push text to `kill-ring'."
   (save-excursion
     (let (;; NOTE: this is the most common one.
           ;; Compatible to all programming languages use equal sign to assign value.
-          (align-regexp-string-code (cl-case major-mode
-                                      (`nasm-mode "\\(\\s-*\\)equ ")
-                                      (`go-mode "\\(\\s-*\\) := ")
-                                      (t "\\(\\s-*\\)[=]")))
+          (align-regexp-string-code
+           (cl-case major-mode
+             (`nasm-mode "\\(\\s-*\\)equ ")
+             (`go-mode "\\(\\s-*\\) := ")
+             ((or lisp-mode emacs-lisp-mode lisp-interaction-mode) "\\(\\s-*\\)[.]")
+             (t "\\(\\s-*\\)[=]")))
           ;; NOTE: Default support `//' and `/**/' comment symbols.
-          (align-regexp-string-comment (cl-case major-mode
-                                         (`nasm-mode "\\(\\s-*\\)               [;]")
-                                         (t "\\(\\s-*\\) /[/*]")))
+          (align-regexp-string-comment
+           (cl-case major-mode
+             (`nasm-mode "\\(\\s-*\\)               [;]")
+             (t "\\(\\s-*\\) /[/*]")))
           pnt-min pnt-max)
       (if (use-region-p)
           ;; NOTE: Align region only.
@@ -387,7 +389,7 @@ This command does not push text to `kill-ring'."
         (setq pnt-min (point-min)
               pnt-max (point-max)))
 
-      ;; Align comment segment.
+      ;; Align comment segment
       (jcs-align-region-by-points align-regexp-string-comment pnt-min pnt-max))))
 
 (defun jcs-align-repeat (regexp)
