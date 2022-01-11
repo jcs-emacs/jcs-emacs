@@ -265,9 +265,9 @@ See function `jcs-string-compare-p' for argument TYPE."
 
 (defun jcs-backtrace-occurs-p ()
   "Check if the backtrace occurs."
-  (let ((bb-name "*Backtrace*") occurs)
-    (when (get-buffer bb-name)
-      (with-current-buffer bb-name
+  (let (occurs)
+    (when (get-buffer jcs-backtrace-buffer-name)
+      (with-current-buffer jcs-backtrace-buffer-name
         (setq occurs (not (string-empty-p (buffer-string))))))
     occurs))
 

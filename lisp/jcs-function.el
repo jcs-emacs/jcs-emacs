@@ -229,7 +229,7 @@ OW is the other window flag."
   "Record down the last current path.")
 
 (defun jcs-dashboard-refresh-buffer ()
-  "Update dashboard buffer by killing it and start a new one."
+  "Refresh dashboard buffer."
   (interactive)
   (when (or (not after-init-time)
             (jcs-buffer-shown-p dashboard-buffer-name 'strict)

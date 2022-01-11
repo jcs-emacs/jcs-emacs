@@ -37,8 +37,7 @@
 
 (jcs-advice-add 'enable-theme :after
   (jcs-set-font-size)
-  (jcs-walk-frames
-   (lambda () (run-hook-with-args 'jcs-after-load-theme-hook (jcs-theme-current)))))
+  (run-hook-with-args 'jcs-after-load-theme-hook (jcs-theme-current)))
 
 (provide 'jcs-theme)
 ;;; jcs-theme.el ends here

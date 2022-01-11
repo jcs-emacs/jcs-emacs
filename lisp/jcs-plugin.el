@@ -193,8 +193,7 @@
   (require 'jcs-dashboard) (require 'dashboard-ls)
 
   (jcs-add-hook 'jcs-after-load-theme-hook
-    (setq dashboard-startup-banner (jcs-dashboard--get-banner-path))
-    (jcs-dashboard-refresh-buffer))
+    (setq dashboard-startup-banner (jcs-dashboard--get-banner-path)))
 
   (dashboard-setup-startup-hook))
 
