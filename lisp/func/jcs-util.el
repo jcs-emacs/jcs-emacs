@@ -1111,15 +1111,13 @@ Return nil, there is no region selected and mark is not active."
 
 (defun jcs-set-font-size (&optional new-size)
   "Set the font size to NEW-SIZE."
-  (unless new-size (setq new-size jcs-default-font-size))
-  (set-face-attribute 'default nil :height new-size))
+  (set-face-attribute 'default nil :height (or new-size jcs-default-font-size)))
 
 (defun jcs-change-font (in-font)
   "Choose a font, IN-FONT and change that to the current font."
   (interactive (list (completing-read "Fonts: " (font-family-list))))
   ;; Change the font and keep the size.
-  (if (jcs-font-existsp in-font)
-      (set-frame-font in-font t)
+  (if (jcs-font-existsp in-font) (set-frame-font in-font t)
     (error "Font you chose does not exists in current system, please select other font")))
 
 (defun jcs-font-existsp (font)
