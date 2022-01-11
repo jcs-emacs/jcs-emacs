@@ -105,34 +105,28 @@ Note this is opposite logic to the toggle mode function."
 ;;
 
 (defun jcs-depend-mode ()
-  "This mode depend on my own machine. More feature and more control of the editor."
+  "Mode hardly depends on OS's environment."
   (interactive)
   (unless (jcs-mode-stats-p 'depend)
-    ;; Customize Mode Line
     (jcs-gray-mode-line)
 
-    ;; search
     (jcs-key global-map
       `(((kbd "C-f")   . ivy-searcher-search-file)
         ((kbd "C-S-f") . ivy-searcher-search-project)))
 
-    ;; Update mode state.
     (setq jcs-mode--state 'depend)
     (message "[INFO] Turn into `depend-mode` now")))
 
 (defun jcs-cross-mode ()
-  "This mode run anywhere will work, usually less powerful then `jcs-depend-mode'."
+  "Mode doesn't rely on OS's environment."
   (interactive)
   (unless (jcs-mode-stats-p 'cross)
-    ;; Customize Mode Line
     (jcs-dark-green-mode-line)
 
-    ;; search
     (jcs-key global-map
       `(((kbd "C-f")   . isearch-forward)
         ((kbd "C-S-f") . isearch-project-forward)))
 
-    ;; Update mode state.
     (setq jcs-mode--state 'cross)
     (message "[INFO] Turn into `cross-mode` now")))
 

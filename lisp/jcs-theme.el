@@ -36,7 +36,7 @@
   "Hook run after a color theme is loaded using `load-theme'.")
 
 (jcs-advice-add 'enable-theme :after
-  (jcs-set-font-size jcs-default-font-size)
+  (jcs-set-font-size)
   (jcs-walk-frames
    (lambda () (run-hook-with-args 'jcs-after-load-theme-hook (jcs-theme-current)))))
 
