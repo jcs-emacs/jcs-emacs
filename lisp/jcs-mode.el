@@ -222,7 +222,7 @@ To avoid syntax highlighting error for comment.")
   (unless (memq major-mode jcs-mode--dash-major-modes)
     (modify-syntax-entry ?- "_"))
 
-  ;; Load Docstring faces.
+  ;; Load Docstring faces
   (docstr-faces-apply)
 
   ;; Ensure indentation level is available
