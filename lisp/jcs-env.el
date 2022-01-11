@@ -157,8 +157,8 @@
 (defun jcs--find-starting-not-exists-dir-path (path &optional d-f)
   "Return the not exists directory path by PATH; D-F is optional default directory."
   (require 'f) (require 's)
-  (unless d-f (setq d-f default-directory))
-  (let* ((virtual-path (s-replace d-f "" path))
+  (let* ((d-f (or d-f default-directory))
+         (virtual-path (s-replace d-f "" path))
          (split-paths (f-split virtual-path)) (split-path-item "")
          (prev-path (f-slash d-f)) (test-path prev-path)
          (index 0) break-it result-path)
@@ -201,7 +201,7 @@
     "/" "?" "|" " ")
   "List of key to bind.")
 
-;; Resolve performance issue moving around Unicode Text.
+;; Resolve performance issue moving around Unicode Text
 (setq inhibit-compacting-font-caches t)
 
 ;;; Line Numbers
@@ -228,10 +228,8 @@
   "List of modes that you do not want to show line numbers.")
 
 ;;; Messages
-(defconst jcs-message-log-max (* 1000 10)
+(defconst jcs-message-log-max message-log-max
   "Default maximum lines for message log.")
-
-(setq message-log-max jcs-message-log-max)
 
 (defconst jcs-sleep-for-seconds 0.4
   "Default sleep for seconds.")
@@ -249,7 +247,8 @@
     previous-line next-line
     beginning-of-buffer jcs-beginning-of-line
     end-of-buffer jcs-end-of-line
-    jcs-mark-whole-buffer)
+    jcs-mark-whole-buffer
+    mwheel-scroll)
   "List of commands to mute it's action warnings message.")
 
 (defun jcs--mute-command--advice-around (fnc &rest args)

@@ -59,8 +59,7 @@
 
 (defun jcs--other-window--advice-after (count &rest _)
   "Advice execute after command `other-window'."
-  ;; NOTE: If it's a utility frame; then we skip it immediately.
-  (cond ((jcs-frame-util-p)
+  (cond ((jcs-frame-util-p)  ; skip if util
          (other-window (if (> count 0) 1 -1) t))
         ((jcs-hook--other-window-interactively-p)
          (select-frame-set-input-focus (selected-frame))

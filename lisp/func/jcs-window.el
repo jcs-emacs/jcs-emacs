@@ -8,8 +8,7 @@
 
 (defun jcs-frame-util-p (&optional frame)
   "Return non-nil if FRAME is an utility frame."
-  (unless frame (setq frame (selected-frame)))
-  (frame-parent frame))
+  (frame-parent (or frame (selected-frame))))
 
 (defun jcs-make-frame ()
   "Select new frame after make frame."
@@ -36,40 +35,37 @@ See function `walk-windows' description for arguments FUN and MINIBUF."
 ;; (@* "Navigation" )
 ;;
 
-(cl-defun jcs-safe-jump-shown-to-buffer (in-buffer-name &key success error type)
-  "Safely jump to IN-BUFFER-NAME's window and execute SUCCESS operations.
+(cl-defun jcs-safe-jump-shown-to-buffer (buffer &key success error type)
+  "Safely jump to BUFFER's window and execute SUCCESS operations.
 
-If IN-BUFFER-NAME isn't showing; then execute ERROR operations instead.
+If BUFFER isn't showing; then execute ERROR operations instead.
 
 For argument TYPE; see function `jcs-string-compare-p' for description."
   (jcs-with-no-redisplay
-    (if (jcs-buffer-shown-p in-buffer-name type)
+    (if (jcs-buffer-shown-p buffer type)
         (save-selected-window
-          (when (and success (jcs-jump-shown-to-buffer in-buffer-name t type))
+          (when (and success (jcs-jump-shown-to-buffer buffer t type))
             (funcall success)))
       (when error (funcall error)))))
 
-(defun jcs-jump-shown-to-buffer (in-buffer-name &optional no-error type)
-  "Jump to the IN-BUFFER-NAME if the buffer current shown in the window.
+(defun jcs-jump-shown-to-buffer (buffer &optional no-error type)
+  "Jump to the BUFFER if the buffer current shown in the window.
 
 If optional argument NO-ERROR is non-nil; then it won't trigger error.
 
 For argument TYPE; see function `jcs-string-compare-p' for description."
   (interactive "bEnter buffer to jump to: ")
   (let (found)
-    (when (jcs-buffer-shown-p in-buffer-name type)
+    (when (jcs-buffer-shown-p buffer type)
       (let ((win-len (jcs-count-windows)) (index 0))
         (while (and (< index win-len) (not found))
-          ;; NOTE: we use `string-match-p' instead of `string=' because some
-          ;; buffer cannot be detected in the buffer list. For instance,
-          ;; `*undo-tree*' is buffer that cannot be detected for some reason.
-          (if (jcs-string-compare-p in-buffer-name (jcs-buffer-name-or-buffer-file-name) type)
+          (if (jcs-string-compare-p buffer (jcs-buffer-name-or-buffer-file-name) type)
               (setq found t)
             (other-window 1 t))
           (setq index (1+ index)))))
     ;; If not found, prompt error.
     (when (and (not found) (not no-error))
-      (user-error "[ERROR] '%s' does not shown in any window" in-buffer-name))
+      (user-error "[ERROR] '%s' does not shown in any window" buffer))
     found))
 
 (defun jcs-switch-to-buffer-other-window (buffer-or-name &optional norecord)

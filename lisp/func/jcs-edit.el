@@ -454,17 +454,15 @@ If optional argument CLEAN-LR is non-nil, remove all sign from `line-reminder'."
 ;; (@* "Windows" )
 ;;
 
-(defun jcs-other-window-next (&optional cnt not-all-frames)
-  "Move CNT to the next window with NOT-ALL-FRAME."
+(defun jcs-other-window-next (&optional cnt)
+  "Move CNT to the next window."
   (interactive)
-  (unless (numberp cnt) (setq cnt 1))
-  (other-window cnt (null not-all-frames)))
+  (other-window (or cnt 1) t))
 
-(defun jcs-other-window-prev (&optional cnt not-all-frames)
-  "Move CNT to the previous window with NOT-ALL-FRAME."
+(defun jcs-other-window-prev (&optional cnt)
+  "Move CNT to the previous window."
   (interactive)
-  (unless (numberp cnt) (setq cnt -1))
-  (other-window cnt (null not-all-frames)))
+  (other-window (or cnt -1) t))
 
 (defun jcs-remove-trailing-lines-end-buffer ()
   "Delete trailing line at the end of the buffer, leave only one line."
