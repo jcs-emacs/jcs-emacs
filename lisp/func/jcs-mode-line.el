@@ -8,12 +8,10 @@
 
 (defun jcs--set-mode-line-color (ac-lst inac-lst)
   "Set `mode-line' theme faces with AC-LST and INAC-LST."
-  (progn
-    (set-face-foreground 'mode-line (nth 0 ac-lst))
-    (set-face-background 'mode-line (nth 1 ac-lst)))
-  (progn
-    (set-face-foreground 'mode-line-inactive (nth 0 inac-lst))
-    (set-face-background 'mode-line-inactive (nth 1 inac-lst))))
+  (set-face-foreground 'mode-line (nth 0 ac-lst))
+  (set-face-background 'mode-line (nth 1 ac-lst))
+  (set-face-foreground 'mode-line-inactive (nth 0 inac-lst))
+  (set-face-background 'mode-line-inactive (nth 1 inac-lst)))
 
 (defun jcs--set-border-color (color)
   "Set the border color with COLOR."
@@ -23,25 +21,21 @@
 (defun jcs-powerline-set-theme-faces (ac-lst inac-lst)
   "Set `powerline' them faces with AC-LST and INAC-LST."
   (when (featurep 'powerline)
-    (progn
-      (set-face-foreground 'powerline-active0 (nth 0 ac-lst))
-      (set-face-background 'powerline-active0 (nth 1 ac-lst))
+    ;; Active
+    (set-face-foreground 'powerline-active0 (nth 0 ac-lst))
+    (set-face-background 'powerline-active0 (nth 1 ac-lst))
+    (set-face-foreground 'powerline-active1 (nth 2 ac-lst))
+    (set-face-background 'powerline-active1 (nth 3 ac-lst))
+    (set-face-foreground 'powerline-active2 (nth 4 ac-lst))
+    (set-face-background 'powerline-active2 (nth 5 ac-lst))
 
-      (set-face-foreground 'powerline-active1 (nth 2 ac-lst))
-      (set-face-background 'powerline-active1 (nth 3 ac-lst))
-
-      (set-face-foreground 'powerline-active2 (nth 4 ac-lst))
-      (set-face-background 'powerline-active2 (nth 5 ac-lst)))
-
-    (progn
-      (set-face-foreground 'powerline-inactive0 (nth 0 inac-lst))
-      (set-face-background 'powerline-inactive0 (nth 1 inac-lst))
-
-      (set-face-foreground 'powerline-inactive1 (nth 2 inac-lst))
-      (set-face-background 'powerline-inactive1 (nth 3 inac-lst))
-
-      (set-face-foreground 'powerline-inactive2 (nth 4 inac-lst))
-      (set-face-background 'powerline-inactive2 (nth 5 inac-lst)))
+    ;; Inactive
+    (set-face-foreground 'powerline-inactive0 (nth 0 inac-lst))
+    (set-face-background 'powerline-inactive0 (nth 1 inac-lst))
+    (set-face-foreground 'powerline-inactive1 (nth 2 inac-lst))
+    (set-face-background 'powerline-inactive1 (nth 3 inac-lst))
+    (set-face-foreground 'powerline-inactive2 (nth 4 inac-lst))
+    (set-face-background 'powerline-inactive2 (nth 5 inac-lst))
 
     (powerline-reset)))
 
