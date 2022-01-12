@@ -40,25 +40,11 @@
          window-state-change-hook)
      ,@body))
 
-(defmacro jcs-with-timer (title &rest forms)
-  "Run the given FORMS, counting the elapsed time.
-A message including the given TITLE and the corresponding elapsed
-time is displayed."
-  (declare (indent 1))
-  (let ((nowvar (make-symbol "now")) (body `(progn ,@forms)))
-    `(let ((,nowvar (current-time)))
-       (message "%s..." ,title)
-       (prog1 ,body
-         (let ((elapsed (float-time (time-subtract (current-time) ,nowvar))))
-           (message "%s... done (%.3fs)" ,title elapsed))))))
-
 (defmacro jcs-save-excursion (&rest body)
   "Re-implementation `save-excursion' in FNC with ARGS."
   (declare (indent 0) (debug t))
   `(let ((ln (line-number-at-pos nil t)) (col (current-column)))
-     ,@body
-     (jcs-goto-line ln)
-     (move-to-column col)))
+     ,@body (jcs-goto-line ln) (move-to-column col)))
 
 (defmacro jcs-point-at-pos (&rest body)
   "Execute BODY when return point."
@@ -225,15 +211,6 @@ See function `jcs-string-compare-p' for argument TYPE."
     lst))
 
 ;;
-;; (@* "Compile" )
-;;
-
-(defun jcs-byte-recompile-directory ()
-  "Recompile the current directory."
-  (interactive)
-  (byte-recompile-directory "./" 0))
-
-;;
 ;; (@* "Color" )
 ;;
 
@@ -243,10 +220,6 @@ See function `jcs-string-compare-p' for argument TYPE."
     (let ((gray (nth 0 (color-values "gray")))
           (color (nth 0 (color-values hex-code))))
       (< gray color))))
-
-(defun jcs-dark-color-p (hex-code)
-  "Return non-nil if HEX-CODE is in dark tone."
-  (not (jcs-light-color-p hex-code)))
 
 ;;
 ;; (@* "Command" )
@@ -260,23 +233,11 @@ See function `jcs-string-compare-p' for argument TYPE."
                                   (mapconcat #'shell-quote-argument args " ")))))))
 
 ;;
-;; (@* "Error" )
-;;
-
-(defun jcs-backtrace-occurs-p ()
-  "Check if the backtrace occurs."
-  (let (occurs)
-    (when (get-buffer jcs-backtrace-buffer-name)
-      (with-current-buffer jcs-backtrace-buffer-name
-        (setq occurs (not (string-empty-p (buffer-string))))))
-    occurs))
-
-;;
 ;; (@* "Event" )
 ;;
 
 (defun jcs-last-input-event-p (te)
-  "Check if `last-input-event' a target event, TE."
+  "Return non-nil if `last-input-event' is TE."
   (let (is-event)
     (when (listp last-input-event)
       (let ((kn (nth 0 last-input-event)))
@@ -462,8 +423,7 @@ See function `jcs-string-compare-p' for argument TYPE."
 ;;
 
 (defun jcs-is-good-space-to-convert-to-tab-p ()
-  "Check if current point a good space to convert for tab.
-Generally you will have to check it four times."
+  "Return non-nil, when we have enough spaces to convert to a tab."
   (and (not (jcs-beginning-of-line-p))
        (jcs-current-char-equal-p " ")))
 
@@ -637,8 +597,7 @@ Generally you will have to check it four times."
 
 (defun jcs-current-whitespace-or-tab-p ()
   "Check if current character a whitespace or a tab character?"
-  (or (jcs-current-char-equal-p " ")
-      (jcs-current-char-equal-p "\t")))
+  (jcs-current-char-equal-p '(" " "\t")))
 
 (defun jcs-current-char-equal-p (c)
   "Check the current character equal to C, C can be a list of character."
@@ -660,17 +619,6 @@ the character the same as C."
   (save-excursion
     (jcs-safe-forward-char n)
     (jcs-current-char-equal-p c)))
-
-(defun jcs-current-char-string-match-p (c)
-  "Check the current character string match to C."
-  (if (bobp)
-      ;; No character at the beginning of the buffer, just return `nil'.
-      nil
-    (string-match-p c (jcs-get-current-char-string))))
-
-(defun jcs-get-current-char-byte ()
-  "Get the current character as the 'byte'."
-  (string-to-char (jcs-get-current-char-string)))
 
 (defun jcs-get-current-char-string ()
   "Get the current character as the 'string'."
@@ -789,15 +737,6 @@ BND-PT : boundary point."
         (t nil)))
 
 ;;
-;; (@* "Column" )
-;;
-
-(defun jcs-column-at-pos (&optional pt)
-  "Column at PT."
-  (unless pt (setq pt (point)))
-  (save-excursion (goto-char pt) (current-column)))
-
-;;
 ;; (@* "Line" )
 ;;
 
@@ -819,13 +758,9 @@ BND-PT : boundary point."
       (forward-line 1))))
 
 (defun jcs-goto-first-char-in-line ()
-  "Goto beginning of line but ignore 'empty characters'(spaces/tabs)."
+  "Goto beginning of line but ignore spaces/tabs."
   (jcs-back-to-indentation-or-beginning)
   (when (jcs-beginning-of-line-p) (jcs-back-to-indentation-or-beginning)))
-
-(defun jcs-first-char-in-line-point ()
-  "Return point in first character in line."
-  (save-excursion (jcs-goto-first-char-in-line) (point)))
 
 (defun jcs-first-char-in-line-column ()
   "Return column in first character in line."
@@ -933,30 +868,6 @@ If optional argument REL-LINE is nil; we will use first visible line instead."
     (move-to-window-line-top-bottom)))
 
 ;;
-;; (@* "Move between button" )
-;;
-
-(defun jcs-top-most-line ()
-  "Move to top of the buffer."
-  (interactive)
-  ;; NOTE: 0 : top-most-line, -1 : bottom-most-line
-  (move-to-window-line-top-bottom 0))
-
-(defun jcs-bottom-most-line()
-  "Move to bottom of the buffer."
-  (interactive)
-  ;; NOTE: 0 : top-most-line, -1 : bottom-most-line
-  (move-to-window-line-top-bottom -1))
-
-;;
-;; (@* "Mark" )
-;;
-
-(defun jcs-is-mark-active-p ()
-  "Check if the mark active."
-  (and mark-active (= (point) (mark))))
-
-;;
 ;; (@* "Region" )
 ;;
 
@@ -971,13 +882,6 @@ If optional argument REL-LINE is nil; we will use first visible line instead."
      (setq deactivate-mark nil)
      (goto-char (if at-beg (overlay-start ov) (overlay-end ov)))
      (delete-overlay ov)))
-
-(defun jcs-is-mark-active-or-region-selected-p ()
-  "Complete check if the region and the mark is active.
-
-Return non-nil, either region selected or mark is active.
-Return nil, there is no region selected and mark is not active."
-  (or (use-region-p) (jcs-is-mark-active-p)))
 
 (defun jcs-delete-region ()
   "Delete region by default value."
@@ -1113,18 +1017,6 @@ Return nil, there is no region selected and mark is not active."
   "Set the font size to NEW-SIZE."
   (set-face-attribute 'default nil :height (or new-size jcs-default-font-size)))
 
-(defun jcs-change-font (in-font)
-  "Choose a font, IN-FONT and change that to the current font."
-  (interactive (list (completing-read "Fonts: " (font-family-list))))
-  ;; Change the font and keep the size.
-  (if (jcs-font-existsp in-font) (set-frame-font in-font t)
-    (error "Font you chose does not exists in current system, please select other font")))
-
-(defun jcs-font-existsp (font)
-  "Check if FONT exists."
-  (save-window-excursion
-    (not (string-equal (describe-font font) "No matching font being used"))))
-
 ;;
 ;; (@* "List" )
 ;;
@@ -1181,12 +1073,6 @@ This function uses `string-match-p'."
 
 The reverse mean the check from regular expression is swapped."
   (cl-some (lambda (elm) (string-match-p in-str elm)) in-list))
-
-(defun jcs-contain-list-type-str (in-list in-str type)
-  "Return non-nil if IN-STR is listed in IN-LIST.
-
-Argument TYPE see function `jcs-string-compare-p' for more information."
-  (cl-some (lambda (elm) (jcs-string-compare-p elm in-str type)) in-list))
 
 ;;
 ;; (@* "Minibuffer" )
@@ -1261,7 +1147,7 @@ Argument TYPE see function `jcs-string-compare-p' for more information."
   (upcase (jcs-file-name)))
 
 (defun jcs-file-name-lowercase ()
-  "Get current file name uppercase."
+  "Get current file name lowercase."
   (downcase (jcs-file-name)))
 
 (defun jcs-file-name-without-extension ()
@@ -1388,15 +1274,6 @@ Argument IN-VAL is input value to set to IN-VAR."
           ;; To next window.
           (jcs-other-window-next)
           (cl-incf index))))))
-
-;;
-;; (@* "Loop" )
-;;
-
-(defun jcs-loop-times (fnc cnt &optional st)
-  "Do FNC with CNT from ST."
-  (let ((index (or st 0)))
-    (while (< index cnt) (funcall fnc index) (setq index (1+ index)))))
 
 (provide 'jcs-util)
 ;;; jcs-util.el ends here
