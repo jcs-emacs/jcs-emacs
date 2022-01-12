@@ -29,7 +29,7 @@
 
 (defun jcs-backtrace--dedicated-window-p (&optional win)
   "Return non-nil if WIN the backtrace dedicated window."
-  (equal (or win (get-buffer-window)) jcs-backtrace--dedicated-window))
+  (eq (or win (get-buffer-window)) jcs-backtrace--dedicated-window))
 
 (defun jcs-hit-backtrace ()
   "Do stuff when backtrace occures."
@@ -42,6 +42,14 @@
   (let ((backtrace-killed-p (not (get-buffer-window))))
     (when (or (jcs-backtrace--dedicated-window-p) backtrace-killed-p)
       (switch-to-buffer jcs-backtrace-buffer-name))))
+
+(defun jcs-backtrace-occurs-p ()
+  "Check if the backtrace occurs."
+  (let (occurs)
+    (when (get-buffer jcs-backtrace-buffer-name)
+      (with-current-buffer jcs-backtrace-buffer-name
+        (setq occurs (not (string-empty-p (buffer-string))))))
+    occurs))
 
 (defun jcs-reload-active-mode-with-error-handle ()
   "Reload the active by handling the error occurrence."
