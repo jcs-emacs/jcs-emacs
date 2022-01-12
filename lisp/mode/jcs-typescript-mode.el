@@ -23,24 +23,6 @@
   (insert "@desc "))
 
 ;;
-;; (@* "Faces" )
-;;
-
-(defun jcs-init-typescript-faces ()
-  "Initialize TypeScript mode faces highlihgting."
-  (let ((missing-modes '(typescript-mode)) (case-fold-search t))
-    (dolist (mode missing-modes)
-      (font-lock-add-keywords
-       mode
-       '(("[=][ \t\n]+\\(null\\)" 1 'jcs-font-lock-null-face t)
-         ("[=][ \t\n]+\\(undefined\\)" 1 'jcs-font-lock-null-face t)
-         ("[:=][ \t\n]+\\(void\\)" 1 'jcs-font-lock-null-face t)
-         ("return[ \t\n]+\\(null\\)" 1 'jcs-font-lock-null-face t))
-       'end))))
-
-(jcs-init-typescript-faces)
-
-;;
 ;; (@* "Templates" )
 ;;
 
