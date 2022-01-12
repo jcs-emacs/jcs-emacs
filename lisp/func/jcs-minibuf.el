@@ -68,10 +68,6 @@
   "Return non-nil if current state is asking user for input."
   (string= (buffer-name) jcs-minibuf-buffer-name))
 
-(defun jcs-minibuf-window-p (&optional win)
-  "Check if WIN minibuffer window."
-  (eq (or win (selected-window)) (minibuffer-window)))
-
 ;;
 ;; (@* "Window" )
 ;;
