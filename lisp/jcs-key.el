@@ -127,7 +127,7 @@
     ((kbd "C-}")     . jcs-open-node)
 
 ;;; Font
-    ((kbd "C-k f") . jcs-change-font)
+    ((kbd "C-k f") . menu-set-font)
 
 ;;; Format file
     ((kbd "C-k C-f") . indent-region)
