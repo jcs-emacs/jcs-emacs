@@ -327,9 +327,7 @@
 
 (leaf display-fill-column-indicator
   :init
-  (setq-default display-fill-column-indicator-column 80)
-  :defer-config
-  (jcs-face-fg 'fill-column-indicator "#AA4242"))
+  (setq-default display-fill-column-indicator-column 80))
 
 (leaf docstr
   :init
@@ -408,10 +406,6 @@
   (setq highlight-indent-guides-method 'character
         highlight-indent-guides-character ?\|
         highlight-indent-guides-responsive 'top))
-
-(leaf highlight-numbers
-  :defer-config
-  (jcs-face-fg 'highlight-numbers-number "#9BCEA3"))
 
 (leaf hl-todo
   :init
