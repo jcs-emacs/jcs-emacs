@@ -25,7 +25,7 @@
 
       (when pretty-it
         (save-excursion
-          (jcs-safe-forward-char 2)
+          (forward-char 2)
           (when (and (not (eobp))
                      (not (jcs-beginning-of-line-p))
                      (jcs-current-char-equal-p "}"))
@@ -59,10 +59,10 @@
   (interactive)
   (save-excursion
     (when (jcs-current-char-equal-p "{")
-      (jcs-safe-forward-char 1)
+      (forward-char 1)
       (when (and (not (jcs-beginning-of-line-p))
                  (jcs-current-char-equal-p " "))
-        (jcs-safe-forward-char 1)
+        (forward-char 1)
         (when (and (not (jcs-beginning-of-line-p))
                    (jcs-current-char-equal-p "}"))
           (backward-delete-char 1)))))

@@ -28,7 +28,7 @@ FAILED is callback if does NOT successfully inserted header content."
   (let (result)
     (when (and buffer-file-name
                (not (file-exists-p buffer-file-name))
-               (jcs-contain-list-string-regexp reg-lst (f-filename buffer-file-name)))
+               (jcs-contain-list-type-str (f-filename buffer-file-name) reg-lst 'regex))
       (setq result (jcs-insert-header-if-empty insert-func interactive)))
     (if result
         (when (functionp success) (funcall success))

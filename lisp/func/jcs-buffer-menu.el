@@ -67,7 +67,7 @@ Sorted by (1) visit, (2) buffer, (3) size, (4) time, (5) mode, (6) file."
 If optional argument BUFFER-LIST is non-nil, use this buffer list instead."
   (cl-remove-if
    (lambda (buf)
-     (jcs-contain-list-string-regexp jcs-buffer-menu-diminish-list (buffer-name buf)))
+     (jcs-contain-list-type-str (buffer-name buf) jcs-buffer-menu-diminish-list 'regex))
    (or buffer-list (buffer-list))))
 
 (defun jcs-buffer-menu--diminish-buffer-list (&optional buffer-list)
@@ -76,7 +76,7 @@ If optional argument BUFFER-LIST is non-nil, use this buffer list instead."
 If optional argument BUFFER-LIST is non-nil, use this buffer list instead."
   (cl-remove-if
    (lambda (buf)
-     (jcs-contain-list-string-regexp diminish-buffer-list (buffer-name buf)))
+     (jcs-contain-list-type-str (buffer-name buf) diminish-buffer-list 'regex))
    (jcs-buffer-menu--buffer-list buffer-list)))
 
 ;;

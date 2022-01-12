@@ -24,7 +24,7 @@
       (when (jcs-vs-csharp-comment-prefix-p)
         (jcs-goto-first-char-in-line)
         (forward-char 3)
-        (when (not (jcs-is-there-char-forward-until-end-of-line-p))
+        (unless (jcs-is-there-char-forward-until-end-of-line-p)
           (setq only-comment-this-line t)))
       only-comment-this-line)))
 

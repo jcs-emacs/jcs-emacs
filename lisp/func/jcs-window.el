@@ -203,7 +203,7 @@ TYPE can be 'buffer or 'window."
 
 (defun jcs-window-buffer-on-column-p (buf)
   "Check if BUF on same column."
-  (jcs-contain-list-string-regexp-reverse (jcs-window-type-list-in-column 'buffer) buf))
+  (jcs-contain-list-type-str buf (jcs-window-type-list-in-column 'buffer) 'regex t))
 
 ;;
 ;; (@* "Deleting" )

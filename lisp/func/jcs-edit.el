@@ -679,9 +679,10 @@ NO-RECORD and FORCE-SAME-WINDOW are the same as switch to buffer arguments."
 (defun jcs-bury-diminished-buffer ()
   "Bury the diminished buffer."
   (when (and diminish-buffer-mode
-             (jcs-contain-list-string-regexp
+             (jcs-contain-list-type-str
+              (jcs-buffer-name-or-buffer-file-name)
               (append jcs-bury-buffer-list diminish-buffer-list)
-              (jcs-buffer-name-or-buffer-file-name)))
+              'regex))
     (jcs-bury-buffer)))
 
 (defun jcs-bury-buffer ()
@@ -744,7 +745,7 @@ If  optional argument ECP-SAME is non-nil then it allows same buffer on the
 other window."
   (interactive)
   (let ((must-kill-buf-p
-         (jcs-contain-list-string-regexp jcs-must-kill-buffer-list (buffer-name)))
+         (jcs-contain-list-type-str (buffer-name) jcs-must-kill-buffer-list 'regex))
         (shown-multiple-p (jcs-buffer-shown-in-multiple-window-p (buffer-name) 'strict))
         (cur-buf (current-buffer))
         is-killed)

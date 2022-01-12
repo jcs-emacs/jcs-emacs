@@ -601,24 +601,9 @@ See function `jcs-string-compare-p' for argument TYPE."
 
 (defun jcs-current-char-equal-p (c)
   "Check the current character equal to C, C can be a list of character."
-  (cond ((and (stringp c)
-              (stringp (jcs-get-current-char-string)))
+  (cond ((and (stringp c) (stringp (jcs-get-current-char-string)))
          (string= (jcs-get-current-char-string) c))
-        ((listp c)
-         (member (jcs-get-current-char-string) c))))
-
-(defun jcs-current-pos-char-equal-p (c pt)
-  "Check PT's character the same as C."
-  (save-excursion
-    (goto-char pt)
-    (jcs-current-char-equal-p c)))
-
-(defun jcs-forward-pos-char-equal-p (c n)
-  "Move point N characters forward (backward if N is negative) then check
-the character the same as C."
-  (save-excursion
-    (jcs-safe-forward-char n)
-    (jcs-current-char-equal-p c)))
+        ((listp c) (member (jcs-get-current-char-string) c))))
 
 (defun jcs-get-current-char-string ()
   "Get the current character as the 'string'."
@@ -645,20 +630,6 @@ BND-PT : boundary point."
     (while (and (<= (point) bnd-pt)
                 (or (jcs-current-whitespace-or-tab-p) (jcs-beginning-of-line-p)))
       (forward-char 1))))
-
-(defun jcs-first-backward-char-p (ch)
-  "Check the first character on the left is CH or not, limit to the whole buffer."
-  (save-excursion
-    ;; NOTE: First fowrad a char and ready to be check for next backward character.
-    (forward-char 1)
-    (jcs-goto-next-backward-char)
-    (string= (jcs-get-current-char-string) ch)))
-
-(defun jcs-first-forward-char-p (ch)
-  "Check the first character on the right is CH or not, limit to the whole buffer."
-  (save-excursion
-    (jcs-goto-next-forward-char)
-    (string= (jcs-get-current-char-string) ch)))
 
 (defun jcs-first-backward-char-in-line-p (ch)
   "Check the first character on the left is CH or not, with current line as boundary."
@@ -845,13 +816,11 @@ If optional argument REL-LINE is nil; we will use first visible line instead."
 
 (defun jcs-make-first-visible-line-to (ln)
   "Make the first visible line to target line, LN."
-  (jcs-goto-line ln)
-  (jcs-recenter-top-bottom 'top))
+  (jcs-goto-line ln) (jcs-recenter-top-bottom 'top))
 
 (defun jcs-make-last-visible-line-to (ln)
   "Make the last visible line to target line, LN."
-  (jcs-goto-line ln)
-  (jcs-recenter-top-bottom 'bottom))
+  (jcs-goto-line ln) (jcs-recenter-top-bottom 'bottom))
 
 (defun jcs--recenter-positions (type)
   "Return the recenter position value by TYPE."
@@ -861,11 +830,6 @@ If optional argument REL-LINE is nil; we will use first visible line instead."
   "Recenter the window by TYPE."
   (let ((recenter-positions (jcs--recenter-positions type)))
     (ignore-errors (recenter-top-bottom))))
-
-(defun jcs-move-to-window-line-top-bottom (type)
-  "Move to window line by TYPE."
-  (let ((recenter-positions (jcs--recenter-positions type)))
-    (move-to-window-line-top-bottom)))
 
 ;;
 ;; (@* "Region" )
@@ -909,7 +873,10 @@ If optional argument REL-LINE is nil; we will use first visible line instead."
   "Return non-nil if it's inside comment or string."
   (or (jcs-inside-comment-p)
       (nth 8 (syntax-ppss))
-      (jcs-current-point-face 'font-lock-string-face)))
+      (jcs-current-point-face '(font-lock-string-face
+                                tree-sitter-hl-face:string
+                                tree-sitter-hl-face:string.special
+                                tree-sitter-hl-face:escape))))
 
 (defun jcs-goto-start-comment ()
   "Go to the start of the comment."
@@ -1062,17 +1029,17 @@ If optional argument REL-LINE is nil; we will use first visible line instead."
       (if max (when (> num max) (setq max num)) (setq max num)))
     max))
 
-(defun jcs-contain-list-string-regexp (in-list in-str)
-  "Return non-nil if IN-STR is listed in IN-LIST.
+(defun jcs-contain-list-type-str (elt list type &optional reverse)
+  "Return non-nil if ELT is listed in LIST.
 
-This function uses `string-match-p'."
-  (cl-some (lambda (elm) (string-match-p elm in-str)) in-list))
+Argument TYPE see function `jcs-string-compare-p' for more information.
 
-(defun jcs-contain-list-string-regexp-reverse (in-list in-str)
-  "Return non-nil if IN-STR is listed in IN-LIST.
-
-The reverse mean the check from regular expression is swapped."
-  (cl-some (lambda (elm) (string-match-p in-str elm)) in-list))
+If optional argument REVERSE is non-nil, LIST item and ELT argument."
+  (cl-some
+   (lambda (elm)
+     (if reverse (jcs-string-compare-p elt elm type)
+       (jcs-string-compare-p elm elt type)))
+   list))
 
 ;;
 ;; (@* "Minibuffer" )

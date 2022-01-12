@@ -12,7 +12,7 @@ Argument TYPE can either be the following value.
   * list - List of buffer name you would want to revert for virtual buffer.
   * boolean - If it's non-nil, revert all virtual buffers."
   (cond ((listp type)
-         (jcs-contain-list-string-regexp type (buffer-name buf)))
+         (jcs-contain-list-type-str (buffer-name buf) type 'regex))
         (t type)))
 
 (defun jcs-revert-all-virtual-buffers (type &optional clean-lr)
