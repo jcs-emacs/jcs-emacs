@@ -351,7 +351,7 @@
 (defun jcs-package-rebuild-dependency-list ()
   "Rebuild dependency graph and save to list."
   (interactive)
-  (require 'jcs-util) (require 'jcs-reporter)
+  (require 'jcs-reporter)
   (package-initialize)
   (if (not jcs-package-rebuild-dependency-p)
       (setq jcs-package--need-rebuild-p t)

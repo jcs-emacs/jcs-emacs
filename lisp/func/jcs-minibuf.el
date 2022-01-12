@@ -34,8 +34,7 @@
   (setq jcs-minibuf-enabled-p t))
 
 (jcs-add-hook 'minibuffer-setup-hook
-  ;; NOTE: Avoid GCs while using `ivy'/`counsel'/`swiper' and `helm', etc.
-  (jcs-gc-cons-threshold-speed-up t)
+  (jcs-gc-cons-threshold-speed-up t)  ; Avoid GCs while using `ivy'
 
   (jcs-dark-blue-mode-line)
 
@@ -54,8 +53,7 @@
 
   (jcs-dashboard-refresh-buffer)
 
-  ;; NOTE: Avoid GCs while using `ivy'/`counsel'/`swiper' and `helm', etc.
-  (garbage-collect)
+  (garbage-collect)  ; Restore GC
   (jcs-gc-cons-threshold-speed-up nil))
 
 (defun jcs-minibuffer--post-command ()
@@ -72,8 +70,7 @@
 
 (defun jcs-minibuf-window-p (&optional win)
   "Check if WIN minibuffer window."
-  (unless win (setq win (selected-window)))
-  (eq win (minibuffer-window)))
+  (eq (or win (selected-window)) (minibuffer-window)))
 
 ;;
 ;; (@* "Window" )

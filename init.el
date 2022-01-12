@@ -138,7 +138,6 @@
 (require 'jcs-project)
 
 ;;; Finalize
-(require 'jcs-minibuf)
 (require 'jcs-hook)
 (require 'jcs-key)
 

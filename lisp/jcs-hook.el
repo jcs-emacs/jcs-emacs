@@ -97,7 +97,7 @@
   "Delay some executions for faster speed."
   (jcs-with-gc-speed-up
     (jcs-mode-load-requires)
-    (jcs-require '(jcs-edit jcs-comment jcs-vs jcs-nav))
+    (jcs-require '(jcs-minibuf jcs-edit jcs-comment jcs-vs))
     (global-alt-codes-mode 1)
     (global-auto-highlight-symbol-mode t)
     (auto-read-only-mode 1)
