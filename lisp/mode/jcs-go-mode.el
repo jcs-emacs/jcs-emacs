@@ -21,8 +21,6 @@
 
   (setq-local docstr-show-type-name nil)
 
-  (face-remap-add-relative 'font-lock-constant-face '(:inherit jcs-font-lock-null-face))
-
   ;; File Header
   (jcs-insert-header-if-valid '("[.]go")
                               'jcs-insert-go-template))
