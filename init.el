@@ -123,6 +123,9 @@
 
 ;;; Utilities
 (require 'jcs-log)
+(require 'jcs-util)
+(require 'jcs-window)
+(require 'jcs-nav)
 (require 'jcs-function)
 
 ;;; Environment

@@ -2,10 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'jcs-util)
-(require 'jcs-window)
-(require 'jcs-nav)
-
 ;;
 ;; (@* "Advices" )
 ;;
@@ -409,7 +405,7 @@ If optional argument FORCE is non-nil, force refresh it."
   (interactive)
   (require 'line-reminder)
   (if (or (minibufferp)
-          (and (jcs-contain-list-string-regexp jcs-line-numbers-ignore-buffers (buffer-name))
+          (and (jcs-contain-list-type-str (buffer-name) jcs-line-numbers-ignore-buffers 'regex)
                (not (member (buffer-name) jcs-line-numbers-ignore-buffer-exceptions)))
           (memq major-mode jcs-line-numbers-ignore-modes))
       (progn
