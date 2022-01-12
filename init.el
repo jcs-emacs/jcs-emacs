@@ -123,7 +123,6 @@
 
 ;;; Utilities
 (require 'jcs-log)
-(require 'jcs-face)
 (require 'jcs-function)
 
 ;;; Environment
