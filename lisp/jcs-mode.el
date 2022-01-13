@@ -9,13 +9,9 @@
 (defvar jcs-mode--state nil
   "Record the state of the current mode.")
 
-(defun jcs-mode-reset-state ()
-  "Reset mode state."
-  (setq jcs-mode--state nil))
-
 (defun jcs-mode-stats-p (state)
   "Check mode STATE."
-  (equal jcs-mode--state state))
+  (eq jcs-mode--state state))
 
 (defun jcs-depend-cross-mode-toggle ()
   "Toggle depend/cross mode."
@@ -29,7 +25,7 @@ Note this is opposite logic to the toggle mode function."
   (interactive)
   (jcs-mute-apply
     (let ((mode-state jcs-mode--state))
-      (jcs-mode-reset-state)
+      (setq jcs-mode--state nil)  ; reset
       (cl-case mode-state
         (`cross  (jcs-cross-mode))
         (`depend (jcs-depend-mode))))))
@@ -184,7 +180,7 @@ Note this is opposite logic to the toggle mode function."
 
 (defun jcs-active-project-mode-hook ()
   "Hook runs when there is valid project root."
-  (when (jcs-project-under-p)
+  (when (jcs-funcall-fboundp #'jcs-project-under-p)
     (global-diff-hl-mode 1)
     (editorconfig-mode 1)
     (jcs--safe-lsp-active)))
@@ -193,21 +189,23 @@ Note this is opposite logic to the toggle mode function."
 ;; Base Mode
 
 (jcs-add-hook '(text-mode-hook prog-mode-hook)
-  (auto-highlight-symbol-mode t)
-  (electric-pair-mode 1)
-  (goto-address-mode 1)
-  (when (display-graphic-p) (highlight-indent-guides-mode 1))
+  (when jcs-emacs-startup-directory  ; only after Emacs startup
+    (auto-highlight-symbol-mode t)
+    (electric-pair-mode 1)
+    (goto-address-mode 1)
+    (when (display-graphic-p) (highlight-indent-guides-mode 1))
 
-  (jcs-active-project-mode-hook))
+    (jcs-active-project-mode-hook)))
 
 ;;; Text
 (jcs-add-hook 'text-mode-hook
-  (jcs-insert-header-if-valid '("\\(/\\|\\`\\)[Ll][Ii][Cc][Ee][Nn][Ss][Ee]")
-                              'jcs-ask-insert-license-content
-                              :interactive t)
-  (jcs-insert-header-if-valid '("\\(/\\|\\`\\)[Cc][Hh][Aa][Nn][Gg][Ee][-_]*[Ll][Oo][Gg]")
-                              'jcs-ask-insert-changelog-content
-                              :interactive t))
+  (jcs-insert-header-if-valid
+   '("\\(/\\|\\`\\)[Ll][Ii][Cc][Ee][Nn][Ss][Ee]") 'jcs-ask-insert-license-content
+   :interactive t)
+  (jcs-insert-header-if-valid
+   '("\\(/\\|\\`\\)[Cc][Hh][Aa][Nn][Gg][Ee][-_]*[Ll][Oo][Gg]")
+   'jcs-ask-insert-changelog-content
+   :interactive t))
 
 ;;============================================================================
 ;; Programming Mode
@@ -229,8 +227,9 @@ To avoid syntax highlighting error for comment.")
   (indent-control-ensure-tab-width)
 
   ;; Smart Parenthesis
-  (dolist (key jcs-smart-closing-parens)
-    (jcs-key-advice-add key :around #'jcs-smart-closing))
+  (when (and (boundp 'jcs-smart-closing-parens) (fboundp 'jcs-smart-closing))
+    (dolist (key jcs-smart-closing-parens)
+      (jcs-key-advice-add key :around #'jcs-smart-closing)))
 
   (abbrev-mode 1)
   (display-fill-column-indicator-mode 1)
@@ -261,7 +260,7 @@ To avoid syntax highlighting error for comment.")
 
 (jcs-add-hook 'view-mode-hook
   (require 'view)
-  (unless (equal jcs-mode--state 'view)
+  (unless (jcs-mode-stats-p 'view)
     ;; unset all the key
     (jcs-key view-mode-map
       `(([tab])
