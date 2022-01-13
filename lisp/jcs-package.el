@@ -2,12 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-;; ==================
-;; [IMPORTANT] This should be ontop of all require packages!!!
-
-;; start package.el with emacs
-(require 'package)
-
 ;; NOTE: Add `GNU', `MELPA', `Marmalade', `ELPA' to repository list
 (setq package-archives
       '(("gnu" . "http://elpa.gnu.org/packages/")
