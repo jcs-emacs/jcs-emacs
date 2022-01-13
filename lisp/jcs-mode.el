@@ -210,30 +210,25 @@ Note this is opposite logic to the toggle mode function."
 ;;============================================================================
 ;; Programming Mode
 
-(defconst jcs-mode--dash-major-modes '(elm-mode lua-mode)
-  "List of major modes that use dash for commenting.
-
-To avoid syntax highlighting error for comment.")
-
 (defun jcs-prog-mode-hook ()
   "Programming mode hook."
-  (unless (memq major-mode jcs-mode--dash-major-modes)
-    (modify-syntax-entry ?- "_"))
+  (when (bound-and-true-p jcs-emacs-startup-directory)  ; only after Emacs startup
+    (unless (jcs-contain-list-type-str "-" (list comment-start comment-end) 'regex)
+      (modify-syntax-entry ?- "_"))
 
-  ;; Load Docstring faces
-  (docstr-faces-apply)
+    ;; Load Docstring faces
+    (docstr-faces-apply)
 
-  ;; Ensure indentation level is available
-  (indent-control-ensure-tab-width)
+    ;; Ensure indentation level is available
+    (indent-control-ensure-tab-width)
 
-  ;; Smart Parenthesis
-  (when (and (boundp 'jcs-smart-closing-parens) (fboundp 'jcs-smart-closing))
+    ;; Smart Parenthesis
     (dolist (key jcs-smart-closing-parens)
-      (jcs-key-advice-add key :around #'jcs-smart-closing)))
+      (jcs-key-advice-add key :around #'jcs-smart-closing))
 
-  (abbrev-mode 1)
-  (display-fill-column-indicator-mode 1)
-  (highlight-numbers-mode 1))
+    (abbrev-mode 1)
+    (display-fill-column-indicator-mode 1)
+    (highlight-numbers-mode 1)))
 
 (add-hook 'prog-mode-hook #'jcs-prog-mode-hook)
 
