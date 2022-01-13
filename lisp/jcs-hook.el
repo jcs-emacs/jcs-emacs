@@ -57,11 +57,15 @@
   (when (jcs-hook--other-window-interactively-p)
     (jcs-funcall-fboundp #'company-abort)))
 
-(jcs-advice-add 'other-window :after
-  (when (jcs-hook--other-window-interactively-p)
-    (select-frame-set-input-focus (selected-frame))
-    (jcs-buffer-menu-safe-refresh)
-    (jcs-dashboard-safe-refresh-buffer)))
+(defun jcs--other-window--advice-after (count &rest _)
+  "Advice execute after command `other-window'."
+  (cond ((jcs-frame-util-p)  ; skip if util
+         (other-window (if (> count 0) 1 -1) t))
+        ((jcs-hook--other-window-interactively-p)
+         (select-frame-set-input-focus (selected-frame))
+         (jcs-buffer-menu-safe-refresh)
+         (jcs-dashboard-safe-refresh-buffer))))
+(advice-add 'other-window :after #'jcs--other-window--advice-after)
 
 ;;
 ;; (@* "Initialization" )
@@ -84,10 +88,7 @@
 
   ;; Lower the `GC' back to normal threshold
   (jcs-gc-cons-threshold-speed-up nil)
-  (setq file-name-handler-alist jcs-file-name-handler-alist)
-
-  ;; This should always be the last thing
-  (jcs-dashboard-init-info))
+  (setq file-name-handler-alist jcs-file-name-handler-alist))
 
 (defun jcs-hook--init-delay ()
   "Delay some executions for faster speed."
