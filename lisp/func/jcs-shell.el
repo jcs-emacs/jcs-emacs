@@ -33,7 +33,7 @@
              (setq sp-name (jcs-shell-select-shell-by-index
                             jcs-shell--last-selected-shell-index)))
            (when (window-full-height-p) (split-window-vertically))
-           (jcs-move-to-upmost-window t)
+           (jcs-move-to-upmost-window)
            (other-window 1)
            (switch-to-buffer sp-name))
        (when (window-full-height-p) (split-window-vertically))

@@ -74,7 +74,7 @@ larger window height in the calculation.
 
 See function `switch-to-buffer-other-window' description for arguments
 BUFFER-OR-NAME and NORECORD."
-  (jcs-switch-to-next-window-larger-in-height)
+  (select-window (get-largest-window nil nil t))
   (pop-to-buffer-same-window buffer-or-name norecord))
 
 (defun jcs-switch-to-previous-buffer (&optional cnt)
@@ -183,29 +183,6 @@ ALL-FRAMES."
 (defun jcs-ace-window-9 () "Select window 9." (interactive) (jcs-ace-select-window 8))
 
 ;;
-;; (@* "Column" )
-;;
-
-(defun jcs-window-type-list-in-column (type)
-  "Return the list of TYPE in column.
-TYPE can be 'buffer or 'window."
-  (let (type-list break windmove-wrap-around)
-    (save-selected-window
-      (jcs-move-to-upmost-window t)
-      (while (not break)
-        (push
-         (cl-case type
-           (`buffer (buffer-name))
-           (`window (selected-window)))
-         type-list)
-        (setq break (not (ignore-errors (windmove-down))))))
-    type-list))
-
-(defun jcs-window-buffer-on-column-p (buf)
-  "Check if BUF on same column."
-  (jcs-contain-list-type-str buf (jcs-window-type-list-in-column 'buffer) 'regex t))
-
-;;
 ;; (@* "Deleting" )
 ;;
 
@@ -215,143 +192,13 @@ TYPE can be 'buffer or 'window."
   (other-window -1) (save-selected-window (other-window 1) (delete-window)))
 
 ;;
-;; (@* "Splitting" )
-;;
-
-(defvar jcs-is-enlarge-buffer nil
-  "Is any buffer in the frame enlarge already?")
-
-(defvar-local jcs-is-enlarge-current-buffer nil
-  "Is the current buffer enlarge already?")
-
-(defun jcs-toggle-enlarge-window-selected ()
-  "Toggle between show the whole buffer and current window state."
-  (interactive)
-  (if (and jcs-is-enlarge-current-buffer jcs-is-enlarge-buffer)
-      (progn (balance-windows) (setq jcs-is-enlarge-buffer nil))
-    (maximize-window)
-    ;; Set all local enlarge to false
-    (jcs-setq-all-local-buffer 'jcs-is-enlarge-current-buffer nil)
-    ;; Current buffer is enlarge
-    (setq-local jcs-is-enlarge-current-buffer t)
-    ;; One buffer in the frame is enlarge
-    (setq jcs-is-enlarge-buffer t)))
-
-(defun jcs-toggle-window-split-hv ()
-  "Switch window split from horizontally to vertically, or vice versa.
-i.e. change right window to bottom, or change bottom window to right."
-  (interactive)
-  (save-selected-window
-    (let ((win-len (count-windows)) windmove-wrap-around)
-      (if (= win-len 2)
-          (let ((other-win-buf nil) (split-h-now t) (window-switched nil))
-            (when (or (window-in-direction 'above) (window-in-direction 'below))
-              (setq split-h-now nil))
-
-            (if split-h-now
-                (when (window-in-direction 'right)
-                  (windmove-right 1)
-                  (setq window-switched t))
-              (when (window-in-direction 'below)
-                (windmove-down 1)
-                (setq window-switched t)))
-
-            (setq other-win-buf (buffer-name))
-            (call-interactively #'delete-window)
-
-            (if split-h-now
-                (call-interactively #'split-window-vertically)
-              (call-interactively #'split-window-horizontally))
-            (other-window 1)
-
-            (switch-to-buffer other-win-buf)
-
-            ;; If the window is switched, switch back to original window.
-            (when window-switched (other-window 1)))
-        (user-error "[WARNING] Can't toggle vertical/horizontal editor layout with more than 2 windows in current frame")))))
-
-;;
 ;; (@* "Util" )
 ;;
 
-(defun jcs-switch-to-next-window-larger-in-height ()
-  "Switch to next larger window in current column."
-  (let ((current-window (selected-window)) larger-window win)
-    (jcs-walk-windows
-     (lambda ()
-       (setq win (selected-window))
-       (when (and (not larger-window) (not (eq current-window win))
-                  (jcs-window-is-larger-in-height-p win))
-         (setq larger-window win))))
-    (select-window larger-window)))
-
-(defun jcs-window-is-larger-in-height-p (&optional window)
-  "Get the window that are larget than other windows in vertical/column."
-  (unless window (setq window (selected-window)))
-  (with-selected-window window
-    (let ((current-height (window-height)) (is-larger t))
-      (dolist (win (jcs-window-type-list-in-column 'window))
-        (when (> (window-height win) current-height)
-          (setq is-larger nil)))
-      is-larger)))
-
-(defun jcs-move-to-upmost-window (&optional not-all-frame)
-  "Move to the upmost window by flag NOT-ALL-FRAME."
+(defun jcs-move-to-upmost-window ()
+  "Move to the upmost window."
   (interactive)
-  (if not-all-frame
-      (let (windmove-wrap-around) (while (ignore-errors (windmove-up))))
-    (jcs-ace-window-min)))
-
-(defun jcs-move-to-downmost-window (&optional not-all-frame)
-  "Move to the downmost window by flag NOT-ALL-FRAME."
-  (interactive)
-  (if not-all-frame
-      (let (windmove-wrap-around) (while (ignore-errors (windmove-down))))
-    (jcs-ace-window-max)))
-
-(defun jcs-move-to-leftmost-window (&optional not-all-frame)
-  "Move to the leftmost window by flag NOT-ALL-FRAME."
-  (interactive)
-  (if not-all-frame
-      (let (windmove-wrap-around) (while (ignore-errors (windmove-left))))
-    (jcs-ace-window-min)))
-
-(defun jcs-move-to-rightmost-window (&optional not-all-frame)
-  "Move to the rightmost window by flag NOT-ALL-FRAME."
-  (interactive)
-  (if not-all-frame
-      (let (windmove-wrap-around) (while (ignore-errors (windmove-right))))
-    (jcs-ace-window-max)))
-
-;;
-;; (@* "Get Window" )
-;;
-
-(defun jcs-current-window-id ()
-  "Return the current window id."
-  (save-selected-window
-    (let ((win-id -1) (cur-wind (selected-window)) (index 0))
-      (jcs-ace-window-min)
-      (jcs-walk-windows
-       (lambda ()
-         (when (eq cur-wind (selected-window)) (setq win-id index))
-         (setq index (1+ index)))
-       nil t)
-      win-id)))
-
-(defun jcs-get-window-id-by-buffer-name (buf-name)
-  "Return a list of window id if match the BUF-NAME."
-  (save-selected-window
-    (let ((index 0) win-id-lst)
-      (jcs-ace-window-min)
-      (jcs-walk-windows
-       (lambda ()
-         (when (string= buf-name (jcs-buffer-name-or-buffer-file-name))
-           (push index win-id-lst))
-         (setq index (1+ index)))
-       nil t)
-      (setq win-id-lst (reverse win-id-lst))
-      win-id-lst)))
+  (while (ignore-errors (select-window (window-in-direction 'above)))))
 
 ;;
 ;; (@* "Restore Windows Status" )

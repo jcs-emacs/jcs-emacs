@@ -602,7 +602,7 @@ If optional argument CLEAN-LR is non-nil, remove all sign from `line-reminder'."
          (col (current-column))
          same-buf-p)
     (save-selected-window
-      (jcs-switch-to-next-window-larger-in-height)
+      (select-window (get-largest-window nil nil t))
       (if (eq cur-buf (current-buffer)) (setq same-buf-p t)
         (switch-to-buffer cur-buf))
       (if (not (eq last-command 'jcs-same-file-other-window))

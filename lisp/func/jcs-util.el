@@ -265,7 +265,7 @@ See function `jcs-string-compare-p' for argument TYPE."
 (defun jcs--record-window-excursion-apply (record)
   "Apply the RECORD from `jcs--record-window-excursion'."
   (if (not record) (user-error "[INFO] No definition found for current target")
-    (jcs-switch-to-next-window-larger-in-height)
+    (select-window (get-largest-window nil nil t))
     (switch-to-buffer (nth 0 record))
     (jcs-make-first-visible-line-to (nth 3 record))
     (jcs-goto-line (nth 1 record))

@@ -484,7 +484,7 @@ If optional argument FORCE is non-nil, force refresh it."
         (progn
           (save-window-excursion (call-interactively #'flycheck-list-errors))
           (save-selected-window
-            (jcs-switch-to-next-window-larger-in-height)
+            (select-window (get-largest-window nil nil t))
             (switch-to-buffer flycheck-error-list-buffer)))
       (jcs-safe-jump-shown-to-buffer
        flycheck-error-list-buffer

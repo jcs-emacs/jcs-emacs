@@ -75,23 +75,12 @@ This will no longer overwrite usual Emacs' undo key."
 
 (defun jcs-undo-tree-visualize ()
   "Call `undo-tree-visualize' only in window that has higher height."
-  (let ((win-len (jcs-count-windows)) (current-window (selected-window))
-        target-window)
+  (let ((win-len (jcs-count-windows)))
     (when (< win-len 2)
       (split-window-horizontally)
       (setq jcs--undo-splits-windows t))
-    (save-selected-window
-      (other-window 1)
-      (jcs-walk-windows
-       (lambda ()
-         (unless target-window
-           (when (and
-                  (not (eq (selected-window) current-window))
-                  (not (jcs-frame-util-p))
-                  (jcs-window-is-larger-in-height-p))
-             (setq target-window (selected-window)))))))
     (save-window-excursion (undo-tree-visualize))
-    (with-selected-window target-window
+    (with-selected-window (get-largest-window nil nil t)
       (switch-to-buffer undo-tree-visualizer-buffer-name)
       (jcs-recenter-top-bottom 'middle)
       (fill-page-if-unfill))))
