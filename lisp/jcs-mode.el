@@ -189,7 +189,7 @@ Note this is opposite logic to the toggle mode function."
 ;; Base Mode
 
 (jcs-add-hook '(text-mode-hook prog-mode-hook)
-  (when jcs-emacs-startup-directory  ; only after Emacs startup
+  (when (bound-and-true-p jcs-emacs-startup-directory)  ; only after Emacs startup
     (auto-highlight-symbol-mode t)
     (electric-pair-mode 1)
     (goto-address-mode 1)
