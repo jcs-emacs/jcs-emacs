@@ -271,8 +271,9 @@
     ((kbd "C-S-n")  . jcs-make-frame)
     ((kbd "C-S-w")  . delete-frame)  ; delete the external frame.
     ((kbd "C-<f4>") . delete-window)
-    ((kbd "C-h h")  . jcs-toggle-window-split-hv)
-    ((kbd "C-w e")  . jcs-toggle-enlarge-window-selected)
+    ((kbd "C-h h")  . transpose-frame)
+    ((kbd "C-w e")  . (lambda () (interactive) (require 'toggle-window)
+                        (toggle-window-hide-show-window)))
     ((kbd "C-\\")   . split-window-horizontally)
     ((kbd "C-|")    . split-window-vertically)
 

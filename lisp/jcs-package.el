@@ -2,6 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
+(require 'package)
+
 ;; NOTE: Add `GNU', `MELPA', `Marmalade', `ELPA' to repository list
 (setq package-archives
       '(("gnu" . "http://elpa.gnu.org/packages/")
@@ -193,6 +195,8 @@
     swift-mode
     swiper
     togetherly
+    toggle-window
+    transpose-frame
     transwin
     tree-sitter-indent
     tree-sitter-langs
