@@ -15,6 +15,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Replace function `jcs-bind-key` with macro `jcs-key-local`.
 * Update `define-key` with new macro `jcs-key`.
 * Installed new package `balanced-windows`.
+* Installed new package `toggle-window`.
+* Installed new package `transpose-frame`.
 
 ## 8.0.0
 > Released Jan 6, 2022
