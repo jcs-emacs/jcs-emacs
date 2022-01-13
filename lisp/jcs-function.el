@@ -107,8 +107,9 @@
 (defconst jcs-scratch-buffer-name "*scratch*"
   "Name of the scratch buffer.")
 
-(defvar jcs-scratch--content ""
-  "Record down the scratch content string.")
+(defun jcs-scratch-buffer-p ()
+  "Return non-nil if current buffer the scratch buffer."
+  (string= (buffer-name) jcs-scratch-buffer-name))
 
 (defun jcs-scratch-buffer ()
   "Start a new scratch buffer."
@@ -125,7 +126,7 @@
   (interactive)
   (jcs-scratch-buffer)
   (erase-buffer)
-  (insert jcs-scratch--content)
+  (ignore-errors (insert (substitute-command-keys initial-scratch-message)))
   (goto-char (point-min))
   (lisp-interaction-mode))
 
@@ -133,14 +134,14 @@
   "Kill buffer scratch."
   (interactive)
   (require 'jcs-undo)
-  (if (string= (buffer-name) jcs-scratch-buffer-name)
+  (if (jcs-scratch-buffer-p)
       (progn (jcs-undo-kill-this-buffer) (jcs-bury-buffer))
     (jcs-maybe-kill-this-buffer)))
 
 (defun jcs-scratch-buffer-refresh ()
   "Refresh scratch buffer."
   (interactive)
-  (if (string= (buffer-name) jcs-scratch-buffer-name)
+  (if (jcs-scratch-buffer-p)
       (jcs-new-scratch-buffer)
     (jcs-reopen-this-buffer)))
 

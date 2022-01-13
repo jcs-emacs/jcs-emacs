@@ -57,15 +57,11 @@
   (when (jcs-hook--other-window-interactively-p)
     (jcs-funcall-fboundp #'company-abort)))
 
-(defun jcs--other-window--advice-after (count &rest _)
-  "Advice execute after command `other-window'."
-  (cond ((jcs-frame-util-p)  ; skip if util
-         (other-window (if (> count 0) 1 -1) t))
-        ((jcs-hook--other-window-interactively-p)
-         (select-frame-set-input-focus (selected-frame))
-         (jcs-buffer-menu-safe-refresh)
-         (jcs-dashboard-safe-refresh-buffer))))
-(advice-add 'other-window :after #'jcs--other-window--advice-after)
+(jcs-advice-add 'other-window :after
+  (when (jcs-hook--other-window-interactively-p)
+    (select-frame-set-input-focus (selected-frame))
+    (jcs-buffer-menu-safe-refresh)
+    (jcs-dashboard-safe-refresh-buffer)))
 
 ;;
 ;; (@* "Initialization" )
@@ -160,9 +156,8 @@
   "Record the startup directory.")
 
 (jcs-add-hook 'emacs-startup-hook
-  (with-current-buffer jcs-scratch-buffer-name
-    (setq jcs-scratch--content (buffer-string)))
-  (setq jcs-emacs-startup-directory default-directory))
+  (setq jcs-emacs-startup-directory default-directory)
+  (with-current-buffer jcs-scratch-buffer-name (lisp-interaction-mode)))
 
 (provide 'jcs-hook)
 ;;; jcs-hook.el ends here
