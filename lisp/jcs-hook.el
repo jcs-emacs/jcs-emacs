@@ -115,7 +115,8 @@
     (global-tree-sitter-mode 1)
     (which-key-mode)
     (global-yascroll-bar-mode 1)
-    (with-current-buffer jcs-message-buffer-name (messages-buffer-mode)))
+    (with-current-buffer jcs-message-buffer-name (messages-buffer-mode))
+    (with-current-buffer jcs-scratch-buffer-name (lisp-interaction-mode)))
   (message nil))  ; mute at the very end!
 
 ;;
@@ -157,8 +158,7 @@
   "Record the startup directory.")
 
 (jcs-add-hook 'emacs-startup-hook
-  (setq jcs-emacs-startup-directory default-directory)
-  (with-current-buffer jcs-scratch-buffer-name (lisp-interaction-mode)))
+  (setq jcs-emacs-startup-directory default-directory))
 
 (provide 'jcs-hook)
 ;;; jcs-hook.el ends here
