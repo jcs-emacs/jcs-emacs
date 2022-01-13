@@ -37,9 +37,8 @@ NOT-OW : Default is other window, not other window."
   (require 'f)
   (let ((buf-str "") (default-directory default-directory))
     (if filepath
-        (progn
-          (setq buf-str (jcs-get-string-from-file filepath))
-          (setq default-directory (f-dirname filepath)))
+        (setq buf-str (jcs-get-string-from-file filepath)
+              default-directory (f-dirname filepath))
       (setq buf-str (buffer-string)))
     (unless title (setq title (format "*html-preview - %s*" (buffer-name))))
     (jcs-switch-to-buffer title (not not-ow))
@@ -78,13 +77,12 @@ NOT-OW : Default is other window, not other window."
   "Display a file with FILEPATH with TITLE.
 NOT-OW : Default is other window, not other window."
   (jcs-switch-to-buffer title (not not-ow))
-  (read-only-mode -1)
-  (erase-buffer)
-  (save-excursion
-    (if (file-exists-p filepath)
-        (insert (jcs-get-string-from-file filepath))
-      (insert (format "Missing table file: '%s'" filepath))))
-  (read-only-mode 1)
+  (let (buffer-read-only)
+    (erase-buffer)
+    (save-excursion
+      (if (file-exists-p filepath)
+          (insert (jcs-get-string-from-file filepath))
+        (insert (format "Missing table file: '%s'" filepath)))))
   (special-mode))
 
 ;;
@@ -227,8 +225,7 @@ If optional argument WITH-EXT is non-nil; return path with extension."
 (defun jcs-path-info-at-point ()
   "Return the current path info at point."
   (interactive)
-  (require 'f)
-  (require 'ffap)
+  (jcs-require '(ffap f))
   (let ((path (ffap-string-at-point)) content name d-or-f exists (timeout 300))
     (unless (string-match-p (ffap-file-at-point) path)
       (setq path nil))
@@ -279,7 +276,7 @@ If optional argument WITH-EXT is non-nil; return path with extension."
   "Find the file that corresponds to this one.
 If OW is non-nil, open it in other window"
   (interactive)
-  (require 'f) (require 'subr-x)
+  (jcs-require '(subr-x f))
   (if-let* ((corresponding-file-name
              ;; NOTE: Add your corresponding file here.
              (cl-case major-mode
