@@ -849,16 +849,16 @@ CC : Current character at position."
   "Backward delete open pair characters in sequence.
 CC : Current character at position."
   (save-excursion
-    (cond ((string= cc "*")  ; Seq => /**/
-           (save-excursion
-             (backward-char 1)
-             (when (jcs-current-char-equal-p "/")
-               (forward-char 1)
-               (when (jcs-current-char-equal-p "*")
-                 (forward-char 1)
-                 (when (jcs-current-char-equal-p "/")
-                   ;; Found sequence, delete them!
-                   (backward-delete-char 3)))))))))
+    (pcase cc
+      ("*"  ; Seq => /**/
+       (backward-char 1)
+       (when (jcs-current-char-equal-p "/")
+         (forward-char 1)
+         (when (jcs-current-char-equal-p "*")
+           (forward-char 1)
+           (when (jcs-current-char-equal-p "/")
+             ;; Found sequence, delete them!
+             (backward-delete-char 3))))))))
 
 (defun jcs-electric-delete ()
   "Electric delete key."
@@ -866,7 +866,7 @@ CC : Current character at position."
   (if (use-region-p) (jcs-delete-region)
     (let ((cc "") (opc ""))
       (save-excursion
-        (jcs-safe-forward-char 1)
+        (forward-char 1)
         (setq cc (jcs-get-current-char-string)))
       (setq opc (jcs-get-open-pair-char cc))
       (if (and (jcs-inside-string-p)
