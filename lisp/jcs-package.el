@@ -66,7 +66,6 @@
     dashboard-ls
     define-it
     diff-hl
-    diminish
     diminish-buffer
     dockerfile-mode
     docstr
@@ -156,6 +155,8 @@
     markdown-toc
     masm-mode
     meta-view
+    minions
+    moody
     most-used-words
     move-text
     multi-shell
@@ -169,7 +170,6 @@
     package-lint
     page-break-lines
     parse-it
-    powerline
     powershell
     processing-mode
     project
