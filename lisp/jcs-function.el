@@ -527,37 +527,6 @@ If optional argument FORCE is non-nil, force refresh it."
    :error #'jcs-show-shell-window))
 
 ;;
-;; (@* "Zoom" )
-;;
-
-(defun jcs-reset-zoom ()
-  "Reset zoom level."
-  (interactive)
-  (text-scale-set 0))
-
-(defun jcs-text-scale-delta (vec)
-  "Scale the text by passing VEC value."
-  (let ((was-dln display-line-numbers-mode))
-    ;; NOTE: Known `text-scale-increase' and `text-scale-decrease' ruin the
-    ;; margin of the `linum-mode'. Disable it before ruining it, to avoid the bug.
-    (when was-dln (display-line-numbers-mode -1))
-    (if (> vec 0)
-        (call-interactively #'text-scale-increase)
-      (call-interactively #'text-scale-decrease))
-    ;; Renable line number mode.
-    (when was-dln (display-line-numbers-mode 1))))
-
-(defun jcs-text-scale-increase ()
-  "Scale the text up."
-  (interactive)
-  (jcs-text-scale-delta 1))
-
-(defun jcs-text-scale-decrease ()
-  "Scale the text down."
-  (interactive)
-  (jcs-text-scale-delta -1))
-
-;;
 ;; (@* "Tips" )
 ;;
 

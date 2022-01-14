@@ -304,9 +304,9 @@
     ((kbd "C-k b") . whitespace-mode)
 
 ;;; Zoom
-    ((kbd "C-=")      . jcs-text-scale-increase)
-    ((kbd "C--")      . jcs-text-scale-decrease)
-    ((kbd "C-<kp-0>") . jcs-reset-zoom)))
+    ((kbd "C-=")      . text-scale-increase)
+    ((kbd "C--")      . text-scale-decrease)
+    ((kbd "C-<kp-0>") . (lambda () (interactive) (text-scale-set 0)))))
 
 (jcs-key prog-mode-map
   `(((kbd "<backspace>") . jcs-smart-backspace)
