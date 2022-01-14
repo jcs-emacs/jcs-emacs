@@ -156,7 +156,7 @@
 
 (defun jcs--find-starting-not-exists-dir-path (path &optional d-f)
   "Return the not exists directory path by PATH; D-F is optional default directory."
-  (require 'f) (require 's)
+  (jcs-require '(f s))
   (let* ((d-f (or d-f default-directory))
          (virtual-path (s-replace d-f "" path))
          (split-paths (f-split virtual-path)) (split-path-item "")
@@ -205,6 +205,8 @@
 (setq inhibit-compacting-font-caches t)
 
 ;;; Line Numbers
+(column-number-mode 1)
+
 (defconst jcs-line-numbers-ignore-buffers
   '("[*]+[[:ascii:]]+"
     "magit[-]*[[:ascii:]]*[:]"

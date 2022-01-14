@@ -2,6 +2,21 @@
 ;;; Commentary:
 ;;; Code:
 
+;;
+;; (@* "Core" )
+;;
+
+(defun jcs-mode-line-render (left right)
+  "Return a string of `window-width' length.
+Containing LEFT, and RIGHT aligned respectively."
+  (let ((available-width
+         (- (window-width)
+            (+ (length (format-mode-line left))
+               (length (format-mode-line right))))))
+    (append left
+            (list (format (format "%%%ds" available-width) ""))
+            right)))
+
 (setq-default
  mode-line-format
  '((:eval
