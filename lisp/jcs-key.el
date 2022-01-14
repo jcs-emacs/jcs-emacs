@@ -433,8 +433,7 @@
 
 ;;; Packages
 (jcs-key package-menu-mode-map
-  `(((kbd "s")       . jcs-package-menu-filter-by-status)
-    ((kbd "U")       . jcs-package-upgrade-all)
+  `(((kbd "U")       . jcs-package-upgrade-all)
     ((kbd "C-k r m") . jcs-package-autoremove)))
 
 (jcs-key isearch-mode-map
