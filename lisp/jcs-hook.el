@@ -72,8 +72,7 @@
 ;;
 
 (jcs-add-hook 'after-init-hook
-  (jcs-require '(dashboard diminish))
-  (powerline-default-theme)
+  (jcs-require '(dashboard moody))
   (use-ttf-set-default-font)
 
   (run-with-idle-timer 0 nil #'jcs-hook--init-delay)
@@ -105,6 +104,7 @@
     (global-hl-line-mode 1)
     (global-hl-todo-mode 1)
     (indent-control-mode 1)
+    (minions-mode 1)
     (ivy-mode 1)
     (global-page-break-lines-mode 1)
     (global-region-occurrences-highlighter-mode 1)

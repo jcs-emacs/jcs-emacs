@@ -190,7 +190,7 @@
         dashboard-shorten-by-window-width t
         dashboard-shorten-path-offset 15)
   :defer-config
-  (require 'jcs-dashboard) (require 'dashboard-ls)
+  (jcs-require '(project jcs-dashboard dashboard-ls))
 
   (jcs-add-hook 'jcs-after-load-theme-hook
     (setq dashboard-startup-banner (jcs-dashboard--get-banner-path)))
@@ -204,80 +204,6 @@
 (leaf diff-hl
   :init
   (setq diff-hl-side 'right))
-
-(leaf diminish
-  :defer-config
-  (defun jcs-diminish-type (type)
-    "Diminsh TYPE.
-
-  Argument TYPE can either be a list or a symbol."
-    (cond ((listp type) (dolist (sym type) (diminish sym)))
-          ((symbolp type) (diminish type))
-          (t (user-error "Invalid diminish symbol, %s" type))))
-
-  (defun jcs-diminish (mode-sym &optional load-sym)
-    "Diminish MODE-SYM.
-
-  If argument LOAD-SYM is a symbol; then it will diminish after it's module
-  is loaded using macro `with-eval-after-load'."
-    (if load-sym (with-eval-after-load load-sym (jcs-diminish-type mode-sym))
-      (jcs-diminish-type mode-sym)))
-
-  (defun jcs-diminish-do-alist (alst)
-    "Diminish the whole ALST."
-    (dolist (type alst) (jcs-diminish (car type) (cdr type))))
-
-  (defconst jcs-diminish-alist
-    `((abbrev-mode)
-      (alt-codes-mode                            . alt-codes)
-      (auto-fill-mode)
-      (auto-fill-function)
-      (auto-highlight-symbol-mode                . auto-highlight-symbol)
-      (auto-read-only-mode                       . auto-read-only)
-      (auto-rename-tag-mode                      . auto-rename-tag)
-      (auto-revert-mode                          . autorevert)
-      (buffer-wrap-mode                          . buffer-wrap)
-      (command-log-mode                          . command-log-mode)
-      (company-mode                              . company)
-      (company-box-mode                          . company-box)
-      (company-fuzzy-mode                        . company-fuzzy)
-      (docstr-mode                               . docstr)
-      (editorconfig-mode                         . editorconfig)
-      (eldoc-mode)
-      (elm-indent-mode                           . elm-mode)
-      (emmet-mode                                . emmet-mode)
-      (buffer-face-mode                          . face-remap)
-      (fill-page-mode                            . fill-page)
-      (flycheck-mode                             . flycheck)
-      (helm-mode                                 . helm-mode)
-      (hi-lock-mode                              . hi-lock)
-      (highlight-indent-guides-mode              . highlight-indent-guides)
-      (hl-preproc-mode                           . hl-preproc)
-      (impatient-mode                            . impatient-mode)
-      (indicators-mode                           . indicators)
-      (ivy-mode                                  . ivy)
-      (keypression-mode                          . keypression)
-      (line-reminder-mode                        . line-reminder)
-      (outline-minor-mode)
-      (overwrite-mode)
-      (page-break-lines-mode                     . page-break-lines)
-      (projectile-mode                           . projectile)
-      (right-click-context-mode                  . right-click-context)
-      (shift-select-minor-mode                   . shift-select)
-      (show-eol-mode                             . show-eol)
-      (tree-sitter-mode                          . tree-sitter)
-      (ts-fold-mode                              . ts-fold)
-      (un-mini-mode                              . un-mini)
-      (undo-tree-mode                            . undo-tree)
-      (view-mode                                 . view)
-      (visual-line-mode)
-      (which-key-mode                            . which-key)
-      ((whitespace-mode whitespace-newline-mode) . whitespace)
-      (with-editor-mode                          . with-editor)
-      (yas-minor-mode                            . yasnippet))
-    "List of diminish associated list.")
-
-  (jcs-diminish-do-alist jcs-diminish-alist))
 
 (leaf diminish-buffer
   :init
@@ -636,6 +562,17 @@
                 (setq continuation t))
             (setq continuation nil)))))))
 
+(leaf minions
+  :init
+  (setq minions-mode-line-delimiters nil
+        minions-mode-line-lighter ""))
+
+(leaf moody
+  :init
+  (setq x-underline-at-descent-line t)
+  :defer-config
+  (require 'jcs-mode-line))
+
 (leaf most-used-words
   :init
   (setq most-used-words-display-type 'table
@@ -727,38 +664,6 @@
 (leaf pos-tip
   :init
   (setq pos-tip-internal-border-width 5))
-
-(leaf powerline
-  :init
-  (setq powerline-default-separator 'wave
-        powerline-display-buffer-size nil
-        powerline-display-mule-info nil
-        powerline-display-hud nil)
-  :defer-config
-  (require 'jcs-mode-line)
-
-  (defun jcs--powerline-raw--advice-around (fnc &rest args)
-    "Execute around function `powerline-raw'."
-    (let ((str (nth 0 args)))
-      (when (stringp str)
-        (setq str (jcs-s-replace-displayable str))
-        (setf (nth 0 args) str)))
-    (apply fnc args))
-  (advice-add 'powerline-raw :around #'jcs--powerline-raw--advice-around)
-
-  (defun jcs--powerline-set-selected-window--advice-around (fnc &rest args)
-    "Execute around function `powerline-set-selected-window'."
-    (when (and mode-line-format (not inhibit-redisplay)) (apply fnc args)))
-  (advice-add 'powerline-set-selected-window :around #'jcs--powerline-set-selected-window--advice-around)
-
-  ;; Override
-  (defpowerline powerline-vc
-    (when (jcs-vc-status)
-      (format " %s%s" (jcs-vc-project) (jcs-vc-info))))
-
-  (jcs-add-hook 'jcs-after-load-theme-hook
-    ;; Update theme for `powerline'.
-    (jcs-reload-active-mode)))
 
 (leaf project
   :defer-config
