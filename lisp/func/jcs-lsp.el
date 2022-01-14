@@ -17,54 +17,11 @@
   (setq-local company-fuzzy-passthrough-backends nil))
 
 (jcs-add-hook 'lsp-managed-mode-hook
-  (jcs-lsp--run-lighter-timer)
   (if (and lsp-mode lsp-managed-mode) (jcs--lsp--stuff-on-enabled)
     (jcs--lsp--stuff-on-disabled)))
 
 (jcs-add-hook 'lsp-mode-hook
   (if lsp-mode (jcs--lsp--stuff-on-enabled) (jcs--lsp--stuff-on-disabled)))
-
-;;; Lighter
-
-(diminish 'lsp-mode '(:eval (jcs-lsp--lighter)))
-
-;; NOTE: Borrow from lsp-mode directly
-(defun jcs--lsp--workspace-print (workspace)
-  "Visual representation WORKSPACE."
-  (let* ((proc (lsp--workspace-cmd-proc workspace))
-         (status (lsp--workspace-status workspace))
-         (server-id (-> workspace lsp--workspace-client lsp--client-server-id symbol-name)))
-    (if (eq 'initialized status)
-        (format "%s" server-id)
-      (format "%s/%s" server-id status))))
-
-(defvar-local jcs-lsp--shorten-lighter nil
-  "If true, show full lighter.")
-
-(defvar-local jcs-lsp--lighter-timer nil
-  "Timer to shotern the lighter display.")
-
-(defun jcs-lsp--lighter ()
-  "Lighter for `lsp-mode'."
-  (concat
-   " LSP"
-   (when lsp--buffer-workspaces
-     (format "<%s>"
-             (if jcs-lsp--shorten-lighter "/"
-               (mapconcat #'jcs--lsp--workspace-print lsp--buffer-workspaces ", "))))))
-
-(defun jcs-lsp--run-lighter-timer ()
-  "Start lighter timer."
-  (when jcs-lsp-lighter-delay
-    (jcs-safe-kill-timer jcs-lsp--lighter-timer)
-    (setq jcs-lsp--shorten-lighter nil
-          jcs-lsp--lighter-timer
-          (run-with-timer jcs-lsp-lighter-delay nil
-                          (lambda (buffer)
-                            (jcs-with-current-buffer buffer
-                              (setq jcs-lsp--shorten-lighter t)
-                              (force-mode-line-update)))
-                          (current-buffer)))))
 
 ;;
 ;; (@* "lsp-ui" )
@@ -114,8 +71,6 @@
 (jcs-advice-add 'other-window :before (jcs--lsp-ui-doc--inhibit-frame))
 
 (jcs-add-hook 'window-size-change-functions (jcs--lsp-ui-doc-resize))
-
-(jcs-add-hook 'window-state-change-hook (jcs-lsp--run-lighter-timer))
 
 (provide 'jcs-lsp)
 ;;; jcs-lsp.el ends here
