@@ -536,8 +536,7 @@ If optional argument FORCE is non-nil, force refresh it."
   (text-scale-set 0))
 
 (defun jcs-text-scale-delta (vec)
-  "Scale the text by passing `vec' value.
-VEC : Either position or negative number."
+  "Scale the text by passing VEC value."
   (let ((was-dln display-line-numbers-mode))
     ;; NOTE: Known `text-scale-increase' and `text-scale-decrease' ruin the
     ;; margin of the `linum-mode'. Disable it before ruining it, to avoid the bug.
@@ -567,8 +566,7 @@ VEC : Either position or negative number."
 
 STRING is the content of the toolip. The location POINT. TIMEOUT for not forever
 delay. HEIGHT of the tooltip that will display."
-  (require 'asoc)
-  (require 'pos-tip) (require 'popup)
+  (jcs-require '(asoc pos-tip popup))
   (let ((bg (asoc-get company-box-doc-frame-parameters 'background-color))
         (fg (asoc-get company-box-doc-frame-parameters 'foreground-color)))
     (if (display-graphic-p)
