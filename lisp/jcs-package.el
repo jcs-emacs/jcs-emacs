@@ -11,7 +11,7 @@
         ("jcs" . "https://jcs-emacs.github.io/elpa/elpa/")))
 
 (setq package-enable-at-startup nil  ; To avoid initializing twice
-      package-check-signature nil)   ; Disable check signature while installing packages
+      package-check-signature nil)
 
 ;; initialize package.el
 (when (featurep 'esup-child) (package-initialize))
@@ -219,9 +219,8 @@
     yasnippet-snippets)
   "List of packages this config needs.")
 
-(defconst jcs-package-pinned
-  '((company-box . jcs))
-  "List of pinned packages to a specific source.")
+(setq package-pinned-packages
+      '((company-box . "jcs")))
 
 ;;
 ;; (@* "Util" )
@@ -284,10 +283,6 @@
   "Return requires from package NAME."
   (ignore-errors (package-desc-reqs (jcs-package--build-desc name))))
 
-(defun jcs-package--get-req (key name)
-  "Return KEY requires from package NAME."
-  (ignore-errors (assoc key (jcs-package--get-reqs name))))
-
 (defun jcs-package--package-name (pkg-desc)
   "Return package name from PKG-DESC."
   (when (package-desc-p pkg-desc) (aref pkg-desc 1)))
@@ -349,7 +344,7 @@
 (defun jcs-package-rebuild-dependency-list ()
   "Rebuild dependency graph and save to list."
   (interactive)
-  (require 'jcs-util) (require 'jcs-reporter)
+  (require 'jcs-reporter)
   (package-initialize)
   (if (not jcs-package-rebuild-dependency-p)
       (setq jcs-package--need-rebuild-p t)
@@ -392,6 +387,9 @@
 
 (ignore-errors (delete-directory jcs-package--elpa-temp-dir t))
 
+(defvar jcs-package-installing-p nil
+  "Is currently upgrading the package.")
+
 (defvar jcs-package-use-real-delete-p t
   "Flag to check if we are really deleting a package.")
 
@@ -421,9 +419,6 @@
 
 (advice-add 'package-delete :around #'jcs--package-delete--advice-around)
 
-(defvar jcs-package-installing-p nil
-  "Is currently upgrading the package.")
-
 (defun jcs--package-install--advice-around (fnc &rest args)
   "Advice around execute `package-install' command with FNC and ARGS."
   (let ((jcs-package-installing-p t)) (apply fnc args)))
@@ -433,23 +428,6 @@
 
 (defvar jcs-package--install-on-start-up nil
   "Return non-nil if installation is occurred on start-up.")
-
-(defun jcs-package--pinned-p (pkg)
-  "Return non-nil if PKG is pinned."
-  (cl-some (lambda (pin-pkg) (when (eq (car pin-pkg) pkg) pin-pkg)) jcs-package-pinned))
-
-(defun jcs--package-download-transaction--advice-before (pkgs)
-  "Execution runs before function `package-download-transaction', PKGS."
-  (let ((index 0) name pin)
-    (dolist (pkg pkgs)
-      (setq name (jcs-package--package-name pkg)
-            pin (jcs-package--pinned-p name))
-      (when pin
-        (setf (nth index pkgs) (jcs-package--build-desc name (cdr pin))))
-      (setq index (1+ index))))
-  pkgs)
-
-(advice-add 'package-download-transaction :before #'jcs--package-download-transaction--advice-before)
 
 (defun jcs-package-install (pkg)
   "Install PKG package."
@@ -473,35 +451,18 @@
   "Get version of the package by NAME.
 
 Argument WHERE is the alist of package information."
-  (let* ((pin (jcs-package--pinned-p name))
-         (local-p (equal where package-alist))
-         (pkg (if (and pin (not local-p))
-                  (jcs-package--build-desc name (cdr pin))
-                (cadr (assq name where)))))
+  (let ((pkg (cadr (assq name where))))
     (when pkg (package-desc-version pkg))))
-
-(defun jcs-package-get-package-by-name (pkg-name)
-  "Return the package by PKG-NAME."
-  (let (target-pkg)
-    (dolist (pkg (mapcar #'car package-alist))
-      (when (string= pkg-name pkg) (setq target-pkg pkg)))
-    (if (not target-pkg) nil
-      (cadr (assq (package-desc-name
-                   (cadr (assq target-pkg package-alist)))
-                  package-alist)))))
 
 (defun jcs-package--upgrade-all-elpa ()
   "Upgrade for archive packages."
   (let (upgrades)
     (dolist (pkg (mapcar #'car package-alist))
-      (let ((in-archive (jcs-package-version pkg package-archive-contents))
-            (pin (jcs-package--pinned-p pkg)))
+      (let ((in-archive (jcs-package-version pkg package-archive-contents)))
         (when (and in-archive
                    (version-list-< (jcs-package-version pkg package-alist)
                                    in-archive))
-          (push (if pin (jcs-package--build-desc pkg (cdr pin))
-                  (cadr (assq pkg package-archive-contents)))
-                upgrades))))
+          (push (cadr (assq pkg package-archive-contents)) upgrades))))
     (if upgrades
         (when (yes-or-no-p
                (format "Upgrade %d package%s (%s)? "
@@ -552,22 +513,6 @@ Argument WHERE is the alist of package information."
                 removable)
           (jcs-package-rebuild-dependency-list))
       (message "Nothing to autoremove"))))
-
-(defun jcs-package-menu-filter-by-status (status)
-  "Filter the *Packages* buffer by STATUS."
-  (interactive
-   (list (completing-read
-          "Status: " '(".."
-                       "available"
-                       "built-in"
-                       "dependency"
-                       "incompat"
-                       "installed"
-                       "new"
-                       "obsolete"))))
-  (pcase status
-    (".." (package-list-packages))
-    (_ (package-menu-filter (concat "status:" status)))))
 
 (provide 'jcs-package)
 ;;; jcs-package.el ends here
