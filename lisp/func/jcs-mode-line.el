@@ -3,7 +3,7 @@
 ;;; Code:
 
 ;;
-;; (@* "Core" )
+;; (@* "Settings" )
 ;;
 
 (defun jcs-mode-line-render (left right)
@@ -24,7 +24,7 @@ Containing LEFT, and RIGHT aligned respectively."
      (quote ("%e "
              mode-line-front-space
              mode-line-buffer-identification
-             (:eval (moody-tab (format-mode-line mode-line-modes)))
+             (:eval (moody-tab (concat " " (format-mode-line mode-line-modes))))
              (:eval (jcs-vc-project))
              (:eval (jcs-vc-info))))
      (quote ((:eval (moody-tab " %l : %c " 0 'up))
@@ -32,7 +32,7 @@ Containing LEFT, and RIGHT aligned respectively."
              mode-line-end-spaces))))))
 
 ;;
-;; (@* "Util" )
+;; (@* "Core" )
 ;;
 
 (defun jcs--set-mode-line-color (ac-lst inac-lst)
