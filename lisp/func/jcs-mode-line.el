@@ -63,7 +63,7 @@ BC : border color."
   (interactive)
   (if (jcs-light-theme-p)
       (jcs--set-mode-line-theme
-       '("#1C1C1C" "#BFBFBF") '("#CCCCCC" "#4D4D4D") "#161616")
+       '("#1C1C1C" "#BFBFBF") '("#000000" "#9A9A9A") "#161616")
     (jcs--set-mode-line-theme
      '("#D2D2D2" "#4D4D4D") '("#CCCCCC" "#333333") "#D2D2D2")))
 
@@ -72,18 +72,18 @@ BC : border color."
   (interactive)
   (if (jcs-light-theme-p)
       (jcs--set-mode-line-theme
-       '("#CCCCCC" "#467E7D") '("#CCCCCC" "#2B4D4D") "#7ED5D5")
+       '("#000" "#B7D3D3") '("#000" "#99C2C2") "#B7D3D3")
     (jcs--set-mode-line-theme
-     '("#CCCCCC" "#467E7D") '("#CCCCCC" "#2B4D4D") "#467E7D")))
+     '("#CCCCCC" "#3C6A69") '("#CCCCCC" "#2B4D4D") "#3C6A69")))
 
 (defun jcs-dark-blue-mode-line ()
   "Dark blue mode line."
   (interactive)
   (if (jcs-light-theme-p)
       (jcs--set-mode-line-theme
-       '("#CCCCCC" "#246AAF") '("#CCCCCC" "#0E2944") "#2E84D9")
+       '("#000" "#92B9DF") '("#000" "#7AA0C6") "#92B9DF")
     (jcs--set-mode-line-theme
-     '("#CCCCCC" "#246AAF") '("#CCCCCC" "#0E2944") "#246AAF")))
+     '("#CCCCCC" "#205386") '("#CCCCCC" "#0C3765") "#246AAF")))
 
 (defun jcs-dark-orange-mode-line ()
   "Dark orange mode line."
