@@ -193,7 +193,9 @@
   (jcs-require '(project jcs-dashboard dashboard-ls))
 
   (jcs-add-hook 'jcs-after-load-theme-hook
-    (setq dashboard-startup-banner (jcs-dashboard--get-banner-path)))
+    (setq dashboard-startup-banner (jcs-dashboard--get-banner-path))
+    (when (bound-and-true-p jcs-emacs-startup-directory)
+      (jcs-dashboard-refresh-buffer)))
 
   (dashboard-setup-startup-hook))
 
