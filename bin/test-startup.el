@@ -2,10 +2,25 @@
 ;;; Commentary:
 ;;; Code:
 
-(message "[TEST] %s" (fboundp 'font-info))
+(require 'url-vars)
 
-(font-info (face-font 'mode-line))
+;; Workaround for Windows CI
+;; See https://github.com/jcs090218/setup-emacs-windows/issues/156#issuecomment-932956432
+(setq network-security-level 'low)
 
+(defconst jcs-ci t
+  "Flag for CI testing.")
+
+(let (debug-on-error
+      url-show-status
+      (early-init-file (locate-user-emacs-file "early-init.el"))
+      (user-init-file (locate-user-emacs-file "init.el")))
+  (load early-init-file)
+  (load user-init-file)  ; Start regular Emacs file
+  (run-hooks 'after-init-hook)
+  (run-hooks 'emacs-startup-hook))
+
+(jcs-emacs-version)
 
 ;; Local Variables:
 ;; coding: utf-8
