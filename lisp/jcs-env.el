@@ -142,11 +142,6 @@
 (defconst jcs-smart-closing-parens '("}" ")" "]")
   "List of closing parenthesis.")
 
-;;; Web Wowser
-(leaf eww
-  :init
-  (setq eww-search-prefix "https://www.google.com/search?q="))
-
 ;;; Find File
 (defvar jcs-current-created-parent-dir-path nil
   "Globally record the virutally created parent dir path.")
@@ -417,6 +412,11 @@ If ACT is non-nil; then make scroll less jumpy."
 
 ;;; Warnings
 (setq warning-minimum-level :emergency)
+
+;;; Web Wowser
+(leaf eww
+  :init
+  (setq eww-search-prefix "https://www.google.com/search?q="))
 
 ;;; Whitespace
 (leaf whitespace :defer-config (require 'show-eol))
