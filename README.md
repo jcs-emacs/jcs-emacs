@@ -263,7 +263,7 @@ kind of methods to support the maintainer you wish to.
 * *Banner* - powered by [dashboard](https://github.com/emacs-dashboard/emacs-dashboard).
 * *Binary/Hex Editor* - powered by [nhexl-mode](https://github.com/emacsmirror/nhexl-mode).
 * *Collaborative Editing* - powered by [togetherly](https://github.com/zk-phi/togetherly).
-* *Completion Frontend* - powered by [ivy](https://github.com/abo-abo/swiper).
+* *Completion Frontend* - powered by [vertico](https://github.com/minad/vertico).
 * *Context Menu* - powered by [right-click-context](https://github.com/zonuexe/right-click-context).
 * *Document String* - powered by [docstr](https://github.com/jcs-elpa/docstr).
 * *End of Line* - powered by [show-eol](https://github.com/elpa-host/show-eol).

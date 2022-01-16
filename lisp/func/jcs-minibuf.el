@@ -29,36 +29,27 @@
   (with-current-buffer jcs-minibuf-buffer-name
     (add-hook 'window-size-change-functions #'jcs-minibuf--window-size-change nil t)))
 
-(jcs-advice-add 'ivy--minibuffer-setup :after
-  ;; Ivy minibuffer setup hook.
-  (setq jcs-minibuf-enabled-p t))
-
 (jcs-add-hook 'minibuffer-setup-hook
-  (jcs-gc-cons-threshold-speed-up t)  ; Avoid GCs while using `ivy'
-
+  (jcs-gc-cons-threshold-speed-up t)  ; Avoid GCs while using `vertico'
+  (setq jcs-minibuf-enabled-p t)
   (jcs-dark-blue-mode-line)
-
   (jcs-echo-area--init)
   (jcs-minibuf--init)
-
-  (setq jcs-minibuf--setup-for-ivy-p t)
-
-  ;; Register hook.
   (add-hook 'post-command-hook #'jcs-minibuffer--post-command nil t))
 
 (jcs-add-hook 'minibuffer-exit-hook
   (jcs-reload-active-mode)
-
   (setq jcs-minibuf-enabled-p nil)
-
   (jcs-dashboard-refresh-buffer)
-
   (garbage-collect)  ; Restore GC
   (jcs-gc-cons-threshold-speed-up nil))
 
+(defvar jcs-minibuffer-post-command-hook nil
+  "Post command hook inside minibuffer.")
+
 (defun jcs-minibuffer--post-command ()
   "Minibuffer post command hook."
-  (jcs-minibuf--ivy-post-command))
+  (run-hooks jcs-minibuffer-post-command-hook))
 
 ;;
 ;; (@* "Util" )
@@ -89,20 +80,6 @@
          (when (and (<= last-display-ln cur-ln)
                     (<= (window-body-height) visible-win-height))
            (jcs-recenter-top-bottom 'bottom)))))))
-
-;;
-;; (@* "Ivy" )
-;;
-
-(defun jcs-minibuf--ivy-post-command ()
-  "Post command for Ivy in minibuffer."
-  (when ivy-mode
-    (cond ((jcs-is-finding-file-p)
-           (when (and (save-excursion (search-backward "~//" nil t))
-                      (not (jcs-current-char-equal-p "/")))
-             (save-excursion
-               (forward-char -1)
-               (backward-delete-char 1)))))))
 
 (provide 'jcs-minibuf)
 ;;; jcs-minibuf.el ends here

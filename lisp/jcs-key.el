@@ -115,8 +115,8 @@
     ([backtab]   . jcs-shift-tab-key)
 
 ;;; File Files
-    ((kbd "M-f")     . counsel-find-file)
-    ((kbd "M-F")     . jcs-counsel-find-files-other-window)
+    ((kbd "M-f")     . find-file)
+    ((kbd "M-F")     . find-file-other-window)
     ((kbd "C-k M-f") . project-find-file)
     ((kbd "C-k M-F") . jcs-project-find-file-other-window)
 
@@ -141,12 +141,6 @@
 ;;; Impatient Mode
     ((kbd "C-w o") . jcs-impatient-start)
     ((kbd "C-w p") . jcs-impatient-stop)
-
-;;; Ivy / Counsel / Swiper
-    ((kbd "M-x")   . counsel-M-x)
-    ((kbd "C-S-p") . counsel-M-x)  ; Compatible to VSCode
-    ((kbd "<f1>")  . counsel-M-x)
-    ((kbd "M-y")   . counsel-yank-pop)
 
 ;;; Kill Word
     ((kbd "C-<backspace>") . jcs-smart-backward-delete-word)
@@ -412,12 +406,6 @@
   (jcs-key help-mode-map
     `(((kbd "C-c") . kill-ring-save))))
 
-(with-eval-after-load 'counsel
-  (jcs-key counsel-find-file-map
-    `(((kbd "<backspace>") . jcs-counsel-find-files-backspace)
-      ((kbd "<return>")    . jcs-counsel-find-files-enter)
-      ((kbd "/")           . jcs-counsel-find-files--slash))))
-
 ;;; Kill Ring
 (with-eval-after-load 'browse-kill-ring
   (jcs-key browse-kill-ring-mode-map
@@ -504,6 +492,12 @@
       ("\C-_")
       ((kbd "C-?"))
       ((kbd "M-_")))))
+
+(with-eval-after-load 'vertico
+  (jcs-key vertico-map
+    `(((kbd "<backspace>") . vertico-directory-delete-char)
+      ((kbd "<return>")    . vertico-directory-enter)
+      ((kbd "/")           . jcs-vertico-find-files--slash))))
 
 ;;; With Editor
 (with-eval-after-load 'with-editor

@@ -107,8 +107,8 @@ Note this is opposite logic to the toggle mode function."
     (jcs-gray-mode-line)
 
     (jcs-key global-map
-      `(((kbd "C-f")   . ivy-searcher-search-file)
-        ((kbd "C-S-f") . ivy-searcher-search-project)))
+      `(((kbd "C-f")   . isearch-forward)            ; was `ivy-searcher-search-file'
+        ((kbd "C-S-f") . isearch-project-forward)))  ; was `ivy-searcher-search-project'
 
     (setq jcs-mode--state 'depend)
     (message "[INFO] Turn into `depend-mode` now")))

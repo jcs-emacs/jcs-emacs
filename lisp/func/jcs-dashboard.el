@@ -271,8 +271,7 @@ get the truncate path from dashboard buffer (ffap)."
 ;; (@* "Registry" )
 ;;
 
-(defun jcs-dashboard--window-size-change ()
-  "`window-size-change-functions' for `dashboard'."
+(jcs-add-hook 'window-size-change-functions
   (let ((new-ww (jcs-dashboard--window-width)))
     (when (and new-ww (not (= new-ww jcs-dashboard--last-window-width)))
       (setq jcs-dashboard--last-window-width new-ww)

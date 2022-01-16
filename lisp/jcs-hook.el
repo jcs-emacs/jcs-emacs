@@ -23,11 +23,6 @@
  :after after-focus-change-function
  (lambda () (if (frame-focus-state) (jcs-hook--focus-in) (jcs-hook--focus-out))))
 
-(jcs-add-hook 'window-size-change-functions
-  (jcs-dashboard--window-size-change)
-  (when (featurep 'jcs-ivy) (jcs-ivy--window-size-change))
-  (when (featurep 'treemacs) (jcs-treemacs--window-size-change)))
-
 ;;
 ;; (@* "Find Files" )
 ;;
@@ -104,8 +99,8 @@
     (global-hl-line-mode 1)
     (global-hl-todo-mode 1)
     (indent-control-mode 1)
+    (marginalia-mode 1)
     (minions-mode 1)
-    (ivy-mode 1)
     (global-page-break-lines-mode 1)
     (global-region-occurrences-highlighter-mode 1)
     (right-click-context-mode 1)
@@ -113,6 +108,7 @@
     (global-so-long-mode 1)
     (transient-mark-mode t)
     (global-tree-sitter-mode 1)
+    (vertico-mode 1)
     (which-key-mode)
     (global-yascroll-bar-mode 1)
     (with-current-buffer jcs-message-buffer-name (messages-buffer-mode))

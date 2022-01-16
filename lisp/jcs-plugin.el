@@ -143,16 +143,6 @@
         company-fuzzy-history-backends '(company-yasnippet)
         company-fuzzy-trigger-symbols '("." "->" "<" "\"" "'" "@")))
 
-(leaf counsel
-  :init
-  (defvar jcs-counsel-find-file-ignore '("[.]meta$" "/node_modules/")
-    "List of find file ignore regexp string.")
-  (setq counsel-preselect-current-file t
-        counsel-find-file-at-point t
-        counsel-find-file-ignore-regexp (mapconcat
-                                         (lambda (elm) (concat "\\(" elm "\\)"))
-                                         jcs-counsel-find-file-ignore "\\|")))
-
 (leaf csharp-mode
   :init
   (setq csharp-codedoc-tag-face 'font-lock-doc-face))
@@ -264,7 +254,7 @@
 
 (leaf dumb-jump
   :init
-  (setq dumb-jump-selector 'ivy))
+  (setq dumb-jump-selector 'completing-read))
 
 (leaf elisp-def
   :init
@@ -439,39 +429,6 @@
              (isearch-project--isearch-yank-string isearch-project--thing-at-point)
              (isearch-repeat-backward))))))
 
-(leaf ivy
-  :init
-  (setq ivy-auto-shrink-minibuffer t
-        ivy-use-virtual-buffers t  ; Enable bookmarks and recentf
-        ivy-use-selectable-prompt t
-        ivy-fixed-height-minibuffer t
-        ivy-count-format "[%d:%d] "
-        ivy-on-del-error-function nil
-        ivy-initial-inputs-alist nil
-        ivy-re-builders-alist '((swiper . ivy--regex-plus)
-                                (t . ivy--regex-fuzzy))
-        ivy-wrap t)
-  (defvar jcs-ivy-height-ratio 0.3
-    "Ratio that respect to `frame-height' and `ivy-height'.")
-  :defer-config
-  (require 'jcs-ivy)
-  (setq enable-recursive-minibuffers t))
-
-(leaf ivy-file-preview
-  :hook (ivy-mode-hook . ivy-file-preview-mode)
-  :init
-  (setq ivy-file-preview-overlay-delay-time 0.2))
-
-(leaf ivy-searcher
-  :init
-  (setq ivy-searcher-display-info 'line/column
-        ivy-searcher-preselect 'next)
-  :defer-config
-  (advice-add 'ivy-searcher-replace-file :after #'jcs-revert-all-buffers)
-  (advice-add 'ivy-searcher-replace-project :after #'jcs-revert-all-buffers)
-  (advice-add 'ivy-searcher-search-file :after #'jcs--recenter--advice-after)
-  (advice-add 'ivy-searcher-search-project :after #'jcs--recenter--advice-after))
-
 (leaf keypression
   :defer-config
   (setq keypression-ignore-mouse-events
@@ -543,6 +500,10 @@
   :defer-config
   (setq lsp-ui-doc-border (face-foreground 'font-lock-comment-face))
   (lsp-ui-sideline-set-default-icon))
+
+(leaf marginalia
+  :init
+  (setq marginalia-align 'right))
 
 (leaf meta-view
   :defer-config
@@ -844,8 +805,7 @@
     "Refresh `treemacs' by toggle twice."
     (save-selected-window (treemacs) (treemacs)))
 
-  (defun jcs-treemacs--window-size-change ()
-    "`window-size-change-functions' for `treemacs'."
+  (jcs-add-hook 'window-size-change-functions
     (setq treemacs-width (round (* (frame-width) jcs-treemacs-width-ratio)))
     (when (treemacs-get-local-window) (jcs-treemacs-toggle-refresh)))
 
@@ -872,6 +832,16 @@
                 '("fonts/clacon.ttf"
                   "fonts/UbuntuMono-R.ttf"))
         use-ttf-default-ttf-font-name "Ubuntu Mono"))
+
+(leaf vertico
+  :init
+  (setq vertico-cycle t
+        vertico-resize t
+        vertico-scroll-margin 1)
+  :defer-config
+  (require 'jcs-vertico)
+  (defconst jcs-vertico-height-ratio 0.3
+    "Ratio that respect to `frame-height' and `vertico-count'."))
 
 (leaf web-mode
   :init

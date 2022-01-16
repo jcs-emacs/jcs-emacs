@@ -217,11 +217,6 @@ If optional argument WITH-EXT is non-nil; return path with extension."
           (push file types))))
     (sort types #'string-lessp)))
 
-(defun jcs-select-file ()
-  "Select the file and return that path."
-  (interactive)
-  (let ((ivy-inhibit-action t)) (counsel-find-file)))
-
 (defun jcs-path-info-at-point ()
   "Return the current path info at point."
   (interactive)

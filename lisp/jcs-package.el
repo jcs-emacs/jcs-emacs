@@ -57,7 +57,7 @@
     company-fuzzy
     company-meta-net
     company-nginx
-    counsel
+    consult
     csharp-mode
     csproj-mode
     csv-mode
@@ -121,8 +121,6 @@
     indent-control
     ini-mode
     isearch-project
-    ivy-file-preview
-    ivy-searcher
     javadoc-lookup
     jayces-mode
     jenkinsfile-mode
@@ -152,6 +150,7 @@
     lsp-ui
     lua-mode
     manage-minor-mode-table
+    marginalia
     markdown-toc
     masm-mode
     meta-view
@@ -207,6 +206,7 @@
     undercover
     undo-tree
     use-ttf
+    vertico
     vimrc-mode
     visual-regexp
     vs-dark-theme

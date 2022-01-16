@@ -239,6 +239,11 @@
 (defconst jcs-sit-for-seconds 100
   "Default sit for seconds.")
 
+;;; Minibuffer
+(setq enable-recursive-minibuffers t
+      completion-styles '(basic substring flex)
+      completion-category-defaults nil)
+
 ;;; Multiple Cursors
 (defvar jcs-mc/string-distance-level 20
   "The standard similarity, the lower require more precision.")
