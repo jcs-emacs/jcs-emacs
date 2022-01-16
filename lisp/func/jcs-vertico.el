@@ -5,7 +5,7 @@
 (jcs-add-hook 'window-size-change-functions
   (setq vertico-count (floor (* (frame-height) jcs-vertico-height-ratio))))
 
-(jcs-add-hook jcs-minibuffer-post-command-hook
+(jcs-add-hook 'jcs-minibuffer-post-command-hook
   (when vertico-mode
     (cond ((jcs-is-finding-file-p)
            (when (and (save-excursion (search-backward "~//" nil t))
