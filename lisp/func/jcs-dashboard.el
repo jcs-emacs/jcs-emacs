@@ -12,13 +12,13 @@
     (if (and (search-backward dashboard-page-separator nil t)
              (search-forward dashboard-page-separator nil t))
         (let ((ln (thing-at-point 'line)))
-          (cond ((string-match-p "Recent Files:" ln)        'recents)
-                ((string-match-p "Bookmarks:" ln)           'bookmarks)
-                ((string-match-p "Projects:" ln)            'projects)
-                ((string-match-p "Agenda for " ln)          'agenda)
-                ((string-match-p "Registers:" ln)           'registers)
-                ((string-match-p "Current Directories:" ln) 'ls-directories)
-                ((string-match-p "Current Files:" ln)       'ls-files)
+          (cond ((string-match-p "Recent Files:" ln)     'recents)
+                ((string-match-p "Bookmarks:" ln)        'bookmarks)
+                ((string-match-p "Projects:" ln)         'projects)
+                ((string-match-p "Agenda for " ln)       'agenda)
+                ((string-match-p "Registers:" ln)        'registers)
+                ((string-match-p "List Directories:" ln) 'ls-directories)
+                ((string-match-p "List Files:" ln)       'ls-files)
                 (t (user-error "Unknown section from dashboard"))))
       (user-error "Failed searching dashboard section"))))
 
@@ -150,49 +150,31 @@
       (jcs-goto-line items-pg))))
 
 (defun jcs-dashboard-item-section-1 ()
-  "Navigate to item 1."
-  (interactive)
-  (jcs-dashboard-goto-item-section 1))
+  "Navigate to item 1." (interactive) (jcs-dashboard-goto-item-section 1))
 
 (defun jcs-dashboard-item-section-2 ()
-  "Navigate to item 2."
-  (interactive)
-  (jcs-dashboard-goto-item-section 2))
+  "Navigate to item 2." (interactive) (jcs-dashboard-goto-item-section 2))
 
 (defun jcs-dashboard-item-section-3 ()
-  "Navigate to item 3."
-  (interactive)
-  (jcs-dashboard-goto-item-section 3))
+  "Navigate to item 3." (interactive) (jcs-dashboard-goto-item-section 3))
 
 (defun jcs-dashboard-item-section-4 ()
-  "Navigate to item 4."
-  (interactive)
-  (jcs-dashboard-goto-item-section 4))
+  "Navigate to item 4." (interactive) (jcs-dashboard-goto-item-section 4))
 
 (defun jcs-dashboard-item-section-5 ()
-  "Navigate to item 5."
-  (interactive)
-  (jcs-dashboard-goto-item-section 5))
+  "Navigate to item 5." (interactive) (jcs-dashboard-goto-item-section 5))
 
 (defun jcs-dashboard-item-section-6 ()
-  "Navigate to item 6."
-  (interactive)
-  (jcs-dashboard-goto-item-section 6))
+  "Navigate to item 6." (interactive) (jcs-dashboard-goto-item-section 6))
 
 (defun jcs-dashboard-item-section-7 ()
-  "Navigate to item 7."
-  (interactive)
-  (jcs-dashboard-goto-item-section 7))
+  "Navigate to item 7." (interactive) (jcs-dashboard-goto-item-section 7))
 
 (defun jcs-dashboard-item-section-8 ()
-  "Navigate to item 8."
-  (interactive)
-  (jcs-dashboard-goto-item-section 8))
+  "Navigate to item 8." (interactive) (jcs-dashboard-goto-item-section 8))
 
 (defun jcs-dashboard-item-section-9 ()
-  "Navigate to item 9."
-  (interactive)
-  (jcs-dashboard-goto-item-section 9))
+  "Navigate to item 9." (interactive) (jcs-dashboard-goto-item-section 9))
 
 ;;
 ;; (@* "Truncate" )
@@ -218,9 +200,10 @@
 
 (defun jcs-dashboard--goto-section (name)
   "Move to section NAME declares in variable `dashboard-item-shortcuts'."
-  (require 'asoc)
-  (let ((key (asoc-get dashboard-item-shortcuts name)))
-    (when key (execute-kbd-macro (kbd key)))))
+  (let ((fnc (intern
+              (format "dashboard-jump-to-%s"
+                      (replace-regexp-in-string "[[:blank:]]+" "-" (symbol-name name))))))
+    (jcs-funcall-fboundp fnc)))
 
 (defun jcs-dashboard-current-index (name &optional pos)
   "Return the idex by NAME from POS."

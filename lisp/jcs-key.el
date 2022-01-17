@@ -115,8 +115,8 @@
     ([backtab]   . jcs-shift-tab-key)
 
 ;;; File Files
-    ((kbd "M-f")     . find-file)
-    ((kbd "M-F")     . find-file-other-window)
+    ((kbd "M-f")     . ffap)
+    ((kbd "M-F")     . ffap-other-window)
     ((kbd "C-k M-f") . project-find-file)
     ((kbd "C-k M-F") . jcs-project-find-file-other-window)
 
