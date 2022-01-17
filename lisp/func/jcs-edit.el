@@ -580,8 +580,8 @@ If optional argument CLEAN-LR is non-nil, remove all sign from `line-reminder'."
 ;;
 
 (defun jcs-is-finding-file-p ()
-  "Check if current minibuffer finding file."
-  (jcs-minibuffer-do-stuff (lambda () (string-match-p "Find file:" (buffer-string)))))
+  "Return non-nil if current minibuffer finding file."
+  (jcs-minibuffer-do-stuff (lambda () (string-match-p "Find file" (buffer-string)))))
 
 (defvar jcs--same-file--prev-window-data nil
   "Record the previous window config for going back to original state.")
