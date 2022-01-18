@@ -2,8 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 
-(jcs-add-hook 'window-size-change-functions
-  (setq vertico-count (floor (* (frame-height) jcs-vertico-height-ratio))))
+;;
+;; (@* "Util" )
+;;
 
 (defconst jcs-ffap-commands '(ffap ffap-other-window)
   "List of ffap commands.")
@@ -21,29 +22,24 @@
 (defun jcs-vertico--goto (candidate)
   "Select candidate with CANDIDATE."
   (when-let ((index (jcs-vertico--index candidate)))
-    (vertico--goto index)
-    (vertico--exhibit)))
+    (jcs-vertico--recenter index)))
 
-(jcs-add-hook 'jcs-minibuffer-post-command-hook
-  (when vertico-mode
-    (cond ((jcs-is-finding-file-p)
-           (when (memq this-command jcs-ffap-commands)
-             (let* ((start (point)) (end (line-end-position))
-                    (file (buffer-substring-no-properties start end)))
-               (unless (string-empty-p file)
-                 (delete-region start end)
-                 (vertico--exhibit)
-                 (jcs-vertico--goto file))))
-           (when (and (save-excursion (search-backward "~//" nil t))
-                      (not (jcs-current-char-equal-p "/")))
-             (save-excursion
-               (forward-char -1)
-               (backward-delete-char 1)))))))
+(defun jcs-vertico--recenter (index)
+  "Recentering the current candidate."
+  (jcs-with-no-redisplay
+    (let ((center (/ vertico-count 2)) vertico-cycle)
+      (vertico-last) (vertico--exhibit)
+      (vertico--goto (- index center)) (vertico--exhibit)
+      (vertico--goto index) (vertico--exhibit))))
 
 (defun jcs-vertico--cd (path)
   "Move to PATH."
   (delete-minibuffer-contents)
   (insert path))
+
+;;
+;; (@* "Functions" )
+;;
 
 (defun jcs-vertico-find-files--slash ()
   "Find files slash key."
@@ -68,12 +64,36 @@
 (jcs-advice-add 'vertico-directory-delete-char :override
   (let ((content (minibuffer-contents)))
     (if (vertico-directory-up)
-        (progn
+        (jcs-with-no-redisplay
           (vertico--exhibit)
           (jcs-vertico--goto (concat (file-name-nondirectory (directory-file-name content)) "/")))
       (if (f-root-p content)
           (vertico-first)
         (call-interactively #'backward-delete-char)))))
+
+;;
+;; (@* "Registry" )
+;;
+
+(jcs-add-hook 'window-size-change-functions
+  (setq vertico-count (floor (* (frame-height) jcs-vertico-height-ratio))))
+
+(jcs-add-hook 'jcs-minibuffer-post-command-hook
+  (when vertico-mode
+    (cond ((jcs-is-finding-file-p)
+           (when (memq this-command jcs-ffap-commands)
+             (let* ((start (point)) (end (line-end-position))
+                    (file (buffer-substring-no-properties start end)))
+               (unless (string-empty-p file)
+                 (jcs-with-no-redisplay
+                   (delete-region start end)
+                   (vertico--exhibit)
+                   (jcs-vertico--goto file)))))
+           (when (and (save-excursion (search-backward "~//" nil t))
+                      (not (jcs-current-char-equal-p "/")))
+             (save-excursion
+               (forward-char -1)
+               (backward-delete-char 1)))))))
 
 (provide 'jcs-vertico)
 ;;; jcs-vertico.el ends here
