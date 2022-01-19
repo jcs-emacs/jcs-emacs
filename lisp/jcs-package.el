@@ -164,6 +164,7 @@
     nginx-mode
     nhexl-mode
     nix-mode
+    orderless
     org-bullets
     organize-imports-java
     package-lint

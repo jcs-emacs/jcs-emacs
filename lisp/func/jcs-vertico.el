@@ -46,8 +46,15 @@
   (interactive)
   ;; NOTE: For some reason, slash does something else so override it.
   (insert "/")
-  (cond ((save-excursion (search-backward "///" nil t))  ; Root
+  (cond ((save-excursion (search-backward "//" nil t))  ; Root
          (jcs-vertico--cd (f-root)))
+        ;; New root
+        ((when-let* ((root
+                      (save-excursion
+                        (forward-char -1) (search-backward "/" nil t)
+                        (buffer-substring (1+ (point)) (line-end-position))))
+                     (_ (f-root-p root)))
+           (jcs-vertico--cd root)))
         ((save-excursion (search-backward "/~/" nil t))  ; Home
          (jcs-vertico--cd "~/"))
         ((save-excursion (search-backward "/!/" nil t))  ; Project
@@ -67,7 +74,7 @@
         (jcs-with-no-redisplay
           (vertico--exhibit)
           (jcs-vertico--goto (concat (file-name-nondirectory (directory-file-name content)) "/")))
-      (if (string= content (f-root))
+      (if (f-root-p content)
           (vertico-first)
         (call-interactively #'backward-delete-char)))))
 

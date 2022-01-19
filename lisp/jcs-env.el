@@ -234,9 +234,10 @@
 
 ;;; Minibuffer
 (setq enable-recursive-minibuffers t
-      completion-styles '(flex)
+      completion-styles '(orderless)
       completion-category-defaults nil
-      completion-ignored-extensions nil)
+      completion-ignored-extensions nil
+      suggest-key-bindings nil)
 
 ;;; Multiple Cursors
 (defvar jcs-mc/string-distance-level 20

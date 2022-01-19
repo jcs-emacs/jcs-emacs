@@ -200,9 +200,7 @@
 
 (defun jcs-dashboard--goto-section (name)
   "Move to section NAME declares in variable `dashboard-item-shortcuts'."
-  (let ((fnc (intern
-              (format "dashboard-jump-to-%s"
-                      (replace-regexp-in-string "[[:blank:]]+" "-" (symbol-name name))))))
+  (let ((fnc (intern (format "dashboard-jump-to-%s" name))))
     (jcs-funcall-fboundp fnc)))
 
 (defun jcs-dashboard-current-index (name &optional pos)
