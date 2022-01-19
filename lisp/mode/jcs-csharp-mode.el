@@ -75,9 +75,7 @@
       ([f8] . jcs-find-corresponding-file)
       ([S-f8] . jcs-find-corresponding-file-other-window)
 
-      ((kbd "#") . jcs-vs-sharp-key)
-
-      ((kbd "M-q") . jcs-other-window-prev))))
+      ((kbd "#") . jcs-vs-sharp-key))))
 
 (provide 'jcs-csharp-mode)
 ;;; jcs-csharp-mode.el ends here

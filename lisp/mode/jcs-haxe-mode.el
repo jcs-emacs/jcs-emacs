@@ -36,10 +36,7 @@
       ((kbd "{")           . jcs-vs-opening-curly-bracket-key)
       ((kbd ";")           . jcs-vs-semicolon-key)
 
-      ((kbd "C-v")         . jcs-smart-yank)
-
-      ((kbd "M-w")         . jcs-other-window-next)
-      ((kbd "M-q")         . jcs-other-window-prev))))
+      ((kbd "C-v")         . jcs-smart-yank))))
 
 (provide 'jcs-haxe-mode)
 ;;; jcs-haxe-mode.el ends here

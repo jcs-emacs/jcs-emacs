@@ -138,8 +138,6 @@ Including adding or removing the package path."
     `(((kbd "DEL")    . jcs-electric-backspace)
       ((kbd "{")      . jcs-vs-opening-curly-bracket-key)
       ((kbd ";")      . jcs-vs-semicolon-key)
-      ("\ew"          . jcs-other-window-next)
-      ((kbd "M-q")    . jcs-other-window-prev)
       ((kbd "C-S-o")  . jcs-java-organize-imports)
       ((kbd "<f2>")   . javadoc-lookup)
       ((kbd "S-<f2>") . javadoc-lookup))))

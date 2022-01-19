@@ -23,10 +23,7 @@
   ;; File Header
   (jcs-insert-header-if-valid '("[.]dpk"
                                 "[.]dpr")
-                              'jcs-insert-opascal-template)
-
-  (jcs-key-local
-    `(((kbd "M-q") . jcs-other-window-prev))))
+                              'jcs-insert-opascal-template))
 
 (provide 'jcs-opascal-mode)
 ;;; jcs-opascal-mode.el ends here
