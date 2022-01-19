@@ -272,8 +272,6 @@
     ((kbd "C-|")    . split-window-vertically)
 
 ;;; Window Navigation
-    ("\ew"       . jcs-other-window-next)
-    ("\eq"       . jcs-other-window-prev)
     ((kbd "M-e") . ace-window)
     ((kbd "C-1") . jcs-ace-window-1)
     ((kbd "C-2") . jcs-ace-window-2)
@@ -311,7 +309,9 @@
     ((kbd "<down>")      . ,(jcs-get-prev/next-key-type 'next))))
 
 (jcs-leaf-key*
-  `(([C-up]              . jcs-previous-blank-line)
+  `(("\ew"               . next-window-any-frame)
+    ("\eq"               . previous-window-any-frame)
+    ([C-up]              . jcs-previous-blank-line)
     ([C-down]            . jcs-next-blank-line)
     ((kbd "C-d")         . jcs-kill-whole-line)
     ((kbd "C-x")         . jcs-vs-cut-key)
