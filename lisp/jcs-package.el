@@ -88,8 +88,8 @@
     expand-region
     file-header
     fill-page
-    flx
     flx-rs
+    flx-style
     flycheck-grammarly
     flycheck-languagetool
     fountain-mode
