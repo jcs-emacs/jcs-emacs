@@ -234,7 +234,7 @@
 
 ;;; Minibuffer
 (setq enable-recursive-minibuffers t
-      completion-styles '(substring flex)
+      completion-styles '(flx)
       completion-category-defaults nil
       completion-ignored-extensions nil
       suggest-key-bindings nil)

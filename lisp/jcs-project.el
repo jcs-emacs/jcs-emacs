@@ -120,14 +120,14 @@ If optional argument DIR is nil, use variable `default-directory' instead."
   "Return the branch name."
   (nth 2 (jcs-vc-status)))
 
-(defun jcs-vc-dir-p (dir-path)
-  "Return non-nil if DIR-PATH is version control directory."
-  (let (tmp-is-vc-dir)
-    (dolist (tmp-vc-type grep-find-ignored-directories)
-      (let ((tmp-check-dir (concat dir-path "/" tmp-vc-type)))
-        (when (jcs-file-directory-exists-p tmp-check-dir)
-          (setq tmp-is-vc-dir t))))
-    tmp-is-vc-dir))
+;;
+;; (@* "Registry" )
+;;
+
+;; XXX Default `flx' doesn't work, we use `flex' instead
+(advice-add 'project-find-file-in :around
+            (lambda (fnc &rest args)
+              (let ((completion-styles '(flex))) (apply fnc args))))
 
 (provide 'jcs-project)
 ;;; jcs-project.el ends here
