@@ -46,7 +46,7 @@
 
 (defun jcs-hook--other-window-interactively-p ()
   "Return non-nil, if executing `other-window'."
-  (memq this-command '(other-window jcs-other-window-prev jcs-other-window-next)))
+  (memq this-command '(other-window next-window-any-frame previous-window-any-frame)))
 
 (jcs-advice-add 'other-window :before
   (when (jcs-hook--other-window-interactively-p)
@@ -54,7 +54,6 @@
 
 (jcs-advice-add 'other-window :after
   (when (jcs-hook--other-window-interactively-p)
-    (select-frame-set-input-focus (selected-frame))
     (jcs-buffer-menu-safe-refresh)
     (jcs-dashboard-safe-refresh-buffer)))
 

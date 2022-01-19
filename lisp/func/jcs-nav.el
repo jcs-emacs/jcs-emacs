@@ -217,14 +217,13 @@ next hit use this version instead."
 (defun jcs-beginning-of-line ()
   "Goto the beginning of line."
   (interactive)
-  (if truncate-lines (call-interactively #'jcs-back-to-indentation-or-beginning)
-    (call-interactively #'jcs-beginning-of-visual-line)))
+  (call-interactively (if truncate-lines #'jcs-back-to-indentation-or-beginning
+                        #'jcs-beginning-of-visual-line)))
 
 (defun jcs-end-of-line ()
   "Goto the end of line."
   (interactive)
-  (if truncate-lines (call-interactively #'end-of-line)
-    (call-interactively #'jcs-end-of-visual-line)))
+  (call-interactively (if truncate-lines #'end-of-line #'jcs-end-of-visual-line)))
 
 ;;
 ;; (@* "Navigating Blank Line" )
