@@ -22,6 +22,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Installed new package `moody`.
 * Replaced mode line with `moody` instead of `powerline`.
 * Switch from `ivy` to `vertico`.
+* Installed new package `orderless` for `completion-styles`.
 
 ## 8.0.0
 > Released Jan 6, 2022
