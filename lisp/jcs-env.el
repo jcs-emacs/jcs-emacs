@@ -32,15 +32,12 @@
   (setq jcs-makescript (concat jcs-makescript "[.]bat")
         jcs-runscript (concat jcs-runscript "[.]bat")))
  (jcs-is-bsd
-  (cua-mode 0)
-  ;;(osx-key-mode 0)
   (setq mac-command-modifier 'meta
         select-enable-clipboard t
         aquamacs-save-options-on-quit 0
         special-display-regexps nil
-        special-display-buffer-names nil)
-  (define-key function-key-map [return] [13])
-  (setq mac-command-key-is-meta t
+        special-display-buffer-names nil
+        mac-command-key-is-meta t
         mac-pass-command-to-system nil)))
 
 (when jcs-use-sh-p
@@ -208,7 +205,8 @@
     "tree-sitter-tree:")
   "List of buffers that you do not want to show line numbers in it.")
 
-(defconst jcs-line-numbers-ignore-buffer-exceptions '("*scratch*")
+(defconst jcs-line-numbers-ignore-buffer-exceptions
+  `(,jcs-scratch-buffer-name)
   "These buffers wouldn't be ignored line numbers mode.")
 
 (defconst jcs-line-numbers-ignore-modes
@@ -236,7 +234,7 @@
 
 ;;; Minibuffer
 (setq enable-recursive-minibuffers t
-      completion-styles '(basic substring flex)
+      completion-styles '(flex)
       completion-category-defaults nil
       completion-ignored-extensions nil)
 

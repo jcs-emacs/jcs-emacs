@@ -1076,6 +1076,11 @@ If optional argument REVERSE is non-nil, LIST item and ELT argument."
   "To enable/disable the MODENAME by PREDICATE."
   (if predicate (funcall modename 1) (funcall modename -1)))
 
+(defun jcs-safe-active-minor-mode (name args)
+  "Active minor mode only when it's on/off."
+  (if (= args 1) (unless (symbol-value name) (funcall name 1))
+    (when (symbol-value name) (funcall name -1))))
+
 ;;
 ;; (@* "I/O" )
 ;;

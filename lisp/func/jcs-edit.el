@@ -457,12 +457,12 @@ If optional argument CLEAN-LR is non-nil, remove all sign from `line-reminder'."
 (defun jcs-other-window-next (&optional cnt)
   "Move CNT to the next window."
   (interactive)
-  (other-window (or cnt 1) t))
+  (other-window (or cnt 1)))
 
 (defun jcs-other-window-prev (&optional cnt)
   "Move CNT to the previous window."
   (interactive)
-  (other-window (or cnt -1) t))
+  (other-window (or cnt -1)))
 
 (defun jcs-remove-trailing-lines-end-buffer ()
   "Delete trailing line at the end of the buffer, leave only one line."
@@ -526,7 +526,7 @@ If optional argument CLEAN-LR is non-nil, remove all sign from `line-reminder'."
         (goto-char (point-min))
         (while (re-search-forward (concat (char-to-string 13) "$") (point-max) t)
           (setq remove-count (+ remove-count 1))
-          (replace-match "" nil nil))
+          (replace-match ""))
         (message "%d ^M removed from buffer." remove-count)))))
 
 ;;
@@ -627,7 +627,7 @@ If optional argument CLEAN-LR is non-nil, remove all sign from `line-reminder'."
           (jcs--same-file--set-window-config cur-ln col first-vl))))))
 
 (defun jcs-find-file-other-window (fp)
-  "Find file FP in other window with check of larger window height."
+  "Find FP with largest window."
   (find-file fp) (jcs-same-file-other-window) (bury-buffer))
 
 ;;

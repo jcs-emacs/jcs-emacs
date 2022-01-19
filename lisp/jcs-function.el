@@ -378,42 +378,32 @@ If optional argument FORCE is non-nil, force refresh it."
 ;; (@* "Line Numbers" )
 ;;
 
-(defun jcs-update-line-number-each-window ()
+(defun jcs-line-number-update-each-window ()
   "Update each window's line number mode."
   (interactive)
-  (jcs-walk-windows #'jcs-active-line-numbers-by-mode nil t))
-
-(defun jcs-safe-display-line-numbers (act)
-  "Active `display-line-numbers' by ACT."
-  (require 'display-line-numbers)
-  (if (and (numberp act) (>= act 1))
-      (unless display-line-numbers-mode (display-line-numbers-mode 1))
-    (when display-line-numbers-mode (display-line-numbers-mode -1))))
-
-(defun jcs-safe-display-linum (act)
-  "Active `linum' by ACT."
-  (require 'linum)
-  (if (and (numberp act) (>= act 1)) (unless linum-mode (linum-mode 1))
-    (when linum-mode (linum-mode -1))))
+  (jcs-walk-windows #'jcs-line-numbers-active-by-mode nil t))
 
 (defun jcs-safe-line-numbers-active (act)
   "Safe way to active (ACT) line numbers."
-  (if (display-graphic-p) (jcs-safe-display-line-numbers act)
-    (jcs-safe-display-linum act)))
+  (if (display-graphic-p)
+      (progn
+        (require 'display-line-numbers)
+        (jcs-safe-active-minor-mode #'display-line-numbers-mode act))
+    (require 'linum)
+    (jcs-safe-active-minor-mode #'linum-mode act)))
 
-(defun jcs-active-line-numbers-by-mode ()
+(defun jcs-line-numbers-active-by-mode ()
   "Active line number by mode."
   (interactive)
   (require 'line-reminder)
-  (if (or (minibufferp)
-          (and (jcs-contain-list-type-str (buffer-name) jcs-line-numbers-ignore-buffers 'regex)
-               (not (member (buffer-name) jcs-line-numbers-ignore-buffer-exceptions)))
-          (memq major-mode jcs-line-numbers-ignore-modes))
-      (progn
-        (when line-reminder-mode (line-reminder-mode -1))
-        (jcs-safe-line-numbers-active -1))
-    (unless line-reminder-mode (line-reminder-mode 1))
-    (jcs-safe-line-numbers-active 1)))
+  (let* ((on-off
+          (or (minibufferp)
+              (and (jcs-contain-list-type-str (buffer-name) jcs-line-numbers-ignore-buffers 'regex)
+                   (not (member (buffer-name) jcs-line-numbers-ignore-buffer-exceptions)))
+              (memq major-mode jcs-line-numbers-ignore-modes)))
+         (on-off (if on-off -1 1)))
+    (jcs-safe-active-minor-mode #'line-reminder-mode on-off)
+    (jcs-safe-line-numbers-active on-off)))
 
 ;;
 ;; (@* "Minimap" )

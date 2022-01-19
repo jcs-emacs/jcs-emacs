@@ -6,16 +6,6 @@
 ;; (@* "Find files" )
 ;;
 
-(defun jcs-counsel-find-files-other-window ()
-  "Find files on other window."
-  (interactive)
-  (let ((buf (current-buffer)) found-file target-buf)
-    (unwind-protect (setq found-file (counsel-find-file))
-      (when found-file
-        (setq target-buf found-file)
-        (switch-to-buffer buf)
-        (find-file-other-window target-buf)))))
-
 (defun jcs-project-find-file-other-window ()
   "Find files in project on other window."
   (interactive)
@@ -89,68 +79,65 @@ NOT-OW : Default is other window, not other window."
 ;; (@* "Project" )
 ;;
 
-(defun jcs-select-find-file-current-dir (in-filename in-title)
-  "Find IN-FILENAME in current directory.
+(defun jcs-select-find-file-current-dir (filename title)
+  "Find FILENAME in current directory.
 
-Argument IN-FILENAME accept regular expression string.
+Argument FILENAME accept regular expression string.
 
-Argument IN-TITLE is a string used when there are more than one matches."
+Argument TITLE is a string used when there are more than one matches."
   (require 'f)
   (let* ((target-files
-          (jcs-f-files-ignore-directories default-directory
-                                          (lambda (file)
-                                            (string-match-p in-filename (f-filename file)))))
-         (target-files-len (length target-files)) (target-filepath ""))
+          (jcs-f-files-ignored-dir default-directory
+                                   (lambda (file)
+                                     (string-match-p filename (f-filename file)))))
+         (target-files-len (length target-files)))
     (when (zerop target-files-len)
-      (user-error "[ERROR] No '%s' file found in the current directory" in-filename))
+      (user-error "[ERROR] No file '%s' found in the current directory" filename))
     (if (= target-files-len 1)
         ;; If only one file found, just get that file.
         (nth 0 target-files)
       ;; Get the selected file.
-      (completing-read in-title target-files))))
+      (completing-read title target-files))))
 
-(defun jcs-select-find-file-in-project (in-filename in-title)
-  "Find IN-FILENAME in current project.
+(defun jcs-select-find-file-in-project (filename title)
+  "Find FILENAME in current project.
 
-Argument IN-FILENAME accept regular expression string.
+Argument FILENAME accept regular expression string.
 
-Argument IN-TITLE is a string used when there are more than one matches."
+Argument TITLE is a string used when there are more than one matches."
   (require 'f)
   (let ((project-dir (jcs-project-current)) target-files target-files-len)
     ;; Do the find file only when the project directory exists.
     (when project-dir
       (setq target-files
-            (jcs-f-files-ignore-directories project-dir
-                                            (lambda (file)
-                                              (string-match-p in-filename (f-filename file)))
-                                            t)))
+            (jcs-f-files-ignored-dir project-dir
+                                     (lambda (file)
+                                       (string-match-p filename (f-filename file)))
+                                     t)))
     (when target-files (setq target-files-len (length target-files)))
     (unless target-files-len
-      (user-error (concat
-                   "[ERROR] No '%s' file found in the project, make sure "
-                   "the project directory exists")
-                  in-filename))
+      (user-error "[ERROR] No file '%s' found in project, make sure the project root exists" filename))
     (if (= target-files-len 1)
         ;; If only one file found, just get that file.
         (nth 0 target-files)
       ;; Get the selected file.
-      (completing-read in-title target-files))))
+      (completing-read title target-files))))
 
-(defun jcs-find-file-in-project-and-current-dir (in-filename in-title)
+(defun jcs-find-file-in-project-and-current-dir (filename title)
   "Find the file from project root, if not found find it in current directory.
-Return full path if found, else error prompt.  IN-FILENAME to search in project
-or current directory.  IN-TITLE search uses regexp, meaning it could found
+Return full path if found, else error prompt.  FILENAME to search in project
+or current directory.  TITLE search uses regexp, meaning it could found
 multiple files at a time.  We need a title to present which file to select."
   (let ((filepath
-         (or (ignore-errors (jcs-select-find-file-current-dir in-filename in-title))
-             (ignore-errors (jcs-select-find-file-in-project in-filename in-title)))))
+         (or (ignore-errors (jcs-select-find-file-current-dir filename title))
+             (ignore-errors (jcs-select-find-file-in-project filename title)))))
     (unless filepath
       (user-error
-       (concat "Can't find '%s' file either in the project or current "
-               "directory, make sure the project directory exists or "
-               "the '%s' file exists in the current directory")
-       in-filename
-       in-filename))
+       (concat "[ERROR] Can't find file '%s' in the project or current directory "
+               ", make sure the project root exists or the '%s' file exists in the "
+               "current directory")
+       filename
+       filename))
     filepath))
 
 ;;
@@ -193,7 +180,7 @@ If optional argument FULL is non-nil; return full path."
     (dolist (file files)
       (when (jcs-directory-p file)
         (setq fn (file-name-nondirectory file))
-        (unless (or (string= "." fn) (string= ".." fn))
+        (unless (member fn '("." ".."))
           (unless full (setq file fn))
           (push file types))))
     (sort types #'string-lessp)))
@@ -206,12 +193,12 @@ Optional argument EXT is the extension filter.
 If optional argument FULL is non-nil; return full path.
 If optional argument WITH-EXT is non-nil; return path with extension."
   (let ((files (ignore-errors
-                 (directory-files path t (if ext (format "\\%s$" ext) nil))))
+                 (directory-files path t (when ext (format "\\%s$" ext)))))
         types fn)
     (dolist (file files)
       (when (jcs-file-p file)
         (setq fn (file-name-nondirectory file))
-        (unless (or (string= "." fn) (string= ".." fn))
+        (unless (member fn '("." ".."))
           (unless full (setq file fn))
           (unless with-ext (setq file (file-name-sans-extension file)))
           (push file types))))
@@ -238,7 +225,7 @@ If optional argument WITH-EXT is non-nil; return path with extension."
                     (if exists (format "[TYPE] %s" d-or-f) "")))
       (jcs-pop-tooltip content :point (point) :timeout timeout))))
 
-(defun jcs-f-directories-ignore-directories (path &optional rec)
+(defun jcs-f-directories-ignored-dir (path &optional rec)
   "Find all directories in PATH by ignored common directories with FN and REC."
   (require 'dash)
   (let ((dirs (f-directories path)) valid-dirs final-dirs)
@@ -247,17 +234,19 @@ If optional argument WITH-EXT is non-nil; return path with extension."
         (push dir valid-dirs)))
     (when rec
       (dolist (dir valid-dirs)
-        (push (jcs-f-directories-ignore-directories dir rec) final-dirs)))
+        (push (jcs-f-directories-ignored-dir dir rec) final-dirs)))
     (setq valid-dirs (reverse valid-dirs)
           final-dirs (reverse final-dirs))
     (-flatten (append valid-dirs final-dirs))))
 
-(defun jcs-f-files-ignore-directories (path &optional fn rec)
+(defun jcs-f-files-ignored-dir (path &optional fn rec)
   "Find all files in PATH by ignored common directories with FN and REC."
   (require 'dash)
-  (let ((dirs (append (list path) (jcs-f-directories-ignore-directories path rec)))
+  (let ((dirs (append (list path) (jcs-f-directories-ignored-dir path rec)))
         files)
-    (dolist (dir dirs) (push (f-files dir fn) files))
+    (dolist (dir dirs)
+      (when-let ((fs (ignore-errors (f-files dir fn))))
+        (push fs  files)))
     (-flatten (reverse files))))
 
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -291,61 +280,42 @@ If OW is non-nil, open it in other window"
   (interactive)
   (jcs-find-corresponding-file t))
 
-;;----------------------------------------------------------------------------
-;; C/C++
+;;; C/C++
 
 (defun jcs-cc-corresponding-file ()
   "Find the corresponding file for C/C++ file."
-  (let ((tbfn (f-filename (file-name-sans-extension (buffer-name))))
-        corresponding-file-name)
-    (cond ((string-match "\\.hin" buffer-file-name)
-           (setq corresponding-file-name (concat tbfn ".cin")))
-          ((string-match "\\.hpp" buffer-file-name)
-           (setq corresponding-file-name (concat tbfn ".cpp")))
-          ((string-match "\\.h" buffer-file-name)
-           (if (file-exists-p (concat tbfn ".c"))
-               (setq corresponding-file-name (concat tbfn ".c"))
-             (setq corresponding-file-name (concat tbfn ".cpp"))))
-          ((string-match "\\.cin" buffer-file-name)
-           (setq corresponding-file-name (concat tbfn ".hin")))
-          ((string-match "\\.cpp" buffer-file-name)
-           (setq corresponding-file-name (concat tbfn ".h")))
-          ((string-match "\\.c" buffer-file-name)
-           (setq corresponding-file-name (concat tbfn ".h"))))
-    corresponding-file-name))
+  (let ((name (f-filename (file-name-sans-extension (buffer-name))))
+        (ext (file-name-extension (buffer-name))))
+    (concat
+     name "."
+     (pcase ext
+       ("hin" "cin")
+       ("hpp" "cpp")
+       ("h" (if (file-exists-p (concat name ".c")) "c" "cpp"))
+       ("cin" "hin")
+       ((or "cpp" "c") "h")))))
 
-;;----------------------------------------------------------------------------
-;; Objective-C
+;;; Objective-C
 
 (defun jcs-objc-corresponding-file ()
   "Find the corresponding file for Objective-C related file."
-  (let ((tbfn (file-name-sans-extension buffer-file-name))
-        corresponding-file-name)
-    (cond ((string-match "\\.m" buffer-file-name)
-           (setq corresponding-file-name (concat tbfn ".h"))))
-    ;; If Objective-C corresponding file not found, use C/C++ corresponding
-    ;; file instead.
-    (when (string-empty-p corresponding-file-name)
-      (setq corresponding-file-name (jcs-cc-corresponding-file)))
-    ;; Return file name.
-    corresponding-file-name))
+  (let ((name (file-name-sans-extension buffer-file-name))
+        (ext (file-name-extension (buffer-name))))
+    (concat
+     name "."
+     (pcase ext
+       ("m" "h")
+       (_ (jcs-cc-corresponding-file))))))
 
-;;----------------------------------------------------------------------------
-;; Web Related
+;;; Web
 
 (defun jcs-web-corresponding-file ()
   "Find the corresponding file for WEB related file."
-  (let ((tbfn (file-name-sans-extension buffer-file-name))
-        corresponding-file-name)
-    (cond ((string-match "\\.aspx.cs" buffer-file-name)
-           (setq corresponding-file-name tbfn))
-          ((string-match "\\.aspx" buffer-file-name)
-           (setq corresponding-file-name (concat tbfn ".aspx.cs"))))
-    ;; NOTE: If is ASP.NET, just open the current file itself.
-    (when (string-empty-p corresponding-file-name)
-      (setq corresponding-file-name buffer-file-name))
-    ;; Return file name.
-    corresponding-file-name))
+  (let ((name (file-name-sans-extension buffer-file-name)))
+    (cond ((string-match "\\.aspx.cs" buffer-file-name) name)
+          ((string-match "\\.aspx" buffer-file-name) (concat name ".aspx.cs"))
+          ;; NOTE: If is ASP.NET, just open the current file itself
+          (t buffer-file-name))))
 
 (provide 'jcs-file)
 ;;; jcs-file.el ends here

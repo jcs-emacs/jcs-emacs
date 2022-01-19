@@ -18,7 +18,7 @@ This variable is used to check if file are edited externally.")
 (jcs-advice-add 'save-buffer :after
   (jcs-update-buffer-save-string)
   (jcs-undo-kill-this-buffer)
-  (jcs-update-line-number-each-window))
+  (jcs-line-number-update-each-window))
 
 (defun jcs--organize-save-buffer ()
   "Organize save buffer."

@@ -29,7 +29,7 @@
 
 (jcs-add-hook 'find-file-hook
   (jcs-funcall-fboundp #'jcs-update-buffer-save-string)
-  (jcs-active-line-numbers-by-mode)
+  (jcs-line-numbers-active-by-mode)
   (jcs-project-remember)
   (jcs-project--track-open-projects))
 
@@ -52,15 +52,11 @@
   (when (jcs-hook--other-window-interactively-p)
     (jcs-funcall-fboundp #'company-abort)))
 
-(defun jcs--other-window--advice-after (count &rest _)
-  "Advice execute after command `other-window'."
-  (cond ((jcs-frame-util-p)  ; skip if util
-         (other-window (if (> count 0) 1 -1) t))
-        ((jcs-hook--other-window-interactively-p)
-         (select-frame-set-input-focus (selected-frame))
-         (jcs-buffer-menu-safe-refresh)
-         (jcs-dashboard-safe-refresh-buffer))))
-(advice-add 'other-window :after #'jcs--other-window--advice-after)
+(jcs-advice-add 'other-window :after
+  (when (jcs-hook--other-window-interactively-p)
+    (select-frame-set-input-focus (selected-frame))
+    (jcs-buffer-menu-safe-refresh)
+    (jcs-dashboard-safe-refresh-buffer)))
 
 ;;
 ;; (@* "Initialization" )
@@ -132,7 +128,7 @@
 ;;
 
 (jcs-add-hook 'after-change-major-mode-hook
-  (jcs-active-line-numbers-by-mode))
+  (jcs-line-numbers-active-by-mode))
 
 ;;
 ;; (@* "Quitting" )

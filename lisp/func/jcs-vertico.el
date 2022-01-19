@@ -67,7 +67,7 @@
         (jcs-with-no-redisplay
           (vertico--exhibit)
           (jcs-vertico--goto (concat (file-name-nondirectory (directory-file-name content)) "/")))
-      (if (f-root-p content)
+      (if (string= content (f-root))
           (vertico-first)
         (call-interactively #'backward-delete-char)))))
 

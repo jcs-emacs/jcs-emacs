@@ -61,7 +61,7 @@ For argument TYPE; see function `jcs-string-compare-p' for description."
         (while (and (< index win-len) (not found))
           (if (jcs-string-compare-p buffer (jcs-buffer-name-or-buffer-file-name) type)
               (setq found t)
-            (other-window 1 t))
+            (other-window 1))
           (setq index (1+ index)))))
     ;; If not found, prompt error.
     (when (and (not found) (not no-error))
