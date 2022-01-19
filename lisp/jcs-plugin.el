@@ -594,11 +594,6 @@
          (mc/create-fake-cursor-at-point)))))
   (advice-add 'mc/mark-lines :override #'jcs--mc/mark-lines))
 
-(leaf orderless
-  :init
-  (setq orderless-matching-styles '(orderless-flex)
-        orderless-component-separator "[ &]"))
-
 (leaf popup
   :defer-config
   (defvar jcs-popup-mouse-events-flag-p nil
