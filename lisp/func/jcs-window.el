@@ -43,11 +43,10 @@ If BUFFER isn't showing; then execute ERROR operations instead.
 For argument TYPE; see function `jcs-string-compare-p' for description."
   (jcs-with-no-redisplay
     (if (jcs-buffer-shown-p buffer type)
-        (save-selected-window
-          (jcs-walk-windows
-           (lambda ()
-             (when (and success (jcs-string-compare-p buffer (jcs-buffer-name-or-buffer-file-name) type))
-               (funcall success)))))
+        (jcs-walk-windows
+         (lambda ()
+           (when (and success (jcs-string-compare-p buffer (jcs-buffer-name-or-buffer-file-name) type))
+             (funcall success))))
       (when error (funcall error)))))
 
 (defun jcs-switch-to-buffer-other-window (buffer-or-name &optional norecord)

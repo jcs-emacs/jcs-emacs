@@ -25,6 +25,13 @@
         auto-rename-tag-disabled-minor-modes '(iedit-mode
                                                multiple-cursors-mode)))
 
+(leaf balance-windows
+  :init
+  (setq balanced-windows-functions
+        '(delete-window
+          quit-window
+          split-window-horizontally split-window-vertically)))
+
 (leaf better-scroll
   :init
   (setq better-scroll-align-type 'relative
@@ -867,6 +874,7 @@
         which-key-side-window-location 'bottom
         which-key-side-window-max-width 0.33
         which-key-side-window-max-height 0.25
+        which-key-dont-use-unicode t
         which-key-idle-delay 1.0))
 
 (leaf yascroll
