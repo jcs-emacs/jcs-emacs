@@ -41,14 +41,14 @@
 ;; (@* "Hooks" )
 ;;
 
-(defun jcs--company-complete-selection--advice-around (fn)
+(defun jcs--company-complete-selection--advice-around (fnc &rest args)
   "Exection around `company-complete-selection' command."
-  (let ((company-dabbrev-downcase t)) (call-interactively fn)))
+  (let ((company-dabbrev-downcase t)) (apply fnc args)))
 (advice-add 'company-complete-selection :around #'jcs--company-complete-selection--advice-around)
 
 (defun jcs-company--first-completion-started (_backend)
   "Run before company's completion once."
-  (require 'yasnippet-snippets)
+  (require 'yasnippet)
   (remove-hook 'company-completion-started-hook 'jcs-company--first-completion-started))
 (add-hook 'company-completion-started-hook 'jcs-company--first-completion-started)
 
