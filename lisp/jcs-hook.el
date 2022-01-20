@@ -104,7 +104,7 @@
     (transient-mark-mode t)
     (global-tree-sitter-mode 1)
     (vertico-mode 1)
-    (which-key-mode)
+    (which-key-mode 1)
     (global-yascroll-bar-mode 1)
     (with-current-buffer jcs-message-buffer-name (messages-buffer-mode))
     (with-current-buffer jcs-scratch-buffer-name (lisp-interaction-mode)))
