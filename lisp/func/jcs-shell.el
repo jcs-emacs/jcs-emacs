@@ -23,7 +23,7 @@
 (defun jcs-show-shell-window ()
   "Shell command prompt."
   (interactive)
-  (jcs-safe-jump-shown-to-buffer
+  (jcs-jump-to-buffer-windows
    (multi-shell--prefix-name)
    :error
    (lambda ()
@@ -44,7 +44,7 @@
 (defun jcs-hide-shell-window ()
   "Kill process prompt."
   (interactive)
-  (jcs-safe-jump-shown-to-buffer
+  (jcs-jump-to-buffer-windows
    (multi-shell--prefix-name)
    :type 'prefix
    :success #'jcs-shell-delete-window
@@ -54,7 +54,7 @@
 (defun jcs-maybe-kill-shell ()
   "Maybe kill shell behaviour."
   (interactive)
-  (jcs-safe-jump-shown-to-buffer
+  (jcs-jump-to-buffer-windows
    (multi-shell--prefix-name)
    :success
    (lambda ()

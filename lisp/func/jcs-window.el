@@ -35,7 +35,7 @@ See function `walk-windows' description for arguments FUN and MINIBUF."
 ;; (@* "Navigation" )
 ;;
 
-(cl-defun jcs-safe-jump-shown-to-buffer (buffer &key success error type)
+(cl-defun jcs-jump-to-buffer-windows (buffer &key success error type)
   "Safely jump to BUFFER's window and execute SUCCESS operations.
 
 If BUFFER isn't showing; then execute ERROR operations instead.

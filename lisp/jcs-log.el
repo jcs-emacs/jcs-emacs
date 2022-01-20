@@ -95,7 +95,7 @@ Optional argument VAL-DEL is string that point to item."
 (defun jcs-log--before (clean)
   "Action do before doing log."
   (when clean
-    (jcs-safe-jump-shown-to-buffer
+    (jcs-jump-to-buffer-windows
      jcs-message-buffer-name
      :success #'jcs-message-erase-buffer-stay
      :error (lambda ()
@@ -106,7 +106,7 @@ Optional argument VAL-DEL is string that point to item."
 (defun jcs-log--after ()
   "Action do after doing log."
   (save-selected-window
-    (jcs-safe-jump-shown-to-buffer
+    (jcs-jump-to-buffer-windows
      jcs-message-buffer-name
      :success (lambda () (goto-char (point-max))))))
 

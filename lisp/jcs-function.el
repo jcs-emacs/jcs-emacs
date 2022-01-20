@@ -179,7 +179,7 @@
       (when jcs-buffer--menu-switch-buffer-refreshing
         (jcs--buffer-menu-trigger-filter))
       (bury-buffer)))
-  (jcs-safe-jump-shown-to-buffer
+  (jcs-jump-to-buffer-windows
    jcs-buffer-menu-buffer-name
    :success
    (lambda ()
@@ -258,7 +258,7 @@ If optional argument FORCE is non-nil, force refresh it."
             (ls-path (jcs-last-default-directory)))
         (when (or force (not (string= jcs-dashboard--last-ls-path ls-path)))
           (setq jcs-dashboard--last-ls-path ls-path)
-          (jcs-safe-jump-shown-to-buffer
+          (jcs-jump-to-buffer-windows
            dashboard-buffer-name
            :type 'strict
            :success (lambda () (jcs-dashboard-refresh-buffer))))))))
@@ -465,7 +465,7 @@ If optional argument FORCE is non-nil, force refresh it."
   (interactive)
   (require 'flycheck)
   (if (string= (buffer-name) flycheck-error-list-buffer)
-      (jcs-safe-jump-shown-to-buffer
+      (jcs-jump-to-buffer-windows
        (buffer-name flycheck-error-list-source-buffer)
        :success #'jcs-flycheck-mode
        :error #'jcs-maybe-kill-this-buffer)
@@ -476,7 +476,7 @@ If optional argument FORCE is non-nil, force refresh it."
           (save-selected-window
             (select-window (get-largest-window nil nil t))
             (switch-to-buffer flycheck-error-list-buffer)))
-      (jcs-safe-jump-shown-to-buffer
+      (jcs-jump-to-buffer-windows
        flycheck-error-list-buffer
        :success #'jcs-maybe-kill-this-buffer)))
   flycheck-mode)
@@ -502,7 +502,7 @@ If optional argument FORCE is non-nil, force refresh it."
   "Toggle Shell Command prompt."
   (interactive)
   (require 'jcs-shell)
-  (jcs-safe-jump-shown-to-buffer
+  (jcs-jump-to-buffer-windows
    (multi-shell--prefix-name)
    :success #'jcs-hide-shell-window
    :error #'jcs-show-shell-window))
@@ -511,7 +511,7 @@ If optional argument FORCE is non-nil, force refresh it."
   "Create a new shell window."
   (interactive)
   (require 'jcs-shell)
-  (jcs-safe-jump-shown-to-buffer
+  (jcs-jump-to-buffer-windows
    (multi-shell--prefix-name)
    :success (lambda () (other-window -2) (other-window 1) (multi-shell))
    :error #'jcs-show-shell-window))

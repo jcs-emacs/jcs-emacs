@@ -68,7 +68,7 @@ This will no longer overwrite usual Emacs' undo key."
 (defun jcs-undo-kill-this-buffer ()
   "Kill the undo tree buffer."
   (interactive)
-  (jcs-safe-jump-shown-to-buffer
+  (jcs-jump-to-buffer-windows
    undo-tree-visualizer-buffer-name
    :type 'strict
    :success (lambda () (bury-buffer))))
@@ -105,7 +105,7 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
     ;; buffer, then we use `undo-tree-visualize-redo' instead of
     ;; `undo-tree-redo'. Because directly called `undo-tree-visualize-redo'
     ;; key is way faster than `undo-tree-redo' key.
-    (jcs-safe-jump-shown-to-buffer
+    (jcs-jump-to-buffer-windows
      undo-tree-visualizer-buffer-name :type 'strict
      :success
      (lambda ()
