@@ -161,6 +161,7 @@
     move-text
     multi-shell
     multiple-cursors
+    mwim
     nasm-mode
     nginx-mode
     nhexl-mode
