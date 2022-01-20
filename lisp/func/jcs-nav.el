@@ -78,8 +78,7 @@
 
 (defun jcs-nav--after-smart-move-line ()
   "Do stuff after smart move line."
-  (cond ((jcs-current-line-empty-p)
-         (end-of-line))
+  (cond ((jcs-current-line-empty-p) (end-of-line))
         ((and (jcs-is-infront-first-char-at-line-p)
               (re-search-forward "[^[:space:]\t]" (line-end-position) t))
          (forward-char -1))))
@@ -112,7 +111,7 @@
            (beginning-of-line))
           ((and (not (= start-ln (line-number-at-pos))) (not beg-ln))
            (goto-char start-pt)
-           (jcs-back-to-indentation-or-beginning))
+           (mwim-beginning-of-code-or-line))
           ((>= (abs (- start-ln (line-number-at-pos))) 2)
            (goto-char start-pt)
            (forward-line -1)
@@ -132,7 +131,7 @@
           ((>= (abs (- start-ln (line-number-at-pos))) 2)
            (goto-char start-pt)
            (forward-line 1)
-           (jcs-back-to-indentation-or-beginning)))))
+           (mwim-beginning-of-code-or-line)))))
 
 (defun jcs-backward-word-capital ()
   "Backward search capital character and set the cursor to the point."
@@ -158,72 +157,48 @@
 ;; (@* "Move Inside Line" )
 ;;
 
-(defun jcs--indentation-point ()
-  "Return the indentation point at the current line."
-  (save-excursion (call-interactively #'back-to-indentation) (point)))
-
-(defun jcs-back-to-indentation-or-beginning ()
-  "Toggle between first character and beginning of line."
-  (interactive)
-  (if (= (point) (jcs--indentation-point)) (beginning-of-line) (back-to-indentation)))
-
-(defun jcs-beginning-of-line-or-indentation ()
-  "Move to beginning of line, or indentation.
-If you rather it go to beginning-of-line first and to indentation on the
-next hit use this version instead."
-  (interactive)
-  (if (bolp) (beginning-of-line) (back-to-indentation)))
-
-(defun jcs-back-to-indentation ()
-  "Back to identation by checking first character in the line."
-  (interactive)
-  (beginning-of-line)
-  (unless (jcs-current-line-totally-empty-p) (forward-char 1))
-  (while (jcs-current-whitespace-or-tab-p) (forward-char 1))
-  (backward-char 1))
-
 (defun jcs-beginning-of-visual-line ()
   "Goto the beginning of visual line."
   (interactive)
   (let ((visual-line-column -1) first-line-in-non-truncate-line)
-    ;; First, record down the beginning of visual line point.
+    ;; First, record down the beginning of visual line point
     (save-excursion
       (call-interactively #'beginning-of-visual-line)
       (setq visual-line-column (current-column)))
 
-    ;; Check if is the first line of non-truncate line mode.
+    ;; Check if is the first line of non-truncate line mode
     (when (= visual-line-column 0)
       (setq first-line-in-non-truncate-line t))
 
     (if first-line-in-non-truncate-line
-        (call-interactively #'jcs-back-to-indentation-or-beginning)
-      (let ((before-pnt (point)))
+        (call-interactively #'mwim-beginning-of-code-or-line)
+      (let ((before-pt (point)))
         (call-interactively #'beginning-of-visual-line)
 
-        ;; If before point is the same as the current point.
-        ;; We call regaulr `beginning-of-line' function.
-        (when (= before-pnt (point))
-          (call-interactively #'jcs-back-to-indentation-or-beginning))))))
+        ;; If before point is the same as the current point ; We call regaulr
+        ;; `beginning-of-line' function.
+        (when (= before-pt (point))
+          (call-interactively #'mwim-beginning-of-code-or-line))))))
 
-(defun jcs-end-of-visual-line()
+(defun jcs-end-of-visual-line ()
   "Goto the end of visual line."
   (interactive)
-  (let ((before-pnt (point)))
+  (let ((before-pt (point)))
     (call-interactively #'end-of-visual-line)
     ;; If before point is the same as the current point; we call regaulr
     ;; `end-of-line' function.
-    (when (= before-pnt (point)) (call-interactively #'end-of-line))))
+    (when (= before-pt (point)) (call-interactively #'mwim-end-of-code-or-line))))
 
 (defun jcs-beginning-of-line ()
   "Goto the beginning of line."
   (interactive)
-  (call-interactively (if truncate-lines #'jcs-back-to-indentation-or-beginning
+  (call-interactively (if truncate-lines #'mwim-beginning-of-code-or-line
                         #'jcs-beginning-of-visual-line)))
 
 (defun jcs-end-of-line ()
   "Goto the end of line."
   (interactive)
-  (call-interactively (if truncate-lines #'end-of-line #'jcs-end-of-visual-line)))
+  (call-interactively (if truncate-lines #'mwim-end-of-code-or-line #'jcs-end-of-visual-line)))
 
 ;;
 ;; (@* "Navigating Blank Line" )

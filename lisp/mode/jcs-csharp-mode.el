@@ -13,31 +13,6 @@
     ("Default" (jcs-insert-csharp-template))
     ("Unity Scripting" (jcs-insert-csharp-unity-template))))
 
-(defun jcs-vs-csharp-comment-prefix-p ()
-  "Return non-nil if current line is Visual Studio's style comment prefix."
-  (jcs-triple-char-comment-prefix-p "/"))
-
-(defun jcs-vs-csharp-only-vs-comment-prefix-this-line-p ()
-  "Return non-nil if only comment this line."
-  (save-excursion
-    (let (only-comment-this-line)
-      (when (jcs-vs-csharp-comment-prefix-p)
-        (jcs-goto-first-char-in-line)
-        (forward-char 3)
-        (unless (jcs-is-there-char-forward-until-end-of-line-p)
-          (setq only-comment-this-line t)))
-      only-comment-this-line)))
-
-(defun jcs-vs-csharp-do-doc-string ()
-  "Return non-nil if able to insert document string."
-  (let ((do-doc-string t))
-    (jcs-goto-first-char-in-line)
-    (while (not (jcs-end-of-line-p))
-      (forward-char 1)
-      (unless (jcs-current-char-equal-p '(" " "\t" "/"))
-        (setq do-doc-string nil)))
-    do-doc-string))
-
 ;;
 ;; (@* "Templates" )
 ;;

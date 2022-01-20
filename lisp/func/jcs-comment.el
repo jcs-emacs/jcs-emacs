@@ -7,7 +7,7 @@
 For instance, `///', `---', etc."
   (save-excursion
     (let (is-comment-prefix)
-      (jcs-goto-first-char-in-line)
+      (back-to-indentation)
       (forward-char 1)
       (when (jcs-current-char-equal-p in-char)
         (forward-char 1)

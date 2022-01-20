@@ -467,7 +467,7 @@ See function `jcs-string-compare-p' for argument TYPE."
   (jcs-mute-apply
     (save-excursion
       (ignore-errors
-        (jcs-goto-first-char-in-line)
+        (back-to-indentation)
         (push-mark-command nil)
         (beginning-of-line)
         (jcs-delete-region)
@@ -718,14 +718,9 @@ BND-PT : boundary point."
               end (+ end delta)))
       (forward-line 1))))
 
-(defun jcs-goto-first-char-in-line ()
-  "Goto beginning of line but ignore spaces/tabs."
-  (jcs-back-to-indentation-or-beginning)
-  (when (jcs-beginning-of-line-p) (jcs-back-to-indentation-or-beginning)))
-
 (defun jcs-first-char-in-line-column ()
   "Return column in first character in line."
-  (save-excursion (jcs-goto-first-char-in-line) (current-column)))
+  (save-excursion (back-to-indentation) (current-column)))
 
 (defun jcs-current-line-empty-p ()
   "Current line empty, but accept spaces/tabs in there.  (not absolute)."

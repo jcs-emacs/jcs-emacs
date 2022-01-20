@@ -55,10 +55,7 @@
 @return boolean : true - do indent, false - vice versa."
   (let (do-indent)
     (save-excursion
-      ;; Goto the first character of current line.
-      (jcs-back-to-indentation-or-beginning)
-      (when (jcs-beginning-of-line-p)
-        (jcs-back-to-indentation-or-beginning))
+      (back-to-indentation)
       (forward-char 1)
       ;; Check rule here..
       (when (jcs-current-char-equal-p ".")
@@ -71,16 +68,13 @@
   (let (continue-comment)
     (save-excursion
       (ignore-errors
-        (jcs-goto-first-char-in-line)
-
+        (back-to-indentation)
         (forward-char 1)
         (when (jcs-current-char-equal-p ";")
           (forward-char 1)
           (when (jcs-current-char-equal-p ";")
             (setq continue-comment t)))))
-
     (newline-and-indent)
-
     (when continue-comment
       (insert ";; ")
       (save-excursion (indent-line-to 0)))))
