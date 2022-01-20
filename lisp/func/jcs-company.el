@@ -46,7 +46,7 @@
   (let ((company-dabbrev-downcase t)) (apply fnc args)))
 (advice-add 'company-complete-selection :around #'jcs--company-complete-selection--advice-around)
 
-(defun jcs-company--first-completion-started (_backend)
+(defun jcs-company--first-completion-started (&rest _)
   "Run before company's completion once."
   (require 'yasnippet)
   (remove-hook 'company-completion-started-hook 'jcs-company--first-completion-started))
