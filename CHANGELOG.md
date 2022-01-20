@@ -23,6 +23,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Replaced mode line with `moody` instead of `powerline`.
 * Switch from `ivy` to `vertico`.
 * Installed new package `flx-style` for `completion-styles`.
+* Installed new package `blamer`.
 
 ## 8.0.0
 > Released Jan 6, 2022
