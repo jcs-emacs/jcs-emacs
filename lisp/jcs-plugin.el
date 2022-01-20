@@ -37,6 +37,12 @@
   (setq better-scroll-align-type 'relative
         better-scroll-allow-boundary-movement t))
 
+(leaf blamer
+  :init
+  (setq blamer-type 'visual
+        blamer-view 'overlay-right
+        blamer-idle-time 0.3))
+
 (leaf browse-kill-ring
   :init
   (setq browse-kill-ring-separator-face 'font-lock-comment-face)

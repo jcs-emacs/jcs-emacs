@@ -36,6 +36,7 @@
     balanced-windows
     basic-mode
     better-scroll
+    blamer
     browse-kill-ring
     buffer-move
     buffer-wrap

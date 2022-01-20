@@ -181,6 +181,7 @@ Note this is opposite logic to the toggle mode function."
 (defun jcs-active-project-mode-hook ()
   "Hook runs when there is valid project root."
   (when (jcs-funcall-fboundp #'jcs-project-under-p)
+    (blamer-mode 1)
     (global-diff-hl-mode 1)
     (editorconfig-mode 1)
     (jcs--safe-lsp-active)))
