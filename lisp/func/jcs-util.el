@@ -137,33 +137,23 @@ This occurs when file was opened but has moved to somewhere else externally."
 
 (defun jcs-virtual-buffer-list ()
   "Return a list of virtual buffers."
-  (let ((buf-lst (buffer-list)) lst)
-    (dolist (buf buf-lst) (when (jcs-virtual-buffer-p buf) (push buf lst)))
-    (reverse lst)))
+  (cl-remove-if-not #'jcs-virtual-buffer-p (buffer-list)))
 
 (defun jcs-valid-buffer-list ()
   "Return a list of valid buffers."
-  (let ((buf-lst (buffer-list)) lst)
-    (dolist (buf buf-lst) (when (jcs-valid-buffer-p buf) (push buf lst)))
-    (reverse lst)))
+  (cl-remove-if-not #'jcs-valid-buffer-p (buffer-list)))
 
 (defun jcs-invalid-buffer-list ()
   "Return a list of invalid buffers."
-  (let ((buf-lst (buffer-list)) lst)
-    (dolist (buf buf-lst) (when (jcs-invalid-buffer-p buf) (push buf lst)))
-    (reverse lst)))
+  (cl-remove-if-not #'jcs-invalid-buffer-p (buffer-list)))
 
 (defun jcs-valid-buffers-count ()
-  "Return number of the valid buffers."
+  "Return size of the valid buffers."
   (length (jcs-valid-buffer-list)))
 
 (defun jcs-invalid-buffers-count ()
-  "Return number of the invalid buffers."
+  "Return size of the invalid buffers."
   (length (jcs-invalid-buffer-list)))
-
-(defun jcs-valid-buffers-exists-p ()
-  "Check to see if any valid buffer exists in buffer list."
-  (> (jcs-valid-buffers-count) 0))
 
 (defun jcs-walk-buffers (fnc)
   "Walk through all the buffers once and execute callback FNC."
