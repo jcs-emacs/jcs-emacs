@@ -691,23 +691,11 @@ NO-RECORD and FORCE-SAME-WINDOW are the same as switch to buffer arguments."
 (defun jcs--kill-this-buffer--advice-around (fnc &rest args)
   "Advice execute around command `kill-this-buffer' with FNC and ARGS."
   (require 'jcs-undo)
-  (let ((target-kill-buffer (jcs-buffer-name-or-buffer-file-name))
-        undoing-buffer-name)
-    (jcs-safe-jump-shown-to-buffer
-     undo-tree-visualizer-buffer-name :type 'strict
-     :success
-     (lambda ()
-       (setq undoing-buffer-name
-             (buffer-name undo-tree-visualizer-parent-buffer))))
-
+  (let ((killed-buffer (current-buffer)) undoing-p)
+    (jcs-with-current-buffer (get-buffer undo-tree-visualizer-buffer-name)
+      (setq undoing-p (eq undo-tree-visualizer-parent-buffer killed-buffer)))
     (apply fnc args)
-
-    ;; If `undo-tree' visualizer exists, kill it too.
-    (when (and undoing-buffer-name
-               (string-match-p undoing-buffer-name target-kill-buffer)
-               ;; Only close `undo-tree' when buffer is killed.
-               (not (string= target-kill-buffer (jcs-buffer-name-or-buffer-file-name))))
-      (jcs-undo-kill-this-buffer))))
+    (jcs-undo-kill-this-buffer)))
 (advice-add 'kill-this-buffer :around #'jcs--kill-this-buffer--advice-around)
 
 (defun jcs-kill-this-buffer ()
