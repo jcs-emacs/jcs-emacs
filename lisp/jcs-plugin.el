@@ -547,7 +547,10 @@
   :init
   (setq x-underline-at-descent-line t)
   :defer-config
-  (require 'jcs-mode-line))
+  (require 'jcs-mode-line)
+  ;; XXX For issue, https://github.com/tarsius/moody/pull/41
+  (advice-add 'moody-redisplay :around
+              (lambda (fnc &rest args) (let ((inhibit-redisplay t)) (apply fnc args)))))
 
 (leaf most-used-words
   :init
