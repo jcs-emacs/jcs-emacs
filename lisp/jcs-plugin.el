@@ -843,9 +843,10 @@
   :init
   (setq vertico-cycle t
         vertico-resize t
-        vertico-scroll-margin 0)
+        vertico-scroll-margin 0
+        vertico-sort-function #'jcs-vertico-sort)
   :defer-config
-  (require 'jcs-vertico)
+  (jcs-require '(jcs-vertico))
   (defconst jcs-vertico-height-ratio 0.3
     "Ratio that respect to `frame-height' and `vertico-count'."))
 

@@ -9,12 +9,6 @@
 (defconst jcs-ffap-commands '(ffap ffap-other-window)
   "List of ffap commands.")
 
-(dolist (cmd jcs-ffap-commands)
-  (advice-add cmd :around
-              (lambda (fnc &rest args)
-                (let ((vertico-sort-function #'vertico-sort-alpha))
-                  (apply fnc args)))))
-
 (defun jcs-vertico--index (candidate)
   "Return candidate's index."
   (cl-position candidate vertico--candidates :test 'string=))
@@ -77,6 +71,20 @@
       (if (f-root-p content)
           (progn (jcs-vertico--cd (f-root)) (vertico-first))
         (call-interactively #'backward-delete-char)))))
+
+;;
+;; (@* "Sorting" )
+;;
+
+(defun jcs-vertico-sort (all)
+  "Sort candidates ALL."
+  (let ((input (minibuffer-contents))
+        (base #'vertico-sort-history-length-alpha))
+    (cond ((jcs-is-finding-file-p)
+           (setq base #'vertico-sort-length-alpha
+                 input (if (string-suffix-p "/" input) "" (f-filename input)))))
+    (if (string-empty-p (string-trim input)) (funcall base all)
+      (jcs-sort-candidates-by-function all input #'flx-score))))
 
 ;;
 ;; (@* "Registry" )
