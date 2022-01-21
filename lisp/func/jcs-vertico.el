@@ -48,7 +48,7 @@
   (insert "/")
   (cond ((save-excursion (search-backward "//" nil t))  ; Root
          (jcs-vertico--cd (f-root)))
-        ;; New root
+        ;; New root, changing disk
         ((when-let* ((root
                       (save-excursion
                         (forward-char -1) (search-backward "/" nil t)
@@ -75,7 +75,7 @@
           (vertico--exhibit)
           (jcs-vertico--goto (concat (file-name-nondirectory (directory-file-name content)) "/")))
       (if (f-root-p content)
-          (vertico-first)
+          (progn (jcs-vertico--cd (f-root)) (vertico-first))
         (call-interactively #'backward-delete-char)))))
 
 ;;
