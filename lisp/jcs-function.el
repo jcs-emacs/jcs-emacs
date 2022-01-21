@@ -135,7 +135,7 @@
   (interactive)
   (require 'jcs-undo)
   (if (jcs-scratch-buffer-p)
-      (progn (jcs-undo-kill-this-buffer) (jcs-bury-buffer))
+      (progn (undo-tree-kill-visualizer) (jcs-bury-buffer))
     (jcs-maybe-kill-this-buffer)))
 
 (defun jcs-scratch-buffer-refresh ()

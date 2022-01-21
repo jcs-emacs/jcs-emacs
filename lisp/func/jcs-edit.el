@@ -695,7 +695,7 @@ NO-RECORD and FORCE-SAME-WINDOW are the same as switch to buffer arguments."
     (jcs-with-current-buffer (get-buffer undo-tree-visualizer-buffer-name)
       (setq undoing-p (eq undo-tree-visualizer-parent-buffer killed-buffer)))
     (apply fnc args)
-    (jcs-undo-kill-this-buffer)))
+    (undo-tree-kill-visualizer)))
 (advice-add 'kill-this-buffer :around #'jcs--kill-this-buffer--advice-around)
 
 (defun jcs-kill-this-buffer ()
@@ -767,7 +767,7 @@ other window."
   (let ((current-bfn (buffer-file-name)))
     (when current-bfn
       (jcs-save-window-excursion (jcs-kill-this-buffer))
-      (jcs-undo-kill-this-buffer)
+      (undo-tree-kill-visualizer)
       (message "Reopened file => '%s'" current-bfn))))
 
 ;;

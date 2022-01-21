@@ -17,9 +17,6 @@ This variable must be use with `jcs-undo' and `jcs-redo' functions.")
 (defvar jcs-undo-tree-auto-show-diff nil
   "Show the difference code when undo tree minor mode is active.")
 
-(defvar jcs--undo-splits-windows nil
-  "Flag to check if the window splits.")
-
 (defun jcs-toggle-undo-tree-auto-show-diff ()
   "Toggle auto show diff functionality."
   (interactive)
@@ -59,31 +56,13 @@ This will no longer overwrite usual Emacs' undo key."
   (setq jcs-use-undo-tree-key nil)
   (message "Disable undo tree key"))
 
-(jcs-advice-add 'undo-tree-visualizer-quit :after
-  (when jcs--undo-splits-windows
-    (delete-window)
-    (setq jcs--undo-splits-windows nil)
-    (switch-to-buffer undo-tree-visualizer-parent-buffer)))
-
-(defun jcs-undo-kill-this-buffer ()
-  "Kill the undo tree buffer."
-  (interactive)
-  (jcs-jump-to-buffer-windows
-   undo-tree-visualizer-buffer-name
-   :type 'strict
-   :success (lambda () (bury-buffer))))
-
 (defun jcs-undo-tree-visualize ()
   "Call `undo-tree-visualize' only in window that has higher height."
-  (let ((win-len (count-windows)))
-    (when (< win-len 2)
-      (split-window-horizontally)
-      (setq jcs--undo-splits-windows t))
-    (save-window-excursion (undo-tree-visualize))
-    (with-selected-window (get-largest-window nil nil t)
-      (switch-to-buffer undo-tree-visualizer-buffer-name)
-      (jcs-recenter-top-bottom 'middle)
-      (fill-page-if-unfill))))
+  (save-selected-window (undo-tree-visualize))
+  (with-selected-window (get-largest-window nil nil t)
+    (switch-to-buffer undo-tree-visualizer-buffer-name)
+    (jcs-recenter-top-bottom 'middle)
+    (fill-page-if-unfill)))
 
 (defun jcs--undo-tree-visualizer--do-diff ()
   "Do show/hide diff for `undo-tree'."
@@ -113,7 +92,7 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
        (jcs--undo-tree-visualizer--do-diff))
      :error
      (lambda ()
-       (save-selected-window (if ud (undo-tree-undo) (undo-tree-redo)))
+       (if ud (undo-tree-undo) (undo-tree-redo))
        (jcs-undo-tree-visualize)
        (jcs--undo-tree-visualizer--do-diff)))))
 
