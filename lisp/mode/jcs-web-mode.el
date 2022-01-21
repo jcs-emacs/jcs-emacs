@@ -51,47 +51,6 @@
     (backward-char 1)))
 
 ;;
-;; (@* "Faces" )
-;;
-
-(defface jcs-web-mode-block-face
-  '((t (:inherit 'default :background "#000000")))
-  "Web mode block face with dark background."
-  :group 'jcs)
-(defvar jcs-web-mode-block-face 'jcs-web-mode-block-face)
-
-(defface jcs-web-mode-block-comment-face
-  '((t (:inherit 'font-lock-comment-face :background "#000000")))
-  "Web mode block comment face with dark background."
-  :group 'jcs)
-(defvar jcs-web-mode-block-comment-face 'jcs-web-mode-block-comment-face)
-
-(defface jcs-web-mode-html-attr-value-face
-  '((t (:foreground "olive drab")))
-  "Highlight HTML value."
-  :group 'jcs)
-(defvar jcs-web-mode-html-attr-value-face 'jcs-web-mode-html-attr-value-face)
-
-(defun jcs-init-web-faces ()
-  "Initialize Web mode faces highlihgting."
-  (let ((missing-modes '(web-mode)))
-    (dolist (mode missing-modes)
-      (font-lock-add-keywords
-       mode
-       '(;; For nomral HTML comment
-         ("\\(<!--[a-zA-Z0-9 \n\t-.<>?,*'`@\"=_(){}:;&^%$#!~]*-->\\)" 1 'font-lock-comment-face t)
-         ("\\(@[ \t\n]*{[[:ascii:]]*\\)/\\*[[:ascii:]]*\\*/[[:ascii:]]*}" 1 'jcs-web-mode-block-face t)
-         ("@[ \t\n]*{[[:ascii:]]*/\\*[[:ascii:]]*\\*/\\([[:ascii:]]*}\\)" 1 'jcs-web-mode-block-face t)
-         ;; For multi-lines comment
-         ("@[ \t\n]*{[[:ascii:]]*\\(/\\*[[:ascii:]]*\\*/\\)[[:ascii:]]*}" 1 'jcs-web-mode-block-comment-face t))
-       'end)))
-  (set-face-attribute 'web-mode-doctype-face nil :foreground "Pink3")
-  (set-face-attribute 'web-mode-block-comment-face nil :foreground (face-foreground font-lock-comment-face))
-  (set-face-attribute 'web-mode-comment-face nil :foreground (face-foreground font-lock-comment-face)))
-
-(jcs-init-web-faces)
-
-;;
 ;; (@* "Templates" )
 ;;
 
