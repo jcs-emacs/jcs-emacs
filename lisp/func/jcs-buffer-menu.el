@@ -3,50 +3,7 @@
 ;;; Code:
 
 ;;
-;; (@* "Sorting" )
-;;
-
-;; TOPIC: BufferMenuPlus
-;; URL: https://www.emacswiki.org/emacs/BufferMenuPlus
-
-(defun jcs-buffer-menu-sort (type)
-  "Sort the buffer menu by TYPE.
-Sorted by (1) visit, (2) buffer, (3) size, (4) time, (5) mode, (6) file."
-  (Buffer-menu-sort type)
-  (goto-char (point-min)))
-
-(defun jcs-buffer-menu-sort-by-visit ()
-  "Sort the Buffer Menu List by visit."
-  (interactive)
-  (jcs-buffer-menu-sort 1))
-
-(defun jcs-buffer-menu-sort-by-buffer ()
-  "Sort the Buffer Menu List by buffer."
-  (interactive)
-  (jcs-buffer-menu-sort 2))
-
-(defun jcs-buffer-menu-sort-by-size ()
-  "Sort the Buffer Menu List by size."
-  (interactive)
-  (jcs-buffer-menu-sort 3))
-
-(defun jcs-buffer-menu-sort-by-time ()
-  "Sort the Buffer Menu List by time."
-  (interactive)
-  (jcs-buffer-menu-sort 4))
-
-(defun jcs-buffer-menu-sort-by-mode ()
-  "Sort the Buffer Menu List by mode."
-  (interactive)
-  (jcs-buffer-menu-sort 5))
-
-(defun jcs-buffer-menu-sort-by-file ()
-  "Sort the Buffer Menu List by file name."
-  (interactive)
-  (jcs-buffer-menu-sort 6))
-
-;;
-;; (@* "Buffer List" )
+;; (@* "Diminish" )
 ;;
 
 (defvar jcs-buffer-menu-diminish-list
@@ -256,29 +213,29 @@ From scale 0 to 100.")
 
 (defun jcs--buffer-menu-filter-list ()
   "Do filtering the buffer list."
-  (require 'flx)
+  (jcs-require '(flx ht))
   (with-current-buffer jcs-buffer-menu-buffer-name
-    (let ((scoring-table (make-hash-table)) (scoring-keys '()))
+    (let ((scoring-table (ht-create)) scoring-keys)
       (while (< (line-number-at-pos) (line-number-at-pos (point-max)))
         (let* ((id (tabulated-list-get-id))
                (entry (tabulated-list-get-entry))
                (buf-name (buffer-name id))
                (scoring (flx-score buf-name jcs--buffer-menu--pattern))
-               ;; Ensure score is not `nil'.
-               (score (if scoring (nth 0 scoring) 0)))
-          (when (arrayp entry)
-            ;; For first time access score with hash-table, setup empty array.
-            (unless (gethash score scoring-table) (setf (gethash score scoring-table) '()))
-            ;; Push the candidate with the target score to hash-table.
-            (push (cons id entry) (gethash score scoring-table))))
+               ;; Ensure score is not `nil'
+               (score (cond ((listp scoring) (nth 0 scoring))
+                            ((vectorp scoring) (aref scoring 0))
+                            ((numberp scoring) scoring)
+                            (t 0))))
+          (when score
+            (push (cons id entry) (ht-get scoring-table score))))
         (forward-line 1))
       ;; Get all the keys into a list.
-      (maphash (lambda (score-key _cand-lst) (push score-key scoring-keys)) scoring-table)
-      (setq scoring-keys (sort scoring-keys #'>))  ; Sort keys in order.
-      (jcs--buffer-menu-clean)  ; Clean it.
+      (ht-map (lambda (score-key _) (push score-key scoring-keys)) scoring-table)
+      (setq scoring-keys (sort scoring-keys #'>))  ; Sort keys in order
+      (jcs--buffer-menu-clean)  ; Clean it
       (dolist (key scoring-keys)
         (when (< jcs--buffer-menu--score-standard key)
-          (let ((ens (sort (gethash key scoring-table)
+          (let ((ens (sort (ht-get scoring-table key)
                            (lambda (en1 en2)
                              (let ((en1-str (buffer-name (car en1)))
                                    (en2-str (buffer-name (car en2))))
@@ -289,8 +246,7 @@ From scale 0 to 100.")
     (setq jcs--buffer-menu--done-filtering t)
     (jcs--safe-print-fake-header)
     ;; Once it is done filtering, we redo return action if needed.
-    (when jcs--buffer-menu-return-delay
-      (jcs-buffer-menu-return))))
+    (when jcs--buffer-menu-return-delay (jcs-buffer-menu-return))))
 
 (defun jcs--buffer-menu--update-header-string ()
   "Update the header string."
