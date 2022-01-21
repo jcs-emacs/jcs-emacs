@@ -26,6 +26,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Installed new package `blamer`.
 * Installed new package `mwim`.
 * Change default `completion-styles` to `partial-completion`, so it goes easy on `company-mode` (132d4bc2de4f89cc37ebed2d8c9ff7617fcb26f4)
+* Fix `undo-tree` jumping dedicated window after kill (bbf04f799eeae8ceb7a7b8a891b459cebca0f2ec)
+* Use `flx` for minibuffer `completion-styles` (e8041b1b5e9d2dd440894530ab908cff7d7b0354)
 
 ## 8.0.0
 > Released Jan 6, 2022
