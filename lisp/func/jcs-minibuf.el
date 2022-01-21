@@ -29,9 +29,14 @@
   (with-current-buffer jcs-minibuf-buffer-name
     (add-hook 'window-size-change-functions #'jcs-minibuf--window-size-change nil t)))
 
+(defvar jcs-minibuf--old-completion-style nil
+  "Different completion style when completing using minbuffer.")
+
 (jcs-add-hook 'minibuffer-setup-hook
   (jcs-gc-cons-threshold-speed-up t)  ; Avoid GCs while using `vertico'
-  (setq jcs-minibuf-enabled-p t)
+  (setq jcs-minibuf-enabled-p t
+        jcs-minibuf--old-completion-style completion-styles
+        completion-styles '(flx))
   (jcs-dark-blue-mode-line)
   (jcs-echo-area--init)
   (jcs-minibuf--init)
@@ -39,7 +44,8 @@
 
 (jcs-add-hook 'minibuffer-exit-hook
   (jcs-reload-active-mode)
-  (setq jcs-minibuf-enabled-p nil)
+  (setq jcs-minibuf-enabled-p nil
+        completion-styles jcs-minibuf--old-completion-style)
   (jcs-dashboard-refresh-buffer)
   (garbage-collect)  ; Restore GC
   (jcs-gc-cons-threshold-speed-up nil))
