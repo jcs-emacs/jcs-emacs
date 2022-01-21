@@ -243,7 +243,7 @@ OW is the other window flag."
       (jcs-save-window-excursion
         (let ((dashboard-ls-path (jcs-last-default-directory)))
           (when (or (not (active-minibuffer-window))
-                    (and (not jcs-minibuf-enabled-p) (not (jcs-minibuf-prompt-p))))
+                    (not (jcs-minibuf-prompt-p)))
             (save-window-excursion (dashboard-refresh-buffer))))))))
 
 (defun jcs-dashboard-safe-refresh-buffer (&optional force)
