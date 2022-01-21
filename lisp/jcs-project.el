@@ -127,7 +127,7 @@ If optional argument DIR is nil, use variable `default-directory' instead."
 ;; XXX Default `flx' doesn't work, we use `flex' instead
 (advice-add 'project-find-file-in :around
             (lambda (fnc &rest args)
-              (let ((completion-styles '(flex))) (apply fnc args))))
+              (let ((jcs-inhibit-change-completion-styles t)) (apply fnc args))))
 
 (provide 'jcs-project)
 ;;; jcs-project.el ends here
