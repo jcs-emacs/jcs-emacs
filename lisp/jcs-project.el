@@ -120,14 +120,5 @@ If optional argument DIR is nil, use variable `default-directory' instead."
   "Return the branch name."
   (nth 2 (jcs-vc-status)))
 
-;;
-;; (@* "Registry" )
-;;
-
-;; XXX Default `flx' doesn't work, we use `flex' instead
-(advice-add 'project-find-file-in :around
-            (lambda (fnc &rest args)
-              (let ((jcs-inhibit-change-completion-styles t)) (apply fnc args))))
-
 (provide 'jcs-project)
 ;;; jcs-project.el ends here
