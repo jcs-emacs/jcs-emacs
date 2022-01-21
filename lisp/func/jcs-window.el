@@ -185,8 +185,7 @@ ALL-FRAMES."
      (lambda ()
        (push (jcs-buffer-name-or-buffer-file-name) buf-names)  ; Record as string!
        (push (point) pts)
-       (push (jcs-first-visible-line-in-window) f-lns))
-     nil t)
+       (push (jcs-first-visible-line-in-window) f-lns)))
     ;; Reverse the order to have the information order corresponding to the window
     ;; order correctly.
     (setq buf-names (reverse buf-names) pts (reverse pts) f-lns (reverse f-lns))
@@ -210,8 +209,7 @@ ALL-FRAMES."
        (if actual-buf (switch-to-buffer actual-buf) (find-file buf-name))
        (jcs-make-first-visible-line-to current-pt)
        (goto-char current-first-vs-line)
-       (setq win-cnt (1+ win-cnt)))
-     nil t)))
+       (setq win-cnt (1+ win-cnt))))))
 
 (provide 'jcs-window)
 ;;; jcs-window.el ends here
