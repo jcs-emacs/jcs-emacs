@@ -234,7 +234,7 @@
 
 ;;; Minibuffer
 (setq enable-recursive-minibuffers t
-      completion-styles '(flx)
+      completion-styles '(partial-completion)  ; easy on `company-mode'
       completion-category-defaults nil
       completion-ignored-extensions nil
       suggest-key-bindings nil)
