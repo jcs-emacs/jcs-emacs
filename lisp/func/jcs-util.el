@@ -23,10 +23,7 @@
 (defmacro jcs-with-gc-speed-up (&rest body)
   "Execute BODY with higher GC threshold."
   (declare (indent 0) (debug t))
-  `(progn
-     (jcs-gc-cons-threshold-speed-up t)
-     ,@body
-     (jcs-gc-cons-threshold-speed-up nil)))
+  `(progn (jcs-gc-cons-threshold-speed-up t) ,@body (jcs-gc-cons-threshold-speed-up nil)))
 
 (defmacro jcs-with-no-redisplay (&rest body)
   "Execute BODY without any redisplay execution."
@@ -54,19 +51,13 @@
 (defmacro jcs-save-scroll-conservatively (&rest body)
   "Execute BODY by saving value of variable `scroll-conservatively'."
   (declare (indent 0) (debug t))
-  `(progn
-     (jcs-scroll-conservatively-disable)
-     ,@body
-     (redisplay)
-     (jcs-scroll-conservatively-enable)))
+  `(progn (jcs-scroll-conservatively-disable) ,@body (redisplay)
+          (jcs-scroll-conservatively-enable)))
 
 (defmacro jcs-save-window-excursion (&rest body)
   "Execute BODY without touching window's layout/settings."
   (declare (indent 0) (debug t))
-  `(jcs-with-no-redisplay
-     (jcs-window-record-once)
-     ,@body
-     (jcs-window-restore-once)))
+  `(jcs-with-no-redisplay (jcs-window-record-once) ,@body (jcs-window-restore-once)))
 
 (defmacro jcs-try-run (repetitions &rest body)
   "Try execute BODY with REPETITIONS of times."
@@ -285,6 +276,37 @@ See function `jcs-string-compare-p' for argument TYPE."
 (defun jcs-funcall-fboundp (fnc &rest args)
   "Call FNC with ARGS if exists."
   (when (fboundp fnc) (if args (funcall fnc args) (funcall fnc))))
+
+;;
+;; (@* "Fuzzy" )
+;;
+
+(defun jcs-sort-candidates-by-function (candidates prefix fnc &optional flip)
+  "Sort CANDIDATES with PREFIX and FNC.
+
+If optional argument FLIP is non-nil, reverse query and pattern order."
+  (let ((scoring-table (ht-create)) scoring-keys scoring score)
+    (dolist (cand candidates)
+      (setq scoring (ignore-errors
+                      (if flip (funcall fnc prefix cand)
+                        (funcall fnc cand prefix)))
+            score (cond ((listp scoring) (nth 0 scoring))
+                        ((vectorp scoring) (aref scoring 0))
+                        ((numberp scoring) scoring)
+                        (t 0)))
+      (when score
+        ;; XXX ht causes unknown error on start, use regular hash table functions
+        ;; for now
+        (unless (gethash score scoring-table) (setf (gethash score scoring-table) nil))
+        (push cand (gethash score scoring-table))))
+    ;; Get all keys, and turn into a list.
+    (ht-map (lambda (score-key _) (push score-key scoring-keys)) scoring-table)
+    (setq scoring-keys (sort scoring-keys #'>)  ; Sort keys in order
+          candidates nil)  ; Clean up, and ready for final output
+    (dolist (key scoring-keys)
+      (let ((cands (ht-get scoring-table key)))
+        (setq candidates (append candidates cands)))))
+  candidates)
 
 ;;
 ;; (@* "Key" )
