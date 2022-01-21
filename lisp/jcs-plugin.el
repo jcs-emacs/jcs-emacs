@@ -557,13 +557,6 @@
   (setq most-used-words-display-type 'table
         most-used-words-word-display 100))
 
-(leaf modablist
-  :defer-config
-  (set-face-attribute 'modablist-select-face nil
-                      :box '(:line-width -1 :color "#65A7E2" :style nil))
-  (set-face-attribute 'modablist-insert-face nil :background "#565136"
-                      :box '(:line-width -1 :color "#65A7E2" :style nil)))
-
 (leaf multi-shell
   :init
   (setq multi-shell-prefer-shell-type 'shell))  ; Accept `shell' or `eshll'.
@@ -797,11 +790,7 @@
 
   (jcs-advice-add 'line-reminder-transfer-to-saved-lines :after
     ;; Refresh indicators for package `ts-fold'.
-    (ts-fold-indicators-refresh))
-
-  (set-face-attribute 'ts-fold-replacement-face nil
-                      :foreground "#808080"
-                      :box '(:line-width -1 :style 'pressed-button)))
+    (ts-fold-indicators-refresh)))
 
 (leaf treemacs
   :init
