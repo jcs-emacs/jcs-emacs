@@ -6,24 +6,19 @@
 ;; (@* "Minibuffer" )
 ;;
 
-(defvar jcs-inhibit-change-completion-styles nil
-  "Inhibit completion-styles being changed.")
-
 (defvar jcs-minibuf--old-completion-style nil
   "Different completion style when completing using minbuffer.")
 
 (jcs-add-hook 'minibuffer-setup-hook
   (jcs-gc-cons-threshold-speed-up t)  ; Avoid GCs while using `vertico'
-  (unless jcs-inhibit-change-completion-styles
-    (setq jcs-minibuf--old-completion-style completion-styles
-          completion-styles '(flx)))
+  (setq jcs-minibuf--old-completion-style completion-styles
+        completion-styles '(flx))
   (jcs-dark-blue-mode-line)
   (add-hook 'post-command-hook #'jcs-minibuffer--post-command nil t))
 
 (jcs-add-hook 'minibuffer-exit-hook
   (jcs-reload-active-mode)
-  (unless jcs-inhibit-change-completion-styles
-    (setq completion-styles jcs-minibuf--old-completion-style))
+  (setq completion-styles jcs-minibuf--old-completion-style)
   (jcs-dashboard-refresh-buffer)
   (garbage-collect)  ; Restore GC
   (jcs-gc-cons-threshold-speed-up nil))
