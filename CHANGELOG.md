@@ -25,6 +25,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Installed new package `flx-style` for `completion-styles`.
 * Installed new package `blamer`.
 * Installed new package `mwim`.
+* Change default `completion-styles` to `partial-completion`, so it goes easy on `company-mode` (132d4bc2de4f89cc37ebed2d8c9ff7617fcb26f4)
 
 ## 8.0.0
 > Released Jan 6, 2022
