@@ -187,7 +187,7 @@
     (call-interactively #'end-of-visual-line)
     ;; If before point is the same as the current point; we call regaulr
     ;; `end-of-line' function.
-    (when (= before-pt (point)) (call-interactively #'mwim-end-of-code-or-line))))
+    (when (= before-pt (point)) (call-interactively #'mwim-end-of-line-or-code))))
 
 (defun jcs-beginning-of-line ()
   "Goto the beginning of line."
@@ -198,7 +198,7 @@
 (defun jcs-end-of-line ()
   "Goto the end of line."
   (interactive)
-  (call-interactively (if truncate-lines #'mwim-end-of-code-or-line #'jcs-end-of-visual-line)))
+  (call-interactively (if truncate-lines #'mwim-end-of-line-or-code #'jcs-end-of-visual-line)))
 
 ;;
 ;; (@* "Navigating Blank Line" )
