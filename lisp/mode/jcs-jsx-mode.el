@@ -19,16 +19,6 @@
         ((string= sc "React Native") (jcs-insert-jsx-react-native-template))))
 
 ;;
-;; (@* "Faces" )
-;;
-
-(custom-set-faces
- '(rjsx-tag ((t (:foreground "#87CEFA"))))
- '(rjsx-attr ((t (:foreground "#EEDD82"))))
- '(rjsx-text ((t (:inherit default))))
- '(rjsx-tag-bracket-face ((t (:inherit 'web-mode-html-attr-name-face)))))
-
-;;
 ;; (@* "Templates" )
 ;;
 
