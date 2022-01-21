@@ -357,13 +357,6 @@
       ((kbd "M-K")     . buffer-menu)
       ((kbd "C-k C-s") . describe-bindings)
       ((kbd "M-s")     . jcs-scratch-buffer)
-      ;; Sort
-      ((kbd "M-1")     . jcs-buffer-menu-sort-by-visit)
-      ((kbd "M-2")     . jcs-buffer-menu-sort-by-buffer)
-      ((kbd "M-3")     . jcs-buffer-menu-sort-by-size)
-      ((kbd "M-4")     . jcs-buffer-menu-sort-by-time)
-      ((kbd "M-5")     . jcs-buffer-menu-sort-by-mode)
-      ((kbd "M-6")     . jcs-buffer-menu-sort-by-file)
       ;; Searching / Filtering
       ((kbd "<escape>") . (lambda () (interactive) (buffer-menu) (top-level)))
       ((kbd "<return>") . jcs-buffer-menu-return)))
