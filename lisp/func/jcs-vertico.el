@@ -82,7 +82,9 @@
         (base #'vertico-sort-history-length-alpha))
     (cond ((jcs-is-finding-file-p)
            (setq base #'vertico-sort-length-alpha
-                 input (if (string-suffix-p "/" input) "" (f-filename input)))))
+                 input (if (and (string-suffix-p "/" input) (jcs-directory-p input))
+                           ""
+                         (f-filename input)))))
     (if (string-empty-p (string-trim input)) (funcall base all)
       (jcs-sort-candidates-by-function all input #'flx-score))))
 
