@@ -79,7 +79,6 @@
   (face-remap-add-relative 'docstr-faces-type-face '(:inherit web-mode-block-face))
   (face-remap-add-relative 'docstr-faces-value-face '(:inherit web-mode-block-face))
   (face-remap-add-relative 'web-mode-block-string-face '(font-lock-string-face))
-  (face-remap-add-relative 'web-mode-html-attr-value-face '(jcs-web-mode-html-attr-value-face))
 
   (jcs-elec-pair-add '((?\' . ?\')))
   (jcs-elec-pair-add '((?\" . ?\")))
