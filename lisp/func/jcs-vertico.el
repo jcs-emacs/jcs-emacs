@@ -76,17 +76,32 @@
 ;; (@* "Sorting" )
 ;;
 
-(defun jcs-vertico-sort (all)
+(defun jcs-vertico--sort-M-x (all input)
+  "Doing M-x."
+  (when (string-empty-p (string-trim input))
+    (funcall #'vertico-sort-history-length-alpha all)))
+
+(defun jcs-vertico--sort-find-file (all input)
+  "Doing find file."
+  (when (string-empty-p (string-trim input))
+    (funcall #'vertico-sort-length-alpha all)))
+
+(defun jcs-vertico--sort-default (all input)
+  "Fallback default."
+  (when (string-empty-p (string-trim input)) all))
+
+(defun jcs-vertico--sort-function (all)
   "Sort candidates ALL."
-  (let ((input (minibuffer-contents))
-        (base #'vertico-sort-history-length-alpha))
-    (cond ((jcs-is-finding-file-p)
-           (setq base #'vertico-sort-length-alpha
-                 input (if (and (string-suffix-p "/" input) (jcs-directory-p input))
-                           ""
-                         (f-filename input)))))
-    (if (string-empty-p (string-trim input)) (funcall base all)
-      (jcs-sort-candidates-by-function all input #'flx-score))))
+  (let ((input (minibuffer-contents)))
+    (or (cond
+         ((jcs-M-x-p) (jcs-vertico--sort-M-x all input))
+         ((jcs-finding-file-p)
+          (setq input
+                (if (and (string-suffix-p "/" input) (jcs-directory-p input)) ""
+                  (f-filename input)))
+          (jcs-vertico--sort-find-file all input))
+         (t (jcs-vertico--sort-default all input)))
+        (jcs-sort-candidates-by-function all input #'flx-score))))
 
 ;;
 ;; (@* "Registry" )
@@ -97,7 +112,7 @@
 
 (jcs-add-hook 'jcs-minibuffer-post-command-hook
   (when vertico-mode
-    (cond ((jcs-is-finding-file-p)
+    (cond ((jcs-finding-file-p)
            (when (memq this-command jcs-ffap-commands)
              (let* ((start (point)) (end (line-end-position))
                     (file (buffer-substring-no-properties start end)))
