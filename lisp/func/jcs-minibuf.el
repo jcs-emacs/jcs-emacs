@@ -41,5 +41,17 @@
   "Return non-nil if current state is asking user for input."
   (string= (buffer-name) jcs-minibuf-buffer-name))
 
+(defun jcs-M-x-p ()
+  "Return non-nil if current minibuffer M-x."
+  (jcs-minibuf--compare-p "M-x" 'regex))
+
+(defun jcs-finding-file-p ()
+  "Return non-nil if current minibuffer finding file."
+  (jcs-minibuf--compare-p "Find file" 'regex))
+
+(defun jcs-renaming-p ()
+  "Return non-nil if current minibuffer renaming."
+  (jcs-minibuf--compare-p "New name:" 'regex))
+
 (provide 'jcs-minibuf)
 ;;; jcs-minibuf.el ends here
