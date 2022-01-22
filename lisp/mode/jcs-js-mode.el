@@ -9,7 +9,7 @@
 
 (defun jcs--js-to-jsx-mode (&optional force)
   "Switch from JavaScript mode to JSX mode, FORCE will ignore any conditions."
-  (let ((case-fold-search nil))
+  (let (case-fold-search)
     (when (or (and (memq major-mode jcs-javascript-modes)
                    (string-match-p "React" (buffer-string)))
               force)
