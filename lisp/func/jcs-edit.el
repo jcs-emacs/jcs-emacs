@@ -646,7 +646,7 @@ If optional argument CLEAN-LR is non-nil, remove all sign from `line-reminder'."
           (set-buffer-modified-p nil)
           (if (string= name new-file-name)
               (message "File name does not changed, '%s'" name)
-            (message "File '%s' successfully renamed to '%s'." name new-file-name)))))))
+            (message "Rename file '%s' to '%s'" name new-file-name)))))))
 
 ;;
 ;; (@* "Kill Buffer" )
