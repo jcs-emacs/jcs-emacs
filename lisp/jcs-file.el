@@ -94,10 +94,8 @@ Argument TITLE is a string used when there are more than one matches."
     (when (zerop target-files-len)
       (user-error "[ERROR] No file '%s' found in the current directory" filename))
     (if (= target-files-len 1)
-        ;; If only one file found, just get that file.
-        (nth 0 target-files)
-      ;; Get the selected file.
-      (completing-read title target-files))))
+        (nth 0 target-files)  ; If only one file found, just get that file.
+      (completing-read title target-files))))  ; Get the selected file.
 
 (defun jcs-select-find-file-in-project (filename title)
   "Find FILENAME in current project.
@@ -118,27 +116,23 @@ Argument TITLE is a string used when there are more than one matches."
     (unless target-files-len
       (user-error "[ERROR] No file '%s' found in project, make sure the project root exists" filename))
     (if (= target-files-len 1)
-        ;; If only one file found, just get that file.
-        (nth 0 target-files)
-      ;; Get the selected file.
-      (completing-read title target-files))))
+        (nth 0 target-files)  ; If only one file found, just get that file.
+      (completing-read title target-files))))  ; Get the selected file.
 
 (defun jcs-find-file-in-project-and-current-dir (filename title)
   "Find the file from project root, if not found find it in current directory.
 Return full path if found, else error prompt.  FILENAME to search in project
 or current directory.  TITLE search uses regexp, meaning it could found
 multiple files at a time.  We need a title to present which file to select."
-  (let ((filepath
-         (or (ignore-errors (jcs-select-find-file-current-dir filename title))
-             (ignore-errors (jcs-select-find-file-in-project filename title)))))
-    (unless filepath
-      (user-error
-       (concat "[ERROR] Can't find file '%s' in the project or current directory "
-               ", make sure the project root exists or the '%s' file exists in the "
-               "current directory")
-       filename
-       filename))
-    filepath))
+  (if-let ((filepath
+            (or (ignore-errors (jcs-select-find-file-current-dir filename title))
+                (ignore-errors (jcs-select-find-file-in-project filename title)))))
+      filepath
+    (user-error
+     (concat "[ERROR] Can't find file '%s' in the project or current directory "
+             ", make sure the project root exists or the '%s' file exists in the "
+             "current directory")
+     filename filename)))
 
 ;;
 ;; (@* "Path" )
@@ -256,66 +250,69 @@ If optional argument WITH-EXT is non-nil; return path with extension."
 ;;   * `jcs-find-corresponding-file-other-window'
 ;;=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+(defun jcs-file--corresponding-filename ()
+  "Return corresponding file."
+  (let ((name (f-filename (file-name-sans-extension (buffer-name))))
+        (ext (file-name-extension (buffer-name)))
+        (fnc (cl-case major-mode
+               ((or c-mode c++-mode) #'jcs-cc-corresponding-file)
+               (`objc-mode #'jcs-objc-corresponding-file)
+               ((or csharp-mode  ; For ASP.NET -> [file-name].aspx.cs
+                    web-mode)    ; For ASP.NET -> [file-name].aspx
+                #'jcs-web-corresponding-file))))
+    (when fnc (funcall fnc name ext))))
+
 (defun jcs-find-corresponding-file (&optional ow)
   "Find the file that corresponds to this one.
 If OW is non-nil, open it in other window"
   (interactive)
   (jcs-require '(subr-x f))
-  (if-let* ((corresponding-file-name
-             ;; NOTE: Add your corresponding file here.
-             (cl-case major-mode
-               ((or c-mode c++-mode) (jcs-cc-corresponding-file))
-               (`objc-mode (jcs-objc-corresponding-file))
-               ((or csharp-mode  ; For ASP.NET -> [file-name].aspx.cs
-                    web-mode)    ; For ASP.NET -> [file-name].aspx
-                (jcs-web-corresponding-file))))
+  (if-let* ((corresponding-name (jcs-file--corresponding-filename))
             (found-fp (jcs-find-file-in-project-and-current-dir
-                       corresponding-file-name "Corresponding file: "))
-            (fnc (if ow #'jcs-find-file-other-window #'find-file)))
+                       corresponding-name "Corresponding file: "))
+            (fnc (if ow #'find-file-other-window #'find-file)))
       (funcall fnc found-fp)
     (user-error "[WARNING] Unable to find a corresponding file")))
 
 (defun jcs-find-corresponding-file-other-window ()
   "Find the file that corresponds to this one."
-  (interactive)
-  (jcs-find-corresponding-file t))
+  (interactive) (jcs-find-corresponding-file t))
 
 ;;; C/C++
 
-(defun jcs-cc-corresponding-file ()
+(defun jcs-cc-corresponding-file (name ext)
   "Find the corresponding file for C/C++ file."
-  (let ((name (f-filename (file-name-sans-extension (buffer-name))))
-        (ext (file-name-extension (buffer-name))))
-    (concat
-     name "."
-     (pcase ext
-       ("hin" "cin")
-       ("hpp" "cpp")
-       ("h" (if (file-exists-p (concat name ".c")) "c" "cpp"))
-       ("cin" "hin")
-       ((or "cpp" "c") "h")))))
+  (concat
+   name "."
+   (pcase ext
+     ("hin" "cin")
+     ("hpp" "cpp")
+     ("h" (if (file-exists-p (concat name ".c")) "c" "cpp"))
+     ("cin" "hin")
+     ((or "cpp" "c") "h"))
+   "$"))
 
 ;;; Objective-C
 
-(defun jcs-objc-corresponding-file ()
+(defun jcs-objc-corresponding-file (name ext)
   "Find the corresponding file for Objective-C related file."
-  (let ((name (file-name-sans-extension buffer-file-name))
-        (ext (file-name-extension (buffer-name))))
-    (concat
-     name "."
-     (pcase ext
-       ("m" "h")
-       (_ (jcs-cc-corresponding-file))))))
+  (concat
+   name "."
+   (pcase ext
+     ("m" "h")
+     (_ (jcs-cc-corresponding-file)))
+   "$"))
 
 ;;; Web
 
-(defun jcs-web-corresponding-file ()
+(defun jcs-web-corresponding-file (name &rest _)
   "Find the corresponding file for WEB related file."
-  (let ((name (file-name-sans-extension buffer-file-name)))
-    (cond ((string-match "\\.aspx.cs" buffer-file-name) name)
-          ((string-match "\\.aspx" buffer-file-name) (concat name ".aspx.cs"))
-          ;; NOTE: If is ASP.NET, just open the current file itself
-          (t buffer-file-name))))
+  (concat
+   (cond ((string-match "\\.aspx.cs" buffer-file-name) name)
+         ((string-match "\\.aspx" buffer-file-name) (concat name ".aspx.cs"))
+         ;; NOTE: If is ASP.NET, just open the current file itself
+         (t buffer-file-name))
+   "$"))
 
 (provide 'jcs-file)
 ;;; jcs-file.el ends here
