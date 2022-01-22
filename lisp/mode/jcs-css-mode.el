@@ -49,7 +49,7 @@
 
   ;; Eemmet
   (jcs-key emmet-mode-keymap
-    `((kbd "C-<return>") . jcs-emmet-expand-line)))
+    `(((kbd "C-<return>") . jcs-emmet-expand-line))))
 
 (provide 'jcs-css-mode)
 ;;; jcs-css-mode.el ends here
