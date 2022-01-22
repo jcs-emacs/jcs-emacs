@@ -569,64 +569,14 @@ If optional argument CLEAN-LR is non-nil, remove all sign from `line-reminder'."
 ;; (@* "Find file" )
 ;;
 
-(defun jcs-is-finding-file-p ()
-  "Return non-nil if current minibuffer finding file."
-  (jcs-minibuffer-do-stuff (lambda () (string-match-p "Find file" (buffer-string)))))
-
-(defvar jcs--same-file--prev-window-data nil
-  "Record the previous window config for going back to original state.")
-
-(defun jcs--same-file--set-window-config (cur-ln col first-vl)
-  "Set window config by CUR-LN, COL and FIRST-VL."
-  (jcs-goto-line cur-ln)
-  (jcs-recenter-top-bottom 'top)
-  (scroll-down-line (- cur-ln first-vl))
-  (move-to-column col))
-
 (defun jcs-same-file-other-window ()
   "This will allow us open the same file in another window."
   (interactive)
-  (let* ((cur-buf (current-buffer))
-         (cur-ln (line-number-at-pos nil t))
-         (first-vl (jcs-first-visible-line-in-window))
-         (col (current-column))
-         same-buf-p)
-    (save-selected-window
-      (select-window (get-largest-window nil nil t))
-      (if (eq cur-buf (current-buffer)) (setq same-buf-p t)
-        (switch-to-buffer cur-buf))
-      (if (not (eq last-command 'jcs-same-file-other-window))
-          (progn
-            (setq jcs--same-file--prev-window-data nil)
-            (unless same-buf-p
-              ;; NOTE: To exact same window config from current window
-              (jcs--same-file--set-window-config cur-ln col first-vl)))
-        (if jcs--same-file--prev-window-data
-            (progn
-              ;; NOTE: To original window config
-              (setq cur-ln (plist-get jcs--same-file--prev-window-data :line-number)
-                    first-vl (plist-get jcs--same-file--prev-window-data :first-vl)
-                    col (plist-get jcs--same-file--prev-window-data :column))
-              (jcs--same-file--set-window-config cur-ln col first-vl)
-              (setq jcs--same-file--prev-window-data nil))
-          ;; NOTE: To exact same window config from current window
-          (setq jcs--same-file--prev-window-data
-                (list :line-number (line-number-at-pos nil t)
-                      :column (current-column)
-                      :first-vl (jcs-first-visible-line-in-window)))
-          (jcs--same-file--set-window-config cur-ln col first-vl))))))
-
-(defun jcs-find-file-other-window (fp)
-  "Find FP with largest window."
-  (find-file fp) (jcs-same-file-other-window) (bury-buffer))
+  (switch-to-buffer-other-window (current-buffer)))
 
 ;;
 ;; (@* "Rename file" )
 ;;
-
-(defun jcs-is-renaming-p ()
-  "Check if current minibuffer renaming."
-  (jcs-minibuffer-do-stuff (lambda () (string-match-p "New name:" (buffer-string)))))
 
 (defun jcs-rename-current-buffer-file ()
   "Renames current buffer and file it is visiting."
