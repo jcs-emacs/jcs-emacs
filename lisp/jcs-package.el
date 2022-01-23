@@ -222,7 +222,7 @@
   "List of packages this config needs.")
 
 (setq package-pinned-packages
-      '((company-box . "jcs")))
+      '((company-box . "jcs-elpa")))
 
 ;;
 ;; (@* "Util" )
