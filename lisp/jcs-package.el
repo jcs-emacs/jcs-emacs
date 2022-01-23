@@ -8,7 +8,7 @@
 (setq package-archives
       '(("gnu" . "http://elpa.gnu.org/packages/")
         ("melpa" . "http://melpa.org/packages/")
-        ("jcs-elpa" . "https://jcs-emacs.github.io/jcs-elpa/elpa/")))
+        ("jcs-elpa" . "https://jcs-emacs.github.io/jcs-elpa/packages/")))
 
 (setq package-enable-at-startup nil  ; To avoid initializing twice
       package-check-signature nil)
