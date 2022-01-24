@@ -95,9 +95,9 @@
             base (jcs-vertico--sort-file-directory input all))))
     ;; Final output
     (if (string-empty-p input)  ; Empty, return raw
-        (cond ((functionp base) (funcall base all))
-              ((listp base) base)
-              (t all))
+        (if (null base) all
+          (cond ((functionp base) (funcall base all))
+                ((listp base) base)))
       ;; Return fuzzy order
       (jcs-sort-candidates-by-function all input #'flx-score))))
 
