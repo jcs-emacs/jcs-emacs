@@ -28,8 +28,7 @@
 
 (defun jcs-vertico--cd (path)
   "Move to PATH."
-  (delete-minibuffer-contents)
-  (insert path))
+  (delete-minibuffer-contents) (insert path))
 
 ;;
 ;; (@* "Functions" )
