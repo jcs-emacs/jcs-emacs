@@ -76,32 +76,31 @@
 ;; (@* "Sorting" )
 ;;
 
-(defun jcs-vertico--sort-M-x (all input)
-  "Doing M-x."
-  (when (string-empty-p (string-trim input))
-    (funcall #'vertico-sort-history-length-alpha all)))
-
-(defun jcs-vertico--sort-find-file (all input)
-  "Doing find file."
-  (when (string-empty-p (string-trim input))
-    (funcall #'vertico-sort-length-alpha all)))
-
-(defun jcs-vertico--sort-default (all input)
-  "Fallback default."
-  (when (string-empty-p (string-trim input)) all))
+(defun jcs-vertico--sort-file-directory (input all)
+  "Sort directory on top."
+  (if (string-empty-p input)
+      (sort (sort all #'string-lessp)
+            (lambda (var1 var2)
+              (and (string-suffix-p "/" var1)
+                   (not (string-suffix-p "/" var2)))))
+    #'vertico-sort-length-alpha))
 
 (defun jcs-vertico--sort-function (all)
   "Sort candidates ALL."
-  (let ((input (minibuffer-contents)))
-    (or (cond
-         ((jcs-M-x-p) (jcs-vertico--sort-M-x all input))
-         ((jcs-finding-file-p)
-          (setq input
-                (if (and (string-suffix-p "/" input) (jcs-directory-p input)) ""
-                  (f-filename input)))
-          (jcs-vertico--sort-find-file all input))
-         (t (jcs-vertico--sort-default all input)))
-        (jcs-sort-candidates-by-function all input #'flx-score))))
+  (let ((input (minibuffer-contents)) base)
+    (cond
+     ((jcs-M-x-p) (setq base #'vertico-sort-history-length-alpha))
+     ((jcs-finding-file-p)
+      (setq input (if (and (string-suffix-p "/" input) (jcs-directory-p input)) ""
+                    (f-filename input))
+            base (jcs-vertico--sort-file-directory input all))))
+    ;; Final output
+    (if (string-empty-p input)  ; Empty, return raw
+        (cond ((functionp base) (funcall base all))
+              ((listp base) base)
+              (t all))
+      ;; Return fuzzy order
+      (jcs-sort-candidates-by-function all input #'flx-score))))
 
 ;;
 ;; (@* "Registry" )
