@@ -224,9 +224,6 @@ OW is the other window flag."
   (interactive)
   (jcs-dashboard t))
 
-(defvar jcs-dashboard--force-refresh-p nil
-  "Force refresh dashboard buffer when non-nil.")
-
 (defvar jcs-dashboard--refreshing-p nil
   "Flag to check if current dashboard refresing.")
 
@@ -236,15 +233,13 @@ OW is the other window flag."
 (defun jcs-dashboard-refresh-buffer ()
   "Refresh dashboard buffer."
   (interactive)
-  (when (or (not after-init-time)
-            (jcs-buffer-shown-p dashboard-buffer-name 'strict)
-            jcs-dashboard--force-refresh-p)
-    (jcs-mute-apply
-      (jcs-save-window-excursion
-        (let ((dashboard-ls-path (jcs-last-default-directory)))
-          (when (or (not (active-minibuffer-window))
-                    (not (jcs-minibuf-prompt-p)))
-            (save-window-excursion (dashboard-refresh-buffer))))))))
+  (when (and (or (not after-init-time)
+                 (jcs-buffer-shown-p dashboard-buffer-name 'strict))
+             (not (active-minibuffer-window)))
+    (let ((dashboard-ls-path (jcs-last-default-directory)))
+      (jcs-mute-apply
+        (jcs-save-window-excursion
+          (save-window-excursion (dashboard-refresh-buffer)))))))
 
 (defun jcs-dashboard-safe-refresh-buffer (&optional force)
   "Safely refresh the dashboard buffer if needed.
@@ -267,9 +262,10 @@ If optional argument FORCE is non-nil, force refresh it."
   "Return banner path."
   (concat
    user-emacs-directory
+   "banners/"
    (cond ((display-graphic-p)
-          (if (jcs-light-theme-p) "banners/sink_black.png" "banners/sink_white.png"))
-         (t "banners/sink.txt"))))
+          (if (jcs-light-theme-p) "sink_black.png" "sink_white.png"))
+         (t "sink.txt"))))
 
 ;;
 ;; (@* "ElDoc" )
@@ -277,8 +273,7 @@ If optional argument FORCE is non-nil, force refresh it."
 
 (defun jcs-eldoc-message-now () "Show eldoc message now." (interactive))
 
-(defun jcs-eldoc--message-command-p (command)
-  "Advice overwrite `eldoc--message-command-p' COMMAND."
+(jcs-advice-add 'eldoc--message-command-p :override
   ;; One can also loop through `eldoc-message-commands' and empty it out
   (memq command
         '(jcs-eldoc-message-now
@@ -286,14 +281,13 @@ If optional argument FORCE is non-nil, force refresh it."
           jcs-real-space jcs-smart-space
           jcs-real-backspace jcs-smart-backspace
           previous-line next-line
-          jcs-smart-indent-up jcs-smart-indent-down
+          jcs-smart-previous-line jcs-smart-next-line
           jcs-py-indent-up jcs-py-indent-down
           left-char right-char
           jcs-smart-forward-word jcs-smart-backward-word
           jcs-backward-word-capital jcs-forward-word-capital
           beginning-of-line end-of-line
           jcs-beginning-of-line jcs-end-of-line)))
-(advice-add 'eldoc--message-command-p :override #'jcs-eldoc--message-command-p)
 
 ;;
 ;; (@* "Electric Pair" )

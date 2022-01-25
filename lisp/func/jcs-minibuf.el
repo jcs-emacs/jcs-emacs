@@ -34,13 +34,6 @@
 ;; (@* "Util" )
 ;;
 
-(defconst jcs-minibuf-buffer-name " *Minibuf-1*"
-  "Name of the minibuffer buffer.")
-
-(defun jcs-minibuf-prompt-p ()
-  "Return non-nil if current state is asking user for input."
-  (string= (buffer-name) jcs-minibuf-buffer-name))
-
 (defun jcs-M-x-p ()
   "Return non-nil if current minibuffer M-x."
   (jcs-minibuf--compare-p "M-x" 'regex))

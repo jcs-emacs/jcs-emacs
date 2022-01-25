@@ -173,43 +173,50 @@ ALL-FRAMES."
 ;;
 
 (defvar jcs-window--record-buffer-names nil "Record all windows' buffer.")
-(defvar jcs-window--record-points nil "Record all windows' point.")
+(defvar jcs-window--record-line-numbers nil "Record all windows' line numbers.")
+(defvar jcs-window--record-columns nil "Record all windows' column.")
 (defvar jcs-window--record-first-visible-lines nil
   "Record all windows' first visible line.")
 
 (defun jcs-window-record-once ()
   "Record windows status once."
-  (let (buf-names pts f-lns)
+  (let (buf-names lns cols f-lns)
     ;; Record down all the window information with the same buffer opened.
     (jcs-walk-windows
      (lambda ()
        (push (jcs-buffer-name-or-buffer-file-name) buf-names)  ; Record as string!
-       (push (point) pts)
+       (push (line-number-at-pos) lns)
+       (push (current-column) cols)
        (push (jcs-first-visible-line-in-window) f-lns)))
     ;; Reverse the order to have the information order corresponding to the window
     ;; order correctly.
-    (setq buf-names (reverse buf-names) pts (reverse pts) f-lns (reverse f-lns))
+    (setq buf-names (reverse buf-names) f-lns (reverse f-lns)
+          lns (reverse lns) cols (reverse cols))
     (push buf-names jcs-window--record-buffer-names)
-    (push pts jcs-window--record-points)
+    (push lns jcs-window--record-line-numbers)
+    (push cols jcs-window--record-columns)
     (push f-lns jcs-window--record-first-visible-lines)))
 
 (defun jcs-window-restore-once ()
   "Restore windows status once."
-  (let* ((buf-names (pop jcs-window--record-buffer-names)) (pts (pop jcs-window--record-points))
-         (f-lns (pop jcs-window--record-first-visible-lines))
-         (win-cnt 0) buf-name (current-pt -1) (current-first-vs-line -1)
-         actual-buf)
+  (let ((buf-names (pop jcs-window--record-buffer-names))
+        (lns (pop jcs-window--record-line-numbers))
+        (cols (pop jcs-window--record-columns))
+        (f-lns (pop jcs-window--record-first-visible-lines))
+        (win-cnt 0))
     ;; Restore the window information after, including opening the same buffer.
     (jcs-walk-windows
      (lambda ()
-       (setq buf-name (nth win-cnt buf-names)
-             current-pt (nth win-cnt f-lns)
-             current-first-vs-line (nth win-cnt pts)
-             actual-buf (jcs-get-buffer-by-path buf-name))
-       (if actual-buf (switch-to-buffer actual-buf) (find-file buf-name))
-       (jcs-make-first-visible-line-to current-pt)
-       (goto-char current-first-vs-line)
-       (setq win-cnt (1+ win-cnt))))))
+       (let* ((buf-name (nth win-cnt buf-names))
+              (current-ln (nth win-cnt lns))
+              (current-col (nth win-cnt cols))
+              (current-first-vs-line (nth win-cnt f-lns))
+              (actual-buf (jcs-get-buffer-by-path buf-name)))
+         (if actual-buf (switch-to-buffer actual-buf) (find-file buf-name))
+         (jcs-make-first-visible-line-to current-first-vs-line)
+         (jcs-goto-line current-ln)
+         (move-to-column current-col)
+         (cl-incf win-cnt))))))
 
 (provide 'jcs-window)
 ;;; jcs-window.el ends here

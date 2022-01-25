@@ -26,7 +26,7 @@
       (when close-tag-found
         (newline-and-indent)
         (newline-and-indent)
-        (jcs-smart-indent-up)
+        (jcs-smart-previous-line)
         (setq did-ret-key t)))
 
     (unless did-ret-key
