@@ -217,6 +217,7 @@
     web-mode
     which-key
     yaml-mode
+    yarn-mode
     yascroll
     yasnippet-snippets)
   "List of packages this config needs.")
