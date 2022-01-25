@@ -273,7 +273,8 @@ If optional argument FORCE is non-nil, force refresh it."
 
 (defun jcs-eldoc-message-now () "Show eldoc message now." (interactive))
 
-(jcs-advice-add 'eldoc--message-command-p :override
+(defun jcs-eldoc--message-command-p (command)
+  "Advice overwrite `eldoc--message-command-p' COMMAND."
   ;; One can also loop through `eldoc-message-commands' and empty it out
   (memq command
         '(jcs-eldoc-message-now
@@ -288,6 +289,7 @@ If optional argument FORCE is non-nil, force refresh it."
           jcs-backward-word-capital jcs-forward-word-capital
           beginning-of-line end-of-line
           jcs-beginning-of-line jcs-end-of-line)))
+(advice-add 'eldoc--message-command-p :override #'jcs-eldoc--message-command-p)
 
 ;;
 ;; (@* "Electric Pair" )
