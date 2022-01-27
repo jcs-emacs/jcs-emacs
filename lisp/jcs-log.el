@@ -97,11 +97,11 @@ Optional argument VAL-DEL is string that point to item."
   (when clean
     (jcs-jump-to-buffer-windows
      jcs-message-buffer-name
-     :success #'jcs-message-erase-buffer-stay
+     :success #'jcs-message-erase-buffer
      :error (lambda ()
               (save-selected-window
                 (jcs-message-buffer-other-window)
-                (jcs-message-erase-buffer-stay))))))
+                (jcs-message-erase-buffer))))))
 
 (defun jcs-log--after ()
   "Action do after doing log."

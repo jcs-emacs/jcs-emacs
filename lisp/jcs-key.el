@@ -340,8 +340,8 @@
       ((kbd "M-<right>")))))
 
 (jcs-key messages-buffer-mode-map
-  `(("\ek" . jcs-message-erase-buffer)
-    ("\eK" . jcs-message-erase-buffer-stay)))
+  `(("\ek" . jcs-message-maybe-kill-this-buffer)
+    ("\eK" . jcs-message-erase-buffer)))
 
 ;;; Auto Completion
 (with-eval-after-load 'company

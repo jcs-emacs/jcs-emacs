@@ -85,20 +85,22 @@
   (interactive)
   (jcs-switch-to-buffer-other-window jcs-message-buffer-name))
 
-(defun jcs-message-erase-buffer ()
+(defun jcs-message-maybe-kill-this-buffer ()
   "Erase the *Messages* buffer."
   (interactive)
-  (let ((is-killed (jcs-maybe-kill-this-buffer)))
-    ;; Message one message to retrieve `*Message*' buffer prepare for next use.
-    ;; Or else it some operation might prompt some issue that needed `*Message*'
-    ;; buffer to be exists.
-    (when is-killed (message "Retrieving %s buffer.." jcs-message-buffer-name))))
+  ;; Message one message to retrieve `*Message*' buffer prepare for next use.
+  ;; Or else it some operation might prompt some issue that needed `*Message*'
+  ;; buffer to be exists.
+  (when (jcs-maybe-kill-this-buffer)
+    (message ".") (jcs-message-erase-buffer)))
 
-(defun jcs-message-erase-buffer-stay ()
+(defun jcs-message-erase-buffer ()
   "Reopen *Messages* buffer."
   (interactive)
-  (jcs-message-erase-buffer)
-  (switch-to-buffer jcs-message-buffer-name))
+  (with-current-buffer jcs-message-buffer-name
+    (let (buffer-read-only)
+      (erase-buffer)
+      (insert (format "Retrieving %s buffer..\n" jcs-message-buffer-name)))))
 
 ;;
 ;; (@* "*scratch*" )
