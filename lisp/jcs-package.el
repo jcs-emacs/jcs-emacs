@@ -429,13 +429,9 @@
 (advice-add 'package-install :around #'jcs--package-install--advice-around)
 (advice-add 'package-install-from-buffer :around #'jcs--package-install--advice-around)
 
-(defvar jcs-package--install-on-start-up nil
-  "Return non-nil if installation is occurred on start-up.")
-
 (defun jcs-package-install (pkg)
   "Install PKG package."
   (unless (package-installed-p pkg)
-    (setq jcs-package--install-on-start-up t)
     ;; Don't run `package-refresh-contents' if you don't need to install
     ;; packages on startup.
     (package-refresh-contents)
@@ -445,8 +441,8 @@
 (defun jcs-ensure-package-installed (packages)
   "Assure every PACKAGES is installed."
   (dolist (pkg packages) (jcs-package-install pkg))
-  ;; STUDY: Not sure if you need this?
-  (when jcs-package--install-on-start-up
+  ;; Rebuild after done the installation
+  (when package-archive-contents
     (jcs-package-rebuild-dependency-list)
     (package-initialize)))
 
@@ -463,8 +459,7 @@ Argument WHERE is the alist of package information."
     (dolist (pkg (mapcar #'car package-alist))
       (let ((in-archive (jcs-package-version pkg package-archive-contents)))
         (when (and in-archive
-                   (version-list-< (jcs-package-version pkg package-alist)
-                                   in-archive))
+                   (version-list-< (jcs-package-version pkg package-alist) in-archive))
           (push (cadr (assq pkg package-archive-contents)) upgrades))))
     (if upgrades
         (when (yes-or-no-p
@@ -474,8 +469,8 @@ Argument WHERE is the alist of package information."
                        (mapconcat #'package-desc-full-name upgrades ", ")))
           (save-window-excursion
             (dolist (package-desc upgrades)
-              (let ((old-package (cadr (assq (package-desc-name package-desc)
-                                             package-alist))))
+              (let ((old-package
+                     (cadr (assq (package-desc-name package-desc) package-alist))))
                 (jcs-package-install package-desc)
                 (package-delete old-package))))
           (jcs-package-rebuild-dependency-list)
