@@ -9,6 +9,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 > Released N/A
 
 * Fix move file/directory with full path (f3f0c61deb7aa3cc1b437a104c767e10050a73ef)
+* Installed new package `nim-mode`.
+* Installed new package `shift-number`.
 
 ## 8.0.1
 > Released Jan 29, 2022
