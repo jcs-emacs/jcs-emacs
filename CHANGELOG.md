@@ -5,8 +5,13 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
-## 8.0.1 (Unreleased)
+## 8.0.2 (Unreleased)
 > Released N/A
+
+* N/A
+
+## 8.0.1
+> Released Jan 29, 2022
 
 * Hide PID from `lsp-mode` lighter.
 * Add shorten lighter capability for `lsp-mode`.
