@@ -256,18 +256,6 @@
       (unless (memq pkg full-pkgs) (push pkg unused-lst)))
     (cl-remove 'emacs (reverse unused-lst))))
 
-(defun jcs-package--add-selected-packages (pkg-name)
-  "Add PKG-NAME to the selected package list."
-  (unless (memq pkg-name package-selected-packages)
-    (jcs-mute-apply
-      (package--save-selected-packages (cons pkg-name package-selected-packages)))))
-
-(defun jcs-package--remove-selected-packages (pkg-name)
-  "Remove PKG-NAME from the selected package list."
-  (when (memq pkg-name package-selected-packages)
-    (jcs-mute-apply
-      (package--save-selected-packages (remove pkg-name package-selected-packages)))))
-
 (defun jcs-package---build-desc-by-archive (pkg archive)
   "Return package-desc by PKG and ARCHIVE."
   (cl-some
@@ -323,12 +311,6 @@
 ;; (@* "Dependency" )
 ;;
 
-(defvar jcs-package-rebuild-dependency-p t
-  "Flag to see if able to rebuild dependency graph at the moment.")
-
-(defvar jcs-package--need-rebuild-p nil
-  "Flag to see if we need to rebuild for the next command.")
-
 (defun jcs-package--filter-installed (lst)
   "Remove package from LST if not installed."
   (cl-remove-if-not (lambda (elm) (package-installed-p elm)) lst))
@@ -349,28 +331,26 @@
   (interactive)
   (require 'jcs-util) (require 'jcs-reporter)
   (package-initialize)
-  (if (not jcs-package-rebuild-dependency-p)
-      (setq jcs-package--need-rebuild-p t)
-    (jcs-process-reporter-start "Building dependency graph...")
-    (let ((new-selected-pkg (jcs-package--get-selected-packages))
-          (installed-list (jcs-package-installed-list)))
-      (dolist (pkg-name installed-list)
-        (if (package-installed-p pkg-name)
-            (when (jcs-package--package-do-rebuild pkg-name)
-              (jcs-process-reporter-update (format "Build for package `%s`" pkg-name))
-              (if (jcs-package--used-elsewhere-p pkg-name)
-                  (setq new-selected-pkg (remove pkg-name new-selected-pkg))
-                (push pkg-name new-selected-pkg)))
-          (setq new-selected-pkg (remove pkg-name new-selected-pkg))))
-      (delete-dups new-selected-pkg)
-      (setq new-selected-pkg (sort new-selected-pkg #'string-lessp))
-      (if (equal new-selected-pkg package-selected-packages)
-          (jcs-process-reporter-done "No need to update dependency graph")
-        (if after-init-time
-            (package--save-selected-packages new-selected-pkg)
-          (jcs-add-hook 'after-init-hook
-            (package--save-selected-packages new-selected-pkg)))
-        (jcs-process-reporter-done "Done rebuild dependency graph")))))
+  (jcs-process-reporter-start "Building dependency graph...")
+  (let ((new-selected-pkg (jcs-package--get-selected-packages))
+        (installed-list (jcs-package-installed-list)))
+    (dolist (pkg-name installed-list)
+      (if (package-installed-p pkg-name)
+          (when (jcs-package--package-do-rebuild pkg-name)
+            (jcs-process-reporter-update (format "Build for package `%s`" pkg-name))
+            (if (jcs-package--used-elsewhere-p pkg-name)
+                (setq new-selected-pkg (remove pkg-name new-selected-pkg))
+              (push pkg-name new-selected-pkg)))
+        (setq new-selected-pkg (remove pkg-name new-selected-pkg))))
+    (delete-dups new-selected-pkg)
+    (setq new-selected-pkg (sort new-selected-pkg #'string-lessp))
+    (if (equal new-selected-pkg package-selected-packages)
+        (jcs-process-reporter-done "No need to update dependency graph")
+      (if after-init-time
+          (package--save-selected-packages new-selected-pkg)
+        (jcs-add-hook 'after-init-hook
+          (package--save-selected-packages new-selected-pkg)))
+      (jcs-process-reporter-done "Done rebuild dependency graph"))))
 
 (defun jcs-package--menu-execute--advice-around (fnc &rest args)
   "Execution around function `package-menu-execute' with FNC and ARGS."
@@ -453,8 +433,10 @@ Argument WHERE is the alist of package information."
   (let ((pkg (cadr (assq name where))))
     (when pkg (package-desc-version pkg))))
 
-(defun jcs-package--upgrade-all-elpa ()
+(defun jcs-package-upgrade-all ()
   "Upgrade for archive packages."
+  (interactive)
+  (package-refresh-contents)
   (let (upgrades)
     (dolist (pkg (mapcar #'car package-alist))
       (let ((in-archive (jcs-package-version pkg package-archive-contents)))
@@ -473,44 +455,28 @@ Argument WHERE is the alist of package information."
                      (cadr (assq (package-desc-name package-desc) package-alist))))
                 (jcs-package-install package-desc)
                 (package-delete old-package))))
-          (jcs-package-rebuild-dependency-list)
-          (message "Done upgrading all packages"))
+          (message "Done upgrading all packages")
+          (jcs-package-rebuild-dependency-list))
       (message "All packages are up to date"))))
 
 (defun jcs-package-install-all ()
   "Install all needed packages from this configuration."
   (interactive)
-  (let (jcs-package-rebuild-dependency-p jcs-package--need-rebuild-p)
-    (jcs-ensure-package-installed jcs-package-install-list)
-    (when jcs-package--need-rebuild-p
-      (setq jcs-package-rebuild-dependency-p t)
-      (jcs-package-rebuild-dependency-list))))
-
-(defun jcs-package-upgrade-all ()
-  "Upgrade all packages automatically without showing *Packages* buffer."
-  (interactive)
-  (package-refresh-contents)
-  (let (jcs-package-rebuild-dependency-p jcs-package--need-rebuild-p)
-    (jcs-package--upgrade-all-elpa)
-    (if (not jcs-package--need-rebuild-p)
-        (jcs-sit-for)
-      (setq jcs-package-rebuild-dependency-p t)
-      (jcs-package-rebuild-dependency-list))))
+  (jcs-ensure-package-installed jcs-package-install-list))
 
 (defun jcs-package-autoremove ()
   "Remove packages that are no longer needed."
   (interactive)
-  (let ((removable (jcs-package-unused-packages)))
-    (if removable
-        (when (y-or-n-p
-               (format "Packages to delete: %d (%s), proceed? "
-                       (length removable)
-                       (mapconcat #'symbol-name removable ", ")))
-          (mapc (lambda (p)
-                  (package-delete (cadr (assq p package-alist)) t))
-                removable)
-          (jcs-package-rebuild-dependency-list))
-      (message "Nothing to autoremove"))))
+  (if-let ((removable (jcs-package-unused-packages)))
+      (when (y-or-n-p
+             (format "Packages to delete: %d (%s), proceed? "
+                     (length removable)
+                     (mapconcat #'symbol-name removable ", ")))
+        (mapc (lambda (p)
+                (package-delete (cadr (assq p package-alist)) t))
+              removable)
+        (jcs-package-rebuild-dependency-list))
+    (message "Nothing to autoremove")))
 
 (provide 'jcs-package)
 ;;; jcs-package.el ends here
