@@ -2,8 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'package)
-
 ;; NOTE: Add `GNU', `MELPA', `Marmalade', `ELPA' to repository list
 (setq package-archives
       '(("gnu" . "http://elpa.gnu.org/packages/")
@@ -13,8 +11,9 @@
 (setq package-enable-at-startup nil  ; To avoid initializing twice
       package-check-signature nil)
 
-;; initialize package.el
 (when (featurep 'esup-child) (package-initialize))
+
+(require 'package)
 
 ;;
 ;; (@* "Packages" )
@@ -165,6 +164,7 @@
     nasm-mode
     nginx-mode
     nhexl-mode
+    nim-mode
     nix-mode
     org-bullets
     organize-imports-java
@@ -188,6 +188,7 @@
     scrollable-quick-peek
     scss-mode
     shader-mode
+    shift-number
     show-eol
     smex
     sort-words
@@ -389,15 +390,15 @@
 
 (defun jcs--package-delete--advice-around (fnc &rest args)
   "Execution run around function `package-delete' with FNC and ARGS."
-  (let ((pkg-desc (nth 0 args)) result)
+  (let ((pkg-desc (nth 0 args)))
     (if jcs-package-use-real-delete-p
         (if-let ((result (ignore-errors (apply fnc args)))) result
-          (when-let ((pkg-dir (package-desc-dir pkg-desc))
-                     (pkg-name (package-desc-name pkg-desc)))
-            (when (jcs-move-path pkg-dir jcs-package--elpa-temp-dir)
-              (jcs-unmute-apply
-                (message "[INFO] Package `%s` in used, mark `%s` for later deletion"
-                         pkg-name (file-name-nondirectory pkg-dir))))))
+          (when-let* ((pkg-dir (package-desc-dir pkg-desc))
+                      (pkg-name (package-desc-name pkg-desc))
+                      ((jcs-move-path pkg-dir jcs-package--elpa-temp-dir)))
+            (jcs-unmute-apply
+              (message "[INFO] Package `%s` in used, mark `%s` for later deletion"
+                       pkg-name (file-name-nondirectory pkg-dir)))))
       (jcs-package-delete pkg-desc))))
 
 (advice-add 'package-delete :around #'jcs--package-delete--advice-around)
