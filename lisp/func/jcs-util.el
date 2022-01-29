@@ -1109,7 +1109,7 @@ If optional argument REVERSE is non-nil, LIST item and ELT argument."
 (defun jcs-move-path (path dest)
   "Move PATH to DEST."
   (jcs-create-path-if-not-exists dest)
-  (jcs-shell-execute (if jcs-is-windows "move" "mv") path dest))
+  (jcs-shell-execute (if jcs-is-windows "move" "mv") (expand-file-name path) (expand-file-name dest)))
 
 ;;
 ;; (@* "File" )
