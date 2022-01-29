@@ -63,7 +63,7 @@ BC : border color."
   (interactive)
   (if (jcs-light-theme-p)
       (jcs--set-mode-line-theme
-       '("#1C1C1C" "#BFBFBF") '("#000000" "#9A9A9A") "#161616")
+       '("#1C1C1C" "#E5E5E5") '("#000000" "#D7D7D7") "#161616")
     (jcs--set-mode-line-theme
      '("#D2D2D2" "#4D4D4D") '("#CCCCCC" "#333333") "#D2D2D2")))
 
