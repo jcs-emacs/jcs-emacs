@@ -116,13 +116,11 @@ Optional argument VAL-DEL is string that point to item."
 
 (defun jcs-sleep-for (&optional seconds milliseconds)
   "Wrap `sleep-for' function width default SECONDS and MILLISECONDS."
-  (unless seconds (setq seconds jcs-sleep-for-seconds))
-  (sleep-for seconds milliseconds))
+  (sleep-for (or seconds jcs-sleep-for-seconds) milliseconds))
 
 (defun jcs-sit-for (&optional seconds nodisp)
   "Wrap `sit-for' function with default SECONDS and NODISP."
-  (unless seconds (setq seconds jcs-sit-for-seconds))
-  (sit-for seconds nodisp))
+  (sit-for (or seconds jcs-sit-for-seconds) nodisp))
 
 ;;
 ;; (@* "Core" )
