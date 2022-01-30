@@ -8,7 +8,7 @@
 
 (defun jcs-hook--focus-in ()
   "When window is focus."
-  (jcs-safe-revert-all-buffers))
+  (jcs-funcall-fboundp #'jcs-safe-revert-all-buffers))
 
 (defun jcs-hook--focus-out ()
   "When window is not focus."
