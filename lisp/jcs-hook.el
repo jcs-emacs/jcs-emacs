@@ -6,14 +6,9 @@
 ;; (@* "Focus In/Out" )
 ;;
 
-(defvar jcs-foucs-after-first-p nil
-  "Flag to see if after first focus.")
-
 (defun jcs-hook--focus-in ()
   "When window is focus."
-  (if (not jcs-foucs-after-first-p)
-      (setq jcs-foucs-after-first-p t)
-    (jcs-safe-revert-all-buffers)))
+  (jcs-safe-revert-all-buffers))
 
 (defun jcs-hook--focus-out ()
   "When window is not focus."
