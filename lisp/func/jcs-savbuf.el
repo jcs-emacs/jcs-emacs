@@ -53,12 +53,12 @@ This variable is used to check if file are edited externally.")
 (defun jcs-untabify-save-buffer ()
   "Untabify file and save the buffer."
   (interactive)
-  (let ((jcs-on-save-tabify-type 'untabify)) (jcs--organize-save-buffer--do-valid)))
+  (let ((jcs-on-save-tabify-type 'untabify)) (jcs-save-buffer-default)))
 
 (defun jcs-tabify-save-buffer ()
   "Tabify file and save the buffer."
   (interactive)
-  (let ((jcs-on-save-tabify-type 'tabify)) (jcs--organize-save-buffer--do-valid)))
+  (let ((jcs-on-save-tabify-type 'tabify)) (jcs-save-buffer-default)))
 
 (defun jcs-save-buffer ()
   "Save buffer wrapper."
@@ -66,7 +66,7 @@ This variable is used to check if file are edited externally.")
   (let (jcs-on-save-tabify-type
         jcs-on-save-whitespace-cleanup-p
         jcs-on-save-end-trailing-lines-cleanup-p)
-    (jcs--organize-save-buffer--do-valid)))
+    (jcs-save-buffer-default)))
 
 (defun jcs--save-buffer-internal ()
   "Internal core functions for saving buffer."

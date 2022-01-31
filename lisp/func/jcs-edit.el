@@ -545,11 +545,6 @@ If optional argument CLEAN-LR is non-nil, remove all sign from `line-reminder'."
 ;; (@* "Save Buffer" )
 ;;
 
-(defun jcs-update-buffer-save-string ()
-  "Update variable `jcs-buffer-save-string-md5' once."
-  (require 'jcs-savbuf)
-  (setq jcs-buffer-save-string-md5 (md5 (buffer-string))))
-
 (defun jcs-reverse-tab-untab-save-buffer ()
   "Reverse tabify/untabify save."
   (interactive)
