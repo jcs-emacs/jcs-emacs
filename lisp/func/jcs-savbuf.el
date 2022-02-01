@@ -105,7 +105,6 @@ This variable is used to check if file are edited externally.")
   "Return save buffer function by mode."
   (cl-case major-mode
     (`snippet-mode #'jcs-save-buffer)
-    (`java-mode #'jcs-java-untabify-save-buffer)
     ((or cmake-mode makefile-mode) #'jcs-tabify-save-buffer)
     (`sh-mode #'jcs-sh-untabify-save-buffer)
     ((or conf-javaprop-mode ini-mode org-mode view-mode diff-mode)

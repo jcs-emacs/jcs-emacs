@@ -21,10 +21,9 @@ Argument TYPE can either be the following value.
 Argument TYPE see function `jcs-revert-buffer-p' description.
 
 Argument CLEAN-LR see function `jcs-revert-buffer-no-confirm' description."
-  (let ((buf-lst (jcs-virtual-buffer-list)))
-    (dolist (buf buf-lst)
-      (when (and (buffer-name buf) (jcs-revert-buffer-p buf type))
-        (with-current-buffer buf (jcs-revert-buffer-no-confirm clean-lr))))))
+  (dolist (buf (jcs-virtual-buffer-list))
+    (when (and (buffer-name buf) (jcs-revert-buffer-p buf type))
+      (with-current-buffer buf (jcs-revert-buffer-no-confirm clean-lr)))))
 
 (defun jcs-revert-all-valid-invalid-buffers (buf-lst type &optional clean-lr)
   "Revert all valid buffers.
@@ -32,13 +31,13 @@ Argument CLEAN-LR see function `jcs-revert-buffer-no-confirm' description."
 Argument TYPE see function `jcs-revert-buffer-p' description.
 
 Argument CLEAN-LR see function `jcs-revert-buffer-no-confirm' description."
-  (let (filename normal-buffer-p do-revert-p)
-    (dolist (buf buf-lst)
-      (setq filename (buffer-file-name buf)
-            normal-buffer-p (and filename
+  (dolist (buf buf-lst)
+    (let* ((filename (buffer-file-name buf))
+           (normal-buffer-p (and filename
                                  (not (buffer-modified-p buf))
                                  (not (jcs-current-file-empty-p buf))))
-      (when normal-buffer-p
+           do-revert-p)
+      (unless normal-buffer-p
         (if (file-readable-p filename) (setq do-revert-p t)
           (let (kill-buffer-query-functions) (kill-buffer buf))))
       (when (and (buffer-name buf) (or (jcs-revert-buffer-p buf type) do-revert-p))
@@ -67,33 +66,28 @@ This is called when only buffer changes externally and there are modification
 still in this editor.
 
 Optional argument INDEX is used to loop through BUFS."
-  (require 's)
-  (unless index (setq index 0))
-  (let* ((buf (nth index bufs)) path prompt answer)
-    (when buf
-      (setq path (buffer-file-name buf)
-            prompt (concat
-                    path "\n
+  (when-let*
+      ((index (or index 0)) (buf (nth index bufs))
+       (path (buffer-file-name buf))
+       (prompt (concat path "\n
 The file has unsaved changes inside this editor and has been changed externally.
-Do you want to reload it and lose the changes made in this source editor? ")
-            answer (completing-read prompt '("Yes" "Yes to All" "No" "No to All"))
-            index (1+ index))
-      (pcase answer
-        ("Yes"
-         (with-current-buffer buf (jcs-revert-buffer-no-confirm t))
-         (jcs-ask-revert-all bufs index))
-        ("Yes to All"
-         (jcs-revert-all-valid-buffers--internal)
-         (jcs-revert-all-invalid-buffers--internal))
-        ("No"
-         (jcs-ask-revert-all bufs index))
-        ;; Does nothing, exit.
-        ("No to All")))))
+Do you want to reload it and lose the changes made in this source editor? "))
+       (answer (completing-read prompt '("Yes" "Yes to All" "No" "No to All"))))
+    (setq index (1+ index))
+    (pcase answer
+      ("Yes"
+       (with-current-buffer buf (jcs-revert-buffer-no-confirm t))
+       (jcs-ask-revert-all bufs index))
+      ("Yes to All"
+       (jcs-revert-all-valid-buffers--internal)
+       (jcs-revert-all-invalid-buffers--internal))
+      ("No" (jcs-ask-revert-all bufs index))
+      ("No to All"))))  ; Does nothing, exit
 
 (defun jcs-buffer-edit-externally-p (&optional buf)
   "Return non-nil if BUF is edited externally."
-  (unless buf (setq buf (current-buffer)))
-  (let* ((path (buffer-file-name buf))
+  (let* ((buf (or buf (current-buffer)))
+         (path (buffer-file-name buf))
          (buffer-saved-md5 (with-current-buffer buf jcs-buffer-save-string-md5))
          (file-content (jcs-get-string-from-file path))
          (file-content-md5 (md5 file-content)))
