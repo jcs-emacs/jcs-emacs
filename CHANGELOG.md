@@ -15,6 +15,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add basic support for Julia programming language.
 * Installed new package `dotenv-mode`.
 * Installed new package `docker-compose-mode`.
+* Enabled `word-wrap-by-category` by default.
 
 ## 8.0.1
 > Released Jan 29, 2022
