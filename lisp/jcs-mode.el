@@ -270,23 +270,23 @@ Note this is opposite logic to the toggle mode function."
 (defconst jcs-mode-load-alist
   '(
 ;;; Others
-    (message                 . jcs-message-mode)
-    (re-builder              . jcs-re-builder-mode)
-    ((shell esh-mode)        . jcs-shell-mode)
-    (yasnippet               . jcs-snippet-mode)
+    (message          . jcs-message-mode)
+    (re-builder       . jcs-re-builder-mode)
+    ((shell esh-mode) . jcs-shell-mode)
+    (yasnippet        . jcs-snippet-mode)
 ;;; Languages
     (actionscript-mode)
     (ada-mode)
     (agda-mode)
     (applescript-mode)
-    ((masm-mode nasm-mode)   . jcs-asm-mode)
+    ((masm-mode nasm-mode) . jcs-asm-mode)
     (basic-mode)
-    (bat-mode                . jcs-batch-mode)
-    (cc-mode                 . (jcs-cc-mode
-                                jcs-c-mode
-                                jcs-c++-mode
-                                jcs-java-mode
-                                jcs-objc-mode))
+    (bat-mode              . jcs-batch-mode)
+    (cc-mode               . (jcs-cc-mode
+                              jcs-c-mode
+                              jcs-c++-mode
+                              jcs-java-mode
+                              jcs-objc-mode))
     (clojure-mode)
     (cmake-mode)
     (cobol-mode)
@@ -314,6 +314,7 @@ Note this is opposite logic to the toggle mode function."
     (jenkinsfile-mode)
     (js2-mode                . jcs-js-mode)
     (json-mode)
+    (julia-mode)
     (kotlin-mode)
     (less-css-mode)
     (lua-mode)
