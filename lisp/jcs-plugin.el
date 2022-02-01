@@ -269,11 +269,6 @@
   :init
   (setq dumb-jump-selector 'completing-read))
 
-(leaf elisp-def
-  :init
-  (defvar jcs-elisp-def-modes '(emacs-lisp-mode lisp-mode lisp-interaction-mode)
-    "List of `major-mode' that works with `elisp-def'."))
-
 (leaf elisp-demos
   :init
   (with-eval-after-load 'help-fns
