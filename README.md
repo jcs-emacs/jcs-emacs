@@ -221,7 +221,6 @@ I believe details make things better and make life smoother.
 * [*Switch Window*](./docs/features/switch-window) - Fast keys switch between windows quickly.
 * [*Tabify/Untabify Modes*](./docs/features/tabify-untabify-modes) - Tabify or Untabify the file depends on the mode you currently in.
 * [*Trim Trailing Whitespace*](./docs/features/trim-trailing-whitespace) - Remove trailing spaces and tabs automatically on save.
-* ~~[*Video Player*](./docs/features/video-player) - Play media on the top window.~~
 * [*Visualize Undo/Redo*](./docs/features/visualize-undo-redo) - Improved the user experience on undoing and redoing by showing the `undo-tree-visualizer` at the other window.
 * [*VS Curly Bracket*](./docs/features/vs-curly-bracket) - Visual Studio IDE like curly bracket implementation.
 * [*VS Multiple Terminal*](./docs/features/vs-multiple-terminal) - VSCode like multiple shell control.
