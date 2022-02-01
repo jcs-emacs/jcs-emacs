@@ -386,21 +386,10 @@
       ((kbd "S-<down>") . scrollable-quick-peek-scroll-down)
       ((kbd "S-<up>")   . scrollable-quick-peek-scroll-up))))
 
-;;; ESUP
-(with-eval-after-load 'esup
-  (jcs-key esup-mode-map
-    `(((kbd "C-z") . undo-tree-undo)
-      ((kbd "C-y") . undo-tree-redo))))
-
 ;;; Goto Address
 (with-eval-after-load 'goto-addr
   (jcs-key goto-address-highlight-keymap
     `(((kbd "C-c")))))
-
-;;; Help
-(with-eval-after-load 'help-mode
-  (jcs-key help-mode-map
-    `(((kbd "C-c") . kill-ring-save))))
 
 ;;; Kill Ring
 (with-eval-after-load 'browse-kill-ring
@@ -427,7 +416,7 @@
     ((kbd "C-.") . jcs-isearch-repeat-forward)
     ((kbd "C-<") . jcs-isearch-project-repeat-backward)
     ((kbd "C->") . jcs-isearch-project-repeat-forward)
-    ;; TODO: Implements isearch cursor for these two keys.
+    ;; TODO: Implements isearch cursor for these two keys
     ;;((kbd "C-x") . jcs-vs-cut-key)
     ;;((kbd "C-c") . kill-ring-save)
     ((kbd "C-v") . isearch-yank-pop)))
