@@ -12,6 +12,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Installed new package `nim-mode`.
 * Installed new package `shift-number`.
 * Moved custom face config for `markdown-mode` and `org-mode` to external packages (d92b57181b358574245c0ec6c15985b49e4b83ec)
+* Add basic support for Julia programming language.
+* Installed new package `dotenv-mode`.
+* Installed new package `docker-compose-mode`.
 
 ## 8.0.1
 > Released Jan 29, 2022
