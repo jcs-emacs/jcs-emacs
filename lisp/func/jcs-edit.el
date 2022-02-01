@@ -17,6 +17,18 @@
   (require 'jcs-undo) (jcs--undo-or-redo nil))
 
 ;;
+;; (@* "Organize Imports" )
+;;
+
+(defun jcs-organize-imports ()
+  "Organize imports code."
+  (interactive)
+  (unless (ignore-errors (lsp-organize-imports))
+    (cl-case major-mode
+      (`java-mode (jcs-java-insert-package-src)  ; first organize package declaration
+                  (organize-imports-java-do-imports)))))
+
+;;
 ;; (@* "Indentation" )
 ;;
 

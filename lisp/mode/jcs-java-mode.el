@@ -78,39 +78,10 @@
     (jcs-java-insert-package-from-src)
     (jcs-keep-one-line-between)))
 
-
-(defun jcs-java-organize-imports ()
-  "Organize all the import package.
-Including adding or removing the package path."
-  (interactive)
-  (jcs-java-insert-package-src)  ; first organize package declaration.
-  (organize-imports-java-do-imports))
-
-
-(defsubst jcs-java-reload-local-source-paths-on-first-save ()
-  "Reload local source paths on the first save."
-  (when (jcs-file-directory-exists-p (buffer-file-name))
-    (organize-imports-java-reload-local-source-paths)))
-
-(defun jcs-java-untabify-save-buffer ()
-  "Java untabify save."
-  (interactive)
-  (let (first-save)
-    (unless (jcs-file-directory-exists-p (buffer-file-name))
-      (setq first-save t))
-    (ignore-errors (jcs-untabify-save-buffer))
-    (when first-save
-      (organize-imports-java-reload-local-source-paths))))
-
-(defun jcs-java-tabify-save-buffer ()
-  "Java tabify save."
-  (interactive)
-  (let (first-save)
-    (unless (jcs-file-directory-exists-p (buffer-file-name))
-      (setq first-save t))
-    (ignore-errors (jcs-tabify-save-buffer))
-    (when first-save
-      (organize-imports-java-reload-local-source-paths))))
+(defun jcs-java--first-save ()
+  "First save hook."
+  (organize-imports-java-reload-local-source-paths)
+  (remove-hook 'after-save-hook #'jcs-java--first-save t))
 
 ;;
 ;; (@* "Templates" )
@@ -134,11 +105,13 @@ Including adding or removing the package path."
   (jcs-insert-header-if-valid '("[.]java")
                               'jcs-insert-java-template)
 
+  (unless (jcs-file-directory-exists-p (buffer-file-name))
+    (add-hook 'after-save-hook #'jcs-java--first-save nil t))
+
   (jcs-key-local
     `(((kbd "DEL")    . jcs-electric-backspace)
       ((kbd "{")      . jcs-vs-opening-curly-bracket-key)
       ((kbd ";")      . jcs-vs-semicolon-key)
-      ((kbd "C-S-o")  . jcs-java-organize-imports)
       ((kbd "<f2>")   . javadoc-lookup)
       ((kbd "S-<f2>") . javadoc-lookup))))
 

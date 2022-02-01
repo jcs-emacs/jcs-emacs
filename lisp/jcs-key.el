@@ -192,6 +192,9 @@
     ((kbd "<f7>") . jcs-same-file-other-window)
     ((kbd "<f8>") . jcs-same-file-other-window)  ; Replace by corresponding file if any
 
+;;; Organize Imports
+    ((kbd "C-S-o")  . jcs-organize-imports)
+
 ;;; Overwrite
     ([insert] . overwrite-mode)
 
