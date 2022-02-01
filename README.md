@@ -200,7 +200,6 @@ I believe details make things better and make life smoother.
 * [*Curly Bracket Modes*](./curly-bracket-modes) - Use curly bracket depends on different mode.
 * [*Display File*](./docs/features/display-file) - Utility function to use to view a file on the other window.
 * [*Charset Table*](./docs/features/display-file/charset-table) - Built-in functions that displays character sets.
-* ~~[*Docstring Completion*](./docs/features/docstring-completion) - Some standard docstring completion implementations built-in to this configuration.~~ (has move to [docstr](https://github.com/jcs-elpa/docstr))
 * Enhanced Multiple Cursors
   * [*Similar Multiple Cursors*](./docs/features/similar-multiple-cursors) - Mark with cursor by similarity.
   * [*VS Multiple Cursors*](./docs/features/vs-multiple-cursors) - VSCode like methods to `mark` and `unmark` multiple cursor.
@@ -208,13 +207,11 @@ I believe details make things better and make life smoother.
 * [*Indent Control*](./docs/features/indent-control) - Generic control the indentation level for each mode, for more information see [indent-control](https://github.com/alt-elpa/indent-control).
 * Previous/Next Keys
   * [*Normal Move*]() - Act like other normal editors.
-  * ~~[*Indent Move*](./docs/features/indent-move) - Automatically indent when cursor moves up and down.~~
   * [*Smart-Move*](./docs/features/smart-move) - Smart enough to move cursor to the beginning of the line.
 * [*Line Numbers Modding*](./docs/features/line-numbers-modding) - Mixed used of `linum` and `display-line-numbers-mode` base on the file usage.
 * [*License Helper*](./docs/features/license-helper) - Help to create license while creating `LICENSE` file using template.
 * [*Mini State*](./docs/features/mini-state) - Mini mode state use to visually see what backend is the config currently running. (Deprecated)
   * [*Explicit States*](./docs/features/mini-state/explicit-states) - Automatcially switch mini state depends on certain circumstances.
-* ~~[*Mode Line Toggle*](./docs/features/mode-line-toggle) - Toggle to `show` or `hide` the mode line.~~
 * [*Modern Text Editor*](./docs/features/modern-text-editor) - Design to have the preset settings close to modern text editors but faster.
 * [*Multiple Output*](./docs/features/multiple-output) - Handle multiple output/compilation buffers.
 * [*Navigate Blank Line*](./docs/features/navigate-blank-line) - Use `C-<up>` and `C-<down>` to navigate previous and next blank line.
@@ -223,7 +220,6 @@ I believe details make things better and make life smoother.
 * [*Simulate Shell*](./docs/features/simulate-shell) - Completely simulate shell behaviors, make better user experience when using shell in Emacs.
 * [*Switch Window*](./docs/features/switch-window) - Fast keys switch between windows quickly.
 * [*Tabify/Untabify Modes*](./docs/features/tabify-untabify-modes) - Tabify or Untabify the file depends on the mode you currently in.
-* ~~[*Transparent Window*](./docs/features/transparent-window) - Keys to increase/decrease the transparency of the frame.~~ (has move to [transwin](https://github.com/jcs-elpa/transwin))
 * [*Trim Trailing Whitespace*](./docs/features/trim-trailing-whitespace) - Remove trailing spaces and tabs automatically on save.
 * ~~[*Video Player*](./docs/features/video-player) - Play media on the top window.~~
 * [*Visualize Undo/Redo*](./docs/features/visualize-undo-redo) - Improved the user experience on undoing and redoing by showing the `undo-tree-visualizer` at the other window.
