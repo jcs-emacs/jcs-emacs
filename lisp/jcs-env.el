@@ -303,16 +303,16 @@ P.S. You would need to restart Emacs to take effect from this variable."
    (when (jcs-recentf-track-opened-file-p) (apply fnc args))))
 
 ;;; Save Files
-(defvar jcs-on-save-end-trailing-lines-cleanup-p t
+(defvar jcs-on-save-end-trailing-lines-cleanup t
   "Remove trailing lines at the end of buffer on save.")
 
-(defvar jcs-on-save-whitespace-cleanup-p t
+(defvar jcs-on-save-whitespace-cleanup t
   "Clean up whitespaces on save.")
 
-(defvar jcs-on-save-remove-control-M-p t
+(defvar jcs-on-save-remove-control-M t
   "Remove ^M character on save.")
 
-(defvar jcs-on-save-tabify-type 'untabify  ; This takes `nil', `tabify', `untabify'.
+(defvar jcs-on-save-tabify-type 'untabify  ; `nil', `tabify', `untabify'
   "Default untabify or tabify to the buffer.")
 
 ;;; Separator
@@ -397,11 +397,7 @@ If ACT is non-nil; then make scroll less jumpy."
 ;;; Uniquify
 (leaf uniquify
   :init
-  ;; NOTE: meaningful names for buffers with the same name from prelude.
-  ;;
-  ;; SOURCE: http://pragmaticemacs.com/emacs/uniquify-your-buffer-names/
-  ;; URL: https://github.com/bbatsov/prelude
-  (setq uniquify-buffer-name-style 'forward
+  (setq uniquify-buffer-name-style 'post-forward-angle-brackets
         uniquify-after-kill-buffer-p t  ; rename after killing uniquified
         uniquify-ignore-buffers-re "^\\*"  ; don't muck with special buffers
         uniquify-separator "/"))
@@ -427,6 +423,9 @@ If ACT is non-nil; then make scroll less jumpy."
 (leaf windmove
   :init
   (setq windmove-wrap-around t))
+
+;;; Word Wrap
+(setq word-wrap-by-category t)
 
 (provide 'jcs-env)
 ;;; jcs-env.el ends here
