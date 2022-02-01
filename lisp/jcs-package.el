@@ -67,8 +67,10 @@
     define-it
     diff-hl
     diminish-buffer
+    docker-compose-mode
     dockerfile-mode
     docstr
+    dotenv-mode
     dumb-jump
     editorconfig
     el-mock
@@ -126,6 +128,7 @@
     jenkinsfile-mode
     js2-mode
     json-mode
+    julia-mode
     keypression
     kotlin-mode
     leaf
@@ -257,27 +260,14 @@
       (unless (memq pkg full-pkgs) (push pkg unused-lst)))
     (cl-remove 'emacs (reverse unused-lst))))
 
-(defun jcs-package---build-desc-by-archive (pkg archive)
-  "Return package-desc by PKG and ARCHIVE."
-  (cl-some
-   (lambda (desc)
-     (when (eq archive (ignore-errors (intern (package-desc-archive desc))))
-       desc))
-   (assq pkg package-archive-contents)))
-
-(defun jcs-package--build-desc (pkg-name &optional archive)
+(defun jcs-package--build-desc (pkg-name)
   "Build package description by PKG-NAME."
-  (if archive (jcs-package---build-desc-by-archive pkg-name archive)
-    (or (cadr (assq pkg-name package-alist))
-        (cadr (assq pkg-name package-archive-contents)))))
+  (or (cadr (assq pkg-name package-alist))
+      (cadr (assq pkg-name package-archive-contents))))
 
 (defun jcs-package--get-reqs (name)
   "Return requires from package NAME."
   (ignore-errors (package-desc-reqs (jcs-package--build-desc name))))
-
-(defun jcs-package--package-name (pkg-desc)
-  "Return package name from PKG-DESC."
-  (when (package-desc-p pkg-desc) (aref pkg-desc 1)))
 
 (defun jcs-package--package-status (pkg-name)
   "Get package status by PKG-NAME."
@@ -431,8 +421,8 @@
   "Get version of the package by NAME.
 
 Argument WHERE is the alist of package information."
-  (let ((pkg (cadr (assq name where))))
-    (when pkg (package-desc-version pkg))))
+  (when-let ((pkg (cadr (assq name where))))
+    (package-desc-version pkg)))
 
 (defun jcs-package-upgrade-all ()
   "Upgrade for archive packages."
