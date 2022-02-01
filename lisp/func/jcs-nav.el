@@ -48,7 +48,7 @@
       (unless (equal buf-list (buffer-list)) (kill-buffer buf)))))
 
 ;;
-;; (@* "Move in lines" )
+;; (@* "Cursor Movement" )
 ;;
 
 (defmacro jcs--define-prev/next-key (direction body-prev &rest body-next)
