@@ -55,6 +55,5 @@
   (jcs-key emmet-mode-keymap
     `(((kbd "C-<return>") . jcs-emmet-expand-line))))
 
-
 (provide 'jcs-jsx-mode)
 ;;; jcs-jsx-mode.el ends here

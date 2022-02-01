@@ -365,53 +365,26 @@ This command does not push text to `kill-ring'."
            (cl-case major-mode
              (`nasm-mode "\\(\\s-*\\)equ ")
              (`go-mode "\\(\\s-*\\) := ")
-             ((or lisp-mode emacs-lisp-mode lisp-interaction-mode) "\\(\\s-*\\)[.]")
+             ((or lisp-mode lisp-interaction-mode emacs-lisp-mode) "\\(\\s-*\\)[.]")
              (t "\\(\\s-*\\)[=]")))
           ;; NOTE: Default support `//' and `/**/' comment symbols.
           (align-regexp-string-comment
            (cl-case major-mode
              (`nasm-mode "\\(\\s-*\\)               [;]")
              (t "\\(\\s-*\\) /[/*]")))
-          pnt-min pnt-max)
+          (bound (jcs-region-bound)))
+      ;; Align code segment
       (if (use-region-p)
-          ;; NOTE: Align region only.
-          (progn
-            ;; First get region info.
-            (setq pnt-min (region-beginning)
-                  pnt-max (region-end))
-
-            ;; Swapn region here.
-            (when (< (point) pnt-max)
-              (push-mark-command nil)
-              (goto-char pnt-max)
-
-              ;; Update region info.
-              (setq pnt-min (region-beginning)
-                    pnt-max (region-end)))
-
-            ;; Align code segment.
-            (jcs-align-region align-regexp-string-code)
-
-            (when (> (point) pnt-min) (setq pnt-max (point))))
-        ;; NOTE: Align whole document.
-        (jcs-align-document align-regexp-string-code)
-
-        ;; NOTE: These assigns does nothing for now. Just in case we dont apply
-        ;; weird value, assign default document info.
-        (setq pnt-min (point-min)
-              pnt-max (point-max)))
-
+          (jcs-align-region align-regexp-string-code)
+        (jcs-align-document align-regexp-string-code))
       ;; Align comment segment
-      (jcs-align-region-by-points align-regexp-string-comment pnt-min pnt-max))))
+      (jcs-align-region-by-points align-regexp-string-comment (car bound) (cdr bound)))))
 
 (defun jcs-align-repeat (regexp)
   "Repeat alignment with respect to the given REGEXP."
   (interactive "r\nsAlign regexp: ")
-  (let (beg end)
-    (if (use-region-p)
-        (setq beg (region-beginning) end (region-end))
-      (setq beg (point-min) end (point-max)))
-    (align-regexp beg end (concat "\\(\\s-*\\)" regexp) 1 1 t)))
+  (let ((bound (jcs-region-bound)))
+    (align-regexp (car bound) (cdr bound) (concat "\\(\\s-*\\)" regexp) 1 1 t)))
 
 ;;
 ;; (@* "Revert" )
