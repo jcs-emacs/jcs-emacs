@@ -23,16 +23,16 @@ This variable is used to check if file are edited externally.")
 (defun jcs--organize-save-buffer ()
   "Organize save buffer."
   (let (deactivate-mark truncate-lines)
-    (when jcs-on-save-whitespace-cleanup-p
+    (when jcs-on-save-whitespace-cleanup
       (jcs-delete-trailing-whitespace-except-current-line))
-    (when jcs-on-save-end-trailing-lines-cleanup-p
+    (when jcs-on-save-end-trailing-lines-cleanup
       (jcs-remove-trailing-lines-end-buffer))
     (cl-case jcs-on-save-tabify-type
       (`tabify (jcs-tabify-buffer))
       (`untabify (jcs-untabify-buffer))
       (`nil (progn ))  ; Do nothing here.
       (t (user-error "[WARNING] Unknown tabify type when on save: %s" jcs-on-save-tabify-type)))
-    (when jcs-on-save-remove-control-M-p
+    (when jcs-on-save-remove-control-M
       (jcs-mute-apply (jcs-remove-control-M)))
     (jcs--save-buffer-internal)))
 
@@ -64,8 +64,8 @@ This variable is used to check if file are edited externally.")
   "Save buffer wrapper."
   (interactive)
   (let (jcs-on-save-tabify-type
-        jcs-on-save-whitespace-cleanup-p
-        jcs-on-save-end-trailing-lines-cleanup-p)
+        jcs-on-save-whitespace-cleanup
+        jcs-on-save-end-trailing-lines-cleanup)
     (jcs-save-buffer-default)))
 
 (defun jcs--save-buffer-internal ()
