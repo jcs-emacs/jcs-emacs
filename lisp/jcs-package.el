@@ -91,7 +91,6 @@
     expand-region
     file-header
     fill-page
-    flutter
     flx-rs
     flx-style
     flycheck-grammarly
@@ -171,7 +170,6 @@
     nhexl-mode
     nim-mode
     nix-mode
-    npm
     org-bullets
     organize-imports-java
     package-lint
@@ -196,6 +194,7 @@
     shader-mode
     shift-number
     show-eol
+    smart-comment
     smex
     sort-words
     sql-indent
