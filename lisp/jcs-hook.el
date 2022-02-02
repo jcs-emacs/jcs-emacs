@@ -23,7 +23,6 @@
 ;;
 
 (jcs-add-hook 'find-file-hook
-  (jcs-funcall-fboundp #'jcs-update-buffer-save-string)
   (jcs-line-numbers-active-by-mode)
   (jcs-project-remember)
   (jcs-project--track-open-projects))
@@ -78,7 +77,7 @@
   "Delay some executions for faster speed."
   (jcs-with-gc-speed-up
     (jcs-funcall-fboundp #'jcs-mode-load-requires)
-    (jcs-require '(jcs-minibuf jcs-edit jcs-comment jcs-vs))
+    (jcs-require '(jcs-minibuf jcs-edit jcs-vs))
     (global-alt-codes-mode 1)
     (global-auto-highlight-symbol-mode t)
     (auto-read-only-mode 1)
