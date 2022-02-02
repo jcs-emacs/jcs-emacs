@@ -41,13 +41,6 @@
   (insert "/")
   (cond ((save-excursion (search-backward "//" nil t))  ; Root
          (jcs-vertico--cd (f-root)))
-        ;; New root, changing disk
-        ((when-let* ((root
-                      (save-excursion
-                        (forward-char -1) (search-backward "/" nil t)
-                        (buffer-substring (1+ (point)) (line-end-position))))
-                     (_ (f-root-p root)))
-           (jcs-vertico--cd root)))
         ((save-excursion (search-backward "/~/" nil t))  ; Home
          (jcs-vertico--cd "~/"))
         ((save-excursion (search-backward "/!/" nil t))  ; Project
@@ -59,7 +52,14 @@
          (backward-delete-char 2))
         ((save-excursion (search-backward "/../" nil t))  ; Up one
          (backward-delete-char 3)
-         (vertico-directory-up))))
+         (vertico-directory-up))
+        ;; New root, changing disk
+        ((when-let* ((root
+                      (save-excursion
+                        (forward-char -1) (search-backward "/" nil t)
+                        (buffer-substring (1+ (point)) (line-end-position))))
+                     (_ (f-root-p root)))
+           (jcs-vertico--cd root)))))
 
 (jcs-advice-add 'vertico-directory-delete-char :override
   (let ((content (minibuffer-contents)))
