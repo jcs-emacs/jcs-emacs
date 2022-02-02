@@ -18,6 +18,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Enabled `word-wrap-by-category` by default.
 * Rename `jcs-with-eval-after-load-multiples` to just `jcs-with-eval-after-load`.
 * Avoid macro `with-eval-after-load` to `leaf` if possible.
+* Installed new package `ascii-table`.
+* Installed new package `npm`.
+* Installed new package `flutter`.
 
 ## 8.0.1
 > Released Jan 29, 2022
