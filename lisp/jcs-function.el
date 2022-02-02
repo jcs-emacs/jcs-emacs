@@ -208,6 +208,24 @@
       (insert val))))
 
 ;;
+;; (@* "Comment" )
+;;
+
+(defun jcs-comment-region-or-line ()
+  "If no region selected then just comment the line."
+  (interactive)
+  (if (and mark-active (/= (point) (mark)))
+      (comment-region (region-beginning) (region-end))
+    (comment-region (line-beginning-position) (line-end-position))))
+
+(defun jcs-uncomment-region-or-line ()
+  "If no region selected then just comment the line."
+  (interactive)
+  (if (and mark-active (/= (point) (mark)))
+      (uncomment-region (region-beginning) (region-end))
+    (uncomment-region (line-beginning-position) (line-end-position))))
+
+;;
 ;; (@* "Dashboard" )
 ;;
 
