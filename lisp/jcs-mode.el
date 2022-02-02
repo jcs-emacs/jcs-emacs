@@ -351,12 +351,8 @@ Note this is opposite logic to the toggle mode function."
 (defun jcs-mode-load-requires ()
   "Evaluate through `jcs-mode-load-alist' for all required modules."
   (dolist (data jcs-mode-load-alist)
-    (let ((mode (car data)) (modules (cdr data)))
-      (cond ((listp mode)
-             (jcs-with-eval-after-load-multiple mode (jcs-require modules)))
-            (t
-             (unless modules (setq modules (intern (format "jcs-%s" mode))))
-             (with-eval-after-load mode (jcs-require modules)))))))
+    (let* ((mode (car data)) (modules (or (cdr data) (intern (format "jcs-%s" mode)))))
+      (jcs-with-eval-after-load mode (jcs-require modules)))))
 
 ;;;
 ;; Auto mode Management
