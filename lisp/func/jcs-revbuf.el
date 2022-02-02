@@ -4,60 +4,45 @@
 
 (require 'jcs-savbuf)
 
-(defun jcs-revert-buffer-p (buf type)
-  "Return non-nil if the BUF can be revert.
+(defcustom jcs-revbuf-clear-line-reminder nil
+  "If non-nil, remove all sign from `line-reminder'."
+  :type 'boolean
+  :group 'jcs)
 
-Argument TYPE can either be the following value.
+(defun jcs-revert-buffer-no-confirm ()
+  "Revert buffer without confirmation."
+  (interactive)
+  ;; Record all the enabled mode that you want to remain enabled after
+  ;; revert the file.
+  (let ((was-flycheck (if (and (featurep 'flycheck) flycheck-mode) 1 -1))
+        (was-readonly (if buffer-read-only 1 -1))
+        (was-g-hl-line (if global-hl-line-mode 1 -1))
+        (was-page-lines (if page-break-lines-mode 1 -1)))
+    ;; Revert it!
+    (ignore-errors (revert-buffer :ignore-auto :noconfirm :preserve-modes))
+    (jcs-update-buffer-save-string)
+    (when (and (featurep 'line-reminder) jcs-revbuf-clear-line-reminder)
+      (line-reminder-clear-reminder-lines-sign))
+    ;; Revert all the enabled mode.
+    (flycheck-mode was-flycheck)
+    (read-only-mode was-readonly)
+    (global-hl-line-mode was-g-hl-line)
+    (page-break-lines-mode was-page-lines)))
 
-  * list - List of buffer name you would want to revert for virtual buffer.
-  * boolean - If it's non-nil, revert all virtual buffers."
-  (cond ((listp type)
-         (jcs-contain-list-type-str (buffer-name buf) type 'regex))
-        (t type)))
-
-(defun jcs-revert-all-virtual-buffers (type &optional clean-lr)
-  "Revert all virtual buffers.
-
-Argument TYPE see function `jcs-revert-buffer-p' description.
-
-Argument CLEAN-LR see function `jcs-revert-buffer-no-confirm' description."
-  (dolist (buf (jcs-virtual-buffer-list))
-    (when (and (buffer-name buf) (jcs-revert-buffer-p buf type))
-      (with-current-buffer buf (jcs-revert-buffer-no-confirm clean-lr)))))
-
-(defun jcs-revert-all-valid-invalid-buffers (buf-lst type &optional clean-lr)
-  "Revert all valid buffers.
-
-Argument TYPE see function `jcs-revert-buffer-p' description.
-
-Argument CLEAN-LR see function `jcs-revert-buffer-no-confirm' description."
-  (dolist (buf buf-lst)
-    (let* ((filename (buffer-file-name buf))
-           (normal-buffer-p (and filename
-                                 (not (buffer-modified-p buf))
-                                 (not (jcs-current-file-empty-p buf))))
-           do-revert-p)
-      (unless normal-buffer-p
-        (if (file-readable-p filename) (setq do-revert-p t)
-          (let (kill-buffer-query-functions) (kill-buffer buf))))
-      (when (and (buffer-name buf) (or (jcs-revert-buffer-p buf type) do-revert-p))
-        (with-current-buffer buf (jcs-revert-buffer-no-confirm clean-lr))))))
-
-(defun jcs-revert-all-virtual-buffers--internal ()
-  "Internal function to revert all vritual buffers."
-  (jcs-save-window-excursion
-    (save-window-excursion
-      (jcs-revert-all-virtual-buffers jcs-revert-default-buffers))))
-
-(defun jcs-revert-all-valid-buffers--internal ()
-  "Internal function to revert all valid buffers."
+(defun jcs-revert-all-invalid-buffers ()
+  "Revert all invalid buffers."
   (save-window-excursion
-    (jcs-revert-all-valid-invalid-buffers (jcs-valid-buffer-list) nil)))
+    (dolist (buf (jcs-invalid-buffer-list))
+      (with-current-buffer buf
+        (when jcs-buffer-save-string-md5  ; this present only after first save!
+          (set-buffer-modified-p nil)
+          (let (kill-buffer-query-functions) (kill-this-buffer)))))))
 
-(defun jcs-revert-all-invalid-buffers--internal ()
-  "Internal function to revert all valid buffers."
+(defun jcs-revert-all-valid-buffers ()
+  "Revert all valid buffers."
   (save-window-excursion
-    (jcs-revert-all-valid-invalid-buffers (jcs-invalid-buffer-list) nil)))
+    (dolist (buf (jcs-valid-buffer-list))
+      (with-current-buffer buf (jcs-revert-buffer-no-confirm)))))
 
 (defun jcs-ask-revert-all (bufs &optional index)
   "Ask to revert all buffers decided by ANSWER.
@@ -73,14 +58,14 @@ Optional argument INDEX is used to loop through BUFS."
 The file has unsaved changes inside this editor and has been changed externally.
 Do you want to reload it and lose the changes made in this source editor? "))
        (answer (completing-read prompt '("Yes" "Yes to All" "No" "No to All"))))
-    (setq index (1+ index))
+    (cl-incf index)
     (pcase answer
       ("Yes"
        (with-current-buffer buf (jcs-revert-buffer-no-confirm t))
        (jcs-ask-revert-all bufs index))
       ("Yes to All"
-       (jcs-revert-all-valid-buffers--internal)
-       (jcs-revert-all-invalid-buffers--internal))
+       (jcs-revert-all-valid-buffers)
+       (jcs-revert-all-invalid-buffers))
       ("No" (jcs-ask-revert-all bufs index))
       ("No to All"))))  ; Does nothing, exit
 
@@ -96,14 +81,15 @@ Do you want to reload it and lose the changes made in this source editor? "))
 (defun jcs-un-save-buffer-edit-externally-p (&optional buf)
   "Return non-nil if BUF is edit externally and is unsaved.
 This function is used to check for lose changes from source editor."
-  (unless buf (setq buf (current-buffer)))
-  (and (buffer-modified-p buf) (jcs-buffer-edit-externally-p buf)))
+  (let ((buf (or buf (current-buffer))))
+    (and (buffer-modified-p buf) (jcs-buffer-edit-externally-p buf))))
 
 (defun jcs-un-save-modified-buffers ()
   "Return non-nil if there is un-save modified buffer."
-  (let ((buf-lst (jcs-valid-buffer-list)) un-save-buf-lst)
-    (dolist (buf buf-lst)
-      (when (jcs-un-save-buffer-edit-externally-p (get-buffer buf)) (push buf un-save-buf-lst)))
+  (let (un-save-buf-lst)
+    (dolist (buf (jcs-valid-buffer-list))
+      (when (jcs-un-save-buffer-edit-externally-p (get-buffer buf))
+        (push buf un-save-buf-lst)))
     (reverse un-save-buf-lst)))
 
 (provide 'jcs-revbuf)

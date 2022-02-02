@@ -114,19 +114,17 @@
   (or (buffer-file-name buf) (buffer-name buf)))
 
 (defun jcs-virtual-buffer-p (&optional buffer)
-  "Return non-nil if buffer doesn't exists on disk."
+  "Return non-nil if buffer doesn't exist on disk."
   (not (jcs-valid-buffer-p buffer)))
 
 (defun jcs-valid-buffer-p (&optional buffer)
-  "Return non-nil if buffer does exists on disk."
-  (let ((bfn (buffer-file-name buffer)))
-    (and bfn (file-exists-p bfn))))
+  "Return non-nil if buffer does exist on disk."
+  (when-let ((bfn (buffer-file-name buffer))) (file-exists-p bfn)))
 
 (defun jcs-invalid-buffer-p (&optional buffer)
-  "Return non-nil if buffer does't exists on disk but has a valid file path.
+  "Return non-nil if buffer does't exist on disk but has a valid file path.
 This occurs when file was opened but has moved to somewhere else externally."
-  (let ((bfn (buffer-file-name buffer)))
-    (and bfn (not (file-exists-p bfn)))))
+  (when-let ((bfn (buffer-file-name buffer))) (not (file-exists-p bfn))))
 
 (defun jcs-virtual-buffer-list ()
   "Return a list of virtual buffers."

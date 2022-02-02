@@ -390,50 +390,22 @@ This command does not push text to `kill-ring'."
 ;; (@* "Revert" )
 ;;
 
-(defcustom jcs-revert-default-buffers '("[*]dashboard[*]")
-  "List of default buffer to revert."
-  :type 'list
-  :group 'jcs)
-
-(defun jcs-revert-buffer-no-confirm (&optional clean-lr)
-  "Revert buffer without confirmation.
-
-If optional argument CLEAN-LR is non-nil, remove all sign from `line-reminder'."
-  (interactive)
-  ;; Record all the enabled mode that you want to remain enabled after
-  ;; revert the file.
-  (let ((was-flycheck (if (and (featurep 'flycheck) flycheck-mode) 1 -1))
-        (was-readonly (if buffer-read-only 1 -1))
-        (was-g-hl-line (if global-hl-line-mode 1 -1))
-        (was-page-lines (if page-break-lines-mode 1 -1)))
-    ;; Revert it!
-    (ignore-errors (revert-buffer :ignore-auto :noconfirm :preserve-modes))
-    (jcs-update-buffer-save-string)
-    (when (and (featurep 'line-reminder) clean-lr)
-      (line-reminder-clear-reminder-lines-sign))
-    ;; Revert all the enabled mode.
-    (flycheck-mode was-flycheck)
-    (read-only-mode was-readonly)
-    (global-hl-line-mode was-g-hl-line)
-    (page-break-lines-mode was-page-lines)))
-
 (defun jcs-revert-all-buffers ()
   "Refresh all open file buffers without confirmation."
   (interactive)
   (require 'jcs-revbuf)
-  (jcs-revert-all-virtual-buffers--internal)
-  (jcs-revert-all-valid-buffers--internal)
-  (jcs-revert-all-invalid-buffers--internal))
+  (jcs-revert-all-valid-buffers)
+  (jcs-revert-all-invalid-buffers)
+  (jcs-dashboard-safe-refresh-buffer))
 
 (defun jcs-safe-revert-all-buffers ()
   "Revert buffers in the safe way."
   (require 'jcs-revbuf)
   (let ((un-save-buf-lst (jcs-un-save-modified-buffers)))
     (if un-save-buf-lst (jcs-ask-revert-all un-save-buf-lst)
-      (jcs-revert-all-valid-buffers--internal)
-      (jcs-revert-all-invalid-buffers--internal))
-    (when (jcs-buffer-list-shown-p jcs-revert-default-buffers 'regex)
-      (jcs-revert-all-virtual-buffers--internal))))
+      (jcs-revert-all-valid-buffers)
+      (jcs-revert-all-invalid-buffers)))
+  (jcs-dashboard-safe-refresh-buffer))
 
 ;;
 ;; (@* "Windows" )
