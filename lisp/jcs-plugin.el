@@ -251,7 +251,6 @@
   (setq diminish-buffer-mode-list
         (append
          '("Dired by name")))
-  (with-eval-after-load 'jcs-buffer-menu (diminish-buffer-mode 1))
   :defer-config
   (jcs-advice-add 'jcs-buffer-menu-refresh-buffer :before
     (when diminish-buffer-mode (diminish-buffer-clean))))
@@ -271,10 +270,8 @@
 
 (leaf elisp-demos
   :init
-  (with-eval-after-load 'help-fns
-    (advice-add 'describe-function-1 :after #'elisp-demos-advice-describe-function-1))
-  (with-eval-after-load 'helpful
-    (advice-add 'helpful-update :after #'elisp-demos-advice-helpful-update)))
+  (advice-add 'describe-function-1 :after #'elisp-demos-advice-describe-function-1)
+  (advice-add 'helpful-update :after #'elisp-demos-advice-helpful-update))
 
 (leaf emojify
   :init
@@ -282,9 +279,7 @@
         emojify-company-tooltips-p t))
 
 (leaf eshell-syntax-highlighting
-  :init
-  (with-eval-after-load 'eshell
-    (eshell-syntax-highlighting-global-mode +1)))
+  :hook (eshell-mode-hook . eshell-syntax-highlighting-global-mode))
 
 (leaf exec-path-from-shell
   :defer-config
@@ -295,11 +290,10 @@
   :init
   (setq file-header-template-config-filepath (concat user-emacs-directory "templates/config.properties")))
 
-(leaf flx-rs
-  :init
-  (with-eval-after-load 'flx
-    (flx-rs-load-dyn)
-    (advice-add 'flx-score :override #'flx-rs-score)))
+(leaf flx
+  :defer-config
+  (flx-rs-load-dyn)
+  (advice-add 'flx-score :override #'flx-rs-score))
 
 (leaf flycheck
   :defer-config

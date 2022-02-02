@@ -334,7 +334,8 @@
 
 ;; ---
 
-(with-eval-after-load 'auto-highlight-symbol
+(leaf auto-highlight-symbol
+  :defer-config
   (jcs-key auto-highlight-symbol-mode-map
     `(((kbd "M-S-<right>"))
       ((kbd "M-S-<left>"))
@@ -347,7 +348,8 @@
     ("\eK" . jcs-message-erase-buffer)))
 
 ;;; Auto Completion
-(with-eval-after-load 'company
+(leaf company
+  :defer-config
   (jcs-key company-active-map
     `(([tab]       . jcs-tab-key)
       ((kbd "TAB") . jcs-tab-key)
@@ -372,14 +374,16 @@
     (lambda () (interactive) (jcs--buffer-menu-input "" -1))))
 
 ;;; Binary/Hex Editor
-(with-eval-after-load 'nhexl-mode
+(leaf nhexl-mode
+  :defer-config
   (jcs-key nhexl-mode-map
     `(((kbd "<up>")    . previous-line)
       ((kbd "<down>")  . next-line)
       ((kbd "<right>") . forward-char)
       ((kbd "<left>")  . backward-char))))
 
-(with-eval-after-load 'scrollable-quick-peek
+(leaf scrollable-quick-peek
+  :defer-config
   (jcs-key scrollable-quick-peek-keymap
     `(((kbd "<down>"))
       ((kbd "<up>"))
@@ -387,16 +391,19 @@
       ((kbd "S-<up>")   . scrollable-quick-peek-scroll-up))))
 
 ;;; Goto Address
-(with-eval-after-load 'goto-addr
+(leaf goto-addr
+  :defer-config
   (jcs-key goto-address-highlight-keymap
     `(((kbd "C-c")))))
 
 ;;; Kill Ring
-(with-eval-after-load 'browse-kill-ring
+(leaf browse-kill-ring
+  :defer-config
   (jcs-key browse-kill-ring-mode-map
     `(((kbd "<escape>") . kill-this-buffer))))
 
-(with-eval-after-load 'multiple-cursors
+(leaf multiple-cursors
+  :defer-config
   (jcs-key mc/keymap
     `(((kbd "<escape>") . mc/keyboard-quit)
       ((kbd "<return>"))
@@ -426,7 +433,8 @@
   `(((kbd "<up>")   . previous-line)
     ((kbd "<down>") . next-line)))
 
-(with-eval-after-load 'dashboard
+(leaf dashboard
+  :defer-config
   (jcs-key dashboard-mode-map
     `(((kbd "SPC"))
       ((kbd "<backspace>") . jcs-dashboard-remove-current-item)
@@ -449,7 +457,8 @@
       ((kbd "C-k C-p")     . package-list-packages)
       ((kbd "M-K")         . jcs-dashboard-refresh-buffer))))
 
-(with-eval-after-load 'flycheck
+(leaf flycheck
+  :defer-config
   (jcs-key flycheck-error-list-mode-map
     `(((kbd "M-k") . jcs-flycheck-mode)
       ((kbd "M-K") . flycheck-error-list-reset-filter))))
@@ -460,17 +469,16 @@
     ((kbd "C-_") . tabulated-list-narrow-current-column)))
 
 ;;; Todo
-(with-eval-after-load 'hl-todo
+(leaf 'hl-todo
+  :defer-config
   (jcs-key hl-todo-mode-map
     `(([C-f10] . hl-todo-previous)
       ([C-f11] . hl-todo-next))))
 
-;;; Undo Tree
-(with-eval-after-load 'undo-tree
+(leaf undo-tree
+  :defer-config
   (jcs-key undo-tree-visualizer-mode-map
     `(((kbd "RET") . undo-tree-visualizer-quit)))
-  ;; STUDY: `undo-tree''s minor mode will overwrite the global key map's
-  ;; key bindings. What we need to do is to remap this again...
   (jcs-key undo-tree-map
     `(((kbd "C-/") . jcs-comment-uncomment-region-or-line)
       ((kbd "C-/"))
@@ -478,14 +486,15 @@
       ((kbd "C-?"))
       ((kbd "M-_")))))
 
-(with-eval-after-load 'vertico
+(leaf vertico
+  :defer-config
   (jcs-key vertico-map
     `(((kbd "<backspace>") . vertico-directory-delete-char)
       ((kbd "<return>")    . vertico-directory-enter)
       ((kbd "/")           . jcs-vertico-find-files--slash))))
 
-;;; With Editor
-(with-eval-after-load 'with-editor
+(leaf with-editor
+  :defer-config
   (jcs-key with-editor-mode-map
     `(((kbd "C-s")      . with-editor-finish)
       ((kbd "C-g")      . with-editor-cancel)
