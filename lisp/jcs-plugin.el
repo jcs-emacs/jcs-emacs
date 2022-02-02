@@ -247,8 +247,10 @@
          '("[*]wclock[*]")
          '("[*]Clippy[*]")
          '("[*]CMake Temporary[*]")
-         '("[*]org-src-fontification")))
-  (setq diminish-buffer-mode-list
+         '("[*]org-src-fontification")
+         '("[*]ASCII[*]")
+         '("[*]npm:"))
+        diminish-buffer-mode-list
         (append
          '("Dired by name")))
   :defer-config
