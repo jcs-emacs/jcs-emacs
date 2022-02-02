@@ -249,7 +249,8 @@
          '("[*]CMake Temporary[*]")
          '("[*]org-src-fontification")
          '("[*]ASCII[*]")
-         '("[*]npm:"))
+         '("[*]npm:")
+         '("[*]Flutter"))
         diminish-buffer-mode-list
         (append
          '("Dired by name")))

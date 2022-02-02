@@ -91,6 +91,7 @@
     expand-region
     file-header
     fill-page
+    flutter
     flx-rs
     flx-style
     flycheck-grammarly
