@@ -49,7 +49,7 @@
     ((kbd "<escape>") . top-level)
 
 ;;; Comment/Uncomment
-    ((kbd "C-/")     . jcs-comment-uncomment-region-or-line)
+    ((kbd "C-/")     . smart-comment)
     ((kbd "C-k C-c") . jcs-comment-region-or-line)
     ((kbd "C-k C-u") . jcs-uncomment-region-or-line)
 
@@ -480,7 +480,7 @@
   (jcs-key undo-tree-visualizer-mode-map
     `(((kbd "RET") . undo-tree-visualizer-quit)))
   (jcs-key undo-tree-map
-    `(((kbd "C-/") . jcs-comment-uncomment-region-or-line)
+    `(((kbd "C-/") . smart-comment)
       ((kbd "C-/"))
       ("\C-_")
       ((kbd "C-?"))
