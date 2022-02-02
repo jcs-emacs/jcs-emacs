@@ -94,6 +94,11 @@
   (setq grep-command (if jcs-is-windows "findstr -s -n -i -l " "grep -irHn ")
         grep-use-null-device (when jcs-is-windows t)))
 
+;;; Comments
+(leaf newcomment
+  :init
+  (setq comment-inline-offset 2))
+
 ;;; Creator
 (defun jcs-creator-name () "Name of the creator." user-full-name)
 (defun jcs-copyright-info () "Copyright information." "Shen, Jen-Chieh")
