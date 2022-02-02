@@ -27,6 +27,7 @@
     alt-codes
     apache-mode
     applescript-mode
+    ascii-table
     asoc
     auth-source-keytar
     auto-highlight-symbol
@@ -169,6 +170,7 @@
     nhexl-mode
     nim-mode
     nix-mode
+    npm
     org-bullets
     organize-imports-java
     package-lint
