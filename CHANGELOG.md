@@ -16,6 +16,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Installed new package `dotenv-mode`.
 * Installed new package `docker-compose-mode`.
 * Enabled `word-wrap-by-category` by default.
+* Rename `jcs-with-eval-after-load-multiples` to just `jcs-with-eval-after-load`.
+* Avoid macro `with-eval-after-load` to `leaf` if possible.
 
 ## 8.0.1
 > Released Jan 29, 2022
