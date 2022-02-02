@@ -78,10 +78,12 @@
          ((symbolp ,feature) (require ,feature ,filename ,noerror))
          (t (user-error "Unknown type to require %s" (type-of ,feature)))))
 
-(defmacro jcs-with-eval-after-load-multiple (files &rest body)
+(defmacro jcs-with-eval-after-load (files &rest body)
   "Execute BODY after one of the FILES is loaded."
   (declare (indent 1) (debug t))
-  `(dolist (file ,files) (with-eval-after-load file ,@body)))
+  `(cond
+    ((listp ,files) (dolist (file ,files) (with-eval-after-load file ,@body)))
+    (t (with-eval-after-load ,files ,@body))))
 
 ;;
 ;; (@* "Advice" )
