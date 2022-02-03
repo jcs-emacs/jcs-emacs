@@ -9,17 +9,18 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 > Released N/A
 
 * Fix move file/directory with full path (f3f0c61deb7aa3cc1b437a104c767e10050a73ef)
-* Installed new package `nim-mode`.
-* Installed new package `shift-number`.
+* Add new package `nim-mode`.
+* Add new package `shift-number`.
 * Moved custom face config for `markdown-mode` and `org-mode` to external packages (d92b57181b358574245c0ec6c15985b49e4b83ec)
 * Add basic support for Julia programming language.
-* Installed new package `dotenv-mode`.
-* Installed new package `docker-compose-mode`.
+* Add new package `dotenv-mode`.
+* Add new package `docker-compose-mode`.
 * Enabled `word-wrap-by-category` by default.
 * Rename `jcs-with-eval-after-load-multiples` to just `jcs-with-eval-after-load`.
 * Avoid macro `with-eval-after-load` to `leaf` if possible.
-* Installed new package `ascii-table`.
-* Installed new package `smart-comment`.
+* Add new package `ascii-table`.
+* Add new package `smart-comment`.
+* Add new package `winum`, and replaced config select window commands with it.
 
 ## 8.0.1
 > Released Jan 29, 2022
