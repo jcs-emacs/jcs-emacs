@@ -127,30 +127,6 @@ ALL-FRAMES."
      minibuf all-frames)))
 
 ;;
-;; (@* "Ace Window" )
-;;
-
-(defun jcs-ace-select-window (win-id)
-  "Use `ace-window' to select the window by using window index, WIN-ID."
-  (require 'ace-window)
-  (when-let ((wnd (nth win-id (aw-window-list))))
-    (select-window wnd)
-    (select-frame-set-input-focus (selected-frame))))
-
-(defun jcs-ace-window-min () "Select window min." (interactive) (jcs-ace-select-window 0))
-(defun jcs-ace-window-max () "Select window max." (interactive) (jcs-ace-select-window (1- (length (aw-window-list)))))
-
-(defun jcs-ace-window-1 () "Select window 1." (interactive) (jcs-ace-window-min))
-(defun jcs-ace-window-2 () "Select window 2." (interactive) (jcs-ace-select-window 1))
-(defun jcs-ace-window-3 () "Select window 3." (interactive) (jcs-ace-select-window 2))
-(defun jcs-ace-window-4 () "Select window 4." (interactive) (jcs-ace-select-window 3))
-(defun jcs-ace-window-5 () "Select window 5." (interactive) (jcs-ace-select-window 4))
-(defun jcs-ace-window-6 () "Select window 6." (interactive) (jcs-ace-select-window 5))
-(defun jcs-ace-window-7 () "Select window 7." (interactive) (jcs-ace-select-window 6))
-(defun jcs-ace-window-8 () "Select window 8." (interactive) (jcs-ace-select-window 7))
-(defun jcs-ace-window-9 () "Select window 9." (interactive) (jcs-ace-select-window 8))
-
-;;
 ;; (@* "Deleting" )
 ;;
 

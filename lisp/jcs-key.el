@@ -276,15 +276,15 @@
 
 ;;; Window Navigation
     ((kbd "M-e") . ace-window)
-    ((kbd "C-1") . jcs-ace-window-1)
-    ((kbd "C-2") . jcs-ace-window-2)
-    ((kbd "C-3") . jcs-ace-window-3)
-    ((kbd "C-4") . jcs-ace-window-4)
-    ((kbd "C-5") . jcs-ace-window-5)
-    ((kbd "C-6") . jcs-ace-window-6)
-    ((kbd "C-7") . jcs-ace-window-7)
-    ((kbd "C-8") . jcs-ace-window-8)
-    ((kbd "C-9") . jcs-ace-window-9)
+    ((kbd "C-1") . winum-select-window-1)
+    ((kbd "C-2") . winum-select-window-2)
+    ((kbd "C-3") . winum-select-window-3)
+    ((kbd "C-4") . winum-select-window-4)
+    ((kbd "C-5") . winum-select-window-5)
+    ((kbd "C-6") . winum-select-window-6)
+    ((kbd "C-7") . winum-select-window-7)
+    ((kbd "C-8") . winum-select-window-8)
+    ((kbd "C-9") . winum-select-window-9)
 
 ;;; Word Case
     ((kbd "C-M-u") . jcs-upcase-word-or-region)

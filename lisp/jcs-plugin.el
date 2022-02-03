@@ -868,6 +868,10 @@
         which-key-dont-use-unicode t
         which-key-idle-delay 1.0))
 
+(leaf winum
+  :init
+  (setq winum-scope 'frame-local))
+
 (leaf yascroll
   :init
   (setq yascroll:delay-to-hide 0.8

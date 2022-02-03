@@ -222,6 +222,7 @@
     vue-mode
     web-mode
     which-key
+    winum
     yaml-mode
     yarn-mode
     yascroll
