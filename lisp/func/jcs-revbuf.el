@@ -2,8 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'jcs-savbuf)
-
 (defcustom jcs-revbuf-clear-line-reminder nil
   "If non-nil, remove all sign from `line-reminder'."
   :type 'boolean
