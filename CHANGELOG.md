@@ -21,6 +21,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add new package `ascii-table`.
 * Add new package `smart-comment`.
 * Add new package `winum`, and replaced config select window commands with it.
+* Add new package `log4e`.
+* Remove config tabify/untabify save, and replace it with with `whitespace-cleanup-mode`.
 
 ## 8.0.1
 > Released Jan 29, 2022
