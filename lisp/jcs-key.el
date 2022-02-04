@@ -286,9 +286,9 @@
     ((kbd "C-9") . winum-select-window-9)
 
 ;;; Word Case
-    ((kbd "C-M-u") . jcs-upcase-word-or-region)
-    ((kbd "C-M-d") . jcs-downcase-word-or-region)
-    ((kbd "C-M-c") . jcs-capitalize-word-or-region)
+    ((kbd "C-M-u") . upcase-dwim)
+    ((kbd "C-M-d") . downcase-dwim)
+    ((kbd "C-M-c") . capitalize-dwim)
 
 ;;; Undo/Redo
     ((kbd "C-z") . jcs-undo)
