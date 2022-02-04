@@ -20,6 +20,8 @@
 ;;
 
 (jcs-add-hook 'cmake-mode-hook
+  (setq-local indent-tabs-mode t)
+
   (jcs-company-safe-add-backend 'company-cmake)
 
   ;; File Header

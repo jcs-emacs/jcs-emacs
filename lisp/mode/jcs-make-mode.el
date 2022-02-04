@@ -3,6 +3,7 @@
 ;;; Code:
 
 (require 'make-mode)
+(require 'python-mode)
 
 (defun jcs-ask-makefile-language (lan)
   "Ask make file language LAN type."
@@ -109,6 +110,8 @@ TYPE: type of makefile for Python."
 ;;
 
 (jcs-add-hook 'makefile-mode-hook
+  (setq-local indent-tabs-mode t)
+
   (electric-pair-mode nil)
 
   ;; File Header

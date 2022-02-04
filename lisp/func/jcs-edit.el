@@ -408,34 +408,6 @@ This command does not push text to `kill-ring'."
   (jcs-dashboard-safe-refresh-buffer))
 
 ;;
-;; (@* "Windows" )
-;;
-
-(defun jcs-remove-trailing-lines-end-buffer ()
-  "Delete trailing line at the end of the buffer, leave only one line."
-  (interactive)
-  (save-excursion
-    (let ((rec-point (point)))
-      (goto-char (point-max))
-      (if (and (jcs-current-line-empty-p)
-               (not (= (line-number-at-pos) 1)))
-          (forward-line -1)
-        (newline))
-      (while (and (jcs-current-line-empty-p) (< rec-point (point)))
-        (jcs-kill-whole-line)
-        (forward-line -1)))))
-
-(defun jcs-delete-trailing-whitespace-except-current-line ()
-  "Delete the trailing whitespace for whole document execpt the current line."
-  (interactive)
-  (let ((begin (line-beginning-position)) (end (line-end-position)))
-    (save-excursion
-      (when (> (point-max) end)
-        (delete-trailing-whitespace (1+ end) (point-max)))
-      (when (< (point-min) begin)
-        (delete-trailing-whitespace (point-min) (1- begin))))))
-
-;;
 ;; (@* "Word Case" )
 ;;
 
@@ -477,39 +449,25 @@ This command does not push text to `kill-ring'."
         (message "%d ^M removed from buffer." remove-count)))))
 
 ;;
-;; (@* "Tabify / Unabify" )
-;;
-
-(defun jcs-tabify-or-untabify-buffer (tab-it &optional start end)
-  "Tabify or Untabify current buffer with region START and END."
-  (jcs-save-excursion
-    (let ((start (or start (point-min))) (end (or end (point-max))))
-      (widen)
-      ;; For some reason, CMake file will complains this.
-      (ignore-errors (if tab-it (tabify start end) (untabify start end))))))
-
-(defun jcs-untabify-buffer (&optional start end)
-  "Untabify the current buffer with region START and END."
-  (interactive)
-  (jcs-tabify-or-untabify-buffer nil start end))
-
-(defun jcs-tabify-buffer (&optional start end)
-  "Tabify the current buffer with region START and END."
-  (interactive)
-  (jcs-tabify-or-untabify-buffer t start end))
-
-;;
 ;; (@* "Save Buffer" )
 ;;
 
-(defun jcs-reverse-tab-untab-save-buffer ()
-  "Reverse tabify/untabify save."
+(defun jcs-save-all-buffers ()
+  "Save all buffers currently opened."
   (interactive)
-  (require 'jcs-savbuf)
-  (cl-case (key-binding (kbd "C-s"))
-    (`jcs-untabify-save-buffer (jcs-tabify-save-buffer))
-    (`jcs-tabify-save-buffer (jcs-untabify-save-buffer))
-    (t (user-error "[ERROR] There is no default tab/untab save"))))
+  (let (len info-str saved-lst)
+    (dolist (buf (buffer-list))
+      (with-current-buffer buf
+        (when (ignore-errors
+                (jcs-mute-apply (call-interactively (key-binding (kbd "C-s")))))
+          (push buf saved-lst)
+          (message "Saved buffer `%s`" (buffer-file-name)))))
+    (setq len (length saved-lst)
+          info-str (mapconcat (lambda (buf) (format "`%s`" buf)) saved-lst ", "))
+    (pcase len
+      (0 (message "[INFO] (No buffers need to be saved)"))
+      (1 (message "[INFO] %s buffer saved: %s" len info-str))
+      (_ (message "[INFO] All %s buffers are saved: %s" len info-str)))))
 
 (defun jcs-save-buffer-by-mode ()
   "Save the buffer depends on it's major mode."

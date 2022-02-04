@@ -20,62 +20,14 @@ This variable is used to check if file are edited externally.")
   (undo-tree-kill-visualizer)
   (jcs-line-number-update-each-window))
 
-(defun jcs--organize-save-buffer ()
-  "Organize save buffer."
-  (let (deactivate-mark truncate-lines)
-    (when jcs-on-save-whitespace-cleanup
-      (jcs-delete-trailing-whitespace-except-current-line))
-    (when jcs-on-save-end-trailing-lines-cleanup
-      (jcs-remove-trailing-lines-end-buffer))
-    (cl-case jcs-on-save-tabify-type
-      (`tabify (jcs-tabify-buffer))
-      (`untabify (jcs-untabify-buffer))
-      (`nil (progn ))  ; Do nothing here.
-      (t (user-error "[WARNING] Unknown tabify type when on save: %s" jcs-on-save-tabify-type)))
-    (when jcs-on-save-remove-control-M
-      (jcs-mute-apply (jcs-remove-control-M)))
-    (jcs--save-buffer-internal)))
-
-(defun jcs--organize-save-buffer--do-valid ()
-  "Same with `jcs--organize-save-buffer', but with validity check infront."
-  (cond
-   ((not (buffer-file-name))
-    (user-error "[WARNING] Can't save with invalid filename: %s" (buffer-name)))
-   (buffer-read-only
-    (user-error "[WARNING] Can't save read-only file: %s" buffer-read-only))
-   (t (jcs--organize-save-buffer))))
-
-(defun jcs-save-buffer-default ()
-  "Save buffer with the default configuration's settings."
-  (interactive)
-  (jcs--organize-save-buffer--do-valid))
-
-(defun jcs-untabify-save-buffer ()
-  "Untabify file and save the buffer."
-  (interactive)
-  (let ((jcs-on-save-tabify-type 'untabify)) (jcs-save-buffer-default)))
-
-(defun jcs-tabify-save-buffer ()
-  "Tabify file and save the buffer."
-  (interactive)
-  (let ((jcs-on-save-tabify-type 'tabify)) (jcs-save-buffer-default)))
-
-(defun jcs-save-buffer ()
-  "Save buffer wrapper."
-  (interactive)
-  (let (jcs-on-save-tabify-type
-        jcs-on-save-whitespace-cleanup
-        jcs-on-save-end-trailing-lines-cleanup)
-    (jcs-save-buffer-default)))
-
-(defun jcs--save-buffer-internal ()
+(defun jcs-save-buffer--internal ()
   "Internal core functions for saving buffer."
   (setq jcs-created-parent-dir-path nil)
   (let ((modified (buffer-modified-p))
         (readable (file-readable-p (buffer-file-name)))
         (cur-frame (selected-frame)))
     ;; For some mode, broken save.
-    (jcs-mute-apply (save-excursion (save-buffer)))
+    (jcs-mute-apply (save-buffer))
     (select-frame-set-input-focus cur-frame)  ; For multi frames.
     ;; If wasn't readable, try to active LSP once if LSP is available.
     (unless readable (jcs--safe-lsp-active))
@@ -83,34 +35,31 @@ This variable is used to check if file are edited externally.")
         (message "Wrote file %s" (buffer-file-name))
       (message "(No changes need to be saved)"))))
 
-(defun jcs-save-all-buffers ()
-  "Save all buffers currently opened."
+(defun jcs-save-buffer--organize-before ()
+  "Organize before save buffer."
+  (let (deactivate-mark truncate-lines)
+    ;; Delete trailing whitespaces execpt the current line
+    (when whitespace-cleanup-mode
+      (whitespace-cleanup-region (point-min) (line-beginning-position))
+      (whitespace-cleanup-region (line-end-position) (point-max)))
+    (when jcs-on-save-remove-control-M (jcs-mute-apply (jcs-remove-control-M)))
+    (jcs-save-buffer--internal)))
+
+(defun jcs-save-buffer ()
+  "Save buffer wrapper."
   (interactive)
-  (let ((saved-lst '()) (len -1) (info-str ""))
-    (save-window-excursion
-      (dolist (buf (buffer-list))
-        (switch-to-buffer buf)
-        (when (ignore-errors
-                (jcs-mute-apply (call-interactively (key-binding (kbd "C-s")))))
-          (push buf saved-lst)
-          (message "Saved buffer '%s'" buf))))
-    (setq len (length saved-lst)
-          info-str (mapconcat (lambda (buf) (format "`%s`" buf)) saved-lst ", "))
-    (pcase len
-      (0 (message "[INFO] (No buffers need to be saved)"))
-      (1 (message "[INFO] %s buffer saved: %s" len info-str))
-      (_ (message "[INFO] All %s buffers are saved: %s" len info-str)))))
+  (cond
+   ((not (buffer-file-name))
+    (user-error "[WARNING] Can't save with invalid filename: %s" (buffer-name)))
+   (buffer-read-only
+    (user-error "[WARNING] Can't save read-only file: %s" buffer-read-only))
+   (t (jcs-save-buffer--organize-before))))
 
 (defun jcs-save-buffer-function ()
   "Return save buffer function by mode."
   (cl-case major-mode
-    (`snippet-mode #'jcs-save-buffer)
-    ((or cmake-mode makefile-mode) #'jcs-tabify-save-buffer)
-    (`sh-mode #'jcs-sh-untabify-save-buffer)
-    ((or conf-javaprop-mode ini-mode org-mode view-mode diff-mode)
-     #'save-buffer)
-    ((or scss-mode css-mode) #'jcs-css-save-buffer)
-    (t #'jcs-save-buffer-default)))
+    ((or css-mode scss-mode) #'jcs-css-save-buffer)
+    (t #'jcs-save-buffer)))
 
 (provide 'jcs-savbuf)
 ;;; jcs-savbuf.el ends here
