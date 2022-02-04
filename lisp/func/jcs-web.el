@@ -40,18 +40,6 @@
 ;; (@* "Other" )
 ;;
 
-(defun jcs-toggle-web-mode-offsetless-elements ()
-  "Toggle between indent with html tag or not to."
-  (interactive)
-  (if (get 'jcs-toggle-web-mode-offsetless-elements 'state)
-      (progn
-        (dolist (tmp-element jcs-web-mode-offsetless-elements-toggle)
-          (push tmp-element web-mode-offsetless-elements))
-        (put 'jcs-toggle-web-mode-offsetless-elements 'state nil))
-    (dolist (tmp-element jcs-web-mode-offsetless-elements-toggle)
-      (setq web-mode-offsetless-elements (remove tmp-element web-mode-offsetless-elements)))
-    (put 'jcs-toggle-web-mode-offsetless-elements 'state t)))
-
 (defun jcs-emmet-expand-line ()
   "Wrapper of `emmet-expand-line' function."
   (interactive)
