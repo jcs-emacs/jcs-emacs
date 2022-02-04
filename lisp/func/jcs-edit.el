@@ -455,25 +455,31 @@ This command does not push text to `kill-ring'."
 (defun jcs-save-all-buffers ()
   "Save all buffers currently opened."
   (interactive)
-  (let (len info-str saved-lst)
+  (require 'jcs-savbuf)
+  (let (saved-lst)
     (dolist (buf (buffer-list))
       (with-current-buffer buf
         (when (ignore-errors
                 (jcs-mute-apply (call-interactively (key-binding (kbd "C-s")))))
           (push buf saved-lst)
-          (message "Saved buffer `%s`" (buffer-file-name)))))
-    (setq len (length saved-lst)
-          info-str (mapconcat (lambda (buf) (format "`%s`" buf)) saved-lst ", "))
-    (pcase len
-      (0 (message "[INFO] (No buffers need to be saved)"))
-      (1 (message "[INFO] %s buffer saved: %s" len info-str))
-      (_ (message "[INFO] All %s buffers are saved: %s" len info-str)))))
+          (message "Wrote file %s" (buffer-file-name)))))
+    (let ((len (length saved-lst))
+          (info-str (mapconcat (lambda (buf) (format "`%s`" buf)) saved-lst ", ")))
+      (pcase len
+        (0 (message "[INFO] (No buffers need to be saved)"))
+        (1 (message "[INFO] %s buffer saved: %s" len info-str))
+        (_ (message "[INFO] All %s buffers are saved: %s" len info-str))))))
 
-(defun jcs-save-buffer-by-mode ()
-  "Save the buffer depends on it's major mode."
+(defun jcs-save-buffer ()
+  "Save buffer wrapper."
   (interactive)
   (require 'jcs-savbuf)
-  (call-interactively (jcs-save-buffer-function)))
+  (cond
+   ((not (buffer-file-name))
+    (user-error "[WARNING] Can't save with invalid filename: %s" (buffer-name)))
+   (buffer-read-only
+    (user-error "[WARNING] Can't save read-only file: %s" buffer-read-only))
+   (t (jcs-save-buffer--organize-before))))
 
 ;;
 ;; (@* "Find file" )

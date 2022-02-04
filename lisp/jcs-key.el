@@ -80,7 +80,7 @@
     ((kbd "S-SPC")         . jcs-real-space)
     ((kbd "C-S-d")         . jcs-duplicate-line)
     ((kbd "C-v")           . yank)
-    ((kbd "C-s")           . jcs-save-buffer-by-mode)
+    ((kbd "C-s")           . jcs-save-buffer)
     ((kbd "C-S-s")         . jcs-save-all-buffers)
     ((kbd "<up>")          . previous-line)
     ((kbd "<down>")        . next-line)
@@ -352,7 +352,7 @@
   (jcs-key company-active-map
     `(([tab]       . jcs-tab-key)
       ((kbd "TAB") . jcs-tab-key)
-      ((kbd "C-s") . jcs-save-buffer-by-mode))))
+      ((kbd "C-s") . jcs-save-buffer))))
 
 ;;; Buffer Menu
 (with-eval-after-load 'jcs-buffer-menu

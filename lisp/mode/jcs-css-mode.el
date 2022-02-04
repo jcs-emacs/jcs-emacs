@@ -9,14 +9,6 @@
 (require 'emmet-mode)
 (require 'rainbow-mode)
 
-(defun jcs-css-save-buffer ()
-  "Save buffer in `css-mode'."
-  (interactive)
-  ;; NOTE: after using this, I think is better if I bind this function/command
-  ;; to another key.
-  ;;(com-css-sort-attributes-document)
-  (jcs-save-buffer))
-
 ;;
 ;; (@* "Templates" )
 ;;
