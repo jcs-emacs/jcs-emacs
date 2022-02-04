@@ -82,7 +82,6 @@
     ((kbd "C-v")           . yank)
     ((kbd "C-s")           . jcs-save-buffer-by-mode)
     ((kbd "C-S-s")         . jcs-save-all-buffers)
-    ((kbd "C-k s")         . jcs-reverse-tab-untab-save-buffer)
     ((kbd "<up>")          . previous-line)
     ((kbd "<down>")        . next-line)
     ((kbd "C-M-<up>")      . scroll-down-line)
