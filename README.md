@@ -219,7 +219,6 @@ I believe details make things better and make life smoother.
 * [*Preview HTML*](./docs/features/preview-html) - Preview rendered HTML file on the other window.
 * [*Simulate Shell*](./docs/features/simulate-shell) - Completely simulate shell behaviors, make better user experience when using shell in Emacs.
 * [*Switch Window*](./docs/features/switch-window) - Fast keys switch between windows quickly.
-* [*Tabify/Untabify Modes*](./docs/features/tabify-untabify-modes) - Tabify or Untabify the file depends on the mode you currently in.
 * [*Trim Trailing Whitespace*](./docs/features/trim-trailing-whitespace) - Remove trailing spaces and tabs automatically on save.
 * [*Visualize Undo/Redo*](./docs/features/visualize-undo-redo) - Improved the user experience on undoing and redoing by showing the `undo-tree-visualizer` at the other window.
 * [*VS Curly Bracket*](./docs/features/vs-curly-bracket) - Visual Studio IDE like curly bracket implementation.
