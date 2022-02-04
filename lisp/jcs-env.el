@@ -109,6 +109,11 @@
 ;;; Deletion
 (setq delete-by-moving-to-trash t)
 
+;;; Display Column
+(leaf display-fill-column-indicator
+  :init
+  (setq-default display-fill-column-indicator-column 80))
+
 ;;; Doc View
 (leaf doc-view
   :defer-config
@@ -308,17 +313,8 @@ P.S. You would need to restart Emacs to take effect from this variable."
    (when (jcs-recentf-track-opened-file-p) (apply fnc args))))
 
 ;;; Save Files
-(defvar jcs-on-save-end-trailing-lines-cleanup t
-  "Remove trailing lines at the end of buffer on save.")
-
-(defvar jcs-on-save-whitespace-cleanup t
-  "Clean up whitespaces on save.")
-
 (defvar jcs-on-save-remove-control-M t
   "Remove ^M character on save.")
-
-(defvar jcs-on-save-tabify-type 'untabify  ; `nil', `tabify', `untabify'
-  "Default untabify or tabify to the buffer.")
 
 ;;; Separator
 (defconst jcs-env-separator-char "─"
