@@ -68,6 +68,7 @@
     define-it
     diff-hl
     diminish-buffer
+    diredfl
     docker-compose-mode
     dockerfile-mode
     docstr
@@ -135,6 +136,7 @@
     leaf
     license-templates
     line-reminder
+    log4e
     logms
     logview
     lsp-dart
@@ -222,6 +224,7 @@
     vue-mode
     web-mode
     which-key
+    whitespace-cleanup-mode
     winum
     yaml-mode
     yarn-mode
