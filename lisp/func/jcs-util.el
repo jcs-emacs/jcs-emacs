@@ -1200,7 +1200,7 @@ or `suffix'."
     (`strict (string= regexp str))
     (`prefix (string-prefix-p regexp str ignore-case))
     (`suffix (string-suffix-p regexp str ignore-case))
-    (t (string-match-p regexp str))))
+    (t (ignore-errors (string-match-p regexp str)))))
 
 (defun jcs-fill-n-char-seq (ch-seq n)
   "Fill CH-SEQ with N length."
