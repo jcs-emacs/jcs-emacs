@@ -111,6 +111,7 @@ without having to get used to a new IDE.
 
 Here is the list of few essential and recent changes to this configuration.
 
+* `8.0.2` - Remove config tabify/untabify save, and replace it with `with whitespace-cleanup-mode`.
 * `8.0.1` - Switch from `ivy` to `vertico`.
 * `8.0.0` - Move everything to `.emacs.d`. ([#32](https://github.com/jcs-emacs/jcs-emacs/pull/32))
 * `7.1.0` - Replace `quelpa` with `github-elpa`.
@@ -120,7 +121,6 @@ Here is the list of few essential and recent changes to this configuration.
 * `6.4.1` - Start with `tree-sitter` support.
 * `6.4.0` - Switched from `projectile` to built-in `project` for project management.
 * `6.3.1` - Replaced `docstring` module to external `docstr` package.
-* `6.2.5` - Use `recipes` folder instead to specify manually installed packages in the configuration.
 
 ## 💾 Installation
 
