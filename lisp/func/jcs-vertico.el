@@ -105,6 +105,9 @@
 ;; (@* "Registry" )
 ;;
 
+(defconst jcs-vertico-height-ratio 0.3
+  "Ratio that respect to `frame-height' and `vertico-count'.")
+
 (jcs-add-hook 'window-size-change-functions
   (setq vertico-count (floor (* (frame-height) jcs-vertico-height-ratio))))
 
