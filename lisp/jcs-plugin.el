@@ -258,9 +258,8 @@
   (jcs-advice-add 'jcs-buffer-menu-refresh-buffer :before
     (when diminish-buffer-mode (diminish-buffer-clean))))
 
-(leaf display-fill-column-indicator
-  :init
-  (setq-default display-fill-column-indicator-column 80))
+(leaf diredfl
+  :hook (dired-mode-hook . diredfl-mode))
 
 (leaf docstr
   :init
@@ -270,6 +269,10 @@
 (leaf dumb-jump
   :init
   (setq dumb-jump-selector 'completing-read))
+
+(leaf editorconfig
+  :init
+  (setq editorconfig-trim-whitespaces-mode 'ws-butler-mode))
 
 (leaf elisp-demos
   :init
@@ -286,8 +289,7 @@
 
 (leaf exec-path-from-shell
   :defer-config
-  (when (memq window-system '(mac ns x))
-    (exec-path-from-shell-initialize)))
+  (when (memq window-system '(mac ns x)) (exec-path-from-shell-initialize)))
 
 (leaf file-header
   :init
@@ -404,12 +406,12 @@
           (yaml-mode             . 2))))
 
 (leaf isearch
+  :hook
+  ((isearch-mode-hook     . jcs-scroll-conservatively-disable)
+   (isearch-mode-end-hook . jcs-scroll-conservatively-enable))
   :init
   (setq isearch-lazy-count t
-        lazy-count-prefix-format "[%s:%s] ")
-  :defer-config
-  (add-hook 'isearch-mode-hook #'jcs-scroll-conservatively-disable)
-  (add-hook 'isearch-mode-end-hook #'jcs-scroll-conservatively-enable))
+        lazy-count-prefix-format "[%s:%s] "))
 
 (leaf isearch-project
   :init
@@ -460,9 +462,6 @@
         lsp-modeline-code-action-fallback-icon "Œ"
         lsp-prefer-flymake nil                         ; Use lsp-ui and flycheck
         flymake-fringe-indicator-position 'right-fringe)
-
-  (defvar jcs-lsp-lighter-delay 3.0
-    "Shorten lighter after this amount of time.")
 
   (defun jcs--lsp-connected-p ()
     "Return non-nil if LSP connected."
@@ -838,9 +837,7 @@
         vertico-scroll-margin 0
         vertico-sort-function #'jcs-vertico--sort-function)
   :defer-config
-  (require 'jcs-vertico)
-  (defconst jcs-vertico-height-ratio 0.3
-    "Ratio that respect to `frame-height' and `vertico-count'."))
+  (require 'jcs-vertico))
 
 (leaf web-mode
   :init
@@ -851,13 +848,7 @@
         web-mode-style-padding 2   ; For `<style>' tag
         web-mode-script-padding 2  ; For `<script>' tag
         web-mode-block-padding 0   ; For `php', `ruby', `java', `python', `asp', etc.
-        web-mode-offsetless-elements '("html"))
-  :defer-config
-  ;; NOTE: Do not make these lists to one list.
-  ;; They are totally different list.
-  (defvar jcs-web-mode-offsetless-elements-toggle '("html")
-    "List of HTML elements you want to be toggable to the
-`wen-mode-offsetless-elements' list in Web mode."))
+        web-mode-offsetless-elements '("html")))
 
 (leaf which-key
   :init
@@ -867,6 +858,17 @@
         which-key-side-window-max-height 0.25
         which-key-dont-use-unicode t
         which-key-idle-delay 1.0))
+
+(leaf whitespace-cleanup-mode
+  :init
+  (setq whitespace-cleanup-mode-preserve-point t
+        whitespace-cleanup-mode-only-if-initially-clean nil
+        whitespace-cleanup-mode-ignore-modes
+        (append '(special-mode comint-mode cider-repl-mode haskell-interactive-mode)
+                '(markdown-mode org-mode)
+                '(conf-javaprop-mode ini-mode)
+                '(view-mode diff-mode)
+                '(snippet-mode))))
 
 (leaf winum
   :init
