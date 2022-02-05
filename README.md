@@ -307,7 +307,7 @@ kind of methods to support the maintainer you wish to.
 ## Write your own customization
 
 You can customize the configuration by editing the file located at
-`~/.emacs.d/site-lisp/jcs-config.el`. You should put all your own customize code
+`~/.emacs.d/site-lisp/config.el`. You should put all your own customize code
 there, then other than that are the core files.
 
 ## ❓ FAQ

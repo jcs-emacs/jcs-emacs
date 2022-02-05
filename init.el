@@ -145,7 +145,7 @@
 (require 'jcs-key)
 
 ;;; Customize
-(require 'jcs-config)
+(require 'config)
 
 ;; Local Variables:
 ;; coding: utf-8

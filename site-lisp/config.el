@@ -1,4 +1,4 @@
-;;; jcs-config.el --- Your own configuration  -*- lexical-binding: t -*-
+;;; config.el --- Your own configuration  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -7,5 +7,5 @@
 (setq user-full-name "Jen-Chieh Shen"
       user-mail-address "jcs090218@gmail.com")
 
-(provide 'jcs-config)
-;;; jcs-config.el ends here
+(provide 'config)
+;;; config.el ends here
