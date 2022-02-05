@@ -23,10 +23,12 @@
 (defun jcs-organize-imports ()
   "Organize imports code."
   (interactive)
-  (unless (ignore-errors (lsp-organize-imports))
-    (cl-case major-mode
-      (`java-mode (jcs-java-insert-package-src)  ; first organize package declaration
-                  (organize-imports-java-do-imports)))))
+  (cond
+   ((ignore-errors (lsp-organize-imports)))  ; first try lsp
+   (t (cl-case major-mode
+        (`java-mode
+         (jcs-java-insert-package-src)  ; first organize package declaration
+         (organize-imports-java-do-imports))))))
 
 ;;
 ;; (@* "Indentation" )
@@ -205,14 +207,14 @@
 ;; (@* "Overwrite" )
 ;;
 
-(jcs-advice-add 'overwrite-mode :after
+(jcs-add-hook 'overwrite-mode-hook
   (require 'multiple-cursors)
-  (if overwrite-mode
-      (progn
-        (setq-local cursor-type 'hbar)
-        (set-face-attribute 'mc/cursor-face nil :underline t :inverse-video nil))
-    (setq-local cursor-type 'box)
-    (set-face-attribute 'mc/cursor-face nil :underline nil :inverse-video t)))
+  (cond
+   (overwrite-mode
+    (setq-local cursor-type 'hbar)
+    (set-face-attribute 'mc/cursor-face nil :underline t :inverse-video nil))
+   (t (setq-local cursor-type 'box)
+      (set-face-attribute 'mc/cursor-face nil :underline nil :inverse-video t))))
 
 ;;
 ;; (@* "Kill Line" )
@@ -401,10 +403,10 @@ This command does not push text to `kill-ring'."
 (defun jcs-safe-revert-all-buffers ()
   "Revert buffers in the safe way."
   (require 'jcs-revbuf)
-  (let ((un-save-buf-lst (jcs-un-save-modified-buffers)))
-    (if un-save-buf-lst (jcs-ask-revert-all un-save-buf-lst)
-      (jcs-revert-all-valid-buffers)
-      (jcs-revert-all-invalid-buffers)))
+  (if-let ((un-save-buf-lst (jcs-un-save-modified-buffers)))
+      (jcs-ask-revert-all un-save-buf-lst)
+    (jcs-revert-all-valid-buffers)
+    (jcs-revert-all-invalid-buffers))
   (jcs-dashboard-safe-refresh-buffer))
 
 ;;
@@ -436,11 +438,11 @@ This variable is used to check if file are edited externally.")
   (setq jcs-buffer-save-string-md5 (md5 (buffer-string))))
 
 (jcs-advice-add 'save-buffer :before
-  (jcs-funcall-fboundp 'company-abort))
+  (jcs-funcall-fboundp #'company-abort))
 
 (jcs-advice-add 'save-buffer :after
   (jcs-update-buffer-save-string)
-  (undo-tree-kill-visualizer)
+  (jcs-funcall-fboundp #'undo-tree-kill-visualizer)
   (jcs-line-number-update-each-window))
 
 (defun jcs-save-buffer--internal ()
@@ -452,9 +454,10 @@ This variable is used to check if file are edited externally.")
     (let ((save-silently t)) (save-buffer))
     ;; If wasn't readable, try to active LSP once if LSP is available.
     (unless readable (jcs--safe-lsp-active))
-    (if (or modified (not readable))
-        (message "Wrote file %s" (buffer-file-name))
-      (message "(No changes need to be saved)"))))
+    (unless save-silently
+      (if (or modified (not readable))
+          (message "Wrote file %s" (buffer-file-name))
+        (message "(No changes need to be saved)")))))
 
 (defun jcs-save-buffer--organize-before ()
   "Organize before save buffer."
@@ -471,16 +474,19 @@ This variable is used to check if file are edited externally.")
   (let (saved-lst)
     (dolist (buf (buffer-list))
       (with-current-buffer buf
-        (when (ignore-errors
-                (jcs-mute-apply (call-interactively (key-binding (kbd "C-s")))))
-          (push buf saved-lst)
-          (message "Wrote file %s" (buffer-file-name)))))
-    (let ((len (length saved-lst))
-          (info-str (mapconcat (lambda (buf) (format "`%s`" buf)) saved-lst ", ")))
-      (pcase len
-        (0 (message "[INFO] (No buffers need to be saved)"))
-        (1 (message "[INFO] %s buffer saved: %s" len info-str))
-        (_ (message "[INFO] All %s buffers are saved: %s" len info-str))))))
+        (when-let ((result
+                    (ignore-errors
+                      (jcs-mute-apply
+                        (call-interactively (key-binding (kbd "C-s")))))))
+          (when (ignore-errors (string-match-p "Wrote file" result))
+            (push (buffer-file-name) saved-lst)))))
+    (unless save-silently
+      (let ((len (length saved-lst))
+            (info-str (mapconcat (lambda (buf) (format "`%s`" buf)) saved-lst "\n ")))
+        (pcase len
+          (0 (message "[INFO] (No buffers need to be saved)"))
+          (1 (message "[INFO] %s buffer saved:\n %s" len info-str))
+          (_ (message "[INFO] All %s buffers are saved:\n %s" len info-str)))))))
 
 (defun jcs-save-buffer ()
   "Save buffer wrapper."
