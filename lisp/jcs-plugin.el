@@ -254,6 +254,7 @@
         diminish-buffer-mode-list
         (append
          '("Dired by name")))
+  (with-eval-after-load 'jcs-buffer-menu (diminish-buffer-mode 1))
   :defer-config
   (jcs-advice-add 'jcs-buffer-menu-refresh-buffer :before
     (when diminish-buffer-mode (diminish-buffer-clean))))
