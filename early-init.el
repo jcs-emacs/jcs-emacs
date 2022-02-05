@@ -32,7 +32,7 @@
 
 ;;
 ;;; Set Custom file
-(setq-default custom-file (concat user-emacs-directory ".jcs-custom.el"))
+(setq-default custom-file (concat user-emacs-directory "site-lisp/custom.el"))
 (when (file-exists-p custom-file) (load custom-file))
 
 (provide 'early-init)

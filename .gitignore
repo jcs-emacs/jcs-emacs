@@ -1,5 +1,5 @@
 # settings
-/.jcs-custom.el
+/site-lisp/custom.el
 README.html
 
 *.bak
