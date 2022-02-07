@@ -549,10 +549,6 @@
   (setq most-used-words-display-type 'table
         most-used-words-word-display 100))
 
-(leaf multi-shell
-  :init
-  (setq multi-shell-prefer-shell-type 'shell))  ; Accept `shell' or `eshll'.
-
 (leaf multiple-cursors
   :init
   (defconst jcs-mc/cancel-commands
@@ -709,6 +705,12 @@
   :init
   (setq searcher-search-type 'regex  ; `regex' or `flx'
         searcher-flx-threshold 25))
+
+(leaf shell-pop
+  :init
+  (setq shell-pop-window-size 60
+        shell-pop-shell-type '("shell" "*shell*"
+                               (lambda () (require 'bshell) (bshell-new)))))
 
 (leaf show-eol
   :defer-config

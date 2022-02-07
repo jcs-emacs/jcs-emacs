@@ -162,8 +162,8 @@
 
 ;;; Mode Toggle
     ((kbd "C-k `") . jcs-depend-cross-mode-toggle)
-    ((kbd "C-~")   . jcs-shell-new-shell)
-    ((kbd "C-`")   . jcs-toggle-shell-window)
+    ((kbd "C-~")   . shell-pop)
+    ((kbd "C-`")   . shell-pop)
     ((kbd "C-k r") . rainbow-mode)
 
 ;;; Mouse
