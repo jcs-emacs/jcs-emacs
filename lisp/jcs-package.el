@@ -38,7 +38,6 @@
     better-scroll
     blamer
     browse-kill-ring
-    bshell
     buffer-move
     buffer-wrap
     calfw
@@ -165,6 +164,7 @@
     moody
     most-used-words
     move-text
+    multi-shell
     multiple-cursors
     mwim
     nasm-mode

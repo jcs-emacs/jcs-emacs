@@ -3,8 +3,7 @@
 ;;; Code:
 
 (leaf adaptive-wrap
-  :init
-  (jcs-add-hook 'visual-line-mode-hook (adaptive-wrap-prefix-mode +1)))
+  :hook (visual-line-mode-hook . adaptive-wrap-prefix-mode))
 
 (leaf auto-highlight-symbol
   :init
@@ -145,7 +144,7 @@
 
 (leaf company-emojify
   :init
-  (setq company-emojify-annotation 'image
+  (setq company-emojify-annotation (if (display-graphic-p) 'image 'unicode)
         company-emojify-emoji-styles '(github)))
 
 (leaf company-fuzzy
@@ -222,7 +221,7 @@
          '("[*]CPU-Profiler-Report" "[*]Memory-Profiler-Report")
          '("[*]Process List[*]")
          '("[*]Checkdoc " "[*]Package-Lint[*]")
-         '("[*]Async Shell Command[*]" "[*]shell" "[*]eshell")
+         '("[*]Async Shell Command[*]" "[*]shell" "[*]eshell" "bshell<")
          '("[*]ESS[*]")
          '("[*]emacs[*]")  ; From `async'
          '("[*]lsp-" "[*]LSP[ ]+"
@@ -273,7 +272,7 @@
 
 (leaf editorconfig
   :init
-  (setq editorconfig-trim-whitespaces-mode 'ws-butler-mode))
+  (setq editorconfig-trim-whitespaces-mode 'whitespace-cleanup-mode))
 
 (leaf elisp-demos
   :init
@@ -549,6 +548,10 @@
   (setq most-used-words-display-type 'table
         most-used-words-word-display 100))
 
+(leaf multi-shell
+  :init
+  (setq multi-shell-prefer-shell-type 'shell))  ; Accept `shell' or `eshll'.
+
 (leaf multiple-cursors
   :init
   (defconst jcs-mc/cancel-commands
@@ -709,8 +712,11 @@
 (leaf shell-pop
   :init
   (setq shell-pop-window-size 60
-        shell-pop-shell-type '("shell" "*shell*"
-                               (lambda () (require 'bshell) (bshell-new)))))
+        shell-pop-last-shell-buffer-index 0
+        shell-pop-shell-type '("shell" "*shell: <>*"
+                               (lambda () (multi-shell))))
+  :defer-config
+  (require 'multi-shell))
 
 (leaf show-eol
   :defer-config
