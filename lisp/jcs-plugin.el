@@ -890,10 +890,7 @@
 
 (leaf yasnippet
   :init
-  (setq yas-verbosity 0)
-  :defer-config
-  (require 'yasnippet-snippets)
-  (yas-global-mode 1))
+  (setq yas-verbosity 0))
 
 (provide 'jcs-plugin)
 ;;; jcs-plugin.el ends here

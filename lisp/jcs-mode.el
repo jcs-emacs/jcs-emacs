@@ -190,10 +190,16 @@ Note this is opposite logic to the toggle mode function."
 
 (jcs-add-hook '(text-mode-hook prog-mode-hook)
   (when (bound-and-true-p jcs-emacs-startup-directory)  ; only after Emacs startup
-    (auto-highlight-symbol-mode t)
+    (alt-codes-mode 1)
+    (auto-highlight-symbol-mode 1)
+    (company-mode 1)
+    (docstr-mode 1)
     (electric-pair-mode 1)
     (goto-address-mode 1)
     (when (display-graphic-p) (highlight-indent-guides-mode 1))
+    (hl-todo-mode 1)
+    (whitespace-cleanup-mode 1)
+    (yas-minor-mode 1)
 
     (jcs-active-project-mode-hook)))
 

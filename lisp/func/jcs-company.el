@@ -32,8 +32,10 @@
 
 (defun jcs-company--first-completion-started (&rest _)
   "Run before company's completion once."
-  (require 'yasnippet)
-  (remove-hook 'company-completion-started-hook 'jcs-company--first-completion-started))
+  (when (bound-and-true-p yas-minor-mode)
+    (require 'yasnippet-snippets)
+    (call-interactively #'yas-reload-all)
+    (remove-hook 'company-completion-started-hook 'jcs-company--first-completion-started)))
 (add-hook 'company-completion-started-hook 'jcs-company--first-completion-started)
 
 (jcs-add-hook 'company-completion-started-hook (jcs-gc-cons-threshold-speed-up t))
