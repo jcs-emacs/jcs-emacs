@@ -24,6 +24,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add new package `log4e`.
 * Remove config tabify/untabify save, and replace it with `whitespace-cleanup-mode`.
 * Add new package `shell-pop`.
+* Replace config built-in pop shell functionality with `shell-pop`.
 
 ## 8.0.1
 > Released Jan 29, 2022
