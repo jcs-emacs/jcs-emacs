@@ -217,7 +217,6 @@ I believe details make things better and make life smoother.
 * [*Navigate Blank Line*](./docs/features/navigate-blank-line) - Use `C-<up>` and `C-<down>` to navigate previous and next blank line.
 * [*Navigate Table*](./docs/features/navigate-table) - Navigate `org-mode`'s table easier by using arrow keys.
 * [*Preview HTML*](./docs/features/preview-html) - Preview rendered HTML file on the other window.
-* [*Simulate Shell*](./docs/features/simulate-shell) - Completely simulate shell behaviors, make better user experience when using shell in Emacs.
 * [*Switch Window*](./docs/features/switch-window) - Fast keys switch between windows quickly.
 * [*Trim Trailing Whitespace*](./docs/features/trim-trailing-whitespace) - Remove trailing spaces and tabs automatically on save.
 * [*Visualize Undo/Redo*](./docs/features/visualize-undo-redo) - Improved the user experience on undoing and redoing by showing the `undo-tree-visualizer` at the other window.
@@ -277,7 +276,7 @@ kind of methods to support the maintainer you wish to.
 * *Minimap* - none, originally powered by ~~[sublimity](https://github.com/zk-phi/sublimity)~~.
 * *Mode Line* - powered by [moody](https://github.com/tarsius/moody).
 * *Multiple Cursor* - powered by [iedit](https://github.com/victorhge/iedit) and [multiple-cursors](https://github.com/magnars/multiple-cursors.el).
-* *Multiple Terminal* - powered by [multi-shell](https://github.com/jcs-elpa/multi-shell).
+* *Multiple Terminal* - powered by [bshell](https://github.com/plandes/bshell).
 * *Music Player* - none.
 * *Navigation/Searcher* - powered by [searcher](https://github.com/jcs-elpa/searcher) and [isearch-project](https://github.com/elpa-host/isearch-project).
 * *Package Archive* - see [here](#file_folder-package-archives).
