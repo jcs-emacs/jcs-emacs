@@ -511,28 +511,6 @@ If optional argument FORCE is non-nil, force refresh it."
    nil t))
 
 ;;
-;; (@* "Terminal / Shell" )
-;;
-
-(defun jcs-toggle-shell-window ()
-  "Toggle Shell Command prompt."
-  (interactive)
-  (require 'jcs-shell)
-  (jcs-jump-to-buffer-windows
-   (multi-shell--prefix-name)
-   :success #'jcs-hide-shell-window
-   :error #'jcs-show-shell-window))
-
-(defun jcs-shell-new-shell ()
-  "Create a new shell window."
-  (interactive)
-  (require 'jcs-shell)
-  (jcs-jump-to-buffer-windows
-   (multi-shell--prefix-name)
-   :success (lambda () (other-window -2) (other-window 1) (multi-shell))
-   :error #'jcs-show-shell-window))
-
-;;
 ;; (@* "Tips" )
 ;;
 

@@ -61,20 +61,16 @@
 
 (defun jcs-get-prev/next-key-type (direction)
   "Return the prev/next key type by DIRECTION."
-  (cl-case major-mode
-    (`shell-mode
-     (jcs--define-prev/next-key direction #'jcs-shell-up-key #'jcs-shell-down-key))
-    (t
-     (jcs--define-prev/next-key
-       direction
-       (cl-case jcs-prev/next-key-type
-         (`normal 'previous-line)
-         (`smart 'jcs-smart-previous-line)
-         (t (user-error "[WARNING] Prev/Next key type not defined")))
-       (cl-case jcs-prev/next-key-type
-         (`normal 'next-line)
-         (`smart 'jcs-smart-next-line)
-         (t (user-error "[WARNING] Prev/Next key type not defined")))))))
+  (jcs--define-prev/next-key
+    direction
+    (cl-case jcs-prev/next-key-type
+      (`normal 'previous-line)
+      (`smart 'jcs-smart-previous-line)
+      (t (user-error "[WARNING] Prev/Next key type not defined")))
+    (cl-case jcs-prev/next-key-type
+      (`normal 'next-line)
+      (`smart 'jcs-smart-next-line)
+      (t (user-error "[WARNING] Prev/Next key type not defined")))))
 
 (defun jcs-nav--after-smart-move-line ()
   "Do stuff after smart move line."

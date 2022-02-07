@@ -5,6 +5,11 @@
 (require 'shell)
 (require 'esh-mode)
 
+(require 'exec-path-from-shell)
+
+;; Fix issue from https://github.com/kyagi/shell-pop-el/issues/51
+(push (cons "\\*shell\\*" display-buffer--same-window-action) display-buffer-alist)
+
 ;;
 ;; (@* "Hook" )
 ;;
@@ -16,22 +21,17 @@
     `(((kbd "DEL")             . jcs-electric-backspace)
       ((kbd "{")               . jcs-vs-opening-curly-bracket-key)
       ((kbd ";")               . jcs-vs-semicolon-key)
-      ((kbd "M-k")             . jcs-maybe-kill-shell)  ; Close it
-      ([tab]                   . jcs-company-manual-begin)
-      ((kbd "RET")             . jcs-shell-return)
-      ((kbd "<up>")            . ,(jcs-get-prev/next-key-type 'previous))
-      ((kbd "<down>")          . ,(jcs-get-prev/next-key-type 'next))
+      ((kbd "M-k")             . shell-pop)  ; Close it
+      ((kbd "M-K")             . comint-clear-buffer)
+      ((kbd "<up>")            . comint-previous-input)
+      ((kbd "<down>")          . comint-next-input)
+      ((kbd "<tab>")           . comint-next-matching-input-from-input)
       ([C-up]                  . jcs-previous-blank-line)
       ([C-down]                . jcs-next-blank-line)
-      ((kbd "C-~")             . jcs-shell-new-shell)
-      ((kbd "C-_")             . multi-shell-prev)
-      ((kbd "C-+")             . multi-shell-next)
-      ((kbd "C-<backspace>")   . jcs-shell-backward-delete-word)
-      ((kbd "C-S-<backspace>") . jcs-shell-forward-delete-word)
-      ((kbd "M-<backspace>")   . jcs-shell-backward-kill-word-capital)
-      ((kbd "M-S-<backspace>") . jcs-shell-forward-kill-word-capital)
-      ((kbd "C-d")             . jcs-shell-kill-whole-line)
-      ((kbd "<backspace>")     . jcs-shell-backspace))))
+      ((kbd "C-~")             . bshell-new)
+      ((kbd "C-_")             . bshell-switch)
+      ((kbd "C-+")             . bshell-switch)
+      ((kbd "M-b")             . bshell-switch-by-working-directory))))
 
 (provide 'jcs-shell-mode)
 ;;; jcs-shell-mode.el ends here
