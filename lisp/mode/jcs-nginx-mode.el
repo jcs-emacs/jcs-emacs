@@ -17,7 +17,7 @@
 ;;
 
 (jcs-add-hook 'nginx-mode-hook
-  (jcs-company-safe-add-backend 'company-nginx)
+  (company-fuzzy-backend-add 'company-nginx)
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]conf")

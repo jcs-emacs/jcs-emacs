@@ -119,7 +119,7 @@
 (jcs-add-hook 'c-mode-common-hook
   (jcs-use-cc-mutliline-comment)
 
-  (jcs-company-safe-add-backend 'company-clang)
+  (company-fuzzy-backend-add 'company-clang)
 
   ;; Additional style stuff
   (c-set-offset 'member-init-intro '++)

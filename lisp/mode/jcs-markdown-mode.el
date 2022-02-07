@@ -58,7 +58,7 @@
 
   (jcs-elec-pair-add '((?\` . ?\`)))
 
-  (jcs-company-safe-add-backend 'company-emojify)
+  (company-fuzzy-backend-add 'company-emojify)
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]md" "[.]markdown")

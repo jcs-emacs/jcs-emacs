@@ -92,7 +92,7 @@
 (jcs-add-hook 'c++-mode-hook
   (add-hook 'docstr-after-insert-hook 'jcs-c++--docstr-after nil t)
 
-  (jcs-company-safe-add-backend 'company-c-headers)
+  (company-fuzzy-backend-add 'company-c-headers)
 
   ;; File Header
   (let ((ext-lst (append jcs-c-header-extensions jcs-c-source-extensions

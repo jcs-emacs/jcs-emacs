@@ -15,7 +15,7 @@
 ;;
 
 (jcs-add-hook '(shell-mode-hook eshell-mode-hook)
-  (company-fuzzy-mode -1)
+  (modify-syntax-entry ?> "!")
 
   (jcs-key-local
     `(((kbd "DEL")    . jcs-electric-backspace)

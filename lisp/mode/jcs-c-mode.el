@@ -21,7 +21,7 @@
 ;;
 
 (jcs-add-hook 'c-mode-hook
-  (jcs-company-safe-add-backend 'company-c-headers)
+  (company-fuzzy-backend-add 'company-c-headers)
 
   ;; File Header
   (jcs-cc-insert-header)
