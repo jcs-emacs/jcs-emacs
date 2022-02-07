@@ -35,4 +35,4 @@
       ((kbd "M-b")    . multi-shell-select))))
 
 (provide 'jcs-shell-mode)
-;;; jcs-shell-mode    .el ends here
+;;; jcs-shell-mode.el ends here
