@@ -153,7 +153,7 @@ Note this is opposite logic to the toggle mode function."
 (jcs-add-hook '(compilation-mode-hook comint-mode-hook)
   (buffer-disable-undo)
   (goto-address-mode 1)
-  (toggle-truncate-lines -1)
+  (setq truncate-lines nil)
 
   ;; NOTE: Set smaller font.
   (setq buffer-face-mode-face '(:height 120))

@@ -72,7 +72,7 @@
   (auto-rename-tag-mode 1)
   (visual-line-mode t)
   (impatient-mode t)
-  (toggle-truncate-lines 1)
+  (setq truncate-lines t)
 
   ;; Docstring Faces
   (face-remap-add-relative 'docstr-faces-tag-face '(:inherit web-mode-block-face))

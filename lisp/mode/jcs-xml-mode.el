@@ -22,7 +22,7 @@
 (jcs-add-hook 'nxml-mode-hook
   (auto-rename-tag-mode 1)
   (visual-line-mode t)
-  (toggle-truncate-lines 1)
+  (setq truncate-lines t)
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]xml")
