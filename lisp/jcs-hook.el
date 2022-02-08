@@ -31,11 +31,11 @@
   (when jcs-current-created-parent-dir-path
     (setq jcs-created-parent-dir-path jcs-current-created-parent-dir-path
           jcs-current-created-parent-dir-path nil))
-  (jcs-buffer-menu-safe-refresh)
+  (jcs-buffer-menu-refresh-buffer)
   (jcs-dashboard-safe-refresh-buffer))
 
 (jcs-advice-add 'switch-to-buffer :after
-  (jcs-buffer-menu-safe-refresh)
+  (jcs-buffer-menu-refresh-buffer)
   (jcs-dashboard-safe-refresh-buffer))
 
 (defun jcs-hook--other-window-interactively-p ()
@@ -48,7 +48,7 @@
 
 (jcs-advice-add 'other-window :after
   (when (jcs-hook--other-window-interactively-p)
-    (jcs-buffer-menu-safe-refresh)
+    (jcs-buffer-menu-refresh-buffer)
     (jcs-dashboard-safe-refresh-buffer)))
 
 ;;

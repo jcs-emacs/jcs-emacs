@@ -143,9 +143,7 @@
 (defun jcs-scratch-buffer-refresh ()
   "Refresh scratch buffer."
   (interactive)
-  (if (jcs-scratch-buffer-p)
-      (jcs-new-scratch-buffer)
-    (jcs-reopen-this-buffer)))
+  (if (jcs-scratch-buffer-p) (jcs-new-scratch-buffer) (jcs-reopen-this-buffer)))
 
 ;;
 ;; (@* "Buffer Menu" )
@@ -164,35 +162,17 @@
   "Record if fake header already appears.")
 
 (jcs-advice-add 'list-buffers-noselect :after
-  (setq jcs--buffer-menu-return-delay nil)
-  (unless jcs-buffer--menu-switch-buffer-refreshing
-    (setq jcs--buffer-menu--first-enter nil)
-    (setq-local tabulated-list--header-string jcs--buffer-menu-search-title)))
+  (setq jcs--buffer-menu-return-delay nil))
 
-(defvar jcs-buffer--menu-switch-buffer-refreshing nil
-  "Flag to check if current buffer menu refresing.")
+(defun jcs-buffer-menu-p ()
+  "Check if current major mode `buffer-menu'."
+  (eq major-mode 'Buffer-menu-mode))
 
 (defun jcs-buffer-menu-refresh-buffer ()
   "Update buffer menu buffer."
   (interactive)
-  (unless (string= (jcs-buffer-name-or-buffer-file-name) jcs-buffer-menu-buffer-name)
-    (save-window-excursion
-      (let (tabulated-list--header-string) (jcs-mute-apply (buffer-menu)))
-      (when jcs-buffer--menu-switch-buffer-refreshing
-        (jcs--buffer-menu-trigger-filter))
-      (bury-buffer)))
-  (jcs-jump-to-buffer-windows
-   jcs-buffer-menu-buffer-name
-   :success
-   (lambda ()
-     (when (and (tabulated-list-header-overlay-p) (= (line-number-at-pos) 1))
-       (jcs-goto-line 2)))))
-
-(defun jcs-buffer-menu-safe-refresh ()
-  "Safely refresh `buffer menu`'s buffer."
-  (unless jcs-buffer--menu-switch-buffer-refreshing
-    (let ((jcs-buffer--menu-switch-buffer-refreshing t))
-      (jcs-buffer-menu-refresh-buffer))))
+  (unless (jcs-buffer-menu-p)
+    (jcs-when-buffer-window jcs-buffer-menu-buffer-name (buffer-menu))))
 
 ;;
 ;; (@* "Calculator" )
@@ -273,10 +253,8 @@ If optional argument FORCE is non-nil, force refresh it."
             (ls-path (jcs-last-default-directory)))
         (when (or force (not (string= jcs-dashboard--last-ls-path ls-path)))
           (setq jcs-dashboard--last-ls-path ls-path)
-          (jcs-jump-to-buffer-windows
-           dashboard-buffer-name
-           :type 'strict
-           :success (lambda () (jcs-dashboard-refresh-buffer))))))))
+          (jcs-when-buffer-window dashboard-buffer-name
+            (jcs-dashboard-refresh-buffer)))))))
 
 (defun jcs-dashboard--get-banner-path ()
   "Return banner path."
