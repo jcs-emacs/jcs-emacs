@@ -242,19 +242,15 @@ get the truncate path from dashboard buffer (ffap)."
 
 (defun jcs-dashboard--window-width ()
   "Return dashboard buffer's window width."
-  (let (ww)
-    (jcs-jump-to-buffer-windows
-     dashboard-buffer-name :type 'strict
-     :success (lambda () (setq ww (window-width))))
-    ww))
+  (jcs-when-buffer-window dashboard-buffer-name (window-width)))
 
 ;;
 ;; (@* "Registry" )
 ;;
 
 (jcs-add-hook 'window-size-change-functions
-  (let ((new-ww (jcs-dashboard--window-width)))
-    (when (and new-ww (not (= new-ww jcs-dashboard--last-window-width)))
+  (when-let ((new-ww (jcs-dashboard--window-width)))
+    (unless (= new-ww jcs-dashboard--last-window-width)
       (setq jcs-dashboard--last-window-width new-ww)
       (jcs-dashboard-safe-refresh-buffer t))))
 

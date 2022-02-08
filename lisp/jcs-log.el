@@ -38,7 +38,7 @@ Acts like `message' but preserves text properties in the *Messages* buffer."
   "Message out anything from ARGS."
   (when jcs-log
     (jcs-unmute-apply
-      (message (mapconcat (lambda (str) (format "%s" str)) args " ")))))
+      (message (mapconcat (lambda (elm) (format "%s" elm)) args " ")))))
 
 ;;
 ;; (@* "List" )
@@ -95,20 +95,14 @@ Optional argument VAL-DEL is string that point to item."
 (defun jcs-log--before (clean)
   "Action do before doing log."
   (when clean
-    (jcs-jump-to-buffer-windows
-     jcs-message-buffer-name
-     :success #'jcs-message-erase-buffer
-     :error (lambda ()
-              (save-selected-window
-                (jcs-message-buffer-other-window)
-                (jcs-message-erase-buffer))))))
+    (jcs-if-buffer-window jcs-message-buffer-name (jcs-message-erase-buffer)
+      (save-selected-window
+        (jcs-message-buffer-other-window)
+        (jcs-message-erase-buffer)))))
 
 (defun jcs-log--after ()
   "Action do after doing log."
-  (save-selected-window
-    (jcs-jump-to-buffer-windows
-     jcs-message-buffer-name
-     :success (lambda () (goto-char (point-max))))))
+  (jcs-when-buffer-window jcs-message-buffer-name (goto-char (point-max))))
 
 ;;
 ;; (@* "Util" )

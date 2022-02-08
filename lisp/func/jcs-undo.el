@@ -79,22 +79,18 @@ This will no longer overwrite usual Emacs' undo key."
 If UD is non-nil, do undo.  If UD is nil, do redo."
   (jcs--lsp-ui-doc--hide-frame)
   (if (not jcs-use-undo-tree-key)
-      (call-interactively #'undo)  ; In Emacs, undo/redo is the same thing.
+      (call-interactively #'undo)  ; undo/redo is the same command
     ;; NOTE: If we do jumped to the `undo-tree-visualizer-buffer-name'
     ;; buffer, then we use `undo-tree-visualize-redo' instead of
     ;; `undo-tree-redo'. Because directly called `undo-tree-visualize-redo'
     ;; key is way faster than `undo-tree-redo' key.
-    (jcs-jump-to-buffer-windows
-     undo-tree-visualizer-buffer-name :type 'strict
-     :success
-     (lambda ()
-       (if ud (undo-tree-visualize-undo) (undo-tree-visualize-redo))
-       (jcs--undo-tree-visualizer--do-diff))
-     :error
-     (lambda ()
-       (if ud (undo-tree-undo) (undo-tree-redo))
-       (jcs-undo-tree-visualize)
-       (jcs--undo-tree-visualizer--do-diff)))))
+    (jcs-if-buffer-window undo-tree-visualizer-buffer-name
+        (progn
+          (if ud (undo-tree-visualize-undo) (undo-tree-visualize-redo))
+          (jcs--undo-tree-visualizer--do-diff))
+      (if ud (undo-tree-undo) (undo-tree-redo))
+      (jcs-undo-tree-visualize)
+      (jcs--undo-tree-visualizer--do-diff))))
 
 (provide 'jcs-undo)
 ;;; jcs-undo.el ends here

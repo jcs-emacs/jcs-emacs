@@ -569,7 +569,7 @@ NO-RECORD and FORCE-SAME-WINDOW are the same as switch to buffer arguments."
   ;; If something that I doesn't want to see, bury it.
   ;; For instance, any `*helm-' buffers.
   (jcs-bury-diminished-buffer)
-  (jcs-buffer-menu-safe-refresh))
+  (jcs-buffer-menu-refresh-buffer))
 
 (defun jcs--kill-this-buffer--advice-around (fnc &rest args)
   "Advice execute around command `kill-this-buffer' with FNC and ARGS."
@@ -593,7 +593,7 @@ NO-RECORD and FORCE-SAME-WINDOW are the same as switch to buffer arguments."
   (when (and (featurep 'lsp-mode) (jcs--lsp-connected-p)) (lsp-disconnect))
   (kill-this-buffer)
   (jcs-project--track-open-projects)
-  (jcs-buffer-menu-safe-refresh)
+  (jcs-buffer-menu-refresh-buffer)
   (jcs-dashboard-refresh-buffer)
   ;; If still in the buffer menu, try switch to the previous buffer.
   (when (jcs-buffer-menu-p) (jcs-switch-to-previous-buffer)))

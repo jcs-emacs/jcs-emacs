@@ -166,10 +166,6 @@ If optional argument BUFFER-LIST is non-nil, use this buffer list instead."
 ;; (@* "Search / Filter" )
 ;;
 
-(defun jcs-buffer-menu-p ()
-  "Check if current major mode `buffer-menu'."
-  (eq major-mode 'Buffer-menu-mode))
-
 (defun jcs-buffer-menu-return ()
   "Implemenetation for `buffer menu`'s return key."
   (interactive)
