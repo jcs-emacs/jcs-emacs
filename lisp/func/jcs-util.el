@@ -67,6 +67,19 @@
        (setq cnt (1+ cnt)
              break (<= ,repetitions cnt)))))
 
+(defmacro jcs-when-buffer-window (buffer-or-name &rest body)
+  "Execute BODY in window BUFFER-OR-NAME."
+  (declare (indent 1) (debug t))
+  `(when-let ((win (ignore-errors (get-buffer-window-list ,buffer-or-name))))
+     (with-selected-window (nth 0 win) ,@body)))
+
+(defmacro jcs-if-buffer-window (buffer-or-name then &rest else)
+  "Execute THEN in window BUFFER-OR-NAME; otherwise ELSE will be executed."
+  (declare (indent 2) (debug t))
+  `(if-let ((win (ignore-errors (get-buffer-window-list ,buffer-or-name))))
+       (with-selected-window (nth 0 win) ,then)
+     ,@else))
+
 ;;
 ;; (@* "Module" )
 ;;
