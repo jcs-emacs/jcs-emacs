@@ -17,56 +17,26 @@
 (defconst jcs-backtrace-buffer-name "*Backtrace*"
   "Name of the backtrace buffer.")
 
-(defvar jcs-backtrace--occurs-last-command nil
-  "Check if backtrace occurs last command.")
-
-(defvar jcs-backtrace--dedicated-window nil
-  "Record down backtrace dedicated window.")
-
-(defun jcs-backtrace--dedicated-window-p (&optional win)
-  "Return non-nil if WIN the backtrace dedicated window."
-  (eq (or win (get-buffer-window)) jcs-backtrace--dedicated-window))
-
 (defun jcs-hit-backtrace ()
   "Do stuff when backtrace occures."
-  (jcs-red-mode-line)  ; When error, use red mode line.
+  (jcs-red-mode-line)  ; When error, turn red
   (jcs-no-log-apply
     (message "[INFO] Oops, error occurs! Please see backtrace for more information")))
 
-(defun jcs-backtrace--ensure-stay-in-buffer ()
-  "Ensure stay in backtrace buffer base on conditions."
-  (let ((backtrace-killed-p (not (get-buffer-window))))
-    (when (or (jcs-backtrace--dedicated-window-p) backtrace-killed-p)
-      (switch-to-buffer jcs-backtrace-buffer-name))))
-
 (defun jcs-backtrace-occurs-p ()
   "Check if the backtrace occurs."
-  (let (occurs)
-    (when (get-buffer jcs-backtrace-buffer-name)
-      (with-current-buffer jcs-backtrace-buffer-name
-        (setq occurs (not (string-empty-p (buffer-string))))))
-    occurs))
+  (jcs-with-current-buffer jcs-backtrace-buffer-name
+    (not (string-empty-p (buffer-string)))))
 
 (defun jcs-reload-active-mode-with-error-handle ()
   "Reload the active by handling the error occurrence."
-  (unless (minibufferp)
-    (if (jcs-backtrace-occurs-p)
-        (progn
-          (ignore-errors
-            (jcs-hit-backtrace)
-            (setq jcs-backtrace--occurs-last-command t)
-            (jcs-backtrace--ensure-stay-in-buffer)
-            (if jcs-backtrace--dedicated-window
-                (when (and (not (eq (selected-window) jcs-backtrace--dedicated-window))
-                           (jcs-buffer-shown-in-multiple-window-p jcs-backtrace-buffer-name))
-                  (jcs-maybe-kill-this-buffer))
-              (setq jcs-backtrace--dedicated-window (get-buffer-window jcs-backtrace-buffer-name)))))
-      (when jcs-backtrace--occurs-last-command
-        (jcs-reload-active-mode)
-        (setq jcs-backtrace--occurs-last-command nil)
-        (when (windowp jcs-backtrace--dedicated-window)
-          (ignore-errors (delete-window jcs-backtrace--dedicated-window)))
-        (setq jcs-backtrace--dedicated-window nil)))))
+  (if (jcs-backtrace-occurs-p) (jcs-hit-backtrace) (jcs-reload-active-mode)))
+
+(defun jcs-backtrace-exit ()
+  "Exit backtrace."
+  (jcs-when-buffer-window jcs-backtrace-buffer-name
+    (let (buffer-read-only) (erase-buffer) (bury-buffer))
+    (unless (window-full-height-p) (delete-window))))
 
 ;;
 ;; (@* "*Messages*" )

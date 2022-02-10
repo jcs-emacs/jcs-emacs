@@ -128,13 +128,9 @@
 ;; (@* "Quitting" )
 ;;
 
-(defun jcs--quit-command (&rest _)
-  "Advice for quit command."
-  (deactivate-mark)
-  (jcs-funcall-fboundp #'jcs-process-reporter-done))
-
-(advice-add 'keyboard-quit :before #'jcs--quit-command)
-(advice-add 'top-level :before #'jcs--quit-command)
+(jcs-advice-add '(keyboard-quit top-level) :before
+  (jcs-funcall-fboundp #'jcs-process-reporter-done)
+  (jcs-backtrace-exit))
 
 ;;
 ;; (@* "Startup" )
