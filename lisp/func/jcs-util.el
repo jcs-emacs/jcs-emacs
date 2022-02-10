@@ -300,18 +300,18 @@ See function `jcs-string-compare-p' for argument TYPE."
 If optional argument FLIP is non-nil, reverse query and pattern order."
   (let ((scoring-table (ht-create)) scoring-keys)
     (dolist (cand candidates)
-      (let* ((scoring (ignore-errors
-                        (if flip (funcall fnc prefix cand)
-                          (funcall fnc cand prefix))))
-             (score (cond ((listp scoring) (nth 0 scoring))
-                          ((vectorp scoring) (aref scoring 0))
-                          ((numberp scoring) scoring)
-                          (t 0))))
-        (when score
-          ;; XXX ht causes unknown error on start, use regular hash table functions
-          ;; for now
-          (unless (gethash score scoring-table) (setf (gethash score scoring-table) nil))
-          (push cand (gethash score scoring-table)))))
+      (when-let*
+          ((scoring (ignore-errors
+                      (if flip (funcall fnc prefix cand)
+                        (funcall fnc cand prefix))))
+           (score (cond ((listp scoring) (nth 0 scoring))
+                        ((vectorp scoring) (aref scoring 0))
+                        ((numberp scoring) scoring)
+                        (t 0))))
+        ;; XXX ht causes unknown error on start, use regular hash table functions
+        ;; for now
+        (unless (gethash score scoring-table) (setf (gethash score scoring-table) nil))
+        (push cand (gethash score scoring-table))))
     ;; Get all keys, and turn into a list.
     (ht-map (lambda (score-key _) (push score-key scoring-keys)) scoring-table)
     (setq scoring-keys (sort scoring-keys #'>)  ; Sort keys in order
@@ -325,26 +325,6 @@ If optional argument FLIP is non-nil, reverse query and pattern order."
 ;; (@* "Key" )
 ;;
 
-(defun jcs-print-current-keymap ()
-  "Message out what current keymap."
-  (interactive)
-  (message "[INFO] Current keymap: %s" (jcs-current-keymap)))
-
-(defun jcs-keymap-symbol (keymap)
-  "Return the symbol to which KEYMAP is bound, or nil if no such symbol exists."
-  (catch 'gotit
-    (mapatoms (lambda (sym)
-                (and (boundp sym)
-                     (eq (symbol-value sym) keymap)
-                     (not (eq sym 'keymap))
-                     (throw 'gotit sym))))))
-
-(defun jcs-current-keymap ()
-  "Return SYMBOL represent the keymap."
-  (or (jcs-keymap-symbol (current-local-map))
-      ;; We try to guess the possible keymap by their major-mode name
-      (intern (concat (symbol-name major-mode) "-map"))))
-
 (defmacro jcs-key (keymap alist)
   "Bind ALIST to KEYMAP."
   (declare (indent 1))
@@ -353,10 +333,12 @@ If optional argument FLIP is non-nil, reverse query and pattern order."
        (if (keymapp ,keymap) (define-key ,keymap (eval key) def)
          (user-error "[WARNING] Issue bind key `%s`, `%s`, `%s`" ,keymap key def)))))
 
-(defmacro jcs-key-local (alist &optional keymap)
-  "Bind ALIST to local KEYMAP."
+(defmacro jcs-key-local (alist)
+  "Bind ALIST to local keymap."
   (declare (indent 0))
-  `(jcs-key (or ,keymap (symbol-value (jcs-current-keymap))) ,alist))
+  `(dolist (data ,alist)
+     (let ((key (car data)) (def (cdr data)))
+       (local-set-key (eval key) def))))
 
 (defmacro jcs-leaf-key* (alist)
   "Bind key with ALIST using `leaf-key*'."
