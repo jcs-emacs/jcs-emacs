@@ -438,35 +438,18 @@ This variable is used to check if file are edited externally.")
   (setq jcs-buffer-save-string-md5 (md5 (buffer-string))))
 
 (jcs-advice-add 'save-buffer :before
-  (jcs-funcall-fboundp #'company-abort))
-
-(jcs-advice-add 'save-buffer :after
-  (jcs-update-buffer-save-string)
-  (jcs-funcall-fboundp #'undo-tree-kill-visualizer)
-  (jcs-line-number-update-each-window))
-
-(defun jcs-save-buffer--internal ()
-  "Internal core functions for saving buffer."
-  (setq jcs-created-parent-dir-path nil)
-  (let ((modified (buffer-modified-p))
-        (readable (file-readable-p (buffer-file-name))))
-    ;; For some mode, broken save.
-    (let ((save-silently t)) (save-buffer))
-    ;; If wasn't readable, try to active LSP once if LSP is available.
-    (unless readable (jcs--safe-lsp-active))
-    (unless save-silently
-      (if (or modified (not readable))
-          (message "Wrote file %s" (buffer-file-name))
-        (message "(No changes need to be saved)")))))
-
-(defun jcs-save-buffer--organize-before ()
-  "Organize before save buffer."
+  (jcs-funcall-fboundp #'company-abort)
   ;; Delete trailing whitespaces execpt the current line
   (when whitespace-cleanup-mode
     (whitespace-cleanup-region (point-min) (line-beginning-position))
     (whitespace-cleanup-region (line-end-position) (point-max)))
-  (when jcs-on-save-remove-control-M (jcs-mute-apply (jcs-remove-control-M)))
-  (jcs-save-buffer--internal))
+  (when jcs-on-save-remove-control-M (jcs-mute-apply (jcs-remove-control-M))))
+
+(jcs-advice-add 'save-buffer :after
+  (jcs-update-buffer-save-string)
+  (jcs-funcall-fboundp #'undo-tree-kill-visualizer)
+  (jcs-line-number-update-each-window)
+  (setq jcs-created-parent-dir-path nil))
 
 (defun jcs-save-all-buffers ()
   "Save all buffers currently opened."
@@ -496,7 +479,10 @@ This variable is used to check if file are edited externally.")
     (user-error "[WARNING] Can't save with invalid filename: %s" (buffer-name)))
    (buffer-read-only
     (user-error "[WARNING] Can't save read-only file: %s" buffer-read-only))
-   (t (jcs-save-buffer--organize-before))))
+   (t
+    (let ((readable (file-readable-p (buffer-file-name))))
+      (jcs-no-log-apply (call-interactively #'save-buffer))
+      (unless readable (jcs--safe-lsp-active))))))
 
 ;;
 ;; (@* "Find file" )
@@ -575,7 +561,7 @@ NO-RECORD and FORCE-SAME-WINDOW are the same as switch to buffer arguments."
   "Advice execute around command `kill-this-buffer' with FNC and ARGS."
   (require 'jcs-undo)
   (let ((killed-buffer (current-buffer)) undoing-p)
-    (jcs-with-current-buffer (get-buffer undo-tree-visualizer-buffer-name)
+    (jcs-with-current-buffer undo-tree-visualizer-buffer-name
       (setq undoing-p (eq undo-tree-visualizer-parent-buffer killed-buffer)))
     (apply fnc args)
     (undo-tree-kill-visualizer)))
