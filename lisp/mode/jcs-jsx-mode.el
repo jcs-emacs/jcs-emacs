@@ -14,9 +14,10 @@
           '("Default"
             "ReactJS"
             "React Native"))))
-  (cond ((string= sc "Default") (jcs-insert-jsx-template))
-        ((string= sc "ReactJS") (jcs-insert-jsx-react-js-template))
-        ((string= sc "React Native") (jcs-insert-jsx-react-native-template))))
+  (pcase sc
+    ("Default" (jcs-insert-jsx-template))
+    ("ReactJS" (jcs-insert-jsx-react-js-template))
+    ("React Native" (jcs-insert-jsx-react-native-template))))
 
 ;;
 ;; (@* "Templates" )
