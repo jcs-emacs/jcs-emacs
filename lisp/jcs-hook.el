@@ -129,6 +129,7 @@
 ;;
 
 (jcs-advice-add '(keyboard-quit top-level) :before
+  (deactivate-mark)  ; disable region
   (jcs-funcall-fboundp #'jcs-process-reporter-done)
   (jcs-backtrace-exit))
 
