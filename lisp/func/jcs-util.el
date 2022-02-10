@@ -119,7 +119,7 @@
 (defmacro jcs-with-current-buffer (buffer-or-name &rest body)
   "Safe `with-current-buffer'."
   (declare (indent 1) (debug t))
-  `(when (buffer-live-p ,buffer-or-name)
+  `(when (or (buffer-live-p ,buffer-or-name) (get-buffer ,buffer-or-name))
      (with-current-buffer ,buffer-or-name ,@body)))
 
 (defun jcs-buffer-name-or-buffer-file-name (&optional buf)

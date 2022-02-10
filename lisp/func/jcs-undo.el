@@ -92,5 +92,13 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
       (jcs-undo-tree-visualize)
       (jcs--undo-tree-visualizer--do-diff))))
 
+;;
+;; (@* "Registry" )
+;;
+
+(jcs-add-hook 'undo-tree-visualizer-mode-hook
+  (jcs-key-local
+    `(((kbd "C-s") . undo-tree-visualizer-quit))))
+
 (provide 'jcs-undo)
 ;;; jcs-undo.el ends here
