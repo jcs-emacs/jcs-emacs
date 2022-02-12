@@ -1,4 +1,4 @@
-;;; jcs-mode-line.el --- Customize mode-line plugin  -*- lexical-binding: t -*-
+;;; jcs-disp.el --- Customize display format  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -115,5 +115,5 @@ BC : border color."
     (jcs--set-mode-line-theme
      '("#CCCCCC" "#B100EB") '("#CCCCCC" "#650286") "#B100EB")))
 
-(provide 'jcs-mode-line)
-;;; jcs-mode-line.el ends here
+(provide 'jcs-disp)
+;;; jcs-disp.el ends here
