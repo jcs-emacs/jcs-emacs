@@ -102,7 +102,7 @@
 
 (jcs-add-hook 'org-mode-hook
   (jcs-key-local
-    `(((kbd "C-a")        . jcs-mark-whole-buffer)
+    `(((kbd "C-a")        . mark-whole-buffer)
       ([tab]              . jcs-tab-key)
       ((kbd "C-y")        . jcs-redo)
       ([S-tab]            . jcs-org-smart-cycle)
