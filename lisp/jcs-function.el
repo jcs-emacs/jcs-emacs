@@ -391,7 +391,7 @@ If optional argument FORCE is non-nil, force refresh it."
          (start (car bound)) (end (cdr bound)))
     (cl-case major-mode
       (`json-mode (json-reformat-region start end))
-      ((or nxml-mode xml-mode web-mode html-mode) (sgml-pretty-print start end))
+      ((nxml-mode xml-mode web-mode html-mode) (sgml-pretty-print start end))
       (t (user-error "[WARNING] No prettify command in this context")))))
 
 (defun jcs-minify-contents ()
@@ -407,9 +407,6 @@ If optional argument FORCE is non-nil, force refresh it."
 ;;
 ;; (@* "Re-Builder" )
 ;;
-
-(defconst jcs-re-builder-buffer-name "*RE-Builder*"
-  "Name of the re-builder buffer.")
 
 (defun jcs-re-builder (type)
   "Rewrap `re-builder' function to ask search case TYPE."
@@ -437,12 +434,10 @@ If optional argument FORCE is non-nil, force refresh it."
     (if flycheck-mode
         (progn
           (save-window-excursion (call-interactively #'flycheck-list-errors))
-          (save-selected-window
-            (select-window (get-largest-window nil nil t))
+          (with-selected-window (get-largest-window nil nil t)
             (switch-to-buffer flycheck-error-list-buffer)))
-      (jcs-jump-to-buffer-windows
-       flycheck-error-list-buffer
-       :success #'jcs-maybe-kill-this-buffer)))
+      (jcs-when-buffer-window flycheck-error-list-buffer
+        (jcs-maybe-kill-this-buffer))))
   flycheck-mode)
 
 ;;
