@@ -30,26 +30,11 @@
 (jcs-advice-add 'find-file :after
   (when jcs-current-created-parent-dir-path
     (setq jcs-created-parent-dir-path jcs-current-created-parent-dir-path
-          jcs-current-created-parent-dir-path nil))
+          jcs-current-created-parent-dir-path nil)))
+
+(jcs-add-hook 'window-state-change-hook
   (jcs-buffer-menu-refresh-buffer)
   (jcs-dashboard-safe-refresh-buffer))
-
-(jcs-advice-add 'switch-to-buffer :after
-  (jcs-buffer-menu-refresh-buffer)
-  (jcs-dashboard-safe-refresh-buffer))
-
-(defun jcs-hook--other-window-interactively-p ()
-  "Return non-nil, if executing `other-window'."
-  (memq this-command '(other-window next-window-any-frame previous-window-any-frame)))
-
-(jcs-advice-add 'other-window :before
-  (when (jcs-hook--other-window-interactively-p)
-    (jcs-funcall-fboundp #'company-abort)))
-
-(jcs-advice-add 'other-window :after
-  (when (jcs-hook--other-window-interactively-p)
-    (jcs-buffer-menu-refresh-buffer)
-    (jcs-dashboard-safe-refresh-buffer)))
 
 ;;
 ;; (@* "Initialization" )
@@ -62,47 +47,40 @@
   (run-with-idle-timer 0 nil #'jcs-hook--init-delay)
 
   (jcs-setup-default-theme)
-  (jcs-depend-mode)
-
-  ;; Frame Title
-  (setq frame-title-format
-        (list (format "%s %%S: %%j " (system-name))
-              '(buffer-file-name "%f" (dired-directory dired-directory "%b"))))
-
-  ;; Lower the `GC' back to normal threshold
-  (jcs-gc-cons-threshold-speed-up nil)
-  (setq file-name-handler-alist jcs-file-name-handler-alist))
+  (jcs-depend-mode))
 
 (defun jcs-hook--init-delay ()
   "Delay some executions for faster speed."
-  (jcs-with-gc-speed-up
-    (jcs-funcall-fboundp #'jcs-mode-load-requires)
-    (jcs-require '(jcs-minibuf jcs-edit jcs-vs))
-    (global-alt-codes-mode 1)
-    (global-auto-highlight-symbol-mode t)
-    (auto-read-only-mode 1)
-    (balanced-windows-mode 1)
-    (global-company-mode t)
-    (delete-selection-mode 1)
-    (global-docstr-mode 1)
-    (global-hl-line-mode 1)
-    (global-hl-todo-mode 1)
-    (indent-control-mode 1)
-    (marginalia-mode 1)
-    (minions-mode 1)
-    (global-page-break-lines-mode 1)
-    (global-region-occurrences-highlighter-mode 1)
-    (right-click-context-mode 1)
-    (show-paren-mode t)
-    (global-so-long-mode 1)
-    (transient-mark-mode t)
-    (global-tree-sitter-mode 1)
-    (vertico-mode 1)
-    (which-key-mode 1)
-    (global-whitespace-cleanup-mode 1)
-    (global-yascroll-bar-mode 1)
-    (with-current-buffer jcs-message-buffer-name (messages-buffer-mode))
-    (with-current-buffer jcs-scratch-buffer-name (lisp-interaction-mode)))
+  (global-auto-highlight-symbol-mode t)
+  (auto-read-only-mode 1)
+  (balanced-windows-mode 1)
+  (global-company-mode t)
+  (delete-selection-mode 1)
+  (global-docstr-mode 1)
+  (global-hl-line-mode 1)
+  (global-hl-todo-mode 1)
+  (indent-control-mode 1)
+  (marginalia-mode 1)
+  (minions-mode 1)
+  (mode-icons-mode 1)
+  (global-page-break-lines-mode 1)
+  (global-region-occurrences-highlighter-mode 1)
+  (right-click-context-mode 1)
+  (show-paren-mode t)
+  (global-so-long-mode 1)
+  (transient-mark-mode t)
+  (global-tree-sitter-mode 1)
+  (vertico-mode 1)
+  (which-key-mode 1)
+  (global-whitespace-cleanup-mode 1)
+  (global-yascroll-bar-mode 1)
+  (jcs-funcall-fboundp #'jcs-mode-load-requires)
+  (jcs-require '(jcs-minibuf jcs-edit jcs-vs))
+  (jcs-with-current-buffer jcs-message-buffer-name (messages-buffer-mode))
+  (jcs-with-current-buffer jcs-scratch-buffer-name (lisp-interaction-mode))
+  ;; Lower the `GC' back to normal threshold
+  (jcs-gc-cons-threshold-speed-up nil)
+  (setq file-name-handler-alist jcs-file-name-handler-alist)
   (message nil))  ; mute at the very end!
 
 ;;
