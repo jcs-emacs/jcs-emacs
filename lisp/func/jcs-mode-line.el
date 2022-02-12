@@ -7,8 +7,7 @@
 ;;
 
 (defun jcs-mode-line-render (left right)
-  "Return a string of `window-width' length.
-Containing LEFT, and RIGHT aligned respectively."
+  "Render mode line with LEFT and RIGHT alignment."
   (let ((available-width
          (- (window-width)
             (+ (length (format-mode-line left))
@@ -29,7 +28,11 @@ Containing LEFT, and RIGHT aligned respectively."
              (:eval (jcs-vc-info))))
      (quote ((:eval (moody-tab " %l : %c " 0 'up))
              " %p "
-             mode-line-end-spaces))))))
+             mode-line-end-spaces)))))
+ frame-title-format
+ '((:eval user-real-login-name) "@" (:eval system-name) ": "
+   (:eval (when (buffer-modified-p) " *"))
+   (:eval (if buffer-file-name "%f" "%b"))))
 
 ;;
 ;; (@* "Core" )
