@@ -141,7 +141,9 @@ Note this is opposite logic to the toggle mode function."
 (jcs-add-hook 'backtrace-mode-hook (buffer-wrap-mode 1))
 
 ;;; Buffer Menu
-(jcs-add-hook 'Buffer-menu-mode-hook (require 'jcs-buffer-menu))
+(jcs-add-hook 'Buffer-menu-mode-hook
+  (require 'jcs-buffer-menu)
+  (setq jcs--buffer-menu--first-enter nil))
 
 ;;; Diff
 (jcs-add-hook 'diff-mode-hook
@@ -175,8 +177,8 @@ Note this is opposite logic to the toggle mode function."
   (when (memq major-mode '(Buffer-menu-mode package-menu-mode))
     (buffer-wrap-mode 1)))
 
-;;============================================================================
-;; Project
+;;
+;;; Project
 
 (defun jcs-active-project-mode-hook ()
   "Hook runs when there is valid project root."
@@ -185,11 +187,12 @@ Note this is opposite logic to the toggle mode function."
     (editorconfig-mode 1)
     (jcs--safe-lsp-active)))
 
-;;============================================================================
-;; Base Mode
+;;
+;;; Base Mode
 
 (jcs-add-hook '(text-mode-hook prog-mode-hook)
   (when (bound-and-true-p jcs-emacs-startup-directory)  ; only after Emacs startup
+    (alt-codes-mode 1)
     (auto-highlight-symbol-mode t)
     (electric-pair-mode 1)
     (goto-address-mode 1)
@@ -198,7 +201,6 @@ Note this is opposite logic to the toggle mode function."
 
     (jcs-active-project-mode-hook)))
 
-;;; Text
 (jcs-add-hook 'text-mode-hook
   (jcs-insert-header-if-valid
    '("\\(/\\|\\`\\)[Ll][Ii][Cc][Ee][Nn][Ss][Ee]") 'jcs-ask-insert-license-content
@@ -207,9 +209,6 @@ Note this is opposite logic to the toggle mode function."
    '("\\(/\\|\\`\\)[Cc][Hh][Aa][Nn][Gg][Ee][-_]*[Ll][Oo][Gg]")
    'jcs-ask-insert-changelog-content
    :interactive t))
-
-;;============================================================================
-;; Programming Mode
 
 (defun jcs-prog-mode-hook ()
   "Programming mode hook."
@@ -251,8 +250,8 @@ Note this is opposite logic to the toggle mode function."
     `(((kbd "M-k") . jcs-scratch-buffer-maybe-kill)
       ((kbd "M-K") . jcs-scratch-buffer-refresh))))
 
-;;============================================================================
-;; View
+;;
+;;; View
 
 (jcs-add-hook 'view-mode-hook
   (require 'view)
