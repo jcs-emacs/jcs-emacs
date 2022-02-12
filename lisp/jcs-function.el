@@ -457,6 +457,15 @@ If optional argument FORCE is non-nil, force refresh it."
 ;; (@* "Tips" )
 ;;
 
+(defconst jcs-pop-tooltip-buffer-name "*jcs:pop-tooltip*"
+  "Buffer name for tooltip.")
+
+(defun jcs-pop-tooltip--post ()
+  "Hide tooltip after first post command."
+  (unless (memq this-command '(jcs-describe-thing-in-popup))
+    (posframe-hide jcs-pop-tooltip-buffer-name)
+    (remove-hook 'post-command-hook #'jcs-pop-tooltip--post)))
+
 (cl-defun jcs-pop-tooltip (string &key point (timeout 300) (height 30))
   "Pop up an tooltip depends on the graphic used.
 
@@ -466,7 +475,14 @@ delay. HEIGHT of the tooltip that will display."
   (let ((bg (asoc-get company-box-doc-frame-parameters 'background-color))
         (fg (asoc-get company-box-doc-frame-parameters 'foreground-color)))
     (if (display-graphic-p)
-        (pos-tip-show string `(,fg . ,bg) point nil timeout)
+        (progn
+          (with-current-buffer (get-buffer-create jcs-pop-tooltip-buffer-name)
+            (let ((text-scale-mode-step 1.1)) (text-scale-set company-box-doc-text-scale-level)))
+          (posframe-show jcs-pop-tooltip-buffer-name :string string :position point
+                         :timeout timeout
+                         :background-color bg :foreground-color fg
+                         :internal-border-width 10)
+          (add-hook 'post-command-hook #'jcs-pop-tooltip--post))
       (popup-tip string :point point :around t :height height :scroll-bar t :margin t))
     t))
 
@@ -480,16 +496,14 @@ delay. HEIGHT of the tooltip that will display."
 (defun jcs-tip-describe-it ()
   "Describe symbol at point."
   (let* ((help-xref-following t)
-         (desc (jcs--describe-symbol-string))
-         (timeout 300))
+         (desc (jcs--describe-symbol-string)))
     (if (string-empty-p desc)
         (error "[ERROR] No description at point")
-      (jcs-pop-tooltip desc :point (point) :timeout timeout))))
+      (jcs-pop-tooltip desc :point (point)))))
 
 (defun jcs-describe-thing-in-popup ()
   "Show current symbol info."
   (interactive)
-  (require 'define-it)
   (if (jcs--lsp-connected-p)
       (progn (require 'lsp-ui)
              (ignore-errors (call-interactively #'lsp-ui-doc-glance)))
@@ -498,16 +512,6 @@ delay. HEIGHT of the tooltip that will display."
         (define-it-at-point)))
     ;; In case we are using region, cancel the select region.
     (deactivate-mark)))
-
-;;
-;; (@* "Yasnippet" )
-;;
-
-(defun jcs-yas-expand ()
-  "Yasnippet expand current point."
-  (interactive)
-  (require 'yasnippet-snippets)
-  (call-interactively #'yas-expand))
 
 (provide 'jcs-function)
 ;;; jcs-function.el ends here
