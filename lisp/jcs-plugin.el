@@ -213,6 +213,7 @@
   :init
   (setq diminish-buffer-list
         (append
+         '("[*]jcs")  ; config wise
          '("[*]helm" "[*]esup-" "[*]quelpa-")
          '("[*]compilation" "[*]output")
          '("[*]Apropos[*]" "[*]Backtrace[*]" "[*]Compile-Log[*]" "[*]Help[*]"
@@ -534,11 +535,15 @@
   (setq minions-mode-line-delimiters nil
         minions-mode-line-lighter ""))
 
+(leaf mode-icons
+  :init
+  (setq mode-icons-line-height-adjust -3))
+
 (leaf moody
   :init
   (setq x-underline-at-descent-line t)
   :defer-config
-  (require 'jcs-mode-line)
+  (require 'jcs-disp)
   ;; XXX For issue, https://github.com/tarsius/moody/pull/41
   (advice-add 'moody-redisplay :around
               (lambda (fnc &rest args) (let ((inhibit-redisplay t)) (apply fnc args)))))
