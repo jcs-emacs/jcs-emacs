@@ -99,7 +99,7 @@
   ;; 3. `goto-address-at-point'
   ;;
   (cond ((ignore-errors (call-interactively #'project-abbrev-complete-word)))
-        ((ignore-errors (call-interactively #'jcs-yas-expand)))
+        ((ignore-errors (call-interactively #'yas-expand)))
         ((ffap-url-at-point) (call-interactively #'goto-address-at-point))
         (t
          (cl-case major-mode
@@ -151,7 +151,7 @@
        (lambda ()
          (back-to-indentation)
          (jcs-insert-spaces-by-indent-level)))
-    (unless (ignore-errors (call-interactively #'jcs-yas-expand))
+    (unless (ignore-errors (call-interactively #'yas-expand))
       (if (company--active-p)
           (call-interactively #'company-complete-selection)
         (if (jcs-current-line-empty-p)
@@ -169,7 +169,7 @@
          (back-to-indentation)
          (let (delete-active-region)
            (jcs-backward-delete-spaces-by-indent-level))))
-    (unless (ignore-errors (call-interactively #'jcs-yas-expand))
+    (unless (ignore-errors (call-interactively #'yas-expand))
       (if (company--active-p)
           (call-interactively #'company-complete-selection)
         (if (jcs-current-line-empty-p)
@@ -177,31 +177,6 @@
               (indent-for-tab-command)
               (when (= pt (point)) (jcs-backward-delete-spaces-by-indent-level)))
           (jcs-backward-delete-spaces-by-indent-level))))))
-
-;;
-;; (@* "Mark" )
-;;
-
-(defvar-local jcs--marking-whole-buffer-p nil
-  "Flag to see if currently marking the whole buffer.")
-
-(defvar-local jcs--marking-whole-buffer--curosr-pos -1
-  "Record down the cursor position.")
-
-(defun jcs--mark-whole-buffer-resolve ()
-  "Resolve while marking the whole buffer."
-  (when jcs--marking-whole-buffer-p
-    (unless (= jcs--marking-whole-buffer--curosr-pos (point))
-      (deactivate-mark)
-      (setq jcs--marking-whole-buffer--curosr-pos -1
-            jcs--marking-whole-buffer-p nil))))
-
-(defun jcs-mark-whole-buffer ()
-  "Mark the whole buffer."
-  (interactive)
-  (call-interactively #'mark-whole-buffer)
-  (setq jcs--marking-whole-buffer--curosr-pos (point)
-        jcs--marking-whole-buffer-p t))
 
 ;;
 ;; (@* "Overwrite" )
@@ -523,10 +498,9 @@ This variable is used to check if file are edited externally.")
 
 (defconst jcs-must-kill-buffer-list
   `(,(regexp-quote jcs-message-buffer-name)
-    ,(regexp-quote jcs-backtrace-buffer-name)
     "[*]compilation" "[*]output")
-  "List of buffer name that must be killed when maybe kill.
-Unless it shows up in multiple windows.")
+  "List of buffer name that must be killed when maybe kill; unless it shows up
+in multiple windows.")
 
 (defun jcs-switch-to-buffer (buffer-or-name &optional ow no-record force-same-window)
   "Switch to buffer wrarpper with other window (OW) option.
