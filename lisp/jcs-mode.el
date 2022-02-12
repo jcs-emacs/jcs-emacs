@@ -138,12 +138,27 @@ Note this is opposite logic to the toggle mode function."
 (jcs-add-hook 'special-mode-hook (goto-address-mode 1))
 
 ;;; Backtrace
-(jcs-add-hook 'backtrace-mode-hook (buffer-wrap-mode 1))
+(jcs-add-hook 'backtrace-mode-hook
+  (buffer-wrap-mode 1)
+  (jcs-key-local
+    `(((kbd "M-k")    . kill-buffer-and-window))))
 
 ;;; Buffer Menu
 (jcs-add-hook 'Buffer-menu-mode-hook
   (require 'jcs-buffer-menu)
-  (setq jcs--buffer-menu--first-enter nil))
+  (setq jcs--buffer-menu--first-enter nil)
+
+  (jcs-key-local
+    `(((kbd "C-k"))
+      ((kbd "M-K")     . buffer-menu)
+      ;; Searching / Filtering
+      ((kbd "<escape>") . (lambda () (interactive) (buffer-menu) (top-level)))
+      ((kbd "<return>") . jcs-buffer-menu-return)))
+
+  (dolist (key-str jcs-key-list)
+    (local-set-key key-str (lambda () (interactive) (jcs--buffer-menu-input key-str))))
+
+  (local-set-key (kbd "<backspace>") (lambda () (interactive) (jcs--buffer-menu-input "" -1))))
 
 ;;; Diff
 (jcs-add-hook 'diff-mode-hook
@@ -171,6 +186,13 @@ Note this is opposite logic to the toggle mode function."
   (auto-highlight-symbol-mode 1)
   (goto-address-mode 1)
   (page-break-lines-mode 1))
+
+;;; Re-Builder
+(jcs-add-hook 'reb-mode-hook
+  (jcs-key-local
+    `(((kbd "<up>")   . ,(jcs-get-prev/next-key-type 'previous))
+      ((kbd "<down>") . ,(jcs-get-prev/next-key-type 'next))
+      ((kbd "M-k")    . kill-buffer-and-window))))
 
 ;;; Tabulated List
 (jcs-add-hook 'tabulated-list-mode-hook
