@@ -92,7 +92,6 @@
 
 (jcs-add-hook 'post-command-hook
   (jcs--er/resolve-region)
-  (jcs-funcall-fboundp #'jcs--mark-whole-buffer-resolve)
   (jcs-reload-active-mode-with-error-handle))
 
 ;;

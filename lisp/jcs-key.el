@@ -38,7 +38,7 @@
     ((kbd "C-S-M-b") . jcs-buffer-menu-project-other-window)
 
 ;;; Buffers
-    ((kbd "C-a") . jcs-mark-whole-buffer)
+    ((kbd "C-a") . mark-whole-buffer)
     ((kbd "M-r") . revert-buffer)
 
 ;;; Calculator
@@ -61,9 +61,6 @@
     ([f12]   . jcs-goto-definition)
     ([S-f12] . jcs-goto-definition-other-window)
     ([M-f12] . jcs-peek-definition)
-
-;;; Describe Things
-    ((kbd "C-k C-s")       . describe-bindings)
 
 ;;; Editting
     ([C-right]             . jcs-smart-forward-word)
@@ -323,10 +320,15 @@
     ((kbd "M-<left>")    . jcs-backward-word-capital)
     ((kbd "M-<right>")   . jcs-forward-word-capital)
     ((kbd "C-o")         . diminish-buffer-mode)  ; Diminish Buffer
-    ((kbd "C-r C-r")     . jcs-iedit-mode)        ; Iedit
-    ((kbd "C-r b")       . jcs-re-builder)        ; RE-Builder
-    ((kbd "C-r o")       . read-only-mode)        ; Read-Only
-    ((kbd "C-r f")       . recentf-open-files)    ; Recent Files
+
+    ((kbd "M-s") . jcs-scratch-buffer)
+
+    ((kbd "C-k C-s") . describe-bindings)
+
+    ((kbd "C-r C-r") . jcs-iedit-mode)        ; Iedit
+    ((kbd "C-r b")   . jcs-re-builder)        ; RE-Builder
+    ((kbd "C-r o")   . read-only-mode)        ; Read-Only
+    ((kbd "C-r f")   . recentf-open-files)    ; Recent Files
 
     ([C-S-tab] . centaur-tabs-backward)
     ([C-tab]   . centaur-tabs-forward)))
@@ -353,24 +355,6 @@
     `(([tab]       . jcs-tab-key)
       ((kbd "TAB") . jcs-tab-key)
       ((kbd "C-s") . jcs-save-buffer))))
-
-;;; Buffer Menu
-(with-eval-after-load 'jcs-buffer-menu
-  (jcs-key Buffer-menu-mode-map
-    `(((kbd "C-k"))
-      ((kbd "M-K")     . buffer-menu)
-      ((kbd "C-k C-s") . describe-bindings)
-      ((kbd "M-s")     . jcs-scratch-buffer)
-      ;; Searching / Filtering
-      ((kbd "<escape>") . (lambda () (interactive) (buffer-menu) (top-level)))
-      ((kbd "<return>") . jcs-buffer-menu-return)))
-
-  (dolist (key-str jcs-key-list)
-    (define-key Buffer-menu-mode-map key-str
-      (lambda () (interactive) (jcs--buffer-menu-input key-str))))
-
-  (define-key Buffer-menu-mode-map (kbd "<backspace>")
-    (lambda () (interactive) (jcs--buffer-menu-input "" -1))))
 
 ;;; Binary/Hex Editor
 (leaf nhexl-mode

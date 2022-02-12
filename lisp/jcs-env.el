@@ -259,7 +259,7 @@
     previous-line next-line
     beginning-of-buffer jcs-beginning-of-line
     end-of-buffer jcs-end-of-line
-    jcs-mark-whole-buffer
+    mark-whole-buffer
     mwheel-scroll)
   "List of commands to mute it's action warnings message.")
 
