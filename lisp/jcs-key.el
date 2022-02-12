@@ -311,8 +311,8 @@
     ((kbd "<down>")      . ,(jcs-get-prev/next-key-type 'next))))
 
 (jcs-leaf-key*
-  `(("\ew"               . next-window-any-frame)
-    ("\eq"               . previous-window-any-frame)
+  `(("\ew"               . (lambda () (interactive) (other-window -1)))
+    ("\eq"               . other-window)
     ([C-up]              . jcs-previous-blank-line)
     ([C-down]            . jcs-next-blank-line)
     ((kbd "C-d")         . jcs-kill-whole-line)
