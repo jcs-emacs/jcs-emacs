@@ -26,6 +26,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add new package `shell-pop`.
 * Replace config built-in pop shell functionality with `shell-pop`.
 * Disable save file message by default.
+* Add new package `mode-icons`.
 
 ## 8.0.1
 > Released Jan 29, 2022
