@@ -15,14 +15,6 @@
          (api-name (jcs-find-item-in-list-offset dirs "Source" -1)))
     (concat api-name "_API")))
 
-(defun jcs-unreal-c++-api-name-uppercase ()
-  "Return the uppercase Unreal C++ API name."
-  (upcase (jcs-unreal-c++-api-name)))
-
-(defun jcs-unreal-c++-api-name-lowercase ()
-  "Return the lowercase Unreal C++ API name."
-  (downcase (jcs-unreal-c++-api-name)))
-
 ;;
 ;; (@* "Header" )
 ;;
