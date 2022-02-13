@@ -351,60 +351,6 @@ If optional argument FLIP is non-nil, reverse query and pattern order."
        (eval `(leaf-key* (eval (car data)) (cdr data))))))
 
 ;;
-;; (@* "Time" )
-;;
-
-(defun jcs-timestamp-ver1 ()
-  "Get timestamp version 1."
-  (require 'ts) (ts-format "%Y-%m-%d %H:%M:%S"))
-
-(defun jcs-timestamp-ver2 ()
-  "Get timestamp version 2."
-  (require 'ts) (ts-format "%Y/%m/%d %H:%M:%S"))
-
-(defun jcs-date-ver1 ()
-  "Get date buffer in string type - version 1."
-  (require 'ts) (ts-format "%Y-%m-%d"))
-
-(defun jcs-date-ver2 ()
-  "Get date buffer in string type - version 2."
-  (require 'ts) (ts-format "%Y/%m/%d"))
-
-(defun jcs-month-name ()
-  "Get Month name in string type."
-  (require 'ts) (ts-format "%B"))
-
-(defun jcs-month-name-abbrev ()
-  "Get Month name abbreviation in string type."
-  (require 'ts) (ts-format "%b"))
-
-(defun jcs-day-only ()
-  "Get Day in string type."
-  (require 'ts) (ts-format "%d"))
-
-(defun jcs-month-only ()
-  "Get Month in string type."
-  (require 'ts) (ts-format "%m"))
-
-(defun jcs-year-only ()
-  "Get Year in string type."
-  (require 'ts) (ts-format "%Y"))
-
-(defun jcs-get-time ()
-  "Get time buffer in string type."
-  (require 'ts) (ts-format "%H:%M:%S"))
-
-(defun jcs-print-timestamps ()
-  "Print out all the timestamps."
-  (interactive)
-  (message (jcs-env-separator))
-  (message "=> Ver. 1 %s" (jcs-timestamp-ver1))
-  (message "=> Ver. 2 %s" (jcs-timestamp-ver2))
-  (message (jcs-env-separator))
-  (message "[INFO] All version of timestamps printed.")
-  (jcs-log--after))
-
-;;
 ;; (@* "Timer" )
 ;;
 
@@ -1114,39 +1060,11 @@ If optional argument REVERSE is non-nil, LIST item and ELT argument."
 
 (defun jcs-file-name ()
   "Get current file name."
-  (if (buffer-file-name)
-      (file-name-nondirectory (buffer-file-name))
-    (buffer-name)))
-
-(defun jcs-file-name-capital ()
-  "Get current file name capital."
-  (capitalize (jcs-file-name)))
-
-(defun jcs-file-name-uppercase ()
-  "Get current file name uppercase."
-  (upcase (jcs-file-name)))
-
-(defun jcs-file-name-lowercase ()
-  "Get current file name lowercase."
-  (downcase (jcs-file-name)))
+  (if (buffer-file-name) (file-name-nondirectory (buffer-file-name)) (buffer-name)))
 
 (defun jcs-file-name-without-extension ()
   "Get current file name without extension."
-  (if (buffer-file-name)
-      (file-name-sans-extension (jcs-file-name))
-    (buffer-name)))
-
-(defun jcs-file-name-without-extension-capital ()
-  "Get current file name without extension capital."
-  (capitalize (jcs-file-name-without-extension)))
-
-(defun jcs-file-name-without-extension-uppercase ()
-  "Get current file name without extension uppercase."
-  (upcase (jcs-file-name-without-extension)))
-
-(defun jcs-file-name-without-extension-lowercase ()
-  "Get current file name without extension lowercase."
-  (downcase (jcs-file-name-without-extension)))
+  (if (buffer-file-name) (file-name-sans-extension (jcs-file-name)) (buffer-name)))
 
 (defun jcs-text-file-p (filename)
   "Return non-nil if FILENAME is a text file and not binary."
