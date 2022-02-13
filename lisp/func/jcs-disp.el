@@ -16,7 +16,21 @@
             (list (format (format "%%%ds" available-width) ""))
             right)))
 
+(defun jcs-flycheck-lighter (state)
+  "Return flycheck information for the given error type STATE."
+  (let* ((counts (flycheck-count-errors flycheck-current-errors))
+         (errorp (flycheck-has-current-errors-p state))
+         (err (or (cdr (assq state counts)) "?"))
+         (running (eq 'running flycheck-last-status-change)))
+    (if (or errorp running) (format "•%s" err))))
+
 (setq-default
+ frame-title-format
+ '((:eval invocation-name)
+   " - "
+   (:eval user-real-login-name) "@" (:eval system-name) ": "
+   (:eval (when (buffer-modified-p) " *"))
+   (:eval (if buffer-file-name "%f" "%b")))
  mode-line-format
  '((:eval
     (jcs-mode-line-render
@@ -24,15 +38,23 @@
              mode-line-front-space
              mode-line-buffer-identification
              (:eval (moody-tab (concat " " (format-mode-line mode-line-modes))))
-             (:eval (jcs-vc-project))
-             (:eval (jcs-vc-info))))
-     (quote ((:eval (moody-tab " %l : %c " 0 'up))
+             (:eval (jcs-vc-project))))
+     (quote ((:eval
+              (when (and (bound-and-true-p flycheck-mode)
+                         (or flycheck-current-errors
+                             (eq 'running flycheck-last-status-change)))
+                (concat
+                 (cl-loop for state in '((error   . "#FB4933")
+                                         (warning . "#FABD2F")
+                                         (info    . "#83A598"))
+                          as lighter = (jcs-flycheck-lighter (car state))
+                          when lighter
+                          concat (propertize lighter 'face `(:foreground ,(cdr state))))
+                 " ")))
+             (:eval (jcs-vc-info))
+             (:eval (moody-tab " %l : %c " 0 'up))
              " %p "
-             mode-line-end-spaces)))))
- frame-title-format
- '((:eval user-real-login-name) "@" (:eval system-name) ": "
-   (:eval (when (buffer-modified-p) " *"))
-   (:eval (if buffer-file-name "%f" "%b"))))
+             mode-line-end-spaces))))))
 
 ;;
 ;; (@* "Core" )
