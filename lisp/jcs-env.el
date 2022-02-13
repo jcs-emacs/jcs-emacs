@@ -99,10 +99,6 @@
   :init
   (setq comment-inline-offset 2))
 
-;;; Creator
-(defun jcs-creator-name () "Name of the creator." user-full-name)
-(defun jcs-copyright-info () "Copyright information." "Shen, Jen-Chieh")
-
 ;;; Default Major Mode
 (setq-default major-mode 'text-mode)
 
