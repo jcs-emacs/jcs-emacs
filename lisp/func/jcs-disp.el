@@ -8,12 +8,11 @@
 
 (defun jcs-mode-line-render (left right)
   "Render mode line with LEFT and RIGHT alignment."
-  (let ((available-width
-         (- (window-width)
-            (+ (length (format-mode-line left))
-               (length (format-mode-line right))))))
+  (let* ((len-left (length (format-mode-line left)))
+         (len-right (length (format-mode-line right)))
+         (available-width (- (window-width) (+ len-left len-right))))
     (append left
-            (list (format (format "%%%ds" available-width) ""))
+            (list (format "%%%ds" available-width))
             right)))
 
 (defun jcs-flycheck-lighter (state)
@@ -51,9 +50,8 @@
                           when lighter
                           concat (propertize lighter 'face `(:foreground ,(cdr state))))
                  " ")))
-             (:eval (jcs-vc-info))
-             (:eval (moody-tab " %l : %c " 0 'up))
-             " %p "
+             (:eval (jcs-vc-info)) " "
+             (:eval (moody-tab " %l : %c " 0 'up)) " %p "
              mode-line-end-spaces))))))
 
 ;;
