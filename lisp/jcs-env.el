@@ -251,17 +251,18 @@
 
 ;;; Mute
 (defvar jcs-mute-commands
-  '(set-mark-command
+  '(mark-whole-buffer
+    set-mark-command push-mark
     previous-line next-line
-    beginning-of-buffer jcs-beginning-of-line
-    end-of-buffer jcs-end-of-line
-    mark-whole-buffer
-    mwheel-scroll)
+    jcs-beginning-of-line jcs-end-of-line
+    mwheel-scroll
+    indent-region
+    undefined)
   "List of commands to mute it's action warnings message.")
 
 (defun jcs--mute-command--advice-around (fnc &rest args)
   "Mute any commands."
-  (jcs-mute-apply (apply fnc args)))
+  (jcs-no-log-apply (apply fnc args)))
 
 (dolist (command jcs-mute-commands)
   (advice-add command :around #'jcs--mute-command--advice-around))
