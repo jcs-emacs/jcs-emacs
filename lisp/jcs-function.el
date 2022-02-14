@@ -473,7 +473,8 @@ STRING is the content of the toolip. The location POINT. TIMEOUT for not forever
 delay. HEIGHT of the tooltip that will display."
   (jcs-require '(asoc pos-tip popup))
   (let ((bg (asoc-get company-box-doc-frame-parameters 'background-color))
-        (fg (asoc-get company-box-doc-frame-parameters 'foreground-color)))
+        (fg (asoc-get company-box-doc-frame-parameters 'foreground-color))
+        (fringe-width 10))
     (if (display-graphic-p)
         (progn
           (with-current-buffer (get-buffer-create jcs-pop-tooltip-buffer-name)
@@ -481,7 +482,9 @@ delay. HEIGHT of the tooltip that will display."
           (posframe-show jcs-pop-tooltip-buffer-name :string string :position point
                          :timeout timeout
                          :background-color bg :foreground-color fg
-                         :internal-border-width 10)
+                         :internal-border-width 1
+                         :internal-border-color (face-foreground 'font-lock-comment-face nil t)
+                         :left-fringe fringe-width :right-fringe fringe-width)
           (add-hook 'post-command-hook #'jcs-pop-tooltip--post))
       (popup-tip string :point point :around t :height height :scroll-bar t :margin t))
     t))
