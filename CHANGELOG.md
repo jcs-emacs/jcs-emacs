@@ -27,6 +27,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Replace config built-in pop shell functionality with `shell-pop`.
 * Disable save file message by default.
 * Add new package `mode-icons`.
+* Improved reopen buffer command's message. (263244468533c95fcf340b4603b8bb0e3ed00f1e)
+* Limit lsp message to display in `*Messages*` buffer.
 
 ## 8.0.1
 > Released Jan 29, 2022
