@@ -607,9 +607,12 @@ other window."
   "Kill the current buffer and open it again."
   (interactive)
   (when-let ((current-bfn (buffer-file-name)))
-    (jcs-save-window-excursion (jcs-kill-this-buffer))
-    (undo-tree-kill-visualizer)
-    (message "Reopened file => '%s'" current-bfn)))
+    (jcs-no-log-apply
+      (jcs-save-window-excursion (jcs-kill-this-buffer))
+      (undo-tree-kill-visualizer)
+      (message "%s[INFO] Reopened file => '%s'"
+               (if (current-message) (concat (current-message) "\n\n") "")
+               current-bfn))))
 
 ;;
 ;; (@* "Electric Pair" )
