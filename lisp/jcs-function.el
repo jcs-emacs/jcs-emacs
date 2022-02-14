@@ -460,11 +460,15 @@ If optional argument FORCE is non-nil, force refresh it."
 (defconst jcs-pop-tooltip-buffer-name "*jcs:pop-tooltip*"
   "Buffer name for tooltip.")
 
-(defun jcs-pop-tooltip--post ()
+(defun jcs-pop-tooltip--next ()
   "Hide tooltip after first post command."
-  (unless (memq this-command '(jcs-describe-thing-in-popup))
-    (posframe-hide jcs-pop-tooltip-buffer-name)
-    (remove-hook 'post-command-hook #'jcs-pop-tooltip--post)))
+  (posframe-hide jcs-pop-tooltip-buffer-name)
+  (remove-hook 'post-command-hook #'jcs-pop-tooltip--next))
+
+(defun jcs-pop-tooltip--post ()
+  "Register for next post command."
+  (add-hook 'post-command-hook #'jcs-pop-tooltip--next)
+  (remove-hook 'post-command-hook #'jcs-pop-tooltip--post))
 
 (cl-defun jcs-pop-tooltip (string &key point (timeout 300) (height 30))
   "Pop up an tooltip depends on the graphic used.
@@ -510,9 +514,9 @@ delay. HEIGHT of the tooltip that will display."
   (if (jcs--lsp-connected-p)
       (progn (require 'lsp-ui)
              (ignore-errors (call-interactively #'lsp-ui-doc-glance)))
-    (unless (ignore-errors (jcs-tip-describe-it))
-      (unless (ignore-errors (jcs-path-info-at-point))
-        (define-it-at-point)))
+    (cond ((ignore-errors (jcs-tip-describe-it)))
+          ((ignore-errors (preview-it)))
+          (t (define-it-at-point)))
     ;; In case we are using region, cancel the select region.
     (deactivate-mark)))
 
