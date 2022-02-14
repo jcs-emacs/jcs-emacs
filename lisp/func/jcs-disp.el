@@ -12,7 +12,7 @@
          (len-right (length (format-mode-line right)))
          (available-width (- (window-width) (+ len-left len-right))))
     (append left
-            (list (format "%%%ds" available-width))
+            (list (format (format "%%%ds" available-width) ""))
             right)))
 
 (defun jcs-flycheck-lighter (state)
@@ -35,21 +35,19 @@
     (jcs-mode-line-render
      (quote ("%e "
              mode-line-front-space
-             mode-line-buffer-identification
+             mode-line-buffer-identification " "
              (:eval (moody-tab (concat " " (format-mode-line mode-line-modes))))
-             (:eval (jcs-vc-project))))
+             " " (:eval (jcs-vc-project))))
      (quote ((:eval
               (when (and (bound-and-true-p flycheck-mode)
                          (or flycheck-current-errors
                              (eq 'running flycheck-last-status-change)))
-                (concat
-                 (cl-loop for state in '((error   . "#FB4933")
-                                         (warning . "#FABD2F")
-                                         (info    . "#83A598"))
-                          as lighter = (jcs-flycheck-lighter (car state))
-                          when lighter
-                          concat (propertize lighter 'face `(:foreground ,(cdr state))))
-                 " ")))
+                (cl-loop for state in '((error   . "#FB4933")
+                                        (warning . "#FABD2F")
+                                        (info    . "#83A598"))
+                         as lighter = (jcs-flycheck-lighter (car state))
+                         when lighter
+                         concat (propertize lighter 'face `(:foreground ,(cdr state))))))
              (:eval (jcs-vc-info)) " "
              (:eval (moody-tab " %l : %c " 0 'up)) " %p "
              mode-line-end-spaces))))))
