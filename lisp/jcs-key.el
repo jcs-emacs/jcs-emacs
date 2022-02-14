@@ -45,7 +45,6 @@
     ((kbd "C-k =") . jcs-calc-eval-region)
 
 ;;; Canceling Action
-    ;;((kbd "C-g")    . top-level)
     ((kbd "<escape>") . top-level)
 
 ;;; Comment/Uncomment
@@ -394,7 +393,6 @@
       ((kbd "C-:"))
       ((kbd "C-'")))))
 
-;;; Packages
 (jcs-key package-menu-mode-map
   `(((kbd "U")       . jcs-package-upgrade-all)
     ((kbd "C-k r m") . jcs-package-autoremove)))
@@ -411,7 +409,6 @@
     ;;((kbd "C-c") . kill-ring-save)
     ((kbd "C-v") . isearch-yank-pop)))
 
-;;; Special
 (jcs-key special-mode-map
   `(((kbd "<up>")   . previous-line)
     ((kbd "<down>") . next-line)))
@@ -446,12 +443,10 @@
     `(((kbd "M-k") . jcs-flycheck-mode)
       ((kbd "M-K") . flycheck-error-list-reset-filter))))
 
-;;; Tabulated-List
 (jcs-key tabulated-list-mode-map
   `(((kbd "C-+") . tabulated-list-widen-current-column)
     ((kbd "C-_") . tabulated-list-narrow-current-column)))
 
-;;; Todo
 (leaf 'hl-todo
   :defer-config
   (jcs-key hl-todo-mode-map
