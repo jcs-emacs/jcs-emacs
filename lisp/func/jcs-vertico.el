@@ -15,8 +15,10 @@
 
 (defun jcs-vertico--goto (candidate)
   "Select candidate with CANDIDATE."
-  (when-let ((index (jcs-vertico--index candidate)))
-    (jcs-vertico--recenter index)))
+  (jcs-with-no-redisplay
+    (vertico--exhibit)
+    (when-let ((index (jcs-vertico--index candidate)))
+      (jcs-vertico--recenter index))))
 
 (defun jcs-vertico--recenter (index)
   "Recentering the current candidate."
@@ -63,13 +65,11 @@
 
 (jcs-advice-add 'vertico-directory-delete-char :override
   (let ((content (minibuffer-contents)))
-    (if (vertico-directory-up)
-        (jcs-with-no-redisplay
-          (vertico--exhibit)
-          (jcs-vertico--goto (concat (file-name-nondirectory (directory-file-name content)) "/")))
-      (if (f-root-p content)
-          (progn (jcs-vertico--cd (f-root)) (vertico-first))
-        (call-interactively #'backward-delete-char)))))
+    (cond ((vertico-directory-up)  ; preselect after up directory
+           (jcs-vertico--goto (concat (file-name-nondirectory (directory-file-name content)) "/")))
+          ((f-root-p content)  ; limit to root dir
+           (jcs-vertico--cd (f-root)) (vertico-first))
+          (t (call-interactively #'backward-delete-char)))))
 
 ;;
 ;; (@* "Sorting" )
@@ -118,15 +118,20 @@
              (let* ((start (point)) (end (line-end-position))
                     (file (buffer-substring-no-properties start end)))
                (unless (string-empty-p file)
-                 (jcs-with-no-redisplay
-                   (delete-region start end)
-                   (vertico--exhibit)
-                   (jcs-vertico--goto file)))))
+                 (delete-region start end)
+                 (jcs-vertico--goto file))))
            (when (and (save-excursion (search-backward "~//" nil t))
                       (not (jcs-current-char-equal-p "/")))
              (save-excursion
                (forward-char -1)
                (backward-delete-char 1)))))))
+
+(jcs-add-hook 'minibuffer-setup-hook
+  ;; Preselect file, on startup
+  (when vertico-mode
+    (cond ((when-let (((memq this-command jcs-ffap-commands))
+                      (buf (with-selected-window (minibuffer-selected-window) (buffer-file-name))))
+             (jcs-vertico--goto (file-name-nondirectory buf)))))))
 
 (provide 'jcs-vertico)
 ;;; jcs-vertico.el ends here
