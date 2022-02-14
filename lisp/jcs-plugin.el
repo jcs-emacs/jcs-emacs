@@ -471,7 +471,8 @@
   (defun jcs--safe-lsp-active ()
     "Safe way to active LSP."
     (when (and (jcs-project-under-p) (not (jcs--lsp-connected-p)))
-      (lsp-deferred)))
+      (if (memq this-command '(jcs-reopen-this-buffer))
+          (lsp) (lsp-deferred))))
   :defer-config
   (require 'jcs-lsp))
 
@@ -488,6 +489,8 @@
         lsp-ui-doc-delay 0.6
         lsp-ui-doc-include-signature t
         lsp-ui-doc-position 'at-point
+        lsp-ui-doc-show-with-mouse nil
+        lsp-ui-doc-show-with-cursor nil
         lsp-eldoc-enable-hover nil
         lsp-ui-imenu-enable t
         lsp-ui-imenu-colors `(,(face-foreground 'font-lock-keyword-face)
