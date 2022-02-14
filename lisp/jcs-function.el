@@ -142,7 +142,7 @@
   "Update buffer menu buffer."
   (interactive)
   (unless (jcs-buffer-menu-p)
-    (jcs-when-buffer-window jcs-buffer-menu-buffer-name (buffer-menu))))
+    (jcs-when-buffer-window jcs-buffer-menu-buffer-name (jcs-mute-apply (buffer-menu)))))
 
 ;;
 ;; (@* "Calculator" )
