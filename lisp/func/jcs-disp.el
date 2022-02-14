@@ -10,6 +10,7 @@
   "Adjust padding for external packages."
   (let ((delta 0))
     (when (and (bound-and-true-p mode-icons-mode)
+               (display-graphic-p)
                (text-properties-at 0 mode-icons--mode-name))
       (setq delta (- (length (format-mode-line mode-name)) (/ (mode-icons-line-height) 10))))
     delta))
