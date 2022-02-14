@@ -179,6 +179,7 @@
     page-break-lines
     parse-it
     powershell
+    preview-it
     processing-mode
     project
     project-abbrev
