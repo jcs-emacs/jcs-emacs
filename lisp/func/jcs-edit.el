@@ -606,11 +606,10 @@ other window."
 (defun jcs-reopen-this-buffer ()
   "Kill the current buffer and open it again."
   (interactive)
-  (let ((current-bfn (buffer-file-name)))
-    (when current-bfn
-      (jcs-save-window-excursion (jcs-kill-this-buffer))
-      (undo-tree-kill-visualizer)
-      (message "Reopened file => '%s'" current-bfn))))
+  (when-let ((current-bfn (buffer-file-name)))
+    (jcs-save-window-excursion (jcs-kill-this-buffer))
+    (undo-tree-kill-visualizer)
+    (message "Reopened file => '%s'" current-bfn)))
 
 ;;
 ;; (@* "Electric Pair" )
