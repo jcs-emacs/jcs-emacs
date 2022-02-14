@@ -198,27 +198,6 @@ If optional argument WITH-EXT is non-nil; return path with extension."
           (push file types))))
     (sort types #'string-lessp)))
 
-(defun jcs-path-info-at-point ()
-  "Return the current path info at point."
-  (interactive)
-  (jcs-require '(ffap f))
-  (let ((path (ffap-string-at-point)) content name d-or-f exists (timeout 300))
-    (unless (string-match-p (ffap-file-at-point) path)
-      (setq path nil))
-    (setq exists (jcs-file-directory-exists-p path))
-    (when path
-      (setq name (f-filename path))
-      (cond ((f-file-p path) (setq d-or-f "file"))
-            ((f-dir-p path) (setq d-or-f "directory"))
-            (t (setq d-or-f "unknown")))
-      (setq content
-            (format "%s\n%s\n%s\n%s"
-                    (format "[NAME] %s" name)
-                    (format "[PATH] %s" (expand-file-name path))
-                    (format "[EXISTENCE] %s" exists)
-                    (if exists (format "[TYPE] %s" d-or-f) "")))
-      (jcs-pop-tooltip content :point (point) :timeout timeout))))
-
 (defun jcs-f-directories-ignored-dir (path &optional rec)
   "Find all directories in PATH by ignored common directories with FN and REC."
   (require 'dash)
