@@ -104,18 +104,16 @@
 (defun jcs-dashboard-remove-recent-files-item ()
   "Remove a file from `recentf-list'."
   (interactive)
-  (when (boundp 'recentf-list)
-    (let ((path (save-excursion (end-of-line) (ffap-guesser))))
-      (setq recentf-list (delete path recentf-list)))
-    (jcs-dashboard-refresh-buffer)))
+  (let ((path (save-excursion (end-of-line) (ffap-guesser))))
+    (setq recentf-list (delete path recentf-list)))
+  (jcs-dashboard-refresh-buffer))
 
 (defun jcs-dashboard-remove-projects-item ()
   "Remove a path from `project--list'."
   (interactive)
-  (when (boundp 'project--list)
-    (let ((path (save-excursion (end-of-line) (ffap-guesser))))
-      (jcs-project-remove path))
-    (jcs-dashboard-refresh-buffer)))
+  (let ((path (save-excursion (end-of-line) (ffap-guesser))))
+    (jcs-project-remove path))
+  (jcs-dashboard-refresh-buffer))
 
 (defun jcs-dashboard-remove-bookmarks-item ()
   "Remove a bookmarks from `bookmark-alist'."
@@ -186,6 +184,8 @@
     (`recents recentf-list)
     (`bookmarks (bookmark-all-names))
     (`projects (dashboard-projects-backend-load-projects))
+    (`ls-directories (mapcar #'f-slash (f-directories dashboard-ls--record-path)))
+    (`ls-files (f-files dashboard-ls--record-path))
     (t (user-error "Unknown section for search: %s" name))))
 
 (defun jcs-dashboard-current-item-in-path ()
@@ -211,7 +211,7 @@
       (setq target-ln (line-number-at-pos))
       (jcs-dashboard--goto-section name)
       (setq section-line (line-number-at-pos)))
-    (global-hl-line-mode 1)
+    (jcs-re-enable-mode 'global-hl-line-mode)
     (- target-ln section-line)))
 
 (defun jcs-dashboard--on-path-item-p ()
@@ -230,8 +230,7 @@ get the truncate path from dashboard buffer (ffap)."
      (or (and (jcs-dashboard--on-path-item-p)
               (or (jcs-dashboard-current-item-in-path)
                   (let ((ls-path (f-join jcs-dashboard--last-ls-path (ffap-string-at-point))))
-                    (when (file-exists-p ls-path) ls-path))
-                  (apply fnc args)))
+                    (when (file-exists-p ls-path) ls-path))))
          (apply fnc args)))  ; fallback
     (t (apply fnc args))))
 (advice-add 'ffap-guesser :around #'jcs--ffap-guesser--advice-around)
