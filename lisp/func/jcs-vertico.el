@@ -135,7 +135,9 @@
               path (ffap-guesser)))
       (cond
        ;; Preselect directory
-       ((and path (file-directory-p path)) (vertico-directory-delete-char))
+       ((and path (file-directory-p path))
+        (unless (string-suffix-p "/" (minibuffer-contents)) (insert "/"))
+        (vertico-directory-delete-char))
        ;; Preselect file
        (bfn (jcs-vertico--goto (file-name-nondirectory bfn)))))))
 
