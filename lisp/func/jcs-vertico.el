@@ -128,10 +128,16 @@
 
 (jcs-add-hook 'minibuffer-setup-hook
   ;; Preselect file, on startup
-  (when vertico-mode
-    (cond ((when-let (((memq this-command jcs-ffap-commands))
-                      (buf (with-selected-window (minibuffer-selected-window) (buffer-file-name))))
-             (jcs-vertico--goto (file-name-nondirectory buf)))))))
+  (when (and vertico-mode (memq this-command jcs-ffap-commands))
+    (let (bfn mode path)
+      (with-selected-window (minibuffer-selected-window)  ; collect data
+        (setq bfn (buffer-file-name)
+              mode major-mode
+              path (ffap-guesser)))
+      (cl-case mode
+        (`dashboard-mode  ; Preselect dashboard files
+         (when (and path (file-directory-p path)) (vertico-directory-delete-char)))
+        (t (when bfn (jcs-vertico--goto (file-name-nondirectory bfn))))))))  ; Preselect file
 
 (provide 'jcs-vertico)
 ;;; jcs-vertico.el ends here
