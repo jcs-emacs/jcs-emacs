@@ -225,12 +225,15 @@
 
 This advice is used when function `counsel--preselect-file' trying to
 get the truncate path from dashboard buffer (ffap)."
-  (if (jcs-dashboard--on-path-item-p)
-      (or (jcs-dashboard-current-item-in-path)
-          (let ((ls-path (f-join jcs-dashboard--last-ls-path (ffap-string-at-point))))
-            (when (file-exists-p ls-path) ls-path))
-          (apply fnc args))
-    (apply fnc args)))
+  (cl-case major-mode
+    (`dashboard-mode
+     (or (and (jcs-dashboard--on-path-item-p)
+              (or (jcs-dashboard-current-item-in-path)
+                  (let ((ls-path (f-join jcs-dashboard--last-ls-path (ffap-string-at-point))))
+                    (when (file-exists-p ls-path) ls-path))
+                  (apply fnc args)))
+         (apply fnc args)))  ; fallback
+    (t (apply fnc args))))
 (advice-add 'ffap-guesser :around #'jcs--ffap-guesser--advice-around)
 
 ;;
