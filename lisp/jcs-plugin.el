@@ -502,9 +502,6 @@
         lsp-ui-sideline-show-code-actions t
         lsp-ui-sideline-show-diagnostics nil
         lsp-ui-sideline-ignore-duplicate t)
-  (defun jcs--lsp-ui-doc--hide-frame ()
-    "Safe way to call `lsp-ui-doc--hide-frame' function."
-    (when (functionp 'lsp-ui-doc--hide-frame) (lsp-ui-doc--hide-frame)))
   :defer-config
   (setq lsp-ui-doc-border (face-foreground 'font-lock-comment-face))
   (lsp-ui-sideline-set-default-icon))
@@ -686,10 +683,8 @@
         (when (< ln-diff default-max-h)
           (scroll-up-line (- default-max-h ln-diff))))))
   :defer-config
-  (defvar jcs-quick-peek--spacer-header nil
-    "Header string for `quick-peek'")
-  (defvar jcs-quick-peek--spacer-footer nil
-    "Footer string for `quick-peek'.")
+  (defvar jcs-quick-peek--spacer-header nil "Header string for `quick-peek'")
+  (defvar jcs-quick-peek--spacer-footer nil "Footer string for `quick-peek'.")
   (defun jcs--quick-peek--insert-spacer--advice-override (pos str-before str-after)
     "Advice exection override function `quick-peek--insert-spacer'."
     (let ((str (if (= pos (point-min)) jcs-quick-peek--spacer-header
@@ -711,11 +706,6 @@
       (let ((value (popup-cascade-menu (right-click-context--build-menu-for-popup-el (right-click-context--menu-tree) nil))))
         (when (and (jcs-popup-clicked-on-menu-p) value)
           (if (symbolp value) (call-interactively value t) (eval value)))))))
-
-(leaf searcher
-  :init
-  (setq searcher-search-type 'regex  ; `regex' or `flx'
-        searcher-flx-threshold 25))
 
 (leaf shell-pop
   :init
