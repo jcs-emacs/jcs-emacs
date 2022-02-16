@@ -326,7 +326,7 @@ Note this is opposite logic to the toggle mode function."
     (gdscript-mode)
     ((gitattributes-mode gitconfig-mode gitignore-mode)
      . jcs-git-mode)
-    ((glsl-mode shader-mode) . jcs-shader-mode)
+    ((shader-mode glsl-mode hlsl-mode) . jcs-shader-mode)
     (go-mode)
     (groovy-mode)
     (haskell-mode)

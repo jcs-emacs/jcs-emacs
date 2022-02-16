@@ -37,6 +37,7 @@
     basic-mode
     better-scroll
     blamer
+    bool-flip
     browse-kill-ring
     buffer-move
     buffer-wrap
@@ -117,6 +118,7 @@
     highlight-numbers
     hl-preproc
     hl-todo
+    hlsl-mode
     htmltagwrap
     ialign
     iedit
