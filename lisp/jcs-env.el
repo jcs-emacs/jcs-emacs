@@ -361,7 +361,6 @@ If ACT is non-nil; then make scroll less jumpy."
 
 ;;; So Long
 (leaf so-long
-  :hook (jcs-delay-init-hook . global-so-long-mode)
   :defer-config
   (nconc so-long-minor-modes
          '(line-reminder-mode
