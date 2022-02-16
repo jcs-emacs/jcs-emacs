@@ -4,6 +4,7 @@
 
 (require 'shader-mode)
 (require 'glsl-mode)
+(require 'hlsl-mode)
 
 ;;
 ;; (@* "Templates" )
@@ -11,11 +12,15 @@
 
 (defun jcs-insert-shader-template ()
   "Header for Shader header file."
-  (jcs--file-header--insert "shader" "default_shader.txt"))
+  (jcs--file-header--insert "shader" "default.txt"))
 
 (defun jcs-insert-glsl-template ()
   "Header for GLSL header file."
-  (jcs--file-header--insert "shader" "default_glsl.txt"))
+  (jcs--file-header--insert "glsl" "default.txt"))
+
+(defun jcs-insert-hlsl-template ()
+  "Header for HLSL header file."
+  (jcs--file-header--insert "hlsl" "default.txt"))
 
 ;;
 ;; (@* "Hook" )
@@ -31,15 +36,18 @@
                               'jcs-insert-shader-template))
 
 (jcs-add-hook 'glsl-mode-hook
-  ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
 
   ;; File Header
-  (jcs-insert-header-if-valid '("[.]frag"
-                                "[.]geom"
-                                "[.]glsl"
-                                "[.]vert")
+  (jcs-insert-header-if-valid '("[.]frag" "[.]geom" "[.]glsl" "[.]vert")
                               'jcs-insert-glsl-template))
+
+(jcs-add-hook 'hlsl-mode-hook
+  (modify-syntax-entry ?_ "w")
+
+  ;; File Header
+  (jcs-insert-header-if-valid '("[.]fx" "[.]hlsl")
+                              'jcs-insert-hlsl-template))
 
 (provide 'jcs-shader-mode)
 ;;; jcs-shader-mode.el ends here
