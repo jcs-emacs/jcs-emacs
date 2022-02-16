@@ -361,6 +361,7 @@ If ACT is non-nil; then make scroll less jumpy."
 
 ;;; So Long
 (leaf so-long
+  :hook (jcs-delay-init-hook . global-so-long-mode)
   :defer-config
   (nconc so-long-minor-modes
          '(line-reminder-mode
@@ -418,8 +419,9 @@ If ACT is non-nil; then make scroll less jumpy."
 (leaf whitespace :defer-config (require 'show-eol))
 
 ;;; Windows
-(defconst jcs-windows--enlarge-shrink-times 6
-  "Times to shrink inside the window.")
+(setq window-divider-default-places t
+      window-divider-default-bottom-width 1
+      window-divider-default-right-width 1)
 
 (leaf windmove
   :init
