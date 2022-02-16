@@ -456,7 +456,8 @@
 (leaf undo-tree
   :defer-config
   (jcs-key undo-tree-visualizer-mode-map
-    `(((kbd "RET") . undo-tree-visualizer-quit)))
+    `(((kbd "RET") . undo-tree-visualizer-quit)
+      ((kbd "C-s") . undo-tree-visualizer-quit)))
   (jcs-key undo-tree-map
     `(((kbd "C-/") . smart-comment)
       ((kbd "C-/"))
