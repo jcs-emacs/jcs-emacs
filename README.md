@@ -62,7 +62,7 @@ from this configuration.
 * Elixir / Elm / Emacs Lisp / Erlang
 * F# / Fountain
 * GLSL / Go / GDScript / Groovy
-* Haskell / Haxe / HTML
+* Haskell / Haxe / HLSL / HTML
 * INI
 * Java / JavaScript / JSON / JSX / Julia
 * Kotlin
