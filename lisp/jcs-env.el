@@ -105,6 +105,10 @@
 ;;; Deletion
 (setq delete-by-moving-to-trash t)
 
+;;; Dialog
+(setq use-file-dialog nil
+      use-dialog-box nil)
+
 ;;; Display Column
 (leaf display-fill-column-indicator
   :init
@@ -358,16 +362,18 @@ If ACT is non-nil; then make scroll less jumpy."
 ;;; So Long
 (leaf so-long
   :defer-config
-  (defconst jcs-so-long-minor-modes
-    '(line-reminder-mode)
-    "List of disabled minor modes for `so-long' buffer.")
-  (nconc so-long-minor-modes jcs-so-long-minor-modes))
+  (nconc so-long-minor-modes
+         '(line-reminder-mode
+           origami-mode
+           ts-fold-mode ts-fold-indicators-mode)))
 
 ;;; Startup
-(push '(fullscreen . maximized) default-frame-alist)
 (setq-default truncate-lines t)
 (setq next-line-add-newlines nil
-      truncate-partial-width-windows nil)
+      truncate-partial-width-windows nil
+      inhibit-startup-screen t)
+
+(push '(fullscreen . maximized) default-frame-alist)  ; full screen
 (unless (boundp 'jcs-build-test) (ignore-errors (split-window-horizontally)))
 
 ;;; Tab / Space
