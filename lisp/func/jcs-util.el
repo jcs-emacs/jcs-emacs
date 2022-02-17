@@ -252,11 +252,10 @@ See function `jcs-string-compare-p' for argument TYPE."
   "Record the info from an excursion, the FNC and ARGS."
   (save-excursion
     (save-window-excursion
-      (let ((success (ignore-errors (funcall fnc))))
-        (when success
-          (with-current-buffer (if (bufferp success) success (current-buffer))
-            (list (current-buffer) (line-number-at-pos) (current-column)
-                  (jcs-first-visible-line-in-window))))))))
+      (when-let ((success (ignore-errors (funcall fnc))))
+        (with-current-buffer (if (bufferp success) success (current-buffer))
+          (list (current-buffer) (line-number-at-pos) (current-column)
+                (jcs-first-visible-line-in-window)))))))
 
 (defun jcs--record-window-excursion-apply (record)
   "Apply the RECORD from `jcs--record-window-excursion'."

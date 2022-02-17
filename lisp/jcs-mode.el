@@ -150,7 +150,7 @@ Note this is opposite logic to the toggle mode function."
 
   (jcs-key-local
     `(((kbd "C-k"))
-      ((kbd "M-K")     . buffer-menu)
+      ((kbd "M-K")     . jcs-buffer-menu-refresh-buffer)
       ;; Searching / Filtering
       ((kbd "<escape>") . (lambda () (interactive) (buffer-menu) (top-level)))
       ((kbd "<return>") . jcs-buffer-menu-return)))
