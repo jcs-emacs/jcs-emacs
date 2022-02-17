@@ -2,6 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
+(require 'buffer-menu-project)
+
 ;;
 ;; (@* "Diminish" )
 ;;
@@ -37,34 +39,6 @@ If optional argument BUFFER-LIST is non-nil, use this buffer list instead."
    (jcs-buffer-menu--buffer-list buffer-list)))
 
 ;;
-;; (@* "Project" )
-;;
-
-(defvar-local jcs-buffer-menu--project-name nil
-  "Record the project name for refreshing.")
-
-(defvar-local jcs-buffer-menu--project-buffer-list nil
-  "Record a list of project buffers for refreshing.")
-
-(defun jcs-buffer-menu--project-buffer ()
-  "Return buffer menu buffer for current project buffer."
-  (let ((buffers (jcs-project-buffer-list)) (name (jcs-vc-project)))
-    (with-current-buffer (list-buffers-noselect nil buffers)
-      (setq jcs-buffer-menu--project-name name
-            jcs-buffer-menu--project-buffer-list buffers)
-      (current-buffer))))
-
-(defun jcs-buffer-menu-project ()
-  "Same with command `buffer-menu' but show only project buffers."
-  (interactive)
-  (switch-to-buffer (jcs-buffer-menu--project-buffer)))
-
-(defun jcs-buffer-menu-project-other-window ()
-  "Same with command `buffer-menu-other-window' but show only project buffers."
-  (interactive)
-  (jcs-switch-to-buffer-other-window (jcs-buffer-menu--project-buffer)))
-
-;;
 ;; (@* "Customization" )
 ;;
 
@@ -98,6 +72,10 @@ If optional argument BUFFER-LIST is non-nil, use this buffer list instead."
   (let ((extra (or extra 0)) (min-size (length name)))
     (+ (max min-size (or (jcs-list-max lst) min-size)) extra)))
 
+(defun jcs-buffer-menu--show-project-p ()
+  ""
+  (and (jcs-project-opened-projects) (not buffer-menu-project-buffers)))
+
 (defun jcs--list-buffers--refresh (&optional buffer-list old-buffer &rest _)
   "Override function `list-buffers--refresh'."
   (let ((name-width (jcs-buffer-menu--name-width buffer-list))
@@ -105,7 +83,6 @@ If optional argument BUFFER-LIST is non-nil, use this buffer list instead."
         (marked-buffers (Buffer-menu-marked-buffers))
         (buffer-menu-buffer (current-buffer))
         (show-non-file (not Buffer-menu-files-only))
-        (opened-projects (jcs-project-opened-projects))
         entries)
     ;; Handle obsolete variable:
     (if Buffer-menu-buffer+size-width
@@ -115,7 +92,7 @@ If optional argument BUFFER-LIST is non-nil, use this buffer list instead."
                   '("R" 1 t :pad-right 0)
                   '("M" 1 t)
                   `("Buffer" ,name-width t)
-                  (when opened-projects
+                  (when (jcs-buffer-menu--show-project-p)
                     `("Project" ,(jcs-buffer-menu--project-width) t))
                   `("Size" ,size-width tabulated-list-entry-size-> :right-align t)
                   `("Mode" ,Buffer-menu-mode-width t)
@@ -123,7 +100,7 @@ If optional argument BUFFER-LIST is non-nil, use this buffer list instead."
           tabulated-list-format (cl-remove-if #'null tabulated-list-format))
     (setq tabulated-list-use-header-line Buffer-menu-use-header-line)
     ;; Collect info for each buffer we're interested in.
-    (dolist (buffer (or jcs-buffer-menu--project-buffer-list
+    (dolist (buffer (or buffer-menu-project-buffers
                         buffer-list
                         (buffer-list (if Buffer-menu-use-frame-buffer-list
                                          (selected-frame)))))
@@ -146,7 +123,7 @@ If optional argument BUFFER-LIST is non-nil, use this buffer list instead."
                                  (if buffer-read-only "%" " ")
                                  (if (buffer-modified-p) "*" " ")
                                  (Buffer-menu--pretty-name name)
-                                 (when opened-projects
+                                 (when (jcs-buffer-menu--show-project-p)
                                    (or (jcs-project-current-uniquify) jcs-buffer-menu--default-project-value))
                                  (number-to-string (buffer-size))
                                  (concat (format-mode-line mode-name
@@ -246,9 +223,9 @@ From scale 0 to 100.")
 (defun jcs--buffer-menu--update-header-string ()
   "Update the header string."
   (let ((title jcs--buffer-menu-search-title))
-    (when jcs-buffer-menu--project-name
+    (when buffer-menu-project-name
       (setq title (concat "[%s] " title)
-            title (format title jcs-buffer-menu--project-name)))
+            title (format title buffer-menu-project-name)))
     (when (> (length title) (length tabulated-list--header-string))
       (setq-local tabulated-list--header-string title))
     (setq jcs--buffer-menu--pattern (substring tabulated-list--header-string
