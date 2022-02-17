@@ -39,6 +39,7 @@
     blamer
     bool-flip
     browse-kill-ring
+    buffer-menu-project
     buffer-move
     buffer-wrap
     calfw
@@ -161,6 +162,7 @@
     marginalia
     markdown-toc
     masm-mode
+    message-clean-mode
     meta-view
     minions
     mode-icons
