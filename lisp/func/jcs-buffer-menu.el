@@ -87,21 +87,19 @@ If optional argument BUFFER-LIST is non-nil, use this buffer list instead."
 
 (defun jcs-buffer-menu--size-width (buffer-list)
   "Return max buffer size width by BUFFER-LIST."
-  (jcs-buffer-menu--header-width "Size " (let (sizes)
-                                           (dolist ( buf (or buffer-list (buffer-list)))
-                                             (push (number-to-string (buffer-size buf)) sizes))
-                                           sizes)))
+  (jcs-buffer-menu--header-width
+   "Size " (let (sizes)
+             (dolist ( buf (or buffer-list (buffer-list)))
+               (push (number-to-string (buffer-size buf)) sizes))
+             sizes)))
 
 (defun jcs-buffer-menu--header-width (name lst &optional extra)
   "Return the width by NAME and LST."
-  (unless extra (setq extra 0))
-  (let ((min-size (length name)))
+  (let ((extra (or extra 0)) (min-size (length name)))
     (+ (max min-size (or (jcs-list-max lst) min-size)) extra)))
 
 (defun jcs--list-buffers--refresh (&optional buffer-list old-buffer &rest _)
   "Override function `list-buffers--refresh'."
-  (when jcs-buffer-menu--project-buffer-list
-    (setq buffer-list jcs-buffer-menu--project-buffer-list))
   (let ((name-width (jcs-buffer-menu--name-width buffer-list))
         (size-width (jcs-buffer-menu--size-width buffer-list))
         (marked-buffers (Buffer-menu-marked-buffers))
@@ -125,7 +123,8 @@ If optional argument BUFFER-LIST is non-nil, use this buffer list instead."
           tabulated-list-format (cl-remove-if #'null tabulated-list-format))
     (setq tabulated-list-use-header-line Buffer-menu-use-header-line)
     ;; Collect info for each buffer we're interested in.
-    (dolist (buffer (or buffer-list
+    (dolist (buffer (or jcs-buffer-menu--project-buffer-list
+                        buffer-list
                         (buffer-list (if Buffer-menu-use-frame-buffer-list
                                          (selected-frame)))))
       (with-current-buffer buffer
@@ -266,7 +265,7 @@ From scale 0 to 100.")
           jcs--buffer-menu--done-filtering nil
           jcs--buffer-menu--filter-timer
           (run-with-idle-timer jcs--buffer-menu--filter-delay
-                               nil 'jcs--buffer-menu-filter-list))))
+                               nil #'jcs--buffer-menu-filter-list))))
 
 (defun jcs--buffer-menu-input (key-input &optional add-del-num)
   "Insert key KEY-INPUT for fake header for search bar.
