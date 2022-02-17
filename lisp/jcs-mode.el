@@ -150,9 +150,9 @@ Note this is opposite logic to the toggle mode function."
 
   (jcs-key-local
     `(((kbd "C-k"))
-      ((kbd "M-K")      . (lambda () (interactive) (jcs-mute-apply (buffer-menu))))
+      ((kbd "M-K")      . (lambda () (interactive) (tabulated-list-revert)))
       ;; Searching / Filtering
-      ((kbd "<escape>") . (lambda () (interactive) (buffer-menu) (top-level)))
+      ((kbd "<escape>") . (lambda () (interactive) (tabulated-list-revert) (top-level)))
       ((kbd "<return>") . jcs-buffer-menu-return)))
 
   (dolist (key-str jcs-key-list)

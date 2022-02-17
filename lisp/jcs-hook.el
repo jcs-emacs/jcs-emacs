@@ -61,6 +61,7 @@
   (global-hl-todo-mode 1)
   (indent-control-mode 1)
   (marginalia-mode 1)
+  (message-clean-mode 1)
   (minions-mode 1)
   (mode-icons-mode 1)
   (global-page-break-lines-mode 1)

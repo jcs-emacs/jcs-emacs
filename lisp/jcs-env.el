@@ -253,31 +253,6 @@
 (defvar jcs-mc/string-distance-level 20
   "The standard similarity, the lower require more precision.")
 
-;;; Mute
-(defvar jcs-mute-commands
-  '(mark-whole-buffer
-    set-mark-command push-mark
-    previous-line next-line
-    jcs-beginning-of-line jcs-end-of-line
-    mwheel-scroll
-    indent-region
-    undefined)
-  "List of commands to mute it's action warnings message.")
-
-(defun jcs--mute-command--advice-around (fnc &rest args)
-  "Mute any commands."
-  (jcs-no-log-apply (apply fnc args)))
-
-(dolist (command jcs-mute-commands)
-  (advice-add command :around #'jcs--mute-command--advice-around))
-
-(defun jcs--command-error-function (data context caller)
-  "Ignore signals for certain commands; pass the rest to the default handler."
-  (unless (memq (car data) jcs-mute-commands)
-    (command-error-default-function data context caller)))
-
-(setq command-error-function #'jcs--command-error-function)
-
 ;;; Previous/Next keys
 (defcustom jcs-prev/next-key-type 'smart
   "Key definition for previous and next line.

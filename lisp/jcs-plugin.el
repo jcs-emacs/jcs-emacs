@@ -213,6 +213,7 @@
   :init
   (setq diminish-buffer-list
         (append
+         diminish-buffer-list
          '("[*]jcs")  ; config wise
          '("[*]helm" "[*]esup-" "[*]quelpa-")
          '("[*]compilation" "[*]output")
@@ -253,7 +254,7 @@
          '("[*]Flutter"))
         diminish-buffer-mode-list
         (append
-         '("Dired by name")))
+         '("dired-mode")))
   (with-eval-after-load 'jcs-buffer-menu (diminish-buffer-mode 1))
   :defer-config
   (jcs-advice-add 'jcs-buffer-menu-refresh-buffer :before
@@ -509,6 +510,17 @@
 (leaf marginalia
   :init
   (setq marginalia-align 'right))
+
+(leaf message-clean-mode
+  :init
+  (setq message-clean-mode-commands
+        '(mark-whole-buffer
+          push-mark set-mark-command
+          previous-line next-line
+          jcs-beginning-of-line jcs-end-of-line
+          mwheel-scroll
+          indent-region
+          undefined)))
 
 (leaf meta-view
   :defer-config

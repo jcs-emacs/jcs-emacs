@@ -34,8 +34,8 @@
 ;;; Buffer Menu
     ((kbd "M-b")     . buffer-menu)
     ((kbd "M-B")     . buffer-menu-other-window)
-    ((kbd "C-M-b")   . jcs-buffer-menu-project)
-    ((kbd "C-S-M-b") . jcs-buffer-menu-project-other-window)
+    ((kbd "C-M-b")   . buffer-menu-project)
+    ((kbd "C-S-M-b") . buffer-menu-project-other-window)
 
 ;;; Buffers
     ((kbd "C-a") . mark-whole-buffer)
