@@ -175,6 +175,7 @@
     nhexl-mode
     nim-mode
     nix-mode
+    noflet
     org-bullets
     organize-imports-java
     package-lint
