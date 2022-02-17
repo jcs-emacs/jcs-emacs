@@ -77,19 +77,6 @@ If optional argument DIR is nil, use variable `default-directory' instead."
     (project--write-project-list)))
 
 ;;
-;; (@* "Files" )
-;;
-
-(defun jcs-project-buffer-list ()
-  "Return a list of buffers within the current project."
-  (let ((project-name (jcs-project-current-uniquify)) buffers)
-    (when project-name
-      (dolist (buffer (buffer-list))
-        (when (equal (jcs-project-current-uniquify buffer) project-name)
-          (push buffer buffers))))
-    (reverse buffers)))
-
-;;
 ;; (@* "Version Control" )
 ;;
 
