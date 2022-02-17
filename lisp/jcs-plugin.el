@@ -211,6 +211,8 @@
 
 (leaf diminish-buffer
   :init
+  (with-eval-after-load 'jcs-buffer-menu (diminish-buffer-mode 1))
+  :defer-config
   (setq diminish-buffer-list
         (append
          diminish-buffer-list
@@ -254,11 +256,7 @@
          '("[*]Flutter"))
         diminish-buffer-mode-list
         (append
-         '("dired-mode")))
-  (with-eval-after-load 'jcs-buffer-menu (diminish-buffer-mode 1))
-  :defer-config
-  (jcs-advice-add 'jcs-buffer-menu-refresh-buffer :before
-    (when diminish-buffer-mode (diminish-buffer-clean))))
+         '("dired-mode"))))
 
 (leaf diredfl
   :hook (dired-mode-hook . diredfl-mode))
