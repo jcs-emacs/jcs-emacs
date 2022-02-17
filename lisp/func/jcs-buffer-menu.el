@@ -73,7 +73,7 @@ If optional argument BUFFER-LIST is non-nil, use this buffer list instead."
     (+ (max min-size (or (jcs-list-max lst) min-size)) extra)))
 
 (defun jcs-buffer-menu--show-project-p ()
-  ""
+  "Return non-nil if we want to show `project' column."
   (and (jcs-project-opened-projects) (not buffer-menu-project-buffers)))
 
 (defun jcs--list-buffers--refresh (&optional buffer-list old-buffer &rest _)
@@ -123,8 +123,9 @@ If optional argument BUFFER-LIST is non-nil, use this buffer list instead."
                                  (if buffer-read-only "%" " ")
                                  (if (buffer-modified-p) "*" " ")
                                  (Buffer-menu--pretty-name name)
-                                 (when (jcs-buffer-menu--show-project-p)
-                                   (or (jcs-project-current-uniquify) jcs-buffer-menu--default-project-value))
+                                 (if (jcs-buffer-menu--show-project-p)
+                                     (or (jcs-project-current-uniquify) jcs-buffer-menu--default-project-value)
+                                   " ")
                                  (number-to-string (buffer-size))
                                  (concat (format-mode-line mode-name
                                                            nil nil buffer)
