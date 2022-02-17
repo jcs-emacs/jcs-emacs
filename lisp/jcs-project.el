@@ -57,8 +57,7 @@ If UNIQUIFY is non-nil, refresh the cache once."
   "Remeber the project from DIR.
 
 If optional argument DIR is nil, use variable `default-directory' instead."
-  (unless dir (setq dir default-directory))
-  (ignore-errors (project-remember-project (project--find-in-directory dir))))
+  (ignore-errors (project-remember-project (project--find-in-directory (or dir default-directory)))))
 
 (defun jcs-project-list-clean ()
   "Clean up the project list if the project no longer exists."
