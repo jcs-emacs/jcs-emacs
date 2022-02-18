@@ -59,10 +59,6 @@
 (setq visible-bell nil
       ring-bell-function 'nil-bell)
 
-;;; Bury Bufferss
-(defconst jcs-bury-buffer-list '()
-  "List of buffer that you don't want to show when after exit.")
-
 ;;; Change Log
 (defconst jcs-changelog-template-dir (concat user-emacs-directory "templates/__changelog/")
   "Path point to all changelog template files.")

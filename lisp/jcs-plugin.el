@@ -253,8 +253,7 @@
          '("[*]Flutter"))
         diminish-buffer-mode-list
         (append
-         '("dired-mode")))
-  (with-eval-after-load 'jcs-buffer-menu (diminish-buffer-mode 1)))
+         '("dired-mode"))))
 
 (leaf diredfl
   :hook (dired-mode-hook . diredfl-mode))
