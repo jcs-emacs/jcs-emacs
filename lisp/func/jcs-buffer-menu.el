@@ -5,40 +5,6 @@
 (require 'buffer-menu-project)
 
 ;;
-;; (@* "Diminish" )
-;;
-
-(defvar jcs-buffer-menu-diminish-list
-  (append
-   '("[*]Minibuf-" "[*]Buffer List[*]" "[*]Echo Area"
-     "[*]http"
-     "[*]code-conversion-work[*]" "[*]code-converting-work[*]"
-     "[*]company-"
-     "[*]tip[*]"
-     "[*]diff-hl"
-     "[*]Treemacs-Scoped-Buffer"
-     "[*]pfuture stderr"))
-  "List of buffers that are diminished by default.")
-
-(defun jcs-buffer-menu--buffer-list (&optional buffer-list)
-  "Return a list of buffers that only shows in buffer menu.
-
-If optional argument BUFFER-LIST is non-nil, use this buffer list instead."
-  (cl-remove-if
-   (lambda (buf)
-     (jcs-contain-list-type-str (buffer-name buf) jcs-buffer-menu-diminish-list 'regex))
-   (or buffer-list (buffer-list))))
-
-(defun jcs-buffer-menu--diminish-buffer-list (&optional buffer-list)
-  "Return a list of diminished buffer.
-
-If optional argument BUFFER-LIST is non-nil, use this buffer list instead."
-  (cl-remove-if
-   (lambda (buf)
-     (jcs-contain-list-type-str (buffer-name buf) diminish-buffer-list 'regex))
-   (jcs-buffer-menu--buffer-list buffer-list)))
-
-;;
 ;; (@* "Customization" )
 ;;
 
@@ -48,9 +14,8 @@ If optional argument BUFFER-LIST is non-nil, use this buffer list instead."
 (defun jcs-buffer-menu--name-width (&optional buffer-list)
   "Return max buffer name width by BUFFER-LIST."
   (jcs-buffer-menu--header-width
-   "Buffer " (if diminish-buffer-mode
-                 (jcs-buffer-menu--diminish-buffer-list buffer-list)
-               (jcs-buffer-menu--buffer-list buffer-list))
+   "Buffer " (if diminish-buffer-mode (diminish-buffer-diminished-list)
+               (diminish-buffer-default-list))
    2))
 
 (defun jcs-buffer-menu--project-width ()
@@ -173,10 +138,17 @@ From scale 0 to 100.")
   "Search pattern.")
 
 
+(defun jcs-buffer-menu--refresh-table ()
+  "Refresh buffer-menu table."
+  (interactive)
+  (tabulated-list-revert)
+  (setq tabulated-list--header-string nil)
+  (jcs--buffer-menu--update-header-string)
+  (tabulated-list-print-fake-header))
+
 (defun jcs--safe-print-fake-header ()
   "Safe way to print fake header."
-  (unless (tabulated-list-header-overlay-p)
-    (tabulated-list-print-fake-header)))
+  (unless (tabulated-list-header-overlay-p) (tabulated-list-print-fake-header)))
 
 (defun jcs--buffer-menu-clean ()
   "Clean all the menu list."
