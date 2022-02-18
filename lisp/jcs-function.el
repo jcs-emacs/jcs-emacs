@@ -70,7 +70,8 @@
   (with-current-buffer jcs-message-buffer-name
     (let (buffer-read-only)
       (erase-buffer)
-      (insert (format "Retrieving %s buffer..\n" jcs-message-buffer-name)))))
+      (insert (format "Retrieving %s buffer..\n" jcs-message-buffer-name))
+      (message nil))))  ; clear echo area
 
 ;;
 ;; (@* "*scratch*" )
@@ -141,10 +142,7 @@
 (defun jcs-buffer-menu-refresh-buffer ()
   "Update buffer menu buffer."
   (interactive)
-  (unless (jcs-buffer-menu-p)
-    (jcs-when-buffer-window jcs-buffer-menu-buffer-name
-      (tabulated-list-revert)
-      (tabulated-list-print-fake-header))))
+  (jcs-when-buffer-window jcs-buffer-menu-buffer-name (jcs-mute-apply (buffer-menu))))
 
 ;;
 ;; (@* "Calculator" )
