@@ -211,11 +211,8 @@
 
 (leaf diminish-buffer
   :init
-  (with-eval-after-load 'jcs-buffer-menu (diminish-buffer-mode 1))
-  :defer-config
   (setq diminish-buffer-list
         (append
-         diminish-buffer-list
          '("[*]jcs")  ; config wise
          '("[*]helm" "[*]esup-" "[*]quelpa-")
          '("[*]compilation" "[*]output")
@@ -256,7 +253,8 @@
          '("[*]Flutter"))
         diminish-buffer-mode-list
         (append
-         '("dired-mode"))))
+         '("dired-mode")))
+  (with-eval-after-load 'jcs-buffer-menu (diminish-buffer-mode 1)))
 
 (leaf diredfl
   :hook (dired-mode-hook . diredfl-mode))
