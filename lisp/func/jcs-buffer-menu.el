@@ -187,39 +187,43 @@ From scale 0 to 100.")
 (defun jcs--buffer-menu-filter-list ()
   "Do filtering the buffer list."
   (jcs-require '(flx ht))
-  (with-current-buffer jcs-buffer-menu-buffer-name
-    (let ((scoring-table (ht-create)) scoring-keys)
-      (while (< (line-number-at-pos) (line-number-at-pos (point-max)))
-        (let* ((id (tabulated-list-get-id))
-               (entry (tabulated-list-get-entry))
-               (buf-name (buffer-name id))
-               (scoring (flx-score buf-name jcs--buffer-menu--pattern))
-               ;; Ensure score is not `nil'
-               (score (cond ((listp scoring) (nth 0 scoring))
-                            ((vectorp scoring) (aref scoring 0))
-                            ((numberp scoring) scoring)
-                            (t 0))))
-          (when score
-            (push (cons id entry) (ht-get scoring-table score))))
-        (forward-line 1))
-      ;; Get all the keys into a list.
-      (ht-map (lambda (score-key _) (push score-key scoring-keys)) scoring-table)
-      (setq scoring-keys (sort scoring-keys #'>))  ; Sort keys in order
-      (jcs--buffer-menu-clean)  ; Clean it
-      (dolist (key scoring-keys)
-        (when (< jcs--buffer-menu--score-standard key)
-          (let ((ens (sort (ht-get scoring-table key)
-                           (lambda (en1 en2)
-                             (let ((en1-str (buffer-name (car en1)))
-                                   (en2-str (buffer-name (car en2))))
-                               (string-lessp en1-str en2-str))))))
-            (dolist (en ens)
-              (tabulated-list-print-entry (car en) (cdr en))))))
-      (jcs-goto-line 2))
-    (setq jcs--buffer-menu--done-filtering t)
-    (jcs--safe-print-fake-header)
-    ;; Once it is done filtering, we redo return action if needed.
-    (when jcs--buffer-menu-return-delay (jcs-buffer-menu-return))))
+  (jcs-jump-to-buffer-windows
+   jcs-buffer-menu-buffer-name
+   :type 'regex
+   :success
+   (lambda ()
+     (let ((scoring-table (ht-create)) scoring-keys)
+       (while (< (line-number-at-pos) (line-number-at-pos (point-max)))
+         (let* ((id (tabulated-list-get-id))
+                (entry (tabulated-list-get-entry))
+                (buf-name (buffer-name id))
+                (scoring (flx-score buf-name jcs--buffer-menu--pattern))
+                ;; Ensure score is not `nil'
+                (score (cond ((listp scoring) (nth 0 scoring))
+                             ((vectorp scoring) (aref scoring 0))
+                             ((numberp scoring) scoring)
+                             (t 0))))
+           (when score
+             (push (cons id entry) (ht-get scoring-table score))))
+         (forward-line 1))
+       ;; Get all the keys into a list.
+       (ht-map (lambda (score-key _) (push score-key scoring-keys)) scoring-table)
+       (setq scoring-keys (sort scoring-keys #'>))  ; Sort keys in order
+       (jcs--buffer-menu-clean)  ; Clean it
+       (dolist (key scoring-keys)
+         (when (< jcs--buffer-menu--score-standard key)
+           (let ((ens (sort (ht-get scoring-table key)
+                            (lambda (en1 en2)
+                              (let ((en1-str (buffer-name (car en1)))
+                                    (en2-str (buffer-name (car en2))))
+                                (string-lessp en1-str en2-str))))))
+             (dolist (en ens)
+               (tabulated-list-print-entry (car en) (cdr en))))))
+       (jcs-goto-line 2))
+     (setq jcs--buffer-menu--done-filtering t)
+     (jcs--safe-print-fake-header)
+     ;; Once it is done filtering, we redo return action if needed.
+     (when jcs--buffer-menu-return-delay (jcs-buffer-menu-return)))))
 
 (defun jcs--buffer-menu--update-header-string ()
   "Update the header string."
