@@ -120,9 +120,6 @@
 ;; (@* "Buffer Menu" )
 ;;
 
-(defconst jcs-buffer-menu-buffer-name "*Buffer List*"
-  "Name of the buffer menu's buffer.")
-
 (defconst jcs--buffer-menu-search-title "Search: "
   "Search bar title in `buffer-menu''s buffer.")
 
@@ -142,7 +139,7 @@
 (defun jcs-buffer-menu-refresh-buffer ()
   "Update buffer menu buffer."
   (interactive)
-  (jcs-when-buffer-window jcs-buffer-menu-buffer-name (jcs-mute-apply (buffer-menu))))
+  (jcs-when-buffer-window diminish-buffer-menu-name (jcs-mute-apply (buffer-menu))))
 
 ;;
 ;; (@* "Calculator" )

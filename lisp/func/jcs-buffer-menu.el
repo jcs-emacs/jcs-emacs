@@ -160,7 +160,7 @@ From scale 0 to 100.")
   "Do filtering the buffer list."
   (jcs-require '(flx ht))
   (jcs-jump-to-buffer-windows
-   jcs-buffer-menu-buffer-name
+   diminish-buffer-menu-name
    :type 'regex
    :success
    (lambda ()
