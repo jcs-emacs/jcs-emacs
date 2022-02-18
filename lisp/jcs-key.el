@@ -447,7 +447,7 @@
   `(((kbd "C-+") . tabulated-list-widen-current-column)
     ((kbd "C-_") . tabulated-list-narrow-current-column)))
 
-(leaf 'hl-todo
+(leaf hl-todo
   :defer-config
   (jcs-key hl-todo-mode-map
     `(([C-f10] . hl-todo-previous)
