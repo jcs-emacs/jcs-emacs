@@ -31,6 +31,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Limit lsp message to display in `*Messages*` buffer.
 * Add file name when do `ffap` on `minibuffer` and `vertico`. (1df9e1b4467423dc278ac4963cfd9d42e8d53d28)
 * Add support for HLSL language.
+* Add new package `message-clean-mode`.
+* Add new package `buffer-menu-project`.
+* Add new package `buffer-menu-filter`.
 
 ## 8.0.1
 > Released Jan 29, 2022
