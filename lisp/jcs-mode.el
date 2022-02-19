@@ -146,22 +146,15 @@ Note this is opposite logic to the toggle mode function."
 ;;; Buffer Menu
 (jcs-add-hook 'Buffer-menu-mode-hook
   (require 'jcs-buffer-menu)
+  (buffer-menu-filter-mode 1)
   (diminish-buffer-mode 1)
-
-  (setq jcs--buffer-menu--first-enter nil)
 
   (jcs-key-local
     `(((kbd "C-k"))
-      ((kbd "M-K")      . jcs-buffer-menu--refresh-table)
+      ((kbd "M-K")      . buffer-menu-filter-refresh)
       ;; Searching / Filtering
-      ((kbd "<escape>") . (lambda () (interactive) (jcs-buffer-menu--refresh-table)
-                            (top-level)))
-      ((kbd "<return>") . jcs-buffer-menu-return)))
-
-  (dolist (key-str jcs-key-list)
-    (local-set-key key-str (lambda () (interactive) (jcs--buffer-menu-input key-str))))
-
-  (local-set-key (kbd "<backspace>") (lambda () (interactive) (jcs--buffer-menu-input "" -1))))
+      ((kbd "<escape>") . (lambda () (interactive) (buffer-menu-filter-refresh)
+                            (top-level))))))
 
 ;;; Diff
 (jcs-add-hook 'diff-mode-hook
@@ -274,20 +267,6 @@ Note this is opposite logic to the toggle mode function."
   (jcs-key-local
     `(((kbd "M-k") . jcs-scratch-buffer-maybe-kill)
       ((kbd "M-K") . jcs-scratch-buffer-refresh))))
-
-;;
-;;; View
-
-(jcs-add-hook 'view-mode-hook
-  (require 'view)
-  (unless (jcs-mode-stats-p 'view)
-    ;; unset all the key
-    (jcs-key view-mode-map
-      `(([tab])
-        ((kbd "RET"))))
-
-    (dolist (key-str jcs-key-list)
-      (define-key view-mode-map key-str nil))))
 
 ;;----------------------------------------------------------------------------
 ;;; Modes

@@ -120,18 +120,6 @@
 ;; (@* "Buffer Menu" )
 ;;
 
-(defconst jcs--buffer-menu-search-title "Search: "
-  "Search bar title in `buffer-menu''s buffer.")
-
-(defvar jcs--buffer-menu-return-delay nil
-  "Record if hit return when display not ready; once it is ready we redo the action.")
-
-(defvar jcs--buffer-menu--first-enter nil
-  "Record if fake header already appears.")
-
-(jcs-advice-add 'list-buffers-noselect :after
-  (setq jcs--buffer-menu-return-delay nil))
-
 (defun jcs-buffer-menu-p ()
   "Check if current major mode `buffer-menu'."
   (eq major-mode 'Buffer-menu-mode))

@@ -39,6 +39,7 @@
     blamer
     bool-flip
     browse-kill-ring
+    buffer-menu-filter
     buffer-menu-project
     buffer-move
     buffer-wrap
