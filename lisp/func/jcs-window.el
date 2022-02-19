@@ -40,14 +40,12 @@ See function `walk-windows' description for arguments FUN and MINIBUF."
 
 If BUFFER isn't showing; then execute ERROR operations instead.
 
-For argument TYPE; see function `jcs-string-compare-p' for description."
-  (jcs-with-no-redisplay
-    (if (jcs-buffer-shown-p buffer type)
-        (jcs-walk-windows
-         (lambda ()
-           (when (and success (jcs-string-compare-p buffer (jcs-buffer-name-or-buffer-file-name) type))
-             (funcall success))))
-      (when error (funcall error)))))
+For argument TYPE; see function `jcs-string-compare-p' description."
+  (if-let ((windows (jcs-window-list buffer type)))
+      (dolist (win windows)
+        (with-selected-window win
+          (when success (funcall success))))
+    (when error (funcall error))))
 
 (defun jcs-switch-to-buffer-other-window (buffer-or-name &optional norecord)
   "Same with function `switch-to-buffer-other-window' but also consider
@@ -80,39 +78,41 @@ BUFFER-OR-NAME and NORECORD."
               (target-buffer (or (nth target-index lst) (nth 0 lst))))
     (switch-to-buffer target-buffer)))
 
+(defun jcs-window-list (query &optional type ignore-case)
+  "Return window list by it's QUERY.
+
+For argument TYPE and IGNORE-CASE; see function `jcs-string-compare-p' description."
+  (cl-remove-if-not
+   (lambda (win)
+     (jcs-string-compare-p query (buffer-name (window-buffer win)) type ignore-case))
+   (window-list)))
+
 (defun jcs-buffer-visible-list ()
   "List of buffer that current visible in frame."
-  (let (buffers)
-    (dolist (win (window-list))
-      (push (buffer-name (window-buffer win)) buffers))
-    buffers))
+  (mapcar (lambda (win) (buffer-name (window-buffer win))) (window-list)))
 
 (defun jcs-buffer-shown-count (buf-name &optional type)
   "Return the count of the IN-BUF-NAME shown.
 
-For argument TYPE; see function `jcs-string-compare-p' for description."
-  (let ((cnt 0))
-    (dolist (buf (jcs-buffer-visible-list))
-      (when (jcs-string-compare-p buf-name buf type)
-        (cl-incf cnt)))
-    cnt))
+For argument TYPE; see function `jcs-string-compare-p' description."
+  (length (jcs-window-list buf-name type)))
 
 (defun jcs-buffer-list-shown-p (buf-lst &optional type)
   "Return non-nil if BUF-LST shown in the program.
 
-For argument TYPE; see function `jcs-string-compare-p' for description."
+For argument TYPE; see function `jcs-string-compare-p' description."
   (cl-some (lambda (buf) (jcs-buffer-shown-p buf type)) buf-lst))
 
 (defun jcs-buffer-shown-p (buf-name &optional type)
   "Return non-nil if IN-BUF-NAME shown in the program.
 
-For argument TYPE; see function `jcs-string-compare-p' for description."
+For argument TYPE; see function `jcs-string-compare-p' description."
   (>= (jcs-buffer-shown-count buf-name type) 1))
 
 (defun jcs-buffer-shown-in-multiple-window-p (buf-name &optional type)
   "Check if IN-BUF-NAME shown in multiple windows.
 
-For argument TYPE; see function `jcs-string-compare-p' for description."
+For argument TYPE; see function `jcs-string-compare-p' description."
   (>= (jcs-buffer-shown-count buf-name type) 2))
 
 (defun jcs-walk-windows (fun &optional minibuf all-frames)
