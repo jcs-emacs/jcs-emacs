@@ -229,7 +229,8 @@
            "[*][a-zA-Z0-9]+[-]*ls" "[*][a-zA-Z0-9]+::stderr[*]"
            "[*]csharp[*]"
            "[*]rust-analyzer[*:]"
-           "[*]tcp-server-sonarlint")  ; From `lsp'
+           "[*]tcp-server-sonarlint"
+           "[*]pyright[*]")  ; From `lsp'
          '("[*]tree-sitter" "tree-sitter-tree:")
          '("[*]company")
          '("[*]Local Variables[*]")

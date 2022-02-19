@@ -187,18 +187,6 @@
 (defconst jcs-default-font-size 160
   "Default font size, the value is in 1/10pt, so 100 will give you 10pt, etc.")
 
-;;; Key List
-(defconst jcs-key-list
-  '("a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m"
-    "n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z"
-    "A" "B" "C" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M"
-    "N" "O" "P" "Q" "R" "S" "T" "U" "V" "W" "X" "Y" "Z"
-    "1" "2" "3" "4" "5" "6" "7" "8" "9" "0" "-" "=" "`"
-    "!" "@" "#" "$" "%" "^" "&" "*" "(" ")" "_" "+" "\\"
-    "~" "{" "}" "[" "]" ";" ":" "'" "\"" "," "." "<" ">"
-    "/" "?" "|" " ")
-  "List of key to bind.")
-
 ;; Resolve performance issue moving around Unicode Text
 (setq inhibit-compacting-font-caches t)
 
