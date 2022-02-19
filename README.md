@@ -175,14 +175,14 @@ Here is the list of the major highlights of this configuration. Hope you would
 like my taste!
 
 * **Out of the box** - Out of the box anywhere.
-* **Cross Platform** - Work on all operating systems, including terminal.
+* **Cross Platform** - Work on all operating systems, including the terminal.
 * **Fast Startup** - Lazy loading for all unnecessary packages on startup.
 * **Old-Fashioned** - Doesn't use any beautiful GUI because it may not work in the terminal.
 * **Multiple Languages** - Support multiple programming languages.
 * **Consistent** - Having the same coding experience in different major modes.
 * **Easy to use** - Design close to other modern text editors. It shouldn't spend you too much time.
-* **Dual Windows** - Design to people who like multiple windows opened simultaneously.
-* **Keyboard Focused** - You can do everything by using keyboard and mouse are just optional.
+* **Dual Windows** - Design for people who like multiple windows opened simultaneously.
+* **Keyboard Focused** - You can do everything by using the keyboard and the mouse are just optional.
 
 ### Details
 
@@ -192,7 +192,6 @@ I believe details make things better and make life smoother.
 
 * [*Auto Install Package*](./docs/features/auto-install-package) - Automatically installs the package that this config relies on.
 * [*Better Dashboard*](./docs/features/better-dashboard) - Implementation for improving experiences using dashboard.
-* [*Buffer Menu Search*](./docs/features/buffer-menu-search) - Able to search in the `*Buffer List*` buffer.
 * [*Build Run*](./docs/features/build-run) - Implementation for executing script for building and running the software.
 * [*Capital Word*](./docs/features/capital-word) - You can navigate/kill word by seeing capital letter.
 * [*Changelog Helper*](./docs/features/changelog-helper) - Help to create changelog while creating `CHANGELOG` file using template.
