@@ -4,9 +4,6 @@
 
 (require 'buffer-menu-project)
 
-(buffer-menu-filter-mode 1)
-(diminish-buffer-mode 1)
-
 ;;
 ;; (@* "Customization" )
 ;;
@@ -106,6 +103,13 @@
   (tabulated-list-init-header))
 
 (advice-add 'list-buffers--refresh :override #'jcs--list-buffers--refresh)
+
+;;
+;; (@* "After load" )
+;;
+
+(buffer-menu-filter-mode 1)
+(diminish-buffer-mode 1)
 
 (provide 'jcs-buffer-menu)
 ;;; jcs-buffer-menu.el ends here
