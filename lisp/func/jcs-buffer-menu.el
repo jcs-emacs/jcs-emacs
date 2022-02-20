@@ -4,6 +4,9 @@
 
 (require 'buffer-menu-project)
 
+(buffer-menu-filter-mode 1)
+(diminish-buffer-mode 1)
+
 ;;
 ;; (@* "Customization" )
 ;;

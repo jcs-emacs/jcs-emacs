@@ -146,8 +146,6 @@ Note this is opposite logic to the toggle mode function."
 ;;; Buffer Menu
 (jcs-add-hook 'Buffer-menu-mode-hook
   (require 'jcs-buffer-menu)
-  (buffer-menu-filter-mode 1)
-  (diminish-buffer-mode 1)
 
   (jcs-key-local
     `(((kbd "C-k"))
