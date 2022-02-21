@@ -34,6 +34,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add new package `message-clean-mode`.
 * Add new package `buffer-menu-project`.
 * Add new package `buffer-menu-filter`.
+* [vertico] Default select first candidate (highest score) after sorting. (eb6486a3a9031421127fda03f89ede01d38ba409)
 
 ## 8.0.1
 > Released Jan 29, 2022
