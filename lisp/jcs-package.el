@@ -362,8 +362,7 @@
   "Execution around function `package-menu-execute' with FNC and ARGS."
   (let (jcs-package-use-real-delete-p)
     (when (apply fnc args)
-      (jcs-package-rebuild-dependency-list)
-      (jcs-dashboard-safe-refresh-buffer t))))
+      (jcs-package-rebuild-dependency-list))))
 
 (advice-add 'package-menu-execute :around #'jcs-package--menu-execute--advice-around)
 

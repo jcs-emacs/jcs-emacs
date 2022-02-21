@@ -84,7 +84,7 @@
 
 (defun jcs-dashboard-revert (&rest _)
   "Revert for dashboard buffer."
-  (unless (minibuffer-prompt) (jcs-dashboard-safe-refresh-buffer t)))
+  (unless (active-minibuffer-window) (jcs-dashboard-refresh-buffer)))
 
 ;;
 ;; (@* "Remove Items" )
@@ -228,19 +228,10 @@ get the truncate path from dashboard buffer (ffap)."
   (cl-case major-mode
     (`dashboard-mode
      (or (and (jcs-dashboard--on-path-item-p)
-              (or (jcs-dashboard-current-item-in-path)
-                  (let ((ls-path (f-join jcs-dashboard--last-ls-path (ffap-string-at-point))))
-                    (when (file-exists-p ls-path) ls-path))))
+              (jcs-dashboard-current-item-in-path))
          (apply fnc args)))  ; fallback
     (t (apply fnc args))))
 (advice-add 'ffap-guesser :around #'jcs--ffap-guesser--advice-around)
-
-;;
-;; (@* "Centering" )
-;;
-
-(defvar jcs-dashboard--last-window-width -1
-  "Record the last window width from dashbord buffer.")
 
 (defun jcs-dashboard--window-width ()
   "Return dashboard buffer's window width."
@@ -250,11 +241,14 @@ get the truncate path from dashboard buffer (ffap)."
 ;; (@* "Registry" )
 ;;
 
+(defvar jcs-dashboard--last-window-width -1
+  "Record the last window width from dashbord buffer.")
+
 (jcs-add-hook 'window-size-change-functions
   (when-let ((new-ww (jcs-dashboard--window-width)))
     (unless (= new-ww jcs-dashboard--last-window-width)
       (setq jcs-dashboard--last-window-width new-ww)
-      (jcs-dashboard-safe-refresh-buffer t))))
+      (jcs-dashboard-refresh-buffer))))
 
 (provide 'jcs-dashboard)
 ;;; jcs-dashboard.el ends here

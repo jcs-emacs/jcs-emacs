@@ -8,7 +8,8 @@
 
 (defun jcs-hook--focus-in ()
   "When window is focus."
-  (jcs-funcall-fboundp #'jcs-safe-revert-all-buffers))
+  (jcs-funcall-fboundp #'jcs-revert-all-buffers)
+  (jcs-dashboard-refresh-buffer))
 
 (defun jcs-hook--focus-out ()
   "When window is not focus."
@@ -33,8 +34,9 @@
           jcs-current-created-parent-dir-path nil)))
 
 (jcs-add-hook 'window-state-change-hook
-  (jcs-buffer-menu-refresh-buffer)
-  (jcs-dashboard-safe-refresh-buffer))
+  (unless (active-minibuffer-window)
+    (jcs-buffer-menu-refresh-buffer)
+    (jcs-dashboard-refresh-buffer)))
 
 ;;
 ;; (@* "Initialization" )

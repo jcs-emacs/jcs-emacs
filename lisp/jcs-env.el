@@ -265,7 +265,7 @@ P.S. You would need to restart Emacs to take effect from this variable."
   (and jcs-recentf-tracking-p (not jcs-package-installing-p)))
 
 (jcs-advice-add 'recentf-track-opened-file :after
-  (when (jcs-recentf-track-opened-file-p) (jcs-dashboard-safe-refresh-buffer)))
+  (when (jcs-recentf-track-opened-file-p) (jcs-dashboard-refresh-buffer)))
 
 (advice-add
  'recentf-track-opened-file :around

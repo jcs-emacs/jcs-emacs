@@ -164,8 +164,6 @@
 ;; (@* "Dashboard" )
 ;;
 
-(defvar dashboard-buffer-name)
-
 (defun jcs-dashboard (&optional ow)
   "Jump to the dashboard buffer, if doesn't exists create one.
 OW is the other window flag."
@@ -179,37 +177,14 @@ OW is the other window flag."
   (interactive)
   (jcs-dashboard t))
 
-(defvar jcs-dashboard--refreshing-p nil
-  "Flag to check if current dashboard refresing.")
-
-(defvar jcs-dashboard--last-ls-path nil
-  "Record down the last current path.")
-
 (defun jcs-dashboard-refresh-buffer ()
   "Refresh dashboard buffer."
   (interactive)
-  (when (and (or (not after-init-time)
-                 (jcs-buffer-shown-p dashboard-buffer-name 'strict))
-             (not (active-minibuffer-window)))
+  (jcs-when-buffer-window dashboard-buffer-name
     (let ((dashboard-ls-path (jcs-last-default-directory)))
       (jcs-mute-apply
         (jcs-save-window-excursion
           (save-window-excursion (dashboard-refresh-buffer)))))))
-
-(defun jcs-dashboard-safe-refresh-buffer (&optional force)
-  "Safely refresh the dashboard buffer if needed.
-
-If optional argument FORCE is non-nil, force refresh it."
-  (when (and after-init-time
-             (boundp 'dashboard-buffer-name)
-             (jcs-buffer-shown-p dashboard-buffer-name 'strict))
-    (unless jcs-dashboard--refreshing-p
-      (let ((jcs-dashboard--refreshing-p t)
-            (ls-path (jcs-last-default-directory)))
-        (when (or force (not (string= jcs-dashboard--last-ls-path ls-path)))
-          (setq jcs-dashboard--last-ls-path ls-path)
-          (jcs-when-buffer-window dashboard-buffer-name
-            (jcs-dashboard-refresh-buffer)))))))
 
 (defun jcs-dashboard--get-banner-path ()
   "Return banner path."
