@@ -84,8 +84,12 @@
                    (not (string-suffix-p "/" var2)))))
     #'vertico-sort-length-alpha))
 
+(defvar jcs-vertico--sorting nil
+  "Return non-nil if currently sorting.")
+
 (defun jcs-vertico--sort-function (all)
   "Sort candidates ALL."
+  (setq jcs-vertico--sorting nil)
   (let ((input (minibuffer-contents)) base)
     (cond
      ((jcs-M-x-p) (setq base #'vertico-sort-history-length-alpha))
@@ -98,6 +102,7 @@
         (if (null base) all
           (cond ((functionp base) (funcall base all))
                 ((listp base) base)))
+      (setq jcs-vertico--sorting t)
       ;; Return fuzzy order
       (jcs-sort-candidates-by-function all input #'flx-score))))
 
@@ -124,7 +129,11 @@
                       (not (jcs-current-char-equal-p "/")))
              (save-excursion
                (forward-char -1)
-               (backward-delete-char 1)))))))
+               (backward-delete-char 1)))))
+    (when jcs-vertico--sorting
+      ;; Select first candidate (highest score) immediately after sorting!
+      (jcs-with-no-redisplay (vertico--goto 0) (vertico--exhibit))
+      (setq jcs-vertico--sorting nil))))  ; cancel it afterward
 
 (jcs-add-hook 'minibuffer-setup-hook
   ;; Preselect file, on startup
