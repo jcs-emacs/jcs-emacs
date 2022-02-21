@@ -311,9 +311,9 @@ OW is the other window flag."
   (if (display-graphic-p)
       (progn
         (require 'display-line-numbers)
-        (jcs-safe-active-minor-mode #'display-line-numbers-mode act))
+        (jcs-active-minor-mode #'display-line-numbers-mode act))
     (require 'linum)
-    (jcs-safe-active-minor-mode #'linum-mode act)))
+    (jcs-active-minor-mode #'linum-mode act)))
 
 (defun jcs-line-numbers-active-by-mode ()
   "Active line number by mode."
@@ -325,7 +325,7 @@ OW is the other window flag."
                    (not (member (buffer-name) jcs-line-numbers-ignore-buffer-exceptions)))
               (memq major-mode jcs-line-numbers-ignore-modes)))
          (on-off (if on-off -1 1)))
-    (jcs-safe-active-minor-mode #'line-reminder-mode on-off)
+    (jcs-active-minor-mode #'line-reminder-mode on-off)
     (jcs-safe-line-numbers-active on-off)))
 
 ;;

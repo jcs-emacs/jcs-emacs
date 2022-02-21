@@ -1027,7 +1027,7 @@ If optional argument REVERSE is non-nil, LIST item and ELT argument."
     (if predicate (funcall-interactively modename 1)
       (funcall-interactively modename -1))))
 
-(defun jcs-safe-active-minor-mode (name args)
+(defun jcs-active-minor-mode (name args)
   "Active minor mode only when it's on/off."
   (jcs-mute-apply
     (if (= args 1) (unless (symbol-value name) (funcall-interactively name 1))
