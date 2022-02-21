@@ -1010,11 +1010,6 @@ If optional argument REVERSE is non-nil, LIST item and ELT argument."
 ;; (@* "Mode" )
 ;;
 
-(defun jcs-print-current-major-mode ()
-  "Print out the current major mode."
-  (interactive)
-  (message "[INFO] Current major mode: %s" major-mode))
-
 (defun jcs-re-enable-mode-if-was-enabled (modename)
   "Re-enable the MODENAME if was enabled."
   (when (boundp modename)
@@ -1023,16 +1018,20 @@ If optional argument REVERSE is non-nil, LIST item and ELT argument."
 
 (defun jcs-re-enable-mode (modename)
   "Re-enable the MODENAME."
-  (funcall modename -1) (funcall modename 1))
+  (jcs-mute-apply
+    (funcall-interactively modename -1) (funcall-interactively modename 1)))
 
 (defun jcs-enable-disable-mode-if (modename predicate)
   "To enable/disable the MODENAME by PREDICATE."
-  (if predicate (funcall modename 1) (funcall modename -1)))
+  (jcs-mute-apply
+    (if predicate (funcall-interactively modename 1)
+      (funcall-interactively modename -1))))
 
 (defun jcs-safe-active-minor-mode (name args)
   "Active minor mode only when it's on/off."
-  (if (= args 1) (unless (symbol-value name) (funcall name 1))
-    (when (symbol-value name) (funcall name -1))))
+  (jcs-mute-apply
+    (if (= args 1) (unless (symbol-value name) (funcall-interactively name 1))
+      (when (symbol-value name) (funcall-interactively name -1)))))
 
 ;;
 ;; (@* "I/O" )

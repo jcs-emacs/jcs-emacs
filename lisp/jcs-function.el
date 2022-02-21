@@ -189,8 +189,7 @@ OW is the other window flag."
 (defun jcs-dashboard--get-banner-path ()
   "Return banner path."
   (concat
-   user-emacs-directory
-   "banners/"
+   user-emacs-directory "banners/"
    (cond ((display-graphic-p)
           (if (jcs-light-theme-p) "sink_black.png" "sink_white.png"))
          (t "sink.txt"))))
@@ -407,11 +406,7 @@ OW is the other window flag."
 (defun jcs-toggle-tabbar-mode ()
   "Toggle tab bar."
   (interactive)
-  (jcs-enable-disable-mode-if 'centaur-tabs-mode (not centaur-tabs-mode))  ; toggle
-  (jcs-walk-windows
-   (lambda ()  ; insist with new result
-     (jcs-enable-disable-mode-if 'centaur-tabs-mode centaur-tabs-mode))
-   nil t))
+  (jcs-enable-disable-mode-if #'centaur-tabs-mode (not centaur-tabs-mode)))
 
 ;;
 ;; (@* "Tips" )

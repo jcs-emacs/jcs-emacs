@@ -339,7 +339,8 @@
   (package-initialize)
   (jcs-process-reporter-start "Building dependency graph...")
   (let ((new-selected-pkg (jcs-package--get-selected-packages))
-        (installed-list (jcs-package-installed-list)))
+        (installed-list (jcs-package-installed-list))
+        jcs-recentf-tracking-p)  ; ignore recent files
     (dolist (pkg-name installed-list)
       (if (package-installed-p pkg-name)
           (when (jcs-package--package-do-rebuild pkg-name)
@@ -361,8 +362,7 @@
 (defun jcs-package--menu-execute--advice-around (fnc &rest args)
   "Execution around function `package-menu-execute' with FNC and ARGS."
   (let (jcs-package-use-real-delete-p)
-    (when (apply fnc args)
-      (jcs-package-rebuild-dependency-list))))
+    (when (apply fnc args) (jcs-package-rebuild-dependency-list))))
 
 (advice-add 'package-menu-execute :around #'jcs-package--menu-execute--advice-around)
 
