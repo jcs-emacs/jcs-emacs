@@ -509,9 +509,11 @@
 
 (leaf message-clean-mode
   :init
-  (setq message-clean-mode-commands
+  (setq message-clean-mode-mute-commands
+        '(push-mark)
+        message-clean-mode-echo-commands
         '(mark-whole-buffer
-          push-mark set-mark-command
+          set-mark-command
           previous-line next-line
           jcs-beginning-of-line jcs-end-of-line
           mwheel-scroll
