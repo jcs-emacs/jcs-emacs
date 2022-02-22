@@ -119,7 +119,6 @@ IN-OP : inpuit operation script."
          (default-directory script-dir))
     ;; Compile/Execute the target script.
     (compile in-op t)
-    (jcs-line-number-update-each-window)
     (with-current-buffer "*compilation*"
       (rename-buffer (format "%s%s" (jcs-form-compilation-filename-prefix) (f-filename in-op)) t))
     (message "Executing script file: '%s'" in-op)))

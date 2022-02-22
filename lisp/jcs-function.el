@@ -301,11 +301,6 @@ OW is the other window flag."
 ;; (@* "Line Numbers" )
 ;;
 
-(defun jcs-line-number-update-each-window ()
-  "Update each window's line number mode."
-  (interactive)
-  (jcs-walk-windows #'jcs-line-numbers-active-by-mode nil t))
-
 (defun jcs-safe-line-numbers-active (act)
   "Safe way to active (ACT) line numbers."
   (if (display-graphic-p)

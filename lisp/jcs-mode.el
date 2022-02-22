@@ -207,6 +207,8 @@ Note this is opposite logic to the toggle mode function."
 ;;; Base Mode
 
 (jcs-add-hook '(text-mode-hook prog-mode-hook)
+  (jcs-line-numbers-active-by-mode)  ; line numbers
+
   (when (bound-and-true-p jcs-emacs-startup-directory)  ; only after Emacs startup
     (alt-codes-mode 1)
     (auto-highlight-symbol-mode t)

@@ -431,7 +431,6 @@ This variable is used to check if file are edited externally.")
 (jcs-advice-add 'save-buffer :after
   (jcs-update-buffer-save-string)
   (jcs-funcall-fboundp #'undo-tree-kill-visualizer)
-  (jcs-line-number-update-each-window)
   (setq jcs-created-parent-dir-path nil))
 
 (defun jcs-save-all-buffers ()

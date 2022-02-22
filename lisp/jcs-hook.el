@@ -24,7 +24,6 @@
 ;;
 
 (jcs-add-hook 'find-file-hook
-  (jcs-line-numbers-active-by-mode)
   (jcs-project-remember)
   (jcs-project--track-open-projects))
 
@@ -96,13 +95,6 @@
 (jcs-add-hook 'post-command-hook
   (jcs--er/resolve-region)
   (jcs-reload-active-mode-with-error-handle))
-
-;;
-;; (@* "Major Mode" )
-;;
-
-(jcs-add-hook 'after-change-major-mode-hook
-  (jcs-line-numbers-active-by-mode))
 
 ;;
 ;; (@* "Quitting" )
