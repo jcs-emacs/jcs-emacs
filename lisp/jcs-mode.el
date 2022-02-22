@@ -92,9 +92,8 @@ Note this is opposite logic to the toggle mode function."
                   (jcs-dir-to-filename jcs-changelog-template-dir ".txt")))))
   (pcase in-type
     ("Default (empty)" )  ; Do nothing...
-    (_
-     (file-header-insert-template-by-file-path
-      (format "%s%s.txt" jcs-changelog-template-dir in-type)))))
+    (_ (file-header-insert-template-by-file-path
+        (format "%s%s.txt" jcs-changelog-template-dir in-type)))))
 
 ;;
 ;; (@* "Special Modes" )
@@ -239,10 +238,6 @@ Note this is opposite logic to the toggle mode function."
 
     ;; Ensure indentation level is available
     (indent-control-ensure-tab-width)
-
-    ;; Smart Parenthesis
-    (dolist (key jcs-smart-closing-parens)
-      (jcs-key-advice-add key :around #'jcs-smart-closing))
 
     (abbrev-mode 1)
     (display-fill-column-indicator-mode 1)

@@ -131,6 +131,7 @@
 (global-eldoc-mode 1)
 
 ;;; Electric Indent
+(setq electric-indent-chars '(?\n ?\) ?\] ?\}))
 (electric-indent-mode 1)
 
 ;;; Electric Pair
@@ -141,9 +142,6 @@
          (electric-pair-default-inhibit c))
         (t t)))
 (setq-default electric-pair-inhibit-predicate 'jcs--electric-pair-inhibit-predicate)
-
-(defconst jcs-smart-closing-parens '("}" ")" "]")
-  "List of closing parenthesis.")
 
 ;;; Find File
 (defvar jcs-current-created-parent-dir-path nil

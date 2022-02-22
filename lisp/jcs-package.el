@@ -80,6 +80,7 @@
     editorconfig
     el-mock
     eldoc-meta-net
+    electric-indent-sexp
     elisp-def
     elisp-demos
     elixir-mode

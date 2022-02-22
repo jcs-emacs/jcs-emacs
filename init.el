@@ -131,11 +131,11 @@
 ;;; Environment
 (require 'jcs-file)
 (require 'jcs-dev)
-(require 'jcs-env)
-(require 'jcs-theme)
 (require 'jcs-plugin)
+(require 'jcs-env)
 
 ;;; Standardize
+(require 'jcs-theme)
 (require 'jcs-template)
 (require 'jcs-mode)
 (require 'jcs-project)
