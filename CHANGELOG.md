@@ -35,6 +35,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add new package `buffer-menu-project`.
 * Add new package `buffer-menu-filter`.
 * Default select first candidate (highest score) after sorting while using minibuffer completion. (eb6486a3a9031421127fda03f89ede01d38ba409)
+* Add new package `electric-indent-sexp`.
 
 ## 8.0.1
 > Released Jan 29, 2022
