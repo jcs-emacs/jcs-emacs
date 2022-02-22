@@ -214,7 +214,6 @@
     sql-indent
     ssass-mode
     swift-mode
-    swiper
     togetherly
     toggle-window
     transpose-frame
