@@ -83,6 +83,7 @@
         centaur-tabs-modified-marker "*"))
 
 (leaf company
+  :hook (company-mode-hook . (lambda () (require 'jcs-company)))
   :init
   (setq company-frontends '(company-pseudo-tooltip-frontend)
         company-require-match nil
@@ -104,8 +105,7 @@
          '(company-yasnippet)))
   :defer-config
   (unless (display-graphic-p)
-    (push 'company-echo-metadata-frontend company-frontends))
-  (require 'jcs-company))
+    (push 'company-echo-metadata-frontend company-frontends)))
 
 (leaf company-box
   :hook (company-mode-hook . company-box-mode)
