@@ -186,6 +186,8 @@
     package-lint
     page-break-lines
     parse-it
+    password-generator
+    password-mode
     powershell
     preview-it
     processing-mode
