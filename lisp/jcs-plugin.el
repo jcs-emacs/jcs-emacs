@@ -277,6 +277,11 @@
   (advice-add 'describe-function-1 :after #'elisp-demos-advice-describe-function-1)
   (advice-add 'helpful-update :after #'elisp-demos-advice-helpful-update))
 
+(leaf electric-cursor
+  :init
+  (setq electric-cursor-alist '((overwrite-mode . hbar)
+                                (t              . box))))
+
 (leaf electric-indent-sexp
   :hook (electric-indent-mode-hook . electric-indent-sexp-mode))
 

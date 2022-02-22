@@ -200,12 +200,10 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
 
 (jcs-add-hook 'overwrite-mode-hook
   (require 'multiple-cursors)
-  (cond
-   (overwrite-mode
-    (setq-local cursor-type 'hbar)
-    (set-face-attribute 'mc/cursor-face nil :underline t :inverse-video nil))
-   (t (setq-local cursor-type 'box)
-      (set-face-attribute 'mc/cursor-face nil :underline nil :inverse-video t))))
+  (electric-cursor-mode 1)
+  (cond (overwrite-mode
+         (set-face-attribute 'mc/cursor-face nil :underline t :inverse-video nil))
+        (t (set-face-attribute 'mc/cursor-face nil :underline nil :inverse-video t))))
 
 ;;
 ;; (@* "Kill Line" )

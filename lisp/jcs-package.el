@@ -80,6 +80,7 @@
     editorconfig
     el-mock
     eldoc-meta-net
+    electric-cursor
     electric-indent-sexp
     elisp-def
     elisp-demos
