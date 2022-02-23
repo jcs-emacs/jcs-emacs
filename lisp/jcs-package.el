@@ -197,6 +197,7 @@
     quelpa
     rainbow-mode
     region-occurrences-highlighter
+    region-state
     restart-emacs
     reveal-in-folder
     right-click-context

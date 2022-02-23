@@ -518,10 +518,9 @@
 (leaf message-clean-mode
   :init
   (setq message-clean-mode-mute-commands
-        '(push-mark)
+        '(push-mark set-mark-command)
         message-clean-mode-echo-commands
         '(mwheel-scroll
-          set-mark-command
           previous-line next-line
           jcs-beginning-of-line jcs-end-of-line
           mark-whole-buffer
@@ -674,8 +673,8 @@
   :init
   (defun jcs-quick-peek--form-face (fg &optional weight)
     "Form `quick-peek' face with FG."
-    (unless weight (setq weight 'normal))
-    (let ((color (or (face-attribute 'highlight :background) "black")))
+    (let ((weight (or weight 'normal))
+          (color (or (face-attribute 'highlight :background) "black")))
       `(:background ,color :foreground ,fg :inherit quick-peek-border-face :weight ,weight)))
 
   (defun jcs-set-quick-peek-spacers (buf ln)
@@ -715,6 +714,9 @@
 (leaf region-occurrences-highlighter
   :init
   (setq region-occurrences-highlighter-min-size 1))
+
+(leaf region-state
+  :hook (activate-mark-hook . region-state-mode))
 
 (leaf right-click-context
   :defer-config
