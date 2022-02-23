@@ -520,11 +520,11 @@
   (setq message-clean-mode-mute-commands
         '(push-mark)
         message-clean-mode-echo-commands
-        '(mark-whole-buffer
+        '(mwheel-scroll
           set-mark-command
           previous-line next-line
           jcs-beginning-of-line jcs-end-of-line
-          mwheel-scroll
+          mark-whole-buffer
           indent-region
           isearch-done
           undefined)))
