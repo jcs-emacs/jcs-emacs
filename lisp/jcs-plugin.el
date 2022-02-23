@@ -527,7 +527,8 @@
           mark-whole-buffer
           indent-region
           isearch-done
-          undefined)))
+          undefined
+          toggle-truncate-lines)))
 
 (leaf meta-view
   :defer-config
