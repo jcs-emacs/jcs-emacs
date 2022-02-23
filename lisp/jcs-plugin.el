@@ -526,6 +526,7 @@
           jcs-beginning-of-line jcs-end-of-line
           mwheel-scroll
           indent-region
+          isearch-done
           undefined)))
 
 (leaf meta-view
