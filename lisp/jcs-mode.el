@@ -176,7 +176,6 @@ Note this is opposite logic to the toggle mode function."
 
 ;;; Message Buffer
 (jcs-add-hook 'messages-buffer-mode-hook
-  (auto-highlight-symbol-mode 1)
   (goto-address-mode 1)
   (page-break-lines-mode 1))
 
