@@ -33,6 +33,7 @@
     auto-highlight-symbol
     auto-read-only
     auto-rename-tag
+    autotetris-mode
     balanced-windows
     basic-mode
     better-scroll
