@@ -669,48 +669,6 @@
   (jcs-add-hook 'quelpa-before-hook (setq jcs-package-installing-p t))
   (jcs-add-hook 'quelpa-after-hook (setq jcs-package-installing-p nil)))
 
-(leaf quick-peek
-  :init
-  (defun jcs-quick-peek--form-face (fg &optional weight)
-    "Form `quick-peek' face with FG."
-    (let ((weight (or weight 'normal))
-          (color (or (face-attribute 'highlight :background) "black")))
-      `(:background ,color :foreground ,fg :inherit quick-peek-border-face :weight ,weight)))
-
-  (defun jcs-set-quick-peek-spacers (buf ln)
-    "Prepare quick peek header and footer."
-    (let ((default-face (jcs-quick-peek--form-face "white")))
-      (setq jcs-quick-peek--spacer-header
-            (concat
-             (if (jcs-last-line-in-buffer-p) "\n" "")
-             (propertize " " 'face default-face)
-             (propertize (buffer-name buf) 'face (jcs-quick-peek--form-face "black" 'bold))
-             (propertize " " 'face default-face)
-             (propertize (buffer-file-name buf) 'face (jcs-quick-peek--form-face "#222"))
-             (propertize "\n" 'face default-face))
-            jcs-quick-peek--spacer-footer
-            (propertize (concat (jcs-env-separator)
-                                (if (eq quick-peek-position 'below) "" "\n"))
-                        'face default-face))))
-
-  (defun jcs-quick-peek--scroll-to-see ()
-    "Scroll buffer in order to see the full `quick-peek' content."
-    (let ((default-max-h 16) (ln-current (line-number-at-pos)) lvl ln-diff)
-      (when (eq quick-peek-position 'below)
-        (setq lvl (jcs-last-visible-line-in-window)
-              ln-diff (- lvl ln-current))
-        (when (< ln-diff default-max-h)
-          (scroll-up-line (- default-max-h ln-diff))))))
-  :defer-config
-  (defvar jcs-quick-peek--spacer-header nil "Header string for `quick-peek'")
-  (defvar jcs-quick-peek--spacer-footer nil "Footer string for `quick-peek'.")
-  (defun jcs--quick-peek--insert-spacer--advice-override (pos str-before str-after)
-    "Advice exection override function `quick-peek--insert-spacer'."
-    (let ((str (if (= pos (point-min)) jcs-quick-peek--spacer-header
-                 jcs-quick-peek--spacer-footer)))
-      (save-excursion (goto-char pos) (insert str))))
-  (advice-add 'quick-peek--insert-spacer :override #'jcs--quick-peek--insert-spacer--advice-override))
-
 (leaf region-occurrences-highlighter
   :init
   (setq region-occurrences-highlighter-min-size 1))

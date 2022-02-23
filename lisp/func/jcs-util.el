@@ -1116,13 +1116,9 @@ or `suffix'."
 
 (defun jcs-fill-n-char-seq (ch-seq n)
   "Fill CH-SEQ with N length."
-  (let ((ch-out ch-seq))
-    (if (not (stringp ch-out))
-        (setq ch-out nil)
-      (unless (or (numberp n) (> n 0)) (setq n 1))
-      (while (< (length ch-out) n)
-        (setq ch-out (concat ch-out ch-seq))))
-    (if ch-out (substring ch-out 0 n) nil)))
+  (when-let ((ch-out ch-seq) (n (or n 1)))
+    (while (< (length ch-out) n) (setq ch-out (concat ch-out ch-seq)))
+    (when ch-out (substring ch-out 0 n))))
 
 (defun jcs-inside-string-p (&optional pos)
   "Return non-nil if POS inside a string."
