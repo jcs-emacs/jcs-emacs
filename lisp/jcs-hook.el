@@ -52,7 +52,6 @@
 
 (defun jcs-hook--init-delay ()
   "Delay some executions for faster speed."
-  (global-auto-highlight-symbol-mode t)
   (auto-read-only-mode 1)
   (balanced-windows-mode 1)
   (global-company-mode t)
