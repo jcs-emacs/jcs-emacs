@@ -47,8 +47,7 @@
 
   (run-with-idle-timer 0 nil #'jcs-hook--init-delay)
 
-  (jcs-setup-default-theme)
-  (jcs-depend-mode))
+  (jcs-setup-default-theme))
 
 (defun jcs-hook--init-delay ()
   "Delay some executions for faster speed."
