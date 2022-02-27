@@ -45,7 +45,6 @@
     bool-flip
     browse-kill-ring
     buffer-menu-filter
-    buffer-menu-project
     buffer-move
     buffer-wrap
     calfw
@@ -104,6 +103,7 @@
     fill-page
     flx-rs
     flx-style
+    flycheck-cask
     flycheck-grammarly
     flycheck-languagetool
     fountain-mode
