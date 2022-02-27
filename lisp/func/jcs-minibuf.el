@@ -13,7 +13,7 @@
   (jcs-gc-cons-threshold-speed-up t)  ; Avoid GCs while using `vertico'
   (setq jcs-minibuf--old-completion-style completion-styles
         completion-styles '(flx))
-  (jcs-dark-blue-mode-line)
+  (jcs-reload-active-mode)
   (add-hook 'post-command-hook #'jcs-minibuffer--post-command nil t))
 
 (jcs-add-hook 'minibuffer-exit-hook

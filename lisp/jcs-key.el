@@ -157,7 +157,8 @@
     ((kbd "C-k m") . jcs-toggle-minimap)
 
 ;;; Mode Toggle
-    ((kbd "C-k `") . jcs-depend-cross-mode-toggle)
+    ((kbd "C-k `") . (lambda () (interactive)
+                       (zoom-window-zoom) (jcs-reload-active-mode)))
     ((kbd "C-~")   . shell-pop)
     ((kbd "C-`")   . shell-pop)
     ((kbd "C-k r") . rainbow-mode)
@@ -223,6 +224,8 @@
     ((kbd "C-S-b") . jcs-make-without-asking)  ; Build
 
 ;;; Search Word
+    ((kbd "C-f")   . isearch-forward)
+    ((kbd "C-S-f") . isearch-project-forward)
     ;; NOTE: Basic search is bind to `jcs-cross-mode' and `jcs-depend-mode'.
     ;; See `jcs-mode.el' file for the settings.
     ((kbd "C-r C-f") . isearch-backward-regexp)
