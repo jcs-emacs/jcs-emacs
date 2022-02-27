@@ -37,6 +37,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Default select first candidate (highest score) after sorting while using minibuffer completion. (eb6486a3a9031421127fda03f89ede01d38ba409)
 * Add new package `electric-indent-sexp`.
 * Add new package `electric-cursor`.
+* Remove implementation of `depends-mode` and `cross-mode`. (8a1500e4738453f757cb9d28a2c09136dedf6bcc)
 
 ## 8.0.1
 > Released Jan 29, 2022
