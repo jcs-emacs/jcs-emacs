@@ -6,29 +6,14 @@
 ;; (@* "Mode State" )
 ;;
 
-(defvar jcs-mode--state nil
-  "Record the state of the current mode.")
-
-(defun jcs-mode-stats-p (state)
-  "Check mode STATE."
-  (eq jcs-mode--state state))
-
-(defun jcs-depend-cross-mode-toggle ()
-  "Toggle depend/cross mode."
-  (interactive)
-  (unless (minibufferp)
-    (if (jcs-mode-stats-p 'cross) (jcs-depend-mode) (jcs-cross-mode))))
-
 (defun jcs-reload-active-mode ()
   "Reload the active mode.
 Note this is opposite logic to the toggle mode function."
   (interactive)
   (jcs-mute-apply
-    (let ((mode-state jcs-mode--state))
-      (setq jcs-mode--state nil)  ; reset
-      (cl-case mode-state
-        (`cross  (jcs-cross-mode))
-        (`depend (jcs-depend-mode))))))
+    (cond ((minibufferp) (jcs-dark-blue-mode-line))
+          ((jcs-funcall-fboundp #'zoom-window--enable-p) (jcs-dark-green-mode-line))
+          (t (jcs-gray-mode-line)))))
 
 (defun jcs-buffer-spaces-to-tabs ()
   "Check if buffer using spaces or tabs."
@@ -94,36 +79,6 @@ Note this is opposite logic to the toggle mode function."
     ("Default (empty)" )  ; Do nothing...
     (_ (file-header-insert-template-by-file-path
         (format "%s%s.txt" jcs-changelog-template-dir in-type)))))
-
-;;
-;; (@* "Special Modes" )
-;;
-
-(defun jcs-depend-mode ()
-  "Mode hardly depends on OS's environment."
-  (interactive)
-  (unless (jcs-mode-stats-p 'depend)
-    (jcs-gray-mode-line)
-
-    (jcs-key global-map
-      `(((kbd "C-f")   . isearch-forward)            ; was `ivy-searcher-search-file'
-        ((kbd "C-S-f") . isearch-project-forward)))  ; was `ivy-searcher-search-project'
-
-    (setq jcs-mode--state 'depend)
-    (message "[INFO] Turn into `depend-mode` now")))
-
-(defun jcs-cross-mode ()
-  "Mode doesn't rely on OS's environment."
-  (interactive)
-  (unless (jcs-mode-stats-p 'cross)
-    (jcs-dark-green-mode-line)
-
-    (jcs-key global-map
-      `(((kbd "C-f")   . isearch-forward)
-        ((kbd "C-S-f") . isearch-project-forward)))
-
-    (setq jcs-mode--state 'cross)
-    (message "[INFO] Turn into `cross-mode` now")))
 
 ;;----------------------------------------------------------------------------
 ;;; Startup Modes
