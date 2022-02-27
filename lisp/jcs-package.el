@@ -55,7 +55,6 @@
     centaur-tabs
     clojure-mode
     cmake-font-lock
-    cmake-mode
     cobol-mode
     com-css-sort
     command-log-mode
@@ -66,11 +65,8 @@
     company-meta-net
     company-nginx
     consult
-    csharp-mode
     csproj-mode
     csv-mode
-    dap-mode
-    dart-mode
     dashboard-ls
     define-it
     diff-hl
@@ -106,6 +102,7 @@
     flycheck-cask
     flycheck-grammarly
     flycheck-languagetool
+    flycheck-package
     fountain-mode
     fsharp-mode
     gdscript-mode
@@ -118,10 +115,10 @@
     google-this
     goto-char-preview
     goto-line-preview
-    groovy-mode
     haskell-mode
     haxe-mode
     helpful
+    hgignore-mode
     highlight-escape-sequences
     highlight-indent-guides
     highlight-numbers
@@ -131,7 +128,6 @@
     htmltagwrap
     ialign
     iedit
-    impatient-mode
     impatient-showdown
     indent-control
     ini-mode
@@ -141,7 +137,6 @@
     jenkinsfile-mode
     js2-mode
     json-mode
-    julia-mode
     keypression
     kotlin-mode
     leaf
@@ -155,6 +150,7 @@
     lsp-grammarly
     lsp-haskell
     lsp-java
+    lsp-julia
     lsp-latex
     lsp-ltex
     lsp-metals
@@ -188,7 +184,6 @@
     noflet
     org-bullets
     organize-imports-java
-    package-lint
     page-break-lines
     parse-it
     password-generator
@@ -218,9 +213,10 @@
     smex
     sort-words
     sql-indent
-    ssass-mode
     swift-mode
+    toc-org
     togetherly
+    toggle-quotes
     toggle-window
     transpose-frame
     transwin
@@ -232,6 +228,7 @@
     typescript-mode
     undercover
     undo-tree
+    unfill
     use-ttf
     vertico
     vimrc-mode
@@ -243,10 +240,10 @@
     which-key
     whitespace-cleanup-mode
     winum
-    yaml-mode
     yarn-mode
     yascroll
-    yasnippet-snippets)
+    yasnippet-snippets
+    zoom-window)
   "List of packages this config needs.")
 
 (setq package-pinned-packages
