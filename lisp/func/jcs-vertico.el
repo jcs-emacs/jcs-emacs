@@ -15,10 +15,11 @@
 
 (defun jcs-vertico--goto (candidate)
   "Select candidate with CANDIDATE."
-  (jcs-with-no-redisplay
-    (vertico--exhibit)
-    (when-let ((index (jcs-vertico--index candidate)))
-      (jcs-vertico--recenter index))))
+  (when vertico--candidates
+    (jcs-with-no-redisplay
+      (vertico--exhibit)
+      (when-let ((index (jcs-vertico--index candidate)))
+        (jcs-vertico--recenter index)))))
 
 (defun jcs-vertico--recenter (index)
   "Recentering the current candidate."
