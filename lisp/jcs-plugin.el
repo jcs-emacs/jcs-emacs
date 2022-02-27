@@ -50,6 +50,10 @@
     (setq browse-kill-ring-separator (jcs-env-separator))
     (page-break-lines-mode 1)))
 
+(leaf buffer-menu-filter
+  :init
+  (setq buffer-menu-filter-delay 0.2))
+
 (leaf buffer-wrap
   :defer-config
   (defun jcs--buffer-wrap--fixed-window-off ()
@@ -310,6 +314,9 @@
   :defer-config
   (advice-add 'flycheck-display-error-messages
               :around (lambda (fnc &rest args) (jcs-no-log-apply (apply fnc args)))))
+
+(leaf flycheck-cask
+  :hook (flycheck-mode-hook . flycheck-cask-setup))
 
 (leaf flycheck-grammarly
   :hook (flycheck-mode-hook . (lambda () (require 'flycheck-grammarly))))
