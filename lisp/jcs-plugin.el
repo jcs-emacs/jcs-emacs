@@ -324,6 +324,9 @@
 (leaf flycheck-languagetool
   :hook (flycheck-mode-hook . (lambda () (require 'flycheck-languagetool))))
 
+(leaf flycheck-package
+  :hook (flycheck-mode-hook . flycheck-package-setup))
+
 (leaf google-translate
   :init
   (setq google-translate-default-source-language "auto"
