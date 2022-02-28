@@ -248,7 +248,7 @@
          '("[*]Most used words[*]")
          '("[*]Test SHA[*]")
          '("[*]RE-Builder")
-         '("[*]preview-it")
+         '("[*]preview-it" "[*]gh-md")
          '("[*]wclock[*]")
          '("[*]Clippy[*]")
          '("[*]CMake Temporary[*]")
@@ -315,17 +315,11 @@
   (advice-add 'flycheck-display-error-messages
               :around (lambda (fnc &rest args) (jcs-no-log-apply (apply fnc args)))))
 
-(leaf flycheck-cask
-  :hook (flycheck-mode-hook . flycheck-cask-setup))
-
-(leaf flycheck-grammarly
-  :hook (flycheck-mode-hook . (lambda () (require 'flycheck-grammarly))))
-
-(leaf flycheck-languagetool
-  :hook (flycheck-mode-hook . (lambda () (require 'flycheck-languagetool))))
-
-(leaf flycheck-package
-  :hook (flycheck-mode-hook . flycheck-package-setup))
+(leaf flycheck-cask         :hook (flycheck-mode-hook . flycheck-cask-setup))
+(leaf flycheck-grammarly    :hook (flycheck-mode-hook . flycheck-grammarly-setup))
+(leaf flycheck-languagetool :hook (flycheck-mode-hook . flycheck-languagetool-setup))
+(leaf flycheck-package      :hook (flycheck-mode-hook . flycheck-package-setup))
+(leaf flycheck-relint       :hook (flycheck-mode-hook . flycheck-relint-setup))
 
 (leaf google-translate
   :init
