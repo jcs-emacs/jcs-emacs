@@ -116,7 +116,7 @@
   :init
   (setq company-box-backends-colors nil
         company-box-frame-behavior 'point
-        company-box-scrollbar 'inherit
+        company-box-scrollbar 'right
         company-box-doc-delay 0.3
         company-box-doc-text-scale-level -2))
 

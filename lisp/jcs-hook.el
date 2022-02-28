@@ -66,7 +66,6 @@
   (global-page-break-lines-mode 1)
   (global-region-occurrences-highlighter-mode 1)
   (right-click-context-mode 1)
-  (scroll-bar-mode 1)
   (show-paren-mode t)
   (global-so-long-mode 1)
   (transient-mark-mode t)
