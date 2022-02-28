@@ -103,9 +103,11 @@
     flycheck-grammarly
     flycheck-languagetool
     flycheck-package
+    flycheck-relint
     fountain-mode
     fsharp-mode
     gdscript-mode
+    git-link
     git-modes
     github-browse-file
     github-tags
