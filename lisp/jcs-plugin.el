@@ -656,6 +656,10 @@
   :init
   (setq pos-tip-internal-border-width 5))
 
+(leaf preview-it
+  :init
+  (setq preview-it-render-md t))
+
 (leaf project
   :defer-config
   (setq project-vc-ignores
@@ -669,9 +673,9 @@
                 '(".log" ".vs" "node_modules"))))
 
 (leaf quelpa
-  :defer-config
-  (jcs-add-hook 'quelpa-before-hook (setq jcs-package-installing-p t))
-  (jcs-add-hook 'quelpa-after-hook (setq jcs-package-installing-p nil)))
+  :hook
+  ((quelpa-before-hook . (lambda () (setq jcs-package-installing-p t)))
+   (quelpa-after-hook .  (lambda () (setq jcs-package-installing-p nil)))))
 
 (leaf region-occurrences-highlighter
   :init
