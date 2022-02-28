@@ -116,6 +116,7 @@
   :init
   (setq company-box-backends-colors nil
         company-box-frame-behavior 'point
+        company-box-scrollbar 'inherit
         company-box-doc-delay 0.3
         company-box-doc-text-scale-level -2))
 
@@ -868,11 +869,6 @@
 (leaf winum
   :init
   (setq winum-scope 'frame-local))
-
-(leaf yascroll
-  :init
-  (setq yascroll:delay-to-hide 0.8
-        yascroll:priority 50))
 
 (leaf yasnippet
   :init

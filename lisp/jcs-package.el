@@ -243,7 +243,6 @@
     whitespace-cleanup-mode
     winum
     yarn-mode
-    yascroll
     yasnippet-snippets
     zoom-window)
   "List of packages this config needs.")
@@ -452,10 +451,9 @@ Argument WHERE is the alist of package information."
   (package-refresh-contents)
   (let (upgrades)
     (dolist (pkg (mapcar #'car package-alist))
-      (let ((in-archive (jcs-package-version pkg package-archive-contents)))
-        (when (and in-archive
-                   (version-list-< (jcs-package-version pkg package-alist) in-archive))
-          (push (cadr (assq pkg package-archive-contents)) upgrades))))
+      (when-let ((in-archive (jcs-package-version pkg package-archive-contents))
+                 (_ (version-list-< (jcs-package-version pkg package-alist) in-archive)))
+        (push (cadr (assq pkg package-archive-contents)) upgrades)))
     (if upgrades
         (when (yes-or-no-p
                (format "Upgrade %d package%s (%s)? "
