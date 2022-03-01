@@ -56,12 +56,6 @@ BUFFER-OR-NAME and NORECORD."
   (select-window (get-largest-window nil nil t))
   (pop-to-buffer-same-window buffer-or-name norecord))
 
-(defun jcs-switch-to-previous-buffer (&optional cnt)
-  "Switch to previously open buffer with CNT."
-  (interactive)
-  (let ((cnt (or cnt 1)))  ; Default is 1.
-    (switch-to-buffer (other-buffer (current-buffer) cnt))))
-
 (defun jcs-switch-to-next-valid-buffer ()
   "Switch to the previous buffer that are not nil."
   (interactive)

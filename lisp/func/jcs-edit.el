@@ -528,7 +528,7 @@ NO-RECORD and FORCE-SAME-WINDOW are the same as switch to buffer arguments."
     (bury-buffer)
     (when (or (jcs-buffer-menu-p)
               (string= bn (jcs-buffer-name-or-buffer-file-name)))
-      (jcs-switch-to-previous-buffer)))
+      (switch-to-prev-buffer)))
   ;; If something that I doesn't want to see, bury it.
   ;; For instance, any `*helm-' buffers.
   (jcs-bury-diminished-buffer))
@@ -551,12 +551,12 @@ NO-RECORD and FORCE-SAME-WINDOW are the same as switch to buffer arguments."
            (create-dir (s-replace jcs-created-parent-dir-path "" default-directory))
            (del-path (f-slash (concat create-dir topest-dir))))
       (delete-directory del-path)
-      (message "Remove parent directory that were virtual => '%s'" del-path)))
+      (message "[INFO] Remove parent directory that were virtual => '%s'" del-path)))
   (when (and (featurep 'lsp-mode) (jcs--lsp-connected-p)) (lsp-disconnect))
   (kill-this-buffer)
   (jcs-project--track-open-projects)
   ;; If still in the buffer menu, try switch to the previous buffer.
-  (when (jcs-buffer-menu-p) (jcs-switch-to-previous-buffer)))
+  (when (jcs-buffer-menu-p) (switch-to-prev-buffer)))
 
 (defun jcs-maybe-kill-this-buffer (&optional ecp-same)
   "Kill buffer if the current buffer is the only shown in one window.
