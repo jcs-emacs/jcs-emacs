@@ -285,7 +285,7 @@ kind of methods to support the maintainer you wish to.
 * *Recent Files* - powered by [recentf](https://www.emacswiki.org/emacs/RecentFiles).
 * *Regexp* - powered by [re-builder](https://www.emacswiki.org/emacs/ReBuilder) and [visual-regexp](https://github.com/benma/visual-regexp.el).
 * *Restart Emacs* - powered by [restart-emacs](https://github.com/iqbalansari/restart-emacs).
-* *Scroll Bar* - powered by [yascroll](https://github.com/m2ym/yascroll-el).
+* *Scroll Bar* - none.
 * *Shell* - powered by [shell](https://www.emacswiki.org/emacs/ShellMode) and [exec-path-from-shell](https://github.com/purcell/exec-path-from-shell).
 * *Smooth Scrolling* - none, originally powered by ~~[sublimity](https://github.com/zk-phi/sublimity)~~.
 * *Snippet* - powered by [yasnippet](https://github.com/joaotavora/yasnippet).
