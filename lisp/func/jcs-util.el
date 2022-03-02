@@ -736,32 +736,19 @@ BND-PT : boundary point."
   "Is current line the last line in buffer."
   (= (line-number-at-pos (point) t) (line-number-at-pos (point-max) t)))
 
-(defun jcs-first-visible-pos-in-window ()
-  "First point in current visible window."
-  (save-excursion
-    (ignore-errors (move-to-window-line 0))
-    (line-beginning-position)))
-
-(defun jcs-last-visible-pos-in-window ()
-  "Last point in current visible window."
-  (save-excursion
-    (ignore-errors (move-to-window-line -1))
-    (line-beginning-position)))
-
 (defun jcs-first-visible-line-in-window ()
   "First line number in current visible window."
-  (line-number-at-pos (jcs-first-visible-pos-in-window) t))
+  (line-number-at-pos (window-start) t))
 
 (defun jcs-last-visible-line-in-window ()
   "Last line number in current visible window."
-  (line-number-at-pos (jcs-last-visible-pos-in-window) t))
+  (line-number-at-pos (window-end) t))
 
 (defun jcs-line-number-at-pos-relative (&optional pos rel-line)
   "Return line number relative to REL-LINE from POS.
 
 If optional argument REL-LINE is nil; we will use first visible line instead."
-  (unless rel-line (setq rel-line (jcs-first-visible-line-in-window)))
-  (- (line-number-at-pos pos t) rel-line))
+  (- (line-number-at-pos pos t) (or rel-line (jcs-first-visible-line-in-window))))
 
 (defun jcs-make-first-visible-line-to (ln)
   "Make the first visible line to target line, LN."
