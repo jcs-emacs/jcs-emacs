@@ -63,7 +63,6 @@
   (marginalia-mode 1)
   (message-clean-mode 1)
   (minions-mode 1)
-  (mode-icons-mode 1)
   (global-page-break-lines-mode 1)
   (global-region-occurrences-highlighter-mode 1)
   (right-click-context-mode 1)

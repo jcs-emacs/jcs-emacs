@@ -6,22 +6,11 @@
 ;; (@* "Settings" )
 ;;
 
-(defun jcs-mode-line--adjust-pad ()
-  "Adjust padding for external packages."
-  (let ((delta 0))
-    (when (and (bound-and-true-p mode-icons-mode)
-               (display-graphic-p)
-               mode-icons--mode-name
-               (text-properties-at 0 mode-icons--mode-name))
-      (setq delta (- (length (format-mode-line mode-name)) (/ (mode-icons-line-height) 10))))
-    delta))
-
 (defun jcs-mode-line-render (left right)
   "Render mode line with LEFT and RIGHT alignment."
   (let* ((len-left (length (format-mode-line left)))
          (len-right (length (format-mode-line right)))
-         (available-width (- (window-width) (+ len-left len-right)))
-         (available-width (+ available-width (jcs-mode-line--adjust-pad))))
+         (available-width (- (window-width) (+ len-left len-right))))
     (append left
             (list (format (format "%%%ds" available-width) ""))
             right)))

@@ -172,7 +172,6 @@
     message-clean-mode
     meta-view
     minions
-    mode-icons
     moody
     most-used-words
     move-text

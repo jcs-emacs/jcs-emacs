@@ -563,10 +563,6 @@
   (setq minions-mode-line-delimiters nil
         minions-mode-line-lighter ""))
 
-(leaf mode-icons
-  :init
-  (setq mode-icons-line-height-adjust -3))
-
 (leaf moody
   :init
   (setq x-underline-at-descent-line t)
