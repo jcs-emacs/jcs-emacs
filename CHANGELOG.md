@@ -26,7 +26,6 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add new package `shell-pop`.
 * Replace config built-in pop shell functionality with `shell-pop`.
 * Disable save file message by default.
-* Add new package `mode-icons`.
 * Improved reopen buffer command's message. (263244468533c95fcf340b4603b8bb0e3ed00f1e)
 * Limit lsp message to display in `*Messages*` buffer.
 * Add file name when do `ffap` on `minibuffer` and `vertico`. (1df9e1b4467423dc278ac4963cfd9d42e8d53d28)
