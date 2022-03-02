@@ -24,6 +24,11 @@
         auto-rename-tag-disabled-minor-modes '(iedit-mode
                                                multiple-cursors-mode)))
 
+(leaf auto-scroll-bar
+  :init
+  (setq auto-scroll-bar-horizontal t
+        auto-scroll-bar-disabled-major-modes '(dashboard-mode)))
+
 (leaf balance-windows
   :init
   (setq balanced-windows-functions
