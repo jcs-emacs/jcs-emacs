@@ -13,9 +13,13 @@
   "Return candidate's index."
   (cl-position candidate vertico--candidates :test 'string=))
 
+(defun jcs-vertico--active-p ()
+  "Return non-nil, only when vertico is active."
+  (overlayp vertico--count-ov))
+
 (defun jcs-vertico--goto (candidate)
   "Select candidate with CANDIDATE."
-  (when vertico--candidates
+  (when (jcs-vertico--active-p)
     (jcs-with-no-redisplay
       (vertico--exhibit)
       (when-let ((index (jcs-vertico--index candidate)))
