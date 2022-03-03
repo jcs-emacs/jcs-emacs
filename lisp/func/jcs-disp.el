@@ -6,11 +6,22 @@
 ;; (@* "Settings" )
 ;;
 
+(defun jcs-mode-line--adjust-pad ()
+  "Adjust padding for external packages."
+  (let ((delta 0))
+    (when vertical-scroll-bar
+      (when-let* ((data (window-scroll-bars))
+                  (shown (nth 2 data))
+                  (width (nth 1 data)))
+        (setq delta (+ delta width))))
+    delta))
+
 (defun jcs-mode-line-render (left right)
   "Render mode line with LEFT and RIGHT alignment."
   (let* ((len-left (length (format-mode-line left)))
          (len-right (length (format-mode-line right)))
-         (available-width (- (window-width) (+ len-left len-right))))
+         (available-width (- (window-width) (+ len-left len-right)))
+         (available-width (+ available-width (jcs-mode-line--adjust-pad))))
     (append left
             (list (format (format "%%%ds" available-width) ""))
             right)))
@@ -49,8 +60,7 @@
                          when lighter
                          concat (propertize lighter 'face `(:foreground ,(cdr state))))))
              (:eval (jcs-vc-info)) " "
-             (:eval (moody-tab " %l : %c " 0 'up)) " %p"
-             (:eval (if (nth 2 (window-scroll-bars)) "" " "))
+             (:eval (moody-tab " %l : %c " 0 'up)) " %p "
              mode-line-end-spaces))))))
 
 ;;
