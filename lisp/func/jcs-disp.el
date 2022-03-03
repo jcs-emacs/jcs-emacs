@@ -49,7 +49,8 @@
                          when lighter
                          concat (propertize lighter 'face `(:foreground ,(cdr state))))))
              (:eval (jcs-vc-info)) " "
-             (:eval (moody-tab " %l : %c " 0 'up)) " %p "
+             (:eval (moody-tab " %l : %c " 0 'up)) " %p"
+             (:eval (if (nth 2 (window-scroll-bars)) "" " "))
              mode-line-end-spaces))))))
 
 ;;
