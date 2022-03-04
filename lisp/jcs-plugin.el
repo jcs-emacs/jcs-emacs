@@ -440,7 +440,7 @@
                                        "res/"))
   :defer-config
   (jcs-add-hook 'isearch-mode-hook
-    "Paste the current symbol when `isearch' enabled."
+    ;; Paste the current symbol when `isearch' enabled.
     (cond ((use-region-p)
            (progn
              (deactivate-mark)
@@ -687,9 +687,8 @@
 
 (leaf right-click-context
   :defer-config
-  (defun right-click-context-menu ()
-    "Open Right Click Context menu."
-    (interactive)
+  (jcs-advice-add 'right-click-context-menu :override
+    ;; Open Right Click Context menu.
     (let ((popup-menu-keymap (copy-sequence popup-menu-keymap)))
       (define-key popup-menu-keymap [mouse-3] #'right-click-context--click-menu-popup)
       (let ((value (popup-cascade-menu (right-click-context--build-menu-for-popup-el (right-click-context--menu-tree) nil))))
@@ -700,8 +699,7 @@
   :init
   (setq shell-pop-window-size 60
         shell-pop-last-shell-buffer-index 0
-        shell-pop-shell-type '("shell" "*shell: <>*"
-                               (lambda () (multi-shell))))
+        shell-pop-shell-type '("shell" "*shell: <>*" (lambda () (multi-shell))))
   :defer-config
   (require 'multi-shell))
 
