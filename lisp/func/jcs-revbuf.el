@@ -2,11 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(defcustom jcs-revbuf-clear-line-reminder nil
-  "If non-nil, remove all sign from `line-reminder'."
-  :type 'boolean
-  :group 'jcs)
-
 (defun jcs-revert-buffer-no-confirm ()
   "Revert buffer without confirmation."
   (interactive)
@@ -19,8 +14,7 @@
     ;; Revert it!
     (ignore-errors (revert-buffer :ignore-auto :noconfirm :preserve-modes))
     (jcs-update-buffer-save-string)
-    (when (and (featurep 'line-reminder) jcs-revbuf-clear-line-reminder)
-      (line-reminder-clear-reminder-lines-sign))
+    (when (featurep 'line-reminder) (line-reminder-clear-reminder-lines-sign))
     ;; Revert all the enabled mode.
     (flycheck-mode was-flycheck)
     (read-only-mode was-readonly)
@@ -59,7 +53,7 @@ Do you want to reload it and lose the changes made in this source editor? "))
     (cl-incf index)
     (pcase answer
       ("Yes"
-       (with-current-buffer buf (jcs-revert-buffer-no-confirm t))
+       (with-current-buffer buf (jcs-revert-buffer-no-confirm))
        (jcs-ask-revert-all bufs index))
       ("Yes to All"
        (jcs-revert-all-valid-buffers)
@@ -72,9 +66,9 @@ Do you want to reload it and lose the changes made in this source editor? "))
   (let* ((buf (or buf (current-buffer)))
          (path (buffer-file-name buf))
          (buffer-saved-md5 (with-current-buffer buf jcs-buffer-save-string-md5))
-         (file-content (jcs-get-string-from-file path))
+         (file-content (jcs-file-content path))
          (file-content-md5 (md5 file-content)))
-    (not (string= file-content-md5 buffer-saved-md5))))
+    (not (equal file-content-md5 buffer-saved-md5))))
 
 (defun jcs-un-save-buffer-edit-externally-p (&optional buf)
   "Return non-nil if BUF is edit externally and is unsaved.
