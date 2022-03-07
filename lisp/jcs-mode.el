@@ -11,9 +11,11 @@
 Note this is opposite logic to the toggle mode function."
   (interactive)
   (jcs-mute-apply
-    (cond ((active-minibuffer-window) (jcs-dark-blue-mode-line))
-          ((jcs-funcall-fboundp #'zoom-window--enable-p) (jcs-dark-green-mode-line))
-          (t (jcs-gray-mode-line)))))
+    (cond
+     ((jcs-backtrace-occurs-p) (jcs-hit-backtrace))
+     ((active-minibuffer-window) (jcs-dark-blue-mode-line))
+     ((jcs-funcall-fboundp #'zoom-window--enable-p) (jcs-dark-green-mode-line))
+     (t (jcs-gray-mode-line)))))
 
 (defun jcs-buffer-spaces-to-tabs ()
   "Check if buffer using spaces or tabs."

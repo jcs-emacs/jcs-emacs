@@ -28,10 +28,6 @@
   (jcs-with-current-buffer jcs-backtrace-buffer-name
     (not (string-empty-p (buffer-string)))))
 
-(defun jcs-reload-active-mode-with-error-handle ()
-  "Reload the active by handling the error occurrence."
-  (if (jcs-backtrace-occurs-p) (jcs-hit-backtrace) (jcs-reload-active-mode)))
-
 (defun jcs-backtrace-exit ()
   "Exit backtrace."
   (jcs-when-buffer-window jcs-backtrace-buffer-name
