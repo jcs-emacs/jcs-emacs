@@ -48,6 +48,7 @@
         (marked-buffers (Buffer-menu-marked-buffers))
         (buffer-menu-buffer (current-buffer))
         (show-non-file (not Buffer-menu-files-only))
+        (show-project-p (jcs-buffer-menu--show-project-p))
         entries)
     ;; Handle obsolete variable:
     (if Buffer-menu-buffer+size-width
@@ -57,7 +58,7 @@
                   '("R" 1 t :pad-right 0)
                   '("M" 1 t)
                   `("Buffer" ,name-width t)
-                  (when (jcs-buffer-menu--show-project-p)
+                  (when show-project-p
                     `("Project" ,(jcs-buffer-menu--project-width) t))
                   `("Size" ,size-width tabulated-list-entry-size-> :right-align t)
                   `("Mode" ,Buffer-menu-mode-width t)
@@ -88,7 +89,7 @@
                                  (if buffer-read-only "%" " ")
                                  (if (buffer-modified-p) "*" " ")
                                  (Buffer-menu--pretty-name name)
-                                 (if (jcs-buffer-menu--show-project-p)
+                                 (if show-project-p
                                      (or (jcs-project-current-uniquify) jcs-buffer-menu--default-project-value)
                                    " ")
                                  (number-to-string (buffer-size))
