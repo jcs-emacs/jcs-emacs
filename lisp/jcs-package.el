@@ -101,6 +101,7 @@
     flx-rs
     flx-style
     flycheck-cask
+    flycheck-elsa
     flycheck-grammarly
     flycheck-languagetool
     flycheck-package
@@ -211,6 +212,7 @@
     shell-pop
     shift-number
     show-eol
+    shrink-whitespace
     smart-comment
     smex
     sort-words
