@@ -69,10 +69,13 @@
 
 (defun jcs--set-mode-line-color (ac-lst inac-lst)
   "Set `mode-line' theme faces with AC-LST and INAC-LST."
-  (set-face-foreground 'mode-line (nth 0 ac-lst))
-  (set-face-background 'mode-line (nth 1 ac-lst))
-  (set-face-foreground 'mode-line-inactive (nth 0 inac-lst))
-  (set-face-background 'mode-line-inactive (nth 1 inac-lst)))
+  (let ((state (frame-focus-state))
+        (ac-0 (nth 0 ac-lst)) (ac-1 (nth 1 ac-lst))
+        (ic-0 (nth 0 inac-lst)) (ic-1 (nth 1 inac-lst)))
+    (set-face-foreground 'mode-line (if state ac-0 ic-0))
+    (set-face-background 'mode-line (if state ac-1 ic-1))
+    (set-face-foreground 'mode-line-inactive ic-0)
+    (set-face-background 'mode-line-inactive ic-1)))
 
 (defun jcs--set-border-color (color)
   "Set the border color with COLOR."

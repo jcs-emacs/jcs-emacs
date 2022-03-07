@@ -8,12 +8,13 @@
 
 (defun jcs-hook--focus-in ()
   "When window is focus."
+  (jcs-reload-active-mode)
   (jcs-funcall-fboundp #'jcs-revert-all-buffers)
   (jcs-dashboard-refresh-buffer))
 
 (defun jcs-hook--focus-out ()
   "When window is not focus."
-  )
+  (jcs-reload-active-mode))
 
 (add-function
  :after after-focus-change-function
@@ -91,7 +92,7 @@
 
 (jcs-add-hook 'post-command-hook
   (jcs--er/resolve-region)
-  (jcs-reload-active-mode-with-error-handle))
+  (jcs-reload-active-mode))
 
 ;;
 ;; (@* "Quitting" )
