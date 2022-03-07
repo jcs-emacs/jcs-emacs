@@ -67,8 +67,7 @@
 
 (jcs-advice-add 'dashboard-insert-startupify-lists :before
   ;; Execution before dashboard setup.
-  (jcs-dashboard-init-info)
-  (jcs-project-list-clean))
+  (jcs-dashboard-init-info))
 
 (jcs-advice-add 'dashboard-insert-startupify-lists :after
   ;; Execution after dashboard setup.
@@ -112,7 +111,7 @@
   "Remove a path from `project--list'."
   (interactive)
   (let ((path (save-excursion (end-of-line) (ffap-guesser))))
-    (jcs-project-remove path))
+    (jcs-mute-apply (project-forget-projects-under path)))
   (jcs-dashboard-refresh-buffer))
 
 (defun jcs-dashboard-remove-bookmarks-item ()
