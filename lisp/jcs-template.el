@@ -79,7 +79,7 @@ FAILED is callback if does NOT successfully inserted header content."
 (defun jcs-template-as-string (path)
   "Read template from PATH to string."
   (require 'f)
-  (jcs-get-string-from-file (f-join jcs-template-dir path)))
+  (jcs-file-content (f-join jcs-template-dir path)))
 
 (defun jcs-reload-file-info (&optional force)
   "Reload the header templates once.

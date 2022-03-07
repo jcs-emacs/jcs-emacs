@@ -27,7 +27,7 @@ NOT-OW : Default is other window, not other window."
   (require 'f)
   (let ((buf-str "") (default-directory default-directory))
     (if filepath
-        (setq buf-str (jcs-get-string-from-file filepath)
+        (setq buf-str (jcs-file-content filepath)
               default-directory (f-dirname filepath))
       (setq buf-str (buffer-string)))
     (unless title (setq title (format "*html-preview - %s*" (buffer-name))))
@@ -71,7 +71,7 @@ NOT-OW : Default is other window, not other window."
     (erase-buffer)
     (save-excursion
       (if (file-exists-p filepath)
-          (insert (jcs-get-string-from-file filepath))
+          (insert (jcs-file-content filepath))
         (insert (format "Missing table file: '%s'" filepath)))))
   (special-mode))
 

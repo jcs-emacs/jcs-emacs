@@ -1024,7 +1024,7 @@ If optional argument REVERSE is non-nil, LIST item and ELT argument."
 ;; (@* "I/O" )
 ;;
 
-(defun jcs-get-string-from-file (path)
+(defun jcs-file-content (path)
   "Return PATH file content."
   (if (file-exists-p path)
       (with-temp-buffer (insert-file-contents path) (buffer-string))
