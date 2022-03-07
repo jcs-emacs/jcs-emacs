@@ -50,7 +50,6 @@
     buffer-wrap
     calfw
     cargo-mode
-    cask
     cask-mode
     ccls
     centaur-tabs
@@ -187,6 +186,7 @@
     noflet
     org-bullets
     organize-imports-java
+    package-build
     page-break-lines
     parse-it
     password-generator
