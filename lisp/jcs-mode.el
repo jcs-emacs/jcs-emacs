@@ -11,7 +11,7 @@
 Note this is opposite logic to the toggle mode function."
   (interactive)
   (jcs-mute-apply
-    (cond ((minibufferp) (jcs-dark-blue-mode-line))
+    (cond ((active-minibuffer-window) (jcs-dark-blue-mode-line))
           ((jcs-funcall-fboundp #'zoom-window--enable-p) (jcs-dark-green-mode-line))
           (t (jcs-gray-mode-line)))))
 

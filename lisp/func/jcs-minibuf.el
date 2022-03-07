@@ -17,7 +17,6 @@
   (add-hook 'post-command-hook #'jcs-minibuffer--post-command nil t))
 
 (jcs-add-hook 'minibuffer-exit-hook
-  (jcs-reload-active-mode)
   (setq completion-styles jcs-minibuf--old-completion-style)
   (jcs-dashboard-refresh-buffer)
   (garbage-collect)  ; Restore GC
