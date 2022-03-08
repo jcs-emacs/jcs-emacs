@@ -6,9 +6,9 @@
 ;; (@* "Util" )
 ;;
 
-(defun jcs-project-current ()
+(defun jcs-project-root ()
   "Return project directory path."
-  (nth 0 (last (project-current))))
+  (when-let ((current (project-current))) (project-root current)))
 
 (defun jcs-project-under-p ()
   "Return non-nil if current file is under a project."
@@ -32,7 +32,7 @@ If UNIQUIFY is non-nil, refresh the cache once."
       (dolist (buf (jcs-valid-buffer-list))
         (with-current-buffer buf
           (when-let* ((default-directory (f-parent (buffer-file-name buf)))
-                      (name (jcs-project-current)))
+                      (name (jcs-project-root)))
             (push name project-lst))))
       (setq jcs-project--cache-opened-projects (delete-dups project-lst))))
   jcs-project--cache-opened-projects)
@@ -43,7 +43,7 @@ If UNIQUIFY is non-nil, refresh the cache once."
   (with-current-buffer (or buffer (current-buffer))
     (when-let ((default-directory (buffer-file-name))
                (all-projects (jcs-project-opened-projects))
-               (current-project (jcs-project-current)))
+               (current-project (jcs-project-root)))
       (push current-project all-projects)
       (setq all-projects (delete-dups all-projects))
       (nth 0 (f-uniquify all-projects)))))
@@ -69,7 +69,7 @@ If optional argument DIR is nil, use variable `default-directory' instead."
 (defun jcs-vc-status ()
   "Return version control status."
   (jcs-require '(subr-x f))
-  (when-let* ((project-name (jcs-project-current))
+  (when-let* ((project-name (jcs-project-root))
               (info (jcs-vc-info))
               (split (split-string info ":"))
               (name (string-trim (jcs-s-replace-displayable (nth 0 split))))
