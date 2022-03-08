@@ -836,7 +836,6 @@
 
 (leaf web-mode
   :init
-  ;; Indentation
   (setq web-mode-markup-indent-offset 2  ; html
         web-mode-css-indent-offset 2     ; css
         web-mode-code-indent-offset 2    ; script
@@ -847,12 +846,13 @@
 
 (leaf which-key
   :init
-  (setq which-key-popup-type 'side-window
-        which-key-side-window-location 'bottom
-        which-key-side-window-max-width 0.33
-        which-key-side-window-max-height 0.25
-        which-key-dont-use-unicode t
-        which-key-idle-delay 1.0))
+  (setq which-key-sort-order #'which-key-key-order-alpha
+        which-key-sort-uppercase-first nil
+        which-key-add-column-padding 1
+        which-key-max-display-columns nil
+        which-key-min-display-lines 6
+        which-key-side-window-slot -10
+        which-key-dont-use-unicode t))
 
 (leaf whitespace-cleanup-mode
   :init
