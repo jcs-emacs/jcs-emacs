@@ -9,7 +9,6 @@
 (defun jcs-hook--focus-in ()
   "When window is focus."
   (jcs-reload-active-mode)
-  (jcs-funcall-fboundp #'jcs-revert-all-buffers)
   (jcs-dashboard-refresh-buffer))
 
 (defun jcs-hook--focus-out ()
@@ -25,7 +24,6 @@
 ;;
 
 (jcs-add-hook 'find-file-hook
-  (jcs-update-buffer-save-string)
   (jcs-project-remember)
   (jcs-project--track-open-projects))
 
@@ -73,6 +71,7 @@
   (transient-mark-mode t)
   (global-tree-sitter-mode 1)
   (vertico-mode 1)
+  (vs-revbuf-mode 1)
   (which-key-mode 1)
   (global-whitespace-cleanup-mode 1)
   (jcs-funcall-fboundp #'jcs-mode-load-requires)

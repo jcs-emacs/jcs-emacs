@@ -834,6 +834,10 @@
   :defer-config
   (require 'jcs-vertico))
 
+(leaf vs-revbuf
+  :init
+  (setq vs-revbuf-ask-unsaved-changes-only t))
+
 (leaf web-mode
   :init
   (setq web-mode-markup-indent-offset 2  ; html

@@ -378,19 +378,6 @@ This command does not push text to `kill-ring'."
     (align-regexp (car bound) (cdr bound) (concat "\\(\\s-*\\)" regexp) 1 1 t)))
 
 ;;
-;; (@* "Revert" )
-;;
-
-(defun jcs-revert-all-buffers ()
-  "Refresh all open file buffers without confirmation."
-  (interactive)
-  (require 'jcs-revbuf)
-  (if-let ((bufs (jcs-buffers-edit-externally)))
-      (jcs-ask-revert-all bufs)
-    (jcs-revert-all-valid-buffers)
-    (jcs-revert-all-invalid-buffers)))
-
-;;
 ;; (@* "Line Ending" )
 ;;
 
@@ -410,14 +397,6 @@ This command does not push text to `kill-ring'."
 ;; (@* "Save Buffer" )
 ;;
 
-(defvar-local jcs-buffer-save-string-md5 nil
-  "Buffer string when buffer is saved; this value encrypted with md5 algorithm.
-This variable is used to check if file are edited externally.")
-
-(defun jcs-update-buffer-save-string ()
-  "Update variable `jcs-buffer-save-string-md5' once."
-  (setq jcs-buffer-save-string-md5 (md5 (buffer-string))))
-
 (jcs-advice-add 'save-buffer :before
   (jcs-funcall-fboundp #'company-abort)
   ;; Delete trailing whitespaces execpt the current line
@@ -427,7 +406,6 @@ This variable is used to check if file are edited externally.")
   (when jcs-on-save-remove-control-M (jcs-mute-apply (jcs-remove-control-M))))
 
 (jcs-advice-add 'save-buffer :after
-  (jcs-update-buffer-save-string)
   (jcs-funcall-fboundp #'undo-tree-kill-visualizer)
   (setq jcs-created-parent-dir-path nil))
 

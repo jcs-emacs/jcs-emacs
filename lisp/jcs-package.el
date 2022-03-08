@@ -239,6 +239,7 @@
     visual-regexp
     vs-dark-theme
     vs-light-theme
+    vs-revbuf
     vue-mode
     web-mode
     which-key
