@@ -160,18 +160,17 @@
 ;; (@* "Dashboard" )
 ;;
 
-(defun jcs-dashboard (&optional ow)
-  "Jump to the dashboard buffer, if doesn't exists create one.
-OW is the other window flag."
+(defun jcs-dashboard ()
+  "Jump to dashboard buffer; if doesn't exists create one."
   (interactive)
-  (jcs-switch-to-buffer dashboard-buffer-name ow)
+  (switch-to-buffer dashboard-buffer-name)
   (unless (eq major-mode 'dashboard-mode) (dashboard-mode))
   (jcs-dashboard-refresh-buffer))
 
 (defun jcs-dashboard-other-window ()
-  "Just like `jcs-dashboard', but open on the other window."
+  "Switch to dashboard buffer on other window."
   (interactive)
-  (jcs-dashboard t))
+  (jcs-with-other-window (jcs-dashboard)))
 
 (defun jcs-dashboard-refresh-buffer ()
   "Refresh dashboard buffer."
@@ -179,8 +178,7 @@ OW is the other window flag."
   (jcs-when-buffer-window dashboard-buffer-name
     (let ((dashboard-ls-path (jcs-last-default-directory)))
       (jcs-mute-apply
-        (jcs-save-window-excursion
-          (save-window-excursion (dashboard-refresh-buffer)))))))
+        (jcs-save-window-excursion (dashboard-refresh-buffer))))))
 
 (defun jcs-dashboard--get-banner-path ()
   "Return banner path."

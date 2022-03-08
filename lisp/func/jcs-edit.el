@@ -507,12 +507,6 @@ This variable is used to check if file are edited externally.")
   "List of buffer name that must be killed when maybe kill; unless it shows up
 in multiple windows.")
 
-(defun jcs-switch-to-buffer (buffer-or-name &optional ow no-record force-same-window)
-  "Switch to buffer wrarpper with other window (OW) option.
-NO-RECORD and FORCE-SAME-WINDOW are the same as switch to buffer arguments."
-  (if ow (jcs-switch-to-buffer-other-window buffer-or-name no-record)
-    (switch-to-buffer buffer-or-name no-record force-same-window)))
-
 (defun jcs-bury-diminished-buffer ()
   "Bury the diminished buffer."
   (when (and diminish-buffer-mode

@@ -82,6 +82,15 @@
        (with-selected-window (nth 0 win) ,then)
      ,@else))
 
+(defmacro jcs-with-other-window (&rest body)
+  "Temporary replace all switch file functions with other window during BODY
+execution."
+  (declare (indent 0) (debug t))
+  (require 'noflet)
+  `(noflet ((switch-to-buffer (&rest args) (apply #'jcs-switch-to-buffer-other-window args))
+            (find-file (&rest args) (apply #'find-file-other-window args)))
+     ,@body))
+
 ;;
 ;; (@* "Module" )
 ;;
