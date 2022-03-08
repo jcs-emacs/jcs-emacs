@@ -15,7 +15,7 @@
          '("emacs/.*/lisp/"
            "/[.]emacs[.]d/elpa/"))
   (jcs-advice-add 'auto-read-only--hook-find-file :override
-    (when (and (not jcs-package-installing-p) (not (jcs-project-current)))
+    (when (and (not jcs-package-installing-p) (not (jcs-project-under-p)))
       (auto-read-only))))
 
 (leaf auto-rename-tag
