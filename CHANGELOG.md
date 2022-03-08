@@ -38,6 +38,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add new package `electric-cursor`.
 * Remove implementation of `depends-mode` and `cross-mode`. (8a1500e4738453f757cb9d28a2c09136dedf6bcc)
 * Remove file display function `jcs-html-preview` and `jcs-display-file` (bb47bcee49c2005c10c2b53bb62b923c74fb2741)
+* Moved revert buffer module to external package, [vs-revbuf](https://github.com/emacs-vs/vs-revbuf). (73f88e137f7bf4155ff2a37d8b1c43248cf628c5)
 
 ## 8.0.1
 > Released Jan 29, 2022
