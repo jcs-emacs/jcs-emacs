@@ -51,8 +51,8 @@
         ((save-excursion (search-backward "/~/" nil t))  ; Home
          (jcs-vertico--cd "~/"))
         ((save-excursion (search-backward "/!/" nil t))  ; Project
-         (if (jcs-project-current)
-             (jcs-vertico--cd (jcs-project-current))
+         (if (jcs-project-under-p)
+             (jcs-vertico--cd (jcs-project-root))
            (backward-delete-char 2)
            (message "[INFO] Project root not found, return to previous directory")))
         ((save-excursion (search-backward "/./" nil t))   ; Current
