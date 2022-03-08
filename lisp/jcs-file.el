@@ -9,71 +9,7 @@
 (defun jcs-project-find-file-other-window ()
   "Find files in project on other window."
   (interactive)
-  (let ((buf (current-buffer)) found-file target-buf)
-    (unwind-protect (setq found-file (project-find-file))
-      (when found-file
-        (setq target-buf (concat (cdr (project-current)) (buffer-name found-file)))
-        (switch-to-buffer buf)
-        (find-file-other-window target-buf)))))
-
-;;
-;; (@* "Display" )
-;;
-
-(defun jcs-html-preview (&optional filepath title not-ow)
-  "Preview html FILEPATH other window with TITLE.
-NOT-OW : Default is other window, not other window."
-  (interactive)
-  (require 'f)
-  (let ((buf-str "") (default-directory default-directory))
-    (if filepath
-        (setq buf-str (jcs-file-content filepath)
-              default-directory (f-dirname filepath))
-      (setq buf-str (buffer-string)))
-    (unless title (setq title (format "*html-preview - %s*" (buffer-name))))
-    (jcs-switch-to-buffer title (not not-ow))
-    (read-only-mode -1)
-    (erase-buffer)
-    (save-excursion
-      (insert buf-str)
-      ;; NOTE: Start swapping html:src url path.
-      (goto-char (point-min))
-      (while (not (eobp))
-        (jcs-move-to-forward-a-word "src")
-        (unless (eobp)
-          (forward-char 2)
-          (let ((start-ch (jcs-get-current-char-string))
-                (start-pt (point)) (end-pt -1)
-                (url-path "")
-                (relative-ulr-path t))
-            (save-excursion
-              (when (jcs-current-word-equal-p '("http" "https" "file"))
-                (setq relative-ulr-path nil)))
-            (when relative-ulr-path
-              (jcs-move-to-forward-a-char start-ch)
-              (forward-char -1)
-              (setq end-pt (point))
-
-              (setq url-path (buffer-substring start-pt end-pt))
-              (delete-region start-pt end-pt)
-
-              (setq url-path (format "file:///%s" (expand-file-name url-path)))
-              (insert url-path)))))
-      (shr-render-region (point-min) (point-max)))
-    (read-only-mode 1)
-    (special-mode)))
-
-(defun jcs-display-file (filepath title &optional not-ow)
-  "Display a file with FILEPATH with TITLE.
-NOT-OW : Default is other window, not other window."
-  (jcs-switch-to-buffer title (not not-ow))
-  (let (buffer-read-only)
-    (erase-buffer)
-    (save-excursion
-      (if (file-exists-p filepath)
-          (insert (jcs-file-content filepath))
-        (insert (format "Missing table file: '%s'" filepath)))))
-  (special-mode))
+  (jcs-with-other-window (project-find-file)))
 
 ;;
 ;; (@* "Project" )
@@ -104,7 +40,7 @@ Argument FILENAME accept regular expression string.
 
 Argument TITLE is a string used when there are more than one matches."
   (require 'f)
-  (let ((project-dir (jcs-project-current)) target-files target-files-len)
+  (let ((project-dir (jcs-project-root)) target-files target-files-len)
     ;; Do the find file only when the project directory exists.
     (when project-dir
       (setq target-files
