@@ -385,8 +385,8 @@ This command does not push text to `kill-ring'."
   "Refresh all open file buffers without confirmation."
   (interactive)
   (require 'jcs-revbuf)
-  (if-let ((un-save-buf-lst (jcs-un-save-modified-buffers)))
-      (jcs-ask-revert-all un-save-buf-lst)
+  (if-let ((bufs (jcs-buffers-edit-externally)))
+      (jcs-ask-revert-all bufs)
     (jcs-revert-all-valid-buffers)
     (jcs-revert-all-invalid-buffers)))
 

@@ -23,18 +23,17 @@
 
 (defun jcs-revert-all-invalid-buffers ()
   "Revert all invalid buffers."
-  (save-window-excursion
-    (dolist (buf (jcs-invalid-buffer-list))
-      (with-current-buffer buf
-        (when jcs-buffer-save-string-md5  ; this present only after first save!
-          (set-buffer-modified-p nil)
-          (let (kill-buffer-query-functions) (kill-this-buffer)))))))
+  (dolist (buf (jcs-invalid-buffer-list))
+    (with-current-buffer buf
+      (when jcs-buffer-save-string-md5  ; this present only after first save!
+        (set-buffer-modified-p nil)
+        (let (kill-buffer-query-functions) (kill-this-buffer))))))
 
 (defun jcs-revert-all-valid-buffers ()
   "Revert all valid buffers."
-  (save-window-excursion
-    (dolist (buf (jcs-valid-buffer-list))
-      (with-current-buffer buf (jcs-revert-buffer-no-confirm)))))
+  (dolist (buf (jcs-valid-buffer-list))
+    (with-current-buffer buf
+      (unless (buffer-modified-p) (jcs-revert-buffer-no-confirm)))))
 
 (defun jcs-ask-revert-all (bufs &optional index)
   "Ask to revert all buffers decided by ANSWER.
@@ -46,9 +45,14 @@ Optional argument INDEX is used to loop through BUFS."
   (when-let*
       ((index (or index 0)) (buf (nth index bufs))
        (path (buffer-file-name buf))
-       (prompt (concat path "\n
+       (prompt (concat path "\n"
+                       (if (buffer-modified-p buf)
+                           "
 The file has unsaved changes inside this editor and has been changed externally.
-Do you want to reload it and lose the changes made in this source editor? "))
+Do you want to reload it and lose the changes made in this source editor? "
+                         "
+The file has been changed externally, and has no unsaved changes inside this editor.
+Do you want to reload it? ")))
        (answer (completing-read prompt '("Yes" "Yes to All" "No" "No to All"))))
     (cl-incf index)
     (pcase answer
@@ -70,19 +74,11 @@ Do you want to reload it and lose the changes made in this source editor? "))
          (file-content-md5 (md5 file-content)))
     (not (equal file-content-md5 buffer-saved-md5))))
 
-(defun jcs-un-save-buffer-edit-externally-p (&optional buf)
-  "Return non-nil if BUF is edit externally and is unsaved.
-This function is used to check for lose changes from source editor."
-  (let ((buf (or buf (current-buffer))))
-    (and (buffer-modified-p buf) (jcs-buffer-edit-externally-p buf))))
-
-(defun jcs-un-save-modified-buffers ()
-  "Return non-nil if there is un-save modified buffer."
-  (let (un-save-buf-lst)
-    (dolist (buf (jcs-valid-buffer-list))
-      (when (jcs-un-save-buffer-edit-externally-p (get-buffer buf))
-        (push buf un-save-buf-lst)))
-    (reverse un-save-buf-lst)))
+(defun jcs-buffers-edit-externally ()
+  "Return a list of buffers edit externally."
+  (cl-remove-if-not
+   (lambda (buf) (jcs-buffer-edit-externally-p (get-buffer buf)))
+   (jcs-valid-buffer-list)))
 
 (provide 'jcs-revbuf)
 ;;; jcs-revbuf.el ends here

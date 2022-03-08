@@ -25,6 +25,7 @@
 ;;
 
 (jcs-add-hook 'find-file-hook
+  (jcs-update-buffer-save-string)
   (jcs-project-remember)
   (jcs-project--track-open-projects))
 
