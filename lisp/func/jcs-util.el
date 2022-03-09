@@ -35,6 +35,7 @@
          buffer-list-update-hook
          display-buffer-alist
          window-configuration-change-hook
+         window-scroll-functions
          window-size-change-functions
          window-state-change-hook)
      ,@body))
