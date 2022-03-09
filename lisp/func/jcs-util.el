@@ -87,10 +87,11 @@
   "Temporary replace all switch file functions with other window during BODY
 execution."
   (declare (indent 0) (debug t))
-  (require 'noflet)
-  `(noflet ((switch-to-buffer (&rest args) (apply #'jcs-switch-to-buffer-other-window args))
-            (find-file (&rest args) (apply #'find-file-other-window args)))
-     ,@body))
+  `(progn
+     (require 'noflet)
+     (noflet ((switch-to-buffer (&rest args) (apply #'jcs-switch-to-buffer-other-window args))
+              (find-file (&rest args) (apply #'find-file-other-window args)))
+             ,@body)))
 
 ;;
 ;; (@* "Module" )
