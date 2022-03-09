@@ -17,13 +17,18 @@
   "Return non-nil, only when vertico is active."
   (overlayp vertico--count-ov))
 
-(defun jcs-vertico--goto (candidate)
+(defun jcs-vertico--goto-cand (candidate)
   "Select candidate with CANDIDATE."
   (when (jcs-vertico--active-p)
     (jcs-with-no-redisplay
       (vertico--exhibit)
       (when-let ((index (jcs-vertico--index candidate)))
         (jcs-vertico--recenter index)))))
+
+(defun jcs-vertico--goto (index)
+  "Select candidate with INDEX."
+  (when (jcs-vertico--active-p)
+    (jcs-with-no-redisplay (vertico--exhibit) (vertico--goto index) (vertico--exhibit))))
 
 (defun jcs-vertico--recenter (index)
   "Recentering the current candidate."
@@ -70,8 +75,8 @@
 
 (jcs-advice-add 'vertico-directory-delete-char :override
   (let ((content (minibuffer-contents)))
-    (cond ((vertico-directory-up)  ; preselect after up directory
-           (jcs-vertico--goto (concat (file-name-nondirectory (directory-file-name content)) "/")))
+    (cond ((vertico-directory-up 1)  ; preselect after up directory
+           (jcs-vertico--goto-cand (concat (file-name-nondirectory (directory-file-name content)) "/")))
           ((f-root-p content)  ; limit to root dir
            (jcs-vertico--cd (f-root)) (vertico-first))
           (t (call-interactively #'backward-delete-char)))))
@@ -121,7 +126,8 @@
 (jcs-add-hook 'window-size-change-functions
   (setq vertico-count (floor (* (frame-height) jcs-vertico-height-ratio))))
 
-(jcs-add-hook 'jcs-minibuffer-post-command-hook
+(defun jcs-vertico--post-command ()
+  "Post command for vertico."
   (when vertico-mode
     (cond ((jcs-finding-file-p)
            (when (memq this-command jcs-ffap-commands)
@@ -129,7 +135,7 @@
                     (file (buffer-substring-no-properties start end)))
                (unless (string-empty-p file)
                  (delete-region start end)
-                 (jcs-vertico--goto file))))
+                 (jcs-vertico--goto-cand file))))
            (when (and (save-excursion (search-backward "~//" nil t))
                       (not (jcs-current-char-equal-p "/")))
              (save-excursion
@@ -137,8 +143,11 @@
                (backward-delete-char 1)))))
     (when jcs-vertico--sorting
       ;; Select first candidate (highest score) immediately after sorting!
-      (jcs-with-no-redisplay (vertico--goto 0) (vertico--exhibit))
+      (jcs-vertico--goto 0)
       (setq jcs-vertico--sorting nil))))  ; cancel it afterward
+
+(jcs-advice-add 'vertico--setup :before
+  (add-hook 'post-command-hook #'jcs-vertico--post-command nil 'local))
 
 (jcs-add-hook 'minibuffer-setup-hook
   ;; Preselect file, on startup
@@ -153,7 +162,7 @@
         (unless (string-suffix-p "/" (minibuffer-contents)) (insert "/"))
         (vertico-directory-delete-char))
        ;; Preselect file
-       (bfn (jcs-vertico--goto (file-name-nondirectory bfn)))))))
+       (bfn (jcs-vertico--goto-cand (file-name-nondirectory bfn)))))))
 
 (provide 'jcs-vertico)
 ;;; jcs-vertico.el ends here
