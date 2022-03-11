@@ -289,10 +289,6 @@
     ((kbd "C-M-d") . downcase-dwim)
     ((kbd "C-M-c") . capitalize-dwim)
 
-;;; Undo/Redo
-    ((kbd "C-z") . jcs-undo)
-    ((kbd "C-y") . jcs-redo)
-
 ;;; Whitespace
     ((kbd "C-k b") . whitespace-mode)
 
@@ -315,7 +311,7 @@
     ([C-up]              . jcs-previous-blank-line)
     ([C-down]            . jcs-next-blank-line)
     ((kbd "C-d")         . jcs-kill-whole-line)
-    ((kbd "C-x")         . jcs-vs-cut-key)
+    ((kbd "C-x")         . kill-region)
     ((kbd "C-c")         . kill-ring-save)
     ((kbd "C-M-<left>")  . buf-move-left)
     ((kbd "C-M-<right>") . buf-move-right)
@@ -333,7 +329,11 @@
     ((kbd "C-r f")   . recentf-open-files)    ; Recent Files
 
     ([C-S-tab] . centaur-tabs-backward)
-    ([C-tab]   . centaur-tabs-forward)))
+    ([C-tab]   . centaur-tabs-forward)
+
+;;; Undo/Redo
+    ((kbd "C-z") . jcs-undo)
+    ((kbd "C-y") . jcs-redo)))
 
 ;; ---
 
@@ -408,7 +408,7 @@
     ((kbd "C-<") . jcs-isearch-project-repeat-backward)
     ((kbd "C->") . jcs-isearch-project-repeat-forward)
     ;; TODO: Implements isearch cursor for these two keys
-    ;;((kbd "C-x") . jcs-vs-cut-key)
+    ;;((kbd "C-x") . kill-region)
     ;;((kbd "C-c") . kill-ring-save)
     ((kbd "C-v") . isearch-yank-pop)))
 

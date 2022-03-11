@@ -238,12 +238,14 @@
     vimrc-mode
     visual-regexp
     vs-dark-theme
+    vs-edit-mode
     vs-light-theme
     vs-revbuf
     vue-mode
     web-mode
     which-key
     whitespace-cleanup-mode
+    whole-line-or-region
     winum
     yarn-mode
     yasnippet-snippets
