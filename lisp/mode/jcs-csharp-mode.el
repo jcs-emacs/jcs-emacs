@@ -44,13 +44,9 @@
       ((kbd "<down>") . ,(jcs-get-prev/next-key-type 'next))
 
       ((kbd "DEL") . jcs-electric-backspace)
-      ((kbd "{") . jcs-vs-opening-curly-bracket-key)
-      ((kbd ";") . jcs-vs-semicolon-key)
 
-      ([f8] . jcs-find-corresponding-file)
-      ([S-f8] . jcs-find-corresponding-file-other-window)
-
-      ((kbd "#") . jcs-vs-sharp-key))))
+      ([f8]   . jcs-find-corresponding-file)
+      ([S-f8] . jcs-find-corresponding-file-other-window))))
 
 (provide 'jcs-csharp-mode)
 ;;; jcs-csharp-mode.el ends here

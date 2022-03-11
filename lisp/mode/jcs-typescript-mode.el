@@ -55,9 +55,7 @@
                               :interactive t)
 
   (jcs-key-local
-    `(((kbd "DEL") . jcs-electric-backspace)
-      ((kbd "{")   . jcs-vs-opening-curly-bracket-key)
-      ((kbd ";")   . jcs-vs-semicolon-key))))
+    `(((kbd "DEL") . jcs-electric-backspace))))
 
 (provide 'jcs-typescript-mode)
 ;;; jcs-typescript-mode.el ends here

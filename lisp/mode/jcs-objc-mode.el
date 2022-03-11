@@ -37,11 +37,7 @@
       ([S-f8]        . jcs-find-corresponding-file-other-window)
       ([f7]          . jcs-same-file-other-window)  ; not the corresponding file
       ((kbd "DEL")   . jcs-electric-backspace)
-      ((kbd "{")     . jcs-vs-opening-curly-bracket-key)
-      ((kbd ";")     . jcs-vs-semicolon-key)
-      ((kbd "C-k s") . jcs-toggle-c-comment-style)
-      ((kbd "C-z")   . jcs-undo)
-      ((kbd "C-y")   . jcs-redo))))
+      ((kbd "C-k s") . jcs-toggle-c-comment-style))))
 
 (provide 'jcs-objc-mode)
 ;;; jcs-objc-mode.el ends here

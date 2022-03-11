@@ -36,8 +36,6 @@
       ((kbd "<delete>")    . jcs-smart-delete)
       ((kbd "SPC")         . jcs-smart-space)
       ((kbd "DEL")         . jcs-electric-backspace)
-      ((kbd "{")           . jcs-vs-opening-curly-bracket-key)
-      ((kbd ";")           . jcs-vs-semicolon-key)
       ((kbd "C-v")         . jcs-smart-yank))))
 
 (provide 'jcs-actionscript-mode)

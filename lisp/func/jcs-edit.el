@@ -672,6 +672,30 @@ CC : Current character at position."
         (jcs-backward-delete-open-pair-char opc)
         (jcs-backward-delete-open-pair-char-seq cc)))))
 
+(defun jcs-own-delete-backward-char ()
+  "This isn't the VS like key action, is more likely to be user's own preferences."
+  (interactive)
+  (save-excursion
+    (when (jcs-current-char-equal-p "{")
+      (forward-char 1)
+      (when (and (not (jcs-beginning-of-line-p))
+                 (jcs-current-char-equal-p " "))
+        (forward-char 1)
+        (when (and (not (jcs-beginning-of-line-p))
+                   (jcs-current-char-equal-p "}"))
+          (backward-delete-char 1)))))
+  (backward-delete-char 1)
+  (save-excursion
+    (when (jcs-current-char-equal-p "{")
+      (forward-char 1)
+      (when (and (not (jcs-beginning-of-line-p))
+                 (jcs-current-char-equal-p " "))
+        (forward-char 1)
+        (when (and (not (jcs-beginning-of-line-p))
+                   (jcs-current-char-equal-p "}"))
+          (backward-char 1)
+          (backward-delete-char 1))))))
+
 (defun jcs-electric-backspace ()
   "Electric backspace key."
   (interactive)

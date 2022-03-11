@@ -34,8 +34,6 @@
     `(((kbd "<up>")   . ,(jcs-get-prev/next-key-type 'previous))
       ((kbd "<down>") . ,(jcs-get-prev/next-key-type 'next))
       ((kbd "DEL")    . jcs-electric-backspace)
-      ((kbd "{")      . jcs-vs-opening-curly-bracket-key)
-      ((kbd ";")      . jcs-vs-semicolon-key)
       ((kbd "C-k s")  . com-css-sort-attributes-block)
       ((kbd "C-k d")  . com-css-sort-attributes-document)))
 

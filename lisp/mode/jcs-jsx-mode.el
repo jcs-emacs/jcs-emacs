@@ -50,8 +50,7 @@
                               :interactive t)
 
   (jcs-key-local
-    `(((kbd "{") . jcs-web-vs-opening-curly-bracket-key)
-      ((kbd ";") . jcs-vs-semicolon-key)))
+    `(((kbd "{") . jcs-web-vs-opening-curly-bracket-key)))
 
   (jcs-key emmet-mode-keymap
     `(((kbd "C-<return>") . jcs-emmet-expand-line))))

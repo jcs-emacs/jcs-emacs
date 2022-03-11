@@ -46,7 +46,7 @@
   (if (jcs-current-point-face '(web-mode-script-face
                                 web-mode-block-face
                                 web-mode-style-face))
-      (call-interactively #'jcs-vs-opening-curly-bracket-key)
+      (call-interactively #'vs-edit-opening-curly-bracket-key)
     (insert "{}")
     (backward-char 1)))
 
@@ -94,7 +94,6 @@
   (jcs-key-local
     `(((kbd "DEL") . jcs-electric-backspace)
       ((kbd "{")   . jcs-web-vs-opening-curly-bracket-key)
-      ((kbd ";")   . jcs-vs-semicolon-key)
 
       ;; File Corresponding
       ([f8]   . jcs-find-corresponding-file)

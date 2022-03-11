@@ -19,8 +19,6 @@
 
   (jcs-key-local
     `(((kbd "DEL")    . jcs-electric-backspace)
-      ((kbd "{")      . jcs-vs-opening-curly-bracket-key)
-      ((kbd ";")      . jcs-vs-semicolon-key)
       ((kbd "M-k")    . shell-pop)  ; Close it
       ((kbd "M-K")    . comint-clear-buffer)
       ((kbd "<up>")   . comint-previous-input)

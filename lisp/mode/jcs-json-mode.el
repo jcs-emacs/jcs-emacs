@@ -28,9 +28,7 @@
                               'jcs--json-format)
 
   (jcs-key-local
-    `(((kbd "DEL") . jcs-electric-backspace)
-      ((kbd "{")   . jcs-vs-opening-curly-bracket-key)
-      ((kbd ";")   . jcs-vs-semicolon-key))))
+    `(((kbd "DEL") . jcs-electric-backspace))))
 
 (provide 'jcs-json-mode)
 ;;; jcs-json-mode.el ends here

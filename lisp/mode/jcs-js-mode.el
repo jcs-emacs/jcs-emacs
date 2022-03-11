@@ -60,9 +60,7 @@
                               :interactive t)
 
   (jcs-key-local
-    `(((kbd "DEL") . jcs-electric-backspace)
-      ((kbd "{")   . jcs-vs-opening-curly-bracket-key)
-      ((kbd ";")   . jcs-vs-semicolon-key)))
+    `(((kbd "DEL") . jcs-electric-backspace)))
 
   (jcs--js-to-jsx-mode))
 

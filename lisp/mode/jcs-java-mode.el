@@ -110,8 +110,6 @@
 
   (jcs-key-local
     `(((kbd "DEL")    . jcs-electric-backspace)
-      ((kbd "{")      . jcs-vs-opening-curly-bracket-key)
-      ((kbd ";")      . jcs-vs-semicolon-key)
       ((kbd "<f2>")   . javadoc-lookup)
       ((kbd "S-<f2>") . javadoc-lookup))))
 
