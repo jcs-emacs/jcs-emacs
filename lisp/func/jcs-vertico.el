@@ -77,7 +77,7 @@
   (let ((content (minibuffer-contents)))
     (cond ((vertico-directory-up 1)  ; preselect after up directory
            (jcs-vertico--goto-cand (concat (file-name-nondirectory (directory-file-name content)) "/")))
-          ((f-root-p content)  ; limit to root dir
+          ((and (jcs-finding-file-p) (f-root-p content))  ; limit to root dir
            (jcs-vertico--cd (f-root)) (vertico-first))
           (t (call-interactively #'backward-delete-char)))))
 
@@ -141,7 +141,9 @@
              (save-excursion
                (forward-char -1)
                (backward-delete-char 1)))))
-    (when jcs-vertico--sorting
+    (when (or jcs-vertico--sorting
+              (and (eq this-command 'vertico-directory-delete-char)
+                   (string-empty-p (minibuffer-contents))))
       ;; Select first candidate (highest score) immediately after sorting!
       (jcs-vertico--goto 0)
       (setq jcs-vertico--sorting nil))))  ; cancel it afterward
