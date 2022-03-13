@@ -77,6 +77,7 @@
     docstr
     dotenv-mode
     dumb-jump
+    eask-mode
     editorconfig
     el-mock
     eldoc-meta-net
