@@ -813,6 +813,8 @@
   (setq un-mini-abort-commands '(right-click-context-click-menu)))
 
 (leaf undo-tree
+  :init
+  (setq undo-tree-auto-save-history nil)
   :defer-config
   (global-undo-tree-mode t))
 
