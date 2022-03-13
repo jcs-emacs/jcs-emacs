@@ -295,7 +295,7 @@
 ;; (@* "Line Numbers" )
 ;;
 
-(defun jcs-safe-line-numbers-active (act)
+(defun jcs-line-numbers-active (act)
   "Safe way to active (ACT) line numbers."
   (if (display-graphic-p)
       (progn
@@ -315,7 +315,7 @@
               (memq major-mode jcs-line-numbers-ignore-modes)))
          (on-off (if on-off -1 1)))
     (jcs-active-minor-mode #'line-reminder-mode on-off)
-    (jcs-safe-line-numbers-active on-off)))
+    (jcs-line-numbers-active on-off)))
 
 ;;
 ;; (@* "Minimap" )
