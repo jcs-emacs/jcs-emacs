@@ -24,6 +24,7 @@
 ;;
 
 (jcs-add-hook 'find-file-hook
+  (jcs-line-numbers-active-by-mode)
   (jcs-project-remember)
   (jcs-project--track-open-projects))
 
