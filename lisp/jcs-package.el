@@ -288,43 +288,42 @@
       (unless (memq pkg full-pkgs) (push pkg unused-lst)))
     (cl-remove 'emacs (reverse unused-lst))))
 
-(defun jcs-package--build-desc (pkg-name)
-  "Build package description by PKG-NAME."
-  (or (cadr (assq pkg-name package-alist))
-      (cadr (assq pkg-name package-archive-contents))))
+(defun jcs-package-desc (name &optional current)
+  "Build package description by NAME."
+  (cadr (assq name (if current package-alist package-archive-contents))))
 
 (defun jcs-package--get-reqs (name)
   "Return requires from package NAME."
-  (ignore-errors (package-desc-reqs (jcs-package--build-desc name))))
+  (ignore-errors (package-desc-reqs (jcs-package-desc name t))))
 
-(defun jcs-package--package-status (pkg-name)
-  "Get package status by PKG-NAME."
-  (let* ((desc (jcs-package--build-desc pkg-name))
+(defun jcs-package--package-status (name)
+  "Get package status by NAME."
+  (let* ((desc (jcs-package-desc name t))
          (status (ignore-errors (package-desc-status desc))))
     (or status "")))
 
-(defun jcs-package--used-elsewhere-p (pkg-name)
-  "Return non-nil if PKG-NAME is used elsewhere."
-  (let ((desc (jcs-package--build-desc pkg-name)))
+(defun jcs-package--used-elsewhere-p (name)
+  "Return non-nil if NAME is used elsewhere."
+  (let ((desc (jcs-package-desc name t)))
     (ignore-errors (package--used-elsewhere-p desc nil 'all))))
 
-(defun jcs-package--package-status-p (pkg-name status)
-  "Check if PKG-NAME status the same as STATUS."
-  (string= (jcs-package--package-status pkg-name) status))
+(defun jcs-package--package-status-p (name status)
+  "Check if NAME status the same as STATUS."
+  (string= (jcs-package--package-status name) status))
 
-(defun jcs-package--package-obsolete-p (pkg-name)
-  "Return non-nil if PKG-NAME is obsolete package."
-  (jcs-package--package-status-p pkg-name "obsolete"))
+(defun jcs-package--package-obsolete-p (name)
+  "Return non-nil if NAME is obsolete package."
+  (jcs-package--package-status-p name "obsolete"))
 
-(defun jcs-package-incompatible-p (pkg-name)
-  "Return non-nil if PKG-NAME is incompatible package."
-  (jcs-package--package-status-p pkg-name "incompatible"))
+(defun jcs-package-incompatible-p (name)
+  "Return non-nil if NAME is incompatible package."
+  (jcs-package--package-status-p name "incompatible"))
 
-(defun jcs-package--package-do-rebuild (pkg-name)
-  "Return non-nil if PKG-NAME suppose to be rebuild."
-  (and (not (jcs-package--package-obsolete-p pkg-name))
-       (not (package-built-in-p pkg-name))
-       (not (jcs-package-incompatible-p pkg-name))))
+(defun jcs-package--package-do-rebuild (name)
+  "Return non-nil if NAME suppose to be rebuild."
+  (and (not (jcs-package--package-obsolete-p name))
+       (not (package-built-in-p name))
+       (not (jcs-package-incompatible-p name))))
 
 ;;
 ;; (@* "Dependency" )
@@ -342,7 +341,7 @@
   "Return full installed package list, including builtins."
   (let (builtins)
     (setq package-activated-list (jcs-package--filter-installed package-activated-list))
-    (dolist (pkg-desc package--builtins) (push (nth 0 pkg-desc) builtins))
+    (dolist (desc package--builtins) (push (nth 0 desc) builtins))
     (cl-delete-duplicates (append builtins package-activated-list))))
 
 (defun jcs-package-rebuild-dependency-list ()
@@ -354,14 +353,14 @@
   (let ((new-selected-pkg (jcs-package--get-selected-packages))
         (installed-list (jcs-package-installed-list))
         jcs-recentf-tracking-p)  ; ignore recent files
-    (dolist (pkg-name installed-list)
-      (if (package-installed-p pkg-name)
-          (when (jcs-package--package-do-rebuild pkg-name)
-            (jcs-process-reporter-update (format "Build for package `%s`" pkg-name))
-            (if (jcs-package--used-elsewhere-p pkg-name)
-                (setq new-selected-pkg (remove pkg-name new-selected-pkg))
-              (push pkg-name new-selected-pkg)))
-        (setq new-selected-pkg (remove pkg-name new-selected-pkg))))
+    (dolist (name installed-list)
+      (if (package-installed-p name)
+          (when (jcs-package--package-do-rebuild name)
+            (jcs-process-reporter-update (format "Build for package `%s`" name))
+            (if (jcs-package--used-elsewhere-p name)
+                (setq new-selected-pkg (remove name new-selected-pkg))
+              (push name new-selected-pkg)))
+        (setq new-selected-pkg (remove name new-selected-pkg))))
     (delete-dups new-selected-pkg)
     (setq new-selected-pkg (sort new-selected-pkg #'string-lessp))
     (if (equal new-selected-pkg package-selected-packages)
@@ -391,29 +390,29 @@
 (defvar jcs-package-use-real-delete-p t
   "Flag to check if we are really deleting a package.")
 
-(defun jcs-package-delete (pkg-desc &optional dep)
+(defun jcs-package-delete (desc &optional dep)
   "Safe way to remove package and it's DEP using PKG-DESC."
-  (let ((pkg-name (package-desc-name pkg-desc))
-        (used-elsewhere (package--used-elsewhere-p pkg-desc nil 'all)))
-    (dolist (desc used-elsewhere) (jcs-package-delete desc pkg-name))
-    (when pkg-desc
+  (let ((name (package-desc-name desc))
+        (used-elsewhere (package--used-elsewhere-p desc nil 'all)))
+    (dolist (tmp-desc used-elsewhere) (jcs-package-delete tmp-desc name))
+    (when desc
       (let ((jcs-package-use-real-delete-p t))
-        (when (jcs-mute-apply (package-delete pkg-desc))
-          (if dep (message "Delete package `%s` that is rely on package `%s`" pkg-name dep)
-            (message "Package `%s` deleted." pkg-name)))))))
+        (when (jcs-mute-apply (package-delete desc))
+          (if dep (message "Delete package `%s` that is rely on package `%s`" name dep)
+            (message "Package `%s` deleted." name)))))))
 
 (defun jcs--package-delete--advice-around (fnc &rest args)
   "Execution run around function `package-delete' with FNC and ARGS."
-  (let ((pkg-desc (nth 0 args)))
+  (let ((desc (nth 0 args)))
     (if jcs-package-use-real-delete-p
         (if-let ((result (ignore-errors (apply fnc args)))) result
-          (when-let* ((pkg-dir (package-desc-dir pkg-desc))
-                      (pkg-name (package-desc-name pkg-desc))
+          (when-let* ((pkg-dir (package-desc-dir desc))
+                      (name (package-desc-name desc))
                       ((jcs-move-path pkg-dir jcs-package--elpa-temp-dir)))
             (jcs-unmute-apply
               (message "[INFO] Package `%s` in used, mark `%s` for later deletion"
-                       pkg-name (file-name-nondirectory pkg-dir)))))
-      (jcs-package-delete pkg-desc))))
+                       name (file-name-nondirectory pkg-dir)))))
+      (jcs-package-delete desc))))
 
 (advice-add 'package-delete :around #'jcs--package-delete--advice-around)
 
@@ -441,23 +440,24 @@
     (jcs-package-rebuild-dependency-list)
     (package-initialize)))
 
-(defun jcs-package-version (name where)
+(defun jcs-package-version (name &optional current)
   "Get version of the package by NAME.
 
 Argument WHERE is the alist of package information."
-  (when-let ((pkg (cadr (assq name where))))
-    (package-desc-version pkg)))
+  (when-let ((desc (jcs-package-desc name current)))
+    (package-desc-version desc)))
 
-(defun jcs-package-upgrade (pkg-desc)
-  "Upgrade package using PKG-DESC."
-  (let ((old-pkg (cadr (assq (package-desc-name pkg-desc) package-alist))))
-    (package-install pkg-desc)
-    (package-delete old-pkg)))
+(defun jcs-package-upgrade (desc)
+  "Upgrade package using DESC."
+  (let* ((name (package-desc-name desc))
+         (old-desc (jcs-package-desc name t)))
+    (package-install desc)
+    (package-delete old-desc)))
 
 (defun jcs-package--upgradable-p (pkg)
   "Return non-nil if PKG can be upgraded."
-  (let ((current (jcs-package-version pkg package-alist))
-        (latest (jcs-package-version pkg package-archive-contents)))
+  (let ((current (jcs-package-version pkg t))
+        (latest (jcs-package-version pkg nil)))
     (version-list-< current latest)))
 
 (defun jcs-package--upgrades ()
@@ -479,7 +479,7 @@ Argument WHERE is the alist of package information."
                      (if (= (length upgrades) 1) "" "s")
                      (mapconcat #'package-desc-full-name upgrades ", ")))
         (save-window-excursion
-          (dolist (pkg-desc upgrades) (jcs-package-upgrade pkg-desc)))
+          (dolist (desc upgrades) (jcs-package-upgrade desc)))
         (message "Done upgrading all packages")
         (jcs-package-rebuild-dependency-list))
     (message "All packages are up to date")))
