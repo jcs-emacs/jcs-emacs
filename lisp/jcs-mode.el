@@ -226,7 +226,6 @@ Note this is opposite logic to the toggle mode function."
   '(
 ;;; Others
     (message          . jcs-message-mode)
-    (re-builder       . jcs-re-builder-mode)
     ((shell esh-mode) . jcs-shell-mode)
     (yasnippet        . jcs-snippet-mode)
 ;;; Languages
