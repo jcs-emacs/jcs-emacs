@@ -80,8 +80,7 @@
   (face-remap-add-relative 'docstr-faces-value-face '(:inherit web-mode-block-face))
   (face-remap-add-relative 'web-mode-block-string-face '(font-lock-string-face))
 
-  (jcs-elec-pair-add '((?\' . ?\')))
-  (jcs-elec-pair-add '((?\" . ?\")))
+  (jcs-elec-pair-add '((?\' . ?\') (?\" . ?\")))
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]htm" "[.]html"
