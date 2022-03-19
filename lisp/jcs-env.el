@@ -127,6 +127,9 @@
 (setq ediff-window-setup-function 'jcs-ediff-setup-windows
       ediff-split-window-function 'split-window-horizontally)
 
+;;; ElDoc
+(global-eldoc-mode 1)
+
 ;;; Electric Indent
 (electric-indent-mode 1)
 

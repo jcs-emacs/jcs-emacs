@@ -196,7 +196,6 @@ Note this is opposite logic to the toggle mode function."
 
     (abbrev-mode 1)
     (display-fill-column-indicator-mode 1)
-    (eldoc-mode 1)
     (highlight-numbers-mode 1)))
 
 (add-hook 'prog-mode-hook #'jcs-prog-mode-hook)
