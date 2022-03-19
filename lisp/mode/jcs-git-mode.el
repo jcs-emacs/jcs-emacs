@@ -23,23 +23,17 @@
 ;;
 
 (jcs-add-hook 'gitattributes-mode-hook
-  (electric-pair-mode nil)
-
   (jcs-key-local
     `(((kbd "<up>")   . ,(jcs-get-prev/next-key-type 'previous))
       ((kbd "<down>") . ,(jcs-get-prev/next-key-type 'next)))))
 
 (jcs-add-hook 'gitconfig-mode-hook
-  (electric-pair-mode nil)
-
   (jcs-key-local
     `(((kbd "<up>")    . ,(jcs-get-prev/next-key-type 'previous))
       ((kbd "<down>")  . ,(jcs-get-prev/next-key-type 'next))
       ((kbd "C-d")     . jcs-kill-whole-line))))
 
 (jcs-add-hook 'gitignore-mode-hook
-  (electric-pair-mode nil)
-
   (jcs-insert-header-if-valid '("[.]gitignore")
                               'jcs-gitignore--ask-template
                               :interactive t

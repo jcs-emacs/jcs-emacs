@@ -165,9 +165,7 @@
         company-fuzzy-history-backends '(company-yasnippet)
         company-fuzzy-trigger-symbols '("." "->" "<" "\"" "'" "@")))
 
-(leaf csharp-mode
-  :init
-  (setq csharp-codedoc-tag-face 'font-lock-doc-face))
+(leaf csharp-mode :init (setq csharp-codedoc-tag-face 'font-lock-doc-face))
 
 (leaf dashboard
   :init
@@ -211,13 +209,9 @@
 
   (dashboard-setup-startup-hook))
 
-(leaf define-it
-  :init
-  (setq define-it-output-choice 'view))
+(leaf define-it :init (setq define-it-output-choice 'view))
 
-(leaf diff-hl
-  :init
-  (setq diff-hl-side 'right))
+(leaf diff-hl :init (setq diff-hl-side 'right))
 
 (leaf diminish-buffer
   :init
@@ -270,17 +264,14 @@
   :hook (dired-mode-hook . diredfl-mode))
 
 (leaf docstr
-  :init
-  (setq docstr-key-support t
-        docstr-desc-summary ""))
+  :init (setq docstr-key-support t
+              docstr-desc-summary ""))
 
 (leaf dumb-jump
-  :init
-  (setq dumb-jump-selector 'completing-read))
+  :init (setq dumb-jump-selector 'completing-read))
 
 (leaf editorconfig
-  :init
-  (setq editorconfig-trim-whitespaces-mode 'whitespace-cleanup-mode))
+  :init (setq editorconfig-trim-whitespaces-mode 'whitespace-cleanup-mode))
 
 (leaf elisp-demos
   :init
@@ -288,12 +279,12 @@
   (advice-add 'helpful-update :after #'elisp-demos-advice-helpful-update))
 
 (leaf electric-cursor
-  :init
-  (setq electric-cursor-alist '((overwrite-mode . hbar)
-                                (t              . box))))
+  :init (setq electric-cursor-alist '((overwrite-mode . hbar)
+                                      (t              . box))))
 
 (leaf electric-indent-sexp
-  :hook (electric-indent-mode-hook . electric-indent-sexp-mode))
+  :hook (electric-indent-mode-hook . electric-indent-sexp-mode)
+  :init (setq electric-indent-sexp-auto-chars t))
 
 (leaf emojify
   :init

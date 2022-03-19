@@ -127,21 +127,12 @@
 (setq ediff-window-setup-function 'jcs-ediff-setup-windows
       ediff-split-window-function 'split-window-horizontally)
 
-;;; ElDoc
-(global-eldoc-mode 1)
-
 ;;; Electric Indent
-(setq electric-indent-chars '(?\n ?\) ?\] ?\}))
 (electric-indent-mode 1)
 
 ;;; Electric Pair
-(defun jcs--electric-pair-inhibit-predicate (c)
-  "Electric pair inhibit predicate with pair character C."
-  (cond ((or (jcs-current-char-equal-p '("\"" "'"))
-             (not (jcs-inside-comment-or-string-p)))
-         (electric-pair-default-inhibit c))
-        (t t)))
-(setq-default electric-pair-inhibit-predicate 'jcs--electric-pair-inhibit-predicate)
+(setq-default electric-pair-inhibit-predicate 'electric-pair-default-inhibit)
+(electric-pair-mode 1)
 
 ;;; Find File
 (defvar jcs-current-created-parent-dir-path nil

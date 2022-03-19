@@ -135,7 +135,6 @@
 ;;
 
 (jcs-add-hook 'masm-mode-hook
-  (electric-pair-mode nil)
   (modify-syntax-entry ?_ "w")
   (jcs-asm-mode--init)
   (jcs-key-local
@@ -145,7 +144,6 @@
       ((kbd ";")      . jcs-asm-comment))))
 
 (jcs-add-hook 'nasm-mode-hook
-  (electric-pair-mode nil)
   (modify-syntax-entry ?_ "w")
   (jcs-asm-mode--init)
   (jcs-key-local
