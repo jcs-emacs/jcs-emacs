@@ -1,6 +1,6 @@
 <p align="center">
-<img src="./banners/sink_black.png#gh-light-mode-only"/>
-<img src="./banners/sink_white.png#gh-dark-mode-only"/>
+<img src="./docs/etc/logo/logo-light.png#gh-light-mode-only"/>
+<img src="./docs/etc/logo/logo-dark.png#gh-dark-mode-only"/>
 </p>
 <br/>
 <p align="center">
