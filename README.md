@@ -1,8 +1,8 @@
 <p align="center">
-<img src="./docs/etc/logo/logo-light.png#gh-light-mode-only"/>
-<img src="./docs/etc/logo/logo-dark.png#gh-dark-mode-only"/>
+<img src="./docs/etc/logo/logo-light.png#gh-light-mode-only" width="30%"/>
+<img src="./docs/etc/logo/logo-dark.png#gh-dark-mode-only" width="30%"/>
 </p>
-<br/>
+
 <p align="center">
 <a href="https://opensource.org/licenses/BSD-2-Clause"><img src="https://img.shields.io/badge/License-BSD%202--Clause-orange.svg" alt="License"></a>
 <a href="https://www.gnu.org/software/emacs/download.html"><img src="https://img.shields.io/badge/Emacs-27.1+-7F5AB6.svg?logo=gnu%20emacs&logoColor=white" alt="Emacs"></a>
