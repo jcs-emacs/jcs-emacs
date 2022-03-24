@@ -2,15 +2,16 @@
 ;;; Commentary:
 ;;; Code:
 
-;; NOTE: Add `GNU', `MELPA', `Marmalade', `ELPA' to repository list
 (setq package-archives
       '(("gnu"      . "http://elpa.gnu.org/packages/")
+        ("nongnu"   . "http://elpa.nongnu.org/nongnu/")
         ("melpa"    . "http://melpa.org/packages/")
         ("jcs-elpa" . "https://jcs-emacs.github.io/jcs-elpa/packages/"))
       package-archive-priorities
-      '(("jcs-elpa" . 10)
+      '(("gnu"      . 0)
+        ("nongnu"   . 0)
         ("melpa"    . 5)
-        ("gnu"      . 0)))
+        ("jcs-elpa" . 10)))
 
 (setq package-enable-at-startup nil  ; To avoid initializing twice
       package-check-signature nil)
