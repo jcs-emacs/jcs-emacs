@@ -11,48 +11,33 @@ on:
     - '**.md'
 
 jobs:
-  test-unix:
+  test:
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest]
+        os: [ubuntu-latest, macos-latest, windows-latest]
         emacs-version:
-          - 27.1
           - 27.2
           - snapshot
     steps:
     - uses: purcell/setup-emacs@master
+      if: matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest'
       with:
         version: ${{ matrix.emacs-version }}
 
-    - uses: actions/checkout@v2
-    - name: Copy configuration files
-      run: sh ./bin/copy_config.sh
-
-    - name: Test startup
-      run: make startup
-
-    - name: Test speed
-      run: make speed
-
-  test-windows:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [windows-latest]
-        emacs-version:
-          - 27.1
-          - 27.2
-          - snapshot
-    steps:
     - uses: jcs090218/setup-emacs-windows@master
+      if: matrix.os == 'windows-latest'
       with:
         version: ${{ matrix.emacs-version }}
 
     - uses: actions/checkout@v2
+
     - name: Copy configuration files
-      run: ./bin/copy_config.bat
+      if: matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest'
+      run: sh ./bin/copy_config.sh
+      if: matrix.os == 'windows-latest'
+      run: sh ./bin/copy_config.bat
 
     - name: Test startup
       run: make startup
