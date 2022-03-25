@@ -39,7 +39,7 @@ jobs:
 
     - name: Copy configuration files
       if: matrix.os == 'windows-latest'
-      run: sh ./bin/copy_config.bat
+      run: ./bin/copy_config.bat
 
     - name: Test startup
       run: make startup
