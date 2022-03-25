@@ -36,6 +36,8 @@ jobs:
     - name: Copy configuration files
       if: matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest'
       run: sh ./bin/copy_config.sh
+
+    - name: Copy configuration files
       if: matrix.os == 'windows-latest'
       run: sh ./bin/copy_config.bat
 
