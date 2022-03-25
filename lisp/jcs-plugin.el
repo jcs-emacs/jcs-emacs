@@ -264,14 +264,17 @@
   :hook (dired-mode-hook . diredfl-mode))
 
 (leaf docstr
-  :init (setq docstr-key-support t
-              docstr-desc-summary ""))
+  :init
+  (setq docstr-key-support t
+        docstr-desc-summary ""))
 
 (leaf dumb-jump
-  :init (setq dumb-jump-selector 'completing-read))
+  :init
+  (setq dumb-jump-selector 'completing-read))
 
 (leaf editorconfig
-  :init (setq editorconfig-trim-whitespaces-mode 'whitespace-cleanup-mode))
+  :init
+  (setq editorconfig-trim-whitespaces-mode 'whitespace-cleanup-mode))
 
 (leaf elisp-demos
   :init
@@ -279,12 +282,14 @@
   (advice-add 'helpful-update :after #'elisp-demos-advice-helpful-update))
 
 (leaf electric-cursor
-  :init (setq electric-cursor-alist '((overwrite-mode . hbar)
-                                      (t              . box))))
+  :init
+  (setq electric-cursor-alist '((overwrite-mode . hbar)
+                                (t              . box))))
 
 (leaf electric-indent-sexp
   :hook (electric-indent-mode-hook . electric-indent-sexp-mode)
-  :init (setq electric-indent-sexp-auto-chars t))
+  :init
+  (setq electric-indent-sexp-auto-chars t))
 
 (leaf emojify
   :init
@@ -326,13 +331,8 @@
   :defer-config
   (jcs-advice-add 'google-translate--search-tkk :override (list 430675 2721866130)))
 
-(leaf goto-char-preview
-  :defer-config
-  (advice-add 'goto-char-preview :after #'jcs--recenter--advice-after))
-
-(leaf goto-line-preview
-  :defer-config
-  (advice-add 'goto-line-preview :after #'jcs--recenter--advice-after))
+(leaf goto-char-preview :hook (goto-char-preview-after-hook . jcs--recenter--advice-after))
+(leaf goto-line-preview :hook (goto-line-preview-after-hook . jcs--recenter--advice-after))
 
 (leaf highlight-indent-guides
   :init
