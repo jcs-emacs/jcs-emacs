@@ -1,5 +1,6 @@
 <p align="center">
-<img src="./docs/etc/logo/logo-shadow.png" width="62.5%"/>
+<img src="./docs/etc/logo/logo-light.png#gh-light-mode-only" width="30%"/>
+<img src="./docs/etc/logo/logo-dark.png#gh-dark-mode-only" width="30%"/>
 </p>
 
 <p align="center">
