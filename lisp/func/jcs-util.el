@@ -905,8 +905,7 @@ If optional argument REL-LINE is nil; we will use first visible line instead."
 
 (defun jcs-get-current-point-face (&optional pos)
   "Get current POS's type face as string."
-  (unless pos (setq pos (point)))
-  (jcs-get-faces pos))
+  (jcs-get-faces (or pos (point))))
 
 (defun jcs-current-point-face (in-face &optional pos)
   "Check if current POS's face the same face as IN-FACE."
