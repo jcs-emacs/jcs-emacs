@@ -192,7 +192,6 @@ are heavily based on my personal habits, and so these could be very tiny things.
 I believe details make things better and make life smoother.
 
 * [*Auto Install Package*](./docs/features/auto-install-package) - Automatically installs the package that this config relies on.
-* [*Better Dashboard*](./docs/features/better-dashboard) - Implementation for improving experiences using dashboard.
 * [*Build Run*](./docs/features/build-run) - Implementation for executing script for building and running the software.
 * [*Capital Word*](./docs/features/capital-word) - You can navigate/kill word by seeing capital letter.
 * [*Changelog Helper*](./docs/features/changelog-helper) - Help to create changelog while creating `CHANGELOG` file using template.
