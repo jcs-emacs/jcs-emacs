@@ -6,32 +6,10 @@
 ;; (@* "Util" )
 ;;
 
-(defun jcs-dashboard-current-section ()
-  "Return section symbol in dashboard."
-  (save-excursion
-    (if (and (search-backward dashboard-page-separator nil t)
-             (search-forward dashboard-page-separator nil t))
-        (let ((ln (thing-at-point 'line)))
-          (cond ((string-match-p "Recent Files:" ln)     'recents)
-                ((string-match-p "Bookmarks:" ln)        'bookmarks)
-                ((string-match-p "Projects:" ln)         'projects)
-                ((string-match-p "Agenda for " ln)       'agenda)
-                ((string-match-p "Registers:" ln)        'registers)
-                ((string-match-p "List Directories:" ln) 'ls-directories)
-                ((string-match-p "List Files:" ln)       'ls-files)
-                (t (user-error "Unknown section from dashboard"))))
-      (user-error "Failed searching dashboard section"))))
-
-(defun jcs-dashboard--section-lines ()
-  "Return a list of integer represent the starting line number of each section."
-  (let (pb-lst)
-    (save-excursion
-      (goto-char (point-min))
-      (while (search-forward dashboard-page-separator nil t)
-        (when (ignore-errors (jcs-dashboard-current-section))
-          (push (line-number-at-pos) pb-lst))))
-    (setq pb-lst (reverse pb-lst))
-    pb-lst))
+(defmacro jcs-with-dashboard-last-path (&rest body)
+  "Execute BODY with preserving dashboard current path."
+  (declare (indent 0) (debug t))
+  `(let ((dashboard-ls-path (jcs-last-default-directory))) ,@body))
 
 ;;
 ;; (@* "Navigation" )
@@ -86,94 +64,6 @@
   (unless (active-minibuffer-window) (jcs-dashboard-refresh-buffer)))
 
 ;;
-;; (@* "Remove Items" )
-;;
-
-(defun jcs-dashboard-remove-current-item ()
-  "Remove a item from the current item section."
-  (interactive)
-  (let ((current-section (jcs-dashboard-current-section)))
-    (cl-case current-section
-      (`recents (jcs-dashboard-remove-recent-files-item))
-      (`bookmarks (jcs-dashboard-remove-bookmarks-item))
-      (`projects (jcs-dashboard-remove-projects-item))
-      (`agenda (jcs-dashboard-remove-agenda-item))
-      (`registers (jcs-dashboard-remove-registers-item)))))
-
-(defun jcs-dashboard-remove-recent-files-item ()
-  "Remove a file from `recentf-list'."
-  (interactive)
-  (let ((path (save-excursion (end-of-line) (ffap-guesser))))
-    (setq recentf-list (delete path recentf-list)))
-  (jcs-dashboard-refresh-buffer))
-
-(defun jcs-dashboard-remove-projects-item ()
-  "Remove a path from `project--list'."
-  (interactive)
-  (let ((path (save-excursion (end-of-line) (ffap-guesser))))
-    (jcs-mute-apply (project-forget-projects-under path)))
-  (jcs-dashboard-refresh-buffer))
-
-(defun jcs-dashboard-remove-bookmarks-item ()
-  "Remove a bookmarks from `bookmark-alist'."
-  (interactive)
-  ;; TODO: implements this..
-  )
-
-(defun jcs-dashboard-remove-agenda-item ()
-  "Remove an agenda from `org-agenda-files'."
-  (interactive)
-  ;; TODO: implements this..
-  )
-
-(defun jcs-dashboard-remove-registers-item ()
-  "Remove a registers from `register-alist'."
-  (interactive)
-  ;; TODO: implements this..
-  )
-
-;;
-;; (@* "Functions" )
-;;
-
-(defun jcs-dashboard-goto-item-section (id)
-  "Navigate to item section by ID."
-  (interactive)
-  (let* ((pg-lst (jcs-dashboard--section-lines))
-         (items-id (1- id))
-         (items-pg (nth items-id pg-lst))
-         (items-len (length pg-lst)))
-    (when (and items-pg (< items-id items-len))
-      (jcs-goto-line items-pg))))
-
-(defun jcs-dashboard-item-section-1 ()
-  "Navigate to item 1." (interactive) (jcs-dashboard-goto-item-section 1))
-
-(defun jcs-dashboard-item-section-2 ()
-  "Navigate to item 2." (interactive) (jcs-dashboard-goto-item-section 2))
-
-(defun jcs-dashboard-item-section-3 ()
-  "Navigate to item 3." (interactive) (jcs-dashboard-goto-item-section 3))
-
-(defun jcs-dashboard-item-section-4 ()
-  "Navigate to item 4." (interactive) (jcs-dashboard-goto-item-section 4))
-
-(defun jcs-dashboard-item-section-5 ()
-  "Navigate to item 5." (interactive) (jcs-dashboard-goto-item-section 5))
-
-(defun jcs-dashboard-item-section-6 ()
-  "Navigate to item 6." (interactive) (jcs-dashboard-goto-item-section 6))
-
-(defun jcs-dashboard-item-section-7 ()
-  "Navigate to item 7." (interactive) (jcs-dashboard-goto-item-section 7))
-
-(defun jcs-dashboard-item-section-8 ()
-  "Navigate to item 8." (interactive) (jcs-dashboard-goto-item-section 8))
-
-(defun jcs-dashboard-item-section-9 ()
-  "Navigate to item 9." (interactive) (jcs-dashboard-goto-item-section 9))
-
-;;
 ;; (@* "Truncate" )
 ;;
 
@@ -189,12 +79,13 @@
 
 (defun jcs-dashboard-current-item-in-path ()
   "Return the path from current dashboard section in path."
-  (when-let* ((section (jcs-dashboard-current-section))
-              (lst (jcs-dashboard-current-list section))
-              (index (jcs-dashboard-current-index section))
-              (path (nth index lst)))
-    (when (eq section 'bookmarks)
-      (setq path (bookmark-get-filename path)))
+  (let ((section (dashboard--current-section)) path)
+    (cl-case section
+      (`bookmarks (setq path (bookmark-get-filename path)))
+      (t
+       (let ((lst (jcs-dashboard-current-list section))
+             (index (jcs-dashboard-current-index section)))
+         (setq path (nth index lst)))))
     path))
 
 (defun jcs-dashboard--goto-section (name)
@@ -232,16 +123,16 @@ get the truncate path from dashboard buffer (ffap)."
     (t (apply fnc args))))
 (advice-add 'ffap-guesser :around #'jcs--ffap-guesser--advice-around)
 
-(defun jcs-dashboard--window-width ()
-  "Return dashboard buffer's window width."
-  (jcs-when-buffer-window dashboard-buffer-name (window-width)))
-
 ;;
 ;; (@* "Registry" )
 ;;
 
 (defvar jcs-dashboard--last-window-width -1
   "Record the last window width from dashbord buffer.")
+
+(defun jcs-dashboard--window-width ()
+  "Return dashboard buffer's window width."
+  (jcs-when-buffer-window dashboard-buffer-name (window-width)))
 
 (jcs-add-hook 'window-size-change-functions
   (when-let ((new-ww (jcs-dashboard--window-width)))

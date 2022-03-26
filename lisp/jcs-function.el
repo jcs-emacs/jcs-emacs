@@ -176,9 +176,14 @@
   "Refresh dashboard buffer."
   (interactive)
   (jcs-when-buffer-window dashboard-buffer-name
-    (let ((dashboard-ls-path (jcs-last-default-directory)))
+    (jcs-with-dashboard-last-path
       (jcs-mute-apply
         (jcs-save-window-excursion (dashboard-refresh-buffer))))))
+
+(defun jcs-dashboard--remove-item-under--adv (fnc &rest args)
+  "Preserve last dashboard path."
+  (jcs-with-dashboard-last-path (apply fnc args)))
+(advice-add 'dashboard-remove-item-under :around #'jcs-dashboard--remove-item-under--adv)
 
 (defun jcs-dashboard--get-banner-path ()
   "Return banner path."
