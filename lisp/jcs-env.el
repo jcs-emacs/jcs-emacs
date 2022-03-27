@@ -3,21 +3,17 @@
 ;;; Code:
 
 ;; Determine the underlying operating system
-(defconst jcs-is-windows (memq system-type '(cygwin windows-nt ms-dos))
-  "Non-nil when Microsoft Windows.")
-(defconst jcs-is-mac (eq system-type 'darwin)
-  "Non-nil when macOS.")
-(defconst jcs-is-linux (eq system-type 'gnu/linux)
-  "Non-nil when Linux.")
-(defconst jcs-is-bsd (or jcs-is-mac (eq system-type 'berkeley-unix))
-  "Non-nil when BSD.")
+(defconst jcs-is-windows (memq system-type '(cygwin windows-nt ms-dos))  "Windows")
+(defconst jcs-is-mac     (eq system-type 'darwin)                        "macOS")
+(defconst jcs-is-linux   (eq system-type 'gnu/linux)                     "Linux")
+(defconst jcs-is-bsd     (or jcs-is-mac (eq system-type 'berkeley-unix)) "BSD")
 
 (defconst jcs-system-type
   (cond (jcs-is-windows 'dos)
         (jcs-is-bsd     'mac)
         (jcs-is-linux   'unix)
         (t              'unknown))
-  "Return current OS type.")
+  "Store current system type.")
 
 (defvar jcs-makescript "[[:ascii:]]*build[[:ascii:]]*"
   "Name of the build/make file script.")
