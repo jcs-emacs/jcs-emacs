@@ -170,6 +170,10 @@ answered by
 📝 *P.S. The above cases are tested on Windows. Other OSs are not Windows should
 start within a second.*
 
+| Windwos                                   | macOS                                     | Linux                                      |
+|-------------------------------------------|-------------------------------------------|--------------------------------------------|
+| <img src="./docs/badges/speed/dos.svg" /> | <img src="./docs/badges/speed/mac.svg" /> | <img src="./docs/badges/speed/unix.svg" /> |
+
 ## 🏆 Features
 
 ### Highlight
@@ -202,17 +206,17 @@ I believe details make things better and make life smoother.
 * [*Display File*](./docs/features/display-file) - Utility function to use to view a file on the other window.
 * [*Charset Table*](./docs/features/display-file/charset-table) - Built-in functions that displays character sets.
 * Enhanced Multiple Cursors
-  * [*Similar Multiple Cursors*](./docs/features/similar-multiple-cursors) - Mark with cursor by similarity.
-  * [*VS Multiple Cursors*](./docs/features/vs-multiple-cursors) - VSCode like methods to `mark` and `unmark` multiple cursor.
+* [*Similar Multiple Cursors*](./docs/features/similar-multiple-cursors) - Mark with cursor by similarity.
+* [*VS Multiple Cursors*](./docs/features/vs-multiple-cursors) - VSCode like methods to `mark` and `unmark` multiple cursor.
 * [*Fast Incremental Search*](./docs/features/fast-incremental-search) - Fast keys for incremental search forward/backward to the cursor is currently pointing.
 * [*Indent Control*](./docs/features/indent-control) - Generic control the indentation level for each mode, for more information see [indent-control](https://github.com/alt-elpa/indent-control).
 * Previous/Next Keys
-  * [*Normal Move*]() - Act like other normal editors.
-  * [*Smart-Move*](./docs/features/smart-move) - Smart enough to move cursor to the beginning of the line.
+* [*Normal Move*]() - Act like other normal editors.
+* [*Smart-Move*](./docs/features/smart-move) - Smart enough to move cursor to the beginning of the line.
 * [*Line Numbers Modding*](./docs/features/line-numbers-modding) - Mixed used of `linum` and `display-line-numbers-mode` base on the file usage.
 * [*License Helper*](./docs/features/license-helper) - Help to create license while creating `LICENSE` file using template.
 * [*Mini State*](./docs/features/mini-state) - Mini mode state use to visually see what backend is the config currently running. (Deprecated)
-  * [*Explicit States*](./docs/features/mini-state/explicit-states) - Automatcially switch mini state depends on certain circumstances.
+* [*Explicit States*](./docs/features/mini-state/explicit-states) - Automatcially switch mini state depends on certain circumstances.
 * [*Modern Text Editor*](./docs/features/modern-text-editor) - Design to have the preset settings close to modern text editors but faster.
 * [*Multiple Output*](./docs/features/multiple-output) - Handle multiple output/compilation buffers.
 * [*Navigate Blank Line*](./docs/features/navigate-blank-line) - Use `C-<up>` and `C-<down>` to navigate previous and next blank line.
