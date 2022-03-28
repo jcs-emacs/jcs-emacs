@@ -16,7 +16,7 @@
 ;;; Generate speed badge
 
 (defconst svg-url-format
-  "https://img.shields.io/badge/%s-%s-green.svg"
+  "https://img.shields.io/badge/%s-%s-2DB94D.svg?logo=speedtest"
   "Format to generate badges.")
 
 (defconst output-dir "./docs/badges/speed/"
