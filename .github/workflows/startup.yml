@@ -1,4 +1,4 @@
-name: CI
+name: Startup
 
 on:
   push:
@@ -46,3 +46,10 @@ jobs:
 
     - name: Test speed
       run: make speed
+
+    - name: Set git config
+      run: |
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+
+
