@@ -22,14 +22,13 @@
 (defconst output-dir "./docs/badges/speed/"
   "Where the badges store.")
 
-(ignore-errors (delete-directory output-dir t))  ; clean up first
-(make-directory output-dir t)                    ; recursive
+(ignore-errors (make-directory output-dir t))
 
 (let* ((os (format "%s" jcs-system-type))
        (file (concat output-dir os ".svg"))
        (url (format svg-url-format os startup-time)))
   (message "Downloading SVG from `%s` to `%s`... done!" url file)
-  (url-copy-file url file))
+  (url-copy-file url file t))
 
 ;; Local Variables:
 ;; coding: utf-8
