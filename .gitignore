@@ -89,3 +89,11 @@ workspace/
 /GRTAGS
 /GTAGS
 /TAGS
+
+# eask packages
+.eask/
+dist/
+
+# packaging
+*-autoloads.el
+*-pkg.el
