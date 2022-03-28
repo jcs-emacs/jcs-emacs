@@ -141,9 +141,9 @@ to this configuration.
 
 ## 🕒 Startup Time
 
-<img src="./docs/badges/speed/dos.svg" />
-<img src="./docs/badges/speed/mac.svg" />
-<img src="./docs/badges/speed/unix.svg" />
+![](./docs/badges/speed/dos.svg)
+![](./docs/badges/speed/mac.svg)
+![](./docs/badges/speed/unix.svg)
 
 The average startup time for this configuration is around `15` to `25` seconds.
 You can use the command `emacs-init-time` to check the startup time on your machine.
