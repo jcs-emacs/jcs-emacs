@@ -16,7 +16,7 @@
 ;;; Generate speed badge
 
 (defconst svg-url-format
-  "https://img.shields.io/badge/%s-%s-2DB94D.svg?logo=speedtest"
+  "https://img.shields.io/badge/%s-%s-%s.svg?logo=speedtest"
   "Format to generate badges.")
 
 (defconst output-dir "./docs/badges/speed/"
@@ -26,7 +26,11 @@
 
 (let* ((os (format "%s" jcs-system-type))
        (file (concat output-dir os ".svg"))
-       (url (format svg-url-format os startup-time)))
+       (time (string-to-number startup-time))
+       (color (cond ((< time 5.0)  "2DB94D")
+                    ((< time 10.0) "CCD808")
+                    (t             "C50900")))
+       (url (format svg-url-format os startup-time color)))
   (message "Downloading SVG from `%s` to `%s`... done!" url file)
   (url-copy-file url file t))
 
