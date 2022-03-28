@@ -141,6 +141,10 @@ to this configuration.
 
 ## 🕒 Startup Time
 
+<img src="./docs/badges/speed/dos.svg" />
+<img src="./docs/badges/speed/mac.svg" />
+<img src="./docs/badges/speed/unix.svg" />
+
 The average startup time for this configuration is around `15` to `25` seconds.
 You can use the command `emacs-init-time` to check the startup time on your machine.
 Not quite sure what causes that much performance, hopefully, I'm able to lower
@@ -169,10 +173,6 @@ answered by
 
 📝 *P.S. The above cases are tested on Windows. Other OSs are not Windows should
 start within a second.*
-
-| Windwos                                   | macOS                                     | Linux                                      |
-|-------------------------------------------|-------------------------------------------|--------------------------------------------|
-| <img src="./docs/badges/speed/dos.svg" /> | <img src="./docs/badges/speed/mac.svg" /> | <img src="./docs/badges/speed/unix.svg" /> |
 
 ## 🏆 Features
 
