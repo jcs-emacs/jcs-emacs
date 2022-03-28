@@ -1,14 +1,19 @@
 SHELL := /usr/bin/env bash
 
 EMACS ?= emacs
-CASK ?= cask
+EASK ?= eask
 
-.PHONY: startup
+.PHONY: startup speed compile
 
 startup:
 	@echo "Testing..."
-	@$(EMACS) -nw --batch -l "~/.emacs.d/bin/test-startup.el"
+	$(EMACS) -nw --batch -l "~/.emacs.d/bin/test-startup.el"
 
 speed:
 	@echo "Speed testing..."
-	@$(EMACS) -nw --batch -l "~/.emacs.d/bin/test-speed.el"
+	$(EMACS) -nw --batch -l "~/.emacs.d/bin/test-speed.el"
+
+compile:
+	@echo "Compiling..."
+	$(EASK) concat
+	$(EASK) load ./bin/test-compile.el
