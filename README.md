@@ -126,7 +126,7 @@ Here is the list of few essential and recent changes to this configuration.
 ## 💾 Installation
 
 To install, clone this repo to `~/.emacs.d`, i.e. ensure that the `init.el`
-contained in this repo ends up at ~/.emacs.d/init.el:
+contained in this repo ends up at `~/.emacs.d/init.el`:
 
 ```bash
 git clone https://github.com/jcs-emacs/jcs-emacs ~/.emacs.d
