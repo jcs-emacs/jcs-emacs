@@ -7,7 +7,7 @@
 
 (load (concat user-emacs-directory "bin/test-startup.el"))
 
-(message "[INFO] %s" dashboard-init-info)
+(message "[INFO] Start within %s" (format "%0.5f" (string-to-number (emacs-init-time))))
 
 ;; Local Variables:
 ;; coding: utf-8
