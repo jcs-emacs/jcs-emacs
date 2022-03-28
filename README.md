@@ -38,8 +38,8 @@
 # jcs-emacs
 > Emacs configuration works across all OSs
 
-<a href="https://github.com/jcs-emacs/jcs-emacs/actions"><img src="https://github.com/jcs-emacs/jcs-emacs/workflows/Startup/badge.svg" alt="Startup"></a>
-<a href="https://github.com/jcs-emacs/jcs-emacs/actions"><img src="https://github.com/jcs-emacs/jcs-emacs/workflows/Compile/badge.svg" alt="Compile"></a>
+[![Startup](https://github.com/jcs-emacs/jcs-emacs/actions/workflows/startup.yml/badge.svg)](https://github.com/jcs-emacs/jcs-emacs/actions/workflows/startup.yml)
+[![Compile](https://github.com/jcs-emacs/jcs-emacs/actions/workflows/compile.yml/badge.svg)](https://github.com/jcs-emacs/jcs-emacs/actions/workflows/compile.yml)
 
 This is Jen-Chieh Shen's emacs configuration started from [Casey Muratori](https://github.com/cmuratori)'s
 Emacs configuration. It has been repeatedly utilized and modified
