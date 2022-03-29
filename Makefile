@@ -7,13 +7,13 @@ EASK ?= eask
 
 startup:
 	@echo "Testing..."
-	$(EMACS) -nw --batch -l "~/.emacs.d/bin/test-startup.el"
+	$(EMACS) -nw --batch -l "~/.emacs.d/test/startup/test-startup.el"
 
 speed:
 	@echo "Speed testing..."
-	$(EMACS) -nw --batch -l "~/.emacs.d/bin/test-speed.el"
+	$(EMACS) -nw --batch -l "~/.emacs.d/test/startup/test-speed.el"
 
 compile:
 	@echo "Compiling..."
 	$(EASK) concat
-	$(EASK) load ./bin/test-compile.el
+	$(EASK) load ./test/test-compile.el

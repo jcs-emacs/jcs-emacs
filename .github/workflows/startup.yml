@@ -35,11 +35,11 @@ jobs:
 
     - name: Copy configuration files (Unix)
       if: matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest'
-      run: sh ./bin/copy_config.sh
+      run: sh ./test/startup/copy_config.sh
 
     - name: Copy configuration files (Windows)
       if: matrix.os == 'windows-latest'
-      run: ./bin/copy_config.bat
+      run: ./test/startup/copy_config.bat
 
     - name: Test startup
       run: make startup
