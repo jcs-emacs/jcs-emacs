@@ -1,5 +1,13 @@
 ;;; test-startup.el --- Test the configuration  -*- lexical-binding: t -*-
+
 ;;; Commentary:
+;;
+;; Run the startup.
+;;
+;; This will simply run/load our `early-init.el' and `init.el' files, and
+;; execute serveral hooks to ensure Emacs start up normally.
+;;
+
 ;;; Code:
 
 (require 'url-vars)

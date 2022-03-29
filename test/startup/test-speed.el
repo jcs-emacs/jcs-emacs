@@ -1,5 +1,16 @@
 ;;; test-speed.el --- Test the configuration  -*- lexical-binding: t -*-
+
 ;;; Commentary:
+;;
+;; Test the startup speed of the configuration.
+;;
+;; This script runs after the script `test-startup'; then print out the startup
+;; time immediately after the execution.
+;;
+;; Extra: We generate the badge (depends on the operating system) containing
+;; information (`system' and `time') about our startup time.
+;;
+
 ;;; Code:
 
 (require 'package)
