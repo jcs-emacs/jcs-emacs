@@ -19,7 +19,7 @@
 **Table of Contents**
 
 - [jcs-emacs](#jcs-emacs)
-    - [Philosophy](#philosophy)
+    - [📚 Philosophy](#📚-philosophy)
     - [📰 News](#📰-news)
     - [💾 Installation](#💾-installation)
     - [🕒 Startup Time](#🕒-startup-time)
@@ -29,7 +29,7 @@
     - [📁 Package Archives](#📁-package-archives)
     - [🏆 Powered by](#🏆-powered-by)
         - [Functionalities](#functionalities)
-    - [Write your own customization](#write-your-own-customization)
+    - [🧰 Write your own customization](#🧰-write-your-own-customization)
     - [❓ FAQ](#❓-faq)
     - [Contribute](#contribute)
 
@@ -87,7 +87,7 @@ e.g. [Atom](https://atom.io/), [Brackets](http://brackets.io/),
 [Sublime Text 2](https://www.sublimetext.com/2) or [3](https://www.sublimetext.com/),
 [Visual Studio Code](https://code.visualstudio.com/), etc.
 
-## Philosophy
+## 📚 Philosophy
 
 I have experienced many different kinds of IDEs and text editors. But I’ve had a
 hard time finding the best tool to use. I’ve jumped from one working field to
@@ -309,7 +309,7 @@ kind of methods to support the maintainer you wish to.
 * *Video Player* - none.
 * *White Space* - powered by [whitespace](https://www.emacswiki.org/emacs/WhiteSpace).
 
-## Write your own customization
+## 🧰 Write your own customization
 
 You can customize the configuration by editing the file located at
 `~/.emacs.d/site-lisp/config.el`. You should put all your own customize code
