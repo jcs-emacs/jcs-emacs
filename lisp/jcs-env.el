@@ -320,7 +320,7 @@ If ACT is non-nil; then make scroll less jumpy."
       inhibit-startup-screen t)
 
 (push '(fullscreen . maximized) default-frame-alist)  ; full screen
-(unless (boundp 'jcs-build-test) (ignore-errors (split-window-horizontally)))
+(unless noninteractive (ignore-errors (split-window-horizontally)))
 
 ;;; Tab / Space
 (setq-default indent-tabs-mode nil  ; Disable inset tabs, insert space only
