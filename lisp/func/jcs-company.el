@@ -30,14 +30,6 @@
   (let ((company-dabbrev-downcase t)) (apply fnc args)))
 (advice-add 'company-complete-selection :around #'jcs--company-complete-selection--advice-around)
 
-(defun jcs-company--first-completion-started (&rest _)
-  "Run before company's completion once."
-  (when (bound-and-true-p yas-minor-mode)
-    (yas--load-snippet-dirs)
-    (yasnippet-snippets-initialize)
-    (remove-hook 'company-completion-started-hook 'jcs-company--first-completion-started)))
-(add-hook 'company-completion-started-hook 'jcs-company--first-completion-started)
-
 (jcs-add-hook 'company-completion-started-hook (jcs-gc-cons-threshold-speed-up t))
 (jcs-add-hook 'company-after-completion-hook (jcs-gc-cons-threshold-speed-up nil))
 
