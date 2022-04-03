@@ -500,7 +500,7 @@ in multiple windows.")
     (bury-buffer)
     (when (or (jcs-buffer-menu-p)
               (string= bn (jcs-buffer-name-or-buffer-file-name)))
-      (switch-to-prev-buffer)))
+      (bury-buffer)))
   ;; If something that I doesn't want to see, bury it.
   ;; For instance, any `*helm-' buffers.
   (jcs-bury-diminished-buffer))
