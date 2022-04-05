@@ -234,9 +234,10 @@ I believe details make things better and make life smoother.
 
 A list of package archives that this configuration uses.
 
-* *[ELPA](https://elpa.gnu.org/packages/)* - Emacs Lisp Package Archive
+* *[GNU](https://elpa.gnu.org/packages/)* - Emacs Lisp Package Archive
+* *[NonGNU](https://elpa.gnu.org/packages/)* - Emacs Lisp Package Archive
 * *[MELPA](https://melpa.org/#/)* - Milkypostman’s Emacs Lisp Package Archive
-* *[jcs-elpa](https://github.com/jcs-emacs/jcs-elpa)* - Emacs Lisp Package Archive for this configuration
+* *[JCS-ELPA](https://github.com/jcs-emacs/jcs-elpa)* - Emacs Lisp Package Archive for this configuration
 
 📝 *P.S. Here is a good talk comparing all package archives from a
 [StackExchange](https://emacs.stackexchange.com/) question,
