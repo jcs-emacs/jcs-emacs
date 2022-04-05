@@ -21,6 +21,8 @@
 #
 
 echo "Copy test configuration"
+
 mkdir "$env:USERPROFILE/AppData/Roaming/.emacs.d"
 robocopy /e "../jcs-emacs" "$env:USERPROFILE/AppData/Roaming/.emacs.d"
+
 echo "Done copying configuration files"
