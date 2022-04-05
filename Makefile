@@ -11,7 +11,7 @@ clean:
 
 install:
 	@echo "Installing dependenices..."
-	$(EASK) install-deps -g
+	$(EASK) install-deps
 
 startup:
 	make install
