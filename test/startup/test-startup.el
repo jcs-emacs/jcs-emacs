@@ -19,6 +19,9 @@
 (defconst jcs-ci t
   "Flag for CI testing.")
 
+;; Avoid customize save infinite loop...
+(defun customize-save-variable (&rest _))
+
 (let (debug-on-error
       url-show-status
       (early-init-file (locate-user-emacs-file "early-init.el"))
