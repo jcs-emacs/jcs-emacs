@@ -19,6 +19,8 @@
 (defconst jcs-ci t
   "Flag for CI testing.")
 
+(package-initialize)
+
 (let (debug-on-error
       url-show-status
       (early-init-file (locate-user-emacs-file "early-init.el"))
