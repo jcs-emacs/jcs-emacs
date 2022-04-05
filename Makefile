@@ -11,10 +11,10 @@ clean:
 
 install:
 	@echo "Installing dependenices..."
-	$(EASK) install-deps
+	$(EASK) install-deps -g
 
 startup:
-	make install -g
+	make install
 	@echo "Startup testing..."
 	$(EMACS) -nw --batch -l "~/.emacs.d/test/startup/test-startup.el"
 
