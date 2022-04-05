@@ -9,8 +9,13 @@ clean:
 	@echo "Cleaning..."
 	$(EASK) clean-all
 
+install:
+	@echo "Installing dependenices..."
+	$(EASK) install-deps
+
 startup:
-	@echo "Testing..."
+	make install -g
+	@echo "Startup testing..."
 	$(EMACS) -nw --batch -l "~/.emacs.d/test/startup/test-startup.el"
 
 speed:
