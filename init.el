@@ -118,8 +118,8 @@
               load-path))
 
 ;;; Initialize
-;;(require 'jcs-package)
-;;(jcs-package-install-all)
+(require 'jcs-package)
+(jcs-package-install-all)
 
 ;;; Utilities
 (require 'jcs-log)

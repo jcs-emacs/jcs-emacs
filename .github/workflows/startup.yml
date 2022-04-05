@@ -33,14 +33,6 @@ jobs:
       with:
         version: ${{ matrix.emacs-version }}
 
-    - uses: actions/setup-node@v2
-      with:
-        node-version: '14'
-
-    - uses: emacs-eask/setup-eask@master
-      with:
-        version: 'snapshot'
-
     - uses: actions/checkout@v2
 
     - name: Copy configuration files (Unix)
@@ -49,10 +41,7 @@ jobs:
 
     - name: Copy configuration files (Windows)
       if: matrix.os == 'windows-latest'
-      run: ./test/startup/copy_config.ps1
-
-    - name: Install dependencies
-      run: make install
+      run: ./test/startup/copy_config.bat
 
     - name: Test startup
       run: make startup
