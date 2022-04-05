@@ -338,44 +338,6 @@
   "Return selected packages base on the execution's condition."
   (jcs-package--filter-installed package-activated-list))
 
-(defun jcs-package-installed-list ()
-  "Return full installed package list, including builtins."
-  (let (builtins)
-    (setq package-activated-list (jcs-package--filter-installed package-activated-list))
-    (dolist (desc package--builtins) (push (nth 0 desc) builtins))
-    (cl-delete-duplicates (append builtins package-activated-list))))
-
-(defun jcs-package-rebuild-dependency-list ()
-  "Rebuild dependency graph and save to list."
-  (interactive)
-  (require 'jcs-util) (require 'jcs-reporter)
-  (package-initialize)
-  (jcs-process-reporter-start "Building dependency graph...")
-  (let ((new-selected-pkg (jcs-package--get-selected-packages))
-        (installed-list (jcs-package-installed-list))
-        jcs-recentf-tracking-p)  ; ignore recent files
-    (dolist (name installed-list)
-      (if (package-installed-p name)
-          (when (jcs-package--package-do-rebuild name)
-            (jcs-process-reporter-update (format "Build for package `%s`" name))
-            (if (jcs-package--used-elsewhere-p name)
-                (setq new-selected-pkg (remove name new-selected-pkg))
-              (push name new-selected-pkg)))
-        (setq new-selected-pkg (remove name new-selected-pkg))))
-    (delete-dups new-selected-pkg)
-    (setq new-selected-pkg (sort new-selected-pkg #'string-lessp))
-    (if (equal new-selected-pkg package-selected-packages)
-        (jcs-process-reporter-done "No need to update dependency graph")
-      (ignore-errors (package--save-selected-packages new-selected-pkg))
-      (jcs-process-reporter-done "Done rebuild dependency graph"))))
-
-(defun jcs-package--menu-execute--advice-around (fnc &rest args)
-  "Execution around function `package-menu-execute' with FNC and ARGS."
-  (let (jcs-package-use-real-delete-p)
-    (when (apply fnc args) (jcs-package-rebuild-dependency-list))))
-
-(advice-add 'package-menu-execute :around #'jcs-package--menu-execute--advice-around)
-
 ;;
 ;; (@* "Installation" )
 ;;
@@ -437,9 +399,7 @@
   "Assure every PACKAGES is installed."
   (dolist (pkg packages) (jcs-package-install pkg))
   ;; Rebuild after done the installation
-  (when package-archive-contents
-    (jcs-package-rebuild-dependency-list)
-    (package-initialize)))
+  (when package-archive-contents (package-initialize)))
 
 (defun jcs-package-version (name &optional current)
   "Get version of the package by NAME.
@@ -481,8 +441,7 @@ Argument WHERE is the alist of package information."
                      (mapconcat #'package-desc-full-name upgrades ", ")))
         (save-window-excursion
           (dolist (desc upgrades) (jcs-package-upgrade desc)))
-        (message "Done upgrading all packages")
-        (jcs-package-rebuild-dependency-list))
+        (message "Done upgrading all packages"))
     (message "All packages are up to date")))
 
 (defun jcs-package-install-all ()
@@ -500,8 +459,7 @@ Argument WHERE is the alist of package information."
                      (mapconcat #'symbol-name removable ", ")))
         (mapc (lambda (p)
                 (package-delete (cadr (assq p package-alist)) t))
-              removable)
-        (jcs-package-rebuild-dependency-list))
+              removable))
     (message "Nothing to autoremove")))
 
 (provide 'jcs-package)
