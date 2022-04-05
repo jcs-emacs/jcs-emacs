@@ -14,8 +14,8 @@ install:
 	$(EASK) install-deps
 
 startup:
-	make install
 	@echo "Startup testing..."
+    $(EASK) install-deps
 	$(EMACS) -nw --batch -l "~/.emacs.d/test/startup/test-startup.el"
 
 speed:
