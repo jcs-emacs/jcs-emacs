@@ -52,7 +52,9 @@ jobs:
       run: ./test/startup/copy_config.ps1
 
     - name: Test startup
-      run: make startup
+      run: |
+        make install
+        make startup
 
     - name: Test speed
       run: make speed
