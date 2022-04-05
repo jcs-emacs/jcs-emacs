@@ -26,7 +26,7 @@
   (load early-init-file)
   (load user-init-file)  ; Start regular Emacs file
   ;;(run-hooks 'after-init-hook)
-  (run-hooks 'emacs-startup-hook)
+  ;;(run-hooks 'emacs-startup-hook)
   )
 
 (jcs-emacs-version)
