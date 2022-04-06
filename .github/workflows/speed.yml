@@ -20,20 +20,10 @@ jobs:
         emacs-version:
           - 28.1
     steps:
-    - uses: purcell/setup-emacs@master
-      if: matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest'
-      with:
-        version: ${{ matrix.emacs-version }}
-
-    - uses: jcs090218/setup-emacs-windows@master
-      if: matrix.os == 'windows-latest'
-      with:
-        version: ${{ matrix.emacs-version }}
-
     - name: Download ${{ matrix.os }}.${{ matrix.emacs-version }}.jcs-emacs artifact
       uses: dawidd6/action-download-artifact@v2
       with:
-        workflow: startup.yml
+        workflow: Startup
         name: ${{ matrix.os }}.${{ matrix.emacs-version }}.jcs-emacs
         path: ~/
         workflow_conclusion: neutral
