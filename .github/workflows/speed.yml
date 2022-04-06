@@ -19,6 +19,16 @@ jobs:
           - 28.1
           - snapshot
     steps:
+    # - uses: purcell/setup-emacs@master
+    #   if: matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest'
+    #   with:
+    #     version: ${{ matrix.emacs-version }}
+
+    # - uses: jcs090218/setup-emacs-windows@master
+    #   if: matrix.os == 'windows-latest'
+    #   with:
+    #     version: ${{ matrix.emacs-version }}
+
     - name: Checkout binaries repository
       uses: actions/checkout@v3
       with:
