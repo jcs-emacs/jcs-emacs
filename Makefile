@@ -19,7 +19,7 @@ startup:
 
 speed:
 	@echo "Speed testing..."
-	$(EMACS) -nw --batch -l "~/.emacs.d/test/startup/test-speed.el"
+	$(EMACS) -nw --batch -l "~/.emacs.d/test/test-speed.el"
 
 compile:
 	@echo "Compiling..."
