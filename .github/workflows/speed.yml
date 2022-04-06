@@ -26,9 +26,7 @@ jobs:
         workflow: startup.yml
         name: ${{ matrix.os }}.${{ matrix.emacs-version }}.jcs-emacs
         path: ~/
-        workflow_conclusion: neutral
-        check_artifacts: true
-        search_artifacts: true
+        workflow_conclusion: "success, completed, failure, cancelled"
 
     - uses: actions/checkout@v2
 
