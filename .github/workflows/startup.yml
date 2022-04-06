@@ -47,7 +47,7 @@ jobs:
       run: make startup
 
     - name: Checkout binaries repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       repository: 'jcs-emacs/binaries'
 
     - name: Build ${{ matrix.os }}.${{ matrix.emacs-version }}.jcs-emacs.zip file
