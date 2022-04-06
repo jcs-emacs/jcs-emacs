@@ -36,6 +36,7 @@ jobs:
         workflow: startup.yml
         name: ${{ matrix.os }}.${{ matrix.emacs-version }}.jcs-emacs
         path: ~/
+        workflow_conclusion: action_required
 
     - uses: actions/checkout@v2
 
