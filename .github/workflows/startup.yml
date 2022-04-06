@@ -54,9 +54,7 @@ jobs:
         fetch-depth: 0
 
     - name: Zipping .emacs.d
-      run: |
-        cd $HOME
-        tar -zcvf ${{ matrix.os }}.${{ matrix.emacs-version }}.jcs-emacs.zip  .emacs.d
+      run: tar -C $HOME -cvf ${{ matrix.os }}.${{ matrix.emacs-version }}.jcs-emacs.zip  .emacs.d
 
     - name: Commit changes
       run: |
