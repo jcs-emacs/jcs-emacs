@@ -37,7 +37,7 @@ jobs:
         fetch-depth: 0
 
     - name: Extract zipped .emacs.d
-      run: tar -xvf ${{ matrix.os }}.${{ matrix.emacs-version }}.jcs-emacs.tar -C $HOME/.emacs.d
+      run: tar -xvf ${{ matrix.os }}.${{ matrix.emacs-version }}.jcs-emacs.tar -C $HOME
 
     - uses: actions/checkout@v2
 
