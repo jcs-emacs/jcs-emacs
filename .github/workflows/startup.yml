@@ -72,5 +72,6 @@ jobs:
     - name: Push zipped .emacs.d
       uses: ad-m/github-push-action@master
       with:
+        repository: 'jcs-emacs/binaries'
         github_token: ${{ secrets.GITHUB_TOKEN }}
         branch: master
