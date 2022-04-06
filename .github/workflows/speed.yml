@@ -23,9 +23,7 @@ jobs:
         repository: 'jcs-emacs/binaries'
 
     - name: Extract zipped .emacs.d
-      uses: montudor/action-zip@v1
-      with:
-        args: unzip -qq ${{ matrix.os }}.${{ matrix.emacs-version }}.jcs-emacs.zip -d ~/.emacs.d
+      run: tar -xvf ${{ matrix.os }}.${{ matrix.emacs-version }}.jcs-emacs.zip -C ~/.emacs.d
 
     - uses: actions/checkout@v2
 

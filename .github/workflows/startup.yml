@@ -51,8 +51,15 @@ jobs:
       with:
         repository: 'jcs-emacs/binaries'
 
-    - name: Build ${{ matrix.os }}.${{ matrix.emacs-version }}.jcs-emacs.zip file
+    - name: Zipping .emacs.d (Unix)
+      if: matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest'
       run: tar -zcvf ${{ matrix.os }}.${{ matrix.emacs-version }}.jcs-emacs.zip  ~/.emacs.d
+
+    - name: Zipping .emacs.d (Windows)
+      if: matrix.os == 'windows-latest'
+      run: |
+        echo $HOME
+        tar -zcvf ${{ matrix.os }}.${{ matrix.emacs-version }}.jcs-emacs.zip  $HOME/.emacs.d
 
     - name: Push zipped .emacs.d
       continue-on-error: true
