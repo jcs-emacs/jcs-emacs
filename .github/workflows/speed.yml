@@ -28,9 +28,10 @@ jobs:
         version: ${{ matrix.emacs-version }}
 
     - name: Download ${{ matrix.os }}.${{ matrix.emacs-version }}.jcs-emacs artifact
-      uses: actions/download-artifact@v2
+      uses: dawidd6/action-download-artifact@v2
       with:
-        path: ${{ github.home }}/${{ matrix.os }}.${{ matrix.emacs-version }}.jcs-emacs
+        name: ${{ matrix.os }}.${{ matrix.emacs-version }}.jcs-emacs
+        path: ${{ github.home }}
 
     - uses: actions/checkout@v2
 
