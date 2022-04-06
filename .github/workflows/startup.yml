@@ -61,9 +61,10 @@ jobs:
         git config user.name github-actions
         git config user.email github-actions@github.com
         git config receive.denynonfastforwards false
-        git pull --rebase
+        git pull
         git add .
         git commit -m "Update .emacs.d - ${{ matrix.os }}.${{ matrix.emacs-version }}.jcs-emacs.zip"
+        git pull --rebase
       env:
         GITHUB_USERNAME: jcs090218
         GITHUB_EMAIL: jcs090218@gmail.com
