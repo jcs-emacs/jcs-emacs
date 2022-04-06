@@ -121,7 +121,31 @@
 (require 'jcs-package)
 (jcs-package-install-all)
 
+;; ;;; Utilities
+;; (require 'jcs-log)
+;; (require 'jcs-util)
+;; (require 'jcs-window)
+;; (require 'jcs-nav)
+;; (require 'jcs-function)
 
+;; ;;; Environment
+;; (require 'jcs-file)
+;; (require 'jcs-dev)
+;; (require 'jcs-plugin)
+;; (require 'jcs-env)
+
+;; ;;; Standardize
+;; (require 'jcs-theme)
+;; (require 'jcs-template)
+;; (require 'jcs-mode)
+;; (require 'jcs-project)
+
+;; ;;; Finalize
+;; (require 'jcs-hook)
+;; (require 'jcs-key)
+
+;; ;;; Customize
+;; (require 'config)
 
 ;; Local Variables:
 ;; coding: utf-8
