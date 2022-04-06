@@ -33,11 +33,11 @@ jobs:
       uses: actions/checkout@v3
       with:
         repository: 'jcs-emacs/binaries'
+        persist-credentials: false
+        fetch-depth: 0
 
     - name: Extract zipped .emacs.d
-      run: |
-        cd $HOME
-        tar -xvf ${{ matrix.os }}.${{ matrix.emacs-version }}.jcs-emacs.tar -C .emacs.d
+      run: tar -xvf ${{ matrix.os }}.${{ matrix.emacs-version }}.jcs-emacs.tar -C $HOME/.emacs.d
 
     - uses: actions/checkout@v2
 
