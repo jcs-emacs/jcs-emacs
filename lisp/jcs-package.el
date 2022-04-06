@@ -231,28 +231,27 @@
     ts
     ts-fold
     turbo-log
-    ;;typescript-mode
-    ;;undercover
-    ;;undo-tree
-    ;;unfill
-    ;;use-ttf
-    ;;vertico
-    ;;vimrc-mode
-    ;;visual-regexp
-    ;;vs-dark-theme
-    ;;vs-edit-mode
-    ;;vs-light-theme
-    ;;vs-revbuf
-    ;;vue-mode
-    ;;web-mode
-    ;;which-key
-    ;;whitespace-cleanup-mode
-    ;;whole-line-or-region
-    ;;winum
-    ;;yarn-mode
-    ;;yasnippet-snippets
-    ;;zoom-window
-    )
+    typescript-mode
+    undercover
+    undo-tree
+    unfill
+    use-ttf
+    vertico
+    vimrc-mode
+    visual-regexp
+    vs-dark-theme
+    vs-edit-mode
+    vs-light-theme
+    vs-revbuf
+    vue-mode
+    web-mode
+    which-key
+    whitespace-cleanup-mode
+    whole-line-or-region
+    winum
+    yarn-mode
+    yasnippet-snippets
+    zoom-window)
   "List of packages this config needs.")
 
 (setq package-pinned-packages
