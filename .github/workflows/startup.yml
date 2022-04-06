@@ -46,8 +46,19 @@ jobs:
     - name: Test startup
       run: make startup
 
-    - name: Upload ${{ matrix.os }}.${{ matrix.emacs-version }}.jcs-emacs artifact
-      uses: actions/upload-artifact@v3
+    - name: Checkout binaries repository
+      uses: actions/checkout@v2
+      repository: 'jcs-emacs/binaries'
+
+    - name: Build ${{ matrix.os }}.${{ matrix.emacs-version }}.jcs-emacs.zip file
+      uses: montudor/action-zip@v1
       with:
-        name: ${{ matrix.os }}.${{ matrix.emacs-version }}.jcs-emacs
-        path: ~/.emacs.d
+        args: zip -qq -r ${{ matrix.os }}.${{ matrix.emacs-version }}.jcs-emacs.zip ~/.emacs.d
+
+    - name: Push zipped .emacs.d
+      continue-on-error: true
+      run: |
+        git pull
+        git add .
+        git commit -m "Update .emacs.d - ${{ matrix.os }}.${{ matrix.emacs-version }}.jcs-emacs.zip"
+        git push
