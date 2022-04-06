@@ -27,7 +27,7 @@ jobs:
     - name: Extract zipped .emacs.d
       run: |
         cd $HOME
-        tar -xvf ${{ matrix.os }}.${{ matrix.emacs-version }}.jcs-emacs.zip -C .emacs.d
+        tar -xvf ${{ matrix.os }}.${{ matrix.emacs-version }}.jcs-emacs.tar -C .emacs.d
 
     - uses: actions/checkout@v2
 
