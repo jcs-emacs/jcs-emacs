@@ -10,9 +10,6 @@
 
 ;;; Code:
 
-(require 'package)
-(package-initialize)
-
 (require 'url-vars)
 
 ;; Workaround for Windows CI
