@@ -23,15 +23,15 @@ jobs:
           - 28.1
           - snapshot
     steps:
-    - uses: purcell/setup-emacs@master
-      if: matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest'
-      with:
-        version: ${{ matrix.emacs-version }}
+    # - uses: purcell/setup-emacs@master
+    #   if: matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest'
+    #   with:
+    #     version: ${{ matrix.emacs-version }}
 
-    - uses: jcs090218/setup-emacs-windows@master
-      if: matrix.os == 'windows-latest'
-      with:
-        version: ${{ matrix.emacs-version }}
+    # - uses: jcs090218/setup-emacs-windows@master
+    #   if: matrix.os == 'windows-latest'
+    #   with:
+    #     version: ${{ matrix.emacs-version }}
 
     - uses: actions/checkout@v2
 
@@ -52,9 +52,10 @@ jobs:
         repository: 'jcs-emacs/binaries'
 
     - name: Build ${{ matrix.os }}.${{ matrix.emacs-version }}.jcs-emacs.zip file
-      uses: montudor/action-zip@v1
+      uses: papeloto/action-zip@v1
       with:
-        args: zip -qq -r ${{ matrix.os }}.${{ matrix.emacs-version }}.jcs-emacs.zip ~/.emacs.d
+        files: ~/.emacs.d
+        dest: ${{ matrix.os }}.${{ matrix.emacs-version }}.jcs-emacs.zip
 
     - name: Push zipped .emacs.d
       continue-on-error: true
