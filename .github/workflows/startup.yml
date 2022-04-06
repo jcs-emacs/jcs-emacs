@@ -23,15 +23,15 @@ jobs:
           - 28.1
           - snapshot
     steps:
-    # - uses: purcell/setup-emacs@master
-    #   if: matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest'
-    #   with:
-    #     version: ${{ matrix.emacs-version }}
+    - uses: purcell/setup-emacs@master
+      if: matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest'
+      with:
+        version: ${{ matrix.emacs-version }}
 
-    # - uses: jcs090218/setup-emacs-windows@master
-    #   if: matrix.os == 'windows-latest'
-    #   with:
-    #     version: ${{ matrix.emacs-version }}
+    - uses: jcs090218/setup-emacs-windows@master
+      if: matrix.os == 'windows-latest'
+      with:
+        version: ${{ matrix.emacs-version }}
 
     - uses: actions/checkout@v2
 
@@ -43,8 +43,8 @@ jobs:
       if: matrix.os == 'windows-latest'
       run: ./test/startup/copy_config.bat
 
-    # - name: Test startup
-    #   run: make startup
+    - name: Test startup
+      run: make startup
 
     - name: Checkout binaries repository
       uses: actions/checkout@v3
@@ -76,9 +76,9 @@ jobs:
         github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         branch: master
 
-    - name: Retry 1 Pull
+    - name: Retry 1
       run: git pull --rebase
-    - name: Retry 1 Push
+    - name: Push
       continue-on-error: true
       uses: ad-m/github-push-action@master
       with:
@@ -86,9 +86,9 @@ jobs:
         github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         branch: master
 
-    - name: Retry 2 Pull
+    - name: Retry 2
       run: git pull --rebase
-    - name: Retry 2 Push
+    - name: Push
       continue-on-error: true
       uses: ad-m/github-push-action@master
       with:
@@ -96,9 +96,49 @@ jobs:
         github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         branch: master
 
-    - name: Retry 3 Pull
+    - name: Retry 3
       run: git pull --rebase
-    - name: Retry 3 Push
+    - name: Push
+      continue-on-error: true
+      uses: ad-m/github-push-action@master
+      with:
+        repository: 'jcs-emacs/binaries'
+        github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        branch: master
+
+    - name: Retry 4
+      run: git pull --rebase
+    - name: Push
+      continue-on-error: true
+      uses: ad-m/github-push-action@master
+      with:
+        repository: 'jcs-emacs/binaries'
+        github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        branch: master
+
+    - name: Retry 5
+      run: git pull --rebase
+    - name: Push
+      continue-on-error: true
+      uses: ad-m/github-push-action@master
+      with:
+        repository: 'jcs-emacs/binaries'
+        github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        branch: master
+
+    - name: Retry 6
+      run: git pull --rebase
+    - name: Push
+      continue-on-error: true
+      uses: ad-m/github-push-action@master
+      with:
+        repository: 'jcs-emacs/binaries'
+        github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        branch: master
+
+    - name: Retry 7
+      run: git pull --rebase
+    - name: Push
       continue-on-error: true
       uses: ad-m/github-push-action@master
       with:
