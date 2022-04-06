@@ -63,15 +63,9 @@ jobs:
 
     - name: Commit changes
       run: |
-        git config user.name github-actions
-        git config user.email github-actions@github.com
+        git config user.name jcs090218
+        git config user.email jcs090218@gmail.com
         git pull
         git add .
         git commit -m "Update .emacs.d - ${{ matrix.os }}.${{ matrix.emacs-version }}.jcs-emacs.zip"
-
-    - name: Push zipped .emacs.d
-      uses: ad-m/github-push-action@master
-      with:
-        repository: 'jcs-emacs/binaries'
-        github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-        branch: master
+        git push
