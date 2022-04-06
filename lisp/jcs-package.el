@@ -16,7 +16,7 @@
 (setq package-enable-at-startup nil  ; To avoid initializing twice
       package-check-signature nil)
 
-(when (featurep 'esup-child) (package-initialize))
+(when (or noninteractive (featurep 'esup-child)) (package-initialize))
 
 (require 'package)
 
