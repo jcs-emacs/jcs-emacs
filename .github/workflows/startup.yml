@@ -46,18 +46,7 @@ jobs:
     - name: Test startup
       run: make startup
 
-    - name: Test speed
-      run: make speed
-
-    - name: Set git config
-      run: |
-        git config user.name github-actions
-        git config user.email github-actions@github.com
-
-    - name: Push generated badges - speed
-      continue-on-error: true
-      run: |
-        git pull
-        git add .
-        git commit -m "Update SVG badges - speed"
-        git push
+    - uses: actions/upload-artifact@v3
+      with:
+        name: jcs-emacs
+        path: ~/.emacs.d
