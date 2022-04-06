@@ -23,10 +23,12 @@ jobs:
     - name: Download ${{ matrix.os }}.${{ matrix.emacs-version }}.jcs-emacs artifact
       uses: dawidd6/action-download-artifact@v2
       with:
-        workflow: Startup
+        workflow: startup.yml
         name: ${{ matrix.os }}.${{ matrix.emacs-version }}.jcs-emacs
         path: ~/
         workflow_conclusion: neutral
+        check_artifacts: true
+        search_artifacts: true
 
     - uses: actions/checkout@v2
 
