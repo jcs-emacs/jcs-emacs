@@ -46,7 +46,7 @@ jobs:
     - name: Test startup
       run: make startup
 
-    - name: Upload jcs-emacs artifact
+    - name: Upload ${{ matrix.os }}.${{ matrix.emacs-version }}.jcs-emacs artifact
       uses: actions/upload-artifact@v3
       with:
         name: ${{ matrix.os }}.${{ matrix.emacs-version }}.jcs-emacs

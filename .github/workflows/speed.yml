@@ -5,6 +5,7 @@ on:
     workflows: ["Startup"]
     types:
       - completed
+  workflow_dispatch:
 
 jobs:
   speed:
@@ -26,10 +27,10 @@ jobs:
       with:
         version: ${{ matrix.emacs-version }}
 
-    - name: Download jcs-emacs artifact
+    - name: Download ${{ matrix.os }}.${{ matrix.emacs-version }}.jcs-emacs artifact
       uses: actions/download-artifact@v2
       with:
-        path: ${{ github.workspace }}/${{ matrix.os }}.${{ matrix.emacs-version }}.jcs-emacs
+        path: ${{ github.home }}/${{ matrix.os }}.${{ matrix.emacs-version }}.jcs-emacs
 
     - uses: actions/checkout@v2
 
