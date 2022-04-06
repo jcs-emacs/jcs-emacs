@@ -121,12 +121,12 @@
 (require 'jcs-package)
 (jcs-package-install-all)
 
-;; ;;; Utilities
-;; (require 'jcs-log)
-;; (require 'jcs-util)
-;; (require 'jcs-window)
-;; (require 'jcs-nav)
-;; (require 'jcs-function)
+;;; Utilities
+(require 'jcs-log)
+(require 'jcs-util)
+(require 'jcs-window)
+(require 'jcs-nav)
+(require 'jcs-function)
 
 ;; ;;; Environment
 ;; (require 'jcs-file)
