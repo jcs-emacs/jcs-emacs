@@ -128,11 +128,11 @@
 (require 'jcs-nav)
 (require 'jcs-function)
 
-;; ;;; Environment
-;; (require 'jcs-file)
-;; (require 'jcs-dev)
-;; (require 'jcs-plugin)
-;; (require 'jcs-env)
+;;; Environment
+(require 'jcs-file)
+(require 'jcs-dev)
+(require 'jcs-plugin)
+(require 'jcs-env)
 
 ;; ;;; Standardize
 ;; (require 'jcs-theme)
