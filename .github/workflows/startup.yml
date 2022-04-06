@@ -54,13 +54,15 @@ jobs:
         fetch-depth: 0
 
     - name: Zipping .emacs.d
-      run: tar -zcvf ${{ matrix.os }}.${{ matrix.emacs-version }}.jcs-emacs.zip  $HOME/.emacs.d
+      run: |
+        cd $HOME
+        tar -zcvf ${{ matrix.os }}.${{ matrix.emacs-version }}.jcs-emacs.zip  .emacs.d
 
     - name: Commit changes
       run: |
         git config user.name github-actions
         git config user.email github-actions@github.com
-        git pull
+        git pull --allow-unrelated-histories
         git add .
         git commit -m "Update .emacs.d - ${{ matrix.os }}.${{ matrix.emacs-version }}.jcs-emacs.zip"
       env:
