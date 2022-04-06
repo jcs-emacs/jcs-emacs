@@ -15,7 +15,7 @@
            (not (or (ignore-errors (lsp-goto-type-definition))
                     (ignore-errors (lsp-goto-implementation)))))
       t)
-     ((memq major-mode '(lisp-mode lisp-interaction-mode emacs-lisp-mode))
+     ((derived-mode-p 'lisp-data-mode)
       (if (ignore-errors (call-interactively #'elisp-def))
           (progn (jcs-recenter-top-bottom 'middle) t)
         (user-error "[INFO] No definition found for current target")))
