@@ -77,7 +77,7 @@ jobs:
         branch: master
 
     - name: Retry 1 Pull
-      run: git pull
+      run: git pull --rebase
     - name: Retry 1 Push
       continue-on-error: true
       uses: ad-m/github-push-action@master
@@ -87,7 +87,7 @@ jobs:
         branch: master
 
     - name: Retry 2 Pull
-      run: git pull
+      run: git pull --rebase
     - name: Retry 2 Push
       continue-on-error: true
       uses: ad-m/github-push-action@master
@@ -97,7 +97,7 @@ jobs:
         branch: master
 
     - name: Retry 3 Pull
-      run: git pull
+      run: git pull --rebase
     - name: Retry 3 Push
       continue-on-error: true
       uses: ad-m/github-push-action@master
