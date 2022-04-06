@@ -32,7 +32,7 @@ jobs:
       with:
         workflow: Startup
         name: ${{ matrix.os }}.${{ matrix.emacs-version }}.jcs-emacs
-        path: ${{ github.home }}
+        path: ~/
 
     - uses: actions/checkout@v2
 
