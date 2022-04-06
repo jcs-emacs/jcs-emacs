@@ -134,11 +134,11 @@
 (require 'jcs-plugin)
 (require 'jcs-env)
 
-;; ;;; Standardize
-;; (require 'jcs-theme)
-;; (require 'jcs-template)
-;; (require 'jcs-mode)
-;; (require 'jcs-project)
+;;; Standardize
+(require 'jcs-theme)
+(require 'jcs-template)
+(require 'jcs-mode)
+(require 'jcs-project)
 
 ;; ;;; Finalize
 ;; (require 'jcs-hook)
