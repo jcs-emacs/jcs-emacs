@@ -52,10 +52,7 @@ jobs:
         repository: 'jcs-emacs/binaries'
 
     - name: Build ${{ matrix.os }}.${{ matrix.emacs-version }}.jcs-emacs.zip file
-      uses: papeloto/action-zip@v1
-      with:
-        files: ~/.emacs.d
-        dest: ${{ matrix.os }}.${{ matrix.emacs-version }}.jcs-emacs.zip
+      run: tar -zcvf ${{ matrix.os }}.${{ matrix.emacs-version }}.jcs-emacs.zip  ~/.emacs.d
 
     - name: Push zipped .emacs.d
       continue-on-error: true
