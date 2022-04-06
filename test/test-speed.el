@@ -13,9 +13,6 @@
 
 ;;; Code:
 
-(require 'package)
-(package-initialize)
-
 (load (concat user-emacs-directory "test/startup/test-startup.el"))
 
 (defvar startup-time (format "%0.5f" (string-to-number (emacs-init-time)))
