@@ -48,7 +48,8 @@ jobs:
 
     - name: Checkout binaries repository
       uses: actions/checkout@v3
-      repository: 'jcs-emacs/binaries'
+      with:
+        repository: 'jcs-emacs/binaries'
 
     - name: Build ${{ matrix.os }}.${{ matrix.emacs-version }}.jcs-emacs.zip file
       uses: montudor/action-zip@v1
