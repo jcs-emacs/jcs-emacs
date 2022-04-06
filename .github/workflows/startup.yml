@@ -58,8 +58,8 @@ jobs:
 
     - name: Commit changes
       run: |
-        git config --local user.email "$GITHUB_EMAIL"
-        git config --local user.name "$GITHUB_USERNAME"
+        git config --global user.email "$GITHUB_EMAIL"
+        git config --global user.name "$GITHUB_USERNAME"
         git pull
         git add .
         git commit -m "Update .emacs.d - ${{ matrix.os }}.${{ matrix.emacs-version }}.jcs-emacs.zip"
