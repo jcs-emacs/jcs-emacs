@@ -36,7 +36,7 @@ jobs:
         workflow: startup.yml
         name: ${{ matrix.os }}.${{ matrix.emacs-version }}.jcs-emacs
         path: ~/
-        workflow_conclusion: timed_out
+        workflow_conclusion: skipped
 
     - uses: actions/checkout@v2
 
