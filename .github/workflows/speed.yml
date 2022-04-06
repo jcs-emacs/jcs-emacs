@@ -41,6 +41,9 @@ jobs:
 
     - uses: actions/checkout@v2
 
+    # Make sure we neve accidently startup in speed phase
+    - run: make startup
+
     - name: Test speed
       run: make speed
 
