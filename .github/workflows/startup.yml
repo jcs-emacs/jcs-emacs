@@ -59,10 +59,10 @@ jobs:
     - name: Remove before creating tar file
       uses: JesseTG/rm@v1.0.2
       with:
-        path: ${{ matrix.emacs-version }}.jcs-emacs.tar
+        path: ${{ matrix.emacs-version }}.tar
 
     - name: Zipping .emacs.d
-      run: tar -C $HOME -cvf ${{ matrix.emacs-version }}.jcs-emacs.tar  .emacs.d
+      run: tar -C $HOME -cvf ${{ matrix.emacs-version }}.tar  .emacs.d
 
     - name: Commit changes
       run: |
