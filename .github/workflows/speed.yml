@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 env:
-  BIN_REPO: 'jcs-emacs/bin-startup'
+  BIN_REPO: 'jcs-emacs/binaries'
 
 jobs:
   speed:
