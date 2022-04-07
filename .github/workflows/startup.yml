@@ -85,6 +85,8 @@ jobs:
         git config user.name github-actions
         git config user.email github-actions@github.com
         git config receive.denynonfastforwards false
+        git add .
+        git commit -m "Update .emacs.d - main.tar"
         git pull
         git add .
         git commit -m "Update .emacs.d - main.tar"
