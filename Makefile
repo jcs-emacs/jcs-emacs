@@ -21,6 +21,10 @@ speed:
 	@echo "Speed testing..."
 	$(EMACS) -q --batch -l "~/.emacs.d/test/test-speed.el"
 
+mode:
+	@echo "Testing Major Modes..."
+	$(EMACS) -q --batch -l "~/.emacs.d/test/test-mode.el"
+
 compile:
 	@echo "Compiling..."
 	$(EASK) concat

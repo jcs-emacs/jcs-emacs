@@ -1,4 +1,4 @@
-name: Speed
+name: Mode
 
 on:
   workflow_run:
@@ -58,31 +58,5 @@ jobs:
 
     - uses: actions/checkout@v2
 
-    - name: Startup (make sure we don't install in SPEED phase)
-      run: make startup
-
     - name: Test speed
       run: make speed
-
-    - name: Set git config
-      run: |
-        git config user.name github-actions
-        git config user.email github-actions@github.com
-
-    - name: Commit 1 (local changes)
-      continue-on-error: true
-      run: |
-        git add .
-        git commit -m "Update SVG badges - speed"
-
-    - name: Commit 2 (recursively merge if any)
-      continue-on-error: true
-      run: |
-        git pull
-        git add .
-        git commit -m "Update SVG badges - speed"
-
-    - name: Push generated badges - speed
-      continue-on-error: true
-      run: |
-        git push
