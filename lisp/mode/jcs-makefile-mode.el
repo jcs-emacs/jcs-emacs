@@ -1,4 +1,4 @@
-;;; jcs-make-mode.el --- Makefile mode  -*- lexical-binding: t -*-
+;;; jcs-makefile-mode.el --- Makefile mode  -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Code:
 
@@ -124,5 +124,5 @@ TYPE: type of makefile for Python."
       ((kbd "RET")    . jcs-makefile-newline)
       ((kbd "C-v")    . yank))))
 
-(provide 'jcs-make-mode)
-;;; jcs-make-mode.el ends here
+(provide 'jcs-makefile-mode)
+;;; jcs-makefile-mode.el ends here

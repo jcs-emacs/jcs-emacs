@@ -271,7 +271,7 @@ Note this is opposite logic to the toggle mode function."
     (kotlin-mode)
     (less-css-mode)
     (lua-mode)
-    (make-mode)
+    (make-mode               . jcs-makefile-mode)
     (markdown-mode)
     ((masm-mode nasm-mode)   . jcs-asm-mode)
     (nginx-mode)
