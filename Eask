@@ -2,7 +2,7 @@
          "8.0.2"
          "Emacs configuration works across all OSs")
 
-(depends-on "emacs" "27.1")
+(depends-on "emacs" "28.1")
 
 (files "early-init.el" "init.el"
        "lisp/*.el"

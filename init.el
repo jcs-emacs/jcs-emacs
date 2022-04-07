@@ -33,14 +33,12 @@
 ;; (@* "Startup" )
 ;;
 
-(when (version< emacs-version "27.1")
-  (error "This requires Emacs 27.1 and above!"))
+(when (version< emacs-version "28.1")
+  (error "This requires Emacs 28.1 and above!"))
 
 (defun jcs-gc-cons-threshold-speed-up (speedup)
   "Raise/Lower GC threshold by SPEEDUP."
   (setq gc-cons-threshold (if speedup most-positive-fixnum (* 1024 1024 20))))
-
-(when (featurep 'esup-child) (jcs-gc-cons-threshold-speed-up t))
 
 (defconst jcs-file-name-handler-alist file-name-handler-alist
   "Record file name handler alist.")
