@@ -15,15 +15,15 @@ install:
 
 startup:
 	@echo "Startup testing..."
-	$(EMACS) -q --batch -l "~/.emacs.d/test/startup/test-startup.el"
+	$(EMACS) -q --batch -l "./test/startup/test-startup.el"
 
 speed:
 	@echo "Speed testing..."
-	$(EMACS) -q --batch -l "~/.emacs.d/test/test-speed.el"
+	$(EMACS) -q --batch -l "./test/test-speed.el"
 
 mode:
 	@echo "Testing Major Modes..."
-	$(EMACS) -q --batch -l "~/.emacs.d/test/test-mode.el"
+	$(EMACS) -q --batch -l "./test/test-mode.el"
 
 compile:
 	@echo "Compiling..."

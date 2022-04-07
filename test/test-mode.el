@@ -1,4 +1,4 @@
-;;; test-mode.el --- Byte compile concatenate file  -*- lexical-binding: t -*-
+;;; test-mode.el --- Test all major modes  -*- lexical-binding: t -*-
 
 ;;; Commentary:
 ;;
