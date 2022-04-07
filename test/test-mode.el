@@ -82,7 +82,7 @@
 (dolist (mode test-modes)
   (with-temp-buffer
     (message "Testing major-mode `%s'..." mode)
-    (funcall mode)))
+    (require mode nil t) (funcall mode)))
 
 ;; Local Variables:
 ;; coding: utf-8
