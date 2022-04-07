@@ -108,6 +108,7 @@ jobs:
         branch: master
 
     - name: Retry 1
+      continue-on-error: true
       run: git pull --rebase
     - name: Push
       continue-on-error: true
@@ -118,6 +119,7 @@ jobs:
         branch: master
 
     - name: Retry 2
+      continue-on-error: true
       run: git pull --rebase
     - name: Push
       continue-on-error: true
@@ -128,6 +130,7 @@ jobs:
         branch: master
 
     - name: Retry 3
+      continue-on-error: true
       run: git pull --rebase
     - name: Push
       continue-on-error: true
@@ -138,6 +141,7 @@ jobs:
         branch: master
 
     - name: Retry 4
+      continue-on-error: true
       run: git pull --rebase
     - name: Push
       continue-on-error: true
@@ -148,6 +152,7 @@ jobs:
         branch: master
 
     - name: Retry 5
+      continue-on-error: true
       run: git pull --rebase
     - name: Push
       continue-on-error: true
@@ -158,6 +163,7 @@ jobs:
         branch: master
 
     - name: Retry 6
+      continue-on-error: true
       run: git pull --rebase
     - name: Push
       continue-on-error: true
@@ -168,6 +174,7 @@ jobs:
         branch: master
 
     - name: Retry 7
+      continue-on-error: true
       run: git pull --rebase
     - name: Push
       continue-on-error: true
