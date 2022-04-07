@@ -427,11 +427,8 @@
 (defun jcs-package-install (pkg)
   "Install PKG package."
   (unless (package-installed-p pkg)
-    ;; Don't run `package-refresh-contents' if you don't need to install
-    ;; packages on startup.
-    (package-refresh-contents)
-    ;; Else we just install the package regularly.
-    (unless (ignore-errors (package-install pkg))
+    (unless (or (ignore-errors (package-refresh-contents))
+                (ignore-errors (package-install pkg)))
       (jcs-package-install pkg))))
 
 (defun jcs-ensure-package-installed (packages)
