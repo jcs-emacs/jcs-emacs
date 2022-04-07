@@ -140,12 +140,12 @@
 (require 'jcs-mode)
 (require 'jcs-project)
 
-;; ;;; Finalize
-;; (require 'jcs-hook)
-;; (require 'jcs-key)
+;;; Finalize
+(require 'jcs-hook)
+(require 'jcs-key)
 
-;; ;;; Customize
-;; (require 'config)
+;;; Customize
+(require 'config)
 
 ;; Local Variables:
 ;; coding: utf-8

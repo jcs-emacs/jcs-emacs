@@ -431,11 +431,12 @@
     ;; packages on startup.
     (package-refresh-contents)
     ;; Else we just install the package regularly.
-    (package-install pkg)))
+    (unless (ignore-errors (package-install pkg))
+      (jcs-package-install pkg))))
 
 (defun jcs-ensure-package-installed (packages)
   "Assure every PACKAGES is installed."
-  (dolist (pkg packages) (jcs-package-install pkg))
+  (mapc #'jcs-package-install packages)
   ;; Rebuild after done the installation
   (when package-archive-contents
     (jcs-package-rebuild-dependency-list)
