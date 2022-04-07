@@ -86,7 +86,7 @@ jobs:
         git config user.email github-actions@github.com
         git config receive.denynonfastforwards false
 
-    - name: Merge local changes, ready for recursive merge
+    - name: Ready to force push
       continue-on-error: true
       run: |
         git add .

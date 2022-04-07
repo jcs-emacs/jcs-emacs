@@ -69,6 +69,12 @@ jobs:
         git config user.name github-actions
         git config user.email github-actions@github.com
 
+    - name: Ready to force push
+      continue-on-error: true
+      run: |
+        git add .
+        git commit -m "Update .emacs.d - main.tar"
+
     - name: Push generated badges - speed
       continue-on-error: true
       run: |
