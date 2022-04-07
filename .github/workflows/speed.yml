@@ -24,12 +24,27 @@ jobs:
       uses: actions/checkout@v3
       with:
         repository: ${{ env.BIN_REPO }}
-        lfs: true
         persist-credentials: false
         fetch-depth: 0
 
+    - name: Create LFS file list
+      run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
+
+    - name: Restore LFS cache
+      uses: actions/cache@v3
+      id: lfs-cache
+      with:
+        path: .git/lfs
+        key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-assets-id') }}
+
+    - name: Git LFS Pull
+      run: |
+        git lfs pull
+        git add .
+        git reset --hard
+
     - name: Extract zipped .emacs.d
-      run: tar -xvf ${{ matrix.emacs-version }}.tar -C $HOME
+      run: tar -xvf ${{ matrix.os }}.${{ matrix.emacs-version }}.tar -C $HOME
 
     - uses: purcell/setup-emacs@master
       if: matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest'
