@@ -1,4 +1,4 @@
-;;; test-mode.el --- Test all major modes  -*- lexical-binding: t -*-
+;;; test-mode.el --- Test all major test-modes  -*- lexical-binding: t -*-
 
 ;;; Commentary:
 ;;
@@ -9,12 +9,12 @@
 
 (load (concat user-emacs-directory "test/startup/test-startup.el"))
 
-(defconst modes
+(defconst test-modes
   '(actionscript-mode
-    ada-mode
+    ;;ada-mode
     ;;agda-mode
     applescript-mode
-    nasm-mode masm-mode
+    ;;nasm-mode masm-mode
     basic-mode
     bat-mode
     c-mode
@@ -38,7 +38,7 @@
     haskell-mode
     haxe-mode
     ini-mode
-    java-mode
+    ;;java-mode
     jayces-mode
     jenkinsfile-mode
     js2-mode
@@ -47,7 +47,7 @@
     julia-mode
     less-css-mode
     lua-mode
-    make-mode
+    makefile-mode
     markdown-mode
     nginx-mode
     nix-mode
@@ -79,8 +79,10 @@
     yaml-mode)
   "List of major-modes to test.")
 
-(dolist (mode modes)
-  (with-temp-buffer (funcall mode)))
+(dolist (mode test-modes)
+  (with-temp-buffer
+    (message "Testing major-mode `%s'..." mode)
+    (funcall mode)))
 
 ;; Local Variables:
 ;; coding: utf-8
