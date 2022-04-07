@@ -28,7 +28,7 @@ jobs:
         fetch-depth: 0
 
     - name: Extract zipped .emacs.d
-      run: tar -xvf ${{ matrix.os }}.${{ matrix.emacs-version }}.jcs-emacs.tar -C $HOME
+      run: tar -xvf ${{ matrix.emacs-version }}.jcs-emacs.tar -C $HOME
 
     - uses: purcell/setup-emacs@master
       if: matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest'
