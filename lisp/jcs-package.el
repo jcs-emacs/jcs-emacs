@@ -16,7 +16,9 @@
 (setq package-enable-at-startup nil  ; To avoid initializing twice
       package-check-signature nil)
 
-(when (or noninteractive (featurep 'esup-child)) (package-initialize))
+(when (or noninteractive (featurep 'esup-child))
+  (package-initialize)
+  (package-refresh-contents))
 
 (require 'package)
 
@@ -426,8 +428,7 @@
 
 (defun jcs-package-install (pkg)
   "Install PKG package."
-  (unless (package-installed-p pkg)
-    (package-install pkg)))
+  (unless (package-installed-p pkg) (package-install pkg)))
 
 (defun jcs-ensure-package-installed (packages)
   "Assure every PACKAGES is installed."
