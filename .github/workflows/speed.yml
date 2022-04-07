@@ -20,7 +20,7 @@ jobs:
     - name: Checkout binaries repository
       uses: actions/checkout@v3
       with:
-        repository: 'jcs-emacs/binaries'
+        repository: 'jcs-emacs/bin-startup'
         lfs: true
         persist-credentials: false
         fetch-depth: 0
