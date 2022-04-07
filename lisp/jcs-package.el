@@ -427,9 +427,7 @@
 (defun jcs-package-install (pkg)
   "Install PKG package."
   (unless (package-installed-p pkg)
-    (unless (or (ignore-errors (package-refresh-contents))
-                (ignore-errors (package-install pkg)))
-      (jcs-package-install pkg))))
+    (package-install pkg)))
 
 (defun jcs-ensure-package-installed (packages)
   "Assure every PACKAGES is installed."
