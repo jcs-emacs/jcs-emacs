@@ -73,7 +73,7 @@ jobs:
       continue-on-error: true
       run: |
         git add .
-        git commit -m "Update .emacs.d - main.tar"
+        git commit -m "Update SVG badges - speed"
 
     - name: Push generated badges - speed
       continue-on-error: true
