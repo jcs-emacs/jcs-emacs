@@ -78,9 +78,7 @@ jobs:
         path: main.tar
 
     - name: Zipping .emacs.d
-      run: |
-        tree
-        tar -C $HOME -cvf main.tar .emacs.d
+      run: tar -C $HOME -cvf main.tar .emacs.d
 
     - name: Set git config
       run: |
@@ -88,13 +86,7 @@ jobs:
         git config user.email github-actions@github.com
         git config receive.denynonfastforwards false
 
-    - name: Commit 1 (local changes)
-      continue-on-error: true
-      run: |
-        git add .
-        git commit -m "Update .emacs.d - main.tar"
-
-    - name: Commit 2 (recursively merge if any)
+    - name: Commit zipped .emacs.d
       continue-on-error: true
       run: |
         git pull
