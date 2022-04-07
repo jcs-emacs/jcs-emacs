@@ -7,6 +7,8 @@
 
 ;;; Code:
 
+(load (concat user-emacs-directory "test/startup/test-startup.el"))
+
 (defconst modes
   '(actionscript-mode
     ada-mode
