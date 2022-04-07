@@ -11,7 +11,7 @@ env:
   BIN_REPO: 'jcs-emacs/binaries'
 
 jobs:
-  speed:
+  mode:
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
