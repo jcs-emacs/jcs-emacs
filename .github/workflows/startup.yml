@@ -86,13 +86,13 @@ jobs:
         git config user.email github-actions@github.com
         git config receive.denynonfastforwards false
 
-    - name: Ready to force push
+    - name: Commit 1 (local changes)
       continue-on-error: true
       run: |
         git add .
         git commit -m "Update .emacs.d - main.tar"
 
-    - name: Commit changes
+    - name: Commit 2 (recursively merge if any)
       continue-on-error: true
       run: |
         git pull
@@ -107,7 +107,7 @@ jobs:
         github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         branch: master
 
-    - name: Retry 1
+    - name: Retry push 1
       continue-on-error: true
       run: git pull --rebase
     - name: Push
@@ -118,7 +118,7 @@ jobs:
         github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         branch: master
 
-    - name: Retry 2
+    - name: Retry push 2
       continue-on-error: true
       run: git pull --rebase
     - name: Push
@@ -129,7 +129,7 @@ jobs:
         github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         branch: master
 
-    - name: Retry 3
+    - name: Retry push 3
       continue-on-error: true
       run: git pull --rebase
     - name: Push
@@ -140,7 +140,7 @@ jobs:
         github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         branch: master
 
-    - name: Retry 4
+    - name: Retry push 4
       continue-on-error: true
       run: git pull --rebase
     - name: Push
@@ -151,7 +151,7 @@ jobs:
         github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         branch: master
 
-    - name: Retry 5
+    - name: Retry push 5
       continue-on-error: true
       run: git pull --rebase
     - name: Push
@@ -162,7 +162,7 @@ jobs:
         github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         branch: master
 
-    - name: Retry 6
+    - name: Retry push 6
       continue-on-error: true
       run: git pull --rebase
     - name: Push
@@ -173,7 +173,7 @@ jobs:
         github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         branch: master
 
-    - name: Retry 7
+    - name: Retry push 7
       continue-on-error: true
       run: git pull --rebase
     - name: Push
