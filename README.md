@@ -38,9 +38,10 @@
 # jcs-emacs
 > Emacs configuration works across all OSs
 
+[![Compile](https://github.com/jcs-emacs/jcs-emacs/actions/workflows/compile.yml/badge.svg)](https://github.com/jcs-emacs/jcs-emacs/actions/workflows/compile.yml)
 [![Startup](https://github.com/jcs-emacs/jcs-emacs/actions/workflows/startup.yml/badge.svg)](https://github.com/jcs-emacs/jcs-emacs/actions/workflows/startup.yml)
 [![Speed](https://github.com/jcs-emacs/jcs-emacs/actions/workflows/speed.yml/badge.svg)](https://github.com/jcs-emacs/jcs-emacs/actions/workflows/speed.yml)
-[![Compile](https://github.com/jcs-emacs/jcs-emacs/actions/workflows/compile.yml/badge.svg)](https://github.com/jcs-emacs/jcs-emacs/actions/workflows/compile.yml)
+[![Mode](https://github.com/jcs-emacs/jcs-emacs/actions/workflows/mode.yml/badge.svg)](https://github.com/jcs-emacs/jcs-emacs/actions/workflows/mode.yml)
 
 This is Jen-Chieh Shen's emacs configuration started from [Casey Muratori](https://github.com/cmuratori)'s
 Emacs configuration. It has been repeatedly utilized and modified
