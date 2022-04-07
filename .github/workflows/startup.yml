@@ -93,6 +93,7 @@ jobs:
         git commit -m "Update .emacs.d - main.tar"
 
     - name: Commit changes
+      continue-on-error: true
       run: |
         git pull
         git add .
