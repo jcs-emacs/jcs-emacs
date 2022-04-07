@@ -44,7 +44,7 @@ jobs:
         git reset --hard
 
     - name: Extract zipped .emacs.d
-      run: tar -xvf ${{ matrix.emacs-version }}.tar -C $HOME
+      run: tar -xvf main.tar -C $HOME
 
     - uses: purcell/setup-emacs@master
       if: matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest'

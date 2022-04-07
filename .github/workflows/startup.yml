@@ -75,10 +75,10 @@ jobs:
     - name: Remove before creating tar file
       uses: JesseTG/rm@v1.0.2
       with:
-        path: ${{ matrix.emacs-version }}.tar
+        path: main.tar
 
     - name: Zipping .emacs.d
-      run: tar -C $HOME -cvf ${{ matrix.emacs-version }}.tar  .emacs.d
+      run: tar -C $HOME -cvf main.tar .emacs.d
 
     - name: Commit changes
       run: |
@@ -87,7 +87,7 @@ jobs:
         git config receive.denynonfastforwards false
         git pull
         git add .
-        git commit -m "Update .emacs.d - ${{ matrix.emacs-version }}.tar"
+        git commit -m "Update .emacs.d - main.tar"
       env:
         GITHUB_USERNAME: jcs090218
         GITHUB_EMAIL: jcs090218@gmail.com
