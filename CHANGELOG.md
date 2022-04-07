@@ -4,9 +4,13 @@ All notable changes to this project will be documented in this file.
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-
-## 8.0.2 (Unreleased)
+## 8.0.3 (Unreleased)
 > Released N/A
+
+* Drop support for Emacs 27.x (7fa61292bd1553cee46884a98f4959933b55bb12)
+
+## 8.0.2
+> Released Apr 7, 2022
 
 * Fix move file/directory with full path (f3f0c61deb7aa3cc1b437a104c767e10050a73ef)
 * Add new package `nim-mode`.
