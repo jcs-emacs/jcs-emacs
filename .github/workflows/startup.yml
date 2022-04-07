@@ -78,7 +78,9 @@ jobs:
         path: main.tar
 
     - name: Zipping .emacs.d
-      run: tar -C $HOME -cvf main.tar .emacs.d
+      run: |
+        tree
+        tar -C $HOME -cvf main.tar .emacs.d
 
     - name: Set git config
       run: |
