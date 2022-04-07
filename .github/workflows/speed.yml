@@ -7,6 +7,9 @@ on:
       - completed
   workflow_dispatch:
 
+env:
+  BIN_REPO: 'jcs-emacs/bin-startup'
+
 jobs:
   speed:
     runs-on: ${{ matrix.os }}
@@ -20,7 +23,7 @@ jobs:
     - name: Checkout binaries repository
       uses: actions/checkout@v3
       with:
-        repository: 'jcs-emacs/bin-startup'
+        repository: ${{ env.BIN_REPO }}
         lfs: true
         persist-credentials: false
         fetch-depth: 0
