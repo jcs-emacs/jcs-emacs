@@ -857,7 +857,7 @@
         whitespace-cleanup-mode-only-if-initially-clean nil
         whitespace-cleanup-mode-ignore-modes
         (append '(special-mode comint-mode cider-repl-mode haskell-interactive-mode)
-                '(markdown-mode org-mode)
+                '(text-mode markdown-mode org-mode)
                 '(conf-javaprop-mode ini-mode)
                 '(view-mode diff-mode)
                 '(snippet-mode))))
