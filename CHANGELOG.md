@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 > Released N/A
 
 * Drop support for Emacs 27.x (7fa61292bd1553cee46884a98f4959933b55bb12)
+* Prevent whitespace cleanup for `text-mode` (56dca1ac48ef4e613c777b82bac1247513e6c024)
 
 ## 8.0.2
 > Released Apr 7, 2022
