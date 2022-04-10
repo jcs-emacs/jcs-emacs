@@ -256,7 +256,8 @@
   "List of packages this config needs.")
 
 (setq package-pinned-packages
-      '((company-box . "jcs-elpa")
+      '((buffer-move . "jcs-elpa")
+        (company-box . "jcs-elpa")
         (quick-peek  . "jcs-elpa")))
 
 ;;
