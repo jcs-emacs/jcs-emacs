@@ -7,7 +7,7 @@ on:
       - completed
   workflow_dispatch:
 
-concurrency: 
+concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
