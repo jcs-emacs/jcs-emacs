@@ -49,6 +49,7 @@ jobs:
         git reset --hard
 
     - name: Extract zipped .emacs.d
+      continue-on-error: true
       run: tar -xvf main.tar -C $HOME
 
     - uses: purcell/setup-emacs@master
