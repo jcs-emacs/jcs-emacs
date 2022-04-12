@@ -42,6 +42,7 @@ jobs:
         key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-assets-id') }}
 
     - name: Git LFS Pull
+      continue-on-error: true
       run: |
         git lfs pull
         git add .
