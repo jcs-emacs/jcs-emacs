@@ -36,7 +36,7 @@ jobs:
 
     - uses: emacs-eask/setup-eask@master
       with:
-        version: '0.2.30'
+        version: '0.4.19'
 
     - uses: actions/checkout@v2
 
