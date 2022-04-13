@@ -13,7 +13,7 @@
 ;;; Generate packages count badge
 
 (defconst svg-url-format
-  "https://img.shields.io/badge/packages-%s-6B8E23.svg?logo=hack-the-box"
+  "https://img.shields.io/badge/Packages-%s-6B8E23.svg?logo=hack-the-box"
   "Format to generate badges.")
 
 (defconst output-dir "./docs/badges/"
