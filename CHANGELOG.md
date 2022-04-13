@@ -9,6 +9,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 * Drop support for Emacs 27.x (7fa61292bd1553cee46884a98f4959933b55bb12)
 * Prevent whitespace cleanup for `text-mode` (56dca1ac48ef4e613c777b82bac1247513e6c024)
+* Remove development package `ert-runner` (84ffcde033cab6073b3b2624b1c6f40260322a64)
+* Remove development package `el-mock` (8fcc72f1ec5fb723b3262070ad87095d42fea852)
 
 ## 8.0.2
 > Released Apr 7, 2022
