@@ -7,6 +7,7 @@
 <a href="https://opensource.org/licenses/BSD-2-Clause"><img src="https://img.shields.io/badge/License-BSD%202--Clause-orange.svg" alt="License"></a>
 <a href="https://www.gnu.org/software/emacs/download.html"><img src="https://img.shields.io/badge/Emacs-28.1+-7F5AB6.svg?logo=gnu%20emacs&logoColor=white" alt="Emacs"></a>
 <a href="https://github.com/jcs-emacs/jcs-emacs/releases/latest"><img src="https://img.shields.io/github/tag/jcs-emacs/jcs-emacs.svg?label=release&logo=github" alt="Release Tag"></a>
+<a href="#"><img src="./docs/badges/packages.svg" alt="Packages"></a>
 </p>
 
 <p align="center">
@@ -42,6 +43,7 @@
 [![Startup](https://github.com/jcs-emacs/jcs-emacs/actions/workflows/startup.yml/badge.svg)](https://github.com/jcs-emacs/jcs-emacs/actions/workflows/startup.yml)
 [![Speed](https://github.com/jcs-emacs/jcs-emacs/actions/workflows/speed.yml/badge.svg)](https://github.com/jcs-emacs/jcs-emacs/actions/workflows/speed.yml)
 [![Mode](https://github.com/jcs-emacs/jcs-emacs/actions/workflows/mode.yml/badge.svg)](https://github.com/jcs-emacs/jcs-emacs/actions/workflows/mode.yml)
+[![Packages](https://github.com/jcs-emacs/jcs-emacs/actions/workflows/packages.yml/badge.svg)](https://github.com/jcs-emacs/jcs-emacs/actions/workflows/packages.yml)
 
 This is Jen-Chieh Shen's emacs configuration started from [Casey Muratori](https://github.com/cmuratori)'s
 Emacs configuration. It has been repeatedly utilized and modified
