@@ -36,4 +36,4 @@ compile:
 
 packages:
 	@echo "Packages..."
-	$(EASK) load ./test/test-packages.el
+	$(EMACS) -q --batch -l "./test/test-packages.el"
