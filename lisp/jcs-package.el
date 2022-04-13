@@ -92,7 +92,6 @@
     emmet-mode
     emoji-github
     erlang
-    ert-runner
     eshell-syntax-highlighting
     ess
     esup
