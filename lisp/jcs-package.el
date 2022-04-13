@@ -81,7 +81,6 @@
     dumb-jump
     eask-mode
     editorconfig
-    el-mock
     eldoc-meta-net
     electric-cursor
     electric-indent-sexp
