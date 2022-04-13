@@ -9,6 +9,10 @@ clean:
 	@echo "Cleaning..."
 	$(EASK) clean-all
 
+copy_config:
+	@echo "Copying configuration..."
+	./test/startup/copy_config.sh
+
 install:
 	@echo "Installing dependenices..."
 	$(EASK) install-deps
