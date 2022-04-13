@@ -1,4 +1,4 @@
-;;; test-speed.el --- Test the configuration  -*- lexical-binding: t -*-
+;;; test-speed.el --- Test the speed  -*- lexical-binding: t -*-
 
 ;;; Commentary:
 ;;

@@ -33,3 +33,7 @@ compile:
 	@echo "Compiling..."
 	$(EASK) concat
 	$(EASK) load ./test/test-compile.el
+
+packages:
+	@echo "Packages..."
+	$(EASK) load ./test/test-packages.el

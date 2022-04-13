@@ -15,7 +15,7 @@ env:
   BIN_REPO: 'jcs-emacs/binaries'
 
 jobs:
-  mode:
+  test:
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -63,6 +63,11 @@ jobs:
         version: ${{ matrix.emacs-version }}
 
     - uses: actions/checkout@v2
+
+    - name: Copy configuration files
+      run: |
+        chmod -R 777 ./
+        make copy_config
 
     - name: Test Major Modes
       run: make mode
