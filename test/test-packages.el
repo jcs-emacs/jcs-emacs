@@ -9,8 +9,6 @@
 
 (load (concat user-emacs-directory "test/startup/test-startup.el"))
 
-(package-activate-all)
-
 ;;
 ;;; Generate packages count badge
 
