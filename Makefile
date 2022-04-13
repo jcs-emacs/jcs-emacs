@@ -3,7 +3,7 @@ SHELL := /usr/bin/env bash
 EMACS ?= emacs
 EASK ?= eask
 
-.PHONY: clean install startup speed compile
+.PHONY: clean install startup speed compile packages
 
 clean:
 	@echo "Cleaning..."
