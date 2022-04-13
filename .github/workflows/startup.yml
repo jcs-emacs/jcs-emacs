@@ -42,7 +42,9 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Copy configuration files
-      run: make copy_config
+      run: |
+        chmod -R 777 ./
+        make copy_config
 
     - name: Test startup
       run: make startup
