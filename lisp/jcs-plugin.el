@@ -113,7 +113,7 @@
          '(company-etags company-gtags)
          '(company-yasnippet)))
   :defer-config
-  (unless (display-graphic-p)
+  (unless jcs-graphic-p
     (push 'company-echo-metadata-frontend company-frontends)))
 
 (leaf company-box
@@ -154,7 +154,7 @@
 
 (leaf company-emojify
   :init
-  (setq company-emojify-annotation (if (display-graphic-p) 'image 'unicode)
+  (setq company-emojify-annotation (if jcs-graphic-p 'image 'unicode)
         company-emojify-emoji-styles '(github)))
 
 (leaf company-fuzzy
@@ -209,9 +209,13 @@
 
   (dashboard-setup-startup-hook))
 
-(leaf define-it :init (setq define-it-output-choice 'view))
+(leaf define-it
+  :init
+  (setq define-it-output-choice (if jcs-graphic-p 'frame 'view)))
 
-(leaf diff-hl :init (setq diff-hl-side 'right))
+(leaf diff-hl
+  :init
+  (setq diff-hl-side 'right))
 
 (leaf diminish-buffer
   :init
@@ -452,9 +456,9 @@
 
 (leaf line-reminder
   :init
-  (setq line-reminder-show-option (if (display-graphic-p) 'indicators 'linum)
+  (setq line-reminder-show-option (if jcs-graphic-p 'indicators 'linum)
         line-reminder-thumbnail t)
-  (unless (display-graphic-p)
+  (unless jcs-graphic-p
     (setq line-reminder-saved-sign " |"
           line-reminder-modified-sign " |")))
 

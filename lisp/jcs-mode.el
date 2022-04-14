@@ -168,7 +168,7 @@ Note this is opposite logic to the toggle mode function."
     (alt-codes-mode 1)
     (auto-highlight-symbol-mode t)
     (goto-address-mode 1)
-    (when (display-graphic-p) (highlight-indent-guides-mode 1))
+    (when jcs-graphic-p (highlight-indent-guides-mode 1))
     (yas-minor-mode 1)
 
     (jcs-active-project-mode-hook)))

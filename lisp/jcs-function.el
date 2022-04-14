@@ -189,8 +189,7 @@
   "Return banner path."
   (concat
    user-emacs-directory "banners/"
-   (cond ((display-graphic-p)
-          (if (jcs-light-theme-p) "sink_black.png" "sink_white.png"))
+   (cond (jcs-graphic-p (if (jcs-light-theme-p) "sink_black.png" "sink_white.png"))
          (t "sink.txt"))))
 
 ;;
@@ -302,7 +301,7 @@
 
 (defun jcs-line-numbers-active (act)
   "Safe way to active (ACT) line numbers."
-  (if (display-graphic-p)
+  (if jcs-graphic-p
       (progn
         (require 'display-line-numbers)
         (jcs-active-minor-mode #'display-line-numbers-mode act))
@@ -428,7 +427,7 @@ delay. HEIGHT of the tooltip that will display."
   (let ((bg (asoc-get company-box-doc-frame-parameters 'background-color))
         (fg (asoc-get company-box-doc-frame-parameters 'foreground-color))
         (fringe-width 10))
-    (if (display-graphic-p)
+    (if jcs-graphic-p
         (progn
           (with-current-buffer (get-buffer-create jcs-pop-tooltip-buffer-name)
             (let ((text-scale-mode-step 1.1)) (text-scale-set company-box-doc-text-scale-level)))

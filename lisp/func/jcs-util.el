@@ -223,7 +223,7 @@ See function `jcs-string-compare-p' for argument TYPE."
 
 (defun jcs-light-color-p (hex-code)
   "Return non-nil if HEX-CODE is in light tone."
-  (when (display-graphic-p)
+  (when jcs-graphic-p
     (let ((gray (nth 0 (color-values "gray")))
           (color (nth 0 (color-values hex-code))))
       (< gray color))))

@@ -15,6 +15,9 @@
         (t              'unknown))
   "Store current system type.")
 
+(defconst jcs-graphic-p (display-graphic-p)
+  "Return t if we are in graphic mode.")
+
 (defvar jcs-makescript "[[:ascii:]]*build[[:ascii:]]*"
   "Name of the build/make file script.")
 (defvar jcs-runscript "[[:ascii:]]*run[[:ascii:]]*"
@@ -271,7 +274,7 @@ P.S. You would need to restart Emacs to take effect from this variable."
 (defun jcs-env-separator ()
   "Return environment separator."
   (propertize
-   (if (display-graphic-p) "\f"
+   (if jcs-graphic-p "\f"
      (jcs-fill-n-char-seq jcs-env-separator-char (- (window-total-width) 2)))
    'face font-lock-comment-face))
 
