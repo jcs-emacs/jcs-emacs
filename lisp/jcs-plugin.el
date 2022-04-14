@@ -252,7 +252,7 @@
          '("[*]Most used words[*]")
          '("[*]Test SHA[*]")
          '("[*]RE-Builder")
-         '("[*]preview-it" "[*]gh-md")
+         '("[*]define-it: tooltip[*]" "[*]preview-it" "[*]gh-md")
          '("[*]wclock[*]")
          '("[*]Clippy[*]")
          '("[*]CMake Temporary[*]")
