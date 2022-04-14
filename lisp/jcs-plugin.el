@@ -211,7 +211,8 @@
 
 (leaf define-it
   :init
-  (setq define-it-output-choice (if jcs-graphic-p 'frame 'view)))
+  (setq define-it-output-choice (if jcs-graphic-p 'frame 'view)
+        define-it-text-scale-level -2))
 
 (leaf diff-hl
   :init
