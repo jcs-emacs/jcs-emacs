@@ -253,11 +253,6 @@
     zoom-window)
   "List of packages this config needs.")
 
-(setq package-pinned-packages
-      '((buffer-move . "jcs-elpa")
-        (company-box . "jcs-elpa")
-        (quick-peek  . "jcs-elpa")))
-
 ;;
 ;; (@* "Util" )
 ;;
