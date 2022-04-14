@@ -6,6 +6,9 @@
 ;; (@* "Frame" )
 ;;
 
+(defconst jcs-graphic-p (display-graphic-p)
+  "Return t if we are in graphic mode.")
+
 (defun jcs-frame-util-p (&optional frame)
   "Return non-nil if FRAME is an utility frame."
   (frame-parent (or frame (selected-frame))))

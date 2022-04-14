@@ -15,9 +15,6 @@
         (t              'unknown))
   "Store current system type.")
 
-(defconst jcs-graphic-p (display-graphic-p)
-  "Return t if we are in graphic mode.")
-
 (defvar jcs-makescript "[[:ascii:]]*build[[:ascii:]]*"
   "Name of the build/make file script.")
 (defvar jcs-runscript "[[:ascii:]]*run[[:ascii:]]*"
