@@ -532,7 +532,8 @@
                                            indent-region
                                            isearch-done
                                            undefined
-                                           toggle-truncate-lines)
+                                           toggle-truncate-lines
+                                           define-it)
         message-clean-mode-minor-mode 'echo))
 
 (leaf meta-view
