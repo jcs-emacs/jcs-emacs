@@ -90,6 +90,7 @@
     elm-mode
     emmet-mode
     emoji-github
+    eping
     erlang
     eshell-syntax-highlighting
     ess
