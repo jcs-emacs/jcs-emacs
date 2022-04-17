@@ -102,6 +102,7 @@
     flx-rs
     flx-style
     flycheck-cask
+    flycheck-eask
     flycheck-elsa
     flycheck-grammarly
     flycheck-languagetool
@@ -422,7 +423,9 @@
 
 (defun jcs-package-install (pkg)
   "Install PKG package."
-  (unless (package-installed-p pkg) (package-install pkg)))
+  (unless (package-installed-p pkg)
+    (unless package-archive-contents (package-refresh-contents))
+    (package-install pkg)))
 
 (defun jcs-ensure-package-installed (packages)
   "Assure every PACKAGES is installed."
