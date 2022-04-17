@@ -11,6 +11,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Prevent whitespace cleanup for `text-mode` (56dca1ac48ef4e613c777b82bac1247513e6c024)
 * Remove development package `ert-runner` (84ffcde033cab6073b3b2624b1c6f40260322a64)
 * Remove development package `el-mock` (8fcc72f1ec5fb723b3262070ad87095d42fea852)
+* Fix bug for newly added packages from archives (6a92be2c8800b478bfb120a4489a7b1930235db0)
+* Add new package `flycheck-eask`. (cd94bbabe3bb5e3878384afea030cb203e0e5050)
 
 ## 8.0.2
 > Released Apr 7, 2022
