@@ -361,7 +361,12 @@ If ACT is non-nil; then make scroll less jumpy."
   (setq eww-search-prefix "https://www.google.com/search?q="))
 
 ;;; Whitespace
-(leaf whitespace :defer-config (require 'show-eol))
+(leaf whitespace
+  :init
+  (setq whitespace-display-mappings
+        '((tab-mark ?\t [?› ?\t])
+          (newline-mark ?\n [?¬ ?\n])
+          (space-mark ?\  [?·] [?.]))))
 
 ;;; Windows
 (setq window-divider-default-places t

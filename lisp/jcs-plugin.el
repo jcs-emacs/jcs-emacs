@@ -703,7 +703,6 @@
 
 (leaf show-eol
   :defer-config
-  (show-eol-set-mark-with-string 'newline-mark "¶")
   (jcs-advice-add 'show-eol-enable :before
     (face-remap-add-relative 'whitespace-newline :inverse-video t))
   (jcs-advice-add 'show-eol-disable :before
