@@ -13,6 +13,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Remove development package `el-mock` (8fcc72f1ec5fb723b3262070ad87095d42fea852)
 * Fix bug for newly added packages from archives (6a92be2c8800b478bfb120a4489a7b1930235db0)
 * Add new package `flycheck-eask`. (cd94bbabe3bb5e3878384afea030cb203e0e5050)
+* Move minibuffer flx to external package [vertico-flx](https://github.com/jcs-elpa/vertico-flx) (151d8f20e2d5539add95deb892acfbb0f1638df7)
 
 ## 8.0.2
 > Released Apr 7, 2022
