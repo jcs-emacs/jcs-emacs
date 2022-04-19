@@ -77,7 +77,7 @@
   (global-whitespace-cleanup-mode 1)
   (whole-line-or-region-global-mode 1)
   (jcs-funcall-fboundp #'jcs-mode-load-requires)
-  (jcs-require '(jcs-minibuf jcs-edit))
+  (jcs-require '(jcs-edit))
   (jcs-with-current-buffer jcs-message-buffer-name (messages-buffer-mode))
   (jcs-with-current-buffer jcs-scratch-buffer-name (lisp-interaction-mode))
   ;; Lower the `GC' back to normal threshold

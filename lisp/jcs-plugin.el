@@ -824,12 +824,13 @@
         use-ttf-default-ttf-font-name "Ubuntu Mono"))
 
 (leaf vertico
-  :hook (rfn-eshadow-update-overlay-hook . vertico-directory-tidy)
+  :hook
+  ((rfn-eshadow-update-overlay-hook . vertico-directory-tidy)
+   (vertico-mode-hook . vertico-flx-mode))
   :init
   (setq vertico-cycle t
         vertico-resize t
-        vertico-scroll-margin 0
-        vertico-sort-function #'jcs-vertico--sort-function)
+        vertico-scroll-margin 0)
   :defer-config
   (require 'jcs-vertico))
 

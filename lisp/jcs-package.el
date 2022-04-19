@@ -100,7 +100,6 @@
     file-header
     fill-page
     flx-rs
-    flx-style
     flycheck-cask
     flycheck-eask
     flycheck-elsa
@@ -237,7 +236,7 @@
     undo-tree
     unfill
     use-ttf
-    vertico
+    vertico-flx
     vimrc-mode
     visual-regexp
     vs-dark-theme

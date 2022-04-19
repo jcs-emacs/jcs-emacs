@@ -303,37 +303,6 @@ See function `jcs-string-compare-p' for argument TYPE."
   (when (fboundp fnc) (if args (funcall fnc args) (funcall fnc))))
 
 ;;
-;; (@* "Fuzzy" )
-;;
-
-(defun jcs-sort-candidates-by-function (candidates prefix fnc &optional flip)
-  "Sort CANDIDATES with PREFIX and FNC.
-
-If optional argument FLIP is non-nil, reverse query and pattern order."
-  (let ((scoring-table (ht-create)) scoring-keys)
-    (dolist (cand candidates)
-      (when-let*
-          ((scoring (ignore-errors
-                      (if flip (funcall fnc prefix cand)
-                        (funcall fnc cand prefix))))
-           (score (cond ((listp scoring) (nth 0 scoring))
-                        ((vectorp scoring) (aref scoring 0))
-                        ((numberp scoring) scoring)
-                        (t 0))))
-        ;; XXX ht causes unknown error on start, use regular hash table functions
-        ;; for now
-        (unless (gethash score scoring-table) (setf (gethash score scoring-table) nil))
-        (push cand (gethash score scoring-table))))
-    ;; Get all keys, and turn into a list.
-    (ht-map (lambda (score-key _) (push score-key scoring-keys)) scoring-table)
-    (setq scoring-keys (sort scoring-keys #'>)  ; Sort keys in order
-          candidates nil)  ; Clean up, and ready for final output
-    (dolist (key scoring-keys)
-      (let ((cands (ht-get scoring-table key)))
-        (setq candidates (append candidates cands)))))
-  candidates)
-
-;;
 ;; (@* "Key" )
 ;;
 
@@ -986,22 +955,6 @@ If optional argument REVERSE is non-nil, LIST item and ELT argument."
      (if reverse (jcs-string-compare-p elt elm type)
        (jcs-string-compare-p elm elt type)))
    list))
-
-;;
-;; (@* "Minibuffer" )
-;;
-
-(defun jcs-minibuffer-do-stuff (fnc &rest args)
-  "Execute FNC and ARGS in minibuffer the safe way."
-  (if (not (active-minibuffer-window))
-      (user-error "[ERROR] Minibuffer not active to do stuff: %s" fnc)
-    (save-selected-window
-      (select-window (active-minibuffer-window))
-      (apply fnc args))))
-
-(defun jcs-minibuf--compare-p (name type)
-  "Compare buffer-string with NAME and TYPE."
-  (jcs-minibuffer-do-stuff (lambda () (jcs-string-compare-p name (buffer-string) type))))
 
 ;;
 ;; (@* "Mode" )

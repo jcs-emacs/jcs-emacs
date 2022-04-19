@@ -77,44 +77,9 @@
   (let ((content (minibuffer-contents)))
     (cond ((vertico-directory-up 1)  ; preselect after up directory
            (jcs-vertico--goto-cand (concat (file-name-nondirectory (directory-file-name content)) "/")))
-          ((and (jcs-finding-file-p) (f-root-p content))  ; limit to root dir
+          ((and (mbs-finding-file-p) (f-root-p content))  ; limit to root dir
            (jcs-vertico--cd (f-root)) (vertico-first))
           (t (call-interactively #'backward-delete-char)))))
-
-;;
-;; (@* "Sorting" )
-;;
-
-(defun jcs-vertico--sort-file-directory (input all)
-  "Sort directory on top."
-  (if (string-empty-p input)
-      (sort (sort all #'string-lessp)
-            (lambda (var1 var2)
-              (and (string-suffix-p "/" var1)
-                   (not (string-suffix-p "/" var2)))))
-    #'vertico-sort-length-alpha))
-
-(defvar jcs-vertico--sorting nil
-  "Return non-nil if currently sorting.")
-
-(defun jcs-vertico--sort-function (all)
-  "Sort candidates ALL."
-  (setq jcs-vertico--sorting nil)
-  (let ((input (minibuffer-contents)) base)
-    (cond
-     ((jcs-M-x-p) (setq base #'vertico-sort-history-length-alpha))
-     ((jcs-finding-file-p)
-      (setq input (if (and (string-suffix-p "/" input) (jcs-directory-p input)) ""
-                    (f-filename input))
-            base (jcs-vertico--sort-file-directory input all))))
-    ;; Final output
-    (if (string-empty-p input)  ; Empty, return raw
-        (if (null base) all
-          (cond ((functionp base) (funcall base all))
-                ((listp base) base)))
-      (setq jcs-vertico--sorting t)
-      ;; Return fuzzy order
-      (jcs-sort-candidates-by-function all input #'flx-score))))
 
 ;;
 ;; (@* "Registry" )
@@ -129,7 +94,7 @@
 (defun jcs-vertico--post-command ()
   "Post command for vertico."
   (when vertico-mode
-    (cond ((jcs-finding-file-p)
+    (cond ((mbs-finding-file-p)
            (when (memq this-command jcs-ffap-commands)
              (let* ((start (point)) (end (line-end-position))
                     (file (buffer-substring-no-properties start end)))
@@ -141,12 +106,12 @@
              (save-excursion
                (forward-char -1)
                (backward-delete-char 1)))))
-    (when (or jcs-vertico--sorting
+    (when (or vertico-flx--sorting
               (and (eq this-command 'vertico-directory-delete-char)
                    (string-empty-p (minibuffer-contents))))
       ;; Select first candidate (highest score) immediately after sorting!
       (jcs-vertico--goto 0)
-      (setq jcs-vertico--sorting nil))))  ; cancel it afterward
+      (setq vertico-flx--sorting nil))))  ; cancel it afterward
 
 (jcs-advice-add 'vertico--setup :before
   (add-hook 'post-command-hook #'jcs-vertico--post-command nil 'local))
@@ -165,6 +130,27 @@
         (vertico-directory-delete-char))
        ;; Preselect file
        (bfn (jcs-vertico--goto-cand (file-name-nondirectory bfn)))))))
+
+;;
+;; (@* "Minibuffer" )
+;;
+
+(jcs-add-hook 'minibuffer-setup-hook
+  (jcs-gc-cons-threshold-speed-up t)  ; Avoid GCs while using `vertico'
+  (jcs-reload-active-mode)
+  (add-hook 'post-command-hook #'jcs-minibuffer--post-command nil t))
+
+(jcs-add-hook 'minibuffer-exit-hook
+  (jcs-dashboard-refresh-buffer)
+  (garbage-collect)  ; Restore GC
+  (jcs-gc-cons-threshold-speed-up nil))
+
+(defvar jcs-minibuffer-post-command-hook nil
+  "Post command hook inside minibuffer.")
+
+(defun jcs-minibuffer--post-command ()
+  "Minibuffer post command hook."
+  (run-hooks 'jcs-minibuffer-post-command-hook))
 
 (provide 'jcs-vertico)
 ;;; jcs-vertico.el ends here
