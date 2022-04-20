@@ -75,15 +75,23 @@ jobs:
     - name: Test speed
       run: make speed
 
-    - name: Set git config
-      run: |
-        git config user.name github-actions
-        git config user.email github-actions@github.com
+    - name: Move badges to home
+      run: mv -f ./docs/badges/speed/ ~/
 
-    - name: Push generated badges - speed
+    - name: Checkout badges repository
+      uses: actions/checkout@v3
+      with:
+        repository: ${{ env.REPO_BADGES }}
+        persist-credentials: false
+        fetch-depth: 0
+
+    - name: Move badges badges repository
+      run: mv -f ~/speed/ ./
+
+    - name: Push
       continue-on-error: true
-      run: |
-        git pull
-        git add .
-        git commit -m "Update SVG badges - speed"
-        git push
+      uses: ad-m/github-push-action@master
+      with:
+        repository: ${{ env.REPO_BADGES }}
+        github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        branch: master

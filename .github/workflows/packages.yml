@@ -74,7 +74,7 @@ jobs:
       run: make packages
 
     - name: Move badges to home
-      run: mv -f ../docs/badges/packages.svg ~/
+      run: mv -f ./docs/badges/packages.svg ~/
 
     - name: Checkout badges repository
       uses: actions/checkout@v3
