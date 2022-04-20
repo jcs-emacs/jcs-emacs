@@ -16,7 +16,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  BIN_REPO: 'jcs-emacs/binaries'
+  REPO_BIN: 'jcs-emacs/binaries'
 
 jobs:
   test:
@@ -52,7 +52,7 @@ jobs:
     - name: Checkout binaries repository
       uses: actions/checkout@v3
       with:
-        repository: ${{ env.BIN_REPO }}
+        repository: ${{ env.REPO_BIN }}
         persist-credentials: false
         fetch-depth: 0
 
@@ -98,7 +98,7 @@ jobs:
       continue-on-error: true
       uses: ad-m/github-push-action@master
       with:
-        repository: ${{ env.BIN_REPO }}
+        repository: ${{ env.REPO_BIN }}
         github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         branch: master
 
@@ -109,7 +109,7 @@ jobs:
       continue-on-error: true
       uses: ad-m/github-push-action@master
       with:
-        repository: ${{ env.BIN_REPO }}
+        repository: ${{ env.REPO_BIN }}
         github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         branch: master
 
@@ -120,7 +120,7 @@ jobs:
       continue-on-error: true
       uses: ad-m/github-push-action@master
       with:
-        repository: ${{ env.BIN_REPO }}
+        repository: ${{ env.REPO_BIN }}
         github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         branch: master
 
@@ -131,7 +131,7 @@ jobs:
       continue-on-error: true
       uses: ad-m/github-push-action@master
       with:
-        repository: ${{ env.BIN_REPO }}
+        repository: ${{ env.REPO_BIN }}
         github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         branch: master
 
@@ -142,7 +142,7 @@ jobs:
       continue-on-error: true
       uses: ad-m/github-push-action@master
       with:
-        repository: ${{ env.BIN_REPO }}
+        repository: ${{ env.REPO_BIN }}
         github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         branch: master
 
@@ -153,7 +153,7 @@ jobs:
       continue-on-error: true
       uses: ad-m/github-push-action@master
       with:
-        repository: ${{ env.BIN_REPO }}
+        repository: ${{ env.REPO_BIN }}
         github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         branch: master
 
@@ -164,7 +164,7 @@ jobs:
       continue-on-error: true
       uses: ad-m/github-push-action@master
       with:
-        repository: ${{ env.BIN_REPO }}
+        repository: ${{ env.REPO_BIN }}
         github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         branch: master
 
@@ -175,6 +175,6 @@ jobs:
       continue-on-error: true
       uses: ad-m/github-push-action@master
       with:
-        repository: ${{ env.BIN_REPO }}
+        repository: ${{ env.REPO_BIN }}
         github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         branch: master

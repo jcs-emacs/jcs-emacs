@@ -12,7 +12,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  BIN_REPO: 'jcs-emacs/binaries'
+  REPO_BIN: 'jcs-emacs/binaries'
 
 jobs:
   test:
@@ -27,7 +27,7 @@ jobs:
     - name: Checkout binaries repository
       uses: actions/checkout@v3
       with:
-        repository: ${{ env.BIN_REPO }}
+        repository: ${{ env.REPO_BIN }}
         persist-credentials: false
         fetch-depth: 0
 
