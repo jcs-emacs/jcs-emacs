@@ -74,7 +74,7 @@ jobs:
       run: make packages
 
     - name: Move badges to home
-      run: mv -f ./docs/badges/packages.svg ~/
+      run: mv ./docs/badges/packages.svg ~/
 
     - name: Checkout badges repository
       uses: actions/checkout@v3
@@ -83,8 +83,13 @@ jobs:
         persist-credentials: false
         fetch-depth: 0
 
-    - name: Move badges badges repository
+    - name: Move badges to repository (Unix)
+      if: matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest'
       run: mv -f ~/packages.svg ./
+
+    - name: Move badges to repository (Windows)
+      if: matrix.os == 'windows-latest'
+      run: mv -Force ~/packages.svg ./
 
     - name: Set git config
       run: |

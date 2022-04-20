@@ -77,7 +77,7 @@ jobs:
       run: make speed
 
     - name: Move badges to home
-      run: mv -f ./docs/badges/speed/ ~/
+      run: mv ./docs/badges/speed/ ~/
 
     - name: Checkout badges repository
       uses: actions/checkout@v3
@@ -86,8 +86,13 @@ jobs:
         persist-credentials: false
         fetch-depth: 0
 
-    - name: Move badges badges repository
+    - name: Move badges to repository (Unix)
+      if: matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest'
       run: mv -f ~/speed/* ./speed/
+
+    - name: Move badges to repository (Windows)
+      if: matrix.os == 'windows-latest'
+      run: mv -Force ~/speed/* ./speed/
 
     - name: Set git config
       run: |
