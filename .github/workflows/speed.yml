@@ -12,6 +12,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
+  REPO_BADGES: 'jcs-emacs/badges'
   REPO_BIN: 'jcs-emacs/binaries'
 
 jobs:
