@@ -73,6 +73,9 @@ jobs:
     - name: Test packages
       run: make packages
 
+    - name: Move badges to home
+      run: mv -f ../docs/badges/packages.svg ~/
+
     - name: Checkout badges repository
       uses: actions/checkout@v3
       with:
@@ -80,8 +83,8 @@ jobs:
         persist-credentials: false
         fetch-depth: 0
 
-    - name: Move badges
-      run: mv ../jcs-emacs/docs/badges/packages.svg ./
+    - name: Move badges badges repository
+      run: mv -f ~/packages.svg ./
 
     - name: Push
       continue-on-error: true
