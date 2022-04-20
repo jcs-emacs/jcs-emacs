@@ -87,7 +87,9 @@ jobs:
         fetch-depth: 0
 
     - name: Move badges badges repository
-      run: mv -f ~/speed/ ./
+      run: |
+        mv -f ~/speed/ ./
+        tree
 
     - name: Push
       continue-on-error: true
