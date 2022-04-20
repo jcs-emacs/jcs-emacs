@@ -87,9 +87,19 @@ jobs:
         fetch-depth: 0
 
     - name: Move badges badges repository
+      run: mv -f ~/speed/ ./
+
+    - name: Set git config
       run: |
-        mv -f ~/speed/ ./
-        tree
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+
+    - name: Push generated badges - speed
+      continue-on-error: true
+      run: |
+        git pull
+        git add .
+        git commit -m "Update SVG badges - speed"
 
     - name: Push
       continue-on-error: true
