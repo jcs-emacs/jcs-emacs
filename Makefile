@@ -19,6 +19,7 @@ install:
 
 startup:
 	@echo "Startup testing..."
+	$(EASK) refresh -g
 	$(EMACS) -q --batch -l "./test/startup/test-startup.el"
 
 speed:
