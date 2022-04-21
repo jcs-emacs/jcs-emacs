@@ -82,11 +82,11 @@ jobs:
 
     - name: Move badges to repository (Unix)
       if: matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest'
-      run: mv -f ~/speed/* ./speed/
+      run: mv -f ~/speed/* ./config/speed/
 
     - name: Move badges to repository (Windows)
       if: matrix.os == 'windows-latest'
-      run: mv -Force ~/speed/* ./speed/
+      run: mv -Force ~/speed/* ./config/speed/
 
     - name: Set git config
       run: |

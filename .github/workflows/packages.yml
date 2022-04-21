@@ -79,11 +79,11 @@ jobs:
 
     - name: Move badges to repository (Unix)
       if: matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest'
-      run: mv -f ~/packages.svg ./
+      run: mv -f ~/packages.svg ./config/
 
     - name: Move badges to repository (Windows)
       if: matrix.os == 'windows-latest'
-      run: mv -Force ~/packages.svg ./
+      run: mv -Force ~/packages.svg ./config/
 
     - name: Set git config
       run: |
