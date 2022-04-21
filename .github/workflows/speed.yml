@@ -64,14 +64,6 @@ jobs:
         chmod -R 777 ./
         make copy_config
 
-    - uses: actions/setup-node@v2
-      with:
-        node-version: '16'
-
-    - uses: emacs-eask/setup-eask@master
-      with:
-        version: '0.5.4'
-
     - name: Startup (make sure we don't install in SPEED phase)
       run: make startup
 

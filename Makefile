@@ -24,20 +24,16 @@ compile:
 
 startup:
 	@echo "Startup testing..."
-	$(EASK) refresh -g
 	$(EMACS) -q --batch -l "./test/startup/test-startup.el"
 
 mode:
 	@echo "Testing Major Modes..."
-	$(EASK) refresh -g
 	$(EMACS) -q --batch -l "./test/test-mode.el"
 
 speed:
 	@echo "Speed testing..."
-	$(EASK) refresh -g
 	$(EMACS) -q --batch -l "./test/test-speed.el"
 
 packages:
 	@echo "Packages..."
-	$(EASK) refresh -g
 	$(EMACS) -q --batch -l "./test/test-packages.el"
