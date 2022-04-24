@@ -5,7 +5,7 @@ on:
     branches:
       - master
     paths:
-      - *.el
+      - **.el
       - lisp/**
       - site-lisp/**
   pull_request:
