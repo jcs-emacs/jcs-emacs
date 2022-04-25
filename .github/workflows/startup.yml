@@ -34,15 +34,15 @@ jobs:
         emacs-version: [28.1]
         experimental: [false]
         include:
-        - emacs-version: snapshot
+        - os: ubuntu-latest
+          emacs-version: snapshot
           experimental: true
-          os: ubuntu-latest
-        - emacs-version: snapshot
+        - os: macos-latest
+          emacs-version: snapshot
           experimental: true
-          os: macos-latest
-        - emacs-version: snapshot
+        - os: windows-latest
+          emacs-version: snapshot
           experimental: true
-          os: windows-latest
 
     steps:
     - uses: jcs090218/setup-emacs@master
