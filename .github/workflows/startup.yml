@@ -36,6 +36,7 @@ jobs:
         include:
         - emacs-version: snapshot
           experimental: true
+          os: ${{ matrix.os }}
 
     steps:
     - uses: jcs090218/setup-emacs@master
