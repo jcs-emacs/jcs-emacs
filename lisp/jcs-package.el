@@ -104,7 +104,6 @@
     flycheck-eask
     flycheck-elsa
     flycheck-grammarly
-    flycheck-indent
     flycheck-languagetool
     flycheck-package
     flycheck-relint

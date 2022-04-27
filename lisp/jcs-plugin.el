@@ -326,7 +326,6 @@
 (leaf flycheck-eask         :hook (flycheck-mode-hook . flycheck-eask-setup))
 (leaf flycheck-elsa         :hook (flycheck-mode-hook . flycheck-elsa-setup))
 (leaf flycheck-grammarly    :hook (flycheck-mode-hook . flycheck-grammarly-setup))
-(leaf flycheck-indent       :hook (flycheck-mode-hook . flycheck-indent-setup))
 (leaf flycheck-languagetool :hook (flycheck-mode-hook . flycheck-languagetool-setup))
 (leaf flycheck-package      :hook (flycheck-mode-hook . flycheck-package-setup))
 (leaf flycheck-relint       :hook (flycheck-mode-hook . flycheck-relint-setup))

@@ -14,7 +14,6 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Fix bug for newly added packages from archives (6a92be2c8800b478bfb120a4489a7b1930235db0)
 * Add new package `flycheck-eask`. (cd94bbabe3bb5e3878384afea030cb203e0e5050)
 * Move minibuffer flx to external package [vertico-flx](https://github.com/jcs-elpa/vertico-flx) (151d8f20e2d5539add95deb892acfbb0f1638df7)
-* Add new package `flycheck-indent` (12b2e0d25f2b518461c17afe2865f11422d79671)
 
 ## 8.0.2
 > Released Apr 7, 2022
