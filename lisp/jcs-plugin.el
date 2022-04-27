@@ -248,7 +248,7 @@
          '("[*]Flycheck" "[*]Flymake log[*]")
          '("[*]httpd[*]")
          '("[*]helpful")
-         '("[*]ert[*]")  ; Emacs Lisp Regression Testing
+         '("[*]ert[*]" "[*]indent-lint")
          '("magit[-]*[[:ascii:]]*[:]")  ; From `magit'
          '("[*]Most used words[*]")
          '("[*]Test SHA[*]")
