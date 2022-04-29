@@ -230,7 +230,7 @@
          '("[*]VC-history[*]")
          '("[*]CPU-Profiler-Report" "[*]Memory-Profiler-Report")
          '("[*]Process List[*]")
-         '("[*]Checkdoc " "[*]Package-Lint[*]")
+         '("[*]Checkdoc " "[*]Package-Lint[*]" "[*]relint[*]")
          '("[*]Async Shell Command[*]" "[*]shell" "[*]eshell" "bshell<")
          '("[*]ESS[*]")
          '("[*]emacs[*]")  ; From `async'
