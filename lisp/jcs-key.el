@@ -443,6 +443,12 @@
     `(([C-f10] . hl-todo-previous)
       ([C-f11] . hl-todo-next))))
 
+(leaf suggest
+  :defer-config
+  (jcs-key suggest-mode-map
+    `(((kbd "U")   . suggest-update)
+      ((kbd "M-K") . suggest-update))))
+
 (leaf undo-tree
   :defer-config
   (jcs-key undo-tree-visualizer-mode-map

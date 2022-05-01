@@ -219,6 +219,7 @@
     smex
     sort-words
     sql-indent
+    suggest
     swift-mode
     toc-org
     togetherly

@@ -247,7 +247,7 @@
          '("[*]SPEEDBAR")
          '("[*]Flycheck" "[*]Flymake log[*]")
          '("[*]httpd[*]")
-         '("[*]helpful")
+         '("[*]helpful" "[*]suggest[*]")
          '("[*]ert[*]" "[*]indent-lint")
          '("magit[-]*[[:ascii:]]*[:]")  ; From `magit'
          '("[*]Most used words[*]")
