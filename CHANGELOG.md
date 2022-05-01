@@ -14,6 +14,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Fix bug for newly added packages from archives (6a92be2c8800b478bfb120a4489a7b1930235db0)
 * Add new package `flycheck-eask`. (cd94bbabe3bb5e3878384afea030cb203e0e5050)
 * Move minibuffer flx to external package [vertico-flx](https://github.com/jcs-elpa/vertico-flx) (151d8f20e2d5539add95deb892acfbb0f1638df7)
+* Show `helpful` message while describing things at point (a06c8d1edbb2380cf449a554dda0d10c3433ae3a)
+* Add new package `suggest` (913f278afa145d46924cde5322506cd13dd43e9f)
 
 ## 8.0.2
 > Released Apr 7, 2022
