@@ -444,14 +444,13 @@ delay. HEIGHT of the tooltip that will display."
 (defun jcs--describe-symbol-string ()
   "Return the describe symbol string."
   (let ((thing (symbol-at-point)))
-    (with-temp-buffer
-      (jcs-mute-apply (help-mode) (describe-symbol thing))
-      (buffer-string))))
+    (save-window-excursion
+      (jcs-mute-apply (describe-symbol thing))
+      (with-current-buffer "*Help*" (buffer-string)))))
 
 (defun jcs-tip-describe-it ()
   "Describe symbol at point."
-  (let* ((help-xref-following t)
-         (desc (jcs--describe-symbol-string)))
+  (let ((desc (jcs--describe-symbol-string)))
     (if (string-empty-p desc)
         (error "[ERROR] No description at point")
       (jcs-pop-tooltip desc :point (point)))))
