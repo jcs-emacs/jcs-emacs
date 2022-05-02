@@ -58,6 +58,9 @@
   (global-company-mode t)
   (delete-selection-mode 1)
   (global-docstr-mode 1)
+  (global-eldoc-mode 1)
+  (electric-indent-mode 1)
+  (electric-pair-mode 1)
   (global-hl-line-mode 1)
   (global-hl-todo-mode 1)
   (indent-control-mode 1)
@@ -82,7 +85,6 @@
   (jcs-with-current-buffer jcs-scratch-buffer-name (lisp-interaction-mode))
   ;; Lower the `GC' back to normal threshold
   (jcs-gc-cons-threshold-speed-up nil)
-  (setq file-name-handler-alist jcs-file-name-handler-alist)
   (message nil))  ; mute at the very end!
 
 ;;

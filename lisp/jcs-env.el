@@ -123,15 +123,8 @@
 (setq ediff-window-setup-function 'jcs-ediff-setup-windows
       ediff-split-window-function 'split-window-horizontally)
 
-;;; ElDoc
-(global-eldoc-mode 1)
-
-;;; Electric Indent
-(electric-indent-mode 1)
-
 ;;; Electric Pair
 (setq-default electric-pair-inhibit-predicate 'electric-pair-default-inhibit)
-(electric-pair-mode 1)
 
 ;;; Find File
 (defvar jcs-current-created-parent-dir-path nil
