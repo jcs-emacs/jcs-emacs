@@ -16,6 +16,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Move minibuffer flx to external package [vertico-flx](https://github.com/jcs-elpa/vertico-flx) (151d8f20e2d5539add95deb892acfbb0f1638df7)
 * Show `helpful` message while describing things at point (a06c8d1edbb2380cf449a554dda0d10c3433ae3a)
 * Add new package `suggest` (913f278afa145d46924cde5322506cd13dd43e9f)
+* Inhibit redisplay on startup to speed up the startup time (9922190f2e53ccc9a400943140a3c5e6462bde5f)
 
 ## 8.0.2
 > Released Apr 7, 2022
