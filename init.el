@@ -40,14 +40,11 @@
   "Raise/Lower GC threshold by SPEEDUP."
   (setq gc-cons-threshold (if speedup most-positive-fixnum (* 1024 1024 20))))
 
-(defconst jcs-file-name-handler-alist file-name-handler-alist
-  "Record file name handler alist.")
+(when (featurep 'esup-child) (jcs-gc-cons-threshold-speed-up t))
 
 ;;
 ;; (@* "Optimizations" )
 ;;
-
-(setq file-name-handler-alist nil)
 
 ;; A second, case-insensitive pass over `auto-mode-alist' is time wasted, and
 ;; indicates misconfiguration (don't rely on case insensitivity for file names).
