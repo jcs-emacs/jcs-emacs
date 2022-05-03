@@ -36,6 +36,8 @@
                               'jcs-insert-shader-template))
 
 (jcs-add-hook 'glsl-mode-hook
+  (company-fuzzy-backend-add 'company-glsl)
+
   (modify-syntax-entry ?_ "w")
 
   ;; File Header
