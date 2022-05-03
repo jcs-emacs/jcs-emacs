@@ -33,6 +33,7 @@
     alt-codes
     apache-mode
     applescript-mode
+    arduino-mode
     ascii-table
     asoc
     auth-source-keytar
@@ -64,8 +65,10 @@
     company-c-headers
     company-emojify
     company-fuzzy
+    company-glsl
     company-meta-net
     company-nginx
+    company-shell
     consult
     csproj-mode
     csv-mode
