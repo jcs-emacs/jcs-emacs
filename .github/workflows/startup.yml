@@ -16,10 +16,6 @@ on:
       - '**.md'
   workflow_dispatch:
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
-
 env:
   REPO_BIN: 'jcs-emacs/binaries'
 
