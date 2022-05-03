@@ -45,6 +45,8 @@
 ;;
 
 (jcs-add-hook 'sh-mode-hook
+  (company-fuzzy-backend-add 'company-shell)
+
   (modify-syntax-entry ?_ "w")
 
   (add-hook 'before-save-hook #'jcs-sh--before-save nil t)
