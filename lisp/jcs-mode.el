@@ -232,6 +232,7 @@ Note this is opposite logic to the toggle mode function."
     (ada-mode)
     (agda-mode)
     (applescript-mode)
+    (arduino-mode)
     ((masm-mode nasm-mode) . jcs-asm-mode)
     (basic-mode)
     (bat-mode              . jcs-batch-mode)
