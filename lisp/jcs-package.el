@@ -149,7 +149,7 @@
     kotlin-mode
     leaf
     license-templates
-    ;;line-reminder
+    line-reminder
     log4e
     logms
     logview

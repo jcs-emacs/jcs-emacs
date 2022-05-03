@@ -311,15 +311,7 @@
 (defun jcs-line-numbers-active-by-mode ()
   "Active line number by mode."
   (interactive)
-  (require 'line-reminder)
-  (let* ((on-off
-          (or (minibufferp)
-              (and (jcs-contain-list-type-str (buffer-name) jcs-line-numbers-ignore-buffers 'regex)
-                   (not (member (buffer-name) jcs-line-numbers-ignore-buffer-exceptions)))
-              (memq major-mode jcs-line-numbers-ignore-modes)))
-         (on-off (if on-off -1 1)))
-    (jcs-active-minor-mode #'line-reminder-mode on-off)
-    (jcs-line-numbers-active on-off)))
+  )
 
 ;;
 ;; (@* "Minimap" )
