@@ -17,6 +17,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Show `helpful` message while describing things at point (a06c8d1edbb2380cf449a554dda0d10c3433ae3a)
 * Add new package `suggest` (913f278afa145d46924cde5322506cd13dd43e9f)
 * Inhibit redisplay on startup to speed up the startup time (9922190f2e53ccc9a400943140a3c5e6462bde5f)
+* Add new package `company-shell` (6b5d79a65d889222e42343325cf59790c78d97af)
+* Add new package `company-glsl` (122b4a1b541acf7a810253d986d423e216a92ceb)
+* Add new package `arduino-mode` (d4ffb8c6b5ca99619c601c26c85aa6063d6c1806)
 
 ## 8.0.2
 > Released Apr 7, 2022
