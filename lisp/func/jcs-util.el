@@ -89,7 +89,7 @@ execution."
   (declare (indent 0) (debug t))
   `(noflet ((switch-to-buffer (&rest args) (apply #'jcs-switch-to-buffer-other-window args))
             (find-file (&rest args) (apply #'find-file-other-window args)))
-           ,@body))
+     ,@body))
 
 ;;
 ;; (@* "Module" )
@@ -991,13 +991,9 @@ If optional argument REVERSE is non-nil, LIST item and ELT argument."
       (with-temp-buffer (insert-file-contents path) (buffer-string))
     ""))
 
-(defun jcs-create-path-if-not-exists (path)
-  "Create PATH if it doesn't exist."
-  (unless (jcs-directory-p path) (make-directory path t)))
-
 (defun jcs-move-path (path dest)
   "Move PATH to DEST."
-  (jcs-create-path-if-not-exists dest)
+  (ignore-errors (make-directory dest t))
   (jcs-shell-execute (if jcs-is-windows "move" "mv") (expand-file-name path) (expand-file-name dest)))
 
 ;;
