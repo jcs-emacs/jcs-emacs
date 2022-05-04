@@ -196,6 +196,7 @@
     parse-it
     password-generator
     password-mode
+    pip-requirements
     powershell
     preview-it
     processing-mode

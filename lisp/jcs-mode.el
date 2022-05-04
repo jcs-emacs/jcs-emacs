@@ -439,7 +439,6 @@ Note this is opposite logic to the toggle mode function."
     ("\\.ts'?\\'"                  . typescript-mode)
     ("\\.tsx'?\\'"                 . typescript-mode)
     ("\\.toml'?\\'"                . conf-toml-mode)
-    ("\\.txt'?\\'"                 . text-mode)
 ;;; V
     ("\\.v'?\\'"                   . verilog-mode)
     ("\\.vim\\(rc\\)'?\\'"         . vimrc-mode)
