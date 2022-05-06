@@ -189,6 +189,7 @@
     nim-mode
     nix-mode
     noflet
+    on
     org-bullets
     organize-imports-java
     package-build
