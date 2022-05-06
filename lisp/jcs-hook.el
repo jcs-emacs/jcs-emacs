@@ -43,21 +43,32 @@
 ;;
 
 (jcs-add-hook 'after-init-hook
-  (jcs-require '(dashboard moody))
+  (jcs-require '(dashboard moody on))
   (use-ttf-set-default-font)
 
   (run-with-idle-timer 0 nil #'jcs-hook--init-delay)
 
   (jcs-setup-default-theme))
 
-(defun jcs-hook--init-delay ()
-  "Delay some executions for faster speed."
-  (auto-read-only-mode 1)
-  (auto-scroll-bar-mode 1)
-  (balanced-windows-mode 1)
+(jcs-add-hook 'on-first-input-hook
   (global-company-mode t)
   (delete-selection-mode 1)
+  (global-region-occurrences-highlighter-mode 1)
+  (transient-mark-mode t)
+  (which-key-mode 1)
+  (global-whitespace-cleanup-mode 1)
+  (whole-line-or-region-global-mode 1))
+
+(jcs-add-hook 'on-first-file-hook
+  (auto-read-only-mode 1)
+  (global-tree-sitter-mode 1)
   (global-docstr-mode 1)
+  (global-so-long-mode 1))
+
+(defun jcs-hook--init-delay ()
+  "Delay some executions for faster speed."
+  (auto-scroll-bar-mode 1)
+  (balanced-windows-mode 1)
   (global-eldoc-mode 1)
   (electric-indent-mode 1)
   (electric-pair-mode 1)
@@ -68,17 +79,10 @@
   (message-clean-mode 1)
   (minions-mode 1)
   (global-page-break-lines-mode 1)
-  (global-region-occurrences-highlighter-mode 1)
   (right-click-context-mode 1)
   (show-paren-mode t)
-  (global-so-long-mode 1)
-  (transient-mark-mode t)
-  (global-tree-sitter-mode 1)
   (vertico-mode 1)
   (vs-revbuf-mode 1)
-  (which-key-mode 1)
-  (global-whitespace-cleanup-mode 1)
-  (whole-line-or-region-global-mode 1)
   (jcs-funcall-fboundp #'jcs-mode-load-requires)
   (jcs-require '(jcs-edit))
   (jcs-with-current-buffer jcs-message-buffer-name (messages-buffer-mode))
