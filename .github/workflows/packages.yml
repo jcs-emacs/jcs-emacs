@@ -102,5 +102,5 @@ jobs:
       uses: ad-m/github-push-action@master
       with:
         repository: ${{ env.REPO_BADGES }}
-        github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        github_token: ${{ secrets.PAT }}
         branch: master
