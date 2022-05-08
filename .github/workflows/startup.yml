@@ -105,7 +105,7 @@ jobs:
         git commit -m "Update .emacs.d - main.tar"
 
     - name: Push
-      action: jcs090218/github-push-action@master
+      uses: jcs090218/github-push-action@master
       with:
         repository: ${{ env.REPO_BIN }}
         github_token: ${{ secrets.PAT }}
