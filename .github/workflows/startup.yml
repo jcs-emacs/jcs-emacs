@@ -104,7 +104,8 @@ jobs:
         git add .
         git commit -m "Update .emacs.d - main.tar"
 
-    - uses: Wandalen/wretry.action@v1.0.11
+    - name: Push binaries
+      uses: Wandalen/wretry.action@v1.0.15
       with:
         action: jcs090218/github-push-action@master
         with: |
