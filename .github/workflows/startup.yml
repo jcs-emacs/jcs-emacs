@@ -91,12 +91,18 @@ jobs:
     - name: Zipping .emacs.d
       run: tar -C $HOME -cvf main.tar .emacs.d
 
+    - name: Set git config
+      run: |
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git config receive.denynonfastforwards false
+
     - name: Commit zipped .emacs.d
-      uses: stefanzweifel/git-auto-commit-action@v4
-      with:
-        commit_message: Update .emacs.d - main.tar
-        commit_user_name: github-actions
-        commit_user_email: github-actions@github.com
+      continue-on-error: true
+      run: |
+        git pull
+        git add .
+        git commit -m "Update .emacs.d - main.tar"
 
     - uses: Wandalen/wretry.action@v1.0.11
       with:
