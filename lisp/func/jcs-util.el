@@ -234,8 +234,11 @@ See function `jcs-string-compare-p' for argument TYPE."
   "Return non-nil if CMD executed succesfully with ARGS."
   (save-window-excursion
     (jcs-mute-apply
-      (= 0 (shell-command (concat cmd " "
-                                  (mapconcat #'shell-quote-argument args " ")))))))
+      (= 0 (shell-command
+            (concat cmd " "
+                    (mapconcat #'shell-quote-argument
+                               (cl-remove-if #'s-blank-str-p args)
+                               " ")))))))
 
 ;;
 ;; (@* "Event" )
@@ -994,7 +997,9 @@ If optional argument REVERSE is non-nil, LIST item and ELT argument."
 (defun jcs-move-path (path dest)
   "Move PATH to DEST."
   (ignore-errors (make-directory dest t))
-  (jcs-shell-execute (if jcs-is-windows "move" "mv") (expand-file-name path) (expand-file-name dest)))
+  (jcs-shell-execute (if jcs-is-windows "move" "mv")
+                     (unless jcs-is-windows "-f")
+                     (expand-file-name path) (expand-file-name dest)))
 
 ;;
 ;; (@* "File" )
