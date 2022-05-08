@@ -112,3 +112,4 @@ jobs:
           github_token: ${{ secrets.PAT }}
           branch: master
         attempt_limit: 7
+        attempt_delay: 1000
