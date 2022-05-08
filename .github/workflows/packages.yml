@@ -99,7 +99,7 @@ jobs:
 
     - name: Push generated badges - packages
       continue-on-error: true
-      uses: ad-m/github-push-action@master
+      uses: jcs090218/github-push-action@master
       with:
         repository: ${{ env.REPO_BADGES }}
         github_token: ${{ secrets.PAT }}
