@@ -374,7 +374,9 @@
            ("DEPRECATED"  . "DarkOrange3")
            ("TOPIC"       . "slate blue")
            ("SEE"         . "slate blue")))
-  (advice-add #'hl-todo--inside-comment-or-string-p :override #'jcs-inside-comment-or-string-p))
+  (advice-add #'hl-todo--inside-comment-or-string-p :override #'jcs-inside-comment-or-string-p)
+  (advice-add #'hl-todo-previous :after #'jcs--recenter--advice-after)
+  (advice-add #'hl-todo-next :after #'jcs--recenter--advice-after))
 
 (leaf impatient-showdown
   :init

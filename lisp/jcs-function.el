@@ -6,7 +6,7 @@
 ;; (@* "Advices" )
 ;;
 
-(defun jcs--recenter--advice-after ()
+(defun jcs--recenter--advice-after (&rest _)
   "Advice for commands that we do recenter after execution."
   (call-interactively #'recenter))
 
