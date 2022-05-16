@@ -45,9 +45,28 @@
 (jcs-add-hook 'after-init-hook
   (jcs-require '(dashboard moody on))
   (use-ttf-set-default-font)
+
+  (run-with-idle-timer 0 nil #'jcs-hook--init-delay)
+
   (jcs-setup-default-theme))
 
-(jcs-add-hook 'on-init-ui-hook
+(jcs-add-hook 'on-first-input-hook
+  (global-company-mode t)
+  (delete-selection-mode 1)
+  (global-region-occurrences-highlighter-mode 1)
+  (transient-mark-mode t)
+  (which-key-mode 1)
+  (global-whitespace-cleanup-mode 1)
+  (whole-line-or-region-global-mode 1))
+
+(jcs-add-hook 'on-first-file-hook
+  (auto-read-only-mode 1)
+  (global-tree-sitter-mode 1)
+  (global-docstr-mode 1)
+  (global-so-long-mode 1))
+
+(defun jcs-hook--init-delay ()
+  "Delay some executions for faster speed."
   (auto-scroll-bar-mode 1)
   (balanced-windows-mode 1)
   (global-eldoc-mode 1)
@@ -70,22 +89,7 @@
   (jcs-with-current-buffer jcs-scratch-buffer-name (lisp-interaction-mode))
   ;; Lower the `GC' back to normal threshold
   (jcs-gc-cons-threshold-speed-up nil)
-  (message nil))
-
-(jcs-add-hook 'on-first-input-hook
-  (global-company-mode t)
-  (delete-selection-mode 1)
-  (global-region-occurrences-highlighter-mode 1)
-  (transient-mark-mode t)
-  (which-key-mode 1)
-  (global-whitespace-cleanup-mode 1)
-  (whole-line-or-region-global-mode 1))
-
-(jcs-add-hook 'on-first-file-hook
-  (auto-read-only-mode 1)
-  (global-tree-sitter-mode 1)
-  (global-docstr-mode 1)
-  (global-so-long-mode 1))
+  (message nil))  ; mute at the very end!
 
 ;;
 ;; (@* "Pre/Post Command" )
