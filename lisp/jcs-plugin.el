@@ -528,15 +528,16 @@
 (leaf message-clean-mode
   :init
   (setq message-clean-mode-mute-commands '(push-mark set-mark-command)
-        message-clean-mode-echo-commands '(mwheel-scroll
-                                           previous-line next-line
-                                           jcs-beginning-of-line jcs-end-of-line
-                                           mark-whole-buffer
-                                           indent-region
-                                           isearch-done
-                                           undefined
-                                           toggle-truncate-lines
-                                           define-it)
+        message-clean-mode-echo-commands
+        (append '(mwheel-scroll
+                  previous-line next-line
+                  jcs-beginning-of-line jcs-end-of-line
+                  mark-whole-buffer
+                  indent-region)
+                '(isearch-done
+                  undefined
+                  toggle-truncate-lines
+                  define-it))
         message-clean-mode-minor-mode 'echo))
 
 (leaf meta-view
