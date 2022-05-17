@@ -21,6 +21,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add new package `company-glsl` (122b4a1b541acf7a810253d986d423e216a92ceb)
 * Add new package `arduino-mode` (d4ffb8c6b5ca99619c601c26c85aa6063d6c1806)
 * Add new package `on` and configured to improve startup speed (8c9f797492a74cdb30ba9ff6f7ee483c0683def5)
+* Move init delay to `on-init-ui-hook` (705afe9744fc3efb2ee005beb8db85e0a08b6fbe)
 
 ## 8.0.2
 > Released Apr 7, 2022
