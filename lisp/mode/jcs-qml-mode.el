@@ -17,8 +17,6 @@
 ;;
 
 (jcs-add-hook 'qml-mode-hook
-  (company-fuzzy-backend-add 'company-qml)
-
   ;; File Header
   (jcs-insert-header-if-valid '("[.]qml")
                               'jcs-insert-qml-template))
