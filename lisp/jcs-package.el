@@ -203,6 +203,7 @@
     processing-mode
     project-abbrev
     python-mode
+    qml-mode
     quelpa
     rainbow-mode
     region-occurrences-highlighter

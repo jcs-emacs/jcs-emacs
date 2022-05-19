@@ -285,6 +285,7 @@ Note this is opposite logic to the toggle mode function."
     (powershell              . jcs-powershell-mode)
     (processing-mode)
     (python-mode)
+    (qml-mode)
     (rjsx-mode               . jcs-jsx-mode)
     (ruby-mode)
     (rust-mode)
