@@ -59,6 +59,7 @@
     powershell-mode
     conf-javaprop-mode
     python-mode
+    qml-mode
     r-mode
     ruby-mode
     rust-mode
