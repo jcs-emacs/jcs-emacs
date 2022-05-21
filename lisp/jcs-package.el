@@ -31,6 +31,7 @@
     ada-mode
     adaptive-wrap
     alt-codes
+    annotate
     apache-mode
     applescript-mode
     arduino-mode
