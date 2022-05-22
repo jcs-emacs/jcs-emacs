@@ -249,6 +249,7 @@ Note this is opposite logic to the toggle mode function."
     (crystal-mode)
     (csharp-mode)
     (css-mode)
+    (d-mode)
     (dart-mode)
     (dockerfile-mode)
     (elixir-mode)
