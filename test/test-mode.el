@@ -13,6 +13,7 @@
   '(actionscript-mode
     ;;ada-mode
     ;;agda-mode
+    apache-mode
     applescript-mode
     ;;nasm-mode masm-mode
     basic-mode
