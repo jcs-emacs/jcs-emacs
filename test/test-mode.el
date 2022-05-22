@@ -28,6 +28,7 @@
     csharp-mode
     csproj-mode
     css-mode
+    d-mode
     dart-mode
     dockerfile-mode
     elixir-mode

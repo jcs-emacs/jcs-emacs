@@ -75,6 +75,7 @@
     crystal-mode
     csproj-mode
     csv-mode
+    d-mode
     dashboard-ls
     define-it
     diff-hl
