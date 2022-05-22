@@ -24,7 +24,9 @@
     cmake-mode
     cobol-mode
     coffee-mode
+    crystal-mode
     csharp-mode
+    csproj-mode
     css-mode
     dart-mode
     dockerfile-mode

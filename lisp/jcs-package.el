@@ -72,6 +72,7 @@
     company-nginx
     company-shell
     consult
+    crystal-mode
     csproj-mode
     csv-mode
     dashboard-ls
