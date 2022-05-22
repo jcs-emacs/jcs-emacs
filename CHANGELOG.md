@@ -26,6 +26,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add new package `coffee-mode` (d7a9a999e9dbd8c47fc3e2ac559517b776c0ac31)
 * Add new package `crystal-mode` (72c3dba1d496fd85e96ea8f80da1caa3a56b2e06)
 * Add new package `d-mode` (8bbb6fdce8351cccf22b59e08efa6a5969d8586e)
+* Add new package `feature-mode` (76f0696c15f60c44aced2a6c58a3039d7d214fcf)
 
 ## 8.0.2
 > Released Apr 7, 2022
