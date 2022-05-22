@@ -34,6 +34,7 @@
     elixir-mode
     elm-mode
     erlang-mode
+    feature-mode
     fountain-mode
     fsharp-mode
     gdscript-mode
