@@ -9,8 +9,6 @@
 
 (load (concat user-emacs-directory "test/startup/test-startup.el"))
 
-(package-activate-all)
-
 (defconst test-modes
   '(actionscript-mode
     ;;ada-mode
@@ -36,7 +34,7 @@
     elixir-mode
     elm-mode
     erlang-mode
-    feature-mode
+    ;;feature-mode
     fountain-mode
     fsharp-mode
     gdscript-mode
