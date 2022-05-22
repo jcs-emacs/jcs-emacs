@@ -118,6 +118,7 @@
     fountain-mode
     fsharp-mode
     gdscript-mode
+    git-assembler-mode
     git-link
     git-modes
     github-browse-file
@@ -128,9 +129,11 @@
     google-this
     goto-char-preview
     goto-line-preview
+    graphql-mode
     haskell-mode
     haxe-mode
     helpful
+    hexo
     hgignore-mode
     highlight-escape-sequences
     highlight-indent-guides

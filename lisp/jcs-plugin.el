@@ -259,11 +259,12 @@
          '("[*]CMake Temporary[*]")
          '("[*]org-src-fontification")
          '("[*]ASCII[*]")
-         '("[*]npm:")
+         '("[*]npm:" "[*]hexo")
          '("[*]Flutter"))
         diminish-buffer-mode-list
         (append
-         '("dired-mode"))))
+         '("dired-mode")
+         '("shell-mode" "eshell-mode"))))
 
 (leaf diredfl
   :hook (dired-mode-hook . diredfl-mode))
