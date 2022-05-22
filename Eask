@@ -8,4 +8,7 @@
        "lisp/*.el"
        "lisp/func/*.el"
        "lisp/mode/*.el"
-       "site-lisp/*.el")
+       "site-lisp/*.el"
+       "banners/**"
+       "fonts/**"
+       "templates/**")
