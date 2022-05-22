@@ -60,6 +60,7 @@
     clojure-mode
     cmake-font-lock
     cobol-mode
+    coffee-mode
     com-css-sort
     command-log-mode
     company-box

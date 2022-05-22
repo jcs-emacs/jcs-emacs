@@ -23,6 +23,7 @@
     clojure-mode
     cmake-mode
     cobol-mode
+    coffee-mode
     csharp-mode
     css-mode
     dart-mode
