@@ -104,6 +104,7 @@
     esup
     exec-path-from-shell
     expand-region
+    feature-mode
     file-header
     fill-page
     flx-rs
