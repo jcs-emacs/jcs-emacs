@@ -24,6 +24,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Move init delay to `on-init-ui-hook` (705afe9744fc3efb2ee005beb8db85e0a08b6fbe)
 * Add new package `qml-mode` (e383783356143f9cb25ad315be6227823a7b44d7)
 * Add new package `coffee-mode` (d7a9a999e9dbd8c47fc3e2ac559517b776c0ac31)
+* Add new package `crystal-mode` (72c3dba1d496fd85e96ea8f80da1caa3a56b2e06)
 
 ## 8.0.2
 > Released Apr 7, 2022
