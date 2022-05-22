@@ -23,6 +23,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add new package `on` and configured to improve startup speed (8c9f797492a74cdb30ba9ff6f7ee483c0683def5)
 * Move init delay to `on-init-ui-hook` (705afe9744fc3efb2ee005beb8db85e0a08b6fbe)
 * Add new package `qml-mode` (e383783356143f9cb25ad315be6227823a7b44d7)
+* Add new package `coffee-mode` (d7a9a999e9dbd8c47fc3e2ac559517b776c0ac31)
 
 ## 8.0.2
 > Released Apr 7, 2022
