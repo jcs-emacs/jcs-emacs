@@ -681,6 +681,13 @@
   ((quelpa-before-hook . (lambda () (setq jcs-package-installing-p t)))
    (quelpa-after-hook .  (lambda () (setq jcs-package-installing-p nil)))))
 
+(leaf recentf-excl
+  :init
+  (setq recentf-excl-commands '(jcs-goto-definition
+                                jcs-goto-definition-other-window
+                                jcs-peek-definition
+                                ediff-find-file)))
+
 (leaf region-occurrences-highlighter
   :init
   (setq region-occurrences-highlighter-min-size 1))

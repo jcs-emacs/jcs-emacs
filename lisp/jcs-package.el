@@ -214,6 +214,7 @@
     qml-mode
     quelpa
     rainbow-mode
+    recentf-excl
     region-occurrences-highlighter
     region-state
     restart-emacs
@@ -361,23 +362,23 @@
   (require 'jcs-util) (require 'jcs-reporter)
   (package-initialize)
   (jcs-process-reporter-start "Building dependency graph...")
-  (let ((new-selected-pkg (jcs-package--get-selected-packages))
-        (installed-list (jcs-package-installed-list))
-        jcs-recentf-tracking-p)  ; ignore recent files
-    (dolist (name installed-list)
-      (if (package-installed-p name)
-          (when (jcs-package--package-do-rebuild name)
-            (jcs-process-reporter-update (format "Build for package `%s`" name))
-            (if (jcs-package--used-elsewhere-p name)
-                (setq new-selected-pkg (remove name new-selected-pkg))
-              (push name new-selected-pkg)))
-        (setq new-selected-pkg (remove name new-selected-pkg))))
-    (delete-dups new-selected-pkg)
-    (setq new-selected-pkg (sort new-selected-pkg #'string-lessp))
-    (if (equal new-selected-pkg package-selected-packages)
-        (jcs-process-reporter-done "No need to update dependency graph")
-      (package--save-selected-packages new-selected-pkg)
-      (jcs-process-reporter-done "Done rebuild dependency graph"))))
+  (recentf-excl-it
+    (let ((new-selected-pkg (jcs-package--get-selected-packages))
+          (installed-list (jcs-package-installed-list)))
+      (dolist (name installed-list)
+        (if (package-installed-p name)
+            (when (jcs-package--package-do-rebuild name)
+              (jcs-process-reporter-update (format "Build for package `%s`" name))
+              (if (jcs-package--used-elsewhere-p name)
+                  (setq new-selected-pkg (remove name new-selected-pkg))
+                (push name new-selected-pkg)))
+          (setq new-selected-pkg (remove name new-selected-pkg))))
+      (delete-dups new-selected-pkg)
+      (setq new-selected-pkg (sort new-selected-pkg #'string-lessp))
+      (if (equal new-selected-pkg package-selected-packages)
+          (jcs-process-reporter-done "No need to update dependency graph")
+        (package--save-selected-packages new-selected-pkg)
+        (jcs-process-reporter-done "Done rebuild dependency graph")))))
 
 (defun jcs-package--menu-execute--advice-around (fnc &rest args)
   "Execution around function `package-menu-execute' with FNC and ARGS."
