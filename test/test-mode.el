@@ -45,6 +45,7 @@
     haxe-mode
     ini-mode
     ;;java-mode
+    javap-mode
     jayces-mode
     jenkinsfile-mode
     js2-mode
