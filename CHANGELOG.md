@@ -29,6 +29,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add new package `feature-mode` (76f0696c15f60c44aced2a6c58a3039d7d214fcf)
 * Add new package `git-assembler-mode`, `graphql-mode`, and `hexo` (444fd96c9a5ebbdab04f74ae18f3a31978b3acfa)
 * Add new package `recentf-excl` (1fde6265b338d17efa5f47b908ad4b30c159d9da)
+* Add new package `javap-mode` (6e6f53f1f2cc05cef2f0065ad214f6d58d65eaa3)
 
 ## 8.0.2
 > Released Apr 7, 2022
