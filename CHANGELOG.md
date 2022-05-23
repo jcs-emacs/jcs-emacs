@@ -27,7 +27,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add new package `crystal-mode` (72c3dba1d496fd85e96ea8f80da1caa3a56b2e06)
 * Add new package `d-mode` (8bbb6fdce8351cccf22b59e08efa6a5969d8586e)
 * Add new package `feature-mode` (76f0696c15f60c44aced2a6c58a3039d7d214fcf)
-* Add new packages `git-assembler-mode`, `graphql-mode`, and `hexo` (444fd96c9a5ebbdab04f74ae18f3a31978b3acfa)
+* Add new package `git-assembler-mode`, `graphql-mode`, and `hexo` (444fd96c9a5ebbdab04f74ae18f3a31978b3acfa)
+* Add new package `recentf-excl` (1fde6265b338d17efa5f47b908ad4b30c159d9da)
 
 ## 8.0.2
 > Released Apr 7, 2022
