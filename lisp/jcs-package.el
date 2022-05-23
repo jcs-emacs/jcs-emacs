@@ -247,7 +247,6 @@
     ts-fold
     turbo-log
     typescript-mode
-    undercover
     undo-tree
     unfill
     use-ttf
