@@ -149,6 +149,7 @@
     ini-mode
     isearch-project
     javadoc-lookup
+    javap-mode
     jayces-mode
     jenkinsfile-mode
     js2-mode
