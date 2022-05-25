@@ -445,8 +445,10 @@ delay. HEIGHT of the tooltip that will display."
   "Return the describe symbol string."
   (let ((thing (symbol-at-point)))
     (save-window-excursion
-      (jcs-mute-apply (describe-symbol thing))
-      (with-current-buffer "*Help*" (buffer-string)))))
+      (with-current-buffer "*Help*"
+        (let (buffer-read-only) (erase-buffer))
+        (jcs-mute-apply (describe-symbol thing))
+        (buffer-string)))))
 
 (defun jcs-tip-describe-it ()
   "Describe symbol at point."
@@ -458,6 +460,7 @@ delay. HEIGHT of the tooltip that will display."
 (defun jcs-describe-thing-in-popup ()
   "Show current symbol info."
   (interactive)
+  (company-abort)
   (if (jcs--lsp-connected-p)
       (progn (require 'lsp-ui)
              (or (ignore-errors (call-interactively #'lsp-ui-doc-glance))
