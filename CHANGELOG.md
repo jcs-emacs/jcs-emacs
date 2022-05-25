@@ -30,6 +30,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add new package `git-assembler-mode`, `graphql-mode`, and `hexo` (444fd96c9a5ebbdab04f74ae18f3a31978b3acfa)
 * Add new package `recentf-excl` (1fde6265b338d17efa5f47b908ad4b30c159d9da)
 * Add new package `javap-mode` (6e6f53f1f2cc05cef2f0065ad214f6d58d65eaa3)
+* Fix conflict between `company-box-doc` and `dashboard` refresh (d49a0310c3a28e1edabb6ba11436b046c701e63f)
+* Fix popup tip showing previous/last description (45451bb3460f0ffabb6af35c989bb3e6290e594c)
 
 ## 8.0.2
 > Released Apr 7, 2022
