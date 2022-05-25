@@ -33,9 +33,10 @@
     (setq jcs-created-parent-dir-path jcs-current-created-parent-dir-path
           jcs-current-created-parent-dir-path nil)))
 
-(jcs-add-hook 'window-buffer-change-functions
-  (jcs-buffer-menu-refresh-buffer)
-  (jcs-dashboard-refresh-buffer))
+(jcs-add-hook 'window-state-change-hook
+  (unless (active-minibuffer-window)
+    (jcs-buffer-menu-refresh-buffer)
+    (jcs-dashboard-refresh-buffer)))
 
 ;;
 ;; (@* "Initialization" )
