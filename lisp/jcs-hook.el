@@ -20,7 +20,8 @@
  (lambda () (if (frame-focus-state) (jcs-hook--focus-in) (jcs-hook--focus-out))))
 
 (jcs-add-hook 'window-state-change-hook
-  (unless (active-minibuffer-window)
+  (when (and (not (active-minibuffer-window))
+             (not (jcs-funcall-fboundp #'company--active-p)))
     (jcs-buffer-menu-refresh-buffer)
     (jcs-dashboard-refresh-buffer)))
 
