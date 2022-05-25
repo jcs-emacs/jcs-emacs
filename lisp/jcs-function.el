@@ -460,7 +460,7 @@ delay. HEIGHT of the tooltip that will display."
 (defun jcs-describe-thing-in-popup ()
   "Show current symbol info."
   (interactive)
-  (company-abort)
+  (jcs-funcall-fboundp #'company-abort)
   (if (jcs--lsp-connected-p)
       (progn (require 'lsp-ui)
              (or (ignore-errors (call-interactively #'lsp-ui-doc-glance))
