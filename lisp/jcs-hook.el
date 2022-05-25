@@ -3,7 +3,7 @@
 ;;; Code:
 
 ;;
-;; (@* "Focus In/Out" )
+;; (@* "Windows" )
 ;;
 
 (defun jcs-hook--focus-in ()
@@ -19,6 +19,11 @@
  :after after-focus-change-function
  (lambda () (if (frame-focus-state) (jcs-hook--focus-in) (jcs-hook--focus-out))))
 
+(jcs-add-hook 'window-state-change-hook
+  (unless (active-minibuffer-window)
+    (jcs-buffer-menu-refresh-buffer)
+    (jcs-dashboard-refresh-buffer)))
+
 ;;
 ;; (@* "Find Files" )
 ;;
@@ -32,10 +37,6 @@
   (when jcs-current-created-parent-dir-path
     (setq jcs-created-parent-dir-path jcs-current-created-parent-dir-path
           jcs-current-created-parent-dir-path nil)))
-
-(jcs-add-hook 'window-buffer-change-functions
-  (jcs-buffer-menu-refresh-buffer)
-  (jcs-dashboard-refresh-buffer))
 
 ;;
 ;; (@* "Initialization" )
@@ -92,7 +93,7 @@
   (global-so-long-mode 1))
 
 ;;
-;; (@* "Pre/Post Command" )
+;; (@* "Input" )
 ;;
 
 (jcs-add-hook 'pre-command-hook
