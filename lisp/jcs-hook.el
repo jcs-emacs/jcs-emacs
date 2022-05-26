@@ -80,6 +80,7 @@
 (jcs-add-hook 'on-first-input-hook
   (global-company-mode t)
   (delete-selection-mode 1)
+  (diminish-buffer-mode 1)
   (recentf-excl-mode 1)
   (global-region-occurrences-highlighter-mode 1)
   (transient-mark-mode t)

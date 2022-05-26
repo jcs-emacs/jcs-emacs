@@ -110,7 +110,6 @@
 ;;
 
 (buffer-menu-filter-mode 1)
-(diminish-buffer-mode 1)
 
 (provide 'jcs-buffer-menu)
 ;;; jcs-buffer-menu.el ends here
