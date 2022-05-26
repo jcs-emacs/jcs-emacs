@@ -445,7 +445,7 @@ delay. HEIGHT of the tooltip that will display."
   "Return the describe symbol string."
   (let ((thing (symbol-at-point)))
     (save-window-excursion
-      (with-current-buffer "*Help*"
+      (with-current-buffer (get-buffer-create "*Help*")
         (let (buffer-read-only) (erase-buffer))
         (jcs-mute-apply (describe-symbol thing))
         (buffer-string)))))
