@@ -32,6 +32,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add new package `javap-mode` (6e6f53f1f2cc05cef2f0065ad214f6d58d65eaa3)
 * Fix conflict between `company-box-doc` and `dashboard` refresh (d49a0310c3a28e1edabb6ba11436b046c701e63f)
 * Fix popup tip showing previous/last description (45451bb3460f0ffabb6af35c989bb3e6290e594c)
+* Fix bury buffer proceed before `diminish-buffer-mode` will jump to unwanted buffer (184ba39015b1b26342c13f8b107b69c389f0aeed)
 
 ## 8.0.2
 > Released Apr 7, 2022
