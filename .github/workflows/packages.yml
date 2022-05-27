@@ -104,3 +104,4 @@ jobs:
         repository: ${{ env.REPO_BADGES }}
         github_token: ${{ secrets.PAT }}
         branch: master
+        retry: 3
