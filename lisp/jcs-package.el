@@ -206,6 +206,7 @@
     parse-it
     password-generator
     password-mode
+    phpt-mode
     pip-requirements
     powershell
     preview-it
@@ -222,6 +223,7 @@
     reveal-in-folder
     right-click-context
     rjsx-mode
+    robots-txt-mode
     rust-mode
     scala-mode
     scrollable-quick-peek
