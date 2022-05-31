@@ -30,6 +30,7 @@
     css-mode
     d-mode
     dart-mode
+    dist-file-mode
     dockerfile-mode
     elixir-mode
     elm-mode
@@ -63,11 +64,13 @@
     org-mode
     pascal-mode
     perl-mode
+    phpt-mode
     powershell-mode
     conf-javaprop-mode
     python-mode
     qml-mode
     r-mode
+    robots-txt-mode
     ruby-mode
     rust-mode
     ssass-mode
