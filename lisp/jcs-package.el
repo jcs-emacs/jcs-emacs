@@ -81,6 +81,7 @@
     diff-hl
     diminish-buffer
     diredfl
+    dist-file-mode
     docker-compose-mode
     dockerfile-mode
     docstr
