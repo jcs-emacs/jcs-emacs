@@ -41,12 +41,6 @@
   (setq better-scroll-align-type 'relative
         better-scroll-allow-boundary-movement t))
 
-(leaf blamer
-  :init
-  (setq blamer-type 'visual
-        blamer-view 'overlay-right
-        blamer-idle-time 0.3))
-
 (leaf browse-kill-ring
   :init
   (setq browse-kill-ring-separator-face 'font-lock-comment-face)
@@ -455,9 +449,8 @@
 
 (leaf keypression
   :defer-config
-  (setq keypression-ignore-mouse-events
-        (append keypression-ignore-mouse-events
-                '(switch-frame menu-bar tool-bar tab-bar))))
+  (nconc keypression-ignore-mouse-events
+         '(switch-frame menu-bar tool-bar tab-bar)))
 
 (leaf line-reminder
   :init
@@ -466,10 +459,6 @@
   (unless jcs-graphic-p
     (setq line-reminder-saved-sign " |"
           line-reminder-modified-sign " |")))
-
-(leaf logms
-  :defer-config
-  (logms-mode 1))
 
 (leaf lsp-mode
   :init
