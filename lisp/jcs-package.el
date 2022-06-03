@@ -46,7 +46,6 @@
     balanced-windows
     basic-mode
     better-scroll
-    blamer
     bool-flip
     browse-kill-ring
     buffer-menu-filter
@@ -255,6 +254,7 @@
     undo-tree
     unfill
     use-ttf
+    vc-msg
     vertico-flx
     vimrc-mode
     visual-regexp
