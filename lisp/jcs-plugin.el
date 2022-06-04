@@ -317,7 +317,6 @@
   (advice-add 'flycheck-display-error-messages
               :around (lambda (fnc &rest args) (jcs-no-log-apply (apply fnc args)))))
 
-(leaf flycheck-cask         :hook (flycheck-mode-hook . flycheck-cask-setup))
 (leaf flycheck-eask         :hook (flycheck-mode-hook . flycheck-eask-setup))
 (leaf flycheck-elsa         :hook (flycheck-mode-hook . flycheck-elsa-setup))
 (leaf flycheck-grammarly    :hook (flycheck-mode-hook . flycheck-grammarly-setup))

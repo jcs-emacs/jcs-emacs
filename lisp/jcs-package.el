@@ -53,7 +53,6 @@
     buffer-wrap
     calfw
     cargo-mode
-    cask-mode
     ccls
     centaur-tabs
     clojure-mode
@@ -108,7 +107,6 @@
     file-header
     fill-page
     flx-rs
-    flycheck-cask
     flycheck-eask
     flycheck-elsa
     flycheck-grammarly
