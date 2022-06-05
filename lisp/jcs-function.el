@@ -180,10 +180,8 @@
       (jcs-mute-apply
         (jcs-save-window-excursion (dashboard-refresh-buffer))))))
 
-(defun jcs-dashboard--remove-item-under--adv (fnc &rest args)
-  "Preserve last dashboard path."
-  (jcs-with-dashboard-last-path (apply fnc args)))
-(advice-add 'dashboard-remove-item-under :around #'jcs-dashboard--remove-item-under--adv)
+(jcs-advice-add 'dashboard-remove-item-under :around
+  (jcs-with-dashboard-last-path (apply arg0 args)))
 
 (defun jcs-dashboard--get-banner-path ()
   "Return banner path."
@@ -198,10 +196,9 @@
 
 (defun jcs-eldoc-message-now () "Show eldoc message now." (interactive))
 
-(defun jcs-eldoc--message-command-p (command)
-  "Advice overwrite `eldoc--message-command-p' COMMAND."
+(jcs-advice-add 'eldoc--message-command-p :override
   ;; One can also loop through `eldoc-message-commands' and empty it out
-  (memq command
+  (memq arg0
         '(jcs-eldoc-message-now
           mouse-set-point
           jcs-real-space jcs-smart-space
@@ -214,7 +211,6 @@
           jcs-backward-word-capital jcs-forward-word-capital
           beginning-of-line end-of-line
           jcs-beginning-of-line jcs-end-of-line)))
-(advice-add 'eldoc--message-command-p :override #'jcs-eldoc--message-command-p)
 
 ;;
 ;; (@* "Electric Pair" )

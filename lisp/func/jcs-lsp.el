@@ -27,8 +27,7 @@
 ;; (@* "Registry" )
 ;;
 
-(advice-add 'lsp--message :around
-            (lambda (fnc &rest args) (jcs-no-log-apply (apply fnc args))))
+(jcs-advice-add 'lsp--message :around (jcs-no-log-apply (apply arg0 args)))
 
 (provide 'jcs-lsp)
 ;;; jcs-lsp.el ends here

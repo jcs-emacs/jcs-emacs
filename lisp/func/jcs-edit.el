@@ -90,15 +90,13 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
 ;; (@* "Return" )
 ;;
 
-(defun jcs--newline--advice-around (fnc &rest args)
-  "Advice execute around function `newline'."
+(jcs-advice-add 'newline :around
   (when (jcs-current-line-totally-empty-p) (indent-for-tab-command))
   (let ((ln-cur (buffer-substring (line-beginning-position) (point))))
-    (apply fnc args)
+    (apply arg0 args)
     (save-excursion
       (forward-line -1)
       (when (jcs-current-line-totally-empty-p) (insert ln-cur)))))
-(advice-add 'newline :around #'jcs--newline--advice-around)
 
 (defun jcs-ctrl-return-key ()
   "Global Ctrl-Return key."
@@ -505,15 +503,13 @@ in multiple windows.")
   ;; For instance, any `*helm-' buffers.
   (jcs-bury-diminished-buffer))
 
-(defun jcs--kill-this-buffer--advice-around (fnc &rest args)
-  "Advice execute around command `kill-this-buffer' with FNC and ARGS."
+(jcs-advice-add 'kill-this-buffer :around
   (require 'undo-tree)
   (let ((killed-buffer (current-buffer)) undoing-p)
     (jcs-with-current-buffer undo-tree-visualizer-buffer-name
       (setq undoing-p (eq undo-tree-visualizer-parent-buffer killed-buffer)))
-    (apply fnc args)
+    (apply arg0 args)
     (undo-tree-kill-visualizer)))
-(advice-add 'kill-this-buffer :around #'jcs--kill-this-buffer--advice-around)
 
 (defun jcs-kill-this-buffer ()
   "Kill this buffer."

@@ -245,10 +245,8 @@ P.S. You would need to restart Emacs to take effect from this variable."
 (jcs-advice-add 'recentf-track-opened-file :after
   (when (jcs-recentf-track-opened-file-p) (jcs-dashboard-refresh-buffer)))
 
-(advice-add
- 'recentf-track-opened-file :around
- (lambda (fnc &rest args)
-   (when (jcs-recentf-track-opened-file-p) (apply fnc args))))
+(jcs-advice-add 'recentf-track-opened-file :around
+  (when (jcs-recentf-track-opened-file-p) (apply arg0 args)))
 
 ;;; Save Files
 (defvar jcs-on-save-remove-control-M t
@@ -319,9 +317,7 @@ If ACT is non-nil; then make scroll less jumpy."
 ;;; Tabulated List
 (leaf tabulated-list
   :defer-config
-  (advice-add
-   'tabulated-list-col-sort :around
-   (lambda (fnc &rest args) (save-excursion (apply fnc args)))))
+  (jcs-advice-add 'tabulated-list-col-sort :around (save-excursion (apply arg0 args))))
 
 ;;; Theme
 (defconst jcs-theme-default 'vs-dark

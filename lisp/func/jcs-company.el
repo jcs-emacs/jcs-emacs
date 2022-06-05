@@ -25,10 +25,8 @@
 ;; (@* "Hooks" )
 ;;
 
-(defun jcs--company-complete-selection--advice-around (fnc &rest args)
-  "Exection around `company-complete-selection' command."
-  (let ((company-dabbrev-downcase t)) (apply fnc args)))
-(advice-add 'company-complete-selection :around #'jcs--company-complete-selection--advice-around)
+(jcs-advice-add 'company-complete-selection :around
+  (let ((company-dabbrev-downcase t)) (apply arg0 args)))
 
 (jcs-add-hook 'company-completion-started-hook (jcs-gc-cons-threshold-speed-up t))
 (jcs-add-hook 'company-after-completion-hook (jcs-gc-cons-threshold-speed-up nil))

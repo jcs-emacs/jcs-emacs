@@ -90,8 +90,7 @@
 
 (defun jcs-dashboard--goto-section (name)
   "Move to section NAME declares in variable `dashboard-item-shortcuts'."
-  (let ((fnc (intern (format "dashboard-jump-to-%s" name))))
-    (jcs-funcall-fboundp fnc)))
+  (jcs-funcall-fboundp (intern (format "dashboard-jump-to-%s" name))))
 
 (defun jcs-dashboard-current-index (name &optional pos)
   "Return the idex by NAME from POS."
@@ -110,18 +109,15 @@
     (when (jcs-end-of-line-p) (ignore-errors (forward-char -1)))
     (jcs-current-point-face 'dashboard-items-face)))
 
-(defun jcs--ffap-guesser--advice-around (fnc &rest args)
-  "Advice execution around function `ffap-guesser'.
-
-This advice is used when function `counsel--preselect-file' trying to
-get the truncate path from dashboard buffer (ffap)."
+(jcs-advice-add 'ffap-guesser :around
+  ;; This advice is used when function `counsel--preselect-file' trying to
+  ;; get the truncate path from dashboard buffer (ffap)
   (cl-case major-mode
     (`dashboard-mode
      (or (and (jcs-dashboard--on-path-item-p)
               (jcs-dashboard-current-item-in-path))
-         (apply fnc args)))  ; fallback
-    (t (apply fnc args))))
-(advice-add 'ffap-guesser :around #'jcs--ffap-guesser--advice-around)
+         (apply arg0 args)))  ; fallback
+    (t (apply arg0 args))))
 
 ;;
 ;; (@* "Registry" )
