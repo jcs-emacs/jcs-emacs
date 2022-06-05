@@ -10,8 +10,9 @@
   "Global advice-add utility."
   (declare (indent 2))
   `(cond ((listp ,symbols)
-          (dolist (symbol ,symbols) (advice-add symbol ,where (lambda (&rest _) ,@body))))
-         (t (advice-add ,symbols ,where (lambda (&rest _) ,@body)))))
+          (dolist (symbol ,symbols)
+            (advice-add symbol ,where (lambda (&optional arg0 &rest args) ,@body))))
+         (t (advice-add ,symbols ,where (lambda (&optional arg0 &rest args) ,@body)))))
 
 (defmacro jcs-add-hook (hooks &rest body)
   "Global add-hook utility."
