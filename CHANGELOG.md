@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## 8.0.3 (Unreleased)
+## 8.1.1 (Unreleased)
 > Released N/A
 
 * Drop support for Emacs 27.x (7fa61292bd1553cee46884a98f4959933b55bb12)
@@ -38,7 +38,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Improve `jcs-advice-add` macro (3ec7e943ab0d035610ce6391e7f9d8ed8ff58cb1)
 * Improve `jcs-add-hook` macro (48abd848fba1b2cefa6c7086ca73ac679c3f83ec)
 
-## 8.0.2
+## 8.1.0
 > Released Apr 7, 2022
 
 * Fix move file/directory with full path (f3f0c61deb7aa3cc1b437a104c767e10050a73ef)
