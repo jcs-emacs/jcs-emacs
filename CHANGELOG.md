@@ -35,6 +35,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Fix bury buffer proceed before `diminish-buffer-mode` will jump to unwanted buffer (184ba39015b1b26342c13f8b107b69c389f0aeed)
 * Add new packages `phpt-mode` and `robots-txt-mode` (eb4714b8280490fbf9c6f570479e6f3ba1a3a690)
 * Remove package `blamer` and add new package `vc-msg` (067cfb98a52263754b7d4c4222d2bd9c8c4d0601)
+* Improve `jcs-advice-add` macro (3ec7e943ab0d035610ce6391e7f9d8ed8ff58cb1)
+* Improve `jcs-add-hook` macro (48abd848fba1b2cefa6c7086ca73ac679c3f83ec)
 
 ## 8.0.2
 > Released Apr 7, 2022
