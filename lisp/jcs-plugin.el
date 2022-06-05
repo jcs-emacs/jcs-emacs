@@ -314,8 +314,8 @@
 
 (leaf flycheck
   :defer-config
-  (advice-add 'flycheck-display-error-messages
-              :around (lambda (fnc &rest args) (jcs-no-log-apply (apply fnc args)))))
+  (jcs-advice-add 'flycheck-display-error-messages :around
+    (jcs-no-log-apply (apply arg0 args))))
 
 (leaf flycheck-eask         :hook (flycheck-mode-hook . flycheck-eask-setup))
 (leaf flycheck-elsa         :hook (flycheck-mode-hook . flycheck-elsa-setup))
@@ -449,7 +449,12 @@
 (leaf keypression
   :defer-config
   (nconc keypression-ignore-mouse-events
-         '(switch-frame menu-bar tool-bar tab-bar)))
+         '(switch-frame menu-bar tool-bar tab-bar))
+
+  (jcs-advice-add 'keypression--pre-command :around
+    (unless (or (active-minibuffer-window)
+                (memq this-command '(execute-extended-command)))
+      (apply arg0 args))))
 
 (leaf line-reminder
   :init
@@ -560,8 +565,8 @@
   :defer-config
   (require 'jcs-disp)
   ;; XXX For issue, https://github.com/tarsius/moody/pull/41
-  (advice-add 'moody-redisplay :around
-              (lambda (fnc &rest args) (let ((inhibit-redisplay t)) (apply fnc args)))))
+  (jcs-advice-add 'moody-redisplay :around
+    (let ((inhibit-redisplay t)) (apply arg0 args))))
 
 (leaf most-used-words
   :init
@@ -634,15 +639,11 @@
   (jcs-advice-add 'popup-selected-item :after
     (setq jcs-popup-selected-item-flag-p (jcs-last-input-event-p "mouse-1")))
 
-  (defun jcs--popup-draw--advice-around (fnc &rest args)
-    "Advice around execute command `popup-draw'."
-    (let ((do-orig-fun t))
-      (when (and (jcs-last-input-event-p "mouse-1")
-                 (not (jcs-popup-clicked-on-menu-p)))
+  (jcs-advice-add 'popup-draw :around
+    (if (and (jcs-last-input-event-p "mouse-1")
+             (not (jcs-popup-clicked-on-menu-p)))
         (keyboard-quit)
-        (setq do-orig-fun nil))
-      (when do-orig-fun (apply fnc args))))
-  (advice-add 'popup-draw :around #'jcs--popup-draw--advice-around))
+      (apply arg0 args))))
 
 (leaf pos-tip
   :init
