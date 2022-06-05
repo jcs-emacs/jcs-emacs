@@ -18,8 +18,9 @@
   "Global add-hook utility."
   (declare (indent 1))
   `(cond ((listp ,hooks)
-          (dolist (hook ,hooks) (add-hook hook (lambda (&rest _) ,@body))))
-         (t (add-hook ,hooks (lambda (&rest _) ,@body)))))
+          (dolist (hook ,hooks)
+            (add-hook hook (lambda (&optional arg0 arg1 arg2 &rest args) ,@body))))
+         (t (add-hook ,hooks (lambda (&optional arg0 arg1 arg2 &rest args) ,@body)))))
 
 (defmacro jcs-with-gc-speed-up (&rest body)
   "Execute BODY with higher GC threshold."
