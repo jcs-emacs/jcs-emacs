@@ -146,9 +146,9 @@ to this configuration.
 
 ## 🕒 Startup Time
 
-![](https://raw.githubusercontent.com/jcs-emacs/badges/master/config/speed/dos.svg)
-![](https://raw.githubusercontent.com/jcs-emacs/badges/master/config/speed/mac.svg)
 ![](https://raw.githubusercontent.com/jcs-emacs/badges/master/config/speed/unix.svg)
+![](https://raw.githubusercontent.com/jcs-emacs/badges/master/config/speed/mac.svg)
+![](https://raw.githubusercontent.com/jcs-emacs/badges/master/config/speed/dos.svg)
 (in seconds)
 
 The average startup time for this configuration is around `15` to `25` seconds.
