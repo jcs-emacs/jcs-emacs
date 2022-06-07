@@ -330,15 +330,7 @@ See function `jcs-string-compare-p' for argument TYPE."
   `(progn
      (defvar data)
      (dolist (data ,alist)
-       (eval `(leaf-key* (eval (car data)) (cdr data))))))
-
-;;
-;; (@* "Timer" )
-;;
-
-(defun jcs-safe-kill-timer (tmr)
-  "Kill timer (TMR) the safe way."
-  (when (timerp tmr) (cancel-timer tmr) (setf tmr nil) tmr))
+       (leaf-key* (eval (car data)) (cdr data)))))
 
 ;;
 ;; (@* "Organize Code" )
@@ -354,71 +346,6 @@ See function `jcs-string-compare-p' for argument TYPE."
         (while (jcs-current-line-empty-p) (jcs-kill-whole-line)))
     ;; Make sure have one empty line between.
     (insert "\n")))
-
-;;
-;; (@* "Tab / Space" )
-;;
-
-(defun jcs-is-good-space-to-convert-to-tab-p ()
-  "Return non-nil, when we have enough spaces to convert to a tab."
-  (and (not (jcs-beginning-of-line-p))
-       (jcs-current-char-equal-p " ")))
-
-(defun jcs-convert-space-to-tab (is-forward)
-  "Convert space to tab if current point is space by direction IS-FORWARD."
-  (save-excursion
-    (let (good-to-convert)
-      (save-excursion
-        (when (jcs-is-good-space-to-convert-to-tab-p)
-          (if is-forward (forward-char 1) (backward-char 1))
-          (when (jcs-is-good-space-to-convert-to-tab-p)
-            (if is-forward (forward-char 1) (backward-char 1))
-            (when (jcs-is-good-space-to-convert-to-tab-p)
-              (if is-forward (forward-char 1) (backward-char 1))
-              (when (jcs-is-good-space-to-convert-to-tab-p)
-                (setq good-to-convert t))))))
-      (when good-to-convert
-        (if is-forward (backward-delete-char -4) (backward-delete-char 4))
-        (insert "\t")))))
-
-(defun jcs-backward-convert-space-to-tab ()
-  "Convert space to tab backward at point."
-  (interactive)
-  (jcs-convert-space-to-tab nil))
-
-(defun jcs-forward-convert-space-to-tab ()
-  "Convert space to tab forward at point."
-  (interactive)
-  (jcs-convert-space-to-tab t))
-
-(defun jcs-convert-tab-to-space (is-forward)
-  "Convert tab to space if current point is tab by direction, IS-FORWARD."
-  (save-excursion
-    (when (jcs-current-char-equal-p "\t")
-      (if is-forward (backward-delete-char -1) (backward-delete-char 1))
-      (insert "    "))))
-
-(defun jcs-backward-convert-tab-to-space ()
-  "Convert tab to space backward at point."
-  (interactive)
-  (jcs-convert-tab-to-space nil))
-
-(defun jcs-forward-convert-tab-to-space ()
-  "Convert tab to space forward at point."
-  (interactive)
-  (jcs-convert-tab-to-space t))
-
-(defun jcs-delete-space-infront-of-line ()
-  "Delete tab/spaces before the first character in line."
-  (interactive)
-  (jcs-mute-apply
-    (save-excursion
-      (ignore-errors
-        (back-to-indentation)
-        (push-mark-command nil)
-        (beginning-of-line)
-        (jcs-delete-region)
-        (deactivate-mark)))))
 
 ;;
 ;; (@* "Indentation" )
@@ -469,21 +396,6 @@ See function `jcs-string-compare-p' for argument TYPE."
     success))
 
 ;;
-;; (@* "Point" )
-;;
-
-(defun jcs-print-current-point ()
-  "Print out the current point."
-  (interactive)
-  (message "[INFO] Current point: %s" (point)))
-
-(defun jcs-column-to-point (column)
-  "Turn the current COLUMN to point."
-  (save-excursion
-    (move-to-column column)
-    (point)))
-
-;;
 ;; (@* "Character" )
 ;;
 
@@ -492,9 +404,9 @@ See function `jcs-string-compare-p' for argument TYPE."
   (interactive)
   (message "[INFO] Current character: %s" (jcs-get-current-char-string)))
 
-;; TOPIC: Check if a character (not string) is lowercase,
-;; uppercase, alphanumeric?
-;; SOURCE: https://stackoverflow.com/questions/27798296/check-if-a-character-not-string-is-lowercase-uppercase-alphanumeric
+;; TOPIC: Check if a character (not string) is lowercase, uppercase, alphanumeric?
+;;
+;; See https://stackoverflow.com/questions/27798296/check-if-a-character-not-string-is-lowercase-uppercase-alphanumeric
 
 (defun jcs-word-p (c)
   "Check if C a word."
@@ -601,31 +513,6 @@ BND-PT : boundary point."
 (defun jcs-is-there-char-forward-until-end-of-line-p ()
   "Check if there is character on the right before reaches the end of line."
   (jcs-is-there-char-forward-point-p (line-end-position)))
-
-;;
-;; (@* "Symbol" )
-;;
-
-(defun jcs-print-current-symbol ()
-  "Print out the current symbol."
-  (interactive)
-  (message "[INFO] Current symbol: %s" (symbol-at-point)))
-
-(defun jcs-is-start-of-symbol-p ()
-  "Check if position end of the symbol."
-  (save-excursion
-    (let ((cur-pos (point)))
-      (forward-symbol 1)
-      (forward-symbol -1)
-      (= (point) cur-pos))))
-
-(defun jcs-is-end-of-symbol-p ()
-  "Check if position end of the symbol."
-  (save-excursion
-    (let ((cur-pos (point)))
-      (forward-symbol -1)
-      (forward-symbol 1)
-      (= (point) cur-pos))))
 
 ;;
 ;; (@* "Word" )
