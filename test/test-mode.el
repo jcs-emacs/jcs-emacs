@@ -67,6 +67,7 @@
     phpt-mode
     powershell-mode
     conf-javaprop-mode
+    protobuf-mode
     python-mode
     qml-mode
     r-mode
