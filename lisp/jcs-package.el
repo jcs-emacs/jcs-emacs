@@ -210,6 +210,7 @@
     preview-it
     processing-mode
     project-abbrev
+    protobuf-mode
     python-mode
     qml-mode
     quelpa
