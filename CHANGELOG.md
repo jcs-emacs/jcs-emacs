@@ -37,6 +37,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Remove package `blamer` and add new package `vc-msg` (067cfb98a52263754b7d4c4222d2bd9c8c4d0601)
 * Improve `jcs-advice-add` macro (3ec7e943ab0d035610ce6391e7f9d8ed8ff58cb1)
 * Improve `jcs-add-hook` macro (48abd848fba1b2cefa6c7086ca73ac679c3f83ec)
+* Add new package `protobuf-mode` (6e4f27587b5a54a0a7bddc5e0a8cba2e008f1463)
 
 ## 8.1.0
 > Released Apr 7, 2022
