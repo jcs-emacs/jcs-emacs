@@ -288,7 +288,7 @@ kind of methods to support the maintainer you wish to.
 * *Minimap* - none, originally powered by ~~[sublimity](https://github.com/zk-phi/sublimity)~~.
 * *Mode Line* - powered by [moody](https://github.com/tarsius/moody).
 * *Multiple Cursor* - powered by [iedit](https://github.com/victorhge/iedit) and [multiple-cursors](https://github.com/magnars/multiple-cursors.el).
-* *Multiple Terminal* - powered by [bshell](https://github.com/plandes/bshell).
+* *Multiple Terminal* - powered by [multi-shell](https://github.com/jcs-elpa/multi-shell).
 * *Music Player* - none.
 * *Navigation/Searcher* - powered by [searcher](https://github.com/jcs-elpa/searcher) and [isearch-project](https://github.com/elpa-host/isearch-project).
 * *Package Archive* - see [here](#file_folder-package-archives).
