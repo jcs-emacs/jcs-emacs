@@ -453,7 +453,8 @@
 
   (jcs-advice-add 'keypression--pre-command :around
     (unless (or (active-minibuffer-window)
-                (memq this-command '(execute-extended-command)))
+                (memq this-command (append '(execute-extended-command)
+                                           jcs-ffap-commands)))
       (apply arg0 args))))
 
 (leaf line-reminder
