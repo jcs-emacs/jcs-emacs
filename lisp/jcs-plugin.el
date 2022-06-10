@@ -449,13 +449,7 @@
 (leaf keypression
   :defer-config
   (nconc keypression-ignore-mouse-events
-         '(switch-frame menu-bar tool-bar tab-bar))
-
-  (jcs-advice-add 'keypression--pre-command :around
-    (unless (or (active-minibuffer-window)
-                (memq this-command (append '(execute-extended-command)
-                                           jcs-ffap-commands)))
-      (apply arg0 args))))
+         '(switch-frame menu-bar tool-bar tab-bar)))
 
 (leaf line-reminder
   :init
