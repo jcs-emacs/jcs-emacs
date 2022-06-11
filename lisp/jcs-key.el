@@ -171,12 +171,12 @@
     ([M-down] . move-text-down)
 
 ;;; Mutliple Cursors
-    ((kbd "C-M-S-<up>")   . jcs-mc/mark-previous-like-this-line)
-    ((kbd "C-M-S-<down>") . jcs-mc/mark-next-like-this-line)
-    ((kbd "C-M-_")        . jcs-mc/mark-previous-similar-this-line)
-    ((kbd "C-M-+")        . jcs-mc/mark-next-similar-this-line)
-    ((kbd "C-M-=")        . jcs-mc/inc-string-distance-level)
-    ((kbd "C-M--")        . jcs-mc/dec-string-distance-level)
+    ((kbd "C-M-S-<up>")   . vsc-multiple-cursors-mark-previous-like-this-line)
+    ((kbd "C-M-S-<down>") . vsc-multiple-cursors-mark-next-like-this-line)
+    ((kbd "C-M-_")        . vsc-multiple-cursors-mark-previous-similar-this-line)
+    ((kbd "C-M-+")        . vsc-multiple-cursors-mark-next-similar-this-line)
+    ((kbd "C-M-=")        . vsc-multiple-cursors-inc-string-distance-level)
+    ((kbd "C-M--")        . vsc-multiple-cursors-dec-string-distance-level)
 
 ;;; Navigation
     ((kbd "C-<home>") . beginning-of-buffer)

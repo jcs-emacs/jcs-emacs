@@ -214,10 +214,6 @@
       completion-ignored-extensions nil
       suggest-key-bindings nil)
 
-;;; Multiple Cursors
-(defvar jcs-mc/string-distance-level 20
-  "The standard similarity, the lower require more precision.")
-
 ;;; Previous/Next keys
 (defcustom jcs-prev/next-key-type 'smart
   "Key definition for previous and next line.

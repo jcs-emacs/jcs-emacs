@@ -261,6 +261,7 @@
     vs-edit-mode
     vs-light-theme
     vs-revbuf
+    vsc-multiple-cursors
     vue-mode
     web-mode
     which-key
