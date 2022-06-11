@@ -40,6 +40,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add new package `protobuf-mode` (6e4f27587b5a54a0a7bddc5e0a8cba2e008f1463)
 * Remove tab and spaces converting util functions (5c92fa525f486ef46e2e309ee5d47f48f5fef66a)
 * Move built-in `multiple-cursors` functions to external package `vsc-multiple-cursors` (d12f928aeb4f7765772576d6d0cf6329ffb081b6)
+* Configure `multiple-cursors` for mouse click (454933b94926bab40c09810d49533c3eb3290239)
 
 ## 8.1.0
 > Released Apr 7, 2022
