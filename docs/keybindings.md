@@ -130,6 +130,7 @@ Here is the list of key bindins that defined in this configuration.
     * <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>down</kbd> - Mark next line.
     * <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>=</kbd> - Mark previous line similar to current line.
     * <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>-</kbd> - Mark next line similar to current line.
+    * <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>Left-Click</kbd> - Mart at current point.
 
     #### Similarity
 

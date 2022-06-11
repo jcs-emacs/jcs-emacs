@@ -171,12 +171,13 @@
     ([M-down] . move-text-down)
 
 ;;; Mutliple Cursors
-    ((kbd "C-M-S-<up>")   . vsc-multiple-cursors-mark-previous-like-this-line)
-    ((kbd "C-M-S-<down>") . vsc-multiple-cursors-mark-next-like-this-line)
-    ((kbd "C-M-_")        . vsc-multiple-cursors-mark-previous-similar-this-line)
-    ((kbd "C-M-+")        . vsc-multiple-cursors-mark-next-similar-this-line)
-    ((kbd "C-M-=")        . vsc-multiple-cursors-inc-string-distance-level)
-    ((kbd "C-M--")        . vsc-multiple-cursors-dec-string-distance-level)
+    ((kbd "C-M-S-<up>")     . vsc-multiple-cursors-mark-previous-like-this-line)
+    ((kbd "C-M-S-<down>")   . vsc-multiple-cursors-mark-next-like-this-line)
+    ((kbd "C-M-_")          . vsc-multiple-cursors-mark-previous-similar-this-line)
+    ((kbd "C-M-+")          . vsc-multiple-cursors-mark-next-similar-this-line)
+    ((kbd "C-M-=")          . vsc-multiple-cursors-inc-string-distance-level)
+    ((kbd "C-M--")          . vsc-multiple-cursors-dec-string-distance-level)
+    ((kbd "S-M-<mouse-1>")  . mc/add-cursor-on-click)
 
 ;;; Navigation
     ((kbd "C-<home>") . beginning-of-buffer)
