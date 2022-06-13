@@ -41,6 +41,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Remove tab and spaces converting util functions (5c92fa525f486ef46e2e309ee5d47f48f5fef66a)
 * Move built-in `multiple-cursors` functions to external package `vsc-multiple-cursors` (d12f928aeb4f7765772576d6d0cf6329ffb081b6)
 * Configure `multiple-cursors` for mouse click (454933b94926bab40c09810d49533c3eb3290239)
+* Add new package `gcmh` (39e381d56f12ba9866c71d1e7b2f31775ee25ed2)
+* Disable `page-break-lines` in `emacs-lisp-compilation-mode` (b337b4505ad14c8b756e810e9b1f7b65a598f786)
 
 ## 8.1.0
 > Released Apr 7, 2022
