@@ -50,6 +50,17 @@
 ;; indicates misconfiguration (don't rely on case insensitivity for file names).
 (setq auto-mode-case-fold nil)
 
+;; Disable bidirectional text scanning for a modest performance boost. I've set
+;; this to `nil' in the past, but the `bidi-display-reordering's docs say that
+;; is an undefined state and suggest this to be just as good:
+(setq-default bidi-display-reordering 'left-to-right
+              bidi-paragraph-direction 'left-to-right)
+
+;; Disabling the BPA makes redisplay faster, but might produce incorrect display
+;; reordering of bidirectional text with embedded parentheses and other bracket
+;; characters whose 'paired-bracket' Unicode property is non-nil.
+(setq bidi-inhibit-bpa t)
+
 ;; More performant rapid scrolling over unfontified regions. May cause brief
 ;; spells of inaccurate syntax highlighting right after scrolling, which should
 ;; quickly self-correct.
