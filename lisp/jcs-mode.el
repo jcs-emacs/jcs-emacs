@@ -131,6 +131,10 @@ Note this is opposite logic to the toggle mode function."
       ((kbd "C-_") . jcs-output-prev-compilation)
       ((kbd "C-+") . jcs-output-next-compilation))))
 
+(jcs-add-hook 'emacs-lisp-compilation-mode-hook
+  (setq truncate-lines t)
+  (page-break-lines-mode -1))
+
 ;;; Message Buffer
 (jcs-add-hook 'messages-buffer-mode-hook
   (goto-address-mode 1)
