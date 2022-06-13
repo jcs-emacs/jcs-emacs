@@ -324,6 +324,12 @@
 (leaf flycheck-package      :hook (flycheck-mode-hook . flycheck-package-setup))
 (leaf flycheck-relint       :hook (flycheck-mode-hook . flycheck-relint-setup))
 
+(leaf gcmh
+  :init
+  (setq gcmh-idle-delay 'auto
+        gcmh-auto-idle-delay-factor 10
+        gcmh-high-cons-threshold (* 16 1024 1024)))
+
 (leaf google-translate
   :init
   (setq google-translate-default-source-language "auto"

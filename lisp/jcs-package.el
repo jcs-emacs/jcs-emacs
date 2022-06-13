@@ -115,6 +115,7 @@
     flycheck-relint
     fountain-mode
     fsharp-mode
+    gcmh
     gdscript-mode
     git-assembler-mode
     git-link
