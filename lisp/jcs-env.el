@@ -295,6 +295,7 @@ If ACT is non-nil; then make scroll less jumpy."
   :defer-config
   (nconc so-long-minor-modes
          '(line-reminder-mode
+           page-break-lines-mode
            ts-fold-mode ts-fold-indicators-mode)))
 
 ;;; Startup
