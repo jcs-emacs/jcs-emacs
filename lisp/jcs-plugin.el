@@ -710,6 +710,13 @@
   (jcs-advice-add 'show-eol-disable :before
     (face-remap-add-relative 'whitespace-newline :inverse-video nil)))
 
+(leaf sideline
+  :hook (flycheck-mode-hook . sideline-mode)
+  :init
+  (setq sideline-backends-right '(sideline-flycheck)))
+
+(leaf sideline-flycheck :hook (flycheck-mode-hook . sideline-flycheck-mode))
+
 (leaf sql-indent
   :init
   ;; URL: https://www.emacswiki.org/emacs/SqlIndent

@@ -233,6 +233,7 @@
     shift-number
     show-eol
     shrink-whitespace
+    sideline-flycheck
     smart-comment
     smex
     sort-words
