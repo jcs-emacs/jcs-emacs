@@ -715,7 +715,7 @@
   :init
   (setq sideline-backends-right '(sideline-flycheck)))
 
-(leaf sideline-flycheck :hook (flycheck-mode-hook . sideline-flycheck-mode))
+(leaf sideline-flycheck :hook (flycheck-mode-hook . sideline-flycheck-setup))
 
 (leaf sql-indent
   :init
