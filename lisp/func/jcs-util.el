@@ -330,7 +330,7 @@ See function `jcs-string-compare-p' for argument TYPE."
   `(progn
      (defvar data)
      (dolist (data ,alist)
-       (leaf-key* (eval (car data)) (cdr data)))))
+       (eval `(leaf-key* (eval (car data)) (cdr data))))))
 
 ;;
 ;; (@* "Organize Code" )
