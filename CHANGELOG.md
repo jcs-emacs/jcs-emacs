@@ -45,6 +45,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Disable `page-break-lines` in `emacs-lisp-compilation-mode` (b337b4505ad14c8b756e810e9b1f7b65a598f786)
 * Add new package `sideline-flycheck` (18cdd626331297f77255a8faa922f5dd199bc416)
 * Add new package `docker` (bb0fbb611cce10a1ea4438b9bb0ab95110dd49cc)
+* Config compilation previous/next error keys (919a84801aef3631fa7dc496a8b997acaeeca0d2)
 
 ## 8.1.0
 > Released Apr 7, 2022
