@@ -80,6 +80,7 @@
     diminish-buffer
     diredfl
     dist-file-mode
+    docker
     docker-compose-mode
     dockerfile-mode
     docstr
