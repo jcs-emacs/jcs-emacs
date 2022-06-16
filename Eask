@@ -3,6 +3,7 @@
          "Emacs configuration works across all OSs")
 
 (website-url "https://github.com/jcs-emacs/jcs-emacs")
+(keywords "config")
 
 (depends-on "emacs" "28.1")
 
