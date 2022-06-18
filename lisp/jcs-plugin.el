@@ -567,7 +567,8 @@
   (require 'jcs-disp)
   ;; XXX For issue, https://github.com/tarsius/moody/pull/41
   (jcs-advice-add 'moody-redisplay :around
-    (let ((inhibit-redisplay t)) (apply arg0 args))))
+    (let ((inhibit-redisplay t)) (apply arg0 args)))
+  (unless jcs-graphic-p (jcs-advice-add 'moody-tab :override arg0)))
 
 (leaf most-used-words
   :init
