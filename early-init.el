@@ -32,23 +32,13 @@
     (setq-default file-name-handler-alist nil)
     ;; ...but restore `file-name-handler-alist' later, because it is needed for
     ;; handling encrypted or compressed files, among other things.
-    (defun jcs-reset-file-handler-alist-h ()
+    (defun jcs--reset-file-handler-alist-h ()
       (setq file-name-handler-alist
             ;; Merge instead of overwrite because there may have bene changes to
             ;; `file-name-handler-alist' since startup we want to preserve.
             (delete-dups (append file-name-handler-alist
                                  old-file-name-handler-alist))))
-    (add-hook 'emacs-startup-hook #'jcs-reset-file-handler-alist-h 101))
-
-  ;; Premature redisplays can substantially affect startup times and produce
-  ;; ugly flashes of unstyled Emacs.
-  (setq-default inhibit-redisplay t
-                inhibit-message t)
-  (add-hook 'window-setup-hook
-            (lambda ()
-              (setq-default inhibit-redisplay nil
-                            inhibit-message nil)
-              (redisplay)))
+    (add-hook 'emacs-startup-hook #'jcs--reset-file-handler-alist-h 101))
 
   ;; Site files tend to use `load-file', which emits "Loading X..." messages in
   ;; the echo area, which in turn triggers a redisplay. Redisplays can have a
