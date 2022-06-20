@@ -507,7 +507,7 @@
                               ,(face-foreground 'font-lock-string-face)
                               ,(face-foreground 'font-lock-constant-face)
                               ,(face-foreground 'font-lock-variable-name-face))
-        lsp-ui-sideline-enable t
+        lsp-ui-sideline-enable nil
         lsp-ui-sideline-show-hover nil
         lsp-ui-sideline-show-code-actions t
         lsp-ui-sideline-show-diagnostics nil
@@ -715,7 +715,8 @@
   :hook (flycheck-mode-hook . sideline-mode)
   :init
   (setq sideline-delay 0.2
-        sideline-backends-right '(sideline-flycheck)))
+        sideline-backends-right '(sideline-lsp
+                                  sideline-flycheck)))
 
 (leaf sideline-flycheck :hook (flycheck-mode-hook . sideline-flycheck-setup))
 

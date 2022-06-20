@@ -235,6 +235,7 @@
     show-eol
     shrink-whitespace
     sideline-flycheck
+    sideline-lsp
     smart-comment
     smex
     sort-words
