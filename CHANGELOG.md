@@ -46,6 +46,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add new package `sideline-flycheck` (18cdd626331297f77255a8faa922f5dd199bc416)
 * Add new package `docker` (bb0fbb611cce10a1ea4438b9bb0ab95110dd49cc)
 * Configure compilation previous/next error keys (919a84801aef3631fa7dc496a8b997acaeeca0d2)
+* Add new package `sideline-lsp` (b7b7c4ed9359412709f4fc0197005043b6d19fca)
 
 ## 8.1.0
 > Released Apr 7, 2022
