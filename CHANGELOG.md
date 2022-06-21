@@ -4,8 +4,13 @@ All notable changes to this project will be documented in this file.
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## 8.1.1 (Unreleased)
+## 8.2.1 (Unreleased)
 > Released N/A
+
+* N/A
+
+## 8.2.0
+> Released Jun 21, 2022
 
 * Drop support for Emacs 27.x (7fa61292bd1553cee46884a98f4959933b55bb12)
 * Prevent whitespace cleanup for `text-mode` (56dca1ac48ef4e613c777b82bac1247513e6c024)
