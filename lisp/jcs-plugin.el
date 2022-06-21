@@ -720,6 +720,10 @@
 
 (leaf sideline-flycheck :hook (flycheck-mode-hook . sideline-flycheck-setup))
 
+(leaf sideline-lsp
+  :init
+  (setq sideline-lsp-code-actions-prefix "‼ "))
+
 (leaf sql-indent
   :init
   ;; URL: https://www.emacswiki.org/emacs/SqlIndent
