@@ -715,8 +715,8 @@
   :hook (flycheck-mode-hook . sideline-mode)
   :init
   (setq sideline-delay 0.2
-        sideline-backends-right '(sideline-lsp
-                                  sideline-flycheck)))
+        sideline-backends-right '((sideline-lsp      . up)
+                                  (sideline-flycheck . down))))
 
 (leaf sideline-flycheck :hook (flycheck-mode-hook . sideline-flycheck-setup))
 
