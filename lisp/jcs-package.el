@@ -234,6 +234,7 @@
     shift-number
     show-eol
     shrink-whitespace
+    sideline-blame
     sideline-flycheck
     sideline-lsp
     smart-comment
