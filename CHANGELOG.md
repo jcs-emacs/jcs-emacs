@@ -7,7 +7,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 8.2.1 (Unreleased)
 > Released N/A
 
-* N/A
+* Add new package `sideline-blame` (c4713396e8937da498083bd3730f28bc114e3b47)
 
 ## 8.2.0
 > Released Jun 21, 2022
