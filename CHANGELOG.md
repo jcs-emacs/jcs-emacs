@@ -8,6 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 > Released N/A
 
 * Add new package `sideline-blame` (c4713396e8937da498083bd3730f28bc114e3b47)
+* Add new package `sideline-flymake` (322b5bb5123a60c5dbdcb11458d2c7eca92fe9a0)
 
 ## 8.2.0
 > Released Jun 21, 2022
