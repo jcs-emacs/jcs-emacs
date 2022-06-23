@@ -712,11 +712,13 @@
     (face-remap-add-relative 'whitespace-newline :inverse-video nil)))
 
 (leaf sideline
-  :hook (flycheck-mode-hook . sideline-mode)
+  :hook ((flycheck-mode-hook . sideline-mode)
+         (flymake-mode-hook  . sideline-mode))
   :init
   (setq sideline-delay 0.2
         sideline-backends-right '((sideline-lsp      . up)
-                                  (sideline-flycheck . down))))
+                                  (sideline-flycheck . down)
+                                  (sideline-flymake  . down))))
 
 (leaf sideline-flycheck :hook (flycheck-mode-hook . sideline-flycheck-setup))
 

@@ -236,6 +236,7 @@
     shrink-whitespace
     sideline-blame
     sideline-flycheck
+    sideline-flymake
     sideline-lsp
     smart-comment
     smex
