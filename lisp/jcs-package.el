@@ -87,6 +87,7 @@
     dotenv-mode
     dumb-jump
     eask-mode
+    echo-bar
     editorconfig
     eldoc-meta-net
     electric-cursor
