@@ -272,6 +272,12 @@
   :init
   (setq dumb-jump-selector 'completing-read))
 
+(leaf echo-bar
+  :config
+  (setq echo-bar-function
+        (lambda ()  ; String to display in echo bar
+          (format-time-string "%b %d, %Y | %H:%M:%S"))))
+
 (leaf editorconfig
   :init
   (setq editorconfig-trim-whitespaces-mode 'whitespace-cleanup-mode))
