@@ -274,9 +274,16 @@
 
 (leaf echo-bar
   :config
+  (require 'show-eol)
   (setq echo-bar-function
         (lambda ()  ; String to display in echo bar
-          (format-time-string "%b %d, %Y | %H:%M:%S"))))
+          (format
+           "%s: %s  %s  %s  %s"
+           (jcs-buffer-spaces-to-tabs)
+           (indent-control-get-indent-level-by-mode)
+           buffer-file-coding-system
+           (show-eol-get-eol-mark-by-system)
+           (format-time-string "%b %d, %Y %H:%M:%S")))))
 
 (leaf editorconfig
   :init
