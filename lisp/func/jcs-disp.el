@@ -125,9 +125,9 @@ BC : border color."
   (interactive)
   (if (jcs-light-theme-p)
       (jcs--set-mode-line-theme
-       '("#1C1C1C" "#FF6C32") '("#CCCCCC" "#682B12") "#FF6C32")
+       '("#1C1C1C" "#CC6633") '("#000000" "#682B12") "#CC6633")
     (jcs--set-mode-line-theme
-     '("#1C1C1C" "#FF6C32") '("#CCCCCC" "#682B12") "#FF6C32")))
+     '("#D2D2D2" "#CC6633") '("#CCCCCC" "#A4532A") "#CC6633")))
 
 (defun jcs-red-mode-line ()
   "Red mode line."
