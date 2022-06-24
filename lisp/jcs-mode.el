@@ -14,6 +14,8 @@ Note this is opposite logic to the toggle mode function."
     (cond
      ((jcs-backtrace-occurs-p) (jcs-hit-backtrace))
      ((active-minibuffer-window) (jcs-dark-blue-mode-line))
+     ((ignore-errors (jcs-funcall-fboundp #'dap--cur-active-session-or-die))
+      (jcs-dark-orange-mode-line))
      ((jcs-funcall-fboundp #'zoom-window--enable-p) (jcs-dark-green-mode-line))
      (t (jcs-gray-mode-line)))))
 
