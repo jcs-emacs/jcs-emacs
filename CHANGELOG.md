@@ -9,6 +9,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 * Add new package `sideline-blame` (c4713396e8937da498083bd3730f28bc114e3b47)
 * Add new package `sideline-flymake` (322b5bb5123a60c5dbdcb11458d2c7eca92fe9a0)
+* Add new package `echo-bar` (26c0bf7c657a29368486aac112439a8507927b21)
+* Change modeline color while debugging (c4f224fe926400089d8896f3a89fe545e12e66a2)
 
 ## 8.2.0
 > Released Jun 21, 2022
