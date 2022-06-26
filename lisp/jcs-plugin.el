@@ -225,6 +225,7 @@
          '("[*]CPU-Profiler-Report" "[*]Memory-Profiler-Report")
          '("[*]Process List[*]")
          '("[*]Checkdoc " "[*]Elint[*]" "[*]Package-Lint[*]" "[*]relint[*]")
+         '("[*]Finder[*]")
          '("[*]Async Shell Command[*]" "[*]shell" "[*]eshell" "bshell<")
          '("[*]ESS[*]")
          '("[*]emacs[*]")  ; From `async'
