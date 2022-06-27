@@ -274,8 +274,7 @@
   (setq dumb-jump-selector 'completing-read))
 
 (leaf echo-bar
-  :config
-  (require 'show-eol)
+  :init
   (setq echo-bar-function
         (lambda ()  ; String to display in echo bar
           (format
@@ -284,7 +283,10 @@
            (indent-control-get-indent-level-by-mode)
            buffer-file-coding-system
            (show-eol-get-eol-mark-by-system)
-           (format-time-string "%b %d, %Y %H:%M:%S")))))
+           (format-time-string "%b %d, %Y %H:%M:%S")))
+        echo-bar-minibuffer nil)
+  :config
+  (require 'show-eol))
 
 (leaf editorconfig
   :init
