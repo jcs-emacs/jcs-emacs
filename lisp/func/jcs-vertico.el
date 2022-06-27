@@ -89,7 +89,8 @@
   "Ratio that respect to `frame-height' and `vertico-count'.")
 
 (jcs-add-hook 'window-size-change-functions
-  (setq vertico-count (floor (* (frame-height) jcs-vertico-height-ratio))))
+  (setq vertico-count (floor (* (frame-height) jcs-vertico-height-ratio)))
+  (when (active-minibuffer-window) (jcs-with-no-redisplay (vertico--exhibit))))
 
 (defun jcs-vertico--post-command ()
   "Post command for vertico."
@@ -127,6 +128,7 @@
        ;; Preselect directory
        ((and path (file-directory-p path))
         (unless (string-suffix-p "/" (minibuffer-contents)) (insert "/"))
+        (jcs-with-no-redisplay (vertico--exhibit))
         (vertico-directory-delete-char))
        ;; Preselect file
        (bfn (jcs-vertico--goto-cand (file-name-nondirectory bfn)))))))
