@@ -329,9 +329,8 @@
   (advice-add 'flx-score :override #'flx-rs-score))
 
 (leaf flycheck
-  :defer-config
-  (jcs-advice-add 'flycheck-display-error-messages :around
-    (jcs-no-log-apply (apply arg0 args))))
+  :init
+  (setq flycheck-display-errors-function nil))
 
 (leaf flycheck-eask         :hook (flycheck-mode-hook . flycheck-eask-setup))
 (leaf flycheck-elsa         :hook (flycheck-mode-hook . flycheck-elsa-setup))
