@@ -90,7 +90,7 @@
 
 (jcs-add-hook 'window-size-change-functions
   (setq vertico-count (floor (* (frame-height) jcs-vertico-height-ratio)))
-  (when (active-minibuffer-window) (jcs-with-no-redisplay (vertico--exhibit))))
+  (when (jcs-vertico--active-p) (jcs-with-no-redisplay (vertico--exhibit))))
 
 (defun jcs-vertico--post-command ()
   "Post command for vertico."
