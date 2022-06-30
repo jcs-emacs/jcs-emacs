@@ -1,4 +1,0 @@
-[submodule "snippets"]
-	path = snippets
-	url = https://github.com/jcs-emacs/snippets
-	branch = master
