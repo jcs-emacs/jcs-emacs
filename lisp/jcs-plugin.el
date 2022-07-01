@@ -41,14 +41,6 @@
   (setq better-scroll-align-type 'relative
         better-scroll-allow-boundary-movement t))
 
-(leaf browse-kill-ring
-  :init
-  (setq browse-kill-ring-separator-face 'font-lock-comment-face)
-  :defer-config
-  (jcs-add-hook 'browse-kill-ring-mode-hook
-    (setq browse-kill-ring-separator (jcs-env-separator))
-    (page-break-lines-mode 1)))
-
 (leaf buffer-menu-filter
   :init
   (setq buffer-menu-filter-delay 0.2))
@@ -544,7 +536,8 @@
                   jcs-beginning-of-line jcs-end-of-line
                   mark-whole-buffer
                   indent-region)
-                '(isearch-done
+                '(browse-kill-ring-setup
+                  isearch-done
                   undefined
                   toggle-truncate-lines
                   define-it))
@@ -635,6 +628,15 @@
          (move-to-column cur-column)
          (mc/create-fake-cursor-at-point)))))
   (advice-add 'mc/mark-lines :override #'jcs--mc/mark-lines))
+
+(leaf page-break-lines
+  :init
+  (setq page-break-lines-modes '(browse-kill-ring-mode
+                                 emacs-lisp-mode
+                                 lisp-mode
+                                 scheme-mode
+                                 outline-mode
+                                 help-mode)))
 
 (leaf popup
   :defer-config

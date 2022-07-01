@@ -136,8 +136,7 @@ Note this is opposite logic to the toggle mode function."
       ((kbd "C-S-<f12>") . compilation-next-error))))
 
 (jcs-add-hook 'emacs-lisp-compilation-mode-hook
-  (setq truncate-lines t)
-  (page-break-lines-mode -1))
+  (setq truncate-lines t))
 
 ;;; Message Buffer
 (jcs-add-hook 'messages-buffer-mode-hook
