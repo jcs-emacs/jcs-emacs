@@ -270,6 +270,7 @@
     vs-revbuf
     vsc-multiple-cursors
     vue-mode
+    wat-mode
     web-mode
     which-key
     whitespace-cleanup-mode
