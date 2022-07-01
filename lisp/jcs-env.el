@@ -245,19 +245,10 @@ P.S. You would need to restart Emacs to take effect from this variable."
   (when (jcs-recentf-track-opened-file-p) (apply arg0 args)))
 
 ;;; Save Files
-(defvar jcs-on-save-remove-control-M t
-  "Remove ^M character on save.")
-
-;;; Separator
-(defconst jcs-env-separator-char "─"
-  "Separator character.")
-
-(defun jcs-env-separator ()
-  "Return environment separator."
-  (propertize
-   (if jcs-graphic-p "\f"
-     (jcs-fill-n-char-seq jcs-env-separator-char (- (window-total-width) 2)))
-   'face font-lock-comment-face))
+(defcustom jcs-on-save-remove-control-M t
+  "Remove ^M character on save."
+  :type 'boolean
+  :group 'jcs)
 
 ;;; Shift Select
 (setq shift-select-mode t)
