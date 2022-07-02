@@ -20,6 +20,8 @@
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
 
+  (company-fuzzy-backend-add 'company-powershell)
+
   ;; File Header
   (jcs-insert-header-if-valid '("[.]ps1")
                               'jcs-insert-powershell-template))
