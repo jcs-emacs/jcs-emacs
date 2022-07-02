@@ -63,11 +63,13 @@
     command-log-mode
     company-box
     company-c-headers
+    company-dockerfile
     company-emojify
     company-fuzzy
     company-glsl
     company-meta-net
     company-nginx
+    company-powershell
     company-shell
     consult
     crystal-mode
