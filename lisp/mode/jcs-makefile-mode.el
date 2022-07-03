@@ -112,6 +112,8 @@ TYPE: type of makefile for Python."
 (jcs-add-hook 'makefile-mode-hook
   (setq-local indent-tabs-mode t)
 
+  (company-makefile-init)
+
   ;; File Header
   (jcs-insert-header-if-valid '("[.]makefile"
                                 "[Mm]akefile"

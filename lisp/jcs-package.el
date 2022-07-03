@@ -68,6 +68,7 @@
     company-emojify
     company-fuzzy
     company-glsl
+    company-makefile
     company-meta-net
     company-nginx
     company-powershell
