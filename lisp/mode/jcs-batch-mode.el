@@ -21,6 +21,8 @@
 
   (modify-syntax-entry ?_ "w")
 
+  (company-fuzzy-backend-add 'company-cmd)
+
   ;; File Header
   (jcs-insert-header-if-valid '("[.]bat")
                               'jcs-insert-batch-template)

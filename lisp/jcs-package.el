@@ -63,6 +63,7 @@
     command-log-mode
     company-box
     company-c-headers
+    company-cmd
     company-dockerfile
     company-emojify
     company-fuzzy
