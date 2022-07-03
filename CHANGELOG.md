@@ -14,6 +14,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add new package `company-dockerfile` (ebb3556e9cb79f66f191e39dee8738d2cd1d33bc)
 * Add new package `company-powershell` (39290625a468462d2ebaccc6a7d8cf4f13851311)
 * Add new package `company-cmd` (b7ed05973c8b8b02a729734d1303ed1291dccba4)
+* Add new package `company-makefile` (0e1d62adddfb8babf9ab1478af58e1519d1f7a28)
 
 ## 8.2.0
 > Released Jun 21, 2022
