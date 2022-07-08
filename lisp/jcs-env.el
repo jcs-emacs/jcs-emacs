@@ -250,6 +250,10 @@ P.S. You would need to restart Emacs to take effect from this variable."
   :type 'boolean
   :group 'jcs)
 
+;;; Server
+(leaf server
+  :hook (after-init-hook . server-mode))
+
 ;;; Shift Select
 (setq shift-select-mode t)
 
