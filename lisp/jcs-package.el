@@ -61,9 +61,11 @@
     coffee-mode
     com-css-sort
     command-log-mode
+    company-autoconf
     company-box
     company-c-headers
     company-cmd
+    company-coffee
     company-dockerfile
     company-emojify
     company-fuzzy

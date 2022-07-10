@@ -17,6 +17,8 @@
 ;;
 
 (jcs-add-hook 'coffee-mode-hook
+  (company-fuzzy-backend-add 'company-coffee)
+
   ;; File Header
   (jcs-insert-header-if-valid '("[.]coffee")
                               'jcs-insert-coffee-template))
