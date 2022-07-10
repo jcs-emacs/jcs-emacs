@@ -241,6 +241,7 @@ Note this is opposite logic to the toggle mode function."
     (applescript-mode)
     (arduino-mode)
     ((masm-mode nasm-mode) . jcs-asm-mode)
+    (autoconf-mode)
     (basic-mode)
     (bat-mode              . jcs-batch-mode)
     (cc-mode               . (jcs-cc-mode
