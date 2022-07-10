@@ -15,6 +15,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add new package `company-powershell` (39290625a468462d2ebaccc6a7d8cf4f13851311)
 * Add new package `company-cmd` (b7ed05973c8b8b02a729734d1303ed1291dccba4)
 * Add new package `company-makefile` (0e1d62adddfb8babf9ab1478af58e1519d1f7a28)
+* Add new package `company-autoconf` (cec8940857a8bb434ecf0a37188cd6840602b70c)
+* Add new package `company-coffee` (74e5a42eebaf812f266a4a508d059bed33c7986f)
 
 ## 8.2.0
 > Released Jun 21, 2022
