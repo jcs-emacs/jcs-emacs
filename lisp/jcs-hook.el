@@ -24,7 +24,7 @@
              (not (jcs-funcall-fboundp #'company--active-p)))
     (jcs-buffer-menu-refresh-buffer)
     (jcs-dashboard-refresh-buffer)
-    (jcs-funcall-fboundp #'echo-bar-update)))
+    (when echo-bar-mode (jcs-funcall-fboundp #'echo-bar-update))))
 
 ;;
 ;; (@* "Find Files" )
