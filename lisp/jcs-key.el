@@ -13,12 +13,12 @@
     ((kbd "C-x w"))
 
 ;;; *Messages*
-    ((kbd "M-m") . jcs-message-buffer)
-    ((kbd "M-M") . jcs-message-buffer-other-window)
+    ((kbd "M-m") . jcs-messages)
+    ((kbd "M-M") . jcs-messages-other-window)
 
 ;;; *scratch*
-    ((kbd "M-s") . jcs-scratch-buffer)
-    ((kbd "M-S") . jcs-scratch-buffer-other-window)
+    ((kbd "M-s") . jcs-scratch)
+    ((kbd "M-S") . jcs-scratch-other-window)
 
 ;;; Admin
     ((kbd "M-<f4>") . save-buffers-kill-terminal)
@@ -320,7 +320,7 @@
     ((kbd "M-<right>")   . jcs-forward-word-capital)
     ((kbd "C-o")         . diminish-buffer-mode)  ; Diminish Buffer
 
-    ((kbd "M-s") . jcs-scratch-buffer)
+    ((kbd "M-s") . jcs-scratch)
 
     ((kbd "C-k C-s") . describe-bindings)
 
@@ -348,8 +348,8 @@
       ((kbd "M-<right>")))))
 
 (jcs-key messages-buffer-mode-map
-  `(("\ek" . jcs-message-maybe-kill-this-buffer)
-    ("\eK" . jcs-message-erase-buffer)))
+  `(("\ek" . jcs-messages-maybe-kill-this-buffer)
+    ("\eK" . jcs-messages-erase-buffer)))
 
 ;;; Auto Completion
 (leaf company
