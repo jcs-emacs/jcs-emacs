@@ -14,13 +14,13 @@
 ;; TOPIC: How to preserve color in *Messages* buffer?
 ;; SOURCE: https://emacs.stackexchange.com/questions/20171/how-to-preserve-color-in-messages-buffer
 
-(defun jcs-message (fmt &rest args)
+(defun jcs--message (fmt &rest args)
   "Log a message with FMT and ARGS.
 
 Acts like `message' but preserves text properties in the *Messages* buffer."
   (when jcs-log
     (jcs-no-log-apply (apply 'message fmt args))
-    (with-current-buffer (get-buffer jcs-message-buffer-name)
+    (with-current-buffer (messages-buffer)
       (save-excursion
         (goto-char (point-max))
         (let ((inhibit-read-only t))
@@ -95,14 +95,14 @@ Optional argument VAL-DEL is string that point to item."
 (defun jcs-log--before (clean)
   "Action do before doing log."
   (when clean
-    (jcs-if-buffer-window jcs-message-buffer-name (jcs-message-erase-buffer)
+    (jcs-if-buffer-window (messages-buffer) (jcs-messages-erase-buffer)
       (save-selected-window
-        (jcs-message-buffer-other-window)
-        (jcs-message-erase-buffer)))))
+        (jcs-messages-other-window)
+        (jcs-messages-erase-buffer)))))
 
 (defun jcs-log--after ()
   "Action do after doing log."
-  (jcs-when-buffer-window jcs-message-buffer-name (goto-char (point-max))))
+  (jcs-when-buffer-window (messages-buffer) (goto-char (point-max))))
 
 ;;
 ;; (@* "Util" )
@@ -124,7 +124,7 @@ Optional argument VAL-DEL is string that point to item."
   "Log a message with TITLE, CLEAN, FMT and ARGS."
   (when jcs-log
     (jcs-log--before clean)
-    (jcs-message "╘[%s] %s\n" title (apply 'format fmt args))
+    (jcs--message "╘[%s] %s\n" title (apply 'format fmt args))
     (jcs-log--after)))
 
 (provide 'jcs-log)

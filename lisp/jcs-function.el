@@ -38,62 +38,60 @@
 ;; (@* "*Messages*" )
 ;;
 
-(defconst jcs-message-buffer-name "*Messages*"
-  "Name of the message buffer.")
-
-(defun jcs-message-buffer ()
+(defun jcs-messages ()
   "Switch to `*Messages*' buffer."
   (interactive)
-  (switch-to-buffer jcs-message-buffer-name))
+  (switch-to-buffer (messages-buffer)))
 
-(defun jcs-message-buffer-other-window ()
+(defun jcs-messages-other-window ()
   "Switch to `*Messages*' buffer."
   (interactive)
-  (jcs-switch-to-buffer-other-window jcs-message-buffer-name))
+  (jcs-switch-to-buffer-other-window (messages-buffer)))
 
-(defun jcs-message-maybe-kill-this-buffer ()
+(defun jcs-messages-maybe-kill-this-buffer ()
   "Erase the *Messages* buffer."
   (interactive)
   ;; Message one message to retrieve `*Message*' buffer prepare for next use.
   ;; Or else it some operation might prompt some issue that needed `*Message*'
   ;; buffer to be exists.
   (when (jcs-maybe-kill-this-buffer)
-    (message ".") (jcs-message-erase-buffer)))
+    (message ".") (jcs-messages-erase-buffer)))
 
-(defun jcs-message-erase-buffer ()
+(defun jcs-messages-erase-buffer ()
   "Reopen *Messages* buffer."
   (interactive)
-  (with-current-buffer jcs-message-buffer-name
+  (with-current-buffer (messages-buffer)
     (let (buffer-read-only)
       (erase-buffer)
-      (insert (format "Retrieving %s buffer..\n" jcs-message-buffer-name))
+      (insert (format "Retrieving %s buffer..\n" (buffer-name)))
       (message nil))))  ; clear echo area
 
 ;;
 ;; (@* "*scratch*" )
 ;;
 
-(defconst jcs-scratch-buffer-name "*scratch*"
-  "Name of the scratch buffer.")
+(defun jcs-scratch-buffer ()
+  "Return the scratch buffer."
+  (startup--get-buffer-create-scratch))
 
 (defun jcs-scratch-buffer-p ()
   "Return non-nil if current buffer the scratch buffer."
-  (string= (buffer-name) jcs-scratch-buffer-name))
+  (string= (buffer-name) (jcs-scratch-buffer)))
 
-(defun jcs-scratch-buffer ()
+(defun jcs-scratch ()
   "Start a new scratch buffer."
   (interactive)
-  (switch-to-buffer jcs-scratch-buffer-name))
+  (switch-to-buffer (jcs-scratch-buffer)))
 
-(defun jcs-scratch-buffer-other-window ()
+(defun jcs-scratch-other-window ()
   "Start a new scratch buffer."
   (interactive)
-  (jcs-switch-to-buffer-other-window jcs-scratch-buffer-name))
+  (jcs-switch-to-buffer-other-window (jcs-scratch-buffer)))
 
 (defun jcs-new-scratch-buffer ()
   "Start a new scratch buffer."
   (interactive)
-  (jcs-scratch-buffer)
+  (jcs-scratch)
   (erase-buffer)
   (ignore-errors (insert (substitute-command-keys initial-scratch-message)))
   (goto-char (point-min))
