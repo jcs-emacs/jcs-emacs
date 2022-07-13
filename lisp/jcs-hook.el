@@ -72,8 +72,8 @@
   (vs-revbuf-mode 1)
   (jcs-funcall-fboundp #'jcs-mode-load-requires)
   (jcs-require '(jcs-edit))
-  (jcs-with-current-buffer jcs-message-buffer-name (messages-buffer-mode))
-  (jcs-with-current-buffer jcs-scratch-buffer-name (lisp-interaction-mode))
+  (jcs-with-current-buffer (messages-buffer) (messages-buffer-mode))
+  (jcs-with-current-buffer (jcs-scratch-buffer) (lisp-interaction-mode))
   ;; Lower the `GC' back to normal threshold
   (jcs-gc-cons-threshold-speed-up nil)
   (message nil))  ; mute at the very end!

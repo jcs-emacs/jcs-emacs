@@ -478,7 +478,7 @@ This command does not push text to `kill-ring'."
 ;;
 
 (defconst jcs-must-kill-buffer-list
-  `(,(regexp-quote jcs-message-buffer-name)
+  `(,(regexp-quote (buffer-name (messages-buffer)))
     "[*]compilation" "[*]output")
   "List of buffer name that must be killed when maybe kill; unless it shows up
 in multiple windows.")
