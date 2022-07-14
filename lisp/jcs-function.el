@@ -76,7 +76,7 @@
 
 (defun jcs-scratch-buffer-p ()
   "Return non-nil if current buffer the scratch buffer."
-  (string= (buffer-name) (jcs-scratch-buffer)))
+  (equal (current-buffer) (jcs-scratch-buffer)))
 
 (defun jcs-scratch ()
   "Start a new scratch buffer."

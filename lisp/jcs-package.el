@@ -220,6 +220,7 @@
     processing-mode
     project-abbrev
     protobuf-mode
+    prt
     python-mode
     qml-mode
     quelpa
@@ -377,26 +378,26 @@
 (defun jcs-package-rebuild-dependency-list ()
   "Rebuild dependency graph and save to list."
   (interactive)
-  (require 'jcs-util) (require 'jcs-reporter)
+  (require 'jcs-util)
   (package-initialize)
-  (jcs-process-reporter-start "Building dependency graph...")
-  (recentf-excl-it
-    (let ((new-selected-pkg (jcs-package--get-selected-packages))
-          (installed-list (jcs-package-installed-list)))
-      (dolist (name installed-list)
-        (if (package-installed-p name)
-            (when (jcs-package--package-do-rebuild name)
-              (jcs-process-reporter-update (format "Build for package `%s`" name))
-              (if (jcs-package--used-elsewhere-p name)
-                  (setq new-selected-pkg (remove name new-selected-pkg))
-                (push name new-selected-pkg)))
-          (setq new-selected-pkg (remove name new-selected-pkg))))
-      (delete-dups new-selected-pkg)
-      (setq new-selected-pkg (sort new-selected-pkg #'string-lessp))
-      (if (equal new-selected-pkg package-selected-packages)
-          (jcs-process-reporter-done "No need to update dependency graph")
-        (package--save-selected-packages new-selected-pkg)
-        (jcs-process-reporter-done "Done rebuild dependency graph")))))
+  (prt-with "Building dependency graph... "
+    (recentf-excl-it
+      (let ((new-selected-pkg (jcs-package--get-selected-packages))
+            (installed-list (jcs-package-installed-list)))
+        (dolist (name installed-list)
+          (if (package-installed-p name)
+              (when (jcs-package--package-do-rebuild name)
+                (prt-update rt (format " `%s`" name))
+                (if (jcs-package--used-elsewhere-p name)
+                    (setq new-selected-pkg (remove name new-selected-pkg))
+                  (push name new-selected-pkg)))
+            (setq new-selected-pkg (remove name new-selected-pkg))))
+        (delete-dups new-selected-pkg)
+        (setq new-selected-pkg (sort new-selected-pkg #'string-lessp))
+        (if (equal new-selected-pkg package-selected-packages)
+            (prt-done rt "No need to update dependency graph")
+          (package--save-selected-packages new-selected-pkg)
+          (prt-done rt "Done rebuild dependency graph"))))))
 
 (defun jcs-package--menu-execute--advice-around (fnc &rest args)
   "Execution around function `package-menu-execute' with FNC and ARGS."
