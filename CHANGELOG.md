@@ -17,6 +17,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add new package `company-makefile` (0e1d62adddfb8babf9ab1478af58e1519d1f7a28)
 * Add new package `company-autoconf` (cec8940857a8bb434ecf0a37188cd6840602b70c)
 * Add new package `company-coffee` (74e5a42eebaf812f266a4a508d059bed33c7986f)
+* Refactor to use default function to get `*Messages*` buffer instead of declaring another variable explicitly in the global scope (ac7f0791c1f1e3de16a14831d07280957b77e244)
+* Use default function to get `*scratch*` buffer (b6909ccb5f9f4fa6af211ac1e9bb0fd50afc7255)
+* Replace built-in progress reporter with external library `prt` (aa0f6d8bbfe882e2ba4f783e6eca431b392c04cc)
 
 ## 8.2.0
 > Released Jun 21, 2022
