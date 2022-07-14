@@ -14,8 +14,7 @@
 (defun jcs-process-reporter-start (&optional msg)
   "Start global process reporter with MSG displayed."
   (jcs-process-reporter-done)
-  (unless msg (setq msg ""))
-  (setq jcs-process-reporter (make-progress-reporter msg)
+  (setq jcs-process-reporter (make-progress-reporter (or msg ""))
         jcs-process-reporter-timer (run-with-timer nil jcs-process-reporter-refresh #'jcs-process-reporter-update)))
 
 (defun jcs-process-reporter-update (&optional value suffix)
