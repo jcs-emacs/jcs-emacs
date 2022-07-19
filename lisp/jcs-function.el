@@ -70,28 +70,19 @@
 ;; (@* "*scratch*" )
 ;;
 
-(defun jcs-scratch-buffer ()
-  "Return the scratch buffer."
-  (startup--get-buffer-create-scratch))
-
 (defun jcs-scratch-buffer-p ()
   "Return non-nil if current buffer the scratch buffer."
-  (equal (current-buffer) (jcs-scratch-buffer)))
-
-(defun jcs-scratch ()
-  "Start a new scratch buffer."
-  (interactive)
-  (switch-to-buffer (jcs-scratch-buffer)))
+  (equal (current-buffer) (get-scratch-buffer-create)))
 
 (defun jcs-scratch-other-window ()
   "Start a new scratch buffer."
   (interactive)
-  (jcs-switch-to-buffer-other-window (jcs-scratch-buffer)))
+  (jcs-switch-to-buffer-other-window (get-scratch-buffer-create)))
 
 (defun jcs-new-scratch-buffer ()
   "Start a new scratch buffer."
   (interactive)
-  (jcs-scratch)
+  (scratch-buffer)
   (erase-buffer)
   (ignore-errors (insert (substitute-command-keys initial-scratch-message)))
   (goto-char (point-min))
