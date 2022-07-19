@@ -23,6 +23,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Use built-in `scratch-buffer` function instead (5a0957f214aa786b2ea82e41a2aff3052c63eda3)
 * Fix function name `startup--get-buffer-create-scratch` to get scratch buffer `get-scratch-buffer-create` (8788c3015561faf13c46e12a9e5febc5b1a983c2)
 * Drop support for Emacs 28.x (7fa61292bd1553cee46884a98f4959933b55bb12)
+* Diminish buffer `*Bug Help*` as default (cef9be24f401405fe58aed4496e6cac52099487b)
 
 ## 8.2.0
 > Released Jun 21, 2022
