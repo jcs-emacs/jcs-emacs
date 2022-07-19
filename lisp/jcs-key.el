@@ -17,7 +17,7 @@
     ((kbd "M-M") . jcs-messages-other-window)
 
 ;;; *scratch*
-    ((kbd "M-s") . jcs-scratch)
+    ((kbd "M-s") . scratch-buffer)
     ((kbd "M-S") . jcs-scratch-other-window)
 
 ;;; Admin
@@ -320,7 +320,7 @@
     ((kbd "M-<right>")   . jcs-forward-word-capital)
     ((kbd "C-o")         . diminish-buffer-mode)  ; Diminish Buffer
 
-    ((kbd "M-s") . jcs-scratch)
+    ((kbd "M-s") . scratch-buffer)
 
     ((kbd "C-k C-s") . describe-bindings)
 
