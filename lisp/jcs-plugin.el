@@ -211,7 +211,8 @@
          '("[*]jcs")  ; config wise
          '("[*]helm" "[*]esup-" "[*]quelpa-")
          '("[*]compilation" "[*]output")
-         '("[*]Apropos[*]" "[*]Backtrace[*]" "[*]Compile-Log[*]" "[*]Help[*]"
+         '("[*]Apropos[*]" "[*]Backtrace[*]" "[*]Compile-Log[*]"
+           "[*]Help[*]" "[*]Bug Help[*]"
            "[*]Warnings[*]")
          '("[*]VC-history[*]")
          '("[*]CPU-Profiler-Report" "[*]Memory-Profiler-Report")
