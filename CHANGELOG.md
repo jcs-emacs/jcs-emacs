@@ -20,6 +20,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Refactor to use default function to get `*Messages*` buffer instead of declaring another variable explicitly in the global scope (ac7f0791c1f1e3de16a14831d07280957b77e244)
 * Use default function to get `*scratch*` buffer (b6909ccb5f9f4fa6af211ac1e9bb0fd50afc7255)
 * Replace built-in progress reporter with external library `prt` (aa0f6d8bbfe882e2ba4f783e6eca431b392c04cc)
+* Use built-in `scratch-buffer` function instead (5a0957f214aa786b2ea82e41a2aff3052c63eda3)
+* Fix function name `startup--get-buffer-create-scratch` to get scratch buffer `get-scratch-buffer-create` (8788c3015561faf13c46e12a9e5febc5b1a983c2)
+* Drop support for Emacs 28.x (7fa61292bd1553cee46884a98f4959933b55bb12)
 
 ## 8.2.0
 > Released Jun 21, 2022
