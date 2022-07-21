@@ -148,7 +148,6 @@
   :init
   (setq company-fuzzy-sorting-backend 'flx
         company-fuzzy-prefix-on-top nil
-        company-fuzzy-history-backends '(company-yasnippet)
         company-fuzzy-trigger-symbols '("." "->" "<" "\"" "'" "@")))
 
 (leaf csharp-mode :init (setq csharp-codedoc-tag-face 'font-lock-doc-face))
