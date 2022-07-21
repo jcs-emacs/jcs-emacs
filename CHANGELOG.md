@@ -4,8 +4,14 @@ All notable changes to this project will be documented in this file.
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## 8.2.1 (Unreleased)
+
+## 8.2.2 (Unreleased)
 > Released N/A
+
+* N/A
+
+## 8.2.1
+> Released Jul 22, 2022
 
 * Add new package `sideline-blame` (c4713396e8937da498083bd3730f28bc114e3b47)
 * Add new package `sideline-flymake` (322b5bb5123a60c5dbdcb11458d2c7eca92fe9a0)
