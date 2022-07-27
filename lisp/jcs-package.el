@@ -70,6 +70,7 @@
     company-emojify
     company-fuzzy
     company-glsl
+    company-kaomoji
     company-makefile
     company-meta-net
     company-nginx
