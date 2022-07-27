@@ -181,6 +181,8 @@ Note this is opposite logic to the toggle mode function."
     (jcs-active-project-mode-hook)))
 
 (jcs-add-hook 'text-mode-hook
+  (company-fuzzy-backend-add 'company-kaomoji)
+
   (jcs-insert-header-if-valid
    '("\\(/\\|\\`\\)[Ll][Ii][Cc][Ee][Nn][Ss][Ee]") 'jcs-ask-insert-license-content
    :interactive t)
