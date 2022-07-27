@@ -8,7 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 8.2.2 (Unreleased)
 > Released N/A
 
-* N/A
+* Add new package `company-kaomoji` (1cc6b70e9ab4ae3fc893482c1d38986da6b32e87)
 
 ## 8.2.1
 > Released Jul 22, 2022
