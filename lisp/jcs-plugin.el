@@ -757,16 +757,12 @@
 (leaf tree-sitter-langs
   :hook (tree-sitter-after-on-hook . tree-sitter-hl-mode)
   :defer-config
-  (defconst jcs--tree-sitter-langs--query-repo
-    "https://github.com/jcs-emacs/tree-sitter-queries"
-    "Repository URL where stores all tree-sitter highlight queries.")
-
   (defun jcs--tree-sitter-grab-queries ()
     "Download all custom queries to the `tree-sitter-langs' queries folder."
     (require 'find-func)
     (let* ((default-directory (file-name-directory (find-library-name "tree-sitter-langs")))
-           (repo-url (shell-quote-argument jcs--tree-sitter-langs--query-repo))
-           (dirname (file-name-base jcs--tree-sitter-langs--query-repo))
+           (repo-url (shell-quote-argument "https://github.com/jcs-emacs/tree-sitter-queries"))
+           (dirname (file-name-base repo-url))
            (clone-dir (expand-file-name dirname))
            (clone-queries (expand-file-name "queries" clone-dir))
            (dest-queries (expand-file-name "queries" default-directory))
@@ -798,13 +794,12 @@
   :hook (tree-sitter-after-on-hook . ts-fold-indicators-mode)
   :init
   (setq ts-fold-indicators-fringe 'left-fringe
-        ts-fold-indicators-face-function #'jcs--ts-fold-indicators-face-function)
+        ts-fold-indicators-face-function
+        (lambda (pos &rest _)
+          ;; Return the face of it's function.
+          (line-reminder--get-face (line-number-at-pos pos t))))
   :defer-config
   (require 'line-reminder)
-  (defun jcs--ts-fold-indicators-face-function (pos &rest _)
-    "Return the face of it's function."
-    (let ((line (line-number-at-pos pos t))) (line-reminder--get-face line)))
-
   (jcs-advice-add 'line-reminder-transfer-to-saved-lines :after
     ;; Refresh indicators for package `ts-fold'.
     (ts-fold-indicators-refresh)))
