@@ -761,8 +761,9 @@
     "Download all custom queries to the `tree-sitter-langs' queries folder."
     (require 'find-func)
     (let* ((default-directory (file-name-directory (find-library-name "tree-sitter-langs")))
-           (repo-url (shell-quote-argument "https://github.com/jcs-emacs/tree-sitter-queries"))
-           (dirname (file-name-base repo-url))
+           (repo "https://github.com/jcs-emacs/tree-sitter-queries")
+           (repo-url (shell-quote-argument repo))
+           (dirname (file-name-base repo))
            (clone-dir (expand-file-name dirname))
            (clone-queries (expand-file-name "queries" clone-dir))
            (dest-queries (expand-file-name "queries" default-directory))
