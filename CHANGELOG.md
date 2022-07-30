@@ -10,6 +10,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 * Add new package `company-kaomoji` (1cc6b70e9ab4ae3fc893482c1d38986da6b32e87)
 * Refactor `ts-fold-indicators` face function and get queries function (27e614884c1cb84d8f832280d253d387cdde99b4)
+* Add OCaml support (ddaaf11b98c88c709fecd5db8b8214a63e1bb00f)
 
 ## 8.2.1
 > Released Jul 22, 2022
