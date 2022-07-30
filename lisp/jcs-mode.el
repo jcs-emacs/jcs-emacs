@@ -246,6 +246,7 @@ Note this is opposite logic to the toggle mode function."
     (autoconf-mode)
     (basic-mode)
     (bat-mode              . jcs-batch-mode)
+    (caml                  . jcs-caml-mode)
     (cc-mode               . (jcs-cc-mode
                               jcs-c-mode
                               jcs-c++-mode
@@ -349,6 +350,7 @@ Note this is opposite logic to the toggle mode function."
     ("\\.c8'?\\'"                  . c++-mode)
     ("\\.h'?\\'"                   . c++-mode)
     ("\\.c'?\\'"                   . c++-mode)
+    ("\\.ml[iylp]?$"               . caml-mode)
     ("\\.clj'?\\'"                 . clojure-mode)
     ("\\.cljs'?\\'"                . clojure-mode)
     ("\\.cljc'?\\'"                . clojure-mode)

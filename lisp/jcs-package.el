@@ -52,6 +52,7 @@
     buffer-move
     buffer-wrap
     calfw
+    caml
     cargo-mode
     ccls
     centaur-tabs
@@ -120,6 +121,7 @@
     flycheck-elsa
     flycheck-grammarly
     flycheck-languagetool
+    flycheck-ocaml
     flycheck-package
     flycheck-relint
     fountain-mode
