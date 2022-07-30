@@ -76,7 +76,7 @@ from this configuration.
 * LESS / Lisp / Lua
 * Makefile / Markdown
 * Nix
-* Object Pascal (Delphi) / Objective-C
+* Object Pascal (Delphi) / Objective-C / OCaml
 * Pascal / Perl / PHP / PowerShell / Properties / Python
 * R / Ruby / Rust
 * Sass / Scala / SCSS / Shader / Shell script / SQL / Swift
