@@ -100,6 +100,7 @@
     eldoc-meta-net
     electric-cursor
     electric-indent-sexp
+    elfeed
     elisp-def
     elisp-demos
     elixir-mode

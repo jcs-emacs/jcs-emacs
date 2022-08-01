@@ -236,6 +236,7 @@
          '("[*]httpd[*]")
          '("[*]helpful" "[*]suggest[*]")
          '("[*]ert[*]" "[*]indent-lint")
+         '("[*]elfeed-")
          '("magit[-]*[[:ascii:]]*[:]")  ; From `magit'
          '("[*]Most used words[*]")
          '("[*]Test SHA[*]")
@@ -298,6 +299,18 @@
   :hook (electric-indent-mode-hook . electric-indent-sexp-mode)
   :init
   (setq electric-indent-sexp-auto-chars t))
+
+(leaf elfeed
+  :hook (elfeed-search-mode-hook . buffer-wrap-mode)
+  :init
+  (setq elfeed-db-directory (concat user-emacs-directory ".elfeed")
+        elfeed-show-entry-switch #'pop-to-buffer
+        elfeed-show-entry-delete #'delete-window
+        elfeed-feeds '(("https://planet.emacslife.com/atom.xml" planet emacslife)
+                       ("http://www.masteringemacs.org/feed/" mastering)
+                       ("https://oremacs.com/atom.xml" oremacs)
+                       ("https://pinecast.com/feed/emacscast" emacscast)
+                       ("https://emacstil.com/feed.xml" Emacs TIL))))
 
 (leaf emojify
   :init
