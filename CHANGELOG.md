@@ -12,6 +12,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Refactor `ts-fold-indicators` face function and get queries function (27e614884c1cb84d8f832280d253d387cdde99b4)
 * Add OCaml support (ddaaf11b98c88c709fecd5db8b8214a63e1bb00f)
 * Add support for `elfeed` (7a3c3ad99bea5088da2c7d681552f55914b37934)
+* Cancel `echo-bar` right padding by default (75416a77c6bb0eef90b71a2ee09ab42202bc7bb5)
 
 ## 8.2.1
 > Released Jul 22, 2022
