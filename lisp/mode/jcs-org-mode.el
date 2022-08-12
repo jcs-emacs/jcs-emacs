@@ -5,9 +5,6 @@
 (require'dash)
 (require 's)
 (require 'org)
-(require 'org-bullets)
-
-(add-hook 'org-mode-hook 'org-bullets-mode)
 
 (setq org-startup-folded nil)
 
@@ -112,6 +109,29 @@
       ((kbd "S-<down>")   . jcs-org-table-down)
       ((kbd "S-<left>")   . jcs-org-table-left)
       ((kbd "S-<right>")  . jcs-org-table-right))))
+
+;;
+;; (@* "Extensions" )
+;;
+
+(leaf org-superstar
+  :hook (org-mode-hook . org-superstar-mode)
+  :init
+  ;; Make leading stars truly invisible, by rendering them as spaces!
+  (setq org-superstar-leading-bullet ?\s
+        org-superstar-leading-fallback ?\s
+        org-hide-leading-stars nil
+        org-superstar-todo-bullet-alist '(("TODO" . 9744)
+                                          ("[ ]"  . 9744)
+                                          ("DONE" . 9745)
+                                          ("[X]"  . 9745))
+        org-superstar-headline-bullets-list '(?◉ ?○ ?✸ ?▷)))
+
+(leaf org-fancy-priorities
+  :hook ((org-mode . org-fancy-priorities-mode)
+         (org-agenda-mode . org-fancy-priorities-mode))
+  :init
+  (setq org-fancy-priorities-list '("╒" "↑" "■")))
 
 (provide 'jcs-org-mode)
 ;;; jcs-org-mode.el ends here
