@@ -210,7 +210,8 @@
     nix-mode
     noflet
     on
-    org-bullets
+    org-fancy-priorities
+    org-superstar
     organize-imports-java
     package-build
     page-break-lines
