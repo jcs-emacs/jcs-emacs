@@ -141,6 +141,7 @@
     goto-char-preview
     goto-line-preview
     graphql-mode
+    hammy
     haskell-mode
     haxe-mode
     helpful
@@ -265,7 +266,6 @@
     transwin
     tree-sitter-indent
     tree-sitter-langs
-    ts
     ts-fold
     turbo-log
     typescript-mode
