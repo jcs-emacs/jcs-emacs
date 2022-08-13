@@ -14,6 +14,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add support for `elfeed` (7a3c3ad99bea5088da2c7d681552f55914b37934)
 * Cancel `echo-bar` right padding by default (75416a77c6bb0eef90b71a2ee09ab42202bc7bb5)
 * Add new packages `org-superstar` and `org-fancy-priorities` (695f5f46e611de1529c6bbd57cd251386616d2f7)
+* Add new package `hammy` (8ea21aa67e98efd9a8eb846e6b908fb500afab52)
 
 ## 8.2.1
 > Released Jul 22, 2022
