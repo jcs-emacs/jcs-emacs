@@ -98,6 +98,10 @@
 ;;
 
 (jcs-add-hook 'org-mode-hook
+  (org-indent-mode 1)
+
+  (setq-local line-spacing 2)
+
   (jcs-key-local
     `(((kbd "C-a")        . mark-whole-buffer)
       ([tab]              . jcs-tab-key)
@@ -125,7 +129,10 @@
                                           ("[ ]"  . 9744)
                                           ("DONE" . 9745)
                                           ("[X]"  . 9745))
-        org-superstar-headline-bullets-list '(?◉ ?○ ?✸ ?▷)))
+        org-superstar-headline-bullets-list '(?☰ ?☱ ?☲ ?☳ ?☴ ?☵ ?☶ ?☷)
+        org-superstar-item-bullet-alist '((?* . ?•)
+                                          (?+ . ?➤)
+                                          (?- . ?╘))))
 
 (leaf org-fancy-priorities
   :hook ((org-mode . org-fancy-priorities-mode)
