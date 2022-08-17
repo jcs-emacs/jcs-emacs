@@ -174,6 +174,7 @@ Note this is opposite logic to the toggle mode function."
   (when (bound-and-true-p jcs-emacs-startup-directory)  ; only after Emacs startup
     (alt-codes-mode 1)
     (auto-highlight-symbol-mode t)
+    (display-fill-column-indicator-mode 1)
     (goto-address-mode 1)
     (when jcs-graphic-p (highlight-indent-guides-mode 1))
     (yas-minor-mode 1)
@@ -204,7 +205,6 @@ Note this is opposite logic to the toggle mode function."
     (indent-control-ensure-tab-width)
 
     (abbrev-mode 1)
-    (display-fill-column-indicator-mode 1)
     (highlight-numbers-mode 1)))
 
 (add-hook 'prog-mode-hook #'jcs-prog-mode-hook)
