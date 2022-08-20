@@ -438,7 +438,7 @@ delay. HEIGHT of the tooltip that will display."
 (defun jcs-tip-describe-it ()
   "Describe symbol at point."
   (let ((desc (jcs--describe-symbol-string)))
-    (if (string-empty-p desc)
+    (if (or (string-empty-p desc) (string= (string-trim desc) "[back]"))
         (error "[ERROR] No description at point")
       (jcs-pop-tooltip desc :point (point)))))
 
