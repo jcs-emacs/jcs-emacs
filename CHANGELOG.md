@@ -17,6 +17,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add new package `hammy` (8ea21aa67e98efd9a8eb846e6b908fb500afab52)
 * Enable `display-fill-column-indicator-mode` in `text-mode` by default (5283fd976574ecd322e77556bcd0b6790eed7403)
 * Enhance experience with `org-superstars` (5c240a626fe60685f2768eb17a6dbfcc61452134)
+* Add new package `sideline-color` (6c472aa4c92069551a0707760e3d41c12dcd7411)
 
 ## 8.2.1
 > Released Jul 22, 2022
