@@ -249,6 +249,7 @@
     show-eol
     shrink-whitespace
     sideline-blame
+    sideline-color
     sideline-flycheck
     sideline-flymake
     sideline-lsp
