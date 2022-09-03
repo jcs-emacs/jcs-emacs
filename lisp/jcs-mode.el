@@ -275,6 +275,7 @@ Note this is opposite logic to the toggle mode function."
     ((shader-mode glsl-mode hlsl-mode) . jcs-shader-mode)
     (go-mode)
     (groovy-mode)
+    (haml-mode)
     (haskell-mode)
     (haxe-mode)
     (ini-mode)
