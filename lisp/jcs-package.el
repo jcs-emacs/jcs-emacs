@@ -141,6 +141,7 @@
     goto-char-preview
     goto-line-preview
     graphql-mode
+    haml-mode
     hammy
     haskell-mode
     haxe-mode
