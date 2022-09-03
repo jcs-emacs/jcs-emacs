@@ -18,6 +18,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Enable `display-fill-column-indicator-mode` in `text-mode` by default (5283fd976574ecd322e77556bcd0b6790eed7403)
 * Enhance experience with `org-superstars` (5c240a626fe60685f2768eb17a6dbfcc61452134)
 * Add new package `sideline-color` (6c472aa4c92069551a0707760e3d41c12dcd7411)
+* Add support for `haml-mode` (b50bbb26cfddab3e16d849f65e33894ec5a70177)
 
 ## 8.2.1
 > Released Jul 22, 2022
