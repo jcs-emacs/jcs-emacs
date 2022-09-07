@@ -579,9 +579,7 @@ other window."
     (jcs-no-log-apply
       (jcs-save-window-excursion (jcs-kill-this-buffer))
       (undo-tree-kill-visualizer)
-      (message "%s[INFO] Reopened file => '%s'"
-               (if (current-message) (concat (current-message) "\n\n") "")
-               current-bfn))))
+      (jcs-message-current "[INFO] Reopened file => '%s'" current-bfn))))
 
 ;;
 ;; (@* "Electric Pair" )

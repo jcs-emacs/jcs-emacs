@@ -127,5 +127,11 @@ Optional argument VAL-DEL is string that point to item."
     (jcs--message "╘[%s] %s\n" title (apply 'format fmt args))
     (jcs-log--after)))
 
+(defun jcs-message-current (fmt &rest args)
+  "Log messages with current message on top if available."
+  (message "%s%s"
+           (if (current-message) (concat (current-message) "\n\n") "")
+           (apply #'format fmt args)))
+
 (provide 'jcs-log)
 ;;; jcs-log.el ends here
