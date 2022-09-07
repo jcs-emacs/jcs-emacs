@@ -554,7 +554,8 @@
                   isearch-done
                   undefined
                   toggle-truncate-lines
-                  define-it))
+                  define-it
+                  jcs-package-upgrade-all))
         message-clean-mode-minor-mode 'echo))
 
 (leaf meta-view

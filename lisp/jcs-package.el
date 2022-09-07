@@ -475,54 +475,20 @@
     (jcs-package-rebuild-dependency-list)
     (package-initialize)))
 
-(defun jcs-package-version (name &optional current)
-  "Get version of the package by NAME.
-
-Argument WHERE is the alist of package information."
-  (when-let ((desc (jcs-package-desc name current)))
-    (package-desc-version desc)))
-
-(defun jcs-package-upgrade (desc)
-  "Upgrade package using DESC."
-  (let* ((name (package-desc-name desc))
-         (old-desc (jcs-package-desc name t)))
-    (package-install desc)
-    (package-delete old-desc)))
-
-(defun jcs-package--upgradable-p (pkg)
-  "Return non-nil if PKG can be upgraded."
-  (let ((current (jcs-package-version pkg t))
-        (latest (jcs-package-version pkg nil)))
-    (version-list-< current latest)))
-
-(defun jcs-package--upgrades ()
-  "Return a list of upgradable package description."
-  (let (upgrades)
-    (dolist (pkg (mapcar #'car package-alist))
-      (when (jcs-package--upgradable-p pkg)
-        (push (cadr (assq pkg package-archive-contents)) upgrades)))
-    upgrades))
+(defun jcs-package-install-all ()
+  "Install all needed packages from this configuration."
+  (interactive)
+  (jcs-ensure-package-installed jcs-package-install-list))
 
 (defun jcs-package-upgrade-all ()
   "Upgrade for archive packages."
   (interactive)
   (package-refresh-contents)
-  (if-let ((upgrades (jcs-package--upgrades)))
-      (when (yes-or-no-p
-             (format "Upgrade %d package%s (%s)? "
-                     (length upgrades)
-                     (if (= (length upgrades) 1) "" "s")
-                     (mapconcat #'package-desc-full-name upgrades ", ")))
-        (save-window-excursion
-          (dolist (desc upgrades) (jcs-package-upgrade desc)))
-        (message "Done upgrading all packages")
-        (jcs-package-rebuild-dependency-list))
+  (if (ignore-errors (package-menu-filter-upgradable))
+      (progn
+        (package-menu-mark-upgrades)
+        (jcs-message-current "Press `x` to execute command; press `u` to unmark packages"))
     (message "All packages are up to date")))
-
-(defun jcs-package-install-all ()
-  "Install all needed packages from this configuration."
-  (interactive)
-  (jcs-ensure-package-installed jcs-package-install-list))
 
 (defun jcs-package-autoremove ()
   "Remove packages that are no longer needed."
