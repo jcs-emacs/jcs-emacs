@@ -27,7 +27,7 @@
 ;; (@* "Registry" )
 ;;
 
-(jcs-advice-add 'lsp--message :around (jcs-no-log-apply (apply arg0 args)))
+(jcs-advice-add 'lsp--message :around (msgu-inhibit-log (apply arg0 args)))
 
 (provide 'jcs-lsp)
 ;;; jcs-lsp.el ends here

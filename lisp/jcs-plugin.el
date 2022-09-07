@@ -598,6 +598,11 @@
   (setq most-used-words-display-type 'table
         most-used-words-word-display 100))
 
+(leaf msgu
+  :init
+  (setq msgu-sleep-seconds 0.4
+        msgu-sit-seconds 100))
+
 (leaf multi-shell
   :init
   (setq multi-shell-prefer-shell-type 'shell))  ; Accept `shell' or `eshll'.

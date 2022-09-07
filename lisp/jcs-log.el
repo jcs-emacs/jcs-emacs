@@ -11,21 +11,6 @@
 ;; (@* "Entry" )
 ;;
 
-;; TOPIC: How to preserve color in *Messages* buffer?
-;; SOURCE: https://emacs.stackexchange.com/questions/20171/how-to-preserve-color-in-messages-buffer
-
-(defun jcs--message (fmt &rest args)
-  "Log a message with FMT and ARGS.
-
-Acts like `message' but preserves text properties in the *Messages* buffer."
-  (when jcs-log
-    (jcs-no-log-apply (apply 'message fmt args))
-    (with-current-buffer (messages-buffer)
-      (save-excursion
-        (goto-char (point-max))
-        (let ((inhibit-read-only t))
-          (insert (apply 'format fmt args)))))))
-
 (defun jcs-log (fmt &rest args)
   "Log a message with FMT and ARGS."
   (apply 'jcs--log "INFO" nil fmt args))
@@ -37,7 +22,7 @@ Acts like `message' but preserves text properties in the *Messages* buffer."
 (defun jcs-print (&rest args)
   "Message out anything from ARGS."
   (when jcs-log
-    (jcs-unmute-apply
+    (msgu-unsilent
       (message (mapconcat (lambda (elm) (format "%s" elm)) args " ")))))
 
 ;;
@@ -105,18 +90,6 @@ Optional argument VAL-DEL is string that point to item."
   (jcs-when-buffer-window (messages-buffer) (goto-char (point-max))))
 
 ;;
-;; (@* "Util" )
-;;
-
-(defun jcs-sleep-for (&optional seconds milliseconds)
-  "Wrap `sleep-for' function width default SECONDS and MILLISECONDS."
-  (sleep-for (or seconds jcs-sleep-for-seconds) milliseconds))
-
-(defun jcs-sit-for (&optional seconds nodisp)
-  "Wrap `sit-for' function with default SECONDS and NODISP."
-  (sit-for (or seconds jcs-sit-for-seconds) nodisp))
-
-;;
 ;; (@* "Core" )
 ;;
 
@@ -124,14 +97,8 @@ Optional argument VAL-DEL is string that point to item."
   "Log a message with TITLE, CLEAN, FMT and ARGS."
   (when jcs-log
     (jcs-log--before clean)
-    (jcs--message "╘[%s] %s\n" title (apply 'format fmt args))
+    (msgu-color "╘[%s] %s\n" title (apply 'format fmt args))
     (jcs-log--after)))
-
-(defun jcs-message-current (fmt &rest args)
-  "Log messages with current message on top if available."
-  (message "%s%s"
-           (if (current-message) (concat (current-message) "\n\n") "")
-           (apply #'format fmt args)))
 
 (provide 'jcs-log)
 ;;; jcs-log.el ends here

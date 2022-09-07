@@ -147,7 +147,7 @@ If UD is non-nil, do undo.  If UD is nil, do redo."
 (defun jcs-smart-yank ()
   "Yank and then indent region."
   (interactive)
-  (jcs-mute-apply
+  (msgu-silent
     (jcs-delete-region)
     (let ((reg-beg (point)))
       (call-interactively #'yank)
@@ -401,7 +401,7 @@ This command does not push text to `kill-ring'."
   (when whitespace-cleanup-mode
     (whitespace-cleanup-region (point-min) (line-beginning-position))
     (whitespace-cleanup-region (line-end-position) (point-max)))
-  (when jcs-on-save-remove-control-M (jcs-mute-apply (jcs-remove-control-M))))
+  (when jcs-on-save-remove-control-M (msgu-silent (jcs-remove-control-M))))
 
 (jcs-advice-add 'save-buffer :after
   (jcs-funcall-fboundp #'undo-tree-kill-visualizer)
@@ -415,7 +415,7 @@ This command does not push text to `kill-ring'."
       (with-current-buffer buf
         (when-let ((result
                     (ignore-errors
-                      (jcs-mute-apply
+                      (msgu-silent
                         (call-interactively (key-binding (kbd "C-s")))))))
           (when (ignore-errors (string-match-p "Wrote file" result))
             (push (buffer-file-name) saved-lst)))))
@@ -437,7 +437,7 @@ This command does not push text to `kill-ring'."
     (user-error "[WARNING] Can't save read-only file: %s" buffer-read-only))
    (t
     (let ((readable (file-readable-p (buffer-file-name))))
-      (jcs-no-log-apply (call-interactively #'save-buffer))
+      (msgu-inhibit-log (call-interactively #'save-buffer))
       (unless readable (jcs--safe-lsp-active))))))
 
 ;;
@@ -576,10 +576,10 @@ other window."
   "Kill the current buffer and open it again."
   (interactive)
   (when-let ((current-bfn (buffer-file-name)))
-    (jcs-no-log-apply
+    (msgu-inhibit-log
       (jcs-save-window-excursion (jcs-kill-this-buffer))
       (undo-tree-kill-visualizer)
-      (jcs-message-current "[INFO] Reopened file => '%s'" current-bfn))))
+      (msgu-current "[INFO] Reopened file => '%s'" current-bfn))))
 
 ;;
 ;; (@* "Electric Pair" )
@@ -727,7 +727,7 @@ CC : Current character at position."
   (if (not (jcs--use-isearch-project-p))
       (isearch-repeat-backward)
     (message "Exit 'isearch-project' becuase you are trying to use 'isearch'..")
-    (jcs-sleep-for)
+    (msgu-sleep)
     (save-mark-and-excursion (isearch-abort))))
 
 (defun jcs-isearch-repeat-forward ()
@@ -736,7 +736,7 @@ CC : Current character at position."
   (if (not (jcs--use-isearch-project-p))
       (isearch-repeat-forward)
     (message "Exit 'isearch-project' because you are trying to use 'isearch'..")
-    (jcs-sleep-for)
+    (msgu-sleep)
     (save-mark-and-excursion (isearch-abort))))
 
 (defun jcs-isearch-project-repeat-backward ()
@@ -745,7 +745,7 @@ CC : Current character at position."
   (if (jcs--use-isearch-project-p)
       (isearch-repeat-backward)
     (message "Exit 'isearch' because you are trying to use 'isearch-project'..")
-    (jcs-sleep-for)
+    (msgu-sleep)
     (save-mark-and-excursion (isearch-abort))))
 
 (defun jcs-isearch-project-repeat-forward ()
@@ -754,7 +754,7 @@ CC : Current character at position."
   (if (jcs--use-isearch-project-p)
       (isearch-repeat-forward)
     (message "Exit 'isearch' because you are trying to use 'isearch-project'..")
-    (jcs-sleep-for)
+    (msgu-sleep)
     (save-mark-and-excursion (isearch-abort))))
 
 ;;

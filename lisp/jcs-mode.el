@@ -10,7 +10,7 @@
   "Reload the active mode.
 Note this is opposite logic to the toggle mode function."
   (interactive)
-  (jcs-mute-apply
+  (msgu-silent
     (cond
      ((jcs-backtrace-occurs-p) (jcs-hit-backtrace))
      ((active-minibuffer-window) (jcs-dark-blue-mode-line))

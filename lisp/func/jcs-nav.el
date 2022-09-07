@@ -257,7 +257,7 @@
 (defun jcs-toggle-backward-forward-sexp ()
   "Move to balance expression in backward/forward direction if any."
   (interactive)
-  (jcs-mute-apply (when (jcs-backward-sexp) (jcs-forward-sexp))))
+  (msgu-silent (when (jcs-backward-sexp) (jcs-forward-sexp))))
 
 (defun jcs-backward-sexp ()
   "Wrapper for function `backward-sexp'."

@@ -201,12 +201,6 @@
 (defconst jcs-message-log-max message-log-max
   "Default maximum lines for message log.")
 
-(defconst jcs-sleep-for-seconds 0.4
-  "Default sleep for seconds.")
-
-(defconst jcs-sit-for-seconds 100
-  "Default sit for seconds.")
-
 ;;; Minibuffer
 (setq enable-recursive-minibuffers t
       completion-styles '(partial-completion)  ; easy on `company-mode'

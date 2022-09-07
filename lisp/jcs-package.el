@@ -435,7 +435,7 @@
     (dolist (tmp-desc used-elsewhere) (jcs-package-delete tmp-desc name))
     (when desc
       (let ((jcs-package-use-real-delete-p t))
-        (when (jcs-mute-apply (package-delete desc))
+        (when (msgu-silent (package-delete desc))
           (if dep (message "Delete package `%s` that is rely on package `%s`" name dep)
             (message "Package `%s` deleted." name)))))))
 
@@ -447,7 +447,7 @@
           (when-let* ((pkg-dir (package-desc-dir desc))
                       (name (package-desc-name desc))
                       ((jcs-move-path pkg-dir jcs-package--elpa-temp-dir)))
-            (jcs-unmute-apply
+            (msgu-unsilent
               (message "[INFO] Package `%s` in used, mark `%s` for later deletion"
                        name (file-name-nondirectory pkg-dir)))))
       (jcs-package-delete desc))))
@@ -487,7 +487,7 @@
   (if (ignore-errors (package-menu-filter-upgradable))
       (progn
         (package-menu-mark-upgrades)
-        (jcs-message-current "Press `x` to execute command; press `u` to unmark packages"))
+        (msgu-current "Press `x` to execute command; press `u` to unmark packages"))
     (message "All packages are up to date")))
 
 (defun jcs-package-autoremove ()

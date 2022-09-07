@@ -235,7 +235,7 @@ See function `jcs-string-compare-p' for argument TYPE."
 (defun jcs-shell-execute (cmd &rest args)
   "Return non-nil if CMD executed succesfully with ARGS."
   (save-window-excursion
-    (jcs-mute-apply
+    (msgu-silent
       (= 0 (shell-command
             (concat cmd " "
                     (mapconcat #'shell-quote-argument
@@ -283,23 +283,6 @@ See function `jcs-string-compare-p' for argument TYPE."
 ;;
 ;; (@* "Function" )
 ;;
-
-(defmacro jcs-unmute-apply (&rest body)
-  "Execute BODY with ensuring message log."
-  (declare (indent 0) (debug t))
-  `(let ((message-log-max jcs-message-log-max)) ,@body))
-
-(defmacro jcs-mute-apply (&rest body)
-  "Execute BODY without message."
-  (declare (indent 0) (debug t))
-  `(let (message-log-max)
-     (with-temp-message (or (current-message) nil)
-       (let ((inhibit-message t)) ,@body))))
-
-(defmacro jcs-no-log-apply (&rest body)
-  "Execute BODY without write it to message buffer."
-  (declare (indent 0) (debug t))
-  `(let (message-log-max) ,@body))
 
 (defun jcs-funcall-fboundp (fnc &rest args)
   "Call FNC with ARGS if exists."
@@ -858,18 +841,18 @@ If optional argument REVERSE is non-nil, LIST item and ELT argument."
 
 (defun jcs-re-enable-mode (modename)
   "Re-enable the MODENAME."
-  (jcs-mute-apply
+  (msgu-silent
     (funcall-interactively modename -1) (funcall-interactively modename 1)))
 
 (defun jcs-enable-disable-mode-if (modename predicate)
   "To enable/disable the MODENAME by PREDICATE."
-  (jcs-mute-apply
+  (msgu-silent
     (if predicate (funcall-interactively modename 1)
       (funcall-interactively modename -1))))
 
 (defun jcs-active-minor-mode (name args)
   "Active minor mode only when it's on/off."
-  (jcs-mute-apply
+  (msgu-silent
     (if (= args 1) (unless (symbol-value name) (funcall-interactively name 1))
       (when (symbol-value name) (funcall-interactively name -1)))))
 

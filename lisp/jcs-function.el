@@ -20,7 +20,7 @@
 (defun jcs-hit-backtrace ()
   "Do stuff when backtrace occures."
   (jcs-red-mode-line)  ; When error, turn red
-  (jcs-no-log-apply
+  (msgu-inhibit-log
     (message "[INFO] Oops, error occurs! Please see backtrace for more information")))
 
 (defun jcs-backtrace-occurs-p ()
@@ -112,7 +112,7 @@
 (defun jcs-buffer-menu-refresh-buffer ()
   "Update buffer menu buffer."
   (interactive)
-  (jcs-when-buffer-window diminish-buffer-menu-name (jcs-mute-apply (buffer-menu))))
+  (jcs-when-buffer-window diminish-buffer-menu-name (msgu-silent (buffer-menu))))
 
 ;;
 ;; (@* "Calculator" )
@@ -166,7 +166,7 @@
   (interactive)
   (jcs-when-buffer-window dashboard-buffer-name
     (jcs-with-dashboard-last-path
-      (jcs-mute-apply
+      (msgu-silent
         (jcs-save-window-excursion (dashboard-refresh-buffer))))))
 
 (jcs-advice-add 'dashboard-remove-item-under :around
@@ -432,7 +432,7 @@ delay. HEIGHT of the tooltip that will display."
     (save-window-excursion
       (with-current-buffer (get-buffer-create "*Help*")
         (let (buffer-read-only) (erase-buffer))
-        (jcs-mute-apply (describe-symbol thing))
+        (msgu-silent (describe-symbol thing))
         (buffer-string)))))
 
 (defun jcs-tip-describe-it ()
