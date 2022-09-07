@@ -20,6 +20,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add new package `sideline-color` (6c472aa4c92069551a0707760e3d41c12dcd7411)
 * Add support for `haml-mode` (b50bbb26cfddab3e16d849f65e33894ec5a70177)
 * Use package-menu to upgrade packages instead of the prompt (5903e431921a10f023247ba59ee78eaaa59fc961)
+* Extract message utility functions to separate module, `msgu` (d3957bec1ffd3668a5f8861644f6ec2953cd3781)
 
 ## 8.2.1
 > Released Jul 22, 2022
