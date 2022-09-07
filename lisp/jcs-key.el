@@ -398,7 +398,8 @@
       ((kbd "C-'")))))
 
 (jcs-key package-menu-mode-map
-  `(((kbd "U")       . jcs-package-upgrade-all)
+  `(((kbd "M-K")     . package-menu-clear-filter)
+    ((kbd "U")       . jcs-package-upgrade-all)
     ((kbd "C-k r m") . jcs-package-autoremove)))
 
 (jcs-key isearch-mode-map
