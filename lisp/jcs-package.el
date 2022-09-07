@@ -480,15 +480,22 @@
   (interactive)
   (jcs-ensure-package-installed jcs-package-install-list))
 
-(defun jcs-package-upgrade-all ()
-  "Upgrade for archive packages."
-  (interactive)
-  (package-refresh-contents)
+(defun jcs-package--show-upgrades ()
+  "Show upgradable packages in one menu."
+  (advice-remove 'package-menu--mark-upgrades-1 #'jcs-package--show-upgrades)
   (if (ignore-errors (package-menu-filter-upgradable))
       (progn
         (package-menu-mark-upgrades)
         (msgu-current "Press `x` to execute command; press `u` to unmark packages"))
     (message "All packages are up to date")))
+
+(defun jcs-package-upgrade-all ()
+  "Upgrade for archive packages."
+  (interactive)
+  (package-menu-mark-upgrades)
+  (if package-menu--mark-upgrades-pending
+      (advice-add 'package-menu--mark-upgrades-1 :after #'jcs-package--show-upgrades)
+    (jcs-package--show-upgrades)))
 
 (defun jcs-package-autoremove ()
   "Remove packages that are no longer needed."
