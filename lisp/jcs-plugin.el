@@ -555,7 +555,7 @@
                   undefined
                   toggle-truncate-lines
                   define-it
-                  jcs-package-upgrade-all))
+                  jcs-package-upgrade-all jcs-package--show-upgrades))
         message-clean-mode-minor-mode 'echo))
 
 (leaf meta-view
