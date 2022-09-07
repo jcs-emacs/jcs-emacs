@@ -21,6 +21,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add support for `haml-mode` (b50bbb26cfddab3e16d849f65e33894ec5a70177)
 * Use package-menu to upgrade packages instead of the prompt (5903e431921a10f023247ba59ee78eaaa59fc961)
 * Extract message utility functions to separate module, `msgu` (d3957bec1ffd3668a5f8861644f6ec2953cd3781)
+* Fix does upgradable menu after package list is refreshed (09d78404f7e8f0bec64d4df78ae9f90e7c6069d9)
+* Add clear filter key for `package-menu` mode (bf36721805a48b6319bd5eb1b9064129af293560)
 
 ## 8.2.1
 > Released Jul 22, 2022
