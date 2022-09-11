@@ -756,7 +756,9 @@
         sideline-backends-left '((sideline-color . up))
         sideline-backends-right '((sideline-lsp      . up)
                                   (sideline-flycheck . down)
-                                  (sideline-flymake  . down))))
+                                  (sideline-flymake  . down))
+        sideline-display-backend-name t
+        sideline-display-backend-type 'outer))
 
 (leaf sideline-flycheck :hook (flycheck-mode-hook . sideline-flycheck-setup))
 
