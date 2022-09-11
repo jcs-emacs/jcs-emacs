@@ -758,7 +758,7 @@
                                   (sideline-flycheck . down)
                                   (sideline-flymake  . down))
         sideline-display-backend-name t
-        sideline-display-backend-type 'outer))
+        sideline-display-backend-type 'inner))
 
 (leaf sideline-flycheck :hook (flycheck-mode-hook . sideline-flycheck-setup))
 
