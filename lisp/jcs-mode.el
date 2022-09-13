@@ -213,7 +213,8 @@ Note this is opposite logic to the toggle mode function."
 (jcs-add-hook 'emacs-lisp-mode-hook
   (modify-syntax-entry ?_ "w")  ; Treat underscore as word.
   (jcs-insert-header-if-valid '("[.]el")
-                              'jcs-insert-emacs-lisp-template))
+                              'jcs-insert-emacs-lisp-template)
+  (eask-api-setup))
 
 ;;; Lisp
 (jcs-add-hook 'lisp-mode-hook
