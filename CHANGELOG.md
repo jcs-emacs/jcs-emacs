@@ -23,6 +23,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Extract message utility functions to separate module, `msgu` (d3957bec1ffd3668a5f8861644f6ec2953cd3781)
 * Fix does upgradable menu after package list is refreshed (09d78404f7e8f0bec64d4df78ae9f90e7c6069d9)
 * Add clear filter key for `package-menu` mode (bf36721805a48b6319bd5eb1b9064129af293560)
+* Load `eask-api` when in valid Eask related project (5644b5128cb1f132b9b552cc745377be8528b435)
 
 ## 8.2.1
 > Released Jul 22, 2022
