@@ -24,6 +24,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Fix does upgradable menu after package list is refreshed (09d78404f7e8f0bec64d4df78ae9f90e7c6069d9)
 * Add clear filter key for `package-menu` mode (bf36721805a48b6319bd5eb1b9064129af293560)
 * Load `eask-api` when in valid Eask related project (5644b5128cb1f132b9b552cc745377be8528b435)
+* Add new package `editorconfig-generate` (afd3fa07135fd9154b551fffb20822316cf4e3d7)
+* Bind key `C-M-k` to `kill-this-buffer` (758c464dfe76bad0053ce82f4064f382a1ae4ac3)
 
 ## 8.2.1
 > Released Jul 22, 2022
