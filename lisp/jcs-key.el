@@ -103,11 +103,12 @@
     ((kbd "C-b")   . treemacs)  ; `VS Code'
 
 ;;; File editing
-    ((kbd "M-k") . jcs-maybe-kill-this-buffer)
-    ((kbd "M-K") . jcs-reopen-this-buffer)
-    ([tab]       . jcs-tab-key)
-    ([S-tab]     . jcs-shift-tab-key)
-    ([backtab]   . jcs-shift-tab-key)
+    ((kbd "M-k")   . jcs-maybe-kill-this-buffer)
+    ((kbd "M-K")   . jcs-reopen-this-buffer)
+    ((kbd "C-M-k") . kill-this-buffer)
+    ([tab]         . jcs-tab-key)
+    ([S-tab]       . jcs-shift-tab-key)
+    ([backtab]     . jcs-shift-tab-key)
 
 ;;; File Files
     ((kbd "M-f")     . ffap)
