@@ -229,6 +229,7 @@
            "[*]pyright[*]")  ; From `lsp'
          '("[*]tree-sitter" "tree-sitter-tree:")
          '("[*]company")
+         '("[*]editorconfig")
          '("[*]Local Variables[*]")
          '("[*]Kill Ring[*]")  ; From `browse-kill-ring'
          '("[*]SPEEDBAR")

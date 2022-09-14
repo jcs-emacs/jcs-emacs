@@ -97,6 +97,7 @@
     eask-mode
     echo-bar
     editorconfig
+    editorconfig-generate
     eldoc-meta-net
     electric-cursor
     electric-indent-sexp
