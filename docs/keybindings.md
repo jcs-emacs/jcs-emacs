@@ -171,7 +171,9 @@ Here is the list of key bindins that defined in this configuration.
 
 * **Kill Buffer**
 
-  * <kbd>Alt</kbd>+<kbd>k</kbd> - Kill current buffer.
+  * <kbd>Alt</kbd>+<kbd>k</kbd> - Maybe kill current buffer. (only kill when buffer opens in one window left)
+  * <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>k</kbd> - Reopen the buffer.
+  * <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>k</kbd> - Kill current buffer.
 
 * **Save Buffer**
 
