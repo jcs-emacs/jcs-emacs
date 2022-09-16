@@ -214,7 +214,7 @@
     ((kbd "M-R") . reveal-in-folder)
 
 ;;; Revert Buffer
-    ("\er" . jcs-revert-buffer-no-confirm)
+    ("\er" . vs-revbuf-no-confirm)
 
 ;;; Right Click Context
     ([S-f10] . right-click-context-menu)
