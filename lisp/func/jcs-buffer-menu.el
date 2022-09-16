@@ -51,8 +51,8 @@
         (show-project-p (jcs-buffer-menu--show-project-p))
         entries)
     ;; Handle obsolete variable:
-    (if Buffer-menu-buffer+size-width
-        (setq name-width (- Buffer-menu-buffer+size-width size-width)))
+    (if Buffer-menu-size-width
+        (setq name-width (- Buffer-menu-size-width size-width)))
     (setq tabulated-list-format
           (vector '("C" 1 t :pad-right 0)
                   '("R" 1 t :pad-right 0)
