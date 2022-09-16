@@ -103,7 +103,10 @@ Note this is opposite logic to the toggle mode function."
 
 ;;; Buffer Menu
 (jcs-add-hook 'Buffer-menu-mode-hook
-  (require 'jcs-buffer-menu)
+  (require 'buffer-menu-project)
+
+  (buffer-menu-filter-mode 1)
+  (diminish-buffer-mode 1)  ; refresh the menu immediately
 
   (jcs-key-local
     `(((kbd "C-k"))
