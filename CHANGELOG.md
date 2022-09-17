@@ -27,6 +27,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add new package `editorconfig-generate` (afd3fa07135fd9154b551fffb20822316cf4e3d7)
 * Bind key `C-M-k` to `kill-this-buffer` (758c464dfe76bad0053ce82f4064f382a1ae4ac3)
 * Remove `buffer-menu` feature on display project name (74feaa938d4be1667bab1c1f68308f8c6a250208)
+* Use macro to define `file-header` insertion functions (e5e200684f25325c70906a53a84f526328bc6fbf)
 
 ## 8.2.1
 > Released Jul 22, 2022
