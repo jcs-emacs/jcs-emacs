@@ -8,9 +8,8 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-verilog-template ()
-  "Header for Verilog header file."
-  (jcs--file-header--insert "verilog" "default.txt"))
+(file-header-defins jcs-insert-verilog-template "verilog" "default.txt"
+  "Header for Verilog header file.")
 
 ;;
 ;; (@* "Hook" )

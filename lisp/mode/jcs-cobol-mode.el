@@ -8,9 +8,8 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-cobol-template ()
-  "Template for COBOL."
-  (jcs--file-header--insert "cobol" "default.txt"))
+(file-header-defins jcs-insert-cobol-template "cobol" "default.txt"
+  "Template for COBOL.")
 
 ;;
 ;; (@* "Hook" )

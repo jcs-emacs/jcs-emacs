@@ -8,9 +8,8 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-nix-template ()
-  "Header for Nix header file."
-  (jcs--file-header--insert "nix" "default.txt"))
+(file-header-defins jcs-insert-nix-template "nix" "default.txt"
+  "Header for Nix header file.")
 
 ;;
 ;; (@* "Hook" )

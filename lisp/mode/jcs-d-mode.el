@@ -8,9 +8,8 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-d-template ()
-  "Template for D."
-  (jcs--file-header--insert "d" "default.txt"))
+(file-header-defins jcs-insert-d-template "d" "default.txt"
+  "Template for D.")
 
 ;;
 ;; (@* "Hook" )

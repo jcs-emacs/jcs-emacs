@@ -8,9 +8,8 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-qml-template ()
-  "Header for QML header file."
-  (jcs--file-header--insert "qml" "default.txt"))
+(file-header-defins jcs-insert-qml-template "qml" "default.txt"
+  "Header for QML header file.")
 
 ;;
 ;; (@* "Hook" )

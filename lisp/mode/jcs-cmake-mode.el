@@ -11,9 +11,8 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-cmake-template ()
-  "CMake file format info."
-  (jcs--file-header--insert "cmake" "default.txt"))
+(file-header-defins jcs-insert-cmake-template "cmake" "default.txt"
+  "CMake file format info.")
 
 ;;
 ;; (@* "Hook" )

@@ -8,9 +8,8 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-arduino-template ()
-  "Template for Arduino."
-  (jcs--file-header--insert "arduino" "default.txt"))
+(file-header-defins jcs-insert-arduino-template "arduino" "default.txt"
+  "Template for Arduino.")
 
 ;;
 ;; (@* "Hook" )

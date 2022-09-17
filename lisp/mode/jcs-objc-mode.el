@@ -6,13 +6,11 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-objc-header-template ()
-  "Header for Objective-C header file."
-  (jcs--file-header--insert "objc" "header.txt"))
+(file-header-defins jcs-insert-objc-header-template "objc" "header.txt"
+  "Header for Objective-C header file.")
 
-(defun jcs-insert-objc-source-template ()
-  "Header for Objective-C source file."
-  (jcs--file-header--insert "objc" "source.txt"))
+(file-header-defins jcs-insert-objc-source-template "objc" "source.txt"
+  "Header for Objective-C source file.")
 
 ;;
 ;; (@* "Hook" )

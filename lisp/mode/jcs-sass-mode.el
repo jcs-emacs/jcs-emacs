@@ -9,9 +9,8 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-sass-template ()
-  "Header for SASS header file."
-  (jcs--file-header--insert "sass" "default.txt"))
+(file-header-defins jcs-insert-sass-template "sass" "default.txt"
+  "Header for SASS header file.")
 
 ;;
 ;; (@* "Hook" )

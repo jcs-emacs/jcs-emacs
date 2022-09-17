@@ -8,9 +8,8 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-perl-template ()
-  "Header for Perl header file."
-  (jcs--file-header--insert "perl" "default.txt"))
+(file-header-defins jcs-insert-perl-template "perl" "default.txt"
+  "Header for Perl header file.")
 
 ;;
 ;; (@* "Hook" )

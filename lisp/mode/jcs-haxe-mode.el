@@ -8,9 +8,8 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-haxe-template ()
-  "Template for Haxe."
-  (jcs--file-header--insert "haxe" "default.txt"))
+(file-header-defins jcs-insert-haxe-template "haxe" "default.txt"
+  "Template for Haxe.")
 
 ;;
 ;; (@* "Hook" )

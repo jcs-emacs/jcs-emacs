@@ -13,9 +13,8 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-css-template ()
-  "Template for CSS."
-  (jcs--file-header--insert "css" "default.txt"))
+(file-header-defins jcs-insert-css-template "css" "default.txt"
+  "Template for CSS.")
 
 ;;
 ;; (@* "Hook" )

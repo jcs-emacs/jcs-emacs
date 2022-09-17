@@ -54,13 +54,11 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-html-template ()
-  "Template for HTML."
-  (jcs--file-header--insert "html" "default.txt"))
+(file-header-defins jcs-insert-html-template "html" "default.txt"
+  "Template for HTML.")
 
-(defun jcs-insert-php-template ()
-  "Template for PHP."
-  (jcs--file-header--insert "php" "default.txt"))
+(file-header-defins jcs-insert-php-template "php" "default.txt"
+  "Template for PHP.")
 
 ;;
 ;; (@* "Hook" )

@@ -8,9 +8,8 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-haskell-template ()
-  "Template for Haskell."
-  (jcs--file-header--insert "haskell" "default.txt"))
+(file-header-defins jcs-insert-haskell-template "haskell" "default.txt"
+  "Template for Haskell.")
 
 ;;
 ;; (@* "Hook" )

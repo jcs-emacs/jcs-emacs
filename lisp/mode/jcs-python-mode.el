@@ -67,13 +67,11 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-python-template ()
-  "Python template."
-  (jcs--file-header--insert "python" "default.txt"))
+(file-header-defins jcs-insert-python-template "python" "default.txt"
+  "Python template.")
 
-(defun jcs-insert-python-class-template ()
-  "Python class template."
-  (jcs--file-header--insert "python" "class.txt"))
+(file-header-defins jcs-insert-python-class-template "python" "class.txt"
+  "Python class template.")
 
 ;;
 ;; (@* "Hook" )

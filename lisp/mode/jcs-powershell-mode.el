@@ -8,9 +8,8 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-powershell-template ()
-  "Header for PowerShell header file."
-  (jcs--file-header--insert "powershell" "default.txt"))
+(file-header-defins jcs-insert-powershell-template "powershell" "default.txt"
+  "Header for PowerShell header file.")
 
 ;;
 ;; (@* "Hook" )

@@ -8,9 +8,8 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-julia-template ()
-  "Julia file header format."
-  (jcs--file-header--insert "julia" "default.txt"))
+(file-header-defins jcs-insert-julia-template "julia" "default.txt"
+  "Julia file header format.")
 
 ;;
 ;; (@* "Hook" )

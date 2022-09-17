@@ -8,22 +8,25 @@
   "Ask the source SC for editing CSharp file."
   (interactive
    (list (completing-read
-          "Major source for this CSharp file: " '("Default" "Unity Scripting"))))
+          "Major source for this CSharp file: "
+          '("Default" "Godot C#" "Unity C#"))))
   (pcase sc
     ("Default" (jcs-insert-csharp-template))
-    ("Unity Scripting" (jcs-insert-csharp-unity-template))))
+    ("Godot C#" (jcs-insert-csharp-godot-template))
+    ("Unity C#" (jcs-insert-csharp-unity-template))))
 
 ;;
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-csharp-template ()
-  "Header for C# header file."
-  (jcs--file-header--insert "csharp" "default.txt"))
+(file-header-defins jcs-insert-csharp-template "csharp" "default.txt"
+  "Header for C# header file.")
 
-(defun jcs-insert-csharp-unity-template ()
-  "Header for Unity C# header file."
-  (jcs--file-header--insert "csharp" "unity.txt"))
+(file-header-defins jcs-insert-csharp-godot-template "csharp" "godot.txt"
+  "Header for Godot C# header file.")
+
+(file-header-defins jcs-insert-csharp-unity-template "csharp" "unity.txt"
+  "Header for Unity C# header file.")
 
 ;;
 ;; (@* "Hook" )

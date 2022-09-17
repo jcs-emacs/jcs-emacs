@@ -8,9 +8,8 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-kotlin-template ()
-  "Header for Kotlin header file."
-  (jcs--file-header--insert "kotlin" "default.txt"))
+(file-header-defins jcs-insert-kotlin-template "kotlin" "default.txt"
+  "Header for Kotlin header file.")
 
 ;;
 ;; (@* "Hook" )

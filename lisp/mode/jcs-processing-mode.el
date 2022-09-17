@@ -8,9 +8,8 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-processing-template ()
-  "Header for Processing file."
-  (jcs--file-header--insert "processing" "default.txt"))
+(file-header-defins jcs-insert-processing-template "processing" "default.txt"
+  "Header for Processing file.")
 
 ;;
 ;; (@* "Hook" )

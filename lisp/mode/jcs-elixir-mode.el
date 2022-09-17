@@ -8,9 +8,8 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-elixir-template ()
-  "Template for Elixir."
-  (jcs--file-header--insert "elixir" "default.txt"))
+(file-header-defins jcs-insert-elixir-template "elixir" "default.txt"
+  "Template for Elixir.")
 
 ;;
 ;; (@* "Hook" )

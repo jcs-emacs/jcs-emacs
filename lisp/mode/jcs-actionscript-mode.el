@@ -8,9 +8,8 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-actionscript-template ()
-  "Template for ActionScript."
-  (jcs--file-header--insert "actionscript" "default.txt"))
+(file-header-defins jcs-insert-actionscript-template "actionscript" "default.txt"
+  "Template for ActionScript.")
 
 ;;
 ;; (@* "Hook" )

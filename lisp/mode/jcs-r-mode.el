@@ -8,9 +8,8 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-r-template ()
-  "Header for R header file."
-  (jcs--file-header--insert "r" "default.txt"))
+(file-header-defins jcs-insert-r-template "r" "default.txt"
+  "Header for R header file.")
 
 ;;
 ;; (@* "Hook" )

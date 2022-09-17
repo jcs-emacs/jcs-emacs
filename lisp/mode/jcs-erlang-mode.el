@@ -8,9 +8,8 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-erlang-template ()
-  "Template for Erlang Lisp."
-  (jcs--file-header--insert "erlang" "default.txt"))
+(file-header-defins jcs-insert-erlang-template "erlang" "default.txt"
+  "Template for Erlang Lisp.")
 
 ;;
 ;; (@* "Hook" )

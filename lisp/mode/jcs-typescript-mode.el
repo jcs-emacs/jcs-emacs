@@ -26,13 +26,12 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-typescript-template ()
-  "Header for TypeScript header file."
-  (jcs--file-header--insert "typescript" "default.txt"))
+(file-header-defins jcs-insert-typescript-template "typescript" "default.txt"
+  "Header for TypeScript header file.")
 
-(defun jcs-insert-typescript-cocos-creator-template ()
-  "Header for Cocos Creator TypeScript header file."
-  (jcs--file-header--insert "typescript" "cocos_creator.txt"))
+(file-header-defins jcs-insert-typescript-cocos-creator-template
+    "typescript" "cocos_creator.txt"
+  "Header for Cocos Creator TypeScript header file.")
 
 ;;
 ;; (@* "Hook" )

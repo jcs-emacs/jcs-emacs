@@ -36,9 +36,8 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-sh-template ()
-  "Header for Shell header file."
-  (jcs--file-header--insert "sh" "default.txt"))
+(file-header-defins jcs-insert-sh-template "sh" "default.txt"
+  "Header for Shell header file.")
 
 ;;
 ;; (@* "Hook" )

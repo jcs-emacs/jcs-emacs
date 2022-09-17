@@ -8,9 +8,8 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-batch-template ()
-  "Header format for batch file."
-  (jcs--file-header--insert "batch" "default.txt"))
+(file-header-defins jcs-insert-batch-template "batch" "default.txt"
+  "Header format for batch file.")
 
 ;;
 ;; (@* "Hook" )

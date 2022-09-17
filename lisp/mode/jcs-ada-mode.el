@@ -8,9 +8,8 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-ada-template ()
-  "Template for Ada."
-  (jcs--file-header--insert "ada" "default.txt"))
+(file-header-defins jcs-insert-ada-template "ada" "default.txt"
+  "Template for Ada.")
 
 ;;
 ;; (@* "Hook" )

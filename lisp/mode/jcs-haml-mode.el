@@ -8,9 +8,8 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-haml-template ()
-  "Template for HAML."
-  (jcs--file-header--insert "haml" "default.txt"))
+(file-header-defins jcs-insert-haml-template "haml" "default.txt"
+  "Template for HAML.")
 
 ;;
 ;; (@* "Hook" )

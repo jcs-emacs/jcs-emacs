@@ -13,9 +13,8 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-vue-template ()
-  "Header for Vue header file."
-  (jcs--file-header--insert "vue" "default.txt"))
+(file-header-defins jcs-insert-vue-template "vue" "default.txt"
+  "Header for Vue header file.")
 
 ;;
 ;; (@* "Hook" )

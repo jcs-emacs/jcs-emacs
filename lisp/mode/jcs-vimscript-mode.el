@@ -8,9 +8,8 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-vimscript-template ()
-  "Header for Vimscript header file."
-  (jcs--file-header--insert "vimscript" "default.txt"))
+(file-header-defins jcs-insert-vimscript-template "vimscript" "default.txt"
+  "Header for Vimscript header file.")
 
 ;;
 ;; (@* "Hook" )

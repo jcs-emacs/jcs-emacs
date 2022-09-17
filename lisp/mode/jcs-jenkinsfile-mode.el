@@ -8,9 +8,8 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-jenkinsfile-template ()
-  "Header for Jenkinsfile."
-  (jcs--file-header--insert "jenkins" "default.txt"))
+(file-header-defins jcs-insert-jenkinsfile-template "jenkins" "default.txt"
+  "Header for Jenkinsfile.")
 
 ;;
 ;; (@* "Hook" )

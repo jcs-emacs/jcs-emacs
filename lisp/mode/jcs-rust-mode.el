@@ -8,9 +8,8 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-rust-template ()
-  "Header for Rust header file."
-  (jcs--file-header--insert "rust" "default.txt"))
+(file-header-defins jcs-insert-rust-template "rust" "default.txt"
+  "Header for Rust header file.")
 
 ;;
 ;; (@* "Hook" )

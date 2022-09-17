@@ -8,9 +8,8 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-nginx-template ()
-  "Header for Nginx header file."
-  (jcs--file-header--insert "nginx" "default.txt"))
+(file-header-defins jcs-insert-nginx-template "nginx" "default.txt"
+  "Header for Nginx header file.")
 
 ;;
 ;; (@* "Hook" )

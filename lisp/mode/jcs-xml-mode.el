@@ -9,9 +9,8 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-xml-template ()
-  "Header for XML header file."
-  (jcs--file-header--insert "xml" "default.txt"))
+(file-header-defins jcs-insert-xml-template "xml" "default.txt"
+  "Header for XML header file.")
 
 ;;
 ;; (@* "Hook" )

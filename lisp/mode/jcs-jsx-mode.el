@@ -23,17 +23,14 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-jsx-template ()
-  "Template for JavaScript XML (JSX)."
-  (jcs--file-header--insert "jsx" "default.txt"))
+(file-header-defins jcs-insert-jsx-template "jsx" "default.txt"
+  "Template for JavaScript XML (JSX).")
 
-(defun jcs-insert-jsx-react-js-template ()
-  "Template for React JS JavaScript XML (JSX)."
-  (jcs--file-header--insert "jsx" "react/js.txt"))
+(file-header-defins jcs-insert-jsx-react-js-template "jsx" "react/js.txt"
+  "Template for React JS JavaScript XML (JSX).")
 
-(defun jcs-insert-jsx-react-native-template ()
-  "Template for React Native JavaScript XML (JSX)."
-  (jcs--file-header--insert "jsx" "react/native.txt"))
+(file-header-defins jcs-insert-jsx-react-native-template "jsx" "react/native.txt"
+  "Template for React Native JavaScript XML (JSX).")
 
 ;;
 ;; (@* "Hook" )

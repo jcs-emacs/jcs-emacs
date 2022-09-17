@@ -8,9 +8,8 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-ruby-template ()
-  "Header for Ruby header file."
-  (jcs--file-header--insert "ruby" "default.txt"))
+(file-header-defins jcs-insert-ruby-template "ruby" "default.txt"
+  "Header for Ruby header file.")
 
 ;;
 ;; (@* "Hook" )

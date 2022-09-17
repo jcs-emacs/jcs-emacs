@@ -8,13 +8,11 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-c-header-template ()
-  "Header for C header file."
-  (jcs--file-header--insert "c" "header.txt"))
+(file-header-defins jcs-insert-c-header-template "c" "header.txt"
+  "Header for C header file.")
 
-(defun jcs-insert-c-source-template ()
-  "Header for C source file."
-  (jcs--file-header--insert "c" "source.txt"))
+(file-header-defins jcs-insert-c-source-template "c" "source.txt"
+  "Header for C source file.")
 
 ;;
 ;; (@* "Hook" )

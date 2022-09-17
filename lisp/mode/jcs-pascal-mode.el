@@ -8,9 +8,8 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-pascal-template ()
-  "Header for Pascal header file."
-  (jcs--file-header--insert "pascal" "default.txt"))
+(file-header-defins jcs-insert-pascal-template "pascal" "default.txt"
+  "Header for Pascal header file.")
 
 ;;
 ;; (@* "Hook" )

@@ -8,9 +8,8 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-applescript-template ()
-  "Template for AppleScript."
-  (jcs--file-header--insert "applescript" "default.txt"))
+(file-header-defins jcs-insert-applescript-template "applescript" "default.txt"
+  "Template for AppleScript.")
 
 ;;
 ;; (@* "Hook" )

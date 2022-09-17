@@ -9,9 +9,8 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-sql-template ()
-  "Header for SQL header file."
-  (jcs--file-header--insert "sql" "default.txt"))
+(file-header-defins jcs-insert-sql-template "sql" "default.txt"
+  "Header for SQL header file.")
 
 ;;
 ;; (@* "Hook" )

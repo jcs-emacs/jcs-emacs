@@ -8,9 +8,8 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-ocaml-template ()
-  "Template for OCaml."
-  (jcs--file-header--insert "caml" "default.txt"))
+(file-header-defins jcs-insert-ocaml-template "caml" "default.txt"
+  "Template for OCaml.")
 
 ;;
 ;; (@* "Hook" )

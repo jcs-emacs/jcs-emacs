@@ -8,9 +8,8 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-jayces-template ()
-  "Header for JayCeS header file."
-  (jcs--file-header--insert "jayces" "default.txt"))
+(file-header-defins jcs-insert-jayces-template "jayces" "default.txt"
+  "Header for JayCeS header file.")
 
 ;;
 ;; (@* "Hook" )

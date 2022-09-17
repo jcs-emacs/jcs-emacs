@@ -81,29 +81,23 @@ TYPE: type of makefile for Python."
   "File header format specific for makefile depends on language selected."
   (call-interactively 'jcs-ask-makefile-language))
 
-(defun jcs-insert-makefile-cc-app-template ()
-  "Default makefile template for normal application."
-  (jcs--file-header--insert "makefile" "cc/app.txt"))
+(file-header-defins jcs-insert-makefile-cc-app-template "makefile" "cc/app.txt"
+  "Default makefile template for normal application.")
 
-(defun jcs-insert-makefile-cc-lib-template ()
-  "Library makefile template for static library or shared library."
-  (jcs--file-header--insert "makefile" "cc/lib.txt"))
+(file-header-defins jcs-insert-makefile-cc-lib-template "makefile" "cc/lib.txt"
+  "Library makefile template for static library or shared library.")
 
-(defun jcs-insert-makefile-java-app-template ()
-  "Template for makefile Java application."
-  (jcs--file-header--insert "makefile" "java/app.txt"))
+(file-header-defins jcs-insert-makefile-java-app-template "makefile" "java/app.txt"
+  "Template for makefile Java application.")
 
-(defun jcs-insert-makefile-java-lib-template ()
-  "Template for makefile Java library."
-  (jcs--file-header--insert "makefile" "java/lib.txt"))
+(file-header-defins jcs-insert-makefile-java-lib-template "makefile" "java/lib.txt"
+  "Template for makefile Java library.")
 
-(defun jcs-insert-makefile-python-app-template ()
-  "Template for makefile Python application."
-  (jcs--file-header--insert "makefile" "python/app.txt"))
+(file-header-defins jcs-insert-makefile-python-app-template "makefile" "python/app.txt"
+  "Template for makefile Python application.")
 
-(defun jcs-insert-makefile-python-lib-template ()
-  "Template for makefile Python library."
-  (jcs--file-header--insert "makefile" "python/lib.txt"))
+(file-header-defins jcs-insert-makefile-python-lib-template "makefile" "python/lib.txt"
+  "Template for makefile Python library.")
 
 ;;
 ;; (@* "Hook" )

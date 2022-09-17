@@ -37,9 +37,8 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-markdown-template ()
-  "Header for Markdown header file."
-  (jcs--file-header--insert "markdown" "default.txt"))
+(file-header-defins jcs-insert-markdown-template "markdown" "default.txt"
+  "Header for Markdown header file.")
 
 ;;
 ;; (@* "Hook" )

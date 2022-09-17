@@ -9,9 +9,8 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-scss-template ()
-  "Header for SCSS header file."
-  (jcs--file-header--insert "scss" "default.txt"))
+(file-header-defins jcs-insert-scss-template "scss" "default.txt"
+  "Header for SCSS header file.")
 
 ;;
 ;; (@* "Hook" )

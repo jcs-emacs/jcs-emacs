@@ -53,29 +53,27 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-c++-header-template ()
-  "Header for C++ header file."
-  (jcs--file-header--insert "c++" "header.txt"))
+(file-header-defins jcs-insert-c++-header-template "c++" "header.txt"
+  "Header for C++ header file.")
 
-(defun jcs-insert-c++-source-template ()
-  "Header for C++ source file."
-  (jcs--file-header--insert "c++" "source.txt"))
+(file-header-defins jcs-insert-c++-source-template "c++" "source.txt"
+  "Header for C++ source file.")
 
-(defun jcs-insert-c++-unreal-header-template--actor ()
-  "Header for Unreal C++ header file with actor type."
-  (jcs--file-header--insert "c++" "unreal/actor/header.txt"))
+(file-header-defins jcs-insert-c++-unreal-header-template--actor
+    "c++" "unreal/actor/header.txt"
+  "Header for Unreal C++ header file with actor type.")
 
-(defun jcs-insert-c++-unreal-source-template--actor ()
-  "Header for Unreal C++ source file with actor type."
-  (jcs--file-header--insert "c++" "unreal/actor/source.txt"))
+(file-header-defins jcs-insert-c++-unreal-source-template--actor
+    "c++" "unreal/actor/source.txt"
+  "Header for Unreal C++ source file with actor type.")
 
-(defun jcs-insert-c++-unreal-header-template--actor-component ()
-  "Header for Unreal C++ header file with other type."
-  (jcs--file-header--insert "c++" "unreal/actor-component/header.txt"))
+(file-header-defins jcs-insert-c++-unreal-header-template--actor-component
+    "c++" "unreal/actor-component/header.txt"
+  "Header for Unreal C++ header file with other type.")
 
-(defun jcs-insert-c++-unreal-source-template--actor-component ()
-  "Header for Unreal C++ source file with other type."
-  (jcs--file-header--insert "c++" "unreal/actor-component/source.txt"))
+(file-header-defins jcs-insert-c++-unreal-source-template--actor-component
+    "c++" "unreal/actor-component/source.txt"
+  "Header for Unreal C++ source file with other type.")
 
 ;;
 ;; (@* "Hook" )

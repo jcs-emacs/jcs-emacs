@@ -14,9 +14,8 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-lua-template ()
-  "Lua file header format."
-  (jcs--file-header--insert "lua" "default.txt"))
+(file-header-defins jcs-insert-lua-template "lua" "default.txt"
+  "Lua file header format.")
 
 ;;
 ;; (@* "Hook" )

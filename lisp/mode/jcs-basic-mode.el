@@ -8,9 +8,8 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-basic-template ()
-  "Header format for BASIC file."
-  (jcs--file-header--insert "basic" "default.txt"))
+(file-header-defins jcs-insert-basic-template "basic" "default.txt"
+  "Header format for BASIC file.")
 
 ;;
 ;; (@* "Hook" )

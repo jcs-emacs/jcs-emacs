@@ -7,9 +7,9 @@
 ;;
 ;; (@* "Templates" )
 ;;
-(defun jcs-insert-gdscript-template ()
-  "Header for Godot Script header file."
-  (jcs--file-header--insert "gdscript" "default.txt"))
+
+(file-header-defins jcs-insert-gdscript-template "gdscript" "default.txt"
+  "Header for Godot Script header file.")
 
 ;;
 ;; (@* "Hook" )

@@ -8,9 +8,8 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-yaml-template ()
-  "Header for YAML header file."
-  (jcs--file-header--insert "yaml" "default.txt"))
+(file-header-defins jcs-insert-yaml-template "yaml" "default.txt"
+  "Header for YAML header file.")
 
 ;;
 ;; (@* "Hook" )

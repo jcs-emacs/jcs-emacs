@@ -8,9 +8,9 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-elm-template ()
-  "Template for Elm."
-  (jcs--file-header--insert "elm" "default.txt"))
+(file-header-defins jcs-insert-elm-template "elm" "default.txt"
+  "Template for Elm.")
+
 ;;
 ;; (@* "Hook" )
 ;;

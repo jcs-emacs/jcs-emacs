@@ -8,9 +8,8 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-groovy-template ()
-  "Header for Groovy header file."
-  (jcs--file-header--insert "groovy" "default.txt"))
+(file-header-defins jcs-insert-groovy-template "groovy" "default.txt"
+  "Header for Groovy header file.")
 
 ;;
 ;; (@* "Hook" )

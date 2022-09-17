@@ -8,9 +8,8 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-opascal-template ()
-  "Header for Object Pascal header file."
-  (jcs--file-header--insert "opascal" "default.txt"))
+(file-header-defins jcs-insert-opascal-template "opascal" "default.txt"
+  "Header for Object Pascal header file.")
 
 ;;
 ;; (@* "Hook" )

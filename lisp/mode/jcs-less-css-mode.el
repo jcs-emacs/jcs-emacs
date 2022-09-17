@@ -9,9 +9,8 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-less-template ()
-  "Header for LESS header file."
-  (jcs--file-header--insert "less" "default.txt"))
+(file-header-defins jcs-insert-less-template "less" "default.txt"
+  "Header for LESS header file.")
 
 ;;
 ;; (@* "Hook" )

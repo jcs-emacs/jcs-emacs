@@ -8,9 +8,8 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-dart-template ()
-  "Template for Dart."
-  (jcs--file-header--insert "dart" "default.txt"))
+(file-header-defins jcs-insert-dart-template "dart" "default.txt"
+  "Template for Dart.")
 
 ;;
 ;; (@* "Hook" )

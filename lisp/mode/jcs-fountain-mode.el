@@ -8,9 +8,8 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-fountain-template ()
-  "Template for Fountain Lisp."
-  (jcs--file-header--insert "fountain" "default.txt"))
+(file-header-defins jcs-insert-fountain-template "fountain" "default.txt"
+  "Template for Fountain Lisp.")
 
 ;;
 ;; (@* "Hook" )

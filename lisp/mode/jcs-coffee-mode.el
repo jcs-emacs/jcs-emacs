@@ -8,9 +8,8 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-coffee-template ()
-  "Template for CoffeeScript."
-  (jcs--file-header--insert "coffee" "default.txt"))
+(file-header-defins jcs-insert-coffee-template "coffee" "default.txt"
+  "Template for CoffeeScript.")
 
 ;;
 ;; (@* "Hook" )

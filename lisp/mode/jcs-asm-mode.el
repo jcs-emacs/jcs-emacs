@@ -122,13 +122,11 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-masm-template ()
-  "Header for MASM file."
-  (jcs--file-header--insert "assembly" "masm.txt"))
+(file-header-defins jcs-insert-masm-template "assembly" "masm.txt"
+  "Header for MASM file.")
 
-(defun jcs-insert-nasm-template ()
-  "Header for NASM file."
-  (jcs--file-header--insert "assembly" "nasm.txt"))
+(file-header-defins jcs-insert-nasm-template "assembly" "nasm.txt"
+  "Header for NASM file.")
 
 ;;
 ;; (@* "Hook" )

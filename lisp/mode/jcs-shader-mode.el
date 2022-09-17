@@ -10,17 +10,14 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-shader-template ()
-  "Header for Shader header file."
-  (jcs--file-header--insert "shader" "default.txt"))
+(file-header-defins jcs-insert-shader-template "shader" "default.txt"
+  "Header for Shader header file.")
 
-(defun jcs-insert-glsl-template ()
-  "Header for GLSL header file."
-  (jcs--file-header--insert "glsl" "default.txt"))
+(file-header-defins jcs-insert-glsl-template "glsl" "default.txt"
+  "Header for GLSL header file.")
 
-(defun jcs-insert-hlsl-template ()
-  "Header for HLSL header file."
-  (jcs--file-header--insert "hlsl" "default.txt"))
+(file-header-defins jcs-insert-hlsl-template "hlsl" "default.txt"
+  "Header for HLSL header file.")
 
 ;;
 ;; (@* "Hook" )

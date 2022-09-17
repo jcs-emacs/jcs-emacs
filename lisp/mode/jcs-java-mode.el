@@ -87,9 +87,8 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-java-template ()
-  "Header for Java header file."
-  (jcs--file-header--insert "java" "default.txt"))
+(file-header-defins jcs-insert-java-template "java" "default.txt"
+  "Header for Java header file.")
 
 ;;
 ;; (@* "Hook" )

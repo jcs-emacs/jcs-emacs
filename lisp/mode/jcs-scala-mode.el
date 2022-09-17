@@ -8,9 +8,8 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-scala-template ()
-  "Header for Scala header file."
-  (jcs--file-header--insert "scala" "default.txt"))
+(file-header-defins jcs-insert-scala-template "scala" "default.txt"
+  "Header for Scala header file.")
 
 ;;
 ;; (@* "Hook" )

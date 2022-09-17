@@ -36,9 +36,8 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-js-template ()
-  "Template for JavaScript."
-  (jcs--file-header--insert "js" "default.txt"))
+(file-header-defins jcs-insert-js-template "js" "default.txt"
+  "Template for JavaScript.")
 
 ;;
 ;; (@* "Hook" )

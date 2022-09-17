@@ -8,9 +8,8 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-agda-template ()
-  "Template for Agda."
-  (jcs--file-header--insert "agda" "default.txt"))
+(file-header-defins jcs-insert-agda-template "agda" "default.txt"
+  "Template for Agda.")
 
 ;;
 ;; (@* "Hook" )

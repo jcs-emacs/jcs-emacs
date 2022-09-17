@@ -8,9 +8,8 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-swift-template ()
-  "Header for Swift header file."
-  (jcs--file-header--insert "swift" "default.txt"))
+(file-header-defins jcs-insert-swift-template "swift" "default.txt"
+  "Header for Swift header file.")
 
 ;;
 ;; (@* "Hook" )

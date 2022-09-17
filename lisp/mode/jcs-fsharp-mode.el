@@ -8,9 +8,8 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-fsharp-template ()
-  "Header for F# header file."
-  (jcs--file-header--insert "fsharp" "default.txt"))
+(file-header-defins jcs-insert-fsharp-template "fsharp" "default.txt"
+  "Header for F# header file.")
 
 ;;
 ;; (@* "Hook" )

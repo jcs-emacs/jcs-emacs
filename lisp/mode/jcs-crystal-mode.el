@@ -8,9 +8,8 @@
 ;; (@* "Templates" )
 ;;
 
-(defun jcs-insert-crystal-template ()
-  "Template for Crystal."
-  (jcs--file-header--insert "crystal" "default.txt"))
+(file-header-defins jcs-insert-crystal-template "crystal" "default.txt"
+  "Template for Crystal.")
 
 ;;
 ;; (@* "Hook" )
