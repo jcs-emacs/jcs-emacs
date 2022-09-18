@@ -29,6 +29,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Remove `buffer-menu` feature on display project name (74feaa938d4be1667bab1c1f68308f8c6a250208)
 * Use macro to define `file-header` insertion functions (e5e200684f25325c70906a53a84f526328bc6fbf)
 * Re-define file header source with utility macro (ca4d8e49ba80f78bd34ff610a442c8a8bf7bc097)
+* Turn `completion-ignore-case` on by default (b94542cb51736f26a3842753bbc268116fa4ba06)
 
 ## 8.2.1
 > Released Jul 22, 2022
