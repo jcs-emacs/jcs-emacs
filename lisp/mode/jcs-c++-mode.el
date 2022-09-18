@@ -19,35 +19,25 @@
 ;; (@* "Header" )
 ;;
 
-(defun jcs-c++-unreal-insert-header (type)
-  "Insert the Unreal C++ header depends on if is a header/source file."
+;; Ask the source TYPE for Unreal C++ file.
+(file-header-defsrc jcs-c++-ask-unreal-source-type "Type of Unreal C++ file: "
+  '("Actor" "ActorComponent")
   (let ((header-ext (append jcs-c++-header-extensions jcs-c-header-extensions))
         (source-ext (append jcs-c++-source-extensions jcs-c-source-extensions)))
-    (pcase type
-      ("Actor"
+    (pcase index
+      (0
        (jcs-insert-header-if-valid header-ext 'jcs-insert-c++-unreal-header-template--actor)
        (jcs-insert-header-if-valid source-ext 'jcs-insert-c++-unreal-source-template--actor))
-      ("ActorComponent"
+      (1
        (jcs-insert-header-if-valid header-ext 'jcs-insert-c++-unreal-header-template--actor-component)
        (jcs-insert-header-if-valid source-ext 'jcs-insert-c++-unreal-source-template--actor-component)))))
 
-(defun jcs-c++-ask-unreal-source-type (type)
-  "Ask the source TYPE for Unreal C++ file."
-  (interactive
-   (list (completing-read
-          "Type of Unreal C++ file: " '("Actor"
-                                        "ActorComponent"))))
-  (jcs-c++-unreal-insert-header type))
-
-(defun jcs-c++-ask-source (sc)
-  "Ask the source SC for editing C++ file."
-  (interactive
-   (list (completing-read
-          "Major source for this C++ file: " '("Default"
-                                               "Unreal Scripting"))))
-  (pcase sc
-    ("Default" (jcs-cc-insert-header))
-    ("Unreal Scripting" (call-interactively #'jcs-c++-ask-unreal-source-type))))
+;; Ask the source SC for editing C++ file.
+(file-header-defsrc jcs-c++-ask-source "Major source for this C++ file: "
+  '("Default" "Unreal Scripting")
+  (pcase index
+    (0 (jcs-cc-insert-header))
+    (1 (call-interactively #'jcs-c++-ask-unreal-source-type))))
 
 ;;
 ;; (@* "Templates" )

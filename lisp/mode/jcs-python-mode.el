@@ -55,13 +55,11 @@
 ;; (@* "Header" )
 ;;
 
-(defun jcs-ask-python-template (type)
-  (interactive
-   (list (completing-read
-          "Type of the Python template: " '("Class" "Plain"))))
-  (pcase type
-    ("Class" (jcs-insert-python-class-template))
-    ("Plain" (jcs-insert-python-template))))
+(file-header-defsrc jcs-ask-python-template "Type of the Python template: "
+  '("Class" "Plain")
+  (pcase index
+    (0 (jcs-insert-python-class-template))
+    (1 (jcs-insert-python-template))))
 
 ;;
 ;; (@* "Templates" )

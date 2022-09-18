@@ -16,20 +16,14 @@
       (message "[INFO] Detect JSX file, change to `rjsx-mode` instead")
       (rjsx-mode))))
 
-(defun jcs-js--ask-source (sc)
-  "Ask the source SC for editing JavaScript file."
-  (interactive
-   (list (completing-read
-          "Major source for this JavaScript file: " '("Default (JS)"
-                                                      "Default (JSX)"
-                                                      "ReactJS"
-                                                      "React Native"))))
+(file-header-defsrc jcs-js--ask-source "Major source for this JavaScript file: "
+  '("Default (JS)" "Default (JSX)" "ReactJS" "React Native")
   (let (to-jsx)
-    (pcase sc
-      ("Default (JS)" (jcs-insert-js-template))
-      ("Default (JSX)" (jcs-insert-jsx-template) (setq to-jsx t))
-      ("ReactJS" (jcs-insert-jsx-react-js-template) (setq to-jsx t))
-      ("React Native" (jcs-insert-jsx-react-native-template) (setq to-jsx t)))
+    (pcase index
+      (0 (jcs-insert-js-template))
+      (1 (jcs-insert-jsx-template) (setq to-jsx t))
+      (2 (jcs-insert-jsx-react-js-template) (setq to-jsx t))
+      (3 (jcs-insert-jsx-react-native-template) (setq to-jsx t)))
     (when to-jsx (jcs--js-to-jsx-mode t))))
 
 ;;

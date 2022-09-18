@@ -6,16 +6,11 @@
 
 (require 'gitignore-templates)
 
-(defun jcs-gitignore--ask-template (name)
-  "Ask for inserting .gitignore template for NAME."
-  (interactive
-   (list (completing-read ".gitignore template: "
-                          (append (list "Empty (Default)")
-                                  (gitignore-templates-names))
-                          nil t)))
-  (pcase name
-    ("Empty (Default)" )
-    (_ (insert (gitignore-templates name))))
+(file-header-defsrc jcs-gitignore--ask-template ".gitignore template: "
+  (append (list "Empty (Default)") (gitignore-templates-names))
+  (pcase index
+    (0 )
+    (_ (insert (gitignore-templates source))))
   (message "[INFO] Insert template `%s`" name))
 
 ;;

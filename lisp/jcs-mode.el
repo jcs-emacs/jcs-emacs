@@ -53,36 +53,27 @@ Note this is opposite logic to the toggle mode function."
 ;; (@* "License" )
 ;;
 
-(defun jcs-ask-insert-license-content (in-type)
-  "Ask to insert the license content base on IN-TYPE."
-  (interactive
-   (list (completing-read
-          (format "Type of the license: "
-                  (progn  ; Preloading for `interactive` function.
-                    (require 'license-templates) (require 'subr-x)))
-          (delete-dups
-           (sort (append (list "Default (empty)")
-                         (license-templates-names))
-                 #'string-lessp)))))
-  (cond ((string= in-type "Default (empty)") (progn ))
-        ((member in-type (license-templates-names))
-         (license-templates-insert in-type))))
+;; Ask to insert the license content base on SOURCE.
+(file-header-defsrc jcs-ask-insert-license-content "Type of the license: "
+  (delete-dups
+   (sort (append (list "Default (empty)") (license-templates-names))
+         #'string-lessp))
+  (cond ((string= source "Default (empty)") (progn ))
+        ((member source (license-templates-names))
+         (license-templates-insert source))))
 
 ;;
 ;; (@* "Change Log" )
 ;;
 
-(defun jcs-ask-insert-changelog-content (in-type)
-  "Ask to insert the changelog content base on IN-TYPE."
-  (interactive
-   (list (completing-read
-          "Type of the changelog: "
-          (append (list "Default (empty)")
-                  (jcs-dir-to-filename jcs-changelog-template-dir ".txt")))))
-  (pcase in-type
+;; Ask to insert the changelog content base on SOURCE.
+(file-header-defsrc jcs-ask-insert-changelog-content "Type of the changelog: "
+  (append (list "Default (empty)")
+          (jcs-dir-to-filename jcs-changelog-template-dir ".txt"))
+  (pcase source
     ("Default (empty)" )  ; Do nothing...
     (_ (file-header-insert-template-by-file-path
-        (format "%s%s.txt" jcs-changelog-template-dir in-type)))))
+        (format "%s%s.txt" jcs-changelog-template-dir source)))))
 
 ;;----------------------------------------------------------------------------
 ;;; Startup Modes

@@ -4,16 +4,13 @@
 
 (require 'csharp-mode)
 
-(defun jcs-csharp-ask-source (sc)
-  "Ask the source SC for editing CSharp file."
-  (interactive
-   (list (completing-read
-          "Major source for this CSharp file: "
-          '("Default" "Godot C#" "Unity C#"))))
-  (pcase sc
-    ("Default" (jcs-insert-csharp-template))
-    ("Godot C#" (jcs-insert-csharp-godot-template))
-    ("Unity C#" (jcs-insert-csharp-unity-template))))
+;; Ask the source SC for editing CSharp file.
+(file-header-defsrc jcs-csharp-ask-source "Major source for this CSharp file: "
+  '("Default" "Godot C#" "Unity C#")
+  (pcase index
+    (0 (jcs-insert-csharp-template))
+    (1 (jcs-insert-csharp-godot-template))
+    (2 (jcs-insert-csharp-unity-template))))
 
 ;;
 ;; (@* "Templates" )

@@ -4,15 +4,12 @@
 
 (require 'typescript-mode)
 
-(defun jcs-typescript-ask-source (sc)
-  "Ask the source SC for editing TypeScript file."
-  (interactive
-   (list (completing-read
-          "Major source for this TypeScript file: "
-          '("Default" "Cocos Creator Scripting"))))
-  (pcase sc
-    ("Default" (jcs-insert-typescript-template))
-    ("Cocos Creator Scripting" (jcs-insert-typescript-cocos-creator-template))))
+;; Ask the source SC for editing TypeScript file.
+(file-header-defsrc jcs-typescript-ask-source "Major source for this TypeScript file: "
+  '("Default" "Cocos Creator Scripting")
+  (pcase index
+    (0 (jcs-insert-typescript-template))
+    (1 (jcs-insert-typescript-cocos-creator-template))))
 
 ;;
 ;; (@* "Document String" )

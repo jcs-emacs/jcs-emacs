@@ -18,17 +18,13 @@
     ("masm" (masm-mode))
     ("nasm" (nasm-mode))))
 
-(defun jcs-asm-ask-source (sc)
-  "Ask the source SC for editing Assembly Language file."
-  (interactive
-   (list (completing-read
-          "Major source for this Assembly Language file: "
-          '("masm" "nasm"))))
+(file-header-defsrc jcs-asm-ask-source
+    "Major source for this Assembly Language file: "
+  '("masm" "nasm")
   (let ((jcs-asm--asking-mode t))
-    (pcase sc
-      ("masm" (masm-mode) (jcs-insert-masm-template))
-      ("nasm" (nasm-mode) (jcs-insert-nasm-template)))))
-
+    (pcase index
+      (0 (masm-mode) (jcs-insert-masm-template))
+      (1 (nasm-mode) (jcs-insert-nasm-template)))))
 
 (defun nasm-indent-line ()
   "Indent current line as NASM assembly code."

@@ -5,67 +5,39 @@
 (require 'make-mode)
 (require 'python-mode)
 
-(defun jcs-ask-makefile-language (lan)
-  "Ask make file language LAN type."
-  (interactive
-   (list (completing-read
-          "Major language for this Makfile: " '("Default (empty)"
-                                                "Assembly"
-                                                "C"
-                                                "C++"
-                                                "Java"
-                                                "Python"))))
-  (when-let
-      ((fnc
-        (pcase lan
-          ("Default (empty)")  ; Does nothing
-          ("Assembly" #'jcs-ask-makefile-cc-template)
-          ("C" #'jcs-ask-makefile-cc-template)
-          ("C++" #'jcs-ask-makefile-cc-template)
-          ("Java" #'jcs-ask-makefile-java-template)
-          ("Python" #'jcs-ask-makefile-python-template))))
-    (call-interactively fnc)))
+(file-header-defsrc jcs-ask-makefile-language "Major language for this Makfile: "
+  '("Default (empty)"
+    "Assembly"
+    "C"
+    "C++"
+    "Java"
+    "Python")
+  (pcase index
+    (0 )  ; Does nothing
+    ((or 1 2 3) (funcall-interactively #'jcs-ask-makefile-cc-template))
+    (4 (funcall-interactively #'jcs-ask-makefile-java-template))
+    (5 (funcall-interactively #'jcs-ask-makefile-python-template))))
 
-(defun jcs-ask-makefile-cc-template (type)
-  "Ask makefile template type in Assembly, C, C++.
-TYPE: type of makefile for Assembly and C/C++."
-  (interactive
-   (list (completing-read
-          "Type of makefile: " '(".."
-                                 "Application"
-                                 "Library"))))
-  (pcase type
-    (".." (call-interactively 'jcs-ask-makefile-language))
-    ("Application" (jcs-insert-makefile-cc-app-template))
-    ("Library" (jcs-insert-makefile-cc-lib-template))))
+(file-header-defsrc jcs-ask-makefile-cc-template "Type of makefile: "
+  '(".." "Application" "Library")
+  (pcase index
+    (0 (call-interactively 'jcs-ask-makefile-language))
+    (1 (jcs-insert-makefile-cc-app-template))
+    (2 (jcs-insert-makefile-cc-lib-template))))
 
+(file-header-defsrc jcs-ask-makefile-java-template "Type of makefile: "
+  '(".." "Application" "Library")
+  (pcase index
+    (0 (call-interactively 'jcs-ask-makefile-language))
+    (1 (jcs-insert-makefile-java-app-template))
+    (2 (jcs-insert-makefile-java-lib-template))))
 
-(defun jcs-ask-makefile-java-template (type)
-  "Ask makefile template type in Java.
-TYPE: type of makefile for Java."
-  (interactive
-   (list (completing-read
-          "Type of makefile: " '(".."
-                                 "Application"
-                                 "Library"))))
-  (pcase type
-    (".." (call-interactively 'jcs-ask-makefile-language))
-    ("Application" (jcs-insert-makefile-java-app-template))
-    ("Library" (jcs-insert-makefile-java-lib-template))))
-
-
-(defun jcs-ask-makefile-python-template (type)
-  "Ask makefile template type in Python.
-TYPE: type of makefile for Python."
-  (interactive
-   (list (completing-read
-          "Type of makefile: " '(".."
-                                 "Application"
-                                 "Library"))))
-  (pcase type
-    (".." (call-interactively 'jcs-ask-makefile-language))
-    ("Application" (jcs-insert-makefile-python-app-template))
-    ("Library" (jcs-insert-makefile-python-lib-template))))
+(file-header-defsrc jcs-ask-makefile-python-template "Type of makefile: "
+  '(".." "Application" "Library")
+  (pcase index
+    (0 (call-interactively 'jcs-ask-makefile-language))
+    (1 (jcs-insert-makefile-python-app-template))
+    (2 (jcs-insert-makefile-python-lib-template))))
 
 (defun jcs-makefile-newline ()
   "Newline key for `makefile-mode'."
@@ -76,10 +48,6 @@ TYPE: type of makefile for Python."
 ;;
 ;; (@* "Templates" )
 ;;
-
-(defun jcs-makefile-format-info ()
-  "File header format specific for makefile depends on language selected."
-  (call-interactively 'jcs-ask-makefile-language))
 
 (file-header-defins jcs-insert-makefile-cc-app-template "makefile" "cc/app.txt"
   "Default makefile template for normal application.")
@@ -112,7 +80,8 @@ TYPE: type of makefile for Python."
   (jcs-insert-header-if-valid '("[.]makefile"
                                 "[Mm]akefile"
                                 "[.]mak")
-                              'jcs-makefile-format-info)
+                              'jcs-ask-makefile-language
+                              :interactive t)
 
   (jcs-key-local
     `(((kbd "<up>")   . ,(jcs-get-prev/next-key-type 'previous))

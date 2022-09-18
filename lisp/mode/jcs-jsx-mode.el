@@ -6,18 +6,13 @@
 (require 'web-mode)
 (require 'emmet-mode)
 
-(defun jcs-jsx--ask-source (sc)
-  "Ask the source SC for editing JavaScript XML file."
-  (interactive
-   (list (completing-read
-          "Major source for this JavaScript XML file: "
-          '("Default"
-            "ReactJS"
-            "React Native"))))
-  (pcase sc
-    ("Default" (jcs-insert-jsx-template))
-    ("ReactJS" (jcs-insert-jsx-react-js-template))
-    ("React Native" (jcs-insert-jsx-react-native-template))))
+;; Ask the source SC for editing JavaScript XML file.
+(file-header-defsrc jcs-jsx--ask-source "Major source for this JavaScript XML file: "
+  '("Default" "ReactJS" "React Native")
+  (pcase index
+    (0 (jcs-insert-jsx-template))
+    (1 (jcs-insert-jsx-react-js-template))
+    (2 (jcs-insert-jsx-react-native-template))))
 
 ;;
 ;; (@* "Templates" )
