@@ -206,6 +206,7 @@
       completion-styles '(partial-completion)  ; easy on `company-mode'
       completion-category-defaults nil
       completion-ignored-extensions nil
+      completion-ignore-case t
       suggest-key-bindings nil)
 
 ;;; Previous/Next keys
