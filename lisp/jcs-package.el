@@ -199,6 +199,7 @@
     masm-mode
     message-clean-mode
     meta-view
+    minimap
     minions
     moody
     most-used-words

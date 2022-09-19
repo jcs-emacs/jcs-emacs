@@ -307,15 +307,6 @@
     (jcs-line-numbers-active on-off)))
 
 ;;
-;; (@* "Minimap" )
-;;
-
-(defun jcs-toggle-minimap ()
-  "Toggle minimap."
-  (interactive)
-  (user-error "[INFO] Minimap no longer supported in this configuration"))
-
-;;
 ;; (@* "Prettify / Minify" )
 ;;
 

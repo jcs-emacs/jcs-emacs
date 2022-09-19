@@ -155,7 +155,7 @@
     ("\e;"       . exchange-point-and-mark)
 
 ;;; Minimap
-    ((kbd "C-k m") . jcs-toggle-minimap)
+    ((kbd "C-k m") . minimap-mode)
 
 ;;; Mode Toggle
     ((kbd "C-k `") . (lambda () (interactive)

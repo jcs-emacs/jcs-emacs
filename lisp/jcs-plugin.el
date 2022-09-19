@@ -578,6 +578,12 @@
                 (setq continuation t))
             (setq continuation nil)))))))
 
+(leaf minimap
+  :init
+  (setq minimap-width-fraction 0.1
+        minimap-minimum-width 10
+        minimap-window-location 'right))
+
 (leaf minions
   :init
   (setq minions-mode-line-delimiters nil
