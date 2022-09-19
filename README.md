@@ -285,7 +285,7 @@ kind of methods to support the maintainer you wish to.
 * *Language Server Protocol* - powered by [lsp-mode](https://github.com/emacs-lsp/lsp-mode).
 * *Line Annotation* - powered by [line-reminder](https://github.com/elpa-host/line-reminder).
 * *Line Numbers* - powered by [display-line-numbers](https://github.com/emacs-mirror/emacs/blob/master/lisp/display-line-numbers.el) and [linum](https://github.com/emacs-mirror/emacs/blob/master/lisp/linum.el).
-* *Minimap* - none, originally powered by ~~[sublimity](https://github.com/zk-phi/sublimity)~~.
+* *Minimap* - powered by [minimap](http://elpa.gnu.org/packages/minimap.html).
 * *Mode Line* - powered by [moody](https://github.com/tarsius/moody).
 * *Multiple Cursor* - powered by [iedit](https://github.com/victorhge/iedit) and [multiple-cursors](https://github.com/magnars/multiple-cursors.el).
 * *Multiple Terminal* - powered by [multi-shell](https://github.com/jcs-elpa/multi-shell).
