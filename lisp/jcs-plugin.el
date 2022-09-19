@@ -31,7 +31,7 @@
 
 (leaf balance-windows
   :init
-  (setq balanced-windows-functions
+  (setq balanced-windows-commands
         '(delete-window
           quit-window
           split-window-horizontally split-window-vertically)))
