@@ -278,9 +278,7 @@
                   buffer-file-coding-system
                   (show-eol-get-eol-mark-by-system)
                   (format-time-string "%b %d, %Y %H:%M:%S")))
-        echo-bar-minibuffer nil)
-  :config
-  (require 'show-eol))
+        echo-bar-minibuffer nil))
 
 (leaf editorconfig
   :init

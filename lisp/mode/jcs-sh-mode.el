@@ -4,19 +4,17 @@
 
 (require 'sh-script)
 
-(require 'show-eol)
-
 (defvar-local jcs-sh--buffer-eol nil
   "Record of buffer's line endings type.")
 
 ;; Ask the saved line endings SOURCE for this shell script.
 (file-header-defsrc jcs-ask-line-endings-for-this-sh-script
     (format "Line Endings Type for file `%s`: " (jcs-buffer-name-or-buffer-file-name))
-  (list (format "=> file: (%s)" (show-eol--get-current-system))
+  (list (format "=> file: (%s)" (show-eol-get-current-system))
         (format "=> system: (%s)" jcs-system-type)
         "Windows (dos)" "macOS (mac)" "Linux (unix)")
   (setq jcs-sh--buffer-eol
-        (cond ((string-match-p "file:" source) (show-eol--get-current-system))
+        (cond ((string-match-p "file:" source) (show-eol-get-current-system))
               ((string-match-p "system:" source) jcs-system-type)
               (t (pcase source
                    ("Windows (dos)" 'dos)
