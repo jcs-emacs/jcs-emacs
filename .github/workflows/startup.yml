@@ -102,7 +102,7 @@ jobs:
       run: |
         git pull
         git reset --hard 273126a2d7ccbb8efd2ece90ebde95188f1a0a9b
-        tree
+        ls
         mv ~/main.tar ./
         git add .
         git commit -m "Update .emacs.d - main.tar"
