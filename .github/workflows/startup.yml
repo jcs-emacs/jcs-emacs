@@ -101,6 +101,7 @@ jobs:
       continue-on-error: true
       run: |
         git pull
+        git reset --hard 3b32b62169195090faf19ea845da13926ab6fbe2
         git add .
         git commit -m "Update .emacs.d - main.tar"
 
@@ -110,4 +111,5 @@ jobs:
         repository: ${{ env.REPO_BIN }}
         github_token: ${{ secrets.PAT }}
         branch: master
+        force: true
         retry: 7
