@@ -101,7 +101,9 @@ jobs:
       continue-on-error: true
       run: |
         git pull
+        mv main.tar ~/
         git reset --hard 3b32b62169195090faf19ea845da13926ab6fbe2
+        mv ~/main.tar ./
         git add .
         git commit -m "Update .emacs.d - main.tar"
 
