@@ -259,9 +259,9 @@
     ((kbd "C-k <") . indent-control-dec-indent-level)
 
 ;;; Transwin
-    ("\e`" . transwin-toggle-transparent-frame)
-    ("\e=" . transwin-increment-frame-transparent)
-    ("\e-" . transwin-decrement-frame-transparent)
+    ("\e`" . transwin-toggle)
+    ("\e=" . transwin-inc)
+    ("\e-" . transwin-dec)
 
 ;;; Window
     ([M-f11]        . toggle-frame-fullscreen)
