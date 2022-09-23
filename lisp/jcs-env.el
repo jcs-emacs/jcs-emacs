@@ -91,6 +91,9 @@
   :init
   (setq comment-inline-offset 2))
 
+;;; Custom
+(setq custom-safe-themes t)
+
 ;;; Default Major Mode
 (setq-default major-mode 'text-mode)
 
