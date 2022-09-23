@@ -2,6 +2,30 @@
 
 Here is the list of key bindins that defined in this configuration.
 
+<!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
+**Table of Contents**
+
+- [List of key bindings](#list-of-key-bindings)
+    - [Global](#global)
+        - [Programming](#programming)
+        - [Buffer](#buffer)
+        - [File](#file)
+        - [Navigating](#navigating)
+        - [Visualization](#visualization)
+        - [Windows](#windows)
+        - [Source Control](#source-control)
+        - [Terminal / Shell](#terminal--shell)
+        - [Others](#others)
+    - [Package Mode](#package-mode)
+    - [`tabulated-list` Mode](#tabulated-list-mode)
+    - [Org Mode](#org-mode)
+    - [C/C++/Objective-C Mode](#ccobjective-c-mode)
+    - [Java Mode](#java-mode)
+    - [Web Mode](#web-mode)
+    - [CSS Mode](#css-mode)
+
+<!-- markdown-toc end -->
+
 ## Global
 
 ### Programming
@@ -299,6 +323,10 @@ Here is the list of key bindins that defined in this configuration.
   * <kbd>Ctrl</kbd>+<kbd>r</kbd>, <kbd>o</kbd> - Read-Only mode toggle.
   * <kbd>Ctrl</kbd>+<kbd>r</kbd>, <kbd>f</kbd> - Open recent files.
   * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>\`</kbd> - Toggle `depend`/`cross` mode.
+
+* **Theme**
+
+  * <kbd>Ctrl</kbd>+<kbd>k</kbd>,<kbd>Ctrl</kbd>+<kbd>t</kbd> - Select theme.
 
 * **Exit**
 

@@ -258,6 +258,9 @@
     ((kbd "C-k >") . indent-control-inc-indent-level)
     ((kbd "C-k <") . indent-control-dec-indent-level)
 
+;;; Theme
+    ((kbd "C-k C-t") . load-theme)
+
 ;;; Transwin
     ("\e`" . transwin-toggle)
     ("\e=" . transwin-inc)
