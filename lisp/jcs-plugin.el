@@ -823,7 +823,8 @@
 (leaf ts-docstr
   :hook (tree-sitter-after-on-hook . ts-docstr-mode)
   :init
-  (setq ts-docstr-desc-summary ""))
+  (setq ts-docstr-key-support t
+        ts-docstr-desc-summary ""))
 
 (leaf ts-fold
   :hook (tree-sitter-after-on-hook . ts-fold-indicators-mode)
