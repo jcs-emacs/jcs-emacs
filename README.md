@@ -118,6 +118,7 @@ without having to get used to a new IDE.
 
 Here is the list of few essential and recent changes to this configuration.
 
+* `8.2.1` - Replace package `docstr` with `ts-docstr` for better parsing capability
 * `8.2.0` - Drop support for Emacs 27.x
 * `8.1.0` - Remove config tabify/untabify save, and replace it with `whitespace-cleanup-mode`.
 * `8.0.1` - Switch from `ivy` to `vertico`.
@@ -127,8 +128,6 @@ Here is the list of few essential and recent changes to this configuration.
 * `6.5.0` - Add pinned archive feature to package module.
 * `6.4.2` - You can now resolve package dependency graph while deleting package.
 * `6.4.1` - Start with `tree-sitter` support.
-* `6.4.0` - Switched from `projectile` to built-in `project` for project management.
-* `6.3.1` - Replaced `docstring` module to external `docstr` package.
 
 ## 💾 Installation
 
@@ -270,7 +269,7 @@ kind of methods to support the maintainer you wish to.
 * *Collaborative Editing* - powered by [togetherly](https://github.com/zk-phi/togetherly).
 * *Completion Frontend* - powered by [vertico](https://github.com/minad/vertico).
 * *Context Menu* - powered by [right-click-context](https://github.com/zonuexe/right-click-context).
-* *Document String* - powered by [docstr](https://github.com/jcs-elpa/docstr).
+* *Document String* - powered by [ts-docstr](https://github.com/emacs-vs/ts-docstr).
 * *End of Line* - powered by [show-eol](https://github.com/elpa-host/show-eol).
 * *Execute Commands* - powered by [compile](https://www.emacswiki.org/emacs/CompilationMode).
 * *File Explorer* - powered by [treemacs](https://github.com/Alexander-Miller/treemacs).
