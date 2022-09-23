@@ -31,6 +31,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Re-define file header source with utility macro (ca4d8e49ba80f78bd34ff610a442c8a8bf7bc097)
 * Turn `completion-ignore-case` on by default (b94542cb51736f26a3842753bbc268116fa4ba06)
 * Add new package `minimap` (ae9ef5a0d93bf8f924c8572d00f026dace2079a3)
+* Replace package `docstr` with `ts-docstr` for better parsing capability (ee85ba4b01401707461ec695038f2ee4cc175f74)
+* Add new package `highlight-doxygen` (ee85ba4b01401707461ec695038f2ee4cc175f74)
 
 ## 8.2.1
 > Released Jul 22, 2022
