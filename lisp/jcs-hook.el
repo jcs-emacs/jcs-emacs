@@ -94,7 +94,6 @@
 (jcs-add-hook 'on-first-file-hook
   (auto-read-only-mode 1)
   (global-tree-sitter-mode 1)
-  (global-docstr-mode 1)
   (global-so-long-mode 1))
 
 ;;

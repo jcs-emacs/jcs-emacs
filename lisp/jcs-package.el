@@ -91,7 +91,6 @@
     docker
     docker-compose-mode
     dockerfile-mode
-    docstr
     dotenv-mode
     dumb-jump
     eask-mode
@@ -149,6 +148,7 @@
     helpful
     hexo
     hgignore-mode
+    highlight-doxygen
     highlight-escape-sequences
     highlight-indent-guides
     highlight-numbers
@@ -270,6 +270,7 @@
     transwin
     tree-sitter-indent
     tree-sitter-langs
+    ts-docstr
     ts-fold
     turbo-log
     typescript-mode

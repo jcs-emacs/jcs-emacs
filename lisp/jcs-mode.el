@@ -192,9 +192,6 @@ Note this is opposite logic to the toggle mode function."
     (unless (jcs-contain-list-type-str "-" (list comment-start comment-end) 'regex)
       (modify-syntax-entry ?- "_"))
 
-    ;; Load Docstring faces
-    (docstr-faces-apply)
-
     ;; Ensure indentation level is available
     (indent-control-ensure-tab-width)
 

@@ -30,64 +30,24 @@
 (defvar jcs--enum-desc-string "Enum description here.."
   "Enum description string.")
 
-(defun jcs-c++--docstr-after (search-string)
-  "Local hook `docstr-after-insert-hook' for C++."
-  (let ((splitted-search-string (split-string search-string " " t))
-        (defined-keyword ""))
-    (cond
-     ((string-match-p "class" search-string)
-      ;; Process class tag.
-      (insert "@class ")
-      (setq defined-keyword
-            (jcs-find-item-in-list-offset splitted-search-string "[:{]" -1))
-      (unless defined-keyword
-        (setq defined-keyword (jcs-last-item-in-list splitted-search-string)))
-      (ignore-errors (insert defined-keyword))
-      (indent-for-tab-command)
-
-      ;; Process brief tag.
-      (insert "\n* @brief ")
-      (insert jcs--class-desc-string)
-      (indent-for-tab-command))
-     ((string-match-p "struct" search-string)
-      ;; Process class tag.
-      (insert "@struct ")
-      (setq defined-keyword
-            (jcs-find-item-in-list-offset splitted-search-string "[:{]" -1))
-      (unless defined-keyword
-        (setq defined-keyword (jcs-last-item-in-list splitted-search-string)))
-      (ignore-errors (insert defined-keyword))
-      (indent-for-tab-command)
-
-      ;; Process brief tag.
-      (insert "\n* @brief ")
-      (insert jcs--struct-desc-string)
-      (indent-for-tab-command))
-     ((string-match-p "#define" search-string)
-      ;; Process define tag.
-      (insert "@def ")
-      (setq defined-keyword (nth 1 (split-string search-string " " t)))
-      (ignore-errors (insert defined-keyword))
-      (indent-for-tab-command)
-
-      ;; Process brief tag.
-      (insert "\n* @brief ")
-      (insert jcs--define-desc-string)
-      (indent-for-tab-command))
-     ((string-match-p "enum" search-string)
-      ;; Process enumerator tag.
-      (insert "@enum ")
-      (setq defined-keyword
-            (jcs-find-item-in-list-offset splitted-search-string "[:{]" -1))
-      (unless defined-keyword
-        (setq defined-keyword (jcs-last-item-in-list splitted-search-string)))
-      (ignore-errors (insert defined-keyword))
-      (indent-for-tab-command)
-
-      ;; Process brief tag.
-      (insert "\n* @brief ")
-      (insert jcs--enum-desc-string)
-      (indent-for-tab-command)))))
+(defun jcs-c++--ts-docstr-after (node data)
+  "Local hook `ts-docstr-after-insert-hook' for C++."
+  (when-let ((name (plist-get data :name)))
+    (ts-docstr-inserting
+      (cl-case (tsc-node-type node)
+        (preproc_def
+         (insert "@def " name "\n")
+         (insert "* @brief " jcs--define-desc-string))
+        (class_specifier
+         (insert "@class " name "\n")
+         (insert "* @brief " jcs--class-desc-string))
+        (struct_specifier
+         (insert "@struct " name "\n")
+         (insert "* @brief " jcs--struct-desc-string))
+        (enum_specifier
+         (insert "@enum " name "\n")
+         (insert "* @brief " jcs--enum-desc-string)))
+      (setq restore-point (point)))))
 
 ;;
 ;; (@* "Header" )

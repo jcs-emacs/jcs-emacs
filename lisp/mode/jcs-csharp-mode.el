@@ -30,8 +30,6 @@
 ;;
 
 (jcs-add-hook 'csharp-mode-hook
-  (setq-local docstr-show-type-name nil)
-
   (modify-syntax-entry ?_ "w")
 
   ;; File Header

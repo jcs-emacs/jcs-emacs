@@ -72,12 +72,6 @@
   (impatient-mode t)
   (setq truncate-lines t)
 
-  ;; Docstring Faces
-  (face-remap-add-relative 'docstr-faces-tag-face '(:inherit web-mode-block-face))
-  (face-remap-add-relative 'docstr-faces-type-face '(:inherit web-mode-block-face))
-  (face-remap-add-relative 'docstr-faces-value-face '(:inherit web-mode-block-face))
-  (face-remap-add-relative 'web-mode-block-string-face '(font-lock-string-face))
-
   (jcs-elec-pair-add '((?\' . ?\') (?\" . ?\")))
 
   ;; File Header

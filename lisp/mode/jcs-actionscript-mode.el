@@ -20,8 +20,6 @@
 (jcs-add-hook 'actionscript-mode-hook
   (jcs-use-cc-mutliline-comment)
 
-  (setq-local docstr-show-type-name nil)
-
   (modify-syntax-entry ?_ "w")
 
   ;; File Header

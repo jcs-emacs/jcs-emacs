@@ -70,7 +70,7 @@
 ;;
 
 (jcs-add-hook 'c++-mode-hook
-  (add-hook 'docstr-after-insert-hook 'jcs-c++--docstr-after nil t)
+  (add-hook 'ts-docstr-after-insert-hook 'jcs-c++--ts-docstr-after nil t)
 
   (company-fuzzy-backend-add 'company-c-headers)
 

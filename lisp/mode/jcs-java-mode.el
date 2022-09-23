@@ -95,8 +95,6 @@
 ;;
 
 (jcs-add-hook 'java-mode-hook
-  (setq-local docstr-show-type-name nil)
-
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
 

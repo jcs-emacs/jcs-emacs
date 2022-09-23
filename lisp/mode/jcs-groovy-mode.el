@@ -16,8 +16,6 @@
 ;;
 
 (jcs-add-hook 'groovy-mode-hook
-  (setq-local docstr-show-type-name nil)
-
   ;; File Header
   (jcs-insert-header-if-valid '("[.]groovy"
                                 "[.]gradle")

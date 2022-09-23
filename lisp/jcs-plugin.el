@@ -10,6 +10,8 @@
   (setq ahs-idle-interval 0.15))
 
 (leaf auto-read-only
+  :init
+  (setq auto-read-only-function #'read-only-mode)
   :defer-config
   (nconc auto-read-only-file-regexps
          '("emacs/.*/lisp/"
@@ -258,11 +260,6 @@
 (leaf diredfl
   :hook (dired-mode-hook . diredfl-mode))
 
-(leaf docstr
-  :init
-  (setq docstr-key-support t
-        docstr-desc-summary ""))
-
 (leaf dumb-jump
   :init
   (setq dumb-jump-selector 'completing-read))
@@ -360,6 +357,9 @@
 
 (leaf goto-char-preview :hook (goto-char-preview-after-hook . jcs--recenter--advice-after))
 (leaf goto-line-preview :hook (goto-line-preview-after-hook . jcs--recenter--advice-after))
+
+(leaf highlight-doxygen-mode
+  :hook (ts-docstr-mode-hook . highlight-doxygen-mode))
 
 (leaf highlight-indent-guides
   :init
@@ -819,6 +819,11 @@
     (jcs--tree-sitter-grab-queries)
     (tree-sitter-hl-mode 1))  ; re-enable it once
   (add-hook 'tree-sitter-hl-mode-hook #'jcs--tree-sitter-hl-mode-hook))
+
+(leaf ts-docstr
+  :hook (tree-sitter-after-on-hook . ts-docstr-mode)
+  :init
+  (setq ts-docstr-desc-summary ""))
 
 (leaf ts-fold
   :hook (tree-sitter-after-on-hook . ts-fold-indicators-mode)

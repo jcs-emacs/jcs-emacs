@@ -18,8 +18,6 @@
 (jcs-add-hook 'go-mode-hook
   (jcs-use-cc-mutliline-comment)
 
-  (setq-local docstr-show-type-name nil)
-
   ;; File Header
   (jcs-insert-header-if-valid '("[.]go")
                               'jcs-insert-go-template))
