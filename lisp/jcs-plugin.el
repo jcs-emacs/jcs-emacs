@@ -93,13 +93,12 @@
         company-selection-wrap-around 'on
         company-format-margin-function #'company-detect-icons-margin)
   (setq company-backends
-        (append
-         '(company-capf company-semantic)
-         '(company-keywords)
-         '(company-abbrev company-dabbrev company-dabbrev-code)
-         '(company-files)
-         '(company-etags company-gtags)
-         '(company-yasnippet)))
+        '( company-capf company-semantic
+           company-keywords
+           company-abbrev company-dabbrev company-dabbrev-code
+           company-files
+           company-etags company-gtags
+           company-yasnippet))
   :defer-config
   (unless jcs-graphic-p
     (push 'company-echo-metadata-frontend company-frontends)))
@@ -208,54 +207,52 @@
 (leaf diminish-buffer
   :init
   (setq diminish-buffer-list
-        (append
-         '("[*]jcs")  ; config wise
-         '("[*]helm" "[*]esup-" "[*]quelpa-")
-         '("[*]compilation" "[*]output")
-         '("[*]Apropos[*]" "[*]Backtrace[*]" "[*]Compile-Log[*]"
+        '( "[*]jcs"  ; config wise
+           "[*]helm" "[*]esup-" "[*]quelpa-"
+           "[*]compilation" "[*]output"
+           "[*]Apropos[*]" "[*]Backtrace[*]" "[*]Compile-Log[*]"
            "[*]Help[*]" "[*]Bug Help[*]"
-           "[*]Warnings[*]")
-         '("[*]VC-history[*]")
-         '("[*]CPU-Profiler-Report" "[*]Memory-Profiler-Report")
-         '("[*]Process List[*]")
-         '("[*]Checkdoc " "[*]Elint[*]" "[*]Package-Lint[*]" "[*]relint[*]")
-         '("[*]Finder[*]")
-         '("[*]Async Shell Command[*]" "[*]shell" "[*]eshell" "bshell<")
-         '("[*]ESS[*]")
-         '("[*]emacs[*]")  ; From `async'
-         '("[*]lsp-" "[*]LSP[ ]+"
+           "[*]Warnings[*]"
+           "[*]VC-history[*]"
+           "[*]CPU-Profiler-Report" "[*]Memory-Profiler-Report"
+           "[*]Process List[*]"
+           "[*]Checkdoc " "[*]Elint[*]" "[*]Package-Lint[*]" "[*]relint[*]"
+           "[*]Finder[*]"
+           "[*]Async Shell Command[*]" "[*]shell" "[*]eshell" "bshell<"
+           "[*]ESS[*]"
+           "[*]emacs[*]"  ; From `async'
+           ;; `lsp-mode'
+           "[*]lsp-" "[*]LSP[ ]+"
            "[*][a-zA-Z0-9]+[-]*ls" "[*][a-zA-Z0-9]+::stderr[*]"
            "[*]csharp[*]"
            "[*]rust-analyzer[*:]"
            "[*]tcp-server-sonarlint"
-           "[*]pyright[*]")  ; From `lsp'
-         '("[*]tree-sitter" "tree-sitter-tree:")
-         '("[*]company")
-         '("[*]editorconfig")
-         '("[*]Local Variables[*]")
-         '("[*]Kill Ring[*]")  ; From `browse-kill-ring'
-         '("[*]SPEEDBAR")
-         '("[*]Flycheck" "[*]Flymake log[*]")
-         '("[*]httpd[*]")
-         '("[*]helpful" "[*]suggest[*]")
-         '("[*]ert[*]" "[*]indent-lint")
-         '("[*]elfeed-")
-         '("magit[-]*[[:ascii:]]*[:]")  ; From `magit'
-         '("[*]Most used words[*]")
-         '("[*]Test SHA[*]")
-         '("[*]RE-Builder")
-         '("[*]define-it: tooltip[*]" "[*]preview-it" "[*]gh-md")
-         '("[*]wclock[*]")
-         '("[*]Clippy[*]")
-         '("[*]CMake Temporary[*]")
-         '("[*]org-src-fontification")
-         '("[*]ASCII[*]")
-         '("[*]npm:" "[*]hexo")
-         '("[*]Flutter"))
-        diminish-buffer-mode-list
-        (append
-         '("dired-mode")
-         '("shell-mode" "eshell-mode"))))
+           "[*]pyright[*]"
+           "[*]tree-sitter" "tree-sitter-tree:"
+           "[*]company"
+           "[*]editorconfig"
+           "[*]Local Variables[*]"
+           "[*]Kill Ring[*]"  ; From `browse-kill-ring'
+           "[*]SPEEDBAR"
+           "[*]Flycheck" "[*]Flymake log[*]"
+           "[*]httpd[*]"
+           "[*]helpful" "[*]suggest[*]"
+           "[*]ert[*]" "[*]indent-lint"
+           "[*]elfeed-"
+           "magit[-]*[[:ascii:]]*[:]"  ; From `magit'
+           "[*]Most used words[*]"
+           "[*]Test SHA[*]"
+           "[*]RE-Builder"
+           "[*]define-it: tooltip[*]" "[*]preview-it" "[*]gh-md"
+           "[*]wclock[*]"
+           "[*]Clippy[*]"
+           "[*]CMake Temporary[*]"
+           "[*]org-src-fontification"
+           "[*]ASCII[*]"
+           "[*]npm:" "[*]hexo"
+           "[*]Flutter")
+        diminish-buffer-mode-list '( "dired-mode"
+                                     "shell-mode" "eshell-mode")))
 
 (leaf diredfl
   :hook (dired-mode-hook . diredfl-mode))
@@ -543,19 +540,19 @@
 
 (leaf message-clean-mode
   :init
-  (setq message-clean-mode-mute-commands '(push-mark set-mark-command)
+  (setq message-clean-mode-mute-commands '( push-mark set-mark-command)
         message-clean-mode-echo-commands
-        (append '(mwheel-scroll
-                  previous-line next-line
-                  jcs-beginning-of-line jcs-end-of-line
-                  mark-whole-buffer
-                  indent-region)
-                '(browse-kill-ring-setup
-                  isearch-done
-                  undefined
-                  toggle-truncate-lines
-                  define-it
-                  jcs-package-upgrade-all jcs-package--show-upgrades))
+        '( mwheel-scroll
+           previous-line next-line
+           jcs-beginning-of-line jcs-end-of-line
+           mark-whole-buffer
+           indent-region
+           browse-kill-ring-setup
+           isearch-done
+           undefined
+           toggle-truncate-lines
+           define-it
+           jcs-package-upgrade-all jcs-package--show-upgrades)
         message-clean-mode-minor-mode 'echo))
 
 (leaf meta-view
@@ -616,16 +613,15 @@
 (leaf multiple-cursors
   :init
   (defconst jcs-mc/cancel-commands
-    (append
-     '(jcs-previous-blank-line jcs-next-blank-line)
-     '(jcs-isearch-backward-symbol-at-point
+    '( jcs-previous-blank-line jcs-next-blank-line
+       jcs-isearch-backward-symbol-at-point
        isearch-forward-symbol-at-point
        jcs-isearch-repeat-backward
-       jcs-isearch-repeat-forward)
-     '(jcs-isearch-project-backward-symbol-at-point
+       jcs-isearch-repeat-forward
+       jcs-isearch-project-backward-symbol-at-point
        isearch-project-forward-symbol-at-point
        jcs-isearch-project-repeat-backward
-       jcs-isearch-project-repeat-forward))
+       jcs-isearch-project-repeat-forward)
     "List of commands that will quite `multiple-cursors' after execution.")
 
   (defun jcs-mc/cancel-multiple-cursors (&rest _)
@@ -928,11 +924,11 @@
   (setq whitespace-cleanup-mode-preserve-point t
         whitespace-cleanup-mode-only-if-initially-clean nil
         whitespace-cleanup-mode-ignore-modes
-        (append '(special-mode comint-mode cider-repl-mode haskell-interactive-mode)
-                '(text-mode markdown-mode org-mode)
-                '(conf-javaprop-mode ini-mode)
-                '(view-mode diff-mode)
-                '(snippet-mode))))
+        '( special-mode comint-mode cider-repl-mode haskell-interactive-mode
+           text-mode markdown-mode org-mode
+           conf-javaprop-mode ini-mode
+           view-mode diff-mode
+           snippet-mode)))
 
 (leaf winum
   :init
