@@ -15,8 +15,8 @@
 ;; (@* "Document String" )
 ;;
 
-(defun jcs-typescript--ts-docstr-before (_search-string)
-  "Local hook `ts-docstr-before-insert-hook' for TypeScript."
+(defun jcs-typescript--ts-docstr-after (node data)
+  "Local hook `ts-docstr-after-insert-hook' for TypeScript."
   (insert "@desc "))
 
 ;;
@@ -35,7 +35,7 @@
 ;;
 
 (jcs-add-hook 'typescript-mode-hook
-  (add-hook 'ts-docstr-before-insert-hook 'jcs-typescript--ts-docstr-before nil t)
+  (add-hook 'ts-docstr-after-insert-hook 'jcs-typescript--ts-docstr-after nil t)
 
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
