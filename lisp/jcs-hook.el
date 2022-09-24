@@ -83,6 +83,7 @@
   (delete-selection-mode 1)
   (diminish-buffer-mode 1)
   (gcmh-mode 1)
+  (minibuffer-depth-indicate-mode 1)
   (global-page-break-lines-mode 1)
   (recentf-excl-mode 1)
   (global-region-occurrences-highlighter-mode 1)
