@@ -33,6 +33,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add new package `minimap` (ae9ef5a0d93bf8f924c8572d00f026dace2079a3)
 * Replace package `docstr` with `ts-docstr` for better parsing capability (ee85ba4b01401707461ec695038f2ee4cc175f74)
 * Add new package `highlight-doxygen` (ee85ba4b01401707461ec695038f2ee4cc175f74)
+* Enable `minibuffer-depth-indicate-mode` by default (83ecd6c2b256d2fa0dd3b6fa64236ad5aab2843f)
+* Fix typescript insertion with `ts-docstr` (ec8a5592e8f4e6ba707d36218461e2f0a9329822)
 
 ## 8.2.1
 > Released Jul 22, 2022
