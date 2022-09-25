@@ -264,6 +264,7 @@
     swift-mode
     toc-org
     togetherly
+    toggle-profiler
     toggle-quotes
     toggle-window
     transpose-frame
