@@ -45,7 +45,8 @@
     ((kbd "C-k =") . jcs-calc-eval-region)
 
 ;;; Canceling Action
-    ((kbd "<escape>") . top-level)
+    ((kbd "<escape>")   . top-level)
+    ((kbd "S-<escape>") . keyboard-escape-quit)
 
 ;;; Comment/Uncomment
     ((kbd "C-/")     . smart-comment)

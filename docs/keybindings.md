@@ -331,6 +331,7 @@ Here is the list of key bindins that defined in this configuration.
 * **Exit**
 
   * <kbd>ESC</kbd> - Exit minibuffer and go to the top level.
+  * <kbd>Shift</kbd>+<kbd>ESC</kbd> - Escape keyboard.
   * <kbd>Ctrl</kbd>+<kbd>g</kbd> - Exit keyboard.
 
 * **Mark**
