@@ -36,6 +36,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Enable `minibuffer-depth-indicate-mode` by default (83ecd6c2b256d2fa0dd3b6fa64236ad5aab2843f)
 * Fix typescript insertion with `ts-docstr` (ec8a5592e8f4e6ba707d36218461e2f0a9329822)
 * Add new package `toggle-profiler` (eecf0323d3af8fdcc2b3c2c8e8e62dd78774a3b7)
+* Bind new key to command `keyboard-escape-quit` (3ce9d3ff4ae965a31f1855bf6f9b11c31e2576be)
 
 ## 8.2.1
 > Released Jul 22, 2022
