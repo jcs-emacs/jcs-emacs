@@ -16,27 +16,6 @@
 <a href="#"><img src="https://img.shields.io/badge/-Linux-fcc624?logo=linux&style=flat&logoColor=black" alt="Linux"></a>
 </p>
 
-<!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
-**Table of Contents**
-
-- [jcs-emacs](#jcs-emacs)
-    - [📚 Philosophy](#📚-philosophy)
-    - [📰 News](#📰-news)
-    - [💾 Installation](#💾-installation)
-    - [🕒 Startup Time](#🕒-startup-time)
-    - [🏆 Features](#🏆-features)
-        - [Highlight](#highlight)
-        - [Details](#details)
-    - [📁 Package Archives](#📁-package-archives)
-    - [🏆 Powered by](#🏆-powered-by)
-        - [Functionalities](#functionalities)
-    - [🧰 Write your own customization](#🧰-write-your-own-customization)
-    - [❓ FAQ](#❓-faq)
-    - [Contribute](#contribute)
-
-<!-- markdown-toc end -->
-
-# jcs-emacs
 > Emacs configuration works across all OSs
 
 [![Compile](https://github.com/jcs-emacs/jcs-emacs/actions/workflows/compile.yml/badge.svg)](https://github.com/jcs-emacs/jcs-emacs/actions/workflows/compile.yml)
@@ -90,6 +69,27 @@ text editor, or even better, it goes beyond modern IDE.
 e.g. [Atom](https://atom.io/), [Brackets](http://brackets.io/),
 [Sublime Text 2](https://www.sublimetext.com/2) or [3](https://www.sublimetext.com/),
 [Visual Studio Code](https://code.visualstudio.com/), etc.
+
+---
+
+<!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
+**Table of Contents**
+
+- [📚 Philosophy](#📚-philosophy)
+- [📰 News](#📰-news)
+- [💾 Installation](#💾-installation)
+- [🕒 Startup Time](#🕒-startup-time)
+- [🏆 Features](#🏆-features)
+    - [Highlight](#highlight)
+    - [Details](#details)
+- [📁 Package Archives](#📁-package-archives)
+- [🏆 Powered by](#🏆-powered-by)
+    - [Functionalities](#functionalities)
+- [🧰 Write your own customization](#🧰-write-your-own-customization)
+- [❓ FAQ](#❓-faq)
+- [Contribute](#contribute)
+
+<!-- markdown-toc end -->
 
 ## 📚 Philosophy
 
