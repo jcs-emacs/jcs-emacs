@@ -204,6 +204,9 @@
 ;;; Process
     ((kbd "M-p") . list-processes)
 
+;;; Profiler
+    ((kbd "M-7") . toggle-profiler)
+
 ;;; Rename file
     ((kbd "M-<f2>") . jcs-rename-current-buffer-file)
 
