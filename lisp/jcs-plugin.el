@@ -820,7 +820,6 @@
   :hook (tree-sitter-after-on-hook . ts-docstr-mode)
   :init
   (setq ts-docstr-key-support t
-        ts-docstr-ask-on-enable t
         ts-docstr-desc-summary ""))
 
 (leaf ts-fold
