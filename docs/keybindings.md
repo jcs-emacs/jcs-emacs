@@ -15,6 +15,7 @@ Here is the list of key bindins that defined in this configuration.
             - [Sort](#sort)
             - [Todo](#todo)
             - [Commenting / Uncommenting](#commenting--uncommenting)
+            - [Docstring](#docstring)
             - [Formating](#formating)
             - [Folding / Unfolding](#folding--unfolding)
             - [Expand Region](#expand-region)
@@ -145,6 +146,10 @@ Here is the list of key bindins that defined in this configuration.
 * <kbd>Ctrl</kbd>+<kbd>/</kbd> - Comment/Uncomment region or line.
 * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>Ctrl</kbd>+<kbd>c</kbd> - Comment region or line.
 * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>Ctrl</kbd>+<kbd>u</kbd> - Uncomment region or line.
+
+#### Docstring
+
+* <kbd>Alt</kbd>+<kbd>0</kbd> - Ask and set current document string style.
 
 #### Formating
 

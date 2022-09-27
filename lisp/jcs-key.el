@@ -62,6 +62,9 @@
     ([S-f12] . jcs-goto-definition-other-window)
     ([M-f12] . jcs-peek-definition)
 
+;;; Docstring
+    ((kbd "M-0") . ts-docstr-ask)
+
 ;;; Editting
     ([C-right]             . jcs-smart-forward-word)
     ([C-left]              . jcs-smart-backward-word)
