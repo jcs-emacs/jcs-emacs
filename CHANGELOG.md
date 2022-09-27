@@ -38,6 +38,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add new package `toggle-profiler` (eecf0323d3af8fdcc2b3c2c8e8e62dd78774a3b7)
 * Bind new key to command `keyboard-escape-quit` (3ce9d3ff4ae965a31f1855bf6f9b11c31e2576be)
 * Bind new key to command `toggle-profiler` (f49dfeb07c1e0d3d879cb3acdfb4a5ab892326f2)
+* Bind new key to command `ts-docstr-ask` (9836e3d76afeadcb75c0d7378d38b209dda50e82)
 
 ## 8.2.1
 > Released Jul 22, 2022
