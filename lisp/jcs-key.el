@@ -55,7 +55,7 @@
 
 ;;; Debug
     ((kbd "C-S-d") . dap-mode)
-    ((kbd "M-1")   . turbo-log)
+    ((kbd "M-1")   . turbo-log-print)
 
 ;;; Declaration / Definition
     ([f12]   . jcs-goto-definition)

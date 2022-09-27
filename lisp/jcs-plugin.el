@@ -865,7 +865,7 @@
 
 (leaf turbo-log
   :init
-  (setq turbo-log-no-ask t))
+  (setq turbo-log-allow-insert-without-tree-sitter-p t))
 
 (leaf un-mini
   :init
