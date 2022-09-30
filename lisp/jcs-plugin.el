@@ -843,6 +843,7 @@
   (setq use-ttf-default-ttf-fonts
         (mapcar (lambda (file) (concat user-emacs-directory file))
                 '("fonts/clacon.ttf"
+                  "fonts/Symbola.ttf"  ; for unicode
                   "fonts/UbuntuMono-R.ttf"))
         use-ttf-default-ttf-font-name "Ubuntu Mono"))
 
