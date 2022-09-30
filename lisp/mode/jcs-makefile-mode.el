@@ -7,11 +7,11 @@
 
 (file-header-defsrc jcs-ask-makefile-language "Major language for this Makfile: "
   '("Default (empty)"
-     "Assembly"
-     "C"
-     "C++"
-     "Java"
-     "Python")
+    "Assembly"
+    "C"
+    "C++"
+    "Java"
+    "Python")
   (pcase index
     (0 )  ; Does nothing
     ((or 1 2 3) (call-interactively #'jcs-ask-makefile-cc-template))
@@ -78,16 +78,16 @@
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]makefile"
-                                 "[Mm]akefile"
-                                 "[.]mak")
-    'jcs-ask-makefile-language
-    :interactive t)
+                                "[Mm]akefile"
+                                "[.]mak")
+                              'jcs-ask-makefile-language
+                              :interactive t)
 
   (jcs-key-local
     `(((kbd "<up>")    . ,(jcs-get-prev/next-key-type 'previous))
-       ((kbd "<down>") . ,(jcs-get-prev/next-key-type 'next))
-       ((kbd "RET")    . jcs-makefile-newline)
-       ((kbd "C-v")    . yank))))
+      ((kbd "<down>") . ,(jcs-get-prev/next-key-type 'next))
+      ((kbd "RET")    . jcs-makefile-newline)
+      ((kbd "C-v")    . yank))))
 
 (jcs-add-hook 'makefile-gmake-mode-hook
   ;; XXX: Don't use gmake version, you cannot bind C-c for some reason...
