@@ -39,6 +39,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Bind new key to command `keyboard-escape-quit` (3ce9d3ff4ae965a31f1855bf6f9b11c31e2576be)
 * Bind new key to command `toggle-profiler` (f49dfeb07c1e0d3d879cb3acdfb4a5ab892326f2)
 * Bind new key to command `ts-docstr-ask` (9836e3d76afeadcb75c0d7378d38b209dda50e82)
+* Add new packages `gitlab-ci-mode` and `gitlab-ci-mode-flycheck` (984fc836ecb832e047409a1efa03c806205a7c9e)
+* Remove unnecessary config to `auto-mode-alist` (0dad6227b3372d530f55032726693ab41541e8a7)
 
 ## 8.2.1
 > Released Jul 22, 2022
