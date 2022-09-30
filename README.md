@@ -1,13 +1,17 @@
 <p align="center">
 <picture>
-  <source media="(prefers-color-scheme: light)" srcset="./docs/etc/logo/black.png">
-  <source media="(prefers-color-scheme: dark)" srcset="./docs/etc/logo/white.png">
+  <source media="(prefers-color-scheme: light)" srcset="./docs/etc/logo/light/sink.png">
+  <source media="(prefers-color-scheme: dark)" srcset="./docs/etc/logo/dark/sink.png">
   <img width="25%" src="">
 </picture>
 </p>
 
 <p align="center">
-<img width="40%" src="./docs/etc/logo/text.svg" />
+<picture>
+  <source media="(prefers-color-scheme: light)" srcset="./docs/etc/logo/light/text.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="./docs/etc/logo/dark/text.svg">
+  <img width="25%" src="">
+</picture>
 </p>
 
 <p align="center">
