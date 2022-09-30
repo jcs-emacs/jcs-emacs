@@ -22,6 +22,7 @@ concurrency:
 
 env:
   REPO_BIN: 'jcs-emacs/binaries'
+  HASH: 05cab9d374c4e08596f877bf206427bd1a5142e7
 
 jobs:
   test:
@@ -101,7 +102,7 @@ jobs:
       continue-on-error: true
       run: |
         git pull
-        git reset --hard 05cab9d374c4e08596f877bf206427bd1a5142e7
+        git reset --hard ${{ env.HASH }}
         mv ~/main.tar ./
         git add .
         git commit -m "Update .emacs.d - main.tar"
