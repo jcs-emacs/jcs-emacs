@@ -7,35 +7,35 @@
 
 (file-header-defsrc jcs-ask-makefile-language "Major language for this Makfile: "
   '("Default (empty)"
-    "Assembly"
-    "C"
-    "C++"
-    "Java"
-    "Python")
+     "Assembly"
+     "C"
+     "C++"
+     "Java"
+     "Python")
   (pcase index
     (0 )  ; Does nothing
-    ((or 1 2 3) (funcall-interactively #'jcs-ask-makefile-cc-template))
-    (4 (funcall-interactively #'jcs-ask-makefile-java-template))
-    (5 (funcall-interactively #'jcs-ask-makefile-python-template))))
+    ((or 1 2 3) (call-interactively #'jcs-ask-makefile-cc-template))
+    (4 (call-interactively #'jcs-ask-makefile-java-template))
+    (5 (call-interactively #'jcs-ask-makefile-python-template))))
 
 (file-header-defsrc jcs-ask-makefile-cc-template "Type of makefile: "
   '(".." "Application" "Library")
   (pcase index
-    (0 (call-interactively 'jcs-ask-makefile-language))
+    (0 (call-interactively #'jcs-ask-makefile-language))
     (1 (jcs-insert-makefile-cc-app-template))
     (2 (jcs-insert-makefile-cc-lib-template))))
 
 (file-header-defsrc jcs-ask-makefile-java-template "Type of makefile: "
   '(".." "Application" "Library")
   (pcase index
-    (0 (call-interactively 'jcs-ask-makefile-language))
+    (0 (call-interactively #'jcs-ask-makefile-language))
     (1 (jcs-insert-makefile-java-app-template))
     (2 (jcs-insert-makefile-java-lib-template))))
 
 (file-header-defsrc jcs-ask-makefile-python-template "Type of makefile: "
   '(".." "Application" "Library")
   (pcase index
-    (0 (call-interactively 'jcs-ask-makefile-language))
+    (0 (call-interactively #'jcs-ask-makefile-language))
     (1 (jcs-insert-makefile-python-app-template))
     (2 (jcs-insert-makefile-python-lib-template))))
 
@@ -78,16 +78,20 @@
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]makefile"
-                                "[Mm]akefile"
-                                "[.]mak")
-                              'jcs-ask-makefile-language
-                              :interactive t)
+                                 "[Mm]akefile"
+                                 "[.]mak")
+    'jcs-ask-makefile-language
+    :interactive t)
 
   (jcs-key-local
-    `(((kbd "<up>")   . ,(jcs-get-prev/next-key-type 'previous))
-      ((kbd "<down>") . ,(jcs-get-prev/next-key-type 'next))
-      ((kbd "RET")    . jcs-makefile-newline)
-      ((kbd "C-v")    . yank))))
+    `(((kbd "<up>")    . ,(jcs-get-prev/next-key-type 'previous))
+       ((kbd "<down>") . ,(jcs-get-prev/next-key-type 'next))
+       ((kbd "RET")    . jcs-makefile-newline)
+       ((kbd "C-v")    . yank))))
+
+(jcs-add-hook 'makefile-gmake-mode-hook
+  ;; XXX: Don't use gmake version, you cannot bind C-c for some reason...
+  (makefile-mode))
 
 (provide 'jcs-makefile-mode)
 ;;; jcs-makefile-mode.el ends here
