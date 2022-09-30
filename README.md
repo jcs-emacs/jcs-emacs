@@ -1,6 +1,9 @@
 <p align="center">
-<img src="./docs/etc/logo/logo-light.png#gh-light-mode-only" width="30%"/>
-<img src="./docs/etc/logo/logo-dark.png#gh-dark-mode-only" width="30%"/>
+<picture>
+  <source media="(prefers-color-scheme: light)" srcset="./docs/etc/logo/light.png">
+  <source media="(prefers-color-scheme: dark)" srcset="./docs/etc/logo/dark.png">
+  <img width="30%" src="">
+</picture>
 </p>
 
 <p align="center">
