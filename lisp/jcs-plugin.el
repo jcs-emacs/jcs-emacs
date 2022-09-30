@@ -553,7 +553,7 @@
            undefined
            toggle-truncate-lines
            define-it
-           jcs-package-upgrade-all jcs-package--show-upgrades)
+           jcs-package-upgrade-all jcs-package--show-upgrades jcs-package-autoremove)
         message-clean-mode-minor-mode 'echo))
 
 (leaf meta-view

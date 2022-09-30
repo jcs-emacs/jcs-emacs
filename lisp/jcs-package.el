@@ -489,11 +489,9 @@
 (defun jcs-package--show-upgrades ()
   "Show upgradable packages in one menu."
   (advice-remove 'package-menu--mark-upgrades-1 #'jcs-package--show-upgrades)
-  (if (ignore-errors (package-menu-filter-upgradable))
-      (progn
-        (package-menu-mark-upgrades)
-        (msgu-current "Press `x` to execute command; press `u` to unmark packages"))
-    (message "All packages are up to date")))
+  (when (ignore-errors (package-menu-filter-upgradable))
+    (package-menu-mark-upgrades)
+    (msgu-current "Press `x` to execute command; press `u` to unmark packages")))
 
 (defun jcs-package-upgrade-all ()
   "Upgrade for archive packages."
