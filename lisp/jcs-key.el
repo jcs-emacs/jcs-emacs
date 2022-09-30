@@ -262,8 +262,8 @@
     ((kbd "C-<next>")  . centaur-tabs-forward)
 
 ;;; Tab Width
-    ((kbd "C-k >") . indent-control-inc-indent-level)
-    ((kbd "C-k <") . indent-control-dec-indent-level)
+    ((kbd "C-k >") . indent-control-inc)
+    ((kbd "C-k <") . indent-control-dec)
 
 ;;; Theme
     ((kbd "C-k C-t") . load-theme)
