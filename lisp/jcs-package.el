@@ -135,7 +135,7 @@
     github-browse-file
     github-tags
     gitignore-templates
-    glsl-mode
+    gitlab-ci-mode-flycheck
     go-mode
     google-this
     goto-char-preview
