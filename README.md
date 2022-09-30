@@ -10,7 +10,7 @@
 <picture>
   <source media="(prefers-color-scheme: light)" srcset="./docs/etc/logo/light/text.svg">
   <source media="(prefers-color-scheme: dark)" srcset="./docs/etc/logo/dark/text.svg">
-  <img width="25%" src="">
+  <img width="40%" src="">
 </picture>
 </p>
 
