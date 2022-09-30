@@ -125,6 +125,7 @@
     flycheck-ocaml
     flycheck-package
     flycheck-relint
+    font-lock-ext
     fountain-mode
     fsharp-mode
     gcmh
@@ -256,6 +257,7 @@
     sideline-flycheck
     sideline-flymake
     sideline-lsp
+    sln-mode
     smart-comment
     smex
     sort-words

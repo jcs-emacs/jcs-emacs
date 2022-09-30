@@ -367,6 +367,7 @@ Note this is opposite logic to the toggle mode function."
 ;;; S
     ("\\.sass'?\\'"         . ssass-mode)
     ("\\.shader'?\\'"       . shader-mode)
+    ("\\.sln'?\\'"          . sln-mode)
 ;;; V
     ("\\.vue'?\\'"          . web-mode)
 ;;; W
