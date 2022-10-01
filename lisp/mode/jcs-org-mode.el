@@ -131,14 +131,14 @@
                                           ("[X]"  . 9745))
         org-superstar-headline-bullets-list '(?☰ ?☱ ?☲ ?☳ ?☴ ?☵ ?☶ ?☷)
         org-superstar-item-bullet-alist '((?* . ?•)
-                                          (?+ . ?➤)
-                                          (?- . ?╘))))
+                                          (?+ . ?⬧)
+                                          (?- . ?⬨))))
 
 (leaf org-fancy-priorities
   :hook ((org-mode . org-fancy-priorities-mode)
          (org-agenda-mode . org-fancy-priorities-mode))
   :init
-  (setq org-fancy-priorities-list '("╒" "↑" "■")))
+  (setq org-fancy-priorities-list '("⚑" "⬆" "■")))
 
 (provide 'jcs-org-mode)
 ;;; jcs-org-mode.el ends here
