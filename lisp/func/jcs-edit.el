@@ -3,36 +3,6 @@
 ;;; Code:
 
 ;;
-;; (@* "Undo / Redo" )
-;;
-
-(defun jcs-undo-tree-visualize ()
-  "Call `undo-tree-visualize' only in window that has higher height."
-  (save-window-excursion (undo-tree-visualize))
-  (with-selected-window (get-largest-window nil nil t)
-    (switch-to-buffer undo-tree-visualizer-buffer-name)
-    (jcs-recenter-top-bottom 'middle)
-    (fill-page-if-unfill)))
-
-(defun jcs--undo-or-redo (ud)
-  "Do undo or redo base on UD.
-If UD is non-nil, do undo.  If UD is nil, do redo."
-  (require 'undo-tree)
-  (if (not undo-tree-mode)
-      (call-interactively #'undo)  ; undo/redo are the same command
-    ;; NOTE: If we do jumped to the `undo-tree-visualizer-buffer-name'
-    ;; buffer, then we use `undo-tree-visualize-redo' instead of
-    ;; `undo-tree-redo'. Because directly called `undo-tree-visualize-redo'
-    ;; key is way faster than `undo-tree-redo' key.
-    (jcs-if-buffer-window undo-tree-visualizer-buffer-name
-        (if ud (undo-tree-visualize-undo) (undo-tree-visualize-redo))
-      (if ud (undo-tree-undo) (undo-tree-redo))
-      (jcs-undo-tree-visualize))))
-
-(defun jcs-undo () "Undo key." (interactive) (jcs--undo-or-redo t))
-(defun jcs-redo () "Redo key." (interactive) (jcs--undo-or-redo nil))
-
-;;
 ;; (@* "Organize Imports" )
 ;;
 
@@ -404,7 +374,6 @@ This command does not push text to `kill-ring'."
   (when jcs-on-save-remove-control-M (msgu-silent (jcs-remove-control-M))))
 
 (jcs-advice-add 'save-buffer :after
-  (jcs-funcall-fboundp #'undo-tree-kill-visualizer)
   (setq jcs-created-parent-dir-path nil))
 
 (defun jcs-save-all-buffers ()
@@ -502,14 +471,6 @@ in multiple windows.")
   ;; If something that I doesn't want to see, bury it.
   ;; For instance, any `*helm-' buffers.
   (jcs-bury-diminished-buffer))
-
-(jcs-advice-add 'kill-this-buffer :around
-  (require 'undo-tree)
-  (let ((killed-buffer (current-buffer)) undoing-p)
-    (jcs-with-current-buffer undo-tree-visualizer-buffer-name
-      (setq undoing-p (eq undo-tree-visualizer-parent-buffer killed-buffer)))
-    (apply arg0 args)
-    (undo-tree-kill-visualizer)))
 
 (defun jcs-kill-this-buffer ()
   "Kill this buffer."

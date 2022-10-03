@@ -277,7 +277,7 @@
     ts-fold
     turbo-log
     typescript-mode
-    undo-tree
+    undo-tree-vf
     unfill
     use-ttf
     vc-msg

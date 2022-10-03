@@ -834,6 +834,8 @@
   :defer-config
   (global-undo-tree-mode t))
 
+(leaf undo-tree-vf :hook (undo-tree-mode-hook . undo-tree-vf-mode))
+
 (leaf use-ttf
   :init
   (setq use-ttf-default-ttf-fonts

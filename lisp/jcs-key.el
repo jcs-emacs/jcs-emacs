@@ -344,8 +344,8 @@
     ([C-tab]   . centaur-tabs-forward)
 
 ;;; Undo/Redo
-    ((kbd "C-z") . jcs-undo)
-    ((kbd "C-y") . jcs-redo)))
+    ((kbd "C-z") . undo-tree-vf-undo)
+    ((kbd "C-y") . undo-tree-vf-redo)))
 
 ;; ---
 
