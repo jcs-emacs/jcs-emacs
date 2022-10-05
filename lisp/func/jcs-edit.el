@@ -373,9 +373,6 @@ This command does not push text to `kill-ring'."
     (whitespace-cleanup-region (line-end-position) (point-max)))
   (when jcs-on-save-remove-control-M (msgu-silent (jcs-remove-control-M))))
 
-(jcs-advice-add 'save-buffer :after
-  (setq jcs-created-parent-dir-path nil))
-
 (defun jcs-save-all-buffers ()
   "Save all buffers currently opened."
   (interactive)
@@ -475,12 +472,6 @@ in multiple windows.")
 (defun jcs-kill-this-buffer ()
   "Kill this buffer."
   (interactive)
-  (when jcs-created-parent-dir-path  ; Remove virtual parent directory.
-    (let* ((topest-dir (nth 0 (f-split jcs-created-parent-dir-path)))
-           (create-dir (s-replace jcs-created-parent-dir-path "" default-directory))
-           (del-path (f-slash (concat create-dir topest-dir))))
-      (delete-directory del-path)
-      (message "[INFO] Remove parent directory that were virtual => '%s'" del-path)))
   (when (and (featurep 'lsp-mode) (jcs--lsp-connected-p)) (lsp-disconnect))
   (kill-this-buffer)
   (jcs-project--track-open-projects)

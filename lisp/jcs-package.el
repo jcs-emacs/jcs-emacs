@@ -115,8 +115,8 @@
     exec-path-from-shell
     expand-region
     feature-mode
+    ff-guard
     file-header
-    fill-page
     flx-rs
     flycheck-eask
     flycheck-elsa

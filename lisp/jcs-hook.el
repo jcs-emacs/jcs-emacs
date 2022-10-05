@@ -35,11 +35,6 @@
   (jcs-project-remember)
   (jcs-project--track-open-projects))
 
-(jcs-advice-add 'find-file :after
-  (when jcs-current-created-parent-dir-path
-    (setq jcs-created-parent-dir-path jcs-current-created-parent-dir-path
-          jcs-current-created-parent-dir-path nil)))
-
 ;;
 ;; (@* "Initialization" )
 ;;
@@ -82,6 +77,7 @@
   (global-company-mode t)
   (delete-selection-mode 1)
   (diminish-buffer-mode 1)
+  (ff-guard-mode 1)
   (gcmh-mode 1)
   (minibuffer-depth-indicate-mode 1)
   (global-page-break-lines-mode 1)
