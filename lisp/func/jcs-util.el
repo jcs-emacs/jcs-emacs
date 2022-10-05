@@ -354,7 +354,7 @@ See function `jcs-string-compare-p' for argument TYPE."
          (target-width (if (= remainder 0) indent-lvl remainder))
          success)
     (while (and (< tmp-count target-width)
-                (not (jcs-beginning-of-line-p))
+                (not (bolp))
                 (jcs-current-whitespace-p))
       (backward-delete-char 1)
       (setq success t
@@ -369,7 +369,7 @@ See function `jcs-string-compare-p' for argument TYPE."
          (remainder (% (jcs-first-char-in-line-column) indent-lvl))
          (target-width (if (= remainder 0) indent-lvl remainder))
          success)
-    (while (and (< tmp-count target-width) (not (jcs-end-of-line-p)))
+    (while (and (< tmp-count target-width) (not (eolp)))
       (let ((is-valid nil))
         (save-excursion
           (forward-char 1)
@@ -449,7 +449,7 @@ BND-PT : limit point."
   (unless (bobp)
     (forward-char -1)
     (while (and (>= (point) bnd-pt)
-                (or (jcs-current-whitespace-or-tab-p) (jcs-beginning-of-line-p)))
+                (or (jcs-current-whitespace-or-tab-p) (bolp)))
       (forward-char -1))))
 
 (defun jcs-goto-next-forward-char (&optional bnd-pt)
@@ -460,7 +460,7 @@ BND-PT : boundary point."
   (unless (eobp)
     (forward-char 1)
     (while (and (<= (point) bnd-pt)
-                (or (jcs-current-whitespace-or-tab-p) (jcs-beginning-of-line-p)))
+                (or (jcs-current-whitespace-or-tab-p) (bolp)))
       (forward-char 1))))
 
 (defun jcs-first-backward-char-in-line-p (ch)
@@ -545,7 +545,7 @@ BND-PT : boundary point."
 
 (defun jcs-current-line-totally-empty-p ()
   "Current line empty with no spaces/tabs in there.  (absolute)."
-  (and (jcs-beginning-of-line-p) (jcs-end-of-line-p)))
+  (and (bolp) (eolp)))
 
 (defun jcs-current-line-comment-p ()
   "Check if current line only comment."
@@ -555,14 +555,6 @@ BND-PT : boundary point."
       (when (or (jcs-inside-comment-p) (jcs-current-line-empty-p))
         (setq is-comment-line t))
       is-comment-line)))
-
-(defun jcs-beginning-of-line-p ()
-  "Return non-nil if beginning of line."
-  (= (current-column) 0))
-
-(defun jcs-end-of-line-p ()
-  "Return non-nil if end of line."
-  (= (point) (line-end-position)))
 
 (defun jcs-current-file-empty-p (&optional fn)
   "Check if the FN an empty file."

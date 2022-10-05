@@ -100,7 +100,7 @@
           ;; Indent it to the very left/beginning of line.
           (indent-line-to 0))))
 
-    (when (and should-indent (jcs-end-of-line-p))
+    (when (and should-indent (eolp))
       (insert " "))))
 
 (defun jcs-asm-mode--init ()
