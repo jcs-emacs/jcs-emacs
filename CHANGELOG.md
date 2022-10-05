@@ -44,6 +44,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add new package `sln-mode` to handle `*.sln` file (673a2635efccd1e5258a157e738f8ebdb35f567a)
 * Add new font `Symbola.ttf` for Windows' unicode display (98a74550b9edfcbe30d403418263b6594582652c)
 * Extract undo/redo module to externa package `undo-tree-vf` (391bb1e4b1416c1c7f54a19f07c6b83ccd3e4524)
+* Use built-in `bolp` and `eolp` functions instead (0504aa597efd52e9efbefe3e2338349cc5d458fc)
 
 ## 8.2.1
 > Released Jul 22, 2022
