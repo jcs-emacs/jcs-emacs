@@ -653,6 +653,12 @@
   :init
   (setq pos-tip-internal-border-width 5))
 
+(leaf prettier
+  :config
+  ;; XXX: Stop displaying the error when `prettier' is not installed!
+  (unless (executable-find "prettier")
+    (setq prettier-prettify-on-save-flag nil)))
+
 (leaf preview-it
   :init
   (setq preview-it-render-md t))
