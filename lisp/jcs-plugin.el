@@ -231,6 +231,7 @@
            "[*]tree-sitter" "tree-sitter-tree:"
            "[*]company"
            "[*]editorconfig"
+           "[*]prettier"
            "[*]Local Variables[*]"
            "[*]Kill Ring[*]"  ; From `browse-kill-ring'
            "[*]SPEEDBAR"
