@@ -29,6 +29,8 @@
 ;; (@* "Hook" )
 ;;
 
+(add-hook 'csharp-mode-hook #'vs-electric-spacing-mode)
+
 (jcs-add-hook 'csharp-mode-hook
   (modify-syntax-entry ?_ "w")
 

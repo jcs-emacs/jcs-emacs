@@ -286,6 +286,7 @@
     visual-regexp
     vs-dark-theme
     vs-edit-mode
+    vs-electric-spacing
     vs-light-theme
     vs-revbuf
     vsc-multiple-cursors
