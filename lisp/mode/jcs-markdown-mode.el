@@ -46,18 +46,14 @@
 
 (add-hook 'markdown-mode-hook 'emmet-mode)
 
-(defun jcs-markdown-mode-hook ()
-  "Markdown mode hook."
-  )
-
 (jcs-add-hook 'markdown-mode-hook
-  (emojify-mode 1)
-
-  (jcs-safe-er/expand-list '(web-mode-mark-and-expand) t)
-
+  (modify-syntax-entry ?: "w")
   (jcs-elec-pair-add '((?\` . ?\`)))
 
   (company-fuzzy-backend-add 'company-emojify)
+  (jcs-safe-er/expand-list '(web-mode-mark-and-expand) t)
+
+  (emojify-mode 1)
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]md" "[.]markdown")
