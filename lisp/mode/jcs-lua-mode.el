@@ -22,9 +22,9 @@
 ;;
 
 (jcs-add-hook 'lua-mode-hook
-  (jcs-elec-pair-add '((?\[ . ?\])))
-
   (setq-local electric-pair-inhibit-predicate 'jcs-lua--electric-pair-inhibit-predicate)
+
+  (jcs-elec-pair-add '((?\[ . ?\])))
 
   ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
