@@ -19,9 +19,10 @@
 (add-hook 'nxml-mode-hook 'emmet-mode)
 
 (jcs-add-hook 'nxml-mode-hook
+  (setq truncate-lines t)
+
   (auto-rename-tag-mode 1)
   (visual-line-mode t)
-  (setq truncate-lines t)
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]xml")

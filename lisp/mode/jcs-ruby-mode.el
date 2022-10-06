@@ -16,7 +16,6 @@
 ;;
 
 (jcs-add-hook 'ruby-mode-hook
-  ;; Treat underscore as word.
   (modify-syntax-entry ?@ "w")
   (modify-syntax-entry ?_ "w")
 

@@ -21,10 +21,10 @@
 ;;
 
 (jcs-add-hook 'vue-mode-hook
-  (set-face-background 'mmm-default-submode-face "#000000")
-
   ;; Treat some character as whitespace character.
   (modify-syntax-entry ?- "-")
+
+  (set-face-background 'mmm-default-submode-face "#000000")
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]vue")

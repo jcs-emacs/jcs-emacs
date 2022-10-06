@@ -98,9 +98,9 @@
 ;;
 
 (jcs-add-hook 'org-mode-hook
-  (org-indent-mode 1)
-
   (setq-local line-spacing 2)
+
+  (org-indent-mode 1)
 
   (jcs-key-local
     `(((kbd "C-a")        . mark-whole-buffer)

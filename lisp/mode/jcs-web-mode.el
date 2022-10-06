@@ -67,12 +67,12 @@
 (add-hook 'web-mode-hook 'emmet-mode)
 
 (jcs-add-hook 'web-mode-hook
+  (setq truncate-lines t)
+  (jcs-elec-pair-add '((?\' . ?\') (?\" . ?\")))
+
   (auto-rename-tag-mode 1)
   (visual-line-mode t)
   (impatient-mode t)
-  (setq truncate-lines t)
-
-  (jcs-elec-pair-add '((?\' . ?\') (?\" . ?\")))
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]htm" "[.]html"

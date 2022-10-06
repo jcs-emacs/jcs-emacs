@@ -16,7 +16,6 @@
 ;;
 
 (jcs-add-hook 'ess-r-mode-hook
-  ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
 
   ;; File Header

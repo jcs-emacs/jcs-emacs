@@ -38,14 +38,13 @@
 ;;
 
 (jcs-add-hook '(js-mode-hook js2-mode-hook)
+  (setq js2-bounce-indent-p t)
+
+  (modify-syntax-entry ?_ "w")  ; Treat underscore as word
+
   (auto-rename-tag-mode 1)
   (impatient-mode t)
   (js2-minor-mode 1)
-
-  (setq js2-bounce-indent-p t)
-
-  ;; Treat underscore as word.
-  (modify-syntax-entry ?_ "w")
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]js$")

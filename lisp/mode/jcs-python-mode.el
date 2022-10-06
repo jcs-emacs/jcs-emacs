@@ -76,8 +76,7 @@
 ;;
 
 (jcs-add-hook 'python-mode-hook
-  ;; Treat underscore as word.
-  (modify-syntax-entry ?_ "w")
+  (modify-syntax-entry ?_ "w")  ; Treat underscore as word
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]py")

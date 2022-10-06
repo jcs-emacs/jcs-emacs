@@ -16,7 +16,6 @@
 ;;
 
 (jcs-add-hook 'rust-mode-hook
-  ;; Treat underscore as word.
   (modify-syntax-entry ?_ "w")
   (modify-syntax-entry ?! "w")
 

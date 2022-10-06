@@ -24,18 +24,18 @@
 ;;
 
 (jcs-add-hook 'shader-mode-hook
-  (jcs-use-cc-mutliline-comment)
-
   (modify-syntax-entry ?_ "w")
+
+  (jcs-use-cc-mutliline-comment)
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]shader")
                               'jcs-insert-shader-template))
 
 (jcs-add-hook 'glsl-mode-hook
-  (company-fuzzy-backend-add 'company-glsl)
-
   (modify-syntax-entry ?_ "w")
+
+  (company-fuzzy-backend-add 'company-glsl)
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]frag" "[.]geom" "[.]glsl" "[.]vert")

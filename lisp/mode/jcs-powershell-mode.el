@@ -16,8 +16,7 @@
 ;;
 
 (jcs-add-hook 'powershell-mode-hook
-  ;; Treat underscore as word.
-  (modify-syntax-entry ?_ "w")
+  (modify-syntax-entry ?_ "w")  ; Treat underscore as word
 
   (company-fuzzy-backend-add 'company-powershell)
 

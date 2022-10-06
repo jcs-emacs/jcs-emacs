@@ -9,8 +9,7 @@
 ;;
 
 (jcs-add-hook 'ini-mode-hook
-  ;; Treat underscore as word.
-  (modify-syntax-entry ?_ "w")
+  (modify-syntax-entry ?_ "w")  ; Treat underscore as word
 
   (jcs-key-local
     `(((kbd "<up>")   . ,(jcs-get-prev/next-key-type 'previous))
