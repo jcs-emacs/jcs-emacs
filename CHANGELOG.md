@@ -46,6 +46,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Extract undo/redo module to external package `undo-tree-vf` (391bb1e4b1416c1c7f54a19f07c6b83ccd3e4524)
 * Use built-in `bolp` and `eolp` functions instead (0504aa597efd52e9efbefe3e2338349cc5d458fc)
 * Extract parent directory not found when file creation module to external package `ff-guard` (008592968fea55e925c0bbe8e5412b93a4dde7c3)
+* Add new package `prettier` (a2af4f74eea9e6b7861db8babb1de2a4909247a2)
 
 ## 8.2.1
 > Released Jul 22, 2022
