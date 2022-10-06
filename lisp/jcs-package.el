@@ -95,7 +95,6 @@
     dumb-jump
     eask-mode
     echo-bar
-    editorconfig
     editorconfig-generate
     eldoc-meta-net
     electric-cursor
@@ -226,6 +225,7 @@
     phpt-mode
     pip-requirements
     powershell
+    prettier
     preview-it
     processing-mode
     project-abbrev

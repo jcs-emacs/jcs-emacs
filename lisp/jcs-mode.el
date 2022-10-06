@@ -152,11 +152,12 @@ Note this is opposite logic to the toggle mode function."
 ;;
 ;;; Project
 
-(defun jcs-active-project-mode-hook ()
+(defun jcs-on-first-project-hook ()
   "Hook runs when there is valid project root."
   (when (jcs-funcall-fboundp #'jcs-project-under-p)
     (global-diff-hl-mode 1)
     (editorconfig-mode 1)
+    (global-prettier-mode 1)
     (jcs--safe-lsp-active)))
 
 ;;
@@ -173,7 +174,7 @@ Note this is opposite logic to the toggle mode function."
     (when jcs-graphic-p (highlight-indent-guides-mode 1))
     (yas-minor-mode 1)
 
-    (jcs-active-project-mode-hook)))
+    (jcs-on-first-project-hook)))
 
 (jcs-add-hook 'text-mode-hook
   (company-fuzzy-backend-add 'company-kaomoji)
