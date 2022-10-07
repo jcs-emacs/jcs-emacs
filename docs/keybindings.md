@@ -112,8 +112,10 @@ Here is the list of key bindins that defined in this configuration.
 
 #### Build / Run (Output)
 
-* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>b</kbd> - Build the program. (`build.linux`/`build.bat`/`build.mac`)
-* <kbd>f5</kbd> - Run the program. (`run.linux`/`run.bat`/`run.mac`)
+* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>b</kbd> - Build the program.
+* <kbd>Ctrl</kbd>+<kbd>f7</kbd> - Compile the program.
+* <kbd>f5</kbd> - Debug the program.
+* <kbd>Ctrl</kbd>+<kbd>f5</kbd> - Run the program.
 * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>u</kbd> - Show output window. (if any)
 * <kbd>Alt</kbd>+<kbd>o</kbd> - Switch to output buffer.
 * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>=</kbd> - Previous output buffer.
