@@ -49,6 +49,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add new package `prettier` (a2af4f74eea9e6b7861db8babb1de2a4909247a2)
 * Add new package `vs-electric-spacing` (a04369b5ebfa1db7a47bcf156f80614959685190)
 * Add new package `terminal-here` (56ad79fdf537fc1d7380ff4adc71dea5051e00ac)
+* Add new package `quickrun` (e13899b04affe5157a0cacff52b24c1925c293f4)
 
 ## 8.2.1
 > Released Jul 22, 2022
