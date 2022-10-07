@@ -603,14 +603,9 @@ If optional argument REL-LINE is nil; we will use first visible line instead."
   "Make the last visible line to target line, LN."
   (jcs-goto-line ln) (jcs-recenter-top-bottom 'bottom))
 
-(defun jcs--recenter-positions (type)
-  "Return the recenter position value by TYPE."
-  (cl-case type (`top '(top)) (`middle '(middle)) (`bottom '(bottom))))
-
 (defun jcs-recenter-top-bottom (type)
   "Recenter the window by TYPE."
-  (let ((recenter-positions (jcs--recenter-positions type)))
-    (ignore-errors (recenter-top-bottom))))
+  (let ((recenter-positions `(,type))) (ignore-errors (recenter-top-bottom))))
 
 ;;
 ;; (@* "Region" )
@@ -952,32 +947,6 @@ Optional argument REP is the replacement string of non-displayable character."
                                    rep))))
           str)
     result))
-
-;;
-;; (@* "Variable" )
-;;
-
-(defun jcs-setq-all-local-buffer (in-var in-val)
-  "Set all the local buffer to some value.
-
-Argument IN-VAR is input variable name as symbol.
-
-Argument IN-VAL is input value to set to IN-VAR."
-  (save-window-excursion
-    (save-selected-window
-      (let ((win-len (length (window-list))) (index 0))
-        (while (< index win-len)
-          (with-current-buffer (buffer-name)
-            ;; NOTE: this will actually set whatever the variable are. Either
-            ;; global or local variable will work.
-            ;;
-            ;; TOPIC: Variable references in lisp
-            ;; URL: https://stackoverflow.com/questions/1249991/variable-references-in-lisp
-            (set in-var (symbol-value in-val)))
-
-          ;; To next window.
-          (jcs-other-window-next)
-          (cl-incf index))))))
 
 (provide 'jcs-util)
 ;;; jcs-util.el ends here
