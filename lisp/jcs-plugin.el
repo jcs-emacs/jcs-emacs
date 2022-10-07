@@ -210,6 +210,7 @@
         '( "[*]jcs"  ; config wise
            "[*]helm" "[*]esup-" "[*]quelpa-"
            "[*]compilation" "[*]output"
+           "[*]quickrun"
            "[*]Apropos[*]" "[*]Backtrace[*]" "[*]Compile-Log[*]"
            "[*]Help[*]" "[*]Bug Help[*]"
            "[*]Warnings[*]"

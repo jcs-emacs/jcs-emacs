@@ -234,6 +234,7 @@
     python-mode
     qml-mode
     quelpa
+    quickrun
     rainbow-mode
     recentf-excl
     region-occurrences-highlighter
