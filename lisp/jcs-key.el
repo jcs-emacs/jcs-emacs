@@ -265,6 +265,9 @@
     ((kbd "C-k >") . indent-control-inc)
     ((kbd "C-k <") . indent-control-dec)
 
+;;; Terminal
+    ((kbd "C-M-t") . terminal-here)
+
 ;;; Theme
     ((kbd "C-k C-t") . load-theme)
 

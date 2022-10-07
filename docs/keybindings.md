@@ -353,6 +353,7 @@ Here is the list of key bindins that defined in this configuration.
 * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>\`</kbd> - New shell process.
 * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>=</kbd> - Previous shell buffer.
 * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>-</kbd> - Next shell buffer.
+* <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>t</kbd> - Open up terminal in current buffer.
 
 ### Others
 

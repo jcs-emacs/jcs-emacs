@@ -264,6 +264,7 @@
     sql-indent
     suggest
     swift-mode
+    terminal-here
     toc-org
     togetherly
     toggle-profiler
