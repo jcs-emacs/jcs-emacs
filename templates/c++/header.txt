@@ -1,6 +1,6 @@
-#ifndef __#U_FILE_NAME_NO_EXT#_H__
+#ifndef __#U_FILE_NAME_NO_EXT#_#U_FILE_NAME_EXT#__
 #GLOBAL_FILE_INFO#
-#define __#U_FILE_NAME_NO_EXT#_H__
+#define __#U_FILE_NAME_NO_EXT#_#U_FILE_NAME_EXT#__
 
 /**
  * @class #FILE_NAME_NO_EXT#
@@ -23,4 +23,4 @@ public:
 
 };
 
-#endif /* __#U_FILE_NAME_NO_EXT#_H__ */
+#endif /* __#U_FILE_NAME_NO_EXT#_#U_FILE_NAME_EXT#__ */
