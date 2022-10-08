@@ -52,6 +52,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add new package `quickrun` (e13899b04affe5157a0cacff52b24c1925c293f4)
 * Extract select file in project/pwd to external `ffap` (e9b7c045a2cbd2dfdfc4f519e24a973a0807410b)
 * Extract [@cmuratori](https://github.com/cmuratori)'s run/make script feature to external `execrun` (83d90d53e5324e22e5fbf3c174487ddd22fd7117)
+* Extract find corresponding file module to external package `fof` (b7d018be296f55ca5cd8859b53c68efe326a2399)
 
 ## 8.2.1
 > Released Jul 22, 2022
