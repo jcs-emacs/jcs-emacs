@@ -50,6 +50,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add new package `vs-electric-spacing` (a04369b5ebfa1db7a47bcf156f80614959685190)
 * Add new package `terminal-here` (56ad79fdf537fc1d7380ff4adc71dea5051e00ac)
 * Add new package `quickrun` (e13899b04affe5157a0cacff52b24c1925c293f4)
+* Extract select file in project/pwd to external `ffap` (e9b7c045a2cbd2dfdfc4f519e24a973a0807410b)
+* Extract [@cmuratori](https://github.com/cmuratori)'s run/make script feature to external `execrun` (83d90d53e5324e22e5fbf3c174487ddd22fd7117)
 
 ## 8.2.1
 > Released Jul 22, 2022
