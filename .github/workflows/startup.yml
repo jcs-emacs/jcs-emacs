@@ -22,7 +22,7 @@ concurrency:
 
 env:
   REPO_BIN: 'jcs-emacs/binaries'
-  HASH: e10fd90e26c48856486a3d07155f2d2b7c0b272e
+  HASH: a2534850b66841ba64efb6f04d8af60164e8a51e
 
 jobs:
   test:
