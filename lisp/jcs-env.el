@@ -15,18 +15,7 @@
         (t              'unknown))
   "Store current system type.")
 
-(defvar jcs-makescript "[[:ascii:]]*build[[:ascii:]]*"
-  "Name of the build/make file script.")
-(defvar jcs-runscript "[[:ascii:]]*run[[:ascii:]]*"
-  "Name of the execute/run file script.")
-
-(defvar jcs-use-sh-p (or jcs-is-mac jcs-is-linux jcs-is-bsd)
-  "Flag if the system use shell script.")
-
 (cond
- (jcs-is-windows
-  (setq jcs-makescript (concat jcs-makescript "[.]bat")
-        jcs-runscript (concat jcs-runscript "[.]bat")))
  (jcs-is-bsd
   (setq mac-command-modifier 'meta
         select-enable-clipboard t
@@ -35,10 +24,6 @@
         special-display-buffer-names nil
         mac-command-key-is-meta t
         mac-pass-command-to-system nil)))
-
-(when jcs-use-sh-p
-  (setq jcs-makescript (concat jcs-makescript "[.]sh")
-        jcs-runscript (concat jcs-runscript "[.]sh")))
 
 
 ;;; Audo Saving
@@ -76,9 +61,6 @@
         comint-process-echoes t
         comint-scroll-to-bottom-on-input t
         comint-move-point-for-output t))
-
-(defconst jcs-compilation-base-filename "output"
-  "Base filename for compilation buffer.")
 
 ;;; Commands
 (leaf grep

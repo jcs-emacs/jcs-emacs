@@ -3,6 +3,23 @@
 ;;; Code:
 
 ;;
+;; (@* "Eval" )
+;;
+
+(jcs-advice-add '(eval-buffer eval-defun eval-region) :after (deactivate-mark))
+
+;;
+;; (@* "Navigate to Error" )
+;;
+
+(jcs-advice-add '(push-button compile-goto-error) :around
+  ;; Exection runs after navigate buffer that is different than the caller.
+  (let ((prev-buf (current-buffer)))
+    (apply arg0 args)
+    (unless (eq prev-buf (current-buffer))  ; Different button, recenter it.
+      (jcs-recenter-top-bottom 'middle))))
+
+;;
 ;; (@* "Advices" )
 ;;
 

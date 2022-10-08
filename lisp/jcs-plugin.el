@@ -209,7 +209,7 @@
   (setq diminish-buffer-list
         '( "[*]jcs"  ; config wise
            "[*]helm" "[*]esup-" "[*]quelpa-"
-           "[*]compilation" "[*]output"
+           "[*]compilation" "[*]output" "[*]execrun"
            "[*]quickrun"
            "[*]Apropos[*]" "[*]Backtrace[*]" "[*]Compile-Log[*]"
            "[*]Help[*]" "[*]Bug Help[*]"
@@ -318,6 +318,10 @@
 (leaf exec-path-from-shell
   :defer-config
   (when (memq window-system '(mac ns x)) (exec-path-from-shell-initialize)))
+
+(leaf execrun
+  :init
+  (setq execrun-kill-buffer-function #'jcs-maybe-kill-this-buffer))
 
 (leaf file-header
   :init

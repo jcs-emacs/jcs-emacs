@@ -112,6 +112,7 @@
     ess
     esup
     exec-path-from-shell
+    execrun
     expand-region
     feature-mode
     ff-guard

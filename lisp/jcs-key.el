@@ -227,10 +227,10 @@
     ([S-f10] . right-click-context-menu)
 
 ;;; Script Executing (Output)
-    ((kbd "C-S-u")  . jcs-output-window)
-    ((kbd "M-o")    . jcs-dev-switch-to-output-buffer)
-    ((kbd "<f5>")   . jcs-run-without-asking)   ; Run
-    ((kbd "C-S-b")  . jcs-make-without-asking)  ; Build
+    ((kbd "C-S-u")  . execrun-popup)
+    ((kbd "M-o")    . execrun-switch-to-buffer)
+    ((kbd "<f5>")   . execrun-run)    ; Run
+    ((kbd "C-S-b")  . execrun-build)  ; Build
     ((kbd "C-<f5>") . quickrun-select)
     ((kbd "C-<f7>") . quickrun-compile-only-select)
 

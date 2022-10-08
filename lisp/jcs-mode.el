@@ -123,10 +123,7 @@ Note this is opposite logic to the toggle mode function."
   (buffer-face-mode)
 
   (jcs-key-local
-    `(((kbd "M-k")       . jcs-output-maybe-kill-buffer)
-      ((kbd "C-_")       . jcs-output-prev-compilation)
-      ((kbd "C-+")       . jcs-output-next-compilation)
-      ((kbd "C-S-<f11>") . compilation-previous-error)
+    `(((kbd "C-S-<f11>") . compilation-previous-error)
       ((kbd "C-S-<f12>") . compilation-next-error))))
 
 (jcs-add-hook 'emacs-lisp-compilation-mode-hook
