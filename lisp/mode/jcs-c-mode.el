@@ -25,10 +25,7 @@
   (jcs-cc-insert-header)
 
   (jcs-key-local
-    `(([f8]          . jcs-find-corresponding-file)
-      ([S-f8]        . jcs-find-corresponding-file-other-window)
-      ([f7]          . jcs-same-file-other-window)  ; not the corresponding file .
-      ((kbd "DEL")   . jcs-electric-backspace)
+    `(((kbd "DEL")   . jcs-electric-backspace)
       ((kbd "C-k s") . jcs-toggle-c-comment-style))))
 
 (provide 'jcs-c-mode)

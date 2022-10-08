@@ -43,10 +43,7 @@
     `(((kbd "<up>")   . ,(jcs-get-prev/next-key-type 'previous))
       ((kbd "<down>") . ,(jcs-get-prev/next-key-type 'next))
 
-      ((kbd "DEL") . jcs-electric-backspace)
-
-      ([f8]   . jcs-find-corresponding-file)
-      ([S-f8] . jcs-find-corresponding-file-other-window))))
+      ((kbd "DEL") . jcs-electric-backspace))))
 
 (provide 'jcs-csharp-mode)
 ;;; jcs-csharp-mode.el ends here

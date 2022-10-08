@@ -86,10 +86,6 @@
     `(((kbd "DEL") . jcs-electric-backspace)
       ((kbd "{")   . jcs-web-vs-opening-curly-bracket-key)
 
-      ;; File Corresponding
-      ([f8]   . jcs-find-corresponding-file)
-      ([S-f8] . jcs-find-corresponding-file-other-window)
-
       ;; Shortcuts
       ((kbd "C-n") . web-mode-tag-match)
 

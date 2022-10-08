@@ -190,9 +190,10 @@
     ([home]           . jcs-beginning-of-line)
     ([end]            . jcs-end-of-line)
 
-;;; Open same file in other window
-    ((kbd "<f7>") . jcs-same-file-other-window)
-    ((kbd "<f8>") . jcs-same-file-other-window)  ; Replace by corresponding file if any
+;;; Find file other window
+    ((kbd "<f7>")   . jcs-same-file-other-window)
+    ((kbd "<f8>")   . fof)
+    ((kbd "S-<f8>") . fof-other-window)
 
 ;;; Organize Imports
     ((kbd "C-S-o")  . jcs-organize-imports)

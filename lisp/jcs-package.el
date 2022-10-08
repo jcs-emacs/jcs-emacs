@@ -125,6 +125,7 @@
     flycheck-ocaml
     flycheck-package
     flycheck-relint
+    fof
     font-lock-ext
     fountain-mode
     fsharp-mode
