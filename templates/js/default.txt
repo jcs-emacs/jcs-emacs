@@ -1,4 +1,0 @@
-#GLOBAL_FILE_INFO#
-
-"use strict";
-
