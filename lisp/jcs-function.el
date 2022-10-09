@@ -108,9 +108,10 @@
 (defun jcs-scratch-buffer-maybe-kill ()
   "Kill buffer scratch."
   (interactive)
-  (require 'undo-tree)
   (if (jcs-scratch-buffer-p)
-      (progn (undo-tree-kill-visualizer) (jcs-bury-buffer))
+      (progn
+        (jcs-funcall-fboundp #'undo-tree-kill-visualizer)
+        (jcs-bury-buffer))
     (jcs-maybe-kill-this-buffer)))
 
 (defun jcs-scratch-buffer-refresh ()
