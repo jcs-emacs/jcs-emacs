@@ -156,14 +156,10 @@ ALL-FRAMES."
     ;; Record down all the window information with the same buffer opened.
     (jcs-walk-windows
      (lambda ()
-       (push (jcs-buffer-name-or-buffer-file-name) buf-names)  ; Record as string!
-       (push (line-number-at-pos) lns)
-       (push (current-column) cols)
-       (push (jcs-first-visible-line-in-window) f-lns)))
-    ;; Reverse the order to have the information order corresponding to the window
-    ;; order correctly.
-    (setq buf-names (reverse buf-names) f-lns (reverse f-lns)
-          lns (reverse lns) cols (reverse cols))
+       (jcs-push (jcs-buffer-name-or-buffer-file-name) buf-names)  ; Record as string!
+       (jcs-push (line-number-at-pos) lns)
+       (jcs-push (current-column) cols)
+       (jcs-push (jcs-first-visible-line-in-window) f-lns)))
     (push buf-names jcs-window--record-buffer-names)
     (push lns jcs-window--record-line-numbers)
     (push cols jcs-window--record-columns)

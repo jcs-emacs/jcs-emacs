@@ -763,6 +763,12 @@ If optional argument REL-LINE is nil; we will use first visible line instead."
 ;; (@* "List" )
 ;;
 
+(defmacro jcs-push (newelt seq)
+  "Push NEWELT to the ahead or back of SEQ."
+  `(if (zerop (length ,seq))
+       (push ,newelt ,seq)
+     (list-utils-insert-after-pos ,seq (max (1- (length ,seq)) 0) ,newelt)))
+
 (defun jcs-last-item-in-list (lst)
   "Return the last item in LST."
   (nth (1- (length lst)) lst))
@@ -770,7 +776,7 @@ If optional argument REL-LINE is nil; we will use first visible line instead."
 (defun jcs-find-item-in-list-offset (lst key offset)
   "Find the item in LST using KEY with OFFSET the index."
   (unless offset (setq offset 0))
-  (let ((result nil) (break-it nil) (item nil) (index 0))
+  (let ((index 0) result break-it item)
     (while (and (not break-it) (< index (length lst)))
       (setq item (nth index lst))
       (when (cl-case (type-of key)
@@ -779,7 +785,7 @@ If optional argument REL-LINE is nil; we will use first visible line instead."
               (`integer (= key item)) (float (= key item)))
         (setq result (nth (+ index offset) lst)
               break-it t))
-      (setq index (1+ index)))
+      (cl-incf index))
     result))
 
 (defun jcs-length (obj)
