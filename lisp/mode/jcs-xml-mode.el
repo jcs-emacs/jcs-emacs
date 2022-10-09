@@ -29,11 +29,8 @@
                               'jcs-insert-xml-template)
 
   (jcs-key-local
-    `(((kbd "<up>")        . ,(jcs-get-prev/next-key-type 'previous))
-      ((kbd "<down>")      . ,(jcs-get-prev/next-key-type 'next))
-      ((kbd "SPC")         . jcs-smart-space)
-      ((kbd "<backspace>") . jcs-smart-backspace))))
-
+    `(((kbd "<up>")   . ,(jcs-get-prev/next-key-type 'previous))
+      ((kbd "<down>") . ,(jcs-get-prev/next-key-type 'next)))))
 
 (provide 'jcs-xml-mode)
 ;;; jcs-xml-mode.el ends here

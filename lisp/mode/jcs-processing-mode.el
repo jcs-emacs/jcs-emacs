@@ -20,10 +20,7 @@
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]pde")
-                              'jcs-insert-processing-template)
-
-  (jcs-key-local
-    `(((kbd "DEL") . jcs-electric-backspace))))
+                              'jcs-insert-processing-template))
 
 (provide 'jcs-processing-mode)
 ;;; jcs-processing-mode.el ends here

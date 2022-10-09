@@ -161,7 +161,6 @@
     ialign
     iedit
     impatient-showdown
-    indent-control
     ini-mode
     isearch-project
     javadoc-lookup
@@ -284,7 +283,6 @@
     undo-tree-vf
     unfill
     use-ttf
-    vc-msg
     vertico-flx
     vimrc-mode
     visual-regexp
@@ -293,6 +291,7 @@
     vs-electric-spacing
     vs-light-theme
     vs-revbuf
+    vsc-edit-mode
     vsc-multiple-cursors
     vue-mode
     wat-mode

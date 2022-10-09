@@ -72,12 +72,6 @@
     ((kbd "<next>")        . better-scroll-up)
     ((kbd "S-<prior>")     . better-scroll-down-other-window)
     ((kbd "S-<next>")      . better-scroll-up-other-window)
-    ((kbd "<backspace>")   . jcs-real-backspace)
-    ((kbd "S-<backspace>") . jcs-real-backspace)
-    ((kbd "<delete>")      . jcs-real-delete)
-    ((kbd "S-<delete>")    . jcs-real-delete)
-    ((kbd "SPC")           . jcs-real-space)
-    ((kbd "S-SPC")         . jcs-real-space)
     ((kbd "C-S-d")         . jcs-duplicate-line)
     ((kbd "C-v")           . yank)
     ((kbd "C-s")           . jcs-save-buffer)
@@ -110,9 +104,6 @@
     ((kbd "M-k")   . jcs-maybe-kill-this-buffer)
     ((kbd "M-K")   . jcs-reopen-this-buffer)
     ((kbd "C-M-k") . kill-this-buffer)
-    ([tab]         . jcs-tab-key)
-    ([S-tab]       . jcs-shift-tab-key)
-    ([backtab]     . jcs-shift-tab-key)
 
 ;;; File Files
     ((kbd "M-f")     . ffap)
@@ -316,11 +307,7 @@
     ((kbd "C-<kp-0>") . (lambda () (interactive) (text-scale-set 0)))))
 
 (jcs-key prog-mode-map
-  `(((kbd "<backspace>") . jcs-smart-backspace)
-    ((kbd "<delete>")    . jcs-smart-delete)
-    ((kbd "SPC")         . jcs-smart-space)
-    ((kbd "C-v")         . jcs-smart-yank)
-    ((kbd "<up>")        . ,(jcs-get-prev/next-key-type 'previous))
+  `(((kbd "<up>")        . ,(jcs-get-prev/next-key-type 'previous))
     ((kbd "<down>")      . ,(jcs-get-prev/next-key-type 'next))))
 
 (jcs-leaf-key*
@@ -372,8 +359,8 @@
 (leaf company
   :defer-config
   (jcs-key company-active-map
-    `(([tab]       . jcs-tab-key)
-      ((kbd "TAB") . jcs-tab-key)
+    `(([tab]       . vsc-edit-tab)
+      ((kbd "TAB") . vsc-edit-tab)
       ((kbd "C-s") . jcs-save-buffer))))
 
 ;;; Binary/Hex Editor
@@ -410,7 +397,7 @@
   (jcs-key mc/keymap
     `(((kbd "<escape>") . mc/keyboard-quit)
       ((kbd "<return>"))
-      ((kbd "C-v")      . jcs-smart-yank)
+      ((kbd "C-v")      . vsc-edit-yank)
       ((kbd "C-:"))
       ((kbd "C-'")))))
 
@@ -483,9 +470,9 @@
 (leaf vertico
   :defer-config
   (jcs-key vertico-map
-    `(((kbd "<backspace>") . vertico-directory-delete-char)
-      ((kbd "<return>")    . vertico-directory-enter)
-      ((kbd "/")           . jcs-vertico-/))))
+    `(((kbd "\177")     . vertico-directory-delete-char)
+      ((kbd "<return>") . vertico-directory-enter)
+      ((kbd "/")        . jcs-vertico-/))))
 
 (leaf with-editor
   :defer-config

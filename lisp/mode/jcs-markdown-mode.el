@@ -60,9 +60,8 @@
                               'jcs-insert-markdown-template)
 
   (jcs-key-local
-    `(((kbd "<backspace>") . jcs-real-backspace)
-      ((kbd "RET")         . jcs-markdown-return-key)
-      ([S-tab]             . markdown-cycle)))
+    `(((kbd "RET") . jcs-markdown-return-key)
+      ([S-tab]     . markdown-cycle)))
 
   ;; Eemmet
   (jcs-key emmet-mode-keymap

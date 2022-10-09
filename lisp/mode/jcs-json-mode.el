@@ -25,10 +25,7 @@
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]json")
-                              'jcs--json-format)
-
-  (jcs-key-local
-    `(((kbd "DEL") . jcs-electric-backspace))))
+                              'jcs--json-format))
 
 (provide 'jcs-json-mode)
 ;;; jcs-json-mode.el ends here

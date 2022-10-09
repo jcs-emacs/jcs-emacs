@@ -25,8 +25,7 @@
   (jcs-cc-insert-header)
 
   (jcs-key-local
-    `(((kbd "DEL")   . jcs-electric-backspace)
-      ((kbd "C-k s") . jcs-toggle-c-comment-style))))
+    `(((kbd "C-k s") . jcs-toggle-c-comment-style))))
 
 (provide 'jcs-c-mode)
 ;;; jcs-c-mode.el ends here

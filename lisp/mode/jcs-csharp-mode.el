@@ -41,9 +41,7 @@
 
   (jcs-key-local
     `(((kbd "<up>")   . ,(jcs-get-prev/next-key-type 'previous))
-      ((kbd "<down>") . ,(jcs-get-prev/next-key-type 'next))
-
-      ((kbd "DEL") . jcs-electric-backspace))))
+      ((kbd "<down>") . ,(jcs-get-prev/next-key-type 'next)))))
 
 (provide 'jcs-csharp-mode)
 ;;; jcs-csharp-mode.el ends here

@@ -31,8 +31,7 @@
                               'jcs-insert-objc-source-template)
 
   (jcs-key-local
-    `(((kbd "DEL")   . jcs-electric-backspace)
-      ((kbd "C-k s") . jcs-toggle-c-comment-style))))
+    `(((kbd "C-k s") . jcs-toggle-c-comment-style))))
 
 (provide 'jcs-objc-mode)
 ;;; jcs-objc-mode.el ends here

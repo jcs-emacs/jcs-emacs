@@ -51,9 +51,6 @@
                               'jcs-js--ask-source
                               :interactive t)
 
-  (jcs-key-local
-    `(((kbd "DEL") . jcs-electric-backspace)))
-
   (jcs--js-to-jsx-mode))
 
 (provide 'jcs-js-mode)

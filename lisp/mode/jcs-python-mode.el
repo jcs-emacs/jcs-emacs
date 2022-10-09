@@ -84,16 +84,12 @@
                               :interactive t)
 
   (jcs-key-local
-    `(((kbd "<up>")        . ,(jcs-get-prev/next-key-type 'previous))
-      ((kbd "<down>")      . ,(jcs-get-prev/next-key-type 'next))
-      ((kbd "<backspace>") . jcs-smart-backspace)
-      ([C-backspace]       . jcs-backward-delete-word)
-      ([M-up]              . jcs-previous-blank-line)
-      ([M-down]            . jcs-next-blank-line)
-      ((kbd "<delete>")    . jcs-smart-delete)
-      ((kbd "TAB")         . jcs-tab-key)
-      ((kbd "RET")         . jcs-py-return)
-      ((kbd "C-v")         . yank))))
+    `(((kbd "<up>")   . ,(jcs-get-prev/next-key-type 'previous))
+      ((kbd "<down>") . ,(jcs-get-prev/next-key-type 'next))
+      ([C-backspace]  . jcs-backward-delete-word)
+      ([M-up]         . jcs-previous-blank-line)
+      ([M-down]       . jcs-next-blank-line)
+      ((kbd "RET")    . jcs-py-return))))
 
 (provide 'jcs-python-mode)
 ;;; jcs-python-mode.el ends here

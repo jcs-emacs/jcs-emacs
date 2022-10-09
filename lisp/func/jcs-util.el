@@ -522,19 +522,6 @@ BND-PT : boundary point."
   "Goto LN line number."
   (goto-char (point-min)) (forward-line (1- ln)))
 
-(defun jcs-lines-in-region (fnc &optional beg end)
-  "Execute FNC each line in region BEG to END."
-  (setq beg (or beg (region-beginning))
-        end (or end (region-end)))
-  (jcs-with-select-region
-    (goto-char beg)
-    (while (and (<= (line-beginning-position) end) (not (eobp)))
-      (let ((delta (line-end-position)))
-        (funcall-interactively fnc)
-        (setq delta (- (line-end-position) delta)
-              end (+ end delta)))
-      (forward-line 1))))
-
 (defun jcs-first-char-in-line-column ()
   "Return column in first character in line."
   (save-excursion (back-to-indentation) (current-column)))
@@ -610,18 +597,6 @@ If optional argument REL-LINE is nil; we will use first visible line instead."
 ;;
 ;; (@* "Region" )
 ;;
-
-(defmacro jcs-with-select-region (&rest body)
-  "Execute BODY and save region state."
-  (declare (indent 0) (debug t))
-  `(let* ((beg (region-beginning)) (end (region-end))
-          (at-beg (= (point) beg))
-          (ov (make-overlay beg end)))
-     (ignore-errors ,@body)
-     (goto-char (if at-beg (overlay-end ov) (overlay-start ov)))
-     (setq deactivate-mark nil)
-     (goto-char (if at-beg (overlay-start ov) (overlay-end ov)))
-     (delete-overlay ov)))
 
 (defun jcs-delete-region ()
   "Delete region by default value."

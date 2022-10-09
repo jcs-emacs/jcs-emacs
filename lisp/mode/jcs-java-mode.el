@@ -105,8 +105,7 @@
     (add-hook 'after-save-hook #'jcs-java--first-save nil t))
 
   (jcs-key-local
-    `(((kbd "DEL")    . jcs-electric-backspace)
-      ((kbd "<f2>")   . javadoc-lookup)
+    `(((kbd "<f2>")   . javadoc-lookup)
       ((kbd "S-<f2>") . javadoc-lookup))))
 
 (provide 'jcs-java-mode)

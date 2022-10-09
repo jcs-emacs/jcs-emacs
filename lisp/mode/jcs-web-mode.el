@@ -83,8 +83,7 @@
                               'jcs-insert-php-template)
 
   (jcs-key-local
-    `(((kbd "DEL") . jcs-electric-backspace)
-      ((kbd "{")   . jcs-web-vs-opening-curly-bracket-key)
+    `(((kbd "{")   . jcs-web-vs-opening-curly-bracket-key)
 
       ;; Shortcuts
       ((kbd "C-n") . web-mode-tag-match)

@@ -208,8 +208,8 @@
   (memq arg0
         '(jcs-eldoc-message-now
           mouse-set-point
-          jcs-real-space jcs-smart-space
-          jcs-real-backspace jcs-smart-backspace
+          vsc-edit-real-space vsc-edit-smart-space vsc-edit-space
+          vsc-edit-real-backspace vsc-edit-smart-backspace vsc-edit-backspace
           previous-line next-line
           jcs-smart-previous-line jcs-smart-next-line
           jcs-py-indent-up jcs-py-indent-down

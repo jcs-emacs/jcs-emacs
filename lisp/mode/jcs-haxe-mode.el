@@ -26,14 +26,8 @@
 
   ;; Normal
   (jcs-key-local
-    `(((kbd "<up>")        . ,(jcs-get-prev/next-key-type 'previous))
-      ((kbd "<down>")      . ,(jcs-get-prev/next-key-type 'next))
-      ((kbd "<backspace>") . jcs-smart-backspace)
-      ((kbd "<delete>")    . jcs-smart-delete)
-
-      ((kbd "DEL")         . jcs-electric-backspace)
-
-      ((kbd "C-v")         . jcs-smart-yank))))
+    `(((kbd "<up>")   . ,(jcs-get-prev/next-key-type 'previous))
+      ((kbd "<down>") . ,(jcs-get-prev/next-key-type 'next)))))
 
 (provide 'jcs-haxe-mode)
 ;;; jcs-haxe-mode.el ends here

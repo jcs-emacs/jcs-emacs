@@ -80,10 +80,7 @@
     (jcs-insert-header-if-valid ext-lst 'jcs-c++-ask-source :interactive t))
 
   (jcs-key-local
-    `(((kbd "DEL")   . jcs-electric-backspace)
-      ((kbd "C-k s") . jcs-toggle-c-comment-style)
-      ((kbd "C-z")   . jcs-undo)
-      ((kbd "C-y")   . jcs-redo))))
+    `(((kbd "C-k s") . jcs-toggle-c-comment-style))))
 
 (provide 'jcs-c++-mode)
 ;;; jcs-c++-mode.el ends here

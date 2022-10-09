@@ -104,8 +104,6 @@
 
   (jcs-key-local
     `(((kbd "C-a")        . mark-whole-buffer)
-      ([tab]              . jcs-tab-key)
-      ((kbd "C-y")        . jcs-redo)
       ([S-tab]            . jcs-org-smart-cycle)
       ((kbd "C-k"))
       ((kbd "C-<return>") . jcs-ctrl-return-key)

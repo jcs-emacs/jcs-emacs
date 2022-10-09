@@ -42,10 +42,7 @@
   ;; File Header
   (jcs-insert-header-if-valid '("[.]ts")
                               'jcs-typescript-ask-source
-                              :interactive t)
-
-  (jcs-key-local
-    `(((kbd "DEL") . jcs-electric-backspace))))
+                              :interactive t))
 
 (provide 'jcs-typescript-mode)
 ;;; jcs-typescript-mode.el ends here
