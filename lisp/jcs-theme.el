@@ -35,7 +35,7 @@
 (defvar jcs-after-load-theme-hook nil
   "Hook run after a color theme is loaded using `load-theme'.")
 
-(jcs-advice-add 'enable-theme :after
+(jcs-advice-add 'load-theme :after
   (jcs-set-font-size)
   (run-hook-with-args 'jcs-after-load-theme-hook (jcs-theme-current))
   (jcs-reload-active-mode))
