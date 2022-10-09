@@ -46,11 +46,14 @@
 ;; (@* "Functions" )
 ;;
 
-(defun jcs-vertico-find-files--slash ()
-  "Find files slash key."
+(defun jcs-vertico-/ ()
+  "Vertico slash key."
   (interactive)
-  ;; NOTE: For some reason, slash does something else so override it.
   (insert "/")
+  (when (mbs-finding-file-p)
+    (jcs-vertico-find-files--/)))
+
+(defun jcs-vertico-find-files--/ ()
   (cond ((save-excursion (search-backward "//" nil t))  ; Root
          (jcs-vertico--cd (f-root)))
         ((save-excursion (search-backward "/~/" nil t))  ; Home

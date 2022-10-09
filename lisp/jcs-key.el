@@ -485,7 +485,7 @@
   (jcs-key vertico-map
     `(((kbd "<backspace>") . vertico-directory-delete-char)
       ((kbd "<return>")    . vertico-directory-enter)
-      ((kbd "/")           . jcs-vertico-find-files--slash))))
+      ((kbd "/")           . jcs-vertico-/))))
 
 (leaf with-editor
   :defer-config
