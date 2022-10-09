@@ -452,9 +452,7 @@ in multiple windows.")
 (defun jcs-bury-diminished-buffer ()
   "Bury the diminished buffer."
   (when (and diminish-buffer-mode
-             (jcs-contain-list-type-str (jcs-buffer-name-or-buffer-file-name)
-                                        diminish-buffer-list
-                                        'regex))
+             (diminish-buffer--filter (current-buffer)))
     (jcs-bury-buffer)))
 
 (defun jcs-bury-buffer ()
@@ -530,7 +528,7 @@ other window."
   (when-let ((current-bfn (buffer-file-name)))
     (msgu-inhibit-log
       (jcs-save-window-excursion (jcs-kill-this-buffer))
-      (undo-tree-kill-visualizer)
+      (jcs-funcall-fboundp #'undo-tree-kill-visualizer)
       (msgu-current "[INFO] Reopened file => '%s'" current-bfn))))
 
 ;;
