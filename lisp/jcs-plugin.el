@@ -685,6 +685,11 @@
   ((quelpa-before-hook . (lambda () (setq jcs-package-installing-p t)))
    (quelpa-after-hook .  (lambda () (setq jcs-package-installing-p nil)))))
 
+(leaf quickrun
+  :init
+  (setq quickrun-focus-p nil
+        quickrun-truncate-lines nil))
+
 (leaf recentf-excl
   :init
   (setq recentf-excl-commands '(jcs-goto-definition
