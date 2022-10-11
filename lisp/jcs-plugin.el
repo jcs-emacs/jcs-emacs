@@ -112,33 +112,6 @@
         company-box-doc-delay 0.3
         company-box-doc-text-scale-level -2))
 
-(leaf company-c-headers
-  :defer-config
-  (require 'dash)
-
-  (defconst jcs--msvc-path
-    '("C:/Program Files (x86)/Microsoft Visual Studio/"
-      "/Community/VC/Tools/MSVC/"
-      "/include/")
-    "Path for Microsoft Visual Studio.")
-
-  (defconst jcs--windows-kits-path
-    '("C:/Program Files (x86)/Windows Kits/10/Include/"
-      "/ucrt/")
-    "Path for Windows Kits.")
-
-  (setq company-c-headers-path-user '(".")
-        company-c-headers-path-system
-        (-flatten
-         (append
-          '("/usr/include/" "/usr/local/include/")
-          (list (jcs--path-guess jcs--msvc-path
-                                 (lambda (dirname)
-                                   (not (= (string-to-number dirname) 0))))
-                (jcs--path-guess jcs--windows-kits-path
-                                 (lambda (dirname)
-                                   (not (= (string-to-number dirname) 0)))))))))
-
 (leaf company-emojify
   :init
   (setq company-emojify-annotation (if jcs-graphic-p 'image 'unicode)
