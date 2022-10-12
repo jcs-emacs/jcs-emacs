@@ -174,8 +174,16 @@
         define-it-text-scale-level -2))
 
 (leaf diff-hl
+  :hook (find-file    . diff-hl-mode)
+  :hook (vc-dir-mode  . diff-hl-dir-mode)
+  :hook (dired-mode   . diff-hl-dired-mode)
+  :hook (diff-hl-mode . diff-hl-flydiff-mode)
   :init
-  (setq diff-hl-side 'right))
+  (setq diff-hl-side 'right
+        diff-hl-draw-borders nil
+        diff-hl-flydiff-delay 0.5
+        ;; UX: get realtime feedback in diffs after staging/unstaging hunks
+        diff-hl-show-staged-changes nil))
 
 (leaf diminish-buffer
   :init
@@ -342,7 +350,12 @@
   :init
   (setq highlight-indent-guides-method 'character
         highlight-indent-guides-character ?\|
-        highlight-indent-guides-responsive 'top))
+        highlight-indent-guides-responsive 'top
+        highlight-indent-guides-suppress-auto-error t))
+
+(leaf highlight-numbers
+  :config
+  (setq highlight-numbers-generic-regexp "\\_<[[:digit:]]+\\(?:\\.[0-9]*\\)?\\_>"))
 
 (leaf hl-todo
   :init
@@ -417,6 +430,7 @@
          '(switch-frame menu-bar tool-bar tab-bar)))
 
 (leaf line-reminder
+  :hook (display-line-numbers-mode-hook . line-reminder-mode)
   :init
   (setq line-reminder-show-option (if jcs-graphic-p 'indicators 'linum)
         line-reminder-thumbnail t)

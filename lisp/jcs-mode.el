@@ -160,8 +160,8 @@ Note this is opposite logic to the toggle mode function."
 ;;
 ;;; Base Mode
 
-(jcs-add-hook '(text-mode-hook prog-mode-hook)
-  (jcs-line-numbers-active-by-mode)  ; line numbers
+(jcs-add-hook '(conf-mode-hook text-mode-hook prog-mode-hook)
+  (display-line-numbers-mode 1)
 
   (when (bound-and-true-p jcs-emacs-startup-directory)  ; only after Emacs startup
     (alt-codes-mode 1)

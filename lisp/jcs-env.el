@@ -101,12 +101,8 @@
 (setq mouse-drag-and-drop-region t)
 
 ;;; Ediff
-(defun jcs-ediff-setup-windows (buffer-A buffer-B buffer-C control-buffer)
-  "Set up windows for `ediff'."
-  (ediff-setup-windows-plain buffer-A buffer-B buffer-C control-buffer))
-
-(setq ediff-window-setup-function 'jcs-ediff-setup-windows
-      ediff-split-window-function 'split-window-horizontally)
+(setq ediff-split-window-function #'split-window-horizontally
+      ediff-window-setup-function #'ediff-setup-windows-plain)
 
 ;;; Electric Pair
 (setq-default electric-pair-inhibit-predicate 'electric-pair-default-inhibit)
@@ -118,7 +114,17 @@
 ;; Resolve performance issue moving around Unicode Text
 (setq inhibit-compacting-font-caches t)
 
+;; Image
+(setq image-animate-loop t)
+
 ;;; Line Numbers
+(setq-default
+ ;; Explicitly define a width to reduce the cost of on-the-fly computation
+ display-line-numbers-width 3
+ ;; Show absolute line numbers for narrowed regions to make it easier to tell the
+ ;; buffer is narrowed, and where you are, exactly.
+ display-line-numbers-widen t)
+
 (column-number-mode 1)
 
 (defconst jcs-line-numbers-ignore-buffers
@@ -155,6 +161,12 @@
       completion-ignored-extensions nil
       completion-ignore-case t
       suggest-key-bindings nil)
+
+;;; Parenthesis
+(setq show-paren-delay 0.1
+      show-paren-highlight-openparen t
+      show-paren-when-point-inside-paren t
+      show-paren-when-point-in-periphery t)
 
 ;;; Previous/Next keys
 (defcustom jcs-prev/next-key-type 'smart
@@ -268,6 +280,9 @@ If ACT is non-nil; then make scroll less jumpy."
 
 ;;; Variables
 (setq enable-local-variables :safe)
+
+;;; Version Control
+(setq vc-git-diff-switches '("--histogram"))  ;  A slightly faster algorithm for diffing
 
 ;;; Warnings
 (setq warning-minimum-level :emergency)
