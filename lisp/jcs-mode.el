@@ -167,6 +167,7 @@ Note this is opposite logic to the toggle mode function."
     (alt-codes-mode 1)
     (auto-highlight-symbol-mode t)
     (display-fill-column-indicator-mode 1)
+    (indent-control-ensure-tab-width)  ; Ensure indentation level is available
     (goto-address-mode 1)
     (when jcs-graphic-p (highlight-indent-guides-mode 1))
     (yas-minor-mode 1)
@@ -190,13 +191,14 @@ Note this is opposite logic to the toggle mode function."
     (unless (jcs-contain-list-type-str "-" (list comment-start comment-end) 'regex)
       (modify-syntax-entry ?- "_"))
 
-    ;; Ensure indentation level is available
-    (indent-control-ensure-tab-width)
-
     (abbrev-mode 1)
     (highlight-numbers-mode 1)))
 
+;; This get called in other modes, don't simply it
 (add-hook 'prog-mode-hook #'jcs-prog-mode-hook)
+
+(jcs-add-hook 'conf-mode-hook
+  (highlight-numbers-mode 1))
 
 ;;; Emacs Lisp
 (jcs-add-hook 'emacs-lisp-mode-hook

@@ -50,7 +50,6 @@
   "Delay some executions for faster speed."
   (auto-scroll-bar-mode 1)
   (balanced-windows-mode 1)
-  (global-eldoc-mode 1)
   (echo-bar-mode 1)
   (electric-indent-mode 1)
   (electric-pair-mode 1)

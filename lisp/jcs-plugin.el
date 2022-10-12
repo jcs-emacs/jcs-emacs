@@ -430,7 +430,8 @@
          '(switch-frame menu-bar tool-bar tab-bar)))
 
 (leaf line-reminder
-  :hook (display-line-numbers-mode-hook . line-reminder-mode)
+  :hook (display-line-numbers-mode-hook
+         . (lambda () (when display-line-numbers-mode (line-reminder-mode 1))))
   :init
   (setq line-reminder-show-option (if jcs-graphic-p 'indicators 'linum)
         line-reminder-thumbnail t)
@@ -531,7 +532,6 @@
   (jcs-add-hook 'meta-view-after-insert-hook
     ;; Hook runs after meta-view buffer insertion.
     (jcs-prog-mode-hook)
-    (display-line-numbers-mode 1)
     (setq-local ts-fold-summary-show nil)
     (jcs-save-excursion  ; fold all comments
       (goto-char (point-min))
