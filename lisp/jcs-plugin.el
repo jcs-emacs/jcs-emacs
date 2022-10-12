@@ -425,12 +425,19 @@
           line-reminder-modified-sign " |")))
 
 (leaf lsp-mode
+  :hook ((lsp-managed-mode-hook
+          . (lambda (&rest _)
+              (if (and lsp-mode lsp-managed-mode) (jcs-lsp--enable)
+                (jcs-lsp--disable))))
+         (lsp-mode-hook
+          . (lambda (&rest _)
+              (if lsp-mode (jcs-lsp--enable)
+                (jcs-lsp--disable)))))
   :init
   (setq lsp-auto-guess-root t
         lsp-prefer-capf t
-        lsp-keep-workspace-alive nil                   ; Auto-kill LSP server
-        lsp-modeline-code-action-fallback-icon "Œ"
-        lsp-prefer-flymake nil                         ; Use lsp-ui and flycheck
+        lsp-keep-workspace-alive nil                      ; Auto-kill LSP server
+        lsp-prefer-flymake nil                            ; Use lsp-ui and flycheck
         flymake-fringe-indicator-position 'right-fringe)
 
   (defun jcs--lsp-connected-p ()
@@ -443,7 +450,15 @@
       (if (memq this-command '(jcs-reopen-this-buffer))
           (lsp) (lsp-deferred))))
   :defer-config
-  (require 'jcs-lsp))
+  (defun jcs-lsp--enable ()
+    "Do stuff when lsp is enabled."
+    (jcs-re-enable-mode 'company-fuzzy-mode)
+    ;; enable semantic meaning
+    (setq-local company-fuzzy-passthrough-backends '(company-capf)))
+
+  (defun jcs-lsp--disable ()
+    "Do stuff when lsp is disabled."
+    (setq-local company-fuzzy-passthrough-backends nil)))
 
 (leaf lsp-tailwindcss
   :init
@@ -493,7 +508,8 @@
            undefined
            toggle-truncate-lines
            define-it
-           jcs-package-upgrade-all jcs-package--show-upgrades jcs-package-autoremove)
+           jcs-package-upgrade-all jcs-package--show-upgrades jcs-package-autoremove
+           lsp--message)
         message-clean-mode-minor-mode 'echo))
 
 (leaf meta-view
