@@ -54,6 +54,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Extract [@cmuratori](https://github.com/cmuratori)'s run/make script feature to external `execrun` (83d90d53e5324e22e5fbf3c174487ddd22fd7117)
 * Extract find corresponding file module to external package `fof` (b7d018be296f55ca5cd8859b53c68efe326a2399)
 * Extract VSCode editing experience to external package `vsc-edit-mode` (744eb525d3c90055528f650e3991614eb172684a)
+* Removed complex line number configuration, keep it simple (f78fd0b8b96b8fb113f6156d346689622967fa15)
 
 ## 8.2.1
 > Released Jul 22, 2022
