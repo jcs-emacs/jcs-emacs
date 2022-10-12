@@ -12,34 +12,6 @@
   `(let ((dashboard-ls-path (jcs-last-default-directory))) ,@body))
 
 ;;
-;; (@* "Navigation" )
-;;
-
-(defun jcs-dashboard-previous-blank-line ()
-  "Dashboard previous blank line key."
-  (interactive)
-  (let ((blank-pt (save-excursion (jcs-previous-blank-line) (point))))
-    (if (and (forward-line -2)
-             (search-backward dashboard-page-separator nil t)
-             (< blank-pt (point)))
-        (progn
-          (forward-line 2)
-          (beginning-of-line))
-      (goto-char blank-pt))))
-
-(defun jcs-dashboard-next-blank-line ()
-  "Dashboard next blank line key."
-  (interactive)
-  (let ((blank-pt (save-excursion (jcs-next-blank-line) (point))))
-    (if (and (forward-line 2)
-             (search-forward dashboard-page-separator nil t)
-             (<= (point) blank-pt))
-        (progn
-          (forward-line -2)
-          (beginning-of-line))
-      (goto-char blank-pt))))
-
-;;
 ;; (@* "Refresh" )
 ;;
 

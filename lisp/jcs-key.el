@@ -426,12 +426,10 @@
   :defer-config
   (jcs-key dashboard-mode-map
     `(((kbd "SPC"))
-      ((kbd "<up>")        . previous-line)
-      ((kbd "<down>")      . next-line)
-      ((kbd "C-<up>")      . jcs-dashboard-previous-blank-line)
-      ((kbd "C-<down>")    . jcs-dashboard-next-blank-line)
-      ((kbd "C-k C-p")     . package-list-packages)
-      ((kbd "M-K")         . jcs-dashboard-refresh-buffer))))
+      ((kbd "<up>")    . previous-line)
+      ((kbd "<down>")  . next-line)
+      ((kbd "C-k C-p") . package-list-packages)
+      ((kbd "M-K")     . jcs-dashboard-refresh-buffer))))
 
 (leaf flycheck
   :defer-config
