@@ -47,7 +47,6 @@
 (add-hook 'markdown-mode-hook 'emmet-mode)
 
 (jcs-add-hook 'markdown-mode-hook
-  (modify-syntax-entry ?: "w")
   (jcs-elec-pair-add '((?\` . ?\`)))
 
   (company-fuzzy-backend-add 'company-emojify)
