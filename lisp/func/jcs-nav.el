@@ -55,19 +55,6 @@
      (`next (progn ,@body-next))
      (t (user-error "[WARNING] Please define direction with 'previous' or 'next'"))))
 
-(defun jcs-get-prev/next-key-type (direction)
-  "Return the prev/next key type by DIRECTION."
-  (jcs--define-prev/next-key
-    direction
-    (cl-case jcs-prev/next-key-type
-      (`normal 'previous-line)
-      (`smart 'jcs-smart-previous-line)
-      (t (user-error "[WARNING] Prev/Next key type not defined")))
-    (cl-case jcs-prev/next-key-type
-      (`normal 'next-line)
-      (`smart 'jcs-smart-next-line)
-      (t (user-error "[WARNING] Prev/Next key type not defined")))))
-
 (defun jcs-nav--after-smart-move-line ()
   "Do stuff after smart move line."
   (cond ((jcs-current-line-empty-p) (end-of-line))

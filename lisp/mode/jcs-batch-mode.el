@@ -24,11 +24,7 @@
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]bat")
-                              'jcs-insert-batch-template)
-
-  (jcs-key-local
-    `(((kbd "<up>")   . ,(jcs-get-prev/next-key-type 'previous))
-      ((kbd "<down>") . ,(jcs-get-prev/next-key-type 'next)))))
+                              'jcs-insert-batch-template))
 
 (provide 'jcs-batch-mode)
 ;;; jcs-batch-mode.el ends here

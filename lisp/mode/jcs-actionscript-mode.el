@@ -27,8 +27,8 @@
                               'jcs-insert-actionscript-template)
 
   (jcs-key-local
-    `(((kbd "<up>")   . ,(jcs-get-prev/next-key-type 'previous))
-      ((kbd "<down>") . ,(jcs-get-prev/next-key-type 'next)))))
+    `(((kbd "<up>")   . jcs-smart-previous-line)
+      ((kbd "<down>") . jcs-smart-next-line))))
 
 (provide 'jcs-actionscript-mode)
 ;;; jcs-actionscript-mode.el ends here

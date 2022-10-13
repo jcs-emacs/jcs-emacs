@@ -17,16 +17,9 @@
 ;; (@* "Hook" )
 ;;
 
-(jcs-add-hook 'gitattributes-mode-hook
+(jcs-add-hook '(gitattributes-mode-hook gitconfig-mode-hook gitignore-mode-hook)
   (jcs-key-local
-    `(((kbd "<up>")   . ,(jcs-get-prev/next-key-type 'previous))
-      ((kbd "<down>") . ,(jcs-get-prev/next-key-type 'next)))))
-
-(jcs-add-hook 'gitconfig-mode-hook
-  (jcs-key-local
-    `(((kbd "<up>")    . ,(jcs-get-prev/next-key-type 'previous))
-      ((kbd "<down>")  . ,(jcs-get-prev/next-key-type 'next))
-      ((kbd "C-d")     . jcs-kill-whole-line))))
+    `(((kbd "C-d") . jcs-kill-whole-line))))
 
 (jcs-add-hook 'gitignore-mode-hook
   (jcs-insert-header-if-valid '("[.]gitignore")
@@ -35,12 +28,7 @@
                               :success
                               (lambda ()
                                 (when (jcs-current-line-empty-p)
-                                  (jcs-kill-whole-line))))
-
-  (jcs-key-local
-    `(((kbd "<up>")   . ,(jcs-get-prev/next-key-type 'previous))
-      ((kbd "<down>") . ,(jcs-get-prev/next-key-type 'next))
-      ((kbd "C-d")    . jcs-kill-whole-line))))
+                                  (jcs-kill-whole-line)))))
 
 (provide 'jcs-git-mode)
 ;;; jcs-git-mode.el ends here

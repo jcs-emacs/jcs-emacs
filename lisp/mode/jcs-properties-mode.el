@@ -11,11 +11,7 @@
 
   (abbrev-mode 1)
   (goto-address-mode 1)
-  (auto-highlight-symbol-mode t)
-
-  (jcs-key-local
-    `(((kbd "<up>")   . ,(jcs-get-prev/next-key-type 'previous))
-      ((kbd "<down>") . ,(jcs-get-prev/next-key-type 'next)))))
+  (auto-highlight-symbol-mode t))
 
 (provide 'jcs-properties-mode)
 ;;; jcs-properties-mode.el ends here

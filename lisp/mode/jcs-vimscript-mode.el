@@ -23,8 +23,8 @@
                               'jcs-insert-vimscript-template)
 
   (jcs-key-local
-    `(((kbd "<up>")   . ,(jcs-get-prev/next-key-type 'previous))
-      ((kbd "<down>") . ,(jcs-get-prev/next-key-type 'next))
+    `(((kbd "<up>")   . jcs-smart-previous-line)
+      ((kbd "<down>") . jcs-smart-next-line)
       ((kbd "C-a")    . mark-whole-buffer))))
 
 (provide 'jcs-vimscript-mode)

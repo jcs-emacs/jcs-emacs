@@ -28,9 +28,7 @@
                               'jcs-insert-cmake-template)
 
   (jcs-key-local
-    `(((kbd "<up>")   . ,(jcs-get-prev/next-key-type 'previous))
-      ((kbd "<down>") . ,(jcs-get-prev/next-key-type 'next))
-      ((kbd "RET")    . jcs-makefile-newline))))
+    `(((kbd "RET") . jcs-makefile-newline))))
 
 (provide 'jcs-cmake-mode)
 ;;; jcs-cmake-mode.el ends here

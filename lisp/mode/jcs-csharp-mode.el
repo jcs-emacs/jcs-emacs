@@ -37,11 +37,7 @@
   ;; File Header
   (jcs-insert-header-if-valid '("[.]cs")
                               'jcs-csharp-ask-source
-                              :interactive t)
-
-  (jcs-key-local
-    `(((kbd "<up>")   . ,(jcs-get-prev/next-key-type 'previous))
-      ((kbd "<down>") . ,(jcs-get-prev/next-key-type 'next)))))
+                              :interactive t))
 
 (provide 'jcs-csharp-mode)
 ;;; jcs-csharp-mode.el ends here

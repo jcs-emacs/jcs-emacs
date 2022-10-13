@@ -132,18 +132,14 @@
   (modify-syntax-entry ?_ "w")
   (jcs-asm-mode--init)
   (jcs-key-local
-    `(((kbd "<up>")   . ,(jcs-get-prev/next-key-type 'previous))
-      ((kbd "<down>") . ,(jcs-get-prev/next-key-type 'next))
-      ((kbd "RET")    . jcs-asm-return)
+    `(((kbd "RET")    . jcs-asm-return)
       ((kbd ";")      . jcs-asm-comment))))
 
 (jcs-add-hook 'nasm-mode-hook
   (modify-syntax-entry ?_ "w")
   (jcs-asm-mode--init)
   (jcs-key-local
-    `(((kbd "<up>")   . ,(jcs-get-prev/next-key-type 'previous))
-      ((kbd "<down>") . ,(jcs-get-prev/next-key-type 'next))
-      ((kbd "RET")    . jcs-asm-return)
+    `(((kbd "RET")    . jcs-asm-return)
       ((kbd ";")      . jcs-asm-comment))))
 
 (provide 'jcs-asm-mode)

@@ -19,11 +19,7 @@
 (jcs-add-hook 'ssass-mode-hook
   ;; File Header
   (jcs-insert-header-if-valid '("[.]sass")
-                              'jcs-insert-sass-template)
-
-  (jcs-key-local
-    `(((kbd "<up>")   . ,(jcs-get-prev/next-key-type 'previous))
-      ((kbd "<down>") . ,(jcs-get-prev/next-key-type 'next)))))
+                              'jcs-insert-sass-template))
 
 (provide 'jcs-sass-mode)
 ;;; jcs-sass-mode.el ends here

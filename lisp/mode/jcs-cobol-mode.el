@@ -20,11 +20,7 @@
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]cbl")
-                              'jcs-insert-cobol-template)
-
-  (jcs-key-local
-    `(((kbd "<up>")   . ,(jcs-get-prev/next-key-type 'previous))
-      ((kbd "<down>") . ,(jcs-get-prev/next-key-type 'next)))))
+                              'jcs-insert-cobol-template))
 
 (provide 'jcs-cobol-mode)
 ;;; jcs-cobol-mode.el ends here

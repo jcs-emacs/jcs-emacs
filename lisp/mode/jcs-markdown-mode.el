@@ -66,6 +66,13 @@
   (jcs-key emmet-mode-keymap
     `(((kbd "C-<return>") . jcs-emmet-expand-line))))
 
+;;
+;; (@* "Extensions" )
+;;
+
+(leaf markdown-toc
+  :init
+  (setq markdown-toc-indentation-space 2))
 
 (provide 'jcs-markdown-mode)
 ;;; jcs-markdown-mode.el ends here

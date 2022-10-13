@@ -21,11 +21,7 @@
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]sql")
-                              'jcs-insert-sql-template)
-
-  (jcs-key-local
-    `(((kbd "<up>")   . ,(jcs-get-prev/next-key-type 'previous))
-      ((kbd "<down>") . ,(jcs-get-prev/next-key-type 'next)))))
+                              'jcs-insert-sql-template))
 
 (provide 'jcs-sql-mode)
 ;;; jcs-sql-mode.el ends here
