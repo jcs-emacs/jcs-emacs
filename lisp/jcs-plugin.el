@@ -431,7 +431,7 @@
 
 (leaf line-reminder
   :hook (display-line-numbers-mode-hook
-         . (lambda () (when display-line-numbers-mode (line-reminder-mode 1))))
+         . (lambda () (line-reminder-mode (if display-line-numbers-mode 1 0))))
   :init
   (setq line-reminder-show-option (if jcs-graphic-p 'indicators 'linum)
         line-reminder-thumbnail t)
