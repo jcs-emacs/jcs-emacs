@@ -47,14 +47,6 @@
 ;; (@* "Cursor Movement" )
 ;;
 
-(defmacro jcs--define-prev/next-key (direction body-prev &rest body-next)
-  "Execute BODY without any redisplay execution."
-  (declare (indent 0) (debug t))
-  `(cl-case ,direction
-     (`previous (progn ,body-prev))
-     (`next (progn ,@body-next))
-     (t (user-error "[WARNING] Please define direction with 'previous' or 'next'"))))
-
 (defun jcs-nav--after-smart-move-line ()
   "Do stuff after smart move line."
   (cond ((jcs-current-line-empty-p) (end-of-line))
