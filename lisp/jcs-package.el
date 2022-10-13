@@ -344,34 +344,10 @@
   "Return requires from package NAME."
   (ignore-errors (package-desc-reqs (jcs-package-desc name t))))
 
-(defun jcs-package--package-status (name)
-  "Get package status by NAME."
-  (let* ((desc (jcs-package-desc name t))
-         (status (ignore-errors (package-desc-status desc))))
-    (or status "")))
-
 (defun jcs-package--used-elsewhere-p (name)
   "Return non-nil if NAME is used elsewhere."
   (let ((desc (jcs-package-desc name t)))
     (ignore-errors (package--used-elsewhere-p desc nil 'all))))
-
-(defun jcs-package--package-status-p (name status)
-  "Check if NAME status the same as STATUS."
-  (string= (jcs-package--package-status name) status))
-
-(defun jcs-package--package-obsolete-p (name)
-  "Return non-nil if NAME is obsolete package."
-  (jcs-package--package-status-p name "obsolete"))
-
-(defun jcs-package-incompatible-p (name)
-  "Return non-nil if NAME is incompatible package."
-  (jcs-package--package-status-p name "incompatible"))
-
-(defun jcs-package--package-do-rebuild (name)
-  "Return non-nil if NAME suppose to be rebuild."
-  (and (not (jcs-package--package-obsolete-p name))
-       (not (package-built-in-p name))
-       (not (jcs-package-incompatible-p name))))
 
 ;;
 ;; (@* "Dependency" )
@@ -403,9 +379,10 @@
             (installed-list (jcs-package-installed-list)))
         (dolist (name installed-list)
           (if (package-installed-p name)
-              (when (jcs-package--package-do-rebuild name)
+              (progn
                 (prt-update rt (format " `%s`" name))
-                (if (jcs-package--used-elsewhere-p name)
+                (if (or (jcs-package--used-elsewhere-p name)
+                        (package-built-in-p name))
                     (setq new-selected-pkg (remove name new-selected-pkg))
                   (push name new-selected-pkg)))
             (setq new-selected-pkg (remove name new-selected-pkg))))
