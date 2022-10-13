@@ -57,6 +57,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Removed complex line number configuration, keep it simple (f78fd0b8b96b8fb113f6156d346689622967fa15)
 * Remove dashboard's previous/next blank-lines navigation keys (bfef0c196ac7fdc307552b6d5f663279d540cba4)
 * Extract package module to external package `pkg-dm` (9051c25ce5c07542ea0a52bfb4192d74ac8d1453)
+* Use `elenv` for emacs-lisp environment (92c9db4dbbe49072874fd18d2c27b44a5384bfd4)
 
 ## 8.2.1
 > Released Jul 22, 2022
