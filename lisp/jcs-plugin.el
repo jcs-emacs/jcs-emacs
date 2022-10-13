@@ -99,7 +99,7 @@
            company-etags company-gtags
            company-yasnippet))
   :defer-config
-  (unless jcs-graphic-p
+  (unless elenv-graphic-p
     (push 'company-echo-metadata-frontend company-frontends)))
 
 (leaf company-box
@@ -113,7 +113,7 @@
 
 (leaf company-emojify
   :init
-  (setq company-emojify-annotation (if jcs-graphic-p 'image 'unicode)
+  (setq company-emojify-annotation (if elenv-graphic-p 'image 'unicode)
         company-emojify-emoji-styles '(github)))
 
 (leaf company-fuzzy
@@ -169,7 +169,7 @@
 
 (leaf define-it
   :init
-  (setq define-it-output-choice (if jcs-graphic-p 'frame 'view)
+  (setq define-it-output-choice (if elenv-graphic-p 'frame 'view)
         define-it-text-scale-level -2))
 
 (leaf diff-hl
@@ -432,9 +432,9 @@
   :hook (display-line-numbers-mode-hook
          . (lambda () (line-reminder-mode (if display-line-numbers-mode 1 0))))
   :init
-  (setq line-reminder-show-option (if jcs-graphic-p 'indicators 'linum)
+  (setq line-reminder-show-option (if elenv-graphic-p 'indicators 'linum)
         line-reminder-thumbnail t)
-  (unless jcs-graphic-p
+  (unless elenv-graphic-p
     (setq line-reminder-saved-sign " |"
           line-reminder-modified-sign " |")))
 
@@ -564,7 +564,7 @@
   ;; XXX For issue, https://github.com/tarsius/moody/pull/41
   (jcs-advice-add 'moody-redisplay :around
     (let ((inhibit-redisplay t)) (apply arg0 args)))
-  (unless jcs-graphic-p (jcs-advice-add 'moody-tab :override arg0)))
+  (unless elenv-graphic-p (jcs-advice-add 'moody-tab :override arg0)))
 
 (leaf most-used-words
   :init

@@ -194,7 +194,7 @@
   "Return banner path."
   (concat
    user-emacs-directory "banners/"
-   (cond (jcs-graphic-p (if (jcs-light-theme-p) "sink_black.png" "sink_white.png"))
+   (cond (elenv-graphic-p (if (jcs-light-theme-p) "sink/black.png" "sink/white.png"))
          (t "sink.txt"))))
 
 ;;
@@ -395,7 +395,7 @@ delay. HEIGHT of the tooltip that will display."
   (let ((bg (asoc-get company-box-doc-frame-parameters 'background-color))
         (fg (asoc-get company-box-doc-frame-parameters 'foreground-color))
         (fringe-width 10))
-    (if jcs-graphic-p
+    (if elenv-graphic-p
         (progn
           (with-current-buffer (get-buffer-create jcs-pop-tooltip-buffer-name)
             (let ((text-scale-mode-step 1.1)) (text-scale-set company-box-doc-text-scale-level)))

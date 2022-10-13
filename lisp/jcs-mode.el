@@ -90,7 +90,7 @@ Note this is opposite logic to the toggle mode function."
 (jcs-add-hook 'backtrace-mode-hook
   (buffer-wrap-mode 1)
   (jcs-key-local
-    `(((kbd "M-k")    . kill-buffer-and-window))))
+    `(((kbd "M-k") . kill-buffer-and-window))))
 
 ;;; Buffer Menu
 (jcs-add-hook 'Buffer-menu-mode-hook
@@ -114,9 +114,10 @@ Note this is opposite logic to the toggle mode function."
 
 ;;; Compilation
 (jcs-add-hook '(compilation-mode-hook comint-mode-hook)
+  (setq truncate-lines nil)
+
   (buffer-disable-undo)
   (goto-address-mode 1)
-  (setq truncate-lines nil)
 
   ;; NOTE: Set smaller font.
   (setq buffer-face-mode-face '(:height 120))
@@ -137,8 +138,8 @@ Note this is opposite logic to the toggle mode function."
 ;;; Re-Builder
 (jcs-add-hook 'reb-mode-hook
   (jcs-key-local
-    `(((kbd "<up>")   . ,(jcs-get-prev/next-key-type 'previous))
-      ((kbd "<down>") . ,(jcs-get-prev/next-key-type 'next))
+    `(((kbd "<up>")   . jcs-smart-previous-line)
+      ((kbd "<down>") . jcs-smart-next-line)
       ((kbd "M-k")    . kill-buffer-and-window))))
 
 ;;; Tabulated List
@@ -169,7 +170,7 @@ Note this is opposite logic to the toggle mode function."
     (display-fill-column-indicator-mode 1)
     (indent-control-ensure-tab-width)  ; Ensure indentation level is available
     (goto-address-mode 1)
-    (when jcs-graphic-p (highlight-indent-guides-mode 1))
+    (when elenv-graphic-p (highlight-indent-guides-mode 1))
     (yas-minor-mode 1)
 
     (jcs-on-project-hook)))
@@ -248,7 +249,7 @@ Note this is opposite logic to the toggle mode function."
     (cmake-mode)
     (cobol-mode)
     (coffee-mode)
-    (conf-mode               . jcs-properties-mode)
+    (conf-mode)
     (crystal-mode)
     (csharp-mode)
     (css-mode)
