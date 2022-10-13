@@ -90,7 +90,6 @@
     dist-file-mode
     docker
     docker-compose-mode
-    dockerfile-mode
     dotenv-mode
     dumb-jump
     eask-mode
@@ -167,7 +166,6 @@
     javap-mode
     jayces-mode
     jenkinsfile-mode
-    js2-mode
     json-mode
     keypression
     kotlin-mode
@@ -178,7 +176,6 @@
     logms
     logview
     lsp-dart
-    lsp-docker
     lsp-grammarly
     lsp-haskell
     lsp-java
@@ -206,7 +203,6 @@
     most-used-words
     move-text
     multi-shell
-    multiple-cursors
     mwim
     nasm-mode
     nginx-mode
@@ -246,7 +242,6 @@
     rjsx-mode
     robots-txt-mode
     rust-mode
-    scala-mode
     scrollable-quick-peek
     scss-mode
     shader-mode
