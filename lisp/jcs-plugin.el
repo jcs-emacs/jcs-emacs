@@ -17,8 +17,7 @@
          '("emacs/.*/lisp/"
            "/[.]emacs[.]d/elpa/"))
   (jcs-advice-add 'auto-read-only--hook-find-file :override
-    (when (and (not jcs-package-installing-p) (not (jcs-project-root)))
-      (auto-read-only))))
+    (unless (jcs-project-root) (auto-read-only))))
 
 (leaf auto-rename-tag
   :init
@@ -682,11 +681,6 @@
                   ".tox" ".svn"
                   ".stack-work" ".ccls-cache" ".cache" ".clangd")
                 '(".log" ".vs" "node_modules"))))
-
-(leaf quelpa
-  :hook
-  ((quelpa-before-hook . (lambda () (setq jcs-package-installing-p t)))
-   (quelpa-after-hook .  (lambda () (setq jcs-package-installing-p nil)))))
 
 (leaf quickrun
   :init

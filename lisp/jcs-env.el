@@ -188,16 +188,6 @@ P.S. You would need to restart Emacs to take effect from this variable."
 ;;; Recent Files
 (setq recentf-max-menu-items 25)
 
-(defun jcs-recentf-track-opened-file-p ()
-  "Return non-nil if we should track opened file."
-  (and recentf-excl-tracking-p (not jcs-package-installing-p)))
-
-(jcs-advice-add 'recentf-track-opened-file :after
-  (when (jcs-recentf-track-opened-file-p) (jcs-dashboard-refresh-buffer)))
-
-(jcs-advice-add 'recentf-track-opened-file :around
-  (when (jcs-recentf-track-opened-file-p) (apply arg0 args)))
-
 ;;; Save Files
 (defcustom jcs-on-save-remove-control-M t
   "Remove ^M character on save."

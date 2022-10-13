@@ -409,9 +409,6 @@
 
 (ignore-errors (delete-directory jcs-package--elpa-temp-dir t))
 
-(defvar jcs-package-installing-p nil
-  "Is currently upgrading the package.")
-
 (defvar jcs-package-use-real-delete-p t
   "Flag to check if we are really deleting a package.")
 
@@ -443,7 +440,7 @@
 
 (defun jcs--package-install--advice-around (fnc &rest args)
   "Advice around execute `package-install' command with FNC and ARGS."
-  (let ((jcs-package-installing-p t)) (apply fnc args)))
+  (let (auto-read-only-file-regexps) (recentf-excl-it (apply fnc args))))
 
 (advice-add 'package-install :around #'jcs--package-install--advice-around)
 (advice-add 'package-install-from-buffer :around #'jcs--package-install--advice-around)
