@@ -403,8 +403,8 @@
 
 (jcs-key package-menu-mode-map
   `(((kbd "M-K")     . package-list-packages)
-    ((kbd "U")       . jcs-package-upgrade-all)
-    ((kbd "C-k r m") . jcs-package-autoremove)))
+    ((kbd "U")       . pkg-dm-upgrade-all)
+    ((kbd "C-k r m") . pkg-dm-autoremove)))
 
 (jcs-key isearch-mode-map
   `(((kbd "C-s"))

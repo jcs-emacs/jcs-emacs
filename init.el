@@ -125,7 +125,6 @@
 
 ;;; Initialize
 (require 'jcs-package)
-(jcs-package-install-all)
 
 ;;; Utilities
 (require 'jcs-log)
