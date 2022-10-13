@@ -837,8 +837,8 @@ If optional argument REVERSE is non-nil, LIST item and ELT argument."
 (defun jcs-move-path (path dest)
   "Move PATH to DEST."
   (ignore-errors (make-directory dest t))
-  (jcs-shell-execute (if jcs-is-windows "move" "mv")
-                     (unless jcs-is-windows "-f")
+  (jcs-shell-execute (if elenv-windows "move" "mv")
+                     (unless elenv-windows "-f")
                      (expand-file-name path) (expand-file-name dest)))
 
 ;;

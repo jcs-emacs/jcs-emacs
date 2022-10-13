@@ -2,29 +2,21 @@
 ;;; Commentary:
 ;;; Code:
 
-;; Determine the underlying operating system
-(defconst jcs-is-windows (memq system-type '(cygwin windows-nt ms-dos))  "Windows")
-(defconst jcs-is-mac     (eq system-type 'darwin)                        "macOS")
-(defconst jcs-is-linux   (eq system-type 'gnu/linux)                     "Linux")
-(defconst jcs-is-bsd     (or jcs-is-mac (eq system-type 'berkeley-unix)) "BSD")
-
 (defconst jcs-system-type
-  (cond (jcs-is-windows 'dos)
-        (jcs-is-bsd     'mac)
-        (jcs-is-linux   'unix)
+  (cond (elenv-windows 'dos)
+        (elenv-bsd     'mac)
+        (elenv-linux   'unix)
         (t              'unknown))
   "Store current system type.")
 
-(cond
- (jcs-is-bsd
+(elenv-with-bsd
   (setq mac-command-modifier 'meta
         select-enable-clipboard t
         aquamacs-save-options-on-quit 0
         special-display-regexps nil
         special-display-buffer-names nil
         mac-command-key-is-meta t
-        mac-pass-command-to-system nil)))
-
+        mac-pass-command-to-system nil))
 
 ;;; Audo Saving
 (setq auto-save-default nil
@@ -65,8 +57,8 @@
 ;;; Commands
 (leaf grep
   :init
-  (setq grep-command (if jcs-is-windows "findstr -s -n -i -l " "grep -irHn ")
-        grep-use-null-device (when jcs-is-windows t)))
+  (setq grep-command (if elenv-windows "findstr -s -n -i -l " "grep -irHn ")
+        grep-use-null-device (when elenv-windows t)))
 
 ;;; Comments
 (leaf newcomment
@@ -94,7 +86,7 @@
 ;;; Doc View
 (leaf doc-view
   :defer-config
-  (when jcs-is-windows
+  (when elenv-windows
     (setq doc-view-ghostscript-program (executable-find "gswin64c"))))
 
 ;;; Drag & Drop
@@ -167,20 +159,6 @@
       show-paren-highlight-openparen t
       show-paren-when-point-inside-paren t
       show-paren-when-point-in-periphery t)
-
-;;; Previous/Next keys
-(defcustom jcs-prev/next-key-type 'smart
-  "Key definition for previous and next line.
-
-The variable can be set one of the following value.
-
-  - normal : The default behaviour from Emacs.
-  - smart : Move to the code line if available.
-
-P.S. You would need to restart Emacs to take effect from this variable."
-  :type '(choice (const :tag "normal" normal)
-                 (const :tag "smart" smart))
-  :group 'jcs)
 
 ;;; Process
 (setq kill-buffer-query-functions nil)
@@ -255,6 +233,9 @@ If ACT is non-nil; then make scroll less jumpy."
 ;;; Theme
 (defconst jcs-theme-default 'vs-dark
   "Default theme name for this config.")
+
+;;; Trash
+(setq delete-by-moving-to-trash t)
 
 ;;; Undo
 (setq undo-limit 20000000
