@@ -54,6 +54,7 @@
           balanced-windows
           basic-mode
           better-scroll
+          block-travel
           bool-flip
           browse-kill-ring
           buffer-menu-filter
@@ -211,7 +212,6 @@
           most-used-words
           move-text
           multi-shell
-          mwim
           nasm-mode
           nginx-mode
           nhexl-mode
@@ -236,13 +236,11 @@
           processing-mode
           project-abbrev
           protobuf-mode
-          prt
           python-mode
           qml-mode
           quelpa
           quickrun
           rainbow-mode
-          recentf-excl
           region-occurrences-highlighter
           region-state
           restart-emacs
