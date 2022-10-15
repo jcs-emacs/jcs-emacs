@@ -59,6 +59,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Extract package module to external package `pkg-dm` (9051c25ce5c07542ea0a52bfb4192d74ac8d1453)
 * Use `elenv` for emacs-lisp environment (92c9db4dbbe49072874fd18d2c27b44a5384bfd4)
 * Remove previouse/next key type option (a4a605f44e18ae2161a8e87598e636bf9f1f51a9)
+* Extract previous/next blank line keys to external package `block-travel` (9f624c1bbb7259da65fd9b468812358d53ee36ca)
 
 ## 8.2.1
 > Released Jul 22, 2022
