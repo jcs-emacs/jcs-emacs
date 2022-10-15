@@ -308,6 +308,7 @@
           yasnippet-snippets
           zoom-window)))
 
+(require 'elenv)
 (pkg-dm-install-all)
 
 (provide 'jcs-package)
