@@ -514,7 +514,7 @@
         message-clean-mode-echo-commands
         '( mwheel-scroll
            previous-line next-line
-           jcs-beginning-of-line jcs-end-of-line
+           vsc-edit-beginning-of-line vsc-edit-end-of-line
            mark-whole-buffer
            indent-region
            browse-kill-ring-setup

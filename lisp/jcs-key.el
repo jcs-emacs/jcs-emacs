@@ -178,8 +178,8 @@
 ;;; Navigation
     ((kbd "C-<home>") . beginning-of-buffer)
     ((kbd "C-<end>")  . end-of-buffer)
-    ([home]           . jcs-beginning-of-line)
-    ([end]            . jcs-end-of-line)
+    ([home]           . vsc-edit-beginning-of-line)
+    ([end]            . vsc-edit-end-of-line)
 
 ;;; Find file other window
     ((kbd "<f7>")   . jcs-same-file-other-window)

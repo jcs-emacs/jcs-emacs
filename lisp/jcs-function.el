@@ -217,7 +217,7 @@
           jcs-smart-forward-word jcs-smart-backward-word
           jcs-backward-word-capital jcs-forward-word-capital
           beginning-of-line end-of-line
-          jcs-beginning-of-line jcs-end-of-line)))
+          vsc-edit-beginning-of-line vsc-edit-end-of-line)))
 
 ;;
 ;; (@* "Electric Pair" )

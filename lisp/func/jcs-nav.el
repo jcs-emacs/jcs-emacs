@@ -102,53 +102,6 @@
       (forward-char 1))))
 
 ;;
-;; (@* "Move Inside Line" )
-;;
-
-(defun jcs-beginning-of-visual-line ()
-  "Goto the beginning of visual line."
-  (interactive)
-  (let ((visual-line-column -1) first-line-in-non-truncate-line)
-    ;; First, record down the beginning of visual line point
-    (save-excursion
-      (call-interactively #'beginning-of-visual-line)
-      (setq visual-line-column (current-column)))
-
-    ;; Check if is the first line of non-truncate line mode
-    (when (= visual-line-column 0)
-      (setq first-line-in-non-truncate-line t))
-
-    (if first-line-in-non-truncate-line
-        (call-interactively #'mwim-beginning-of-code-or-line)
-      (let ((before-pt (point)))
-        (call-interactively #'beginning-of-visual-line)
-
-        ;; If before point is the same as the current point ; We call regaulr
-        ;; `beginning-of-line' function.
-        (when (= before-pt (point))
-          (call-interactively #'mwim-beginning-of-code-or-line))))))
-
-(defun jcs-end-of-visual-line ()
-  "Goto the end of visual line."
-  (interactive)
-  (let ((before-pt (point)))
-    (call-interactively #'end-of-visual-line)
-    ;; If before point is the same as the current point; we call regaulr
-    ;; `end-of-line' function.
-    (when (= before-pt (point)) (call-interactively #'mwim-end-of-line-or-code))))
-
-(defun jcs-beginning-of-line ()
-  "Goto the beginning of line."
-  (interactive)
-  (call-interactively (if truncate-lines #'mwim-beginning-of-code-or-line
-                        #'jcs-beginning-of-visual-line)))
-
-(defun jcs-end-of-line ()
-  "Goto the end of line."
-  (interactive)
-  (call-interactively (if truncate-lines #'mwim-end-of-line-or-code #'jcs-end-of-visual-line)))
-
-;;
 ;; (@* "Navigating Blank Line" )
 ;;
 
