@@ -157,25 +157,26 @@
 ;; (@* "Balanced Expression (sexp)" )
 ;;
 
-(defvar jcs-sexp-open-chars '("(" "{" "`" "\"" "'" "[" "<")
-  "List of open balanced expression.")
-
-(defvar jcs-sexp-close-chars '(")" "}" "`" "\"" "'" "]" ">")
-  "List of close balanced expression.")
-
 (defun jcs-toggle-backward-forward-sexp ()
   "Move to balance expression in backward/forward direction if any."
   (interactive)
   (msgu-silent (when (jcs-backward-sexp) (jcs-forward-sexp))))
 
+(defun jcs-current-pair ()
+  "Return current pair character."
+  (let* ((prev (char-before))
+         (next (char-after))
+         (syntax-info (and prev
+                           (electric-pair-syntax-info prev)))
+         (syntax (car syntax-info))
+         (pair (cadr syntax-info)))
+    (ignore-errors (string pair))))
+
 (defun jcs-backward-sexp ()
   "Wrapper for function `backward-sexp'."
   (interactive)
-  (cond ((jcs-current-char-equal-p jcs-sexp-close-chars)
-         (backward-sexp))
-        ((save-excursion
-           (forward-char 1)
-           (jcs-current-char-equal-p jcs-sexp-close-chars))
+  (cond ((jcs-current-pair) (backward-sexp))
+        ((save-excursion (forward-char 1) (jcs-current-pair))
          (forward-char 1)
          (backward-sexp))
         (t (message "%s %s %s"
@@ -187,11 +188,9 @@
 (defun jcs-forward-sexp ()
   "Wrapper for function `forward-sexp'."
   (interactive)
-  (cond ((save-excursion
-           (forward-char 1)
-           (jcs-current-char-equal-p jcs-sexp-open-chars))
+  (cond ((save-excursion (forward-char 1) (jcs-current-pair))
          (forward-sexp))
-        ((jcs-current-char-equal-p jcs-sexp-open-chars)
+        ((jcs-current-pair)
          (forward-char -1)
          (forward-sexp))
         (t (message "%s %s %s"
