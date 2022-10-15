@@ -85,8 +85,8 @@
 
   (jcs-key-local
     `(([C-backspace] . jcs-backward-delete-word)
-      ([M-up]        . jcs-previous-blank-line)
-      ([M-down]      . jcs-next-blank-line)
+      ([M-up]        . block-travel-up)
+      ([M-down]      . block-travel-down)
       ((kbd "RET")   . jcs-py-return))))
 
 (provide 'jcs-python-mode)

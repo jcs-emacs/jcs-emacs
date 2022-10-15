@@ -102,24 +102,6 @@
       (forward-char 1))))
 
 ;;
-;; (@* "Navigating Blank Line" )
-;;
-
-(defun jcs-previous-blank-line ()
-  "Move to the previous line containing nothing but whitespaces or tabs."
-  (interactive)
-  (let ((sr-pt (save-excursion (re-search-backward "^[ \t]*\n" nil t))))
-    (goto-char (or sr-pt (point-min)))))
-
-(defun jcs-next-blank-line ()
-  "Move to the next line containing nothing but whitespaces or tabs."
-  (interactive)
-  (when (jcs-current-line-empty-p) (forward-line 1))
-  (let ((sr-pt (save-excursion (re-search-forward "^[ \t]*\n" nil t))))
-    (goto-char (or sr-pt (point-max)))
-    (when sr-pt (forward-line -1))))
-
-;;
 ;; (@* "Character Navigation" )
 ;;
 

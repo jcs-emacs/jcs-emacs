@@ -313,8 +313,8 @@
 (jcs-leaf-key*
   `(("\eq"               . (lambda () (interactive) (other-window -1)))
     ("\ew"               . other-window)
-    ([C-up]              . jcs-previous-blank-line)
-    ([C-down]            . jcs-next-blank-line)
+    ([C-up]              . block-travel-up)
+    ([C-down]            . block-travel-down)
     ((kbd "C-d")         . jcs-kill-whole-line)
     ((kbd "C-x")         . kill-region)
     ((kbd "C-c")         . kill-ring-save)

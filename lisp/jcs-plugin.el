@@ -583,7 +583,7 @@
 (leaf multiple-cursors
   :init
   (defconst jcs-mc/cancel-commands
-    '( jcs-previous-blank-line jcs-next-blank-line
+    '( block-travel-down block-travel-up
        jcs-isearch-backward-symbol-at-point
        isearch-forward-symbol-at-point
        jcs-isearch-repeat-backward
@@ -623,12 +623,11 @@
 
 (leaf page-break-lines
   :init
-  (setq page-break-lines-modes '(browse-kill-ring-mode
-                                 emacs-lisp-mode
-                                 lisp-mode
-                                 scheme-mode
-                                 outline-mode
-                                 help-mode)))
+  (setq page-break-lines-modes '( browse-kill-ring-mode
+                                  emacs-lisp-mode lisp-mode
+                                  scheme-mode
+                                  outline-mode
+                                  help-mode)))
 
 (leaf popup
   :defer-config
