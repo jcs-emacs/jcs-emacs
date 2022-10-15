@@ -98,8 +98,8 @@
 
 (jcs-add-hook 'html-mode-hook
   (jcs-key-local
-    `(((kbd "<up>")   . jcs-smart-previous-line)
-      ((kbd "<down>") . jcs-smart-next-line))))
+    `(((kbd "<up>")   . vs-edit-previous-line)
+      ((kbd "<down>") . vs-edit-next-line))))
 
 (provide 'jcs-web-mode)
 ;;; jcs-web-mode.el ends here

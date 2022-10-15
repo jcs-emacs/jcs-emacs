@@ -26,8 +26,8 @@
 
   ;; Normal
   (jcs-key-local
-    `(((kbd "<up>")   . jcs-smart-previous-line)
-      ((kbd "<down>") . jcs-smart-next-line))))
+    `(((kbd "<up>")   . vs-edit-previous-line)
+      ((kbd "<down>") . vs-edit-next-line))))
 
 (provide 'jcs-haxe-mode)
 ;;; jcs-haxe-mode.el ends here

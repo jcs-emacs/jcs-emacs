@@ -44,29 +44,6 @@
     (unless (equal buf-list (buffer-list)) (kill-buffer buf))))
 
 ;;
-;; (@* "Cursor Movement" )
-;;
-
-(defun jcs-nav--after-smart-move-line ()
-  "Do stuff after smart move line."
-  (cond ((jcs-current-line-empty-p) (end-of-line))
-        ((and (jcs-is-infront-first-char-at-line-p)
-              (re-search-forward "[^[:space:]\t]" (line-end-position) t))
-         (forward-char -1))))
-
-(defun jcs-smart-previous-line ()
-  "Smart way to navigate to previous line."
-  (interactive)
-  (call-interactively #'previous-line)
-  (jcs-nav--after-smart-move-line))
-
-(defun jcs-smart-next-line ()
-  "Smart way to navigate to next line."
-  (interactive)
-  (call-interactively #'next-line)
-  (jcs-nav--after-smart-move-line))
-
-;;
 ;; (@* "Move Between Word (Wrapper)" )
 ;;
 

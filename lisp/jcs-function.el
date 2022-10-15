@@ -211,7 +211,7 @@
           vsc-edit-real-space vsc-edit-smart-space vsc-edit-space
           vsc-edit-real-backspace vsc-edit-smart-backspace vsc-edit-backspace
           previous-line next-line
-          jcs-smart-previous-line jcs-smart-next-line
+          vs-edit-previous-line vs-edit-next-line
           jcs-py-indent-up jcs-py-indent-down
           left-char right-char
           jcs-smart-forward-word jcs-smart-backward-word

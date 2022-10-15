@@ -307,8 +307,8 @@
     ((kbd "C-<kp-0>") . (lambda () (interactive) (text-scale-set 0)))))
 
 (jcs-key prog-mode-map
-  `(((kbd "<up>")   . jcs-smart-previous-line)
-    ((kbd "<down>") . jcs-smart-next-line)))
+  `(((kbd "<up>")   . vs-edit-previous-line)
+    ((kbd "<down>") . vs-edit-next-line)))
 
 (jcs-leaf-key*
   `(("\eq"               . (lambda () (interactive) (other-window -1)))

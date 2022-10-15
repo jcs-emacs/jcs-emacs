@@ -138,8 +138,8 @@ Note this is opposite logic to the toggle mode function."
 ;;; Re-Builder
 (jcs-add-hook 'reb-mode-hook
   (jcs-key-local
-    `(((kbd "<up>")   . jcs-smart-previous-line)
-      ((kbd "<down>") . jcs-smart-next-line)
+    `(((kbd "<up>")   . vs-edit-previous-line)
+      ((kbd "<down>") . vs-edit-next-line)
       ((kbd "M-k")    . kill-buffer-and-window))))
 
 ;;; Tabulated List
