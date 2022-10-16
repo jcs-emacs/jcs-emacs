@@ -331,54 +331,6 @@ See function `jcs-string-compare-p' for argument TYPE."
     (insert "\n")))
 
 ;;
-;; (@* "Indentation" )
-;;
-
-(defun jcs-insert-spaces-by-indent-level ()
-  "Insert spaces depends on indentation level configuration."
-  (interactive)
-  (let* ((tmp-count 0)
-         (indent-lvl (indent-control-get-indent-level-by-mode))
-         (remainder (% (current-column) indent-lvl))
-         (target-width (if (= remainder 0) indent-lvl (- indent-lvl remainder))))
-    (while (< tmp-count target-width)
-      (insert " ")
-      (setq tmp-count (1+ tmp-count)))))
-
-(defun jcs-backward-delete-spaces-by-indent-level ()
-  "Backward delete spaces using indentation level."
-  (interactive)
-  (let* ((tmp-count 0)
-         (indent-lvl (indent-control-get-indent-level-by-mode))
-         (remainder (% (current-column) indent-lvl))
-         (target-width (if (= remainder 0) indent-lvl remainder))
-         success)
-    (while (and (< tmp-count target-width)
-                (not (bolp))
-                (jcs-current-whitespace-p))
-      (backward-delete-char 1)
-      (setq success t
-            tmp-count (1+ tmp-count)))
-    success))
-
-(defun jcs-forward-delete-spaces-by-indent-level ()
-  "Forward delete spaces using indentation level."
-  (interactive)
-  (let* ((tmp-count 0)
-         (indent-lvl (indent-control-get-indent-level-by-mode))
-         (remainder (% (jcs-first-char-in-line-column) indent-lvl))
-         (target-width (if (= remainder 0) indent-lvl remainder))
-         success)
-    (while (and (< tmp-count target-width) (not (eolp)))
-      (let ((is-valid nil))
-        (save-excursion
-          (forward-char 1)
-          (when (jcs-current-whitespace-p) (setq is-valid t)))
-        (when is-valid (backward-delete-char -1) (setq success t)))
-      (setq tmp-count (1+ tmp-count)))
-    success))
-
-;;
 ;; (@* "Character" )
 ;;
 
