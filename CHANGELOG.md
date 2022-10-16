@@ -60,6 +60,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Use `elenv` for emacs-lisp environment (92c9db4dbbe49072874fd18d2c27b44a5384bfd4)
 * Remove previouse/next key type option (a4a605f44e18ae2161a8e87598e636bf9f1f51a9)
 * Extract previous/next blank line keys to external package `block-travel` (9f624c1bbb7259da65fd9b468812358d53ee36ca)
+* Add packages for feature sticky header, `topsy` and `org-sticky-header` (a9f01c9ce319e27e04e1a8fac3b56ed14f3d65ab)
 
 ## 8.2.1
 > Released Jul 22, 2022
