@@ -220,6 +220,7 @@
           noflet
           on
           org-fancy-priorities
+          org-sticky-header
           org-superstar
           organize-imports-java
           package-build
@@ -274,6 +275,7 @@
           toggle-profiler
           toggle-quotes
           toggle-window
+          topsy
           transpose-frame
           transwin
           tree-sitter-indent
