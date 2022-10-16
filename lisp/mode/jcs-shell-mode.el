@@ -18,8 +18,7 @@
   (modify-syntax-entry ?> "!")
 
   (jcs-key-local
-    `(((kbd "DEL")    . jcs-electric-backspace)
-      ((kbd "M-k")    . shell-pop)  ; Close it
+    `(((kbd "M-k")    . shell-pop)  ; Close it
       ((kbd "M-K")    . comint-clear-buffer)
       ((kbd "<up>")   . comint-previous-input)
       ((kbd "<down>") . comint-next-input)

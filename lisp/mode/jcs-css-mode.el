@@ -30,8 +30,7 @@
                               'jcs-insert-css-template)
 
   (jcs-key-local
-    `(((kbd "DEL")   . jcs-electric-backspace)
-      ((kbd "C-k s") . com-css-sort-attributes-block)
+    `(((kbd "C-k s") . com-css-sort-attributes-block)
       ((kbd "C-k d") . com-css-sort-attributes-document)))
 
   ;; Eemmet

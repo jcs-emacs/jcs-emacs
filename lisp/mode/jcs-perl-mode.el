@@ -20,10 +20,7 @@
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]pl")
-                              'jcs-insert-perl-template)
-
-  (jcs-key-local
-    `(((kbd "DEL") . jcs-electric-backspace))))
+                              'jcs-insert-perl-template))
 
 (provide 'jcs-perl-mode)
 ;;; jcs-perl-mode.el ends here
