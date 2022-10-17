@@ -303,6 +303,7 @@ Note this is opposite logic to the toggle mode function."
     (sh-script               . jcs-sh-mode)
     (sql                     . jcs-sql-mode)
     (swift-mode)
+    (terraform-mode)
     (typescript-mode)
     (verilog-mode)
     (vimrc-mode              . jcs-vimscript-mode)

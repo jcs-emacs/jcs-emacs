@@ -42,6 +42,7 @@
           annotate
           apache-mode
           applescript-mode
+          apt-sources-list
           arduino-mode
           ascii-table
           asoc
@@ -86,6 +87,7 @@
           company-nginx
           company-powershell
           company-shell
+          company-terraform
           consult
           crystal-mode
           csproj-mode
