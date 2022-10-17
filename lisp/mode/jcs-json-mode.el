@@ -5,13 +5,12 @@
 (require 'json-snatcher)
 (require 'json-mode)
 
-(defun jcs--json-format()
-  "Format for json file."
-  ;; Empty, cause json should only take data. Even comments will
-  ;; be treat as a data too...
-  ;;
-  ;; TODO: Might add it later?
-  )
+;;
+;; (@* "Templates" )
+;;
+
+(file-header-defins jcs-insert-json-template "json" "default.txt"
+  "Header for JSON header file.")
 
 ;;
 ;; (@* "Hook" )
@@ -25,7 +24,7 @@
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]json")
-                              'jcs--json-format))
+                              'jcs-insert-json-template))
 
 (provide 'jcs-json-mode)
 ;;; jcs-json-mode.el ends here
