@@ -309,7 +309,8 @@ Note this is opposite logic to the toggle mode function."
     (vimrc-mode              . jcs-vimscript-mode)
     (vue-mode)
     (web-mode)
-    (yaml-mode))
+    (yaml-mode)
+    (zig-mode))
   "Alist of config modules to load.")
 
 (defun jcs-mode-load-requires ()
@@ -327,6 +328,8 @@ Note this is opposite logic to the toggle mode function."
   '(
 ;;; A
     ("\\.agda'?\\'"         . agda-mode)
+;;; B
+    ("\\.beancount'?\\'"    . beancount-mode)
 ;;; C
     ("\\.hin'?\\'"          . c++-mode)
     ("\\.cin'?\\'"          . c++-mode)

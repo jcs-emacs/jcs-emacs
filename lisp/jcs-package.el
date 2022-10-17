@@ -54,6 +54,7 @@
           autotetris-mode
           balanced-windows
           basic-mode
+          beancount
           better-scroll
           block-travel
           bool-flip
@@ -308,6 +309,7 @@
           winum
           yarn-mode
           yasnippet-snippets
+          zig-mode
           zoom-window)))
 
 (require 'elenv)

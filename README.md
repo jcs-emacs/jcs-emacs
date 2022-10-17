@@ -74,6 +74,7 @@ from this configuration.
 * Verilog / Vimscript / Vue
 * XML
 * YAML
+* Zig
 
 This configuration polished and goes toward to the modern
 text editor, or even better, it goes beyond modern IDE.
