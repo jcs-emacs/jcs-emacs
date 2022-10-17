@@ -66,6 +66,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add support for Racket (f2f314f1eb670b7508c661cf68e0033292fe256c)
 * Add support for Idris (99013713d649e59f07fae5a2bf9e7fe5f96f0800)
 * Add support for VHDL (185046a34e06bc8c4a6abf57c4f6d843a66da722)
+* Add support for Mint (9d50d8a05767f32c373f13240f3eaeb9440f6582)
 
 ## 8.2.1
 > Released Jul 22, 2022
