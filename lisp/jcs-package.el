@@ -170,6 +170,7 @@
           hlsl-mode
           htmltagwrap
           ialign
+          idris-mode
           iedit
           impatient-showdown
           ini-mode

@@ -271,6 +271,7 @@ Note this is opposite logic to the toggle mode function."
     (haml-mode)
     (haskell-mode)
     (haxe-mode)
+    (idris-mode)
     (ini-mode)
     (jayces-mode)
     (jenkinsfile-mode)

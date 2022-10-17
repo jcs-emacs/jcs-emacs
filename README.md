@@ -60,7 +60,7 @@ from this configuration.
 * F# / Fountain
 * GLSL / Go / GDScript / Groovy
 * Haskell / Haxe / HLSL / HTML
-* INI
+* Idris / INI
 * Java / JavaScript / JSON / JSX / Julia
 * Kotlin
 * LESS / Lisp / Lua
