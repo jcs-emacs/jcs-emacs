@@ -53,7 +53,7 @@ Here is the list of programming languages I know and are extended
 from this configuration.
 
 * ActionScript 2.0 or 3.0 / Ada / Agda / AppleScript / Assembly Language
-* BASIC / Batchfile
+* BASIC / Batchfile / Beancount
 * C / C++ / C# / Clojure / CMake / COBOL / CSS
 * Dart / Dockerfile
 * Elixir / Elm / Emacs Lisp / Erlang
