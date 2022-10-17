@@ -64,6 +64,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add support for Terraform (d241fc77d5c13b3e01e1d0dfd78147b3a7c9a59d)
 * Add support for Zig (2911e870dce6238ab6d960a287cd25c64576bb33)
 * Add support for Racket (f2f314f1eb670b7508c661cf68e0033292fe256c)
+* Add support for Idris (99013713d649e59f07fae5a2bf9e7fe5f96f0800)
+* Add support for VHDL (185046a34e06bc8c4a6abf57c4f6d843a66da722)
 
 ## 8.2.1
 > Released Jul 22, 2022
