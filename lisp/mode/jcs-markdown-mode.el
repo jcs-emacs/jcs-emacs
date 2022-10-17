@@ -5,11 +5,26 @@
 (require 'markdown-mode)
 (require 'web-mode)
 
-(setq markdown-fontify-code-blocks-natively t)
+;;
+;; (@* "Settings" )
+;;
+
+(setq markdown-enable-math t ; syntax highlighting for latex fragments
+      markdown-enable-wiki-links t
+      markdown-italic-underscore t
+      markdown-asymmetric-header t
+      markdown-gfm-additional-languages '("sh")
+      markdown-make-gfm-checkboxes-buttons t
+      markdown-fontify-code-blocks-natively t
+      markdown-fontify-whole-heading-line t)
 
 (nconc markdown-code-lang-modes'(("cs" . csharp-mode)
                                  ("el" . emacs-lisp-mode)
                                  ("cl" . lisp-mode)))
+
+;;
+;; (@* "Keys" )
+;;
 
 (defun jcs-markdown-return-key ()
   "Return key for Markdown mode."
