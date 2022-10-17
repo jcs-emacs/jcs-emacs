@@ -32,7 +32,7 @@
 
 (ignore-errors (make-directory output-dir t))
 
-(let* ((os (format "%s" jcs-system-type))
+(let* ((os (format "%s" elenv-system-type))
        (file (concat output-dir os ".svg"))
        (time (string-to-number startup-time))
        (color (cond ((< time 5.0)  "2DB94D")

@@ -2,12 +2,10 @@
 ;;; Commentary:
 ;;; Code:
 
-(defconst jcs-system-type
-  (cond (elenv-windows 'dos)
-        (elenv-bsd     'mac)
-        (elenv-linux   'unix)
-        (t              'unknown))
-  "Store current system type.")
+(elenv-with-windows
+  (setq w32-get-true-file-attributes nil    ; decrease file IO workload
+        w32-pipe-read-delay 0               ; faster IPC
+        w32-pipe-buffer-size (* 64 1024)))  ; read more at a time (was 4K)
 
 (elenv-with-bsd
   (setq mac-command-modifier 'meta

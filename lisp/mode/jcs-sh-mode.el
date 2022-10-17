@@ -11,11 +11,11 @@
 (file-header-defsrc jcs-ask-line-endings-for-this-sh-script
     (format "Line Endings Type for file `%s`: " (jcs-buffer-name-or-buffer-file-name))
   (list (format "=> file: (%s)" (show-eol-get-current-system))
-        (format "=> system: (%s)" jcs-system-type)
+        (format "=> system: (%s)" elenv-system-type)
         "Windows (dos)" "macOS (mac)" "Linux (unix)")
   (setq jcs-sh--buffer-eol
         (cond ((string-match-p "file:" source) (show-eol-get-current-system))
-              ((string-match-p "system:" source) jcs-system-type)
+              ((string-match-p "system:" source) elenv-system-type)
               (t (pcase source
                    ("Windows (dos)" 'dos)
                    ("macOS (mac)" 'mac)
