@@ -71,7 +71,7 @@ from this configuration.
 * R / Racket / Ruby / Rust
 * Sass / Scala / SCSS / Shader / Shell script / SQL / Swift
 * Terraform / TOML / TSX / TypeScript
-* Verilog / Vimscript / Vue
+* Verilog / VHDL / Vimscript / Vue
 * XML
 * YAML
 * Zig

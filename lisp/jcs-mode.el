@@ -308,6 +308,7 @@ Note this is opposite logic to the toggle mode function."
     (terraform-mode)
     (typescript-mode)
     (verilog-mode)
+    (vhdl-mode)
     (vimrc-mode              . jcs-vimscript-mode)
     (vue-mode)
     (web-mode)
