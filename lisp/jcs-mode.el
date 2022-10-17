@@ -294,6 +294,7 @@ Note this is opposite logic to the toggle mode function."
     (processing-mode)
     (python-mode)
     (qml-mode)
+    (racket-mode)
     (rjsx-mode               . jcs-jsx-mode)
     (ruby-mode)
     (rust-mode)

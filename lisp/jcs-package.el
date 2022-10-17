@@ -244,6 +244,7 @@
           qml-mode
           quelpa
           quickrun
+          racket-mode
           rainbow-mode
           region-occurrences-highlighter
           region-state
