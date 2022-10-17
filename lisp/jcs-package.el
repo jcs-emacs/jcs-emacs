@@ -212,6 +212,7 @@
           meta-view
           minimap
           minions
+          mint-mode
           moody
           most-used-words
           move-text

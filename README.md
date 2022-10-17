@@ -64,7 +64,7 @@ from this configuration.
 * Java / JavaScript / JSON / JSX / Julia
 * Kotlin
 * LESS / Lisp / Lua
-* Makefile / Markdown
+* Makefile / Markdown / Mint
 * Nix
 * Object Pascal (Delphi) / Objective-C / OCaml
 * Pascal / Perl / PHP / PowerShell / Properties / Python

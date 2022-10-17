@@ -284,6 +284,7 @@ Note this is opposite logic to the toggle mode function."
     (make-mode               . jcs-makefile-mode)
     (markdown-mode)
     ((masm-mode nasm-mode)   . jcs-asm-mode)
+    (mint-mode)
     (nginx-mode)
     (nix-mode)
     (nxml-mode               . jcs-xml-mode)
