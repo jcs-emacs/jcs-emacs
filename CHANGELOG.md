@@ -63,6 +63,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add packages for feature sticky header, `topsy` and `org-sticky-header` (a9f01c9ce319e27e04e1a8fac3b56ed14f3d65ab)
 * Add support for Terraform (d241fc77d5c13b3e01e1d0dfd78147b3a7c9a59d)
 * Add support for Zig (2911e870dce6238ab6d960a287cd25c64576bb33)
+* Add support for Racket (f2f314f1eb670b7508c661cf68e0033292fe256c)
 
 ## 8.2.1
 > Released Jul 22, 2022
