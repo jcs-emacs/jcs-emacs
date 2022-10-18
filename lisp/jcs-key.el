@@ -181,6 +181,9 @@
     ([home]           . vsc-edit-beginning-of-line)
     ([end]            . vsc-edit-end-of-line)
 
+    ((kbd "M-<left>")  . jcs-backward-word-capital)
+    ((kbd "M-<right>") . jcs-forward-word-capital)
+
 ;;; Find file other window
     ((kbd "<f7>")   . jcs-same-file-other-window)
     ((kbd "<f8>")   . fof)
@@ -320,8 +323,6 @@
     ((kbd "C-c")         . kill-ring-save)
     ((kbd "C-M-<left>")  . buf-move-left)
     ((kbd "C-M-<right>") . buf-move-right)
-    ((kbd "M-<left>")    . jcs-backward-word-capital)
-    ((kbd "M-<right>")   . jcs-forward-word-capital)
     ((kbd "C-o")         . diminish-buffer-mode)  ; Diminish Buffer
 
     ((kbd "M-s") . scratch-buffer)
@@ -430,6 +431,18 @@
       ((kbd "<down>")  . next-line)
       ((kbd "C-k C-p") . package-list-packages)
       ((kbd "M-K")     . jcs-dashboard-refresh-buffer))))
+
+(leaf eww
+  :defer-config
+  (jcs-key eww-mode-map
+    `(((kbd "M-<left>")  . eww-back-url)
+      ((kbd "M-<right>") . eww-forward-url)
+      ((kbd "<f5>")      . eww-reload)
+      ((kbd "C-<f5>")    . eww-reload)
+      ((kbd "<f12>")     . eww-view-source)
+      ((kbd "C-S-a")     . eww-list-buffers)
+      ((kbd "C-S-o")     . eww-list-bookmarks)
+      ((kbd "C-h")       . eww-list-histories))))
 
 (leaf flycheck
   :defer-config

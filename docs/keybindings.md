@@ -420,6 +420,17 @@ Here is the list of key bindins that defined in this configuration.
 * <kbd>Ctrl</kbd>+<kbd>e</kbd>, <kbd>e</kbd> - Eval expression.
 * <kbd>Ctrl</kbd>+<kbd>e</kbd>, <kbd>r</kbd> - Eval region.
 
+## EWW
+
+* <kbd>Alt</kbd>+<kbd>left</kbd> - Back a page.
+* <kbd>Alt</kbd>+<kbd>right</kbd> - Forward a page.
+* <kbd>f5</kbd> - Reload page.
+* <kbd>Ctrl</kbd>+<kbd>f5</kbd> - Reload page.
+* <kbd>f12</kbd> - View source.
+* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>a</kbd> - List buffers.
+* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>o</kbd> - List bookmarks.
+* <kbd>Ctrl</kbd>+<kbd>h</kbd> - List histories.
+
 ## Package Mode
 
 * <kbd>i</kbd> - Select package to install.
