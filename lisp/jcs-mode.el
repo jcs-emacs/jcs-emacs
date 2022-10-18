@@ -286,6 +286,7 @@ Note this is opposite logic to the toggle mode function."
     ((masm-mode nasm-mode)   . jcs-asm-mode)
     (mint-mode)
     (nginx-mode)
+    (nim-mode)
     (nix-mode)
     (nxml-mode               . jcs-xml-mode)
     (opascal                 . jcs-opascal-mode)
