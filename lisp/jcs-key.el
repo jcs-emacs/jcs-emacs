@@ -460,6 +460,17 @@
     `(([C-f10] . hl-todo-previous)
       ([C-f11] . hl-todo-next))))
 
+(leaf image-mode
+  :defer-config
+  (jcs-key image-mode-map
+    `(((kbd "C-r") . image-rotate)
+      ((kbd "C-0") . (lambda () (interactive)
+                       (message "Maximize image is not supported")))
+      ((kbd "C-=") . image-increase-size)
+      ((kbd "C--") . image-decrease-size)
+      ((kbd "C-+") . image-flip-horizontally)
+      ((kbd "C-_") . image-flip-vertically))))
+
 (leaf suggest
   :defer-config
   (jcs-key suggest-mode-map

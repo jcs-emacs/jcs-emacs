@@ -62,6 +62,7 @@ Here is the list of key bindins that defined in this configuration.
       - [Describing](#describing)
       - [Eval](#eval)
   - [EWW](#eww)
+  - [Image Mode](#image-mode)
   - [Package Mode](#package-mode)
   - [`tabulated-list` Mode](#tabulated-list-mode)
   - [Org Mode](#org-mode)
@@ -431,6 +432,15 @@ Here is the list of key bindins that defined in this configuration.
 * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>a</kbd> - List buffers.
 * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>o</kbd> - List bookmarks.
 * <kbd>Ctrl</kbd>+<kbd>h</kbd> - List histories.
+
+## Image Mode
+
+* <kbd>Ctrl</kbd>+<kbd>r</kbd> - Rotate image.
+* <kbd>Ctrl</kbd>+<kbd>0</kbd> - Maximize image.
+* <kbd>Ctrl</kbd>+<kbd>=</kbd> - Increase image size.
+* <kbd>Ctrl</kbd>+<kbd>-</kbd> - Decrease image size.
+* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>=</kbd> - Flip image horizontally.
+* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>-</kbd> - Flip image vertically.
 
 ## Package Mode
 
