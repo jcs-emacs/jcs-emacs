@@ -54,7 +54,7 @@ from this configuration.
 
 * ActionScript 2.0 or 3.0 / Ada / Agda / AppleScript / Assembly Language
 * BASIC / Batchfile / Beancount
-* C / C++ / C# / Clojure / CMake / COBOL / CSS
+* C / C++ / C# / Clojure / CMake / COBOL / Crystal / CSS
 * Dart / Dockerfile
 * Elixir / Elm / Emacs Lisp / Erlang
 * F# / Fountain
@@ -65,7 +65,7 @@ from this configuration.
 * Kotlin
 * LESS / Lisp / Lua
 * Makefile / Markdown / Mint
-* Nix
+* Nim / Nix
 * Object Pascal (Delphi) / Objective-C / OCaml
 * Pascal / Perl / PHP / PowerShell / Properties / Python
 * R / Racket / Ruby / Rust
