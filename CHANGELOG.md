@@ -69,6 +69,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add support for Mint (9d50d8a05767f32c373f13240f3eaeb9440f6582)
 * Improve EWW UX (b954b8f5f1782a500eb4a7fda688a8fab0aebd27)
 * Improve `image-mode` UX (80127d5060bbf6ae871d87502dfff27a73c123fe)
+* Add `emp` as default music player (2861743073ecd2e6d7608dac8021fc400104c4bb)
 
 ## 8.2.1
 > Released Jul 22, 2022
