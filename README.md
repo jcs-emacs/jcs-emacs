@@ -250,10 +250,10 @@ I believe details make things better and make life smoother.
 
 A list of package archives that this configuration uses.
 
-* *[GNU](https://elpa.gnu.org/packages/)* - The standard GNU ELPA
-* *[NonGNU](https://elpa.gnu.org/packages/)* - The standard NonGNU ELPA
+* *[GNU](https://elpa.gnu.org/)* - The standard GNU ELPA
+* *[NonGNU](https://elpa.nongnu.org/)* - The standard NonGNU ELPA
 * *[MELPA](https://melpa.org/#/)* - Milkypostman’s ELPA
-* *[JCS-ELPA](https://github.com/jcs-emacs/jcs-elpa)* - Jen-Chieh Shen's ELPA for this confinguration
+* *[JCS-ELPA](https://jcs-emacs.github.io/jcs-elpa/)* - Jen-Chieh Shen's ELPA for this confinguration
 
 📝 *P.S. Here is a good talk comparing all package archives from a
 [StackExchange](https://emacs.stackexchange.com/) question,
