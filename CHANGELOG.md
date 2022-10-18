@@ -70,6 +70,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Improve EWW UX (b954b8f5f1782a500eb4a7fda688a8fab0aebd27)
 * Improve `image-mode` UX (80127d5060bbf6ae871d87502dfff27a73c123fe)
 * Add `emp` as default music player (2861743073ecd2e6d7608dac8021fc400104c4bb)
+* Bind keys for `emp` (f5183bee81fea5b0e832ed39282ad76ee9ed70e8)
 
 ## 8.2.1
 > Released Jul 22, 2022
