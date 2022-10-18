@@ -61,7 +61,6 @@
           browse-kill-ring
           buffer-menu-filter
           buffer-move
-          buffer-wrap
           calfw
           caml
           cargo-mode
