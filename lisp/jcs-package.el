@@ -117,6 +117,7 @@
           elm-mode
           emmet-mode
           emoji-github
+          emp
           eping
           erlang
           eshell-syntax-highlighting

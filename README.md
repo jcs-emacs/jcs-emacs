@@ -130,6 +130,7 @@ without having to get used to a new IDE.
 
 Here is the list of few essential and recent changes to this configuration.
 
+* `8.2.2` - Add `emp` as the default Music Player
 * `8.2.1` - Replace package `docstr` with `ts-docstr` for better parsing capability
 * `8.2.0` - Drop support for Emacs 27.x
 * `8.1.0` - Remove config tabify/untabify save, and replace it with `whitespace-cleanup-mode`.
@@ -139,7 +140,6 @@ Here is the list of few essential and recent changes to this configuration.
 * `7.0.0` - Switch from [quickhelp](https://github.com/company-mode/company-quickhelp) to [box](https://github.com/sebastiencs/company-box) for company frontend.
 * `6.5.0` - Add pinned archive feature to package module.
 * `6.4.2` - You can now resolve package dependency graph while deleting package.
-* `6.4.1` - Start with `tree-sitter` support.
 
 ## 💾 Installation
 
@@ -300,7 +300,7 @@ kind of methods to support the maintainer you wish to.
 * *Mode Line* - powered by [moody](https://github.com/tarsius/moody).
 * *Multiple Cursor* - powered by [iedit](https://github.com/victorhge/iedit) and [multiple-cursors](https://github.com/magnars/multiple-cursors.el).
 * *Multiple Terminal* - powered by [multi-shell](https://github.com/jcs-elpa/multi-shell).
-* *Music Player* - none.
+* *Music Player* - powered by [emp](https://github.com/jcs-elpa/emp).
 * *Navigation/Searcher* - powered by [searcher](https://github.com/jcs-elpa/searcher) and [isearch-project](https://github.com/elpa-host/isearch-project).
 * *Package Archive* - see [here](#file_folder-package-archives).
 * *Package Management* - powered by [leaf](https://github.com/conao3/leaf.el) and [github-elpa](https://github.com/10sr/github-elpa).
