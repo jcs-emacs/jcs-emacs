@@ -166,6 +166,10 @@
     ([M-up]   . move-text-up)
     ([M-down] . move-text-down)
 
+;;; Music
+    ((kbd "M-e") . emp)
+    ((kbd "M-E") . emp-other-window)
+
 ;;; Mutliple Cursors
     ((kbd "C-M-S-<up>")     . vsc-multiple-cursors-mark-previous-like-this-line)
     ((kbd "C-M-S-<down>")   . vsc-multiple-cursors-mark-next-like-this-line)
@@ -285,7 +289,6 @@
     ((kbd "C-|")    . split-window-vertically)
 
 ;;; Window Navigation
-    ((kbd "M-e") . ace-window)
     ((kbd "C-1") . winum-select-window-1)
     ((kbd "C-2") . winum-select-window-2)
     ((kbd "C-3") . winum-select-window-3)

@@ -267,15 +267,20 @@ Here is the list of key bindins that defined in this configuration.
 * <kbd>Alt</kbd>+<kbd>s</kbd> - Open `*scratch*` buffer.
 * <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>s</kbd> - Open `*scratch*` buffer in other window.
 
-#### About **`*Message*`**
+#### Goto **`*Message*`**
 
 * <kbd>Alt</kbd>+<kbd>m</kbd> - Open `*Message*` buffer.
 * <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>m</kbd> - Open `*Message*` buffer in other window.
 
-#### About **`*dashboard*`**
+#### Goto **`*dashboard*`**
 
 * <kbd>Alt</kbd>+<kbd>d</kbd> - Open `*dashboard*` buffer.
 * <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>d</kbd> - Open `*dashboard*` buffer in other window.
+
+#### Goto **`*emp*`**
+
+* <kbd>Alt</kbd>+<kbd>e</kbd> - Emacs Music Player
+* <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>e</kbd> - Emacs Music Player
 
 ### File
 
@@ -306,10 +311,6 @@ Here is the list of key bindins that defined in this configuration.
 
 * <kbd>Alt</kbd>+<kbd>w</kbd> - Switch to the `next` window.
 * <kbd>Alt</kbd>+<kbd>q</kbd> - Switch to the `previous` window.
-
-##### Ace Windows
-
-* <kbd>Alt</kbd>+<kbd>e</kbd> - Aced window. (advanced way to switch window)
 
 ##### Other
 
