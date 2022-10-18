@@ -67,6 +67,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add support for Idris (99013713d649e59f07fae5a2bf9e7fe5f96f0800)
 * Add support for VHDL (185046a34e06bc8c4a6abf57c4f6d843a66da722)
 * Add support for Mint (9d50d8a05767f32c373f13240f3eaeb9440f6582)
+* Improve EWW UX (b954b8f5f1782a500eb4a7fda688a8fab0aebd27)
 
 ## 8.2.1
 > Released Jul 22, 2022
