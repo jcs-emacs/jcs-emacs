@@ -200,7 +200,7 @@
            "[*]Checkdoc " "[*]Elint[*]" "[*]Package-Lint[*]" "[*]relint[*]"
            "[*]Finder[*]"
            "[*]Async Shell Command[*]" "[*]shell" "[*]eshell" "bshell<"
-           "[*]eww" "[*]emp" "[*]EMMS" "[*]ESS[*]"
+           "[*]eww" "[*]ESS[*]"
            "[*]emacs[*]"  ; From `async'
            ;; `lsp-mode'
            "[*]lsp-" "[*]LSP[ ]+"
