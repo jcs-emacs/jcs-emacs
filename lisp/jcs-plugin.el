@@ -281,9 +281,6 @@
   (setq emojify-emoji-styles '(github)
         emojify-company-tooltips-p t))
 
-(leaf eshell-syntax-highlighting
-  :hook (eshell-mode-hook . eshell-syntax-highlighting-global-mode))
-
 (leaf exec-path-from-shell
   :defer-config
   (when (memq window-system '(mac ns x)) (exec-path-from-shell-initialize)))
@@ -382,9 +379,6 @@
   (setq impatient-showdown-flavor 'github))
 
 (leaf isearch
-  :hook
-  ((isearch-mode-hook     . jcs-scroll-conservatively-disable)
-   (isearch-mode-end-hook . jcs-scroll-conservatively-enable))
   :init
   (setq isearch-lazy-count t
         lazy-count-prefix-format "[%s:%s] "))

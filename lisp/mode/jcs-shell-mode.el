@@ -31,5 +31,12 @@
       ((kbd "C-+")    . multi-shell-next)
       ((kbd "M-b")    . multi-shell-select))))
 
+;;
+;; (@* "Extensions" )
+;;
+
+(leaf eshell-syntax-highlighting
+  :hook (eshell-mode-hook . eshell-syntax-highlighting-global-mode))
+
 (provide 'jcs-shell-mode)
 ;;; jcs-shell-mode.el ends here
