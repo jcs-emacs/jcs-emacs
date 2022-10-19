@@ -214,7 +214,7 @@
           vs-edit-previous-line vs-edit-next-line
           jcs-py-indent-up jcs-py-indent-down
           left-char right-char
-          jcs-smart-forward-word jcs-smart-backward-word
+          vs-edit-forward-word vs-edit-backward-word
           jcs-backward-word-capital jcs-forward-word-capital
           beginning-of-line end-of-line
           vsc-edit-beginning-of-line vsc-edit-end-of-line)))

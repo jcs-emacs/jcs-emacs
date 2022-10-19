@@ -95,49 +95,6 @@
   (kill-line (- 1 arg))
   (setq kill-ring (cdr kill-ring)))
 
-(defun jcs-delete-word (arg)
-  "Delete characters forward until encountering the end of a word.
-With ARG, do this that many times.
-This command does not push text to `kill-ring'."
-  (interactive "p")
-  (delete-region (point) (progn (forward-word arg) (point))))
-
-(defun jcs-backward-delete-word (arg)
-  "Backward deleteing ARG words."
-  (interactive "p")
-  (if (use-region-p) (jcs-delete-region) (jcs-delete-word (- arg))))
-
-(defun jcs-forward-delete-word (arg)
-  "Forward deleteing ARG words."
-  (interactive "p")
-  (if (use-region-p) (jcs-delete-region) (jcs-delete-word (+ arg))))
-
-(defun jcs-smart-backward-delete-word ()
-  "Backward deleteing ARG words in the smart way."
-  (interactive)
-  (if (use-region-p) (jcs-delete-region)
-    (let ((start-pt -1) (end-pt (point)) (start-ln-end-pt -1))
-      (save-excursion
-        (jcs-smart-backward-word)
-        (setq start-pt (point)
-              start-ln-end-pt (line-end-position)))
-      (unless (= (line-number-at-pos start-pt) (line-number-at-pos end-pt))
-        (setq start-pt start-ln-end-pt))
-      (delete-region start-pt end-pt))))
-
-(defun jcs-smart-forward-delete-word ()
-  "Forward deleteing ARG words in the smart way."
-  (interactive)
-  (if (use-region-p) (jcs-delete-region)
-    (let ((start-pt (point)) (end-pt -1) (end-ln-start-pt -1))
-      (save-excursion
-        (jcs-smart-forward-word)
-        (setq end-pt (point)
-              end-ln-start-pt (line-beginning-position)))
-      (unless (= (line-number-at-pos start-pt) (line-number-at-pos end-pt))
-        (setq end-pt end-ln-start-pt))
-      (delete-region start-pt end-pt))))
-
 (defun jcs-backward-kill-word-capital ()
   "Backward delete the word unitl the word is capital."
   (interactive)

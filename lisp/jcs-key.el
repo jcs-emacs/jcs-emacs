@@ -72,8 +72,8 @@
     ((kbd "M-0") . ts-docstr-ask)
 
 ;;; Editting
-    ([C-right]          . jcs-smart-forward-word)
-    ([C-left]           . jcs-smart-backward-word)
+    ([C-right]          . vs-edit-forward-word)
+    ([C-left]           . vs-edit-backward-word)
     ((kbd "<prior>")    . better-scroll-down)
     ((kbd "<next>")     . better-scroll-up)
     ((kbd "S-<prior>")  . better-scroll-down-other-window)
@@ -140,8 +140,8 @@
     ((kbd "C-w p") . jcs-impatient-stop)
 
 ;;; Kill Word
-    ((kbd "C-<backspace>") . jcs-smart-backward-delete-word)
-    ((kbd "C-<delete>")    . jcs-smart-forward-delete-word)
+    ((kbd "C-<backspace>") . vs-edit-backward-delete-word)
+    ((kbd "C-<delete>")    . vs-edit-forward-delete-word)
     ((kbd "M-<backspace>") . jcs-backward-kill-word-capital)
     ((kbd "M-<delete>")    . jcs-forward-kill-word-capital)
 

@@ -84,10 +84,7 @@
                               :interactive t)
 
   (jcs-key-local
-    `(([C-backspace] . jcs-backward-delete-word)
-      ([M-up]        . block-travel-up)
-      ([M-down]      . block-travel-down)
-      ((kbd "RET")   . jcs-py-return))))
+    `(((kbd "RET")   . jcs-py-return))))
 
 (provide 'jcs-python-mode)
 ;;; jcs-python-mode.el ends here
