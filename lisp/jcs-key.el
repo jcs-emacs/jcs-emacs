@@ -240,10 +240,8 @@
     ((kbd "C-<f7>") . quickrun-compile-only-select)
 
 ;;; Search Word
-    ((kbd "C-f")   . isearch-forward)
-    ((kbd "C-S-f") . isearch-project-forward)
-    ;; NOTE: Basic search is bind to `jcs-cross-mode' and `jcs-depend-mode'.
-    ;; See `jcs-mode.el' file for the settings.
+    ((kbd "C-f")     . isearch-forward)
+    ((kbd "C-S-f")   . isearch-project-forward)
     ((kbd "C-r C-f") . isearch-backward-regexp)
     ((kbd "C-,")     . jcs-isearch-backward-symbol-at-point)
     ((kbd "C-.")     . isearch-forward-symbol-at-point)
