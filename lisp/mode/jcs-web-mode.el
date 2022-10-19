@@ -2,6 +2,7 @@
 ;;; Commentary: Including HTML, CSS, PHP, JavaScript, JSON.
 ;;; Code:
 
+(require 'sgml-mode)
 (require 'web-mode)
 
 (require 'jcs-web)
@@ -9,6 +10,18 @@
 (require 'auto-rename-tag)
 (require 'emmet-mode)
 (require 'htmltagwrap)
+
+;;
+;; (@* "Settings" )
+;;
+
+(setq web-mode-markup-indent-offset 2  ; html
+      web-mode-css-indent-offset 2     ; css
+      web-mode-code-indent-offset 2    ; script
+      web-mode-style-padding 2   ; For `<style>' tag
+      web-mode-script-padding 2  ; For `<script>' tag
+      web-mode-block-padding 0   ; For `php', `ruby', `java', `python', `asp', etc.
+      web-mode-offsetless-elements '("html"))
 
 ;;
 ;; (@* "Deletion" )
@@ -100,6 +113,19 @@
   (jcs-key-local
     `(((kbd "<up>")   . vs-edit-previous-line)
       ((kbd "<down>") . vs-edit-next-line))))
+
+;;
+;; (@* "Extensions" )
+;;
+
+(leaf adaptive-wrap
+  :hook (visual-line-mode-hook . adaptive-wrap-prefix-mode))
+
+(leaf auto-rename-tag
+  :init
+  (setq auto-rename-tag-disabled-commands '(query-replace)
+        auto-rename-tag-disabled-minor-modes '(iedit-mode
+                                               multiple-cursors-mode)))
 
 (provide 'jcs-web-mode)
 ;;; jcs-web-mode.el ends here

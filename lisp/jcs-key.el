@@ -118,8 +118,8 @@
     ((kbd "C-k M-F") . jcs-project-find-file-other-window)
 
 ;;; Folding Settings
-    ((kbd "C-k C-0") . jcs-close-all-nodes)
-    ((kbd "C-k C-j") . jcs-open-all-nodes)
+    ((kbd "C-k C-0") . ts-fold-close-all)
+    ((kbd "C-k C-j") . ts-fold-open-all)
     ((kbd "C-{")     . jcs-close-node)
     ((kbd "C-}")     . jcs-open-node)
 

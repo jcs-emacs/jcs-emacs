@@ -488,16 +488,6 @@ other window."
 ;; (@* "Folding / Unfolding" )
 ;;
 
-(defun jcs-close-all-nodes ()
-  "Close all nodes in current file."
-  (interactive)
-  (ts-fold-close-all))
-
-(defun jcs-open-all-nodes ()
-  "Open all nodes in current file."
-  (interactive)
-  (ts-fold-open-all))
-
 (defun jcs-vs-close-node ()
   "Close node at the end of line, inspired from Visual Studio."
   (save-excursion

@@ -313,7 +313,7 @@ Note this is opposite logic to the toggle mode function."
     (vhdl-mode)
     (vimrc-mode              . jcs-vimscript-mode)
     (vue-mode)
-    (web-mode)
+    ((web-mode sgml-mode)    . jcs-web-mode)
     (yaml-mode)
     (zig-mode))
   "Alist of config modules to load.")

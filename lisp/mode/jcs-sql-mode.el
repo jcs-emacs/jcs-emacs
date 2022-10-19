@@ -23,5 +23,20 @@
   (jcs-insert-header-if-valid '("[.]sql")
                               'jcs-insert-sql-template))
 
+;;
+;; (@* "Extensions" )
+;;
+
+(leaf sql-indent
+  :init
+  ;; URL: https://www.emacswiki.org/emacs/SqlIndent
+
+  ;; 1 = 2 spaces,
+  ;; 2 = 4 spaces,
+  ;; 3 = 6 spaces,
+  ;; n = n * 2 spaces,
+  ;; etc.
+  (setq sql-indent-offset 1))
+
 (provide 'jcs-sql-mode)
 ;;; jcs-sql-mode.el ends here

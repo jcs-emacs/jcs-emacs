@@ -2,9 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(leaf adaptive-wrap
-  :hook (visual-line-mode-hook . adaptive-wrap-prefix-mode))
-
 (leaf auto-highlight-symbol
   :init
   (setq ahs-idle-interval 0.15))
@@ -18,12 +15,6 @@
            "/[.]emacs[.]d/elpa/"))
   (jcs-advice-add 'auto-read-only--hook-find-file :override
     (unless (jcs-project-root) (auto-read-only))))
-
-(leaf auto-rename-tag
-  :init
-  (setq auto-rename-tag-disabled-commands '(query-replace)
-        auto-rename-tag-disabled-minor-modes '(iedit-mode
-                                               multiple-cursors-mode)))
 
 (leaf auto-scroll-bar
   :init
@@ -122,8 +113,6 @@
   (setq company-fuzzy-sorting-backend 'flx
         company-fuzzy-prefix-on-top nil
         company-fuzzy-trigger-symbols '("." "->" "<" "\"" "'" "@")))
-
-(leaf csharp-mode :init (setq csharp-codedoc-tag-face 'font-lock-doc-face))
 
 (leaf dashboard
   :init
@@ -526,25 +515,6 @@
            lsp--message)
         message-clean-mode-minor-mode 'echo))
 
-(leaf meta-view
-  :defer-config
-  (jcs-add-hook 'meta-view-after-insert-hook
-    ;; Hook runs after meta-view buffer insertion.
-    (jcs-prog-mode-hook)
-    (setq-local ts-fold-summary-show nil)
-    (jcs-save-excursion  ; fold all comments
-      (goto-char (point-min))
-      (call-interactively #'ts-fold-close)
-      (let (continuation)
-        (while (not (eobp))
-          (forward-line 1)
-          (end-of-line)
-          (if (jcs-inside-comment-p)
-              (unless continuation
-                (call-interactively #'ts-fold-close)
-                (setq continuation t))
-            (setq continuation nil)))))))
-
 (leaf minimap
   :init
   (setq minimap-width-fraction 0.1
@@ -739,17 +709,6 @@
 
 (leaf sideline-flycheck :hook (flycheck-mode-hook . sideline-flycheck-setup))
 
-(leaf sql-indent
-  :init
-  ;; URL: https://www.emacswiki.org/emacs/SqlIndent
-
-  ;; 1 = 2 spaces,
-  ;; 2 = 4 spaces,
-  ;; 3 = 6 spaces,
-  ;; n = n * 2 spaces,
-  ;; etc.
-  (setq sql-indent-offset 1))
-
 (leaf tree-sitter-langs
   :hook (tree-sitter-after-on-hook . tree-sitter-hl-mode)
   :defer-config
@@ -837,10 +796,6 @@
   :init
   (setq turbo-log-allow-insert-without-tree-sitter-p t))
 
-(leaf un-mini
-  :init
-  (setq un-mini-abort-commands '(right-click-context-click-menu)))
-
 (leaf undo-tree
   :init
   (setq undo-tree-auto-save-history nil)
@@ -877,16 +832,6 @@
 (leaf vs-revbuf
   :init
   (setq vs-revbuf-ask-unsaved-changes-only t))
-
-(leaf web-mode
-  :init
-  (setq web-mode-markup-indent-offset 2  ; html
-        web-mode-css-indent-offset 2     ; css
-        web-mode-code-indent-offset 2    ; script
-        web-mode-style-padding 2   ; For `<style>' tag
-        web-mode-script-padding 2  ; For `<script>' tag
-        web-mode-block-padding 0   ; For `php', `ruby', `java', `python', `asp', etc.
-        web-mode-offsetless-elements '("html")))
 
 (leaf which-key
   :init
