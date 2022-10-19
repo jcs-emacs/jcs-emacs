@@ -164,18 +164,6 @@ This command does not push text to `kill-ring'."
         (setq end-pt end-ln-start-pt))
       (delete-region start-pt end-pt))))
 
-(defun jcs-duplicate-line ()
-  "Duplicate the line."
-  (interactive)
-  (let ((cur-col (current-column)))
-    (move-beginning-of-line 1)
-    (kill-line)
-    (yank)
-    (open-line 1)
-    (forward-line 1)
-    (yank)
-    (move-to-column cur-col)))
-
 ;;
 ;; (@* "Format File" )
 ;;
@@ -483,40 +471,6 @@ other window."
     (message "Exit 'isearch' because you are trying to use 'isearch-project'..")
     (msgu-sleep)
     (save-mark-and-excursion (isearch-abort))))
-
-;;
-;; (@* "Folding / Unfolding" )
-;;
-
-(defun jcs-vs-close-node ()
-  "Close node at the end of line, inspired from Visual Studio."
-  (save-excursion
-    (end-of-line)
-    (when (jcs-inside-comment-p) (back-to-indentation))
-    (ts-fold-close)))
-
-(defun jcs-vs-open-node ()
-  "Open node at the end of line, inspired from Visual Studio."
-  (save-excursion
-    (end-of-line)
-    (when (jcs-inside-comment-p) (back-to-indentation))
-    (let ((before-pt (jcs-point-at-pos (beginning-of-visual-line)))
-          after-pt)
-      (ts-fold-open)
-      (setq after-pt (jcs-point-at-pos (beginning-of-visual-line)))
-      (unless (= after-pt before-pt)
-        (goto-char before-pt)
-        (end-of-line)))))
-
-(defun jcs-close-node ()
-  "Close the current scope of the node."
-  (interactive)
-  (or (jcs-vs-close-node) (ts-fold-close)))
-
-(defun jcs-open-node ()
-  "Open the current scope of the node."
-  (interactive)
-  (or (jcs-vs-open-node) (ts-fold-open)))
 
 (provide 'jcs-edit)
 ;;; jcs-edit.el ends here

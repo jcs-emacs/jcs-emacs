@@ -78,7 +78,7 @@
     ((kbd "<next>")        . better-scroll-up)
     ((kbd "S-<prior>")     . better-scroll-down-other-window)
     ((kbd "S-<next>")      . better-scroll-up-other-window)
-    ((kbd "C-S-d")         . jcs-duplicate-line)
+    ((kbd "C-S-d")         . duplicate-line)
     ((kbd "C-v")           . yank)
     ((kbd "C-s")           . jcs-save-buffer)
     ((kbd "C-S-s")         . jcs-save-all-buffers)
@@ -120,8 +120,8 @@
 ;;; Folding Settings
     ((kbd "C-k C-0") . ts-fold-close-all)
     ((kbd "C-k C-j") . ts-fold-open-all)
-    ((kbd "C-{")     . jcs-close-node)
-    ((kbd "C-}")     . jcs-open-node)
+    ((kbd "C-{")     . vs-edit-close-node)
+    ((kbd "C-}")     . vs-edit-open-node)
 
 ;;; Font
     ((kbd "C-k f") . menu-set-font)
