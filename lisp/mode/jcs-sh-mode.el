@@ -3,6 +3,11 @@
 ;;; Code:
 
 (require 'sh-script)
+(require 'fish-mode)
+
+;;
+;; (@* "Line Endings" )
+;;
 
 (defvar-local jcs-sh--buffer-eol nil
   "Record of buffer's line endings type.")
@@ -38,7 +43,7 @@
 ;; (@* "Hook" )
 ;;
 
-(jcs-add-hook 'sh-mode-hook
+(jcs-add-hook '(sh-mode-hook fish-mode-hook)
   (modify-syntax-entry ?_ "w")
 
   (company-fuzzy-backend-add 'company-shell)
@@ -47,8 +52,7 @@
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]sh"
-                                "[.]linux"
-                                "[.]macosx")
+                                "[.]fish")
                               'jcs-insert-sh-template))
 
 (provide 'jcs-sh-mode)

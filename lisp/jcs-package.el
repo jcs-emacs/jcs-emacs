@@ -128,6 +128,7 @@
           feature-mode
           ff-guard
           file-header
+          fish-mode
           flx-rs
           flycheck-eask
           flycheck-elsa

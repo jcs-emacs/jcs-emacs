@@ -304,7 +304,7 @@ Note this is opposite logic to the toggle mode function."
     (ssass-mode              . jcs-sass-mode)
     (scala-mode)
     (scss-mode)
-    (sh-script               . jcs-sh-mode)
+    ((sh-script fish-mode)   . jcs-sh-mode)
     (sql                     . jcs-sql-mode)
     (swift-mode)
     (terraform-mode)
