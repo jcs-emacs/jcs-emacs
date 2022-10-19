@@ -178,28 +178,13 @@
       mouse-wheel-progressive-speed nil)
 
 (setq scroll-step 1
+      scroll-conservatively 101
       scroll-margin 0
       scroll-preserve-screen-position t
       auto-window-vscroll nil)
 
 (setq hscroll-margin 2
       hscroll-step 1)
-
-(defun jcs-toggle-scroll-conservatively (act)
-  "Enable variable `scroll-conservatively' base on ACT.
-
-If ACT is non-nil; then make scroll less jumpy."
-  (setq scroll-conservatively (if act 101 0)))
-
-(defun jcs-scroll-conservatively-enable ()
-  "Make scroll less jumpy."
-  (jcs-toggle-scroll-conservatively t))
-
-(defun jcs-scroll-conservatively-disable ()
-  "Revert scroll to default value."
-  (jcs-toggle-scroll-conservatively nil))
-
-(jcs-scroll-conservatively-enable)
 
 ;;; So Long
 (leaf so-long

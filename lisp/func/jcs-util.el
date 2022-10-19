@@ -48,17 +48,6 @@
   `(let ((ln (line-number-at-pos nil t)) (col (current-column)))
      ,@body (jcs-goto-line ln) (move-to-column col)))
 
-(defmacro jcs-point-at-pos (&rest body)
-  "Execute BODY when return point."
-  (declare (indent 0) (debug t))
-  `(save-excursion ,@body (point)))
-
-(defmacro jcs-save-scroll-conservatively (&rest body)
-  "Execute BODY by saving value of variable `scroll-conservatively'."
-  (declare (indent 0) (debug t))
-  `(progn (jcs-scroll-conservatively-disable) ,@body (redisplay)
-          (jcs-scroll-conservatively-enable)))
-
 (defmacro jcs-save-window-excursion (&rest body)
   "Execute BODY without touching window's layout/settings."
   (declare (indent 0) (debug t))
