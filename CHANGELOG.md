@@ -71,6 +71,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Improve `image-mode` UX (80127d5060bbf6ae871d87502dfff27a73c123fe)
 * Add `emp` as default music player (2861743073ecd2e6d7608dac8021fc400104c4bb)
 * Bind keys for `emp` (f5183bee81fea5b0e832ed39282ad76ee9ed70e8)
+* Bind keys for `eww` (500696b4403a50f83951532f0e31ab4b1cd5a2bb)
 
 ## 8.2.1
 > Released Jul 22, 2022
