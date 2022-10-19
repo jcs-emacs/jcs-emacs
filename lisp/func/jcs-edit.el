@@ -168,17 +168,6 @@ This command does not push text to `kill-ring'."
 ;; (@* "Format File" )
 ;;
 
-(defun jcs-format-document ()
-  "Format current document."
-  (interactive)
-  (indent-region (point-min) (point-max)))
-
-(defun jcs-format-region-or-document ()
-  "Format the document if there are no region apply."
-  (interactive)
-  (if (use-region-p) (indent-region (region-beginning) (region-end))
-    (jcs-format-document)))
-
 (defun jcs-align-region-by-points (regexp pnt-min pnt-max)
   "Align current selected region with REGEXP, PNT-MIN and PNT-MAX."
   (interactive)

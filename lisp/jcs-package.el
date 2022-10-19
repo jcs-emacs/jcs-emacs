@@ -288,7 +288,6 @@
           tree-sitter-indent
           tree-sitter-langs
           ts-docstr
-          ts-fold
           turbo-log
           typescript-mode
           undo-tree-vf

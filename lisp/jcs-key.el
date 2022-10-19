@@ -72,20 +72,20 @@
     ((kbd "M-0") . ts-docstr-ask)
 
 ;;; Editting
-    ([C-right]             . jcs-smart-forward-word)
-    ([C-left]              . jcs-smart-backward-word)
-    ((kbd "<prior>")       . better-scroll-down)
-    ((kbd "<next>")        . better-scroll-up)
-    ((kbd "S-<prior>")     . better-scroll-down-other-window)
-    ((kbd "S-<next>")      . better-scroll-up-other-window)
-    ((kbd "C-S-d")         . duplicate-line)
-    ((kbd "C-v")           . yank)
-    ((kbd "C-s")           . jcs-save-buffer)
-    ((kbd "C-S-s")         . jcs-save-all-buffers)
-    ((kbd "<up>")          . previous-line)
-    ((kbd "<down>")        . next-line)
-    ((kbd "C-M-<up>")      . scroll-down-line)
-    ((kbd "C-M-<down>")    . scroll-up-line)
+    ([C-right]          . jcs-smart-forward-word)
+    ([C-left]           . jcs-smart-backward-word)
+    ((kbd "<prior>")    . better-scroll-down)
+    ((kbd "<next>")     . better-scroll-up)
+    ((kbd "S-<prior>")  . better-scroll-down-other-window)
+    ((kbd "S-<next>")   . better-scroll-up-other-window)
+    ((kbd "C-S-d")      . duplicate-line)
+    ((kbd "C-v")        . yank)
+    ((kbd "C-s")        . jcs-save-buffer)
+    ((kbd "C-S-s")      . jcs-save-all-buffers)
+    ((kbd "<up>")       . previous-line)
+    ((kbd "<down>")     . next-line)
+    ((kbd "C-M-<up>")   . scroll-down-line)
+    ((kbd "C-M-<down>") . scroll-up-line)
 
 ;;; Error
     ([f9]  . first-error)
@@ -128,7 +128,7 @@
 
 ;;; Format file
     ((kbd "C-k C-f") . indent-region)
-    ((kbd "C-k C-d") . jcs-format-document)
+    ((kbd "C-k C-d") . vs-edit-format-document)
     ((kbd "C-k a")   . jcs-align-region-or-document)
 
 ;;; Goto Thing
