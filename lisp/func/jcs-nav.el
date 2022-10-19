@@ -47,9 +47,9 @@
 ;; (@* "Move Between Word (Wrapper)" )
 ;;
 
-(defun jcs-backward-word-capital ()
+(defun jcs-backward-word-capital (&optional _)
   "Backward search capital character and set the cursor to the point."
-  (interactive)
+  (interactive "^P")
   (let ((max-pt (save-excursion (vs-edit-backward-word) (1+ (point)))))
     (while (and (not (bobp))
                 (not (jcs-current-char-uppercasep))
@@ -57,49 +57,15 @@
       (backward-char 1))
     (backward-char 1)))
 
-(defun jcs-forward-word-capital ()
+(defun jcs-forward-word-capital (&optional _)
   "Forward search capital character and set the cursor to the point."
-  (interactive)
+  (interactive "^P")
   (let ((max-pt (save-excursion (vs-edit-forward-word) (point))))
     (forward-char 1)
     (while (and (not (eobp))
                 (not (jcs-current-char-uppercasep))
                 (< (point) max-pt))
       (forward-char 1))))
-
-;;
-;; (@* "Character Navigation" )
-;;
-
-(defun jcs-move-to-forward-a-char (ch)
-  "Move forward to a character CH, can be regular expression."
-  (ignore-errors
-    (forward-char 1)
-    (while (and (not (string-match-p ch (jcs-get-current-char-string)))
-                (not (eobp)))
-      (forward-char 1))))
-
-(defun jcs-move-to-backward-a-char (ch)
-  "Move backward to a character CH, can be regular expression."
-  (ignore-errors
-    (while (and (not (string-match-p ch (jcs-get-current-char-string)))
-                (not (bobp)))
-      (backward-char 1))
-    (backward-char 1)))
-
-(defun jcs-move-to-forward-a-word (word)
-  "Move forward to a WORD."
-  (forward-word 1)
-  (while (and (not (jcs-current-word-equal-p word))
-              (not (eobp)))
-    (forward-word 1)))
-
-(defun jcs-move-to-backward-a-word (word)
-  "Move backward to a WORD."
-  (backward-word 1)
-  (while (and (not (jcs-current-word-equal-p word))
-              (not (bobp)))
-    (backward-word 1)))
 
 ;;
 ;; (@* "Balanced Expression (sexp)" )
