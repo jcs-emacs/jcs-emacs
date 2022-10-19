@@ -31,6 +31,12 @@
     ((kbd "C-;")  . backward-sexp)
     ((kbd "C-'")  . forward-sexp)
 
+;;; Browser
+    ((kbd "M-h") . eww)
+    ((kbd "M-H") . (lambda () (interactive)
+                     (save-window-excursion (call-interactively #'eww))
+                     (jcs-switch-to-buffer-other-window "*eww*")))
+
 ;;; Buffer Menu
     ((kbd "M-b")     . buffer-menu)
     ((kbd "M-B")     . buffer-menu-other-window)

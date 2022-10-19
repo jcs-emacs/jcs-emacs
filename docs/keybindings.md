@@ -36,15 +36,16 @@ Here is the list of key bindins that defined in this configuration.
       - [Save Buffer](#save-buffer)
       - [Rename Buffer](#rename-buffer)
       - [About **`*scratch*`**](#about-scratch)
-      - [About **`*Message*`**](#about-message)
-      - [About **`*dashboard*`**](#about-dashboard)
+      - [Goto **`*Message*`**](#goto-message)
+      - [Goto **`*dashboard*`**](#goto-dashboard)
+      - [Goto **`*eww*`**](#goto-eww)
+      - [Goto **`*emp*`**](#goto-emp)
     - [File](#file)
       - [File Explorer](#file-explorer)
       - [Find Files](#find-files)
     - [Navigating](#navigating)
       - [Navigate Cursor](#navigate-cursor)
       - [Navigate Windows](#navigate-windows)
-        - [Ace Windows](#ace-windows)
         - [Other](#other)
     - [Visualization](#visualization)
     - [Windows](#windows)
@@ -277,10 +278,15 @@ Here is the list of key bindins that defined in this configuration.
 * <kbd>Alt</kbd>+<kbd>d</kbd> - Open `*dashboard*` buffer.
 * <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>d</kbd> - Open `*dashboard*` buffer in other window.
 
+#### Goto **`*eww*`**
+
+* <kbd>Alt</kbd>+<kbd>h</kbd> - Emacs Web Wowser
+* <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>h</kbd> - Emacs Web Wowser in other window
+
 #### Goto **`*emp*`**
 
 * <kbd>Alt</kbd>+<kbd>e</kbd> - Emacs Music Player
-* <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>e</kbd> - Emacs Music Player
+* <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>e</kbd> - Emacs Music Player in other window
 
 ### File
 
