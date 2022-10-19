@@ -385,12 +385,9 @@
 
 (leaf isearch-project
   :init
-  (setq isearch-project-ignore-paths '(".vs/"
-                                       ".vscode/"
-                                       "bin/"
+  (setq isearch-project-ignore-paths '("bin/"
                                        "build/"
                                        "build.min/"
-                                       "node_modules/"
                                        "res/"))
   :defer-config
   (jcs-add-hook 'isearch-mode-hook
