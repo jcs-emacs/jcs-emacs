@@ -34,7 +34,7 @@
                (jcs-first-backward-char-in-line-p ">"))
       ;; Check closing tag.
       (save-excursion
-        (jcs-move-to-forward-a-char "<")
+        (search-forward "<" nil t)
         (forward-char 1)
         (setq close-tag-found (jcs-current-char-equal-p "/")))
 
