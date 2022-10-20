@@ -25,5 +25,12 @@
   (jcs-key-local
     `(((kbd "M-k") . jcs-maybe-kill-this-buffer))))
 
+;;
+;; (@* "Extensions" )
+;;
+
+(leaf flycheck-swift
+  :hook (flycheck-mode-hook . flycheck-swift-setup))
+
 (provide 'jcs-swift-mode)
 ;;; jcs-swift-mode.el ends here
