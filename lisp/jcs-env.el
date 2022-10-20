@@ -76,6 +76,19 @@
 (setq use-file-dialog nil
       use-dialog-box nil)
 
+;;; Dired
+(setq dired-dwim-target t  ; suggest a target for moving/copying intelligently
+      dired-hide-details-hide-symlink-targets nil
+      ;; don't prompt to revert, just do it
+      dired-auto-revert-buffer #'dired-buffer-stale-p
+      ;; Always copy/delete recursively
+      dired-recursive-copies 'always
+      dired-recursive-deletes 'top
+      ;; Ask whether destination dirs should get created when copying/removing files.
+      dired-create-destination-dirs 'ask
+      ;; Screens are larger nowadays, we can afford slightly larger thumbnails
+      image-dired-thumb-size 150)
+
 ;;; Display Column
 (leaf display-fill-column-indicator
   :init
@@ -104,7 +117,7 @@
 ;; Resolve performance issue moving around Unicode Text
 (setq inhibit-compacting-font-caches t)
 
-;; Image
+;;; Image
 (setq image-animate-loop t)
 
 ;;; Line Numbers
@@ -116,33 +129,6 @@
  display-line-numbers-widen t)
 
 (column-number-mode 1)
-
-(defconst jcs-line-numbers-ignore-buffers
-  '("[*]+[[:ascii:]]+"
-    "magit[-]*[[:ascii:]]*[:]"
-    "tree-sitter-tree:")
-  "List of buffers that you do not want to show line numbers in it.")
-
-(defconst jcs-line-numbers-ignore-buffer-exceptions
-  `(,(buffer-name (get-scratch-buffer-create)))
-  "These buffers wouldn't be ignored line numbers mode.")
-
-(defconst jcs-line-numbers-ignore-modes
-  '(Custom-mode
-    dired-mode
-    doc-view-mode
-    eww-mode
-    help-mode
-    image-mode
-    message-mode
-    outline-mode
-    package-menu-mode
-    treemacs-mode)
-  "List of modes that you do not want to show line numbers.")
-
-;;; Messages
-(defconst jcs-message-log-max message-log-max
-  "Default maximum lines for message log.")
 
 ;;; Minibuffer
 (setq enable-recursive-minibuffers t
@@ -163,12 +149,6 @@
 
 ;;; Recent Files
 (setq recentf-max-menu-items 25)
-
-;;; Save Files
-(defcustom jcs-on-save-remove-control-M t
-  "Remove ^M character on save."
-  :type 'boolean
-  :group 'jcs)
 
 ;;; Shift Select
 (setq shift-select-mode t)

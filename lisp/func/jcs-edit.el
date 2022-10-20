@@ -199,7 +199,7 @@
   (when whitespace-cleanup-mode
     (whitespace-cleanup-region (point-min) (line-beginning-position))
     (whitespace-cleanup-region (line-end-position) (point-max)))
-  (when jcs-on-save-remove-control-M (msgu-silent (jcs-remove-control-M))))
+  (msgu-silent (jcs-remove-control-M)))
 
 (defun jcs-save-all-buffers ()
   "Save all buffers currently opened."
