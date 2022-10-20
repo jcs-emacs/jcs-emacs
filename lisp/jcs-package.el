@@ -274,6 +274,7 @@
           smex
           sort-words
           sql-indent
+          ssh-config-mode
           suggest
           swift-mode
           terminal-here
