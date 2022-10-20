@@ -82,6 +82,7 @@
           company-fuzzy
           company-glsl
           company-kaomoji
+          company-lua
           company-makefile
           company-meta-net
           company-nginx
@@ -205,7 +206,6 @@
           lsp-sourcekit
           lsp-tailwindcss
           lsp-ui
-          lua-mode
           manage-minor-mode-table
           marginalia
           markdown-toc
