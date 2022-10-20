@@ -3,6 +3,7 @@
 ;;; Code:
 
 (require 'crystal-mode)
+(require 'flycheck-crystal)
 
 ;;
 ;; (@* "Templates" )
