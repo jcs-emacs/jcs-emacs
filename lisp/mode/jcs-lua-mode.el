@@ -23,11 +23,11 @@
 
 (jcs-add-hook 'lua-mode-hook
   (setq-local electric-pair-inhibit-predicate 'jcs-lua--electric-pair-inhibit-predicate)
-
   (jcs-elec-pair-add '((?\[ . ?\])))
 
-  ;; Treat underscore as word.
-  (modify-syntax-entry ?_ "w")
+  (modify-syntax-entry ?_ "w")  ; Treat underscore as word
+
+  (company-fuzzy-backend-add 'company-lua)
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]lua" "[.]luac")
