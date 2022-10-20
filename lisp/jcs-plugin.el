@@ -378,6 +378,9 @@
   (setq impatient-showdown-flavor 'github))
 
 (leaf isearch
+  :hook
+  ((isearch-mode-hook     . better-scroll-revert)
+   (isearch-mode-end-hook . better-scroll-setup))
   :init
   (setq isearch-lazy-count t
         lazy-count-prefix-format "[%s:%s] "))
