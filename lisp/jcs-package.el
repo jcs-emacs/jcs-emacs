@@ -85,6 +85,7 @@
           company-makefile
           company-meta-net
           company-nginx
+          company-nixos-options
           company-powershell
           company-shell
           company-terraform
