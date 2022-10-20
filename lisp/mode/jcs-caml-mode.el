@@ -20,5 +20,12 @@
   (jcs-insert-header-if-valid '("[.]ml" "[.]mli")
                               'jcs-insert-ocaml-template))
 
+;;
+;; (@* "Extensions" )
+;;
+
+(leaf flycheck-ocaml
+  :hook (flycheck-mode-hook . flycheck-ocaml-setup))
+
 (provide 'jcs-caml-mode)
 ;;; jcs-caml-mode.el ends here

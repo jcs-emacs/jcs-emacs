@@ -132,6 +132,7 @@
           file-header
           fish-mode
           flx-rs
+          flycheck-crystal
           flycheck-eask
           flycheck-elsa
           flycheck-grammarly
@@ -139,6 +140,7 @@
           flycheck-ocaml
           flycheck-package
           flycheck-relint
+          flycheck-swift
           fof
           font-lock-ext
           fountain-mode
