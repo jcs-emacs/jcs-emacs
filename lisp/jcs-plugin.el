@@ -543,47 +543,6 @@
   :init
   (setq multi-shell-prefer-shell-type 'shell))  ; Accept `shell' or `eshll'.
 
-(leaf multiple-cursors
-  :init
-  (defconst jcs-mc/cancel-commands
-    '( block-travel-down block-travel-up
-       jcs-isearch-backward-symbol-at-point
-       isearch-forward-symbol-at-point
-       jcs-isearch-repeat-backward
-       jcs-isearch-repeat-forward
-       jcs-isearch-project-backward-symbol-at-point
-       isearch-project-forward-symbol-at-point
-       jcs-isearch-project-repeat-backward
-       jcs-isearch-project-repeat-forward)
-    "List of commands that will quite `multiple-cursors' after execution.")
-
-  (defun jcs-mc/cancel-multiple-cursors (&rest _)
-    "Cancel the `multiple-cursors' behaviour."
-    (when (and (functionp 'mc/num-cursors) (> (mc/num-cursors) 1))
-      (mc/keyboard-quit)))
-
-  (dolist (cmd jcs-mc/cancel-commands)
-    (advice-add cmd :after #'jcs-mc/cancel-multiple-cursors))
-  :defer-config
-  (defun jcs--mc/mark-lines (num-lines direction)
-    "Override `mc/mark-lines' function."
-    (let ((cur-column (current-column)))
-      (dotimes (i (if (= num-lines 0) 1 num-lines))
-        (mc/save-excursion
-         (let ((furthest-cursor (cl-ecase direction
-                                  (forwards  (mc/furthest-cursor-after-point))
-                                  (backwards (mc/furthest-cursor-before-point)))))
-           (when (overlayp furthest-cursor)
-             (goto-char (overlay-get furthest-cursor 'point))
-             (when (= num-lines 0)
-               (mc/remove-fake-cursor furthest-cursor))))
-         (cl-ecase direction
-           (forwards (next-logical-line 1 nil))
-           (backwards (previous-logical-line 1 nil)))
-         (move-to-column cur-column)
-         (mc/create-fake-cursor-at-point)))))
-  (advice-add 'mc/mark-lines :override #'jcs--mc/mark-lines))
-
 (leaf page-break-lines
   :init
   (setq page-break-lines-modes '( browse-kill-ring-mode
@@ -825,6 +784,20 @@
 (leaf vs-revbuf
   :init
   (setq vs-revbuf-ask-unsaved-changes-only t))
+
+(leaf vsc-multiple-cursors
+  :hook (multiple-cursors-mode-hook . vsc-multiple-cursors-mode)
+  :init
+  (setq vsc-multiple-cursors-cancel-commands
+        '( block-travel-down block-travel-up
+           jcs-isearch-backward-symbol-at-point
+           isearch-forward-symbol-at-point
+           jcs-isearch-repeat-backward
+           jcs-isearch-repeat-forward
+           jcs-isearch-project-backward-symbol-at-point
+           isearch-project-forward-symbol-at-point
+           jcs-isearch-project-repeat-backward
+           jcs-isearch-project-repeat-forward)))
 
 (leaf which-key
   :init
