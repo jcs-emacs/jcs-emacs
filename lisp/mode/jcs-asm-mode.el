@@ -86,7 +86,7 @@
       (backward-char 1)
       (when (jcs-current-char-equal-p ";")
         (backward-char 1)
-        (when (jcs-is-infront-first-char-at-line-p)
+        (when (jcs-infront-first-char-at-line-p)
           (setq should-indent t)
           ;; Indent it to the very left/beginning of line.
           (indent-line-to 0))))

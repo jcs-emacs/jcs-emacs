@@ -53,14 +53,6 @@
   (declare (indent 0) (debug t))
   `(jcs-with-no-redisplay (jcs-window-record-once) ,@body (jcs-window-restore-once)))
 
-(defmacro jcs-try-run (repetitions &rest body)
-  "Try execute BODY with REPETITIONS of times."
-  (declare (indent 1) (debug t))
-  `(let ((cnt 0) break)
-     (while (and (null break) (not (ignore-errors ,@body)))
-       (setq cnt (1+ cnt)
-             break (<= ,repetitions cnt)))))
-
 (defmacro jcs-when-buffer-window (buffer-or-name &rest body)
   "Execute BODY in window BUFFER-OR-NAME."
   (declare (indent 1) (debug t))
@@ -412,7 +404,7 @@ Notice PATH can either be `buffer-name' or `buffer-file-name'."
 (defun jcs-current-line-comment-p ()
   "Check if current line only comment."
   (save-excursion
-    (let ((is-comment-line nil))
+    (let (is-comment-line)
       (end-of-line)
       (when (or (jcs-inside-comment-p) (jcs-current-line-empty-p))
         (setq is-comment-line t))
@@ -423,25 +415,17 @@ Notice PATH can either be `buffer-name' or `buffer-file-name'."
   (if fn (with-current-buffer fn (and (bobp) (eobp)))
     (and (bobp) (eobp))))
 
-(defun jcs-is-infront-first-char-at-line-p (&optional pt)
+(defun jcs-infront-first-char-at-line-p (&optional pt)
   "Return non-nil if there is nothing infront of the right from the PT."
   (save-excursion
     (when pt (goto-char pt))
     (null (re-search-backward "[^ \t]" (line-beginning-position) t))))
 
-(defun jcs-is-behind-last-char-at-line-p (&optional pt)
+(defun jcs-behind-last-char-at-line-p (&optional pt)
   "Return non-nil if there is nothing behind of the right from the PT."
   (save-excursion
     (when pt (goto-char pt))
     (null (re-search-forward "[^ \t]" (line-end-position) t))))
-
-(defun jcs-start-line-in-buffer-p ()
-  "Is current line the start line in buffer."
-  (= (line-number-at-pos (point) t) (line-number-at-pos (point-min) t)))
-
-(defun jcs-last-line-in-buffer-p ()
-  "Is current line the last line in buffer."
-  (= (line-number-at-pos (point) t) (line-number-at-pos (point-max) t)))
 
 (defun jcs-first-visible-line-in-window ()
   "First line number in current visible window."

@@ -227,6 +227,7 @@
           nhexl-mode
           nim-mode
           nix-mode
+          nocomments-mode
           noflet
           on
           org-fancy-priorities
