@@ -59,6 +59,8 @@
     ((kbd "C-k C-c") . jcs-comment-region-or-line)
     ((kbd "C-k C-u") . jcs-uncomment-region-or-line)
 
+    ((kbd "C-k -")   . banner-comment)
+
 ;;; Debug
     ((kbd "C-S-d") . dap-mode)
     ((kbd "M-1")   . turbo-log-print)

@@ -53,6 +53,7 @@
           auto-scroll-bar
           autotetris-mode
           balanced-windows
+          banner-comment
           basic-mode
           beancount
           better-scroll
