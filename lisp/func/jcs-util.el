@@ -101,20 +101,6 @@ execution."
     (t (with-eval-after-load ,files ,@body))))
 
 ;;
-;; (@* "Advice" )
-;;
-
-(defun jcs-key-advice-add (key where fnc)
-  "Safe add advice KEY with FNC at WHERE."
-  (let ((key-fnc (key-binding (kbd key))))
-    (when (symbolp key-fnc) (advice-add key-fnc where fnc))))
-
-(defun jcs-key-advice-remove (key fnc)
-  "Safe remove advice KEY with FNC."
-  (let ((key-fnc (key-binding (kbd key))))
-    (when (symbolp key-fnc) (advice-remove key-fnc fnc))))
-
-;;
 ;; (@* "Buffer" )
 ;;
 
@@ -195,16 +181,6 @@ Notice PATH can either be `buffer-name' or `buffer-file-name'."
                      (string= (jcs-buffer-name-or-buffer-file-name buf) path))
                    buf-lst)
       target-buf)))
-
-(defun jcs-buffer-filter (name &optional type)
-  "Return a list of buffers with NAME.
-
-See function `jcs-string-compare-p' for argument TYPE."
-  (let (lst)
-    (dolist (buf (buffer-list))
-      (when (jcs-string-compare-p name (buffer-name buf) type)
-        (push buf lst)))
-    lst))
 
 ;;
 ;; (@* "Color" )
@@ -382,61 +358,19 @@ See function `jcs-string-compare-p' for argument TYPE."
   "Get the current character as the 'string'."
   (if (char-before) (string (char-before)) ""))
 
-(defun jcs-goto-next-backward-char (&optional bnd-pt)
-  "Goto the next backward character (not include space/tab).
-BND-PT : limit point."
-  (interactive)
-  (unless bnd-pt (setq bnd-pt (point-min)))
-  (unless (bobp)
-    (forward-char -1)
-    (while (and (>= (point) bnd-pt)
-                (or (jcs-current-whitespace-or-tab-p) (bolp)))
-      (forward-char -1))))
-
-(defun jcs-goto-next-forward-char (&optional bnd-pt)
-  "Goto the next forward character (not include space/tab).
-BND-PT : boundary point."
-  (interactive)
-  (unless bnd-pt (setq bnd-pt (point-max)))
-  (unless (eobp)
-    (forward-char 1)
-    (while (and (<= (point) bnd-pt)
-                (or (jcs-current-whitespace-or-tab-p) (bolp)))
-      (forward-char 1))))
-
 (defun jcs-first-backward-char-in-line-p (ch)
   "Check the first character on the left is CH or not, with current line as boundary."
   (save-excursion
-    ;; NOTE: First fowrad a char and ready to be check for next backward character.
-    (forward-char 1)
-    (jcs-goto-next-backward-char (1+ (line-beginning-position)))
-    (string= (jcs-get-current-char-string) ch)))
+    (when (re-search-backward "[^ \t]" (line-beginning-position) t)
+      (forward-char 1)
+      (string= (jcs-get-current-char-string) ch))))
 
 (defun jcs-first-forward-char-in-line-p (ch)
   "Check the first character on the right is CH or not with current line as boundary."
   (save-excursion
-    (jcs-goto-next-forward-char (line-end-position))
-    (string= (jcs-get-current-char-string) ch)))
-
-(defun jcs-is-there-char-backward-point-p (pt)
-  "Check if there is at least one character backward until the point, PT."
-  (save-excursion
-    (jcs-goto-next-backward-char pt)
-    (>= (point) pt)))
-
-(defun jcs-is-there-char-forward-point-p (pt)
-  "Check if there is character forward before reachs PT."
-  (save-excursion
-    (jcs-goto-next-forward-char pt)
-    (<= (point) pt)))
-
-(defun jcs-is-there-char-backward-util-beginning-of-line-p ()
-  "Check if there is character on the left before reaches beginning of line."
-  (jcs-is-there-char-backward-point-p (line-beginning-position)))
-
-(defun jcs-is-there-char-forward-until-end-of-line-p ()
-  "Check if there is character on the right before reaches the end of line."
-  (jcs-is-there-char-forward-point-p (line-end-position)))
+    (when (re-search-forward "[ \t]*" (line-end-position) t)
+      (forward-char 1)
+      (string= (jcs-get-current-char-string) ch))))
 
 ;;
 ;; (@* "Word" )
