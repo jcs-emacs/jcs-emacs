@@ -34,6 +34,9 @@
 (defconst jcs-changelog-template-dir (concat user-emacs-directory "templates/__changelog/")
   "Path point to all changelog template files.")
 
+;;; Columns
+(setq-default fill-column 80)
+
 ;;; Compilation
 (leaf compile
   :init
