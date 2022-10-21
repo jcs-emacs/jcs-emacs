@@ -151,6 +151,7 @@ Here is the list of key bindins that defined in this configuration.
 * <kbd>Ctrl</kbd>+<kbd>/</kbd> - Comment/Uncomment region or line.
 * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>Ctrl</kbd>+<kbd>c</kbd> - Comment region or line.
 * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>Ctrl</kbd>+<kbd>u</kbd> - Uncomment region or line.
+* <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>-</kbd> - Banner comment
 
 #### Docstring
 
