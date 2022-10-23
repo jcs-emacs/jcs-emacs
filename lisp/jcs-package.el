@@ -40,6 +40,8 @@
           adaptive-wrap
           alt-codes
           annotate
+          ansible
+          ansible-doc
           apache-mode
           applescript-mode
           apt-sources-list
@@ -73,6 +75,7 @@
           coffee-mode
           com-css-sort
           command-log-mode
+          company-ansible
           company-autoconf
           company-box
           company-c-headers
