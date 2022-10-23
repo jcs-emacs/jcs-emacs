@@ -15,7 +15,7 @@
     (1 (jcs-insert-jsx-template))
     (2 (jcs-insert-jsx-react-js-template) )
     (3 (jcs-insert-jsx-react-native-template)))
-  (js-mode))
+  (js-mode))  ; detect for JSX, switch if needed
 
 (file-header-defins jcs-insert-js-template "js" "default.txt"
   "Template for JavaScript.")
