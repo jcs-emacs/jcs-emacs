@@ -15,9 +15,9 @@
 ;; (@* "Hook" )
 ;;
 
-(add-hook 'actionscript-mode-hook 'jcs-prog-mode-hook)
-
 (jcs-add-hook 'actionscript-mode-hook
+  (run-hooks 'prog-mode-hook)
+
   (jcs-use-cc-mutliline-comment)
 
   (modify-syntax-entry ?_ "w")

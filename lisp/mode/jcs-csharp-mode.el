@@ -52,8 +52,7 @@
 (leaf meta-view
   :defer-config
   (jcs-add-hook 'meta-view-after-insert-hook
-    ;; Hook runs after meta-view buffer insertion.
-    (jcs-prog-mode-hook)
+    (run-hooks 'prog-mode-hook)  ; treat as prog-mode
     (setq-local ts-fold-summary-show nil)
     (jcs-save-excursion  ; fold all comments
       (goto-char (point-min))

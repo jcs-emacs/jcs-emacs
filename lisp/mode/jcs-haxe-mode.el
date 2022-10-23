@@ -15,9 +15,9 @@
 ;; (@* "Hook" )
 ;;
 
-(add-hook 'haxe-mode-hook 'jcs-prog-mode-hook)
-
 (jcs-add-hook 'haxe-mode-hook
+  (run-hooks 'prog-mode-hook)
+
   (modify-syntax-entry ?_ "w")
 
   ;; File Header
