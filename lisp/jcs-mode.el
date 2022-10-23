@@ -264,7 +264,7 @@ Note this is opposite logic to the toggle mode function."
     (ini-mode)
     (jayces-mode)
     (jenkinsfile-mode)
-    (js2-mode                . jcs-js-mode)
+    (js                      . jcs-js-mode)
     (json-mode)
     (julia-mode)
     (kotlin-mode)
@@ -347,7 +347,7 @@ Note this is opposite logic to the toggle mode function."
     ("\\.unityignore'?\\'"  . gitignore-mode)
     ("\\.vscodeignore'?\\'" . gitignore-mode)
 ;;; J
-    ("\\.js'?\\'"           . js2-mode)
+    ("\\.js'?\\'"           . js-mode)
     ("\\.json'?\\'"         . json-mode)
 ;;; K
     ("\\.ktm'?\\'"          . kotlin-mode)

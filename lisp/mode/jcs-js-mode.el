@@ -2,7 +2,11 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'js2-mode)
+(require 'js)
+
+;;
+;; (@* "Detection" )
+;;
 
 (defconst jcs-javascript-modes '(javascript-mode js-mode js2-mode js3-mode)
   "List of all JavaScript major modes.")
@@ -37,14 +41,11 @@
 ;; (@* "Hook" )
 ;;
 
-(jcs-add-hook '(js-mode-hook js2-mode-hook)
-  (setq js2-bounce-indent-p t)
-
+(jcs-add-hook '(js-mode-hook)
   (modify-syntax-entry ?_ "w")  ; Treat underscore as word
 
   (auto-rename-tag-mode 1)
   (impatient-mode t)
-  (js2-minor-mode 1)
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]js$")
