@@ -73,6 +73,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Bind keys for `emp` (f5183bee81fea5b0e832ed39282ad76ee9ed70e8)
 * Bind keys for `eww` (500696b4403a50f83951532f0e31ab4b1cd5a2bb)
 * Add support for fish shell-script (44ed9764a7f2dc3e3632c6b0136390a97bce74e4)
+* Add support for ansible (cb91beeff65b63539a2893f67aaa888d9d53dc7b)
 
 ## 8.2.1
 > Released Jul 22, 2022
