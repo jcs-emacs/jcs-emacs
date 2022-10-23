@@ -738,7 +738,7 @@ If optional argument REVERSE is non-nil, LIST item and ELT argument."
   "Return a dedicated default directory."
   (if-let ((buffers (nth 0 (jcs-valid-buffer-list))))
       (file-name-directory (buffer-file-name buffers))
-    jcs-emacs-startup-directory))
+    default-directory))
 
 ;;
 ;; (@* "String" )

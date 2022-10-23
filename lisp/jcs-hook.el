@@ -65,8 +65,8 @@
   (vs-revbuf-mode 1)
   (jcs-funcall-fboundp #'jcs-mode-load-requires)
   (jcs-require '(jcs-edit))
-  (jcs-with-current-buffer (messages-buffer) (messages-buffer-mode))
-  (jcs-with-current-buffer (get-scratch-buffer-create) (lisp-interaction-mode))
+  ;;(jcs-with-current-buffer (messages-buffer) (messages-buffer-mode))
+  ;;(jcs-with-current-buffer (get-scratch-buffer-create) (lisp-interaction-mode))
   ;; Lower the `GC' back to normal threshold
   (jcs-gc-cons-threshold-speed-up nil)
   (message nil))  ; mute at the very end!
@@ -109,18 +109,7 @@
 
 (jcs-advice-add '(keyboard-quit top-level) :before
   (deactivate-mark)  ; disable region
-  (jcs-funcall-fboundp #'jcs-process-reporter-done)
   (jcs-backtrace-exit))
-
-;;
-;; (@* "Startup" )
-;;
-
-(defvar jcs-emacs-startup-directory nil
-  "Record the startup directory.")
-
-(jcs-add-hook 'emacs-startup-hook
-  (setq jcs-emacs-startup-directory default-directory))
 
 (provide 'jcs-hook)
 ;;; jcs-hook.el ends here
