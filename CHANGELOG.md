@@ -74,6 +74,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Bind keys for `eww` (500696b4403a50f83951532f0e31ab4b1cd5a2bb)
 * Add support for fish shell-script (44ed9764a7f2dc3e3632c6b0136390a97bce74e4)
 * Add support for ansible (cb91beeff65b63539a2893f67aaa888d9d53dc7b)
+* Remove `rjsx-mode` and `js2-mode`, use default `js-mode` and `js-jsx-mode` (d3b76f615c5030a54ec3d74517a43c734700be50)
 
 ## 8.2.1
 > Released Jul 22, 2022
