@@ -262,7 +262,6 @@
           restart-emacs
           reveal-in-folder
           right-click-context
-          rjsx-mode
           robots-txt-mode
           rust-mode
           scrollable-quick-peek

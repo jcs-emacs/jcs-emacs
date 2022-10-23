@@ -2,7 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'rjsx-mode)
 (require 'web-mode)
 (require 'emmet-mode)
 
@@ -31,9 +30,9 @@
 ;; (@* "Hook" )
 ;;
 
-(add-hook 'rjsx-mode-hook 'emmet-mode)
+(add-hook 'js-jsx-mode-hook 'emmet-mode)
 
-(jcs-add-hook 'rjsx-mode-hook
+(jcs-add-hook 'js-jsx-mode
   (auto-rename-tag-mode 1)
 
   ;; File Header
