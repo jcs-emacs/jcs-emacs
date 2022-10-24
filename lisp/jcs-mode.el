@@ -148,20 +148,12 @@ Note this is opposite logic to the toggle mode function."
     (buffer-wrap-mode 1)))
 
 ;;
-;;; Project
-
-(defun jcs-on-project-hook ()
-  "Hook runs when there is valid project root."
-  (when (jcs-funcall-fboundp #'jcs-project-under-p)
-    (global-diff-hl-mode 1)
-    (editorconfig-mode 1)
-    (global-prettier-mode 1)
-    (jcs--safe-lsp-active)))
-
-;;
 ;;; Base Mode
 
-(jcs-add-hook '(conf-mode-hook text-mode-hook prog-mode-hook)
+(defvar jcs-on-project-hook nil
+  "Hook run when the project is defined.")
+
+(jcs-add-hook '(text-mode-hook prog-mode-hook conf-mode-hook)
   (alt-codes-mode 1)
   (auto-highlight-symbol-mode t)
   (display-fill-column-indicator-mode 1)
@@ -172,9 +164,12 @@ Note this is opposite logic to the toggle mode function."
   (when elenv-graphic-p (highlight-indent-guides-mode 1))
   (yas-minor-mode 1)
 
-  (jcs-on-project-hook))
+  (when (jcs-funcall-fboundp #'jcs-project-under-p)
+    (run-hooks 'jcs-on-project-hook)))
 
 (jcs-add-hook 'text-mode-hook
+  (setq-local electric-pair-open-newline-between-pairs nil)
+
   (company-fuzzy-backend-add 'company-kaomoji)
 
   (jcs-insert-header-if-valid
@@ -189,6 +184,9 @@ Note this is opposite logic to the toggle mode function."
   ;; XXX: See the bug https://github.com/immerrr/lua-mode/issues/172
   (unless (jcs-contain-list-type-str "-" (list comment-start comment-end) 'regex)
     (modify-syntax-entry ?- "_")))
+
+(jcs-add-hook 'conf-mode-hook
+  (setq-local electric-pair-open-newline-between-pairs nil))
 
 ;;; Emacs Lisp
 (jcs-add-hook 'emacs-lisp-mode-hook
