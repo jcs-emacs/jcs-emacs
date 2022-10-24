@@ -56,7 +56,6 @@
   (global-hl-line-mode 1)
   (global-hl-todo-mode 1)
   (indent-control-mode 1)
-  (marginalia-mode 1)
   (message-clean-mode 1)
   (minions-mode 1)
   (right-click-context-mode 1)
@@ -65,8 +64,6 @@
   (vs-revbuf-mode 1)
   (jcs-funcall-fboundp #'jcs-mode-load-requires)
   (jcs-require '(jcs-edit))
-  ;;(jcs-with-current-buffer (messages-buffer) (messages-buffer-mode))
-  ;;(jcs-with-current-buffer (get-scratch-buffer-create) (lisp-interaction-mode))
   ;; Lower the `GC' back to normal threshold
   (jcs-gc-cons-threshold-speed-up nil)
   (message nil))  ; mute at the very end!
@@ -91,6 +88,12 @@
   (auto-read-only-mode 1)
   (global-tree-sitter-mode 1)
   (global-so-long-mode 1))
+
+(jcs-add-hook 'jcs-on-project-hook
+  (global-diff-hl-mode 1)
+  (editorconfig-mode 1)
+  (global-prettier-mode 1)
+  (jcs--safe-lsp-active))
 
 ;;
 ;; (@* "Input" )

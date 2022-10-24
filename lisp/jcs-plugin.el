@@ -486,6 +486,7 @@
   (lsp-ui-sideline-set-default-icon))
 
 (leaf marginalia
+  :hook (vertico-mode-hook . marginalia-mode)
   :init
   (setq marginalia-align 'right))
 
