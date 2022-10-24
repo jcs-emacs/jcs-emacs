@@ -441,9 +441,7 @@
 
   (defun jcs--safe-lsp-active ()
     "Safe way to active LSP."
-    (when (and (jcs-project-under-p) (not (jcs--lsp-connected-p)))
-      (if (memq this-command '(jcs-reopen-this-buffer))
-          (lsp) (lsp-deferred))))
+    (when (and (jcs-project-under-p) (not (jcs--lsp-connected-p))) (lsp-deferred)))
   :defer-config
   (defun jcs-lsp--enable ()
     "Do stuff when lsp is enabled."

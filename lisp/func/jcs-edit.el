@@ -353,15 +353,11 @@ other window."
 (defun jcs-reopen-this-buffer ()
   "Kill the current buffer and open it again."
   (interactive)
-  (when-let ((current-bfn (buffer-file-name)))
-    (run-with-timer
-     0 nil
-     (lambda (buffer)
-       (msgu-inhibit-log
-         (jcs-save-window-excursion (jcs-kill-this-buffer))
-         (jcs-funcall-fboundp #'undo-tree-kill-visualizer)
-         (msgu-current "[INFO] Reopened file => '%s'" buffer)))
-     current-bfn)))
+  (when-let ((buffer (buffer-file-name)))
+    (msgu-inhibit-log
+      (jcs-save-window-excursion (jcs-kill-this-buffer))
+      (jcs-funcall-fboundp #'undo-tree-kill-visualizer)
+      (msgu-current "[INFO] Reopened file => '%s'" buffer))))
 
 ;;
 ;; (@* "Isearch" )
