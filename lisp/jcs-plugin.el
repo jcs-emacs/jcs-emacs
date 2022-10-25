@@ -420,14 +420,6 @@
           line-reminder-modified-sign " |")))
 
 (leaf lsp-mode
-  :hook ((lsp-managed-mode-hook
-          . (lambda (&rest _)
-              (if (and lsp-mode lsp-managed-mode) (jcs-lsp--enable)
-                (jcs-lsp--disable))))
-         (lsp-mode-hook
-          . (lambda (&rest _)
-              (if lsp-mode (jcs-lsp--enable)
-                (jcs-lsp--disable)))))
   :init
   (setq lsp-auto-guess-root t
         lsp-prefer-capf t
@@ -443,15 +435,16 @@
     "Safe way to active LSP."
     (when (and (jcs-project-under-p) (not (jcs--lsp-connected-p))) (lsp-deferred)))
   :defer-config
-  (defun jcs-lsp--enable ()
-    "Do stuff when lsp is enabled."
-    (jcs-re-enable-mode 'company-fuzzy-mode)
-    ;; enable semantic meaning
-    (setq-local company-fuzzy-passthrough-backends '(company-capf)))
-
-  (defun jcs-lsp--disable ()
-    "Do stuff when lsp is disabled."
-    (setq-local company-fuzzy-passthrough-backends nil)))
+  ;; Let's not block the loading process, so lsp packages don't hamper with
+  ;; each another.
+  (jcs-advice-add 'lsp--require-packages :override
+    (when (and lsp-auto-configure (not lsp--client-packages-required))
+      (seq-do (lambda (package)
+                ;; loading client is slow and `lsp' can be called repeatedly
+                (unless (featurep package)
+                  (ignore-errors (require package nil t))))
+              lsp-client-packages)
+      (setq lsp--client-packages-required t))))
 
 (leaf lsp-tailwindcss
   :init
