@@ -22,13 +22,9 @@
       auto-save-list-file-prefix nil
       auto-save-timeout 0)
 
-;;; Backup Files
-(setq make-backup-files nil)
-
 ;;; Bell
-(defun nil-bell ())  ; Turn off the bell on macOS
-(setq visible-bell nil
-      ring-bell-function 'nil-bell)
+(setq ring-bell-function #'ignore
+      visible-bell nil)
 
 ;;; Change Log
 (defconst jcs-changelog-template-dir (concat user-emacs-directory "templates/__changelog/")
@@ -113,6 +109,10 @@
 ;;; Electric Pair
 (setq-default electric-pair-inhibit-predicate 'electric-pair-default-inhibit)
 
+;;; Files
+(setq create-lockfiles nil
+      make-backup-files nil)
+
 ;;; Font Size
 (defconst jcs-default-font-size 160
   "Default font size, the value is in 1/10pt, so 100 will give you 10pt, etc.")
@@ -173,7 +173,11 @@
 (leaf so-long
   :defer-config
   (nconc so-long-minor-modes
-         '(highlight-indent-guides-mode
+         '(spell-fu-mode
+           eldoc-mode
+           highlight-numbers-mode
+           highlight-indent-guides-mode
+           hl-fill-column-mode
            line-reminder-mode
            page-break-lines-mode
            ts-fold-mode ts-fold-indicators-mode)))
