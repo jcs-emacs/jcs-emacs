@@ -75,6 +75,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add support for fish shell-script (44ed9764a7f2dc3e3632c6b0136390a97bce74e4)
 * Add support for ansible (cb91beeff65b63539a2893f67aaa888d9d53dc7b)
 * Remove `rjsx-mode` and `js2-mode`, use default `js-mode` and `js-jsx-mode` (d3b76f615c5030a54ec3d74517a43c734700be50)
+* Add `company` and `flycheck` support for multiple languages (4f71184b0eab6b65bc7f57d615494f9d88afb020)
 
 ## 8.2.1
 > Released Jul 22, 2022
