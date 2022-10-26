@@ -22,5 +22,12 @@
                                 "[.]kts")
                               'jcs-insert-kotlin-template))
 
+;;
+;; (@* "Extensions" )
+;;
+
+(leaf flycheck-kotlin
+  :hook (flycheck-mode-hook . flycheck-kotlin-setup))
+
 (provide 'jcs-kotlin-mode)
 ;;; jcs-kotlin-mode.el ends here

@@ -85,6 +85,7 @@
           company-emojify
           company-fuzzy
           company-glsl
+          company-go
           company-kaomoji
           company-lua
           company-makefile
@@ -93,6 +94,7 @@
           company-nixos-options
           company-powershell
           company-shell
+          company-sourcekit
           company-terraform
           consult
           crystal-mode
@@ -138,9 +140,14 @@
           flx-rs
           flycheck-crystal
           flycheck-eask
+          flycheck-elm
           flycheck-elsa
+          flycheck-golangci-lint
           flycheck-grammarly
+          flycheck-haskell
+          flycheck-kotlin
           flycheck-languagetool
+          flycheck-nim
           flycheck-ocaml
           flycheck-package
           flycheck-relint
@@ -158,14 +165,12 @@
           github-tags
           gitignore-templates
           gitlab-ci-mode-flycheck
-          go-mode
           google-this
           goto-char-preview
           goto-line-preview
           graphql-mode
           haml-mode
           hammy
-          haskell-mode
           haxe-mode
           helpful
           hexo

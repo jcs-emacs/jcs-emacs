@@ -21,5 +21,12 @@
   ;; File Header
   (jcs-insert-header-if-valid '("[.]elm") 'jcs-insert-elm-template))
 
+;;
+;; (@* "Extensions" )
+;;
+
+(leaf flycheck-elm
+  :hook (flycheck-mode-hook . flycheck-elm-setup))
+
 (provide 'jcs-elm-mode)
 ;;; jcs-elm-mode.el ends here

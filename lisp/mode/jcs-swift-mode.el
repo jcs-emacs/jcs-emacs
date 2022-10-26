@@ -18,6 +18,8 @@
 (jcs-add-hook 'swift-mode-hook
   (modify-syntax-entry ?_ "w")  ; Treat underscore as word
 
+  (company-fuzzy-backend-add 'company-sourcekit)
+
   ;; File Header
   (jcs-insert-header-if-valid '("[.]swift")
                               'jcs-insert-swift-template)

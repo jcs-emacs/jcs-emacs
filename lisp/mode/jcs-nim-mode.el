@@ -20,5 +20,12 @@
   (jcs-insert-header-if-valid '("[.]nim")
                               'jcs-insert-nim-template))
 
+;;
+;; (@* "Extensions" )
+;;
+
+(leaf flycheck-nim
+  :hook (flycheck-mode-hook . (lambda (&rest _) (require 'flycheck-nim))))
+
 (provide 'jcs-nim-mode)
 ;;; jcs-nim-mode.el ends here

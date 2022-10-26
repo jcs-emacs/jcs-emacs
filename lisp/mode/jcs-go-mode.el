@@ -18,9 +18,22 @@
 (jcs-add-hook 'go-mode-hook
   (jcs-use-cc-mutliline-comment)
 
+  (company-fuzzy-backend-add 'company-go)
+
   ;; File Header
   (jcs-insert-header-if-valid '("[.]go")
                               'jcs-insert-go-template))
+
+;;
+;; (@* "Extensions" )
+;;
+
+(leaf company-go
+  :init
+  (setq company-go-show-annotation t))
+
+(leaf flycheck-golangci-lint
+  :hook (flycheck-mode-hook . flycheck-golangci-lint-setup))
 
 (provide 'jcs-go-mode)
 ;;; jcs-go-mode.el ends here

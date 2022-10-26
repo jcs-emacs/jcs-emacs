@@ -20,5 +20,12 @@
   (jcs-insert-header-if-valid '("[.]hs")
                               'jcs-insert-haskell-template))
 
+;;
+;; (@* "Extensions" )
+;;
+
+(leaf flycheck-haskell
+  :hook (flycheck-mode-hook . flycheck-haskell-setup))
+
 (provide 'jcs-haskell-mode)
 ;;; jcs-haskell-mode.el ends here

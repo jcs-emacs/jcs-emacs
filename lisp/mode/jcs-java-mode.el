@@ -2,10 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 
-(require 'javadoc-lookup)
-(require 'organize-imports-java)
-
-(setq javadoc-lookup-completing-read-function #'completing-read)
+;;
+;; (@* "Keys" )
+;;
 
 (defconst jcs-java-source-dir-name "src"
   "Java source directory name.")
@@ -107,6 +106,14 @@
   (jcs-key-local
     `(((kbd "<f2>")   . javadoc-lookup)
       ((kbd "S-<f2>") . javadoc-lookup))))
+
+;;
+;; (@* "Extensions" )
+;;
+
+(leaf javadoc-lookup
+  :init
+  (setq javadoc-lookup-completing-read-function #'completing-read))
 
 (provide 'jcs-java-mode)
 ;;; jcs-java-mode.el ends here

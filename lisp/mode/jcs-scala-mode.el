@@ -15,6 +15,12 @@
 ;; (@* "Hook" )
 ;;
 
+(leaf scala-mode
+  :init
+  (setq scala-indent:align-parameters t
+        ;; indent block comments to first asterix, not second
+        scala-indent:use-javadoc-style t))
+
 (jcs-add-hook 'scala-mode-hook
   ;; File Header
   (jcs-insert-header-if-valid '("[.]scala")
