@@ -28,30 +28,6 @@
   (call-interactively #'recenter))
 
 ;;
-;; (@* "*Backtrace*" )
-;;
-
-(defconst jcs-backtrace-buffer-name "*Backtrace*"
-  "Name of the backtrace buffer.")
-
-(defun jcs-hit-backtrace ()
-  "Do stuff when backtrace occures."
-  (jcs-red-mode-line)  ; When error, turn red
-  (msgu-inhibit-log
-    (message "[INFO] Oops, error occurs! Please see backtrace for more information")))
-
-(defun jcs-backtrace-occurs-p ()
-  "Check if the backtrace occurs."
-  (jcs-with-current-buffer jcs-backtrace-buffer-name
-    (not (string-empty-p (buffer-string)))))
-
-(defun jcs-backtrace-exit ()
-  "Exit backtrace."
-  (jcs-when-buffer-window jcs-backtrace-buffer-name
-    (let (buffer-read-only) (erase-buffer) (bury-buffer))
-    (unless (window-full-height-p) (delete-window))))
-
-;;
 ;; (@* "*Messages*" )
 ;;
 
@@ -297,6 +273,18 @@
   ;; Call this function just to update `kill-ring'.
   (when (and (not iedit-mode) kill-ring) (current-kill 1))
   iedit-mode)
+
+;;
+;; (@* "LSP" )
+;;
+
+(defun jcs--lsp-connected-p ()
+  "Return non-nil if LSP connected."
+  (bound-and-true-p lsp-managed-mode))
+
+(defun jcs--safe-lsp-active ()
+  "Safe way to active LSP."
+  (when (and (jcs-project-under-p) (not (jcs--lsp-connected-p))) (lsp-deferred)))
 
 ;;
 ;; (@* "Prettify / Minify" )

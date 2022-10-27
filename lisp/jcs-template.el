@@ -144,14 +144,6 @@ If optional argument FORCE is non-nil, refresh cache once."
 ;; (@* "Other Templates" )
 ;;
 
-;;; Emacs Lisp
-(file-header-defins jcs-insert-emacs-lisp-template "elisp" "default.txt"
-  "Template for Emacs Lisp.")
-
-;;; Lisp
-(file-header-defins jcs-insert-lisp-template "lisp" "default.txt"
-  "Lisp file header format.")
-
 ;;; Text
 (file-header-defins jcs-insert-text-template "text" "default.txt"
   "Header for Text header file.")

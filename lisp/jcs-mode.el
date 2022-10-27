@@ -12,7 +12,7 @@ Note this is opposite logic to the toggle mode function."
   (interactive)
   (msgu-silent
     (cond
-     ((jcs-backtrace-occurs-p) (jcs-hit-backtrace))
+     ((jcs-funcall-fboundp #'jcs-backtrace-occurs-p) (jcs-hit-backtrace))
      ((active-minibuffer-window) (jcs-dark-blue-mode-line))
      ((ignore-errors (jcs-funcall-fboundp #'dap--cur-active-session-or-die))
       (jcs-dark-orange-mode-line))
@@ -86,49 +86,11 @@ Note this is opposite logic to the toggle mode function."
 ;;; Special
 (jcs-add-hook 'special-mode-hook (goto-address-mode 1))
 
-;;; Backtrace
-(jcs-add-hook 'backtrace-mode-hook
-  (buffer-wrap-mode 1)
-  (jcs-key-local
-    `(((kbd "M-k") . kill-buffer-and-window))))
-
-;;; Buffer Menu
-(jcs-add-hook 'Buffer-menu-mode-hook
-  (require 'buffer-menu-project)
-
-  (buffer-menu-filter-mode 1)
-  (diminish-buffer-mode 1)  ; refresh the menu immediately
-
-  (jcs-key-local
-    `(((kbd "C-k"))
-      ((kbd "M-K")      . buffer-menu-filter-refresh)
-      ;; Searching / Filtering
-      ((kbd "<escape>") . (lambda () (interactive) (buffer-menu-filter-refresh)
-                            (top-level))))))
-
 ;;; Diff
 (jcs-add-hook 'diff-mode-hook
   (jcs-key-local
     `(((kbd "M-k") . jcs-maybe-kill-this-buffer)
       ((kbd "M-K") . jcs-reopen-this-buffer))))
-
-;;; Compilation
-(jcs-add-hook '(compilation-mode-hook comint-mode-hook)
-  (setq truncate-lines nil)
-
-  (buffer-disable-undo)
-  (goto-address-mode 1)
-
-  ;; NOTE: Set smaller font.
-  (setq buffer-face-mode-face '(:height 120))
-  (buffer-face-mode)
-
-  (jcs-key-local
-    `(((kbd "C-S-<f11>") . compilation-previous-error)
-      ((kbd "C-S-<f12>") . compilation-next-error))))
-
-(jcs-add-hook 'emacs-lisp-compilation-mode-hook
-  (setq truncate-lines t))
 
 ;;; Message Buffer
 (jcs-add-hook 'messages-buffer-mode-hook
@@ -188,121 +150,127 @@ Note this is opposite logic to the toggle mode function."
 (jcs-add-hook 'conf-mode-hook
   (setq-local electric-pair-open-newline-between-pairs nil))
 
-;;; Emacs Lisp
-(jcs-add-hook 'emacs-lisp-mode-hook
-  (modify-syntax-entry ?_ "w")  ; Treat underscore as word.
-  (jcs-insert-header-if-valid '("[.]el")
-                              'jcs-insert-emacs-lisp-template)
-  (eask-api-setup))
-
-;;; Lisp
-(jcs-add-hook 'lisp-mode-hook
-  (modify-syntax-entry ?_ "w")  ; Treat underscore as word.
-  (jcs-insert-header-if-valid '("[.]lisp")
-                              'jcs-insert-lisp-template))
-
-;;; Lisp Interaction
-(jcs-add-hook 'lisp-interaction-mode-hook
-  (jcs-key-local
-    `(((kbd "M-k") . jcs-scratch-buffer-maybe-kill)
-      ((kbd "M-K") . jcs-scratch-buffer-refresh))))
-
 ;;----------------------------------------------------------------------------
 ;;; Modes
 
-(defconst jcs-mode-load-alist
+(defconst jcs-module-load-alist
   '(
+    (keypression             . "app/keypression")
+    (elfeed                  . "app/rss")
+    (company                 . "completion/company")
+    (vertico                 . "completion/vertico")
+    (ts-fold                 . "editor/fold")
+    (multiple-cursors        . "editor/multiple-cursors")
+    (backtrace               . "emacs/backtrace")
+    (compile                 . "emacs/compile")
+    (dired                   . "emacs/dired")
+    (undo-tree               . "emacs/undo")
+    ((gitattributes-mode gitconfig-mode gitignore-mode) . "emacs/vc")
+    (dockerfile-mode         . "tools/dockerfile")
+    (editorconfig            . "tools/editorconfig")
+    (lsp-mode                . "tools/lsp")
+    (make-mode               . "tools/make")
+    (prettier                . "tools/prettier")
+    (terraform-mode          . "tools/terraform")
+    (tree-sitter             . "tools/tree-sitter")
+    (dashboard               . "ui/dashboard")
+    (emojify                 . "ui/emoji")
+    (hl-todo                 . "ui/hl-todo")
+    (highlight-indent-guides . "ui/indent-guides")
+    (minimap                 . "ui/minimap")
+    ((popup pos-tip)         . "ui/popup")
+    (diff-hl                 . "ui/vc-gutter")
+    (centaur-tabs            . "ui/tabs")
+    (treemacs                . "ui/treemacs")
 ;;; Others
-    (message           . "email/message")
-    ((shell esh-mode)  . "shell")
-    (yasnippet         . "lang/snippet")
+    (message                 . "email/message")
+    (shell                   . "term/shell")
+    (esh-mode                . "term/eshell")
+    (yasnippet               . "editor/snippets")
 ;;; Languages
-    (actionscript-mode     . "lang/actionscript")
-    (ada-mode              . "lang/ada")
-    (agda-mode             . "lang/agda")
-    (applescript-mode      . "lang/applescript-mode")
-    (arduino-mode          . "lang/arduino")
-    ((masm-mode nasm-mode) . "lang/asm")
-    (autoconf-mode         . "lang/autoconf")
-    (basic-mode            . "lang/basic")
-    (bat-mode              . "lang/batch")
-    (caml                  . "lang/caml")
-    (cc-mode               . ("lang/cc" "lang/c" "lang/c++"
-                              "lang/java"
-                              "lang/objc"))
-    (clojure-mode          . "lang/clojure")
-    (cmake-mode            . "lang/cmake")
-    (cobol-mode            . "lang/cobol")
-    (coffee-mode           . "lang/coffee")
-    (conf-mode             . "lang/conf")
-    (crystal-mode          . "lang/crystal")
-    (csharp-mode           . "lang/csharp")
-    (css-mode              . "lang/css")
-    (d-mode                . "lang/d")
-    (dart-mode             . "lang/dart")
-    (dockerfile-mode       . "tools/dockerfile")
-    (elixir-mode           . "lang/elixir")
-    (elm-mode              . "lang/elm")
-    (erlang                . "lang/erlang")
-    (ess-r-mode            . "lang/r")
-    (fountain-mode         . "lang/fountain")
-    (fsharp-mode           . "lang/fsharp")
-    (gdscript-mode         . "lang/gdscript")
-    ((gitattributes-mode gitconfig-mode gitignore-mode) . "vc/git")
+    (actionscript-mode       . "lang/actionscript")
+    (ada-mode                . "lang/ada")
+    (agda-mode               . "lang/agda")
+    (applescript-mode        . "lang/applescript-mode")
+    (arduino-mode            . "lang/arduino")
+    ((masm-mode nasm-mode)   . "lang/asm")
+    (autoconf-mode           . "lang/autoconf")
+    (basic-mode              . "lang/basic")
+    (bat-mode                . "lang/batch")
+    (caml                    . "lang/caml")
+    (cc-mode                 . ("lang/cc" "lang/c" "lang/c++"
+                                "lang/java"
+                                "lang/objc"))
+    (clojure-mode            . "lang/clojure")
+    (cmake-mode              . "lang/cmake")
+    (cobol-mode              . "lang/cobol")
+    (coffee-mode             . "lang/coffee")
+    (conf-mode               . "lang/conf")
+    (crystal-mode            . "lang/crystal")
+    (csharp-mode             . "lang/csharp")
+    (css-mode                . "lang/css")
+    (d-mode                  . "lang/d")
+    (dart-mode               . "lang/dart")
+    (elixir-mode             . "lang/elixir")
+    (elm-mode                . "lang/elm")
+    (elisp-mode              . "lang/emacs-lisp")
+    (erlang                  . "lang/erlang")
+    (ess-r-mode              . "lang/r")
+    (fountain-mode           . "lang/fountain")
+    (fsharp-mode             . "lang/fsharp")
+    (gdscript-mode           . "lang/gdscript")
     ((shader-mode glsl-mode hlsl-mode) . "lang/shader")
-    (go-mode               . "lang/go")
-    (groovy-mode           . "lang/groovy")
-    (haml-mode             . "lang/haml")
-    (haskell-mode          . "lang/haskell")
-    (haxe-mode             . "lang/haxe")
-    (idris-mode            . "lang/idris")
-    (ini-mode              . "lang/ini")
-    (jayces-mode           . "lang/jayces")
-    (jenkinsfile-mode      . "lang/jenkinsfile")
-    (js                    . ("lang/js" "lang/jsx"))
-    (json-mode             . "lang/json")
-    (julia-mode            . "lang/julia")
-    (kotlin-mode           . "lang/kotlin")
-    (less-css-mode         . "lang/less-css")
-    (lua-mode              . "lang/lua")
-    (make-mode             . "tools/make")
-    (markdown-mode         . "lang/markdown")
-    (mint-mode             . "lang/mint")
-    (nginx-mode            . "lang/nginx")
-    (nim-mode              . "lang/nim")
-    (nix-mode              . "lang/nix")
-    (nxml-mode             . "lang/xml")
-    (opascal               . "lang/opascal")
-    (org                   . "lang/org")
-    (pascal                . "lang/pascal")
-    (perl-mode             . "lang/perl")
-    (powershell            . "lang/powershell")
-    (processing-mode       . "lang/processing")
-    (python-mode           . "lang/python")
-    (qml-mode              . "lang/qml")
-    (racket-mode           . "lang/racket")
-    (ruby-mode             . "lang/ruby")
-    (rust-mode             . "lang/rust")
-    (ssass-mode            . "lang/sass")
-    (scala-mode            . "lang/scala")
-    (scss-mode             . "lang/scss")
-    ((sh-script fish-mode) . "lang/sh")
-    (sql                   . "lang/sql")
-    (swift-mode            . "lang/swift")
-    (terraform-mode        . "lang/terraform")
-    (typescript-mode       . "lang/typescript")
-    (verilog-mode          . "lang/verilog")
-    (vhdl-mode             . "lang/vhdl")
-    (vimrc-mode            . "lang/vimscript")
-    (vue-mode              . "lang/vue")
-    ((web-mode sgml-mode)  . "lang/web")
-    (yaml-mode             . "lang/yaml")
-    (zig-mode              . "lang/zig"))
+    (go-mode                 . "lang/go")
+    (groovy-mode             . "lang/groovy")
+    (haml-mode               . "lang/haml")
+    (haskell-mode            . "lang/haskell")
+    (haxe-mode               . "lang/haxe")
+    (idris-mode              . "lang/idris")
+    (ini-mode                . "lang/ini")
+    (jayces-mode             . "lang/jayces")
+    (jenkinsfile-mode        . "lang/jenkinsfile")
+    (js                      . ("lang/js" "lang/jsx"))
+    (json-mode               . "lang/json")
+    (julia-mode              . "lang/julia")
+    (kotlin-mode             . "lang/kotlin")
+    (less-css-mode           . "lang/less-css")
+    (lua-mode                . "lang/lua")
+    (markdown-mode           . "lang/markdown")
+    (mint-mode               . "lang/mint")
+    (nginx-mode              . "lang/nginx")
+    (nim-mode                . "lang/nim")
+    (nix-mode                . "lang/nix")
+    (nxml-mode               . "lang/xml")
+    (opascal                 . "lang/opascal")
+    (org                     . "lang/org")
+    (pascal                  . "lang/pascal")
+    (perl-mode               . "lang/perl")
+    (powershell              . "lang/powershell")
+    (processing-mode         . "lang/processing")
+    (python-mode             . "lang/python")
+    (qml-mode                . "lang/qml")
+    (racket-mode             . "lang/racket")
+    (ruby-mode               . "lang/ruby")
+    (rust-mode               . "lang/rust")
+    (ssass-mode              . "lang/sass")
+    (scala-mode              . "lang/scala")
+    (scss-mode               . "lang/scss")
+    ((sh-script fish-mode)   . "lang/sh")
+    (sql                     . "lang/sql")
+    (swift-mode              . "lang/swift")
+    (typescript-mode         . "lang/typescript")
+    (verilog-mode            . "lang/verilog")
+    (vhdl-mode               . "lang/vhdl")
+    (vimrc-mode              . "lang/vimscript")
+    (vue-mode                . "lang/vue")
+    ((web-mode sgml-mode)    . "lang/web")
+    (yaml-mode               . "lang/yaml")
+    (zig-mode                . "lang/zig"))
   "Alist of config modules to load.")
 
 (defun jcs-mode-load-requires ()
-  "Evaluate through `jcs-mode-load-alist' for all required modules."
-  (dolist (data jcs-mode-load-alist)
+  "Evaluate through `jcs-module-load-alist' for all required modules."
+  (dolist (data jcs-module-load-alist)
     (let ((mode (car data)) (modules (cdr data)))
       (jcs-with-eval-after-load mode (jcs-module-load modules)))))
 

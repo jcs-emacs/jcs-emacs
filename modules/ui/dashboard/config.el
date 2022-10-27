@@ -1,4 +1,47 @@
-;;; dashboard/config.el  -*- lexical-binding: t; -*-
+;;; ui/dashboard/config.el  -*- lexical-binding: t; -*-
+
+(leaf dashboard
+  :init
+  (setq dashboard-startup-banner (jcs-dashboard--get-banner-path)
+        dashboard-banner-logo-title "[J C S • E M A C S]"
+        dashboard-footer-icon ""
+        dashboard-footer-messages
+        `(,(format "Copyright (c) %s %s" (format-time-string "%Y") "Shen, Jen-Chieh"))
+        dashboard-items '((ls-directories . 5)
+                          (ls-files       . 5)
+                          (recents        . 5)
+                          (projects       . 5)
+                          ;;(bookmarks      . 5)
+                          ;;(agenda         . 5)
+                          ;;(registers      . 5)
+                          )
+        dashboard-item-shortcuts '((recents        . "r")
+                                   (bookmarks      . "m")
+                                   (projects       . "p")
+                                   (agenda         . "a")
+                                   (registers      . "e")
+                                   (ls-directories . "d")
+                                   (ls-files       . "f"))
+        dashboard-center-content t
+        dashboard-set-navigator nil
+        dashboard-projects-backend 'project-el
+        ;; Truncate style
+        dashboard-path-style 'truncate-middle
+        dashboard-recentf-show-base 'align
+        dashboard-projects-show-base 'align
+        dashboard-bookmarks-show-base 'align
+        dashboard-bookmarks-item-format "%s  %s"
+        dashboard-shorten-by-window-width t
+        dashboard-shorten-path-offset 15)
+  :defer-config
+  (jcs-require '(project dashboard-ls))
+
+  (jcs-add-hook 'jcs-after-load-theme-hook
+    (setq dashboard-startup-banner (jcs-dashboard--get-banner-path))
+    (jcs-dashboard-refresh-buffer))
+
+  (dashboard-setup-startup-hook)
+  (switch-to-buffer dashboard-buffer-name))
 
 ;;
 ;; (@* "Util" )

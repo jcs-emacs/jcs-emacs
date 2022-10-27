@@ -1,18 +1,12 @@
-;;; shell/config.el  -*- lexical-binding: t; -*-
-
-(require 'shell)
-(require 'esh-mode)
+;;; term/shell/config.el  -*- lexical-binding: t; -*-
 
 (require 'exec-path-from-shell)
-
-;; Fix issue from https://github.com/kyagi/shell-pop-el/issues/51
-(push (cons "\\*shell\\*" display-buffer--same-window-action) display-buffer-alist)
 
 ;;
 ;; (@* "Hook" )
 ;;
 
-(jcs-add-hook '(shell-mode-hook eshell-mode-hook)
+(jcs-add-hook 'shell-mode-hook
   (modify-syntax-entry ?> "!")
 
   (jcs-key-local
@@ -33,5 +27,19 @@
 ;; (@* "Extensions" )
 ;;
 
-(leaf eshell-syntax-highlighting
-  :hook (eshell-mode-hook . eshell-syntax-highlighting-global-mode))
+(leaf exec-path-from-shell
+  :defer-config
+  (when (memq window-system '(mac ns x)) (exec-path-from-shell-initialize)))
+
+(leaf multi-shell
+  :init
+  (setq multi-shell-prefer-shell-type 'shell))  ; Accept `shell' or `eshll'.
+
+(leaf shell-pop
+  :init
+  (setq shell-pop-window-size 60
+        shell-pop-last-shell-buffer-index 0
+        shell-pop-shell-type '("shell" "*shell: <>*" (lambda () (multi-shell))))
+  :defer-config
+  ;; Fix issue from https://github.com/kyagi/shell-pop-el/issues/51
+  (push (cons "\\*shell\\*" display-buffer--same-window-action) display-buffer-alist))

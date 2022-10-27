@@ -82,7 +82,8 @@
   (global-vsc-edit-mode 1)
   (which-key-mode 1)
   (global-whitespace-cleanup-mode 1)
-  (whole-line-or-region-global-mode 1))
+  (whole-line-or-region-global-mode 1)
+  (jcs-module-load '("emacs/buffer-menu")))
 
 (jcs-add-hook 'on-first-file-hook
   (auto-read-only-mode 1)
@@ -112,7 +113,7 @@
 
 (jcs-advice-add '(keyboard-quit top-level) :before
   (deactivate-mark)  ; disable region
-  (jcs-backtrace-exit))
+  (jcs-funcall-fboundp #'jcs-backtrace-exit))
 
 (provide 'jcs-hook)
 ;;; jcs-hook.el ends here

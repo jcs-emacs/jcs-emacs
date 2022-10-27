@@ -85,3 +85,7 @@
 (leaf markdown-toc
   :init
   (setq markdown-toc-indentation-space 2))
+
+(leaf impatient-showdown
+  :init
+  (setq impatient-showdown-flavor 'github))

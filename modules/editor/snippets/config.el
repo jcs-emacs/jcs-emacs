@@ -1,4 +1,8 @@
-;;; lang/snippet/config.el  -*- lexical-binding: t; -*-
+;;; editor/snippets/config.el  -*- lexical-binding: t; -*-
+
+(leaf yasnippet
+  :init
+  (setq yas-verbosity 0))
 
 ;;
 ;; (@* "Hook" )

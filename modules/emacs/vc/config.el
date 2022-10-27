@@ -1,4 +1,4 @@
-;;; vc/git/config.el  -*- lexical-binding: t; -*-
+;;; emacs/vc/config.el  -*- lexical-binding: t; -*-
 
 (require 'git-modes)
 (require 'gitignore-templates)

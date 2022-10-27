@@ -33,24 +33,6 @@
 ;;; Columns
 (setq-default fill-column 80)
 
-;;; Compilation
-(leaf compile
-  :init
-  (setq compilation-context-lines t
-        compilation-scroll-output t)
-  :defer-config
-  (require 'ansi-color)
-  (jcs-add-hook 'compilation-filter-hook
-    (let (buffer-read-only)
-      (ansi-color-apply-on-region compilation-filter-start (point)))))
-
-(leaf comint
-  :init
-  (setq comint-prompt-read-only t
-        comint-process-echoes t
-        comint-scroll-to-bottom-on-input t
-        comint-move-point-for-output t))
-
 ;;; Commands
 (leaf grep
   :init
@@ -74,19 +56,6 @@
 ;;; Dialog
 (setq use-file-dialog nil
       use-dialog-box nil)
-
-;;; Dired
-(setq dired-dwim-target t  ; suggest a target for moving/copying intelligently
-      dired-hide-details-hide-symlink-targets nil
-      ;; don't prompt to revert, just do it
-      dired-auto-revert-buffer #'dired-buffer-stale-p
-      ;; Always copy/delete recursively
-      dired-recursive-copies 'always
-      dired-recursive-deletes 'top
-      ;; Ask whether destination dirs should get created when copying/removing files.
-      dired-create-destination-dirs 'ask
-      ;; Screens are larger nowadays, we can afford slightly larger thumbnails
-      image-dired-thumb-size 150)
 
 ;;; Display Column
 (leaf display-fill-column-indicator
@@ -221,9 +190,6 @@
 
 ;;; Variables
 (setq enable-local-variables :safe)
-
-;;; Version Control
-(setq vc-git-diff-switches '("--histogram"))  ;  A slightly faster algorithm for diffing
 
 ;;; Warnings
 (setq warning-minimum-level :emergency)
