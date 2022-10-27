@@ -1,0 +1,24 @@
+;;; lang/nim/config.el  -*- lexical-binding: t; -*-
+
+;;
+;; (@* "Templates" )
+;;
+
+(file-header-defins jcs-insert-nim-template "nim" "default.txt"
+  "Nim file header format.")
+
+;;
+;; (@* "Hook" )
+;;
+
+(jcs-add-hook 'nim-mode-hook
+  ;; File Header
+  (jcs-insert-header-if-valid '("[.]nim")
+                              'jcs-insert-nim-template))
+
+;;
+;; (@* "Extensions" )
+;;
+
+(leaf flycheck-nim
+  :hook (flycheck-mode-hook . (lambda (&rest _) (require 'flycheck-nim))))

@@ -9,9 +9,9 @@
 
 (files "early-init.el" "init.el"
        "lisp/*.el"
-       "lisp/func/*.el"
-       "lisp/mode/*.el"
+       "lisp/lib/*.el"
        "site-lisp/*.el"
+	   "modules/**"
        "banners/**"
        "fonts/**"
        "templates/**")

@@ -70,7 +70,7 @@
         centaur-tabs-modified-marker "*"))
 
 (leaf company
-  :hook (company-mode-hook . (lambda () (require 'jcs-company)))
+  :hook (company-mode-hook . (lambda () (jcs-module-load "company")))
   :init
   (setq company-frontends '(company-pseudo-tooltip-frontend)
         company-require-match nil
@@ -147,7 +147,8 @@
         dashboard-shorten-by-window-width t
         dashboard-shorten-path-offset 15)
   :defer-config
-  (jcs-require '(project jcs-dashboard dashboard-ls))
+  (jcs-module-load "dashboard")
+  (jcs-require '(project dashboard-ls))
 
   (jcs-add-hook 'jcs-after-load-theme-hook
     (setq dashboard-startup-banner (jcs-dashboard--get-banner-path))
@@ -770,7 +771,7 @@
         vertico-resize t
         vertico-scroll-margin 0)
   :defer-config
-  (require 'jcs-vertico))
+  (jcs-module-load "vertico"))
 
 (leaf vs-revbuf
   :init

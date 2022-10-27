@@ -8,6 +8,7 @@ on:
       - '**.yml'
       - '**.el'
       - lisp/**
+      - modules/**
       - site-lisp/**
   pull_request:
     branches:
