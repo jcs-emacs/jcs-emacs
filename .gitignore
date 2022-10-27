@@ -34,6 +34,7 @@ README.html
 /bookmarks
 /company-statistics-cache.el
 /custom-post.el
+/eshell
 /history
 /nov-places
 /package-quickstart.el
@@ -57,7 +58,6 @@ elpa/
 emms/
 emojis/
 emp/
-eshell/
 flycheck_*.el*
 games/
 ido.*
