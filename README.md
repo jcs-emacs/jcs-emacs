@@ -227,10 +227,6 @@ I believe details make things better and make life smoother.
 * [*VS Multiple Cursors*](./docs/features/vs-multiple-cursors) - VSCode like methods to `mark` and `unmark` multiple cursor.
 * [*Fast Incremental Search*](./docs/features/fast-incremental-search) - Fast keys for incremental search forward/backward to the cursor is currently pointing.
 * [*Indent Control*](./docs/features/indent-control) - Generic control the indentation level for each mode, for more information see [indent-control](https://github.com/alt-elpa/indent-control).
-* Previous/Next Keys
-* [*Normal Move*]() - Act like other normal editors.
-* [*Smart-Move*](./docs/features/smart-move) - Smart enough to move cursor to the beginning of the line.
-* [*Line Numbers Modding*](./docs/features/line-numbers-modding) - Mixed used of `linum` and `display-line-numbers-mode` base on the file usage.
 * [*License Helper*](./docs/features/license-helper) - Help to create license while creating `LICENSE` file using template.
 * [*Mini State*](./docs/features/mini-state) - Mini mode state use to visually see what backend is the config currently running. (Deprecated)
 * [*Explicit States*](./docs/features/mini-state/explicit-states) - Automatcially switch mini state depends on certain circumstances.
