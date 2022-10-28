@@ -150,6 +150,17 @@
           (newline-mark ?\n [?¬ ?\n])
           (space-mark ?\  [?·] [?.]))))
 
+(leaf whitespace-cleanup-mode
+  :init
+  (setq whitespace-cleanup-mode-preserve-point t
+        whitespace-cleanup-mode-only-if-initially-clean nil
+        whitespace-cleanup-mode-ignore-modes
+        '( special-mode comint-mode cider-repl-mode haskell-interactive-mode
+           text-mode markdown-mode org-mode
+           conf-javaprop-mode ini-mode
+           view-mode diff-mode
+           snippet-mode)))
+
 ;;
 ;;; Image
 
@@ -199,6 +210,17 @@
 
 (setq use-file-dialog nil
       use-dialog-box nil)
+
+;;
+;;; ^L
+
+(leaf page-break-lines
+  :init
+  (setq page-break-lines-modes '( browse-kill-ring-mode
+                                  emacs-lisp-mode lisp-mode
+                                  scheme-mode
+                                  outline-mode
+                                  help-mode)))
 
 (provide 'jcs-ui)
 ;;; jcs-ui.el ends here

@@ -5,9 +5,8 @@
 (leaf balance-windows
   :init
   (setq balanced-windows-commands
-        '(delete-window
-          quit-window
-          split-window-horizontally split-window-vertically)))
+        '( delete-window quit-window
+           split-window-horizontally split-window-vertically)))
 
 (leaf file-header
   :init
@@ -89,14 +88,6 @@
   (setq msgu-sleep-seconds 0.4
         msgu-sit-seconds 100))
 
-(leaf page-break-lines
-  :init
-  (setq page-break-lines-modes '( browse-kill-ring-mode
-                                  emacs-lisp-mode lisp-mode
-                                  scheme-mode
-                                  outline-mode
-                                  help-mode)))
-
 (leaf recentf-excl
   :init
   (setq recentf-excl-commands '( jcs-goto-definition
@@ -131,17 +122,6 @@
         which-key-min-display-lines 6
         which-key-side-window-slot -10
         which-key-dont-use-unicode t))
-
-(leaf whitespace-cleanup-mode
-  :init
-  (setq whitespace-cleanup-mode-preserve-point t
-        whitespace-cleanup-mode-only-if-initially-clean nil
-        whitespace-cleanup-mode-ignore-modes
-        '( special-mode comint-mode cider-repl-mode haskell-interactive-mode
-           text-mode markdown-mode org-mode
-           conf-javaprop-mode ini-mode
-           view-mode diff-mode
-           snippet-mode)))
 
 (leaf winum
   :init
