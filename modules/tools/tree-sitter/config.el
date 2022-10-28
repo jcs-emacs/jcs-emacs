@@ -36,9 +36,3 @@
     (jcs--tree-sitter-grab-queries)
     (tree-sitter-hl-mode 1))  ; re-enable it once
   (add-hook 'tree-sitter-hl-mode-hook #'jcs--tree-sitter-hl-mode-hook))
-
-(leaf ts-docstr
-  :hook (tree-sitter-after-on-hook . ts-docstr-mode)
-  :init
-  (setq ts-docstr-key-support t
-        ts-docstr-desc-summary ""))

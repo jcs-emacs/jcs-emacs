@@ -1,5 +1,7 @@
 ;;; lang/shader/config.el  -*- lexical-binding: t; -*-
 
+(require 'cc-mode)
+
 (require 'shader-mode)
 (require 'glsl-mode)
 (require 'hlsl-mode)

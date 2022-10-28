@@ -140,13 +140,5 @@ If optional argument FORCE is non-nil, refresh cache once."
   "Return the preloaded tag file info template."
   (file-header-swap-keyword-template jcs-template--header-tag))
 
-;;
-;; (@* "Other Templates" )
-;;
-
-;;; Text
-(file-header-defins jcs-insert-text-template "text" "default.txt"
-  "Header for Text header file.")
-
 (provide 'jcs-template)
 ;;; jcs-template.el ends here

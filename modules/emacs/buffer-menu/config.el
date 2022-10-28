@@ -60,12 +60,11 @@
 ;; (@* "Hook" )
 ;;
 
+(require 'buffer-menu-project)
+(buffer-menu-filter-mode 1)
+(diminish-buffer-mode 1)  ; enable by default
+
 (jcs-add-hook 'Buffer-menu-mode-hook
-  (require 'buffer-menu-project)
-
-  (buffer-menu-filter-mode 1)
-  (diminish-buffer-mode 1)  ; refresh the menu immediately
-
   (jcs-key-local
     `(((kbd "C-k"))
       ((kbd "M-K")      . buffer-menu-filter-refresh)

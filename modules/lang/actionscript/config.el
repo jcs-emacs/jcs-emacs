@@ -1,5 +1,7 @@
 ;;; lang/actionscript/config.el  -*- lexical-binding: t; -*-
 
+(require 'cc-mode)
+
 ;;
 ;; (@* "Templates" )
 ;;

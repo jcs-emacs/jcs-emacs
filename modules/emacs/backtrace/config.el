@@ -25,6 +25,5 @@
 ;;
 
 (jcs-add-hook 'backtrace-mode-hook
-  (buffer-wrap-mode 1)
   (jcs-key-local
     `(((kbd "M-k") . kill-buffer-and-window))))

@@ -157,14 +157,11 @@
 ;;
 
 (jcs-add-hook 'minibuffer-setup-hook
-  (jcs-gc-cons-threshold-speed-up t)  ; Avoid GCs while using `vertico'
   (jcs-reload-active-mode)
   (add-hook 'post-command-hook #'jcs-minibuffer--post-command nil t))
 
 (jcs-add-hook 'minibuffer-exit-hook
-  (jcs-dashboard-refresh-buffer)
-  (garbage-collect)  ; Restore GC
-  (jcs-gc-cons-threshold-speed-up nil))
+  (jcs-dashboard-refresh-buffer))
 
 (defvar jcs-minibuffer-post-command-hook nil
   "Post command hook inside minibuffer.")

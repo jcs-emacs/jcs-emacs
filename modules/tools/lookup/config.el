@@ -1,6 +1,17 @@
-;;; jcs-nav.el --- Nagivation in file  -*- lexical-binding: t -*-
-;;; Commentary:
-;;; Code:
+;;; tools/lookup/config.el  -*- lexical-binding: t; -*-
+
+(leaf dumb-jump
+  :init
+  (setq dumb-jump-selector 'completing-read))
+
+(leaf define-it
+  :init
+  (setq define-it-output-choice (if elenv-graphic-p 'frame 'view)
+        define-it-text-scale-level -2))
+
+(leaf preview-it
+  :init
+  (setq preview-it-render-md t))
 
 ;;
 ;; (@* "Definition" )
@@ -66,52 +77,3 @@
                 (not (jcs-current-char-uppercasep))
                 (< (point) max-pt))
       (forward-char 1))))
-
-;;
-;; (@* "Balanced Expression (sexp)" )
-;;
-
-(defun jcs-toggle-backward-forward-sexp ()
-  "Move to balance expression in backward/forward direction if any."
-  (interactive)
-  (msgu-silent (when (jcs-backward-sexp) (jcs-forward-sexp))))
-
-(defun jcs-current-pair ()
-  "Return current pair character."
-  (let* ((prev (char-before))
-         (next (char-after))
-         (syntax-info (and prev
-                           (electric-pair-syntax-info prev)))
-         (syntax (car syntax-info))
-         (pair (cadr syntax-info)))
-    (ignore-errors (string pair))))
-
-(defun jcs-backward-sexp ()
-  "Wrapper for function `backward-sexp'."
-  (interactive)
-  (cond ((jcs-current-pair) (backward-sexp))
-        ((save-excursion (forward-char 1) (jcs-current-pair))
-         (forward-char 1)
-         (backward-sexp))
-        (t (message "%s %s %s"
-                    (propertize "[INFO] You are at the end of"
-                                'face '(:foreground "cyan"))
-                    "backward"
-                    (propertize "sexp" 'face '(:foreground "cyan"))))))
-
-(defun jcs-forward-sexp ()
-  "Wrapper for function `forward-sexp'."
-  (interactive)
-  (cond ((save-excursion (forward-char 1) (jcs-current-pair))
-         (forward-sexp))
-        ((jcs-current-pair)
-         (forward-char -1)
-         (forward-sexp))
-        (t (message "%s %s %s"
-                    (propertize "[INFO] You are at the end of"
-                                'face '(:foreground "cyan"))
-                    "forward"
-                    (propertize "sexp" 'face '(:foreground "cyan"))))))
-
-(provide 'jcs-nav)
-;;; jcs-nav.el ends here

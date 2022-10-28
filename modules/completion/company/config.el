@@ -67,6 +67,3 @@
 
 (jcs-advice-add 'company-complete-selection :around
   (let ((company-dabbrev-downcase t)) (apply arg0 args)))
-
-(jcs-add-hook 'company-completion-started-hook (jcs-gc-cons-threshold-speed-up t))
-(jcs-add-hook 'company-after-completion-hook (jcs-gc-cons-threshold-speed-up nil))

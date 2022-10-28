@@ -122,58 +122,6 @@
       (insert val))))
 
 ;;
-;; (@* "Comment" )
-;;
-
-(defun jcs-comment-region-or-line ()
-  "If no region selected then just comment the line."
-  (interactive)
-  (if (and mark-active (/= (point) (mark)))
-      (comment-region (region-beginning) (region-end))
-    (comment-region (line-beginning-position) (line-end-position))))
-
-(defun jcs-uncomment-region-or-line ()
-  "If no region selected then just comment the line."
-  (interactive)
-  (if (and mark-active (/= (point) (mark)))
-      (uncomment-region (region-beginning) (region-end))
-    (uncomment-region (line-beginning-position) (line-end-position))))
-
-;;
-;; (@* "Dashboard" )
-;;
-
-(defun jcs-dashboard ()
-  "Jump to dashboard buffer; if doesn't exists create one."
-  (interactive)
-  (switch-to-buffer dashboard-buffer-name)
-  (unless (eq major-mode 'dashboard-mode) (dashboard-mode))
-  (jcs-dashboard-refresh-buffer))
-
-(defun jcs-dashboard-other-window ()
-  "Switch to dashboard buffer on other window."
-  (interactive)
-  (jcs-with-other-window (jcs-dashboard)))
-
-(defun jcs-dashboard-refresh-buffer ()
-  "Refresh dashboard buffer."
-  (interactive)
-  (jcs-when-buffer-window dashboard-buffer-name
-    (jcs-with-dashboard-last-path
-      (msgu-silent
-        (jcs-save-window-excursion (dashboard-refresh-buffer))))))
-
-(jcs-advice-add 'dashboard-remove-item-under :around
-  (jcs-with-dashboard-last-path (apply arg0 args)))
-
-(defun jcs-dashboard--get-banner-path ()
-  "Return banner path."
-  (concat
-   user-emacs-directory "banners/"
-   (cond (elenv-graphic-p (if (jcs-light-theme-p) "sink/black.png" "sink/white.png"))
-         (t "sink.txt"))))
-
-;;
 ;; (@* "ElDoc" )
 ;;
 
@@ -194,68 +142,6 @@
           jcs-backward-word-capital jcs-forward-word-capital
           beginning-of-line end-of-line
           vsc-edit-beginning-of-line vsc-edit-end-of-line)))
-
-;;
-;; (@* "Electric Pair" )
-;;
-
-(defun jcs-elec-pair-add (lst-pr)
-  "Append a list of pair (LST-PR) to current buffer."
-  (require 'elec-pair)
-  (setq-local electric-pair-pairs (append electric-pair-pairs lst-pr)
-              electric-pair-text-pairs electric-pair-pairs))
-
-;;
-;; (@* "Expand Region" )
-;;
-
-(defun jcs-er/contract-region ()
-  "Wrapper for function `er/contract-region' from `expand-region'."
-  (interactive)
-  (require 'expand-region)
-  (er/contract-region 1))
-
-(defconst jcs--er/commands
-  '(er/expand-region er/contract-region jcs-er/contract-region)
-  "List of commands that active `expand-region'.")
-
-(defvar-local jcs--er/marking-p nil
-  "Resolve marking for `expand-region'.")
-
-(defun jcs--er/prepare-command ()
-  "Preparation for each `expand-region' command."
-  (setq web-mode-expand-previous-state nil))
-
-(defun jcs--er/resolve-region ()
-  "Resolve marking while no longer expanding region."
-  (if (memq this-command jcs--er/commands)
-      (progn
-        (unless jcs--er/marking-p (jcs--er/prepare-command))
-        (setq jcs--er/marking-p t)
-        (when (and (not (use-region-p)) jcs--er/history-last)
-          (let ((start (car jcs--er/history-last))
-                (end (cdr jcs--er/history-last)))
-            (unless (= start end)
-              (goto-char start)
-              (set-mark end)))))
-    (when jcs--er/marking-p
-      (setq jcs--er/marking-p nil)
-      (deactivate-mark))))
-
-(defvar-local jcs--er/history-last nil
-  "Record the last item from er/history.")
-
-(defun jcs--er/record-history ()
-  "Record the last item from variable `er/history'."
-  (when (featurep 'expand-region)
-    (setq jcs--er/history-last (nth 0 er/history))))
-
-(defun jcs-safe-er/expand-list (data &optional append)
-  "Safe way to modify expand list from `expand-region'."
-  (require 'expand-region)
-  (unless (listp data) (setq data (list data)))
-  (setq er/try-expand-list (if append (append data er/try-expand-list) data))
-  (delete-dups er/try-expand-list))
 
 ;;
 ;; (@* "Iedit" )
@@ -347,15 +233,6 @@
       (jcs-when-buffer-window flycheck-error-list-buffer
         (jcs-maybe-kill-this-buffer))))
   flycheck-mode)
-
-;;
-;; (@* "Tab Bar" )
-;;
-
-(defun jcs-toggle-tabbar-mode ()
-  "Toggle tab bar."
-  (interactive)
-  (jcs-enable-disable-mode-if #'centaur-tabs-mode (not centaur-tabs-mode)))
 
 ;;
 ;; (@* "Tips" )

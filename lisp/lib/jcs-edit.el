@@ -3,6 +3,76 @@
 ;;; Code:
 
 ;;
+;; (@* "Move Between Word (Wrapper)" )
+;;
+
+(defun jcs-backward-word-capital (&optional _)
+  "Backward search capital character and set the cursor to the point."
+  (interactive "^P")
+  (let ((max-pt (save-excursion (vs-edit-backward-word) (1+ (point)))))
+    (while (and (not (bobp))
+                (not (jcs-current-char-uppercasep))
+                (> (point) max-pt))
+      (backward-char 1))
+    (backward-char 1)))
+
+(defun jcs-forward-word-capital (&optional _)
+  "Forward search capital character and set the cursor to the point."
+  (interactive "^P")
+  (let ((max-pt (save-excursion (vs-edit-forward-word) (point))))
+    (forward-char 1)
+    (while (and (not (eobp))
+                (not (jcs-current-char-uppercasep))
+                (< (point) max-pt))
+      (forward-char 1))))
+
+;;
+;; (@* "Balanced Expression (sexp)" )
+;;
+
+(defun jcs-toggle-backward-forward-sexp ()
+  "Move to balance expression in backward/forward direction if any."
+  (interactive)
+  (msgu-silent (when (jcs-backward-sexp) (jcs-forward-sexp))))
+
+(defun jcs-current-pair ()
+  "Return current pair character."
+  (let* ((prev (char-before))
+         (next (char-after))
+         (syntax-info (and prev
+                           (electric-pair-syntax-info prev)))
+         (syntax (car syntax-info))
+         (pair (cadr syntax-info)))
+    (ignore-errors (string pair))))
+
+(defun jcs-backward-sexp ()
+  "Wrapper for function `backward-sexp'."
+  (interactive)
+  (cond ((jcs-current-pair) (backward-sexp))
+        ((save-excursion (forward-char 1) (jcs-current-pair))
+         (forward-char 1)
+         (backward-sexp))
+        (t (message "%s %s %s"
+                    (propertize "[INFO] You are at the end of"
+                                'face '(:foreground "cyan"))
+                    "backward"
+                    (propertize "sexp" 'face '(:foreground "cyan"))))))
+
+(defun jcs-forward-sexp ()
+  "Wrapper for function `forward-sexp'."
+  (interactive)
+  (cond ((save-excursion (forward-char 1) (jcs-current-pair))
+         (forward-sexp))
+        ((jcs-current-pair)
+         (forward-char -1)
+         (forward-sexp))
+        (t (message "%s %s %s"
+                    (propertize "[INFO] You are at the end of"
+                                'face '(:foreground "cyan"))
+                    "forward"
+                    (propertize "sexp" 'face '(:foreground "cyan"))))))
+
+;;
 ;; (@* "Organize Imports" )
 ;;
 

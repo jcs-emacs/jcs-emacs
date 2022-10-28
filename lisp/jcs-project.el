@@ -2,6 +2,21 @@
 ;;; Commentary:
 ;;; Code:
 
+(defvar jcs-on-project-hook nil
+  "Hook run when the project is defined.")
+
+(leaf project
+  :defer-config
+  (setq project-vc-ignores
+        (append project-vc-ignores
+                '(".idea" ".vscode"
+                  ".ensime_cache" ".eunit"
+                  ".git" ".hg" ".fslckout"
+                  "_FOSSIL_" ".bzr" "_darcs"
+                  ".tox" ".svn"
+                  ".stack-work" ".ccls-cache" ".cache" ".clangd")
+                '(".log" ".vs" "node_modules"))))
+
 ;;
 ;; (@* "Util" )
 ;;
@@ -57,6 +72,11 @@ If UNIQUIFY is non-nil, refresh the cache once."
 
 If optional argument DIR is nil, use variable `default-directory' instead."
   (ignore-errors (project-remember-project (project--find-in-directory (or dir default-directory)))))
+
+(defun jcs-project-find-file-other-window ()
+  "Find files in project on other window."
+  (interactive)
+  (jcs-with-other-window (project-find-file)))
 
 ;;
 ;; (@* "Version Control" )

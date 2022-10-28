@@ -22,11 +22,6 @@
             (add-hook hook (lambda (&optional arg0 arg1 arg2 &rest args) ,@body))))
          (t (add-hook ,hooks (lambda (&optional arg0 arg1 arg2 &rest args) ,@body)))))
 
-(defmacro jcs-with-gc-speed-up (&rest body)
-  "Execute BODY with higher GC threshold."
-  (declare (indent 0) (debug t))
-  `(progn (jcs-gc-cons-threshold-speed-up t) ,@body (jcs-gc-cons-threshold-speed-up nil)))
-
 (defmacro jcs-with-no-redisplay (&rest body)
   "Execute BODY without any redisplay execution."
   (declare (indent 0) (debug t))
@@ -79,7 +74,7 @@ execution."
 ;;
 
 (defun jcs-module-load (modules)
-  "Load module."
+  "Load MODULES."
   (if (listp modules)
       (dolist (module modules) (jcs-module-load module))
     (let* ((root (concat user-emacs-directory "modules/" modules))

@@ -2,6 +2,77 @@
 ;;; Commentary:
 ;;; Code:
 
+;;
+;; (@* "Optimizations" )
+;;
+
+;; A second, case-insensitive pass over `auto-mode-alist' is time wasted, and
+;; indicates misconfiguration (don't rely on case insensitivity for file names).
+(setq auto-mode-case-fold nil)
+
+;; Disable bidirectional text scanning for a modest performance boost. I've set
+;; this to `nil' in the past, but the `bidi-display-reordering's docs say that
+;; is an undefined state and suggest this to be just as good:
+(setq-default bidi-display-reordering 'left-to-right
+              bidi-paragraph-direction 'left-to-right)
+
+;; Disabling the BPA makes redisplay faster, but might produce incorrect display
+;; reordering of bidirectional text with embedded parentheses and other bracket
+;; characters whose 'paired-bracket' Unicode property is non-nil.
+(setq bidi-inhibit-bpa t)
+
+;; More performant rapid scrolling over unfontified regions. May cause brief
+;; spells of inaccurate syntax highlighting right after scrolling, which should
+;; quickly self-correct.
+(setq fast-but-imprecise-scrolling t)
+
+;; Don't ping things that look like domain names.
+(setq ffap-machine-p-known 'reject)
+
+;; Resizing the Emacs frame can be a terribly expensive part of changing the
+;; font. By inhibiting this, we halve startup times, particularly when we use
+;; fonts that are larger than the system default (which would resize the frame).
+(setq frame-inhibit-implied-resize t
+      frame-resize-pixelwise t)
+
+;; Emacs "updates" its ui more often than it needs to, so slow it down slightly
+(setq idle-update-delay 1.0)  ; default is 0.5
+
+;; Font compacting can be terribly expensive, especially for rendering icon
+;; fonts on Windows. Whether disabling it has a notable affect on Linux and Mac
+;; hasn't been determined, but do it there anyway, just in case. This increases
+;; memory usage, however!
+(setq inhibit-compacting-font-caches t)
+
+;; Increase how much is read from processes in a single chunk (default is 4kb).
+;; This is further increased elsewhere, where needed (like our LSP module).
+(setq read-process-output-max (* 1024 1024))  ; 1MB
+
+;; Introduced in Emacs HEAD (b2f8c9f), this inhibits fontification while
+;; receiving input, which should help a little with scrolling performance.
+(setq redisplay-skip-fontification-on-input t)
+
+;; Reduce *Message* noise at startup. An empty scratch buffer (or the dashboard)
+;; is more than enough.
+(setq inhibit-startup-message t
+      inhibit-startup-echo-area-message user-login-name
+      inhibit-default-init t)
+
+;; The GC introduces annoying pauses and stuttering into our Emacs experience,
+;; so we use `gcmh' to stave off the GC while we're using Emacs, and provoke it
+;; when it's idle. However, if the idle delay is too long, we run the risk of
+;; runaway memory usage in busy sessions. If it's too low, then we may as well
+;; not be using gcmh at all.
+(setq gcmh-idle-delay 'auto
+      gcmh-auto-idle-delay-factor 10
+      gcmh-high-cons-threshold (* 16 1024 1024))
+
+;;
+;; (@* "Environment" )
+;;
+
+;; Performance on Windows is considerably worse than elsewhere. We'll need
+;; everything we can get.
 (elenv-with-windows
   (setq w32-get-true-file-attributes nil    ; decrease file IO workload
         w32-pipe-read-delay 0               ; faster IPC
@@ -22,23 +93,6 @@
       auto-save-list-file-prefix nil
       auto-save-timeout 0)
 
-;;; Bell
-(setq ring-bell-function #'ignore
-      visible-bell nil)
-
-;;; Change Log
-(defconst jcs-changelog-template-dir (concat user-emacs-directory "templates/__changelog/")
-  "Path point to all changelog template files.")
-
-;;; Columns
-(setq-default fill-column 80)
-
-;;; Commands
-(leaf grep
-  :init
-  (setq grep-command (if elenv-windows "findstr -s -n -i -l " "grep -irHn ")
-        grep-use-null-device (when elenv-windows t)))
-
 ;;; Comments
 (leaf newcomment
   :init
@@ -53,21 +107,6 @@
 ;;; Deletion
 (setq delete-by-moving-to-trash t)
 
-;;; Dialog
-(setq use-file-dialog nil
-      use-dialog-box nil)
-
-;;; Display Column
-(leaf display-fill-column-indicator
-  :init
-  (setq-default display-fill-column-indicator-column 80))
-
-;;; Doc View
-(leaf doc-view
-  :defer-config
-  (when elenv-windows
-    (setq doc-view-ghostscript-program (executable-find "gswin64c"))))
-
 ;;; Drag & Drop
 (setq mouse-drag-and-drop-region t)
 
@@ -75,32 +114,30 @@
 (setq ediff-split-window-function #'split-window-horizontally
       ediff-window-setup-function #'ediff-setup-windows-plain)
 
-;;; Electric Pair
+;;; Electric
 (setq-default electric-pair-inhibit-predicate 'electric-pair-default-inhibit)
+
+(leaf electric-cursor
+  :init
+  (setq electric-cursor-alist '((overwrite-mode . hbar)
+                                (t              . box))))
+(leaf electric-indent-sexp
+  :hook (electric-indent-mode-hook . electric-indent-sexp-mode)
+  :init
+  (setq electric-indent-sexp-auto-chars t))
+
+(defun jcs-elec-pair-add (lst-pr)
+  "Append a list of pair (LST-PR) to current buffer."
+  (require 'elec-pair)
+  (setq-local electric-pair-pairs (append electric-pair-pairs lst-pr)
+              electric-pair-text-pairs electric-pair-pairs))
 
 ;;; Files
 (setq create-lockfiles nil
       make-backup-files nil)
 
-;;; Font Size
-(defconst jcs-default-font-size 160
-  "Default font size, the value is in 1/10pt, so 100 will give you 10pt, etc.")
-
 ;; Resolve performance issue moving around Unicode Text
 (setq inhibit-compacting-font-caches t)
-
-;;; Image
-(setq image-animate-loop t)
-
-;;; Line Numbers
-(setq-default
- ;; Explicitly define a width to reduce the cost of on-the-fly computation
- display-line-numbers-width 3
- ;; Show absolute line numbers for narrowed regions to make it easier to tell the
- ;; buffer is narrowed, and where you are, exactly.
- display-line-numbers-widen t)
-
-(column-number-mode 1)
 
 ;;; Minibuffer
 (setq enable-recursive-minibuffers t
@@ -110,33 +147,25 @@
       completion-ignore-case t
       suggest-key-bindings nil)
 
-;;; Parenthesis
-(setq show-paren-delay 0.1
-      show-paren-highlight-openparen t
-      show-paren-when-point-inside-paren t
-      show-paren-when-point-in-periphery t)
-
 ;;; Process
 (setq kill-buffer-query-functions nil)
+
+;;; Read-Only
+(leaf auto-read-only
+  :init
+  (setq auto-read-only-function #'read-only-mode)
+  :defer-config
+  (nconc auto-read-only-file-regexps
+         '("emacs/.*/lisp/"
+           "/[.]emacs[.]d/elpa/"))
+  (jcs-advice-add 'auto-read-only--hook-find-file :override
+    (unless (jcs-project-root) (auto-read-only))))
 
 ;;; Recent Files
 (setq recentf-max-menu-items 25)
 
 ;;; Shift Select
 (setq shift-select-mode t)
-
-;;; Scroll
-(setq mouse-wheel-scroll-amount '(5 ((shift) . 2))
-      mouse-wheel-progressive-speed nil)
-
-(setq scroll-step 1
-      scroll-conservatively 101
-      scroll-margin 0
-      scroll-preserve-screen-position t
-      auto-window-vscroll nil)
-
-(setq hscroll-margin 2
-      hscroll-step 1)
 
 ;;; So Long
 (leaf so-long
@@ -157,9 +186,6 @@
       truncate-partial-width-windows nil
       inhibit-startup-screen t)
 
-(push '(fullscreen . maximized) default-frame-alist)  ; full screen
-(unless noninteractive (ignore-errors (split-window-horizontally)))
-
 ;;; Tab / Space
 (setq-default indent-tabs-mode nil  ; Disable inset tabs, insert space only
               tab-width 4)
@@ -176,18 +202,6 @@
 ;;; Trash
 (setq delete-by-moving-to-trash t)
 
-;;; Undo
-(setq undo-limit 20000000
-      undo-strong-limit 40000000)
-
-;;; Uniquify
-(leaf uniquify
-  :init
-  (setq uniquify-buffer-name-style 'post-forward-angle-brackets
-        uniquify-after-kill-buffer-p t  ; rename after killing uniquified
-        uniquify-ignore-buffers-re "^\\*"  ; don't muck with special buffers
-        uniquify-separator "/"))
-
 ;;; Variables
 (setq enable-local-variables :safe)
 
@@ -198,23 +212,6 @@
 (leaf eww
   :init
   (setq eww-search-prefix "https://www.google.com/search?q="))
-
-;;; Whitespace
-(leaf whitespace
-  :init
-  (setq whitespace-display-mappings
-        '((tab-mark ?\t [?› ?\t])
-          (newline-mark ?\n [?¬ ?\n])
-          (space-mark ?\  [?·] [?.]))))
-
-;;; Windows
-(setq window-divider-default-places t
-      window-divider-default-bottom-width 1
-      window-divider-default-right-width 1)
-
-(leaf windmove
-  :init
-  (setq windmove-wrap-around t))
 
 ;;; Word Wrap
 (setq word-wrap-by-category t)

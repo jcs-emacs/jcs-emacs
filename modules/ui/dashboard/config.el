@@ -2,8 +2,7 @@
 
 (leaf dashboard
   :init
-  (setq dashboard-startup-banner (jcs-dashboard--get-banner-path)
-        dashboard-banner-logo-title "[J C S • E M A C S]"
+  (setq dashboard-banner-logo-title "[J C S • E M A C S]"
         dashboard-footer-icon ""
         dashboard-footer-messages
         `(,(format "Copyright (c) %s %s" (format-time-string "%Y") "Shen, Jen-Chieh"))
@@ -40,8 +39,41 @@
     (setq dashboard-startup-banner (jcs-dashboard--get-banner-path))
     (jcs-dashboard-refresh-buffer))
 
-  (dashboard-setup-startup-hook)
-  (switch-to-buffer dashboard-buffer-name))
+  (dashboard-setup-startup-hook))
+
+;;
+;; (@* "Entry" )
+;;
+
+(defun jcs-dashboard ()
+  "Jump to dashboard buffer; if doesn't exists create one."
+  (interactive)
+  (switch-to-buffer dashboard-buffer-name)
+  (unless (eq major-mode 'dashboard-mode) (dashboard-mode))
+  (jcs-dashboard-refresh-buffer))
+
+(defun jcs-dashboard-other-window ()
+  "Switch to dashboard buffer on other window."
+  (interactive)
+  (jcs-with-other-window (jcs-dashboard)))
+
+(defun jcs-dashboard-refresh-buffer ()
+  "Refresh dashboard buffer."
+  (interactive)
+  (jcs-when-buffer-window dashboard-buffer-name
+    (jcs-with-dashboard-last-path
+      (msgu-silent
+        (jcs-save-window-excursion (dashboard-refresh-buffer))))))
+
+(jcs-advice-add 'dashboard-remove-item-under :around
+  (jcs-with-dashboard-last-path (apply arg0 args)))
+
+(defun jcs-dashboard--get-banner-path ()
+  "Return banner path."
+  (concat
+   user-emacs-directory "banners/"
+   (cond (elenv-graphic-p (if (jcs-light-theme-p) "sink/black.png" "sink/white.png"))
+         (t "sink.txt"))))
 
 ;;
 ;; (@* "Util" )

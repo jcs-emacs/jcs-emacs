@@ -24,3 +24,9 @@
   (jcs-key-local
     `(((kbd "<up>")   . vs-edit-previous-line)
       ((kbd "<down>") . vs-edit-next-line))))
+
+;;
+;; (@* "Extensions" )
+;;
+
+(leaf gitlab-ci-mode-flycheck :hook (flycheck-mode-hook . gitlab-ci-mode-flycheck-enable))

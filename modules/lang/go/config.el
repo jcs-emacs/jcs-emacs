@@ -1,5 +1,7 @@
 ;;; lang/go/config.el  -*- lexical-binding: t; -*-
 
+(require 'cc-mode)
+
 ;;
 ;; (@* "Templates" )
 ;;

@@ -44,10 +44,6 @@
   (jcs-setup-default-theme))
 
 (jcs-add-hook 'on-init-ui-hook
-  (run-with-idle-timer 0 nil #'jcs-hook--init-delay))
-
-(defun jcs-hook--init-delay ()
-  "Delay some executions for faster speed."
   (auto-scroll-bar-mode 1)
   (balanced-windows-mode 1)
   (echo-bar-mode 1)
@@ -62,10 +58,7 @@
   (show-paren-mode t)
   (vertico-mode 1)
   (vs-revbuf-mode 1)
-  (jcs-funcall-fboundp #'jcs-mode-load-requires)
   (jcs-require '(jcs-edit))
-  ;; Lower the `GC' back to normal threshold
-  (jcs-gc-cons-threshold-speed-up nil)
   (message nil))  ; mute at the very end!
 
 (jcs-add-hook 'on-first-input-hook
@@ -74,6 +67,7 @@
   (diminish-buffer-mode 1)
   (ff-guard-mode 1)
   (gcmh-mode 1)
+  (global-goto-address-mode 1)
   (minibuffer-depth-indicate-mode 1)
   (global-page-break-lines-mode 1)
   (recentf-excl-mode 1)
@@ -83,7 +77,7 @@
   (which-key-mode 1)
   (global-whitespace-cleanup-mode 1)
   (whole-line-or-region-global-mode 1)
-  (jcs-module-load '("emacs/buffer-menu")))
+  (jcs-module-load '("emacs/buffer-menu" "tools/lookup")))
 
 (jcs-add-hook 'on-first-file-hook
   (auto-read-only-mode 1)
@@ -101,11 +95,50 @@
 ;;
 
 (jcs-add-hook 'pre-command-hook
-  (jcs--er/record-history))
+  (jcs-funcall-fboundp #'jcs--er/record-history))
 
 (jcs-add-hook 'post-command-hook
-  (jcs--er/resolve-region)
+  (jcs-funcall-fboundp #'jcs--er/resolve-region)
   (jcs-reload-active-mode))
+
+;;
+;; (@* "Modes" )
+;;
+
+(jcs-add-hook 'diff-mode-hook
+  (jcs-key-local
+    `(((kbd "M-k") . jcs-maybe-kill-this-buffer)
+      ((kbd "M-K") . jcs-reopen-this-buffer))))
+
+(jcs-add-hook 'messages-buffer-mode-hook
+  (page-break-lines-mode 1))
+
+(jcs-add-hook 'reb-mode-hook  ; Re-Builder
+  (jcs-key-local
+    `(((kbd "<up>")   . vs-edit-previous-line)
+      ((kbd "<down>") . vs-edit-next-line)
+      ((kbd "M-k")    . kill-buffer-and-window))))
+
+(jcs-add-hook '(text-mode-hook prog-mode-hook conf-mode-hook)
+  (alt-codes-mode 1)
+  (auto-highlight-symbol-mode 1)
+  (display-fill-column-indicator-mode 1)
+  (display-line-numbers-mode 1)
+  (when elenv-graphic-p (highlight-indent-guides-mode 1))
+  (highlight-numbers-mode 1)
+  (indent-control-ensure-tab-width)  ; Ensure indentation level is available
+  (yas-minor-mode 1)
+
+  (when (jcs-funcall-fboundp #'jcs-project-under-p)
+    (run-hooks 'jcs-on-project-hook)))
+
+(jcs-add-hook 'prog-mode-hook
+  ;; XXX: See the bug https://github.com/immerrr/lua-mode/issues/172
+  (unless (jcs-contain-list-type-str "-" (list comment-start comment-end) 'regex)
+    (modify-syntax-entry ?- "_")))
+
+(jcs-add-hook 'conf-mode-hook
+  (setq-local electric-pair-open-newline-between-pairs nil))
 
 ;;
 ;; (@* "Quitting" )

@@ -56,8 +56,10 @@
 
 ;;; Comment/Uncomment
     ((kbd "C-/")     . smart-comment)
-    ((kbd "C-k C-c") . jcs-comment-region-or-line)
-    ((kbd "C-k C-u") . jcs-uncomment-region-or-line)
+    ((kbd "C-k C-c") . comment-region)
+    ((kbd "C-k C-u") . (lambda () (interactive)
+                         ;; Not sure why this can't bind directly
+                         (call-interactively #'uncomment-region)))
 
     ((kbd "C-k -")   . banner-comment)
 
@@ -102,7 +104,8 @@
 
 ;;; Expand Region
     ((kbd "C-+") . er/expand-region)
-    ((kbd "C-_") . jcs-er/contract-region)
+    ((kbd "C-_") . (lambda () (interactive)
+                     (require 'expand-region) (er/contract-region 1)))
 
 ;;; File Explorer
     ((kbd "C-M-l") . treemacs)  ; `Visual Studio'
@@ -264,7 +267,7 @@
     ((kbd "<f6>") . jcs-flycheck-mode)
 
 ;;; Tab Bar
-    ((kbd "C-t")       . jcs-toggle-tabbar-mode)
+    ((kbd "C-t")       . centaur-tabs-mode)
     ((kbd "C-<prior>") . centaur-tabs-backward)
     ((kbd "C-<next>")  . centaur-tabs-forward)
 

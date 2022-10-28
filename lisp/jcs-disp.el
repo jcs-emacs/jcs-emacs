@@ -3,6 +3,65 @@
 ;;; Code:
 
 ;;
+;; (@* "Mode State" )
+;;
+
+(defun jcs-reload-active-mode ()
+  "Reload the active mode.
+Note this is opposite logic to the toggle mode function."
+  (interactive)
+  (msgu-silent
+    (cond
+     ((jcs-funcall-fboundp #'jcs-backtrace-occurs-p) (jcs-hit-backtrace))
+     ((active-minibuffer-window) (jcs-dark-blue-mode-line))
+     ((ignore-errors (jcs-funcall-fboundp #'dap--cur-active-session-or-die))
+      (jcs-dark-orange-mode-line))
+     ((jcs-funcall-fboundp #'zoom-window--enable-p) (jcs-dark-green-mode-line))
+     (t (jcs-gray-mode-line)))))
+
+;;
+;; (@* "Modeline" )
+;;
+
+(leaf minions
+  :init
+  (setq minions-mode-line-delimiters nil
+        minions-mode-line-lighter ""))
+
+(leaf moody
+  :init
+  (setq x-underline-at-descent-line t)
+  :defer-config
+  ;; XXX For issue, https://github.com/tarsius/moody/pull/41
+  (jcs-advice-add 'moody-redisplay :around
+    (let ((inhibit-redisplay t)) (apply arg0 args)))
+  (unless elenv-graphic-p (jcs-advice-add 'moody-tab :override arg0)))
+
+;;
+;; (@* "Echo Bar" )
+;;
+
+(defun jcs-buffer-spaces-or-tabs ()
+  "Check if buffer using spaces or tabs."
+  (if (= (how-many "^\t" (point-min) (point-max)) 0) "SPC" "TAB"))
+
+(leaf echo-bar
+  :init
+  (setq echo-bar-right-padding 0
+        echo-bar-function
+        (lambda ()  ; String to display in echo bar
+          (format "%s: %s  %s  %s  %s"
+                  (jcs-buffer-spaces-or-tabs)
+                  (indent-control-get-indent-level-by-mode)
+                  buffer-file-coding-system
+                  (show-eol-get-eol-mark-by-system)
+                  (format-time-string "%b %d, %Y %H:%M:%S")))
+        echo-bar-minibuffer nil))
+
+(leaf region-state
+  :hook (activate-mark-hook . region-state-mode))
+
+;;
 ;; (@* "Settings" )
 ;;
 
