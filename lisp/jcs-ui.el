@@ -178,6 +178,16 @@
 
 (setq windmove-wrap-around t)
 
+(leaf balance-windows
+  :init
+  (setq balanced-windows-commands
+        '( delete-window quit-window
+           split-window-horizontally split-window-vertically)))
+
+(leaf winum
+  :init
+  (setq winum-scope 'frame-local))
+
 ;;
 ;;; Sideline
 

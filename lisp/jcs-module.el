@@ -14,6 +14,7 @@
     (tree-sitter             . "editor/docstring")
     (expand-region           . "editor/expand-region")
     (ts-fold                 . "editor/fold")
+    (isearch                 . "editor/isearch")
     (multiple-cursors        . "editor/multiple-cursors")
     (yasnippet               . "editor/snippets")
     (backtrace               . "emacs/backtrace")

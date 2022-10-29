@@ -111,9 +111,6 @@
     `(((kbd "M-k") . jcs-maybe-kill-this-buffer)
       ((kbd "M-K") . jcs-reopen-this-buffer))))
 
-(jcs-add-hook 'messages-buffer-mode-hook
-  (page-break-lines-mode 1))
-
 (jcs-add-hook 'reb-mode-hook  ; Re-Builder
   (jcs-key-local
     `(((kbd "<up>")   . vs-edit-previous-line)

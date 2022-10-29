@@ -79,3 +79,8 @@ If optional argument WITH-EXT is non-nil; return path with extension."
 
 (leaf flycheck-grammarly      :hook (flycheck-mode-hook . flycheck-grammarly-setup))
 (leaf flycheck-languagetool   :hook (flycheck-mode-hook . flycheck-languagetool-setup))
+
+(leaf most-used-words
+  :init
+  (setq most-used-words-display-type 'table
+        most-used-words-word-display 100))

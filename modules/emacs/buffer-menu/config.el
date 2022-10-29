@@ -71,3 +71,16 @@
       ;; Searching / Filtering
       ((kbd "<escape>") . (lambda () (interactive) (buffer-menu-filter-refresh)
                             (top-level))))))
+
+;;
+;; (@* "Core" )
+;;
+
+(defun jcs-buffer-menu-p ()
+  "Check if current major mode `buffer-menu'."
+  (eq major-mode 'Buffer-menu-mode))
+
+(defun jcs-buffer-menu-refresh-buffer ()
+  "Update buffer menu buffer."
+  (interactive)
+  (jcs-when-buffer-window diminish-buffer-menu-name (msgu-silent (buffer-menu))))

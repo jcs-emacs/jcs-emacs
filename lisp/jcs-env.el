@@ -87,29 +87,36 @@
         mac-command-key-is-meta t
         mac-pass-command-to-system nil))
 
+;;
 ;;; Audo Saving
 (setq auto-save-default nil
       auto-save-interval 0
       auto-save-list-file-prefix nil
       auto-save-timeout 0)
 
+;;
 ;;; Comments
 (leaf newcomment
   :init
   (setq comment-inline-offset 2))
 
+;;
 ;;; Custom
 (setq custom-safe-themes t)
 
-;;; Default Major Mode
+;;
+;;; Major Mode
 (setq-default major-mode 'text-mode)
 
+;;
 ;;; Deletion
 (setq delete-by-moving-to-trash t)
 
+;;
 ;;; Drag & Drop
 (setq mouse-drag-and-drop-region t)
 
+;;
 ;;; Ediff
 (setq ediff-split-window-function #'split-window-horizontally
       ediff-window-setup-function #'ediff-setup-windows-plain)
@@ -132,13 +139,37 @@
   (setq-local electric-pair-pairs (append electric-pair-pairs lst-pr)
               electric-pair-text-pairs electric-pair-pairs))
 
+;;
 ;;; Files
 (setq create-lockfiles nil
       make-backup-files nil)
 
-;; Resolve performance issue moving around Unicode Text
-(setq inhibit-compacting-font-caches t)
+;;
+;;; Messages
+(leaf message-clean-mode
+  :init
+  (setq message-clean-mode-mute-commands '( push-mark set-mark-command)
+        message-clean-mode-echo-commands
+        '( mwheel-scroll
+           previous-line next-line
+           vsc-edit-beginning-of-line vsc-edit-end-of-line
+           mark-whole-buffer
+           indent-region
+           browse-kill-ring-setup
+           isearch-done
+           undefined
+           toggle-truncate-lines
+           define-it
+           jcs-package-upgrade-all jcs-package--show-upgrades jcs-package-autoremove
+           lsp--message)
+        message-clean-mode-minor-mode 'echo))
 
+(leaf msgu
+  :init
+  (setq msgu-sleep-seconds 0.4
+        msgu-sit-seconds 100))
+
+;;
 ;;; Minibuffer
 (setq enable-recursive-minibuffers t
       completion-styles '(partial-completion)  ; easy on `company-mode'
@@ -147,9 +178,11 @@
       completion-ignore-case t
       suggest-key-bindings nil)
 
+;;
 ;;; Process
 (setq kill-buffer-query-functions nil)
 
+;;
 ;;; Read-Only
 (leaf auto-read-only
   :init
@@ -161,12 +194,22 @@
   (jcs-advice-add 'auto-read-only--hook-find-file :override
     (unless (jcs-project-root) (auto-read-only))))
 
+;;
 ;;; Recent Files
 (setq recentf-max-menu-items 25)
 
+(leaf recentf-excl
+  :init
+  (setq recentf-excl-commands '( jcs-goto-definition
+                                 jcs-goto-definition-other-window
+                                 jcs-peek-definition
+                                 ediff-find-file)))
+
+;;
 ;;; Shift Select
 (setq shift-select-mode t)
 
+;;
 ;;; So Long
 (leaf so-long
   :defer-config
@@ -180,34 +223,42 @@
            page-break-lines-mode
            ts-fold-mode ts-fold-indicators-mode)))
 
+;;
 ;;; Startup
 (setq-default truncate-lines t)
 (setq next-line-add-newlines nil
       truncate-partial-width-windows nil
       inhibit-startup-screen t)
 
+;;
 ;;; Tab / Space
 (setq-default indent-tabs-mode nil  ; Disable inset tabs, insert space only
               tab-width 4)
 
+;;
 ;;; Tabulated List
 (leaf tabulated-list
   :defer-config
   (jcs-advice-add 'tabulated-list-col-sort :around (save-excursion (apply arg0 args))))
 
+;;
 ;;; Theme
 (defconst jcs-theme-default 'vs-dark
   "Default theme name for this config.")
 
+;;
 ;;; Trash
 (setq delete-by-moving-to-trash t)
 
+;;
 ;;; Variables
 (setq enable-local-variables :safe)
 
+;;
 ;;; Warnings
 (setq warning-minimum-level :emergency)
 
+;;
 ;;; Web Wowser
 (leaf eww
   :init
