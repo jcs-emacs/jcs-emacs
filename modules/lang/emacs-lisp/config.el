@@ -30,8 +30,7 @@
 
 (jcs-add-hook 'lisp-interaction-mode-hook
   (jcs-key-local
-    `(((kbd "M-k") . jcs-scratch-buffer-maybe-kill)
-      ((kbd "M-K") . jcs-scratch-buffer-refresh))))
+    `(((kbd "M-K") . jcs-scratch-buffer-refresh))))
 
 ;;
 ;; (@* "Extensions" )

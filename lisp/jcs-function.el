@@ -75,15 +75,6 @@
   (goto-char (point-min))
   (lisp-interaction-mode))
 
-(defun jcs-scratch-buffer-maybe-kill ()
-  "Kill buffer scratch."
-  (interactive)
-  (if (jcs-scratch-buffer-p)
-      (progn
-        (jcs-funcall-fboundp #'undo-tree-kill-visualizer)
-        (jcs-bury-buffer))
-    (jcs-maybe-kill-this-buffer)))
-
 (defun jcs-scratch-buffer-refresh ()
   "Refresh scratch buffer."
   (interactive)

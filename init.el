@@ -71,7 +71,6 @@
 (require 'jcs-function)
 
 ;;; Environment
-(require 'jcs-plugin)
 (require 'jcs-env)
 (require 'jcs-disp)
 (require 'jcs-ui)

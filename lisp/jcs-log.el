@@ -74,7 +74,7 @@ Optional argument VAL-DEL is string that point to item."
                         lst)))))))
 
 ;;
-;; (@* "Hooks" )
+;; (@* "Core" )
 ;;
 
 (defun jcs-log--before (clean)
@@ -89,16 +89,20 @@ Optional argument VAL-DEL is string that point to item."
   "Action do after doing log."
   (jcs-when-buffer-window (messages-buffer) (goto-char (point-max))))
 
-;;
-;; (@* "Core" )
-;;
-
 (defun jcs--log (title clean fmt &rest args)
   "Log a message with TITLE, CLEAN, FMT and ARGS."
   (when jcs-log
     (jcs-log--before clean)
     (msgu-color "╘[%s] %s\n" title (apply 'format fmt args))
     (jcs-log--after)))
+
+;;
+;; (@* "Extensions" )
+;;
+
+(leaf turbo-log
+  :init
+  (setq turbo-log-allow-insert-without-tree-sitter-p t))
 
 (provide 'jcs-log)
 ;;; jcs-log.el ends here

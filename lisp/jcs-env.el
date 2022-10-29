@@ -88,6 +88,10 @@
         mac-pass-command-to-system nil))
 
 ;;
+;; (@* "Settings" )
+;;
+
+;;
 ;;; Audo Saving
 (setq auto-save-default nil
       auto-save-interval 0
@@ -143,6 +147,18 @@
 ;;; Files
 (setq create-lockfiles nil
       make-backup-files nil)
+
+;;
+;;; Keybinds
+(leaf which-key
+  :init
+  (setq which-key-sort-order #'which-key-key-order-alpha
+        which-key-sort-uppercase-first nil
+        which-key-add-column-padding 1
+        which-key-max-display-columns nil
+        which-key-min-display-lines 6
+        which-key-side-window-slot -10
+        which-key-dont-use-unicode t))
 
 ;;
 ;;; Messages
@@ -204,6 +220,24 @@
                                  jcs-goto-definition-other-window
                                  jcs-peek-definition
                                  ediff-find-file)))
+
+;;
+;;; Revert
+(leaf vs-revbuf
+  :init
+  (setq vs-revbuf-ask-unsaved-changes-only t))
+
+;;
+;;; Right Click
+(leaf right-click-context
+  :defer-config
+  (jcs-advice-add 'right-click-context-menu :override
+    ;; Open Right Click Context menu.
+    (let ((popup-menu-keymap (copy-sequence popup-menu-keymap)))
+      (define-key popup-menu-keymap [mouse-3] #'right-click-context--click-menu-popup)
+      (let ((value (popup-cascade-menu (right-click-context--build-menu-for-popup-el (right-click-context--menu-tree) nil))))
+        (when (and (jcs-popup-clicked-on-menu-p) value)
+          (if (symbolp value) (call-interactively value t) (eval value)))))))
 
 ;;
 ;;; Shift Select

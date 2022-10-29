@@ -357,6 +357,7 @@ in multiple windows.")
   "Bury this buffer."
   (interactive)
   (let ((bn (jcs-buffer-name-or-buffer-file-name)))
+    (jcs-funcall-fboundp #'undo-tree-kill-visualizer)
     (bury-buffer)
     (when (or (jcs-buffer-menu-p)
               (string= bn (jcs-buffer-name-or-buffer-file-name)))
