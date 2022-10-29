@@ -65,6 +65,7 @@
   (global-company-mode t)
   (delete-selection-mode 1)
   (diminish-buffer-mode 1)
+  (eval-mark-mode 1)
   (ff-guard-mode 1)
   (gcmh-mode 1)
   (global-goto-address-mode 1)

@@ -130,6 +130,7 @@
           eshell-syntax-highlighting
           ess
           esup
+          eval-mark
           exec-path-from-shell
           execrun
           expand-region

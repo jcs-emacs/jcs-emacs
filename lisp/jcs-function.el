@@ -3,12 +3,6 @@
 ;;; Code:
 
 ;;
-;; (@* "Eval" )
-;;
-
-(jcs-advice-add '(eval-buffer eval-defun eval-region) :after (deactivate-mark))
-
-;;
 ;; (@* "Navigate to Error" )
 ;;
 

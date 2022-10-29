@@ -88,17 +88,17 @@ If optional argument DIR is nil, use variable `default-directory' instead."
 
 (defun jcs-vc-status ()
   "Return version control status."
-  (jcs-require '(subr-x f))
-  (when-let* ((project-name (jcs-project-root))
-              (info (jcs-vc-info))
+  (require 'subr-x)
+  (when-let* ((info (jcs-vc-info))
               (split (split-string info ":"))
               (name (string-trim (jcs-s-replace-displayable (nth 0 split))))
               (branch (string-trim (jcs-s-replace-displayable (nth 1 split)))))
-    (list (f-base project-name) name branch)))
+    (list name branch)))
 
 (defun jcs-vc-project ()
   "Return the project name."
-  (nth 0 (jcs-vc-status)))
+  (when-let ((project (jcs-project-root)))
+    (file-name-nondirectory project)))
 
 (defun jcs-vc-system ()
   "Return the system name."

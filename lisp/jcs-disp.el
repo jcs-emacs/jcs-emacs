@@ -35,7 +35,36 @@ Note this is opposite logic to the toggle mode function."
   ;; XXX For issue, https://github.com/tarsius/moody/pull/41
   (jcs-advice-add 'moody-redisplay :around
     (let ((inhibit-redisplay t)) (apply arg0 args)))
-  (unless elenv-graphic-p (jcs-advice-add 'moody-tab :override arg0)))
+  (unless elenv-graphic-p (jcs-advice-add 'moody-tab :override arg0))
+
+  (setq-default
+   frame-title-format
+   '((:eval invocation-name)
+     " - "
+     (:eval user-real-login-name) "@" (:eval system-name) ": "
+     (:eval (when (buffer-modified-p) " *"))
+     (:eval (if buffer-file-name "%f" "%b")))
+   mode-line-format
+   '((:eval
+      (jcs-mode-line-render
+       (quote ("%e "
+               mode-line-front-space
+               mode-line-buffer-identification " "
+               (:eval (moody-tab (concat " " (format-mode-line mode-line-modes))))
+               " " (:eval (jcs-vc-project))))
+       (quote ((:eval
+                (when (and (bound-and-true-p flycheck-mode)
+                           (or flycheck-current-errors
+                               (eq 'running flycheck-last-status-change)))
+                  (cl-loop for state in '((error   . "#FB4933")
+                                          (warning . "#FABD2F")
+                                          (info    . "#83A598"))
+                           as lighter = (jcs-flycheck-lighter (car state))
+                           when lighter
+                           concat (propertize lighter 'face `(:foreground ,(cdr state))))))
+               (:eval (jcs-vc-info)) " "
+               (:eval (moody-tab " %l : %c " 0 'up)) " %p "
+               mode-line-end-spaces)))))))
 
 ;;
 ;; (@* "Echo Bar" )
@@ -92,35 +121,6 @@ Note this is opposite logic to the toggle mode function."
          (err (or (cdr (assq state counts)) "?"))
          (running (eq 'running flycheck-last-status-change)))
     (if (or errorp running) (format "•%s" err))))
-
-(setq-default
- frame-title-format
- '((:eval invocation-name)
-   " - "
-   (:eval user-real-login-name) "@" (:eval system-name) ": "
-   (:eval (when (buffer-modified-p) " *"))
-   (:eval (if buffer-file-name "%f" "%b")))
- mode-line-format
- '((:eval
-    (jcs-mode-line-render
-     (quote ("%e "
-             mode-line-front-space
-             mode-line-buffer-identification " "
-             (:eval (moody-tab (concat " " (format-mode-line mode-line-modes))))
-             " " (:eval (jcs-vc-project))))
-     (quote ((:eval
-              (when (and (bound-and-true-p flycheck-mode)
-                         (or flycheck-current-errors
-                             (eq 'running flycheck-last-status-change)))
-                (cl-loop for state in '((error   . "#FB4933")
-                                        (warning . "#FABD2F")
-                                        (info    . "#83A598"))
-                         as lighter = (jcs-flycheck-lighter (car state))
-                         when lighter
-                         concat (propertize lighter 'face `(:foreground ,(cdr state))))))
-             (:eval (jcs-vc-info)) " "
-             (:eval (moody-tab " %l : %c " 0 'up)) " %p "
-             mode-line-end-spaces))))))
 
 ;;
 ;; (@* "Core" )
