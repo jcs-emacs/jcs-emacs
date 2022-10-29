@@ -98,7 +98,7 @@ If optional argument DIR is nil, use variable `default-directory' instead."
 (defun jcs-vc-project ()
   "Return the project name."
   (when-let ((project (jcs-project-root)))
-    (file-name-nondirectory project)))
+    (file-name-nondirectory (directory-file-name project))))
 
 (defun jcs-vc-system ()
   "Return the system name."
