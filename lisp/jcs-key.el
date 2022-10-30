@@ -100,8 +100,7 @@
 
 ;;; Expand Region
     ((kbd "C-+") . er/expand-region)
-    ((kbd "C-_") . (lambda () (interactive)
-                     (require 'expand-region) (er/contract-region 1)))
+    ((kbd "C-_") . er/contract-region)
 
 ;;; File Explorer
     ((kbd "C-M-l") . treemacs)  ; `Visual Studio'
