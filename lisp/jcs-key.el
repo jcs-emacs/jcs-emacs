@@ -16,10 +16,6 @@
     ((kbd "M-m") . jcs-messages)
     ((kbd "M-M") . jcs-messages-other-window)
 
-;;; *scratch*
-    ((kbd "M-s") . scratch-buffer)
-    ((kbd "M-S") . jcs-scratch-other-window)
-
 ;;; Admin
     ((kbd "M-<f4>") . save-buffers-kill-terminal)
     ((kbd "M-<f6>") . restart-emacs)
@@ -110,11 +106,6 @@
 ;;; File Explorer
     ((kbd "C-M-l") . treemacs)  ; `Visual Studio'
     ((kbd "C-b")   . treemacs)  ; `VS Code'
-
-;;; File editing
-    ((kbd "M-k")   . jcs-maybe-kill-this-buffer)
-    ((kbd "M-K")   . jcs-reopen-this-buffer)
-    ((kbd "C-M-k") . kill-this-buffer)
 
 ;;; File Files
     ((kbd "M-f")     . ffap)
@@ -337,8 +328,6 @@
     ((kbd "C-M-<right>") . buf-move-right)
     ((kbd "C-o")         . diminish-buffer-mode)  ; Diminish Buffer
 
-    ((kbd "M-s") . scratch-buffer)
-
     ((kbd "C-k C-s") . describe-bindings)
 
     ((kbd "C-r C-r") . jcs-iedit-mode)        ; Iedit
@@ -348,6 +337,15 @@
 
     ([C-S-tab] . centaur-tabs-backward)
     ([C-tab]   . centaur-tabs-forward)
+
+;;; *scratch*
+    ((kbd "M-s") . scratch-buffer)
+    ((kbd "M-S") . jcs-scratch-other-window)
+
+;;; File editing
+    ((kbd "M-k")   . jcs-maybe-kill-this-buffer)
+    ((kbd "M-K")   . jcs-reopen-this-buffer)
+    ((kbd "C-M-k") . kill-this-buffer)
 
 ;;; Undo/Redo
     ((kbd "C-z") . undo-tree-vf-undo)

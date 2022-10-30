@@ -45,35 +45,34 @@
 
 (jcs-add-hook 'on-init-ui-hook
   (auto-scroll-bar-mode 1)
-  (balanced-windows-mode 1)
   (echo-bar-mode 1)
-  (electric-indent-mode 1)
-  (electric-pair-mode 1)
   (global-hl-line-mode 1)
   (global-hl-todo-mode 1)
   (indent-control-mode 1)
-  (message-clean-mode 1)
   (minions-mode 1)
   (right-click-context-mode 1)
-  (show-paren-mode t)
   (vertico-mode 1)
-  (vs-revbuf-mode 1)
   (jcs-require '(jcs-edit))
   (message nil))  ; mute at the very end!
 
 (jcs-add-hook 'on-first-input-hook
+  (balanced-windows-mode 1)
   (global-company-mode t)
   (delete-selection-mode 1)
   (diminish-buffer-mode 1)
+  (electric-indent-mode 1)
+  (electric-pair-mode 1)
   (eval-mark-mode 1)
   (ff-guard-mode 1)
   (gcmh-mode 1)
   (global-goto-address-mode 1)
+  (message-clean-mode 1)
   (minibuffer-depth-indicate-mode 1)
   (global-page-break-lines-mode 1)
   (recentf-excl-mode 1)
   (global-region-occurrences-highlighter-mode 1)
   (transient-mark-mode t)
+  (vs-revbuf-mode 1)
   (global-vsc-edit-mode 1)
   (which-key-mode 1)
   (global-whitespace-cleanup-mode 1)
@@ -105,11 +104,6 @@
 ;;
 ;; (@* "Modes" )
 ;;
-
-(jcs-add-hook 'diff-mode-hook
-  (jcs-key-local
-    `(((kbd "M-k") . jcs-maybe-kill-this-buffer)
-      ((kbd "M-K") . jcs-reopen-this-buffer))))
 
 (jcs-add-hook 'reb-mode-hook  ; Re-Builder
   (jcs-key-local

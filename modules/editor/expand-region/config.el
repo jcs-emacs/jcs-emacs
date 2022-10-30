@@ -31,12 +31,10 @@
 
 (defun jcs--er/record-history ()
   "Record the last item from variable `er/history'."
-  (when (featurep 'expand-region)
-    (setq jcs--er/history-last (nth 0 er/history))))
+  (setq jcs--er/history-last (nth 0 er/history)))
 
 (defun jcs-safe-er/expand-list (data &optional append)
   "Safe way to modify expand list from `expand-region'."
-  (require 'expand-region)
   (unless (listp data) (setq data (list data)))
   (setq er/try-expand-list (if append (append data er/try-expand-list) data))
   (delete-dups er/try-expand-list))

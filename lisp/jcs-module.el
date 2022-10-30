@@ -131,8 +131,8 @@
 (defun jcs-modules-load-entry ()
   "Evaluate through `jcs-module-load-alist' for all required modules."
   (dolist (data jcs-module-load-alist)
-    (let ((modes (car data)) (modules (cdr data)))
-      (jcs-with-eval-after-load modes (jcs-module-load modules)))))
+    (let ((feats (car data)) (modules (cdr data)))
+      (jcs-with-eval-after-load feats (jcs-module-load modules)))))
 
 (jcs-modules-load-entry)
 
