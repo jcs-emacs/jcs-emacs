@@ -105,6 +105,11 @@
 ;; (@* "Modes" )
 ;;
 
+(jcs-add-hook 'diff-mode-hook
+  (jcs-key-local
+    `(((kbd "M-k") . jcs-maybe-kill-this-buffer)
+      ((kbd "M-K") . jcs-reopen-this-buffer))))
+
 (jcs-add-hook 'reb-mode-hook  ; Re-Builder
   (jcs-key-local
     `(((kbd "<up>")   . vs-edit-previous-line)

@@ -106,6 +106,11 @@
     ((kbd "C-M-l") . treemacs)  ; `Visual Studio'
     ((kbd "C-b")   . treemacs)  ; `VS Code'
 
+;;; File editing
+    ((kbd "M-k")   . jcs-maybe-kill-this-buffer)
+    ((kbd "M-K")   . jcs-reopen-this-buffer)
+    ((kbd "C-M-k") . kill-this-buffer)
+
 ;;; File Files
     ((kbd "M-f")     . ffap)
     ((kbd "M-F")     . ffap-other-window)
@@ -340,11 +345,6 @@
 ;;; *scratch*
     ((kbd "M-s") . scratch-buffer)
     ((kbd "M-S") . jcs-scratch-other-window)
-
-;;; File editing
-    ((kbd "M-k")   . jcs-maybe-kill-this-buffer)
-    ((kbd "M-K")   . jcs-reopen-this-buffer)
-    ((kbd "C-M-k") . kill-this-buffer)
 
 ;;; Undo/Redo
     ((kbd "C-z") . undo-tree-vf-undo)
