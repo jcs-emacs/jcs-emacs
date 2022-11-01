@@ -294,11 +294,6 @@ Notice PATH can either be `buffer-name' or `buffer-file-name'."
 ;; (@* "Character" )
 ;;
 
-(defun jcs-print-current-char ()
-  "Print out the current character."
-  (interactive)
-  (message "[INFO] Current character: %s" (jcs-get-current-char-string)))
-
 ;; TOPIC: Check if a character (not string) is lowercase, uppercase, alphanumeric?
 ;;
 ;; See https://stackoverflow.com/questions/27798296/check-if-a-character-not-string-is-lowercase-uppercase-alphanumeric
@@ -370,11 +365,6 @@ Notice PATH can either be `buffer-name' or `buffer-file-name'."
 ;;
 ;; (@* "Word" )
 ;;
-
-(defun jcs-print-current-word ()
-  "Print out the current word."
-  (interactive)
-  (message "[INFO] Current word: %s" (word-at-point)))
 
 (defun jcs-current-word-equal-p (str)
   "Check the current word equal to STR, STR can be a list of string."
