@@ -22,7 +22,7 @@
 (jcs-add-hook 'window-state-change-hook
   (when (and (not (active-minibuffer-window))
              (not (jcs-funcall-fboundp #'company--active-p)))
-    (jcs-buffer-menu-refresh-buffer)
+    (jcs-funcall-fboundp #'jcs-buffer-menu-refresh-buffer)
     (jcs-dashboard-refresh-buffer)
     (when echo-bar-mode (jcs-funcall-fboundp #'echo-bar-update))))
 
