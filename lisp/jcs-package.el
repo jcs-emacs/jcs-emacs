@@ -245,6 +245,7 @@
           organize-imports-java
           package-build
           page-break-lines
+          pangu-spacing
           parse-it
           password-generator
           password-mode
