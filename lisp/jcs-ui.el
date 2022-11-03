@@ -188,6 +188,13 @@
   :init
   (setq winum-scope 'frame-local))
 
+(leaf repos-window
+  :init
+  (setq repos-window-commands '(hl-todo-previous
+                                hl-todo-next)
+        repos-window-switch-commands '(push-button
+                                       compile-goto-error)))
+
 ;;
 ;;; Sideline
 

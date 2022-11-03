@@ -267,6 +267,7 @@
           rainbow-mode
           region-occurrences-highlighter
           region-state
+          repos-window
           restart-emacs
           reveal-in-folder
           right-click-context

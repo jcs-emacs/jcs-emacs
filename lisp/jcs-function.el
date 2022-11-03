@@ -3,25 +3,6 @@
 ;;; Code:
 
 ;;
-;; (@* "Navigate to Error" )
-;;
-
-(jcs-advice-add '(push-button compile-goto-error) :around
-  ;; Exection runs after navigate buffer that is different than the caller.
-  (let ((prev-buf (current-buffer)))
-    (apply arg0 args)
-    (unless (eq prev-buf (current-buffer))  ; Different button, recenter it.
-      (jcs-recenter-top-bottom 'middle))))
-
-;;
-;; (@* "Advices" )
-;;
-
-(defun jcs--recenter--advice-after (&rest _)
-  "Advice for commands that we do recenter after execution."
-  (call-interactively #'recenter))
-
-;;
 ;; (@* "*Messages*" )
 ;;
 
