@@ -82,7 +82,10 @@
 (defmacro jcs-with-dashboard-last-path (&rest body)
   "Execute BODY with preserving dashboard current path."
   (declare (indent 0) (debug t))
-  `(let ((dashboard-ls-path (jcs-last-default-directory))) ,@body))
+  `(let ((dashboard-ls-path (if-let ((buffers (nth 0 (jcs-valid-buffer-list))))
+                                (file-name-directory (buffer-file-name buffers))
+                              default-directory)))
+     ,@body))
 
 ;;
 ;; (@* "Refresh" )

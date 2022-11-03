@@ -15,7 +15,7 @@ If optional argument WITH-EXT is non-nil; return path with extension."
                  (directory-files path t (when ext (format "\\%s$" ext)))))
         types fn)
     (dolist (file files)
-      (when (jcs-file-p file)
+      (when (file-exists-p file)
         (setq fn (file-name-nondirectory file))
         (unless (member fn '("." ".."))
           (unless full (setq file fn))

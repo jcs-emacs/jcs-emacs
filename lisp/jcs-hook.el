@@ -110,12 +110,6 @@
     `(((kbd "M-k") . jcs-maybe-kill-this-buffer)
       ((kbd "M-K") . jcs-reopen-this-buffer))))
 
-(jcs-add-hook 'reb-mode-hook  ; Re-Builder
-  (jcs-key-local
-    `(((kbd "<up>")   . vs-edit-previous-line)
-      ((kbd "<down>") . vs-edit-next-line)
-      ((kbd "M-k")    . kill-buffer-and-window))))
-
 (jcs-add-hook '(text-mode-hook prog-mode-hook conf-mode-hook)
   (alt-codes-mode 1)
   (auto-highlight-symbol-mode 1)

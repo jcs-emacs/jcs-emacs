@@ -98,7 +98,7 @@
   (jcs-insert-header-if-valid '("[.]java")
                               'jcs-insert-java-template)
 
-  (unless (jcs-file-directory-exists-p (buffer-file-name))
+  (unless (file-exists-p (buffer-file-name))
     (add-hook 'after-save-hook #'jcs-java--first-save nil t))
 
   (jcs-key-local

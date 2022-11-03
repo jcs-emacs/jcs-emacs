@@ -712,28 +712,6 @@ If optional argument REVERSE is non-nil, LIST item and ELT argument."
       (kill-buffer))))
 
 ;;
-;; (@* "Directory" )
-;;
-
-(defun jcs-file-p (path)
-  "Return non-nil if PATH is a file path."
-  (and (file-exists-p path) (not (file-directory-p path))))
-
-(defun jcs-directory-p (path)
-  "Return non-nil if PATH is a directory path."
-  (and (file-exists-p path) (file-directory-p path)))
-
-(defun jcs-file-directory-exists-p (file-path)
-  "Return non-nil if FILE-PATH does exists."
-  (or (file-directory-p file-path) (file-exists-p file-path)))
-
-(defun jcs-last-default-directory ()
-  "Return a dedicated default directory."
-  (if-let ((buffers (nth 0 (jcs-valid-buffer-list))))
-      (file-name-directory (buffer-file-name buffers))
-    default-directory))
-
-;;
 ;; (@* "String" )
 ;;
 

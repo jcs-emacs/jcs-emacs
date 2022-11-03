@@ -334,8 +334,8 @@
 
     ((kbd "C-k C-s") . describe-bindings)
 
-    ((kbd "C-r C-r") . jcs-iedit-mode)        ; Iedit
-    ((kbd "C-r b")   . jcs-re-builder)        ; RE-Builder
+    ((kbd "C-r C-r") . iedit-mode)            ; Iedit
+    ((kbd "C-r b")   . re-builder)            ; RE-Builder
     ((kbd "C-r o")   . read-only-mode)        ; Read-Only
     ((kbd "C-r f")   . recentf-open-files)    ; Recent Files
 
