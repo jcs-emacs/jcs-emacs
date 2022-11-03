@@ -116,23 +116,6 @@
           vsc-edit-beginning-of-line vsc-edit-end-of-line)))
 
 ;;
-;; (@* "Iedit" )
-;;
-
-(defun jcs-iedit-mode ()
-  "Enable Iedit mode in the safe way."
-  (interactive)
-  (require 'iedit)
-  (let ((kill-ring kill-ring))
-    (if iedit-mode
-        (call-interactively #'iedit-mode)
-      (when (or (word-at-point) (symbol-at-point))
-        (call-interactively #'iedit-mode))))
-  ;; Call this function just to update `kill-ring'.
-  (when (and (not iedit-mode) kill-ring) (current-kill 1))
-  iedit-mode)
-
-;;
 ;; (@* "LSP" )
 ;;
 
@@ -169,19 +152,6 @@
     (delete-whitespace-rectangle start end)
     (goto-char start)
     (while (search-forward "\n" nil t) (replace-match "" nil t))))
-
-;;
-;; (@* "Re-Builder" )
-;;
-
-(defun jcs-re-builder (type)
-  "Rewrap `re-builder' function to ask search case TYPE."
-  (interactive
-   (list (completing-read
-          "Enable case sensitive?" '("Case Sensitive"
-                                     "Case Insensitive"))))
-  (let ((case-fold-search (string= type "Case Insensitive")))
-    (re-builder)))
 
 ;;
 ;; (@* "Syntax Checker" )
