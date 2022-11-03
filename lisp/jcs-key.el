@@ -334,10 +334,10 @@
 
     ((kbd "C-k C-s") . describe-bindings)
 
-    ((kbd "C-r C-r") . iedit-mode)            ; Iedit
-    ((kbd "C-r b")   . re-builder)            ; RE-Builder
-    ((kbd "C-r o")   . read-only-mode)        ; Read-Only
-    ((kbd "C-r f")   . recentf-open-files)    ; Recent Files
+    ((kbd "C-r C-r") . iedit-mode)          ; Iedit
+    ((kbd "C-r b")   . re-builder)          ; RE-Builder
+    ((kbd "C-r o")   . read-only-mode)      ; Read-Only
+    ((kbd "C-r f")   . recentf-open-files)  ; Recent Files
 
     ([C-S-tab] . centaur-tabs-backward)
     ([C-tab]   . centaur-tabs-forward)

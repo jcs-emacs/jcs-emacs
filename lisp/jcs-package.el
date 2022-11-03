@@ -173,6 +173,7 @@
           haml-mode
           hammy
           haxe-mode
+          helafy
           helpful
           hexo
           hgignore-mode

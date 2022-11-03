@@ -128,32 +128,6 @@
   (when (and (jcs-project-under-p) (not (jcs--lsp-connected-p))) (lsp-deferred)))
 
 ;;
-;; (@* "Prettify / Minify" )
-;;
-
-(defun jcs-prettify-contents ()
-  "Prettify contents by file type."
-  (interactive)
-  (require 'sgml-mode)
-  (let* ((inhibit-modification-hooks t)
-         (bound (jcs-region-bound))
-         (start (car bound)) (end (cdr bound)))
-    (cl-case major-mode
-      (`json-mode (json-reformat-region start end))
-      ((nxml-mode xml-mode web-mode html-mode) (sgml-pretty-print start end))
-      (t (user-error "[WARNING] No prettify command in this context")))))
-
-(defun jcs-minify-contents ()
-  "Minify contents by removing newlines and whitespaces."
-  (interactive)
-  (let* ((inhibit-modification-hooks t)
-         (bound (jcs-region-bound))
-         (start (car bound)) (end (cdr bound)))
-    (delete-whitespace-rectangle start end)
-    (goto-char start)
-    (while (search-forward "\n" nil t) (replace-match "" nil t))))
-
-;;
 ;; (@* "Syntax Checker" )
 ;;
 
