@@ -32,7 +32,8 @@
 
 (jcs-add-hook 'find-file-hook
   (jcs-project-remember)
-  (jcs-project--track-open-projects))
+  (jcs-project--track-open-projects)
+  (jcs--safe-lsp-active))
 
 ;;
 ;; (@* "Initialization" )
@@ -82,13 +83,13 @@
 (jcs-add-hook 'on-first-file-hook
   (auto-read-only-mode 1)
   (global-tree-sitter-mode 1)
-  (global-so-long-mode 1))
+  (global-so-long-mode 1)
+  (require 'lsp-mode))
 
 (jcs-add-hook 'jcs-on-project-hook
   (global-diff-hl-mode 1)
   (editorconfig-mode 1)
-  (global-prettier-mode 1)
-  (jcs--safe-lsp-active))
+  (global-prettier-mode 1))
 
 ;;
 ;; (@* "Input" )

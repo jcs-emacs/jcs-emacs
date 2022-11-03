@@ -369,7 +369,7 @@ in multiple windows.")
 (defun jcs-kill-this-buffer ()
   "Kill this buffer."
   (interactive)
-  (when (and (featurep 'lsp-mode) (jcs--lsp-connected-p)) (lsp-disconnect))
+  (when (jcs--lsp-connected-p) (lsp-disconnect))
   (kill-this-buffer)
   (jcs-project--track-open-projects)
   ;; If still in the buffer menu, try switch to the previous buffer.

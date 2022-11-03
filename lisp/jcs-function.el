@@ -125,7 +125,7 @@
 
 (defun jcs--safe-lsp-active ()
   "Safe way to active LSP."
-  (when (and (jcs-project-under-p) (not (jcs--lsp-connected-p))) (lsp-deferred)))
+  (unless (jcs--lsp-connected-p) (lsp-deferred)))
 
 ;;
 ;; (@* "Syntax Checker" )
