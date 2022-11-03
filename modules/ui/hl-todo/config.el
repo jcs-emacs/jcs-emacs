@@ -1,33 +1,26 @@
 ;;; ui/hl-todo/config.el  -*- lexical-binding: t; -*-
 
 (leaf hl-todo
-  :init
-  (setq hl-todo-highlight-punctuation "")
   :defer-config
-  (require 'asoc)
-  (asoc-put! hl-todo-keyword-faces "TODO" "red" t)
-  (asoc-put! hl-todo-keyword-faces "NOTE" "dark green" t)
-  (asoc-put! hl-todo-keyword-faces "TEMP" "turquoise" t)
-  (asoc-put! hl-todo-keyword-faces "FIXME" "red" t)
-  (nconc hl-todo-keyword-faces
-         '(("ATTENTION"   . "red")
-           ("STUDY"       . "yellow")
-           ("IMPORTANT"   . "yellow")
-           ("CAUTION"     . "yellow")
-           ("OPTIMIZE"    . "yellow")
-           ("DESCRIPTION" . "dark green")
-           ("TAG"         . "dark green")
-           ("OPTION"      . "dark green")
-           ("DEBUG"       . "turquoise")
-           ("DEBUGGING"   . "turquoise")
-           ("TEMPORARY"   . "turquoise")
-           ("SOURCE"      . "PaleTurquoise2")
-           ("URL"         . "PaleTurquoise2")
-           ("IDEA"        . "green yellow")
-           ("OBSOLETE"    . "DarkOrange3")
-           ("DEPRECATED"  . "DarkOrange3")
-           ("TOPIC"       . "slate blue")
-           ("SEE"         . "slate blue")))
-  (advice-add #'hl-todo--inside-comment-or-string-p :override #'jcs-inside-comment-or-string-p)
-  (advice-add #'hl-todo-previous :after #'jcs--recenter--advice-after)
-  (advice-add #'hl-todo-next :after #'jcs--recenter--advice-after))
+  (setq hl-todo-highlight-punctuation ":"
+        hl-todo-keyword-faces
+        '(;; For reminders to change or add something at a later date.
+          ("TODO" warning bold)
+          ;; For code (or code paths) that are broken, unimplemented, or slow,
+          ;; and may become bigger problems later.
+          ("FIXME" error bold)
+          ;; For code that needs to be revisited later, either to upstream it,
+          ;; improve it, or address non-critical issues.
+          ("REVIEW" font-lock-keyword-face bold)
+          ;; For code smells where questionable practices are used
+          ;; intentionally, and/or is likely to break in a future update.
+          ("HACK" font-lock-constant-face bold)
+          ;; For sections of code that just gotta go, and will be gone soon.
+          ;; Specifically, this means the code is deprecated, not necessarily
+          ;; the feature it enables.
+          ("DEPRECATED" font-lock-doc-face bold)
+          ;; Extra keywords commonly found in the wild, whose meaning may vary
+          ;; from project to project.
+          ("NOTE" success bold)
+          ("BUG" error bold)
+          ("XXX" font-lock-constant-face bold))))
