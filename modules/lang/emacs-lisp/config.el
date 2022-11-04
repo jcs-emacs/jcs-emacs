@@ -18,6 +18,9 @@
   (modify-syntax-entry ?_ "w")  ; Treat underscore as word.
   (jcs-insert-header-if-valid '("[.]el")
                               'jcs-insert-emacs-lisp-template)
+
+  (company-fuzzy-backend-add 'company-elisp-keywords)
+
   (eask-api-setup))
 
 (jcs-add-hook 'emacs-lisp-compilation-mode-hook
