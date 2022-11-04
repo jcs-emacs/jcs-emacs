@@ -78,6 +78,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add `company` and `flycheck` support for multiple languages (4f71184b0eab6b65bc7f57d615494f9d88afb020)
 * Split moduels to each individual `config.el` file (d97ef5c27090d65e3ba555c41443f5d877764493)
 * Allow `lsp-mode` being active in file without the `project-root` being defined (b737a6515e51b23dfb42c11ab2e49a54f48b9ca4)
+* Add support for elisp keywords completion (19f87363c77d15602f09dd358ce9237fe47ccca1)
 
 ## 8.2.1
 > Released Jul 22, 2022
