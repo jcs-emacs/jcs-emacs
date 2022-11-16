@@ -128,6 +128,7 @@
           emp
           eping
           erlang
+          eros
           eshell-syntax-highlighting
           ess
           esup
