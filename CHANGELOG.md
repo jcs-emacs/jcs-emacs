@@ -194,7 +194,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Installed new package `balanced-windows`.
 * Installed new package `toggle-window`.
 * Installed new package `transpose-frame`.
-* Installed new package `minions-mode`.
+* Installed new package `minions`.
 * Replaced package `diminish` with `minions-mode`; package `diminish` removed.
 * Installed new package `moody`.
 * Replaced mode line with `moody` instead of `powerline`.
