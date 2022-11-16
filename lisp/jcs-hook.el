@@ -40,7 +40,7 @@
 ;;
 
 (jcs-add-hook 'after-init-hook
-  (jcs-require '(dashboard moody on))
+  (jcs-require '(dashboard on))
   (use-ttf-set-default-font)
   (jcs-setup-default-theme))
 
@@ -50,7 +50,7 @@
   (global-hl-line-mode 1)
   (global-hl-todo-mode 1)
   (indent-control-mode 1)
-  (minions-mode 1)
+  (jcs-modeline-mode 1)
   (right-click-context-mode 1)
   (vertico-mode 1)
   (jcs-require '(jcs-edit))

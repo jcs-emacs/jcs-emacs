@@ -5,7 +5,7 @@
 
 (defun jcs-hit-backtrace ()
   "Do stuff when backtrace occures."
-  (jcs-red-mode-line)  ; When error, turn red
+  (jcs-modeline-red)  ; When error, turn red
   (msgu-inhibit-log
     (message "[INFO] Oops, error occurs! Please see backtrace for more information")))
 

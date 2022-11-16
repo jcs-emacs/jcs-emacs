@@ -196,6 +196,7 @@
           javadoc-lookup
           javap-mode
           jayces-mode
+          jcs-modeline
           jenkinsfile-mode
           json-mode
           keypression
@@ -228,9 +229,7 @@
           message-clean-mode
           meta-view
           minimap
-          minions
           mint-mode
-          moody
           most-used-words
           move-text
           multi-shell

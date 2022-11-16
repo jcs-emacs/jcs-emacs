@@ -78,35 +78,5 @@ If optional argument DIR is nil, use variable `default-directory' instead."
   (interactive)
   (jcs-with-other-window (project-find-file)))
 
-;;
-;; (@* "Version Control" )
-;;
-
-(defun jcs-vc-info ()
-  "Return vc-mode information."
-  (format-mode-line '(vc-mode vc-mode)))
-
-(defun jcs-vc-status ()
-  "Return version control status."
-  (require 'subr-x)
-  (when-let* ((info (jcs-vc-info))
-              (split (split-string info ":"))
-              (name (string-trim (jcs-s-replace-displayable (nth 0 split))))
-              (branch (string-trim (jcs-s-replace-displayable (nth 1 split)))))
-    (list name branch)))
-
-(defun jcs-vc-project ()
-  "Return the project name."
-  (when-let ((project (jcs-project-root)))
-    (file-name-nondirectory (directory-file-name project))))
-
-(defun jcs-vc-system ()
-  "Return the system name."
-  (nth 1 (jcs-vc-status)))
-
-(defun jcs-vc-branch ()
-  "Return the branch name."
-  (nth 2 (jcs-vc-status)))
-
 (provide 'jcs-project)
 ;;; jcs-project.el ends here
