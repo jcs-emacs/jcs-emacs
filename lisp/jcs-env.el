@@ -161,6 +161,13 @@
         which-key-dont-use-unicode t))
 
 ;;
+;;; Mark
+(leaf eval-mark
+  :init
+  (setq eval-mark-commands '( eval-buffer eval-defun eval-region
+                              narrow-to-region)))
+
+;;
 ;;; Messages
 (leaf message-clean-mode
   :init
