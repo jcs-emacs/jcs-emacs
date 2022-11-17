@@ -84,6 +84,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Remove unused command to toggle forward/backward sexp (4703c7fc81152f8818f5c4cba907d64980ae4c0c)
 * Bind keys for `cycle-quote` and `cycle-slash` (8e5dec85c47c4c9ff35e48df6bcbf317b687cc93)
 * Replace `bool-flip` with new package `cycle-at-point` (e3399712e28730fa8b474032e6e17664f153ac68)
+* Add new package `cycle-case-style` (6cad7031a6b0ef58bbf74e74e020b272d53e4b19)
 
 ## 8.2.1
 > Released Jul 22, 2022
