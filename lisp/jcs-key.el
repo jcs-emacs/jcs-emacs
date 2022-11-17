@@ -86,8 +86,9 @@
     ((kbd "C-M-<up>")   . scroll-down-line)
     ((kbd "C-M-<down>") . scroll-up-line)
 
-    ((kbd "C-?")  . cycle-slash)
-    ((kbd "M-?")  . cycle-quotes)
+    ((kbd "C-M-?") . cycle-at-point)
+    ((kbd "C-?")   . cycle-slash)
+    ((kbd "M-?")   . cycle-quotes)
 
 ;;; Error
     ([f9]  . first-error)

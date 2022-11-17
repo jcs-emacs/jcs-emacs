@@ -60,7 +60,6 @@
           beancount
           better-scroll
           block-travel
-          bool-flip
           browse-kill-ring
           buffer-menu-filter
           buffer-move
@@ -101,6 +100,7 @@
           crystal-mode
           csproj-mode
           csv-mode
+          cycle-at-point
           cycle-quotes
           cycle-slash
           d-mode
