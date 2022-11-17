@@ -114,8 +114,9 @@ Here is the list of key bindins that defined in this configuration.
 * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>r</kbd> - Reveal file in folder.
 
 * <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>/</kbd> - Cycle at point.
-* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>/</kbd> - Cycle slash.
+* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>6</kbd> - Cycle case style.
 * <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>/</kbd> - Cycle quotes.
+* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>/</kbd> - Cycle slash.
 
 #### Build / Run (Output)
 

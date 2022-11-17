@@ -101,6 +101,7 @@
           csproj-mode
           csv-mode
           cycle-at-point
+          cycle-case-style
           cycle-quotes
           cycle-slash
           d-mode
