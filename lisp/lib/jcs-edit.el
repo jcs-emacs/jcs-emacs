@@ -30,11 +30,6 @@
 ;; (@* "Balanced Expression (sexp)" )
 ;;
 
-(defun jcs-toggle-backward-forward-sexp ()
-  "Move to balance expression in backward/forward direction if any."
-  (interactive)
-  (msgu-silent (when (jcs-backward-sexp) (jcs-forward-sexp))))
-
 (defun jcs-current-pair ()
   "Return current pair character."
   (let* ((prev (char-before))
@@ -52,11 +47,7 @@
         ((save-excursion (forward-char 1) (jcs-current-pair))
          (forward-char 1)
          (backward-sexp))
-        (t (message "%s %s %s"
-                    (propertize "[INFO] You are at the end of"
-                                'face '(:foreground "cyan"))
-                    "backward"
-                    (propertize "sexp" 'face '(:foreground "cyan"))))))
+        (t (user-error "[INFO] You are at the end of backward sexp"))))
 
 (defun jcs-forward-sexp ()
   "Wrapper for function `forward-sexp'."
@@ -66,11 +57,7 @@
         ((jcs-current-pair)
          (forward-char -1)
          (forward-sexp))
-        (t (message "%s %s %s"
-                    (propertize "[INFO] You are at the end of"
-                                'face '(:foreground "cyan"))
-                    "forward"
-                    (propertize "sexp" 'face '(:foreground "cyan"))))))
+        (t (user-error "[INFO] You are at the end of forward sexp"))))
 
 ;;
 ;; (@* "Organize Imports" )
