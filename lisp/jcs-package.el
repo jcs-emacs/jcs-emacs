@@ -101,6 +101,8 @@
           crystal-mode
           csproj-mode
           csv-mode
+          cycle-quotes
+          cycle-slash
           d-mode
           dashboard-ls
           define-it
@@ -298,7 +300,6 @@
           toc-org
           togetherly
           toggle-profiler
-          toggle-quotes
           toggle-window
           topsy
           transpose-frame
