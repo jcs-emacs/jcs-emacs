@@ -80,6 +80,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Allow `lsp-mode` being active in file without the `project-root` being defined (b737a6515e51b23dfb42c11ab2e49a54f48b9ca4)
 * Add support for elisp keywords completion (19f87363c77d15602f09dd358ce9237fe47ccca1)
 * Extract modeline display to external package `jcs-modeline` (3cb0a6304d4b95fca9a35b4efbf6434eae4494ed)
+* Replace `toggle-quotes` with new package `cycle-quotes` (53c69a8532142b4ede97df717e07c29fff9e66a5)
+* Remove unused command to toggle forward/backward sexp (4703c7fc81152f8818f5c4cba907d64980ae4c0c)
+* Bind keys for `cycle-quote` and `cycle-slash` (8e5dec85c47c4c9ff35e48df6bcbf317b687cc93)
 
 ## 8.2.1
 > Released Jul 22, 2022
