@@ -1,6 +1,7 @@
 ;;; lang/markdown/config.el  -*- lexical-binding: t; -*-
 
 (require 'web-mode)
+(require 'expand-region)
 
 ;;
 ;; (@* "Settings" )
