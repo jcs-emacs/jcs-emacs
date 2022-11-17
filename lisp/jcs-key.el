@@ -21,7 +21,6 @@
     ((kbd "M-<f6>") . restart-emacs)
 
 ;;; Balanced Expression
-    ((kbd "C-?")  . jcs-toggle-backward-forward-sexp)
     ((kbd "C-:")  . jcs-backward-sexp)
     ((kbd "C-\"") . jcs-forward-sexp)
     ((kbd "C-;")  . backward-sexp)
@@ -50,7 +49,7 @@
     ((kbd "<escape>")   . top-level)
     ((kbd "S-<escape>") . keyboard-escape-quit)
 
-;;; Comment/Uncomment
+;;; Comment / Uncomment
     ((kbd "C-/")     . smart-comment)
     ((kbd "C-k C-c") . comment-region)
     ((kbd "C-k C-u") . (lambda () (interactive)
@@ -86,6 +85,9 @@
     ((kbd "<down>")     . next-line)
     ((kbd "C-M-<up>")   . scroll-down-line)
     ((kbd "C-M-<down>") . scroll-up-line)
+
+    ((kbd "C-?")  . cycle-slash)
+    ((kbd "M-?")  . cycle-quotes)
 
 ;;; Error
     ([f9]  . first-error)
@@ -346,7 +348,7 @@
     ((kbd "M-s") . scratch-buffer)
     ((kbd "M-S") . jcs-scratch-other-window)
 
-;;; Undo/Redo
+;;; Undo / Redo
     ((kbd "C-z") . undo-tree-vf-undo)
     ((kbd "C-y") . undo-tree-vf-redo)))
 
@@ -373,7 +375,7 @@
       ((kbd "TAB") . vsc-edit-tab)
       ((kbd "C-s") . jcs-save-buffer))))
 
-;;; Binary/Hex Editor
+;;; Binary / Hex Editor
 (leaf nhexl-mode
   :defer-config
   (jcs-key nhexl-mode-map
