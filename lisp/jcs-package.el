@@ -99,6 +99,7 @@
           consult
           crystal-mode
           csproj-mode
+          css-eldoc
           csv-mode
           cycle-at-point
           cycle-case-style
@@ -119,6 +120,7 @@
           echo-bar
           editorconfig-generate
           eldoc-meta-net
+          eldoc-toml
           electric-cursor
           electric-indent-sexp
           elfeed
