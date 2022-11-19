@@ -3,10 +3,6 @@
 (require 'css-mode)
 (require 'web-mode)
 
-(require 'com-css-sort)
-(require 'emmet-mode)
-(require 'rainbow-mode)
-
 ;;
 ;; (@* "Templates" )
 ;;
@@ -34,3 +30,11 @@
   ;; Eemmet
   (jcs-key emmet-mode-keymap
     `(((kbd "C-<return>") . jcs-emmet-expand-line))))
+
+;;
+;; (@* "Extensions" )
+;;
+
+(leaf css-eldoc
+  :init
+  (css-eldoc-enable))
