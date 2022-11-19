@@ -130,15 +130,11 @@
   (unless (jcs-contain-list-type-str "-" (list comment-start comment-end) 'regex)
     (modify-syntax-entry ?- "_")))
 
-(jcs-add-hook 'conf-mode-hook
-  (setq-local electric-pair-open-newline-between-pairs nil))
-
 ;;
 ;; (@* "Quitting" )
 ;;
 
 (jcs-advice-add '(keyboard-quit top-level) :before
-  (deactivate-mark)  ; disable region
   (jcs-funcall-fboundp #'jcs-backtrace-exit))
 
 (provide 'jcs-hook)
