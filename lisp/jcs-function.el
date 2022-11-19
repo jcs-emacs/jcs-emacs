@@ -75,28 +75,6 @@
       (insert val))))
 
 ;;
-;; (@* "ElDoc" )
-;;
-
-(defun jcs-eldoc-message-now () "Show eldoc message now." (interactive))
-
-(jcs-advice-add 'eldoc--message-command-p :override
-  ;; One can also loop through `eldoc-message-commands' and empty it out
-  (memq arg0
-        '(jcs-eldoc-message-now
-          mouse-set-point
-          vsc-edit-real-space vsc-edit-smart-space vsc-edit-space
-          vsc-edit-real-backspace vsc-edit-smart-backspace vsc-edit-backspace
-          previous-line next-line
-          vs-edit-previous-line vs-edit-next-line
-          jcs-py-indent-up jcs-py-indent-down
-          left-char right-char
-          vs-edit-forward-word vs-edit-backward-word
-          jcs-backward-word-capital jcs-forward-word-capital
-          beginning-of-line end-of-line
-          vsc-edit-beginning-of-line vsc-edit-end-of-line)))
-
-;;
 ;; (@* "LSP" )
 ;;
 
