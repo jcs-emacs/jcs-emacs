@@ -164,8 +164,8 @@
 ;;; Mark
 (leaf eval-mark
   :init
-  (setq eval-mark-commands '( eval-buffer eval-defun eval-region
-                              narrow-to-region)))
+  (setq eval-mark-commands-after '( eval-buffer eval-defun eval-region
+                                    narrow-to-region)))
 
 ;;
 ;;; Messages
