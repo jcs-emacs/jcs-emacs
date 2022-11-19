@@ -21,6 +21,7 @@
     (yasnippet                . "editor/snippets")
     (backtrace                . "emacs/backtrace")
     (compile                  . "emacs/compile")
+    (conf-mode                . "emacs/conf-mode")
     (dired                    . "emacs/dired")
     (re-builder               . "emacs/re-builder")
     (text-mode                . "emacs/text-mode")
