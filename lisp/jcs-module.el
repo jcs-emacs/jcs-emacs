@@ -137,8 +137,6 @@
     (let ((feats (car data)) (modules (cdr data)))
       (jcs-with-eval-after-load feats (jcs-module-load modules)))))
 
-(jcs-modules-load-entry)
-
 ;;;
 ;; Auto mode Management
 

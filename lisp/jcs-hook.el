@@ -40,6 +40,7 @@
 ;;
 
 (jcs-add-hook 'after-init-hook
+  (jcs-modules-load-entry)
   (jcs-require '(dashboard on))
   (use-ttf-set-default-font)
   (jcs-setup-default-theme))
