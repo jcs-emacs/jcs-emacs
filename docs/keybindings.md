@@ -140,7 +140,8 @@ Here is the list of key bindins that defined in this configuration.
 
 #### Calculate
 
-* <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>=</kbd> - Calculate the region and replace with the result.
+* <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>=</kbd> - Calculate current line
+* <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>Shift</kbd>+<kbd>=</kbd> - Calculate entire buffer.
 
 #### Sort
 

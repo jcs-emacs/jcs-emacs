@@ -209,6 +209,7 @@
           leaf
           license-templates
           line-reminder
+          literate-calc-mode
           log4e
           logms
           logview

@@ -43,7 +43,8 @@
     ((kbd "M-r") . revert-buffer)
 
 ;;; Calculator
-    ((kbd "C-k =") . jcs-calc-eval-region)
+    ((kbd "C-k =") . literate-calc-eval-line)
+    ((kbd "C-k +") . literate-calc-eval-buffer)
 
 ;;; Canceling Action
     ((kbd "<escape>")   . top-level)
