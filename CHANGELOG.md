@@ -88,6 +88,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add eldoc support for CSS (9b9b4cd493ef35d31a78300c94cae9ad9e778c84)
 * Add eldoc support for TOML (a0eb8ed975a9a7367ff94789d48f80ebb207dbf3)
 * Use `literate-calc-mode` instead of self-defined calc command (691186d362f79838291779bac6bf50e76eebc015)
+* Move back to use `use-package` (9d2ead748c345b8edcf17fb9ee0e58b1b7464f09)
 
 ## 8.2.1
 > Released Jul 22, 2022
