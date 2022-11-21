@@ -1,6 +1,6 @@
 ;;; editor/snippets/config.el  -*- lexical-binding: t; -*-
 
-(leaf yasnippet
+(use-package yasnippet
   :init
   (setq yas-verbosity 0))
 

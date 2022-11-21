@@ -45,8 +45,8 @@
 ;; (@* "Extensions" )
 ;;
 
-(leaf meta-view
-  :defer-config
+(use-package meta-view
+  :config
   (jcs-add-hook 'meta-view-after-insert-hook
     (run-hooks 'prog-mode-hook)  ; treat as prog-mode
     (setq-local ts-fold-summary-show nil)

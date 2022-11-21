@@ -1,6 +1,6 @@
 ;;; ui/dashboard/config.el  -*- lexical-binding: t; -*-
 
-(leaf dashboard
+(use-package dashboard
   :init
   (setq dashboard-banner-logo-title "[J C S • E M A C S]"
         dashboard-footer-icon ""
@@ -32,12 +32,12 @@
         dashboard-bookmarks-item-format "%s  %s"
         dashboard-shorten-by-window-width t
         dashboard-shorten-path-offset 15)
-  :defer-config
+  :config
   (jcs-require '(project dashboard-ls))
 
   (jcs-add-hook 'jcs-after-load-theme-hook
     (setq dashboard-startup-banner (jcs-dashboard--get-banner-path))
-    (jcs-dashboard-refresh-buffer))
+    (jcs-funcall-fboundp #'jcs-dashboard-refresh-buffer))
 
   (dashboard-setup-startup-hook))
 

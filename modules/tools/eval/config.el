@@ -1,10 +1,10 @@
 ;;; tools/eval/config.el  -*- lexical-binding: t; -*-
 
-(leaf execrun
+(use-package execrun
   :init
   (setq execrun-kill-buffer-function #'jcs-maybe-kill-this-buffer))
 
-(leaf quickrun
+(use-package quickrun
   :init
   (setq quickrun-focus-p nil
         quickrun-truncate-lines nil))

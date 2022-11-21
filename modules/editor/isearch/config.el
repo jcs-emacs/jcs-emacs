@@ -1,20 +1,20 @@
 ;;; editor/isearch/config.el  -*- lexical-binding: t; -*-
 
-(leaf isearch
+(use-package isearch
   :hook
-  ((isearch-mode-hook     . better-scroll-revert)
-   (isearch-mode-end-hook . better-scroll-setup))
+  ((isearch-mode     . better-scroll-revert)
+   (isearch-mode-end . better-scroll-setup))
   :init
   (setq isearch-lazy-count t
         lazy-count-prefix-format "[%s:%s] "))
 
-(leaf isearch-project
+(use-package isearch-project
   :init
   (setq isearch-project-ignore-paths '("bin/"
                                        "build/"
                                        "build.min/"
                                        "res/"))
-  :defer-config
+  :config
   (jcs-add-hook 'isearch-mode-hook
     ;; Paste the current symbol when `isearch' enabled.
     (cond ((use-region-p)

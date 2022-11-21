@@ -1,13 +1,13 @@
 ;;; tools/lsp/config.el  -*- lexical-binding: t; -*-
 
-(leaf lsp-mode
+(use-package lsp-mode
   :init
   (setq lsp-auto-guess-root t
         lsp-prefer-capf t
         lsp-keep-workspace-alive nil                      ; Auto-kill LSP server
         lsp-prefer-flymake nil                            ; Use lsp-ui and flycheck
         flymake-fringe-indicator-position 'right-fringe)
-  :defer-config
+  :config
   ;; Let's not block the loading process, so lsp packages don't hamper with
   ;; each another.
   (jcs-advice-add 'lsp--require-packages :override
@@ -19,7 +19,7 @@
               lsp-client-packages)
       (setq lsp--client-packages-required t))))
 
-(leaf lsp-ui
+(use-package lsp-ui
   :init
   (setq lsp-ui-doc-enable t
         lsp-ui-doc-text-scale-level -1
@@ -40,11 +40,11 @@
         lsp-ui-sideline-show-code-actions t
         lsp-ui-sideline-show-diagnostics nil
         lsp-ui-sideline-ignore-duplicate t)
-  :defer-config
+  :config
   (setq lsp-ui-doc-border (face-foreground 'font-lock-comment-face))
   (lsp-ui-sideline-set-default-icon))
 
-(leaf lsp-tailwindcss
+(use-package lsp-tailwindcss
   :init
   (setq lsp-tailwindcss-add-on-mode t
         lsp-tailwindcss-emmet-completions t))

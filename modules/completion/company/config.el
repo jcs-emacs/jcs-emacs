@@ -1,6 +1,6 @@
 ;;; completion/company/config.el  -*- lexical-binding: t; -*-
 
-(leaf company
+(use-package company
   :init
   (setq company-frontends '(company-pseudo-tooltip-frontend)
         company-require-match nil
@@ -19,12 +19,12 @@
            company-files
            company-etags company-gtags
            company-yasnippet))
-  :defer-config
+  :config
   (unless elenv-graphic-p
     (push 'company-echo-metadata-frontend company-frontends)))
 
-(leaf company-box
-  :hook (company-mode-hook . company-box-mode)
+(use-package company-box
+  :hook (company-mode . company-box-mode)
   :init
   (setq company-box-backends-colors nil
         company-box-frame-behavior 'point
@@ -32,13 +32,13 @@
         company-box-doc-delay 0.3
         company-box-doc-text-scale-level -2))
 
-(leaf company-emojify
+(use-package company-emojify
   :init
   (setq company-emojify-annotation (if elenv-graphic-p 'image 'unicode)
         company-emojify-emoji-styles '(github)))
 
-(leaf company-fuzzy
-  :hook (company-mode-hook . company-fuzzy-mode)
+(use-package company-fuzzy
+  :hook (company-mode . company-fuzzy-mode)
   :init
   (setq company-fuzzy-sorting-backend 'flx
         company-fuzzy-prefix-on-top nil

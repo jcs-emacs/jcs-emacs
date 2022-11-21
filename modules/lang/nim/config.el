@@ -20,5 +20,5 @@
 ;; (@* "Extensions" )
 ;;
 
-(leaf flycheck-nim
-  :hook (flycheck-mode-hook . (lambda (&rest _) (require 'flycheck-nim))))
+(use-package flycheck-nim
+  :hook (flycheck-mode . (lambda (&rest _) (require 'flycheck-nim))))

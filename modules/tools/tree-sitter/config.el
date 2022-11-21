@@ -1,8 +1,8 @@
 ;;; tools/tree-sitter/config.el  -*- lexical-binding: t; -*-
 
-(leaf tree-sitter-langs
-  :hook (tree-sitter-after-on-hook . tree-sitter-hl-mode)
-  :defer-config
+(use-package tree-sitter-langs
+  :hook (tree-sitter-after-on . tree-sitter-hl-mode)
+  :config
   (defun jcs--tree-sitter-grab-queries ()
     "Download all custom queries to the `tree-sitter-langs' queries folder."
     (require 'find-func)

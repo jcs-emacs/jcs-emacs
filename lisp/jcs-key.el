@@ -325,7 +325,7 @@
   `(((kbd "<up>")   . vs-edit-previous-line)
     ((kbd "<down>") . vs-edit-next-line)))
 
-(jcs-leaf-key*
+(jcs-bind-key*
   `(("\eq"               . (lambda () (interactive) (other-window -1)))
     ("\ew"               . other-window)
     ([C-up]              . block-travel-up)
@@ -357,8 +357,8 @@
 
 ;; ---
 
-(leaf auto-highlight-symbol
-  :defer-config
+(use-package auto-highlight-symbol
+  :config
   (jcs-key auto-highlight-symbol-mode-map
     `(((kbd "M-S-<right>"))
       ((kbd "M-S-<left>"))
@@ -371,24 +371,24 @@
     ("\eK" . jcs-messages-erase-buffer)))
 
 ;;; Auto Completion
-(leaf company
-  :defer-config
+(use-package company
+  :config
   (jcs-key company-active-map
     `(([tab]       . vsc-edit-tab)
       ((kbd "TAB") . vsc-edit-tab)
       ((kbd "C-s") . jcs-save-buffer))))
 
 ;;; Binary / Hex Editor
-(leaf nhexl-mode
-  :defer-config
+(use-package nhexl-mode
+  :config
   (jcs-key nhexl-mode-map
     `(((kbd "<up>")    . previous-line)
       ((kbd "<down>")  . next-line)
       ((kbd "<right>") . forward-char)
       ((kbd "<left>")  . backward-char))))
 
-(leaf scrollable-quick-peek
-  :defer-config
+(use-package scrollable-quick-peek
+  :config
   (jcs-key scrollable-quick-peek-keymap
     `(((kbd "<down>"))
       ((kbd "<up>"))
@@ -396,19 +396,19 @@
       ((kbd "S-<up>")   . scrollable-quick-peek-scroll-up))))
 
 ;;; Goto Address
-(leaf goto-addr
-  :defer-config
+(use-package goto-addr
+  :config
   (jcs-key goto-address-highlight-keymap
     `(((kbd "C-c")))))
 
 ;;; Kill Ring
-(leaf browse-kill-ring
-  :defer-config
+(use-package browse-kill-ring
+  :config
   (jcs-key browse-kill-ring-mode-map
     `(((kbd "<escape>") . kill-this-buffer))))
 
-(leaf multiple-cursors
-  :defer-config
+(use-package multiple-cursors
+  :config
   (jcs-key mc/keymap
     `(((kbd "<escape>") . mc/keyboard-quit)
       ((kbd "<return>"))
@@ -437,8 +437,8 @@
   `(((kbd "<up>")   . previous-line)
     ((kbd "<down>") . next-line)))
 
-(leaf dashboard
-  :defer-config
+(use-package dashboard
+  :config
   (jcs-key dashboard-mode-map
     `(((kbd "SPC"))
       ((kbd "<up>")    . previous-line)
@@ -446,8 +446,8 @@
       ((kbd "C-k C-p") . package-list-packages)
       ((kbd "M-K")     . jcs-dashboard-refresh-buffer))))
 
-(leaf eww
-  :defer-config
+(use-package eww
+  :config
   (jcs-key eww-mode-map
     `(((kbd "M-<left>")  . eww-back-url)
       ((kbd "M-<right>") . eww-forward-url)
@@ -458,8 +458,8 @@
       ((kbd "C-S-o")     . eww-list-bookmarks)
       ((kbd "C-h")       . eww-list-histories))))
 
-(leaf flycheck
-  :defer-config
+(use-package flycheck
+  :config
   (jcs-key flycheck-error-list-mode-map
     `(((kbd "M-k") . jcs-flycheck-mode)
       ((kbd "M-K") . flycheck-error-list-reset-filter))))
@@ -468,14 +468,14 @@
   `(((kbd "C-+") . tabulated-list-widen-current-column)
     ((kbd "C-_") . tabulated-list-narrow-current-column)))
 
-(leaf hl-todo
-  :defer-config
+(use-package hl-todo
+  :config
   (jcs-key hl-todo-mode-map
     `(([C-f10] . hl-todo-previous)
       ([C-f11] . hl-todo-next))))
 
-(leaf image-mode
-  :defer-config
+(use-package image-mode
+  :config
   (jcs-key image-mode-map
     `(((kbd "C-r") . image-rotate)
       ((kbd "C-0") . (lambda () (interactive)
@@ -485,14 +485,14 @@
       ((kbd "C-+") . image-flip-horizontally)
       ((kbd "C-_") . image-flip-vertically))))
 
-(leaf suggest
-  :defer-config
+(use-package suggest
+  :config
   (jcs-key suggest-mode-map
     `(((kbd "U")   . suggest-update)
       ((kbd "M-K") . suggest-update))))
 
-(leaf undo-tree
-  :defer-config
+(use-package undo-tree
+  :config
   (jcs-key undo-tree-visualizer-mode-map
     `(((kbd "RET") . undo-tree-visualizer-quit)
       ((kbd "C-s") . undo-tree-visualizer-quit)))
@@ -503,15 +503,15 @@
       ((kbd "C-?"))
       ((kbd "M-_")))))
 
-(leaf vertico
-  :defer-config
+(use-package vertico
+  :config
   (jcs-key vertico-map
     `(((kbd "\177")     . vertico-directory-delete-char)
       ((kbd "<return>") . vertico-directory-enter)
       ((kbd "/")        . jcs-vertico-/))))
 
-(leaf with-editor
-  :defer-config
+(use-package with-editor
+  :config
   (jcs-key with-editor-mode-map
     `(((kbd "C-s")      . with-editor-finish)
       ((kbd "C-g")      . with-editor-cancel)

@@ -29,4 +29,5 @@
 ;; (@* "Extensions" )
 ;;
 
-(leaf gitlab-ci-mode-flycheck :hook (flycheck-mode-hook . gitlab-ci-mode-flycheck-enable))
+(use-package gitlab-ci-mode-flycheck
+  :hook (flycheck-mode . gitlab-ci-mode-flycheck-enable))

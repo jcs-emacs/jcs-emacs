@@ -24,23 +24,23 @@ Note this is opposite logic to the toggle mode function."
 ;; (@* "Modeline" )
 ;;
 
-(leaf minions
+(use-package minions
   :init
   (setq minions-mode-line-delimiters nil
         minions-mode-line-lighter ""))
 
-(leaf moody
+(use-package moody
   :init
   (setq moody-mode-line-height 26
         x-underline-at-descent-line t)
-  :defer-config
+  :config
   ;; XXX For issue, https://github.com/tarsius/moody/pull/41
   (jcs-advice-add 'moody-redisplay :around
     (let ((inhibit-redisplay t)) (apply arg0 args)))
   (unless elenv-graphic-p (jcs-advice-add 'moody-tab :override arg0)))
 
-(leaf jcs-modeline
-  :defer-config
+(use-package jcs-modeline
+  :config
   (setq-default
    frame-title-format
    '((:eval invocation-name)
@@ -57,7 +57,7 @@ Note this is opposite logic to the toggle mode function."
   "Check if buffer using spaces or tabs."
   (if (= (how-many "^\t" (point-min) (point-max)) 0) "SPC" "TAB"))
 
-(leaf echo-bar
+(use-package echo-bar
   :init
   (setq echo-bar-right-padding 0
         echo-bar-function
@@ -70,8 +70,8 @@ Note this is opposite logic to the toggle mode function."
                   (format-time-string "%b %d, %Y %H:%M:%S")))
         echo-bar-minibuffer nil))
 
-(leaf region-state
-  :hook (activate-mark-hook . region-state-mode))
+(use-package region-state
+  :hook (activate-mark . region-state-mode))
 
 (provide 'jcs-disp)
 ;;; jcs-disp.el ends here

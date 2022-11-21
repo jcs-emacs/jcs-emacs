@@ -39,12 +39,12 @@
 ;; (@* "Extensions" )
 ;;
 
-(leaf elisp-demos
+(use-package elisp-demos
   :init
   (advice-add 'describe-function-1 :after #'elisp-demos-advice-describe-function-1)
   (advice-add 'helpful-update :after #'elisp-demos-advice-helpful-update))
 
-(leaf flycheck-eask           :hook (flycheck-mode-hook . flycheck-eask-setup))
-(leaf flycheck-elsa           :hook (flycheck-mode-hook . flycheck-elsa-setup))
-(leaf flycheck-package        :hook (flycheck-mode-hook . flycheck-package-setup))
-(leaf flycheck-relint         :hook (flycheck-mode-hook . flycheck-relint-setup))
+(use-package flycheck-eask    :hook (flycheck-mode . flycheck-eask-setup))
+(use-package flycheck-elsa    :hook (flycheck-mode . flycheck-elsa-setup))
+(use-package flycheck-package :hook (flycheck-mode . flycheck-package-setup))
+(use-package flycheck-relint  :hook (flycheck-mode . flycheck-relint-setup))

@@ -1,7 +1,7 @@
 ;;; ui/popup/config.el  -*- lexical-binding: t; -*-
 
-(leaf popup
-  :defer-config
+(use-package popup
+  :config
   (defvar jcs-popup-mouse-events-flag-p nil
     "Check if `popup-menu-item-of-mouse-event' is called.")
 
@@ -26,6 +26,6 @@
         (keyboard-quit)
       (apply arg0 args))))
 
-(leaf pos-tip
+(use-package pos-tip
   :init
   (setq pos-tip-internal-border-width 5))

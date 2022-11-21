@@ -24,7 +24,7 @@
 ;; (@* "Extensions" )
 ;;
 
-(leaf sql-indent
+(use-package sql-indent
   :init
   ;; URL: https://www.emacswiki.org/emacs/SqlIndent
 

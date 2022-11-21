@@ -1,13 +1,13 @@
 ;;; ui/treemacs/config.el  -*- lexical-binding: t; -*-
 
-(leaf treemacs
+(use-package treemacs
   :init
   (setq treemacs-position 'right
         treemacs-missing-project-action 'remove
         treemacs-sorting 'alphabetic-asc
         treemacs-follow-after-init t
         treemacs-no-png-images t)
-  :defer-config
+  :config
   (treemacs-follow-mode t)
   (treemacs-filewatch-mode t)
 

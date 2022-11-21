@@ -19,6 +19,5 @@
 ;;
 ;; (@* "Extensions" )
 ;;
-
-(leaf flycheck-haskell
-  :hook (flycheck-mode-hook . flycheck-haskell-setup))
+(use-package flycheck-haskell
+  :hook (flycheck-mode . flycheck-haskell-setup))

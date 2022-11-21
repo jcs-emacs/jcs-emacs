@@ -1,15 +1,15 @@
 ;;; tools/lookup/config.el  -*- lexical-binding: t; -*-
 
-(leaf dumb-jump
+(use-package dumb-jump
   :init
   (setq dumb-jump-selector 'completing-read))
 
-(leaf define-it
+(use-package define-it
   :init
   (setq define-it-output-choice (if elenv-graphic-p 'frame 'view)
         define-it-text-scale-level -2))
 
-(leaf preview-it
+(use-package preview-it
   :init
   (setq preview-it-render-md t))
 

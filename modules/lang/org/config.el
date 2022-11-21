@@ -86,7 +86,7 @@
 ;; (@* "Hook" )
 ;;
 
-(leaf org
+(use-package org
   :init
   (setq org-startup-folded nil
         org-todo-keywords '((sequence "TODO" "WAITING" "DONE"))
@@ -114,8 +114,8 @@
 ;; (@* "Extensions" )
 ;;
 
-(leaf org-superstar
-  :hook (org-mode-hook . org-superstar-mode)
+(use-package org-superstar
+  :hook (org-mode . org-superstar-mode)
   :init
   ;; Make leading stars truly invisible, by rendering them as spaces!
   (setq org-superstar-leading-bullet ?\s
@@ -130,7 +130,7 @@
                                           (?+ . ?⬧)
                                           (?- . ?⬨))))
 
-(leaf org-fancy-priorities
+(use-package org-fancy-priorities
   :hook ((org-mode . org-fancy-priorities-mode)
          (org-agenda-mode . org-fancy-priorities-mode))
   :init

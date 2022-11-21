@@ -1,6 +1,6 @@
 ;;; ui/minimap/config.el  -*- lexical-binding: t; -*-
 
-(leaf minimap
+(use-package minimap
   :init
   (setq minimap-width-fraction 0.1
         minimap-minimum-width 10

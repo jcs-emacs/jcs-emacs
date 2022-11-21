@@ -83,10 +83,10 @@
 ;; (@* "Extensions" )
 ;;
 
-(leaf markdown-toc
+(use-package markdown-toc
   :init
   (setq markdown-toc-indentation-space 2))
 
-(leaf impatient-showdown
+(use-package impatient-showdown
   :init
   (setq impatient-showdown-flavor 'github))

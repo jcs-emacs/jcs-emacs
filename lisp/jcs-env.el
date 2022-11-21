@@ -100,7 +100,7 @@
 
 ;;
 ;;; Comments
-(leaf newcomment
+(use-package newcomment
   :init
   (setq comment-inline-offset 2))
 
@@ -143,12 +143,12 @@
 ;;; Electric
 (setq-default electric-pair-inhibit-predicate 'electric-pair-default-inhibit)
 
-(leaf electric-cursor
+(use-package electric-cursor
   :init
   (setq electric-cursor-alist '((overwrite-mode . hbar)
                                 (t              . box))))
-(leaf electric-indent-sexp
-  :hook (electric-indent-mode-hook . electric-indent-sexp-mode)
+(use-package electric-indent-sexp
+  :hook (electric-indent-mode . electric-indent-sexp-mode)
   :init
   (setq electric-indent-sexp-auto-chars t))
 
@@ -165,7 +165,7 @@
 
 ;;
 ;;; Keybinds
-(leaf which-key
+(use-package which-key
   :init
   (setq which-key-sort-order #'which-key-key-order-alpha
         which-key-sort-uppercase-first nil
@@ -177,14 +177,14 @@
 
 ;;
 ;;; Mark
-(leaf eval-mark
+(use-package eval-mark
   :init
   (setq eval-mark-commands-after '( eval-buffer eval-defun eval-region
                                     narrow-to-region)))
 
 ;;
 ;;; Messages
-(leaf message-clean-mode
+(use-package message-clean-mode
   :init
   (setq message-clean-mode-mute-commands '( push-mark set-mark-command)
         message-clean-mode-echo-commands
@@ -202,7 +202,7 @@
            lsp--message)
         message-clean-mode-minor-mode 'echo))
 
-(leaf msgu
+(use-package msgu
   :init
   (setq msgu-sleep-seconds 0.4
         msgu-sit-seconds 100))
@@ -222,10 +222,10 @@
 
 ;;
 ;;; Read-Only
-(leaf auto-read-only
+(use-package auto-read-only
   :init
   (setq auto-read-only-function #'read-only-mode)
-  :defer-config
+  :config
   (nconc auto-read-only-file-regexps
          '("emacs/.*/lisp/"
            "/[.]emacs[.]d/elpa/"))
@@ -236,7 +236,7 @@
 ;;; Recent Files
 (setq recentf-max-menu-items 25)
 
-(leaf recentf-excl
+(use-package recentf-excl
   :init
   (setq recentf-excl-commands '( jcs-goto-definition
                                  jcs-goto-definition-other-window
@@ -245,14 +245,14 @@
 
 ;;
 ;;; Revert
-(leaf vs-revbuf
+(use-package vs-revbuf
   :init
   (setq vs-revbuf-ask-unsaved-changes-only t))
 
 ;;
 ;;; Right Click
-(leaf right-click-context
-  :defer-config
+(use-package right-click-context
+  :config
   (jcs-advice-add 'right-click-context-menu :override
     ;; Open Right Click Context menu.
     (let ((popup-menu-keymap (copy-sequence popup-menu-keymap)))
@@ -267,8 +267,8 @@
 
 ;;
 ;;; So Long
-(leaf so-long
-  :defer-config
+(use-package so-long
+  :config
   (nconc so-long-minor-modes
          '(spell-fu-mode
            eldoc-mode
@@ -293,8 +293,8 @@
 
 ;;
 ;;; Tabulated List
-(leaf tabulated-list
-  :defer-config
+(use-package tabulated-list
+  :config
   (jcs-advice-add 'tabulated-list-col-sort :around (save-excursion (apply arg0 args))))
 
 ;;
@@ -316,7 +316,7 @@
 
 ;;
 ;;; Web Wowser
-(leaf eww
+(use-package eww
   :init
   (setq eww-search-prefix "https://www.google.com/search?q="))
 

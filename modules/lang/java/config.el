@@ -109,6 +109,6 @@
 ;; (@* "Extensions" )
 ;;
 
-(leaf javadoc-lookup
+(use-package javadoc-lookup
   :init
   (setq javadoc-lookup-completing-read-function #'completing-read))

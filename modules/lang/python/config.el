@@ -75,7 +75,7 @@
 ;; (@* "Hook" )
 ;;
 
-(leaf python
+(use-package python
   :init
   (setq python-indent-guess-indent-offset nil))
 

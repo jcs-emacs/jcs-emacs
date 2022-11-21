@@ -1,6 +1,6 @@
 ;;; ui/tabs/config.el  -*- lexical-binding: t; -*-
 
-(leaf centaur-tabs
+(use-package centaur-tabs
   :init
   (setq centaur-tabs-set-icons nil
         centaur-tabs-style "wave"

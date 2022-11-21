@@ -1,16 +1,16 @@
 ;;; emacs/compile/config.el  -*- lexical-binding: t; -*-
 
-(leaf compile
+(use-package compile
   :init
   (setq compilation-context-lines t
         compilation-scroll-output t)
-  :defer-config
+  :config
   (require 'ansi-color)
   (jcs-add-hook 'compilation-filter-hook
     (let (buffer-read-only)
       (ansi-color-apply-on-region compilation-filter-start (point)))))
 
-(leaf comint
+(use-package comint
   :init
   (setq comint-prompt-read-only t
         comint-process-echoes t

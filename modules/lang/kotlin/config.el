@@ -22,5 +22,5 @@
 ;; (@* "Extensions" )
 ;;
 
-(leaf flycheck-kotlin
-  :hook (flycheck-mode-hook . flycheck-kotlin-setup))
+(use-package flycheck-kotlin
+  :hook (flycheck-mode . flycheck-kotlin-setup))

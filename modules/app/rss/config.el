@@ -1,7 +1,7 @@
 ;;; app/rss/config.el  -*- lexical-binding: t; -*-
 
-(leaf elfeed
-  :hook (elfeed-search-mode-hook . buffer-wrap-mode)
+(use-package elfeed
+  :hook (elfeed-search-mode . buffer-wrap-mode)
   :init
   (setq elfeed-db-directory (concat user-emacs-directory ".elfeed")
         elfeed-show-entry-switch #'pop-to-buffer

@@ -26,9 +26,9 @@
 ;; (@* "Extensions" )
 ;;
 
-(leaf company-go
+(use-package company-go
   :init
   (setq company-go-show-annotation t))
 
-(leaf flycheck-golangci-lint
-  :hook (flycheck-mode-hook . flycheck-golangci-lint-setup))
+(use-package flycheck-golangci-lint
+  :hook (flycheck-mode . flycheck-golangci-lint-setup))

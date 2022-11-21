@@ -27,5 +27,5 @@
 ;; (@* "Extensions" )
 ;;
 
-(leaf eshell-syntax-highlighting
-  :hook (eshell-mode-hook . eshell-syntax-highlighting-global-mode))
+(use-package eshell-syntax-highlighting
+  :hook (eshell-mode . eshell-syntax-highlighting-global-mode))

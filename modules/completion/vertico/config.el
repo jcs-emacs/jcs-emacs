@@ -1,22 +1,22 @@
 ;;; completion/vertico/config.el  -*- lexical-binding: t; -*-
 
-(leaf vertico
-  :hook (rfn-eshadow-update-overlay-hook . vertico-directory-tidy)
-  :hook (on-first-input-hook . vertico-mode)
+(use-package vertico
+  :hook (rfn-eshadow-update-overlay . vertico-directory-tidy)
+  :hook (on-first-input . vertico-mode)
   :init
   (setq vertico-cycle t
         vertico-resize t
         vertico-scroll-margin 0)
-  :defer-config
+  :config
   (jcs-module-load "vertico"))
 
-(leaf marginalia
-  :hook (on-first-input-hook . marginalia-mode)
+(use-package marginalia
+  :hook (on-first-input . marginalia-mode)
   :init
   (setq marginalia-align 'right))
 
-(leaf vertico-flx
-  :hook (vertico-mode-hook . vertico-flx-mode))
+(use-package vertico-flx
+  :hook (vertico-mode . vertico-flx-mode))
 
 ;;
 ;; (@* "Util" )

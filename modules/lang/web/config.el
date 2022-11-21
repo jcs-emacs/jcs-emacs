@@ -108,7 +108,7 @@
 ;; (@* "Hook" )
 ;;
 
-(leaf web-mode
+(use-package web-mode
   :init
   (setq web-mode-markup-indent-offset 2  ; html
         web-mode-css-indent-offset 2     ; css
@@ -159,10 +159,10 @@
 ;; (@* "Extensions" )
 ;;
 
-(leaf adaptive-wrap
-  :hook (visual-line-mode-hook . adaptive-wrap-prefix-mode))
+(use-package adaptive-wrap
+  :hook (visual-line-mode . adaptive-wrap-prefix-mode))
 
-(leaf auto-rename-tag
+(use-package auto-rename-tag
   :init
   (setq auto-rename-tag-disabled-commands '(query-replace)
         auto-rename-tag-disabled-minor-modes '(iedit-mode

@@ -1,6 +1,6 @@
 ;;; checkers/syntax/config.el  -*- lexical-binding: t; -*-
 
-(leaf flycheck
+(use-package flycheck
   :init
   ;; And don't recheck on idle as often
   (setq flycheck-idle-change-delay 1.0)

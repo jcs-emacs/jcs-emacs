@@ -100,7 +100,7 @@ Optional argument VAL-DEL is string that point to item."
 ;; (@* "Extensions" )
 ;;
 
-(leaf turbo-log
+(use-package turbo-log
   :init
   (setq turbo-log-allow-insert-without-tree-sitter-p t))
 

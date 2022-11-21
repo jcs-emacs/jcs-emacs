@@ -35,6 +35,6 @@
 ;; (@* "Extensions" )
 ;;
 
-(leaf css-eldoc
+(use-package css-eldoc
   :init
   (css-eldoc-enable))

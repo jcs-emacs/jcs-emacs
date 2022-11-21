@@ -5,8 +5,8 @@
 (defvar jcs-on-project-hook nil
   "Hook run when the project is defined.")
 
-(leaf project
-  :defer-config
+(use-package project
+  :config
   (setq project-vc-ignores
         (append project-vc-ignores
                 '(".idea" ".vscode"

@@ -27,5 +27,5 @@
 ;; (@* "Extensions" )
 ;;
 
-(leaf flycheck-swift
-  :hook (flycheck-mode-hook . flycheck-swift-setup))
+(use-package flycheck-swift
+  :hook (flycheck-mode . flycheck-swift-setup))

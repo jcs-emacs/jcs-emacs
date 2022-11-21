@@ -5,7 +5,7 @@
 ;;
 ;;; General UX
 
-(leaf uniquify
+(use-package uniquify
   :init
   (setq uniquify-buffer-name-style 'post-forward-angle-brackets
         uniquify-after-kill-buffer-p t  ; rename after killing uniquified
@@ -15,10 +15,10 @@
 (setq ring-bell-function #'ignore
       visible-bell nil)
 
-(leaf buffer-wrap
-  :hook (( backtrace-mode-hook Buffer-menu-mode-hook package-menu-mode-hook)
+(use-package buffer-wrap
+  :hook (( backtrace-mode Buffer-menu-mode package-menu-mode)
          . buffer-wrap-mode)
-  :defer-config
+  :config
   (defun jcs--buffer-wrap--fixed-window-off ()
     "Fixed windows is off after wrapping."
     (let ((max-ln (+ (line-number-at-pos (point-max)) buffer-wrap--relative-max-line)))
@@ -48,7 +48,7 @@
 (defconst jcs-default-font-size 160
   "Default font size, the value is in 1/10pt, so 100 will give you 10pt, etc.")
 
-(leaf use-ttf
+(use-package use-ttf
   :init
   (setq use-ttf-default-ttf-fonts
         (mapcar (lambda (file) (concat user-emacs-directory file))
@@ -65,22 +65,22 @@
 ;;
 ;;; Highlight
 
-(leaf auto-highlight-symbol
+(use-package auto-highlight-symbol
   :init
   (setq ahs-idle-interval 0.15))
 
-(leaf region-occurrences-highlighter
+(use-package region-occurrences-highlighter
   :init
   (setq region-occurrences-highlighter-min-size 1))
 
-(leaf highlight-numbers
+(use-package highlight-numbers
   :config
   (setq highlight-numbers-generic-regexp "\\_<[[:digit:]]+\\(?:\\.[0-9]*\\)?\\_>"))
 
 ;;
 ;;; Line Numbers
 
-(leaf display-line-numbers-mode
+(use-package display-line-numbers-mode
   :init
   (setq-default
    ;; Explicitly define a width to reduce the cost of on-the-fly computation
@@ -89,8 +89,8 @@
    ;; buffer is narrowed, and where you are, exactly.
    display-line-numbers-widen t))
 
-(leaf line-reminder
-  :hook (display-line-numbers-mode-hook
+(use-package line-reminder
+  :hook (display-line-numbers-mode
          . (lambda () (line-reminder-mode (if display-line-numbers-mode 1 -1))))
   :init
   (setq line-reminder-show-option (if elenv-graphic-p 'indicators 'linum)
@@ -120,12 +120,12 @@
 (setq hscroll-margin 2
       hscroll-step 1)
 
-(leaf auto-scroll-bar  ; show/hide on availability
+(use-package auto-scroll-bar  ; show/hide on availability
   :init
   (setq auto-scroll-bar-horizontal t
         auto-scroll-bar-disabled-major-modes '(dashboard-mode)))
 
-(leaf better-scroll
+(use-package better-scroll
   :init
   (setq better-scroll-align-type 'relative
         better-scroll-allow-boundary-movement t))
@@ -133,7 +133,7 @@
 ;;
 ;;; Parenthesis
 
-(leaf paren
+(use-package paren
   :init
   (setq show-paren-delay 0.1
         show-paren-highlight-openparen t
@@ -143,14 +143,14 @@
 ;;
 ;;; Whitespace
 
-(leaf whitespace
+(use-package whitespace
   :init
   (setq whitespace-display-mappings
         '((tab-mark ?\t [?› ?\t])
           (newline-mark ?\n [?¬ ?\n])
           (space-mark ?\  [?·] [?.]))))
 
-(leaf whitespace-cleanup-mode
+(use-package whitespace-cleanup-mode
   :init
   (setq whitespace-cleanup-mode-preserve-point t
         whitespace-cleanup-mode-only-if-initially-clean nil
@@ -178,17 +178,17 @@
 
 (setq windmove-wrap-around t)
 
-(leaf balance-windows
+(use-package balance-windows
   :init
   (setq balanced-windows-commands
         '( delete-window quit-window
            split-window-horizontally split-window-vertically)))
 
-(leaf winum
+(use-package winum
   :init
   (setq winum-scope 'frame-local))
 
-(leaf repos-window
+(use-package repos-window
   :init
   (setq repos-window-commands '(hl-todo-previous
                                 hl-todo-next)
@@ -198,9 +198,9 @@
 ;;
 ;;; Sideline
 
-(leaf sideline
-  :hook ((flycheck-mode-hook . sideline-mode)
-         (flymake-mode-hook  . sideline-mode))
+(use-package sideline
+  :hook ((flycheck-mode . sideline-mode)
+         (flymake-mode  . sideline-mode))
   :init
   (setq sideline-delay 0.2
         sideline-backends-left '((sideline-color . up))
@@ -210,13 +210,13 @@
         sideline-display-backend-name t
         sideline-display-backend-type 'inner))
 
-(leaf sideline-flycheck :hook (flycheck-mode-hook . sideline-flycheck-setup))
+(use-package sideline-flycheck :hook (flycheck-mode . sideline-flycheck-setup))
 
 ;;
 ;;; Line Endings
 
-(leaf show-eol
-  :defer-config
+(use-package show-eol
+  :config
   (jcs-advice-add 'show-eol-enable :before
     (face-remap-add-relative 'whitespace-newline :inverse-video t))
   (jcs-advice-add 'show-eol-disable :before
@@ -231,7 +231,7 @@
 ;;
 ;;; ^L
 
-(leaf page-break-lines
+(use-package page-break-lines
   :init
   (setq page-break-lines-modes '( browse-kill-ring-mode
                                   emacs-lisp-mode lisp-mode

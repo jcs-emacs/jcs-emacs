@@ -1,7 +1,7 @@
 ;;; ui/hl-todo/config.el  -*- lexical-binding: t; -*-
 
-(leaf hl-todo
-  :defer-config
+(use-package hl-todo
+  :config
   (setq hl-todo-highlight-punctuation ":"
         hl-todo-keyword-faces
         '(;; For reminders to change or add something at a later date.

@@ -1,6 +1,6 @@
 ;;; emacs/dired/config.el  -*- lexical-binding: t; -*-
 
-(leaf dired
+(use-package dired
   :init
   (setq dired-dwim-target t  ; suggest a target for moving/copying intelligently
         dired-hide-details-hide-symlink-targets nil
@@ -14,5 +14,5 @@
         ;; Screens are larger nowadays, we can afford slightly larger thumbnails
         image-dired-thumb-size 150))
 
-(leaf diredfl
-  :hook (dired-mode-hook . diredfl-mode))
+(use-package diredfl
+  :hook (dired-mode . diredfl-mode))

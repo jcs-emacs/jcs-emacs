@@ -21,5 +21,5 @@
 ;; (@* "Extensions" )
 ;;
 
-(leaf flycheck-elm
-  :hook (flycheck-mode-hook . flycheck-elm-setup))
+(use-package flycheck-elm
+  :hook (flycheck-mode . flycheck-elm-setup))

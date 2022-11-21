@@ -2,7 +2,7 @@
 
 (setq vc-git-diff-switches '("--histogram"))  ;  A slightly faster algorithm for diffing
 
-(leaf diff-hl
+(use-package diff-hl
   :hook (find-file    . diff-hl-mode)
   :hook (vc-dir-mode  . diff-hl-dir-mode)
   :hook (dired-mode   . diff-hl-dired-mode)

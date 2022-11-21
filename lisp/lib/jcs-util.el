@@ -267,13 +267,10 @@ Notice PATH can either be `buffer-name' or `buffer-file-name'."
      (let ((key (car data)) (def (cdr data)))
        (local-set-key (eval key) def))))
 
-(defmacro jcs-leaf-key* (alist)
-  "Bind key with ALIST using `leaf-key*'."
+(defmacro jcs-bind-key* (alist)
+  "Bind key with ALIST using `bind-key*'."
   (declare (indent 0))
-  `(progn
-     (defvar data)
-     (dolist (data ,alist)
-       (eval `(leaf-key* (eval (car data)) (cdr data))))))
+  `(dolist (data ,alist) (bind-key* (eval (car data)) (cdr data))))
 
 ;;
 ;; (@* "Organize Code" )

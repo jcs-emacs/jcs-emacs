@@ -20,5 +20,5 @@
 ;; (@* "Extensions" )
 ;;
 
-(leaf flycheck-ocaml
-  :hook (flycheck-mode-hook . flycheck-ocaml-setup))
+(use-package flycheck-ocaml
+  :hook (flycheck-mode . flycheck-ocaml-setup))

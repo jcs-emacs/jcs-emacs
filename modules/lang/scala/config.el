@@ -11,7 +11,7 @@
 ;; (@* "Hook" )
 ;;
 
-(leaf scala-mode
+(use-package scala-mode
   :init
   (setq scala-indent:align-parameters t
         ;; indent block comments to first asterix, not second

@@ -1,10 +1,10 @@
 ;;; emacs/buffer-menu/config.el  -*- lexical-binding: t; -*-
 
-(leaf buffer-menu-filter
+(use-package buffer-menu-filter
   :init
   (setq buffer-menu-filter-delay 0.2))
 
-(leaf diminish-buffer
+(use-package diminish-buffer
   :init
   (setq diminish-buffer-list
         '( "[*]jcs"  ; config wise

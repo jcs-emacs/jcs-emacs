@@ -25,13 +25,16 @@
 ;; (@* "Packages" )
 ;;
 
-(unless (package-installed-p 'leaf)
+(unless (package-installed-p 'use-package)
   (package-refresh-contents)
-  (package-install 'leaf))
+  (package-install 'use-package))
 
-(leaf pkg-dm
+(setq use-package-always-defer t
+      use-package-expand-minimally t)
+
+(use-package pkg-dm
   :ensure t
-  :hook (package-menu-mode-hook . pkg-dm-mode)
+  :hook (package-menu-mode . pkg-dm-mode)
   :init
   (setq pkg-dm-package-list
         '(0xc
@@ -206,7 +209,6 @@
           json-mode
           keypression
           kotlin-mode
-          leaf
           license-templates
           line-reminder
           literate-calc-mode
@@ -315,6 +317,7 @@
           typescript-mode
           undo-tree-vf
           unfill
+          use-package
           use-ttf
           vertico-flx
           vimrc-mode
