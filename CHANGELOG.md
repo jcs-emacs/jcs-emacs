@@ -87,6 +87,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add new package `cycle-case-style` (6cad7031a6b0ef58bbf74e74e020b272d53e4b19)
 * Add eldoc support for CSS (9b9b4cd493ef35d31a78300c94cae9ad9e778c84)
 * Add eldoc support for TOML (a0eb8ed975a9a7367ff94789d48f80ebb207dbf3)
+* Use `literate-calc-mode` instead of self-defined calc command (691186d362f79838291779bac6bf50e76eebc015)
 
 ## 8.2.1
 > Released Jul 22, 2022
