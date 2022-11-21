@@ -299,7 +299,7 @@ kind of methods to support the maintainer you wish to.
 * *Music Player* - powered by [emp](https://github.com/jcs-elpa/emp).
 * *Navigation/Searcher* - powered by [searcher](https://github.com/jcs-elpa/searcher) and [isearch-project](https://github.com/elpa-host/isearch-project).
 * *Package Archive* - see [here](#file_folder-package-archives).
-* *Package Management* - powered by [leaf](https://github.com/conao3/leaf.el) and [github-elpa](https://github.com/10sr/github-elpa).
+* *Package Management* - powered by [use-package](https://github.com/jwiegley/use-package) and [github-elpa](https://github.com/10sr/github-elpa).
 * *PDF Viewer* - powered by [doc-view-mode](https://www.emacswiki.org/emacs/DocViewMode) and [ghostscript](https://www.ghostscript.com/index.html).
 * *Project Management* - powered by [project](https://elpa.gnu.org/packages/project.html).
 * *Recent Files* - powered by [recentf](https://www.emacswiki.org/emacs/RecentFiles).
