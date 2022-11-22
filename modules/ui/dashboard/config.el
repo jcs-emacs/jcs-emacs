@@ -37,7 +37,7 @@
 
   (jcs-add-hook 'jcs-after-load-theme-hook
     (setq dashboard-startup-banner (jcs-dashboard--get-banner-path))
-    (jcs-funcall-fboundp #'jcs-dashboard-refresh-buffer))
+    (jcs-dashboard-refresh-buffer))
 
   (dashboard-setup-startup-hook))
 
