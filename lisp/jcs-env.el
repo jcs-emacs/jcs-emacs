@@ -197,6 +197,7 @@
            isearch-done
            undefined
            toggle-truncate-lines
+           reb-update-overlays reb-next-match reb-prev-match
            define-it
            jcs-package-upgrade-all jcs-package--show-upgrades jcs-package-autoremove
            lsp--message)
