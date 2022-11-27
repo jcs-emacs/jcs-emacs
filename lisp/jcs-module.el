@@ -166,11 +166,7 @@
 ;;; E
     ("\\.el'?\\'"           . emacs-lisp-mode)
 ;;; G
-    ("\\.elpaignore'?\\'"   . gitignore-mode)
-    ("\\.dockerignore'?\\'" . gitignore-mode)
-    ("\\.npmignore'?\\'"    . gitignore-mode)
-    ("\\.unityignore'?\\'"  . gitignore-mode)
-    ("\\.vscodeignore'?\\'" . gitignore-mode)
+    ("/\\..+ignore\\'"      . gitignore-mode)
 ;;; J
     ("\\.js'?\\'"           . js-mode)
     ("\\.json'?\\'"         . json-mode)
