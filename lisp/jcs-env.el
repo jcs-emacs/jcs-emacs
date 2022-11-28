@@ -193,14 +193,14 @@
            vsc-edit-beginning-of-line vsc-edit-end-of-line
            mark-whole-buffer
            indent-region
+           package-menu--mark-upgrades-1 pkg-dm--show-upgrades pkg-dm-autoremove
            browse-kill-ring-setup
            isearch-done
            undefined
            toggle-truncate-lines
            reb-update-overlays reb-next-match reb-prev-match
-           define-it
-           jcs-package-upgrade-all jcs-package--show-upgrades jcs-package-autoremove
-           lsp--message)
+           lsp--message
+           define-it)
         message-clean-mode-minor-mode 'echo))
 
 (use-package msgu
