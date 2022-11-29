@@ -195,6 +195,7 @@
            indent-region
            package-menu--mark-upgrades-1 pkg-dm--show-upgrades pkg-dm-autoremove
            browse-kill-ring-setup
+           iedit-mode
            isearch-done
            undefined
            toggle-truncate-lines
