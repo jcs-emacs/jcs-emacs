@@ -91,6 +91,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Move back to use `use-package` (9d2ead748c345b8edcf17fb9ee0e58b1b7464f09)
 * Make echo all `re-mode` commands (26a37fa3b4b6e8f9125a4c8c133e8df03681a496)
 * All major-mode for all .ignore files (a14a111e8c59c08718f620a455a1c14e26f8779e)
+* Add another file paths completion package, `company-paths` (a73cafcaf2f36192de06eeb3096a856f05e01113)
 
 ## 8.2.1
 > Released Jul 22, 2022
