@@ -95,6 +95,7 @@
           company-meta-net
           company-nginx
           company-nixos-options
+          company-paths
           company-powershell
           company-shell
           company-sourcekit

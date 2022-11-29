@@ -16,7 +16,7 @@
         '( company-capf company-semantic
            company-keywords
            company-abbrev company-dabbrev company-dabbrev-code
-           company-files
+           company-paths
            company-etags company-gtags
            company-yasnippet))
   :config
@@ -32,17 +32,25 @@
         company-box-doc-delay 0.3
         company-box-doc-text-scale-level -2))
 
-(use-package company-emojify
-  :init
-  (setq company-emojify-annotation (if elenv-graphic-p 'image 'unicode)
-        company-emojify-emoji-styles '(github)))
-
 (use-package company-fuzzy
   :hook (company-mode . company-fuzzy-mode)
   :init
   (setq company-fuzzy-sorting-backend 'flx
         company-fuzzy-prefix-on-top nil
         company-fuzzy-trigger-symbols '("." "->" "<" "\"" "'" "@")))
+
+(use-package company-files
+  :init
+  (setq company-files-chop-trailing-slash nil))
+
+(use-package company-paths
+  :init
+  (setq company-paths-continue-completing t))
+
+(use-package company-emojify
+  :init
+  (setq company-emojify-annotation (if elenv-graphic-p 'image 'unicode)
+        company-emojify-emoji-styles '(github)))
 
 ;;
 ;; (@* "Faces" )
