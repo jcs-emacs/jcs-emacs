@@ -310,7 +310,7 @@
 
 ;;
 ;;; Variables
-(setq enable-local-variables :safe)
+(setq enable-local-variables :all)
 
 ;;
 ;;; Warnings
