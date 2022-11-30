@@ -309,10 +309,6 @@
 (setq delete-by-moving-to-trash t)
 
 ;;
-;;; Variables
-(setq enable-local-variables :all)
-
-;;
 ;;; Warnings
 (setq warning-minimum-level :emergency)
 
