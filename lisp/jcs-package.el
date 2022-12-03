@@ -320,6 +320,7 @@
           unfill
           use-package
           use-ttf
+          vc-refresh
           vertico-flx
           vimrc-mode
           visual-regexp

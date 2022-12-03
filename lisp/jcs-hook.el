@@ -91,7 +91,8 @@
 (jcs-add-hook 'jcs-on-project-hook
   (global-diff-hl-mode 1)
   (editorconfig-mode 1)
-  (global-prettier-mode 1))
+  (global-prettier-mode 1)
+  (vc-refresh-mode 1))
 
 ;;
 ;; (@* "Input" )

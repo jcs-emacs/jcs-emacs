@@ -26,7 +26,9 @@
     (re-builder               . "emacs/re-builder")
     (text-mode                . "emacs/text-mode")
     (undo-tree                . "emacs/undo")
-    ((gitattributes-mode gitconfig-mode gitignore-mode) . "emacs/vc")
+    (( gitattributes-mode gitconfig-mode gitignore-mode
+       vc-refresh) .
+       "emacs/vc")
     (message                  . "email/message")
     (flx                      . "misc/flx")
     (google-translate         . "misc/translator")

@@ -30,3 +30,14 @@
                               (lambda ()
                                 (when (jcs-current-line-empty-p)
                                   (jcs-kill-whole-line)))))
+
+;;
+;; (@* "Extensions" )
+;;
+
+(use-package vc-refresh
+  :init
+  (setq vc-refresh-commands '( magit-checkout
+                               magit-branch-and-checkout
+                               magit-branch-or-checkout
+                               magit-branch-checkout)))
