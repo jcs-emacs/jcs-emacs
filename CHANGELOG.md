@@ -92,6 +92,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Make echo all `re-mode` commands (26a37fa3b4b6e8f9125a4c8c133e8df03681a496)
 * All major-mode for all .ignore files (a14a111e8c59c08718f620a455a1c14e26f8779e)
 * Add another file paths completion package, `company-paths` (a73cafcaf2f36192de06eeb3096a856f05e01113)
+* Integrate `magit` (54953d780fc9962d5d373cabb9a3c3a2f2c7629e)
 
 ## 8.2.1
 > Released Jul 22, 2022
