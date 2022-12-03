@@ -12,7 +12,6 @@ Here is the list of key bindins that defined in this configuration.
       - [Build / Run (Output)](#build--run-output)
       - [Search](#search)
       - [Calculate](#calculate)
-      - [Sort](#sort)
       - [Todo](#todo)
       - [Commenting / Uncommenting](#commenting--uncommenting)
       - [Docstring](#docstring)
@@ -49,7 +48,7 @@ Here is the list of key bindins that defined in this configuration.
         - [Other](#other)
     - [Visualization](#visualization)
     - [Windows](#windows)
-    - [Source Control](#source-control)
+    - [Version Control](#version-control)
     - [Terminal / Shell](#terminal--shell)
     - [Others](#others)
       - [Minibuffer](#minibuffer)
@@ -142,10 +141,6 @@ Here is the list of key bindins that defined in this configuration.
 
 * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>=</kbd> - Calculate current line
 * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>Shift</kbd>+<kbd>=</kbd> - Calculate entire buffer.
-
-#### Sort
-
-* <kbd>Ctrl</kbd>+<kbd>i</kbd> - Sort symbols in alphabetic order within the region.
 
 #### Todo
 
@@ -360,9 +355,11 @@ Here is the list of key bindins that defined in this configuration.
 * <kbd>Alt</kbd>+<kbd>=</kbd> - Increment frame transparent by 5 percent.
 * <kbd>Alt</kbd>+<kbd>-</kbd> - Decrement frame transparent by 5 percent.
 
-### Source Control
+### Version Control
 
-* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>g</kbd> - Open magit interface.
+* <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>m</kbd> - Start magit.
+* <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>c</kbd> - Checkout branch.
+* <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>d</kbd> - Delete branch.
 
 ### Terminal / Shell
 

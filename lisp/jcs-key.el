@@ -256,9 +256,6 @@
 ;;; Show Hover
     ((kbd "C-k C-i") . jcs-describe-thing-in-popup)
 
-;;; Sort
-    ((kbd "C-i") . sort-words)
-
 ;;; Startup Screen (Dashboard)
     ((kbd "M-d") . jcs-dashboard)
     ((kbd "M-D") . jcs-dashboard-other-window)
@@ -285,6 +282,11 @@
     ("\e`" . transwin-toggle)
     ("\e=" . transwin-inc)
     ("\e-" . transwin-dec)
+
+;;; Version Control
+    ((kbd "C-k m") . magit)
+    ((kbd "C-k c") . magit-branch-or-checkout)
+    ((kbd "C-k d") . magit-branch-delete)
 
 ;;; Window
     ([M-f11]        . toggle-frame-fullscreen)
