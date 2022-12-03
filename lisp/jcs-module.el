@@ -36,6 +36,7 @@
     ((goto-char-preview goto-line-preview) . "tools/goto")
     (lsp-mode                 . "tools/lsp")
     (make-mode                . "tools/make")
+    (magit                    . "tools/magit")
     (prettier                 . "tools/prettier")
     (terraform-mode           . "tools/terraform")
     (tree-sitter              . "tools/tree-sitter")

@@ -193,7 +193,6 @@
           highlight-indent-guides
           highlight-numbers
           hl-preproc
-          hl-todo
           hlsl-mode
           htmltagwrap
           ialign
@@ -231,6 +230,7 @@
           lsp-sourcekit
           lsp-tailwindcss
           lsp-ui
+          magit-todos
           manage-minor-mode-table
           marginalia
           markdown-toc
