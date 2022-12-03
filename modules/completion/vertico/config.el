@@ -67,9 +67,9 @@
   (interactive)
   (insert "/")
   (when (mbs-finding-file-p)
-    (jcs-vertico-find-files--/)))
+    (jcs-vertico-find-files-/)))
 
-(defun jcs-vertico-find-files--/ ()
+(defun jcs-vertico-find-files-/ ()
   (cond ((save-excursion (search-backward "//" nil t))  ; Root
          (jcs-vertico--cd (f-root)))
         ((save-excursion (search-backward "/~/" nil t))  ; Home
@@ -113,19 +113,18 @@
 
 (defun jcs-vertico--post-command ()
   "Post command for vertico."
-  (when vertico-mode
-    (cond ((mbs-finding-file-p)
-           (when (memq this-command jcs-ffap-commands)
-             (let* ((start (point)) (end (line-end-position))
-                    (file (buffer-substring-no-properties start end)))
-               (unless (string-empty-p file)
-                 (delete-region start end)
-                 (jcs-vertico--goto-cand file))))
-           (when (and (save-excursion (search-backward "~//" nil t))
-                      (not (jcs-current-char-equal-p "/")))
-             (save-excursion
-               (forward-char -1)
-               (backward-delete-char 1)))))
+  (when (and vertico-mode (mbs-finding-file-p))
+    (when (memq this-command jcs-ffap-commands)
+      (let* ((start (point)) (end (line-end-position))
+             (file (buffer-substring-no-properties start end)))
+        (unless (string-empty-p file)
+          (delete-region start end)
+          (jcs-vertico--goto-cand file))))
+    (when (and (save-excursion (search-backward "~//" nil t))
+               (not (jcs-current-char-equal-p "/")))
+      (save-excursion
+        (forward-char -1)
+        (backward-delete-char 1)))
     (when (or vertico-flx--sorting
               (and (eq this-command 'vertico-directory-delete-char)
                    (string-empty-p (minibuffer-contents))))
