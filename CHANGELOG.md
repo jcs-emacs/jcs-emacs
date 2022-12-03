@@ -93,6 +93,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * All major-mode for all .ignore files (a14a111e8c59c08718f620a455a1c14e26f8779e)
 * Add another file paths completion package, `company-paths` (a73cafcaf2f36192de06eeb3096a856f05e01113)
 * Integrate `magit` (54953d780fc9962d5d373cabb9a3c3a2f2c7629e)
+* Add new package `vc-refrest` for better UX (91625bc0ff66f773c8c040b3d56b2e64de8ba497)
 
 ## 8.2.1
 > Released Jul 22, 2022
