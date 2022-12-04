@@ -37,7 +37,7 @@
 
         (while (< (point) tmp-end-of-line-point)
           (when (jcs-current-char-equal-p "|")
-            (setq tmp-column-count (1+ tmp-column-count)))
+            (cl-incf tmp-column-count))
           (forward-char 1)))
       tmp-column-count)))
 
@@ -48,7 +48,7 @@
         (cycle-counter 0))
     (while (< cycle-counter tmp-column-count)
       (jcs-org-table-left)
-      (setq cycle-counter (1+ cycle-counter)))))
+      (cl-incf cycle-counter))))
 
 (defun jcs-org-table-down ()
   "Move cursor down one row if in the table."
@@ -57,7 +57,7 @@
         (cycle-counter 0))
     (while (< cycle-counter tmp-column-count)
       (jcs-org-table-right)
-      (setq cycle-counter (1+ cycle-counter)))))
+      (cl-incf cycle-counter))))
 
 (defun jcs-org-table-left ()
   "Move cursor left one column if in the table."
