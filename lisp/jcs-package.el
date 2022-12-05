@@ -69,6 +69,7 @@
           calfw
           caml
           cargo-mode
+          cask-mode
           ccls
           centaur-tabs
           clojure-mode
@@ -150,6 +151,7 @@
           file-header
           fish-mode
           flx-rs
+          flycheck-cask
           flycheck-crystal
           flycheck-eask
           flycheck-elm
@@ -167,6 +169,7 @@
           fof
           font-lock-ext
           fountain-mode
+          free-keys
           fsharp-mode
           gcmh
           gdscript-mode

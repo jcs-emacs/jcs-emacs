@@ -44,6 +44,7 @@
   (advice-add 'describe-function-1 :after #'elisp-demos-advice-describe-function-1)
   (advice-add 'helpful-update :after #'elisp-demos-advice-helpful-update))
 
+(use-package flycheck-cask    :hook (flycheck-mode . flycheck-cask-setup))
 (use-package flycheck-eask    :hook (flycheck-mode . flycheck-eask-setup))
 (use-package flycheck-elsa    :hook (flycheck-mode . flycheck-elsa-setup))
 (use-package flycheck-package :hook (flycheck-mode . flycheck-package-setup))
