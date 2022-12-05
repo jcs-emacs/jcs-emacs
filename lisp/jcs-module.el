@@ -33,6 +33,9 @@
     (message                      . "email/message")
     (flx                          . "misc/flx")
     (google-translate             . "misc/translator")
+    (nov                          . "reader/epub")
+    (esh-mode                     . "term/eshell")
+    (shell                        . "term/shell")
     (dockerfile-mode              . "tools/dockerfile")
     (editorconfig                 . "tools/editorconfig")
     ((execrun quickrun)           . "tools/eval")
@@ -52,8 +55,6 @@
     (diff-hl                      . "ui/vc-gutter")
     (centaur-tabs                 . "ui/tabs")
     (treemacs                     . "ui/treemacs")
-    (esh-mode                     . "term/eshell")
-    (shell                        . "term/shell")
 ;;; Languages
     (actionscript-mode            . "lang/actionscript")
     (ada-mode                     . "lang/ada")
@@ -185,6 +186,7 @@
 ;;; N
     ("\\.asm'?\\'"          . nasm-mode)
     ("\\.inc'?\\'"          . nasm-mode)
+    ("\\.epub\\'"           . nov-mode)
 ;;; O
     ("\\.dpk'?\\'"          . opascal-mode)
     ("\\.dpr'?\\'"          . opascal-mode)

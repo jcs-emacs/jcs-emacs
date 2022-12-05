@@ -249,6 +249,7 @@
           nix-mode
           nocomments-mode
           noflet
+          nov
           on
           org-fancy-priorities
           org-sticky-header
