@@ -43,6 +43,7 @@
            "[*]elfeed-"
            "magit[-]*[[:ascii:]]*[:]"  ; From `magit'
            "[*]Most used words[*]"
+           "[*]Free keys[*]"
            "[*]Test SHA[*]"
            "[*]RE-Builder"
            "[*]define-it: tooltip[*]" "[*]preview-it" "[*]gh-md"
