@@ -309,7 +309,6 @@ kind of methods to support the maintainer you wish to.
 * *Shell* - powered by [shell](https://www.emacswiki.org/emacs/ShellMode) and [exec-path-from-shell](https://github.com/purcell/exec-path-from-shell).
 * *Smooth Scrolling* - none, originally powered by ~~[sublimity](https://github.com/zk-phi/sublimity)~~.
 * *Snippet* - powered by [yasnippet](https://github.com/joaotavora/yasnippet).
-* *Source Control Management* - none.
 * *Startup Screen* - powered by [dashboard](https://github.com/emacs-dashboard/emacs-dashboard).
 * *Syntax Check* - powered by [flycheck](http://www.flycheck.org/en/latest/).
 * *Tab Bar* - powered by [centaur-tabs](https://github.com/ema2159/centaur-tabs).
@@ -317,6 +316,7 @@ kind of methods to support the maintainer you wish to.
 * *Theme* - powered by [vs-dark-theme](https://github.com/jcs-elpa/vs-dark-theme) and [vs-light-theme](https://github.com/jcs-elpa/vs-light-theme). **(For more info see [here](#themes))**
 * *Todo* - powered by [hl-todo](https://github.com/tarsius/hl-todo).
 * *Undo/Redo* - powered by [undo-tree](https://www.emacswiki.org/emacs/UndoTree).
+* *Version Control Management* - powered by [magit](https://github.com/magit/magit).
 * *Video Player* - none.
 * *White Space* - powered by [whitespace](https://www.emacswiki.org/emacs/WhiteSpace).
 
