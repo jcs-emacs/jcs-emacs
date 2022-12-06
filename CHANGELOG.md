@@ -96,6 +96,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add new package `vc-refrest` for better UX (91625bc0ff66f773c8c040b3d56b2e64de8ba497)
 * Add support for `epub` reader (04a1bd1eba474f6949e96f2ec23befc96847de56)
 * Add new package `free-keys` (9925b4ce6dd513843b07b1edae07565366bc8857)
+* Add new package `npm-mode` (78ad3a6cae3cc273c7c10695b1b5a5e5941ec686)
 
 ## 8.2.1
 > Released Jul 22, 2022
