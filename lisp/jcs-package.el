@@ -253,6 +253,7 @@
           nocomments-mode
           noflet
           nov
+          npm-mode
           on
           org-fancy-priorities
           org-sticky-header

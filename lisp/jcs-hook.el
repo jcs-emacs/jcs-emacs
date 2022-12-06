@@ -84,6 +84,7 @@
 
 (jcs-add-hook 'on-first-file-hook
   (auto-read-only-mode 1)
+  (npm-global-mode 1)
   (global-tree-sitter-mode 1)
   (global-so-long-mode 1)
   (require 'lsp-mode))
