@@ -5,7 +5,7 @@ EASK ?= eask
 
 clean:
 	@echo "Cleaning..."
-	$(EASK) clean-all
+	$(EASK) clean all
 
 copy_config:
 	@echo "Copying configuration..."
