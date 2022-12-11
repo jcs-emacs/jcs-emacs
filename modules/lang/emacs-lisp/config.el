@@ -16,8 +16,10 @@
 
 (jcs-add-hook 'emacs-lisp-mode-hook
   (modify-syntax-entry ?_ "w")  ; Treat underscore as word.
-  (jcs-insert-header-if-valid '("[.]el")
-                              'jcs-insert-emacs-lisp-template)
+
+  (unless (equal (buffer-name) dir-locals-file)
+    (jcs-insert-header-if-valid '("[.]el")
+                                'jcs-insert-emacs-lisp-template))
 
   (company-fuzzy-backend-add 'company-elisp-keywords)
 
