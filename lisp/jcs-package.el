@@ -215,6 +215,7 @@
           kotlin-mode
           license-templates
           line-reminder
+          list-environment
           literate-calc-mode
           log4e
           logms

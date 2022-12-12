@@ -24,6 +24,7 @@
     (compile                      . "emacs/compile")
     (conf-mode                    . "emacs/conf-mode")
     (dired                        . "emacs/dired")
+    (list-environment             . "emacs/list-thing")
     (re-builder                   . "emacs/re-builder")
     (text-mode                    . "emacs/text-mode")
     (undo-tree                    . "emacs/undo")
