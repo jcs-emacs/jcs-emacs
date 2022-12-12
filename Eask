@@ -13,7 +13,7 @@
        "lisp/*.el"
        "lisp/lib/*.el"
        "site-lisp/*.el"
-	   "modules/**"
+       "modules/**"
        "banners/**"
        "fonts/**"
        "templates/**")
