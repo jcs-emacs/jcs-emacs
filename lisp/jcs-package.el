@@ -210,6 +210,7 @@
           jcs-modeline
           jenkinsfile-mode
           json-mode
+          k8s-mode
           keypression
           kotlin-mode
           license-templates
