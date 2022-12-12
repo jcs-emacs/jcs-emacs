@@ -12,7 +12,7 @@
            "[*]compilation" "[*]output" "[*]execrun"
            "[*]quickrun"
            "[*]Apropos[*]" "[*]Backtrace[*]" "[*]Compile-Log[*]"
-           "[*]Help[*]" "[*]Bug Help[*]"
+           "[*]Bug Help[*]"
            "[*]Warnings[*]"
            "[*]VC-history[*]"
            "[*]CPU-Profiler-Report" "[*]Memory-Profiler-Report"
@@ -55,6 +55,7 @@
            "[*]npm:" "[*]hexo"
            "[*]Flutter")
         diminish-buffer-mode-list '( "dired-mode"
+                                     "help-mode" "list-environment-mode"
                                      "shell-mode" "eshell-mode")))
 
 ;;
