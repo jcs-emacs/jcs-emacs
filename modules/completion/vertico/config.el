@@ -80,20 +80,21 @@
     (jcs-vertico-find-files-/)))
 
 (defun jcs-vertico-find-files-/ ()
-  (cond ((save-excursion (search-backward "//" nil t))  ; Root
+  "After inserting slash."
+  (cond ((save-excursion (search-backward "//" nil t))   ; Root
          (jcs-vertico--cd (f-root)))
         ((save-excursion (search-backward "/~/" nil t))  ; Home
          (jcs-vertico--cd "~/"))
         ((save-excursion (search-backward "/!/" nil t))  ; Project
          (if (jcs-project-under-p)
              (jcs-vertico--cd (jcs-project-root))
-           (backward-delete-char 2)
+           (delete-char -2)
            (message "[INFO] Project root not found, return to previous directory")))
         ((save-excursion (search-backward "/./" nil t))   ; Current
-         (backward-delete-char 2))
+         (delete-char -2))
         ((save-excursion (search-backward "/../" nil t))  ; Up one
-         (backward-delete-char 3)
-         (vertico-directory-up))
+         (delete-char -3)
+         (vertico-directory-up 1))
         ;; New root, changing disk
         ((when-let* ((root
                       (save-excursion
@@ -134,7 +135,7 @@
                (not (jcs-current-char-equal-p "/")))
       (save-excursion
         (forward-char -1)
-        (backward-delete-char 1)))
+        (delete-char -1)))
     (when (or vertico-flx--sorting
               (and (eq this-command 'vertico-directory-delete-char)
                    (string-empty-p (minibuffer-contents))))
