@@ -305,6 +305,7 @@
           sln-mode
           smart-comment
           smex
+          snow
           sort-words
           sql-indent
           ssh-config-mode

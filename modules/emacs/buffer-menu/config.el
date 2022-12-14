@@ -53,7 +53,8 @@
            "[*]org-src-fontification"
            "[*]ASCII[*]"
            "[*]npm:" "[*]hexo"
-           "[*]Flutter")
+           "[*]Flutter"
+           "[*]snow[*]")
         diminish-buffer-mode-list '( "dired-mode"
                                      "help-mode" "list-environment-mode"
                                      "shell-mode" "eshell-mode")))
