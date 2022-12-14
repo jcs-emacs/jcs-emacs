@@ -6,7 +6,8 @@
   :init
   (setq vertico-cycle t
         vertico-resize t
-        vertico-scroll-margin 0))
+        vertico-scroll-margin 0
+        vertico-sort-function #'vertico-flx-sort-default))
 
 (use-package marginalia
   :hook (on-first-input . marginalia-mode)
@@ -17,7 +18,7 @@
   :hook (vertico-mode . vertico-multiform-mode)
   :init
   (setq vertico-multiform-categories
-        '((file (vertico-sort-function . jcs-vertico-sort-directories-first)))))
+        '((file (vertico-sort-function . vertico-flx-sort-files)))))
 
 (use-package vertico-flx
   :hook (vertico-mode . vertico-flx-mode))
@@ -65,12 +66,6 @@
 ;;
 ;; (@* "Functions" )
 ;;
-
-(defun jcs-vertico-sort-directories-first (files)
-  "Sort directories on top."
-  (nconc
-   (vertico-sort-alpha (seq-filter (lambda (x) (string-suffix-p "/" x)) files))
-   (vertico-sort-alpha (seq-remove (lambda (x) (string-suffix-p "/" x)) files))))
 
 (defun jcs-vertico-/ ()
   "Vertico slash key."
