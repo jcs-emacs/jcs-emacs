@@ -133,6 +133,8 @@
           elisp-demos
           elixir-mode
           elm-mode
+          emacsql-mysql
+          emacsql-psql
           emmet-mode
           emoji-github
           emp
@@ -168,6 +170,7 @@
           flycheck-swift
           fof
           font-lock-ext
+          forge
           fountain-mode
           free-keys
           fsharp-mode
