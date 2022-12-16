@@ -23,7 +23,7 @@
   "Message out anything from ARGS."
   (when jcs-log
     (msgu-unsilent
-      (message (mapconcat (lambda (elm) (format "%s" elm)) args " ")))))
+      (message "%s" (mapconcat (lambda (elm) (format "%s" elm)) args " ")))))
 
 ;;
 ;; (@* "List" )
