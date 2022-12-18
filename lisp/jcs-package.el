@@ -41,6 +41,7 @@
           actionscript-mode
           ada-mode
           adaptive-wrap
+          adoc-mode
           alt-codes
           annotate
           ansible
