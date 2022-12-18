@@ -25,6 +25,7 @@
            ;; `lsp-mode'
            "[*]lsp-" "[*]LSP[ ]+"
            "[*][a-zA-Z0-9]+[-]*ls" "[*][a-zA-Z0-9]+::stderr[*]"
+           "[*]clangd"
            "[*]csharp[*]"
            "[*]rust-analyzer[*:]"
            "[*]tcp-server-sonarlint"
