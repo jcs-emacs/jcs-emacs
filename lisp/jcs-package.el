@@ -280,6 +280,7 @@
           processing-mode
           project-abbrev
           protobuf-mode
+          purescript-mode
           python-mode
           qml-mode
           quelpa

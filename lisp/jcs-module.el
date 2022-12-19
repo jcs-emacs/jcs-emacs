@@ -115,6 +115,7 @@
     (perl-mode                    . "lang/perl")
     (powershell                   . "lang/powershell")
     (processing-mode              . "lang/processing")
+    (purescript-mode              . "lang/purescript")
     (python-mode                  . "lang/python")
     (qml-mode                     . "lang/qml")
     (racket-mode                  . "lang/racket")
