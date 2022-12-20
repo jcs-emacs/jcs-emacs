@@ -274,6 +274,7 @@
           phpt-mode
           pip-requirements
           pkg-dm
+          pkgbuild-mode
           powershell
           prettier
           preview-it
