@@ -126,6 +126,7 @@
           eask-mode
           echo-bar
           editorconfig-generate
+          eldoc-eask
           eldoc-meta-net
           eldoc-toml
           electric-cursor

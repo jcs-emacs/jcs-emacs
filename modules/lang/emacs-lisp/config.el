@@ -38,7 +38,8 @@
     `(((kbd "M-K") . jcs-scratch-buffer-refresh))))
 
 (jcs-add-hook 'eask-mode-hook
-  (company-fuzzy-backend-add-before 'company-eask 'company-dabbrev))
+  (company-fuzzy-backend-add-before 'company-eask 'company-dabbrev)
+  (eldoc-eask-enable))
 
 ;;
 ;; (@* "Extensions" )
