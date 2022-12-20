@@ -140,7 +140,7 @@ delay. HEIGHT of the tooltip that will display."
   "Return the describe symbol string."
   (let ((thing (symbol-at-point)))
     (save-window-excursion
-      (with-current-buffer (get-buffer-create "*Help*")
+      (with-current-buffer (help-buffer)
         (let (buffer-read-only) (erase-buffer))
         (msgu-silent (describe-symbol thing))
         (buffer-string)))))
