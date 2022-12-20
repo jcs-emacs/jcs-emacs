@@ -100,6 +100,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add new package `k8s-mode` for kubernetes configuration file (0db8edb596c264a9256ebf20ea74dd9b9e422a04)
 * Add new module for languages `PureScript` (8ffb007bda2281a53b29782b898c2339033846ab)
 * Add support for `PKGBUILD` file (b14cf80ecac042047e89dbb870ff79e75769bb8c)
+* Add company support for Eask-file, `company-eask` (21655da7edbad6f85aed6cce67994948d831bfe0)
+* Add eldoc support for Eask-file, `eldoc-eask` (fcd62477d4caa5d8c442568e37fd37d3309f0655)
 
 ## 8.2.1
 > Released Jul 22, 2022
