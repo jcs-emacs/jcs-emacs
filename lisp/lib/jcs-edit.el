@@ -253,7 +253,7 @@
 (jcs-advice-add 'save-buffer :before
   (jcs-funcall-fboundp #'company-abort)
   ;; Delete trailing whitespaces execpt the current line
-  (when whitespace-cleanup-mode
+  (when (bound-and-true-p whitespace-cleanup-mode)
     (whitespace-cleanup-region (point-min) (line-beginning-position))
     (whitespace-cleanup-region (line-end-position) (point-max)))
   (msgu-silent (jcs-remove-control-M)))
