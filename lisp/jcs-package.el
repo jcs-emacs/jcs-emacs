@@ -86,6 +86,7 @@
           company-cmd
           company-coffee
           company-dockerfile
+          company-eask
           company-elisp-keywords
           company-emojify
           company-fuzzy
