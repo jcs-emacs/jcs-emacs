@@ -99,6 +99,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add new package `npm-mode` (78ad3a6cae3cc273c7c10695b1b5a5e5941ec686)
 * Add new package `k8s-mode` for kubernetes configuration file (0db8edb596c264a9256ebf20ea74dd9b9e422a04)
 * Add new module for languages `PureScript` (8ffb007bda2281a53b29782b898c2339033846ab)
+* Add support for `PKGBUILD` file (b14cf80ecac042047e89dbb870ff79e75769bb8c)
 
 ## 8.2.1
 > Released Jul 22, 2022
