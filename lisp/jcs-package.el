@@ -298,6 +298,7 @@
           right-click-context
           robots-txt-mode
           rust-mode
+          scad-mode
           scrollable-quick-peek
           scss-mode
           shader-mode

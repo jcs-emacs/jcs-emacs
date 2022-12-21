@@ -51,6 +51,7 @@
     (hl-todo                      . "ui/hl-todo")
     (highlight-indent-guides      . "ui/indent-guides")
     (minimap                      . "ui/minimap")
+    (lv                           . "ui/lv")
     ((popup pos-tip)              . "ui/popup")
     (diff-hl                      . "ui/vc-gutter")
     (centaur-tabs                 . "ui/tabs")
