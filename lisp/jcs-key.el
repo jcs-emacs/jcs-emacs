@@ -359,165 +359,59 @@
 
 ;; ---
 
-(use-package auto-highlight-symbol
-  :config
-  (jcs-key auto-highlight-symbol-mode-map
-    `(((kbd "M-S-<right>"))
-      ((kbd "M-S-<left>"))
-      ((kbd "M--"))
-      ((kbd "M-<left>"))
-      ((kbd "M-<right>")))))
-
 (jcs-key messages-buffer-mode-map
   `(("\ek" . jcs-messages-maybe-kill-this-buffer)
     ("\eK" . jcs-messages-erase-buffer)))
 
-;;; Auto Completion
-(use-package company
-  :config
-  (jcs-key company-active-map
-    `(([tab]       . vsc-edit-tab)
-      ((kbd "TAB") . vsc-edit-tab)
-      ((kbd "C-s") . jcs-save-buffer))))
-
-;;; Binary / Hex Editor
-(use-package nhexl-mode
-  :config
-  (jcs-key nhexl-mode-map
-    `(((kbd "<up>")    . previous-line)
-      ((kbd "<down>")  . next-line)
-      ((kbd "<right>") . forward-char)
-      ((kbd "<left>")  . backward-char))))
-
-(use-package scrollable-quick-peek
-  :config
-  (jcs-key scrollable-quick-peek-keymap
-    `(((kbd "<down>"))
-      ((kbd "<up>"))
-      ((kbd "S-<down>") . scrollable-quick-peek-scroll-down)
-      ((kbd "S-<up>")   . scrollable-quick-peek-scroll-up))))
-
 ;;; Goto Address
 (use-package goto-addr
-  :config
-  (jcs-key goto-address-highlight-keymap
-    `(((kbd "C-c")))))
+  :bind ( :map goto-address-highlight-keymap
+          ("C-c")))
 
 ;;; Kill Ring
 (use-package browse-kill-ring
-  :config
-  (jcs-key browse-kill-ring-mode-map
-    `(((kbd "<escape>") . kill-this-buffer))))
-
-(use-package multiple-cursors
-  :config
-  (jcs-key mc/keymap
-    `(((kbd "<escape>") . mc/keyboard-quit)
-      ((kbd "<return>"))
-      ((kbd "C-v")      . vsc-edit-yank)
-      ((kbd "C-:"))
-      ((kbd "C-'")))))
+  :bind ( :map browse-kill-ring-mode-map
+          ("<escape>" . kill-this-buffer)))
 
 (jcs-key package-menu-mode-map
   `(((kbd "M-K")     . package-list-packages)
     ((kbd "U")       . pkg-dm-upgrade-all)
     ((kbd "C-k r m") . pkg-dm-autoremove)))
 
-(jcs-key isearch-mode-map
-  `(((kbd "C-s"))
-    ((kbd "C-r"))
-    ((kbd "C-,") . jcs-isearch-repeat-backward)
-    ((kbd "C-.") . jcs-isearch-repeat-forward)
-    ((kbd "C-<") . jcs-isearch-project-repeat-backward)
-    ((kbd "C->") . jcs-isearch-project-repeat-forward)
-    ;; TODO: Implements isearch cursor for these two keys
-    ;;((kbd "C-x") . kill-region)
-    ;;((kbd "C-c") . kill-ring-save)
-    ((kbd "C-v") . isearch-yank-pop)))
-
 (jcs-key special-mode-map
   `(((kbd "<up>")   . previous-line)
     ((kbd "<down>") . next-line)))
 
-(use-package dashboard
-  :config
-  (jcs-key dashboard-mode-map
-    `(((kbd "SPC"))
-      ((kbd "<up>")    . previous-line)
-      ((kbd "<down>")  . next-line)
-      ((kbd "C-k C-p") . package-list-packages)
-      ((kbd "M-K")     . jcs-dashboard-refresh-buffer))))
-
-(use-package eww
-  :config
-  (jcs-key eww-mode-map
-    `(((kbd "M-<left>")  . eww-back-url)
-      ((kbd "M-<right>") . eww-forward-url)
-      ((kbd "<f5>")      . eww-reload)
-      ((kbd "C-<f5>")    . eww-reload)
-      ((kbd "<f12>")     . eww-view-source)
-      ((kbd "C-S-a")     . eww-list-buffers)
-      ((kbd "C-S-o")     . eww-list-bookmarks)
-      ((kbd "C-h")       . eww-list-histories))))
-
-(use-package flycheck
-  :config
-  (jcs-key flycheck-error-list-mode-map
-    `(((kbd "M-k") . jcs-flycheck-mode)
-      ((kbd "M-K") . flycheck-error-list-reset-filter))))
-
-(jcs-key tabulated-list-mode-map
-  `(((kbd "C-+") . tabulated-list-widen-current-column)
-    ((kbd "C-_") . tabulated-list-narrow-current-column)))
-
-(use-package hl-todo
-  :config
-  (jcs-key hl-todo-mode-map
-    `(([C-f10] . hl-todo-previous)
-      ([C-f11] . hl-todo-next))))
-
 (use-package image-mode
-  :config
-  (jcs-key image-mode-map
-    `(((kbd "C-r") . image-rotate)
-      ((kbd "C-0") . (lambda () (interactive)
-                       (message "Maximize image is not supported")))
-      ((kbd "C-=") . image-increase-size)
-      ((kbd "C--") . image-decrease-size)
-      ((kbd "C-+") . image-flip-horizontally)
-      ((kbd "C-_") . image-flip-vertically))))
+  :bind ( :map image-mode-map
+          ("C-r" . image-rotate)
+          ("C-0" . (lambda () (interactive)
+                     (message "Maximize image is not supported")))
+          ("C-=" . image-increase-size)
+          ("C--" . image-decrease-size)
+          ("C-+" . image-flip-horizontally)
+          ("C-_" . image-flip-vertically)))
 
 (use-package suggest
-  :config
-  (jcs-key suggest-mode-map
-    `(((kbd "U")   . suggest-update)
-      ((kbd "M-K") . suggest-update))))
+  :bind ( :map suggest-mode-map
+          ("U"   . suggest-update)
+          ("M-K" . suggest-update)))
 
 (use-package undo-tree
-  :config
-  (jcs-key undo-tree-visualizer-mode-map
-    `(((kbd "RET") . undo-tree-visualizer-quit)
-      ((kbd "C-s") . undo-tree-visualizer-quit)))
-  (jcs-key undo-tree-map
-    `(((kbd "C-/") . smart-comment)
-      ((kbd "C-/"))
-      ("\C-_")
-      ((kbd "C-?"))
-      ((kbd "M-_")))))
-
-(use-package vertico
-  :config
-  (jcs-key vertico-map
-    `(((kbd "\177")     . vertico-directory-delete-char)
-      ((kbd "<return>") . vertico-directory-enter)
-      ((kbd "/")        . jcs-vertico-/))))
+  :bind ( :map undo-tree-visualizer-mode-map
+          ("RET" . undo-tree-visualizer-quit)
+          ("C-s" . undo-tree-visualizer-quit)
+          :map undo-tree-map
+          ("C-/" . smart-comment)
+          ("\C-_")
+          ("C-?")
+          ("M-_")))
 
 (use-package with-editor
-  :config
-  (jcs-key with-editor-mode-map
-    `(((kbd "C-s")      . with-editor-finish)
-      ((kbd "C-g")      . with-editor-cancel)
-      ((kbd "<escape>") . with-editor-cancel))))
+  :bind ( :map with-editor-mode-map
+          ("C-s"      . with-editor-finish)
+          ("C-g"      . with-editor-cancel)
+          ("<escape>" . with-editor-cancel)))
 
 (provide 'jcs-key)
 ;;; jcs-key.el ends here

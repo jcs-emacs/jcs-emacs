@@ -23,6 +23,7 @@
     (compile                      . "emacs/compile")
     (conf-mode                    . "emacs/conf-mode")
     (dired                        . "emacs/dired")
+    (hexl-mode                    . "emacs/hexl")
     (list-environment             . "emacs/list-thing")
     (re-builder                   . "emacs/re-builder")
     (text-mode                    . "emacs/text-mode")
@@ -55,6 +56,7 @@
     ((popup pos-tip)              . "ui/popup")
     (diff-hl                      . "ui/vc-gutter")
     (centaur-tabs                 . "ui/tabs")
+    (quick-peek                   . "ui/quick-peek")
     (treemacs                     . "ui/treemacs")
 ;;; Languages
     (actionscript-mode            . "lang/actionscript")

@@ -3,6 +3,10 @@
 (use-package vertico
   :hook (rfn-eshadow-update-overlay . vertico-directory-tidy)
   :hook (on-first-input . vertico-mode)
+  :bind ( :map vertico-map
+          ("\177"     . vertico-directory-delete-char)
+          ("<return>" . vertico-directory-enter)
+          ("/"        . jcs-vertico-/))
   :init
   (setq vertico-cycle t
         vertico-resize t
@@ -115,7 +119,8 @@
 
 (jcs-add-hook 'window-size-change-functions
   (setq vertico-count (floor (* (frame-height) jcs-vertico-height-ratio)))
-  (when (jcs-vertico--active-p) (jcs-with-no-redisplay (vertico--exhibit))))
+  (when (jcs-vertico--active-p)
+    (jcs-with-no-redisplay (ignore-errors (vertico--exhibit)))))
 
 (defun jcs-vertico--post-command ()
   "Post command for vertico."

@@ -1,6 +1,11 @@
 ;;; emacs/dired/config.el  -*- lexical-binding: t; -*-
 
 (use-package dired
+  :hook (dired-mode . buffer-wrap-mode)
+  :bind ( :map dired-mode-map
+          ("M-<up>"    . dired-up-directory)
+          ("M-<left>"  . dired-up-directory)
+          ("M-<right>" . dired-find-file))
   :init
   (setq dired-dwim-target t  ; suggest a target for moving/copying intelligently
         dired-hide-details-hide-symlink-targets nil

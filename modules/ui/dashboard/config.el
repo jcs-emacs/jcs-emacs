@@ -1,6 +1,11 @@
 ;;; ui/dashboard/config.el  -*- lexical-binding: t; -*-
 
 (use-package dashboard
+  :bind ( :map dashboard-mode-map
+          ("<up>"    . previous-line)
+          ("<down>"  . next-line)
+          ("C-k C-p" . package-list-packages)
+          ("M-K"     . jcs-dashboard-refresh-buffer))
   :init
   (setq dashboard-banner-logo-title "[J C S • E M A C S]"
         dashboard-footer-icon ""

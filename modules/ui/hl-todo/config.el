@@ -1,6 +1,9 @@
 ;;; ui/hl-todo/config.el  -*- lexical-binding: t; -*-
 
 (use-package hl-todo
+  :bind ( :map hl-todo-mode-map
+          ([C-f10] . hl-todo-previous)
+          ([C-f11] . hl-todo-next))
   :config
   (setq hl-todo-highlight-punctuation ":"
         hl-todo-keyword-faces

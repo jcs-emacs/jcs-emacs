@@ -66,6 +66,12 @@
 ;;; Highlight
 
 (use-package auto-highlight-symbol
+  :bind ( :map auto-highlight-symbol-mode-map
+          ("M-S-<right>")
+          ("M-S-<left>")
+          ("M--")
+          ("M-<left>")
+          ("M-<right>"))
   :init
   (setq ahs-idle-interval 0.15))
 

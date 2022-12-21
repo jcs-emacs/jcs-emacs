@@ -296,6 +296,9 @@
 ;;
 ;;; Tabulated List
 (use-package tabulated-list
+  :bind ( :map tabulated-list-mode-map
+          ("C-+" . tabulated-list-widen-current-column)
+          ("C-_" . tabulated-list-narrow-current-column))
   :config
   (jcs-advice-add 'tabulated-list-col-sort :around (save-excursion (apply arg0 args))))
 
@@ -315,6 +318,15 @@
 ;;
 ;;; Web Wowser
 (use-package eww
+  :bind ( :map eww-mode-map
+          ("M-<left>"  . eww-back-url)
+          ("M-<right>" . eww-forward-url)
+          ("<f5>"      . eww-reload)
+          ("C-<f5>"    . eww-reload)
+          ("<f12>"     . eww-view-source)
+          ("C-S-a"     . eww-list-buffers)
+          ("C-S-o"     . eww-list-bookmarks)
+          ("C-h"       . eww-list-histories))
   :init
   (setq eww-search-prefix "https://www.google.com/search?q="))
 

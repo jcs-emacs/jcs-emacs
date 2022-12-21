@@ -7,6 +7,12 @@
 
 (use-package vsc-multiple-cursors
   :hook (multiple-cursors-mode . vsc-multiple-cursors-mode)
+  :bind ( :map mc/keymap
+          ("<escape>" . mc/keyboard-quit)
+          ("<return>")
+          ("C-v"      . vsc-edit-yank)
+          ("C-:")
+          ("C-'"))
   :init
   (setq vsc-multiple-cursors-cancel-commands
         '( block-travel-down block-travel-up

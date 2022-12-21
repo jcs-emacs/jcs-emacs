@@ -273,7 +273,7 @@ kind of methods to support the maintainer you wish to.
 * *Auto Completion* - powered by [company](https://github.com/company-mode/company-mode).
 * *Auto Highlight Symbol* - powered by [auto-highlight-symbol-mode](https://github.com/mhayashi1120/auto-highlight-symbol-mode).
 * *Banner* - powered by [dashboard](https://github.com/emacs-dashboard/emacs-dashboard).
-* *Binary/Hex Editor* - powered by [nhexl-mode](https://github.com/emacsmirror/nhexl-mode).
+* *Binary/Hex Editor* - powered by [hexl-mode](https://www.emacswiki.org/emacs/HexlMode).
 * *Collaborative Editing* - powered by [togetherly](https://github.com/zk-phi/togetherly).
 * *Completion Frontend* - powered by [vertico](https://github.com/minad/vertico).
 * *Context Menu* - powered by [right-click-context](https://github.com/zonuexe/right-click-context).

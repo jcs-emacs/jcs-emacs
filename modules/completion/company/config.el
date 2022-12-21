@@ -1,6 +1,10 @@
 ;;; completion/company/config.el  -*- lexical-binding: t; -*-
 
 (use-package company
+  :bind ( :map company-active-map
+          ([tab] . vsc-edit-tab)
+          ("TAB" . vsc-edit-tab)
+          ("C-s" . jcs-save-buffer))
   :init
   (setq company-frontends '(company-pseudo-tooltip-frontend)
         company-require-match nil

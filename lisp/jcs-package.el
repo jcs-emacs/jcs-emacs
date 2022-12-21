@@ -255,7 +255,6 @@
           multi-shell
           nasm-mode
           nginx-mode
-          nhexl-mode
           nim-mode
           nix-mode
           nocomments-mode
