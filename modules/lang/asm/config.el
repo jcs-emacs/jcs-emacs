@@ -124,10 +124,10 @@
       (0 (masm-mode) (jcs-insert-masm-template))
       (1 (nasm-mode) (jcs-insert-nasm-template)))))
 
-(file-header-defins jcs-insert-masm-template "assembly" "masm.txt"
+(file-header-defins jcs-insert-masm-template "assembly" "masm/default.txt"
   "Header for MASM file.")
 
-(file-header-defins jcs-insert-nasm-template "assembly" "nasm.txt"
+(file-header-defins jcs-insert-nasm-template "assembly" "nasm/default.txt"
   "Header for NASM file.")
 
 ;;
