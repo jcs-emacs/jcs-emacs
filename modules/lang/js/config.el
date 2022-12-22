@@ -30,3 +30,9 @@
   (jcs-insert-header-if-valid '("[.]js$")
                               'jcs-js--ask-source
                               :interactive t))
+
+;;
+;; (@* "Extensions" )
+;;
+
+(use-package flycheck-deno :hook (flycheck-mode . flycheck-deno-setup))

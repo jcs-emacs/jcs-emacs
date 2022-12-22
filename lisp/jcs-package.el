@@ -158,6 +158,7 @@
           flx-rs
           flycheck-cask
           flycheck-crystal
+          flycheck-deno
           flycheck-eask
           flycheck-elm
           flycheck-elsa

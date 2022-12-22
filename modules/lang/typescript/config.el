@@ -1,5 +1,7 @@
 ;;; lang/typescript/config.el  -*- lexical-binding: t; -*-
 
+(jcs-module-load "lang/js")
+
 ;;
 ;; (@* "Document String" )
 ;;
