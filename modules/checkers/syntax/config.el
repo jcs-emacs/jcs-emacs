@@ -2,7 +2,6 @@
 
 (use-package flycheck
   :bind ( :map flycheck-error-list-mode-map
-          ("M-k" . jcs-flycheck-mode)
           ("M-K" . flycheck-error-list-reset-filter))
   :init
   ;; And don't recheck on idle as often

@@ -261,7 +261,7 @@
     ((kbd "M-D") . jcs-dashboard-other-window)
 
 ;;; Syntax Check
-    ((kbd "<f6>") . jcs-flycheck-mode)
+    ((kbd "<f6>") . flycheck-mode)
 
 ;;; Tab Bar
     ((kbd "C-t")       . centaur-tabs-mode)

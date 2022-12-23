@@ -74,29 +74,6 @@
   (unless (jcs--lsp-connected-p) (lsp-deferred)))
 
 ;;
-;; (@* "Syntax Checker" )
-;;
-
-(defun jcs-flycheck-mode ()
-  "Flycheck mode toggle."
-  (interactive)
-  (require 'flycheck)
-  (if (string= (buffer-name) flycheck-error-list-buffer)
-      (jcs-jump-to-buffer-windows
-       (buffer-name flycheck-error-list-source-buffer)
-       :success #'jcs-flycheck-mode
-       :error #'jcs-maybe-kill-this-buffer)
-    (call-interactively #'flycheck-mode)
-    (if flycheck-mode
-        (progn
-          (save-window-excursion (call-interactively #'flycheck-list-errors))
-          (with-selected-window (get-largest-window nil nil t)
-            (switch-to-buffer flycheck-error-list-buffer)))
-      (jcs-when-buffer-window flycheck-error-list-buffer
-        (jcs-maybe-kill-this-buffer))))
-  flycheck-mode)
-
-;;
 ;; (@* "Tips" )
 ;;
 
