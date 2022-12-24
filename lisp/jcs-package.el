@@ -124,6 +124,7 @@
           dotenv-mode
           dumb-jump
           eask-mode
+          easky
           echo-bar
           editorconfig-generate
           eldoc-eask
