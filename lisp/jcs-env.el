@@ -186,7 +186,8 @@
 ;;; Messages
 (use-package message-clean-mode
   :init
-  (setq message-clean-mode-mute-commands '( push-mark set-mark-command)
+  (setq message-clean-mode-mute-commands '( push-mark set-mark-command
+                                            y-or-n-p)
         message-clean-mode-echo-commands
         '( mwheel-scroll
            previous-line next-line
