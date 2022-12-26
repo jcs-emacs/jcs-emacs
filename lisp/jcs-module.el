@@ -39,7 +39,7 @@
     (shell                        . "term/shell")
     (dockerfile-mode              . "tools/dockerfile")
     (editorconfig                 . "tools/editorconfig")
-    ((execrun quickrun)           . "tools/eval")
+    ((easky execrun quickrun)     . "tools/eval")
     ((goto-char-preview goto-line-preview) . "tools/goto")
     (lsp-mode                     . "tools/lsp")
     (make-mode                    . "tools/make")
