@@ -10,7 +10,7 @@
         '( "[*]jcs"  ; config wise
            "[*]helm" "[*]esup-" "[*]quelpa-"
            "[*]compilation" "[*]output" "[*]execrun"
-           "[*]quickrun"
+           "[*]easky" "[*]quickrun"
            "[*]Apropos[*]" "[*]Backtrace[*]" "[*]Compile-Log[*]"
            "[*]Bug Help[*]"
            "[*]Warnings[*]"
