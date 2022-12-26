@@ -3,7 +3,7 @@
 (use-package easky
   :init
   (setq easky-display-function #'lv-message
-        easky-focus-p t
+        easky-focus-p nil
         easky-move-point-for-output t))
 
 (use-package execrun
