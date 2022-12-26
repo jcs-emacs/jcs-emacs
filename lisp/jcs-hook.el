@@ -76,7 +76,6 @@
   (repos-window-mode 1)
   (transient-mark-mode t)
   (vs-revbuf-mode 1)
-  (global-vsc-edit-mode 1)
   (which-key-mode 1)
   (global-whitespace-cleanup-mode 1)
   (whole-line-or-region-global-mode 1)
@@ -122,8 +121,10 @@
   (display-line-numbers-mode 1)
   (when elenv-graphic-p (highlight-indent-guides-mode 1))
   (highlight-numbers-mode 1)
-  (indent-control-ensure-tab-width)  ; Ensure indentation level is available
+  (vsc-edit-mode 1)
   (yas-minor-mode 1)
+
+  (indent-control-ensure-tab-width)  ; Ensure indentation level is available
 
   (when (jcs-funcall-fboundp #'jcs-project-under-p)
     (run-hooks 'jcs-on-project-hook)))
