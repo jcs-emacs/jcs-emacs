@@ -73,13 +73,18 @@ execution."
 ;; (@* "Module" )
 ;;
 
+(defvar jcs-module-history nil
+  "History of the loaded modules.")
+
 (defun jcs-module-load (modules)
   "Load MODULES."
   (if (listp modules)
       (dolist (module modules) (jcs-module-load module))
     (let* ((root (concat user-emacs-directory "modules/" modules))
            (config (concat root "/config.el")))
-      (load config t t))))
+      (unless (member config jcs-module-history)
+        (push config jcs-module-history)
+        (load config t t)))))
 
 (defmacro jcs-require (feature &optional filename noerror)
   "Require FEATURE; it can be a list."
