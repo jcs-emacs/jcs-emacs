@@ -123,7 +123,6 @@
           docker-compose-mode
           dotenv-mode
           dumb-jump
-          eask-mode
           easky
           echo-bar
           editorconfig-generate
