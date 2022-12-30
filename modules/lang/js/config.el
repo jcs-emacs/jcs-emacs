@@ -5,7 +5,10 @@
 ;;
 
 (file-header-defsrc jcs-js--ask-source "Major source for this JavaScript file: "
-  '("Default (JS)" "Default (JSX)" "ReactJS" "React Native")
+  '(("Default (JS)"  . "Normal JS file")
+    ("Default (JSX)" . "Normal JSX file")
+    ("ReactJS"       . "Scripting for React.js")
+    ("React Native"  . "Scripting for React Native"))
   (pcase index
     (0 (jcs-insert-js-template))
     (1 (jcs-insert-jsx-template))

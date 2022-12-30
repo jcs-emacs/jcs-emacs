@@ -17,7 +17,8 @@
 
 ;; Ask the source TYPE for Unreal C++ file.
 (file-header-defsrc jcs-c++-ask-unreal-source-type "Type of Unreal C++ file: "
-  '("Actor" "ActorComponent")
+  '(("Actor"          . "an entity that has a transform (location, rotation, scale) and that you can add to a scene.")
+    ("ActorComponent" . "something you can add to an actor to extend it’s behaviour."))
   (let ((header-ext (append jcs-c++-header-extensions jcs-c-header-extensions))
         (source-ext (append jcs-c++-source-extensions jcs-c-source-extensions)))
     (pcase index
@@ -30,7 +31,8 @@
 
 ;; Ask the source SC for editing C++ file.
 (file-header-defsrc jcs-c++-ask-source "Major source for this C++ file: "
-  '("Default" "Unreal Scripting")
+  '(("Default"          . "Normal C++ header")
+    ("Unreal Scripting" . "Unreal C++"))
   (pcase index
     (0 (jcs-cc-insert-header))
     (1 (call-interactively #'jcs-c++-ask-unreal-source-type))))

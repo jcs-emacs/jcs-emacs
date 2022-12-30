@@ -118,7 +118,8 @@
 
 (file-header-defsrc jcs-asm-ask-source
     "Major source for this Assembly Language file: "
-  '("masm" "nasm")
+  '(("masm" . "Microsoft Macro Assembler")
+    ("nasm" . "Netwide Assembler"))
   (let ((jcs-asm--asking-mode t))
     (pcase index
       (0 (masm-mode) (jcs-insert-masm-template))

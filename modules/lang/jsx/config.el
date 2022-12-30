@@ -5,7 +5,9 @@
 
 ;; Ask the source SC for editing JavaScript XML file.
 (file-header-defsrc jcs-jsx--ask-source "Major source for this JavaScript XML file: "
-  '("Default" "ReactJS" "React Native")
+  '(("Default"      . "Normal JSX file")
+    ("ReactJS"      . "Scripting for React.js")
+    ("React Native" . "Scripting for React Native"))
   (pcase index
     (0 (jcs-insert-jsx-template))
     (1 (jcs-insert-jsx-react-js-template))

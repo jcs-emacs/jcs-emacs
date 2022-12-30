@@ -12,7 +12,9 @@
 
 ;; Ask the source SC for editing CSharp file.
 (file-header-defsrc jcs-csharp-ask-source "Major source for this CSharp file: "
-  '("Default" "Godot C#" "Unity C#")
+  '(("Default"  . "Normal C# file")
+    ("Godot C#" . "Scripting for Godot engine")
+    ("Unity C#" . "Scripting for Unity 3D"))
   (pcase index
     (0 (jcs-insert-csharp-template))
     (1 (jcs-insert-csharp-godot-template))

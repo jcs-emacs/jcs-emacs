@@ -12,17 +12,26 @@
 
 ;; Ask the saved line endings SOURCE for this shell script.
 (file-header-defsrc jcs-ask-line-endings-for-this-sh-script
-    (format "Line Endings Type for file `%s`: " (jcs-buffer-name-or-buffer-file-name))
-  (list (format "=> file: (%s)" (show-eol-get-current-system))
-        (format "=> system: (%s)" elenv-system-type)
-        "Windows (dos)" "macOS (mac)" "Linux (unix)")
+    (format "Line Endings for file `%s`: " (jcs-buffer-name-or-buffer-file-name))
+  (list (cons (format "=> file: (%s)" (show-eol-get-current-system))
+              (show-eol-get-eol-mark-by-system))
+        (cons (format "=> system: (%s)" elenv-system-type)
+              (cl-case elenv-system-type
+                (`unix "Linux LF")
+                (`mac  "macOS CR")
+                (`dos  "Windows CRLF")
+                (t     "Unkown")))
+        '("Linux (unix)"  . "Linux LF")
+        '("macOS (mac)"   . "macOS CR")
+        '("Windows (dos)" . "Windows CRLF"))
   (setq jcs-sh--buffer-eol
-        (cond ((string-match-p "file:" source) (show-eol-get-current-system))
-              ((string-match-p "system:" source) elenv-system-type)
-              (t (pcase source
-                   ("Windows (dos)" 'dos)
-                   ("macOS (mac)" 'mac)
-                   ("Linux (unix)" 'unix)))))
+        (pcase index
+          (0 (show-eol-get-current-system))
+          (1 elenv-system-type)
+          (_ (pcase source
+               ("Linux (unix)"  'unix)
+               ("macOS (mac)"   'mac)
+               ("Windows (dos)" 'dos)))))
   (set-buffer-file-coding-system jcs-sh--buffer-eol))
 
 (defun jcs-sh--before-save ()

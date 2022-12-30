@@ -34,12 +34,14 @@ If optional argument WITH-EXT is non-nil; return path with extension."
 
 (file-header-defsrc jcs-ask-insert-license-content "Type of the license: "
   ;; Ask to insert the license content base on SOURCE.
-  (delete-dups
-   (sort (append (list "Default (empty)") (license-templates-names))
-         #'string-lessp))
-  (cond ((string= source "Default (empty)") (progn ))
-        ((member source (license-templates-names))
-         (license-templates-insert source))))
+  (let ((default `(("Default (empty)" . "Empty file")))
+        (names (delete-dups (license-templates-names)))
+        (data))
+    (mapc (lambda (file) (push (cons file "") data)) names)
+    (append default (reverse data)))
+  (pcase index
+    (0 )
+    (_ (license-templates-insert source))))
 
 ;;; Change Log
 
@@ -49,8 +51,11 @@ If optional argument WITH-EXT is non-nil; return path with extension."
 
 (file-header-defsrc jcs-ask-insert-changelog-content "Type of the changelog: "
   ;; Ask to insert the changelog content base on SOURCE.
-  (append (list "Default (empty)")
-          (jcs-dir-to-filename jcs-changelog-template-dir ".txt"))
+  (let ((default `(("Default (empty)" . "Empty file")))
+        (files (jcs-dir-to-filename jcs-changelog-template-dir ".txt"))
+        (data))
+    (mapc (lambda (file) (push (cons file "") data)) files)
+    (append default (reverse data)))
   (pcase source
     ("Default (empty)" )  ; Do nothing...
     (_ (file-header-insert-template-by-file-path

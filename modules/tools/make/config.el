@@ -3,12 +3,12 @@
 (require 'python-mode)
 
 (file-header-defsrc jcs-ask-makefile-language "Major language for this Makfile: "
-  '("Default (empty)"
-    "Assembly"
-    "C"
-    "C++"
-    "Java"
-    "Python")
+  '(("Default (empty)" . "Empty file")
+    ("Assembly"        . "Makefile for assemly languages")
+    ("C"               . "Makefile for C")
+    ("C++"             . "Makefile for C++")
+    ("Java"            . "Makefile for Java")
+    ("Python"          . "Makefile for Python"))
   (pcase index
     (0 )  ; Does nothing
     ((or 1 2 3) (call-interactively #'jcs-ask-makefile-cc-template))
@@ -16,21 +16,27 @@
     (5 (call-interactively #'jcs-ask-makefile-python-template))))
 
 (file-header-defsrc jcs-ask-makefile-cc-template "Type of makefile: "
-  '(".." "Application" "Library")
+  '((".."          . "Go back and re-select")
+    ("Application" . "Want to create application?")
+    ("Library"     . "Want to create library?"))
   (pcase index
     (0 (call-interactively #'jcs-ask-makefile-language))
     (1 (jcs-insert-makefile-cc-app-template))
     (2 (jcs-insert-makefile-cc-lib-template))))
 
 (file-header-defsrc jcs-ask-makefile-java-template "Type of makefile: "
-  '(".." "Application" "Library")
+  '((".."          . "Go back and re-select")
+    ("Application" . "Want to create application?")
+    ("Library"     . "Want to create library?"))
   (pcase index
     (0 (call-interactively #'jcs-ask-makefile-language))
     (1 (jcs-insert-makefile-java-app-template))
     (2 (jcs-insert-makefile-java-lib-template))))
 
 (file-header-defsrc jcs-ask-makefile-python-template "Type of makefile: "
-  '(".." "Application" "Library")
+  '((".."          . "Go back and re-select")
+    ("Application" . "Want to create application?")
+    ("Library"     . "Want to create library?"))
   (pcase index
     (0 (call-interactively #'jcs-ask-makefile-language))
     (1 (jcs-insert-makefile-python-app-template))

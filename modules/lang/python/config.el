@@ -55,8 +55,9 @@
 ;; (@* "Header" )
 ;;
 
-(file-header-defsrc jcs-ask-python-template "Type of the Python template: "
-  '("Class" "Plain")
+(file-header-defsrc jcs-ask-python-template "Select Python template: "
+  '(("Plain" . "Start literate programming")
+    ("Class" . "Start object-oriented programming (OOP)"))
   (pcase index
     (0 (jcs-insert-python-class-template))
     (1 (jcs-insert-python-template))))
