@@ -103,6 +103,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add company support for Eask-file, `company-eask` (21655da7edbad6f85aed6cce67994948d831bfe0)
 * Add eldoc support for Eask-file, `eldoc-eask` (fcd62477d4caa5d8c442568e37fd37d3309f0655)
 * Remove `nhexl-mode`, and use `hexl-mode` instead (487e8ec100b915d82205216013c59dd4669e8902)
+* Add annotation for `file-header` templates (5d32dbe973a74cb918a32cd7489773eab247561c)
 
 ## 8.2.1
 > Released Jul 22, 2022
