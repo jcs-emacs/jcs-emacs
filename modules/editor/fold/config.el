@@ -1,6 +1,7 @@
 ;;; editor/fold/config.el  -*- lexical-binding: t; -*-
 
 (use-package ts-fold
+  :hook (tree-sitter-after-on . ts-fold-line-comment-mode)
   :hook (tree-sitter-after-on . ts-fold-indicators-mode)
   :init
   (setq ts-fold-indicators-fringe 'left-fringe
