@@ -5,8 +5,13 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
-## 8.2.2 (Unreleased)
+## 9.0.1 (Unreleased)
 > Released N/A
+
+* N/A
+
+## 9.0.0
+> Released Jan 01, 2023
 
 * Add new package `company-kaomoji` (1cc6b70e9ab4ae3fc893482c1d38986da6b32e87)
 * Refactor `ts-fold-indicators` face function and get queries function (27e614884c1cb84d8f832280d253d387cdde99b4)
