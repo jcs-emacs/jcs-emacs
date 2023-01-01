@@ -42,7 +42,7 @@
 ;; (@* "Version" )
 ;;
 
-(defconst jcs-emacs-version-no "8.2.2"
+(defconst jcs-emacs-version-no "9.0.0"
   "JCS-Emacs version.")
 
 (defun jcs-emacs-version ()
