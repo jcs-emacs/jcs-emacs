@@ -243,6 +243,7 @@
           lsp-tailwindcss
           lsp-ui
           magit-todos
+          makefile-executor
           manage-minor-mode-table
           marginalia
           markdown-toc

@@ -87,8 +87,7 @@
                               :interactive t)
 
   (jcs-key-local
-    `(((kbd "RET") . jcs-makefile-newline)
-      ((kbd "C-v") . yank))))
+    `(((kbd "RET") . jcs-makefile-newline))))
 
 (jcs-add-hook 'makefile-gmake-mode-hook
   ;; XXX: Don't use gmake version, you cannot bind C-c for some reason...
