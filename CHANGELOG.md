@@ -8,7 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 9.0.1 (Unreleased)
 > Released N/A
 
-* N/A
+* Add new package `makefile-executor` (e301333ef7585189614bb1fed163caab2e4a0973)
 
 ## 9.0.0
 > Released Jan 01, 2023
