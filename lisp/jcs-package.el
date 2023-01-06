@@ -220,6 +220,7 @@
           k8s-mode
           keypression
           kotlin-mode
+          kubernetes
           license-templates
           line-reminder
           list-environment
