@@ -214,6 +214,7 @@
           javap-mode
           jayces-mode
           jcs-echobar
+          jcs-frametitle
           jcs-modeline
           jenkinsfile-mode
           json-mode

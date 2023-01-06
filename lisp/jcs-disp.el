@@ -39,16 +39,6 @@ Note this is opposite logic to the toggle mode function."
     (let ((inhibit-redisplay t)) (apply arg0 args)))
   (unless elenv-graphic-p (jcs-advice-add 'moody-tab :override arg0)))
 
-(use-package jcs-modeline
-  :config
-  (setq-default
-   frame-title-format
-   '((:eval invocation-name)
-     " - "
-     (:eval user-real-login-name) "@" (:eval system-name) ": "
-     (:eval (when (buffer-modified-p) " *"))
-     (:eval (if buffer-file-name "%f" "%b")))))
-
 ;;
 ;; (@* "Echo Bar" )
 ;;
