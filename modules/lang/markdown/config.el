@@ -21,32 +21,6 @@
                                  ("cl" . lisp-mode)))
 
 ;;
-;; (@* "Keys" )
-;;
-
-(defun jcs-markdown-return-key ()
-  "Return key for Markdown mode."
-  (interactive)
-  (let (did-ret-key close-tag-found)
-    (when (and (jcs-first-forward-char-in-line-p "<")
-               (jcs-first-backward-char-in-line-p ">"))
-      ;; Check closing tag.
-      (save-excursion
-        (search-forward "<" nil t)
-        (forward-char 1)
-        (setq close-tag-found (jcs-current-char-equal-p "/")))
-
-      (when close-tag-found
-        (newline-and-indent)
-        (newline-and-indent)
-        (jcs-smart-previous-line)
-        (setq did-ret-key t)))
-
-    (unless did-ret-key
-      (newline)
-      (indent-for-tab-command))))
-
-;;
 ;; (@* "Templates" )
 ;;
 
@@ -72,8 +46,7 @@
                               'jcs-insert-markdown-template)
 
   (jcs-key-local
-    `(((kbd "RET") . jcs-markdown-return-key)
-      ([S-tab]     . markdown-cycle)))
+    `(([S-tab] . markdown-cycle)))
 
   ;; Eemmet
   (jcs-key emmet-mode-keymap

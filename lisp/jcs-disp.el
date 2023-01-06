@@ -53,21 +53,9 @@ Note this is opposite logic to the toggle mode function."
 ;; (@* "Echo Bar" )
 ;;
 
-(defun jcs-buffer-spaces-or-tabs ()
-  "Check if buffer using spaces or tabs."
-  (if (= (how-many "^\t" (point-min) (point-max)) 0) "SPC" "TAB"))
-
 (use-package echo-bar
   :init
   (setq echo-bar-right-padding 0
-        echo-bar-function
-        (lambda ()  ; String to display in echo bar
-          (format "%s: %s  %s  %s  %s"
-                  (jcs-buffer-spaces-or-tabs)
-                  (indent-control-get-indent-level-by-mode)
-                  buffer-file-coding-system
-                  (show-eol-get-eol-mark-by-system)
-                  (format-time-string "%b %d, %Y %H:%M:%S")))
         echo-bar-minibuffer nil))
 
 (use-package region-state

@@ -47,7 +47,7 @@
 
 (jcs-add-hook 'on-init-ui-hook
   (auto-scroll-bar-mode 1)
-  (echo-bar-mode 1)
+  (jcs-echobar-mode 1)
   (global-hl-line-mode 1)
   (global-hl-todo-mode 1)
   (indent-control-mode 1)

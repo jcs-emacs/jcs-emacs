@@ -124,7 +124,6 @@
           dotenv-mode
           dumb-jump
           easky
-          echo-bar
           editorconfig-generate
           eldoc-eask
           eldoc-meta-net
@@ -214,6 +213,7 @@
           javadoc-lookup
           javap-mode
           jayces-mode
+          jcs-echobar
           jcs-modeline
           jenkinsfile-mode
           json-mode
@@ -306,7 +306,6 @@
           shader-mode
           shell-pop
           shift-number
-          show-eol
           shrink-whitespace
           sideline-blame
           sideline-color
