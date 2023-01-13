@@ -23,8 +23,7 @@
   (when (and (not (active-minibuffer-window))
              (not (jcs-funcall-fboundp #'company--active-p)))
     (jcs-funcall-fboundp #'jcs-buffer-menu-refresh-buffer)
-    (jcs-dashboard-refresh-buffer)
-    (when echo-bar-mode (jcs-funcall-fboundp #'echo-bar-update))))
+    (jcs-dashboard-refresh-buffer)))
 
 ;;
 ;; (@* "Find Files" )
