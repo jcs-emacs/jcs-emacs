@@ -36,8 +36,7 @@ Note this is opposite logic to the toggle mode function."
   :config
   ;; XXX For issue, https://github.com/tarsius/moody/pull/41
   (jcs-advice-add 'moody-redisplay :around
-    (let ((inhibit-redisplay t)) (apply arg0 args)))
-  (unless elenv-graphic-p (jcs-advice-add 'moody-tab :override arg0)))
+    (let ((inhibit-redisplay t)) (apply arg0 args))))
 
 ;;
 ;; (@* "Echo Bar" )
