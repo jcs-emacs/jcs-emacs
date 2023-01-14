@@ -98,6 +98,7 @@
           company-meta-net
           company-nginx
           company-nixos-options
+          company-org-block
           company-paths
           company-powershell
           company-shell

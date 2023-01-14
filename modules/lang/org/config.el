@@ -100,6 +100,8 @@
 
   (org-indent-mode 1)
 
+  (company-fuzzy-backend-add 'company-org-block)
+
   (jcs-key-local
     `(((kbd "C-a")        . mark-whole-buffer)
       ([S-tab]            . jcs-org-smart-cycle)
@@ -113,6 +115,10 @@
 ;;
 ;; (@* "Extensions" )
 ;;
+
+(use-package company-org-block
+  :init
+  (setq company-org-block-edit-style 'inline))
 
 (use-package org-superstar
   :hook (org-mode . org-superstar-mode)
