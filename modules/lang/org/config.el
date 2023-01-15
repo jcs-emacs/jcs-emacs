@@ -100,7 +100,7 @@
 
   (org-indent-mode 1)
 
-  (company-fuzzy-backend-add 'company-org-block)
+  (company-fuzzy-backend-add-before 'company-org-block 'company-dabbrev)
 
   (jcs-key-local
     `(((kbd "C-a")        . mark-whole-buffer)
