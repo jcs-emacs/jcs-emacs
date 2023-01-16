@@ -267,6 +267,7 @@
           nov
           npm-mode
           on
+          openai
           org-fancy-priorities
           org-sticky-header
           org-superstar
