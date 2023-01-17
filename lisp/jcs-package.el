@@ -76,6 +76,7 @@
           clojure-mode
           cmake-font-lock
           cobol-mode
+          codegpt
           coffee-mode
           com-css-sort
           command-log-mode
@@ -267,7 +268,6 @@
           nov
           npm-mode
           on
-          openai
           org-fancy-priorities
           org-sticky-header
           org-superstar
