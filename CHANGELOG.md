@@ -9,6 +9,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 > Released N/A
 
 * Add new package `makefile-executor` (e301333ef7585189614bb1fed163caab2e4a0973)
+* Add new package `codegpt` (443b2e1312368201a8a15d64355e7c9aaf5b8958)
 
 ## 9.0.0
 > Released Jan 01, 2023
