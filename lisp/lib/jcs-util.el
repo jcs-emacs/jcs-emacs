@@ -483,54 +483,6 @@ If optional argument REL-LINE is nil; we will use first visible line instead."
                                 tree-sitter-hl-face:string.special
                                 tree-sitter-hl-face:escape))))
 
-(defun jcs-goto-start-comment ()
-  "Go to the start of the comment."
-  (interactive)
-  (while (jcs-inside-comment-p)
-    (re-search-backward comment-start-skip nil t)))
-
-(defun jcs-goto-end-comment ()
-  "Go to the end of the comment."
-  (interactive)
-  (when (jcs-inside-comment-p)
-    (forward-char 1)
-    (jcs-goto-end-comment)))
-
-(defun jcs-start-comment-point (&optional pt)
-  "Point at the start of the comment point relative to PT."
-  (save-excursion (when pt (goto-char pt)) (jcs-goto-start-comment) (point)))
-
-(defun jcs-end-comment-point (&optional pt)
-  "Point at the end of the comment point relative to PT."
-  (save-excursion (when pt (goto-char pt)) (jcs-goto-end-comment) (point)))
-
-(defun jcs-start-comment-symbol (&optional pt)
-  "Return the starting comment symbol form the given PT."
-  (when (jcs-inside-comment-p)
-    (let (start-pt)
-      (save-excursion
-        (when pt (goto-char pt))
-        (jcs-goto-start-comment)
-        (progn  ; Make sure to go outside of symbol
-          (re-search-backward "[ \t\r\n]" nil t)
-          (when (= (point) (line-end-position)) (forward-char 1)))
-        (setq start-pt (point))
-        (re-search-forward comment-start-skip (1+ (line-end-position)) t)
-        (if (= start-pt (point)) nil
-          (string-trim (buffer-substring start-pt (point))))))))
-
-(defun jcs-end-comment-symbol (&optional pt)
-  "Return the ending comment symbol form the given PT."
-  (when (jcs-inside-comment-p)
-    (let (end-pt)
-      (save-excursion
-        (when pt (goto-char pt))
-        (jcs-goto-end-comment)
-        (setq end-pt (point))
-        (re-search-backward "[ \t\r\n]" (1- (line-beginning-position)) t)
-        (if (= end-pt (point)) nil
-          (string-trim (buffer-substring (point) end-pt)))))))
-
 ;;
 ;; (@* "Face" )
 ;;
