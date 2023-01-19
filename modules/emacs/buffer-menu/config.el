@@ -43,7 +43,7 @@
            "[*]ert[*]" "[*]indent-lint"
            "[*]elfeed-"
            "magit[-]*[[:ascii:]]*[:]"  ; From `magit'
-           "[*]openai"
+           "[*]openai" "[*]codegpt"
            "[*]Most used words[*]"
            "[*]Free keys[*]"
            "[*]Test SHA[*]"
