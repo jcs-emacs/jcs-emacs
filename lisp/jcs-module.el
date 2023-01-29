@@ -37,6 +37,7 @@
     (nov                          . "reader/epub")
     (esh-mode                     . "term/eshell")
     (shell                        . "term/shell")
+    (openai                       . "tools/ai")
     (dockerfile-mode              . "tools/dockerfile")
     (editorconfig                 . "tools/editorconfig")
     ((easky execrun quickrun)     . "tools/eval")

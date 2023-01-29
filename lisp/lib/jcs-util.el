@@ -101,6 +101,14 @@ execution."
     (t (with-eval-after-load ,files ,@body))))
 
 ;;
+;; (@* "Pass" )
+;;
+
+(defun jcs-auth-source-get (name)
+  "Basic value getter by NAME."
+  (plist-get (car (auth-source-search :name name)) :value))
+
+;;
 ;; (@* "Buffer" )
 ;;
 
