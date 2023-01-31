@@ -38,6 +38,10 @@ Note this is opposite logic to the toggle mode function."
   (jcs-advice-add 'moody-redisplay :around
     (let ((inhibit-redisplay t)) (apply arg0 args))))
 
+(use-package jcs-modeline
+  :init
+  (setq jcs-modeline-show-point t))
+
 ;;
 ;; (@* "Echo Bar" )
 ;;
