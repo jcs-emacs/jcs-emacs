@@ -1,16 +1,6 @@
 ;;; lang/lua/config.el  -*- lexical-binding: t; -*-
 
 ;;
-;; (@* "Electric Pair" )
-;;
-
-(defun jcs-lua--electric-pair-inhibit-predicate (c)
-  "Electric pair predicate for `lua-mode'."
-  (if (jcs-current-char-equal-p "[")
-      (electric-pair-default-inhibit c)
-    (jcs--electric-pair-inhibit-predicate c)))
-
-;;
 ;; (@* "Templates" )
 ;;
 
@@ -22,7 +12,6 @@
 ;;
 
 (jcs-add-hook 'lua-mode-hook
-  (setq-local electric-pair-inhibit-predicate 'jcs-lua--electric-pair-inhibit-predicate)
   (jcs-elec-pair-add '((?\[ . ?\])))
 
   (modify-syntax-entry ?_ "w")  ; Treat underscore as word
