@@ -190,6 +190,7 @@
           gitlab-ci-mode-flycheck
           google-this
           goto-char-preview
+          goto-last-change
           goto-line-preview
           graphql-mode
           haml-mode

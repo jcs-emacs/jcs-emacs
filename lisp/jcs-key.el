@@ -139,6 +139,7 @@
 ;;; Goto Thing
     ((kbd "M-g c") . goto-char-preview)
     ((kbd "M-g l") . goto-line-preview)
+    ((kbd "M-g p") . goto-last-change)
 
 ;;; Impatient Mode
     ((kbd "C-w o") . jcs-impatient-start)
