@@ -313,6 +313,7 @@ Here is the list of key bindins that defined in this configuration.
 * <kbd>Alt</kbd>+<kbd>left</kbd> - Navigate a word `left` excluding capital letter.
 * <kbd>Alt</kbd>+<kbd>g</kbd>, <kbd>l</kbd> - Goto line number.
 * <kbd>Alt</kbd>+<kbd>g</kbd>, <kbd>c</kbd> - Goto character position.
+* <kbd>Alt</kbd>+<kbd>g</kbd>, <kbd>p</kbd> - Goto last change.
 
 #### Navigate Windows
 
