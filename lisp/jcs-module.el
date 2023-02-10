@@ -9,7 +9,7 @@
   '(
     (keypression                  . "app/keypression")
     (elfeed                       . "app/rss")
-    (flycheck                     . "checkers/syntax")
+    ((flycheck flymake)           . ("checkers/syntax" "ui/sideline"))
     (company                      . "completion/company")
     (vertico                      . "completion/vertico")
     (tree-sitter                  . ("editor/docstring" "editor/fold"))
