@@ -342,10 +342,13 @@
           unfill
           use-package
           use-ttf
+          vbs-repl
+          vbscript-mode
           vc-refresh
           vertico-flx
           vimrc-mode
           visual-regexp
+          visual-basic-mode
           vs-dark-theme
           vs-edit-mode
           vs-electric-spacing
