@@ -19,3 +19,7 @@
   :config
   ;; Rerunning checks on every newline is a mote excessive.
   (delq 'new-line flycheck-check-syntax-automatically))
+
+(use-package flymake
+  :init
+  (setq flymake-fringe-indicator-position 'right-fringe))

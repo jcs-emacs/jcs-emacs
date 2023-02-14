@@ -3,10 +3,7 @@
 (use-package lsp-mode
   :init
   (setq lsp-auto-guess-root t
-        lsp-prefer-capf t
-        lsp-keep-workspace-alive nil                      ; Auto-kill LSP server
-        lsp-prefer-flymake nil                            ; Use lsp-ui and flycheck
-        flymake-fringe-indicator-position 'right-fringe)
+        lsp-keep-workspace-alive nil)
   :config
   ;; Let's not block the loading process, so lsp packages don't hamper with
   ;; each another.
