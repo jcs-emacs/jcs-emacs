@@ -132,6 +132,7 @@
     (sql                          . "lang/sql")
     (swift-mode                   . "lang/swift")
     (typescript-mode              . "lang/typescript")
+    (visual-basic-mode            . "lang/vbs")
     (verilog-mode                 . "lang/verilog")
     (vhdl-mode                    . "lang/vhdl")
     (vimrc-mode                   . "lang/vimscript")
