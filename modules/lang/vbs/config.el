@@ -5,7 +5,7 @@
 ;;
 
 (file-header-defins jcs-insert-vbs-template "vbs" "default.txt"
-  "Header format for BASIC file.")
+  "Header format for Visual BASIC file.")
 
 ;;
 ;; (@* "Hook" )
