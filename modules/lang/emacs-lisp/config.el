@@ -52,6 +52,11 @@
 
 (use-package flycheck-cask    :hook (flycheck-mode . flycheck-cask-setup))
 (use-package flycheck-eask    :hook (flycheck-mode . flycheck-eask-setup))
-(use-package flycheck-elsa    :hook (flycheck-mode . flycheck-elsa-setup))
+
+(use-package flycheck-elsa
+  :hook (flycheck-mode . flycheck-elsa-setup)
+  :init
+  (setq flycheck-elsa-backend 'eask))
+
 (use-package flycheck-package :hook (flycheck-mode . flycheck-package-setup))
 (use-package flycheck-relint  :hook (flycheck-mode . flycheck-relint-setup))
