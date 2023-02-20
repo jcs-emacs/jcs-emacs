@@ -4,7 +4,10 @@
   :hook (rfn-eshadow-update-overlay . vertico-directory-tidy)
   :hook (on-first-input . vertico-mode)
   :bind ( :map vertico-map
-          ("\177"     . vertico-directory-delete-char)
+          ("\177"     . (lambda () (interactive)
+                          (if (eq (char-before) ?/)
+                              (vertico-directory-up 1)
+                            (backward-delete-char 1))))
           ("<return>" . vertico-directory-enter)
           ("/"        . jcs-vertico-/))
   :init
