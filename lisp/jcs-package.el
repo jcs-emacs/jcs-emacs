@@ -25,10 +25,6 @@
 ;; (@* "Packages" )
 ;;
 
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-
 (setq use-package-always-defer t
       use-package-expand-minimally t)
 
@@ -340,7 +336,6 @@
           typescript-mode
           undo-tree-vf
           unfill
-          use-package
           use-ttf
           vbs-repl
           vbscript-mode
