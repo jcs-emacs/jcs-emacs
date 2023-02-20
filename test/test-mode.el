@@ -49,9 +49,9 @@
     javap-mode
     jayces-mode
     jenkinsfile-mode
-    js2-mode
+    js-mode
+    js-jsx-mode
     json-mode
-    rjsx-mode
     julia-mode
     less-css-mode
     lua-mode

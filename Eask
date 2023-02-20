@@ -1,17 +1,19 @@
 (package "jcs-emacs"
-         "8.0.2"
+         "8.2.2"
          "Emacs configuration works across all OSs")
 
 (website-url "https://github.com/jcs-emacs/jcs-emacs")
-(keywords "config")
+(keywords "lisp" "config")
 
-(depends-on "emacs" "28.1")
+(script "test" "echo \"Error: no test specified\" && exit 1")
+
+(depends-on "emacs" "29.1")
 
 (files "early-init.el" "init.el"
        "lisp/*.el"
-       "lisp/func/*.el"
-       "lisp/mode/*.el"
+       "lisp/lib/*.el"
        "site-lisp/*.el"
+       "modules/**"
        "banners/**"
        "fonts/**"
        "templates/**")

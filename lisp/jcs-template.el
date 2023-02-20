@@ -2,9 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-(defconst jcs-template-dir (concat user-emacs-directory "templates/")
-  "Template directory path for file headers.")
-
 ;;
 ;; (@* "File Header Insertion" )
 ;;
@@ -76,28 +73,23 @@ FAILED is callback if does NOT successfully inserted header content."
   "Return non-nil, if headers are loaded as cache.")
 
 
-(defun jcs-template-as-string (path)
-  "Read template from PATH to string."
-  (require 'f)
-  (jcs-file-content (f-join jcs-template-dir path)))
-
 (defun jcs-reload-file-info (&optional force)
   "Reload the header templates once.
 
 If optional argument FORCE is non-nil, refresh cache once."
   (interactive)
   (when (or force (null jcs-template--headers-loaded-p))
-    (setq jcs-template--header-double-colon (jcs-template-as-string "__header/d_colon.txt")
-          jcs-template--header-double-dash (jcs-template-as-string "__header/d_dash.txt")
-          jcs-template--header-double-quote (jcs-template-as-string "__header/d_quote.txt")
-          jcs-template--header-double-semicolon (jcs-template-as-string "__header/d_semicolon.txt")
-          jcs-template--header-double-slash (jcs-template-as-string "__header/d_slash.txt")
-          jcs-template--header-triple-slash (jcs-template-as-string "__header/t_slash.txt")
-          jcs-template--header-global (jcs-template-as-string "__header/global.txt")
-          jcs-template--header-semicolon (jcs-template-as-string "__header/semicolon.txt")
-          jcs-template--header-sharp (jcs-template-as-string "__header/sharp.txt")
-          jcs-template--header-single-quote (jcs-template-as-string "__header/singlequote.txt")
-          jcs-template--header-tag (jcs-template-as-string "__header/tag.txt")
+    (setq jcs-template--header-double-colon (file-header-template-string "__header/d_colon.txt")
+          jcs-template--header-double-dash (file-header-template-string "__header/d_dash.txt")
+          jcs-template--header-double-quote (file-header-template-string "__header/d_quote.txt")
+          jcs-template--header-double-semicolon (file-header-template-string "__header/d_semicolon.txt")
+          jcs-template--header-double-slash (file-header-template-string "__header/d_slash.txt")
+          jcs-template--header-triple-slash (file-header-template-string "__header/t_slash.txt")
+          jcs-template--header-global (file-header-template-string "__header/global.txt")
+          jcs-template--header-semicolon (file-header-template-string "__header/semicolon.txt")
+          jcs-template--header-sharp (file-header-template-string "__header/sharp.txt")
+          jcs-template--header-single-quote (file-header-template-string "__header/singlequote.txt")
+          jcs-template--header-tag (file-header-template-string "__header/tag.txt")
           jcs-template--headers-loaded-p t)))
 
 ;;
@@ -147,30 +139,6 @@ If optional argument FORCE is non-nil, refresh cache once."
 (defun jcs-template-header-tag ()
   "Return the preloaded tag file info template."
   (file-header-swap-keyword-template jcs-template--header-tag))
-
-;;
-;; (@* "Other Templates" )
-;;
-
-(defun jcs--file-header--insert (lang file)
-  "Insert file header by language (LANG) and it's path (FILE)."
-  (require 'f)
-  (file-header-insert-template-by-file-path (f-join jcs-template-dir lang file)))
-
-;;; Emacs Lisp
-(defun jcs-insert-emacs-lisp-template ()
-  "Template for Emacs Lisp."
-  (jcs--file-header--insert "elisp" "default.txt"))
-
-;;; Lisp
-(defun jcs-insert-lisp-template ()
-  "Lisp file header format."
-  (jcs--file-header--insert "lisp" "default.txt"))
-
-;;; Text
-(defun jcs-insert-text-template ()
-  "Header for Text header file."
-  (jcs--file-header--insert "text" "default.txt"))
 
 (provide 'jcs-template)
 ;;; jcs-template.el ends here

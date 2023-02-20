@@ -1,3 +1,0 @@
-@charset "UTF-8";
-#GLOBAL_FILE_INFO#
-

@@ -34,6 +34,7 @@ README.html
 /bookmarks
 /company-statistics-cache.el
 /custom-post.el
+/eshell
 /history
 /nov-places
 /package-quickstart.el
@@ -54,8 +55,9 @@ eclipse.jdt.ls/
 eln-cache/
 elpa-devel/
 elpa/
+emms/
 emojis/
-eshell/
+emp/
 flycheck_*.el*
 games/
 ido.*

@@ -2,6 +2,21 @@
 ;;; Commentary:
 ;;; Code:
 
+(defvar jcs-on-project-hook nil
+  "Hook run when the project is defined.")
+
+(use-package project
+  :config
+  (setq project-vc-ignores
+        (append project-vc-ignores
+                '(".idea" ".vscode"
+                  ".ensime_cache" ".eunit"
+                  ".git" ".hg" ".fslckout"
+                  "_FOSSIL_" ".bzr" "_darcs"
+                  ".tox" ".svn"
+                  ".stack-work" ".ccls-cache" ".cache" ".clangd")
+                '(".log" ".vs" "node_modules"))))
+
 ;;
 ;; (@* "Util" )
 ;;
@@ -58,35 +73,10 @@ If UNIQUIFY is non-nil, refresh the cache once."
 If optional argument DIR is nil, use variable `default-directory' instead."
   (ignore-errors (project-remember-project (project--find-in-directory (or dir default-directory)))))
 
-;;
-;; (@* "Version Control" )
-;;
-
-(defun jcs-vc-info ()
-  "Return vc-mode information."
-  (format-mode-line '(vc-mode vc-mode)))
-
-(defun jcs-vc-status ()
-  "Return version control status."
-  (jcs-require '(subr-x f))
-  (when-let* ((project-name (jcs-project-root))
-              (info (jcs-vc-info))
-              (split (split-string info ":"))
-              (name (string-trim (jcs-s-replace-displayable (nth 0 split))))
-              (branch (string-trim (jcs-s-replace-displayable (nth 1 split)))))
-    (list (f-base project-name) name branch)))
-
-(defun jcs-vc-project ()
-  "Return the project name."
-  (nth 0 (jcs-vc-status)))
-
-(defun jcs-vc-system ()
-  "Return the system name."
-  (nth 1 (jcs-vc-status)))
-
-(defun jcs-vc-branch ()
-  "Return the branch name."
-  (nth 2 (jcs-vc-status)))
+(defun jcs-project-find-file-other-window ()
+  "Find files in project on other window."
+  (interactive)
+  (jcs-with-other-window (project-find-file)))
 
 (provide 'jcs-project)
 ;;; jcs-project.el ends here

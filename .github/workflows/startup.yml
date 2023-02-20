@@ -8,6 +8,7 @@ on:
       - '**.yml'
       - '**.el'
       - lisp/**
+      - modules/**
       - site-lisp/**
   pull_request:
     branches:
@@ -22,6 +23,7 @@ concurrency:
 
 env:
   REPO_BIN: 'jcs-emacs/binaries'
+  HASH: a2534850b66841ba64efb6f04d8af60164e8a51e
 
 jobs:
   test:
@@ -49,7 +51,7 @@ jobs:
       with:
         version: ${{ matrix.emacs-version }}
 
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: Copy configuration files
       run: |
@@ -89,7 +91,7 @@ jobs:
         path: main.tar
 
     - name: Zipping .emacs.d
-      run: tar -C $HOME -cvf main.tar .emacs.d
+      run: tar -C $HOME -cvf ~/main.tar .emacs.d
 
     - name: Set git config
       run: |
@@ -101,6 +103,8 @@ jobs:
       continue-on-error: true
       run: |
         git pull
+        git reset --hard ${{ env.HASH }}
+        mv ~/main.tar ./
         git add .
         git commit -m "Update .emacs.d - main.tar"
 
@@ -110,4 +114,6 @@ jobs:
         repository: ${{ env.REPO_BIN }}
         github_token: ${{ secrets.PAT }}
         branch: master
+        rebase: false
+        force: true
         retry: 7

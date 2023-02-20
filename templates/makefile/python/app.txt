@@ -1,3 +1,0 @@
-#SHARP_FILE_INFO#
-
-### Application Makefile Template (Python) ###

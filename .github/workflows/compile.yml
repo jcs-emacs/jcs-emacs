@@ -8,6 +8,7 @@ on:
       - '**.yml'
       - '**.el'
       - lisp/**
+      - modules/**
       - site-lisp/**
   pull_request:
     branches:
@@ -34,15 +35,11 @@ jobs:
       with:
         version: ${{ matrix.emacs-version }}
 
-    - uses: actions/setup-node@v2
-      with:
-        node-version: '16'
-
     - uses: emacs-eask/setup-eask@master
       with:
         version: 'snapshot'
 
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: Test compile
       run: make compile

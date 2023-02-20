@@ -1,6 +1,17 @@
 <p align="center">
-<img src="./docs/etc/logo/logo-light.png#gh-light-mode-only" width="30%"/>
-<img src="./docs/etc/logo/logo-dark.png#gh-dark-mode-only" width="30%"/>
+<picture>
+  <source media="(prefers-color-scheme: light)" srcset="./docs/etc/logo/light/sink.png">
+  <source media="(prefers-color-scheme: dark)" srcset="./docs/etc/logo/dark/sink.png">
+  <img width="25%" src="">
+</picture>
+</p>
+
+<p align="center">
+<picture>
+  <source media="(prefers-color-scheme: light)" srcset="./docs/etc/logo/light/text.svg">
+  <source media="(prefers-color-scheme: dark)" srcset="./docs/etc/logo/dark/text.svg">
+  <img width="40%" src="">
+</picture>
 </p>
 
 <p align="center">
@@ -16,27 +27,6 @@
 <a href="#"><img src="https://img.shields.io/badge/-Linux-fcc624?logo=linux&style=flat&logoColor=black" alt="Linux"></a>
 </p>
 
-<!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
-**Table of Contents**
-
-- [jcs-emacs](#jcs-emacs)
-    - [📚 Philosophy](#📚-philosophy)
-    - [📰 News](#📰-news)
-    - [💾 Installation](#💾-installation)
-    - [🕒 Startup Time](#🕒-startup-time)
-    - [🏆 Features](#🏆-features)
-        - [Highlight](#highlight)
-        - [Details](#details)
-    - [📁 Package Archives](#📁-package-archives)
-    - [🏆 Powered by](#🏆-powered-by)
-        - [Functionalities](#functionalities)
-    - [🧰 Write your own customization](#🧰-write-your-own-customization)
-    - [❓ FAQ](#❓-faq)
-    - [Contribute](#contribute)
-
-<!-- markdown-toc end -->
-
-# jcs-emacs
 > Emacs configuration works across all OSs
 
 [![Compile](https://github.com/jcs-emacs/jcs-emacs/actions/workflows/compile.yml/badge.svg)](https://github.com/jcs-emacs/jcs-emacs/actions/workflows/compile.yml)
@@ -63,33 +53,55 @@ Here is the list of programming languages I know and are extended
 from this configuration.
 
 * ActionScript 2.0 or 3.0 / Ada / Agda / AppleScript / Assembly Language
-* BASIC / Batchfile
-* C / C++ / C# / Clojure / CMake / COBOL / CSS
+* BASIC / Batchfile / Beancount
+* C / C++ / C# / Clojure / CMake / COBOL / Crystal / CSS
 * Dart / Dockerfile
 * Elixir / Elm / Emacs Lisp / Erlang
 * F# / Fountain
 * GLSL / Go / GDScript / Groovy
 * Haskell / Haxe / HLSL / HTML
-* INI
+* Idris / INI
 * Java / JavaScript / JSON / JSX / Julia
 * Kotlin
 * LESS / Lisp / Lua
-* Makefile / Markdown
-* Nix
-* Object Pascal (Delphi) / Objective-C
+* Makefile / Markdown / Mint
+* Nim / Nix
+* Object Pascal (Delphi) / Objective-C / OCaml
 * Pascal / Perl / PHP / PowerShell / Properties / Python
-* R / Ruby / Rust
+* R / Racket / Ruby / Rust
 * Sass / Scala / SCSS / Shader / Shell script / SQL / Swift
-* TOML / TSX / TypeScript
-* Verilog / Vimscript / Vue
+* Terraform / TOML / TSX / TypeScript
+* Verilog / VHDL / Vimscript / Vue
 * XML
 * YAML
+* Zig
 
 This configuration polished and goes toward to the modern
 text editor, or even better, it goes beyond modern IDE.
 e.g. [Atom](https://atom.io/), [Brackets](http://brackets.io/),
 [Sublime Text 2](https://www.sublimetext.com/2) or [3](https://www.sublimetext.com/),
 [Visual Studio Code](https://code.visualstudio.com/), etc.
+
+---
+
+<!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
+**Table of Contents**
+
+- [📚 Philosophy](#📚-philosophy)
+- [📰 News](#📰-news)
+- [💾 Installation](#💾-installation)
+- [🕒 Startup Time](#🕒-startup-time)
+- [🏆 Features](#🏆-features)
+  - [Highlight](#highlight)
+  - [Details](#details)
+- [📁 Package Archives](#📁-package-archives)
+- [🏆 Powered by](#🏆-powered-by)
+  - [Functionalities](#functionalities)
+- [🧰 Write your own customization](#🧰-write-your-own-customization)
+- [❓ FAQ](#❓-faq)
+- [Contribute](#contribute)
+
+<!-- markdown-toc end -->
 
 ## 📚 Philosophy
 
@@ -118,6 +130,8 @@ without having to get used to a new IDE.
 
 Here is the list of few essential and recent changes to this configuration.
 
+* `8.2.2` - Add `emp` as the default Music Player
+* `8.2.1` - Replace package `docstr` with `ts-docstr` for better parsing capability
 * `8.2.0` - Drop support for Emacs 27.x
 * `8.1.0` - Remove config tabify/untabify save, and replace it with `whitespace-cleanup-mode`.
 * `8.0.1` - Switch from `ivy` to `vertico`.
@@ -126,9 +140,6 @@ Here is the list of few essential and recent changes to this configuration.
 * `7.0.0` - Switch from [quickhelp](https://github.com/company-mode/company-quickhelp) to [box](https://github.com/sebastiencs/company-box) for company frontend.
 * `6.5.0` - Add pinned archive feature to package module.
 * `6.4.2` - You can now resolve package dependency graph while deleting package.
-* `6.4.1` - Start with `tree-sitter` support.
-* `6.4.0` - Switched from `projectile` to built-in `project` for project management.
-* `6.3.1` - Replaced `docstring` module to external `docstr` package.
 
 ## 💾 Installation
 
@@ -216,10 +227,6 @@ I believe details make things better and make life smoother.
 * [*VS Multiple Cursors*](./docs/features/vs-multiple-cursors) - VSCode like methods to `mark` and `unmark` multiple cursor.
 * [*Fast Incremental Search*](./docs/features/fast-incremental-search) - Fast keys for incremental search forward/backward to the cursor is currently pointing.
 * [*Indent Control*](./docs/features/indent-control) - Generic control the indentation level for each mode, for more information see [indent-control](https://github.com/alt-elpa/indent-control).
-* Previous/Next Keys
-* [*Normal Move*]() - Act like other normal editors.
-* [*Smart-Move*](./docs/features/smart-move) - Smart enough to move cursor to the beginning of the line.
-* [*Line Numbers Modding*](./docs/features/line-numbers-modding) - Mixed used of `linum` and `display-line-numbers-mode` base on the file usage.
 * [*License Helper*](./docs/features/license-helper) - Help to create license while creating `LICENSE` file using template.
 * [*Mini State*](./docs/features/mini-state) - Mini mode state use to visually see what backend is the config currently running. (Deprecated)
 * [*Explicit States*](./docs/features/mini-state/explicit-states) - Automatcially switch mini state depends on certain circumstances.
@@ -239,10 +246,10 @@ I believe details make things better and make life smoother.
 
 A list of package archives that this configuration uses.
 
-* *[GNU](https://elpa.gnu.org/packages/)* - The standard GNU ELPA
-* *[NonGNU](https://elpa.gnu.org/packages/)* - The standard NonGNU ELPA
+* *[GNU](https://elpa.gnu.org/)* - The standard GNU ELPA
+* *[NonGNU](https://elpa.nongnu.org/)* - The standard NonGNU ELPA
 * *[MELPA](https://melpa.org/#/)* - Milkypostman’s ELPA
-* *[JCS-ELPA](https://github.com/jcs-emacs/jcs-elpa)* - Jen-Chieh Shen's ELPA for this confinguration
+* *[JCS-ELPA](https://jcs-emacs.github.io/jcs-elpa/)* - Jen-Chieh Shen's ELPA for this confinguration
 
 📝 *P.S. Here is a good talk comparing all package archives from a
 [StackExchange](https://emacs.stackexchange.com/) question,
@@ -266,11 +273,11 @@ kind of methods to support the maintainer you wish to.
 * *Auto Completion* - powered by [company](https://github.com/company-mode/company-mode).
 * *Auto Highlight Symbol* - powered by [auto-highlight-symbol-mode](https://github.com/mhayashi1120/auto-highlight-symbol-mode).
 * *Banner* - powered by [dashboard](https://github.com/emacs-dashboard/emacs-dashboard).
-* *Binary/Hex Editor* - powered by [nhexl-mode](https://github.com/emacsmirror/nhexl-mode).
+* *Binary/Hex Editor* - powered by [hexl-mode](https://www.emacswiki.org/emacs/HexlMode).
 * *Collaborative Editing* - powered by [togetherly](https://github.com/zk-phi/togetherly).
 * *Completion Frontend* - powered by [vertico](https://github.com/minad/vertico).
 * *Context Menu* - powered by [right-click-context](https://github.com/zonuexe/right-click-context).
-* *Document String* - powered by [docstr](https://github.com/jcs-elpa/docstr).
+* *Document String* - powered by [ts-docstr](https://github.com/emacs-vs/ts-docstr).
 * *End of Line* - powered by [show-eol](https://github.com/elpa-host/show-eol).
 * *Execute Commands* - powered by [compile](https://www.emacswiki.org/emacs/CompilationMode).
 * *File Explorer* - powered by [treemacs](https://github.com/Alexander-Miller/treemacs).
@@ -285,14 +292,14 @@ kind of methods to support the maintainer you wish to.
 * *Language Server Protocol* - powered by [lsp-mode](https://github.com/emacs-lsp/lsp-mode).
 * *Line Annotation* - powered by [line-reminder](https://github.com/elpa-host/line-reminder).
 * *Line Numbers* - powered by [display-line-numbers](https://github.com/emacs-mirror/emacs/blob/master/lisp/display-line-numbers.el) and [linum](https://github.com/emacs-mirror/emacs/blob/master/lisp/linum.el).
-* *Minimap* - none, originally powered by ~~[sublimity](https://github.com/zk-phi/sublimity)~~.
-* *Mode Line* - powered by [moody](https://github.com/tarsius/moody).
+* *Minimap* - powered by [minimap](http://elpa.gnu.org/packages/minimap.html).
+* *Mode Line* - powered by [jcs-modeline](https://github.com/jcs-emacs/jcs-modeline).
 * *Multiple Cursor* - powered by [iedit](https://github.com/victorhge/iedit) and [multiple-cursors](https://github.com/magnars/multiple-cursors.el).
 * *Multiple Terminal* - powered by [multi-shell](https://github.com/jcs-elpa/multi-shell).
-* *Music Player* - none.
+* *Music Player* - powered by [emp](https://github.com/jcs-elpa/emp).
 * *Navigation/Searcher* - powered by [searcher](https://github.com/jcs-elpa/searcher) and [isearch-project](https://github.com/elpa-host/isearch-project).
 * *Package Archive* - see [here](#file_folder-package-archives).
-* *Package Management* - powered by [leaf](https://github.com/conao3/leaf.el) and [github-elpa](https://github.com/10sr/github-elpa).
+* *Package Management* - powered by [use-package](https://github.com/jwiegley/use-package) and [github-elpa](https://github.com/10sr/github-elpa).
 * *PDF Viewer* - powered by [doc-view-mode](https://www.emacswiki.org/emacs/DocViewMode) and [ghostscript](https://www.ghostscript.com/index.html).
 * *Project Management* - powered by [project](https://elpa.gnu.org/packages/project.html).
 * *Recent Files* - powered by [recentf](https://www.emacswiki.org/emacs/RecentFiles).
@@ -302,16 +309,14 @@ kind of methods to support the maintainer you wish to.
 * *Shell* - powered by [shell](https://www.emacswiki.org/emacs/ShellMode) and [exec-path-from-shell](https://github.com/purcell/exec-path-from-shell).
 * *Smooth Scrolling* - none, originally powered by ~~[sublimity](https://github.com/zk-phi/sublimity)~~.
 * *Snippet* - powered by [yasnippet](https://github.com/joaotavora/yasnippet).
-* *Source Control Management* - none.
 * *Startup Screen* - powered by [dashboard](https://github.com/emacs-dashboard/emacs-dashboard).
 * *Syntax Check* - powered by [flycheck](http://www.flycheck.org/en/latest/).
 * *Tab Bar* - powered by [centaur-tabs](https://github.com/ema2159/centaur-tabs).
 * ~~*Tags* - powered by [gtags](https://www.gnu.org/software/global/).~~
-* *Text Editing* - powered by [org-mode](https://orgmode.org/).
 * *Theme* - powered by [vs-dark-theme](https://github.com/jcs-elpa/vs-dark-theme) and [vs-light-theme](https://github.com/jcs-elpa/vs-light-theme). **(For more info see [here](#themes))**
 * *Todo* - powered by [hl-todo](https://github.com/tarsius/hl-todo).
-* *Toggle Mode Line* - powered by [feebleline](https://github.com/tautologyclub/feebleline).
 * *Undo/Redo* - powered by [undo-tree](https://www.emacswiki.org/emacs/UndoTree).
+* *Version Control Management* - powered by [magit](https://github.com/magit/magit).
 * *Video Player* - none.
 * *White Space* - powered by [whitespace](https://www.emacswiki.org/emacs/WhiteSpace).
 
@@ -332,6 +337,7 @@ Here is the list of *Frequently Asked Questions*.
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 [![Elisp styleguide](https://img.shields.io/badge/elisp-style%20guide-purple)](https://github.com/bbatsov/emacs-lisp-style-guide)
 [![Donate on paypal](https://img.shields.io/badge/paypal-donate-1?logo=paypal&color=blue)](https://www.paypal.me/jcs090218)
+[![Become a patron](https://img.shields.io/badge/patreon-become%20a%20patron-orange.svg?logo=patreon)](https://www.patreon.com/jcs090218)
 
 If you would like to contribute to this project, you may clone and make pull
 requests to this repository. Or you can clone the project and establish your own
