@@ -38,7 +38,7 @@
            "[*]Kill Ring[*]"  ; From `browse-kill-ring'
            "[*]SPEEDBAR"
            "[*]Flycheck" "[*]Flymake log[*]"
-           "[*]httpd[*]"
+           "[*]httpd[*]" "[*]HTTP Response[*]"
            "[*]helpful" "[*]suggest[*]"
            "[*]ert[*]" "[*]indent-lint"
            "[*]elfeed-"

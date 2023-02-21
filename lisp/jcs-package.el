@@ -98,6 +98,7 @@
           company-org-block
           company-paths
           company-powershell
+          company-restclient
           company-shell
           company-sourcekit
           company-terraform

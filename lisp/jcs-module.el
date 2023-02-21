@@ -123,6 +123,7 @@
     (python-mode                  . "lang/python")
     (qml-mode                     . "lang/qml")
     (racket-mode                  . "lang/racket")
+    (restclient                   . "lang/rest")
     (ruby-mode                    . "lang/ruby")
     (rust-mode                    . "lang/rust")
     (ssass-mode                   . "lang/sass")
@@ -196,6 +197,8 @@
 ;;; O
     ("\\.dpk'?\\'"          . opascal-mode)
     ("\\.dpr'?\\'"          . opascal-mode)
+;;; R
+    ("\\.http'?\\'"         . restclient-mode)
 ;;; S
     ("\\.sass'?\\'"         . ssass-mode)
     ("\\.shader'?\\'"       . shader-mode)
