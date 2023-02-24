@@ -317,7 +317,8 @@
     ((kbd "C-M-c") . capitalize-dwim)
 
 ;;; Whitespace
-    ((kbd "C-k b") . whitespace-mode)
+    ((kbd "C-k b")   . whitespace-mode)
+    ((kbd "C-r C-w") . whitespace-mode)
 
 ;;; Zoom
     ((kbd "C-=")      . text-scale-increase)
