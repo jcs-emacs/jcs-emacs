@@ -120,7 +120,7 @@
     (powershell                   . "lang/powershell")
     (processing-mode              . "lang/processing")
     (purescript-mode              . "lang/purescript")
-    (python-mode                  . "lang/python")
+    (python                       . "lang/python")
     (qml-mode                     . "lang/qml")
     (racket-mode                  . "lang/racket")
     (restclient                   . "lang/rest")
