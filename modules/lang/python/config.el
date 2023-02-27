@@ -59,8 +59,8 @@
   '(("Plain" . "Start literate programming")
     ("Class" . "Start object-oriented programming (OOP)"))
   (pcase index
-    (0 (jcs-insert-python-class-template))
-    (1 (jcs-insert-python-template))))
+    (0 (jcs-insert-python-template))
+    (1 (jcs-insert-python-class-template))))
 
 ;;
 ;; (@* "Templates" )
