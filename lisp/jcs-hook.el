@@ -9,6 +9,7 @@
 (defun jcs-hook--focus-in ()
   "When window is focus."
   (jcs-reload-active-mode)
+  (when (featurep 'recentf) (msgu-silent (recentf-cleanup)))
   (jcs-dashboard-refresh-buffer))
 
 (defun jcs-hook--focus-out ()
@@ -54,6 +55,7 @@
   (jcs-modeline-mode 1)
   (right-click-context-mode 1)
   (vertico-mode 1)
+  (window-divider-mode 1)
   (jcs-require '(jcs-edit))
   (message nil))  ; mute at the very end!
 
