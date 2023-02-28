@@ -16,9 +16,10 @@
   "When window is not focus."
   (jcs-reload-active-mode))
 
-(add-function
- :after after-focus-change-function
- (lambda () (if (frame-focus-state) (jcs-hook--focus-in) (jcs-hook--focus-out))))
+(defun jcs-hook--after-focus ()
+  "Function runs after focusing the frame."
+  (if (frame-focus-state) (jcs-hook--focus-in)
+    (jcs-hook--focus-out)))
 
 (jcs-add-hook 'window-state-change-hook
   (when (and (not (active-minibuffer-window))
@@ -46,6 +47,7 @@
   (jcs-setup-default-theme))
 
 (jcs-add-hook 'on-init-ui-hook
+  (add-function :after after-focus-change-function #'jcs-hook--after-focus)
   (auto-scroll-bar-mode 1)
   (global-hl-line-mode 1)
   (global-hl-todo-mode 1)
