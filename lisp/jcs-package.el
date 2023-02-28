@@ -103,6 +103,7 @@
           company-shell
           company-sourcekit
           company-terraform
+          composer
           consult
           crystal-mode
           csproj-mode
@@ -171,6 +172,14 @@
           flycheck-package
           flycheck-relint
           flycheck-swift
+          flymake-coffee
+          flymake-haml
+          flymake-lua
+          flymake-nasm
+          flymake-php
+          flymake-racket
+          flymake-ruby
+          flymake-shell
           fof
           font-lock-ext
           forge

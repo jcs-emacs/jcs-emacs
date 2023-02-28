@@ -17,3 +17,9 @@
   ;; File Header
   (jcs-insert-header-if-valid '("[.]coffee")
                               'jcs-insert-coffee-template))
+
+;;
+;; (@* "Extensions" )
+;;
+
+(use-package flymake-coffee :hook (flymake-mode . flymake-coffee-load))

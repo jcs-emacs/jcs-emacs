@@ -61,3 +61,9 @@
   (jcs-insert-header-if-valid '("[.]sh"
                                 "[.]fish")
                               'jcs-insert-sh-template))
+
+;;
+;; (@* "Extensions" )
+;;
+
+(use-package flymake-shell :hook (flymake-mode . flymake-shell-load))

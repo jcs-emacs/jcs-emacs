@@ -148,3 +148,9 @@
   (jcs-key-local
     `(((kbd "RET")    . jcs-asm-return)
       ((kbd ";")      . jcs-asm-comment))))
+
+;;
+;; (@* "Extensions" )
+;;
+
+(use-package flymake-nasm :hook (flymake-mode . flymake-nasm-setup))

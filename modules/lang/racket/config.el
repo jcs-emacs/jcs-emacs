@@ -19,3 +19,9 @@
   (jcs-key-local
     `(((kbd "<up>")   . vs-edit-previous-line)
       ((kbd "<down>") . vs-edit-next-line))))
+
+;;
+;; (@* "Extensions" )
+;;
+
+(use-package flymake-racket :hook (flymake-mode . flymake-racket-add-hook))

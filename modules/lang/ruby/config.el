@@ -18,3 +18,9 @@
   ;; File Header
   (jcs-insert-header-if-valid '("[.]rb")
                               'jcs-insert-ruby-template))
+
+;;
+;; (@* "Extensions" )
+;;
+
+(use-package flymake-ruby :hook (flymake-mode . flymake-ruby-load))

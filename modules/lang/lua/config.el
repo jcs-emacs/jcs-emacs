@@ -21,3 +21,9 @@
   ;; File Header
   (jcs-insert-header-if-valid '("[.]lua" "[.]luac")
                               'jcs-insert-lua-template))
+
+;;
+;; (@* "Extensions" )
+;;
+
+(use-package flymake-lua :hook (flymake-mode . flymake-lua-load))
