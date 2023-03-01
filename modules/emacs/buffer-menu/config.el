@@ -27,6 +27,7 @@
            "[*][a-zA-Z0-9]+[-]*ls" "[*][a-zA-Z0-9]+::stderr[*]"
            "[*]clangd"
            "[*]csharp[*]"
+           "[*]lua-"
            "[*]rust-analyzer[*:]"
            "[*]tcp-server-sonarlint"
            "[*]pyright[*]"
