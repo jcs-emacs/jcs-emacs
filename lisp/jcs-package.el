@@ -174,6 +174,7 @@
           flycheck-swift
           flymake-coffee
           flymake-haml
+          flymake-less
           flymake-lua
           flymake-nasm
           flymake-php
