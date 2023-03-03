@@ -77,7 +77,8 @@
 
 (use-package region-occurrences-highlighter
   :init
-  (setq region-occurrences-highlighter-min-size 1))
+  (setq region-occurrences-highlighter-min-size 1
+        region-occurrences-highlighter-all-visible-buffers nil))
 
 (use-package highlight-numbers
   :config
