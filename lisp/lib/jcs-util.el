@@ -326,11 +326,11 @@ Notice PATH can either be `buffer-name' or `buffer-file-name'."
 
 (defun jcs-current-char-a-wordp ()
   "Check if current character a usual letter."
-  (jcs-word-p (string-to-char (jcs-char-string))))
+  (jcs-word-p (string-to-char (jcs-before-char-string))))
 
 (defun jcs-current-char-uppercasep ()
   "Check if current character a uppercase character."
-  (jcs-uppercase-p (string-to-char (jcs-char-string))))
+  (jcs-uppercase-p (string-to-char (jcs-before-char-string))))
 
 (defun jcs-current-char-lowercasep ()
   "Check if current character a lowercase character."
@@ -350,12 +350,12 @@ Notice PATH can either be `buffer-name' or `buffer-file-name'."
 
 (defun jcs-current-char-equal-p (c)
   "Check the current character equal to C, C can be a list of character."
-  (cond ((and (stringp c) (stringp (jcs-char-string)))
-         (string= (jcs-char-string) c))
-        ((listp c) (member (jcs-char-string) c))))
+  (cond ((and (stringp c) (stringp (jcs-before-char-string)))
+         (string= (jcs-before-char-string) c))
+        ((listp c) (member (jcs-before-char-string) c))))
 
-(defun jcs-char-string ()
-  "Get the current character as the 'string'."
+(defun jcs-before-char-string ()
+  "Get the current character as the `string'."
   (if (char-before) (string (char-before)) ""))
 
 (defun jcs-first-backward-char-in-line-p (ch)
@@ -363,14 +363,14 @@ Notice PATH can either be `buffer-name' or `buffer-file-name'."
   (save-excursion
     (when (re-search-backward "[^ \t]" (line-beginning-position) t)
       (forward-char 1)
-      (string= (jcs-char-string) ch))))
+      (string= (jcs-before-char-string) ch))))
 
 (defun jcs-first-forward-char-in-line-p (ch)
   "Check the first character on the right is CH or not with current line as boundary."
   (save-excursion
     (when (re-search-forward "[ \t]*" (line-end-position) t)
       (forward-char 1)
-      (string= (jcs-char-string) ch))))
+      (string= (jcs-before-char-string) ch))))
 
 ;;
 ;; (@* "Word" )
