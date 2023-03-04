@@ -7,4 +7,7 @@
   :hook (tree-sitter-after-on . ts-docstr-mode)
   :init
   (setq ts-docstr-key-support nil
-        ts-docstr-desc-summary ""))
+        ts-docstr-desc-summary "")
+  :config
+  (jcs-advice-add 'ts-docstr-key-enable :after
+    (ts-docstr-key--advice-add "*" :around #'ts-docstr-key--doxygen-asterik)))
