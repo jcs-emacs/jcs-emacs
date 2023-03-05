@@ -152,7 +152,11 @@
 
 (use-package whitespace
   :init
-  (setq whitespace-display-mappings
+  (setq whitespace-line-column nil
+        whitespace-style
+        '(face indentation tabs tab-mark spaces space-mark newline newline-mark
+               trailing lines-tail)
+        whitespace-display-mappings
         '((tab-mark ?\t [?› ?\t])
           (newline-mark ?\n [?¬ ?\n])
           (space-mark ?\  [?·] [?.]))))
