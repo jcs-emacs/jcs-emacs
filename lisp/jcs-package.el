@@ -157,6 +157,7 @@
           fish-mode
           flx-rs
           flycheck-cask
+          flycheck-clang-analyzer
           flycheck-crystal
           flycheck-deno
           flycheck-eask

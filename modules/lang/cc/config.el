@@ -58,20 +58,20 @@
   "Local hook `ts-docstr-after-insert-hook' for C++."
   (when-let ((name (plist-get data :name)))
     (ts-docstr-with-insert-indent
-      (cl-case (tsc-node-type node)
-        (preproc_def
-         (insert "@def " name "\n")
-         (insert "* @brief " jcs--define-desc-string))
-        (class_specifier
-         (insert "@class " name "\n")
-         (insert "* @brief " jcs--class-desc-string))
-        (struct_specifier
-         (insert "@struct " name "\n")
-         (insert "* @brief " jcs--struct-desc-string))
-        (enum_specifier
-         (insert "@enum " name "\n")
-         (insert "* @brief " jcs--enum-desc-string)))
-      (setq restore-point (point)))))
+     (cl-case (tsc-node-type node)
+       (preproc_def
+        (insert "@def " name "\n")
+        (insert "* @brief " jcs--define-desc-string))
+       (class_specifier
+        (insert "@class " name "\n")
+        (insert "* @brief " jcs--class-desc-string))
+       (struct_specifier
+        (insert "@struct " name "\n")
+        (insert "* @brief " jcs--struct-desc-string))
+       (enum_specifier
+        (insert "@enum " name "\n")
+        (insert "* @brief " jcs--enum-desc-string)))
+     (setq restore-point (point)))))
 
 ;;
 ;; (@* "Header" )
@@ -112,3 +112,10 @@
   (c-toggle-auto-hungry-state -1)
 
   (modify-syntax-entry ?_ "w"))
+
+;;
+;; (@* "Extensions" )
+;;
+
+(use-package flycheck-clang-analyzer
+  :hook (flycheck-mode . flycheck-clang-analyzer-setup))
