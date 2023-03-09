@@ -74,6 +74,7 @@
           cmake-font-lock
           cobol-mode
           codegpt
+          codemetrics
           coffee-mode
           com-css-sort
           command-log-mode
