@@ -12,6 +12,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add new package `codegpt` (443b2e1312368201a8a15d64355e7c9aaf5b8958)
 * Add and config new package `goto-last-change` (71d0c3dfa0636fc55cc1c023e6383d5946b19e3c)
 * Add new package `flycheck-clang-analyzer` (0ea36feb652c0ebe59ab5b80d5739cb23cb4b52b)
+* Add new package `codemetrics` (51032ef78f5b9827ee76c5c48832974c9bd9cf73)
 
 ## 9.0.0
 > Released Jan 01, 2023
