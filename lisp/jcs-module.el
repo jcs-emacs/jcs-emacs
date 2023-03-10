@@ -207,13 +207,10 @@
 ;;; V
     ("\\.vue'?\\'"          . web-mode)
 ;;; W
-    ("\\.phtml\\'"          . web-mode)
-    ("\\.tpl\\.php\\'"      . web-mode)
     ("\\.erb\\'"            . web-mode)
     ("\\.mustache\\'"       . web-mode)
     ("\\.djhtml\\'"         . web-mode)
     ("\\.html?\\'"          . web-mode)
-    ("\\.php?\\'"           . web-mode)
     ("\\.[agj]sp\\'"        . web-mode)
     ;;
     ("\\.as[cp]x\\'"        . web-mode)
