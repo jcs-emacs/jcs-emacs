@@ -83,14 +83,6 @@
 ;; (@* "Return" )
 ;;
 
-(jcs-advice-add 'newline :around
-  (when (jcs-current-line-totally-empty-p) (indent-for-tab-command))
-  (let ((ln-cur (buffer-substring (line-beginning-position) (point))))
-    (apply arg0 args)
-    (save-excursion
-      (forward-line -1)
-      (when (jcs-current-line-totally-empty-p) (insert ln-cur)))))
-
 (defun jcs-ctrl-return-key ()
   "Global Ctrl-Return key."
   (interactive)

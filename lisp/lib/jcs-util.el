@@ -400,10 +400,6 @@ Notice PATH can either be `buffer-name' or `buffer-file-name'."
   "Current line empty, but accept spaces/tabs in there.  (not absolute)."
   (save-excursion (beginning-of-line) (looking-at "[[:space:]\t]*$")))
 
-(defun jcs-current-line-totally-empty-p ()
-  "Current line empty with no spaces/tabs in there.  (absolute)."
-  (and (bolp) (eolp)))
-
 (defun jcs-current-line-comment-p ()
   "Check if current line only comment."
   (save-excursion
