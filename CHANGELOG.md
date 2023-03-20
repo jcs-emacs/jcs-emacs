@@ -13,6 +13,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add and config new package `goto-last-change` (71d0c3dfa0636fc55cc1c023e6383d5946b19e3c)
 * Add new package `flycheck-clang-analyzer` (0ea36feb652c0ebe59ab5b80d5739cb23cb4b52b)
 * Add new package `codemetrics` (51032ef78f5b9827ee76c5c48832974c9bd9cf73)
+* Bind <kbd>Shift</kbd>+<kbd>return</kbd> to insert `newline` in minibuffer (41c159ba7d5630fb8e7e235fc8968001f04cbb15)
 
 ## 9.0.0
 > Released Jan 01, 2023
