@@ -365,6 +365,9 @@
   `(("\ek" . jcs-messages-maybe-kill-this-buffer)
     ("\eK" . jcs-messages-erase-buffer)))
 
+(jcs-key minibuffer-local-map
+  `(((kbd "S-<return>") . newline)))
+
 ;;; Goto Address
 (use-package goto-addr
   :bind ( :map goto-address-highlight-keymap
