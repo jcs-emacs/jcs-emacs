@@ -70,6 +70,7 @@
           cask-mode
           ccls
           centaur-tabs
+          chatgpt
           clojure-mode
           cmake-font-lock
           cobol-mode
