@@ -33,7 +33,7 @@
            "[*]rust-analyzer[*:]"
            "[*]Coursier log[*]"
            "[*]tcp-server-sonarlint"
-           "[*]pyright[*]"
+           "[*]Python" "[*]pyright[*]"
            "[*]tree-sitter" "tree-sitter-tree:"
            "[*]company"
            "[*]editorconfig"
