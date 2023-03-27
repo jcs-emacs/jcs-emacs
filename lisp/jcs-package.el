@@ -327,6 +327,7 @@
           sideline-flycheck
           sideline-flymake
           sideline-lsp
+          site-lisp
           sln-mode
           smart-comment
           smex
