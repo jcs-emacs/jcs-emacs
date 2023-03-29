@@ -21,6 +21,7 @@
            "[*]Finder[*]"
            "[*]Async Shell Command[*]" "[*]shell" "[*]eshell" "bshell<"
            "[*]eww" "[*]ESS[*]"
+           "[*]Ping"
            "[*]emacs[*]"  ; From `async'
            ;; `lsp-mode'
            "[*]lsp-" "[*]LSP[ ]+"
