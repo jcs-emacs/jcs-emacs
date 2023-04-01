@@ -26,3 +26,9 @@
 
   (jcs-key-local
     `(((kbd "RET") . jcs-makefile-newline))))
+
+;;
+;; (@* "Extensions" )
+;;
+
+(use-package eldoc-cmake :hook (cmake-mode . eldoc-cmake-enable))

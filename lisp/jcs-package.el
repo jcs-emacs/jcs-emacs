@@ -133,6 +133,7 @@
           earthfile-mode
           easky
           editorconfig-generate
+          eldoc-cmake
           eldoc-eask
           eldoc-meta-net
           eldoc-toml
