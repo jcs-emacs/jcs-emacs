@@ -48,6 +48,7 @@
           arduino-mode
           ascii-table
           asoc
+          aurora-config-mode
           auth-source-keytar
           auto-highlight-symbol
           auto-read-only
@@ -64,6 +65,7 @@
           buffer-menu-filter
           buffer-move
           buttercup
+          caddyfile-mode
           calfw
           caml
           cargo-mode
@@ -71,6 +73,7 @@
           ccls
           centaur-tabs
           chatgpt
+          cisco-router-mode
           clojure-mode
           cmake-font-lock
           cobol-mode
@@ -106,6 +109,7 @@
           company-sourcekit
           company-terraform
           composer
+          comware-router-mode
           consult
           crystal-mode
           csproj-mode
@@ -126,6 +130,7 @@
           docker-compose-mode
           dotenv-mode
           dumb-jump
+          earthfile-mode
           easky
           editorconfig-generate
           eldoc-eask
@@ -189,7 +194,9 @@
           forge
           fountain-mode
           free-keys
+          freeradius-mode
           fsharp-mode
+          fvwm-mode
           gcmh
           gdscript-mode
           git-assembler-mode
@@ -199,6 +206,7 @@
           github-tags
           gitignore-templates
           gitlab-ci-mode-flycheck
+          gl-conf-mode
           google-this
           goto-char-preview
           goto-last-change
@@ -233,6 +241,7 @@
           jenkinsfile-mode
           json-mode
           k8s-mode
+          kconfig-mode
           keypression
           kotlin-mode
           kubernetes
@@ -264,6 +273,7 @@
           marginalia
           markdown-toc
           masm-mode
+          meson-mode
           message-clean-mode
           meta-view
           minimap
@@ -377,6 +387,7 @@
           winum
           yarn-mode
           yasnippet-snippets
+          yuck-mode
           zig-mode
           zoom-window)))
 
