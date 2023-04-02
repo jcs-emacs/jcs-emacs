@@ -21,7 +21,7 @@
     (jcs-insert-header-if-valid '("[.]el")
                                 'jcs-insert-emacs-lisp-template))
 
-  (company-fuzzy-backend-add 'company-elisp-keywords)
+  (company-fuzzy-backend-add-before 'company-elisp-keywords 'company-dabbrev)
 
   (eask-api-setup))
 

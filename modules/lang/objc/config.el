@@ -15,7 +15,7 @@
 ;;
 
 (jcs-add-hook 'objc-mode-hook
-  (company-fuzzy-backend-add 'company-c-headers)
+  (company-fuzzy-backend-add-before 'company-c-headers 'company-dabbrev)
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]hin"

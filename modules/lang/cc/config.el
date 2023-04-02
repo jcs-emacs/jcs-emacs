@@ -103,7 +103,7 @@
 (jcs-add-hook 'c-mode-common-hook
   (jcs-use-cc-mutliline-comment)
 
-  (company-fuzzy-backend-add 'company-clang)
+  (company-fuzzy-backend-add-before 'company-clang 'company-dabbrev)
 
   ;; Additional style stuff
   (c-set-offset 'member-init-intro '++)

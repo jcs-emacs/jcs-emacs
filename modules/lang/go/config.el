@@ -16,7 +16,7 @@
 (jcs-add-hook 'go-mode-hook
   (jcs-use-cc-mutliline-comment)
 
-  (company-fuzzy-backend-add 'company-go)
+  (company-fuzzy-backend-add-before 'company-go 'company-dabbrev)
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]go")

@@ -18,7 +18,7 @@
 (jcs-add-hook 'cmake-mode-hook
   (setq-local indent-tabs-mode t)
 
-  (company-fuzzy-backend-add 'company-cmake)
+  (company-fuzzy-backend-add-before 'company-cmake 'company-dabbrev)
 
   ;; File Header
   (jcs-insert-header-if-valid '("CMakeLists[.]txt")

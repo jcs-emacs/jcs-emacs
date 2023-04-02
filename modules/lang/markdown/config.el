@@ -36,7 +36,7 @@
 (jcs-add-hook 'markdown-mode-hook
   (jcs-elec-pair-add '((?\` . ?\`)))
 
-  (company-fuzzy-backend-add 'company-emojify)
+  (company-fuzzy-backend-add-before 'company-emojify 'company-dabbrev)
   (jcs-safe-er/expand-list '(web-mode-mark-and-expand) t)
 
   (emojify-mode 1)

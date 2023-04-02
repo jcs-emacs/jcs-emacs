@@ -35,7 +35,7 @@
 (jcs-add-hook 'glsl-mode-hook
   (modify-syntax-entry ?_ "w")
 
-  (company-fuzzy-backend-add 'company-glsl)
+  (company-fuzzy-backend-add-before 'company-glsl 'company-dabbrev)
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]frag" "[.]geom" "[.]glsl" "[.]vert")

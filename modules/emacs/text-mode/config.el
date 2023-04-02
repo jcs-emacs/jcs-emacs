@@ -68,7 +68,7 @@ If optional argument WITH-EXT is non-nil; return path with extension."
 (jcs-add-hook 'text-mode-hook
   (setq-local electric-pair-open-newline-between-pairs nil)
 
-  (company-fuzzy-backend-add 'company-kaomoji)
+  (company-fuzzy-backend-add-before 'company-kaomoji 'company-dabbrev)
 
   (jcs-insert-header-if-valid
    '("\\(/\\|\\`\\)[Ll][Ii][Cc][Ee][Nn][Ss][Ee]") 'jcs-ask-insert-license-content

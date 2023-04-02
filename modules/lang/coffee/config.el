@@ -12,7 +12,7 @@
 ;;
 
 (jcs-add-hook 'coffee-mode-hook
-  (company-fuzzy-backend-add 'company-coffee)
+  (company-fuzzy-backend-add-before 'company-coffee 'company-dabbrev)
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]coffee")
