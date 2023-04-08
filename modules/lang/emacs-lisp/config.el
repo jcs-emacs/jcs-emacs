@@ -4,6 +4,9 @@
 ;; (@* "Templates" )
 ;;
 
+(file-header-defins jcs-insert-emacs-lisp-dir-locals-template "elisp" "dir-locals.txt"
+  "Template for Emacs Lisp for .dir-locals file.")
+
 (file-header-defins jcs-insert-emacs-lisp-template "elisp" "default.txt"
   "Template for Emacs Lisp.")
 
@@ -17,8 +20,9 @@
 (jcs-add-hook 'emacs-lisp-mode-hook
   (modify-syntax-entry ?_ "w")  ; Treat underscore as word.
 
-  (unless (equal (buffer-name) dir-locals-file)
-    (jcs-insert-header-if-valid '("[.]el")
+  (jcs-insert-header-if-valid '("[.]el")
+                              (if (equal (buffer-name) dir-locals-file)
+                                  'jcs-insert-emacs-lisp-dir-locals-template
                                 'jcs-insert-emacs-lisp-template))
 
   (company-fuzzy-backend-add-before 'company-elisp-keywords 'company-dabbrev)
