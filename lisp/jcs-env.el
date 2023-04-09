@@ -187,7 +187,8 @@
 (use-package message-clean-mode
   :init
   (setq message-clean-mode-mute-commands '( push-mark set-mark-command
-                                            y-or-n-p)
+                                            y-or-n-p
+                                            company-clang--handle-error)
         message-clean-mode-echo-commands
         '( mwheel-scroll
            previous-line next-line
