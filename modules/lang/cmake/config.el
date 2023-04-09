@@ -5,11 +5,30 @@
 (require 'make-mode)
 
 ;;
+;; (@* "Header" )
+;;
+
+(file-header-defsrc jcs-ask-cmake-template "Select Python template: "
+  '(("Empty (Default)" . "File with no content in there")
+    ("Root"            . "Specify CMakeLists.txt in project root")
+    ("Subdirectory"    . "Specify CMakeLists.txt in subdirectory"))
+  (pcase index
+    (0 (jcs-insert-cmake-template))
+    (1 (jcs-insert-cmake-root-template))
+    (2 (jcs-insert-cmake-subdirectory-template))))
+
+;;
 ;; (@* "Templates" )
 ;;
 
 (file-header-defins jcs-insert-cmake-template "cmake" "default.txt"
-  "CMake file format info.")
+  "CMake file template, the default.")
+
+(file-header-defins jcs-insert-cmake-root-template "cmake" "root.txt"
+  "CMake file template for root directory.")
+
+(file-header-defins jcs-insert-cmake-subdirectory-template "cmake" "subdirectory.txt"
+  "CMake file template for subdirectory.")
 
 ;;
 ;; (@* "Hook" )
@@ -22,7 +41,8 @@
 
   ;; File Header
   (jcs-insert-header-if-valid '("CMakeLists[.]txt")
-                              'jcs-insert-cmake-template)
+                              'jcs-ask-cmake-template
+                              :interactive t)
 
   (jcs-key-local
     `(((kbd "RET") . jcs-makefile-newline))))
