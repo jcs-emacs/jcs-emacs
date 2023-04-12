@@ -100,6 +100,7 @@
     (haxe-mode                    . "lang/haxe")
     (idris-mode                   . "lang/idris")
     (ini-mode                     . "lang/ini")
+    (jai-mode                     . "lang/jai")
     (jayces-mode                  . "lang/jayces")
     (jenkinsfile-mode             . "lang/jenkinsfile")
     (js                           . ("lang/js" "lang/jsx"))
