@@ -122,6 +122,7 @@
   (auto-highlight-symbol-mode 1)
   (display-fill-column-indicator-mode 1)
   (display-line-numbers-mode 1)
+  (doxygen-asterisk-mode 1)
   (when elenv-graphic-p (highlight-indent-guides-mode 1))
   (highlight-numbers-mode 1)
   (elenv-when-exec "prettier" nil (prettier-mode 1))
