@@ -233,6 +233,7 @@
           impatient-showdown
           ini-mode
           isearch-project
+          jai-mode
           javadoc-lookup
           javap-mode
           jayces-mode
@@ -285,6 +286,7 @@
           nasm-mode
           nginx-mode
           nim-mode
+          ninja-mode
           nix-mode
           nocomments-mode
           noflet
