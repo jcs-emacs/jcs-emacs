@@ -88,6 +88,7 @@
           company-c-headers
           company-cmd
           company-coffee
+          company-dict
           company-dockerfile
           company-eask
           company-elisp-keywords

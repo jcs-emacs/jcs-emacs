@@ -18,7 +18,7 @@
         company-format-margin-function #'company-detect-icons-margin)
   (setq company-backends
         '( company-capf company-semantic
-           company-keywords
+           company-keywords company-dict
            company-abbrev company-dabbrev company-dabbrev-code
            company-paths
            company-etags company-gtags
