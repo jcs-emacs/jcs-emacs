@@ -274,14 +274,14 @@
 (use-package so-long
   :config
   (nconc so-long-minor-modes
-         '(spell-fu-mode
-           eldoc-mode
-           highlight-numbers-mode
-           highlight-indent-guides-mode
-           hl-fill-column-mode
-           line-reminder-mode
-           page-break-lines-mode
-           ts-fold-mode ts-fold-indicators-mode)))
+         '( spell-fu-mode
+            eldoc-mode
+            highlight-numbers-mode
+            highlight-indent-guides-mode
+            hl-fill-column-mode
+            line-reminder-mode
+            page-break-lines-mode
+            ts-fold-mode ts-fold-indicators-mode)))
 
 ;;
 ;;; Startup

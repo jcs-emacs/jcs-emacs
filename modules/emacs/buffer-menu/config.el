@@ -50,6 +50,7 @@
            "magit[-]*[[:ascii:]]*[:]"  ; From `magit'
            "[*]openai" "[*]codegpt" "[*]ChatGPT"
            "[*]Most used words[*]"
+           "[*]manage-minor-mode"
            "[*]Free keys[*]"
            "[*]Test SHA[*]"
            "[*]RE-Builder"
