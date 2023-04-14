@@ -126,6 +126,7 @@
   (when elenv-graphic-p (highlight-indent-guides-mode 1))
   (highlight-numbers-mode 1)
   (elenv-when-exec "prettier" nil (prettier-mode 1))
+  (vs-edit-mode 1)
   (vsc-edit-mode 1)
   (vs-comment-return-mode 1)
   (yas-minor-mode 1)

@@ -291,7 +291,6 @@
           ninja-mode
           nix-mode
           nocomments-mode
-          noflet
           nov
           npm-mode
           on
