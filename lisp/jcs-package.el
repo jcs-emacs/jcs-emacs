@@ -88,7 +88,6 @@
           company-c-headers
           company-cmd
           company-coffee
-          company-dict
           company-dockerfile
           company-eask
           company-elisp-keywords
@@ -122,7 +121,6 @@
           cycle-slash
           d-mode
           dashboard-ls
-          define-it
           diff-hl
           diminish-buffer
           diredfl
@@ -242,6 +240,7 @@
           jcs-echobar
           jcs-frametitle
           jcs-modeline
+          jcs-poptip
           jenkinsfile-mode
           json-mode
           k8s-mode
@@ -270,7 +269,6 @@
           lsp-sonarlint
           lsp-sourcekit
           lsp-tailwindcss
-          lsp-ui
           magit-todos
           makefile-executor
           manage-minor-mode-table
@@ -310,7 +308,6 @@
           pkgbuild-mode
           powershell
           prettier
-          preview-it
           processing-mode
           project-abbrev
           protobuf-mode

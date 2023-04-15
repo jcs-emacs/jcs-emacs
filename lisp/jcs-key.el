@@ -255,7 +255,7 @@
     ((kbd "C->")     . isearch-project-forward-symbol-at-point)
 
 ;;; Show Hover
-    ((kbd "C-k C-i") . jcs-describe-thing-in-popup)
+    ((kbd "C-k C-i") . jcs-poptip)
 
 ;;; Startup Screen (Dashboard)
     ((kbd "M-d") . jcs-dashboard)
