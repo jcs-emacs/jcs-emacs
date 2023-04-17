@@ -104,9 +104,14 @@ execution."
 ;; (@* "Pass" )
 ;;
 
-(defun jcs-auth-source-get (name)
+(defun jcs-auth-source-get (host)
   "Basic value getter by NAME."
-  (plist-get (car (auth-source-search :name name)) :value))
+  (when-let* ((info (auth-source-search :max 1 :host host))
+              (info (car info)))
+    (or (plist-get info :value)
+        (plist-get info :key)
+        (plist-get info :secret)
+        (plist-get info :password))))
 
 ;;
 ;; (@* "Buffer" )
