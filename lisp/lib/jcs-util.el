@@ -105,7 +105,7 @@ execution."
 ;;
 
 (defun jcs-auth-source-get (host)
-  "Basic value getter by NAME."
+  "Basic value getter by HOST."
   (when-let* ((info (auth-source-search :max 1 :host host))
               (info (car info)))
     (or (plist-get info :value)
