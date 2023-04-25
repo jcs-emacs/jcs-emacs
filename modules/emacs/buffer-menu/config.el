@@ -75,6 +75,7 @@
 (require 'buffer-menu-project)
 (buffer-menu-filter-mode 1)
 (diminish-buffer-mode 1)  ; enable by default
+(nerd-icons-buffer-menu-mode 1)
 
 (jcs-add-hook 'Buffer-menu-mode-hook
   (jcs-key-local
