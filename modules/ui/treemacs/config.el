@@ -11,6 +11,8 @@
   (treemacs-follow-mode t)
   (treemacs-filewatch-mode t)
 
+  (require 'treemacs-nerd-icons)
+
   (defvar jcs-treemacs-width-ratio 0.15
     "Ratio that respect to `frame-width' and `neo-window-width'.")
 
@@ -25,3 +27,7 @@
   (jcs-add-hook 'treemacs-mode-hook
     (setq buffer-wrap--relative-max-line 0)
     (buffer-wrap-mode 1)))
+
+(use-package treemacs-nerd-icons
+  :config
+  (treemacs-load-theme "nerd-icons"))

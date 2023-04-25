@@ -361,6 +361,7 @@
           transwin
           tree-sitter-indent
           tree-sitter-langs
+          treemacs-nerd-icons
           ts-docstr
           turbo-log
           typescript-mode
