@@ -55,10 +55,11 @@
                 '("fonts/clacon.ttf"
                   "fonts/DejaVuSans.ttf"
                   "fonts/DejaVuSansMono.ttf"
+                  "fonts/NFM.ttf"                      ; nerd-icons
                   "fonts/NotoSans-Regular.ttf"
                   "fonts/NotoSansSymbols-Regular.ttf"
                   "fonts/Quivira.otf"
-                  "fonts/Symbola.otf"  ; for unicode
+                  "fonts/Symbola.otf"                  ; for unicode
                   "fonts/UbuntuMono-R.ttf"))
         use-ttf-default-ttf-font-name "Ubuntu Mono"))
 

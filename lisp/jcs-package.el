@@ -285,6 +285,8 @@
           move-text
           multi-shell
           nasm-mode
+          nerd-icons-dired
+          nerd-icons-ibuffer
           nginx-mode
           nim-mode
           ninja-mode

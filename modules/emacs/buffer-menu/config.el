@@ -12,6 +12,7 @@
            "[*]compilation" "[*]output" "[*]execrun"
            "[*]easky" "[*]quickrun"
            "[*]Apropos[*]" "[*]Backtrace[*]" "[*]Compile-Log[*]"
+           "[*]Ibuffer[*]"
            "[*]Bug Help[*]"
            "[*]Warnings[*]"
            "[*]VC-history[*]"

@@ -25,6 +25,7 @@
     (conf-mode                    . "emacs/conf-mode")
     (dired                        . "emacs/dired")
     (hexl-mode                    . "emacs/hexl")
+    (ibuffer                      . "emacs/ibuffer")
     (list-environment             . "emacs/list-thing")
     (re-builder                   . "emacs/re-builder")
     (text-mode                    . "emacs/text-mode")
