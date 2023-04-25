@@ -15,6 +15,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add new package `codemetrics` (51032ef78f5b9827ee76c5c48832974c9bd9cf73)
 * Bind <kbd>Shift</kbd>+<kbd>return</kbd> to insert `newline` in minibuffer (41c159ba7d5630fb8e7e235fc8968001f04cbb15)
 * Ask CMake file-header template to differentiate `default`, `root`, and `subdirectory` (71c9bc604b57cb2379606a0b6bc12c42bb79ded7)
+* Update auth-source logic for more general use (8681fb6800d4b4090c7a84dfd9d927035e2bb66a)
+* Add `company-dict` (1b24a4ddd58943fb37010b7700dac32c8d54bea1)
+* Add nerd-icons support (3ae70b96937dedae3b1fe8fc9edf52ad340795d6)
 
 ## 9.0.0
 > Released Jan 01, 2023
