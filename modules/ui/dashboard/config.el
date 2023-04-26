@@ -7,7 +7,8 @@
           ("C-k C-p" . package-list-packages)
           ("M-K"     . jcs-dashboard-refresh-buffer))
   :init
-  (setq dashboard-banner-logo-title "[J C S • E M A C S]"
+  (setq dashboard-banner-logo-title
+        (concat "[J C S " (if elenv-graphic-p "•" "-") " E M A C S]")
         dashboard-footer-icon ""
         dashboard-footer-messages
         `(,(format "Copyright (c) %s %s" (format-time-string "%Y") "Shen, Jen-Chieh"))
