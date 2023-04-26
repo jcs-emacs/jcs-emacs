@@ -710,17 +710,5 @@ or `suffix'."
          (jcs-current-point-face '(font-lock-string-face
                                    tree-sitter-hl-face:string)))))
 
-(defun jcs-s-replace-displayable (str &optional rep)
-  "Replace non-displayable character from STR.
-
-Optional argument REP is the replacement string of non-displayable character."
-  (let ((result "") (rep (or rep "")))
-    (mapc (lambda (ch)
-            (setq result (concat result
-                                 (if (char-displayable-p ch) (string ch)
-                                   rep))))
-          str)
-    result))
-
 (provide 'jcs-util)
 ;;; jcs-util.el ends here
