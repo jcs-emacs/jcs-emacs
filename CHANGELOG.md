@@ -18,6 +18,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Update auth-source logic for more general use (8681fb6800d4b4090c7a84dfd9d927035e2bb66a)
 * Add `company-dict` (1b24a4ddd58943fb37010b7700dac32c8d54bea1)
 * Add nerd-icons support (3ae70b96937dedae3b1fe8fc9edf52ad340795d6)
+* Enable comment empty lines by default (2040d77e956cc3c1fb55ec0dae7dfe6c36c2381b)
 
 ## 9.0.0
 > Released Jan 01, 2023
