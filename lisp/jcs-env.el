@@ -102,7 +102,8 @@
 ;;; Comments
 (use-package newcomment
   :init
-  (setq comment-inline-offset 2))
+  (setq comment-inline-offset 2
+        comment-empty-lines t))
 
 ;;
 ;;; Custom
