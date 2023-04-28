@@ -6,8 +6,7 @@
 ;; Modules
 
 (defconst jcs-module-load-alist
-  '(
-    (keypression                  . "app/keypression")
+  '((keypression                  . "app/keypression")
     (elfeed                       . "app/rss")
     ((flycheck flymake)           . ("checkers/syntax" "ui/sideline"))
     (company                      . "completion/company")
