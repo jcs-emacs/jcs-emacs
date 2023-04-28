@@ -146,8 +146,6 @@ preceded by the opening brace or a comma (disregarding whitespace in between)."
 ;;
 
 (jcs-add-hook 'c-mode-common-hook
-  (jcs-use-cc-mutliline-comment)
-
   (company-fuzzy-backend-add-before 'company-clang 'company-dabbrev)
 
   ;; Additional style stuff
