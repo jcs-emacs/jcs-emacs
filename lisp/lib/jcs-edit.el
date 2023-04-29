@@ -281,7 +281,7 @@
    (t
     (let ((readable (file-readable-p (buffer-file-name))))
       (msgu-inhibit-log (call-interactively #'save-buffer))
-      (unless readable (jcs--safe-lsp-active))))))
+      (unless readable (jcs-lsp-safe-active))))))
 
 ;;
 ;; (@* "Find file" )
@@ -348,7 +348,7 @@ in multiple windows.")
 (defun jcs-kill-this-buffer ()
   "Kill this buffer."
   (interactive)
-  (when (jcs--lsp-connected-p) (lsp-disconnect))
+  (jcs-lsp-maybe-shutdown)
   (kill-this-buffer)
   (jcs-project--track-open-projects)
   ;; If still in the buffer menu, try switch to the previous buffer.

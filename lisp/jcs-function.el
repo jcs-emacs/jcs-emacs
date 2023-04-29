@@ -65,13 +65,22 @@
 ;; (@* "LSP" )
 ;;
 
-(defun jcs--lsp-connected-p ()
+(defun jcs-lsp-connected-p ()
   "Return non-nil if LSP connected."
   (bound-and-true-p lsp-managed-mode))
 
-(defun jcs--safe-lsp-active ()
+(defun jcs-lsp-safe-active ()
   "Safe way to active LSP."
-  (unless (jcs--lsp-connected-p) (lsp-deferred)))
+  (unless (jcs-lsp-connected-p) (lsp-deferred)))
+
+(defun jcs-lsp-maybe-shutdown ()
+  "Maybe shutdown the workspace."
+  (when-let ((workspaces (jcs-funcall-fboundp #'lsp-workspaces)))
+    (dolist (workspace workspaces)
+      (let* ((buffers (lsp--workspace-buffers workspace))
+             (buffers (cl-remove-if-not #'buffer-live-p buffers)))
+        (when (<= (length buffers) 1)
+          (lsp-workspace-shutdown workspace))))))
 
 (provide 'jcs-function)
 ;;; jcs-function.el ends here
