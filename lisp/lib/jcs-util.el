@@ -397,6 +397,10 @@ Notice PATH can either be `buffer-name' or `buffer-file-name'."
   "Goto LN line number."
   (goto-char (point-min)) (forward-line (1- ln)))
 
+(defun jcs-space-p ()
+  "Return t if the buffer uses spaces instead of tabs."
+  (= (how-many "^\t" (point-min) (point-max)) 0))
+
 (defun jcs-first-char-in-line-column ()
   "Return column in first character in line."
   (save-excursion (back-to-indentation) (current-column)))

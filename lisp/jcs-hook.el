@@ -139,7 +139,8 @@
 (jcs-add-hook 'prog-mode-hook
   ;; XXX: See the bug https://github.com/immerrr/lua-mode/issues/172
   (unless (jcs-contain-list-type-str "-" (list comment-start comment-end) 'regex)
-    (modify-syntax-entry ?- "_")))
+    (modify-syntax-entry ?- "_"))
+  (unless (jcs-space-p) (indent-tabs-mode 1)))
 
 ;;
 ;; (@* "Quitting" )
