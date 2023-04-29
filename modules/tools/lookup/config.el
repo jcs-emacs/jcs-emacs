@@ -21,7 +21,7 @@
   "Move to definition."
   (interactive)
   (cond
-   ((and (jcs--lsp-connected-p)
+   ((and (jcs-lsp-connected-p)
          (not (or (ignore-errors (lsp-goto-type-definition))
                   (ignore-errors (lsp-goto-implementation)))))
     t)

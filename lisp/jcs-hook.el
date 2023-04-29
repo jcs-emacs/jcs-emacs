@@ -34,7 +34,7 @@
 (jcs-add-hook 'find-file-hook
   (jcs-project-remember)
   (jcs-project--track-open-projects)
-  (jcs--safe-lsp-active))
+  (jcs-lsp-safe-active))
 
 ;;
 ;; (@* "Initialization" )
