@@ -286,6 +286,7 @@
           multi-shell
           nasm-mode
           nerd-icons-buffer-menu
+          nerd-icons-completion
           nerd-icons-dired
           nerd-icons-ibuffer
           nginx-mode
