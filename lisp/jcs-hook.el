@@ -9,15 +9,17 @@
 (defun jcs-hook--focus-in ()
   "When window is focus."
   (jcs-reload-active-mode)
+  (when (featurep 'recentf) (msgu-silent (recentf-cleanup)))
   (jcs-dashboard-refresh-buffer))
 
 (defun jcs-hook--focus-out ()
   "When window is not focus."
   (jcs-reload-active-mode))
 
-(add-function
- :after after-focus-change-function
- (lambda () (if (frame-focus-state) (jcs-hook--focus-in) (jcs-hook--focus-out))))
+(defun jcs-hook--after-focus ()
+  "Function runs after focusing the frame."
+  (if (frame-focus-state) (jcs-hook--focus-in)
+    (jcs-hook--focus-out)))
 
 (jcs-add-hook 'window-state-change-hook
   (when (and (not (active-minibuffer-window))
@@ -32,7 +34,7 @@
 (jcs-add-hook 'find-file-hook
   (jcs-project-remember)
   (jcs-project--track-open-projects)
-  (jcs--safe-lsp-active))
+  (jcs-lsp-safe-active))
 
 ;;
 ;; (@* "Initialization" )
@@ -45,6 +47,7 @@
   (jcs-setup-default-theme))
 
 (jcs-add-hook 'on-init-ui-hook
+  (add-function :after after-focus-change-function #'jcs-hook--after-focus)
   (auto-scroll-bar-mode 1)
   (global-hl-line-mode 1)
   (global-hl-todo-mode 1)
@@ -54,6 +57,7 @@
   (jcs-modeline-mode 1)
   (right-click-context-mode 1)
   (vertico-mode 1)
+  (window-divider-mode 1)
   (jcs-require '(jcs-edit))
   (message nil))  ; mute at the very end!
 
@@ -91,7 +95,6 @@
 (jcs-add-hook 'jcs-on-project-hook
   (global-diff-hl-mode 1)
   (editorconfig-mode 1)
-  (global-prettier-mode 1)
   (vc-refresh-mode 1))
 
 ;;
@@ -119,9 +122,13 @@
   (auto-highlight-symbol-mode 1)
   (display-fill-column-indicator-mode 1)
   (display-line-numbers-mode 1)
+  (doxygen-asterisk-mode 1)
   (when elenv-graphic-p (highlight-indent-guides-mode 1))
   (highlight-numbers-mode 1)
+  (elenv-when-exec "prettier" nil (prettier-mode 1))
+  (vs-edit-mode 1)
   (vsc-edit-mode 1)
+  (vs-comment-return-mode 1)
   (yas-minor-mode 1)
 
   (indent-control-ensure-tab-width)  ; Ensure indentation level is available
@@ -132,7 +139,8 @@
 (jcs-add-hook 'prog-mode-hook
   ;; XXX: See the bug https://github.com/immerrr/lua-mode/issues/172
   (unless (jcs-contain-list-type-str "-" (list comment-start comment-end) 'regex)
-    (modify-syntax-entry ?- "_")))
+    (modify-syntax-entry ?- "_"))
+  (unless (jcs-space-p) (indent-tabs-mode 1)))
 
 ;;
 ;; (@* "Quitting" )

@@ -83,14 +83,6 @@
 ;; (@* "Return" )
 ;;
 
-(jcs-advice-add 'newline :around
-  (when (jcs-current-line-totally-empty-p) (indent-for-tab-command))
-  (let ((ln-cur (buffer-substring (line-beginning-position) (point))))
-    (apply arg0 args)
-    (save-excursion
-      (forward-line -1)
-      (when (jcs-current-line-totally-empty-p) (insert ln-cur)))))
-
 (defun jcs-ctrl-return-key ()
   "Global Ctrl-Return key."
   (interactive)
@@ -289,7 +281,7 @@
    (t
     (let ((readable (file-readable-p (buffer-file-name))))
       (msgu-inhibit-log (call-interactively #'save-buffer))
-      (unless readable (jcs--safe-lsp-active))))))
+      (unless readable (jcs-lsp-safe-active))))))
 
 ;;
 ;; (@* "Find file" )
@@ -356,7 +348,7 @@ in multiple windows.")
 (defun jcs-kill-this-buffer ()
   "Kill this buffer."
   (interactive)
-  (when (jcs--lsp-connected-p) (lsp-disconnect))
+  (jcs-lsp-maybe-shutdown)
   (kill-this-buffer)
   (jcs-project--track-open-projects)
   ;; If still in the buffer menu, try switch to the previous buffer.
@@ -413,6 +405,7 @@ other window."
   (interactive)
   (when-let ((buffer (buffer-file-name)))
     (msgu-inhibit-log
+      (when (jcs-lsp-connected-p) (lsp-disconnect))
       (jcs-save-window-excursion (jcs-kill-this-buffer))
       (jcs-funcall-fboundp #'undo-tree-kill-visualizer)
       (msgu-current "[INFO] Reopened file => '%s'" buffer))))

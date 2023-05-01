@@ -17,3 +17,9 @@
   ;; File Header
   (jcs-insert-header-if-valid '("[.]less")
                               'jcs-insert-less-template))
+
+;;
+;; (@* "Extensions" )
+;;
+
+(use-package flymake-less :hook (flymake-mode . flymake-less-load))

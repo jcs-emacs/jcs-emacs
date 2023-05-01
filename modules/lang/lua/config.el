@@ -16,8 +16,14 @@
 
   (modify-syntax-entry ?_ "w")  ; Treat underscore as word
 
-  (company-fuzzy-backend-add 'company-lua)
+  (company-fuzzy-backend-add-before 'company-lua 'company-dabbrev)
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]lua" "[.]luac")
                               'jcs-insert-lua-template))
+
+;;
+;; (@* "Extensions" )
+;;
+
+(use-package flymake-lua :hook (flymake-mode . flymake-lua-load))

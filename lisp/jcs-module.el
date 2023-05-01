@@ -6,8 +6,7 @@
 ;; Modules
 
 (defconst jcs-module-load-alist
-  '(
-    (keypression                  . "app/keypression")
+  '((keypression                  . "app/keypression")
     (elfeed                       . "app/rss")
     ((flycheck flymake)           . ("checkers/syntax" "ui/sideline"))
     (company                      . "completion/company")
@@ -18,12 +17,14 @@
     (isearch                      . "editor/isearch")
     ((iedit multiple-cursors)     . "editor/multiple-cursors")
     (yasnippet                    . "editor/snippets")
-    ((vs-edit-mode vsc-edit-mode) . "editor/vs")
+    (( vs-edit-mode vsc-edit-mode vs-comment-return)
+     . "editor/vs")
     (backtrace                    . "emacs/backtrace")
     (compile                      . "emacs/compile")
     (conf-mode                    . "emacs/conf-mode")
     (dired                        . "emacs/dired")
     (hexl-mode                    . "emacs/hexl")
+    (ibuffer                      . "emacs/ibuffer")
     (list-environment             . "emacs/list-thing")
     (re-builder                   . "emacs/re-builder")
     (text-mode                    . "emacs/text-mode")
@@ -38,6 +39,7 @@
     (esh-mode                     . "term/eshell")
     (shell                        . "term/shell")
     (openai                       . "tools/ai")
+    (autoconf-mode                . "tools/autoconf")
     (dockerfile-mode              . "tools/dockerfile")
     (editorconfig                 . "tools/editorconfig")
     ((easky execrun quickrun)     . "tools/eval")
@@ -66,7 +68,6 @@
     (applescript-mode             . "lang/applescript-mode")
     (arduino-mode                 . "lang/arduino")
     ((masm-mode nasm-mode)        . "lang/asm")
-    (autoconf-mode                . "lang/autoconf")
     (basic-mode                   . "lang/basic")
     (bat-mode                     . "lang/batch")
     (caml                         . "lang/caml")
@@ -99,6 +100,7 @@
     (haxe-mode                    . "lang/haxe")
     (idris-mode                   . "lang/idris")
     (ini-mode                     . "lang/ini")
+    (jai-mode                     . "lang/jai")
     (jayces-mode                  . "lang/jayces")
     (jenkinsfile-mode             . "lang/jenkinsfile")
     (js                           . ("lang/js" "lang/jsx"))
@@ -117,12 +119,14 @@
     (org                          . "lang/org")
     (pascal                       . "lang/pascal")
     (perl-mode                    . "lang/perl")
+    (php-mode                     . "lang/php")
     (powershell                   . "lang/powershell")
     (processing-mode              . "lang/processing")
     (purescript-mode              . "lang/purescript")
-    (python-mode                  . "lang/python")
+    (python                       . "lang/python")
     (qml-mode                     . "lang/qml")
     (racket-mode                  . "lang/racket")
+    (restclient                   . "lang/rest")
     (ruby-mode                    . "lang/ruby")
     (rust-mode                    . "lang/rust")
     (ssass-mode                   . "lang/sass")
@@ -196,6 +200,8 @@
 ;;; O
     ("\\.dpk'?\\'"          . opascal-mode)
     ("\\.dpr'?\\'"          . opascal-mode)
+;;; R
+    ("\\.http'?\\'"         . restclient-mode)
 ;;; S
     ("\\.sass'?\\'"         . ssass-mode)
     ("\\.shader'?\\'"       . shader-mode)
@@ -203,13 +209,10 @@
 ;;; V
     ("\\.vue'?\\'"          . web-mode)
 ;;; W
-    ("\\.phtml\\'"          . web-mode)
-    ("\\.tpl\\.php\\'"      . web-mode)
     ("\\.erb\\'"            . web-mode)
     ("\\.mustache\\'"       . web-mode)
     ("\\.djhtml\\'"         . web-mode)
     ("\\.html?\\'"          . web-mode)
-    ("\\.php?\\'"           . web-mode)
     ("\\.[agj]sp\\'"        . web-mode)
     ;;
     ("\\.as[cp]x\\'"        . web-mode)

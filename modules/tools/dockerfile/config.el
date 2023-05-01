@@ -5,4 +5,4 @@
 ;;
 
 (jcs-add-hook 'dockerfile-mode-hook
-  (company-fuzzy-backend-add 'company-dockerfile))
+  (company-fuzzy-backend-add-before 'company-dockerfile 'company-dabbrev))

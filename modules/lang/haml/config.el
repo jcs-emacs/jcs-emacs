@@ -14,3 +14,9 @@
 (jcs-add-hook 'haml-mode-hook
   (jcs-insert-header-if-valid '("[.]haml")
                               'jcs-insert-haml-template))
+
+;;
+;; (@* "Extensions" )
+;;
+
+(use-package flymake-haml :hook (flymake-mode . flymake-haml-load))

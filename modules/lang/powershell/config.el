@@ -14,7 +14,7 @@
 (jcs-add-hook 'powershell-mode-hook
   (modify-syntax-entry ?_ "w")  ; Treat underscore as word
 
-  (company-fuzzy-backend-add 'company-powershell)
+  (company-fuzzy-backend-add-before 'company-powershell 'company-dabbrev)
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]ps1")

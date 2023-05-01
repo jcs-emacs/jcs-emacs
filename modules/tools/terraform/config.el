@@ -5,4 +5,4 @@
 ;;
 
 (jcs-add-hook 'terraform-mode-hook
-  (company-fuzzy-backend-add 'company-terraform))
+  (company-fuzzy-backend-add-before 'company-terraform 'company-dabbrev))

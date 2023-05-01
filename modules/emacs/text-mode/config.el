@@ -35,7 +35,7 @@ If optional argument WITH-EXT is non-nil; return path with extension."
 (file-header-defsrc jcs-ask-insert-license-content "Type of the license: "
   ;; Ask to insert the license content base on SOURCE.
   (let ((default `(("Default (empty)" . "Empty file")))
-        (names (delete-dups (license-templates-names)))
+        (names (delete-dups (license-templates-keys)))
         (data))
     (mapc (lambda (file) (push (cons file "") data)) names)
     (append default (reverse data)))
@@ -68,7 +68,7 @@ If optional argument WITH-EXT is non-nil; return path with extension."
 (jcs-add-hook 'text-mode-hook
   (setq-local electric-pair-open-newline-between-pairs nil)
 
-  (company-fuzzy-backend-add 'company-kaomoji)
+  (company-fuzzy-backend-add-before 'company-kaomoji 'company-dabbrev)
 
   (jcs-insert-header-if-valid
    '("\\(/\\|\\`\\)[Ll][Ii][Cc][Ee][Nn][Ss][Ee]") 'jcs-ask-insert-license-content

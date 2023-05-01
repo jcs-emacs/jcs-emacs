@@ -4,3 +4,6 @@
 [submodule "templates"]
 	path = templates
 	url = https://github.com/jcs-emacs/templates
+[submodule "dict"]
+	path = dict
+	url = https://github.com/jcs-emacs/dict

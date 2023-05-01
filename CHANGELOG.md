@@ -11,6 +11,15 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add new package `makefile-executor` (e301333ef7585189614bb1fed163caab2e4a0973)
 * Add new package `codegpt` (443b2e1312368201a8a15d64355e7c9aaf5b8958)
 * Add and config new package `goto-last-change` (71d0c3dfa0636fc55cc1c023e6383d5946b19e3c)
+* Add new package `flycheck-clang-analyzer` (0ea36feb652c0ebe59ab5b80d5739cb23cb4b52b)
+* Add new package `codemetrics` (51032ef78f5b9827ee76c5c48832974c9bd9cf73)
+* Bind <kbd>Shift</kbd>+<kbd>return</kbd> to insert `newline` in minibuffer (41c159ba7d5630fb8e7e235fc8968001f04cbb15)
+* Ask CMake file-header template to differentiate `default`, `root`, and `subdirectory` (71c9bc604b57cb2379606a0b6bc12c42bb79ded7)
+* Update auth-source logic for more general use (8681fb6800d4b4090c7a84dfd9d927035e2bb66a)
+* Add `company-dict` (1b24a4ddd58943fb37010b7700dac32c8d54bea1)
+* Add nerd-icons support (3ae70b96937dedae3b1fe8fc9edf52ad340795d6)
+* Enable comment empty lines by default (2040d77e956cc3c1fb55ec0dae7dfe6c36c2381b)
+* Fix cannot re-connect to language server issue (362a96418032da4244c05c810031ed74bc7b25c4)
 
 ## 9.0.0
 > Released Jan 01, 2023

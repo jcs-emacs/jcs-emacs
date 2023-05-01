@@ -12,6 +12,7 @@
            "[*]compilation" "[*]output" "[*]execrun"
            "[*]easky" "[*]quickrun"
            "[*]Apropos[*]" "[*]Backtrace[*]" "[*]Compile-Log[*]"
+           "[*]Ibuffer[*]"
            "[*]Bug Help[*]"
            "[*]Warnings[*]"
            "[*]VC-history[*]"
@@ -21,15 +22,21 @@
            "[*]Finder[*]"
            "[*]Async Shell Command[*]" "[*]shell" "[*]eshell" "bshell<"
            "[*]eww" "[*]ESS[*]"
+           "[*]Ping"
            "[*]emacs[*]"  ; From `async'
+           "[*]timer"
            ;; `lsp-mode'
            "[*]lsp-" "[*]LSP[ ]+"
            "[*][a-zA-Z0-9]+[-]*ls" "[*][a-zA-Z0-9]+::stderr[*]"
+           "[*]clang-"
            "[*]clangd"
            "[*]csharp[*]"
+           "[*]lua-"
+           "[*]iph[*]"
            "[*]rust-analyzer[*:]"
+           "[*]Coursier log[*]"
            "[*]tcp-server-sonarlint"
-           "[*]pyright[*]"
+           "[*]Python" "[*]pyright[*]"
            "[*]tree-sitter" "tree-sitter-tree:"
            "[*]company"
            "[*]editorconfig"
@@ -38,13 +45,14 @@
            "[*]Kill Ring[*]"  ; From `browse-kill-ring'
            "[*]SPEEDBAR"
            "[*]Flycheck" "[*]Flymake log[*]"
-           "[*]httpd[*]"
+           "[*]httpd[*]" "[*]HTTP Response[*]"
            "[*]helpful" "[*]suggest[*]"
            "[*]ert[*]" "[*]indent-lint"
            "[*]elfeed-"
            "magit[-]*[[:ascii:]]*[:]"  ; From `magit'
-           "[*]openai" "[*]codegpt"
+           "[*]openai" "[*]codegpt" "[*]ChatGPT"
            "[*]Most used words[*]"
+           "[*]manage-minor-mode"
            "[*]Free keys[*]"
            "[*]Test SHA[*]"
            "[*]RE-Builder"
@@ -68,6 +76,7 @@
 (require 'buffer-menu-project)
 (buffer-menu-filter-mode 1)
 (diminish-buffer-mode 1)  ; enable by default
+(nerd-icons-buffer-menu-mode 1)
 
 (jcs-add-hook 'Buffer-menu-mode-hook
   (jcs-key-local

@@ -48,6 +48,7 @@
           arduino-mode
           ascii-table
           asoc
+          aurora-config-mode
           auth-source-keytar
           auto-highlight-symbol
           auto-read-only
@@ -63,16 +64,21 @@
           browse-kill-ring
           buffer-menu-filter
           buffer-move
+          buttercup
+          caddyfile-mode
           calfw
           caml
           cargo-mode
           cask-mode
           ccls
           centaur-tabs
+          chatgpt
+          cisco-router-mode
           clojure-mode
           cmake-font-lock
           cobol-mode
           codegpt
+          codemetrics
           coffee-mode
           com-css-sort
           command-log-mode
@@ -82,6 +88,7 @@
           company-c-headers
           company-cmd
           company-coffee
+          company-dict
           company-dockerfile
           company-eask
           company-elisp-keywords
@@ -98,9 +105,12 @@
           company-org-block
           company-paths
           company-powershell
+          company-restclient
           company-shell
           company-sourcekit
           company-terraform
+          composer
+          comware-router-mode
           consult
           crystal-mode
           csproj-mode
@@ -112,7 +122,6 @@
           cycle-slash
           d-mode
           dashboard-ls
-          define-it
           diff-hl
           diminish-buffer
           diredfl
@@ -120,9 +129,12 @@
           docker
           docker-compose-mode
           dotenv-mode
+          doxygen-asterisk
           dumb-jump
+          earthfile-mode
           easky
           editorconfig-generate
+          eldoc-cmake
           eldoc-eask
           eldoc-meta-net
           eldoc-toml
@@ -154,6 +166,7 @@
           fish-mode
           flx-rs
           flycheck-cask
+          flycheck-clang-analyzer
           flycheck-crystal
           flycheck-deno
           flycheck-eask
@@ -169,12 +182,23 @@
           flycheck-package
           flycheck-relint
           flycheck-swift
+          flymake-coffee
+          flymake-haml
+          flymake-less
+          flymake-lua
+          flymake-nasm
+          flymake-php
+          flymake-racket
+          flymake-ruby
+          flymake-shell
           fof
           font-lock-ext
           forge
           fountain-mode
           free-keys
+          freeradius-mode
           fsharp-mode
+          fvwm-mode
           gcmh
           gdscript-mode
           git-assembler-mode
@@ -184,6 +208,7 @@
           github-tags
           gitignore-templates
           gitlab-ci-mode-flycheck
+          gl-conf-mode
           google-this
           goto-char-preview
           goto-last-change
@@ -209,15 +234,18 @@
           impatient-showdown
           ini-mode
           isearch-project
+          jai-mode
           javadoc-lookup
           javap-mode
           jayces-mode
           jcs-echobar
           jcs-frametitle
           jcs-modeline
+          jcs-poptip
           jenkinsfile-mode
           json-mode
           k8s-mode
+          kconfig-mode
           keypression
           kotlin-mode
           kubernetes
@@ -242,13 +270,13 @@
           lsp-sonarlint
           lsp-sourcekit
           lsp-tailwindcss
-          lsp-ui
           magit-todos
           makefile-executor
           manage-minor-mode-table
           marginalia
           markdown-toc
           masm-mode
+          meson-mode
           message-clean-mode
           meta-view
           minimap
@@ -257,11 +285,15 @@
           move-text
           multi-shell
           nasm-mode
+          nerd-icons-buffer-menu
+          nerd-icons-completion
+          nerd-icons-dired
+          nerd-icons-ibuffer
           nginx-mode
           nim-mode
+          ninja-mode
           nix-mode
           nocomments-mode
-          noflet
           nov
           npm-mode
           on
@@ -281,7 +313,6 @@
           pkgbuild-mode
           powershell
           prettier
-          preview-it
           processing-mode
           project-abbrev
           protobuf-mode
@@ -312,6 +343,7 @@
           sideline-flycheck
           sideline-flymake
           sideline-lsp
+          site-lisp
           sln-mode
           smart-comment
           smex
@@ -331,6 +363,7 @@
           transwin
           tree-sitter-indent
           tree-sitter-langs
+          treemacs-nerd-icons
           ts-docstr
           turbo-log
           typescript-mode
@@ -343,6 +376,7 @@
           vertico-flx
           vimrc-mode
           visual-regexp
+          vs-comment-return
           visual-basic-mode
           vs-dark-theme
           vs-edit-mode
@@ -360,6 +394,7 @@
           winum
           yarn-mode
           yasnippet-snippets
+          yuck-mode
           zig-mode
           zoom-window)))
 

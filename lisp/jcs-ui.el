@@ -55,10 +55,11 @@
                 '("fonts/clacon.ttf"
                   "fonts/DejaVuSans.ttf"
                   "fonts/DejaVuSansMono.ttf"
+                  "fonts/NFM.ttf"                      ; nerd-icons
                   "fonts/NotoSans-Regular.ttf"
                   "fonts/NotoSansSymbols-Regular.ttf"
                   "fonts/Quivira.otf"
-                  "fonts/Symbola.otf"  ; for unicode
+                  "fonts/Symbola.otf"                  ; for unicode
                   "fonts/UbuntuMono-R.ttf"))
         use-ttf-default-ttf-font-name "Ubuntu Mono"))
 
@@ -77,7 +78,8 @@
 
 (use-package region-occurrences-highlighter
   :init
-  (setq region-occurrences-highlighter-min-size 1))
+  (setq region-occurrences-highlighter-min-size 1
+        region-occurrences-highlighter-all-visible-buffers nil))
 
 (use-package highlight-numbers
   :config
@@ -151,7 +153,11 @@
 
 (use-package whitespace
   :init
-  (setq whitespace-display-mappings
+  (setq whitespace-line-column nil
+        whitespace-style
+        '( face indentation tabs tab-mark spaces space-mark newline newline-mark
+           trailing lines-tail)
+        whitespace-display-mappings
         '((tab-mark ?\t [?› ?\t])
           (newline-mark ?\n [?¬ ?\n])
           (space-mark ?\  [?·] [?.]))))
@@ -196,10 +202,10 @@
 
 (use-package repos-window
   :init
-  (setq repos-window-commands '(hl-todo-previous
-                                hl-todo-next)
-        repos-window-switch-commands '(push-button
-                                       compile-goto-error)))
+  (setq repos-window-commands '( hl-todo-previous
+                                 hl-todo-next)
+        repos-window-switch-commands '( push-button
+                                        compile-goto-error)))
 
 ;;
 ;;; Line Endings

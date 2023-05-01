@@ -14,7 +14,7 @@
 (jcs-add-hook 'yaml-mode-hook
   (modify-syntax-entry ?_ "w")  ; Treat underscore as word
 
-  (company-fuzzy-backend-add 'company-ansible)
+  (company-fuzzy-backend-add-before 'company-ansible 'company-dabbrev)
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]yaml"

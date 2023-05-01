@@ -6,5 +6,5 @@
 (use-package ts-docstr
   :hook (tree-sitter-after-on . ts-docstr-mode)
   :init
-  (setq ts-docstr-key-support t
+  (setq ts-docstr-key-support nil
         ts-docstr-desc-summary ""))

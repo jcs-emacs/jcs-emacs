@@ -255,7 +255,7 @@
     ((kbd "C->")     . isearch-project-forward-symbol-at-point)
 
 ;;; Show Hover
-    ((kbd "C-k C-i") . jcs-describe-thing-in-popup)
+    ((kbd "C-k C-i") . jcs-poptip)
 
 ;;; Startup Screen (Dashboard)
     ((kbd "M-d") . jcs-dashboard)
@@ -317,7 +317,8 @@
     ((kbd "C-M-c") . capitalize-dwim)
 
 ;;; Whitespace
-    ((kbd "C-k b") . whitespace-mode)
+    ((kbd "C-k b")   . whitespace-mode)
+    ((kbd "C-r C-w") . whitespace-mode)
 
 ;;; Zoom
     ((kbd "C-=")      . text-scale-increase)
@@ -363,6 +364,9 @@
 (jcs-key messages-buffer-mode-map
   `(("\ek" . jcs-messages-maybe-kill-this-buffer)
     ("\eK" . jcs-messages-erase-buffer)))
+
+(jcs-key minibuffer-local-map
+  `(((kbd "S-<return>") . newline)))
 
 ;;; Goto Address
 (use-package goto-addr

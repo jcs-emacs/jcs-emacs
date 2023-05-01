@@ -337,11 +337,13 @@ Here is the list of key bindins that defined in this configuration.
 * <kbd>Ctrl</kbd>+<kbd>=</kbd> - Text scale increase (Zoom in).
 * <kbd>Ctrl</kbd>+<kbd>-</kbd> - Text scale decrease (Zoom out).
 * <kbd>Ctrl</kbd>+<kbd>0(Numpad)</kbd> - Reset zoom.
-* <kbd>Alt</kbd>+<kbd>=</kbd> - Frame transparent increase.
-* <kbd>Alt</kbd>+<kbd>-</kbd> - Frame transparent decrease.
+* <kbd>Alt</kbd>+<kbd>=</kbd> - Frame's transparency increase.
+* <kbd>Alt</kbd>+<kbd>-</kbd> - Frame's transparency decrease.
 * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>f</kbd> - Change font style.
 * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>m</kbd> - Toggle minimap.
 * <kbd>Alt</kbd>+<kbd>i</kbd> - Show End of Line.
+* <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>b</kbd> - Show white space.
+* <kbd>Ctrl</kbd>+<kbd>r</kbd>, <kbd>Ctrl</kbd>+<kbd>w</kbd> - Show white space.
 
 ### Windows
 
@@ -353,8 +355,8 @@ Here is the list of key bindins that defined in this configuration.
 * <kbd>Ctrl</kbd>+<kbd>w</kbd>, <kbd>e</kbd> - Toggle enlarge current selected window.
 * <kbd>Ctrl</kbd>+<kbd>\\</kbd> - Split window horizontally.
 * <kbd>Alt</kbd>+<kbd>\`</kbd> - Toggle transparent frame.
-* <kbd>Alt</kbd>+<kbd>=</kbd> - Increment frame transparent by 5 percent.
-* <kbd>Alt</kbd>+<kbd>-</kbd> - Decrement frame transparent by 5 percent.
+* <kbd>Alt</kbd>+<kbd>=</kbd> - Increment frame's transparency by 5 percent.
+* <kbd>Alt</kbd>+<kbd>-</kbd> - Decrement frame's transparency by 5 percent.
 
 ### Version Control
 

@@ -104,9 +104,14 @@ execution."
 ;; (@* "Pass" )
 ;;
 
-(defun jcs-auth-source-get (name)
-  "Basic value getter by NAME."
-  (plist-get (car (auth-source-search :name name)) :value))
+(defun jcs-auth-source-get (host)
+  "Basic value getter by HOST."
+  (when-let* ((info (auth-source-search :max 1 :host host))
+              (info (car info)))
+    (or (plist-get info :value)
+        (plist-get info :key)
+        (plist-get info :secret)
+        (plist-get info :password))))
 
 ;;
 ;; (@* "Buffer" )
@@ -326,11 +331,11 @@ Notice PATH can either be `buffer-name' or `buffer-file-name'."
 
 (defun jcs-current-char-a-wordp ()
   "Check if current character a usual letter."
-  (jcs-word-p (string-to-char (jcs-get-current-char-string))))
+  (jcs-word-p (string-to-char (jcs-before-char-string))))
 
 (defun jcs-current-char-uppercasep ()
   "Check if current character a uppercase character."
-  (jcs-uppercase-p (string-to-char (jcs-get-current-char-string))))
+  (jcs-uppercase-p (string-to-char (jcs-before-char-string))))
 
 (defun jcs-current-char-lowercasep ()
   "Check if current character a lowercase character."
@@ -350,12 +355,12 @@ Notice PATH can either be `buffer-name' or `buffer-file-name'."
 
 (defun jcs-current-char-equal-p (c)
   "Check the current character equal to C, C can be a list of character."
-  (cond ((and (stringp c) (stringp (jcs-get-current-char-string)))
-         (string= (jcs-get-current-char-string) c))
-        ((listp c) (member (jcs-get-current-char-string) c))))
+  (cond ((and (stringp c) (stringp (jcs-before-char-string)))
+         (string= (jcs-before-char-string) c))
+        ((listp c) (member (jcs-before-char-string) c))))
 
-(defun jcs-get-current-char-string ()
-  "Get the current character as the 'string'."
+(defun jcs-before-char-string ()
+  "Get the current character as the `string'."
   (if (char-before) (string (char-before)) ""))
 
 (defun jcs-first-backward-char-in-line-p (ch)
@@ -363,14 +368,14 @@ Notice PATH can either be `buffer-name' or `buffer-file-name'."
   (save-excursion
     (when (re-search-backward "[^ \t]" (line-beginning-position) t)
       (forward-char 1)
-      (string= (jcs-get-current-char-string) ch))))
+      (string= (jcs-before-char-string) ch))))
 
 (defun jcs-first-forward-char-in-line-p (ch)
   "Check the first character on the right is CH or not with current line as boundary."
   (save-excursion
     (when (re-search-forward "[ \t]*" (line-end-position) t)
       (forward-char 1)
-      (string= (jcs-get-current-char-string) ch))))
+      (string= (jcs-before-char-string) ch))))
 
 ;;
 ;; (@* "Word" )
@@ -392,6 +397,10 @@ Notice PATH can either be `buffer-name' or `buffer-file-name'."
   "Goto LN line number."
   (goto-char (point-min)) (forward-line (1- ln)))
 
+(defun jcs-space-p ()
+  "Return t if the buffer uses spaces instead of tabs."
+  (= (how-many "^\t" (point-min) (point-max)) 0))
+
 (defun jcs-first-char-in-line-column ()
   "Return column in first character in line."
   (save-excursion (back-to-indentation) (current-column)))
@@ -399,10 +408,6 @@ Notice PATH can either be `buffer-name' or `buffer-file-name'."
 (defun jcs-current-line-empty-p ()
   "Current line empty, but accept spaces/tabs in there.  (not absolute)."
   (save-excursion (beginning-of-line) (looking-at "[[:space:]\t]*$")))
-
-(defun jcs-current-line-totally-empty-p ()
-  "Current line empty with no spaces/tabs in there.  (absolute)."
-  (and (bolp) (eolp)))
 
 (defun jcs-current-line-comment-p ()
   "Check if current line only comment."
@@ -708,18 +713,6 @@ or `suffix'."
     (and (nth 3 (syntax-ppss))
          (jcs-current-point-face '(font-lock-string-face
                                    tree-sitter-hl-face:string)))))
-
-(defun jcs-s-replace-displayable (str &optional rep)
-  "Replace non-displayable character from STR.
-
-Optional argument REP is the replacement string of non-displayable character."
-  (let ((result "") (rep (or rep "")))
-    (mapc (lambda (ch)
-            (setq result (concat result
-                                 (if (char-displayable-p ch) (string ch)
-                                   rep))))
-          str)
-    result))
 
 (provide 'jcs-util)
 ;;; jcs-util.el ends here

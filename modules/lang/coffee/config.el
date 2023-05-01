@@ -12,8 +12,14 @@
 ;;
 
 (jcs-add-hook 'coffee-mode-hook
-  (company-fuzzy-backend-add 'company-coffee)
+  (company-fuzzy-backend-add-before 'company-coffee 'company-dabbrev)
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]coffee")
                               'jcs-insert-coffee-template))
+
+;;
+;; (@* "Extensions" )
+;;
+
+(use-package flymake-coffee :hook (flymake-mode . flymake-coffee-load))

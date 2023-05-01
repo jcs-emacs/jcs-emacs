@@ -4,10 +4,7 @@
   :hook (rfn-eshadow-update-overlay . vertico-directory-tidy)
   :hook (on-first-input . vertico-mode)
   :bind ( :map vertico-map
-          ("\177"     . (lambda () (interactive)
-                          (if (eq (char-before) ?/)
-                              (vertico-directory-up 1)
-                            (backward-delete-char 1))))
+          ("\177"     . vertico-directory-delete-char)
           ("<return>" . vertico-directory-enter)
           ("/"        . jcs-vertico-/))
   :init
@@ -29,6 +26,9 @@
 
 (use-package vertico-flx
   :hook (vertico-mode . vertico-flx-mode))
+
+(use-package nerd-icons-completion
+  :hook (vertico-mode . nerd-icons-completion-mode))
 
 ;;
 ;; (@* "Util" )
@@ -107,7 +107,7 @@
 
 (jcs-advice-add 'vertico-directory-delete-char :override
   (let ((content (minibuffer-contents)))
-    (cond ((vertico-directory-up 1)  ; preselect after up directory
+    (cond ((and (eq (char-before) ?/) (vertico-directory-up 1))  ; preselect after up directory
            (jcs-vertico--goto-cand (concat (file-name-nondirectory (directory-file-name content)) "/")))
           ((and (mbs-finding-file-p) (f-root-p content))  ; limit to root dir
            (jcs-vertico--cd (f-root)) (vertico-first))

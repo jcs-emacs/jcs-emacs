@@ -10,14 +10,29 @@
 ;; (@* "Templates" )
 ;;
 
-(file-header-defins jcs-insert-shader-template "shader" "default.txt"
-  "Header for Shader header file.")
+(file-header-defins jcs-insert-shader-unlit-template "shader" "Unlit.txt"
+  "Header for Shader Unlit file.")
+
+(file-header-defins jcs-insert-shader-image-effect-template "shader" "ImageEffect.txt"
+  "Header for Shader ImageEffect file.")
+
+(file-header-defins jcs-insert-shader-surface-template "shader" "Surface.txt"
+  "Header for Shader Surface file.")
+
+(file-header-defsrc jcs-ask-shader-template "Select Shader template: "
+  '(("Unlit"       . "Effects or unique objects in your visuals that don’t need lighting")
+    ("ImageEffect" . "Are a way of post-processing rendered image")
+    ("Surface"     . "Shaders that interact with lighting is complex"))
+  (pcase index
+    (0 (jcs-insert-shader-unlit-template))
+    (1 (jcs-insert-shader-image-effect-template))
+    (2 (jcs-insert-shader-surface-template))))
 
 (file-header-defins jcs-insert-glsl-template "glsl" "default.txt"
-  "Header for GLSL header file.")
+  "Header for GLSL file.")
 
 (file-header-defins jcs-insert-hlsl-template "hlsl" "default.txt"
-  "Header for HLSL header file.")
+  "Header for HLSL file.")
 
 ;;
 ;; (@* "Hook" )
@@ -25,17 +40,20 @@
 
 (jcs-add-hook 'shader-mode-hook
   (modify-syntax-entry ?_ "w")
+  (modify-syntax-entry ?# "w")
 
   (jcs-use-cc-mutliline-comment)
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]shader")
-                              'jcs-insert-shader-template))
+                              'jcs-ask-shader-template
+                              :interactive t))
 
 (jcs-add-hook 'glsl-mode-hook
   (modify-syntax-entry ?_ "w")
+  (modify-syntax-entry ?# "w")
 
-  (company-fuzzy-backend-add 'company-glsl)
+  (company-fuzzy-backend-add-before 'company-glsl 'company-dabbrev)
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]frag" "[.]geom" "[.]glsl" "[.]vert")
@@ -43,6 +61,7 @@
 
 (jcs-add-hook 'hlsl-mode-hook
   (modify-syntax-entry ?_ "w")
+  (modify-syntax-entry ?# "w")
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]fx" "[.]hlsl")

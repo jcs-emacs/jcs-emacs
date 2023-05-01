@@ -40,7 +40,8 @@ Note this is opposite logic to the toggle mode function."
 
 (use-package jcs-modeline
   :init
-  (setq jcs-modeline-show-point t))
+  (setq jcs-modeline-show-point t
+        jcs-modeline-show-mode-icons t))
 
 ;;
 ;; (@* "Echo Bar" )
@@ -48,7 +49,7 @@ Note this is opposite logic to the toggle mode function."
 
 (use-package echo-bar
   :init
-  (setq echo-bar-right-padding 0
+  (setq echo-bar-right-padding (if elenv-graphic-p 0 1)
         echo-bar-minibuffer nil))
 
 (use-package region-state

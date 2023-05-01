@@ -53,7 +53,7 @@
 (jcs-add-hook '(sh-mode-hook fish-mode-hook)
   (modify-syntax-entry ?_ "w")
 
-  (company-fuzzy-backend-add 'company-shell)
+  (company-fuzzy-backend-add-before 'company-shell 'company-dabbrev)
 
   (add-hook 'before-save-hook #'jcs-sh--before-save nil t)
 
@@ -61,3 +61,9 @@
   (jcs-insert-header-if-valid '("[.]sh"
                                 "[.]fish")
                               'jcs-insert-sh-template))
+
+;;
+;; (@* "Extensions" )
+;;
+
+(use-package flymake-shell :hook (flymake-mode . flymake-shell-load))

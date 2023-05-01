@@ -16,7 +16,7 @@
 
   (modify-syntax-entry ?_ "w")
 
-  (company-fuzzy-backend-add 'company-cmd)
+  (company-fuzzy-backend-add-before 'company-cmd 'company-dabbrev)
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]bat")

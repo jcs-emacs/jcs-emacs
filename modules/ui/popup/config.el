@@ -29,3 +29,7 @@
 (use-package pos-tip
   :init
   (setq pos-tip-internal-border-width 5))
+
+(use-package jcs-poptip
+  :init
+  (setq jcs-poptip-text-scale-level -2))

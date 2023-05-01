@@ -2,6 +2,7 @@
 
 (require 'sgml-mode)
 (require 'web-mode)
+(require 'php-mode)
 
 (require 'impatient-mode)
 (require 'auto-rename-tag)
@@ -100,9 +101,6 @@
 
 (file-header-defins jcs-insert-html-template "html" "default.txt"
   "Template for HTML.")
-
-(file-header-defins jcs-insert-php-template "php" "default.txt"
-  "Template for PHP.")
 
 ;;
 ;; (@* "Hook" )

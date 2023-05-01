@@ -102,7 +102,8 @@
 ;;; Comments
 (use-package newcomment
   :init
-  (setq comment-inline-offset 2))
+  (setq comment-inline-offset 2
+        comment-empty-lines t))
 
 ;;
 ;;; Custom
@@ -187,7 +188,8 @@
 (use-package message-clean-mode
   :init
   (setq message-clean-mode-mute-commands '( push-mark set-mark-command
-                                            y-or-n-p)
+                                            y-or-n-p
+                                            company-clang--handle-error)
         message-clean-mode-echo-commands
         '( mwheel-scroll
            previous-line next-line
@@ -273,14 +275,14 @@
 (use-package so-long
   :config
   (nconc so-long-minor-modes
-         '(spell-fu-mode
-           eldoc-mode
-           highlight-numbers-mode
-           highlight-indent-guides-mode
-           hl-fill-column-mode
-           line-reminder-mode
-           page-break-lines-mode
-           ts-fold-mode ts-fold-indicators-mode)))
+         '( spell-fu-mode
+            eldoc-mode
+            highlight-numbers-mode
+            highlight-indent-guides-mode
+            hl-fill-column-mode
+            line-reminder-mode
+            page-break-lines-mode
+            ts-fold-mode ts-fold-indicators-mode)))
 
 ;;
 ;;; Startup
