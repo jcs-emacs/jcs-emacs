@@ -1,5 +1,7 @@
 ;;; ui/dashboard/config.el  -*- lexical-binding: t; -*-
 
+(require 'nerd-icons)
+
 (use-package dashboard
   :bind ( :map dashboard-mode-map
           ("<up>"    . previous-line)
@@ -56,7 +58,7 @@
                  (nerd-icons-faicon "nf-fa-question" :height 1.2 :v-adjust 0.0)
                "?")
             "" "Help (?/h)"
-            (lambda (&rest _) )
+            (lambda (&rest _) (help))
             font-lock-string-face)))
         ;; Truncate style
         dashboard-path-style 'truncate-middle
