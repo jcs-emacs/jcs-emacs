@@ -60,6 +60,7 @@
           basic-mode
           beancount
           better-scroll
+          bison-mode
           block-travel
           browse-kill-ring
           buffer-menu-filter
@@ -267,6 +268,7 @@
           lsp-mssql
           lsp-pascal
           lsp-pyright
+          lsp-shader
           lsp-sonarlint
           lsp-sourcekit
           lsp-tailwindcss
