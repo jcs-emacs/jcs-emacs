@@ -30,6 +30,34 @@
         dashboard-center-content t
         dashboard-set-navigator nil
         dashboard-projects-backend 'project-el
+        ;; Icons
+        dashboard-set-heading-icons t
+        dashboard-set-file-icons nil
+        dashboard-icon-type 'nerd-icons
+        dashboard-heading-icons '((recents        . "nf-oct-history")
+                                  (bookmarks      . "nf-oct-bookmark")
+                                  (agenda         . "nf-oct-calendar")
+                                  (projects       . "nf-oct-rocket")
+                                  (registers      . "nf-oct-database")
+                                  (ls-files       . "nf-oct-file")
+                                  (ls-directories . "nf-oct-file_directory"))
+        ;; Navigator
+        dashboard-set-navigator t
+        dashboard-navigator-buttons
+        `(((,(when elenv-graphic-p
+               (nerd-icons-faicon "nf-fa-github" :height 1.2 :v-adjust 0.0))
+            "Homepage" "Browse homepage"
+            (lambda (&rest _) (browse-url jcs-homepage)))
+           (,(when elenv-graphic-p
+               (nerd-icons-faicon "nf-fae-tools" :height 1.2 :v-adjust 0.0))
+            "Settings" "Open custom file"
+            (lambda (&rest _) (find-file custom-file)))
+           (,(if elenv-graphic-p
+                 (nerd-icons-faicon "nf-fa-question" :height 1.2 :v-adjust 0.0)
+               "?")
+            "" "Help (?/h)"
+            (lambda (&rest _) )
+            font-lock-string-face)))
         ;; Truncate style
         dashboard-path-style 'truncate-middle
         dashboard-recentf-show-base 'align
