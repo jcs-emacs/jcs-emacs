@@ -42,6 +42,10 @@
 ;; (@* "Version" )
 ;;
 
+(defconst jcs-homepage
+  "https://github.com/jcs-emacs/jcs-emacs"
+  "The Github page of JCS-Emacs.")
+
 (defconst jcs-emacs-version-no "9.0.1"
   "JCS-Emacs version.")
 
