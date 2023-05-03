@@ -54,6 +54,10 @@
                (nerd-icons-faicon "nf-fae-tools" :height 1.2 :v-adjust 0.0))
             "Settings" "Open custom file"
             (lambda (&rest _) (find-file custom-file)))
+           (,(when elenv-graphic-p
+               (nerd-icons-mdicon "nf-md-update" :height 1.2 :v-adjust 0.0))
+            "Update" "Update JCS-Emacs"
+            (lambda (&rest _) (jcs-update-config)))
            (,(if elenv-graphic-p
                  (nerd-icons-faicon "nf-fa-question" :height 1.2 :v-adjust 0.0)
                "?")

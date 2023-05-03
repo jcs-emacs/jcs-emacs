@@ -82,5 +82,27 @@
         (when (<= (length buffers) 1)
           (lsp-workspace-shutdown workspace))))))
 
+;;
+;; (@* "Config" )
+;;
+
+(defun jcs-update-config ()
+  "Update JCS-Emacs configurations to the latest version."
+  (interactive)
+  (let* ((dir (expand-file-name user-emacs-directory))
+         (git-dir (f-directories user-emacs-directory
+                                 (lambda (file)
+                                   (and (file-directory-p file)
+                                        (string= ".git" (file-name-nondirectory file)))))))
+    (unless (file-exists-p dir)
+      (user-error "[ERROR] User directory doesn't exist: %s" dir))
+    (unless git-dir
+      (user-error "[WARNING] Not a git directory: %s" user-emacs-directory))
+    (msgu-inhibit-log
+      (message "[INFO] Updating configurations... ")
+      (cd dir)
+      (shell-command "git pull")
+      (message "[INFO] Updating configurations... done"))))
+
 (provide 'jcs-function)
 ;;; jcs-function.el ends here
