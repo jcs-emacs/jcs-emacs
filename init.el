@@ -42,10 +42,6 @@
 ;; (@* "Version" )
 ;;
 
-(defconst jcs-homepage
-  "https://github.com/jcs-emacs/jcs-emacs"
-  "The Github page of JCS-Emacs.")
-
 (defconst jcs-emacs-version-no "9.0.1"
   "JCS-Emacs version.")
 
@@ -53,6 +49,14 @@
   "Show JCS-Emacs version info."
   (interactive)
   (message "JCS-Emacs %s" jcs-emacs-version-no))
+
+;;
+;; (@* "Constant" )
+;;
+
+(defconst jcs-homepage
+  "https://github.com/jcs-emacs/jcs-emacs"
+  "The Github page of JCS-Emacs.")
 
 ;;
 ;; (@* "Load Core" )
