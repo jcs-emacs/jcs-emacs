@@ -11,9 +11,18 @@
   :init
   (setq dashboard-banner-logo-title
         (concat "[J C S " (if elenv-graphic-p "•" "-") " E M A C S]")
-        dashboard-footer-icon ""
+        dashboard-footer-icon (if elenv-graphic-p
+                                  (nerd-icons-faicon "nf-fa-heart" :height 1.2 :v-adjust 0.0
+                                                     :face 'error)
+                                "")
         dashboard-footer-messages
-        `(,(format "Copyright (c) %s %s" (format-time-string "%Y") "Shen, Jen-Chieh"))
+        `(,(concat "I showed you my source code, pls respond"
+                   "\n\n"
+                   (when elenv-graphic-p " ")
+                   "       "
+                   (format "Powered by %s, %s"
+                           "Jen-Chieh"
+                           (format-time-string "%Y"))))
         dashboard-items '((ls-directories . 5)
                           (ls-files       . 5)
                           (recents        . 5)
