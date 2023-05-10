@@ -12,8 +12,7 @@
   (setq dashboard-banner-logo-title
         (concat "[J C S " (if elenv-graphic-p "•" "-") " E M A C S]")
         dashboard-footer-icon (if elenv-graphic-p
-                                  (nerd-icons-faicon "nf-fa-heart" :height 1.2 :v-adjust 0.0
-                                                     :face 'error)
+                                  (nerd-icons-faicon "nf-fa-heart" :face 'error)
                                 "")
         dashboard-footer-messages
         `(,(concat "I showed you my source code, pls respond"
@@ -52,23 +51,24 @@
                                   (registers      . "nf-oct-database")
                                   (ls-files       . "nf-oct-file")
                                   (ls-directories . "nf-oct-file_directory"))
+        dashboard-heading-icon-height 1.0
         ;; Navigator
         dashboard-set-navigator t
         dashboard-navigator-buttons
         `(((,(when elenv-graphic-p
-               (nerd-icons-faicon "nf-fa-github" :height 1.2 :v-adjust 0.0))
+               (nerd-icons-faicon "nf-fa-github"))
             "Homepage" "Browse homepage"
             (lambda (&rest _) (browse-url jcs-homepage)))
            (,(when elenv-graphic-p
-               (nerd-icons-faicon "nf-fae-tools" :height 1.2 :v-adjust 0.0))
+               (nerd-icons-faicon "nf-fae-tools"))
             "Settings" "Open custom file"
             (lambda (&rest _) (find-file custom-file)))
            (,(when elenv-graphic-p
-               (nerd-icons-mdicon "nf-md-update" :height 1.2 :v-adjust 0.0))
+               (nerd-icons-mdicon "nf-md-update"))
             "Update" "Update JCS-Emacs"
             (lambda (&rest _) (jcs-update-config)))
            (,(if elenv-graphic-p
-                 (nerd-icons-faicon "nf-fa-question" :height 1.2 :v-adjust 0.0)
+                 (nerd-icons-faicon "nf-fa-question")
                "?")
             "" "Help (?/h)"
             (lambda (&rest _) (help))
