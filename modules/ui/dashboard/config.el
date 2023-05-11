@@ -11,17 +11,6 @@
   :init
   (setq dashboard-banner-logo-title
         (concat "[J C S " (if elenv-graphic-p "•" "-") " E M A C S]")
-        dashboard-footer-icon (if elenv-graphic-p
-                                  (nerd-icons-faicon "nf-fa-heart" :face 'error)
-                                "")
-        dashboard-footer-messages
-        `(,(concat "I showed you my source code, pls respond"
-                   "\n\n"
-                   (when elenv-graphic-p " ")
-                   "       "
-                   (format "Powered by %s, %s"
-                           "Jen-Chieh"
-                           (format-time-string "%Y"))))
         dashboard-items '((ls-directories . 5)
                           (ls-files       . 5)
                           (recents        . 5)
@@ -52,6 +41,7 @@
                                   (ls-files       . "nf-oct-file")
                                   (ls-directories . "nf-oct-file_directory"))
         dashboard-heading-icon-height 1.0
+        dashboard-heading-icon-v-adjust 0.0
         ;; Navigator
         dashboard-set-navigator t
         dashboard-navigator-buttons
@@ -80,7 +70,19 @@
         dashboard-bookmarks-show-base 'align
         dashboard-bookmarks-item-format "%s  %s"
         dashboard-shorten-by-window-width t
-        dashboard-shorten-path-offset 15)
+        dashboard-shorten-path-offset 15
+        ;; Footer
+        dashboard-footer-icon (if elenv-graphic-p
+                                  (nerd-icons-faicon "nf-fa-heart" :face 'error)
+                                "")
+        dashboard-footer-messages
+        `(,(concat "I showed you my source code, pls respond"
+                   "\n\n"
+                   (when elenv-graphic-p " ")
+                   "       "
+                   (format "Powered by %s, %s"
+                           "Jen-Chieh"
+                           (format-time-string "%Y")))))
   :config
   (jcs-require '(project dashboard-ls))
 
