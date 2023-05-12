@@ -161,6 +161,7 @@
           exec-path-from-shell
           execrun
           expand-region
+          fb2-reader
           feature-mode
           ff-guard
           file-header
