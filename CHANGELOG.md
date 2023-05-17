@@ -21,6 +21,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Enable comment empty lines by default (2040d77e956cc3c1fb55ec0dae7dfe6c36c2381b)
 * Fix cannot re-connect to language server issue (362a96418032da4244c05c810031ed74bc7b25c4)
 * Add dashboard's navigator (d81fce7fb699f1866839c0bd409475ab758721d4)
+* Fix `indent-guides` is not obvious in 29.x (8456bd051b096af816cd9c0840b6980c21d94c5e)
 
 ## 9.0.0
 > Released Jan 01, 2023
