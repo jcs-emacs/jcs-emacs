@@ -145,12 +145,6 @@
     ((kbd "C-w o") . jcs-impatient-start)
     ((kbd "C-w p") . jcs-impatient-stop)
 
-;;; Kill Word
-    ((kbd "C-<backspace>") . vs-edit-backward-delete-word)
-    ((kbd "C-<delete>")    . vs-edit-forward-delete-word)
-    ((kbd "M-<backspace>") . jcs-backward-kill-word-capital)
-    ((kbd "M-<delete>")    . jcs-forward-kill-word-capital)
-
 ;;; Line Endings
     ((kbd "M-i") . show-eol-mode)
     ((kbd "M-I") . set-buffer-file-coding-system)
@@ -354,6 +348,12 @@
 ;;; *scratch*
     ((kbd "M-s") . scratch-buffer)
     ((kbd "M-S") . jcs-scratch-other-window)
+
+;;; Kill Word
+    ((kbd "C-<backspace>") . vs-edit-backward-delete-word)
+    ((kbd "C-<delete>")    . vs-edit-forward-delete-word)
+    ((kbd "M-<backspace>") . jcs-backward-kill-word-capital)
+    ((kbd "M-<delete>")    . jcs-forward-kill-word-capital)
 
 ;;; Undo / Redo
     ((kbd "C-z") . undo-tree-vf-undo)
