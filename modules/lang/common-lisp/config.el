@@ -7,7 +7,8 @@
 ;; (@* "Settings" )
 ;;
 
-(setq inferior-lisp-program (shell-quote-argument (executable-find "sbcl")))
+(elenv-when-exec "sbcl" nil
+  (setq inferior-lisp-program (shell-quote-argument value)))
 
 ;;
 ;; (@* "Extensions" )
