@@ -204,6 +204,7 @@
            toggle-truncate-lines
            reb-update-overlays reb-next-match reb-prev-match
            lsp--message
+           sly-message
            define-it)
         message-clean-mode-minor-mode 'echo))
 

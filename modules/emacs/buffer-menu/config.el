@@ -24,6 +24,7 @@
            "[*]eww" "[*]ESS[*]"
            "[*]Ping"
            "[*]emacs[*]"  ; From `async'
+           "[*]sly"
            "[*]timer"
            ;; `lsp-mode'
            "[*]lsp-" "[*]LSP[ ]+"

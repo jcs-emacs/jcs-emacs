@@ -78,6 +78,7 @@
     (cmake-mode                   . "lang/cmake")
     (cobol-mode                   . "lang/cobol")
     (coffee-mode                  . "lang/coffee")
+    (sly                          . "lang/common-lisp")
     (conf-mode                    . "lang/conf")
     (crystal-mode                 . "lang/crystal")
     (csharp-mode                  . "lang/csharp")

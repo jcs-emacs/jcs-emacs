@@ -348,6 +348,9 @@
           sideline-lsp
           site-lisp
           sln-mode
+          sly-macrostep
+          sly-quicklisp
+          sly-repl-ansi-color
           smart-comment
           smex
           snow
