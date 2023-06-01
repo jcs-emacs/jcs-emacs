@@ -23,6 +23,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add dashboard's navigator (d81fce7fb699f1866839c0bd409475ab758721d4)
 * Fix `indent-guides` is not obvious in 29.x (8456bd051b096af816cd9c0840b6980c21d94c5e)
 * Add `sly` to support common lisp development (fa0afd2d79b8b464f4f2413fcd93978ef168402f)
+* Add support for OpenCL (d5723c34ac53c7983cdfb686884478bcacc4d4a6)
 
 ## 9.0.0
 > Released Jan 01, 2023
