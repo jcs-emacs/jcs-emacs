@@ -117,6 +117,7 @@
           csproj-mode
           css-eldoc
           csv-mode
+          cuda-mode
           cycle-at-point
           cycle-case-style
           cycle-quotes
