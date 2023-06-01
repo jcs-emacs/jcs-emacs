@@ -110,10 +110,6 @@
 (setq custom-safe-themes t)
 
 ;;
-;;; Major Mode
-(setq-default major-mode 'text-mode)
-
-;;
 ;;; Deletion
 (setq delete-by-moving-to-trash t)
 
