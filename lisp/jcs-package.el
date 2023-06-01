@@ -300,6 +300,7 @@
           nov
           npm-mode
           on
+          opencl-mode
           org-fancy-priorities
           org-sticky-header
           org-superstar

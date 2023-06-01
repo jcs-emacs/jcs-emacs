@@ -201,6 +201,7 @@
 ;;; O
     ("\\.dpk'?\\'"          . opascal-mode)
     ("\\.dpr'?\\'"          . opascal-mode)
+    ("\\.cl'?\\'"           . opencl-mode)
 ;;; R
     ("\\.http'?\\'"         . restclient-mode)
 ;;; S
