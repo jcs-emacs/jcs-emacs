@@ -54,7 +54,7 @@ from this configuration.
 
 * ActionScript 2.0 or 3.0 / Ada / Agda / AppleScript / Assembly Language
 * BASIC / Batchfile / Beancount
-* C / C++ / C# / Clojure / CMake / COBOL / Common Lisp / Crystal / CSS
+* C / C++ / C# / Clojure / / COBOL / Common Lisp / Crystal / CSS / CUDA
 * Dart / Dockerfile
 * Elixir / Elm / Emacs Lisp / Erlang
 * F# / Fountain
