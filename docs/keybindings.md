@@ -348,15 +348,19 @@ Here is the list of key bindins that defined in this configuration.
 ### Windows
 
 * <kbd>Alt</kbd>+<kbd>f11</kbd> - Toggle full screen.
-* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>n</kbd> - Create new frame.
-* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>w</kbd> - Delete current frame.
-* <kbd>Ctrl</kbd>+<kbd>f4</kbd> - Delete current window.
-* <kbd>Ctrl</kbd>+<kbd>h</kbd>, <kbd>h</kbd> - Toggle window split between horizontal and vertcial.
-* <kbd>Ctrl</kbd>+<kbd>w</kbd>, <kbd>e</kbd> - Toggle enlarge current selected window.
+* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>n</kbd> - Create the new frame.
+* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>w</kbd> - Delete the current frame.
+* <kbd>Ctrl</kbd>+<kbd>f4</kbd> - Delete the current window.
+* <kbd>Ctrl</kbd>+<kbd>h</kbd>, <kbd>h</kbd> - Toggle window split between horizontal and vertical layouts.
+* <kbd>Ctrl</kbd>+<kbd>w</kbd>, <kbd>e</kbd> - Toggle showing the current window at the half frame.
 * <kbd>Ctrl</kbd>+<kbd>\\</kbd> - Split window horizontally.
 * <kbd>Alt</kbd>+<kbd>\`</kbd> - Toggle transparent frame.
 * <kbd>Alt</kbd>+<kbd>=</kbd> - Increment frame's transparency by 5 percent.
 * <kbd>Alt</kbd>+<kbd>-</kbd> - Decrement frame's transparency by 5 percent.
+* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>j</kbd> - Enlarge window horizontally.
+* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>l</kbd> - Shrink window horizontally.
+* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>i</kbd> - Enlarge window vertically.
+* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Alt</kbd>+<kbd>k</kbd> - Shrink window vertically.
 
 ### Version Control
 
