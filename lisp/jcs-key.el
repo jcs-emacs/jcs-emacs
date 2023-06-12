@@ -181,8 +181,8 @@
     ((kbd "C-M-S-<down>")   . vsc-multiple-cursors-mark-next-like-this-line)
     ((kbd "C-M-_")          . vsc-multiple-cursors-mark-previous-similar-this-line)
     ((kbd "C-M-+")          . vsc-multiple-cursors-mark-next-similar-this-line)
-    ((kbd "C-M-=")          . vsc-multiple-cursors-inc-string-distance-level)
-    ((kbd "C-M--")          . vsc-multiple-cursors-dec-string-distance-level)
+    ((kbd "C-M-=")          . vsc-multiple-cursors-inc-similarity)
+    ((kbd "C-M--")          . vsc-multiple-cursors-dec-similarity)
     ((kbd "S-M-<mouse-1>")  . mc/add-cursor-on-click)
 
 ;;; Navigation
@@ -304,6 +304,12 @@
     ((kbd "C-7") . winum-select-window-7)
     ((kbd "C-8") . winum-select-window-8)
     ((kbd "C-9") . winum-select-window-9)
+
+;;; Window Size
+    ((kbd "C-M-S-j") . enlarge-window-horizontally)
+    ((kbd "C-M-S-l") . shrink-window-horizontally)
+    ((kbd "C-M-S-i") . enlarge-window)
+    ((kbd "C-M-S-k") . shrink-window)
 
 ;;; Word Case
     ((kbd "C-M-u") . upcase-dwim)
