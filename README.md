@@ -276,7 +276,7 @@ kind of methods to support the maintainer you wish to.
 * *Binary/Hex Editor* - powered by [hexl-mode](https://www.emacswiki.org/emacs/HexlMode).
 * *Collaborative Editing* - powered by [togetherly](https://github.com/zk-phi/togetherly).
 * *Completion Frontend* - powered by [vertico](https://github.com/minad/vertico).
-* *Context Menu* - powered by [right-click-context](https://github.com/zonuexe/right-click-context).
+* *Context Menu* - powered by [context-menu-mode](https://www.gnu.org/software/emacs/manual/html_node/emacs/Menu-Mouse-Clicks.html).
 * *Document String* - powered by [ts-docstr](https://github.com/emacs-vs/ts-docstr).
 * *End of Line* - powered by [show-eol](https://github.com/elpa-host/show-eol).
 * *Execute Commands* - powered by [compile](https://www.emacswiki.org/emacs/CompilationMode).
