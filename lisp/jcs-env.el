@@ -255,18 +255,6 @@
   (setq vs-revbuf-ask-unsaved-changes-only t))
 
 ;;
-;;; Right Click
-(use-package right-click-context
-  :config
-  (jcs-advice-add 'right-click-context-menu :override
-    ;; Open Right Click Context menu.
-    (let ((popup-menu-keymap (copy-sequence popup-menu-keymap)))
-      (define-key popup-menu-keymap [mouse-3] #'right-click-context--click-menu-popup)
-      (let ((value (popup-cascade-menu (right-click-context--build-menu-for-popup-el (right-click-context--menu-tree) nil))))
-        (when (and (jcs-popup-clicked-on-menu-p) value)
-          (if (symbolp value) (call-interactively value t) (eval value)))))))
-
-;;
 ;;; Shift Select
 (setq shift-select-mode t)
 

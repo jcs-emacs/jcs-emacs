@@ -229,7 +229,7 @@
     ("\er" . vs-revbuf-no-confirm)
 
 ;;; Right Click Context
-    ([S-f10] . right-click-context-menu)
+    ([S-f10] . context-menu-open)
 
 ;;; Script Executing (Output)
     ((kbd "C-S-u")  . execrun-popup)
