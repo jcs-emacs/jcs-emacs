@@ -17,3 +17,10 @@
   ;; File Header
   (jcs-insert-header-if-valid '("[.]clj")
                               'jcs-insert-clojure-template))
+
+;;
+;; (@* "Extensions" )
+;;
+
+(use-package flycheck-clojure
+  :hook (flycheck-mode . flycheck-clojure-setup))

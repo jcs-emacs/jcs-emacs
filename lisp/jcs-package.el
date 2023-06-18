@@ -75,7 +75,6 @@
           centaur-tabs
           chatgpt
           cisco-router-mode
-          clojure-mode
           cmake-font-lock
           cobol-mode
           codegpt
@@ -170,6 +169,7 @@
           flx-rs
           flycheck-cask
           flycheck-clang-analyzer
+          flycheck-clojure
           flycheck-crystal
           flycheck-deno
           flycheck-eask
@@ -333,7 +333,6 @@
           repos-window
           restart-emacs
           reveal-in-folder
-          right-click-context
           robots-txt-mode
           rust-mode
           scad-mode
@@ -349,6 +348,7 @@
           sideline-flymake
           sideline-lsp
           site-lisp
+          slim-mode
           sln-mode
           sly-macrostep
           sly-quicklisp
