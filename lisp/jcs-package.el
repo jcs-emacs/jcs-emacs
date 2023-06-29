@@ -280,6 +280,8 @@
           marginalia
           markdown-toc
           masm-mode
+          merlin-company
+          merlin-eldoc
           meson-mode
           message-clean-mode
           meta-view
