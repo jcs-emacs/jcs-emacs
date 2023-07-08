@@ -258,6 +258,7 @@
           literate-calc-mode
           log4e
           logms
+          logview
           lsp-dart
           lsp-grammarly
           lsp-haskell
