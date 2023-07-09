@@ -287,6 +287,7 @@
           meta-view
           minimap
           mint-mode
+          moom
           most-used-words
           move-text
           multi-shell
