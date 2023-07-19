@@ -111,7 +111,6 @@
           company-terraform
           composer
           comware-router-mode
-          consult
           crystal-mode
           csproj-mode
           css-eldoc
