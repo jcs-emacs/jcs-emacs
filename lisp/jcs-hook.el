@@ -63,6 +63,7 @@
 
 (jcs-add-hook 'on-first-input-hook
   (balanced-windows-mode 1)
+  (breadcrumb-mode 1)
   (global-company-mode t)
   (delete-selection-mode 1)
   (diminish-buffer-mode 1)

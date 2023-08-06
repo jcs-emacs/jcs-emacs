@@ -62,6 +62,7 @@
           better-scroll
           bison-mode
           block-travel
+          breadcrumb
           browse-kill-ring
           buffer-menu-filter
           buffer-move
