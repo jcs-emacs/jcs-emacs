@@ -1,5 +1,5 @@
 (package "jcs-emacs"
-         "8.2.2"
+         "9.0.1"
          "Emacs configuration works across all OSs")
 
 (website-url "https://github.com/jcs-emacs/jcs-emacs")
