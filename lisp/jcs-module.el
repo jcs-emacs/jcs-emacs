@@ -119,6 +119,7 @@
     (nxml-mode                    . "lang/xml")
     (opascal                      . "lang/opascal")
     (org                          . "lang/org")
+    (p4lang-mode                  . "lang/p4")
     (pascal                       . "lang/pascal")
     (perl-mode                    . "lang/perl")
     (php-mode                     . "lang/php")

@@ -268,8 +268,10 @@
           lsp-ltex
           lsp-metals
           lsp-mssql
+          lsp-p4
           lsp-pascal
           lsp-pyright
+          lsp-scheme
           lsp-shader
           lsp-sonarlint
           lsp-sourcekit
