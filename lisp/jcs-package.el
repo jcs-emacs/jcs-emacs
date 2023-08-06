@@ -235,6 +235,7 @@
           hl-preproc
           hlsl-mode
           htmltagwrap
+          hy-mode
           ialign
           idris-mode
           iedit
