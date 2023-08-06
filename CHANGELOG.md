@@ -27,6 +27,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add support for CUDA (d5723c34ac53c7983cdfb686884478bcacc4d4a6)
 * Use `context-menu-mode` instead of `right-click-context` (a7e563ea23121dd6ba340eb8fd8b9daed394f019)
 * Add more support for Clojure language (b84287bde0315c021f73009fcd67e2a0d348d64f)
+* Add breadcrumb mode (a81fcc65af7357eeb4babb58b97b567c5a453b01)
+* Use prog mode settings for `haskell-cabal-mode` (fd8dfb5108882e5fc5a1ad74b129e35c3e1ae762)
 
 ## 9.0.0
 > Released Jan 01, 2023
