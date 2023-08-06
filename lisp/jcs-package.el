@@ -204,6 +204,7 @@
           free-keys
           freeradius-mode
           fsharp-mode
+          fstar-mode
           fvwm-mode
           gcmh
           gdscript-mode
