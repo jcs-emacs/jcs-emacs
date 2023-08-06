@@ -25,6 +25,7 @@
            "[*]Ping"
            "[*]emacs[*]"  ; From `async'
            "[*]sly"
+           "[*]cider-repl" "[*]nrepl-server"
            "[*]timer"
            ;; `lsp-mode'
            "[*]lsp-" "[*]LSP[ ]+"
