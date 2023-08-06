@@ -36,6 +36,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add support for F* (1dc616adae9bdcbf1810058b3d078f831be5cd34)
 * Add support for Hylang (df2337bfb3ef64a3c2e9cbd5422df7eb66b9e698)
 * Add support for Scheme (6fe51f46592cd3e6ceee1ae274b086b046dc93b0)
+* Add support for ledger (5cc7ba8abad0864f9d435519bb35bf45b32d2dcb)
 
 ## 9.0.0
 > Released Jan 01, 2023
