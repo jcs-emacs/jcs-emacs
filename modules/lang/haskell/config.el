@@ -1,5 +1,7 @@
 ;;; lang/haskell/config.el  -*- lexical-binding: t; -*-
 
+(require 'haskell-cabal)
+
 ;;
 ;; (@* "Templates" )
 ;;
@@ -17,7 +19,9 @@
                               'jcs-insert-haskell-template))
 
 (jcs-add-hook 'haskell-cabal-mode-hook
-  (run-hooks 'prog-mode-hook))
+  (run-hooks 'prog-mode-hook)
+
+  (company-fuzzy-backend-add-before 'company-cabal 'company-dabbrev))
 
 ;;
 ;; (@* "Extensions" )
