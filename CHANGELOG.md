@@ -33,6 +33,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add company support for PHP (30c8b00169eefb866df062095c1bf33b6d0729ec)
 * Add company support for Perl (98d4e1494364ca49bf3cd370a659957674eda100)
 * Configure for beancount (40ee14e541453e684d1f836dcc2fa47abda9ece9)
+* Add support for F* (1dc616adae9bdcbf1810058b3d078f831be5cd34)
 
 ## 9.0.0
 > Released Jan 01, 2023
