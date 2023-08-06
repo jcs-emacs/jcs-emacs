@@ -34,6 +34,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add company support for Perl (98d4e1494364ca49bf3cd370a659957674eda100)
 * Configure for beancount (40ee14e541453e684d1f836dcc2fa47abda9ece9)
 * Add support for F* (1dc616adae9bdcbf1810058b3d078f831be5cd34)
+* Add support for Hylang (df2337bfb3ef64a3c2e9cbd5422df7eb66b9e698)
+* Add support for Scheme (6fe51f46592cd3e6ceee1ae274b086b046dc93b0)
 
 ## 9.0.0
 > Released Jan 01, 2023
