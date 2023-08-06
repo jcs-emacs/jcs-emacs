@@ -183,6 +183,7 @@
           flycheck-haskell
           flycheck-kotlin
           flycheck-languagetool
+          flycheck-ledger
           flycheck-nim
           flycheck-ocaml
           flycheck-package
@@ -257,6 +258,7 @@
           keypression
           kotlin-mode
           kubernetes
+          ledger-mode
           license-templates
           line-reminder
           list-environment
