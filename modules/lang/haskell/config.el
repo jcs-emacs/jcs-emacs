@@ -16,6 +16,9 @@
   (jcs-insert-header-if-valid '("[.]hs")
                               'jcs-insert-haskell-template))
 
+(jcs-add-hook 'haskell-cabal-mode-hook
+  (run-hooks 'prog-mode-hook))
+
 ;;
 ;; (@* "Extensions" )
 ;;
