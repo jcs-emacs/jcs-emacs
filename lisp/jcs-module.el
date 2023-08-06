@@ -97,6 +97,7 @@
     (fstar-mode                            . "lang/fstar")
     (gdscript-mode                         . "lang/gdscript")
     ((shader-mode glsl-mode hlsl-mode)     . "lang/shader")
+    (sml-mode                              . "lang/sml")
     (go-mode                               . "lang/go")
     (groovy-mode                           . "lang/groovy")
     (haml-mode                             . "lang/haml")

@@ -102,6 +102,7 @@
           company-lua
           company-makefile
           company-meta-net
+          company-mlton
           company-nginx
           company-nixos-options
           company-org-block
@@ -367,6 +368,7 @@
           sly-repl-ansi-color
           smart-comment
           smex
+          sml-mode
           snow
           sort-words
           sql-indent
