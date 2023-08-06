@@ -12,6 +12,8 @@
 ;;
 
 (jcs-add-hook 'php-mode-hook
+  (company-fuzzy-backend-add-before 'company-php 'company-dabbrev)
+
   ;; File Header
   (jcs-insert-header-if-valid '("[.]php")
                               'jcs-insert-php-template))
