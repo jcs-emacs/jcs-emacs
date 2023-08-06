@@ -30,6 +30,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add breadcrumb mode (a81fcc65af7357eeb4babb58b97b567c5a453b01)
 * Use prog mode settings for `haskell-cabal-mode` (fd8dfb5108882e5fc5a1ad74b129e35c3e1ae762)
 * Add support for P4 (3b16789978d380b6be75f465fa2a3d3dbd9610b1)
+* Add company support for PHP (30c8b00169eefb866df062095c1bf33b6d0729ec)
+* Add company support for Perl (98d4e1494364ca49bf3cd370a659957674eda100)
 
 ## 9.0.0
 > Released Jan 01, 2023
