@@ -14,6 +14,8 @@
 (jcs-add-hook 'perl-mode-hook
   (modify-syntax-entry ?_ "w")
 
+  (company-fuzzy-backend-add-before 'company-plsense 'company-dabbrev)
+
   ;; File Header
   (jcs-insert-header-if-valid '("[.]pl")
                               'jcs-insert-perl-template))
