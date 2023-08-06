@@ -87,6 +87,7 @@
           company-autoconf
           company-box
           company-c-headers
+          company-cabal
           company-cmd
           company-coffee
           company-dict
@@ -105,6 +106,8 @@
           company-nixos-options
           company-org-block
           company-paths
+          company-php
+          company-plsense
           company-powershell
           company-restclient
           company-shell
