@@ -137,6 +137,7 @@
     (rust-mode                             . "lang/rust")
     (ssass-mode                            . "lang/sass")
     (scala-mode                            . "lang/scala")
+    (scheme-mode                           . "lang/scheme")
     (scss-mode                             . "lang/scss")
     ((sh-script fish-mode)                 . "lang/sh")
     (sql                                   . "lang/sql")
