@@ -67,7 +67,7 @@ from this configuration.
 * Makefile / Markdown / Mint
 * Nim / Nix
 * Object Pascal (Delphi) / Objective-C / OCaml
-* Pascal / Perl / PHP / PowerShell / Properties / Python
+* P4 / Pascal / Perl / PHP / PowerShell / Properties / Python
 * R / Racket / Ruby / Rust
 * Sass / Scala / SCSS / Shader / Shell script / SQL / Swift
 * Terraform / TOML / TSX / TypeScript
