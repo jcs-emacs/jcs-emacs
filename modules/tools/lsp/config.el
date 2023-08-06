@@ -3,7 +3,8 @@
 (use-package lsp-mode
   :init
   (setq lsp-auto-guess-root t
-        lsp-keep-workspace-alive nil)
+        lsp-keep-workspace-alive nil
+        lsp-headerline-breadcrumb-enable nil)
   :config
   ;; Let's not block the loading process, so lsp packages don't hamper with
   ;; each another.
