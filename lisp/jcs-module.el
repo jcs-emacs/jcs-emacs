@@ -70,6 +70,7 @@
     ((masm-mode nasm-mode)                 . "lang/asm")
     (basic-mode                            . "lang/basic")
     (bat-mode                              . "lang/batch")
+    (beancount                             . "lang/beancount")
     (caml                                  . "lang/caml")
     (cc-mode                               . ("lang/cc" "lang/c" "lang/c++"
                                               "lang/java"
