@@ -29,6 +29,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add more support for Clojure language (b84287bde0315c021f73009fcd67e2a0d348d64f)
 * Add breadcrumb mode (a81fcc65af7357eeb4babb58b97b567c5a453b01)
 * Use prog mode settings for `haskell-cabal-mode` (fd8dfb5108882e5fc5a1ad74b129e35c3e1ae762)
+* Add support for P4 (3b16789978d380b6be75f465fa2a3d3dbd9610b1)
 
 ## 9.0.0
 > Released Jan 01, 2023
