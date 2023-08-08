@@ -30,9 +30,9 @@
            ;; `lsp-mode'
            "[*]lsp-" "[*]LSP[ ]+"
            "[*][a-zA-Z0-9]+[-]*ls" "[*][a-zA-Z0-9]+::stderr[*]"
-           "[*]clang-"
-           "[*]clangd"
+           "[*]clang-" "[*]clangd"
            "[*]csharp[*]"
+           "[*]dart"
            "[*]lua-"
            "[*]iph[*]"
            "[*]rust-analyzer[*:]"
