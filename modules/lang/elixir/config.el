@@ -14,8 +14,13 @@
 (jcs-add-hook 'elixir-mode-hook
   (modify-syntax-entry ?_ "w")  ; Treat underscore as word
 
-
   ;; File Header
   (jcs-insert-header-if-valid '("[.]ex"
                                 "[.]exs")
                               'jcs-insert-elixir-template))
+
+;;
+;; (@* "Extensions" )
+;;
+
+(use-package flycheck-credo :hook (flycheck-mode . flycheck-credo-setup))

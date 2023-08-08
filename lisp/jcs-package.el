@@ -174,6 +174,7 @@
           flycheck-cask
           flycheck-clang-analyzer
           flycheck-clojure
+          flycheck-credo
           flycheck-crystal
           flycheck-deno
           flycheck-eask
