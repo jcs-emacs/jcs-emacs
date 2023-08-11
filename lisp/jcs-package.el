@@ -170,6 +170,7 @@
           ff-guard
           file-header
           fish-mode
+          flutter
           flx-rs
           flycheck-cask
           flycheck-clang-analyzer
@@ -183,6 +184,7 @@
           flycheck-golangci-lint
           flycheck-grammarly
           flycheck-haskell
+          flycheck-hl-todo
           flycheck-kotlin
           flycheck-languagetool
           flycheck-ledger

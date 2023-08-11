@@ -27,3 +27,7 @@
           ("NOTE" success bold)
           ("BUG" error bold)
           ("XXX" font-lock-constant-face bold))))
+
+(use-package flycheck-hl-todo
+  :init
+  (flycheck-hl-todo-setup))
