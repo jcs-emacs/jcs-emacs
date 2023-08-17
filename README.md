@@ -69,7 +69,7 @@ from this configuration.
 * Object Pascal (Delphi) / Objective-C / OCaml
 * P4 / Pascal / Perl / PHP / PowerShell / Properties / Python
 * R / Racket / Ruby / Rust
-* Sass / Scala / SCSS / Shader / Shell script / SQL / Swift
+* Sass / Scala / SCSS / ShaderLab / Shell script / SQL / Swift
 * Terraform / TOML / TSX / TypeScript
 * Verilog / VHDL / Vimscript / Vue
 * XML
