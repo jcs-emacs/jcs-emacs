@@ -38,6 +38,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add support for Scheme (6fe51f46592cd3e6ceee1ae274b086b046dc93b0)
 * Add support for ledger (5cc7ba8abad0864f9d435519bb35bf45b32d2dcb)
 * Add support for SML (031289bf682aa956cd322e1e1078408f0d79e8ce)
+* Use built-in on first project hook (84a7695b668debed6fb59bbd5313ff9be897d6b7)
 
 ## 9.0.0
 > Released Jan 01, 2023
