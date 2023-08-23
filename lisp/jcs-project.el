@@ -25,11 +25,6 @@
   "Return project directory path."
   (when-let ((current (project-current))) (project-root current)))
 
-(defun jcs-project-under-p ()
-  "Return non-nil if current file is under a project."
-  (and (project-current)
-       (ignore-errors (file-readable-p (buffer-file-name)))))
-
 (defvar jcs-project--cache-opened-projects nil
   "Cache to track down list of opened projects.")
 

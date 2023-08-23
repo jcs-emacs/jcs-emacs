@@ -93,7 +93,7 @@
   (global-so-long-mode 1)
   (require 'lsp-mode))
 
-(jcs-add-hook 'jcs-on-project-hook
+(jcs-add-hook 'on-first-project-hook
   (global-diff-hl-mode 1)
   (editorconfig-mode 1)
   (vc-refresh-mode 1))
@@ -132,10 +132,8 @@
   (vs-comment-return-mode 1)
   (yas-minor-mode 1)
 
-  (indent-control-ensure-tab-width)  ; Ensure indentation level is available
-
-  (when (jcs-funcall-fboundp #'jcs-project-under-p)
-    (run-hooks 'jcs-on-project-hook)))
+  ;; Ensure indentation level is available
+  (indent-control-ensure-tab-width))
 
 (jcs-add-hook 'prog-mode-hook
   ;; XXX: See the bug https://github.com/immerrr/lua-mode/issues/172
