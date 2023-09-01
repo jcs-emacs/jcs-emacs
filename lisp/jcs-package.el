@@ -170,6 +170,7 @@
           feature-mode
           ff-guard
           file-header
+          file-info
           fish-mode
           flutter
           flx-rs
