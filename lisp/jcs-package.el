@@ -85,6 +85,7 @@
           command-log-mode
           company-ansible
           company-autoconf
+          company-bibtex
           company-box
           company-c-headers
           company-cabal
@@ -99,6 +100,7 @@
           company-glsl
           company-go
           company-kaomoji
+          company-ledger
           company-lua
           company-makefile
           company-meta-net
@@ -174,6 +176,7 @@
           fish-mode
           flutter
           flx-rs
+          flycheck-actionlint
           flycheck-cask
           flycheck-clang-analyzer
           flycheck-clojure

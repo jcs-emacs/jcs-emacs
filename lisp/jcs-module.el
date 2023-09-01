@@ -113,6 +113,7 @@
     (json-mode                             . "lang/json")
     (julia-mode                            . "lang/julia")
     (kotlin-mode                           . "lang/kotlin")
+    (tex-mode                              . "lang/latex")
     (ledger-mode                           . "lang/ledger")
     (less-css-mode                         . "lang/less-css")
     (lua-mode                              . "lang/lua")

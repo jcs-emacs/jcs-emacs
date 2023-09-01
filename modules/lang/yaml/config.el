@@ -29,5 +29,8 @@
 ;; (@* "Extensions" )
 ;;
 
+(use-package flycheck-actionlint
+  :hook (flycheck-mode . flycheck-actionlint-setup))
+
 (use-package gitlab-ci-mode-flycheck
   :hook (flycheck-mode . gitlab-ci-mode-flycheck-enable))

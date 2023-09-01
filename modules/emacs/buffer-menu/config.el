@@ -33,6 +33,7 @@
            "[*]clang-" "[*]clangd"
            "[*]csharp[*]"
            "[*]dart"
+           "[*]perlnavigator"
            "[*]lua-"
            "[*]iph[*]"
            "[*]rust-analyzer[*:]"

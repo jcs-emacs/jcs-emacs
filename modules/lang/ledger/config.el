@@ -9,6 +9,9 @@
   (setq ledger-clear-whole-transactions t
         ledger-mode-should-check-version nil))
 
+(jcs-add-hook 'ledger-mode-hook
+  (company-fuzzy-backend-add-before 'company-ledger 'company-dabbrev))
+
 ;;
 ;; (@* "Extensions" )
 ;;

@@ -14,6 +14,8 @@
 (jcs-add-hook 'beancount-mode-hook
   (setq beancount-electric-currency t)
 
+  (company-fuzzy-backend-add-before 'company-ledger 'company-dabbrev)
+
   ;; File Header
   (jcs-insert-header-if-valid '("[.]beancount")
                               'jcs-insert-beancount-template))
