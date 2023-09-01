@@ -40,6 +40,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add support for SML (031289bf682aa956cd322e1e1078408f0d79e8ce)
 * Use built-in on first project hook (84a7695b668debed6fb59bbd5313ff9be897d6b7)
 * Add LaTex support (7fbb631c54b82aa43a80c4ad7733143c89773ff1)
+* Add Noir support (7fbb631c54b82aa43a80c4ad7733143c89773ff1)
 
 ## 9.0.0
 > Released Jan 01, 2023
