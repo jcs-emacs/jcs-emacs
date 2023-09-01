@@ -122,6 +122,7 @@
     (nginx-mode                            . "lang/nginx")
     (nim-mode                              . "lang/nim")
     (nix-mode                              . "lang/nix")
+    (noir-mode                             . "lang/noir")
     (nxml-mode                             . "lang/xml")
     (opascal                               . "lang/opascal")
     (org                                   . "lang/org")

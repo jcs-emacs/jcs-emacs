@@ -319,6 +319,7 @@
           ninja-mode
           nix-mode
           nocomments-mode
+          noir-mode
           nov
           npm-mode
           on
@@ -355,7 +356,6 @@
           restart-emacs
           reveal-in-folder
           robots-txt-mode
-          rust-mode
           scad-mode
           scrollable-quick-peek
           scss-mode
