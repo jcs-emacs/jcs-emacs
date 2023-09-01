@@ -65,7 +65,7 @@ from this configuration.
 * Kotlin
 * LESS / Lisp / Lua
 * Makefile / Markdown / Mint
-* Nim / Nix
+* Nim / Nix / Noir
 * Object Pascal (Delphi) / Objective-C / OCaml
 * P4 / Pascal / Perl / PHP / PowerShell / Properties / Python
 * R / Racket / Ruby / Rust
