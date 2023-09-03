@@ -13,5 +13,5 @@
 
 (jcs-add-hook 'vhdl-mode-hook
   ;; File Header
-  (jcs-insert-header-if-valid '("[.]vhdl")
+  (jcs-insert-header-if-valid '("[.]vhd" "[.]vhdl")
                               'jcs-insert-vhdl-template))
