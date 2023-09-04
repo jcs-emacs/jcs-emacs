@@ -262,6 +262,7 @@
           jcs-poptip
           jenkinsfile-mode
           json-mode
+          jsonnet-mode
           k8s-mode
           kconfig-mode
           keypression
