@@ -1,5 +1,14 @@
 ;;; tools/tree-sitter/config.el  -*- lexical-binding: t; -*-
 
+(use-package tree-sitter
+  :init
+  (setq tree-sitter-debug-jump-buttons t
+        tree-sitter-debug-highlight-jump-region t)
+  :config
+  (jcs-advice-add 'tree-sitter-debug--setup :after
+    (with-current-buffer tree-sitter-debug--tree-buffer
+      (highlight-indent-guides-mode 1))))
+
 (use-package tree-sitter-langs
   :hook (tree-sitter-after-on . tree-sitter-hl-mode)
   :config
