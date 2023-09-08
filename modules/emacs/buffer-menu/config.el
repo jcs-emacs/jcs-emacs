@@ -37,6 +37,7 @@
            "[*]lua-"
            "[*]iph[*]"
            "[*]rust-analyzer[*:]"
+           "[*]zig-"
            "[*]Coursier log[*]"
            "[*]tcp-server-sonarlint"
            "[*]Python" "[*]pyright[*]"
