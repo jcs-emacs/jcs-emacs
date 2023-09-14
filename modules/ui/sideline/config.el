@@ -8,7 +8,8 @@
         sideline-backends-left '((sideline-color . up))
         sideline-backends-right '((sideline-lsp      . up)
                                   (sideline-flycheck . down)
-                                  (sideline-flymake  . down))
+                                  (sideline-flymake  . down)
+                                  (chatgpt-sideline  . up))
         sideline-display-backend-name t
         sideline-display-backend-type 'inner))
 

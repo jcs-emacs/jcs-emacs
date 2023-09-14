@@ -74,7 +74,7 @@
           cask-mode
           ccls
           centaur-tabs
-          chatgpt
+          chatgpt-sideline
           cisco-router-mode
           cmake-font-lock
           cobol-mode

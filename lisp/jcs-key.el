@@ -11,7 +11,6 @@
     ((kbd "C-r"))
     ((kbd "C-w"))
     ((kbd "C-x w"))
-    ((kbd "M-SPC"))
 
 ;;; *Messages*
     ((kbd "M-m") . jcs-messages)
@@ -151,6 +150,7 @@
     ((kbd "M-I") . set-buffer-file-coding-system)
 
 ;;; Mark
+    ("\e "       . set-mark-command)
     ((kbd "M-z") . toggle-truncate-lines)
     ("\e:"       . View-back-to-mark)
     ("\e;"       . exchange-point-and-mark)
@@ -286,7 +286,7 @@
 ;;; Window
     ([M-f11]        . toggle-frame-fullscreen)
     ((kbd "C-S-n")  . jcs-make-frame)
-    ((kbd "C-S-w")  . delete-frame)  ; delete the external frame .
+    ((kbd "C-S-w")  . delete-frame)  ; delete the external frame.
     ((kbd "C-<f4>") . delete-window)
     ((kbd "C-h h")  . transpose-frame)
     ((kbd "C-w e")  . (lambda () (interactive) (require 'toggle-window)
@@ -323,12 +323,7 @@
 ;;; Zoom
     ((kbd "C-=")      . text-scale-increase)
     ((kbd "C--")      . text-scale-decrease)
-    ((kbd "C-<kp-0>") . (lambda () (interactive) (text-scale-set 0)))
-
-;;; Windows Menu
-    ((kbd "M-SPC n") . suspend-frame)
-    ((kbd "M-SPC x") . toggle-frame-maximized)
-    ((kbd "M-SPC c") . save-buffers-kill-terminal)))
+    ((kbd "C-<kp-0>") . (lambda () (interactive) (text-scale-set 0)))))
 
 (jcs-key prog-mode-map
   `(((kbd "<up>")   . vs-edit-previous-line)
