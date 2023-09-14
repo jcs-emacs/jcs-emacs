@@ -43,6 +43,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add Noir support (7fbb631c54b82aa43a80c4ad7733143c89773ff1)
 * Enable jump to button in Tree-Sitter debug mode (02f5172c7d061732bb0f154ded5898c1baaf16b9)
 * Add Windows Menu's key bindings (0cc2bb8d938f6a549cc3ae9a15ba4776010c6fa8)
+* Add package `chatgpt-sideline` (65409fc4c68254b18ce209e64fcf74b016e2413e)
 
 ## 9.0.0
 > Released Jan 01, 2023
