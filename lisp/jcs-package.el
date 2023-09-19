@@ -398,6 +398,7 @@
           ts-docstr
           turbo-log
           typescript-mode
+          typst-mode
           undo-tree-vf
           unfill
           use-ttf
