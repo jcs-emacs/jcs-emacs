@@ -5,8 +5,13 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
-## 9.0.1 (Unreleased)
+## 9.0.2 (Unreleased)
 > Released N/A
+
+* N/A
+
+## 9.0.1
+> Released Sep 20, 2023
 
 * Add new package `makefile-executor` (e301333ef7585189614bb1fed163caab2e4a0973)
 * Add new package `codegpt` (443b2e1312368201a8a15d64355e7c9aaf5b8958)
