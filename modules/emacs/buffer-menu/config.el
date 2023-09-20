@@ -27,8 +27,8 @@
            "[*]sly"
            "[*]cider-repl" "[*]nrepl-server"
            "[*]timer"
-           ;; `lsp-mode'
-           "[*]lsp-" "[*]LSP[ ]+"
+           ;; `LSP'
+           "[*]lsp-" "[*]LSP[ ]+" "[*]eglot"
            "[*][a-zA-Z0-9]+[-]*ls" "[*][a-zA-Z0-9]+::stderr[*]"
            "[*]clang-" "[*]clangd"
            "[*]csharp[*]"
