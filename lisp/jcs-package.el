@@ -168,6 +168,7 @@
           exec-path-from-shell
           execrun
           expand-region
+          fasm-mode
           fb2-reader
           feature-mode
           ff-guard

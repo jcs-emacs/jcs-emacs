@@ -1,5 +1,6 @@
 ;;; lang/asm/config.el  -*- lexical-binding: t; -*-
 
+(require 'fasm-mode)
 (require 'masm-mode)
 (require 'nasm-mode)
 
@@ -111,19 +112,25 @@
   (interactive
    (list (completing-read
           "Major mode for this Assembly Language file: "
-          '("masm" "nasm"))))
+          '("fasm" "masm" "nasm"))))
   (pcase mode
+    ("fasm" (fasm-mode))
     ("masm" (masm-mode))
     ("nasm" (nasm-mode))))
 
 (file-header-defsrc jcs-asm-ask-source
     "Major source for this Assembly Language file: "
-  '(("masm" . "Microsoft Macro Assembler")
+  '(("fasm" . "Flat Assembler")
+    ("masm" . "Microsoft Macro Assembler")
     ("nasm" . "Netwide Assembler"))
   (let ((jcs-asm--asking-mode t))
     (pcase index
-      (0 (masm-mode) (jcs-insert-masm-template))
-      (1 (nasm-mode) (jcs-insert-nasm-template)))))
+      (0 (fasm-mode) (jcs-insert-fasm-template))
+      (1 (masm-mode) (jcs-insert-masm-template))
+      (2 (nasm-mode) (jcs-insert-nasm-template)))))
+
+(file-header-defins jcs-insert-fasm-template "assembly" "fasm/default.txt"
+  "Header for FASM file.")
 
 (file-header-defins jcs-insert-masm-template "assembly" "masm/default.txt"
   "Header for MASM file.")
@@ -135,14 +142,7 @@
 ;; (@* "Hook" )
 ;;
 
-(jcs-add-hook 'masm-mode-hook
-  (modify-syntax-entry ?_ "w")
-  (jcs-asm-mode--init)
-  (jcs-key-local
-    `(((kbd "RET")    . jcs-asm-return)
-      ((kbd ";")      . jcs-asm-comment))))
-
-(jcs-add-hook 'nasm-mode-hook
+(jcs-add-hook '(fasm-mode-hook masm-mode-hook nasm-mode-hook)
   (modify-syntax-entry ?_ "w")
   (jcs-asm-mode--init)
   (jcs-key-local
