@@ -8,7 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 9.0.2 (Unreleased)
 > Released N/A
 
-* N/A
+* Add FASM support (e049b015df8a52d10271e3a41aeeca631296a7d5)
 
 ## 9.0.1
 > Released Sep 20, 2023
