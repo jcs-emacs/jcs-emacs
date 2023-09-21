@@ -75,13 +75,16 @@
 
 (defun jcs-lsp-maybe-shutdown ()
   "Maybe shutdown the workspace."
-  (when (jcs-lsp-connected-p) (lsp-disconnect))
   (when-let ((workspaces (jcs-funcall-fboundp #'lsp-workspaces)))
     (dolist (workspace workspaces)
       (let* ((buffers (lsp--workspace-buffers workspace))
              (buffers (cl-remove-if-not #'buffer-live-p buffers)))
         (when (<= (length buffers) 1)
           (lsp-workspace-shutdown workspace))))))
+
+(jcs-advice-add 'lsp-process-kill :around
+  ;; XXX: Ignore errors so I can at least kill the buffer!
+  (ignore-errors (apply arg0 args)))
 
 ;;
 ;; (@* "Config" )
