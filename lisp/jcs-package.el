@@ -390,7 +390,6 @@
           togetherly
           toggle-profiler
           toggle-window
-          topsy
           transpose-frame
           transwin
           tree-sitter-indent
