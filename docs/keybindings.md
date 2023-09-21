@@ -468,8 +468,8 @@ Here is the list of key bindings that are defined in this configuration.
 
 ## Package Mode
 
-* <kbd>i</kbd> - Select package to install.
-* <kbd>d</kbd> - Select package to delete.
+* <kbd>i</kbd> - Select packages to install.
+* <kbd>d</kbd> - Select packages to delete.
 * <kbd>x</kbd> - Execute marked packages.
 * <kbd>s</kbd> - Sort packages in order.
 * <kbd>u</kbd> - Unmark/Mark pacakges.
@@ -483,10 +483,10 @@ Here is the list of key bindings that are defined in this configuration.
 
 ## Org Mode
 
-* <kbd>Shift</kbd>+<kbd>up</kbd> - Move cursor `up` one row table.
-* <kbd>Shift</kbd>+<kbd>down</kbd> - Move cursor `down` one row table.
-* <kbd>Shift</kbd>+<kbd>right</kbd> - Move cursor `right` one column table.
-* <kbd>Shift</kbd>+<kbd>left</kbd> - Move cursor `left` one column table.
+* <kbd>Shift</kbd>+<kbd>up</kbd> - Move the cursor `up` one row table.
+* <kbd>Shift</kbd>+<kbd>down</kbd> - Move the cursor `down` one row table.
+* <kbd>Shift</kbd>+<kbd>right</kbd> - Move the cursor `right` one column table.
+* <kbd>Shift</kbd>+<kbd>left</kbd> - Move the cursor `left` one column table.
 
 ## C/C++/Objective-C Mode
 
