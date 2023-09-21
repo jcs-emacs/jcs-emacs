@@ -113,12 +113,12 @@ to suit my needs.
 
 Here are a few goals that I want this config to accomplish.
 
-- Having the same set of key bindings across different IDEs and text editors as
+* Having the same set of key bindings across different IDEs and text editors as
 many as possible.
-- Having the same font and theme across different OSs and environments.
-- Automating trivial or redundant tasks.
-- Improve user experiences approach to modern text editor or IDE.
-- Make compatible with most features work inside the terminal as well.
+* Having the same font and theme across different OSs and environments.
+* Automating trivial or redundant tasks.
+* Improve user experiences approach to modern text editor or IDE.
+* Make compatible with most features work inside the terminal as well.
 
 Having these implementations makes my life easier, and having a genuinely portable
 workspace, which is great because it lets me work on different machines efficiently,
@@ -130,16 +130,16 @@ without having to get used to a new IDE.
 
 Here is the list of few essential and recent changes to this configuration.
 
-- `9.0.2` - Replace package `topsy` with `breadcrumb-mode` for better UX
-- `8.2.2` - Add `emp` as the default Music Player
-- `8.2.1` - Replace package `docstr` with `ts-docstr` for better parsing capability
-- `8.2.0` - Drop support for Emacs 27.x
-- `8.1.0` - Remove config tabify/untabify save, and replace it with `whitespace-cleanup-mode`.
-- `8.0.1` - Switch from `ivy` to `vertico`.
-- `8.0.0` - Move everything to `.emacs.d`. ([#32](https://github.com/jcs-emacs/jcs-emacs/pull/32))
-- `7.1.0` - Replace `quelpa` with `github-elpa`.
-- `7.0.0` - Switch from [quickhelp](https://github.com/company-mode/company-quickhelp) to [box](https://github.com/sebastiencs/company-box) for company frontend.
-- `6.5.0` - Add pinned archive feature to package module.
+* `9.0.2` - Replace package `topsy` with `breadcrumb-mode` for better UX
+* `8.2.2` - Add `emp` as the default Music Player
+* `8.2.1` - Replace package `docstr` with `ts-docstr` for better parsing capability
+* `8.2.0` - Drop support for Emacs 27.x
+* `8.1.0` - Remove config tabify/untabify save, and replace it with `whitespace-cleanup-mode`.
+* `8.0.1` - Switch from `ivy` to `vertico`.
+* `8.0.0` - Move everything to `.emacs.d`. ([#32](https://github.com/jcs-emacs/jcs-emacs/pull/32))
+* `7.1.0` - Replace `quelpa` with `github-elpa`.
+* `7.0.0` - Switch from [quickhelp](https://github.com/company-mode/company-quickhelp) to [box](https://github.com/sebastiencs/company-box) for company frontend.
+* `6.5.0` - Add pinned archive feature to package module.
 
 ## 💾 Installation
 
@@ -198,15 +198,15 @@ start within a second.*
 Here is the list of the major highlights of this configuration. Hope you would
 like my taste!
 
-- **Out of the box** - Out of the box anywhere.
-- **Cross Platform** - Work on all operating systems, including the terminal.
-- **Fast Startup** - Lazy loading for all unnecessary packages on startup.
-- **Old-Fashioned** - Doesn't use any beautiful GUI because it may not work in the terminal.
-- **Multiple Languages** - Support multiple programming languages.
-- **Consistent** - Having the same coding experience in different major modes.
-- **Easy to use** - Design close to other modern text editors. It shouldn't spend you too much time.
-- **Dual Windows** - Design for people who like multiple windows opened simultaneously.
-- **Keyboard Focused** - You can do everything by using the keyboard and the mouse are just optional.
+* **Out of the box** - Out of the box anywhere.
+* **Cross Platform** - Work on all operating systems, including the terminal.
+* **Fast Startup** - Lazy loading for all unnecessary packages on startup.
+* **Old-Fashioned** - Doesn't use any beautiful GUI because it may not work in the terminal.
+* **Multiple Languages** - Support multiple programming languages.
+* **Consistent** - Having the same coding experience in different major modes.
+* **Easy to use** - Design close to other modern text editors. It shouldn't spend you too much time.
+* **Dual Windows** - Design for people who like multiple windows opened simultaneously.
+* **Keyboard Focused** - You can do everything by using the keyboard and the mouse are just optional.
 
 ### Details
 
@@ -214,42 +214,42 @@ This is the list of features that are built-in to this configuration. These feat
 are heavily based on my personal habits, and so these could be very tiny things. But
 I believe details make things better and make life smoother.
 
-- [*Auto Install Package*](./docs/features/auto-install-package) - Automatically installs the package that this config relies on.
-- [*Build Run*](./docs/features/build-run) - Implementation for executing script for building and running the software.
-- [*Capital Word*](./docs/features/capital-word) - You can navigate/kill word by seeing capital letter.
-- [*Changelog Helper*](./docs/features/changelog-helper) - Help to create changelog while creating `CHANGELOG` file using template.
-- [*Consistent Key Bindings*](./docs/features/consistent-key-bindings) - Has consistent key bindings across all modes.
-- [*Curly Bracket Modes*](./curly-bracket-modes) - Use curly bracket depends on different mode.
-- [*Display File*](./docs/features/display-file) - Utility function to use to view a file on the other window.
-- [*Charset Table*](./docs/features/display-file/charset-table) - Built-in functions that displays character sets.
-- Enhanced Multiple Cursors
-- [*Similar Multiple Cursors*](./docs/features/similar-multiple-cursors) - Mark with cursor by similarity.
-- [*VS Multiple Cursors*](./docs/features/vs-multiple-cursors) - VSCode like methods to `mark` and `unmark` multiple cursor.
-- [*Fast Incremental Search*](./docs/features/fast-incremental-search) - Fast keys for incremental search forward/backward to the cursor is currently pointing.
-- [*Indent Control*](./docs/features/indent-control) - Generic control the indentation level for each mode, for more information see [indent-control](https://github.com/alt-elpa/indent-control).
-- [*License Helper*](./docs/features/license-helper) - Help to create license while creating `LICENSE` file using template.
-- [*Mini State*](./docs/features/mini-state) - Mini mode state use to visually see what backend is the config currently running. (Deprecated)
-- [*Explicit States*](./docs/features/mini-state/explicit-states) - Automatcially switch mini state depends on certain circumstances.
-- [*Modern Text Editor*](./docs/features/modern-text-editor) - Design to have the preset settings close to modern text editors but faster.
-- [*Multiple Output*](./docs/features/multiple-output) - Handle multiple output/compilation buffers.
-- [*Navigate Blank Line*](./docs/features/navigate-blank-line) - Use `C-<up>` and `C-<down>` to navigate previous and next blank line.
-- [*Navigate Table*](./docs/features/navigate-table) - Navigate `org-mode`'s table easier by using arrow keys.
-- [*Preview HTML*](./docs/features/preview-html) - Preview rendered HTML file on the other window.
-- [*Switch Window*](./docs/features/switch-window) - Fast keys switch between windows quickly.
-- [*Trim Trailing Whitespace*](./docs/features/trim-trailing-whitespace) - Remove trailing spaces and tabs automatically on save.
-- [*Visualize Undo/Redo*](./docs/features/visualize-undo-redo) - Improved the user experience on undoing and redoing by showing the `undo-tree-visualizer` at the other window.
-- [*VS Curly Bracket*](./docs/features/vs-curly-bracket) - Visual Studio IDE like curly bracket implementation.
-- [*VS Multiple Terminal*](./docs/features/vs-multiple-terminal) - VSCode like multiple shell control.
-- [*VS Navigate Word*](./docs/features/vs-navigate-word) - Visual Studio IDE like navigating between word implementation.
+* [*Auto Install Package*](./docs/features/auto-install-package) - Automatically installs the package that this config relies on.
+* [*Build Run*](./docs/features/build-run) - Implementation for executing script for building and running the software.
+* [*Capital Word*](./docs/features/capital-word) - You can navigate/kill word by seeing capital letter.
+* [*Changelog Helper*](./docs/features/changelog-helper) - Help to create changelog while creating `CHANGELOG` file using template.
+* [*Consistent Key Bindings*](./docs/features/consistent-key-bindings) - Has consistent key bindings across all modes.
+* [*Curly Bracket Modes*](./curly-bracket-modes) - Use curly bracket depends on different mode.
+* [*Display File*](./docs/features/display-file) - Utility function to use to view a file on the other window.
+* [*Charset Table*](./docs/features/display-file/charset-table) - Built-in functions that displays character sets.
+* Enhanced Multiple Cursors
+* [*Similar Multiple Cursors*](./docs/features/similar-multiple-cursors) - Mark with cursor by similarity.
+* [*VS Multiple Cursors*](./docs/features/vs-multiple-cursors) - VSCode like methods to `mark` and `unmark` multiple cursor.
+* [*Fast Incremental Search*](./docs/features/fast-incremental-search) - Fast keys for incremental search forward/backward to the cursor is currently pointing.
+* [*Indent Control*](./docs/features/indent-control) - Generic control the indentation level for each mode, for more information see [indent-control](https://github.com/alt-elpa/indent-control).
+* [*License Helper*](./docs/features/license-helper) - Help to create license while creating `LICENSE` file using template.
+* [*Mini State*](./docs/features/mini-state) - Mini mode state use to visually see what backend is the config currently running. (Deprecated)
+* [*Explicit States*](./docs/features/mini-state/explicit-states) - Automatcially switch mini state depends on certain circumstances.
+* [*Modern Text Editor*](./docs/features/modern-text-editor) - Design to have the preset settings close to modern text editors but faster.
+* [*Multiple Output*](./docs/features/multiple-output) - Handle multiple output/compilation buffers.
+* [*Navigate Blank Line*](./docs/features/navigate-blank-line) - Use `C-<up>` and `C-<down>` to navigate previous and next blank line.
+* [*Navigate Table*](./docs/features/navigate-table) - Navigate `org-mode`'s table easier by using arrow keys.
+* [*Preview HTML*](./docs/features/preview-html) - Preview rendered HTML file on the other window.
+* [*Switch Window*](./docs/features/switch-window) - Fast keys switch between windows quickly.
+* [*Trim Trailing Whitespace*](./docs/features/trim-trailing-whitespace) - Remove trailing spaces and tabs automatically on save.
+* [*Visualize Undo/Redo*](./docs/features/visualize-undo-redo) - Improved the user experience on undoing and redoing by showing the `undo-tree-visualizer` at the other window.
+* [*VS Curly Bracket*](./docs/features/vs-curly-bracket) - Visual Studio IDE like curly bracket implementation.
+* [*VS Multiple Terminal*](./docs/features/vs-multiple-terminal) - VSCode like multiple shell control.
+* [*VS Navigate Word*](./docs/features/vs-navigate-word) - Visual Studio IDE like navigating between word implementation.
 
 ## 📁 Package Archives
 
 A list of package archives that this configuration uses.
 
-- *[GNU](https://elpa.gnu.org/)* - The standard GNU ELPA
-- *[NonGNU](https://elpa.nongnu.org/)* - The standard NonGNU ELPA
-- *[MELPA](https://melpa.org/#/)* - Milkypostman’s ELPA
-- *[JCS-ELPA](https://jcs-emacs.github.io/jcs-elpa/)* - Jen-Chieh Shen's ELPA for this confinguration
+* *[GNU](https://elpa.gnu.org/)* - The standard GNU ELPA
+* *[NonGNU](https://elpa.nongnu.org/)* - The standard NonGNU ELPA
+* *[MELPA](https://melpa.org/#/)* - Milkypostman’s ELPA
+* *[JCS-ELPA](https://jcs-emacs.github.io/jcs-elpa/)* - Jen-Chieh Shen's ELPA for this confinguration
 
 📝 *P.S. Here is a good talk comparing all package archives from a
 [StackExchange](https://emacs.stackexchange.com/) question,
@@ -268,58 +268,58 @@ kind of methods to support the maintainer you wish to.
 
 ### Functionalities
 
-- *Abbreivation Definition* - powered by [project-abbrev](https://github.com/elpa-host/project-abbrev).
-- *Alt-Codes* - powered by [alt-codes](https://github.com/elpa-host/alt-codes).
-- *Auto Completion* - powered by [company](https://github.com/company-mode/company-mode).
-- *Auto Highlight Symbol* - powered by [auto-highlight-symbol-mode](https://github.com/mhayashi1120/auto-highlight-symbol-mode).
-- *Banner* - powered by [dashboard](https://github.com/emacs-dashboard/emacs-dashboard).
-- *Binary/Hex Editor* - powered by [hexl-mode](https://www.emacswiki.org/emacs/HexlMode).
-- *Breadcrumb* - powered by [breadcrumb](https://github.com/joaotavora/breadcrumb).
-- *Collaborative Editing* - powered by [togetherly](https://github.com/zk-phi/togetherly).
-- *Completion Frontend* - powered by [vertico](https://github.com/minad/vertico).
-- *Context Menu* - powered by [context-menu-mode](https://www.gnu.org/software/emacs/manual/html_node/emacs/Menu-Mouse-Clicks.html).
-- *Document String* - powered by [ts-docstr](https://github.com/emacs-vs/ts-docstr).
-- *End of Line* - powered by [show-eol](https://github.com/elpa-host/show-eol).
-- *Execute Commands* - powered by [compile](https://www.emacswiki.org/emacs/CompilationMode).
-- *File Explorer* - powered by [treemacs](https://github.com/Alexander-Miller/treemacs).
-- *File Header* - powered by [file-header](https://github.com/alt-elpa/file-header).
-- *Folding/Unfolding* - powered by [ts-fold](https://github.com/jcs090218/ts-fold).
-- *Font* - powered by [use-ttf](https://github.com/elpa-host/use-ttf).
-- *Goto Declaration/Definition* - powered by [dumb-jump](https://github.com/jacktasia/dumb-jump).
-- *Highlight Indentation* - powered by [highlight-indent-guides](https://github.com/DarthFennec/highlight-indent-guides).
-- *Highlight Matched Pairs* - powered by [show-paren-mode](https://www.emacswiki.org/emacs/ShowParenMode).
-- *Highlight Same Region* - powered by [region-occurrences-highlighter](https://github.com/alvarogonzalezsotillo/region-occurrences-highlighter).
-- *Indentation Management* - powered by [indent-control](https://github.com/alt-elpa/indent-control).
-- *Language Server Protocol* - powered by [lsp-mode](https://github.com/emacs-lsp/lsp-mode).
-- *Line Annotation* - powered by [line-reminder](https://github.com/elpa-host/line-reminder).
-- *Line Numbers* - powered by [display-line-numbers](https://github.com/emacs-mirror/emacs/blob/master/lisp/display-line-numbers.el) and [linum](https://github.com/emacs-mirror/emacs/blob/master/lisp/linum.el).
-- *Minimap* - powered by [minimap](http://elpa.gnu.org/packages/minimap.html).
-- *Mode Line* - powered by [jcs-modeline](https://github.com/jcs-emacs/jcs-modeline).
-- *Multiple Cursor* - powered by [iedit](https://github.com/victorhge/iedit) and [multiple-cursors](https://github.com/magnars/multiple-cursors.el).
-- *Multiple Terminal* - powered by [multi-shell](https://github.com/jcs-elpa/multi-shell).
-- *Music Player* - powered by [emp](https://github.com/jcs-elpa/emp).
-- *Navigation/Searcher* - powered by [searcher](https://github.com/jcs-elpa/searcher) and [isearch-project](https://github.com/elpa-host/isearch-project).
-- *Package Archive* - see [here](#file_folder-package-archives).
-- *Package Management* - powered by [use-package](https://github.com/jwiegley/use-package) and [github-elpa](https://github.com/10sr/github-elpa).
-- *PDF Viewer* - powered by [doc-view-mode](https://www.emacswiki.org/emacs/DocViewMode) and [ghostscript](https://www.ghostscript.com/index.html).
-- *Project Management* - powered by [project](https://elpa.gnu.org/packages/project.html).
-- *Recent Files* - powered by [recentf](https://www.emacswiki.org/emacs/RecentFiles).
-- *Regexp* - powered by [re-builder](https://www.emacswiki.org/emacs/ReBuilder) and [visual-regexp](https://github.com/benma/visual-regexp.el).
-- *Restart Emacs* - powered by [restart-emacs](https://github.com/iqbalansari/restart-emacs).
-- *Scroll Bar* - powered by [auto-scroll-bar](https://github.com/jcs-elpa/auto-scroll-bar).
-- *Shell* - powered by [shell](https://www.emacswiki.org/emacs/ShellMode) and [exec-path-from-shell](https://github.com/purcell/exec-path-from-shell).
-- *Smooth Scrolling* - none, originally powered by ~~[sublimity](https://github.com/zk-phi/sublimity)~~.
-- *Snippet* - powered by [yasnippet](https://github.com/joaotavora/yasnippet).
-- *Startup Screen* - powered by [dashboard](https://github.com/emacs-dashboard/emacs-dashboard).
-- *Syntax Check* - powered by [flycheck](http://www.flycheck.org/en/latest/).
-- *Tab Bar* - powered by [centaur-tabs](https://github.com/ema2159/centaur-tabs).
-- ~~*Tags* - powered by [gtags](https://www.gnu.org/software/global/).~~
-- *Theme* - powered by [vs-dark-theme](https://github.com/jcs-elpa/vs-dark-theme) and [vs-light-theme](https://github.com/jcs-elpa/vs-light-theme). **(For more info see [here](#themes))**
-- *Todo* - powered by [hl-todo](https://github.com/tarsius/hl-todo).
-- *Undo/Redo* - powered by [undo-tree](https://www.emacswiki.org/emacs/UndoTree).
-- *Version Control Management* - powered by [magit](https://github.com/magit/magit).
-- *Video Player* - none.
-- *White Space* - powered by [whitespace](https://www.emacswiki.org/emacs/WhiteSpace).
+* *Abbreivation Definition* - powered by [project-abbrev](https://github.com/elpa-host/project-abbrev).
+* *Alt-Codes* - powered by [alt-codes](https://github.com/elpa-host/alt-codes).
+* *Auto Completion* - powered by [company](https://github.com/company-mode/company-mode).
+* *Auto Highlight Symbol* - powered by [auto-highlight-symbol-mode](https://github.com/mhayashi1120/auto-highlight-symbol-mode).
+* *Banner* - powered by [dashboard](https://github.com/emacs-dashboard/emacs-dashboard).
+* *Binary/Hex Editor* - powered by [hexl-mode](https://www.emacswiki.org/emacs/HexlMode).
+* *Breadcrumb* - powered by [breadcrumb](https://github.com/joaotavora/breadcrumb).
+* *Collaborative Editing* - powered by [togetherly](https://github.com/zk-phi/togetherly).
+* *Completion Frontend* - powered by [vertico](https://github.com/minad/vertico).
+* *Context Menu* - powered by [context-menu-mode](https://www.gnu.org/software/emacs/manual/html_node/emacs/Menu-Mouse-Clicks.html).
+* *Document String* - powered by [ts-docstr](https://github.com/emacs-vs/ts-docstr).
+* *End of Line* - powered by [show-eol](https://github.com/elpa-host/show-eol).
+* *Execute Commands* - powered by [compile](https://www.emacswiki.org/emacs/CompilationMode).
+* *File Explorer* - powered by [treemacs](https://github.com/Alexander-Miller/treemacs).
+* *File Header* - powered by [file-header](https://github.com/alt-elpa/file-header).
+* *Folding/Unfolding* - powered by [ts-fold](https://github.com/jcs090218/ts-fold).
+* *Font* - powered by [use-ttf](https://github.com/elpa-host/use-ttf).
+* *Goto Declaration/Definition* - powered by [dumb-jump](https://github.com/jacktasia/dumb-jump).
+* *Highlight Indentation* - powered by [highlight-indent-guides](https://github.com/DarthFennec/highlight-indent-guides).
+* *Highlight Matched Pairs* - powered by [show-paren-mode](https://www.emacswiki.org/emacs/ShowParenMode).
+* *Highlight Same Region* - powered by [region-occurrences-highlighter](https://github.com/alvarogonzalezsotillo/region-occurrences-highlighter).
+* *Indentation Management* - powered by [indent-control](https://github.com/alt-elpa/indent-control).
+* *Language Server Protocol* - powered by [lsp-mode](https://github.com/emacs-lsp/lsp-mode).
+* *Line Annotation* - powered by [line-reminder](https://github.com/elpa-host/line-reminder).
+* *Line Numbers* - powered by [display-line-numbers](https://github.com/emacs-mirror/emacs/blob/master/lisp/display-line-numbers.el) and [linum](https://github.com/emacs-mirror/emacs/blob/master/lisp/linum.el).
+* *Minimap* - powered by [minimap](http://elpa.gnu.org/packages/minimap.html).
+* *Mode Line* - powered by [jcs-modeline](https://github.com/jcs-emacs/jcs-modeline).
+* *Multiple Cursor* - powered by [iedit](https://github.com/victorhge/iedit) and [multiple-cursors](https://github.com/magnars/multiple-cursors.el).
+* *Multiple Terminal* - powered by [multi-shell](https://github.com/jcs-elpa/multi-shell).
+* *Music Player* - powered by [emp](https://github.com/jcs-elpa/emp).
+* *Navigation/Searcher* - powered by [searcher](https://github.com/jcs-elpa/searcher) and [isearch-project](https://github.com/elpa-host/isearch-project).
+* *Package Archive* - see [here](#file_folder-package-archives).
+* *Package Management* - powered by [use-package](https://github.com/jwiegley/use-package) and [github-elpa](https://github.com/10sr/github-elpa).
+* *PDF Viewer* - powered by [doc-view-mode](https://www.emacswiki.org/emacs/DocViewMode) and [ghostscript](https://www.ghostscript.com/index.html).
+* *Project Management* - powered by [project](https://elpa.gnu.org/packages/project.html).
+* *Recent Files* - powered by [recentf](https://www.emacswiki.org/emacs/RecentFiles).
+* *Regexp* - powered by [re-builder](https://www.emacswiki.org/emacs/ReBuilder) and [visual-regexp](https://github.com/benma/visual-regexp.el).
+* *Restart Emacs* - powered by [restart-emacs](https://github.com/iqbalansari/restart-emacs).
+* *Scroll Bar* - powered by [auto-scroll-bar](https://github.com/jcs-elpa/auto-scroll-bar).
+* *Shell* - powered by [shell](https://www.emacswiki.org/emacs/ShellMode) and [exec-path-from-shell](https://github.com/purcell/exec-path-from-shell).
+* *Smooth Scrolling* - none, originally powered by ~~[sublimity](https://github.com/zk-phi/sublimity)~~.
+* *Snippet* - powered by [yasnippet](https://github.com/joaotavora/yasnippet).
+* *Startup Screen* - powered by [dashboard](https://github.com/emacs-dashboard/emacs-dashboard).
+* *Syntax Check* - powered by [flycheck](http://www.flycheck.org/en/latest/).
+* *Tab Bar* - powered by [centaur-tabs](https://github.com/ema2159/centaur-tabs).
+* ~~*Tags* - powered by [gtags](https://www.gnu.org/software/global/).~~
+* *Theme* - powered by [vs-dark-theme](https://github.com/jcs-elpa/vs-dark-theme) and [vs-light-theme](https://github.com/jcs-elpa/vs-light-theme). **(For more info see [here](#themes))**
+* *Todo* - powered by [hl-todo](https://github.com/tarsius/hl-todo).
+* *Undo/Redo* - powered by [undo-tree](https://www.emacswiki.org/emacs/UndoTree).
+* *Version Control Management* - powered by [magit](https://github.com/magit/magit).
+* *Video Player* - none.
+* *White Space* - powered by [whitespace](https://www.emacswiki.org/emacs/WhiteSpace).
 
 ## 🧰 Write your own customization
 
@@ -331,7 +331,7 @@ there, then other than that are the core files.
 
 Here is the list of *Frequently Asked Questions*.
 
-- [List of FAQ](./doc/FAQ.md)
+* [List of FAQ](./doc/FAQ.md)
 
 ## Contribute
 
