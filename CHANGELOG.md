@@ -9,6 +9,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 > Released N/A
 
 * Add FASM support (e049b015df8a52d10271e3a41aeeca631296a7d5)
+* Remove package `topsy` (77c506758eaca4621cf1a92e9107e5d279721827)
 
 ## 9.0.1
 > Released Sep 20, 2023
