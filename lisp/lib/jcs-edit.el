@@ -405,7 +405,6 @@ other window."
   (interactive)
   (when-let ((buffer (buffer-file-name)))
     (msgu-inhibit-log
-      (when (jcs-lsp-connected-p) (lsp-disconnect))
       (jcs-save-window-excursion (jcs-kill-this-buffer))
       (jcs-funcall-fboundp #'undo-tree-kill-visualizer)
       (msgu-current "[INFO] Reopened file => '%s'" buffer))))
