@@ -120,6 +120,7 @@
           comware-router-mode
           consult-todo
           crystal-mode
+          csound-mode
           csproj-mode
           css-eldoc
           csv-mode
