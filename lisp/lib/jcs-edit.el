@@ -117,7 +117,7 @@
         (t (set-face-attribute 'mc/cursor-face nil :underline nil :inverse-video t))))
 
 ;;
-;; (@* "Kill Line" )
+;; (@* "Kill Ring" )
 ;;
 
 (defun jcs-kill-whole-line ()

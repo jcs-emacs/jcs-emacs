@@ -124,7 +124,10 @@
   (display-fill-column-indicator-mode 1)
   (display-line-numbers-mode 1)
   (doxygen-asterisk-mode 1)
-  (when elenv-graphic-p (highlight-indent-guides-mode 1))
+  (when elenv-graphic-p
+    (highlight-indent-guides-mode 1)
+    ;; XXX: Workaround for https://github.com/DarthFennec/highlight-indent-guides/issues/70
+    (jcs-re-enable-mode-if-was-enabled #'highlight-indent-guides-mode))
   (highlight-numbers-mode 1)
   (elenv-when-exec "prettier" nil (prettier-mode 1))
   (vs-edit-mode 1)
