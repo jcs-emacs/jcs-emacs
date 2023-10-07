@@ -54,9 +54,11 @@
 
 ;; Reduce *Message* noise at startup. An empty scratch buffer (or the dashboard)
 ;; is more than enough.
-(setq inhibit-startup-message t
+(setq inhibit-startup-screen t
       inhibit-startup-echo-area-message user-login-name
       inhibit-default-init t)
+
+(advice-add 'display-startup-echo-area-message :override #'ignore)
 
 ;; The GC introduces annoying pauses and stuttering into our Emacs experience,
 ;; so we use `gcmh' to stave off the GC while we're using Emacs, and provoke it
@@ -276,8 +278,7 @@
 ;;; Startup
 (setq-default truncate-lines t)
 (setq next-line-add-newlines nil
-      truncate-partial-width-windows nil
-      inhibit-startup-screen t)
+      truncate-partial-width-windows nil)
 
 ;;
 ;;; Tab / Space

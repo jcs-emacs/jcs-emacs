@@ -44,7 +44,8 @@
   (jcs-modules-load-entry)
   (jcs-require '(dashboard on))
   (use-ttf-set-default-font)
-  (jcs-setup-default-theme))
+  (jcs-setup-default-theme)
+  (message nil))    ; mute at the very end!
 
 (jcs-add-hook 'on-init-ui-hook
   (add-function :after after-focus-change-function #'jcs-hook--after-focus)
@@ -59,7 +60,7 @@
   (vertico-mode 1)
   (window-divider-mode 1)
   (jcs-require '(jcs-edit))
-  (message nil))  ; mute at the very end!
+  (message nil))    ; mute at the very end!
 
 (jcs-add-hook 'on-first-input-hook
   (balanced-windows-mode 1)
