@@ -6,7 +6,8 @@
   :bind ( :map vertico-map
           ("\177"     . vertico-directory-delete-char)
           ("<return>" . vertico-directory-enter)
-          ("/"        . jcs-vertico-/))
+          ("/"        . jcs-vertico-/)
+          (":"        . jcs-vertico-:))
   :init
   (setq vertico-cycle t
         vertico-resize t
@@ -73,6 +74,20 @@
 ;;
 ;; (@* "Functions" )
 ;;
+
+(defun jcs-vertico-: ()
+  "Vertico colon key."
+  (interactive)
+  (insert ":")
+  (when (mbs-finding-file-p)
+    (jcs-vertico-find-files-:)))
+
+(defun jcs-vertico-find-files-: ()
+  "After inserting colon."
+  (when-let* ((check (s-replace (f-root) "" (minibuffer-contents)))
+              (matches (= 1 (s-count-matches ":" check)))
+              (input (file-name-nondirectory (minibuffer-contents))))
+    (jcs-vertico--cd (concat "/" input))))
 
 (defun jcs-vertico-/ ()
   "Vertico slash key."
