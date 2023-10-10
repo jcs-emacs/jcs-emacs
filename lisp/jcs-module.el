@@ -28,6 +28,7 @@
     (list-environment                      . "emacs/list-thing")
     (re-builder                            . "emacs/re-builder")
     (text-mode                             . "emacs/text-mode")
+    (tramp                                 . "emacs/tramp")
     (undo-tree                             . "emacs/undo")
     (( gitattributes-mode gitconfig-mode gitignore-mode
        vc-refresh)
