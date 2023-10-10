@@ -11,6 +11,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add FASM support (e049b015df8a52d10271e3a41aeeca631296a7d5)
 * Remove package `topsy` (77c506758eaca4621cf1a92e9107e5d279721827)
 * fix: Apply workaround for `highlight-indent-guides` (e153bd8fd60ec3f6ed11cd8494e94feb7d1cb7c3)
+* feat: Add Tramp support (8535af30d96e173df46515f03e91d50e472dca5e)
 
 ## 9.0.1
 > Released Sep 20, 2023
