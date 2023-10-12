@@ -82,7 +82,8 @@
                    "       "
                    (format "Powered by %s, %s"
                            "Jen-Chieh"
-                           (format-time-string "%Y")))))
+                           (format-time-string "%Y"))))
+        dashboard-remove-missing-entry t)
   :config
   (jcs-require '(project dashboard-ls))
 
