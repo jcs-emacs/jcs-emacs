@@ -116,14 +116,11 @@
         web-mode-block-padding 0   ; For `php', `ruby', `java', `python', `asp', etc.
         web-mode-offsetless-elements '("html")))
 
-(add-hook 'web-mode-hook 'emmet-mode)
-
 (jcs-add-hook 'web-mode-hook
-  (setq truncate-lines t)
   (jcs-elec-pair-add '((?\' . ?\') (?\" . ?\")))
 
   (auto-rename-tag-mode 1)
-  (visual-line-mode t)
+  (emmet-mode 1)
   (impatient-mode t)
 
   ;; File Header
