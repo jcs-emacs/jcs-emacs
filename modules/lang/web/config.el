@@ -117,7 +117,13 @@
         web-mode-offsetless-elements '("html")))
 
 (jcs-add-hook 'web-mode-hook
-  (jcs-elec-pair-add '((?\' . ?\') (?\" . ?\")))
+  (jcs-elec-pair-add '((?\" . ?\")))
+
+  ;; XXX: Prevent this from being changed by `web-mode'!
+  ;;
+  ;; See https://github.com/DarthFennec/highlight-indent-guides/issues/22.
+  (setq-local font-lock-unfontify-region-function
+              #'font-lock-default-unfontify-region)
 
   (auto-rename-tag-mode 1)
   (emmet-mode 1)
