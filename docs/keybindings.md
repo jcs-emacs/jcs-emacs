@@ -85,30 +85,30 @@ Here is the list of key bindings that are defined in this configuration.
 * <kbd>Ctrl</kbd>+<kbd>v</kbd> - Paste
 * <kbd>Ctrl</kbd>+<kbd>z</kbd> - Undo
 * <kbd>Ctrl</kbd>+<kbd>y</kbd> - Redo
-* <kbd>TAB</kbd> - If region, indent block. Else we expand it.
-* <kbd>Shift</kbd>+<kbd>TAB</kbd> - If region, outdent block. Else we expand it.
+* <kbd>TAB</kbd> - If region, indent block; else we expand it.
+* <kbd>Shift</kbd>+<kbd>TAB</kbd> - If region, outdent block; else we expand it.
 * <kbd>Ctrl</kbd>+<kbd>TAB</kbd> - Reindent block.
 * <kbd>Ctrl</kbd>+<kbd>r</kbd>, <kbd>Ctrl</kbd>+<kbd>r</kbd> - Rename the whole text with the same name.
-* <kbd>Ctrl</kbd>+<kbd>a</kbd> - Mark whole buffer. (Select All)
-* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>d</kbd> - Duplicate whole line.
-* <kbd>Ctrl</kbd>+<kbd>d</kbd> - Kill whole line.
+* <kbd>Ctrl</kbd>+<kbd>a</kbd> - Mark the whole buffer. (Select All)
+* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>d</kbd> - Duplicate the whole line.
+* <kbd>Ctrl</kbd>+<kbd>d</kbd> - Kill the whole line.
 * <kbd>Ctrl</kbd>+<kbd>backspace</kbd> - Backspace word.
 * <kbd>Ctrl</kbd>+<kbd>delete</kbd> - Delete word.
-* <kbd>Alt</kbd>+<kbd>backspace</kbd> - Backspace word excluding capital letter.
-* <kbd>Alt</kbd>+<kbd>delete</kbd> - Delete word excluding capital letter.
-* <kbd>Alt</kbd>+<kbd>up</kbd> - Move current line `up`.
-* <kbd>Alt</kbd>+<kbd>down</kbd> - Move current line `down`.
+* <kbd>Alt</kbd>+<kbd>backspace</kbd> - Backspace word excluding the capital letter.
+* <kbd>Alt</kbd>+<kbd>delete</kbd> - Delete word excluding the capital letter.
+* <kbd>Alt</kbd>+<kbd>up</kbd> - Move the current line `up`.
+* <kbd>Alt</kbd>+<kbd>down</kbd> - Move the current line `down`.
 * <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>left</kbd> - Move buffer `left`.
 * <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>right</kbd> - Move buffer `right`.
-* <kbd>Ctrl</kbd>+<kbd>return</kbd> - Complete word or Goto address at point.
+* <kbd>Ctrl</kbd>+<kbd>return</kbd> - Complete the word or go to the address at the current point.
 * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>Shift</kbd>+<kbd>,</kbd> - Decrement tab size by 2.
 * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>Shift</kbd>+<kbd>.</kbd> - Increment tab size by 2.
 * <kbd>Shift</kbd>+<kbd>f10</kbd> - Right click context menu.
 * <kbd>f12</kbd> - Goto declaration/definition.
 * <kbd>Shift</kbd>+<kbd>f12</kbd> - Goto declaration/definition other window.
 * <kbd>Alt</kbd>+<kbd>f12</kbd> - Peek declaration/definition.
-* <kbd>f7</kbd> - Open same file other window.
-* <kbd>f8</kbd> - Open corresponding file other window, if not found open same file instead.
+* <kbd>f7</kbd> - Open the same file in the other window.
+* <kbd>f8</kbd> - Open the corresponding file in the other window, if not found open the same file instead.
 * <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>i</kbd> - Change file coding system.
 * <kbd>Ctrl</kbd>+<kbd>r</kbd>, <kbd>b</kbd> - Open RE-Builder mode window.
 * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>r</kbd> - Reveal file in folder.
@@ -125,7 +125,7 @@ Here is the list of key bindings that are defined in this configuration.
 * <kbd>f5</kbd> - Debug the program.
 * <kbd>Ctrl</kbd>+<kbd>f5</kbd> - Run the program.
 * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>u</kbd> - Show output window. (if any)
-* <kbd>Alt</kbd>+<kbd>o</kbd> - Switch to output buffer.
+* <kbd>Alt</kbd>+<kbd>o</kbd> - Switch to the output buffer.
 * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>=</kbd> - Previous output buffer.
 * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>-</kbd> - Next output buffer.
 
@@ -133,20 +133,20 @@ Here is the list of key bindings that are defined in this configuration.
 
 * <kbd>Ctrl</kbd>+<kbd>f</kbd> - Search through file.
 * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>f</kbd> - Search through project.
-* <kbd>Ctrl</kbd>+<kbd>,</kbd> - Search through file current point. (backward)
-* <kbd>Ctrl</kbd>+<kbd>.</kbd> - Search through file current point. (forward)
-* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>,</kbd> - Search through project current point. (backward)
-* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>.</kbd> - Search through project current point. (forward)
+* <kbd>Ctrl</kbd>+<kbd>,</kbd> - Search through the file at the current point. (backward)
+* <kbd>Ctrl</kbd>+<kbd>.</kbd> - Search through the file at the current point. (forward)
+* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>,</kbd> - Search through the project at the current point. (backward)
+* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>.</kbd> - Search through the project at the current point. (forward)
 
 #### Calculate
 
 * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>=</kbd> - Calculate current line
-* <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>Shift</kbd>+<kbd>=</kbd> - Calculate entire buffer.
+* <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>Shift</kbd>+<kbd>=</kbd> - Calculate the entire buffer.
 
 #### Todo
 
-* <kbd>Ctrl</kbd>+<kbd>f10</kbd> - Goto `previous` highlighted todo related symbol.
-* <kbd>Ctrl</kbd>+<kbd>f11</kbd> - Goto `next` highlighted todo related symbol.
+* <kbd>Ctrl</kbd>+<kbd>f10</kbd> - Goto the `previous` highlighted TODO related symbols.
+* <kbd>Ctrl</kbd>+<kbd>f11</kbd> - Goto the `next` highlighted TODO related symbols.
 
 #### Commenting / Uncommenting
 
@@ -157,7 +157,7 @@ Here is the list of key bindings that are defined in this configuration.
 
 #### Docstring
 
-* <kbd>Alt</kbd>+<kbd>0</kbd> - Ask and set current document string style.
+* <kbd>Alt</kbd>+<kbd>0</kbd> - Ask and set the current document string style.
 
 #### Formating
 
@@ -168,13 +168,13 @@ Here is the list of key bindings that are defined in this configuration.
 
 * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>Ctrl</kbd>+<kbd>0</kbd> - Collapse all foldings.
 * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>Ctrl</kbd>+<kbd>j</kbd> - Expand all foldings.
-* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>[</kbd> - Collapse current folding.
-* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>]</kbd> - Expand current folding.
+* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>[</kbd> - Collapse the current folding.
+* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>]</kbd> - Expand the current folding.
 
 #### Expand Region
 
-* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>=</kbd> - Expand region from current point.
-* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>-</kbd> - Contract region from current point.
+* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>=</kbd> - Expand the region from the current point.
+* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>-</kbd> - Contract the region from the current point.
 
 #### Case
 
@@ -188,29 +188,29 @@ Here is the list of key bindings that are defined in this configuration.
 
 #### Scrolling
 
-* <kbd>Page Up</kbd> - Scroll window `up` one page.
-* <kbd>Page Down</kbd> - Scroll window `down` one page.
-* <kbd>Shift</kbd>+<kbd>Page Up</kbd> - Scroll other window `up` one page.
-* <kbd>Shift</kbd>+<kbd>Page Down</kbd> - Scroll other window `down` one page.
-* <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>up</kbd> - Scroll window `up` one line without moving cursor.
-* <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>down</kbd> - Scroll window `down` one line without moving cursor.
+* <kbd>Page Up</kbd> - Scroll the window `up` one page.
+* <kbd>Page Down</kbd> - Scroll the window `down` one page.
+* <kbd>Shift</kbd>+<kbd>Page Up</kbd> - Scroll the other window `up` one page.
+* <kbd>Shift</kbd>+<kbd>Page Down</kbd> - Scroll the other window `down` one page.
+* <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>up</kbd> - Scroll the window `up` one line without moving cursor.
+* <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>down</kbd> - Scroll the window `down` one line without moving cursor.
 
 #### Balanced Expression
 
-* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>;</kbd> - Move backward balanced expresssion (sexp) with only deep one level.
-* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>'</kbd> - Move forward balanced expresssion (sexp) with only deep one level.
-* <kbd>Ctrl</kbd>+<kbd>;</kbd> - Move backward balanced expresssion (sexp) with unlimited levels.
-* <kbd>Ctrl</kbd>+<kbd>'</kbd> - Move forward balanced expresssion (sexp) with unlimited levels.
+* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>;</kbd> - Move backward balanced expression (sexp) with only deep one level.
+* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>'</kbd> - Move forward balanced expression (sexp) with only deep one level.
+* <kbd>Ctrl</kbd>+<kbd>;</kbd> - Move backward balanced expression (sexp) with unlimited levels.
+* <kbd>Ctrl</kbd>+<kbd>'</kbd> - Move forward balanced expression (sexp) with unlimited levels.
 
 #### Multiple Cursors
 
 ##### Marking
 
-* <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>up</kbd> - Mark previous line.
-* <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>down</kbd> - Mark next line.
-* <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>=</kbd> - Mark previous line similar to current line.
-* <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>-</kbd> - Mark next line similar to current line.
-* <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>Left-Click</kbd> - Mart at current point.
+* <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>up</kbd> - Mark the previous line.
+* <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>down</kbd> - Mark the next line.
+* <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>=</kbd> - Mark the previous line similar to current line.
+* <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>-</kbd> - Mark the next line similar to current line.
+* <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>Left-Click</kbd> - Mart at the current point.
 
 ##### Similarity
 
@@ -232,9 +232,9 @@ Here is the list of key bindings that are defined in this configuration.
 #### Buffer Menu
 
 * <kbd>Alt</kbd>+<kbd>b</kbd> - Open buffer menu.
-* <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>b</kbd> - Open buffer menu other window.
-* <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>b</kbd> - Open buffer menu for current project.
-* <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>b</kbd> - Open buffer menu other window for current project.
+* <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>b</kbd> - Open the buffer menu in the other window.
+* <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>b</kbd> - Open the buffer menu for the current project.
+* <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>b</kbd> - Open the buffer menu in the other window for the current project.
 * <kbd>Ctrl</kbd>+<kbd>o</kbd> - Toggle diminish buffer mode.
 
 #### Switch Buffer
@@ -246,19 +246,19 @@ Here is the list of key bindings that are defined in this configuration.
 
 ##### Using Tab
 
-* <kbd>Ctrl</kbd>+<kbd>pg-up</kbd> - Switch to the previous buffer in queue.
-* <kbd>Ctrl</kbd>+<kbd>pg-down</kbd> - Switch to the next buffer in queue.
+* <kbd>Ctrl</kbd>+<kbd>pg-up</kbd> - Switch to the previous buffer in the queue.
+* <kbd>Ctrl</kbd>+<kbd>pg-down</kbd> - Switch to the next buffer in the queue.
 
 #### Kill Buffer
 
-* <kbd>Alt</kbd>+<kbd>k</kbd> - Maybe kill current buffer. (only kill when buffer opens in one window left)
+* <kbd>Alt</kbd>+<kbd>k</kbd> - Maybe kill the current buffer. (only kill when buffer opens in one window left)
 * <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>k</kbd> - Reopen the buffer.
 * <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>k</kbd> - Kill current buffer.
 
 #### Save Buffer
 
 * <kbd>Ctrl</kbd>+<kbd>s</kbd> - Untabify save file. [DEFAULT]
-* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>s</kbd> - Save all buffers to it's current major mode.
+* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>s</kbd> - Save all buffers to its current major mode.
 * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>s</kbd> - Reverse `tabify` or `untabify` save buffer.
 
 #### Rename Buffer
@@ -268,27 +268,26 @@ Here is the list of key bindings that are defined in this configuration.
 #### About **`*scratch*`**
 
 * <kbd>Alt</kbd>+<kbd>s</kbd> - Open `*scratch*` buffer.
-* <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>s</kbd> - Open `*scratch*` buffer in other window.
+* <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>s</kbd> - Open `*scratch*` buffer in the other window.
 
 #### Goto **`*Message*`**
 
 * <kbd>Alt</kbd>+<kbd>m</kbd> - Open `*Message*` buffer.
-* <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>m</kbd> - Open `*Message*` buffer in other window.
+* <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>m</kbd> - Open `*Message*` buffer in the other window.
 
 #### Goto **`*dashboard*`**
 
 * <kbd>Alt</kbd>+<kbd>d</kbd> - Open `*dashboard*` buffer.
-* <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>d</kbd> - Open `*dashboard*` buffer in other window.
 
 #### Goto **`*eww*`**
 
 * <kbd>Alt</kbd>+<kbd>h</kbd> - Emacs Web Wowser
-* <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>h</kbd> - Emacs Web Wowser in other window
+* <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>h</kbd> - Emacs Web Wowser in the other window
 
 #### Goto **`*emp*`**
 
 * <kbd>Alt</kbd>+<kbd>e</kbd> - Emacs Music Player
-* <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>e</kbd> - Emacs Music Player in other window
+* <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>e</kbd> - Emacs Music Player in the other window
 
 ### File
 
@@ -299,10 +298,10 @@ Here is the list of key bindings that are defined in this configuration.
 
 #### Find Files
 
-* <kbd>Alt</kbd>+<kbd>f</kbd> - Find file in working directory to current window.
-* <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>f</kbd> - Find file in working directory to other window.
-* <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>Alt</kbd>+<kbd>f</kbd> - Find file in project to current window.
-* <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>f</kbd> - Find file in project to other window.
+* <kbd>Alt</kbd>+<kbd>f</kbd> - Find the file in the working directory to the current window.
+* <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>f</kbd> - Find the file in the working directory in the other window.
+* <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>Alt</kbd>+<kbd>f</kbd> - Find the file in the project in the current window.
+* <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>f</kbd> - Find the file in the project in the other window.
 
 ### Navigating
 
@@ -310,8 +309,8 @@ Here is the list of key bindings that are defined in this configuration.
 
 * <kbd>Ctrl</kbd>+<kbd>right</kbd> - Navigate a word `right`.
 * <kbd>Ctrl</kbd>+<kbd>left</kbd> - Navigate a word `left`.
-* <kbd>Alt</kbd>+<kbd>right</kbd> - Navigate a word `right` excluding capital letter.
-* <kbd>Alt</kbd>+<kbd>left</kbd> - Navigate a word `left` excluding capital letter.
+* <kbd>Alt</kbd>+<kbd>right</kbd> - Navigate a word `right` excluding the capital letter.
+* <kbd>Alt</kbd>+<kbd>left</kbd> - Navigate a word `left` excluding the capital letter.
 * <kbd>Alt</kbd>+<kbd>g</kbd>, <kbd>l</kbd> - Goto line number.
 * <kbd>Alt</kbd>+<kbd>g</kbd>, <kbd>c</kbd> - Goto character position.
 * <kbd>Alt</kbd>+<kbd>g</kbd>, <kbd>p</kbd> - Goto last change.
@@ -338,8 +337,8 @@ Here is the list of key bindings that are defined in this configuration.
 * <kbd>Ctrl</kbd>+<kbd>=</kbd> - Text scale increase (Zoom in).
 * <kbd>Ctrl</kbd>+<kbd>-</kbd> - Text scale decrease (Zoom out).
 * <kbd>Ctrl</kbd>+<kbd>0(Numpad)</kbd> - Reset zoom.
-* <kbd>Alt</kbd>+<kbd>=</kbd> - Frame's transparency increase.
-* <kbd>Alt</kbd>+<kbd>-</kbd> - Frame's transparency decrease.
+* <kbd>Alt</kbd>+<kbd>=</kbd> - Increase the frame's transparency.
+* <kbd>Alt</kbd>+<kbd>-</kbd> - Decrease the frame's transparency.
 * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>f</kbd> - Change font style.
 * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>m</kbd> - Toggle minimap.
 * <kbd>Alt</kbd>+<kbd>i</kbd> - Show End of Line.
@@ -375,23 +374,23 @@ Here is the list of key bindings that are defined in this configuration.
 * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>\`</kbd> - New shell process.
 * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>=</kbd> - Previous shell buffer.
 * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>-</kbd> - Next shell buffer.
-* <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>t</kbd> - Open up terminal in current buffer.
+* <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>t</kbd> - Open up the terminal in the current buffer.
 
 ### Others
 
 #### Minibuffer
 
-* <kbd>Alt</kbd>+<kbd>x</kbd> - Active minibuffer.
-* <kbd>f1</kbd> - Active minibuffer.
-* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>p</kbd> - Active minibuffer.
+* <kbd>Alt</kbd>+<kbd>x</kbd> - Active the minibuffer.
+* <kbd>f1</kbd> - Active the minibuffer.
+* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>p</kbd> - Active the minibuffer.
 
 #### System
 
 * <kbd>Alt</kbd>+<kbd>f4</kbd> - Shutdown Emacs.
 * <kbd>Alt</kbd>+<kbd>f5</kbd> - Reload Emacs.
 * <kbd>Alt</kbd>+<kbd>f6</kbd> - Restart Emacs.
-* <kbd>Ctrl</kbd>+<kbd>k</kbd>,<kbd>Ctrl</kbd>+<kbd>s</kbd> - Describe key bindings with current `major-mode`.
-* <kbd>Ctrl</kbd>+<kbd>k</kbd>,<kbd>Ctrl</kbd>+<kbd>i</kbd> - Describe current symbol.
+* <kbd>Ctrl</kbd>+<kbd>k</kbd>,<kbd>Ctrl</kbd>+<kbd>s</kbd> - Describe key bindings with the current `major-mode`.
+* <kbd>Ctrl</kbd>+<kbd>k</kbd>,<kbd>Ctrl</kbd>+<kbd>i</kbd> - Describe the current symbol.
 * <kbd>Ctrl</kbd>+<kbd>t</kbd> - Toggle `tabbar-mode`.
 * <kbd>Alt</kbd>+<kbd>z</kbd> - Toggle `truncate-lines`.
 * <kbd>Ctrl</kbd>+<kbd>r</kbd>, <kbd>o</kbd> - Read-Only mode toggle.
@@ -401,16 +400,17 @@ Here is the list of key bindings that are defined in this configuration.
 #### Theme
 
 * <kbd>Ctrl</kbd>+<kbd>k</kbd>,<kbd>Ctrl</kbd>+<kbd>t</kbd> - Select theme.
+* <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>d</kbd> - Toggle light/dark theme.
 
 #### Exit
 
-* <kbd>ESC</kbd> - Exit minibuffer and go to the top level.
+* <kbd>ESC</kbd> - Exit the minibuffer and go to the top level.
 * <kbd>Shift</kbd>+<kbd>ESC</kbd> - Escape keyboard.
 * <kbd>Ctrl</kbd>+<kbd>g</kbd> - Exit keyboard.
 
 #### Mark
 
-* <kbd>Ctrl</kbd>+<kbd>SPC</kbd> or <kbd>Alt</kbd>+<kbd>SPC</kbd> - Set mark at current point.
+* <kbd>Ctrl</kbd>+<kbd>SPC</kbd> or <kbd>Alt</kbd>+<kbd>SPC</kbd> - Set mark at the current point.
 * <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>;</kbd> - Pops back to the previous mark.
 
 #### Package List
@@ -420,7 +420,7 @@ Here is the list of key bindings that are defined in this configuration.
 
 #### Process
 
-* <kbd>Alt</kbd>+<kbd>p</kbd> - Show list of process.
+* <kbd>Alt</kbd>+<kbd>p</kbd> - Show the list of processes.
 
 #### Profiler
 
@@ -463,8 +463,8 @@ Here is the list of key bindings that are defined in this configuration.
 * <kbd>Ctrl</kbd>+<kbd>0</kbd> - Maximize image.
 * <kbd>Ctrl</kbd>+<kbd>=</kbd> - Increase image size.
 * <kbd>Ctrl</kbd>+<kbd>-</kbd> - Decrease image size.
-* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>=</kbd> - Flip image horizontally.
-* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>-</kbd> - Flip image vertically.
+* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>=</kbd> - Flip the image horizontally.
+* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>-</kbd> - Flip the image vertically.
 
 ## Package Mode
 
@@ -474,7 +474,7 @@ Here is the list of key bindings that are defined in this configuration.
 * <kbd>s</kbd> - Sort packages in order.
 * <kbd>u</kbd> - Unmark/Mark pacakges.
 * <kbd>Shift</kbd>+<kbd>u</kbd> - Upgrade all packages if available.
-* <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>r</kbd>, <kbd>m</kbd> - Auto remove unused pacakges.
+* <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>r</kbd>, <kbd>m</kbd> - Auto removes unused packages.
 
 ## `tabulated-list` Mode
 
@@ -483,27 +483,27 @@ Here is the list of key bindings that are defined in this configuration.
 
 ## Org Mode
 
-* <kbd>Shift</kbd>+<kbd>up</kbd> - Move the cursor `up` one row table.
-* <kbd>Shift</kbd>+<kbd>down</kbd> - Move the cursor `down` one row table.
+* <kbd>Shift</kbd>+<kbd>up</kbd> - Move the cursor `up` one-row table.
+* <kbd>Shift</kbd>+<kbd>down</kbd> - Move the cursor `down` one-row table.
 * <kbd>Shift</kbd>+<kbd>right</kbd> - Move the cursor `right` one column table.
 * <kbd>Shift</kbd>+<kbd>left</kbd> - Move the cursor `left` one column table.
 
 ## C/C++/Objective-C Mode
 
 * <kbd>f8</kbd> - Switch between header/source file.
-* <kbd>Shift</kbd>+<kbd>f8</kbd> - Switch between header/source file other window.
+* <kbd>Shift</kbd>+<kbd>f8</kbd> - Switch between the header/source file in the other window.
 
 ## Java Mode
 
-* <kbd>f2</kbd> - Lookup javadoc in browser. (javadoc-lookup)
+* <kbd>f2</kbd> - Look up the javadoc in the browser. (javadoc-lookup)
 * <kbd>Shift</kbd>+<kbd>f2</kbd> - Lookup javadoc in browser. (javadoc-lookup)
 * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>o</kbd> - Organize imports java paths.
 
 ## Web Mode
 
 * <kbd>Ctrl</kbd>+<kbd>Return</kbd> - Emment expand.
-* <kbd>Ctrl</kbd>+<kbd>w</kbd>, <kbd>o</kbd> - Start httpd server for real time editing website.
-* <kbd>Ctrl</kbd>+<kbd>w</kbd>, <kbd>p</kbd> - Start httpd server for real time editing website.
+* <kbd>Ctrl</kbd>+<kbd>w</kbd>, <kbd>o</kbd> - Start the httpd server for real-time editing website.
+* <kbd>Ctrl</kbd>+<kbd>w</kbd>, <kbd>p</kbd> - Start the httpd server for real-time editing website.
 
 ## CSS Mode
 

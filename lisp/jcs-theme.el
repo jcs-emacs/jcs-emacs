@@ -28,6 +28,12 @@
   (interactive)
   (load-theme jcs-theme-default t))
 
+(defun jcs-toggle-theme-light-dark ()
+  "Toggle light/dark theme."
+  (interactive)
+  (if (jcs-light-theme-p) (load-theme 'vs-dark)
+    (load-theme 'vs-light)))
+
 ;;
 ;; (@* "Load" )
 ;;

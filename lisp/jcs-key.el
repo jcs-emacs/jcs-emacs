@@ -253,7 +253,6 @@
 
 ;;; Startup Screen (Dashboard)
     ((kbd "M-d") . jcs-dashboard)
-    ((kbd "M-D") . jcs-dashboard-other-window)
 
 ;;; Syntax Check
     ((kbd "<f6>") . flycheck-mode)
@@ -272,6 +271,7 @@
 
 ;;; Theme
     ((kbd "C-k C-t") . load-theme)
+    ((kbd "M-D")     . jcs-toggle-theme-light-dark)
 
 ;;; Transwin
     ("\e`" . transwin-toggle)
