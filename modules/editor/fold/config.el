@@ -11,6 +11,10 @@
           (line-reminder--get-face (line-number-at-pos pos t))))
   :config
   (require 'line-reminder)
+  (setq line-reminder-add-line-function
+        (lambda (&rest _)
+          (null (ts-fold--overlays-in 'ts-fold-indicators-window (selected-window)
+                                      (line-beginning-position) (line-end-position)))))
   (jcs-advice-add 'line-reminder-transfer-to-saved-lines :after
     ;; Refresh indicators for package `ts-fold'.
     (ts-fold-indicators-refresh)))

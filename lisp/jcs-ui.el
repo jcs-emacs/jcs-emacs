@@ -101,7 +101,7 @@
   :hook (display-line-numbers-mode
          . (lambda () (line-reminder-mode (if display-line-numbers-mode 1 -1))))
   :init
-  (setq line-reminder-show-option (if elenv-graphic-p 'indicators 'linum)
+  (setq line-reminder-show-option 'indicators
         line-reminder-thumbnail t)
   (unless elenv-graphic-p
     (setq line-reminder-saved-sign " |"
