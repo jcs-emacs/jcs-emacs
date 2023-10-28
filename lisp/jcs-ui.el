@@ -99,13 +99,17 @@
 
 (use-package line-reminder
   :hook (display-line-numbers-mode
-         . (lambda () (line-reminder-mode (if display-line-numbers-mode 1 -1))))
+         . (lambda ()
+             (when elenv-graphic-p
+               (line-reminder-mode (if display-line-numbers-mode 1 -1)))))
   :init
   (setq line-reminder-show-option 'indicators
         line-reminder-thumbnail t)
   (unless elenv-graphic-p
-    (setq line-reminder-saved-sign " |"
-          line-reminder-modified-sign " |")))
+    (setq line-reminder-saved-sign "|"
+          line-reminder-modified-sign "|"
+          line-reminder-thumb-modified-sign "|"
+          line-reminder-thumb-saved-sign "|")))
 
 ;;
 ;;; Columns
