@@ -28,8 +28,9 @@
 (use-package vertico-flx
   :hook (vertico-mode . vertico-flx-mode))
 
-(use-package nerd-icons-completion
-  :hook (vertico-mode . nerd-icons-completion-mode))
+(when elenv-graphic-p
+  (use-package nerd-icons-completion
+    :hook (vertico-mode . nerd-icons-completion-mode)))
 
 ;;
 ;; (@* "Util" )
