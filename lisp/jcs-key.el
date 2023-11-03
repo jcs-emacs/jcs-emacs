@@ -243,10 +243,10 @@
     ((kbd "C-f")     . isearch-forward)
     ((kbd "C-S-f")   . isearch-project-forward)
     ((kbd "C-r C-f") . isearch-backward-regexp)
-    ((kbd "C-,")     . jcs-isearch-backward-symbol-at-point)
-    ((kbd "C-.")     . isearch-forward-symbol-at-point)
-    ((kbd "C-<")     . jcs-isearch-project-backward-symbol-at-point)
-    ((kbd "C->")     . isearch-project-forward-symbol-at-point)
+    ((kbd "C-,")     . jcs-isearch-backward-thing-at-point)
+    ((kbd "C-.")     . isearch-forward-thing-at-point)
+    ((kbd "C-<")     . jcs-isearch-project-backward-thing-at-point)
+    ((kbd "C->")     . isearch-project-forward-thing-at-point)
 
 ;;; Show Hover
     ((kbd "C-k C-i") . jcs-poptip)

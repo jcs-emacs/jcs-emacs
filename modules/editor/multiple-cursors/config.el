@@ -16,11 +16,12 @@
   :init
   (setq vsc-multiple-cursors-cancel-commands
         '( block-travel-down block-travel-up
-           jcs-isearch-backward-symbol-at-point
            isearch-forward-symbol-at-point
-           jcs-isearch-repeat-backward
-           jcs-isearch-repeat-forward
-           jcs-isearch-project-backward-symbol-at-point
+           jcs-isearch-backward-thing-at-point
+           isearch-forward-thing-at-point
+           jcs-isearch-repeat-backward jcs-isearch-repeat-forward
            isearch-project-forward-symbol-at-point
+           jcs-isearch-project-backward-thing-at-point
+           isearch-project-forward-thing-at-point
            jcs-isearch-project-repeat-backward
            jcs-isearch-project-repeat-forward)))

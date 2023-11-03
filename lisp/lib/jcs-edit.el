@@ -414,10 +414,10 @@ other window."
 ;; (@* "Isearch" )
 ;;
 
-(defun jcs-isearch-backward-symbol-at-point ()
-  "Isearch backward symbol at point."
+(defun jcs-isearch-backward-thing-at-point ()
+  "Isearch backward thing at point."
   (interactive)
-  (isearch-forward-symbol-at-point)
+  (isearch-forward-thing-at-point)
   (isearch-repeat-backward))
 
 (defun jcs-isearch-project-backward-symbol-at-point ()
