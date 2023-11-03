@@ -420,10 +420,10 @@ other window."
   (isearch-forward-thing-at-point)
   (isearch-repeat-backward))
 
-(defun jcs-isearch-project-backward-symbol-at-point ()
+(defun jcs-isearch-project-backward-thing-at-point ()
   "Isearch project backward symbol at point."
   (interactive)
-  (isearch-project-forward-symbol-at-point))
+  (isearch-project-forward-thing-at-point))
 
 (defun jcs--use-isearch-project-p ()
   "Return non-nil is using `isearch-project'."
