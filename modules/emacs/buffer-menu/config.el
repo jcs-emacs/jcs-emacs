@@ -43,6 +43,7 @@
            "[*]Python" "[*]pyright[*]"
            "[*]tree-sitter" "tree-sitter-tree:"
            "[*]company"
+           "[*]eldoc"
            "[*]editorconfig"
            "[*]prettier"
            "[*]Local Variables[*]"
