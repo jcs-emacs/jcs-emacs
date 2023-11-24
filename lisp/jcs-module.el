@@ -131,6 +131,7 @@
     (pascal                                . "lang/pascal")
     (perl-mode                             . "lang/perl")
     (php-mode                              . "lang/php")
+    (po-mode                               . "lang/po")
     (powershell                            . "lang/powershell")
     (processing-mode                       . "lang/processing")
     (purescript-mode                       . "lang/purescript")

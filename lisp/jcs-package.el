@@ -341,6 +341,7 @@
           pip-requirements
           pkg-dm
           pkgbuild-mode
+          po-mode
           powershell
           prettier
           processing-mode
