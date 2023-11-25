@@ -13,6 +13,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * fix: Apply workaround for `highlight-indent-guides` (e153bd8fd60ec3f6ed11cd8494e94feb7d1cb7c3)
 * feat: Add Tramp support (8535af30d96e173df46515f03e91d50e472dca5e)
 * Add PO file support (59fa6ba7d8f30be3f16fe849f41fd3c21a44a852)
+* Remove built-in log module, use `ic` instead (70ee1d002ff97cb765b3043e7451f2aeb831e51c)
 
 ## 9.0.1
 > Released Sep 20, 2023
