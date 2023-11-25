@@ -249,6 +249,7 @@
           htmltagwrap
           hy-mode
           ialign
+          ic
           idris-mode
           iedit
           impatient-showdown

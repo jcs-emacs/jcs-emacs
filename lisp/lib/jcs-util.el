@@ -500,11 +500,6 @@ If optional argument REL-LINE is nil; we will use first visible line instead."
 ;; (@* "Face" )
 ;;
 
-(defun jcs-print-current-face ()
-  "Print out all the faces the current cursor on."
-  (interactive)
-  (message "[INFO] Current faces: %s" (jcs-get-current-point-face)))
-
 (defun jcs-get-faces-internal (pos)
   "Return the list of faces at this POS."
   (require 'dash)
@@ -538,12 +533,6 @@ If optional argument REL-LINE is nil; we will use first visible line instead."
                (cl-some (lambda (fc) (cl-position fc faces :test 'string=)) in-face)
              (cl-position in-face faces :test 'string=)))
           (t (string= in-face faces)))))
-
-(defun jcs-is-default-face-p (&optional pos)
-  "Check default face at POS."
-  (or (= (length (jcs-get-current-point-face pos)) 0)
-      (and (= (length (jcs-get-current-point-face pos)) 1)
-           (jcs-current-point-face 'hl-line))))
 
 ;;
 ;; (@* "Font" )

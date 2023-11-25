@@ -2,8 +2,9 @@
 ;;; Commentary:
 ;;; Code:
 
-;;;
-;; Modules
+;;
+;; (@* "Module" )
+;;
 
 (defconst jcs-module-load-alist
   '((keypression                           . "app/keypression")
@@ -11,6 +12,7 @@
     ((flycheck flymake)                    . ("checkers/syntax" "ui/sideline"))
     (company                               . "completion/company")
     (vertico                               . "completion/vertico")
+    (turbo-log                             . "editor/debug")
     (tree-sitter                           . ("editor/docstring" "editor/fold"))
     (expand-region                         . "editor/expand-region")
     (file-header                           . "editor/file-templates")
@@ -165,8 +167,9 @@
     (let ((feats (car data)) (modules (cdr data)))
       (jcs-with-eval-after-load feats (jcs-module-load modules)))))
 
-;;;
-;; Auto mode Management
+;;
+;; (@* "Auto mode Management" )
+;;
 
 (setq
  auto-mode-alist
