@@ -14,6 +14,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * feat: Add Tramp support (8535af30d96e173df46515f03e91d50e472dca5e)
 * Add PO file support (59fa6ba7d8f30be3f16fe849f41fd3c21a44a852)
 * Remove built-in log module, use `ic` instead (70ee1d002ff97cb765b3043e7451f2aeb831e51c)
+* Extract template module to external package (74a2cb84a0fd322d6b4cb73c7a1c0c68cb135f42)
 
 ## 9.0.1
 > Released Sep 20, 2023
