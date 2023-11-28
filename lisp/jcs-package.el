@@ -173,7 +173,6 @@
           fb2-reader
           feature-mode
           ff-guard
-          file-header
           file-info
           fish-mode
           flutter
@@ -263,6 +262,7 @@
           jcs-frametitle
           jcs-modeline
           jcs-poptip
+          jcs-template
           jenkinsfile-mode
           json-mode
           jsonnet-mode
