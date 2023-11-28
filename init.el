@@ -84,7 +84,6 @@
 
 ;;; Standardize
 (require 'jcs-theme)
-(require 'jcs-template)
 (require 'jcs-project)
 (require 'jcs-module)
 

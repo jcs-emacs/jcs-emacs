@@ -304,6 +304,7 @@
           masm-mode
           merlin-company
           merlin-eldoc
+          mermaid-mode
           meson-mode
           message-clean-mode
           meta-view

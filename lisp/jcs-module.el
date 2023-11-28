@@ -121,6 +121,7 @@
     (less-css-mode                         . "lang/less-css")
     (lua-mode                              . "lang/lua")
     (markdown-mode                         . "lang/markdown")
+    (mermaid-mode                          . "lang/mermaid")
     (mint-mode                             . "lang/mint")
     (nginx-mode                            . "lang/nginx")
     (nim-mode                              . "lang/nim")
