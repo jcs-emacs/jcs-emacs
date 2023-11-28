@@ -552,10 +552,6 @@ If optional argument REL-LINE is nil; we will use first visible line instead."
        (push ,newelt ,seq)
      (list-utils-insert-after-pos ,seq (max (1- (length ,seq)) 0) ,newelt)))
 
-(defun jcs-last-item-in-list (lst)
-  "Return the last item in LST."
-  (nth (1- (length lst)) lst))
-
 (defun jcs-find-item-in-list-offset (lst key offset)
   "Find the item in LST using KEY with OFFSET the index."
   (unless offset (setq offset 0))
