@@ -148,7 +148,7 @@
     (scala-mode                            . "lang/scala")
     (scheme-mode                           . "lang/scheme")
     (scss-mode                             . "lang/scss")
-    ((sh-script fish-mode)                 . "lang/sh")
+    ((sh-script fish-mode envrc)           . "lang/sh")
     (sql                                   . "lang/sql")
     (swift-mode                            . "lang/swift")
     (typescript-mode                       . "lang/typescript")

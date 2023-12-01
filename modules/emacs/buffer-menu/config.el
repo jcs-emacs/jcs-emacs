@@ -21,6 +21,7 @@
            "[*]Checkdoc " "[*]Elint[*]" "[*]Package-Lint[*]" "[*]relint[*]"
            "[*]Finder[*]"
            "[*]Async Shell Command[*]" "[*]shell" "[*]eshell" "bshell<"
+           "[*]envrc"
            "[*]eww" "[*]ESS[*]"
            "[*]Ping"
            "[*]emacs[*]"  ; From `async'

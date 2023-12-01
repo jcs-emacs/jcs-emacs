@@ -2,6 +2,7 @@
 
 (require 'sh-script)
 (require 'fish-mode)
+(require 'envrc)
 
 ;;
 ;; (@* "Line Endings" )
@@ -50,7 +51,7 @@
 ;; (@* "Hook" )
 ;;
 
-(jcs-add-hook '(sh-mode-hook fish-mode-hook)
+(jcs-add-hook '( sh-mode-hook fish-mode-hook envrc-mode-hook)
   (modify-syntax-entry ?_ "w")
 
   (company-fuzzy-backend-add-before 'company-shell 'company-dabbrev)
@@ -59,7 +60,8 @@
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]sh"
-                                "[.]fish")
+                                "[.]fish"
+                                "[.]envrc")
                               'jcs-insert-sh-template))
 
 ;;
