@@ -159,6 +159,7 @@
           emmet-mode
           emoji-github
           emp
+          envrc
           eping
           erlang
           eros
