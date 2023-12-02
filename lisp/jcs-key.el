@@ -60,9 +60,28 @@
 
     ((kbd "C-k -")   . banner-comment)
 
-;;; Debug
-    ((kbd "C-S-d") . dap-mode)
+;;; Debugging
     ((kbd "M-1")   . turbo-log-print)
+
+    ([f9]     . (lambda () (interactive)
+                  (cond ((elenv-debugging-p) (edebug-toggle-disable-breakpoint))
+                        ((jcs-debugging-p) (dap-breakpoint-toggle)))))
+    ([S-f5]   . (lambda () (interactive)
+                  (cond ((elenv-debugging-p) (edebug-stop))
+                        ((jcs-debugging-p) (dap-stop-thread)))))
+    ([C-S-f5] . (lambda () (interactive)
+                  (cond ((elenv-debugging-p) (edebug-stop) (edebug-defun))
+                        ((jcs-debugging-p) (dap-debug-restart)))))
+    ([f10]    . (lambda () (interactive)
+                  (cond ((elenv-debugging-p) (edebug-forward-sexp))
+                        ((jcs-debugging-p) (dap-next)))))
+    ([f11]    . (lambda () (interactive)
+                  (cond ((elenv-debugging-p) (edebug-step-in))
+                        ((jcs-debugging-p) (dap-step-in)))))
+    ([S-f11]  . (lambda () (interactive)
+                  (cond ((elenv-debugging-p) (edebug-step-out))
+                        ((jcs-debugging-p) (dap-step-out))
+                        (t (context-menu-open)))))
 
 ;;; Declaration / Definition
     ([f12]   . jcs-goto-definition)
@@ -92,11 +111,6 @@
     ((kbd "C-^")   . cycle-case-style)
     ((kbd "M-?")   . cycle-quotes)
     ((kbd "C-?")   . cycle-slash)
-
-;;; Error
-    ([f9]  . first-error)
-    ([f10] . previous-error)
-    ([f11] . next-error)
 
 ;;; Eval
     ((kbd "C-e b") . eval-buffer)
@@ -196,8 +210,12 @@
 
 ;;; Find file other window
     ((kbd "<f7>")   . jcs-same-file-other-window)
-    ((kbd "<f8>")   . fof)
-    ((kbd "S-<f8>") . fof-other-window)
+    ((kbd "<f8>")   . (lambda () (interactive)
+                        (if (jcs-debugging-p) (next-error)
+                          (fof))))
+    ((kbd "S-<f8>") . (lambda () (interactive)
+                        (if (jcs-debugging-p) (previous-error)
+                          (fof-other-window))))
 
 ;;; Organize Imports
     ((kbd "C-S-o")  . jcs-organize-imports)
@@ -227,9 +245,6 @@
 
 ;;; Revert Buffer
     ("\er" . vs-revbuf-no-confirm)
-
-;;; Right Click Context
-    ([S-f10] . context-menu-open)
 
 ;;; Script Executing (Output)
     ((kbd "C-S-u")  . execrun-popup)

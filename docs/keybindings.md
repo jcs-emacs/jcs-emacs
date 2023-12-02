@@ -220,11 +220,14 @@ Here is the list of key bindings that are defined in this configuration.
 #### Debugging
 
 * <kbd>f6</kbd> - Toggle `flycheck`.
-* <kbd>f9</kbd> - Goto first error.
-* <kbd>f10</kbd> - Goto previous error.
-* <kbd>f11</kbd> - Goto next error.
 
-* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>d</kbd> - Enable `dap-mode`. (Debug Adapter Protocol)
+* <kbd>f9</kbd> - Toggle break point.
+* <kbd>Shift</kbd>+<kbd>f5</kbd> - Stop debugger.
+* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>f5</kbd> - Restart debugger.
+* <kbd>f10</kbd> - Step over.
+* <kbd>f11</kbd> - Step in.
+* <kbd>Shift</kbd>+<kbd>f11</kbd> - Step out.
+
 * <kbd>Alt</kbd>+<kbd>1</kbd> - Turbo log the current region selection.
 
 ### Buffer
