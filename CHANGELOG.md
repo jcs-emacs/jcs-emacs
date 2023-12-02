@@ -16,6 +16,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Remove built-in log module, use `ic` instead (70ee1d002ff97cb765b3043e7451f2aeb831e51c)
 * Extract template module to external package (74a2cb84a0fd322d6b4cb73c7a1c0c68cb135f42)
 * Add `.envrc` support (3ff057fc9cfa0c931129e6f5496a2eae4211a34e)
+* Update debugging key bindings (f2ecb5dcb94d8abd373d8a3e3c39049029a65a62)
 
 ## 9.0.1
 > Released Sep 20, 2023
