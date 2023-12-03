@@ -140,6 +140,7 @@
     (purescript-mode                       . "lang/purescript")
     (python                                . "lang/python")
     (qml-mode                              . "lang/qml")
+    (qss-mode                              . "lang/qss")
     (racket-mode                           . "lang/racket")
     (restclient                            . "lang/rest")
     (ruby-mode                             . "lang/ruby")

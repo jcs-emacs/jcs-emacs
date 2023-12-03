@@ -353,6 +353,8 @@
           purescript-mode
           python-mode
           qml-mode
+          qss-mode
+          qt-pro-mode
           quelpa
           quickrun
           racket-mode
