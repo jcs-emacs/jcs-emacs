@@ -277,6 +277,7 @@
           line-reminder
           list-environment
           literate-calc-mode
+          llvm-mode
           log4e
           logms
           logview
