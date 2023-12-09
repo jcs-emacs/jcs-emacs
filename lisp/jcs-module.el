@@ -152,6 +152,7 @@
     ((sh-script fish-mode envrc)           . "lang/sh")
     (sql                                   . "lang/sql")
     (swift-mode                            . "lang/swift")
+    (tablegen-mode                         . "lang/tablegen")
     (typescript-mode                       . "lang/typescript")
     (visual-basic-mode                     . "lang/vbs")
     (verilog-mode                          . "lang/verilog")
