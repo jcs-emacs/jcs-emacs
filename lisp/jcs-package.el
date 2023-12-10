@@ -123,7 +123,6 @@
           csound-mode
           csproj-mode
           css-eldoc
-          csv-mode
           cuda-mode
           cycle-at-point
           cycle-case-style
@@ -359,6 +358,7 @@
           quelpa
           quickrun
           racket-mode
+          rainbow-csv
           rainbow-mode
           region-occurrences-highlighter
           region-state
