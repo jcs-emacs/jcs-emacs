@@ -5,5 +5,4 @@
 ;;
 
 (jcs-add-hook 'csv-mode-hook
-  (csv-align-mode 1)
   (rainbow-csv-mode 1))
