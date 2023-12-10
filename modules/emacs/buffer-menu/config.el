@@ -15,7 +15,7 @@
            "[*]Ibuffer[*]"
            "[*]Bug Help[*]"
            "[*]Warnings[*]"
-           "[*]VC-history[*]"
+           "[*]vc-" "[*]VC-history[*]"
            "[*]CPU-Profiler-Report" "[*]Memory-Profiler-Report"
            "[*]Process List[*]"
            "[*]Checkdoc " "[*]Elint[*]" "[*]Package-Lint[*]" "[*]relint[*]"
