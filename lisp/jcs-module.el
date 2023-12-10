@@ -43,6 +43,7 @@
     (shell                                 . "term/shell")
     (openai                                . "tools/ai")
     (autoconf-mode                         . "tools/autoconf")
+    (csv-mode                              . "tools/csv")
     (dockerfile-mode                       . "tools/dockerfile")
     (editorconfig                          . "tools/editorconfig")
     ((easky execrun quickrun)              . "tools/eval")
