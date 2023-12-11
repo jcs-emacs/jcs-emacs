@@ -4,5 +4,5 @@
 ;; (@* "Hook" )
 ;;
 
-(jcs-add-hook 'csv-mode-hook
-  (rainbow-csv-mode 1))
+(jcs-add-hook '(csv-mode-hook tsv-mode-hook)
+  (add-hook 'tree-sitter-hl-mode-hook #'rainbow-csv-mode nil t))
