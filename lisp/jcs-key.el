@@ -5,6 +5,7 @@
 (jcs-key global-map
   `(
 ;;; Unset
+    ((kbd "C-0"))
     ((kbd "C-e"))
     ((kbd "C-k"))
     ((kbd "C-p"))
@@ -295,7 +296,8 @@
 
 ;;; Version Control
     ((kbd "C-k m") . magit)
-    ((kbd "C-S-g") . magit)  ; From VSCode
+    ((kbd "C-0 g") . magit)  ; Visual Studio
+    ((kbd "C-S-g") . magit)  ; VSCode
     ((kbd "C-k c") . magit-branch-or-checkout)
     ((kbd "C-k d") . magit-branch-delete)
 
