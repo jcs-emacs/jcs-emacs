@@ -295,6 +295,7 @@
 
 ;;; Version Control
     ((kbd "C-k m") . magit)
+    ((kbd "C-S-g") . magit)  ; From VSCode
     ((kbd "C-k c") . magit-branch-or-checkout)
     ((kbd "C-k d") . magit-branch-delete)
 
