@@ -95,6 +95,7 @@
 (defun jcs-asm-mode--init ()
   "Do insert file header and switch major mode picked."
   (when (and (not jcs-asm--asking-mode)
+             (not (alist-get 'mode (hack-local-variables-prop-line)))
              ;; Insert file header.
              (not (jcs-insert-header-if-valid '("[.]asm"
                                                 "[.]inc")
