@@ -1,6 +1,17 @@
 ;;; lang/emacs-lisp/config.el  -*- lexical-binding: t; -*-
 
 ;;
+;; (@* "Comment" )
+;;
+
+(defun jcs-use-lisp-comment ()
+  "Fixed lisp comment."
+  (setq-local comment-start-skip
+              (with-temp-buffer (funcall #'lisp-mode) comment-start-skip)
+              comment-end-skip
+              (with-temp-buffer (funcall #'lisp-mode) comment-end-skip)))
+
+;;
 ;; (@* "Templates" )
 ;;
 
