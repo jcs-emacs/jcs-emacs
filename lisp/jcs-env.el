@@ -191,7 +191,8 @@
                                             y-or-n-p
                                             company-clang--handle-error)
         message-clean-mode-echo-commands
-        '( mwheel-scroll
+        '( save-buffer
+           mwheel-scroll
            previous-line next-line
            vsc-edit-beginning-of-line vsc-edit-end-of-line
            mark-whole-buffer
@@ -205,7 +206,9 @@
            reb-update-overlays reb-next-match reb-prev-match
            lsp--message
            sly-message
-           define-it)
+           define-it
+           magit-process-sentinel magit-commit-diff magit-run-git-async
+           git-commit-save-message)
         message-clean-mode-minor-mode 'echo))
 
 (use-package msgu
