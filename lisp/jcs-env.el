@@ -191,7 +191,7 @@
                                             y-or-n-p
                                             company-clang--handle-error)
         message-clean-mode-echo-commands
-        '( save-buffer
+        '( after-find-file save-buffer
            mwheel-scroll
            previous-line next-line
            vsc-edit-beginning-of-line vsc-edit-end-of-line
