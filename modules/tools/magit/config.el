@@ -2,7 +2,8 @@
 
 (use-package magit
   :init
-  (setq magit-diff-refine-hunk t ; show granular diffs in selected hunk
+  (setq magit-auto-revert-mode nil  ; we do this ourselves further down
+        magit-diff-refine-hunk t    ; show granular diffs in selected hunk
         ;; Don't autosave repo buffers. This is too magical, and saving can
         ;; trigger a bunch of unwanted side-effects, like save hooks and
         ;; formatters. Trust the user to know what they're doing.
