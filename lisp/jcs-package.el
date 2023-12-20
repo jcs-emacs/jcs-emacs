@@ -355,7 +355,7 @@
           qml-mode
           qss-mode
           qt-pro-mode
-          quelpa
+          quelpa-use-package
           quickrun
           racket-mode
           rainbow-csv
