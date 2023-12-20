@@ -217,6 +217,7 @@
           fsharp-mode
           fstar-mode
           fvwm-mode
+          gas-mode
           gcmh
           gdscript-mode
           git-assembler-mode
