@@ -71,7 +71,9 @@ If optional argument WITH-EXT is non-nil; return path with extension."
   (company-fuzzy-backend-add-before 'company-kaomoji 'company-dabbrev)
 
   (jcs-insert-header-if-valid
-   '("\\(/\\|\\`\\)[Ll][Ii][Cc][Ee][Nn][Ss][Ee]") 'jcs-ask-insert-license-content
+   '("\\(/\\|\\`\\)[Ll][Ii][Cc][Ee][Nn][Ss][Ee]"
+     "\\(/\\|\\`\\)[Cc][Oo][Pp][Yy][Ii][Nn][Gg]")
+   'jcs-ask-insert-license-content
    :interactive t)
   (jcs-insert-header-if-valid
    '("\\(/\\|\\`\\)[Cc][Hh][Aa][Nn][Gg][Ee][-_]*[Ll][Oo][Gg]")
