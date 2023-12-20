@@ -1,8 +1,11 @@
 ;;; lang/asm/config.el  -*- lexical-binding: t; -*-
 
+(require 'asm-mode)
+
 (require 'fasm-mode)
 (require 'masm-mode)
 (require 'nasm-mode)
+(require 'gas-mode)
 
 ;;
 ;; (@* "Keys" )
@@ -49,7 +52,8 @@
              (not (alist-get 'mode (hack-local-variables-prop-line)))
              ;; Insert file header.
              (not (jcs-insert-header-if-valid '("[.]asm"
-                                                "[.]inc")
+                                                "[.]inc"
+                                                "[.]s")
                                               'jcs-asm-ask-source
                                               :interactive t)))
     ;; Switch major mode.
@@ -64,22 +68,31 @@
   (interactive
    (list (completing-read
           "Major mode for this Assembly Language file: "
-          '("fasm" "masm" "nasm"))))
+          '("asm" "fasm" "masm" "nasm" "gas"))))
   (pcase mode
+    ("asm"  (asm-mode))
     ("fasm" (fasm-mode))
     ("masm" (masm-mode))
-    ("nasm" (nasm-mode))))
+    ("nasm" (nasm-mode))
+    ("gas"  (gas-mode))))
 
 (file-header-defsrc jcs-asm-ask-source
     "Major source for this Assembly Language file: "
-  '(("fasm" . "Flat Assembler")
+  '(("asm"  . "Default")
+    ("fasm" . "Flat Assembler")
     ("masm" . "Microsoft Macro Assembler")
-    ("nasm" . "Netwide Assembler"))
+    ("nasm" . "Netwide Assembler")
+    ("gas"  . "GNU Assembler"))
   (let ((jcs-asm--asking-mode t))
     (pcase index
-      (0 (fasm-mode) (jcs-insert-fasm-template))
-      (1 (masm-mode) (jcs-insert-masm-template))
-      (2 (nasm-mode) (jcs-insert-nasm-template)))))
+      (0 (asm-mode)  (jcs-insert-asm-template))
+      (1 (fasm-mode) (jcs-insert-fasm-template))
+      (2 (masm-mode) (jcs-insert-masm-template))
+      (3 (nasm-mode) (jcs-insert-nasm-template))
+      (4 (gas-mode)  (jcs-insert-gas-template)))))
+
+(file-header-defins jcs-insert-asm-template "assembly" "asm/default.txt"
+  "Header for ASM file.")
 
 (file-header-defins jcs-insert-fasm-template "assembly" "fasm/default.txt"
   "Header for FASM file.")
@@ -90,11 +103,16 @@
 (file-header-defins jcs-insert-nasm-template "assembly" "nasm/default.txt"
   "Header for NASM file.")
 
+(file-header-defins jcs-insert-gas-template "assembly" "gas/default.txt"
+  "Header for GAS file.")
+
 ;;
 ;; (@* "Hook" )
 ;;
 
-(jcs-add-hook '(fasm-mode-hook masm-mode-hook nasm-mode-hook)
+(jcs-add-hook '( asm-mode-hook
+                 fasm-mode-hook masm-mode-hook nasm-mode-hook
+                 gas-mode-hook)
   (jcs-use-lisp-comment)
   (modify-syntax-entry ?_ "w")
   (jcs-asm-mode--init)
