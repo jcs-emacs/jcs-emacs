@@ -111,13 +111,16 @@
 ;;
 
 (jcs-add-hook '( asm-mode-hook
-                 fasm-mode-hook masm-mode-hook nasm-mode-hook
-                 gas-mode-hook)
+                 fasm-mode-hook masm-mode-hook nasm-mode-hook)
   (jcs-use-lisp-comment)
   (modify-syntax-entry ?_ "w")
   (jcs-asm-mode--init)
   (jcs-key-local
-    `(((kbd ";")      . jcs-asm-comment))))
+    `(((kbd ";") . jcs-asm-comment))))
+
+(jcs-add-hook '( gas-mode-hook)
+  (run-hooks 'prog-mode-hook)
+  (jcs-asm-mode--init))
 
 ;;
 ;; (@* "Extensions" )
