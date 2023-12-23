@@ -275,9 +275,11 @@
   (interactive)
   (cond
    ((not (buffer-file-name))
-    (user-error "[WARNING] Can't save with invalid filename: %s" (buffer-name)))
+    (msgu-inhibit-log
+      (message "[WARN] Can't save with invalid filename: %s" (buffer-name))))
    (buffer-read-only
-    (user-error "[WARNING] Can't save read-only file: %s" buffer-read-only))
+    (msgu-inhibit-log
+      (message "[WARN] Can't save read-only file: %s" buffer-read-only)))
    (t
     (let ((readable (file-readable-p (buffer-file-name))))
       (msgu-inhibit-log (call-interactively #'save-buffer))
