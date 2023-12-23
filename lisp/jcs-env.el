@@ -203,6 +203,7 @@
            isearch-done
            undefined
            toggle-truncate-lines
+           compilation-handle-exit execrun-compile
            reb-update-overlays reb-next-match reb-prev-match
            lsp--message
            sly-message
