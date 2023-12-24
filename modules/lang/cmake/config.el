@@ -35,6 +35,8 @@
 ;;
 
 (jcs-add-hook 'cmake-mode-hook
+  (modify-syntax-entry ?_ "w")
+
   (setq-local indent-tabs-mode t)
 
   (company-fuzzy-backend-add-before 'company-cmake 'company-dabbrev)
