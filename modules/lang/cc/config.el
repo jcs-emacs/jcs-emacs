@@ -136,10 +136,10 @@ preceded by the opening brace or a comma (disregarding whitespace in between)."
 
 (defun jcs-cc-insert-header ()
   "Insert header for `cc-mode' related modes."
-  (jcs-insert-header-if-valid jcs-c++-header-extensions 'jcs-insert-c++-header-template)
+  (jcs-insert-header-if-valid jcs-c++-header-extensions 'jcs-c++-ask-header :interactive t)
   (jcs-insert-header-if-valid jcs-c++-source-extensions 'jcs-insert-c++-source-template)
-  (jcs-insert-header-if-valid jcs-c-header-extensions 'jcs-insert-c-header-template)
-  (jcs-insert-header-if-valid jcs-c-source-extensions 'jcs-insert-c-source-template))
+  (jcs-insert-header-if-valid jcs-c-header-extensions   'jcs-c-ask-header :interactive t)
+  (jcs-insert-header-if-valid jcs-c-source-extensions   'jcs-insert-c-source-template))
 
 ;;
 ;; (@* "Hook" )

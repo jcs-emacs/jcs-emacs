@@ -37,14 +37,27 @@
     (0 (jcs-cc-insert-header))
     (1 (call-interactively #'jcs-c++-ask-unreal-source-type))))
 
+(file-header-defsrc jcs-c++-ask-header "Type of header inclusion: "
+  '(("pragma once"    . "Pragma once inclusion")
+    ("include gaurds" . "Include gaurds inclusion"))
+  (pcase index
+    (0 (jcs-insert-c++-header-template-pragma-once))
+    (1 (jcs-insert-c++-header-template-include-guards))))
+
 ;;
 ;; (@* "Templates" )
 ;;
 
-(file-header-defins jcs-insert-c++-header-template "c++" "header.txt"
-  "Header for C++ header file.")
+(file-header-defins jcs-insert-c++-header-template-pragma-once
+    "c++" "header/pragma_once.txt"
+  "Header for C++ header file (pragma once).")
 
-(file-header-defins jcs-insert-c++-source-template "c++" "source.txt"
+(file-header-defins jcs-insert-c++-header-template-include-guards
+    "c++" "header/include_guards.txt"
+  "Header for C++ header file (include guards).")
+
+(file-header-defins jcs-insert-c++-source-template
+    "c++" "source.txt"
   "Header for C++ source file.")
 
 (file-header-defins jcs-insert-c++-unreal-header-template--actor
