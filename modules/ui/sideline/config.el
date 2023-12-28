@@ -7,6 +7,7 @@
   (setq sideline-delay 0.2
         sideline-backends-left '((sideline-color . up))
         sideline-backends-right '((sideline-lsp      . up)
+                                  (sideline-eglot    . up)
                                   (sideline-flycheck . down)
                                   (sideline-flymake  . down)
                                   (chatgpt-sideline  . up))

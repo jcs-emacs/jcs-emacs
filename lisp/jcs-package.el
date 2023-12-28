@@ -376,6 +376,7 @@
           shrink-whitespace
           sideline-blame
           sideline-color
+          sideline-eglot
           sideline-flycheck
           sideline-flymake
           sideline-lsp
