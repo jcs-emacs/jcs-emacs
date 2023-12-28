@@ -136,7 +136,7 @@ ALL-FRAMES."
 
 (defun jcs-window-record-once ()
   "Record windows status once."
-  (let (buf-names lns cols f-lns)
+  (let ((buf-names nil) (lns nil) (cols nil) (f-lns nil))
     ;; Record down all the window information with the same buffer opened.
     (jcs-walk-windows
      (lambda ()

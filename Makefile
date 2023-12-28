@@ -17,6 +17,7 @@ install:
 
 compile:
 	@echo "Compiling..."
+	$(EASK) install pkg-dm noflet
 	$(EASK) concat
 	$(EASK) load ./test/test-compile.el
 

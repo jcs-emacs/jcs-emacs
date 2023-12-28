@@ -14,18 +14,18 @@
 
 (let* ((concated-file "./dist/jcs-emacs.built.el")
        (concated-file (expand-file-name concated-file))
-       (conditions "
+       (footer "
 ;; Local Variables:
 ;; coding: utf-8
 ;; byte-compile-warnings: (redefine)
 ;; End:
 "))
   (with-current-buffer (find-file concated-file)
-    (unless (string-suffix-p conditions (buffer-string))
+    (unless (string-suffix-p footer (buffer-string))
       (goto-char (point-max))
-      (insert conditions))
-    (save-buffer)
-    (byte-compile-file buffer-file-name)))
+      (insert footer))
+    (save-buffer))
+  (byte-compile-file concated-file))
 
 ;; Local Variables:
 ;; coding: utf-8
