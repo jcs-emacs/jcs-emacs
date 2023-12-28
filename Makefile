@@ -15,9 +15,8 @@ install:
 	@echo "Installing dependenices..."
 	$(EASK) install-deps
 
-compile:
+compile: install
 	@echo "Compiling..."
-	$(EASK) install pkg-dm noflet
 	$(EASK) concat
 	$(EASK) load ./test/test-compile.el
 
