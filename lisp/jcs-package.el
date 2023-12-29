@@ -95,6 +95,7 @@
           company-dockerfile
           company-eask
           company-elisp-keywords
+          company-emmet
           company-emojify
           company-fuzzy
           company-glsl

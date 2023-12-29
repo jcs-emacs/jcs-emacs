@@ -168,3 +168,7 @@
   (setq auto-rename-tag-disabled-commands '(query-replace)
         auto-rename-tag-disabled-minor-modes '(iedit-mode
                                                multiple-cursors-mode)))
+
+(use-package emmet-mode
+  :hook (emmet-mode . (lambda (&rest _)
+                        (company-fuzzy-backend-add 'company-emmet))))
