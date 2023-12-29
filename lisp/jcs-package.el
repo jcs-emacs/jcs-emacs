@@ -156,7 +156,6 @@
           elm-mode
           emacsql-mysql
           emacsql-psql
-          emmet-mode
           emoji-github
           emp
           envrc
