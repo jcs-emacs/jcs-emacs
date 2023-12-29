@@ -205,7 +205,7 @@
            toggle-truncate-lines
            compilation-handle-exit execrun-compile
            reb-update-overlays reb-next-match reb-prev-match
-           lsp--message
+           lsp--message lsp--send-request-async lsp--apply-text-edits
            sly-message
            define-it
            magit-process-sentinel magit-commit-diff magit-run-git-async
