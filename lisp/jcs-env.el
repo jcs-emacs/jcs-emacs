@@ -209,7 +209,8 @@
            sly-message
            define-it
            magit-process-sentinel magit-commit-diff magit-run-git-async
-           git-commit-save-message)
+           git-commit-save-message
+           ff-find-the-other-file)
         message-clean-mode-minor-mode 'echo))
 
 (use-package msgu
