@@ -667,6 +667,10 @@ If optional argument REVERSE is non-nil, LIST item and ELT argument."
 ;; (@* "String" )
 ;;
 
+(defun jcs-2str (obj)
+  "Convert OBJ to string."
+  (format "%s" obj))
+
 (defun jcs-string-compare-p (regexp str type &optional ignore-case)
   "Compare STR with REGEXP by TYPE.
 
