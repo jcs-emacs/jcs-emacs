@@ -77,6 +77,9 @@
 ;; (@* "Indentation" )
 ;;
 
+(jcs-advice-add 'indent-region :around
+  (ignore-errors (apply arg0 args)))
+
 (jcs-advice-add 'indent-line-to :before (indent-control-ensure-tab-width))
 
 ;;
