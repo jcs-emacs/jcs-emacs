@@ -16,7 +16,8 @@
           ("C-v" . isearch-yank-pop))
   :init
   (setq isearch-lazy-count t
-        lazy-count-prefix-format "[%s:%s] "))
+        lazy-count-prefix-format "[%s:%s] "
+        isearch-allow-scroll 'unlimited))
 
 (use-package isearch-project
   :init
