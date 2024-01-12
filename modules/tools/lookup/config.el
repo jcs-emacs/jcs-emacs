@@ -7,7 +7,9 @@
 (use-package define-it
   :init
   (setq define-it-output-choice (if elenv-graphic-p 'frame 'view)
-        define-it-text-scale-level -2))
+        define-it-text-scale-level -2)
+
+  (message-clean-mode-add-echo-commands '( define-it)))
 
 (use-package preview-it
   :init

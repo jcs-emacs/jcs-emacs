@@ -3,6 +3,12 @@
 (require 'company-c-headers)
 
 ;;
+;; (@* "Settings" )
+;;
+
+(message-clean-mode-add-mute-commands '( company-clang--handle-error))
+
+;;
 ;; (@* "Keys" )
 ;;
 

@@ -188,8 +188,7 @@
 (use-package message-clean-mode
   :init
   (setq message-clean-mode-mute-commands '( push-mark set-mark-command
-                                            y-or-n-p
-                                            company-clang--handle-error)
+                                            y-or-n-p)
         message-clean-mode-echo-commands
         '( save-buffer
            mwheel-scroll
@@ -202,8 +201,6 @@
            isearch-done
            undefined
            toggle-truncate-lines
-           compilation-handle-exit execrun-compile
-           define-it
            after-find-file ff-find-the-other-file)
         message-clean-mode-minor-mode 'echo))
 

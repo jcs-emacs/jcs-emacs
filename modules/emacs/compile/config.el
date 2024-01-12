@@ -4,6 +4,8 @@
   :init
   (setq compilation-context-lines t
         compilation-scroll-output t)
+
+  (message-clean-mode-add-echo-commands '( compilation-handle-exit))
   :config
   (require 'ansi-color)
   (jcs-add-hook 'compilation-filter-hook

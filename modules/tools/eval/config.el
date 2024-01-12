@@ -8,7 +8,9 @@
 
 (use-package execrun
   :init
-  (setq execrun-kill-buffer-function #'jcs-maybe-kill-this-buffer))
+  (setq execrun-kill-buffer-function #'jcs-maybe-kill-this-buffer)
+
+  (message-clean-mode-add-echo-commands '( execrun-compile)))
 
 (use-package quickrun
   :init
