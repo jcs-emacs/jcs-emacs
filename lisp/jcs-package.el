@@ -84,6 +84,7 @@
           com-css-sort
           command-log-mode
           company-ansible
+          company-auctex
           company-autoconf
           company-bibtex
           company-box
@@ -104,6 +105,7 @@
           company-ledger
           company-lua
           company-makefile
+          company-math
           company-meta-net
           company-mlton
           company-nginx
@@ -113,6 +115,7 @@
           company-php
           company-plsense
           company-powershell
+          company-reftex
           company-restclient
           company-shell
           company-sourcekit
