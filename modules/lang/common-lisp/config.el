@@ -16,4 +16,6 @@
 
 (use-package sly-repl-ansi-color
   :init
-  (add-to-list 'sly-contribs 'sly-repl-ansi-color))
+  (add-to-list 'sly-contribs 'sly-repl-ansi-color)
+
+  (message-clean-mode-add-echo-commands '( sly-message)))

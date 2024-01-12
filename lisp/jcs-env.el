@@ -191,10 +191,9 @@
                                             y-or-n-p
                                             company-clang--handle-error)
         message-clean-mode-echo-commands
-        '( after-find-file save-buffer
+        '( save-buffer
            mwheel-scroll
            previous-line next-line
-           vsc-edit-beginning-of-line vsc-edit-end-of-line
            mark-whole-buffer
            indent-region
            package-menu--mark-upgrades-1 pkg-dm--show-upgrades pkg-dm-autoremove
@@ -204,13 +203,8 @@
            undefined
            toggle-truncate-lines
            compilation-handle-exit execrun-compile
-           reb-update-overlays reb-next-match reb-prev-match
-           lsp--message lsp--send-request-async lsp--apply-text-edits
-           sly-message
            define-it
-           magit-process-sentinel magit-commit-diff magit-run-git-async
-           git-commit-save-message
-           ff-find-the-other-file)
+           after-find-file ff-find-the-other-file)
         message-clean-mode-minor-mode 'echo))
 
 (use-package msgu

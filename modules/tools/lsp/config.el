@@ -11,6 +11,9 @@
         lsp-enable-on-type-formatting nil
         ;; Make breadcrumbs opt-in; they're redundant with the modeline and imenu
         lsp-headerline-breadcrumb-enable nil)
+
+  (message-clean-mode-add-echo-commands
+   '( lsp--message lsp--send-request-async lsp--apply-text-edits))
   :config
   ;; Let's not block the loading process, so lsp packages don't hamper with
   ;; each another.

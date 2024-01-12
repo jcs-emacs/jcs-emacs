@@ -10,7 +10,11 @@
         magit-save-repository-buffers nil
         ;; Don't display parent/related refs in commit buffers; they are rarely
         ;; helpful and only add to runtime costs.
-        magit-revision-insert-related-refs nil))
+        magit-revision-insert-related-refs nil)
+
+  (message-clean-mode-add-echo-commands
+   '( magit-process-sentinel magit-commit-diff magit-run-git-async
+      git-commit-save-message)))
 
 (use-package magit-todos
   :init
