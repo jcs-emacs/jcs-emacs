@@ -18,6 +18,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add `.envrc` support (3ff057fc9cfa0c931129e6f5496a2eae4211a34e)
 * Update debugging key bindings (f2ecb5dcb94d8abd373d8a3e3c39049029a65a62)
 * Add QSS support (71a175c4adcfd913131030fb1deb5d2e5f9cc4f0)
+* feat: Add and configure Tex completion packages (31deaa9a9850ae904b9325af2b39dc5a57d0d82b)
+* refactor: Move message clean settings to its modules (727bc53d323580215b7ad3a5cb8b5b84c1b14e3f)
 
 ## 9.0.1
 > Released Sep 20, 2023
