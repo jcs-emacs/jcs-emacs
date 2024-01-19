@@ -22,7 +22,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
         emacs-version:
-          - 29.2
+          - ${{ vars.EMACS_VER }}
     steps:
     - name: Checkout binaries repository
       uses: actions/checkout@v4

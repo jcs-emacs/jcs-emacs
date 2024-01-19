@@ -28,7 +28,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest]
-        emacs-version: [29.2]
+        emacs-version: [${{ vars.EMACS_VER }}]
     steps:
     - uses: jcs090218/setup-emacs@master
       with:

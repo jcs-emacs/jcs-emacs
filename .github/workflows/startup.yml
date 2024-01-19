@@ -33,7 +33,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
-        emacs-version: [29.2]
+        emacs-version: [${{ vars.EMACS_VER }}]
         experimental: [false]
         include:
         - os: ubuntu-latest
