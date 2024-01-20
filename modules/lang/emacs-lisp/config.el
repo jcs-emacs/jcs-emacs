@@ -51,7 +51,8 @@
 
 (use-package elisp-demos
   :init
-  (advice-add 'describe-function-1 :after #'elisp-demos-advice-describe-function-1)
+  (jcs-advice-add 'org-load-modules-maybe :after
+    (advice-add 'describe-function-1 :after #'elisp-demos-advice-describe-function-1))
   (advice-add 'helpful-update :after #'elisp-demos-advice-helpful-update))
 
 (use-package flycheck-cask    :hook (flycheck-mode . flycheck-cask-setup))
