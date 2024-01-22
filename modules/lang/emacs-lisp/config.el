@@ -51,6 +51,7 @@
 
 (use-package elisp-demos
   :init
+  (jcs-with-eval-after-load '(jcs-poptip) (org-load-modules-maybe))
   (jcs-advice-add 'org-load-modules-maybe :after
     (advice-add 'describe-function-1 :after #'elisp-demos-advice-describe-function-1))
   (advice-add 'helpful-update :after #'elisp-demos-advice-helpful-update))
