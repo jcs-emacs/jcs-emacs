@@ -20,6 +20,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Add QSS support (71a175c4adcfd913131030fb1deb5d2e5f9cc4f0)
 * feat: Add and configure Tex completion packages (31deaa9a9850ae904b9325af2b39dc5a57d0d82b)
 * refactor: Move message clean settings to its modules (727bc53d323580215b7ad3a5cb8b5b84c1b14e3f)
+* feat: Support TailwindCSS completion (a3b065dba11f27566fce2e24492157138d775646)
+* feat: Support Bootstrap completion (a3b065dba11f27566fce2e24492157138d775646)
 
 ## 9.0.1
 > Released Sep 20, 2023
