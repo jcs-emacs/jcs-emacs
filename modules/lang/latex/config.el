@@ -34,21 +34,22 @@
 ;;
 
 (jcs-add-hook 'LaTeX-mode-hook
-  (progn  ; BibTeX
-    (company-fuzzy-backend-add-before 'company-bibtex 'company-dabbrev))
-  (progn  ; AUCTeX
-    (company-fuzzy-backend-add-before 'company-auctex-labels 'company-dabbrev)
-    (company-fuzzy-backend-add-before 'company-auctex-bibs 'company-dabbrev)
-    (company-fuzzy-backend-add-before 'company-auctex-macros 'company-dabbrev)
-    (company-fuzzy-backend-add-before 'company-auctex-symbols 'company-dabbrev)
-    (company-fuzzy-backend-add-before 'company-auctex-environments 'company-dabbrev))
-  (progn  ; RefTeX
-    (company-fuzzy-backend-add-before 'company-reftex-labels 'company-dabbrev)
-    (company-fuzzy-backend-add-before 'company-reftex-citations 'company-dabbrev))
-  (progn  ; LaTex
-    (company-fuzzy-backend-add-before 'company-latex-commands 'company-dabbrev)
-    (company-fuzzy-backend-add-before 'company-math-symbols-latex 'company-dabbrev)
-    (company-fuzzy-backend-add-before 'company-math-symbols-unicode 'company-dabbrev))
+  (let ((be-b 'company-dabbrev))
+    ;; BibTeX
+    (company-fuzzy-backend-add-before 'company-bibtex be-b)
+    ;; AUCTeX
+    (company-fuzzy-backend-add-before 'company-auctex-labels be-b)
+    (company-fuzzy-backend-add-before 'company-auctex-bibs be-b)
+    (company-fuzzy-backend-add-before 'company-auctex-macros be-b)
+    (company-fuzzy-backend-add-before 'company-auctex-symbols be-b)
+    (company-fuzzy-backend-add-before 'company-auctex-environments be-b)
+    ;; RefTeX
+    (company-fuzzy-backend-add-before 'company-reftex-labels be-b)
+    (company-fuzzy-backend-add-before 'company-reftex-citations be-b)
+    ;; LaTex
+    (company-fuzzy-backend-add-before 'company-latex-commands be-b)
+    (company-fuzzy-backend-add-before 'company-math-symbols-latex be-b)
+    (company-fuzzy-backend-add-before 'company-math-symbols-unicode be-b))
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]tex")

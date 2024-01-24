@@ -3,6 +3,14 @@
 ;;; Code:
 
 ;;
+;; (@* "Hook" )
+;;
+
+(defun jcs-as-hook (name)
+  "Convert NAME to hook."
+  (intern (concat (jcs-2str name) "-hook")))
+
+;;
 ;; (@* "Macro" )
 ;;
 

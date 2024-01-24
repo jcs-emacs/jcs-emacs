@@ -88,6 +88,7 @@
           company-autoconf
           company-bibtex
           company-box
+          company-bootstrap
           company-c-headers
           company-cabal
           company-cmd
@@ -119,6 +120,7 @@
           company-restclient
           company-shell
           company-sourcekit
+          company-tailwindcss
           company-terraform
           composer
           comware-router-mode

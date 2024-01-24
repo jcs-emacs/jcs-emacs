@@ -2,6 +2,17 @@
 
 (require 'css-mode)
 (require 'web-mode)
+(require 'lsp-tailwindcss)
+
+;;
+;; (@* "Macro" )
+;;
+
+(defmacro jcs-css-add-hook (&rest body)
+  "Add hook for all css related modes."
+  (declare (indent 0))
+  `(dolist (mode lsp-tailwindcss-major-modes)
+     (jcs-add-hook (jcs-as-hook mode) ,@body)))
 
 ;;
 ;; (@* "Templates" )
@@ -38,3 +49,20 @@
 (use-package css-eldoc
   :init
   (css-eldoc-enable))
+
+(use-package lsp-tailwindcss
+  :init
+  (setq lsp-tailwindcss-add-on-mode t
+        lsp-tailwindcss-emmet-completions t))
+
+(use-package company-tailwindcss
+  :init
+  (jcs-css-add-hook
+    (company-fuzzy-backend-add-before 'company-tailwindcss 'company-dabbrev)))
+
+(use-package company-bootstrap
+  :init
+  (setq company-tailwindcss-complete-only-in-attributes t
+        company-tailwindcss-sort-post-completion nil)
+  (jcs-css-add-hook
+    (company-fuzzy-backend-add-before 'company-bootstrap 'company-dabbrev)))
