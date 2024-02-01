@@ -27,6 +27,7 @@
                                    (ls-directories . "d")
                                    (ls-files       . "f"))
         dashboard-center-content t
+        dashboard-vertically-center-content t
         dashboard-set-navigator nil
         dashboard-projects-backend 'project-el
         ;; Icons
