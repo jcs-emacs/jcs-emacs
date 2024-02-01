@@ -1,5 +1,9 @@
 ;;; emacs/backtrace/config.el  -*- lexical-binding: t; -*-
 
+;;
+;; (@* "Functions" )
+;;
+
 (defconst jcs-backtrace-buffer-name "*Backtrace*"
   "Name of the backtrace buffer.")
 
