@@ -102,6 +102,9 @@
 (file-header-defins jcs-insert-html-template "html" "default.txt"
   "Template for HTML.")
 
+(file-header-defins jcs-insert-svelte-template "svelte" "default.txt"
+  "Template for Svelte.")
+
 ;;
 ;; (@* "Hook" )
 ;;
@@ -116,7 +119,7 @@
         web-mode-block-padding 0   ; For `php', `ruby', `java', `python', `asp', etc.
         web-mode-offsetless-elements '("html")))
 
-(jcs-add-hook 'web-mode-hook
+(jcs-add-hook '(web-mode-hook)
   (jcs-elec-pair-add '((?\" . ?\")))
 
   ;; XXX: Prevent this from being changed by `web-mode'!
@@ -136,6 +139,8 @@
                               'jcs-insert-html-template)
   (jcs-insert-header-if-valid '("[.]php")
                               'jcs-insert-php-template)
+  (jcs-insert-header-if-valid '("[.]svelte")
+                              'jcs-insert-svelte-template)
 
   (jcs-key-local
     `(((kbd "{")   . jcs-web-vs-opening-curly-bracket-key)
@@ -155,6 +160,14 @@
   (jcs-key-local
     `(((kbd "<up>")   . vs-edit-previous-line)
       ((kbd "<down>") . vs-edit-next-line))))
+
+(jcs-add-hook 'svelte-mode-hook
+  (auto-rename-tag-mode 1)
+  (emmet-mode 1)
+
+  ;; File Header
+  (jcs-insert-header-if-valid '("[.]svelte")
+                              'jcs-insert-svelte-template))
 
 ;;
 ;; (@* "Extensions" )

@@ -159,7 +159,7 @@
     (vhdl-mode                             . "lang/vhdl")
     (vimrc-mode                            . "lang/vimscript")
     (vue-mode                              . "lang/vue")
-    (( web-mode sgml-mode
+    (( web-mode svelte-mode sgml-mode
        css-mode less-css-mode scss-mode)
      . ("lang/web" "lang/css" "lang/less-css" "lang/scss"))
     (yaml-mode                             . "lang/yaml")

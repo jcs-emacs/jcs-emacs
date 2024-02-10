@@ -399,6 +399,7 @@
           sql-indent
           ssh-config-mode
           suggest
+          svelte-mode
           swift-mode
           terminal-here
           toc-org
