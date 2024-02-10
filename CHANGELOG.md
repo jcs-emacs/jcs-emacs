@@ -22,6 +22,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * refactor: Move message clean settings to its modules (727bc53d323580215b7ad3a5cb8b5b84c1b14e3f)
 * feat: Support TailwindCSS completion (a3b065dba11f27566fce2e24492157138d775646)
 * feat: Support Bootstrap completion (a3b065dba11f27566fce2e24492157138d775646)
+* feat: Add Svelte support (e586d9e52d06a054faa1829ba0cf69c128481c34)
 
 ## 9.0.1
 > Released Sep 20, 2023
