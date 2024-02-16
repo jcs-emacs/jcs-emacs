@@ -90,6 +90,7 @@
     (crystal-mode                          . "lang/crystal")
     (csharp-mode                           . "lang/csharp")
     (cuda-mode                             . "lang/cuda")
+    (cython-mode                           . "lang/cython")
     (d-mode                                . "lang/d")
     (dart-mode                             . "lang/dart")
     (elixir-mode                           . "lang/elixir")

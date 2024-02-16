@@ -134,6 +134,7 @@
           cycle-case-style
           cycle-quotes
           cycle-slash
+          cython-mode
           d-mode
           dashboard-ls
           diff-hl
@@ -188,6 +189,7 @@
           flycheck-clojure
           flycheck-credo
           flycheck-crystal
+          flycheck-cython
           flycheck-deno
           flycheck-eask
           flycheck-elm
