@@ -72,7 +72,8 @@
            "[*]Flutter"
            "[*]snow[*]")
         diminish-buffer-mode-list '( "dired-mode"
-                                     "help-mode" "list-environment-mode"
+                                     "help-mode" "custom-mode"
+                                     "list-environment-mode"
                                      "shell-mode" "eshell-mode")))
 
 ;;
