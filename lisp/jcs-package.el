@@ -239,6 +239,7 @@
           goto-char-preview
           goto-last-change
           goto-line-preview
+          gptscript-mode
           graphql-mode
           haml-mode
           hammy
