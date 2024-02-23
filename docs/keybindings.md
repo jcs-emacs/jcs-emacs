@@ -413,6 +413,10 @@ Here is the list of key bindings that are defined in this configuration.
 * <kbd>Shift</kbd>+<kbd>ESC</kbd> - Escape keyboard.
 * <kbd>Ctrl</kbd>+<kbd>g</kbd> - Exit keyboard.
 
+#### Macro
+
+* <kbd>Ctrl</kbd>+<kbd>x</kbd>, <kbd>x</kbd> - Macro expand.
+
 #### Mark
 
 * <kbd>Ctrl</kbd>+<kbd>SPC</kbd> or <kbd>Alt</kbd>+<kbd>SPC</kbd> - Set mark at the current point.

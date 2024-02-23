@@ -165,6 +165,9 @@
     ((kbd "M-i") . show-eol-mode)
     ((kbd "M-I") . set-buffer-file-coding-system)
 
+;;; Macro
+    ((kbd "C-k x") . macrostep-expand)
+
 ;;; Mark
     ((kbd "M-z") . toggle-truncate-lines)
     ("\e:"       . View-back-to-mark)
