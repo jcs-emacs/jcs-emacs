@@ -190,6 +190,7 @@
           flycheck-credo
           flycheck-crystal
           flycheck-cython
+          flycheck-dart
           flycheck-deno
           flycheck-eask
           flycheck-elm

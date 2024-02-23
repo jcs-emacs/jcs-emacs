@@ -19,3 +19,9 @@
   ;; File Header
   (jcs-insert-header-if-valid '("[.]dart")
                               'jcs-insert-dart-template))
+
+;;
+;; (@* "Extensions" )
+;;
+
+(use-package flycheck-dart :hook (flycheck-mode . flycheck-dart-setup))
