@@ -50,7 +50,7 @@
            "[*]Local Variables[*]"
            "[*]Kill Ring[*]"  ; From `browse-kill-ring'
            "[*]SPEEDBAR"
-           "[*]Flycheck" "[*]Flymake log[*]"
+           "[*]Flycheck" "[*]Flymake"
            "[*]httpd[*]" "[*]HTTP Response[*]"
            "[*]helpful" "[*]suggest[*]"
            "[*]ert[*]" "[*]indent-lint"
