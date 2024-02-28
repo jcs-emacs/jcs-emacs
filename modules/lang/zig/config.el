@@ -1,6 +1,14 @@
 ;;; lang/zig/config.el  -*- lexical-binding: t; -*-
 
 ;;
+;; (@* "Config" )
+;;
+
+(use-package zig-mode
+  :init
+  (setq zig-format-on-save nil))
+
+;;
 ;; (@* "Templates" )
 ;;
 
