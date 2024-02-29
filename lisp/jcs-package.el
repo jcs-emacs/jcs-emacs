@@ -374,7 +374,6 @@
           region-state
           repos-window
           restart-emacs
-          reveal-in-folder
           robots-txt-mode
           scad-mode
           scrollable-quick-peek
