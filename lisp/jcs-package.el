@@ -207,6 +207,7 @@
           flycheck-package
           flycheck-relint
           flycheck-swift
+          flycheck-ziglint
           flymake-coffee
           flymake-haml
           flymake-less
@@ -446,7 +447,6 @@
           yarn-mode
           yasnippet-snippets
           yuck-mode
-          zig-mode
           zoom-window)))
 
 (require 'elenv)
