@@ -55,27 +55,3 @@
     (scrollable-quick-peek-scroll-down)
     ;; If does open the new file to peek, kill the buffer afterward.
     (unless (equal buf-list (buffer-list)) (kill-buffer buf))))
-
-;;
-;; (@* "Move Between Word (Wrapper)" )
-;;
-
-(defun jcs-backward-word-capital (&optional _)
-  "Backward search capital character and set the cursor to the point."
-  (interactive "^P")
-  (let ((max-pt (save-excursion (vs-edit-backward-word) (1+ (point)))))
-    (while (and (not (bobp))
-                (not (jcs-current-char-uppercasep))
-                (> (point) max-pt))
-      (backward-char 1))
-    (backward-char 1)))
-
-(defun jcs-forward-word-capital (&optional _)
-  "Forward search capital character and set the cursor to the point."
-  (interactive "^P")
-  (let ((max-pt (save-excursion (vs-edit-forward-word) (point))))
-    (forward-char 1)
-    (while (and (not (eobp))
-                (not (jcs-current-char-uppercasep))
-                (< (point) max-pt))
-      (forward-char 1))))
