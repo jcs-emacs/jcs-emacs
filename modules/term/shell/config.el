@@ -1,5 +1,6 @@
 ;;; term/shell/config.el  -*- lexical-binding: t; -*-
 
+(require 'compile)
 (require 'exec-path-from-shell)
 
 ;;
@@ -39,7 +40,9 @@
   :init
   (setq shell-pop-window-size 60
         shell-pop-last-shell-buffer-index 0
-        shell-pop-shell-type '("shell" "*shell: <>*" (lambda () (multi-shell))))
+        shell-pop-shell-type '("shell" "*shell: <>*" (lambda () (multi-shell)))
+        shell-pop-autocd-to-working-dir nil
+        shell-pop-restore-window-configuration nil)
   :config
   ;; Fix issue from https://github.com/kyagi/shell-pop-el/issues/51
   (push (cons "\\*shell\\*" display-buffer--same-window-action) display-buffer-alist))
