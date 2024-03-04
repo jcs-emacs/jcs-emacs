@@ -201,7 +201,8 @@
            isearch-done
            undefined
            toggle-truncate-lines
-           after-find-file ff-find-the-other-file)
+           after-find-file ff-find-the-other-file
+           shell-dirstack-message)
         message-clean-mode-minor-mode 'echo))
 
 (use-package msgu
