@@ -80,7 +80,7 @@
         w32-pipe-read-delay 0               ; faster IPC
         w32-pipe-buffer-size (* 64 1024)))  ; read more at a time (was 4K)
 
-(elenv-with-bsd
+(when (or elenv-bsd elenv-macos)
   (setq mac-command-modifier 'meta
         select-enable-clipboard t
         aquamacs-save-options-on-quit 0
