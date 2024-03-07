@@ -147,6 +147,19 @@
   (unless (jcs-space-p) (indent-tabs-mode 1)))
 
 ;;
+;; (@* "Daemon" )
+;;
+
+(jcs-add-hook 'server-after-make-frame-hook
+  (load-library "elenv")
+  (run-hooks 'after-init-hook)
+  (run-hooks 'on-init-ui-hook)
+  (run-hooks 'on-first-input-hook)
+  (run-hooks 'on-first-file-hook)
+  (run-hooks 'on-first-project-hook)
+  (jcs-run-after-load-theme-hook))
+
+;;
 ;; (@* "Quitting" )
 ;;
 

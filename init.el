@@ -59,7 +59,7 @@
   "The Github page of JCS-Emacs.")
 
 ;;
-;; (@* "Load Core" )
+;; (@* "Core" )
 ;;
 
 (setq load-path
