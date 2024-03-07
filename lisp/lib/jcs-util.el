@@ -84,13 +84,24 @@ execution."
 (defvar jcs-module-history nil
   "History of the loaded modules.")
 
-(defun jcs-module-load (modules)
-  "Load MODULES."
+(defun jcs-module--path (module)
+  "Return the path to the MODULE config file."
+  (let ((root (concat user-emacs-directory "modules/" module)))
+    (concat root "/config.el")))
+
+(defun jcs-module-loaded-p (module)
+  "Return non-nil if MODULE has been loaded."
+  (member (jcs-module--path module) jcs-module-history))
+
+(defun jcs-module-load (modules &optional force)
+  "Load MODULES.
+
+If FORCE is non-nil, force load the module even it has been loaded already."
   (if (listp modules)
       (dolist (module modules) (jcs-module-load module))
-    (let* ((root (concat user-emacs-directory "modules/" modules))
-           (config (concat root "/config.el")))
-      (unless (member config jcs-module-history)
+    (let ((config (jcs-module--path modules)))
+      (when (or force
+                (not (jcs-module-loaded-p modules)))
         (push config jcs-module-history)
         (load config t t)))))
 
