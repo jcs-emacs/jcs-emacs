@@ -24,6 +24,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * feat: Support Bootstrap completion (a3b065dba11f27566fce2e24492157138d775646)
 * feat: Add Svelte support (e586d9e52d06a054faa1829ba0cf69c128481c34)
 * feat: Add ziglint (9856bbf5530177613e46127b67054d3925f99a91)
+* feat: Add module util (12f7d294e66df3eddc6bbec721ef4196144dcf8f)
+* feat: Support `daemon` (cdb7187af574c6aec3ff09010d59fe2a8814f43b)
 
 ## 9.0.1
 > Released Sep 20, 2023
