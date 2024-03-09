@@ -14,7 +14,14 @@
         sideline-display-backend-name t
         sideline-display-backend-type 'inner))
 
-(use-package sideline-flycheck :hook (flycheck-mode . sideline-flycheck-setup))
+(use-package sideline-flycheck
+  :hook (flycheck-mode . sideline-flycheck-setup)
+  :init
+  (setq sideline-flycheck-display-mode 'line))
+
+(use-package sideline-flymake
+  :init
+  (setq sideline-flymake-display-mode 'line))
 
 (use-package sideline-lsp
   :init
