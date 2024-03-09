@@ -26,6 +26,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * feat: Add ziglint (9856bbf5530177613e46127b67054d3925f99a91)
 * feat: Add module util (12f7d294e66df3eddc6bbec721ef4196144dcf8f)
 * feat: Support `daemon` (cdb7187af574c6aec3ff09010d59fe2a8814f43b)
+* chore(sideline): Add display mode config (32324992b47b2126241a9ab84410ba7cfdac3752)
 
 ## 9.0.1
 > Released Sep 20, 2023
