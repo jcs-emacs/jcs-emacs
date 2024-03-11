@@ -70,6 +70,7 @@
            "[*]ASCII[*]"
            "[*]npm:" "[*]hexo"
            "[*]Flutter"
+           "[*]emp"
            "[*]snow[*]")
         diminish-buffer-mode-list '( "dired-mode"
                                      "help-mode" "custom-mode"
