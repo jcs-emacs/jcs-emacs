@@ -202,6 +202,7 @@
            undefined
            toggle-truncate-lines
            after-find-file ff-find-the-other-file
+           flycheck-display-error-messages
            shell-dirstack-message)
         message-clean-mode-minor-mode 'echo))
 
