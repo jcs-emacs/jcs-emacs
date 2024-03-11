@@ -115,11 +115,6 @@
 ;; (@* "Modes" )
 ;;
 
-(jcs-add-hook 'diff-mode-hook
-  (jcs-key-local
-    `(((kbd "M-k") . jcs-maybe-kill-this-buffer)
-      ((kbd "M-K") . jcs-reopen-this-buffer))))
-
 (jcs-add-hook '(text-mode-hook prog-mode-hook conf-mode-hook)
   (alt-codes-mode 1)
   (auto-highlight-symbol-mode 1)
