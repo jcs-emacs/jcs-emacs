@@ -11,6 +11,16 @@
   :init
   (setq dashboard-banner-logo-title
         (concat "[J C S " (if elenv-graphic-p "•" "-") " E M A C S]")
+        dashboard-startupify-list '(dashboard-insert-banner
+                                    dashboard-insert-newline
+                                    dashboard-insert-banner-title
+                                    dashboard-insert-newline
+                                    dashboard-insert-navigator
+                                    dashboard-insert-newline
+                                    dashboard-insert-init-info
+                                    dashboard-insert-items
+                                    dashboard-insert-newline
+                                    dashboard-insert-footer)
         dashboard-items '((ls-directories . 5)
                           (ls-files       . 5)
                           (recents        . 5)
@@ -28,7 +38,6 @@
                                    (ls-files       . "f"))
         dashboard-center-content t
         dashboard-vertically-center-content t
-        dashboard-set-navigator nil
         dashboard-projects-backend 'project-el
         ;; Icons
         dashboard-set-heading-icons t
@@ -44,7 +53,6 @@
         dashboard-heading-icon-height 1.0
         dashboard-heading-icon-v-adjust 0.0
         ;; Navigator
-        dashboard-set-navigator t
         dashboard-navigator-buttons
         `(((,(when elenv-graphic-p
                (nerd-icons-faicon "nf-fa-github"))
