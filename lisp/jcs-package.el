@@ -148,7 +148,9 @@
           dumb-jump
           earthfile-mode
           easky
+          ecukes
           editorconfig-generate
+          el-mock
           eldoc-cmake
           eldoc-eask
           eldoc-meta-net

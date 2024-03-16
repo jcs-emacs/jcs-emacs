@@ -97,6 +97,7 @@
     (elm-mode                              . "lang/elm")
     (elisp-mode                            . "lang/emacs-lisp")
     (erlang                                . "lang/erlang")
+    (feature-mode                          . "lang/feature")
     (ess-r-mode                            . "lang/r")
     (fountain-mode                         . "lang/fountain")
     (fsharp-mode                           . "lang/fsharp")
