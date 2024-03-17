@@ -10,7 +10,9 @@
         ;; Reduce unexpected modifications to code
         lsp-enable-on-type-formatting nil
         ;; Make breadcrumbs opt-in; they're redundant with the modeline and imenu
-        lsp-headerline-breadcrumb-enable nil)
+        lsp-headerline-breadcrumb-enable nil
+        ;; Make TCP connection is already slow; only try to connect once
+        lsp-tcp-connection-timeout 0.01)
 
   (message-clean-mode-add-echo-commands
    '( lsp--message lsp--send-request-async lsp--apply-text-edits))
