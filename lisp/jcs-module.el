@@ -49,7 +49,7 @@
     (editorconfig                          . "tools/editorconfig")
     ((easky execrun quickrun)              . "tools/eval")
     ((goto-char-preview goto-line-preview) . "tools/goto")
-    (lsp-mode                              . "tools/lsp")
+    ((lsp-mode eglot)                      . "tools/lsp")
     (make-mode                             . "tools/make")
     (magit                                 . "tools/magit")
     (prettier                              . "tools/prettier")

@@ -26,3 +26,7 @@
 (use-package sideline-lsp
   :init
   (setq sideline-lsp-code-actions-prefix ""))
+
+(use-package sideline-eglot
+  :init
+  (setq sideline-eglot-code-actions-prefix ""))
