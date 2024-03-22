@@ -27,6 +27,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * feat: Add module util (12f7d294e66df3eddc6bbec721ef4196144dcf8f)
 * feat: Support `daemon` (cdb7187af574c6aec3ff09010d59fe2a8814f43b)
 * chore(sideline): Add display mode config (32324992b47b2126241a9ab84410ba7cfdac3752)
+* chore(dashboard): Default to cycle dashboard sections (1956896dd3f85e1fafb980c8aff5dbf01b1a2507)
+* fix(buffer-menu): Ensure `buffer-menu` is clean (548ce7ef47490fa8d0b82b838cc4f8a1e739494b)
+* chore(sideline): Configure `sideline-eglot` (def906559bf90920ff7f2f2df4b8f36dd523230a)
+* chore(checker): Mute display diagnostic (675b982533c978624ff5e745d1621edcb7a0d994)
 
 ## 9.0.1
 > Released Sep 20, 2023
