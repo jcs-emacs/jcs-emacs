@@ -16,6 +16,9 @@
 
   ;; Display errors a little quicker (default is 0.9s))
   (setq flycheck-display-errors-delay 0.25)
+
+  ;; Replace with `sideline-flycheck'
+  (setq flycheck-display-errors-function nil)
   :config
   ;; Rerunning checks on every newline is a mote excessive.
   (delq 'new-line flycheck-check-syntax-automatically))
