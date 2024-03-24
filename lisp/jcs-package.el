@@ -362,6 +362,7 @@
           prettier
           processing-mode
           project-abbrev
+          prometheus-mode
           protobuf-mode
           purescript-mode
           python-mode
