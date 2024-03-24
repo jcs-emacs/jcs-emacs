@@ -125,6 +125,7 @@
           composer
           comware-router-mode
           consult-todo
+          crux
           crystal-mode
           csound-mode
           csproj-mode
