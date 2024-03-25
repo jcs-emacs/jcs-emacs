@@ -1,5 +1,7 @@
 ;;; lang/common-lisp/config.el  -*- lexical-binding: t; -*-
 
+(require 'common-lisp-snippets)
+
 (require 'sly-macrostep)
 (require 'sly-quicklisp)
 
