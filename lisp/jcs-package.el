@@ -399,6 +399,7 @@
           slim-mode
           sln-mode
           sly-macrostep
+          sly-overlay
           sly-quicklisp
           sly-repl-ansi-color
           smart-comment
