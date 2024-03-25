@@ -76,6 +76,7 @@
           centaur-tabs
           chatgpt-sideline
           cisco-router-mode
+          clhs
           cmake-font-lock
           cobol-mode
           codegpt
@@ -83,6 +84,7 @@
           coffee-mode
           com-css-sort
           command-log-mode
+          common-lisp-snippets
           company-ansible
           company-auctex
           company-autoconf
