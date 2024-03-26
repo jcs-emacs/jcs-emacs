@@ -182,7 +182,8 @@
                                     eval-last-sexp
                                     narrow-to-region
                                     sly-eval-buffer sly-eval-defun sly-eval-region
-                                    sly-eval-last-expression)))
+                                    sly-eval-last-expression
+                                    sly-overlay-eval-defun)))
 
 ;;
 ;;; Messages
@@ -204,7 +205,8 @@
            toggle-truncate-lines
            after-find-file ff-find-the-other-file
            flycheck-display-error-messages
-           shell-dirstack-message)
+           shell-dirstack-message
+           sly-overlay-eval-defun)
         message-clean-mode-minor-mode 'echo))
 
 (use-package msgu
