@@ -33,7 +33,7 @@
            "[*][a-zA-Z0-9]+[-]*ls" "[*][a-zA-Z0-9]+::stderr[*]"
            "[*]clang-" "[*]clangd"
            "[*]csharp[*]"
-           "[*]*cucumber"
+           "[*]cucumber"
            "[*]dart"
            "[*]perlnavigator"
            "[*]lua-"
