@@ -31,6 +31,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * fix(buffer-menu): Ensure `buffer-menu` is clean (548ce7ef47490fa8d0b82b838cc4f8a1e739494b)
 * chore(sideline): Configure `sideline-eglot` (def906559bf90920ff7f2f2df4b8f36dd523230a)
 * chore(checker): Mute display diagnostic (675b982533c978624ff5e745d1621edcb7a0d994)
+* chore: Add `guard-lf` package (d8616223fb07503dffb3ec4ca75361b203ab5b76)
 
 ## 9.0.1
 > Released Sep 20, 2023
