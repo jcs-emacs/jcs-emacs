@@ -248,6 +248,7 @@
           goto-line-preview
           gptscript-mode
           graphql-mode
+          guard-lf
           haml-mode
           hammy
           haxe-mode

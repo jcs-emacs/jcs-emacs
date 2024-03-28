@@ -76,6 +76,7 @@
   (ff-guard-mode 1)
   (gcmh-mode 1)
   (global-goto-address-mode 1)
+  (guard-lf-mode 1)
   (message-clean-mode 1)
   (minibuffer-depth-indicate-mode 1)
   (global-page-break-lines-mode 1)
