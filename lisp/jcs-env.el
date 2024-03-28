@@ -264,6 +264,8 @@
 ;;
 ;;; So Long
 (use-package so-long
+  :init
+  (setq so-long-threshold 5000)
   :config
   (nconc so-long-minor-modes
          '( spell-fu-mode
@@ -273,7 +275,10 @@
             hl-fill-column-mode
             line-reminder-mode
             page-break-lines-mode
-            ts-fold-mode ts-fold-indicators-mode)))
+            tree-sitter-mode
+            ts-fold-mode ts-fold-indicators-mode
+            lsp-mode eglot--managed-mode
+            whitespace-cleanup-mode)))
 
 ;;
 ;;; Startup
