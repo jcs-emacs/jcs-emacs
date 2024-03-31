@@ -395,6 +395,7 @@
           sideline-eglot
           sideline-flycheck
           sideline-flymake
+          sideline-load-cost
           sideline-lsp
           site-lisp
           slim-mode

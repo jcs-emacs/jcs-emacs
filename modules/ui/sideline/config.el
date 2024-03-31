@@ -5,7 +5,8 @@
          (flymake-mode  . sideline-mode))
   :init
   (setq sideline-delay 0.2
-        sideline-backends-left '((sideline-color . up))
+        sideline-backends-left '((sideline-load-cost . up)
+                                 (sideline-color     . up))
         sideline-backends-right '((sideline-lsp      . up)
                                   (sideline-eglot    . up)
                                   (sideline-flycheck . down)
