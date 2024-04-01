@@ -41,7 +41,7 @@
   :init
   (setq company-fuzzy-sorting-backend 'flx
         company-fuzzy-prefix-on-top nil
-        company-fuzzy-trigger-symbols '("." "->" "<" "\"" "'" "@")))
+        company-fuzzy-trigger-symbols '("." "->" "<" "\"" "'" "@" "::" ":")))
 
 (use-package company-files
   :init
