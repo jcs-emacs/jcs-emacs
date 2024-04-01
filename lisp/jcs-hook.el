@@ -67,7 +67,6 @@
 (jcs-add-hook 'on-first-input-hook
   (balanced-windows-mode 1)
   (breadcrumb-mode 1)
-  (global-company-mode t)
   (delete-selection-mode 1)
   (diminish-buffer-mode 1)
   (electric-indent-mode 1)
@@ -120,6 +119,7 @@
 (jcs-add-hook '(text-mode-hook prog-mode-hook conf-mode-hook)
   (alt-codes-mode 1)
   (auto-highlight-symbol-mode 1)
+  (company-mode t)
   (display-fill-column-indicator-mode 1)
   (display-line-numbers-mode 1)
   (doxygen-asterisk-mode 1)
