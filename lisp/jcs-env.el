@@ -197,10 +197,12 @@
            previous-line next-line
            mark-whole-buffer
            indent-region
-           package-menu--mark-upgrades-1 pkg-dm--show-upgrades pkg-dm-autoremove
+           package-menu-mark-upgrades package-menu--mark-upgrades-1
+           pkg-dm--show-upgrades pkg-dm-autoremove
            browse-kill-ring-setup
            iedit-mode
            isearch-done
+           undo-tree-undo undo-tree-redo
            undefined
            toggle-truncate-lines
            after-find-file ff-find-the-other-file
