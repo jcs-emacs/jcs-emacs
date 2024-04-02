@@ -82,7 +82,7 @@
         dashboard-shorten-path-offset 15
         ;; Footer
         dashboard-footer-icon (if elenv-graphic-p
-                                  (nerd-icons-faicon "nf-fa-heart" :face 'error)
+                                  (nerd-icons-octicon "nf-oct-heart" :face 'error)
                                 "")
         dashboard-footer-messages
         `(,(concat "I showed you my source code, pls respond"
