@@ -72,7 +72,8 @@
           "[*]Flutter"
           "[*]emp"
           "[*]snow[*]")
-        diminish-buffer-mode-list '("compilation-mode" "comint-mode"
+        diminish-buffer-mode-list '("completion-list-mode"
+                                    "compilation-mode" "comint-mode"
                                     "dired-mode"
                                     "help-mode" "custom-mode"
                                     "list-environment-mode"
