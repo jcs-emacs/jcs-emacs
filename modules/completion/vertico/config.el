@@ -76,6 +76,11 @@
 ;; (@* "Functions" )
 ;;
 
+(defun jcs-vertico-refresh ()
+  "Refresh vertico content."
+  (when (jcs-vertico--active-p)
+    (let ((vertico--input)) (vertico--exhibit))))
+
 (defun jcs-vertico-: ()
   "Vertico colon key."
   (interactive)

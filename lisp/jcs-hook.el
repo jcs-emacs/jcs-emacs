@@ -12,7 +12,8 @@
   (when (featurep 'recentf) (msgu-silent (recentf-cleanup)))
   (ignore-errors (jcs-funcall-fboundp #'diff-hl-update))
   (jcs-funcall-fboundp #'jcs-buffer-menu-refresh-buffer)
-  (jcs-funcall-fboundp #'jcs-dashboard-refresh-buffer))
+  (jcs-funcall-fboundp #'jcs-dashboard-refresh-buffer)
+  (jcs-funcall-fboundp #'jcs-vertico-refresh))
 
 (defun jcs-hook--focus-out ()
   "When window is not focus."
@@ -27,7 +28,7 @@
   (when (and (not (active-minibuffer-window))
              (not (jcs-funcall-fboundp #'company--active-p)))
     (jcs-funcall-fboundp #'jcs-buffer-menu-refresh-buffer)
-    (jcs-dashboard-refresh-buffer)))
+    (jcs-funcall-fboundp #'jcs-dashboard-refresh-buffer)))
 
 ;;
 ;; (@* "Find Files" )
