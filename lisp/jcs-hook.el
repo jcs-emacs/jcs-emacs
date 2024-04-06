@@ -142,7 +142,12 @@
   ;; XXX: See the bug https://github.com/immerrr/lua-mode/issues/172
   (unless (jcs-contain-list-type-str "-" (list comment-start comment-end) 'regex)
     (modify-syntax-entry ?- "_"))
-  (unless (jcs-space-p) (indent-tabs-mode 1)))
+  (unless (jcs-space-p)
+    (msgu-inhibit-log
+      (message "[INFO] Detect tabs in buffer `%s'; turn on `%s' automatically"
+               (propertize (buffer-name) 'face 'font-lock-type-face)
+               (propertize "indent-tabs-mode" 'face 'font-lock-type-face)))
+    (indent-tabs-mode 1)))
 
 ;;
 ;; (@* "Daemon" )
