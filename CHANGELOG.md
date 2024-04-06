@@ -32,6 +32,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * chore(sideline): Configure `sideline-eglot` (def906559bf90920ff7f2f2df4b8f36dd523230a)
 * chore(checker): Mute display diagnostic (675b982533c978624ff5e745d1621edcb7a0d994)
 * chore: Add `guard-lf` package (d8616223fb07503dffb3ec4ca75361b203ab5b76)
+* feat: Notify the user when `indent-tabs-mode` got activated (7b4eb11cf30fae0309445fa86ac8749a1f276ed8)
 
 ## 9.0.1
 > Released Sep 20, 2023
