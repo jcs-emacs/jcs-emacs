@@ -400,6 +400,7 @@
           site-lisp
           slim-mode
           sln-mode
+          sly-asdf
           sly-macrostep
           sly-overlay
           sly-quicklisp
