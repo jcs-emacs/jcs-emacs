@@ -202,13 +202,9 @@
            browse-kill-ring-setup
            iedit-mode
            isearch-done
-           undo-tree-undo undo-tree-redo
            undefined
            toggle-truncate-lines
-           after-find-file ff-find-the-other-file
-           flycheck-display-error-messages
-           shell-dirstack-message
-           sly-overlay-eval-defun)
+           after-find-file ff-find-the-other-file)
         message-clean-mode-minor-mode 'echo))
 
 (use-package msgu

@@ -10,5 +10,6 @@
 (use-package undo-tree
   :init
   (setq undo-tree-auto-save-history nil)
+  (message-clean-mode-add-echo-commands '( undo-tree-undo undo-tree-redo))
   :config
   (global-undo-tree-mode t))
