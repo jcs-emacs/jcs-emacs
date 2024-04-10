@@ -385,14 +385,14 @@ Notice PATH can either be `buffer-name' or `buffer-file-name'."
 (defun jcs-first-backward-char-in-line-p (ch)
   "Check the first character on the left is CH or not, with current line as boundary."
   (save-excursion
-    (when (re-search-backward "[^ \t]" (line-beginning-position) t)
+    (when (re-search-backward "[^[:space:]]" (line-beginning-position) t)
       (forward-char 1)
       (string= (jcs-before-char-string) ch))))
 
 (defun jcs-first-forward-char-in-line-p (ch)
   "Check the first character on the right is CH or not with current line as boundary."
   (save-excursion
-    (when (re-search-forward "[ \t]*" (line-end-position) t)
+    (when (re-search-forward "[[:space:]]*" (line-end-position) t)
       (forward-char 1)
       (string= (jcs-before-char-string) ch))))
 
@@ -426,7 +426,7 @@ Notice PATH can either be `buffer-name' or `buffer-file-name'."
 
 (defun jcs-current-line-empty-p ()
   "Current line empty, but accept spaces/tabs in there.  (not absolute)."
-  (save-excursion (beginning-of-line) (looking-at "[[:space:]\t]*$")))
+  (save-excursion (beginning-of-line) (looking-at "[[:space:]]*$")))
 
 (defun jcs-current-line-comment-p ()
   "Check if current line only comment."
@@ -446,13 +446,13 @@ Notice PATH can either be `buffer-name' or `buffer-file-name'."
   "Return non-nil if there is nothing infront of the right from the PT."
   (save-excursion
     (when pt (goto-char pt))
-    (null (re-search-backward "[^ \t]" (line-beginning-position) t))))
+    (null (re-search-backward "[^[:space:]]" (line-beginning-position) t))))
 
 (defun jcs-behind-last-char-at-line-p (&optional pt)
   "Return non-nil if there is nothing behind of the right from the PT."
   (save-excursion
     (when pt (goto-char pt))
-    (null (re-search-forward "[^ \t]" (line-end-position) t))))
+    (null (re-search-forward "[^[:space:]]" (line-end-position) t))))
 
 (defun jcs-first-visible-line-in-window ()
   "First line number in current visible window."
