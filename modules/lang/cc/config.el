@@ -18,9 +18,9 @@
   (when (memq major-mode '(c-mode c++-mode))
     (if (string= comment-start "// ")
         (setq comment-start "/*"
-              comment-start-skip "/\\*+[ \t]*"
+              comment-start-skip "/\\*+[[:space:]]*"
               comment-end "*/"
-              comment-end-skip "[ \t]*\\*+/")
+              comment-end-skip "[[:space:]]*\\*+/")
       (setq comment-start "// "
             comment-end ""))))
 

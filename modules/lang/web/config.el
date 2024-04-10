@@ -9,6 +9,8 @@
 (require 'emmet-mode)
 (require 'htmltagwrap)
 
+(require 'company-emmet)
+
 ;;
 ;; (@* "Impatient Mode" )
 ;;
