@@ -119,11 +119,11 @@
 
 (jcs-add-hook '(text-mode-hook prog-mode-hook conf-mode-hook)
   (alt-codes-mode 1)
+  (auto-close-block-mode 1)
   (auto-highlight-symbol-mode 1)
   (company-mode t)
   (display-fill-column-indicator-mode 1)
   (display-line-numbers-mode 1)
-  (doxygen-asterisk-mode 1)
   (when elenv-graphic-p
     (highlight-indent-guides-mode 1)
     ;; XXX: Workaround for https://github.com/DarthFennec/highlight-indent-guides/issues/70

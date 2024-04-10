@@ -50,6 +50,7 @@
           asoc
           aurora-config-mode
           auth-source-keytar
+          auto-close-block
           auto-highlight-symbol
           auto-read-only
           auto-rename-tag
@@ -147,7 +148,6 @@
           docker
           docker-compose-mode
           dotenv-mode
-          doxygen-asterisk
           dumb-jump
           earthfile-mode
           easky
