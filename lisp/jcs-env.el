@@ -81,12 +81,11 @@
         w32-pipe-buffer-size (* 64 1024)))  ; read more at a time (was 4K)
 
 (when (or elenv-bsd elenv-macos)
-  (setq mac-command-modifier 'meta
+  (setq mac-command-modifier 'control
         select-enable-clipboard t
         aquamacs-save-options-on-quit 0
         special-display-regexps nil
         special-display-buffer-names nil
-        mac-command-key-is-meta t
         mac-pass-command-to-system nil))
 
 ;;
