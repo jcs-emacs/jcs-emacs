@@ -96,6 +96,10 @@
       ((kbd "<escape>") . (lambda () (interactive) (buffer-menu-filter-refresh)
                             (top-level))))))
 
+(jcs-add-hook 'diminish-buffer-mode-hook
+  (setq centaur-tabs-groups-hash (make-hash-table :test 'equal)
+        centaur-tabs-hide-hash (make-hash-table :test 'equal)))
+
 ;;
 ;; (@* "Core" )
 ;;

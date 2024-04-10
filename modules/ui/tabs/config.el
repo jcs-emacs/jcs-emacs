@@ -2,7 +2,11 @@
 
 (use-package centaur-tabs
   :init
-  (setq centaur-tabs-set-icons nil
-        centaur-tabs-style "wave"
+  (setq centaur-tabs-style "wave"
+        centaur-tabs-set-icons t
         centaur-tabs-set-modified-marker t
-        centaur-tabs-modified-marker "*"))
+        centaur-tabs-modified-marker "*"
+        centaur-tabs-hide-tab-function (lambda (x &rest _)
+                                         (or (centaur-tabs-hide-tab x)
+                                             (and diminish-buffer-mode
+                                                  (diminish-buffer--filter x))))))
