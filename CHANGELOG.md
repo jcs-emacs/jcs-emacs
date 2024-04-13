@@ -34,6 +34,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * chore: Add `guard-lf` package (d8616223fb07503dffb3ec4ca75361b203ab5b76)
 * feat: Notify the user when `indent-tabs-mode` got activated (7b4eb11cf30fae0309445fa86ac8749a1f276ed8)
 * feat: feat: Replace package `doxygen-asterisk` with `auto-close-block` (2d56f447ac48f89654fbd93872a32b83f8e40b3c)
+* fix(vc-gutter): Ensure `diff-hl` is updated in all valid buffers (53802208c3251cf0f7bd2a0043f34c133a21ee1a)
 
 ## 9.0.1
 > Released Sep 20, 2023
