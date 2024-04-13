@@ -12,3 +12,9 @@
         diff-hl-flydiff-delay 0.5
         ;; UX: get realtime feedback in diffs after staging/unstaging hunks
         diff-hl-show-staged-changes nil))
+
+(defun jcs-diff-hl-update ()
+  "Force update all `diff-hl' status."
+  (dolist (buf (jcs-valid-buffer-list))
+    (with-current-buffer buf
+      (ignore-errors (diff-hl-update)))))

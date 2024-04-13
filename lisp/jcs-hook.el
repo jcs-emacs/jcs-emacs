@@ -10,7 +10,7 @@
   "When window is focus."
   (jcs-reload-active-mode)
   (when (featurep 'recentf) (msgu-silent (recentf-cleanup)))
-  (ignore-errors (jcs-funcall-fboundp #'diff-hl-update))
+  (jcs-funcall-fboundp #'jcs-diff-hl-update)
   (jcs-funcall-fboundp #'jcs-buffer-menu-refresh-buffer)
   (jcs-funcall-fboundp #'jcs-dashboard-refresh-buffer)
   (jcs-funcall-fboundp #'jcs-vertico-refresh))
