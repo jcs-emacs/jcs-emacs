@@ -83,6 +83,7 @@
           codegpt
           codemetrics
           coffee-mode
+          colorful-mode
           com-css-sort
           command-log-mode
           common-lisp-snippets
@@ -377,7 +378,6 @@
           quickrun
           racket-mode
           rainbow-csv
-          rainbow-mode
           region-occurrences-highlighter
           region-state
           repos-window

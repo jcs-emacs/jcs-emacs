@@ -181,7 +181,7 @@
                        (zoom-window-zoom) (jcs-reload-active-mode)))
     ((kbd "C-~")   . shell-pop)
     ((kbd "C-`")   . shell-pop)
-    ((kbd "C-k r") . rainbow-mode)
+    ((kbd "C-k r") . colorful-mode)
 
 ;;; Mouse
     ([mouse-2] . mouse-set-point)
