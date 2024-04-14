@@ -35,6 +35,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * feat: Notify the user when `indent-tabs-mode` got activated (7b4eb11cf30fae0309445fa86ac8749a1f276ed8)
 * feat: feat: Replace package `doxygen-asterisk` with `auto-close-block` (2d56f447ac48f89654fbd93872a32b83f8e40b3c)
 * fix(vc-gutter): Ensure `diff-hl` is updated in all valid buffers (53802208c3251cf0f7bd2a0043f34c133a21ee1a)
+* feat(rgb): Replace `rainbow-mode` with `colorful-mode` (695358cbb6475c54aba711615d6f7db61fc9c3fc)
 
 ## 9.0.1
 > Released Sep 20, 2023
