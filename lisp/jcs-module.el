@@ -53,6 +53,7 @@
     (make-mode                             . "tools/make")
     (magit                                 . "tools/magit")
     (prettier                              . "tools/prettier")
+    (colorful-mode                         . "tools/rgb")
     (terraform-mode                        . "tools/terraform")
     (tree-sitter                           . "tools/tree-sitter")
     (dashboard                             . "ui/dashboard")
