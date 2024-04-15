@@ -86,8 +86,6 @@
   (transient-mark-mode t)
   (vs-revbuf-mode 1)
   (which-key-mode 1)
-  (global-whitespace-cleanup-mode 1)
-  (whole-line-or-region-global-mode 1)
   (jcs-module-load '("emacs/buffer-menu" "tools/lookup")))
 
 (jcs-add-hook 'on-first-file-hook
@@ -133,6 +131,8 @@
   (vs-edit-mode 1)
   (vsc-edit-mode 1)
   (vs-comment-return-mode 1)
+  (whitespace-cleanup-mode 1)
+  (whole-line-or-region-local-mode 1)
   (yas-minor-mode 1)
 
   ;; Ensure indentation level is available
