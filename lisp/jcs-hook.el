@@ -39,8 +39,9 @@
   (jcs-project--track-open-projects)
   (jcs-lsp-safe-active))
 
-(jcs-advice-add 'delete-file :after
-  (run-hooks 'after-focus-change-function))
+(jcs-advice-add '(delete-file delete-directory) :after
+  (when (called-interactively-p 'interactive)
+    (run-hooks 'after-focus-change-function)))
 
 ;;
 ;; (@* "Initialization" )
