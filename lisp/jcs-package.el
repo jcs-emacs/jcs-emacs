@@ -40,6 +40,7 @@
           adoc-mode
           alt-codes
           annotate
+          ansi-colorful
           ansible
           ansible-doc
           apache-mode

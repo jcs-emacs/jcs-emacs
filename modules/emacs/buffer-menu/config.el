@@ -68,6 +68,7 @@
           "[*]CMake Temporary[*]"
           "[*]org-src-fontification"
           "[*]ASCII[*]"
+          "[*]e2ansi"
           "[*]npm:" "[*]hexo"
           "[*]Flutter"
           "[*]emp"

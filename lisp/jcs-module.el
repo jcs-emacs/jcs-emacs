@@ -39,6 +39,7 @@
     (flx                                   . "misc/flx")
     (google-translate                      . "misc/translator")
     (nov                                   . "reader/epub")
+    (logview                               . "reader/log")
     (esh-mode                              . "term/eshell")
     (shell                                 . "term/shell")
     (openai                                . "tools/ai")
