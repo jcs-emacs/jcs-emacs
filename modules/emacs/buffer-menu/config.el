@@ -62,7 +62,7 @@
           "[*]Free keys[*]"
           "[*]Test SHA[*]"
           "[*]RE-Builder"
-          "[*]define-it: tooltip[*]" "[*]preview-it" "[*]gh-md"
+          "[*]xref" "[*]define-it: tooltip[*]" "[*]preview-it" "[*]gh-md"
           "[*]wclock[*]"
           "[*]Clippy[*]"
           "[*]CMake Temporary[*]"
