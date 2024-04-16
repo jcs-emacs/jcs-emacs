@@ -245,8 +245,7 @@
   (setq recentf-excl-commands '( jcs-goto-definition
                                  jcs-goto-definition-other-window
                                  jcs-peek-definition
-                                 ediff-find-file
-                                 treemacs--persist)))
+                                 ediff-find-file)))
 
 ;;
 ;;; Revert
