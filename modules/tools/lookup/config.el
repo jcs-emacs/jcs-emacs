@@ -24,7 +24,8 @@
   (interactive)
   (cond
    ((and (jcs-lsp-connected-p)
-         (not (or (ignore-errors (lsp-goto-type-definition))
+         (not (or (ignore-errors (lsp-find-definition))
+                  (ignore-errors (lsp-goto-type-definition))
                   (ignore-errors (lsp-goto-implementation)))))
     t)
    ((derived-mode-p 'lisp-data-mode)
