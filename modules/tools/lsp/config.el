@@ -16,6 +16,11 @@
 
   (message-clean-mode-add-echo-commands
    '( lsp--message lsp--send-request-async lsp--apply-text-edits))
+
+  (nconc recentf-excl-commands '(lsp-find-references
+                                 lsp-find-declaration
+                                 lsp-find-implementation
+                                 lsp-find-type-definition))
   :config
   ;; Let's not block the loading process, so lsp packages don't hamper with
   ;; each another.
