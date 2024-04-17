@@ -8,7 +8,7 @@
         treemacs-follow-after-init t
         treemacs-no-png-images t)
 
-  (nconc recentf-excl-commands '(treemacs--persist))
+  (recentf-excl-add-commands '(treemacs--persist))
   :config
   (treemacs-follow-mode t)
   (treemacs-filewatch-mode t)
