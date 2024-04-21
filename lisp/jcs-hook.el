@@ -52,6 +52,8 @@
   (jcs-require '(dashboard on))
   (use-ttf-set-default-font)
   (jcs-setup-default-theme)
+  (unless noninteractive
+    (ignore-errors (split-window-horizontally)))
   (message nil))    ; mute at the very end!
 
 (jcs-add-hook 'on-init-ui-hook
