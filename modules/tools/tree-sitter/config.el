@@ -22,22 +22,23 @@
            (clone-dir (expand-file-name dirname))
            (clone-queries (expand-file-name "queries" clone-dir))
            (dest-queries (expand-file-name "queries" default-directory))
+           (ts-name (propertize "tree-sitter" 'face 'font-lock-type-face))
            lang-dirs)
       (ignore-errors (delete-directory (expand-file-name dirname default-directory) t))
-      (when (= 0 (shell-command (format "git clone %s" repo-url)))
+      (when (zerop (shell-command (format "git clone %s" repo-url)))
         (setq lang-dirs (directory-files clone-queries))
         (pop lang-dirs) (pop lang-dirs)  ; remove . and ..
-        (message "Installing custom tree-sitter query...")
+        (message "Installing custom `%s` query..." ts-name)
         (dolist (lang-dir lang-dirs)
           (message "  - %s" lang-dir)
           (ignore-errors
-            (delete-directory (expand-file-name lang-dir clone-queries)))
+            (delete-directory (expand-file-name lang-dir dest-queries) t))
           (ignore-errors
             (copy-directory (expand-file-name lang-dir clone-queries)
                             (expand-file-name lang-dir dest-queries)
                             nil nil t)))
         (delete-directory clone-dir t)
-        (message "Done install custom tree-sitter queries"))))
+        (message "Done install custom `%s` queries" ts-name))))
 
   (defun jcs--tree-sitter-hl-mode-hook ()
     "Hook for `tree-sitter-hl-mode'."
