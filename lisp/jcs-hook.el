@@ -92,7 +92,7 @@
   (transient-mark-mode t)
   (vs-revbuf-mode 1)
   (which-key-mode 1)
-  (jcs-module-load '("emacs/buffer-menu" "tools/lookup")))
+  (jcs-module-load jcs-module-preload))
 
 (jcs-add-hook 'on-first-file-hook
   (auto-read-only-mode 1)

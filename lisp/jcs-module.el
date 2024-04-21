@@ -6,6 +6,10 @@
 ;; (@* "Module" )
 ;;
 
+(defconst jcs-module-preload '("emacs/buffer-menu"
+                               "tools/debugger" "tools/lookup")
+  "A list of preload modules.")
+
 (defconst jcs-module-load-alist
   '((keypression                           . "app/keypression")
     (elfeed                                . "app/rss")
@@ -45,7 +49,7 @@
     (openai                                . "tools/ai")
     (autoconf-mode                         . "tools/autoconf")
     (csv-mode                              . "tools/csv")
-    (dap-mode                              . "tools/debugger")
+    ((edebug dap-mode)                     . "tools/debugger")
     (dockerfile-mode                       . "tools/dockerfile")
     (editorconfig                          . "tools/editorconfig")
     ((easky execrun quickrun)              . "tools/eval")
