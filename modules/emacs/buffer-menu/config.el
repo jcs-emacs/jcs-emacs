@@ -73,7 +73,8 @@
           "[*]Flutter"
           "[*]emp"
           "[*]snow[*]")
-        diminish-buffer-mode-list '("completion-list-mode"
+        diminish-buffer-mode-list '("buffer-menu-mode"
+                                    "completion-list-mode"
                                     "compilation-mode" "comint-mode"
                                     "dired-mode"
                                     "help-mode" "custom-mode"
@@ -105,6 +106,36 @@
 ;; (@* "Core" )
 ;;
 
+(defun jcs-buffer-menu ()
+  "Enter buffer menu."
+  (interactive)
+  (if (get-buffer-window diminish-buffer-menu-name)
+      (switch-to-buffer diminish-buffer-menu-name)
+    (buffer-menu)))
+
+(defun jcs-buffer-menu-other-window ()
+  "Enter buffer menu other window."
+  (interactive)
+  (if (get-buffer-window diminish-buffer-menu-name)
+      (switch-to-buffer-other-window diminish-buffer-menu-name)
+    (buffer-menu-other-window)))
+
+(defun jcs-buffer-menu-project ()
+  "Enter buffer menu for project."
+  (interactive)
+  (if-let* ((buf-name (buffer-menu-project-buffer-name))
+            ((get-buffer-window buf-name)))
+      (switch-to-buffer buf-name)
+    (buffer-menu-project)))
+
+(defun jcs-buffer-menu-project-other-window ()
+  "Enter buffer menu for project other window."
+  (interactive)
+  (if-let* ((buf-name (buffer-menu-project-buffer-name))
+            ((get-buffer-window buf-name)))
+      (switch-to-buffer-other-window buf-name)
+    (buffer-menu-project-other-window)))
+
 (defun jcs-buffer-menu-p ()
   "Check if current major mode `buffer-menu'."
   (eq major-mode 'Buffer-menu-mode))
@@ -112,4 +143,5 @@
 (defun jcs-buffer-menu-refresh-buffer ()
   "Update buffer menu buffer."
   (interactive)
-  (jcs-when-buffer-window diminish-buffer-menu-name (msgu-silent (buffer-menu))))
+  (jcs-when-buffer-window diminish-buffer-menu-name
+    (msgu-silent (buffer-menu-filter-refresh-preserve))))
