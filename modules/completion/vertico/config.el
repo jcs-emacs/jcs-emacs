@@ -32,12 +32,12 @@
   (use-package nerd-icons-completion
     :hook (vertico-mode . nerd-icons-completion-mode)))
 
+(use-package mbs
+  :hook (vertico-mode . mbs-mode))
+
 ;;
 ;; (@* "Util" )
 ;;
-
-(defconst jcs-ffap-commands '(ffap ffap-other-window)
-  "List of ffap commands.")
 
 (defun jcs-vertico--index (candidate)
   "Return candidate's index."
@@ -72,6 +72,10 @@
   "Move to PATH."
   (delete-minibuffer-contents) (insert path))
 
+(defun jcs-vertico--reading-file-name-p ()
+  "Return non-nil when reading file name."
+  (and vertico-mode (mbs-reading-file-name-p)))
+
 ;;
 ;; (@* "Functions" )
 ;;
@@ -85,7 +89,7 @@
   "Vertico colon key."
   (interactive)
   (insert ":")
-  (when (mbs-finding-file-p)
+  (when (mbs-reading-file-name-p)
     (jcs-vertico-find-files-:)))
 
 (defun jcs-vertico-find-files-: ()
@@ -99,7 +103,7 @@
   "Vertico slash key."
   (interactive)
   (insert "/")
-  (when (mbs-finding-file-p)
+  (when (mbs-reading-file-name-p)
     (jcs-vertico-find-files-/)))
 
 (defun jcs-vertico-find-files-/ ()
@@ -127,10 +131,10 @@
            (jcs-vertico--cd root)))))
 
 (jcs-advice-add 'vertico-directory-delete-char :override
-  (let ((content (minibuffer-contents)))
+  (mbs-with-minibuffer-env
     (cond ((and (eq (char-before) ?/) (vertico-directory-up 1))  ; preselect after up directory
-           (jcs-vertico--goto-cand (concat (file-name-nondirectory (directory-file-name content)) "/")))
-          ((and (mbs-finding-file-p) (f-root-p content))  ; limit to root dir
+           (jcs-vertico--goto-cand (concat (file-name-nondirectory (directory-file-name contents)) "/")))
+          ((and (mbs-reading-file-name-p) (f-root-p contents))  ; limit to root dir
            (jcs-vertico--cd (f-root)) (vertico-first))
           (t (call-interactively #'backward-delete-char)))))
 
@@ -148,13 +152,7 @@
 
 (defun jcs-vertico--post-command ()
   "Post command for vertico."
-  (when (and vertico-mode (mbs-finding-file-p))
-    (when (memq this-command jcs-ffap-commands)
-      (let* ((start (point)) (end (line-end-position))
-             (file (buffer-substring-no-properties start end)))
-        (unless (string-empty-p file)
-          (delete-region start end)
-          (jcs-vertico--goto-cand file))))
+  (when (jcs-vertico--reading-file-name-p)
     (when (and (save-excursion (search-backward "~//" nil t))
                (not (jcs-current-char-equal-p "/")))
       (save-excursion
@@ -165,14 +163,22 @@
                    (string-empty-p (minibuffer-contents))))
       ;; Select first candidate (highest score) immediately after sorting!
       (jcs-vertico--goto 0)
-      (setq vertico-flx--sorting nil))))  ; cancel it afterward
+      (setq vertico-flx--sorting nil))))
 
 (jcs-advice-add 'vertico--setup :before
-  (add-hook 'post-command-hook #'jcs-vertico--post-command nil 'local))
+  (add-hook 'post-command-hook #'jcs-vertico--post-command 95 'local))
 
-(jcs-add-hook 'minibuffer-setup-hook
+(defun jcs-minibuffer-setup-hook (&rest _)
+  "Setup minibuffer hook."
   ;; Preselect file, on startup
-  (when (and vertico-mode (memq this-command jcs-ffap-commands))
+  (when (jcs-vertico--reading-file-name-p)
+    ;; We already have preselect functionality; therefore, we don't need to
+    ;; the candidate to be shown in the input field.
+    (when-let* ((start (point)) (end (line-end-position))
+                (file (buffer-substring-no-properties start end))
+                ((not (string-empty-p file))))
+      (delete-region start end)       ; Delete the input field
+      (jcs-vertico--goto-cand file))  ; Then preselect
     (let (bfn path)
       (with-selected-window (minibuffer-selected-window)  ; collect data
         (setq bfn (buffer-file-name)
@@ -186,13 +192,15 @@
        ;; Preselect file
        (bfn (jcs-vertico--goto-cand (file-name-nondirectory bfn)))))))
 
+(add-hook 'minibuffer-setup-hook #'jcs-minibuffer-setup-hook 95)
+
 ;;
 ;; (@* "Minibuffer" )
 ;;
 
 (jcs-add-hook 'minibuffer-setup-hook
   (jcs-reload-active-mode)
-  (add-hook 'post-command-hook #'jcs-minibuffer--post-command nil t))
+  (add-hook 'post-command-hook #'jcs-minibuffer--post-command 95 t))
 
 (jcs-add-hook 'minibuffer-exit-hook
   (jcs-dashboard-refresh-buffer))
