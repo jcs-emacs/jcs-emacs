@@ -28,7 +28,7 @@
       (when (zerop (shell-command (format "git clone %s" repo-url)))
         (setq lang-dirs (directory-files clone-queries))
         (pop lang-dirs) (pop lang-dirs)  ; remove . and ..
-        (message "Installing custom `%s` query..." ts-name)
+        (message "[INFO] Installing custom `%s` query..." ts-name)
         (dolist (lang-dir lang-dirs)
           (message "  - %s" lang-dir)
           (ignore-errors
@@ -38,7 +38,7 @@
                             (expand-file-name lang-dir dest-queries)
                             nil nil t)))
         (delete-directory clone-dir t)
-        (message "Done install custom `%s` queries" ts-name))))
+        (message "[INFO] Done install custom `%s` queries" ts-name))))
 
   (defun jcs--tree-sitter-hl-mode-hook ()
     "Hook for `tree-sitter-hl-mode'."
