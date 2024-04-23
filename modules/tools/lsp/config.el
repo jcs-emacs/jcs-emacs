@@ -57,3 +57,7 @@
   :config
   (setq lsp-ui-doc-border (face-foreground 'font-lock-comment-face))
   (lsp-ui-sideline-set-default-icon))
+
+(jcs-add-hook 'lsp-ui-doc-frame-mode-hook
+  (scroll-bar-mode 1)
+  (fill-page-mode 1))
