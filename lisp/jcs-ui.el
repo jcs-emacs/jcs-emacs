@@ -186,6 +186,7 @@
 ;;; Window
 
 (push '(fullscreen . maximized) default-frame-alist)  ; full screen
+(unless noninteractive (ignore-errors (split-window-horizontally)))
 
 (setq window-divider-default-places t
       window-divider-default-bottom-width 1
