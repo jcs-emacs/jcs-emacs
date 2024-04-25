@@ -1,6 +1,7 @@
 ;;; tools/magit/config.el  -*- lexical-binding: t; -*-
 
 (use-package magit
+  :hook (magit-post-refresh . jcs-diff-hl-update)
   :init
   (setq magit-auto-revert-mode nil  ; we do this ourselves further down
         magit-diff-refine-hunk t    ; show granular diffs in selected hunk
