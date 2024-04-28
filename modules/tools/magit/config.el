@@ -1,5 +1,7 @@
 ;;; tools/magit/config.el  -*- lexical-binding: t; -*-
 
+(require 'diff-hl)
+
 (use-package magit
   :hook (magit-post-refresh . jcs-diff-hl-update)
   :init
