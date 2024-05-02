@@ -1,6 +1,6 @@
 ;;; editor/docstring/config.el  -*- lexical-binding: t; -*-
 
-(use-package highlight-doxygen-mode
+(use-package highlight-doxygen
   :hook (ts-docstr-mode . highlight-doxygen-mode))
 
 (use-package ts-docstr
