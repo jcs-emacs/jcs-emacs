@@ -14,7 +14,8 @@
 ;;
 
 (jcs-add-hook 'sql-mode-hook
-  (jcs-elec-pair-add '((?\` . ?\`)))
+  (jcs-elec-pair-add '((?\' . ?\')
+                       (?\` . ?\`)))
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]sql")
