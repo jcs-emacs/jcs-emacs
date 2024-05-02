@@ -7,13 +7,17 @@
   (setq sideline-delay 0.2
         sideline-backends-left '((sideline-load-cost . up)
                                  (sideline-color     . up))
-        sideline-backends-right '((sideline-lsp      . up)
+        sideline-backends-right `(,(unless elenv-windows '(sideline-blame . up))
+                                  (sideline-lsp      . up)
                                   (sideline-eglot    . up)
                                   (sideline-flycheck . down)
                                   (sideline-flymake  . down)
                                   (chatgpt-sideline  . up))
         sideline-display-backend-name t
-        sideline-display-backend-type 'inner))
+        sideline-display-backend-type 'inner)
+  :config
+  ;; Clean up `nil' value.
+  (setq sideline-backends-right (cl-remove-if #'null sideline-backends-right)))
 
 (use-package sideline-flycheck
   :hook (flycheck-mode . sideline-flycheck-setup)
@@ -31,3 +35,7 @@
 (use-package sideline-eglot
   :init
   (setq sideline-eglot-code-actions-prefix ""))
+
+(use-package sideline-blame
+  :init
+  (setq sideline-blame-commit-format "• %s"))
