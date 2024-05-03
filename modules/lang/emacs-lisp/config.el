@@ -18,8 +18,6 @@
 ;;
 
 (jcs-add-hook 'emacs-lisp-mode-hook
-  (modify-syntax-entry ?_ "w")  ; Treat underscore as word.
-
   (jcs-insert-header-if-valid '("[.]el")
                               (if (equal (buffer-name) dir-locals-file)
                                   'jcs-insert-emacs-lisp-dir-locals-template
@@ -33,7 +31,6 @@
   (setq truncate-lines t))
 
 (jcs-add-hook 'lisp-mode-hook
-  (modify-syntax-entry ?_ "w")  ; Treat underscore as word.
   (jcs-insert-header-if-valid '("[.]lisp")
                               'jcs-insert-lisp-template))
 

@@ -112,7 +112,6 @@
 
 (jcs-add-hook '( asm-mode-hook
                  fasm-mode-hook masm-mode-hook nasm-mode-hook)
-  (modify-syntax-entry ?_ "w")
   (jcs-asm-mode--init)
   (jcs-key-local
     `(((kbd ";") . jcs-asm-comment))))

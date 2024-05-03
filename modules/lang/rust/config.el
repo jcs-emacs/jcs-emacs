@@ -12,7 +12,6 @@
 ;;
 
 (jcs-add-hook 'rust-mode-hook
-  (modify-syntax-entry ?_ "w")
   (modify-syntax-entry ?! "w")
 
   (jcs-elec-pair-add '((?\' . ?\')))

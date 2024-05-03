@@ -12,8 +12,6 @@
 ;;
 
 (jcs-add-hook 'opascal-mode-hook
-  (modify-syntax-entry ?_ "w")  ; Treat underscore as word
-
   ;; File Header
   (jcs-insert-header-if-valid '("[.]dpk"
                                 "[.]dpr")

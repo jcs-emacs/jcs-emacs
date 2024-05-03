@@ -12,8 +12,6 @@
 ;;
 
 (jcs-add-hook 'swift-mode-hook
-  (modify-syntax-entry ?_ "w")  ; Treat underscore as word
-
   (company-fuzzy-backend-add-before 'company-sourcekit 'company-dabbrev)
 
   ;; File Header

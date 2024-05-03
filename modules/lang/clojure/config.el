@@ -12,8 +12,6 @@
 ;;
 
 (jcs-add-hook 'clojure-mode-hook
-  (modify-syntax-entry ?_ "w")  ; Treat underscore as word
-
   ;; File Header
   (jcs-insert-header-if-valid '("[.]clj")
                               'jcs-insert-clojure-template))

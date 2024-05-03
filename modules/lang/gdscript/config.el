@@ -12,8 +12,6 @@
 ;;
 
 (jcs-add-hook 'gdscript-mode-hook
-  (modify-syntax-entry ?_ "w")  ; Treat underscore as word
-
   ;; File Header
   (jcs-insert-header-if-valid '("[.]gd")
                               'jcs-insert-gdscript-template))

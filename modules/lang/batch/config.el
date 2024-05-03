@@ -14,8 +14,6 @@
 (jcs-add-hook 'bat-mode-hook
   (setq comment-start "::")
 
-  (modify-syntax-entry ?_ "w")
-
   (company-fuzzy-backend-add-before 'company-cmd 'company-dabbrev)
 
   ;; File Header

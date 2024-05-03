@@ -24,8 +24,6 @@
 ;;
 
 (jcs-add-hook 'js-mode-hook
-  (modify-syntax-entry ?_ "w")  ; Treat underscore as word
-
   (auto-rename-tag-mode 1)
   (impatient-mode t)
 

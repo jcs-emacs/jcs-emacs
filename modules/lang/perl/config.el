@@ -12,8 +12,6 @@
 ;;
 
 (jcs-add-hook 'perl-mode-hook
-  (modify-syntax-entry ?_ "w")
-
   (company-fuzzy-backend-add-before 'company-plsense 'company-dabbrev)
 
   ;; File Header

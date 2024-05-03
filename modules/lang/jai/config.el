@@ -12,8 +12,6 @@
 ;;
 
 (jcs-add-hook 'jai-mode-hook
-  (modify-syntax-entry ?_ "w")  ; Treat underscore as word
-
   ;; File Header
   (jcs-insert-header-if-valid '("[.]jai")
                               'jcs-insert-jai-template))

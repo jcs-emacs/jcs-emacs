@@ -39,7 +39,6 @@
 ;;
 
 (jcs-add-hook 'shader-mode-hook
-  (modify-syntax-entry ?_ "w")
   (modify-syntax-entry ?# "w")
 
   (jcs-use-cc-mutliline-comment)
@@ -50,7 +49,6 @@
                               :interactive t))
 
 (jcs-add-hook 'glsl-mode-hook
-  (modify-syntax-entry ?_ "w")
   (modify-syntax-entry ?# "w")
 
   (company-fuzzy-backend-add-before 'company-glsl 'company-dabbrev)
@@ -60,7 +58,6 @@
                               'jcs-insert-glsl-template))
 
 (jcs-add-hook 'hlsl-mode-hook
-  (modify-syntax-entry ?_ "w")
   (modify-syntax-entry ?# "w")
 
   ;; File Header

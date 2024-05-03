@@ -158,9 +158,7 @@ preceded by the opening brace or a comma (disregarding whitespace in between)."
   (c-set-offset 'member-init-intro '++)
 
   ;; No hungry backspace
-  (c-toggle-auto-hungry-state -1)
-
-  (modify-syntax-entry ?_ "w"))
+  (c-toggle-auto-hungry-state -1))
 
 ;;
 ;; (@* "Extensions" )

@@ -14,8 +14,6 @@
 ;;
 
 (jcs-add-hook 'cython-mode-hook
-  (modify-syntax-entry ?_ "w")  ; Treat underscore as word
-
   ;; File Header
   (jcs-insert-header-if-valid '("[.]pxd")
                               'jcs-insert-cython-template))

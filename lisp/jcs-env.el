@@ -283,6 +283,10 @@
       truncate-partial-width-windows nil)
 
 ;;
+;;; Syntax
+(modify-syntax-entry ?_ "w" (standard-syntax-table))
+
+;;
 ;;; Tab / Space
 (setq-default indent-tabs-mode nil  ; Disable inset tabs, insert space only
               tab-width 4)

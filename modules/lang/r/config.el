@@ -14,8 +14,6 @@
 ;;
 
 (jcs-add-hook 'ess-r-mode-hook
-  (modify-syntax-entry ?_ "w")
-
   ;; File Header
   (jcs-insert-header-if-valid '("[.]r")
                               'jcs-insert-r-template))

@@ -52,8 +52,6 @@
 ;;
 
 (jcs-add-hook '( sh-mode-hook fish-mode-hook envrc-mode-hook)
-  (modify-syntax-entry ?_ "w")
-
   (company-fuzzy-backend-add-before 'company-shell 'company-dabbrev)
 
   (add-hook 'before-save-hook #'jcs-sh--before-save nil t)

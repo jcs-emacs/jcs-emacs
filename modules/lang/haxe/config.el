@@ -14,8 +14,6 @@
 (jcs-add-hook 'haxe-mode-hook
   (run-hooks 'prog-mode-hook)
 
-  (modify-syntax-entry ?_ "w")
-
   ;; File Header
   (jcs-insert-header-if-valid '("[.]hx")
                               'jcs-insert-haxe-template)

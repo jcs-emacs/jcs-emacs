@@ -14,8 +14,6 @@
 (jcs-add-hook 'lua-mode-hook
   (jcs-elec-pair-add '((?\[ . ?\])))
 
-  (modify-syntax-entry ?_ "w")  ; Treat underscore as word
-
   (company-fuzzy-backend-add-before 'company-lua 'company-dabbrev)
 
   ;; File Header

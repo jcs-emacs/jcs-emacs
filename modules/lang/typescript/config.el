@@ -34,8 +34,6 @@
 ;;
 
 (jcs-add-hook 'typescript-mode-hook
-  (modify-syntax-entry ?_ "w")  ; Treat underscore as word
-
   (add-hook 'ts-docstr-after-insert-hook 'jcs-typescript--ts-docstr-after nil t)
 
   ;; File Header

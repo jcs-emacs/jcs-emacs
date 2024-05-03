@@ -36,8 +36,6 @@
 (add-hook 'csharp-mode-hook #'vs-electric-spacing-mode)
 
 (jcs-add-hook 'csharp-mode-hook
-  (modify-syntax-entry ?_ "w")
-
   ;; File Header
   (jcs-insert-header-if-valid '("[.]cs")
                               'jcs-csharp-ask-source

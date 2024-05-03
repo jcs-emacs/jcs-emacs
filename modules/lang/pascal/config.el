@@ -12,8 +12,6 @@
 ;;
 
 (jcs-add-hook 'pascal-mode-hook
-  (modify-syntax-entry ?_ "w")  ; Treat underscore as word
-
   ;; File Header
   (jcs-insert-header-if-valid '("[.]pas")
                               'jcs-insert-pascal-template))

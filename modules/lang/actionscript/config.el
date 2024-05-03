@@ -18,8 +18,6 @@
 
   (jcs-use-cc-mutliline-comment)
 
-  (modify-syntax-entry ?_ "w")
-
   ;; File Header
   (jcs-insert-header-if-valid '("[.]as")
                               'jcs-insert-actionscript-template)
