@@ -36,6 +36,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * feat: feat: Replace package `doxygen-asterisk` with `auto-close-block` (2d56f447ac48f89654fbd93872a32b83f8e40b3c)
 * fix(vc-gutter): Ensure `diff-hl` is updated in all valid buffers (53802208c3251cf0f7bd2a0043f34c133a21ee1a)
 * feat(rgb): Replace `rainbow-mode` with `colorful-mode` (695358cbb6475c54aba711615d6f7db61fc9c3fc)
+* feat(tools): Configure `sqlite-mode` (73dc3b0adea778ba5c933cb0c203ec3e82bd6979)
 
 ## 9.0.1
 > Released Sep 20, 2023
