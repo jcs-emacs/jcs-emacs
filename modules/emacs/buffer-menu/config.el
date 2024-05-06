@@ -79,7 +79,8 @@
                                     "dired-mode"
                                     "help-mode" "custom-mode"
                                     "list-environment-mode"
-                                    "shell-mode" "eshell-mode")))
+                                    "shell-mode" "eshell-mode"
+                                    "sqlite-mode")))
 
 ;;
 ;; (@* "Hook" )
