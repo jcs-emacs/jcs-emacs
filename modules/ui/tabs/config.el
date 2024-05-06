@@ -4,9 +4,10 @@
   :init
   (setq centaur-tabs-cycle-scope 'tabs
         centaur-tabs-style "wave"
+        centaur-tabs-set-bar 'under
         centaur-tabs-set-icons t
+        centaur-tabs-icon-type 'nerd-icons
         centaur-tabs-set-modified-marker t
-        centaur-tabs-modified-marker "*"
         centaur-tabs-hide-tab-function (lambda (x &rest _)
                                          (or (centaur-tabs-hide-tab x)
                                              (and (not (memql x `(,(get-buffer buffer-menu-filter-name))))
