@@ -59,6 +59,7 @@
     (magit                                 . "tools/magit")
     (prettier                              . "tools/prettier")
     (colorful-mode                         . "tools/rgb")
+    (sqlite-mode                           . "tools/sqlite")
     (terraform-mode                        . "tools/terraform")
     (tree-sitter                           . "tools/tree-sitter")
     (dashboard                             . "ui/dashboard")
