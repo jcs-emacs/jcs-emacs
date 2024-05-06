@@ -9,6 +9,6 @@
         centaur-tabs-modified-marker "*"
         centaur-tabs-hide-tab-function (lambda (x &rest _)
                                          (or (centaur-tabs-hide-tab x)
-                                             (and (memq major-mode '(buffer-menu-mode))
+                                             (and (not (memql x `(,(get-buffer buffer-menu-filter-name))))
                                                   diminish-buffer-mode
                                                   (diminish-buffer--filter x))))))
