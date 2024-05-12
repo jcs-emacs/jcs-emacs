@@ -52,6 +52,7 @@
   (jcs-require '(dashboard on))
   (use-ttf-set-default-font)
   (jcs-setup-default-theme)
+  (unless noninteractive (ignore-errors (split-window-horizontally)))
   (message nil))    ; mute at the very end!
 
 (jcs-add-hook 'on-init-ui-hook
@@ -157,14 +158,16 @@
 ;; (@* "Daemon" )
 ;;
 
-(jcs-add-hook 'server-after-make-frame-hook
-  (load-library "elenv")
-  (run-hooks 'after-init-hook)
-  (run-hooks 'on-init-ui-hook)
-  (run-hooks 'on-first-input-hook)
-  (run-hooks 'on-first-file-hook)
-  (run-hooks 'on-first-project-hook)
-  (jcs-run-after-load-theme-hook))
+(when elenv-daemon-p
+  (jcs-add-hook 'server-after-make-frame-hook
+    (load-library "elenv")
+    (run-hooks 'after-init-hook)
+    (run-hooks 'on-init-ui-hook)
+    (run-hooks 'on-first-input-hook)
+    (run-hooks 'on-first-file-hook)
+    (run-hooks 'on-first-project-hook)
+    (jcs-dashboard)
+    (jcs-run-after-load-theme-hook)))
 
 ;;
 ;; (@* "Quitting" )
