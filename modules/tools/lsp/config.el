@@ -7,6 +7,7 @@
         ;; Disable features that have great potential to be slow.
         lsp-enable-folding nil
         lsp-enable-text-document-color nil
+        lsp-enable-symbol-highlighting nil
         ;; Reduce unexpected modifications to code
         lsp-enable-on-type-formatting nil
         ;; Make breadcrumbs opt-in; they're redundant with the modeline and imenu
