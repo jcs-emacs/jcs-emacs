@@ -93,6 +93,11 @@ execution."
   "Return non-nil if MODULE has been loaded."
   (member (jcs-module--path module) jcs-module-history))
 
+(defun jcs-module-reload-all ()
+  "Reload all modules."
+  (dolist (module jcs-module-history)
+    (load module t t)))
+
 (defun jcs-module-load (modules &optional force)
   "Load MODULES.
 
