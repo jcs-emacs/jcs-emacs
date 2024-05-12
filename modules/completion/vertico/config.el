@@ -32,6 +32,9 @@
   (use-package nerd-icons-completion
     :hook (vertico-mode . nerd-icons-completion-mode)))
 
+(use-package mbs
+  :hook (vertico-mode . mbs-mode))
+
 ;;
 ;; (@* "Util" )
 ;;
