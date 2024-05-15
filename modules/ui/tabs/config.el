@@ -12,4 +12,8 @@
                                          (or (centaur-tabs-hide-tab x)
                                              (and (not (memql x `(,(get-buffer buffer-menu-filter-name))))
                                                   diminish-buffer-mode
-                                                  (diminish-buffer--filter x))))))
+                                                  (diminish-buffer--filter x))))
+        centaur-tabs-show-navigation-buttons t
+        centaur-tabs-down-tab-text " ▾ "
+        centaur-tabs-backward-tab-text "⏴"
+        centaur-tabs-forward-tab-text "⏵"))
