@@ -25,6 +25,15 @@ Note this is opposite logic to the toggle mode function."
        (t (jcs-modeline-gray))))))
 
 ;;
+;; (@* "Tab line" )
+;;
+
+(defun jcs-tab-line-active ()
+  "Weather to enable/disable the `centaur-tabs'."
+  (jcs-enable-disable-mode-if #'centaur-tabs-mode
+                              (not (zerop (jcs-valid-buffers-count)))))
+
+;;
 ;; (@* "Modeline" )
 ;;
 

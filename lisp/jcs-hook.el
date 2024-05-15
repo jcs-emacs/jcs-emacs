@@ -114,7 +114,8 @@
 
 (jcs-add-hook 'post-command-hook
   (jcs-funcall-fboundp #'jcs--er/resolve-region)
-  (jcs-reload-active-mode))
+  (jcs-reload-active-mode)
+  (jcs-tab-line-active))
 
 ;;
 ;; (@* "Modes" )
