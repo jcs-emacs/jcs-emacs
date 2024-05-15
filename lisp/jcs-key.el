@@ -257,7 +257,7 @@
 ;;; Show Hover
     ((kbd "C-k C-i") . jcs-poptip)
 
-    ((kbd "C-k k") . lsp-ui-doc-focus-frame)
+    ((kbd "C-k k") . jcs-poptip-focus)
 
 ;;; Startup Screen (Dashboard)
     ((kbd "M-d") . jcs-dashboard)
