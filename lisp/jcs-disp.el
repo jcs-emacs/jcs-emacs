@@ -28,10 +28,15 @@ Note this is opposite logic to the toggle mode function."
 ;; (@* "Tab line" )
 ;;
 
+(defvar jcs-tab-line--enabled-p nil
+  "Record if tab-line is already enabled.")
+
 (defun jcs-tab-line-active ()
   "Weather to enable/disable the `centaur-tabs'."
-  (jcs-enable-disable-mode-if #'centaur-tabs-mode
-                              (not (zerop (jcs-valid-buffers-count)))))
+  (let* ((ans (not (zerop (jcs-valid-buffers-count)))))
+    (unless (equal jcs-tab-line--enabled-p ans)
+      (jcs-enable-disable-mode-if #'centaur-tabs-mode ans)
+      (setq jcs-tab-line--enabled-p ans))))
 
 ;;
 ;; (@* "Modeline" )
