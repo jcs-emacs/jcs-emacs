@@ -396,6 +396,7 @@ Here is the list of key bindings that are defined in this configuration.
 * <kbd>Alt</kbd>+<kbd>f6</kbd> - Restart Emacs.
 * <kbd>Ctrl</kbd>+<kbd>k</kbd>,<kbd>Ctrl</kbd>+<kbd>s</kbd> - Describe key bindings with the current `major-mode`.
 * <kbd>Ctrl</kbd>+<kbd>k</kbd>,<kbd>Ctrl</kbd>+<kbd>i</kbd> - Describe the current symbol.
+* <kbd>Ctrl</kbd>+<kbd>q</kbd> - Focus/Unfocus described frame.
 * <kbd>Ctrl</kbd>+<kbd>t</kbd> - Toggle `tabbar-mode`.
 * <kbd>Alt</kbd>+<kbd>z</kbd> - Toggle `truncate-lines`.
 * <kbd>Ctrl</kbd>+<kbd>r</kbd>, <kbd>o</kbd> - Read-Only mode toggle.
