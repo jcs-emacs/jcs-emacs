@@ -31,5 +31,8 @@
   (setq pos-tip-internal-border-width 5))
 
 (use-package jcs-poptip
+  :bind ( :map jcs-poptip-frame-mode-map
+          ([?q]  . jcs-poptip-unfocus)
+          ("C-q" . jcs-poptip-unfocus))
   :init
   (setq jcs-poptip-text-scale-level -2))

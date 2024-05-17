@@ -36,7 +36,8 @@
 
 (use-package lsp-ui
   :bind ( :map lsp-ui-doc-frame-mode-map
-          ([?q] . jcs-poptip-unfocus))
+          ([?q]  . jcs-poptip-unfocus)
+          ("C-q" . jcs-poptip-unfocus))
   :init
   (setq lsp-ui-doc-enable t
         lsp-ui-doc-text-scale-level -1

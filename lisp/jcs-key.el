@@ -9,6 +9,7 @@
     ((kbd "C-e"))
     ((kbd "C-k"))
     ((kbd "C-p"))
+    ((kbd "C-q"))
     ((kbd "C-r"))
     ((kbd "C-w"))
     ((kbd "C-x w"))
@@ -257,7 +258,7 @@
 ;;; Show Hover
     ((kbd "C-k C-i") . jcs-poptip)
 
-    ((kbd "C-k k") . jcs-poptip-focus)
+    ((kbd "C-q") . jcs-poptip-focus)
 
 ;;; Startup Screen (Dashboard)
     ((kbd "M-d") . jcs-dashboard)
