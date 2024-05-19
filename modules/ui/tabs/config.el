@@ -16,4 +16,6 @@
         centaur-tabs-show-navigation-buttons t
         centaur-tabs-down-tab-text " ▾ "
         centaur-tabs-backward-tab-text "⏴"
-        centaur-tabs-forward-tab-text "⏵"))
+        centaur-tabs-forward-tab-text "⏵")
+  :config
+  (advice-add 'centaur-tabs-buffer-track-killed :override #'ignore))

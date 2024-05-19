@@ -354,11 +354,7 @@ in multiple windows.")
   "Kill this buffer."
   (interactive)
   (jcs-lsp-maybe-shutdown)
-  ;; XXX: `centaur-tabs' will try to change the buffer in the function
-  ;; `centaur-tabs-buffer-track-killed'; add this line to maintain the buffer.
-  (progn
-    (kill-this-buffer)
-    (switch-to-buffer (current-buffer)))
+  (kill-this-buffer)
   (jcs-project--track-open-projects)
   ;; If still in the buffer menu, try switch to the previous buffer.
   (when (jcs-buffer-menu-p) (switch-to-prev-buffer)))
