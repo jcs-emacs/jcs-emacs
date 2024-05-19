@@ -40,7 +40,7 @@
           "[*]rust-analyzer[*:]"
           "[*]zig-"
           "[*]Coursier log[*]"
-          "[*]tcp-server-sonarlint"
+          "[*]tcp-server-"
           "[*]Python" "[*]pyright[*]"
           "[*]tree-sitter" "tree-sitter-tree:"
           "[*]company"
