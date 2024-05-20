@@ -19,3 +19,10 @@
   ;; File Header
   (jcs-insert-header-if-valid '("[.]rs")
                               'jcs-insert-rust-template))
+
+;;
+;; (@* "Extensions" )
+;;
+
+(setq lsp-rust-analyzer-display-chaining-hints t
+      lsp-rust-analyzer-closing-brace-hints t)
