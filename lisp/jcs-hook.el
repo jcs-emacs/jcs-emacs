@@ -52,7 +52,6 @@
   (jcs-require '(dashboard on))
   (use-ttf-set-default-font)
   (jcs-setup-default-theme)
-  (unless noninteractive (ignore-errors (split-window-horizontally)))
   (message nil))    ; mute at the very end!
 
 (jcs-add-hook 'on-init-ui-hook
@@ -68,6 +67,7 @@
   (vertico-mode 1)
   (window-divider-mode 1)
   (jcs-require '(jcs-edit))
+  (unless noninteractive (ignore-errors (split-window-horizontally)))
   (message nil))    ; mute at the very end!
 
 (jcs-add-hook 'on-first-input-hook
