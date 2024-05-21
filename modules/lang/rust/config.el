@@ -25,4 +25,5 @@
 ;;
 
 (setq lsp-rust-analyzer-display-chaining-hints t
+      lsp-rust-analyzer-display-parameter-hints t
       lsp-rust-analyzer-closing-brace-hints t)
