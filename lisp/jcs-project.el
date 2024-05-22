@@ -66,7 +66,10 @@ If UNIQUIFY is non-nil, refresh the cache once."
   "Remeber the project from DIR.
 
 If optional argument DIR is nil, use variable `default-directory' instead."
-  (ignore-errors (project-remember-project (project--find-in-directory (or dir default-directory)))))
+  (when recentf-excl-tracking-p
+    (ignore-errors
+      (project-remember-project
+       (project--find-in-directory (or dir default-directory))))))
 
 (defun jcs-project-find-file-other-window ()
   "Find files in project on other window."
