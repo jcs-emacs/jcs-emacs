@@ -158,7 +158,9 @@
   (jcs-key emmet-mode-keymap
     `(((kbd "C-<return>") . jcs-emmet-expand-line))))
 
-(jcs-add-hook 'html-mode-hook
+(jcs-add-hook 'sgml-mode-hook
+  (emmet-mode 1)
+
   (jcs-key-local
     `(((kbd "<up>")   . vs-edit-previous-line)
       ((kbd "<down>") . vs-edit-next-line))))
