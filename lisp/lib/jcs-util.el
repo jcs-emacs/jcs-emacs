@@ -384,18 +384,18 @@ Notice PATH can either be `buffer-name' or `buffer-file-name'."
         ((listp c) (member (jcs-before-char-string) c))))
 
 (defun jcs-before-char-string ()
-  "Get the current character as the `string'."
+  "Return the character before cursor as a string."
   (if (char-before) (string (char-before)) ""))
 
 (defun jcs-first-backward-char-in-line-p (ch)
-  "Check the first character on the left is CH or not, with current line as boundary."
+  "Return t if the CH is the first character on the left in line."
   (save-excursion
     (when (re-search-backward "[^[:space:]]" (line-beginning-position) t)
       (forward-char 1)
       (string= (jcs-before-char-string) ch))))
 
 (defun jcs-first-forward-char-in-line-p (ch)
-  "Check the first character on the right is CH or not with current line as boundary."
+  "Return t if the CH is the first character on the right in line."
   (save-excursion
     (when (re-search-forward "[[:space:]]*" (line-end-position) t)
       (forward-char 1)
