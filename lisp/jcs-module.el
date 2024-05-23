@@ -245,10 +245,10 @@
     ("\\.djhtml\\'"         . web-mode)
     ("\\.html?\\'"          . web-mode)
     ("\\.[agj]sp\\'"        . web-mode)
-    ;;
     ("\\.as[cp]x\\'"        . web-mode)
     ("\\.cshtml\\'"         . web-mode)
-    ("\\.[Mm]aster\\'"      . web-mode))
+    ("\\.[Mm]aster\\'"      . web-mode)
+    ("\\.svelte\\'"         . web-mode))
   auto-mode-alist))
 
 (provide 'jcs-module)
