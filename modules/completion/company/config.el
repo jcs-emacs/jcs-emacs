@@ -25,7 +25,13 @@
            company-yasnippet))
   :config
   (unless elenv-graphic-p
-    (push 'company-echo-metadata-frontend company-frontends)))
+    (push 'company-echo-metadata-frontend company-frontends))
+
+  ;; XXX: The variable `company-continue-commands' is in the not clause;
+  ;; therefore, these are commands that are not continuable.
+  (nconc company-continue-commands
+         '( kill-region
+            whole-line-or-region-kill-region)))
 
 (use-package company-box
   :hook (company-mode . company-box-mode)
