@@ -3,6 +3,13 @@
 ;;; Code:
 
 ;;
+;; (@* "JIT lock" )
+;;
+
+;; Inhibit error output
+(jcs-advice-add 'jit-lock-function :around (ignore-errors (apply arg0 args)))
+
+;;
 ;; (@* "Move Between Word (Wrapper)" )
 ;;
 
