@@ -20,10 +20,10 @@
   (message-clean-mode-add-echo-commands
    '( lsp--message lsp--send-request-async lsp--apply-text-edits))
 
-  (recentf-excl-add-commands '(lsp-find-references
-                               lsp-find-declaration
-                               lsp-find-implementation
-                               lsp-find-type-definition))
+  (recentf-excl-add-commands '( lsp-find-references
+                                lsp-find-declaration
+                                lsp-find-implementation
+                                lsp-find-type-definition))
   :config
   ;; Let's not block the loading process, so lsp packages don't hamper with
   ;; each another.
@@ -34,7 +34,9 @@
                 (unless (featurep package)
                   (ignore-errors (require package nil t))))
               lsp-client-packages)
-      (setq lsp--client-packages-required t))))
+      (setq lsp--client-packages-required t)))
+  ;; Don't log request error after the server has started
+  (jcs-advice-add 'lsp--on-idle :around (ignore-errors (apply arg0 args))))
 
 (use-package lsp-ui
   :bind ( :map lsp-ui-doc-frame-mode-map
