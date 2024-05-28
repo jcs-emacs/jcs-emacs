@@ -357,6 +357,8 @@ Here is the list of key bindings that are defined in this configuration.
 * <kbd>Ctrl</kbd>+<kbd>h</kbd>, <kbd>h</kbd> - Toggle window split between horizontal and vertical layouts.
 * <kbd>Ctrl</kbd>+<kbd>w</kbd>, <kbd>e</kbd> - Toggle showing the current window at the half frame.
 * <kbd>Ctrl</kbd>+<kbd>\\</kbd> - Split window horizontally.
+* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>\\</kbd> - Split window vertically.
+* <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>\\</kbd> - Split window sensibly.
 * <kbd>Alt</kbd>+<kbd>\`</kbd> - Toggle transparent frame.
 * <kbd>Alt</kbd>+<kbd>=</kbd> - Increment frame's transparency by 5 percent.
 * <kbd>Alt</kbd>+<kbd>-</kbd> - Decrement frame's transparency by 5 percent.
