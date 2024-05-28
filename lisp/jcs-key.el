@@ -298,13 +298,13 @@
     ([M-f11]        . toggle-frame-fullscreen)
     ((kbd "C-S-n")  . jcs-make-frame)
     ((kbd "C-S-w")  . delete-frame)  ; delete the external frame .
-    ((kbd "C-<f4>") . delete-window)
+    ((kbd "C-<f4>") . jcs-delete-window)
     ((kbd "C-h h")  . transpose-frame)
     ((kbd "C-w e")  . (lambda () (interactive) (require 'toggle-window)
                         (toggle-window-hide-show-window)))
     ((kbd "C-\\")   . split-window-horizontally)
     ((kbd "C-|")    . split-window-vertically)
-    ((kbd "C-M-\\") . split-window-sensibly)
+    ((kbd "C-M-\\") . (lambda () (interactive) (split-window-sensibly)))
 
 ;;; Window Navigation
     ((kbd "C-1") . winum-select-window-1)

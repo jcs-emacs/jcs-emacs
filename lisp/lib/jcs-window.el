@@ -3,6 +3,17 @@
 ;;; Code:
 
 ;;
+;; (@* "Window" )
+;;
+
+(defun jcs-get-largest-window (&optional all-frames dedicated not-selected no-other)
+  "Like function `get-largest-window' but esure return a valid window."
+  (or (get-largest-window all-frames dedicated not-selected no-other)
+      (progn
+        (split-window-sensibly)
+        (get-largest-window all-frames dedicated not-selected no-other))))
+
+;;
 ;; (@* "Frame" )
 ;;
 
@@ -40,7 +51,7 @@ larger window height in the calculation.
 
 See function `switch-to-buffer-other-window' description for arguments
 BUFFER-OR-NAME and NORECORD."
-  (select-window (get-largest-window nil nil t))
+  (select-window (jcs-get-largest-window nil nil t))
   (pop-to-buffer-same-window buffer-or-name norecord))
 
 (defun jcs-switch-to-next-valid-buffer ()
@@ -109,6 +120,15 @@ ALL-FRAMES."
 ;;
 ;; (@* "Deleting" )
 ;;
+
+(defun jcs-delete-window ()
+  "Better UX of function `delete-window'."
+  (interactive)
+  (let ((next (or (window-in-direction 'above)
+                  (window-in-direction 'below)
+                  (window-prev-sibling (selected-window)))))
+    (delete-window)
+    (select-window next)))
 
 (defun jcs-delete-window-downwind ()
   "Delete window in downwind order."
