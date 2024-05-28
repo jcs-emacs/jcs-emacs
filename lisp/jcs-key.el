@@ -304,6 +304,7 @@
                         (toggle-window-hide-show-window)))
     ((kbd "C-\\")   . split-window-horizontally)
     ((kbd "C-|")    . split-window-vertically)
+    ((kbd "C-M-\\") . split-window-sensibly)
 
 ;;; Window Navigation
     ((kbd "C-1") . winum-select-window-1)
