@@ -196,7 +196,7 @@
 (use-package balance-windows
   :init
   (setq balanced-windows-commands
-        '( delete-window quit-window
+        '( delete-window jcs-delete-window quit-window
            split-window-horizontally split-window-vertically)))
 
 (use-package winum
