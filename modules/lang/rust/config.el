@@ -14,8 +14,6 @@
 (jcs-add-hook 'rust-mode-hook
   (modify-syntax-entry ?! "w")
 
-  (jcs-elec-pair-add '((?\' . ?\')))
-
   ;; File Header
   (jcs-insert-header-if-valid '("[.]rs")
                               'jcs-insert-rust-template))
