@@ -6,7 +6,7 @@
         centaur-tabs-set-bar 'under
         centaur-tabs-set-icons t
         centaur-tabs-icon-type 'nerd-icons
-        centaur-tabs-gray-out-icons nil
+        centaur-tabs-gray-out-icons 'buffer
         centaur-tabs-set-modified-marker t
         centaur-tabs-hide-tab-function #'jcs-hide-tabs
         centaur-tabs-show-navigation-buttons t
