@@ -18,7 +18,10 @@
         ;; prevents that.
         centaur-tabs-cycle-scope 'tabs)
   :config
-  (advice-add 'centaur-tabs-buffer-track-killed :override #'ignore))
+  (advice-add 'centaur-tabs-buffer-track-killed :override #'ignore)
+
+  (jcs-add-hook 'jcs-after-load-theme-hook
+    (jcs-re-enable-mode-if-was-enabled #'centaur-tabs-mode)))
 
 (defun jcs-hide-tabs (x &rest _)
   "Hide tabs."
