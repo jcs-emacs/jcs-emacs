@@ -126,9 +126,11 @@ ALL-FRAMES."
   (interactive)
   (let ((next (or (window-in-direction 'above)
                   (window-in-direction 'below)
+                  (window-in-direction 'right)
+                  (window-in-direction 'left)
                   (window-prev-sibling (selected-window)))))
     (delete-window)
-    (select-window next)))
+    (when next (select-window next))))
 
 (defun jcs-delete-window-downwind ()
   "Delete window in downwind order."
