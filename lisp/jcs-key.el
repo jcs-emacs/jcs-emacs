@@ -80,7 +80,7 @@
 ;;; Docstring
     ((kbd "M-0") . ts-docstr-ask)
 
-;;; Editting
+;;; Editing
     ([C-right]          . vs-edit-forward-word)
     ([C-left]           . vs-edit-backward-word)
     ((kbd "<prior>")    . better-scroll-down)
@@ -148,6 +148,9 @@
 ;;; Impatient Mode
     ((kbd "C-w o") . jcs-impatient-start)
     ((kbd "C-w p") . jcs-impatient-stop)
+
+;;; Languages
+    ((kbd "C-k 0") . powerthesaurus-transient)
 
 ;;; Line Endings
     ((kbd "M-i") . show-eol-mode)
