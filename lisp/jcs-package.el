@@ -365,6 +365,7 @@
           pkgbuild-mode
           po-mode
           powershell
+          powerthesaurus
           prettier
           processing-mode
           project-abbrev
