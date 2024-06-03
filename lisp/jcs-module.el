@@ -213,7 +213,7 @@
 ;;; G
     ("/\\..+ignore\\'"      . gitignore-mode)
 ;;; J
-    ("\\.js'?\\'"           . js-mode)
+    ("\\.[cm]js'?\\'"       . js-mode)
     ("\\.json'?\\'"         . json-mode)
 ;;; K
     ("\\.ktm'?\\'"          . kotlin-mode)
