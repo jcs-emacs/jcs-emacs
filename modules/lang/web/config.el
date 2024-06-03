@@ -119,7 +119,10 @@
         web-mode-style-padding 2   ; For `<style>' tag
         web-mode-script-padding 2  ; For `<script>' tag
         web-mode-block-padding 0   ; For `php', `ruby', `java', `python', `asp', etc.
-        web-mode-offsetless-elements '("html")))
+        web-mode-offsetless-elements '("html"))
+  :config
+  (setf (alist-get "javascript" web-mode-comment-formats nil nil #'equal)
+        "//"))
 
 (jcs-add-hook '(web-mode-hook)
   (jcs-elec-pair-add '((?\" . ?\")))
