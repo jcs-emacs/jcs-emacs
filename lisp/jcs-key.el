@@ -150,7 +150,8 @@
     ((kbd "C-w p") . jcs-impatient-stop)
 
 ;;; Languages
-    ((kbd "C-k 0") . powerthesaurus-transient)
+    ((kbd "C-k 0") . (lambda () (interactive) (require 'powerthesaurus)
+                       (powerthesaurus-transient)))
 
 ;;; Line Endings
     ((kbd "M-i") . show-eol-mode)
