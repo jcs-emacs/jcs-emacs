@@ -125,7 +125,10 @@
         "//"))
 
 (jcs-add-hook '(web-mode-hook)
-  (jcs-elec-pair-add '((?\" . ?\")))
+  (modify-syntax-entry ?_ "w")
+
+  (jcs-elec-pair-add '((?\" . ?\")
+                       (?\' . ?\')))
 
   ;; XXX: Prevent this from being changed by `web-mode'!
   ;;
