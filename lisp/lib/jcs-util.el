@@ -30,21 +30,6 @@
             (add-hook hook (lambda (&optional arg0 arg1 arg2 &rest args) ,@body))))
          (t (add-hook ,hooks (lambda (&optional arg0 arg1 arg2 &rest args) ,@body)))))
 
-(defmacro jcs-with-no-redisplay (&rest body)
-  "Execute BODY without any redisplay execution."
-  (declare (indent 0) (debug t))
-  `(let ((inhibit-redisplay t)
-         (inhibit-modification-hooks t)
-         (inhibit-point-motion-hooks t)
-         after-focus-change-function
-         buffer-list-update-hook
-         display-buffer-alist
-         window-configuration-change-hook
-         window-scroll-functions
-         window-size-change-functions
-         window-state-change-hook)
-     ,@body))
-
 (defmacro jcs-save-excursion (&rest body)
   "Re-implementation `save-excursion' in FNC with ARGS."
   (declare (indent 0) (debug t))
@@ -54,7 +39,7 @@
 (defmacro jcs-save-window-excursion (&rest body)
   "Execute BODY without touching window's layout/settings."
   (declare (indent 0) (debug t))
-  `(jcs-with-no-redisplay (jcs-window-record-once) ,@body (jcs-window-restore-once)))
+  `(elenv-with-no-redisplay (jcs-window-record-once) ,@body (jcs-window-restore-once)))
 
 (defmacro jcs-when-buffer-window (buffer-or-name &rest body)
   "Execute BODY in window BUFFER-OR-NAME."

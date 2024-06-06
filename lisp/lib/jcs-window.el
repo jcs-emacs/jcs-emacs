@@ -110,7 +110,7 @@ For argument TYPE; see function `jcs-string-compare-p' description."
 (defun jcs-walk-windows (fun &optional minibuf all-frames)
   "See function `walk-windows' description for arguments FUN, MINIBUF and
 ALL-FRAMES."
-  (jcs-with-no-redisplay
+  (elenv-with-no-redisplay
     (walk-windows
      (lambda (win)
        (unless (jcs-frame-util-p (window-frame win))

@@ -50,7 +50,7 @@
 (defun jcs-vertico--goto-cand (candidate)
   "Select candidate with CANDIDATE."
   (when (jcs-vertico--active-p)
-    (jcs-with-no-redisplay
+    (elenv-with-no-redisplay
       (vertico--exhibit)
       (when-let ((index (jcs-vertico--index candidate)))
         (jcs-vertico--recenter index)))))
@@ -58,11 +58,11 @@
 (defun jcs-vertico--goto (index)
   "Select candidate with INDEX."
   (when (jcs-vertico--active-p)
-    (jcs-with-no-redisplay (vertico--exhibit) (vertico--goto index) (vertico--exhibit))))
+    (elenv-with-no-redisplay (vertico--exhibit) (vertico--goto index) (vertico--exhibit))))
 
 (defun jcs-vertico--recenter (index)
   "Recentering the current candidate."
-  (jcs-with-no-redisplay
+  (elenv-with-no-redisplay
     (let ((center (/ vertico-count 2)) vertico-cycle)
       (vertico-last) (vertico--exhibit)
       (vertico--goto (- index center)) (vertico--exhibit)
@@ -148,7 +148,7 @@
 (jcs-add-hook 'window-size-change-functions
   (setq vertico-count (floor (* (frame-height) jcs-vertico-height-ratio)))
   (when (jcs-vertico--active-p)
-    (jcs-with-no-redisplay (ignore-errors (vertico--exhibit)))))
+    (elenv-with-no-redisplay (ignore-errors (vertico--exhibit)))))
 
 (defun jcs-vertico--post-command ()
   "Post command for vertico."
@@ -187,7 +187,7 @@
        ;; Preselect directory
        ((and path (file-directory-p path))
         (unless (string-suffix-p "/" (minibuffer-contents)) (insert "/"))
-        (jcs-with-no-redisplay (vertico--exhibit))
+        (elenv-with-no-redisplay (vertico--exhibit))
         (vertico-directory-delete-char))
        ;; Preselect file
        (bfn (jcs-vertico--goto-cand (file-name-nondirectory bfn)))))))
