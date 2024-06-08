@@ -8,7 +8,8 @@
         centaur-tabs-icon-type 'nerd-icons
         centaur-tabs-gray-out-icons 'buffer
         centaur-tabs-set-modified-marker t
-        centaur-tabs-hide-tab-function #'jcs-hide-tabs
+        centaur-tabs-buffer-groups-function #'jcs-tab-buffer-groups-function
+        centaur-tabs-hide-tab-function #'ignore
         centaur-tabs-show-navigation-buttons t
         centaur-tabs-down-tab-text " ▾ "
         centaur-tabs-backward-tab-text "⏴"
@@ -23,10 +24,10 @@
   (jcs-add-hook 'jcs-after-load-theme-hook
     (jcs-re-enable-mode-if-was-enabled #'centaur-tabs-mode)))
 
-(defun jcs-hide-tabs (x &rest _)
-  "Hide tabs."
-  (or (centaur-tabs-hide-tab x)
-      (and (featurep 'buffer-menu-filter)
-           (not (memql x `(,(get-buffer buffer-menu-filter-name))))
-           diminish-buffer-mode
-           (diminish-buffer--filter x))))
+(defun jcs-tab-buffer-groups-function ()
+  "Group tabs."
+  `(,(cond ((and (featurep 'buffer-menu-filter)
+                 (diminish-buffer--filter (buffer-name)))
+            "Hidden")
+           (t
+            (car (funcall #'centaur-tabs-buffer-groups))))))
