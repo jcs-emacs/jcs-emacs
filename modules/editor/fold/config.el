@@ -1,12 +1,9 @@
 ;;; editor/fold/config.el  -*- lexical-binding: t; -*-
 
 (use-package ts-fold
-  :hook (tree-sitter-after-on       . ts-fold-line-comment-mode)
-  :hook (tree-sitter-after-on       . ts-fold-indicators-mode)
-  :hook (ts-fold-on-fold            . sideline-render-this)
-  :hook (ts-fold-indicators-refresh . (lambda (&rest _)
-                                        (line-reminder--render-buffer)
-                                        (line-reminder--thumb-render-buffer)))
+  :hook (tree-sitter-after-on . ts-fold-line-comment-mode)
+  :hook (tree-sitter-after-on . ts-fold-indicators-mode)
+  :hook (ts-fold-on-fold      . sideline-render-this)
   :init
   (setq ts-fold-indicators-fringe 'left-fringe
         ts-fold-indicators-face-function
