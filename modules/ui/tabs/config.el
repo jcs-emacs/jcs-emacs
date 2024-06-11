@@ -24,10 +24,20 @@
   (jcs-add-hook 'jcs-after-load-theme-hook
     (jcs-re-enable-mode-if-was-enabled #'centaur-tabs-mode)))
 
+;;
+;;; Buffer Groups
+
+(defvar jcs-tab-line--group-cache (make-hash-table)
+  "Cache for buffer groups.")
+
 (defun jcs-tab-buffer-groups-function ()
   "Group tabs."
-  `(,(cond ((and (featurep 'buffer-menu-filter)
-                 (diminish-buffer--filter (buffer-name)))
-            "Hidden")
-           (t
-            (car (funcall #'centaur-tabs-buffer-groups))))))
+  (let* ((name (buffer-name))
+         (group (or (ht-get jcs-tab-line--group-cache name)
+                    (cond ((and (featurep 'buffer-menu-filter)
+                                (diminish-buffer--filter name))
+                           "Hidden")
+                          (t
+                           (car (funcall #'centaur-tabs-buffer-groups)))))))
+    (ht-set jcs-tab-line--group-cache name group)
+    `(,group)))
