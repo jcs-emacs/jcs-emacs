@@ -8,6 +8,18 @@
           ("<down>"  . next-line)
           ("C-k C-p" . package-list-packages)
           ("M-K"     . jcs-dashboard-refresh-buffer))
+  :hook (dashboard-after-initialize
+         . (lambda ()
+             (unless noninteractive
+               ;; Split windows depends on the display size!
+               (if (elenv-display-vertical-p)
+                   (ignore-errors (split-window-vertically))
+                 (ignore-errors (split-window-horizontally)))
+               ;; Switch to scratch buffer for other window
+               (save-selected-window
+                 (switch-to-buffer-other-window (get-scratch-buffer-create)))
+               ;; Make sure dashboard buffer left most!
+               (centaur-tabs-move-current-tab-to-left))))
   :init
   (setq dashboard-banner-logo-title
         (concat "[J C S " (if elenv-graphic-p "•" "-") " E M A C S]")
