@@ -58,7 +58,8 @@
 (defun jcs-vertico--goto (index)
   "Select candidate with INDEX."
   (when (jcs-vertico--active-p)
-    (elenv-with-no-redisplay (vertico--exhibit) (vertico--goto index) (vertico--exhibit))))
+    (elenv-with-no-redisplay
+      (vertico--exhibit) (vertico--goto index) (vertico--exhibit))))
 
 (defun jcs-vertico--recenter (index)
   "Recentering the current candidate."
@@ -187,7 +188,7 @@
        ;; Preselect directory
        ((and path (file-directory-p path))
         (unless (string-suffix-p "/" (minibuffer-contents)) (insert "/"))
-        (elenv-with-no-redisplay (vertico--exhibit))
+        (elenv-with-no-redisplay (ignore-errors (vertico--exhibit)))
         (vertico-directory-delete-char))
        ;; Preselect file
        (bfn (jcs-vertico--goto-cand (file-name-nondirectory bfn)))))))
