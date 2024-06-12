@@ -233,22 +233,6 @@
     (align-regexp (car bound) (cdr bound) (concat "\\(\\s-*\\)" regexp) 1 1 t)))
 
 ;;
-;; (@* "Line Ending" )
-;;
-
-(defun jcs-remove-control-M ()
-  "Remove ^M at end of line in the whole buffer."
-  (interactive)
-  (save-match-data
-    (save-excursion
-      (let ((remove-count 0))
-        (goto-char (point-min))
-        (while (re-search-forward (concat (char-to-string 13) "$") (point-max) t)
-          (setq remove-count (+ remove-count 1))
-          (replace-match ""))
-        (message "%d ^M removed from buffer." remove-count)))))
-
-;;
 ;; (@* "Save Buffer" )
 ;;
 
@@ -257,8 +241,7 @@
   ;; Delete trailing whitespaces execpt the current line
   (when (bound-and-true-p whitespace-cleanup-mode)
     (whitespace-cleanup-region (point-min) (line-beginning-position))
-    (whitespace-cleanup-region (line-end-position) (point-max)))
-  (msgu-silent (jcs-remove-control-M)))
+    (whitespace-cleanup-region (line-end-position) (point-max))))
 
 (defun jcs-save-all-buffers ()
   "Save all buffers currently opened."
