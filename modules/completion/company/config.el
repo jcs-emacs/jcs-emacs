@@ -86,3 +86,9 @@
 
 (jcs-advice-add 'company-complete-selection :around
   (let ((company-dabbrev-downcase t)) (apply arg0 args)))
+
+(jcs-add-hook 'on-switch-buffer-hook
+  (company-abort))
+
+(jcs-add-hook 'on-switch-window-hook
+  (company-abort))
