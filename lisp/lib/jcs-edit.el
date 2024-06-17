@@ -315,11 +315,8 @@
 ;; (@* "Kill Buffer" )
 ;;
 
-(defconst jcs-must-kill-buffer-list
-  `(,(regexp-quote (buffer-name (messages-buffer)))
-    "[*]compilation" "[*]output" "[*]execrun")
-  "List of buffer name that must be killed when maybe kill; unless it shows up
-in multiple windows.")
+(jcs-advice-add 'bury-buffer :after
+  (run-hooks 'buffer-list-update-hook))
 
 (defun jcs-bury-diminished-buffer ()
   "Bury the diminished buffer."
@@ -356,16 +353,14 @@ Otherwise just switch to the previous buffer to keep the buffer.
 If  optional argument ECP-SAME is non-nil then it allows same buffer on the
 other window."
   (interactive)
-  (let ((must-kill-buf-p
-         (jcs-contain-list-type-str (buffer-name) jcs-must-kill-buffer-list 'regex))
-        (shown-multiple-p (jcs-buffer-shown-in-multiple-window-p (buffer-name) 'strict))
+  (let ((shown-multiple-p (jcs-buffer-shown-in-multiple-window-p (buffer-name) 'strict))
         (cur-buf (current-buffer))
         is-killed)
     (if (or shown-multiple-p
             (and (jcs-virtual-buffer-p) (not (jcs-invalid-buffer-p))))
         (progn
           (jcs-bury-buffer)
-          (when (and must-kill-buf-p (not shown-multiple-p))
+          (unless shown-multiple-p
             (setq is-killed t)
             (with-current-buffer cur-buf (kill-this-buffer))))
       (jcs-kill-this-buffer)
