@@ -356,13 +356,13 @@ other window."
   (let ((shown-multiple-p (jcs-buffer-shown-in-multiple-window-p (buffer-name) 'strict))
         (cur-buf (current-buffer))
         is-killed)
-    (if (or shown-multiple-p
-            (and (jcs-virtual-buffer-p) (not (jcs-invalid-buffer-p))))
-        (progn
-          (jcs-bury-buffer)
-          (unless shown-multiple-p
-            (setq is-killed t)
-            (with-current-buffer cur-buf (kill-this-buffer))))
+    (cond
+     ;; (1) Centain conditions, we bury it!
+     ((or shown-multiple-p
+          (and (jcs-virtual-buffer-p) (not (jcs-invalid-buffer-p))))
+      (jcs-bury-buffer))
+     ;; (2) Else, we kill it!
+     (t
       (jcs-kill-this-buffer)
       (setq is-killed t)
 
@@ -384,7 +384,7 @@ other window."
         ;;   -> *scratch*
         ;;   , etc.
         (when (and (not (jcs-valid-buffer-p)) (>= (jcs-valid-buffers-count) 2))
-          (jcs-switch-to-next-valid-buffer))))
+          (jcs-switch-to-next-valid-buffer)))))
     ;; If something that I doesn't want to see, bury it.
     ;; For instance, any `*helm-' buffers.
     (jcs-bury-diminished-buffer)
