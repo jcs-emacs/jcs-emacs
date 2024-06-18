@@ -342,6 +342,7 @@
   (interactive)
   (jcs-lsp-maybe-shutdown)
   (kill-this-buffer)
+  (jcs-funcall-fboundp #'centaur-tabs-refill-tabs)
   (jcs-project--track-open-projects)
   ;; If still in the buffer menu, try switch to the previous buffer.
   (when (jcs-buffer-menu-p) (switch-to-prev-buffer)))
