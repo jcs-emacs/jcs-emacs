@@ -151,45 +151,39 @@ ALL-FRAMES."
 ;;
 
 (defvar jcs-window--record-buffer-names nil "Record all windows' buffer.")
-(defvar jcs-window--record-line-numbers nil "Record all windows' line numbers.")
-(defvar jcs-window--record-columns nil "Record all windows' column.")
+(defvar jcs-window--record-points nil "Record all windows point.")
 (defvar jcs-window--record-first-visible-lines nil
   "Record all windows' first visible line.")
 
 (defun jcs-window-record-once ()
   "Record windows status once."
-  (let ((buf-names nil) (lns nil) (cols nil) (f-lns nil))
+  (let ((buf-names nil) (pts nil) (f-lns nil))
     ;; Record down all the window information with the same buffer opened.
     (jcs-walk-windows
      (lambda ()
        (jcs-push (jcs-buffer-name-or-buffer-file-name) buf-names)  ; Record as string!
-       (jcs-push (line-number-at-pos) lns)
-       (jcs-push (current-column) cols)
+       (jcs-push (point) pts)
        (jcs-push (jcs-first-visible-line-in-window) f-lns)))
     (push buf-names jcs-window--record-buffer-names)
-    (push lns jcs-window--record-line-numbers)
-    (push cols jcs-window--record-columns)
+    (push pts jcs-window--record-points)
     (push f-lns jcs-window--record-first-visible-lines)))
 
 (defun jcs-window-restore-once ()
   "Restore windows status once."
   (let ((buf-names (pop jcs-window--record-buffer-names))
-        (lns (pop jcs-window--record-line-numbers))
-        (cols (pop jcs-window--record-columns))
+        (pts (pop jcs-window--record-points))
         (f-lns (pop jcs-window--record-first-visible-lines))
         (win-cnt 0))
     ;; Restore the window information after, including opening the same buffer.
     (jcs-walk-windows
      (lambda ()
        (let* ((buf-name (nth win-cnt buf-names))
-              (current-ln (nth win-cnt lns))
-              (current-col (nth win-cnt cols))
+              (current-pt (nth win-cnt pts))
               (current-first-vs-line (nth win-cnt f-lns))
               (actual-buf (jcs-get-buffer-by-path buf-name)))
          (if actual-buf (switch-to-buffer actual-buf) (find-file buf-name))
          (jcs-make-first-visible-line-to current-first-vs-line)
-         (jcs-goto-line current-ln)
-         (move-to-column current-col)
+         (goto-char current-pt)
          (cl-incf win-cnt))))))
 
 (provide 'jcs-window)
