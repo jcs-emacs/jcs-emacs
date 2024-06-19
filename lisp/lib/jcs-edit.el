@@ -315,12 +315,6 @@
 ;; (@* "Kill Buffer" )
 ;;
 
-(defconst jcs-must-kill-buffer-list
-  `(,(regexp-quote (buffer-name (messages-buffer)))
-    "[*]compilation" "[*]output" "[*]execrun")
-  "List of buffer name that must be killed when maybe kill; unless it shows up
-in multiple windows.")
-
 (jcs-advice-add 'bury-buffer :after
   (run-hooks 'buffer-list-update-hook))
 
@@ -363,7 +357,8 @@ other window."
   (interactive)
   (let*
       ((name (buffer-name))
-       (must-kill-p (jcs-contain-list-type-str name jcs-must-kill-buffer-list 'regex))
+       (must-kill-p (derived-mode-p 'compilation-mode 'comint-mode
+                                    'messages-buffer-mode))
        (multiple-p (jcs-buffer-shown-in-multiple-window-p name 'strict))
        (cur-buf (current-buffer))
        is-killed)
