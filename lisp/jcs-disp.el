@@ -55,7 +55,11 @@ Note this is opposite logic to the toggle mode function."
 (use-package echo-bar
   :init
   (setq echo-bar-right-padding (if elenv-graphic-p 0 1)
-        echo-bar-minibuffer nil))
+        echo-bar-minibuffer nil)
+  :config
+  (jcs-advice-add 'echo-bar-update :after
+    (when echo-bar-mode
+      (auto-scroll-bar--hide-minibuffer))))
 
 (use-package region-state
   :hook (activate-mark . region-state-mode))
