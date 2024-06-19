@@ -5,8 +5,13 @@ All notable changes to this project will be documented in this file.
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 
-## 9.0.2 (Unreleased)
+## 9.1.1 (Unreleased)
 > Released N/A
+
+* N/A
+
+## 9.1.0
+> Released Jun 19, 2024
 
 * Add FASM support (e049b015df8a52d10271e3a41aeeca631296a7d5)
 * Remove package `topsy` (77c506758eaca4621cf1a92e9107e5d279721827)
