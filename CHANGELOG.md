@@ -8,7 +8,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## 9.1.1 (Unreleased)
 > Released N/A
 
-* N/A
+* feat: Replace must kill buffer list with derived mode (c407b9859489c5b31697c9f61871b9e8254baaf7)
 
 ## 9.1.0
 > Released Jun 19, 2024
