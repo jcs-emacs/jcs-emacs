@@ -315,6 +315,12 @@
 ;; (@* "Kill Buffer" )
 ;;
 
+(defconst jcs-must-kill-buffer-list
+  `(,(regexp-quote (buffer-name (messages-buffer)))
+    "[*]compilation" "[*]output" "[*]execrun")
+  "List of buffer name that must be killed when maybe kill; unless it shows up
+in multiple windows.")
+
 (jcs-advice-add 'bury-buffer :after
   (run-hooks 'buffer-list-update-hook))
 
@@ -355,14 +361,20 @@ Otherwise just switch to the previous buffer to keep the buffer.
 If  optional argument ECP-SAME is non-nil then it allows same buffer on the
 other window."
   (interactive)
-  (let ((shown-multiple-p (jcs-buffer-shown-in-multiple-window-p (buffer-name) 'strict))
-        (cur-buf (current-buffer))
-        is-killed)
+  (let*
+      ((name (buffer-name))
+       (must-kill-p (jcs-contain-list-type-str name jcs-must-kill-buffer-list 'regex))
+       (multiple-p (jcs-buffer-shown-in-multiple-window-p name 'strict))
+       (cur-buf (current-buffer))
+       is-killed)
     (cond
      ;; (1) Centain conditions, we bury it!
-     ((or shown-multiple-p
+     ((or multiple-p
           (and (jcs-virtual-buffer-p) (not (jcs-invalid-buffer-p))))
-      (jcs-bury-buffer))
+      (jcs-bury-buffer)
+      (when (and must-kill-p (not multiple-p))
+        (setq is-killed t)
+        (with-current-buffer cur-buf (kill-this-buffer))))
      ;; (2) Else, we kill it!
      (t
       (jcs-kill-this-buffer)
