@@ -76,5 +76,20 @@ If optional argument DIR is nil, use variable `default-directory' instead."
   (interactive)
   (jcs-with-other-window (project-find-file)))
 
+;;
+;; (@* "Elisp" )
+;;
+
+(defun jcs-project-el-reload ()
+  "Reload current elisp project."
+  (interactive)
+  (if-let* ((project (project-current))
+            (files (project-files project))
+            (files (cl-remove-if-not (lambda (filename)
+                                       (string-suffix-p ".el" filename))
+                                     files)))
+      (mapc #'load-file files)
+    (user-error "[WARNING] Currently not under an Elisp project")))
+
 (provide 'jcs-project)
 ;;; jcs-project.el ends here
