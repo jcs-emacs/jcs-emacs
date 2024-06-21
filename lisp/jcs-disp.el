@@ -58,7 +58,7 @@ Note this is opposite logic to the toggle mode function."
         echo-bar-minibuffer nil)
   :config
   (jcs-advice-add 'echo-bar-update :after
-    (when echo-bar-mode
+    (when auto-scroll-bar-mode
       (auto-scroll-bar--hide-minibuffer))))
 
 (use-package region-state
