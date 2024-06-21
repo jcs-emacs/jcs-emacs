@@ -10,10 +10,10 @@
   "When window is focus."
   (jcs-reload-active-mode)
   (when (featurep 'recentf) (msgu-silent (recentf-cleanup)))
-  (jcs-funcall-fboundp #'jcs-diff-hl-update)
-  (jcs-funcall-fboundp #'jcs-buffer-menu-refresh-buffer)
-  (jcs-funcall-fboundp #'jcs-dashboard-refresh-buffer)
-  (jcs-funcall-fboundp #'jcs-vertico-refresh))
+  (jcs-fboundp-apply #'jcs-diff-hl-update)
+  (jcs-fboundp-apply #'jcs-buffer-menu-refresh-buffer)
+  (jcs-fboundp-apply #'jcs-dashboard-refresh-buffer)
+  (jcs-fboundp-apply #'jcs-vertico-refresh))
 
 (defun jcs-hook--focus-out ()
   "When window is not focus."
@@ -26,9 +26,9 @@
 
 (jcs-add-hook 'window-state-change-hook
   (when (and (not (active-minibuffer-window))
-             (not (jcs-funcall-fboundp #'company--active-p)))
-    (jcs-funcall-fboundp #'jcs-buffer-menu-refresh-buffer)
-    (jcs-funcall-fboundp #'jcs-dashboard-refresh-buffer)))
+             (not (jcs-fboundp-apply #'company--active-p)))
+    (jcs-fboundp-apply #'jcs-buffer-menu-refresh-buffer)
+    (jcs-fboundp-apply #'jcs-dashboard-refresh-buffer)))
 
 ;;
 ;; (@* "Find Files" )
@@ -110,10 +110,10 @@
 ;;
 
 (jcs-add-hook 'pre-command-hook
-  (jcs-funcall-fboundp #'jcs--er/record-history))
+  (jcs-fboundp-apply #'jcs--er/record-history))
 
 (jcs-add-hook 'post-command-hook
-  (jcs-funcall-fboundp #'jcs--er/resolve-region)
+  (jcs-fboundp-apply #'jcs--er/resolve-region)
   (jcs-reload-active-mode))
 
 ;;
@@ -174,7 +174,7 @@
 ;;
 
 (jcs-advice-add '(keyboard-quit top-level) :before
-  (jcs-funcall-fboundp #'jcs-backtrace-exit))
+  (jcs-fboundp-apply #'jcs-backtrace-exit))
 
 (provide 'jcs-hook)
 ;;; jcs-hook.el ends here

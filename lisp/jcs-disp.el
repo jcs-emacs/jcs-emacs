@@ -9,7 +9,7 @@
 (defun jcs-debugging-p ()
   "Return non-nil if current in debugging session."
   (or (elenv-debugging-p)
-      (ignore-errors (jcs-funcall-fboundp #'dap--cur-active-session-or-die))))
+      (ignore-errors (jcs-fboundp-apply #'dap--cur-active-session-or-die))))
 
 (defun jcs-reload-active-mode ()
   "Reload the active mode.
@@ -18,10 +18,10 @@ Note this is opposite logic to the toggle mode function."
   (when (featurep 'jcs-modeline)
     (msgu-silent
       (cond
-       ((jcs-funcall-fboundp #'jcs-backtrace-occurs-p) (jcs-hit-backtrace))
+       ((jcs-fboundp-apply #'jcs-backtrace-occurs-p) (jcs-hit-backtrace))
        ((active-minibuffer-window) (jcs-modeline-dark-blue))
        ((jcs-debugging-p) (jcs-modeline-dark-orange))
-       ((jcs-funcall-fboundp #'zoom-window--enable-p) (jcs-modeline-dark-green))
+       ((jcs-fboundp-apply #'zoom-window--enable-p) (jcs-modeline-dark-green))
        (t (jcs-modeline-gray))))))
 
 ;;

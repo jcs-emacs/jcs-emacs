@@ -271,9 +271,9 @@ Notice PATH can either be `buffer-name' or `buffer-file-name'."
 ;; (@* "Function" )
 ;;
 
-(defun jcs-funcall-fboundp (fnc &rest args)
+(defun jcs-fboundp-apply (fnc &rest args)
   "Call FNC with ARGS if exists."
-  (when (fboundp fnc) (if args (funcall fnc args) (funcall fnc))))
+  (when (fboundp fnc) (apply fnc args)))
 
 ;;
 ;; (@* "Key" )

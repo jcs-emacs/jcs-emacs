@@ -75,7 +75,7 @@
 
 (defun jcs-lsp-maybe-shutdown ()
   "Maybe shutdown the workspace."
-  (when-let ((workspaces (jcs-funcall-fboundp #'lsp-workspaces)))
+  (when-let ((workspaces (jcs-fboundp-apply #'lsp-workspaces)))
     (dolist (workspace workspaces)
       (let* ((buffers (lsp--workspace-buffers workspace))
              (buffers (cl-remove-if-not #'buffer-live-p buffers)))

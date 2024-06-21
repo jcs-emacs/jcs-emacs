@@ -237,7 +237,7 @@
 ;;
 
 (jcs-advice-add 'save-buffer :before
-  (jcs-funcall-fboundp #'company-abort)
+  (jcs-fboundp-apply #'company-abort)
   ;; Delete trailing whitespaces execpt the current line
   (when (bound-and-true-p whitespace-cleanup-mode)
     (whitespace-cleanup-region (point-min) (line-beginning-position))
@@ -330,7 +330,7 @@
   (let ((bn (jcs-buffer-name-or-buffer-file-name)))
     (when (and (featurep 'undo-tree)
                (not (equal bn undo-tree-visualizer-buffer-name)))
-      (jcs-funcall-fboundp #'undo-tree-kill-visualizer))
+      (jcs-fboundp-apply #'undo-tree-kill-visualizer))
     (bury-buffer)
     (when (or (jcs-buffer-menu-p)
               (string= bn (jcs-buffer-name-or-buffer-file-name)))
@@ -408,7 +408,7 @@ other window."
     (msgu-inhibit-log
       (when (jcs-lsp-connected-p) (lsp-disconnect))
       (jcs-save-window-excursion (find-alternate-file filename))
-      (jcs-funcall-fboundp #'undo-tree-kill-visualizer)
+      (jcs-fboundp-apply #'undo-tree-kill-visualizer)
       (msgu-current "[INFO] Reopened file => '%s'" filename))))
 
 ;;

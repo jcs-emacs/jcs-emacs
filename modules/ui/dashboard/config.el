@@ -216,7 +216,7 @@
 
 (defun jcs-dashboard--goto-section (name)
   "Move to section NAME declares in variable `dashboard-item-shortcuts'."
-  (jcs-funcall-fboundp (intern (format "dashboard-jump-to-%s" name))))
+  (jcs-fboundp-apply (intern (format "dashboard-jump-to-%s" name))))
 
 (defun jcs-dashboard-current-index (name &optional pos)
   "Return the idex by NAME from POS."
