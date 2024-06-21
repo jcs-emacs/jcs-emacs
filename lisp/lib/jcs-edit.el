@@ -328,7 +328,9 @@
   "Bury this buffer."
   (interactive)
   (let ((bn (jcs-buffer-name-or-buffer-file-name)))
-    (jcs-funcall-fboundp #'undo-tree-kill-visualizer)
+    (when (and (featurep 'undo-tree)
+               (not (equal bn undo-tree-visualizer-buffer-name)))
+      (jcs-funcall-fboundp #'undo-tree-kill-visualizer))
     (bury-buffer)
     (when (or (jcs-buffer-menu-p)
               (string= bn (jcs-buffer-name-or-buffer-file-name)))
