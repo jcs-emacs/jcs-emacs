@@ -8,6 +8,7 @@
   :init
   (setq diminish-buffer-list
         '("[*]jcs"  ; config wise
+          "[*]Echo Area" "[*]Minibuf-"
           "[*]helm" "[*]esup-" "[*]quelpa-"
           "[*]easky" "[*]quickrun"
           "[*]Apropos[*]" "[*]Backtrace[*]" "[*]Compile-Log[*]"
