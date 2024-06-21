@@ -5,11 +5,11 @@
       undo-strong-limit 3000000   ; 3mb   (default is 240kb)
       undo-outer-limit 48000000)  ; 48mb  (default is 24mb)
 
+(use-package undo-tree-vf :hook (undo-tree-mode . undo-tree-vf-mode))
+
 (use-package undo-tree
   :init
   (setq undo-tree-auto-save-history nil)
   (message-clean-mode-add-echo-commands '( undo-tree-undo undo-tree-redo))
   :config
   (global-undo-tree-mode t))
-
-(use-package undo-tree-vf :hook (undo-tree-mode . undo-tree-vf-mode))
