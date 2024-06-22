@@ -110,7 +110,6 @@
 ;;
 
 (jcs-add-hook 'pre-command-hook
-  (message nil)  ; Avoid `echo-bar' mess up window config!
   (jcs-fboundp-apply #'jcs--er/record-history))
 
 (jcs-add-hook 'post-command-hook
