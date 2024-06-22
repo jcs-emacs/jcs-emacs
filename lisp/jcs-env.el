@@ -215,6 +215,7 @@
 ;;
 ;;; Minibuffer
 (setq enable-recursive-minibuffers t
+      resize-mini-windows t
       completion-styles '(partial-completion)  ; easy on `company-mode'
       completion-category-defaults nil
       completion-ignored-extensions nil
