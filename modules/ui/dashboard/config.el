@@ -12,7 +12,7 @@
          . (lambda ()
              (unless noninteractive
                ;; Split windows depends on the display size!
-               (if (elenv-display-vertical-p)
+               (if (elenv-monitor-vertical-p)
                    (ignore-errors (split-window-vertically))
                  (ignore-errors (split-window-horizontally)))
                ;; Switch to scratch buffer for other window
