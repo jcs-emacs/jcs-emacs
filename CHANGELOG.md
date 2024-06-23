@@ -9,6 +9,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 > Released N/A
 
 * feat: Replace must kill buffer list with derived mode (c407b9859489c5b31697c9f61871b9e8254baaf7)
+* feat: Add new package `responsive-window` (0af7dfcc565b3813ac8776c6f75bf15fc5c74ea5)
 
 ## 9.1.0
 > Released Jun 19, 2024
