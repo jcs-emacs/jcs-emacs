@@ -383,6 +383,7 @@
            region-occurrences-highlighter
            region-state
            repos-window
+           responsive-window
            restart-emacs
            robots-txt-mode
            scad-mode

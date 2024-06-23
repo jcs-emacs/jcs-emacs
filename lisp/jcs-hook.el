@@ -88,6 +88,7 @@
   (recentf-excl-mode 1)
   (global-region-occurrences-highlighter-mode 1)
   (repos-window-mode 1)
+  (responsive-window-mode 1)
   (transient-mark-mode t)
   (vs-revbuf-mode 1)
   (which-key-mode 1)
