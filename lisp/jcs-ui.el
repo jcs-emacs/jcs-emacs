@@ -42,7 +42,6 @@
     (jcs--buffer-wrap--fixed-fake-header)
     (jcs--buffer-wrap--fixed-window-off)))
 
-
 ;;
 ;;; Font
 
