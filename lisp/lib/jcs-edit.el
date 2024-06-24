@@ -7,7 +7,7 @@
 ;;
 
 ;; Inhibit error output
-(jcs-advice-add 'jit-lock-function :around (ignore-errors (apply arg0 args)))
+(jcs-advice-ignore-errors 'jit-lock-function)
 
 ;;
 ;; (@* "Move Between Word (Wrapper)" )
@@ -84,8 +84,7 @@
 ;; (@* "Indentation" )
 ;;
 
-(jcs-advice-add 'indent-region :around
-  (ignore-errors (apply arg0 args)))
+(jcs-advice-ignore-errors 'indent-region)
 
 (jcs-advice-add 'indent-line-to :before (indent-control-ensure-tab-width))
 

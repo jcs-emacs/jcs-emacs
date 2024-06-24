@@ -36,7 +36,7 @@
               lsp-client-packages)
       (setq lsp--client-packages-required t)))
   ;; Don't log request error after the server has started
-  (jcs-advice-add 'lsp--on-idle :around (ignore-errors (apply arg0 args))))
+  (jcs-advice-ignore-errors 'lsp--on-idle))
 
 (use-package lsp-ui
   :bind ( :map lsp-ui-doc-frame-mode-map

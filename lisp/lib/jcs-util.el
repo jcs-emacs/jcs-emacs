@@ -11,6 +11,14 @@
   (intern (concat (jcs-2str name) "-hook")))
 
 ;;
+;; (@* "Advice" )
+;;
+
+(defun jcs-advice-ignore-errors (fnc)
+  "Ignore errors for FNC."
+  (jcs-advice-add fnc :around (ignore-errors (apply arg0 args))))
+
+;;
 ;; (@* "Macro" )
 ;;
 
