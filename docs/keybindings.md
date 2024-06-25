@@ -343,7 +343,6 @@ Here is the list of key bindings that are defined in this configuration.
 * <kbd>Alt</kbd>+<kbd>=</kbd> - Increase the frame's transparency.
 * <kbd>Alt</kbd>+<kbd>-</kbd> - Decrease the frame's transparency.
 * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>f</kbd> - Change font style.
-* <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>m</kbd> - Toggle minimap.
 * <kbd>Alt</kbd>+<kbd>i</kbd> - Show End of Line.
 * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>b</kbd> - Show white space.
 * <kbd>Ctrl</kbd>+<kbd>r</kbd>, <kbd>Ctrl</kbd>+<kbd>w</kbd> - Show white space.
