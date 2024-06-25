@@ -165,9 +165,6 @@
     ("\e:"       . View-back-to-mark)
     ("\e;"       . exchange-point-and-mark)
 
-;;; Minimap
-    ((kbd "C-k m") . minimap-mode)
-
 ;;; Mode Toggle
     ((kbd "C-k `") . (lambda () (interactive)
                        (zoom-window-zoom) (jcs-reload-active-mode)))
