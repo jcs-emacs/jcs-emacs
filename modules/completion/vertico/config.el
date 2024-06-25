@@ -212,3 +212,11 @@
 (defun jcs-minibuffer--post-command ()
   "Minibuffer post command hook."
   (run-hooks 'jcs-minibuffer-post-command-hook))
+
+(defun jcs-clear-M-x-history ()
+  "Clear M-x command history."
+  (interactive)
+  (let ((count (1- (length extended-command-history))))  ; Don't include itself!
+    (setq extended-command-history nil)
+    (msgu-inhibit-log
+      (message "[INFO] Command history cleared: %s" count))))
