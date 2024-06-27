@@ -10,6 +10,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 * feat: Replace must kill buffer list with derived mode (c407b9859489c5b31697c9f61871b9e8254baaf7)
 * feat: Add new package `responsive-window` (0af7dfcc565b3813ac8776c6f75bf15fc5c74ea5)
+* fix: Record the window starting point instead first visible line (62039e725e816ad381b6a8d126bb28be22d65101)
+* fix: Force load project elisp files (b663d26669d35c69d0c99dc3a8353946fd2cb7cf)
+* fix: Load theme before `on` prevent potential UI package's errors (0c995aa207eb820d7b0d0778aa23da2c96b12e5f)
 
 ## 9.1.0
 > Released Jun 19, 2024
