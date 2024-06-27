@@ -49,9 +49,10 @@
 
 (jcs-add-hook 'after-init-hook
   (jcs-modules-load-entry)
-  (jcs-require '(dashboard on))
+  (jcs-require '(dashboard))
   (use-ttf-set-default-font)
   (jcs-setup-default-theme)
+  (jcs-require '(on))
   (message nil))    ; mute at the very end!
 
 (jcs-add-hook 'on-init-ui-hook
