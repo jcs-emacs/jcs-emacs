@@ -152,37 +152,36 @@ ALL-FRAMES."
 
 (defvar jcs-window--record-buffer-names nil "Record all windows' buffer.")
 (defvar jcs-window--record-points nil "Record all windows point.")
-(defvar jcs-window--record-first-visible-lines nil
-  "Record all windows' first visible line.")
+(defvar jcs-window--record-wstarts nil "Record all windows starting points.")
 
 (defun jcs-window-record-once ()
   "Record windows status once."
-  (let ((buf-names nil) (pts nil) (f-lns nil))
+  (let ((buf-names nil) (pts nil) (wstarts nil))
     ;; Record down all the window information with the same buffer opened.
     (jcs-walk-windows
      (lambda ()
        (jcs-push (jcs-buffer-name-or-buffer-file-name) buf-names)  ; Record as string!
        (jcs-push (point) pts)
-       (jcs-push (jcs-first-visible-line-in-window) f-lns)))
+       (jcs-push (window-start) wstarts)))
     (push buf-names jcs-window--record-buffer-names)
     (push pts jcs-window--record-points)
-    (push f-lns jcs-window--record-first-visible-lines)))
+    (push wstarts jcs-window--record-wstarts)))
 
 (defun jcs-window-restore-once ()
   "Restore windows status once."
   (let ((buf-names (pop jcs-window--record-buffer-names))
         (pts (pop jcs-window--record-points))
-        (f-lns (pop jcs-window--record-first-visible-lines))
+        (wstarts (pop jcs-window--record-wstarts))
         (win-cnt 0))
     ;; Restore the window information after, including opening the same buffer.
     (jcs-walk-windows
      (lambda ()
        (let* ((buf-name (nth win-cnt buf-names))
               (current-pt (nth win-cnt pts))
-              (current-first-vs-line (nth win-cnt f-lns))
+              (current-wstart (nth win-cnt wstarts))
               (actual-buf (jcs-get-buffer-by-path buf-name)))
          (if actual-buf (switch-to-buffer actual-buf) (find-file buf-name))
-         (jcs-make-first-visible-line-to current-first-vs-line)
+         (set-window-start nil current-wstart)
          (goto-char current-pt)
          (cl-incf win-cnt))))))
 
