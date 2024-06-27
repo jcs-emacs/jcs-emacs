@@ -88,7 +88,9 @@ If optional argument DIR is nil, use variable `default-directory' instead."
             (files (cl-remove-if-not (lambda (filename)
                                        (string-suffix-p ".el" filename))
                                      files)))
-      (mapc #'load-file files)
+      (mapc (lambda (file)
+              (ignore-errors (load-file file)))
+            files)
     (user-error "[WARNING] Currently not under an Elisp project")))
 
 (provide 'jcs-project)
