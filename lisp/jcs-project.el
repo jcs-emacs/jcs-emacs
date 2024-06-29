@@ -84,13 +84,16 @@ If optional argument DIR is nil, use variable `default-directory' instead."
   "Reload current elisp project."
   (interactive)
   (if-let* ((project (project-current))
+            (root (project-root project))
             (files (project-files project))
             (files (cl-remove-if-not (lambda (filename)
                                        (string-suffix-p ".el" filename))
                                      files)))
-      (mapc (lambda (file)
-              (ignore-errors (load-file file)))
-            files)
+      (progn
+        (mapc (lambda (file)
+                (ignore-errors (load-file file)))
+              files)
+        (message "[INFO] Reloading project %s... done!" root))
     (user-error "[WARNING] Currently not under an Elisp project")))
 
 (provide 'jcs-project)
