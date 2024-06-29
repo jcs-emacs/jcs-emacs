@@ -7,6 +7,8 @@
         centaur-tabs-set-icons t
         centaur-tabs-icon-type 'nerd-icons
         centaur-tabs-gray-out-icons 'buffer
+        centaur-tabs-icons-prefix ""
+        centaur-tabs-icon-scale-factor 0.9
         centaur-tabs-set-modified-marker t
         centaur-tabs-buffer-groups-function #'jcs-tab-buffer-groups-function
         centaur-tabs-hide-tab-function #'ignore
