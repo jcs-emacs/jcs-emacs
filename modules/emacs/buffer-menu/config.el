@@ -82,7 +82,8 @@
                                     "help-mode" "custom-mode"
                                     "list-environment-mode"
                                     "shell-mode" "eshell-mode"
-                                    "sqlite-mode")))
+                                    "sqlite-mode"
+                                    "checkdoc-output-mode")))
 
 ;;
 ;; (@* "Hook" )
