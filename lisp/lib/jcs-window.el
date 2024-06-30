@@ -17,10 +17,6 @@
 ;; (@* "Frame" )
 ;;
 
-(defun jcs-frame-util-p (&optional frame)
-  "Return non-nil if FRAME is an utility frame."
-  (frame-parent (or frame (selected-frame))))
-
 (defun jcs-make-frame ()
   "Select new frame after make frame."
   (interactive)
@@ -107,16 +103,6 @@ For argument TYPE; see function `jcs-string-compare-p' description."
 For argument TYPE; see function `jcs-string-compare-p' description."
   (>= (jcs-buffer-shown-count buf-name type) 2))
 
-(defun jcs-walk-windows (fun &optional minibuf all-frames)
-  "See function `walk-windows' description for arguments FUN, MINIBUF and
-ALL-FRAMES."
-  (elenv-with-no-redisplay
-    (walk-windows
-     (lambda (win)
-       (unless (jcs-frame-util-p (window-frame win))
-         (with-selected-window win (funcall fun))))
-     minibuf all-frames)))
-
 ;;
 ;; (@* "Deleting" )
 ;;
@@ -145,45 +131,6 @@ ALL-FRAMES."
   "Move to the upmost window."
   (interactive)
   (while (ignore-errors (select-window (window-in-direction 'above)))))
-
-;;
-;; (@* "Restore Windows Status" )
-;;
-
-(defvar jcs-window--record-buffer-names nil "Record all windows' buffer.")
-(defvar jcs-window--record-points nil "Record all windows point.")
-(defvar jcs-window--record-wstarts nil "Record all windows starting points.")
-
-(defun jcs-window-record-once ()
-  "Record windows status once."
-  (let ((buf-names nil) (pts nil) (wstarts nil))
-    ;; Record down all the window information with the same buffer opened.
-    (jcs-walk-windows
-     (lambda ()
-       (jcs-push (jcs-buffer-name-or-buffer-file-name) buf-names)  ; Record as string!
-       (jcs-push (point) pts)
-       (jcs-push (window-start) wstarts)))
-    (push buf-names jcs-window--record-buffer-names)
-    (push pts jcs-window--record-points)
-    (push wstarts jcs-window--record-wstarts)))
-
-(defun jcs-window-restore-once ()
-  "Restore windows status once."
-  (let ((buf-names (pop jcs-window--record-buffer-names))
-        (pts (pop jcs-window--record-points))
-        (wstarts (pop jcs-window--record-wstarts))
-        (win-cnt 0))
-    ;; Restore the window information after, including opening the same buffer.
-    (jcs-walk-windows
-     (lambda ()
-       (let* ((buf-name (nth win-cnt buf-names))
-              (current-pt (nth win-cnt pts))
-              (current-wstart (nth win-cnt wstarts))
-              (actual-buf (jcs-get-buffer-by-path buf-name)))
-         (if actual-buf (switch-to-buffer actual-buf) (find-file buf-name))
-         (set-window-start nil current-wstart)
-         (goto-char current-pt)
-         (cl-incf win-cnt))))))
 
 (provide 'jcs-window)
 ;;; jcs-window.el ends here

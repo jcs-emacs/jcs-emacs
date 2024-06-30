@@ -34,7 +34,7 @@
               ((< 0 buffer-wrap--delta-lines)
                (ignore-errors (forward-line 1)))
               (t
-               (jcs-goto-line (1- (line-number-at-pos (point-max))))))
+               (elenv-goto-line (1- (line-number-at-pos (point-max))))))
         (unless (ignore-errors (tabulated-list-get-entry))
           (ignore-errors (forward-line 1))))))
 

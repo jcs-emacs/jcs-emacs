@@ -141,7 +141,7 @@
   (jcs-when-buffer-window dashboard-buffer-name
     (jcs-with-dashboard-last-path
       (msgu-silent
-        (jcs-save-window-excursion (dashboard-refresh-buffer))))))
+        (elenv-save-window-excursion (dashboard-refresh-buffer))))))
 
 (jcs-advice-add 'dashboard-remove-item-under :around
   (jcs-with-dashboard-last-path (apply arg0 args)))

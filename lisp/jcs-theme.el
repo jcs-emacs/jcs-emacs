@@ -12,7 +12,7 @@
 
 (defun jcs-light-theme-p ()
   "Return non-nil if current theme is light theme."
-  (ignore-errors (jcs-light-color-p (face-background 'default))))
+  (ignore-errors (elenv-light-color-p (face-background 'default))))
 
 (defun jcs-theme-call (fnc)
   "Execute FNC with default arguments."

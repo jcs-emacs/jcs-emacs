@@ -30,7 +30,7 @@
     t)
    ((derived-mode-p 'lisp-data-mode)
     (if (or (ignore-errors (call-interactively #'elisp-def))
-            (ignore-errors (xref-find-definitions (jcs-2str (symbol-at-point)))))
+            (ignore-errors (xref-find-definitions (elenv-2str (symbol-at-point)))))
         (progn (jcs-recenter-top-bottom 'middle) t)
       (user-error "[INFO] No definition found for current target")))
    ((ignore-errors (meta-view-at-point)))

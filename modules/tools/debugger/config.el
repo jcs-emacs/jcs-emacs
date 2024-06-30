@@ -5,7 +5,7 @@
       gdb-many-windows t)
 
 (jcs-add-hook '(dap-mode-hook)
-  (let* ((mode-name (jcs-2str major-mode))
+  (let* ((mode-name (elenv-2str major-mode))
          (guess-req (s-replace "-mode" "" mode-name)))
     (require (intern (format "dap-%s" guess-req)) nil t)))
 
@@ -14,7 +14,7 @@
   `(cond ((elenv-debugging-p) ,@form1)
          ((jcs-debugging-p) ,@form2)
          (t (message "[INFO] Invalid debugger action: `%s`"
-                     (propertize (jcs-2str this-command)
+                     (propertize (elenv-2str this-command)
                                  'face 'font-lock-type-face)))))
 
 (defun jcs-debug-toggle-break-point ()

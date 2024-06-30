@@ -50,7 +50,7 @@
   (jcs-add-hook 'meta-view-after-insert-hook
     (run-hooks 'prog-mode-hook)  ; treat as prog-mode
     (setq-local ts-fold-summary-show nil)
-    (jcs-save-excursion  ; fold all comments
+    (elenv-save-excursion  ; fold all comments
       (goto-char (point-min))
       (call-interactively #'ts-fold-close)
       (let (continuation)

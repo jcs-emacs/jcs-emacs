@@ -8,7 +8,7 @@
 
 (defun jcs-as-hook (name)
   "Convert NAME to hook."
-  (intern (concat (jcs-2str name) "-hook")))
+  (intern (concat (elenv-2str name) "-hook")))
 
 ;;
 ;; (@* "Advice" )
@@ -37,17 +37,6 @@
           (dolist (hook ,hooks)
             (add-hook hook (lambda (&optional arg0 arg1 arg2 &rest args) ,@body))))
          (t (add-hook ,hooks (lambda (&optional arg0 arg1 arg2 &rest args) ,@body)))))
-
-(defmacro jcs-save-excursion (&rest body)
-  "Re-implementation `save-excursion' in FNC with ARGS."
-  (declare (indent 0) (debug t))
-  `(let ((ln (line-number-at-pos nil t)) (col (current-column)))
-     ,@body (jcs-goto-line ln) (move-to-column col)))
-
-(defmacro jcs-save-window-excursion (&rest body)
-  "Execute BODY without touching window's layout/settings."
-  (declare (indent 0) (debug t))
-  `(elenv-with-no-redisplay (jcs-window-record-once) ,@body (jcs-window-restore-once)))
 
 (defmacro jcs-when-buffer-window (buffer-or-name &rest body)
   "Execute BODY in window BUFFER-OR-NAME."
@@ -201,28 +190,6 @@ TYPE is the return type; can be 'object or 'string."
             (`string (push buf-name buf-lst))))))
     buf-lst))
 
-(defun jcs-get-buffer-by-path (path)
-  "Return the buffer by file PATH.
-
-Notice PATH can either be `buffer-name' or `buffer-file-name'."
-  (let ((buf-lst (buffer-list)) target-buf)
-    (when (cl-some (lambda (buf)
-                     (setq target-buf buf)
-                     (string= (jcs-buffer-name-or-buffer-file-name buf) path))
-                   buf-lst)
-      target-buf)))
-
-;;
-;; (@* "Color" )
-;;
-
-(defun jcs-light-color-p (hex-code)
-  "Return non-nil if HEX-CODE is in light tone."
-  (when elenv-graphic-p
-    (let ((gray (nth 0 (color-values "gray")))
-          (color (nth 0 (color-values hex-code))))
-      (< gray color))))
-
 ;;
 ;; (@* "Command" )
 ;;
@@ -272,7 +239,7 @@ Notice PATH can either be `buffer-name' or `buffer-file-name'."
     (select-window (jcs-get-largest-window nil nil t))
     (switch-to-buffer (nth 0 record))
     (jcs-make-first-visible-line-to (nth 3 record))
-    (jcs-goto-line (nth 1 record))
+    (elenv-goto-line (nth 1 record))
     (move-to-column (nth 2 record))))
 
 ;;
@@ -410,14 +377,6 @@ Notice PATH can either be `buffer-name' or `buffer-file-name'."
 ;; (@* "Line" )
 ;;
 
-(defun jcs-goto-line (ln)
-  "Goto LN line number."
-  (goto-char (point-min)) (forward-line (1- ln)))
-
-(defun jcs-space-p ()
-  "Return t if the buffer uses spaces instead of tabs."
-  (= (how-many "^\t" (point-min) (point-max)) 0))
-
 (defun jcs-first-char-in-line-column ()
   "Return column in first character in line."
   (save-excursion (back-to-indentation) (current-column)))
@@ -460,19 +419,13 @@ Notice PATH can either be `buffer-name' or `buffer-file-name'."
   "Last line number in current visible window."
   (line-number-at-pos (window-end) t))
 
-(defun jcs-line-number-at-pos-relative (&optional pos rel-line)
-  "Return line number relative to REL-LINE from POS.
-
-If optional argument REL-LINE is nil; we will use first visible line instead."
-  (- (line-number-at-pos pos t) (or rel-line (jcs-first-visible-line-in-window))))
-
 (defun jcs-make-first-visible-line-to (ln)
   "Make the first visible line to target line, LN."
-  (jcs-goto-line ln) (jcs-recenter-top-bottom 'top))
+  (elenv-goto-line ln) (jcs-recenter-top-bottom 'top))
 
 (defun jcs-make-last-visible-line-to (ln)
   "Make the last visible line to target line, LN."
-  (jcs-goto-line ln) (jcs-recenter-top-bottom 'bottom))
+  (elenv-goto-line ln) (jcs-recenter-top-bottom 'bottom))
 
 (defun jcs-recenter-top-bottom (type)
   "Recenter the window by TYPE."
@@ -683,10 +636,6 @@ If optional argument REVERSE is non-nil, LIST item and ELT argument."
 ;;
 ;; (@* "String" )
 ;;
-
-(defun jcs-2str (obj)
-  "Convert OBJ to string."
-  (format "%s" obj))
 
 (defun jcs-string-compare-p (regexp str type &optional ignore-case)
   "Compare STR with REGEXP by TYPE.
