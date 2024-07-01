@@ -191,20 +191,6 @@ TYPE is the return type; can be 'object or 'string."
     buf-lst))
 
 ;;
-;; (@* "Command" )
-;;
-
-(defun jcs-shell-execute (cmd &rest args)
-  "Return non-nil if CMD executed succesfully with ARGS."
-  (save-window-excursion
-    (msgu-silent
-      (= 0 (shell-command
-            (concat cmd " "
-                    (mapconcat #'shell-quote-argument
-                               (cl-remove-if #'s-blank-str-p args)
-                               " ")))))))
-
-;;
 ;; (@* "Event" )
 ;;
 
@@ -597,23 +583,6 @@ If optional argument REVERSE is non-nil, LIST item and ELT argument."
   (msgu-silent
     (if (= args 1) (unless (symbol-value name) (funcall-interactively name 1))
       (when (symbol-value name) (funcall-interactively name -1)))))
-
-;;
-;; (@* "I/O" )
-;;
-
-(defun jcs-file-content (path)
-  "Return PATH file content."
-  (if (file-exists-p path)
-      (with-temp-buffer (insert-file-contents path) (buffer-string))
-    ""))
-
-(defun jcs-move-path (path dest)
-  "Move PATH to DEST."
-  (ignore-errors (make-directory dest t))
-  (jcs-shell-execute (if elenv-windows "move" "mv")
-                     (unless elenv-windows "-f")
-                     (expand-file-name path) (expand-file-name dest)))
 
 ;;
 ;; (@* "File" )
