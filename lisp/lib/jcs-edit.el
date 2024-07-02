@@ -306,9 +306,10 @@
           (rename-buffer new-name)
           (set-visited-file-name new-name)
           (set-buffer-modified-p nil)
-          (if (string= name new-file-name)
-              (message "Filename doesn't change, `%s`" name)
-            (message "Rename file `%s` to `%s`" name new-file-name)))))))
+          (msgu-inhibit-log
+            (if (string= name new-file-name)
+                (msgu-current "[INFO] Filename doesn't change, `%s`" name)
+              (msgu-current "[INFO] Rename file `%s` to `%s`" name new-file-name))))))))
 
 ;;
 ;; (@* "Kill Buffer" )
