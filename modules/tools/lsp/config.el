@@ -12,8 +12,9 @@
         lsp-enable-on-type-formatting nil
         ;; Make breadcrumbs opt-in; they're redundant with the modeline and imenu
         lsp-headerline-breadcrumb-enable nil
-        ;; Inlay
+        ;; Inlay Hints
         lsp-inlay-hint-enable t
+        lsp-update-inlay-hints-on-scroll nil  ; XXX: Bad performance.
         ;; Make TCP connection is already slow; only try to connect once
         lsp-tcp-connection-timeout 0.01)
 
