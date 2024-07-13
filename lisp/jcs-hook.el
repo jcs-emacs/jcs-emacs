@@ -24,7 +24,7 @@
   (if (frame-focus-state) (jcs-hook--focus-in)
     (jcs-hook--focus-out)))
 
-(jcs-add-hook 'window-state-change-hook
+(jcs-add-hook 'window-buffer-change-functions
   (when (and (not (active-minibuffer-window))
              (not (jcs-fboundp-apply #'company--active-p)))
     (jcs-fboundp-apply #'jcs-buffer-menu-refresh-buffer)
