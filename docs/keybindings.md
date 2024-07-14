@@ -129,6 +129,11 @@ Here is the list of key bindings that are defined in this configuration.
 * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>=</kbd> - Previous output buffer.
 * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>-</kbd> - Next output buffer.
 
+#### Cleaning
+
+* <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>9</kbd> - Clear the `M-x` command history.
+* <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>0</kbd> - Clean the useless buffers.
+
 #### Search
 
 * <kbd>Ctrl</kbd>+<kbd>f</kbd> - Search through file.
@@ -145,8 +150,8 @@ Here is the list of key bindings that are defined in this configuration.
 
 #### Todo
 
-* <kbd>Ctrl</kbd>+<kbd>f10</kbd> - Goto the `previous` highlighted TODO related symbols.
-* <kbd>Ctrl</kbd>+<kbd>f11</kbd> - Goto the `next` highlighted TODO related symbols.
+* <kbd>Ctrl</kbd>+<kbd>f10</kbd> - Go to the `previous` highlighted TODO related symbols.
+* <kbd>Ctrl</kbd>+<kbd>f11</kbd> - Go to the `next` highlighted TODO related symbols.
 
 #### Commenting / Uncommenting
 
@@ -159,7 +164,7 @@ Here is the list of key bindings that are defined in this configuration.
 
 * <kbd>Alt</kbd>+<kbd>0</kbd> - Ask and set the current document string style.
 
-#### Formating
+#### Formatting
 
 * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>Ctrl</kbd>+<kbd>f</kbd> - Format region.
 * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>Ctrl</kbd>+<kbd>d</kbd> - Format document.

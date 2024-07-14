@@ -53,6 +53,10 @@
     ((kbd "<escape>")   . top-level)
     ((kbd "S-<escape>") . keyboard-escape-quit)
 
+;;; Cleaning
+    ((kbd "M-(") . jcs-clear-M-x-history)
+    ((kbd "M-)") . clean-buffers-kill-useless-buffers)
+
 ;;; Comment / Uncomment
     ((kbd "C-/")     . smart-comment)
     ((kbd "C-k C-c") . comment-region)
