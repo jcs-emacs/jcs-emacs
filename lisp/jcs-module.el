@@ -26,6 +26,7 @@
     (( vs-edit-mode vsc-edit-mode vs-comment-return)
      . "editor/vs")
     (backtrace                             . "emacs/backtrace")
+    (clean-buffers                         . "emacs/clean-buffers")
     (compile                               . "emacs/compile")
     (conf-mode                             . "emacs/conf-mode")
     (dired                                 . "emacs/dired")

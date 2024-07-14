@@ -78,6 +78,7 @@
            centaur-tabs
            chatgpt-sideline
            cisco-router-mode
+           clean-buffers
            clhs
            cmake-font-lock
            cobol-mode
