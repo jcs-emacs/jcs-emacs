@@ -4,7 +4,11 @@
   :init
   (setq clean-buffers-kill-active-buffer t
         clean-buffers-useless-buffer-names
-        '("\\*CPU-Profiler-Report "
-          "\\*Memory-Profiler-Report "
-          "\\*esup")
-        clean-buffers-useful-buffer-names nil))
+        '("[*]CPU-Profiler-Report "
+          "[*]Memory-Profiler-Report "
+          "[*]esup"
+          "[*]Process List")
+        clean-buffers-useful-buffer-names nil)
+  :config
+  (jcs-advice-add 'clean-buffers-kill-useless-buffers :after
+    (jcs-buffer-menu-refresh-buffer)))
