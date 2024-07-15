@@ -6,6 +6,7 @@
         clean-buffers-useless-buffer-names diminish-buffer-list
         clean-buffers-useful-buffer-names `("[*]Echo Area" "[*]Minibuf-"
                                             ,buffer-menu-filter-name
+                                            "[*]eldoc"
                                             "[*]company")
         clean-buffers-judge-useless-buffer-functions
         '( clean-buffers-judge-useless-buffer-by-time
