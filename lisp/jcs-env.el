@@ -204,7 +204,8 @@
            undefined
            toggle-truncate-lines
            after-find-file ff-find-the-other-file
-           undo)
+           undo
+           toggle-profiler)
         message-clean-mode-minor-mode 'echo))
 
 (use-package msgu
