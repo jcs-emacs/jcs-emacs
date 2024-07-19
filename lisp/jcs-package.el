@@ -350,7 +350,7 @@
            nov
            npm-mode
            on
-           opencl-mode
+           opencl-c-mode
            org-fancy-priorities
            org-sticky-header
            org-superstar
