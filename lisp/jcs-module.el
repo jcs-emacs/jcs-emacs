@@ -11,7 +11,8 @@
   "A list of preload modules.")
 
 (defconst jcs-module-load-alist
-  '((keypression                           . "app/keypression")
+  '(((arc-mode tar-mode)                   . "app/archive")
+    (keypression                           . "app/keypression")
     (elfeed                                . "app/rss")
     ((flycheck flymake)                    . ("checkers/syntax" "ui/sideline"))
     (company                               . "completion/company")
