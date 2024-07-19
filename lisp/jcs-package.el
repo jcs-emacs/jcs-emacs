@@ -336,6 +336,7 @@
            move-text
            multi-shell
            nasm-mode
+           nerd-icons-archive
            nerd-icons-buffer-menu
            nerd-icons-completion
            nerd-icons-dired
@@ -393,6 +394,7 @@
            shader-mode
            shell-pop
            shift-number
+           show-eof-mode
            shrink-whitespace
            sideline-blame
            sideline-color
