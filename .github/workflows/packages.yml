@@ -23,7 +23,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
         emacs-version:
-          - 29.3
+          - 29.4
     steps:
     - name: Checkout binaries repository
       uses: actions/checkout@v4
