@@ -153,7 +153,9 @@ git clone https://github.com/jcs-emacs/jcs-emacs ~/.emacs.d
 Then startup Emacs; will automatically install all necessary packages due
 to this configuration.
 
-**‼️[ATTENTION]‼️ -- MAKE SURE YOU INSTALLED THE CORRECT VERSION OF EMACS!**
+> [!CAUTION]
+>
+> **MAKE SURE YOU INSTALLED THE CORRECT VERSION OF EMACS!**
 
 ## 🕒 Startup Time
 
