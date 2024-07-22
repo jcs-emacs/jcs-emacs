@@ -157,10 +157,6 @@
     ((kbd "C-k 0") . (lambda () (interactive) (require 'powerthesaurus)
                        (powerthesaurus-transient)))
 
-;;; Line Endings
-    ((kbd "M-i") . show-eol-mode)
-    ((kbd "M-I") . set-buffer-file-coding-system)
-
 ;;; Macro
     ((kbd "C-k x") . macrostep-expand)
 
@@ -245,7 +241,6 @@
 
 ;;; Script Executing (Output)
     ((kbd "C-S-u")  . execrun-popup)
-    ((kbd "M-o")    . execrun-switch-to-buffer)
     ((kbd "<f5>")   . execrun-run)    ; Run
     ((kbd "C-S-b")  . execrun-build)  ; Build
     ((kbd "C-<f5>") . quickrun-select)
@@ -264,6 +259,15 @@
     ((kbd "C-k C-i") . jcs-poptip)
 
     ((kbd "C-q") . jcs-poptip-focus)
+
+;;; Show Symbol
+    ((kbd "M-i") . show-eol-mode)
+    ((kbd "M-I") . set-buffer-file-coding-system)
+
+    ((kbd "M-o") . show-eof-mode)
+
+    ((kbd "C-k b")   . whitespace-mode)
+    ((kbd "C-r C-w") . whitespace-mode)
 
 ;;; Startup Screen (Dashboard)
     ((kbd "M-d") . jcs-dashboard)
@@ -332,10 +336,6 @@
     ((kbd "C-M-u") . upcase-dwim)
     ((kbd "C-M-d") . downcase-dwim)
     ((kbd "C-M-c") . capitalize-dwim)
-
-;;; Whitespace
-    ((kbd "C-k b")   . whitespace-mode)
-    ((kbd "C-r C-w") . whitespace-mode)
 
 ;;; Zoom
     ((kbd "C-=")      . text-scale-increase)
