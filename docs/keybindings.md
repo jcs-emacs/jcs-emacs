@@ -125,7 +125,6 @@ Here is the list of key bindings that are defined in this configuration.
 * <kbd>f5</kbd> - Debug the program.
 * <kbd>Ctrl</kbd>+<kbd>f5</kbd> - Run the program.
 * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>u</kbd> - Show output window. (if any)
-* <kbd>Alt</kbd>+<kbd>o</kbd> - Switch to the output buffer.
 * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>=</kbd> - Previous output buffer.
 * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>-</kbd> - Next output buffer.
 
@@ -348,7 +347,8 @@ Here is the list of key bindings that are defined in this configuration.
 * <kbd>Alt</kbd>+<kbd>=</kbd> - Increase the frame's transparency.
 * <kbd>Alt</kbd>+<kbd>-</kbd> - Decrease the frame's transparency.
 * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>f</kbd> - Change font style.
-* <kbd>Alt</kbd>+<kbd>i</kbd> - Show End of Line.
+* <kbd>Alt</kbd>+<kbd>i</kbd> - Show end of line.
+* <kbd>Alt</kbd>+<kbd>o</kbd> - Show end of file.
 * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>b</kbd> - Show white space.
 * <kbd>Ctrl</kbd>+<kbd>r</kbd>, <kbd>Ctrl</kbd>+<kbd>w</kbd> - Show white space.
 
