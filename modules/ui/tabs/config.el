@@ -29,7 +29,7 @@
 ;;
 ;;; Buffer Groups
 
-(defvar jcs-tab-line--group-cache (make-hash-table)
+(defvar jcs-tab-line--group-cache (make-hash-table :test #'equal)
   "Cache for buffer groups.")
 
 (defun jcs-tab-buffer-groups-function ()
