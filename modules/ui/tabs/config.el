@@ -32,14 +32,23 @@
 (defvar jcs-tab-line--group-cache (make-hash-table :test #'equal)
   "Cache for buffer groups.")
 
+(defun jcs-tab-clear-dead-buffers ()
+  "Remove all dead buffers from group cache."
+  (ht-map (lambda (buffer _)
+            (unless (buffer-live-p buffer)
+              (ht-remove jcs-tab-line--group-cache buffer)))
+          jcs-tab-line--group-cache))
+
 (defun jcs-tab-buffer-groups-function ()
   "Group tabs."
   (let* ((name (buffer-name))
-         (group (or (ht-get jcs-tab-line--group-cache name)
+         (buffer (current-buffer))
+         (group (or (ht-get jcs-tab-line--group-cache buffer)
                     (cond ((and (featurep 'buffer-menu-filter)
                                 (diminish-buffer--filter name))
                            "Hidden")
                           (t
                            (car (funcall #'centaur-tabs-buffer-groups)))))))
-    (ht-set jcs-tab-line--group-cache name group)
+    (jcs-tab-clear-dead-buffers)
+    (ht-set jcs-tab-line--group-cache buffer group)
     `(,group)))
