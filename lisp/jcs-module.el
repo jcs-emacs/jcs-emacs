@@ -16,6 +16,7 @@
     (elfeed                                . "app/rss")
     ((flycheck flymake)                    . ("checkers/syntax" "ui/sideline"))
     (company                               . "completion/company")
+    (corfu                                 . "completion/corfu")
     (vertico                               . "completion/vertico")
     (turbo-log                             . "editor/debug")
     (tree-sitter                           . ("editor/docstring" "editor/fold"))
