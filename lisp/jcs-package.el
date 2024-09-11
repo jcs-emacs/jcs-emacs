@@ -107,6 +107,7 @@
            company-emmet
            company-emojify
            company-fuzzy
+           company-ghci
            company-glsl
            company-go
            company-kaomoji
@@ -298,6 +299,7 @@
            list-environment
            literate-calc-mode
            llvm-mode
+           lockfile-mode
            logms
            logview
            lsp-dart
