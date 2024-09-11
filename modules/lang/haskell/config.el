@@ -16,7 +16,9 @@
 (jcs-add-hook 'haskell-mode-hook
   ;; File Header
   (jcs-insert-header-if-valid '("[.]hs")
-                              'jcs-insert-haskell-template))
+                              'jcs-insert-haskell-template)
+
+  (company-fuzzy-backend-add-before 'company-ghci 'company-dabbrev))
 
 (jcs-add-hook 'haskell-cabal-mode-hook
   (run-hooks 'prog-mode-hook)
