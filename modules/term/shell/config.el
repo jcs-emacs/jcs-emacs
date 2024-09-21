@@ -1,7 +1,6 @@
 ;;; term/shell/config.el  -*- lexical-binding: t; -*-
 
 (require 'compile)
-(require 'exec-path-from-shell)
 
 (message-clean-mode-add-echo-commands '( shell-dirstack-message))
 

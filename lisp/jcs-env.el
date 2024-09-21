@@ -88,6 +88,9 @@
         special-display-buffer-names nil
         mac-pass-command-to-system nil))
 
+(when (or elenv-macos elenv-linux elenv-bsd elenv-unix)
+  (exec-path-from-shell-initialize))
+
 ;;
 ;; (@* "Settings" )
 ;;
