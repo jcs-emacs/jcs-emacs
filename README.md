@@ -310,7 +310,7 @@ kind of methods to support the maintainer you wish to.
 * *Remote Access* - powered by [tramp](https://www.emacswiki.org/emacs/TrampMode).
 * *Restart Emacs* - powered by [restart-emacs](https://github.com/iqbalansari/restart-emacs).
 * *Scroll Bar* - powered by [auto-scroll-bar](https://github.com/jcs-elpa/auto-scroll-bar).
-* *Shell* - powered by [shell](https://www.emacswiki.org/emacs/ShellMode) and [exec-path-from-shell](https://github.com/purcell/exec-path-from-shell).
+* *Shell* - powered by [shell](https://www.emacswiki.org/emacs/ShellMode).
 * *Smooth Scrolling* - none, originally powered by ~~[sublimity](https://github.com/zk-phi/sublimity)~~.
 * *Snippet* - powered by [yasnippet](https://github.com/joaotavora/yasnippet).
 * *Startup Screen* - powered by [dashboard](https://github.com/emacs-dashboard/emacs-dashboard).
