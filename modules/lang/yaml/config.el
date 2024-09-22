@@ -14,6 +14,8 @@
 (jcs-add-hook 'yaml-mode-hook
   (company-fuzzy-backend-add-before 'company-ansible 'company-dabbrev)
 
+  (flymake-ansible-lint-setup)
+
   ;; File Header
   (jcs-insert-header-if-valid '("[.]yaml"
                                 "[.]yml")

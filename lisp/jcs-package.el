@@ -218,6 +218,7 @@
            flycheck-relint
            flycheck-swift
            flycheck-ziglint
+           flymake-ansible-lint
            flymake-coffee
            flymake-haml
            flymake-less
