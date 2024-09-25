@@ -86,7 +86,7 @@
 
 (jcs-advice-ignore-errors 'indent-region)
 
-(jcs-advice-add 'indent-line-to :before (indent-control-ensure-tab-width))
+(jcs-advice-add 'indent-line-to :before (indent-control-ensure-indentable))
 
 ;;
 ;; (@* "Return" )

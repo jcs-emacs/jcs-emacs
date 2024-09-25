@@ -143,7 +143,7 @@
   (yas-minor-mode 1)
 
   ;; Ensure indentation level is available
-  (indent-control-ensure-tab-width))
+  (indent-control-ensure-indentable))
 
 (jcs-add-hook 'prog-mode-hook
   ;; XXX: See the bug https://github.com/immerrr/lua-mode/issues/172
