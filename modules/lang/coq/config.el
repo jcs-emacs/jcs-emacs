@@ -16,5 +16,5 @@
   (company-fuzzy-backend-add-before 'company-coq-choices-backend 'company-dabbrev)
 
   ;; File Header
-  (jcs-insert-header-if-valid '("[.]lua" "[.]luac")
-                              'jcs-insert-lua-template))
+  (jcs-insert-header-if-valid '("[.]v")
+                              'jcs-insert-coq-template))
