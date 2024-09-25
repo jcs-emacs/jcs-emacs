@@ -52,9 +52,9 @@ numerous technologies, incorporating hardware, firmware, and software.
 Here is the list of programming languages I know and are extended
 from this configuration.
 
-* ActionScript 2.0 or 3.0 / Ada / Agda / AppleScript / Assembly Language
+* ActionScript / Ada / Agda / AppleScript / Assembly
 * BASIC / Batchfile / Beancount
-* C / C++ / C# / Clojure / / COBOL / Common Lisp / Crystal / CSS / CUDA / Cython
+* C / C++ / C# / Clojure / COBOL / Coq / Crystal / CSS / CUDA / Cython
 * Dart / Dockerfile
 * Elixir / Elm / Emacs Lisp / Erlang
 * F# / Fountain
@@ -63,7 +63,7 @@ from this configuration.
 * Idris / INI
 * Java / JavaScript / JSON / JSX / Julia
 * Kotlin
-* LESS / Lisp / Lua
+* LaTeX / LESS / Lisp / Lua
 * Makefile / Markdown / Mermaid / Mint
 * Nim / Nix / Noir
 * Object Pascal (Delphi) / Objective-C / OCaml
