@@ -13,6 +13,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * fix: Record the window starting point instead first visible line (62039e725e816ad381b6a8d126bb28be22d65101)
 * fix: Force load project elisp files (b663d26669d35c69d0c99dc3a8353946fd2cb7cf)
 * fix: Load theme before `on` prevent potential UI package's errors (0c995aa207eb820d7b0d0778aa23da2c96b12e5f)
+* feat: Add `Coq` support (c8382d9103f98bc4d1015c48bddca0b004018a92)
 
 ## 9.1.0
 > Released Jun 19, 2024
