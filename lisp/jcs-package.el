@@ -100,6 +100,7 @@
            company-cabal
            company-cmd
            company-coffee
+           company-coq
            company-dict
            company-dockerfile
            company-eask
@@ -114,7 +115,6 @@
            company-ledger
            company-lua
            company-makefile
-           company-math
            company-meta-net
            company-mlton
            company-nginx
@@ -375,6 +375,7 @@
            processing-mode
            project-abbrev
            prometheus-mode
+           proof-general
            protobuf-mode
            purescript-mode
            python-mode
