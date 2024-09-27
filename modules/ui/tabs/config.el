@@ -12,7 +12,8 @@
         centaur-tabs-set-modified-marker t
         centaur-tabs-buffer-groups-function #'jcs-tab-buffer-groups-function
         centaur-tabs-hide-predicate #'elenv-frame-util-p
-        centaur-tabs-hide-tab-function #'ignore
+        centaur-tabs-hide-tab-function #'centaur-tabs-hide-tab
+        centaur-tabs-excluded-prefixes `(" *which")
         centaur-tabs-show-count t
         centaur-tabs-count-format " %d/%d"
         centaur-tabs-show-navigation-buttons t
