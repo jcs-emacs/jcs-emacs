@@ -16,6 +16,10 @@
 (elenv-when-exec "sbcl" nil
   (setq inferior-lisp-program (shell-quote-argument value)))
 
+(jcs-add-hook 'sly-mrepl-mode-hook
+  (jcs-key-local
+    `(((kbd "M-K") . sly-mrepl-clear-repl))))
+
 ;;
 ;; (@* "Extensions" )
 ;;
