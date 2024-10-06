@@ -216,6 +216,7 @@
            flycheck-ocaml
            flycheck-package
            flycheck-relint
+           flycheck-rust
            flycheck-swift
            flycheck-ziglint
            flymake-ansible-lint
