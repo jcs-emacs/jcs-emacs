@@ -23,3 +23,7 @@
 (setq lsp-rust-analyzer-display-chaining-hints t
       lsp-rust-analyzer-display-parameter-hints t
       lsp-rust-analyzer-closing-brace-hints t)
+
+(use-package flycheck-rust
+  :hook (flycheck-mode . flycheck-rust-setup))
+
