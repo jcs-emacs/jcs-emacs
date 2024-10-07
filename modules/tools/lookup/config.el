@@ -23,17 +23,25 @@
   "Move to definition."
   (interactive)
   (cond
+   ;; LSP
    ((and (jcs-lsp-connected-p)
          (not (or (ignore-errors (lsp-find-definition))
                   (ignore-errors (lsp-goto-type-definition))
                   (ignore-errors (lsp-goto-implementation)))))
     t)
+   ;; SLY
+   ((and (memq major-mode '(lisp-mode))
+         (jcs-fboundp-apply #'sly-connected-p))
+    (call-interactively #'sly-edit-definition))
+   ;; Emacs Lisp
    ((derived-mode-p 'lisp-data-mode)
     (if (or (ignore-errors (call-interactively #'elisp-def))
             (ignore-errors (xref-find-definitions (elenv-2str (symbol-at-point)))))
         (progn (jcs-recenter-top-bottom 'middle) t)
       (user-error "[INFO] No definition found for current target")))
+   ;; C#
    ((ignore-errors (meta-view-at-point)))
+   ;; Default
    (t (dumb-jump-go-prefer-external))))
 
 (defun jcs-goto-definition-other-window ()
