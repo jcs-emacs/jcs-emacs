@@ -221,6 +221,7 @@
            flycheck-ziglint
            flymake-ansible-lint
            flymake-coffee
+           flymake-guile
            flymake-haml
            flymake-less
            flymake-lua

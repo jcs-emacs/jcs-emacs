@@ -13,5 +13,11 @@
 
 (jcs-add-hook 'scheme-mode-hook
   ;; File Header
-  (jcs-insert-header-if-valid '("[.]ss")
+  (jcs-insert-header-if-valid '("[.]scm" "[.]ss")
                               'jcs-insert-scheme-template))
+
+;;
+;; (@* "Extensions" )
+;;
+
+(use-package flymake-guile :hook (flymake-mode . flymake-guile))
