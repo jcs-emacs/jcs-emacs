@@ -106,10 +106,10 @@
     ((kbd "C-?")   . cycle-slash)
 
 ;;; Eval
-    ((kbd "C-e b") . eval-buffer)
-    ((kbd "C-e d") . eval-defun)
-    ((kbd "C-e e") . eval-expression)
-    ((kbd "C-e r") . eval-region)
+    ((kbd "C-e b") . ueval-buffer)
+    ((kbd "C-e d") . ueval-defun)
+    ((kbd "C-e e") . ueval-expression)
+    ((kbd "C-e r") . ueval-region)
 
 ;;; Expand Region
     ((kbd "C-+") . er/expand-region)

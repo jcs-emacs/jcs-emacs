@@ -441,6 +441,7 @@
            turbo-log
            typescript-mode
            typst-mode
+           ueval
            undo-tree-vf
            unfill
            use-ttf
