@@ -13,7 +13,9 @@
                                   (sideline-flymake  . down)
                                   (chatgpt-sideline  . up))
         sideline-display-backend-name t
-        sideline-display-backend-type 'inner))
+        sideline-display-backend-type 'inner
+        sideline-truncate t
+        sideline-truncate-min-available-space-ratio 0.4))
 
 (use-package sideline-flycheck
   :hook (flycheck-mode . sideline-flycheck-setup)
