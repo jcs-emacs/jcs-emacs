@@ -58,7 +58,7 @@ from this configuration.
 * Dart / Dockerfile
 * Elixir / Elm / Emacs Lisp / Erlang
 * F# / Fountain
-* GLSL / Go / GDScript / Groovy
+* GLSL / Go / Godot / Groovy
 * Haskell / Haxe / HLSL / HTML
 * Idris / INI
 * Java / JavaScript / JSON / JSX / Julia
