@@ -242,6 +242,7 @@
            gas-mode
            gcmh
            gdscript-mode
+           gdshader-mode
            git-assembler-mode
            git-link
            git-modes

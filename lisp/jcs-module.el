@@ -112,7 +112,7 @@
     (fountain-mode                         . "lang/fountain")
     (fsharp-mode                           . "lang/fsharp")
     (fstar-mode                            . "lang/fstar")
-    (gdscript-mode                         . "lang/gdscript")
+    ((gdscript-mode gdshader-mode)         . "lang/godot")
     ((shader-mode glsl-mode hlsl-mode)     . "lang/shader")
     (sml-mode                              . "lang/sml")
     (go-mode                               . "lang/go")
