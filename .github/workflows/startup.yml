@@ -87,7 +87,7 @@ jobs:
         git reset --hard
 
     - name: Remove before creating tar file
-      uses: JesseTG/rm@v1.0.2
+      uses: JesseTG/rm@v1.0.3
       with:
         path: main.tar
 
