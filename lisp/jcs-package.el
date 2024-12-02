@@ -209,6 +209,7 @@
            flycheck-grammarly
            flycheck-haskell
            flycheck-hl-todo
+           flycheck-janet
            flycheck-kotlin
            flycheck-languagetool
            flycheck-ledger
@@ -281,6 +282,8 @@
            ini-mode
            isearch-project
            jai-mode
+           janet-mode
+           jar-manifest-mode
            javadoc-lookup
            javap-mode
            jayces-mode
