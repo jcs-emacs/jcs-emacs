@@ -61,7 +61,7 @@ from this configuration.
 * GLSL / Go / Godot / Groovy
 * Haskell / Haxe / HLSL / HTML
 * Idris / INI
-* Java / JavaScript / JSON / JSX / Julia
+* Janet / Java / JavaScript / JSON / JSX / Julia
 * Kotlin
 * LaTeX / LESS / Lisp / Lua
 * Makefile / Markdown / Mermaid / Mint
