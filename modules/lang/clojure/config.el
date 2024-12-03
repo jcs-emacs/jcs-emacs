@@ -22,3 +22,6 @@
 
 (use-package flycheck-clojure
   :hook (flycheck-mode . flycheck-clojure-setup))
+
+(use-package flycheck-clj-kondo
+  :hook (flycheck-mode . (lambda (&rest _) (require 'flycheck-clj-kondo))))

@@ -196,6 +196,7 @@
            flycheck-actionlint
            flycheck-cask
            flycheck-clang-analyzer
+           flycheck-clj-kondo
            flycheck-clojure
            flycheck-credo
            flycheck-crystal
