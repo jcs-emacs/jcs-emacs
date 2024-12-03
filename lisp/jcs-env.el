@@ -185,7 +185,11 @@
                                     narrow-to-region
                                     sly-eval-buffer sly-eval-defun sly-eval-region
                                     sly-eval-last-expression
-                                    sly-overlay-eval-defun)))
+                                    sly-overlay-eval-defun
+                                    cider-eval-buffer
+                                    cider-eval-defun-at-point
+                                    cider-eval-sexp-at-point
+                                    cider-eval-region)))
 
 ;;
 ;;; Messages
