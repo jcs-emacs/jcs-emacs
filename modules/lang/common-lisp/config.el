@@ -18,9 +18,9 @@
 
 (jcs-add-hook 'sly-mrepl-mode-hook
   (jcs-key-local
-    `(((kbd "<up>")   . sly-mrepl-previous-input-or-button)
-      ((kbd "<down>") . sly-mrepl-next-input-or-button)
-      ((kbd "M-K")    . sly-mrepl-clear-repl))))
+    `(((kbd "M-<up>")   . sly-mrepl-previous-input-or-button)
+      ((kbd "M-<down>") . sly-mrepl-next-input-or-button)
+      ((kbd "M-K")      . sly-mrepl-clear-repl))))
 
 ;;
 ;; (@* "Extensions" )

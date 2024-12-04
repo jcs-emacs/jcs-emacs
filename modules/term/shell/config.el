@@ -12,18 +12,18 @@
   (modify-syntax-entry ?> "!")
 
   (jcs-key-local
-    `(((kbd "M-k")    . shell-pop)  ; Close it
-      ((kbd "M-K")    . comint-clear-buffer)
-      ((kbd "<up>")   . comint-previous-input)
-      ((kbd "<down>") . comint-next-input)
-      ((kbd "<tab>")  . comint-next-matching-input-from-input)
-      ([C-up]         . block-travel-up)
-      ([C-down]       . block-travel-down)
-      ((kbd "C-~")    . (lambda () (interactive)
-                          (shell-pop (multi-shell--next-valid-index))))
-      ((kbd "C-_")    . multi-shell-prev)
-      ((kbd "C-+")    . multi-shell-next)
-      ((kbd "M-b")    . multi-shell-select))))
+    `(((kbd "M-k")      . shell-pop)  ; Close it
+      ((kbd "M-K")      . comint-clear-buffer)
+      ((kbd "M-<up>")   . comint-previous-input)
+      ((kbd "M-<down>") . comint-next-input)
+      ((kbd "<tab>")    . comint-next-matching-input-from-input)
+      ([C-up]           . block-travel-up)
+      ([C-down]         . block-travel-down)
+      ((kbd "C-~")      . (lambda () (interactive)
+                            (shell-pop (multi-shell--next-valid-index))))
+      ((kbd "C-_")      . multi-shell-prev)
+      ((kbd "C-+")      . multi-shell-next)
+      ((kbd "M-b")      . multi-shell-select))))
 
 ;;
 ;; (@* "Extensions" )
