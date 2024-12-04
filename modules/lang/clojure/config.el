@@ -18,6 +18,12 @@
   (jcs-insert-header-if-valid '("[.]clj")
                               'jcs-insert-clojure-template))
 
+(jcs-add-hook 'cider-repl-mode-hook
+  (jcs-key-local
+    `(((kbd "M-<up>")   . cider-repl-previous-input)
+      ((kbd "M-<down>") . cider-repl-next-input)
+      ((kbd "M-K")      . cider-repl-clear-buffer))))
+
 ;;
 ;; (@* "Extensions" )
 ;;
