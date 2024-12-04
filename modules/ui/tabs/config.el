@@ -10,7 +10,8 @@
         centaur-tabs-icons-prefix ""
         centaur-tabs-icon-scale-factor 0.9
         centaur-tabs-set-modified-marker t
-        centaur-tabs-buffer-groups-function #'jcs-tab-buffer-groups-function
+        centaur-tabs-buffer-groups-function #'jcs-tab-buffer-groups
+        centaur-tabs-custom-buffer-groups #'jcs-tab-custom-buffer-groups
         centaur-tabs-hide-predicate #'elenv-frame-util-p
         centaur-tabs-hide-tab-function #'centaur-tabs-hide-tab
         centaur-tabs-excluded-prefixes `(" *which")
@@ -40,16 +41,18 @@
               (ht-remove jcs-tab-line--group-cache buffer)))
           jcs-tab-line--group-cache))
 
-(defun jcs-tab-buffer-groups-function ()
-  "Group tabs."
+(defun jcs-tab-buffer-groups ()
+  "Group tabs with cache."
   (let* ((name (buffer-name))
          (buffer (current-buffer))
          (group (or (ht-get jcs-tab-line--group-cache buffer)
-                    (cond ((and (featurep 'buffer-menu-filter)
-                                (diminish-buffer--filter name))
-                           "Hidden")
-                          (t
-                           (car (funcall #'centaur-tabs-buffer-groups)))))))
+                    (car (funcall #'centaur-tabs-buffer-groups)))))
     (jcs-tab-clear-dead-buffers)
     (ht-set jcs-tab-line--group-cache buffer group)
     `(,group)))
+
+(defun jcs-tab-custom-buffer-groups ()
+  "Group tabs."
+  (cond ((and (featurep 'buffer-menu-filter)
+              (diminish-buffer--filter (buffer-name)))
+         "Hidden")))
