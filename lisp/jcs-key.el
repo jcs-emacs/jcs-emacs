@@ -276,9 +276,11 @@
     ((kbd "<f6>") . flycheck-mode)
 
 ;;; Tab Bar
-    ((kbd "C-t")       . centaur-tabs-mode)
-    ((kbd "C-<prior>") . centaur-tabs-backward)
-    ((kbd "C-<next>")  . centaur-tabs-forward)
+    ((kbd "C-t")         . centaur-tabs-mode)
+    ((kbd "C-<prior>")   . centaur-tabs-backward)
+    ((kbd "C-<next>")    . centaur-tabs-forward)
+    ((kbd "C-S-<prior>") . centaur-tabs-backward-group)
+    ((kbd "C-S-<next>")  . centaur-tabs-forward-group)
 
 ;;; Tab Width
     ((kbd "C-k >") . indent-control-inc)
