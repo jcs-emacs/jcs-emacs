@@ -253,8 +253,10 @@ Here is the list of key bindings that are defined in this configuration.
 
 ##### Using Tab
 
-* <kbd>Ctrl</kbd>+<kbd>pg-up</kbd> - Switch to the previous buffer in the queue.
-* <kbd>Ctrl</kbd>+<kbd>pg-down</kbd> - Switch to the next buffer in the queue.
+* <kbd>Ctrl</kbd>+<kbd>pg-up</kbd> - Switch to the previous tab.
+* <kbd>Ctrl</kbd>+<kbd>pg-down</kbd> - Switch to the next tab.
+* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>pg-up</kbd> - Switch to the previous tab group.
+* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>pg-down</kbd> - Switch to the next tab group.
 
 #### Kill Buffer
 
