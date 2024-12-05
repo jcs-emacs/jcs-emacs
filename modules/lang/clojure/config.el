@@ -28,6 +28,13 @@
 ;; (@* "Extensions" )
 ;;
 
+(use-package cider
+  :init
+  (eval-mark-add-after-commands '( cider-eval-buffer
+                                   cider-eval-defun-at-point
+                                   cider-eval-sexp-at-point
+                                   cider-eval-region)))
+
 (use-package flycheck-clojure
   :hook (flycheck-mode . flycheck-clojure-setup))
 

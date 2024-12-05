@@ -26,6 +26,12 @@
 ;; (@* "Extensions" )
 ;;
 
+(use-package sly
+  :init
+  (eval-mark-add-after-commands '( sly-eval-buffer sly-eval-defun sly-eval-region
+                                   sly-eval-last-expression
+                                   sly-overlay-eval-defun)))
+
 (use-package sly-repl-ansi-color
   :init
   (add-to-list 'sly-contribs 'sly-repl-ansi-color))

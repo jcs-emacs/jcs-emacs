@@ -182,14 +182,7 @@
   :init
   (setq eval-mark-commands-after '( eval-buffer eval-defun eval-region
                                     eval-last-sexp
-                                    narrow-to-region
-                                    sly-eval-buffer sly-eval-defun sly-eval-region
-                                    sly-eval-last-expression
-                                    sly-overlay-eval-defun
-                                    cider-eval-buffer
-                                    cider-eval-defun-at-point
-                                    cider-eval-sexp-at-point
-                                    cider-eval-region)))
+                                    narrow-to-region)))
 
 ;;
 ;;; Messages
