@@ -53,6 +53,11 @@
 
 (defun jcs-tab-custom-buffer-groups ()
   "Group tabs."
-  (cond ((and (featurep 'buffer-menu-filter)
-              (diminish-buffer--filter (buffer-name)))
-         "Hidden")))
+  (let ((name (buffer-name)))
+    (cond ((string-prefix-p "*cider" name) "Cider")
+          ((string-prefix-p "*sly" name) "Sly")
+          ((string-prefix-p "*esup" name) "ESUP")
+          ((string-match-p "lsp" name) "LSP-mode")
+          ((and (featurep 'buffer-menu-filter)
+                (diminish-buffer--filter name))
+           "Hidden"))))
