@@ -20,4 +20,9 @@
 ;; (@* "Extensions" )
 ;;
 
+(use-package geiser
+  :init
+  (setq geiser-autodoc-identifier-format "%s → %s"
+        geiser-repl-per-project-p t))
+
 (use-package flymake-guile :hook (flymake-mode . flymake-guile))

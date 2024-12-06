@@ -243,6 +243,15 @@
            gcmh
            gdscript-mode
            gdshader-mode
+           geiser-chez
+           geiser-chibi
+           geiser-chicken
+           geiser-gambit
+           geiser-gauche
+           geiser-guile
+           geiser-kawa
+           geiser-mit
+           geiser-racket
            git-assembler-mode
            git-link
            git-modes
