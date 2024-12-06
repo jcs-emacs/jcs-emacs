@@ -16,6 +16,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * feat: Add `Coq` support (c8382d9103f98bc4d1015c48bddca0b004018a92)
 * feat: Add `GDShader` support (fdb485a4adb0d29284ca93de9647e47b1bf7f94b)
 * feat: Add `Janet` support (2738bdc83f2b2d00411e9f5bb489087d1ae27c42)
+* feat(lang): Add `geiser` for better `Scheme` support (b981c72a0942ca13a4f9fc0da7edcfd4653482fd)
 
 ## 9.1.0
 > Released Jun 19, 2024
