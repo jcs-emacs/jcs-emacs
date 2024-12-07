@@ -24,4 +24,12 @@
 ;; (@* "Extensions" )
 ;;
 
+(use-package racket-mode
+  :init
+  (setq racket-show-functions '( sideline-racket-show)))
+
 (use-package flymake-racket :hook (flymake-mode . flymake-racket-add-hook))
+
+(use-package sideline-racket
+  :init
+  (setq sideline-backends-right '(sideline-racket)))

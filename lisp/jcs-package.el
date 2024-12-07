@@ -397,7 +397,6 @@
            qt-pro-mode
            quelpa-use-package
            quickrun
-           racket-mode
            rainbow-csv
            region-occurrences-highlighter
            region-state
@@ -422,6 +421,7 @@
            sideline-flymake
            sideline-load-cost
            sideline-lsp
+           sideline-racket
            sideline-sly
            site-lisp
            slim-mode

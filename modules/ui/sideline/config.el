@@ -9,7 +9,9 @@
          (lisp-mode       . (lambda ()
                               (when (featurep 'sly) (sideline-mode 1))))
          (clojure-mode    . (lambda ()
-                              (when (featurep 'cider) (sideline-mode 1)))))
+                              (when (featurep 'cider) (sideline-mode 1))))
+         (racket-mode     . (lambda ()
+                              (when (featurep 'racket-mode) (sideline-mode 1)))))
   :init
   (setq sideline-delay 0.2
         sideline-backends-left `((sideline-load-cost . up)
