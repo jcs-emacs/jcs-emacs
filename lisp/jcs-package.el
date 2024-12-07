@@ -422,12 +422,12 @@
            sideline-flymake
            sideline-load-cost
            sideline-lsp
+           sideline-sly
            site-lisp
            slim-mode
            sln-mode
            sly-asdf
            sly-macrostep
-           sly-overlay
            sly-quicklisp
            sly-repl-ansi-color
            smart-comment

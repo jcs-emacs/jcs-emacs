@@ -13,6 +13,7 @@
                                   (sideline-flymake  . down)
                                   (sideline-eros     . down)
                                   (sideline-cider    . down)
+                                  (sideline-sly      . down)
                                   (chatgpt-sideline  . up))
         sideline-display-backend-name t
         sideline-display-backend-type 'inner
@@ -44,3 +45,6 @@
 
 (use-package sideline-cider
   :hook (sideline-mode . sideline-cider-setup))
+
+(use-package sideline-sly
+  :hook (sideline-mode . sideline-sly-setup))
