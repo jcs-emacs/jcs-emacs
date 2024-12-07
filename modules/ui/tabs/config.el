@@ -10,8 +10,8 @@
         centaur-tabs-icons-prefix ""
         centaur-tabs-icon-scale-factor 0.9
         centaur-tabs-set-modified-marker t
-        centaur-tabs-buffer-groups-function #'jcs-tab-buffer-groups
-        centaur-tabs-custom-buffer-groups #'jcs-tab-custom-buffer-groups
+        centaur-tabs-buffer-groups-function #'jcs-tabs-buffer-groups
+        centaur-tabs-custom-buffer-groups #'jcs-tabs-custom-buffer-groups
         centaur-tabs-hide-predicate #'elenv-frame-util-p
         centaur-tabs-hide-tab-function #'centaur-tabs-hide-tab
         centaur-tabs-excluded-prefixes `(" *which")
@@ -31,27 +31,27 @@
 ;;
 ;;; Buffer Groups
 
-(defvar jcs-tab-line--group-cache (make-hash-table :test #'equal)
+(defvar jcs-tabs-line--group-cache (make-hash-table :test #'equal)
   "Cache for buffer groups.")
 
-(defun jcs-tab-clear-dead-buffers ()
+(defun jcs-tabs-clear-dead-buffers ()
   "Remove all dead buffers from group cache."
   (ht-map (lambda (buffer _)
             (unless (buffer-live-p buffer)
-              (ht-remove jcs-tab-line--group-cache buffer)))
-          jcs-tab-line--group-cache))
+              (ht-remove jcs-tabs-line--group-cache buffer)))
+          jcs-tabs-line--group-cache))
 
-(defun jcs-tab-buffer-groups ()
+(defun jcs-tabs-buffer-groups ()
   "Group tabs with cache."
   (let* ((name (buffer-name))
          (buffer (current-buffer))
-         (group (or (ht-get jcs-tab-line--group-cache buffer)
+         (group (or (ht-get jcs-tabs-line--group-cache buffer)
                     (car (funcall #'centaur-tabs-buffer-groups)))))
-    (jcs-tab-clear-dead-buffers)
-    (ht-set jcs-tab-line--group-cache buffer group)
+    (jcs-tabs-clear-dead-buffers)
+    (ht-set jcs-tabs-line--group-cache buffer group)
     `(,group)))
 
-(defun jcs-tab-custom-buffer-groups ()
+(defun jcs-tabs-custom-buffer-groups ()
   "Group tabs."
   (let ((name (buffer-name)))
     (cond ((string-prefix-p "*cider" name) "Cider")
