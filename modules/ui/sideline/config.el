@@ -11,6 +11,7 @@
                                   (sideline-eglot    . up)
                                   (sideline-flycheck . down)
                                   (sideline-flymake  . down)
+                                  (sideline-eros     . down)
                                   (chatgpt-sideline  . up))
         sideline-display-backend-name t
         sideline-display-backend-type 'inner
@@ -36,3 +37,6 @@
 (use-package sideline-blame
   :init
   (setq sideline-blame-commit-format "• %s"))
+
+(use-package sideline-eros
+  :hook (sideline-mode . sideline-eros-setup))

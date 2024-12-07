@@ -175,7 +175,6 @@
            envrc
            eping
            erlang
-           eros
            eshell-syntax-highlighting
            ess
            esup
@@ -417,6 +416,7 @@
            sideline-blame
            sideline-color
            sideline-eglot
+           sideline-eros
            sideline-flycheck
            sideline-flymake
            sideline-load-cost
