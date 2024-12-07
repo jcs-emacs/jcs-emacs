@@ -414,6 +414,7 @@
            show-eof-mode
            shrink-whitespace
            sideline-blame
+           sideline-cider
            sideline-color
            sideline-eglot
            sideline-eros
