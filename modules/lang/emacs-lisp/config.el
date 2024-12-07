@@ -63,3 +63,6 @@
 
 (use-package flycheck-package :hook (flycheck-mode . flycheck-package-setup))
 (use-package flycheck-relint  :hook (flycheck-mode . flycheck-relint-setup))
+
+(use-package sideline-eros
+  :hook (sideline-mode . sideline-eros-setup))

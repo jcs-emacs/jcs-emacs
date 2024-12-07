@@ -1,8 +1,15 @@
 ;;; ui/sideline/config.el  -*- lexical-binding: t; -*-
 
 (use-package sideline
-  :hook ((flycheck-mode . sideline-mode)
-         (flymake-mode  . sideline-mode))
+  :hook ((flycheck-mode   . sideline-mode)
+         (flymake-mode    . sideline-mode)
+         ;; Modes
+         (emacs-lisp-mode . (lambda ()
+                              (when (featurep 'eros) (sideline-mode 1))))
+         (lisp-mode       . (lambda ()
+                              (when (featurep 'sly) (sideline-mode 1))))
+         (clojure-mode    . (lambda ()
+                              (when (featurep 'cider) (sideline-mode 1)))))
   :init
   (setq sideline-delay 0.2
         sideline-backends-left `((sideline-load-cost . up)
@@ -39,12 +46,3 @@
 (use-package sideline-blame
   :init
   (setq sideline-blame-commit-format "• %s"))
-
-(use-package sideline-eros
-  :hook (sideline-mode . sideline-eros-setup))
-
-(use-package sideline-cider
-  :hook (sideline-mode . sideline-cider-setup))
-
-(use-package sideline-sly
-  :hook (sideline-mode . sideline-sly-setup))

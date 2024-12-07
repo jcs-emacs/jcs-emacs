@@ -39,3 +39,6 @@
 (use-package sly-asdf
   :init
   (add-to-list 'sly-contribs 'sly-asdf))
+
+(use-package sideline-sly
+  :hook (sideline-mode . sideline-sly-setup))
