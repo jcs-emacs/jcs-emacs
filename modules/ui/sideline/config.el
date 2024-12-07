@@ -10,6 +10,8 @@
                               (when (featurep 'sly) (sideline-mode 1))))
          (clojure-mode    . (lambda ()
                               (when (featurep 'cider) (sideline-mode 1))))
+         (scheme-mode     . (lambda ()
+                              (when (featurep 'geiser) (sideline-mode 1))))
          (racket-mode     . (lambda ()
                               (when (featurep 'racket-mode) (sideline-mode 1)))))
   :init
@@ -23,6 +25,8 @@
                                   (sideline-eros     . down)
                                   (sideline-cider    . down)
                                   (sideline-sly      . down)
+                                  (sideline-geiser   . down)
+                                  (sideline-racket   . down)
                                   (chatgpt-sideline  . up))
         sideline-display-backend-name t
         sideline-display-backend-type 'inner

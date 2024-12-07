@@ -23,6 +23,7 @@
 (use-package geiser
   :init
   (setq geiser-autodoc-identifier-format "%s → %s"
-        geiser-repl-per-project-p t))
+        geiser-repl-per-project-p t
+        geiser-mode-eval-to-buffer-transformer #'sideline-geiser-show))
 
 (use-package flymake-guile :hook (flymake-mode . flymake-guile))

@@ -419,6 +419,7 @@
            sideline-eros
            sideline-flycheck
            sideline-flymake
+           sideline-geiser
            sideline-load-cost
            sideline-lsp
            sideline-racket
