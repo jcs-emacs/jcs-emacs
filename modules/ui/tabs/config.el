@@ -10,6 +10,7 @@
         centaur-tabs-icons-prefix ""
         centaur-tabs-icon-scale-factor 0.9
         centaur-tabs-set-modified-marker t
+        centaur-tabs-enable-ido-completion nil
         centaur-tabs-buffer-groups-function #'jcs-tabs-buffer-groups
         centaur-tabs-custom-buffer-groups #'jcs-tabs-custom-buffer-groups
         centaur-tabs-hide-predicate #'elenv-frame-util-p
