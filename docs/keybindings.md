@@ -257,6 +257,8 @@ Here is the list of key bindings that are defined in this configuration.
 * <kbd>Ctrl</kbd>+<kbd>pg-down</kbd> - Switch to the next tab.
 * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>pg-up</kbd> - Switch to the previous tab group.
 * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>pg-down</kbd> - Switch to the next tab group.
+* <kbd>Ctrl</kbd>+<kbd>insert</kbd> - Toggle tab groups.
+* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>insert</kbd> - Switch to tab group.
 
 #### Kill Buffer
 
