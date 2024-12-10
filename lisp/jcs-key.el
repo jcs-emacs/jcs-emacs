@@ -282,8 +282,8 @@
     ((kbd "C-S-<prior>") . centaur-tabs-backward-group)
     ((kbd "C-S-<next>")  . centaur-tabs-forward-group)
 
-    ((kbd "C-<insert>")   . centaur-tabs-toggle-groups)
-    ((kbd "C-S-<insert>") . centaur-tabs-switch-group)
+    ((kbd "C-<insert>")   . centaur-tabs-switch-group)
+    ((kbd "C-S-<insert>") . centaur-tabs-toggle-groups)
 
 ;;; Tab Width
     ((kbd "C-k >") . indent-control-inc)
