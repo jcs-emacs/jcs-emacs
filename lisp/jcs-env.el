@@ -130,16 +130,11 @@
 ;;; ElDoc
 (eldoc-add-command
  'mouse-set-point
- 'vsc-edit-real-space 'vsc-edit-smart-space 'vsc-edit-space
- 'vsc-edit-real-backspace 'vsc-edit-smart-backspace 'vsc-edit-backspace
  'previous-line 'next-line
- 'vs-edit-previous-line 'vs-edit-next-line
  'jcs-py-indent-up 'jcs-py-indent-down
  'left-char 'right-char
- 'vs-edit-forward-word 'vs-edit-backward-word
  'jcs-backward-word-capital 'jcs-forward-word-capital
- 'beginning-of-line 'end-of-line
- 'vsc-edit-beginning-of-line 'vsc-edit-end-of-line)
+ 'beginning-of-line 'end-of-line)
 
 ;;; Electric
 (setq-default electric-pair-inhibit-predicate 'electric-pair-default-inhibit)
