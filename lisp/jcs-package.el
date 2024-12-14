@@ -160,6 +160,7 @@
            editorconfig-generate
            el-mock
            eldoc-cmake
+           eldoc-diffstat
            eldoc-eask
            eldoc-meta-net
            eldoc-toml
