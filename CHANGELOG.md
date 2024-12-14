@@ -18,7 +18,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * feat: Add `Janet` support (2738bdc83f2b2d00411e9f5bb489087d1ae27c42)
 * feat(lang): Add `geiser` for better `Scheme` support (b981c72a0942ca13a4f9fc0da7edcfd4653482fd)
 * feat: Configure `eldoc-diffstats` (cb2afb004e92d88b54db1506da54d2f43bc9a87f)
-* feat: Add magit entry functions (8f9686563559f7b209c289fe24e5d2a6ea9f7c15)
+* feat: Add `magit` entry functions (8f9686563559f7b209c289fe24e5d2a6ea9f7c15)
 * fix: Annoying `when-let` deprecation (1e4ca284a4e28d9f333fb3b6337dfdcbb1008a60)
 * fix: Annoying `if-let` deprecation (4a002dfb13987d967123e1a9c5ba8ed9c80d2fce)
 
