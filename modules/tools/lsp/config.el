@@ -36,8 +36,12 @@
                   (ignore-errors (require package nil t))))
               lsp-client-packages)
       (setq lsp--client-packages-required t)))
+
   ;; Don't log request error after the server has started
-  (jcs-advice-ignore-errors 'lsp--on-idle))
+  (jcs-advice-ignore-errors 'lsp--on-idle)
+
+  ;; XXX: Ignore errors so I can at least kill the buffer!
+  (jcs-advice-add 'lsp-process-kill :around (ignore-errors (apply arg0 args))))
 
 (use-package lsp-ui
   :bind ( :map lsp-ui-doc-frame-mode-map
