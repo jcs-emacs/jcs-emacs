@@ -378,6 +378,7 @@ Here is the list of key bindings that are defined in this configuration.
 ### Version Control
 
 * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>m</kbd> - Start magit.
+* <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>Shift</kbd>+<kbd>m</kbd> - Start magit in other window.
 * <kbd>Ctrl</kbd>+<kbd>0</kbd>, <kbd>g</kbd> - Start magit.
 * <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>g</kbd> - Start magit.
 * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>c</kbd> - Checkout branch.
