@@ -8,6 +8,14 @@
 (use-package undo-tree-vf :hook (undo-tree-mode . undo-tree-vf-mode))
 
 (use-package undo-tree
+  :bind ( :map undo-tree-visualizer-mode-map
+          ("RET" . undo-tree-visualizer-quit)
+          ("C-s" . undo-tree-visualizer-quit)
+          :map undo-tree-map
+          ("C-/" . smart-comment)
+          ("\C-_")
+          ("C-?")
+          ("M-_"))
   :init
   (setq undo-tree-auto-save-history nil)
   (message-clean-mode-add-echo-commands '( undo-tree-undo undo-tree-redo))
