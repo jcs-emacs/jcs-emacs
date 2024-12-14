@@ -62,7 +62,7 @@
 
 (defun jcs-c++--ts-docstr-after (node data)
   "Local hook `ts-docstr-after-insert-hook' for C++."
-  (when-let ((name (plist-get data :name)))
+  (when-let* ((name (plist-get data :name)))
     (ts-docstr-with-insert-indent
       (cl-case (tsc-node-type node)
         (preproc_def

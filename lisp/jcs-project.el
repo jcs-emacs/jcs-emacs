@@ -23,7 +23,7 @@
 
 (defun jcs-project-root ()
   "Return project directory path."
-  (when-let ((current (project-current))) (project-root current)))
+  (when-let* ((current (project-current))) (project-root current)))
 
 (defvar jcs-project--cache-opened-projects nil
   "Cache to track down list of opened projects.")
@@ -51,9 +51,9 @@ If UNIQUIFY is non-nil, refresh the cache once."
   "Return a shorten uniquify name from BUFFER."
   (jcs-require '(subr-x f))
   (with-current-buffer (or buffer (current-buffer))
-    (when-let ((default-directory (buffer-file-name))
-               (all-projects (jcs-project-opened-projects))
-               (current-project (jcs-project-root)))
+    (when-let* ((default-directory (buffer-file-name))
+                (all-projects (jcs-project-opened-projects))
+                (current-project (jcs-project-root)))
       (push current-project all-projects)
       (setq all-projects (delete-dups all-projects))
       (nth 0 (f-uniquify all-projects)))))

@@ -248,10 +248,10 @@
   (let (saved-lst)
     (dolist (buf (buffer-list))
       (with-current-buffer buf
-        (when-let ((result
-                    (ignore-errors
-                      (msgu-silent
-                        (call-interactively (key-binding (kbd "C-s")))))))
+        (when-let* ((result
+                     (ignore-errors
+                       (msgu-silent
+                         (call-interactively (key-binding (kbd "C-s")))))))
           (when (ignore-errors (string-match-p "Wrote file" result))
             (push (buffer-file-name) saved-lst)))))
     (unless save-silently
@@ -402,7 +402,7 @@ other window."
 (defun jcs-reopen-this-buffer ()
   "Kill the current buffer and open it again."
   (interactive)
-  (when-let ((filename (buffer-file-name)))
+  (when-let* ((filename (buffer-file-name)))
     (msgu-inhibit-log
       (when (jcs-lsp-connected-p) (lsp-disconnect))
       (elenv-save-window-excursion (find-alternate-file filename))

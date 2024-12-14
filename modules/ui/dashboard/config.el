@@ -257,7 +257,7 @@
   (jcs-when-buffer-window dashboard-buffer-name (window-width)))
 
 (jcs-add-hook 'window-size-change-functions
-  (when-let ((new-ww (jcs-dashboard--window-width)))
+  (when-let* ((new-ww (jcs-dashboard--window-width)))
     (unless (= new-ww jcs-dashboard--last-window-width)
       (setq jcs-dashboard--last-window-width new-ww)
       (jcs-dashboard-refresh-buffer))))

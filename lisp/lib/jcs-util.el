@@ -41,7 +41,7 @@
 (defmacro jcs-when-buffer-window (buffer-or-name &rest body)
   "Execute BODY in window BUFFER-OR-NAME."
   (declare (indent 1) (debug t))
-  `(when-let ((win (ignore-errors (get-buffer-window-list ,buffer-or-name))))
+  `(when-let* ((win (ignore-errors (get-buffer-window-list ,buffer-or-name))))
      (with-selected-window (nth 0 win) ,@body)))
 
 (defmacro jcs-if-buffer-window (buffer-or-name then &rest else)
@@ -139,12 +139,12 @@ If FORCE is non-nil, force load the module even it has been loaded already."
 
 (defun jcs-valid-buffer-p (&optional buffer)
   "Return non-nil if BUFFER does exist on disk."
-  (when-let ((bfn (buffer-file-name buffer))) (file-exists-p bfn)))
+  (when-let* ((bfn (buffer-file-name buffer))) (file-exists-p bfn)))
 
 (defun jcs-invalid-buffer-p (&optional buffer)
   "Return non-nil if BUFFER does't exist on disk but has a valid file path.
 This occurs when file was opened but has moved to somewhere else externally."
-  (when-let ((bfn (buffer-file-name buffer))) (not (file-exists-p bfn))))
+  (when-let* ((bfn (buffer-file-name buffer))) (not (file-exists-p bfn))))
 
 (defun jcs-virtual-buffer-list ()
   "Return a list of virtual buffers."
@@ -214,7 +214,7 @@ TYPE is the return type; can be 'object or 'string."
   "Record the info from an excursion, the FNC and ARGS."
   (save-excursion
     (save-window-excursion
-      (when-let ((success (ignore-errors (funcall fnc))))
+      (when-let* ((success (ignore-errors (funcall fnc))))
         (with-current-buffer (if (bufferp success) success (current-buffer))
           (list (current-buffer) (line-number-at-pos) (current-column)
                 (jcs-first-visible-line-in-window)))))))
@@ -626,7 +626,7 @@ or `suffix'."
 
 (defun jcs-fill-n-char-seq (ch-seq n)
   "Fill CH-SEQ with N length."
-  (when-let ((ch-out ch-seq) (n (or n 1)))
+  (when-let* ((ch-out ch-seq) (n (or n 1)))
     (while (< (length ch-out) n) (setq ch-out (concat ch-out ch-seq)))
     (when ch-out (substring ch-out 0 n))))
 

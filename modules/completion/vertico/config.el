@@ -52,7 +52,7 @@
   (when (jcs-vertico--active-p)
     (elenv-with-no-redisplay
       (vertico--exhibit)
-      (when-let ((index (jcs-vertico--index candidate)))
+      (when-let* ((index (jcs-vertico--index candidate)))
         (jcs-vertico--recenter index)))))
 
 (defun jcs-vertico--goto (index)
