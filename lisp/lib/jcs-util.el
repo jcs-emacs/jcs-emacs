@@ -47,7 +47,7 @@
 (defmacro jcs-if-buffer-window (buffer-or-name then &rest else)
   "Execute THEN in window BUFFER-OR-NAME; otherwise ELSE will be executed."
   (declare (indent 2) (debug t))
-  `(if-let ((win (ignore-errors (get-buffer-window-list ,buffer-or-name))))
+  `(if-let* ((win (ignore-errors (get-buffer-window-list ,buffer-or-name))))
        (with-selected-window (nth 0 win) ,then)
      ,@else))
 

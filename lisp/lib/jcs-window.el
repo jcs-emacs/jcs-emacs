@@ -35,7 +35,7 @@
 If BUFFER isn't showing; then execute ERROR operations instead.
 
 For argument TYPE; see function `jcs-string-compare-p' description."
-  (if-let ((windows (jcs-window-list buffer type)))
+  (if-let* ((windows (jcs-window-list buffer type)))
       (dolist (win windows)
         (with-selected-window win
           (when success (funcall success))))
