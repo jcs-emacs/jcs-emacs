@@ -3,6 +3,28 @@
 ;;; Code:
 
 ;;
+;; (@* "Config" )
+;;
+
+(defun jcs-update-config ()
+  "Update JCS-Emacs configurations to the latest version."
+  (interactive)
+  (let* ((dir (expand-file-name user-emacs-directory))
+         (git-dir (f-directories user-emacs-directory
+                                 (lambda (file)
+                                   (and (file-directory-p file)
+                                        (string= ".git" (file-name-nondirectory file)))))))
+    (unless (file-exists-p dir)
+      (user-error "[ERROR] User directory doesn't exist: %s" dir))
+    (unless git-dir
+      (user-error "[WARNING] Not a git directory: %s" user-emacs-directory))
+    (msgu-inhibit-log
+      (message "[INFO] Updating configurations... ")
+      (cd dir)
+      (shell-command "git pull")
+      (message "[INFO] Updating configurations... done"))))
+
+;;
 ;; (@* "*Messages*" )
 ;;
 
@@ -82,31 +104,20 @@
         (when (<= (length buffers) 1)
           (lsp-workspace-shutdown workspace))))))
 
-(jcs-advice-add 'lsp-process-kill :around
-  ;; XXX: Ignore errors so I can at least kill the buffer!
-  (ignore-errors (apply arg0 args)))
-
 ;;
-;; (@* "Config" )
+;; (@* "Magit" )
 ;;
 
-(defun jcs-update-config ()
-  "Update JCS-Emacs configurations to the latest version."
+(defun jcs-magit ()
+  "Start magit."
   (interactive)
-  (let* ((dir (expand-file-name user-emacs-directory))
-         (git-dir (f-directories user-emacs-directory
-                                 (lambda (file)
-                                   (and (file-directory-p file)
-                                        (string= ".git" (file-name-nondirectory file)))))))
-    (unless (file-exists-p dir)
-      (user-error "[ERROR] User directory doesn't exist: %s" dir))
-    (unless git-dir
-      (user-error "[WARNING] Not a git directory: %s" user-emacs-directory))
-    (msgu-inhibit-log
-      (message "[INFO] Updating configurations... ")
-      (cd dir)
-      (shell-command "git pull")
-      (message "[INFO] Updating configurations... done"))))
+  (or (call-interactively #'magit-switch-to-repository-buffer)
+      (call-interactively #'magit)))
+
+(defun jcs-magit-other-window ()
+  "Start magit in other window."
+  (interactive)
+  (jcs-with-other-window (jcs-magit)))
 
 (provide 'jcs-function)
 ;;; jcs-function.el ends here

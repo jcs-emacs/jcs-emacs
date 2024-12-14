@@ -302,9 +302,10 @@
     ("\e-" . transwin-dec)
 
 ;;; Version Control
-    ((kbd "C-k m") . magit)
-    ((kbd "C-0 g") . magit)  ; Visual Studio
-    ((kbd "C-S-g") . magit)  ; VSCode
+    ((kbd "C-k m") . jcs-magit)
+    ((kbd "C-k M") . jcs-magit-other-window)
+    ((kbd "C-0 g") . jcs-magit)  ; Visual Studio
+    ((kbd "C-S-g") . jcs-magit)  ; VSCode
     ((kbd "C-k c") . magit-branch-or-checkout)
     ((kbd "C-k d") . magit-branch-delete)
 
