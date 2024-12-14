@@ -23,3 +23,14 @@
   :init
   (setq magit-todos-nice (if (executable-find "nice") t nil)
         magit-todos-keyword-suffix "\\(?:([^)]+)\\)?:?"))
+
+(use-package eldoc-diffstat
+  :init
+  ;; XXX: Not sure why the `:hook' keyword doesn't work.k
+  (jcs-add-hook 'magit-status-mode-hook
+    (eldoc-diffstat-setup))
+
+  (eldoc-add-command
+   'magit-next-line 'magit-previous-line
+   'magit-section-forward 'magit-section-backward
+   'magit-section-forward-sibling 'magit-section-backward-sibling))
