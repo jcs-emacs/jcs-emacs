@@ -282,8 +282,8 @@
     ((kbd "C-S-<prior>") . centaur-tabs-backward-group)
     ((kbd "C-S-<next>")  . centaur-tabs-forward-group)
 
-    ((kbd "C-<insert>")   . centaur-tabs-switch-group)
-    ((kbd "C-S-<insert>") . centaur-tabs-toggle-groups)
+    ((kbd "C-<insert>")   . centaur-tabs-toggle-groups)
+    ((kbd "C-S-<insert>") . centaur-tabs-switch-group)
 
 ;;; Tab Width
     ((kbd "C-k >") . indent-control-inc)
@@ -406,11 +406,6 @@
   :bind ( :map goto-address-highlight-keymap
           ("C-c")))
 
-;;; Kill Ring
-(use-package browse-kill-ring
-  :bind ( :map browse-kill-ring-mode-map
-          ("<escape>" . kill-this-buffer)))
-
 (jcs-key package-menu-mode-map
   `(((kbd "M-K")     . package-list-packages)
     ((kbd "U")       . pkg-dm-upgrade-all)
@@ -419,37 +414,6 @@
 (jcs-key special-mode-map
   `(((kbd "<up>")   . previous-line)
     ((kbd "<down>") . next-line)))
-
-(use-package image-mode
-  :bind ( :map image-mode-map
-          ("C-r" . image-rotate)
-          ("C-0" . (lambda () (interactive)
-                     (message "Maximize image is not supported")))
-          ("C-=" . image-increase-size)
-          ("C--" . image-decrease-size)
-          ("C-+" . image-flip-horizontally)
-          ("C-_" . image-flip-vertically)))
-
-(use-package suggest
-  :bind ( :map suggest-mode-map
-          ("U"   . suggest-update)
-          ("M-K" . suggest-update)))
-
-(use-package undo-tree
-  :bind ( :map undo-tree-visualizer-mode-map
-          ("RET" . undo-tree-visualizer-quit)
-          ("C-s" . undo-tree-visualizer-quit)
-          :map undo-tree-map
-          ("C-/" . smart-comment)
-          ("\C-_")
-          ("C-?")
-          ("M-_")))
-
-(use-package with-editor
-  :bind ( :map with-editor-mode-map
-          ("C-s"      . with-editor-finish)
-          ("C-g"      . with-editor-cancel)
-          ("<escape>" . with-editor-cancel)))
 
 (provide 'jcs-key)
 ;;; jcs-key.el ends here
