@@ -303,7 +303,6 @@
 
 ;;; Version Control
     ((kbd "C-k m") . jcs-magit)
-    ((kbd "C-k M") . jcs-magit-other-window)
     ((kbd "C-0 g") . jcs-magit)  ; Visual Studio
     ((kbd "C-S-g") . jcs-magit)  ; VSCode
     ((kbd "C-k c") . magit-branch-or-checkout)
