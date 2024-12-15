@@ -111,13 +111,9 @@
 (defun jcs-magit ()
   "Start magit."
   (interactive)
-  (or (call-interactively #'magit-switch-to-repository-buffer)
-      (call-interactively #'magit)))
-
-(defun jcs-magit-other-window ()
-  "Start magit in other window."
-  (interactive)
-  (jcs-with-other-window (jcs-magit)))
+  (if-let* ((buf (magit-get-mode-buffer 'magit-status-mode)))
+      (magit-switch-to-repository-buffer-other-window buf)
+    (call-interactively #'magit)))
 
 (provide 'jcs-function)
 ;;; jcs-function.el ends here
