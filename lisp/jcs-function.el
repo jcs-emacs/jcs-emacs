@@ -111,6 +111,7 @@
 (defun jcs-magit ()
   "Start magit."
   (interactive)
+  (require 'magit)
   (if-let* ((buf (magit-get-mode-buffer 'magit-status-mode)))
       (magit-switch-to-repository-buffer-other-window buf)
     (call-interactively #'magit)))
