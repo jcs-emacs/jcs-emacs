@@ -133,6 +133,7 @@
            composer
            comware-router-mode
            consult-todo
+           consult-vc-modified-files
            crux
            crystal-mode
            csound-mode
