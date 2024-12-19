@@ -139,6 +139,10 @@
            (jcs-vertico--cd (f-root)) (vertico-first))
           (t (call-interactively #'backward-delete-char)))))
 
+(jcs-advice-add 'vertico-directory-enter :after
+  ;; If we just enter a directory, always select the prompt.
+  (when (jcs-vertico--active-p) (jcs-vertico--goto -1)))
+
 ;;
 ;; (@* "Registry" )
 ;;
