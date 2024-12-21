@@ -14,12 +14,12 @@ Here is the list of key bindings that are defined in this configuration.
       - [Calculate](#calculate)
       - [Todo](#todo)
       - [Commenting / Uncommenting](#commenting--uncommenting)
-      - [Docstring](#docstring)
       - [Formating](#formating)
       - [Folding / Unfolding](#folding--unfolding)
       - [Expand Region](#expand-region)
       - [Case](#case)
       - [Alignment](#alignment)
+      - [Screesaver](#screesaver)
       - [Scrolling](#scrolling)
       - [Balanced Expression](#balanced-expression)
       - [Multiple Cursors](#multiple-cursors)
@@ -159,10 +159,6 @@ Here is the list of key bindings that are defined in this configuration.
 * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>Ctrl</kbd>+<kbd>u</kbd> - Uncomment region or line.
 * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>-</kbd> - Banner comment
 
-#### Docstring
-
-* <kbd>Alt</kbd>+<kbd>0</kbd> - Ask and set the current document string style.
-
 #### Formatting
 
 * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>Ctrl</kbd>+<kbd>f</kbd> - Format region.
@@ -189,6 +185,10 @@ Here is the list of key bindings that are defined in this configuration.
 #### Alignment
 
 * <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>a</kbd> - Align region or document.
+
+#### Screensaver
+
+* <kbd>Alt</kbd>+<kbd>0</kbd> - Start screensaver.
 
 #### Scrolling
 
