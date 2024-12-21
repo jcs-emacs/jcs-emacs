@@ -81,9 +81,6 @@
     ([S-f12] . jcs-goto-definition-other-window)
     ([M-f12] . jcs-peek-definition)
 
-;;; Docstring
-    ((kbd "M-0") . ts-docstr-ask)
-
 ;;; Editing
     ([C-right]          . vs-edit-forward-word)
     ([C-left]           . vs-edit-backward-word)
@@ -238,6 +235,9 @@
 
 ;;; Revert Buffer
     ("\er" . vs-revbuf-no-confirm)
+
+;;; Screensaveer
+    ((kbd "M-0")  . jcs-screensaver)
 
 ;;; Script Executing (Output)
     ((kbd "C-S-u")  . execrun-popup)
