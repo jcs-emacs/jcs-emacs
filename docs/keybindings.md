@@ -19,7 +19,7 @@ Here is the list of key bindings that are defined in this configuration.
       - [Expand Region](#expand-region)
       - [Case](#case)
       - [Alignment](#alignment)
-      - [Screesaver](#screesaver)
+      - [Screensaver](#screensaver)
       - [Scrolling](#scrolling)
       - [Balanced Expression](#balanced-expression)
       - [Multiple Cursors](#multiple-cursors)
