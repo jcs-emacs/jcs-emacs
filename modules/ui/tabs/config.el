@@ -55,7 +55,10 @@
 (defun jcs-tabs-custom-buffer-groups ()
   "Group tabs."
   (let ((name (buffer-name)))
-    (cond ((string-prefix-p "*cider" name) "Cider")
+    (cond ((cl-some (lambda (item) (equal item name))
+                    '("*snow*"))
+           "Screen Saver")
+          ((string-prefix-p "*cider" name) "Cider")
           ((string-prefix-p "*sly" name) "Sly")
           ((string-prefix-p "*esup" name) "ESUP")
           ((string-match-p "lsp" name) "LSP-mode")
