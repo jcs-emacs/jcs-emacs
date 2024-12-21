@@ -84,25 +84,6 @@
   (if (jcs-scratch-buffer-p) (jcs-new-scratch-buffer) (jcs-reopen-this-buffer)))
 
 ;;
-;; (@* "Magit" )
-;;
-
-(defun jcs-screensaver (&rest _)
-  "Toggle screen saver."
-  (interactive)
-  (require 'zoom-window)
-  (remove-hook 'pre-command-hook #'jcs-screensaver)
-  (if-let* ((buf (get-buffer "*snow*")))
-      (progn
-        (kill-buffer buf)
-        (when (zoom-window--enable-p)
-          (zoom-window-zoom)))
-    (snow)
-    (unless (zoom-window--enable-p)
-      (zoom-window-zoom))
-    (add-hook 'pre-command-hook #'jcs-screensaver)))
-
-;;
 ;; (@* "LSP" )
 ;;
 

@@ -300,6 +300,7 @@
            jcs-frametitle
            jcs-modeline
            jcs-poptip
+           jcs-screensaver
            jcs-template
            jenkinsfile-mode
            json-mode
@@ -436,7 +437,6 @@
            smart-comment
            smex
            sml-mode
-           snow
            sort-words
            sql-indent
            ssh-config-mode
@@ -485,8 +485,7 @@
            winum
            yarn-mode
            yasnippet-snippets
-           yuck-mode
-           zoom-window)))
+           yuck-mode)))
 
 (require 'elenv)
 (pkg-dm-install-all)
