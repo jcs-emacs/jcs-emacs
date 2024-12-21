@@ -10,6 +10,7 @@
         lsp-enable-symbol-highlighting nil
         ;; Reduce unexpected modifications to code
         lsp-enable-on-type-formatting nil
+        lsp-disabled-clients '( alive-lsp)
         ;; Make breadcrumbs opt-in; they're redundant with the modeline and imenu
         lsp-headerline-breadcrumb-enable nil
         ;; Inlay Hints
