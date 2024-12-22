@@ -147,7 +147,7 @@
 
 (jcs-add-hook 'prog-mode-hook
   ;; XXX: See the bug https://github.com/immerrr/lua-mode/issues/172
-  (unless (jcs-contain-list-type-str "-" (list comment-start comment-end) 'regex)
+  (unless (jcs-member "-" (list comment-start comment-end) 'regex)
     (modify-syntax-entry ?- "_"))
   (unless (elenv-buffer-use-spaces-p)
     (msgu-inhibit-log
