@@ -12,7 +12,6 @@
         centaur-tabs-set-modified-marker t
         centaur-tabs-enable-ido-completion nil
         centaur-tabs-buffer-groups-function #'jcs-tabs-buffer-groups
-        centaur-tabs-custom-buffer-groups #'jcs-tabs-custom-buffer-groups
         centaur-tabs-hide-predicate #'elenv-frame-util-p
         centaur-tabs-hide-tab-function #'centaur-tabs-hide-tab
         centaur-tabs-excluded-prefixes `(" *which")
@@ -47,21 +46,97 @@
   (let* ((name (buffer-name))
          (buffer (current-buffer))
          (group (or (ht-get jcs-tabs-line--group-cache buffer)
-                    (car (funcall #'centaur-tabs-buffer-groups)))))
+                    (funcall #'jcs-tabs-custom-buffer-groups))))
     (jcs-tabs-clear-dead-buffers)
     (ht-set jcs-tabs-line--group-cache buffer group)
     `(,group)))
 
 (defun jcs-tabs-custom-buffer-groups ()
   "Group tabs."
-  (let ((name (buffer-name)))
-    (cond ((cl-some (lambda (item) (equal item name))
-                    '("*snow*"))
-           "Screen Saver")
-          ((string-prefix-p "*cider" name) "Cider")
-          ((string-prefix-p "*sly" name) "Sly")
-          ((string-prefix-p "*esup" name) "ESUP")
-          ((string-match-p "lsp" name) "LSP-mode")
-          ((and (featurep 'buffer-menu-filter)
-                (diminish-buffer--filter name))
-           "Hidden"))))
+  (let ((name   (buffer-name))
+        (buffer (current-buffer)))
+    (cond
+;;; Project
+     ((when-let* ((project-name (centaur-tabs-project-name)))
+        project-name))
+;;; A
+     ((jcs-member name '("[*]openai" "[*]codegpt" "[*]ChatGPT" "[*]copilot"
+                         "[*]google-gemini")
+                  'regex)
+      "AI")
+;;; C
+     ((jcs-member name '("[*]company") 'regex)
+      "Completion")
+     ((jcs-member name '("[*]Flycheck" "[*]Flymake") 'regex)
+      "Checker")
+     ((jcs-member name '("*cider") 'prefix)
+      "Cider")
+;;; D
+     ((derived-mode-p 'dired-mode)
+      "Dired")
+;;; L
+     ((jcs-member name
+                  '("[*]lsp-" "[*]LSP[ ]+" "[*]eglot"
+                    "[*][a-zA-Z0-9]+[-]*ls" "[*][a-zA-Z0-9]+::stderr[*]"
+                    "[*]clang-" "[*]clangd"
+                    "[*]csharp[*]"
+                    "[*]cogru"
+                    "[*]cucumber"
+                    "[*]dart"
+                    "[*]perlnavigator"
+                    "[*]lua-"
+                    "[*]iph[*]"
+                    "[*]rust-analyzer[*:]"
+                    "[*]zig-")
+                  'regex)
+      "LSP")
+;;; P
+     ((jcs-member name '("[*]CPU-Profiler-Report"
+                         "[*]Memory-Profiler-Report"
+                         "*esup")
+                  'regex)
+      "Profiler")
+;;; N
+     ((jcs-member name '("[*]httpd[*]"
+                         "[*]HTTP Response[*]")
+                  'regex)
+      "Network")
+;;; O
+     ((jcs-member name '("*execrun" "*quickrun") 'regex)
+      "Output")
+     ((memq major-mode '( org-mode org-agenda-mode diary-mode))
+      "OrgMode")
+;;; S
+     ((derived-mode-p 'shell-mode 'eshell-mode)
+      "Shell")
+     ((member name '("*snow*"))
+      "Screen Saver")
+     ((jcs-member name '("*sly") 'prefix)
+      "Sly")
+;;; T
+     ((jcs-member name '("[*]ert[*]"
+                         "[*]indent-lint")
+                  'regex)
+      "Testing")
+     ((jcs-member name '("[*]tree-sitter"
+                         "tree-sitter-tree:")
+                  'regex)
+      "Tree-sitter")
+;;; V
+     ((jcs-member name '("[*]vc"
+                         "[*]VC-history[*]"
+                         "magit[-]*[[:ascii:]]*[:]")
+                  'regex)
+      "Version Control")
+;;; Hidden
+     ((and (featurep 'buffer-menu-filter)
+           (diminish-buffer--filter name))
+      "Hidden")
+;;; Fallback Elisp
+     ((derived-mode-p 'emacs-lisp-mode) "Elisp")
+;;; Fallback Emacs
+     ((string-equal "*" (substring name 0 1))
+      "Emacs")
+;;; Default
+     (t
+      (centaur-tabs-get-group-name buffer)))))
