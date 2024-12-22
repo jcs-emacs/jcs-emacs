@@ -380,6 +380,11 @@ TYPE is the return type; can be 'object or 'string."
         (setq is-comment-line t))
       is-comment-line)))
 
+(defun jcs-current-file-empty-p (&optional fn)
+  "Check if the FN an empty file."
+  (if fn (with-current-buffer fn (and (bobp) (eobp)))
+    (and (bobp) (eobp))))
+
 (defun jcs-infront-first-char-at-line-p (&optional pt)
   "Return non-nil if there is nothing infront of the right from the PT."
   (save-excursion
@@ -583,6 +588,24 @@ If optional argument REVERSE is non-nil, LIST item and ELT argument."
 ;;
 ;; (@* "String" )
 ;;
+
+(defun jcs-string-compare-p (regexp str type &optional ignore-case)
+  "Compare STR with REGEXP by TYPE.
+
+Argument TYPE can be on of the following symbol.
+
+  * regex - uses function `string-match-p'.  (default)
+  * strict - uses function `string='.
+  * prefix - uses function `string-prefix-p'.
+  * suffix - uses function `string-suffix-p'.
+
+Optional argument IGNORE-CASE is only uses when TYPE is either symbol `prefix'
+or `suffix'."
+  (cl-case type
+    (`strict (string= regexp str))
+    (`prefix (string-prefix-p regexp str ignore-case))
+    (`suffix (string-suffix-p regexp str ignore-case))
+    (t (ignore-errors (string-match-p regexp str)))))
 
 (defun jcs-fill-n-char-seq (ch-seq n)
   "Fill CH-SEQ with N length."
