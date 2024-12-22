@@ -380,11 +380,6 @@ TYPE is the return type; can be 'object or 'string."
         (setq is-comment-line t))
       is-comment-line)))
 
-(defun jcs-current-file-empty-p (&optional fn)
-  "Check if the FN an empty file."
-  (if fn (with-current-buffer fn (and (bobp) (eobp)))
-    (and (bobp) (eobp))))
-
 (defun jcs-infront-first-char-at-line-p (&optional pt)
   "Return non-nil if there is nothing infront of the right from the PT."
   (save-excursion
@@ -523,39 +518,22 @@ TYPE is the return type; can be 'object or 'string."
       (cl-incf index))
     result))
 
-(defun jcs-length (obj)
-  "Return an integer value represent the length of OBJ."
-  (cond ((stringp obj) (length (string-trim obj)))
-        ((bufferp obj) (length (string-trim (buffer-name obj))))
-        (t obj)))
-
-(defun jcs-list-min (lst)
-  "Find minimum number in LST."
-  (let (min)
-    (dolist (num lst)
-      (setq min (jcs-length min) num (jcs-length num))
-      (if min (when (< num min) (setq min num)) (setq min num)))
-    min))
-
-(defun jcs-list-max (lst)
-  "Find maximum number in LST."
-  (let (max)
-    (dolist (num lst)
-      (setq max (jcs-length max) num (jcs-length num))
-      (if max (when (> num max) (setq max num)) (setq max num)))
-    max))
-
-(defun jcs-contain-list-type-str (elt list type &optional reverse)
+(defun jcs-member (elt list type &optional reverse)
   "Return non-nil if ELT is listed in LIST.
 
 Argument TYPE see function `jcs-string-compare-p' for more information.
 
 If optional argument REVERSE is non-nil, LIST item and ELT argument."
-  (cl-some
-   (lambda (elm)
-     (if reverse (jcs-string-compare-p elt elm type)
-       (jcs-string-compare-p elm elt type)))
-   list))
+  (let ((break) (elm))
+    (while (and list
+                (not break))
+      (setq elm (pop list)
+            break (if reverse
+                      (jcs-string-compare-p elt elm type)
+                    (jcs-string-compare-p elm elt type))))
+    (if break
+        (cons elm list)
+      list)))
 
 ;;
 ;; (@* "Mode" )
@@ -605,24 +583,6 @@ If optional argument REVERSE is non-nil, LIST item and ELT argument."
 ;;
 ;; (@* "String" )
 ;;
-
-(defun jcs-string-compare-p (regexp str type &optional ignore-case)
-  "Compare STR with REGEXP by TYPE.
-
-Argument TYPE can be on of the following symbol.
-
-  * regex - uses function `string-match-p'.  (default)
-  * strict - uses function `string='.
-  * prefix - uses function `string-prefix-p'.
-  * suffix - uses function `string-suffix-p'.
-
-Optional argument IGNORE-CASE is only uses when TYPE is either symbol `prefix'
-or `suffix'."
-  (cl-case type
-    (`strict (string= regexp str))
-    (`prefix (string-prefix-p regexp str ignore-case))
-    (`suffix (string-suffix-p regexp str ignore-case))
-    (t (ignore-errors (string-match-p regexp str)))))
 
 (defun jcs-fill-n-char-seq (ch-seq n)
   "Fill CH-SEQ with N length."
