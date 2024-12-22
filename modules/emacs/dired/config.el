@@ -1,5 +1,9 @@
 ;;; emacs/dired/config.el  -*- lexical-binding: t; -*-
 
+;; XXX: Make list directories first!
+(setq ls-lisp-dirs-first t
+      ls-lisp-use-insert-directory-program nil)
+
 (use-package dired
   :hook (dired-mode . buffer-wrap-mode)
   :bind ( :map dired-mode-map
