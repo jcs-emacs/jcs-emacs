@@ -396,6 +396,7 @@
            purescript-mode
            python-mode
            qml-mode
+           qob-mode
            qss-mode
            qt-pro-mode
            quelpa-use-package
