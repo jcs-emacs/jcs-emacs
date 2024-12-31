@@ -77,7 +77,7 @@
 ;;; L
      ((jcs-member name
                   '("[*]lsp-" "[*]LSP[ ]+" "[*]eglot"
-                    "[*][a-zA-Z0-9]+[-]*ls" "[*][a-zA-Z0-9]+::stderr[*]"
+                    "[*][[:ascii:]]*ls[*:]" "[*][[:ascii:]]+::stderr[*]"
                     "[*]clang-" "[*]clangd"
                     "[*]csharp[*]"
                     "[*]cogru"
