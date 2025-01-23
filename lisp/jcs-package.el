@@ -325,7 +325,7 @@
            lsp-java
            lsp-julia
            lsp-latex
-           lsp-ltex
+           lsp-ltex-plus
            lsp-metals
            lsp-mssql
            lsp-p4
