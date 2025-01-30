@@ -36,6 +36,7 @@
           "[*]cogru"
           "[*]cucumber"
           "[*]dart"
+          "[*]ellsp" "[*]elsa"
           "[*]perlnavigator"
           "[*]lua-"
           "[*]iph[*]"
