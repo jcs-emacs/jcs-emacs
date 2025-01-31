@@ -87,19 +87,20 @@ e.g. [Atom](https://atom.io/), [Brackets](http://brackets.io/),
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
 **Table of Contents**
 
-- [📚 Philosophy](#📚-philosophy)
-- [📰 News](#📰-news)
-- [💾 Installation](#💾-installation)
-- [🕒 Startup Time](#🕒-startup-time)
-- [🏆 Features](#🏆-features)
+- [📚 Philosophy](#-philosophy)
+- [📰 News](#-news)
+- [💾 Installation](#-installation)
+- [🕒 Startup Time](#-startup-time)
+- [🏆 Features](#-features)
   - [Highlight](#highlight)
   - [Details](#details)
-- [📁 Package Archives](#📁-package-archives)
-- [🏆 Powered by](#🏆-powered-by)
+- [📁 Package Archives](#-package-archives)
+- [🏆 Powered by](#-powered-by)
   - [Functionalities](#functionalities)
-- [🧰 Write your own customization](#🧰-write-your-own-customization)
-- [❓ FAQ](#❓-faq)
-- [Contribute](#contribute)
+- [🧰 Write your own customization](#-write-your-own-customization)
+- [❓ FAQ](#-faq)
+- [🛠️ Contribute](#-contribute)
+- [⚜️ License](#-license)
 
 <!-- markdown-toc end -->
 
