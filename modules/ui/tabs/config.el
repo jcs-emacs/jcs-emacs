@@ -65,7 +65,9 @@
                   'regex)
       "AI")
 ;;; C
-     ((jcs-member name '("[*]company") 'regex)
+     ((jcs-member name '("[*]Completions[*]"
+                         "[*]company")
+                  'regex)
       "Completion")
      ((jcs-member name '("[*]Flycheck" "[*]Flymake") 'regex)
       "Checker")
