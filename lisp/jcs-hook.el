@@ -122,10 +122,6 @@
 ;; (@* "Modes" )
 ;;
 
-(defun jcs-test ()
-  (interactive)
-  (ic (featurep 'lsp-mode)))
-
 (jcs-add-hook '(text-mode-hook prog-mode-hook conf-mode-hook)
   (alt-codes-mode 1)
   (auto-close-block-mode 1)
