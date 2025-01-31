@@ -22,6 +22,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * fix: Annoying `when-let` deprecation (1e4ca284a4e28d9f333fb3b6337dfdcbb1008a60)
 * fix: Annoying `if-let` deprecation (4a002dfb13987d967123e1a9c5ba8ed9c80d2fce)
 * feat(dired): Make list directories first in `dired` (a502ee445dcfa9d83eff262f9381897044e9c9fd)
+* feat(ui) Enable `sideline` by default (ebf0537358f3de9f8204f4421b4fef96e487c6d5)
 
 ## 9.1.0
 > Released Jun 19, 2024
