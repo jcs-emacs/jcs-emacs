@@ -122,6 +122,10 @@
 ;; (@* "Modes" )
 ;;
 
+(defun jcs-test ()
+  (interactive)
+  (ic (featurep 'lsp-mode)))
+
 (jcs-add-hook '(text-mode-hook prog-mode-hook conf-mode-hook)
   (alt-codes-mode 1)
   (auto-close-block-mode 1)
@@ -135,6 +139,7 @@
     (jcs-re-enable-mode-if-was-enabled #'highlight-indent-guides-mode))
   (highlight-numbers-mode 1)
   (elenv-when-exec "prettier" nil (prettier-mode 1))
+  (sideline-mode 1)
   (vs-edit-mode 1)
   (vsc-edit-mode 1)
   (vs-comment-return-mode 1)
