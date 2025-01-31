@@ -46,7 +46,7 @@
           "[*]tcp-server-"
           "[*]Python" "[*]pyright[*]"
           "[*]tree-sitter" "tree-sitter-tree:"
-          "[*]company"
+          "[*]Completions[*]" "[*]company"
           "[*]eldoc"
           "[*]editorconfig"
           "[*]prettier"
