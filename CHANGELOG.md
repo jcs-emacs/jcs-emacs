@@ -23,6 +23,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * fix: Annoying `if-let` deprecation (4a002dfb13987d967123e1a9c5ba8ed9c80d2fce)
 * feat(dired): Make list directories first in `dired` (a502ee445dcfa9d83eff262f9381897044e9c9fd)
 * feat(ui) Enable `sideline` by default (ebf0537358f3de9f8204f4421b4fef96e487c6d5)
+* feat(vc): Add more `magit` plugins (e47a8d0e873001d769eb39c3e85de9fb0a591897)
 
 ## 9.1.0
 > Released Jun 19, 2024
