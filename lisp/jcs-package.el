@@ -336,6 +336,8 @@
            lsp-sonarlint
            lsp-sourcekit
            lsp-tailwindcss
+           magit-file-icons
+           magit-lfs
            magit-todos
            makefile-executor
            manage-minor-mode-table

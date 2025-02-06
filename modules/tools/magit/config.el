@@ -1,6 +1,7 @@
 ;;; tools/magit/config.el  -*- lexical-binding: t; -*-
 
 (require 'diff-hl)
+(require 'magit-lfs)
 
 (use-package magit
   :hook (magit-post-refresh . jcs-diff-hl-update)
@@ -18,6 +19,10 @@
   (message-clean-mode-add-echo-commands
    '( magit-process-sentinel magit-commit-diff magit-run-git-async
       git-commit-save-message)))
+
+(use-package magit-file-icons
+  :init
+  (magit-file-icons-mode 1))
 
 (use-package magit-todos
   :init
