@@ -73,6 +73,7 @@
            calfw
            caml
            cargo-mode
+           cargo-transient
            cask-mode
            ccls
            centaur-tabs
