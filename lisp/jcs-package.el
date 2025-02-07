@@ -423,6 +423,7 @@
            sideline-cider
            sideline-color
            sideline-eglot
+           sideline-emoji
            sideline-eros
            sideline-flycheck
            sideline-flymake
