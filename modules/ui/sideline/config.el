@@ -6,7 +6,8 @@
   :init
   (setq sideline-delay 0.2
         sideline-backends-left `((sideline-load-cost . up)
-                                 (sideline-color     . up))
+                                 (sideline-color     . up)
+                                 (sideline-emoji     . up))
         sideline-backends-right `(((when (featurep 'lsp-mode)
                                      'sideline-lsp)
                                    . up)
