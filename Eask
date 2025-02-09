@@ -20,6 +20,9 @@
 (source 'melpa)
 (source 'jcs-elpa)
 
+(source-priority 'melpa    5)
+(source-priority 'jcs-elpa 10)
+
 (depends-on "emacs" "29.1")
 
 (depends-on "pkg-dm")
