@@ -4,6 +4,8 @@
   :init
   (setq lsp-auto-guess-root t
         lsp-keep-workspace-alive nil
+        lsp-client-packages nil
+        lsp-progress-spinner-type '3-line-clock
         ;; Disable features that have great potential to be slow.
         lsp-enable-folding nil
         lsp-enable-text-document-color nil
