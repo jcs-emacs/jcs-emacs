@@ -63,6 +63,26 @@ execution."
 ;; (@* "Module" )
 ;;
 
+(defmacro jcs-require (feature &optional filename noerror)
+  "Require FEATURE; it can be a list."
+  (declare (indent -1))
+  `(cond ((listp ,feature) (dolist (module ,feature) (require module ,filename ,noerror)))
+         ((symbolp ,feature) (require ,feature ,filename ,noerror))
+         (t (user-error "Unknown type to require %s" (type-of ,feature)))))
+
+(defmacro jcs-with-eval-after-load (files &rest body)
+  "Execute BODY after one of the FILES is loaded."
+  (declare (indent 1) (debug t))
+  `(cond
+    ((listp ,files) (dolist (file ,files) (with-eval-after-load file ,@body)))
+    (t (with-eval-after-load ,files ,@body))))
+
+(defun jcs-load (file)
+  "Faster load FILE function."
+  (with-temp-buffer
+    (ignore-errors (insert-file-contents file))
+    (eval-buffer)))
+
 (defvar jcs-module-history nil
   "History of the loaded modules.")
 
@@ -77,8 +97,11 @@ execution."
 
 (defun jcs-module-reload-all ()
   "Reload all modules."
-  (dolist (module jcs-module-history)
-    (load module t t)))
+  (interactive)
+  (with-temp-buffer
+    (dolist (module jcs-module-history)
+      (ignore-errors (insert-file-contents module)))
+    (eval-buffer)))
 
 (defun jcs-module-load (modules &optional force)
   "Load MODULES.
@@ -86,25 +109,13 @@ execution."
 If FORCE is non-nil, force load the module even it has been loaded already."
   (if (listp modules)
       (dolist (module modules) (jcs-module-load module))
-    (let ((config (jcs-module--path modules)))
+    (let ((config (jcs-module--path modules))
+          (loaded (jcs-module-loaded-p modules)))
       (when (or force
-                (not (jcs-module-loaded-p modules)))
-        (push config jcs-module-history)
-        (load config t t)))))
-
-(defmacro jcs-require (feature &optional filename noerror)
-  "Require FEATURE; it can be a list."
-  (declare (indent -1))
-  `(cond ((listp ,feature) (dolist (module ,feature) (require module ,filename ,noerror)))
-         ((symbolp ,feature) (require ,feature ,filename ,noerror))
-         (t (user-error "Unknown type to require %s" (type-of ,feature)))))
-
-(defmacro jcs-with-eval-after-load (files &rest body)
-  "Execute BODY after one of the FILES is loaded."
-  (declare (indent 1) (debug t))
-  `(cond
-    ((listp ,files) (dolist (file ,files) (with-eval-after-load file ,@body)))
-    (t (with-eval-after-load ,files ,@body))))
+                (not loaded))
+        (unless loaded
+          (push config jcs-module-history))
+        (jcs-load config)))))
 
 ;;
 ;; (@* "Pass" )
