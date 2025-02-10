@@ -334,6 +334,7 @@
            lsp-pyright
            lsp-scheme
            lsp-shader
+           lsp-smart-req
            lsp-sonarlint
            lsp-sourcekit
            lsp-tailwindcss

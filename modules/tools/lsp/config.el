@@ -29,17 +29,6 @@
                                 lsp-find-implementation
                                 lsp-find-type-definition))
   :config
-  ;; Let's not block the loading process, so lsp packages don't hamper with
-  ;; each another.
-  (jcs-advice-add 'lsp--require-packages :override
-    (when (and lsp-auto-configure (not lsp--client-packages-required))
-      (seq-do (lambda (package)
-                ;; loading client is slow and `lsp' can be called repeatedly
-                (unless (featurep package)
-                  (ignore-errors (require package nil t))))
-              lsp-client-packages)
-      (setq lsp--client-packages-required t)))
-
   ;; Don't log request error after the server has started
   (jcs-advice-ignore-errors 'lsp--on-idle)
 
