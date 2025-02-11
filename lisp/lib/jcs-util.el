@@ -497,9 +497,9 @@ TYPE is the return type; can be 'object or 'string."
   (let ((faces (jcs-get-current-point-face pos)))
     (cond ((listp faces)
            (if (listp in-face)
-               (cl-some (lambda (fc) (cl-position fc faces :test 'string=)) in-face)
-             (cl-position in-face faces :test 'string=)))
-          (t (string= in-face faces)))))
+               (cl-some (lambda (fc) (cl-position fc faces :test 'equal)) in-face)
+             (cl-position in-face faces :test 'equal)))
+          (t (equal in-face faces)))))
 
 ;;
 ;; (@* "Font" )
