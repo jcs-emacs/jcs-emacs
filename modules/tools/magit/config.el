@@ -14,15 +14,13 @@
         magit-save-repository-buffers nil
         ;; Don't display parent/related refs in commit buffers; they are rarely
         ;; helpful and only add to runtime costs.
-        magit-revision-insert-related-refs nil)
+        magit-revision-insert-related-refs nil
+        ;; Display file icons
+        magit-format-file-function #'magit-format-file-nerd-icons)
 
   (message-clean-mode-add-echo-commands
    '( magit-process-sentinel magit-commit-diff magit-run-git-async
       git-commit-save-message)))
-
-(use-package magit-file-icons
-  :init
-  (magit-file-icons-mode 1))
 
 (use-package magit-todos
   :init
