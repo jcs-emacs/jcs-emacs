@@ -15,4 +15,5 @@
 (use-package quickrun
   :init
   (setq quickrun-focus-p nil
-        quickrun-truncate-lines nil))
+        quickrun-truncate-lines nil
+        quickrun-timeout-seconds -1))
