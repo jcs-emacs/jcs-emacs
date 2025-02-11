@@ -25,6 +25,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * feat(ui) Enable `sideline` by default (ebf0537358f3de9f8204f4421b4fef96e487c6d5)
 * feat(vc): Add more `magit` plugins (e47a8d0e873001d769eb39c3e85de9fb0a591897)
 * perf(lsp): Add `lsp-smart-req` (fdcddb59e7558346d3dfe80639e8d91f4d7f5890)
+* feat(vc): Use `magit` built-in functionalities to display file icons (7d249ad694a58239d3247b673f8e15a92adc4a18)
 
 ## 9.1.0
 > Released Jun 19, 2024
