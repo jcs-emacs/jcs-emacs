@@ -135,6 +135,8 @@
      ((and (featurep 'buffer-menu-filter)
            (diminish-buffer--filter name))
       "Hidden")
+;;; Media
+     ((memq major-mode '( image-mode)) "Media")
 ;;; Fallback Elisp
      ((derived-mode-p 'emacs-lisp-mode) "Elisp")
 ;;; Fallback Emacs
