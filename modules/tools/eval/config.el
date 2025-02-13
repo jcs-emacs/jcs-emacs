@@ -14,7 +14,8 @@
 
 (use-package quickrun
   :hook (quickrun--mode . (lambda (&rest _)
-                            (setq buffer-face-mode-face '(:height 120))
+                            ;; NOTE: Set smaller font size.
+                            (setq buffer-face-mode-face `(:height ,(jcs-comint-buffer-face-height)))
                             (buffer-face-mode 1)))
   :init
   (setq quickrun-focus-p nil
