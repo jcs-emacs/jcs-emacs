@@ -13,6 +13,9 @@
   (message-clean-mode-add-echo-commands '( execrun-compile)))
 
 (use-package quickrun
+  :hook (quickrun--mode . (lambda (&rest _)
+                            (setq buffer-face-mode-face '(:height 120))
+                            (buffer-face-mode 1)))
   :init
   (setq quickrun-focus-p nil
         quickrun-truncate-lines nil
