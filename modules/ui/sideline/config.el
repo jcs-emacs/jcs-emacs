@@ -5,6 +5,8 @@
          (flymake-mode  . sideline-mode))
   :init
   (setq sideline-delay 0.2
+        sideline-format-left "%s"
+        sideline-format-right "%s"
         sideline-backends-left `((sideline-load-cost . up)
                                  (sideline-color     . up)
                                  (sideline-emoji     . up))
