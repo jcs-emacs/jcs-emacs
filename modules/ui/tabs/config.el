@@ -79,7 +79,7 @@
 ;;; L
      ((jcs-member name
                   '("[*]lsp-" "[*]LSP[ ]+" "[*]eglot"
-                    "[*][[:ascii:]]*ls[*:]" "[*][[:ascii:]]+::stderr[*]"
+                    "[*][[:ascii:]]*ls[*:-]" "[*][[:ascii:]]+::stderr[*]"
                     "[*]clang-" "[*]clangd"
                     "[*]csharp[*]"
                     "[*]cogru"
@@ -93,12 +93,9 @@
                     "[*]zig-")
                   'regex)
       "LSP")
-;;; P
-     ((jcs-member name '("[*]CPU-Profiler-Report"
-                         "[*]Memory-Profiler-Report"
-                         "*esup")
-                  'regex)
-      "Profiler")
+;;; M
+     ((memq major-mode '( message-mode mu4e-compose-mode))
+      "Mail")
 ;;; N
      ((jcs-member name '("[*]httpd[*]"
                          "[*]HTTP Response[*]")
@@ -109,6 +106,12 @@
       "Output")
      ((memq major-mode '( org-mode org-agenda-mode diary-mode))
       "OrgMode")
+;;; P
+     ((jcs-member name '("[*]CPU-Profiler-Report"
+                         "[*]Memory-Profiler-Report"
+                         "*esup")
+                  'regex)
+      "Profiler")
 ;;; S
      ((derived-mode-p 'shell-mode 'eshell-mode)
       "Shell")
