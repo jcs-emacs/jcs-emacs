@@ -30,7 +30,7 @@
           "[*]timer"
           ;; `LSP'
           "[*]lsp-" "[*]LSP[ ]+" "[*]eglot"
-          "[*][[:ascii:]]*ls[*:]" "[*][[:ascii:]]+::stderr[*]"
+          "[*][[:ascii:]]*ls[*:-]" "[*][[:ascii:]]+::stderr[*]"
           "[*]clang-" "[*]clangd"
           "[*]csharp[*]"
           "[*]cogru"
