@@ -33,8 +33,8 @@
 ;; (@* "Startup" )
 ;;
 
-(when (version< emacs-version "29.1")
-  (error "This requires Emacs 29.1 and above!"))
+(when (version< emacs-version "30.1")
+  (error "This requires Emacs 30.1 and above!"))
 
 (when (featurep 'esup-child) (setq gc-cons-threshold most-positive-fixnum))
 
