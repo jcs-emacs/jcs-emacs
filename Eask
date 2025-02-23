@@ -23,7 +23,7 @@
 (source-priority 'melpa    5)
 (source-priority 'jcs-elpa 10)
 
-(depends-on "emacs" "29.1")
+(depends-on "emacs" "30.1")
 
 (depends-on "pkg-dm")
 (depends-on "noflet")
