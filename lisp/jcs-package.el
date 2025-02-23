@@ -484,7 +484,6 @@
            vue-mode
            wat-mode
            web-mode
-           which-key
            whitespace-cleanup-mode
            whole-line-or-region
            winum
