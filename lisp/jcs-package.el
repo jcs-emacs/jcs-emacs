@@ -89,6 +89,7 @@
            cogru
            colorful-mode
            com-css-sort
+           comint-fold
            command-log-mode
            common-lisp-snippets
            company-ansible
