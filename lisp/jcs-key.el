@@ -128,10 +128,10 @@
     ((kbd "C-k M-F") . jcs-project-find-file-other-window)
 
 ;;; Folding Settings
-    ((kbd "C-k C-0") . ts-fold-close-all)
-    ((kbd "C-k C-j") . ts-fold-open-all)
-    ((kbd "C-{")     . vs-edit-close-node)
-    ((kbd "C-}")     . vs-edit-open-node)
+    ((kbd "C-k C-0") . vs-edit-fold-close-all)
+    ((kbd "C-k C-j") . vs-edit-fold-open-all)
+    ((kbd "C-{")     . vs-edit-fold-close)
+    ((kbd "C-}")     . vs-edit-fold-open)
 
 ;;; Font
     ((kbd "C-k f") . menu-set-font)
