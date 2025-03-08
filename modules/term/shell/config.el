@@ -47,3 +47,8 @@
   :config
   ;; Fix issue from https://github.com/kyagi/shell-pop-el/issues/51
   (push (cons "\\*shell\\*" display-buffer--same-window-action) display-buffer-alist))
+
+(use-package comint-fold
+  :init
+  (setq comint-fold-remap-tab nil)
+  (comint-fold-mode 1))
