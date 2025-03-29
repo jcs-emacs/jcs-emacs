@@ -181,7 +181,7 @@
 (defun jcs-dashboard-init-info ()
   "Initialize startup information for variable `dashboard-init-info'."
   (setq dashboard-init-info
-        (format "%s packages loaded in %0.1f seconds"
+        (format "%d packages installed; Emacs started in %0.1f seconds."
                 (length package-activated-list)
                 (string-to-number (emacs-init-time)))))
 
