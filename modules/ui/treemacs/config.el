@@ -10,7 +10,8 @@
 
   (recentf-excl-add-commands '(treemacs--persist))
   :config
-  (treemacs-follow-mode t)
+  ;; Don't follow the cursor (it's more disruptive/jarring than helpful as a default)
+  (treemacs-follow-mode -1)
   (treemacs-filewatch-mode t)
 
   (require 'treemacs-nerd-icons)
