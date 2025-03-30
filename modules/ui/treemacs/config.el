@@ -29,7 +29,9 @@
 
   (jcs-add-hook 'treemacs-mode-hook
     (setq buffer-wrap--relative-max-line 0)
-    (buffer-wrap-mode 1)))
+    (buffer-wrap-mode 1)
+
+    (jcs-buffer-face-setup 'treemacs)))
 
 (use-package treemacs-nerd-icons
   :config
