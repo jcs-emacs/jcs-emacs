@@ -501,6 +501,18 @@ TYPE is the return type; can be 'object or 'string."
              (cl-position in-face faces :test 'equal)))
           (t (equal in-face faces)))))
 
+(defun jcs-buffer-face-height (&optional symbol)
+  "Return the buffer face height by SYMBOL."
+  (- (face-attribute 'default :height)
+     (pcase symbol
+       (`treemacs 30)
+       (_         40))))
+
+(defun jcs-buffer-face-setup (symbol)
+  "Setup for `buffer-face-mode' by SYMBOL."
+  (setq buffer-face-mode-face `(:height ,(jcs-buffer-face-height symbol)))
+  (buffer-face-mode))
+
 ;;
 ;; (@* "Font" )
 ;;

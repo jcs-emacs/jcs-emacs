@@ -20,14 +20,6 @@
         comint-move-point-for-output t))
 
 ;;
-;; (@* "Functions" )
-;;
-
-(defun jcs-comint-buffer-face-height ()
-  "Return the compilation's buffer face height value."
-  (- (face-attribute 'default :height) 40))
-
-;;
 ;; (@* "Hook" )
 ;;
 
@@ -37,9 +29,7 @@
   (buffer-disable-undo)
   (goto-address-mode 1)
 
-  ;; NOTE: Set smaller font size.
-  (setq buffer-face-mode-face `(:height ,(jcs-comint-buffer-face-height)))
-  (buffer-face-mode)
+  (jcs-buffer-face-setup 'comint)
 
   (jcs-key-local
     `(((kbd "C-S-<f11>") . compilation-previous-error)
