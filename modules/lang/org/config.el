@@ -88,7 +88,7 @@
 
 (use-package org
   :init
-  (setq org-startup-folded nil
+  (setq org-startup-folded 'showeverything
         org-todo-keywords '((sequence "TODO" "WAITING" "DONE"))
         org-todo-keyword-faces '(("TODO" :foreground "red")
                                  ("WAITING" :foreground "yellow")
