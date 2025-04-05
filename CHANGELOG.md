@@ -27,6 +27,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * perf(lsp): Add `lsp-smart-req` (fdcddb59e7558346d3dfe80639e8d91f4d7f5890)
 * feat(vc): Use `magit` built-in functionalities to display file icons (7d249ad694a58239d3247b673f8e15a92adc4a18)
 * feat(ui): Add mail tab group (e0ec5c24c7902f862d4793ffdf8fece6bb14076b)
+* feat(fold): Add `savefold` for persistent folding behaviors (98d0f498ccb2d16326f8814c7d4d36a4e2279d51)
 
 ## 9.1.0
 > Released Jun 19, 2024
