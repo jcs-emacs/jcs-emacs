@@ -412,7 +412,6 @@
            responsive-window
            restart-emacs
            robots-txt-mode
-           savefold
            scad-mode
            scrollable-quick-peek
            scss-mode
