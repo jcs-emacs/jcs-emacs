@@ -460,6 +460,7 @@
            tree-sitter-indent
            tree-sitter-langs
            treemacs-nerd-icons
+           try
            ts-docstr
            turbo-log
            typescript-mode
