@@ -137,7 +137,7 @@
     ((kbd "C-k f") . menu-set-font)
 
 ;;; Format file
-    ((kbd "C-k C-f") . indent-region)
+    ((kbd "C-k C-f") . vs-edit-indent-region)
     ((kbd "C-k C-d") . vs-edit-format-document)
     ((kbd "C-k a")   . jcs-align-region-or-document)
 
