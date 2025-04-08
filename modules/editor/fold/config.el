@@ -18,7 +18,8 @@
                                       (line-beginning-position) (line-end-position))))))
 
 (use-package savefold
-  :hook (outline-minor-mode . savefold-outline-mode)
-  :hook (hs-minor-mode      . savefold-hideshow-mode)
-  :hook (org-mode           . savefold-org-mode)
-  :hook (ts-fold-mode       . savefold-ts-fold-mode))
+  :init
+  (jcs-with-eval-after-load 'outline  (savefold-outline-mode 1))
+  (jcs-with-eval-after-load 'hideshow (savefold-hideshow-mode 1))
+  (jcs-with-eval-after-load 'org      (savefold-org-mode 1))
+  (jcs-with-eval-after-load 'ts-fold  (savefold-ts-fold-mode 1)))

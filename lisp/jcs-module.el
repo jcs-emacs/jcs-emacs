@@ -18,7 +18,7 @@
     (company                               . "completion/company")
     (vertico                               . "completion/vertico")
     (turbo-log                             . "editor/debug")
-    (tree-sitter                           . ("editor/docstring" "editor/fold"))
+    (( tree-sitter outline hideshow org)   . ("editor/docstring" "editor/fold"))
     (expand-region                         . "editor/expand-region")
     (file-header                           . "editor/file-templates")
     (isearch                               . "editor/isearch")
