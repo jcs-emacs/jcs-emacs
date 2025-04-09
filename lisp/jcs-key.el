@@ -119,7 +119,7 @@
 ;;; File editing
     ((kbd "M-k")   . jcs-maybe-kill-this-buffer)
     ((kbd "M-K")   . jcs-reopen-this-buffer)
-    ((kbd "C-M-k") . kill-this-buffer)
+    ((kbd "C-M-k") . kill-current-buffer)
 
 ;;; File Files
     ((kbd "M-f")     . ffap)
