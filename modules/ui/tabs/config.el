@@ -90,6 +90,7 @@
                     "[*]lua-"
                     "[*]iph[*]"
                     "[*]rust-analyzer[*:]"
+                    "[*]sql"
                     "[*]zig-")
                   'regex)
       "LSP")
