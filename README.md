@@ -131,7 +131,7 @@ without having to get used to a new IDE.
 
 Here is the list of few essential and recent changes to this configuration.
 
-* `9.0.2` - Replace package `topsy` with `breadcrumb-mode` for better UX
+* `9.1.0` - Replace package `topsy` with `breadcrumb-mode` for better UX
 * `8.2.2` - Add `emp` as the default Music Player
 * `8.2.1` - Replace package `docstr` with `ts-docstr` for better parsing capability
 * `8.2.0` - Drop support for Emacs 27.x
