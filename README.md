@@ -287,7 +287,7 @@ kind of methods to support the maintainer you wish to.
 * *File Explorer* - powered by [treemacs](https://github.com/Alexander-Miller/treemacs).
 * *File Header* - powered by [file-header](https://github.com/alt-elpa/file-header).
 * *Folding/Unfolding* - powered by [ts-fold](https://github.com/jcs090218/ts-fold).
-  * *Persistence folding* - powered by [savefold.el](https://github.com/jcfk/savefold.el).
+  * *Persistence Folding* - powered by [savefold.el](https://github.com/jcfk/savefold.el).
 * *Font* - powered by [use-ttf](https://github.com/elpa-host/use-ttf).
 * *Goto Declaration/Definition* - powered by [dumb-jump](https://github.com/jacktasia/dumb-jump).
 * *Highlight Indentation* - powered by [highlight-indent-guides](https://github.com/DarthFennec/highlight-indent-guides).
