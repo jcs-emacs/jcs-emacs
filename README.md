@@ -141,7 +141,6 @@ Here is the list of few essential and recent changes to this configuration.
 * `8.0.1` - Switch from `ivy` to `vertico`.
 * `8.0.0` - Move everything to `.emacs.d`. ([#32](https://github.com/jcs-emacs/jcs-emacs/pull/32))
 * `7.1.0` - Replace `quelpa` with `github-elpa`.
-* `7.0.0` - Switch from [quickhelp](https://github.com/company-mode/company-quickhelp) to [box](https://github.com/sebastiencs/company-box) for company frontend.
 
 ## 💾 Installation
 
