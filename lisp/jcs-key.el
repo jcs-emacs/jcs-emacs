@@ -64,10 +64,10 @@
                          ;; Not sure why this can't bind directly
                          (call-interactively #'uncomment-region)))
 
-    ((kbd "C-k -")   . banner-comment)
+    ((kbd "C-k -") . banner-comment)
 
 ;;; Debugging
-    ((kbd "M-1")   . turbo-log-print)
+    ((kbd "M-1") . turbo-log-print)
 
     ([f9]     . jcs-debug-toggle-break-point)
     ([S-f5]   . jcs-debug-stop)
