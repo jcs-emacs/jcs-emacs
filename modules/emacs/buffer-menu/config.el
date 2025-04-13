@@ -28,9 +28,11 @@
           "[*]sly"
           "[*]cider-" "[*]nrepl-server"
           "[*]timer"
+          ;; `Debugger'
+          "[*]edebug" "[*]dap-" "[*]debug-"
           ;; `LSP'
           "[*]lsp-" "[*]LSP[ ]+" "[*]eglot"
-          "[*][[:ascii:]]*ls[*:-]" "[*][[:ascii:]]+::stderr[*]"
+          "[*][[:ascii:]]*ls[*:-]" "out[*]" "stderr[*]"
           "[*]clang-" "[*]clangd"
           "[*]csharp[*]"
           "[*]cogru"
