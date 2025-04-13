@@ -69,7 +69,8 @@
 ;;; Debugging
     ((kbd "M-1") . turbo-log-print)
 
-    ([f9]     . jcs-debug-toggle-break-point)
+    ([f9]     . jcs-debug-toggle-breakpoint)
+    ([f5]     . jcs-debug-start)
     ([S-f5]   . jcs-debug-stop)
     ([C-S-f5] . jcs-debug-restart)
     ([f10]    . jcs-debug-step-over)
@@ -241,7 +242,6 @@
 
 ;;; Script Executing (Output)
     ((kbd "C-S-u")  . execrun-popup)
-    ((kbd "<f5>")   . execrun-run)    ; Run
     ((kbd "C-S-b")  . execrun-build)  ; Build
     ((kbd "C-<f5>") . quickrun-select)
     ((kbd "C-<f7>") . quickrun-compile-only-select)
