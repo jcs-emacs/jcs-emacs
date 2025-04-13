@@ -20,14 +20,16 @@
 (defun jcs-debug-toggle-break-point ()
   "Toggle break point."
   (interactive)
-  (jcs-debugger-cond (edebug-toggle-disable-breakpoint)
-                     (dap-breakpoint-toggle)))
+  (require 'edebug)
+  (cond ((memq major-mode '(emacs-lisp-mode))
+         (edebug-toggle-disable-breakpoint))
+        (t (dap-breakpoint-toggle))))
 
 (defun jcs-debug-stop ()
   "Stop debugging."
   (interactive)
   (jcs-debugger-cond (edebug-stop)
-                     (dap-stop-thread)))
+                     (dap-disconnect)))
 
 (defun jcs-debug-restart ()
   "Restart debugger."
