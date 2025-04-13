@@ -86,6 +86,7 @@
                     "[*]cucumber"
                     "[*]dart"
                     "[*]ellsp" "[*]elsa"
+                    "[*]eslint"
                     "[*]perlnavigator"
                     "[*]lua-"
                     "[*]iph[*]"
