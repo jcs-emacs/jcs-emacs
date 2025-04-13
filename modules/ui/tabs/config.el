@@ -74,12 +74,14 @@
      ((jcs-member name '("*cider") 'prefix)
       "Cider")
 ;;; D
+     ((jcs-member name '("[*]edebug" "[*]dap-" "[*]debug-") 'regex)
+      "Debugger")
      ((derived-mode-p 'dired-mode)
       "Dired")
 ;;; L
      ((jcs-member name
                   '("[*]lsp-" "[*]LSP[ ]+" "[*]eglot"
-                    "[*][[:ascii:]]*ls[*:-]" "[*][[:ascii:]]+::stderr[*]"
+                    "[*][[:ascii:]]*ls[*:-]" "out[*]" "stderr[*]"
                     "[*]clang-" "[*]clangd"
                     "[*]csharp[*]"
                     "[*]cogru"
