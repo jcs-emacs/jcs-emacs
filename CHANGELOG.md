@@ -28,6 +28,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * feat(vc): Use `magit` built-in functionalities to display file icons (7d249ad694a58239d3247b673f8e15a92adc4a18)
 * feat(ui): Add mail tab group (e0ec5c24c7902f862d4793ffdf8fece6bb14076b)
 * feat(fold): Add `savefold` for persistent folding behaviors (98d0f498ccb2d16326f8814c7d4d36a4e2279d51)
+* feat(debugger): Combine `debugger` and `run` functionality (2d4048562fc019da0acc6bbc55242d1767cfc90d)
 
 ## 9.1.0
 > Released Jun 19, 2024
