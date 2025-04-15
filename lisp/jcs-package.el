@@ -234,6 +234,7 @@
            flymake-ruby
            flymake-shell
            fof
+    	   fold-this
            font-lock-ext
            forge
            fountain-mode
