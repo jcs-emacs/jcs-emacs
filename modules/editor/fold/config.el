@@ -24,3 +24,7 @@
   (jcs-with-eval-after-load 'hideif   (savefold-hide-ifdef-mode 1))
   (jcs-with-eval-after-load 'org      (savefold-org-mode 1))
   (jcs-with-eval-after-load 'ts-fold  (savefold-ts-fold-mode 1)))
+
+(use-package fold-this
+  :init
+  (setq fold-this-overlay-text (truncate-string-ellipsis)))
