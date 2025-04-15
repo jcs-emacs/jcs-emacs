@@ -21,5 +21,6 @@
   :init
   (jcs-with-eval-after-load 'outline  (savefold-outline-mode 1))
   (jcs-with-eval-after-load 'hideshow (savefold-hideshow-mode 1))
+  (jcs-with-eval-after-load 'hideif   (savefold-hide-ifdef-mode 1))
   (jcs-with-eval-after-load 'org      (savefold-org-mode 1))
   (jcs-with-eval-after-load 'ts-fold  (savefold-ts-fold-mode 1)))
