@@ -20,5 +20,5 @@
 
 (use-package vs-comment-return
   :init
-  (setq vs-comment-return-cancel-after t
-        vs-comment-return-inhibit-prefix nil))
+  (setq vs-comment-return-inhibit-prefix nil
+        vs-comment-return-cancel-after nil))
