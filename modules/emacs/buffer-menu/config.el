@@ -11,7 +11,7 @@
           "[*]Echo Area" "[*]Minibuf-"
           "[*]helm" "[*]esup" "[*]quelpa-"
           "[*]easky" "[*]quickrun"
-          "[*]Apropos[*]" "[*]Backtrace[*]" "[*]Compile-Log[*]"
+          "[*]Apropos[*]" "[*]Compile-Log[*]"
           "[*]Ibuffer[*]"
           "[*]Bug Help[*]"
           "[*]Warnings[*]"
@@ -29,6 +29,7 @@
           "[*]cider-" "[*]nrepl-server"
           "[*]timer"
           ;; `Debugger'
+          "[*]Backtrace[*]"
           "[*]edebug" "[*]dap-" "[*]debug-"
           ;; `LSP'
           "[*]lsp-" "[*]LSP[ ]+" "[*]eglot"
