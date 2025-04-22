@@ -74,7 +74,9 @@
      ((jcs-member name '("*cider") 'prefix)
       "Cider")
 ;;; D
-     ((jcs-member name '("[*]edebug" "[*]dap-" "[*]debug-") 'regex)
+     ((jcs-member name '("[*]Backtrace[*]"
+                         "[*]edebug" "[*]dap-" "[*]debug-")
+                  'regex)
       "Debugger")
      ((derived-mode-p 'dired-mode)
       "Dired")
