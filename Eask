@@ -1,3 +1,5 @@
+;; -*- mode: eask; lexical-binding: t -*-
+
 (package "jcs-emacs"
          "9.1.1"
          "Emacs configuration works across all OSs")
