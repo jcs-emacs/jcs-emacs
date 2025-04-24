@@ -6,16 +6,17 @@
           ("TAB" . vsc-edit-tab)
           ("C-s" . jcs-save-buffer))
   :init
-  (setq company-frontends '(company-pseudo-tooltip-frontend)
-        company-require-match nil
-        company-tooltip-align-annotations t
-        company-dabbrev-downcase nil
-        company-dabbrev-ignore-case nil
-        company-eclim-auto-save nil
-        company-minimum-prefix-length 0
+  (setq company-minimum-prefix-length 0
+        company-tooltip-limit 10
         company-idle-delay 0.07
         company-selection-wrap-around 'on
-        company-format-margin-function #'company-detect-icons-margin)
+        company-require-match nil
+        company-tooltip-align-annotations t
+        company-format-margin-function #'company-detect-icons-margin
+        company-frontends '(company-pseudo-tooltip-frontend)
+        company-dabbrev-downcase nil
+        company-dabbrev-ignore-case nil
+        company-eclim-auto-save nil)
   (setq company-backends
         '( company-capf company-semantic
            company-keywords company-dict
