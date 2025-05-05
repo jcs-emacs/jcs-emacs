@@ -258,7 +258,7 @@
 ;;; Show Hover
     ((kbd "C-k C-i") . jcs-poptip)
 
-    ((kbd "C-q") . jcs-poptip-focus)
+    ((kbd "M-Q") . jcs-poptip-toggle-focus)
 
 ;;; Show Symbol
     ((kbd "M-i") . show-eol-mode)
