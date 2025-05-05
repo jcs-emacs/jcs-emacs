@@ -401,17 +401,17 @@ Here is the list of key bindings that are defined in this configuration.
 
 #### System
 
-* <kbd>Alt</kbd>+<kbd>f4</kbd> - Shutdown Emacs.
-* <kbd>Alt</kbd>+<kbd>f5</kbd> - Reload Emacs.
-* <kbd>Alt</kbd>+<kbd>f6</kbd> - Restart Emacs.
-* <kbd>Ctrl</kbd>+<kbd>k</kbd>,<kbd>Ctrl</kbd>+<kbd>s</kbd> - Describe key bindings with the current `major-mode`.
-* <kbd>Ctrl</kbd>+<kbd>k</kbd>,<kbd>Ctrl</kbd>+<kbd>i</kbd> - Describe the current symbol.
-* <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>q</kbd> - Focus/Unfocus described frame.
-* <kbd>Ctrl</kbd>+<kbd>t</kbd> - Toggle `tabbar-mode`.
-* <kbd>Alt</kbd>+<kbd>z</kbd> - Toggle `truncate-lines`.
-* <kbd>Ctrl</kbd>+<kbd>r</kbd>, <kbd>o</kbd> - Read-Only mode toggle.
-* <kbd>Ctrl</kbd>+<kbd>r</kbd>, <kbd>f</kbd> - Open recent files.
-* <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>\`</kbd> - Toggle `depend`/`cross` mode.
+* <kbd>Alt</kbd>+<kbd>f4</kbd> - To shutdown Emacs.
+* <kbd>Alt</kbd>+<kbd>f5</kbd> - To reload Emacs.
+* <kbd>Alt</kbd>+<kbd>f6</kbd> - To restart Emacs.
+* <kbd>Ctrl</kbd>+<kbd>k</kbd>,<kbd>Ctrl</kbd>+<kbd>s</kbd> - To describe key bindings with the current `major-mode`.
+* <kbd>Ctrl</kbd>+<kbd>k</kbd>,<kbd>Ctrl</kbd>+<kbd>i</kbd> - To describe the current symbol.
+* <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>q</kbd> - To focus/unfocus the described frame.
+* <kbd>Ctrl</kbd>+<kbd>t</kbd> - To toggle `tabbar-mode`.
+* <kbd>Alt</kbd>+<kbd>z</kbd> - To toggle `truncate-lines`.
+* <kbd>Ctrl</kbd>+<kbd>r</kbd>, <kbd>o</kbd> - To toggle between Read-Only.
+* <kbd>Ctrl</kbd>+<kbd>r</kbd>, <kbd>f</kbd> - To open recent files.
+* <kbd>Ctrl</kbd>+<kbd>k</kbd>, <kbd>\`</kbd> - To toggle `depend`/`cross` mode.
 
 #### Theme
 
