@@ -10,7 +10,6 @@ README.html
 *.sqlite
 *.tmp
 *bak/
-.DS_Store
 .cache/
 .cask/
 .dap-*
