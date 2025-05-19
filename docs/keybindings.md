@@ -173,8 +173,8 @@ Here is the list of key bindings that are defined in this configuration.
 
 #### Expand Region
 
-* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>=</kbd> - Expand the region from the current point.
-* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>-</kbd> - Contract the region from the current point.
+* <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>=</kbd> - Expand the region from the current point.
+* <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>-</kbd> - Contract the region from the current point.
 
 #### Case
 
