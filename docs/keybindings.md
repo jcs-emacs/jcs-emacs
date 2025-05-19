@@ -24,7 +24,6 @@ Here is the list of key bindings that are defined in this configuration.
       - [Balanced Expression](#balanced-expression)
       - [Multiple Cursors](#multiple-cursors)
         - [Marking](#marking)
-        - [Similarity](#similarity)
       - [Debugging](#debugging)
     - [Buffer](#buffer)
       - [Buffer Menu](#buffer-menu)
@@ -215,11 +214,6 @@ Here is the list of key bindings that are defined in this configuration.
 * <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>=</kbd> - Mark the previous line similar to current line.
 * <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>-</kbd> - Mark the next line similar to current line.
 * <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>Left-Click</kbd> - Mart at the current point.
-
-##### Similarity
-
-* <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>=</kbd> - Increase the string distance level by `1`.
-* <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>-</kbd> - Decrease the string distance level by `1`.
 
 #### Debugging
 
