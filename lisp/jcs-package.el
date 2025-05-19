@@ -317,6 +317,7 @@
            license-templates
            line-reminder
            list-environment
+           list-unicode-display
            literate-calc-mode
            llvm-mode
            lockfile-mode
