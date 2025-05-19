@@ -87,6 +87,7 @@
                                     "dired-mode"
                                     "help-mode" "custom-mode"
                                     "list-environment-mode"
+                                    "list-unicode-display-mode"
                                     "shell-mode" "eshell-mode"
                                     "sqlite-mode"
                                     "checkdoc-output-mode"
