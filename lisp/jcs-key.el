@@ -110,8 +110,8 @@
     ((kbd "C-e r") . ueval-region)
 
 ;;; Expand Region
-    ((kbd "C-+") . er/expand-region)
-    ((kbd "C-_") . er/contract-region)
+    ((kbd "C-M-=") . er/expand-region)
+    ((kbd "C-M--") . er/contract-region)
 
 ;;; File Explorer
     ((kbd "C-M-l") . treemacs)  ; `Visual Studio'
@@ -182,13 +182,11 @@
     ((kbd "M-E") . emp-other-window)
 
 ;;; Mutliple Cursors
-    ((kbd "C-M-S-<up>")     . vsc-multiple-cursors-mark-previous-like-this-line)
-    ((kbd "C-M-S-<down>")   . vsc-multiple-cursors-mark-next-like-this-line)
-    ((kbd "C-M-_")          . vsc-multiple-cursors-mark-previous-similar-this-line)
-    ((kbd "C-M-+")          . vsc-multiple-cursors-mark-next-similar-this-line)
-    ((kbd "C-M-=")          . vsc-multiple-cursors-inc-similarity)
-    ((kbd "C-M--")          . vsc-multiple-cursors-dec-similarity)
-    ((kbd "S-M-<mouse-1>")  . mc/add-cursor-on-click)
+    ((kbd "C-M-S-<up>")    . vsc-multiple-cursors-mark-previous-like-this-line)
+    ((kbd "C-M-S-<down>")  . vsc-multiple-cursors-mark-next-like-this-line)
+    ((kbd "C-M-_")         . vsc-multiple-cursors-mark-previous-similar-this-line)
+    ((kbd "C-M-+")         . vsc-multiple-cursors-mark-next-similar-this-line)
+    ((kbd "S-M-<mouse-1>") . mc/add-cursor-on-click)
 
 ;;; Navigation
     ((kbd "C-<home>") . beginning-of-buffer)
@@ -303,8 +301,6 @@
 
 ;;; Version Control
     ((kbd "C-k m") . jcs-magit)
-    ((kbd "C-0 g") . jcs-magit)  ; Visual Studio
-    ((kbd "C-S-g") . jcs-magit)  ; VSCode
     ((kbd "C-k c") . magit-branch-or-checkout)
     ((kbd "C-k d") . magit-branch-delete)
 
@@ -345,7 +341,15 @@
 ;;; Zoom
     ((kbd "C-=")      . text-scale-increase)
     ((kbd "C--")      . text-scale-decrease)
-    ((kbd "C-<kp-0>") . (lambda () (interactive) (text-scale-set 0)))
+    ((kbd "C-0")      . (lambda () (interactive) (text-scale-set 0)))
+
+    ((kbd "C-+")      . default-text-scale-increase)
+    ((kbd "C-_")      . default-text-scale-decrease)
+    ((kbd "C-S-0")    . default-text-scale-reset)
+
+    ((kbd "C-<kp-0>") . (lambda () (interactive)
+                          (text-scale-set 0)
+                          (default-text-scale-reset)))
 
 ;;; Windows Menu
     ((kbd "M-SPC n") . suspend-frame)
