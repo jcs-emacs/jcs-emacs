@@ -343,11 +343,9 @@
 ;;; Zoom
     ((kbd "C-=")      . text-scale-increase)
     ((kbd "C--")      . text-scale-decrease)
-    ((kbd "C-0")      . (lambda () (interactive) (text-scale-set 0)))
 
     ((kbd "C-+")      . default-text-scale-increase)
     ((kbd "C-_")      . default-text-scale-decrease)
-    ((kbd "C-S-0")    . default-text-scale-reset)
 
     ((kbd "C-<kp-0>") . (lambda () (interactive)
                           (text-scale-set 0)
