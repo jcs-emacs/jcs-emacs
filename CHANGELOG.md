@@ -30,6 +30,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * feat(fold): Add `savefold` for persistent folding behaviors (98d0f498ccb2d16326f8814c7d4d36a4e2279d51)
 * feat(debugger): Combine `debugger` and `run` functionality (2d4048562fc019da0acc6bbc55242d1767cfc90d)
 * feat(fold): Add new package `fold-this` (5c9b423ba95419dcb8e81477570778739c1ec851)
+* feat(keys): Add support for `defaul-text-scale` (4453b907e5702989ca711c90b3244e04b8f873c6)
 
 ## 9.1.0
 > Released Jun 19, 2024
