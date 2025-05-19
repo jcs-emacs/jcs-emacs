@@ -149,6 +149,7 @@
            cython-mode
            d-mode
            dashboard-ls
+           default-text-scale
            diff-hl
            diminish-buffer
            diredfl
