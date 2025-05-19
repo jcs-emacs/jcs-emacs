@@ -339,8 +339,10 @@ Here is the list of key bindings that are defined in this configuration.
 
 ### Visualization
 
-* <kbd>Ctrl</kbd>+<kbd>=</kbd> - Text scale increase (Zoom in).
-* <kbd>Ctrl</kbd>+<kbd>-</kbd> - Text scale decrease (Zoom out).
+* <kbd>Ctrl</kbd>+<kbd>=</kbd> - Text scale increase (Buffer).
+* <kbd>Ctrl</kbd>+<kbd>-</kbd> - Text scale decrease (Buffer).
+* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>=</kbd> - Text scale increase (Frame).
+* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>-</kbd> - Text scale decrease (Frame).
 * <kbd>Ctrl</kbd>+<kbd>0(Numpad)</kbd> - Reset zoom.
 * <kbd>Alt</kbd>+<kbd>=</kbd> - Increase the frame's transparency.
 * <kbd>Alt</kbd>+<kbd>-</kbd> - Decrease the frame's transparency.
