@@ -89,10 +89,14 @@ If optional argument DIR is nil, use variable `default-directory' instead."
             (files (cl-remove-if-not (lambda (filename)
                                        (string-suffix-p ".el" filename))
                                      files)))
-      (progn
-        (mapc (lambda (file)
-                (ignore-errors (load-file file)))
-              files)
+      (msgu-inhibit-log
+        ;; XXX: Load the files length times due to the problem depending
+        ;; on other modules that haven't been loaded. Loading the files length
+        ;; times can guarantee you've loaded the project fully operational.
+        (dotimes (_ (length files))
+          (mapc (lambda (file)
+                  (ignore-errors (load-file file)))
+                files))
         (message "[INFO] Reloading project %s... done!" root))
     (user-error "[WARNING] Currently not under an Elisp project")))
 
