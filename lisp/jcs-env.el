@@ -176,8 +176,7 @@
 (use-package eval-mark
   :init
   (setq eval-mark-commands-after '( eval-buffer eval-defun eval-region
-                                    eval-last-sexp
-                                    narrow-to-region)))
+                                    eval-last-sexp)))
 
 ;;
 ;;; Messages
