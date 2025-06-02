@@ -64,7 +64,7 @@ from this configuration.
 - Janet / Java / JavaScript / JSON / JSX / Julia
 - Kotlin
 - LaTeX / LESS / Lisp / Lua
-- Makefile / Markdown / Mermaid / Mint
+- Magik / Makefile / Markdown / Mermaid / Mint
 - Nim / Nix / Noir
 - Object Pascal (Delphi) / Objective-C / OCaml
 - P4 / Pascal / Perl / PHP / PowerShell / Properties / Python
