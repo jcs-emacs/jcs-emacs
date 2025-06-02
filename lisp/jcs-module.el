@@ -139,6 +139,7 @@
     (tex-mode                              . "lang/latex")
     (ledger-mode                           . "lang/ledger")
     (lua-mode                              . "lang/lua")
+    (magik-mode                            . "lang/magik")
     (markdown-mode                         . "lang/markdown")
     (mermaid-mode                          . "lang/mermaid")
     (mint-mode                             . "lang/mint")
