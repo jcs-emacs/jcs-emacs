@@ -16,4 +16,4 @@
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]magik")
-                              'jcs-insert-markdown-template))
+                              'jcs-insert-magik-template))
