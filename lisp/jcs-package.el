@@ -341,7 +341,7 @@
            lsp-sonarlint
            lsp-sourcekit
            lsp-tailwindcss
-           magik
+           magik-company
            magit-lfs
            magit-todos
            makefile-executor
