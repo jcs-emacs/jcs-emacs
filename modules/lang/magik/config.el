@@ -12,7 +12,7 @@
 ;;
 
 (jcs-add-hook 'magik-mode-hook
-  (company-fuzzy-backend-add-before 'company-magik 'company-dabbrev)
+  (company-fuzzy-backend-add-before 'magik-company 'company-dabbrev)
 
   ;; File Header
   (jcs-insert-header-if-valid '("[.]magik")
