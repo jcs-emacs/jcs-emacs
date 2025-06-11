@@ -375,6 +375,7 @@
            noir-mode
            nov
            npm-mode
+           nushell-mode
            on
            opencl-c-mode
            org-fancy-priorities
