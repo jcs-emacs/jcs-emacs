@@ -218,6 +218,7 @@
            flycheck-ledger
            flycheck-nim
            flycheck-ocaml
+           flycheck-odin
            flycheck-package
            flycheck-relint
            flycheck-rust
@@ -376,6 +377,7 @@
            nov
            npm-mode
            nushell-mode
+           odin-mode
            on
            opencl-c-mode
            org-fancy-priorities
