@@ -148,6 +148,7 @@
     (nix-mode                              . "lang/nix")
     (noir-mode                             . "lang/noir")
     (nxml-mode                             . "lang/xml")
+    (odin-mode                             . "lang/odin")
     (opascal                               . "lang/opascal")
     (org                                   . "lang/org")
     (p4lang-mode                           . "lang/p4")
