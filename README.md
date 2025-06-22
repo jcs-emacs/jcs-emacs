@@ -66,7 +66,7 @@ from this configuration.
 - LaTeX / LESS / Lisp / Lua
 - Magik / Makefile / Markdown / Mermaid / Mint
 - Nim / Nix / Noir
-- Object Pascal (Delphi) / Objective-C / OCaml
+- Object Pascal (Delphi) / Objective-C / OCaml / Odin
 - P4 / Pascal / Perl / PHP / PowerShell / Properties / Python
 - R / Racket / Ruby / Rust
 - Sass / Scala / SCSS / ShaderLab / Shell script / SQL / Swift
