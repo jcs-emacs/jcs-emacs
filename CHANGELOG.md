@@ -32,6 +32,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * feat(fold): Add new package `fold-this` (5c9b423ba95419dcb8e81477570778739c1ec851)
 * feat(keys): Add support for `defaul-text-scale` (4453b907e5702989ca711c90b3244e04b8f873c6)
 * feat(lang): Add support for `Magik` language (5ab68e5a9deb1671a55c36ca81ea866217f2cfd2)
+* feat(lang): Add `Odin` support (a69d5c11fb3707c92c47bbe29470e7a3eae8bce3)
 
 ## 9.1.0
 > Released Jun 19, 2024
