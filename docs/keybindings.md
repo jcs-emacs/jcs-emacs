@@ -319,6 +319,8 @@ Here is the list of key bindings that are defined in this configuration.
 * <kbd>Alt</kbd>+<kbd>g</kbd>, <kbd>l</kbd> - Goto line number.
 * <kbd>Alt</kbd>+<kbd>g</kbd>, <kbd>c</kbd> - Goto character position.
 * <kbd>Alt</kbd>+<kbd>g</kbd>, <kbd>p</kbd> - Goto last change.
+* <kbd>Mouse-5</kbd> - Backward global mark ring.
+* <kbd>Mouse-4</kbd> - Forward global mark ring.
 
 #### Navigate Windows
 
