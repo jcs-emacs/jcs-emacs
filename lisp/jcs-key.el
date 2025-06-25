@@ -173,6 +173,9 @@
 ;;; Mouse
     ([mouse-2] . mouse-set-point)
 
+    ((kbd "<mouse-5>") . back-button-global-forward)
+    ((kbd "<mouse-4>") . back-button-global-backward)
+
 ;;; Move Current Line Up or Down
     ([M-up]   . move-text-up)
     ([M-down] . move-text-down)
