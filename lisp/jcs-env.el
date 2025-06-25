@@ -103,6 +103,13 @@
       auto-save-timeout 0)
 
 ;;
+;;; Back Button
+
+(use-package back-button
+  :init
+  (setq back-button-no-wrap t))
+
+;;
 ;;; Comments
 (use-package newcomment
   :init
