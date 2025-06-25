@@ -57,6 +57,7 @@
            auto-rename-tag
            auto-scroll-bar
            autotetris-mode
+           back-button
            balanced-windows
            banner-comment
            basic-mode
