@@ -58,6 +58,7 @@
 (jcs-add-hook 'on-init-ui-hook
   (add-function :after after-focus-change-function #'jcs-hook--after-focus)
   (auto-scroll-bar-mode 1)
+  (back-button-mode 1)
   (centaur-tabs-mode 1)
   (context-menu-mode 1)
   (global-hl-line-mode 1)
