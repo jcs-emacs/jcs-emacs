@@ -110,8 +110,9 @@
 ;;; O
      ((jcs-member name '("*execrun" "*quickrun") 'regex)
       "Output")
-     ((memq major-mode '( org-mode org-agenda-mode diary-mode))
-      "OrgMode")
+     ((or (memq major-mode '( org-mode org-agenda-mode diary-mode))
+          (jcs-member name '("[*]org") 'regex))
+      "Org")
 ;;; P
      ((jcs-member name '("[*]CPU-Profiler-Report"
                          "[*]Memory-Profiler-Report"
