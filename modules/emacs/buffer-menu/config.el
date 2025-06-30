@@ -74,7 +74,7 @@
           "[*]wclock[*]"
           "[*]Clippy[*]"
           "[*]CMake Temporary[*]"
-          "[*]org-src-fontification"
+          "[*]org"
           "[*]ASCII[*]"
           "[*]e2ansi"
           "[*]npm:" "[*]hexo"
