@@ -237,6 +237,7 @@
            flymake-racket
            flymake-ruby
            flymake-shell
+           flymake-yamllint
            fof
            font-lock-ext
            forge
