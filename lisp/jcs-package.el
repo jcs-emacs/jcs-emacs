@@ -232,6 +232,7 @@
            flymake-haml
            flymake-less
            flymake-lua
+           flymake-markdownlint
            flymake-nasm
            flymake-php
            flymake-racket
