@@ -37,3 +37,5 @@
 ;;
 
 (use-package flycheck-deno :hook (flycheck-mode . flycheck-deno-setup))
+
+(use-package flycheck-jest :hook (flycheck-mode . flycheck-jest-setup))
