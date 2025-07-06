@@ -214,6 +214,7 @@
            flycheck-haskell
            flycheck-hl-todo
            flycheck-janet
+           flycheck-jest
            flycheck-kotlin
            flycheck-languagetool
            flycheck-ledger
