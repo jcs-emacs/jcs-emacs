@@ -135,6 +135,9 @@
                          "tree-sitter-tree:")
                   'regex)
       "Tree-sitter")
+;;; U
+     ((memq major-mode '( grep-mode))
+      "Utilities")
 ;;; V
      ((jcs-member name '("[*]vc"
                          "[*]VC-history[*]"
