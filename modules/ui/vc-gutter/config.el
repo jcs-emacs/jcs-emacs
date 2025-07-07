@@ -9,7 +9,10 @@
   :init
   (setq diff-hl-side 'right
         diff-hl-draw-borders nil
-        diff-hl-flydiff-delay 0.5
+        ;; PERF: Slightly more conservative delay before updating the diff
+        diff-hl-flydiff-delay 0.5  ; default: 0.3
+        ;; PERF: don't block Emacs when updating vc gutter
+        diff-hl-update-async t
         ;; UX: get realtime feedback in diffs after staging/unstaging hunks
         diff-hl-show-staged-changes nil))
 
