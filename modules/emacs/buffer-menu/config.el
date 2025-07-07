@@ -85,6 +85,7 @@
                                     "completion-list-mode"
                                     "compilation-mode" "comint-mode"
                                     "dired-mode"
+                                    "grep-mode"
                                     "help-mode" "custom-mode"
                                     "list-environment-mode"
                                     "list-unicode-display-mode"
